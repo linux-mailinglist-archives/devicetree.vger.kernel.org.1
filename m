@@ -1,125 +1,181 @@
-Return-Path: <devicetree+bounces-188205-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-188206-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6D67DAE3298
-	for <lists+devicetree@lfdr.de>; Sun, 22 Jun 2025 23:55:48 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 10E1FAE32D7
+	for <lists+devicetree@lfdr.de>; Mon, 23 Jun 2025 00:38:26 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id ECC4F169ED1
-	for <lists+devicetree@lfdr.de>; Sun, 22 Jun 2025 21:55:48 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id A601C16C9AD
+	for <lists+devicetree@lfdr.de>; Sun, 22 Jun 2025 22:38:26 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 88EB21EF38E;
-	Sun, 22 Jun 2025 21:55:45 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A8A4121771F;
+	Sun, 22 Jun 2025 22:38:21 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Pcx2mxr6"
+	dkim=pass (1024-bit key) header.d=collabora.com header.i=sebastian.reichel@collabora.com header.b="ivCTq1No"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from sender4-pp-f112.zoho.com (sender4-pp-f112.zoho.com [136.143.188.112])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 638FBBE5E
-	for <devicetree@vger.kernel.org>; Sun, 22 Jun 2025 21:55:45 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1750629345; cv=none; b=ZCshLq3Q7kRcxBL0M81rOR5qu/W3SgQaSczjEKfI1VBhlRMs+EZpozlO5wLgKdrfWyQfKz9oAY4pKybF4tKS27z1XrhKfyyzg6q26G2PbIM3oibkd7/BaZQgqOIZzWnGWBK4N6Wx0jASmLfLHv/lxMD0Uy7Ld544NcpLy6iyu58=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1750629345; c=relaxed/simple;
-	bh=jiuhgLENIQgL1DZ3JyPGXXXfm+RL76gQc5U47Dtv4XI=;
-	h=Date:Content-Type:MIME-Version:From:Cc:To:In-Reply-To:References:
-	 Message-Id:Subject; b=Mtl6Ba1CakRIVhPx3PaWoo5/lI3Rj8tN0OnMuBV8NdaC1sZ7pPSVua4/H2J5i6QTLujp98ZYeH4uBvss1gGCKzl8wgfYiEabLPxtn47rXO6eT8n1OwZF+SYzk+a5gmO99EnCQO9vCWttp1bSRtGapVrR3V+tCmJ7ifXmlZpzGf8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Pcx2mxr6; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id E27A4C4CEE3;
-	Sun, 22 Jun 2025 21:55:44 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1750629345;
-	bh=jiuhgLENIQgL1DZ3JyPGXXXfm+RL76gQc5U47Dtv4XI=;
-	h=Date:From:Cc:To:In-Reply-To:References:Subject:From;
-	b=Pcx2mxr6N8oX14abDc96806sG6qzSV9oSft2+ez6xFBIqkt5p7UXLlcar96m0ZsiB
-	 hrDUJ8JgFr0Dqt4LNH/ajgT9OSBaNaCMvoI66ifVubUwjxoiEhNLRAmato/2gOfqPh
-	 XVD23kEEwa//6I5eu6Cc/XYxyONEEhrx8SGknVC9n7K5KnZZ7/7LWCZYgvu7l7SqdE
-	 /Cqf4VBUT2br2OZTntzN4V/Vgn4Qnxg1xgjOCgGi8BfLvTrbLNLCcChyVANYlblYv7
-	 I6Yh9hYOQbT73TZ/PBcdCkI0wh6glOqWDLYKTKpu1JGEPSzIuAytKKchJa4NEhVEuz
-	 DCQcqpuQUQ6YA==
-Date: Sun, 22 Jun 2025 16:55:44 -0500
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D0D1FA55;
+	Sun, 22 Jun 2025 22:38:19 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=pass smtp.client-ip=136.143.188.112
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1750631901; cv=pass; b=PNobWh6FROoLOYiAuP3TBhv8EciUhsntYS+Jx3RFxOfBi6IHs1AErMT4PwtJMTHGCG66GMC05wp7QO4ZelowRpC52y1R26s6v4Of0GsPix3qp/vMw2R1g2cAJ6tSLMnST2d0vM4N5P8DkrrrKi3ieBFyX/wRAUoAAFtIHmDAmG4=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1750631901; c=relaxed/simple;
+	bh=PdzORT/ROw2Iy2yYFT2emz9ZL6EJEn8FBMoLsGDBvwY=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=jm12+B6LcRBP/ADOsIsJbxBqjOZdJqNjTGGubLqEDhtp4tAbMfONwAZS1kp2iwEKjwsXIPXVAtqY0+5uFeLxlBmt9xy7UG5wefEWgQ7jAaxNbtDSrLzHsKpum16BWQ0SLObnDQItc6tHlKu2/5feW+A+N7yVS2a5P0u26lW4Bm4=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (1024-bit key) header.d=collabora.com header.i=sebastian.reichel@collabora.com header.b=ivCTq1No; arc=pass smtp.client-ip=136.143.188.112
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
+ARC-Seal: i=1; a=rsa-sha256; t=1750631880; cv=none; 
+	d=zohomail.com; s=zohoarc; 
+	b=grNhQtZPynGPaxIfVo2ewyHWr+xRgsoZ3PLfBBntmBeY02yf7kbXfeEqGQDa0gdwYrlC7Xb38PSZat5hsHFNg9QHaxeMKGmfGSEWE3FcLR9yLWua4/K8QainDCh2kwEN8mVIh7Fu6tPCajQbin4toln0Q2humDQAshwVam/eKeY=
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=zohomail.com; s=zohoarc; 
+	t=1750631880; h=Content-Type:Cc:Cc:Date:Date:From:From:In-Reply-To:MIME-Version:Message-ID:References:Subject:Subject:To:To:Message-Id:Reply-To; 
+	bh=WZFXplL7Oqd3eoXVl29jxmVkZRy+F55mDoQX6eminKs=; 
+	b=kUyWmqBWtl0JPntPFjBYPiWFS0E4pNyOchsRJB4Yz2H0yDYnxP2vNOtpc/6686r7mhcct4mztfE/4RVMahgsNO9zow4P3Y0XkXklG4lKKJLT+GL7g3Ym0QjEihg4+Zp4iZmfwMip/ie7sKbwyZQx6OyirLD4uyswPmsfzuA57t0=
+ARC-Authentication-Results: i=1; mx.zohomail.com;
+	dkim=pass  header.i=collabora.com;
+	spf=pass  smtp.mailfrom=sebastian.reichel@collabora.com;
+	dmarc=pass header.from=<sebastian.reichel@collabora.com>
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; t=1750631880;
+	s=zohomail; d=collabora.com; i=sebastian.reichel@collabora.com;
+	h=Date:Date:From:From:To:To:Cc:Cc:Subject:Subject:Message-ID:References:MIME-Version:Content-Type:In-Reply-To:Message-Id:Reply-To;
+	bh=WZFXplL7Oqd3eoXVl29jxmVkZRy+F55mDoQX6eminKs=;
+	b=ivCTq1No1BEPxZKzTQAy5zNXJHNIa3wmakytwKjgI64iHSCea+fhixzwjH20zruR
+	d0+9hCYnNa18nHFy2DaHzEJ/J5rQaj16POMXp7WEj/i0ralYYKTaFhSMTTw58CCwSNs
+	bQ+9IU/jZb2HKAdayRqPttY3ET/cImF4TvVyANs0=
+Received: by mx.zohomail.com with SMTPS id 1750631877756727.6472621369028;
+	Sun, 22 Jun 2025 15:37:57 -0700 (PDT)
+Received: by venus (Postfix, from userid 1000)
+	id 204B7180956; Mon, 23 Jun 2025 00:37:53 +0200 (CEST)
+Date: Mon, 23 Jun 2025 00:37:53 +0200
+From: Sebastian Reichel <sebastian.reichel@collabora.com>
+To: Chris Morgan <macroalpha82@gmail.com>
+Cc: linux-pm@vger.kernel.org, linux-rockchip@lists.infradead.org, 
+	devicetree@vger.kernel.org, broonie@kernel.org, lgirdwood@gmail.com, heiko@sntech.de, 
+	conor+dt@kernel.org, krzk+dt@kernel.org, robh@kernel.org, lee@kernel.org, 
+	Chris Morgan <macromorgan@hotmail.com>
+Subject: Re: [PATCH V2 3/5] power: supply: bq257xx: Add support for BQ257XX
+ charger manager
+Message-ID: <rnej3oxgijyec36z7ejmbfdhncrgwpydasb2c4jc54zqo24t5b@ntzziuweqjny>
+References: <20250621180119.163423-1-macroalpha82@gmail.com>
+ <20250621180119.163423-4-macroalpha82@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-From: "Rob Herring (Arm)" <robh@kernel.org>
-Cc: krzysztof.kozlowskii+dt@linaro.org, devicetree@vger.kernel.org, 
- conor+dt@kernel.org, robh+dt@kernel.org
-To: Dinh Nguyen <dinguyen@kernel.org>
-In-Reply-To: <20250621034401.586780-1-dinguyen@kernel.org>
-References: <20250621034401.586780-1-dinguyen@kernel.org>
-Message-Id: <175062934408.5147.9042081711517025234.robh@kernel.org>
-Subject: Re: [PATCH] dt-bindings: net: convert socfpga-dwmac.txt to DT
- schema
+Content-Type: multipart/signed; micalg=pgp-sha512;
+	protocol="application/pgp-signature"; boundary="ua6kmqvzpsne5sdx"
+Content-Disposition: inline
+In-Reply-To: <20250621180119.163423-4-macroalpha82@gmail.com>
+X-Zoho-Virus-Status: 1
+X-Zoho-Virus-Status: 1
+X-Zoho-AV-Stamp: zmail-av-1.4.3/250.624.82
+X-ZohoMailClient: External
 
 
-On Fri, 20 Jun 2025 22:44:01 -0500, Dinh Nguyen wrote:
-> Convert the socfpga-dwmac.txt to yaml.
-> 
-> Signed-off-by: Dinh Nguyen <dinguyen@kernel.org>
+--ua6kmqvzpsne5sdx
+Content-Type: text/plain; protected-headers=v1; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
+Subject: Re: [PATCH V2 3/5] power: supply: bq257xx: Add support for BQ257XX
+ charger manager
+MIME-Version: 1.0
+
+On Sat, Jun 21, 2025 at 01:01:17PM -0500, Chris Morgan wrote:
+> From: Chris Morgan <macromorgan@hotmail.com>
+>=20
+> Add support for the charger function of the BQ257XX. The device is
+> capable of charging batteries with a layout of 1 to 4 cells in
+> series.
+>=20
+> Signed-off-by: Chris Morgan <macromorgan@hotmail.com>
 > ---
->  .../bindings/net/altr,dwmac-socfpga.yaml      | 152 ++++++++++++++++++
->  .../devicetree/bindings/net/socfpga-dwmac.txt |  57 -------
->  2 files changed, 152 insertions(+), 57 deletions(-)
->  create mode 100644 Documentation/devicetree/bindings/net/altr,dwmac-socfpga.yaml
->  delete mode 100644 Documentation/devicetree/bindings/net/socfpga-dwmac.txt
-> 
 
-My bot found errors running 'make dt_binding_check' on your patch:
+[...]
 
-yamllint warnings/errors:
+> +static void bq257xx_external_power_changed(struct power_supply *psy)
+> +{
+> +	struct bq257xx_chg *pdata =3D power_supply_get_drvdata(psy);
+> +	union power_supply_propval val;
+> +	int ret;
+> +	int imax =3D pdata->iindpm_max;
+> +
+> +	pdata->chip->bq257xx_get_state(pdata);
+> +
+> +	pdata->supplied =3D power_supply_am_i_supplied(pdata->charger);
+> +	if (pdata->supplied < 0)
+> +		return;
+> +
+> +	if (pdata->supplied =3D=3D 0)
+> +		goto out;
+> +
+> +	ret =3D power_supply_get_property_from_supplier(psy,
+> +						      POWER_SUPPLY_PROP_USB_TYPE,
+> +						      &val);
+> +	if (ret)
+> +		return;
+> +
+> +	pdata->usb_type =3D val.intval;
+> +
+> +	if ((pdata->usb_type =3D=3D POWER_SUPPLY_USB_TYPE_PD) ||
+> +	    (pdata->usb_type =3D=3D POWER_SUPPLY_USB_TYPE_PD_DRP) ||
+> +	    (pdata->usb_type =3D=3D POWER_SUPPLY_USB_TYPE_PD)) {
 
-dtschema/dtc warnings/errors:
-/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/net/renesas,rzn1-gmac.example.dtb: ethernet@44000000 (renesas,r9a06g032-gmac): 'pcs-handle', 'power-domains', 'snps,perfect-filter-entries' do not match any of the regexes: '^pinctrl-[0-9]+$'
-	from schema $id: http://devicetree.org/schemas/net/altr,dwmac-socfpga.yaml#
-/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/net/renesas,rzn1-gmac.example.dtb: ethernet@44000000 (renesas,r9a06g032-gmac): compatible:0: 'renesas,r9a06g032-gmac' is not one of ['altr,socfpga-stmmac', 'altr,socfpga-stmmac-a10-s10']
-	from schema $id: http://devicetree.org/schemas/net/altr,dwmac-socfpga.yaml#
-/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/net/renesas,rzn1-gmac.example.dtb: ethernet@44000000 (renesas,r9a06g032-gmac): interrupt-names: ['macirq', 'eth_wake_irq', 'eth_lpi'] is too long
-	from schema $id: http://devicetree.org/schemas/net/altr,dwmac-socfpga.yaml#
-/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/net/renesas,rzn1-gmac.example.dtb: ethernet@44000000 (renesas,r9a06g032-gmac): interrupts: [[0, 34, 4], [0, 36, 4], [0, 35, 4]] is too long
-	from schema $id: http://devicetree.org/schemas/net/altr,dwmac-socfpga.yaml#
-/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/net/amlogic,meson-dwmac.example.dtb: ethernet@c9410000 (amlogic,meson-gxbb-dwmac): clock-names: ['stmmaceth', 'clkin0', 'clkin1', 'timing-adjustment'] is too long
-	from schema $id: http://devicetree.org/schemas/net/altr,dwmac-socfpga.yaml#
-/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/net/amlogic,meson-dwmac.example.dtb: ethernet@c9410000 (amlogic,meson-gxbb-dwmac): clocks: [[4294967295], [4294967295], [4294967295], [4294967295]] is too long
-	from schema $id: http://devicetree.org/schemas/net/altr,dwmac-socfpga.yaml#
-/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/net/amlogic,meson-dwmac.example.dtb: ethernet@c9410000 (amlogic,meson-gxbb-dwmac): compatible:0: 'amlogic,meson-gxbb-dwmac' is not one of ['altr,socfpga-stmmac', 'altr,socfpga-stmmac-a10-s10']
-	from schema $id: http://devicetree.org/schemas/net/altr,dwmac-socfpga.yaml#
-/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/net/amlogic,meson-dwmac.example.dtb: ethernet@c9410000 (amlogic,meson-gxbb-dwmac): reg: [[3376480256, 65536], [3364046144, 8]] is too long
-	from schema $id: http://devicetree.org/schemas/net/altr,dwmac-socfpga.yaml#
-/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/net/thead,th1520-gmac.example.dtb: ethernet@e7070000 (thead,th1520-gmac): 'mdio', 'phy-handle', 'reg-names', 'snps,axi-config', 'snps,fixed-burst', 'snps,pbl' do not match any of the regexes: '^pinctrl-[0-9]+$'
-	from schema $id: http://devicetree.org/schemas/net/altr,dwmac-socfpga.yaml#
-/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/net/thead,th1520-gmac.example.dtb: ethernet@e7070000 (thead,th1520-gmac): compatible:0: 'thead,th1520-gmac' is not one of ['altr,socfpga-stmmac', 'altr,socfpga-stmmac-a10-s10']
-	from schema $id: http://devicetree.org/schemas/net/altr,dwmac-socfpga.yaml#
-/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/net/thead,th1520-gmac.example.dtb: ethernet@e7070000 (thead,th1520-gmac): phy-mode:0: 'rgmii-id' is not one of ['rgmii', 'gmii', 'mii']
-	from schema $id: http://devicetree.org/schemas/net/altr,dwmac-socfpga.yaml#
-/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/net/thead,th1520-gmac.example.dtb: ethernet@e7070000 (thead,th1520-gmac): reg: [[3875995648, 8192], [3959435264, 4096]] is too long
-	from schema $id: http://devicetree.org/schemas/net/altr,dwmac-socfpga.yaml#
+Duplicated check for POWER_SUPPLY_USB_TYPE_PD.
 
-doc reference errors (make refcheckdocs):
-Warning: MAINTAINERS references a file that doesn't exist: Documentation/devicetree/bindings/net/socfpga-dwmac.txt
-MAINTAINERS: Documentation/devicetree/bindings/net/socfpga-dwmac.txt
+> +		ret =3D power_supply_get_property_from_supplier(psy,
+> +							      POWER_SUPPLY_PROP_CURRENT_MAX,
+> +							      &val);
+> +		if (ret)
+> +			return;
+> +
+> +		if (val.intval)
+> +			imax =3D val.intval;
+> +	}
+> +
+> +	if (pdata->supplied) {
+> +		pdata->chip->bq257xx_set_ichg(pdata, imax);
+> +		pdata->chip->bq257xx_set_iindpm(pdata, imax);
 
-See https://patchwork.ozlabs.org/project/devicetree-bindings/patch/20250621034401.586780-1-dinguyen@kernel.org
+Are you sure about this? ichg and iindpm are two completley separate
+things. One runs at USB bus voltage and one runs at battery charge
+voltage. Setting both to the same current limit is a hint that
+somebody did not understand what they are doing.
 
-The base for the series is generally the latest rc1. A different dependency
-should be noted in *this* patch.
+Otherwise the driver LGTM (apart from the documentation issue
+reported by the bit of course).
 
-If you already ran 'make dt_binding_check' and didn't see the above
-error(s), then make sure 'yamllint' is installed and dt-schema is up to
-date:
+Greetings,
 
-pip3 install dtschema --upgrade
+-- Sebastian
 
-Please check and re-submit after running the above command yourself. Note
-that DT_SCHEMA_FILES can be set to your schema file to speed up checking
-your schema. However, it must be unset to test all examples with your schema.
+--ua6kmqvzpsne5sdx
+Content-Type: application/pgp-signature; name="signature.asc"
 
+-----BEGIN PGP SIGNATURE-----
+
+iQIzBAABCgAdFiEE72YNB0Y/i3JqeVQT2O7X88g7+poFAmhYhbkACgkQ2O7X88g7
++prTcQ/9GarcqLJe8fliCoDCgTEFFMG7VqF7yaDYCQOIqDpuDYcaVGXpl3ARJHUx
+MVE9V95m3D15xsm2eBgjjrAc4y8YL5wUKQ93qne0T+gFq2ijQBSdOxMNhpskZB+q
+aiexF3VRLrOhciF1Aw70W0cllaYBAYCtGZycLMqHVhPDMTJ4UZZmqBAmcjl1hWCo
+/9hq4+34ti2u3oz2Bm7mOpZA9bQR2P+16s43PkYeaRP7F7vC9cm6a61/wV0lq3O3
+AbVOKXpMJRSGCZkWZ9l+Gj545I36yInYfXbZ5iF5a9x+0QkF4se2chaCqWtt+OLI
+xyI0lpfm3RAynTiOVuE9InMgc3/v60zg9Gn3mPJK2MhCMZvA6NDYIKpAKQ3xZR39
+dUZFTSTG4avWTk2pkX2HjPeBvfaIe2Meuwws3ZLO5ZqsBmu5LZfufflybVN5FJoS
+csmUpGVHaGQtjieUXbtW/Mr1xKPrhXtv/bQGyBCHOU3JCsgCMeO+uh7e3u5DkQ0S
+tQ/vefZNBEeNFj8n230EU4kIfJC5MZ9XcHz1akdOVp9fR59x9jn40J3XyAcG1hFO
+fWjun9KKWAzuJrp6MA7cw7ssz+VZCVk9JTmM9ERVZmct4s4rtFILy3yc38HxFx8t
+giVJr8LBkliFroQjugIWW02v2N9m5ojYs2Mj+OF8t19fvYFs61o=
+=vKxx
+-----END PGP SIGNATURE-----
+
+--ua6kmqvzpsne5sdx--
 
