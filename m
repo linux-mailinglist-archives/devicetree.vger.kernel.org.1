@@ -1,55 +1,55 @@
-Return-Path: <devicetree+bounces-188167-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-188166-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id EF272AE2FC1
-	for <lists+devicetree@lfdr.de>; Sun, 22 Jun 2025 14:08:00 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 271C0AE2FC0
+	for <lists+devicetree@lfdr.de>; Sun, 22 Jun 2025 14:07:59 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 707DF3AF5D9
-	for <lists+devicetree@lfdr.de>; Sun, 22 Jun 2025 12:07:34 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id A91C41893183
+	for <lists+devicetree@lfdr.de>; Sun, 22 Jun 2025 12:08:14 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 68CD51E0489;
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 678211E00B4;
 	Sun, 22 Jun 2025 12:07:54 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="hPlZbYvq"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="mF5hz75y"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 43078199949
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 42FFC1990B7
 	for <devicetree@vger.kernel.org>; Sun, 22 Jun 2025 12:07:53 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1750594074; cv=none; b=EE99xnkHvLLVQYqqwOG20xPBR/JglNTQGY1NRMe6USoF4fnGIPtJPz0v8kxAlL5eB2t++5LdvMa+azpTO23shodGcgzAB5AM8NRtqjX3KQJ4mD7OIghXTwPP6Qwd9157BZs78bfj5t2qXHT796J6TuZozbhJRlxSenwY5yzmhRo=
+	t=1750594074; cv=none; b=YStrRLWWyTAPCdEplx5ZP51T4qd5Qt3iHZhODExdgInBreQ14RWfYnH/qLt2mxDueI2+M/MuNBS0+0ogNMkk3dryCg417TPEJwUlq6xzuE4nv8+7fDZGoS3hpukOzUif+9tf518l0nwWMfhCyIrAyQQoAv5cVByeLWLoGyI2ivM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
 	s=arc-20240116; t=1750594074; c=relaxed/simple;
-	bh=OipIHpRR+7kaueTGoM3WRNE2uuJQVx8KpB1NDmTJgJk=;
+	bh=1PU1Pt5KoAJ1YW8g73w/Ld9h8syXwSEUUUhf2GQFCMg=;
 	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=Pyx87pwh7FCOFNe99YZLvGzMTn7CX/SFApxC7iv+AZgk4VFB0n8YD3zZ+Jaxcqnrx2cIBo/4OfuKPnBqzk3uTRO67syoEHUdSELn9zAs0d+K4MlKiUxIKYmN/Fd0ZzpSWJnV8JIf9Cj7BGU7CjPcTiJ1HvF3noKWc9LikBt+nc0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=hPlZbYvq; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 4BCE2C4CEF3;
-	Sun, 22 Jun 2025 12:07:52 +0000 (UTC)
+	 MIME-Version; b=ueWq4Lc/KiuIewYQ1UgAMqOTe8xEM7KSZ41CDNZNTd5HTKa8yn8whTjZzz25kXx+JBDGXT8dr+w5fuxAuXEtuZ/jwEZoANsLS624jd8wByumFf3mMEuQxXjt96+yI7NDskMV2uZgPo+kCOqOiJg0meT2MEZvsn6s1v3f8Dt5Hv8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=mF5hz75y; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 6D96CC4CEE3;
+	Sun, 22 Jun 2025 12:07:53 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1750594072;
-	bh=OipIHpRR+7kaueTGoM3WRNE2uuJQVx8KpB1NDmTJgJk=;
+	s=k20201202; t=1750594073;
+	bh=1PU1Pt5KoAJ1YW8g73w/Ld9h8syXwSEUUUhf2GQFCMg=;
 	h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-	b=hPlZbYvqxlKZ8sYqMBz+IWoJp9JtfSFadOa+963uZ9bfyYiEPmOHDzh+VtMLrvJ7Y
-	 i2yTaTSvFSiChIWLdE7eCYgLO9r79IsSgPSc+ShFBBaI6Lox92s3MdVKfGSTd6sUSt
-	 0g6WE4C+w41IqVzswNENRJfzssHx091urWushONB9eoCfqEtmIhA4XVj2Qs8ag6dEN
-	 GaFdxI0c4nSwy0Hn5wYQtKIDUGWuoHXVxLremdyLTAu/+J7YC6LDTFuQEljSS7jzFN
-	 YuXaYzHYYgddXy02AJpLqZg0p5aGYr8SMXGoXBq7/QH8bxr1M2YzflsApEOMxy3zvi
-	 CL1SBdoOXyUdw==
+	b=mF5hz75y/jEntR7VRhMGgUxnY3VD08xyfT3Ye11maSrwTLBOrv2RFIkft2314/brQ
+	 FMGwsc0HmherghjjmByh3MiLhGLCY24Gi+0dd+iUuldBwl5nXIhMjdqy302ONgjYPI
+	 rS1DERNO4f5b7aRWSMsUU20PolN3VbSBg1ROGfxERv+9SFoWYHZ/LABImjV/xyFxyW
+	 9S3bOygullFxBgmel96nmC5ZQjj6hytJDLxOXEuLhxFpWtyMCoCZLKBkBiKEctKMNz
+	 VhCgsXhWH34Lnp7+l1psifx755MhuG8BNc4i8VSZmCRH8pYiZ+YlbGr0E6FdCp8dMB
+	 VdNcGUtPcfPNQ==
 From: Dinh Nguyen <dinguyen@kernel.org>
 To: robh+dt@kernel.org,
 	krzysztof.kozlowskii+dt@linaro.org,
 	conor+dt@kernel.org
 Cc: dinguyen@kernel.org,
 	devicetree@vger.kernel.org
-Subject: [PATCH 5/6] arm64: dts: stratix10: remove cpu1-start-addr
-Date: Sun, 22 Jun 2025 07:07:36 -0500
-Message-ID: <20250622120737.600336-6-dinguyen@kernel.org>
+Subject: [PATCH 6/6] arm64: dts: socfpga_swvp: remove phy-addr in the GMAC node
+Date: Sun, 22 Jun 2025 07:07:37 -0500
+Message-ID: <20250622120737.600336-7-dinguyen@kernel.org>
 X-Mailer: git-send-email 2.42.0.411.g813d9a9188
 In-Reply-To: <20250622120737.600336-1-dinguyen@kernel.org>
 References: <20250622120737.600336-1-dinguyen@kernel.org>
@@ -61,12 +61,9 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 
-The cpu1-start-addr property is only applicable to 32-bit SoCFPGA
-platforms.
-
-Removing this property will take care of warnings like this:
-socfpga_stratix10_swvp.dtb: sysmgr@ffd12000: cpu1-start-addr:
-	False schema does not allow 4291846704
+This addresses this warning:
+socfpga_stratix10_swvp.dtb: ethernet@ff800000 (altr,socfpga-stmmac-a10-s10):
+'phy-addr' does not match any of the regexes: '^pinctrl-[0-9]+$'
 
 Signed-off-by: Dinh Nguyen <dinguyen@kernel.org>
 ---
@@ -74,15 +71,17 @@ Signed-off-by: Dinh Nguyen <dinguyen@kernel.org>
  1 file changed, 1 deletion(-)
 
 diff --git a/arch/arm64/boot/dts/altera/socfpga_stratix10_swvp.dts b/arch/arm64/boot/dts/altera/socfpga_stratix10_swvp.dts
-index 33a765c9177d..6b9fe154f677 100644
+index 6b9fe154f677..ad52e8a0b9ba 100644
 --- a/arch/arm64/boot/dts/altera/socfpga_stratix10_swvp.dts
 +++ b/arch/arm64/boot/dts/altera/socfpga_stratix10_swvp.dts
-@@ -106,5 +106,4 @@ &usb1 {
- &sysmgr {
- 	reg = <0xffd12000 0x1000>;
- 	interrupts = <0x0 0x10 0x4>;
--	cpu1-start-addr = <0xffd06230>;
+@@ -68,7 +68,6 @@ &gmac0 {
+ &gmac1 {
+ 	status = "okay";
+ 	phy-mode = "rgmii";
+-	phy-addr = <0xffffffff>;
  };
+ 
+ &gmac2 {
 -- 
 2.42.0.411.g813d9a9188
 
