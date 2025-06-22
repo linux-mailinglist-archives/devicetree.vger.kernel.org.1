@@ -1,93 +1,71 @@
-Return-Path: <devicetree+bounces-188139-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-188140-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id A76E1AE2E42
-	for <lists+devicetree@lfdr.de>; Sun, 22 Jun 2025 05:43:10 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id DF326AE2F13
+	for <lists+devicetree@lfdr.de>; Sun, 22 Jun 2025 11:38:30 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 58EAF7A8475
-	for <lists+devicetree@lfdr.de>; Sun, 22 Jun 2025 03:41:47 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 6647C170B34
+	for <lists+devicetree@lfdr.de>; Sun, 22 Jun 2025 09:38:31 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2EBD886250;
-	Sun, 22 Jun 2025 03:42:57 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C88AD1B424F;
+	Sun, 22 Jun 2025 09:38:27 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="aEBxg8g0"
+	dkim=pass (2048-bit key) header.d=denx.de header.i=@denx.de header.b="a2PWTCOm"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pg1-f173.google.com (mail-pg1-f173.google.com [209.85.215.173])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mx.denx.de (mx.denx.de [89.58.32.78])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 92774EED7;
-	Sun, 22 Jun 2025 03:42:55 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.215.173
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D999118E1A;
+	Sun, 22 Jun 2025 09:38:24 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=89.58.32.78
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1750563777; cv=none; b=t7keBaME6YSDgDFzud+RSn7mkt+u0tUxHWMCbFwenJRN5KERc4VewdPcDiKEmIGGh7aNe9mm4ynQx10Q7eAXzu6bfJPqAu/pz8q2eVpPyE54zxF2Nhp15THhCuf+smRCh3NtQtFy27khcDSrkhXqNB1I5Dd5MesnNrUSMOf1SlM=
+	t=1750585107; cv=none; b=tW6pJ10FPG/aoxumEqLAwf84KYlpc9BOUqoYc8VMaMa0Jy8LSzVbmGd5/k4vAg3pqIpP/mF/Yju6ZhQcbU7UH/fw6J8fnntGirGtuggd1Q9Cg4bzLDoeZp1nGx1QZmnKVPWbntZ12JEkoNrRSFxT5ekYqbf9VP4ou4zx1HDiqlI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1750563777; c=relaxed/simple;
-	bh=HjVBTL34rvRjutnml6EYDYfk9467BjGj5hhYsottzmU=;
-	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=LIoIwTpfH6OAlQ+7Yn+8KuD6pDEiAPk82r+E7bmdNj71hcLjHMQlcGV5lZaOSJF2HhqNPpPcEX0L6hJK0uwQtDmpdLB6OYlpvpMmMmMijR8uMmN6+5E1Sbn3RsLslt7DjyANKl0W2dmt3BW81eVvbyOCQZdoZZi7pL4YwM/TxA4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=aEBxg8g0; arc=none smtp.client-ip=209.85.215.173
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-pg1-f173.google.com with SMTP id 41be03b00d2f7-b26df8f44e6so3638593a12.2;
-        Sat, 21 Jun 2025 20:42:55 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1750563775; x=1751168575; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=ACa23R2a+vWrpVNOMeXLchvOc5aLFqZI4f5KCyJMeas=;
-        b=aEBxg8g0FzvrCVfIOYF5v6VivPlbKOnSN+tgZpocP3e2UdxH5Y5i7hwD9CXsIRNKB5
-         JvxIE/YkYoebJu+CeaT31WTlAOacUC0aJtfo+wPdRu6CzSusL4hg53YFKAbqn1K2fFHd
-         hp5ijLi2qv5dWmY0sTCAqTNlGn7PvUwSmEhvymY3mIYcQ79GUdX4QxLLbXVVHCu/GNMR
-         ytbkBLorLesoMVU9EnGQk9dtuKReJjpzu7t3sRme20UypyyCpCWX7QfnxWUuwrRjtBV5
-         pIHTdtwuq494Ucbam/C1+YSL69T5/m73BcOmvigdBvuxfPq5slxLBTcQstmxr83sx3pk
-         8BhQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1750563775; x=1751168575;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=ACa23R2a+vWrpVNOMeXLchvOc5aLFqZI4f5KCyJMeas=;
-        b=LxZxa4ZwPHE9rj6Tf8VUuUBjsPe7dq/e+z2wT6+etYRR/rLv+hy2L0+LuZ2JwdT67s
-         iul7HlGli5rwTS8MQqnkTmbv1NrDnGUaqSb4pzr+J9+ILioyPVEuK2T2i3RBt3+VGDLf
-         yYHzGFtIS/Ph3tddXTRM+LyDiNvhfwuU4kCUyIrzsZ5rud9s1MsKXEtHHTI2BAmmI3zN
-         P1UL/Bj8OUqWoz9bUTdakEtDU5maxAzt12NHmous6XPzAF0Klb74/sJwjVwckyg0RORX
-         8JG6yWd8aor9PFC3/kJNmDmjXWj7cpof78HhWHQm+eWU8Z7BDdIPjVArcTSMf1pGjmcQ
-         IlRg==
-X-Forwarded-Encrypted: i=1; AJvYcCUzB9AYCyJaUGuadOnfcR31mfXEei/OE9wRn2Y92O0PctAWyLhW6i0qLw8ANvKyDf9Z/atGNa7YjCbL+4U=@vger.kernel.org
-X-Gm-Message-State: AOJu0YxFfwoQiRl6z93GvQB0j45vfUQCBKOaWIqBJqzxpslYF9vP/rzg
-	Q7vY5J5XzodaSx7Xh1pKxNSfLtcxLgZmSa5vVGEFxccZvSwC5yE16qnh
-X-Gm-Gg: ASbGnctBUJkuSuQ1iGiBoRb4xxBf5jSXEGc7cG59RSJ4IsZmZOkpYvmUypmMVXuarTF
-	u6OKPV0pL8Hx3bUyjaf1qKvQ70QGTWXDWOzbX2QdcqrXTjUhmcHgNLzfXDKxiGurnzcVcDTetKV
-	T/0PCrzuZMSCrXNKMCw4FToe/1Apn3baOmVS2a/Bx95aioj7IrRJezfz/Sc+MoGkuyK7dMwUkIc
-	zlwxrN+C8khIWZPqCDQy1p+Ncwc7VK6wVkQgBoDkFfEkeyIIs/972zjmNYxXY/IvaItxMc1n0+m
-	ujSBAxImZHIvxSOJfhHL77u/Srf7btjnnow+GBhHxw5S94KMlJhqZQI7ZKDWYnq+TiB/e5MSy5y
-	D96ibIRAjX1vSWs6l8dhk5hO8wHD547jEl7nmQKqb5CscTqnyx237Vyq0IgSXpbFQHdE28OLT1Q
-	==
-X-Google-Smtp-Source: AGHT+IEpj0VOlzI9r7mWn9sjy0q/1s9TFnZUb9JfOL27IcJREPBlXh9zEia6LgG2v+7itLsR3B9dEQ==
-X-Received: by 2002:a17:90b:2703:b0:314:2a2e:9da9 with SMTP id 98e67ed59e1d1-3159d8d661fmr11658363a91.25.1750563774425;
-        Sat, 21 Jun 2025 20:42:54 -0700 (PDT)
-Received: from cosmo-ubuntu-2404.dhcpserver.bu9bmc.local (61-220-246-151.hinet-ip.hinet.net. [61.220.246.151])
-        by smtp.gmail.com with ESMTPSA id 98e67ed59e1d1-3158a333a79sm8222291a91.45.2025.06.21.20.42.52
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sat, 21 Jun 2025 20:42:54 -0700 (PDT)
-From: Cosmo Chou <chou.cosmo@gmail.com>
-To: robh@kernel.org,
-	krzk+dt@kernel.org,
-	conor+dt@kernel.org,
-	joel@jms.id.au,
-	andrew@codeconstruct.com.au
-Cc: devicetree@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	linux-aspeed@lists.ozlabs.org,
+	s=arc-20240116; t=1750585107; c=relaxed/simple;
+	bh=fFKu+PaCYR0RfPXsxR6zxSB64SG/0z7ByIzxdgBk2os=;
+	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=KKMoAmXo/rxchPsRKt3Z7XOsIrirlPSXwfqahoj7ntkHRmDgTD9DEgtEdz185gpRcQ+wya0NC1x/prT7hoChQxSodqNDniLdu4NQfA8b/baaKja0HlJhMlSLmDaIj7c4l7j5VmXwRMTsLOwGynpOP12QhcEnp4NdIiaqmnsfsRU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=denx.de; spf=pass smtp.mailfrom=denx.de; dkim=pass (2048-bit key) header.d=denx.de header.i=@denx.de header.b=a2PWTCOm; arc=none smtp.client-ip=89.58.32.78
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=denx.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=denx.de
+Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id 9BA48102A8C91;
+	Sun, 22 Jun 2025 11:38:17 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=denx.de; s=mx-20241105;
+	t=1750585101; h=from:subject:date:message-id:to:cc:mime-version:
+	 content-transfer-encoding; bh=xBG33tnis71Sr0EDlRpBlSKmzNxe4OxUEpnEMtmfTsQ=;
+	b=a2PWTCOmpNsP56a+GJXzG0H05zD65JUWxZRrMEToWi8plNi0rzagC6C5jP8lq+Pn1VNOE3
+	mpAoHhGCVR1C/aOigNEFDTgpl5rtsHVmmpwZk9VS44Iomm+DjQvzLRsvKIIQrHUOK7gIkj
+	kRsc49jyoGKywc7mg9sxo59ZwI2fEi5jii2sjuZfHlx5KlaXs+A184PC/9XvXwX5d3rQzd
+	EOSvUaxuFuaCS718ibaFQyNvhJymty1jIBY15VxR2xp6KMm3SWmu5efPv3PYDCAgFdB/h1
+	wzyiL1jntkg86tv5zct3KHM/iZBKLW3j66+wjpvzJD0+UnqjwyDqe/40P/41Lg==
+From: Lukasz Majewski <lukma@denx.de>
+To: Andrew Lunn <andrew+netdev@lunn.ch>,
+	davem@davemloft.net,
+	Eric Dumazet <edumazet@google.com>,
+	Jakub Kicinski <kuba@kernel.org>,
+	Paolo Abeni <pabeni@redhat.com>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Shawn Guo <shawnguo@kernel.org>
+Cc: Sascha Hauer <s.hauer@pengutronix.de>,
+	Pengutronix Kernel Team <kernel@pengutronix.de>,
+	Fabio Estevam <festevam@gmail.com>,
+	Richard Cochran <richardcochran@gmail.com>,
+	netdev@vger.kernel.org,
+	devicetree@vger.kernel.org,
 	linux-kernel@vger.kernel.org,
-	chou.cosmo@gmail.com,
-	cosmo.chou@quantatw.com
-Subject: [PATCH] ARM: dts: aspeed: bletchley: enable USB PD negotiation
-Date: Sun, 22 Jun 2025 11:42:47 +0800
-Message-ID: <20250622034247.3985727-1-chou.cosmo@gmail.com>
-X-Mailer: git-send-email 2.43.0
+	imx@lists.linux.dev,
+	linux-arm-kernel@lists.infradead.org,
+	Stefan Wahren <wahrenst@gmx.net>,
+	Simon Horman <horms@kernel.org>,
+	Lukasz Majewski <lukma@denx.de>
+Subject: [net-next v13 00/11] net: mtip: Add support for MTIP imx287 L2 switch driver
+Date: Sun, 22 Jun 2025 11:37:45 +0200
+Message-Id: <20250622093756.2895000-1-lukma@denx.de>
+X-Mailer: git-send-email 2.39.5
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -95,128 +73,119 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
+X-Last-TLS-Session-Version: TLSv1.3
 
-- Enable USB Power Delivery with revision 2.0 for all sleds
-- Configure dual power/data roles with sink preference
 
-Signed-off-by: Cosmo Chou <chou.cosmo@gmail.com>
----
- .../aspeed/aspeed-bmc-facebook-bletchley.dts  | 66 ++++++++++++-------
- 1 file changed, 42 insertions(+), 24 deletions(-)
+in some NXP's SoCs. This one has been tested on imx287, but is also available
+in the vf610.
 
-diff --git a/arch/arm/boot/dts/aspeed/aspeed-bmc-facebook-bletchley.dts b/arch/arm/boot/dts/aspeed/aspeed-bmc-facebook-bletchley.dts
-index 5be0e8fd2633..ad0051825a32 100644
---- a/arch/arm/boot/dts/aspeed/aspeed-bmc-facebook-bletchley.dts
-+++ b/arch/arm/boot/dts/aspeed/aspeed-bmc-facebook-bletchley.dts
-@@ -398,10 +398,13 @@ sled1_fusb302: typec-portc@22 {
- 		connector {
- 			compatible = "usb-c-connector";
- 			label = "USB-C";
--			power-role = "source";
--			data-role = "host";
--			pd-disable;
--			typec-power-opmode = "default";
-+			pd-revision = /bits/ 8 <0x2 0x0 0x1 0x20>;
-+			power-role = "dual";
-+			try-power-role = "sink";
-+			data-role = "dual";
-+			source-pdos = <PDO_FIXED(5000, 3000, PDO_FIXED_USB_COMM)>;
-+			sink-pdos = <PDO_FIXED(5000, 3000, PDO_FIXED_USB_COMM)>;
-+			op-sink-microwatt = <10000000>;
- 		};
- 	};
- 
-@@ -484,10 +487,13 @@ sled2_fusb302: typec-portc@22 {
- 		connector {
- 			compatible = "usb-c-connector";
- 			label = "USB-C";
--			power-role = "source";
--			data-role = "host";
--			pd-disable;
--			typec-power-opmode = "default";
-+			pd-revision = /bits/ 8 <0x2 0x0 0x1 0x20>;
-+			power-role = "dual";
-+			try-power-role = "sink";
-+			data-role = "dual";
-+			source-pdos = <PDO_FIXED(5000, 3000, PDO_FIXED_USB_COMM)>;
-+			sink-pdos = <PDO_FIXED(5000, 3000, PDO_FIXED_USB_COMM)>;
-+			op-sink-microwatt = <10000000>;
- 		};
- 	};
- 
-@@ -570,10 +576,13 @@ sled3_fusb302: typec-portc@22 {
- 		connector {
- 			compatible = "usb-c-connector";
- 			label = "USB-C";
--			power-role = "source";
--			data-role = "host";
--			pd-disable;
--			typec-power-opmode = "default";
-+			pd-revision = /bits/ 8 <0x2 0x0 0x1 0x20>;
-+			power-role = "dual";
-+			try-power-role = "sink";
-+			data-role = "dual";
-+			source-pdos = <PDO_FIXED(5000, 3000, PDO_FIXED_USB_COMM)>;
-+			sink-pdos = <PDO_FIXED(5000, 3000, PDO_FIXED_USB_COMM)>;
-+			op-sink-microwatt = <10000000>;
- 		};
- 	};
- 
-@@ -656,10 +665,13 @@ sled4_fusb302: typec-portc@22 {
- 		connector {
- 			compatible = "usb-c-connector";
- 			label = "USB-C";
--			power-role = "source";
--			data-role = "host";
--			pd-disable;
--			typec-power-opmode = "default";
-+			pd-revision = /bits/ 8 <0x2 0x0 0x1 0x20>;
-+			power-role = "dual";
-+			try-power-role = "sink";
-+			data-role = "dual";
-+			source-pdos = <PDO_FIXED(5000, 3000, PDO_FIXED_USB_COMM)>;
-+			sink-pdos = <PDO_FIXED(5000, 3000, PDO_FIXED_USB_COMM)>;
-+			op-sink-microwatt = <10000000>;
- 		};
- 	};
- 
-@@ -742,10 +754,13 @@ sled5_fusb302: typec-portc@22 {
- 		connector {
- 			compatible = "usb-c-connector";
- 			label = "USB-C";
--			power-role = "source";
--			data-role = "host";
--			pd-disable;
--			typec-power-opmode = "default";
-+			pd-revision = /bits/ 8 <0x2 0x0 0x1 0x20>;
-+			power-role = "dual";
-+			try-power-role = "sink";
-+			data-role = "dual";
-+			source-pdos = <PDO_FIXED(5000, 3000, PDO_FIXED_USB_COMM)>;
-+			sink-pdos = <PDO_FIXED(5000, 3000, PDO_FIXED_USB_COMM)>;
-+			op-sink-microwatt = <10000000>;
- 		};
- 	};
- 
-@@ -828,10 +843,13 @@ sled6_fusb302: typec-portc@22 {
- 		connector {
- 			compatible = "usb-c-connector";
- 			label = "USB-C";
--			power-role = "source";
--			data-role = "host";
--			pd-disable;
--			typec-power-opmode = "default";
-+			pd-revision = /bits/ 8 <0x2 0x0 0x1 0x20>;
-+			power-role = "dual";
-+			try-power-role = "sink";
-+			data-role = "dual";
-+			source-pdos = <PDO_FIXED(5000, 3000, PDO_FIXED_USB_COMM)>;
-+			sink-pdos = <PDO_FIXED(5000, 3000, PDO_FIXED_USB_COMM)>;
-+			op-sink-microwatt = <10000000>;
- 		};
- 	};
- 
+In the past there has been performed some attempts to upstream this driver:
+
+1. The 4.19-cip based one [1]
+2. DSA based one for 5.12 [2] - i.e. the switch itself was treat as a DSA switch
+   with NO tag appended.
+3. The extension for FEC driver for 5.12 [3] - the trick here was to fully reuse
+   FEC when the in-HW switching is disabled. When bridge offloading is enabled,
+   the driver uses already configured MAC and PHY to also configure PHY.
+
+All three approaches were not accepted as eligible for upstreaming.
+
+The driver from this series has floowing features:
+
+1. It is fully separated from fec_main - i.e. can be used interchangeable
+   with it. To be more specific - one can build them as modules and
+   if required switch between them when e.g. bridge offloading is required.
+
+   To be more specific:
+        - Use FEC_MAIN: When one needs support for two ETH ports with separate
+          uDMAs used for both and bridging can be realized in SW.
+
+        - Use MTIPL2SW: When it is enough to support two ports with only uDMA0
+          attached to switch and bridging shall be offloaded to HW. 
+
+2. This driver uses MTIP's L2 switch internal VLAN feature to provide port
+   separation at boot time. Port separation is disabled when bridging is
+   required.
+
+3. Example usage:
+        Configuration:
+        ip link set lan0 up; sleep 1;
+        ip link set lan1 up; sleep 1;
+        ip link add name br0 type bridge;
+        ip link set br0 up; sleep 1;
+        ip link set lan0 master br0;
+        ip link set lan1 master br0;
+        bridge link;
+        ip addr add 192.168.2.17/24 dev br0;
+        ping -c 5 192.168.2.222
+
+        Removal:
+        ip link set br0 down;
+        ip link delete br0 type bridge;
+        ip link set dev lan1 down
+        ip link set dev lan0 down
+
+4. Limitations:
+        - Driver enables and disables switch operation with learning and ageing.
+        - Missing is the advanced configuration (e.g. adding entries to FBD). This is
+          on purpose, as up till now we didn't had consensus about how the driver
+          shall be added to Linux.
+
+5. Clang build:
+	make LLVM_SUFFIX=-19 LLVM=1 mrproper
+	cp ./arch/arm/configs/mxs_defconfig .config
+	make ARCH=arm LLVM_SUFFIX=-19 LLVM=1 W=1 menuconfig
+	make ARCH=arm LLVM_SUFFIX=-19 LLVM=1 W=1 -j8 LOADADDR=0x40008000 uImage dtbs
+
+6. Kernel compliance checks:
+	make coccicheck MODE=report J=4 M=drivers/net/ethernet/freescale/mtipsw/
+	~/work/src/smatch/smatch_scripts/kchecker drivers/net/ethernet/freescale/mtipsw/
+
+
+Links:
+[1] - https://github.com/lmajewski/linux-imx28-l2switch/commits/master
+[2] - https://github.com/lmajewski/linux-imx28-l2switch/tree/imx28-v5.12-L2-upstream-RFC_v1
+[3] - https://source.denx.de/linux/linux-imx28-l2switch/-/tree/imx28-v5.12-L2-upstream-switchdev-RFC_v1?ref_type=heads
+
+
+Lukasz Majewski (11):
+  dt-bindings: net: Add MTIP L2 switch description
+  ARM: dts: nxp: mxs: Adjust the imx28.dtsi L2 switch description
+  ARM: dts: nxp: mxs: Adjust XEA board's DTS to support L2 switch
+  net: mtip: The L2 switch driver for imx287
+  net: mtip: Add net_device_ops functions to the L2 switch driver
+  net: mtip: Add mtip_switch_{rx|tx} functions to the L2 switch driver
+  net: mtip: Extend the L2 switch driver with management operations
+  net: mtip: Extend the L2 switch driver for imx287 with bridge
+    operations
+  ARM: mxs_defconfig: Enable CONFIG_NFS_FSCACHE
+  ARM: mxs_defconfig: Update mxs_defconfig to 6.16-rc1
+  ARM: mxs_defconfig: Enable CONFIG_FEC_MTIP_L2SW to support MTIP L2
+    switch
+
+ .../bindings/net/nxp,imx28-mtip-switch.yaml   |  150 ++
+ MAINTAINERS                                   |    7 +
+ arch/arm/boot/dts/nxp/mxs/imx28-xea.dts       |   56 +
+ arch/arm/boot/dts/nxp/mxs/imx28.dtsi          |    9 +-
+ arch/arm/configs/mxs_defconfig                |   13 +-
+ drivers/net/ethernet/freescale/Kconfig        |    1 +
+ drivers/net/ethernet/freescale/Makefile       |    1 +
+ drivers/net/ethernet/freescale/mtipsw/Kconfig |   13 +
+ .../net/ethernet/freescale/mtipsw/Makefile    |    4 +
+ .../net/ethernet/freescale/mtipsw/mtipl2sw.c  | 1999 +++++++++++++++++
+ .../net/ethernet/freescale/mtipsw/mtipl2sw.h  |  655 ++++++
+ .../ethernet/freescale/mtipsw/mtipl2sw_br.c   |  120 +
+ .../ethernet/freescale/mtipsw/mtipl2sw_mgnt.c |  443 ++++
+ 13 files changed, 3460 insertions(+), 11 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/net/nxp,imx28-mtip-switch.yaml
+ create mode 100644 drivers/net/ethernet/freescale/mtipsw/Kconfig
+ create mode 100644 drivers/net/ethernet/freescale/mtipsw/Makefile
+ create mode 100644 drivers/net/ethernet/freescale/mtipsw/mtipl2sw.c
+ create mode 100644 drivers/net/ethernet/freescale/mtipsw/mtipl2sw.h
+ create mode 100644 drivers/net/ethernet/freescale/mtipsw/mtipl2sw_br.c
+ create mode 100644 drivers/net/ethernet/freescale/mtipsw/mtipl2sw_mgnt.c
+
 -- 
-2.43.0
+2.39.5
 
 
