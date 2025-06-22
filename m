@@ -1,193 +1,309 @@
-Return-Path: <devicetree+bounces-188188-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-188189-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id A0FF5AE307D
-	for <lists+devicetree@lfdr.de>; Sun, 22 Jun 2025 17:01:10 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2892CAE308A
+	for <lists+devicetree@lfdr.de>; Sun, 22 Jun 2025 17:35:22 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 3690F1890D4A
-	for <lists+devicetree@lfdr.de>; Sun, 22 Jun 2025 15:01:26 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 5F5683B243E
+	for <lists+devicetree@lfdr.de>; Sun, 22 Jun 2025 15:34:57 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9BD611DE4E3;
-	Sun, 22 Jun 2025 15:01:04 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id BF8181DF268;
+	Sun, 22 Jun 2025 15:35:16 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="knJEdRzy"
+	dkim=pass (2048-bit key) header.d=apitzsch.eu header.i=@apitzsch.eu header.b="ht5BuAWC"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from www637.your-server.de (www637.your-server.de [168.119.26.117])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 683F94C92;
-	Sun, 22 Jun 2025 15:01:04 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AB17128EA;
+	Sun, 22 Jun 2025 15:35:11 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=168.119.26.117
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1750604464; cv=none; b=F3lmw4EOR4oHigOlQxsJtRgirPyEFYPgiR8kFxZDN/X7gZgHpUMlTp29ZJd39AfmmUr0W+iAam6wv4r9acmBtgBH3B3G2e/3J1j6sTns/LuyR8LXiXpBi0G3k4e5yRk0fkvpK831j9RYi1IUykEtHc5NONolYhwt7Ucmp2nIND0=
+	t=1750606516; cv=none; b=OIt05NatxMM6o2NwmwXGrvjejSxlp2KjLnbQLQc2Azw4iHTxlhimPhbwrBixW/qyJHCdoRi8w64zL5TtuuiUKGDq6xrEa04i5QISWXQCT+c5U6IS4Fhqu7A1aCrLkcgu0IYQthUneL8qGpdP1mCJNlZaqWnACXbTpt1Ze+veEGs=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1750604464; c=relaxed/simple;
-	bh=sJ2/YKvAq4zAkGzGocx1GG/np9WXkdppXLhIs/TekLw=;
-	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=Vhd+D7IipNjmhUSGdsp3hmyzOc/VNHp+sJIgqowbxeqYxD8SG2og31zm7b8Jw108Syalqzygc8MJy0s0l5Ygcxh46saotSZpcvTWFqjwNy30hkJjnT4y9Yyjwh9NXAcTgfOii9j7RvG6KRVvxJLrDihDjw9TKIIp+ic0ZF3UPes=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=knJEdRzy; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id BE509C4CEE3;
-	Sun, 22 Jun 2025 15:00:59 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1750604464;
-	bh=sJ2/YKvAq4zAkGzGocx1GG/np9WXkdppXLhIs/TekLw=;
-	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
-	b=knJEdRzyKcdSZg9qK7QOMZcVbTnVd3l2qnWWxKbHoQqIeX+1sPUnZQ2QErD75yEAw
-	 b+6BRShnIJczJeBSOPxMOCrWPJBslMT56o/MDDP2QB416XuGRX9fY0IBfTfW1uDi5B
-	 m/aBVlfPNVLLoo/RwXceA5n6CmH4a5+Hx3+/l1mlO4I34Qt2e0wFNXX473rDQDbXo/
-	 pFaMePkF7DUqh67oBBomB7EolbdGZE2VMKvQkZXcsTRLYLRHjhwXoWLLx7bxB7VKx4
-	 PElydmi67/Lzcy+eI0f+1FNRtP6q0/rbnP8PQ0xHDkpw9RupsPaypu8X2qnTE2IcJk
-	 phqlSclQ17nrQ==
-Date: Sun, 22 Jun 2025 16:00:54 +0100
-From: Jonathan Cameron <jic23@kernel.org>
-To: David Lechner <dlechner@baylibre.com>
-Cc: Michael Hennerich <Michael.Hennerich@analog.com>, Nuno =?UTF-8?B?U8Oh?=
- <nuno.sa@analog.com>, Andy Shevchenko <andy@kernel.org>, Rob Herring
- <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Mark Brown <broonie@kernel.org>,
- linux-iio@vger.kernel.org, linux-kernel@vger.kernel.org,
- devicetree@vger.kernel.org, linux-spi@vger.kernel.org
-Subject: Re: [PATCH 8/9] iio: adc: ad_sigma_delta: add SPI offload support
-Message-ID: <20250622160054.31cc5103@jic23-huawei>
-In-Reply-To: <20250620-iio-adc-ad7173-add-spi-offload-support-v1-8-0766f6297430@baylibre.com>
-References: <20250620-iio-adc-ad7173-add-spi-offload-support-v1-0-0766f6297430@baylibre.com>
-	<20250620-iio-adc-ad7173-add-spi-offload-support-v1-8-0766f6297430@baylibre.com>
-X-Mailer: Claws Mail 4.3.0 (GTK 3.24.48; x86_64-pc-linux-gnu)
+	s=arc-20240116; t=1750606516; c=relaxed/simple;
+	bh=MHu3SDxiSxccfrjer6526iwigLYCv39ZoRMVPnBGH6s=;
+	h=Message-ID:Subject:From:To:Cc:Date:In-Reply-To:References:
+	 Content-Type:MIME-Version; b=S69OJTwNtc4JdqFcp/LSKbIiGWQAbDdIVsXA6zjfSuqHs8wGBckNCCIdvY5S/NtXevPFFxfL5QviIc7sHqqe3YiMUlB8jCg5OnNnDibER7iWkxKgxbWghd7QXnhyeWAxN1N6b0ePChG9t+HkY1Id5pPTLqza/HRP5bHArDkYyEc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=apitzsch.eu; spf=pass smtp.mailfrom=apitzsch.eu; dkim=pass (2048-bit key) header.d=apitzsch.eu header.i=@apitzsch.eu header.b=ht5BuAWC; arc=none smtp.client-ip=168.119.26.117
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=apitzsch.eu
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=apitzsch.eu
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=apitzsch.eu
+	; s=default2410; h=MIME-Version:Content-Transfer-Encoding:Content-Type:
+	References:In-Reply-To:Date:Cc:To:From:Subject:Message-ID:Sender:Reply-To:
+	Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
+	Resent-To:Resent-Cc:Resent-Message-ID;
+	bh=bm69vQQYMGAsC6CQotbCgpq2n6vTrtAkzVloqlGnBZs=; b=ht5BuAWC19vvtWnN6JlAl2Z4PQ
+	Ws2G3b8/mLYeTjwIW5h/9EWv/aKiwP9Jh11F19Gulqon8mxai+LPwn7Yqg5MLJ2QImeaw8ZYuD+Mh
+	cfbMk+BSNqygDeBkAwTDRnTnS3ra/p0mRJOyd+jz0SokL6Btl+ViP0qVXvLQ85sTYd32gCNtqxZAr
+	9ts4BtRsP13xSIKeAKr2MNkpeSRRZNem4kHenslnl7pON86tcs9INZV1nCNU/p2g+mnSLJqWPxCzm
+	8DVa/gw3kfz58NNhkG/fdxH9eJNQ9v/YvWrf6PnitoGkHqkIJXqB9ymRDZA0mchIwfjX70KZUj5ey
+	oLjiPBtw==;
+Received: from sslproxy08.your-server.de ([78.47.166.52])
+	by www637.your-server.de with esmtpsa  (TLS1.3) tls TLS_AES_256_GCM_SHA384
+	(Exim 4.96.2)
+	(envelope-from <git@apitzsch.eu>)
+	id 1uTMig-000B26-0u;
+	Sun, 22 Jun 2025 17:34:58 +0200
+Received: from localhost ([127.0.0.1])
+	by sslproxy08.your-server.de with esmtpsa  (TLS1.3) tls TLS_AES_256_GCM_SHA384
+	(Exim 4.96)
+	(envelope-from <git@apitzsch.eu>)
+	id 1uTMif-0008mM-1p;
+	Sun, 22 Jun 2025 17:34:57 +0200
+Message-ID: <ed0b8fe3a20111477cafb1de7b399afb99caaa0c.camel@apitzsch.eu>
+Subject: Re: [PATCH RESEND v4 3/5] media: i2c: imx214: Make use of CCS PLL
+ calculator
+From: =?ISO-8859-1?Q?Andr=E9?= Apitzsch <git@apitzsch.eu>
+To: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+Cc: Ricardo Ribalda <ribalda@kernel.org>, Sakari Ailus	
+ <sakari.ailus@linux.intel.com>, Mauro Carvalho Chehab <mchehab@kernel.org>,
+  Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>,  Shawn Guo <shawnguo@kernel.org>,
+ Sascha Hauer <s.hauer@pengutronix.de>, Pengutronix Kernel Team	
+ <kernel@pengutronix.de>, Fabio Estevam <festevam@gmail.com>, 
+	~postmarketos/upstreaming@lists.sr.ht, phone-devel@vger.kernel.org, 
+	linux-media@vger.kernel.org, linux-kernel@vger.kernel.org, 
+	devicetree@vger.kernel.org, imx@lists.linux.dev, 
+	linux-arm-kernel@lists.infradead.org, Ricardo Ribalda <ribalda@chromium.org>
+Date: Sun, 22 Jun 2025 17:34:56 +0200
+In-Reply-To: <20250621181751.GA9125@pendragon.ideasonboard.com>
+References: <20250621-imx214_ccs_pll-v4-0-12178e5eb989@apitzsch.eu>
+		 <20250621-imx214_ccs_pll-v4-3-12178e5eb989@apitzsch.eu>
+		 <20250621181751.GA9125@pendragon.ideasonboard.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+User-Agent: Evolution 3.56.2 
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: 7bit
+X-Virus-Scanned: Clear (ClamAV 1.0.7/27677/Sun Jun 22 10:32:59 2025)
 
-On Fri, 20 Jun 2025 17:20:14 -0500
-David Lechner <dlechner@baylibre.com> wrote:
+Hi Laurent,
 
-> Add SPI offload support to the ad_sigma_delta module.
-> 
-> When the SPI controller has SPI offload capabilities, the module will
-> now use that for buffered reads instead of the RDY interrupt trigger.
-> 
-> Drivers that use the ad_sigma_delta module will have to opt into this
-> by setting supports_spi_offload since each driver will likely need
-> additional changes before SPI offload can be used. This will allow us
-> to gradually enable SPI offload support for each driver.
-> 
-> Signed-off-by: David Lechner <dlechner@baylibre.com>
-
-A few queries inline that again are more about the original code than what
-you change here.
-
-Jonathan
-
-> ---
->  drivers/iio/adc/ad_sigma_delta.c       | 160 +++++++++++++++++++++++----------
->  include/linux/iio/adc/ad_sigma_delta.h |  14 +++
->  2 files changed, 129 insertions(+), 45 deletions(-)
-> 
-> diff --git a/drivers/iio/adc/ad_sigma_delta.c b/drivers/iio/adc/ad_sigma_delta.c
-> index a9b97f5d4107a2e1bb74877d30403445e9b04a44..449b0756be96d3f864a6e7f070467ad7311bf7d5 100644
-> --- a/drivers/iio/adc/ad_sigma_delta.c
-> +++ b/drivers/iio/adc/ad_sigma_delta.c
-> @@ -14,11 +14,13 @@
->  #include <linux/kernel.h>
->  #include <linux/module.h>
->  #include <linux/slab.h>
-> +#include <linux/spi/offload/consumer.h>
->  #include <linux/spi/spi.h>
->  #include <linux/types.h>
->  #include <linux/unaligned.h>
->  
->  #include <linux/iio/adc/ad_sigma_delta.h>
-> +#include <linux/iio/buffer-dmaengine.h>
->  #include <linux/iio/buffer.h>
->  #include <linux/iio/iio.h>
->  #include <linux/iio/sysfs.h>
-> @@ -460,8 +462,7 @@ static int ad_sd_buffer_postenable(struct iio_dev *indio_dev)
->  	struct ad_sigma_delta *sigma_delta = iio_device_get_drvdata(indio_dev);
->  	const struct iio_scan_type *scan_type = &indio_dev->channels[0].scan_type;
->  	struct spi_transfer *xfer = sigma_delta->sample_xfer;
-> -	unsigned int i, slot, samples_buf_size;
-> -	unsigned int channel, scan_size;
-> +	unsigned int i, slot, channel;
->  	u8 *samples_buf;
->  	int ret;
->  
-> @@ -489,23 +490,33 @@ static int ad_sd_buffer_postenable(struct iio_dev *indio_dev)
->  	sigma_delta->active_slots = slot;
->  	sigma_delta->current_slot = 0;
->  
-> -	if (sigma_delta->active_slots > 1) {
-> -		ret = ad_sigma_delta_append_status(sigma_delta, true);
-> -		if (ret)
-> -			return ret;
-> -	}
-> +	if (ad_sigma_delta_has_spi_offload(sigma_delta)) {
-> +		xfer[1].offload_flags = SPI_OFFLOAD_XFER_RX_STREAM;
-> +		xfer[1].bits_per_word = scan_type->realbits;
-> +		xfer[1].len = spi_bpw_to_bytes(scan_type->realbits);
-> +	} else {
-> +		unsigned int samples_buf_size, scan_size;
->  
-> -	samples_buf_size = ALIGN(slot * scan_type->storagebits, 8);
-> -	samples_buf_size += sizeof(int64_t);
-> -	samples_buf = devm_krealloc(&sigma_delta->spi->dev, sigma_delta->samples_buf,
-> -				    samples_buf_size, GFP_KERNEL);
-> -	if (!samples_buf)
-> -		return -ENOMEM;
-> +		if (sigma_delta->active_slots > 1) {
-> +			ret = ad_sigma_delta_append_status(sigma_delta, true);
-> +			if (ret)
-> +				return ret;
-> +		}
->  
-> -	sigma_delta->samples_buf = samples_buf;
-> -	scan_size = BITS_TO_BYTES(scan_type->realbits + scan_type->shift);
-> -	xfer[1].rx_buf = &sigma_delta->rx_buf[scan_size == 3 ? 1 : 0];
-> -	xfer[1].len = scan_size + (sigma_delta->status_appended ? 1 : 0);
-> +		samples_buf_size = ALIGN(slot * scan_type->storagebits, 8);
-
-The code I queried earlier is moved here, so make sure to carry through
-any changes if it is indeed wrong!
-
-> +		samples_buf_size += sizeof(int64_t);
-> +		samples_buf = devm_krealloc(&sigma_delta->spi->dev,
-> +					    sigma_delta->samples_buf,
-> +					    samples_buf_size, GFP_KERNEL);
-> +		if (!samples_buf)
-> +			return -ENOMEM;
-> +
-> +		sigma_delta->samples_buf = samples_buf;
-> +		scan_size = BITS_TO_BYTES(scan_type->realbits + scan_type->shift);
-> +
-> +		xfer[1].rx_buf = &sigma_delta->rx_buf[scan_size == 3 ? 1 : 0];
-> +		xfer[1].len = scan_size + (sigma_delta->status_appended ? 1 : 0);
-> +	}
->  	xfer[1].cs_change = 1;
->  
->  	if (sigma_delta->info->has_registers) {
-
-> @@ -670,7 +700,8 @@ static irqreturn_t ad_sd_data_rdy_trig_poll(int irq, void *private)
->  	if ((!sigma_delta->rdy_gpiod || gpiod_get_value(sigma_delta->rdy_gpiod)) &&
->  	    ad_sd_disable_irq(sigma_delta)) {
->  		complete(&sigma_delta->completion);
-> -		iio_trigger_poll(sigma_delta->trig);
-> +		if (sigma_delta->trig)
-
-Is this defensive or can we actually get here with out a trigger?
-I would have thought in the offload case (so no trigger here) we'd not call this
-function at all.  Mind you, can't we get here with no trigger when doing
-a calibration or simple read normally?  
-
-> +			iio_trigger_poll(sigma_delta->trig);
->  
->  		return IRQ_HANDLED;
->  	}
+thanks for the review. Some comments below.
 
 
+Am Samstag, dem 21.06.2025 um 21:17 +0300 schrieb Laurent Pinchart:
+> Hi Andr=C3=A9,
+>=20
+> Thank you for the patch.
+>=20
+> On Sat, Jun 21, 2025 at 11:37:27AM +0200, Andr=C3=A9 Apitzsch via B4 Rela=
+y
+> wrote:
+> > From: Andr=C3=A9 Apitzsch <git@apitzsch.eu>
+> >=20
+> > Calculate PLL parameters based on clock frequency and link
+> > frequency.
+> >=20
+> > Acked-by: Ricardo Ribalda <ribalda@chromium.org>
+> > Signed-off-by: Andr=C3=A9 Apitzsch <git@apitzsch.eu>
+> > ---
+> > =C2=A0drivers/media/i2c/Kconfig=C2=A0 |=C2=A0=C2=A0 1 +
+> > =C2=A0drivers/media/i2c/imx214.c | 213
+> > ++++++++++++++++++++++++++++++++++++---------
+> > =C2=A02 files changed, 175 insertions(+), 39 deletions(-)
+> >=20
+> > diff --git a/drivers/media/i2c/Kconfig b/drivers/media/i2c/Kconfig
+> > index
+> > e68202954a8fd4711d108cf295d5771246fbc406..08db8abeea218080b0bf5bfe6
+> > cf82f1c0b100c4a 100644
+> > --- a/drivers/media/i2c/Kconfig
+> > +++ b/drivers/media/i2c/Kconfig
+> > [..]
+> > @@ -1224,42 +1336,52 @@ static int imx214_parse_fwnode(struct
+> > device *dev)
+> > =C2=A0 if (!endpoint)
+> > =C2=A0 return dev_err_probe(dev, -EINVAL, "endpoint node not found\n");
+> > =C2=A0
+> > - ret =3D v4l2_fwnode_endpoint_alloc_parse(endpoint, &bus_cfg);
+> > + bus_cfg->bus_type =3D V4L2_MBUS_CSI2_DPHY;
+> > + ret =3D v4l2_fwnode_endpoint_alloc_parse(endpoint, bus_cfg);
+> > + fwnode_handle_put(endpoint);
+>=20
+> ... drop this. Up to you.
+>=20
+> > =C2=A0 if (ret) {
+> > =C2=A0 dev_err_probe(dev, ret, "parsing endpoint node failed\n");
+> > - goto done;
+> > + goto error;
+>=20
+> You can return ret here.
+>=20
+> > =C2=A0 }
+> > =C2=A0
+> > =C2=A0 /* Check the number of MIPI CSI2 data lanes */
+> > - if (bus_cfg.bus.mipi_csi2.num_data_lanes !=3D 4) {
+> > + if (bus_cfg->bus.mipi_csi2.num_data_lanes !=3D 4) {
+> > =C2=A0 ret =3D dev_err_probe(dev, -EINVAL,
+> > =C2=A0 =C2=A0=C2=A0=C2=A0 "only 4 data lanes are currently supported\n"=
+);
+> > - goto done;
+> > + goto error;
+> > =C2=A0 }
+> > =C2=A0
+> > - if (bus_cfg.nr_of_link_frequencies !=3D 1)
+> > + if (bus_cfg->nr_of_link_frequencies !=3D 1)
+> > =C2=A0 dev_warn(dev, "Only one link-frequency supported, please review
+> > your DT. Continuing anyway\n");
+>=20
+> Now that the driver can calculate PLL parameters dynamically, it
+> would be nice to lift this restriction and make the link frequency
+> control writable, in a separate patch on top of this series.
+>=20
+Maybe this could be postponed, as I don't have any use for it at the
+moment and I don't want to further delay this series.
+
+> > =C2=A0
+> > - for (i =3D 0; i < bus_cfg.nr_of_link_frequencies; i++) {
+> > - if (bus_cfg.link_frequencies[i] =3D=3D IMX214_DEFAULT_LINK_FREQ)
+> > + for (i =3D 0; i < bus_cfg->nr_of_link_frequencies; i++) {
+> > + u64 freq =3D bus_cfg->link_frequencies[i];
+> > + struct ccs_pll pll;
+> > +
+> > + if (!imx214_pll_calculate(imx214, &pll, freq))
+> > =C2=A0 break;
+> > - if (bus_cfg.link_frequencies[i] =3D=3D
+> > - =C2=A0=C2=A0=C2=A0 IMX214_DEFAULT_LINK_FREQ_LEGACY) {
+> > + if (freq =3D=3D IMX214_DEFAULT_LINK_FREQ_LEGACY) {
+> > =C2=A0 dev_warn(dev,
+> > =C2=A0 "link-frequencies %d not supported, please review your DT.
+> > Continuing anyway\n",
+> > =C2=A0 IMX214_DEFAULT_LINK_FREQ);
+> > + freq =3D IMX214_DEFAULT_LINK_FREQ;
+> > + if (imx214_pll_calculate(imx214, &pll, freq))
+> > + continue;
+> > + bus_cfg->link_frequencies[i] =3D freq;
+> > =C2=A0 break;
+> > =C2=A0 }
+>=20
+> How about separating the IMX214_DEFAULT_LINK_FREQ_LEGACY check from
+> the PLL calculation ? Something like
+>=20
+>  u64 freq =3D bus_cfg->link_frequencies[i];
+>  struct ccs_pll pll;
+>=20
+>  if (freq =3D=3D IMX214_DEFAULT_LINK_FREQ_LEGACY) {
+>  dev_warn(dev,
+>  "link-frequencies %d not supported, please review your DT.
+> Continuing anyway\n",
+>  IMX214_DEFAULT_LINK_FREQ);
+>  freq =3D IMX214_DEFAULT_LINK_FREQ;
+>  bus_cfg->link_frequencies[i] =3D freq;
+>  }
+
+With PLL calculation, 480000000 (=3DIMX214_DEFAULT_LINK_FREQ_LEGACY)
+might be a valid link frequency explicitly set by the user. I'm not
+sure whether it is a good idea to overwrite the link frequency, before
+trying the PLL calculation. That's why I would keep the code the way it
+is.
+
+>=20
+>  if (!imx214_pll_calculate(imx214, &pll, freq))
+>  break;
+>=20
+> It will then become easier to drop this legacy support from the
+> driver. What platform(s) are know to specify an incorrect link
+> frequency ?
+
+I don't know.
+
+Best regards,
+Andr=C3=A9
+
+>=20
+> > =C2=A0 }
+> > =C2=A0
+> > - if (i =3D=3D bus_cfg.nr_of_link_frequencies)
+> > + if (i =3D=3D bus_cfg->nr_of_link_frequencies)
+> > =C2=A0 ret =3D dev_err_probe(dev, -EINVAL,
+> > - =C2=A0=C2=A0=C2=A0 "link-frequencies %d not supported, please review =
+your DT\n",
+> > - =C2=A0=C2=A0=C2=A0 IMX214_DEFAULT_LINK_FREQ);
+> > + =C2=A0=C2=A0=C2=A0 "link-frequencies %lld not supported, please revie=
+w your
+> > DT\n",
+> > + =C2=A0=C2=A0=C2=A0 bus_cfg->nr_of_link_frequencies ?
+> > + =C2=A0=C2=A0=C2=A0 bus_cfg->link_frequencies[0] : 0);
+> > =C2=A0
+> > -done:
+> > - v4l2_fwnode_endpoint_free(&bus_cfg);
+> > - fwnode_handle_put(endpoint);
+> > + return 0;
+> > +
+> > +error:
+> > + v4l2_fwnode_endpoint_free(&imx214->bus_cfg);
+> > =C2=A0 return ret;
+> > =C2=A0}
+> > =C2=A0
+> > @@ -1299,7 +1421,7 @@ static int imx214_probe(struct i2c_client
+> > *client)
+> > =C2=A0 return dev_err_probe(dev, PTR_ERR(imx214->regmap),
+> > =C2=A0 =C2=A0=C2=A0=C2=A0=C2=A0 "failed to initialize CCI\n");
+> > =C2=A0
+> > - ret =3D imx214_parse_fwnode(dev);
+> > + ret =3D imx214_parse_fwnode(dev, imx214);
+> > =C2=A0 if (ret)
+> > =C2=A0 return ret;
+> > =C2=A0
+> > @@ -1310,7 +1432,9 @@ static int imx214_probe(struct i2c_client
+> > *client)
+> > =C2=A0 * Enable power initially, to avoid warnings
+> > =C2=A0 * from clk_disable on power_off
+> > =C2=A0 */
+> > - imx214_power_on(imx214->dev);
+> > + ret =3D imx214_power_on(imx214->dev);
+> > + if (ret < 0)
+> > + goto error_fwnode;
+>=20
+> This change seems to belong to a separate patch.
+>=20
+> > =C2=A0
+> > =C2=A0 ret =3D imx214_identify_module(imx214);
+> > =C2=A0 if (ret)
+> > @@ -1341,6 +1465,12 @@ static int imx214_probe(struct i2c_client
+> > *client)
+> > =C2=A0 pm_runtime_set_active(imx214->dev);
+> > =C2=A0 pm_runtime_enable(imx214->dev);
+> > =C2=A0
+> > + ret =3D imx214_pll_update(imx214);
+> > + if (ret < 0) {
+> > + dev_err_probe(dev, ret, "failed to update PLL\n");
+> > + goto error_subdev_cleanup;
+> > + }
+>=20
+> I would move this to imx214_ctrls_init().
+>=20
+> > +
+> > =C2=A0 ret =3D v4l2_async_register_subdev_sensor(&imx214->sd);
+> > =C2=A0 if (ret < 0) {
+> > =C2=A0 dev_err_probe(dev, ret,
+> > @@ -1366,6 +1496,9 @@ static int imx214_probe(struct i2c_client
+> > *client)
+> > =C2=A0error_power_off:
+> > =C2=A0 imx214_power_off(imx214->dev);
+> > =C2=A0
+> > +error_fwnode:
+> > + v4l2_fwnode_endpoint_free(&imx214->bus_cfg);
+> > +
+> > =C2=A0 return ret;
+> > =C2=A0}
+> > =C2=A0
+> > @@ -1378,6 +1511,8 @@ static void imx214_remove(struct i2c_client
+> > *client)
+> > =C2=A0 v4l2_subdev_cleanup(sd);
+> > =C2=A0 media_entity_cleanup(&imx214->sd.entity);
+> > =C2=A0 v4l2_ctrl_handler_free(&imx214->ctrls);
+> > + v4l2_fwnode_endpoint_free(&imx214->bus_cfg);
+> > +
+> > =C2=A0 pm_runtime_disable(&client->dev);
+> > =C2=A0 if (!pm_runtime_status_suspended(&client->dev)) {
+> > =C2=A0 imx214_power_off(imx214->dev);
 
