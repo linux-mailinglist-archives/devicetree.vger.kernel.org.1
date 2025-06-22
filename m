@@ -1,55 +1,55 @@
-Return-Path: <devicetree+bounces-188165-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-188167-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9EA18AE2FC2
-	for <lists+devicetree@lfdr.de>; Sun, 22 Jun 2025 14:08:06 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id EF272AE2FC1
+	for <lists+devicetree@lfdr.de>; Sun, 22 Jun 2025 14:08:00 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 464B1167F24
-	for <lists+devicetree@lfdr.de>; Sun, 22 Jun 2025 12:07:58 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 707DF3AF5D9
+	for <lists+devicetree@lfdr.de>; Sun, 22 Jun 2025 12:07:34 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B34A71DFDA5;
-	Sun, 22 Jun 2025 12:07:52 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 68CD51E0489;
+	Sun, 22 Jun 2025 12:07:54 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="sD0K8Q9O"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="hPlZbYvq"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8F36D1990B7
-	for <devicetree@vger.kernel.org>; Sun, 22 Jun 2025 12:07:52 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 43078199949
+	for <devicetree@vger.kernel.org>; Sun, 22 Jun 2025 12:07:53 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1750594072; cv=none; b=DCplOQLGjmD1nK8h+352Qut93zeeRIwauGgc/O8LcMYh1EE3guVzNMaVYSbFDaaVHnPv/LNyZ3LKiKoIdREfvXwGpytgsqA5tMAsN1dpNK6gjOZQcmDnvZA85vLSFWmU6nw930DdUHUpf2jATvOmCu7R2qW5k8ARd3Cu2e+Ajps=
+	t=1750594074; cv=none; b=EE99xnkHvLLVQYqqwOG20xPBR/JglNTQGY1NRMe6USoF4fnGIPtJPz0v8kxAlL5eB2t++5LdvMa+azpTO23shodGcgzAB5AM8NRtqjX3KQJ4mD7OIghXTwPP6Qwd9157BZs78bfj5t2qXHT796J6TuZozbhJRlxSenwY5yzmhRo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1750594072; c=relaxed/simple;
-	bh=9ZnKHni6gEfGg+QFw1ik3FKLDuP2nvJHIUTi5E0Io7E=;
+	s=arc-20240116; t=1750594074; c=relaxed/simple;
+	bh=OipIHpRR+7kaueTGoM3WRNE2uuJQVx8KpB1NDmTJgJk=;
 	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=j/JYRPoqp0jk6QiDiuVyHMdWM6jWcrIMsYKS8HkuKY7iDbGplRJzjNdV8dQOEFW06fUHpy67f4zDJTXNvA3o/1KcnSsM8xslTTGFh0/b5U9O/zXmuXTD+wre0mxI/FGhFG7QDEh8av/kKBTdTWxQAmAjgwfJiAM5F70y/+DQL1A=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=sD0K8Q9O; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id AB26FC4AF0B;
-	Sun, 22 Jun 2025 12:07:51 +0000 (UTC)
+	 MIME-Version; b=Pyx87pwh7FCOFNe99YZLvGzMTn7CX/SFApxC7iv+AZgk4VFB0n8YD3zZ+Jaxcqnrx2cIBo/4OfuKPnBqzk3uTRO67syoEHUdSELn9zAs0d+K4MlKiUxIKYmN/Fd0ZzpSWJnV8JIf9Cj7BGU7CjPcTiJ1HvF3noKWc9LikBt+nc0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=hPlZbYvq; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 4BCE2C4CEF3;
+	Sun, 22 Jun 2025 12:07:52 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
 	s=k20201202; t=1750594072;
-	bh=9ZnKHni6gEfGg+QFw1ik3FKLDuP2nvJHIUTi5E0Io7E=;
+	bh=OipIHpRR+7kaueTGoM3WRNE2uuJQVx8KpB1NDmTJgJk=;
 	h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-	b=sD0K8Q9OvoJv+/CMxW/d3zUD1LQHqX+cigRnklewuS3UcV3nr0/s8L0s7L7Py3jnS
-	 PVxDin7qMyJ1qkuJ7JGXkHlkXoSnVAyvSP7J0gOjFtu5QCdAXi/SYw+akTWzkeNYjD
-	 gVGGwseB23YSO0cSmh0p0jFY4tspOUaoq5yMTyZCTkLVGvHwMzib+e8IkuUiOP5VNc
-	 7WXf/ollyX8yFzLNOgEGYrUTEsnUIP81wPhduh3IMFe1qrglAQQhVEjc9pAyrYD8UW
-	 44N210XPt7DKOLoAQENKbaFOT/Akcw4xysZDth4wZkC2V9ZV3goJ753OYyc1UqCqRh
-	 oSkeSHjA5ZqdA==
+	b=hPlZbYvqxlKZ8sYqMBz+IWoJp9JtfSFadOa+963uZ9bfyYiEPmOHDzh+VtMLrvJ7Y
+	 i2yTaTSvFSiChIWLdE7eCYgLO9r79IsSgPSc+ShFBBaI6Lox92s3MdVKfGSTd6sUSt
+	 0g6WE4C+w41IqVzswNENRJfzssHx091urWushONB9eoCfqEtmIhA4XVj2Qs8ag6dEN
+	 GaFdxI0c4nSwy0Hn5wYQtKIDUGWuoHXVxLremdyLTAu/+J7YC6LDTFuQEljSS7jzFN
+	 YuXaYzHYYgddXy02AJpLqZg0p5aGYr8SMXGoXBq7/QH8bxr1M2YzflsApEOMxy3zvi
+	 CL1SBdoOXyUdw==
 From: Dinh Nguyen <dinguyen@kernel.org>
 To: robh+dt@kernel.org,
 	krzysztof.kozlowskii+dt@linaro.org,
 	conor+dt@kernel.org
 Cc: dinguyen@kernel.org,
 	devicetree@vger.kernel.org
-Subject: [PATCH 4/6] arm64: dts: stratix10: add clock-frequency to FPGA fixed-clocks
-Date: Sun, 22 Jun 2025 07:07:35 -0500
-Message-ID: <20250622120737.600336-5-dinguyen@kernel.org>
+Subject: [PATCH 5/6] arm64: dts: stratix10: remove cpu1-start-addr
+Date: Sun, 22 Jun 2025 07:07:36 -0500
+Message-ID: <20250622120737.600336-6-dinguyen@kernel.org>
 X-Mailer: git-send-email 2.42.0.411.g813d9a9188
 In-Reply-To: <20250622120737.600336-1-dinguyen@kernel.org>
 References: <20250622120737.600336-1-dinguyen@kernel.org>
@@ -61,43 +61,28 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 
-Add an arbitrary 100MHz for clock-frequency for the following clocks:
-cb-intosc-ls-clk and f2s-free-clk.
+The cpu1-start-addr property is only applicable to 32-bit SoCFPGA
+platforms.
 
-This will fix the following warnings:
-socfpga_stratix10_swvp.dtb:
-cb-intosc-ls-clk: 'clock-frequency' is a required property
-f2s-free-clk: 'clock-frequency' is a required property
+Removing this property will take care of warnings like this:
+socfpga_stratix10_swvp.dtb: sysmgr@ffd12000: cpu1-start-addr:
+	False schema does not allow 4291846704
 
 Signed-off-by: Dinh Nguyen <dinguyen@kernel.org>
 ---
- arch/arm64/boot/dts/altera/socfpga_stratix10.dtsi | 3 +++
- 1 file changed, 3 insertions(+)
+ arch/arm64/boot/dts/altera/socfpga_stratix10_swvp.dts | 1 -
+ 1 file changed, 1 deletion(-)
 
-diff --git a/arch/arm64/boot/dts/altera/socfpga_stratix10.dtsi b/arch/arm64/boot/dts/altera/socfpga_stratix10.dtsi
-index f0f659139f22..d024200c3031 100644
---- a/arch/arm64/boot/dts/altera/socfpga_stratix10.dtsi
-+++ b/arch/arm64/boot/dts/altera/socfpga_stratix10.dtsi
-@@ -130,16 +130,19 @@ clocks {
- 		cb_intosc_hs_div2_clk: cb-intosc-hs-div2-clk {
- 			#clock-cells = <0>;
- 			compatible = "fixed-clock";
-+			clock-frequency = <100000000>;
- 		};
- 
- 		cb_intosc_ls_clk: cb-intosc-ls-clk {
- 			#clock-cells = <0>;
- 			compatible = "fixed-clock";
-+			clock-frequency = <100000000>;
- 		};
- 
- 		f2s_free_clk: f2s-free-clk {
- 			#clock-cells = <0>;
- 			compatible = "fixed-clock";
-+			clock-frequency = <100000000>;
- 		};
- 
- 		osc1: osc1 {
+diff --git a/arch/arm64/boot/dts/altera/socfpga_stratix10_swvp.dts b/arch/arm64/boot/dts/altera/socfpga_stratix10_swvp.dts
+index 33a765c9177d..6b9fe154f677 100644
+--- a/arch/arm64/boot/dts/altera/socfpga_stratix10_swvp.dts
++++ b/arch/arm64/boot/dts/altera/socfpga_stratix10_swvp.dts
+@@ -106,5 +106,4 @@ &usb1 {
+ &sysmgr {
+ 	reg = <0xffd12000 0x1000>;
+ 	interrupts = <0x0 0x10 0x4>;
+-	cpu1-start-addr = <0xffd06230>;
+ };
 -- 
 2.42.0.411.g813d9a9188
 
