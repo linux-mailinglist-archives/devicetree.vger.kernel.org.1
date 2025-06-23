@@ -1,182 +1,135 @@
-Return-Path: <devicetree+bounces-188768-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-188769-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 04C13AE4E46
-	for <lists+devicetree@lfdr.de>; Mon, 23 Jun 2025 22:43:35 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6B422AE4E4D
+	for <lists+devicetree@lfdr.de>; Mon, 23 Jun 2025 22:44:48 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 75B757A7914
-	for <lists+devicetree@lfdr.de>; Mon, 23 Jun 2025 20:42:11 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 4ED28189782D
+	for <lists+devicetree@lfdr.de>; Mon, 23 Jun 2025 20:45:01 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 481D62D5C78;
-	Mon, 23 Jun 2025 20:43:23 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2B5892D5C77;
+	Mon, 23 Jun 2025 20:44:36 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="JFjLTigN"
+	dkim=pass (2048-bit key) header.d=mailbox.org header.i=@mailbox.org header.b="LxcRn7Wy"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.16])
+Received: from mout-p-101.mailbox.org (mout-p-101.mailbox.org [80.241.56.151])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8E12B2D542B;
-	Mon, 23 Jun 2025 20:43:21 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.198.163.16
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 13F492D4B68;
+	Mon, 23 Jun 2025 20:44:33 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=80.241.56.151
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1750711403; cv=none; b=b2sm+v+eEpQEGMx3FBZoJkrG8P+W0QZQpwm0MpXkxNLQ71WI6Kju0l7Ifar4WWkM1UyHlWDidwq1W6LXQ130/Q/zMMp/ExK4CWm4ge7B3gz1q2Dxxcl2+qULAI7rbl+EDKoLGOVE4dtiHGt8OMVrh9Ka8sJ7ZrWEqdTXaEk/8MI=
+	t=1750711476; cv=none; b=E3X7MSoS4FU0yq814tBjkS6MVLQpYKhWU/mwcJoVSTQ0axLFZEzNfrqTHqnq2afKnvjKdS1UvSOhZ7eCtX3hQm9611yJfgYN2FilCcBx+7jO42UWgS419X5hKuj+Oim9p6I0Nt2VZyiSXnk+5Z0VwF14fmUcX9fIZkZ0kJgYxxI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1750711403; c=relaxed/simple;
-	bh=ZF8iOADmf8w+7qUTaik1sR5sLxxucpt9xz9r6IIBx8E=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=tHd6s64ApfLulcqqX4uQ5KdqDWYBOKiwKCJw5jWHjrjrMGQORFVnV0rUMHA/c450BQGXYqyJrRxnKL8eH1MLXiWUO+QvavVrs8fPkF1BPebChpl2Sn3Bd/pi3GT2DSY/OQ/pf9A6riVYDu6wksJ4/l5ZgGMynD7fawoyz19/ftw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=JFjLTigN; arc=none smtp.client-ip=192.198.163.16
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1750711401; x=1782247401;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:content-transfer-encoding:in-reply-to;
-  bh=ZF8iOADmf8w+7qUTaik1sR5sLxxucpt9xz9r6IIBx8E=;
-  b=JFjLTigNx+cO+8ycNfK0fX+kyN4ViHfz+eHbnRNOy6ioT3yud8P6jmgD
-   74/kqmMpgx45E6eFOyA2DD5itGJw989w+CLuld5CmjAzzwUsjSLIavvnY
-   FXp0h/xtz2HiLrqHehr6qktST0VUzcr7yq2HS5IKrayfMY7wKdjpsK0M0
-   PxLubOMs/glkLrZk28zFJnSimk4ij69Igkhpb4IRjLZdKLSLJ9joFr59N
-   6H0OIaJITia2VwBvPKprl8MbsHykMlwhV2sJZ0IVs6fVeFvBZCuG9tPzE
-   H0imYgQyxNoi2B8Aln6Z42wcCl18Eg7DFhNKmwOT6BcuyA9yrWxyFS1P+
-   A==;
-X-CSE-ConnectionGUID: jzCD4RxET7W1EI5zjrRlPA==
-X-CSE-MsgGUID: gpTGF5f1RxaFSRCRnJrJEg==
-X-IronPort-AV: E=McAfee;i="6800,10657,11473"; a="40547183"
-X-IronPort-AV: E=Sophos;i="6.16,259,1744095600"; 
-   d="scan'208";a="40547183"
-Received: from orviesa006.jf.intel.com ([10.64.159.146])
-  by fmvoesa110.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 23 Jun 2025 13:43:21 -0700
-X-CSE-ConnectionGUID: vhpMNoOJRVyHoigd9p+7Iw==
-X-CSE-MsgGUID: sLayHnBySu6O9o+QgzInsA==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.16,259,1744095600"; 
-   d="scan'208";a="151185395"
-Received: from lkp-server01.sh.intel.com (HELO e8142ee1dce2) ([10.239.97.150])
-  by orviesa006.jf.intel.com with ESMTP; 23 Jun 2025 13:43:15 -0700
-Received: from kbuild by e8142ee1dce2 with local (Exim 4.96)
-	(envelope-from <lkp@intel.com>)
-	id 1uTo0W-000PJq-2Z;
-	Mon, 23 Jun 2025 20:43:12 +0000
-Date: Tue, 24 Jun 2025 04:43:02 +0800
-From: kernel test robot <lkp@intel.com>
-To: =?iso-8859-1?Q?Cl=E9ment?= Le Goffic <clement.legoffic@foss.st.com>,
-	Will Deacon <will@kernel.org>, Mark Rutland <mark.rutland@arm.com>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Maxime Coquelin <mcoquelin.stm32@gmail.com>,
-	Alexandre Torgue <alexandre.torgue@foss.st.com>,
-	Philipp Zabel <p.zabel@pengutronix.de>,
-	Jonathan Corbet <corbet@lwn.net>,
-	Gatien Chevallier <gatien.chevallier@foss.st.com>,
-	Michael Turquette <mturquette@baylibre.com>,
-	Stephen Boyd <sboyd@kernel.org>,
-	Gabriel Fernandez <gabriel.fernandez@foss.st.com>
-Cc: oe-kbuild-all@lists.linux.dev, linux-arm-kernel@lists.infradead.org,
-	linux-perf-users@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-stm32@st-md-mailman.stormreply.com,
-	linux-kernel@vger.kernel.org, linux-doc@vger.kernel.org,
-	linux-clk@vger.kernel.org,
-	=?iso-8859-1?Q?Cl=E9ment?= Le Goffic <clement.legoffic@foss.st.com>
-Subject: Re: [PATCH 06/13] perf: stm32: introduce DDRPERFM driver
-Message-ID: <202506240401.zlRG1qiO-lkp@intel.com>
-References: <20250623-ddrperfm-upstream-v1-6-7dffff168090@foss.st.com>
+	s=arc-20240116; t=1750711476; c=relaxed/simple;
+	bh=CB7BEmuMIG+McnmrZDtHUFTPvu0ph/3el0m1uADrtnw=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=Qgtuw46Plx0tjkpGNDECdJ9av4wSWwK35MVC7AFKDfeZrFTD8wcXul4XQw/YvUg+og1yU2Ch0W9glERaEeaL1v/U2UnR1OGU/ld8mezSXAim4gqK/xp9PhoGsAK9sCe1OIhwKyOTiHoCBg7NMGpKGqJttOgJOlcUwGV8ESKW5Ks=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=mailbox.org; spf=pass smtp.mailfrom=mailbox.org; dkim=pass (2048-bit key) header.d=mailbox.org header.i=@mailbox.org header.b=LxcRn7Wy; arc=none smtp.client-ip=80.241.56.151
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=mailbox.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=mailbox.org
+Received: from smtp2.mailbox.org (smtp2.mailbox.org [IPv6:2001:67c:2050:b231:465::2])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+	(No client certificate requested)
+	by mout-p-101.mailbox.org (Postfix) with ESMTPS id 4bR0SG02bwz9sWc;
+	Mon, 23 Jun 2025 22:44:30 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=mailbox.org; s=mail20150812;
+	t=1750711470;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references;
+	bh=3VHihW110j+ZG4NGZgu02etFf31LpWSQLQKAK3V32HE=;
+	b=LxcRn7WyAyHiYyJNR7M7J9AwthjyCJisFTlAXEd3OUdk/99/qQdjySsqxa/utNjp8CsFgV
+	bOnkIbytp9PstgAIWJKgcCGCRpC3Pj+bEoEW2XRA4Lf0Q1xMljbbnXN4GUhSTepv4y1IoQ
+	7MrqpLUwo6+VzhqYd2u2D5ZLVa5SEl/nWKk6+kiql+Hr4ybeKF77DTQa/qIDXtB57A6awz
+	HzgeADlTiHhlTASoC2U74MAu3Qt45+YVp/JyA9wb3/93JQ2sMZVWjf2P9Uk6VlobCDnMcT
+	5z8euQa+YNBIdu14ZBhi2IjqFA+OatVqYKdTYlghyL5eRS6ibEVDwfd4HFFMPg==
+Message-ID: <033bbb7d-ab00-467e-ab21-877f76d027a2@mailbox.org>
+Date: Mon, 23 Jun 2025 22:44:28 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
+Subject: Re: [PATCH v4 3/3] pwm: argon-fan-hat: Add Argon40 Fan HAT support
+To: =?UTF-8?Q?Uwe_Kleine-K=C3=B6nig?= <ukleinek@kernel.org>
+Cc: linux-pwm@vger.kernel.org, Conor Dooley <conor+dt@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Rob Herring <robh@kernel.org>,
+ devicetree@vger.kernel.org, linux-renesas-soc@vger.kernel.org
+References: <20250621172056.160855-1-marek.vasut+renesas@mailbox.org>
+ <20250621172056.160855-3-marek.vasut+renesas@mailbox.org>
+ <purpjdp72jw2rok5ihyua635izyih54ufom2knsbaiwdd3jzgk@6wjf364fao2g>
+ <dbec18f0-5df4-4eb8-93ab-da6ccfedf8ab@mailbox.org>
+ <apbocxuzcptlpghphh7nchnwyxpfhmiwosgxrt4y5awsb67ar3@fbskfbulwsma>
+Content-Language: en-US
+From: Marek Vasut <marek.vasut@mailbox.org>
+In-Reply-To: <apbocxuzcptlpghphh7nchnwyxpfhmiwosgxrt4y5awsb67ar3@fbskfbulwsma>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <20250623-ddrperfm-upstream-v1-6-7dffff168090@foss.st.com>
+X-MBO-RS-META: 7kzmi57c3ooazz3eg5cmxaab41mjxpj6
+X-MBO-RS-ID: 96e805e878dddce9f91
 
-Hi Cl�ment,
+On 6/23/25 9:53 PM, Uwe Kleine-König wrote:
+> Hello Marek,
 
-kernel test robot noticed the following build errors:
+Hello Uwe,
 
-[auto build test ERROR on 86731a2a651e58953fc949573895f2fa6d456841]
+> On Mon, Jun 23, 2025 at 07:30:33PM +0200, Marek Vasut wrote:
+>> On 6/23/25 11:11 AM, Uwe Kleine-König wrote:
+>>> when I replied to v3 this v4 was already on the list which I missed. My
+>>> concern applies here, too, though.
+>>>
+>>> On Sat, Jun 21, 2025 at 07:19:56PM +0200, Marek Vasut wrote:
+>>>> +static void argon_fan_hat_i2c_shutdown(struct i2c_client *i2c)
+>>>> +{
+>>>> +	argon_fan_hat_write(i2c, 100);
+>>>> +}
+>>>
+>>> If you drop this, I'm willing to apply.
+>>
+>> Dropping this would make the hardware which uses this device more
+>> susceptible to thermal damage, e.g. in case it gets stuck during reboot and
+>> does not boot Linux afterward. I don't want to risk such thermal damage.
+> 
+> We agree here. But the right place to address this is the pwm-fan
+> driver. A PWM is supposed to do exactly and only what its consumer wants
+> it to do (in the limits set by hardware). Officially a PWM driver
+> doesn't know the polarity of a fan, so `argon_fan_hat_write(i2c, 100)`
+> might fully enable or complete disable the fan. The fan-driver knows the
+> polarity. The PWM driver doesn't even know that it controls a fan. And
+> the next guy takes the argon device and controls a motor with it --- and
+> wonders that the vehicle gives full-speed at shutdown.
 
-url:    https://github.com/intel-lab-lkp/linux/commits/Cl-ment-Le-Goffic/bus-firewall-move-stm32_firewall-header-file-in-include-folder/20250623-173554
-base:   86731a2a651e58953fc949573895f2fa6d456841
-patch link:    https://lore.kernel.org/r/20250623-ddrperfm-upstream-v1-6-7dffff168090%40foss.st.com
-patch subject: [PATCH 06/13] perf: stm32: introduce DDRPERFM driver
-config: i386-buildonly-randconfig-002-20250624 (https://download.01.org/0day-ci/archive/20250624/202506240401.zlRG1qiO-lkp@intel.com/config)
-compiler: gcc-12 (Debian 12.2.0-14) 12.2.0
-reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20250624/202506240401.zlRG1qiO-lkp@intel.com/reproduce)
+I suspect this cannot happen without non-standard hardware change of 
+this device, see the link which shows what this device is, it is an 
+integrated PWM+fan device:
 
-If you fix the issue in a separate patch/commit (i.e. not just a new version of
-the same patch/commit), kindly add following tags
-| Reported-by: kernel test robot <lkp@intel.com>
-| Closes: https://lore.kernel.org/oe-kbuild-all/202506240401.zlRG1qiO-lkp@intel.com/
+Argon Fan HAT https://argon40.com/products/argon-fan-hat
 
-All errors (new ones prefixed by >>):
+> So I hope we also agree that the pwm-fan driver (or an even more generic
+> place if possible that applies to all fan drivers) is the right layer to
+> fix this. And note that the pwm-fan driver already has such a decision
+> implemented, it's just the wrong one from your POV as it disables the
+> fan at shutdown. For me this is another confirmation that having a
+> shutdown callback in the PWM driver is wrong. The two affected drivers
+> shouldn't fight about what is the right policy.
 
-   drivers/perf/stm32_ddr_pmu.c: In function 'stm32_ddr_start_counters':
->> drivers/perf/stm32_ddr_pmu.c:205:9: error: implicit declaration of function 'writel_relaxed' [-Werror=implicit-function-declaration]
-     205 |         writel_relaxed(r->start.mask, pmu->membase + r->start.reg);
-         |         ^~~~~~~~~~~~~~
-   drivers/perf/stm32_ddr_pmu.c: In function 'stm32_ddr_clear_counter':
->> drivers/perf/stm32_ddr_pmu.c:232:22: error: implicit declaration of function 'readl_relaxed' [-Werror=implicit-function-declaration]
-     232 |         u32 status = readl_relaxed(pmu->membase + r->status.reg);
-         |                      ^~~~~~~~~~~~~
-   cc1: some warnings being treated as errors
+I would fully agree with this argument for a generic PWM controller, but 
+this isn't one, this is a combined PWM+fan device.
 
+The PWM driver is the last one that is being shut down, it is being shut 
+down after the pwm-fan driver. If the pwm-fan driver fails for whatever 
+reason, the PWM driver -- in this case driver for a combined PWM+fan 
+device -- should make sure that the hardware does not melt. So I would 
+argue that, for this specific device, the shutdown hook here is correct.
 
-vim +/writel_relaxed +205 drivers/perf/stm32_ddr_pmu.c
-
-   200	
-   201	static void stm32_ddr_start_counters(struct stm32_ddr_pmu *pmu)
-   202	{
-   203		const struct stm32_ddr_pmu_regspec *r = pmu->cfg->regs;
-   204	
- > 205		writel_relaxed(r->start.mask, pmu->membase + r->start.reg);
-   206	}
-   207	
-   208	static void stm32_ddr_stop_counters(struct stm32_ddr_pmu *pmu)
-   209	{
-   210		const struct stm32_ddr_pmu_regspec *r = pmu->cfg->regs;
-   211	
-   212		writel_relaxed(r->stop.mask, pmu->membase + r->stop.reg);
-   213	}
-   214	
-   215	static void stm32_ddr_clear_time_counter(struct stm32_ddr_pmu *pmu)
-   216	{
-   217		const struct stm32_ddr_pmu_regspec *r = pmu->cfg->regs;
-   218	
-   219		writel_relaxed(r->clear_time.mask, pmu->membase + r->clear_time.reg);
-   220	}
-   221	
-   222	static void stm32_ddr_clear_event_counter(struct stm32_ddr_pmu *pmu, struct stm32_ddr_cnt *counter)
-   223	{
-   224		const struct stm32_ddr_pmu_regspec *r = pmu->cfg->regs;
-   225	
-   226		writel_relaxed(r->clear_cnt.mask & BIT(counter->idx), pmu->membase + r->clear_cnt.reg);
-   227	}
-   228	
-   229	static void stm32_ddr_clear_counter(struct stm32_ddr_pmu *pmu, struct stm32_ddr_cnt *counter)
-   230	{
-   231		const struct stm32_ddr_pmu_regspec *r = pmu->cfg->regs;
- > 232		u32 status = readl_relaxed(pmu->membase + r->status.reg);
-   233	
-   234		if (counter->idx == pmu->cfg->time_cnt_idx)
-   235			stm32_ddr_clear_time_counter(pmu);
-   236		else
-   237			stm32_ddr_clear_event_counter(pmu, counter);
-   238	
-   239		if (status & r->status.mask)
-   240			dev_err(pmu->dev, "Failed to clear counter %i because the PMU is busy\n",
-   241				counter->idx);
-   242	}
-   243	
-
--- 
-0-DAY CI Kernel Test Service
-https://github.com/intel/lkp-tests/wiki
+I would propose to keep the shutdown hook here, and extend the pwm-fan 
+driver to be aligned with the behavior of the shutdown hook here. Does 
+that work for you ?
 
