@@ -1,99 +1,111 @@
-Return-Path: <devicetree+bounces-188698-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-188699-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id E853AAE4AEF
-	for <lists+devicetree@lfdr.de>; Mon, 23 Jun 2025 18:30:55 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 9509EAE4B0B
+	for <lists+devicetree@lfdr.de>; Mon, 23 Jun 2025 18:35:03 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 656011B65E10
-	for <lists+devicetree@lfdr.de>; Mon, 23 Jun 2025 16:23:28 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 7C34C1B62CCD
+	for <lists+devicetree@lfdr.de>; Mon, 23 Jun 2025 16:24:04 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E933829DB77;
-	Mon, 23 Jun 2025 16:15:05 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E26BF2BD59E;
+	Mon, 23 Jun 2025 16:16:48 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="oUAHjfHZ"
+	dkim=pass (2048-bit key) header.d=microchip.com header.i=@microchip.com header.b="Ok289bH4"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from esa.microchip.iphmx.com (esa.microchip.iphmx.com [68.232.153.233])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BE2E528E607;
-	Mon, 23 Jun 2025 16:15:05 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3FC8324BD0C;
+	Mon, 23 Jun 2025 16:16:46 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=68.232.153.233
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1750695305; cv=none; b=jOqNGhbuG2UdrRuF6rhrkiYpEFCe0PmOp7uh7Jo5Awuj3dLLX8hzNHa2OmwJedUAXfdPr1TMXoHTXAD4j9jZ3TFlZRnRbx08bbDleKWJ7oQbGF1YZ4R7rq8SjxKBhWPkdWyEXOYXsiUYF3yLvXV3e64ZairgfDv7oNE7FNo00l8=
+	t=1750695408; cv=none; b=UfPiPC/LIbLOpziTqucZQYAuSj1tD+zaByfYpeShkCNaYqFNb5kd2xEYAPQfbioh0y9N5ED2QqSXEKt0Ajn1ukwis337KHdhfRgtkhkGgJ7rYt1NObE3dQkT3WHrJw1IYkeemIpx8M8L3//bIYWQ2DR9QJSDE1LmCNIVe/zbwcw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1750695305; c=relaxed/simple;
-	bh=V2trAmon8nMb/3Uqjyt7L8fDFnJFLh9kd6estMca12A=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=MPW6JX+0voBpiuvwJqY5su+pOnvLWI1COu2lQOSbWGMEEdtCwfz4f6ke/VJbzcVvcgUSZ0lK0o5hSxy1uynD+fslVzmESJrH5RJIBs/AKjgEdYqt4r2I6idoRVstpfgHHgt7hq6UwuHFdnleOKF09Niy1VnZ1ovco2tm2fSIQ0s=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=oUAHjfHZ; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 5A605C4CEEA;
-	Mon, 23 Jun 2025 16:15:02 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1750695305;
-	bh=V2trAmon8nMb/3Uqjyt7L8fDFnJFLh9kd6estMca12A=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=oUAHjfHZ7wP9z4uLcLWdCsGlRAA4mxsqG924jEqzyw2M4VNvHQLkW7/XaK7eikRNx
-	 nuWsZ4xTYXzcS1qpM0N9dUaJ5KvuHA9WdHnn+AfPFA9M9TNy0FWPw7mfibWHHaEnWs
-	 0dVf7wJFCv8zWmjdrMg08ri9taKDKJFerpwqYC0Qq/4xJnmX8Hv4EVlbbJuWIWGC3V
-	 aZ2uG/9IAJkd3CvKEU5RPBpEXiqNVnaHrc6udpbJ1s6JVTLew1crDKD2WQ/LYiRCYB
-	 qCYU/TGhbcHB4MaAX6QB7kQXaHSAZuBSKB/QUcE8iZm+78j+xLUA5And5xhy37VDMc
-	 kbKr417JlXlZw==
-Date: Mon, 23 Jun 2025 17:15:00 +0100
-From: Conor Dooley <conor@kernel.org>
-To: Benjamin Gaignard <benjamin.gaignard@collabora.com>
-Cc: joro@8bytes.org, will@kernel.org, robin.murphy@arm.com, robh@kernel.org,
-	krzk+dt@kernel.org, conor+dt@kernel.org, heiko@sntech.de,
-	nicolas.dufresne@collabora.com, jgg@ziepe.ca, iommu@lists.linux.dev,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	linux-rockchip@lists.infradead.org, kernel@collabora.com
-Subject: Re: [PATCH v4 2/5] dt-bindings: iommu: verisilicon: Add binding for
- VSI IOMMU
-Message-ID: <20250623-squiggly-unopposed-8b0ca15adbdb@spud>
-References: <20250623153931.158765-1-benjamin.gaignard@collabora.com>
- <20250623153931.158765-3-benjamin.gaignard@collabora.com>
+	s=arc-20240116; t=1750695408; c=relaxed/simple;
+	bh=Ur0XOriXT1WlSZ1k17YMUC/sCAmjE++EAq3Cer6GQKI=;
+	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
+	 In-Reply-To:Content-Type; b=SQzRvZOsNQpuoWaEi9foI7HWW4A6Xsl6Ez85WDe8YBvyf4QvJrlMobfZM7aS/AQ6qzFpLxlKczuf2NpIPv14+SgGwswP4nRMR3Xi2EAMg93Tcoz6MqrXXGy+biPH4WuKxDPhJsKMVcF72uNyVarVWxY4/punCwXi1lri3wSmdqE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=microchip.com; spf=pass smtp.mailfrom=microchip.com; dkim=pass (2048-bit key) header.d=microchip.com header.i=@microchip.com header.b=Ok289bH4; arc=none smtp.client-ip=68.232.153.233
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=microchip.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=microchip.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
+  t=1750695407; x=1782231407;
+  h=message-id:date:mime-version:subject:to:cc:references:
+   from:in-reply-to:content-transfer-encoding;
+  bh=Ur0XOriXT1WlSZ1k17YMUC/sCAmjE++EAq3Cer6GQKI=;
+  b=Ok289bH4Itw6AdHHfh18UBRJ/nhOL4CY/1loDg9Kf3CsAziBw36z6qRr
+   Q6Z+YwbOTvoVSHjhNheCmD6N2Dyx6BlxxYQKL4Zo3yXw/d2Wr2HX0ck3R
+   nt/Lf8+Rp6q8108nv8GAVK3BTLRzgAuoMxJ5gK2c0ZE89B3B7VPgkT0PZ
+   6AIGNpIbAGKCK4z4mNNuWddYSsBWGE0rn/cwEUE/4M2h00om2NFs8vf69
+   XjtWRx7ug5LHxa2eE6lSkmUuR7x4l4AzDkq5hy0tFwtcOolPLPyqOwfdG
+   gSdShPQSVHEMSDqx7raHsdm0hnxgwROH7J2xJe9y0d1yCZC2hhayTxER9
+   Q==;
+X-CSE-ConnectionGUID: YKKdZQvISxa431DUkbBFkA==
+X-CSE-MsgGUID: EAlSJYjtTEK2VZ7v+xC1Ag==
+X-IronPort-AV: E=Sophos;i="6.16,259,1744095600"; 
+   d="scan'208";a="43120166"
+X-Amp-Result: SKIPPED(no attachment in message)
+Received: from unknown (HELO email.microchip.com) ([170.129.1.10])
+  by esa3.microchip.iphmx.com with ESMTP/TLS/ECDHE-RSA-AES128-GCM-SHA256; 23 Jun 2025 09:16:46 -0700
+Received: from chn-vm-ex01.mchp-main.com (10.10.85.143) by
+ chn-vm-ex03.mchp-main.com (10.10.85.151) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.44; Mon, 23 Jun 2025 09:16:37 -0700
+Received: from [10.10.179.162] (10.10.85.11) by chn-vm-ex01.mchp-main.com
+ (10.10.85.143) with Microsoft SMTP Server id 15.1.2507.44 via Frontend
+ Transport; Mon, 23 Jun 2025 09:16:37 -0700
+Message-ID: <0aa6c9a4-4a65-4b55-a180-92c795499384@microchip.com>
+Date: Mon, 23 Jun 2025 09:16:37 -0700
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="RBUMPEX8/HmZilKF"
-Content-Disposition: inline
-In-Reply-To: <20250623153931.158765-3-benjamin.gaignard@collabora.com>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 0/3] Expose REFCLK for RMII and enable RMII
+To: Andrew Lunn <andrew@lunn.ch>
+CC: <andrew+netdev@lunn.ch>, <davem@davemloft.net>, <edumazet@google.com>,
+	<kuba@kernel.org>, <pabeni@redhat.com>, <robh@kernel.org>,
+	<krzk+dt@kernel.org>, <conor+dt@kernel.org>, <nicolas.ferre@microchip.com>,
+	<claudiu.beznea@tuxon.dev>, <netdev@vger.kernel.org>,
+	<devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>
+References: <cover.1750346271.git.Ryan.Wanner@microchip.com>
+ <4b1f601d-7a65-4252-8f04-62b5a952c001@lunn.ch>
+From: Ryan Wanner <ryan.wanner@microchip.com>
+Content-Language: en-US
+In-Reply-To: <4b1f601d-7a65-4252-8f04-62b5a952c001@lunn.ch>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 7bit
 
+On 6/21/25 00:24, Andrew Lunn wrote:
+> EXTERNAL EMAIL: Do not click links or open attachments unless you know the content is safe
+> 
+> On Thu, Jun 19, 2025 at 10:04:12AM -0700, Ryan.Wanner@microchip.com wrote:
+>> From: Ryan Wanner <Ryan.Wanner@microchip.com>
+>>
+>> This set allows the REFCLK property to be exposed as a dt-property to
+>> properly reflect the correct RMII layout. RMII can take an external or
+>> internal provided REFCLK, since this is not SoC dependent but board
+>> dependent this must be exposed as a DT property for the macb driver.
+> 
+> What board is going to use this? Do you have a patch for a .dts file?
 
---RBUMPEX8/HmZilKF
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+Our SAMA7D65_curiosity board has a connector that allows us to change
+ethernet phys. Since some of the phys we have provide their own REFCLK
+while others do not, this property needs to be added so we are able to
+use all of these.
 
-On Mon, Jun 23, 2025 at 05:39:26PM +0200, Benjamin Gaignard wrote:
-> Add a device tree binding for the Verisilicon (VSI) IOMMU.
-> This IOMMU sits in front of hardware encoder and decoder
-> blocks on SoCs using Verisilicon IP, such as the Rockchip RK3588.
->=20
-> Signed-off-by: Benjamin Gaignard <benjamin.gaignard@collabora.com>
-> ---
-> changes in version 4:
-> - rename and reorder compatibles fields.
+I do not have an exact .dts patch for this since our default is MPU
+provides the REFCLK, this property will be used with dt-overlays that
+match each phy that is connected.
 
-Reviewed-by: Conor Dooley <conor.dooley@microchip.com>
+Ryan
+> 
+>         Andrew
 
---RBUMPEX8/HmZilKF
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCaFl9hAAKCRB4tDGHoIJi
-0jBSAP0QEA7xsWu1uTUJGvGMxKQiDolLdO1bwbcDbNWauJJweAD+MeNwvPqaJfCo
-UGWS8QtxVnFJeDPlL0cimI/NBdYjFAM=
-=8bDY
------END PGP SIGNATURE-----
-
---RBUMPEX8/HmZilKF--
 
