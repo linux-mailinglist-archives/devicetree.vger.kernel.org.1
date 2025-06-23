@@ -1,48 +1,48 @@
-Return-Path: <devicetree+bounces-188249-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-188250-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 06E49AE3545
-	for <lists+devicetree@lfdr.de>; Mon, 23 Jun 2025 08:05:02 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id BD3FDAE354C
+	for <lists+devicetree@lfdr.de>; Mon, 23 Jun 2025 08:09:36 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id B093E189012E
-	for <lists+devicetree@lfdr.de>; Mon, 23 Jun 2025 06:05:17 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 5CC5E18904C8
+	for <lists+devicetree@lfdr.de>; Mon, 23 Jun 2025 06:09:52 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id CFEBE1D5143;
-	Mon, 23 Jun 2025 06:04:56 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9DAD81DDC1A;
+	Mon, 23 Jun 2025 06:09:30 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="e37E4B6H"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Bvccnq/H"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9EAC77E0E4;
-	Mon, 23 Jun 2025 06:04:55 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6A5D2A94A;
+	Mon, 23 Jun 2025 06:09:30 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1750658696; cv=none; b=LnSNbzAVdxNteXWX63hD8YdCETy6pypOiQHAaI8QIDY3z1Evn/4uoK35KQRB0Th6Zklj7MUA3AVb3YYkT0z+2k0c1FROqGrR+xCBLGnMJjAtYMBP65r+bLbsfjgzrRRA7zdmlHo0QM7nHVn8XBudAFXAtpUuatVyBnlUyN2yetY=
+	t=1750658970; cv=none; b=XdXTW4gyOA/m8Ov6zC19+N2g3CULfftzfAhoA1onCyumCcGfXRiSt9AdZuMOYjGmC2tq8k2bhxVkef+D25rqztG3EXOGWEZRHbr6+gUMcUtUuQAPVS+tq9v4TlENkAP0i8aQC+x3Zp/CGXo+QMWzKoVDeQm6Ht5K1zJgs3xZ/fI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1750658696; c=relaxed/simple;
-	bh=sS/dGjyTxAzwA3uG987pgo3ICOfSDwvIN8sR2GOsAvw=;
+	s=arc-20240116; t=1750658970; c=relaxed/simple;
+	bh=PNHYsFG5NwLTdXL4ZX15juhfF+vA0FSIDNnfrT5LYJ8=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=i/gDrjtURxJiC3ymqnsPRigIPkeVJ7N6u7mBdK7mbfnotHd1n+YtjPpaPqx55vEwZu85BtksC0ZPxjrmcL3RnK8MkQ3vl7WfhdRtbLqFC0COeAosUtIRQWqUTCZ9c5GhmahaDj51PITvvQczL3+iIuhZFFlzpK882plKcoCB4Sc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=e37E4B6H; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 59A48C4CEED;
-	Mon, 23 Jun 2025 06:04:52 +0000 (UTC)
+	 In-Reply-To:Content-Type; b=pGpSQjRSlOiew/YlDP09pWEA98Un3q8sYEsvJ+bB9blHiRnsFEAfq1Aqqyy3MR8rIYhKQ5FhMDuB0y7xwL7CpFKsYn8/fC4AazoN1AO1bfBng0S4Dx4P7oO8HeEGRZ/R00sJSNq6yoRfJt+mLTlu9YQABWHOoS251T/9cMfcpyQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Bvccnq/H; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 28E59C4CEED;
+	Mon, 23 Jun 2025 06:09:22 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1750658695;
-	bh=sS/dGjyTxAzwA3uG987pgo3ICOfSDwvIN8sR2GOsAvw=;
+	s=k20201202; t=1750658969;
+	bh=PNHYsFG5NwLTdXL4ZX15juhfF+vA0FSIDNnfrT5LYJ8=;
 	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=e37E4B6H6sbKdecMUCkSYAmskdB9Nfw/TK6Z8YpfWLTj+/omFii2BdRBH67R0rZe/
-	 vpN+6hkd/LffHR7nlQWSB3jgSaxVu4EF6UPjc71cZdX53w37l49pW502kCO1TpGVyy
-	 WLnQJzuJbTKcg3x8z2SkkR5xPeSLivl5fZnGb+8HpXjDyTJjGE+csgKbC1GNO+ehNK
-	 DeDW5KCdMwblPfYNNkrqJ+DIYSQv1H4xyTbrFYzOA0tb+igUe6yy4hdtCYu3RudGmq
-	 xK8PpnI9OeTM5T7GtHQ48Y1iy0doIocXjty6i/5vVIA+lXgBvzkLG2IhZikUEE+dSv
-	 RFgflx8B5nbGw==
-Message-ID: <955a19db-eb76-488c-8361-6ec8b558485e@kernel.org>
-Date: Mon, 23 Jun 2025 08:04:50 +0200
+	b=Bvccnq/HXIbUblT5RrRtuAtCGHJuyMSm1Z/UMMJtou3oboBKjzaJShWzRGacGss13
+	 mVw6eUVJUEFvn573v2h9O1Sg9EwFqebJ2E4AEYntQxQGtSXeVlu7nfGo84TRnh4yCL
+	 RhdYeT1Vd+sBT7jh7vOc7BkKT+P9nkdNEQcwqmZFqmvcU8IaOnVE939FUGlMhL/ghc
+	 FlnS72275/iEu6OAwcV49oCsgqpogcJcHctjQAqy1/sngt/aO2EqIza0XcC8FkQ6xq
+	 ocnyJWPOe7NRrbts4g7jOV7z+EpbIgs+rod7dElCbvrbKiAzmRzNw1BbBWXYsmElyI
+	 KfXU9HAlZSyLw==
+Message-ID: <ab698ba0-6c6e-4d52-bef8-a6843aaa6cbf@kernel.org>
+Date: Mon, 23 Jun 2025 08:09:21 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,27 +50,32 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 4/6] arm64: dts: axiado: Add initial support for AX3000
- SoC and eval board
-To: Harshit Shah <hshah@axiado.com>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Linus Walleij <linus.walleij@linaro.org>,
- Bartosz Golaszewski <brgl@bgdev.pl>, Arnd Bergmann <arnd@arndb.de>,
- Catalin Marinas <catalin.marinas@arm.com>, Will Deacon <will@kernel.org>
-Cc: "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
- "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
- "linux-arm-kernel@lists.infradead.org"
- <linux-arm-kernel@lists.infradead.org>,
- "linux-gpio@vger.kernel.org" <linux-gpio@vger.kernel.org>,
- "soc@lists.linux.dev" <soc@lists.linux.dev>
-References: <20250615-axiado-ax3000-soc-and-evaluation-board-support-v2-0-341502d38618@axiado.com>
- <20250615-axiado-ax3000-soc-and-evaluation-board-support-v2-4-341502d38618@axiado.com>
- <6ef92d1a-39cc-409f-8ebe-d28ad2006988@kernel.org>
- <bfcde082-270f-4152-b474-7828beab7cb9@axiado.com>
- <9012cc61-b499-4213-9753-54cf4d24c822@kernel.org>
- <bdc4408c-6fe4-48cd-bb40-3a17aed79cb6@axiado.com>
- <5163d9d8-d106-47f3-a0f9-0eaa01f15498@kernel.org>
- <56044658-925d-473c-9859-d4f10aa9330e@axiado.com>
+Subject: Re: [PATCH v5 01/13] dt-bindings: net: mediatek,net: update for
+ mt7988
+To: frank-w@public-files.de, Frank Wunderlich <linux@fw-web.de>
+Cc: MyungJoo Ham <myungjoo.ham@samsung.com>,
+ Kyungmin Park <kyungmin.park@samsung.com>,
+ Chanwoo Choi <cw00.choi@samsung.com>, Georgi Djakov <djakov@kernel.org>,
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, Andrew Lunn <andrew@lunn.ch>,
+ Vladimir Oltean <olteanv@gmail.com>, "David S. Miller"
+ <davem@davemloft.net>, Eric Dumazet <edumazet@google.com>,
+ Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
+ Matthias Brugger <matthias.bgg@gmail.com>,
+ AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
+ Jia-Wei Chang <jia-wei.chang@mediatek.com>,
+ Johnson Wang <johnson.wang@mediatek.com>, =?UTF-8?B?QXLEsW7DpyDDnE5BTA==?=
+ <arinc.unal@arinc9.com>, Landen Chao <Landen.Chao@mediatek.com>,
+ DENG Qingfang <dqfext@gmail.com>, Sean Wang <sean.wang@mediatek.com>,
+ Daniel Golle <daniel@makrotopia.org>, Lorenzo Bianconi <lorenzo@kernel.org>,
+ Felix Fietkau <nbd@nbd.name>, linux-pm@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ netdev@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ linux-mediatek@lists.infradead.org
+References: <20250620083555.6886-1-linux@fw-web.de>
+ <20250620083555.6886-2-linux@fw-web.de>
+ <jnrlk7lwob2qel453wy2igaravxt4lqgkzfl4hctybwk7qvmwm@pciwvmzkxatd>
+ <100D79A2-12A9-478D-81F7-F2E5229C4269@public-files.de>
 From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
@@ -116,30 +121,150 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  jWt87ecuHlpL3uuQ0ZZNWqHgZoQLXoqC2ZV5KrtKWb/jyiFX/sxSrodALf0zf+tfHv0FZWT2
  zHjUqd0t4njD/UOsuIMOQn4Ig0SdivYPfZukb5cdasKJukG1NOpbW7yRNivaCnfZz6dTawXw
  XRIV/KDsHQiyVxKvN73bThKhONkcX2LWuD928tAR6XMM2G5ovxLe09vuOzzfTWQDsm++9UKF a/A=
-In-Reply-To: <56044658-925d-473c-9859-d4f10aa9330e@axiado.com>
+In-Reply-To: <100D79A2-12A9-478D-81F7-F2E5229C4269@public-files.de>
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: 7bit
 
-On 23/06/2025 07:56, Harshit Shah wrote:
-> So, I am planning to add only following as a part of this patchset.
+On 22/06/2025 13:44, Frank Wunderlich wrote:
+> Hi,
 > 
->       clocks {
->                 clk_xin: clock-200000000 {
->                         compatible = "fixed-clock";
->                         #clock-cells = <0>;
->                         clock-frequency = <200000000>;
->                         clock-output-names = "clk_xin";
->                 };
->                 refclk: clock-125000000 {
->                         compatible = "fixed-clock";
->                         #clock-cells = <0>;
->                         clock-frequency = <125000000>;
->                 };
->         };
+> Thank you for review.
 > 
-> Later, we will add more patches as a part of next-separate series for 
-> the controller, clocks(those can change) and other peripherals.
-Yes
+> Am 22. Juni 2025 13:10:31 MESZ schrieb Krzysztof Kozlowski <krzk@kernel.org>:
+>> On Fri, Jun 20, 2025 at 10:35:32AM +0200, Frank Wunderlich wrote:
+>>> From: Frank Wunderlich <frank-w@public-files.de>
+>>>
+>>> Update binding for mt7988 which has 3 gmac and 2 reg items.
+>>
+>> Why?
+> 
+> I guess this is for reg? Socs toll mt7986 afair
+>  get the SRAM register by offset to the MAC
+>  register.
+> On mt7988 we started defining it directly.
+
+This should be explained in commit msg. Why are you doing the changes...
+
+> 
+>>> MT7988 has 4 FE IRQs (currently only 2 are used) and the 4 IRQs for
+>>> use with RSS/LRO later.
+>>>
+>>> Add interrupt-names to make them accessible by name.
+>>>
+> ...
+>>>    reg:
+>>> -    maxItems: 1
+>>> +    items:
+>>> +      - description: Register for accessing the MACs.
+>>> +      - description: SoC internal SRAM used for DMA operations.
+>>
+>> SRAM like mmio-sram?
+> 
+> Not sure,but as far as i understand the driver
+>  the sram is used to handle tx packets directly
+>  on the soc (less dram operations).
+> 
+> As mt7988 is the first 10Gbit/s capable SoC
+>  there are some changes. But do we really need 
+>  a new binding? We also thing abour adding
+>  RSS/LRO to mt7986 too,so we come into
+>  similar situation regarding the Interrupts/  
+>  -names.
+
+If it is mmio-sram, then it is definitely not reg property.
+
+Anyway
+wrap emails
+according to list
+discussion rules.
+
+> 
+>>> +    minItems: 1
+>>>  
+>>>    clocks:
+>>>      minItems: 2
+>>> @@ -40,7 +43,11 @@ properties:
+>>>  
+>>>    interrupts:
+>>>      minItems: 1
+>>> -    maxItems: 4
+>>> +    maxItems: 8
+>>> +
+>>> +  interrupt-names:
+>>> +    minItems: 1
+>>> +    maxItems: 8
+>>
+>> So now all variants get unspecified names? You need to define it. Or
+>> just drop.
+> 
+> Most socs using the Fe-irqs like mt7988,some
+>  specify only 3 and 2 soc (mt762[18]) have only
+>  1 shared irq. But existing dts not yet using the
+>  irq-names.
+> Thats why i leave it undefined here and
+>  defining it only for mt7988 below. But leaving it
+>  open to add irq names to other socs like filogic
+>  socs (mt798x) where we are considering
+>  adding rss/lro support too.
+> 
+
+I explained this is wrong. Your binding must be specific, not flexible.
+
+>>>  
+>>>    power-domains:
+>>>      maxItems: 1
+>>> @@ -348,7 +355,19 @@ allOf:
+>>>      then:
+>>>        properties:
+>>>          interrupts:
+>>> -          minItems: 4
+>>> +          minItems: 2
+>>
+>> Why? Didn't you say it has 4?
+> 
+> Sorry missed to change it after adding the 2
+>  reserved fe irqs back again (i tried adding only used irqs - rx+tx,but got info that all irqs can be used - for future functions - so added all available).
+> 
+>>> +
+>>> +        interrupt-names:
+>>> +          minItems: 2
+>>> +          items:
+>>> +            - const: fe0
+>>> +            - const: fe1
+>>> +            - const: fe2
+>>> +            - const: fe3
+>>> +            - const: pdma0
+>>> +            - const: pdma1
+>>> +            - const: pdma2
+>>> +            - const: pdma3
+>>>  
+>>>          clocks:
+>>>            minItems: 24
+>>> @@ -381,8 +400,11 @@ allOf:
+>>>              - const: xgp2
+>>>              - const: xgp3
+>>>  
+>>> +        reg:
+>>> +          minItems: 2
+>>
+>>
+>> And all else? Why they got 2 reg and 8 interrupts now? All variants are
+>> now affected/changed. We have been here: you need to write specific
+>> bindings.
+> 
+> Mt7988 is more powerful and we wanted to add
+>  all irqs available to have less problems when
+>  adding rss support later. E.g. mt7986 also have
+>  the pdma irqs,but they are not part of
+>  binding+dts yet. Thats 1 reason why
+>  introducing irq-names now. And this block is
+>  for mt7988 only...the other still have a regcount of 1 (min-items).
+
+This explains me nothing. Why do you change other hardware? Why when
+doing something for MT7988 you also state that other SoCs have different
+number of interrupts?
+
+
 
 Best regards,
 Krzysztof
