@@ -1,409 +1,185 @@
-Return-Path: <devicetree+bounces-188601-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-188602-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 58181AE418F
-	for <lists+devicetree@lfdr.de>; Mon, 23 Jun 2025 15:05:23 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id E2DF9AE4198
+	for <lists+devicetree@lfdr.de>; Mon, 23 Jun 2025 15:06:42 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 23FA316ADF4
-	for <lists+devicetree@lfdr.de>; Mon, 23 Jun 2025 13:05:04 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 73737168354
+	for <lists+devicetree@lfdr.de>; Mon, 23 Jun 2025 13:06:43 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1289D248F46;
-	Mon, 23 Jun 2025 13:04:40 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B9F4024DD13;
+	Mon, 23 Jun 2025 13:06:37 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="RvmEnRos"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="NCh1IHh0"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-lf1-f43.google.com (mail-lf1-f43.google.com [209.85.167.43])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 359B524DCEC
-	for <devicetree@vger.kernel.org>; Mon, 23 Jun 2025 13:04:38 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C70B524DCE3
+	for <devicetree@vger.kernel.org>; Mon, 23 Jun 2025 13:06:35 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.43
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1750683880; cv=none; b=JOWVeyLj1DZiU7mTNr1rHeiEbfuxlUHjM/qlb/OQFTfnZ3TENyV55s7w83mUwLxOBy2SzVeYcnFU+QhsnQ5f+Imz+GOX45v5g9hG9QvKDuYYiV2zL1l5QRhhejFudz36Q+7U7QJv+mXrU65pWbdvuzTBq3+jHKzvCAZX4fRoVtA=
+	t=1750683997; cv=none; b=VTAW9RLJRge3qLmy/S/GwLF3nxb3GaqaTU5LQtstVR3yy3DevoJY4dN/GXkAgzSmpaFUuwpJKDQ4acoz0LR29IbKbD0B9rQGTgA/KHYr6nRO0uyZAzjNXO90izfYqRSy8YKP42fuf7nJI3LekZS5y8Udc96m1zdN2nwrShgoGP8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1750683880; c=relaxed/simple;
-	bh=/BlpWEmVkFfjpn/3mAzrX1kGPLkeZaYDQZ8QKhDor8I=;
-	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
-	 MIME-Version; b=fYKMD/MloJsYUz78WD/OvcpBvatbeJmhF47is2igQ7T8eSX5VY1xQ5DvHyvdvHM8kft6imnzTHqpq1qDJR+wja4Ng/eXOxz7WsXodQDRvOWyFeKscK/H9tM3ZV0pAMnvQg1c7fdodVmK0dTmuoVrehvRkHk1EPVvY/59iRi8GfU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=RvmEnRos; arc=none smtp.client-ip=205.220.180.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
-Received: from pps.filterd (m0279869.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 55N8Lh3I006106
-	for <devicetree@vger.kernel.org>; Mon, 23 Jun 2025 13:04:37 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
-	cc:content-transfer-encoding:date:from:in-reply-to:message-id
-	:mime-version:references:subject:to; s=qcppdkim1; bh=o0C9b2LLinN
-	LSKrjPoebgxL6KXSiK4LWiWFvZX7PqrY=; b=RvmEnRoso38CFAx1tElkPJ/4V4/
-	wqPVxn4+YCB3IyI8P3Ddl44UChJM8ZjwPc9W4VyH5ogGj6zRv+st1uQrr2WbnBpN
-	Dq3RBBsvRMqFa88rU6CvE0pCB7LIxKR9y8OWT0OISzqJhETZDt2EJ1aqLm1EPQ6l
-	aJh9bZMeD20REFmlwwT8kx5b5OzAb2eYoRVItd5RPXk7R9w733dbn2ORZhAakvsQ
-	cgUoupcyvqVU5c164BPqXdLtvOLLsOmxrllzj6bw1YKp1kfjLJRRMv5BRong6kFb
-	TBe6aWzG7jE9aOhihkhG6O7E1h9Ozjn+D91kOzaF7ymWZXBuWKvRbWRV41w==
-Received: from mail-pf1-f197.google.com (mail-pf1-f197.google.com [209.85.210.197])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 47f3bg8s5c-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Mon, 23 Jun 2025 13:04:37 +0000 (GMT)
-Received: by mail-pf1-f197.google.com with SMTP id d2e1a72fcca58-742bbf90fd9so118662b3a.1
-        for <devicetree@vger.kernel.org>; Mon, 23 Jun 2025 06:04:36 -0700 (PDT)
+	s=arc-20240116; t=1750683997; c=relaxed/simple;
+	bh=Ssu5m3659nNMrzkp8GTKz8YxIMB7XTwKxR5PImrDZtE=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=dRl4StRkZWe+9se8u0DIE/HXfdYePDbu8Vn1MlR5MSDoxWYv7zHe6cS2azYqM8+nbJRHTlfsCeWRK6NVSxx+rKuTFgV98+KHyZbF3HtF1zY+2rhrsi0JSldeulzKEkGDAS/5dgyL77AVbGD3k/Fzmo6uPB4h/krN+y2E3uoauqs=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=NCh1IHh0; arc=none smtp.client-ip=209.85.167.43
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-lf1-f43.google.com with SMTP id 2adb3069b0e04-553cbe3e77dso729152e87.1
+        for <devicetree@vger.kernel.org>; Mon, 23 Jun 2025 06:06:35 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1750683994; x=1751288794; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to:subject
+         :user-agent:mime-version:date:message-id:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=OPWvvPtyfW6cvFRrpdLyiuP0wVdJIV9Knmno897bePk=;
+        b=NCh1IHh0OABZzaEG+ph5Nsttwu1c0AcFXogbrxBMbCYW4uQQ+0MLMG5GG0fv6aTR4/
+         0T0GNf2UBaoUti3F8bA4V3OE1o6H+fofpzkJvZZpmKnFK0rK1BcRrsr0DQ84SXjEXn0m
+         MksopTZFyKH65lhfynoiGqujYTK2PFVWFOVZ/HePaX15VezlI3//AXJF/ZSHEw3emImy
+         wXs+mHCtAFQ8cRN8nUIRjefu5uzuGB7/RZNpAiSWEM3Yq6ze7SqGY+owEx/yu5bV2bcU
+         j25hhNTeAdVH1Xhfa4rOIqeoi7TAssmDyuVMbcDAyV0yKw9/le3Ws5OA/DB3L9FbVAY3
+         FQww==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1750683876; x=1751288676;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=o0C9b2LLinNLSKrjPoebgxL6KXSiK4LWiWFvZX7PqrY=;
-        b=Kfp2YNrtdNdld353FBpZ4eHw3UyjWd3g5e56o3y6apigVldipo9Ofzvzdne1bHyKwr
-         hY3vYu9BS1f+4tNqRWQa8VAyxmdVYiprMZCaYG+Pv5cc4OflX7apygoHbaZKMnZvOrcM
-         yaC8jzyasEuJRdQJoGbh1w57a0IAuqn5MgG6WRLWlHdbEJ/tlF1pSlrvOTgbF+UryZWF
-         gJNp+hD2l7ROvrikezfL4vDcSRpgd/jWi+LYWrRozNKHYNvEfFM9s2Dly+cHlrNVr7NI
-         6zDoAB4m8FjgdIv0Y4LYIRSdVJwWkyV2paZ6pP6Mzb4XQ1CvtE+7COHJ90KJecrhdJ/p
-         yW2g==
-X-Forwarded-Encrypted: i=1; AJvYcCVOieM30mJsOG2j3//j8pPeqYYw0a7BVVZXWXx3rC6ccc/iJ1Ze5muxh5OJgA3bz32vQ8fG8RzFbMSd@vger.kernel.org
-X-Gm-Message-State: AOJu0Yw85xKUsn4DQgd0O2IhHaNWz1itkqlxI+JByX1ACT9bJI3FaJvu
-	eYB7tajVbugOeUNQQ3m+Y8bxQQgHIRtthT9ViHzVXWVbx82spsBNeBLHNeK6GpsUihOoByCDgfD
-	17EmiFyh1ZOL27QEvCLP2h2GL7FZ5Z7cPWRSoOmQ8Gadmz8uvNoErzQbmJVBGxXI1en9s4xBo
-X-Gm-Gg: ASbGncsW0M3OYxHCFVptIXSzvy/ZUUtMyWcIDcJ0HJcPV9tA2oSGr62x/OZgMv4oISU
-	9TFZSPRIQgYjvSBpy7UBQOMOyYnkGsPHdWo4Os0l4TDCrJBLar6pe9KwC3pd+aE8b9iRkvmlI7S
-	lMwMFEqawSYj72Yj9hMnlTYoi4JyK9OiZL3tJXUqOson6jCLC19BxGEEqglcNTvk/YOSOwsc9n2
-	1PqrdGDaW4LohkDuhF2Lr4icqSNDF2wbMs5rxBspWVWtpc8tUNEd/MV3Pos5ZthVjae8c/v6ZMo
-	0vejJBH/ouMhWKmtoT6JYEzbhkb5cK32waUwWIFW51FCnKjtZ6Guww==
-X-Received: by 2002:a05:6a00:6708:b0:737:6589:81e5 with SMTP id d2e1a72fcca58-7490d4f9ad8mr5824633b3a.2.1750683875564;
-        Mon, 23 Jun 2025 06:04:35 -0700 (PDT)
-X-Google-Smtp-Source: AGHT+IFYIj9dSQErqYoU6ZWGAMdNXXYCxJPw2Hvn3yIlOyufrRrJ0tUegl60KqZQDHnhMASeKtyHUw==
-X-Received: by 2002:a05:6a00:6708:b0:737:6589:81e5 with SMTP id d2e1a72fcca58-7490d4f9ad8mr5824618b3a.2.1750683875067;
-        Mon, 23 Jun 2025 06:04:35 -0700 (PDT)
-Received: from hu-uchheda-hyd.qualcomm.com ([202.46.22.19])
-        by smtp.gmail.com with ESMTPSA id d2e1a72fcca58-7490a46b8b2sm8713437b3a.16.2025.06.23.06.04.30
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 23 Jun 2025 06:04:34 -0700 (PDT)
-From: Umang Chheda <umang.chheda@oss.qualcomm.com>
-To: Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>
-Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, kernel@oss.qualcomm.com,
-        umang.chheda@oss.qualcomm.com, Rakesh Kota <quic_kotarake@quicinc.com>,
-        Nirmesh Kumar Singh <quic_nkumarsi@quicinc.com>,
-        Swati Agarwal <quic_swatagar@quicinc.com>
-Subject: [PATCH 2/2] arm64: dts: qcom: Add support for QCS8275 IQ8 EVK
-Date: Mon, 23 Jun 2025 18:34:20 +0530
-Message-Id: <20250623130420.3981916-3-umang.chheda@oss.qualcomm.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20250623130420.3981916-1-umang.chheda@oss.qualcomm.com>
-References: <20250623130420.3981916-1-umang.chheda@oss.qualcomm.com>
+        d=1e100.net; s=20230601; t=1750683994; x=1751288794;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to:subject
+         :user-agent:mime-version:date:message-id:x-gm-message-state:from:to
+         :cc:subject:date:message-id:reply-to;
+        bh=OPWvvPtyfW6cvFRrpdLyiuP0wVdJIV9Knmno897bePk=;
+        b=NhHNySgeSnBTvmuzN/8j2gO1fvbt4FoB+AnuYsq1iJo4Ed+FPksrUsQf89AzSQY24n
+         jXA59WDkPPCTtGcAlPD4nOJokR+qbaFOFTXaKhXWTEoLqrsYDed7hSCA7hw3NHdkO5ob
+         yarcgKqdDC/x2AbL+PUqYDRInIn7m4Mxd3OtvcFRf9S5H1093iJCO9+Wytt1UcWzQF8Y
+         7abg9Jw1PbNKPJY9syMJrjMy6Pju1rXtn/romRpPHl1zNQEP3FWwwA+cRfpg0/Y9LwYj
+         UbHW0AfrMd3/ABBQK0oDOPM5JxoJN0ssZpoETS9hzzrtKABM75Rkm2DWOLsrsrS3UnYe
+         HQFQ==
+X-Forwarded-Encrypted: i=1; AJvYcCXNJOeTaI+PK5EbTXmTFk9aKqOqE/VsEngIxensZPNmEac11FDRek++jJv/nistgSurUn4Qzzq2goYB@vger.kernel.org
+X-Gm-Message-State: AOJu0Yw6k1lLchbcPlZAELrvKngL0OsgYm25FJF4F2Uv6sbmofYJIRcg
+	MLk1e6w2D6dwaY1FWjdMLNVt7FS1xfvajExk6JymcDO87IYgKmsQmk2mcS4iPFd4jeE=
+X-Gm-Gg: ASbGncvcGPiGKsWW9oKYNWkBDpJQCIBNv3uFDs0D2Js/mrUsD9jGreeFs6IOIEwt/nD
+	qCOdxFeYisLvFequ4y/3Nw7d3zmdW2DqgamEMBOjwvpEOgDqv91cdRorDFDG8iOpW3GilhVmGU/
+	1TOyV2yLByRNcfkmwlbP55DOmB5BGO/6umb51lUDTa5pnEHVcVFPvnG8lz5ZNF2dqP0cJ8cD7wM
+	WE6o1a5Yt4Ouzdb7SgazseqWZHbo4RL01GOy18kwVhICEu5mXoEM25qfnRRm8MKA07SKGY6yvcz
+	CDJuYnre3+++tfFs5IuRV9gFq/K059+6wEkomxc8hwOZsRU7RL2YxHP4v+PBRJpZCwlJ3mSiGaQ
+	EgKQegbF6UW/DUGgIcDxIDuBPPr0GBLvSCDZAJKhe
+X-Google-Smtp-Source: AGHT+IGF9wwyM1bJxn+39eMyyDzxWCYd+eWUA0IJo7ppfvKyky3eJv0f+LUJdPW1+5w6MNbHhR98Hg==
+X-Received: by 2002:a05:6512:3e0f:b0:553:241d:4e73 with SMTP id 2adb3069b0e04-553e3c07c3bmr1347362e87.11.1750683993788;
+        Mon, 23 Jun 2025 06:06:33 -0700 (PDT)
+Received: from [192.168.1.4] (88-112-131-206.elisa-laajakaista.fi. [88.112.131.206])
+        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-553e41bc2d8sm1407881e87.101.2025.06.23.06.06.32
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 23 Jun 2025 06:06:33 -0700 (PDT)
+Message-ID: <0aaaf251-5070-42b1-99dc-d9f416340335@linaro.org>
+Date: Mon, 23 Jun 2025 16:06:32 +0300
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Proofpoint-ORIG-GUID: -zpLeOtf0DiGveXNxNAuCh4eazUxRMpA
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwNjIzMDA3OCBTYWx0ZWRfX0dl571b4EkfA
- K3YDaioV0CAwCWI9CNUxJCqsutMeNrJ9CdZMoja1kWHu7pkHSQn9t6xTvyw6KwpC61QMomDndXm
- vUbyVvgNTYOaeQ6lJb6W1ZHMg/6ISI3C7P1dSJSQRu0pCq6Qyu6wC0I2+TzHhsz4+tmoMYN4yW7
- 99DVEaCjbEAoQFlGkBjBhS5yuvN2JtzmUXbSZ5BDPBpu3YXnPAebp/blA8n5aHYR8HlhrOvz7RE
- 9riqqHYykP235lUMaOeNbNG8QqV/yiBgqutrRS50g10jd+RADpHnd0o+te5msKs9L5WH+mn8Tcf
- s8mHFet7KR4NGBjiJS+xl3GWzVhLNecitDB7nE8jGJcQLoadqyc9JdAjT5JV95YHfkIQ3julplQ
- AcPEneqzGYNzI0v5asjMfbhNPnMKQE2rCcgsocERp5xTVde/ZzKEC8p4BWYRu7WUBaWwPZ2y
-X-Authority-Analysis: v=2.4 cv=L4kdQ/T8 c=1 sm=1 tr=0 ts=685950e5 cx=c_pps
- a=rEQLjTOiSrHUhVqRoksmgQ==:117 a=fChuTYTh2wq5r3m49p7fHw==:17
- a=6IFa9wvqVegA:10 a=COk6AnOGAAAA:8 a=EUspDBNiAAAA:8 a=EXN5aKvdb1NWPgACJsIA:9
- a=2VI0MkxyNR6bbpdq8BZq:22 a=TjNXssC_j7lpFel5tvFf:22
-X-Proofpoint-GUID: -zpLeOtf0DiGveXNxNAuCh4eazUxRMpA
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1099,Hydra:6.0.736,FMLib:17.12.80.40
- definitions=2025-06-23_03,2025-06-23_03,2025-03-28_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- mlxscore=0 malwarescore=0 bulkscore=0 clxscore=1015 suspectscore=0
- adultscore=0 priorityscore=1501 impostorscore=0 lowpriorityscore=0
- spamscore=0 phishscore=0 mlxlogscore=999 classifier=spam authscore=0
- authtc=n/a authcc= route=outbound adjust=0 reason=mlx scancount=1
- engine=8.19.0-2505280000 definitions=main-2506230078
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 09/10] [RFT] arm64: dts: qcom: sm8250: extend CAMSS with
+ new CSIPHY subdevices
+To: Neil Armstrong <neil.armstrong@linaro.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Rob Herring <robh@kernel.org>,
+ Bjorn Andersson <andersson@kernel.org>,
+ Konrad Dybcio <konradybcio@kernel.org>,
+ Bryan O'Donoghue <bryan.odonoghue@linaro.org>
+Cc: Conor Dooley <conor+dt@kernel.org>, Robert Foss <rfoss@kernel.org>,
+ Todor Tomov <todor.too@gmail.com>, Mauro Carvalho Chehab
+ <mchehab@kernel.org>, Vinod Koul <vkoul@kernel.org>,
+ linux-arm-msm@vger.kernel.org, linux-media@vger.kernel.org,
+ devicetree@vger.kernel.org
+References: <20250612011531.2923701-1-vladimir.zapolskiy@linaro.org>
+ <20250612011531.2923701-10-vladimir.zapolskiy@linaro.org>
+ <bed8c29c-1365-4005-aac7-1635a28295bf@linaro.org>
+From: Vladimir Zapolskiy <vladimir.zapolskiy@linaro.org>
+In-Reply-To: <bed8c29c-1365-4005-aac7-1635a28295bf@linaro.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 
-Add initial device tree support for IQ-8275-EVK board,
-based on Qualcomm's QCS8275 SOC.
+On 6/23/25 12:31, Neil Armstrong wrote:
+> On 12/06/2025 03:15, Vladimir Zapolskiy wrote:
+>> Following the new device tree bindings for CAMSS IPs introduce csiphy2
+>> device tree node under SM8250 CAMSS, which allows to perform camera
+>> tests of the model on an RB5 board with an attached vision mezzanine.
+>>
+>> Note that the optional 'phys' property is deliberately not added.
+>>
+>> Signed-off-by: Vladimir Zapolskiy <vladimir.zapolskiy@linaro.org>
+>> ---
+>> For testing only, do not merge.
+>>
+>>    arch/arm64/boot/dts/qcom/sm8250.dtsi | 14 ++++++++++++++
+>>    1 file changed, 14 insertions(+)
+>>
+>> diff --git a/arch/arm64/boot/dts/qcom/sm8250.dtsi b/arch/arm64/boot/dts/qcom/sm8250.dtsi
+>> index f0d18fd37aaf..401a32679580 100644
+>> --- a/arch/arm64/boot/dts/qcom/sm8250.dtsi
+>> +++ b/arch/arm64/boot/dts/qcom/sm8250.dtsi
+>> @@ -4613,6 +4613,10 @@ camss: camss@ac6a000 {
+>>    					     "cam_sf_0_mnoc",
+>>    					     "cam_sf_icp_mnoc";
+>>    
+>> +			#address-cells = <2>;
+>> +			#size-cells = <2>;
+>> +			ranges;
+>> +
+>>    			ports {
+>>    				#address-cells = <1>;
+>>    				#size-cells = <0>;
+>> @@ -4641,6 +4645,16 @@ port@5 {
+>>    					reg = <5>;
+>>    				};
+>>    			};
+>> +
+>> +			csiphy2: phy@ac6e000 {
+>> +				compatible = "qcom,csiphy";
+>> +				reg = <0 0x0ac6e000 0 0x1000>;
+>> +				clocks = <&camcc CAM_CC_CSIPHY2_CLK>,
+>> +					 <&camcc CAM_CC_CSI2PHYTIMER_CLK>;
+>> +				clock-names = "csiphy", "csiphy_timer";
+>> +				interrupts = <GIC_SPI 479 IRQ_TYPE_EDGE_RISING>;
+>> +				#phy-cells = <0>;
+>> +			};
+> 
+> I would've expected the CSI PHY nodes to be out of the camss node, why would you
+> keep them as subnodes since you would reference them via phys phandles ?
+> 
 
-Implement basic features like DSPs, UFS and 'booting to shell'
-with uart console.
+This is a good question, and it may require a deeper discussion.
 
-Co-developed-by: Rakesh Kota <quic_kotarake@quicinc.com>
-Signed-off-by: Rakesh Kota <quic_kotarake@quicinc.com>
-Co-developed-by: Nirmesh Kumar Singh <quic_nkumarsi@quicinc.com>
-Signed-off-by: Nirmesh Kumar Singh <quic_nkumarsi@quicinc.com>
-Co-developed-by: Swati Agarwal <quic_swatagar@quicinc.com>
-Signed-off-by: Swati Agarwal <quic_swatagar@quicinc.com>
-Signed-off-by: Umang Chheda <umang.chheda@oss.qualcomm.com>
----
- arch/arm64/boot/dts/qcom/Makefile             |   1 +
- .../boot/dts/qcom/qcs8275-iq-8275-evk.dts     | 241 ++++++++++++++++++
- 2 files changed, 242 insertions(+)
- create mode 100644 arch/arm64/boot/dts/qcom/qcs8275-iq-8275-evk.dts
+Below are a few observations and comments supporting the idea of
+describing CSIPHY IPs as subnodes of CAMSS device tree node.
 
-diff --git a/arch/arm64/boot/dts/qcom/Makefile b/arch/arm64/boot/dts/qcom/Makefile
-index 669b888b27a1..417d8c9be4e2 100644
---- a/arch/arm64/boot/dts/qcom/Makefile
-+++ b/arch/arm64/boot/dts/qcom/Makefile
-@@ -122,6 +122,7 @@ qcs6490-rb3gen2-industrial-mezzanine-dtbs := qcs6490-rb3gen2.dtb qcs6490-rb3gen2
- 
- dtb-$(CONFIG_ARCH_QCOM)	+= qcs6490-rb3gen2-industrial-mezzanine.dtb
- dtb-$(CONFIG_ARCH_QCOM)	+= qcs6490-rb3gen2-vision-mezzanine.dtb
-+dtb-$(CONFIG_ARCH_QCOM)	+= qcs8275-iq-8275-evk.dtb
- dtb-$(CONFIG_ARCH_QCOM)	+= qcs8300-ride.dtb
- dtb-$(CONFIG_ARCH_QCOM)	+= qcs8550-aim300-aiot.dtb
- dtb-$(CONFIG_ARCH_QCOM)	+= qcs9100-ride.dtb
-diff --git a/arch/arm64/boot/dts/qcom/qcs8275-iq-8275-evk.dts b/arch/arm64/boot/dts/qcom/qcs8275-iq-8275-evk.dts
-new file mode 100644
-index 000000000000..b17ddb3ef721
---- /dev/null
-+++ b/arch/arm64/boot/dts/qcom/qcs8275-iq-8275-evk.dts
-@@ -0,0 +1,241 @@
-+// SPDX-License-Identifier: BSD-3-Clause
-+/*
-+ * Copyright (c) 2025 Qualcomm Innovation Center, Inc. All rights reserved.
-+ */
-+
-+/dts-v1/;
-+
-+#include <dt-bindings/gpio/gpio.h>
-+#include <dt-bindings/regulator/qcom,rpmh-regulator.h>
-+
-+#include "qcs8300.dtsi"
-+
-+/ {
-+	model = "Qualcomm Technologies, Inc. IQ 8275 EVK";
-+	compatible = "qcom,qcs8275-iq-8275-evk", "qcom,qcs8275", "qcom,qcs8300";
-+
-+	aliases {
-+		serial0 = &uart7;
-+	};
-+
-+	chosen {
-+		stdout-path = "serial0:115200n8";
-+	};
-+};
-+
-+&apps_rsc {
-+	regulators-0 {
-+		compatible = "qcom,pmm8654au-rpmh-regulators";
-+		qcom,pmic-id = "a";
-+
-+		vreg_s4a: smps4 {
-+			regulator-name = "vreg_s4a";
-+			regulator-min-microvolt = <1800000>;
-+			regulator-max-microvolt = <1800000>;
-+			regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
-+		};
-+
-+		vreg_s9a: smps9 {
-+			regulator-name = "vreg_s9a";
-+			regulator-min-microvolt = <1352000>;
-+			regulator-max-microvolt = <1352000>;
-+			regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
-+		};
-+
-+		vreg_l3a: ldo3 {
-+			regulator-name = "vreg_l3a";
-+			regulator-min-microvolt = <1200000>;
-+			regulator-max-microvolt = <1200000>;
-+			regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
-+			regulator-allow-set-load;
-+			regulator-allowed-modes = <RPMH_REGULATOR_MODE_LPM
-+						   RPMH_REGULATOR_MODE_HPM>;
-+		};
-+
-+		vreg_l4a: ldo4 {
-+			regulator-name = "vreg_l4a";
-+			regulator-min-microvolt = <880000>;
-+			regulator-max-microvolt = <912000>;
-+			regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
-+			regulator-allow-set-load;
-+			regulator-allowed-modes = <RPMH_REGULATOR_MODE_LPM
-+						   RPMH_REGULATOR_MODE_HPM>;
-+		};
-+
-+		vreg_l5a: ldo5 {
-+			regulator-name = "vreg_l5a";
-+			regulator-min-microvolt = <1200000>;
-+			regulator-max-microvolt = <1200000>;
-+			regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
-+			regulator-allow-set-load;
-+			regulator-allowed-modes = <RPMH_REGULATOR_MODE_LPM
-+						   RPMH_REGULATOR_MODE_HPM>;
-+		};
-+
-+		vreg_l6a: ldo6 {
-+			regulator-name = "vreg_l6a";
-+			regulator-min-microvolt = <880000>;
-+			regulator-max-microvolt = <912000>;
-+			regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
-+			regulator-allow-set-load;
-+			regulator-allowed-modes = <RPMH_REGULATOR_MODE_LPM
-+						   RPMH_REGULATOR_MODE_HPM>;
-+		};
-+
-+		vreg_l7a: ldo7 {
-+			regulator-name = "vreg_l7a";
-+			regulator-min-microvolt = <880000>;
-+			regulator-max-microvolt = <912000>;
-+			regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
-+			regulator-allow-set-load;
-+			regulator-allowed-modes = <RPMH_REGULATOR_MODE_LPM
-+						   RPMH_REGULATOR_MODE_HPM>;
-+		};
-+
-+		vreg_l8a: ldo8 {
-+			regulator-name = "vreg_l8a";
-+			regulator-min-microvolt = <2504000>;
-+			regulator-max-microvolt = <2960000>;
-+			regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
-+			regulator-allow-set-load;
-+			regulator-allowed-modes = <RPMH_REGULATOR_MODE_LPM
-+						   RPMH_REGULATOR_MODE_HPM>;
-+		};
-+
-+		vreg_l9a: ldo9 {
-+			regulator-name = "vreg_l9a";
-+			regulator-min-microvolt = <2970000>;
-+			regulator-max-microvolt = <3072000>;
-+			regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
-+			regulator-allow-set-load;
-+			regulator-allowed-modes = <RPMH_REGULATOR_MODE_LPM
-+						   RPMH_REGULATOR_MODE_HPM>;
-+		};
-+	};
-+
-+	regulators-1 {
-+		compatible = "qcom,pmm8654au-rpmh-regulators";
-+		qcom,pmic-id = "c";
-+
-+		vreg_s5c: smps5 {
-+			regulator-name = "vreg_s5c";
-+			regulator-min-microvolt = <1104000>;
-+			regulator-max-microvolt = <1104000>;
-+			regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
-+		};
-+
-+		vreg_l1c: ldo1 {
-+			regulator-name = "vreg_l1c";
-+			regulator-min-microvolt = <300000>;
-+			regulator-max-microvolt = <500000>;
-+			regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
-+			regulator-allow-set-load;
-+			regulator-allowed-modes = <RPMH_REGULATOR_MODE_LPM
-+						   RPMH_REGULATOR_MODE_HPM>;
-+		};
-+
-+		vreg_l2c: ldo2 {
-+			regulator-name = "vreg_l2c";
-+			regulator-min-microvolt = <900000>;
-+			regulator-max-microvolt = <904000>;
-+			regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
-+			regulator-allow-set-load;
-+			regulator-allowed-modes = <RPMH_REGULATOR_MODE_LPM
-+						   RPMH_REGULATOR_MODE_HPM>;
-+		};
-+
-+		vreg_l4c: ldo4 {
-+			regulator-name = "vreg_l4c";
-+			regulator-min-microvolt = <1200000>;
-+			regulator-max-microvolt = <1200000>;
-+			regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
-+			regulator-allow-set-load;
-+			regulator-allowed-modes = <RPMH_REGULATOR_MODE_LPM
-+						   RPMH_REGULATOR_MODE_HPM>;
-+		};
-+
-+		vreg_l6c: ldo6 {
-+			regulator-name = "vreg_l6c";
-+			regulator-min-microvolt = <1800000>;
-+			regulator-max-microvolt = <1800000>;
-+			regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
-+			regulator-allow-set-load;
-+			regulator-allowed-modes = <RPMH_REGULATOR_MODE_LPM
-+						   RPMH_REGULATOR_MODE_HPM>;
-+		};
-+
-+		vreg_l7c: ldo7 {
-+			regulator-name = "vreg_l7c";
-+			regulator-min-microvolt = <1800000>;
-+			regulator-max-microvolt = <1800000>;
-+			regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
-+			regulator-allow-set-load;
-+			regulator-allowed-modes = <RPMH_REGULATOR_MODE_LPM
-+						   RPMH_REGULATOR_MODE_HPM>;
-+		};
-+
-+		vreg_l8c: ldo8 {
-+			regulator-name = "vreg_l8c";
-+			regulator-min-microvolt = <1800000>;
-+			regulator-max-microvolt = <1800000>;
-+			regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
-+			regulator-allow-set-load;
-+			regulator-allowed-modes = <RPMH_REGULATOR_MODE_LPM
-+						   RPMH_REGULATOR_MODE_HPM>;
-+		};
-+
-+		vreg_l9c: ldo9 {
-+			regulator-name = "vreg_l9c";
-+			regulator-min-microvolt = <1800000>;
-+			regulator-max-microvolt = <1800000>;
-+			regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
-+			regulator-allow-set-load;
-+			regulator-allowed-modes = <RPMH_REGULATOR_MODE_LPM
-+						   RPMH_REGULATOR_MODE_HPM>;
-+		};
-+	};
-+};
-+
-+&qupv3_id_0 {
-+	status = "okay";
-+};
-+
-+&remoteproc_adsp {
-+	firmware-name = "qcom/qcs8300/adsp.mbn";
-+
-+	status = "okay";
-+};
-+
-+&remoteproc_cdsp {
-+	firmware-name = "qcom/qcs8300/cdsp0.mbn";
-+
-+	status = "okay";
-+};
-+
-+&remoteproc_gpdsp {
-+	firmware-name = "qcom/qcs8300/gpdsp0.mbn";
-+
-+	status = "okay";
-+};
-+
-+&uart7 {
-+	status = "okay";
-+};
-+
-+&ufs_mem_hc {
-+	reset-gpios = <&tlmm 133 GPIO_ACTIVE_LOW>;
-+	vcc-supply = <&vreg_l8a>;
-+	vcc-max-microamp = <1100000>;
-+	vccq-supply = <&vreg_l4c>;
-+	vccq-max-microamp = <1200000>;
-+
-+	status = "okay";
-+};
-+
-+&ufs_mem_phy {
-+	vdda-phy-supply = <&vreg_l4a>;
-+	vdda-pll-supply = <&vreg_l5a>;
-+
-+	status = "okay";
-+};
-+
--- 
-2.25.1
+1. Formally CSIPHY IPs are still parts of CAMSS controller, if the
+CAMSS IP is considered as a multifunction device containing a number
+of IP blocks, then it might be logically consistent to place new
+children device tree nodes under its intermediate parent IP device
+tree node rather than parent's parent device tree node.
 
+2. Probably a consideration like the one above dictated a placement
+of Qualcomm DSI PHY (and many other sub-IPs) device tree nodes under
+a larger MDSS device tree node, here an attempt to repeat the same
+layout is done.
+
+3. If CSIPHY device tree nodes are completely detached from CAMSS
+device tree node, then not just "phys" but also new endpoint to endpoint
+links should be added between CSIPHYs and CSIDs provided by CAMSS like
+it's dictated by the established scheme of media device connections,
+however these particular endpoint links are non-fixed and configurable
+in runtime.
+
+The last point can be excluded only if there is a clear agreement that
+a chain of media endpoint-to-endpoint links from a sensor to ISP is
+cut between PHY and ISP, with the originally proposed device tree layout
+scheme it's not a problem, if PHYs are children of the ISP.
+
+--
+Best wishes,
+Vladimir
 
