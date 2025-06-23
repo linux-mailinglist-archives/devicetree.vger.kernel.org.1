@@ -1,196 +1,144 @@
-Return-Path: <devicetree+bounces-188264-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-188265-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2F93BAE35FB
-	for <lists+devicetree@lfdr.de>; Mon, 23 Jun 2025 08:44:11 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id AFA53AE3600
+	for <lists+devicetree@lfdr.de>; Mon, 23 Jun 2025 08:45:03 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id C5E13188E06D
-	for <lists+devicetree@lfdr.de>; Mon, 23 Jun 2025 06:44:26 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id D8F0F3A248F
+	for <lists+devicetree@lfdr.de>; Mon, 23 Jun 2025 06:44:38 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B0B631E1DFE;
-	Mon, 23 Jun 2025 06:44:07 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D59C41E1DFE;
+	Mon, 23 Jun 2025 06:44:59 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="i1Vvi/56"
+	dkim=pass (2048-bit key) header.d=fairphone.com header.i=@fairphone.com header.b="5HpkMIW4"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-ej1-f50.google.com (mail-ej1-f50.google.com [209.85.218.50])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 88806155CBD;
-	Mon, 23 Jun 2025 06:44:07 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BEB981E0DE8
+	for <devicetree@vger.kernel.org>; Mon, 23 Jun 2025 06:44:57 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.50
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1750661047; cv=none; b=QZl2fWI1uVvX6HS6GNG1jMGw08pfMrFCBs6kExwXJ1JPIL175YllhW9dcHdlKgbADtCPe9PZ/OBfH7txXaNe9sr1Lq3Zg/9iMyhbeT8jRxIqC4+ob/51osFCNBHDEI0C7k7X/kmxkyEBcEnjYOTTBa7X9iIphpBNDeaHA87Ij3o=
+	t=1750661099; cv=none; b=WildL9/4O6L9Ky24U2lytvvI3RRLYkQhqaLpRJlpR1Od0oEs1xg/0cvAhZTXR6np0YX/wLp51k2CNMOxSU95lb3ajQEOS4W9M+iVKg/O25x9H1EVuD8tvXlL0GOob6xZX23hJJr02QY/P059U6HPVwwvnB6fWoo1+SoQ26DXeXU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1750661047; c=relaxed/simple;
-	bh=6OAlBChjsCeFaZXQLqbpyy2nqdAr666kNYNsvjQqJyw=;
-	h=Message-ID:Date:MIME-Version:Subject:To:References:From:
-	 In-Reply-To:Content-Type; b=bKbLI4bEabx/buD1cvkQH335KhyiXpbwCm3wXFkqmmyq8IjknoUJAz2iPMoflMx+yYd/kk9qJb1Ti+s8TxQW/ZTCrUHTmUM4SDrRKmvfwXa+C8B1Q5olYzzWS3LcWTyaEMrp09yITED23Bw2hat8/xGwrhAAZ6hlHl8jxxbrh9w=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=i1Vvi/56; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 66A49C4CEED;
-	Mon, 23 Jun 2025 06:44:05 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1750661047;
-	bh=6OAlBChjsCeFaZXQLqbpyy2nqdAr666kNYNsvjQqJyw=;
-	h=Date:Subject:To:References:From:In-Reply-To:From;
-	b=i1Vvi/56hg3iMco8iFOfED4+mWh00mEGPP+PIK21eb02qJX5GWwtB9tlyBOw5fGU1
-	 wPBq9CdkO8TB0htyZ5+Me4CnBaplsQoTWUG/eezJK1r2ud2nMxn/5qWDcRVEwtnrSx
-	 iENcZkzPDRhzUVPYutAwY68E7NX7e0Uui/xHT/9zMRwt25oJtGXp4bBu2p+r9aKTBB
-	 OX8PreDod1ZLiu9/2XHdf2KkI2uqWl9wOaURaEKAYE54EPTFJiKvLZ0lIJqBXgSdz/
-	 SGA6qc5ShGBwkYdQKLnaYFIFCcrFd7Q7I8yJFnTPxFWSv5gBy0sDJY/VB2ibORS3rd
-	 HFRS+HUZPEQog==
-Message-ID: <2e53fc11-49eb-420c-ab8e-57e9493c42ba@kernel.org>
-Date: Mon, 23 Jun 2025 08:44:03 +0200
+	s=arc-20240116; t=1750661099; c=relaxed/simple;
+	bh=mG0ZFKhM/nBtFju2w5kydTvhmmvJKrUqQYrMK9O0+gQ=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=Glvav1gWdQlNFQVGHaYmeCxMPhehnhFtxufRHYrT0Gk+6vNKQOIMEel9D/IFBs+bIWR/YRmTWeG00YhkI4GAFkR2M3dS/l+aoV0Ycniv6iL4+gesOGPxgFu11ZyWuiIKEoPH+db2bGOycTBPGYEr+WA5/JWDak0IOlAPJj9diJw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=fairphone.com; spf=pass smtp.mailfrom=fairphone.com; dkim=pass (2048-bit key) header.d=fairphone.com header.i=@fairphone.com header.b=5HpkMIW4; arc=none smtp.client-ip=209.85.218.50
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=fairphone.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=fairphone.com
+Received: by mail-ej1-f50.google.com with SMTP id a640c23a62f3a-ad89c32a7b5so616009966b.2
+        for <devicetree@vger.kernel.org>; Sun, 22 Jun 2025 23:44:57 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=fairphone.com; s=fair; t=1750661096; x=1751265896; darn=vger.kernel.org;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=Rfv2PMTDIceIpvbq9xZVeanT080dZzydc/UXVnCEv1g=;
+        b=5HpkMIW4x+vnSd0/LTmWt1NQmYTsLjWI3YfyEHX+dd8gcMoDzq+xif/ls1wPIJJUko
+         0bge3vEVdGIIFkBhcqz79RUEgbLy9Vxv6mrhaAxvVqpnWtqiN8LGfUhQNI5+qsCQZAYp
+         5gGUOE1VnbFu0yhnWFZjbNX+nrCSkhxq+vg5BUx3+5Lp816tVjm5JBQMydaFS1LUHx26
+         r0n7Y16ZPQoZqibq1te8z9s6IPNRpKrCowWG9k2LjW0TQ5OrgWSnyR3zfxImP1jCr3oa
+         9fN1GrAHDMjSMRvL4CC1SL+4EodFIOuR5VXodbp+ocWZT0GgZkFP7LYI3HmJqiBoNr/v
+         3TLA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1750661096; x=1751265896;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=Rfv2PMTDIceIpvbq9xZVeanT080dZzydc/UXVnCEv1g=;
+        b=qM94z6aEAvA1ECohNG4KPhYBE418L2baT7tJEc5nqOCGRuSNjK1z42DIwBnDQc3ZYI
+         VSWrugrHMWMeYIb1gBfsGPvX1frMqtZtxzi26+1u58PLYvxjw6xqm1DLMkgKC1B2IzqW
+         m/iW/yuFQKo5eBXTEpRRLUPyC6APCQLkKGoXt849Iy7rBVpJYV0EwKWR+I4kP9/aVLsH
+         V62j/ZVw0xYDz6uJ0R0GFc9XeMe2vIQkwo0oseyAVY7YzuoyXvvuTdFrfr6BFKYAkEup
+         QL9FEqbGTkGQFWcscMkk3U9Z0U6luTb87yd/PDj4bq5K7JteJw+Z1Ah133dzRZ3/a3Q0
+         ROpQ==
+X-Forwarded-Encrypted: i=1; AJvYcCW0ZJ1m1ToiEc/kYP1SJRiK9T7FFADyAiar3jUBgfNdDzOnIKLgVYhx28x8H7hxTsjz/va855yXRl0V@vger.kernel.org
+X-Gm-Message-State: AOJu0Yw/F7ahWGi05P+Wm+ZoQNv2hh8VW32PXXlPxsPhL7Z+fKMpbmbm
+	qZLOLiBpubgeVOmTZi12BdISFcukUxpLo5AI7FI3XIlJZpbBuLBv4LIE/q2sUrCoJVQ=
+X-Gm-Gg: ASbGnct6Liq4rhagNILv9pMwZLfF/rShiOaWaQOmQutg1ILvdzdvcL/l8+I8mj8innW
+	DLsa5+V5wb77lh8x86qAL4ajm/SOrrwYAbuU2P9kuke64+yr3EULvHFMNc/SX0un1wEvQXrCR2L
+	TCs5+VdREflus7n4BVkotSOmOn9xfGiAx7grSghOOAhQIJzU74EJrW7GnfB5saq2O+HTxwo0JKG
+	BL3vD+HjeLPgXBla61IY+Otl7fa+kxr2Q2p4oCa55f331qhAiUoB1GF24EtRMI/xSMJ3bdijpJR
+	He8viM4cAUuLIONoS7DoScQtQIRJy6LasQ53BnWtR69uOA+ATmUk7H0qLgrg1u1v5GjEw800VOV
+	PN71hg+wPkWPYU/4g4jUnpDOW4QfeznRp
+X-Google-Smtp-Source: AGHT+IEIK4HYmI0KuUkjMGJQo8hgJeoSxD4CTOsQVO12rPi+l3/A1YCQcq/euCV+EvS2bfnw4by8Eg==
+X-Received: by 2002:a17:906:d260:b0:add:deb0:8b64 with SMTP id a640c23a62f3a-ae0579df1e2mr988741966b.24.1750661096075;
+        Sun, 22 Jun 2025 23:44:56 -0700 (PDT)
+Received: from otso.local (144-178-202-138.static.ef-service.nl. [144.178.202.138])
+        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-ae053ee4ce9sm659258266b.69.2025.06.22.23.44.55
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Sun, 22 Jun 2025 23:44:55 -0700 (PDT)
+From: Luca Weiss <luca.weiss@fairphone.com>
+Subject: [PATCH v2 0/5] Add interconnent support for simpledrm/simplefb
+Date: Mon, 23 Jun 2025 08:44:44 +0200
+Message-Id: <20250623-simple-drm-fb-icc-v2-0-f69b86cd3d7d@fairphone.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v1 1/3] dt-bindings: memory-controllers: add StarFive
- JH7110 SoC DMC
-To: E Shattow <e@freeshell.de>, linux-kernel@vger.kernel.org,
- devicetree@vger.kernel.org, linux-riscv@lists.infradead.org,
- Rob Herring <robh@kernel.org>, Conor Dooley <conor+dt@kernel.org>
-References: <20250606130253.1105273-1-e@freeshell.de>
- <20250606130253.1105273-2-e@freeshell.de>
-From: Krzysztof Kozlowski <krzk@kernel.org>
-Content-Language: en-US
-Autocrypt: addr=krzk@kernel.org; keydata=
- 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 a/A=
-In-Reply-To: <20250606130253.1105273-2-e@freeshell.de>
-Content-Type: text/plain; charset=UTF-8
+Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIANz3WGgC/22NywrCMBBFf6XM2pEk9hVX/od0UZOJHbBNSSQoJ
+ f9uLC5dngP33A0iBaYI52qDQIkj+6WAOlRgpnG5E7ItDEqoRrSyw8jz+iC0YUZ3QzYGe1230jS
+ N1vIEZbcGcvzam9eh8MTx6cN7v0jya381Jf7UkkSBVitZK+pdV7uLGzmsk1/oaPwMQ875A5p80
+ rS2AAAA
+X-Change-ID: 20250617-simple-drm-fb-icc-89461c559913
+To: Hans de Goede <hdegoede@redhat.com>, 
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, 
+ Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>, 
+ David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>, 
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, 
+ Javier Martinez Canillas <javierm@redhat.com>, Helge Deller <deller@gmx.de>
+Cc: linux-fbdev@vger.kernel.org, dri-devel@lists.freedesktop.org, 
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+ Luca Weiss <luca.weiss@fairphone.com>
+X-Mailer: b4 0.14.2
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1750661095; l=1324;
+ i=luca.weiss@fairphone.com; s=20250611; h=from:subject:message-id;
+ bh=mG0ZFKhM/nBtFju2w5kydTvhmmvJKrUqQYrMK9O0+gQ=;
+ b=I+KJQKTokZRRzCjESYV5r3Vrrf+Epv1ziNUE8LuNep5eK0MjSPosyfeoDYv8RZeU6jY5CZxTZ
+ xhHsZM5KA+7B8Jq8+WQNHdc3VT7AJpG+u0BOirf4OMNaxUxiruPXKC5
+X-Developer-Key: i=luca.weiss@fairphone.com; a=ed25519;
+ pk=O1aw+AAust5lEmgrNJ1Bs7PTY0fEsJm+mdkjExA69q8=
 
-On 06/06/2025 15:02, E Shattow wrote:
-> Document bindings for the JH7110 SoC DMC as implemented in downstream
-> U-Boot driver starfive_ddr.c
-> 
-> Signed-off-by: E Shattow <e@freeshell.de>
-> ---
->  .../starfive,jh7110-dmc.yaml                  | 76 +++++++++++++++++++
->  1 file changed, 76 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/memory-controllers/starfive,jh7110-dmc.yaml
-> 
-> diff --git a/Documentation/devicetree/bindings/memory-controllers/starfive,jh7110-dmc.yaml b/Documentation/devicetree/bindings/memory-controllers/starfive,jh7110-dmc.yaml
-> new file mode 100644
-> index 000000000000..299c86893db1
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/memory-controllers/starfive,jh7110-dmc.yaml
-> @@ -0,0 +1,76 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/memory-controllers/starfive,jh7110-dmc.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: StarFive JH7110 DMC
-> +
-> +maintainers:
-> +  - E Shattow <e@freeshell.de>
-> +
-> +description:
-> +  JH7110 DMC as implemented by U-Boot boot loader driver starfive_ddr.c
+Some devices might require keeping an interconnect path alive so that
+the framebuffer continues working. Add support for that by setting the
+bandwidth requirements appropriately for all provided interconnect
+paths.
 
-Bindings are about hardware. Explain the hardware, not drivers.
+Signed-off-by: Luca Weiss <luca.weiss@fairphone.com>
+---
+Changes in v2:
+- Sort the headers before adding the new interconnect header, in
+  separate commits.
+- Use the correct #if guards for new interconnect code
+- Pick up tags
+- Link to v1: https://lore.kernel.org/r/20250620-simple-drm-fb-icc-v1-0-d92142e8f74f@fairphone.com
 
-> +
-> +properties:
-> +  compatible:
-> +    items:
-> +      - const: starfive,jh7110-dmc
-> +
-> +  reg:
-> +    minItems: 2
+---
+Luca Weiss (5):
+      dt-bindings: display: simple-framebuffer: Add interconnects property
+      drm/sysfb: simpledrm: Sort headers correctly
+      drm/sysfb: simpledrm: Add support for interconnect paths
+      fbdev/simplefb: Sort headers correctly
+      fbdev/simplefb: Add support for interconnect paths
 
-Drop
+ .../bindings/display/simple-framebuffer.yaml       |  3 +
+ drivers/gpu/drm/sysfb/simpledrm.c                  | 85 ++++++++++++++++++++-
+ drivers/video/fbdev/simplefb.c                     | 89 +++++++++++++++++++++-
+ 3 files changed, 173 insertions(+), 4 deletions(-)
+---
+base-commit: 19272b37aa4f83ca52bdf9c16d5d81bdd1354494
+change-id: 20250617-simple-drm-fb-icc-89461c559913
 
-> +    maxItems: 2
-
-Drop and list items with description instead
-
-
-> +
-> +  clocks:
-> +    maxItems: 1
-> +
-> +  clock-names:
-> +    items:
-> +      - const: pll1_out
-> +
-> +  clock-frequency:
-> +    enum: [2133, 2800]
-> +    default: 2133
-
-Drop clock-frequency. I doubt 2133 Hz is even correct... This is a
-legacy property, use common clock framework.
-
-> +
-> +  resets:
-> +    minItems: 3
-> +    maxItems: 3
-
-List the items with description instead
-
-> +
-> +  reset-names:
-> +    items:
-> +      - const: axi
-> +      - const: osc
-> +      - const: apb
-> +
-> +required:
-> +  - compatible
-> +  - reg
-> +  - clocks
-> +  - clock-names
-> +  - clock-frequency
-> +  - resets
-> +  - reset-names
 Best regards,
-Krzysztof
+-- 
+Luca Weiss <luca.weiss@fairphone.com>
+
 
