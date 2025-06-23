@@ -1,131 +1,120 @@
-Return-Path: <devicetree+bounces-188414-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-188416-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id BC773AE3BB7
-	for <lists+devicetree@lfdr.de>; Mon, 23 Jun 2025 12:07:43 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 9BD37AE3BBF
+	for <lists+devicetree@lfdr.de>; Mon, 23 Jun 2025 12:08:29 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id DFF1B3A8F9A
-	for <lists+devicetree@lfdr.de>; Mon, 23 Jun 2025 10:05:11 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 6730E3BA1FC
+	for <lists+devicetree@lfdr.de>; Mon, 23 Jun 2025 10:05:48 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 32FE623CEE5;
-	Mon, 23 Jun 2025 10:04:48 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4FBF91F4604;
+	Mon, 23 Jun 2025 10:05:35 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=sntech.de header.i=@sntech.de header.b="L86h1ro2"
 X-Original-To: devicetree@vger.kernel.org
-Received: from cstnet.cn (smtp21.cstnet.cn [159.226.251.21])
-	(using TLSv1.2 with cipher DHE-RSA-AES256-SHA (256/256 bits))
+Received: from gloria.sntech.de (gloria.sntech.de [185.11.138.130])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 29F6D23BD0F;
-	Mon, 23 Jun 2025 10:04:45 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=159.226.251.21
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BC11BB663;
+	Mon, 23 Jun 2025 10:05:32 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.11.138.130
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1750673088; cv=none; b=ESGm7539JSKzNxSr4DGmmglPOPK2UHK3LbrXjQgwk2f372H4w9IdI+0oBLV/EiEufBfCm6OTGK43wp9AfGoLddf+GlFUe/U0D9eZlrJ3KzS6RpTrPfolG5jgadkKqzBBIwmUvSSeGiQdaOIAwY5ZKZ2CIaabXdrCzu/kAW5jSCI=
+	t=1750673135; cv=none; b=Lv2KkVPW+vN/B8ltHY1DUztU/geiNAJqdcswuFsdSHX8Xo8plX94t/JfrovGopa2mFMmJHk1kjKhkDRvGpyDfN+NZejym2YoJTIOEJWt64b4N+NsmDnUenjV8SXez3vpLH/Ik5MNF8F97Gzk/W7lT13E/EN1wuMCEiDXs4evjp8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1750673088; c=relaxed/simple;
-	bh=bXmCnr9T6aBc3USTUb76kIZUoHlN7k9TMoPzlD9mi3c=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=cBWJr3xkTHtaJNhyLx96twHfNAHAOyO7txDEquZL1EmaEzon9JU309gK1ysgPIx/OvT6x16BdFBDkP7hWAXXHGHCR93SSWNq4A3DnuRjwamvlJezskSumhZLz9NMnfS66JHMKE6j0YEg6zxqYpILIA90wRAt4MZSxpTnFJV2l00=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=iscas.ac.cn; spf=pass smtp.mailfrom=iscas.ac.cn; arc=none smtp.client-ip=159.226.251.21
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=iscas.ac.cn
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=iscas.ac.cn
-Received: from [127.0.0.2] (unknown [210.73.43.2])
-	by APP-01 (Coremail) with SMTP id qwCowAD3ptWtJlloxg+rCA--.29805S5;
-	Mon, 23 Jun 2025 18:04:30 +0800 (CST)
-From: Vivian Wang <wangruikang@iscas.ac.cn>
-Date: Mon, 23 Jun 2025 18:04:18 +0800
-Subject: [PATCH 3/3] riscv: dts: spacemit: Move eMMC under storage-bus for
- K1
+	s=arc-20240116; t=1750673135; c=relaxed/simple;
+	bh=vr/v7+HNQA9PBO0CTD04rUzWOcoal2+aqe6MzSRZyaA=;
+	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=hbwjEjoMcDo8kWNV01BgbX55KvWBmNP3tZjFuPWeTZhdO8MQQ8brXH1MaGIc8SwPIQftMm3beYyUogNn6tD/lE/KhOJEZo80sENPQEqXfHOPgncII+WQjTKML+PW3wNcqzjBAV19fz6vkgWhHjrgvHETadrZtGjl8bhqr6Rr920=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sntech.de; spf=pass smtp.mailfrom=sntech.de; dkim=pass (2048-bit key) header.d=sntech.de header.i=@sntech.de header.b=L86h1ro2; arc=none smtp.client-ip=185.11.138.130
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sntech.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=sntech.de
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sntech.de;
+	s=gloria202408; h=Content-Type:Content-Transfer-Encoding:MIME-Version:
+	References:In-Reply-To:Message-ID:Date:Subject:Cc:To:From:Reply-To;
+	bh=CwBZWncXMFHUNfKxRF00wCCVLbZJy1TDoDay/M48Z+I=; b=L86h1ro29XqjaL+eCgRkkXLern
+	75+0ic4ZPZQA9jgsZHU+m6s6A2g1sjBn8ch86nVuI/mPsm+t10x6oPsYBhqLPIQIrNtzVhkQykPlD
+	GS6K5lvxSgSfYFgxVCGxHbCyZJr9sJG8cHlMxOsXGWp3xZSWPA+YRD0J0ug3eUzpFk8RG8q4SVWqQ
+	TOR2KrK1AeFq1O+2IjRT6Sxz8JfV9KsVPDxIse6QRLv8ohmlIyxP9kaPKQw4t3nnlQoZnyzyHIkQL
+	h6O0JmWJF9FZOYiJ72bt6fz7XaHXYoqvT90EPSJ6+HRhkGFcR9xFgmumcVFR0doDchPrQUOcr2uVj
+	k3uVs64Q==;
+Received: from [185.15.108.45] (helo=phil.localnet)
+	by gloria.sntech.de with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+	(Exim 4.94.2)
+	(envelope-from <heiko@sntech.de>)
+	id 1uTe3H-00084G-Br; Mon, 23 Jun 2025 12:05:23 +0200
+From: Heiko Stuebner <heiko@sntech.de>
+To: Olivier Benjamin <olivier.benjamin@bootlin.com>,
+ Sakari Ailus <sakari.ailus@linux.intel.com>
+Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>,
+ Jacopo Mondi <jacopo.mondi@ideasonboard.com>,
+ Nicholas Roth <nicholas@rothemail.net>,
+ Mauro Carvalho Chehab <mchehab@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
+ Sascha Hauer <s.hauer@pengutronix.de>,
+ Pengutronix Kernel Team <kernel@pengutronix.de>,
+ Fabio Estevam <festevam@gmail.com>,
+ Thomas Petazzoni <thomas.petazzoni@bootlin.com>, devicetree@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, linux-rockchip@lists.infradead.org,
+ linux-kernel@vger.kernel.org, linux-media@vger.kernel.org,
+ Krzysztof Kozlowski <krzk@kernel.org>, imx@lists.linux.dev,
+ ~diederik/pine64-discuss@lists.sr.ht, Dragan Simic <dsimic@manjaro.org>,
+ Ondrej Jirman <megi@xff.cz>
+Subject: Re: [PATCH v4 0/4] Describe the cameras in the PinePhone Pro dts
+Date: Mon, 23 Jun 2025 12:05:22 +0200
+Message-ID: <13788127.uLZWGnKmhe@phil>
+In-Reply-To: <aFj4kAXEhrR4Wbnz@kekkonen.localdomain>
+References:
+ <20250620-camera-v4-0-0201a8ed5fae@bootlin.com>
+ <aFj4kAXEhrR4Wbnz@kekkonen.localdomain>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+Content-Transfer-Encoding: quoted-printable
 Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20250623-k1-dma-buses-rfc-wip-v1-3-c0144082061f@iscas.ac.cn>
-References: <20250623-k1-dma-buses-rfc-wip-v1-0-c0144082061f@iscas.ac.cn>
-In-Reply-To: <20250623-k1-dma-buses-rfc-wip-v1-0-c0144082061f@iscas.ac.cn>
-To: Yixun Lan <dlan@gentoo.org>, Guodong Xu <guodong@riscstar.com>, 
- Ze Huang <huangze@whut.edu.cn>, Alex Elder <elder@riscstar.com>, 
- spacemit@lists.linux.dev, Rob Herring <robh@kernel.org>, 
- Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, 
- Paul Walmsley <paul.walmsley@sifive.com>, 
- Palmer Dabbelt <palmer@dabbelt.com>, Albert Ou <aou@eecs.berkeley.edu>, 
- Alexandre Ghiti <alex@ghiti.fr>
-Cc: Vivian Wang <uwu@dram.page>, devicetree@vger.kernel.org, 
- linux-riscv@lists.infradead.org, linux-kernel@vger.kernel.org, 
- Vivian Wang <wangruikang@iscas.ac.cn>
-X-Mailer: b4 0.14.2
-X-CM-TRANSID:qwCowAD3ptWtJlloxg+rCA--.29805S5
-X-Coremail-Antispam: 1UD129KBjvJXoW7tw48Ar48Xw1ruF18Ar1kXwb_yoW8XryUp3
-	9rCrZ3CrWIvF4Fkw4aqrZrWr4kGFZYkFs5Jw1DCryrJws8XFWjqr48Jw1fJFyUXryfA3sF
-	gF1kXr1UKr1UAaUanT9S1TB71UUUUU7qnTZGkaVYY2UrUUUUjbIjqfuFe4nvWSU5nxnvy2
-	9KBjDU0xBIdaVrnRJUUUQ014x267AKxVWrJVCq3wAFc2x0x2IEx4CE42xK8VAvwI8IcIk0
-	rVWrJVCq3wAFIxvE14AKwVWUJVWUGwA2048vs2IY020E87I2jVAFwI0_JrWl82xGYIkIc2
-	x26xkF7I0E14v26ryj6s0DM28lY4IEw2IIxxk0rwA2F7IY1VAKz4vEj48ve4kI8wA2z4x0
-	Y4vE2Ix0cI8IcVAFwI0_Xr0_Ar1l84ACjcxK6xIIjxv20xvEc7CjxVAFwI0_Cr0_Gr1UM2
-	8EF7xvwVC2z280aVAFwI0_GcCE3s1l84ACjcxK6I8E87Iv6xkF7I0E14v26rxl6s0DM2AI
-	xVAIcxkEcVAq07x20xvEncxIr21l5I8CrVACY4xI64kE6c02F40Ex7xfMcIj6xIIjxv20x
-	vE14v26r106r15McIj6I8E87Iv67AKxVW8Jr0_Cr1UMcvjeVCFs4IE7xkEbVWUJVW8JwAC
-	jcxG0xvY0x0EwIxGrwACjI8F5VA0II8E6IAqYI8I648v4I1lFIxGxcIEc7CjxVA2Y2ka0x
-	kIwI1lc7CjxVAaw2AFwI0_GFv_Wrylc2xSY4AK67AK6r4DMxAIw28IcxkI7VAKI48JMxC2
-	0s026xCaFVCjc4AY6r1j6r4UMI8I3I0E5I8CrVAFwI0_Jr0_Jr4lx2IqxVCjr7xvwVAFwI
-	0_JrI_JrWlx4CE17CEb7AF67AKxVW8ZVWrXwCIc40Y0x0EwIxGrwCI42IY6xIIjxv20xvE
-	14v26r1j6r1xMIIF0xvE2Ix0cI8IcVCY1x0267AKxVWxJVW8Jr1lIxAIcVCF04k26cxKx2
-	IYs7xG6r1j6r1xMIIF0xvEx4A2jsIE14v26r1j6r4UMIIF0xvEx4A2jsIEc7CjxVAFwI0_
-	Gr1j6F4UJbIYCTnIWIevJa73UjIFyTuYvjfUUXdbUUUUU
-X-CM-SenderInfo: pzdqw2pxlnt03j6l2u1dvotugofq/
 
-SDHCI devices in Spacemit K1 use storage-bus translations. Move the node
-emmc under storage-bus to reflect this fact.
+Hi,
 
-Signed-off-by: Vivian Wang <wangruikang@iscas.ac.cn>
----
- arch/riscv/boot/dts/spacemit/k1.dtsi | 19 ++++++++++---------
- 1 file changed, 10 insertions(+), 9 deletions(-)
+Am Montag, 23. Juni 2025, 08:47:44 Mitteleurop=C3=A4ische Sommerzeit schrie=
+b Sakari Ailus:
+> Hi Olivier,
+>=20
+> On Fri, Jun 20, 2025 at 05:21:31PM +0200, Olivier Benjamin wrote:
+> > This series adds support for the Pine64 PinePhone Pro's rear and front
+> > cameras in Device Tree.
+> > This is based on some of Ondrej Jirman's patches hosted in his tree at
+> > https://codeberg.org/megi/linux, but I have also fully reviewed and
+> > re-written the code from the RK3399 datasheet, the PinePhone Pro
+> > schematic, and the IMX258-0AQH5 software reference manual.
+> >=20
+> > I have tested these changes on my PinePhone Pro and am able to take
+> > photos from both cameras using libcamera's cam.
+> >=20
+> > This series has raised a question about the proper label name for the
+> > front/user camera and rear/world camera for phones.
+> > This series is using "ucam" and "wcam", which is used in a few other
+> > Rockship DTBs:
+> >  - arch/arm64/boot/dts/rockchip/px30-evb.dts
+> >  - rk3399-gru-scarlet.dtsi
+> >=20
+> > Signed-off-by: Olivier Benjamin <olivier.benjamin@bootlin.com>
+>=20
+> Thanks for the patches.
+>=20
+> I've picked the first two in the set, presumably the rest will be merged
+> via another tree?
 
-diff --git a/arch/riscv/boot/dts/spacemit/k1.dtsi b/arch/riscv/boot/dts/spacemit/k1.dtsi
-index 0d41694699851e672a833601b62c2b2ad3daae79..2d40360994d87edfbdaefc364ae706712022ba09 100644
---- a/arch/riscv/boot/dts/spacemit/k1.dtsi
-+++ b/arch/riscv/boot/dts/spacemit/k1.dtsi
-@@ -403,15 +403,6 @@ pll: clock-controller@d4090000 {
- 			#clock-cells = <1>;
- 		};
- 
--		emmc: mmc@d4281000 {
--			compatible = "spacemit,k1-sdhci";
--			reg = <0x0 0xd4281000 0x0 0x200>;
--			clocks = <&syscon_apmu CLK_SDH_AXI>, <&syscon_apmu CLK_SDH2>;
--			clock-names = "core", "io";
--			interrupts = <101>;
--			status = "disabled";
--		};
--
- 		syscon_apmu: system-controller@d4282800 {
- 			compatible = "spacemit,k1-syscon-apmu";
- 			reg = <0x0 0xd4282800 0x0 0x400>;
-@@ -633,6 +624,16 @@ storage-bus {
- 			#address-cells = <2>;
- 			#size-cells = <2>;
- 			dma-ranges = <0x0 0x00000000 0x0 0x00000000 0x0 0x80000000>;
-+
-+			emmc: mmc@d4281000 {
-+				compatible = "spacemit,k1-sdhci";
-+				reg = <0x0 0xd4281000 0x0 0x200>;
-+				clocks = <&syscon_apmu CLK_SDH_AXI>,
-+					 <&syscon_apmu CLK_SDH2>;
-+				clock-names = "core", "io";
-+				interrupts = <101>;
-+				status = "disabled";
-+			};
- 		};
- 	};
- };
+correct, and with the first two being applied, I can now also safely pick
+the other two :-)
 
--- 
-2.49.0
+Thanks a lot
+Heiko
+
+
 
 
