@@ -1,167 +1,262 @@
-Return-Path: <devicetree+bounces-188396-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-188397-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8C06AAE3B0E
-	for <lists+devicetree@lfdr.de>; Mon, 23 Jun 2025 11:49:58 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 08541AE3B17
+	for <lists+devicetree@lfdr.de>; Mon, 23 Jun 2025 11:50:43 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 2A5D51651A1
-	for <lists+devicetree@lfdr.de>; Mon, 23 Jun 2025 09:49:59 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id CFE5B7A9E96
+	for <lists+devicetree@lfdr.de>; Mon, 23 Jun 2025 09:49:10 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id F0CF8235368;
-	Mon, 23 Jun 2025 09:49:52 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 186702376E0;
+	Mon, 23 Jun 2025 09:50:17 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=sntech.de header.i=@sntech.de header.b="C3rNVk6/"
+	dkim=pass (2048-bit key) header.d=proton.me header.i=@proton.me header.b="E8POB4Dv"
 X-Original-To: devicetree@vger.kernel.org
-Received: from gloria.sntech.de (gloria.sntech.de [185.11.138.130])
+Received: from mail-24424.protonmail.ch (mail-24424.protonmail.ch [109.224.244.24])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AF5601531C1;
-	Mon, 23 Jun 2025 09:49:50 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.11.138.130
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AD5A22343CF
+	for <devicetree@vger.kernel.org>; Mon, 23 Jun 2025 09:50:13 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=109.224.244.24
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1750672192; cv=none; b=dRxg10is4yJCCakg7To1yjdWd0xXUnDkRIwzhzyMryNnPamLQQkeZh7PVleKDUTXEVr4ivBml/E3XywGUghTuY5JdJ1Yp1rq7Ub+Ldr04GS3wvud8feC4u+XWU1xWflqK1qpuTs9TUK3e0Q2dPfDdkJJh12mckqVKw9hBKiBuvg=
+	t=1750672217; cv=none; b=JZe9PK5ZDscd3B7oN3T4Jc5CieaHJYnXvpeOUhFu6dIKKm8T/aszrUySMF9c7YYbTfGODSg5NSKed2KElcJrJflsdrkSfdUoT63l74VluNX7OqlVrvGWoWmgrMjIrSVVOeqQG2KQzdcYboT0QPZ4q/Qf9/+P9CGQfZWFkQbIm98=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1750672192; c=relaxed/simple;
-	bh=AZGaJNprgITn+xmP//waVMDmWqRhQDQh/GejgpeV7UE=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=s43/8qaVvtJKruTNMnXonBeVoMRol3uTJMm9YFiRfkolyJ84sKf6P40PJVRd1sQfY/rLbDIm1HIsdhJ6zaT/1djdvJaUNNsOwmKgLFYOCLfzLw6toph4Tw+ZalmpKAQ31pojr8kpOX7+kBLF2fh1xhaYgSXOkrjzVrlnvERMthc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sntech.de; spf=pass smtp.mailfrom=sntech.de; dkim=pass (2048-bit key) header.d=sntech.de header.i=@sntech.de header.b=C3rNVk6/; arc=none smtp.client-ip=185.11.138.130
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sntech.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=sntech.de
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sntech.de;
-	s=gloria202408; h=Content-Type:Content-Transfer-Encoding:MIME-Version:
-	References:In-Reply-To:Message-ID:Date:Subject:Cc:To:From:Reply-To;
-	bh=+5Oe+/qsP9gfaCq5yCuWO510xxb4CYOCrtgkQfYUfqw=; b=C3rNVk6/YTgOx18uOwfA/6Kv0u
-	aT5jAbMK8fISo1i2ZDI8wtkeuEumGISm2CSaGra/PnZe+QXa8tPOOmCr81d+flSTSM8HI0iz636eM
-	Ia1ifm8MCjueTiSq+qkMMy0+C0LY67xLbyYiZgl+XPJ9De4eGjmY48XhvYohx2Fu3l4vKOynwXK5p
-	AX+TzQnynxRdFmt6x2zxwaUu3eqxgCtcnYtOwWeZ07IjCnnv4Le+91SiKqzzIJTmv9lmq6cM2zsLG
-	y6cAEr5zvlXqp1BUhOuWBM5CmDhd7Vftxr98Q3KoSLCOF+tAtDcNqPF7bPjKKyQupixBLU+lnyzYY
-	tHgPAjvw==;
-Received: from [185.15.108.45] (helo=phil.localnet)
-	by gloria.sntech.de with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-	(Exim 4.94.2)
-	(envelope-from <heiko@sntech.de>)
-	id 1uTdnr-0007yN-8k; Mon, 23 Jun 2025 11:49:27 +0200
-From: Heiko Stuebner <heiko@sntech.de>
-To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>,
- Quentin Schulz <quentin.schulz@cherry.de>,
- Jakob Unterwurzacher <jakob.unterwurzacher@cherry.de>,
- Lukasz Czechowski <lukasz.czechowski@thaumatec.com>,
- Dragan Simic <dsimic@manjaro.org>, Diederik de Haas <didi.debian@cknow.org>,
- Farouk Bouabid <farouk.bouabid@cherry.de>, Johan Jonker <jbx6244@gmail.com>,
- Jakob Unterwurzacher <jakobunt@gmail.com>
-Cc: stable@vger.kernel.org, Heiko Stuebner <heiko.stuebner@cherry.de>,
- devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH] arm64: dts: rockchip: use cs-gpios for spi1 on ringneck
-Date: Mon, 23 Jun 2025 11:49:26 +0200
-Message-ID: <1925003.tdWV9SEqCh@phil>
-In-Reply-To: <20250620113549.2900285-1-jakob.unterwurzacher@cherry.de>
-References: <20250620113549.2900285-1-jakob.unterwurzacher@cherry.de>
+	s=arc-20240116; t=1750672217; c=relaxed/simple;
+	bh=2qh1CJjO8c2zLPbBAKpH3KGrCB+i0u1GVzjXdu6Efzw=;
+	h=Date:To:From:Cc:Subject:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=nS5xJL+avi7fUgn1A41j53HxTW96S2R1nKD/6uHLXWC2KRhuJGQY1t69vnRsCHCnY+GkrJV+g1/u7Hjl/AdqPiPd8gZpMwGq8sXZBj67n0c6Iv8GExfxpwR4JgUs4hOesNz8egX3/P/GxeRklJG7KUAS3pMCk6aI/Mn8++xfK0c=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=proton.me; spf=pass smtp.mailfrom=proton.me; dkim=pass (2048-bit key) header.d=proton.me header.i=@proton.me header.b=E8POB4Dv; arc=none smtp.client-ip=109.224.244.24
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=proton.me
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=proton.me
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=proton.me;
+	s=protonmail; t=1750672205; x=1750931405;
+	bh=2qh1CJjO8c2zLPbBAKpH3KGrCB+i0u1GVzjXdu6Efzw=;
+	h=Date:To:From:Cc:Subject:Message-ID:In-Reply-To:References:
+	 Feedback-ID:From:To:Cc:Date:Subject:Reply-To:Feedback-ID:
+	 Message-ID:BIMI-Selector;
+	b=E8POB4Dv/lqhX+/sJjDZa0/eRygsCa8wa0bD650TGPocFSrQmngVcmH1D3sAxuPA+
+	 LW1kx1i/1pOmqd1rUMvyIAhqBWl1APVUa8m9mGWcG7GKTjZYT6pcqc9TgtP7e47tmX
+	 qniN6zrdbbESjD1VetTautbvt1mkQo6xrcZtlg2bNE8ZxjqWMJH+FOeC792/ZFCjA2
+	 cJYsbS5g0TjVCk8W/p8chAN4R8U7yoOff0HvBQ2Nd5H/49aF46mWlAnjhafpzeMz3Z
+	 K47KMGRf+oZnnk9ahBhiWXKdU8vibpziYrRLgevjgfQ3LlNNNuqTpqC9bZtwqcdO9a
+	 e7L6adwy/WWKQ==
+Date: Mon, 23 Jun 2025 09:49:59 +0000
+To: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+From: Max Shevchenko <wctrl@proton.me>
+Cc: "conor+dt@kernel.org" <conor+dt@kernel.org>, "daniel.lezcano@linaro.org" <daniel.lezcano@linaro.org>, "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>, "gregkh@linuxfoundation.org" <gregkh@linuxfoundation.org>, "jirislaby@kernel.org" <jirislaby@kernel.org>, "krzk+dt@kernel.org" <krzk+dt@kernel.org>, "linux-arm-kernel@lists.infradead.org" <linux-arm-kernel@lists.infradead.org>, "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>, "linux-mediatek@lists.infradead.org" <linux-mediatek@lists.infradead.org>, "linux-serial@vger.kernel.org" <linux-serial@vger.kernel.org>, "linux-watchdog@vger.kernel.org" <linux-watchdog@vger.kernel.org>, "linux@armlinux.org.uk" <linux@armlinux.org.uk>, "linux@roeck-us.net" <linux@roeck-us.net>, "matthias.bgg@gmail.com" <matthias.bgg@gmail.com>, "robh@kernel.org" <robh@kernel.org>, "sean.wang@mediatek.com" <sean.wang@mediatek.com>, "tglx@linutronix.de" <tglx@linutronix.de>, "wctrl@proton.me" <wctrl@proton.me>, "wim@linux-watchdog.org"
+	<wim@linux-watchdog.org>
+Subject: Re: [PATCH 09/11] ARM: dts: mediatek: add basic support for MT6572 SoC
+Message-ID: <kZ6sH6-8EHhW5FtsAmo9HXndj7D1jFyW0cv0A4KDO3i5SS9JiGEZNTd1gbMXizu4vI0M0hjROLK5DEnKbB36jWUKUPRKukq5IRK9Tz2qz7k=@proton.me>
+In-Reply-To: <94fd71e6-0f09-42d0-94ef-1ff111daac9f@collabora.com>
+References: <20250620-mt6572-v1-0-e2d47820f042@proton.me> <20250620-mt6572-v1-9-e2d47820f042@proton.me> <94fd71e6-0f09-42d0-94ef-1ff111daac9f@collabora.com>
+Feedback-ID: 131238559:user:proton
+X-Pm-Message-ID: 776204d2426614811a793f4a9aa639b87ffcd972
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+Content-Type: text/plain; charset=utf-8
 Content-Transfer-Encoding: quoted-printable
-Content-Type: text/plain; charset="utf-8"
-
-Hi Jakob,
-
-Am Freitag, 20. Juni 2025, 13:35:46 Mitteleurop=C3=A4ische Sommerzeit schri=
-eb Jakob Unterwurzacher:
-> From: Jakob Unterwurzacher <jakob.unterwurzacher@cherry.de>
->=20
-> Hardware CS has a very slow rise time of about 6us,
-> causing transmission errors when CS does not reach
-> high between transaction.
->=20
-> It looks like it's not driven actively when transitioning
-> from low to high but switched to input, so only the CPU
-> pull-up pulls it high, slowly. Transitions from high to low
-> are fast. On the oscilloscope, CS looks like an irregular sawtooth
-> pattern like this:
->                          _____
->               ^         /     |
->       ^      /|        /      |
->      /|     / |       /       |
->     / |    /  |      /        |
-> ___/  |___/   |_____/         |___
->=20
-> With cs-gpios we have a CS rise time of about 20ns, as it should be,
-> and CS looks rectangular.
->=20
-> This fixes the data errors when running a flashcp loop against a
-> m25p40 spi flash.
->=20
-> With the Rockchip 6.1 kernel we see the same slow rise time, but
-> for some reason CS is always high for long enough to reach a solid
-> high.
->=20
-> The RK3399 and RK3588 SoCs use the same SPI driver, so we also
-> checked our "Puma" (RK3399) and "Tiger" (RK3588) boards.
-> They do not have this problem. Hardware CS rise time is good.
->=20
-> Fixes: c484cf93f61b ("arm64: dts: rockchip: add PX30-=C2=B5Q7 (Ringneck) =
-SoM with Haikou baseboard")
-> Cc: stable@vger.kernel.org
-> Reviewed-by: Quentin Schulz <quentin.schulz@cherry.de>
-> Signed-off-by: Jakob Unterwurzacher <jakob.unterwurzacher@cherry.de>
-> ---
->  .../boot/dts/rockchip/px30-ringneck.dtsi      | 22 +++++++++++++++++++
->  1 file changed, 22 insertions(+)
->=20
-> diff --git a/arch/arm64/boot/dts/rockchip/px30-ringneck.dtsi b/arch/arm64=
-/boot/dts/rockchip/px30-ringneck.dtsi
-> index ab232e5c7ad6..dcc62dd9b894 100644
-> --- a/arch/arm64/boot/dts/rockchip/px30-ringneck.dtsi
-> +++ b/arch/arm64/boot/dts/rockchip/px30-ringneck.dtsi
-> @@ -379,6 +379,18 @@ pmic_int: pmic-int {
->  				<0 RK_PA7 RK_FUNC_GPIO &pcfg_pull_up>;
->  		};
->  	};
-> +
-> +	spi1 {
-> +		spi1_csn0_gpio: spi1-csn0-gpio {
-> +			rockchip,pins =3D
-> +				<3 RK_PB1 RK_FUNC_GPIO &pcfg_pull_up_4ma>;
-> +		};
-> +
-> +		spi1_csn1_gpio: spi1-csn1-gpio {
-
-naming the node -gpio trigger the bot, I guess a better name would
-be something with -pin at the end instead.
-
-> +&spi1 {
-> +	/*
-> +	 * Hardware CS has a very slow rise time of about 6us,
-> +	 * causing transmission errors.
-> +	 * With cs-gpios we have a rise time of about 20ns.
-> +	 */
-> +	cs-gpios =3D <&gpio3 RK_PB1 GPIO_ACTIVE_LOW>, <&gpio3 RK_PB2 GPIO_ACTIV=
-E_LOW>;
-
-please also provide a
-	pinctrl-names =3D "default"
-here.
-It feels more futur proof when overriding the pinctrl-0 entry
-to also state we only expect that one.
-
-> +	pinctrl-0 =3D <&spi1_clk &spi1_csn0_gpio &spi1_csn1_gpio &spi1_miso &sp=
-i1_mosi>;
-> +};
-> +
->  &tsadc {
->  	status =3D "okay";
->  };
->=20
 
 
+On Monday, June 23rd, 2025 at 11:35 AM, AngeloGioacchino Del Regno <angelog=
+ioacchino.delregno@collabora.com> wrote:
+
+> Il 20/06/25 17:40, Max Shevchenko via B4 Relay ha scritto:
+>
+> > From: Max Shevchenko wctrl@proton.me
+> >
+> > Add basic support for the MediaTek MT6572 SoC.
+> >
+> > Signed-off-by: Max Shevchenko wctrl@proton.me
+> > ---
+> > arch/arm/boot/dts/mediatek/mt6572.dtsi | 105 ++++++++++++++++++++++++++=
++++++++
+> > 1 file changed, 105 insertions(+)
+> >
+> > diff --git a/arch/arm/boot/dts/mediatek/mt6572.dtsi b/arch/arm/boot/dts=
+/mediatek/mt6572.dtsi
+> > new file mode 100644
+> > index 0000000000000000000000000000000000000000..dd12231ca745be7455e9939=
+1abd2d708f2f1a8a9
+> > --- /dev/null
+> > +++ b/arch/arm/boot/dts/mediatek/mt6572.dtsi
+> > @@ -0,0 +1,105 @@
+> > +// SPDX-License-Identifier: GPL-2.0
+> > +/*
+> > + * Copyright (c) 2025 Max Shevchenko wctrl@proton.me
+> > + */
+> > +
+> > +#include <dt-bindings/interrupt-controller/irq.h>
+> > +#include <dt-bindings/interrupt-controller/arm-gic.h>
+> > +
+> > +/ {
+> > + #address-cells =3D <1>;
+> > + #size-cells =3D <1>;
+> > + compatible =3D "mediatek,mt6572";
+> > + interrupt-parent =3D <&sysirq>;
+> > +
+> > + cpus {
+> > + #address-cells =3D <1>;
+> > + #size-cells =3D <0>;
+> > + enable-method =3D "mediatek,mt6589-smp";
+> > +
+> > + cpu@0 {
+> > + device_type =3D "cpu";
+> > + compatible =3D "arm,cortex-a7";
+> > + reg =3D <0x0>;
+> > + };
+> > + cpu@1 {
+> > + device_type =3D "cpu";
+> > + compatible =3D "arm,cortex-a7";
+> > + reg =3D <0x1>;
+> > + };
+> > + };
+> > +
+> > + system_clk: dummy13m {
+> > + compatible =3D "fixed-clock";
+> > + clock-frequency =3D <13000000>;
+> > + #clock-cells =3D <0>;
+> > + };
+> > +
+> > + rtc_clk: dummy32k {
+> > + compatible =3D "fixed-clock";
+> > + clock-frequency =3D <32000>;
+> > + #clock-cells =3D <0>;
+> > + };
+> > +
+> > + uart_clk: dummy26m {
+> > + compatible =3D "fixed-clock";
+> > + clock-frequency =3D <26000000>;
+> > + #clock-cells =3D <0>;
+> > + };
+> > +
+>
+>
+> Anything that has an MMIO address shall be child of "soc".
+>
+> soc {
+> watchdog@....
+>
+> timer@....
+>
+> etc.
+> };
+>
+> > + watchdog: watchdog@10007000 {
+> > + compatible =3D "mediatek,mt6572-wdt",
+> > + "mediatek,mt6589-wdt";
+>
+>
+> those fit in one line:
+>
+> compatible =3D "mediatek,mt6572-wdt", "mediatek,mt6589-wdt";
+>
+> > + reg =3D <0x10007000 0x100>;
+> > + interrupts =3D <GIC_SPI 126 IRQ_TYPE_LEVEL_LOW>;
+> > + timeout-sec =3D <15>;
+> > + #reset-cells =3D <1>;
+> > + };
+> > +
+> > + timer: timer@10008000 {
+> > + compatible =3D "mediatek,mt6572-timer",
+> > + "mediatek,mt6577-timer";
+>
+>
+> same
+>
+> > + reg =3D <0x10008000 0x80>;
+> > + interrupts =3D <GIC_SPI 74 IRQ_TYPE_LEVEL_LOW>;
+> > + clocks =3D <&system_clk>, <&rtc_clk>;
+> > + clock-names =3D "system-clk", "rtc-clk";
+> > + };
+> > +
+> > + sysirq: interrupt-controller@10200100 {
+> > + compatible =3D "mediatek,mt6572-sysirq",
+> > + "mediatek,mt6577-sysirq";
+>
+>
+> same; and reg goes after compatible.
+>
+> > + interrupt-controller;
+> > + #interrupt-cells =3D <3>;
+> > + interrupt-parent =3D <&gic>;
+>
+>
+> are you sure that interrupt-parent is gic?
+
+Other MT65xx devicetrees have GIC as parent for itself and SYSIRQ, so I ass=
+ume.
+
+>
+> > + reg =3D <0x10200100 0x1c>;
+> > + };
+> > +
+> > + gic: interrupt-controller@10211000 {
+> > + compatible =3D "arm,cortex-a7-gic";
+>
+>
+> reg here.
+>
+> > + interrupt-controller;
+> > + #interrupt-cells =3D <3>;
+> > + interrupt-parent =3D <&gic>;
+>
+>
+> are you sure that the interrupt parent isn't sysirq here? :-)
+
+not really, downstream has no mentions about SYSIRQ or its' address
+
+>
+> > + reg =3D <0x10211000 0x1000>,
+> > + <0x10212000 0x2000>,
+> > + <0x10214000 0x2000>,
+> > + <0x10216000 0x2000>;
+> > + };
+> > +
+> > + uart0: serial@11005000 {
+> > + compatible =3D "mediatek,mt6572-uart",
+> > + "mediatek,mt6577-uart";
+>
+>
+> fits in one line
+>
+> > + reg =3D <0x11005000 0x400>;
+> > + interrupts =3D <GIC_SPI 31 IRQ_TYPE_LEVEL_LOW>;
+> > + clocks =3D <&uart_clk>;
+>
+>
+> clock-names =3D .....
+>
+> > + status =3D "disabled";
+> > + };
+> > +
+> > + uart1: serial@11006000 {
+> > + compatible =3D "mediatek,mt6572-uart",
+>
+>
+> ...again.
+>
+> > + "mediatek,mt6577-uart";
+> > + reg =3D <0x11006000 0x400>;
+> > + interrupts =3D <GIC_SPI 32 IRQ_TYPE_LEVEL_LOW>;
+> > + clocks =3D <&uart_clk>;
+> > + status =3D "disabled";
+> > + };
+> > +};
+>
+>
+> Cheers,
+> Angelo
+
+thanks for suggestions, applied.
 
 
+Sincerely,
+Max
 
