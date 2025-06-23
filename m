@@ -1,111 +1,153 @@
-Return-Path: <devicetree+bounces-188699-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-188700-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9509EAE4B0B
-	for <lists+devicetree@lfdr.de>; Mon, 23 Jun 2025 18:35:03 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 73E27AE4B2A
+	for <lists+devicetree@lfdr.de>; Mon, 23 Jun 2025 18:40:39 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 7C34C1B62CCD
-	for <lists+devicetree@lfdr.de>; Mon, 23 Jun 2025 16:24:04 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id D82381885EB4
+	for <lists+devicetree@lfdr.de>; Mon, 23 Jun 2025 16:27:43 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E26BF2BD59E;
-	Mon, 23 Jun 2025 16:16:48 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 288F72BDC10;
+	Mon, 23 Jun 2025 16:24:57 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=microchip.com header.i=@microchip.com header.b="Ok289bH4"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="ioaTYmX3"
 X-Original-To: devicetree@vger.kernel.org
-Received: from esa.microchip.iphmx.com (esa.microchip.iphmx.com [68.232.153.233])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-oi1-f171.google.com (mail-oi1-f171.google.com [209.85.167.171])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3FC8324BD0C;
-	Mon, 23 Jun 2025 16:16:46 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=68.232.153.233
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 88E8023BCE3;
+	Mon, 23 Jun 2025 16:24:55 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.171
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1750695408; cv=none; b=UfPiPC/LIbLOpziTqucZQYAuSj1tD+zaByfYpeShkCNaYqFNb5kd2xEYAPQfbioh0y9N5ED2QqSXEKt0Ajn1ukwis337KHdhfRgtkhkGgJ7rYt1NObE3dQkT3WHrJw1IYkeemIpx8M8L3//bIYWQ2DR9QJSDE1LmCNIVe/zbwcw=
+	t=1750695897; cv=none; b=i4L1lQOnm1jn7NEu4i+o33N/U8WmmHEOaxkNysojfPtg696AQuZegD163py4o78CzKKwcG2rmdMuuogXnwSHgWHs7wABugkJDgpqKZQPoSGUCNTBwdFLoYQOX/e+KIU/QX6sa7IJFiOMwiBYc/C48wqC9yJot4PbkXtP0hwSXzQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1750695408; c=relaxed/simple;
-	bh=Ur0XOriXT1WlSZ1k17YMUC/sCAmjE++EAq3Cer6GQKI=;
-	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
-	 In-Reply-To:Content-Type; b=SQzRvZOsNQpuoWaEi9foI7HWW4A6Xsl6Ez85WDe8YBvyf4QvJrlMobfZM7aS/AQ6qzFpLxlKczuf2NpIPv14+SgGwswP4nRMR3Xi2EAMg93Tcoz6MqrXXGy+biPH4WuKxDPhJsKMVcF72uNyVarVWxY4/punCwXi1lri3wSmdqE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=microchip.com; spf=pass smtp.mailfrom=microchip.com; dkim=pass (2048-bit key) header.d=microchip.com header.i=@microchip.com header.b=Ok289bH4; arc=none smtp.client-ip=68.232.153.233
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=microchip.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=microchip.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
-  t=1750695407; x=1782231407;
-  h=message-id:date:mime-version:subject:to:cc:references:
-   from:in-reply-to:content-transfer-encoding;
-  bh=Ur0XOriXT1WlSZ1k17YMUC/sCAmjE++EAq3Cer6GQKI=;
-  b=Ok289bH4Itw6AdHHfh18UBRJ/nhOL4CY/1loDg9Kf3CsAziBw36z6qRr
-   Q6Z+YwbOTvoVSHjhNheCmD6N2Dyx6BlxxYQKL4Zo3yXw/d2Wr2HX0ck3R
-   nt/Lf8+Rp6q8108nv8GAVK3BTLRzgAuoMxJ5gK2c0ZE89B3B7VPgkT0PZ
-   6AIGNpIbAGKCK4z4mNNuWddYSsBWGE0rn/cwEUE/4M2h00om2NFs8vf69
-   XjtWRx7ug5LHxa2eE6lSkmUuR7x4l4AzDkq5hy0tFwtcOolPLPyqOwfdG
-   gSdShPQSVHEMSDqx7raHsdm0hnxgwROH7J2xJe9y0d1yCZC2hhayTxER9
-   Q==;
-X-CSE-ConnectionGUID: YKKdZQvISxa431DUkbBFkA==
-X-CSE-MsgGUID: EAlSJYjtTEK2VZ7v+xC1Ag==
-X-IronPort-AV: E=Sophos;i="6.16,259,1744095600"; 
-   d="scan'208";a="43120166"
-X-Amp-Result: SKIPPED(no attachment in message)
-Received: from unknown (HELO email.microchip.com) ([170.129.1.10])
-  by esa3.microchip.iphmx.com with ESMTP/TLS/ECDHE-RSA-AES128-GCM-SHA256; 23 Jun 2025 09:16:46 -0700
-Received: from chn-vm-ex01.mchp-main.com (10.10.85.143) by
- chn-vm-ex03.mchp-main.com (10.10.85.151) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.44; Mon, 23 Jun 2025 09:16:37 -0700
-Received: from [10.10.179.162] (10.10.85.11) by chn-vm-ex01.mchp-main.com
- (10.10.85.143) with Microsoft SMTP Server id 15.1.2507.44 via Frontend
- Transport; Mon, 23 Jun 2025 09:16:37 -0700
-Message-ID: <0aa6c9a4-4a65-4b55-a180-92c795499384@microchip.com>
-Date: Mon, 23 Jun 2025 09:16:37 -0700
+	s=arc-20240116; t=1750695897; c=relaxed/simple;
+	bh=41jbVPsCwj8T5PHJEuSocRy38yFgjqP8BdLlaykU4cs=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=o30fXJowPpFZxZ+wMVu/N2azyLtwHwSAjxAVKm2DS1YW/FMOdaM3+WeR5JYGcK1QjGPNFoqcQM2uJwpXiwvCsMXmqYvj4cVEnp+jvQS/AHjVhMrIVL2ORltMqt1ugXm/TKxuezOVwGocgDs1A8zkR1Oxgv6ptE6B6YpjYJRclQo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=ioaTYmX3; arc=none smtp.client-ip=209.85.167.171
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-oi1-f171.google.com with SMTP id 5614622812f47-40a6692b75cso3406911b6e.1;
+        Mon, 23 Jun 2025 09:24:55 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1750695894; x=1751300694; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=bDfb6+7enKdNNKI7hWXp6pY/tJHn80dmYFnrZxONTBk=;
+        b=ioaTYmX3joPznz8Y8Lp7f5xtU9RHDfQHiqO4++MsoiO7KPTQeE8OtDPAA8uXVpDEQQ
+         TQdcczMGeXyBQyFcpFj+BpC568vYU8kan27njjKV0MnJ6jvKPYR+Pp14WVm4uLLknDc7
+         CGdG5AjRh5XYEzOnwsEBphnK1KnD8wxZGwdTYoHde53LppvAy5Q7YfJawzjsjbMpstjt
+         9+IBv4v6zVI1jAhPaiaGaKrA8NATQ2sdW31uInyDeZqERdNUO27CJOv0+FZ6e0no9MK8
+         0IBstkmXoWPapWRQs7Uq2Hg12HtYAcKUm0a1Zb656aP8C8/NE5lE+cybS3o2z/tHeUuG
+         4pOw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1750695894; x=1751300694;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=bDfb6+7enKdNNKI7hWXp6pY/tJHn80dmYFnrZxONTBk=;
+        b=GSD1wiibAEPtATCFiBswNW6sN3ydmTTHoCU2t9fJy/qI8W1ho6ba/2aFomOM9RuTfw
+         W8aOFgahfKbyhu2sUsZscbi0kqNwIpMAUod3/ijY4clBAB7ncOHeoWoS93nqn8xYaN/C
+         tjsPyA187pp3xJq5Gzuvc+dyHYRUxKxy6nOhGj+TTniuPK31HkpSp/o7B0WcfWebcONM
+         qCqxJi1pXajhc1XuAdwPuAKxcmdc82iZEuc6aUPOUI7PvwIDQSt8EIUSp0xZ27gRtTko
+         TinLxt97aGD6Zc+mtJ8y9piU51BKgACzsj8jDsXtJ4RpqayEJ1nVN86D8RBvniRd4yE5
+         b7ng==
+X-Forwarded-Encrypted: i=1; AJvYcCXb408TOERxzAOTB6NtTGXt+R1LscQvZ97Jj4QzzImwa24BeYgelS6d7j6hoiJ3xroVcf3yY4NYV+W5@vger.kernel.org
+X-Gm-Message-State: AOJu0YwLn7nkl3TlyoRhK61OIefFSJl2aiYYSCtuaWvLA0JSg8Vx6qmA
+	4fSljbnfS7eZFYDtnSXSLkBQJwsRI8LhunhLEhOxRh68PObawN1MnsyHC811QQ==
+X-Gm-Gg: ASbGncuC6KQF421ng/EGnSTb62WjXz0dvT1MbeTOaUCiV1SzavaVDSBcoe7SnwSoyIY
+	HPTkumUb4IxdDIc70rEWQs6fyBbOdO8Gi8mQtIoRYCl0le1Udm55B/QYqJkTufE0D4P11b1Ia+1
+	0bq5TJiey4ofbq4zs2WubtAlCnvVO2cebYtZwstMqCQJjoGR3lsbZxLW4CRgKhGh6fOTVoUHKz5
+	XdpvAKObVPgyJEvCOF8GZk8Eh6FwQxG7mJdvNLmDrww7OlCF4/o8E7/2tb/x68fxWSzVv5T+F76
+	Eo+yHVKGO5TiQwhyAZFOpBGTzhHuNIKVHgn2XpBUmQ/eB9D8+uRseXYrYcNhYJhlZkhF4n9UgH/
+	dT/rL+QEZAqdnlyOi
+X-Google-Smtp-Source: AGHT+IHFwNmuitlNLVWhiK9CQCYv7O4a8CyNPO3l0DMr0R02Wn1Nuepa3ZpqnzlrDdAIDq3Cr+7z2g==
+X-Received: by 2002:a05:6808:2f0e:b0:406:71fd:b610 with SMTP id 5614622812f47-40ac70e22f8mr9345582b6e.33.1750695894243;
+        Mon, 23 Jun 2025 09:24:54 -0700 (PDT)
+Received: from localhost.localdomain ([2600:1700:fb0:1bc0:61a2:e42d:d809:3616])
+        by smtp.gmail.com with ESMTPSA id 5614622812f47-40ac6ced44esm1427308b6e.24.2025.06.23.09.24.53
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 23 Jun 2025 09:24:53 -0700 (PDT)
+From: Chris Morgan <macroalpha82@gmail.com>
+To: linux-pm@vger.kernel.org
+Cc: linux-rockchip@lists.infradead.org,
+	devicetree@vger.kernel.org,
+	broonie@kernel.org,
+	lgirdwood@gmail.com,
+	sre@kernel.org,
+	heiko@sntech.de,
+	conor+dt@kernel.org,
+	krzk+dt@kernel.org,
+	robh@kernel.org,
+	lee@kernel.org,
+	Chris Morgan <macromorgan@hotmail.com>
+Subject: [PATCH V3 0/5] Add Texas Instruments BQ25703A Charger
+Date: Mon, 23 Jun 2025 11:22:18 -0500
+Message-ID: <20250623162223.184304-1-macroalpha82@gmail.com>
+X-Mailer: git-send-email 2.43.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 0/3] Expose REFCLK for RMII and enable RMII
-To: Andrew Lunn <andrew@lunn.ch>
-CC: <andrew+netdev@lunn.ch>, <davem@davemloft.net>, <edumazet@google.com>,
-	<kuba@kernel.org>, <pabeni@redhat.com>, <robh@kernel.org>,
-	<krzk+dt@kernel.org>, <conor+dt@kernel.org>, <nicolas.ferre@microchip.com>,
-	<claudiu.beznea@tuxon.dev>, <netdev@vger.kernel.org>,
-	<devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>
-References: <cover.1750346271.git.Ryan.Wanner@microchip.com>
- <4b1f601d-7a65-4252-8f04-62b5a952c001@lunn.ch>
-From: Ryan Wanner <ryan.wanner@microchip.com>
-Content-Language: en-US
-In-Reply-To: <4b1f601d-7a65-4252-8f04-62b5a952c001@lunn.ch>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
 
-On 6/21/25 00:24, Andrew Lunn wrote:
-> EXTERNAL EMAIL: Do not click links or open attachments unless you know the content is safe
-> 
-> On Thu, Jun 19, 2025 at 10:04:12AM -0700, Ryan.Wanner@microchip.com wrote:
->> From: Ryan Wanner <Ryan.Wanner@microchip.com>
->>
->> This set allows the REFCLK property to be exposed as a dt-property to
->> properly reflect the correct RMII layout. RMII can take an external or
->> internal provided REFCLK, since this is not SoC dependent but board
->> dependent this must be exposed as a DT property for the macb driver.
-> 
-> What board is going to use this? Do you have a patch for a .dts file?
+From: Chris Morgan <macromorgan@hotmail.com>
 
-Our SAMA7D65_curiosity board has a connector that allows us to change
-ethernet phys. Since some of the phys we have provide their own REFCLK
-while others do not, this property needs to be added so we are able to
-use all of these.
+Add support for the Texas Instruments BQ25703A charger manager. The
+device integrates a boost converter with the charger manager. This
+series adds the device as an MFD with separate regulator and power
+supply drivers. This allows us to manage a circular dependency with
+a type-c port manager which depends on the regulator for usb-otg
+but supplies power to the BQ25703A charger.
 
-I do not have an exact .dts patch for this since our default is MPU
-provides the REFCLK, this property will be used with dt-overlays that
-match each phy that is connected.
+---
+Changes since RFC
+ - Corrected some minor issues with code and device-tree labels.
+ - Replaced most of the manufacturer specific device-tree properties
+   with monitored-battery properties.
+Changes since V2
+ - Added reference to power-supply.yaml and removed note for i2c
+   address per recommendation from Sebastian.
+ - Corrected documentation error for charger driver found by kernel
+   test robot.
+ - Corrected duplicate POWER_SUPPLY_USB_TYPE_PD entry and corrected
+   ichg logic in power supply changed function.
+ - Corrected missing linux/bitfield.h header in regulator driver found
+   by kernel test robot.
+---
 
-Ryan
-> 
->         Andrew
+Chris Morgan (5):
+  dt-bindings: mfd: ti,bq25703a: Add TI BQ25703A Charger
+  mfd: bq257xx: Add support for BQ25703A core driver
+  power: supply: bq257xx: Add support for BQ257XX charger
+  regulator: bq257xx: Add bq257xx boost regulator driver
+  arm64: dts: rockchip: Add USB and charger to Gameforce Ace
+
+ .../devicetree/bindings/mfd/ti,bq25703a.yaml  | 121 +++
+ .../dts/rockchip/rk3588s-gameforce-ace.dts    | 122 +++
+ drivers/mfd/Kconfig                           |  11 +
+ drivers/mfd/Makefile                          |   1 +
+ drivers/mfd/bq257xx.c                         | 104 +++
+ drivers/power/supply/Kconfig                  |   7 +
+ drivers/power/supply/Makefile                 |   1 +
+ drivers/power/supply/bq257xx_charger.c        | 754 ++++++++++++++++++
+ drivers/regulator/Kconfig                     |   8 +
+ drivers/regulator/Makefile                    |   1 +
+ drivers/regulator/bq257xx-regulator.c         | 189 +++++
+ include/linux/mfd/bq257xx.h                   | 108 +++
+ 12 files changed, 1427 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/mfd/ti,bq25703a.yaml
+ create mode 100644 drivers/mfd/bq257xx.c
+ create mode 100644 drivers/power/supply/bq257xx_charger.c
+ create mode 100644 drivers/regulator/bq257xx-regulator.c
+ create mode 100644 include/linux/mfd/bq257xx.h
+
+-- 
+2.43.0
 
 
