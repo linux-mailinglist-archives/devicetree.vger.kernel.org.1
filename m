@@ -1,104 +1,142 @@
-Return-Path: <devicetree+bounces-188673-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-188674-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id D4B8FAE48E9
-	for <lists+devicetree@lfdr.de>; Mon, 23 Jun 2025 17:40:38 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 346F6AE4911
+	for <lists+devicetree@lfdr.de>; Mon, 23 Jun 2025 17:46:33 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 69FCD16A4C0
-	for <lists+devicetree@lfdr.de>; Mon, 23 Jun 2025 15:40:39 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id B6C1D177E4A
+	for <lists+devicetree@lfdr.de>; Mon, 23 Jun 2025 15:46:33 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 35D56277CA3;
-	Mon, 23 Jun 2025 15:39:45 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id AE84625EF82;
+	Mon, 23 Jun 2025 15:46:28 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="pQUPwO3h"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="TDYCh5y1"
 X-Original-To: devicetree@vger.kernel.org
-Received: from bali.collaboradmins.com (bali.collaboradmins.com [148.251.105.195])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D17952980CD;
-	Mon, 23 Jun 2025 15:39:42 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=148.251.105.195
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 807533D994;
+	Mon, 23 Jun 2025 15:46:28 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1750693185; cv=none; b=kVc+T8egTutZyhZQ7WKyOR4w4eBbxRrCbohRyd+0qFh6rmmc7KxNa25/7IpXKV8NhVbdpuzpilJJLsqGBBZuMnOPpsBWaHmT6vH+GuQJwjJOQAjIzn+b/QdgKPceYEjKmzfKaQN/IJt5Vv1jYUcEBBOASv2pEQMCt0oBSAvZy24=
+	t=1750693588; cv=none; b=k8u92AFMPZ42jsGu4SkHEhIifv7DSWSILzfIpI+whZBudArm4ZDn+lkYgTB8p0FU+vSRgmzn+uBFgt33Mox7c6I4YMrc9od6MdkeAryCRwfZHKBt09mS2mPWID/HM8mKaOlYlTJRE9l3uX6i/putxYXT9PviYczcRz2fH932d2A=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1750693185; c=relaxed/simple;
-	bh=4bDNVFCV1Re2zfChjnEdtk38UjbrX0DDqSN/Fh1aO6E=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=C6xwHoNMagbqGfvJEp1CqQLMChJ60ye2fIjj3duu2l+hr+TRas8qdYPrkKuz9n4n7tbZIq36WftRCm0CqaYu+wwXGUpJ0bwoPU85At09MxIz+BblnQqpgTgaa87fm17foDWanaQj3+zN6qyexSkLJ8fmST265h3o39HkWqLZV9A=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b=pQUPwO3h; arc=none smtp.client-ip=148.251.105.195
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-	s=mail; t=1750693180;
-	bh=4bDNVFCV1Re2zfChjnEdtk38UjbrX0DDqSN/Fh1aO6E=;
-	h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-	b=pQUPwO3h6u5ZEtSj+b5wGM9tiwlaUtD+Yam0kFhTNsaW44MuIvKdLbV7DfbX5wMao
-	 zrcliNYkCe3hDalEgve12860WSP04Hlz1/WkNVlciFBRuSJEk7SClOFLOQayY9PqYp
-	 /LyDFZulUB8Gm2eZt0Txi49yOVRBZwC3L/myNFfvzLQkrtk4W7mwWh2sCL2oGkxuc1
-	 IJsWLbA8ia4WY4ZRfLE7D/1uOoPf/Eb591EHspqmXbX5C8q60JH+P1JFLF7YbwtYZi
-	 iviFOiNs4RqwK1g0JWQotQSGzRDVdqU2MOvl0PZpSk1hLCk5m2wc6S1aSSXA5tadiS
-	 mdMKUcc5EawsA==
-Received: from benjamin-XPS-13-9310.. (unknown [IPv6:2a01:e0a:120:3210:d44b:b63b:15ee:9c1d])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
-	(No client certificate requested)
-	(Authenticated sender: benjamin.gaignard)
-	by bali.collaboradmins.com (Postfix) with ESMTPSA id 8A43917E159C;
-	Mon, 23 Jun 2025 17:39:39 +0200 (CEST)
-From: Benjamin Gaignard <benjamin.gaignard@collabora.com>
-To: joro@8bytes.org,
-	will@kernel.org,
-	robin.murphy@arm.com,
-	robh@kernel.org,
-	krzk+dt@kernel.org,
-	conor+dt@kernel.org,
-	heiko@sntech.de,
-	nicolas.dufresne@collabora.com,
-	jgg@ziepe.ca
-Cc: iommu@lists.linux.dev,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	linux-rockchip@lists.infradead.org,
-	kernel@collabora.com,
-	Benjamin Gaignard <benjamin.gaignard@collabora.com>
-Subject: [PATCH v4 5/5] arm64: defconfig: enable Verisilicon IOMMU
-Date: Mon, 23 Jun 2025 17:39:29 +0200
-Message-ID: <20250623153931.158765-6-benjamin.gaignard@collabora.com>
-X-Mailer: git-send-email 2.43.0
-In-Reply-To: <20250623153931.158765-1-benjamin.gaignard@collabora.com>
-References: <20250623153931.158765-1-benjamin.gaignard@collabora.com>
+	s=arc-20240116; t=1750693588; c=relaxed/simple;
+	bh=w/l6L6hU5FHxVqXs8auOKsE8vW000g2m20hcmDTlaS4=;
+	h=Date:Content-Type:MIME-Version:From:Cc:To:In-Reply-To:References:
+	 Message-Id:Subject; b=eDEz+7/FbVQZEV+Yd+79N0aUhaDyNtZyinu1Ru9gie8NsV5JZ2MGb5lmK+VFsReOvAdYcdvlsvcUMWY4VQIoXybjpxfOVA8PDeG0KaGcgBFBFXkcgcrKIFW4Y/YfQeI9AP4AvbeQY2kSDvc0HVSWLdkhqQlrp0ITxXoGMXtz2Pw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=TDYCh5y1; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 2ED43C4CEEA;
+	Mon, 23 Jun 2025 15:46:28 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1750693588;
+	bh=w/l6L6hU5FHxVqXs8auOKsE8vW000g2m20hcmDTlaS4=;
+	h=Date:From:Cc:To:In-Reply-To:References:Subject:From;
+	b=TDYCh5y1PNN/APVI70QJMhg3IPnPWxtnrNMNT3jyMDmhR29ZFj7kPz6El99a8Zk39
+	 FokW8n/W5AuT8gt1CDPoabH0V37G1+A2TAN89zwcj3SO46RCaQu/6g8TVLYP+M3VlM
+	 CZbI+Y5KoeOk6VAMmRlzP18A+rg/rfMEDZp7rZFF19c4zpK0AwRGrNgDShwqbMvSNX
+	 7HdsfKABsdhNrPTPnaurf1p0riOeMOsg8n5vSQQhWHDzJr21bJ91FmMjYAxqZt2Z6U
+	 /E4F46TuJgvLxkyCrt1ENlr/91n0qnZJuMeq/xUrrOzox0dlMqRY9T03EzqMYFDa2p
+	 sIDdc/kEAICCA==
+Date: Mon, 23 Jun 2025 10:46:27 -0500
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+From: "Rob Herring (Arm)" <robh@kernel.org>
+Cc: linux-arm-msm@vger.kernel.org, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ linux-kernel@vger.kernel.org, Konrad Dybcio <konradybcio@kernel.org>, 
+ kernel@oss.qualcomm.com, Conor Dooley <conor+dt@kernel.org>, 
+ devicetree@vger.kernel.org, Bjorn Andersson <andersson@kernel.org>
+To: Umang Chheda <umang.chheda@oss.qualcomm.com>
+In-Reply-To: <20250623130420.3981916-1-umang.chheda@oss.qualcomm.com>
+References: <20250623130420.3981916-1-umang.chheda@oss.qualcomm.com>
+Message-Id: <175069348269.3797007.5540625905808833666.robh@kernel.org>
+Subject: Re: [PATCH 0/2] Add support for IQ-8275-evk board
 
-Enable Verisilicon IOMMU used by RK3588 AV1 hardware codec.
 
-Signed-off-by: Benjamin Gaignard <benjamin.gaignard@collabora.com>
----
- arch/arm64/configs/defconfig | 1 +
- 1 file changed, 1 insertion(+)
+On Mon, 23 Jun 2025 18:34:18 +0530, Umang Chheda wrote:
+> This series:
+> 
+> Add support for Qualcomm's IQ-8275-evk board using QCS8275 SOC.
+> 
+> QCS8275 is another SoC under IQ8 series of SoCs. Unlike QCS8300
+> which has safety features, it doesn't have safety features which
+> affects thermal management.
+> 
+> IQ8 EVK board is a single board computer (SBC) that supports various
+> industrial applications, including factory automation, industrial
+> robots, drones, edge AI boxes, machine vision, autonomous mobile
+> robots (AMRs), and industrial gateways.
+> 
+> Below are detailed informations on IQ-8275-evk HW:
+> ------------------------------------------------------
+> QCS8275 SOM is stacked on top of IQ-8275-evk board.
+> On top of IQ-8275-evk board additional mezzanine boards can be stacked
+> in future.
+> IQ-8275-evk is single board supporting these peripherals:
+>   - Storage: 1 × 128 GB UFS, micro-SD card, EEPROMs for MACs,
+>     eMMC on mezzanine card
+>   - Audio/Video, Camera & Display ports
+>   - Connectivity: RJ45 2.5GbE, WLAN/Bluetooth, CAN/CAN-FD
+>   - PCIe ports
+>   - USB & UART ports
+> 
+> Currently basic features like DSPs, UFS and 'boot to shell' via
+> uart console are enabled.
+> 
+> Umang Chheda (2):
+>   dt-bindings: arm: qcom: Add bindings for IQ8 EVK board
+>   arm64: dts: qcom: Add support for QCS8275 IQ8 EVK
+> 
+>  .../devicetree/bindings/arm/qcom.yaml         |   7 +
+>  arch/arm64/boot/dts/qcom/Makefile             |   1 +
+>  .../boot/dts/qcom/qcs8275-iq-8275-evk.dts     | 241 ++++++++++++++++++
+>  3 files changed, 249 insertions(+)
+>  create mode 100644 arch/arm64/boot/dts/qcom/qcs8275-iq-8275-evk.dts
+> 
+> --
+> 2.25.1
+> 
+> 
+> 
 
-diff --git a/arch/arm64/configs/defconfig b/arch/arm64/configs/defconfig
-index 897fc686e6a9..a5122990ecfa 100644
---- a/arch/arm64/configs/defconfig
-+++ b/arch/arm64/configs/defconfig
-@@ -1451,6 +1451,7 @@ CONFIG_ARM_SMMU=y
- CONFIG_ARM_SMMU_V3=y
- CONFIG_MTK_IOMMU=y
- CONFIG_QCOM_IOMMU=y
-+CONFIG_VSI_IOMMU=m
- CONFIG_REMOTEPROC=y
- CONFIG_IMX_REMOTEPROC=y
- CONFIG_MTK_SCP=m
--- 
-2.43.0
+
+My bot found new DTB warnings on the .dts files added or changed in this
+series.
+
+Some warnings may be from an existing SoC .dtsi. Or perhaps the warnings
+are fixed by another series. Ultimately, it is up to the platform
+maintainer whether these warnings are acceptable or not. No need to reply
+unless the platform maintainer has comments.
+
+If you already ran DT checks and didn't see these error(s), then
+make sure dt-schema is up to date:
+
+  pip3 install dtschema --upgrade
+
+
+This patch series was applied (using b4) to base:
+ Base: attempting to guess base-commit...
+ Base: tags/v6.16-rc1-5-g700a4c3f95a3 (exact match)
+
+If this is not the correct base, please add 'base-commit' tag
+(or use b4 which does this automatically)
+
+New warnings running 'make CHECK_DTBS=y for arch/arm64/boot/dts/qcom/' for 20250623130420.3981916-1-umang.chheda@oss.qualcomm.com:
+
+arch/arm64/boot/dts/qcom/msm8916-samsung-gt58.dtb: panel@0 (samsung,lsl080al03): 'port' does not match any of the regexes: '^pinctrl-[0-9]+$'
+	from schema $id: http://devicetree.org/schemas/display/panel/samsung,s6d7aa0.yaml#
+
+
+
+
 
 
