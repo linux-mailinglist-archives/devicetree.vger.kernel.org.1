@@ -1,88 +1,55 @@
-Return-Path: <devicetree+bounces-188581-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-188582-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 83774AE4056
-	for <lists+devicetree@lfdr.de>; Mon, 23 Jun 2025 14:32:45 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7B02DAE4078
+	for <lists+devicetree@lfdr.de>; Mon, 23 Jun 2025 14:35:43 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 5791A1883F65
-	for <lists+devicetree@lfdr.de>; Mon, 23 Jun 2025 12:31:44 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id A325F1883292
+	for <lists+devicetree@lfdr.de>; Mon, 23 Jun 2025 12:34:03 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id CF4A92459D0;
-	Mon, 23 Jun 2025 12:31:22 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6AE2724502E;
+	Mon, 23 Jun 2025 12:32:29 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="eyrH0Bjl"
+	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="fRzoI1dl"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+Received: from bali.collaboradmins.com (bali.collaboradmins.com [148.251.105.195])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5B5C12405E8
-	for <devicetree@vger.kernel.org>; Mon, 23 Jun 2025 12:31:21 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 825222459F1;
+	Mon, 23 Jun 2025 12:32:27 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=148.251.105.195
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1750681882; cv=none; b=JsYK/GR/J8ovZPxVKV3UVAS01sb8WBs+9Lhxq96dYitWyX/u9KNip9SEoaJ6nK7ZBx1RZPWDfSbrn+BpyGejGGiwGWScQwSIdXzEnMUogDAxk7jEK8TESMttS9vcvwEaSRglqtIJfxFziz9Ir917RKOvhE5R2N9Iy/CGEHVuy7A=
+	t=1750681949; cv=none; b=NIZ36Hl3TIMts5cnFf16GuaprRYuh1x6U9HNvVQEKWNn0jxIlhhdv+FfPvJweFg9Gay7yIKK856C4ndTpGHMyBIMyaw8cq7StuaQAuxZF9OQPhihz5zvTK1c+5TKHdVz7zH/YkyAnIWO/rj4tbrfaPnoXsmuGoiwOpRXk30ZaIs=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1750681882; c=relaxed/simple;
-	bh=2zFRKZQk6Qcx7V0TRS6RA0Y4R3e2uFWEfPn5Z1JUZPY=;
+	s=arc-20240116; t=1750681949; c=relaxed/simple;
+	bh=Hi9Eh4Q8Idz+PcP0DJGiXpcq9TCKuca5A6YCe8h1Q6U=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=E9QT6mBvrdNi8d/RA91cvIdfirCZcpCSDYN5LJH850cSl9cjFAa4jAaW8jjdIEQZkVseCTCkauS5gGEW2bn61Q5W5XVYYyl2KG9DUxpPyQQ3AAOXk4cOOiwb5N6HOeFLrHmcH85Q8HW79J9lqBTiVbDwNeMtt4LySjGbLhFU4W4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=eyrH0Bjl; arc=none smtp.client-ip=205.220.168.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
-Received: from pps.filterd (m0279866.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 55N9JFZf011924
-	for <devicetree@vger.kernel.org>; Mon, 23 Jun 2025 12:31:20 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	E6864q4XX7Y1lJBXPh3P8WERZFM3Mm8/80MbfQ9oBQg=; b=eyrH0BjllGGw+pTX
-	IwjyydI/FasyKcbyFAyphISewm08UJdHWnCeutuTtHfe2hFJSCCzqbmDKjWsEK3C
-	lc+9wAgN6tMP1oEia6Zxma8aZzJf482/xdsp0Rs9VZEH26hh5Fo6Bt4xOXp6nmPV
-	HWeuO2+M9H4/juE/wz3+nTPGdBGsxvBIJYXuJcBcXoqmEke3ofiBpUn50A8RyaKn
-	CkTHAgPST7KAg4eMort3gfWDFZMkhPhQ+LBBwCAMy7ocVcU59L3P7OTaXWrgknEh
-	DqP0RgCcIVMFqzSNid8/lQ2dkRdF3tWPS3E8ZiuZTkrp+cgzVKOSgMbgfrG7BWgi
-	L+B4+Q==
-Received: from mail-qk1-f198.google.com (mail-qk1-f198.google.com [209.85.222.198])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 47ec262ts8-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Mon, 23 Jun 2025 12:31:20 +0000 (GMT)
-Received: by mail-qk1-f198.google.com with SMTP id af79cd13be357-7d09b74dc4bso111377385a.2
-        for <devicetree@vger.kernel.org>; Mon, 23 Jun 2025 05:31:20 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1750681879; x=1751286679;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=E6864q4XX7Y1lJBXPh3P8WERZFM3Mm8/80MbfQ9oBQg=;
-        b=FTgo28wjXA3gaF0j+Cy+5YDgi36no9mRjf7N01lbPNkAfy2NG4ARKxPzOjJSatTMIg
-         nAgc4m6x8AxX42hIw0pspXkSmkhqQBXyqhwgJL86oEQDKZekPROvNvj8r3tHhlvcQdjv
-         A0DWiGqnm5a6FL2lf59p27LqMMQrm5RMNl7fg3qcSVZhBYVTMcJY82YTzwp//nnyYWug
-         40X/Y1MrlEzlySFdncMIsxrO2QM1nbR1mnwWYVcHIFqp4ZtNqxmr+j9PKYevIGEiwO3Q
-         rD8tyAgsFaeo6b983ckN1N9yseIAxlh9ZBKtq3uiklNIQsCahkb9aYkhAQeWV2Sh1lp6
-         OgGw==
-X-Forwarded-Encrypted: i=1; AJvYcCVqtT+b6RxERAt6WCBysZ9V5Y7oirE55gjU0F5EqtXkcfyHkx8cLIVpG/c6talT1pYlXd7SGz/kMgzo@vger.kernel.org
-X-Gm-Message-State: AOJu0Yz/azZdqleEfigSH8g2M2yng9mrLK5G1g6XSwGM50vtklNOX+mb
-	hjn7GIrY+Tgh3Gmhr/ypszQ4B6QqbLSVSSqdgrmxYkzbMZIsUJ/dIazAZ3I4NyGk2XkcbYr3y00
-	r7KCzDtp9WSB4KIqsnnGbMBDPD037e4HV3ctQ06LrX/j3c34msW0ntP3px+QSP+0i
-X-Gm-Gg: ASbGnct9ZonXYH3LcmJK04BcGbfNcoaLTreXQKdCFAJz8Jk3/9lcgLsqK2wdOwJQuDg
-	gnyw33jNEzaHzRbGiwUolh0cf/oycewB3/yHz9184O3dystmA6frBNvpZ2eR5T4xRDWT3SoVcdz
-	b1qtO02lXa2z1rLSNNWhNcJdJMxs8Nl4abt8VPJH3e/z3vg7nzG5lsL0PAw8KW9G0u7jKCIZfnd
-	n8WqVUDXdzl/QxhS+f/WCiU9n0lExeuCIFudTgVozseNguSwFRfxrM29wOFukyLdeB+7aKKhQE6
-	U94ErAivw+PjlCLLIGZytRgs5MIt8fL3+8FuWwY9Jh36TTRRgst9NxC8ZcXe95CX+OVl8RVsgAk
-	irME=
-X-Received: by 2002:a05:620a:4547:b0:7ca:d396:1460 with SMTP id af79cd13be357-7d3f9946b37mr700480985a.14.1750681878914;
-        Mon, 23 Jun 2025 05:31:18 -0700 (PDT)
-X-Google-Smtp-Source: AGHT+IGSojH4qUqF5DcRgr/YMoel0AnNXPXaqZPjr++zZf5nj/R/1BTdf8HbieLdvXtY32sDyj5h6w==
-X-Received: by 2002:a05:620a:4547:b0:7ca:d396:1460 with SMTP id af79cd13be357-7d3f9946b37mr700477085a.14.1750681877944;
-        Mon, 23 Jun 2025 05:31:17 -0700 (PDT)
-Received: from [192.168.143.225] (078088045245.garwolin.vectranet.pl. [78.88.45.245])
-        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-ae053ecbda9sm698877366b.48.2025.06.23.05.31.15
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 23 Jun 2025 05:31:17 -0700 (PDT)
-Message-ID: <fd73a142-3b22-407f-8e6d-00f4e1e1c8eb@oss.qualcomm.com>
-Date: Mon, 23 Jun 2025 14:31:14 +0200
+	 In-Reply-To:Content-Type; b=PNwPrVsb4F1fcnOPOEC/fGnuJaGqy3yvGGDHdiwPIGUKM/jl0/fM3nFEDf4a4w1Dj8+B0R1Dckwx+S9rhbfkWASfuY4opXC9mqxHKbKzvXeu659pqXRHc4Ivdn1a/VpkizrCe36fiC/SrGVR0Dm8LQrBdfzvB5YtkP/VVlbZKxc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b=fRzoI1dl; arc=none smtp.client-ip=148.251.105.195
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+	s=mail; t=1750681945;
+	bh=Hi9Eh4Q8Idz+PcP0DJGiXpcq9TCKuca5A6YCe8h1Q6U=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=fRzoI1dlS3MhNk3kaIep6i4WWNWcAedful78drVRlvm/4Xh1SkS3K+ztOxFgSXAoH
+	 2vbxKawbsztUnl09cPgSt+uFvVJ1tHS6KKrdllwE7bz4z7Nx8fjloQ81iDlj4Xj79Q
+	 /D5ypsq0jDLDquYdSE6sGH6Vs3QoA6d6ufaxnnBWl5rl/oV0zaA/r9/MsmuncGTLQ/
+	 zChQ5ri/Q5UxqkUf8s5FwHisxQIwpUKH8BYjPGN4ASCoS3jQkHgPzClBohAjnAg3zh
+	 ePgONva+hO8UErkrt4zINF+7jcMmK0nTWjXo4ELEAsJk5/M9CCDUjpnlURnSI/Wd6Q
+	 usJOc2BEtxn3w==
+Received: from [192.168.1.100] (2-237-20-237.ip236.fastwebnet.it [2.237.20.237])
+	(using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
+	 key-exchange X25519 server-signature RSA-PSS (4096 bits))
+	(No client certificate requested)
+	(Authenticated sender: kholk11)
+	by bali.collaboradmins.com (Postfix) with ESMTPSA id 13E9717E05BD;
+	Mon, 23 Jun 2025 14:32:25 +0200 (CEST)
+Message-ID: <9e8d0dfc-7dc4-461d-afd9-bd381219422f@collabora.com>
+Date: Mon, 23 Jun 2025 14:32:24 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -90,100 +57,62 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH V3 2/4] dt-bindings: mmc: controller: Add
- max-sd-hs-frequency property
-To: Krzysztof Kozlowski <krzk@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>,
-        Sarthak Garg <quic_sartgarg@quicinc.com>,
-        Ulf Hansson <ulf.hansson@linaro.org>, Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley
- <conor+dt@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konradybcio@kernel.org>,
-        Adrian Hunter <adrian.hunter@intel.com>
-Cc: linux-mmc@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org,
-        quic_cang@quicinc.com, quic_nguyenb@quicinc.com,
-        quic_rampraka@quicinc.com, quic_pragalla@quicinc.com,
-        quic_sayalil@quicinc.com, quic_nitirawa@quicinc.com,
-        quic_bhaskarv@quicinc.com, kernel@oss.qualcomm.com
-References: <20250618072818.1667097-1-quic_sartgarg@quicinc.com>
- <20250618072818.1667097-3-quic_sartgarg@quicinc.com>
- <6040afd9-a2a8-49f0-85e9-95257b938156@kernel.org>
- <9627ed6f-2bb8-40b0-b647-5f659d87f2f9@oss.qualcomm.com>
- <bba062a3-f96c-456b-8e9e-fdeb0dc2d28d@kernel.org>
- <5bdae07b-a7b1-49be-b843-1704981bc63b@oss.qualcomm.com>
- <ffc62906-c3bb-4968-8f7c-fa7ae5028ad5@kernel.org>
+Subject: Re: [PATCH v1 0/2] firmware: Add MediaTek TinySYS SCMI Protocol
+To: Cristian Marussi <cristian.marussi@arm.com>
+Cc: robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
+ matthias.bgg@gmail.com, sudeep.holla@arm.com, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ linux-mediatek@lists.infradead.org, arm-scmi@vger.kernel.org,
+ kernel@collabora.com
+References: <20250623120136.109311-1-angelogioacchino.delregno@collabora.com>
+ <aFlFw-AjqxXcIuBO@pluto>
+From: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
 Content-Language: en-US
-From: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
-In-Reply-To: <ffc62906-c3bb-4968-8f7c-fa7ae5028ad5@kernel.org>
-Content-Type: text/plain; charset=UTF-8
+In-Reply-To: <aFlFw-AjqxXcIuBO@pluto>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwNjIzMDA3NSBTYWx0ZWRfXxcZvkm7/TiHc
- TQzN1fJLoGr6/kvahPiuYU5oqzq2y3ZFbPAkm0erwId7mEIwLrcc3K9EXhruV+LnuIVYGBsIQaq
- e42Y9OD2YrlQCBZs6njq35429Uk8yPmD1GacJ5D23J/YOSupeV5dnwj50s5yCDo4iZ3Db4tmcuy
- JUU7lunEdiQs7rvfbjjT7SD9+9L/ikZesX3CAMva4etsaCT4g/Z8oEEPeb+pl2duU/nP8lgMwjV
- GhQeNNl6PqIDgxZxaLYXdD02ZA7/qJK5/dz7o/D/RyRy5EPOHZCiPzAvsdCs63o8mXO/kTTlrl/
- DD7CGD8oCrrs7Vumag7dUEw0GvxZt2gNC9xJ8sWQhH2pnJiuE0wtGSA/Zx0vZajmV0xDeUxYWVX
- MdEgLBwuTYI9RQd3jbuACVDW4h4U9i703of3G2xNjsRTNcPCljBSUPNFc5aVUWLpZz1AGhpF
-X-Authority-Analysis: v=2.4 cv=XPQwSRhE c=1 sm=1 tr=0 ts=68594918 cx=c_pps
- a=qKBjSQ1v91RyAK45QCPf5w==:117 a=FpWmc02/iXfjRdCD7H54yg==:17
- a=IkcTkHD0fZMA:10 a=6IFa9wvqVegA:10 a=jqoZUo8hMgpNG5C4G1UA:9
- a=QEXdDO2ut3YA:10 a=NFOGd7dJGGMPyQGDc5-O:22
-X-Proofpoint-GUID: iio-243nN7Lx8shOBONxlXaGrcSKB03U
-X-Proofpoint-ORIG-GUID: iio-243nN7Lx8shOBONxlXaGrcSKB03U
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1099,Hydra:6.0.736,FMLib:17.12.80.40
- definitions=2025-06-23_03,2025-06-23_02,2025-03-28_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- lowpriorityscore=0 impostorscore=0 clxscore=1015 suspectscore=0 mlxscore=0
- spamscore=0 phishscore=0 malwarescore=0 mlxlogscore=999 bulkscore=0
- priorityscore=1501 adultscore=0 classifier=spam authscore=0 authtc=n/a
- authcc= route=outbound adjust=0 reason=mlx scancount=1
- engine=8.19.0-2505280000 definitions=main-2506230075
 
-On 6/23/25 2:16 PM, Krzysztof Kozlowski wrote:
-> On 23/06/2025 14:08, Konrad Dybcio wrote:
->>>>>
->>>>> This might be fine, but your DTS suggests clearly this is SoC compatible
->>>>> deducible, which I already said at v1.
->>>>
->>>> I don't understand why you're rejecting a common solution to a problem
->>>> that surely exists outside this one specific chip from one specific
->>>> vendor, which may be caused by a multitude of design choices, including
->>>> erratic board (not SoC) electrical design
->>>
->>> No one brought any arguments so far that common solution is needed. The
->>> only argument provided - sm8550 - is showing this is soc design.
->>>
->>> I don't reject common solution. I provided review at v1 to which no one
->>> responded, no one argued, no one provided other arguments.
+Il 23/06/25 14:17, Cristian Marussi ha scritto:
+> On Mon, Jun 23, 2025 at 02:01:34PM +0200, AngeloGioacchino Del Regno wrote:
+>> This series adds basic support for the MediaTek TinySYS SCMI Protocol,
+>> found on the MediaTek Dimensity 9200, 9300 and 9400, other than on the
+>> MT8196 Chromebook SoC.
 >>
->> Okay, so the specific problem that causes this observable limitation
->> exists on SM8550 and at least one more platform which is not upstream
->> today. It can be caused by various electrical issues, in our specific
->> case by something internal to the SoC (but external factors may apply
->> too)
->>
->> Looking at the docs, a number of platforms have various limitations
->> with regards to frequency at specific speed-modes, some of which seem
->> to be handled implicitly by rounding in the clock framework's
->> round/set_rate().
->>
->> I can very easily imagine there are either boards or platforms in the
->> wild, where the speed must be limited for various reasons, maybe some
->> of them currently don't advertise it (like sm8550 on next/master) to
->> hide that
+>> This is used to communicate with the CM_MGR and other MCUs for power
+>> management purposes.
 > 
-> But there are no such now. The only argument (fact) provided in this
-> patchset is: this is issue specific to SM8550 SoC, not the board. See
-> last patch. Therefore this is compatible-deducible and this makes
-> property without any upstream user.
+> Hi Angelo,
+> 
+> thanks for this.
+> 
+> I will do a proper review in the coming days of this series anyway, but
+> upfront for future V2:
+> 
+> - you should provide some sort of documentation for this new
+>    vendor protocol and its messages, as an example from IMX:
+> 
+> 	drivers/firmware/arm_scmi/vendors/imx/imx95.rst
 
-When one appears, we will have to carry code to repeat what the property
-does, based on a specific compatible.. And all OS implementations will
-have to do the same, instead of parsing the explicit information
+Noted.
 
-Konrad
+> 
+> - where is the SCMI driver that will call all the new vendor ops
+>    defined in: scmi_mtk_protocol.h ?
+
+This was tested with code that is not clean at all (hence I can't push it upstream)
+and well... I didn't think about the fact that, effectively, without an user, this
+code ends up being unused.
+
+I can't promise to send a clean user in this cycle, but I would really appreciate
+if you could still check the protocol code, so that if there's anything that you
+can spot I can fix it while the rest gets done :-)
+
+Thank you,
+Angelo
+
+> 
+> Thanks,
+> Cristian
+
+
 
