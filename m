@@ -1,138 +1,125 @@
-Return-Path: <devicetree+bounces-188344-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-188345-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1ACE0AE3903
-	for <lists+devicetree@lfdr.de>; Mon, 23 Jun 2025 10:53:16 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id EF164AE390E
+	for <lists+devicetree@lfdr.de>; Mon, 23 Jun 2025 10:54:24 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id D34E0161C96
-	for <lists+devicetree@lfdr.de>; Mon, 23 Jun 2025 08:52:59 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 6A1B618954DA
+	for <lists+devicetree@lfdr.de>; Mon, 23 Jun 2025 08:54:27 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1E17923A997;
-	Mon, 23 Jun 2025 08:51:18 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 94A5023371A;
+	Mon, 23 Jun 2025 08:53:29 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="BIiQhLsi"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="GLnaw9Cp"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.14])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 73850239E6F;
-	Mon, 23 Jun 2025 08:51:15 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.198.163.14
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6A309233155;
+	Mon, 23 Jun 2025 08:53:29 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1750668678; cv=none; b=tPJOECwuGIRUSOYjROzkfH9LLQ2JvHZA9IPpCWmT42QQg309Y8HSVaGk0BC/DCMUGBUdo7a61pnITLxfgjXTx0+mJeZ2aLI4KfQpsTADi5ru8ZmGdwVTRAXgN80Tx+MXuEOaKFP4Bh1InNp5ybxZcsI5OLES6x7uY6cF3yIWgeU=
+	t=1750668809; cv=none; b=EbTgXYxcqcSpVoLFlJGZDigDNUbUUkAgNk4qwH2B4A4beqw2vBEaKSQoQi803rODSLVrNI/QArx30N0AlTIo+UpV58/F+/fn8ai1+Yxx1rCrsRBOtDnXk0ZlLgH4UysQ3LsZH2yM5M8hZvYYjtCwgCbzXset+mrU1TB94c5o7oM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1750668678; c=relaxed/simple;
-	bh=pUTt++AaA3xZ/EEgqLRC2Xe4dn+oIgpfZgMfM0kN/E8=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=YKZ8yX3P719LbIok3cVDcteSbOivrj3y7cyfi+nDNf2D9/CYkS6FVlWkaRmtlZHOZSJ2e2RstwzJW4/yb/qEm+uJtRSQ8aNTw1+U57LebvPDwjMX4nUEpnc0/Y+kvnNjCG37YM4mCLCQkGx84rYyD3OQoGvvT/fDGktS4BlGHsg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com; spf=none smtp.mailfrom=linux.intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=BIiQhLsi; arc=none smtp.client-ip=192.198.163.14
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com
-Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=linux.intel.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1750668676; x=1782204676;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:content-transfer-encoding:in-reply-to;
-  bh=pUTt++AaA3xZ/EEgqLRC2Xe4dn+oIgpfZgMfM0kN/E8=;
-  b=BIiQhLsiYLuxF6QuwZssbMClSGBXAU7peMcjJS4hZmY3CFogGfPlb+tA
-   GMEXHPIeKhrIcq+B46CD5d2tLZbzbQsl4UTYUNLAo1sGHtrmt0wUxuy3H
-   okPl5ugECqM3faBpOVjU5ldnCsGyBfgeBslbpecNCIymsAYXTnoq0uvLO
-   p17qzi+ULd7m1aiDXYdXKwnsZFPwhAbOLj4YsROK1QVfnIPvk847LxxlE
-   0teRv/1bwBrlPhPOoXYjYgxznydxvzZcy350nR6ufg8eGSbgATouTxlM5
-   gKprfSme8M6y09ww7u2SMsa/NgouB0XV+l6N0vh12a//xlgWJshgd4x/x
-   w==;
-X-CSE-ConnectionGUID: YqwTBZYhQUSNcDv22eOGkg==
-X-CSE-MsgGUID: p/xq9Lk7QxCm80nuP3RjrQ==
-X-IronPort-AV: E=McAfee;i="6800,10657,11472"; a="52941050"
-X-IronPort-AV: E=Sophos;i="6.16,258,1744095600"; 
-   d="scan'208";a="52941050"
-Received: from orviesa002.jf.intel.com ([10.64.159.142])
-  by fmvoesa108.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 23 Jun 2025 01:51:14 -0700
-X-CSE-ConnectionGUID: STb68b2sR9CARqb+WPZ4jQ==
-X-CSE-MsgGUID: 4MpMhRkRQBOcrFkdNlGbmw==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.16,258,1744095600"; 
-   d="scan'208";a="182578435"
-Received: from smile.fi.intel.com ([10.237.72.52])
-  by orviesa002.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 23 Jun 2025 01:51:08 -0700
-Received: from andy by smile.fi.intel.com with local (Exim 4.98.2)
-	(envelope-from <andriy.shevchenko@linux.intel.com>)
-	id 1uTctL-00000009788-3ffU;
-	Mon, 23 Jun 2025 11:51:03 +0300
-Date: Mon, 23 Jun 2025 11:51:03 +0300
-From: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
-To: Jassi Brar <jassisinghbrar@gmail.com>
-Cc: Anup Patel <apatel@ventanamicro.com>,
-	Michael Turquette <mturquette@baylibre.com>,
-	Stephen Boyd <sboyd@kernel.org>, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Thomas Gleixner <tglx@linutronix.de>,
-	"Rafael J . Wysocki" <rafael@kernel.org>,
-	Mika Westerberg <mika.westerberg@linux.intel.com>,
-	Linus Walleij <linus.walleij@linaro.org>,
-	Bartosz Golaszewski <brgl@bgdev.pl>,
-	Uwe =?iso-8859-1?Q?Kleine-K=F6nig?= <ukleinek@kernel.org>,
-	Palmer Dabbelt <palmer@dabbelt.com>,
-	Paul Walmsley <paul.walmsley@sifive.com>,
-	Len Brown <lenb@kernel.org>, Sunil V L <sunilvl@ventanamicro.com>,
-	Rahul Pathak <rpathak@ventanamicro.com>,
-	Leyfoon Tan <leyfoon.tan@starfivetech.com>,
-	Atish Patra <atish.patra@linux.dev>,
-	Andrew Jones <ajones@ventanamicro.com>,
-	Samuel Holland <samuel.holland@sifive.com>,
-	Anup Patel <anup@brainfault.org>, linux-clk@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-riscv@lists.infradead.org,
-	linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v6 00/23] Linux SBI MPXY and RPMI drivers
-Message-ID: <aFkVdzxl5GhV_etE@smile.fi.intel.com>
-References: <20250618121358.503781-1-apatel@ventanamicro.com>
- <CABb+yY1UAwQiLCFY0Om1wsG+Hf_MobLfrEMx8JVdvoehVZ-g0A@mail.gmail.com>
+	s=arc-20240116; t=1750668809; c=relaxed/simple;
+	bh=p18CvQGKMdeKcKL07AwNst72I3d+5bFuKEFexGALk3U=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=iqNCzRup1njAm2C3tANUVFRW7fp8u703Oj5uB7uyYrRcYmu0lXhm8IIR9V4J0D+HDzxeQNTIHFZY8IXxAx/bghpCHCow+wSJ/vApQ1+7iArdHcowsq0PZmH2O1yAq/GyAB9fYE19R6vacJD249L73zLT9Syt8zmz06goR1gf3NU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=GLnaw9Cp; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPS id 406A5C4CEEA;
+	Mon, 23 Jun 2025 08:53:29 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1750668809;
+	bh=p18CvQGKMdeKcKL07AwNst72I3d+5bFuKEFexGALk3U=;
+	h=From:Subject:Date:To:Cc:Reply-To:From;
+	b=GLnaw9Cp2PbNhvZcLrEeYn5UtzJSMRL/9MfAYcR+1NEaKKmVd/55TozggvHyft3B7
+	 ZaD3HbxSG4dLCI3Cd7t3abD/hexg+FBj427L+8Chnh8AJGATJib7NxRyecBoRXDJNF
+	 2CoL3ZNr50J7ietyba4WUeyaHe2ZzoLeMs8X51GZCT+nMHmYL7VZCa5AT9ktjzfIWa
+	 OJj+qE+7pvPzaSJK8njT2+BbbG4L2wDPZ2YkHfpwvjjJaBB3Qkt+idCToDXSbbavx1
+	 JVp39X4q9TAhti6fvyoPOTH+JJSfOvQBBW8+RGnvqwWMhFuJpsgqTb1FzP//eShjzI
+	 a88xe5k5bFgZw==
+Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 2FEBFC77B7F;
+	Mon, 23 Jun 2025 08:53:29 +0000 (UTC)
+From: Xianwei Zhao via B4 Relay <devnull+xianwei.zhao.amlogic.com@kernel.org>
+Subject: [PATCH v3 0/3] support for amlogic the new SPI IP
+Date: Mon, 23 Jun 2025 16:53:26 +0800
+Message-Id: <20250623-spisg-v3-0-c731f57e289c@amlogic.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <CABb+yY1UAwQiLCFY0Om1wsG+Hf_MobLfrEMx8JVdvoehVZ-g0A@mail.gmail.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park, 6
- krs, Bertel Jungin Aukio 5, 02600 Espoo
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIAAYWWWgC/1WMywqDMBQFf0Xuuil5GI1d9T9KFzGJeqEaSUpoE
+ f+9USq0yzmcmQWiC+giXIoFgksY0U8ZxKkAM+ipdwRtZuCUS1pRQeKMsSe16jirFHetNpC/c3A
+ dvvbO7Z55wPj04b1nE9vWo1B+C4kRSqRqhG1dYxsprnp8+B7N2fgRtkbiPx6rD49vHtMVlVqVr
+ ZX/3rquH0emp13UAAAA
+To: Sunny Luo <sunny.luo@amlogic.com>, Mark Brown <broonie@kernel.org>, 
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>
+Cc: linux-amlogic@lists.infradead.org, linux-spi@vger.kernel.org, 
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+ Xianwei Zhao <xianwei.zhao@amlogic.com>, 
+ Conor Dooley <conor.dooley@microchip.com>
+X-Mailer: b4 0.12.4
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1750668807; l=1629;
+ i=xianwei.zhao@amlogic.com; s=20231208; h=from:subject:message-id;
+ bh=p18CvQGKMdeKcKL07AwNst72I3d+5bFuKEFexGALk3U=;
+ b=tUWAfZEfn6V1qOrLffkQ6+jtjMIJ8GSQGkSDtZa3pD8b3NE9PFhjslDCBCXSmbHrP1rPK1I5g
+ y2vNtyOW+8hDK/2v8d+rgFyhL7vnYs3Qhllh1TjbVGWVBzO2Vm/7fhd
+X-Developer-Key: i=xianwei.zhao@amlogic.com; a=ed25519;
+ pk=o4fDH8ZXL6xQg5h17eNzRljf6pwZHWWjqcOSsj3dW24=
+X-Endpoint-Received: by B4 Relay for xianwei.zhao@amlogic.com/20231208 with
+ auth_id=107
+X-Original-From: Xianwei Zhao <xianwei.zhao@amlogic.com>
+Reply-To: xianwei.zhao@amlogic.com
 
-On Sun, Jun 22, 2025 at 11:26:21AM -0500, Jassi Brar wrote:
-> On Wed, Jun 18, 2025 at 7:14 AM Anup Patel <apatel@ventanamicro.com> wrote:
-> >
-> > The SBI v3.0 (MPXY extension) [1] and RPMI v1.0 [2] specifications
-> > are frozen and in public review at the RISC-V International.
-> >
-> > Currently, most of the RPMI and MPXY drivers are in OpenSBI whereas
-> > Linux only has SBI MPXY mailbox controller driver, RPMI clock driver
-> > and RPMI system MSI driver This series also includes ACPI support
-> > for SBI MPXY mailbox controller and RPMI system MSI drivers.
-> >
-> > These patches can be found in the riscv_sbi_mpxy_mailbox_v6 branch
-> > at: https://github.com/avpatel/linux.git
-> >
-> > To test these patches, boot Linux on "virt,rpmi=on,aia=aplic-imsic"
-> > machine with OpenSBI and QEMU from the dev-upstream branch at:
-> > https://github.com/ventanamicro/opensbi.git
-> > https://github.com/ventanamicro/qemu.git
+Introduced support for the new SPI IP (SPISG). The SPISG is
+a communication-oriented SPI controller from Amlogic,supporting
+three operation modes: PIO, block DMA, and scatter-gather DMA.
 
-> I am ok with the mailbox patches. How are these to be picked into
-> mailbox and other subsystems? Maybe sculpt out a separate patchset for
-> the mailbox?
+Add the drivers and device tree bindings corresponding to the SPISG.
 
-I have questions / comments to the series, it's just too long to do it
-in one go.
+Signed-off-by: Xianwei Zhao <xianwei.zhao@amlogic.com>
+---
+Changes in v3:
+- Rename of bit definition and fix some issues.
+- Enable runtime_suspend function.
+- Link to v2: https://lore.kernel.org/r/20250617-spisg-v2-0-51a605a84bd5@amlogic.com
 
+Changes in v2:
+- Use regmap to operation register and drop bitfied define.
+- Use "SPISG" prefix intead of "SPICC", and declare clock div table in the spisg_device. 
+- Delete other power operation functions except for runtime_supspend and runtime_resume.
+- Fix some format corrections.
+- Link to v1: https://lore.kernel.org/r/20250604-spisg-v1-0-5893dbe9d953@amlogic.com
+
+---
+Sunny Luo (2):
+      dt-bindings: spi: Add binding document of Amlogic SPISG controller
+      spi: Add Amlogic SPISG driver
+
+Xianwei Zhao (1):
+      MAINTAINERS: Add an entry for Amlogic spi driver
+
+ .../devicetree/bindings/spi/amlogic,a4-spisg.yaml  |  55 ++
+ MAINTAINERS                                        |   9 +
+ drivers/spi/Kconfig                                |   9 +
+ drivers/spi/Makefile                               |   1 +
+ drivers/spi/spi-amlogic-spisg.c                    | 876 +++++++++++++++++++++
+ 5 files changed, 950 insertions(+)
+---
+base-commit: bd30b995df8fd053e13d10f78dbc7b2fa5ed1aae
+change-id: 20250603-spisg-78f21682ebac
+
+Best regards,
 -- 
-With Best Regards,
-Andy Shevchenko
+Xianwei Zhao <xianwei.zhao@amlogic.com>
 
 
 
