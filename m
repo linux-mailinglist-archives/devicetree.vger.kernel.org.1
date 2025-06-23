@@ -1,99 +1,96 @@
-Return-Path: <devicetree+bounces-188679-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-188680-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4960AAE4962
-	for <lists+devicetree@lfdr.de>; Mon, 23 Jun 2025 17:57:02 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1E282AE496C
+	for <lists+devicetree@lfdr.de>; Mon, 23 Jun 2025 17:58:40 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 028867A8115
-	for <lists+devicetree@lfdr.de>; Mon, 23 Jun 2025 15:55:39 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 3CCF33AB091
+	for <lists+devicetree@lfdr.de>; Mon, 23 Jun 2025 15:58:15 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 179DD28BAAF;
-	Mon, 23 Jun 2025 15:56:56 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D1B0D275B18;
+	Mon, 23 Jun 2025 15:58:36 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="IIQrAv9U"
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=armlinux.org.uk header.i=@armlinux.org.uk header.b="klqEhPVu"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from pandora.armlinux.org.uk (pandora.armlinux.org.uk [78.32.30.218])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E083C2874EC;
-	Mon, 23 Jun 2025 15:56:55 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 53343253B67;
+	Mon, 23 Jun 2025 15:58:35 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=78.32.30.218
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1750694216; cv=none; b=u/LGxENEf65qhkfhn14IRYgRd+aVTRH6R7WOLvEbZrO0tF/dAQ7NcArVQVv85+P74pXq68CSrz+k+viFKq24Q3xdfwj1aiIE7aeH+Bk36UIUPQNEmN43ZlyCU+p/y9TcF345humQfDJLF5ridus14UGp2CdO5MxNJQ1AaX9Uk7U=
+	t=1750694316; cv=none; b=iJENpd7gwzQyFU2Cij5jwMXVgIf++D2AvDhXYsYun2xZ1z/qPiLMcGYAvsX68PSVjlwZd13dG6VYel36U+ffnyP9af4fLp0q4fNR9QkeOBIcha7BQA0mne5IwQUcD7KGNSmJxPopgEDFZjkpn/aeXVAqqd8vUDb3vGWA5S3BgUo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1750694216; c=relaxed/simple;
-	bh=1Nx8tTVaDfGB6Pm4/tKLuefdVSnxExj9qww15xiKZcQ=;
+	s=arc-20240116; t=1750694316; c=relaxed/simple;
+	bh=+gnHtm2Xm/AQkHsS012Lke7TKUT19K3x/CmgqHYwJIQ=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=BVjNWYJiX03Wk4fWlnl12pzo9uDoxrk8C9GnpZoFdhDrq8pWri8K8OijEOEQn3ZN25+/Cw6uZ2WkSu5uJBXG7jgmHStXTnyS8Oj499uQn2GbckmlSPDkVq1k7rEN96AvO1RJRTVEwq/SV6hbiyLuuPVwrXSXxGvnqT4A+ic5AEs=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=IIQrAv9U; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id EF977C4CEEA;
-	Mon, 23 Jun 2025 15:56:53 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1750694215;
-	bh=1Nx8tTVaDfGB6Pm4/tKLuefdVSnxExj9qww15xiKZcQ=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=IIQrAv9UP9HZT53CKDXfj8W/QAph8XrtHU+xsVmcOMpg1hxVwcS33vhhmSWpoBYDP
-	 OhTCLzPLYNBG818iXii4xDfSdpmbJeUWQxX98Xoo1OFVCJeLTm34+N+4F2x5ZlTZyO
-	 xNJwIQAkEEAsxRXDXFL8vxzjK34GoDNL/G0xbfvPDHkDt95tVszXH0cofADHgFCnzz
-	 eD5HQsXZLPe7ID4Phpl/ebhehXBmpHU0EpF6KXM72tDhUil+aNM03XcXyxRS8KAp3O
-	 FR/wc2/58+yvG7tsh05PrPa8/7+rJK50AcbGgUGGUd1ysop91Kc/L2Q675PM86qWeA
-	 0RpRY4z84e3vQ==
-Date: Mon, 23 Jun 2025 16:56:51 +0100
-From: Conor Dooley <conor@kernel.org>
-To: Krzysztof Kozlowski <krzk@kernel.org>
-Cc: E Shattow <e@freeshell.de>, linux-kernel@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-riscv@lists.infradead.org,
-	Rob Herring <robh@kernel.org>, Conor Dooley <conor+dt@kernel.org>
-Subject: Re: [PATCH v1 1/3] dt-bindings: memory-controllers: add StarFive
- JH7110 SoC DMC
-Message-ID: <20250623-enamel-discourse-3d28517e01d4@spud>
-References: <20250606130253.1105273-1-e@freeshell.de>
- <20250606130253.1105273-2-e@freeshell.de>
- <79d84bc5-1b39-433d-afc3-b6ca84f274f0@kernel.org>
+	 Content-Type:Content-Disposition:In-Reply-To; b=VeKtOv8lX0Napozg0B/RnzqXNCVqwyCtWZ/qF5rujhHFbKriYgXq9t6QzeBpkQgdELAu3F9gLz01Hy1qR8WVtvbyw00MDhe7a12b2s7bNjZRznABQBa/Rf8RpwR/M+968Eet11QloVYmP1i7PBHDdFDELbnUAK7pFAuTjD5pfiw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=armlinux.org.uk; spf=none smtp.mailfrom=armlinux.org.uk; dkim=pass (2048-bit key) header.d=armlinux.org.uk header.i=@armlinux.org.uk header.b=klqEhPVu; arc=none smtp.client-ip=78.32.30.218
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=armlinux.org.uk
+Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=armlinux.org.uk
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+	d=armlinux.org.uk; s=pandora-2019; h=Sender:In-Reply-To:
+	Content-Transfer-Encoding:Content-Type:MIME-Version:References:Message-ID:
+	Subject:Cc:To:From:Date:Reply-To:Content-ID:Content-Description:Resent-Date:
+	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Id:
+	List-Help:List-Unsubscribe:List-Subscribe:List-Post:List-Owner:List-Archive;
+	bh=Z9yxtwVTuu9+nWIOqzKx4H8/wNr3LFIBV48QefUFSGM=; b=klqEhPVuEIx1LkXon5v/AVlYy9
+	97ku757xqnJ+e18+0H74sd4uk9Am5SghuEhZc/eQzJl1t7FYlt1IyB5GDrWDyJ5R7J5WFkK+V7czL
+	Y5HPPYgw2AGwSJxu9ZaWRYEVBDVOErJ78TNLSfNecOJjVZsWQ1RahZC7BxZvZ2srhBXZGil3Oz4Be
+	6FfSeb9ZuzXCJQIEJTiz245LzyADlfZ6KgtcEaOHr9b2rblXSQkGy4LUGtGttl0ZbCe+wgM/E2Hll
+	F7CgLB8HLO0T9RupS6/+x3RdQ4nAAAK8uZWD6D2w18d+7uvWHmff8dvQJYvycl4xSxr+o+lqSFvuR
+	/PA9ybSA==;
+Received: from shell.armlinux.org.uk ([fd8f:7570:feb6:1:5054:ff:fe00:4ec]:40854)
+	by pandora.armlinux.org.uk with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+	(Exim 4.96)
+	(envelope-from <linux@armlinux.org.uk>)
+	id 1uTjYx-0004Nk-0A;
+	Mon, 23 Jun 2025 16:58:27 +0100
+Received: from linux by shell.armlinux.org.uk with local (Exim 4.96)
+	(envelope-from <linux@shell.armlinux.org.uk>)
+	id 1uTjYv-0003Zp-2S;
+	Mon, 23 Jun 2025 16:58:25 +0100
+Date: Mon, 23 Jun 2025 16:58:25 +0100
+From: "Russell King (Oracle)" <linux@armlinux.org.uk>
+To: Kamil =?iso-8859-1?Q?Hor=E1k?= - 2N <kamilh@axis.com>
+Cc: florian.fainelli@broadcom.com, bcm-kernel-feedback-list@broadcom.com,
+	andrew@lunn.ch, hkallweit1@gmail.com, davem@davemloft.net,
+	edumazet@google.com, kuba@kernel.org, pabeni@redhat.com,
+	krzk+dt@kernel.org, conor+dt@kernel.org, netdev@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	robh@kernel.org
+Subject: Re: [PATCH net-next v2 2/3] net: phy: bcm5481x: Implement MII-Lite
+ mode
+Message-ID: <aFl5obpjq8Zvw-gd@shell.armlinux.org.uk>
+References: <20250623151048.2391730-1-kamilh@axis.com>
+ <20250623151048.2391730-2-kamilh@axis.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="5Qxs9Dmd5BdP9ygB"
+Content-Type: text/plain; charset=iso-8859-1
 Content-Disposition: inline
-In-Reply-To: <79d84bc5-1b39-433d-afc3-b6ca84f274f0@kernel.org>
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20250623151048.2391730-2-kamilh@axis.com>
+Sender: Russell King (Oracle) <linux@armlinux.org.uk>
 
+On Mon, Jun 23, 2025 at 05:10:46PM +0200, Kamil Horák - 2N wrote:
+> +	priv->mii_lite_mode = of_property_read_bool(np, "mii-lite-mode");
 
---5Qxs9Dmd5BdP9ygB
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+Do we really want a property for this, or is it really a separate
+interface mode? Should we introduce PHY_INTERFACE_MODE_MII_LITE ?
 
-On Mon, Jun 23, 2025 at 08:45:04AM +0200, Krzysztof Kozlowski wrote:
-> On 06/06/2025 15:02, E Shattow wrote:
-> > Document bindings for the JH7110 SoC DMC as implemented in downstream
-> > U-Boot driver starfive_ddr.c
->=20
-> Heh, I totally missed "downstream"... We do not add bindings for
-> downstream. We do not care about downstream, so I should not spend my
-> time on this.
->=20
-> Do not send code for downstream.
+> +	if (!phy_interface_is_rgmii(phydev) ||
+> +	    phydev->interface == PHY_INTERFACE_MODE_MII) {
 
-I think that's either an accident or poor wording, there's a user for
-this in mainline U-Boot.
+Same comment on this as in patch 1.
 
---5Qxs9Dmd5BdP9ygB
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCaFl5QwAKCRB4tDGHoIJi
-0vgEAQCzbZ9M4zBMrRABOtQpgL5FcDJGq7LODPdfsxgn4fgX7QEA0rrRewyTnlzb
-OHOKsfAruqdRzwaMVc7+M2Ejd9x9SQQ=
-=ily5
------END PGP SIGNATURE-----
-
---5Qxs9Dmd5BdP9ygB--
+-- 
+RMK's Patch system: https://www.armlinux.org.uk/developer/patches/
+FTTP is here! 80Mbps down 10Mbps up. Decent connectivity at last!
 
