@@ -1,83 +1,121 @@
-Return-Path: <devicetree+bounces-188577-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-188578-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5C79BAE3FD1
-	for <lists+devicetree@lfdr.de>; Mon, 23 Jun 2025 14:24:08 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2B294AE401C
+	for <lists+devicetree@lfdr.de>; Mon, 23 Jun 2025 14:28:15 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 57B38188835F
-	for <lists+devicetree@lfdr.de>; Mon, 23 Jun 2025 12:19:18 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 636663AB586
+	for <lists+devicetree@lfdr.de>; Mon, 23 Jun 2025 12:21:44 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 268C32459D0;
-	Mon, 23 Jun 2025 12:17:21 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0A00523C8CD;
+	Mon, 23 Jun 2025 12:22:06 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="nlCFAT4q"
 X-Original-To: devicetree@vger.kernel.org
-Received: from foss.arm.com (foss.arm.com [217.140.110.172])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9FA1F1C5D62;
-	Mon, 23 Jun 2025 12:17:17 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.140.110.172
+Received: from bali.collaboradmins.com (bali.collaboradmins.com [148.251.105.195])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+	(No client certificate requested)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EAE471F542E;
+	Mon, 23 Jun 2025 12:22:03 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=148.251.105.195
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1750681041; cv=none; b=Thvxq2UuuqpbwqrImmqo6D32+YxcSitKtLm0rpcKnAvN1ddM+WgbNy44XZSbQGHWmRhox5B6rANSbXjz7hZboI5/7ZesDHkaK796+yLc5P3rSJYCin9TQTrxO6q/wG5Eg79rrvozUBrnlwJ//O3/jTuzhuKR1LV0n7qBiDMsVMo=
+	t=1750681325; cv=none; b=CBRmeoMwLD6XtBCc2hn5RFWRrHlixKkKDAfT1a8ta2xxjhkapvaKu8sgUYuPw7V0+btUW2j6v14YT6stLUk7Kk7qPran1qqEvlIcOPvHIoa+9GLSkyagDqM5fvHNY/hqCTPcHDjl9BJS88muCzfr6/XfhsSiWZsj5AZOaJtCBVw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1750681041; c=relaxed/simple;
-	bh=Zxr5h4VXpm/XSXrlkMN5GFq6pd8xMsA/nBGdgDogvus=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=cDK5UEk/HJOWGgtmTlKnNKO1ZheGayxgt1kaRWuT0pHc+lJNOGt/UwIBFl3QlFKVhJxQwG5Cn/kz5o1QNLN8FkLYiEkCwHxKJ4BoCYezv2dkYQHjb8pbzvOs/oYRdvn54TvjmP9jWh5WH7HFwpSkfWcuGlYBlCk2ZG3qKcihj+U=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com; spf=pass smtp.mailfrom=arm.com; arc=none smtp.client-ip=217.140.110.172
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=arm.com
-Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-	by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id D3D78113E;
-	Mon, 23 Jun 2025 05:16:58 -0700 (PDT)
-Received: from pluto (usa-sjc-mx-foss1.foss.arm.com [172.31.20.19])
-	by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 1B5A43F58B;
-	Mon, 23 Jun 2025 05:17:14 -0700 (PDT)
-Date: Mon, 23 Jun 2025 13:17:07 +0100
-From: Cristian Marussi <cristian.marussi@arm.com>
-To: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
-Cc: robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
-	matthias.bgg@gmail.com, sudeep.holla@arm.com,
-	cristian.marussi@arm.com, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-	linux-mediatek@lists.infradead.org, arm-scmi@vger.kernel.org,
-	kernel@collabora.com
-Subject: Re: [PATCH v1 0/2] firmware: Add MediaTek TinySYS SCMI Protocol
-Message-ID: <aFlFw-AjqxXcIuBO@pluto>
-References: <20250623120136.109311-1-angelogioacchino.delregno@collabora.com>
+	s=arc-20240116; t=1750681325; c=relaxed/simple;
+	bh=BX3kWGffKwR8jKbbugtulEnXj6o/sd8kiTE3A0kY6pg=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=ja20Sag3KoPMTfbD3ZxqeXIVdIBS1eM7FHrjYjz+IQSGEfhYcEjcfKFmH6s0WspOY913pEa//B93Xx8M27IcAO8Ht5PUEd84tvm7pLA8L0H12IxkEcpp4rA7ScyXQJG5GHukvGInEaXz6HcAti+WnPNgHLlSka7g1YAlt1pv2Bg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b=nlCFAT4q; arc=none smtp.client-ip=148.251.105.195
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+	s=mail; t=1750681322;
+	bh=BX3kWGffKwR8jKbbugtulEnXj6o/sd8kiTE3A0kY6pg=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=nlCFAT4qrsm8CJbwA6C9jm53wiNm1n1d/wI2w8xmVhuIRTPHk06c68q4u4nMFKm+n
+	 T3RYFwA4sQatd9lOioQGhKgiY1kRNkjFqN0DkadumCvSCKtFp7vJlLiY0jZQ/GFYCv
+	 OwHXaKXhfzxdmTtDvbg6qySKVx/CdGeM8Iwr9Xkm8unsdLe6M4pA/Hruzscf3CA9cv
+	 Y4MiotqPf3FEuQUFRYKDrQPakNIFMHv6VxGBm2NPrqqEkTgE5+P9PAuOwa+9sEkYnf
+	 0mzckR8pSS/VBtF4pEVra+r4X4uVNfk62V+chyGPdfeaYHRSgpUrfprijXC6tEvIqn
+	 GkpvbbRQMwTmw==
+Received: from [192.168.1.100] (2-237-20-237.ip236.fastwebnet.it [2.237.20.237])
+	(using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
+	 key-exchange X25519 server-signature RSA-PSS (4096 bits))
+	(No client certificate requested)
+	(Authenticated sender: kholk11)
+	by bali.collaboradmins.com (Postfix) with ESMTPSA id 1349417E0FDB;
+	Mon, 23 Jun 2025 14:22:01 +0200 (CEST)
+Message-ID: <dfbd00bd-37bd-425a-aa98-e536b2a3f2d4@collabora.com>
+Date: Mon, 23 Jun 2025 14:22:00 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20250623120136.109311-1-angelogioacchino.delregno@collabora.com>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 29/30] dt-bindings: reset: Add MediaTek MT8196 Reset
+ Controller binding
+To: Krzysztof Kozlowski <krzk@kernel.org>, Laura Nao
+ <laura.nao@collabora.com>, mturquette@baylibre.com, sboyd@kernel.org,
+ robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
+ matthias.bgg@gmail.com, p.zabel@pengutronix.de, richardcochran@gmail.com
+Cc: guangjie.song@mediatek.com, wenst@chromium.org,
+ linux-clk@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ linux-mediatek@lists.infradead.org, netdev@vger.kernel.org,
+ kernel@collabora.com
+References: <20250623102940.214269-1-laura.nao@collabora.com>
+ <20250623102940.214269-30-laura.nao@collabora.com>
+ <2bc23bcf-0021-44dd-ae42-9ef0e95e3b32@kernel.org>
+From: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+Content-Language: en-US
+In-Reply-To: <2bc23bcf-0021-44dd-ae42-9ef0e95e3b32@kernel.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 
-On Mon, Jun 23, 2025 at 02:01:34PM +0200, AngeloGioacchino Del Regno wrote:
-> This series adds basic support for the MediaTek TinySYS SCMI Protocol,
-> found on the MediaTek Dimensity 9200, 9300 and 9400, other than on the
-> MT8196 Chromebook SoC.
+Il 23/06/25 14:13, Krzysztof Kozlowski ha scritto:
+> On 23/06/2025 12:29, Laura Nao wrote:
+>> From: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+>>
+>> Add a binding for the PEXTP0/1 and UFS reset controllers found in
+>> the MediaTek MT8196 Chromebook SoC.
+>>
+>> Signed-off-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+>> Signed-off-by: Laura Nao <laura.nao@collabora.com>
+>> ---
+>>   .../reset/mediatek,mt8196-resets.h            | 26 +++++++++++++++++++
 > 
-> This is used to communicate with the CM_MGR and other MCUs for power
-> management purposes.
+> This belongs to the binding doc.
+> 
+>>   1 file changed, 26 insertions(+)
+>>   create mode 100644 include/dt-bindings/reset/mediatek,mt8196-resets.h
+>>
+>> diff --git a/include/dt-bindings/reset/mediatek,mt8196-resets.h b/include/dt-bindings/reset/mediatek,mt8196-resets.h
+>> new file mode 100644
+>> index 000000000000..1a01b2b01f7f
+>> --- /dev/null
+>> +++ b/include/dt-bindings/reset/mediatek,mt8196-resets.h
+>> @@ -0,0 +1,26 @@
+>> +/* SPDX-License-Identifier: (GPL-2.0+ OR BSD-2-Clause) */
+> 
+> Wrong license, use standard ones.
 
-Hi Angelo,
+Oh WHOOOOOPS! No idea how that happened.
 
-thanks for this.
+Laura, can you please change this to (GPL-2.0-only OR BSD-2-Clause)?
 
-I will do a proper review in the coming days of this series anyway, but
-upfront for future V2:
+Thanks!
 
-- you should provide some sort of documentation for this new
-  vendor protocol and its messages, as an example from IMX:
+Cheers,
+Angelo
 
-	drivers/firmware/arm_scmi/vendors/imx/imx95.rst
+> 
+> Best regards,
+> Krzysztof
 
-- where is the SCMI driver that will call all the new vendor ops
-  defined in: scmi_mtk_protocol.h ?
 
-Thanks,
-Cristian
 
