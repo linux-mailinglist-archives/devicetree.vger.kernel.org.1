@@ -1,55 +1,48 @@
-Return-Path: <devicetree+bounces-188337-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-188338-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6FB84AE3890
-	for <lists+devicetree@lfdr.de>; Mon, 23 Jun 2025 10:36:58 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0360AAE38A0
+	for <lists+devicetree@lfdr.de>; Mon, 23 Jun 2025 10:39:56 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id A76071714EF
-	for <lists+devicetree@lfdr.de>; Mon, 23 Jun 2025 08:36:44 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id C58133A3CBC
+	for <lists+devicetree@lfdr.de>; Mon, 23 Jun 2025 08:39:10 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5B3F42367DE;
-	Mon, 23 Jun 2025 08:35:25 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E486F22DF87;
+	Mon, 23 Jun 2025 08:39:30 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="cDPA0C7F"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="OMEQzFlX"
 X-Original-To: devicetree@vger.kernel.org
-Received: from bali.collaboradmins.com (bali.collaboradmins.com [148.251.105.195])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7574822F16C;
-	Mon, 23 Jun 2025 08:35:23 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=148.251.105.195
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B566B22DA0A;
+	Mon, 23 Jun 2025 08:39:30 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1750667725; cv=none; b=hb/vR4O2kOdYRysvdXSmzWEZXY/BkT7jq0OdUYVADVeC4dFnbYBOozjlWEzGY81+5afjy+7A9OVAkwczliaOrNRwCRlR6TZyLZccOiKLtHvRjSXvmbxqzZ7Ia2tQ/AbzthPJKp85JjIeiFipuYJjdVbpVMUZhWwL4lVErF6gnXs=
+	t=1750667970; cv=none; b=M3isASTDJcryUfRWSId96u6frU3n4pv8iy1LL5ATWGO4PcctJe2v35n635c5PpLPLVhFK2u/qZJGrNprkzm9f9vh1jJXzIslsxZsxGv/Arx0SgRigufPWYL5UauQF3FeAAowH+vzvLORvCiPTG1rM/IYXU6iFfR3/sAqAxO8iR4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1750667725; c=relaxed/simple;
-	bh=47EqE7bU1EPZXo/pjpY2FIwSnKhw6fXy7NDRDFk7+i8=;
+	s=arc-20240116; t=1750667970; c=relaxed/simple;
+	bh=kADDkteBuGM/y2AxSFcVG2v8UU9U983QSXwQqpAJ9dk=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=KzMunMy6wQt/nTCS50Vq7412yhzCDYrgzwXrAvPm+uCRhHmu2JDj4tclwuq8v0uz5i6kKqBI9+MXUfLsfgmDHHLM3ot+4sjN/xdNIV6/Bts9yGX98TSv9fsRDwqSKAl7IsfNiulyFsSrFqxMgttVWzxWtCQVSWLZbflNQ5yVpcQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b=cDPA0C7F; arc=none smtp.client-ip=148.251.105.195
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-	s=mail; t=1750667721;
-	bh=47EqE7bU1EPZXo/pjpY2FIwSnKhw6fXy7NDRDFk7+i8=;
+	 In-Reply-To:Content-Type; b=FHxHLYpWPTMf/AbtsrIaEFOhbB79ZwD2d/2w8myUJbqDT13hip98beaXdmbLJR+w5TD9zphXhmSoR8vZj+gQvNi8dz6zi7x39jmKpmB4SbjvEjq3arDWU6xLrxTMJqw0lpLDOMJkmAa8XZbTij9V6YmdXA1NLLQn0SSDIex2ms4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=OMEQzFlX; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 22671C4CEED;
+	Mon, 23 Jun 2025 08:39:26 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1750667970;
+	bh=kADDkteBuGM/y2AxSFcVG2v8UU9U983QSXwQqpAJ9dk=;
 	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=cDPA0C7Fwu1zSbSbKN6+YeyJ4ftsnw094NVThPnQOfnjq0UHZHC6wSM/Xl+jk7uct
-	 upVXYPCwrYn4q/AlcmHCYvJPHZs9QgIMvjnq1hXuXUStPv5Ot0OMw+RrGWQixzP6m1
-	 UvRv6+iiT5rCMw7RiDDLiIxqBOPDV/CbW28cLAUNzK5+iZr1KtzPRWHQgdB1T0iF1s
-	 5IiUEiE2v1JVo21plMvLDw5KIHgpG/+wNjuXe9H2hS9cFmM+kdd/KSKhxg9IE4/dEz
-	 wPodhUPTHknLwzQcWPuHXBfoqIfagzS2nPp/L/N23jxpc6sTkzmi6EJxGAtDLttVMF
-	 pmi48CZbLnNPA==
-Received: from [192.168.1.100] (2-237-20-237.ip236.fastwebnet.it [2.237.20.237])
-	(using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
-	 key-exchange X25519 server-signature RSA-PSS (4096 bits))
-	(No client certificate requested)
-	(Authenticated sender: kholk11)
-	by bali.collaboradmins.com (Postfix) with ESMTPSA id C25AF17E159C;
-	Mon, 23 Jun 2025 10:35:20 +0200 (CEST)
-Message-ID: <94fd71e6-0f09-42d0-94ef-1ff111daac9f@collabora.com>
-Date: Mon, 23 Jun 2025 10:35:20 +0200
+	b=OMEQzFlXShBwB9aVIoQvovqUNGjE9YjuKpjU40tU7GPQ+tUU9KhaaNWdw60cS7asu
+	 gk9p/Q8qBJufR3ymu2+A9sCIUF2EXa9mQLYs7M/CIUjwtW9ixOhRKm7wV19VJxgzx1
+	 FVBC2ZpHydMgEB/EY2zRbLrJaqksN1qY1SSMTfFj0qhjfBtGRVyRKDrbK1eKhwKkQC
+	 CQuD1zV4gxQijdWKniuajab+gdv7DCLSwideFEOMVvuO6dF8VzQWL9Yflm4rxFig+f
+	 FQWiumOo0e9Qml/aAxTyB7MiwjnlALVwFz0OfFWxf5he242ZvdcM6DQT8PuuvYse15
+	 gHtgA+s5c7sUw==
+Message-ID: <8122072a-eaa1-45d2-85c0-35e5cf5fe9f4@kernel.org>
+Date: Mon, 23 Jun 2025 10:39:25 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -57,192 +50,83 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 09/11] ARM: dts: mediatek: add basic support for MT6572
- SoC
-To: wctrl@proton.me, Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
- Jiri Slaby <jirislaby@kernel.org>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Matthias Brugger <matthias.bgg@gmail.com>,
- Thomas Gleixner <tglx@linutronix.de>,
- Daniel Lezcano <daniel.lezcano@linaro.org>,
- Wim Van Sebroeck <wim@linux-watchdog.org>, Guenter Roeck
- <linux@roeck-us.net>, Sean Wang <sean.wang@mediatek.com>,
- Russell King <linux@armlinux.org.uk>
-Cc: linux-kernel@vger.kernel.org, linux-serial@vger.kernel.org,
- devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- linux-mediatek@lists.infradead.org, linux-watchdog@vger.kernel.org
-References: <20250620-mt6572-v1-0-e2d47820f042@proton.me>
- <20250620-mt6572-v1-9-e2d47820f042@proton.me>
-From: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+Subject: Re: [PATCH v3 0/5] media: venus: Add QCM2290 support with AR50_LITE
+ core
+To: Jorge Ramirez <jorge.ramirez@oss.qualcomm.com>
+Cc: quic_vgarodia@quicinc.com, quic_dikshita@quicinc.com,
+ bryan.odonoghue@linaro.org, mchehab@kernel.org, robh@kernel.org,
+ krzk+dt@kernel.org, conor+dt@kernel.org, andersson@kernel.org,
+ konradybcio@kernel.org, linux-arm-msm@vger.kernel.org,
+ linux-media@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org
+References: <20250613140402.3619465-1-jorge.ramirez@oss.qualcomm.com>
+ <20250623074940.3445115-1-jorge.ramirez@oss.qualcomm.com>
+ <8c8bccd6-9a46-4ebf-aeaf-01f52570c0be@kernel.org> <aFkLVOkYZMHqEMrh@trex>
+From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
-In-Reply-To: <20250620-mt6572-v1-9-e2d47820f042@proton.me>
-Content-Type: text/plain; charset=UTF-8; format=flowed
+Autocrypt: addr=krzk@kernel.org; keydata=
+ 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 a/A=
+In-Reply-To: <aFkLVOkYZMHqEMrh@trex>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-Il 20/06/25 17:40, Max Shevchenko via B4 Relay ha scritto:
-> From: Max Shevchenko <wctrl@proton.me>
+On 23/06/2025 10:07, Jorge Ramirez wrote:
+> On 23/06/25 09:55:25, Krzysztof Kozlowski wrote:
+>> On 23/06/2025 09:49, Jorge Ramirez-Ortiz wrote:
+>>> Changes since v2:
+>>> - Removed IS_HFI/IS_VPU macros
+>>> - checkpatch.pl --strict fixes:
+>>>   - convert macro to static inline to avoid argument reuse side effect
+>>>
+>> Do not attach (thread) your patchsets to some other threads (unrelated
+>> or older versions). This buries them deep in the mailbox and might
+>> interfere with applying entire sets.
 > 
-> Add basic support for the MediaTek MT6572 SoC.
-> 
-> Signed-off-by: Max Shevchenko <wctrl@proton.me>
-> ---
->   arch/arm/boot/dts/mediatek/mt6572.dtsi | 105 +++++++++++++++++++++++++++++++++
->   1 file changed, 105 insertions(+)
-> 
-> diff --git a/arch/arm/boot/dts/mediatek/mt6572.dtsi b/arch/arm/boot/dts/mediatek/mt6572.dtsi
-> new file mode 100644
-> index 0000000000000000000000000000000000000000..dd12231ca745be7455e99391abd2d708f2f1a8a9
-> --- /dev/null
-> +++ b/arch/arm/boot/dts/mediatek/mt6572.dtsi
-> @@ -0,0 +1,105 @@
-> +// SPDX-License-Identifier: GPL-2.0
-> +/*
-> + * Copyright (c) 2025 Max Shevchenko <wctrl@proton.me>
-> + */
-> +
-> +#include <dt-bindings/interrupt-controller/irq.h>
-> +#include <dt-bindings/interrupt-controller/arm-gic.h>
-> +
-> +/ {
-> +	#address-cells = <1>;
-> +	#size-cells = <1>;
-> +	compatible = "mediatek,mt6572";
-> +	interrupt-parent = <&sysirq>;
-> +
-> +	cpus {
-> +		#address-cells = <1>;
-> +		#size-cells = <0>;
-> +		enable-method = "mediatek,mt6589-smp";
-> +
-> +		cpu@0 {
-> +			device_type = "cpu";
-> +			compatible = "arm,cortex-a7";
-> +			reg = <0x0>;
-> +		};
-> +		cpu@1 {
-> +			device_type = "cpu";
-> +			compatible = "arm,cortex-a7";
-> +			reg = <0x1>;
-> +		};
-> +	};
-> +
-> +	system_clk: dummy13m {
-> +		compatible = "fixed-clock";
-> +		clock-frequency = <13000000>;
-> +		#clock-cells = <0>;
-> +	};
-> +
-> +	rtc_clk: dummy32k {
-> +		compatible = "fixed-clock";
-> +		clock-frequency = <32000>;
-> +		#clock-cells = <0>;
-> +	};
-> +
-> +	uart_clk: dummy26m {
-> +		compatible = "fixed-clock";
-> +		clock-frequency = <26000000>;
-> +		#clock-cells = <0>;
-> +	};
-> +
+> ah interesting, I was reading somewhere that sets should be threaded.
+> sure will stop doing that (found it super annoying as well)
+https://elixir.bootlin.com/linux/v6.15/source/Documentation/process/submitting-patches.rst#L831
 
-Anything that has an MMIO address shall be child of "soc".
-
-soc {
-	watchdog@....
-
-	timer@....
-
-	etc.
-};
-
-> +	watchdog: watchdog@10007000 {
-> +		compatible = "mediatek,mt6572-wdt",
-> +			     "mediatek,mt6589-wdt";
-
-those fit in one line:
-
-compatible = "mediatek,mt6572-wdt", "mediatek,mt6589-wdt";
-
-> +		reg = <0x10007000 0x100>;
-> +		interrupts = <GIC_SPI 126 IRQ_TYPE_LEVEL_LOW>;
-> +		timeout-sec = <15>;
-> +		#reset-cells = <1>;
-> +	};
-> +
-> +	timer: timer@10008000 {
-> +		compatible = "mediatek,mt6572-timer",
-> +			     "mediatek,mt6577-timer";
-
-same
-
-> +		reg = <0x10008000 0x80>;
-> +		interrupts = <GIC_SPI 74 IRQ_TYPE_LEVEL_LOW>;
-> +		clocks = <&system_clk>, <&rtc_clk>;
-> +		clock-names = "system-clk", "rtc-clk";
-> +	};
-> +
-> +	sysirq: interrupt-controller@10200100 {
-> +		compatible = "mediatek,mt6572-sysirq",
-> +			     "mediatek,mt6577-sysirq";
-
-same; and reg goes after compatible.
-
-> +		interrupt-controller;
-> +		#interrupt-cells = <3>;
-> +		interrupt-parent = <&gic>;
-
-are you sure that interrupt-parent is gic?
-
-> +		reg = <0x10200100 0x1c>;
-> +	};
-> +
-> +	gic: interrupt-controller@10211000 {
-> +		compatible = "arm,cortex-a7-gic";
-
-reg here.
-
-
-> +		interrupt-controller;
-> +		#interrupt-cells = <3>;
-> +		interrupt-parent = <&gic>;
-
-are you sure that the interrupt parent isn't sysirq here? :-)
-
-> +		reg = <0x10211000 0x1000>,
-> +		      <0x10212000 0x2000>,
-> +		      <0x10214000 0x2000>,
-> +		      <0x10216000 0x2000>;
-> +	};
-> +
-> +	uart0: serial@11005000 {
-> +		compatible = "mediatek,mt6572-uart",
-> +			     "mediatek,mt6577-uart";
-
-fits in one line
-
-> +		reg = <0x11005000 0x400>;
-> +		interrupts = <GIC_SPI 31 IRQ_TYPE_LEVEL_LOW>;
-> +		clocks = <&uart_clk>;
-
-clock-names = .....
-
-> +		status = "disabled";
-> +	};
-> +
-> +	uart1: serial@11006000 {
-> +		compatible = "mediatek,mt6572-uart",
-
-...again.
-
-> +			     "mediatek,mt6577-uart";
-> +		reg = <0x11006000 0x400>;
-> +		interrupts = <GIC_SPI 32 IRQ_TYPE_LEVEL_LOW>;
-> +		clocks = <&uart_clk>;
-> +		status = "disabled";
-> +	};
-> +};
-> 
-
-Cheers,
-Angelo
+Best regards,
+Krzysztof
 
