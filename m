@@ -1,129 +1,126 @@
-Return-Path: <devicetree+bounces-188263-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-188274-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 01D7FAE35CE
-	for <lists+devicetree@lfdr.de>; Mon, 23 Jun 2025 08:38:12 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id D1B9CAE3626
+	for <lists+devicetree@lfdr.de>; Mon, 23 Jun 2025 08:48:12 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 8F367169BB8
-	for <lists+devicetree@lfdr.de>; Mon, 23 Jun 2025 06:38:12 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 8650E1892321
+	for <lists+devicetree@lfdr.de>; Mon, 23 Jun 2025 06:48:28 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1EEAB1DF96F;
-	Mon, 23 Jun 2025 06:38:08 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6419E1E1DFE;
+	Mon, 23 Jun 2025 06:48:04 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="T3j7qsVt"
+	dkim=pass (1024-bit key) header.d=murena.io header.i=@murena.io header.b="ip5sLEiB"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mail2.ecloud.global (mail2.ecloud.global [135.181.6.248])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E714E1DED42;
-	Mon, 23 Jun 2025 06:38:07 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1750660688; cv=none; b=I3CbSoE70L1XlgbgDkLQZmkxmKOaVrpjt9oexa/Q7qHp8cZA0slCGdr8YgBxWzSdb3BC0OXPhBX6dwToUA4Kd4bqitxhRqLpwp/LwrDx8DaVNTrsT1L59wo7nE7iIDXMFyE/AkpOjtdgssW+bE05kJQ+IkNdtTTAQaD4eUXxvm0=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1750660688; c=relaxed/simple;
-	bh=9/9WTVqa0C7WJIcOxs3cFYKX0yUJgk3qTQ1JInpRfEM=;
-	h=Message-ID:Date:MIME-Version:Subject:To:References:From:
-	 In-Reply-To:Content-Type; b=LLk+0l5ElBykGfa8E3Cs/v2c7HU1DduD/mW6MGDVmXJDhpclLNgjtqR6DNJqlcjx5M53n6FBAw0H2q78kmt8TXByGeNUQ4tCsmH8bq6pQm1ew4WTM6GEXDauu7FtPfdwnGsOCq7Gp1Jf+ljmlL4+9DCMga6C+/F2OM1qIy6vzfo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=T3j7qsVt; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id CC542C4CEED;
-	Mon, 23 Jun 2025 06:38:03 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1750660687;
-	bh=9/9WTVqa0C7WJIcOxs3cFYKX0yUJgk3qTQ1JInpRfEM=;
-	h=Date:Subject:To:References:From:In-Reply-To:From;
-	b=T3j7qsVtimDMgWpMos/k9ha+/f/1Oz7SDCp3VT79qTTH84EfnMvk+SPKffZK/gyaC
-	 3wbxszBHbFN6WI5GZTrnrGiaOo1wCBBTvMUdBF3HQ/8GRiR7DgA99ECSciDPZnbqMX
-	 Yicup12gO1Vr6WpxgHU2qCkGvnYzsF0iBGohdiPOqvDVJAyKMHa4hQXbzLemAVZDDh
-	 Ahqu8HLoISS3W9GAq1ALEimZp4ilbkszP8eCnBBccHP2/T4db3HjNx1aOBRW+FrU+u
-	 x7Bs1WT+UaYQCjQUKyvZMs2o/WvuNUKChWwgSgDzM2BHZC+RttshH/SpOw8Wr/1BFv
-	 Hxj4DZcYZ2kHw==
-Message-ID: <832eaca0-185f-47f6-9c0d-9206a4a814f3@kernel.org>
-Date: Mon, 23 Jun 2025 08:38:02 +0200
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9D26B78F51;
+	Mon, 23 Jun 2025 06:48:02 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=pass smtp.client-ip=135.181.6.248
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1750661284; cv=pass; b=A8KeBfuCxWxBsQl/I/srW7LKkIKzHI53dSxPrwjV27Yu26KttPYGvsdhiCygylLqAtnyVgsJtKyMP2DrmdFzqz0WPo67IDIScQiRxfWDe7wFMCGb5iBHlP3hZideHh8DtVAI/JOmO+D2i6NfzTz72D+P9x78c0j6pSEZDFT25dQ=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1750661284; c=relaxed/simple;
+	bh=0j/Z5yh5tbFiw8rk0QBBfNVRu8U4mrVCE94WwPQ4NYw=;
+	h=Message-ID:Date:MIME-Version:To:Cc:References:Subject:From:
+	 In-Reply-To:Content-Type; b=te/wElwKpboR7v6KYX/hZ1V1+sK3yTVJSSg6puyeq5J6QiEBjWjr/u4516UrbXBaHhlo3A6ISTZyqzWa/u1rdVOw5Y4QzVZv4aG6atT6oZDvCxZCDmhJRECG6ozkKurCJ8xpn/kz0gbVmOq+ygWmPeBsqFjc8UWUmnSdm5kXtfQ=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=murena.io; spf=pass smtp.mailfrom=murena.io; dkim=pass (1024-bit key) header.d=murena.io header.i=@murena.io header.b=ip5sLEiB; arc=pass smtp.client-ip=135.181.6.248
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=murena.io
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=murena.io
+Received: from authenticated-user (mail2.ecloud.global [127.0.0.1])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
+	(No client certificate requested)
+	by mail2.ecloud.global (Postfix) with ESMTPSA id 297857209A4;
+	Mon, 23 Jun 2025 06:40:37 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=murena.io; s=mail2;
+	t=1750660838;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references;
+	bh=oLgpNtx/boIApBv5pSWc//bswQhEsFbXQypbXTIeykY=;
+	b=ip5sLEiBUhLNEb7dQe1Iz9dBtnXg4R38RsViRxUSbeXJzoioSdD6Ex6VQv3l53AKvBcBCU
+	iMetLjvnRLSXxbczpkWTZwWfYOyL5JO/pn0M+AVhtOZg20Ac8ba/9F6BfFK3HA7Xl+AOTm
+	1E5k+po1T1Qm5/VSUdFSXQiZz8nJhoc=
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=murena.io;
+	s=mail2; t=1750660838;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references;
+	bh=oLgpNtx/boIApBv5pSWc//bswQhEsFbXQypbXTIeykY=;
+	b=c+kjGhqvGy47p2nqRb2Oa1q399S8ukOiSgu404gkJiJ7WFTR0x8CSs0fryDoQau4WJXwUN
+	2iN4ZIGS7GOs+OZ+4AFADlWJGlC5DpAsPVjiJbQhVJ/VSn5h0Rh2rslNkcVTHFavdV+1rB
+	TfJ6y4Bb+mbirIcm1c80LbSVeIRCgxU=
+ARC-Authentication-Results: i=1;
+	mail2.ecloud.global;
+	auth=pass smtp.mailfrom=maud_spierings@murena.io
+ARC-Seal: i=1; s=mail2; d=murena.io; t=1750660838; a=rsa-sha256; cv=none;
+	b=FAuKfniINvB77wTngpcUPVsI6Eq1dqhr/efasdsLnGMRsweZEfFWLJz4ihNJrR8nJAP11F
+	S/5Bgx/b4h2VcGTBtywDSPcOe90me7Ir0KrcC5tLMGPcqTnipQmzFAcYbA2x5Nn9JLHZk6
+	9R88Q3nWaOQwKdhiBihu5KjMB8KVp7Q=
+Message-ID: <4cb09d05-d1f2-4d34-b3f7-be523b900a9e@murena.io>
+Date: Mon, 23 Jun 2025 08:40:35 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3 13/17] dt-bindings: dma: ti: Add K3 PKTDMA V2
-To: Sai Sree Kartheek Adivi <s-adivi@ti.com>,
- Peter Ujfalusi <peter.ujfalusi@gmail.com>, Vinod Koul <vkoul@kernel.org>,
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, Nishanth Menon <nm@ti.com>,
- Santosh Shilimkar <ssantosh@kernel.org>, dmaengine@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, praneeth@ti.com, vigneshr@ti.com,
- u-kumar1@ti.com, a-chavda@ti.com, p-mantena@ti.com
-References: <20250623053716.1493974-1-s-adivi@ti.com>
- <20250623053716.1493974-14-s-adivi@ti.com>
-From: Krzysztof Kozlowski <krzk@kernel.org>
+To: inochiama@gmail.com
+Cc: alex@ghiti.fr, alexander.sverdlin@gmail.com, andrew+netdev@lunn.ch,
+ aou@eecs.berkeley.edu, conor+dt@kernel.org, conor.dooley@microchip.com,
+ davem@davemloft.net, devicetree@vger.kernel.org, dlan@gentoo.org,
+ edumazet@google.com, huangze@whut.edu.cn, krzk+dt@kernel.org,
+ kuba@kernel.org, linux-kernel@vger.kernel.org,
+ linux-riscv@lists.infradead.org, looong.bin@gmail.com,
+ netdev@vger.kernel.org, pabeni@redhat.com, palmer@dabbelt.com,
+ paul.walmsley@sifive.com, richardcochran@gmail.com, robh@kernel.org,
+ sophgo@lists.linux.dev, thomas.bonnefille@bootlin.com,
+ unicorn_wang@outlook.com, yu.yuan@sjtu.edu.cn
+References: <20250623003049.574821-2-inochiama@gmail.com>
+Subject: Re: [PATCH net-next RFC v2 1/4] dt-bindings: net: Add support for
+ Sophgo CV1800 dwmac
 Content-Language: en-US
-Autocrypt: addr=krzk@kernel.org; keydata=
- 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 a/A=
-In-Reply-To: <20250623053716.1493974-14-s-adivi@ti.com>
-Content-Type: text/plain; charset=UTF-8
+From: Maud Spierings <maud_spierings@murena.io>
+In-Reply-To: <20250623003049.574821-2-inochiama@gmail.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
 
-On 23/06/2025 07:37, Sai Sree Kartheek Adivi wrote:
-> New binding document for
-> Texas Instruments K3 Packet DMA (PKTDMA) V2.
+Inochi sent:> The GMAC IP on CV1800 series SoC is a standard Synopsys
+> DesignWare MAC (version 3.70a).
 > 
-> PKTDMA V2 is introduced as part of AM62L.
+> Add necessary compatible string for this device.
 > 
-> Signed-off-by: Sai Sree Kartheek Adivi <s-adivi@ti.com>
+> Signed-off-by: Inochi Amaoto <inochiama@gmail.com>
+> Acked-by: Conor Dooley <conor.dooley@microchip.com>
 > ---
->  .../bindings/dma/ti/k3-pktdma-v2.yaml         | 72 +++++++++++++++++++
->  1 file changed, 72 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/dma/ti/k3-pktdma-v2.yaml
+>  .../bindings/net/sophgo,cv1800b-dwmac.yaml    | 113 ++++++++++++++++++
+>  1 file changed, 113 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/net/sophgo,cv1800b-dwmac.yaml
+> 
+> diff --git a/Documentation/devicetree/bindings/net/sophgo,cv1800b-dwmac.yaml b/Documentation/devicetree/bindings/net/sophgo,cv1800b-dwmac.yaml
+> new file mode 100644
+> index 000000000000..2821cca26487
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/net/sophgo,cv1800b-dwmac.yaml
+> @@ -0,0 +1,113 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/net/sophgo,cv1800b-dwmac.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Sophgo SG2044 DWMAC glue layer
 
-ti,am62l-dmss-pktdma.yaml
+This looks like a copy paste error
 
-Best regards,
-Krzysztof
+kind regards,
+Maud
+
 
