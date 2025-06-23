@@ -1,48 +1,48 @@
-Return-Path: <devicetree+bounces-188314-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-188315-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id F1510AE3799
-	for <lists+devicetree@lfdr.de>; Mon, 23 Jun 2025 09:59:18 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 85215AE37A7
+	for <lists+devicetree@lfdr.de>; Mon, 23 Jun 2025 10:01:56 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id BCB2F188C078
-	for <lists+devicetree@lfdr.de>; Mon, 23 Jun 2025 07:59:34 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 4BF67188EBFB
+	for <lists+devicetree@lfdr.de>; Mon, 23 Jun 2025 08:02:12 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id F29B31E7C2E;
-	Mon, 23 Jun 2025 07:59:13 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 083BD1F1522;
+	Mon, 23 Jun 2025 08:01:52 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="JOYaKGPv"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="bB9CRF3D"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C04B3149DE8;
-	Mon, 23 Jun 2025 07:59:13 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C5B3E537F8;
+	Mon, 23 Jun 2025 08:01:51 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1750665553; cv=none; b=hrtUlPNjtIc4VNL58a2n+zLvh7p1NpLYVrCs/AKkZKXEi0A0fNnFTUE4wc3lmI367s2TMoIoF3g1qch+6FvoMWpIDEtQJ4yjeDXBkre171vaTBgUqXJf8zS7/G/m7rim2+IGfiGEYpGgerkCRhU8J/Idhwy5417BFSOMCHt9Qxc=
+	t=1750665711; cv=none; b=GDO0Mu6HaajBKaZY+1sxvbLVk6ehPS7ZtV6Jah1fPSop5oCnrTrisXQatvQaHcUDhM9s/UeVjoZsJhUhHaC5OHuAdG13xkyIjRis783Fl5+5dxzKj306iE4Dm8TI1JXJUMl0AjSmzLS6oW2ammj5johkwbZtaiNuj0xpKWYCWpc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1750665553; c=relaxed/simple;
-	bh=PEjxTVB/gET4aknxVSzoZvnupdKn+ica7GgyMElR380=;
+	s=arc-20240116; t=1750665711; c=relaxed/simple;
+	bh=TAR1cdtcLVU/hOIHwRsbxlpEDGpvTNlzvB0o60PEETs=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=J1fcHhv/MGYCZc9Rj6gy46yaJ8sqm/6NOkk6CsHUQsE+NgjYgJtYOnjW64YqUCU1JOjCpC07NwylLxjVcq/MBwNJZNjhxpy8lDvgPs4qtB6nIhpvZQz211SRmN9z1oW5hwB2jWwpCnTjWnOW+tTbpaZ+jvac5MT6ohpiYrbDUPA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=JOYaKGPv; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 3350CC4CEEF;
-	Mon, 23 Jun 2025 07:59:09 +0000 (UTC)
+	 In-Reply-To:Content-Type; b=GmCrd+Mo9SPh3QssjxEaIrpjgRfB0oX8/5+/u5Shyfzl0ClTe6tkBpOax//Oz3wDOv3/+CSAvTbKw2rZTC9rvW4J+wMsIQMao7uHNekf84p1UxFFNkpjIt8CnZAkDZH2k13vNhqIqBA37Ao2UwANTLGCKfZmWAUEVleT3eWCAcI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=bB9CRF3D; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 89131C4CEED;
+	Mon, 23 Jun 2025 08:01:46 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1750665553;
-	bh=PEjxTVB/gET4aknxVSzoZvnupdKn+ica7GgyMElR380=;
+	s=k20201202; t=1750665711;
+	bh=TAR1cdtcLVU/hOIHwRsbxlpEDGpvTNlzvB0o60PEETs=;
 	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=JOYaKGPv6MEXp5qU8g65jI3/mA25zaIFH7kdk1hSTQbFcVf5g4aHjqFkOsv2wPz6G
-	 VIzupuYOuZHJAwRHn/vdOC1TGwha/hrSw/0yloEcACQeiOka6tbhY9TfudLY2Yh5/X
-	 L7+mTqDbZnvJ5u0qL0s5jD0C9pUwZsd9x21xmlohThFezEgUISZZvQgFZIRUHdmNS7
-	 REBGdSgE4kbVAYkcsziarlEhTGRd/c7OXAHR05eDHCudxon4lInGwUOhnXJ9dceJEa
-	 tljU9VPd62ptFP2ahOF48XSesU9zefh61wx6Je3Vz23hFlCTNMeSyVsfeAJQtd2AMF
-	 +syfcvxIqSsgw==
-Message-ID: <52383350-5c94-4f6e-87da-d8705af03b20@kernel.org>
-Date: Mon, 23 Jun 2025 09:59:08 +0200
+	b=bB9CRF3DemtCO6pIeXGhn711ozWhySaYyGI4ckiKwmfj7WGa2ZgPBgpwP6IeYKweM
+	 jemMjUpZMGXeGIYUtQ5ImOFTXMo5zPK4yvFV894hJrd33Npt7X4v4NUi2VXbyx3Qs0
+	 V7BjDr7VFl/7gr/gY4uqoSnImv94o5L+Xz+Th2TGHiS8XvHL5KXyI8z2PfXmuyF4oY
+	 pPNYk7KJVAKbR3gQOx2XbsbY6xba2sBC9Y6j7ktabFfZQpQLpZUmD7abpD7MHJtWWJ
+	 H1sOvirqNuIE5T8MVmaMU5Os4vEemmvCdJtDuICxMQedubkUqCf+LZKdw2GASnNH8p
+	 VG4gFdQI20wcA==
+Message-ID: <f752cf84-0159-4ef6-a7cd-57b6fc578a74@kernel.org>
+Date: Mon, 23 Jun 2025 10:01:44 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,15 +50,23 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v5 1/2] dt-bindings: net: bluetooth: nxp: Add support for
- 4M baudrate
-To: Neeraj Sanjay Kale <neeraj.sanjaykale@nxp.com>, marcel@holtmann.org,
- luiz.dentz@gmail.com, robh@kernel.org, krzk+dt@kernel.org,
- conor+dt@kernel.org
-Cc: linux-bluetooth@vger.kernel.org, linux-kernel@vger.kernel.org,
- devicetree@vger.kernel.org, amitkumar.karwar@nxp.com, sherry.sun@nxp.com,
- manjeet.gupta@nxp.com
-References: <20250623072744.130594-1-neeraj.sanjaykale@nxp.com>
+Subject: Re: [PATCH v1 2/2] ASoC: codecs: wsa883x: Handle shared reset GPIO
+ for WSA883x speakers
+To: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>,
+ Mohammad Rafi Shaik <mohammad.rafi.shaik@oss.qualcomm.com>,
+ Srinivas Kandagatla <srini@kernel.org>, Liam Girdwood <lgirdwood@gmail.com>,
+ Mark Brown <broonie@kernel.org>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Jaroslav Kysela <perex@perex.cz>,
+ Takashi Iwai <tiwai@suse.com>, Philipp Zabel <p.zabel@pengutronix.de>,
+ Linus Walleij <linus.walleij@linaro.org>, Bartosz Golaszewski <brgl@bgdev.pl>
+Cc: linux-arm-msm@vger.kernel.org, linux-sound@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ linux-gpio@vger.kernel.org, quic_pkumpatl@quicinc.com,
+ kernel@oss.qualcomm.com
+References: <20250620103012.360794-1-mohammad.rafi.shaik@oss.qualcomm.com>
+ <20250620103012.360794-3-mohammad.rafi.shaik@oss.qualcomm.com>
+ <f9f96bf0-3539-4e77-8d3e-b87ddc561925@oss.qualcomm.com>
 From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
@@ -104,20 +112,21 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  jWt87ecuHlpL3uuQ0ZZNWqHgZoQLXoqC2ZV5KrtKWb/jyiFX/sxSrodALf0zf+tfHv0FZWT2
  zHjUqd0t4njD/UOsuIMOQn4Ig0SdivYPfZukb5cdasKJukG1NOpbW7yRNivaCnfZz6dTawXw
  XRIV/KDsHQiyVxKvN73bThKhONkcX2LWuD928tAR6XMM2G5ovxLe09vuOzzfTWQDsm++9UKF a/A=
-In-Reply-To: <20250623072744.130594-1-neeraj.sanjaykale@nxp.com>
+In-Reply-To: <f9f96bf0-3539-4e77-8d3e-b87ddc561925@oss.qualcomm.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 23/06/2025 09:27, Neeraj Sanjay Kale wrote:
-> Add support for 4000000 as secondary baudrate.
-
-Here you explain why... the most frequent review comment given these days :/
-
+On 20/06/2025 20:35, Dmitry Baryshkov wrote:
+> On 20/06/2025 13:30, Mohammad Rafi Shaik wrote:
+>> On some Qualcomm platforms, such as QCS6490-RB3Gen2 and QCM6490-IDP,
+>> multiple WSA8830/WSA8835 speakers share a common reset (shutdown) GPIO.
+>> To handle such cases, use the reset controller framework along with the
+>> "reset-gpio" driver.
 > 
-> Signed-off-by: Neeraj Sanjay Kale <neeraj.sanjaykale@nxp.com>
-> ---
-
-Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+> How does this handle the fact that resetting one codec will also 
+> silently reset another one?
+Will not, that's the entire point of reset framework. See also my talk
+from last year OSS NA for some graphs/explanations.
 
 Best regards,
 Krzysztof
