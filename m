@@ -1,262 +1,269 @@
-Return-Path: <devicetree+bounces-188397-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-188398-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 08541AE3B17
-	for <lists+devicetree@lfdr.de>; Mon, 23 Jun 2025 11:50:43 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 07B0AAE3B69
+	for <lists+devicetree@lfdr.de>; Mon, 23 Jun 2025 12:00:50 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id CFE5B7A9E96
-	for <lists+devicetree@lfdr.de>; Mon, 23 Jun 2025 09:49:10 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id B170A3A5AE2
+	for <lists+devicetree@lfdr.de>; Mon, 23 Jun 2025 09:59:39 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 186702376E0;
-	Mon, 23 Jun 2025 09:50:17 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E36EA23A9B0;
+	Mon, 23 Jun 2025 09:59:39 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=proton.me header.i=@proton.me header.b="E8POB4Dv"
+	dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b="CIkf2quS"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-24424.protonmail.ch (mail-24424.protonmail.ch [109.224.244.24])
+Received: from PA4PR04CU001.outbound.protection.outlook.com (mail-francecentralazon11013031.outbound.protection.outlook.com [40.107.162.31])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AD5A22343CF
-	for <devicetree@vger.kernel.org>; Mon, 23 Jun 2025 09:50:13 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=109.224.244.24
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1750672217; cv=none; b=JZe9PK5ZDscd3B7oN3T4Jc5CieaHJYnXvpeOUhFu6dIKKm8T/aszrUySMF9c7YYbTfGODSg5NSKed2KElcJrJflsdrkSfdUoT63l74VluNX7OqlVrvGWoWmgrMjIrSVVOeqQG2KQzdcYboT0QPZ4q/Qf9/+P9CGQfZWFkQbIm98=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1750672217; c=relaxed/simple;
-	bh=2qh1CJjO8c2zLPbBAKpH3KGrCB+i0u1GVzjXdu6Efzw=;
-	h=Date:To:From:Cc:Subject:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=nS5xJL+avi7fUgn1A41j53HxTW96S2R1nKD/6uHLXWC2KRhuJGQY1t69vnRsCHCnY+GkrJV+g1/u7Hjl/AdqPiPd8gZpMwGq8sXZBj67n0c6Iv8GExfxpwR4JgUs4hOesNz8egX3/P/GxeRklJG7KUAS3pMCk6aI/Mn8++xfK0c=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=proton.me; spf=pass smtp.mailfrom=proton.me; dkim=pass (2048-bit key) header.d=proton.me header.i=@proton.me header.b=E8POB4Dv; arc=none smtp.client-ip=109.224.244.24
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=proton.me
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=proton.me
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=proton.me;
-	s=protonmail; t=1750672205; x=1750931405;
-	bh=2qh1CJjO8c2zLPbBAKpH3KGrCB+i0u1GVzjXdu6Efzw=;
-	h=Date:To:From:Cc:Subject:Message-ID:In-Reply-To:References:
-	 Feedback-ID:From:To:Cc:Date:Subject:Reply-To:Feedback-ID:
-	 Message-ID:BIMI-Selector;
-	b=E8POB4Dv/lqhX+/sJjDZa0/eRygsCa8wa0bD650TGPocFSrQmngVcmH1D3sAxuPA+
-	 LW1kx1i/1pOmqd1rUMvyIAhqBWl1APVUa8m9mGWcG7GKTjZYT6pcqc9TgtP7e47tmX
-	 qniN6zrdbbESjD1VetTautbvt1mkQo6xrcZtlg2bNE8ZxjqWMJH+FOeC792/ZFCjA2
-	 cJYsbS5g0TjVCk8W/p8chAN4R8U7yoOff0HvBQ2Nd5H/49aF46mWlAnjhafpzeMz3Z
-	 K47KMGRf+oZnnk9ahBhiWXKdU8vibpziYrRLgevjgfQ3LlNNNuqTpqC9bZtwqcdO9a
-	 e7L6adwy/WWKQ==
-Date: Mon, 23 Jun 2025 09:49:59 +0000
-To: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
-From: Max Shevchenko <wctrl@proton.me>
-Cc: "conor+dt@kernel.org" <conor+dt@kernel.org>, "daniel.lezcano@linaro.org" <daniel.lezcano@linaro.org>, "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>, "gregkh@linuxfoundation.org" <gregkh@linuxfoundation.org>, "jirislaby@kernel.org" <jirislaby@kernel.org>, "krzk+dt@kernel.org" <krzk+dt@kernel.org>, "linux-arm-kernel@lists.infradead.org" <linux-arm-kernel@lists.infradead.org>, "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>, "linux-mediatek@lists.infradead.org" <linux-mediatek@lists.infradead.org>, "linux-serial@vger.kernel.org" <linux-serial@vger.kernel.org>, "linux-watchdog@vger.kernel.org" <linux-watchdog@vger.kernel.org>, "linux@armlinux.org.uk" <linux@armlinux.org.uk>, "linux@roeck-us.net" <linux@roeck-us.net>, "matthias.bgg@gmail.com" <matthias.bgg@gmail.com>, "robh@kernel.org" <robh@kernel.org>, "sean.wang@mediatek.com" <sean.wang@mediatek.com>, "tglx@linutronix.de" <tglx@linutronix.de>, "wctrl@proton.me" <wctrl@proton.me>, "wim@linux-watchdog.org"
-	<wim@linux-watchdog.org>
-Subject: Re: [PATCH 09/11] ARM: dts: mediatek: add basic support for MT6572 SoC
-Message-ID: <kZ6sH6-8EHhW5FtsAmo9HXndj7D1jFyW0cv0A4KDO3i5SS9JiGEZNTd1gbMXizu4vI0M0hjROLK5DEnKbB36jWUKUPRKukq5IRK9Tz2qz7k=@proton.me>
-In-Reply-To: <94fd71e6-0f09-42d0-94ef-1ff111daac9f@collabora.com>
-References: <20250620-mt6572-v1-0-e2d47820f042@proton.me> <20250620-mt6572-v1-9-e2d47820f042@proton.me> <94fd71e6-0f09-42d0-94ef-1ff111daac9f@collabora.com>
-Feedback-ID: 131238559:user:proton
-X-Pm-Message-ID: 776204d2426614811a793f4a9aa639b87ffcd972
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 99F612192E1;
+	Mon, 23 Jun 2025 09:59:37 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.162.31
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1750672779; cv=fail; b=DkMpdvpPhF4bymgt9JLhfZoQEyP9u0oBZUriypl6Y26JOfdNChJYGe5Iksmcx74x9y0mscOTCAh2yCq9pzrNeScGfiUvckgCrCI5Fl4gui5TLEnWFLbSd1vENzp9BD7wHzqsc2/LorXOr1ybwCvTyXmB/9mSpeE+pOzCR3hyRMM=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1750672779; c=relaxed/simple;
+	bh=1JFatNYGPUp9gJEE4XILsJao76a0lDEx0xvW1L8VZDo=;
+	h=From:To:Cc:Subject:Date:Message-Id:Content-Type:MIME-Version; b=UMnrLNdq6I/KdccUF1btbEhEYSSca/GHzZnArJQLCdXGZwIacnKgkJFYW4wSQTSysSk+R3JNLZEepq7RIcz3k8BYI75LQQlBHCqFyS4HnSKtIS2vLYbDswZve2IvTsDuPlG+uYHV8ZYfgw8Moh1K2jFp+1VHNE4qjUyYAzIhMdY=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com; spf=pass smtp.mailfrom=nxp.com; dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b=CIkf2quS; arc=fail smtp.client-ip=40.107.162.31
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=nxp.com
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=dk/SyRmPPmSQW/WgrtBBFOibCDfEnxTl2rtq947S+zQFKdBZYu24PnYrA/oZF/k+uWhmbNS2eG3VDmXL+gc7yoZ3p9CSABVx4+i4bM72b1ZGHWguTGchzkSRzJQBzb3eQ+Ce8d03lXJxMcObsUkhn072HYsPA0D6p6Xr2skYqaKjE8Q4LJYuWgRh7SkTb89XbixTMxXUED9rgFbsMrFxgoG5F81kvWp70IKAUVRj4ZSi1ajXhlCTrr2rUdFg1OaW6Kh3KgM0bhQruizHVDkgUBTNUpXwcIbyIIbQnENm+dej1Jmvqmzk0d6VdXq2Obvl6RmC2ced442g7AUmOFUl8A==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=sC7BSjVXnJYqGh4kk0pGl4ER7Z7YcO6i9YEeQRSGH34=;
+ b=Az/4mQVYtO6hDmLAsBbike69vGaMK38KXqz9BA9SH80jNAPCBATVMs3bgxrt2DvgZofHnbAY2lOnVRpbzcM0cwwkpgSV835kobZIFRoHE2M81HQ6JwOu9fynYYWuiB9WH88OwoXS/OK2UkKQeEAWLu0NN2iegn1Y9+tCfvPE4YT7scWM9lA/JHjUUi1aWvuLRMowalAJy4FE4YLYf0nQHbTo6RrbUIxGDe1G1nl6n64uJoD7VYTyMNdSIHj5iso0ccFqlPFX1mw3pgHQi31HLeqRXHoWbrgvf7Atc/ho5mTQOUdwsqCwIFqALJfe9N9gTWfb3yqZ3y988uUovbJdIw==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
+ header.d=nxp.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=sC7BSjVXnJYqGh4kk0pGl4ER7Z7YcO6i9YEeQRSGH34=;
+ b=CIkf2quSycE7wQxKCS2OTeI92S7Q8j3Eh9ZWtM6vRqSogWq6kWcjOYtOfm+Rf0lzpZY1p05KVH0KIBJqyBOEKdiyE8TXTOlzIdzPLE/jQd2RnK1g/BJ8SsL/u2a0VE7kI711N7NPD6KTJTGqcVL1Nka648hP2ojAMQ6Jedbrl3+vizuf3gGlQORZyWV5SCL+O1ly22i4eGLntzsk7amNF63gp7Mt8NbeEWDPCFwVIM7aH6PDErt0KnouqFhxyItwR95AycGz4rV3cRtvOdi66NRwCSq8OObLISHNaBwGxuuxlmMKxcF9nWeFH3gFFIl1ff2/F4ZlhAL6632RoCessw==
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=nxp.com;
+Received: from AS4PR04MB9386.eurprd04.prod.outlook.com (2603:10a6:20b:4e9::8)
+ by PA1PR04MB10841.eurprd04.prod.outlook.com (2603:10a6:102:487::17) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8857.25; Mon, 23 Jun
+ 2025 09:59:35 +0000
+Received: from AS4PR04MB9386.eurprd04.prod.outlook.com
+ ([fe80::261e:eaf4:f429:5e1c]) by AS4PR04MB9386.eurprd04.prod.outlook.com
+ ([fe80::261e:eaf4:f429:5e1c%7]) with mapi id 15.20.8857.026; Mon, 23 Jun 2025
+ 09:59:35 +0000
+From: Joy Zou <joy.zou@nxp.com>
+To: robh@kernel.org,
+	krzk+dt@kernel.org,
+	conor+dt@kernel.org,
+	shawnguo@kernel.org,
+	s.hauer@pengutronix.de,
+	catalin.marinas@arm.com,
+	will@kernel.org,
+	andrew+netdev@lunn.ch,
+	davem@davemloft.net,
+	edumazet@google.com,
+	kuba@kernel.org,
+	pabeni@redhat.com,
+	mcoquelin.stm32@gmail.com,
+	alexandre.torgue@foss.st.com,
+	ulf.hansson@linaro.org,
+	richardcochran@gmail.com,
+	kernel@pengutronix.de,
+	festevam@gmail.com
+Cc: devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	imx@lists.linux.dev,
+	linux-arm-kernel@lists.infradead.org,
+	netdev@vger.kernel.org,
+	linux-stm32@st-md-mailman.stormreply.com,
+	linux-pm@vger.kernel.or,
+	frank.li@nxp.com,
+	ye.li@nxp.com,
+	ping.bai@nxp.com,
+	aisheng.dong@nxp.com
+Subject: [PATCH v6 0/9] Add i.MX91 platform support
+Date: Mon, 23 Jun 2025 17:57:23 +0800
+Message-Id: <20250623095732.2139853-1-joy.zou@nxp.com>
+X-Mailer: git-send-email 2.37.1
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-ClientProxiedBy: SG2PR04CA0159.apcprd04.prod.outlook.com (2603:1096:4::21)
+ To AS4PR04MB9386.eurprd04.prod.outlook.com (2603:10a6:20b:4e9::8)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: AS4PR04MB9386:EE_|PA1PR04MB10841:EE_
+X-MS-Office365-Filtering-Correlation-Id: ddd0a83c-196d-44b4-9e25-08ddb23ca83e
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam:
+	BCL:0;ARA:13230040|1800799024|7416014|376014|366016|52116014|921020|38350700014;
+X-Microsoft-Antispam-Message-Info:
+	=?us-ascii?Q?qh9iEELPguU/UER+JlwNwv83jaKGVo4yhuNfPQHpx08vzhAnC6Ye1U3iD3pa?=
+ =?us-ascii?Q?5xAet9Vyxgy0kPJHnDm4aiNuZyn656xBT5vcSByjiAfCbp+GTw9SSLWuoIDa?=
+ =?us-ascii?Q?6GduyrJx1GE/0isDmiWVoNpzPF+Z3M3EyngL3tVPoSY8xlAi7qxn7Raw4og1?=
+ =?us-ascii?Q?GMgfhpBoTBvYYujwbVQ26Z2yqKmZG+t257borZK/Y2T8gdPjp/QL7wW7pbuq?=
+ =?us-ascii?Q?Rs571TVntAtU09dFSMbo/3Ojny8LsND9abVo4+NOO+FxVnLIlnFvs23Ku3nL?=
+ =?us-ascii?Q?eat1r7QKRGg4TssMfC4Zpofs+KQsRSSa/KLgBJDVcGPcZ/aTLdul8YKShdqo?=
+ =?us-ascii?Q?2WVR39CeBAzSPDBHnRyOlVDNT6vsNl16G8XjG/K9VoM4GA2RNlvzM++cnLeW?=
+ =?us-ascii?Q?PDGAPEEhcRtGCf+jk0k1eU0USVjjT+bCdgkAJxqkOc00aYWOXIrWEotWB0mP?=
+ =?us-ascii?Q?Ip77c3w1lDZiQ+/lFL/yNCYQQqym95M7zxGVLZT2fft6zUDvCa3dk60yvF4E?=
+ =?us-ascii?Q?O4tGiIfGQioyAWma64mzMIRiUroyOgpWs2ir00vTP3PgfyZB9ZrEAhJikJ3U?=
+ =?us-ascii?Q?gl9PpOuZsL5TcUHMpAG6WbwATWPGjjcGXt+IIw3eU3XRIwQ2/Y8QqIhKCejr?=
+ =?us-ascii?Q?/dmlEdQ6XpkYrrxMgwePV8lhF/OcWeDafEv/kGMvXih0WTep5t08op9UTZf4?=
+ =?us-ascii?Q?LmEbkSsf/ugNyofWWWzsCiMkVtt9AFJJ5B+tqz4kGWzAulDrSHi1DkAamEl8?=
+ =?us-ascii?Q?Nv7rS4gITZ9QuUI7XsD4JGBCsaQtXcDFPYCuivOzeaqQzSefuRIPareSZSXe?=
+ =?us-ascii?Q?s5fN/4C2T5Pnz8aXEWZpMyejM4c08T0yEm4bqcjKiLyEHt7DMGRSSo+UDepI?=
+ =?us-ascii?Q?xSe6uKxrfD+tAvjYkX6q1SxF6ITJzZXCeJ+gJdDQtK4Y3PtmfdcjJNAYHqU9?=
+ =?us-ascii?Q?q1jPN8wza21KdXAFTT5YZF7UEoAdFv2aronvvtMTSvuc+fPJVGinSnBuB2PV?=
+ =?us-ascii?Q?RYn78TScjWDlW7YCopBUH5EIcs+hbQTx3T88VxYdqfql/5nj7yvy8QrhlbLS?=
+ =?us-ascii?Q?Jq2CdXEwX4DGMid7XQsByv5IIDGSptataEXtBB1V0+WczDda52PxTAr1pV5r?=
+ =?us-ascii?Q?EYrN4P9X5YhpzsdgxCcm5k66+f8Bb4nXQyurgtZtBAaROiP5+kRbXDdmTaHL?=
+ =?us-ascii?Q?uBmde4M+tx2cZQsHEElI8lSUYJtfBaBPhk6MiOE4ubJxHqbC2FJieF1bVNBz?=
+ =?us-ascii?Q?S/zN7Jpyk0FLOIjgd6Vz1hA+RQH1RI5+eLraSeQJsN0jVP30fDkUYvj8ohGx?=
+ =?us-ascii?Q?De1iJdLL5yRRRK9sWC7u2kqQUfmaFzZORfTshppypNtSScvAU6kI5uG5KUOF?=
+ =?us-ascii?Q?KNlxk0qxqIM0WvtPzsD3Z4fH5NrOgM6sMeDTFsOrNDXZ/rh7t5tnramP7iRU?=
+ =?us-ascii?Q?cFu/H4s1iGWU94y0kt8ETLjN5jISdg81VEc5mMcLdmti7Q3/xpe8TgPQuImI?=
+ =?us-ascii?Q?E/Ncn91LOgXaE0Y=3D?=
+X-Forefront-Antispam-Report:
+	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:AS4PR04MB9386.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(1800799024)(7416014)(376014)(366016)(52116014)(921020)(38350700014);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0:
+	=?us-ascii?Q?3diwTFitjiOpIy+gqb3koHoDlq7uGZ3YX3sAAi2AvU62CKCGP49yUbZsb0e+?=
+ =?us-ascii?Q?Xj+j4ZmwZox93bZEMYl6MgxvYqAofRTuz0ZkJaRfv6GQoXsF/fyCkZ4uRPXz?=
+ =?us-ascii?Q?6d506NxaRkOIQk4OQq/25wsk74b2HPNQUbRt5YYWfZ8oGYQkD0w4IY0KDOc+?=
+ =?us-ascii?Q?WwipW1ep79KUa7utaFEb2W423pNRX4BJeVCs8INsDsk0clskRvOsJNizeKzU?=
+ =?us-ascii?Q?3g+21EmOs60b1koROUx30gkJ8NvxpUTDMOqPmriKAJIVmsLrTn+aGH5F9F1v?=
+ =?us-ascii?Q?4UtGNf2YnFskkcrjTQI2DnBnMnBnDvxJUldP1G8BKrHAdAI2zKtZTtNFPe+d?=
+ =?us-ascii?Q?W/nUfJDl1GdJU1S/ic5i/xHaEyw4irynWEKvyrcsahu4NDpY2EUsfdBOfKPD?=
+ =?us-ascii?Q?GmdaH34LZXQ4e4xBuRYdOxvBDXhjOmO84MrX9MBjx1utp+/QQ0eoBEt0Y06G?=
+ =?us-ascii?Q?WtC0dgWv7lzri8y9vSr7Q7Uw7gabljkqv3aroxQIzXtPzAWYFmi7l7VP3Ybr?=
+ =?us-ascii?Q?g+DLkxntWvq67dGTdvm2lOOHmIS7pE6EydI5zXRDXy1nyHc8m1QdYnaUg89u?=
+ =?us-ascii?Q?0m5xDExTvEMVN0tG4KIeTTbTLVAk5yIre8nFUX2bPpE67B5x5cnN4aGXvx+f?=
+ =?us-ascii?Q?NzJiRQg24VMov8OGr2E00fprIzLOAX5DltogQM+BgEAn4Q7T64hjJX83i1ME?=
+ =?us-ascii?Q?WGzk10xMOP9i57kX+vz/eavpcsQOdYZ5cq0qJW0EWJ+Elq3GDcgR8KYioUds?=
+ =?us-ascii?Q?8oHjUGH20RyrW7wqQ8iv/OmHAp8RVX0IJDUa3ejzGhqN/7ParVm3kWP4whYN?=
+ =?us-ascii?Q?gv/eZhy3DCErX9rw245ZDaFJ5O5qHEoTgIoYh2K/faihxeFBnHyxdkYzsFbb?=
+ =?us-ascii?Q?XM0iV8Gj8QCApPkHafDD6auSAiTauqMbhLeKTbDTUSGAxfU0+cwF5k1YI3ci?=
+ =?us-ascii?Q?JqMHewiZCK30x8d4Qr8h0fVw6vkN6NKwrs5cuvPUFwt1oGOk7xvvBGHvOPB0?=
+ =?us-ascii?Q?8TDHhJr315/tnvtRG+Vv0wJWSU9CBUf35XB2KVBsHg7XWRQxmAdjVnAZUk+O?=
+ =?us-ascii?Q?dorBBTK7h2fpEPV0coPIdjZbX+DcVt8jzQZP5eyVwmTRaBYRB7jZBEkfpFOd?=
+ =?us-ascii?Q?DM0+raqMJW5np7uMoBDAwzB6lXq+Ta2+SEfnIEU+H2kS2zfym2LVfTkTYPLF?=
+ =?us-ascii?Q?yLn0w3Kbt4p+gmjwaM4kseplaQpHu/2qQE0YKHRXf0eadq+ExF6DaazVH8dN?=
+ =?us-ascii?Q?v/5xkSPHy7UgyHL+hLu7BrCbvKXSyP731td6+SUDZBBvM/52bVhZZ0xJEOOn?=
+ =?us-ascii?Q?OxfV3LcqEjSi5JG0+DZlWlZeupwoNeQWYRvtpm6pA3LTIUqPyfY9+AnEuyUa?=
+ =?us-ascii?Q?139LclC/xIIvYpxtjcxKanqXvTaUcif6L5yyTN2fYnLqjbC8FgZO1nnyRiYf?=
+ =?us-ascii?Q?6tIDqfIWGYNn3umwX36eh1ZTubDiI2/gvWHVtjJztVujlAm0q3npniLzwDif?=
+ =?us-ascii?Q?dceI6wciWxotEpZezt1RmOc9UP2Zffmr2B3xgLSe0kWGacZRH79+rS/8aJiP?=
+ =?us-ascii?Q?qngpFzDkfEYGitn942MXt4afINdMs2p0M6wAsVaa?=
+X-OriginatorOrg: nxp.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: ddd0a83c-196d-44b4-9e25-08ddb23ca83e
+X-MS-Exchange-CrossTenant-AuthSource: AS4PR04MB9386.eurprd04.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 23 Jun 2025 09:59:34.8853
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: ys0qxQ3AvN7qmKgRkADgPCK2lqbI3rv/REdZtahciB6+jG0DMzfqOLWyggEtb5+c
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: PA1PR04MB10841
 
+The design of i.MX91 platform is very similar to i.MX93.
+Extracts the common parts in order to reuse code.
 
-On Monday, June 23rd, 2025 at 11:35 AM, AngeloGioacchino Del Regno <angelog=
-ioacchino.delregno@collabora.com> wrote:
+The mainly difference between i.MX91 and i.MX93 is as follows:
+- i.MX91 removed some clocks and modified the names of some clocks.
+- i.MX91 only has one A core.
+- i.MX91 has different pinmux.
+- i.MX91 has updated to new temperature sensor same with i.MX95.
 
-> Il 20/06/25 17:40, Max Shevchenko via B4 Relay ha scritto:
->
-> > From: Max Shevchenko wctrl@proton.me
-> >
-> > Add basic support for the MediaTek MT6572 SoC.
-> >
-> > Signed-off-by: Max Shevchenko wctrl@proton.me
-> > ---
-> > arch/arm/boot/dts/mediatek/mt6572.dtsi | 105 ++++++++++++++++++++++++++=
-+++++++
-> > 1 file changed, 105 insertions(+)
-> >
-> > diff --git a/arch/arm/boot/dts/mediatek/mt6572.dtsi b/arch/arm/boot/dts=
-/mediatek/mt6572.dtsi
-> > new file mode 100644
-> > index 0000000000000000000000000000000000000000..dd12231ca745be7455e9939=
-1abd2d708f2f1a8a9
-> > --- /dev/null
-> > +++ b/arch/arm/boot/dts/mediatek/mt6572.dtsi
-> > @@ -0,0 +1,105 @@
-> > +// SPDX-License-Identifier: GPL-2.0
-> > +/*
-> > + * Copyright (c) 2025 Max Shevchenko wctrl@proton.me
-> > + */
-> > +
-> > +#include <dt-bindings/interrupt-controller/irq.h>
-> > +#include <dt-bindings/interrupt-controller/arm-gic.h>
-> > +
-> > +/ {
-> > + #address-cells =3D <1>;
-> > + #size-cells =3D <1>;
-> > + compatible =3D "mediatek,mt6572";
-> > + interrupt-parent =3D <&sysirq>;
-> > +
-> > + cpus {
-> > + #address-cells =3D <1>;
-> > + #size-cells =3D <0>;
-> > + enable-method =3D "mediatek,mt6589-smp";
-> > +
-> > + cpu@0 {
-> > + device_type =3D "cpu";
-> > + compatible =3D "arm,cortex-a7";
-> > + reg =3D <0x0>;
-> > + };
-> > + cpu@1 {
-> > + device_type =3D "cpu";
-> > + compatible =3D "arm,cortex-a7";
-> > + reg =3D <0x1>;
-> > + };
-> > + };
-> > +
-> > + system_clk: dummy13m {
-> > + compatible =3D "fixed-clock";
-> > + clock-frequency =3D <13000000>;
-> > + #clock-cells =3D <0>;
-> > + };
-> > +
-> > + rtc_clk: dummy32k {
-> > + compatible =3D "fixed-clock";
-> > + clock-frequency =3D <32000>;
-> > + #clock-cells =3D <0>;
-> > + };
-> > +
-> > + uart_clk: dummy26m {
-> > + compatible =3D "fixed-clock";
-> > + clock-frequency =3D <26000000>;
-> > + #clock-cells =3D <0>;
-> > + };
-> > +
->
->
-> Anything that has an MMIO address shall be child of "soc".
->
-> soc {
-> watchdog@....
->
-> timer@....
->
-> etc.
-> };
->
-> > + watchdog: watchdog@10007000 {
-> > + compatible =3D "mediatek,mt6572-wdt",
-> > + "mediatek,mt6589-wdt";
->
->
-> those fit in one line:
->
-> compatible =3D "mediatek,mt6572-wdt", "mediatek,mt6589-wdt";
->
-> > + reg =3D <0x10007000 0x100>;
-> > + interrupts =3D <GIC_SPI 126 IRQ_TYPE_LEVEL_LOW>;
-> > + timeout-sec =3D <15>;
-> > + #reset-cells =3D <1>;
-> > + };
-> > +
-> > + timer: timer@10008000 {
-> > + compatible =3D "mediatek,mt6572-timer",
-> > + "mediatek,mt6577-timer";
->
->
-> same
->
-> > + reg =3D <0x10008000 0x80>;
-> > + interrupts =3D <GIC_SPI 74 IRQ_TYPE_LEVEL_LOW>;
-> > + clocks =3D <&system_clk>, <&rtc_clk>;
-> > + clock-names =3D "system-clk", "rtc-clk";
-> > + };
-> > +
-> > + sysirq: interrupt-controller@10200100 {
-> > + compatible =3D "mediatek,mt6572-sysirq",
-> > + "mediatek,mt6577-sysirq";
->
->
-> same; and reg goes after compatible.
->
-> > + interrupt-controller;
-> > + #interrupt-cells =3D <3>;
-> > + interrupt-parent =3D <&gic>;
->
->
-> are you sure that interrupt-parent is gic?
+---
+Changes for v6:
+- add changelog in per patch.
+- correct commit message spell for patch #1.
+- merge rename imx93.dtsi to imx91_93_common.dtsi and move i.MX93
+  specific part from imx91_93_common.dtsi to imx93.dtsi for patch #3.
+- modify the commit message for patch #3.
+- restore copyright time and add modification time for common dtsi for patch #3.
+- remove unused map0 label in imx91_93_common.dtsi for patch #3.
+- remove tmu related node for patch #4.
+- remove unused regulators and pinctrl settings for patch #5.
+- add new modification for aliases change patch #6.
 
-Other MT65xx devicetrees have GIC as parent for itself and SYSIRQ, so I ass=
-ume.
+Changes for v5:
+- rename imx93.dtsi to imx91_93_common.dtsi.
+- move imx93 specific part from imx91_93_common.dtsi to imx93.dtsi.
+- modify the imx91.dtsi to use imx91_93_common.dtsi.
+- add new the imx93-blk-ctrl binding and driver patch for imx91 support.
+- add new net patch for imx91 support.
+- change node name codec and lsm6dsm into common name audio-codec and
+  inertial-meter, and add BT compatible string for imx91 board dts.
 
->
-> > + reg =3D <0x10200100 0x1c>;
-> > + };
-> > +
-> > + gic: interrupt-controller@10211000 {
-> > + compatible =3D "arm,cortex-a7-gic";
->
->
-> reg here.
->
-> > + interrupt-controller;
-> > + #interrupt-cells =3D <3>;
-> > + interrupt-parent =3D <&gic>;
->
->
-> are you sure that the interrupt parent isn't sysirq here? :-)
+Changes for v4:
+- Add one imx93 patch that add labels in imx93.dtsi
+- modify the references in imx91.dtsi
+- modify the code alignment
+- remove unused newline
+- delete the status property
+- align pad hex values
 
-not really, downstream has no mentions about SYSIRQ or its' address
+Changes for v3:
+- Add Conor's ack on patch #1
+- format imx91-11x11-evk.dts with the dt-format tool
+- add lpi2c1 node
 
->
-> > + reg =3D <0x10211000 0x1000>,
-> > + <0x10212000 0x2000>,
-> > + <0x10214000 0x2000>,
-> > + <0x10216000 0x2000>;
-> > + };
-> > +
-> > + uart0: serial@11005000 {
-> > + compatible =3D "mediatek,mt6572-uart",
-> > + "mediatek,mt6577-uart";
->
->
-> fits in one line
->
-> > + reg =3D <0x11005000 0x400>;
-> > + interrupts =3D <GIC_SPI 31 IRQ_TYPE_LEVEL_LOW>;
-> > + clocks =3D <&uart_clk>;
->
->
-> clock-names =3D .....
->
-> > + status =3D "disabled";
-> > + };
-> > +
-> > + uart1: serial@11006000 {
-> > + compatible =3D "mediatek,mt6572-uart",
->
->
-> ...again.
->
-> > + "mediatek,mt6577-uart";
-> > + reg =3D <0x11006000 0x400>;
-> > + interrupts =3D <GIC_SPI 32 IRQ_TYPE_LEVEL_LOW>;
-> > + clocks =3D <&uart_clk>;
-> > + status =3D "disabled";
-> > + };
-> > +};
->
->
-> Cheers,
-> Angelo
+Changes for v2:
+- change ddr node pmu compatible
+- remove mu1 and mu2
+- change iomux node compatible and enable 91 pinctrl
+- refine commit message for patch #2
+- change hex to lowercase in pinfunc.h
+- ordering nodes with the dt-format tool
 
-thanks for suggestions, applied.
+Joy Zou (8):
+  dt-bindings: soc: imx-blk-ctrl: add i.MX91 blk-ctrl compatible
+  arm64: dts: freescale: rename imx93.dtsi to imx91_93_common.dtsi and
+    modify them
+  arm64: dts: imx91: add i.MX91 dtsi support
+  arm64: dts: freescale: add i.MX91 11x11 EVK basic support
+  arm64: dts: freescale: move aliases from imx91_93_common.dtsi to board
+    dts
+  arm64: defconfig: enable i.MX91 pinctrl
+  pmdomain: imx93-blk-ctrl: mask DSI and PXP PD domain register on
+    i.MX91
+  net: stmmac: imx: add i.MX91 support
 
+Pengfei Li (1):
+  dt-bindings: arm: fsl: add i.MX91 11x11 evk board
 
-Sincerely,
-Max
+ .../devicetree/bindings/arm/fsl.yaml          |    6 +
+ .../soc/imx/fsl,imx93-media-blk-ctrl.yaml     |   55 +-
+ arch/arm64/boot/dts/freescale/Makefile        |    1 +
+ .../boot/dts/freescale/imx91-11x11-evk.dts    |  679 ++++++++
+ arch/arm64/boot/dts/freescale/imx91-pinfunc.h |  770 +++++++++
+ arch/arm64/boot/dts/freescale/imx91.dtsi      |   71 +
+ .../{imx93.dtsi => imx91_93_common.dtsi}      |  176 +-
+ .../boot/dts/freescale/imx93-11x11-evk.dts    |   19 +
+ arch/arm64/boot/dts/freescale/imx93.dtsi      | 1512 ++---------------
+ arch/arm64/configs/defconfig                  |    1 +
+ .../net/ethernet/stmicro/stmmac/dwmac-imx.c   |    2 +
+ drivers/pmdomain/imx/imx93-blk-ctrl.c         |   15 +
+ 12 files changed, 1771 insertions(+), 1536 deletions(-)
+ create mode 100644 arch/arm64/boot/dts/freescale/imx91-11x11-evk.dts
+ create mode 100644 arch/arm64/boot/dts/freescale/imx91-pinfunc.h
+ create mode 100644 arch/arm64/boot/dts/freescale/imx91.dtsi
+ copy arch/arm64/boot/dts/freescale/{imx93.dtsi => imx91_93_common.dtsi} (90%)
+ rewrite arch/arm64/boot/dts/freescale/imx93.dtsi (97%)
+
+-- 
+2.37.1
+
 
