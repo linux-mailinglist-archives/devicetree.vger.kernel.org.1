@@ -1,104 +1,159 @@
-Return-Path: <devicetree+bounces-188712-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-188713-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 35ED8AE4B48
-	for <lists+devicetree@lfdr.de>; Mon, 23 Jun 2025 18:45:51 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8E27BAE4BB5
+	for <lists+devicetree@lfdr.de>; Mon, 23 Jun 2025 19:21:03 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id BB4441774EB
-	for <lists+devicetree@lfdr.de>; Mon, 23 Jun 2025 16:45:45 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 3980E1898D6E
+	for <lists+devicetree@lfdr.de>; Mon, 23 Jun 2025 17:21:19 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C8B2E2BE7A0;
-	Mon, 23 Jun 2025 16:44:35 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3E0E629C328;
+	Mon, 23 Jun 2025 17:21:00 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=lucaweiss.eu header.i=@lucaweiss.eu header.b="FC94XtYp"
+	dkim=pass (1024-bit key) header.d=samsung.com header.i=@samsung.com header.b="B9Joi7Kz"
 X-Original-To: devicetree@vger.kernel.org
-Received: from ahti.lucaweiss.eu (ahti.lucaweiss.eu [128.199.32.197])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mailout1.w1.samsung.com (mailout1.w1.samsung.com [210.118.77.11])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9C9DA299ABF;
-	Mon, 23 Jun 2025 16:44:33 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=128.199.32.197
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3935629B78C
+	for <devicetree@vger.kernel.org>; Mon, 23 Jun 2025 17:20:57 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=210.118.77.11
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1750697075; cv=none; b=oyL8kiomqrR9FgKOfUlG2hfRr4dryrGrf/+HDMRrpc1f2DI3rh6qvmBzQXz3urtL9BHvT1liq0szNkPrxofNjshjbFHmfh6x/pVmGGstOlsa7SDUBqgXeOd64rMnuQJ4aw6HVBIzfNdkzvf4nCgJZimkneGUW7iRaCa+aH2K0To=
+	t=1750699260; cv=none; b=qxnZBrqylGcMy8ajrdt47rhbZcBuLARDMEu6Su0BCFYI3Jip78JZoGNbFPzZdYxe3ejJbjKNeNX7BJfRQsmxiyQYu2O21tVROOHzi6N3YEbG9E9c+MASYWsSAsq6x3ImPreqrvZZoHdQOHmqV/4op/l7fUP85nV079t6MS5fQcc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1750697075; c=relaxed/simple;
-	bh=5mjnTZIf1798lzAG/42eHA/DYiBDORF3uK1JXlBMUEk=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=QNPp9Pfuw0gTpBxgdh0XQmGL9igYRCO3EB0xKZTCBrTjU1Johl99lAE2fzDTuFK6aUKkcEZakuEMklgvAYiW6P2m1Nd5Sss63Marcl+OgEXlgXfJH1HU3TISA8PI1JRi4+hoMjZrcFdUvpiy4rSqZjy9Exezl9fXJbIfZ+9g0TY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=lucaweiss.eu; spf=pass smtp.mailfrom=lucaweiss.eu; dkim=pass (1024-bit key) header.d=lucaweiss.eu header.i=@lucaweiss.eu header.b=FC94XtYp; arc=none smtp.client-ip=128.199.32.197
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=lucaweiss.eu
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=lucaweiss.eu
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=lucaweiss.eu; s=s1;
-	t=1750697066; bh=5mjnTZIf1798lzAG/42eHA/DYiBDORF3uK1JXlBMUEk=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To;
-	b=FC94XtYpIZvQGC2aLDS6BufiUJtQGhD83KUrv82djouKhBztNbp9+CXqj5gCuRTqV
-	 NShVS126WpV6octVlHGgC0lG74uH3gIQiU5doTLrpXiTzuZbrrkRWnjEH4EIvxdG6v
-	 KVT/t7V/R4SlYi6Ahr0YzdSQfg3igiSiJZJ/3q4Q=
-Message-ID: <d31bf707-0f8c-4f55-927a-a08c5310b7be@lucaweiss.eu>
-Date: Mon, 23 Jun 2025 18:44:25 +0200
+	s=arc-20240116; t=1750699260; c=relaxed/simple;
+	bh=sQJa+e7+ycJ6FdZ0twBjpDvALO+VZg5VVi0szLpGLVA=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:From:In-Reply-To:
+	 Content-Type:References; b=SOO5ZXYKy3HEZjlxpmiKnpV9Mx0NHdLr6AbXp0EClFTlZQKBQlMRHRMCh0Dsej+SPtwiJQuX65zvgEa5Fzi9PudoxLcKoSYPBV47yOMr4mdLpiCUs6X4xl5EUtMh5wTiNWIQeVfF7WUt6L5bcxLfjSF25ao/ZbeiLiqKEU3Ye4Y=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=samsung.com; spf=pass smtp.mailfrom=samsung.com; dkim=pass (1024-bit key) header.d=samsung.com header.i=@samsung.com header.b=B9Joi7Kz; arc=none smtp.client-ip=210.118.77.11
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=samsung.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=samsung.com
+Received: from eucas1p2.samsung.com (unknown [182.198.249.207])
+	by mailout1.w1.samsung.com (KnoxPortal) with ESMTP id 20250623172056euoutp01812ce4bfd0aa3c4b963eaaeb7735789e~Lu7KuSQT_1444914449euoutp01-
+	for <devicetree@vger.kernel.org>; Mon, 23 Jun 2025 17:20:56 +0000 (GMT)
+DKIM-Filter: OpenDKIM Filter v2.11.0 mailout1.w1.samsung.com 20250623172056euoutp01812ce4bfd0aa3c4b963eaaeb7735789e~Lu7KuSQT_1444914449euoutp01-
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=samsung.com;
+	s=mail20170921; t=1750699256;
+	bh=8lEUjCtED9a5kJctvyEu/cj7uPsV5HrpplbBsVN6N5c=;
+	h=Date:Subject:To:Cc:From:In-Reply-To:References:From;
+	b=B9Joi7KzcXhbXkt7ESn9LBW17c8hZBnCUZW0dCLSSAX85xn9L37lTqPliprzJep18
+	 E4QvZWgjOqmYiY/etAalqUSNMiCq71X+FbeQ43lHiegdy1Rlaa4exbV76xK8DsGDlf
+	 9gz/MTRkf35DVXHIZOPJwKX854xtkgSPjraX3OLE=
+Received: from eusmtip2.samsung.com (unknown [203.254.199.222]) by
+	eucas1p1.samsung.com (KnoxPortal) with ESMTPA id
+	20250623172055eucas1p18f485c150a28ebb6bc819962a527f652~Lu7KEXSux0826908269eucas1p1r;
+	Mon, 23 Jun 2025 17:20:55 +0000 (GMT)
+Received: from [192.168.1.44] (unknown [106.210.136.40]) by
+	eusmtip2.samsung.com (KnoxPortal) with ESMTPA id
+	20250623172054eusmtip2b03dc4b23ebdde5b132e7ca2374fdf75~Lu7JD55kE0081800818eusmtip2R;
+	Mon, 23 Jun 2025 17:20:54 +0000 (GMT)
+Message-ID: <f41cd747-eb57-4e17-a3b1-8b30e0c6e84c@samsung.com>
+Date: Mon, 23 Jun 2025 19:20:54 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Subject: Re: [PATCH 4/4] ARM: dts: qcom: msm8974: Start using rpmpd for power
- domains
-To: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>,
- ~postmarketos/upstreaming@lists.sr.ht, phone-devel@vger.kernel.org,
- Bjorn Andersson <andersson@kernel.org>,
- Mathieu Poirier <mathieu.poirier@linaro.org>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Manivannan Sadhasivam <mani@kernel.org>,
- Konrad Dybcio <konradybcio@kernel.org>
-Cc: linux-arm-msm@vger.kernel.org, linux-remoteproc@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <20250621-msm8974-rpmpd-switch-v1-0-0a2cb303c446@lucaweiss.eu>
- <20250621-msm8974-rpmpd-switch-v1-4-0a2cb303c446@lucaweiss.eu>
- <50b0aa77-4ec5-412f-9ce5-6ec613dd0afb@oss.qualcomm.com>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v6 1/8] power: sequencing: Add T-HEAD TH1520 GPU power
+ sequencer driver
+To: Bartosz Golaszewski <brgl@bgdev.pl>
+Cc: Drew Fustini <drew@pdp7.com>, Guo Ren <guoren@kernel.org>, Fu Wei
+	<wefu@redhat.com>, Rob Herring <robh@kernel.org>, Krzysztof Kozlowski
+	<krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, Philipp Zabel
+	<p.zabel@pengutronix.de>, Frank Binns <frank.binns@imgtec.com>, Matt Coster
+	<matt.coster@imgtec.com>, Maarten Lankhorst
+	<maarten.lankhorst@linux.intel.com>, Maxime Ripard <mripard@kernel.org>,
+	Thomas Zimmermann <tzimmermann@suse.de>, David Airlie <airlied@gmail.com>,
+	Simona Vetter <simona@ffwll.ch>, Paul Walmsley <paul.walmsley@sifive.com>,
+	Palmer Dabbelt <palmer@dabbelt.com>, Albert Ou <aou@eecs.berkeley.edu>,
+	Alexandre Ghiti <alex@ghiti.fr>, Ulf Hansson <ulf.hansson@linaro.org>, Marek
+	Szyprowski <m.szyprowski@samsung.com>, linux-riscv@lists.infradead.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	linux-pm@vger.kernel.org, dri-devel@lists.freedesktop.org
 Content-Language: en-US
-From: Luca Weiss <luca@lucaweiss.eu>
-In-Reply-To: <50b0aa77-4ec5-412f-9ce5-6ec613dd0afb@oss.qualcomm.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+From: Michal Wilczynski <m.wilczynski@samsung.com>
+In-Reply-To: <CAMRc=MfPLZ7oMVjLv+_GMoC8X+O=k+mMrQKxELho0=+Z7=HApQ@mail.gmail.com>
+Content-Transfer-Encoding: 8bit
+X-CMS-MailID: 20250623172055eucas1p18f485c150a28ebb6bc819962a527f652
+X-Msg-Generator: CA
+Content-Type: text/plain; charset="utf-8"
+X-RootMTR: 20250623114430eucas1p2a5bb2bbc0049186ff25e1b3e1a131ca2
+X-EPHeader: CA
+X-CMS-RootMailID: 20250623114430eucas1p2a5bb2bbc0049186ff25e1b3e1a131ca2
+References: <CGME20250623114430eucas1p2a5bb2bbc0049186ff25e1b3e1a131ca2@eucas1p2.samsung.com>
+	<20250623-apr_14_for_sending-v6-0-6583ce0f6c25@samsung.com>
+	<20250623-apr_14_for_sending-v6-1-6583ce0f6c25@samsung.com>
+	<CAMRc=MfPLZ7oMVjLv+_GMoC8X+O=k+mMrQKxELho0=+Z7=HApQ@mail.gmail.com>
 
-On 23-06-2025 2:39 p.m., Konrad Dybcio wrote:
-> On 6/21/25 3:19 PM, Luca Weiss wrote:
->> Due to historical reasons all msm8974 boards have used the CX power rail
->> as regulator instead of going through the power domain framework.
+
+
+On 6/23/25 16:32, Bartosz Golaszewski wrote:
+> On Mon, Jun 23, 2025 at 1:44 PM Michal Wilczynski
+> <m.wilczynski@samsung.com> wrote:
 >>
->> Since rpmpd has gained msm8974 support quite a bit ago, let's start
->> using it and replace all usages of pm8841_s2 (CX), pm8841_s4 (GFX) and
->> for the boards using pma8084 pma8084_s2 (CX), pma8084_s7 (GFX).
+>> Introduce the pwrseq-thead-gpu driver, a power sequencer provider for
+>> the Imagination BXM-4-64 GPU on the T-HEAD TH1520 SoC. This driver
+>> controls an auxiliary device instantiated by the AON power domain.
 >>
->> For reference, downstream is using GFX power rail as parent-supply for
->> mmcc's OXILI_GDSC GDSC which then is used for GPU, but nothing there is
->> modelled upstream.
-> 
-> if you use an opp table with described rpmpd levels and bind the GFX
-> domain to gpucc, it should propagate - check it out
-
-I don't *really* understand what you mean here. I'd be happy if you 
-provided an example (or better yet, a patch) for this.
-
-Also msm8974 does not have gpucc, only gcc and mmcc.
-
-> 
+>> The TH1520 GPU requires a specific sequence to correctly initialize and
+>> power down its resources:
+>>  - Enable GPU clocks (core and sys).
+>>  - De-assert the GPU clock generator reset (clkgen_reset).
+>>  - Introduce a short hardware-required delay.
+>>  - De-assert the GPU core reset. The power-down sequence performs these
+>>    steps in reverse.
 >>
->> Signed-off-by: Luca Weiss <luca@lucaweiss.eu>
+>> Implement this sequence via the pwrseq_power_on and pwrseq_power_off
+>> callbacks.
+>>
+>> Crucially, the driver's match function is called when a consumer (the
+>> Imagination GPU driver) requests the "gpu-power" target. During this
+>> match, the sequencer uses clk_bulk_get() and
+>> reset_control_get_exclusive() on the consumer's device to obtain handles
+>> to the GPU's "core" and "sys" clocks, and the GPU core reset.  These,
+>> along with clkgen_reset obtained from parent aon node, allow it to
+>> perform the complete sequence.
+>>
+>> Reviewed-by: Ulf Hansson <ulf.hansson@linaro.org>
+>> Signed-off-by: Michal Wilczynski <m.wilczynski@samsung.com>
 >> ---
 > 
-> Reviewed-by: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
+> [snip]
+> 
+>> +
+>> +       /* Additionally verify consumer device has AON as power-domain */
+>> +       if (pwr_spec.np != ctx->aon_node || pwr_spec.args[0] != TH1520_GPU_PD) {
+>> +               of_node_put(pwr_spec.np);
+>> +               return 0;
+>> +       }
+>> +
+>> +       of_node_put(pwr_spec.np);
+>> +
+>> +       /* If a consumer is already bound, only allow a re-match from it */
+>> +       if (ctx->consumer_node)
+>> +               return ctx->consumer_node == dev->of_node;
+>> +
+> 
+> That should be `!!(ctx->consumer_node == dev->of_node)` or preferably
+> `ctx->consumer_node == dev->of_node ? 1 : 0`. I can amend it when
+> applying if you have no objections. The rest looks good to me and I'd
+> like to pick it up into pwrseq/for-next in the next two days.
 
-Thanks!
-
-Regards
-Luca
+Sure,
+Thanks !
 
 > 
-> Konrad
+> Bart
+> 
+> [snip]
+> 
 
+Best regards,
+-- 
+Michal Wilczynski <m.wilczynski@samsung.com>
 
