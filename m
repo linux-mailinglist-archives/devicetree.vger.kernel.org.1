@@ -1,153 +1,223 @@
-Return-Path: <devicetree+bounces-188771-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-188772-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 79D5DAE4FA6
-	for <lists+devicetree@lfdr.de>; Mon, 23 Jun 2025 23:18:18 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 584CAAE500A
+	for <lists+devicetree@lfdr.de>; Mon, 23 Jun 2025 23:22:00 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id E030816E2C9
-	for <lists+devicetree@lfdr.de>; Mon, 23 Jun 2025 21:18:08 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id BDDC93B978B
+	for <lists+devicetree@lfdr.de>; Mon, 23 Jun 2025 21:21:34 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9E9552222CC;
-	Mon, 23 Jun 2025 21:17:22 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 131371EFFA6;
+	Mon, 23 Jun 2025 21:21:47 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=sntech.de header.i=@sntech.de header.b="NBBdcAa1"
+	dkim=pass (1024-bit key) header.d=collabora.com header.i=sebastian.reichel@collabora.com header.b="djTOojxP"
 X-Original-To: devicetree@vger.kernel.org
-Received: from gloria.sntech.de (gloria.sntech.de [185.11.138.130])
+Received: from sender4-pp-f112.zoho.com (sender4-pp-f112.zoho.com [136.143.188.112])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D9B3D221299;
-	Mon, 23 Jun 2025 21:17:19 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.11.138.130
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1750713442; cv=none; b=m07ztay+rjLOucAcSBUG5DoiZtjcl+OARQDoap56l1BuPOb3kqfKcDMERyl3bR9X3AKmP+yEBqEF246uiEQFSVCUljjC7iOlgvzsEhVdy8Cfa73JrboXTEmlv/IfkuSzB6fqG7XGv60Dcn9lNU/YYq3tiDayhR76VZmwed3PLhk=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1750713442; c=relaxed/simple;
-	bh=T1gbs+ME0Z/CPRQJWSWlq3sPr3dmhric/2Lq5B04QoA=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=aDpIioynG1EfhbfljTF0LIssLg3kRdUSk87v/hCgg/7kbTNuqEIsNTjFt/OElMhVrd+IVjlkbZAWy+uKzqc8Akec4x7FgXoPllPPHwlrIruKYqEieFTTESYdC69tPT1ULZ7Cu8Drx86ApsEKRt61y7bQ+AybOTVnF+f3wQ2zkPA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sntech.de; spf=pass smtp.mailfrom=sntech.de; dkim=pass (2048-bit key) header.d=sntech.de header.i=@sntech.de header.b=NBBdcAa1; arc=none smtp.client-ip=185.11.138.130
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sntech.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=sntech.de
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sntech.de;
-	s=gloria202408; h=Content-Type:Content-Transfer-Encoding:MIME-Version:
-	References:In-Reply-To:Message-ID:Date:Subject:Cc:To:From:Reply-To;
-	bh=U3UErYnrVYZ1g9kUUb3a1dfR1/w+hPH2Q/0/oF/UJJM=; b=NBBdcAa17Q+xwBYcEk2T6MBbry
-	w7IWwueFxcfmjTlpHwOGRhXYx5Fuy0Z+BbUbgg9Va1yENMiAG2uL4ZAFmI+LKgJ+qMR9O+Rj+DMnM
-	Mf6QJ+ALWgWZxJL4mGvlqr+tVfF3BKK3cgqEO6LzZI+CDS1eSTU5cC12HQJpqCwRRPQihZJCcGQui
-	/fNd/rcdv0yWaazQDq9y4npbIarXGCzCMf+996ZwLU1wH0rpbucuPRZ30hdnZoE2y3j56zr0bMGiq
-	8+7rqqKvZUQR5xEbiDf5zgOdHekB+imCHSnFp81KD5lQJE4FZmUu6UHVyfSzKbdzxpQTYftX/b7Mh
-	Sty6zhGw==;
-Received: from [185.15.108.45] (helo=phil.localnet)
-	by gloria.sntech.de with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-	(Exim 4.94.2)
-	(envelope-from <heiko@sntech.de>)
-	id 1uToXM-0006NM-Cv; Mon, 23 Jun 2025 23:17:08 +0200
-From: Heiko Stuebner <heiko@sntech.de>
-To: Piotr Oniszczuk <piotr.oniszczuk@gmail.com>,
- Alexey Charkov <alchark@gmail.com>, Jonas Karlman <jonas@kwiboo.se>
-Cc: Nicolas Frattaroli <nicolas.frattaroli@collabora.com>,
- XiaoDong Huang <derrick.huang@rock-chips.com>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>,
- devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org
-Subject:
- Re: [PATCH 1/4] arm64: dts: rockchip: list all CPU supplies on ArmSoM Sige5
-Date: Mon, 23 Jun 2025 23:17:06 +0200
-Message-ID: <12692993.O9o76ZdvQC@phil>
-In-Reply-To: <90b7a1b6-bc49-414d-9cde-e6fad46d2650@kwiboo.se>
-References:
- <20250603-sige5-updates-v1-0-717e8ce4ab77@gmail.com>
- <dd1d0676-4eaa-4df7-b557-676b3de9a52e@kwiboo.se>
- <90b7a1b6-bc49-414d-9cde-e6fad46d2650@kwiboo.se>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EA6C1221F0F;
+	Mon, 23 Jun 2025 21:21:44 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=pass smtp.client-ip=136.143.188.112
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1750713706; cv=pass; b=AI4ueNE8uzaYuZuCfi75pL5tws7/ywSwy5Zhvq72JmvU/Y2uxWRzsdlHxk4WCzeVIWdPjaa7TRunChVEV0mPlxLl5MgMteC9pHPs/V+6eCOtdpalT7Mi7u9NfZLA2fJGt69rgqnyAxiqNH90laSaTIM9kcgXAOU9bRiZGgITitY=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1750713706; c=relaxed/simple;
+	bh=KtakUjgv+UZf2zaxQpHTQu+8cOFck/+XtuwX2MXy47c=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=o5OuHF6AKvYuZJTKeQMxaazt/6k6GPk086ppss5ZtuBabF3eDdwkp+ATC4ayEP/HNP+L/TGAMWQ5jB32y1uxrkp7ca/m2Eqk6sqTTnoS8ejNOtril/9+5+8HwuvLuDcXiM0JUmNVQoZaf18YbYU+aad5h/urswhfXmqCD1Ith9I=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (1024-bit key) header.d=collabora.com header.i=sebastian.reichel@collabora.com header.b=djTOojxP; arc=pass smtp.client-ip=136.143.188.112
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
+ARC-Seal: i=1; a=rsa-sha256; t=1750713689; cv=none; 
+	d=zohomail.com; s=zohoarc; 
+	b=m/XM4rTD4QhoU7m/KHv0O/CbvojXCAGpoveJYiDyugG6jrPiy+ovLCuFL5xdIpbq8g1Ezw/SBpxdy12FllDjoEKYO+tbvpjgXA1UU767DRSKtWstXrSvNFWWmETC7RqkhDPsuN5BHEEX4utxIGznQS89puhFpXpCft4K5uBn2ks=
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=zohomail.com; s=zohoarc; 
+	t=1750713689; h=Content-Type:Cc:Cc:Date:Date:From:From:In-Reply-To:MIME-Version:Message-ID:References:Subject:Subject:To:To:Message-Id:Reply-To; 
+	bh=ZfiWeBvfNnXnUysh0G/D5Vm9Y8TLgU9BFV02Xs7k2HE=; 
+	b=ZwD+qKKO1bwXT24zCaTJMJS84YZwzNRFij1DX28o5oHxiK8e/45SF/LUzjrQeda/cqvGdo7MnhbrQrm8KNmSnPdxDCGK9Q2hqUw+cW7Baqz5c5vNFxBrFh4JnbdsfS2E4JCp1vTCQidiOKWXkA4Yyea1cxN4fSH3OemfMv7LLtg=
+ARC-Authentication-Results: i=1; mx.zohomail.com;
+	dkim=pass  header.i=collabora.com;
+	spf=pass  smtp.mailfrom=sebastian.reichel@collabora.com;
+	dmarc=pass header.from=<sebastian.reichel@collabora.com>
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; t=1750713689;
+	s=zohomail; d=collabora.com; i=sebastian.reichel@collabora.com;
+	h=Date:Date:From:From:To:To:Cc:Cc:Subject:Subject:Message-ID:References:MIME-Version:Content-Type:In-Reply-To:Message-Id:Reply-To;
+	bh=ZfiWeBvfNnXnUysh0G/D5Vm9Y8TLgU9BFV02Xs7k2HE=;
+	b=djTOojxPua9C2oq5c7PAFfYvDezovncq8tTlPMGXz9g15tH4l5DAyXu1xXpJsN1n
+	iA+ULtjIp2ndaFNHjogkiBq136100Y1jehHHnC8vXkyyrotY19GUZSoUlOuTZH2vtvC
+	DN1sdOSt81zXYPNIqPlEKZkWBXEO+1XwUvg+jGdw=
+Received: by mx.zohomail.com with SMTPS id 1750713688281148.819607680059;
+	Mon, 23 Jun 2025 14:21:28 -0700 (PDT)
+Received: by venus (Postfix, from userid 1000)
+	id 139A4180AAB; Mon, 23 Jun 2025 23:21:23 +0200 (CEST)
+Date: Mon, 23 Jun 2025 23:21:22 +0200
+From: Sebastian Reichel <sebastian.reichel@collabora.com>
+To: amitsd@google.com
+Cc: Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Greg Kroah-Hartman <gregkh@linuxfoundation.org>, Badhri Jagan Sridharan <badhri@google.com>, 
+	Heikki Krogerus <heikki.krogerus@linux.intel.com>, "Rafael J. Wysocki" <rafael@kernel.org>, 
+	Len Brown <len.brown@intel.com>, Pavel Machek <pavel@kernel.org>, Kyle Tso <kyletso@google.com>, 
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, linux-usb@vger.kernel.org, 
+	linux-pm@vger.kernel.org
+Subject: Re: [PATCH v2 2/5] power: supply: core: add helper to get power
+ supply given a fwnode
+Message-ID: <djqmdlnsftquum3wayigqryzfy7xkn67uj4pfk3wugxl3lx3wr@y26ydci57iwi>
+References: <20250507-batt_ops-v2-0-8d06130bffe6@google.com>
+ <20250507-batt_ops-v2-2-8d06130bffe6@google.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+Content-Type: multipart/signed; micalg=pgp-sha512;
+	protocol="application/pgp-signature"; boundary="kdcwqy7o5osxokcj"
+Content-Disposition: inline
+In-Reply-To: <20250507-batt_ops-v2-2-8d06130bffe6@google.com>
+X-Zoho-Virus-Status: 1
+X-Zoho-Virus-Status: 1
+X-Zoho-AV-Stamp: zmail-av-1.4.3/250.696.82
+X-ZohoMailClient: External
+
+
+--kdcwqy7o5osxokcj
+Content-Type: text/plain; protected-headers=v1; charset=us-ascii
+Content-Disposition: inline
 Content-Transfer-Encoding: quoted-printable
-Content-Type: text/plain; charset="utf-8"
+Subject: Re: [PATCH v2 2/5] power: supply: core: add helper to get power
+ supply given a fwnode
+MIME-Version: 1.0
 
-Am Montag, 23. Juni 2025, 23:07:53 Mitteleurop=C3=A4ische Sommerzeit schrie=
-b Jonas Karlman:
-> On 2025-06-23 19:40, Jonas Karlman wrote:
-> > On 2025-06-23 17:02, Piotr Oniszczuk wrote:
-> >>
-> >>
-> >>> Wiadomo=C5=9B=C4=87 napisana przez Alexey Charkov <alchark@gmail.com>=
- w dniu 23 cze 2025, o godz. 15:58:
-> >>>
-> >>> On Mon, Jun 23, 2025 at 1:19=E2=80=AFPM Alexey Charkov <alchark@gmail=
-=2Ecom> wrote:
-> >>>>
-> >>>>
-> >>>
-> >>> Okay, I've bisected this.
-> >>>
-> >>> TLDR: Linux and u-boot seem to have nothing to do with it, opensource
-> >>> TF-A doesn't work, binary BL31 starting with v1.09 do not work. BL31
-> >>> v1.08 and earlier work fine.
-> >=20
-> > v1.09 added support for 1 GHz hrtimer in addition to the normal 24 MHz
-> > rate. Mainline U-Boot may only support use of 24 MHz hrtimer, unsure
-> > what impact the hrtimer rate has. Mixing blobs with/without 1 GHz
-> > support is known to cause issues. At one point the latest rkbin tree may
-> > have contained incompatible rk3576 blobs (mixed 1 ghz vs 24 mhz rate).
->=20
-> Clarification:
-> Following boot1 parameter activates use of 1 GHz hrtimer, see [3].
->=20
-> This parameter was added to rkbin repo before all blobs was updated to
-> fully support use of the 1 ghz mode, and is the source for incompatible
-> blobs I referenced above.
->=20
->   [BOOT1_PARAM]
->   WORD_2=3D0x100
+Hi,
 
-which I guess is something we don't do in u-boot at all right now?
-Which would also mean, that something may have broken with the 24MHz mode
-when the 1GHz thing was added. And nobody ever realized that because the
-Rockchip thing uses that boot param for all of them?
-
-
+On Wed, May 07, 2025 at 06:00:23PM -0700, Amit Sunil Dhamne via B4 Relay wr=
+ote:
+> From: Amit Sunil Dhamne <amitsd@google.com>
 >=20
-> [3] https://github.com/rockchip-linux/rkbin/commit/cbbc6868221fb416d4f0d8=
-6a10e493dbbbc1f117
+> Add a helper function power_supply_get_by_fwnode() to retrieve
+> power_supply given a valid fwnode reference.
 >=20
-> Regards,
-> Jonas
+> Signed-off-by: Amit Sunil Dhamne <amitsd@google.com>
+> ---
+>  drivers/power/supply/power_supply_core.c | 30 ++++++++++++++++++++++++++=
+++++
+>  include/linux/power_supply.h             |  3 +++
+>  2 files changed, 33 insertions(+)
 >=20
-> >=20
-> > Did you try with newer blobs, i.e. ddr init v1.09, bl31 v1.19 blobs [1]
-> > and mainline U-Boot [2] ?
-> >=20
-> > [1] https://github.com/radxa/rkbin/commits/develop-v2025.04/
-> > [2] https://source.denx.de/u-boot/contributors/kwiboo/u-boot/-/commits/=
-rk3576
-> >=20
-> > Regards,
-> > Jonas
-> >=20
-> >>
-> >>
-> >> just fyi:=20
-> >> to confirm: replacing only bl31 to 1.08 makes all good
-> >> with perf gov. clocks staying on 2200/2300
-> >> clock estimations are predictable, constant and estimating constantly =
-2400
-> >> ux is =E2=80=9Elike=E2=80=9D on 3588
-> >>
-> >> Alexey: many thx for finding root cause component!
-> >>  =20
-> >>   =20
-> >=20
+> diff --git a/drivers/power/supply/power_supply_core.c b/drivers/power/sup=
+ply/power_supply_core.c
+> index 76c340b38015af0a67a0d91305e6242a8646bf53..ef6ba22b837b0b9463f9a3065=
+425e2720f40b9eb 100644
+> --- a/drivers/power/supply/power_supply_core.c
+> +++ b/drivers/power/supply/power_supply_core.c
+> @@ -496,6 +496,36 @@ struct power_supply *power_supply_get_by_name(const =
+char *name)
+>  }
+>  EXPORT_SYMBOL_GPL(power_supply_get_by_name);
+> =20
+> +static int power_supply_match_device_by_fwnode(struct device *dev, const=
+ void *data)
+> +{
+> +	return dev->parent && dev_fwnode(dev->parent) =3D=3D data;
+> +}
+
+This already exists as power_supply_match_device_fwnode().
+
+> +
+> +/**
+> + * power_supply_get_by_fwnode() - Search for power supply given a fwnode=
+ ref.
+> + * @fwnode: fwnode reference
+> + *
+> + * If power supply was found, it increases reference count for the inter=
+nal
+> + * power supply's device. The user should power_supply_put() after use.
+> + *
+> + * Return: Reference to power_supply node matching the fwnode on success=
+ or
+> + * NULL on failure.
+> + */
+> +struct power_supply *power_supply_get_by_fwnode(struct fwnode_handle *fw=
+node)
+> +{
+> +	struct power_supply *psy =3D NULL;
+> +	struct device *dev =3D class_find_device(&power_supply_class, NULL, fwn=
+ode,
+> +					       power_supply_match_device_by_fwnode);
+> +
+> +	if (dev) {
+> +		psy =3D dev_get_drvdata(dev);
+> +		atomic_inc(&psy->use_cnt);
+> +	}
+> +
+> +	return psy;
+> +}
+> +EXPORT_SYMBOL_GPL(power_supply_get_by_fwnode);
+
+And this is a 50% of power_supply_get_by_reference(), so the
+function should be updated to use power_supply_get_by_fwnode().
+
+Greetings,
+
+-- Sebastian
+
+>  /**
+>   * power_supply_put() - Drop reference obtained with power_supply_get_by=
+_name
+>   * @psy: Reference to put
+> diff --git a/include/linux/power_supply.h b/include/linux/power_supply.h
+> index 6ed53b292162469d7b357734d5589bff18a201d0..a35b08bd368e9305554e1a608=
+dc8e526983cfa12 100644
+> --- a/include/linux/power_supply.h
+> +++ b/include/linux/power_supply.h
+> @@ -801,10 +801,13 @@ extern void power_supply_unreg_notifier(struct noti=
+fier_block *nb);
+>  #if IS_ENABLED(CONFIG_POWER_SUPPLY)
+>  extern struct power_supply *power_supply_get_by_name(const char *name);
+>  extern void power_supply_put(struct power_supply *psy);
+> +extern struct power_supply *power_supply_get_by_fwnode(struct fwnode_han=
+dle *fwnode);
+>  #else
+>  static inline void power_supply_put(struct power_supply *psy) {}
+>  static inline struct power_supply *power_supply_get_by_name(const char *=
+name)
+>  { return NULL; }
+> +static inline struct power_supply *power_supply_get_by_fwnode(struct fwn=
+ode_handle *fwnode)
+> +{ return NULL; }
+>  #endif
+>  #ifdef CONFIG_OF
+>  extern struct power_supply *power_supply_get_by_phandle(struct device_no=
+de *np,
+>=20
+> --=20
+> 2.49.0.987.g0cc8ee98dc-goog
 >=20
 >=20
 
+--kdcwqy7o5osxokcj
+Content-Type: application/pgp-signature; name="signature.asc"
 
+-----BEGIN PGP SIGNATURE-----
 
+iQIzBAABCgAdFiEE72YNB0Y/i3JqeVQT2O7X88g7+poFAmhZxU4ACgkQ2O7X88g7
++ppp0w//bAvpD5lKXf4rI7iyQxFwENWWOhcb8530kiDRTCMw5KdjDEG6u8UvZyGy
+ScKNgaGNGvqy4su03assapnNnpOtb+N+CDm80bcgDYDNooRO9LX7S4eyB+I6wKp3
+BPj87u055U50RJ8RQmkvOq40rmJY2Ri8e5Grd1yRqHtt4uEaF5ev1Me7msnxr41v
+mnyMOE6s9Qv13a6u/TZlP+XDVoHeCwvg10w3XWZHYss/PfOgMSbPO/Zm3i7nF7QL
+yWBM0HrbQsNj0FRaGcTU8EiGKhzgejgveRuKsfLFhyExlyK1NhDfAK07UwRdfcBG
+FeliJKPdRpCNZyGMSPNuv1f48L9TIj6Vq7sWh4HNJkanMOYXgsgPgrXA63GShm+d
+XQRvAhqBNVG7Ym1iQrWA6YaS+6AQL7I+kvfp6HeYWx2v7xtveDkw2xkJ6tzTsQYr
+4QWZi5QFCxGCnOh+KYfhUyxNhai41kkaDXefBD5RaYdAEI572kNAJHGlyv4TAaFZ
+OkWNG/37vuP7/BN0J1AjXzplAkgIdXhLO6sEFBRdh4IHgNuZZZHEA111cv8D5yOU
+aKTwsLL3S8Pu1JFMuN/KoB7zaIfeRlRbGo6P5FNvKWg1mlq6cyrZkHjHnZUGag5q
+c0IgY+o69cn4LAOVmVL3vgLYNo1buOzYhxdis0G1z1pz//G1Hi4=
+=wVCb
+-----END PGP SIGNATURE-----
 
+--kdcwqy7o5osxokcj--
 
