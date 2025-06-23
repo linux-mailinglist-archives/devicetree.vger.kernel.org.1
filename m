@@ -1,182 +1,143 @@
-Return-Path: <devicetree+bounces-188214-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-188209-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9D7D0AE332A
-	for <lists+devicetree@lfdr.de>; Mon, 23 Jun 2025 02:41:55 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2DB9CAE3319
+	for <lists+devicetree@lfdr.de>; Mon, 23 Jun 2025 02:31:12 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 6C44E1890480
-	for <lists+devicetree@lfdr.de>; Mon, 23 Jun 2025 00:42:11 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 5C05116BF25
+	for <lists+devicetree@lfdr.de>; Mon, 23 Jun 2025 00:31:11 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 954F28F5A;
-	Mon, 23 Jun 2025 00:41:50 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9E50C171A1;
+	Mon, 23 Jun 2025 00:31:00 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=smankusors.com header.i=@smankusors.com header.b="s1Q7qZLu"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="QE/1vhj8"
 X-Original-To: devicetree@vger.kernel.org
-Received: from buffalo.tulip.relay.mailchannels.net (buffalo.tulip.relay.mailchannels.net [23.83.218.24])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-pf1-f176.google.com (mail-pf1-f176.google.com [209.85.210.176])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A373C2F29;
-	Mon, 23 Jun 2025 00:41:47 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=pass smtp.client-ip=23.83.218.24
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1750639310; cv=pass; b=cS2q6YlIX/xyf+XGqRUFhs1aUNVlDLpd2gtczANeTuPBq/A67gVsECXM53xZQ4zKEBHQePdbN6UsLmEt7666YZWHB6NnNinQw7wS0ikNtpRzWWgmIkgCHqFOVOkdIo1r7/P55dNdMEpHyklSTCCU0XBk2+DOGs6WkpTmh9U1o/Q=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1750639310; c=relaxed/simple;
-	bh=4ehXf59ZxCKwIZe3x4VcN0FbVJWmUO2gSjtQNs8cW1Q=;
-	h=From:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc:Date; b=TXgR69g0nGWalXgvF+FufomySk7pMVcTRMomipKsRBLSsmiMqPDocT2p+9tdJ6lBIyG3gwhv/8TLpkOKq6PS+kcoDwul0WNqzHxDkgJ8PEp7aqIxCVvFlD3rJdJ5g0wtLqzprejMUGYcJMgeVRfcRBZ/90ibAMen2O+LOmZm+E0=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=smankusors.com; spf=pass smtp.mailfrom=smankusors.com; dkim=pass (2048-bit key) header.d=smankusors.com header.i=@smankusors.com header.b=s1Q7qZLu; arc=pass smtp.client-ip=23.83.218.24
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=smankusors.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=smankusors.com
-X-Sender-Id: hostingeremail|x-authuser|linux@smankusors.com
-Received: from relay.mailchannels.net (localhost [127.0.0.1])
-	by relay.mailchannels.net (Postfix) with ESMTP id CE2118A3542;
-	Sun, 22 Jun 2025 18:26:49 +0000 (UTC)
-Received: from fr-int-smtpout7.hostinger.io (trex-green-8.trex.outbound.svc.cluster.local [100.108.116.219])
-	(Authenticated sender: hostingeremail)
-	by relay.mailchannels.net (Postfix) with ESMTPA id 150998A01F8;
-	Sun, 22 Jun 2025 18:26:45 +0000 (UTC)
-ARC-Seal: i=1; s=arc-2022; d=mailchannels.net; t=1750616807; a=rsa-sha256;
-	cv=none;
-	b=xVuTaFtluxsXhKEjhG8okf7kI507hfNeoO5eYRvneL8OgvN7jHQTM2kGXUG8X8yh+aYpZy
-	Vk92gylVsrxwcgx6L35cODrkRRnZgKFnEHvKtCtK/czRwTQx+y9fAN3KaRUA+8RcpQV/X8
-	2XDsuNKeD7ZNzqGSIAPTKNdpZ3Xnw0Ltfl4Seo3m8lq34yx2ZiY0mWgzKVREsERNcX0Rx1
-	HaKTOwMtF6Tu9EYAur3iOYjRlaUnjsxRciI2rPv61kHAfflryPg79QFxI5Pgmh5qCyRfnR
-	TyQrMi67VKjaLQMEQDUGxTSUr+vPRMJHiYD6OzJrk/sGWnkL2KI/sjnPvsyg0g==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed;
- d=mailchannels.net;
-	s=arc-2022; t=1750616807;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references:dkim-signature;
-	bh=KPo04CXgY+2Sr4BBCCBjD0uiSw0hxaC3xZEVcKPTLRg=;
-	b=N9z6rqOLY6QpD9TP2RVZdv6ma33xW3NKCFFQKLBsHbdSKXR/qjs+1w4cwmWV0KJh4YR20B
-	pHi2rAowgqdvukDJZac76C65lhDc1zc9TtpQxpZpSq8WgNtou6g4soWLRGoTHIL4tlfaYA
-	Bn4goitEGDTgWswnJfPK3szncMJ5pDfYRvakgvjJWc956/Bo0JU66RIQ4Z+tJhv14E+jw+
-	MgqvpYyBmLHXnakCM3dqiyrm4ySopyBFXThjjwe+VGJTFRuztEhVloaneoxzLcjRiUKA1G
-	yzsBXTInp9yWpL3/LrGPRLpWBik1b+BAJ6x5ArwrLKBwOdkTMHBpMCy1om5Qcg==
-ARC-Authentication-Results: i=1;
-	rspamd-6597f9cdc7-sql6l;
-	auth=pass smtp.auth=hostingeremail smtp.mailfrom=linux@smankusors.com
-X-Sender-Id: hostingeremail|x-authuser|linux@smankusors.com
-X-MC-Relay: Neutral
-X-MailChannels-SenderId: hostingeremail|x-authuser|linux@smankusors.com
-X-MailChannels-Auth-Id: hostingeremail
-X-Quick-Name: 6a7139280b0b5490_1750616809751_890448327
-X-MC-Loop-Signature: 1750616809751:1881878027
-X-MC-Ingress-Time: 1750616809751
-Received: from fr-int-smtpout7.hostinger.io (fr-int-smtpout7.hostinger.io
- [89.116.146.203])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384)
-	by 100.108.116.219 (trex/7.0.3);
-	Sun, 22 Jun 2025 18:26:49 +0000
-Received: from [172.17.0.2] (unknown [36.79.123.39])
-	(Authenticated sender: linux@smankusors.com)
-	by smtp.hostinger.com (smtp.hostinger.com) with ESMTPSA id 4bQKRj6MDVzKLLHq;
-	Sun, 22 Jun 2025 18:26:41 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=smankusors.com;
-	s=hostingermail-a; t=1750616804;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=KPo04CXgY+2Sr4BBCCBjD0uiSw0hxaC3xZEVcKPTLRg=;
-	b=s1Q7qZLuE3ZRRv5ecevYcM+kf5q2EsrwVhKaoQJ8XyByvBfq/r09pjcy9+hrzetbyBmb3M
-	SrTZyomdYv5voLdS1oB2KGTaowSb+q9+AEsareVJMzBRqxjo2NENqlFYvWaqnAPMXeTgLN
-	qWF9Lp9uqjrYEIgUotqzb7g9wpN3+Y3SDHNFHBkeLpz6PyAcowstiQ2t7uhrpJVpAEBIDG
-	WY8lrdSugEIAb61o+UGs5zaauXUdeSb5nr0Hzg+SMaNuv4xoIUSEYz0++b6T0eQpssbUem
-	kwBLnaLi0ajqYecEEOgRiKTUvWg3vKXsXLEabEQUpPPNF3EuFkQ8np1zOea0+Q==
-From: Antony Kurniawan Soemardi <linux@smankusors.com>
-Subject: [PATCH v2 2/5] ARM: dts: qcom: msm8960: add gsbi8 and its serial
- configuration
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 12DCC10A1E;
+	Mon, 23 Jun 2025 00:30:58 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.176
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1750638660; cv=none; b=di+dnIpfLRiHCtE6/2YKKerd7xkOpG+giCVazNjP/K42ED7NZwIWHE39WowlQkCfcWoGJSyU4sg0uEW065/K4PVcPZk4s7shvTNJz7wWHsp5TQblFZ4lkjUkt4Fd0iBlH6qhpP1B8icCum4QATSiCt2nGRxEXXSsxy5rg3etsZI=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1750638660; c=relaxed/simple;
+	bh=3J9d4REFKBDwJnziIZAxTparxDIgPbaqYezCh3xpY6E=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=X1/HnIUZ/ZVXeyaGnlgVJg36EU+hw6etnxjrI0k3Tv6WvJoqbm3pqfTpSdK/k42Kg39bYE4vy7Z3C6twOY2Sj0DqJDIKr3vKTCQP92QLYE0uSrH2kIDpaPES4zzS4qSatQQn15W5i39NGAxi2nw4NTFc5pWH4ENKlEGa/YgSVh0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=QE/1vhj8; arc=none smtp.client-ip=209.85.210.176
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-pf1-f176.google.com with SMTP id d2e1a72fcca58-7481600130eso4408874b3a.3;
+        Sun, 22 Jun 2025 17:30:58 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1750638658; x=1751243458; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=iljGygD1Q6d7ScReIDOoZWXtLgtOIhYkJ6hRy1R+TEY=;
+        b=QE/1vhj8C93Q/kfgaY6pDSWMSpaghfvaiPjakhFnTlW8xrCCW50cW6icB5G9f4hGU9
+         AevqEnJMccPQafb4EqqCbmY8ldJf6/V1nGJ7FfVqiQI9ly4nZ7k7AWyaQoHvKbjLQNrq
+         obixMwUr3hvTjXee/ukVk9aAZ/91kFwIHT9g90JKxCx2tWmjsmeVBGDA+cLWf2Se3EjY
+         ud6yFinsBUUX6sblJDCKD2xm7v6DA3dmsiS5ElxF6yAppf7QWURmn8WA3fVnYBqwUp4P
+         Gh9UHQTBw497vTXr1Sa9eJWlh4frSn/IEf8+NVWnZxzeQIdDi42dzHXh7zfFLklS+HqN
+         Pdbg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1750638658; x=1751243458;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=iljGygD1Q6d7ScReIDOoZWXtLgtOIhYkJ6hRy1R+TEY=;
+        b=oXz2KDVXNcndvv1QarSjPRxMcH0TwDTN4JvPXOIDgy8Zk81d0ntwyp9AiJmnXNis2p
+         oVQxC03vRRP3P+qJqyMK72GYFGLIIKWnkLiCfhcSLtJOXd1qgRAnO6UG2soW5tIzB8ws
+         4Lm4zp74xONjySAy0OfVDy2gt+kwu10dy9MxZJvA3yEa4KTmYBbBNB3aAK8yIFlovkj3
+         t1G0ETZWpw8HUnQffPVC61eo7ukrNTJiuuSlIr5PL6DawXW2oBl6fbPS12kvJo9jLJCo
+         3aVe2m36Bxx7mQ54LZ578ong5IuupRVA/5dlGoJmpfIs7yh3Pg3LONHkH9ynqNoXd1mf
+         UYow==
+X-Forwarded-Encrypted: i=1; AJvYcCU2zoE4IJtB1sbHn9YT7j0kUxrCHXP1exHFmnwKpxI5qPWBW2y8NyINM4xKA7cBfhUpTkNdODNNCb3v@vger.kernel.org, AJvYcCXGjfXAeNjpmHIfJqc8JDYi84V3l651PcCR+VdbQSSqQ8pzacgn+8o1OKmlZb8Q5otNjhVArC0H++VtTFuK@vger.kernel.org
+X-Gm-Message-State: AOJu0YyQYzenvQPQTjotexHE708nLXLI9ApvXmgFmblbbeOGoMRag+rz
+	FsYuQkuH1bTDJMTSRJ80zZCTh3/T3kH01zDULqXplMxHrH0+hyN+yE9Z
+X-Gm-Gg: ASbGncssjYOFStszoGTh1u2K86GXY4mcFGY0GIchhHg1Q0UDmf4nAYg+hIy48eMulKA
+	PqTe1gaXkkNGPvRXcf2CCbwcvXYzFnY0asTXNz+VrEdrkzgDAukf3umPu6fOW5Svok0IqURWhtV
+	2dQ2J3TgG5S+8lW7+T3nKjU4+mgn4GF9BJZxsLIEaXXs5QbxBwv9Z5QIeCt+Yqsjtaz6ODf0n5f
+	sJm2j64YNjTOt9Z2AxtW7hnSKz0OfPTJEI3QpACNN/a9Oe+R8GNeMLrI1TZNUnc7U5HOCbACSvR
+	pj5A6BbjiSSph/GTC2ESk7TgdHCbnjpMSA5MZpXiI6S4BjBVW9ouPzeYFSuTtJgJ3O32TA5w
+X-Google-Smtp-Source: AGHT+IFxKKprEgj0UFVm9wh0Cpkbq08sPxFBqdL/D1NtTk0oMZTwt0KwJTTh07EjdB+QJCVwDh4pZQ==
+X-Received: by 2002:a05:6a00:170b:b0:748:eb38:8830 with SMTP id d2e1a72fcca58-7490d75a080mr14587231b3a.13.1750638658187;
+        Sun, 22 Jun 2025 17:30:58 -0700 (PDT)
+Received: from localhost ([2001:19f0:ac00:4eb8:5400:5ff:fe30:7df3])
+        by smtp.gmail.com with UTF8SMTPSA id d2e1a72fcca58-7490a628108sm6888755b3a.102.2025.06.22.17.30.57
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Sun, 22 Jun 2025 17:30:57 -0700 (PDT)
+From: Inochi Amaoto <inochiama@gmail.com>
+To: Andrew Lunn <andrew+netdev@lunn.ch>,
+	"David S. Miller" <davem@davemloft.net>,
+	Eric Dumazet <edumazet@google.com>,
+	Jakub Kicinski <kuba@kernel.org>,
+	Paolo Abeni <pabeni@redhat.com>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Chen Wang <unicorn_wang@outlook.com>,
+	Inochi Amaoto <inochiama@gmail.com>,
+	Paul Walmsley <paul.walmsley@sifive.com>,
+	Palmer Dabbelt <palmer@dabbelt.com>,
+	Albert Ou <aou@eecs.berkeley.edu>,
+	Alexandre Ghiti <alex@ghiti.fr>,
+	Richard Cochran <richardcochran@gmail.com>,
+	Alexander Sverdlin <alexander.sverdlin@gmail.com>,
+	Thomas Bonnefille <thomas.bonnefille@bootlin.com>,
+	Yu Yuan <yu.yuan@sjtu.edu.cn>,
+	Ze Huang <huangze@whut.edu.cn>
+Cc: netdev@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	sophgo@lists.linux.dev,
+	linux-kernel@vger.kernel.org,
+	linux-riscv@lists.infradead.org,
+	Yixun Lan <dlan@gentoo.org>,
+	Longbin Li <looong.bin@gmail.com>
+Subject: [PATCH net-next RFC v2 0/4] riscv: dts: sophgo: Add ethernet support for cv18xx
+Date: Mon, 23 Jun 2025 08:30:42 +0800
+Message-ID: <20250623003049.574821-1-inochiama@gmail.com>
+X-Mailer: git-send-email 2.50.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20250623-msm8960-sdcard-v2-2-340a5e8f7df0@smankusors.com>
-References: <20250623-msm8960-sdcard-v2-0-340a5e8f7df0@smankusors.com>
-In-Reply-To: <20250623-msm8960-sdcard-v2-0-340a5e8f7df0@smankusors.com>
-To: Bjorn Andersson <andersson@kernel.org>, 
- Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>, 
- Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>
-Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org, 
- linux-kernel@vger.kernel.org, 
- Antony Kurniawan Soemardi <linux@smankusors.com>, 
- Max Shevchenko <wctrl@proton.me>, Rudraksha Gupta <guptarud@gmail.com>
-X-Mailer: b4 0.14.2
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1750616795; l=1551;
- i=linux@smankusors.com; s=20250609; h=from:subject:message-id;
- bh=4ehXf59ZxCKwIZe3x4VcN0FbVJWmUO2gSjtQNs8cW1Q=;
- b=0zEIYZTP+IYGEGpA5tZRamb6Ldh6TG3K4FJF3uwBldz0qy8Zz1sk8TA5YoXxGb1mX5DZ1NV6a
- 8+Q+lsio9ndD4b/0XsyogoGeHY+J2kWHbxHRz+XCOR0d+Wv2yzhV+7t
-X-Developer-Key: i=linux@smankusors.com; a=ed25519;
- pk=65wTy06fJl2/h/EJwjr704YG+yjHFhZObJBWzzK+N00=
-Date: Sun, 22 Jun 2025 18:26:41 +0000 (UTC)
-X-CM-Analysis: v=2.4 cv=Vv1xAP2n c=1 sm=1 tr=0 ts=68584ae4 a=vFgqIyFt8cetXi1S0ACNwg==:117 a=vFgqIyFt8cetXi1S0ACNwg==:17 a=IkcTkHD0fZMA:10 a=wxLWbCv9AAAA:8 a=dPS0CNwDI8gHXBqWMWoA:9 a=QEXdDO2ut3YA:10 a=bNUbUmQ3fjJCcntIu9VZ:22 a=QJY96suAAestDpCc5Gi9:22
-X-CM-Envelope: MS4xfGshWlmH8dwr44w6u2OWUeu0RmB8kB+wwjnoouZvLaONfVIq+FUAbkjtZYzqoenXZaAaqih5VJcadf1cUMcJiTsqauXbBvFghBBqXqjGnuM0I25f0NMy W5jlfS7pCK2QUuFTaDEF8UoFvUUE2XiauCFNJ0cyW5zXmNkZO7TmqlaXrAxpUSSFQZRwXR0wwSNocNcsw21zbpUHgfOQoeVQdg/RJRTrJNOmoVGG4oIupiDQ A45XjzjZ0zAODbSKnLH5Xh2CGPNbbobKn3smNw/OGelYDF0hBslJr9OvSma4OtXunSnYZeHndWblTLusnAMwzA5g7B0YHM3sVkZcvEyNkMMlKlZu/JsPF6Gh pL5FOWp84I4q/R4gpmLuTXVhsJ8sNAmR4LZENoMiF/33Ylw827RIYTdt479lTLXza0JSMO1vwefWVtLOePOJWVRMxSnX2PrZJR5/T5bgVp31OlVChscidZaa 6ukP7qTrvaqLudcmvBZWaRoHArus5MCtCG3HsPXf4tLo7ZI7VPNprjQXGqg=
-X-AuthUser: linux@smankusors.com
+Content-Transfer-Encoding: 8bit
 
-The LTE variant of the MSM8960 SoC has a gsbi8 node used for the
-serial console.
+Add device binding and dts for CV18XX series SoC, this dts change series
+required the reset patch [1] for the dts.
 
-That's if the downstream kernel is to be believed, as Xperia SP has
-a serial console on gsbi8 even on the non-LTE variant.
+[1] https://lore.kernel.org/all/20250617070144.1149926-1-inochiama@gmail.com
 
-Signed-off-by: Antony Kurniawan Soemardi <linux@smankusors.com>
----
- arch/arm/boot/dts/qcom/qcom-msm8960.dtsi | 28 ++++++++++++++++++++++++++++
- 1 file changed, 28 insertions(+)
+Change from RFC v1:
+- https://lore.kernel.org/all/20250611080709.1182183-1-inochiama@gmail.com
+1. patch 3: switch to mdio-mux-mmioreg
+2. patch 4: add configuration for Huashan Pi
 
-diff --git a/arch/arm/boot/dts/qcom/qcom-msm8960.dtsi b/arch/arm/boot/dts/qcom/qcom-msm8960.dtsi
-index 4babd0bbe5d638b228e05cdfe6b068b4ea16335f..588ac6c7a51a667202550432bee14fa14f3f74e7 100644
---- a/arch/arm/boot/dts/qcom/qcom-msm8960.dtsi
-+++ b/arch/arm/boot/dts/qcom/qcom-msm8960.dtsi
-@@ -333,6 +333,34 @@ gsbi5_serial: serial@16440000 {
- 			};
- 		};
- 
-+		gsbi8: gsbi@1a000000  {
-+			compatible = "qcom,gsbi-v1.0.0";
-+			cell-index = <8>;
-+			reg = <0x1a000000 0x100>;
-+			clocks = <&gcc GSBI8_H_CLK>;
-+			clock-names = "iface";
-+			#address-cells = <1>;
-+			#size-cells = <1>;
-+			ranges;
-+
-+			syscon-tcsr = <&tcsr>;
-+
-+			status = "disabled";
-+
-+			gsbi8_serial: serial@1a040000 {
-+				compatible = "qcom,msm-uartdm-v1.3", "qcom,msm-uartdm";
-+				reg = <0x1a040000 0x1000>,
-+				      <0x1a000000 0x1000>;
-+				interrupts = <GIC_SPI 160 IRQ_TYPE_LEVEL_HIGH>;
-+				clocks = <&gcc GSBI8_UART_CLK>,
-+					 <&gcc GSBI8_H_CLK>;
-+				clock-names = "core",
-+					      "iface";
-+
-+				status = "disabled";
-+			};
-+		};
-+
- 		ssbi: ssbi@500000 {
- 			compatible = "qcom,ssbi";
- 			reg = <0x500000 0x1000>;
+Inochi Amaoto (4):
+  dt-bindings: net: Add support for Sophgo CV1800 dwmac
+  riscv: dts: sophgo: Add ethernet device for cv18xx
+  riscv: dts: sophgo: Add mdio multiplexer device for cv18xx
+  riscv: dts: sophgo: Add ethernet configuration for Huashan Pi
 
--- 
-2.34.1
+ .../bindings/net/sophgo,cv1800b-dwmac.yaml    | 113 ++++++++++++++++++
+ arch/riscv/boot/dts/sophgo/cv180x.dtsi        |  71 +++++++++++
+ .../boot/dts/sophgo/cv1812h-huashan-pi.dts    |  10 ++
+ 3 files changed, 194 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/net/sophgo,cv1800b-dwmac.yaml
+
+
+base-commit: 19272b37aa4f83ca52bdf9c16d5d81bdd1354494
+prerequisite-patch-id: c9564e611005b80c0981ad174d42df14fb918c18
+prerequisite-patch-id: 9e1992d2ec3c81fbcc463ff7397168fc2acbbf1b
+prerequisite-patch-id: ab3ca8c9cda888f429945fb0283145122975b734
+prerequisite-patch-id: bd94f8bd3d4ce4f3b153cbb36a3896c5dc143c17
+--
+2.50.0
 
 
