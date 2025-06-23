@@ -1,135 +1,146 @@
-Return-Path: <devicetree+bounces-188769-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-188770-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6B422AE4E4D
-	for <lists+devicetree@lfdr.de>; Mon, 23 Jun 2025 22:44:48 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id D33A9AE4EB0
+	for <lists+devicetree@lfdr.de>; Mon, 23 Jun 2025 23:08:24 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 4ED28189782D
-	for <lists+devicetree@lfdr.de>; Mon, 23 Jun 2025 20:45:01 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id F30623BE5FB
+	for <lists+devicetree@lfdr.de>; Mon, 23 Jun 2025 21:07:52 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2B5892D5C77;
-	Mon, 23 Jun 2025 20:44:36 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C2446221FD2;
+	Mon, 23 Jun 2025 21:08:09 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=mailbox.org header.i=@mailbox.org header.b="LxcRn7Wy"
+	dkim=pass (2048-bit key) header.d=kwiboo.se header.i=@kwiboo.se header.b="jl6h7Ky8"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mout-p-101.mailbox.org (mout-p-101.mailbox.org [80.241.56.151])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from smtp.forwardemail.net (smtp.forwardemail.net [149.28.215.223])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 13F492D4B68;
-	Mon, 23 Jun 2025 20:44:33 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=80.241.56.151
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 91ED82153C1
+	for <devicetree@vger.kernel.org>; Mon, 23 Jun 2025 21:08:06 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=149.28.215.223
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1750711476; cv=none; b=E3X7MSoS4FU0yq814tBjkS6MVLQpYKhWU/mwcJoVSTQ0axLFZEzNfrqTHqnq2afKnvjKdS1UvSOhZ7eCtX3hQm9611yJfgYN2FilCcBx+7jO42UWgS419X5hKuj+Oim9p6I0Nt2VZyiSXnk+5Z0VwF14fmUcX9fIZkZ0kJgYxxI=
+	t=1750712889; cv=none; b=a23F9Fp9adV/dhcxAbRrVyIgZpXTGeGUX/Ji/fnZYYa2Yw8f3+jvu0asqlgnTTWUI2EeMMt9Oh17zHW3rKhYeVF4mgD/xEBbdLiA/ZO/L9S4cdmm7ZvQhuITT+zKzfUBn2AdwZ0ll83UjkWoc7MVJxLbAZsnTI14HdTA2/DryL8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1750711476; c=relaxed/simple;
-	bh=CB7BEmuMIG+McnmrZDtHUFTPvu0ph/3el0m1uADrtnw=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=Qgtuw46Plx0tjkpGNDECdJ9av4wSWwK35MVC7AFKDfeZrFTD8wcXul4XQw/YvUg+og1yU2Ch0W9glERaEeaL1v/U2UnR1OGU/ld8mezSXAim4gqK/xp9PhoGsAK9sCe1OIhwKyOTiHoCBg7NMGpKGqJttOgJOlcUwGV8ESKW5Ks=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=mailbox.org; spf=pass smtp.mailfrom=mailbox.org; dkim=pass (2048-bit key) header.d=mailbox.org header.i=@mailbox.org header.b=LxcRn7Wy; arc=none smtp.client-ip=80.241.56.151
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=mailbox.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=mailbox.org
-Received: from smtp2.mailbox.org (smtp2.mailbox.org [IPv6:2001:67c:2050:b231:465::2])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
-	(No client certificate requested)
-	by mout-p-101.mailbox.org (Postfix) with ESMTPS id 4bR0SG02bwz9sWc;
-	Mon, 23 Jun 2025 22:44:30 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=mailbox.org; s=mail20150812;
-	t=1750711470;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=3VHihW110j+ZG4NGZgu02etFf31LpWSQLQKAK3V32HE=;
-	b=LxcRn7WyAyHiYyJNR7M7J9AwthjyCJisFTlAXEd3OUdk/99/qQdjySsqxa/utNjp8CsFgV
-	bOnkIbytp9PstgAIWJKgcCGCRpC3Pj+bEoEW2XRA4Lf0Q1xMljbbnXN4GUhSTepv4y1IoQ
-	7MrqpLUwo6+VzhqYd2u2D5ZLVa5SEl/nWKk6+kiql+Hr4ybeKF77DTQa/qIDXtB57A6awz
-	HzgeADlTiHhlTASoC2U74MAu3Qt45+YVp/JyA9wb3/93JQ2sMZVWjf2P9Uk6VlobCDnMcT
-	5z8euQa+YNBIdu14ZBhi2IjqFA+OatVqYKdTYlghyL5eRS6ibEVDwfd4HFFMPg==
-Message-ID: <033bbb7d-ab00-467e-ab21-877f76d027a2@mailbox.org>
-Date: Mon, 23 Jun 2025 22:44:28 +0200
+	s=arc-20240116; t=1750712889; c=relaxed/simple;
+	bh=vdy5e14izDTeYU29Gvoio4S0TZa4cGG2J1dxKrlP4MY=;
+	h=Message-ID:Date:MIME-Version:Subject:From:To:Cc:References:
+	 In-Reply-To:Content-Type; b=YLh/CUfkeMDbQy/Hx+MyPOnK162I2V5q+RFghRsg+KTmju+YUfA1Rbb5J39xyJGxl4NSysYT4B4UaOcJU/iYbOyIXHTy/hKpCr4dxzS0DuNyMb0c+SQt+UdtKDn2NpJ13cS14VWENjAUPKvLOsEzVv/tXzB5hR91ur5Tqyzeh+0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=kwiboo.se; spf=pass smtp.mailfrom=fe-bounces.kwiboo.se; dkim=pass (2048-bit key) header.d=kwiboo.se header.i=@kwiboo.se header.b=jl6h7Ky8; arc=none smtp.client-ip=149.28.215.223
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=kwiboo.se
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=fe-bounces.kwiboo.se
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kwiboo.se;
+ h=Content-Transfer-Encoding: Content-Type: In-Reply-To: References: Cc:
+ To: From: Subject: MIME-Version: Date: Message-ID; q=dns/txt;
+ s=fe-e1b5cab7be; t=1750712886;
+ bh=gEB9Uu/BrBrdgfsB6ag5zH9CJIrem98ugMHj5C+RaBk=;
+ b=jl6h7Ky8H9onZFvdgS+VceSwaLsmF18yJkgcUZquc0ussuo4yyNi6+p6NB90vHir5yevLDWFD
+ jCmKlIfF/GcL5tbmCbMt9FEtxHhHDFrGOkvBCDglH78mNQHxTiac1j/HfJpUNIkoY6MFUEQOg9z
+ BGsiOnlmX77xiGsk8IIiZLpFakNMY2/MOB+hGfY6Gllo9fZ7JUIoNGDF0a95nwcWFEUJvQkrP4U
+ PfDLb/tip2y+ArN1HzjGUruo6u4o/lv2A2s+S3vWzP+bTw/D//L9bNNcbVo5YYwDPtpU9QETsGc
+ 8RcvAQupyKSL8Uu086SH546jr8vf09s2BePY/yxh9eHA==
+X-Forward-Email-ID: 6859c22e294ea86d0db707c3
+X-Forward-Email-Sender: rfc822; jonas@kwiboo.se, smtp.forwardemail.net,
+ 149.28.215.223
+X-Forward-Email-Version: 1.0.3
+X-Forward-Email-Website: https://forwardemail.net
+X-Complaints-To: abuse@forwardemail.net
+X-Report-Abuse: abuse@forwardemail.net
+X-Report-Abuse-To: abuse@forwardemail.net
+Message-ID: <90b7a1b6-bc49-414d-9cde-e6fad46d2650@kwiboo.se>
+Date: Mon, 23 Jun 2025 23:07:53 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Subject: Re: [PATCH v4 3/3] pwm: argon-fan-hat: Add Argon40 Fan HAT support
-To: =?UTF-8?Q?Uwe_Kleine-K=C3=B6nig?= <ukleinek@kernel.org>
-Cc: linux-pwm@vger.kernel.org, Conor Dooley <conor+dt@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Rob Herring <robh@kernel.org>,
- devicetree@vger.kernel.org, linux-renesas-soc@vger.kernel.org
-References: <20250621172056.160855-1-marek.vasut+renesas@mailbox.org>
- <20250621172056.160855-3-marek.vasut+renesas@mailbox.org>
- <purpjdp72jw2rok5ihyua635izyih54ufom2knsbaiwdd3jzgk@6wjf364fao2g>
- <dbec18f0-5df4-4eb8-93ab-da6ccfedf8ab@mailbox.org>
- <apbocxuzcptlpghphh7nchnwyxpfhmiwosgxrt4y5awsb67ar3@fbskfbulwsma>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 1/4] arm64: dts: rockchip: list all CPU supplies on ArmSoM
+ Sige5
+From: Jonas Karlman <jonas@kwiboo.se>
+To: Piotr Oniszczuk <piotr.oniszczuk@gmail.com>,
+ Alexey Charkov <alchark@gmail.com>
+Cc: Heiko Stuebner <heiko@sntech.de>,
+ Nicolas Frattaroli <nicolas.frattaroli@collabora.com>,
+ XiaoDong Huang <derrick.huang@rock-chips.com>, Rob Herring
+ <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, devicetree@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, linux-rockchip@lists.infradead.org,
+ linux-kernel@vger.kernel.org
+References: <20250603-sige5-updates-v1-0-717e8ce4ab77@gmail.com>
+ <3286000.Y6S9NjorxK@phil>
+ <CABjd4YyaNF1zosFFi6hEsZanPDxoaa1h4Dpd6uTPRwA3BZn0=w@mail.gmail.com>
+ <5897576.DvuYhMxLoT@phil>
+ <CABjd4Yy8WeXKmmxh2-TjjF5-ABy-NzzJsWpt1KvSjJqTHh0Xwg@mail.gmail.com>
+ <CABjd4Yz4NbqzZH4Qsed3ias56gcga9K6CmYA+BLDBxtbG915Ag@mail.gmail.com>
+ <36711B65-DD45-4539-BD9C-0382936FD0A3@gmail.com>
+ <dd1d0676-4eaa-4df7-b557-676b3de9a52e@kwiboo.se>
 Content-Language: en-US
-From: Marek Vasut <marek.vasut@mailbox.org>
-In-Reply-To: <apbocxuzcptlpghphh7nchnwyxpfhmiwosgxrt4y5awsb67ar3@fbskfbulwsma>
-Content-Type: text/plain; charset=UTF-8; format=flowed
+In-Reply-To: <dd1d0676-4eaa-4df7-b557-676b3de9a52e@kwiboo.se>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-X-MBO-RS-META: 7kzmi57c3ooazz3eg5cmxaab41mjxpj6
-X-MBO-RS-ID: 96e805e878dddce9f91
 
-On 6/23/25 9:53 PM, Uwe Kleine-König wrote:
-> Hello Marek,
-
-Hello Uwe,
-
-> On Mon, Jun 23, 2025 at 07:30:33PM +0200, Marek Vasut wrote:
->> On 6/23/25 11:11 AM, Uwe Kleine-König wrote:
->>> when I replied to v3 this v4 was already on the list which I missed. My
->>> concern applies here, too, though.
->>>
->>> On Sat, Jun 21, 2025 at 07:19:56PM +0200, Marek Vasut wrote:
->>>> +static void argon_fan_hat_i2c_shutdown(struct i2c_client *i2c)
->>>> +{
->>>> +	argon_fan_hat_write(i2c, 100);
->>>> +}
->>>
->>> If you drop this, I'm willing to apply.
+On 2025-06-23 19:40, Jonas Karlman wrote:
+> On 2025-06-23 17:02, Piotr Oniszczuk wrote:
 >>
->> Dropping this would make the hardware which uses this device more
->> susceptible to thermal damage, e.g. in case it gets stuck during reboot and
->> does not boot Linux afterward. I don't want to risk such thermal damage.
+>>
+>>> Wiadomość napisana przez Alexey Charkov <alchark@gmail.com> w dniu 23 cze 2025, o godz. 15:58:
+>>>
+>>> On Mon, Jun 23, 2025 at 1:19 PM Alexey Charkov <alchark@gmail.com> wrote:
+>>>>
+>>>>
+>>>
+>>> Okay, I've bisected this.
+>>>
+>>> TLDR: Linux and u-boot seem to have nothing to do with it, opensource
+>>> TF-A doesn't work, binary BL31 starting with v1.09 do not work. BL31
+>>> v1.08 and earlier work fine.
 > 
-> We agree here. But the right place to address this is the pwm-fan
-> driver. A PWM is supposed to do exactly and only what its consumer wants
-> it to do (in the limits set by hardware). Officially a PWM driver
-> doesn't know the polarity of a fan, so `argon_fan_hat_write(i2c, 100)`
-> might fully enable or complete disable the fan. The fan-driver knows the
-> polarity. The PWM driver doesn't even know that it controls a fan. And
-> the next guy takes the argon device and controls a motor with it --- and
-> wonders that the vehicle gives full-speed at shutdown.
+> v1.09 added support for 1 GHz hrtimer in addition to the normal 24 MHz
+> rate. Mainline U-Boot may only support use of 24 MHz hrtimer, unsure
+> what impact the hrtimer rate has. Mixing blobs with/without 1 GHz
+> support is known to cause issues. At one point the latest rkbin tree may
+> have contained incompatible rk3576 blobs (mixed 1 ghz vs 24 mhz rate).
 
-I suspect this cannot happen without non-standard hardware change of 
-this device, see the link which shows what this device is, it is an 
-integrated PWM+fan device:
+Clarification:
+Following boot1 parameter activates use of 1 GHz hrtimer, see [3].
 
-Argon Fan HAT https://argon40.com/products/argon-fan-hat
+This parameter was added to rkbin repo before all blobs was updated to
+fully support use of the 1 ghz mode, and is the source for incompatible
+blobs I referenced above.
 
-> So I hope we also agree that the pwm-fan driver (or an even more generic
-> place if possible that applies to all fan drivers) is the right layer to
-> fix this. And note that the pwm-fan driver already has such a decision
-> implemented, it's just the wrong one from your POV as it disables the
-> fan at shutdown. For me this is another confirmation that having a
-> shutdown callback in the PWM driver is wrong. The two affected drivers
-> shouldn't fight about what is the right policy.
+  [BOOT1_PARAM]
+  WORD_2=0x100
 
-I would fully agree with this argument for a generic PWM controller, but 
-this isn't one, this is a combined PWM+fan device.
+[3] https://github.com/rockchip-linux/rkbin/commit/cbbc6868221fb416d4f0d86a10e493dbbbc1f117
 
-The PWM driver is the last one that is being shut down, it is being shut 
-down after the pwm-fan driver. If the pwm-fan driver fails for whatever 
-reason, the PWM driver -- in this case driver for a combined PWM+fan 
-device -- should make sure that the hardware does not melt. So I would 
-argue that, for this specific device, the shutdown hook here is correct.
+Regards,
+Jonas
 
-I would propose to keep the shutdown hook here, and extend the pwm-fan 
-driver to be aligned with the behavior of the shutdown hook here. Does 
-that work for you ?
+> 
+> Did you try with newer blobs, i.e. ddr init v1.09, bl31 v1.19 blobs [1]
+> and mainline U-Boot [2] ?
+> 
+> [1] https://github.com/radxa/rkbin/commits/develop-v2025.04/
+> [2] https://source.denx.de/u-boot/contributors/kwiboo/u-boot/-/commits/rk3576
+> 
+> Regards,
+> Jonas
+> 
+>>
+>>
+>> just fyi: 
+>> to confirm: replacing only bl31 to 1.08 makes all good
+>> with perf gov. clocks staying on 2200/2300
+>> clock estimations are predictable, constant and estimating constantly 2400
+>> ux is „like” on 3588
+>>
+>> Alexey: many thx for finding root cause component!
+>>   
+>>    
+> 
+
 
