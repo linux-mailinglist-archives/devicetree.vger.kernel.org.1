@@ -1,318 +1,138 @@
-Return-Path: <devicetree+bounces-188655-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-188653-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id ACB1BAE47E5
-	for <lists+devicetree@lfdr.de>; Mon, 23 Jun 2025 17:07:54 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0E6A4AE47DF
+	for <lists+devicetree@lfdr.de>; Mon, 23 Jun 2025 17:07:31 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 8A388189F1BE
-	for <lists+devicetree@lfdr.de>; Mon, 23 Jun 2025 15:05:47 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 146FF4411E8
+	for <lists+devicetree@lfdr.de>; Mon, 23 Jun 2025 15:03:07 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id ACA3926E71F;
-	Mon, 23 Jun 2025 15:05:25 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id CD67325E465;
+	Mon, 23 Jun 2025 15:03:12 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=foss.st.com header.i=@foss.st.com header.b="bF9yI8JI"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="UPeo3YNj"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx07-00178001.pphosted.com (mx07-00178001.pphosted.com [185.132.182.106])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-ed1-f54.google.com (mail-ed1-f54.google.com [209.85.208.54])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9B3C072624;
-	Mon, 23 Jun 2025 15:05:23 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.132.182.106
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1BC561DA4E;
+	Mon, 23 Jun 2025 15:03:10 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.54
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1750691125; cv=none; b=nekQ2cfKj/SamdhfofCRl5iJiiIm8FpyR8e4DYIh9eLOMeHw8itE04cWnrJggAxRhvAtIOmZhClf9P4lBsUcUpPC+BP6y+IepDFQccdLqNYzF6gpEqpYVYsj69QbUK0ELQwlTpjYv5KL7K7MmbN3Dk6983O6UCTPy+YcbUQhqY4=
+	t=1750690992; cv=none; b=LF4MN6J9TTICgysFMpRarM9BSJDEgKWzz+OmzTPSb8tb4UC5eqwLiOPSUpwPnhdsjpNNq0gAwlE1RdPDgOShmiAsvtDN4FQWN0JmFnqba2KCCju4CXsdA0zobFCcCYYAd03Rb4g+GlgsVMiKgmmSbMWp24wen6BMmk4zZhtMD+M=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1750691125; c=relaxed/simple;
-	bh=xGs+xuT9ZbXSNcZb6r49Mqj6bJ/rNc5SZFKZhnRHrMI=;
-	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
-	 In-Reply-To:Content-Type; b=jGSyEk68e4JebI6fO8yx014JAKcmC900fRYR8h2/x1H3cm571/nPZL9n+ST0GPLGh6kw4TVGxQe7fBfUqhDCm+p2su7Ko3+sLkgOKG5cMRnKSUOXKoCx6G3tMEt3hFYr8OgQXKYOtANeeho7siSAMBkEKSZ93B9aEin0JqIyMLs=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=foss.st.com; spf=pass smtp.mailfrom=foss.st.com; dkim=pass (2048-bit key) header.d=foss.st.com header.i=@foss.st.com header.b=bF9yI8JI; arc=none smtp.client-ip=185.132.182.106
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=foss.st.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=foss.st.com
-Received: from pps.filterd (m0369458.ppops.net [127.0.0.1])
-	by mx07-00178001.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 55NDdLVH024335;
-	Mon, 23 Jun 2025 17:05:06 +0200
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=foss.st.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=selector1; bh=
-	6sv5OcOQ4mLQLuHevh2cUvXQ88huIlXGlWQaz3Py6wY=; b=bF9yI8JIFqs7ioUx
-	YDyxrekrSZ47ndzO65fgYVA9fiqdJhb4A1AjRQpK8A6JPvobiX40RBvpbQICsGZy
-	KBEKyV8Nutp2vooUtufi6oc0aFIm3JnPIyEC0r4FpzFHsn9wPHB3mdk4CC3i0ySp
-	dVG+isuNuslqinodqBJo57SAui7QgB1Bu7WUx+AAYYE7Ei9Zr3IYwwyivPnOgD0g
-	NLyaqsS2+nIOxbGUoSJWY3H5t9f/gQnx84a3CpWq1xyJoKFdEOdehH2E7z2ID5QJ
-	ZCF7Imh3wriuEBkharNBQkUpD7+qm/hJwoArih2kgBsZskd63sl/XG1gzuA/EUtb
-	fL7yXQ==
-Received: from beta.dmz-ap.st.com (beta.dmz-ap.st.com [138.198.100.35])
-	by mx07-00178001.pphosted.com (PPS) with ESMTPS id 47e6a6e021-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Mon, 23 Jun 2025 17:05:05 +0200 (MEST)
-Received: from euls16034.sgp.st.com (euls16034.sgp.st.com [10.75.44.20])
-	by beta.dmz-ap.st.com (STMicroelectronics) with ESMTP id 37F7440044;
-	Mon, 23 Jun 2025 17:03:38 +0200 (CEST)
-Received: from Webmail-eu.st.com (shfdag1node2.st.com [10.75.129.70])
-	by euls16034.sgp.st.com (STMicroelectronics) with ESMTP id BAD61B52149;
-	Mon, 23 Jun 2025 17:02:26 +0200 (CEST)
-Received: from [10.252.18.29] (10.252.18.29) by SHFDAG1NODE2.st.com
- (10.75.129.70) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.39; Mon, 23 Jun
- 2025 17:02:25 +0200
-Message-ID: <1ff31bd6-08e0-46da-a1b0-c60dbb1e3cb8@foss.st.com>
-Date: Mon, 23 Jun 2025 17:02:22 +0200
+	s=arc-20240116; t=1750690992; c=relaxed/simple;
+	bh=ptw+OLnbhQoou1tvc49UIB1GAA1R3x8wTb0I0R87Zd8=;
+	h=Content-Type:Mime-Version:Subject:From:In-Reply-To:Date:Cc:
+	 Message-Id:References:To; b=VXRQGIem5xILsFyQsrYoOG8TZz9mqLtyUJBXi/H4CzCutoZ5y9VP0kyDIR+gPmTJ0BPB8oguv1fqxdkFcgeqXymE9ssTNWqUPmWAigz2fljPqaLFa4C3yJRVOXmdabHjjr4lb7ZVUWX6DH4exHq9cXfQ9XGFd29diaELf3GupLw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=UPeo3YNj; arc=none smtp.client-ip=209.85.208.54
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-ed1-f54.google.com with SMTP id 4fb4d7f45d1cf-607cf70b00aso7768001a12.2;
+        Mon, 23 Jun 2025 08:03:10 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1750690989; x=1751295789; darn=vger.kernel.org;
+        h=to:references:message-id:content-transfer-encoding:cc:date
+         :in-reply-to:from:subject:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=DXl0cMLudBpdlj8wR8LOIlD5+oXM7nXzkbSpaXpGmEw=;
+        b=UPeo3YNjgYrE9nbCs7ea7uq+LGq88S0LWFTtgkSE8cz/eMZXjr3wldwN9B94w90WMg
+         ulMIWzyptZ1O+KcS02JN990OrjwhItAnnjGD7wPYUvEfG3Mt5fTNQRnwi0AovcBohcH/
+         DjLPY3CDBsYRTZcm9KMN4ph7KDsfpOyw876Ewtukzyk587dAvAApoNccFHnt7ocM6PRA
+         S1mJrPEHaf2+RrTv32R5DsXmH5RspSoDgP3aNlND/BQ07euTpO+t3QEoUlSBtzmsvQZG
+         D9Upz/TktBB5JIgzCNJAdNhb1e8+HHPRpcXmzJTU21auwbeMb0Sd/G3DLSe6E9q8vrYv
+         HA1g==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1750690989; x=1751295789;
+        h=to:references:message-id:content-transfer-encoding:cc:date
+         :in-reply-to:from:subject:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=DXl0cMLudBpdlj8wR8LOIlD5+oXM7nXzkbSpaXpGmEw=;
+        b=v54s5yotBWim3ZvIOVwxzBJ+1+VwJlDhLQT8r6yhVO/hluR9MjmWZATPKRzybIxzvs
+         kRgjHohzq/jr+4bHY2afrd8xnIpp0/tif8ZAkQyg2xFu1kZv/yr68iWNWVNe8HtWsivm
+         XDyIBljVud1niJjmELKDFD3Rgb9VRyhmkYYTV0VgFJMoA3HoFge2Y1wZR67ZbvO7kX+1
+         4JqEONquYhm4C0ef+L0GY23Ww+Mo1LOMiGBaVY5qBo/pw2mVlj7TPfRinQxri02/Sehb
+         KsqzKSFIPoKqCB5ThPr4QW06pHEQFoXkPI3CbPhR48Esi4I86hp4QSa6vlReek8H175o
+         Y+SA==
+X-Forwarded-Encrypted: i=1; AJvYcCV5huojR8U89g7ejRseIShncM0GbtB2YrzqU0ao8YJ4xotbsadh8LKwAlcVtHFE0w9jbCG4eCK6bGLX@vger.kernel.org, AJvYcCXIYJpZjYNAQ3k5FaSQ0p4h1rYC2vV06higysiSp90OHUgqU4IAsADhaSJebA/GCQXl4C3T+14VAkWj8j6s@vger.kernel.org
+X-Gm-Message-State: AOJu0YyOTZtfSA2zGT3S1/Vi1UpZtR00vG13iocCFDw2SbLEJT2eWrMn
+	6+KIRoQbcgIw3ats9/HMP8CFFIiMOc9INiZNCqJWf/aDEe/tldVNBkIc
+X-Gm-Gg: ASbGncvnryddrAYxEQbG/aAbplkqJ71zBtMW8ZAj/BnvkDJO3+E0s1P75+RDiKwAqHY
+	S0LZkk4vp6OCgzLaViMdKhmKdOtkU7e5uif0urF3Jj6CVjL1iAIeMj7VRepGm+2/Pg+Bkp8baxp
+	7t4DpdgdcUwF1MANndCgZ866DPoG2uVa84lP4OJRT96kAjY9OOjyci8OdO+158eDv9cki8sqUTw
+	wlgo+KNFvMtprdKvL/ZX2k+NxgDSSiM0JGfCr4bmxFR6OV5PAjCCipB9jZrKm6vlqIbBcgoDhAx
+	I2dsj+/SqFzlRpZu6TZ1CYgwlf78rgo2w6yH08Ee07+PlLxXa1QUlY2hHtuR6LWVgzePPfgIoYA
+	KzdbuBMcwrA==
+X-Google-Smtp-Source: AGHT+IGgziI+e+vJ+MXDsuPrI0s48ZwgitoKIP9UnUUKH8556Bz5CkOWTC/xSH8NNs/2JksNufd3YQ==
+X-Received: by 2002:a05:6402:34d2:b0:607:f42f:d5eb with SMTP id 4fb4d7f45d1cf-60a1cd1af9amr12209304a12.7.1750690988966;
+        Mon, 23 Jun 2025 08:03:08 -0700 (PDT)
+Received: from smtpclient.apple ([89.66.237.154])
+        by smtp.gmail.com with ESMTPSA id 4fb4d7f45d1cf-60a18ce62f9sm6107984a12.68.2025.06.23.08.03.07
+        (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
+        Mon, 23 Jun 2025 08:03:08 -0700 (PDT)
+Content-Type: text/plain;
+	charset=utf-8
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 06/13] perf: stm32: introduce DDRPERFM driver
-To: Krzysztof Kozlowski <krzk@kernel.org>, Will Deacon <will@kernel.org>,
-        Mark
- Rutland <mark.rutland@arm.com>, Rob Herring <robh@kernel.org>,
-        Krzysztof
- Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Maxime
- Coquelin <mcoquelin.stm32@gmail.com>,
-        Alexandre Torgue
-	<alexandre.torgue@foss.st.com>,
-        Philipp Zabel <p.zabel@pengutronix.de>,
-        Jonathan Corbet <corbet@lwn.net>,
-        Gatien Chevallier
-	<gatien.chevallier@foss.st.com>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Gabriel Fernandez
-	<gabriel.fernandez@foss.st.com>
-CC: <linux-arm-kernel@lists.infradead.org>, <linux-perf-users@vger.kernel.org>,
-        <devicetree@vger.kernel.org>,
-        <linux-stm32@st-md-mailman.stormreply.com>,
-        <linux-kernel@vger.kernel.org>, <linux-doc@vger.kernel.org>,
-        <linux-clk@vger.kernel.org>
-References: <20250623-ddrperfm-upstream-v1-0-7dffff168090@foss.st.com>
- <20250623-ddrperfm-upstream-v1-6-7dffff168090@foss.st.com>
- <9cb1575e-ae27-4a78-adb7-8a9e7072375e@kernel.org>
-Content-Language: en-US
-From: Clement LE GOFFIC <clement.legoffic@foss.st.com>
-In-Reply-To: <9cb1575e-ae27-4a78-adb7-8a9e7072375e@kernel.org>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 8bit
-X-ClientProxiedBy: SHFCAS1NODE1.st.com (10.75.129.72) To SHFDAG1NODE2.st.com
- (10.75.129.70)
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1099,Hydra:6.1.7,FMLib:17.12.80.40
- definitions=2025-06-23_04,2025-06-23_06,2025-03-28_01
+Mime-Version: 1.0 (Mac OS X Mail 16.0 \(3826.600.51.1.1\))
+Subject: Re: [PATCH 1/4] arm64: dts: rockchip: list all CPU supplies on ArmSoM
+ Sige5
+From: Piotr Oniszczuk <piotr.oniszczuk@gmail.com>
+In-Reply-To: <CABjd4Yz4NbqzZH4Qsed3ias56gcga9K6CmYA+BLDBxtbG915Ag@mail.gmail.com>
+Date: Mon, 23 Jun 2025 17:02:56 +0200
+Cc: Heiko Stuebner <heiko@sntech.de>,
+ Nicolas Frattaroli <nicolas.frattaroli@collabora.com>,
+ XiaoDong Huang <derrick.huang@rock-chips.com>,
+ Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>,
+ devicetree@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org,
+ linux-rockchip@lists.infradead.org,
+ linux-kernel@vger.kernel.org,
+ Jonas Karlman <jonas@kwiboo.se>
+Content-Transfer-Encoding: quoted-printable
+Message-Id: <36711B65-DD45-4539-BD9C-0382936FD0A3@gmail.com>
+References: <20250603-sige5-updates-v1-0-717e8ce4ab77@gmail.com>
+ <3286000.Y6S9NjorxK@phil>
+ <CABjd4YyaNF1zosFFi6hEsZanPDxoaa1h4Dpd6uTPRwA3BZn0=w@mail.gmail.com>
+ <5897576.DvuYhMxLoT@phil>
+ <CABjd4Yy8WeXKmmxh2-TjjF5-ABy-NzzJsWpt1KvSjJqTHh0Xwg@mail.gmail.com>
+ <CABjd4Yz4NbqzZH4Qsed3ias56gcga9K6CmYA+BLDBxtbG915Ag@mail.gmail.com>
+To: Alexey Charkov <alchark@gmail.com>
+X-Mailer: Apple Mail (2.3826.600.51.1.1)
 
-On 6/23/25 11:45, Krzysztof Kozlowski wrote:
-> On 23/06/2025 11:27, Clément Le Goffic wrote:
->> +	if (of_property_present(pmu->dev->of_node, "access-controllers")) {
->> +		ret = stm32_firewall_get_firewall(pmu->dev->of_node, &firewall, 1);
->> +		if (ret) {
->> +			dev_err(pmu->dev, "Failed to get firewall\n");
->> +			return ret;
->> +		}
->> +		ret = stm32_firewall_grant_access_by_id(&firewall, firewall.firewall_id);
->> +		if (ret) {
->> +			dev_err(pmu->dev, "Failed to grant access\n");
->> +			return ret;
->> +		}
->> +	}
->> +
->> +	if (of_property_present(pmu->dev->of_node, "clocks")) {
-> 
-> No, don't open-code get clk optional.
 
-Ok
 
-> 
->> +		pmu->clk = devm_clk_get_prepared(pmu->dev, NULL);
->> +		if (IS_ERR(pmu->clk)) {
->> +			dev_err(pmu->dev, "Failed to get clock\n");
->> +			return PTR_ERR(pmu->clk);
->> +		}
->> +	}
->> +
->> +	clk_enable(pmu->clk);
->> +
->> +	if (of_property_present(pdev->dev.of_node, "resets")) {
->> +		rst = devm_reset_control_get(&pdev->dev, NULL);
->> +		if (IS_ERR(rst)) {
->> +			dev_err(&pdev->dev, "Failed to get reset\n");
->> +			ret = PTR_ERR(rst);
->> +			goto err_clk;
->> +		}
->> +		reset_control_assert(rst);
->> +		reset_control_deassert(rst);
->> +	}
->> +
->> +	pmu->poll_period = ms_to_ktime(POLL_MS);
->> +	hrtimer_setup(&pmu->hrtimer, stm32_ddr_pmu_poll, CLOCK_MONOTONIC, HRTIMER_MODE_REL);
->> +
->> +	for (int i = 0; i < MP2_CNT_NB; i++)
->> +		INIT_LIST_HEAD(&pmu->counters[i]);
->> +
->> +	pmu->selected_set = -1;
->> +
->> +	pmu->pmu = (struct pmu) {
->> +		.task_ctx_nr = perf_invalid_context,
->> +		.start = stm32_ddr_pmu_event_start,
->> +		.stop = stm32_ddr_pmu_event_stop,
->> +		.add = stm32_ddr_pmu_event_add,
->> +		.del = stm32_ddr_pmu_event_del,
->> +		.read = stm32_ddr_pmu_event_read,
->> +		.event_init = stm32_ddr_pmu_event_init,
->> +		.attr_groups = pmu->cfg->attribute,
->> +		.module = THIS_MODULE,
->> +	};
->> +
->> +	ret = perf_pmu_register(&pmu->pmu, DRIVER_NAME, -1);
->> +	if (ret) {
->> +		dev_err(&pdev->dev, "Couldn't register DDRPERFM driver as a PMU\n");
->> +		goto err_clk;
->> +	}
->> +
->> +	if (pmu->cfg->regs->dram_inf.reg) {
->> +		ret = of_property_read_u32(pdev->dev.of_node, "st,dram-type", &pmu->dram_type);
->> +		if (ret) {
->> +			dev_err(&pdev->dev, "Missing device-tree property 'st,dram-type'\n");
->> +			perf_pmu_unregister(&pmu->pmu);
->> +
->> +			return ret;
->> +		}
->> +
->> +		writel_relaxed(pmu->dram_type, pmu->membase + pmu->cfg->regs->dram_inf.reg);
->> +	}
->> +
->> +	clk_disable(pmu->clk);
-> 
-> Why do you keep clock prepared? This device does not know what sort of
-> clock it gets, so you end up with clock always active for example and
-> this being no-op.
+> Wiadomo=C5=9B=C4=87 napisana przez Alexey Charkov <alchark@gmail.com> =
+w dniu 23 cze 2025, o godz. 15:58:
+>=20
+> On Mon, Jun 23, 2025 at 1:19=E2=80=AFPM Alexey Charkov =
+<alchark@gmail.com> wrote:
+>>=20
+>>=20
+>=20
+> Okay, I've bisected this.
+>=20
+> TLDR: Linux and u-boot seem to have nothing to do with it, opensource
+> TF-A doesn't work, binary BL31 starting with v1.09 do not work. BL31
+> v1.08 and earlier work fine.
 
-Ok will disable_unprepare
 
->> +
->> +	return 0;
->> +
->> +err_clk:
->> +	clk_disable_unprepare(pmu->clk);
->> +
->> +	return ret;
->> +}
->> +
->> +static void stm32_ddr_pmu_device_remove(struct platform_device *pdev)
->> +{
->> +	struct stm32_ddr_pmu *stm32_ddr_pmu = platform_get_drvdata(pdev);
->> +
->> +	perf_pmu_unregister(&stm32_ddr_pmu->pmu);
->> +}
->> +
->> +static int __maybe_unused stm32_ddr_pmu_device_resume(struct device *dev)
->> +{
->> +	struct stm32_ddr_pmu *pmu = dev_get_drvdata(dev);
->> +
->> +	clk_enable(pmu->clk);
->> +	writel_relaxed(pmu->dram_type, pmu->membase + pmu->cfg->regs->dram_inf.reg);
->> +	clk_disable(pmu->clk);
->> +
->> +	return 0;
->> +}
->> +
->> +static const struct stm32_ddr_pmu_regspec stm32_ddr_pmu_regspec_mp1 = {
->> +	.stop =		{ DDRPERFM_CTRL, CTRL_STOP },
->> +	.start =	{ DDRPERFM_CTRL, CTRL_START },
->> +	.enable =	{ DDRPERFM_CFG },
->> +	.cfg =		{ DDRPERFM_CFG },
->> +	.status =	{ DDRPERFM_STATUS, MP1_STATUS_BUSY },
->> +	.clear_cnt =	{ DDRPERFM_CLR, MP1_CLR_CNT},
->> +	.clear_time =	{ DDRPERFM_CLR, MP1_CLR_TIME},
->> +	.counter_time =	{ DDRPERFM_TCNT },
->> +	.counter_evt =	{
->> +				{ DDRPERFM_EVCNT(0) },
->> +				{ DDRPERFM_EVCNT(1) },
->> +				{ DDRPERFM_EVCNT(2) },
->> +				{ DDRPERFM_EVCNT(3) },
->> +	},
->> +};
->> +
->> +static const struct stm32_ddr_pmu_regspec stm32_ddr_pmu_regspec_mp2 = {
->> +	.stop =		{ DDRPERFM_CTRL, CTRL_STOP },
->> +	.start =	{ DDRPERFM_CTRL, CTRL_START },
->> +	.status =	{ DDRPERFM_MP2_STATUS, MP2_STATUS_BUSY },
->> +	.clear_cnt =	{ DDRPERFM_CLR, MP2_CLR_CNT},
->> +	.clear_time =	{ DDRPERFM_CLR, MP2_CLR_TIME},
->> +	.cfg0 =		{ DDRPERFM_MP2_CFG0 },
->> +	.cfg1 =		{ DDRPERFM_MP2_CFG1 },
->> +	.enable =	{ DDRPERFM_MP2_CFG5 },
->> +	.dram_inf =	{ DDRPERFM_MP2_DRAMINF },
->> +	.counter_time =	{ DDRPERFM_MP2_TCNT },
->> +	.counter_evt =	{
->> +				{ DDRPERFM_MP2_EVCNT(0) },
->> +				{ DDRPERFM_MP2_EVCNT(1) },
->> +				{ DDRPERFM_MP2_EVCNT(2) },
->> +				{ DDRPERFM_MP2_EVCNT(3) },
->> +				{ DDRPERFM_MP2_EVCNT(4) },
->> +				{ DDRPERFM_MP2_EVCNT(5) },
->> +				{ DDRPERFM_MP2_EVCNT(6) },
->> +				{ DDRPERFM_MP2_EVCNT(7) },
->> +	},
->> +};
->> +
->> +static const struct stm32_ddr_pmu_cfg stm32_ddr_pmu_cfg_mp1 = {
->> +	.regs = &stm32_ddr_pmu_regspec_mp1,
->> +	.attribute = stm32_ddr_pmu_attr_groups_mp1,
->> +	.counters_nb = MP1_CNT_NB,
->> +	.evt_counters_nb = MP1_CNT_NB - 1, /* Time counter is not an event counter */
->> +	.time_cnt_idx = MP1_TIME_CNT_IDX,
->> +	.get_counter = stm32_ddr_pmu_get_event_counter_mp1,
->> +};
->> +
->> +static const struct stm32_ddr_pmu_cfg stm32_ddr_pmu_cfg_mp2 = {
->> +	.regs = &stm32_ddr_pmu_regspec_mp2,
->> +	.attribute = stm32_ddr_pmu_attr_groups_mp2,
->> +	.counters_nb = MP2_CNT_NB,
->> +	.evt_counters_nb = MP2_CNT_NB - 1, /* Time counter is an event counter */
->> +	.time_cnt_idx = MP2_TIME_CNT_IDX,
->> +	.get_counter = stm32_ddr_pmu_get_event_counter_mp2,
->> +};
->> +
->> +static const struct dev_pm_ops stm32_ddr_pmu_pm_ops = {
->> +	SET_SYSTEM_SLEEP_PM_OPS(NULL, stm32_ddr_pmu_device_resume)
->> +};
->> +
->> +static const struct of_device_id stm32_ddr_pmu_of_match[] = {
->> +	{
->> +		.compatible = "st,stm32mp131-ddr-pmu",
->> +		.data = &stm32_ddr_pmu_cfg_mp1
->> +	},
->> +	{
->> +		.compatible = "st,stm32mp151-ddr-pmu",
->> +		.data = &stm32_ddr_pmu_cfg_mp1
-> 
-> So devices are compatible, thus express it correctly and drop this.
-> 
->> +	},
->> +	{
->> +		.compatible = "st,stm32mp251-ddr-pmu",
->> +		.data = &stm32_ddr_pmu_cfg_mp2
->> +	},
->> +	{ },
->> +};
->> +MODULE_DEVICE_TABLE(of, stm32_ddr_pmu_of_match);
->> +
->> +static struct platform_driver stm32_ddr_pmu_driver = {
->> +	.driver = {
->> +		.name = DRIVER_NAME,
->> +		.pm = &stm32_ddr_pmu_pm_ops,
->> +		.of_match_table = of_match_ptr(stm32_ddr_pmu_of_match),
-> 
-> Drop of_match_ptr, you have here warnings.
-> 
-> 
-> 
-> Best regards,
-> Krzysztof
+just fyi:=20
+to confirm: replacing only bl31 to 1.08 makes all good
+with perf gov. clocks staying on 2200/2300
+clock estimations are predictable, constant and estimating constantly =
+2400
+ux is =E2=80=9Elike=E2=80=9D on 3588
 
+Alexey: many thx for finding root cause component!
+ =20
+  =20=
 
