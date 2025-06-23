@@ -1,124 +1,104 @@
-Return-Path: <devicetree+bounces-188352-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-188353-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6C16EAE3985
-	for <lists+devicetree@lfdr.de>; Mon, 23 Jun 2025 11:09:58 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3E5FCAE398D
+	for <lists+devicetree@lfdr.de>; Mon, 23 Jun 2025 11:11:38 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 195DF3B482E
-	for <lists+devicetree@lfdr.de>; Mon, 23 Jun 2025 09:08:28 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 084F1189649C
+	for <lists+devicetree@lfdr.de>; Mon, 23 Jun 2025 09:11:54 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 79E70230BDC;
-	Mon, 23 Jun 2025 09:08:47 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id CA661231828;
+	Mon, 23 Jun 2025 09:11:17 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="cGQbN2C2"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Vr+osGXC"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.15])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E240B1DE4E6;
-	Mon, 23 Jun 2025 09:08:45 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.198.163.15
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9EA24230BFB;
+	Mon, 23 Jun 2025 09:11:17 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1750669727; cv=none; b=VCLir0FGKDEmRaFx+WIwxEKOrLX5oq7PcCc7TLeZS50iPlPy95c8Ojgo95fAb0TvAzLdth87R8uN6V1714pxtl3V4bygfmUZ2aYgeR6zp1tg2p1Sr4M8ovK+ZreFg6pHfwcdVogvM23YwVQmR40G7f3UHqrakY2+NVrfX5ha8Fc=
+	t=1750669877; cv=none; b=GBCQbE1LRyblrVcG9f0JDS+7wpktEEkEJYkBzoKwiiuLZE4nWXGdaVyqDf0dTDl0siS62eDhYWqLq2UiSrCql0rZqyvFx20W+AG+73vKvGHqmsk3fMTguqGbLzqXAc97KpDngqI0m5ug4EWCI5vEY3ACNWf2i/K+9uaf8gsAxiM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1750669727; c=relaxed/simple;
-	bh=W7hiJd78r+59Ny4okc/0aID6HplmUdQ4ZRFh1yeSVfc=;
+	s=arc-20240116; t=1750669877; c=relaxed/simple;
+	bh=Mw5fokAaXa5VnqKAPXjpTNXw3aceShhfmvpffF5X+c0=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=mUX59voch042MjConPL7i5p85ThALvpRZ/5iScSQPFNhs695k2cpu5fw2w34D3/IYqHfAslE9zIzR7YYBHIwWNP1avUgpboRoj260HeAw2yRBdYOfg7j8yrK9BIUuBMgR7n7oAnATBkD4eiiLlUdN7TaroTLGc26cw+0XjAc8Bg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com; spf=none smtp.mailfrom=linux.intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=cGQbN2C2; arc=none smtp.client-ip=192.198.163.15
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com
-Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=linux.intel.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1750669726; x=1782205726;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=W7hiJd78r+59Ny4okc/0aID6HplmUdQ4ZRFh1yeSVfc=;
-  b=cGQbN2C2+EloY1PliYfaVHSgvrC1C4hpz43xLMoAoEJl0oZy3rjkyPEI
-   JJ7s3vU9UJtoBLu29pNtmHAkt1GvVz+z3D/CYe/SiQ+9QEp3d8U/jqfW1
-   Cw9KMbRr/hckbg9dV+Bicr+OSq3TAAEs6/gVYuB3qvUuhli4SICGmFBzX
-   ehh9fHguvvcbgZxkLXCEpXq+8rwl2rLNiRP0uj7wIDVW0bjQzKXmgaaHS
-   /6OgdO3S3qc1heqrFieorg8hY2U9Yi87hk3iNKizN7uu2IM/FaKl6aXBw
-   iqDs4WeZjfpqNGaeUnCiayIBu1Wey6/kwuRgsrR1fZIBJay7k2B35ZOqK
-   w==;
-X-CSE-ConnectionGUID: 8Uzez2O/SASjB0A/dpnRdg==
-X-CSE-MsgGUID: dZVOpqgQTUGlQmkzto2JHw==
-X-IronPort-AV: E=McAfee;i="6800,10657,11472"; a="53007167"
-X-IronPort-AV: E=Sophos;i="6.16,258,1744095600"; 
-   d="scan'208";a="53007167"
-Received: from fmviesa007.fm.intel.com ([10.60.135.147])
-  by fmvoesa109.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 23 Jun 2025 02:08:42 -0700
-X-CSE-ConnectionGUID: NFYrKPxFSoSykF6AvZkAyQ==
-X-CSE-MsgGUID: OhoYh5ZHRFKw4wgUN/vAaQ==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.16,258,1744095600"; 
-   d="scan'208";a="151115142"
-Received: from smile.fi.intel.com ([10.237.72.52])
-  by fmviesa007.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 23 Jun 2025 02:08:36 -0700
-Received: from andy by smile.fi.intel.com with local (Exim 4.98.2)
-	(envelope-from <andriy.shevchenko@linux.intel.com>)
-	id 1uTdAF-000000097MM-339k;
-	Mon, 23 Jun 2025 12:08:31 +0300
-Date: Mon, 23 Jun 2025 12:08:31 +0300
-From: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
-To: Anup Patel <apatel@ventanamicro.com>
-Cc: Michael Turquette <mturquette@baylibre.com>,
-	Stephen Boyd <sboyd@kernel.org>, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Jassi Brar <jassisinghbrar@gmail.com>,
-	Thomas Gleixner <tglx@linutronix.de>,
-	"Rafael J . Wysocki" <rafael@kernel.org>,
-	Mika Westerberg <mika.westerberg@linux.intel.com>,
-	Linus Walleij <linus.walleij@linaro.org>,
-	Bartosz Golaszewski <brgl@bgdev.pl>,
-	Uwe =?iso-8859-1?Q?Kleine-K=F6nig?= <ukleinek@kernel.org>,
-	Palmer Dabbelt <palmer@dabbelt.com>,
-	Paul Walmsley <paul.walmsley@sifive.com>,
-	Len Brown <lenb@kernel.org>, Sunil V L <sunilvl@ventanamicro.com>,
-	Rahul Pathak <rpathak@ventanamicro.com>,
-	Leyfoon Tan <leyfoon.tan@starfivetech.com>,
-	Atish Patra <atish.patra@linux.dev>,
-	Andrew Jones <ajones@ventanamicro.com>,
-	Samuel Holland <samuel.holland@sifive.com>,
-	Anup Patel <anup@brainfault.org>, linux-clk@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-riscv@lists.infradead.org,
-	linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v6 13/23] ACPI: property: Refactor
- acpi_fwnode_get_reference_args()
-Message-ID: <aFkZj2QCU2LfTI30@smile.fi.intel.com>
-References: <20250618121358.503781-1-apatel@ventanamicro.com>
- <20250618121358.503781-14-apatel@ventanamicro.com>
+	 Content-Type:Content-Disposition:In-Reply-To; b=i1CzjDq8a9NXB4vgIlFmvLpdej7h7ZjXViJhR+BZjoAESgq9S5MKrmnffOp0aiq34OYK3qEoKItKGfnUUzjXsM97lK7JXaH13//WEtia8PnBX9juEMTYWvKaHdRwZDGFnXsgcIZZvLmK0GiSlr1MgdraATIQD3EEsde62lyB9FE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Vr+osGXC; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id AD2B9C4CEEA;
+	Mon, 23 Jun 2025 09:11:16 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1750669877;
+	bh=Mw5fokAaXa5VnqKAPXjpTNXw3aceShhfmvpffF5X+c0=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=Vr+osGXCZe0arFmXaCOqFkYR+xXtkPoQ7Oyspzjqug3AWmv/x7N7ptGMGyy46zmQr
+	 lwkNmrN1F4VaJ0NqpVaKx/wKYxRW/dGRaAkHBnYTpam2c62rjf2CsF0OF5qsYBGOA8
+	 Xb1/blwsDU4BaVgPkTZuFfMn/Bn6eqJiF5S+UUQZU05KLyji8aUCRZZx5n2+QARzn0
+	 mw+TbAeFZAh2YboRlJN5OEmg3X6YHeOldcRgEGx87tY6lh/XId1VHJAmwc4CqWt2Vv
+	 qRuAZ8iy9lkdGtksaXUWgt6cpeopawapSFBssLabudnu+3zWr3LHkd6Lj/I2ssSv+e
+	 cjm3AAxitbJSw==
+Date: Mon, 23 Jun 2025 11:11:14 +0200
+From: Uwe =?utf-8?Q?Kleine-K=C3=B6nig?= <ukleinek@kernel.org>
+To: Marek Vasut <marek.vasut+renesas@mailbox.org>
+Cc: linux-pwm@vger.kernel.org, Conor Dooley <conor+dt@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Rob Herring <robh@kernel.org>, devicetree@vger.kernel.org, 
+	linux-renesas-soc@vger.kernel.org
+Subject: Re: [PATCH v4 3/3] pwm: argon-fan-hat: Add Argon40 Fan HAT support
+Message-ID: <purpjdp72jw2rok5ihyua635izyih54ufom2knsbaiwdd3jzgk@6wjf364fao2g>
+References: <20250621172056.160855-1-marek.vasut+renesas@mailbox.org>
+ <20250621172056.160855-3-marek.vasut+renesas@mailbox.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: multipart/signed; micalg=pgp-sha512;
+	protocol="application/pgp-signature"; boundary="27jb2x7vw2zpfygb"
 Content-Disposition: inline
-In-Reply-To: <20250618121358.503781-14-apatel@ventanamicro.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park, 6
- krs, Bertel Jungin Aukio 5, 02600 Espoo
-
-On Wed, Jun 18, 2025 at 05:43:48PM +0530, Anup Patel wrote:
-> 
-> Currently acpi_fwnode_get_reference_args() calls the public function
-> __acpi_node_get_property_reference() which ignores the nargs_prop
-> parameter. To fix this, make __acpi_node_get_property_reference() to
-> call the static acpi_fwnode_get_reference() so that callers of
-> fwnode_get_reference_args() can still pass a valid property name to
-> fetch the number of arguments.
-
-Looks okay to me, but I think it's better to have more eyes here (Mika,
-Rafael?).
-
--- 
-With Best Regards,
-Andy Shevchenko
+In-Reply-To: <20250621172056.160855-3-marek.vasut+renesas@mailbox.org>
 
 
+--27jb2x7vw2zpfygb
+Content-Type: text/plain; protected-headers=v1; charset=us-ascii
+Content-Disposition: inline
+Subject: Re: [PATCH v4 3/3] pwm: argon-fan-hat: Add Argon40 Fan HAT support
+MIME-Version: 1.0
+
+Hello,
+
+when I replied to v3 this v4 was already on the list which I missed. My
+concern applies here, too, though.
+
+On Sat, Jun 21, 2025 at 07:19:56PM +0200, Marek Vasut wrote:
+> +static void argon_fan_hat_i2c_shutdown(struct i2c_client *i2c)
+> +{
+> +	argon_fan_hat_write(i2c, 100);
+> +}
+
+If you drop this, I'm willing to apply.
+
+Best regards
+Uwe
+
+--27jb2x7vw2zpfygb
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAABCgAdFiEEP4GsaTp6HlmJrf7Tj4D7WH0S/k4FAmhZGi0ACgkQj4D7WH0S
+/k5k/ggAt3eSn90MsI3AnID0IfNPqYi2yeR+uaHhvclBWzFqhWM9B9/FIfhaOgco
+4Fec+9Qt/zBI2nz+K8orCTkaRBapY2C4QdwV8SMpd/x+mHOsCsznJUAClJjEOfXy
+DNcDNP4BXlPd2mwaC7kZbVdoaMNLjsyQhhwyEoRfzheMD5ulVdi6BN8BErXR3Sqi
+0GQLXuc9UtH1y9vouPwit5Ip9e9j+WVnQKvH2Sa0h82vQLuGJ3eW/ffM+iE04GNo
+9efidteGpgSs8pSIK2ZrVRTFdoMOuCDn2xiaqtfCfs0oCFfPpPiMUIQ9U/HfRRk/
+GXha36MsWb5mL4WXlVsxo8BtsDafZw==
+=HIUC
+-----END PGP SIGNATURE-----
+
+--27jb2x7vw2zpfygb--
 
