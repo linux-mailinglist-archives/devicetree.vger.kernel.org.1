@@ -1,132 +1,127 @@
-Return-Path: <devicetree+bounces-188723-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-188724-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8A2E6AE4BFD
-	for <lists+devicetree@lfdr.de>; Mon, 23 Jun 2025 19:35:36 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 83783AE4C06
+	for <lists+devicetree@lfdr.de>; Mon, 23 Jun 2025 19:40:37 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id AC3FA3B3ECB
-	for <lists+devicetree@lfdr.de>; Mon, 23 Jun 2025 17:35:11 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 1BB5517DE96
+	for <lists+devicetree@lfdr.de>; Mon, 23 Jun 2025 17:40:38 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3EBC82D1900;
-	Mon, 23 Jun 2025 17:35:32 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 506E52D131A;
+	Mon, 23 Jun 2025 17:40:31 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=apitzsch.eu header.i=@apitzsch.eu header.b="G1Uv5dqB"
+	dkim=pass (2048-bit key) header.d=kwiboo.se header.i=@kwiboo.se header.b="zE9YvuVQ"
 X-Original-To: devicetree@vger.kernel.org
-Received: from www637.your-server.de (www637.your-server.de [168.119.26.117])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from smtp.forwardemail.net (smtp.forwardemail.net [121.127.44.73])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B11D82C15BE;
-	Mon, 23 Jun 2025 17:35:27 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=168.119.26.117
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A6E342BCF4F
+	for <devicetree@vger.kernel.org>; Mon, 23 Jun 2025 17:40:27 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=121.127.44.73
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1750700132; cv=none; b=XmC12LqUOuu3Qh+tMtfHUQXvGs7pSC/nEtXEx61x/uRyQJBUYlZOETCSZ9n0T52dHml+B/Jg6Kxl4qmtiZvewgRiRRZjf+rg/gLECUs16ifZRwWzhvgdXMyo+t0qDc4fqK+T4NbaQ8w/GLEiKUXgsp+ynNmYBYqX6gTDhMHtu2g=
+	t=1750700431; cv=none; b=PlyBynGOBGHV0Zt3G7iM50hGM6gDYD8yWs+5FRAbFuFJWpta1F6AIw5rfVQeEc88PBgCiU278ybVXZdCmjY/yeDwKjsUnz1Ai/9lrD21yFdx5ZoUfLuTrohqUuha2ParOjkbFGgVUQSfBegYwMv8HnlJzhZKxbstj3khNkbiE6Q=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1750700132; c=relaxed/simple;
-	bh=mGFD+TEQmheZhWqHvHH/h1FUuzjuW8fcVIkD9mNsloo=;
-	h=Message-ID:Subject:From:To:Cc:Date:In-Reply-To:References:
-	 Content-Type:MIME-Version; b=YKmmfYZsyHxEqmhMs++ja71Fs9z6xks1SFfKfWZxN4sa6oVOGgfkDsl59gRA4aiejS5inomk6zp2t67DkorPAkpLrYMP1zqR1VijK2PTleiCCcrJCWBT34HIFijx7Vi4JdpHQ+B86GJePIn70KkIv85hOt1Px7z503/h8f50bWc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=apitzsch.eu; spf=pass smtp.mailfrom=apitzsch.eu; dkim=pass (2048-bit key) header.d=apitzsch.eu header.i=@apitzsch.eu header.b=G1Uv5dqB; arc=none smtp.client-ip=168.119.26.117
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=apitzsch.eu
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=apitzsch.eu
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=apitzsch.eu
-	; s=default2410; h=MIME-Version:Content-Transfer-Encoding:Content-Type:
-	References:In-Reply-To:Date:Cc:To:From:Subject:Message-ID:Sender:Reply-To:
-	Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
-	Resent-To:Resent-Cc:Resent-Message-ID;
-	bh=mGFD+TEQmheZhWqHvHH/h1FUuzjuW8fcVIkD9mNsloo=; b=G1Uv5dqB5EuWkcfS4CSlHkTc4G
-	3IwxfpnGtWhHQxIrHjkqdFul2xigJfuo+PMSnRonHmQMif3Il9vFKBt4F/hUDuEjhYhgIg4d/w3s2
-	fbqq0TlaafplRZ02zoi6d8bIrst/zs6h1AQ6xpGtUBrKXR0Z6uDraQVohKkAkKaScAhod7xiVOCdq
-	QMV8z5VzxTmiLUCh8YJX8hBr+EUeupmu/oLYCrjKAK5qviCIhoyrrv3sqsSB/6Hg73teOqqFqcibo
-	L2JRnF3fBcjq9Al2+WOMvwgDP116B7EsvYbl+yzxKL0WAQcmUxQO4QxzUHbbhtL+uvuOI0RcUghxt
-	3jhPTARA==;
-Received: from sslproxy08.your-server.de ([78.47.166.52])
-	by www637.your-server.de with esmtpsa  (TLS1.3) tls TLS_AES_256_GCM_SHA384
-	(Exim 4.96.2)
-	(envelope-from <git@apitzsch.eu>)
-	id 1uTl4c-0005Et-0z;
-	Mon, 23 Jun 2025 19:35:14 +0200
-Received: from localhost ([127.0.0.1])
-	by sslproxy08.your-server.de with esmtpsa  (TLS1.3) tls TLS_AES_256_GCM_SHA384
-	(Exim 4.96)
-	(envelope-from <git@apitzsch.eu>)
-	id 1uTl4b-0001FO-22;
-	Mon, 23 Jun 2025 19:35:13 +0200
-Message-ID: <c243b93675f8136e30abb7608b58badf4b1ada35.camel@apitzsch.eu>
-Subject: Re: [PATCH RESEND v4 0/5] media: i2c: imx214: Add support for more
- clock frequencies
-From: =?ISO-8859-1?Q?Andr=E9?= Apitzsch <git@apitzsch.eu>
-To: Sakari Ailus <sakari.ailus@linux.intel.com>
-Cc: Ricardo Ribalda <ribalda@kernel.org>, Mauro Carvalho Chehab
-	 <mchehab@kernel.org>, Rob Herring <robh@kernel.org>, Krzysztof Kozlowski
-	 <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, Shawn Guo
-	 <shawnguo@kernel.org>, Sascha Hauer <s.hauer@pengutronix.de>, Pengutronix
- Kernel Team <kernel@pengutronix.de>, Fabio Estevam <festevam@gmail.com>, 
-	~postmarketos/upstreaming@lists.sr.ht, phone-devel@vger.kernel.org, 
-	linux-media@vger.kernel.org, linux-kernel@vger.kernel.org, Laurent Pinchart
-	 <laurent.pinchart@ideasonboard.com>, devicetree@vger.kernel.org, 
-	imx@lists.linux.dev, linux-arm-kernel@lists.infradead.org, Ricardo Ribalda
-	 <ribalda@chromium.org>, Conor Dooley <conor.dooley@microchip.com>
-Date: Mon, 23 Jun 2025 19:35:12 +0200
-In-Reply-To: <aFk-yTSOqzmEW1sz@kekkonen.localdomain>
-References: <20250621-imx214_ccs_pll-v4-0-12178e5eb989@apitzsch.eu>
-	 <aFj5QnPBO0We5SBQ@kekkonen.localdomain>
-	 <46a681a84a7493e2d0a6d3a4eedb6c86ccd9903f.camel@apitzsch.eu>
-	 <aFk-yTSOqzmEW1sz@kekkonen.localdomain>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-User-Agent: Evolution 3.56.2 
+	s=arc-20240116; t=1750700431; c=relaxed/simple;
+	bh=IsUNm5zN3nf3/mIsm1o8QkuSZRhfwKwP6g4hYu1alZk=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=inBEEDnc76rNNK8kJpTFgXNXHeef1UN09xU7i1KQhOALDXRYHevkKlki256Ki+E9tiVotQSARmmX6lsq/nHR9zpLaSsKoOS+k4exFTawzzwait+FJGXVrtoH0WJOS5eElB2uWz8ReNDt5yKpyWZEFmrqAE4XYyLQ7hy4vcq7Ea0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=kwiboo.se; spf=pass smtp.mailfrom=fe-bounces.kwiboo.se; dkim=pass (2048-bit key) header.d=kwiboo.se header.i=@kwiboo.se header.b=zE9YvuVQ; arc=none smtp.client-ip=121.127.44.73
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=kwiboo.se
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=fe-bounces.kwiboo.se
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kwiboo.se;
+ h=Content-Transfer-Encoding: Content-Type: In-Reply-To: From: References:
+ Cc: To: Subject: MIME-Version: Date: Message-ID; q=dns/txt;
+ s=fe-e1b5cab7be; t=1750700422;
+ bh=vlOL8X69KAf43rpa448wfskj/jjDGmOWw431Aoz2DQk=;
+ b=zE9YvuVQMYfUB8/mMU1ftphfVL7PQ4O23Kzl4X/4byayXY+3ADO/XnYQYyGSu+inNEEWAXSQh
+ R6Opmt4DLXu9ur+B02FqmrqEqqQCYEymNTwPwGCw5w1PKqeRqoNLgbvEgChlljS5p+ADz2Qyjvw
+ PGAkTpLYw43PExVBic+Yg5AHoSDnY+hQbgN04bFWhWnrmk80CxHRpgbfbclQU6WUNMMUqLoU0IJ
+ EYNIOWQO1Iu9TdxIgi8wYLJa4L9d/Tf8tpQO2po/LqKGwTZSYWTFvib4TC91wOhXEog/9Rd7duM
+ XIno9JzUkW5zPGLWSBWCfo+URprblqnS2QFzD1+BeACQ==
+X-Forward-Email-ID: 6859917f54073d00e4b5a183
+X-Forward-Email-Sender: rfc822; jonas@kwiboo.se, smtp.forwardemail.net,
+ 121.127.44.73
+X-Forward-Email-Version: 1.0.3
+X-Forward-Email-Website: https://forwardemail.net
+X-Complaints-To: abuse@forwardemail.net
+X-Report-Abuse: abuse@forwardemail.net
+X-Report-Abuse-To: abuse@forwardemail.net
+Message-ID: <dd1d0676-4eaa-4df7-b557-676b3de9a52e@kwiboo.se>
+Date: Mon, 23 Jun 2025 19:40:11 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-Virus-Scanned: Clear (ClamAV 1.0.7/27678/Mon Jun 23 10:34:34 2025)
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 1/4] arm64: dts: rockchip: list all CPU supplies on ArmSoM
+ Sige5
+To: Piotr Oniszczuk <piotr.oniszczuk@gmail.com>,
+ Alexey Charkov <alchark@gmail.com>
+Cc: Heiko Stuebner <heiko@sntech.de>,
+ Nicolas Frattaroli <nicolas.frattaroli@collabora.com>,
+ XiaoDong Huang <derrick.huang@rock-chips.com>, Rob Herring
+ <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, devicetree@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, linux-rockchip@lists.infradead.org,
+ linux-kernel@vger.kernel.org
+References: <20250603-sige5-updates-v1-0-717e8ce4ab77@gmail.com>
+ <3286000.Y6S9NjorxK@phil>
+ <CABjd4YyaNF1zosFFi6hEsZanPDxoaa1h4Dpd6uTPRwA3BZn0=w@mail.gmail.com>
+ <5897576.DvuYhMxLoT@phil>
+ <CABjd4Yy8WeXKmmxh2-TjjF5-ABy-NzzJsWpt1KvSjJqTHh0Xwg@mail.gmail.com>
+ <CABjd4Yz4NbqzZH4Qsed3ias56gcga9K6CmYA+BLDBxtbG915Ag@mail.gmail.com>
+ <36711B65-DD45-4539-BD9C-0382936FD0A3@gmail.com>
+Content-Language: en-US
+From: Jonas Karlman <jonas@kwiboo.se>
+In-Reply-To: <36711B65-DD45-4539-BD9C-0382936FD0A3@gmail.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 
-Hi Sakari,
+On 2025-06-23 17:02, Piotr Oniszczuk wrote:
+> 
+> 
+>> Wiadomość napisana przez Alexey Charkov <alchark@gmail.com> w dniu 23 cze 2025, o godz. 15:58:
+>>
+>> On Mon, Jun 23, 2025 at 1:19 PM Alexey Charkov <alchark@gmail.com> wrote:
+>>>
+>>>
+>>
+>> Okay, I've bisected this.
+>>
+>> TLDR: Linux and u-boot seem to have nothing to do with it, opensource
+>> TF-A doesn't work, binary BL31 starting with v1.09 do not work. BL31
+>> v1.08 and earlier work fine.
 
-Am Montag, dem 23.06.2025 um 11:47 +0000 schrieb Sakari Ailus:
-> Hi Andr=C3=A9,
->=20
-> On Mon, Jun 23, 2025 at 01:34:03PM +0200, Andr=C3=A9 Apitzsch wrote:
-> > Hi Sakari,
-> >=20
-> > Am Montag, dem 23.06.2025 um 06:50 +0000 schrieb Sakari Ailus:
-> > > Hi Andr=C3=A9,
-> > >=20
-> > > On Sat, Jun 21, 2025 at 11:37:24AM +0200, Andr=C3=A9 Apitzsch via B4
-> > > Relay
-> > > wrote:
-> > > > The imx214 driver currently supports only a 24 MHz external
-> > > > clock.
-> > > > But
-> > > > there are devices, like Qualcomm-MSM8916-based phones, which
-> > > > cannot
-> > > > provide this frequency. To make the sensor usable by those
-> > > > devices,
-> > > > add
-> > > > support for additional clock frequencies.
-> > > >=20
-> > > > This series supersedes
-> > > > https://lore.kernel.org/linux-media/20250308-imx214_clk_freq-v1-0-4=
-67a4c083c35@apitzsch.eu/
-> > >=20
-> > > Is there a difference in this set from the v4 you posted
-> > > previously?
-> >=20
-> > There is no difference to the v4 posted previously. This is a
-> > resend because there was no activity in the original v4.
->=20
-> It's not useful to resend patches, especially those that already have
-> been merged somewhere. Please ping people instead.
+v1.09 added support for 1 GHz hrtimer in addition to the normal 24 MHz
+rate. Mainline U-Boot may only support use of 24 MHz hrtimer, unsure
+what impact the hrtimer rate has. Mixing blobs with/without 1 GHz
+support is known to cause issues. At one point the latest rkbin tree may
+have contained incompatible rk3576 blobs (mixed 1 ghz vs 24 mhz rate).
 
-I wasn't aware that patches already had been merged. Maybe I missed it,
-when checking=C2=A0https://git.linuxtv.org/sailus/media_tree.git
-Next time I'll ping.
+Did you try with newer blobs, i.e. ddr init v1.09, bl31 v1.19 blobs [1]
+and mainline U-Boot [2] ?
 
-Best regards,
-Andr=C3=A9
+[1] https://github.com/radxa/rkbin/commits/develop-v2025.04/
+[2] https://source.denx.de/u-boot/contributors/kwiboo/u-boot/-/commits/rk3576
+
+Regards,
+Jonas
+
+> 
+> 
+> just fyi: 
+> to confirm: replacing only bl31 to 1.08 makes all good
+> with perf gov. clocks staying on 2200/2300
+> clock estimations are predictable, constant and estimating constantly 2400
+> ux is „like” on 3588
+> 
+> Alexey: many thx for finding root cause component!
+>   
+>    
+
 
