@@ -1,48 +1,48 @@
-Return-Path: <devicetree+bounces-188257-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-188258-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id EC2B1AE3574
-	for <lists+devicetree@lfdr.de>; Mon, 23 Jun 2025 08:12:57 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id CB042AE3580
+	for <lists+devicetree@lfdr.de>; Mon, 23 Jun 2025 08:14:26 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id B41931891AF6
-	for <lists+devicetree@lfdr.de>; Mon, 23 Jun 2025 06:13:13 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id A72693A46E0
+	for <lists+devicetree@lfdr.de>; Mon, 23 Jun 2025 06:13:58 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2A6131624C5;
-	Mon, 23 Jun 2025 06:12:53 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A209E1DF96F;
+	Mon, 23 Jun 2025 06:14:13 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="W27/pfjn"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="ZNjTgvF6"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EEB7E19F480;
-	Mon, 23 Jun 2025 06:12:52 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 758761DED69;
+	Mon, 23 Jun 2025 06:14:13 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1750659173; cv=none; b=YqN6wElQNqH04LS9nN4QZ3Il8UoFx8NHPoa4v9NB0sZnneAKqpguCjqIWETbTBkE0Wc1JVfOqBA/Ukk4rsKsFoNQH76aWqipVUNRgHDV13bYQMTEDJE7vy/fypPiF8CrMOrWVZ07Kmv5G9h9PRoCbZViMNaEN3sCJQgaAVoG5+M=
+	t=1750659253; cv=none; b=alHlhgoYh9zz6UvV6dd/kuBXgD2ODDFg1bIIlfFhrSL2ZxAR8hxoQcacsnrnulnZbQaHQoY2QT/tcPE9ym+uZMuXoD944uRO3R/+0x9Kvq83vWKktNjPPRSpAAKGHh1rGWdawpEzbVfZhqMfoBMrrKhrW95cJJPC5lLuXL41ptg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1750659173; c=relaxed/simple;
-	bh=ipyMiwFridGNIpCj5UCNP6+iAxZ3W1cW3YDlAHFhPa8=;
+	s=arc-20240116; t=1750659253; c=relaxed/simple;
+	bh=oi64GwsF8P9NEmGBXgCtXNZMlmEV4LlvUSoM6S0cHn8=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=fd7OguVcE1g56hMu2FCRVDgtdb1aGb8dj92s/PLWFQSCzrQGlywVKAKlVPeSemy06ITgEt32NeSOTPA7eGA/7y6Lycy7ThkPg2HhZW2vgobF8S2yYRWhiFiNZQ9K2SGsj+GSQhbOFfEvuQu0YIul/gK9clcUATcK4Pb9ywzETMk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=W27/pfjn; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 26316C4CEED;
-	Mon, 23 Jun 2025 06:12:46 +0000 (UTC)
+	 In-Reply-To:Content-Type; b=WNfz32i36GvEzehbLnN+Hza5+1ltFMsAwhQeXfzuXi5slDF3zxLHhOnvcK1zlo1t8HcnfBRxyTnDCWR+h6pAvBb/42KACoLsibWaRNTj/AanGZ3HVr0XQx1weQQovH3PdHTtSJal7s7ojvIjD4eZXckJ77Mi3BYJP8aAOVh6MRs=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=ZNjTgvF6; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 831C4C4CEED;
+	Mon, 23 Jun 2025 06:14:10 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1750659172;
-	bh=ipyMiwFridGNIpCj5UCNP6+iAxZ3W1cW3YDlAHFhPa8=;
+	s=k20201202; t=1750659253;
+	bh=oi64GwsF8P9NEmGBXgCtXNZMlmEV4LlvUSoM6S0cHn8=;
 	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=W27/pfjnF74SskGV05Qk8nfVXT0oewWyiQz8jKinBlLXBpzvjjA1fgzUjc12bnyLw
-	 3HxHdU00L247RzNF0l1whKdfbqw6V6HQ7Zfz6Fnj11UXp480udaWHSh8OxMm77YVRd
-	 tiuU9XbaLvl/meL/9iHJsJUGlA8s4OW7+/b006YknIvs8q2uLXgUgtF25q9mUl78sj
-	 2zluu4qOnI/Dco6tuqowrl7YbNjTZ+KV3Frv5bZNeqSiBTd+JAQm68D7ga08HjgwQo
-	 w67Nv+q8DG/33J4dY3NwaxPjOs0YfMPpjJc7rezDaWZXcuQJhheJxTTpIVazpZ2pGo
-	 kFbDRyLeXIzgQ==
-Message-ID: <75338b7f-8861-440a-9604-6b39e2db50b2@kernel.org>
-Date: Mon, 23 Jun 2025 08:12:45 +0200
+	b=ZNjTgvF6XwegXOn0kt5f7M1V/L06qRXNs1T8oO2yxEHJPkWwcwBhUiiKtJAqLM8Td
+	 KDRwu3Ex/ANvP957OLyIJrvKxXn7eINOgZKw6Zq33YNcmie1DbBJHxsI9ZWYBEf8R8
+	 PZSzr0TSWwzPlT7b/AiQvEFHGbZXt67TGa0LhPZy+rRole1/1BYYKMSdVV5cKMbAbz
+	 yipDnE+jI7tO9nMfAeDliyuDTgSQkRrLl+gLCrBGtW7TKBR77X2yzNQxad9NpDleYc
+	 dnAbG6QF5MwwYOonbe1caldOyaW2DdquLrdXdfUMVInetPZjCI6cO+i7rrHpF3gqme
+	 vc6TQk9+L5AaQ==
+Message-ID: <a6896400-f17d-4df5-85e4-2a2338c1bf9a@kernel.org>
+Date: Mon, 23 Jun 2025 08:14:08 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,23 +50,16 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 10/11] ARM: dts: mediatek: add basic support for JTY D101
- board
-To: wctrl@proton.me, Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
- Jiri Slaby <jirislaby@kernel.org>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Matthias Brugger <matthias.bgg@gmail.com>,
- AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
- Thomas Gleixner <tglx@linutronix.de>,
- Daniel Lezcano <daniel.lezcano@linaro.org>,
- Wim Van Sebroeck <wim@linux-watchdog.org>, Guenter Roeck
- <linux@roeck-us.net>, Sean Wang <sean.wang@mediatek.com>,
- Russell King <linux@armlinux.org.uk>
-Cc: linux-kernel@vger.kernel.org, linux-serial@vger.kernel.org,
- devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- linux-mediatek@lists.infradead.org, linux-watchdog@vger.kernel.org
-References: <20250620-mt6572-v1-0-e2d47820f042@proton.me>
- <20250620-mt6572-v1-10-e2d47820f042@proton.me>
+Subject: Re: [PATCH v2 4/5] dt-bindings: arm: qcom: add Sony Xperia SP
+To: Antony Kurniawan Soemardi <linux@smankusors.com>,
+ Bjorn Andersson <andersson@kernel.org>,
+ Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>
+Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, Max Shevchenko <wctrl@proton.me>,
+ Rudraksha Gupta <guptarud@gmail.com>
+References: <20250623-msm8960-sdcard-v2-0-340a5e8f7df0@smankusors.com>
+ <20250623-msm8960-sdcard-v2-4-340a5e8f7df0@smankusors.com>
 From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
@@ -112,20 +105,24 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  jWt87ecuHlpL3uuQ0ZZNWqHgZoQLXoqC2ZV5KrtKWb/jyiFX/sxSrodALf0zf+tfHv0FZWT2
  zHjUqd0t4njD/UOsuIMOQn4Ig0SdivYPfZukb5cdasKJukG1NOpbW7yRNivaCnfZz6dTawXw
  XRIV/KDsHQiyVxKvN73bThKhONkcX2LWuD928tAR6XMM2G5ovxLe09vuOzzfTWQDsm++9UKF a/A=
-In-Reply-To: <20250620-mt6572-v1-10-e2d47820f042@proton.me>
+In-Reply-To: <20250623-msm8960-sdcard-v2-4-340a5e8f7df0@smankusors.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 20/06/2025 17:40, Max Shevchenko via B4 Relay wrote:
-> +		framebuffer: framebuffer@bf400000 {
-> +			compatible = "simple-framebuffer";
-> +			memory-region = <&framebuffer_reserved>;
-> +			width = <1024>;
-> +			height = <600>;
-> +			stride = <(1024 * 2)>;
-> +			format = "r5g6b5";
-> +			status = "okay";
-Drop
+On 22/06/2025 20:26, Antony Kurniawan Soemardi wrote:
+> Document the Sony Xperia SP (huashan), which uses the MSM8960T SoC.
+> 
+> The MSM8960T is a variant of the MSM8960 featuring an upgraded GPU
+> (Adreno 320 instead of Adreno 225) and a slightly overclocked CPU
+> (1.7GHz instead of 1.5GHz).
+> 
+> Signed-off-by: Antony Kurniawan Soemardi <linux@smankusors.com>
+> ---
+>  Documentation/devicetree/bindings/arm/qcom.yaml | 7 +++++++
+>  1 file changed, 7 insertions(+)
+> 
+
+Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
 Best regards,
 Krzysztof
