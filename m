@@ -1,120 +1,169 @@
-Return-Path: <devicetree+bounces-188681-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-188682-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id DBC46AE4994
-	for <lists+devicetree@lfdr.de>; Mon, 23 Jun 2025 18:04:54 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id E0BE7AE49CD
+	for <lists+devicetree@lfdr.de>; Mon, 23 Jun 2025 18:08:48 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id BCD83188B529
-	for <lists+devicetree@lfdr.de>; Mon, 23 Jun 2025 15:59:54 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 67BFC18848A6
+	for <lists+devicetree@lfdr.de>; Mon, 23 Jun 2025 16:03:51 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id BB21928E5E6;
-	Mon, 23 Jun 2025 15:59:24 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1B4F3276027;
+	Mon, 23 Jun 2025 16:03:30 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=armlinux.org.uk header.i=@armlinux.org.uk header.b="gJP4cXg9"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="atBR1yoF"
 X-Original-To: devicetree@vger.kernel.org
-Received: from pandora.armlinux.org.uk (pandora.armlinux.org.uk [78.32.30.218])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5BF38277028;
-	Mon, 23 Jun 2025 15:59:22 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=78.32.30.218
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DE88B46BF;
+	Mon, 23 Jun 2025 16:03:29 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1750694364; cv=none; b=CCkRcFXjIAV2/s8x5MQaT8Tr0CMxz/lVMJRHObHrmh2FmkO4IeN3zkE6ej4I6PArtXX0PPuUNpTBE64l/R/Dc2NRU2YJj0tBwpeg49Fs/12qCIUcnnwFcMI22vXKv8QBsKc+XbDVOVdYPjWLkNPRxtEtkQoB9U7dBzOBvg3sSz8=
+	t=1750694610; cv=none; b=hp/jI8EbA9y3eAodcgRotiivW6NFWF0PrVw+ccEMBdA81d4xRV9jsXaT0r56ZmSdscrtZwmzZae4bGV0GV+AtcntvhYdgnLe0jwpLcEUKCkLrJ67ispb6hxSVk0/ACbajLIZQKNuW4ytAwQLPWuvw16lgOLUqT9TL6/OrMpweSU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1750694364; c=relaxed/simple;
-	bh=/rfl7gOGpO0g14cYMRJ7KQfJPeeEo1fzAajmHgRfcP4=;
+	s=arc-20240116; t=1750694610; c=relaxed/simple;
+	bh=Im7cr83Qj96BXun7jEtX6pW1mHhhSCofTIbdw7BXGAE=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=MkX45T3I0Mdbl+dEdhWot/ls/kwUIgTeHjdUGn4lj38bGeZeAa6pMOCL/jry5Icz3J7PsN+VElGS5Bkg9CTeCc8UhGphIiQuRpj2Tfc4jPGX1YJ+bX4bp/z13wETBMIwhZbSNP3pRGK023QU46VCmRWxUtC6A0Y9u0WkATd/rEs=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=armlinux.org.uk; spf=none smtp.mailfrom=armlinux.org.uk; dkim=pass (2048-bit key) header.d=armlinux.org.uk header.i=@armlinux.org.uk header.b=gJP4cXg9; arc=none smtp.client-ip=78.32.30.218
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=armlinux.org.uk
-Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=armlinux.org.uk
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=armlinux.org.uk; s=pandora-2019; h=Sender:In-Reply-To:
-	Content-Transfer-Encoding:Content-Type:MIME-Version:References:Message-ID:
-	Subject:Cc:To:From:Date:Reply-To:Content-ID:Content-Description:Resent-Date:
-	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Id:
-	List-Help:List-Unsubscribe:List-Subscribe:List-Post:List-Owner:List-Archive;
-	bh=ivJftfXIlijyNb6aPqxEHL2vbAZ+7Nan5sa8DA4Nd4s=; b=gJP4cXg900T3X2PP4GO2+aWAyS
-	eo+T+0X1Oo3zr3UET8GybiWIdDBy/H5GwrGDRhyW7IOLilENX7aJCNnZ6QT4+XPSsgROObz6T5fai
-	52pLJ6BJ6BRSsLSlU0OjdgPhvWa5rp2p9kZMZYF1WrbSmCO07z2WO0F1zFa/R39r8UZK+ARzysPnV
-	c/afMbJWDuHuQDJ3nfuEAiBvqJZ80PrpOSk8gHIyfFHLcJ+K5qlCSFo9/MxLg726OBArGclzvOHdl
-	aqnrLDjXWVVTzd3hV08OI/n6FsnG5wb7+6uP5OzDy7QN5DLn3NmDAS4aq6I/X+ewruGynu+DJgj0L
-	5zhBr+Kw==;
-Received: from shell.armlinux.org.uk ([fd8f:7570:feb6:1:5054:ff:fe00:4ec]:36456)
-	by pandora.armlinux.org.uk with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-	(Exim 4.96)
-	(envelope-from <linux@armlinux.org.uk>)
-	id 1uTjZi-0004O5-1x;
-	Mon, 23 Jun 2025 16:59:14 +0100
-Received: from linux by shell.armlinux.org.uk with local (Exim 4.96)
-	(envelope-from <linux@shell.armlinux.org.uk>)
-	id 1uTjZh-0003Zx-0L;
-	Mon, 23 Jun 2025 16:59:13 +0100
-Date: Mon, 23 Jun 2025 16:59:12 +0100
-From: "Russell King (Oracle)" <linux@armlinux.org.uk>
-To: Kamil =?iso-8859-1?Q?Hor=E1k?= - 2N <kamilh@axis.com>
-Cc: florian.fainelli@broadcom.com, bcm-kernel-feedback-list@broadcom.com,
-	andrew@lunn.ch, hkallweit1@gmail.com, davem@davemloft.net,
-	edumazet@google.com, kuba@kernel.org, pabeni@redhat.com,
-	krzk+dt@kernel.org, conor+dt@kernel.org, netdev@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	robh@kernel.org
-Subject: Re: [PATCH net-next v2 3/3] dt-bindings: ethernet-phy: add optional
- mii-lite-mode flag
-Message-ID: <aFl50MeMElkRbyzj@shell.armlinux.org.uk>
-References: <20250623151048.2391730-1-kamilh@axis.com>
- <20250623151048.2391730-4-kamilh@axis.com>
+	 Content-Type:Content-Disposition:In-Reply-To; b=FV6Qksg1Mp9j/p2KyrM7w506GpgZE5EEOitpmyTCooVFKxIAsXSxPxAPgH5IsU0t/2LbrECfuf5Z1c6hwhLcBXi+BFBZnvrUKJgGR8sY9zf9mossSlanZFHAtowaqsIvZoLx5V6CkcEXANcv+X0A4RODQtSXNO8PGVQLplZDnns=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=atBR1yoF; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 3D21DC4CEEA;
+	Mon, 23 Jun 2025 16:03:26 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1750694609;
+	bh=Im7cr83Qj96BXun7jEtX6pW1mHhhSCofTIbdw7BXGAE=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=atBR1yoFU+LYSgHiG6FfHOYRHxWixoy6VDDNSRmX6HlDgDSB9Jv4nd7UNQlqj47Od
+	 G4OPLzJxT5+8uYYO91siq9wfNkg0YEipbBrDfvOJcYPx2zVDHT3EPOJr56JMdhRbtp
+	 dLayjTW/mQLLjwIMOyKdAcQZ9CfPJEyC7d4R+uN1ymebECTLR/GnbN9/8mGFjozy0c
+	 TSQIm2I2e/ft+8p6gtogDFzEhrL/OoixSnx7ON6HCrwEphxzNV4laOKgdEIg6ddzi6
+	 SP+MySsGpQQpqvVEaknNxmO5U20EZffXr9tphwHDrb8UUnfp8OQRDGZao0XNc7die/
+	 e57YwXHtGQtPA==
+Date: Mon, 23 Jun 2025 17:03:23 +0100
+From: Conor Dooley <conor@kernel.org>
+To: Jonathan Cameron <jic23@kernel.org>
+Cc: David Lechner <dlechner@baylibre.com>,
+	Marcelo Schmitt <marcelo.schmitt@analog.com>,
+	linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-gpio@vger.kernel.org, linux-kernel@vger.kernel.org,
+	lars@metafoo.de, Michael.Hennerich@analog.com, nuno.sa@analog.com,
+	andy@kernel.org, robh@kernel.org, krzk+dt@kernel.org,
+	conor+dt@kernel.org, linus.walleij@linaro.org, brgl@bgdev.pl,
+	marcelo.schmitt1@gmail.com
+Subject: Re: [PATCH v5 01/11] dt-bindings: iio: adc: Add AD4170
+Message-ID: <20250623-wackiness-unaware-e0e904064990@spud>
+References: <cover.1749582679.git.marcelo.schmitt@analog.com>
+ <4df9d4d0de83090300b6870afc8ae7b22279cd22.1749582679.git.marcelo.schmitt@analog.com>
+ <20250616-neurology-explicit-ec2a829bd718@spud>
+ <eeb66815-3f7d-41fc-9d32-c28a3dda7749@baylibre.com>
+ <20250621172808.6f304023@jic23-huawei>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
+Content-Type: multipart/signed; micalg=pgp-sha256;
+	protocol="application/pgp-signature"; boundary="bXfoSPrYbNtw7+sq"
 Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20250623151048.2391730-4-kamilh@axis.com>
-Sender: Russell King (Oracle) <linux@armlinux.org.uk>
+In-Reply-To: <20250621172808.6f304023@jic23-huawei>
 
-On Mon, Jun 23, 2025 at 05:10:48PM +0200, Kamil Horák - 2N wrote:
-> From: Kamil Horák (2N) <kamilh@axis.com>
-> 
-> The Broadcom bcm54810 and bcm54811 PHYs support MII and MII-Lite
-> interface modes. The MII-Lite mode does not use TXR, RXER, CRS and COL
-> signals. However, the hardware strapping only selects MII mode,
-> distinction between MII and MII-Lite must be done by software.
-> 
-> Add optional mii-lite-mode flag to switch the PHY to MII-Lite mode.
-> 
-> Signed-off-by: Kamil Horák (2N) <kamilh@axis.com>
-> ---
->  Documentation/devicetree/bindings/net/ethernet-phy.yaml | 8 ++++++++
->  1 file changed, 8 insertions(+)
-> 
-> diff --git a/Documentation/devicetree/bindings/net/ethernet-phy.yaml b/Documentation/devicetree/bindings/net/ethernet-phy.yaml
-> index 71e2cd32580f..edfd16044770 100644
-> --- a/Documentation/devicetree/bindings/net/ethernet-phy.yaml
-> +++ b/Documentation/devicetree/bindings/net/ethernet-phy.yaml
-> @@ -101,6 +101,14 @@ properties:
->        1BR-10 names. The PHY must be configured to operate in BroadR-Reach mode
->        by software.
->  
-> +  mii-lite-mode:
-> +    $ref: /schemas/types.yaml#/definitions/flag
-> +    description:
-> +      If set, indicates the use of MII-Lite variant of MII, without the
-> +      functions of TXER, RXER, CRS and COL signals for Broadcom PHYs. These
-> +      PHYs can be strapped to use MII mode but the MII or MII-Lite selection
-> +      must be done by software.
 
-I'll put the same question here as I did on patch 2. Do we want this to
-be a separate property, or would it make more sense as a different
-phy-mode value?
+--bXfoSPrYbNtw7+sq
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
--- 
-RMK's Patch system: https://www.armlinux.org.uk/developer/patches/
-FTTP is here! 80Mbps down 10Mbps up. Decent connectivity at last!
+On Sat, Jun 21, 2025 at 05:28:08PM +0100, Jonathan Cameron wrote:
+>=20
+> > >> +
+> > >> +$defs:
+> > >> +  reference-buffer:
+> > >> +    description: |
+> > >> +      Enable precharge buffer, full buffer, or skip reference buffe=
+ring of
+> > >> +      the positive/negative voltage reference. Because the output i=
+mpedance
+> > >> +      of the source driving the voltage reference inputs may be dyn=
+amic,
+> > >> +      resistive/capacitive combinations of those inputs can cause D=
+C gain
+> > >> +      errors if the reference inputs go unbuffered into the ADC. En=
+able
+> > >> +      reference buffering if the provided reference source has dyna=
+mic high
+> > >> +      impedance output. Note the absolute voltage allowed on REFINn=
++ and REFINn-
+> > >> +      inputs is from AVSS - 50 mV to AVDD + 50 mV when the referenc=
+e buffers are
+> > >> +      disabled but narrows to AVSS to AVDD when reference buffering=
+ is enabled
+> > >> +      or in precharge mode. The valid options for this property are:
+> > >> +      0: Reference precharge buffer.
+> > >> +      1: Full reference buffering.
+> > >> +      2: Bypass reference buffers (buffering disabled).
+> > >> +    $ref: /schemas/types.yaml#/definitions/uint32
+> > >> +    enum: [0, 1, 2]
+> > >> +    default: 1 =20
+> > >=20
+> > > Why make this property a uint32, rather than a string where you can u=
+se
+> > > something like "precharge", "full" and "bypass" (or "disabled")? The
+> > > next similar device could use something slightly different then the
+> > > binding becomes pretty clunky.
+> > > Can you explain why this is a dt property rather than something
+> > > adjustable at runtime?
+> > >=20
+> > > Otherwise, what you have here looks sane enough to me - but I'd like =
+to
+> > > see some comments from Jonathan or David etc about your approach to t=
+he
+> > > excitation properties. =20
+> >=20
+> > This looks like something that should be in the devicetree to me. For e=
+xample
+> > if the external reference supply is high impedance, buffering is pretty
+> > much required. And using precharge is an application design choice to
+> > reduce THD at the expense of other limitations.
+> >=20
+>=20
+> Agreed that this pretty much only makes sense in DT.
+>=20
+> In the ideal world we would have firm rules on when to enable buffering
+> etc and then the DT would describe the impedance of the circuit connected
+> and any other relevant properties and then we'd have the driver enable it
+> only when those rigid rules dictated that we should.
+>=20
+> Sadly no such simple rules exist (as far as I know) so we just expose the=
+ thing
+> that gets set dependent on someone's judgement of the suitability of
+> the buffering choice given the circuit being connected to the input.
+>=20
+> If we pushed it to userspace we'd just end up with a per device blob
+> that dictated the mode to pick on boot and left it like that.  So effecti=
+vely
+> another bit of firmware :(
+
+Can't remember if I replied to David's mail here or not, I pretty much
+just asked the question because I didn't understand why the usecase and
+wanted an explanation for my benefit. Probably makes no sense to explain
+why a knob exists in the binding when anyone using the device will not
+need one, but that does mean that at times with these devices that are
+unfamiliar to me I have to have it explained to me why something is set
+in stone.
+
+--bXfoSPrYbNtw7+sq
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCaFl6ywAKCRB4tDGHoIJi
+0r3SAP0ZJKr60N8/8sBTeapWC+EhVNQdhP7AJbKB7+5RUca00AEAvJxZ7E174bBJ
+XlvJPxI1q/Z5n6SnGKtpLpWtE5bcXQQ=
+=BaA5
+-----END PGP SIGNATURE-----
+
+--bXfoSPrYbNtw7+sq--
 
