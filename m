@@ -1,81 +1,81 @@
-Return-Path: <devicetree+bounces-188269-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-188270-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 98E26AE3615
-	for <lists+devicetree@lfdr.de>; Mon, 23 Jun 2025 08:45:45 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 15686AE3617
+	for <lists+devicetree@lfdr.de>; Mon, 23 Jun 2025 08:46:01 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 245A07A52C2
-	for <lists+devicetree@lfdr.de>; Mon, 23 Jun 2025 06:44:22 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 466B43AEB2E
+	for <lists+devicetree@lfdr.de>; Mon, 23 Jun 2025 06:45:25 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 35D221B423B;
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9B61D1F91D6;
 	Mon, 23 Jun 2025 06:45:04 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=fairphone.com header.i=@fairphone.com header.b="G1OUBWLo"
+	dkim=pass (2048-bit key) header.d=fairphone.com header.i=@fairphone.com header.b="PHZY3hmZ"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ed1-f50.google.com (mail-ed1-f50.google.com [209.85.208.50])
+Received: from mail-ej1-f51.google.com (mail-ej1-f51.google.com [209.85.218.51])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 44AF01EE014
-	for <devicetree@vger.kernel.org>; Mon, 23 Jun 2025 06:45:01 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.50
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id ADC50BE4E
+	for <devicetree@vger.kernel.org>; Mon, 23 Jun 2025 06:45:02 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.51
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1750661104; cv=none; b=jWgP1mxoen3jOdu06MsE5IGL7JBYqE3eKPlBQx4/GHO6yjMxN/G/mDV/F+jRE13+BstBQn1xg8vf28cuf1uS9JecRzd98a7jhFBSpSDu3gNGfuFed1wSHl/ASvyzZOgpRMvWZDfP/aPUj37zwx3GwP5gIg+14FCDfGuKvLCpG0Y=
+	t=1750661104; cv=none; b=TzPuybmQbicfoDACnvy7SW0Mrd/WtEjD4EbqQnH4YyTpU7Py7T6RY2hw5pjE2PJ+OaASR7bAwQpiYSmaZsm1pjFDQlcrs+kOQG7KRXDn3g/+G9WVsg8UzACOaa5f7200ip2BM+OTShW5nUJxHbMNX2BEun7Eu5skjLMWzbrfYkk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
 	s=arc-20240116; t=1750661104; c=relaxed/simple;
-	bh=FuWpotRDIyEvFRCG/nxmNN/jO2swjOVfbhbhqHJw88c=;
+	bh=dQKTaoJFbvazyp9Q1oPhqhjuJEvK2SxhdOtUQkhZwj0=;
 	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=SZlJ+S0L/INZFicBdDZuanx98uyijWRTSgbaStwBYpqmVNnBUYy+8+2N9a+7oAV/wtVxItBJVaw/6vQZU8Ugnjt+4LW/9MDgKRW9iRUL8UtPtDC/T4uhEzclhEprEvNsKmiXgfkLdjht7DqgrbLaONViDylTK4LAG//YWKbG7Ao=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=fairphone.com; spf=pass smtp.mailfrom=fairphone.com; dkim=pass (2048-bit key) header.d=fairphone.com header.i=@fairphone.com header.b=G1OUBWLo; arc=none smtp.client-ip=209.85.208.50
+	 In-Reply-To:To:Cc; b=PquDkYxNxiiPY22IMuZtrzlxhqG1qpPCXKdQLw5BPLZ0FXQ07UU5OGWlgmE7RGbQFpy8jkv7bkFaUwTCAQXkdwFE3CPCdiDpGgtgvwIBz8SNzkTs4xaYytpDOK/9E62lTy9wWZcSK/5p10UgmWS1nQqqZ//AC22nV1ud7rgxdd8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=fairphone.com; spf=pass smtp.mailfrom=fairphone.com; dkim=pass (2048-bit key) header.d=fairphone.com header.i=@fairphone.com header.b=PHZY3hmZ; arc=none smtp.client-ip=209.85.218.51
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=fairphone.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=fairphone.com
-Received: by mail-ed1-f50.google.com with SMTP id 4fb4d7f45d1cf-60780d74c8cso5923028a12.2
-        for <devicetree@vger.kernel.org>; Sun, 22 Jun 2025 23:45:01 -0700 (PDT)
+Received: by mail-ej1-f51.google.com with SMTP id a640c23a62f3a-ae0290f8686so561773766b.2
+        for <devicetree@vger.kernel.org>; Sun, 22 Jun 2025 23:45:02 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=fairphone.com; s=fair; t=1750661100; x=1751265900; darn=vger.kernel.org;
+        d=fairphone.com; s=fair; t=1750661101; x=1751265901; darn=vger.kernel.org;
         h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
          :mime-version:subject:date:from:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=W8j0earuMk91sZoSa/Jgd1WatXgxkmiiaUFmqx99Roc=;
-        b=G1OUBWLoRGJO5hYXNyYDrAC9ZlJGqa6YS9GWQBWHQXacu1WKYLBvL+jI/JG94SplEK
-         HVBxpc5HVXz1xFpG3n+TKkptVlCosGg1jMhKOi0crexvFzVlaLDKUMMLMYJBx9qwRgUu
-         QOrI+iddwSwsFzXKIv75vNHGgD6bdIRhL8oa2lnrpsAmv+cQQ6bsh6620LiqrkIaTgXR
-         brpgt3P2buMYeJpQW2vuQhBd+r7/IltDu6STgxfbNsk2ICN/Vh4g7P/1UOI18uxEFlHa
-         CMNE+I97Jj/Kz1zlubLVfKdaSe1Sy2pl1eXOvTSXatGyQOMEDv1qSrRLKk0MFXJ3zHBT
-         CAIw==
+        bh=pA+Rs4BuhZMiD1TZXkrsma5mRVhifaFNd7IRaZKnnaY=;
+        b=PHZY3hmZQn71mQMQSJ2zBh6tgGFCeqIjhjvYBbBSlEknVYr7q3ZBRlViv9fl3hIFrZ
+         AVMlgjTLwtuOtF/TfNWcH+ys9izx8EcFh5+Sf76wmezjhZe/VcaWndiP3o9dzs1ll3/Y
+         i4b5l09UVs+ESttsJgy5tS6+1XJcvrownNcR2MvH9vtfjJpL30Zs6b2jI9apEE9P/vkW
+         YKH0540Yg1QbLbgNB+cULzriOrZaeWBXYzM2qalYG1+iptNu9QGTWPcsxWgQdU4iQb12
+         1f2QejLzVDjfYN3jQxCjWIwk6aa5IBvuJm6UbHdUpaXxG446x/Kz22skauoyivsnt9+n
+         5afg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1750661100; x=1751265900;
+        d=1e100.net; s=20230601; t=1750661101; x=1751265901;
         h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
          :mime-version:subject:date:from:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=W8j0earuMk91sZoSa/Jgd1WatXgxkmiiaUFmqx99Roc=;
-        b=af2mXT4ZZu9IBegWe38TJbFkC6eAsBLfzJEVNCzbz6Y4GxpNJRnf0NW3QcC9uG6iFF
-         UyJtEARDhn/7yl6LUlKDhqhwg2rpl25Z0eUrxcyKHlzaEHOziVCs5yXTraQx6WnX9ABA
-         Va5Ji5vYYeiu/+IR0E7VjT3wTubY0QDWYJecJfgCEBC0D2RIrsT4zQpEPDWqifYDefJt
-         QuqZuc4ZSBfZHNkiojNl6czgbtKyMKKnYKOALjMG74bR9RO2V+/T/kPsqg1t2rzQsZor
-         OvsfbEuZMpt/G4tTVEr20+ifeFcLRl8i/0YcQIVaihsKjNC5yTwgKI4B8uorK/jhE0Lu
-         tHRg==
-X-Forwarded-Encrypted: i=1; AJvYcCWc78DbdP5U1PgTVm5UYr8f0/WYJsBe0FUjTKWDaS92DMjm7qBdhMdUac433/4gUKJS+VcKc9o0bA7u@vger.kernel.org
-X-Gm-Message-State: AOJu0Yxp49FdCLCrf8aKi+jxxL/ffCh4Dwv4meuAPYfuHGU1PB+RHINu
-	GS6zdvzWkUevwqj2iuDbGkP4hcigeqNoeggnlgcTZcH4WnTAo8szrPXY8MxgRVnyjBg=
-X-Gm-Gg: ASbGncvBa8OIKcUYTvlosffWW9hZETMxMp/dDsxTgvSOW1AqL3r/hQMIV+ZBpt0zATI
-	LBvLTAcxYIPm+tqlcmoWgNJluZrYjDVvyNeZD6bXd4sjyD083xJic6HCNdaKeJHhUdgJnH+Q1r/
-	VI7R7GbZZFhhYQ7Lql6CAICquhVwHiMxhaGD0Dt16QuyPmfYBQfaDrQpF3lZjtSpf+R3b4XoIg3
-	HNISGYifMhIN99rw1LDSycot4RXHzGy/9Orxe0yk0r/HowWGJF1S1U/WAL+8lpzsEiDJnXkCBfi
-	sInLzYGrNhTt41v0RooHjfSxSCNGlDicPDjO5LI96Bq9WuAveJm7kwK5/N6Cv4WpB9jdnPt+x5T
-	plibXJ0MKI2c/AbjaGl9Z/OrOddfo1NVQ
-X-Google-Smtp-Source: AGHT+IE8m6sV6mGT4W4Z3eOR9YDBYYzBxtwk7TVZKt44W93HSiVrTunOecK2T81aA/Q+qJNWY1i1yg==
-X-Received: by 2002:a17:907:1c95:b0:adb:449c:7621 with SMTP id a640c23a62f3a-ae057c0f672mr1169047266b.29.1750661099726;
-        Sun, 22 Jun 2025 23:44:59 -0700 (PDT)
+        bh=pA+Rs4BuhZMiD1TZXkrsma5mRVhifaFNd7IRaZKnnaY=;
+        b=XKpFUeI6AvpwnFPneoc5zxh4e52sRR20cJTXeSjto/bGn35QibsaqwqZrcZM2lQWRU
+         tOAkOM9dxZPjmSENykknHYiyr+TB3c+bzNM5Cz8TVTSLpUM8UEM2kR5H3em5zIr/4iTU
+         AYjsbWAum1yeMy0X39ghRmUxwL9oR3AMtmj3cs/wr+wIXYrUxRbvPJIhR4i8cjCPSxXU
+         Z5hWivqNy/0TxJIRGWNtjXi6oaPCoDpPcjpVFbGdrruFZe9DMQJYxyUL78xyKa52Bz9k
+         92S/E+MZDjwbRbPP6RdwFMj7I5R153a6VVoQEIc5xZ5HvEjaxqgmypJ/eiDNwOvBYInD
+         dXcw==
+X-Forwarded-Encrypted: i=1; AJvYcCW3rzuyS47909FEyZI2ogwgEkuUnR5z+ijVolrKg75vO6N3qLqRnCUjsaEEgWeyn/FkHZP4hguY4GG3@vger.kernel.org
+X-Gm-Message-State: AOJu0YxnfauTh99mk58mtbKiw/byBg4LIUgRIfT+NmUnuDpIA5x6qRre
+	NI22ikYIpWi8yBdhkpSaCqm35/26oUep8jukNJOar/zpqH+eIfFSC2+QPKOwk1eYUIw=
+X-Gm-Gg: ASbGnctSIV+7hjpdajqn//8/cC0Id6Ah7JlqgCG+bypdiQ4o+4MR1qp1clAZ8Uogrmp
+	5amW0i4CRHzp5HZY6CZy3q2U69pyVdb67pqzA8zQb049aEO8uaGTNBiQG3nlSUjoLBM0NBwLaGx
+	2AtdX9rTOe2Ls0FnQvdVdhyWvejrm86rK5NF69z1+caVs+vrW6a2YZNOdWd9Q0BXxa7b6AoyGrF
+	T8yZ3TD42EiTZ0HNd1gjNThNhrb4MrfyYv5i+d9wKM910KJSLxmtv2dpSTQWMxMfy/A/td82qIW
+	159DLh4vDgqstnis03diJmwwF/S1NT82zlYLyaC9Nb7uWMDT3Mat5sZBmlvmXdDBb1JI1bUSvoI
+	EVryMo7HBJEe6+b5jZWZfTLu3N4xIaVZM
+X-Google-Smtp-Source: AGHT+IEfG/ia8MXFZvWV63xW+2WDm+wmIGfKUT095APiD93iFktsSDhtmQlj2MFUGu0vl47bkbkh1w==
+X-Received: by 2002:a17:906:6a17:b0:adb:23e0:9297 with SMTP id a640c23a62f3a-ae057a51258mr1096084666b.17.1750661100690;
+        Sun, 22 Jun 2025 23:45:00 -0700 (PDT)
 Received: from otso.local (144-178-202-138.static.ef-service.nl. [144.178.202.138])
         by smtp.gmail.com with ESMTPSA id a640c23a62f3a-ae053ee4ce9sm659258266b.69.2025.06.22.23.44.59
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sun, 22 Jun 2025 23:44:59 -0700 (PDT)
+        Sun, 22 Jun 2025 23:45:00 -0700 (PDT)
 From: Luca Weiss <luca.weiss@fairphone.com>
-Date: Mon, 23 Jun 2025 08:44:48 +0200
-Subject: [PATCH v2 4/5] fbdev/simplefb: Sort headers correctly
+Date: Mon, 23 Jun 2025 08:44:49 +0200
+Subject: [PATCH v2 5/5] fbdev/simplefb: Add support for interconnect paths
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -84,7 +84,7 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-Message-Id: <20250623-simple-drm-fb-icc-v2-4-f69b86cd3d7d@fairphone.com>
+Message-Id: <20250623-simple-drm-fb-icc-v2-5-f69b86cd3d7d@fairphone.com>
 References: <20250623-simple-drm-fb-icc-v2-0-f69b86cd3d7d@fairphone.com>
 In-Reply-To: <20250623-simple-drm-fb-icc-v2-0-f69b86cd3d7d@fairphone.com>
 To: Hans de Goede <hdegoede@redhat.com>, 
@@ -98,47 +98,139 @@ Cc: linux-fbdev@vger.kernel.org, dri-devel@lists.freedesktop.org,
  devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
  Luca Weiss <luca.weiss@fairphone.com>
 X-Mailer: b4 0.14.2
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1750661095; l=1094;
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1750661095; l=3530;
  i=luca.weiss@fairphone.com; s=20250611; h=from:subject:message-id;
- bh=FuWpotRDIyEvFRCG/nxmNN/jO2swjOVfbhbhqHJw88c=;
- b=kXVSPEOY4GhdxIVGXUvtFGyi8NaioGV03rhp+XgPSoKPhDZTGGSFak070HpEI5tJff8X94PQS
- azxFMPS9dLaDcaEfVYWwQaXl3Ps5kdOPKrCiKnmBij4JtYNIp525Z22
+ bh=dQKTaoJFbvazyp9Q1oPhqhjuJEvK2SxhdOtUQkhZwj0=;
+ b=wtrWkFVrQxjznBKN4+vCIM0v5OnZoKSUD8HoOPwct17rZ2GLmAHgCNrxQRvIjIg0dfn6SBO3p
+ fX8nbdxIEsCBstf3uSct7cS/lYQd1s5Ww4P7FLDYTDBXJ1Mt6boZXXC
 X-Developer-Key: i=luca.weiss@fairphone.com; a=ed25519;
  pk=O1aw+AAust5lEmgrNJ1Bs7PTY0fEsJm+mdkjExA69q8=
 
-Make sure the headers are sorted alphabetically to ensure consistent
-code.
+Some devices might require keeping an interconnect path alive so that
+the framebuffer continues working. Add support for that by setting the
+bandwidth requirements appropriately for all provided interconnect
+paths.
 
+Reviewed-by: Thomas Zimmermann <tzimmermann@suse.de>
 Signed-off-by: Luca Weiss <luca.weiss@fairphone.com>
 ---
- drivers/video/fbdev/simplefb.c | 6 +++---
- 1 file changed, 3 insertions(+), 3 deletions(-)
+ drivers/video/fbdev/simplefb.c | 83 ++++++++++++++++++++++++++++++++++++++++++
+ 1 file changed, 83 insertions(+)
 
 diff --git a/drivers/video/fbdev/simplefb.c b/drivers/video/fbdev/simplefb.c
-index be95fcddce4c8ca794826b805cd7dad2985bd637..db27d51046af5cc3c46a0bc81ad9d9ed9a0783cc 100644
+index db27d51046af5cc3c46a0bc81ad9d9ed9a0783cc..b7e2f2374e3149866fd6f1803931e7f34dbbd75f 100644
 --- a/drivers/video/fbdev/simplefb.c
 +++ b/drivers/video/fbdev/simplefb.c
-@@ -13,18 +13,18 @@
-  */
- 
- #include <linux/aperture.h>
-+#include <linux/clk.h>
+@@ -16,6 +16,7 @@
+ #include <linux/clk.h>
  #include <linux/errno.h>
  #include <linux/fb.h>
++#include <linux/interconnect.h>
  #include <linux/io.h>
  #include <linux/module.h>
--#include <linux/platform_data/simplefb.h>
--#include <linux/platform_device.h>
--#include <linux/clk.h>
  #include <linux/of.h>
- #include <linux/of_address.h>
- #include <linux/of_clk.h>
- #include <linux/of_platform.h>
- #include <linux/parser.h>
-+#include <linux/platform_data/simplefb.h>
-+#include <linux/platform_device.h>
- #include <linux/pm_domain.h>
- #include <linux/regulator/consumer.h>
+@@ -89,6 +90,10 @@ struct simplefb_par {
+ 	u32 regulator_count;
+ 	struct regulator **regulators;
+ #endif
++#if defined CONFIG_OF && defined CONFIG_INTERCONNECT
++	unsigned int icc_count;
++	struct icc_path **icc_paths;
++#endif
+ };
+ 
+ static void simplefb_clocks_destroy(struct simplefb_par *par);
+@@ -525,6 +530,80 @@ static int simplefb_attach_genpds(struct simplefb_par *par,
+ }
+ #endif
+ 
++#if defined CONFIG_OF && defined CONFIG_INTERCONNECT
++/*
++ * Generic interconnect path handling code.
++ */
++static void simplefb_detach_icc(void *res)
++{
++	struct simplefb_par *par = res;
++	int i;
++
++	for (i = par->icc_count - 1; i >= 0; i--) {
++		if (!IS_ERR_OR_NULL(par->icc_paths[i]))
++			icc_put(par->icc_paths[i]);
++	}
++}
++
++static int simplefb_attach_icc(struct simplefb_par *par,
++			       struct platform_device *pdev)
++{
++	struct device *dev = &pdev->dev;
++	int ret, count, i;
++
++	count = of_count_phandle_with_args(dev->of_node, "interconnects",
++							 "#interconnect-cells");
++	if (count < 0)
++		return 0;
++
++	/* An interconnect path consists of two elements */
++	if (count % 2) {
++		dev_err(dev, "invalid interconnects value\n");
++		return -EINVAL;
++	}
++	par->icc_count = count / 2;
++
++	par->icc_paths = devm_kcalloc(dev, par->icc_count,
++				      sizeof(*par->icc_paths),
++				      GFP_KERNEL);
++	if (!par->icc_paths)
++		return -ENOMEM;
++
++	for (i = 0; i < par->icc_count; i++) {
++		par->icc_paths[i] = of_icc_get_by_index(dev, i);
++		if (IS_ERR_OR_NULL(par->icc_paths[i])) {
++			ret = PTR_ERR(par->icc_paths[i]);
++			if (ret == -EPROBE_DEFER)
++				goto err;
++			dev_err(dev, "failed to get interconnect path %u: %d\n", i, ret);
++			continue;
++		}
++
++		ret = icc_set_bw(par->icc_paths[i], 0, UINT_MAX);
++		if (ret) {
++			dev_err(dev, "failed to set interconnect bandwidth %u: %d\n", i, ret);
++			continue;
++		}
++	}
++
++	return devm_add_action_or_reset(dev, simplefb_detach_icc, par);
++
++err:
++	while (i) {
++		--i;
++		if (!IS_ERR_OR_NULL(par->icc_paths[i]))
++			icc_put(par->icc_paths[i]);
++	}
++	return ret;
++}
++#else
++static int simplefb_attach_icc(struct simplefb_par *par,
++			       struct platform_device *pdev)
++{
++	return 0;
++}
++#endif
++
+ static int simplefb_probe(struct platform_device *pdev)
+ {
+ 	int ret;
+@@ -615,6 +694,10 @@ static int simplefb_probe(struct platform_device *pdev)
+ 	if (ret < 0)
+ 		goto error_regulators;
+ 
++	ret = simplefb_attach_icc(par, pdev);
++	if (ret < 0)
++		goto error_regulators;
++
+ 	simplefb_clocks_enable(par, pdev);
+ 	simplefb_regulators_enable(par, pdev);
  
 
 -- 
