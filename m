@@ -1,308 +1,131 @@
-Return-Path: <devicetree+bounces-188758-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-188759-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id B38DAAE4DA6
-	for <lists+devicetree@lfdr.de>; Mon, 23 Jun 2025 21:36:45 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2CA55AE4DC5
+	for <lists+devicetree@lfdr.de>; Mon, 23 Jun 2025 21:54:00 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id C3D0B3A9E4D
-	for <lists+devicetree@lfdr.de>; Mon, 23 Jun 2025 19:36:20 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id C1C0A17C5F2
+	for <lists+devicetree@lfdr.de>; Mon, 23 Jun 2025 19:54:00 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 162C525D55D;
-	Mon, 23 Jun 2025 19:36:41 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 622DA2BDC35;
+	Mon, 23 Jun 2025 19:53:55 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="fUQwP8zp"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Br+Bsi+O"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E5D191EEA47
-	for <devicetree@vger.kernel.org>; Mon, 23 Jun 2025 19:36:40 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 33F213FD4;
+	Mon, 23 Jun 2025 19:53:54 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1750707401; cv=none; b=HuTYwVXt3l6R+Va1ybzHvr1JR6yT++l8OGV2bD9AzpMBUWTQWvRZTTns9c6eCyEjmEiC3DNvhe7gBnAe0hzhQ8He9FQp7wvXAFXafJ6DD7k1TM3+e4LTA/XXrTeY6JqGVLYb8jZ4XwgweEh5XHYNlMwg1HL14HDLxb8AVbgj8tk=
+	t=1750708435; cv=none; b=tT/n2buHW7fTlW5Zs2+hnGvdZsGhhgBEY5U4Efs2SjaJ9tdUtfwYINoAkkYn7dEqPbSfkaF67G16KN3oXmwi0H7RROJ2n8clsMloafRoCFvzHEGwMqOTw3zbuCsr5+dJpRwSjThjlLTdclR37K2c0+pdRVvFOUzPv+RHlB8l2CE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1750707401; c=relaxed/simple;
-	bh=VFiH6uHcD0q5xdjf14NoloWG/jpZNe1Bbp/UwT4ZEQk=;
-	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=VE1i/PMMkjMYb6bqBYKLw38zrHkkONvmnzMnu6ve5C3TthD2eAD/u32bFKPCowW4kdUH6bVQUp2k6ZNRy4MIZTL4Nrz+cBIBU4IKpwkTapjfnfku7NCPi1XK/I7KAlc6SRsQ+nQ1z6ySuiWFX5nL8815sphnd6f+CYGK/oBOFdc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=fUQwP8zp; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id C8E18C4CEEA;
-	Mon, 23 Jun 2025 19:36:39 +0000 (UTC)
+	s=arc-20240116; t=1750708435; c=relaxed/simple;
+	bh=pyqYnOlkjidKRgeVyxX1rCr60cUUf4YqGlw39FHd3yQ=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=eVeeD/ynfbx8NtEav5qDQnbZN/sV1TCfTXBzjk92QO574Vm4OuD/WoV9nAK0NN9c8g/bxTMGJggDmBrnc+g5lrIaJagJYttsTl5tCkpjeY96ckVXbiKvXc2KTdARPSkMeqDpvMX+pxmBVxeyeagCsf97a7yCnTfeQw2q7maTKKM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Br+Bsi+O; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id B3AB8C4CEEA;
+	Mon, 23 Jun 2025 19:53:53 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1750707400;
-	bh=VFiH6uHcD0q5xdjf14NoloWG/jpZNe1Bbp/UwT4ZEQk=;
-	h=From:To:Cc:Subject:Date:From;
-	b=fUQwP8zpLtykV1bAA7gqGNFp+RpzbfRt2HaWCBKk+RPHuRX8Mpt7abkF72FquTB41
-	 PTzKcFNdq3G7m0RDN66b/uSymdOYdJIxdjFKEgcKUutIBcT+6oCloOmV1MpjJCHjQ3
-	 0qs4t5Ldrcsq6NcnbZ7pk2i+Opdxjc6N3FGjr6b5dPwWLlJuMDFhZJjkrv9EpEtuL+
-	 GFbpBUgI4cWXxedeLgn85jQ1RDm4oyd5c+57BiDSdmFSx+5wAENG7OHxZmAxnbRE7E
-	 yNa8ynS4fVajwrzpQxqeNXHJGDj8Lss5rvuFaPtxSEBMOfci804wzJtUJnAnKhcWJs
-	 U62Z84Z++nRig==
-From: Dinh Nguyen <dinguyen@kernel.org>
-To: robh+dt@kernel.org,
-	krzysztof.kozlowskii+dt@linaro.org,
-	conor+dt@kernel.org
-Cc: dinguyen@kernel.org,
-	devicetree@vger.kernel.org
-Subject: [PATCHv2] dt-bindings: net: convert socfpga-dwmac.txt to DT schema
-Date: Mon, 23 Jun 2025 14:36:36 -0500
-Message-ID: <20250623193636.298869-1-dinguyen@kernel.org>
-X-Mailer: git-send-email 2.42.0.411.g813d9a9188
+	s=k20201202; t=1750708434;
+	bh=pyqYnOlkjidKRgeVyxX1rCr60cUUf4YqGlw39FHd3yQ=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=Br+Bsi+OVOOTawbj4sGu0MQYf7hqOUg4sm2E2mj6dLITYCSbnDou8doSNxXB1czyi
+	 a0kaxiHp42zTxgBVA3OudGDDEuXYMwkgQFFWsIsevVAfjLfEpEYJILsV7Q9AwOr7U6
+	 DlObCANx3FRTMZ0YA45A+sfOwqZ7BQh6ucmFzD0v261FbHiN4WgCW6RpcJh2syXjMJ
+	 jYDhmlDV3wnIVZ7W9qcOEq/l7wrnzMxCM5WTzcPgc6jwFk7lpYWwu45dQ3dSrtTEsi
+	 T97e96NHAjBdLTp5Y2bn6V8042YoSJ/iKryF6B5VPU1qGbDPTrz4TTB2QBzBIKtop7
+	 zXh/YNsUXbC7Q==
+Date: Mon, 23 Jun 2025 21:53:51 +0200
+From: Uwe =?utf-8?Q?Kleine-K=C3=B6nig?= <ukleinek@kernel.org>
+To: Marek Vasut <marek.vasut@mailbox.org>
+Cc: linux-pwm@vger.kernel.org, Conor Dooley <conor+dt@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Rob Herring <robh@kernel.org>, devicetree@vger.kernel.org, 
+	linux-renesas-soc@vger.kernel.org
+Subject: Re: [PATCH v4 3/3] pwm: argon-fan-hat: Add Argon40 Fan HAT support
+Message-ID: <apbocxuzcptlpghphh7nchnwyxpfhmiwosgxrt4y5awsb67ar3@fbskfbulwsma>
+References: <20250621172056.160855-1-marek.vasut+renesas@mailbox.org>
+ <20250621172056.160855-3-marek.vasut+renesas@mailbox.org>
+ <purpjdp72jw2rok5ihyua635izyih54ufom2knsbaiwdd3jzgk@6wjf364fao2g>
+ <dbec18f0-5df4-4eb8-93ab-da6ccfedf8ab@mailbox.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: multipart/signed; micalg=pgp-sha512;
+	protocol="application/pgp-signature"; boundary="7nsxiujugcoezieo"
+Content-Disposition: inline
+In-Reply-To: <dbec18f0-5df4-4eb8-93ab-da6ccfedf8ab@mailbox.org>
 
-Convert the socfpga-dwmac.txt to yaml.
 
-Signed-off-by: Dinh Nguyen <dinguyen@kernel.org>
----
-v2: Add allOf to include the base dmac yaml
-    fix Rob Herring's dt_binding_check warnings
----
- .../bindings/net/altr,dwmac-socfpga.yaml      | 162 ++++++++++++++++++
- .../devicetree/bindings/net/socfpga-dwmac.txt |  57 ------
- 2 files changed, 162 insertions(+), 57 deletions(-)
- create mode 100644 Documentation/devicetree/bindings/net/altr,dwmac-socfpga.yaml
- delete mode 100644 Documentation/devicetree/bindings/net/socfpga-dwmac.txt
+--7nsxiujugcoezieo
+Content-Type: text/plain; protected-headers=v1; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
+Subject: Re: [PATCH v4 3/3] pwm: argon-fan-hat: Add Argon40 Fan HAT support
+MIME-Version: 1.0
 
-diff --git a/Documentation/devicetree/bindings/net/altr,dwmac-socfpga.yaml b/Documentation/devicetree/bindings/net/altr,dwmac-socfpga.yaml
-new file mode 100644
-index 000000000000..901993aaa528
---- /dev/null
-+++ b/Documentation/devicetree/bindings/net/altr,dwmac-socfpga.yaml
-@@ -0,0 +1,162 @@
-+# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/net/altr,dwmac-socfpga.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: Intel/Altera SoCFPGA DWMAC controller
-+
-+maintainers:
-+  - Dinh Nguyen <dinguyen@kernel.org>
-+
-+select:
-+  properties:
-+    compatible:
-+      contains:
-+        enum:
-+          - altr,socfpga-stmmac
-+          - altr,socfpga-stmmac-a10-s10
-+  required:
-+    - compatible
-+
-+allOf:
-+  - $ref: snps,dwmac.yaml#
-+
-+properties:
-+  compatible:
-+    additionalItems: true
-+    maxItems: 3
-+    items:
-+      - enum:
-+          - altr,socfpga-stmmac
-+          - altr,socfpga-stmmac-a10-s10
-+    contains:
-+      enum:
-+        - snps,dwmac-3.74a
-+        - snps,dwmac-3.70a
-+        - snps,dwmac
-+
-+  reg:
-+    items:
-+      - description: Base DWMAC registers
-+
-+  iommus:
-+    minItems: 1
-+    maxItems: 2
-+
-+  clocks:
-+    minItems: 1
-+    items:
-+      - description: MAC host clock
-+      - description: MAC timer clock
-+
-+  clock-names:
-+    minItems: 1
-+    maxItems: 2
-+    contains:
-+      enum:
-+        - stmmaceth
-+        - ptp_ref
-+
-+  resets:
-+    minItems: 1
-+    items:
-+      - description: GMAC stmmaceth reset
-+      - description: AHB reset
-+
-+  reset-names:
-+    oneOf:
-+      - items:
-+          - enum: [stmmaceth, ahb]
-+      - items:
-+          - const: stmmaceth
-+          - const: ahb
-+
-+  interrupts:
-+    items:
-+      - description: DWAC interrupt
-+
-+  interrupt-names:
-+    items:
-+      - const: macirq
-+
-+  mac-address: true
-+
-+  phy-mode:
-+    maxItems: 1
-+    items:
-+      enum:
-+        - rgmii
-+        - gmii
-+        - mii
-+
-+  tx-fifo-depth:
-+    $ref: /schemas/types.yaml#/definitions/uint32
-+    description: DWMAC Tx fifo depth(Stratix10, Agilex)
-+
-+  rx-fifo-depth:
-+    $ref: /schemas/types.yaml#/definitions/uint32
-+    description: DWMAC Rx fifo depth(Stratix10, Agilex)
-+
-+  snps,multicast-filter-bins:
-+    $ref: /schemas/types.yaml#/definitions/uint32
-+    description:
-+      Number of multicast filter hash bins supported by this device
-+      instance
-+
-+  altr,sysmgr-syscon:
-+    $ref: /schemas/types.yaml#/definitions/phandle-array
-+    items:
-+      - items:
-+          - description: phandle to the sysmgr node
-+          - description: register offset that controls the SDMMC clock phase
-+          - description: register shift for the smplsel(drive in) setting
-+    description:
-+      Should be the phandle to the system manager node that
-+      encompasses the glue register, the register offset, and the register shift.
-+      On Cyclone5/Arria5, the register shift represents the PHY mode bits, while
-+      on the Arria10/Stratix10/Agilex platforms, the register shift represents
-+      bit for each emac to enable/disable signals from the FPGA fabric to the
-+      EMAC modules.
-+
-+  altr,emac-splitter:
-+    $ref: /schemas/types.yaml#/definitions/phandle
-+    description:
-+      Should be the phandle to the emac splitter soft IP node if DWMAC
-+      controller is connected emac splitter.
-+
-+  altr,sgmii-to-sgmii-converter:
-+    $ref: /schemas/types.yaml#/definitions/phandle
-+    description:
-+      Phandle to the TSE SGMII converter.
-+
-+required:
-+  - compatible
-+  - reg
-+  - interrupts
-+  - clocks
-+  - clock-names
-+  - phy-mode
-+
-+additionalProperties: false
-+
-+examples:
-+  - |
-+    soc {
-+        #address-cells = <1>;
-+        #size-cells = <1>;
-+
-+        gmac0: ethernet@ff700000 {
-+            compatible = "altr,socfpga-stmmac", "snps,dwmac-3.70a", "snps,dwmac";
-+            altr,sysmgr-syscon = <&sysmgr 0x60 0>;
-+            reg = <0xff700000 0x2000>;
-+            interrupts = <0 115 4>;
-+            interrupt-names = "macirq";
-+            mac-address = [00 00 00 00 00 00];/* Filled in by U-Boot */
-+            clocks = <&emac_0_clk>;
-+            clock-names = "stmmaceth";
-+            phy-mode = "rgmii";
-+            tx-fifo-depth = <16384>;
-+            rx-fifo-depth = <16384>;
-+       };
-+    };
-diff --git a/Documentation/devicetree/bindings/net/socfpga-dwmac.txt b/Documentation/devicetree/bindings/net/socfpga-dwmac.txt
-deleted file mode 100644
-index 612a8e8abc88..000000000000
---- a/Documentation/devicetree/bindings/net/socfpga-dwmac.txt
-+++ /dev/null
-@@ -1,57 +0,0 @@
--Altera SOCFPGA SoC DWMAC controller
--
--This is a variant of the dwmac/stmmac driver an inherits all descriptions
--present in Documentation/devicetree/bindings/net/stmmac.txt.
--
--The device node has additional properties:
--
--Required properties:
-- - compatible	: For Cyclone5/Arria5 SoCs it should contain
--		  "altr,socfpga-stmmac". For Arria10/Agilex/Stratix10 SoCs
--		  "altr,socfpga-stmmac-a10-s10".
--		  Along with "snps,dwmac" and any applicable more detailed
--		  designware version numbers documented in stmmac.txt
-- - altr,sysmgr-syscon : Should be the phandle to the system manager node that
--   encompasses the glue register, the register offset, and the register shift.
--   On Cyclone5/Arria5, the register shift represents the PHY mode bits, while
--   on the Arria10/Stratix10/Agilex platforms, the register shift represents
--   bit for each emac to enable/disable signals from the FPGA fabric to the
--   EMAC modules.
-- - altr,f2h_ptp_ref_clk use f2h_ptp_ref_clk instead of default eosc1 clock
--   for ptp ref clk. This affects all emacs as the clock is common.
--
--Optional properties:
--altr,emac-splitter: Should be the phandle to the emac splitter soft IP node if
--		DWMAC controller is connected emac splitter.
--phy-mode: The phy mode the ethernet operates in
--altr,sgmii-to-sgmii-converter: phandle to the TSE SGMII converter
--
--This device node has additional phandle dependency, the sgmii converter:
--
--Required properties:
-- - compatible	: Should be altr,gmii-to-sgmii-2.0
-- - reg-names	: Should be "eth_tse_control_port"
--
--Example:
--
--gmii_to_sgmii_converter: phy@100000240 {
--	compatible = "altr,gmii-to-sgmii-2.0";
--	reg = <0x00000001 0x00000240 0x00000008>,
--		<0x00000001 0x00000200 0x00000040>;
--	reg-names = "eth_tse_control_port";
--	clocks = <&sgmii_1_clk_0 &emac1 1 &sgmii_clk_125 &sgmii_clk_125>;
--	clock-names = "tse_pcs_ref_clk_clock_connection", "tse_rx_cdr_refclk";
--};
--
--gmac0: ethernet@ff700000 {
--	compatible = "altr,socfpga-stmmac", "snps,dwmac-3.70a", "snps,dwmac";
--	altr,sysmgr-syscon = <&sysmgr 0x60 0>;
--	reg = <0xff700000 0x2000>;
--	interrupts = <0 115 4>;
--	interrupt-names = "macirq";
--	mac-address = [00 00 00 00 00 00];/* Filled in by U-Boot */
--	clocks = <&emac_0_clk>;
--	clock-names = "stmmaceth";
--	phy-mode = "sgmii";
--	altr,gmii-to-sgmii-converter = <&gmii_to_sgmii_converter>;
--};
--- 
-2.42.0.411.g813d9a9188
+Hello Marek,
 
+On Mon, Jun 23, 2025 at 07:30:33PM +0200, Marek Vasut wrote:
+> On 6/23/25 11:11 AM, Uwe Kleine-K=F6nig wrote:
+> > when I replied to v3 this v4 was already on the list which I missed. My
+> > concern applies here, too, though.
+> >=20
+> > On Sat, Jun 21, 2025 at 07:19:56PM +0200, Marek Vasut wrote:
+> > > +static void argon_fan_hat_i2c_shutdown(struct i2c_client *i2c)
+> > > +{
+> > > +	argon_fan_hat_write(i2c, 100);
+> > > +}
+> >=20
+> > If you drop this, I'm willing to apply.
+>=20
+> Dropping this would make the hardware which uses this device more
+> susceptible to thermal damage, e.g. in case it gets stuck during reboot a=
+nd
+> does not boot Linux afterward. I don't want to risk such thermal damage.
+
+We agree here. But the right place to address this is the pwm-fan
+driver. A PWM is supposed to do exactly and only what its consumer wants
+it to do (in the limits set by hardware). Officially a PWM driver
+doesn't know the polarity of a fan, so `argon_fan_hat_write(i2c, 100)`
+might fully enable or complete disable the fan. The fan-driver knows the
+polarity. The PWM driver doesn't even know that it controls a fan. And
+the next guy takes the argon device and controls a motor with it --- and
+wonders that the vehicle gives full-speed at shutdown.
+
+So I hope we also agree that the pwm-fan driver (or an even more generic
+place if possible that applies to all fan drivers) is the right layer to
+fix this. And note that the pwm-fan driver already has such a decision
+implemented, it's just the wrong one from your POV as it disables the
+fan at shutdown. For me this is another confirmation that having a
+shutdown callback in the PWM driver is wrong. The two affected drivers
+shouldn't fight about what is the right policy.
+
+Best regards
+Uwe
+
+--7nsxiujugcoezieo
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAABCgAdFiEEP4GsaTp6HlmJrf7Tj4D7WH0S/k4FAmhZsMEACgkQj4D7WH0S
+/k5JEAf/ScuSFqcJij5p6YFnA9Fb6WDX7yVojrrApcLGB29gnmYa9Cuppt6t6ZW6
+r8NkGZ5lsRI1ivyvW149fKyHx+NIEtO3/eSbtVOeIyObx868DH6e7nXU3VMubSbb
+9ItUiOsUgmvdz1+QIBPMGc635NaVlUIABwCw51ZYZCp3ahCf6pOY7D6tcJl1rcpf
+Yv+beIsZgh7OzjXPhaaCh8NhUwCe8STUjxTMJIlzJHoGa5c5/j+h1tAEHQhwNpot
+vN34jVxJnJHhH3NOigvG4GU7jrDJ/XTXWkL7i9b56dyvPSGRcv48OanqFcujaWa9
+GR+PvAH2cr0OYrMS0poGoGPQzf0YhQ==
+=kmj9
+-----END PGP SIGNATURE-----
+
+--7nsxiujugcoezieo--
 
