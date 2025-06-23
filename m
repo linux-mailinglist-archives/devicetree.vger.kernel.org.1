@@ -1,103 +1,116 @@
-Return-Path: <devicetree+bounces-188422-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-188423-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id F0122AE3C11
-	for <lists+devicetree@lfdr.de>; Mon, 23 Jun 2025 12:20:25 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4E7ACAE3C26
+	for <lists+devicetree@lfdr.de>; Mon, 23 Jun 2025 12:22:46 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 88A68169D38
-	for <lists+devicetree@lfdr.de>; Mon, 23 Jun 2025 10:20:26 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id B39F93AB7F1
+	for <lists+devicetree@lfdr.de>; Mon, 23 Jun 2025 10:22:17 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5EAD5238C35;
-	Mon, 23 Jun 2025 10:20:21 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6396523A9BB;
+	Mon, 23 Jun 2025 10:22:39 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="JuF9oBa6"
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="a7gPq/Ad"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.17])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2EEAA1EF394;
-	Mon, 23 Jun 2025 10:20:20 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CE6C023A566;
+	Mon, 23 Jun 2025 10:22:37 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.175.65.17
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1750674021; cv=none; b=Qc9F45WoE0Bqj/9COJTZ++So1Rr0XIxG1eQfleHJ2p2KCLqnvZxL8B/j8ZvIDn4ddJXkPibOA51s5iBQtvmujvSCoxGzebUT2IpJeeGmnEY+3KjhyES9MyZJY8KeKyaAMvkFdi6ZgIuG1d1Xj1u5N5elXz3DlkU52ql5t5zGm2A=
+	t=1750674159; cv=none; b=FQl/kWiTB4kh3zmWFb/z+0tq1fdVTP96VJg6q2Aq3xvx8c+tbaGS+ZuZIXV+yEZ2F3Av8jPaD5p0c9QkT8ouhJPvGfTwI/NSPZJMWmZ45kp/e7tSc0xomFJy+b4KA6QQMoWWKQxMlGfL/sE5r5V80WVc1tbHDfo5MRTARGEUqP8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1750674021; c=relaxed/simple;
-	bh=prOAbia71XOTgGudPMVx0Rcz5wZJl6YGFxom8jlzCYo=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=ClU2nUzgE+zw0gwKaPWEpyhZk+0nJ01d9iHqZRQ8CLbG56QDu2US0sE2mzBkI5dtg8i2HYsuqwkHLtkfbXqI09eF9tVBYFtg43PUh1LqwkYRPhSkxqXQVAgMUPEez7JHA1gOcF5VbKuy+R/zjcyevOOaFVk5GobQxU0/ydkuuOg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=JuF9oBa6; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id A4340C4CEEA;
-	Mon, 23 Jun 2025 10:20:20 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1750674020;
-	bh=prOAbia71XOTgGudPMVx0Rcz5wZJl6YGFxom8jlzCYo=;
-	h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-	b=JuF9oBa6Afwk1Duy/cL3d0w+NKUqCONwa9cmTcb4bxwcTLpyL1l5DsXDYhsaeQgfo
-	 CEiJhAXmJKPUSdkuJjOpWy6XY77QFnfFmopKfez8+Oehhl+KDqtWvepZCe+bYIcvk6
-	 iKg41Bn/lHUZL80f/I62hJk/r4ionxua2injEN2obw3qsMmpbRAeVSyK0iSd3eTmos
-	 sCNlkFzQ1IdYRSj8RImEs0RxR27ojin+HJPccABzre83TZzo8JllsXaLpqe5sR9Drg
-	 Z0oGNcXM+WtFEs419ayMYf48IyRP7ZT0f7sJsS27MNOAafLdA+2F1236AdzdYm5QtP
-	 nEqfLKxqtbajQ==
-Received: by mail-oo1-f50.google.com with SMTP id 006d021491bc7-60eefb805a4so419147eaf.2;
-        Mon, 23 Jun 2025 03:20:20 -0700 (PDT)
-X-Forwarded-Encrypted: i=1; AJvYcCU0SnzvBIZUPS/1gDPWcEq+L/3uTvXE+IVAmX3X/MMRR1InezlvdwkQSuVjX+P5WODHmcVaI8O45v+INp5+@vger.kernel.org, AJvYcCUe+uYpXr03JX0P68zkCjM+xtJ39aRVUgQK9b1L+hzNKhlnT5HJ+RyCzTk4Gxv2MQOFxN2sudM811Xg@vger.kernel.org, AJvYcCVX+BRNzugRySOwe2iret7Pli5BZL2o1nLq4h+WRYb46TTzBZphSamPBoIeMhdliX01r5nvRQIYcs/r@vger.kernel.org
-X-Gm-Message-State: AOJu0Yx5w4RAPhvzBoki6MwLAb58hLUz2eoVRc5EK+SkKERWRVfLXh2o
-	oraNmtqbGPwOUW+sQJuWz/EWysdDxTvFEUlKemeTv0ImX4seG4iV/3GHI0HrTVUpMQMCHPtZ1dQ
-	UrEwc7jUMfCySJPLRq2ZPW4souQMwkVQ=
-X-Google-Smtp-Source: AGHT+IEri0Ei3Dwzz6H8TNwA8rGJX2q5j17F8+tFzd6CGT1JN8YEpn3ieZGNEirgnOf1LEjld67SQ5gYMP0WkKFEbCU=
-X-Received: by 2002:a05:6820:308e:b0:610:dff3:425a with SMTP id
- 006d021491bc7-6115babab7dmr8233773eaf.4.1750674019869; Mon, 23 Jun 2025
- 03:20:19 -0700 (PDT)
+	s=arc-20240116; t=1750674159; c=relaxed/simple;
+	bh=K6ejdeVWXNi1Joy2ps0u8ylB95bhYC8uYvSwet/9+BE=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=WR4GJTDpWZfTXzGZQNRoH2oJwdpBr+zew1lNT/zIplt1BBEXCCYO/CpuRTJoC1LNXwatTx8SbdbhK+3BWCcXFBE4HeM6HghV3bnrYH7UOL/pu9M4XYBeGq+Vg7oO4NU/0wJJjQPZf/mIfLH+vlB8zOlwIWLPLUz5sNoxZL8o0FI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=a7gPq/Ad; arc=none smtp.client-ip=198.175.65.17
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1750674158; x=1782210158;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=K6ejdeVWXNi1Joy2ps0u8ylB95bhYC8uYvSwet/9+BE=;
+  b=a7gPq/AdOGVeoJAyfWTAhY3lWb27RHkgb9ARYAM4uGSBQepJUdr9D4Mx
+   F9ZcPPB34bPdIoopiAZN8JmeOLzs3WswxHtJh6fnWScWjpH563yaJhCPl
+   M5W8phRXrg3LtX8+oE+O1qh55nskrdPz1uAlpPEjIVSlF6zHQSAtqxr+v
+   N8UBaaaf0JIqmwCjSaSFmQpNvmQKqT+tfFAr7iMUkocrVXagdUQc5f/QL
+   jfewUipcTQ5Gp4T262dXub9ghmc/H4EL9rFAKjVh+yEVVB0441hGFDd5W
+   lAZ2Hs96ecLtVP2OtJLNIsza095m17Ygi6YucRv5f/40cs1QSw5WxiKOj
+   g==;
+X-CSE-ConnectionGUID: 7Wut/jhIR92lJbJVNBbYWQ==
+X-CSE-MsgGUID: 55iaybUMRKS5ibYLwXrYUw==
+X-IronPort-AV: E=McAfee;i="6800,10657,11472"; a="52845552"
+X-IronPort-AV: E=Sophos;i="6.16,258,1744095600"; 
+   d="scan'208";a="52845552"
+Received: from orviesa009.jf.intel.com ([10.64.159.149])
+  by orvoesa109.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 23 Jun 2025 03:22:38 -0700
+X-CSE-ConnectionGUID: dT4HYpINQ0Kj6SeQmv7yIQ==
+X-CSE-MsgGUID: zwKtq7p2QqG19IGXrl0TUw==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.16,258,1744095600"; 
+   d="scan'208";a="151331475"
+Received: from lkp-server01.sh.intel.com (HELO e8142ee1dce2) ([10.239.97.150])
+  by orviesa009.jf.intel.com with ESMTP; 23 Jun 2025 03:22:34 -0700
+Received: from kbuild by e8142ee1dce2 with local (Exim 4.96)
+	(envelope-from <lkp@intel.com>)
+	id 1uTeJs-000Nwk-0T;
+	Mon, 23 Jun 2025 10:22:32 +0000
+Date: Mon, 23 Jun 2025 18:21:52 +0800
+From: kernel test robot <lkp@intel.com>
+To: David Lechner <dlechner@baylibre.com>,
+	Michael Hennerich <Michael.Hennerich@analog.com>,
+	Jonathan Cameron <jic23@kernel.org>,
+	Nuno =?iso-8859-1?Q?S=E1?= <nuno.sa@analog.com>,
+	Andy Shevchenko <andy@kernel.org>, Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>, Mark Brown <broonie@kernel.org>
+Cc: oe-kbuild-all@lists.linux.dev, linux-iio@vger.kernel.org,
+	linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-spi@vger.kernel.org, David Lechner <dlechner@baylibre.com>
+Subject: Re: [PATCH 8/9] iio: adc: ad_sigma_delta: add SPI offload support
+Message-ID: <202506231738.CgeNexV4-lkp@intel.com>
+References: <20250620-iio-adc-ad7173-add-spi-offload-support-v1-8-0766f6297430@baylibre.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20250618121358.503781-1-apatel@ventanamicro.com>
- <20250618121358.503781-14-apatel@ventanamicro.com> <aFkZj2QCU2LfTI30@smile.fi.intel.com>
-In-Reply-To: <aFkZj2QCU2LfTI30@smile.fi.intel.com>
-From: "Rafael J. Wysocki" <rafael@kernel.org>
-Date: Mon, 23 Jun 2025 12:20:03 +0200
-X-Gmail-Original-Message-ID: <CAJZ5v0j9gQE-=HQnzdfATuoYUm8xwKfhm8tR6tUCEZBQ4F9qNQ@mail.gmail.com>
-X-Gm-Features: AX0GCFtTCu8RzoqPycmcUo_v8Lu1ClT5rvTpT_yMP45KXqQPNHoS6bspZg_HntU
-Message-ID: <CAJZ5v0j9gQE-=HQnzdfATuoYUm8xwKfhm8tR6tUCEZBQ4F9qNQ@mail.gmail.com>
-Subject: Re: [PATCH v6 13/23] ACPI: property: Refactor acpi_fwnode_get_reference_args()
-To: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
-Cc: Anup Patel <apatel@ventanamicro.com>, Michael Turquette <mturquette@baylibre.com>, 
-	Stephen Boyd <sboyd@kernel.org>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Jassi Brar <jassisinghbrar@gmail.com>, Thomas Gleixner <tglx@linutronix.de>, 
-	"Rafael J . Wysocki" <rafael@kernel.org>, Mika Westerberg <mika.westerberg@linux.intel.com>, 
-	Linus Walleij <linus.walleij@linaro.org>, Bartosz Golaszewski <brgl@bgdev.pl>, 
-	=?UTF-8?Q?Uwe_Kleine=2DK=C3=B6nig?= <ukleinek@kernel.org>, 
-	Palmer Dabbelt <palmer@dabbelt.com>, Paul Walmsley <paul.walmsley@sifive.com>, 
-	Len Brown <lenb@kernel.org>, Sunil V L <sunilvl@ventanamicro.com>, 
-	Rahul Pathak <rpathak@ventanamicro.com>, Leyfoon Tan <leyfoon.tan@starfivetech.com>, 
-	Atish Patra <atish.patra@linux.dev>, Andrew Jones <ajones@ventanamicro.com>, 
-	Samuel Holland <samuel.holland@sifive.com>, Anup Patel <anup@brainfault.org>, 
-	linux-clk@vger.kernel.org, devicetree@vger.kernel.org, 
-	linux-riscv@lists.infradead.org, linux-kernel@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20250620-iio-adc-ad7173-add-spi-offload-support-v1-8-0766f6297430@baylibre.com>
 
-On Mon, Jun 23, 2025 at 11:08=E2=80=AFAM Andy Shevchenko
-<andriy.shevchenko@linux.intel.com> wrote:
->
-> On Wed, Jun 18, 2025 at 05:43:48PM +0530, Anup Patel wrote:
-> >
-> > Currently acpi_fwnode_get_reference_args() calls the public function
-> > __acpi_node_get_property_reference() which ignores the nargs_prop
-> > parameter. To fix this, make __acpi_node_get_property_reference() to
-> > call the static acpi_fwnode_get_reference() so that callers of
-> > fwnode_get_reference_args() can still pass a valid property name to
-> > fetch the number of arguments.
->
-> Looks okay to me, but I think it's better to have more eyes here (Mika,
-> Rafael?).
+Hi David,
 
-It would help if this were CCed to linux-acpi, but yeah.
+kernel test robot noticed the following build warnings:
+
+[auto build test WARNING on d02f330b0c78bcf76643fbb7d3215a58b181f829]
+
+url:    https://github.com/intel-lab-lkp/linux/commits/David-Lechner/iio-adc-ad_sigma_delta-sort-includes/20250621-063127
+base:   d02f330b0c78bcf76643fbb7d3215a58b181f829
+patch link:    https://lore.kernel.org/r/20250620-iio-adc-ad7173-add-spi-offload-support-v1-8-0766f6297430%40baylibre.com
+patch subject: [PATCH 8/9] iio: adc: ad_sigma_delta: add SPI offload support
+config: x86_64-buildonly-randconfig-004-20250621 (https://download.01.org/0day-ci/archive/20250623/202506231738.CgeNexV4-lkp@intel.com/config)
+compiler: gcc-12 (Debian 12.2.0-14) 12.2.0
+reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20250623/202506231738.CgeNexV4-lkp@intel.com/reproduce)
+
+If you fix the issue in a separate patch/commit (i.e. not just a new version of
+the same patch/commit), kindly add following tags
+| Reported-by: kernel test robot <lkp@intel.com>
+| Closes: https://lore.kernel.org/oe-kbuild-all/202506231738.CgeNexV4-lkp@intel.com/
+
+All warnings (new ones prefixed by >>, old ones prefixed by <<):
+
+>> WARNING: modpost: module ad_sigma_delta uses symbol devm_iio_dmaengine_buffer_setup_with_handle from namespace IIO_DMAENGINE_BUFFER, but does not import it.
+
+-- 
+0-DAY CI Kernel Test Service
+https://github.com/intel/lkp-tests/wiki
 
