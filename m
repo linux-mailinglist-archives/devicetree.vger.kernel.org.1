@@ -1,90 +1,111 @@
-Return-Path: <devicetree+bounces-188508-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-188510-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0B856AE3E96
-	for <lists+devicetree@lfdr.de>; Mon, 23 Jun 2025 13:53:42 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id D46C8AE3ECE
+	for <lists+devicetree@lfdr.de>; Mon, 23 Jun 2025 14:00:30 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 983EB1767B3
-	for <lists+devicetree@lfdr.de>; Mon, 23 Jun 2025 11:53:42 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 0960A3A6A89
+	for <lists+devicetree@lfdr.de>; Mon, 23 Jun 2025 12:00:06 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9F50F2441AA;
-	Mon, 23 Jun 2025 11:53:28 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 901B223C8A2;
+	Mon, 23 Jun 2025 12:00:26 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="s/8JD0Pb"
+	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="k3HVXr6+"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from bali.collaboradmins.com (bali.collaboradmins.com [148.251.105.195])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 73C29188CC9;
-	Mon, 23 Jun 2025 11:53:28 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 888D31531C1;
+	Mon, 23 Jun 2025 12:00:24 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=148.251.105.195
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1750679608; cv=none; b=ZwC9Ehs2LRcVxSrCF/whEEtFLgX7EST1zsZqY6aiZFgidPOeWvUxm5Mt4VkA0IMHMZZhYw0nCzzRlPnjmSPLCI+GKjXjNA7ij9izdfCM1aPPw4kI/AXJApHBibvPF5zBbVV29AtH0tq1O1FAz660YImFLHzEUOHday3XwlGT9gg=
+	t=1750680026; cv=none; b=sU5yF0krwV/vA274I8NLduRKTFSsoLdhJOBAVwQ6KIT0SwczLX8aUxjIb/B0wu6u+EcIlcOVVdYDRFQTEVw2pmq4N15AsDxgV39RTyosBUvKmNR0DuQAgMZ/Sy0qq5q1Qa0Lgi6CDr8eJVk6g20k23ixGr+INPEJIGBW1ZEdJxI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1750679608; c=relaxed/simple;
-	bh=l78T6d0rVhac0qoO9WlfEVxu95VKyR0dZVkQUB5NHpE=;
-	h=From:To:Cc:In-Reply-To:References:Subject:Message-Id:Date:
-	 MIME-Version:Content-Type; b=QC0XOzELo9Hinff+yx8ek9RIQPq9BQnpfZO4M9qMjXpsiLxbDJxE0Pr6BhGVs2+pJvFmmS0N7XX9vqdNlWp0UbYoWj0VBQyUlmsz/p1COmQKgn4pxzUreHiXXXvivqJ5qrivW8E2wz8BeLHlzrMZwJhFuRQJwejBHGGBY4eW/Dw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=s/8JD0Pb; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 3D5CBC4CEEA;
-	Mon, 23 Jun 2025 11:53:27 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1750679608;
-	bh=l78T6d0rVhac0qoO9WlfEVxu95VKyR0dZVkQUB5NHpE=;
-	h=From:To:Cc:In-Reply-To:References:Subject:Date:From;
-	b=s/8JD0Pbs7L0ea7UysC1tt6PzIvHh++2KQZ2hHdIqnVHpHgw869d/o8D0gbH4kI/O
-	 6MQIN8XGARuX7wtMvvdWunutPAd5DepDIsuWEtHGv5y+Tt2F69URD1eNBgmt9ZMOJg
-	 Gb+w//+izsZIhvRar86VkH4/zjcTcu5w/ftthUpVBxefXYrIRnozObtlZ/3p5lZroa
-	 iwi3Ev45TeCTh7VhlVyWNrOxGakG8JmD3/61t9W/lJ7+4yGzednGUbGCv/ZvAVWFMb
-	 YZF5iFrRFgkTKhnwQy2ouycmWAkSofna7Z199HkIEcxQbBqq5kKSdU15uTlzQpxgmq
-	 QW2CBIb5FjsbA==
-From: Manivannan Sadhasivam <mani@kernel.org>
-To: linux-pci@vger.kernel.org, Nicolas Saenz Julienne <nsaenz@kernel.org>, 
- Bjorn Helgaas <bhelgaas@google.com>, bcm-kernel-feedback-list@broadcom.com, 
- jim2101024@gmail.com, Lorenzo Pieralisi <lpieralisi@kernel.org>, 
- Jim Quinlan <james.quinlan@broadcom.com>
-Cc: Rob Herring <robh@kernel.org>, devicetree@vger.kernel.org, 
- linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org, 
- linux-rpi-kernel@lists.infradead.org
-In-Reply-To: <20250530224035.41886-1-james.quinlan@broadcom.com>
-References: <20250530224035.41886-1-james.quinlan@broadcom.com>
-Subject: Re: [PATCH 0/2] PCI: brcmstb: Use "num-lanes" DT property if
- present
-Message-Id: <175067960711.8006.9074251471563711510.b4-ty@kernel.org>
-Date: Mon, 23 Jun 2025 05:53:27 -0600
+	s=arc-20240116; t=1750680026; c=relaxed/simple;
+	bh=tV8ORaIQbQLMSY8zkLMfrpms34GMlXjixrFwRo6YJy0=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=ZDGiyAGWNWLqVS5vVpHlFeYM7GzwMTDlrAWYL1mzBWjUEhgjvjAibtT3zW8kclPUnsBAmcQpN6byZTPRHwEC5C1OmO27KuHiyYhyRE9a0vyfZp3sgTZPWwTOFXiB1TcAWJbEAnhQGqKSgJsYSmdir56TQTLaYK911L/MfsDrUpQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b=k3HVXr6+; arc=none smtp.client-ip=148.251.105.195
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+	s=mail; t=1750680022;
+	bh=tV8ORaIQbQLMSY8zkLMfrpms34GMlXjixrFwRo6YJy0=;
+	h=From:To:Cc:Subject:Date:From;
+	b=k3HVXr6+R+bc3cfY7iW8UOHT9TSS8Vlud6/ZIcCmlV6xnYcJHYeDFHI/V4ErPX5Qv
+	 RkTbBul6wzC8wYZe/6z9tddgzYyfdzWMW9GO1RjJgfsrqQilqJwKFYpaZbtr01ZpIh
+	 EhgKrh+5FGjVBdaevhaG+5phpNGK1Mmcnm5y7n2cW7J2WqlsFDEpRFqxdPhd2uZmk8
+	 f0aS6ZrODg5OdK+hF9jgCpbY0Hn6jpy0nbk9sRN09U3lMKbVsORfK21Rm4BUslC+1E
+	 QGhEji+CfdF8BD6KuMa1BLlWcP792Q63wu5UA1QNpNksTiaqoFpjpI4/IdWDLwGD8F
+	 xu7xhY31NhxrA==
+Received: from IcarusMOD.eternityproject.eu (2-237-20-237.ip236.fastwebnet.it [2.237.20.237])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+	(No client certificate requested)
+	(Authenticated sender: kholk11)
+	by bali.collaboradmins.com (Postfix) with ESMTPSA id F3A0517E0202;
+	Mon, 23 Jun 2025 14:00:21 +0200 (CEST)
+From: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+To: broonie@kernel.org
+Cc: lgirdwood@gmail.com,
+	robh@kernel.org,
+	krzk+dt@kernel.org,
+	conor+dt@kernel.org,
+	matthias.bgg@gmail.com,
+	angelogioacchino.delregno@collabora.com,
+	linux-kernel@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	linux-mediatek@lists.infradead.org,
+	kernel@collabora.com
+Subject: [PATCH v1 0/6] regulator: Add support for MediaTek MT6316/6363/6373 PMICs
+Date: Mon, 23 Jun 2025 14:00:10 +0200
+Message-ID: <20250623120016.108732-1-angelogioacchino.delregno@collabora.com>
+X-Mailer: git-send-email 2.49.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-X-Mailer: b4 0.14.2
+Content-Transfer-Encoding: 8bit
 
+This series adds support for three new MediaTek PMICs: MT6316, MT6363
+and MT6373 and their variants - used in board designs featuring the
+MediaTek MT8196 Chromebook SoC, or the MT6991 Dimensity 9400 Smartphone
+SoC.
 
-On Fri, 30 May 2025 18:40:31 -0400, Jim Quinlan wrote:
-> v2:
->   -- DT bindings: Add default, maximum values for 'num-lanes' (Rob)
->   -- Add 'if' clause to clamp maximum requested num-lanes
-> 
-> 
-> v1: original
-> 
-> [...]
+AngeloGioacchino Del Regno (6):
+  dt-bindings: regulator: Document MediaTek MT6316 PMIC Regulators
+  regulator: Add support for MediaTek MT6316 SPMI PMIC Regulators
+  dt-bindings: regulator: Document MediaTek MT6363 PMIC Regulators
+  regulator: Add support for MediaTek MT6363 SPMI PMIC Regulators
+  dt-bindings: regulator: Document MediaTek MT6373 PMIC Regulators
+  regulator: Add support for MediaTek MT6373 SPMI PMIC Regulators
 
-Applied, thanks!
+ .../regulator/mediatek,mt6316-regulator.yaml  |   81 ++
+ .../regulator/mediatek,mt6363-regulator.yaml  |  123 ++
+ .../regulator/mediatek,mt6373-regulator.yaml  |  119 ++
+ drivers/regulator/Kconfig                     |   27 +
+ drivers/regulator/Makefile                    |    3 +
+ drivers/regulator/mt6316-regulator.c          |  343 ++++++
+ drivers/regulator/mt6363-regulator.c          | 1060 +++++++++++++++++
+ drivers/regulator/mt6373-regulator.c          |  729 ++++++++++++
+ include/linux/regulator/mt6363-regulator.h    |  326 +++++
+ include/linux/regulator/mt6373-regulator.h    |  154 +++
+ 10 files changed, 2965 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/regulator/mediatek,mt6316-regulator.yaml
+ create mode 100644 Documentation/devicetree/bindings/regulator/mediatek,mt6363-regulator.yaml
+ create mode 100644 Documentation/devicetree/bindings/regulator/mediatek,mt6373-regulator.yaml
+ create mode 100644 drivers/regulator/mt6316-regulator.c
+ create mode 100644 drivers/regulator/mt6363-regulator.c
+ create mode 100644 drivers/regulator/mt6373-regulator.c
+ create mode 100644 include/linux/regulator/mt6363-regulator.h
+ create mode 100644 include/linux/regulator/mt6373-regulator.h
 
-[1/2] dt-bindings: PCI: brcm,stb-pcie: Add num-lanes property
-      commit: dbb1258daf75f2b98e465ba5a0e26073eda6e539
-[2/2] PCI: brcmstb: Use "num-lanes" DT property if present
-      commit: a364d10ffe361fb34c3838d33604da493045de1e
-
-Best regards,
 -- 
-Manivannan Sadhasivam <mani@kernel.org>
+2.49.0
 
 
