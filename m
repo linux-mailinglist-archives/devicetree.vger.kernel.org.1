@@ -1,73 +1,68 @@
-Return-Path: <devicetree+bounces-188540-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-188541-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3F40CAE3F38
-	for <lists+devicetree@lfdr.de>; Mon, 23 Jun 2025 14:09:28 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6568AAE3F3D
+	for <lists+devicetree@lfdr.de>; Mon, 23 Jun 2025 14:10:59 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 6427F3BA6AF
-	for <lists+devicetree@lfdr.de>; Mon, 23 Jun 2025 12:06:25 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id DBE1A3A7FDD
+	for <lists+devicetree@lfdr.de>; Mon, 23 Jun 2025 12:07:01 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E24A425BF18;
-	Mon, 23 Jun 2025 12:01:28 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6B26324A05B;
+	Mon, 23 Jun 2025 12:01:36 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="F6jlQNyh"
+	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="WV76i7Qs"
 X-Original-To: devicetree@vger.kernel.org
 Received: from bali.collaboradmins.com (bali.collaboradmins.com [148.251.105.195])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0C3F625BEE3;
-	Mon, 23 Jun 2025 12:01:27 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B49BB2494FE;
+	Mon, 23 Jun 2025 12:01:34 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=148.251.105.195
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1750680088; cv=none; b=TCqYDQJeMlbtBH+LU4vRq7oi3kxvjbG9DdBcl2vIrkg7/ZEKMcJEvEdYOXHygVMRpBhJoD4pchiWsZqaHjyAeRnZwTrH00jcZvZgTOw8+RB3zJOLQSTGw0QKbYVs3HedlHk/0Dyz7V693ZKBLPk4iT2yJ9pEvr83FyqP692/pkQ=
+	t=1750680096; cv=none; b=kBrx/yUz90gPq2il191XpvooMp0SdZtCmfFsKSRy+c3DcRlMiSlA7ui3CnjPMp/zGe5NrySXFOlsLXGlCMBNCgtaR07B68VG646fda7koh5NjUFKhYMz/sXZzNdPW1rXS2dIXKQf/9FDJNndFStYQ/HMROGAKMQJPT8OpdhxN9I=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1750680088; c=relaxed/simple;
-	bh=Wqto3p2O9ygvp/uRrLvFV9jgjx5W1SFttAJN2GmqEow=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=D7A9g9xlNKB8SnIyAHme2D+499BpM+8RYwTU6Q5zBU1bU+yooCurItWVu8SOFMJPAAZ60DRF8QflRW6fofpikzAIyETtKx/OMWxMVUif6P5wTlBAwNsMPxX3CXkJ6r/yu9DCt8IOQc5DTwrNDcT7Rap8oCvWg8n7MBcZVlTvMnQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b=F6jlQNyh; arc=none smtp.client-ip=148.251.105.195
+	s=arc-20240116; t=1750680096; c=relaxed/simple;
+	bh=idTHQ9r0uHXKoBT2gS5ef4ZVLvkWzlt1nNUSitiLNnA=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=LSbWNMAeWjbEyKVhc9vQxXTWi8t2Ak59TA16v+HbNw5fawCxV95pLocK86ZQymUw0YRlSxRqsEj/4+Xk8JS8ozHebFndKiaquMm17fyvgeXK4qhlIef2sVKSPMoKoeQ8FaKWMZkMrvKsvkp9TrK+6E10B2lB+JbocVN0Q3rfUks=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b=WV76i7Qs; arc=none smtp.client-ip=148.251.105.195
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-	s=mail; t=1750680085;
-	bh=Wqto3p2O9ygvp/uRrLvFV9jgjx5W1SFttAJN2GmqEow=;
-	h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-	b=F6jlQNyhDgrrJI6CjJyW6sR77WpPIbp+QS/von5pm8IBLVOWeqzsdCXkk6XDEdfax
-	 U4/BchVKrzWHdEqsT36Y1Wzi0ZUnnObvzUfLP3cBuonTvAx0y2dRBmUJqoN6khHKoK
-	 UPyHxQcqiqyiwy+4gxfcks/a85Mw8NUISF0paI/AAqFcRm7MqpMaqspYazDYFSo1tb
-	 y4nuINI7/cqgC8/G69Zkz3ObsefyOrHLbETPbRjyqJObQAWzLc/avsvlcTAQC9b7BJ
-	 uQ5kV2knV+w1qi9ENxu/O0VOK/mnlWQMmAUCvkoS1Di9wiOvG5n1VufNWvAwfpq5a2
-	 LSOs8kal7AifA==
+	s=mail; t=1750680093;
+	bh=idTHQ9r0uHXKoBT2gS5ef4ZVLvkWzlt1nNUSitiLNnA=;
+	h=From:To:Cc:Subject:Date:From;
+	b=WV76i7QsO9pCUj/sfcs8ZgX4CDIigFMX+qv5Rjay0gUKpAhWXaFjdewtd3TUAxUXS
+	 0aPWN3WjlgXOvQZ/wod7fVCPLGZN2sGbOTt8UN701lbtKIf7gRiEwoe1jNWAP/NI6q
+	 iGchEboXxjlMbm8O6O6xpoE8iQ3oYNKh9pTe4/Tl8DcLW/LkIBWj8UFZ7c3DNOXvWh
+	 H/H5JL+4uwkrc7pEdKv18CHQ6o6WdV0ZN6UC7koOddRAkHgNyWdUxE+QtP8Zf8n9Er
+	 XWmAmv1rzZWcOIpHwUbNjnQpo1onm1nOuZ6U6QpJFGNBNa/jmo2lKchFkvM9eGwFAy
+	 uD3QG5GVi+ZmA==
 Received: from IcarusMOD.eternityproject.eu (2-237-20-237.ip236.fastwebnet.it [2.237.20.237])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
 	(No client certificate requested)
 	(Authenticated sender: kholk11)
-	by bali.collaboradmins.com (Postfix) with ESMTPSA id E38BA17E156D;
-	Mon, 23 Jun 2025 14:01:24 +0200 (CEST)
+	by bali.collaboradmins.com (Postfix) with ESMTPSA id 92D2D17E090E;
+	Mon, 23 Jun 2025 14:01:32 +0200 (CEST)
 From: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
-To: ukleinek@kernel.org
+To: jassisinghbrar@gmail.com
 Cc: robh@kernel.org,
 	krzk+dt@kernel.org,
 	conor+dt@kernel.org,
 	matthias.bgg@gmail.com,
 	angelogioacchino.delregno@collabora.com,
-	john@phrozen.org,
-	linux-pwm@vger.kernel.org,
-	devicetree@vger.kernel.org,
 	linux-kernel@vger.kernel.org,
+	devicetree@vger.kernel.org,
 	linux-arm-kernel@lists.infradead.org,
 	linux-mediatek@lists.infradead.org,
 	kernel@collabora.com
-Subject: [PATCH v1 3/3] pwm: pwm-mediatek: Add support for PWM IP V3.0.2 in MT6991/MT8196
-Date: Mon, 23 Jun 2025 14:01:18 +0200
-Message-ID: <20250623120118.109170-4-angelogioacchino.delregno@collabora.com>
+Subject: [PATCH v1 0/2] mailbox: Add MediaTek TinySYS Mailbox
+Date: Mon, 23 Jun 2025 14:01:25 +0200
+Message-ID: <20250623120127.109237-1-angelogioacchino.delregno@collabora.com>
 X-Mailer: git-send-email 2.49.0
-In-Reply-To: <20250623120118.109170-1-angelogioacchino.delregno@collabora.com>
-References: <20250623120118.109170-1-angelogioacchino.delregno@collabora.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -76,58 +71,32 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 
-Add support for the PWM IP version 3.0.2, found in MediaTek's
-Dimensity 9400 MT6991 and in the MT8196 Chromebook SoC: this
-needs a new register offset array and also a different offset
-for the PWM_CK_26M_SEL register.
+This series adds support for the MediaTek TinySYS Mailbox, used for
+message passing on ARM SCMI and for both the standard 0x10 SCMI and
+the MediaTek TinySYS SCMI protocol.
 
-Signed-off-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
----
- drivers/pwm/pwm-mediatek.c | 14 ++++++++++++++
- 1 file changed, 14 insertions(+)
+This mailbox is similar to the standard MHU Mailbox, but with some
+critical differences that are MediaTek-specific; for more information,
+check the description for the commits in this series.
 
-diff --git a/drivers/pwm/pwm-mediatek.c b/drivers/pwm/pwm-mediatek.c
-index 38e9e9dc91c6..1fbc84d47543 100644
---- a/drivers/pwm/pwm-mediatek.c
-+++ b/drivers/pwm/pwm-mediatek.c
-@@ -29,6 +29,7 @@
- #define PWM45DWIDTH_FIXUP	0x30
- #define PWMTHRES		0x30
- #define PWM45THRES_FIXUP	0x34
-+#define PWM_CK_26M_SEL_V3	0x74
- #define PWM_CK_26M_SEL		0x210
- 
- #define PWM_CLK_DIV_MAX		7
-@@ -64,6 +65,11 @@ static const unsigned int mtk_pwm_reg_offset_v2[] = {
- 	0x0080, 0x00c0, 0x0100, 0x0140, 0x0180, 0x01c0, 0x0200, 0x0240
- };
- 
-+/* PWM IP Version 3.0.2 */
-+static const unsigned int mtk_pwm_reg_offset_v3[] = {
-+	0x0100, 0x0200, 0x0300, 0x0400, 0x0500, 0x0600, 0x0700, 0x0800
-+};
-+
- static inline struct pwm_mediatek_chip *
- to_pwm_mediatek_chip(struct pwm_chip *chip)
- {
-@@ -366,9 +372,17 @@ static const struct pwm_mediatek_of_data mt8516_pwm_data = {
- 	.reg_offset = mtk_pwm_reg_offset_v1,
- };
- 
-+static const struct pwm_mediatek_of_data mt6991_pwm_data = {
-+	.num_pwms = 4,
-+	.pwm45_fixup = false,
-+	.pwm_ck_26m_sel_reg = PWM_CK_26M_SEL_V3,
-+	.reg_offset = mtk_pwm_reg_offset_v3,
-+};
-+
- static const struct of_device_id pwm_mediatek_of_match[] = {
- 	{ .compatible = "mediatek,mt2712-pwm", .data = &mt2712_pwm_data },
- 	{ .compatible = "mediatek,mt6795-pwm", .data = &mt6795_pwm_data },
-+	{ .compatible = "mediatek,mt6991-pwm", .data = &mt6991_pwm_data },
- 	{ .compatible = "mediatek,mt7622-pwm", .data = &mt7622_pwm_data },
- 	{ .compatible = "mediatek,mt7623-pwm", .data = &mt7623_pwm_data },
- 	{ .compatible = "mediatek,mt7628-pwm", .data = &mt7628_pwm_data },
+This mailbox is found in the new MT8196 Chromebook SoC and in the
+MT6991 Dimensity 9400 SoC, other than slightly older chips like
+MT6898 Dimensity 9300, the MT6985 Dimensity 9200 and similar.
+
+Support for all of the mentioned SoCs is present in this series.
+
+AngeloGioacchino Del Regno (2):
+  dt-bindings: mailbox: Add MediaTek TinySYS MHU mailbox
+  mailbox: Add MediaTek TinySYS MHU-like Mailbox
+
+ .../mediatek,mt6985-tinysys-mhu-mbox.yaml     |  52 +++++
+ drivers/mailbox/Kconfig                       |   9 +
+ drivers/mailbox/Makefile                      |   2 +
+ drivers/mailbox/mtk-tinysys-mailbox.c         | 196 ++++++++++++++++++
+ 4 files changed, 259 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/mailbox/mediatek,mt6985-tinysys-mhu-mbox.yaml
+ create mode 100644 drivers/mailbox/mtk-tinysys-mailbox.c
+
 -- 
 2.49.0
 
