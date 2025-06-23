@@ -1,169 +1,162 @@
-Return-Path: <devicetree+bounces-188323-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-188324-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id DAAA3AE3814
-	for <lists+devicetree@lfdr.de>; Mon, 23 Jun 2025 10:15:00 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5E2CEAE3819
+	for <lists+devicetree@lfdr.de>; Mon, 23 Jun 2025 10:15:37 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id DCBD53A3B2A
-	for <lists+devicetree@lfdr.de>; Mon, 23 Jun 2025 08:14:35 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id F1615165E09
+	for <lists+devicetree@lfdr.de>; Mon, 23 Jun 2025 08:15:37 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 05D7B2185B1;
-	Mon, 23 Jun 2025 08:14:52 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8F4BE1F4161;
+	Mon, 23 Jun 2025 08:15:32 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="iTh/+ahL"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="LxK18cbf"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-lf1-f45.google.com (mail-lf1-f45.google.com [209.85.167.45])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 333AE21765E;
-	Mon, 23 Jun 2025 08:14:49 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BE3B91D6DA9;
+	Mon, 23 Jun 2025 08:15:30 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.45
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1750666491; cv=none; b=N2dyYkFJbhLen/zC7dhxgGiok2fwXe3/8JngSWzpqLsw3Z/4OD9fpbnu4Ev4/UgLwxFJ5/2fNLb66xxIGdRfqdv4TEloxUrwVcE+EqtSXi1qDJvmsa6aWHf1PiH0xUz+kCpkBIY4a74BLblR4YEQxQei/O978zeda1DdvOCUDHs=
+	t=1750666532; cv=none; b=Uw62GqeCGmejfTaoZQNc6WYaixUhM+OKkM3FsnNVIdfSmc5aozruGJ6Oj8jBveHA9jv8A1PvZsDHHgYUwD3KD0A0jLHCDWRFCbb2E1YJDS9U3swqIUvHhfkzNucDEeyR2jJDhsGum90JaaidQWnTOBRNDzI5s1p57P3mET0dLmk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1750666491; c=relaxed/simple;
-	bh=XEtoYmWydJuCgXNXIh5lvdCDhRvv5CZlmsc2mQLRbyE=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-ID:To:CC; b=F0A2jB9UuJ0UtVs5jhEx9ojWhSel0qViRKPm4ec9jc0VFVzCQw/EzxuYmTQDm75CrIG18gRbVWow7SiUUPbUhhH9b8AkSzZCTr2+35JkbvCiRkK6ukd1BQK2r8ijAxIERu+rW7HwgdoeLrC4jveayP8lrnibDfbOrze0m1N9c/c=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=iTh/+ahL; arc=none smtp.client-ip=205.220.168.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
-Received: from pps.filterd (m0279867.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 55N1EcrW023814;
-	Mon, 23 Jun 2025 08:14:47 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	cc:content-transfer-encoding:content-type:date:from:message-id
-	:mime-version:subject:to; s=qcppdkim1; bh=c72lr0pk7H+QEl9TML4Go+
-	1Hw2lpQACpD+ixGNWkpxM=; b=iTh/+ahL5mvD2hv8X/HH0rSnugaiXwR7IhZSpf
-	5AbpewpS1bCP17PHjaEexewWN2alk9XgswPIP8u9OghetUfhNFpk8uEmbkXiBf//
-	ByXDzwd5RlS9Wb1i95fB6WqhjVViOCF2LzEOxoPxc8EQtOtYNXhEL/9+ycKJHM53
-	xj/qh5DnHihze/RhBODlZ7N6nhHTsrE8B/ex7nDKpa9FguC/rkMEE8fL1Iq0eeZl
-	UZQuVpHen5T1XH3S1RD9QvSDX85Vz04C3wwUIBVgyguBSDEnLt6EHDwHRtMCjgAY
-	SaYex1Ac9D+g9T5WYauf7D/lgj+/Rgaq8UoHqCVDc+ImFmsg==
-Received: from nalasppmta03.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 47eud092f3-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Mon, 23 Jun 2025 08:14:47 +0000 (GMT)
-Received: from nalasex01c.na.qualcomm.com (nalasex01c.na.qualcomm.com [10.47.97.35])
-	by NALASPPMTA03.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 55N8EkAT018175
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Mon, 23 Jun 2025 08:14:46 GMT
-Received: from hu-skakitap-hyd.qualcomm.com (10.80.80.8) by
- nalasex01c.na.qualcomm.com (10.47.97.35) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1748.10; Mon, 23 Jun 2025 01:14:42 -0700
-From: Satya Priya Kakitapalli <quic_skakitap@quicinc.com>
-Date: Mon, 23 Jun 2025 13:44:32 +0530
-Subject: [PATCH] arm64: dts: qcom: sc8180x: Add video clock controller node
+	s=arc-20240116; t=1750666532; c=relaxed/simple;
+	bh=+4EkPOAC+jo3nBTeLG/ZDMlpH/1kxXxzJRqMDzyCsfo=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=Zaz34f7M7wRXBCzXmHcevCiZ8S10rfwyKSGu1Fxpk7o7REv1k6vtVOedM4RkgOoMbi055FB3AQZiOhZWNinPK68YGVbok20h7qQqRF0S9ntEnBRMba3dBclcpOr4cb7DBcsKlN6TiXc7HqgRvzgqcqHiUMG6AmLrhGCxoGbIoTs=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=LxK18cbf; arc=none smtp.client-ip=209.85.167.45
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-lf1-f45.google.com with SMTP id 2adb3069b0e04-551fc6d4a76so3746536e87.0;
+        Mon, 23 Jun 2025 01:15:30 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1750666529; x=1751271329; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=rEQjQUYSKvzxJm5N20PdRW2h2XKmpKdlgrVQR8zsmLo=;
+        b=LxK18cbfBm+InThHlVu3c5YkAGTrWT8PBTRBgSC451C46fr97W4afRQh1LCalCzGbq
+         JwZ3U8nJ8sb5AznoLF5OsRJiLH26t8uCFeLvwwbCi73ltEqdH81YZcB/YH4BJyRYVDwS
+         hl0EpA0TuEZZMx/WhtO8PuHioKAtwRktR4SrUhf3Tv2+AWTQhD0M72wLGArYK3FZbdkV
+         U+ut74tAEYSSUumAveXqsUlX3TgSPg4vReFULJ6xXjZ/RDXWodt+Ix/UggQM/XCv0WN6
+         5TwAjfM3Pr1ORiPoGZW39CpWUE4Jz5R1qmyEcw6W48BFOyMu/mXRLaCOozt1pKRYtfeo
+         uQww==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1750666529; x=1751271329;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=rEQjQUYSKvzxJm5N20PdRW2h2XKmpKdlgrVQR8zsmLo=;
+        b=HVqO0AlC1kaKvK9EJU/Fql4hMevk6jtOtYB1Guzd/s7ZNXyN4vbWgldmnlCQ/n3sVX
+         XGwV96gcI5Xil3ksW4/SPfdi/cC5BvlSb2+j2ZJ2R5j1y/EHwu7cRdgnakFcZAqJPRpv
+         oATr14O+GEfZebcLlk2PKEeJ/ifH6sw/C2f4j6gvaad+uc1gM79iH7iCRMM8KDmGhDbq
+         tbA8iDPg+T4FRqoWP1WXFQuPzkB7KAWXYe7WFVqUMmXuNIGhX0emy0xZnR4TFW2biihg
+         oFfwY1uekS+SiT84svVRN/dU60WYIpma97/FrOwyL2gkh6262/VHhTjUoxLyhwdXcF+A
+         xVkQ==
+X-Forwarded-Encrypted: i=1; AJvYcCVEty1R4BywMFDQyuvRPAIJPDwv2Lk9j0SZ4VNwBwqLsf9ZRl4nHQYV+aDd6RWrTOp/BJ8jcMH2dCNR@vger.kernel.org, AJvYcCXUGMtpLxWNffNfZcbb/P6m61O86wRHws69vAYgslQtfRyDO2W0wTkTc37XT8YL6yP1byD6pvMEK8Cs3bNe@vger.kernel.org
+X-Gm-Message-State: AOJu0YxnM5YQK6o6Bd5/Hzm2cdwz4LJ4353klE9wyPNJeC9lMYyNXhCb
+	hfamI3xoChmC7EkBXzQwTXLIGH+z0tHlTPOeCut3mLFuiWI7JyzXP7GH
+X-Gm-Gg: ASbGncsV0me8ebbuRKQoa2r/G9wJOUciM1VgXqPgsBBp0/n0vJgzftKaztDzdFTGAjV
+	8frAyJIHp8ZeIYLTTrhVqco+QxltO1cSjh8Ahjl0XdUGB9dSsWPXg9/69gt8mLsHnIyVuvkcyB0
+	8eQYpISgl8Ikd7aOf845aKEYSPD2PpsRuzX2zKuwgkK3KteVLhAJT5aL1QpaVLN5cAXZ99oEMq7
+	0RaOAabNexopfvzpULBGTd06TGfoc9iS2u/SrfHSEy4M69T33wl9GQq0xkmJFY83wEZhULzirKu
+	a2lyMHSKqTxkCmD9728XxQzLIlxt659deoKWCwDw8CpMeZ49sz0Nn031Gl0CqOXA
+X-Google-Smtp-Source: AGHT+IFjSEME9axbEezabsS1db2kU9eJeB6ycyGrcQnUZEvKISlUaTokNROFLP51ZCePkc/xrdMAAQ==
+X-Received: by 2002:a05:6512:31d5:b0:553:2d93:d31 with SMTP id 2adb3069b0e04-553e3bd0367mr3782171e87.22.1750666528523;
+        Mon, 23 Jun 2025 01:15:28 -0700 (PDT)
+Received: from xeon.. ([188.163.112.61])
+        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-553e414483asm1308072e87.52.2025.06.23.01.15.27
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 23 Jun 2025 01:15:27 -0700 (PDT)
+From: Svyatoslav Ryhel <clamor95@gmail.com>
+To: Andrzej Hajda <andrzej.hajda@intel.com>,
+	Neil Armstrong <neil.armstrong@linaro.org>,
+	Robert Foss <rfoss@kernel.org>,
+	Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
+	Jonas Karlman <jonas@kwiboo.se>,
+	Jernej Skrabec <jernej.skrabec@gmail.com>,
+	David Airlie <airlied@gmail.com>,
+	Simona Vetter <simona@ffwll.ch>,
+	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+	Maxime Ripard <mripard@kernel.org>,
+	Thomas Zimmermann <tzimmermann@suse.de>,
+	Svyatoslav Ryhel <clamor95@gmail.com>
+Cc: dri-devel@lists.freedesktop.org,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org
+Subject: [PATCH v7 0/2] drm: bridge: add ssd2825 RGB/DSI bridge support
+Date: Mon, 23 Jun 2025 11:15:02 +0300
+Message-ID: <20250623081504.58622-1-clamor95@gmail.com>
+X-Mailer: git-send-email 2.48.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-ID: <20250623-sc8180x-videocc-dt-v1-1-9d210c140600@quicinc.com>
-X-B4-Tracking: v=1; b=H4sIAOgMWWgC/x3MQQqAIBBA0avErBtQK5OuEi1iHGs2FhoRhHdPW
- r7F/y9kTsIZpuaFxLdkOWKFbhugfY0bo/hqMMoMypoOMznt1IO3eD6I0F/YM3WkRquD81DDM3G
- Q55/OSykfURCdImQAAAA=
-X-Change-ID: 20250623-sc8180x-videocc-dt-4ec3c0761f8d
-To: Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio
-	<konradybcio@kernel.org>, Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski
-	<krzk+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>
-CC: Ajit Pandey <quic_ajipan@quicinc.com>,
-        Imran Shaik
-	<quic_imrashai@quicinc.com>,
-        Taniya Das <quic_tdas@quicinc.com>,
-        "Jagadeesh
- Kona" <quic_jkona@quicinc.com>,
-        <linux-arm-msm@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>,
-        "Satya Priya
- Kakitapalli" <quic_skakitap@quicinc.com>
-X-Mailer: b4 0.14.2
-X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
- nalasex01c.na.qualcomm.com (10.47.97.35)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-GUID: iUGxGQdRsYLgfERUYwTz7t7mPNy07cJ2
-X-Proofpoint-ORIG-GUID: iUGxGQdRsYLgfERUYwTz7t7mPNy07cJ2
-X-Authority-Analysis: v=2.4 cv=eco9f6EH c=1 sm=1 tr=0 ts=68590cf7 cx=c_pps
- a=ouPCqIW2jiPt+lZRy3xVPw==:117 a=ouPCqIW2jiPt+lZRy3xVPw==:17
- a=GEpy-HfZoHoA:10 a=IkcTkHD0fZMA:10 a=6IFa9wvqVegA:10 a=COk6AnOGAAAA:8
- a=VdR9ytC32kPbH48ryfQA:9 a=QEXdDO2ut3YA:10 a=TjNXssC_j7lpFel5tvFf:22
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwNjIzMDA0OCBTYWx0ZWRfX+AKTUSRrEaZf
- 5Ccm8L70cZ87WDMl8JTKi6aGcwGqo3kyp6kJZPCPpu64Wq4RgdN6DeuhKJ1VB6Mtyj4qJIVcK4B
- 14j74WbrVMWrk8uRo8TZMqSh3zO12SRavzCcHmKmDkR5TYRicC/g8E136hFkxNobGTX9NZ+s4Ht
- NCMFILHsD4a+3RDWUdFHSVqPfaiPBUssWu86cF8uOnYFZl2InNvEAdCc3xL4VqpDyw4lfTN71Ka
- DTnL44mhRwExTQL0yDJqFN0JJYDIMXsLk4Vji6x0jBdAz4Ke9pqXC9H7Jb7TN15RNDEErTzCs84
- cKu2h9FQMVW9VnXHEhJwKVVl/uk41FDIj7l2EApMEqfH1IIb0vnvtgnEfozKsSYKic3LGrE5LDZ
- cKbC5cMX9uzamD8WzMGq4Up7SR01omWyddaCR7EiZmw9xpvMh+ve0P5G5+y76tf2hLC2g2vB
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1099,Hydra:6.0.736,FMLib:17.12.80.40
- definitions=2025-06-23_02,2025-06-20_01,2025-03-28_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- mlxscore=0 suspectscore=0 adultscore=0 clxscore=1015 mlxlogscore=852
- priorityscore=1501 phishscore=0 lowpriorityscore=0 spamscore=0 bulkscore=0
- malwarescore=0 impostorscore=0 classifier=spam authscore=0 authtc=n/a authcc=
- route=outbound adjust=0 reason=mlx scancount=1 engine=8.19.0-2505280000
- definitions=main-2506230048
+Content-Transfer-Encoding: 8bit
 
-Add device node for video clock controller on Qualcomm
-SC8180X platform.
-
-Signed-off-by: Satya Priya Kakitapalli <quic_skakitap@quicinc.com>
----
-Add device node for video clock controller on Qualcomm
-SC8180X platform.
----
- arch/arm64/boot/dts/qcom/sc8180x.dtsi | 14 ++++++++++++++
- 1 file changed, 14 insertions(+)
-
-diff --git a/arch/arm64/boot/dts/qcom/sc8180x.dtsi b/arch/arm64/boot/dts/qcom/sc8180x.dtsi
-index b74ce3175d209b569e634073662307964158b340..4590c2ff68a9885d8047d728bbf2dea0236d5b8f 100644
---- a/arch/arm64/boot/dts/qcom/sc8180x.dtsi
-+++ b/arch/arm64/boot/dts/qcom/sc8180x.dtsi
-@@ -10,6 +10,7 @@
- #include <dt-bindings/clock/qcom,gpucc-sm8150.h>
- #include <dt-bindings/clock/qcom,rpmh.h>
- #include <dt-bindings/clock/qcom,sc8180x-camcc.h>
-+#include <dt-bindings/clock/qcom,videocc-sm8150.h>
- #include <dt-bindings/interconnect/qcom,icc.h>
- #include <dt-bindings/interconnect/qcom,osm-l3.h>
- #include <dt-bindings/interconnect/qcom,sc8180x.h>
-@@ -2943,6 +2944,19 @@ usb_sec_dwc3_ss: endpoint {
- 			};
- 		};
- 
-+		videocc: clock-controller@ab00000 {
-+			compatible = "qcom,sm8150-videocc";
-+			reg = <0 0x0ab00000 0 0x10000>;
-+			clocks = <&gcc GCC_VIDEO_AHB_CLK>,
-+				 <&rpmhcc RPMH_CXO_CLK>;
-+			clock-names = "iface", "bi_tcxo";
-+			power-domains = <&rpmhpd SC8180X_MMCX>;
-+			required-opps = <&rpmhpd_opp_low_svs>;
-+			#clock-cells = <1>;
-+			#reset-cells = <1>;
-+			#power-domain-cells = <1>;
-+		};
-+
- 		camcc: clock-controller@ad00000 {
- 			compatible = "qcom,sc8180x-camcc";
- 			reg = <0 0x0ad00000 0 0x20000>;
+Solomon SSD2825 is a RGB to MIPI DSI bridge used in LG Optimus 4D P880
+and LG Optimus Vu P895
 
 ---
-base-commit: 5d4809e25903ab8e74034c1f23c787fd26d52934
-change-id: 20250623-sc8180x-videocc-dt-4ec3c0761f8d
+Changes on switching from v6 to v7:
+- removed enabled checks
+- configuration complete quirk moved from host_transfer to
+  atomic_enable
+- switched to devm_drm_bridge_alloc
+- removed redundant dev_set_drvdata use
 
-Best regards,
+Changes on switching from v5 to v6:
+- set correct module name in Kconfig help
+- return error if spi sync failed for reading
+
+Changes on switching from v4 to v5:
+- rebased on top of drm-misc-next with adjustments to fit
+
+Changes on switching from v3 to v4:
+- no changes, resend
+
+Changes on switching from v2 to v3:
+- added mutex guard
+- configuration register flags parametrized using panel flags
+- removed unneded debug messages
+- removed unimplemented modes checks
+- added check for maximum pixel row length
+- use types header
+- remove ssd2825_to_ns
+- shift bridge setup into atomic pre-enable
+- cleaned default values of hzd and hpd
+
+Changes on switching from v1 to v2:
+- added description for clock
+- removed clock-names
+- added boundries for hs-zero-delay-ns and hs-prep-delay-ns
+- added mutex lock for host transfers
+- converted to atomic ops
+- get drm_display_mode mode with atomic helpers
+- parameterized INTERFACE_CTRL_REG_6 configuration
+- added video mode validation and fixup
+- removed clock name
+- switched to devm_regulator_bulk_get_const
+- added default timings
+---
+
+Svyatoslav Ryhel (2):
+  dt-bindings: display: bridge: Document Solomon SSD2825
+  drm: bridge: Add support for Solomon SSD2825 RGB/DSI bridge
+
+ .../display/bridge/solomon,ssd2825.yaml       | 141 ++++
+ drivers/gpu/drm/bridge/Kconfig                |  13 +
+ drivers/gpu/drm/bridge/Makefile               |   1 +
+ drivers/gpu/drm/bridge/ssd2825.c              | 775 ++++++++++++++++++
+ 4 files changed, 930 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/display/bridge/solomon,ssd2825.yaml
+ create mode 100644 drivers/gpu/drm/bridge/ssd2825.c
+
 -- 
-Satya Priya Kakitapalli <quic_skakitap@quicinc.com>
+2.48.1
 
 
