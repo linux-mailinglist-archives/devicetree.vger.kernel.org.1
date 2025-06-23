@@ -1,191 +1,196 @@
-Return-Path: <devicetree+bounces-188586-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-188588-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id A8D10AE4141
-	for <lists+devicetree@lfdr.de>; Mon, 23 Jun 2025 14:56:51 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 394BAAE416A
+	for <lists+devicetree@lfdr.de>; Mon, 23 Jun 2025 14:59:58 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id DB75C3A486E
-	for <lists+devicetree@lfdr.de>; Mon, 23 Jun 2025 12:53:10 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id CB79A3A6C97
+	for <lists+devicetree@lfdr.de>; Mon, 23 Jun 2025 12:57:38 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0C0F924A066;
-	Mon, 23 Jun 2025 12:53:18 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E8BB025178E;
+	Mon, 23 Jun 2025 12:56:49 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="jHPjRLu5"
 X-Original-To: devicetree@vger.kernel.org
-Received: from relay8-d.mail.gandi.net (relay8-d.mail.gandi.net [217.70.183.201])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3A49C23ED56;
-	Mon, 23 Jun 2025 12:53:14 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.70.183.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BF1AA2512EE;
+	Mon, 23 Jun 2025 12:56:49 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1750683197; cv=none; b=luEwPvDd8bjKM5/U36H+xqJqEUsic7K7M/FvXIJ3+5fpDGIQDxSHqX3VzEsOLYj49R3FV+YeOHgLpwin1vgYFl10OTgjft8DnzA1ErYDI63YzWMbgb3QWARFS4IqiZEDr1N1S9nmTmIBnoQmGh5OkB6gdPyLH7CUzghIFu9IvxM=
+	t=1750683409; cv=none; b=oXb/jSS4V5Gt7rUjD84dxtDxBdnZpNXasNO+rw5MZPtkK8mVL3+/fJ17/3D9nK+i+OGQtFxypY3WPxEk4OrrU68r9joONGLRsbHt9SYLT1nq6AHVhNcIb2XrM/zZe2YifKnnr+NkuSrw2zNoUxEm/8OJorZQam0jVtThhPpviTw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1750683197; c=relaxed/simple;
-	bh=8se5YPln/DXgqu+xjzAPHvxG2uWSb27S0x9TuNNRnhA=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=VoqjTjAh7U5uCTMeTYPoZQs70VhJqnO5MzBODQJFkdE8cYLMo979evBd7HziUY9Iow1gxfs6d7jLIyac2qccOk0Bae6qBYajgF8kLAPjUdn0uq6BtfK4cjCmww9mRAe5irbn9NbLI9mKl66b2cgfcoJFbQJgkfkdqiLTYml1TF4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ghiti.fr; spf=pass smtp.mailfrom=ghiti.fr; arc=none smtp.client-ip=217.70.183.201
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ghiti.fr
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ghiti.fr
-Received: by mail.gandi.net (Postfix) with ESMTPSA id E3B8E44418;
-	Mon, 23 Jun 2025 12:53:06 +0000 (UTC)
-Message-ID: <eb8f5a3b-edee-4525-be69-7a4ad55168a2@ghiti.fr>
-Date: Mon, 23 Jun 2025 14:53:06 +0200
+	s=arc-20240116; t=1750683409; c=relaxed/simple;
+	bh=AN/fmMRmp199vwZFouxTxb9gbavJDOlWyfuWbGe5Y8A=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=VsEoa0zE68KCsuEbjptchnCEzM9wWCpRs65LLl5jsoM71B0x4nCMQcKvdvqXdHXyRlOWSjL8RU+GpTXqIV7hxldyol+8dHzwnsrjxn+WHNG4//gq2CuyoghMy1BYGsyAMDrTdHLsS6n15IEdotpuBUwDqEm9eY6xSSE3qQu3IYE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=jHPjRLu5; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 59E8AC4CEF1;
+	Mon, 23 Jun 2025 12:56:46 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1750683409;
+	bh=AN/fmMRmp199vwZFouxTxb9gbavJDOlWyfuWbGe5Y8A=;
+	h=From:To:Cc:Subject:Date:From;
+	b=jHPjRLu5+7OJ1P6bsAXyRqJ+0mJ8o67o14jKkyP5htkeVxnjSYyS1+d5UuppMIuXj
+	 kI3qVnh2fprV5KEVamnUAj75MlMgx1lt+74x59mxrxFJGVc6dMn0JuBQRZUon7ep5F
+	 saMvGzunJQJEPmeyWY6pfPI9aV+9D31zg+ERysTOB63g+1aFRiLCRQmaQJuPRc99Xa
+	 QBy04+qYv5RsU4NayCOv3eWPzsqoyXl36bsU+4VHmOT5wFnouWleN1dq++xf/o0mR3
+	 VbuZI3jH8PfkY3uVxd1xZ4MtikRnROg78rW9UaHSMKJNg26HwFTCZqJjig47uM96VK
+	 yM/UMT3j6F9Eg==
+From: Conor Dooley <conor@kernel.org>
+To: sboyd@kernel.org
+Cc: conor@kernel.org,
+	Conor Dooley <conor.dooley@microchip.com>,
+	Daire McNamara <daire.mcnamara@microchip.com>,
+	pierre-henry.moussay@microchip.com,
+	valentina.fernandezalanis@microchip.com,
+	Michael Turquette <mturquette@baylibre.com>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Jassi Brar <jassisinghbrar@gmail.com>,
+	Lee Jones <lee@kernel.org>,
+	Paul Walmsley <paul.walmsley@sifive.com>,
+	Palmer Dabbelt <palmer@dabbelt.com>,
+	Philipp Zabel <p.zabel@pengutronix.de>,
+	linux-riscv@lists.infradead.org,
+	linux-clk@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org
+Subject: [PATCH v3 0/9] Redo PolarFire SoC's mailbox/clock devicestrees and related code
+Date: Mon, 23 Jun 2025 13:56:14 +0100
+Message-ID: <20250623-levitate-nugget-08c9a01f401d@spud>
+X-Mailer: git-send-email 2.45.2
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v1 1/7] riscv: helper to parse hart index
-To: Vladimir Kondratiev <vladimir.kondratiev@mobileye.com>,
- Thomas Gleixner <tglx@linutronix.de>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Paul Walmsley <paul.walmsley@sifive.com>,
- Palmer Dabbelt <palmer@dabbelt.com>, Albert Ou <aou@eecs.berkeley.edu>,
- Anup Patel <anup@brainfault.org>, Chen Wang <unicorn_wang@outlook.com>,
- Inochi Amaoto <inochiama@gmail.com>, Sunil V L <sunilvl@ventanamicro.com>,
- "Rafael J . Wysocki" <rafael.j.wysocki@intel.com>,
- Ryo Takakura <takakura@valinux.co.jp>
-Cc: linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
- linux-riscv@lists.infradead.org, sophgo@lists.linux.dev
-References: <20250609134749.1453835-1-vladimir.kondratiev@mobileye.com>
- <20250609134749.1453835-2-vladimir.kondratiev@mobileye.com>
-Content-Language: en-US
-From: Alexandre Ghiti <alex@ghiti.fr>
-In-Reply-To: <20250609134749.1453835-2-vladimir.kondratiev@mobileye.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
+X-Developer-Signature: v=1; a=openpgp-sha256; l=5494; i=conor.dooley@microchip.com; h=from:subject:message-id; bh=omk1CikIFivBf32iix8/b+9fYptZBC4DMf6e6vdMZ9Q=; b=owGbwMvMwCFWscWwfUFT0iXG02pJDBmRfu+UlRaJzN+b06Qs+4B3wkE1nSePln3MULi+8v9r1 +IF4rkGHaUsDGIcDLJiiiyJt/tapNb/cdnh3PMWZg4rE8gQBi5OAZhIqwPDf/eZwed3xWXuajF9 fK9y4w7VVrHt1tofDx3qmLAr2LRb6QvD/4CNvY+S/8y/Jdhz2yH07YoS/i8x5168V9+zdsqu2fp cOXwA
+X-Developer-Key: i=conor.dooley@microchip.com; a=openpgp; fpr=F9ECA03CF54F12CD01F1655722E2C55B37CF380C
 Content-Transfer-Encoding: 8bit
-X-GND-State: clean
-X-GND-Score: -100
-X-GND-Cause: gggruggvucftvghtrhhoucdtuddrgeeffedrtddvgddujedtjecutefuodetggdotefrodftvfcurfhrohhfihhlvgemucfitefpfffkpdcuggftfghnshhusghstghrihgsvgenuceurghilhhouhhtmecufedtudenucesvcftvggtihhpihgvnhhtshculddquddttddmnecujfgurhepkfffgggfuffvvehfhfgjtgfgsehtkeertddtvdejnecuhfhrohhmpeetlhgvgigrnhgurhgvucfihhhithhiuceorghlvgigsehghhhithhirdhfrheqnecuggftrfgrthhtvghrnhepieffvdeiveeuhfegvddvuefhveejhfffudffhfdufeeuudegtdfguddthfetledvnecuffhomhgrihhnpehgihhthhhusgdrtghomhenucfkphepvddttddumeekiedumeeffeekvdemvghfledtmedvieeijeemvgejvgdtmeehudeltdemfhgvtdehnecuvehluhhsthgvrhfuihiivgeptdenucfrrghrrghmpehinhgvthepvddttddumeekiedumeeffeekvdemvghfledtmedvieeijeemvgejvgdtmeehudeltdemfhgvtdehpdhhvghloheplgfkrfggieemvddttddumeekiedumeeffeekvdemvghfledtmedvieeijeemvgejvgdtmeehudeltdemfhgvtdehngdpmhgrihhlfhhrohhmpegrlhgvgiesghhhihhtihdrfhhrpdhnsggprhgtphhtthhopedukedprhgtphhtthhopehvlhgrughimhhirhdrkhhonhgurhgrthhivghvsehmohgsihhlvgihvgdrtghomhdprhgtphhtthhopehtghhlgieslhhinhhuthhrohhnihigrdguvgdpr
- hgtphhtthhopehrohgshheskhgvrhhnvghlrdhorhhgpdhrtghpthhtohepkhhriihkodgutheskhgvrhhnvghlrdhorhhgpdhrtghpthhtoheptghonhhorhdoughtsehkvghrnhgvlhdrohhrghdprhgtphhtthhopehprghulhdrfigrlhhmshhlvgihsehsihhfihhvvgdrtghomhdprhgtphhtthhopehprghlmhgvrhesuggrsggsvghlthdrtghomhdprhgtphhtthhopegrohhusegvvggtshdrsggvrhhkvghlvgihrdgvughu
-X-GND-Sasl: alex@ghiti.fr
 
-Hi Vladimir,
+From: Conor Dooley <conor.dooley@microchip.com>
 
-On 6/9/25 15:47, Vladimir Kondratiev wrote:
-> RISC-V APLIC specification defines "hart index" in [1]
-> And similar definitions found for ACLINT in [2]
->
-> Quote from [1]:
->
-> Within a given interrupt domain, each of the domain’s harts has a unique
-> index number in the range 0 to 2^14 − 1 (= 16,383). The index number a
-> domain associates with a hart may or may not have any relationship to the
-> unique hart identifier (“hart ID”) that the RISC-V Privileged
-> Architecture assigns to the hart. Two different interrupt domains may
-> employ entirely different index numbers for the same set of harts.
->
-> Further, [1] says in "4.5 Memory-mapped control region for an
-> interrupt domain":
->
-> The array of IDC structures may include some for potential hart index
-> numbers that are not actual hart index numbers in the domain.
-> For example, the first IDC structure is always for hart index 0, but 0 is
-> not necessarily a valid index number for any hart in the domain.
->
-> Support arbitrary hart indices specified in an optional property
-> "riscv,hart-indexes" which is specified as an array of u32 elements, one
-> per interrupt target, listing hart indexes in the same order as in
-> "interrupts-extended". If this property is not specified, fallback to use
-> logical hart indices within the domain.
->
-> If property not exist, fall back to logical hart indexes
+Yo,
 
+Stephen - I would really like to know if what I have done with the
+regmap clock is what you were asking for (a there's a link to that below
+to remind yourself). I've been trying to get you to look at this for a
+while, even just to affirm that I am on the right track!
 
-does not
+Cheers,
+Conor.
 
+v3 changes:
+- drop simple-mfd (for now) from syscon node
 
->
-> Link: https://github.com/riscv/riscv-aia [1]
-> Link: https://github.com/riscvarchive/riscv-aclint [2]
-> Signed-off-by: Vladimir Kondratiev <vladimir.kondratiev@mobileye.com>
-> ---
->   arch/riscv/include/asm/irq.h |  2 ++
->   arch/riscv/kernel/irq.c      | 34 ++++++++++++++++++++++++++++++++++
->   2 files changed, 36 insertions(+)
->
-> diff --git a/arch/riscv/include/asm/irq.h b/arch/riscv/include/asm/irq.h
-> index 7b038f3b7cb0..59c975f750c9 100644
-> --- a/arch/riscv/include/asm/irq.h
-> +++ b/arch/riscv/include/asm/irq.h
-> @@ -22,6 +22,8 @@ void arch_trigger_cpumask_backtrace(const cpumask_t *mask, int exclude_cpu);
->   void riscv_set_intc_hwnode_fn(struct fwnode_handle *(*fn)(void));
->   
->   struct fwnode_handle *riscv_get_intc_hwnode(void);
-> +int riscv_get_hart_index(struct fwnode_handle *fwnode, u32 logical_index,
-> +			 u32 *hart_index);
->   
->   #ifdef CONFIG_ACPI
->   
-> diff --git a/arch/riscv/kernel/irq.c b/arch/riscv/kernel/irq.c
-> index 9ceda02507ca..efdf505bb776 100644
-> --- a/arch/riscv/kernel/irq.c
-> +++ b/arch/riscv/kernel/irq.c
-> @@ -32,6 +32,40 @@ struct fwnode_handle *riscv_get_intc_hwnode(void)
->   }
->   EXPORT_SYMBOL_GPL(riscv_get_intc_hwnode);
->   
-> +/**
-> + * riscv_get_hart_index() - get hart index for interrupt delivery
-> + * @fwnode: interrupt controller node
-> + * @logical_index: index within the "interrupts-extended" property
-> + * @hart_index: filled with the hart index to use
-> + *
-> + * Risc-V uses term "hart index" for its interrupt controllers, for the
+v2 cover letter:
 
+Here's something that I've been mulling over for a while, since I
+started to understand how devicetree stuff was "meant" to be done.
+There'd been little reason to actually press forward with it, because it
+is fairly disruptive. I've finally opted to do it, because a user has
+come along with a hwmon driver that needs to access the same register
+region as the mailbox and the author is not keen on using the aux bus,
+and because I do not want the new pic64gx SoC that's based on PolarFire
+SoC to use bindings etc that I know to be incorrect.
 
-s/Risc-V/RISC-V
+Given backwards compatibility needs to be maintained, this patch series
+isn't the prettiest thing I have ever written. The reset driver needs to
+retain support for the auxiliary bus, which looks a bit mess, but not
+much can be done there. The mailbox and clock drivers both have to have
+an "old probe" function to handle the old layout. Thankfully in the
+clock driver, regmap support can be used to identically
+handle both old and new devicetree formats - but using a regmap in the
+mailbox driver was only really possible for the new format, so the code
+there is unfortunately a bit of an if/else mess that I'm both not proud
+of, nor really sure is worth "improving".
 
+The series should be pretty splitable per subsystem, only the dts change
+has some sort of dependency, but I'll not be applying that till
+everything else is in Linus' tree, so that's not a big deal.
 
-> + * purpose of the interrupt routing to destination harts.
-> + * It may be arbitrary numbers assigned to each destination hart in context
-> + * of the particular interrupt domain.
-> + *
-> + * These numbers encoded in the optional property "riscv,hart-indexes"
-> + * that should contain hart index for each interrupt destination in the same
-> + * order as in the "interrupts-extended" property. If this property
-> + * not exist, it assumed equal to the logical index, i.e. index within the
-> + * "interrupts-extended" property.
-> + *
-> + * Return: error code
+I don't really want this stuff in stable, hence a lack of cc: stable
+anywhere here, since what's currently in the tree works fine for the
+currently supported hardware.
 
+AFAIK, the only other project affected here is U-Boot, which I have
+already modified to support the new format.
 
-This does not add a lot of value, maybe something like that "Return: 0 
-on success, a negative error code otherwise"?
+I previously submitted this as an RFC, only to Lee and the dt list, in
+order to get some feedback on the syscon/mfd bindings:
+https://lore.kernel.org/all/20240815-shindig-bunny-fd42792d638a@spud/
+I'm not really going to bother with a proper changelog, since that was
+submitted with lots of WIP code to get answers to some questions. The
+main change was "removing" some of the child nodes of the syscons.
 
+And as a "real" series where discussion lead to me dropping use of the
+amlogic clk-regmap support:
+https://lore.kernel.org/linux-clk/20241002-private-unequal-33cfa6101338@spud/
+As a result of that, I've implemented what I think Stephen was asking
+for - but I'm not at all sure that it is..
 
-> + */
-> +int riscv_get_hart_index(struct fwnode_handle *fwnode, u32 logical_index,
-> +			 u32 *hart_index)
-> +{
-> +	static const char *prop_hart_index = "riscv,hart-indexes";
-> +	struct device_node *np = to_of_node(fwnode);
-> +
-> +	if (!np || !of_property_present(np, prop_hart_index)) {
-> +		*hart_index = logical_index;
-> +		return 0;
-> +	}
-> +
-> +	return of_property_read_u32_index(np, prop_hart_index,
-> +					  logical_index, hart_index);
-> +}
-> +
->   #ifdef CONFIG_IRQ_STACKS
->   #include <asm/irq_stack.h>
->   
+CC: Conor Dooley <conor.dooley@microchip.com>
+CC: Daire McNamara <daire.mcnamara@microchip.com>
+CC: pierre-henry.moussay@microchip.com
+CC: valentina.fernandezalanis@microchip.com
+CC: Michael Turquette <mturquette@baylibre.com>
+CC: Stephen Boyd <sboyd@kernel.org>
+CC: Rob Herring <robh@kernel.org>
+CC: Krzysztof Kozlowski <krzk+dt@kernel.org>
+CC: Jassi Brar <jassisinghbrar@gmail.com>
+CC: Lee Jones <lee@kernel.org>
+CC: Paul Walmsley <paul.walmsley@sifive.com>
+CC: Palmer Dabbelt <palmer@dabbelt.com>
+CC: Philipp Zabel <p.zabel@pengutronix.de>
+CC: linux-riscv@lists.infradead.org
+CC: linux-clk@vger.kernel.org
+CC: devicetree@vger.kernel.org
+CC: linux-kernel@vger.kernel.org
 
+Conor Dooley (9):
+  dt-bindings: mfd: syscon document the control-scb syscon on PolarFire
+    SoC
+  dt-bindings: soc: microchip: document the simple-mfd syscon on
+    PolarFire SoC
+  soc: microchip: add mfd drivers for two syscon regions on PolarFire
+    SoC
+  reset: mpfs: add non-auxiliary bus probing
+  dt-bindings: clk: microchip: mpfs: remove first reg region
+  riscv: dts: microchip: fix mailbox description
+  riscv: dts: microchip: convert clock and reset to use syscon
+  clk: divider, gate: create regmap-backed copies of gate and divider
+    clocks
+  clk: microchip: mpfs: use regmap clock types
 
-With those nits above fixed, you can add:
+ .../bindings/clock/microchip,mpfs-clkcfg.yaml |  36 ++-
+ .../devicetree/bindings/mfd/syscon.yaml       |   2 +
+ .../microchip,mpfs-mss-top-sysreg.yaml        |  47 +++
+ arch/riscv/boot/dts/microchip/mpfs.dtsi       |  34 ++-
+ drivers/clk/Kconfig                           |   8 +
+ drivers/clk/Makefile                          |   2 +
+ drivers/clk/clk-divider-regmap.c              | 271 ++++++++++++++++++
+ drivers/clk/clk-gate-regmap.c                 | 254 ++++++++++++++++
+ drivers/clk/microchip/Kconfig                 |   4 +
+ drivers/clk/microchip/clk-mpfs.c              | 151 ++++++----
+ drivers/reset/reset-mpfs.c                    |  81 ++++--
+ drivers/soc/microchip/Kconfig                 |  13 +
+ drivers/soc/microchip/Makefile                |   1 +
+ drivers/soc/microchip/mpfs-control-scb.c      |  45 +++
+ drivers/soc/microchip/mpfs-mss-top-sysreg.c   |  48 ++++
+ include/linux/clk-provider.h                  | 120 ++++++++
+ 16 files changed, 1023 insertions(+), 94 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/soc/microchip/microchip,mpfs-mss-top-sysreg.yaml
+ create mode 100644 drivers/clk/clk-divider-regmap.c
+ create mode 100644 drivers/clk/clk-gate-regmap.c
+ create mode 100644 drivers/soc/microchip/mpfs-control-scb.c
+ create mode 100644 drivers/soc/microchip/mpfs-mss-top-sysreg.c
 
-Acked-by: Alexandre Ghiti <alexghiti@rivosinc.com>
-
-Thanks,
-
-Alex
+-- 
+2.45.2
 
 
