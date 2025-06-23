@@ -1,99 +1,132 @@
-Return-Path: <devicetree+bounces-188722-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-188723-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id AEDE7AE4BEE
-	for <lists+devicetree@lfdr.de>; Mon, 23 Jun 2025 19:31:47 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8A2E6AE4BFD
+	for <lists+devicetree@lfdr.de>; Mon, 23 Jun 2025 19:35:36 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 5106A17C599
-	for <lists+devicetree@lfdr.de>; Mon, 23 Jun 2025 17:31:29 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id AC3FA3B3ECB
+	for <lists+devicetree@lfdr.de>; Mon, 23 Jun 2025 17:35:11 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 36A6E2BD023;
-	Mon, 23 Jun 2025 17:30:41 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3EBC82D1900;
+	Mon, 23 Jun 2025 17:35:32 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=mailbox.org header.i=@mailbox.org header.b="ok/sPASM"
+	dkim=pass (2048-bit key) header.d=apitzsch.eu header.i=@apitzsch.eu header.b="G1Uv5dqB"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mout-p-101.mailbox.org (mout-p-101.mailbox.org [80.241.56.151])
+Received: from www637.your-server.de (www637.your-server.de [168.119.26.117])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5ECD629CB31;
-	Mon, 23 Jun 2025 17:30:39 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=80.241.56.151
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B11D82C15BE;
+	Mon, 23 Jun 2025 17:35:27 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=168.119.26.117
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1750699841; cv=none; b=KxMzT61tj37CcCQq7nTycBDNiJWQ5exWpTwmjkmpTYexdvvmn2zWJaUOkhTlxRbFtANQAmRV+lXH4IvYFLc1YIYr6WmWuZdd8FnXHBGGelqozRINlCPBck+iN/Jwzdzu5LycKYG41721uPfdE019FPpvip+MhAmR9O84HUEJXrA=
+	t=1750700132; cv=none; b=XmC12LqUOuu3Qh+tMtfHUQXvGs7pSC/nEtXEx61x/uRyQJBUYlZOETCSZ9n0T52dHml+B/Jg6Kxl4qmtiZvewgRiRRZjf+rg/gLECUs16ifZRwWzhvgdXMyo+t0qDc4fqK+T4NbaQ8w/GLEiKUXgsp+ynNmYBYqX6gTDhMHtu2g=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1750699841; c=relaxed/simple;
-	bh=DUz9DkDPksM68vM8VjoJ4Fn0qWoFH3j+eIq7pEER7yI=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=JLCWUdfLZQJDMEi0G7Q3AeEOC3ec417SyEeI2TW4rbohhhn/E3AQyA/JF/TwVnWp0tNUodsuZWLyE+mDJ0cUctOGyK6lR1dTy9iU1KKP4Y71YRDwHNy2RTKu2AsvfiiAXJDFCFXt7TF67I+OCa8btezy8oBQAw34YihlFb4DTTw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=mailbox.org; spf=pass smtp.mailfrom=mailbox.org; dkim=pass (2048-bit key) header.d=mailbox.org header.i=@mailbox.org header.b=ok/sPASM; arc=none smtp.client-ip=80.241.56.151
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=mailbox.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=mailbox.org
-Received: from smtp1.mailbox.org (smtp1.mailbox.org [IPv6:2001:67c:2050:b231:465::1])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
-	(No client certificate requested)
-	by mout-p-101.mailbox.org (Postfix) with ESMTPS id 4bQw8W3jYlz9sJ2;
-	Mon, 23 Jun 2025 19:30:35 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=mailbox.org; s=mail20150812;
-	t=1750699835;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=gVQBJE3O5hWd22dP+NHNYkocneGEZLxBMOp7ka97pNI=;
-	b=ok/sPASM/De2bzzXdhUGxASAOQkrXL6NJwkltadXdV+kcvA2LATzfFPLii+Rck2oSKCzum
-	sXLpIYTLE6WY2W9ldfHtSYdux02F3fMiv4D9OQnFdDd6Js3RtDT7qomk2IMCypx4gOTL/x
-	ICXY9pKwNEUHfXeTiLjwofSpmDxRoA4WOXa5WzyIUdjGYVO1j42AsJ18GMBeKa8GObWoVZ
-	d4DrBq3w056IQyO2Q6UvhRCnglhDp1EiRoZjQURp6JQMfTD2qaAZVD5ArZ9K5gV4VK9+7z
-	+zfdtR+paAFgVuVNmE/WgSRGusxwBnemp/9mSeTMkvLIfHwgmHrZGQC7DdXCPQ==
-Message-ID: <dbec18f0-5df4-4eb8-93ab-da6ccfedf8ab@mailbox.org>
-Date: Mon, 23 Jun 2025 19:30:33 +0200
+	s=arc-20240116; t=1750700132; c=relaxed/simple;
+	bh=mGFD+TEQmheZhWqHvHH/h1FUuzjuW8fcVIkD9mNsloo=;
+	h=Message-ID:Subject:From:To:Cc:Date:In-Reply-To:References:
+	 Content-Type:MIME-Version; b=YKmmfYZsyHxEqmhMs++ja71Fs9z6xks1SFfKfWZxN4sa6oVOGgfkDsl59gRA4aiejS5inomk6zp2t67DkorPAkpLrYMP1zqR1VijK2PTleiCCcrJCWBT34HIFijx7Vi4JdpHQ+B86GJePIn70KkIv85hOt1Px7z503/h8f50bWc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=apitzsch.eu; spf=pass smtp.mailfrom=apitzsch.eu; dkim=pass (2048-bit key) header.d=apitzsch.eu header.i=@apitzsch.eu header.b=G1Uv5dqB; arc=none smtp.client-ip=168.119.26.117
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=apitzsch.eu
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=apitzsch.eu
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=apitzsch.eu
+	; s=default2410; h=MIME-Version:Content-Transfer-Encoding:Content-Type:
+	References:In-Reply-To:Date:Cc:To:From:Subject:Message-ID:Sender:Reply-To:
+	Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
+	Resent-To:Resent-Cc:Resent-Message-ID;
+	bh=mGFD+TEQmheZhWqHvHH/h1FUuzjuW8fcVIkD9mNsloo=; b=G1Uv5dqB5EuWkcfS4CSlHkTc4G
+	3IwxfpnGtWhHQxIrHjkqdFul2xigJfuo+PMSnRonHmQMif3Il9vFKBt4F/hUDuEjhYhgIg4d/w3s2
+	fbqq0TlaafplRZ02zoi6d8bIrst/zs6h1AQ6xpGtUBrKXR0Z6uDraQVohKkAkKaScAhod7xiVOCdq
+	QMV8z5VzxTmiLUCh8YJX8hBr+EUeupmu/oLYCrjKAK5qviCIhoyrrv3sqsSB/6Hg73teOqqFqcibo
+	L2JRnF3fBcjq9Al2+WOMvwgDP116B7EsvYbl+yzxKL0WAQcmUxQO4QxzUHbbhtL+uvuOI0RcUghxt
+	3jhPTARA==;
+Received: from sslproxy08.your-server.de ([78.47.166.52])
+	by www637.your-server.de with esmtpsa  (TLS1.3) tls TLS_AES_256_GCM_SHA384
+	(Exim 4.96.2)
+	(envelope-from <git@apitzsch.eu>)
+	id 1uTl4c-0005Et-0z;
+	Mon, 23 Jun 2025 19:35:14 +0200
+Received: from localhost ([127.0.0.1])
+	by sslproxy08.your-server.de with esmtpsa  (TLS1.3) tls TLS_AES_256_GCM_SHA384
+	(Exim 4.96)
+	(envelope-from <git@apitzsch.eu>)
+	id 1uTl4b-0001FO-22;
+	Mon, 23 Jun 2025 19:35:13 +0200
+Message-ID: <c243b93675f8136e30abb7608b58badf4b1ada35.camel@apitzsch.eu>
+Subject: Re: [PATCH RESEND v4 0/5] media: i2c: imx214: Add support for more
+ clock frequencies
+From: =?ISO-8859-1?Q?Andr=E9?= Apitzsch <git@apitzsch.eu>
+To: Sakari Ailus <sakari.ailus@linux.intel.com>
+Cc: Ricardo Ribalda <ribalda@kernel.org>, Mauro Carvalho Chehab
+	 <mchehab@kernel.org>, Rob Herring <robh@kernel.org>, Krzysztof Kozlowski
+	 <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, Shawn Guo
+	 <shawnguo@kernel.org>, Sascha Hauer <s.hauer@pengutronix.de>, Pengutronix
+ Kernel Team <kernel@pengutronix.de>, Fabio Estevam <festevam@gmail.com>, 
+	~postmarketos/upstreaming@lists.sr.ht, phone-devel@vger.kernel.org, 
+	linux-media@vger.kernel.org, linux-kernel@vger.kernel.org, Laurent Pinchart
+	 <laurent.pinchart@ideasonboard.com>, devicetree@vger.kernel.org, 
+	imx@lists.linux.dev, linux-arm-kernel@lists.infradead.org, Ricardo Ribalda
+	 <ribalda@chromium.org>, Conor Dooley <conor.dooley@microchip.com>
+Date: Mon, 23 Jun 2025 19:35:12 +0200
+In-Reply-To: <aFk-yTSOqzmEW1sz@kekkonen.localdomain>
+References: <20250621-imx214_ccs_pll-v4-0-12178e5eb989@apitzsch.eu>
+	 <aFj5QnPBO0We5SBQ@kekkonen.localdomain>
+	 <46a681a84a7493e2d0a6d3a4eedb6c86ccd9903f.camel@apitzsch.eu>
+	 <aFk-yTSOqzmEW1sz@kekkonen.localdomain>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+User-Agent: Evolution 3.56.2 
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Subject: Re: [PATCH v4 3/3] pwm: argon-fan-hat: Add Argon40 Fan HAT support
-To: =?UTF-8?Q?Uwe_Kleine-K=C3=B6nig?= <ukleinek@kernel.org>
-Cc: linux-pwm@vger.kernel.org, Conor Dooley <conor+dt@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Rob Herring <robh@kernel.org>,
- devicetree@vger.kernel.org, linux-renesas-soc@vger.kernel.org
-References: <20250621172056.160855-1-marek.vasut+renesas@mailbox.org>
- <20250621172056.160855-3-marek.vasut+renesas@mailbox.org>
- <purpjdp72jw2rok5ihyua635izyih54ufom2knsbaiwdd3jzgk@6wjf364fao2g>
-Content-Language: en-US
-From: Marek Vasut <marek.vasut@mailbox.org>
-In-Reply-To: <purpjdp72jw2rok5ihyua635izyih54ufom2knsbaiwdd3jzgk@6wjf364fao2g>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
-X-MBO-RS-META: atwcd4idrktq9teeb15on37ayenhxamx
-X-MBO-RS-ID: 0e8d127bce028be0e92
+X-Virus-Scanned: Clear (ClamAV 1.0.7/27678/Mon Jun 23 10:34:34 2025)
 
-On 6/23/25 11:11 AM, Uwe Kleine-König wrote:
-> Hello,
+Hi Sakari,
 
-Hello Uwe,
+Am Montag, dem 23.06.2025 um 11:47 +0000 schrieb Sakari Ailus:
+> Hi Andr=C3=A9,
+>=20
+> On Mon, Jun 23, 2025 at 01:34:03PM +0200, Andr=C3=A9 Apitzsch wrote:
+> > Hi Sakari,
+> >=20
+> > Am Montag, dem 23.06.2025 um 06:50 +0000 schrieb Sakari Ailus:
+> > > Hi Andr=C3=A9,
+> > >=20
+> > > On Sat, Jun 21, 2025 at 11:37:24AM +0200, Andr=C3=A9 Apitzsch via B4
+> > > Relay
+> > > wrote:
+> > > > The imx214 driver currently supports only a 24 MHz external
+> > > > clock.
+> > > > But
+> > > > there are devices, like Qualcomm-MSM8916-based phones, which
+> > > > cannot
+> > > > provide this frequency. To make the sensor usable by those
+> > > > devices,
+> > > > add
+> > > > support for additional clock frequencies.
+> > > >=20
+> > > > This series supersedes
+> > > > https://lore.kernel.org/linux-media/20250308-imx214_clk_freq-v1-0-4=
+67a4c083c35@apitzsch.eu/
+> > >=20
+> > > Is there a difference in this set from the v4 you posted
+> > > previously?
+> >=20
+> > There is no difference to the v4 posted previously. This is a
+> > resend because there was no activity in the original v4.
+>=20
+> It's not useful to resend patches, especially those that already have
+> been merged somewhere. Please ping people instead.
 
-> when I replied to v3 this v4 was already on the list which I missed. My
-> concern applies here, too, though.
-> 
-> On Sat, Jun 21, 2025 at 07:19:56PM +0200, Marek Vasut wrote:
->> +static void argon_fan_hat_i2c_shutdown(struct i2c_client *i2c)
->> +{
->> +	argon_fan_hat_write(i2c, 100);
->> +}
-> 
-> If you drop this, I'm willing to apply.
+I wasn't aware that patches already had been merged. Maybe I missed it,
+when checking=C2=A0https://git.linuxtv.org/sailus/media_tree.git
+Next time I'll ping.
 
-Dropping this would make the hardware which uses this device more 
-susceptible to thermal damage, e.g. in case it gets stuck during reboot 
-and does not boot Linux afterward. I don't want to risk such thermal damage.
-
--- 
 Best regards,
-Marek Vasut
+Andr=C3=A9
 
