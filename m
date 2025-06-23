@@ -1,401 +1,495 @@
-Return-Path: <devicetree+bounces-188217-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-188218-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0D119AE3379
-	for <lists+devicetree@lfdr.de>; Mon, 23 Jun 2025 03:59:34 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id AFFC9AE33A0
+	for <lists+devicetree@lfdr.de>; Mon, 23 Jun 2025 04:39:14 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 92FF7169B54
-	for <lists+devicetree@lfdr.de>; Mon, 23 Jun 2025 01:59:34 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 2E50F7A35A7
+	for <lists+devicetree@lfdr.de>; Mon, 23 Jun 2025 02:37:51 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4329816F841;
-	Mon, 23 Jun 2025 01:59:29 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id EADDE18DF6E;
+	Mon, 23 Jun 2025 02:39:07 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=aspeedtech.com header.i=@aspeedtech.com header.b="Tp9iqOHC"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Ofkfbivh"
 X-Original-To: devicetree@vger.kernel.org
-Received: from OS8PR02CU002.outbound.protection.outlook.com (mail-japanwestazon11022105.outbound.protection.outlook.com [40.107.75.105])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 09263A933;
-	Mon, 23 Jun 2025 01:59:23 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.75.105
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1750643969; cv=fail; b=arqm+CGAh6904lzu+nKno+i4PyujWBEUCSD9CrHmaW8MuoH86l67BWYbOKQ9mxLP+6pQc04hnmhIMdQ+Qr9Xrh3P62Rwt5lTuDsgd8pYil+1PusiH3I+aQXp3QKvNHIqwlYuLtmhJnxpf0uWgw1pu6jRY6qE3mh+1n/s3bJBwl0=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1750643969; c=relaxed/simple;
-	bh=FIWO+Sasrgoz1RgVtMnz2I7EUCOz+4j/vlrNIUkoTOE=;
-	h=From:To:Subject:Date:Message-ID:References:In-Reply-To:
-	 Content-Type:MIME-Version; b=HQIpHvKaeYJ5zzzgza++OlhM/mtf76sLkZ03/k+DYJvfgnW0YQoOT1lSy8XtUE8+yTkMYmALqObHdyQqfPyOjhVWSXjddqKlF1x4hYEwgs6g6hO3r4NX9VaQ2cEKhlBGEe8FNMbErLofG9vbRuOTkwHGdzDHmmxHC9Q3PzvrHR4=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=aspeedtech.com; spf=pass smtp.mailfrom=aspeedtech.com; dkim=pass (2048-bit key) header.d=aspeedtech.com header.i=@aspeedtech.com header.b=Tp9iqOHC; arc=fail smtp.client-ip=40.107.75.105
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=aspeedtech.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=aspeedtech.com
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=ncm/fhIteCoJjNr7HIr1mhdxBBSVhF2EbNsC7v/wFmCHNHmOumQx0EFZ6EkuVzuwSBDSC5yp5+Ys/SjmFBRqW2UQay2EBE4unNEJULo1z+M+N0zecw/b7ZtIgNJvCdUUfuGPB9cDjBFBQUZrByHNkNGp2JEkCyrdL6f0ylD91qzkv3h92NOLKP0yziAfPmrZGVKjNvhMR5sBADJAl5WBmtyLLqxhIQpdvPzJa5B/LGjT8rAiNHO7GlGnJvHw0ktJmfSy+zyDf/0cFMZ1Xy0ThIoD/KBLdkiQWgUrTnVF5inrScl5PsFLQOmuAJgBzP0DtkDuwwhldkY3RB7qvU1FeQ==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=FIWO+Sasrgoz1RgVtMnz2I7EUCOz+4j/vlrNIUkoTOE=;
- b=tEVq7Kuzvy64lMd+nshUlU+1BKyIneTt5fRoUCVXqc3ZR/U484Wg1x4GPn0JteL5XHSn2c7UCm6DOh2hQJkt3OLJrpqRTS3oxfkUWAn5LgkkH6X/H4blwA8sdsGNTJEurLPSMoAOALIjONj+i+z8/t00CggyBm+lGFce29zeWYzDNIRk/KinJCVbfxWBg0v8lntCXq8CiVHRXBmXNdJtpKyMJqyw0J5Kp5gyaG/jPB6q+fp4WqEoH4/2lnrgI4DRpu38dF1OgDHzfBsLqpsQoDgEY7BJONGFW97oClvGlTYxX81oIiNbdtFuEVIXTcKZcOf42eDYs/0q5qR6kH/wYg==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=aspeedtech.com; dmarc=pass action=none
- header.from=aspeedtech.com; dkim=pass header.d=aspeedtech.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=aspeedtech.com;
- s=selector2;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=FIWO+Sasrgoz1RgVtMnz2I7EUCOz+4j/vlrNIUkoTOE=;
- b=Tp9iqOHCOBVuJVscykhYdGrSPuCJHKvFh6oKB35ZS4gK1zCGqYbGH/CApwJqMKEyX0QGkMql8gq7uGA9gY39noLI4aR8xxXgN5ggT9G/X5qqBdkQtP6BNTQQErkq0jPCCvh5zWwIgg0BZBI5Yt1aEn2zeIaPv9kjnyArIuauWhKCGT5nXsUl5pzE/3xfiMZ5nHJZggqZ33EnaiLrYiugjZs3er4Ni7sd0cQ/6+oSgOUiqnLAdGZF0sjYqGZJ+qpAXxSUWkCXqpZidkcSOzadboE9CToe/jW+b/WPbQ0WQaw0piSHRL2/xxoTIeFsapkXd//oOj42a1zxpznbYEFxfg==
-Received: from TYZPR06MB6568.apcprd06.prod.outlook.com (2603:1096:400:45f::6)
- by TYSPR06MB6767.apcprd06.prod.outlook.com (2603:1096:400:471::13) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8857.27; Mon, 23 Jun
- 2025 01:59:16 +0000
-Received: from TYZPR06MB6568.apcprd06.prod.outlook.com
- ([fe80::72b8:dce5:355b:e84b]) by TYZPR06MB6568.apcprd06.prod.outlook.com
- ([fe80::72b8:dce5:355b:e84b%4]) with mapi id 15.20.8857.025; Mon, 23 Jun 2025
- 01:59:15 +0000
-From: Jammy Huang <jammy_huang@aspeedtech.com>
-To: Andrew Jeffery <andrew@codeconstruct.com.au>, "jassisinghbrar@gmail.com"
-	<jassisinghbrar@gmail.com>, "robh@kernel.org" <robh@kernel.org>,
-	"krzk+dt@kernel.org" <krzk+dt@kernel.org>, "conor+dt@kernel.org"
-	<conor+dt@kernel.org>, "joel@jms.id.au" <joel@jms.id.au>,
-	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-	"linux-arm-kernel@lists.infradead.org"
-	<linux-arm-kernel@lists.infradead.org>, "linux-aspeed@lists.ozlabs.org"
-	<linux-aspeed@lists.ozlabs.org>, "linux-kernel@vger.kernel.org"
-	<linux-kernel@vger.kernel.org>
-Subject: RE: [PATCH v3 2/2] mailbox: aspeed: add mailbox driver for AST27XX
- series SoC
-Thread-Topic: [PATCH v3 2/2] mailbox: aspeed: add mailbox driver for AST27XX
- series SoC
-Thread-Index: AQHb2eeI4a5F3MN24Eu/ozXuvO4n07QAO/MAgA/O0MA=
-Date: Mon, 23 Jun 2025 01:59:15 +0000
-Message-ID:
- <TYZPR06MB6568CAB1E1170E355DAC16F7F179A@TYZPR06MB6568.apcprd06.prod.outlook.com>
-References: <20250610091026.49724-1-jammy_huang@aspeedtech.com>
-	 <20250610091026.49724-3-jammy_huang@aspeedtech.com>
- <13b88c1e404a9abe5cfae6673cb93e0b020e3524.camel@codeconstruct.com.au>
-In-Reply-To:
- <13b88c1e404a9abe5cfae6673cb93e0b020e3524.camel@codeconstruct.com.au>
-Accept-Language: zh-TW, en-US
-Content-Language: zh-TW
-X-MS-Has-Attach:
-X-MS-TNEF-Correlator:
-authentication-results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=aspeedtech.com;
-x-ms-publictraffictype: Email
-x-ms-traffictypediagnostic: TYZPR06MB6568:EE_|TYSPR06MB6767:EE_
-x-ms-office365-filtering-correlation-id: ea2ee1b3-c027-4b3f-5020-08ddb1f98ecc
-x-ms-exchange-senderadcheck: 1
-x-ms-exchange-antispam-relay: 0
-x-microsoft-antispam:
- BCL:0;ARA:13230040|1800799024|376014|7416014|366016|921020|38070700018;
-x-microsoft-antispam-message-info:
- =?utf-8?B?SW5UUW11ZGlseGI4TndJNEpzY3lCSk9vVHp3MUY3R2N0T0dnOTRtYkhzRUpY?=
- =?utf-8?B?WG0wWWhPV3M4TXBaV3UyNjZ4SGRMc1B3cFB6UU1aSXQvSjRDMlhUcEl6Zkw2?=
- =?utf-8?B?ZWZ0enhtOGQ0UERyR3BLbTd0VFA0S0dqY0MrZVIyZFczM09TQU1odW0rNUdP?=
- =?utf-8?B?emE3U0RFR2RtMkRmZncxaS9yQ1NOUUxqWmh6aTlpSTYrZktJa0VRMUROUU5F?=
- =?utf-8?B?SmlsWUhPaWNDaWRoY2c0YnBEM0VRWGQvUEpXK1NldFMvdmtoQmRPaWxtUjdi?=
- =?utf-8?B?bWFTQjJ1Y3A2SWhGMmJsZ2FPWndFMHV2YUUrRWN2OWFzNFp6L0NnV1VzaElX?=
- =?utf-8?B?OXdTa0ptTzQ1eXJmUXZLTVRQeVByUi9TQi92RitpSWhNbFdJU1JVck1Sc05E?=
- =?utf-8?B?MXo5cWN4bk1kNmtwY09zanFENThlN2FaNUZFN2NRbUxTb1pCRDI3RW1QV3dz?=
- =?utf-8?B?WTVNM0haRlI1QU9tcW1UdHc4K3l3ME1Rd2ZOTGJFd0dLdktSSjFyV3F6dHBy?=
- =?utf-8?B?KzZ4aWVsZlIzWUFkWVRWVEhmRmduRFpuSisyQm5SclJKbklac2pyNVZlbU83?=
- =?utf-8?B?UklHS0dod1VBeVovWm1lUkVCQzhLc1lWSnpNKzdiY0pGbmhlUFRYWkpEcHJN?=
- =?utf-8?B?eGswVmpYcHZoSE1pOU56YlJYNGcyS0Jnejg2b1BlZU8zMGRYc3d5eE5uU3dD?=
- =?utf-8?B?amZwRVJScldMM0FaZW9EYnpZNEN1TTUyQmFJQWZqems5K3JqQkNwYndaVXdu?=
- =?utf-8?B?R0RVRFI4UjBjeWdwVFpsVHkxYUVkRWhJK2lrUSt1LzUySW5UL2NCenhNNnJx?=
- =?utf-8?B?MlJ3bDE0SG91L0NkVWtTSUQ0aTlKcVZnK0hHdHdrT1AxYjQ2dVNQVWxEUlNh?=
- =?utf-8?B?ejBrU0UyTStCc0c1UlRFdVVHeDNsZWttNXZ5dzBZWmQ4NDhnY09QZXRJQ0x6?=
- =?utf-8?B?eWtCRm5mQ2hMa2RjVlY4UHV4QlZPMGUzQ3prazNQdlJFSmJyK0QzYkVVSGMy?=
- =?utf-8?B?b0dWamxydUdPY3ZCQncwN0ZsT0dLVzFrQXFySnM1QzFuVmNXVzFDa1VxSmFW?=
- =?utf-8?B?dW9QdEdBTlR2WU9BZ0h3UFMvWFMrcjBGMUVwWDNsVHduWU1WdWk3aGg0OTg5?=
- =?utf-8?B?dm94ZzhscXA0dDhLdU1uK25WKzBuWUxqNUszeG5qRk5wY3BaOFlKVTFOOTRX?=
- =?utf-8?B?di9TOVZpVk9NM0ErQjVPZElpNHZQMzNXNzNsQzNhL2NSakpiaWs1YnNGNWpZ?=
- =?utf-8?B?WUx6c0xuZCtTRnJ6bm1YdHBmSG1qRDNydVV5eFY5bXlSckt6WVJrOUFjMzUr?=
- =?utf-8?B?RE0zcFRRVnc0VzBTeUxDTW9icmI2b3BGRDAySktMWXoxRGMvcEhqemIyUEVI?=
- =?utf-8?B?K1R4K0grV1lWSVVvTGtyY1BWKzl5cVE4bWNFanFPVmlKaHRxRVZhZ28yT2lB?=
- =?utf-8?B?NzY5MlVMUTlhVWpkWGV2bjF0ZnZuSmFCSUxKWDZRbWxsN2V4RlZkUE9VL0lR?=
- =?utf-8?B?ZXdLdVdJcVlIcElQZ1VwS2VuM3ZWbXFqZzE4ZXdwSHQ0d3N2TlJxbnhXZFRC?=
- =?utf-8?B?L0JqNzJ2K3NNSHpRYUVXQWdQRWp0aXFYUjdXbDFkdUFGSVlNSC9QeFdkUEhr?=
- =?utf-8?B?Nnl4THVOeGZtOGdFbk5maDNGTDRBNUhKYjhDOVg3WjlvN05qdmx4U0JmYkNn?=
- =?utf-8?B?ZGRNNFlOM1YxS0F1WlRwdCsrMk0xY280R1RqaFg2Q2RSeFZGNjR6NDZZeVBC?=
- =?utf-8?B?OTdNdVVpZXp4VFQxeFJ5Q1ZBUFVSUE9PWDMxVTNCemNuQ0RaL0h0TGYwY2xt?=
- =?utf-8?B?d2JLZEhzVHVXeUpRakVYeTVreThEZnJIa1V2aVBpUzU1a2J0SFk2Nm1HMm9P?=
- =?utf-8?B?Wkh4T2ZoUWtjcGpEK2dHcWExRnJ5VUgzRjVtUktQLzVXSWdpQjVnUVJMMDNh?=
- =?utf-8?B?QlZ2bndhS05zSW1aL0tsZnZzUFZISzcreXJ3STkycHFOUC9keUVsRGNkbjhS?=
- =?utf-8?Q?M+PFLLLvWg1MRPZxmn0agsjfHIhpLU=3D?=
-x-forefront-antispam-report:
- CIP:255.255.255.255;CTRY:;LANG:zh-tw;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:TYZPR06MB6568.apcprd06.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(1800799024)(376014)(7416014)(366016)(921020)(38070700018);DIR:OUT;SFP:1102;
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0:
- =?utf-8?B?WEIxNEI2K3hKOVBaSXpydjNYWWJWTGNNUnNyb2dBNllWUWViNTdmUFBJSDZG?=
- =?utf-8?B?NkRNb29ickF5YVRnd0NMNUdpVUdRSDFMazczb2kvbGFGWTBKTUxzbUNUZGRV?=
- =?utf-8?B?WDNYYTVUSEphYmZScUZad2FtZ0M0TGVrakFjb2NFd0t3TlJVR3ovS204UUMw?=
- =?utf-8?B?MGVDS3JoMW82a3c2Ni9Ubmoxd3hrWkxYSk1QNExsR29NUU5sdCt6aFhTVFNO?=
- =?utf-8?B?aWRORTJCZC9vUGthcUkvcmpxUDkzY0hOTTRIblhNWkl0ZG5WdlcwcWdxbTlY?=
- =?utf-8?B?dUVqNnJIV0FQVmdBU1d0b3I0cmFzYjhzeVNRY1ZtRXBpYTlEeFYyMmN3c0o3?=
- =?utf-8?B?WGx4WWpESmpiUmYra3FLQnIxNnI1TmZ3ZU1WUGs0QThGckM3ZDJaT2FEenQ5?=
- =?utf-8?B?cStIa0hHdXRXTStUaFlZclh6TjUwMHVpU0tqaGpiSk1GUTZSNHM1amxzeWt4?=
- =?utf-8?B?SjBCOFllRnVoNng0ZXFtVktSQVV2ZHRqZ1QycThlamwyamlKZVZVc0xBSWRn?=
- =?utf-8?B?cTlFTUhtb0g1MHRsTWk1RlFVVDUwUWMycjVyRUFHVFBYQW00RThxYTBWRkwx?=
- =?utf-8?B?akFvcWRFYWEwZE1YbER1eHZaVnlodWlSa3BvZjVxMnlKZmx0UHpGcnJXNXBu?=
- =?utf-8?B?VmNvQWN6WVROMm5OeCtYMlNyZUJob0NNQkFESFY5MmYvZEYwYy9ia1dqZ2gw?=
- =?utf-8?B?WktYSkJqQW1jNXR6blE0bHBGZDkvVVpuYmkrZ0xmcDlLV3VEUi9sMTJwbkJF?=
- =?utf-8?B?QUdNZjlKUEV1NXZERG5nbFJ1QVF1Y1JRWWZzbEFMUTBSR2ZIYTJYUVo3bFpa?=
- =?utf-8?B?QnpBSFhzNUltbG95VUphUktPVWJKUS95eW1PVlNaQ2Y5SFpYd0dQVm8rSDlF?=
- =?utf-8?B?SVhwTFc3RGtGRnh3UDFPclR4OG5KSkZpT3NyS1FnZFZBK25Vc0d6bGhtN1ZH?=
- =?utf-8?B?THppTVVlT1UzN3lxcnkrY24rQTNxMGdJT0V4N3NxMFFoU0FzR3psRWgrRmV4?=
- =?utf-8?B?UUdLaFFPRGl1MUVpTWZxeWU5MnlNOXhiTVk2UzdWdkd3MDJmUUI1UmxQTU9n?=
- =?utf-8?B?b1NQVTlWaUJjbm9rcFFYdGY1RVdUVHNYU2N2Mm11TjlVOUIvbjZuUndud1dh?=
- =?utf-8?B?NXh2SWJqV3hrOHN6WkFxYXVoSll4K0tiMmpnWnRwdVh2OHlJMFlOTS9sNkZq?=
- =?utf-8?B?Nk9NUFBOQldYRTEveHVKTWJIMnRjeTFEem5vZkt0dlRmNWk5aTFVUFY2QTd0?=
- =?utf-8?B?UXozNWJCankrOWdmS0VRV2lWNGdPZ0tUUE1PZG5rRlpGSGVCOUhBcTV1YW1k?=
- =?utf-8?B?L2tKRTY2V0hmU1RKVGZRbUxIT0ZWQ3hmQnhxOTQyODR0d3JFd1YzVHFwYmFG?=
- =?utf-8?B?SC82SzFVZExVVGNsYktxZmJvUnBRVFBvejBaTkFzM3FYVUFWZWJqekx4dkVp?=
- =?utf-8?B?S3AzakNtUU1jZkk3aUxmSnZUZEoxb3l2MTRpajliRlJjbTI0dWZ3aXhsRGxs?=
- =?utf-8?B?M0F2WWRURFV4eXp2WGNmZ3JBMW5VRjFFSy8vRFJSWEFWMkpzTUZqNTZvcUo5?=
- =?utf-8?B?V2NXdFVkUE9iQ0l2b1ZlZHdXc0dPZUExemZETnEzQVBVdTdRNGpVc0tVU211?=
- =?utf-8?B?QzlnNmVieUo1SkNBS0ppYXBESFpvdllPOVp1MXhEYkFmS3BKMUZiRmdtQ3NW?=
- =?utf-8?B?Z0JaclJqdnFPck5NMnhEVEt4N3lYb0svcUdOWE5QTlhKZno1eDZtMDR1aEkz?=
- =?utf-8?B?cEFGeHJvMUQwdTYvaWRTTkt5bFhTNXZRNVFqV0FhenV4R3VBV1pZcDRtYzFB?=
- =?utf-8?B?U3k4KzNzNitBZ094cDhjcDhwVmZsZlBoNjZsWElHNTVjL1NUaHlZbW5lSGlo?=
- =?utf-8?B?NHgwSnJPRTI3RHV3UXBSWWdyMDJ2NU8vTEdRNktON3ZSTjQrNzdKQXNtb3A0?=
- =?utf-8?B?UXc0TXZSZmhyWmV5QnpYYzA1OEhrUFpiV2tIU1ExMmtaUnEweFNVQWZ0dCt6?=
- =?utf-8?B?WmZyOVNJOVRUZHk0N0lyb3BVb01qNVVvaVE3eTVBU1FRUnpCcWJTUzJnQkxi?=
- =?utf-8?B?TTFQczBja2ZSNHk4VmVzZTlRbHhza29DVTF5WlozNWc2Y2cvM3RlUkVRN0dt?=
- =?utf-8?B?MW9sNGtnbWVKRmpHdVNKWGhPb0JwUzlNclIzajNjZHpIK0dwMExYUlpwY3ZZ?=
- =?utf-8?B?Vmc9PQ==?=
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B722A6FC5;
+	Mon, 23 Jun 2025 02:39:07 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1750646347; cv=none; b=Rlalr5+70+FRN07DK76bx6kkYdHC320v6cdiK27q1YLWdh+dfAPrqR/BaLUaz6JDUBfB6Lz6ljcV29gyXmd/D0lA4R0lmC8UBKH7CmyYRaqsHfHPTmKlImiUoD0FF/9pb6CGoeRPSjJA3fJ1dkdRnR8aoUwxK3gRmD/hEYdOSt8=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1750646347; c=relaxed/simple;
+	bh=YCayrwo135YdZ2z/8KoYinYmiFtJy2EgEmgdNyZ53WA=;
+	h=Date:Content-Type:MIME-Version:From:Cc:To:In-Reply-To:References:
+	 Message-Id:Subject; b=HnZ94Yjb7jthWsyZgdJrbkg74llo8uVieOt2qh/CNw1ZeMXyF6EHnw4+W9neiqbdQix4XGg0+2ErddF7RwjB+3+AiHOTTgIzecthls98otEB8c/+s3GsDMxWkLL1d6WZtdiHAMmRTmYo4QWoX8n0Qchxe2gnnTVIGXQ3E20k+KE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Ofkfbivh; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 240BFC4CEE3;
+	Mon, 23 Jun 2025 02:39:07 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1750646347;
+	bh=YCayrwo135YdZ2z/8KoYinYmiFtJy2EgEmgdNyZ53WA=;
+	h=Date:From:Cc:To:In-Reply-To:References:Subject:From;
+	b=Ofkfbivhd0aIs33OlHXysHU4+9ECZEXF2i6Uhu1YRes7IXbvYRyPCvyAeoDvO6ycj
+	 /4xqyTo0MR8yH2IMyd3cfVsPl6wjlb7ajftOgob97vDxnsf8dyohgrMgUgMrSX3/OJ
+	 xPV7na6UJP5qdYJbyfDY22xw3qmWW0fW3UPMbYJl6gaW4Sdzg5QgFYswP1ygbbeURH
+	 m9Zd7iDx7m/UonOmutpu319vf6t5KpTCHpgFv0lAW9b9Bs13AooHxplFdpalylAuqV
+	 4+q5KBK0LSw0JZo1VBcVO0bMuiWIyePWZydMpwmq/kcELoFmweTcsiKfaWkYmMOBiy
+	 wa92KpSRXDr0g==
+Date: Sun, 22 Jun 2025 21:39:06 -0500
 Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-OriginatorOrg: aspeedtech.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: TYZPR06MB6568.apcprd06.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: ea2ee1b3-c027-4b3f-5020-08ddb1f98ecc
-X-MS-Exchange-CrossTenant-originalarrivaltime: 23 Jun 2025 01:59:15.6807
- (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 43d4aa98-e35b-4575-8939-080e90d5a249
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: AXKLUVUKUY0zFipCLoSq46ji+QvUfemVqLtJeQlto9RlOLopKi/k9mJ50D7FbfmPWiXypSJaCVfy9S9lgc1zeJIwgXRckAAtiYtg71ZUjXk=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: TYSPR06MB6767
+From: "Rob Herring (Arm)" <robh@kernel.org>
+Cc: Heiko Stuebner <heiko@sntech.de>, 
+ Philipp Zabel <p.zabel@pengutronix.de>, 
+ Bryan O'Donoghue <bryan.odonoghue@linaro.org>, 
+ Mehdi Djait <mehdi.djait@bootlin.com>, linux-rockchip@lists.infradead.org, 
+ Rob Herring <robh+dt@kernel.org>, 
+ Alexander Shiyan <eagle.alexander923@gmail.com>, 
+ linux-arm-kernel@lists.infradead.org, 
+ Nicolas Dufresne <nicolas.dufresne@collabora.com>, 
+ Thomas Petazzoni <thomas.petazzoni@bootlin.com>, 
+ Mehdi Djait <mehdi.djait@linux.intel.com>, 
+ =?utf-8?q?Th=C3=A9o_Lebrun?= <theo.lebrun@bootlin.com>, 
+ devicetree@vger.kernel.org, 
+ Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>, 
+ Sakari Ailus <sakari.ailus@linux.intel.com>, 
+ Kever Yang <kever.yang@rock-chips.com>, 
+ Mauro Carvalho Chehab <mchehab@kernel.org>, 
+ Maxime Chevallier <maxime.chevallier@bootlin.com>, 
+ linux-kernel@vger.kernel.org, Val Packett <val@packett.cool>, 
+ Laurent Pinchart <laurent.pinchart@ideasonboard.com>, 
+ Markus Elfring <Markus.Elfring@web.de>, 
+ Sebastian Reichel <sebastian.reichel@collabora.com>, 
+ Collabora Kernel Team <kernel@collabora.com>, linux-media@vger.kernel.org, 
+ Conor Dooley <conor+dt@kernel.org>, Paul Kocialkowski <paulk@sys-base.io>, 
+ Gerald Loacker <gerald.loacker@wolfvision.net>, 
+ Krzysztof Kozlowski <krzk+dt@kernel.org>
+To: Michael Riesch <michael.riesch@collabora.com>
+In-Reply-To: <20240220-rk3568-vicap-v9-0-ace1e5cc4a82@collabora.com>
+References: <20240220-rk3568-vicap-v9-0-ace1e5cc4a82@collabora.com>
+Message-Id: <175064594415.880224.430742647337694886.robh@kernel.org>
+Subject: Re: [PATCH v9 00/13] media: rockchip: add a driver for the
+ rockchip camera interface
 
-SGkgQW5kcmVzLA0KDQpUaGFua3MgZm9yIHlvdXIgcmV2aWV3LiBJIGZvcmdldCB0byByZXBseSBz
-b21lIG9mIHlvdXIgY29tbWVudHMuDQoNCkJlc3QgUmVnYXJkcw0KSmFtbXkNCg0KPiANCj4gSGkg
-SmFtbXksDQo+IA0KPiBBcyBmYXIgYXMgSSBjYW4gdGVsbCB0aGlzIGNvbnRyb2xsZXIgaXNuJ3Qg
-ZG9jdW1lbnRlZCBpbiB0aGUgZGF0YXNoZWV0IGZvciB0aGUNCj4gQVNUMjcwMC4gQ2FuIHlvdSBw
-b2ludCBtZSB0byB0aGUgcmlnaHQgcGxhY2U/IE9yLCBjYW4gd2UgZ2V0IHRoZQ0KPiBkb2N1bWVu
-dGF0aW9uIHVwZGF0ZWQ/DQo+IA0KPiBPbiBUdWUsIDIwMjUtMDYtMTAgYXQgMTc6MTAgKzA4MDAs
-IEphbW15IEh1YW5nIHdyb3RlOg0KPiA+ID4gQWRkIG1haWxib3ggY29udHJvbGxlciBkcml2ZXIg
-Zm9yIEFTVDI3WFggU29Dcywgd2hpY2ggcHJvdmlkZXMNCj4gPiA+IGluZGVwZW5kZW50IHR4L3J4
-IG1haWxib3ggYmV0d2VlbiBkaWZmZXJlbnQgcHJvY2Vzc29ycy4gVGhlcmUgYXJlIDQNCj4gPiA+
-IGNoYW5uZWxzIGZvciBlYWNoIHR4L3J4IG1haWxib3ggYW5kIGVhY2ggY2hhbm5lbCBoYXMgYW4g
-MzItYnl0ZSBGSUZPLg0KPiA+ID4NCj4gPiA+IFNpZ25lZC1vZmYtYnk6IEphbW15IEh1YW5nIDxq
-YW1teV9odWFuZ0Bhc3BlZWR0ZWNoLmNvbT4NCj4gPiA+IC0tLQ0KPiA+ID4gwqBkcml2ZXJzL21h
-aWxib3gvS2NvbmZpZ8KgwqDCoMKgwqDCoMKgwqDCoMKgIHzCoMKgIDggKysNCj4gPiA+IMKgZHJp
-dmVycy9tYWlsYm94L01ha2VmaWxlwqDCoMKgwqDCoMKgwqDCoMKgIHzCoMKgIDIgKw0KPiA+ID4g
-wqBkcml2ZXJzL21haWxib3gvYXN0MjcwMC1tYWlsYm94LmMgfCAyMjYNCj4gPiA+ICsrKysrKysr
-KysrKysrKysrKysrKysrKysrKysrKw0KPiA+ID4gwqAzIGZpbGVzIGNoYW5nZWQsIDIzNiBpbnNl
-cnRpb25zKCspDQo+ID4gPiDCoGNyZWF0ZSBtb2RlIDEwMDY0NCBkcml2ZXJzL21haWxib3gvYXN0
-MjcwMC1tYWlsYm94LmMNCj4gPiA+DQo+ID4gPiBkaWZmIC0tZ2l0IGEvZHJpdmVycy9tYWlsYm94
-L0tjb25maWcgYi9kcml2ZXJzL21haWxib3gvS2NvbmZpZyBpbmRleA0KPiA+ID4gNjhlZWVkNjYw
-YTRhLi4xYzM4Y2Q1NzAwOTEgMTAwNjQ0DQo+ID4gPiAtLS0gYS9kcml2ZXJzL21haWxib3gvS2Nv
-bmZpZw0KPiA+ID4gKysrIGIvZHJpdmVycy9tYWlsYm94L0tjb25maWcNCj4gPiA+IEBAIC0zNDAs
-NCArMzQwLDEyIEBAIGNvbmZpZyBUSEVBRF9USDE1MjBfTUJPWA0KPiA+ID4gwqDCoMKgwqDCoMKg
-wqDCoMKgIGtlcm5lbCBpcyBydW5uaW5nLCBhbmQgRTkwMiBjb3JlIHVzZWQgZm9yIHBvd2VyDQo+
-IG1hbmFnZW1lbnQNCj4gPiA+IGFtb25nIG90aGVyDQo+ID4gPiDCoMKgwqDCoMKgwqDCoMKgwqAg
-dGhpbmdzLg0KPiA+ID4NCj4gPiA+ICtjb25maWcgQVNUMjcwMF9NQk9YDQo+ID4gPiArwqDCoMKg
-wqDCoMKgwqB0cmlzdGF0ZSAiQVNQRUVEIEFTVDI3MDAgSVBDIGRyaXZlciINCj4gPiA+ICvCoMKg
-wqDCoMKgwqDCoGRlcGVuZHMgb24gQVJDSF9BU1BFRUQgfHwgQ09NUElMRV9URVNUDQo+ID4gPiAr
-wqDCoMKgwqDCoMKgwqBoZWxwDQo+ID4gPiArwqDCoMKgwqDCoMKgwqDCoCBNYWlsYm94IGRyaXZl
-ciBpbXBsZW1lbnRhdGlvbiBmb3IgQVNQRUVEIEFTVDI3WFggU29Dcy4NCj4gPiA+ICtUaGlzIGRy
-aXZlcg0KPiA+ID4gK8KgwqDCoMKgwqDCoMKgwqAgY2FuIGJlIHVzZWQgdG8gc2VuZCBtZXNzYWdl
-IGJldHdlZW4gZGlmZmVyZW50IHByb2Nlc3NvcnMNCj4gaW4gU29DLg0KPiA+ID4gK8KgwqDCoMKg
-wqDCoMKgwqAgVGhlIGRyaXZlciBwcm92aWRlcyBtYWlsYm94IHN1cHBvcnQgZm9yIHNlbmRpbmcg
-aW50ZXJydXB0cw0KPiA+ID4gK3RvIHRoZQ0KPiA+ID4gK8KgwqDCoMKgwqDCoMKgwqAgY2xpZW50
-cy4gU2F5IFkgaGVyZSBpZiB5b3Ugd2FudCB0byBidWlsZCB0aGlzIGRyaXZlci4NCj4gPiA+IMKg
-ZW5kaWYNCj4gPiA+IGRpZmYgLS1naXQgYS9kcml2ZXJzL21haWxib3gvTWFrZWZpbGUgYi9kcml2
-ZXJzL21haWxib3gvTWFrZWZpbGUNCj4gPiA+IGluZGV4IDEzYTM0NDhiMzI3MS4uOWE5YWRkOWE3
-NTQ4IDEwMDY0NA0KPiA+ID4gLS0tIGEvZHJpdmVycy9tYWlsYm94L01ha2VmaWxlDQo+ID4gPiAr
-KysgYi9kcml2ZXJzL21haWxib3gvTWFrZWZpbGUNCj4gPiA+IEBAIC03MiwzICs3Miw1IEBAIG9i
-ai0kKENPTkZJR19RQ09NX0NQVUNQX01CT1gpwqArPQ0KPiBxY29tLWNwdWNwLW1ib3gubw0KPiA+
-ID4gwqBvYmotJChDT05GSUdfUUNPTV9JUENDKcKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDC
-oMKgKz0gcWNvbS1pcGNjLm8NCj4gPiA+DQo+ID4gPiDCoG9iai0kKENPTkZJR19USEVBRF9USDE1
-MjBfTUJPWCnCoMKgwqDCoMKgwqDCoMKgKz0gbWFpbGJveC10aDE1MjAubw0KPiA+ID4gKw0KPiA+
-ID4gK29iai0kKENPTkZJR19BU1QyNzAwX01CT1gpwqDCoMKgwqDCoCs9IGFzdDI3MDAtbWFpbGJv
-eC5vDQo+ID4gPiBkaWZmIC0tZ2l0IGEvZHJpdmVycy9tYWlsYm94L2FzdDI3MDAtbWFpbGJveC5j
-DQo+ID4gPiBiL2RyaXZlcnMvbWFpbGJveC9hc3QyNzAwLW1haWxib3guYw0KPiA+ID4gbmV3IGZp
-bGUgbW9kZSAxMDA2NDQNCj4gPiA+IGluZGV4IDAwMDAwMDAwMDAwMC4uMGVlMTBiZDNhNmUxDQo+
-ID4gPiAtLS0gL2Rldi9udWxsDQo+ID4gPiArKysgYi9kcml2ZXJzL21haWxib3gvYXN0MjcwMC1t
-YWlsYm94LmMNCj4gPiA+IEBAIC0wLDAgKzEsMjI2IEBADQo+ID4gPiArLy8gU1BEWC1MaWNlbnNl
-LUlkZW50aWZpZXI6IEdQTC0yLjAtb25seQ0KPiA+ID4gKy8qDQo+ID4gPiArICogQ29weXJpZ2h0
-IEFzcGVlZCBUZWNobm9sb2d5IEluYy4gKEMpIDIwMjUuIEFsbCByaWdodHMgcmVzZXJ2ZWQNCj4g
-PiA+ICsqLw0KPiA+ID4gKw0KPiA+ID4gKyNpbmNsdWRlIDxsaW51eC9pbnRlcnJ1cHQuaD4NCj4g
-PiA+ICsjaW5jbHVkZSA8bGludXgvaW8uaD4NCj4gPiA+ICsjaW5jbHVkZSA8bGludXgvaW9wb2xs
-Lmg+DQo+ID4gPiArI2luY2x1ZGUgPGxpbnV4L2tlcm5lbC5oPg0KPiA+ID4gKyNpbmNsdWRlIDxs
-aW51eC9tYWlsYm94X2NvbnRyb2xsZXIuaD4gI2luY2x1ZGUgPGxpbnV4L21vZHVsZS5oPg0KPiA+
-ID4gKyNpbmNsdWRlIDxsaW51eC9vZi5oPiAjaW5jbHVkZSA8bGludXgvcGxhdGZvcm1fZGV2aWNl
-Lmg+ICNpbmNsdWRlDQo+ID4gPiArPGxpbnV4L3NsYWIuaD4NCj4gPiA+ICsNCj4gPiA+ICsvKiBF
-YWNoIGJpdCBpbiB0aGUgcmVnaXN0ZXIgcmVwcmVzZW50cyBhbiBJUEMgSUQgKi8gI2RlZmluZQ0K
-PiA+ID4gK0lQQ1JfVFhfVFJJR8KgwqDCoMKgwqDCoMKgwqDCoMKgwqAweDAwICNkZWZpbmUNCj4g
-SVBDUl9UWF9FTkFCTEXCoMKgwqDCoMKgwqDCoMKgwqAweDA0DQo+ID4gPiArI2RlZmluZSBJUENS
-X1JYX0VOQUJMRcKgwqDCoMKgwqDCoMKgwqDCoDB4MTA0ICNkZWZpbmUNCj4gSVBDUl9UWF9TVEFU
-VVMNCj4gPiA+ICsweDA4ICNkZWZpbmUgSVBDUl9SWF9TVEFUVVPCoMKgwqDCoMKgwqDCoMKgwqAw
-eDEwOA0KPiAjZGVmaW5lwqAgUlhfSVJRKG4pDQo+ID4gPiArQklUKDAgKyAxICogKG4pKSAjZGVm
-aW5lwqAgUlhfSVJRX01BU0vCoMKgwqDCoMKgwqDCoMKgwqDCoMKgMHhmICNkZWZpbmUNCj4gPiA+
-ICtJUENSX1RYX0RBVEHCoMKgwqDCoMKgwqDCoMKgwqDCoMKgMHgxMCAjZGVmaW5lDQo+IElQQ1Jf
-UlhfREFUQcKgwqDCoMKgwqDCoMKgwqDCoMKgwqAweDExMA0KPiA+ID4gKw0KPiA+ID4gK3N0cnVj
-dCBhc3QyNzAwX21ib3hfZGF0YSB7DQo+ID4gPiArwqDCoMKgwqDCoMKgwqB1OCBudW1fY2hhbnM7
-DQo+ID4gPiArwqDCoMKgwqDCoMKgwqB1OCBtc2dfc2l6ZTsNCj4gPiA+ICt9Ow0KPiA+ID4gKw0K
-PiA+ID4gK3N0cnVjdCBhc3QyNzAwX21ib3ggew0KPiA+ID4gK8KgwqDCoMKgwqDCoMKgc3RydWN0
-IG1ib3hfY29udHJvbGxlciBtYm94Ow0KPiA+ID4gK8KgwqDCoMKgwqDCoMKgY29uc3Qgc3RydWN0
-IGFzdDI3MDBfbWJveF9kYXRhICpkcnZfZGF0YTsNCj4gPiA+ICvCoMKgwqDCoMKgwqDCoHZvaWQg
-X19pb21lbSAqcmVnczsNCj4gPiA+ICvCoMKgwqDCoMKgwqDCoHUzMiAqcnhfYnVmZjsNCj4gPiA+
-ICt9Ow0KPiA+ID4gKw0KPiA+ID4gK3N0YXRpYyBpbmxpbmUgaW50IGNoX251bShzdHJ1Y3QgbWJv
-eF9jaGFuICpjaGFuKSB7DQo+ID4gPiArwqDCoMKgwqDCoMKgwqByZXR1cm4gY2hhbiAtIGNoYW4t
-Pm1ib3gtPmNoYW5zOyB9DQo+ID4gPiArDQo+ID4gPiArc3RhdGljIGlubGluZSBpbnQgYXN0Mjcw
-MF9tYm94X3R4X2RvbmUoc3RydWN0IGFzdDI3MDBfbWJveCAqbWIsIGludA0KPiA+ID4gK2lkeCkg
-ew0KPiA+ID4gK8KgwqDCoMKgwqDCoMKgcmV0dXJuICEocmVhZGwobWItPnJlZ3MgKyBJUENSX1RY
-X1NUQVRVUykgJiBCSVQoaWR4KSk7IH0NCj4gPiA+ICsNCj4gPiA+ICtzdGF0aWMgaXJxcmV0dXJu
-X3QgYXN0MjcwMF9tYm94X2lycShpbnQgaXJxLCB2b2lkICpwKSB7DQo+ID4gPiArwqDCoMKgwqDC
-oMKgwqBzdHJ1Y3QgYXN0MjcwMF9tYm94ICptYiA9IHA7DQo+ID4gPiArwqDCoMKgwqDCoMKgwqB2
-b2lkIF9faW9tZW0gKmRhdGFfcmVnOw0KPiA+ID4gK8KgwqDCoMKgwqDCoMKgaW50IG51bV93b3Jk
-czsNCj4gPiA+ICvCoMKgwqDCoMKgwqDCoHUzMiAqd29yZF9kYXRhOw0KPiA+ID4gK8KgwqDCoMKg
-wqDCoMKgdTMyIHN0YXR1czsNCj4gPiA+ICvCoMKgwqDCoMKgwqDCoGludCBuOw0KPiA+ID4gKw0K
-PiA+ID4gK8KgwqDCoMKgwqDCoMKgLyogT25seSBleGFtaW5lIGNoYW5uZWxzIHRoYXQgYXJlIGN1
-cnJlbnRseSBlbmFibGVkLiAqLw0KPiA+ID4gK8KgwqDCoMKgwqDCoMKgc3RhdHVzID0gcmVhZGwo
-bWItPnJlZ3MgKyBJUENSX1JYX0VOQUJMRSkgJg0KPiA+ID4gK8KgwqDCoMKgwqDCoMKgwqDCoMKg
-wqDCoMKgwqDCoCByZWFkbChtYi0+cmVncyArIElQQ1JfUlhfU1RBVFVTKTsNCj4gPiA+ICsNCj4g
-PiA+ICvCoMKgwqDCoMKgwqDCoGlmICghKHN0YXR1cyAmIFJYX0lSUV9NQVNLKSkNCj4gPiA+ICvC
-oMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqByZXR1cm4gSVJRX05PTkU7DQo+ID4gPiArDQo+
-ID4gPiArwqDCoMKgwqDCoMKgwqBmb3IgKG4gPSAwOyBuIDwgbWItPm1ib3gubnVtX2NoYW5zOyAr
-K24pIHsNCj4gPiA+ICvCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqBzdHJ1Y3QgbWJveF9j
-aGFuICpjaGFuID0gJm1iLT5tYm94LmNoYW5zW25dOw0KPiA+ID4gKw0KPiA+ID4gK8KgwqDCoMKg
-wqDCoMKgwqDCoMKgwqDCoMKgwqDCoGlmICghKHN0YXR1cyAmIFJYX0lSUShuKSkpDQo+ID4gPiAr
-wqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoGNvbnRpbnVlOw0K
-PiA+ID4gKw0KPiA+ID4gK8KgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoGZvciAoZGF0YV9y
-ZWcgPSBtYi0+cmVncyArIElQQ1JfUlhfREFUQSArDQo+ID4gPiArbWItPmRydl9kYXRhLT5tc2df
-c2l6ZSAqIG4sDQo+ID4gPiArwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqAg
-d29yZF9kYXRhID0gY2hhbi0+Y29uX3ByaXYsDQo+ID4gPiArwqDCoMKgwqDCoMKgwqDCoMKgwqDC
-oMKgwqDCoMKgwqDCoMKgwqAgbnVtX3dvcmRzID0gKG1iLT5kcnZfZGF0YS0+bXNnX3NpemUgLw0K
-PiA+ID4gK3NpemVvZih1MzIpKTsNCj4gPiA+ICvCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKg
-wqDCoMKgwqDCoCBudW1fd29yZHM7IG51bV93b3Jkcy0tLCBkYXRhX3JlZyArPQ0KPiA+ID4gK3Np
-emVvZih1MzIpLCB3b3JkX2RhdGErKykNCj4gPiA+ICvCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDC
-oMKgwqDCoMKgwqDCoMKgwqDCoMKgKndvcmRfZGF0YSA9IHJlYWRsKGRhdGFfcmVnKTsNCj4gPiA+
-ICsNCj4gPiA+ICvCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqBtYm94X2NoYW5fcmVjZWl2
-ZWRfZGF0YShjaGFuLCBjaGFuLT5jb25fcHJpdik7DQo+ID4gPiArDQo+ID4gPiArwqDCoMKgwqDC
-oMKgwqDCoMKgwqDCoMKgwqDCoMKgLyogVGhlIElSUSBjYW4gYmUgY2xlYXJlZCBvbmx5IG9uY2Ug
-dGhlIEZJRk8gaXMNCj4gPiA+ICtlbXB0eS4gKi8NCj4gPiA+ICvCoMKgwqDCoMKgwqDCoMKgwqDC
-oMKgwqDCoMKgwqB3cml0ZWwoUlhfSVJRKG4pLCBtYi0+cmVncyArIElQQ1JfUlhfU1RBVFVTKTsN
-Cj4gPiA+ICvCoMKgwqDCoMKgwqDCoH0NCj4gPiA+ICsNCj4gPiA+ICvCoMKgwqDCoMKgwqDCoHJl
-dHVybiBJUlFfSEFORExFRDsNCj4gPiA+ICt9DQo+ID4gPiArDQo+ID4gPiArc3RhdGljIGludCBh
-c3QyNzAwX21ib3hfc2VuZF9kYXRhKHN0cnVjdCBtYm94X2NoYW4gKmNoYW4sIHZvaWQNCj4gPiA+
-ICsqZGF0YSkgew0KPiA+ID4gK8KgwqDCoMKgwqDCoMKgc3RydWN0IGFzdDI3MDBfbWJveCAqbWIg
-PQ0KPiBkZXZfZ2V0X2RydmRhdGEoY2hhbi0+bWJveC0+ZGV2KTsNCj4gPiA+ICvCoMKgwqDCoMKg
-wqDCoHZvaWQgX19pb21lbSAqZGF0YV9yZWc7DQo+ID4gPiArwqDCoMKgwqDCoMKgwqB1MzIgKndv
-cmRfZGF0YTsNCj4gPiA+ICvCoMKgwqDCoMKgwqDCoGludCBudW1fd29yZHM7DQo+ID4gPiArwqDC
-oMKgwqDCoMKgwqBpbnQgaWR4ID0gY2hfbnVtKGNoYW4pOw0KPiA+ID4gKw0KPiA+ID4gK8KgwqDC
-oMKgwqDCoMKgaWYgKCEocmVhZGwobWItPnJlZ3MgKyBJUENSX1RYX0VOQUJMRSkgJiBCSVQoaWR4
-KSkpIHsNCj4gPiA+ICvCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqBkZXZfd2FybihtYi0+
-bWJveC5kZXYsICIlczogQ2gtJWQgbm90IGVuYWJsZWQNCj4gPiA+ICt5ZXRcbiIsIF9fZnVuY19f
-LCBpZHgpOw0KPiA+ID4gK8KgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoHJldHVybiAtRUJV
-U1k7DQo+ID4gPiArwqDCoMKgwqDCoMKgwqB9DQo+ID4gPiArDQo+ID4gPiArwqDCoMKgwqDCoMKg
-wqBpZiAoIShhc3QyNzAwX21ib3hfdHhfZG9uZShtYiwgaWR4KSkpIHsNCj4gPiA+ICvCoMKgwqDC
-oMKgwqDCoMKgwqDCoMKgwqDCoMKgwqBkZXZfd2FybihtYi0+bWJveC5kZXYsICIlczogQ2gtJWQg
-bGFzdCBkYXRhIGhhcw0KPiBub3QNCj4gPiA+ICtmaW5pc2hlZFxuIiwgX19mdW5jX18sIGlkeCk7
-DQo+ID4gPiArwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgcmV0dXJuIC1FQlVTWTsNCj4g
-PiA+ICvCoMKgwqDCoMKgwqDCoH0NCj4gPiA+ICsNCj4gPiA+ICvCoMKgwqDCoMKgwqDCoGZvciAo
-ZGF0YV9yZWcgPSBtYi0+cmVncyArIElQQ1JfVFhfREFUQSArDQo+ID4gPiArbWItPmRydl9kYXRh
-LT5tc2dfc2l6ZSAqIGlkeCwNCj4gPiA+ICvCoMKgwqDCoMKgwqDCoMKgwqDCoMKgIG51bV93b3Jk
-cyA9IChtYi0+ZHJ2X2RhdGEtPm1zZ19zaXplIC8gc2l6ZW9mKHUzMikpLA0KPiA+ID4gK8KgwqDC
-oMKgwqDCoMKgwqDCoMKgwqAgd29yZF9kYXRhID0gKHUzMiAqKWRhdGE7DQo+ID4gPiArwqDCoMKg
-wqDCoMKgwqDCoMKgwqDCoCBudW1fd29yZHM7IG51bV93b3Jkcy0tLCBkYXRhX3JlZyArPSBzaXpl
-b2YodTMyKSwNCj4gPiA+ICt3b3JkX2RhdGErKykNCj4gDQo+IFRoZSByZWFkYWJpbGl0eSBvZiB0
-aGlzIGlzIG5vdCBncmVhdC4gQ2FuIHlvdSB0cnkgdG8gaW1wcm92ZSBpdD8gQXQgbGVhc3QgcHV0
-IGVhY2gNCj4gaGVhZGVyIHN0YXRlbWVudCBvbiBpdHMgb3duIGxpbmUgKGF0IHRoZSBtb21lbnQg
-dGhlIGNvbmRpdGlvbiBzdGF0ZW1lbnQgaXMgb24NCj4gdGhlIHNhbWUgbGluZSBhcyB0aGUgaW5j
-cmVtZW50IHN0YXRlbWVudCkuDQo+IA0KQWdyZWVkLg0KDQo+ID4gPiArwqDCoMKgwqDCoMKgwqDC
-oMKgwqDCoMKgwqDCoMKgd3JpdGVsKCp3b3JkX2RhdGEsIGRhdGFfcmVnKTsNCj4gDQo+IEknbSBu
-b3Qgc3VwZXIgZmFtaWxpYXIgd2l0aCB0aGUgbWFpbGJveCBzdWJzeXN0ZW0sIGJ1dCBJIGZlZWwg
-c29tZQ0KPiBjb21tZW50YXJ5IG9uIHRoZSBkYXRhIHNpemUgYW5kIGFsaWdubWVudCBhc3N1bXB0
-aW9ucyB3b3VsZCBiZSBoZWxwZnVsLA0KPiBnaXZlbiB0aGUgQVBJcyBhcmUgYWxsIGB2b2lkICpg
-IHdpdGhvdXQgYSBsZW5ndGggcGFyYW1ldGVyLg0KPiANCj4gU2hvdWxkIHlvdSBkZWZpbmUgYSB0
-eXBlIGZvciBjbGllbnRzIHRvIHN1Ym1pdD8NCj4gDQpJbiBtYWlsYm94J3MgZnJhbWV3b3JrLCB0
-aGVyZSB3aWxsIGJlIGEgbWFpbGJveC1jbGllbnQgd2hvIHRydWx5IGRlZmluZSBob3cgdG8gdXNl
-DQphbmQgd2hhdCB0byBzZW5kLiBTbywgSSBqdXN0IGxlYXZlIHRoaXMgcGFydCBmb3IgdGhlIG1h
-aWxib3gtY2xpZW50IHRvIGRlZmluZS4NClRoZXJlIGFyZSBzb21lIHNhbXBsZXMgaW4gZHJpbXZl
-cnMvZmlybXdhcmUgZm9yIHlvdXIgcmVmZXJlbmNlLg0KDQo+ID4gPiArDQo+ID4gPiArwqDCoMKg
-wqDCoMKgwqB3cml0ZWwoQklUKGlkeCksIG1iLT5yZWdzICsgSVBDUl9UWF9UUklHKTsNCj4gPiA+
-ICvCoMKgwqDCoMKgwqDCoGRldl9kYmcobWItPm1ib3guZGV2LCAiJXM6IENoLSVkIHNlbnRcbiIs
-IF9fZnVuY19fLCBpZHgpOw0KPiA+ID4gKw0KPiA+ID4gK8KgwqDCoMKgwqDCoMKgcmV0dXJuIDA7
-DQo+ID4gPiArfQ0KPiA+ID4gKw0KPiA+ID4gK3N0YXRpYyBpbnQgYXN0MjcwMF9tYm94X3N0YXJ0
-dXAoc3RydWN0IG1ib3hfY2hhbiAqY2hhbikgew0KPiA+ID4gK8KgwqDCoMKgwqDCoMKgc3RydWN0
-IGFzdDI3MDBfbWJveCAqbWIgPQ0KPiBkZXZfZ2V0X2RydmRhdGEoY2hhbi0+bWJveC0+ZGV2KTsN
-Cj4gPiA+ICvCoMKgwqDCoMKgwqDCoGludCBpZHggPSBjaF9udW0oY2hhbik7DQo+ID4gPiArwqDC
-oMKgwqDCoMKgwqB2b2lkIF9faW9tZW0gKnJlZyA9IG1iLT5yZWdzICsgSVBDUl9SWF9FTkFCTEU7
-DQo+ID4gPiArDQo+ID4gPiArwqDCoMKgwqDCoMKgwqB3cml0ZWxfcmVsYXhlZChyZWFkbF9yZWxh
-eGVkKHJlZykgfCBCSVQoaWR4KSwgcmVnKTsNCj4gPiA+ICsNCj4gPiA+ICvCoMKgwqDCoMKgwqDC
-oHJldHVybiAwOw0KPiA+ID4gK30NCj4gPiA+ICsNCj4gPiA+ICtzdGF0aWMgdm9pZCBhc3QyNzAw
-X21ib3hfc2h1dGRvd24oc3RydWN0IG1ib3hfY2hhbiAqY2hhbikgew0KPiA+ID4gK8KgwqDCoMKg
-wqDCoMKgc3RydWN0IGFzdDI3MDBfbWJveCAqbWIgPQ0KPiBkZXZfZ2V0X2RydmRhdGEoY2hhbi0+
-bWJveC0+ZGV2KTsNCj4gPiA+ICvCoMKgwqDCoMKgwqDCoGludCBpZHggPSBjaF9udW0oY2hhbik7
-DQo+ID4gPiArwqDCoMKgwqDCoMKgwqB2b2lkIF9faW9tZW0gKnJlZyA9IG1iLT5yZWdzICsgSVBD
-Ul9SWF9FTkFCTEU7DQo+ID4gPiArDQo+ID4gPiArwqDCoMKgwqDCoMKgwqB3cml0ZWxfcmVsYXhl
-ZChyZWFkbF9yZWxheGVkKHJlZykgJiB+QklUKGlkeCksIHJlZyk7DQo+IA0KPiBXaHkgYXJlIHdl
-IHVzaW5nIHJlbGF4ZWQgb3BlcmF0aW9ucyBmb3Igc3RhcnR1cCBhbmQgc2h1dGRvd24/IElmIHRo
-aXMgaXMgdmFsaWQNCj4gYSBjb21tZW50IHdvdWxkIGJlIGhlbHBmdWwuDQo+IA0KSSB3aWxsIHJl
-bW92ZSByZWxheGVkIG9wIGluIG5leHQgcGF0Y2guDQoNCj4gPiA+ICt9DQo+ID4gPiArDQo+ID4g
-PiArc3RhdGljIGJvb2wgYXN0MjcwMF9tYm94X2xhc3RfdHhfZG9uZShzdHJ1Y3QgbWJveF9jaGFu
-ICpjaGFuKSB7DQo+ID4gPiArwqDCoMKgwqDCoMKgwqBzdHJ1Y3QgYXN0MjcwMF9tYm94ICptYiA9
-DQo+IGRldl9nZXRfZHJ2ZGF0YShjaGFuLT5tYm94LT5kZXYpOw0KPiA+ID4gK8KgwqDCoMKgwqDC
-oMKgaW50IGlkeCA9IGNoX251bShjaGFuKTsNCj4gPiA+ICsNCj4gPiA+ICvCoMKgwqDCoMKgwqDC
-oHJldHVybiBhc3QyNzAwX21ib3hfdHhfZG9uZShtYiwgaWR4KSA/IHRydWUgOiBmYWxzZTsgfQ0K
-PiA+ID4gKw0KPiA+ID4gK3N0YXRpYyBjb25zdCBzdHJ1Y3QgbWJveF9jaGFuX29wcyBhc3QyNzAw
-X21ib3hfY2hhbl9vcHMgPSB7DQo+ID4gPiArwqDCoMKgwqDCoMKgwqAuc2VuZF9kYXRhwqDCoMKg
-wqDCoMKgPSBhc3QyNzAwX21ib3hfc2VuZF9kYXRhLA0KPiA+ID4gK8KgwqDCoMKgwqDCoMKgLnN0
-YXJ0dXDCoMKgwqDCoMKgwqDCoMKgPSBhc3QyNzAwX21ib3hfc3RhcnR1cCwNCj4gPiA+ICvCoMKg
-wqDCoMKgwqDCoC5zaHV0ZG93bsKgwqDCoMKgwqDCoMKgPSBhc3QyNzAwX21ib3hfc2h1dGRvd24s
-DQo+ID4gPiArwqDCoMKgwqDCoMKgwqAubGFzdF90eF9kb25lwqDCoMKgPSBhc3QyNzAwX21ib3hf
-bGFzdF90eF9kb25lLCB9Ow0KPiA+ID4gKw0KPiA+ID4gK3N0YXRpYyBpbnQgYXN0MjcwMF9tYm94
-X3Byb2JlKHN0cnVjdCBwbGF0Zm9ybV9kZXZpY2UgKnBkZXYpIHsNCj4gPiA+ICvCoMKgwqDCoMKg
-wqDCoHN0cnVjdCBhc3QyNzAwX21ib3ggKm1iOw0KPiA+ID4gK8KgwqDCoMKgwqDCoMKgY29uc3Qg
-c3RydWN0IGFzdDI3MDBfbWJveF9kYXRhICpkcnZfZGF0YTsNCj4gPiA+ICvCoMKgwqDCoMKgwqDC
-oHN0cnVjdCBkZXZpY2UgKmRldiA9ICZwZGV2LT5kZXY7DQo+ID4gPiArwqDCoMKgwqDCoMKgwqBp
-bnQgaXJxLCByZXQ7DQo+ID4gPiArDQo+ID4gPiArwqDCoMKgwqDCoMKgwqBpZiAoIXBkZXYtPmRl
-di5vZl9ub2RlKQ0KPiA+ID4gK8KgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoHJldHVybiAt
-RU5PREVWOw0KPiA+ID4gKw0KPiA+ID4gK8KgwqDCoMKgwqDCoMKgZHJ2X2RhdGEgPSAoY29uc3Qg
-c3RydWN0IGFzdDI3MDBfbWJveF9kYXRhDQo+ID4gPiArKilkZXZpY2VfZ2V0X21hdGNoX2RhdGEo
-JnBkZXYtPmRldik7DQo+IA0KPiBUaGVyZSdzIG5vIG5lZWQgZm9yIHRoZSBjYXN0IGhlcmUsIGRl
-dmljZV9nZXRfbWF0Y2hfZGF0YSgpIHJldHVybnMgYGNvbnN0IHZvaWQNCj4gKmAuDQo+IA0KQWdy
-ZWVkLg0KDQo+ID4gPiArDQo+ID4gPiArwqDCoMKgwqDCoMKgwqBtYiA9IGRldm1fa3phbGxvYyhk
-ZXYsIHNpemVvZigqbWIpLCBHRlBfS0VSTkVMKTsNCj4gPiA+ICvCoMKgwqDCoMKgwqDCoGlmICgh
-bWIpDQo+ID4gPiArwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgcmV0dXJuIC1FTk9NRU07
-DQo+ID4gPiArDQo+ID4gPiArwqDCoMKgwqDCoMKgwqBtYi0+bWJveC5jaGFucyA9IGRldm1fa2Nh
-bGxvYygmcGRldi0+ZGV2LA0KPiA+ID4gK2Rydl9kYXRhLT5udW1fY2hhbnMsDQo+ID4gPg0KPiAr
-wqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDC
-oMKgwqDCoMKgwqDCoMKgIHNpemVvZigqbWItPm1ib3guYw0KPiBoYW5zKSwNCj4gPiA+ICtHRlBf
-S0VSTkVMKTsNCj4gPiA+ICvCoMKgwqDCoMKgwqDCoGlmICghbWItPm1ib3guY2hhbnMpDQo+ID4g
-PiArwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgcmV0dXJuIC1FTk9NRU07DQo+ID4gPiAr
-DQo+ID4gPiArwqDCoMKgwqDCoMKgwqBmb3IgKGludCBpID0gMDsgaSA8IGRydl9kYXRhLT5udW1f
-Y2hhbnM7IGkrKykgew0KPiA+ID4gK8KgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoG1iLT5t
-Ym94LmNoYW5zW2ldLmNvbl9wcml2ID0gZGV2bV9rY2FsbG9jKGRldiwNCj4gPiA+ICtkcnZfZGF0
-YS0+bXNnX3NpemUsDQo+ID4gPg0KPiArDQo+IA0KPiA+ID4gK3NpemVvZih1OCksIEdGUF9LRVJO
-RUwpOw0KPiA+ID4gK8KgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoGlmICghbWItPm1ib3gu
-Y2hhbnNbaV0uY29uX3ByaXYpDQo+ID4gPiArwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKg
-wqDCoMKgwqDCoMKgwqDCoHJldHVybiAtRU5PTUVNOw0KPiA+ID4gK8KgwqDCoMKgwqDCoMKgfQ0K
-PiA+ID4gKw0KPiA+ID4gK8KgwqDCoMKgwqDCoMKgcGxhdGZvcm1fc2V0X2RydmRhdGEocGRldiwg
-bWIpOw0KPiA+ID4gKw0KPiA+ID4gK8KgwqDCoMKgwqDCoMKgbWItPnJlZ3MgPSBkZXZtX3BsYXRm
-b3JtX2lvcmVtYXBfcmVzb3VyY2UocGRldiwgMCk7DQo+ID4gPiArwqDCoMKgwqDCoMKgwqBpZiAo
-SVNfRVJSKG1iLT5yZWdzKSkNCj4gPiA+ICvCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqBy
-ZXR1cm4gUFRSX0VSUihtYi0+cmVncyk7DQo+IA0KPiBKdXN0IGNoZWNraW5nIHRoZSBjb250cm9s
-bGVyIGRvZXNuJ3QgcmVxdWlyZSBhbnkgY2xvY2sgb3IgcmVzZXQgY29uZmlndXJhdGlvbg0KPiBi
-ZWZvcmUgd2UgYWNjZXNzIGl0Pw0KWWVzLCBjbGsgb3IgcmVzZXQgaXMgbm90IHJlcXVpcmVkLg0K
-DQoNCj4gDQo+IEFuZHJldw0K
+
+On Wed, 18 Jun 2025 17:37:55 +0200, Michael Riesch wrote:
+> Habidere,
+> 
+> This series introduces support for the Rockchip Camera Interface (CIF),
+> which is featured in many Rockchip SoCs in different variations.
+> For example, the PX30 Video Input Processor (VIP) is able to receive
+> video data via the Digital Video Port (DVP, a parallel data interface)
+> and transfer it into system memory using a double-buffering mechanism
+> called ping-pong mode.
+> The RK3568 Video Capture (VICAP) unit, on the other hand, features a
+> DVP and a MIPI CSI-2 receiver that can receive video data independently
+> (both using the ping-pong scheme).
+> The different variants may have additional features, such as scaling
+> and/or cropping.
+> Finally, the RK3588 VICAP unit constitutes an essential piece of the
+> camera interface with one DVP, six MIPI CSI-2 receivers, scale/crop
+> units, and a data path multiplexer (to scaler units, to ISP, ...).
+> 
+> The v9 of the series adds a media controller centric V4L2 device driver
+> for the Rockchip CIF with
+>  - support for the PX30 VIP (not tested, though, due to the lack of HW)
+>  - support for the RK3568 VICAP, including
+>     - capturing frames from the DVP
+>     - capturing frames from the MIPI CSI-2 receiver
+>  - abstraction for the ping-pong scheme to allow for future extensions
+>  - abstraction for the INTERFACE and CROP parts to allow for future
+>    extensions
+>  - initial support for different virtual channels (not tested, though,
+>    due to the lack of HW)
+> and a V4L2 subdevice driver for the Rockchip MIPI CSI-2 Receiver.
+> 
+> The patches are functional and have been tested successfully on a
+> custom RK3568 board including the ITE Tech. IT6801 HDMI receiver and
+> the Sony IMX415 image sensor as subdevices attached to the DVP and the
+> MIPI CSI-2 receiver, respectively.
+> The IT6801 driver still needs some loving care but shall be submitted
+> as well at some point.
+> 
+> However, several features are not yet addressed, such as
+>  - support for the RK3588 variant (-> first success achieved, patches
+>    need some cleanup and shall be submitted separately)
+>  - support for the MUX/SCALE/TOISP block in the RK3588 VICAP (which
+>    provides the base for image processing on the RK3588)
+>  - support for the scaling unit in the PX30 (-> cannot do due to the
+>    lack of HW)
+>  - support for the interface to the Rockchip ISP in the RK3568
+>    (-> cannot do, latest information from Rockchip points out there
+>    IS NO HW CONNECTION BETWEEN VICAP AND ISP ON RK3568)
+> 
+> Looking forward to your comments!
+> 
+> To: Mehdi Djait <mehdi.djait@linux.intel.com>
+> To: Maxime Chevallier <maxime.chevallier@bootlin.com>
+> To: Théo Lebrun <theo.lebrun@bootlin.com>
+> To: Thomas Petazzoni <thomas.petazzoni@bootlin.com>
+> To: Gerald Loacker <gerald.loacker@wolfvision.net>
+> To: Bryan O'Donoghue <bryan.odonoghue@linaro.org>
+> To: Markus Elfring <Markus.Elfring@web.de>
+> To: Sakari Ailus <sakari.ailus@iki.fi>
+> To: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+> To: Mauro Carvalho Chehab <mchehab@kernel.org>
+> To: Rob Herring <robh+dt@kernel.org>
+> To: Krzysztof Kozlowski <krzk+dt@kernel.org>
+> To: Conor Dooley <conor+dt@kernel.org>
+> To: Heiko Stuebner <heiko@sntech.de>
+> To: Kever Yang <kever.yang@rock-chips.com>
+> To: Nicolas Dufresne <nicolas.dufresne@collabora.com>
+> To: Sebastian Reichel <sebastian.reichel@collabora.com>
+> To: Collabora Kernel Team <kernel@collabora.com>
+> To: Paul Kocialkowski <paulk@sys-base.io>
+> To: Alexander Shiyan <eagle.alexander923@gmail.com>
+> To: Val Packett <val@packett.cool>
+> To: Rob Herring <robh@kernel.org>
+> To: Philipp Zabel <p.zabel@pengutronix.de>
+> Cc: linux-media@vger.kernel.org
+> Cc: devicetree@vger.kernel.org
+> Cc: linux-kernel@vger.kernel.org
+> Cc: linux-arm-kernel@lists.infradead.org
+> Cc: linux-rockchip@lists.infradead.org
+> Signed-off-by: Michael Riesch <michael.riesch@wolfvision.net>
+> Signed-off-by: Michael Riesch <michael.riesch@collabora.com>
+> 
+> Changes in v9:
+> - added compatible for RK3588 MIPI CSI-2 receiver, thus dropped
+>   Krzysztof's R-b
+> - added interrupts to rkcsi DT binding and RK356x DT
+> - added variant specific callback to rkcif-capture-mipi that puts
+>   together the CTRL0 register content (which varies between RK3568
+>   and RK3588)
+> - fixed v4l2_fill_pixfmt_mp() return value handling (Mehdi)
+> - Link to v8: https://lore.kernel.org/r/20240220-rk3568-vicap-v8-0-9d9cbc4b524d@collabora.com
+> 
+> Changes in v8:
+> - rebased onto v6.16-rc1
+> - fixed RKCIF_MIPI_MAX value in rkcif-common.h
+> - fixed rkcsi Kconfig (kernel test robot)
+> - sorted rkcsi DT bindings document properly, completed example
+>   (Krzysztof)
+> - squashed the defconfig patches (Krzysztof), dropped Bryan's R-b
+> - Link to v7: https://lore.kernel.org/r/20240220-rk3568-vicap-v7-0-7581fd96a33a@collabora.com
+> 
+> Changes in v7:
+> - moved MIPI CSI-2 receiver driver into separate directory (Laurent)
+> - rkcsi: fixed return values (Bryan)
+> - rkcsi: fixed v4l2_get_link_freq to use pad instead of control
+>   handler (Sakari)
+> - rkcsi: added data-lanes property (Mehdi)
+> - rkcif: fixed formatting (Bryan)
+> - fixed "int" -> "unsigned int" in all for loops (Sakari)
+> - rkcif-stream: fixed minimum number of required buffers (Mehdi)
+> - rkcif-stream: used guards for the spinlock (Markus and Mehdi)
+> - rkcif-stream: made driver less noisy with dev_dbg (Mehdi)
+> - rkcif-stream: fixed issues detected by v4l2-compliance (Mehdi)
+> - rkcif-dvp-capture: fixed return value propagation in _register()
+>   (Mehdi)
+> - removed stray "phy-names" from required properties (Rob's bot)
+> - Link to v6: https://lore.kernel.org/r/20240220-rk3568-vicap-v6-0-d2f5fbee1551@collabora.com
+> 
+> Changes in v6:
+> - rebased onto v6.15-rc1
+> - renamed "MIPI CSI HOST" -> "MIPI CSI RECEIVER" (Laurent)
+> - s/@wolfvision.net/@collabora.com where appropriate
+> - renamed DVP delay property and moved it to the endpoint (Sakari)
+> - implemented DT review comments (Krzysztof and Sakari)
+> - implemented driver review comments (Sakari)
+> - fixed issues raised by media-ci (yet again)
+> - added documentation including a RK3568 topology (new patch 1)
+>   (Sakari)
+> - added patch that enables rkcif in the defconfig (new patch 9)
+> - Link to v5: https://lore.kernel.org/r/20250306-v6-8-topic-rk3568-vicap-v5-0-f02152534f3c@wolfvision.net
+> 
+> Changes in v5:
+> - fixed issues raised by media-ci
+> - fixed dt bindings (comments by Rob and Sakari)
+> - fixed probe on systems with no DVP in DT (comment by Alexander)
+> - fixed error path in register offset calculation
+> - split off MIPI CSI host driver into separate module (comment
+>   by Mehdi)
+> - added MODULE_DEVICE_TABLE() for both drivers (comment by Mehdi)
+> - Link to v4: https://lore.kernel.org/r/20250219-v6-8-topic-rk3568-vicap-v4-0-e906600ae3b0@wolfvision.net
+> 
+> Changes in v4:
+> - added support for the MIPI CSI-2 receiver (new patches 4, 6, 7, 10)
+> - fixed asserts on stream stop
+> - fixed register address lookup
+> - fixed link validiation callback
+> - fixed issues raised by Rob's bot, kernel test robot, and media-ci
+> - Link to v3: https://lore.kernel.org/r/20250206-v6-8-topic-rk3568-vicap-v3-0-69d1f19e5c40@wolfvision.net
+> 
+> Changes in v3:
+> - renamed the driver "cif" -> "rkcif"
+> - rebased onto v6.14-rc1
+> - abstracted the generic INTERFACE+CROP part
+> - addressed comments by Rob and Sakari
+> - added V4L2 MPLANE formats to DVP
+> - added patch that enables the RK3568 VICAP DVP on PF5 IO Expander
+> - fixed formatting issues raised by media-ci bot
+> - Link to v2: https://lore.kernel.org/r/20241217-v6-8-topic-rk3568-vicap-v2-0-b1d488fcc0d3@wolfvision.net
+> 
+> Changes in v2:
+> - merged with Mehdi's v13
+> - refactored the complete driver towards a media controller centric driver
+> - abstracted the generic ping-pong stream (can be used for DVP as well as for CSI-2)
+> - switched to MPLANE API
+> - added support for notifications
+> - Link to v1: https://lore.kernel.org/r/20240220-v6-8-topic-rk3568-vicap-v1-0-2680a1fa640b@wolfvision.net
+> 
+> ---
+> Mehdi Djait (2):
+>       media: dt-bindings: add rockchip px30 vip
+>       arm64: dts: rockchip: add the vip node to px30
+> 
+> Michael Riesch (11):
+>       Documentation: admin-guide: media: add rockchip camera interface
+>       media: dt-bindings: video-interfaces: add defines for sampling modes
+>       media: dt-bindings: add rockchip rk3568 vicap
+>       media: dt-bindings: add rockchip rk3568 mipi csi-2 receiver
+>       media: rockchip: add a driver for the rockchip camera interface
+>       media: rockchip: add driver for mipi csi-2 receiver
+>       media: rockchip: rkcif: add support for mipi csi-2 capture
+>       arm64: defconfig: enable rockchip camera interface and mipi csi-2 receiver
+>       arm64: dts: rockchip: add vicap node to rk356x
+>       arm64: dts: rockchip: add mipi csi-2 receiver node to rk356x
+>       arm64: dts: rockchip: enable vicap dvp on wolfvision pf5 io expander
+> 
+>  .../admin-guide/media/rkcif-rk3568-vicap.dot       |  21 +
+>  Documentation/admin-guide/media/rkcif.rst          |  83 ++
+>  Documentation/admin-guide/media/v4l-drivers.rst    |   1 +
+>  .../bindings/media/rockchip,px30-vip.yaml          | 122 +++
+>  .../bindings/media/rockchip,rk3568-mipi-csi.yaml   | 144 ++++
+>  .../bindings/media/rockchip,rk3568-vicap.yaml      | 170 ++++
+>  MAINTAINERS                                        |  17 +
+>  arch/arm64/boot/dts/rockchip/px30.dtsi             |  12 +
+>  .../rk3568-wolfvision-pf5-io-expander.dtso         |  20 +
+>  arch/arm64/boot/dts/rockchip/rk356x-base.dtsi      |  78 ++
+>  arch/arm64/configs/defconfig                       |   2 +
+>  drivers/media/platform/rockchip/Kconfig            |   2 +
+>  drivers/media/platform/rockchip/Makefile           |   2 +
+>  drivers/media/platform/rockchip/rkcif/Kconfig      |  18 +
+>  drivers/media/platform/rockchip/rkcif/Makefile     |   7 +
+>  .../platform/rockchip/rkcif/rkcif-capture-dvp.c    | 864 +++++++++++++++++++++
+>  .../platform/rockchip/rkcif/rkcif-capture-dvp.h    |  24 +
+>  .../platform/rockchip/rkcif/rkcif-capture-mipi.c   | 770 ++++++++++++++++++
+>  .../platform/rockchip/rkcif/rkcif-capture-mipi.h   |  22 +
+>  .../media/platform/rockchip/rkcif/rkcif-common.h   | 249 ++++++
+>  drivers/media/platform/rockchip/rkcif/rkcif-dev.c  | 302 +++++++
+>  .../platform/rockchip/rkcif/rkcif-interface.c      | 425 ++++++++++
+>  .../platform/rockchip/rkcif/rkcif-interface.h      |  30 +
+>  drivers/media/platform/rockchip/rkcif/rkcif-regs.h | 154 ++++
+>  .../media/platform/rockchip/rkcif/rkcif-stream.c   | 637 +++++++++++++++
+>  .../media/platform/rockchip/rkcif/rkcif-stream.h   |  31 +
+>  drivers/media/platform/rockchip/rkcsi/Kconfig      |  16 +
+>  drivers/media/platform/rockchip/rkcsi/Makefile     |   3 +
+>  drivers/media/platform/rockchip/rkcsi/rkcsi.c      | 735 ++++++++++++++++++
+>  include/dt-bindings/media/video-interfaces.h       |   4 +
+>  30 files changed, 4965 insertions(+)
+> ---
+> base-commit: 19272b37aa4f83ca52bdf9c16d5d81bdd1354494
+> change-id: 20240220-rk3568-vicap-b9b3f9925f44
+> 
+> Best regards,
+> --
+> Michael Riesch <michael.riesch@collabora.com>
+> 
+> 
+> 
+
+
+My bot found new DTB warnings on the .dts files added or changed in this
+series.
+
+Some warnings may be from an existing SoC .dtsi. Or perhaps the warnings
+are fixed by another series. Ultimately, it is up to the platform
+maintainer whether these warnings are acceptable or not. No need to reply
+unless the platform maintainer has comments.
+
+If you already ran DT checks and didn't see these error(s), then
+make sure dt-schema is up to date:
+
+  pip3 install dtschema --upgrade
+
+
+This patch series was applied (using b4) to base:
+ Base: using specified base-commit 19272b37aa4f83ca52bdf9c16d5d81bdd1354494
+
+If this is not the correct base, please add 'base-commit' tag
+(or use b4 which does this automatically)
+
+New warnings running 'make CHECK_DTBS=y for arch/arm64/boot/dts/rockchip/' for 20240220-rk3568-vicap-v9-0-ace1e5cc4a82@collabora.com:
+
+arch/arm64/boot/dts/rockchip/rk356x-base.dtsi:282.3-26: Warning (interrupts_property): /csi@fdfb0000:#interrupt-cells: size is (32), expected multiple of 12
+arch/arm64/boot/dts/rockchip/rk3566-pinetab2-v2.0.dtb: csi@fdfb0000 (rockchip,rk3568-mipi-csi): interrupts: [[0, 8, 4], [0, 0, 9], [4, 0]] is too long
+	from schema $id: http://devicetree.org/schemas/media/rockchip,rk3568-mipi-csi.yaml#
+arch/arm64/boot/dts/rockchip/rk356x-base.dtsi:282.3-26: Warning (interrupts_property): /csi@fdfb0000:#interrupt-cells: size is (32), expected multiple of 12
+arch/arm64/boot/dts/rockchip/rk356x-base.dtsi:282.3-26: Warning (interrupts_property): /csi@fdfb0000:#interrupt-cells: size is (32), expected multiple of 12
+arch/arm64/boot/dts/rockchip/rk3566-soquartz-cm4.dtb: csi@fdfb0000 (rockchip,rk3568-mipi-csi): interrupts: [[0, 8, 4], [0, 0, 9], [4, 0]] is too long
+	from schema $id: http://devicetree.org/schemas/media/rockchip,rk3568-mipi-csi.yaml#
+arch/arm64/boot/dts/rockchip/rk356x-base.dtsi:282.3-26: Warning (interrupts_property): /csi@fdfb0000:#interrupt-cells: size is (32), expected multiple of 12
+arch/arm64/boot/dts/rockchip/rk3566-bigtreetech-pi2.dtb: csi@fdfb0000 (rockchip,rk3568-mipi-csi): interrupts: [[0, 8, 4], [0, 0, 9], [4, 0]] is too long
+	from schema $id: http://devicetree.org/schemas/media/rockchip,rk3568-mipi-csi.yaml#
+arch/arm64/boot/dts/rockchip/rk3566-orangepi-3b-v2.1.dtb: csi@fdfb0000 (rockchip,rk3568-mipi-csi): interrupts: [[0, 8, 4], [0, 0, 9], [4, 0]] is too long
+	from schema $id: http://devicetree.org/schemas/media/rockchip,rk3568-mipi-csi.yaml#
+arch/arm64/boot/dts/rockchip/rk356x-base.dtsi:282.3-26: Warning (interrupts_property): /csi@fdfb0000:#interrupt-cells: size is (32), expected multiple of 12
+arch/arm64/boot/dts/rockchip/rk356x-base.dtsi:282.3-26: Warning (interrupts_property): /csi@fdfb0000:#interrupt-cells: size is (32), expected multiple of 12
+arch/arm64/boot/dts/rockchip/rk3566-powkiddy-rgb10max3.dtb: csi@fdfb0000 (rockchip,rk3568-mipi-csi): interrupts: [[0, 8, 4], [0, 0, 9], [4, 0]] is too long
+	from schema $id: http://devicetree.org/schemas/media/rockchip,rk3568-mipi-csi.yaml#
+arch/arm64/boot/dts/rockchip/rk356x-base.dtsi:282.3-26: Warning (interrupts_property): /csi@fdfb0000:#interrupt-cells: size is (32), expected multiple of 12
+arch/arm64/boot/dts/rockchip/rk3568-radxa-e25.dtb: csi@fdfb0000 (rockchip,rk3568-mipi-csi): interrupts: [[0, 8, 4], [0, 0, 9], [4, 0]] is too long
+	from schema $id: http://devicetree.org/schemas/media/rockchip,rk3568-mipi-csi.yaml#
+arch/arm64/boot/dts/rockchip/rk3568-bpi-r2-pro.dtb: csi@fdfb0000 (rockchip,rk3568-mipi-csi): interrupts: [[0, 8, 4], [0, 0, 9], [4, 0]] is too long
+	from schema $id: http://devicetree.org/schemas/media/rockchip,rk3568-mipi-csi.yaml#
+arch/arm64/boot/dts/rockchip/rk356x-base.dtsi:282.3-26: Warning (interrupts_property): /csi@fdfb0000:#interrupt-cells: size is (32), expected multiple of 12
+arch/arm64/boot/dts/rockchip/rk356x-base.dtsi:282.3-26: Warning (interrupts_property): /csi@fdfb0000:#interrupt-cells: size is (32), expected multiple of 12
+arch/arm64/boot/dts/rockchip/rk3568-photonicat.dtb: csi@fdfb0000 (rockchip,rk3568-mipi-csi): interrupts: [[0, 8, 4], [0, 0, 9], [4, 0]] is too long
+	from schema $id: http://devicetree.org/schemas/media/rockchip,rk3568-mipi-csi.yaml#
+arch/arm64/boot/dts/rockchip/rk3566-anbernic-rg-arc-s.dtb: csi@fdfb0000 (rockchip,rk3568-mipi-csi): interrupts: [[0, 8, 4], [0, 0, 9], [4, 0]] is too long
+	from schema $id: http://devicetree.org/schemas/media/rockchip,rk3568-mipi-csi.yaml#
+arch/arm64/boot/dts/rockchip/rk356x-base.dtsi:282.3-26: Warning (interrupts_property): /csi@fdfb0000:#interrupt-cells: size is (32), expected multiple of 12
+arch/arm64/boot/dts/rockchip/rk3568-qnap-ts433.dtb: csi@fdfb0000 (rockchip,rk3568-mipi-csi): interrupts: [[0, 8, 4], [0, 0, 9], [4, 0]] is too long
+	from schema $id: http://devicetree.org/schemas/media/rockchip,rk3568-mipi-csi.yaml#
+arch/arm64/boot/dts/rockchip/rk356x-base.dtsi:282.3-26: Warning (interrupts_property): /csi@fdfb0000:#interrupt-cells: size is (32), expected multiple of 12
+arch/arm64/boot/dts/rockchip/rk3568-nanopi-r5c.dtb: csi@fdfb0000 (rockchip,rk3568-mipi-csi): interrupts: [[0, 8, 4], [0, 0, 9], [4, 0]] is too long
+	from schema $id: http://devicetree.org/schemas/media/rockchip,rk3568-mipi-csi.yaml#
+arch/arm64/boot/dts/rockchip/rk356x-base.dtsi:282.3-26: Warning (interrupts_property): /csi@fdfb0000:#interrupt-cells: size is (32), expected multiple of 12
+arch/arm64/boot/dts/rockchip/rk356x-base.dtsi:282.3-26: Warning (interrupts_property): /csi@fdfb0000:#interrupt-cells: size is (32), expected multiple of 12
+arch/arm64/boot/dts/rockchip/rk3566-lckfb-tspi.dtb: csi@fdfb0000 (rockchip,rk3568-mipi-csi): interrupts: [[0, 8, 4], [0, 0, 9], [4, 0]] is too long
+	from schema $id: http://devicetree.org/schemas/media/rockchip,rk3568-mipi-csi.yaml#
+arch/arm64/boot/dts/rockchip/rk356x-base.dtsi:282.3-26: Warning (interrupts_property): /csi@fdfb0000:#interrupt-cells: size is (32), expected multiple of 12
+arch/arm64/boot/dts/rockchip/rk3568-fastrhino-r68s.dtb: csi@fdfb0000 (rockchip,rk3568-mipi-csi): interrupts: [[0, 8, 4], [0, 0, 9], [4, 0]] is too long
+	from schema $id: http://devicetree.org/schemas/media/rockchip,rk3568-mipi-csi.yaml#
+arch/arm64/boot/dts/rockchip/rk3566-anbernic-rg353ps.dtb: csi@fdfb0000 (rockchip,rk3568-mipi-csi): interrupts: [[0, 8, 4], [0, 0, 9], [4, 0]] is too long
+	from schema $id: http://devicetree.org/schemas/media/rockchip,rk3568-mipi-csi.yaml#
+arch/arm64/boot/dts/rockchip/rk356x-base.dtsi:282.3-26: Warning (interrupts_property): /csi@fdfb0000:#interrupt-cells: size is (32), expected multiple of 12
+arch/arm64/boot/dts/rockchip/rk3568-fastrhino-r66s.dtb: csi@fdfb0000 (rockchip,rk3568-mipi-csi): interrupts: [[0, 8, 4], [0, 0, 9], [4, 0]] is too long
+	from schema $id: http://devicetree.org/schemas/media/rockchip,rk3568-mipi-csi.yaml#
+arch/arm64/boot/dts/rockchip/rk356x-base.dtsi:282.3-26: Warning (interrupts_property): /csi@fdfb0000:#interrupt-cells: size is (32), expected multiple of 12
+arch/arm64/boot/dts/rockchip/rk356x-base.dtsi:282.3-26: Warning (interrupts_property): /csi@fdfb0000:#interrupt-cells: size is (32), expected multiple of 12
+arch/arm64/boot/dts/rockchip/rk3568-wolfvision-pf5.dtb: csi@fdfb0000 (rockchip,rk3568-mipi-csi): interrupts: [[0, 8, 4], [0, 0, 9], [4, 0]] is too long
+	from schema $id: http://devicetree.org/schemas/media/rockchip,rk3568-mipi-csi.yaml#
+arch/arm64/boot/dts/rockchip/rk356x-base.dtsi:282.3-26: Warning (interrupts_property): /csi@fdfb0000:#interrupt-cells: size is (32), expected multiple of 12
+arch/arm64/boot/dts/rockchip/rk356x-base.dtsi:282.3-26: Warning (interrupts_property): /csi@fdfb0000:#interrupt-cells: size is (32), expected multiple of 12
+arch/arm64/boot/dts/rockchip/rk3568-nanopi-r5s.dtb: csi@fdfb0000 (rockchip,rk3568-mipi-csi): interrupts: [[0, 8, 4], [0, 0, 9], [4, 0]] is too long
+	from schema $id: http://devicetree.org/schemas/media/rockchip,rk3568-mipi-csi.yaml#
+arch/arm64/boot/dts/rockchip/rk356x-base.dtsi:282.3-26: Warning (interrupts_property): /csi@fdfb0000:#interrupt-cells: size is (32), expected multiple of 12
+arch/arm64/boot/dts/rockchip/rk356x-base.dtsi:282.3-26: Warning (interrupts_property): /csi@fdfb0000:#interrupt-cells: size is (32), expected multiple of 12
+arch/arm64/boot/dts/rockchip/rk3568-rock-3b.dtb: csi@fdfb0000 (rockchip,rk3568-mipi-csi): interrupts: [[0, 8, 4], [0, 0, 9], [4, 0]] is too long
+	from schema $id: http://devicetree.org/schemas/media/rockchip,rk3568-mipi-csi.yaml#
+arch/arm64/boot/dts/rockchip/rk3566-anbernic-rg353vs.dtb: csi@fdfb0000 (rockchip,rk3568-mipi-csi): interrupts: [[0, 8, 4], [0, 0, 9], [4, 0]] is too long
+	from schema $id: http://devicetree.org/schemas/media/rockchip,rk3568-mipi-csi.yaml#
+arch/arm64/boot/dts/rockchip/rk3566-powkiddy-rgb30.dtb: csi@fdfb0000 (rockchip,rk3568-mipi-csi): interrupts: [[0, 8, 4], [0, 0, 9], [4, 0]] is too long
+	from schema $id: http://devicetree.org/schemas/media/rockchip,rk3568-mipi-csi.yaml#
+arch/arm64/boot/dts/rockchip/rk3566-powkiddy-x55.dtb: csi@fdfb0000 (rockchip,rk3568-mipi-csi): interrupts: [[0, 8, 4], [0, 0, 9], [4, 0]] is too long
+	from schema $id: http://devicetree.org/schemas/media/rockchip,rk3568-mipi-csi.yaml#
+arch/arm64/boot/dts/rockchip/rk356x-base.dtsi:282.3-26: Warning (interrupts_property): /csi@fdfb0000:#interrupt-cells: size is (32), expected multiple of 12
+arch/arm64/boot/dts/rockchip/rk3566-soquartz-model-a.dtb: csi@fdfb0000 (rockchip,rk3568-mipi-csi): interrupts: [[0, 8, 4], [0, 0, 9], [4, 0]] is too long
+	from schema $id: http://devicetree.org/schemas/media/rockchip,rk3568-mipi-csi.yaml#
+arch/arm64/boot/dts/rockchip/rk356x-base.dtsi:282.3-26: Warning (interrupts_property): /csi@fdfb0000:#interrupt-cells: size is (32), expected multiple of 12
+arch/arm64/boot/dts/rockchip/rk356x-base.dtsi:282.3-26: Warning (interrupts_property): /csi@fdfb0000:#interrupt-cells: size is (32), expected multiple of 12
+arch/arm64/boot/dts/rockchip/rk356x-base.dtsi:282.3-26: Warning (interrupts_property): /csi@fdfb0000:#interrupt-cells: size is (32), expected multiple of 12
+arch/arm64/boot/dts/rockchip/rk356x-base.dtsi:282.3-26: Warning (interrupts_property): /csi@fdfb0000:#interrupt-cells: size is (32), expected multiple of 12
+arch/arm64/boot/dts/rockchip/rk3568-odroid-m1.dtb: csi@fdfb0000 (rockchip,rk3568-mipi-csi): interrupts: [[0, 8, 4], [0, 0, 9], [4, 0]] is too long
+	from schema $id: http://devicetree.org/schemas/media/rockchip,rk3568-mipi-csi.yaml#
+arch/arm64/boot/dts/rockchip/rk3568-evb1-v10.dtb: csi@fdfb0000 (rockchip,rk3568-mipi-csi): interrupts: [[0, 8, 4], [0, 0, 9], [4, 0]] is too long
+	from schema $id: http://devicetree.org/schemas/media/rockchip,rk3568-mipi-csi.yaml#
+arch/arm64/boot/dts/rockchip/rk3568-roc-pc.dtb: csi@fdfb0000 (rockchip,rk3568-mipi-csi): interrupts: [[0, 8, 4], [0, 0, 9], [4, 0]] is too long
+	from schema $id: http://devicetree.org/schemas/media/rockchip,rk3568-mipi-csi.yaml#
+arch/arm64/boot/dts/rockchip/rk3566-powkiddy-rgb20sx.dtb: csi@fdfb0000 (rockchip,rk3568-mipi-csi): interrupts: [[0, 8, 4], [0, 0, 9], [4, 0]] is too long
+	from schema $id: http://devicetree.org/schemas/media/rockchip,rk3568-mipi-csi.yaml#
+arch/arm64/boot/dts/rockchip/rk356x-base.dtsi:282.3-26: Warning (interrupts_property): /csi@fdfb0000:#interrupt-cells: size is (32), expected multiple of 12
+arch/arm64/boot/dts/rockchip/rk356x-base.dtsi:282.3-26: Warning (interrupts_property): /csi@fdfb0000:#interrupt-cells: size is (32), expected multiple of 12
+arch/arm64/boot/dts/rockchip/rk3566-radxa-cm3-io.dtb: csi@fdfb0000 (rockchip,rk3568-mipi-csi): interrupts: [[0, 8, 4], [0, 0, 9], [4, 0]] is too long
+	from schema $id: http://devicetree.org/schemas/media/rockchip,rk3568-mipi-csi.yaml#
+arch/arm64/boot/dts/rockchip/rk3566-radxa-zero-3e.dtb: csi@fdfb0000 (rockchip,rk3568-mipi-csi): interrupts: [[0, 8, 4], [0, 0, 9], [4, 0]] is too long
+	from schema $id: http://devicetree.org/schemas/media/rockchip,rk3568-mipi-csi.yaml#
+arch/arm64/boot/dts/rockchip/rk356x-base.dtsi:282.3-26: Warning (interrupts_property): /csi@fdfb0000:#interrupt-cells: size is (32), expected multiple of 12
+arch/arm64/boot/dts/rockchip/rk356x-base.dtsi:282.3-26: Warning (interrupts_property): /csi@fdfb0000:#interrupt-cells: size is (32), expected multiple of 12
+arch/arm64/boot/dts/rockchip/rk3566-odroid-m1s.dtb: csi@fdfb0000 (rockchip,rk3568-mipi-csi): interrupts: [[0, 8, 4], [0, 0, 9], [4, 0]] is too long
+	from schema $id: http://devicetree.org/schemas/media/rockchip,rk3568-mipi-csi.yaml#
+arch/arm64/boot/dts/rockchip/rk3568-mecsbc.dtb: csi@fdfb0000 (rockchip,rk3568-mipi-csi): interrupts: [[0, 8, 4], [0, 0, 9], [4, 0]] is too long
+	from schema $id: http://devicetree.org/schemas/media/rockchip,rk3568-mipi-csi.yaml#
+arch/arm64/boot/dts/rockchip/rk356x-base.dtsi:282.3-26: Warning (interrupts_property): /csi@fdfb0000:#interrupt-cells: size is (32), expected multiple of 12
+arch/arm64/boot/dts/rockchip/rk3566-radxa-zero-3w.dtb: csi@fdfb0000 (rockchip,rk3568-mipi-csi): interrupts: [[0, 8, 4], [0, 0, 9], [4, 0]] is too long
+	from schema $id: http://devicetree.org/schemas/media/rockchip,rk3568-mipi-csi.yaml#
+arch/arm64/boot/dts/rockchip/rk356x-base.dtsi:282.3-26: Warning (interrupts_property): /csi@fdfb0000:#interrupt-cells: size is (32), expected multiple of 12
+arch/arm64/boot/dts/rockchip/rk3566-quartz64-b.dtb: csi@fdfb0000 (rockchip,rk3568-mipi-csi): interrupts: [[0, 8, 4], [0, 0, 9], [4, 0]] is too long
+	from schema $id: http://devicetree.org/schemas/media/rockchip,rk3568-mipi-csi.yaml#
+arch/arm64/boot/dts/rockchip/rk356x-base.dtsi:282.3-26: Warning (interrupts_property): /csi@fdfb0000:#interrupt-cells: size is (32), expected multiple of 12
+arch/arm64/boot/dts/rockchip/rk3566-anbernic-rg353v.dtb: csi@fdfb0000 (rockchip,rk3568-mipi-csi): interrupts: [[0, 8, 4], [0, 0, 9], [4, 0]] is too long
+	from schema $id: http://devicetree.org/schemas/media/rockchip,rk3568-mipi-csi.yaml#
+arch/arm64/boot/dts/rockchip/rk356x-base.dtsi:282.3-26: Warning (interrupts_property): /csi@fdfb0000:#interrupt-cells: size is (32), expected multiple of 12
+arch/arm64/boot/dts/rockchip/rk356x-base.dtsi:282.3-26: Warning (interrupts_property): /csi@fdfb0000:#interrupt-cells: size is (32), expected multiple of 12
+arch/arm64/boot/dts/rockchip/rk3566-orangepi-3b-v1.1.dtb: csi@fdfb0000 (rockchip,rk3568-mipi-csi): interrupts: [[0, 8, 4], [0, 0, 9], [4, 0]] is too long
+	from schema $id: http://devicetree.org/schemas/media/rockchip,rk3568-mipi-csi.yaml#
+arch/arm64/boot/dts/rockchip/rk356x-base.dtsi:282.3-26: Warning (interrupts_property): /csi@fdfb0000:#interrupt-cells: size is (32), expected multiple of 12
+arch/arm64/boot/dts/rockchip/rk356x-base.dtsi:282.3-26: Warning (interrupts_property): /csi@fdfb0000:#interrupt-cells: size is (32), expected multiple of 12
+arch/arm64/boot/dts/rockchip/rk3566-box-demo.dtb: csi@fdfb0000 (rockchip,rk3568-mipi-csi): interrupts: [[0, 8, 4], [0, 0, 9], [4, 0]] is too long
+	from schema $id: http://devicetree.org/schemas/media/rockchip,rk3568-mipi-csi.yaml#
+arch/arm64/boot/dts/rockchip/rk356x-base.dtsi:282.3-26: Warning (interrupts_property): /csi@fdfb0000:#interrupt-cells: size is (32), expected multiple of 12
+arch/arm64/boot/dts/rockchip/rk3566-powkiddy-rk2023.dtb: csi@fdfb0000 (rockchip,rk3568-mipi-csi): interrupts: [[0, 8, 4], [0, 0, 9], [4, 0]] is too long
+	from schema $id: http://devicetree.org/schemas/media/rockchip,rk3568-mipi-csi.yaml#
+arch/arm64/boot/dts/rockchip/rk3568-lubancat-2.dtb: csi@fdfb0000 (rockchip,rk3568-mipi-csi): interrupts: [[0, 8, 4], [0, 0, 9], [4, 0]] is too long
+	from schema $id: http://devicetree.org/schemas/media/rockchip,rk3568-mipi-csi.yaml#
+arch/arm64/boot/dts/rockchip/rk356x-base.dtsi:282.3-26: Warning (interrupts_property): /csi@fdfb0000:#interrupt-cells: size is (32), expected multiple of 12
+arch/arm64/boot/dts/rockchip/rk3566-rock-3c.dtb: csi@fdfb0000 (rockchip,rk3568-mipi-csi): interrupts: [[0, 8, 4], [0, 0, 9], [4, 0]] is too long
+	from schema $id: http://devicetree.org/schemas/media/rockchip,rk3568-mipi-csi.yaml#
+arch/arm64/boot/dts/rockchip/rk356x-base.dtsi:282.3-26: Warning (interrupts_property): /csi@fdfb0000:#interrupt-cells: size is (32), expected multiple of 12
+arch/arm64/boot/dts/rockchip/rk3566-bigtreetech-cb2-manta.dtb: csi@fdfb0000 (rockchip,rk3568-mipi-csi): interrupts: [[0, 8, 4], [0, 0, 9], [4, 0]] is too long
+	from schema $id: http://devicetree.org/schemas/media/rockchip,rk3568-mipi-csi.yaml#
+arch/arm64/boot/dts/rockchip/rk356x-base.dtsi:282.3-26: Warning (interrupts_property): /csi@fdfb0000:#interrupt-cells: size is (32), expected multiple of 12
+arch/arm64/boot/dts/rockchip/rk3566-pinenote-v1.1.dtb: csi@fdfb0000 (rockchip,rk3568-mipi-csi): interrupts: [[0, 8, 4], [0, 0, 9], [4, 0]] is too long
+	from schema $id: http://devicetree.org/schemas/media/rockchip,rk3568-mipi-csi.yaml#
+arch/arm64/boot/dts/rockchip/rk3566-anbernic-rg503.dtb: csi@fdfb0000 (rockchip,rk3568-mipi-csi): interrupts: [[0, 8, 4], [0, 0, 9], [4, 0]] is too long
+	from schema $id: http://devicetree.org/schemas/media/rockchip,rk3568-mipi-csi.yaml#
+arch/arm64/boot/dts/rockchip/rk356x-base.dtsi:282.3-26: Warning (interrupts_property): /csi@fdfb0000:#interrupt-cells: size is (32), expected multiple of 12
+arch/arm64/boot/dts/rockchip/rk356x-base.dtsi:282.3-26: Warning (interrupts_property): /csi@fdfb0000:#interrupt-cells: size is (32), expected multiple of 12
+arch/arm64/boot/dts/rockchip/rk356x-base.dtsi:282.3-26: Warning (interrupts_property): /csi@fdfb0000:#interrupt-cells: size is (32), expected multiple of 12
+arch/arm64/boot/dts/rockchip/rk3566-pinenote-v1.2.dtb: csi@fdfb0000 (rockchip,rk3568-mipi-csi): interrupts: [[0, 8, 4], [0, 0, 9], [4, 0]] is too long
+	from schema $id: http://devicetree.org/schemas/media/rockchip,rk3568-mipi-csi.yaml#
+arch/arm64/boot/dts/rockchip/rk3566-soquartz-blade.dtb: csi@fdfb0000 (rockchip,rk3568-mipi-csi): interrupts: [[0, 8, 4], [0, 0, 9], [4, 0]] is too long
+	from schema $id: http://devicetree.org/schemas/media/rockchip,rk3568-mipi-csi.yaml#
+arch/arm64/boot/dts/rockchip/rk356x-base.dtsi:282.3-26: Warning (interrupts_property): /csi@fdfb0000:#interrupt-cells: size is (32), expected multiple of 12
+arch/arm64/boot/dts/rockchip/rk3566-lubancat-1.dtb: csi@fdfb0000 (rockchip,rk3568-mipi-csi): interrupts: [[0, 8, 4], [0, 0, 9], [4, 0]] is too long
+	from schema $id: http://devicetree.org/schemas/media/rockchip,rk3568-mipi-csi.yaml#
+arch/arm64/boot/dts/rockchip/rk3566-nanopi-r3s.dtb: csi@fdfb0000 (rockchip,rk3568-mipi-csi): interrupts: [[0, 8, 4], [0, 0, 9], [4, 0]] is too long
+	from schema $id: http://devicetree.org/schemas/media/rockchip,rk3568-mipi-csi.yaml#
+arch/arm64/boot/dts/rockchip/rk356x-base.dtsi:282.3-26: Warning (interrupts_property): /csi@fdfb0000:#interrupt-cells: size is (32), expected multiple of 12
+arch/arm64/boot/dts/rockchip/rk356x-base.dtsi:282.3-26: Warning (interrupts_property): /csi@fdfb0000:#interrupt-cells: size is (32), expected multiple of 12
+arch/arm64/boot/dts/rockchip/rk3568-rock-3a.dtb: csi@fdfb0000 (rockchip,rk3568-mipi-csi): interrupts: [[0, 8, 4], [0, 0, 9], [4, 0]] is too long
+	from schema $id: http://devicetree.org/schemas/media/rockchip,rk3568-mipi-csi.yaml#
+arch/arm64/boot/dts/rockchip/rk356x-base.dtsi:282.3-26: Warning (interrupts_property): /csi@fdfb0000:#interrupt-cells: size is (32), expected multiple of 12
+arch/arm64/boot/dts/rockchip/rk356x-base.dtsi:282.3-26: Warning (interrupts_property): /csi@fdfb0000:#interrupt-cells: size is (32), expected multiple of 12
+arch/arm64/boot/dts/rockchip/rk3566-anbernic-rg353p.dtb: csi@fdfb0000 (rockchip,rk3568-mipi-csi): interrupts: [[0, 8, 4], [0, 0, 9], [4, 0]] is too long
+	from schema $id: http://devicetree.org/schemas/media/rockchip,rk3568-mipi-csi.yaml#
+arch/arm64/boot/dts/rockchip/rk356x-base.dtsi:282.3-26: Warning (interrupts_property): /csi@fdfb0000:#interrupt-cells: size is (32), expected multiple of 12
+arch/arm64/boot/dts/rockchip/rk3566-roc-pc.dtb: csi@fdfb0000 (rockchip,rk3568-mipi-csi): interrupts: [[0, 8, 4], [0, 0, 9], [4, 0]] is too long
+	from schema $id: http://devicetree.org/schemas/media/rockchip,rk3568-mipi-csi.yaml#
+arch/arm64/boot/dts/rockchip/rk3566-quartz64-a.dtb: csi@fdfb0000 (rockchip,rk3568-mipi-csi): interrupts: [[0, 8, 4], [0, 0, 9], [4, 0]] is too long
+	from schema $id: http://devicetree.org/schemas/media/rockchip,rk3568-mipi-csi.yaml#
+arch/arm64/boot/dts/rockchip/rk356x-base.dtsi:282.3-26: Warning (interrupts_property): /csi@fdfb0000:#interrupt-cells: size is (32), expected multiple of 12
+arch/arm64/boot/dts/rockchip/rk3566-anbernic-rg-arc-d.dtb: csi@fdfb0000 (rockchip,rk3568-mipi-csi): interrupts: [[0, 8, 4], [0, 0, 9], [4, 0]] is too long
+	from schema $id: http://devicetree.org/schemas/media/rockchip,rk3568-mipi-csi.yaml#
+arch/arm64/boot/dts/rockchip/rk3566-pinetab2-v0.1.dtb: csi@fdfb0000 (rockchip,rk3568-mipi-csi): interrupts: [[0, 8, 4], [0, 0, 9], [4, 0]] is too long
+	from schema $id: http://devicetree.org/schemas/media/rockchip,rk3568-mipi-csi.yaml#
+
+
+
+
+
 
