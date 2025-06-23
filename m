@@ -1,86 +1,73 @@
-Return-Path: <devicetree+bounces-188691-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-188693-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8BDBDAE4A78
-	for <lists+devicetree@lfdr.de>; Mon, 23 Jun 2025 18:19:09 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id C7CF3AE4A97
+	for <lists+devicetree@lfdr.de>; Mon, 23 Jun 2025 18:21:44 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 416EA189CF96
-	for <lists+devicetree@lfdr.de>; Mon, 23 Jun 2025 16:13:29 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id AC10E17BB20
+	for <lists+devicetree@lfdr.de>; Mon, 23 Jun 2025 16:20:49 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 49F4E2D23A2;
-	Mon, 23 Jun 2025 16:08:16 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 16F7F2C08C8;
+	Mon, 23 Jun 2025 16:11:13 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="qskRex4K"
+	dkim=pass (2048-bit key) header.d=microchip.com header.i=@microchip.com header.b="PVlfvdp/"
 X-Original-To: devicetree@vger.kernel.org
-Received: from bali.collaboradmins.com (bali.collaboradmins.com [148.251.105.195])
+Received: from esa.microchip.iphmx.com (esa.microchip.iphmx.com [68.232.154.123])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 572242D238B;
-	Mon, 23 Jun 2025 16:08:14 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=148.251.105.195
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 943D228DF12;
+	Mon, 23 Jun 2025 16:11:10 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=68.232.154.123
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1750694896; cv=none; b=kyZBIUCShx+7Q0OSDQXJ9iLFSf/FE4CzPH93f3Pm0xtUoDXdMCoBd//v0R5F/N91mZbMp2ivbS5K9US/8gcVP8OgaDB5fjJbXcKqHRn5StGNcDT0dxNCSRPg2NdZ3LffkgxU0pgI7SIuMdoUExOqEuXonrwWDSeAgqTz3tXiRZA=
+	t=1750695073; cv=none; b=I9bcfeD7liV/V5cT6Pb63L1RywfIo9C4kJJzFFG87WJ2vJ4i7Tt0e/C5wK7lgdnPnrTk50RyEYI/jVv7fnFvujcgcMC6RXUxF+2EQ2tLDG0wmvqUPaD45gzHgp3ebGOP55DXsdbW/9W7uLnyIFFNI89wS3fCpokz7Nx2/eQ2TZw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1750694896; c=relaxed/simple;
-	bh=L4p5mXi7DFDYHCSaTVxJNafGXSHDm+zZmxqXO3mMrMY=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=tMaoMw47aS61mFb7tIQV3EeXfS8cdccvs9csO51rnoHg+flc0j+N16r52olC6jxq/YahdnQZuDm1HjWkxJQNm3a8laxI5IOw9KUQCKxrIWAvcUIupCtsDm12IR9XwfCHKXBnQnJT14pSuIyPTHClXor2OT1PoeVHSvPEpInWvFs=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b=qskRex4K; arc=none smtp.client-ip=148.251.105.195
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-	s=mail; t=1750694892;
-	bh=L4p5mXi7DFDYHCSaTVxJNafGXSHDm+zZmxqXO3mMrMY=;
-	h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-	b=qskRex4KS5ZZJaJwLsSUyUFsAf1k4QKIQF0MgHltmvgQxKp9+2+d//S4QHw/Q3Uea
-	 fH5rR/de88nZaQ4f5gJfPxOY3WCUTR9TxeZDGtVPKyjxe3mUlsYP53rSeANhyNHMWx
-	 sJjhLlyEn/tOFLFlOzmxpx78ZmDnGHMi3+1Sv+IcPFAsmr5JQfU9A35hwRsdSVKcFd
-	 WPPfDCSNgLWT4agyfvYPfgK/3OyKn/93e+8BFS16TXhP5jA+YBuJ5i8YUB0gBIkOTQ
-	 W8M5WjDI32QzMLnNbwu27TMdzQMSXAh+NWDYDEeUA5iA8oF0YvcR03GFtucqa01Hpz
-	 c40gtzlbT85jw==
-Received: from trenzalore.hitronhub.home (unknown [23.233.251.139])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
-	(No client certificate requested)
-	(Authenticated sender: detlev)
-	by bali.collaboradmins.com (Postfix) with ESMTPSA id 8969617E37C2;
-	Mon, 23 Jun 2025 18:08:09 +0200 (CEST)
-From: Detlev Casanova <detlev.casanova@collabora.com>
-To: linux-kernel@vger.kernel.org
-Cc: Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Heiko Stuebner <heiko@sntech.de>,
-	Sebastian Reichel <sebastian.reichel@collabora.com>,
-	Cristian Ciocaltea <cristian.ciocaltea@collabora.com>,
-	Alexey Charkov <alchark@gmail.com>,
-	Dragan Simic <dsimic@manjaro.org>,
-	Jianfeng Liu <liujianfeng1994@gmail.com>,
-	Nicolas Frattaroli <nicolas.frattaroli@collabora.com>,
-	Kever Yang <kever.yang@rock-chips.com>,
-	Detlev Casanova <detlev.casanova@collabora.com>,
-	Andy Yan <andy.yan@rock-chips.com>,
-	Frank Wang <frank.wang@rock-chips.com>,
-	devicetree@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	linux-rockchip@lists.infradead.org,
-	Ezequiel Garcia <ezequiel@vanguardiasur.com.ar>,
-	Mauro Carvalho Chehab <mchehab@kernel.org>,
-	Hans Verkuil <hverkuil@xs4all.nl>,
-	Ricardo Ribalda <ribalda@chromium.org>,
-	Hans de Goede <hansg@kernel.org>,
-	Yunke Cao <yunkec@google.com>,
-	linux-media@vger.kernel.org,
-	kernel@collabora.com
-Subject: [PATCH 8/8] media: rkvdec: Unstage the driver
-Date: Mon, 23 Jun 2025 12:07:22 -0400
-Message-ID: <20250623160722.55938-9-detlev.casanova@collabora.com>
-X-Mailer: git-send-email 2.50.0
-In-Reply-To: <20250623160722.55938-1-detlev.casanova@collabora.com>
-References: <20250623160722.55938-1-detlev.casanova@collabora.com>
+	s=arc-20240116; t=1750695073; c=relaxed/simple;
+	bh=a6jDL9Ippn4qsLkMGbozjg4XIaxi0OwQw2DSwtQswR0=;
+	h=From:To:CC:Subject:Date:Message-ID:MIME-Version:Content-Type; b=W8vpda9EmQLzlcnj2tUz2cihbbSoA07AdB2lorAKmazga1iZlEwCnKw9gmRSM2FvtKfnfsty7ngYUPkUp4dz4bTXPooA8otrehRxCBMIgIAPq1E0p3Zxh4VahPFBqV0Ccb3m7laXNiXuRtPrn9hXHEUQ9rh3IBhh24YUbEoaY5o=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=microchip.com; spf=pass smtp.mailfrom=microchip.com; dkim=pass (2048-bit key) header.d=microchip.com header.i=@microchip.com header.b=PVlfvdp/; arc=none smtp.client-ip=68.232.154.123
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=microchip.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=microchip.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
+  t=1750695070; x=1782231070;
+  h=from:to:cc:subject:date:message-id:mime-version:
+   content-transfer-encoding;
+  bh=a6jDL9Ippn4qsLkMGbozjg4XIaxi0OwQw2DSwtQswR0=;
+  b=PVlfvdp/amXS2ok40QbWVQ5cV/AxV67QoPBY5tFnYmb/T1qBowJKsu2X
+   09Y4HT8/8DG/cYhIildYXnXHW4CznnicNJ1Lrd5WJerrI+E7X5jgt4/t8
+   ZQidgU9pEC4BHOYhUGYlEhyqho/cANDBhwotrEaMZ8QKBWumwfJL9e+N0
+   2+6ovVA4OFZpvucjw5OLKBPdviQVd+R7IeFcrhMYHSt1D5uMPgbcYEGZd
+   gS0QlMzKigHmIwOoQQexIUVEshqgRKH63wrMi55KXG88Y50/LRfT+tsWO
+   0Zof5nu/NX8HdhTppZwMWI/hQLcX2jlXTb6zBCcVkcxA5DSzUqj6QgUbR
+   A==;
+X-CSE-ConnectionGUID: ftF37T4vRQW9WeoW9L5rTQ==
+X-CSE-MsgGUID: 0q4SYXA6Th2pskWo4ifCRA==
+X-IronPort-AV: E=Sophos;i="6.16,259,1744095600"; 
+   d="scan'208";a="42643386"
+X-Amp-Result: SKIPPED(no attachment in message)
+Received: from unknown (HELO email.microchip.com) ([170.129.1.10])
+  by esa4.microchip.iphmx.com with ESMTP/TLS/ECDHE-RSA-AES128-GCM-SHA256; 23 Jun 2025 09:11:03 -0700
+Received: from chn-vm-ex01.mchp-main.com (10.10.85.143) by
+ chn-vm-ex02.mchp-main.com (10.10.85.144) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.44; Mon, 23 Jun 2025 09:10:27 -0700
+Received: from ryan-Precision-3630-Tower.microchip.com (10.10.85.11) by
+ chn-vm-ex01.mchp-main.com (10.10.85.143) with Microsoft SMTP Server id
+ 15.1.2507.44 via Frontend Transport; Mon, 23 Jun 2025 09:10:27 -0700
+From: <Ryan.Wanner@microchip.com>
+To: <andrew+netdev@lunn.ch>, <davem@davemloft.net>, <edumazet@google.com>,
+	<kuba@kernel.org>, <pabeni@redhat.com>, <robh@kernel.org>,
+	<krzk+dt@kernel.org>, <conor+dt@kernel.org>
+CC: <nicolas.ferre@microchip.com>, <claudiu.beznea@tuxon.dev>,
+	<netdev@vger.kernel.org>, <devicetree@vger.kernel.org>,
+	<linux-kernel@vger.kernel.org>, Ryan Wanner <Ryan.Wanner@microchip.com>
+Subject: [RESEND][PATCH 0/1] Enable FLEXCOMs and GMAC for SAMA7D65 SoC
+Date: Mon, 23 Jun 2025 09:11:07 -0700
+Message-ID: <cover.1750694691.git.Ryan.Wanner@microchip.com>
+X-Mailer: git-send-email 2.43.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -88,126 +75,34 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
 
-The TODO list for unstaging being empty, the driver can now be moved to the
-main media folder.
+From: Ryan Wanner <Ryan.Wanner@microchip.com>
 
-Also add myself as maintainer.
+This patch set adds all the supported FLEXCOMs for the SAMA7D65 SoC.
+This also adds the GMAC interfaces and enables GMAC0 interface for the SAMA7D65 SoC.
 
-Signed-off-by: Detlev Casanova <detlev.casanova@collabora.com>
----
- MAINTAINERS                                               | 8 ++++++++
- drivers/media/platform/rockchip/Kconfig                   | 1 +
- drivers/media/platform/rockchip/Makefile                  | 1 +
- .../media => media/platform/rockchip}/rkvdec/Kconfig      | 0
- .../media => media/platform/rockchip}/rkvdec/Makefile     | 0
- .../platform/rockchip}/rkvdec/rkvdec-h264.c               | 0
- .../platform/rockchip}/rkvdec/rkvdec-regs.h               | 0
- .../media => media/platform/rockchip}/rkvdec/rkvdec-vp9.c | 0
- .../media => media/platform/rockchip}/rkvdec/rkvdec.c     | 0
- .../media => media/platform/rockchip}/rkvdec/rkvdec.h     | 0
- drivers/staging/media/Kconfig                             | 2 --
- drivers/staging/media/Makefile                            | 1 -
- 12 files changed, 10 insertions(+), 3 deletions(-)
- rename drivers/{staging/media => media/platform/rockchip}/rkvdec/Kconfig (100%)
- rename drivers/{staging/media => media/platform/rockchip}/rkvdec/Makefile (100%)
- rename drivers/{staging/media => media/platform/rockchip}/rkvdec/rkvdec-h264.c (100%)
- rename drivers/{staging/media => media/platform/rockchip}/rkvdec/rkvdec-regs.h (100%)
- rename drivers/{staging/media => media/platform/rockchip}/rkvdec/rkvdec-vp9.c (100%)
- rename drivers/{staging/media => media/platform/rockchip}/rkvdec/rkvdec.c (100%)
- rename drivers/{staging/media => media/platform/rockchip}/rkvdec/rkvdec.h (100%)
+With the FLEXCOMs added to the SoC the MCP16502 and the MAC address
+EEPROM are both added to flexcom10.
 
-diff --git a/MAINTAINERS b/MAINTAINERS
-index c3f7fbd0d67af..d05a153c21526 100644
---- a/MAINTAINERS
-+++ b/MAINTAINERS
-@@ -21466,6 +21466,14 @@ S:	Maintained
- F:	Documentation/devicetree/bindings/media/rockchip-rga.yaml
- F:	drivers/media/platform/rockchip/rga/
- 
-+ROCKCHIP RKVDEC VIDEO DECODER DRIVER
-+M:	Detlev Casanova <detlev.casanova@collabora.com>
-+L:	linux-media@vger.kernel.org
-+L:	linux-rockchip@lists.infradead.org
-+S:	Maintained
-+F:	Documentation/devicetree/bindings/media/rockchip,vdec.yaml
-+F:	drivers/media/platform/rockchip/rkvdec/
-+
- ROCKCHIP RK3308 INTERNAL AUDIO CODEC
- M:	Luca Ceresoli <luca.ceresoli@bootlin.com>
- S:	Maintained
-diff --git a/drivers/media/platform/rockchip/Kconfig b/drivers/media/platform/rockchip/Kconfig
-index b41d3960c1b41..9bbeec4996aa2 100644
---- a/drivers/media/platform/rockchip/Kconfig
-+++ b/drivers/media/platform/rockchip/Kconfig
-@@ -4,3 +4,4 @@ comment "Rockchip media platform drivers"
- 
- source "drivers/media/platform/rockchip/rga/Kconfig"
- source "drivers/media/platform/rockchip/rkisp1/Kconfig"
-+source "drivers/media/platform/rockchip/rkvdec/Kconfig"
-diff --git a/drivers/media/platform/rockchip/Makefile b/drivers/media/platform/rockchip/Makefile
-index 4f782b876ac9b..286dc5c53f7e1 100644
---- a/drivers/media/platform/rockchip/Makefile
-+++ b/drivers/media/platform/rockchip/Makefile
-@@ -1,3 +1,4 @@
- # SPDX-License-Identifier: GPL-2.0-only
- obj-y += rga/
- obj-y += rkisp1/
-+obj-y += rkvdec/
-diff --git a/drivers/staging/media/rkvdec/Kconfig b/drivers/media/platform/rockchip/rkvdec/Kconfig
-similarity index 100%
-rename from drivers/staging/media/rkvdec/Kconfig
-rename to drivers/media/platform/rockchip/rkvdec/Kconfig
-diff --git a/drivers/staging/media/rkvdec/Makefile b/drivers/media/platform/rockchip/rkvdec/Makefile
-similarity index 100%
-rename from drivers/staging/media/rkvdec/Makefile
-rename to drivers/media/platform/rockchip/rkvdec/Makefile
-diff --git a/drivers/staging/media/rkvdec/rkvdec-h264.c b/drivers/media/platform/rockchip/rkvdec/rkvdec-h264.c
-similarity index 100%
-rename from drivers/staging/media/rkvdec/rkvdec-h264.c
-rename to drivers/media/platform/rockchip/rkvdec/rkvdec-h264.c
-diff --git a/drivers/staging/media/rkvdec/rkvdec-regs.h b/drivers/media/platform/rockchip/rkvdec/rkvdec-regs.h
-similarity index 100%
-rename from drivers/staging/media/rkvdec/rkvdec-regs.h
-rename to drivers/media/platform/rockchip/rkvdec/rkvdec-regs.h
-diff --git a/drivers/staging/media/rkvdec/rkvdec-vp9.c b/drivers/media/platform/rockchip/rkvdec/rkvdec-vp9.c
-similarity index 100%
-rename from drivers/staging/media/rkvdec/rkvdec-vp9.c
-rename to drivers/media/platform/rockchip/rkvdec/rkvdec-vp9.c
-diff --git a/drivers/staging/media/rkvdec/rkvdec.c b/drivers/media/platform/rockchip/rkvdec/rkvdec.c
-similarity index 100%
-rename from drivers/staging/media/rkvdec/rkvdec.c
-rename to drivers/media/platform/rockchip/rkvdec/rkvdec.c
-diff --git a/drivers/staging/media/rkvdec/rkvdec.h b/drivers/media/platform/rockchip/rkvdec/rkvdec.h
-similarity index 100%
-rename from drivers/staging/media/rkvdec/rkvdec.h
-rename to drivers/media/platform/rockchip/rkvdec/rkvdec.h
-diff --git a/drivers/staging/media/Kconfig b/drivers/staging/media/Kconfig
-index b442148543995..b9d52a51841b5 100644
---- a/drivers/staging/media/Kconfig
-+++ b/drivers/staging/media/Kconfig
-@@ -32,8 +32,6 @@ source "drivers/staging/media/max96712/Kconfig"
- 
- source "drivers/staging/media/meson/vdec/Kconfig"
- 
--source "drivers/staging/media/rkvdec/Kconfig"
--
- source "drivers/staging/media/starfive/Kconfig"
- 
- source "drivers/staging/media/sunxi/Kconfig"
-diff --git a/drivers/staging/media/Makefile b/drivers/staging/media/Makefile
-index ad4e9619a9e07..102ca632ddf5c 100644
---- a/drivers/staging/media/Makefile
-+++ b/drivers/staging/media/Makefile
-@@ -4,7 +4,6 @@ obj-$(CONFIG_INTEL_ATOMISP)     += atomisp/
- obj-$(CONFIG_VIDEO_IMX_MEDIA)	+= imx/
- obj-$(CONFIG_VIDEO_MAX96712)	+= max96712/
- obj-$(CONFIG_VIDEO_MESON_VDEC)	+= meson/vdec/
--obj-$(CONFIG_VIDEO_ROCKCHIP_VDEC)	+= rkvdec/
- obj-$(CONFIG_VIDEO_STARFIVE_CAMSS)	+= starfive/
- obj-$(CONFIG_VIDEO_SUNXI)	+= sunxi/
- obj-$(CONFIG_VIDEO_TEGRA)	+= tegra-video/
+The dt-binding for USART is here [1]. And the dt-binding for DMA has
+been applied here [2].
+
+The original thread for this is here [3]. The applied changes have been
+removed for this resend 
+
+1) https://lore.kernel.org/linux-arm-kernel/20250306160318.vhPzJLjl19Vq9am9RRbuv5ddmQ6GCEND-YNvPKKtAtU@z/
+2) https://lore.kernel.org/linux-arm-kernel/174065806827.367410.5368210992879330466.b4-ty@kernel.org/
+3) https://lore.kernel.org/all/392b078b38d15f6adf88771113043044f31e8cd6.1743523114.git.Ryan.Wanner@microchip.com/#t
+
+
+Ryan Wanner (1):
+  dt-bindings: net: cdns,macb: add sama7d65 ethernet interface
+
+ Documentation/devicetree/bindings/net/cdns,macb.yaml | 1 +
+ 1 file changed, 1 insertion(+)
+
 -- 
-2.50.0
+2.43.0
 
 
