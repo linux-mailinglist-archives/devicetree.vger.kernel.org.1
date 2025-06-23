@@ -1,141 +1,115 @@
-Return-Path: <devicetree+bounces-188633-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-188634-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 083BBAE46C6
-	for <lists+devicetree@lfdr.de>; Mon, 23 Jun 2025 16:32:08 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id AB834AE468D
+	for <lists+devicetree@lfdr.de>; Mon, 23 Jun 2025 16:22:50 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id D6202443A45
-	for <lists+devicetree@lfdr.de>; Mon, 23 Jun 2025 14:20:59 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 62D227AE96E
+	for <lists+devicetree@lfdr.de>; Mon, 23 Jun 2025 14:21:27 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A6A00256C61;
-	Mon, 23 Jun 2025 14:19:44 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D7B54143748;
+	Mon, 23 Jun 2025 14:22:09 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="HRnJoMlN"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="imQ0wxZS"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ej1-f46.google.com (mail-ej1-f46.google.com [209.85.218.46])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DECA82561AA;
-	Mon, 23 Jun 2025 14:19:42 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.46
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AF10E7260C;
+	Mon, 23 Jun 2025 14:22:09 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1750688384; cv=none; b=WwWWEo9yPsfjHQ2tOe1/fkehQUj7Vd7mK2m5O0Juj5x/tGDtePU/uFwnaoEwxMEkuNqiVC7JNKeuhMjs5HStoE5aw+OFH+t/sRCJnhnWfvTyv0J+AL9wKD5KkeGrucSc8EBru5T9inyo4ZtnoKjw8KA2c3SYXrPFV/lIREFyzao=
+	t=1750688529; cv=none; b=b/0h8QBSQnGZHEkaffwxSVcxvm+alfEZFR8E4V8BnJjpyszDJhq1Ag9LSi1q+KuZMShtxTC29idQ4F6cx8X/46j1F0ZGaWjJc+Ql8BlzjyHRfe/sGRBYqy0p/JEz2uPpONg/piXMECjWbbXsbUEb/oSmBY6MCN/+micMDbl7vaQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1750688384; c=relaxed/simple;
-	bh=2eXRoLGrutdapHVUIYcYjg3zDaVUJEsXBCFHk1LBPqs=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=FYtIq7ibSon5/tC353jWvmUbi3StnpwlhPNt2B5ItcL62QcMQkAinb+izwyBr7jo+SsjP2HmyEJyIk1Busi4sLZwHg09htR9+N8ugDV7zYXmPI+7adrESnDfQWn7S9FPWiOGt5kh64PYGPNLDl4sZ+kZ8SRK4OOmuseb2+8dJzY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=HRnJoMlN; arc=none smtp.client-ip=209.85.218.46
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-ej1-f46.google.com with SMTP id a640c23a62f3a-acb5ec407b1so704144366b.1;
-        Mon, 23 Jun 2025 07:19:42 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1750688381; x=1751293181; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=b4RaWpq0ZKRdLkixVIJe8lYt976+F2RYcsNhNiQu2Tg=;
-        b=HRnJoMlNWbJDDzM5BYdaQ/ynHigzBXBAz87e8IkVF776oQunUsqaPU/RUR8mI6jYxN
-         NXB7ZuNpuN6Q2z7LpNgKEt8AFXxNeAL9kdHT2C8DW5z3eeBsTggvsxg9e82hmiwd++dT
-         LginB0cP2BLatgUfCZ1li0fflfOJdZUHlHwcn3ZQFwjoB0v40a75N19uPTXCuTiY5xBL
-         GVZZ0aU6sODrExmkunzzI6brNMeoCUeQFapsXjb8wyw+dUXFu3sTW8KE2HgOWRQ36RFB
-         ko3gNFZ/1h8Vn72/47E8kAoHfUUy5fgx1vn5BPeKli7GqNPb0rPhyUFWHkhbi59KjA8p
-         VeMg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1750688381; x=1751293181;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=b4RaWpq0ZKRdLkixVIJe8lYt976+F2RYcsNhNiQu2Tg=;
-        b=ZjWjRgh7cOz5yOqBfYCzG/BdYGIvE3c1+gu2+b0aNTRAJuSTSWDK7SXFpvDJCEqJi9
-         TJCP2z6ADxeOffbgymkh/mNiFS9wRVzcTG+PmS/RZUFqjYSrel21DRkRE2yj1A78cc9y
-         aIJ2Mdj+F+5/kdUXSFDv+fgKwmBIHvviYi77Vl6lJFXwpFrFehVJniog1EyQhFjjoZeU
-         3bxybhkyrzblsOtLMAwhpglkX0dQNafKyCxd8RVX0mg8HDUj7s2opts5qivg9ydJxtMq
-         S0b6M4Lt3KqcPJ82F9vFvcBs43sy2IHol1Bf7IY+hKm3thod8wrFxHscI+ZjH7HuMSBL
-         UFkQ==
-X-Forwarded-Encrypted: i=1; AJvYcCVYyOH0cQw8oappus9gCfKwByLYMrBThx7NBJ+Mxwlp9vZt7Vj4zpmaQ9wZHHN3YOuRTcSW+0YQvA0ecoon@vger.kernel.org, AJvYcCXJV5eGVa0H+OK+TNbQBZpjbaLJezGZEl1iut+Y4hWB+Z09bFpPpKs7V3p3evVP3giWVE2DW8jMENSC@vger.kernel.org
-X-Gm-Message-State: AOJu0Yyyq4fo6+tQnN6M+VhiYZFb3+XLkiveNW35IV4h0CyV+BsMfs/O
-	LOdRf4V6VeP5jm0R6hK8NP9/Lb64CATmOWecRa2Owbi8xUiOduh9vxXs
-X-Gm-Gg: ASbGncvA2ZOgBhPRqYIg8Fbv3b/e6IxMMKsZ7uCBmdCgiMtKXx9ofOoIIQIk8z/6dNl
-	ygbvfysUlo2sA++qRrDy0mQLNKYbVpc+j9m/VQoYdkFFSmFbAUVFqHK0AjXmtVVBxw0mGDofUMD
-	l6tCOn93OyL1CWlByo9Nk5WG2wOnSpgS9pdncisOPSwwIPt/WHkk8oAhbOylvbYyLVqtPfLJ5Jw
-	DBhzMicECre5OuLFuPUJdnnm3+jR7BYaQvmpweF+5c3z2nQfClCe+BERZoX1D3yc31ZlkLVDYBi
-	Nr8XWX0RKEdIOpRq6sdl1jWq1vsm9f+2WjGtcmsnYusYwYpE7eCvAnNvwYrDA0XtBr7zdHs=
-X-Google-Smtp-Source: AGHT+IFysmPAl7SZsmV9pPCgEFPxil+tuIOlJgMNXwTSQbww7umYOSo53xU6pPPX9Cpuqly+9XmnGQ==
-X-Received: by 2002:a17:907:6088:b0:ad2:3fa9:7511 with SMTP id a640c23a62f3a-ae057bb8dcamr1242357766b.41.1750688380845;
-        Mon, 23 Jun 2025 07:19:40 -0700 (PDT)
-Received: from [192.168.1.150] ([188.193.103.108])
-        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-ae054082d0esm719221466b.79.2025.06.23.07.19.40
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 23 Jun 2025 07:19:40 -0700 (PDT)
-Message-ID: <0a73b9be-d0d2-448f-91db-209f0d59198c@gmail.com>
-Date: Mon, 23 Jun 2025 16:19:39 +0200
+	s=arc-20240116; t=1750688529; c=relaxed/simple;
+	bh=M8/FB18nORJdfDyegU9zi8E3Z4snaCgnu0tkxZFO1MA=;
+	h=Date:Content-Type:MIME-Version:From:Cc:To:In-Reply-To:References:
+	 Message-Id:Subject; b=g76cpCNTSLrwv1oBNrC3ClFrTsfzKnl4esk+yvtj+5ahx8R07aCg1/ugHb2NBp15c8cMjOT+iJcmpoFiWJV/EkJSZebaE2ELIwcsfYbWw4HUYYBYG3vwrdwVA67U72XocXEIHQyaPAamYkj2GRSiI0O8+l4PWYPFPn3YYusJ9mk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=imQ0wxZS; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 13C01C4CEEA;
+	Mon, 23 Jun 2025 14:22:08 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1750688529;
+	bh=M8/FB18nORJdfDyegU9zi8E3Z4snaCgnu0tkxZFO1MA=;
+	h=Date:From:Cc:To:In-Reply-To:References:Subject:From;
+	b=imQ0wxZSqqpK9O+CKmtdYgA7zX444k0D+P/xGxcsMHNi0t5HHoQFbzfyUpLJ/INPy
+	 Ae7mEAFxSUkYY7TIccBy1jdNxc84YLUSe4DaTp+gaUiPdx2P8814uacmsuv8OXzfwF
+	 tX+tl7fkVGFELnjSKSrOh7LC5AGSgp+wVq5PyPGMrK8gK4PKyJZOsIXodHOBt4fWg0
+	 1J4/qtxL7YIIBzj1bN012w/fC7s/DgLpgAcAphyKoWD04o255JAy+4aBYhKup2yAyV
+	 ewmgZgb8vmG+e0QFViZ7udLfHuXHqYZGp2Ln5vwN+3tYLOfmWmuhjHtKMEuITO3GBL
+	 LRbEDXQEX4lFA==
+Date: Mon, 23 Jun 2025 09:22:08 -0500
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3 3/3] arm64: dts: imx8mp: Add initial support for
- Ultratronik imx8mp-ultra-mach-sbc board
-To: Fabio Estevam <festevam@gmail.com>
-Cc: Frank Li <Frank.li@nxp.com>, Shawn Guo <shawnguo@kernel.org>,
- Sascha Hauer <s.hauer@pengutronix.de>,
- Pengutronix Kernel Team <kernel@pengutronix.de>,
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>,
- =?UTF-8?B?QsO2cmdlIFN0csO8bXBmZWw=?= <boerge.struempfel@gmail.com>,
- imx@lists.linux.dev, linux-arm-kernel@lists.infradead.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <20250620122353.150700-1-goran.radni@gmail.com>
- <20250620122353.150700-4-goran.radni@gmail.com>
- <aFVz48C3d+HHVHvv@lizhi-Precision-Tower-5810>
- <00cf9c47-e101-4335-b918-f0b3a3c71de9@gmail.com>
- <CAOMZO5B39pBzWuXBoo5=eqQzZLxS3zBxCJw_GBYmABKT_cdQww@mail.gmail.com>
-Content-Language: en-US
-From: Goran Radenovic <goran.radni@gmail.com>
-In-Reply-To: <CAOMZO5B39pBzWuXBoo5=eqQzZLxS3zBxCJw_GBYmABKT_cdQww@mail.gmail.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
+From: "Rob Herring (Arm)" <robh@kernel.org>
+Cc: lee@kernel.org, linux-kernel@vger.kernel.org, conor+dt@kernel.org, 
+ linux-arm-kernel@lists.infradead.org, krzk+dt@kernel.org, 
+ linux-mediatek@lists.infradead.org, matthias.bgg@gmail.com, 
+ kernel@collabora.com, devicetree@vger.kernel.org
+To: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+In-Reply-To: <20250623120038.108891-2-angelogioacchino.delregno@collabora.com>
+References: <20250623120038.108891-1-angelogioacchino.delregno@collabora.com>
+ <20250623120038.108891-2-angelogioacchino.delregno@collabora.com>
+Message-Id: <175068852802.3230004.1923972457454728043.robh@kernel.org>
+Subject: Re: [PATCH v1 1/2] dt-bindings: mfd: Add binding for MediaTek
+ MT6363 series SPMI PMIC
 
 
-
-Fabio Estevam wrote:
-> On Mon, Jun 23, 2025 at 10:17 AM Goran Radenovic <goran.radni@gmail.com> wrote:
+On Mon, 23 Jun 2025 14:00:37 +0200, AngeloGioacchino Del Regno wrote:
+> Add a binding for the MediaTek MT6363/6373 (and similar) multi
+> function PMICs connected over SPMI.
 > 
->> I was using git send-email, and I did not notice any problems with
->> dry-run. I have 3 patches and a cover letter. All were marked correctly
->> v3 0/3 - v3 3/3.
->> Everything looks fine here:
->> https://lore.kernel.org/all/20250620122353.150700-1-goran.radni@gmail.com/
->> Or am I missing something completely?
+> These PMICs are found on board designs using newer MediaTek SoCs,
+> such as the Dimensity 9400 Smartphone chip, or the Chromebook
+> MT8196 chip.
 > 
-> I only received the patch 3/3 in my Inbox.
+> Signed-off-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+> ---
+>  .../bindings/mfd/mediatek,mt6363.yaml         | 98 +++++++++++++++++++
+>  1 file changed, 98 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/mfd/mediatek,mt6363.yaml
 > 
-> It seems you missed copying everyone on the three patches.
 
-Thank you for the feedback.
+My bot found errors running 'make dt_binding_check' on your patch:
 
-I was using the following configuration in my global .gitconfig:
+yamllint warnings/errors:
 
-[sendemail "linux"]
-     tocmd = "`pwd`/scripts/get_maintainer.pl --nogit --nogit-fallback 
---norolestats --nol"
-     cccmd = "`pwd`/scripts/get_maintainer.pl --nogit --nogit-fallback 
---norolestats --nom"
+dtschema/dtc warnings/errors:
+/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/mfd/mediatek,mt6363.yaml:
+	Error in referenced schema matching $id: http://devicetree.org/schemas/regulator/mediatek,mt6363-regulator.yaml
+	Tried these paths (check schema $id if path is wrong):
+	/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/regulator/mediatek,mt6363-regulator.yaml
+	/usr/local/lib/python3.11/dist-packages/dtschema/schemas/regulator/mediatek,mt6363-regulator.yaml
+/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/mfd/mediatek,mt6363.example.dtb: pmic@4 (mediatek,mt6363): regulators: 'oneOf' conditional failed, one must be fixed:
+	{'compatible': ['mediatek,mt6363-regulator']} should not be valid under {'description': "Can't find referenced schema: http://devicetree.org/schemas/regulator/mediatek,mt6363-regulator.yaml#"}
+	{'compatible': ['mediatek,mt6363-regulator']} should not be valid under {'description': "Can't find referenced schema: http://devicetree.org/schemas/regulator/mediatek,mt6373-regulator.yaml#"}
+	from schema $id: http://devicetree.org/schemas/mfd/mediatek,mt6363.yaml#
+Documentation/devicetree/bindings/mfd/mediatek,mt6363.example.dtb: /example-0/spmi/pmic@4/regulators: failed to match any schema with compatible: ['mediatek,mt6363-regulator']
 
-So I relied on the automatic recipient generation from get_maintainer.pl.
-I didn’t explicitly specify the recipient list, assuming the tool would 
-correctly assign To/Cc entries per patch. I’ll make sure to double-check 
-and manually adjust if necessary next time.
+doc reference errors (make refcheckdocs):
 
-Thanks again for pointing it out.
+See https://patchwork.ozlabs.org/project/devicetree-bindings/patch/20250623120038.108891-2-angelogioacchino.delregno@collabora.com
 
-Best regards,
-Goran
+The base for the series is generally the latest rc1. A different dependency
+should be noted in *this* patch.
+
+If you already ran 'make dt_binding_check' and didn't see the above
+error(s), then make sure 'yamllint' is installed and dt-schema is up to
+date:
+
+pip3 install dtschema --upgrade
+
+Please check and re-submit after running the above command yourself. Note
+that DT_SCHEMA_FILES can be set to your schema file to speed up checking
+your schema. However, it must be unset to test all examples with your schema.
+
 
