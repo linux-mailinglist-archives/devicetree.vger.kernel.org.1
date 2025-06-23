@@ -1,111 +1,103 @@
-Return-Path: <devicetree+bounces-188607-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-188608-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 474BFAE436E
-	for <lists+devicetree@lfdr.de>; Mon, 23 Jun 2025 15:32:14 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id AC7B5AE439E
+	for <lists+devicetree@lfdr.de>; Mon, 23 Jun 2025 15:34:17 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 351443BF0B3
-	for <lists+devicetree@lfdr.de>; Mon, 23 Jun 2025 13:25:51 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 6FCA47AC5DB
+	for <lists+devicetree@lfdr.de>; Mon, 23 Jun 2025 13:30:14 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 501B924BBEB;
-	Mon, 23 Jun 2025 13:26:12 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=dolcini.it header.i=@dolcini.it header.b="rO6nA/SF"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B5C612571BF;
+	Mon, 23 Jun 2025 13:30:26 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail11.truemail.it (mail11.truemail.it [217.194.8.81])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
-	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1F3DD248191;
-	Mon, 23 Jun 2025 13:26:07 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.194.8.81
+Received: from foss.arm.com (foss.arm.com [217.140.110.172])
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3170A2571AA;
+	Mon, 23 Jun 2025 13:30:24 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.140.110.172
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1750685172; cv=none; b=WxB6x7rcQiWeCozLuesKT6LUmiKaQaZiYV1nPXMAxiV4Kg1esc4NQvv5c0xB98RpugRy1FneL8fcijPZz5I8rNnqhaDMEWFWrwdAefDGYrjd+3mZ9ClBF2XxYRNBZhy5tVfup6Gko1lQo9s0kjy9fOU63lZ5HDF4UDkBZRpjlNQ=
+	t=1750685426; cv=none; b=iuI6QebiQA10ifLSXwND6hu5hCMFmb+/PQUrbhh04O5FUAbG67YMLoD/a0Jl5bVsvFQG3I+jyOmvMhSH6t4O2Lw6JHgHMt2X4sWh3yPpZQXurzMf0Qm2gUivlel3AnB22loPpsJA2Tbcajk1SV+YsOhIjmkkTORmKYtY63YQBS8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1750685172; c=relaxed/simple;
-	bh=cpmV6b+GhiiDRqvRjUyDnp4tw6x/y7Th+CAWM/jTP8w=;
-	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=KotG/OWlxhpgood89odaEnK9PesWjPrPFEiVMO79/OXYJpJ25bd6a1yAKmMmaVcFMeVK1ERhTa+fIRGtq4BFZp9N9ExSXXy4WpqoMoQl3nDEY/CwNdJNNUfbGIJDJKf9fMmz/DgGsR+irrOpQTyxdgl/HbR0bjNoRTbFgPBsmTY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=dolcini.it; spf=pass smtp.mailfrom=dolcini.it; dkim=pass (2048-bit key) header.d=dolcini.it header.i=@dolcini.it header.b=rO6nA/SF; arc=none smtp.client-ip=217.194.8.81
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=dolcini.it
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=dolcini.it
-Received: from francesco-nb.corp.toradex.com (248.201.173.83.static.wline.lns.sme.cust.swisscom.ch [83.173.201.248])
-	by mail11.truemail.it (Postfix) with ESMTPA id 84BC71FC30;
-	Mon, 23 Jun 2025 15:26:05 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=dolcini.it;
-	s=default; t=1750685166;
-	bh=u+uFiP/cQeKkOTD6fc5wQMcjMGmy3Mcby1TgFOYHp5E=; h=From:To:Subject;
-	b=rO6nA/SFi386mqqis4g2A7h4UbC+DOwyyYEhBIcZUrQOvduPGB9q1ake9SCkiUGjA
-	 3bQ24qb0BVQvS+6SSdF3N6W/rEn4QIOqiBdqJuXqgRtKlT5JX0myKtimX81ukmm4JW
-	 LNiyRuPf2m8P0hSKfxEtV2SzX5GNcbDmmgAZVy+L+uymG0eVrIMipRzt0Z9HhwtVHL
-	 ev1m1+6TfyAY5aECOULVChITLLIDtPPt5EwXpqp7lf1hFktPiJNdyB8zNojZU7G1cO
-	 UKN/qF7vYSaHJoXlmmPYh1H450pJizr0Ytha2iNgRxV790/uKAVXY53Kn+EeKNHTK5
-	 IK2gCsyu13BQQ==
-From: Francesco Dolcini <francesco@dolcini.it>
-To: Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Shawn Guo <shawnguo@kernel.org>,
-	Sascha Hauer <s.hauer@pengutronix.de>,
-	Pengutronix Kernel Team <kernel@pengutronix.de>,
-	Fabio Estevam <festevam@gmail.com>
-Cc: Francesco Dolcini <francesco.dolcini@toradex.com>,
-	devicetree@vger.kernel.org,
-	imx@lists.linux.dev,
-	linux-arm-kernel@lists.infradead.org,
-	linux-kernel@vger.kernel.org,
-	stable@vger.kernel.org
-Subject: [PATCH v1] arm64: dts: freescale: imx8mm-verdin: Keep LDO5 always on
-Date: Mon, 23 Jun 2025 15:25:45 +0200
-Message-Id: <20250623132545.111619-1-francesco@dolcini.it>
-X-Mailer: git-send-email 2.39.5
+	s=arc-20240116; t=1750685426; c=relaxed/simple;
+	bh=P64FVZCl6D2mo9jeWheiQAUoreBUuMnsrt9KABpA5H4=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=fDhxokrHvUNVVNj0/AZVdctRAx4s0ZvjfReG2f3FaM1/dk1v0xwLcJ6L4FV0s9q2D+cwF0dV4Jv/5bWPtrJMoCMAo3HtgP+MJWhVbVmFG8pWSfMHw/KqLLqQelH1SiOsYujBLcKFVkNhYlyjnydCY98zy6civ2C1pSwIOVM8tvI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com; spf=pass smtp.mailfrom=arm.com; arc=none smtp.client-ip=217.140.110.172
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=arm.com
+Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
+	by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 8641E113E;
+	Mon, 23 Jun 2025 06:30:06 -0700 (PDT)
+Received: from pluto (usa-sjc-mx-foss1.foss.arm.com [172.31.20.19])
+	by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id B7C723F58B;
+	Mon, 23 Jun 2025 06:30:22 -0700 (PDT)
+Date: Mon, 23 Jun 2025 14:30:15 +0100
+From: Cristian Marussi <cristian.marussi@arm.com>
+To: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+Cc: Cristian Marussi <cristian.marussi@arm.com>, robh@kernel.org,
+	krzk+dt@kernel.org, conor+dt@kernel.org, matthias.bgg@gmail.com,
+	sudeep.holla@arm.com, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+	linux-mediatek@lists.infradead.org, arm-scmi@vger.kernel.org,
+	kernel@collabora.com
+Subject: Re: [PATCH v1 0/2] firmware: Add MediaTek TinySYS SCMI Protocol
+Message-ID: <aFlW5zVERnpwIkS4@pluto>
+References: <20250623120136.109311-1-angelogioacchino.delregno@collabora.com>
+ <aFlFw-AjqxXcIuBO@pluto>
+ <9e8d0dfc-7dc4-461d-afd9-bd381219422f@collabora.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <9e8d0dfc-7dc4-461d-afd9-bd381219422f@collabora.com>
 
-From: Francesco Dolcini <francesco.dolcini@toradex.com>
+On Mon, Jun 23, 2025 at 02:32:24PM +0200, AngeloGioacchino Del Regno wrote:
+> Il 23/06/25 14:17, Cristian Marussi ha scritto:
+> > On Mon, Jun 23, 2025 at 02:01:34PM +0200, AngeloGioacchino Del Regno wrote:
+> > > This series adds basic support for the MediaTek TinySYS SCMI Protocol,
+> > > found on the MediaTek Dimensity 9200, 9300 and 9400, other than on the
+> > > MT8196 Chromebook SoC.
+> > > 
+> > > This is used to communicate with the CM_MGR and other MCUs for power
+> > > management purposes.
+> > 
+> > Hi Angelo,
+> > 
+> > thanks for this.
+> > 
+> > I will do a proper review in the coming days of this series anyway, but
+> > upfront for future V2:
+> > 
+> > - you should provide some sort of documentation for this new
+> >    vendor protocol and its messages, as an example from IMX:
+> > 
+> > 	drivers/firmware/arm_scmi/vendors/imx/imx95.rst
+> 
+> Noted.
+> 
+> > 
+> > - where is the SCMI driver that will call all the new vendor ops
+> >    defined in: scmi_mtk_protocol.h ?
+> 
+> This was tested with code that is not clean at all (hence I can't push it upstream)
+> and well... I didn't think about the fact that, effectively, without an user, this
+> code ends up being unused.
+> 
+> I can't promise to send a clean user in this cycle, but I would really appreciate
+> if you could still check the protocol code, so that if there's anything that you
+> can spot I can fix it while the rest gets done :-)
 
-LDO5 regulator is used to power the i.MX8MM NVCC_SD2 I/O supply, that is
-used for the SD2 card interface and also for some GPIOs.
+Sure, I will anyway review, but a driver user exampe would be useful, maybe
+posting it at the end of the series as a NOT-FOR-UPSTREAM/RFC (something like that)
+so that we can have an iddea of the usage patterns while being aware that it is
+still not clean for upstream.
 
-When the SD card interface is not enabled the regulator subsystem could
-turn off this supply, since it is not used anywhere else, however this
-will also remove the power to some other GPIOs, for example one I/O that
-is used to power the ethernet phy, leading to a non working ethernet
-interface.
-
-[   31.820515] On-module +V3.3_1.8_SD (LDO5): disabling
-[   31.821761] PMIC_USDHC_VSELECT: disabling
-[   32.764949] fec 30be0000.ethernet end0: Link is Down
-
-Fix this keeping the LDO5 supply always on.
-
-Cc: stable@vger.kernel.org
-Fixes: 6a57f224f734 ("arm64: dts: freescale: add initial support for verdin imx8m mini")
-Fixes: f5aab0438ef1 ("regulator: pca9450: Fix enable register for LDO5")
-Signed-off-by: Francesco Dolcini <francesco.dolcini@toradex.com>
----
- arch/arm64/boot/dts/freescale/imx8mm-verdin.dtsi | 1 +
- 1 file changed, 1 insertion(+)
-
-diff --git a/arch/arm64/boot/dts/freescale/imx8mm-verdin.dtsi b/arch/arm64/boot/dts/freescale/imx8mm-verdin.dtsi
-index d29710772569..1594ce9182a5 100644
---- a/arch/arm64/boot/dts/freescale/imx8mm-verdin.dtsi
-+++ b/arch/arm64/boot/dts/freescale/imx8mm-verdin.dtsi
-@@ -464,6 +464,7 @@ reg_vdd_phy: LDO4 {
- 			};
- 
- 			reg_nvcc_sd: LDO5 {
-+				regulator-always-on;
- 				regulator-max-microvolt = <3300000>;
- 				regulator-min-microvolt = <1800000>;
- 				regulator-name = "On-module +V3.3_1.8_SD (LDO5)";
--- 
-2.39.5
-
+Thanks,
+Cristian
 
