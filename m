@@ -1,346 +1,266 @@
-Return-Path: <devicetree+bounces-188762-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-188763-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id CA945AE4DD3
-	for <lists+devicetree@lfdr.de>; Mon, 23 Jun 2025 22:03:59 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 83BCEAE4E0B
+	for <lists+devicetree@lfdr.de>; Mon, 23 Jun 2025 22:19:35 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 3DFCD3BD038
-	for <lists+devicetree@lfdr.de>; Mon, 23 Jun 2025 20:03:09 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 7A34417CC44
+	for <lists+devicetree@lfdr.de>; Mon, 23 Jun 2025 20:19:35 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 626612D3225;
-	Mon, 23 Jun 2025 20:03:31 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4B56E2D5431;
+	Mon, 23 Jun 2025 20:19:27 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=riscstar-com.20230601.gappssmtp.com header.i=@riscstar-com.20230601.gappssmtp.com header.b="P4u66Dq5"
+	dkim=pass (1024-bit key) header.d=collabora.com header.i=sebastian.reichel@collabora.com header.b="WSRc4MDa"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-qv1-f54.google.com (mail-qv1-f54.google.com [209.85.219.54])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from sender4-pp-f112.zoho.com (sender4-pp-f112.zoho.com [136.143.188.112])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2A4F725761
-	for <devicetree@vger.kernel.org>; Mon, 23 Jun 2025 20:03:27 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.219.54
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1750709011; cv=none; b=WTT22BTMqCkBz4S/pK0Y/wv+0w0tMyiJ2X/tYr+DiZ8eKv0Rl4+UAu3Gz/0vRixhocNK0MF8QTJlxeBcM946LwKo7G1Zwa/iu2adLf6Ov7kI93aBdixfEpmki7i6JwsoipFyJTRwCIrJMM3pbFnouguUkappn2Ax6QqL0XaYXGg=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1750709011; c=relaxed/simple;
-	bh=Cm0owi4Bcfz/xBzWg7XxfWpBPCPtuvgjqTCncPrPkqI=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=FPTZCdJ8CovREBCRi8ROSDiEpcyTvek8Kk4Foxc7k8DCNeiG0QaOsDBR2RmGrgNmI7trjzCe2crZo8CqCr87wjKP7dQmExb6ksx8/bepqU1T0FvlCChzsJAoFA7A94itAEUPfz+zETX4mywUJuozgHb/CpDCV5gQxwDsSKLVmOw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=riscstar.com; spf=pass smtp.mailfrom=riscstar.com; dkim=pass (2048-bit key) header.d=riscstar-com.20230601.gappssmtp.com header.i=@riscstar-com.20230601.gappssmtp.com header.b=P4u66Dq5; arc=none smtp.client-ip=209.85.219.54
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=riscstar.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=riscstar.com
-Received: by mail-qv1-f54.google.com with SMTP id 6a1803df08f44-6facf4d8e9eso53883576d6.1
-        for <devicetree@vger.kernel.org>; Mon, 23 Jun 2025 13:03:27 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=riscstar-com.20230601.gappssmtp.com; s=20230601; t=1750709007; x=1751313807; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=SHvbV5Gb3cOPD4o1UtqsMvsOaltem8eGes/uTQkdjBA=;
-        b=P4u66Dq5BmwSd4jlv381O7HFTFUaO+svOtuvd852ArpdvVPIDR61QoMltRazM2eQdR
-         Ix/zL2H1qjjV7nD+M9U4ZwE03Nuj8nNHhYk2P3FK2EJ2XAqDcmQvF8Zx0jrrB5RwDwwk
-         ZNiRxJqUeEGC+rAWW8J4K598NpjKRg4Zzq9BbmnXmsNpUWZK6BuZ7NMXEc06FLZkgJuN
-         Q4g86SkR4okvj+eGIZ4Hrfr9zvH9fYa6AN5nGKC0O8DyrWkQwbDzxLxlC0Jc5sjvqsDw
-         AZeAQSdpCGf4ClwWDAZq1M6Y/ORc4DMsktHBF8FiL4A2V7kzJpmM4YkPJgNsRyGkqdeR
-         hQtA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1750709007; x=1751313807;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=SHvbV5Gb3cOPD4o1UtqsMvsOaltem8eGes/uTQkdjBA=;
-        b=JjV4M7mIZ/L0VHqrV4wZBicqGspvlyTXmou8jqYHlt3LuhBYlYkXRvQrovSgr0Qx07
-         0NK5amK3fvhRt2VyoxHuTVNCh60bKHiFCpTfA0u4v9VZgkrcYrkW/yY6aGQ1I6CE729B
-         xYKGg0+V5x/SMkvmeaqFBBaio57E7JQ5NFkH9mEBCnstoozN8ktmknSWV09QWOjDW2DJ
-         Cwu5BDlm0JB7fhepJjX8d5RbH4B9NqBIcKCEvHaq3eFDBzr3eeRhSsbYhhIwMWtVFfaH
-         uC6OcDL5EH7gOSTpLyqokjEsETQfjEQvST8t0OhmUF0Ri0NOSdTJY3CUrX6lNpFce+p0
-         mf1Q==
-X-Forwarded-Encrypted: i=1; AJvYcCXcF8thZUa8kOMZ3SmjJ8Z5NHokBtitfm+6iAbK73j7wT7GpD7GXkzLErhcwi2Oda5rAlXT56Chki+V@vger.kernel.org
-X-Gm-Message-State: AOJu0Yxpk/mmktaS39OATAnWHHxujtoCAbWFzPnHVXiwxHY0tlAIH01S
-	SMd4S/uWZ2F2QDEnK+USIegpKLwCTUko6Njs34XBpSwDzL9YC5tERDNo+VSPYlt1sjc=
-X-Gm-Gg: ASbGncs5KWugYjrdfeUm/OeE3b8vlxSynPwiUHMUYJXAZQjqD5AMNOGDQ9N8PuNFoGe
-	hFcsV3nL6rIULio2uux4IaC0NFix1x2UHmaCRc1FM+QiaGYEn5asvyIob3a4WdlQezgvJGUSRhZ
-	PT4plG+7S9BthgS5mtsQsfGyCZB/MF5FydiRodkfTWTZMjvwESSZJ9mp6f3GpwDapdwE2SWaJkT
-	Coc3j7S57jh7MDaqL3BPKYWnljoKVibGMyO+3MXF7azx8KrL2qbXXkP7JKO+RdXabrvXfxtRfeq
-	aQSRGtfYjQuDsVE8NCDB4bemLu7Zpzd5EgL7kxEv1vAzNgliLT/n43IJFmMifU0NQWCQudSw9k/
-	wCtRhj1N/F7aK/CUh9Z2L7HfZMg==
-X-Google-Smtp-Source: AGHT+IHumrQ7I9+KWWFuDhRtTXUetnYj5eNaskA2/R5KWnq/Qt2+NVksAOmZOF3H1r8gUpMvuaqYsw==
-X-Received: by 2002:a05:6214:540e:b0:6fa:c3c8:d3d9 with SMTP id 6a1803df08f44-6fd0a31b2damr232736376d6.0.1750709007021;
-        Mon, 23 Jun 2025 13:03:27 -0700 (PDT)
-Received: from [172.22.22.28] (c-73-228-159-35.hsd1.mn.comcast.net. [73.228.159.35])
-        by smtp.gmail.com with ESMTPSA id 6a1803df08f44-6fd094569bdsm48831816d6.48.2025.06.23.13.03.25
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 23 Jun 2025 13:03:26 -0700 (PDT)
-Message-ID: <f2d04232-6662-49d5-936d-ec58d0fb01b6@riscstar.com>
-Date: Mon, 23 Jun 2025 15:03:25 -0500
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 54CFF29CB2D;
+	Mon, 23 Jun 2025 20:19:25 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=pass smtp.client-ip=136.143.188.112
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1750709967; cv=pass; b=lrWEEI6CivkgmS4olFcj7KWXT+BoBHCJo2dPSpLByCf1eUmIOrXdGKcyWIt4xEx4cfCEoT685ayGbPBjQC7JooxW72b8NKkvVoq8bQ7zDefLdNdLg/Fx5kwaLvTmRyJnTrZJhV0sdaQACFMrEyxtueEpzcFbBIvrJ4Bhq4UykfY=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1750709967; c=relaxed/simple;
+	bh=Nz1sJy6VJ/Rbj7SVYAp3/Fj04LTtS3SWrlByiu70/F8=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=WmpCrCfQTbnbNvfhx7U/CIcI4au0JqwVoeqPxsfLBAc1H3+KSAH3r1nuhxju0NcNwZaY2nRk0nUSr99zXk6RbE5CCixL4Sol/2d6b59fd5HLYr/Eaj196WQvqwVCK5EIgIIF5/X++Zj9DEoG3LmkL+2oHzxSXsu+sXm69RDz9+Y=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (1024-bit key) header.d=collabora.com header.i=sebastian.reichel@collabora.com header.b=WSRc4MDa; arc=pass smtp.client-ip=136.143.188.112
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
+ARC-Seal: i=1; a=rsa-sha256; t=1750709953; cv=none; 
+	d=zohomail.com; s=zohoarc; 
+	b=bkbF+nsxW+c2fu/pGDBxSBiZDscg8OZvZVf5mfnMZpNNS/w/sGTpXB43X/Q9LwlZjdO9Qg4lSg51rZnzVbuXHb6/D/y0Bwef4l9iaekQj9d4b9rr5+1X+RPDvcfgvHxcRclnMGvqotSpxUpGwWSFhe+oZHvh3A+rLJUPg6wj3Do=
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=zohomail.com; s=zohoarc; 
+	t=1750709953; h=Content-Type:Cc:Cc:Date:Date:From:From:In-Reply-To:MIME-Version:Message-ID:References:Subject:Subject:To:To:Message-Id:Reply-To; 
+	bh=h8MtJKaV6LBmqUhsJAGXnQjLZJk41ZfDqmd1LYlum3E=; 
+	b=SlCwsG1ggw48Nk/7WBjjcJSJTKTE9tGfDKo2ANk2UdV1IPzYtkZOTPkffVrnsyqDP8mplT5ENJi9bwHGdPbJTzcLJfwS2lVpg/jRokN/zychg2d0W6Wdjwi2+6BseK6SgoLMZ1FsoaDFLeVEYsWem/ajS7c3nUMupbXLU5sNRMI=
+ARC-Authentication-Results: i=1; mx.zohomail.com;
+	dkim=pass  header.i=collabora.com;
+	spf=pass  smtp.mailfrom=sebastian.reichel@collabora.com;
+	dmarc=pass header.from=<sebastian.reichel@collabora.com>
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; t=1750709953;
+	s=zohomail; d=collabora.com; i=sebastian.reichel@collabora.com;
+	h=Date:Date:From:From:To:To:Cc:Cc:Subject:Subject:Message-ID:References:MIME-Version:Content-Type:In-Reply-To:Message-Id:Reply-To;
+	bh=h8MtJKaV6LBmqUhsJAGXnQjLZJk41ZfDqmd1LYlum3E=;
+	b=WSRc4MDaVNZ74MnCc1pQiwzzIi5RHcnIi7xhTlHqJ08kHINdb4hGd9HeFKuiyfbc
+	gpvhAiElpe+NzkHpiFquQ8f/n+Z75thvpXhv+zU1pVTr4X73980McLBrVQ8ZRO5mCkJ
+	aGTspJnOS6HxTiqd44Gj5MOjmuNNlOakvIcx+PsQ=
+Received: by mx.zohomail.com with SMTPS id 1750709950577845.0006651962747;
+	Mon, 23 Jun 2025 13:19:10 -0700 (PDT)
+Received: by venus (Postfix, from userid 1000)
+	id D3DFE180AAB; Mon, 23 Jun 2025 22:19:05 +0200 (CEST)
+Date: Mon, 23 Jun 2025 22:19:05 +0200
+From: Sebastian Reichel <sebastian.reichel@collabora.com>
+To: Chris Morgan <macroalpha82@gmail.com>
+Cc: linux-pm@vger.kernel.org, linux-rockchip@lists.infradead.org, 
+	devicetree@vger.kernel.org, broonie@kernel.org, lgirdwood@gmail.com, heiko@sntech.de, 
+	conor+dt@kernel.org, krzk+dt@kernel.org, robh@kernel.org, lee@kernel.org, 
+	Chris Morgan <macromorgan@hotmail.com>
+Subject: Re: [PATCH V3 1/5] dt-bindings: mfd: ti,bq25703a: Add TI BQ25703A
+ Charger
+Message-ID: <5oeod74qqyfsxa6nqwafc6cfljaoh55yfyx2k73tudgwo5k5q5@4qvjgcmgbjpg>
+References: <20250623162223.184304-1-macroalpha82@gmail.com>
+ <20250623162223.184304-2-macroalpha82@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3 4/7] rtc: spacemit: support the SpacemiT P1 RTC
-To: Alexandre Belloni <alexandre.belloni@bootlin.com>
-Cc: lee@kernel.org, lgirdwood@gmail.com, broonie@kernel.org, robh@kernel.org,
- krzk+dt@kernel.org, conor+dt@kernel.org, dlan@gentoo.org,
- wangruikang@iscas.ac.cn, paul.walmsley@sifive.com, palmer@dabbelt.com,
- aou@eecs.berkeley.edu, alex@ghiti.fr, troymitchell988@gmail.com,
- guodong@riscstar.com, devicetree@vger.kernel.org, spacemit@lists.linux.dev,
- linux-rtc@vger.kernel.org, linux-riscv@lists.infradead.org
-References: <20250622032941.3768912-1-elder@riscstar.com>
- <20250622032941.3768912-5-elder@riscstar.com>
- <20250623191400c330f01f@mail.local>
-Content-Language: en-US
-From: Alex Elder <elder@riscstar.com>
-In-Reply-To: <20250623191400c330f01f@mail.local>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+Content-Type: multipart/signed; micalg=pgp-sha512;
+	protocol="application/pgp-signature"; boundary="udhuuq6bc53kdlcm"
+Content-Disposition: inline
+In-Reply-To: <20250623162223.184304-2-macroalpha82@gmail.com>
+X-Zoho-Virus-Status: 1
+X-Zoho-Virus-Status: 1
+X-Zoho-AV-Stamp: zmail-av-1.4.3/250.696.82
+X-ZohoMailClient: External
 
-On 6/23/25 2:14 PM, Alexandre Belloni wrote:
-> Hello,
-> 
-> On 21/06/2025 22:29:36-0500, Alex Elder wrote:
->> Add support for the RTC found in the SpacemiT P1 PMIC.  Initially
->> only setting and reading the time are supported.
->>
->> The PMIC is implemented as a multi-function device.  This RTC is
->> probed based on this driver being named in a MFD cell in the simple
->> MFD I2C driver.
->>
->> Signed-off-by: Alex Elder <elder@riscstar.com>
->> ---
->> v3: - Added this driver to the series, in response to Lee Jones saying
->>        more than one MFD sub-device was required to be acceptable
->>
->>   drivers/rtc/Kconfig  |  10 ++++
->>   drivers/rtc/Makefile |   1 +
->>   drivers/rtc/rtc-p1.c | 137 +++++++++++++++++++++++++++++++++++++++++++
-> 
-> We need something more descriptive than p1 here
 
-Are you referring to the chip itself, or do you want a longer
-file name?   Do you prefer "rtc-spacemit-p1.c" or something?
+--udhuuq6bc53kdlcm
+Content-Type: text/plain; protected-headers=v1; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
+Subject: Re: [PATCH V3 1/5] dt-bindings: mfd: ti,bq25703a: Add TI BQ25703A
+ Charger
+MIME-Version: 1.0
 
->>   3 files changed, 148 insertions(+)
->>   create mode 100644 drivers/rtc/rtc-p1.c
->>
->> diff --git a/drivers/rtc/Kconfig b/drivers/rtc/Kconfig
->> index 9aec922613cec..27cff02ba4e66 100644
->> --- a/drivers/rtc/Kconfig
->> +++ b/drivers/rtc/Kconfig
->> @@ -406,6 +406,16 @@ config RTC_DRV_MAX77686
->>   	  This driver can also be built as a module. If so, the module
->>   	  will be called rtc-max77686.
->>   
->> +config RTC_DRV_P1
-> 
-> Ditto
-> 
->> +	tristate "SpacemiT P1 RTC"
->> +	depends on ARCH_SPACEMIT || COMPILE_TEST
->> +	select MFD_SPACEMIT_P1
->> +	default ARCH_SPACEMIT
->> +	help
->> +	  Enable support for the RTC function in the SpacemiT P1 PMIC.
->> +	  This driver can also be built as a module, which will be called
->> +	  "spacemit-p1-rtc".
->> +
->>   config RTC_DRV_NCT3018Y
->>   	tristate "Nuvoton NCT3018Y"
->>   	depends on OF
->> diff --git a/drivers/rtc/Makefile b/drivers/rtc/Makefile
->> index 4619aa2ac4697..f8588426e2ba4 100644
->> --- a/drivers/rtc/Makefile
->> +++ b/drivers/rtc/Makefile
->> @@ -171,6 +171,7 @@ obj-$(CONFIG_RTC_DRV_SD2405AL)	+= rtc-sd2405al.o
->>   obj-$(CONFIG_RTC_DRV_SD3078)	+= rtc-sd3078.o
->>   obj-$(CONFIG_RTC_DRV_SH)	+= rtc-sh.o
->>   obj-$(CONFIG_RTC_DRV_SNVS)	+= rtc-snvs.o
->> +obj-$(CONFIG_RTC_DRV_P1)	+= rtc-p1.o
->>   obj-$(CONFIG_RTC_DRV_SPEAR)	+= rtc-spear.o
->>   obj-$(CONFIG_RTC_DRV_STARFIRE)	+= rtc-starfire.o
->>   obj-$(CONFIG_RTC_DRV_STK17TA8)	+= rtc-stk17ta8.o
->> diff --git a/drivers/rtc/rtc-p1.c b/drivers/rtc/rtc-p1.c
->> new file mode 100644
->> index 0000000000000..e0d2c0c822142
->> --- /dev/null
->> +++ b/drivers/rtc/rtc-p1.c
->> @@ -0,0 +1,137 @@
->> +// SPDX-License-Identifier: GPL-2.0
->> +/*
->> + * Driver for the RTC found in the SpacemiT P1 PMIC
->> + *
->> + * Copyright (C) 2025 by RISCstar Solutions Corporation.  All rights reserved.
->> + */
->> +
->> +#include <linux/bits.h>
->> +#include <linux/device.h>
->> +#include <linux/module.h>
->> +#include <linux/platform_device.h>
->> +#include <linux/regmap.h>
->> +#include <linux/rtc.h>
->> +
->> +#define MOD_NAME	"spacemit-p1-rtc"
->> +
->> +/* Offset to byte containing the given time unit */
->> +enum time_unit {
->> +	tu_second = 0,		/* 0-59 */
->> +	tu_minute,		/* 0-59 */
->> +	tu_hour,		/* 0-59 */
->> +	tu_day,			/* 0-30 (struct tm uses 1-31) */
->> +	tu_month,		/* 0-11 */
->> +	tu_year,		/* Years since 2000 (struct tm uses 1900) */
->> +	tu_count,		/* Last; not a time unit */
->> +};
-> 
-> I'm not sure this enum actually brings anything
+Hi,
 
-It's just defining the sequence of register values
-symbolically.  Do you prefer #defines?
+On Mon, Jun 23, 2025 at 11:22:19AM -0500, Chris Morgan wrote:
+> From: Chris Morgan <macromorgan@hotmail.com>
+>=20
+> Document the Texas instruments BQ25703A series of charger managers/
+> buck/boost regulators.
+>=20
+> Signed-off-by: Chris Morgan <macromorgan@hotmail.com>
+> ---
 
-It doesn't matter much to me, I just want to know what
-you'd prefer.
+Reviewed-by: Sebastian Reichel <sebastian.reichel@collabora.com>
 
-> 
->> +
->> +/* Consecutive bytes contain seconds, minutes, etc. */
->> +#define RTC_COUNT_BASE		0x0d
->> +
->> +#define RTC_CTRL		0x1d
->> +#define RTC_EN		BIT(2)
->> +
->> +struct p1_rtc {
->> +	struct regmap *regmap;
->> +	struct rtc_device *rtc;
->> +};
->> +
->> +static int p1_rtc_read_time(struct device *dev, struct rtc_time *t)
->> +{
->> +	struct p1_rtc *p1 = dev_get_drvdata(dev);
->> +	u8 time[tu_count];
->> +	int ret;
->> +
->> +	ret = regmap_bulk_read(p1->regmap, RTC_COUNT_BASE, &time, sizeof(time));
->> +	if (ret)
->> +		return ret;
->> +
->> +	t->tm_sec = time[tu_second] & GENMASK(5, 0);
->> +	t->tm_min = time[tu_minute] & GENMASK(5, 0);
->> +	t->tm_hour = time[tu_hour] & GENMASK(4, 0);
->> +	t->tm_mday = (time[tu_day] & GENMASK(4, 0)) + 1;
->> +	t->tm_mon = time[tu_month] & GENMASK(3, 0);
->> +	t->tm_year = (time[tu_year] & GENMASK(5, 0)) + 100;
->> +	/* tm_wday, tm_yday, and tm_isdst aren't used */
->> +
->> +	return 0;
->> +}
->> +
->> +static int p1_rtc_set_time(struct device *dev, struct rtc_time *t)
->> +{
->> +	struct p1_rtc *p1 = dev_get_drvdata(dev);
->> +	u8 time[tu_count];
->> +	int ret;
->> +
->> +	time[tu_second] = t->tm_sec;
->> +	time[tu_minute] = t->tm_min;
->> +	time[tu_hour] = t->tm_hour;
->> +	time[tu_day] = t->tm_mday - 1;
->> +	time[tu_month] = t->tm_mon;
->> +	time[tu_year] = t->tm_year - 100;
->> +
->> +	/* Disable the RTC to update; re-enable again when done */
->> +	ret = regmap_update_bits(p1->regmap, RTC_CTRL, RTC_EN, 0);
->> +	if (ret)
->> +		return ret;
->> +
->> +	ret = regmap_bulk_write(p1->regmap, RTC_COUNT_BASE, time, sizeof(time));
->> +
->> +	(void)regmap_update_bits(p1->regmap, RTC_CTRL, RTC_EN, RTC_EN);
-> 
-> Don't you care whether the RTC has been reenabled?
+Greetings,
 
-Yes, Mateusz pointed this out.  I'll fix this.
+-- Sebastian
 
-I hope that disabling and re-enabling isn't require,
-which makes the error possibilities a lot simpler.
+>  .../devicetree/bindings/mfd/ti,bq25703a.yaml  | 121 ++++++++++++++++++
+>  1 file changed, 121 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/mfd/ti,bq25703a.yaml
+>=20
+> diff --git a/Documentation/devicetree/bindings/mfd/ti,bq25703a.yaml b/Doc=
+umentation/devicetree/bindings/mfd/ti,bq25703a.yaml
+> new file mode 100644
+> index 000000000000..0727f24b8e54
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/mfd/ti,bq25703a.yaml
+> @@ -0,0 +1,121 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/mfd/ti,bq25703a.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: BQ25703A Charger Manager/Buck/Boost Converter
+> +
+> +maintainers:
+> +  - Chris Morgan <macromorgan@hotmail.com>
+> +
+> +allOf:
+> +  - $ref: /schemas/power/supply/power-supply.yaml#
+> +
+> +properties:
+> +  compatible:
+> +    const: ti,bq25703a
+> +
+> +  reg:
+> +    const: 0x6b
+> +
+> +  interrupts:
+> +    maxItems: 1
+> +
+> +  power-supplies: true
+> +
+> +  monitored-battery:
+> +    description:
+> +      The phandle for a simple-battery connected to this gauge.
+> +      A minimum of constant-charge-current-max-microamp,
+> +      constant-charge-voltage-max-microvolt, and
+> +      voltage-min-design-microvolt are required.
+> +
+> +  input-current-limit-microamp:
+> +    description:
+> +      Maximum total input current allowed used for both charging and
+> +      powering the device.
+> +    minimum: 50000
+> +    maximum: 6400000
+> +    default: 3250000
+> +
+> +  regulators:
+> +    type: object
+> +    additionalProperties: false
+> +    description:
+> +      Boost converter regulator output of bq257xx.
+> +
+> +    properties:
+> +      "usb-otg-vbus":
+> +        type: object
+> +        $ref: /schemas/regulator/regulator.yaml
+> +
+> +        properties:
+> +          regulator-name: true
+> +          regulator-min-microamp:
+> +            minimum: 0
+> +            maximum: 6350000
+> +          regulator-max-microamp:
+> +            minimum: 0
+> +            maximum: 6350000
+> +          regulator-min-microvolt:
+> +            minimum: 4480000
+> +            maximum: 20800000
+> +          regulator-max-microvolt:
+> +            minimum: 4480000
+> +            maximum: 20800000
+> +          enable-gpios:
+> +            description:
+> +              The BQ25703 may require both a register write and a GPIO
+> +              toggle to enable the boost regulator.
+> +
+> +        additionalProperties: false
+> +
+> +        required:
+> +          - regulator-name
+> +          - regulator-min-microamp
+> +          - regulator-max-microamp
+> +          - regulator-min-microvolt
+> +          - regulator-max-microvolt
+> +
+> +unevaluatedProperties: false
+> +
+> +required:
+> +  - compatible
+> +  - reg
+> +  - input-current-limit-microamp
+> +  - monitored-battery
+> +  - power-supplies
+> +
+> +examples:
+> +  - |
+> +    #include <dt-bindings/gpio/gpio.h>
+> +    #include <dt-bindings/interrupt-controller/irq.h>
+> +    #include <dt-bindings/pinctrl/rockchip.h>
+> +    i2c {
+> +        #address-cells =3D <1>;
+> +        #size-cells =3D <0>;
+> +
+> +        bq25703: charger@6b {
+> +            compatible =3D "ti,bq25703a";
+> +            reg =3D <0x6b>;
+> +            input-current-limit-microamp =3D <5000000>;
+> +            interrupt-parent =3D <&gpio0>;
+> +            interrupts =3D <RK_PD5 IRQ_TYPE_LEVEL_LOW>;
+> +            monitored-battery =3D <&battery>;
+> +            power-supplies =3D <&fusb302>;
+> +
+> +            regulators {
+> +                usb_otg_vbus: usb-otg-vbus {
+> +                    enable-gpios =3D <&gpio4 RK_PA6 GPIO_ACTIVE_HIGH>;
+> +                    regulator-max-microamp =3D <960000>;
+> +                    regulator-max-microvolt =3D <5088000>;
+> +                    regulator-min-microamp =3D <512000>;
+> +                    regulator-min-microvolt =3D <4992000>;
+> +                    regulator-name =3D "usb_otg_vbus";
+> +                };
+> +            };
+> +        };
+> +    };
+> +
+> +...
+> --=20
+> 2.43.0
+>=20
 
-Otherwise it's not clear how best to recover from
-an error re-enabling the RTC (but yes, if no error
-occurs in the bulk write, an error when re-enabling
-will be returned).
+--udhuuq6bc53kdlcm
+Content-Type: application/pgp-signature; name="signature.asc"
 
->> +
->> +	return ret;
->> +}
->> +
->> +static const struct rtc_class_ops p1_rtc_class_ops = {
->> +	.read_time = p1_rtc_read_time,
->> +	.set_time = p1_rtc_set_time,
->> +};
->> +
->> +static int p1_rtc_probe(struct platform_device *pdev)
->> +{
->> +	struct device *dev = &pdev->dev;
->> +	struct rtc_device *rtc;
->> +	struct p1_rtc *p1;
->> +	int ret;
->> +
->> +	p1 = devm_kzalloc(dev, sizeof(*p1), GFP_KERNEL);
->> +	if (!p1)
->> +		return -ENOMEM;
->> +	dev_set_drvdata(dev, p1);
->> +
->> +	p1->regmap = dev_get_regmap(dev->parent, NULL);
->> +	if (!p1->regmap)
->> +		return dev_err_probe(dev, -ENODEV, "failed to get regmap\n");
->> +
->> +	rtc = devm_rtc_allocate_device(dev);
->> +	if (IS_ERR(rtc))
->> +		return dev_err_probe(dev, PTR_ERR(rtc),
->> +				     "error allocating device\n");
->> +	p1->rtc = rtc;
->> +
->> +	rtc->ops = &p1_rtc_class_ops;
->> +	rtc->range_min = RTC_TIMESTAMP_BEGIN_2000;
->> +	rtc->range_max = RTC_TIMESTAMP_END_2063;
->> +
->> +	clear_bit(RTC_FEATURE_ALARM, rtc->features);
->> +	clear_bit(RTC_FEATURE_UPDATE_INTERRUPT, rtc->features);
->> +
->> +	ret = devm_rtc_register_device(rtc);
->> +	if (ret)
->> +		return dev_err_probe(dev, ret, "error registering RTC\n");
-> 
-> This message is unnecessary, there are no silent error path in
-> devm_rtc_register_device
+-----BEGIN PGP SIGNATURE-----
 
-Awesome.  I'll just return what devm_rtc_regsister_device()
-returns.
+iQIzBAABCgAdFiEE72YNB0Y/i3JqeVQT2O7X88g7+poFAmhZtrUACgkQ2O7X88g7
++ppxkBAAmN2V9bGgWBb9mg1QmZkYemThuB92a6g1OBgXIYLvlP7YQ2phWa5UfJfy
+h1VcsX9BmNDxPkUlbxCp0cw+rW6/eE7/WlBOs2Ga5lr65hGonoLvYqNWJ1ysMtZu
+dtEKaJpT1L8+IO0/8THERH8LBDYtHjw+CDYzVLPG4kB+cao8k7n5aX4nyOVDDuRa
+NR4FzLO5HNGO5HyMyeznGgwuDRlvjkGTJQDCGVa/ibF7yJU7G6jjZkzQoE+TALun
+kIDY1v5eBHGhxV+dXYRYjE9xLf2GlLWbBkpCuHN3MgBGfslaO3AEAT6rfvA9yc6b
+r/CcCM072idMz/oHMeWAlQVGgdXuSPzIl6r2qkGPAhGUwqNRJDI0qam/PGo4OiQ2
+9ru1vLrz6z/Od3rmdO/Xo+sB4YlDugu4arFQzXUYWZAz5XaFieJL6EIsZ+snhYFO
+UsdUc0DpeyT1L3oeDLaaxvg1wOyYR8vBKeIwjKFNwTBeSD7I2CSTZ91Y+2gwqLeX
+dWJaKfMPEDHCeBBRjNZzgVZUBMKPL53xOQqVEbcFxybPVsunnMWJEp4uEJfslqTt
+dsOZ4/Op+a7ZU1iOSLWQAoPjUCT8TXfe18ueO8VMlpbqjtUKcI/fUMLrRBIUcZA2
+rhISTn4OXcdeyZ9iG/VnOmGeekCD+BrCEL/ma2W1ziBHeh9Ajj0=
+=4zuD
+-----END PGP SIGNATURE-----
 
-Thanks a lot.
-
-					-Alex
-
-> 
->> +
->> +	return 0;
->> +}
->> +
->> +static struct platform_driver p1_rtc_driver = {
->> +	.probe = p1_rtc_probe,
->> +	.driver = {
->> +		.name = MOD_NAME,
->> +	},
->> +};
->> +
->> +module_platform_driver(p1_rtc_driver);
->> +
->> +MODULE_DESCRIPTION("SpacemiT P1 RTC driver");
->> +MODULE_LICENSE("GPL");
->> +MODULE_ALIAS("platform:" MOD_NAME);
-> 
-
+--udhuuq6bc53kdlcm--
 
