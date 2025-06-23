@@ -1,88 +1,88 @@
-Return-Path: <devicetree+bounces-188482-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-188483-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3D068AE3DCA
-	for <lists+devicetree@lfdr.de>; Mon, 23 Jun 2025 13:20:00 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 51BEBAE3DD2
+	for <lists+devicetree@lfdr.de>; Mon, 23 Jun 2025 13:23:39 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id D8025188FC4B
-	for <lists+devicetree@lfdr.de>; Mon, 23 Jun 2025 11:20:15 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id D91751891491
+	for <lists+devicetree@lfdr.de>; Mon, 23 Jun 2025 11:23:54 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id AA09F23817F;
-	Mon, 23 Jun 2025 11:19:55 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5A9AF23E331;
+	Mon, 23 Jun 2025 11:23:29 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="CjNt/pWK"
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="ANNbLeOp"
 X-Original-To: devicetree@vger.kernel.org
 Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 319901B808
-	for <devicetree@vger.kernel.org>; Mon, 23 Jun 2025 11:19:54 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CE58823315E
+	for <devicetree@vger.kernel.org>; Mon, 23 Jun 2025 11:23:27 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1750677595; cv=none; b=XL9iZ+oIR3ckjUxHSQ4jyNLMrpz5ygBuJoJ9Vol/OWDksmrLkjFfwmugI6r3f6xLN4uBcUkpjc993qdyGvQFlzcLVEaA3ij/XadjGoNEYPiTJkTKsYXVsBvoXAFK3w49KcEHWkqthYg7dUsEDftkZKwI2Y+fyd1c/AKnF7F2aog=
+	t=1750677809; cv=none; b=Ac7+KRXKsohCabdnkq9eO4/UJfX39yEusJalHzvy5t6dE6KLGOHMsHUBe24joGN5vd4VsrVI7Eo2oophPlQcimXmPPUHcjSdtVOOM9h+gb2jlyrzfuGToChpZ7KkOZ8Zk19xPNhfWdrCeXzrg4o3COCxkxV6iTNUrGLEBldLV9c=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1750677595; c=relaxed/simple;
-	bh=SAX/4gVNCkszlA4kN/MJxlF4iWqpz8DqffG0LjHMHn0=;
+	s=arc-20240116; t=1750677809; c=relaxed/simple;
+	bh=za3jzPzxjRKrGPWrbVkFmVAdacWDo5Ii0cqWZ2Fo6gI=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=avjbWmZJguzJTpCmK/BvLi/2j7yem5tbylM8fiUntsg1dgY98d2fSQeNru/TcmAbgtb4XWhCsGbAtGA5qK4+m/qJWRdwNs2CIicV8a3qyhqr14OrJlG/MGlLlDaDyhO8V0ilQ7xgJkrvToqwUYzoYqliMzZsyGoSLYWXJEzBQR8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=CjNt/pWK; arc=none smtp.client-ip=205.220.180.131
+	 In-Reply-To:Content-Type; b=HSqwWNbDSxGZI71+wlUarAY0jOumzHUm6mjtSMnxgGwKS81qniBuvwkdem9zN4FMUxi+Y3ue4xmhjClT2mi46ek6PLB3xjNENk0uN6F65H8gGONrs48pTfkBGGAFFwfvB1GCXVnZHHQbPX5uldm+cE1Ne3+2ZwwDtCu1YQDMDHI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=ANNbLeOp; arc=none smtp.client-ip=205.220.180.131
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
-Received: from pps.filterd (m0279870.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 55N92cKB014675
-	for <devicetree@vger.kernel.org>; Mon, 23 Jun 2025 11:19:53 GMT
+Received: from pps.filterd (m0279873.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 55N7fRlZ021631
+	for <devicetree@vger.kernel.org>; Mon, 23 Jun 2025 11:23:26 GMT
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
 	cc:content-transfer-encoding:content-type:date:from:in-reply-to
 	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	7zKQIAVsdldY9upKrkZv5EtVBOTxNNZ0b5TunOsRvzY=; b=CjNt/pWKALLATVmK
-	Nx1yNvJX0afa3tS7XhO3li9kwLbqCCvvBmiiDBrg8SW6RQOSguwn9ZfDrM+ayoZC
-	AloKtX4p4fZo7tZ5JPrTHsINcrpl/3RRR6XJk79nIUFZ2gfM2ac96+lJ53bWI83e
-	98wUve2dR3JKbzRZjw6KRDo6eeNz9H+a+RdTnl+rAw5W14/WGx3zCsTYagVonreS
-	zPn/SVotxdE2w+LjlVJLNUjZ3HJEvt1PAmb1VbqDtNpzlSLmCdwdztCPe/0MwyQ6
-	7lmaaWK2Lwr2OO9Uaub+BB4KvW15wAfkL1AjRlxltBfEip9o0GTwxXo+OdpFml5B
-	bSmUsg==
+	UH9uuyUXsNQsiJs5r+UXcRRobA53OwqGqf+ZGt8Cb88=; b=ANNbLeOp/lN1DG7z
+	ewPOV4RIwpwnh2qgJugpOWgn9hG7ZcnJhNqKxKk6yQQDZI5ATFASG47iX20M9yUW
+	xJsOT5W2HKm2qVLCd0ChgDCarqGqraIxwtWX7UIVDprz1xH7HaXD7CFIdx/JWQw7
+	oL9qVim5UxKaNub47x4Pm/tEuJ+fwN0wKEm5DliM+nsOeBW1CtzZm2OPjh0nsoJA
+	tUxUKgeovmOKKPjT5qs4EpLXkQbM9fVb3WLFzJDQTxroDKye5JhTNXQxIBREx0kJ
+	QtVERZfXTKSIeVEMbRlrjxyMEG9kIxaup9DpVAaA6XIxTwMFRFGkyXunjz7w/um8
+	bsfqTQ==
 Received: from mail-qk1-f198.google.com (mail-qk1-f198.google.com [209.85.222.198])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 47f3xu0cva-1
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 47f2rprkqy-1
 	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Mon, 23 Jun 2025 11:19:53 +0000 (GMT)
-Received: by mail-qk1-f198.google.com with SMTP id af79cd13be357-7c5af539464so115420885a.0
-        for <devicetree@vger.kernel.org>; Mon, 23 Jun 2025 04:19:53 -0700 (PDT)
+	for <devicetree@vger.kernel.org>; Mon, 23 Jun 2025 11:23:26 +0000 (GMT)
+Received: by mail-qk1-f198.google.com with SMTP id af79cd13be357-7d09a3b806aso104387185a.0
+        for <devicetree@vger.kernel.org>; Mon, 23 Jun 2025 04:23:26 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1750677592; x=1751282392;
+        d=1e100.net; s=20230601; t=1750677805; x=1751282605;
         h=content-transfer-encoding:in-reply-to:from:content-language
          :references:cc:to:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=7zKQIAVsdldY9upKrkZv5EtVBOTxNNZ0b5TunOsRvzY=;
-        b=sbdJt0D1x8/8/1jj7vk6QAqLLGw++SJ6fL01GbyUNZyoiSwI5xce08JNuZAXExXOge
-         4Nr1xinmKj+UncoweVTJTBrWwVisKIscHpsBDFoTshY392heG0VH3jNsXAGTYgV5vyd7
-         Qkg+IN34iinq8Qc5Fa7V5M6vqOK6PecZW5cCIEhwQRDYrh8x4IUR+oaoWQbqM+LKOSvL
-         Fvpe1Mbg/xIzUw+OkHMhCr/BtcM8VtEMGciuvLtPjos1Vb7lTiOqqMHvShrLm8s/nJko
-         ROWeYEWZ3EBDETJZtjGdclWr5zahe8T1Pac2qWDaHvLoy335aFnNkNSwW7rGKbCcRdwR
-         KQbg==
-X-Forwarded-Encrypted: i=1; AJvYcCW02CeL+KaSWKgno1i3Vax7r1HKrsXpbgw5gg8MBwTX0Pw7myAgdSIGBHUZNoW1jKS7X4gTHu0ORvd8@vger.kernel.org
-X-Gm-Message-State: AOJu0YxVG9ueUovpEUonFgSubJG2vtD9N2VLSj+JZ5QqS+b49bwi9HVt
-	O/srSz3NFY+O+I0tyWWeTZVNwAC4hK4ZUh994TqSMxugqr+2S12SC2UbFNjmEgsmTDey2GuEl8/
-	ZY1noS5HR9w2gTtMVw1qaDpbdl5ZJixQphAGn3FetF5HDDndrMygDQhdtXXiOcILR
-X-Gm-Gg: ASbGnctJRFmBja/QPlZhn/kCqvmt05hboeLRakxw4/GQv8c/dCVmXnXSYWTWO7HQaMW
-	voOpHimC9Kbzi4Xz4hsNe4qtcuqqEv55cugaD/A7ZN1pg7AWV5vKE5H30+cuG30sqkISSywuSae
-	jUkOGxlvLwY5nyqSodPixm3UUYa6C/c/84qOS5CB1mj6fajhVhhcV1l992uuoO6i/QSv3IsXHWD
-	94XvMQQvJbNmZXKMz08cmrl8inj8uRI2MCkbSsQ89QAWk5p5D3qQcqpAr+n+3kQnKRdUCydEfRF
-	rAx0c/okpUf/Ad5XUtyKVlkM55dDlCDFNWrOAJ3EoFeGH1jHxNMTEUi43CjKyXRkdjE9wvtcnla
-	z0os=
-X-Received: by 2002:a05:620a:178d:b0:7c5:ac06:af8 with SMTP id af79cd13be357-7d3f9920ff3mr524117085a.9.1750677592205;
-        Mon, 23 Jun 2025 04:19:52 -0700 (PDT)
-X-Google-Smtp-Source: AGHT+IHHqPoH6QmN0MGatJznqXrfBJU91ugdsW9S22UakSW0tiObJMZH8PiX02io1ERTh2F295E7ew==
-X-Received: by 2002:a05:620a:178d:b0:7c5:ac06:af8 with SMTP id af79cd13be357-7d3f9920ff3mr524114885a.9.1750677591576;
-        Mon, 23 Jun 2025 04:19:51 -0700 (PDT)
+        bh=UH9uuyUXsNQsiJs5r+UXcRRobA53OwqGqf+ZGt8Cb88=;
+        b=X5Rl70E549k5tVw3BBHR9NdbTTkwbYVsEKlri5a4qLlGXxTudkFvxqvFpAjn0LItP+
+         UNtuhIzpeLCeOouWYoQ+qOlFi2hNtVkeNTG9uwVo95LdVbf2/RrzuLfD7U83nK8Kz0pm
+         M6/jvC6vP3lZRlLJzWXvYexoMFQdai+JFyZWWRMakBGqtPuvxAdn5NQ284bqYpqzK/cr
+         kPgj0IIfw30geQRP14bPyUX9Rh5XkDqlO3KsfmFwtwVSzAIBgZAcTbjdks4A1qsGjHkz
+         RnwywGoW5CilIGBd23znbn3X/l3cU6D0OH1RqtZaLYYHGoNPVLWbW82xlxVRgxDcEG/C
+         qvzw==
+X-Forwarded-Encrypted: i=1; AJvYcCVbiyjtu8XBFaaNrn8/JkLdzXs3jQ5CU2eNx31kCzAZw3xLTpXmoX11tb2PnZ0khk9wNPrT72B5cBdM@vger.kernel.org
+X-Gm-Message-State: AOJu0YyfOBtfwu9oqjxwIl8MYxyd+OuLfw07AKWSMe/wW+NXGI4uzpvC
+	rcPPVuCyBFXVCJc9dyqrAuaEUbPZhXxI530Wknr2efg3nxi751ifH0S31synJlFb0n6otZLk/m0
+	lKFR1UYde8bjUFpwyZtzBjM7koNo/y6OpQBJiVIN+Y8WX+U/0u9nMe3Rj3fV9YM5a
+X-Gm-Gg: ASbGnctsivcLfQsLod0iyE/o8VSm/mktPs9xtSQEzaUwk/GmF7N/IaGSA3/ecFv6T1J
+	59qMaKua+G7rWPxDv117Yx2DCtzx/MLMltWY4JiV1ziXo6zpDMDk47g9tQo9OgRth4u7Y71Pzd7
+	oCwB/KBJHVGnCYCtr65ygDMmZre5C8ROvIV+JbmgepD+c5kGYF6Uw2YaiozGJrfA3AgoQSDxElj
+	verCLGLyY6eEURMwEUq48L4UKQ/jPz2UgHp2+pfNzl9bxxyyslJDZxPqd5SsNIpZ5freNLKXw2u
+	aErDE/+fqVLbmKLn5GXjSscirjSEg/yMyNQEt1ruDzBX7lzXA7d/nTtmrKkGinU+FuSWwIbkrf/
+	DaCM=
+X-Received: by 2002:a05:620a:26aa:b0:7c0:b43c:b36c with SMTP id af79cd13be357-7d3f98e252fmr566910085a.6.1750677804677;
+        Mon, 23 Jun 2025 04:23:24 -0700 (PDT)
+X-Google-Smtp-Source: AGHT+IEIeTIVZmLAQYrPGSdghytyNjTMxnVjrXHgHo2iWPUvYkxGCZEFn6pW3QQTQQmBw26psY+Vwg==
+X-Received: by 2002:a05:620a:26aa:b0:7c0:b43c:b36c with SMTP id af79cd13be357-7d3f98e252fmr566907985a.6.1750677804000;
+        Mon, 23 Jun 2025 04:23:24 -0700 (PDT)
 Received: from [192.168.143.225] (078088045245.garwolin.vectranet.pl. [78.88.45.245])
-        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-ae0541b74cesm706297266b.142.2025.06.23.04.19.49
+        by smtp.gmail.com with ESMTPSA id 4fb4d7f45d1cf-60a18543642sm5902920a12.26.2025.06.23.04.23.22
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 23 Jun 2025 04:19:51 -0700 (PDT)
-Message-ID: <1f7af719-a945-400c-8caf-16e6e55b2484@oss.qualcomm.com>
-Date: Mon, 23 Jun 2025 13:19:48 +0200
+        Mon, 23 Jun 2025 04:23:23 -0700 (PDT)
+Message-ID: <aabcf5d1-7380-40c8-896f-6ce37944e97d@oss.qualcomm.com>
+Date: Mon, 23 Jun 2025 13:23:21 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -90,82 +90,95 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 5/5] ARM: dts: qcom: add device tree for Sony Xperia SP
-To: Antony Kurniawan Soemardi <linux@smankusors.com>,
+Subject: Re: [PATCH v2] arm64: dts: qcom: sm8550: Correct the min/max voltages
+ for vreg_l6n_3p3
+To: Kamal Wadhwa <kamal.wadhwa@oss.qualcomm.com>,
         Bjorn Andersson <andersson@kernel.org>,
         Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>,
         Krzysztof Kozlowski <krzk+dt@kernel.org>,
         Conor Dooley <conor+dt@kernel.org>
 Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, Max Shevchenko <wctrl@proton.me>,
-        Rudraksha Gupta <guptarud@gmail.com>
-References: <20250623-msm8960-sdcard-v2-0-340a5e8f7df0@smankusors.com>
- <20250623-msm8960-sdcard-v2-5-340a5e8f7df0@smankusors.com>
+        linux-kernel@vger.kernel.org,
+        Neil Armstrong <neil.armstrong@linaro.org>
+References: <20250620-sm8550-correct-vreg_l6n_3p3-vol-v2-1-b397f3e91d7b@oss.qualcomm.com>
 Content-Language: en-US
 From: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
-In-Reply-To: <20250623-msm8960-sdcard-v2-5-340a5e8f7df0@smankusors.com>
+In-Reply-To: <20250620-sm8550-correct-vreg_l6n_3p3-vol-v2-1-b397f3e91d7b@oss.qualcomm.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwNjIzMDA2NyBTYWx0ZWRfX21b//wjZ9/sE
- Q55+qvwDaJdT1jmtbFgoTOC2Rq7+SS2V+1c3Jq04WDI8+806dIGKgVoxElM9X27UarZRartijay
- +Ir11dsX4bZvfZ8IVI0Kct0VrSpbbfzoCvuiqWG94DPmGpYq0wWWHMuOaajjlnyM34YJ2ySStzn
- gRjGkxpjXiHyJFwU3Qo+mCtygiRDu4zexS6K3ju+0fzAVHIKISEFYtW3q+vP8Vah42smm/1SxuR
- nW8/8Us8xnNC0epGYxguJ0JFNHeAX0KN3BbTfCqXDkYR7pM9y9foJ089NdKmtB0yAl6zq5PZ5WX
- ujC96DqupQwnu06kO2eQBPpNMfEURav2JkMO8NfG0gHoQro+k0nhogBKxJqi9kLwSBf+GTC6UVH
- 8v8f2Kt6eTO46KqmIVEuQB9xLONFQGxi1mhjEBLoZHIfm4riM/vVhh1x9gUUNYTYNdUVqkR0
-X-Authority-Analysis: v=2.4 cv=SvuQ6OO0 c=1 sm=1 tr=0 ts=68593859 cx=c_pps
+X-Authority-Analysis: v=2.4 cv=NdDm13D4 c=1 sm=1 tr=0 ts=6859392e cx=c_pps
  a=qKBjSQ1v91RyAK45QCPf5w==:117 a=FpWmc02/iXfjRdCD7H54yg==:17
- a=IkcTkHD0fZMA:10 a=6IFa9wvqVegA:10 a=Gbw9aFdXAAAA:8 a=wxLWbCv9AAAA:8
- a=EUspDBNiAAAA:8 a=sfE0evLFWE0D8gplxDEA:9 a=QEXdDO2ut3YA:10
- a=NFOGd7dJGGMPyQGDc5-O:22 a=9vIz8raoGPyDa4jBFAYH:22 a=QJY96suAAestDpCc5Gi9:22
-X-Proofpoint-ORIG-GUID: Xi38Azft-6bvqqRzk2Ber8fbOm4PUpRi
-X-Proofpoint-GUID: Xi38Azft-6bvqqRzk2Ber8fbOm4PUpRi
+ a=IkcTkHD0fZMA:10 a=6IFa9wvqVegA:10 a=KKAkSRfTAAAA:8 a=EUspDBNiAAAA:8
+ a=cfxGQl2wVvWQvt-4oC0A:9 a=QEXdDO2ut3YA:10 a=NFOGd7dJGGMPyQGDc5-O:22
+ a=cvBusfyB2V15izCimMoJ:22
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwNjIzMDA2OCBTYWx0ZWRfX8poTHlmAuRkd
+ BQKX08Nv38KJ5ZsmLmX2I65v5FgD3SKaNISZ9R6k/d5JRicTXlpq48qRyfOjZqGWxZ09fBxnGMp
+ H4IRhc7J5P/jtcT9CFHeMDNvLHQkG92YzAXkKh5/pmjBpoudyUCPWHGo3zCgHzDhsyvY3YnTGGY
+ 64ywnbXbUUTo+Dhzlxn4pzWgQx0yquQi8svSnn8rTWF0Qx8bIj8kpZasLqD4Fn3NkSa139GC4QJ
+ fw1mcVFGDQFnkfglEL2ko67zbsQOl1v7zVvQi0H6yXdXaVRN2CqGuzpOC0BDATQfux+hPwJInhy
+ w574X9mYwHpT0QmykzEIEvje6zFj6+XYngPwgaRpl2tWyMIAxr4lE6ZVOrdUbtPIgOaXeWQGgUj
+ HGWaVRRDqVflLnKHmwLRqIKdaYXn1OLisKzjzrEEwjYaEFit8b75wcwmojwnYj2lZmcONZyH
+X-Proofpoint-ORIG-GUID: CkhMSAkBB85QPuauzF32yG9b3R73YEV4
+X-Proofpoint-GUID: CkhMSAkBB85QPuauzF32yG9b3R73YEV4
 X-Proofpoint-Virus-Version: vendor=baseguard
  engine=ICAP:2.0.293,Aquarius:18.0.1099,Hydra:6.0.736,FMLib:17.12.80.40
  definitions=2025-06-23_03,2025-06-23_02,2025-03-28_01
 X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- clxscore=1015 priorityscore=1501 lowpriorityscore=0 suspectscore=0
- impostorscore=0 spamscore=0 phishscore=0 adultscore=0 malwarescore=0
- mlxlogscore=993 bulkscore=0 mlxscore=0 classifier=spam authscore=0 authtc=n/a
- authcc= route=outbound adjust=0 reason=mlx scancount=1
- engine=8.19.0-2505280000 definitions=main-2506230067
+ bulkscore=0 mlxscore=0 spamscore=0 malwarescore=0 lowpriorityscore=0
+ phishscore=0 priorityscore=1501 suspectscore=0 mlxlogscore=999 adultscore=0
+ clxscore=1015 impostorscore=0 classifier=spam authscore=0 authtc=n/a authcc=
+ route=outbound adjust=0 reason=mlx scancount=1 engine=8.19.0-2505280000
+ definitions=main-2506230068
 
-On 6/22/25 8:26 PM, Antony Kurniawan Soemardi wrote:
-> Add initial device tree support for the Sony Xperia SP (codename:
-> sony-huashan), a smartphone based on the Qualcomm MSM8960T SoC.
+On 6/20/25 5:29 PM, Kamal Wadhwa wrote:
+> Voltage regulator 'vreg_l6n_3p3' max-microvolt prop is currently
+> configured at 3304000uV in different sm8550 board files. However this
+> is not a valid voltage value for 'pmic5_pldo502ln' type voltage
+> regulators.
 > 
-> There are two variants of the Xperia SP, one without LTE and one with
-> LTE. This device tree should work for both variants, though it has only
-> been tested on the non-LTE variant.
+> Check below the max value(3200mV) in the regulator summary for min/max
+> used as 2800mV/3304mV in DT:-
 > 
-> The following are currently supported:
-> - Serial console support via gsbi8
-> - GPIO keys for volume up/down buttons
-> - PM8921 keypad with camera focus/capture keys
-> - eMMC (sdcc1) and micro SD card (sdcc3) support
-> - USB OTG support
+> logs:
 > 
-> Other hardware features are not yet implemented.
+> [    0.294781] vreg_l6n_3p3: Setting 2800000-3304000uV
 > 
-> Booting notes:
-> Booting a kernel requires using the Sony ELF boot image format, which
-> embeds the kernel, ramdisk, RPM firmware, and cmdline. This can be
-> created using the `mkelf` tool. For example:
+> regulator summary:
 > 
->   python2 mkelf.py -o boot.img \
->     kernel+dtb@0x80208000 \
->     ramdisk.img@0x81900000 \
->     RPM.bin@0x00020000,rpm \
->     cmdline.txt@cmdline
+> regulator     use open bypass  opmode   voltage current  min     max
+> ---------------------------------------------------------------------
+> ..
+> vreg_l6n_3p3   0    0    0     normal   2800mV   0mA  2800mV  3200mV
+> ..
 > 
-> The resulting `boot.img` can then be flashed via fastboot. A detailed
-> guide, including an alternative method, is available at:
-> https://wiki.postmarketos.org/wiki/Sony_Xperia_SP_(sony-huashan)
+> Correct the min/max value to 3200000uV, as that is the closest valid
+> value to 3.3V and Hardware team has also confirmed that its good to
+> support the consumers(camera sensors) of this regulator.
 > 
-> Signed-off-by: Antony Kurniawan Soemardi <linux@smankusors.com>
+> Reviewed-by: Neil Armstrong <neil.armstrong@linaro.org>
+> Signed-off-by: Kamal Wadhwa <kamal.wadhwa@oss.qualcomm.com>
 > ---
 
-Reviewed-by: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
+FWIW it seems like 3.312v (which is slightly above the previous
+value) is also supported:
+
+static const struct rpmh_vreg_hw_data pmic5_pldo502ln = {
+        .regulator_type = VRM,
+        .ops = &rpmh_regulator_vrm_ops,
+        .voltage_ranges = (struct linear_range[]) {
+                REGULATOR_LINEAR_RANGE(1800000, 0,  2,  200000),
+                REGULATOR_LINEAR_RANGE(2608000, 3,  28, 16000),
+                REGULATOR_LINEAR_RANGE(3104000, 29, 30, 96000),
+                REGULATOR_LINEAR_RANGE(3312000, 31, 31, 0),
+        },
+        .n_linear_ranges = 4,
+        .n_voltages = 32,
+        .pmic_mode_map = pmic_mode_map_pmic5_ldo_hpm,
+        .of_map_mode = rpmh_regulator_pmic4_ldo_of_map_mode,
+};
+
+but if the hw folks say we can do with the lower value, it's probably
+even better
 
 Konrad
 
