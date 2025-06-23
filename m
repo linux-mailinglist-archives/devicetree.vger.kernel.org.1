@@ -1,128 +1,114 @@
-Return-Path: <devicetree+bounces-188640-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-188641-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id B36F1AE46EE
-	for <lists+devicetree@lfdr.de>; Mon, 23 Jun 2025 16:36:52 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 48098AE4750
+	for <lists+devicetree@lfdr.de>; Mon, 23 Jun 2025 16:49:22 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 8214118860CF
-	for <lists+devicetree@lfdr.de>; Mon, 23 Jun 2025 14:37:08 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 5555F16C780
+	for <lists+devicetree@lfdr.de>; Mon, 23 Jun 2025 14:45:52 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E82B5260566;
-	Mon, 23 Jun 2025 14:36:47 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4620426B756;
+	Mon, 23 Jun 2025 14:45:35 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="VflVaaes"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="OiQgFoRh"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B905B260560;
-	Mon, 23 Jun 2025 14:36:47 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1635C26B751;
+	Mon, 23 Jun 2025 14:45:34 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1750689407; cv=none; b=Qyc80SiDvVZQE2lmgJb1pdhrECIraE1M/VKVPjBpMHaH41UQdrMX0IWsO7laaOo4gPS3Dx0dIdedo28QJ1QTlEMpd/203gbKYfEysNLTjvJIqbuxsumPkxGfmKOy2kx8W6TqOv4Nr7u7saALmRfNP+zaLf1XoxvUvuJO5dEN66o=
+	t=1750689935; cv=none; b=Kv4l6tuV1mD0lyuCUVGZOykES6m05K8nck0vlUXFHE6je8lPtSgJnI64sIjpfC2BdSi60KIwykc9Ik7X/i00MA5LpEA2IYWSaWBdeRfLD5PuzOnVvVLyLeS7Xb5IvEcFB8i7nR74Dii0gsGzFSxEmIW9rqgPmvXW88fGp6uSLyo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1750689407; c=relaxed/simple;
-	bh=eFi6qWyko4q95G1qV6b/bkdDjJ4xkEd1EzWEqFQjMzU=;
+	s=arc-20240116; t=1750689935; c=relaxed/simple;
+	bh=BWNrsADcgYwZ2dvZXwG1N6G2J7mZGyjM3XJMSbDzw44=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=uvp0hXPUZZLA7wh6WJdqA6pmHi7f+3L5vUDx5R/+6AYBxQacOLv8gW6oeqzry8vZH1JWHs4ulwHgtI+WE2R6qJNexi32YuUW+qiMw46gyqxCTXdJvqVLf9+L53dvw2r1cdnF3eGW3SkihITqZVOqwR2aC6DYEJTPosDPytY+too=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=VflVaaes; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 1B90CC4CEEA;
-	Mon, 23 Jun 2025 14:36:43 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=VE0h+mKDeiwnlQRa84G6a3ObZneWyKAKWI+sMJT9o9I1xYlkr0S6vvp2/VkJSok4zvR/4GQvpQTRtudcVUN+BGIBor8WintgBMeOZCjhFxqpjpMERCMxDPVjw2POsHZkI5qwHkcgXSlNpU0lgKjNKjnbE6+r9qY5queSRGTp9xw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=OiQgFoRh; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 8ADDEC4CEF1;
+	Mon, 23 Jun 2025 14:45:34 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1750689407;
-	bh=eFi6qWyko4q95G1qV6b/bkdDjJ4xkEd1EzWEqFQjMzU=;
+	s=k20201202; t=1750689934;
+	bh=BWNrsADcgYwZ2dvZXwG1N6G2J7mZGyjM3XJMSbDzw44=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=VflVaaesju+Z85bTPS02OiXknR48/LxrmGx88zwcCxt04hyH5eYBaejbkThbEFlR8
-	 poDrxTPJpax3lmcbFd4UqLV8b8So7tj+JJYY6FquTl03nPg86xqCBIFfY58nB2tePi
-	 xOjlW6fiOWtIho4ckxMj6tPM8ZbfEt+7RWmWyUu64Dyg5U0iTL/XNlmV1KKHMV8mi0
-	 DqfFlF5XNhlcb+iPNo17fH/cCuEkX9TC+dpfs8jQvMj/pksJ7zLc8dsyVplCFNOthE
-	 zFa5f7D26iD0JqZqTz/2Xyfs7432kFghpiLhxEewcEU5+gtkK8NyjUTmPQTA00VE1u
-	 E8C9QCpTHZBvw==
-Date: Mon, 23 Jun 2025 15:36:41 +0100
-From: Conor Dooley <conor@kernel.org>
-To: Kory Maincent <kory.maincent@bootlin.com>
-Cc: Aaro Koskinen <aaro.koskinen@iki.fi>,
-	Andreas Kemnade <andreas@kemnade.info>,
-	Kevin Hilman <khilman@baylibre.com>,
-	Roger Quadros <rogerq@kernel.org>, Tony Lindgren <tony@atomide.com>,
+	b=OiQgFoRhJD/skmkSCiSbp8PcIJRnlwIFpnOpPNgOFONDQF5xzCKMu3/YOgz5i2ML1
+	 CUvseUYm3azLa7D0nYVj2Hj7mYaZFzb5hDxSKrwE0akP0stAKxLyA9Tf02eDHUXX2H
+	 caXb1D4Z9YG410lVECHcoVEuNUJF0YeSfTiAKYuFmqexPTzTwHw36bKW/UHhak6RwQ
+	 4SysyGU2wnHcd8sQvX0M6UuzjgpbdecktL/s7PXLoQ+VxCJsqAdJSKmIJDBRsXV567
+	 z2Uald1ms+kpHEp8h+PcX+ZQnMK3vT5WibcOWuzLDcKj1E+pPMANMrUWoOnvOwOmwK
+	 c+XqQM6jvJMuA==
+Received: from johan by xi.lan with local (Exim 4.97.1)
+	(envelope-from <johan@kernel.org>)
+	id 1uTiQL-000000006Qw-1WSI;
+	Mon, 23 Jun 2025 16:45:30 +0200
+Date: Mon, 23 Jun 2025 16:45:29 +0200
+From: Johan Hovold <johan@kernel.org>
+To: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
+Cc: Bjorn Andersson <andersson@kernel.org>,
+	Maximilian Luz <luzmaximilian@gmail.com>,
+	Konrad Dybcio <konradybcio@kernel.org>,
 	Rob Herring <robh@kernel.org>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Paul Barker <paul.barker@sancloud.com>,
-	Marc Murphy <marc.murphy@sancloud.com>,
-	Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
-	linux-omap@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	Romain Gantois <romain.gantois@bootlin.com>,
-	Thomas Bonnefille <thomas.bonnefille@bootlin.com>,
-	Bajjuri Praneeth <praneeth@ti.com>, Andrew Davis <afd@ti.com>
-Subject: Re: [PATCH 1/2] dt-bindings: omap: Add missing AM33xx compatible
- strings
-Message-ID: <20250623-gluten-bulb-cff911ccf00d@spud>
-References: <20250620-ti_dts_clean-v1-0-786a3059bca7@bootlin.com>
- <20250620-ti_dts_clean-v1-1-786a3059bca7@bootlin.com>
- <20250620-mortally-fifteen-7a2566545a5d@spud>
- <20250620-widow-licorice-66fbd43b18b0@spud>
- <20250620162617.50ca0a7f@kmaincent-XPS-13-7390>
+	Conor Dooley <conor+dt@kernel.org>, linux-arm-msm@vger.kernel.org,
+	linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
+Subject: Re: [PATCH v2 2/4] firmware: qcom: uefisecapp: add support for R/O
+ UEFI vars
+Message-ID: <aFloifxONXnQbVg6@hovoldconsulting.com>
+References: <20250621-more-qseecom-v2-0-6e8f635640c5@oss.qualcomm.com>
+ <20250621-more-qseecom-v2-2-6e8f635640c5@oss.qualcomm.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="Z6loaMYSs0CfFWNj"
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20250620162617.50ca0a7f@kmaincent-XPS-13-7390>
+In-Reply-To: <20250621-more-qseecom-v2-2-6e8f635640c5@oss.qualcomm.com>
 
+On Sat, Jun 21, 2025 at 10:56:11PM +0300, Dmitry Baryshkov wrote:
+> For some platforms (e.g. Lenovo Yoga C630) we don't yet know a way to
+> update variables in the permanent storage. However being able to read
+> the vars is still useful as it allows us to get e.g. RTC offset.
+> 
+> Add a quirk for QSEECOM specifying that UEFI variables for this platform
+> should be registered in read-only mode.
+> 
+> Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
+> ---
+>  drivers/firmware/qcom/qcom_qseecom_uefisecapp.c | 18 +++++++++++++++++-
+>  include/linux/firmware/qcom/qcom_qseecom.h      |  2 ++
+>  2 files changed, 19 insertions(+), 1 deletion(-)
+> 
+> diff --git a/drivers/firmware/qcom/qcom_qseecom_uefisecapp.c b/drivers/firmware/qcom/qcom_qseecom_uefisecapp.c
+> index 98a463e9774bf04f2deb0f7fa1318bd0d2edfa49..05f700dcb8cf3189f640237ff0e045564abb8264 100644
+> --- a/drivers/firmware/qcom/qcom_qseecom_uefisecapp.c
+> +++ b/drivers/firmware/qcom/qcom_qseecom_uefisecapp.c
+> @@ -792,6 +792,12 @@ static efi_status_t qcuefi_query_variable_info(u32 attr, u64 *storage_space, u64
+>  	return status;
+>  }
+>  
+> +static const struct efivar_operations qcom_efivars_ro_ops = {
+> +	.get_variable = qcuefi_get_variable,
+> +	.get_next_variable = qcuefi_get_next_variable,
+> +	.query_variable_info = qcuefi_query_variable_info,
+> +};
 
---Z6loaMYSs0CfFWNj
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+It looks like the efivars implementation does not support read-only
+efivars and this will lead to NULL pointer dereferences whenever you try
+to write a variable.
 
-On Fri, Jun 20, 2025 at 04:26:17PM +0200, Kory Maincent wrote:
-> Le Fri, 20 Jun 2025 15:09:41 +0100,
-> Conor Dooley <conor@kernel.org> a =E9crit :
->=20
-> > On Fri, Jun 20, 2025 at 03:08:24PM +0100, Conor Dooley wrote:
-> > > On Fri, Jun 20, 2025 at 10:24:08AM +0200, Kory Maincent wrote: =20
-> > > > Add several compatible strings that were missing from the binding
-> > > > documentation for AM33xx-based boards. Update vendor prefix from
-> > > > "ti" to "beagle" for BeagleBone to match actual hardware vendors.
-> > > >=20
-> > > > Reviewed-by: Andrew Davis <afd@ti.com>
-> > > > Signed-off-by: Kory Maincent <kory.maincent@bootlin.com> =20
-> > >=20
-> > > This is a v1 apparently, what is the relationship between this patch =
-and
-> > > https://lore.kernel.org/all/20250617-bbg-v4-1-827cbd606db6@bootlin.co=
-m/
-> > > ? =20
-> >=20
-> > (I ask because at a scan I didn't see differences and I had acked the
-> > last one, which doesn't show here even though Andrew's r-b does)
->=20
-> Oh, you acked-by was lost in the void during the patch series split sorry=
- for
-> that.
+Also not sure how useful it is to only be able to read variables,
+including for the RTC where you'll end up with an RTC that's always
+slightly off due to drift (even if you can set it when booting into
+Windows or possibly from the UEFI setup).
 
-In that case,=20
-Acked-by: Conor Dooley <conor.dooley@microchip.com>
+Don't you have any SDAM blocks in the PMICs that you can use instead for
+a proper functioning RTC on these machines?
 
---Z6loaMYSs0CfFWNj
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCaFlmeQAKCRB4tDGHoIJi
-0rZEAQDe5mN87Tk29xJZ7cPHT6fEDF80FUZTHGyl9/oNchF3+gEAhjKhB5ljKGZi
-y1LRHCJVDjjH5WoVTNyAnqd0D854Cwo=
-=9UG+
------END PGP SIGNATURE-----
-
---Z6loaMYSs0CfFWNj--
+Johan
 
