@@ -1,102 +1,90 @@
-Return-Path: <devicetree+bounces-188289-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-188290-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4EA6CAE3680
-	for <lists+devicetree@lfdr.de>; Mon, 23 Jun 2025 09:11:59 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 68569AE36BB
+	for <lists+devicetree@lfdr.de>; Mon, 23 Jun 2025 09:25:43 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id C0FD83A2BC8
-	for <lists+devicetree@lfdr.de>; Mon, 23 Jun 2025 07:11:27 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 30B7218924B9
+	for <lists+devicetree@lfdr.de>; Mon, 23 Jun 2025 07:25:59 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D6C4A1F30B2;
-	Mon, 23 Jun 2025 07:11:49 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id CEAED1F1906;
+	Mon, 23 Jun 2025 07:25:38 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b="sg0HsJvW"
 X-Original-To: devicetree@vger.kernel.org
-Received: from metis.whiteo.stw.pengutronix.de (metis.whiteo.stw.pengutronix.de [185.203.201.7])
+Received: from vps0.lunn.ch (vps0.lunn.ch [156.67.10.101])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6831F1EFFBB
-	for <devicetree@vger.kernel.org>; Mon, 23 Jun 2025 07:11:48 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.203.201.7
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 843FA2EAE5;
+	Mon, 23 Jun 2025 07:25:35 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=156.67.10.101
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1750662709; cv=none; b=GyxohQHykZ13cnzyOgUzZX77xXn9nsFVp7AT6tWh4Lgo5yIoiR5UnEzzXN35JL7UzK+LGNpi+YyUn8B0GRhytt3JR1xzY9/7zi4hJv5Nt2oLIpTbzAR3HS5JzUWBk2IAFtBsFVGCzoaC4A1nP/BTQ3uzqrNvC+MckEpMcW1R/wU=
+	t=1750663538; cv=none; b=XoUpYl8Jz6+Da4LgAt1cEQemabBfG9wUKm3SIEjn35lkNqaZySZEdMyKU0Am6NO0mKy3hUfNzsSEcfvc5Heh2J/SuRWYS1FOlG/hAXHf1Zoz0BFG922D/s+dO5EGlRflFobj0Oj4TA7xwe7BJKfEFEb4QYv/LBi5ih8HHyA5eyo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1750662709; c=relaxed/simple;
-	bh=8E9pKEeqU9K5+berDfkrRQez1dGqpjpeYbjpaAzRN7U=;
-	h=Message-ID:Subject:From:To:Cc:Date:In-Reply-To:References:
-	 Content-Type:MIME-Version; b=FnpHRwqtVoiEQsgp7Sbu4ZlX8TMuZ6d9h8pLufI08PjCjVWyoho4InjMRcD5xM7+RWu/1WQ5962ymXVUWpkUIeN16QSEQ8xRPPEYwwjfZkVnbtxAbLLWtzQi0ZZSccFJiiqcK+fOze+wHgyZiVz3jYF57jmHA2aI3RxJnQ+zYYo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de; spf=pass smtp.mailfrom=pengutronix.de; arc=none smtp.client-ip=185.203.201.7
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=pengutronix.de
-Received: from drehscheibe.grey.stw.pengutronix.de ([2a0a:edc0:0:c01:1d::a2])
-	by metis.whiteo.stw.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
-	(Exim 4.92)
-	(envelope-from <p.zabel@pengutronix.de>)
-	id 1uTbL3-0003AE-8Z; Mon, 23 Jun 2025 09:11:33 +0200
-Received: from lupine.office.stw.pengutronix.de ([2a0a:edc0:0:900:1d::4e] helo=lupine)
-	by drehscheibe.grey.stw.pengutronix.de with esmtps  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-	(Exim 4.96)
-	(envelope-from <p.zabel@pengutronix.de>)
-	id 1uTbL2-004uJr-0o;
-	Mon, 23 Jun 2025 09:11:32 +0200
-Received: from pza by lupine with local (Exim 4.96)
-	(envelope-from <p.zabel@pengutronix.de>)
-	id 1uTbL2-0005Oi-0T;
-	Mon, 23 Jun 2025 09:11:32 +0200
-Message-ID: <c1b2f651f73b4469a410f1f5027f974b4e07ddd2.camel@pengutronix.de>
-Subject: Re: [PATCH v1 2/2] ASoC: codecs: wsa883x: Handle shared reset GPIO
- for WSA883x speakers
-From: Philipp Zabel <p.zabel@pengutronix.de>
-To: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>, Mohammad Rafi
- Shaik <mohammad.rafi.shaik@oss.qualcomm.com>, Srinivas Kandagatla
- <srini@kernel.org>,  Liam Girdwood <lgirdwood@gmail.com>, Mark Brown
- <broonie@kernel.org>, Rob Herring <robh@kernel.org>,  Krzysztof Kozlowski
- <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, Jaroslav Kysela
- <perex@perex.cz>, Takashi Iwai <tiwai@suse.com>, Linus Walleij
- <linus.walleij@linaro.org>, Bartosz Golaszewski <brgl@bgdev.pl>
-Cc: linux-arm-msm@vger.kernel.org, linux-sound@vger.kernel.org, 
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
- linux-gpio@vger.kernel.org, quic_pkumpatl@quicinc.com,
- kernel@oss.qualcomm.com
-Date: Mon, 23 Jun 2025 09:11:32 +0200
-In-Reply-To: <f9f96bf0-3539-4e77-8d3e-b87ddc561925@oss.qualcomm.com>
-References: <20250620103012.360794-1-mohammad.rafi.shaik@oss.qualcomm.com>
-	 <20250620103012.360794-3-mohammad.rafi.shaik@oss.qualcomm.com>
-	 <f9f96bf0-3539-4e77-8d3e-b87ddc561925@oss.qualcomm.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-User-Agent: Evolution 3.46.4-2 
+	s=arc-20240116; t=1750663538; c=relaxed/simple;
+	bh=qrWwGHucouDZh2t1tAu8TyL00Fd2aq1gdpXqthU5zy8=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=WHEH4tU5EEZPlId95oix84HgwdBv1nb7TQhAG0gpbeuAI7HMC7cbALXT3B1XnK1Y4YDyC6ui5daQodMoaBYpsje0fFR82XbRAA7i3sVoFwm7Vy2vPdh0mTcdKl7A+evN6WZcuBtXV3GXE6EIhLHoZRDmf6YlXube7jDusctH4vA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch; spf=pass smtp.mailfrom=lunn.ch; dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b=sg0HsJvW; arc=none smtp.client-ip=156.67.10.101
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=lunn.ch
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
+	s=20171124; h=In-Reply-To:Content-Disposition:Content-Type:MIME-Version:
+	References:Message-ID:Subject:Cc:To:From:Date:From:Sender:Reply-To:Subject:
+	Date:Message-ID:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding:
+	Content-ID:Content-Description:Content-Disposition:In-Reply-To:References;
+	bh=Cd3lQ68F49FcJhWhZAZYZUquvzxLE9gTxVzwWcJXNf8=; b=sg0HsJvWfvJwCHkDvTM+OEva7k
+	6Se526NxBlBc7oZ+nx903RVvTiutVv2rjAd0L7HmnprxnbY5EqljKCYfSxlpSUJ2p+OWlA0aKs4Hs
+	noPlTAhJMeVxLLwK9S0HkDh95hb/a/kZ1e/+iO3V2LL9q0I6LlIUOUvIdK5/DRTCgRLI=;
+Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
+	(envelope-from <andrew@lunn.ch>)
+	id 1uTbXw-00GfJ5-6o; Mon, 23 Jun 2025 09:24:52 +0200
+Date: Mon, 23 Jun 2025 09:24:52 +0200
+From: Andrew Lunn <andrew@lunn.ch>
+To: Inochi Amaoto <inochiama@gmail.com>
+Cc: Andrew Lunn <andrew+netdev@lunn.ch>,
+	"David S. Miller" <davem@davemloft.net>,
+	Eric Dumazet <edumazet@google.com>,
+	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Chen Wang <unicorn_wang@outlook.com>,
+	Paul Walmsley <paul.walmsley@sifive.com>,
+	Palmer Dabbelt <palmer@dabbelt.com>,
+	Albert Ou <aou@eecs.berkeley.edu>, Alexandre Ghiti <alex@ghiti.fr>,
+	Richard Cochran <richardcochran@gmail.com>,
+	Alexander Sverdlin <alexander.sverdlin@gmail.com>,
+	Thomas Bonnefille <thomas.bonnefille@bootlin.com>,
+	Yu Yuan <yu.yuan@sjtu.edu.cn>, Ze Huang <huangze@whut.edu.cn>,
+	netdev@vger.kernel.org, devicetree@vger.kernel.org,
+	sophgo@lists.linux.dev, linux-kernel@vger.kernel.org,
+	linux-riscv@lists.infradead.org, Yixun Lan <dlan@gentoo.org>,
+	Longbin Li <looong.bin@gmail.com>
+Subject: Re: [PATCH net-next RFC v2 3/4] riscv: dts: sophgo: Add mdio
+ multiplexer device for cv18xx
+Message-ID: <48769988-9ece-41d3-93fe-607061d68fff@lunn.ch>
+References: <20250623003049.574821-1-inochiama@gmail.com>
+ <20250623003049.574821-4-inochiama@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-SA-Exim-Connect-IP: 2a0a:edc0:0:c01:1d::a2
-X-SA-Exim-Mail-From: p.zabel@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.whiteo.stw.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: devicetree@vger.kernel.org
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20250623003049.574821-4-inochiama@gmail.com>
 
-On Fr, 2025-06-20 at 21:35 +0300, Dmitry Baryshkov wrote:
-> On 20/06/2025 13:30, Mohammad Rafi Shaik wrote:
-> > On some Qualcomm platforms, such as QCS6490-RB3Gen2 and QCM6490-IDP,
-> > multiple WSA8830/WSA8835 speakers share a common reset (shutdown) GPIO.
-> > To handle such cases, use the reset controller framework along with the
-> > "reset-gpio" driver.
->=20
-> How does this handle the fact that resetting one codec will also=20
-> silently reset another one?
+> +			external_mdio: mdio@1 {
+> +				#address-cells = <1>;
+> +				#size-cells = <0>;
+> +				reg = <0x80>;
 
-It's the other way around. Since shared reset controls have a common
-deassertion refcount, actual reset assertion only happens once
-reset_control_assert() has been called on all shared reset controls
-[1]. The speakers would only be put back into reset once the last one
-is unbound.
+Since reg is 0x80, the normal convention is this is mdio@80.
 
-[1] https://docs.kernel.org/driver-api/reset.html#shared-and-exclusive-rese=
-ts
-
-regards
-Philipp
+	Andrew
 
