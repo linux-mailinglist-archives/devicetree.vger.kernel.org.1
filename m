@@ -1,63 +1,65 @@
-Return-Path: <devicetree+bounces-188958-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-188959-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 67CF0AE62AE
-	for <lists+devicetree@lfdr.de>; Tue, 24 Jun 2025 12:40:09 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2F1C9AE62C9
+	for <lists+devicetree@lfdr.de>; Tue, 24 Jun 2025 12:46:28 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id A35917B0C1E
-	for <lists+devicetree@lfdr.de>; Tue, 24 Jun 2025 10:38:45 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id BCC9117A1C9
+	for <lists+devicetree@lfdr.de>; Tue, 24 Jun 2025 10:46:28 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 35DDD284688;
-	Tue, 24 Jun 2025 10:40:02 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E32852571A1;
+	Tue, 24 Jun 2025 10:46:22 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="IAttkQBD"
+	dkim=pass (2048-bit key) header.d=foss.st.com header.i=@foss.st.com header.b="NW+9A/iY"
 X-Original-To: devicetree@vger.kernel.org
-Received: from lelvem-ot01.ext.ti.com (lelvem-ot01.ext.ti.com [198.47.23.234])
+Received: from mx07-00178001.pphosted.com (mx08-00178001.pphosted.com [91.207.212.93])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E7035279DC8;
-	Tue, 24 Jun 2025 10:39:59 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.23.234
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F14FB2222AF;
+	Tue, 24 Jun 2025 10:46:20 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=91.207.212.93
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1750761602; cv=none; b=eLTli0ktk3OGSdwkj2alWoYQ8YmJslW6yqHy7UHSCIvE9Tg0kR6pxHvM0IpooNpT6Sxu4dNOak/E0lYqNLeL18ilC+CgH5KxulYX2hVDTR/QJm6mKwGoELT0nyqupjrfAlTQx70eEyjAH6BiFCReUsW9sibijuWmAeh+yqjDiXw=
+	t=1750761982; cv=none; b=uzLW4ZmBhwxZ+hFvOxi8npnETTEXbZ0cdsUV+H/TIFSCA76rmVsRyxN9u58kpV5Z1BzUSEHmHD6sL7kduebL5bQMNN2a3Fecs3kJSWTs/DWDooPS7vnVBDQAyqxQlanNMTpPkdQJgJiVjB2xmTyfHE+6Tb6gV2walcOBz7Mrq2E=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1750761602; c=relaxed/simple;
-	bh=XgW7u+cppxBGsC7FwEGR//C0SsF7znnagrv2bfxGCNI=;
+	s=arc-20240116; t=1750761982; c=relaxed/simple;
+	bh=UqWYnkZxIfBxNvrN3q062W40OjIAoDQnWRibvmyYYHI=;
 	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
-	 In-Reply-To:Content-Type; b=MIYGnR0wJFgmQoG8Stwu37juTISodHNejUqEkbWZiED/gyDhE4YTpRtiljUVNPsu/bi+62jTNzdCnchF3B0wQ4p3RUY+djTycGFG1bOvHPCkv89V4geCP9SGU7vdVgY9kF85Y8zizCDckBtwo8epcsuMRfY28jCHMd9CSnXN8oo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=IAttkQBD; arc=none smtp.client-ip=198.47.23.234
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
-Received: from fllvem-sh03.itg.ti.com ([10.64.41.86])
-	by lelvem-ot01.ext.ti.com (8.15.2/8.15.2) with ESMTP id 55OAdrQc1138040;
-	Tue, 24 Jun 2025 05:39:53 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1750761593;
-	bh=1UndgjPOX1TCSZCvOeL9kzhOH9nzk/4CegsNiR3QXeQ=;
-	h=Date:Subject:To:CC:References:From:In-Reply-To;
-	b=IAttkQBDiEJkOHEDXHW7005DUZQuTbMFNZRmHM/51KZe3O/UWLyeI6xH4ipGx5q/t
-	 WDGQwOiybs4H2rRBnLYoUAK5H4LaAM6MzcinXU6ykw1sAxcTNe39nQ666dUOUM2nYN
-	 92UEYeue8BTdelqz0Qp6gvm/Z7gdGaOWpzCfUnPc=
-Received: from DLEE108.ent.ti.com (dlee108.ent.ti.com [157.170.170.38])
-	by fllvem-sh03.itg.ti.com (8.18.1/8.18.1) with ESMTPS id 55OAdrwh4136188
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-SHA256 bits=128 verify=FAIL);
-	Tue, 24 Jun 2025 05:39:53 -0500
-Received: from DLEE107.ent.ti.com (157.170.170.37) by DLEE108.ent.ti.com
- (157.170.170.38) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.55; Tue, 24
- Jun 2025 05:39:52 -0500
-Received: from lelvem-mr05.itg.ti.com (10.180.75.9) by DLEE107.ent.ti.com
- (157.170.170.37) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.55 via
- Frontend Transport; Tue, 24 Jun 2025 05:39:52 -0500
-Received: from [172.24.227.38] (ula0502350.dhcp.ti.com [172.24.227.38])
-	by lelvem-mr05.itg.ti.com (8.18.1/8.18.1) with ESMTP id 55OAdl6T1625959;
-	Tue, 24 Jun 2025 05:39:48 -0500
-Message-ID: <c4362d9e-62a4-4c28-b1cd-c338467f92ae@ti.com>
-Date: Tue, 24 Jun 2025 16:09:47 +0530
+	 In-Reply-To:Content-Type; b=T+2wEurBlASl80nuAwqjQnDIn1C3ZflY+S8FT59TXUEZtEStEophwD6Ed+lsSlHNnJcPU2NLvYcLOfw98yvVeQWxaa+8JRuJAbDBgvI2ksNIPGAKWCe+OU1JS2k47NYQCBPmCFMp8n9rEY8Y1gdQQpSHJVCfsJxRi3TM92/W1yo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=foss.st.com; spf=pass smtp.mailfrom=foss.st.com; dkim=pass (2048-bit key) header.d=foss.st.com header.i=@foss.st.com header.b=NW+9A/iY; arc=none smtp.client-ip=91.207.212.93
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=foss.st.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=foss.st.com
+Received: from pps.filterd (m0046661.ppops.net [127.0.0.1])
+	by mx07-00178001.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 55O89PlW018562;
+	Tue, 24 Jun 2025 12:45:45 +0200
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=foss.st.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=selector1; bh=
+	LowxC1XeO1Q3ptnV100NCfbZE/+FCacaRTlFDEZ7nw4=; b=NW+9A/iYDBIYOudx
+	bupDVw7fFsOUiF1POCQhkWRdtrMnA2SQEgn3ffTStQz7psNYYvO1bykZpdgutoWy
+	1WzDPo1HfRDTujMzGceUmoFF9dI3csRqk+OrSjX2U1Q82AHPZk0yuR9GirUQWEuY
+	0uTXBDmqmhreOATOMkPOrAg+HFRtqZZO74LR/Kz8sUH5woYThZWMJktOCzrRuZP5
+	jloxRIqQkKw51725g6fIFcIyiDtijqkG3NSDKgTMgLLmmSM6OD0+OHlCDgC/T3aL
+	OBE2cZ+Obv2dvhAJpM9vhApHeFKzbOlpzSn/muvTc+F8R53Tnl46alaOILvOrx/r
+	WA2Mzw==
+Received: from beta.dmz-ap.st.com (beta.dmz-ap.st.com [138.198.100.35])
+	by mx07-00178001.pphosted.com (PPS) with ESMTPS id 47dkmjm6bk-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Tue, 24 Jun 2025 12:45:45 +0200 (MEST)
+Received: from euls16034.sgp.st.com (euls16034.sgp.st.com [10.75.44.20])
+	by beta.dmz-ap.st.com (STMicroelectronics) with ESMTP id 5B79640046;
+	Tue, 24 Jun 2025 12:44:24 +0200 (CEST)
+Received: from Webmail-eu.st.com (shfdag1node2.st.com [10.75.129.70])
+	by euls16034.sgp.st.com (STMicroelectronics) with ESMTP id 974C5B51BAB;
+	Tue, 24 Jun 2025 12:43:10 +0200 (CEST)
+Received: from [10.48.86.185] (10.48.86.185) by SHFDAG1NODE2.st.com
+ (10.75.129.70) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.39; Tue, 24 Jun
+ 2025 12:43:09 +0200
+Message-ID: <5044c733-8836-43bd-85d7-0f552b000fb1@foss.st.com>
+Date: Tue, 24 Jun 2025 12:43:08 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -65,111 +67,117 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCHv4 2/6] dt-bindings: arm: ti: Add bindings for AM62D2 SoC
-To: Krzysztof Kozlowski <krzk@kernel.org>, <nm@ti.com>, <vigneshr@ti.com>,
-        <praneeth@ti.com>
-CC: <kristo@kernel.org>, <robh@kernel.org>, <krzk+dt@kernel.org>,
-        <conor+dt@kernel.org>, <linux-arm-kernel@lists.infradead.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <khasim@ti.com>, <v-singh1@ti.com>, <afd@ti.com>, <bb@ti.com>,
-        <devarsht@ti.com>
-References: <20250623141253.3519546-1-p-bhagat@ti.com>
- <20250623141253.3519546-3-p-bhagat@ti.com>
- <2e26a403-fac2-4217-8525-24e39d4c92c5@kernel.org>
+Subject: Re: [PATCH 06/13] perf: stm32: introduce DDRPERFM driver
+To: Krzysztof Kozlowski <krzk@kernel.org>, Will Deacon <will@kernel.org>,
+        Mark
+ Rutland <mark.rutland@arm.com>, Rob Herring <robh@kernel.org>,
+        Krzysztof
+ Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Maxime
+ Coquelin <mcoquelin.stm32@gmail.com>,
+        Alexandre Torgue
+	<alexandre.torgue@foss.st.com>,
+        Philipp Zabel <p.zabel@pengutronix.de>,
+        Jonathan Corbet <corbet@lwn.net>,
+        Gatien Chevallier
+	<gatien.chevallier@foss.st.com>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Stephen Boyd <sboyd@kernel.org>,
+        Gabriel Fernandez
+	<gabriel.fernandez@foss.st.com>
+CC: <linux-arm-kernel@lists.infradead.org>, <linux-perf-users@vger.kernel.org>,
+        <devicetree@vger.kernel.org>,
+        <linux-stm32@st-md-mailman.stormreply.com>,
+        <linux-kernel@vger.kernel.org>, <linux-doc@vger.kernel.org>,
+        <linux-clk@vger.kernel.org>
+References: <20250623-ddrperfm-upstream-v1-0-7dffff168090@foss.st.com>
+ <20250623-ddrperfm-upstream-v1-6-7dffff168090@foss.st.com>
+ <9cb1575e-ae27-4a78-adb7-8a9e7072375e@kernel.org>
 Content-Language: en-US
-From: Paresh Bhagat <p-bhagat@ti.com>
-In-Reply-To: <2e26a403-fac2-4217-8525-24e39d4c92c5@kernel.org>
+From: Clement LE GOFFIC <clement.legoffic@foss.st.com>
+In-Reply-To: <9cb1575e-ae27-4a78-adb7-8a9e7072375e@kernel.org>
 Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 7bit
-X-C2ProcessedOrg: 333ef613-75bf-4e12-a4b1-8e3623f5dcea
+Content-Transfer-Encoding: 8bit
+X-ClientProxiedBy: SHFCAS1NODE1.st.com (10.75.129.72) To SHFDAG1NODE2.st.com
+ (10.75.129.70)
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1099,Hydra:6.1.7,FMLib:17.12.80.40
+ definitions=2025-06-24_04,2025-06-23_07,2025-03-28_01
+
+On 6/23/25 11:45, Krzysztof Kozlowski wrote:
+[...]
 
 Hi Krzysztof,
 
-Thanks for the review.
+Sorry I forgot to address comments below.
 
-On 23/06/25 19:55, Krzysztof Kozlowski wrote:
-> On 23/06/2025 16:12, Paresh Bhagat wrote:
->> The AM62D2 SoC belongs to the K3 Multicore SoC architecture with DSP core
->> targeted for applications needing high-performance Digital Signal
->> Processing. It is used in applications like automotive audio systems,
->> professional sound equipment, radar and radio for aerospace, sonar in
->> marine devices, and ultrasound in medical imaging. It also supports
->> precise signal analysis in test and measurement tools.
-> Drop all marketing stuff.
->
->> Some highlights of AM62D2 SoC are:
-> This is not a product brochure.
->
-> A nit, subject: drop second/last, redundant "bindings". The
-> "dt-bindings" prefix is already stating that these are bindings.
-> See also:
-> https://elixir.bootlin.com/linux/v6.7-rc8/source/Documentation/devicetree/bindings/submitting-patches.rst#L18
+>> +
+>> +static const struct stm32_ddr_pmu_cfg stm32_ddr_pmu_cfg_mp1 = {
+>> +	.regs = &stm32_ddr_pmu_regspec_mp1,
+>> +	.attribute = stm32_ddr_pmu_attr_groups_mp1,
+>> +	.counters_nb = MP1_CNT_NB,
+>> +	.evt_counters_nb = MP1_CNT_NB - 1, /* Time counter is not an event counter */
+>> +	.time_cnt_idx = MP1_TIME_CNT_IDX,
+>> +	.get_counter = stm32_ddr_pmu_get_event_counter_mp1,
+>> +};
+>> +
+>> +static const struct stm32_ddr_pmu_cfg stm32_ddr_pmu_cfg_mp2 = {
+>> +	.regs = &stm32_ddr_pmu_regspec_mp2,
+>> +	.attribute = stm32_ddr_pmu_attr_groups_mp2,
+>> +	.counters_nb = MP2_CNT_NB,
+>> +	.evt_counters_nb = MP2_CNT_NB - 1, /* Time counter is an event counter */
+>> +	.time_cnt_idx = MP2_TIME_CNT_IDX,
+>> +	.get_counter = stm32_ddr_pmu_get_event_counter_mp2,
+>> +};
+>> +
+>> +static const struct dev_pm_ops stm32_ddr_pmu_pm_ops = {
+>> +	SET_SYSTEM_SLEEP_PM_OPS(NULL, stm32_ddr_pmu_device_resume)
+>> +};
+>> +
+>> +static const struct of_device_id stm32_ddr_pmu_of_match[] = {
+>> +	{
+>> +		.compatible = "st,stm32mp131-ddr-pmu",
+>> +		.data = &stm32_ddr_pmu_cfg_mp1
+>> +	},
+>> +	{
+>> +		.compatible = "st,stm32mp151-ddr-pmu",
+>> +		.data = &stm32_ddr_pmu_cfg_mp1
+> 
+> So devices are compatible, thus express it correctly and drop this.
 
+Ok so I assume this comes with your comment in the bindings and 
+basically don't get you point here.
+Can you please be more precise ?
 
-Will fix this in next version. Thanks
->
->
->
->> * Quad-Cortex-A53s (running up to 1.4GHz) in a single cluster. Dual/Single
->>    core variants are provided in the same package to allow HW compatible
->>    designs.
->> * One Device manager Cortex-R5F for system power and resource management,
->>    and one Cortex-R5F for Functional Safety or general-purpose usage.
->> * DSP with Matrix Multiplication Accelerator(MMA) (up to 2 TOPS) based on
->>    single core C7x.
->> * 3x Multichannel Audio Serial Ports (McASP) Up to 4/6/16 Serial Data Pins
->>    which can Transmit and Receive Clocks up to 50MHz, with multi-channel I2S
->>    and TDM Audio inputs and outputs.
->> * Integrated Giga-bit Ethernet switch supporting up to a total of two
->>    external ports with TSN capable to enable audio networking features such
->>    as, Ethernet Audio Video Bridging (eAVB) and Dante.
->> * 9xUARTs, 5xSPI, 6xI2C, 2xUSB2, 3xCAN-FD, 3x eMMC and SD, OSPI memory
->>    controller, 1x CSI-RX-4L for Camera, eCAP/eQEP, ePWM, among other
->>    peripherals.
->> * Dedicated Centralized Hardware Security Module with support for secure
->>    boot, debug security and crypto acceleration and trusted execution
->>    environment.
->> * One 32 bit DDR Subsystem that supports LPDDR4, DDR4 memory types.
->> * Low power mode support: Partial IO support for CAN/GPIO/UART wakeup.
+> 
+>> +	},
+>> +	{
+>> +		.compatible = "st,stm32mp251-ddr-pmu",
+>> +		.data = &stm32_ddr_pmu_cfg_mp2
+>> +	},
+>> +	{ },
+>> +};
+>> +MODULE_DEVICE_TABLE(of, stm32_ddr_pmu_of_match);
+>> +
+>> +static struct platform_driver stm32_ddr_pmu_driver = {
+>> +	.driver = {
+>> +		.name = DRIVER_NAME,
+>> +		.pm = &stm32_ddr_pmu_pm_ops,
+>> +		.of_match_table = of_match_ptr(stm32_ddr_pmu_of_match),
+> 
+> Drop of_match_ptr, you have here warnings.
 
-I will refine the first two paragraphs to be very concise.
+Yes Indeed.
+I'll also fix the pm pointer by using "pm_sleep_ptr".
 
+Best regards,
+Clément
 
->>
->> This SoC is of part K3 AM62x family, which includes the AM62A and AM62P
->> variants. While the AM62A and AM62D are largely similar, the AM62D is
->> specifically targeted for general-purpose DSP applications, whereas the
->> AM62A focuses on edge AI workloads. A key distinction is that the AM62D
->> does not include multimedia components such as the video encoder/decoder,
->> MJPEG encoder, Vision Processing Accelerator (VPAC) for image signal
->> processing, or the display subsystem. Additionally, the AM62D has a
->> different pin configuration compared to the AM62A, which impacts
->> embedded software development.
-
-
-This section is important as it clarifies the difference between AM62a 
-and AM62d, as we are reusing AM62a dtsi files for AM62d. Let me know if 
-you need a shorter version.
-
-
->>
->> This adds dt bindings for TI's AM62D2 family of devices.
->>
->> More details about the SoCs can be found in the Technical Reference Manual:
->> https://www.ti.com/lit/pdf/sprujd4
->>
->> Signed-off-by: Paresh Bhagat <p-bhagat@ti.com>
->
-> And what happened with the previous comments?
-
-
-Yep there were some indentation problems earlier, which is fixed in this 
-version. There was also an ack from Conor Dooley in v3. I will include that.
-
-
->
-> Reach internally TI so they will coach you how to send patches upstream.
->
+> 
+> 
+> 
 > Best regards,
 > Krzysztof
+
 
