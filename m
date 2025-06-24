@@ -1,77 +1,73 @@
-Return-Path: <devicetree+bounces-189154-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-189155-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id E1018AE6ECE
-	for <lists+devicetree@lfdr.de>; Tue, 24 Jun 2025 20:44:55 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1C0E6AE6ED0
+	for <lists+devicetree@lfdr.de>; Tue, 24 Jun 2025 20:45:32 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 43EA217534D
-	for <lists+devicetree@lfdr.de>; Tue, 24 Jun 2025 18:44:56 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id DFC583A81DA
+	for <lists+devicetree@lfdr.de>; Tue, 24 Jun 2025 18:45:06 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 15DA82DFA37;
-	Tue, 24 Jun 2025 18:44:52 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1D6A01FDA94;
+	Tue, 24 Jun 2025 18:45:27 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="faZ0PKke"
+	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="gWneGnWp"
 X-Original-To: devicetree@vger.kernel.org
 Received: from fllvem-ot03.ext.ti.com (fllvem-ot03.ext.ti.com [198.47.19.245])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6D180566A
-	for <devicetree@vger.kernel.org>; Tue, 24 Jun 2025 18:44:50 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 45D4919DF4A;
+	Tue, 24 Jun 2025 18:45:25 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.19.245
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1750790692; cv=none; b=oGm5NbqZmo49VUvQPbw8Qf2H0p/or5yrB1WF04UVl6/pOnGnsd7Qvv2EHpuOcUajAY6wONTuSZNenwTvU/kT1LucsHjQC+AwRI6ktBR/hjaCFq0Ge2gyDsHIhtSOHnKNrH5bwTuUWvVdk4NHJjmgS4FRaB4m37F+6kpeMjEikAc=
+	t=1750790727; cv=none; b=VcQIBSz+sfe88Wv1YIoSzhW22kOYGbZgEGpQ6spZJPtmYV8DVtBLLJUs3qOJBafnGGPMjQ+6O7S31lfYrlUKBpHE0GXHWIjJmV7Jrp7xeDmY9kK9veP4YlydQc3Hpd8nxSFjfd2wft9OkQYwXhplrCDTW1wC5PXqJv/Ho7z/F0A=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1750790692; c=relaxed/simple;
-	bh=QI1/c97Se4udVwFfa+moKEjOBW1p+MVT/68NbLaN4wg=;
+	s=arc-20240116; t=1750790727; c=relaxed/simple;
+	bh=vRXHOyqOVrh/WjrVP/FxcEH9B6f07cCVn3pPNylhkhE=;
 	h=From:To:CC:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=GuGHR9mWAVBf9xKsFuIOqvsXD5cXKoT28dDOxhug/tuhC7EV4DkvB3cw8qucA2+/ibVzReEoA5XyzAA+U8pu5ebtqxw4+u1YO8KQdaKiCW27k5g2SCnSJhBzewdfDObV2SEI1FjKa0Opcq5BeHu2OrxU0ax62Cu2d+QU00KaXms=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=faZ0PKke; arc=none smtp.client-ip=198.47.19.245
+	 MIME-Version:Content-Type; b=P4lKMzPpXZYWJ6XZ1x3gjSiwpGBs+9y85zOvcennv5NBqY9c+VBcWrc2trlryBUR/u7/xyupxl1L/U93ggj32xtjI1UeVhyDcZs39tDvoly6SiSzLQgoUIecrqtkJpXYv97kmyGLCUW5If68H3PVtHImS9F0lzQ/5URdEv2AtpY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=gWneGnWp; arc=none smtp.client-ip=198.47.19.245
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
-Received: from lelvem-sh02.itg.ti.com ([10.180.78.226])
-	by fllvem-ot03.ext.ti.com (8.15.2/8.15.2) with ESMTP id 55OIiht91631096;
-	Tue, 24 Jun 2025 13:44:43 -0500
+Received: from fllvem-sh04.itg.ti.com ([10.64.41.54])
+	by fllvem-ot03.ext.ti.com (8.15.2/8.15.2) with ESMTP id 55OIjElo1631197;
+	Tue, 24 Jun 2025 13:45:14 -0500
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1750790683;
-	bh=EOilgMvwC9d4QnH9gG5iBR+nw29he4c68ErHqUs8XVI=;
+	s=ti-com-17Q1; t=1750790714;
+	bh=GAGKM7aXbOThzO3wjO02xo7P0wtUNQ0S1F+BZCBLq6s=;
 	h=From:To:CC:Subject:Date:In-Reply-To:References;
-	b=faZ0PKkefHxzUMhN99WjbqCWG9+AM9QJm6A0oPzc9XD2mcRLMkEPRG7S01uzLHzri
-	 sxGsCN0devc+Ss7XJuFlzM5Bhrom6/iPBwtpYoQN33qNu7wqO6hsjyvk9NOaLrxDs4
-	 hLArnUjOCwmmB0MkgzkTIoCDF7LF1NHuNZ2r8luI=
-Received: from DLEE114.ent.ti.com (dlee114.ent.ti.com [157.170.170.25])
-	by lelvem-sh02.itg.ti.com (8.18.1/8.18.1) with ESMTPS id 55OIihZ31960493
+	b=gWneGnWpxwzthlB+TfYFTXuRBh1kVLIS1e+8hYFA6E9W4x4Um/wOqQ0Ra/fJXBIOH
+	 NvtXD4V+9pUOwHhjmIKpQJL944tk+WyVlRp8ZP1C7KgDomkvAuSv8tAD2k58xIf2o9
+	 40+xoa1dwDkc3jeshfytvtPBXGh6hK9Tx9eN23JU=
+Received: from DLEE115.ent.ti.com (dlee115.ent.ti.com [157.170.170.26])
+	by fllvem-sh04.itg.ti.com (8.18.1/8.18.1) with ESMTPS id 55OIjDpU523860
 	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-SHA256 bits=128 verify=FAIL);
-	Tue, 24 Jun 2025 13:44:43 -0500
-Received: from DLEE100.ent.ti.com (157.170.170.30) by DLEE114.ent.ti.com
- (157.170.170.25) with Microsoft SMTP Server (version=TLS1_2,
+	Tue, 24 Jun 2025 13:45:13 -0500
+Received: from DLEE112.ent.ti.com (157.170.170.23) by DLEE115.ent.ti.com
+ (157.170.170.26) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.55; Tue, 24
- Jun 2025 13:44:42 -0500
-Received: from lelvem-mr05.itg.ti.com (10.180.75.9) by DLEE100.ent.ti.com
- (157.170.170.30) with Microsoft SMTP Server (version=TLS1_2,
+ Jun 2025 13:45:13 -0500
+Received: from lelvem-mr06.itg.ti.com (10.180.75.8) by DLEE112.ent.ti.com
+ (157.170.170.23) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.55 via
- Frontend Transport; Tue, 24 Jun 2025 13:44:42 -0500
+ Frontend Transport; Tue, 24 Jun 2025 13:45:13 -0500
 Received: from uda0132425.dhcp.ti.com (uda0132425.dhcp.ti.com [172.24.227.245])
-	by lelvem-mr05.itg.ti.com (8.18.1/8.18.1) with ESMTP id 55OIidis2253858;
-	Tue, 24 Jun 2025 13:44:39 -0500
+	by lelvem-mr06.itg.ti.com (8.18.1/8.18.1) with ESMTP id 55OIj9eA1992686;
+	Tue, 24 Jun 2025 13:45:10 -0500
 From: Vignesh Raghavendra <vigneshr@ti.com>
-To: Nishanth Menon <nm@ti.com>, Tero Kristo <kristo@kernel.org>,
-        Miquel Raynal
-	<miquel.raynal@bootlin.com>
-CC: Vignesh Raghavendra <vigneshr@ti.com>, Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>, <devicetree@vger.kernel.org>,
-        Thomas Petazzoni
-	<thomas.petazzoni@bootlin.com>,
-        Steam Lin <stlin2@winbond.com>, <linux-arm-kernel@lists.infradead.org>
-Subject: Re: [PATCH v2] arm64: dts: ti: k3-am62a7-sk: Describe the SPI NAND
-Date: Wed, 25 Jun 2025 00:14:35 +0530
-Message-ID: <175079060336.1874839.4487491018148640150.b4-ty@ti.com>
+To: <nm@ti.com>, <kristo@kernel.org>, <robh@kernel.org>, <krzk+dt@kernel.org>,
+        <conor+dt@kernel.org>, Wadim Egorov <w.egorov@phytec.de>
+CC: Vignesh Raghavendra <vigneshr@ti.com>,
+        <linux-arm-kernel@lists.infradead.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>, <upstream@lists.phytec.de>
+Subject: Re: [PATCH] arm64: dts: ti: k3-am642-phyboard-electra: Fix PRU-ICSSG Ethernet ports
+Date: Wed, 25 Jun 2025 00:15:08 +0530
+Message-ID: <175079060327.1874839.13802437150014477290.b4-ty@ti.com>
 X-Mailer: git-send-email 2.49.0
-In-Reply-To: <20250613182356.1272642-1-miquel.raynal@bootlin.com>
-References: <20250613182356.1272642-1-miquel.raynal@bootlin.com>
+In-Reply-To: <20250521053339.1751844-1-w.egorov@phytec.de>
+References: <20250521053339.1751844-1-w.egorov@phytec.de>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -82,23 +78,23 @@ Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 8bit
 X-C2ProcessedOrg: 333ef613-75bf-4e12-a4b1-8e3623f5dcea
 
-Hi Miquel Raynal,
+Hi Wadim Egorov,
 
-On Fri, 13 Jun 2025 20:23:56 +0200, Miquel Raynal wrote:
-> Describe the octal SPI NAND available on the low-power starter kit.
+On Wed, 21 May 2025 07:33:39 +0200, Wadim Egorov wrote:
+> For the ICSSG PHYs to operate correctly, a 25 MHz reference clock must
+> be supplied on CLKOUT0. Previously, our bootloader configured this
+> clock, which is why the PRU Ethernet ports appeared to work, but the
+> change never made it into the device tree.
 > 
-> The pinctrl configuration comes from TI fork.
-> 
-> With the current mainline tree, we currently get the following
-> performances:
+> Add clock properties to make EXT_REFCLK1.CLKOUT0 output a 25MHz clock.
 > 
 > [...]
 
 I have applied the following to branch ti-k3-dts-next on [1].
 Thank you!
 
-[1/1] arm64: dts: ti: k3-am62a7-sk: Describe the SPI NAND
-      commit: 9c1185a99811a173e3c126d664982f6744f80997
+[1/1] arm64: dts: ti: k3-am642-phyboard-electra: Fix PRU-ICSSG Ethernet ports
+      commit: 945e48a39c957924bc84d1a6c137da039e13855b
 
 All being well this means that it will be integrated into the linux-next
 tree (usually sometime in the next 24 hours) and sent up the chain during
