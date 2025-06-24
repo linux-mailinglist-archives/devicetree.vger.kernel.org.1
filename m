@@ -1,95 +1,58 @@
-Return-Path: <devicetree+bounces-188988-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-188991-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id C6388AE6402
-	for <lists+devicetree@lfdr.de>; Tue, 24 Jun 2025 13:58:35 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id D8316AE640F
+	for <lists+devicetree@lfdr.de>; Tue, 24 Jun 2025 13:59:02 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id D19204075A8
-	for <lists+devicetree@lfdr.de>; Tue, 24 Jun 2025 11:58:10 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 178744A6824
+	for <lists+devicetree@lfdr.de>; Tue, 24 Jun 2025 11:58:42 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 41C15291C08;
-	Tue, 24 Jun 2025 11:58:20 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=easyb-ch.20230601.gappssmtp.com header.i=@easyb-ch.20230601.gappssmtp.com header.b="kb9zP2YH"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2A4F828ECE2;
+	Tue, 24 Jun 2025 11:58:35 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wr1-f43.google.com (mail-wr1-f43.google.com [209.85.221.43])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
-	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6280F271466
-	for <devicetree@vger.kernel.org>; Tue, 24 Jun 2025 11:58:18 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.43
+Received: from mail.loongson.cn (mail.loongson.cn [114.242.206.163])
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id DD4F5279DCF;
+	Tue, 24 Jun 2025 11:58:31 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=114.242.206.163
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1750766300; cv=none; b=D7UmH6Kew0Zo9vPqDJTJLy+uY65WuR2pWJ18z1Hwu0Jstpuggwbf7BTk8ApHEWp7u9EfJ1QFtwQIRkNexvvwTd8ZSosa2RPYRwhFdLbsF4G/yfbOg5kkdtJfL64T+TivjYktVe5AbhQCvIo1A+mwckhYV28h93RImI8XZGeZbsQ=
+	t=1750766315; cv=none; b=HZgD3BxIUUuBgy1WWi4MA2hZn87JZ+x4g+yc2L75bEhd8fpEta/BkO8VUIn5T6ZNxB3dPol26XXbY5JGT/OqVgR9Fw7lZV37P9xPotnv3oTljabC6Cay1ZNvOFGTDIct751vJ3+w1gzAFXp2/3ryFiZfVGbCuiQAJl3McholbT4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1750766300; c=relaxed/simple;
-	bh=xXOn0HsXOLMhwrK8hxGYgemk6ajiFApPGs1BV9Yy8Ao=;
+	s=arc-20240116; t=1750766315; c=relaxed/simple;
+	bh=Ub+cz3yiy3gHtq6XGbvDj1ErurX1K2PN+ayXuh4U6I0=;
 	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=HAnngeXUJAQ7nm4AyfsD/uFAaQFSn2zsItWKBbT24GhxSIwiM9e0TiSoWP2LVo4iQwZkDQ+kHEM1PCY4jUeiDBvAQnlF+VFszxjj2c9BChB9DJfo11s86i9RKWpDTZx7GtK6GSGn2NbsJ8Ed7NWYT9kZRevum4l/wzsknJyIy28=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=easyb.ch; spf=none smtp.mailfrom=easyb.ch; dkim=pass (2048-bit key) header.d=easyb-ch.20230601.gappssmtp.com header.i=@easyb-ch.20230601.gappssmtp.com header.b=kb9zP2YH; arc=none smtp.client-ip=209.85.221.43
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=easyb.ch
-Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=easyb.ch
-Received: by mail-wr1-f43.google.com with SMTP id ffacd0b85a97d-3a536ecbf6fso228492f8f.2
-        for <devicetree@vger.kernel.org>; Tue, 24 Jun 2025 04:58:18 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=easyb-ch.20230601.gappssmtp.com; s=20230601; t=1750766297; x=1751371097; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=SGE4KFMiA3w+V5SFnoNxn7J/yaSX/gETYA3wlTGQnvE=;
-        b=kb9zP2YHWQZ3aAdo9N1O+bDkRvtT8TrGzuLyCzj9cU90I7ROghIGzBR3sVllElNOoi
-         NcRvTwSg9aBEec/V1aKjxmfdWhU3mCiD7zdiPWjoOD67349MN6Xz2oDp8lA7m7iJTIYb
-         ZCF3Xeo8g9IwOnvN2ti19UTeLBCVo+EwKUHpN5Do+ExkAhNOZrFQsBHFQOuSuwAwcL/L
-         9wrLH4kXp6NtsZsNxOOLzXsesBBLx8MhYbLm/j3T08ksVCzMzE6/o3kQu5hIoVWqeOr6
-         3k+Y51gS9JApZnRrX775GqJl1MWXGDQmvOKzLgR8M4aLCixqLLWVX3IU78PcooqZncSR
-         BIJg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1750766297; x=1751371097;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=SGE4KFMiA3w+V5SFnoNxn7J/yaSX/gETYA3wlTGQnvE=;
-        b=j5Ze3/zzwJG6B5xRrVqhSRsgBHONdwkRCcJRJyi3y6/kXd5LZbqpptGkeLVzYW7T+n
-         t806UjMAtAgGiJNvqZEYgj8EtVpp0M5lqBWBHOEjnQ2IZzWjurX6/33jqHzKz+ADF6qn
-         wj4XqBuZeZaI+YOORAbdtg+OjT9qa9eqCe+Sly9P78799hEcs3kI1kuKUQbB40fO44Qd
-         jqF1Wk6oxtxy+i7ZlXAc6NKhLtaSkSIQkI6PNfOa4MOWSZ4AGdQDQibxtHpryDdHzBBr
-         otcInewjmV9n9HUSnKdacB4iVWJOYhKD7FKuj9mM3YTMtudBYfapVWEKOibryKfmoEp1
-         Udfw==
-X-Forwarded-Encrypted: i=1; AJvYcCXgY4SnQ5lPc1LpDVWQQZ55GRqARwrzWlv6PDgSMkEHUq2zfl/izsCVRDuVRLQMUKkSgx5f41eVrF4j@vger.kernel.org
-X-Gm-Message-State: AOJu0Yzg/08jcUh6PNBV1nV7teZU5u+k0LPqQTzi7UDPgC7BUr5wqCH9
-	d0loXUf8kR9o1FXL7rdOUrYWvs6A0xSG1ycSZnLLuFYG6kqphZ4qxLv4FCMm34dcdqA=
-X-Gm-Gg: ASbGncsoPMY47LOJHTBtf60EDu3KtAtw7OHiO11rlhA53pGEdHh/5BDyQF3sNeQW0Uj
-	IyVADnOesm9s8gRDtIWMXvkWe7ZXOQSG4YmrFHjPX4mWsxK8SPYrUbiN6VAGtZVDRYMwSF9cqSf
-	SaX2kP2HUjeZBjLMPEUS/BpoI/5qRSRgrpnfY2DUqeo+jfYCtvV9GN7+z8VoHX++Xr2Mriqo9ua
-	XDnNS7oHhhrnOoLhGOJ9ZfsUQn7dW93nDEFi9tDOkdcTjMq3hiX98o7KR+ANui1OpYtv3n4o0Te
-	dRKV2ONKLZHbT6RqAgGe4jvstr0d4YreyO3UWSbVER4S7xPZOMRh/BIS7ar+
-X-Google-Smtp-Source: AGHT+IFubDJTKHj661hLTfHQAJpwAc5+Zi+823QflKwgRA6BrUCM8dJiTGs0dTErPXPjhxnZj3//Jw==
-X-Received: by 2002:a5d:584d:0:b0:3a5:42:b17b with SMTP id ffacd0b85a97d-3a6d1322b83mr12410677f8f.29.1750766296603;
-        Tue, 24 Jun 2025 04:58:16 -0700 (PDT)
-Received: from fraxinus.easyland ([2a02:16a:7402:0:d834:684f:62eb:5df0])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-4535ead2a5fsm173860985e9.34.2025.06.24.04.58.15
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 24 Jun 2025 04:58:16 -0700 (PDT)
-From: Ezra Buehler <ezra@easyb.ch>
-To: linux-mips@vger.kernel.org,
-	devicetree@vger.kernel.org
-Cc: Conor Dooley <conor+dt@kernel.org>,
-	Harvey Hunt <harveyhuntnexus@gmail.com>,
+	 MIME-Version; b=YQTBCq1mb1aWUirb4P4PT3LvpYf/rWKJx95OCAEFc6wRtHhpy+l9+e8H7ACoVKFKduqD1YIogFCShnPCWAwlUkM/eIFJatEM/Ha+DBmqC/iCji9EhZNGeIkHp9YHGJAUfKL7h1rHkWtFcR7A4bjSuf2atsONo2aBeSNNm5lPMk8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=loongson.cn; spf=pass smtp.mailfrom=loongson.cn; arc=none smtp.client-ip=114.242.206.163
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=loongson.cn
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=loongson.cn
+Received: from loongson.cn (unknown [223.64.68.149])
+	by gateway (Coremail) with SMTP id _____8CxbWvmklpoOjocAQ--.63094S3;
+	Tue, 24 Jun 2025 19:58:30 +0800 (CST)
+Received: from localhost.localdomain (unknown [223.64.68.149])
+	by front1 (Coremail) with SMTP id qMiowMDxu8TcklpohsAoAQ--.53899S3;
+	Tue, 24 Jun 2025 19:58:28 +0800 (CST)
+From: Binbin Zhou <zhoubinbin@loongson.cn>
+To: Binbin Zhou <zhoubb.aaron@gmail.com>,
+	Huacai Chen <chenhuacai@loongson.cn>,
+	Rob Herring <robh+dt@kernel.org>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Reto Schneider <reto.schneider@husqvarnagroup.com>,
-	Rob Herring <robh@kernel.org>,
-	Sergio Paracuellos <sergio.paracuellos@gmail.com>,
-	Stefan Roese <sr@denx.de>,
-	Thomas Bogendoerfer <tsbogend@alpha.franken.de>,
-	Ezra Buehler <ezra.buehler@husqvarnagroup.com>
-Subject: [PATCH v4 3/4] MIPS: dts: ralink: mt7628a: Update watchdog node according to bindings
-Date: Tue, 24 Jun 2025 13:58:09 +0200
-Message-ID: <20250624115810.37851-4-ezra@easyb.ch>
-X-Mailer: git-send-email 2.43.0
-In-Reply-To: <20250624115810.37851-1-ezra@easyb.ch>
-References: <20250624115810.37851-1-ezra@easyb.ch>
+	Conor Dooley <conor+dt@kernel.org>,
+	Ulf Hansson <ulf.hansson@linaro.org>
+Cc: Huacai Chen <chenhuacai@kernel.org>,
+	Xuerui Wang <kernel@xen0n.name>,
+	loongarch@lists.linux.dev,
+	devicetree@vger.kernel.org,
+	linux-mmc@vger.kernel.org,
+	wanghongliang@loongson.cn,
+	Binbin Zhou <zhoubinbin@loongson.cn>
+Subject: [PATCH v4 1/4] dt-bindings: mmc: Add Loongson-2K SD/SDIO/eMMC controller binding
+Date: Tue, 24 Jun 2025 19:58:10 +0800
+Message-ID: <949c55be120a806ea3d74b47fa2cc96ced2905fc.1750765495.git.zhoubinbin@loongson.cn>
+X-Mailer: git-send-email 2.47.1
+In-Reply-To: <cover.1750765495.git.zhoubinbin@loongson.cn>
+References: <cover.1750765495.git.zhoubinbin@loongson.cn>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -97,44 +60,129 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
+X-CM-TRANSID:qMiowMDxu8TcklpohsAoAQ--.53899S3
+X-CM-SenderInfo: p2kr3uplqex0o6or00hjvr0hdfq/
+X-Coremail-Antispam: 1Uk129KBj93XoWxGw1UAr13uF4DWFyfAw4kXwc_yoW5Ary3pa
+	nrCr9rGr40qF13Zws3Ka48Cw1rX3s7CrnrXFsrJw17Gas8Wa4Yqw1akFyrZa43CrW2qFW7
+	ZFyFkr45Ca47ArcCm3ZEXasCq-sJn29KB7ZKAUJUUUUr529EdanIXcx71UUUUU7KY7ZEXa
+	sCq-sGcSsGvfJ3Ic02F40EFcxC0VAKzVAqx4xG6I80ebIjqfuFe4nvWSU5nxnvy29KBjDU
+	0xBIdaVrnRJUUUB0b4IE77IF4wAFF20E14v26r1j6r4UM7CY07I20VC2zVCF04k26cxKx2
+	IYs7xG6rWj6s0DM7CIcVAFz4kK6r1Y6r17M28lY4IEw2IIxxk0rwA2F7IY1VAKz4vEj48v
+	e4kI8wA2z4x0Y4vE2Ix0cI8IcVAFwI0_Xr0_Ar1l84ACjcxK6xIIjxv20xvEc7CjxVAFwI
+	0_Gr0_Cr1l84ACjcxK6I8E87Iv67AKxVW0oVCq3wA2z4x0Y4vEx4A2jsIEc7CjxVAFwI0_
+	GcCE3s1ln4kS14v26r1Y6r17M2AIxVAIcxkEcVAq07x20xvEncxIr21l57IF6xkI12xvs2
+	x26I8E6xACxx1l5I8CrVACY4xI64kE6c02F40Ex7xfMcIj6xIIjxv20xvE14v26r1q6rW5
+	McIj6I8E87Iv67AKxVW8JVWxJwAm72CE4IkC6x0Yz7v_Jr0_Gr1lF7xvr2IYc2Ij64vIr4
+	1lc7CjxVAaw2AFwI0_JF0_Jw1l42xK82IYc2Ij64vIr41l4I8I3I0E4IkC6x0Yz7v_Jr0_
+	Gr1l4IxYO2xFxVAFwI0_Jrv_JF1lx2IqxVAqx4xG67AKxVWUJVWUGwC20s026x8GjcxK67
+	AKxVWUGVWUWwC2zVAF1VAY17CE14v26r1q6r43MIIYrxkI7VAKI48JMIIF0xvE2Ix0cI8I
+	cVAFwI0_JFI_Gr1lIxAIcVC0I7IYx2IY6xkF7I0E14v26r4j6F4UMIIF0xvE42xK8VAvwI
+	8IcIk0rVWUJVWUCwCI42IY6I8E87Iv67AKxVWUJVW8JwCI42IY6I8E87Iv6xkF7I0E14v2
+	6r4j6r4UJbIYCTnIWIevJa73UjIFyTuYvjxUxhiSDUUUU
 
-From: Ezra Buehler <ezra.buehler@husqvarnagroup.com>
+Add the Loongson-2K SoC's SD/SDIO/eMMC controller binding with DT schema
+format using json-schema.
 
-Most notably, add the mediatek,sysctl phandle and remove the redundant
-reset/interrupt-related properties from the watchdog node. This is in
-line with the corresponding devicetree (mt7628an.dtsi) used by the
-OpenWrt project.
-
-This has been tested on the MT7688-based GARDENA smart Gateway.
-
-Signed-off-by: Ezra Buehler <ezra.buehler@husqvarnagroup.com>
-Reviewed-by: Stefan Roese <sr@denx.de>
-Reviewed-by: Sergio Paracuellos <sergio.paracuellos@gmail.com>
+Signed-off-by: Binbin Zhou <zhoubinbin@loongson.cn>
 ---
- arch/mips/boot/dts/ralink/mt7628a.dtsi | 9 ++-------
- 1 file changed, 2 insertions(+), 7 deletions(-)
+ .../bindings/mmc/loongson,ls2k0500-mmc.yaml   | 69 +++++++++++++++++++
+ MAINTAINERS                                   |  6 ++
+ 2 files changed, 75 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/mmc/loongson,ls2k0500-mmc.yaml
 
-diff --git a/arch/mips/boot/dts/ralink/mt7628a.dtsi b/arch/mips/boot/dts/ralink/mt7628a.dtsi
-index 10221a41f02a..5d7a6cfa9e2b 100644
---- a/arch/mips/boot/dts/ralink/mt7628a.dtsi
-+++ b/arch/mips/boot/dts/ralink/mt7628a.dtsi
-@@ -134,13 +134,8 @@ pinmux_p4led_an_gpio: p4led-an-gpio-pins {
+diff --git a/Documentation/devicetree/bindings/mmc/loongson,ls2k0500-mmc.yaml b/Documentation/devicetree/bindings/mmc/loongson,ls2k0500-mmc.yaml
+new file mode 100644
+index 000000000000..f2f10b2c618c
+--- /dev/null
++++ b/Documentation/devicetree/bindings/mmc/loongson,ls2k0500-mmc.yaml
+@@ -0,0 +1,69 @@
++# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/mmc/loongson,ls2k0500-mmc.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: The SD/SDIO/eMMC host controller for Loongson-2K family SoCs
++
++description:
++  The MMC host controller on the Loongson-2K0500/2K1000 (using an externally
++  shared apbdma controller) provides the SD and SDIO device interfaces.
++
++maintainers:
++  - Binbin Zhou <zhoubinbin@loongson.cn>
++
++allOf:
++  - $ref: mmc-controller.yaml#
++
++properties:
++  compatible:
++    enum:
++      - loongson,ls2k0500-mmc
++      - loongson,ls2k1000-mmc
++
++  reg:
++    items:
++      - description: Loongson-2K MMC controller registers.
++      - description: APB DMA config register for Loongson-2K MMC controller.
++
++  interrupts:
++    maxItems: 1
++
++  clocks:
++    maxItems: 1
++
++  dmas:
++    maxItems: 1
++
++  dma-names:
++    const: rx-tx
++
++required:
++  - compatible
++  - reg
++  - interrupts
++  - clocks
++  - dmas
++  - dma-names
++
++unevaluatedProperties: false
++
++examples:
++  - |
++    #include <dt-bindings/gpio/gpio.h>
++    #include <dt-bindings/interrupt-controller/irq.h>
++    #include <dt-bindings/clock/loongson,ls2k-clk.h>
++
++    mmc@1fe2c000 {
++        compatible = "loongson,ls2k1000-mmc";
++        reg = <0x1fe2c000 0x68>,
++              <0x1fe00438 0x8>;
++        interrupt-parent = <&liointc0>;
++        interrupts = <31 IRQ_TYPE_LEVEL_HIGH>;
++        clocks = <&clk LOONGSON2_APB_CLK>;
++        dmas = <&apbdma1 0>;
++        dma-names = "rx-tx";
++        bus-width = <4>;
++        cd-gpios = <&gpio0 22 GPIO_ACTIVE_LOW>;
++    };
+diff --git a/MAINTAINERS b/MAINTAINERS
+index a92290fffa16..2d1cdd2cfc2b 100644
+--- a/MAINTAINERS
++++ b/MAINTAINERS
+@@ -14175,6 +14175,12 @@ S:	Maintained
+ F:	Documentation/devicetree/bindings/hwinfo/loongson,ls2k-chipid.yaml
+ F:	drivers/soc/loongson/loongson2_guts.c
  
- 		watchdog: watchdog@100 {
- 			compatible = "mediatek,mt7621-wdt";
--			reg = <0x100 0x30>;
--
--			resets = <&sysc 8>;
--			reset-names = "wdt";
--
--			interrupt-parent = <&intc>;
--			interrupts = <24>;
-+			reg = <0x100 0x100>;
-+			mediatek,sysctl = <&sysc>;
- 
- 			status = "disabled";
- 		};
++LOONGSON-2 SOC SERIES MMC/SD/SDIO CONTROLLER DRIVER
++M:	Binbin Zhou <zhoubinbin@loongson.cn>
++L:	linux-mmc@vger.kernel.org
++S:	Maintained
++F:	Documentation/devicetree/bindings/mmc/loongson,ls2k0500-mmc.yaml
++
+ LOONGSON-2 SOC SERIES PM DRIVER
+ M:	Yinbo Zhu <zhuyinbo@loongson.cn>
+ L:	linux-pm@vger.kernel.org
 -- 
-2.43.0
+2.47.1
 
 
