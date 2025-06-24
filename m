@@ -1,147 +1,163 @@
-Return-Path: <devicetree+bounces-189169-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-189170-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 21982AE6F82
-	for <lists+devicetree@lfdr.de>; Tue, 24 Jun 2025 21:25:22 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 051C1AE6FC1
+	for <lists+devicetree@lfdr.de>; Tue, 24 Jun 2025 21:36:49 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 03C8F7B232F
-	for <lists+devicetree@lfdr.de>; Tue, 24 Jun 2025 19:23:41 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 81D1317B8A8
+	for <lists+devicetree@lfdr.de>; Tue, 24 Jun 2025 19:36:49 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0CAC32E8E0B;
-	Tue, 24 Jun 2025 19:23:46 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 83EA22E92BF;
+	Tue, 24 Jun 2025 19:36:19 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (1024-bit key) header.d=axis.com header.i=@axis.com header.b="ql0rPa14"
 X-Original-To: devicetree@vger.kernel.org
-Received: from relmlie6.idc.renesas.com (relmlor2.renesas.com [210.160.252.172])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A30E02EBB8D;
-	Tue, 24 Jun 2025 19:23:42 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=210.160.252.172
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1750793025; cv=none; b=EvfrWBKhB0J4RPep1/lqARg11J3dMW9e6fz6syUv/v5hWUn7QiI8CbJZ/mifkfRU7nYgB0zez+fvkSlcOTB5MR6g4cTnPIK65cHfhWIEkxpejX+IkRgLq4fQ8h4fzdHXGV83u7ceLM+IyRovLH3mymdG+howReP4P51DAvZaSyo=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1750793025; c=relaxed/simple;
-	bh=PlcAM2qhzIFWKcx23OZO4BzDOXwu5EK7j3B56nLLiK0=;
-	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
-	 MIME-Version; b=un4ZHsHKE5NRT29iMpAiTZK9l93/g5P2d5Udy7NNAjbUiSIUKD5N2il+/hBvOuCSOi3AIJMjumGx/WGKC7ab1UaTjluKN352Kz+5J8QVs3PurrYR2s9ij+IuczM3qYACeUUXeYsCzPduDGMAwl7zx4w1xqAWKKAX5A+Dm93w1aI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=renesas.com; spf=pass smtp.mailfrom=renesas.com; arc=none smtp.client-ip=210.160.252.172
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=renesas.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=renesas.com
-X-CSE-ConnectionGUID: Uf6t76tmT1mnA59w9SX47Q==
-X-CSE-MsgGUID: 1K2++EtIRSOonD9na/jdQA==
-Received: from unknown (HELO relmlir5.idc.renesas.com) ([10.200.68.151])
-  by relmlie6.idc.renesas.com with ESMTP; 25 Jun 2025 04:23:42 +0900
-Received: from mulinux.example.org (unknown [10.26.240.23])
-	by relmlir5.idc.renesas.com (Postfix) with ESMTP id 7A2EB4003FBF;
-	Wed, 25 Jun 2025 04:23:38 +0900 (JST)
-From: Fabrizio Castro <fabrizio.castro.jz@renesas.com>
-To: Geert Uytterhoeven <geert+renesas@glider.be>,
-	Magnus Damm <magnus.damm@gmail.com>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>
-Cc: Fabrizio Castro <fabrizio.castro.jz@renesas.com>,
-	linux-renesas-soc@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	Biju Das <biju.das.jz@bp.renesas.com>,
-	Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-Subject: [PATCH 6/6] arm64: dts: renesas: r9a09g057: Add RSPI nodes
-Date: Tue, 24 Jun 2025 20:23:04 +0100
-Message-Id: <20250624192304.338979-7-fabrizio.castro.jz@renesas.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20250624192304.338979-1-fabrizio.castro.jz@renesas.com>
-References: <20250624192304.338979-1-fabrizio.castro.jz@renesas.com>
+Received: from AS8PR04CU009.outbound.protection.outlook.com (mail-westeuropeazon11011044.outbound.protection.outlook.com [52.101.70.44])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+	(No client certificate requested)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id ADA7E2E8E0B;
+	Tue, 24 Jun 2025 19:36:16 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=52.101.70.44
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1750793779; cv=fail; b=qjr0dmuUUHOsBhni7ax7fU0kNcomEUgssSscdVuNCyJrRP7aU57TfMy3mhTquci8Qi3iJEWZ5mHT7GBZkvS8UzfTEcZlLEGniHzS2ach+1vqFAPnyuUCdmxV5uK8hr0I4D8sVLqu0iVekx6PNzKcrk0sfpr36dDRZZPUfAGa4UI=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1750793779; c=relaxed/simple;
+	bh=4NG0oSVieNbiQl+fLPcT74nwge9WxM3FouzKqqFcqoo=;
+	h=From:To:CC:Subject:In-Reply-To:References:Date:Message-ID:
+	 MIME-Version:Content-Type; b=tEHa0Eo/I/OnUravWIhpyXGR8o4NZeQWYGhi8w3B759guZOlM08ICfXIgmaWfF75JHgOyb+GZfBBc2ZsxQPxybNEfY3Bcb0CgVkPDzhinonYm2XmXAuSnHrXX5+HCio0QD3ahJRnk/uQq+zKa6FY1KU5Tof/8RHUGECW/pq/VKE=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=axis.com; spf=pass smtp.mailfrom=axis.com; dkim=pass (1024-bit key) header.d=axis.com header.i=@axis.com header.b=ql0rPa14; arc=fail smtp.client-ip=52.101.70.44
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=axis.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=axis.com
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=BD1gEj1T+ASNCCXBcXzME67vRMTNOf6U/4G0ahw7WF9tQ2u9UsWqk6cFCKDypntAfrDGjTfM5et/VC+6F2COIAhftN9vU8JbtHhR1acBYsADeRtK/voh6cxlWvH/UbbjTVfTzoaXTwRfAO8tQ+aDBVPJnmPh8xTKjKeAS/nvezZGSgOvpF3mb2vYN+MeO6d8U2PUKepta3b5nAAxUVqyYWI6mLS6euoJEuMWGq/XxfDdoEh2wi6fz1Sikx+edVp7v2xIjJXHr7eh1SKpEykot7FdUo5v6YAPjiVUEKDeBAz2t585i/8giGY1249AyXU1tCDWVld1GAt+hzjlgwJaeA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=Q9lNhIGGSGpTvHkYZOoWIpB4h1KH1Pqs5EYR7M+ptvU=;
+ b=Qf8OxdhRu0hdZEKLBBtODnRDYtZoJYg68nWgjpxVhUc9pNsskoigOa/FpYk0qOe19qWl3w5rPBC/ikslrNzSq1JCtyNi3wDIVYRpK4sq9PmVajapuP1O+jMpqzdxnwqhDQSvYf3Ehn9ChZOwtIQsXYWZsB407uG+AwQ7hOkPWcERyvfnUStFuGc5dgDn7/bfbWYi5qtt3g9O9yjoZOyie/gdZ+xMUVO9RY6r4PgwKJHa0njMxHzTUDUpW+tQ6zD3LSH65qYZQ1sJBcAIvHO3heNzJaFGQM5d1qP8NDR8G6ODgis75pBFPAMM9CcbBLK/iWfYXUyMiQm5/FNXvbZIhA==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
+ 195.60.68.100) smtp.rcpttodomain=vger.kernel.org smtp.mailfrom=axis.com;
+ dmarc=pass (p=none sp=none pct=100) action=none header.from=axis.com;
+ dkim=none (message not signed); arc=none (0)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=axis.com; s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=Q9lNhIGGSGpTvHkYZOoWIpB4h1KH1Pqs5EYR7M+ptvU=;
+ b=ql0rPa14oYy10Rd98PuZ2ccohWzk69J/CvaldSpcco+qCipVYvS4Gu/bjz65ie5M693YBI7LSOuK8KAE9hYLJSYkCtZlTXWTyBt6960peF+JKbdf6oCbVvArHkIWJDdRa1FYDg6XoilFC93opau3LPFINFlrCiSpdnMpTtT0FS4=
+Received: from DUZPR01CA0099.eurprd01.prod.exchangelabs.com
+ (2603:10a6:10:4bb::24) by AM9PR02MB6515.eurprd02.prod.outlook.com
+ (2603:10a6:20b:2cc::8) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8880.16; Tue, 24 Jun
+ 2025 19:36:13 +0000
+Received: from DB1PEPF000509F9.eurprd02.prod.outlook.com
+ (2603:10a6:10:4bb:cafe::f1) by DUZPR01CA0099.outlook.office365.com
+ (2603:10a6:10:4bb::24) with Microsoft SMTP Server (version=TLS1_3,
+ cipher=TLS_AES_256_GCM_SHA384) id 15.20.8880.17 via Frontend Transport; Tue,
+ 24 Jun 2025 19:36:18 +0000
+X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 195.60.68.100)
+ smtp.mailfrom=axis.com; dkim=none (message not signed)
+ header.d=none;dmarc=pass action=none header.from=axis.com;
+Received-SPF: Pass (protection.outlook.com: domain of axis.com designates
+ 195.60.68.100 as permitted sender) receiver=protection.outlook.com;
+ client-ip=195.60.68.100; helo=mail.axis.com; pr=C
+Received: from mail.axis.com (195.60.68.100) by
+ DB1PEPF000509F9.mail.protection.outlook.com (10.167.242.155) with Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.20.8880.14 via Frontend Transport; Tue, 24 Jun 2025 19:36:12 +0000
+Received: from pc52311-2249 (10.4.0.13) by se-mail01w.axis.com (10.20.40.7)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.44; Tue, 24 Jun
+ 2025 21:36:11 +0200
+From: Waqar Hameed <waqar.hameed@axis.com>
+To: Jonathan Cameron <jic23@kernel.org>
+CC: Lars-Peter Clausen <lars@metafoo.de>, Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, <kernel@axis.com>,
+	<linux-kernel@vger.kernel.org>, <linux-iio@vger.kernel.org>,
+	<devicetree@vger.kernel.org>
+Subject: Re: [PATCH v2 0/3] Add driver for Nicera D3-323-AA PIR sensor
+In-Reply-To: <20250622113312.1e60b008@jic23-huawei> (Jonathan Cameron's
+	message of "Sun, 22 Jun 2025 11:33:12 +0100")
+References: <cover.1749938844.git.waqar.hameed@axis.com>
+	<20250622113312.1e60b008@jic23-huawei>
+User-Agent: a.out
+Date: Tue, 24 Jun 2025 21:36:11 +0200
+Message-ID: <pndpletaq50.fsf@axis.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-ClientProxiedBy: se-mail02w.axis.com (10.20.40.8) To se-mail01w.axis.com
+ (10.20.40.7)
+X-EOPAttributedMessage: 0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: DB1PEPF000509F9:EE_|AM9PR02MB6515:EE_
+X-MS-Office365-Filtering-Correlation-Id: 0b454e1b-29e7-4134-6fd9-08ddb35660c8
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam:
+	BCL:0;ARA:13230040|1800799024|36860700013|82310400026|376014;
+X-Microsoft-Antispam-Message-Info:
+	=?us-ascii?Q?hTVPP823KOVu0J69c0FsCEHZ2c/gjAXlEoDjM8F4cbc2ypu/CX1XKq/2uIxs?=
+ =?us-ascii?Q?dH+MHyLvKvKf5ojDFItL1WNYEJ+z6/bTxO29ugyXCVN4IcPj/C13uKQ+YoYi?=
+ =?us-ascii?Q?EcBZzUHZ/2G4ikN40tOaJa3EZaSR5kpvcwmlal+9HOQJFr/F5ija4S+vrumr?=
+ =?us-ascii?Q?JFeSxNXYYPue6qBess5gVrL9IBqxTGFiey0HhfNCcdOrPUHtCGVB7iGGipBb?=
+ =?us-ascii?Q?AQe5fo6Mfj7U5CtX3C28VTHd2wIKiX7Lkvw/c7b7tXbgOYJrFMuNhkBiowHx?=
+ =?us-ascii?Q?AsWbASbUlwVj3CwRTMUWb6hXRoQ/TRuboUBJykLvkoS41Vx4dSEx4lrabCN1?=
+ =?us-ascii?Q?st3kbh+pF+2GPBNLDOnV3ttsZMzVhjYv5vpRo+cdcqT66Hqu/vtkfJL6N8eH?=
+ =?us-ascii?Q?RlVH6JIBh0FZBnhG0xr7um5YekKK89XJeqSOFGFA6bMi43O7ENs1nAD7D/IM?=
+ =?us-ascii?Q?UVsjBmgaM9c1zSCBNOlQBRj86gwRhHqZgFcTFblFnf6V1HtSN2hIeTA1kI/9?=
+ =?us-ascii?Q?WxoS7K0Wogta9oQhJXr+dvo+G/1nRp9v9FxVbcW5bY6RJ2/yYSMefZWogsfP?=
+ =?us-ascii?Q?lbjv2baMYNX7oks3LSqylTS9WeFYdE9SEZMKz76SubZq/BfSVEPddNxEFBw0?=
+ =?us-ascii?Q?uSUTaBoTzsK2UQKWtLqBdizsQBi51Y1tjiZDFW1r1yJNWGFkVOZYOExPdEUO?=
+ =?us-ascii?Q?o/R0oi3qxXjdSL3Ge0gcQAofwqUfNK1Nz3ZlEH2NvyYBW0eic2xnbBIJx60d?=
+ =?us-ascii?Q?1oZw1v3GNUKu9O25QrDPua1BLRpg6ddb/SVV+9rJCxzi4KKtGx9CBkoiR39X?=
+ =?us-ascii?Q?G6oGGq+/28PYavUEUMtLfMzGR5YS97rWwTjYo7VAz0QLx/Z4B5yjTcYOxyXQ?=
+ =?us-ascii?Q?LipdgrU8CgX4iRW1qe6hjylcdP1tVlUI/6/O326sk3ctVZrjB/Fja1zJ028e?=
+ =?us-ascii?Q?bdiszcVmq7X9GWyjn1R4HCaOqd9O+Si2EW4JX1LLQI/pCG3VqbD92noXdB8F?=
+ =?us-ascii?Q?t0YgNnKN7ky7DbvJEqk0Gs0QbZzyq7wVtuK4GB0nrahlF1dbvJvHUc5/o7GS?=
+ =?us-ascii?Q?upB4ejqEYwR2nmgP8cRCT67Mx6aoXJvODWpUjj0B7fYpH8NOjAmHUlw67wWg?=
+ =?us-ascii?Q?ajR1KkSje9oRgkm3Av17ghihTv2G9LnlPq9BGQhdbD7RKv0QSlGmqYwyYSTA?=
+ =?us-ascii?Q?JNb/vq5Udxo1TYstwSSpkPrQLh9Vjo1QmAkUVTmrBf8xZzekLVzqAgZeYY3l?=
+ =?us-ascii?Q?hZbXuaVEUy+ZebHp5qBSppJ1MQnp17mfKqFOLUY9hXdzSFnn047T+K7ukIFq?=
+ =?us-ascii?Q?pmDGLJO+MhFucGwg6bRjoCsWNvMTNH5r6FibiSK9AEyd1gBkd1S5NpvWWRZZ?=
+ =?us-ascii?Q?oaTAdgq7GKp/nHHlHOkZ9/mkwUwNAsDZ9Z48IIAUOUpJQgZaoUeM1ngcy8KT?=
+ =?us-ascii?Q?K3AXU+ZRTQ1B4Z+zcTohcnD4/RDOS4Bu0yC+tY9VFm4t5m1WC8nAf7WOa9GA?=
+ =?us-ascii?Q?oM4lOGBCqQc8y22paZOpMtJvrXehq2BncB6T?=
+X-Forefront-Antispam-Report:
+	CIP:195.60.68.100;CTRY:SE;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:mail.axis.com;PTR:InfoDomainNonexistent;CAT:NONE;SFS:(13230040)(1800799024)(36860700013)(82310400026)(376014);DIR:OUT;SFP:1101;
+X-OriginatorOrg: axis.com
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 24 Jun 2025 19:36:12.8272
+ (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 0b454e1b-29e7-4134-6fd9-08ddb35660c8
+X-MS-Exchange-CrossTenant-Id: 78703d3c-b907-432f-b066-88f7af9ca3af
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=78703d3c-b907-432f-b066-88f7af9ca3af;Ip=[195.60.68.100];Helo=[mail.axis.com]
+X-MS-Exchange-CrossTenant-AuthSource:
+	DB1PEPF000509F9.eurprd02.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Anonymous
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: AM9PR02MB6515
 
-Add nodes for the RSPI IPs found in the Renesas RZ/V2H(P) SoC.
+On Sun, Jun 22, 2025 at 11:33 +0100 Jonathan Cameron <jic23@kernel.org> wrote:
 
-Signed-off-by: Fabrizio Castro <fabrizio.castro.jz@renesas.com>
----
- arch/arm64/boot/dts/renesas/r9a09g057.dtsi | 63 ++++++++++++++++++++++
- 1 file changed, 63 insertions(+)
+> On Sun, 15 Jun 2025 00:13:52 +0200
+> Waqar Hameed <waqar.hameed@axis.com> wrote:
 
-diff --git a/arch/arm64/boot/dts/renesas/r9a09g057.dtsi b/arch/arm64/boot/dts/renesas/r9a09g057.dtsi
-index 45aedd62a259..ae1f88b7aac5 100644
---- a/arch/arm64/boot/dts/renesas/r9a09g057.dtsi
-+++ b/arch/arm64/boot/dts/renesas/r9a09g057.dtsi
-@@ -586,6 +586,69 @@ scif: serial@11c01400 {
- 			status = "disabled";
- 		};
- 
-+		rspi0: spi@12800000 {
-+			compatible = "renesas,r9a09g057-rspi";
-+			reg = <0x0 0x12800000 0x0 0x400>;
-+			interrupts = <GIC_SPI 105 IRQ_TYPE_LEVEL_HIGH>,
-+				     <GIC_SPI 106 IRQ_TYPE_LEVEL_HIGH>,
-+				     <GIC_SPI 107 IRQ_TYPE_EDGE_RISING>,
-+				     <GIC_SPI 500 IRQ_TYPE_EDGE_RISING>,
-+				     <GIC_SPI 501 IRQ_TYPE_EDGE_RISING>;
-+			interrupt-names = "idle", "error", "end", "rx", "tx";
-+			clocks = <&cpg CPG_MOD 0x54>,
-+				 <&cpg CPG_MOD 0x55>,
-+				 <&cpg CPG_MOD 0x56>;
-+			clock-names = "pclk", "pclk_sfr", "tclk";
-+			resets = <&cpg 0x7b>, <&cpg 0x7c>;
-+			reset-names = "presetn", "tresetn";
-+			power-domains = <&cpg>;
-+			#address-cells = <1>;
-+			#size-cells = <0>;
-+			status = "disabled";
-+		};
-+
-+		rspi1: spi@12800400 {
-+			compatible = "renesas,r9a09g057-rspi";
-+			reg = <0x0 0x12800400 0x0 0x400>;
-+			interrupts = <GIC_SPI 108 IRQ_TYPE_LEVEL_HIGH>,
-+				     <GIC_SPI 109 IRQ_TYPE_LEVEL_HIGH>,
-+				     <GIC_SPI 110 IRQ_TYPE_EDGE_RISING>,
-+				     <GIC_SPI 502 IRQ_TYPE_EDGE_RISING>,
-+				     <GIC_SPI 503 IRQ_TYPE_EDGE_RISING>;
-+			interrupt-names = "idle", "error", "end", "rx", "tx";
-+			clocks = <&cpg CPG_MOD 0x57>,
-+				 <&cpg CPG_MOD 0x58>,
-+				 <&cpg CPG_MOD 0x59>;
-+			clock-names = "pclk", "pclk_sfr", "tclk";
-+			resets = <&cpg 0x7d>, <&cpg 0x7e>;
-+			reset-names = "presetn", "tresetn";
-+			power-domains = <&cpg>;
-+			#address-cells = <1>;
-+			#size-cells = <0>;
-+			status = "disabled";
-+		};
-+
-+		rspi2: spi@12800800 {
-+			compatible = "renesas,r9a09g057-rspi";
-+			reg = <0x0 0x12800800 0x0 0x400>;
-+			interrupts = <GIC_SPI 111 IRQ_TYPE_LEVEL_HIGH>,
-+				     <GIC_SPI 112 IRQ_TYPE_LEVEL_HIGH>,
-+				     <GIC_SPI 113 IRQ_TYPE_EDGE_RISING>,
-+				     <GIC_SPI 504 IRQ_TYPE_EDGE_RISING>,
-+				     <GIC_SPI 505 IRQ_TYPE_EDGE_RISING>;
-+			interrupt-names = "idle", "error", "end", "rx", "tx";
-+			clocks = <&cpg CPG_MOD 0x5a>,
-+				 <&cpg CPG_MOD 0x5b>,
-+				 <&cpg CPG_MOD 0x5c>;
-+			clock-names = "pclk", "pclk_sfr", "tclk";
-+			resets = <&cpg 0x7f>, <&cpg 0x80>;
-+			reset-names = "presetn", "tresetn";
-+			power-domains = <&cpg>;
-+			#address-cells = <1>;
-+			#size-cells = <0>;
-+			status = "disabled";
-+		};
-+
- 		i2c0: i2c@14400400 {
- 			compatible = "renesas,riic-r9a09g057";
- 			reg = <0 0x14400400 0 0x400>;
--- 
-2.34.1
+[...]
 
+>> Waqar Hameed (3):
+>>   dt-bindings: vendor-prefixes: Add Nicera
+> I guess you didn't +CC linux-iio on this as I'm not seeing it locally.
+
+That's correct, solely relied on `get_maintainers.pl` here.
+
+>
+> Given the whole series including that patch will ultimately go through
+> the IIO tree, please make sure to include that on the next version.
+
+Makes perfect sense, will do!
 
