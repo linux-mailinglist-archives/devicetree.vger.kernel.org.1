@@ -1,187 +1,168 @@
-Return-Path: <devicetree+bounces-188820-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-188821-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1FF38AE5AA7
-	for <lists+devicetree@lfdr.de>; Tue, 24 Jun 2025 05:57:47 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8460CAE5ABC
+	for <lists+devicetree@lfdr.de>; Tue, 24 Jun 2025 06:09:33 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 522D01B62F06
-	for <lists+devicetree@lfdr.de>; Tue, 24 Jun 2025 03:58:02 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 85BE72C1B90
+	for <lists+devicetree@lfdr.de>; Tue, 24 Jun 2025 04:09:33 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5F45F21B9C5;
-	Tue, 24 Jun 2025 03:57:34 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B075F221DB3;
+	Tue, 24 Jun 2025 04:09:28 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="d6RmFDjZ"
+	dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.b="Uij9b74B"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.17])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-pf1-f169.google.com (mail-pf1-f169.google.com [209.85.210.169])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7087D1F4161;
-	Tue, 24 Jun 2025 03:57:32 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.198.163.17
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 30E076DCE1
+	for <devicetree@vger.kernel.org>; Tue, 24 Jun 2025 04:09:26 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.169
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1750737454; cv=none; b=L/jIlsr40l5LEp5Ud/6vkM0Rwyun5/EKSi2JFbBZQH4HU7WNR3ppW7gS7lnCSSZRtls0rBi/qBWIJSIjlZ6oqFblVVdSeDeWX+eTls+QF+Qo7kmlaVlGxCMNqB9AH4+i6QaVY84vuOq42E9vaIFT8YC5wFSBWGoZKMGudGAFuSo=
+	t=1750738168; cv=none; b=OI6L3ja59ikHOvxjIzWMov25RDbJ1gQ3ZH3s/g41jlkakJrPwfLjoLl8VD5Y11zbR+WHuSt64t/D5mzzu8/7xBO1v8tdZGO+1dCj3b78i3LAoqg7iqsEf5n/Sh8l+qpRgF1a9pOHjpqep46C5a+jNIqAm8UYLyA+4zYdEP5d+rU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1750737454; c=relaxed/simple;
-	bh=KMEHcEq0X+pga2fcQQgj1lL/UKHHxkGD3F5FhJ7ooD8=;
+	s=arc-20240116; t=1750738168; c=relaxed/simple;
+	bh=llL1b/tMVw+11+IKe3ZnE3pVeGhnuAyfrOKK27BdZsI=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=maj6hof726TlpBDUfEQ0DhF78U2uh8H6udJsPSoX+ra+JlvAL3EOJm/fWueVyAovbBoILBhRvAKGrXbnHHHjAAIMA2n0IYGvhh+nnii2wxWh/sf9Zh1Vlk36CZrdWaOJMrXrtCojib+SQHWmy0j84flQtRyyuPRyewmaLc3paYo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=d6RmFDjZ; arc=none smtp.client-ip=192.198.163.17
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1750737452; x=1782273452;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=KMEHcEq0X+pga2fcQQgj1lL/UKHHxkGD3F5FhJ7ooD8=;
-  b=d6RmFDjZKsU6F3wiF+g7YYpVC9m67JHq4fiE4Uf39aPATJjni+ozNzUn
-   wO0eSF/yQ19Rsm5ulUa4PsA7lc/oa2HrTdDNUmPR76Pc1UkKufBDJppHZ
-   D1VYo5Whk2FMZH736pxFwpHduB+JfUsEgHNvzMm39IW57Ewf87fuOK/UV
-   U91YXuRjP+doD75DeKbQe+FRzWOWuqjk0a/U4JZ6SPCl7Si5D3PoPMX9Q
-   7ooUpJvI7l/eAg3ZG+eSG/AL03aFU62u5794mwwbYy1mJMXfBtH+pHFnc
-   1rbAUh9N+fMK8HT8zB3GByM8eA5UZ53p9PzY73fMoHtxHOgGl0SPO1BBm
-   A==;
-X-CSE-ConnectionGUID: kQ/scjTbRxixVUxglGTWUw==
-X-CSE-MsgGUID: 3FgEbKxWTXmm8xdnAZ6jLw==
-X-IronPort-AV: E=McAfee;i="6800,10657,11473"; a="52900001"
-X-IronPort-AV: E=Sophos;i="6.16,260,1744095600"; 
-   d="scan'208";a="52900001"
-Received: from fmviesa004.fm.intel.com ([10.60.135.144])
-  by fmvoesa111.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 23 Jun 2025 20:57:25 -0700
-X-CSE-ConnectionGUID: VRKdCaRxSG6B/sLih1UGgA==
-X-CSE-MsgGUID: UwxYRyrQQxy2q7hZRfl5dw==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.16,260,1744095600"; 
-   d="scan'208";a="157282862"
-Received: from lkp-server01.sh.intel.com (HELO e8142ee1dce2) ([10.239.97.150])
-  by fmviesa004.fm.intel.com with ESMTP; 23 Jun 2025 20:57:22 -0700
-Received: from kbuild by e8142ee1dce2 with local (Exim 4.96)
-	(envelope-from <lkp@intel.com>)
-	id 1uTume-000RhR-2W;
-	Tue, 24 Jun 2025 03:57:20 +0000
-Date: Tue, 24 Jun 2025 11:56:58 +0800
-From: kernel test robot <lkp@intel.com>
-To: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
-	broonie@kernel.org
-Cc: llvm@lists.linux.dev, oe-kbuild-all@lists.linux.dev,
-	lgirdwood@gmail.com, robh@kernel.org, krzk+dt@kernel.org,
-	conor+dt@kernel.org, matthias.bgg@gmail.com,
-	angelogioacchino.delregno@collabora.com,
-	linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	linux-mediatek@lists.infradead.org, kernel@collabora.com
-Subject: Re: [PATCH v1 2/6] regulator: Add support for MediaTek MT6316 SPMI
- PMIC Regulators
-Message-ID: <202506241156.TWxCzjh3-lkp@intel.com>
-References: <20250623120016.108732-3-angelogioacchino.delregno@collabora.com>
+	 Content-Type:Content-Disposition:In-Reply-To; b=T/azTtJZl99zrGAYO87Oi9aD+ejOgZhIBcccQmMGa7S3OcwTR7Ebx4VyH4blIsnXaSexn26ymo/hYIuJsQpsQy7jzxu5hzyGqnH7oAjawMDLMl6a1ffOVvtIH/3e6mvcG4ZzDC8zDN4I6sB4/kvmw39Pe7f8cmuH/VqbWKyhdak=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=chromium.org; spf=pass smtp.mailfrom=chromium.org; dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.b=Uij9b74B; arc=none smtp.client-ip=209.85.210.169
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=chromium.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=chromium.org
+Received: by mail-pf1-f169.google.com with SMTP id d2e1a72fcca58-742c7a52e97so6576b3a.3
+        for <devicetree@vger.kernel.org>; Mon, 23 Jun 2025 21:09:26 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=chromium.org; s=google; t=1750738166; x=1751342966; darn=vger.kernel.org;
+        h=in-reply-to:content-transfer-encoding:content-disposition
+         :mime-version:references:message-id:subject:cc:to:from:date:from:to
+         :cc:subject:date:message-id:reply-to;
+        bh=iZLBQ5GMO3S5FZKU93RAqvRqbEiTSgWH++nyXw8Nmek=;
+        b=Uij9b74BSFX4VCnpzYoOrHnMEd1rTDyh0Ss38HWjhF1sJaA49vSmR9uL89VtCWZ9yp
+         pQkEXBl4QQ+s6SnhHpwqoO+D4QLzmtNBiNPb0GXBoU0OxMwzhfeNoCX8HpkHsZ+CVKbg
+         ySa1FfHVOf6oa+QhkMwOedduFzr/J83hBi13A=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1750738166; x=1751342966;
+        h=in-reply-to:content-transfer-encoding:content-disposition
+         :mime-version:references:message-id:subject:cc:to:from:date
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=iZLBQ5GMO3S5FZKU93RAqvRqbEiTSgWH++nyXw8Nmek=;
+        b=QQr4PQG+HsFQ71VW1weTZa6j50zwYYlC37Cb+Me/aY37Aby9Wc9MwxeiSxCJAqEE8Q
+         368Aq5zCcsVi0FftK6gvgobeKIM6w9XvVZi4R07OoJsq3FoQeNR08uglKH4rDBwEtklV
+         L0XikuzXaSpohp+AveENJ4Ek/Vbd0GSvOpvlSN4mLp1a6UzbM4bXd9j5A/aFawDByRhQ
+         Yd6QemCZmZ4XQIkBryGSIIkxqUyilJw45ZdGIwfXrVCGxoag5u5qrAsSc0HyPstPutQg
+         /yx5VDAPtEyo/WgjwZ64LNauFxURUF7W9eSt9wYLwZpTPzc4tsUXiVKzT1bECYQgcXXp
+         lTOQ==
+X-Forwarded-Encrypted: i=1; AJvYcCXCxrStZGEE5vUj5VBWUkbfz/ZgGZZDJoR2jO39aqw8jPd/4ALB/UM5EVvAhvntuXZtpmSSq6qm7XYj@vger.kernel.org
+X-Gm-Message-State: AOJu0YykgtxSgCwOcjpmJawvwu74IcLNrlmBkAANIx1f7b3HlzGEWKfP
+	lhY3SWhbmKV25IpRh1JuxXwct2pl5egePsSvMW6i5HxP8JHKHvBPta8QdZqJpuVbAw==
+X-Gm-Gg: ASbGncvgPjr+m6XtjqMVA/Qt5IcsDz0YkQWSU2yyrj2v6f7zOuf0aj5dyLNJxwIJp1S
+	oNL4kneB5qq6UYy/ls/1WNuX4NPqx4isIxMlR13SBlRlnRiiKYGn/gQVRpU6+v+Iu2NxUfDX9cr
+	5T+RaA4aXVzG5JHp8n1YeWqc+PORNpgwOeE+rec/riv80/mnR1/co/tX4xfpWzcCNQB+voJ6ljc
+	KkSNx20du55icRUOABAmRjG5vDC2CeUHygTBDlGdtpUCTBguAb8fZBGSjv7ssIeJcszBnOOKBit
+	XNan8uj2Kz6oRXh+93DgpG1JEnYPCmT3TpwzhJOi0hXQoDfA/ehamXk=
+X-Google-Smtp-Source: AGHT+IE7k5HWqp6yZ4coLK9zxOOKVUatWn7F2bJv6NZWHFFs+9T9PielkjniSbuXSSxVbFmuLwM0yQ==
+X-Received: by 2002:a05:6a00:b8f:b0:736:3ea8:4805 with SMTP id d2e1a72fcca58-7490d7a170cmr19157532b3a.7.1750738166415;
+        Mon, 23 Jun 2025 21:09:26 -0700 (PDT)
+Received: from google.com ([2401:fa00:1:10:9e4d:2f37:d5ea:8954])
+        by smtp.gmail.com with ESMTPSA id d2e1a72fcca58-749b5e4069csm679035b3a.65.2025.06.23.21.09.24
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 23 Jun 2025 21:09:26 -0700 (PDT)
+Date: Tue, 24 Jun 2025 12:09:22 +0800
+From: Chen-Yu Tsai <wenst@chromium.org>
+To: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+Cc: linux-mediatek@lists.infradead.org, robh@kernel.org, krzk+dt@kernel.org,
+	conor+dt@kernel.org, matthias.bgg@gmail.com, weiyi.lu@mediatek.com,
+	tinghan.shen@mediatek.com, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+	kernel@collabora.com
+Subject: Re: [PATCH v1 1/2] arm64: dts: mediatek: mt8195: Add subsys clks for
+ PCIe power domains
+Message-ID: <20250624040922.GA1077353@google.com>
+References: <20250402090615.25871-1-angelogioacchino.delregno@collabora.com>
+ <20250402090615.25871-2-angelogioacchino.delregno@collabora.com>
+ <CAGXv+5GHf5D3JDh+OZ-Cxf91PTAGYk2+jvuwK1gymy=k1YOo_A@mail.gmail.com>
+ <33847b76-11b5-4233-a5e6-9f8fd3c691a2@collabora.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <20250623120016.108732-3-angelogioacchino.delregno@collabora.com>
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <33847b76-11b5-4233-a5e6-9f8fd3c691a2@collabora.com>
 
-Hi AngeloGioacchino,
+On Wed, Apr 02, 2025 at 12:07:16PM +0200, AngeloGioacchino Del Regno wrote:
+> Il 02/04/25 11:34, Chen-Yu Tsai ha scritto:
+> > On Wed, Apr 2, 2025 at 5:10 PM AngeloGioacchino Del Regno
+> > <angelogioacchino.delregno@collabora.com> wrote:
+> > > 
+> > > The PCIe MAC needs the sram to be powered on for internal IP
+> > > access and it has always worked before because the bootloader
+> > > on Chromebooks was leaving the PCIe PERI_AO MEM clocks on
+> > > before booting the kernel.
+> > > Add the SRAM (mem) clock as a subsystem clock on the PCIe MAC
+> > > P0 and P1 to correctly describe the hardware and to avoid any
+> > > issue with bootloaders behaving differently.
+> > > 
+> > > Fixes: 2b515194bf0c ("arm64: dts: mt8195: Add power domains controller")
+> > > Signed-off-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+> > > ---
+> > >   arch/arm64/boot/dts/mediatek/mt8195.dtsi | 4 ++++
+> > >   1 file changed, 4 insertions(+)
+> > > 
+> > > diff --git a/arch/arm64/boot/dts/mediatek/mt8195.dtsi b/arch/arm64/boot/dts/mediatek/mt8195.dtsi
+> > > index b33726da900b..0cb96cba727a 100644
+> > > --- a/arch/arm64/boot/dts/mediatek/mt8195.dtsi
+> > > +++ b/arch/arm64/boot/dts/mediatek/mt8195.dtsi
+> > > @@ -792,12 +792,16 @@ power-domain@MT8195_POWER_DOMAIN_CAM_MRAW {
+> > > 
+> > >                                  power-domain@MT8195_POWER_DOMAIN_PCIE_MAC_P0 {
+> > >                                          reg = <MT8195_POWER_DOMAIN_PCIE_MAC_P0>;
+> > > +                                       clocks = <&pericfg_ao CLK_PERI_AO_PCIE_P0_MEM>;
+> > > +                                       clock-names = "ss-pextp0-mem";
+> > 
+> > Doesn't the PCIe host controller already reference this clock?
+> > 
+> > >                                          mediatek,infracfg = <&infracfg_ao>;
+> > >                                          #power-domain-cells = <0>;
+> > >                                  };
+> > > 
+> > >                                  power-domain@MT8195_POWER_DOMAIN_PCIE_MAC_P1 {
+> > >                                          reg = <MT8195_POWER_DOMAIN_PCIE_MAC_P1>;
+> > > +                                       clocks = <&pericfg_ao CLK_PERI_AO_PCIE_P1_MEM>;
+> > > +                                       clock-names = "ss-pextp1-mem";
+> > 
+> > Not this one though, since:
+> > 
+> >           /* Designer has connect pcie1 with peri_mem_p0 clock */
+> >           <&pericfg_ao CLK_PERI_AO_PCIE_P0_MEM>;
+> > 
+> 
+> I'm not sure what this comment refers to - as in, whether this is referring
+> to the board designer or to the SoC//IP designer...
 
-kernel test robot noticed the following build warnings:
+When MediaTek says "designer" they are referring to the hardware designer,
+in this case I believe it would be the SoC-level hardware designer /
+integrator.
 
-[auto build test WARNING on broonie-regulator/for-next]
-[also build test WARNING on linus/master v6.16-rc3 next-20250623]
-[If your patch is applied to the wrong git tree, kindly drop us a note.
-And when submitting patch, we suggest to use '--base' as documented in
-https://git-scm.com/docs/git-format-patch#_base_tree_information]
-
-url:    https://github.com/intel-lab-lkp/linux/commits/AngeloGioacchino-Del-Regno/dt-bindings-regulator-Document-MediaTek-MT6316-PMIC-Regulators/20250623-200316
-base:   https://git.kernel.org/pub/scm/linux/kernel/git/broonie/regulator.git for-next
-patch link:    https://lore.kernel.org/r/20250623120016.108732-3-angelogioacchino.delregno%40collabora.com
-patch subject: [PATCH v1 2/6] regulator: Add support for MediaTek MT6316 SPMI PMIC Regulators
-config: i386-buildonly-randconfig-004-20250624 (https://download.01.org/0day-ci/archive/20250624/202506241156.TWxCzjh3-lkp@intel.com/config)
-compiler: clang version 20.1.2 (https://github.com/llvm/llvm-project 58df0ef89dd64126512e4ee27b4ac3fd8ddf6247)
-reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20250624/202506241156.TWxCzjh3-lkp@intel.com/reproduce)
-
-If you fix the issue in a separate patch/commit (i.e. not just a new version of
-the same patch/commit), kindly add following tags
-| Reported-by: kernel test robot <lkp@intel.com>
-| Closes: https://lore.kernel.org/oe-kbuild-all/202506241156.TWxCzjh3-lkp@intel.com/
-
-All warnings (new ones prefixed by >>):
-
->> drivers/regulator/mt6316-regulator.c:205:14: warning: variable 'ret' is used uninitialized whenever 'if' condition is false [-Wsometimes-uninitialized]
-     205 |                 } else if (cur_mode == REGULATOR_MODE_IDLE) {
-         |                            ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-   drivers/regulator/mt6316-regulator.c:218:6: note: uninitialized use occurs here
-     218 |         if (ret) {
-         |             ^~~
-   drivers/regulator/mt6316-regulator.c:205:10: note: remove the 'if' if its condition is always true
-     205 |                 } else if (cur_mode == REGULATOR_MODE_IDLE) {
-         |                        ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-   drivers/regulator/mt6316-regulator.c:189:19: note: initialize the variable 'ret' to silence this warning
-     189 |         int cur_mode, ret;
-         |                          ^
-         |                           = 0
->> drivers/regulator/mt6316-regulator.c:193:25: warning: variable 'regmap' is uninitialized when used here [-Wuninitialized]
-     193 |                 ret = regmap_set_bits(regmap, info->modeset_reg, info->modeset_mask);
-         |                                       ^~~~~~
-   drivers/regulator/mt6316-regulator.c:188:23: note: initialize the variable 'regmap' to silence this warning
-     188 |         struct regmap *regmap;
-         |                              ^
-         |                               = NULL
-   2 warnings generated.
-
-
-vim +205 drivers/regulator/mt6316-regulator.c
-
-   183	
-   184	static int mt6316_regulator_set_mode(struct regulator_dev *rdev,
-   185					     unsigned int mode)
-   186	{
-   187		struct mt6316_regulator_info *info = rdev_get_drvdata(rdev);
-   188		struct regmap *regmap;
-   189		int cur_mode, ret;
-   190	
-   191		switch (mode) {
-   192		case REGULATOR_MODE_FAST:
- > 193			ret = regmap_set_bits(regmap, info->modeset_reg, info->modeset_mask);
-   194			break;
-   195		case REGULATOR_MODE_NORMAL:
-   196			cur_mode = mt6316_regulator_get_mode(rdev);
-   197			if (cur_mode < 0) {
-   198				ret = cur_mode;
-   199				break;
-   200			}
-   201	
-   202			if (cur_mode == REGULATOR_MODE_FAST) {
-   203				ret = regmap_clear_bits(regmap, info->modeset_reg, info->modeset_mask);
-   204				break;
- > 205			} else if (cur_mode == REGULATOR_MODE_IDLE) {
-   206				ret = regmap_clear_bits(regmap, info->lp_mode_reg, info->lp_mode_mask);
-   207				if (ret == 0)
-   208					usleep_range(100, 200);
-   209			}
-   210			break;
-   211		case REGULATOR_MODE_IDLE:
-   212			ret = regmap_set_bits(regmap, info->lp_mode_reg, info->lp_mode_mask);
-   213			break;
-   214		default:
-   215			ret = -EINVAL;
-   216		}
-   217	
-   218		if (ret) {
-   219			dev_err(&rdev->dev, "Failed to set mode %u: %d\n", mode, ret);
-   220			return ret;
-   221		}
-   222	
-   223		return 0;
-   224	}
-   225	
-
--- 
-0-DAY CI Kernel Test Service
-https://github.com/intel/lkp-tests/wiki
+> ...but if MediaTek can clarify, I'd be happy :-)
+> 
+> Cheers,
+> Angelo
+> 
+> > 
+> > ChenYu
+> > 
+> > >                                          mediatek,infracfg = <&infracfg_ao>;
+> > >                                          #power-domain-cells = <0>;
+> > >                                  };
+> > > --
+> > > 2.48.1
+> > > 
+> > > 
+> 
 
