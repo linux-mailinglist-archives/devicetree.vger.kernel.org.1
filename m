@@ -1,202 +1,164 @@
-Return-Path: <devicetree+bounces-189192-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-189193-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id DADADAE713A
-	for <lists+devicetree@lfdr.de>; Tue, 24 Jun 2025 23:04:57 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6C2DCAE715E
+	for <lists+devicetree@lfdr.de>; Tue, 24 Jun 2025 23:11:56 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 086DF7B20C5
-	for <lists+devicetree@lfdr.de>; Tue, 24 Jun 2025 21:03:34 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id DDA0C17B8E1
+	for <lists+devicetree@lfdr.de>; Tue, 24 Jun 2025 21:11:56 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id EEE4C23C4EB;
-	Tue, 24 Jun 2025 21:04:48 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1A7D42571C8;
+	Tue, 24 Jun 2025 21:11:47 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=denx.de header.i=@denx.de header.b="Wc0nyWpM"
+	dkim=pass (1024-bit key) header.d=broadcom.com header.i=@broadcom.com header.b="LiwNQ/kh"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx.denx.de (mx.denx.de [89.58.32.78])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-pf1-f180.google.com (mail-pf1-f180.google.com [209.85.210.180])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9B4FA3074B5;
-	Tue, 24 Jun 2025 21:04:46 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=89.58.32.78
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5161E2475F2
+	for <devicetree@vger.kernel.org>; Tue, 24 Jun 2025 21:11:44 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.180
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1750799088; cv=none; b=BozRAgXIcHnK9nsRH/RxKoz8gt3VHtAAkivFXcbfIMfpBHIU3cqM6LHov8VLPuJqpUM5QbEZlXxuQHCKy6Xb0+PHv7/2e8UpjnJmIXWj45DTCjHXf/Zcdjqs4RKbHLRq1aDFyMqC1Vi/pXaFraAUzSxbODDY09+tEnSmJjN9RAU=
+	t=1750799507; cv=none; b=SEAs2RJojBtnA/7nlOW9IKEIQ8ZrWz1W6728yYG1C8XD1rbqpVz9sB15LknnP2QuQJuuYDpN6Vpd+zDefmOqbme/BS1WOl9cnCWQGNbr+Dyje6SjJGIyxPvGuDMAlWrpiK9meYbyuIbvBvlC9oGlGmW4BoILvrS8zY995imCiCU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1750799088; c=relaxed/simple;
-	bh=6/fK84w0HXJRsQUl54kMy+/q47sIlUEzUHpyiQHauZw=;
-	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=Z8Ej4cDYQRNegMpXo/TxHgOgHIuQNNokbTaBBh7RK9ziWxEkoaIzDtu4p3k0D6ep30wnGnMCTO8HB5JndnCmXFuqsgynlr+3wWdLAg5GkiVZ5exx10LPkGSf18LFHoJaZpMWZgo/1uguY3j5CodwTfaM86xTk076PvmU3qgDTyA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=denx.de; spf=pass smtp.mailfrom=denx.de; dkim=pass (2048-bit key) header.d=denx.de header.i=@denx.de header.b=Wc0nyWpM; arc=none smtp.client-ip=89.58.32.78
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=denx.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=denx.de
-Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id C291F102779C2;
-	Tue, 24 Jun 2025 23:04:39 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=denx.de; s=mx-20241105;
-	t=1750799083; h=from:subject:date:message-id:to:cc:mime-version:content-type:
-	 in-reply-to:references; bh=lKbThwTsY1P7KFQMbDvtgsT2FnCwQe8p9lZusqk5xYk=;
-	b=Wc0nyWpM9El1+10CWZ74uWfVcdDt0SYtJYSHGHEUpe2tX1dYOoTTvOzgkIaIIzCKKSVq8Y
-	lf9S1OrrWOhGJt7x8LQnA3Vp7MopCmav2C8Y0sjQR6g4s0jWq0PPb1X5Y1AMUlI3o/eXke
-	LmAZqppYww2wyiM1onpYxD5+3IAAJ/mYrY8S2YfUIqiCvAx3o9aGh56ChulgTPdXlIlT6p
-	EZ9+sEvaur5PHc0xbaAbWMGbtqeHLXVWkIsmQrK2NHLU1pf4x4mSEY+fpjBkrvMVnY19rG
-	qOzZM+eTOISjJolWT8wL5K1rBYznXr25yP5lesENk5uFVZx7+NF62feHxP+Z/A==
-Date: Tue, 24 Jun 2025 23:04:37 +0200
-From: Lukasz Majewski <lukma@denx.de>
-To: Paolo Abeni <pabeni@redhat.com>
-Cc: Andrew Lunn <andrew+netdev@lunn.ch>, davem@davemloft.net, Eric Dumazet
- <edumazet@google.com>, Jakub Kicinski <kuba@kernel.org>, Rob Herring
- <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>, Sascha Hauer
- <s.hauer@pengutronix.de>, Pengutronix Kernel Team <kernel@pengutronix.de>,
- Fabio Estevam <festevam@gmail.com>, Richard Cochran
- <richardcochran@gmail.com>, netdev@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- imx@lists.linux.dev, linux-arm-kernel@lists.infradead.org, Stefan Wahren
- <wahrenst@gmx.net>, Simon Horman <horms@kernel.org>, Andrew Lunn
- <andrew@lunn.ch>
-Subject: Re: [net-next v13 04/11] net: mtip: The L2 switch driver for imx287
-Message-ID: <20250624230437.1ede2bcb@wsk>
-In-Reply-To: <b31793de-e34f-438c-aa37-d68f3cb42b80@redhat.com>
-References: <20250622093756.2895000-1-lukma@denx.de>
-	<20250622093756.2895000-5-lukma@denx.de>
-	<b31793de-e34f-438c-aa37-d68f3cb42b80@redhat.com>
-Organization: denx.de
-X-Mailer: Claws Mail 3.19.0 (GTK+ 2.24.33; x86_64-pc-linux-gnu)
+	s=arc-20240116; t=1750799507; c=relaxed/simple;
+	bh=PFbnWfYExMNiWyWjv+9emyWRUe/yj2S0aeMUTA6DgRQ=;
+	h=Message-ID:Date:MIME-Version:Subject:To:References:From:
+	 In-Reply-To:Content-Type; b=SPveI6fRjVyJeieG6x1cS3DXxT2M/F84nRTwAqzr6qjiJEe5tx4KP4tvFdCQQ1POdC69f3JeW89oCd6eej1LgTRmzaT4TEgWfOcXlF91aJIhhGaquMQ2o9Y5hMuy1fAb8N/eteLj2PHwLSTUca1wRM7bxUJYjfPJCX0I49W16CU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=broadcom.com; spf=fail smtp.mailfrom=broadcom.com; dkim=pass (1024-bit key) header.d=broadcom.com header.i=@broadcom.com header.b=LiwNQ/kh; arc=none smtp.client-ip=209.85.210.180
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=broadcom.com
+Authentication-Results: smtp.subspace.kernel.org; spf=fail smtp.mailfrom=broadcom.com
+Received: by mail-pf1-f180.google.com with SMTP id d2e1a72fcca58-747fc77bb2aso4518283b3a.3
+        for <devicetree@vger.kernel.org>; Tue, 24 Jun 2025 14:11:44 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=broadcom.com; s=google; t=1750799504; x=1751404304; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from
+         :content-language:references:to:subject:user-agent:mime-version:date
+         :message-id:from:to:cc:subject:date:message-id:reply-to;
+        bh=Eo2vufChLx1e55QzOzBwTMNU9Z8LIJfaoAcIHFWzr7Q=;
+        b=LiwNQ/khYCK49AlkADU62XP9aeXqysZtDDLWK3LsWbaE22eCtPCeOSGv6zEeFkzxkJ
+         ng7axil/5AnsTznFEp8bj94zas6V4TrbOsx1x0ZBohOyeXSozWH3E7jC/KTi1AhCl2mB
+         7b18cOfH1NevQJgPKqKUFG+dhS50gQVAwYI0U=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1750799504; x=1751404304;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from
+         :content-language:references:to:subject:user-agent:mime-version:date
+         :message-id:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=Eo2vufChLx1e55QzOzBwTMNU9Z8LIJfaoAcIHFWzr7Q=;
+        b=E1KcIVmWaZU+h+si6WbYWiuCba4fFrN1uJ1VuiGgMiIsuC5pbJrtWus2k6MHIq6C9w
+         7eFpk6+q8GeWpGCPkjhf6xZ8ahVq9dQz2CS9Z5H5Lqle2VMRnbWSgBcihVJ63KZt8ybt
+         svE14LWBhXk7Dqq9xWDBdI/+ZHxyofvyfbqBO0FaOkUfw9YxbU5UHfNHsXZj/9EHHKpf
+         FnXYB9J0C+SRlo7HC2GTUInpbByi+hbxQDYsCRGDvrfVLbOtPcbvoiCdEeXssmQwab/2
+         juQtF8TEpSZrOnrVkSfMFQoa/8wswflwmtJbmck1uSTU98+pAr78B/SdOJ7sfek9mStV
+         CZ4A==
+X-Forwarded-Encrypted: i=1; AJvYcCVzmwDJU2tU8Jccb9iD6uuih47cZJHHmT4u9n5fv4udOa6WrQeuwohZMB/hQYIXOEpi94m4EhCWaiCW@vger.kernel.org
+X-Gm-Message-State: AOJu0YznR8ZHiPt0RUbr5wchVOTAQAOl9czPcBtxGcGGH+nySroFkBUn
+	+gi3YU1bh3LAMiL0zv9wvKoDxhGs/rsUXY+ZtqrXtbc8YdjsIIjlXlVCNRLYj60eGg==
+X-Gm-Gg: ASbGncuDCstprip2TLDbdZIDMvxKeZO9W57RfweB6bhk5O1tXCb/vq4oXujHnxHU3/4
+	0o26vF4IEFzD/vYQLtIIlN0seiv1MJwCtQXzwncgCohXKdgqGgOoZQb9dLA0NiStGxPUHp8nWYk
+	xlfsVp4yR7YJRui7fUuvlbjqNCQgcFcXMMyOKdM0DxW9Q4iNC/Ru0CPvvZG088PfdiyocxGFCLL
+	TraWwiidhOv/+udfjMUOvISQPiDsp2/3LFYy7dMLUlybRcAu9zxhgi4v6Rrq7j1m4yegLnf/EbY
+	6Eyfked4BcsI+oddqZPLURhuHozDNKmWl6yj1fAJ90jQGJJnw4uFIT6XiaufJUFl1riQJviNbCN
+	kWDMW88bSYrJIqFpMAoYOZe2puw==
+X-Google-Smtp-Source: AGHT+IFf3/YeR9gk7+WP5WcaJ4mRmmHJiKPywBy37oskEyKjfGaPDSuW17BELTvjbXXXqhnRst+TYA==
+X-Received: by 2002:a05:6a21:8cc6:b0:21a:eabb:ab93 with SMTP id adf61e73a8af0-2207f19255cmr765020637.6.1750799503649;
+        Tue, 24 Jun 2025 14:11:43 -0700 (PDT)
+Received: from [10.67.48.245] ([192.19.223.252])
+        by smtp.gmail.com with ESMTPSA id 41be03b00d2f7-b31f1258b55sm9471699a12.61.2025.06.24.14.11.40
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 24 Jun 2025 14:11:42 -0700 (PDT)
+Message-ID: <9d31a4d7-ffd1-48ca-8df6-0ddc6683a49c@broadcom.com>
+Date: Tue, 24 Jun 2025 14:11:39 -0700
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; boundary="Sig_/L9I8TrK5V8LcSsjLhyb23zO";
- protocol="application/pgp-signature"; micalg=pgp-sha512
-X-Last-TLS-Session-Version: TLSv1.3
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH stblinux/next] pinctrl: rp1: Implement RaspberryPi RP1
+ pinmux/pinconf support
+To: Andrea della Porta <andrea.porta@suse.com>,
+ Michael Turquette <mturquette@baylibre.com>, Stephen Boyd
+ <sboyd@kernel.org>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>,
+ Broadcom internal kernel review list
+ <bcm-kernel-feedback-list@broadcom.com>,
+ Lorenzo Pieralisi <lpieralisi@kernel.org>,
+ Krzysztof Wilczynski <kw@linux.com>, Bjorn Helgaas <bhelgaas@google.com>,
+ Linus Walleij <linus.walleij@linaro.org>,
+ Catalin Marinas <catalin.marinas@arm.com>, Will Deacon <will@kernel.org>,
+ Bartosz Golaszewski <brgl@bgdev.pl>, Derek Kiernan <derek.kiernan@amd.com>,
+ Dragan Cvetic <dragan.cvetic@amd.com>, Arnd Bergmann <arnd@arndb.de>,
+ Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+ Saravana Kannan <saravanak@google.com>, linux-clk@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ linux-kernel@vger.kernel.org, linux-pci@vger.kernel.org,
+ linux-gpio@vger.kernel.org, Masahiro Yamada <masahiroy@kernel.org>,
+ Stefan Wahren <wahrenst@gmx.net>, Herve Codina <herve.codina@bootlin.com>,
+ Luca Ceresoli <luca.ceresoli@bootlin.com>,
+ Thomas Petazzoni <thomas.petazzoni@bootlin.com>, Andrew Lunn
+ <andrew@lunn.ch>, Phil Elwell <phil@raspberrypi.com>,
+ Dave Stevenson <dave.stevenson@raspberrypi.com>,
+ kernel-list@raspberrypi.com, Matthias Brugger <mbrugger@suse.com>
+References: <8c282b89b1aa8b9e3c00f6bd3980332c47d82df7.1750778806.git.andrea.porta@suse.com>
+Content-Language: en-US
+From: Florian Fainelli <florian.fainelli@broadcom.com>
+Autocrypt: addr=florian.fainelli@broadcom.com; keydata=
+ xsBNBFPAG8ABCAC3EO02urEwipgbUNJ1r6oI2Vr/+uE389lSEShN2PmL3MVnzhViSAtrYxeT
+ M0Txqn1tOWoIc4QUl6Ggqf5KP6FoRkCrgMMTnUAINsINYXK+3OLe7HjP10h2jDRX4Ajs4Ghs
+ JrZOBru6rH0YrgAhr6O5gG7NE1jhly+EsOa2MpwOiXO4DE/YKZGuVe6Bh87WqmILs9KvnNrQ
+ PcycQnYKTVpqE95d4M824M5cuRB6D1GrYovCsjA9uxo22kPdOoQRAu5gBBn3AdtALFyQj9DQ
+ KQuc39/i/Kt6XLZ/RsBc6qLs+p+JnEuPJngTSfWvzGjpx0nkwCMi4yBb+xk7Hki4kEslABEB
+ AAHNMEZsb3JpYW4gRmFpbmVsbGkgPGZsb3JpYW4uZmFpbmVsbGlAYnJvYWRjb20uY29tPsLB
+ IQQQAQgAywUCZWl41AUJI+Jo+hcKAAG/SMv+fS3xUQWa0NryPuoRGjsA3SAUAAAAAAAWAAFr
+ ZXktdXNhZ2UtbWFza0BwZ3AuY29tjDAUgAAAAAAgAAdwcmVmZXJyZWQtZW1haWwtZW5jb2Rp
+ bmdAcGdwLmNvbXBncG1pbWUICwkIBwMCAQoFF4AAAAAZGGxkYXA6Ly9rZXlzLmJyb2FkY29t
+ Lm5ldAUbAwAAAAMWAgEFHgEAAAAEFQgJChYhBNXZKpfnkVze1+R8aIExtcQpvGagAAoJEIEx
+ tcQpvGagWPEH/2l0DNr9QkTwJUxOoP9wgHfmVhqc0ZlDsBFv91I3BbhGKI5UATbipKNqG13Z
+ TsBrJHcrnCqnTRS+8n9/myOF0ng2A4YT0EJnayzHugXm+hrkO5O9UEPJ8a+0553VqyoFhHqA
+ zjxj8fUu1px5cbb4R9G4UAySqyeLLeqnYLCKb4+GklGSBGsLMYvLmIDNYlkhMdnnzsSUAS61
+ WJYW6jjnzMwuKJ0ZHv7xZvSHyhIsFRiYiEs44kiYjbUUMcXor/uLEuTIazGrE3MahuGdjpT2
+ IOjoMiTsbMc0yfhHp6G/2E769oDXMVxCCbMVpA+LUtVIQEA+8Zr6mX0Yk4nDS7OiBlvOwE0E
+ U8AbwQEIAKxr71oqe+0+MYCc7WafWEcpQHFUwvYLcdBoOnmJPxDwDRpvU5LhqSPvk/yJdh9k
+ 4xUDQu3rm1qIW2I9Puk5n/Jz/lZsqGw8T13DKyu8eMcvaA/irm9lX9El27DPHy/0qsxmxVmU
+ pu9y9S+BmaMb2CM9IuyxMWEl9ruWFS2jAWh/R8CrdnL6+zLk60R7XGzmSJqF09vYNlJ6Bdbs
+ MWDXkYWWP5Ub1ZJGNJQ4qT7g8IN0qXxzLQsmz6tbgLMEHYBGx80bBF8AkdThd6SLhreCN7Uh
+ IR/5NXGqotAZao2xlDpJLuOMQtoH9WVNuuxQQZHVd8if+yp6yRJ5DAmIUt5CCPcAEQEAAcLB
+ gQQYAQIBKwUCU8AbwgUbDAAAAMBdIAQZAQgABgUCU8AbwQAKCRCTYAaomC8PVQ0VCACWk3n+
+ obFABEp5Rg6Qvspi9kWXcwCcfZV41OIYWhXMoc57ssjCand5noZi8bKg0bxw4qsg+9cNgZ3P
+ N/DFWcNKcAT3Z2/4fTnJqdJS//YcEhlr8uGs+ZWFcqAPbteFCM4dGDRruo69IrHfyyQGx16s
+ CcFlrN8vD066RKevFepb/ml7eYEdN5SRALyEdQMKeCSf3mectdoECEqdF/MWpfWIYQ1hEfdm
+ C2Kztm+h3Nkt9ZQLqc3wsPJZmbD9T0c9Rphfypgw/SfTf2/CHoYVkKqwUIzI59itl5Lze+R5
+ wDByhWHx2Ud2R7SudmT9XK1e0x7W7a5z11Q6vrzuED5nQvkhAAoJEIExtcQpvGagugcIAJd5
+ EYe6KM6Y6RvI6TvHp+QgbU5dxvjqSiSvam0Ms3QrLidCtantcGT2Wz/2PlbZqkoJxMQc40rb
+ fXa4xQSvJYj0GWpadrDJUvUu3LEsunDCxdWrmbmwGRKqZraV2oG7YEddmDqOe0Xm/NxeSobc
+ MIlnaE6V0U8f5zNHB7Y46yJjjYT/Ds1TJo3pvwevDWPvv6rdBeV07D9s43frUS6xYd1uFxHC
+ 7dZYWJjZmyUf5evr1W1gCgwLXG0PEi9n3qmz1lelQ8lSocmvxBKtMbX/OKhAfuP/iIwnTsww
+ 95A2SaPiQZA51NywV8OFgsN0ITl2PlZ4Tp9hHERDe6nQCsNI/Us=
+In-Reply-To: <8c282b89b1aa8b9e3c00f6bd3980332c47d82df7.1750778806.git.andrea.porta@suse.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 
---Sig_/L9I8TrK5V8LcSsjLhyb23zO
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: quoted-printable
+On 6/24/25 08:36, Andrea della Porta wrote:
+> The current implementation for the pin controller peripheral
+> on the RP1 chipset supports gpio functionality and just the
+> basic configuration of pin hw capabilities.
+> 
+> Add support for selecting the pin alternate function (pinmux)
+> and full configuration of the pin (pinconf).
+> 
+> Related pins are also gathered into groups.
+> 
+> Signed-off-by: Andrea della Porta <andrea.porta@suse.com>
 
-Hi Paolo,
-
-> On 6/22/25 11:37 AM, Lukasz Majewski wrote:
-> > +static void mtip_aging_timer(struct timer_list *t)
-> > +{
-> > +	struct switch_enet_private *fep =3D timer_container_of(fep,
-> > t,
-> > +
-> > timer_aging); +
-> > +	fep->curr_time =3D mtip_timeincrement(fep->curr_time);
-> > +
-> > +	mod_timer(&fep->timer_aging,
-> > +		  jiffies +
-> > msecs_to_jiffies(LEARNING_AGING_INTERVAL)); +} =20
->=20
-> It's unclear to me why you decided to maintain this function and timer
-> while you could/should have used a macro around jiffies instead.
-
-This is a bit more tricky than just getting value from jiffies.
-
-The current code provides a monotonic, starting from 0 time "base" for
-learning and managing entries in internal routing tables for MTIP.
-
-To be more specific - the fep->curr_time is a value incremented after
-each ~10ms.
-
-Simple masking of jiffies would not provide such features.
-
-However, I've rewritten relevant portions where GENMASK() could be used
-to simplify and make the code more readable.
-
->=20
-> [...]
-> > +static int mtip_sw_learning(void *arg)
-> > +{
-> > +	struct switch_enet_private *fep =3D arg;
-> > +
-> > +	while (!kthread_should_stop()) {
-> > +		set_current_state(TASK_INTERRUPTIBLE);
-> > +		/* check learning record valid */
-> > +		mtip_atable_dynamicms_learn_migration(fep,
-> > fep->curr_time,
-> > +						      NULL, NULL);
-> > +		schedule_timeout(HZ / 100);
-> > +	}
-> > +
-> > +	return 0;
-> > +} =20
->=20
-> Why are you using a full blown kernel thread here?=20
-
-The MTIP IP block requires the thread for learning. It is a HW based
-switching accelerator, but the learning feature must be performed by
-SW (by writing values to its registers).
-
-> Here a timer could
-> possibly make more sense.
-
-Unfortunately, not - the code (in
-mtip_atable_dynamicms_learn_migration() must be called). This function
-has another role - it updates internal routing table with timestamps
-(provided by timer mentioned above).
-
-> Why are checking the table every 10ms, while
-> the learning intervall is 100ms?=20
-
-Yes, this is correct. In 10ms interval the internal routing table is
-updated. 100 ms is for learning.
-
-> I guess you could/should align the
-> frequency here with such interval.
-
-IMHO learning with 10ms interval would bring a lot of overhead.
-
-Just to mention - the MTIP IP block can generate interrupt for
-learning event. However, it has been advised (bu NXP support), that a
-thread with 100ms interval shall be used to avoid too many interrupts.
-
->=20
-> Side note: I think you should move the buffer management to a later
-> patch: this one is still IMHO too big.
-
-And this is problematic - the most time I've spent for v13 to separate
-the code - i.e. I exclude one function, then there are warnings that
-other function is unused (and of course WARNINGS in a separate patches
-are a legitimate reason to call for another patch set revision).
-
-I've already excluded bridge and mgnt patches. Also moved out some code
-from this one.
-
->=20
-> /P
->=20
-
-
-Best regards,
-
-Lukasz Majewski
-
---
-
-DENX Software Engineering GmbH,      Managing Director: Erika Unter
-HRB 165235 Munich, Office: Kirchenstr.5, D-82194 Groebenzell, Germany
-Phone: (+49)-8142-66989-59 Fax: (+49)-8142-66989-80 Email: lukma@denx.de
-
---Sig_/L9I8TrK5V8LcSsjLhyb23zO
-Content-Type: application/pgp-signature
-Content-Description: OpenPGP digital signature
-
------BEGIN PGP SIGNATURE-----
-
-iQEzBAEBCgAdFiEEgAyFJ+N6uu6+XupJAR8vZIA0zr0FAmhbEuUACgkQAR8vZIA0
-zr1eeggAn5xkytdRo6m9s2AP7CCf+2DLpUC+BoaHahBz9mSN7/URkVcaHdze2/iF
-Js8HdHNNN+MMqzBxg6sKga9RDwGBRv9/kc1LnJz1+BiQGLIGe4sv5DS8ZwdQ2v72
-dZ0TDq7rIIMNbGC5jvBXZ+KsuWsjUAMGB4UrnppIMei4fNI4PIZQlWWM6p9bAKtW
-f8eqEmwIjW8dfH8fPlv0JwgIw7eGMecjMDbFk1Vcrd9HhLN7MV36CXVIHu4dV9Q/
-3SUpxnQpkL6HoPSbROu+MaR/t8W15KN1iSF2fUbBmDvDFHIUu7qsVfXlcLr9SIio
-69O3l2adUEiFwSicuYxlrKol0M2bVg==
-=bmNZ
------END PGP SIGNATURE-----
-
---Sig_/L9I8TrK5V8LcSsjLhyb23zO--
+Linus, can I get an ack or reviewed by tag from you and take that in the 
+next few days to go with the Broadcom ARM SoC pull requests? Thanks!
+-- 
+Florian
 
