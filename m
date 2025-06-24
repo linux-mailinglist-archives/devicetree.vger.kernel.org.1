@@ -1,181 +1,91 @@
-Return-Path: <devicetree+bounces-189139-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-189140-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6A08FAE6D96
-	for <lists+devicetree@lfdr.de>; Tue, 24 Jun 2025 19:31:55 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id DC6D5AE6D9F
+	for <lists+devicetree@lfdr.de>; Tue, 24 Jun 2025 19:33:05 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 36DF217F4F8
-	for <lists+devicetree@lfdr.de>; Tue, 24 Jun 2025 17:31:49 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 91E0F5A034D
+	for <lists+devicetree@lfdr.de>; Tue, 24 Jun 2025 17:32:16 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9D0DC2E8E0A;
-	Tue, 24 Jun 2025 17:30:44 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 878382E3398;
+	Tue, 24 Jun 2025 17:32:25 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="OuTrj5fZ"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="e5xThmII"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f41.google.com (mail-wm1-f41.google.com [209.85.128.41])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B685D2E7F15;
-	Tue, 24 Jun 2025 17:30:42 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.41
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5932628003A;
+	Tue, 24 Jun 2025 17:32:25 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1750786244; cv=none; b=h3PrgSd+V4IJyAeO1x3t1b3JYusUnuOhLwVHnMiNErRtIOFAjKa0omnARFH6pliaJKZ2WYQ1sOHd3Ron8m4M+q3DbiGTomic4axTO7qYWXgsuwcQbeOXkoSsLGDcW+US+94zGPgchG0nbDz52zGmklcdi390UqGreh/dY/l+d2s=
+	t=1750786345; cv=none; b=FnT4m+Jg+k9pXflFnD5qF1lZbEsjiXgaZOxn+ypFwtX3eZ90k5s4Smg9tOeAnZFT7HqCGVk5WECmdoSNlVz8XbwuF4sQ2FOIKCk5vQOhCHpio82sSXg7H7+l6z9fhwnmkTVKOqcxSMrgUs1zF7lEXcDigCh08LqcUOS9c2Rvynw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1750786244; c=relaxed/simple;
-	bh=bVpyKh2OGLR1IfVlI82c34tSoNUWSnovZDukhTkq9hM=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=K+5srF+36nuuw8tpW1GjZkCk6cM1nIQBrmONKJIP30Go320GtNpy8Z3MDzZ0Jh2gBcCtBU5Xthjs6tcuu4pQ2IN2r3wcVnRsH7ytXgl+DIyvb8iL/LYAypbEoH/PBkO9d8o6dKK4+Eb0cJAa71XJ5tIX0eNZplb1qGaGyXyu2/0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=OuTrj5fZ; arc=none smtp.client-ip=209.85.128.41
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-wm1-f41.google.com with SMTP id 5b1f17b1804b1-451ebd3d149so31603715e9.2;
-        Tue, 24 Jun 2025 10:30:42 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1750786241; x=1751391041; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=1sizNG302uNzqBwHnfp9gUMkakWcmyU9KTTtYGCYjjI=;
-        b=OuTrj5fZHmufzcFFz7tIfhfJauny5yz35mMsObEnvFu+zcrn0zZbCHp6IUHsj8BZKr
-         pdipQiXaJBpvKEukWBz0mxpqlw/nWoSXaVG7sUVnSQVn9lcW9Vp747g7X/q4HsuaJQR4
-         SyEjsuDWrm/N/D+mtyyCIq+iomM0TSoGTUvABVAF2wExBcshEqhsaUALs0uCKejHMLGz
-         WWJT0Z2Tq4JQtDt+iqnWvHIvZKydnnb9bvr6NIwAwAbIYoIRA2AQDtCgTf+LtwBtNhHO
-         ltoPknh2R3d3h5n/goCMmLg89/A4FHTLDRfcQQax1+aYEhRDEUxLBn7Ag4Pk7ZJrNK+B
-         9fKA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1750786241; x=1751391041;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=1sizNG302uNzqBwHnfp9gUMkakWcmyU9KTTtYGCYjjI=;
-        b=kUaX/ogNUJ8IgexrdRp7fQdcWqfyI7FFQR0jkYm8iVQAUmVrwGS6R2y8vLAisRtCkI
-         kZxg283tZzSQFWIFPqVt85FLT0BRFM9aw9t2p9sYcdkLT9R0CqQZchDd9+1bAH5rYjEK
-         DcAlxPniDxr1CLO+HCIaFGz7jbwl2jmUY+ozwvNbNPGBgOmHzgZ0Z+QCyhHqOCpa1nLP
-         wzuM2VQZbHgqpioYCLSZjiSoxJlnAJjEBfZsZmkWL8m3MvBbW9K7b2YmVVlwF98wJ9Vt
-         w+j97oAQjkB41jTeuUnRcbXbwXLN934iG4C4zydJ2Q8BGEfh1ZGxWAT4BBIxA3kZEblU
-         LVIg==
-X-Forwarded-Encrypted: i=1; AJvYcCVYe9oTwGBARy6z05+BAg2+UvT9kRQP4Z2bKmffyxOHKhx6QVim+Nssas2q52Mz36D794T/gKfXo9X8@vger.kernel.org, AJvYcCWfIc4tR6NTuapHu0wFdTJipnmSY0yKc2C1tRW1JceRe76MPJGEpt5UkTJ/2qJQzCPuG0LykbmjK7trHs3Z@vger.kernel.org, AJvYcCXCVake5KoAznxWw8z6MSK4a3ISXrKUlN4W/LkFQULvruGkJMSEJsyllBXxbDjoI34X9v46pUywLEWu@vger.kernel.org
-X-Gm-Message-State: AOJu0YxfW77UlOhcmAemPoXDpZTdHTwvmKyQJLXhNHQ5S22aiMEcubCu
-	zmU0mqFNsP2aSQM/KpKV35dT1vKb6ikLCrw+XIbQcB0tDOemoNo7/nhL
-X-Gm-Gg: ASbGnctY2csRhP2h1u9joW0Du6g9zMS1rtemiD225bgHi7moyeSNIjBU2jrqBZhAw1o
-	iZV7UeOUjV+1DIpR2+KttKT8ltLlZFOyQXFk+Ubxn64rSJESFRdHZh7/z1IcMxWFsRBAf9GmCPn
-	i2ujzjHPK6kwI5OgfLWQw1R5rZYS5boEUbMRMhsT9VgaCH0Kq3DGw+AUDKYOVINLN9m9EEygIFd
-	nrOyOh+t7cGWTBwQ+CZRIgs7h9qoZ926D9Bu73jEBCqx7oOnV8YAKmj8hysYln03nPzPwWbbIuL
-	YR3NtqLE/8FvpvW0myMJY0xVpNf5cPNLx0xBufrPS01/ExjOZqEz0ddRTI2CzPYEMybCpmy/b/P
-	iB0B3Inp9kWA6dJ13uO4n
-X-Google-Smtp-Source: AGHT+IGVwaFG2zwbfdjJCGhHl2fr6igkI5o4Pnd2sZaB9w5IHAowPOOtyUGrl+22pchXIJm3NSuXtA==
-X-Received: by 2002:a05:600c:1c27:b0:453:62e9:125a with SMTP id 5b1f17b1804b1-4537a2f1c30mr62382915e9.18.1750786240629;
-        Tue, 24 Jun 2025 10:30:40 -0700 (PDT)
-Received: from iku.example.org ([2a06:5906:61b:2d00:a522:16f6:ec97:d332])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-4535ead202asm181662565e9.27.2025.06.24.10.30.39
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 24 Jun 2025 10:30:39 -0700 (PDT)
-From: Prabhakar <prabhakar.csengg@gmail.com>
-X-Google-Original-From: Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-To: Geert Uytterhoeven <geert+renesas@glider.be>,
-	Michael Turquette <mturquette@baylibre.com>,
-	Stephen Boyd <sboyd@kernel.org>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Magnus Damm <magnus.damm@gmail.com>
-Cc: linux-renesas-soc@vger.kernel.org,
-	linux-clk@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	Prabhakar <prabhakar.csengg@gmail.com>,
-	Biju Das <biju.das.jz@bp.renesas.com>,
-	Fabrizio Castro <fabrizio.castro.jz@renesas.com>,
-	Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-Subject: [PATCH 6/6] clk: renesas: r9a09g057: Add XSPI clock/reset
-Date: Tue, 24 Jun 2025 18:30:30 +0100
-Message-ID: <20250624173030.472196-7-prabhakar.mahadev-lad.rj@bp.renesas.com>
-X-Mailer: git-send-email 2.49.0
-In-Reply-To: <20250624173030.472196-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
-References: <20250624173030.472196-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
+	s=arc-20240116; t=1750786345; c=relaxed/simple;
+	bh=3Gfoz12u4n3dZw2dpTpLvMAIURpuyh3gULKIlYm11H8=;
+	h=Message-ID:Date:MIME-Version:Subject:To:References:From:
+	 In-Reply-To:Content-Type; b=bfMIkprK75EWLR/EGpVsOpLzJ2im+0xZKuE0LGVSTxwG+20JXaTxJ0/hgkStr4jXga9iNjtQq6SqJWm2l2qwOQl0xyb46nhaDx3HMQShgSukhcQPYVrfq1JH1Re2UfnkmZZ9GLowShcVGwjfvL0j0GRrXSPamZjseCjn0y2qqzs=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=e5xThmII; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 7DFB3C4CEE3;
+	Tue, 24 Jun 2025 17:32:24 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1750786345;
+	bh=3Gfoz12u4n3dZw2dpTpLvMAIURpuyh3gULKIlYm11H8=;
+	h=Date:Subject:To:References:From:In-Reply-To:From;
+	b=e5xThmIIQw1Fu5aejPOHOGUnCTT/bJGW5V4Daf1ZsVn6FTucYlmSkizm8sRTduwkC
+	 62a49+eVGqhR/dhZS96Slr+hp54b+yZk7MYfF1Fdd2Kskj59qU6EPfuhWFELdqBCD1
+	 epISL4WmR+8wPDnuM283/LT2+bon2z8FRCI4HVIeyfA5of4vvDJVtmBupgS2KRrt0J
+	 cScVTKYV1ZpTxyyXgww8hGMdoEE5ChQw5Ym7mA8JbrNOsrYZUzNK10MvWDY8iVzxuU
+	 Lhu0U8Hj2g1Mfyu4qT6H+a8TnhuYB5jLBnlEGrgyYDCUeLdAL2uiF+z5lcOowdmnp/
+	 aPBApP5QNTP9g==
+Message-ID: <70e3a367-8d9d-477b-9858-9f2a7b97bbca@kernel.org>
+Date: Tue, 24 Jun 2025 12:32:23 -0500
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 0/4] Add 4-bit SPI bus width on target devices
+To: yankei.fong@altera.com, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>,
+ "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS"
+ <devicetree@vger.kernel.org>, open list <linux-kernel@vger.kernel.org>,
+ Matthew Gerlach <matthew.gerlach@altera.com>
+References: <cover.1750747163.git.yan.kei.fong@altera.com>
+Content-Language: en-US
+From: Dinh Nguyen <dinguyen@kernel.org>
+In-Reply-To: <cover.1750747163.git.yan.kei.fong@altera.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 
-From: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+On 6/24/25 01:52, yankei.fong@altera.com wrote:
+> From: "Fong, Yan Kei" <yan.kei.fong@altera.com>
+> 
+> Add SPI bus width properties to correctly describe the hardware on the following devices:
+>   - Stratix10
+>   - Agilex
+>   - Agilex5
+>   - N5X
+> 
+> Fong, Yan Kei (4):
+>    arm64: dts: socfpga: n5x: Add 4-bit SPI bus width
+>    arm64: dts: socfpga: stratix10: Add 4-bit SPI bus width
+>    arm64: dts: socfpga: agilex: Add 4-bit SPI bus width
+>    arm64: dts: socfpga: agilex5: Add 4-bit SPI bus width
+> 
+>   arch/arm64/boot/dts/altera/socfpga_stratix10_socdk.dts | 2 ++
+>   arch/arm64/boot/dts/intel/socfpga_agilex5_socdk.dts    | 2 ++
+>   arch/arm64/boot/dts/intel/socfpga_agilex_socdk.dts     | 2 ++
+>   arch/arm64/boot/dts/intel/socfpga_n5x_socdk.dts        | 2 ++
+>   4 files changed, 8 insertions(+)
+> 
 
-Add clock and reset entries for the XSPI interface on the R9A09G057 SoC.
-
-While at it, rename CLK_PLLCM33_DIV4_PLLCM33 to CLK_PLLCM33_GEAR to align
-with the terminology used in the hardware manual.
-
-Signed-off-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
----
- drivers/clk/renesas/r9a09g057-cpg.c | 16 +++++++++++++---
- 1 file changed, 13 insertions(+), 3 deletions(-)
-
-diff --git a/drivers/clk/renesas/r9a09g057-cpg.c b/drivers/clk/renesas/r9a09g057-cpg.c
-index 39065d63df61..687c25f76852 100644
---- a/drivers/clk/renesas/r9a09g057-cpg.c
-+++ b/drivers/clk/renesas/r9a09g057-cpg.c
-@@ -36,8 +36,8 @@ enum clk_ids {
- 	CLK_PLLCM33_DIV3,
- 	CLK_PLLCM33_DIV4,
- 	CLK_PLLCM33_DIV5,
--	CLK_PLLCM33_DIV4_PLLCM33,
- 	CLK_PLLCM33_DIV16,
-+	CLK_PLLCM33_GEAR,
- 	CLK_SMUX2_XSPI_CLK0,
- 	CLK_SMUX2_XSPI_CLK1,
- 	CLK_PLLCM33_XSPI,
-@@ -134,7 +134,7 @@ static const struct cpg_core_clk r9a09g057_core_clks[] __initconst = {
- 	DEF_FIXED(".pllcm33_div3", CLK_PLLCM33_DIV3, CLK_PLLCM33, 1, 3),
- 	DEF_FIXED(".pllcm33_div4", CLK_PLLCM33_DIV4, CLK_PLLCM33, 1, 4),
- 	DEF_FIXED(".pllcm33_div5", CLK_PLLCM33_DIV5, CLK_PLLCM33, 1, 5),
--	DEF_DDIV(".pllcm33_div4_pllcm33", CLK_PLLCM33_DIV4_PLLCM33,
-+	DEF_DDIV(".pllcm33_gear", CLK_PLLCM33_GEAR,
- 		 CLK_PLLCM33_DIV4, CDDIV0_DIVCTL1, dtable_2_64),
- 	DEF_FIXED(".pllcm33_div16", CLK_PLLCM33_DIV16, CLK_PLLCM33, 1, 16),
- 	DEF_SMUX(".smux2_xspi_clk0", CLK_SMUX2_XSPI_CLK0, SSEL1_SELCTL2, smux2_xspi_clk0),
-@@ -189,10 +189,12 @@ static const struct cpg_core_clk r9a09g057_core_clks[] __initconst = {
- 		  CLK_PLLETH_DIV_125_FIX, 1, 1),
- 	DEF_FIXED("gbeth_1_clk_ptp_ref_i", R9A09G057_GBETH_1_CLK_PTP_REF_I,
- 		  CLK_PLLETH_DIV_125_FIX, 1, 1),
-+	DEF_FIXED_MOD_STATUS("spi_clk_spi", R9A09G057_SPI_CLK_SPI, CLK_PLLCM33_XSPI, 1, 2,
-+			     FIXED_MOD_CONF_XSPI),
- };
- 
- static const struct rzv2h_mod_clk r9a09g057_mod_clks[] __initconst = {
--	DEF_MOD("dmac_0_aclk",			CLK_PLLCM33_DIV4_PLLCM33, 0, 0, 0, 0,
-+	DEF_MOD("dmac_0_aclk",			CLK_PLLCM33_GEAR, 0, 0, 0, 0,
- 						BUS_MSTOP(5, BIT(9))),
- 	DEF_MOD("dmac_1_aclk",			CLK_PLLDTY_ACPU_DIV2, 0, 1, 0, 1,
- 						BUS_MSTOP(3, BIT(2))),
-@@ -258,6 +260,12 @@ static const struct rzv2h_mod_clk r9a09g057_mod_clks[] __initconst = {
- 						BUS_MSTOP(1, BIT(7))),
- 	DEF_MOD("riic_7_ckm",			CLK_PLLCLN_DIV16, 9, 11, 4, 27,
- 						BUS_MSTOP(1, BIT(8))),
-+	DEF_MOD("spi_hclk",			CLK_PLLCM33_GEAR, 9, 15, 4, 31,
-+						BUS_MSTOP(4, BIT(5))),
-+	DEF_MOD("spi_aclk",			CLK_PLLCM33_GEAR, 10, 0, 5, 0,
-+						BUS_MSTOP(4, BIT(5))),
-+	DEF_MOD("spi_clk_spix2",		CLK_PLLCM33_XSPI, 10, 1, 5, 2,
-+						BUS_MSTOP(4, BIT(5))),
- 	DEF_MOD("sdhi_0_imclk",			CLK_PLLCLN_DIV8, 10, 3, 5, 3,
- 						BUS_MSTOP(8, BIT(2))),
- 	DEF_MOD("sdhi_0_imclk2",		CLK_PLLCLN_DIV8, 10, 4, 5, 4,
-@@ -380,6 +388,8 @@ static const struct rzv2h_reset r9a09g057_resets[] __initconst = {
- 	DEF_RST(9, 14, 4, 15),		/* RIIC_6_MRST */
- 	DEF_RST(9, 15, 4, 16),		/* RIIC_7_MRST */
- 	DEF_RST(10, 0, 4, 17),		/* RIIC_8_MRST */
-+	DEF_RST(10, 3, 4, 20),		/* SPI_HRESETN */
-+	DEF_RST(10, 4, 4, 21),		/* SPI_ARESETN */
- 	DEF_RST(10, 7, 4, 24),		/* SDHI_0_IXRST */
- 	DEF_RST(10, 8, 4, 25),		/* SDHI_1_IXRST */
- 	DEF_RST(10, 9, 4, 26),		/* SDHI_2_IXRST */
--- 
-2.49.0
-
+This is for the QSPI driver right? I don't even see the driver using 
+this property. So how would this help?
 
