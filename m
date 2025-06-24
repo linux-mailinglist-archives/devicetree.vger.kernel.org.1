@@ -1,111 +1,129 @@
-Return-Path: <devicetree+bounces-189117-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-189119-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 196B2AE6BBB
-	for <lists+devicetree@lfdr.de>; Tue, 24 Jun 2025 17:50:17 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id C93FEAE6BDA
+	for <lists+devicetree@lfdr.de>; Tue, 24 Jun 2025 17:53:54 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 21EF83B5C59
-	for <lists+devicetree@lfdr.de>; Tue, 24 Jun 2025 15:49:07 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id DD6797A3A56
+	for <lists+devicetree@lfdr.de>; Tue, 24 Jun 2025 15:52:30 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7AA6826CE32;
-	Tue, 24 Jun 2025 15:49:24 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id CA019274B47;
+	Tue, 24 Jun 2025 15:53:47 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b="xjRtACEv"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="uMzZ2gJG"
 X-Original-To: devicetree@vger.kernel.org
-Received: from vps0.lunn.ch (vps0.lunn.ch [156.67.10.101])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 84C533074AB;
-	Tue, 24 Jun 2025 15:49:22 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=156.67.10.101
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9127C3074A1;
+	Tue, 24 Jun 2025 15:53:47 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1750780164; cv=none; b=MC0Hq0lP5pgiv38HVnRvyO9EdW7aCuHjMNcUMxYKZ4QbxbmgrcCs++noTznGL+Gnk8Ec+AwF6P2kca4Gk74kMbqsuUV358nB0kjVhwUxp7ylT/PrgETCW+sXM8aYbLhizHboPfIhHZVMI1nxSE0sGaCbVf8UhGW7gCos5k5cqqU=
+	t=1750780427; cv=none; b=CIcpDI1ZJMctViq8m6+5zoffNDegUgYdXViOqFcnr9meGVSUcigywbtJgQJ2cBCiBvr9zuktT3PlutIZB8HzOAR2RXA/5GHZpgX1cbGnvfrcgknhJkwrrhZVpt6QAp6UAWuFMilp31ZLHgoI632BRjm7itCdMrF3JQ0QM+lD56o=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1750780164; c=relaxed/simple;
-	bh=pyxJ7ud+kjbdNvW2uXFRaAIrAf9EGxpqJXKFFji+p3c=;
+	s=arc-20240116; t=1750780427; c=relaxed/simple;
+	bh=5gIuZaIyM0SgNtIvnnpKjpM1YltAyHByEE6D09stErU=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=ESNynOO7rw+/pkIdvkXgpyvOzDwiDvA5X7Em/r8XKrCD2LlIoOT8C6Af9AUf15OAwGag92FZ4DKphgIrAsb5pS+hA5Y133Y+5jT7yoYFBm3hQhKol1/y0ujzcMOpO4RjuqacgFNWCxTmt3OjSjUBk8O7KDGFu8M4g71g4V3zTgI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch; spf=pass smtp.mailfrom=lunn.ch; dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b=xjRtACEv; arc=none smtp.client-ip=156.67.10.101
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=lunn.ch
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
-	s=20171124; h=In-Reply-To:Content-Disposition:Content-Type:MIME-Version:
-	References:Message-ID:Subject:Cc:To:From:Date:From:Sender:Reply-To:Subject:
-	Date:Message-ID:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding:
-	Content-ID:Content-Description:Content-Disposition:In-Reply-To:References;
-	bh=NC+Z+vtbqTE2wdY8oV+vDfRJsWQwJyP1Pyl6O0epnbE=; b=xjRtACEvl6eV5FI1xUgMckMQpo
-	9Fc5LBJ9cgBrsFS1dsmgUoYw2EVzvzLwmtlUDvuxHBarguhAvPuPghRXpc2KQSqe3TftMKsYpEAdH
-	5wzPHGN8lrZKA1CSj9MDpA1AuWKbvMH7XhmxQlxJf+94/QheSfIM4DRo6IKdHsV/BLm0=;
-Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
-	(envelope-from <andrew@lunn.ch>)
-	id 1uU5tY-00GoYg-R2; Tue, 24 Jun 2025 17:49:12 +0200
-Date: Tue, 24 Jun 2025 17:49:12 +0200
-From: Andrew Lunn <andrew@lunn.ch>
-To: Paul Geurts <paul.geurts@prodrive-technologies.com>
-Cc: mgreer@animalcreek.com, krzk@kernel.org, andrew+netdev@lunn.ch,
-	davem@davemloft.net, edumazet@google.com, kuba@kernel.org,
-	pabeni@redhat.com, robh@kernel.org, conor+dt@kernel.org,
-	linux-wireless@vger.kernel.org, netdev@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	martijn.de.gouw@prodrive-technologies.com
-Subject: Re: [PATCH v2 1/2] dt-bindings: net/nfc: ti,trf7970a: Add
- ti,rx-gain-reduction option
-Message-ID: <cf871c23-963a-4d50-a13b-97e84ee0ddb7@lunn.ch>
-References: <20250624124247.2763864-1-paul.geurts@prodrive-technologies.com>
- <20250624124247.2763864-2-paul.geurts@prodrive-technologies.com>
+	 Content-Type:Content-Disposition:In-Reply-To; b=sImN6caA5St/mipH/l1cYiSoqhOTs+LyI6pnfHkws81V8ZNZTv8ok+liVOncuc9nyQr8G6mQtj20ZmpuqZO6xTJyZ92hLHbyLYIWBcuRXQIx1sa0esJt6vxtD6pdiweY0ccp88/50wYcJRZFNcOTkvu1L80qyvEKexZJPxX3FgE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=uMzZ2gJG; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 7FCA4C4CEE3;
+	Tue, 24 Jun 2025 15:53:43 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1750780427;
+	bh=5gIuZaIyM0SgNtIvnnpKjpM1YltAyHByEE6D09stErU=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=uMzZ2gJG0TMEGpMVxiZHeLdfiXSAJ+T3/T4x4bgZPBc9wtt2C3vBJZPx7RUO7pzV7
+	 lD1VDfRASF6KaK7Ww3fKSeaTkws+AN8Mzz8FMLUOawupf+ELUiRAimpcF0vDk8mbXP
+	 IT2Dpmqp/nyuQzLRfPWyJoODLt0LUIFydHyeIgh7EQz3onJNCtYU1NVsLwBA+lMiIC
+	 3I1D6u/4aXIIzafWyePJlp1uBqE6C21sn79PgMfrG5DZtfAQVTAYUfx1EwPkUWAb9J
+	 0lYpVqNzO1TQycN+lcjutyS5WcGz8+JUjiIwEzBUNzXdOGud8oNexRNPY5l/c6a9mC
+	 IdwDZTxK4Twug==
+Date: Tue, 24 Jun 2025 16:53:40 +0100
+From: Lee Jones <lee@kernel.org>
+To: Sven Peter <sven@kernel.org>
+Cc: Bartosz Golaszewski <brgl@bgdev.pl>,
+	Linus Walleij <linus.walleij@linaro.org>,
+	Sebastian Reichel <sre@kernel.org>, Janne Grunau <j@jannau.net>,
+	Alyssa Rosenzweig <alyssa@rosenzweig.io>,
+	Neal Gompa <neal@gompa.dev>, Hector Martin <marcan@marcan.st>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>, Marc Zyngier <maz@kernel.org>,
+	"Russell King (Oracle)" <rmk+kernel@armlinux.org.uk>,
+	asahi@lists.linux.dev, linux-arm-kernel@lists.infradead.org,
+	linux-gpio@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org, linux-pm@vger.kernel.org
+Subject: Re: [PATCH v7 05/10] mfd: Add Apple Silicon System Management
+ Controller
+Message-ID: <20250624155340.GL795775@google.com>
+References: <20250610-smc-6-15-v7-0-556cafd771d3@kernel.org>
+ <20250610-smc-6-15-v7-5-556cafd771d3@kernel.org>
+ <20250619114958.GJ587864@google.com>
+ <f30406ae-90ed-4f81-9519-e6ae2dcc9e03@kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <20250624124247.2763864-2-paul.geurts@prodrive-technologies.com>
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <f30406ae-90ed-4f81-9519-e6ae2dcc9e03@kernel.org>
 
-On Tue, Jun 24, 2025 at 02:42:46PM +0200, Paul Geurts wrote:
-> Add option to reduce the RX antenna gain to be able to reduce the
-> sensitivity.
+On Sat, 21 Jun 2025, Sven Peter wrote:
+
+> On 19.06.25 13:49, Lee Jones wrote:
+> > On Tue, 10 Jun 2025, Sven Peter wrote:
+> > 
+> > > The System Management Controller (SMC) on Apple Silicon machines is a
+> > > piece of hardware that exposes various functionalities such as
+> > > temperature sensors, voltage/power meters, shutdown/reboot handling,
+> > > GPIOs and more.
+> > > 
+> > > Communication happens via a shared mailbox using the RTKit protocol
+> > > which is also used for other co-processors. The SMC protocol then allows
+> > > reading and writing many different keys which implement the various
+> > > features. The MFD core device handles this protocol and exposes it
+> > > to the sub-devices.
+> > > 
+> > > Some of the sub-devices are potentially also useful on pre-M1 Apple
+> > > machines and support for SMCs on these machines can be added at a later
+> > > time.
+> > > 
+> > > Co-developed-by: Hector Martin <marcan@marcan.st>
+> > > Signed-off-by: Hector Martin <marcan@marcan.st>
+> > > Reviewed-by: Alyssa Rosenzweig <alyssa@rosenzweig.io>
+> > > Reviewed-by: Neal Gompa <neal@gompa.dev>
+> > > Signed-off-by: Sven Peter <sven@kernel.org>
+> > > ---
+> > >   MAINTAINERS                |   2 +
+> > >   drivers/mfd/Kconfig        |  18 ++
+> > >   drivers/mfd/Makefile       |   1 +
+> > >   drivers/mfd/macsmc.c       | 498 +++++++++++++++++++++++++++++++++++++++++++++
+> > >   include/linux/mfd/macsmc.h | 279 +++++++++++++++++++++++++
+> > >   5 files changed, 798 insertions(+)
+> > 
+> > This is ready.  Let me know when you have all of the other driver/* Acks.
+> > 
 > 
-> Signed-off-by: Paul Geurts <paul.geurts@prodrive-technologies.com>
-> ---
->  Documentation/devicetree/bindings/net/nfc/ti,trf7970a.yaml | 7 +++++++
->  1 file changed, 7 insertions(+)
+> They've all been reviewed by the respective maintainers.
 > 
-> diff --git a/Documentation/devicetree/bindings/net/nfc/ti,trf7970a.yaml b/Documentation/devicetree/bindings/net/nfc/ti,trf7970a.yaml
-> index d0332eb76ad2..066a7abc41e0 100644
-> --- a/Documentation/devicetree/bindings/net/nfc/ti,trf7970a.yaml
-> +++ b/Documentation/devicetree/bindings/net/nfc/ti,trf7970a.yaml
-> @@ -55,6 +55,12 @@ properties:
->      description: |
->        Regulator for supply voltage to VIN pin
->  
-> +  ti,rx-gain-reduction:
+> I assume you want to take this all through the mfd tree and we'll need acks
+> from Sebastian for power/reset and either Linus or Bartosz for gpio then.
 
-You should include the units, "ti,rx-gain-reduction-db"
+That's right.
 
-> +    $ref: /schemas/types.yaml#/definitions/uint32
-> +    description: |
-> +      Specify a RX gain reduction to reduce antenna sensitivity with 5dB per
-> +      increment, with a maximum of 15dB.
+> The one line change inside drivers/soc/apple would usually go through my
+> tree and I'm fine with taking that through mfd instead.
 
-Given that description i think you can provide a list of values, [0,
-5, 10, 15] and the tools will validate values in .dts files.
+If there are no build-time dependencies on it, you can take it.
 
-> +
->  required:
->    - compatible
->    - interrupts
-> @@ -95,5 +101,6 @@ examples:
->              irq-status-read-quirk;
->              en2-rf-quirk;
->              clock-frequency = <27120000>;
-> +            ti,rx-gain-reduction = <3>;
+I'm happy to take only the inter-dep ones or all (except the arch/ ones).
 
-Err, how does 3 fit into 5dB increments?
-
-	Andrew
+-- 
+Lee Jones [李琼斯]
 
