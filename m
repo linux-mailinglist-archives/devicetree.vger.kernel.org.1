@@ -1,204 +1,208 @@
-Return-Path: <devicetree+bounces-189203-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-189207-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id AAB4CAE726D
-	for <lists+devicetree@lfdr.de>; Wed, 25 Jun 2025 00:46:54 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id C406FAE728A
+	for <lists+devicetree@lfdr.de>; Wed, 25 Jun 2025 00:53:46 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 636CB1BC5921
-	for <lists+devicetree@lfdr.de>; Tue, 24 Jun 2025 22:47:10 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 68A055A50B4
+	for <lists+devicetree@lfdr.de>; Tue, 24 Jun 2025 22:53:20 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 685BF2571B4;
-	Tue, 24 Jun 2025 22:46:50 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1623425BF18;
+	Tue, 24 Jun 2025 22:53:30 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b="SVxHiyfl"
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="Yb1Nbg+0"
 X-Original-To: devicetree@vger.kernel.org
-Received: from OSPPR02CU001.outbound.protection.outlook.com (mail-norwayeastazon11013069.outbound.protection.outlook.com [40.107.159.69])
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2C733170826;
-	Tue, 24 Jun 2025 22:46:47 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.159.69
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1750805210; cv=fail; b=ribXLu8URojvapgikZKpuQEyHxLiXeI9sYIykFoQK2eZJWtXk3h5JpyipmUSI+D6lONDzl4uk0n81+9Y4qUBMbpRmc2gq5r/n8oLXU5DaKUyuPAC+J3W4PF3O5qQ9/nROSUfXMp+Ae9f290BM+C9JtLkjZtIHMIoaIG7Kfj188Y=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1750805210; c=relaxed/simple;
-	bh=lUWnUYNDoe5clqDu7FIIuBWdv2YF7Xxxmvg+zcJNSu8=;
-	h=From:To:Cc:Subject:Date:Message-Id:Content-Type:MIME-Version; b=ZcWFRX5CjLnB0htGnrOv9sOANOLm1iXF72DzrHHVwp7p4MoMj8i72mUArMu4dMGaY8ADNlNkpa9voClWa4YMol5Sd3to33hzYCfOxI6MfeGpbJH5QVSGvm55LFvy2qZDZ5bKH/GGKQoV6oQmERlJzqu7oG2amBE3y9lMYVB1MGI=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com; spf=pass smtp.mailfrom=nxp.com; dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b=SVxHiyfl; arc=fail smtp.client-ip=40.107.159.69
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=nxp.com
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=Bd0CnAzmeVbUxUhsEL+arV5xyo6LBQY3vE0t0vfOEZK01Q2Nnfue8WTALW71jTwLF9ccT36jFl4ErnnN7f1IjA6badIJzl8lQdef4TYdtP1ZFz2Wec6e6O9by9DsRQZHW/ofR+Ws2Hchsct4TWooQrdCgPrxMQHEdLvTHavLQ/XYgWuCALYStNt7PRvEND8xCDVxDy6mlhpL76OjaWq/yhdYoF19edO+k2LXXaQMyXj/Ba3IYBF+HorhRpWMJl6UjeBPHgkio3EtVROEfcvQTWUKuo2gCl+bIgXJGL1qUev2igV7/X8S41bfguSnmjq4EIDKosYkFgPFBpBxsZWsFQ==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=oMbaFIUOgOxR6eAOIl6T0Lz4pZNl6KuD4Zsrc/CBMdA=;
- b=EO2Bg5Yfcs+FXlqgzR0TARfWpsW36bDVWvpm8ICTKAGh49f2OH4WGM0SDwAZWFmGkh9IgzwI6F3yQkbVTRKq0JPOYMFcIwQ/Ge7U2JBB1N5ksti78v7DJdrhVykmIk+fEtdueq5xQdiTFwnl5Whgh/28zcpr6poo0DGkniSd6hAXWtpRB++41aPXmEPbqSb8O4t75D2Z3lNCloPxgdanEsgPtperkKRhlNlo1jiQbCagHkeHZ9sS2H6OUjrL98IaR3rVQ3mCAxGX3fdzYFCmZ8MD3ONDHYgNFroYVDGMf4RrZil+V1KyDMdTkVNWckwJ41q1ke2n8qhqU0S8KVL+3g==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
- header.d=nxp.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=oMbaFIUOgOxR6eAOIl6T0Lz4pZNl6KuD4Zsrc/CBMdA=;
- b=SVxHiyflZ0EVP6znZaRfH0KPeYpBl0i0SoFHUdo3cgRDTlg8bdo8c+zOd2TJoR6vPr8KhGXwbZd70yO2JkLyaBY5ayisIwaSU54AKSc6MLFVw7cipfEDLCpjavp03ijYVJrJmLeENPrRpxvJ2XXqWmmSH5c60qqucbn5fvC85UI/iLBOE1eG2Lcv1JTzzqjcqg2cRA2G0OcKhh6Uef98VuP5Y32h8CS+SdF24jZRNATLyJMU4ZaW1H8ncMzBF2UBCGjmOp8kwXxNYBFr9xg+Vq8POuyAFL0N+Xrq2UDyBkPuz1bqzgGJRL+RDZPDjIBBiLln98Ek6tWtx/laTVJIGA==
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=nxp.com;
-Received: from PAXPR04MB9642.eurprd04.prod.outlook.com (2603:10a6:102:240::14)
- by PAXPR04MB8237.eurprd04.prod.outlook.com (2603:10a6:102:1cc::23) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8880.16; Tue, 24 Jun
- 2025 22:46:44 +0000
-Received: from PAXPR04MB9642.eurprd04.prod.outlook.com
- ([fe80::9126:a61e:341d:4b06]) by PAXPR04MB9642.eurprd04.prod.outlook.com
- ([fe80::9126:a61e:341d:4b06%7]) with mapi id 15.20.8880.015; Tue, 24 Jun 2025
- 22:46:44 +0000
-From: Frank Li <Frank.Li@nxp.com>
-To: Thomas Gleixner <tglx@linutronix.de>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	linux-kernel@vger.kernel.org (open list:IRQCHIP DRIVERS),
-	devicetree@vger.kernel.org (open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS)
-Cc: imx@lists.linux.dev
-Subject: [PATCH v3 1/1] dt-bindings: interrupt-controller: Add arm,armv7m-nvic and fix #interrupt-cells
-Date: Tue, 24 Jun 2025 18:46:30 -0400
-Message-Id: <20250624224630.2518776-1-Frank.Li@nxp.com>
-X-Mailer: git-send-email 2.34.1
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-ClientProxiedBy: AM0PR06CA0140.eurprd06.prod.outlook.com
- (2603:10a6:208:ab::45) To PAXPR04MB9642.eurprd04.prod.outlook.com
- (2603:10a6:102:240::14)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9A7BB25B678
+	for <devicetree@vger.kernel.org>; Tue, 24 Jun 2025 22:53:27 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1750805610; cv=none; b=CooUBggDERneA6RG2FfJ365VPGFEE9Md4IdzpByDtntKy6D/50nryzO+I6eJqEMsw5DcZr60sG93JE1QfddZNIhTrlCoFaLBt8j2JPgHjp90vWszWQhr5nqjOd0k2EC900jDt4Ro4SpI1D+MyVrJ30CqmomnkWxoxdOISCFvyL0=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1750805610; c=relaxed/simple;
+	bh=Y5CFnkpy6R0kc2uADe2mxWd6zFHIKXS9ZuOjknr+JPE=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=QEwkLPs3SWdOYLx1m0Ak9CbROoiETP94FfXsZzeRxVt1z6ml4UX91tC//kMyVTovAHvbd/y3s/Hylyl3Zfh6gRl7YuxaI75775mtKMZ7lZw8SrUzh7IidWZ5/LkwjTEQnd/meX3jeETpq+1QypbxHmvRum5Zv5PvYDI1694EKq0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=Yb1Nbg+0; arc=none smtp.client-ip=205.220.180.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
+Received: from pps.filterd (m0279868.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 55OGi7Xb007961
+	for <devicetree@vger.kernel.org>; Tue, 24 Jun 2025 22:53:26 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+	cc:content-transfer-encoding:content-type:date:from:message-id
+	:mime-version:subject:to; s=qcppdkim1; bh=6NEQLURwDsTloKlZr0oOUC
+	qwsReFlsNBCCBhcuqvmg4=; b=Yb1Nbg+05Ju7nAxqtnOqoCRyRrbWFNFWOnGdGP
+	3jkT5otDHfyjnfGmibLeIBbq5kJSDwI3iAStVGnOayrWRH/46fEKhWisQjQBcHWj
+	qndP0fi2eMrJnFarEHsNWSqR9TWVn+lIy3wLaUs4NCyy4jD85bLO9+OcO0ZDrWaZ
+	Mcicoq8Bx14IdNfUn6GUXtLHZXyu2I+2ZKPOZdna/jhZqH5RJnGooeQMWHCWoEaE
+	qhLD1MEMi8lUXU0wPvMpLi3WF6R3+Knc3hetrGJjXbSw7Gze3m4ykoAQtulqeKIN
+	aRABiZWI+7oOTxGjG/OqTR+FKrkMuV5j1+umMGMPW+bE146w==
+Received: from mail-qk1-f200.google.com (mail-qk1-f200.google.com [209.85.222.200])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 47f7ttw2x5-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
+	for <devicetree@vger.kernel.org>; Tue, 24 Jun 2025 22:53:26 +0000 (GMT)
+Received: by mail-qk1-f200.google.com with SMTP id af79cd13be357-7cf6c53390eso470368685a.2
+        for <devicetree@vger.kernel.org>; Tue, 24 Jun 2025 15:53:26 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1750805605; x=1751410405;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=6NEQLURwDsTloKlZr0oOUCqwsReFlsNBCCBhcuqvmg4=;
+        b=cRMHdtv9NL0kFRqEuYwV/LEMUiHW29rCRSxWJ6FEdFZHa0gt024Di2qn7+fO7h6Aq2
+         vvsUQTV57SRiXwWIpsIMFRm48uK5qvFxGRgz4O+4YOY0ccxqNTKwUWMpYXs8c+YEUIN0
+         2AKmXoZ2grTsJI/ybiBIzzL9FBlafGilfit3iwqGD7OUbTbH69MedrFK/SfNMdfaRrMW
+         4YMHnNkP0Wc2c3YhKdYXILpcPzBp9jSM66WuDqF/JEdlVfvKI+gtE5v0l3Egebz8V+/i
+         PcSTJudEfg6Ec9JujD+6l/nndIEO6c3ljB3CojgbgJqCq8BeC0VlNB+dDvHupfZNZWOA
+         204Q==
+X-Forwarded-Encrypted: i=1; AJvYcCW33kRyGCDC4Zv+PojLqwvztW9CC1CvysC1YCuus9ilycoeYaz1mzx83EkuIGbvu4u0hA6J2RdyQbRa@vger.kernel.org
+X-Gm-Message-State: AOJu0Yyj8Y+UDI4P5xdYihkF+LVtYv4v9HDdS3pSFbOTNkP0mtdyHqjA
+	sxi7D/9NEST6XrUA5kwMU5lKygUkgnWsNm/UIZELM+XxcK041/RxTejqz8c9eiXjCFBuvBerlUe
+	WYZFARPmH6w1YYQK3LYG1A2CK2ScrxH817LLo1UmlBYIP/5xM+suaVN/ck2JBZpWG
+X-Gm-Gg: ASbGncuiQH1AypWl2eYxQCck7HUwGOlq4Cd9kynPARtAGDCFffQlXK+irram/eQBlIu
+	pAo0Umc/P6DLprWziKqB51Frkg1rbsH8UnSkAPavIE/ZPhkFQ5YzPkePOOw5I9CNWe/78aQW9JZ
+	XXeDjpPr5kqmpaKJiRjunXQoHHTCzbLrV0ZM6Qc1Er/zA1QoGkxGP/6ywbzwIjiHKheSj0jVDZq
+	HoQ+IkeiT+KJOju7mVpu5ahi19IyBNVoT5iXzpXI1awDjSMVGRfTBJC7xr0mDGXTvZpreQIvuYB
+	bIsOmo5G+hY6mQ+EY7qy7xlr81v6SV0CSWir+Xb7WOWX+HuZy7kMoKS5lgJebsBDoPBU6gpWju0
+	HL8e9cj+ksHFcBw9pv1PSSUrYYXFghm5Bmig=
+X-Received: by 2002:a05:620a:8801:b0:7d4:2b5:adbf with SMTP id af79cd13be357-7d4297a7b3cmr111313085a.45.1750805605446;
+        Tue, 24 Jun 2025 15:53:25 -0700 (PDT)
+X-Google-Smtp-Source: AGHT+IHKJtOlwSZrw9ddmxmM2pYssjiiX21GwgorDa91kZb96ksSc8xZRe2o4Cuzq4PkY5At63yxSQ==
+X-Received: by 2002:a05:620a:8801:b0:7d4:2b5:adbf with SMTP id af79cd13be357-7d4297a7b3cmr111309785a.45.1750805604994;
+        Tue, 24 Jun 2025 15:53:24 -0700 (PDT)
+Received: from umbar.lan (2001-14ba-a0c3-3a00-264b-feff-fe8b-be8a.rev.dnainternet.fi. [2001:14ba:a0c3:3a00:264b:feff:fe8b:be8a])
+        by smtp.gmail.com with ESMTPSA id 38308e7fff4ca-32b97f5980bsm17843851fa.7.2025.06.24.15.53.23
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 24 Jun 2025 15:53:24 -0700 (PDT)
+From: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
+Subject: [PATCH v4 0/8] firmware: qcom: enable UEFI variables on Lenovo
+ Yoga C630
+Date: Wed, 25 Jun 2025 01:53:19 +0300
+Message-Id: <20250625-more-qseecom-v4-0-aacca9306cee@oss.qualcomm.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: PAXPR04MB9642:EE_|PAXPR04MB8237:EE_
-X-MS-Office365-Filtering-Correlation-Id: 68b8b2df-c242-48df-a016-08ddb370fe4f
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam:
-	BCL:0;ARA:13230040|52116014|1800799024|376014|366016|38350700014;
-X-Microsoft-Antispam-Message-Info:
-	=?us-ascii?Q?0mFplX1chEUd7M92Fe7ydYSbsuTQ4qCULdh2V6pavEPdfjLwwao8Sl2ndBVd?=
- =?us-ascii?Q?bwIYrSCxjWRoczNzrz9/Np16y+3FuoZiZQb04NEMKW7spICz8AtlWjqtgPGk?=
- =?us-ascii?Q?2gPTN3vypeGBalmzXnKRRCGS1Nqr/K6+7kLN9qLth+uYe1bfoBrYiuqvmrHP?=
- =?us-ascii?Q?vKYL9+k8yHcFvROpZS9HOqqqJx4NOZTkklxKYgC5Dc6oX/WKsX8WSvq9Cdhx?=
- =?us-ascii?Q?38lNFdhboIaI3R1c9686BGlO1yRELOtuyMV9mwkTl9vJmFV8rR9EkpJznVSe?=
- =?us-ascii?Q?9vd5vWDxMzgzJQfR3eU/xGEa8qmXJQhZqujjnEIoL6uk+K0UWhu+ImvOeN4q?=
- =?us-ascii?Q?HzfH67+8aL8tS4tff3KZPwATO/htEADj9fdpdYbkcW0UtlUbO8V4u5Cw5NND?=
- =?us-ascii?Q?kUpxcRTLR2Ip+ROycmafsikShQUJUSZZN+SW64E6/USKVRbSnTS8VFw89/f1?=
- =?us-ascii?Q?CQtlViAYgLnwTFC8hNBAh4S2rRA/6FfGB0cVdG+BCAsC8pfVWACWQFdbpULE?=
- =?us-ascii?Q?dayk2nNcSThp2YWkpQf9aib5GApFdTklAS2CgBPRhyaFa4Mj2XiQppgALlpf?=
- =?us-ascii?Q?/DceHx1hO/W75DIBsFnSlPGmsa+Ya3YHXJCLqWyWfK8P72SH/BrGZAiSnRy0?=
- =?us-ascii?Q?qp1sBxy9UkgAPrYDY0ntBSB76wLaJWy/YQgl2cbeN7fl+oU9RJjxIfUNvPR/?=
- =?us-ascii?Q?FdNA1GCtcyjxOp8CJJb9acvb9FG6BMeMdadC/9lruXenm+WaRkdJwtglZWn6?=
- =?us-ascii?Q?MdgwQn18DAZIJT2Bpfk0oAdyK9Tyxp4rYwB+1+m2JVcRIbz8PlGBv+tvyMHq?=
- =?us-ascii?Q?vUVgXQrKcs4wrA762VBCFRhb8CDfoGxDHVKdOxR4fCyA22Ne71dk0lLq+Z3f?=
- =?us-ascii?Q?bQGbxrhEmH+Y795lOTetKswCrBK4e3eIL9YuldW/jESxYZj9tiEG54joaWCX?=
- =?us-ascii?Q?UqGn1llSATRxH1N4qdwbu/M0IVhLX5r7R/eQ2SXFwC5gmbnjo1MO4iCaFFjy?=
- =?us-ascii?Q?4+lS+U3qBI3O0RZXLC5K5LFN1EDz2sVbOFQ40+XtZLDeVCSHdfZdKdtfN7nA?=
- =?us-ascii?Q?5isFQv7+dD4ORZ/xIQJJ7RINOw741M1Z+cRs3VLdSglccRZwvH7Jpqpr6yFk?=
- =?us-ascii?Q?b78EwrbrGMGQuc/NSG1V7Cjm2EdgAaT5tEDISM0rlcOywpqgFbDRdroogXxa?=
- =?us-ascii?Q?94/uCitCCpTbbTRWqcCLctFLmMZqJDEf2gAMlUX7KyJRU+Ve8t6EL4sa1By7?=
- =?us-ascii?Q?w3MaCLn0GwPld9aLs+m2x6/PhpGIKH+3WWJpFwqdJ519sF5qZpKQa1K82G5M?=
- =?us-ascii?Q?AayFSENwJNv7m1QC6ovE2H/XCi69L7UYhB2qMZkodtnYL+FcT40KC0CD+QZu?=
- =?us-ascii?Q?bF56GGAtcFNk8Ud5Sy1FrGL0SptfGx7nk9o0NbvB6+nDcfOyQ28GRDf0OSKb?=
- =?us-ascii?Q?DLOhqQQSOrLP1SrGrpFDAeoVjMU0CLfZVnqRRIYy4Rd5Ti9aKb9v/A=3D=3D?=
-X-Forefront-Antispam-Report:
-	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:PAXPR04MB9642.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(52116014)(1800799024)(376014)(366016)(38350700014);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0:
-	=?us-ascii?Q?mTZIIkLzOFhgyESoCwi+cUe6Xj/VahagW/T/oyeYtBmIU2GCdNAGxc1vDTUV?=
- =?us-ascii?Q?nmNw6kczj2EwOFm2vZdPuIRiOuz6kJu05aMlyp5DRrCK9zv7oi2ttNUbN2Bo?=
- =?us-ascii?Q?Y2mMMSQabLGI/OBJgqp6SqcIN6msixBOxVEKqYCaNJGdt0CqpRK2hgcm1RCP?=
- =?us-ascii?Q?1QmOdrYcXny/K+7uv2BEj+Nez8XleMRYHB26GkH9d1SEw5NEHCMnwi1X13lP?=
- =?us-ascii?Q?Z/i9y3eQ9kbFeN+5LnbmqgEvC+z1JOOv1lD3zUpkRlHrUZgYQiU3Lv/MRpaB?=
- =?us-ascii?Q?mAc0keA8WIygQ4HE1GDHRUT7Pz0jP72PuFENg8CcAJRUNVEFHpvDvnrsgj3m?=
- =?us-ascii?Q?lpBbbKi/teWxSW3NMek+nDWKu/kKpc8RArGltueqaNDkqiPQr7ykzeElHkjz?=
- =?us-ascii?Q?w2oWdJS0vQwQLPjKBmG4qGRPqpEGs/ZvU3z/CFQzqYm1py4BinmoflQYuD36?=
- =?us-ascii?Q?HK3+FTCaEZu7cW2HoyDsJkuA5s/smsRkZ67xsOAa2sQ3eJQXmNxYQjhja6Ye?=
- =?us-ascii?Q?ekUwN4b6U2O1Z+EIDNS8wqKfT9bwOahQU6n+01DpraW0voFMwlp8qmGSLMmP?=
- =?us-ascii?Q?SRu/kSp0lGGeuwwWC3gno9nLu8LdvgbXEe1RLOY3dDwQnkJ2VQ5Xvvu4BrSC?=
- =?us-ascii?Q?gXtbw1o8iiPs8AwkVioeI6gQGHLhuPq19BAALjU49qTaJNKRYc4PGh0NJS01?=
- =?us-ascii?Q?lVFmBqvl0Vj21M0KBChROutXO5l6/JDMCQU388JD81CY5myKhSWNB+Caioqv?=
- =?us-ascii?Q?jEnVHz5y/kV9QlSi6kF0S7EzitVRpPgCDbQ+Sq7slblGTVas1x8OMwiXEOR2?=
- =?us-ascii?Q?JTMP+DSk7Yz013cINxXZtgePNFRAHanJRVN8+izLnvC+9Il30cVCzlMButyu?=
- =?us-ascii?Q?X3YNf/4nMkkPnxP4WliirTY0nB9x/nOoIbu37/ApO9vkntZFkxgm2NnB20oB?=
- =?us-ascii?Q?zB17mjwgViap05n8F9Xn3M3Bl9obaxFqL2BCzRPXrL3+nCYzQ4qiWrsiDXV6?=
- =?us-ascii?Q?G449xBXNrMVP56QjzITRXHn5t9pA0g3DSABWkEUnme+ht4KyoSBSNssl2BKG?=
- =?us-ascii?Q?xwWEX82YEYQspU+HGkAJyekGdzWIyr1jpCspLfwEF4zEC9U168U/6JWh2RU3?=
- =?us-ascii?Q?m9ZgxEodF0ESK4BsQDf3nny1SuGuNKpCG4QbWfEJ70/yWKNO7JUnD5rPEk69?=
- =?us-ascii?Q?jnF+Jb+7tKKN1aMf0Cko2At7kpeQVhNt7ka6JRAwRwnOI6JUPeLJiCAKyA61?=
- =?us-ascii?Q?UZ+S6eknK728Uc/1fHmvJhJbKrJ2/E83hwwQQCR3HzVMGuQ/yuybNTd+rsmF?=
- =?us-ascii?Q?kip48uKpYGyQcFhl8t4tNaAnMoxG6MVLqDjOgV1QGaF5U0Gr1yDDglC3RYu3?=
- =?us-ascii?Q?eukoOPUT7Gw8OzchRn0gi8fNtFNZlaFWBeGN2y4ZPpYgzE7OECd36b5w4KMX?=
- =?us-ascii?Q?rCk/9LlOJ9FJB9/uMgO8xcj/FjQHd5O94itiNdkQOyV5YIDmwCotElhvMl2l?=
- =?us-ascii?Q?VAJ2SrKy8HPKqy0ypdu390hB9J0n/2wy9oWVWbYQ4U265gEfSjFLYb++uZmB?=
- =?us-ascii?Q?ElpgvHssOyBmzKrTJy8=3D?=
-X-OriginatorOrg: nxp.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 68b8b2df-c242-48df-a016-08ddb370fe4f
-X-MS-Exchange-CrossTenant-AuthSource: PAXPR04MB9642.eurprd04.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 24 Jun 2025 22:46:44.4203
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: E/2RPpaLnPzARKpy5sTFkuv9rB0Kt0k6H39SlKFSk2E+HlmJHqRKm4ftq93qxo4d1nBgASQ/07DWd89ztxnqQg==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: PAXPR04MB8237
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIAF8sW2gC/3XQTW7DIBAF4KtYrIvLjwebrHKPqguCxwlSbGIgV
+ qood+84VqUqajdID+Z90nBnGVPAzHbVnSVcQg5xotC8Vcyf3HREHnrKTAnViFYBH2NCPmdEH0e
+ uW2u1PljfGsuockk4hNuT+/ikfAq5xPT11Be53v4DLZJL7gCcBtC9HHB/DpNLsY7pyFZpUT9tE
+ EbJl7bighvsBqPBNMLDPuZcz1d3ptexpmMz9G+jeTE0GRaUAN93nffqD+OxrZhwvtJHlW1PdnA
+ Z+ToUyq6a8FbeR5cLJpp/fAMOzzPgYAEAAA==
+X-Change-ID: 20240725-more-qseecom-379933b9c769
+To: Bjorn Andersson <andersson@kernel.org>,
+        Maximilian Luz <luzmaximilian@gmail.com>,
+        Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>, Ard Biesheuvel <ardb@kernel.org>,
+        Konrad Dybcio <konradybcio@kernel.org>
+Cc: Johan Hovold <johan@kernel.org>, Steev Klimaszewski <steev@kali.org>,
+        linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-efi@vger.kernel.org,
+        Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>,
+        Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+X-Mailer: b4 0.14.2
+X-Developer-Signature: v=1; a=openpgp-sha256; l=2709;
+ i=dmitry.baryshkov@oss.qualcomm.com; h=from:subject:message-id;
+ bh=Y5CFnkpy6R0kc2uADe2mxWd6zFHIKXS9ZuOjknr+JPE=;
+ b=owEBbQGS/pANAwAKAYs8ij4CKSjVAcsmYgBoWyxioD5x/wAi0ASRQ/c6A7VG1UcqoEYZQYIW1
+ nrWIjazl8SJATMEAAEKAB0WIQRMcISVXLJjVvC4lX+LPIo+Aiko1QUCaFssYgAKCRCLPIo+Aiko
+ 1XJ8CAChC6NKlLKOLVoJKWIKw6eML6m545ZtjiG+zkJ85lxF8fx9SKfkUT/+N7W/JQ+kXh1ZY2q
+ BnO+RDBEFRrWzldGZcAUahD4ZXROxKXkaR+wFZOOiX7yjspgIoK6xt1wL8iV5poux/565Sflbqw
+ SD6gXExkepLMv+aTD2fpOGJrdR6PJ0h5qveDj9mdSqDcnKVTI4upaTOZCtZ6cUDFfQ/w/8E+zBU
+ DDA+d1o+yvZyd7tOIjgDEzgQI2cgoXHpmJdlg790VNz2EwhBsdDEBcPa5cU6ie+H7iaBzo6lSoa
+ PjdsjugqhxA2nnk3CVYN6Vryncp3/scN9ZBu43na6hK4qqMe
+X-Developer-Key: i=dmitry.baryshkov@oss.qualcomm.com; a=openpgp;
+ fpr=8F88381DD5C873E4AE487DA5199BF1243632046A
+X-Authority-Analysis: v=2.4 cv=QINoRhLL c=1 sm=1 tr=0 ts=685b2c66 cx=c_pps
+ a=hnmNkyzTK/kJ09Xio7VxxA==:117 a=xqWC_Br6kY4A:10 a=IkcTkHD0fZMA:10
+ a=6IFa9wvqVegA:10 a=VwQbUJbxAAAA:8 a=EUspDBNiAAAA:8 a=KKAkSRfTAAAA:8
+ a=pEElvNPFZa0bE_926OUA:9 a=QEXdDO2ut3YA:10 a=PEH46H7Ffwr30OY-TuGO:22
+ a=cvBusfyB2V15izCimMoJ:22
+X-Proofpoint-ORIG-GUID: txlNOCu-voXHTpSqvPiOAEC5xr70CBgo
+X-Proofpoint-GUID: txlNOCu-voXHTpSqvPiOAEC5xr70CBgo
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwNjI0MDE4MiBTYWx0ZWRfX/9vBxxfFX0U9
+ UIqh9l3sXTZAz0+a2OpqktpWf35dV6HkpahaI5fggOAFMHiNt0W+Xmvzk38FPl8lnN6ZYChR+7o
+ bsyT1vjEdlrnv2TarCRD+XR4lGyBPB0/I4qTP5N1RJdLTTMIrbZxaFi0IAa3hFZpFiDxBkwoyxZ
+ jABU7GzJnPVKzbCtQvMu88euKjuLvo4qclEIfB5zxo0OVSH4WxPmufMZU0LQPxNaArs4YHckWaC
+ n/Wu3vpzfi5QW3OH+35jE3e0hcHCIhJsnBw+DoTyRQGvN7lbnPj5zgiV2+FBx3Y5bX6TGEYR0vO
+ jIF+5gn9Y8CXiNeGIAm93wYclQRIW8lzp8hL/UBCUo5w7xvGpsR1shZuyghaMi7C65H6oqEYqvx
+ NfByWMy5nrsHqTzmDDe4REicQKRTuDlEIIYSu0pfAyaELpemMpa2cr/qLwqAEmPY1dBYMmCl
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1099,Hydra:6.1.7,FMLib:17.12.80.40
+ definitions=2025-06-24_06,2025-06-23_07,2025-03-28_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ spamscore=0 priorityscore=1501 malwarescore=0 adultscore=0 mlxscore=0
+ clxscore=1015 mlxlogscore=999 bulkscore=0 suspectscore=0 phishscore=0
+ impostorscore=0 lowpriorityscore=0 classifier=spam authscore=0 authtc=n/a
+ authcc= route=outbound adjust=0 reason=mlx scancount=1
+ engine=8.19.0-2505280000 definitions=main-2506240182
 
-According to existed dts arch/arm/boot/dts/armv7-m.dtsi and driver
-drivers/irqchip/irq-nvic.c, compatible string should be arm,armv7m-nvic,
+Lenovo Yoga C630 is a WoA / WoS laptop, which uses a "standard" QSEECOM /
+uefisecapp application in order to implement UEFI variables. However as
+this platform has only one storage (UFS) shared between Linux and
+SecureOS world, uefisecapp can not update variables directly. It
+requires some additional steps in order to update variables, which are
+not yet reverse engineered.
 
-Fix below CHECK_DTB warning:
+However even with the current driver it is possible to implement R/O
+UEFI vars access, which e.g. lets the RTC driver to read RTC offset,
+providing Linux with a correct time.
 
-arch/arm/boot/dts/nxp/vf/vf610m4-cosmic.dtb: /interrupt-controller@e000e100:
-    failed to match any schema with compatible: ['arm,armv7m-nvic']
-
-Signed-off-by: Frank Li <Frank.Li@nxp.com>
+Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
 ---
-change in v3
-- keep arm,v7(6,8)m-nvic compatible string according to rob's suggestion
-- allow 1 and 2 for #interrupt-cells according to rob's suggestion
-- keep arm,num-irq-priority-bits as required according to rob's suggestion
+Changes in v4:
+- Fixed comment describing how to disable QSEECOM for a particular
+  platform (Konrad)
+- Link to v3: https://lore.kernel.org/r/20250624-more-qseecom-v3-0-95205cd88cc2@oss.qualcomm.com
 
-change in v2:
-- fix example interrupt-cells
-- commit message add driver information
-- remove unused compatible string
+Changes in v3:
+- Picked up patches from another series, reworking the QSEECOM
+  allowtable
+- Added a fix for efivar_set_variable() crashing the machine if R/O UEFI
+  vars are provided (Johan)
+- Link to v2: https://lore.kernel.org/r/20250621-more-qseecom-v2-0-6e8f635640c5@oss.qualcomm.com
+- Link to the merged series: https://lore.kernel.org/r/20241103-rework-qseecom-v1-0-1d75d4eedc1e@linaro.org/
+
+Changes in v2:
+- Added QSEECOM quirks in order to make UEFI vars r/o on C630.
+- Added DT patch, specifying the use of UEFI vars for RTC offset.
+- Link to v1: https://lore.kernel.org/r/20240725-more-qseecom-v1-1-a55a3553d1fe@linaro.org
+
 ---
- .../devicetree/bindings/interrupt-controller/arm,nvic.yaml     | 3 ++-
- 1 file changed, 2 insertions(+), 1 deletion(-)
+Dmitry Baryshkov (8):
+      efi: efivars: don't crash in efivar_set_variable{,_locked} in r/o case
+      firmware: qcom: scm: allow specifying quirks for QSEECOM implementations
+      firmware: qcom: uefisecapp: add support for R/O UEFI vars
+      firmware: qcom: enable QSEECOM on Lenovo Yoga C630
+      firmware; qcom: scm: enable QSEECOM on SC8280XP CRD
+      firmware: qcom: scm: add modparam to control QSEECOM enablement
+      firmware: qcom: scm: rework QSEECOM allowlist
+      arm64: dts: qcom: sdm850-lenovo-yoga-c630: fix RTC offset info
 
-diff --git a/Documentation/devicetree/bindings/interrupt-controller/arm,nvic.yaml b/Documentation/devicetree/bindings/interrupt-controller/arm,nvic.yaml
-index d89eca956c5fa..32dfa2bf05d84 100644
---- a/Documentation/devicetree/bindings/interrupt-controller/arm,nvic.yaml
-+++ b/Documentation/devicetree/bindings/interrupt-controller/arm,nvic.yaml
-@@ -17,6 +17,7 @@ description:
- properties:
-   compatible:
-     enum:
-+      - arm,armv7m-nvic # deprecated
-       - arm,v6m-nvic
-       - arm,v7m-nvic
-       - arm,v8m-nvic
-@@ -30,7 +31,7 @@ properties:
-   interrupt-controller: true
- 
-   '#interrupt-cells':
--    const: 2
-+    enum: [1, 2]
-     description: |
-       Number of cells to encode an interrupt source:
-       first = interrupt number, second = priority.
+ arch/arm64/boot/dts/qcom/pm8998.dtsi               |  2 +-
+ .../boot/dts/qcom/sdm850-lenovo-yoga-c630.dts      |  4 +
+ drivers/firmware/efi/vars.c                        |  2 +
+ drivers/firmware/qcom/qcom_qseecom.c               |  6 +-
+ drivers/firmware/qcom/qcom_qseecom_uefisecapp.c    | 18 +++-
+ drivers/firmware/qcom/qcom_scm.c                   | 99 +++++++++++++---------
+ include/linux/firmware/qcom/qcom_qseecom.h         |  3 +
+ 7 files changed, 93 insertions(+), 41 deletions(-)
+---
+base-commit: 2ae2aaafb21454f4781c30734959cf223ab486ef
+change-id: 20240725-more-qseecom-379933b9c769
+
+Best regards,
 -- 
-2.34.1
+With best wishes
+Dmitry
 
 
