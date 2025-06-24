@@ -1,173 +1,181 @@
-Return-Path: <devicetree+bounces-188854-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-188856-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0B8CBAE5D26
-	for <lists+devicetree@lfdr.de>; Tue, 24 Jun 2025 08:51:15 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id DDAE0AE5D2E
+	for <lists+devicetree@lfdr.de>; Tue, 24 Jun 2025 08:52:53 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id AC80C4002C3
-	for <lists+devicetree@lfdr.de>; Tue, 24 Jun 2025 06:50:39 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 643F617A99D
+	for <lists+devicetree@lfdr.de>; Tue, 24 Jun 2025 06:52:54 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6E0F524A06D;
-	Tue, 24 Jun 2025 06:50:50 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0318824EA85;
+	Tue, 24 Jun 2025 06:52:41 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=altera.com header.i=@altera.com header.b="dWwTKECF"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ua1-f52.google.com (mail-ua1-f52.google.com [209.85.222.52])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from NAM11-DM6-obe.outbound.protection.outlook.com (mail-dm6nam11on2058.outbound.protection.outlook.com [40.107.223.58])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5AFB924BBEC;
-	Tue, 24 Jun 2025 06:50:48 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.222.52
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1750747850; cv=none; b=kfhW4X2guCm9xP3nbhIC3KWbWHfjxvyi8L88ktKas383EcQJzyI7WerhMZ2STbFm4/W7muJ5lrsfPp4rl3Ujw6S3lGDXavRE7smH8VDEAeNPyYISh5+dkWu2X1tTPO5QNBWPZKKiC3vqgRwFl41lcN6aDvJxO6+gej/puYXSOxs=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1750747850; c=relaxed/simple;
-	bh=94OLxcoN/V+1uMAi0Yf0uaUni2K65tJnVOlQBUpp6Y0=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=qJxgo2A/EFE7kkKUhS4LOAlSCIZnLDOX1lOuU0wpPLlfD1IYYwvjdNUVF3kfs/CAXYZ5whOFQOviaNRIUUuLg/OBYq/qSO3jsZIZtZHbmrlXB3F/LKl0k9Xxb4A8BsNW/z3hafk0fwFvxo5mzOGQVfScphNK+uWR0/MIzC4n5Do=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.222.52
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-ua1-f52.google.com with SMTP id a1e0cc1a2514c-87edd8f4e9fso28478241.0;
-        Mon, 23 Jun 2025 23:50:48 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1750747847; x=1751352647;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=KAB8c2lzwHiV1cefx4j1HLZ5SO2BK5h0p7k6kwYAaug=;
-        b=NkxdQrLwSpo618S6jr4p+MX/VAWeq36jf9KzPnfvINEovqKRNwVWKLSwVFqlrodfl2
-         m0Bz6o4Hgvp+oQSTaCZhsyYLFD8cuDFCwbBEO8PGYlXvL20aKWOioum1aOAwt31/J+oM
-         nZ+6tJoUgH3+l5gaxUq6jHEOwt1y8gornsTQRDjRhqg5WH3Pbse/dAC/HG46phOFzqHX
-         o4ABcCU4tspj1GML72T3GUe4ItPNEx+SrmjwkEkLcivydBDQBnNBwEl3X3MJUcccRdMk
-         9zgUUyKOga2Ou3pnmjPSTv0y73F5kl1z9QmsDA2QU/WJ0X1O0N31g2satWIFLn5FT7hG
-         NlHQ==
-X-Forwarded-Encrypted: i=1; AJvYcCUA4O5X4p5m2hU+nXjezb4yXbEZDPuBrZxn4VmNwng+zTMjSbl0gbLx+1jQ9aTtyM9AQuvrWkw4D3o5gj8+Fi/aUts=@vger.kernel.org, AJvYcCUCfiVRxjSaS8VR7fUINn6d7cIhEEPI5fbnaXf5oTD4gHfPPT96MiMMD/Acs3MaczHS9Z3GmrOeoe3s@vger.kernel.org, AJvYcCV+lFtkTgOpLZiaX6SHzJye34T37B2hjjzKvaKvuq51y2y6e8HdsQ8s6Y92fCpvSYo/C+z9OJeNN59d@vger.kernel.org
-X-Gm-Message-State: AOJu0Yyr5se9moZhoQdcAjh+0dp8D/uLaJAMRpDDEiXy6Z/lrTqjDXs6
-	4Jie2oG2vdprzXJpfSxsERfoaUkwvrB4KMeZUwDhBFNmHRCF2LblMrRUiajmus8Y
-X-Gm-Gg: ASbGncupH6uF9PFWzW3niAZFBtxx3h62geyG6WgMUZa7oEtZlMw+6x2Ahzrr/ehaXo+
-	CSRMpLlbt78Bi6IJBwMuL+VJCVv5AWnCQ3L6QZbQ9vIKYO9DESH2gasIIk3gw+v0FFBHDMR5RNc
-	pRgYXWc0jXOApN1mxLB7s2HkUvGtwdUaCue8WF2FFEgMnNfelHPqouuFBALZDM5Yrm0ukU/1/Q/
-	zoV2WPuoCo7U/+Al+b1A6L/egJyv29YTjyH3Ir4lspnEI7T+sHhxzaOZRJ2IUTUt36ujyGiGJ9F
-	I6TJQ1QIL29V+CHbX39miqSkAZ8wtFhS7+4IuUAN5tx+iMrej/DA9Lquh/aNRsZvA1wtXmVP2Xr
-	NYUD8LZXVI4hQib5z24+hP7MA
-X-Google-Smtp-Source: AGHT+IFQeVs1LHo+L5Rg4eMWN/3O28dMzmgvn5N2nwsCawNfsSkdyf//uA36dyJVWxPOuDJ4XfA2BQ==
-X-Received: by 2002:a05:6102:1483:b0:4e9:b3b9:720e with SMTP id ada2fe7eead31-4e9c2799f18mr9268914137.5.1750747846421;
-        Mon, 23 Jun 2025 23:50:46 -0700 (PDT)
-Received: from mail-vs1-f48.google.com (mail-vs1-f48.google.com. [209.85.217.48])
-        by smtp.gmail.com with ESMTPSA id a1e0cc1a2514c-8811acf9869sm1566939241.3.2025.06.23.23.50.46
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 23 Jun 2025 23:50:46 -0700 (PDT)
-Received: by mail-vs1-f48.google.com with SMTP id ada2fe7eead31-4e7fc3309f2so17765137.2;
-        Mon, 23 Jun 2025 23:50:46 -0700 (PDT)
-X-Forwarded-Encrypted: i=1; AJvYcCUAr6YH8wdE2U0ucRpffmdqSkssBV6GNDBJeHK5ISTDVZ6FW71zCLlOL+gkkXbRHc1KWtQrfx54eNb3@vger.kernel.org, AJvYcCUMn5/pwXAnwVepBUlmgaaZAtwvxgJuSknMw9Il7wzFbvgxjGGnZ9DxX83olqfG9Ug0TybNWqnmgY4u796t05+R+mA=@vger.kernel.org, AJvYcCW7YvQS0h6Q5ibcsaX0fwOdbbJi4/4zY8r9lUtghXwXG2VbosJFtr75W/9vyTdDEKRBIL3WLYVe68IN@vger.kernel.org
-X-Received: by 2002:a05:6102:3051:b0:4e2:c6e4:ab1e with SMTP id
- ada2fe7eead31-4e9c281661amr8855058137.7.1750747845652; Mon, 23 Jun 2025
- 23:50:45 -0700 (PDT)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1D27A24A06F;
+	Tue, 24 Jun 2025 06:52:38 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.223.58
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1750747960; cv=fail; b=qAit3zDZE+RhHxHnU8Iaekvs3PhRzWnUHI/AFEXpERBIUkeblWZ1m5ddv9AZQ2HiPCdWeyvKPOpF76ufmVplbB1mbsOnnoNr2qDclv4ca5uTMnnO7trp/iFq70iFS2OIM0Locu1hnloerjjsKG6prKb4sjgrzDOwp32uCJP4BSU=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1750747960; c=relaxed/simple;
+	bh=Pe7IY24yNNFt1JBxPFga5jBzh/So+BwE8PU6iuliZhU=;
+	h=From:To:Subject:Date:Message-Id:Content-Type:MIME-Version; b=DbInTMZUKufroMA19ynqxw5fIrM/MhUJZ8Z2pdMF/DR+VbYJCUMYSLgstdBVzjJkcAL5ezHVZHoZLMFyfet44KVMpnRyQqnoLK8WtK502vQ84FNR6neJ/6i3ApdVomrzgu5e1TPN2AewnMPOUXMTbA6ZJ/YW3qcZVSxpiNpVHW4=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=altera.com; spf=pass smtp.mailfrom=altera.com; dkim=pass (2048-bit key) header.d=altera.com header.i=@altera.com header.b=dWwTKECF; arc=fail smtp.client-ip=40.107.223.58
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=altera.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=altera.com
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=qr3rACS7SLh80z+rgxq2buI50dXMdk/87VhZL8WVJPWgAVKPreRSWtq4U5EtVcKIUwb+1qiG03aCgDuUSQF3sRkAEFNcCkP5kD63wra/0G+0QiLK0M6lM0aGXjort/RdpNY0axafxnGndy2txfWiVmM2nw6FBUPwENEV4ekwWQqfK6zjoCAXQCiUeXAePSd0+qia2ffT+E4Fo3Np128BNm5ZurcLKV4LsRf20C/asuppMZOcMGwC3q0h84Er99XIMzlcrPnMbhGsHShhdqmXfqOwXdYYhhsPzkHwiHz+OrWeZO0K8xb32TIJZ/rOYvwzmJE3X3JFAaabN8UzFqjHIQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=/DWhYKZvRWveLcGjFWcbllkKmRWNRnPl9ZVcKPEnX3Q=;
+ b=gS14XAUsXcetC4GZJJvqnZ6cN+rVpViEaAGwAWl0JV5mpH+RkOOLVBj3w6oMmW+lwlTlXxQnrT+4bBaS3kasVlik5JqNGsAJnQPNynaIOAtxADyLxhcQ/TWOpfM0a+3VE2Fc6gDjtadaySrlByRGTE9wohDlSAJfuFjJlgn+TgeiQEVcm5E8Vac3GIDWWHVFcMqW8pzgTxdmt8lP29f0MIvkBMhM+4mJv13wEMOkyk7Wuk3s4uVLkkLejBWGOdECoifVaSJXP5kBGwy6VH/eKQ/HBEcnZLFTqNMpDa1RawwywGhHg5F2s3KZhg+lxbCEztVcjLrtnuO2kFUCjRuRKg==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=altera.com; dmarc=pass action=none header.from=altera.com;
+ dkim=pass header.d=altera.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=altera.com;
+ s=selector2;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=/DWhYKZvRWveLcGjFWcbllkKmRWNRnPl9ZVcKPEnX3Q=;
+ b=dWwTKECFlcOBaY8eK+rukDD6hJ44QbzLN5/TL/SZ/sC7F1mIRamoMkxxmWKP7iBWdw7Rbz3K9KsO6QviSHl6bOdIEBQ9ZKek7wmg52lfWh2IFSbKqYgkHH3GGr0q4H5WiYHoNsESqLfHL6qZEPH5FVNztBj1gac0shNZtsnj4rVfATRRcQm+UXM4maJtpAIINHM617k7nqVlwNisyFOeCUxB8yGnVHALAyqjB1W29FP1ouSo6XgZvMugb3Ps1R/GWrnJYQ2HoI8K9mC3zFjDgJgg24IVSULdc0BRfhE1LKUKdcXk6NQJW4K32jZKHS8esgXcB5p1Hr/LRewbGHA6lg==
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=altera.com;
+Received: from BN9PR03MB6089.namprd03.prod.outlook.com (2603:10b6:408:11a::9)
+ by PH0PR03MB6335.namprd03.prod.outlook.com (2603:10b6:510:aa::13) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8857.28; Tue, 24 Jun
+ 2025 06:52:34 +0000
+Received: from BN9PR03MB6089.namprd03.prod.outlook.com
+ ([fe80::b94:a1cc:3ca:eb37]) by BN9PR03MB6089.namprd03.prod.outlook.com
+ ([fe80::b94:a1cc:3ca:eb37%4]) with mapi id 15.20.8857.026; Tue, 24 Jun 2025
+ 06:52:34 +0000
+From: yankei.fong@altera.com
+To: Dinh Nguyen <dinguyen@kernel.org>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	devicetree@vger.kernel.org (open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS),
+	linux-kernel@vger.kernel.org (open list),
+	Matthew Gerlach <matthew.gerlach@altera.com>
+Subject: [PATCH 0/4] Add 4-bit SPI bus width on target devices
+Date: Tue, 24 Jun 2025 14:52:24 +0800
+Message-Id: <cover.1750747163.git.yan.kei.fong@altera.com>
+X-Mailer: git-send-email 2.25.1
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-ClientProxiedBy: BY5PR03CA0021.namprd03.prod.outlook.com
+ (2603:10b6:a03:1e0::31) To BN9PR03MB6089.namprd03.prod.outlook.com
+ (2603:10b6:408:11a::9)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20250621172056.160855-1-marek.vasut+renesas@mailbox.org>
- <20250621172056.160855-3-marek.vasut+renesas@mailbox.org> <purpjdp72jw2rok5ihyua635izyih54ufom2knsbaiwdd3jzgk@6wjf364fao2g>
- <dbec18f0-5df4-4eb8-93ab-da6ccfedf8ab@mailbox.org> <apbocxuzcptlpghphh7nchnwyxpfhmiwosgxrt4y5awsb67ar3@fbskfbulwsma>
- <033bbb7d-ab00-467e-ab21-877f76d027a2@mailbox.org>
-In-Reply-To: <033bbb7d-ab00-467e-ab21-877f76d027a2@mailbox.org>
-From: Geert Uytterhoeven <geert@linux-m68k.org>
-Date: Tue, 24 Jun 2025 08:50:33 +0200
-X-Gmail-Original-Message-ID: <CAMuHMdXU=dWZYnnvmJMFdJYGRB_VWPTGgn=rLT4xX6BEdgDrNg@mail.gmail.com>
-X-Gm-Features: Ac12FXyvAL7oGYPDEwzEolSUTkN2WV6Bn2A6LFh9dBHlJQ90gV5YB70gnY5u-wQ
-Message-ID: <CAMuHMdXU=dWZYnnvmJMFdJYGRB_VWPTGgn=rLT4xX6BEdgDrNg@mail.gmail.com>
-Subject: Re: [PATCH v4 3/3] pwm: argon-fan-hat: Add Argon40 Fan HAT support
-To: Marek Vasut <marek.vasut@mailbox.org>
-Cc: =?UTF-8?Q?Uwe_Kleine=2DK=C3=B6nig?= <ukleinek@kernel.org>, 
-	linux-pwm@vger.kernel.org, Conor Dooley <conor+dt@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Rob Herring <robh@kernel.org>, devicetree@vger.kernel.org, 
-	linux-renesas-soc@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: BN9PR03MB6089:EE_|PH0PR03MB6335:EE_
+X-MS-Office365-Filtering-Correlation-Id: 1f321921-9819-4f47-0f91-08ddb2ebb266
+X-MS-Exchange-AtpMessageProperties: SA
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;ARA:13230040|376014|366016|1800799024;
+X-Microsoft-Antispam-Message-Info:
+	=?us-ascii?Q?/rUnEG6IV6e1M88kmN98z1p2gKVYQUehdy1xd4WxG/ZwmZUrCsSXdWQFZqCR?=
+ =?us-ascii?Q?tznpYGrJU4twBb396N+lztJVp0jdHajWE5sKzBAwPVsE+bL6eVKpdM1mbBxp?=
+ =?us-ascii?Q?R6sh0DW1RH39f26Ygtmj8PdLKGzaeDQSCDZO5ul6sB8Szi8X3uT3++HDa62G?=
+ =?us-ascii?Q?m7n6wT9HX1mjCTyqP5jPDWkz8ympObHkZjZ//A1ghBptc8kL2c6ZpBu1QEIT?=
+ =?us-ascii?Q?NEmWt8y+DRc7oKZKACjngoD3uTIz5fkfTTuqP0CGDMoT1Gw9oAylYDCSnvK8?=
+ =?us-ascii?Q?75A54ID9nXzv4zs/EuwDBoRvVDzwok2rlAqDNBzvFPmhVE1PY2NAqSBJ9AGp?=
+ =?us-ascii?Q?TyFhmMCxIVy2hzY2eWljldhwteZk5kVzqYkoJYnVID8dBYTwb8O8U1MYd29+?=
+ =?us-ascii?Q?oyS+cjHG7TKGJqU9Ta83EWa6wQLNJy98f5AGDFoMVOQJZ4nyRhyE/gSY8Zqv?=
+ =?us-ascii?Q?iSfo05jM31wbXR0e7DvvGkSaeqrLDqof7jTmVg2JPKF21mktb64UpYFD0OC+?=
+ =?us-ascii?Q?hiD7sgbBiwTQwl9nAEzX9aMmPozg8NTA6cUkd9OEZOm/qZSdD6bgUzR/z7j3?=
+ =?us-ascii?Q?nxXzNVpXy0GItD2S6wrobBY4NjzdhMIzioy1MPofaBeBtRHPtp1DRGOKPopw?=
+ =?us-ascii?Q?xrTDIYXdfdvchh122BgzNvGquJ/fM54AbHXsBQWSaPivIpznvbfQsTCIzg+a?=
+ =?us-ascii?Q?+Aijy4c+cP54zdYPmHuVzIFWRJiWzDZNPn0fZg3LA9QGCdheYlR7sn8SPHAC?=
+ =?us-ascii?Q?l3itv/GvcZYa+26/3GLIKMi7UiSRyQ8BndD8TATvWV55DE6xfnXL3hpfpQgm?=
+ =?us-ascii?Q?2FjPo0Q8BJ9o06pq6Y9HSMP09IbNwcdx+DoPddgjAbjJQbp7XwLd4XwNbeHf?=
+ =?us-ascii?Q?gPDLBgYyvcBzCu3UAbkEKcvrQaNYdyY4e5o8jNr6w/nw12Q+dutT8xZ/W7UE?=
+ =?us-ascii?Q?ylpcc/X5T2J+BVrg8QLbZYl01Hy7+GoIySlxkuRte5BjvSrQwO7weBZNNnMN?=
+ =?us-ascii?Q?9UgXGjXPLQh28g2pgT8LNCAmwPRrgTtONx9zKDAjKa2NqJzhLvfhMPed0E3D?=
+ =?us-ascii?Q?BtT6KnNKUFqhn/vGXfC1XKCmRo118ajfe6rK2Ynyzh0r60mRWTUaVqpjBd39?=
+ =?us-ascii?Q?pOGYf5O9Z0R05Y9y6H2/bFaBbK6tju8njfGFwg6N0y9RpBF8AIO4VnexP4+X?=
+ =?us-ascii?Q?NKZpQXB7fCrgt5i9juXHPDZznHutXaRaTSLok6SdcnWeaDSuwGLI37G43kAk?=
+ =?us-ascii?Q?iwoNOzUZWsAmGqSR8qTbTrpDNnA4aK37x0xQRCsaTdeUUE4QAW/2R9+Sq2p0?=
+ =?us-ascii?Q?AwjVDYan1N2chPO7so92HYPSKmUBI2JGui9XB6e6J6TZl1ZBHcvVJc8Rn+72?=
+ =?us-ascii?Q?EDszRF+SAa71a/nPSBsnd7etAa3A9rKephDgaRcAqMfykAl1Q/7RlD19j0qW?=
+ =?us-ascii?Q?dejTiMjTP7U=3D?=
+X-Forefront-Antispam-Report:
+	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:BN9PR03MB6089.namprd03.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(376014)(366016)(1800799024);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0:
+	=?us-ascii?Q?jRSS0n3Ou3wK7WZK27mHLyF1f5A9QCRUZj7PLrFCSf8sCSOaib82qIyJNZe4?=
+ =?us-ascii?Q?ybjx5WPylkDmH50mMiCM2mOmihZZ8QPfhqyKu7B1abpo3AX8IKYZ+nFpCdfn?=
+ =?us-ascii?Q?XOYrTDH0oZ5s3Fb8bxGKP9bC4sTC2d5xNCkZemtyOOMldZJcUHdGD4Qf3Hh5?=
+ =?us-ascii?Q?WxXJyjTNNM+ntGWwsW5XSd+R2MPn3xN9LoPmvukNdMxkIEu6xtA8JUUSPDF9?=
+ =?us-ascii?Q?3R3zlNmuATIO+Kk23KFxF9BFkMc/pbx29UJLzZ46RIysbK91PluoEoa/Tb7g?=
+ =?us-ascii?Q?J6Gigl7h3uhT+WDxT4q1rOh3nGpuX0fnD4LhhhXDkGDEgMoJCpSmpIRsAvnh?=
+ =?us-ascii?Q?RptSqi+mesFrrycC4x5xguQn8wjTQxOIfcfzaHSPAuPUedQEwOq++hHVRoPq?=
+ =?us-ascii?Q?dgAcdOKNZiWXUT2ZIj2YWLqTBJeI0WjJMfVRDYI/a2fU46dBQajuHA5f8Cwq?=
+ =?us-ascii?Q?Z2AIDDedUrtbALdK1YUZoEbpvWlHCVAUrYLoibE9tRTGvQR/b3UKNZiRkF6Z?=
+ =?us-ascii?Q?YJR5UYHa1mL4YddfsEMCCvcPAHTAA85sxPqjHswm0l1taYVACsAkXFemslt3?=
+ =?us-ascii?Q?mXyuit12tHFaey72G8FyER651Rae8Gf2h9VcdzEUuE1SYYy0HRTqmVIG2Jht?=
+ =?us-ascii?Q?O6pYq1jJmApYAWEBvbcjTcpfu2Nx4hcrvOMJn1Assgxq+uN2DjevxPZbKFGE?=
+ =?us-ascii?Q?CQU6kvrQ6yQ+3cm3RKN05IExgUw3L5oztvuwFzDZZmNA1Q2e9nQDzYLKFtH0?=
+ =?us-ascii?Q?lujFSosV/aIsF+qFLlRrUDwNes13FlKXES4JCBe+EZAzzKjldnzOZsQSuMlR?=
+ =?us-ascii?Q?MB30YUjdvQDGDOiNyNU+DBA8Xh3dluboTWCZR70KwXaxsiED0YKWdETBi0yY?=
+ =?us-ascii?Q?ylUSF3b1asbon38mAX8TxZDDBTY2aj+N3PtJv/VK2BP34cUkoXo0G+ZGNKpS?=
+ =?us-ascii?Q?WWLMwoqT0WvKZPsNvsBegIu70GEkToWiwSLWak0YQMJTxIgBBM5cymN6FJNn?=
+ =?us-ascii?Q?L90nYa63ajbj/ijj2a4D93tn8uAKqJnxHuZXfPeYFCGK4aQd505iIDXyYzbw?=
+ =?us-ascii?Q?9KVIONxNsGurPv9TMQWpwIArIPAyLhqC2By9wuPH5t8W8xTwOIazVHPmuo0+?=
+ =?us-ascii?Q?enc3DgI/RjZ9t3q/MBZOYWHCzCBxBb2Ri3Q9I6cd2++5v/vAHVVgYYiOZ1fX?=
+ =?us-ascii?Q?fOfnDW6SCaMjESkQr+BGDwEsOZ15kWvkCiiRQFvR+gWlTgwZBBQSZxmUmoGX?=
+ =?us-ascii?Q?9RJCC7kEDL5KjvUkdgSZc9c7jZpmYn97eAQe3TBwkhmSZgB0A3kOq7aP4CvZ?=
+ =?us-ascii?Q?6K2zSo2CQsXxEw2zR58iuJzfP/flXmtPP/BDJ+8gldGEeBoQK7UgczyfXEVC?=
+ =?us-ascii?Q?QZhHoEkEt4oZhegwn2dO9fd0drqMjaNzAvCqSnNl5hnkIKsTx3WV/qcIBrFZ?=
+ =?us-ascii?Q?fq9LpzLj+39FbRN3nxY4ZbESGNQ44/DUpCfqCJLM6olSyaCSjdvBLiTVIvfP?=
+ =?us-ascii?Q?MgSX2iOKwYgWTGb8mS6wkdYHqkURmv7pcqw+NE3nnkZw1RCWQf53EMAy7ec0?=
+ =?us-ascii?Q?7AmHMUe4jrXiUDkxv1QjtxF5Wy50hExxGkAPlVPt?=
+X-OriginatorOrg: altera.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 1f321921-9819-4f47-0f91-08ddb2ebb266
+X-MS-Exchange-CrossTenant-AuthSource: BN9PR03MB6089.namprd03.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 24 Jun 2025 06:52:34.0301
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: fbd72e03-d4a5-4110-adce-614d51f2077a
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: is2LTRGgfJ88Xd4/vqrGbfTS2R7RKuNN6m/J0pUXmoFHs6PavP3pUAj3OLqlUfH2p+wsnAMC1ER5MPSqo8qW/Q==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: PH0PR03MB6335
 
-Hi Marek,
+From: "Fong, Yan Kei" <yan.kei.fong@altera.com>
 
-On Mon, 23 Jun 2025 at 22:44, Marek Vasut <marek.vasut@mailbox.org> wrote:
-> On 6/23/25 9:53 PM, Uwe Kleine-K=C3=B6nig wrote:
-> > On Mon, Jun 23, 2025 at 07:30:33PM +0200, Marek Vasut wrote:
-> >> On 6/23/25 11:11 AM, Uwe Kleine-K=C3=B6nig wrote:
-> >>> when I replied to v3 this v4 was already on the list which I missed. =
-My
-> >>> concern applies here, too, though.
-> >>>
-> >>> On Sat, Jun 21, 2025 at 07:19:56PM +0200, Marek Vasut wrote:
-> >>>> +static void argon_fan_hat_i2c_shutdown(struct i2c_client *i2c)
-> >>>> +{
-> >>>> +  argon_fan_hat_write(i2c, 100);
-> >>>> +}
-> >>>
-> >>> If you drop this, I'm willing to apply.
-> >>
-> >> Dropping this would make the hardware which uses this device more
-> >> susceptible to thermal damage, e.g. in case it gets stuck during reboo=
-t and
-> >> does not boot Linux afterward. I don't want to risk such thermal damag=
-e.
-> >
-> > We agree here. But the right place to address this is the pwm-fan
-> > driver. A PWM is supposed to do exactly and only what its consumer want=
-s
-> > it to do (in the limits set by hardware). Officially a PWM driver
-> > doesn't know the polarity of a fan, so `argon_fan_hat_write(i2c, 100)`
-> > might fully enable or complete disable the fan. The fan-driver knows th=
-e
-> > polarity. The PWM driver doesn't even know that it controls a fan. And
-> > the next guy takes the argon device and controls a motor with it --- an=
-d
-> > wonders that the vehicle gives full-speed at shutdown.
->
-> I suspect this cannot happen without non-standard hardware change of
-> this device, see the link which shows what this device is, it is an
-> integrated PWM+fan device:
->
-> Argon Fan HAT https://argon40.com/products/argon-fan-hat
->
-> > So I hope we also agree that the pwm-fan driver (or an even more generi=
-c
-> > place if possible that applies to all fan drivers) is the right layer t=
-o
-> > fix this. And note that the pwm-fan driver already has such a decision
-> > implemented, it's just the wrong one from your POV as it disables the
-> > fan at shutdown. For me this is another confirmation that having a
-> > shutdown callback in the PWM driver is wrong. The two affected drivers
-> > shouldn't fight about what is the right policy.
->
-> I would fully agree with this argument for a generic PWM controller, but
-> this isn't one, this is a combined PWM+fan device.
->
-> The PWM driver is the last one that is being shut down, it is being shut
-> down after the pwm-fan driver. If the pwm-fan driver fails for whatever
-> reason, the PWM driver -- in this case driver for a combined PWM+fan
-> device -- should make sure that the hardware does not melt. So I would
-> argue that, for this specific device, the shutdown hook here is correct.
->
-> I would propose to keep the shutdown hook here, and extend the pwm-fan
-> driver to be aligned with the behavior of the shutdown hook here. Does
-> that work for you ?
+Add SPI bus width properties to correctly describe the hardware on the following devices:
+ - Stratix10
+ - Agilex
+ - Agilex5
+ - N5X
 
-Perhaps modelling it as a pwm-driver was not the right thing to do?
+Fong, Yan Kei (4):
+  arm64: dts: socfpga: n5x: Add 4-bit SPI bus width
+  arm64: dts: socfpga: stratix10: Add 4-bit SPI bus width
+  arm64: dts: socfpga: agilex: Add 4-bit SPI bus width
+  arm64: dts: socfpga: agilex5: Add 4-bit SPI bus width
 
-Gr{oetje,eeting}s,
+ arch/arm64/boot/dts/altera/socfpga_stratix10_socdk.dts | 2 ++
+ arch/arm64/boot/dts/intel/socfpga_agilex5_socdk.dts    | 2 ++
+ arch/arm64/boot/dts/intel/socfpga_agilex_socdk.dts     | 2 ++
+ arch/arm64/boot/dts/intel/socfpga_n5x_socdk.dts        | 2 ++
+ 4 files changed, 8 insertions(+)
 
-                        Geert
+-- 
+2.25.1
 
---=20
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k=
-.org
-
-In personal conversations with technical people, I call myself a hacker. Bu=
-t
-when I'm talking to journalists I just say "programmer" or something like t=
-hat.
-                                -- Linus Torvalds
 
