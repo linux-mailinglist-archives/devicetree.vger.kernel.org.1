@@ -1,48 +1,88 @@
-Return-Path: <devicetree+bounces-189010-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-189011-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2134BAE6581
-	for <lists+devicetree@lfdr.de>; Tue, 24 Jun 2025 14:52:44 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 10DEDAE65A1
+	for <lists+devicetree@lfdr.de>; Tue, 24 Jun 2025 14:55:38 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id A0011189C9D8
-	for <lists+devicetree@lfdr.de>; Tue, 24 Jun 2025 12:52:47 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 59B3117C5DD
+	for <lists+devicetree@lfdr.de>; Tue, 24 Jun 2025 12:53:49 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B77EF2989AC;
-	Tue, 24 Jun 2025 12:52:23 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 15CA229993D;
+	Tue, 24 Jun 2025 12:53:39 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="GZkfhBzq"
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="lJIz/amU"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 89632281510;
-	Tue, 24 Jun 2025 12:52:23 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8454122D9ED
+	for <devicetree@vger.kernel.org>; Tue, 24 Jun 2025 12:53:37 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1750769543; cv=none; b=opwIyLheKv8N6PQFOtDjlC9tpKZyw2XvCJRkUnA/L0t8APAr90oDTxW8+D+Kp/hqhRyvX1g/5o2G/nIf86FzWwvbe+B32IiMvuiYCXDer7U+SkQtZFN5RfPG5qCYwqLhiqGB6YFjc6eQjffcWcuofvXoCCpI7HR53J7XKrwdbsI=
+	t=1750769619; cv=none; b=gs8LD+UGJNye4VaGt5EfcYLZ60RQ95/UPWzh4GV3++3Dl9Vk9QXIvk0mDQ6Nh0br2LSSHsJZP8ttFmzJWsBuLIrPecGOpuN5kFPPzsFGAldx6iFv63mNiHVA3lq86CGKX0r3t1NKhwF/3mGozwpL4ZjT3TU/P7OfLnEFUyVDGP0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1750769543; c=relaxed/simple;
-	bh=vC1tckTgRedvyr0rPpm+r7oBgh21zwhGiKUVHt+D02k=;
+	s=arc-20240116; t=1750769619; c=relaxed/simple;
+	bh=goi+JYdc8hX2nZ6r6/E6w6bG2TAS+Qvi9wp+yVs7mTU=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=er8DKEWxEEJK/JTac0oZ4cV0BWJY00pNS2zK1uGen2ZXpcgSFtHk9VHPi42nRxS5PiEtQt9xsiUqXEK3BGW45fL8AiKb+vo7FKL85WE59YXCvsLTbL3PSziunPd+uDbd8hgbnF3AOJc08Z841XBNA3BtwJZHkXCBBpiZ8PVE+v8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=GZkfhBzq; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 3463CC4CEEE;
-	Tue, 24 Jun 2025 12:52:19 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1750769543;
-	bh=vC1tckTgRedvyr0rPpm+r7oBgh21zwhGiKUVHt+D02k=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=GZkfhBzqWveKHHpzUUrcpuFc9Q/OXCqSpTO+F4fz6E/0A77Mhndx5sH4V4yKsDLI1
-	 VY9LNPK/x85Bjky3MmHfhZjU4/5IkVtTukDS0Ivs0JC2cG0E2ThHYf45CDUsGFbPgS
-	 IRFtdPiGxwpmdoi1u6NzRQnnTja4VQkGl5ifiuM4zXrxQGgLNZvrXf1o6DjSme0SOt
-	 laUDX5c9F+yh3FO5396GhpBx2z6HfLj/tciGqX1Z9pPFKstO05P7DCS5/FwQljdUL9
-	 X/UvAU8UV8+YObwgUYjZ3oiinKLeTN4cMR6DYIHbbP/zKIq1V62rcsXte8G3bOLLFN
-	 cSE6bkvL24qTg==
-Message-ID: <145fbca0-bb55-4809-9c13-cbfa50e5b1ec@kernel.org>
-Date: Tue, 24 Jun 2025 14:52:18 +0200
+	 In-Reply-To:Content-Type; b=mB/Lf798nW4lTipMXCUdBgD/tKry2BoTlr2nD2XJipfbSCFip3yTj4LZUAtUMPEmGFYjv1V6Ei0YnSUT+ukp81bhfHU22vriuTmay57918Xk+QHOMtx00uJIuHd+TUPEKh9Ujzr99w1ZNUGHCaNa2CyW54ewVUG3rELCmTnfiyg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=lJIz/amU; arc=none smtp.client-ip=205.220.168.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
+Received: from pps.filterd (m0279862.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 55O83KQw020776
+	for <devicetree@vger.kernel.org>; Tue, 24 Jun 2025 12:53:36 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	Y/+Oz0dkYo1zBsxJyrMPTZE3tsWtgvUVNjRDnaW0KIE=; b=lJIz/amUFjS0TrRZ
+	u3wiXr/pgY3UIxwtl7dqdkpeJJXL7mhZDFER4ufNRcQJBBsTZX0VXPOw13oxpK+D
+	nxv0D0mz9QRPK0i7yAiQyJQY6vqgahLn7VyMRqkXcLOxfg9bh72aTkO1Z5QTSfhY
+	eoaR1djt54VUPH2DruITojk5OhBOzlM+bckYLZQedGeDjOMzwQfcoFsZmauXin6D
+	jFikalM7TdlD0Wyj8SeuV/YAaxCyK5FeUd+BwgCR5Ej1WRtxmokhvmA+Q/Lgn+hI
+	FuS8CRscW+FOJutcWi8d2E8YtDMf987zzwf90oMAVBh+0vHrKArlCUCDhSt3+cNO
+	saTQPw==
+Received: from mail-qt1-f197.google.com (mail-qt1-f197.google.com [209.85.160.197])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 47f4b3v1b1-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
+	for <devicetree@vger.kernel.org>; Tue, 24 Jun 2025 12:53:36 +0000 (GMT)
+Received: by mail-qt1-f197.google.com with SMTP id d75a77b69052e-4a6f59d5ac6so12441581cf.0
+        for <devicetree@vger.kernel.org>; Tue, 24 Jun 2025 05:53:36 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1750769615; x=1751374415;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=Y/+Oz0dkYo1zBsxJyrMPTZE3tsWtgvUVNjRDnaW0KIE=;
+        b=gFfItgtJLDak8we1Uk+GyfpRgB9Gfbkuk4WFRSXkIja07OloXrtsbVCoz+A2HK6CAn
+         K2Bdl+AmGc8ZZqaNrVDf5t2EZbFvIR3sIXgBsrsmv/LdMEwYgE6Viao86r9R5VJwa87S
+         pnvzNUC1CfTdumyAgLhKhZz6MwHdn+5g/0f7yBtenwMtj1izuB4q9REyjWP+Nd/3YfjD
+         vBO4B8o/MuppiahOGp6zpaQrKooZ4crnYJBTPq6s9hT3ZdclNlGJCKP8ZhmB/exGEZRB
+         VZyjNiQBbfP7B/T8IuCH8HfvUxfKDQ+W6Vttic+CXaKDN8DMW767QnO9QpIAh5QPjaIm
+         YTVw==
+X-Forwarded-Encrypted: i=1; AJvYcCURGWPy1DFWi83ADtIWw2GchBI2OjpwjAQ4G7wUOP/8TGYWslQbW2LfDZaSZ8EO1e7dYsfc8L32UmXb@vger.kernel.org
+X-Gm-Message-State: AOJu0YwpGTPzseX5gfEDG9f15zBYtUQRTUjhwVALCjFhI5K5mkv52UVB
+	gRxpekMQ7MyYL7rTi0YH1iQCbLY06wmmUv/o1welmW6kt+ifhAWmYvyz2QBkt3TI7cRSJ3F07yx
+	KVqXTLfE6+EBIFi0uKqDzl7H6I/CvRM7DkHeZNmq5UFH4T2KAN5Ua0jcd7eR2H+FF
+X-Gm-Gg: ASbGncvqEMo3K0WuTq8BVOKkvODCDExG+O1ndiu5WsAndEO8gMVnt22ZZljwVtXJrUO
+	SooAVM4/x6Z00IGLGhpPizYcR2a+xX7sjU+XM0G8YZH08eO6NIlKOwAVuwynTi6/QZZXjS0OEfT
+	av6vB6ygFs9Mrz+DdViGsDePWEl4JooGQtpGb9QzJsrkll1nxLKiQ4Eh+ccWVDZPnOZpurWwtut
+	79QURzsZjRPPTeA/iSdZ+o5HRtwZzaIyiD1bpGO1srd0GHl7sAxCYixR0IbS3ymNS3MeYggi/Tf
+	q3tENIg2VYg1EmrimsYHSeeYfU9Mbu0ZCI6CT9WN4eiU9d5RXlLqhwWrImA0NYYFq+rlrZKtSol
+	v/bw=
+X-Received: by 2002:a05:622a:6182:b0:4a6:fbd6:a191 with SMTP id d75a77b69052e-4a77a1ae861mr87818181cf.1.1750769615256;
+        Tue, 24 Jun 2025 05:53:35 -0700 (PDT)
+X-Google-Smtp-Source: AGHT+IHgsD3QcWc6S0AZNrpNBd+uIEeZjeiiG6NGMmKXQHsPOX3VXCP45konCfmawthc2DRqsam1pw==
+X-Received: by 2002:a05:622a:6182:b0:4a6:fbd6:a191 with SMTP id d75a77b69052e-4a77a1ae861mr87817891cf.1.1750769614739;
+        Tue, 24 Jun 2025 05:53:34 -0700 (PDT)
+Received: from [192.168.143.225] (078088045245.garwolin.vectranet.pl. [78.88.45.245])
+        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-ae0a67a80a5sm151041266b.26.2025.06.24.05.53.32
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 24 Jun 2025 05:53:34 -0700 (PDT)
+Message-ID: <a9c012e4-40ab-49f4-a0b0-b4ebc4272153@oss.qualcomm.com>
+Date: Tue, 24 Jun 2025 14:53:31 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,125 +90,58 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 0/3] Add Input Video Control Block driver for RZ/V2H
-To: Daniel Scally <dan.scally@ideasonboard.com>, linux-media@vger.kernel.org,
- devicetree@vger.kernel.org, linux-renesas-soc@vger.kernel.org
-Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>,
- Geert Uytterhoeven <geert+renesas@glider.be>,
- Magnus Damm <magnus.damm@gmail.com>, Philipp Zabel <p.zabel@pengutronix.de>,
- jacopo.mondi@ideasonboard.com, biju.das.jz@bp.renesas.com
-References: <20250624-ivc-v2-0-e4ecdddb0a96@ideasonboard.com>
-From: Krzysztof Kozlowski <krzk@kernel.org>
+Subject: Re: [PATCH v3 2/8] firmware: qcom: scm: allow specifying quirks for
+ QSEECOM implementations
+To: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Maximilian Luz <luzmaximilian@gmail.com>,
+        Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley
+ <conor+dt@kernel.org>, Ard Biesheuvel <ardb@kernel.org>
+Cc: Johan Hovold <johan@kernel.org>, Steev Klimaszewski <steev@kali.org>,
+        linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-efi@vger.kernel.org
+References: <20250624-more-qseecom-v3-0-95205cd88cc2@oss.qualcomm.com>
+ <20250624-more-qseecom-v3-2-95205cd88cc2@oss.qualcomm.com>
 Content-Language: en-US
-Autocrypt: addr=krzk@kernel.org; keydata=
- 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 a/A=
-In-Reply-To: <20250624-ivc-v2-0-e4ecdddb0a96@ideasonboard.com>
+From: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
+In-Reply-To: <20250624-more-qseecom-v3-2-95205cd88cc2@oss.qualcomm.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwNjI0MDEwOCBTYWx0ZWRfX19IujY8WbwNi
+ l9qkoHISyex7zziDvZlPvJm193kjzb+gLluJqoL/UxEPqUSvhrU7FTWIhsIIo1tZnZetMxz/PHY
+ kiUaPX3cyT73T00+Th3C3jF4BUPOtDrGpRbPp/8q1H86J0Op1aHRd2F/1ETkQOFM+FLAEonfpCX
+ pjTWlxYL6ORZFZcBp5p3hFfvsHcoxiFWvDegZ4unb1KRoO0UHheolcPMrtgoEPcOH9POL+3xJRG
+ LspeP0mKNtvlFBv8SARk12x40fRkcFPLMoMYzHHSgaePsFrGAksJZFRcioB+lq/5qiPK21eoDY7
+ wlKFTzIWDZNIJKuLjzm1g7Q81cxfJtjkYfytuFTV58+ziKQ2he4U1951KdDCcvAcC3mUFpAywHM
+ sIN6Dy55gGVt362KebyGZYf8RgcHy9U+BvzqfLA5QQpnVl+KARJ8FLkhV8mOgKu0qv65gQGa
+X-Proofpoint-ORIG-GUID: -0XRXoFQinZMZTZMB261BftrJu0_z_wz
+X-Proofpoint-GUID: -0XRXoFQinZMZTZMB261BftrJu0_z_wz
+X-Authority-Analysis: v=2.4 cv=A8BsP7WG c=1 sm=1 tr=0 ts=685a9fd0 cx=c_pps
+ a=EVbN6Ke/fEF3bsl7X48z0g==:117 a=FpWmc02/iXfjRdCD7H54yg==:17
+ a=IkcTkHD0fZMA:10 a=6IFa9wvqVegA:10 a=EUspDBNiAAAA:8 a=Xl6Gf3kKTQkptmOWZCMA:9
+ a=QEXdDO2ut3YA:10 a=zZCYzV9kfG8A:10 a=a_PwQJl-kcHnX1M80qC6:22
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1099,Hydra:6.1.7,FMLib:17.12.80.40
+ definitions=2025-06-24_05,2025-06-23_07,2025-03-28_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ lowpriorityscore=0 mlxlogscore=729 malwarescore=0 spamscore=0 bulkscore=0
+ phishscore=0 adultscore=0 impostorscore=0 suspectscore=0 mlxscore=0
+ clxscore=1015 priorityscore=1501 classifier=spam authscore=0 authtc=n/a
+ authcc= route=outbound adjust=0 reason=mlx scancount=1
+ engine=8.19.0-2505280000 definitions=main-2506240108
 
-On 24/06/2025 14:35, Daniel Scally wrote:
-> Hello all
+On 6/24/25 4:13 AM, Dmitry Baryshkov wrote:
+> Some of QSEECOM implementations might need additional quirks (e.g. some
+> of the platforms don't (yet) support read-write UEFI variables access).
+> Pass the quirks to the QSEECOM driver and down to individual app
+> drivers.
 > 
-> This series adds a driver for the Input Video Control Block in the
-> RZ/V2H SoC. The IVC block transmits input image data from memory to
-> the ISP core (on this SoC, a Mali-C55 ISP). The driver registers an
-> output video device for userspace to queue image buffers to. One
-> noteworthy feature is that - because it is not a part of the main ISP
-> drive - the IVC driver also registers a subdevice, which connects to
-> the media device created by the ISP driver through the usual v4l2
-> async framework. This requires delaying the registration of the video
-> device until the .registered() callback of the subdevice, so that the
-> struct v4l2_dev pointer the subdevice connected to can be set to the
-> video device.
-> 
-> To facilitate communication between the ISP driver and the IVC driver
-> we use the new media jobs framework that was posted recently [1]. The
-> series is also based on top of the latest version of the Mali-C55
-> driver [2] and some updates to rzg2l-cru [3].
-> 
-> Note that this is not quite ready to merge, as there's an outstanding
-> bug that sometimes causes the driver to hang. The device should fire
-> two interrupts per frame; once on completion of data transmission and
-> once on expiration of the blanking period. The second interrupt seems
-> sometimes not to arrive, and at the moment the problem is worked
-> around with a timeout in rzv2h_ivc_send_next_buffer(). We're working
-> on that issue, but because the driver lends helpful context to the
-> media jobs and mali-c55 series (and is probably otherwise ready for
-> comment too) I wanted to post it.
-> 
-> Thanks
-> Dan
-> 
-> [1] https://lore.kernel.org/linux-media/20250624-media-jobs-v2-0-8e649b069a96@ideasonboard.com/T/#t
-> [2] https://lore.kernel.org/linux-media/20250624-c55-v10-0-54f3d4196990@ideasonboard.com/T/#t
-> [3] https://lore.kernel.org/linux-media/20250623-rzg2l-cru-v5-0-1663a8c6719a@ideasonboard.com/T/#t
-> 
+> Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
 > ---
-> Daniel Scally (3):
->       dt-bindings: media: Add bindings for the RZ/V2H IVC block
->       media: platform: Add Renesas Input Video Control block driver
->       MAINTAINERS: Add entry for rzv2h-ivc driver
-> 
->  .../bindings/media/renesas,rzv2h-ivc.yaml          | 103 ++++
->  MAINTAINERS                                        |   7 +
->  drivers/media/platform/renesas/Kconfig             |   2 +
->  drivers/media/platform/renesas/Makefile            |   1 +
->  drivers/media/platform/renesas/rzv2h-ivc/Kconfig   |  15 +
->  drivers/media/platform/renesas/rzv2h-ivc/Makefile  |   5 +
->  .../platform/renesas/rzv2h-ivc/rzv2h-ivc-dev.c     | 237 +++++++
->  .../platform/renesas/rzv2h-ivc/rzv2h-ivc-subdev.c  | 379 ++++++++++++
->  .../platform/renesas/rzv2h-ivc/rzv2h-ivc-video.c   | 678 +++++++++++++++++++++
->  .../media/platform/renesas/rzv2h-ivc/rzv2h-ivc.h   | 133 ++++
->  10 files changed, 1560 insertions(+)
-> ---
-> base-commit: 19272b37aa4f83ca52bdf9c16d5d81bdd1354494
-> change-id: 20250624-ivc-833d24376167
 
-That's b4, right? So where is the changelog with lore link to previous
-version?
+Reviewed-by: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
 
-Best regards,
-Krzysztof
+Konrad
 
