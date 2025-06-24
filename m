@@ -1,129 +1,191 @@
-Return-Path: <devicetree+bounces-189119-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-189120-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id C93FEAE6BDA
-	for <lists+devicetree@lfdr.de>; Tue, 24 Jun 2025 17:53:54 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id DBEE5AE6BF3
+	for <lists+devicetree@lfdr.de>; Tue, 24 Jun 2025 18:00:54 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id DD6797A3A56
-	for <lists+devicetree@lfdr.de>; Tue, 24 Jun 2025 15:52:30 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 8CA763AB353
+	for <lists+devicetree@lfdr.de>; Tue, 24 Jun 2025 16:00:29 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id CA019274B47;
-	Tue, 24 Jun 2025 15:53:47 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E45EF2DAFA3;
+	Tue, 24 Jun 2025 16:00:51 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="uMzZ2gJG"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Gm6qAgWt"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9127C3074A1;
-	Tue, 24 Jun 2025 15:53:47 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B608028468E;
+	Tue, 24 Jun 2025 16:00:51 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1750780427; cv=none; b=CIcpDI1ZJMctViq8m6+5zoffNDegUgYdXViOqFcnr9meGVSUcigywbtJgQJ2cBCiBvr9zuktT3PlutIZB8HzOAR2RXA/5GHZpgX1cbGnvfrcgknhJkwrrhZVpt6QAp6UAWuFMilp31ZLHgoI632BRjm7itCdMrF3JQ0QM+lD56o=
+	t=1750780851; cv=none; b=lLSHtB7BLglX06gBi0r5BnLL5M3dBwwcyJD1FEHr48UN+n26+U2v0xr777crhzBaM5XuIASGRIKA3IoUqJ5fzmpfq34PeZG5HWF+1B11PYNLWUzM3Brkw4cKstd4rpLCf/bAO80DgZY7k09L5nUXlpnQwgRI6VdqBYTbynuhgiA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1750780427; c=relaxed/simple;
-	bh=5gIuZaIyM0SgNtIvnnpKjpM1YltAyHByEE6D09stErU=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=sImN6caA5St/mipH/l1cYiSoqhOTs+LyI6pnfHkws81V8ZNZTv8ok+liVOncuc9nyQr8G6mQtj20ZmpuqZO6xTJyZ92hLHbyLYIWBcuRXQIx1sa0esJt6vxtD6pdiweY0ccp88/50wYcJRZFNcOTkvu1L80qyvEKexZJPxX3FgE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=uMzZ2gJG; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 7FCA4C4CEE3;
-	Tue, 24 Jun 2025 15:53:43 +0000 (UTC)
+	s=arc-20240116; t=1750780851; c=relaxed/simple;
+	bh=Z8jA80S3zwy20ZT2jiHgqV2tMjx8AnSmArLZvzv3nvs=;
+	h=Date:From:To:Cc:Subject:Message-ID:MIME-Version:Content-Type:
+	 Content-Disposition:In-Reply-To; b=jIvYCFPEEdXDwsrhgaTnl7RgP3iysLqlNEyoikFRgyuXqrMbSvf/QbYPj5rnOPcsC/boy8jndYBVXPQZeb9z+Sxnre1OmlWMYfeuYtrnaiNpjDhEuqxV+D6+ZMHHPbmO9se/mdMzT1tjFghuHiHMDO0ksJTl/BkHjvglHiyJee4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Gm6qAgWt; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 17B0BC4CEE3;
+	Tue, 24 Jun 2025 16:00:51 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1750780427;
-	bh=5gIuZaIyM0SgNtIvnnpKjpM1YltAyHByEE6D09stErU=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=uMzZ2gJG0TMEGpMVxiZHeLdfiXSAJ+T3/T4x4bgZPBc9wtt2C3vBJZPx7RUO7pzV7
-	 lD1VDfRASF6KaK7Ww3fKSeaTkws+AN8Mzz8FMLUOawupf+ELUiRAimpcF0vDk8mbXP
-	 IT2Dpmqp/nyuQzLRfPWyJoODLt0LUIFydHyeIgh7EQz3onJNCtYU1NVsLwBA+lMiIC
-	 3I1D6u/4aXIIzafWyePJlp1uBqE6C21sn79PgMfrG5DZtfAQVTAYUfx1EwPkUWAb9J
-	 0lYpVqNzO1TQycN+lcjutyS5WcGz8+JUjiIwEzBUNzXdOGud8oNexRNPY5l/c6a9mC
-	 IdwDZTxK4Twug==
-Date: Tue, 24 Jun 2025 16:53:40 +0100
-From: Lee Jones <lee@kernel.org>
-To: Sven Peter <sven@kernel.org>
-Cc: Bartosz Golaszewski <brgl@bgdev.pl>,
-	Linus Walleij <linus.walleij@linaro.org>,
-	Sebastian Reichel <sre@kernel.org>, Janne Grunau <j@jannau.net>,
-	Alyssa Rosenzweig <alyssa@rosenzweig.io>,
-	Neal Gompa <neal@gompa.dev>, Hector Martin <marcan@marcan.st>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, Marc Zyngier <maz@kernel.org>,
-	"Russell King (Oracle)" <rmk+kernel@armlinux.org.uk>,
-	asahi@lists.linux.dev, linux-arm-kernel@lists.infradead.org,
-	linux-gpio@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org, linux-pm@vger.kernel.org
-Subject: Re: [PATCH v7 05/10] mfd: Add Apple Silicon System Management
- Controller
-Message-ID: <20250624155340.GL795775@google.com>
-References: <20250610-smc-6-15-v7-0-556cafd771d3@kernel.org>
- <20250610-smc-6-15-v7-5-556cafd771d3@kernel.org>
- <20250619114958.GJ587864@google.com>
- <f30406ae-90ed-4f81-9519-e6ae2dcc9e03@kernel.org>
+	s=k20201202; t=1750780851;
+	bh=Z8jA80S3zwy20ZT2jiHgqV2tMjx8AnSmArLZvzv3nvs=;
+	h=Date:From:To:Cc:Subject:In-Reply-To:From;
+	b=Gm6qAgWtekRL84jy+ZUefdYbAADtOsCjYh2ciwsENfw341fbejMX2TDi5cfNJl/CD
+	 ICKJmnx6l8JyjRFSWtI9POmr1Wm/AGdsz5Pr5U+v+/bK9eET9si6UvGoZbdGTiNcGY
+	 rMoSvtffoFcRWzS64WjZ2ACXC71itT8eYiRturXjhUmTbK5UBlDG6Yk5SYMQtDu7wK
+	 /4+dmb4TGispkcEalM5ACbAvfgThuAmVvW9FraoHlJYLc+tLuyYWmCgk91ZGtz9eE1
+	 /WrqqzHy4yc3dXWkx9kNLUgf9DuIbrBFdc4HvBTGck6TEmgsYfUD70HvIsr3MjFq5b
+	 boGBcYNJoyPTA==
+Date: Tue, 24 Jun 2025 11:00:49 -0500
+From: Bjorn Helgaas <helgaas@kernel.org>
+To: Sai Krishna Musham <sai.krishna.musham@amd.com>
+Cc: bhelgaas@google.com, lpieralisi@kernel.org, kw@linux.com,
+	mani@kernel.org, robh@kernel.org, krzk+dt@kernel.org,
+	conor+dt@kernel.org, cassel@kernel.org, linux-pci@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	michal.simek@amd.com, bharat.kumar.gogada@amd.com,
+	thippeswamy.havalige@amd.com
+Subject: Re: [PATCH v3 2/2] PCI: amd-mdb: Add support for PCIe RP PERST#
+ signal handling
+Message-ID: <20250624160049.GA1479461@bhelgaas>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <f30406ae-90ed-4f81-9519-e6ae2dcc9e03@kernel.org>
+In-Reply-To: <20250618080931.2472366-3-sai.krishna.musham@amd.com>
 
-On Sat, 21 Jun 2025, Sven Peter wrote:
-
-> On 19.06.25 13:49, Lee Jones wrote:
-> > On Tue, 10 Jun 2025, Sven Peter wrote:
-> > 
-> > > The System Management Controller (SMC) on Apple Silicon machines is a
-> > > piece of hardware that exposes various functionalities such as
-> > > temperature sensors, voltage/power meters, shutdown/reboot handling,
-> > > GPIOs and more.
-> > > 
-> > > Communication happens via a shared mailbox using the RTKit protocol
-> > > which is also used for other co-processors. The SMC protocol then allows
-> > > reading and writing many different keys which implement the various
-> > > features. The MFD core device handles this protocol and exposes it
-> > > to the sub-devices.
-> > > 
-> > > Some of the sub-devices are potentially also useful on pre-M1 Apple
-> > > machines and support for SMCs on these machines can be added at a later
-> > > time.
-> > > 
-> > > Co-developed-by: Hector Martin <marcan@marcan.st>
-> > > Signed-off-by: Hector Martin <marcan@marcan.st>
-> > > Reviewed-by: Alyssa Rosenzweig <alyssa@rosenzweig.io>
-> > > Reviewed-by: Neal Gompa <neal@gompa.dev>
-> > > Signed-off-by: Sven Peter <sven@kernel.org>
-> > > ---
-> > >   MAINTAINERS                |   2 +
-> > >   drivers/mfd/Kconfig        |  18 ++
-> > >   drivers/mfd/Makefile       |   1 +
-> > >   drivers/mfd/macsmc.c       | 498 +++++++++++++++++++++++++++++++++++++++++++++
-> > >   include/linux/mfd/macsmc.h | 279 +++++++++++++++++++++++++
-> > >   5 files changed, 798 insertions(+)
-> > 
-> > This is ready.  Let me know when you have all of the other driver/* Acks.
-> > 
+On Wed, Jun 18, 2025 at 01:39:31PM +0530, Sai Krishna Musham wrote:
+> Add GPIO based PERST# signal handling for AMD Versal Gen 2 MDB
+> PCIe Root Port.
 > 
-> They've all been reviewed by the respective maintainers.
+> Signed-off-by: Sai Krishna Musham <sai.krishna.musham@amd.com>
+> ---
+> Changes in v3:
+> - Implement amd_mdb_parse_pcie_port to parse bridge node for reset-gpios property.
 > 
-> I assume you want to take this all through the mfd tree and we'll need acks
-> from Sebastian for power/reset and either Linus or Bartosz for gpio then.
+> Changes in v2:
+> - Change delay to PCIE_T_PVPERL_MS
 
-That's right.
+v3 https://lore.kernel.org/r/20250618080931.2472366-1-sai.krishna.musham@amd.com/
+v2 https://lore.kernel.org/r/20250429090046.1512000-1-sai.krishna.musham@amd.com/
+v1 https://lore.kernel.org/r/20250326041507.98232-1-sai.krishna.musham@amd.com/
 
-> The one line change inside drivers/soc/apple would usually go through my
-> tree and I'm fine with taking that through mfd instead.
+> ---
+>  drivers/pci/controller/dwc/pcie-amd-mdb.c | 45 ++++++++++++++++++++++-
+>  1 file changed, 44 insertions(+), 1 deletion(-)
+> 
+> diff --git a/drivers/pci/controller/dwc/pcie-amd-mdb.c b/drivers/pci/controller/dwc/pcie-amd-mdb.c
+> index 4eb2a4e8189d..b4c5b71900a5 100644
+> --- a/drivers/pci/controller/dwc/pcie-amd-mdb.c
+> +++ b/drivers/pci/controller/dwc/pcie-amd-mdb.c
+> @@ -18,6 +18,7 @@
+>  #include <linux/resource.h>
+>  #include <linux/types.h>
+>  
+> +#include "../../pci.h"
+>  #include "pcie-designware.h"
+>  
+>  #define AMD_MDB_TLP_IR_STATUS_MISC		0x4C0
+> @@ -63,6 +64,7 @@ struct amd_mdb_pcie {
+>  	void __iomem			*slcr;
+>  	struct irq_domain		*intx_domain;
+>  	struct irq_domain		*mdb_domain;
+> +	struct gpio_desc		*perst_gpio;
+>  	int				intx_irq;
+>  };
+>  
+> @@ -284,7 +286,7 @@ static int amd_mdb_pcie_init_irq_domains(struct amd_mdb_pcie *pcie,
+>  	struct device_node *pcie_intc_node;
+>  	int err;
+>  
+> -	pcie_intc_node = of_get_next_child(node, NULL);
+> +	pcie_intc_node = of_get_child_by_name(node, "interrupt-controller");
 
-If there are no build-time dependencies on it, you can take it.
+Is this change logically part of the PERST# support?  If not, this
+could be a separate patch.
 
-I'm happy to take only the inter-dep ones or all (except the arch/ ones).
-
--- 
-Lee Jones [李琼斯]
+>  	if (!pcie_intc_node) {
+>  		dev_err(dev, "No PCIe Intc node found\n");
+>  		return -ENODEV;
+> @@ -402,6 +404,34 @@ static int amd_mdb_setup_irq(struct amd_mdb_pcie *pcie,
+>  	return 0;
+>  }
+>  
+> +static int amd_mdb_parse_pcie_port(struct amd_mdb_pcie *pcie)
+> +{
+> +	struct device *dev = pcie->pci.dev;
+> +	struct device_node *pcie_port_node;
+> +
+> +	pcie_port_node = of_get_next_child_with_prefix(dev->of_node, NULL, "pcie");
+> +	if (!pcie_port_node) {
+> +		dev_err(dev, "No PCIe Bridge node found\n");
+> +		return -ENODEV;
+> +	}
+> +
+> +	/* Request the GPIO for PCIe reset signal and assert */
+> +	pcie->perst_gpio = devm_fwnode_gpiod_get(dev, of_fwnode_handle(pcie_port_node),
+> +						 "reset", GPIOD_OUT_HIGH, NULL);
+> +	if (IS_ERR(pcie->perst_gpio)) {
+> +		if (PTR_ERR(pcie->perst_gpio) != -ENOENT) {
+> +			of_node_put(pcie_port_node);
+> +			return dev_err_probe(dev, PTR_ERR(pcie->perst_gpio),
+> +					     "Failed to request reset GPIO\n");
+> +		}
+> +		pcie->perst_gpio = NULL;
+> +	}
+> +
+> +	of_node_put(pcie_port_node);
+> +
+> +	return 0;
+> +}
+> +
+>  static int amd_mdb_add_pcie_port(struct amd_mdb_pcie *pcie,
+>  				 struct platform_device *pdev)
+>  {
+> @@ -426,6 +456,14 @@ static int amd_mdb_add_pcie_port(struct amd_mdb_pcie *pcie,
+>  
+>  	pp->ops = &amd_mdb_pcie_host_ops;
+>  
+> +	if (pcie->perst_gpio) {
+> +		mdelay(PCIE_T_PVPERL_MS);
+> +
+> +		/* Deassert the reset signal */
+> +		gpiod_set_value_cansleep(pcie->perst_gpio, 0);
+> +		mdelay(PCIE_T_RRS_READY_MS);
+> +	}
+> +
+>  	err = dw_pcie_host_init(pp);
+>  	if (err) {
+>  		dev_err(dev, "Failed to initialize host, err=%d\n", err);
+> @@ -444,6 +482,7 @@ static int amd_mdb_pcie_probe(struct platform_device *pdev)
+>  	struct device *dev = &pdev->dev;
+>  	struct amd_mdb_pcie *pcie;
+>  	struct dw_pcie *pci;
+> +	int ret;
+>  
+>  	pcie = devm_kzalloc(dev, sizeof(*pcie), GFP_KERNEL);
+>  	if (!pcie)
+> @@ -454,6 +493,10 @@ static int amd_mdb_pcie_probe(struct platform_device *pdev)
+>  
+>  	platform_set_drvdata(pdev, pcie);
+>  
+> +	ret = amd_mdb_parse_pcie_port(pcie);
+> +	if (ret)
+> +		return ret;
+> +
+>  	return amd_mdb_add_pcie_port(pcie, pdev);
+>  }
+>  
+> -- 
+> 2.43.0
+> 
 
