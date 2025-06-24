@@ -1,91 +1,136 @@
-Return-Path: <devicetree+bounces-189140-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-189141-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id DC6D5AE6D9F
-	for <lists+devicetree@lfdr.de>; Tue, 24 Jun 2025 19:33:05 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0045AAE6DB9
+	for <lists+devicetree@lfdr.de>; Tue, 24 Jun 2025 19:40:44 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 91E0F5A034D
-	for <lists+devicetree@lfdr.de>; Tue, 24 Jun 2025 17:32:16 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id CA5E43B8FF1
+	for <lists+devicetree@lfdr.de>; Tue, 24 Jun 2025 17:40:19 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 878382E3398;
-	Tue, 24 Jun 2025 17:32:25 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1D91A2E610C;
+	Tue, 24 Jun 2025 17:40:41 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="e5xThmII"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="d13jDyH0"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wr1-f42.google.com (mail-wr1-f42.google.com [209.85.221.42])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5932628003A;
-	Tue, 24 Jun 2025 17:32:25 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 500592222D2;
+	Tue, 24 Jun 2025 17:40:38 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.42
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1750786345; cv=none; b=FnT4m+Jg+k9pXflFnD5qF1lZbEsjiXgaZOxn+ypFwtX3eZ90k5s4Smg9tOeAnZFT7HqCGVk5WECmdoSNlVz8XbwuF4sQ2FOIKCk5vQOhCHpio82sSXg7H7+l6z9fhwnmkTVKOqcxSMrgUs1zF7lEXcDigCh08LqcUOS9c2Rvynw=
+	t=1750786841; cv=none; b=nOvJdAZVBgfBSYR6immNNo+G0S8a+G46GdJh4a6lFFqZu0dCFR6ohzL6lD2crbIW7Rc3xsSZtck91OC9WCYpTGnNwwKixnSEtHQxAVj2fABFE3plXarkztub6tmluxvr2MS8Enqubg8EUaqGfSU/m8urxXSraF3/TSq74Ez2dHg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1750786345; c=relaxed/simple;
-	bh=3Gfoz12u4n3dZw2dpTpLvMAIURpuyh3gULKIlYm11H8=;
-	h=Message-ID:Date:MIME-Version:Subject:To:References:From:
-	 In-Reply-To:Content-Type; b=bfMIkprK75EWLR/EGpVsOpLzJ2im+0xZKuE0LGVSTxwG+20JXaTxJ0/hgkStr4jXga9iNjtQq6SqJWm2l2qwOQl0xyb46nhaDx3HMQShgSukhcQPYVrfq1JH1Re2UfnkmZZ9GLowShcVGwjfvL0j0GRrXSPamZjseCjn0y2qqzs=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=e5xThmII; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 7DFB3C4CEE3;
-	Tue, 24 Jun 2025 17:32:24 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1750786345;
-	bh=3Gfoz12u4n3dZw2dpTpLvMAIURpuyh3gULKIlYm11H8=;
-	h=Date:Subject:To:References:From:In-Reply-To:From;
-	b=e5xThmIIQw1Fu5aejPOHOGUnCTT/bJGW5V4Daf1ZsVn6FTucYlmSkizm8sRTduwkC
-	 62a49+eVGqhR/dhZS96Slr+hp54b+yZk7MYfF1Fdd2Kskj59qU6EPfuhWFELdqBCD1
-	 epISL4WmR+8wPDnuM283/LT2+bon2z8FRCI4HVIeyfA5of4vvDJVtmBupgS2KRrt0J
-	 cScVTKYV1ZpTxyyXgww8hGMdoEE5ChQw5Ym7mA8JbrNOsrYZUzNK10MvWDY8iVzxuU
-	 Lhu0U8Hj2g1Mfyu4qT6H+a8TnhuYB5jLBnlEGrgyYDCUeLdAL2uiF+z5lcOowdmnp/
-	 aPBApP5QNTP9g==
-Message-ID: <70e3a367-8d9d-477b-9858-9f2a7b97bbca@kernel.org>
-Date: Tue, 24 Jun 2025 12:32:23 -0500
+	s=arc-20240116; t=1750786841; c=relaxed/simple;
+	bh=YhoQgm0PvGp46pc/NLqp1FnyCxWoY1MPU8o9QFlgx1U=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=ZjcGWNcf0OfDK72kazol6NN82DHvAeNnBmiKWiFhZ9H/9xgQ5mVZ2eU8KRKXxrmj3WdWCLUjZp+YU2bjEZ2p13IRb665sntqooUpLn9PNAGs1bWuZRQAFoJZJPYjQl2QWYFVAyqpkC+jkUBqlSCowZ580zOWn3MeWj3rPINA6fk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=d13jDyH0; arc=none smtp.client-ip=209.85.221.42
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-wr1-f42.google.com with SMTP id ffacd0b85a97d-3a6cd1a6fecso748575f8f.3;
+        Tue, 24 Jun 2025 10:40:38 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1750786837; x=1751391637; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=OFY1porl5bWPwHx+ruPBvNUd9kv7h/Kd82He4WS0fRM=;
+        b=d13jDyH0K29I/6MjRpSkSHLTZ8Q9mHJBk2LqqMfG9TXqz1QsZp7lhWiQTalWN5Fqjn
+         txTlHUec1UG4WylaVb15r96oTthJ9CtWvSFU7XQyEmfBSzVZ3JDpH+VNZsB1q6DidD7P
+         FnFRJP+nus+Au4IHStc0Cptnj6RdnaJy0U/hKv/rK5MT/lFXxjaU8q/UieyHWaJ02le/
+         diyl1yk26fdiwy77KaKvhaJbyCsStNIvaw3AAWNTv2UvJb1yXCfS43UGnNQNGqrZhZax
+         VPQdgHj4/LOhT9UTGmPpFjCUuGJQZrqwUoEjS8TnbcQtpprJqDADbjlhQSaaeKy8XDX/
+         YoIw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1750786837; x=1751391637;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=OFY1porl5bWPwHx+ruPBvNUd9kv7h/Kd82He4WS0fRM=;
+        b=Si1ZoKXJyvnrPHuyvDvmTharNLVNjjtp8fqmtchQtyYG4o2u/SzCmDmnJfJx/4mz70
+         KdGWm0pEpRQ88RRoyo+VXrvYxla8s8oAr+i3XwPskEObUCGKLretc392aAMCarYKCUYC
+         vgIt5eI/y0erfAQGMtimcYbuxR2YAvJ8djL87aVrvJElpIbhyEhAH0M/zW0MLGHCLC57
+         mHfB2Ehx9IiTuopPdAf+JIPbc5wRVOkZGAE3tgJrP/rBMULzMMQgaLjrlYcxor7imk6U
+         1pZsRYESnRlfUhZweR0B/PWoDk6HJ6qpvMjuc2UJbZ6fJK8C33h7/ML4Q2Q2LDIjLFyw
+         dWrg==
+X-Forwarded-Encrypted: i=1; AJvYcCWa0i/TCO2r3qcawiAqJ2Cqy0ZEslMzlSHPj1vMJEKS70lqq5cqhuRJRFUvWc+VRYnihjO/jku1nXzv@vger.kernel.org, AJvYcCWo/ka5y/L1rIOHNK+pnFWCrrb3kLlg23m9BQgXi5Cm8x46pK0rLobQ9LT0uh7vimEkgJ4XheINIQBLdfbK@vger.kernel.org
+X-Gm-Message-State: AOJu0YzaEa6Mqrt2J70RDyP5bagFy5cg1wEetyi4BgCGGB+CbikoJ6MN
+	YkKArb0Wxi2A0aKcWj+Qa+Gij6UxaaU5PsKdmeKtgVb5Ki7zo2yVi7ZFEL2NMJfF
+X-Gm-Gg: ASbGncuNIIIFf6CVCpxc8I05Jd12dNp0sAIc61eiEvTKsu1hw5qFK5fvHSBPDoWNE4V
+	c8ioFOkCG2Mc+Bj/HWZtkZ2GTuX7fBDd65yIrKJOPilmLept2p2fljdH39F67V/gOpysyvooRZd
+	vThqyBAh36McT8MuCVA77o05tY/xShZ0CF3WnrtuSu6oCmwz7TE3BE1ZP0a1BFCdoGNydBgtrht
+	P55F9XJc0eUwpMijmiPrQSHXH3L39532dnrsgKT17oB7Dh4if9HD9zvsq+axELZQ+0CZIvoL9d3
+	wEaGFoJOKjMAQCZLjLm37YjD45HPVZ+bElUXQtb30XowsFzDt6S7q7hXASkhsGK2t7JrrPjY7r3
+	dSFqOioSHXNp1AvaCFHKz91oUs28VYJ8=
+X-Google-Smtp-Source: AGHT+IFtT41vpD34xSBuIrcMJgXGQTeQjP18pvo3pwzWrXiRe2esqep++fdIDTaxFi61D0d5cVUWeg==
+X-Received: by 2002:a05:6000:2482:b0:3a5:8abe:a264 with SMTP id ffacd0b85a97d-3a6d12fb9f9mr13459853f8f.37.1750786835620;
+        Tue, 24 Jun 2025 10:40:35 -0700 (PDT)
+Received: from iku.example.org ([2a06:5906:61b:2d00:a522:16f6:ec97:d332])
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-453646cb692sm149812735e9.2.2025.06.24.10.40.34
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 24 Jun 2025 10:40:35 -0700 (PDT)
+From: Prabhakar <prabhakar.csengg@gmail.com>
+X-Google-Original-From: Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+To: Geert Uytterhoeven <geert+renesas@glider.be>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Magnus Damm <magnus.damm@gmail.com>
+Cc: linux-renesas-soc@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	Prabhakar <prabhakar.csengg@gmail.com>,
+	Biju Das <biju.das.jz@bp.renesas.com>,
+	Fabrizio Castro <fabrizio.castro.jz@renesas.com>,
+	Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+Subject: [PATCH 0/4] arm64: dts: renesas: Add XSPI support for RZ/V2N and RZ/V2H(P) SoCs and EVK
+Date: Tue, 24 Jun 2025 18:40:29 +0100
+Message-ID: <20250624174033.475401-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
+X-Mailer: git-send-email 2.49.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 0/4] Add 4-bit SPI bus width on target devices
-To: yankei.fong@altera.com, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>,
- "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS"
- <devicetree@vger.kernel.org>, open list <linux-kernel@vger.kernel.org>,
- Matthew Gerlach <matthew.gerlach@altera.com>
-References: <cover.1750747163.git.yan.kei.fong@altera.com>
-Content-Language: en-US
-From: Dinh Nguyen <dinguyen@kernel.org>
-In-Reply-To: <cover.1750747163.git.yan.kei.fong@altera.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
 
-On 6/24/25 01:52, yankei.fong@altera.com wrote:
-> From: "Fong, Yan Kei" <yan.kei.fong@altera.com>
-> 
-> Add SPI bus width properties to correctly describe the hardware on the following devices:
->   - Stratix10
->   - Agilex
->   - Agilex5
->   - N5X
-> 
-> Fong, Yan Kei (4):
->    arm64: dts: socfpga: n5x: Add 4-bit SPI bus width
->    arm64: dts: socfpga: stratix10: Add 4-bit SPI bus width
->    arm64: dts: socfpga: agilex: Add 4-bit SPI bus width
->    arm64: dts: socfpga: agilex5: Add 4-bit SPI bus width
-> 
->   arch/arm64/boot/dts/altera/socfpga_stratix10_socdk.dts | 2 ++
->   arch/arm64/boot/dts/intel/socfpga_agilex5_socdk.dts    | 2 ++
->   arch/arm64/boot/dts/intel/socfpga_agilex_socdk.dts     | 2 ++
->   arch/arm64/boot/dts/intel/socfpga_n5x_socdk.dts        | 2 ++
->   4 files changed, 8 insertions(+)
-> 
+From: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
 
-This is for the QSPI driver right? I don't even see the driver using 
-this property. So how would this help?
+Hi all,
+
+This patch series adds XSPI support to the Renesas RZ/V2N (R9A09G056)
+and RZ/V2H(P) (R9A09G057) SoCs. It introduces the XSPI controller nodes
+in the SoC-level DTSI files and enables a connected serial NOR flash
+device on the respective evaluation boards.
+
+Note,
+- DT binding patches have been posted seprately [0]
+- Clock support has been posted already [1] to ML
+- Patches apply on top of series [2]
+
+[0] https://lore.kernel.org/all/20250624171605.469724-1-prabhakar.mahadev-lad.rj@bp.renesas.com/
+[1] https://lore.kernel.org/all/20250624173030.472196-1-prabhakar.mahadev-lad.rj@bp.renesas.com/
+[2] https://lore.kernel.org/all/20250620121045.56114-1-prabhakar.mahadev-lad.rj@bp.renesas.com/
+
+Cheers,
+Prabhakar
+
+Lad Prabhakar (4):
+  arm64: dts: renesas: r9a09g056: Add XSPI node
+  arm64: dts: renesas: r9a09g057: Add XSPI node
+  arm64: dts: renesas: r9a09g056n48-rzv2n-evk: Enable serial NOR FLASH
+  arm64: dts: renesas: r9a09g057h44-rzv2h-evk: Enable serial NOR FLASH
+
+ arch/arm64/boot/dts/renesas/r9a09g056.dtsi    | 23 +++++++++
+ .../dts/renesas/r9a09g056n48-rzv2n-evk.dts    | 48 +++++++++++++++++++
+ arch/arm64/boot/dts/renesas/r9a09g057.dtsi    | 23 +++++++++
+ .../dts/renesas/r9a09g057h44-rzv2h-evk.dts    | 48 +++++++++++++++++++
+ 4 files changed, 142 insertions(+)
+
+-- 
+2.49.0
+
 
