@@ -1,257 +1,152 @@
-Return-Path: <devicetree+bounces-189062-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-189066-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id CDC44AE689E
-	for <lists+devicetree@lfdr.de>; Tue, 24 Jun 2025 16:28:37 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 6A74CAE68C2
+	for <lists+devicetree@lfdr.de>; Tue, 24 Jun 2025 16:32:21 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id B25F91887C6D
-	for <lists+devicetree@lfdr.de>; Tue, 24 Jun 2025 14:24:15 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id D4D1D19257FC
+	for <lists+devicetree@lfdr.de>; Tue, 24 Jun 2025 14:27:20 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5E1922DA74C;
-	Tue, 24 Jun 2025 14:17:10 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 35B3B2D1319;
+	Tue, 24 Jun 2025 14:24:59 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b="rmdx3goE"
+	dkim=pass (1024-bit key) header.d=collabora.com header.i=nfraprado@collabora.com header.b="Y9Db3CJu"
 X-Original-To: devicetree@vger.kernel.org
-Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [213.167.242.64])
+Received: from sender4-op-o14.zoho.com (sender4-op-o14.zoho.com [136.143.188.14])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 770262D130A;
-	Tue, 24 Jun 2025 14:17:08 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=213.167.242.64
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1750774630; cv=none; b=Zj+VJkJle12sPma4JYcRHBqoQb5CB25uxtznnstvm5PVMOwNfAOVsiI9bOdAPsp4Xd6FZVzZNN9byaXkJHTrESMgxJ/zRCus8LP8YxtxYqhbEiHvZfy52ercoDQfWlzRdSRakCSpGMCJN3fW5fW9U1c5GnbL2R54gPg3/VR1f8I=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1750774630; c=relaxed/simple;
-	bh=aeBoJ8p54UOKtgfJ5R4VO20RJ4pdixxB9hiwvMp94Es=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=ZonyrYYyxwqlRbIQnH0GZCID6sftMdq/nXxvpy9OXvF6U5HKCLUC/lLzr8JKK+jLquNoccvLcMPmPe1IkdOnLuA/QLRVC6dgXmYKLehwxTFt6Vx9LgInWWfEhoZhh0on2wGlOb+bv0979hX9nqfszzIec2tEI29SNfVO0OB/daM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ideasonboard.com; spf=pass smtp.mailfrom=ideasonboard.com; dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b=rmdx3goE; arc=none smtp.client-ip=213.167.242.64
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ideasonboard.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ideasonboard.com
-Received: from [192.168.0.43] (cpc141996-chfd3-2-0-cust928.12-3.cable.virginm.net [86.13.91.161])
-	by perceval.ideasonboard.com (Postfix) with ESMTPSA id 9CB30EFF;
-	Tue, 24 Jun 2025 16:16:48 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
-	s=mail; t=1750774609;
-	bh=aeBoJ8p54UOKtgfJ5R4VO20RJ4pdixxB9hiwvMp94Es=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=rmdx3goEzUrmIuksFeSxSH7oaLKU4oxoEj4hhWBD3DitmBnOMFj8TdvFA2uBnIVwN
-	 05n4Dc8qKUygB1YWABULCpxAVbM9aQaQNQjzcqT1CZYFPlCis5AMm1VZppJKJnpC+M
-	 1TqhAQvxoT5PW16F+qD9GGCN4shpC3CqzTuAWboQ=
-Message-ID: <c2ab887c-398d-49c4-9ae6-1d0986c32781@ideasonboard.com>
-Date: Tue, 24 Jun 2025 15:17:03 +0100
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 35E271F4607;
+	Tue, 24 Jun 2025 14:24:56 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=pass smtp.client-ip=136.143.188.14
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1750775099; cv=pass; b=IxjKXiOAYOTIHrPWvR5zhx/fIXnW8yGoivjfdzMgHa++Cv4ndBzrtNtnGHxo/UAyF+KFyVfZI07vNh0vJ9iPzostisKYlJkn4kZvx61eTBfI3yHINUNin9WGIw1PlpI5R6xxvp/owsPHcpP/s+2LpsGKOLxd/kxxUaYpWUb37RQ=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1750775099; c=relaxed/simple;
+	bh=RrCfd4LRI0YthoKkMgXgWQDEDfg201AKOzW91yg3140=;
+	h=Message-ID:Subject:From:To:Cc:Date:In-Reply-To:References:
+	 Content-Type:MIME-Version; b=QEN7wuRUcQzO//cTlhfhySubGSjrR5g7pSurGsFnST1zHNPjvr7IOacsupqhuBoebp39yv6Ci5riXZXMZ4RcoWsomzVxQv1GfxWd8ZXgaYJ7afiLTVPdvBw/wWD8jmzeKIWpv8FRL79V6TAkAxND67GTGXXfWFMdwQJ1khwMQhU=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (1024-bit key) header.d=collabora.com header.i=nfraprado@collabora.com header.b=Y9Db3CJu; arc=pass smtp.client-ip=136.143.188.14
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
+ARC-Seal: i=1; a=rsa-sha256; t=1750775065; cv=none; 
+	d=zohomail.com; s=zohoarc; 
+	b=FtqdH5fHsxD5tdO7RpQju9z7Kg83NOATY3cl0059rNyGDnnP3b9v5JTOlHY6/urmd5nUxZXc5cMU39UUrlA0hWZXJpWRMyKMEIiiJydahC6TEBGh01wTwYzKfZc9tM47Yv7ZorSRTjazwYMRLA06vjhSiZ11hNJyrRlsxIsIBNE=
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=zohomail.com; s=zohoarc; 
+	t=1750775065; h=Content-Type:Content-Transfer-Encoding:Cc:Cc:Date:Date:From:From:In-Reply-To:MIME-Version:Message-ID:References:Subject:Subject:To:To:Message-Id:Reply-To; 
+	bh=RrCfd4LRI0YthoKkMgXgWQDEDfg201AKOzW91yg3140=; 
+	b=ACM7SGKNrUHcbiaQDC0GYK/KK410dR4iCIUK8yPanKSUsXcJp94qDBrO+V9ftpLE50I7K1WyacmNirQxm7/ubHcs85iZMTb/f815+arXp/x/bnTPg2TATcQTUADIyJjJD6TtmoNrnBM8zrI6ey6j0Z8kS8BmBfee6gT2iW1uRVw=
+ARC-Authentication-Results: i=1; mx.zohomail.com;
+	dkim=pass  header.i=collabora.com;
+	spf=pass  smtp.mailfrom=nfraprado@collabora.com;
+	dmarc=pass header.from=<nfraprado@collabora.com>
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; t=1750775065;
+	s=zohomail; d=collabora.com; i=nfraprado@collabora.com;
+	h=Message-ID:Subject:Subject:From:From:To:To:Cc:Cc:Date:Date:In-Reply-To:References:Content-Type:Content-Transfer-Encoding:MIME-Version:Message-Id:Reply-To;
+	bh=RrCfd4LRI0YthoKkMgXgWQDEDfg201AKOzW91yg3140=;
+	b=Y9Db3CJu+WCNT9IPnm9GUXLw/oPeRGGIdJ9OZByccR8anQcerUNem9jDBQpmBSh3
+	fsEYbTHqEY6/DS4vW0m35Mv3iNeztEuw6kqgWK1dg/nKqVabW6tRDbfUm3XKQIHqKof
+	3/O+sJ5oh376h1WzFmpK2W7xZXuOhXJkH5D7VTzw=
+Received: by mx.zohomail.com with SMTPS id 1750775063297142.35232576576414;
+	Tue, 24 Jun 2025 07:24:23 -0700 (PDT)
+Message-ID: <2762e08674df39b79dc169ef3791eaeeaff17d17.camel@collabora.com>
+Subject: Re: [PATCH v1 00/13] pmdomain: Partial refactor, add MT8196 support
+From: =?ISO-8859-1?Q?N=EDcolas?= "F. R. A. Prado" <nfraprado@collabora.com>
+To: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>, 
+	linux-mediatek@lists.infradead.org
+Cc: robh@kernel.org, conor+dt@kernel.org, mbrugger@suse.com, 
+ y.oudjana@protonmail.com, linux-pm@vger.kernel.org, ulf.hansson@linaro.org,
+  linux-kernel@vger.kernel.org, devicetree@vger.kernel.org, 
+ mandyjh.liu@mediatek.com, lihongbo22@huawei.com, wenst@chromium.org, 
+ matthias.bgg@gmail.com, krzk+dt@kernel.org, kernel@collabora.com, 
+ linux-arm-kernel@lists.infradead.org
+Date: Tue, 24 Jun 2025 10:24:21 -0400
+In-Reply-To: <20250623120154.109429-1-angelogioacchino.delregno@collabora.com>
+References: 
+	<20250623120154.109429-1-angelogioacchino.delregno@collabora.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+User-Agent: Evolution 3.46.4-2 
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 1/3] dt-bindings: media: Add bindings for the RZ/V2H
- IVC block
-To: Krzysztof Kozlowski <krzk@kernel.org>, linux-media@vger.kernel.org,
- devicetree@vger.kernel.org, linux-renesas-soc@vger.kernel.org
-Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>,
- Geert Uytterhoeven <geert+renesas@glider.be>,
- Magnus Damm <magnus.damm@gmail.com>, Philipp Zabel <p.zabel@pengutronix.de>,
- jacopo.mondi@ideasonboard.com, biju.das.jz@bp.renesas.com
-References: <20250624-ivc-v2-0-e4ecdddb0a96@ideasonboard.com>
- <20250624-ivc-v2-1-e4ecdddb0a96@ideasonboard.com>
- <cfc25ba6-753e-41bd-8cb6-f31ba57593a8@kernel.org>
-Content-Language: en-US
-From: Dan Scally <dan.scally@ideasonboard.com>
-Autocrypt: addr=dan.scally@ideasonboard.com; keydata=
- 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
-In-Reply-To: <cfc25ba6-753e-41bd-8cb6-f31ba57593a8@kernel.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
+X-ZohoMailClient: External
 
-Hi Krzysztof - thanks for comments
+On Mon, 2025-06-23 at 14:01 +0200, AngeloGioacchino Del Regno wrote:
+> This series refactors the bus protection regmaps retrieval to avoid
+> searching in all power domain devicetree subnodes for vendor
+> properties
+> to get syscons for different busses, and adds a new property which is
+> located in the power controller root node containing handles to the
+> same.
+>=20
+> Retrocompatibility is retained and was tested on multiple SoCs in the
+> Collabora lab - specifically, on Genio 350/510/700/1200, and manually
+> on MT6795 Helio (Xperia M5 Smartphone), MT8186, MT8192 and MT8195
+> Chromebooks.
+>=20
+> This was tested *three times*:
+> =C2=A0- Before the per-SoC conversion in drivers/pmdomain/mediatek
+> =C2=A0- With per-SoC conversion code but with *legacy* devicetree
+> =C2=A0- With per-SoC conversion code and with *new* devicetree conversion
+>=20
+> All of those tests were successful on all of the aforementioned SoCs.
+>=20
+> This also adds support for:
+> =C2=A0- Modem power domain for both old and new MediaTek SoCs, useful for
+> =C2=A0=C2=A0 bringing up the GSM/3G/4G/5G modem for both laptop and smart=
+phone
+> use
+> =C2=A0- RTFF MCU HW, as found in MT8196 Chromebooks and MT6991 Dimensity
+> 9400
+> =C2=A0- Hardware Voter (MT8196/MT6991), allowing ATF, remote processors
+> and
+> =C2=A0=C2=A0 the AP (Linux) to manage the same power domains through a vo=
+ter
+> MCU,
+> =C2=A0=C2=A0 avoiding power racing
+> =C2=A0- Directly controlled power domains for MT8196
+> =C2=A0- Voted power domains for MT8196
+> =C2=A0- Multimedia (voted) power domains for MT8196.
+>=20
+> Note that all of the power domains for MT8196 should also work on
+> MT6991
+> but since I have no Dimensity 9400 boards, even though I'm 99.5% sure
+> that
+> it will simply work as those are the same, I avoided to add
+> compatibles
+> for 6991 as it's impossible for me to test.
+>=20
+> AngeloGioacchino Del Regno (13):
+> =C2=A0 dt-bindings: power: mediatek: Document mediatek,bus-protection
+> =C2=A0 pmdomain: mediatek: Refactor bus protection regmaps retrieval
+> =C2=A0 pmdomain: mediatek: Handle SoCs with inverted SRAM power-down bits
+> =C2=A0 pmdomain: mediatek: Move ctl sequences out of power_on/off
+> functions
+> =C2=A0 pmdomain: mediatek: Add support for modem power sequences
+> =C2=A0 pmdomain: mediatek: Add support for RTFF Hardware in MT8196/MT6991
+> =C2=A0 pmdomain: mediatek: Add support for Hardware Voter power domains
+> =C2=A0 pmdomain: mediatek: Add support for secure HWCCF infra power on
+> =C2=A0 pmdomain: mediatek: Convert all SoCs to new style regmap retrieval
+> =C2=A0 arm64: dts: mediatek: Convert all SoCs to use mediatek,bus-
+> protection
+> =C2=A0 dt-bindings: power: Add support for MT8196 power controllers
+> =C2=A0 pmdomain: mediatek: Add support for MT8196 SCPSYS power domains
+> =C2=A0 pmdomain: mediatek: Add support for MT8196 HFRPSYS power domains
 
-On 24/06/2025 14:16, Krzysztof Kozlowski wrote:
-> On 24/06/2025 14:35, Daniel Scally wrote:
->> The RZ/V2H SoC has a block called the Input Video Control block which
->> feeds image data into the Image Signal Processor. Add dt bindings to
->> describe the IVC.
->>
->> Signed-off-by: Daniel Scally <dan.scally@ideasonboard.com>
->> ---
->> Changes in v2:
->>
->> 	- compatible matches filename
-> This is not what I asked.
+For the entire series,
 
+Reviewed-by: N=C3=ADcolas F. R. A. Prado <nfraprado@collabora.com>
 
-Ah, you meant the other way round. Ok.
+(as I've reviewed this internally before submission)
 
->
->> 	- Added power-domains
->> 	- Aligned clock and reset entries on opening "<"
->> 	- Removed status = "okay"; from example
->> ---
->>   .../bindings/media/renesas,rzv2h-ivc.yaml          | 103 +++++++++++++++++++++
->>   1 file changed, 103 insertions(+)
->>
->> diff --git a/Documentation/devicetree/bindings/media/renesas,rzv2h-ivc.yaml b/Documentation/devicetree/bindings/media/renesas,rzv2h-ivc.yaml
->> new file mode 100644
->> index 0000000000000000000000000000000000000000..ee0849eeeaba840cf43c81d69449c631ad1c6a6a
->> --- /dev/null
->> +++ b/Documentation/devicetree/bindings/media/renesas,rzv2h-ivc.yaml
->> @@ -0,0 +1,103 @@
->> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
->> +%YAML 1.2
->> +---
->> +$id: http://devicetree.org/schemas/media/renesas,rzv2h-ivc.yaml#
->> +$schema: http://devicetree.org/meta-schemas/core.yaml#
->> +
->> +title: Renesas RZ/V2H Input Video Control Block
->> +
->> +maintainers:
->> +  - Daniel Scally <dan.scally@ideasonboard.com>
->> +
->> +description:
->> +  The IVC block is a module that takes video frames from memory and feeds them
->> +  to the Image Signal Processor for processing.
->> +
->> +properties:
->> +  compatible:
->> +    const: renesas,rzv2h-ivc
-> No, you cannot use generic compatibles. See writing bindings (or
-> basically every review from DT maintainers).
+--=20
+Thanks,
 
-
-OK...to throw a spanner into this, I think there's actually two soc codes with the IP; r9a09g057h44 
-and r9a09g057h48. renesas,rzg2l-cru.yaml and renesas,rzg2l-csi2.yaml seem to use the 'generic' code 
-in a way that suggests this:
-
-compatible:
-         items:
-             - enum:
-                 - renesas,r9a09g057h44-ivc
-                 - renesas,r9a09g057h48-ivc
-             - const: renesas,rzv2h-ivc
-
-
-And then the filename stays as it is, but the example-schema.yaml to me suggests this, without the 
-'generic' code there at all:
-
-
-compatible:
-         items:
-             - enum:
-                 - renesas,r9a09g057h48-ivc
-             - const: renesas,r9a09g057h44-ivc
-
-
-Is the latter one right?
-
-
->
->> +
->> +  reg:
->> +    maxItems: 1
->> +
->> +  interrupts:
->> +    maxItems: 1
->> +
->> +  clocks:
->> +    items:
->> +      - description: Input Video Control block register access clock
->> +      - description: Video input data AXI bus clock
->> +      - description: ISP system clock
->> +
->> +  clock-names:
->> +    items:
->> +      - const: pclk
->> +      - const: vin_aclk
-> aclk
->
-> vin is redundant. This cannot be anything else than vin.
-Fair enough; there's also a clock that the documentation calls "reg_aclk" that goes to the ISP core 
-and I've been calling that one just "aclk" so the "vin_" was to distinguish them...but maybe I 
-should just stop trying to follow the documentation's names; how about "reg", "axi" and "isp" for 
-both the clock and reset names?
-
->
->> +      - const: sclk
->> +
->> +  power-domains:
->> +    maxItems: 1
->> +
->> +  resets:
->> +    items:
->> +      - description: Input Video Control block register access reset
->> +      - description: Video input data AXI bus reset
->> +      - description: ISP core reset
->> +
->> +  reset-names:
->> +    items:
->> +      - const: presetn
->> +      - const: vin_aresetn
->> +      - const: sresetn
->
-> s/reset// because it is redundant... which would point to pretty
-> pointless names. Look at your description - one is core or registers,
-> second is vin and other is isp-core... although then I wonder why ISP
-> input resets ISP core?
-
-
-The two IP blocks share the ISP system clock / ISP core reset and also Video input data AXI bus 
-clock / reset.
-
-
-Thanks
-
-Dan
-
->
->
->
-> Best regards,
-> Krzysztof
+N=C3=ADcolas
 
