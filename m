@@ -1,191 +1,295 @@
-Return-Path: <devicetree+bounces-189120-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-189121-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id DBEE5AE6BF3
-	for <lists+devicetree@lfdr.de>; Tue, 24 Jun 2025 18:00:54 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 906BBAE6BF6
+	for <lists+devicetree@lfdr.de>; Tue, 24 Jun 2025 18:02:58 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 8CA763AB353
-	for <lists+devicetree@lfdr.de>; Tue, 24 Jun 2025 16:00:29 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 731D43AE86B
+	for <lists+devicetree@lfdr.de>; Tue, 24 Jun 2025 16:02:23 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E45EF2DAFA3;
-	Tue, 24 Jun 2025 16:00:51 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 817EC28468E;
+	Tue, 24 Jun 2025 16:02:43 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Gm6qAgWt"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="n+/ZQg3E"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B608028468E;
-	Tue, 24 Jun 2025 16:00:51 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4C9103074AB;
+	Tue, 24 Jun 2025 16:02:42 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1750780851; cv=none; b=lLSHtB7BLglX06gBi0r5BnLL5M3dBwwcyJD1FEHr48UN+n26+U2v0xr777crhzBaM5XuIASGRIKA3IoUqJ5fzmpfq34PeZG5HWF+1B11PYNLWUzM3Brkw4cKstd4rpLCf/bAO80DgZY7k09L5nUXlpnQwgRI6VdqBYTbynuhgiA=
+	t=1750780963; cv=none; b=m9AZzW+hPqGqamP7T3ftKRmzRu/uJRQ3uFwEQxyCOhpXvIvosbfuGgSLpiqkZQO4dIVZCRgosAZkTlKZEUA9lG0AgIQdUY63acCAled11Wf3SZWCVmW9ws/8WUhCUz/lFGRfwWT0/b9Htx3MPdBB6+/KYL8luL3o6Dncxe9QP/k=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1750780851; c=relaxed/simple;
-	bh=Z8jA80S3zwy20ZT2jiHgqV2tMjx8AnSmArLZvzv3nvs=;
-	h=Date:From:To:Cc:Subject:Message-ID:MIME-Version:Content-Type:
-	 Content-Disposition:In-Reply-To; b=jIvYCFPEEdXDwsrhgaTnl7RgP3iysLqlNEyoikFRgyuXqrMbSvf/QbYPj5rnOPcsC/boy8jndYBVXPQZeb9z+Sxnre1OmlWMYfeuYtrnaiNpjDhEuqxV+D6+ZMHHPbmO9se/mdMzT1tjFghuHiHMDO0ksJTl/BkHjvglHiyJee4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Gm6qAgWt; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 17B0BC4CEE3;
-	Tue, 24 Jun 2025 16:00:51 +0000 (UTC)
+	s=arc-20240116; t=1750780963; c=relaxed/simple;
+	bh=FPCSlDVYJ3mJwkIKhhgrkGwH4ruAR20+CRSWbEpS8NA=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=mJ8lLoCV24+3M8e+l9jYXSAT9v7D9m+7egsDuLoTHYlmxVqcpJA1URzyo9b0K2oPE60DDVNoQpXit6V6TEFM4gC3Eyj1J5X+MHb0qjUUCumD5OyFNZWQ3Ib9C5ich8ZhLcV/VCukuDvd9U+y2BuJPfSqzBxGmQldI59FeNS7u2E=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=n+/ZQg3E; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 41142C4CEE3;
+	Tue, 24 Jun 2025 16:02:39 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1750780851;
-	bh=Z8jA80S3zwy20ZT2jiHgqV2tMjx8AnSmArLZvzv3nvs=;
-	h=Date:From:To:Cc:Subject:In-Reply-To:From;
-	b=Gm6qAgWtekRL84jy+ZUefdYbAADtOsCjYh2ciwsENfw341fbejMX2TDi5cfNJl/CD
-	 ICKJmnx6l8JyjRFSWtI9POmr1Wm/AGdsz5Pr5U+v+/bK9eET9si6UvGoZbdGTiNcGY
-	 rMoSvtffoFcRWzS64WjZ2ACXC71itT8eYiRturXjhUmTbK5UBlDG6Yk5SYMQtDu7wK
-	 /4+dmb4TGispkcEalM5ACbAvfgThuAmVvW9FraoHlJYLc+tLuyYWmCgk91ZGtz9eE1
-	 /WrqqzHy4yc3dXWkx9kNLUgf9DuIbrBFdc4HvBTGck6TEmgsYfUD70HvIsr3MjFq5b
-	 boGBcYNJoyPTA==
-Date: Tue, 24 Jun 2025 11:00:49 -0500
-From: Bjorn Helgaas <helgaas@kernel.org>
-To: Sai Krishna Musham <sai.krishna.musham@amd.com>
-Cc: bhelgaas@google.com, lpieralisi@kernel.org, kw@linux.com,
-	mani@kernel.org, robh@kernel.org, krzk+dt@kernel.org,
-	conor+dt@kernel.org, cassel@kernel.org, linux-pci@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	michal.simek@amd.com, bharat.kumar.gogada@amd.com,
-	thippeswamy.havalige@amd.com
-Subject: Re: [PATCH v3 2/2] PCI: amd-mdb: Add support for PCIe RP PERST#
- signal handling
-Message-ID: <20250624160049.GA1479461@bhelgaas>
+	s=k20201202; t=1750780962;
+	bh=FPCSlDVYJ3mJwkIKhhgrkGwH4ruAR20+CRSWbEpS8NA=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=n+/ZQg3Eo0DYsVZpgfKjlHN/ec6EHGcm0Kz+VDqNGyfGTZlPD0T/0+rk6LxkAb+IF
+	 /EnxzEzdA6UkghrvTuQEvZC1VIK/6pxCcm7Um9CkcMsGfrDvL28BFwq0JYV67oaNvF
+	 DHORjlAvYhtsVDuQW5HGeVCSfKzTmd+XhHjjxe8/aeHwOHWhveFouxaQEZEBrji4gt
+	 kedCy4q5qt3RQqjK8HRoFQCahCnPxJ5lKREnu65VNaYHoD4KbTXGJIZ/iyKhB11OiL
+	 FRAkzhP2xOFkqqXnr/paG5FamftxJPSwzLmMF9oCrqmEI78Pzvvt4J3/ar08XSZ1DZ
+	 cRQBvwhgAybYQ==
+Date: Tue, 24 Jun 2025 17:02:35 +0100
+From: Lee Jones <lee@kernel.org>
+To: Samuel Kayode <samuel.kayode@savoirfairelinux.com>
+Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Liam Girdwood <lgirdwood@gmail.com>,
+	Mark Brown <broonie@kernel.org>,
+	Dmitry Torokhov <dmitry.torokhov@gmail.com>,
+	Sebastian Reichel <sre@kernel.org>, Frank Li <Frank.li@nxp.com>,
+	imx@lists.linux.dev, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org, linux-input@vger.kernel.org,
+	linux-pm@vger.kernel.org, Abel Vesa <abelvesa@kernel.org>,
+	Abel Vesa <abelvesa@linux.com>, Robin Gong <b38343@freescale.com>,
+	Robin Gong <yibin.gong@nxp.com>,
+	Enric Balletbo i Serra <eballetbo@gmail.com>
+Subject: Re: [PATCH v7 2/6] mfd: pf1550: add core mfd driver
+Message-ID: <20250624160235.GM795775@google.com>
+References: <20250612-pf1550-v7-0-0e393b0f45d7@savoirfairelinux.com>
+ <20250612-pf1550-v7-2-0e393b0f45d7@savoirfairelinux.com>
+ <20250619130337.GA795775@google.com>
+ <aFWrxtArHjb5nc0M@fedora>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <20250618080931.2472366-3-sai.krishna.musham@amd.com>
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <aFWrxtArHjb5nc0M@fedora>
 
-On Wed, Jun 18, 2025 at 01:39:31PM +0530, Sai Krishna Musham wrote:
-> Add GPIO based PERST# signal handling for AMD Versal Gen 2 MDB
-> PCIe Root Port.
+On Fri, 20 Jun 2025, Samuel Kayode wrote:
+
+> Hi Lee,
 > 
-> Signed-off-by: Sai Krishna Musham <sai.krishna.musham@amd.com>
-> ---
-> Changes in v3:
-> - Implement amd_mdb_parse_pcie_port to parse bridge node for reset-gpios property.
+> Thanks a lot for the review.
 > 
-> Changes in v2:
-> - Change delay to PCIE_T_PVPERL_MS
+> On Thu, Jun 19, 2025 at 02:03:37PM +0100, Lee Jones wrote:
+> > > +static int pf1550_read_otp(const struct pf1550_dev *pf1550, unsigned int index,
+> > 
+> > What does OTP mean?
+> >
+> It's a One-Time Programmable memory with configuration for the pf1550. I will
+> expand on this in the commit description of the next version.
 
-v3 https://lore.kernel.org/r/20250618080931.2472366-1-sai.krishna.musham@amd.com/
-v2 https://lore.kernel.org/r/20250429090046.1512000-1-sai.krishna.musham@amd.com/
-v1 https://lore.kernel.org/r/20250326041507.98232-1-sai.krishna.musham@amd.com/
+Place it in a comment please.
 
-> ---
->  drivers/pci/controller/dwc/pcie-amd-mdb.c | 45 ++++++++++++++++++++++-
->  1 file changed, 44 insertions(+), 1 deletion(-)
-> 
-> diff --git a/drivers/pci/controller/dwc/pcie-amd-mdb.c b/drivers/pci/controller/dwc/pcie-amd-mdb.c
-> index 4eb2a4e8189d..b4c5b71900a5 100644
-> --- a/drivers/pci/controller/dwc/pcie-amd-mdb.c
-> +++ b/drivers/pci/controller/dwc/pcie-amd-mdb.c
-> @@ -18,6 +18,7 @@
->  #include <linux/resource.h>
->  #include <linux/types.h>
->  
-> +#include "../../pci.h"
->  #include "pcie-designware.h"
->  
->  #define AMD_MDB_TLP_IR_STATUS_MISC		0x4C0
-> @@ -63,6 +64,7 @@ struct amd_mdb_pcie {
->  	void __iomem			*slcr;
->  	struct irq_domain		*intx_domain;
->  	struct irq_domain		*mdb_domain;
-> +	struct gpio_desc		*perst_gpio;
->  	int				intx_irq;
->  };
->  
-> @@ -284,7 +286,7 @@ static int amd_mdb_pcie_init_irq_domains(struct amd_mdb_pcie *pcie,
->  	struct device_node *pcie_intc_node;
->  	int err;
->  
-> -	pcie_intc_node = of_get_next_child(node, NULL);
-> +	pcie_intc_node = of_get_child_by_name(node, "interrupt-controller");
+> > Why do you have to write to 4 registers first?
+> > 
+> The pf1550 was designed such that the registers of the accompanying OTP is
+> accessed indirectly. Valid keys have to be written to specific pf1550
+> registers. After writing the keys, the address of the OTP register to be read
+> is then written to PF1550_TEST_REG_FMRADDR and its corresponding value read from
+> PF1550_TEST_REG_FMRDATA.
 
-Is this change logically part of the PERST# support?  If not, this
-could be a separate patch.
+In a comment please.  If I wondered, so with others.
 
->  	if (!pcie_intc_node) {
->  		dev_err(dev, "No PCIe Intc node found\n");
->  		return -ENODEV;
-> @@ -402,6 +404,34 @@ static int amd_mdb_setup_irq(struct amd_mdb_pcie *pcie,
->  	return 0;
->  }
->  
-> +static int amd_mdb_parse_pcie_port(struct amd_mdb_pcie *pcie)
-> +{
-> +	struct device *dev = pcie->pci.dev;
-> +	struct device_node *pcie_port_node;
-> +
-> +	pcie_port_node = of_get_next_child_with_prefix(dev->of_node, NULL, "pcie");
-> +	if (!pcie_port_node) {
-> +		dev_err(dev, "No PCIe Bridge node found\n");
-> +		return -ENODEV;
-> +	}
-> +
-> +	/* Request the GPIO for PCIe reset signal and assert */
-> +	pcie->perst_gpio = devm_fwnode_gpiod_get(dev, of_fwnode_handle(pcie_port_node),
-> +						 "reset", GPIOD_OUT_HIGH, NULL);
-> +	if (IS_ERR(pcie->perst_gpio)) {
-> +		if (PTR_ERR(pcie->perst_gpio) != -ENOENT) {
-> +			of_node_put(pcie_port_node);
-> +			return dev_err_probe(dev, PTR_ERR(pcie->perst_gpio),
-> +					     "Failed to request reset GPIO\n");
-> +		}
-> +		pcie->perst_gpio = NULL;
-> +	}
-> +
-> +	of_node_put(pcie_port_node);
-> +
-> +	return 0;
-> +}
-> +
->  static int amd_mdb_add_pcie_port(struct amd_mdb_pcie *pcie,
->  				 struct platform_device *pdev)
->  {
-> @@ -426,6 +456,14 @@ static int amd_mdb_add_pcie_port(struct amd_mdb_pcie *pcie,
->  
->  	pp->ops = &amd_mdb_pcie_host_ops;
->  
-> +	if (pcie->perst_gpio) {
-> +		mdelay(PCIE_T_PVPERL_MS);
-> +
-> +		/* Deassert the reset signal */
-> +		gpiod_set_value_cansleep(pcie->perst_gpio, 0);
-> +		mdelay(PCIE_T_RRS_READY_MS);
-> +	}
-> +
->  	err = dw_pcie_host_init(pp);
->  	if (err) {
->  		dev_err(dev, "Failed to initialize host, err=%d\n", err);
-> @@ -444,6 +482,7 @@ static int amd_mdb_pcie_probe(struct platform_device *pdev)
->  	struct device *dev = &pdev->dev;
->  	struct amd_mdb_pcie *pcie;
->  	struct dw_pcie *pci;
-> +	int ret;
->  
->  	pcie = devm_kzalloc(dev, sizeof(*pcie), GFP_KERNEL);
->  	if (!pcie)
-> @@ -454,6 +493,10 @@ static int amd_mdb_pcie_probe(struct platform_device *pdev)
->  
->  	platform_set_drvdata(pdev, pcie);
->  
-> +	ret = amd_mdb_parse_pcie_port(pcie);
-> +	if (ret)
-> +		return ret;
-> +
->  	return amd_mdb_add_pcie_port(pcie, pdev);
->  }
->  
-> -- 
-> 2.43.0
-> 
+> > This should all be made clear in some way or another.
+> > 
+> I'll be adding comments on this in the next version.
+
+Great!
+
+> > > +			   unsigned int *val)
+> > > +{
+> > > +	int ret = 0;
+> > > +
+> > > +	ret = regmap_write(pf1550->regmap, PF1550_PMIC_REG_KEY, 0x15);
+> > 
+> > No magic numbers.  These should all be defined.
+> Will do.
+> > 
+> > > +	if (ret)
+> > > +		goto read_err;
+> > > +	ret = regmap_write(pf1550->regmap, PF1550_CHARG_REG_CHGR_KEY2, 0x50);
+> > > +	if (ret)
+> > > +		goto read_err;
+> > > +	ret = regmap_write(pf1550->regmap, PF1550_TEST_REG_KEY3, 0xab);
+> > > +	if (ret)
+> > > +		goto read_err;
+> > > +	ret = regmap_write(pf1550->regmap, PF1550_TEST_REG_FMRADDR, index);
+> > > +	if (ret)
+> > > +		goto read_err;
+> > > +	ret = regmap_read(pf1550->regmap, PF1550_TEST_REG_FMRDATA, val);
+> > > +	if (ret)
+> > > +		goto read_err;
+> > > +
+> > > +	return 0;
+> > > +
+> > > +read_err:
+> > > +	dev_err_probe(pf1550->dev, ret, "read otp reg %x found!\n", index);
+> ...
+> > > +static int pf1550_add_child_device(struct pf1550_dev *pmic,
+> > > +				   const struct mfd_cell *cell,
+> > > +				   struct regmap_irq_chip_data *pdata,
+> > 
+> > This is not pdata.
+> > 
+> > > +				   int pirq,
+> > > +				   const struct regmap_irq_chip *chip,
+> > > +				   struct regmap_irq_chip_data **data)
+> > > +{
+> > > +	struct device *dev = pmic->dev;
+> > > +	struct irq_domain *domain;
+> > > +	int irq, ret;
+> > > +
+> > > +	irq = regmap_irq_get_virq(pdata, pirq);
+> > > +	if (irq < 0)
+> > > +		return dev_err_probe(dev, irq,
+> > > +				     "Failed to get parent vIRQ(%d) for chip %s\n",
+> > > +				     pirq, chip->name);
+> > > +
+> > > +	ret = devm_regmap_add_irq_chip(dev, pmic->regmap, irq,
+> > > +				       IRQF_ONESHOT | IRQF_SHARED |
+> > > +				       IRQF_TRIGGER_FALLING, 0, chip, data);
+> > > +	if (ret)
+> > > +		return dev_err_probe(dev, ret,
+> > > +				     "Failed to add %s IRQ chip\n",
+> > > +				     chip->name);
+> > > +
+> > > +	domain = regmap_irq_get_domain(*data);
+> > > +
+> > > +	return devm_mfd_add_devices(dev, PLATFORM_DEVID_NONE, cell, 1,
+> > > +				    NULL, 0, domain);
+> > 
+> > Why can't all 3 devices be registered in one call?
+> > 
+> The 3 devices use different regmap_irq_chip s. I have to register them
+> separately cause they have different irq domains but perhaps there is a better
+> way to handle this?
+
+That's okay, just do 3 calls.
+
+Must neater than what we have here.
+
+> > > +}
+> > 
+> > To be honest, the premise around this function is a bit of a mess.
+> > 
+> > Please move all of this into .probe().
+> Will do.
+> > 
+> > > +static int pf1550_i2c_probe(struct i2c_client *i2c)
+> > > +{
+> > > +	const struct mfd_cell *regulator = &pf1550_regulator_cell;
+> > > +	const struct mfd_cell *charger = &pf1550_charger_cell;
+> > > +	const struct mfd_cell *onkey = &pf1550_onkey_cell;
+> > > +	unsigned int reg_data = 0, otp_data = 0;
+> > > +	struct pf1550_dev *pf1550;
+> > > +	int ret = 0;
+> > > +
+> > > +	pf1550 = devm_kzalloc(&i2c->dev, sizeof(*pf1550), GFP_KERNEL);
+> > > +	if (!pf1550)
+> > > +		return -ENOMEM;
+> > > +
+> > > +	i2c_set_clientdata(i2c, pf1550);
+> > > +	pf1550->dev = &i2c->dev;
+> > > +	pf1550->i2c = i2c;
+> > 
+> > What are you storing i2c for?
+> > 
+> It doesn't need to be stored.
+> > Either store dev and irq OR i2c.  You don't need all three.
+> > 
+> Will do.
+> > > +	ret = regmap_read(pf1550->regmap, PF1550_PMIC_REG_DEVICE_ID, &reg_data);
+> > > +	if (ret < 0 || reg_data != PF1550_DEVICE_ID)
+> > > +		return dev_err_probe(pf1550->dev, ret ?: -EINVAL,
+> > > +				     "device not found!\n");
+> > 
+> > Are you sure?  What if the wrong device was found?
+> >
+> I can change the error log here to "Invalid device ID: ..."?
+
+Right.  Invalid or unsupported, etc.
+
+> >
+> ...
+> > > +	/* add top level interrupts */
+> > > +	ret = devm_regmap_add_irq_chip(pf1550->dev, pf1550->regmap, pf1550->irq,
+> > > +				       IRQF_ONESHOT | IRQF_SHARED |
+> > > +				       IRQF_TRIGGER_FALLING,
+> > > +				       0, &pf1550_irq_chip,
+> > > +				       &pf1550->irq_data);
+> > > +	if (ret)
+> > > +		return ret;
+> > > +
+> > > +	ret = pf1550_add_child_device(pf1550, regulator, pf1550->irq_data,
+> > > +				      PF1550_IRQ_REGULATOR,
+> > > +				      &pf1550_regulator_irq_chip,
+> > > +				      &pf1550->irq_data_regulator);
+> > > +	if (ret)
+> > > +		return ret;
+> > > +
+> > > +	ret = pf1550_add_child_device(pf1550, onkey, pf1550->irq_data,
+> > > +				      PF1550_IRQ_ONKEY,
+> > > +				      &pf1550_onkey_irq_chip,
+> > > +				      &pf1550->irq_data_onkey);
+> > > +	if (ret)
+> > > +		return ret;
+> > > +
+> > > +	ret = pf1550_add_child_device(pf1550, charger, pf1550->irq_data,
+> > > +				      PF1550_IRQ_CHG,
+> > > +				      &pf1550_charger_irq_chip,
+> > > +				      &pf1550->irq_data_charger);
+> > > +	return ret;
+> > > +}
+> > > +
+> > > +static int pf1550_suspend(struct device *dev)
+> > > +{
+> > > +	struct i2c_client *i2c = container_of(dev, struct i2c_client, dev);
+> > > +	struct pf1550_dev *pf1550 = i2c_get_clientdata(i2c);
+> > 
+> > You can swap all of this for:
+> > 
+> > 	struct pf1550_dev *pf1550 = dev_get_drvdata(dev).
+> > 
+> Will do.
+> > > +
+> > > +	if (device_may_wakeup(dev)) {
+> > > +		enable_irq_wake(pf1550->irq);
+> > > +		disable_irq(pf1550->irq);
+> > > +	}
+> > > +
+> > > +	return 0;
+> > > +}
+> > > +
+> > > +static int pf1550_resume(struct device *dev)
+> > > +{
+> > > +	struct i2c_client *i2c = container_of(dev, struct i2c_client, dev);
+> > > +	struct pf1550_dev *pf1550 = i2c_get_clientdata(i2c);
+> > 
+> > As above.
+> > 
+> > > +
+> > > +	if (device_may_wakeup(dev)) {
+> > > +		disable_irq_wake(pf1550->irq);
+> > > +		enable_irq(pf1550->irq);
+> > 
+> > I would normally expect these to be around the opposite way to the ones
+> > in .suspend().
+> Do you mean enable_irq_wake and disable_irq in .resume() and the opposite for
+> .suspend()?
+
+Yes.  Or whatever fits best.
+
+Maybe the h/w doesn't work that way, I just found it odd.
+
+-- 
+Lee Jones [李琼斯]
 
