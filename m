@@ -1,55 +1,97 @@
-Return-Path: <devicetree+bounces-189132-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-189134-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6B31BAE6D70
-	for <lists+devicetree@lfdr.de>; Tue, 24 Jun 2025 19:19:34 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id A1410AE6D82
+	for <lists+devicetree@lfdr.de>; Tue, 24 Jun 2025 19:30:53 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 015DC1761F0
-	for <lists+devicetree@lfdr.de>; Tue, 24 Jun 2025 17:19:34 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 2D5401BC615E
+	for <lists+devicetree@lfdr.de>; Tue, 24 Jun 2025 17:31:09 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E4FB62989B0;
-	Tue, 24 Jun 2025 17:19:29 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 832C72E62D2;
+	Tue, 24 Jun 2025 17:30:39 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="cMzeX9fD"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="Cb7nszqD"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wm1-f48.google.com (mail-wm1-f48.google.com [209.85.128.48])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BDEDB1A8F60
-	for <devicetree@vger.kernel.org>; Tue, 24 Jun 2025 17:19:29 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B998E2E62B2;
+	Tue, 24 Jun 2025 17:30:35 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.48
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1750785569; cv=none; b=NanKpI+J7lBh5AG9UNjIf4MOVIMmTkPpDMX/Hd4SQzOWiOYgr0SJoHJCcazP8xft0+qrlw7/+CnjTkJnInXYFCh1z0UonXYhENokmBYwPbXSgjwlypo/BgzAc3o5Wk/y1BxrDIvA/AX9Rlu/wZvtzEUCBrTq2WdARYkRSVIaix8=
+	t=1750786239; cv=none; b=sDG7SctY8XD/8a975rG+9TEuHSOobCVTWR/X6DGeV2u61DMn3hjliHz9CD3vc3sTqe6fC8PyE3CwjZ+IvUe/lAZj6uHURwimX12m7AmU5EH0Taop/yK7cw5tUsEBMKaLlzhdFoyoXwNAmvfJCBYzNtTKH3g3Q8pxSlaW1qT2qBs=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1750785569; c=relaxed/simple;
-	bh=f4fO3gspUXwm6yLiX9zli1umyV3b5sjU5/AkqFFShks=;
-	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=FB2eVUg5JTAU3ij+Nk/f5ao7tE2SNsBiyuPTv0ZzJH+KgcKaXp25f2/oGvQCY93p+G0V/STP7l9jyIdmylK+ye/z2Xy8htQ/MB36tP8Ll3WjygKHSgn+5aSwnF2AZqpFMXRUYet70eSXvPDdoH3ZixQVW+hfLghrKdknSNxN5tw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=cMzeX9fD; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id E4CC4C4CEE3;
-	Tue, 24 Jun 2025 17:19:28 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1750785569;
-	bh=f4fO3gspUXwm6yLiX9zli1umyV3b5sjU5/AkqFFShks=;
-	h=From:To:Cc:Subject:Date:From;
-	b=cMzeX9fDYAPfwDcT/2YNg6t7zbQHMyKrrPk+U5UL57m8jtSJP+LdbPUHOyQ8jN/2o
-	 9ScKApVImDHfm9fQ4amU2soaalaM3QEcy7kYlIptYc3iSdU+DEsoh5Vz/Odc9pzxFA
-	 e6zWZxMGhudd/TI2drgsOlFikkT6q8R7WBfnvR5VO3GCE3gFbnMmNlpJFvkCzahtLs
-	 DP4AzEcGTxOtduWaX5Ba2yXfJx9TGC+z8mGUxxMwUCsu5Gf0KsC1x/Y++HEnrEyRVI
-	 VNJy2HQSUVjTUpWOCnnwSid5sSO7zOQgQO7TbsSjXRRcTGsIKgzMJn8VZ1cfoED+WP
-	 UmZRPesEePKTg==
-From: Dinh Nguyen <dinguyen@kernel.org>
-To: robh+dt@kernel.org,
-	krzysztof.kozlowskii+dt@linaro.org,
-	conor+dt@kernel.org
-Cc: dinguyen@kernel.org,
-	devicetree@vger.kernel.org
-Subject: [PATCHv3] dt-bindings: net: convert socfpga-dwmac.txt to DT schema
-Date: Tue, 24 Jun 2025 12:19:24 -0500
-Message-ID: <20250624171924.433301-1-dinguyen@kernel.org>
-X-Mailer: git-send-email 2.42.0.411.g813d9a9188
+	s=arc-20240116; t=1750786239; c=relaxed/simple;
+	bh=KjfD8/sQycIfcr15duDSGm8a8lz63RMMwIonB2QQzCI=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=F51uTVusJI20BUGPpumYwUsmkMaCeL796TMsPMTjCtdGHxRk1yXmKNj4oThZzXU01jFKDotif9LDObb8Fs832bpV/mvSDWd8GvXHIscvU9DhAAa0YhW6EgVb+UKm9SHVSQSwgFRUQfaJvdLNQT9ohjhM8vksEi+qZfMO7oVWcg8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=Cb7nszqD; arc=none smtp.client-ip=209.85.128.48
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-wm1-f48.google.com with SMTP id 5b1f17b1804b1-451d54214adso5495015e9.3;
+        Tue, 24 Jun 2025 10:30:35 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1750786234; x=1751391034; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=Yu8n/ZxSlMEyHw+8f9j2wZUhhCslJl7/P5zfwbE+6OQ=;
+        b=Cb7nszqDOyjXSSne6TfneiKTAOzr/rJQgfxnRmoMIrdNfFtgWl7zSjorhQmeu8WhbC
+         MQc6J+2l7ga1XLaWeZapI+MWUI604gBVLVOvDUnISlYYWoeqdT2fcVkinZbYleAazF9B
+         MKRokJTZzhgmwR3f3XLMWTWlJPVPLY6bPVSnjfRDn9ba9s0nWRUP6mCOv9uTJtmX4Xaa
+         VqkMYOW1uNT5JWWwO+wz+lrxWCiyhfs9WLWMwNT4j/ERcZno9438Eb1NK48Mgo7XJSaI
+         MdKa5l+zUFvRUyoiuvaO435j8vB8tC0iJ+AP1K0yZjrkERTvAuCttts3CBhUAWhCG4qv
+         zkug==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1750786234; x=1751391034;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=Yu8n/ZxSlMEyHw+8f9j2wZUhhCslJl7/P5zfwbE+6OQ=;
+        b=nuMCi2nSQWvpr7E+llICC2J7wGOMWTMPs/s9TeHIf7gSeQtEj6dsKtlGQnwKD9kTl6
+         DhEYPMGEmVgcLZustU5gShRH+uDy7NjQWZ/vl24gjOHfq1eIGdaGRU/Im01+94L60VGq
+         B+LncwcM/fGK/lCJfKU4bctHocK/s+7gxr7tE38CE0EiJeghcUcYmI8wx2iz4HT++zqI
+         qt/JRBSVGHGklxPsNL4HoRvOL0Um1tDw7I3pbiV5UNPbFwTIhhdwZUA3pX4Me7kn0Yns
+         cIcSGYai0A2DERJPXjX+JqhljOTVEBilPXCBOqSs6+TlMEEDuSf9dst2OYdW7Fdh47kl
+         yt2Q==
+X-Forwarded-Encrypted: i=1; AJvYcCU4IlBj8hnYdv4o97dh9LEl8+NVEOXMJTaXfVynzXvTucN38Q34IU1hxs7dFdz1Q5PmQjopgvBTzbOQSIFD@vger.kernel.org, AJvYcCURKXozVcqWkymlSWcXb/ZZ7VX4+BQgQSNivIyAYsG8Geqz7dm6e5IijSSEfuMjgvo/6j9PQLVNYYVN@vger.kernel.org, AJvYcCUbNAmvA0hjdWGBZstNA88GzdHL+4XLZ2GZo7tYY/pvmOM557ZZUhJjEc95wd/e5pnQkTDvvpPLNxNp@vger.kernel.org
+X-Gm-Message-State: AOJu0YzpBc0NrR+iG7NsVtGDM/4T/JfONuCclDlk9HrBXAFtftKn/z+2
+	XmSsSuZxLgyPmS44tx9VHnf8KFXSs3lQvTYWXyZXV9a17ib46hzAJeR7
+X-Gm-Gg: ASbGncvAbZNXfKStoEK60l/mYz2is5cGLGVtbprx7FghEcNE+OPLFSMHl99eER/S/RG
+	nDdMmUUHHBgkW2vy3OTWOEJO6uvq706VJ+5yomNknpFnkvfPAm3GjfsbeNOMRe8mJ1cg8t9qhf1
+	j0Soe67FYyHOKf/kfjjTKJ9oDhS2Ypf3QjRJcdNgMvYx2emj4S2mFyqhzg/5JCoJSCqHwHRaQFU
+	Wpk1vda8s+9kq5tqXHaET34VxSGQT99Ld2o/zahQj6+FqN90GiGQNs9/DIe+qva2XUrJEGDteRF
+	ORrUD7wTaTffU/OqFcfKJXlBqRAabgOV1H5B0fG4R098TLAsAExi1GzzY79LO5YAAcuGh4c3/hq
+	a/jVRbAkSV6B7rJK0gaWE
+X-Google-Smtp-Source: AGHT+IEYRMfJj8ckgsfejRtU0TYjIX32gYfl66cnRmBlGfHsjbeIKuTNWNIQEq5YMKboPn5X9A8oWw==
+X-Received: by 2002:a05:600c:3150:b0:442:ccf9:e6f2 with SMTP id 5b1f17b1804b1-453659dde70mr160985635e9.16.1750786233542;
+        Tue, 24 Jun 2025 10:30:33 -0700 (PDT)
+Received: from iku.example.org ([2a06:5906:61b:2d00:a522:16f6:ec97:d332])
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-4535ead202asm181662565e9.27.2025.06.24.10.30.32
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 24 Jun 2025 10:30:32 -0700 (PDT)
+From: Prabhakar <prabhakar.csengg@gmail.com>
+X-Google-Original-From: Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+To: Geert Uytterhoeven <geert+renesas@glider.be>,
+	Michael Turquette <mturquette@baylibre.com>,
+	Stephen Boyd <sboyd@kernel.org>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Magnus Damm <magnus.damm@gmail.com>
+Cc: linux-renesas-soc@vger.kernel.org,
+	linux-clk@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	Prabhakar <prabhakar.csengg@gmail.com>,
+	Biju Das <biju.das.jz@bp.renesas.com>,
+	Fabrizio Castro <fabrizio.castro.jz@renesas.com>,
+	Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+Subject: [PATCH 0/6] clk: renesas: Add XSPI clock support for RZ/V2N and RZ/V2H(P)
+Date: Tue, 24 Jun 2025 18:30:24 +0100
+Message-ID: <20250624173030.472196-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
+X-Mailer: git-send-email 2.49.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -58,229 +100,36 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 
-Convert the socfpga-dwmac.txt to yaml.
+From: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
 
-Signed-off-by: Dinh Nguyen <dinguyen@kernel.org>
----
-v3: Address all of Rob Herring's comments
-v2: Add allOf to include the base dmac yaml
-    fix Rob Herring's dt_binding_check warnings
----
- .../bindings/net/altr,dwmac-socfpga.yaml      | 139 ++++++++++++++++++
- .../devicetree/bindings/net/socfpga-dwmac.txt |  57 -------
- 2 files changed, 139 insertions(+), 57 deletions(-)
- create mode 100644 Documentation/devicetree/bindings/net/altr,dwmac-socfpga.yaml
- delete mode 100644 Documentation/devicetree/bindings/net/socfpga-dwmac.txt
+Hi All,
 
-diff --git a/Documentation/devicetree/bindings/net/altr,dwmac-socfpga.yaml b/Documentation/devicetree/bindings/net/altr,dwmac-socfpga.yaml
-new file mode 100644
-index 000000000000..6ec369ea9e66
---- /dev/null
-+++ b/Documentation/devicetree/bindings/net/altr,dwmac-socfpga.yaml
-@@ -0,0 +1,139 @@
-+# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/net/altr,dwmac-socfpga.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: Intel/Altera SoCFPGA DWMAC controller
-+
-+maintainers:
-+  - Dinh Nguyen <dinguyen@kernel.org>
-+
-+select:
-+  properties:
-+    compatible:
-+      contains:
-+        enum:
-+          - altr,socfpga-stmmac
-+          - altr,socfpga-stmmac-a10-s10
-+  required:
-+    - compatible
-+
-+allOf:
-+  - $ref: snps,dwmac.yaml#
-+
-+properties:
-+  compatible:
-+    oneOf:
-+      - items:
-+          - const: altr,socfpga-stmmac
-+          - const: snps,dwmac-3.70a
-+          - const: snps,dwmac
-+      - items:
-+          - const: altr,socfpga-stmmac-a10-s10
-+          - const: snps,dwmac-3.72a
-+          - const: snps,dwmac
-+      - items:
-+          - const: altr,socfpga-stmmac-a10-s10
-+          - const: snps,dwmac-3.74a
-+          - const: snps,dwmac
-+
-+  reg:
-+    maxItems: 1
-+
-+  iommus:
-+    minItems: 1
-+    maxItems: 2
-+
-+  clocks:
-+    minItems: 1
-+    items:
-+      - description: GMAC main clock
-+      - description: PTP clock
-+
-+  clock-names:
-+    minItems: 1
-+    maxItems: 2
-+    items:
-+      - const: stmmaceth
-+      - const: ptp_ref
-+
-+  resets:
-+    minItems: 1
-+    items:
-+      - description: GMAC stmmaceth reset
-+      - description: AHB reset
-+
-+  reset-names:
-+    minItems: 1
-+    items:
-+      - const: stmmaceth
-+      - const: ahb
-+
-+  interrupts:
-+    items:
-+      - description: DWMAC interrupt
-+
-+  interrupt-names:
-+    items:
-+      - const: macirq
-+
-+  phy-mode:
-+    maxItems: 1
-+    items:
-+      enum:
-+        - rgmii
-+        - gmii
-+        - mii
-+
-+  altr,sysmgr-syscon:
-+    $ref: /schemas/types.yaml#/definitions/phandle-array
-+    items:
-+      - items:
-+          - description: phandle to the sysmgr node
-+          - description: register offset that controls the SDMMC clock phase
-+          - description: register shift for the smplsel(drive in) setting
-+    description:
-+      Should be the phandle to the system manager node that
-+      encompasses the glue register, the register offset, and the register shift.
-+      On Cyclone5/Arria5, the register shift represents the PHY mode bits, while
-+      on the Arria10/Stratix10/Agilex platforms, the register shift represents
-+      bit for each emac to enable/disable signals from the FPGA fabric to the
-+      EMAC modules.
-+
-+  altr,emac-splitter:
-+    $ref: /schemas/types.yaml#/definitions/phandle
-+    description:
-+      Should be the phandle to the emac splitter soft IP node if DWMAC
-+      controller is connected emac splitter.
-+
-+  altr,sgmii-to-sgmii-converter:
-+    $ref: /schemas/types.yaml#/definitions/phandle
-+    description:
-+      Phandle to the TSE SGMII converter.
-+
-+required:
-+  - compatible
-+  - reg
-+  - interrupts
-+  - clocks
-+  - clock-names
-+  - phy-mode
-+
-+unevaluatedProperties: false
-+
-+examples:
-+  - |
-+    gmac0: ethernet@ff700000 {
-+            compatible = "altr,socfpga-stmmac", "snps,dwmac-3.70a", "snps,dwmac";
-+            altr,sysmgr-syscon = <&sysmgr 0x60 0>;
-+            reg = <0xff700000 0x2000>;
-+            interrupts = <0 115 4>;
-+            interrupt-names = "macirq";
-+            mac-address = [00 00 00 00 00 00];/* Filled in by U-Boot */
-+            clocks = <&emac_0_clk>;
-+            clock-names = "stmmaceth";
-+            phy-mode = "rgmii";
-+            tx-fifo-depth = <16384>;
-+            rx-fifo-depth = <16384>;
-+    };
-diff --git a/Documentation/devicetree/bindings/net/socfpga-dwmac.txt b/Documentation/devicetree/bindings/net/socfpga-dwmac.txt
-deleted file mode 100644
-index 612a8e8abc88..000000000000
---- a/Documentation/devicetree/bindings/net/socfpga-dwmac.txt
-+++ /dev/null
-@@ -1,57 +0,0 @@
--Altera SOCFPGA SoC DWMAC controller
--
--This is a variant of the dwmac/stmmac driver an inherits all descriptions
--present in Documentation/devicetree/bindings/net/stmmac.txt.
--
--The device node has additional properties:
--
--Required properties:
-- - compatible	: For Cyclone5/Arria5 SoCs it should contain
--		  "altr,socfpga-stmmac". For Arria10/Agilex/Stratix10 SoCs
--		  "altr,socfpga-stmmac-a10-s10".
--		  Along with "snps,dwmac" and any applicable more detailed
--		  designware version numbers documented in stmmac.txt
-- - altr,sysmgr-syscon : Should be the phandle to the system manager node that
--   encompasses the glue register, the register offset, and the register shift.
--   On Cyclone5/Arria5, the register shift represents the PHY mode bits, while
--   on the Arria10/Stratix10/Agilex platforms, the register shift represents
--   bit for each emac to enable/disable signals from the FPGA fabric to the
--   EMAC modules.
-- - altr,f2h_ptp_ref_clk use f2h_ptp_ref_clk instead of default eosc1 clock
--   for ptp ref clk. This affects all emacs as the clock is common.
--
--Optional properties:
--altr,emac-splitter: Should be the phandle to the emac splitter soft IP node if
--		DWMAC controller is connected emac splitter.
--phy-mode: The phy mode the ethernet operates in
--altr,sgmii-to-sgmii-converter: phandle to the TSE SGMII converter
--
--This device node has additional phandle dependency, the sgmii converter:
--
--Required properties:
-- - compatible	: Should be altr,gmii-to-sgmii-2.0
-- - reg-names	: Should be "eth_tse_control_port"
--
--Example:
--
--gmii_to_sgmii_converter: phy@100000240 {
--	compatible = "altr,gmii-to-sgmii-2.0";
--	reg = <0x00000001 0x00000240 0x00000008>,
--		<0x00000001 0x00000200 0x00000040>;
--	reg-names = "eth_tse_control_port";
--	clocks = <&sgmii_1_clk_0 &emac1 1 &sgmii_clk_125 &sgmii_clk_125>;
--	clock-names = "tse_pcs_ref_clk_clock_connection", "tse_rx_cdr_refclk";
--};
--
--gmac0: ethernet@ff700000 {
--	compatible = "altr,socfpga-stmmac", "snps,dwmac-3.70a", "snps,dwmac";
--	altr,sysmgr-syscon = <&sysmgr 0x60 0>;
--	reg = <0xff700000 0x2000>;
--	interrupts = <0 115 4>;
--	interrupt-names = "macirq";
--	mac-address = [00 00 00 00 00 00];/* Filled in by U-Boot */
--	clocks = <&emac_0_clk>;
--	clock-names = "stmmaceth";
--	phy-mode = "sgmii";
--	altr,gmii-to-sgmii-converter = <&gmii_to_sgmii_converter>;
--};
+This patch series adds support for the XSPI clocks on the Renesas RZ/V2N
+(R9A09G056) and RZ/V2H(P) (R9A09G057) SoCs. It includes clock binding
+definitions, clock mux and divider configuration, module clock/reset
+registration, and support for fixed-factor clocks with status reporting.
+
+Cheers,
+Prabhakar
+
+Lad Prabhakar (6):
+  dt-bindings: clock: renesas,r9a09g056/57-cpg: Add XSPI core clock
+  clk: renesas: r9a09g056: Add support for xspi mux and divider
+  clk: renesas: r9a09g057: Add support for xspi mux and divider
+  clk: renesas: rzv2h: Add fixed-factor module clocks with status
+    reporting
+  clk: renesas: r9a09g056: Add XSPI clock/reset
+  clk: renesas: r9a09g057: Add XSPI clock/reset
+
+ drivers/clk/renesas/r9a09g056-cpg.c           | 37 ++++++++-
+ drivers/clk/renesas/r9a09g057-cpg.c           | 39 ++++++++-
+ drivers/clk/renesas/rzv2h-cpg.c               | 83 +++++++++++++++++++
+ drivers/clk/renesas/rzv2h-cpg.h               | 24 ++++++
+ .../dt-bindings/clock/renesas,r9a09g056-cpg.h |  1 +
+ .../dt-bindings/clock/renesas,r9a09g057-cpg.h |  1 +
+ 6 files changed, 180 insertions(+), 5 deletions(-)
+
 -- 
-2.42.0.411.g813d9a9188
+2.49.0
 
 
