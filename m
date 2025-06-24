@@ -1,421 +1,1204 @@
-Return-Path: <devicetree+bounces-188935-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-188937-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id D9843AE620C
-	for <lists+devicetree@lfdr.de>; Tue, 24 Jun 2025 12:18:00 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4C694AE6225
+	for <lists+devicetree@lfdr.de>; Tue, 24 Jun 2025 12:21:52 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 397881885404
-	for <lists+devicetree@lfdr.de>; Tue, 24 Jun 2025 10:18:11 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id BE1C44C1858
+	for <lists+devicetree@lfdr.de>; Tue, 24 Jun 2025 10:21:52 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 20817224AFA;
-	Tue, 24 Jun 2025 10:17:49 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 41599283FF4;
+	Tue, 24 Jun 2025 10:21:37 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b="LFkR2BnG"
 X-Original-To: devicetree@vger.kernel.org
-Received: from foss.arm.com (foss.arm.com [217.140.110.172])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 03E4572617;
-	Tue, 24 Jun 2025 10:17:46 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.140.110.172
+Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [213.167.242.64])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+	(No client certificate requested)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1392227F4D0;
+	Tue, 24 Jun 2025 10:21:33 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=213.167.242.64
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1750760269; cv=none; b=RqnfwM+BV4C3Zbdv8Y2juiEe3qS4QJI+4WjTDkaHC7pw63QgtnC9XO1W+9pA8NIsgfQdu65Zu5A27qF35OsQ7bBYLYzDrWp/B0+R+muQ3hvwwrfGmrR/tkEks0aKbcJ0TQx7N7pd79sUWA9AmYPfXGgElLcELuSRFY8SqlOrXQw=
+	t=1750760497; cv=none; b=jxtbEWjZ1I1m1uaega7WkZzG0zb4VoyhX5Qz1jGTHz0m9tirg95KC9F4fc7F5GMoBn8EMQGYyjMCkCW8eXXXEmuEHIUFvvlJf0bO2tsx2B/MWmhIT3e0bVq1tVo9CmWeyHK5G/+2vLE2h5ix4GD9GrnXYSlc6D2IPtg18YpMgLc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1750760269; c=relaxed/simple;
-	bh=OTFHXtpBsk961vNqAKQ8GBFCVAr6XXS9h7UJRv9p6/8=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=ey/BJ348SlHyEZMWImb1fylV+5eLr/J62NBgLVwgtBnbd8CVAhGtbquwzHgBz7hHf6Gb5t4BUag5964NtlFd5ljQ500iHUeypBR82WfI74/LhkB3JHjIoz/yMYfgt1UjqKesODHCW5r2v8h1gjtCjbGHXt598SBTGKV51fLPdpI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com; spf=pass smtp.mailfrom=arm.com; arc=none smtp.client-ip=217.140.110.172
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=arm.com
-Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-	by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 64914106F;
-	Tue, 24 Jun 2025 03:17:28 -0700 (PDT)
-Received: from [10.57.29.71] (unknown [10.57.29.71])
-	by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 288333F63F;
-	Tue, 24 Jun 2025 03:17:42 -0700 (PDT)
-Message-ID: <cce6854f-a859-40e2-8ce9-dc33aa822754@arm.com>
-Date: Tue, 24 Jun 2025 11:17:40 +0100
+	s=arc-20240116; t=1750760497; c=relaxed/simple;
+	bh=aSEnhtL4czUKZiu/CoyL9En3V1wnr8M+PHdTPs1XwlM=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=a7xbhkhd6UbMy2yyiBnpgDzWrhX0fzv9DY1oktGnLEzhJqzwEIZWNEPgxUUmZvsYOY536LtNqx6W9IvTbAXTvWF8tLvl1tBVOYKLZm/o2QIV89QMy4Ou+BG0N3XHoTS1ZnpUtrilU+uvh1BOj2RQsGyc2LIcdOI46slqwo/nxjU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ideasonboard.com; spf=pass smtp.mailfrom=ideasonboard.com; dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b=LFkR2BnG; arc=none smtp.client-ip=213.167.242.64
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ideasonboard.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ideasonboard.com
+Received: from [127.0.1.1] (cpc141996-chfd3-2-0-cust928.12-3.cable.virginm.net [86.13.91.161])
+	by perceval.ideasonboard.com (Postfix) with ESMTPSA id CE719741;
+	Tue, 24 Jun 2025 12:21:13 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
+	s=mail; t=1750760474;
+	bh=aSEnhtL4czUKZiu/CoyL9En3V1wnr8M+PHdTPs1XwlM=;
+	h=From:Subject:Date:To:Cc:From;
+	b=LFkR2BnGDTuiBkA3vw14ka6bbHgc/qdv6W12pXV26/r2kO7iOPim8Ela0D4vRKs1y
+	 8dTKCqZvuNO8Y+JpPI0izMYZPe6GdXwIW3JljEAOz2xO8di3H9xraoKtGEdDpEbbgD
+	 jwm7ziTFDh6VM36V6cwFcaYxWdI8bilRkbx81bmw=
+From: Daniel Scally <dan.scally@ideasonboard.com>
+Subject: [PATCH v10 00/17] Add Arm Mali-C55 Image Signal Processor Driver
+Date: Tue, 24 Jun 2025 11:21:13 +0100
+Message-Id: <20250624-c55-v10-0-54f3d4196990@ideasonboard.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v7 03/10] accel/rocket: Add IOCTL for BO creation
-To: Tomeu Vizoso <tomeu@tomeuvizoso.net>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Heiko Stuebner <heiko@sntech.de>,
- Oded Gabbay <ogabbay@kernel.org>, Jonathan Corbet <corbet@lwn.net>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>,
- David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
- Sumit Semwal <sumit.semwal@linaro.org>,
- =?UTF-8?Q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>,
- Sebastian Reichel <sebastian.reichel@collabora.com>,
- Nicolas Frattaroli <nicolas.frattaroli@collabora.com>,
- Kever Yang <kever.yang@rock-chips.com>, Daniel Stone <daniel@fooishbar.org>,
- Da Xue <da@libre.computer>, Jeff Hugo <jeff.hugo@oss.qualcomm.com>
-Cc: devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org,
- dri-devel@lists.freedesktop.org, linux-doc@vger.kernel.org,
- linux-media@vger.kernel.org, linaro-mm-sig@lists.linaro.org
-References: <20250606-6-10-rocket-v7-0-dc16cfe6fe4e@tomeuvizoso.net>
- <20250606-6-10-rocket-v7-3-dc16cfe6fe4e@tomeuvizoso.net>
-From: Robin Murphy <robin.murphy@arm.com>
-Content-Language: en-GB
-In-Reply-To: <20250606-6-10-rocket-v7-3-dc16cfe6fe4e@tomeuvizoso.net>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIABl8WmgC/02PzW7CMBCEXyXyuY78T5wT71FxWHvXxRWJwU5RK
+ 8S71ypI9Dgzu59mbqxRzdTYPNxYpWtuuaxdSPE2sHiE9YN4xm4wJZQVThkereVBR+2CIolTZP3
+ yXCnl7z/M+6HrVMvCt2MleP1a6aXRRvjRWCmF4JIjrGOLcDr97DMStLKGAhXHWJYntdLlq3faH
+ mgWoBHv6ZK33tGrnQp6B2DSpCNYFTD5KB1anGRAlNoa4w37P2UenkM0Xwgz8M8SGndJJ++dFk7
+ H+arY4X7/BbNE/uEaAQAA
+X-Change-ID: 20250624-c55-b3c36b2e1d8c
+To: linux-media@vger.kernel.org, devicetree@vger.kernel.org, 
+ linux-arm-kernel@lists.infradead.org
+Cc: Anthony.McGivern@arm.com, jacopo.mondi@ideasonboard.com, 
+ nayden.kanchev@arm.com, robh+dt@kernel.org, mchehab@kernel.org, 
+ krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org, 
+ jerome.forissier@linaro.org, kieran.bingham@ideasonboard.com, 
+ laurent.pinchart@ideasonboard.com, dan.scally@ideasonboard.com, 
+ Sakari Ailus <sakari.ailus@linux.intel.com>, 
+ Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+X-Mailer: b4 0.14.2
+X-Developer-Signature: v=1; a=openpgp-sha256; l=42659;
+ i=dan.scally@ideasonboard.com; h=from:subject:message-id;
+ bh=aSEnhtL4czUKZiu/CoyL9En3V1wnr8M+PHdTPs1XwlM=;
+ b=owEBbQKS/ZANAwAKAchJV3psRXUyAcsmYgBoWnwmxMrhePFZ+OPpRLzXpkWHqyqCfh3S8LF5z
+ HdJ4SHNidWJAjMEAAEKAB0WIQQqyuwyDnZdb+mxmm/ISVd6bEV1MgUCaFp8JgAKCRDISVd6bEV1
+ MqGzD/9bVMokLnl2Zw3+W80mE8T4yndxQYHByIGiD7yLAa/lG1fnU9SZNvzZ5VLWZ+yqiCbF9yz
+ xWxG2IK9zxp8B4JEIQoZBpRE3oC1KQDj4NV5QN+pmEBuyuCrKYQE9QwZzH6ubczClv67CW9z7ic
+ prnke3jd3iX6n3slmTMPNEH0fuicaK2tYhzp2JPm8lEMNdszuti5gnJPGNUUmowB7JpfPmX3I7N
+ WWy2sD0PLVmjRbPF/XSd1xiffrqjTh2386m2IZr0YB9RiQ+J79sq4h1GTHdojpnGQEtq7e21e4J
+ Y583qslGuZf5LPfHPqDzTpw0Uk92r1iE4Y3OPgt2m8CnUiPYPtOiFwe4SLOsAY+7/m7ABdxdgKR
+ a4et9EVoavfpXA47t/Ya4BqnwIAwBx1A0mT+01gjgT6tTyfC2S/UaDjdWp3d1UKkk9NGtwEqRns
+ DQJuCiYrjP4quj7e1Me3IJmfPr9Ze6autpY6f8lHPAyn6EVEHLrSLivzFGolJIxjQcX+Z1cGN6s
+ +G4NSN8L0xVAMnMTM5mfRj18DLz/whmfcQ1oaDu1OW0KkZmbwj51AHmJB0SfP6TyKyIbQ1kPJ/S
+ ju7lT0DI+k/Em8gu5+nK6+FT4XvzdrcC7Bd0rBUWPFWz0aIwShRDG8mwMTe5XXtx1uIHBkAhpta
+ NSs4eKcHmo0ECcA==
+X-Developer-Key: i=dan.scally@ideasonboard.com; a=openpgp;
+ fpr=EEC699ACA1B7CB5D31330C0BBD501C2A3546CCF6
 
-On 2025-06-06 7:28 am, Tomeu Vizoso wrote:
-> This uses the SHMEM DRM helpers and we map right away to the CPU and NPU
-> sides, as all buffers are expected to be accessed from both.
-> 
-> v2:
-> - Sync the IOMMUs for the other cores when mapping and unmapping.
-> 
-> v3:
-> - Make use of GPL-2.0-only for the copyright notice (Jeff Hugo)
-> 
-> v6:
-> - Use mutexes guard (Markus Elfring)
-> 
-> v7:
-> - Assign its own IOMMU domain to each client, for isolation (Daniel
->    Stone and Robin Murphy)
-> 
-> Reviewed-by: Jeffrey Hugo <quic_jhugo@quicinc.com>
-> Signed-off-by: Tomeu Vizoso <tomeu@tomeuvizoso.net>
-> ---
->   drivers/accel/rocket/Makefile        |   3 +-
->   drivers/accel/rocket/rocket_device.c |   4 ++
->   drivers/accel/rocket/rocket_device.h |   2 +
->   drivers/accel/rocket/rocket_drv.c    |   7 ++-
->   drivers/accel/rocket/rocket_gem.c    | 115 +++++++++++++++++++++++++++++++++++
->   drivers/accel/rocket/rocket_gem.h    |  27 ++++++++
->   include/uapi/drm/rocket_accel.h      |  44 ++++++++++++++
->   7 files changed, 200 insertions(+), 2 deletions(-)
-> 
-> diff --git a/drivers/accel/rocket/Makefile b/drivers/accel/rocket/Makefile
-> index abdd75f2492eaecf8bf5e78a2ac150ea19ac3e96..4deef267f9e1238c4d8bd108dcc8afd9dc8b2b8f 100644
-> --- a/drivers/accel/rocket/Makefile
-> +++ b/drivers/accel/rocket/Makefile
-> @@ -5,4 +5,5 @@ obj-$(CONFIG_DRM_ACCEL_ROCKET) := rocket.o
->   rocket-y := \
->   	rocket_core.o \
->   	rocket_device.o \
-> -	rocket_drv.o
-> +	rocket_drv.o \
-> +	rocket_gem.o
-> diff --git a/drivers/accel/rocket/rocket_device.c b/drivers/accel/rocket/rocket_device.c
-> index a05c103e117e3eaa6439884b7acb6e3483296edb..5e559104741af22c528914c96e44558323ab6c89 100644
-> --- a/drivers/accel/rocket/rocket_device.c
-> +++ b/drivers/accel/rocket/rocket_device.c
-> @@ -4,6 +4,7 @@
->   #include <linux/array_size.h>
->   #include <linux/clk.h>
->   #include <linux/dev_printk.h>
-> +#include <linux/mutex.h>
->   
->   #include "rocket_device.h"
->   
-> @@ -16,10 +17,13 @@ int rocket_device_init(struct rocket_device *rdev)
->   	if (err)
->   		return err;
->   
-> +	mutex_init(&rdev->iommu_lock);
-> +
->   	return 0;
->   }
->   
->   void rocket_device_fini(struct rocket_device *rdev)
->   {
-> +	mutex_destroy(&rdev->iommu_lock);
->   	rocket_core_fini(&rdev->cores[0]);
->   }
-> diff --git a/drivers/accel/rocket/rocket_device.h b/drivers/accel/rocket/rocket_device.h
-> index b5d5f1479d56e2fde59bbcad9de2b58cef9a9a4d..10acfe8534f00a7985d40a93f4b2f7f69d43caee 100644
-> --- a/drivers/accel/rocket/rocket_device.h
-> +++ b/drivers/accel/rocket/rocket_device.h
-> @@ -13,6 +13,8 @@
->   struct rocket_device {
->   	struct drm_device ddev;
->   
-> +	struct mutex iommu_lock;
-> +
->   	struct rocket_core *cores;
->   	unsigned int num_cores;
->   };
-> diff --git a/drivers/accel/rocket/rocket_drv.c b/drivers/accel/rocket/rocket_drv.c
-> index b38a5c6264cb4e74d5e381adaeba1426e576fa56..2b8a88db20c408f313f4f4fe36b051c9d5e4829b 100644
-> --- a/drivers/accel/rocket/rocket_drv.c
-> +++ b/drivers/accel/rocket/rocket_drv.c
-> @@ -6,6 +6,7 @@
->   #include <drm/drm_gem.h>
->   #include <drm/drm_ioctl.h>
->   #include <drm/drm_of.h>
-> +#include <drm/rocket_accel.h>
->   #include <linux/array_size.h>
->   #include <linux/clk.h>
->   #include <linux/component.h>
-> @@ -16,6 +17,7 @@
->   #include <linux/pm_runtime.h>
->   
->   #include "rocket_drv.h"
-> +#include "rocket_gem.h"
->   
->   static int
->   rocket_open(struct drm_device *dev, struct drm_file *file)
-> @@ -46,6 +48,8 @@ rocket_postclose(struct drm_device *dev, struct drm_file *file)
->   static const struct drm_ioctl_desc rocket_drm_driver_ioctls[] = {
->   #define ROCKET_IOCTL(n, func) \
->   	DRM_IOCTL_DEF_DRV(ROCKET_##n, rocket_ioctl_##func, 0)
-> +
-> +	ROCKET_IOCTL(CREATE_BO, create_bo),
->   };
->   
->   DEFINE_DRM_ACCEL_FOPS(rocket_accel_driver_fops);
-> @@ -55,9 +59,10 @@ DEFINE_DRM_ACCEL_FOPS(rocket_accel_driver_fops);
->    * - 1.0 - initial interface
->    */
->   static const struct drm_driver rocket_drm_driver = {
-> -	.driver_features	= DRIVER_COMPUTE_ACCEL,
-> +	.driver_features	= DRIVER_COMPUTE_ACCEL | DRIVER_GEM,
->   	.open			= rocket_open,
->   	.postclose		= rocket_postclose,
-> +	.gem_create_object	= rocket_gem_create_object,
->   	.ioctls			= rocket_drm_driver_ioctls,
->   	.num_ioctls		= ARRAY_SIZE(rocket_drm_driver_ioctls),
->   	.fops			= &rocket_accel_driver_fops,
-> diff --git a/drivers/accel/rocket/rocket_gem.c b/drivers/accel/rocket/rocket_gem.c
-> new file mode 100644
-> index 0000000000000000000000000000000000000000..61b7f970a6885aa13784daa1222611a02aa10dee
-> --- /dev/null
-> +++ b/drivers/accel/rocket/rocket_gem.c
-> @@ -0,0 +1,115 @@
-> +// SPDX-License-Identifier: GPL-2.0-only
-> +/* Copyright 2024-2025 Tomeu Vizoso <tomeu@tomeuvizoso.net> */
-> +
-> +#include <drm/drm_device.h>
-> +#include <drm/drm_utils.h>
-> +#include <drm/rocket_accel.h>
-> +#include <linux/dma-mapping.h>
-> +#include <linux/iommu.h>
-> +
-> +#include "rocket_device.h"
-> +#include "rocket_drv.h"
-> +#include "rocket_gem.h"
-> +
-> +static void rocket_gem_bo_free(struct drm_gem_object *obj)
-> +{
-> +	struct rocket_device *rdev = to_rocket_device(obj->dev);
-> +	struct rocket_gem_object *bo = to_rocket_bo(obj);
-> +	size_t unmapped;
-> +
-> +	drm_WARN_ON(obj->dev, bo->base.pages_use_count > 1);
-> +
-> +	guard(mutex)(&rdev->iommu_lock);
-> +
-> +	unmapped = iommu_unmap(bo->domain, bo->base.sgt->sgl->dma_address, bo->size);
-> +	drm_WARN_ON(obj->dev, unmapped != bo->size);
-> +
-> +	/* This will unmap the pages from the IOMMU linked to core 0 */
+Hello all
 
-This means "DMA-unmap the pages", right? If things have been done 
-correctly then the iommu_unmap() above will already have removed the 
-actual translation all cores' IOMMUs were using.
+Quick note at the top: the driver now uses the media jobs framework that was
+recently posted [1] and so this series is based on top of that one.
 
-> +	drm_gem_shmem_free(&bo->base);
-> +}
-> +
-> +static const struct drm_gem_object_funcs rocket_gem_funcs = {
-> +	.free = rocket_gem_bo_free,
-> +	.print_info = drm_gem_shmem_object_print_info,
-> +	.pin = drm_gem_shmem_object_pin,
-> +	.unpin = drm_gem_shmem_object_unpin,
-> +	.get_sg_table = drm_gem_shmem_object_get_sg_table,
-> +	.vmap = drm_gem_shmem_object_vmap,
-> +	.vunmap = drm_gem_shmem_object_vunmap,
-> +	.mmap = drm_gem_shmem_object_mmap,
-> +	.vm_ops = &drm_gem_shmem_vm_ops,
-> +};
-> +
-> +struct drm_gem_object *rocket_gem_create_object(struct drm_device *dev, size_t size)
-> +{
-> +	struct rocket_gem_object *obj;
-> +
-> +	obj = kzalloc(sizeof(*obj), GFP_KERNEL);
-> +	if (!obj)
-> +		return ERR_PTR(-ENOMEM);
-> +
-> +	obj->base.base.funcs = &rocket_gem_funcs;
-> +
-> +	return &obj->base.base;
-> +}
-> +
-> +int rocket_ioctl_create_bo(struct drm_device *dev, void *data, struct drm_file *file)
-> +{
-> +	struct rocket_file_priv *rocket_priv = file->driver_priv;
-> +	struct drm_rocket_create_bo *args = data;
-> +	struct rocket_device *rdev = to_rocket_device(dev);
-> +	struct drm_gem_shmem_object *shmem_obj;
-> +	struct rocket_gem_object *rkt_obj;
-> +	struct drm_gem_object *gem_obj;
-> +	struct sg_table *sgt;
-> +	int ret;
-> +
-> +	shmem_obj = drm_gem_shmem_create(dev, args->size);
-> +	if (IS_ERR(shmem_obj))
-> +		return PTR_ERR(shmem_obj);
-> +
-> +	gem_obj = &shmem_obj->base;
-> +	rkt_obj = to_rocket_bo(gem_obj);
-> +
-> +	rkt_obj->domain = rocket_priv->domain;
-> +	rkt_obj->size = args->size;
-> +	rkt_obj->offset = 0;
-> +
-> +	ret = drm_gem_handle_create(file, gem_obj, &args->handle);
-> +	drm_gem_object_put(gem_obj);
-> +
-> +	guard(mutex)(&rdev->iommu_lock);
-> +
-> +	if (ret)
-> +		goto err;
-> +
-> +	sgt = drm_gem_shmem_get_pages_sgt(shmem_obj);
-> +	if (IS_ERR(sgt)) {
-> +		ret = PTR_ERR(sgt);
-> +		goto err;
-> +	}
-> +
-> +	ret = iommu_map_sgtable(rocket_priv->domain,
-> +				shmem_obj->sgt->sgl->dma_address,
+This patchset introduces a driver for Arm's Mali-C55 Image Signal Processor.
+The driver uses the V4L2 / media controller API and implements both of the ISP's
+capture pipelines allowing a range of output formats plus downscaling and
+cropping. The capture pipelines are named "Full resolution" and "Downscale" and
+so abbreviated FR and DS throughout the driver.
 
-Is this expected to be a DMA address implicitly generated by the 
-dma_map_sg() in drm_gem_shmem_get_pages_sgt()? I would strongly 
-recommend against relying on that - at the moment it happens that 
-iommu-dma still does complete dma_map_* operations in the unattached DMA 
-ops domain, mostly redundantly, but I've long been meaning to optimise 
-that so that it only performs any necessary cache maintenance on the 
-underlying memory when the caller is already using their own IOMMU 
-domain. At that point the returned DMA address is likely to just be the 
-PA, and this tactic probably won't work.
+The driver exposes 4 V4L2 subdevices:
 
-> +				shmem_obj->sgt,
-> +				IOMMU_READ | IOMMU_WRITE);
-> +	if (ret < 0 || ret < args->size) {
-> +		drm_err(dev, "failed to map buffer: size=%d request_size=%u\n",
-> +			ret, args->size);
-> +		ret = -ENOMEM;
-> +		goto err;
-> +	}
-> +
-> +	/* iommu_map_sgtable might have aligned the size */
-> +	rkt_obj->size = ret;
-> +	dma_sync_sgtable_for_device(dev->dev, shmem_obj->sgt, DMA_BIDIRECTIONAL);
+- mali-c55 isp: input data formatting
+- mali-c55 tpg: test pattern generator (modeled as a camera sensor entity)
+- mali-c55 resizer fr: downscale / crop and format setting for the FR pipe
+- mali-c55 resizer ds: downscale / crop and format setting for the DS pipe
 
-What's this for? The buffer is already in for_device state when it 
-initially comes back from get_pages_sgt, and hasn't even been touched 
-yet anyway.
+Along with 4 V4L2 Video devices:
 
-Thanks,
-Robin.
+- mali-c55 fr: Capture device for the full resolution pipe
+- mali-c55 ds: Capture device for the downscale pipe
+- mali-c55 3a stats: Capture device for statistics to support 3A algorithms
+- mali-c55 3a params: Output device for parameter buffers to configure the ISP
 
-> +	args->offset = drm_vma_node_offset_addr(&gem_obj->vma_node);
-> +	args->dma_address = sg_dma_address(shmem_obj->sgt->sgl);
-> +
-> +	return 0;
-> +
-> +err:
-> +	drm_gem_shmem_object_free(gem_obj);
-> +
-> +	return ret;
-> +}
-> diff --git a/drivers/accel/rocket/rocket_gem.h b/drivers/accel/rocket/rocket_gem.h
-> new file mode 100644
-> index 0000000000000000000000000000000000000000..e8a4d6213fd80419be2ec8af04583a67fb1a4b75
-> --- /dev/null
-> +++ b/drivers/accel/rocket/rocket_gem.h
-> @@ -0,0 +1,27 @@
-> +/* SPDX-License-Identifier: GPL-2.0-only */
-> +/* Copyright 2024-2025 Tomeu Vizoso <tomeu@tomeuvizoso.net> */
-> +
-> +#ifndef __ROCKET_GEM_H__
-> +#define __ROCKET_GEM_H__
-> +
-> +#include <drm/drm_gem_shmem_helper.h>
-> +
-> +struct rocket_gem_object {
-> +	struct drm_gem_shmem_object base;
-> +
-> +	struct iommu_domain *domain;
-> +	size_t size;
-> +	u32 offset;
-> +};
-> +
-> +struct drm_gem_object *rocket_gem_create_object(struct drm_device *dev, size_t size);
-> +
-> +int rocket_ioctl_create_bo(struct drm_device *dev, void *data, struct drm_file *file);
-> +
-> +static inline
-> +struct  rocket_gem_object *to_rocket_bo(struct drm_gem_object *obj)
-> +{
-> +	return container_of(to_drm_gem_shmem_obj(obj), struct rocket_gem_object, base);
-> +}
-> +
-> +#endif
-> diff --git a/include/uapi/drm/rocket_accel.h b/include/uapi/drm/rocket_accel.h
-> new file mode 100644
-> index 0000000000000000000000000000000000000000..95720702b7c4413d72b89c1f0f59abb22dc8c6b3
-> --- /dev/null
-> +++ b/include/uapi/drm/rocket_accel.h
-> @@ -0,0 +1,44 @@
-> +/* SPDX-License-Identifier: MIT */
-> +/*
-> + * Copyright © 2024 Tomeu Vizoso
-> + */
-> +#ifndef __DRM_UAPI_ROCKET_ACCEL_H__
-> +#define __DRM_UAPI_ROCKET_ACCEL_H__
-> +
-> +#include "drm.h"
-> +
-> +#if defined(__cplusplus)
-> +extern "C" {
-> +#endif
-> +
-> +#define DRM_ROCKET_CREATE_BO			0x00
-> +
-> +#define DRM_IOCTL_ROCKET_CREATE_BO		DRM_IOWR(DRM_COMMAND_BASE + DRM_ROCKET_CREATE_BO, struct drm_rocket_create_bo)
-> +
-> +/**
-> + * struct drm_rocket_create_bo - ioctl argument for creating Rocket BOs.
-> + *
-> + */
-> +struct drm_rocket_create_bo {
-> +	/** Input: Size of the requested BO. */
-> +	__u32 size;
-> +
-> +	/** Output: GEM handle for the BO. */
-> +	__u32 handle;
-> +
-> +	/**
-> +	 * Output: DMA address for the BO in the NPU address space.  This address
-> +	 * is private to the DRM fd and is valid for the lifetime of the GEM
-> +	 * handle.
-> +	 */
-> +	__u64 dma_address;
-> +
-> +	/** Output: Offset into the drm node to use for subsequent mmap call. */
-> +	__u64 offset;
-> +};
-> +
-> +#if defined(__cplusplus)
-> +}
-> +#endif
-> +
-> +#endif /* __DRM_UAPI_ROCKET_ACCEL_H__ */
-> 
+Support is implemented in the parameters video device code for many of the ISP'S
+hardware blocks, but not yet all of them. The buffer format is (as far as I am
+aware anyway) a novel design that we intend to be extensible so that support for
+the C55's remaining hardware blocks can be added later.
+
+Patches 1, 4, 5, 6 and 7 have already had versions 1-4 on the mailing list...I
+decided to post the additional work on the driver as extra patches rather than
+merge them all into the existing series as it's already a lot of code to review
+and I hoped that that might make it a little easier...if I'm wrong and that's
+not liked I can just squash them into a much smaller series.
+
+Previous versions:
+
+v9: https://lore.kernel.org/linux-media/20250519143409.451100-1-dan.scally@ideasonboard.com/#t
+v8: https://lore.kernel.org/linux-media/20241106100534.768400-1-dan.scally@ideasonboard.com/
+v7: https://lore.kernel.org/linux-media/20240906153406.650105-1-dan.scally@ideasonboard.com/
+v6: https://lore.kernel.org/linux-media/20240709132906.3198927-1-dan.scally@ideasonboard.com/
+v5: https://lore.kernel.org/linux-media/20240529152858.183799-1-dan.scally@ideasonboard.com/
+v4: https://lore.kernel.org/linux-media/20240418090825.624747-1-dan.scally@ideasonboard.com/
+v3: https://lore.kernel.org/linux-media/20240305164832.2055437-1-dan.scally@ideasonboard.com/
+v2: https://lore.kernel.org/linux-media/20240214141906.245685-1-dan.scally@ideasonboard.com/
+v1: https://lore.kernel.org/linux-media/20240131164709.810587-1-dan.scally@ideasonboard.com/
+
+The rest of this message comprises the v4l2-compliance report for the driver.
+The tool reports 4 failures, which are because height and width are set to 0 for
+MEDIA_BUS_FMT_METADATA_FIXED in the ISP subdev, but this is as directed by the
+documentation [2] so I suspect that v4l2-compliance needs amending.
+
+[1] https://lore.kernel.org/linux-media/20250624-media-jobs-v2-0-8e649b069a96@ideasonboard.com/T/#t
+[2] Documentation/userspace-api/media/v4l-subdev-formats.rst
+
+v4l2-compliance 1.29.0-5246, 64 bits, 64-bit time_t
+v4l2-compliance SHA: 201ccf743cde 2024-09-06 07:16:29
+
+Compliance test for mali-c55 device /dev/media0:
+
+Media Driver Info:
+	Driver name      : mali-c55
+	Model            : ARM Mali-C55 ISP
+	Serial           :
+	Bus info         : platform:16080000.isp
+	Media version    : 6.14.0
+	Hardware revision: 0x01d982d6 (31032022)
+	Driver version   : 6.14.0
+
+Required ioctls:
+	test MEDIA_IOC_DEVICE_INFO: OK
+	test invalid ioctls: OK
+
+Allow for multiple opens:
+	test second /dev/media0 open: OK
+	test MEDIA_IOC_DEVICE_INFO: OK
+	test for unlimited opens: OK
+
+Media Controller ioctls:
+	test MEDIA_IOC_G_TOPOLOGY: OK
+	Entities: 8 Interfaces: 8 Pads: 15 Links: 16
+	test MEDIA_IOC_ENUM_ENTITIES/LINKS: OK
+	test MEDIA_IOC_SETUP_LINK: OK
+
+Total for mali-c55 device /dev/media0: 8, Succeeded: 8, Failed: 0, Warnings: 0
+--------------------------------------------------------------------------------
+Compliance test for mali-c55 device /dev/video0:
+
+Driver Info:
+	Driver name      : mali-c55
+	Card type        : ARM Mali-C55 ISP
+	Bus info         : platform:16080000.isp
+	Driver version   : 6.14.0
+	Capabilities     : 0xa4201000
+		Video Capture Multiplanar
+		I/O MC
+		Streaming
+		Extended Pix Format
+		Device Capabilities
+	Device Caps      : 0x24201000
+		Video Capture Multiplanar
+		I/O MC
+		Streaming
+		Extended Pix Format
+Media Driver Info:
+	Driver name      : mali-c55
+	Model            : ARM Mali-C55 ISP
+	Serial           :
+	Bus info         : platform:16080000.isp
+	Media version    : 6.14.0
+	Hardware revision: 0x01d982d6 (31032022)
+	Driver version   : 6.14.0
+Interface Info:
+	ID               : 0x0300000f
+	Type             : V4L Video
+Entity Info:
+	ID               : 0x0000000d (13)
+	Name             : mali-c55 fr
+	Function         : V4L2 I/O
+	Pad 0x0100000e   : 0: Sink
+	  Link 0x0200001f: from remote pad 0x100000b of entity 'mali-c55 resizer fr' (Video Scaler): Data, Enabled
+
+Required ioctls:
+	test MC information (see 'Media Driver Info' above): OK
+	test VIDIOC_QUERYCAP: OK
+	test invalid ioctls: OK
+
+Allow for multiple opens:
+	test second /dev/video0 open: OK
+	test VIDIOC_QUERYCAP: OK
+	test VIDIOC_G/S_PRIORITY: OK
+	test for unlimited opens: OK
+
+Debug ioctls:
+	test VIDIOC_DBG_G/S_REGISTER: OK (Not Supported)
+	test VIDIOC_LOG_STATUS: OK (Not Supported)
+
+Input ioctls:
+	test VIDIOC_G/S_TUNER/ENUM_FREQ_BANDS: OK (Not Supported)
+	test VIDIOC_G/S_FREQUENCY: OK (Not Supported)
+	test VIDIOC_S_HW_FREQ_SEEK: OK (Not Supported)
+	test VIDIOC_ENUMAUDIO: OK (Not Supported)
+	test VIDIOC_G/S/ENUMINPUT: OK
+	test VIDIOC_G/S_AUDIO: OK (Not Supported)
+	Inputs: 1 Audio Inputs: 0 Tuners: 0
+
+Output ioctls:
+	test VIDIOC_G/S_MODULATOR: OK (Not Supported)
+	test VIDIOC_G/S_FREQUENCY: OK (Not Supported)
+	test VIDIOC_ENUMAUDOUT: OK (Not Supported)
+	test VIDIOC_G/S/ENUMOUTPUT: OK (Not Supported)
+	test VIDIOC_G/S_AUDOUT: OK (Not Supported)
+	Outputs: 0 Audio Outputs: 0 Modulators: 0
+
+Input/Output configuration ioctls:
+	test VIDIOC_ENUM/G/S/QUERY_STD: OK (Not Supported)
+	test VIDIOC_ENUM/G/S/QUERY_DV_TIMINGS: OK (Not Supported)
+	test VIDIOC_DV_TIMINGS_CAP: OK (Not Supported)
+	test VIDIOC_G/S_EDID: OK (Not Supported)
+
+Control ioctls (Input 0):
+	test VIDIOC_QUERY_EXT_CTRL/QUERYMENU: OK (Not Supported)
+	test VIDIOC_QUERYCTRL: OK (Not Supported)
+	test VIDIOC_G/S_CTRL: OK (Not Supported)
+	test VIDIOC_G/S/TRY_EXT_CTRLS: OK (Not Supported)
+	test VIDIOC_(UN)SUBSCRIBE_EVENT/DQEVENT: OK (Not Supported)
+	test VIDIOC_G/S_JPEGCOMP: OK (Not Supported)
+	Standard Controls: 0 Private Controls: 0
+
+Format ioctls (Input 0):
+	test VIDIOC_ENUM_FMT/FRAMESIZES/FRAMEINTERVALS: OK
+	test VIDIOC_G/S_PARM: OK (Not Supported)
+	test VIDIOC_G_FBUF: OK (Not Supported)
+	test VIDIOC_G_FMT: OK
+	test VIDIOC_TRY_FMT: OK
+	test VIDIOC_S_FMT: OK
+	test VIDIOC_G_SLICED_VBI_CAP: OK (Not Supported)
+	test Cropping: OK (Not Supported)
+	test Composing: OK (Not Supported)
+	test Scaling: OK
+
+Codec ioctls (Input 0):
+	test VIDIOC_(TRY_)ENCODER_CMD: OK (Not Supported)
+	test VIDIOC_G_ENC_INDEX: OK (Not Supported)
+	test VIDIOC_(TRY_)DECODER_CMD: OK (Not Supported)
+
+Buffer ioctls (Input 0):
+	test VIDIOC_REQBUFS/CREATE_BUFS/QUERYBUF: OK
+	test CREATE_BUFS maximum buffers: OK
+	test VIDIOC_REMOVE_BUFS: OK
+	test VIDIOC_EXPBUF: OK
+	test Requests: OK (Not Supported)
+	test blocking wait: OK
+
+Total for mali-c55 device /dev/video0: 49, Succeeded: 49, Failed: 0, Warnings: 0
+--------------------------------------------------------------------------------
+Compliance test for mali-c55 device /dev/video1:
+
+Driver Info:
+	Driver name      : mali-c55
+	Card type        : ARM Mali-C55 ISP
+	Bus info         : platform:16080000.isp
+	Driver version   : 6.14.0
+	Capabilities     : 0xac200000
+		Metadata Output
+		I/O MC
+		Streaming
+		Extended Pix Format
+		Device Capabilities
+	Device Caps      : 0x2c200000
+		Metadata Output
+		I/O MC
+		Streaming
+		Extended Pix Format
+Media Driver Info:
+	Driver name      : mali-c55
+	Model            : ARM Mali-C55 ISP
+	Serial           :
+	Bus info         : platform:16080000.isp
+	Media version    : 6.14.0
+	Hardware revision: 0x01d982d6 (31032022)
+	Driver version   : 6.14.0
+Interface Info:
+	ID               : 0x03000013
+	Type             : V4L Video
+Entity Info:
+	ID               : 0x00000011 (17)
+	Name             : mali-c55 3a params
+	Function         : V4L2 I/O
+	Pad 0x01000012   : 0: Source
+	  Link 0x02000023: to remote pad 0x1000008 of entity 'mali-c55 isp' (Image Signal Processor): Data, Enabled
+
+Required ioctls:
+	test MC information (see 'Media Driver Info' above): OK
+	test VIDIOC_QUERYCAP: OK
+	test invalid ioctls: OK
+
+Allow for multiple opens:
+	test second /dev/video1 open: OK
+	test VIDIOC_QUERYCAP: OK
+	test VIDIOC_G/S_PRIORITY: OK
+	test for unlimited opens: OK
+
+Debug ioctls:
+	test VIDIOC_DBG_G/S_REGISTER: OK (Not Supported)
+	test VIDIOC_LOG_STATUS: OK (Not Supported)
+
+Input ioctls:
+	test VIDIOC_G/S_TUNER/ENUM_FREQ_BANDS: OK (Not Supported)
+	test VIDIOC_G/S_FREQUENCY: OK (Not Supported)
+	test VIDIOC_S_HW_FREQ_SEEK: OK (Not Supported)
+	test VIDIOC_ENUMAUDIO: OK (Not Supported)
+	test VIDIOC_G/S/ENUMINPUT: OK (Not Supported)
+	test VIDIOC_G/S_AUDIO: OK (Not Supported)
+	Inputs: 0 Audio Inputs: 0 Tuners: 0
+
+Output ioctls:
+	test VIDIOC_G/S_MODULATOR: OK (Not Supported)
+	test VIDIOC_G/S_FREQUENCY: OK (Not Supported)
+	test VIDIOC_ENUMAUDOUT: OK (Not Supported)
+	test VIDIOC_G/S/ENUMOUTPUT: OK
+	test VIDIOC_G/S_AUDOUT: OK (Not Supported)
+	Outputs: 1 Audio Outputs: 0 Modulators: 0
+
+Input/Output configuration ioctls:
+	test VIDIOC_ENUM/G/S/QUERY_STD: OK (Not Supported)
+	test VIDIOC_ENUM/G/S/QUERY_DV_TIMINGS: OK (Not Supported)
+	test VIDIOC_DV_TIMINGS_CAP: OK (Not Supported)
+	test VIDIOC_G/S_EDID: OK (Not Supported)
+
+Control ioctls (Output 0):
+	test VIDIOC_QUERY_EXT_CTRL/QUERYMENU: OK (Not Supported)
+	test VIDIOC_QUERYCTRL: OK (Not Supported)
+	test VIDIOC_G/S_CTRL: OK (Not Supported)
+	test VIDIOC_G/S/TRY_EXT_CTRLS: OK (Not Supported)
+	test VIDIOC_(UN)SUBSCRIBE_EVENT/DQEVENT: OK (Not Supported)
+	test VIDIOC_G/S_JPEGCOMP: OK (Not Supported)
+	Standard Controls: 0 Private Controls: 0
+
+Format ioctls (Output 0):
+	test VIDIOC_ENUM_FMT/FRAMESIZES/FRAMEINTERVALS: OK
+	test VIDIOC_G/S_PARM: OK (Not Supported)
+	test VIDIOC_G_FBUF: OK (Not Supported)
+	test VIDIOC_G_FMT: OK
+	test VIDIOC_TRY_FMT: OK
+	test VIDIOC_S_FMT: OK
+	test VIDIOC_G_SLICED_VBI_CAP: OK (Not Supported)
+	test Cropping: OK (Not Supported)
+	test Composing: OK (Not Supported)
+	test Scaling: OK (Not Supported)
+
+Codec ioctls (Output 0):
+	test VIDIOC_(TRY_)ENCODER_CMD: OK (Not Supported)
+	test VIDIOC_G_ENC_INDEX: OK (Not Supported)
+	test VIDIOC_(TRY_)DECODER_CMD: OK (Not Supported)
+
+Buffer ioctls (Output 0):
+	test VIDIOC_REQBUFS/CREATE_BUFS/QUERYBUF: OK
+	test CREATE_BUFS maximum buffers: OK
+	test VIDIOC_REMOVE_BUFS: OK
+	test VIDIOC_EXPBUF: OK
+	test Requests: OK (Not Supported)
+	test blocking wait: OK
+
+Total for mali-c55 device /dev/video1: 49, Succeeded: 49, Failed: 0, Warnings: 0
+--------------------------------------------------------------------------------
+Compliance test for mali-c55 device /dev/video2:
+
+Driver Info:
+	Driver name      : mali-c55
+	Card type        : ARM Mali-C55 ISP
+	Bus info         : platform:16080000.isp
+	Driver version   : 6.14.0
+	Capabilities     : 0x84a00000
+		Metadata Capture
+		Streaming
+		Extended Pix Format
+		Device Capabilities
+	Device Caps      : 0x04a00000
+		Metadata Capture
+		Streaming
+		Extended Pix Format
+Media Driver Info:
+	Driver name      : mali-c55
+	Model            : ARM Mali-C55 ISP
+	Serial           :
+	Bus info         : platform:16080000.isp
+	Media version    : 6.14.0
+	Hardware revision: 0x01d982d6 (31032022)
+	Driver version   : 6.14.0
+Interface Info:
+	ID               : 0x03000017
+	Type             : V4L Video
+Entity Info:
+	ID               : 0x00000015 (21)
+	Name             : mali-c55 3a stats
+	Function         : V4L2 I/O
+	Pad 0x01000016   : 0: Sink
+	  Link 0x02000021: from remote pad 0x1000007 of entity 'mali-c55 isp' (Image Signal Processor): Data, Enabled
+
+Required ioctls:
+	test MC information (see 'Media Driver Info' above): OK
+	test VIDIOC_QUERYCAP: OK
+	test invalid ioctls: OK
+
+Allow for multiple opens:
+	test second /dev/video2 open: OK
+	test VIDIOC_QUERYCAP: OK
+	test VIDIOC_G/S_PRIORITY: OK
+	test for unlimited opens: OK
+
+Debug ioctls:
+	test VIDIOC_DBG_G/S_REGISTER: OK (Not Supported)
+	test VIDIOC_LOG_STATUS: OK (Not Supported)
+
+Input ioctls:
+	test VIDIOC_G/S_TUNER/ENUM_FREQ_BANDS: OK (Not Supported)
+	test VIDIOC_G/S_FREQUENCY: OK (Not Supported)
+	test VIDIOC_S_HW_FREQ_SEEK: OK (Not Supported)
+	test VIDIOC_ENUMAUDIO: OK (Not Supported)
+	test VIDIOC_G/S/ENUMINPUT: OK (Not Supported)
+	test VIDIOC_G/S_AUDIO: OK (Not Supported)
+	Inputs: 0 Audio Inputs: 0 Tuners: 0
+
+Output ioctls:
+	test VIDIOC_G/S_MODULATOR: OK (Not Supported)
+	test VIDIOC_G/S_FREQUENCY: OK (Not Supported)
+	test VIDIOC_ENUMAUDOUT: OK (Not Supported)
+	test VIDIOC_G/S/ENUMOUTPUT: OK (Not Supported)
+	test VIDIOC_G/S_AUDOUT: OK (Not Supported)
+	Outputs: 0 Audio Outputs: 0 Modulators: 0
+
+Input/Output configuration ioctls:
+	test VIDIOC_ENUM/G/S/QUERY_STD: OK (Not Supported)
+	test VIDIOC_ENUM/G/S/QUERY_DV_TIMINGS: OK (Not Supported)
+	test VIDIOC_DV_TIMINGS_CAP: OK (Not Supported)
+	test VIDIOC_G/S_EDID: OK (Not Supported)
+
+Control ioctls:
+	test VIDIOC_QUERY_EXT_CTRL/QUERYMENU: OK (Not Supported)
+	test VIDIOC_QUERYCTRL: OK (Not Supported)
+	test VIDIOC_G/S_CTRL: OK (Not Supported)
+	test VIDIOC_G/S/TRY_EXT_CTRLS: OK (Not Supported)
+	test VIDIOC_(UN)SUBSCRIBE_EVENT/DQEVENT: OK (Not Supported)
+	test VIDIOC_G/S_JPEGCOMP: OK (Not Supported)
+	Standard Controls: 0 Private Controls: 0
+
+Format ioctls:
+	test VIDIOC_ENUM_FMT/FRAMESIZES/FRAMEINTERVALS: OK
+	test VIDIOC_G/S_PARM: OK (Not Supported)
+	test VIDIOC_G_FBUF: OK (Not Supported)
+	test VIDIOC_G_FMT: OK
+	test VIDIOC_TRY_FMT: OK
+	test VIDIOC_S_FMT: OK
+	test VIDIOC_G_SLICED_VBI_CAP: OK (Not Supported)
+	test Cropping: OK (Not Supported)
+	test Composing: OK (Not Supported)
+	test Scaling: OK (Not Supported)
+
+Codec ioctls:
+	test VIDIOC_(TRY_)ENCODER_CMD: OK (Not Supported)
+	test VIDIOC_G_ENC_INDEX: OK (Not Supported)
+	test VIDIOC_(TRY_)DECODER_CMD: OK (Not Supported)
+
+Buffer ioctls:
+	test VIDIOC_REQBUFS/CREATE_BUFS/QUERYBUF: OK
+	test CREATE_BUFS maximum buffers: OK
+	test VIDIOC_REMOVE_BUFS: OK
+	test VIDIOC_EXPBUF: OK
+	test Requests: OK (Not Supported)
+	test blocking wait: OK
+
+Total for mali-c55 device /dev/video2: 49, Succeeded: 49, Failed: 0, Warnings: 0
+--------------------------------------------------------------------------------
+Compliance test for rzv2h-ivc device /dev/video3:
+
+Driver Info:
+	Driver name      : rzv2h-ivc
+	Card type        : Renesas Input Video Control
+	Bus info         : platform:16080000.isp
+	Driver version   : 6.14.0
+	Capabilities     : 0x84200002
+		Video Output
+		Streaming
+		Extended Pix Format
+		Device Capabilities
+	Device Caps      : 0x04200002
+		Video Output
+		Streaming
+		Extended Pix Format
+Media Driver Info:
+	Driver name      : mali-c55
+	Model            : ARM Mali-C55 ISP
+	Serial           :
+	Bus info         : platform:16080000.isp
+	Media version    : 6.14.0
+	Hardware revision: 0x01d982d6 (31032022)
+	Driver version   : 6.14.0
+Interface Info:
+	ID               : 0x0300002a
+	Type             : V4L Video
+Entity Info:
+	ID               : 0x00000028 (40)
+	Name             : rzv2h-ivc
+	Function         : V4L2 I/O
+	Pad 0x01000029   : 0: Source
+	  Link 0x02000036: to remote pad 0x1000026 of entity 'rzv2h ivc block' (V4L2 I/O): Data, Enabled, Immutable
+
+Required ioctls:
+	test MC information (see 'Media Driver Info' above): OK
+	test VIDIOC_QUERYCAP: OK
+	test invalid ioctls: OK
+
+Allow for multiple opens:
+	test second /dev/video3 open: OK
+	test VIDIOC_QUERYCAP: OK
+	test VIDIOC_G/S_PRIORITY: OK
+	test for unlimited opens: OK
+
+Debug ioctls:
+	test VIDIOC_DBG_G/S_REGISTER: OK (Not Supported)
+	test VIDIOC_LOG_STATUS: OK (Not Supported)
+
+Input ioctls:
+	test VIDIOC_G/S_TUNER/ENUM_FREQ_BANDS: OK (Not Supported)
+	test VIDIOC_G/S_FREQUENCY: OK (Not Supported)
+	test VIDIOC_S_HW_FREQ_SEEK: OK (Not Supported)
+	test VIDIOC_ENUMAUDIO: OK (Not Supported)
+	test VIDIOC_G/S/ENUMINPUT: OK (Not Supported)
+	test VIDIOC_G/S_AUDIO: OK (Not Supported)
+	Inputs: 0 Audio Inputs: 0 Tuners: 0
+
+Output ioctls:
+	test VIDIOC_G/S_MODULATOR: OK (Not Supported)
+	test VIDIOC_G/S_FREQUENCY: OK (Not Supported)
+	test VIDIOC_ENUMAUDOUT: OK (Not Supported)
+	test VIDIOC_G/S/ENUMOUTPUT: OK (Not Supported)
+	test VIDIOC_G/S_AUDOUT: OK (Not Supported)
+	Outputs: 0 Audio Outputs: 0 Modulators: 0
+
+Input/Output configuration ioctls:
+	test VIDIOC_ENUM/G/S/QUERY_STD: OK (Not Supported)
+	test VIDIOC_ENUM/G/S/QUERY_DV_TIMINGS: OK (Not Supported)
+	test VIDIOC_DV_TIMINGS_CAP: OK (Not Supported)
+	test VIDIOC_G/S_EDID: OK (Not Supported)
+
+Control ioctls:
+	test VIDIOC_QUERY_EXT_CTRL/QUERYMENU: OK (Not Supported)
+	test VIDIOC_QUERYCTRL: OK (Not Supported)
+	test VIDIOC_G/S_CTRL: OK (Not Supported)
+	test VIDIOC_G/S/TRY_EXT_CTRLS: OK (Not Supported)
+	test VIDIOC_(UN)SUBSCRIBE_EVENT/DQEVENT: OK (Not Supported)
+	test VIDIOC_G/S_JPEGCOMP: OK (Not Supported)
+	Standard Controls: 0 Private Controls: 0
+
+Format ioctls:
+	test VIDIOC_ENUM_FMT/FRAMESIZES/FRAMEINTERVALS: OK
+	test VIDIOC_G/S_PARM: OK (Not Supported)
+	test VIDIOC_G_FBUF: OK (Not Supported)
+	test VIDIOC_G_FMT: OK
+	test VIDIOC_TRY_FMT: OK
+	test VIDIOC_S_FMT: OK
+	test VIDIOC_G_SLICED_VBI_CAP: OK (Not Supported)
+	test Cropping: OK (Not Supported)
+	test Composing: OK (Not Supported)
+	test Scaling: OK
+
+Codec ioctls:
+	test VIDIOC_(TRY_)ENCODER_CMD: OK (Not Supported)
+	test VIDIOC_G_ENC_INDEX: OK (Not Supported)
+	test VIDIOC_(TRY_)DECODER_CMD: OK (Not Supported)
+
+Buffer ioctls:
+	test VIDIOC_REQBUFS/CREATE_BUFS/QUERYBUF: OK
+	test CREATE_BUFS maximum buffers: OK
+	test VIDIOC_REMOVE_BUFS: OK
+	test VIDIOC_EXPBUF: OK
+	test Requests: OK (Not Supported)
+	test blocking wait: OK
+
+Total for rzv2h-ivc device /dev/video3: 49, Succeeded: 49, Failed: 0, Warnings: 0
+--------------------------------------------------------------------------------
+Compliance test for mali-c55 device /dev/v4l-subdev0:
+
+Driver Info:
+	Driver version   : 6.14.0
+	Capabilities     : 0x00000000
+	Client Capabilities: 0x0000000000000003
+streams interval-uses-which Media Driver Info:
+	Driver name      : mali-c55
+	Model            : ARM Mali-C55 ISP
+	Serial           :
+	Bus info         : platform:16080000.isp
+	Media version    : 6.14.0
+	Hardware revision: 0x01d982d6 (31032022)
+	Driver version   : 6.14.0
+Interface Info:
+	ID               : 0x0300002e
+	Type             : V4L Sub-Device
+Entity Info:
+	ID               : 0x00000001 (1)
+	Name             : mali-c55 tpg
+	Function         : Camera Sensor
+	Pad 0x01000002   : 0: Source
+	  Link 0x02000019: to remote pad 0x1000004 of entity 'mali-c55 isp' (Image Signal Processor): Data
+
+Required ioctls:
+	test MC information (see 'Media Driver Info' above): OK
+	test VIDIOC_SUDBEV_QUERYCAP: OK
+	test invalid ioctls: OK
+
+Allow for multiple opens:
+	test second /dev/v4l-subdev0 open: OK
+	test VIDIOC_SUBDEV_QUERYCAP: OK
+	test for unlimited opens: OK
+
+Debug ioctls:
+	test VIDIOC_LOG_STATUS: OK (Not Supported)
+
+Input ioctls:
+	test VIDIOC_G/S_TUNER/ENUM_FREQ_BANDS: OK (Not Supported)
+	test VIDIOC_G/S_FREQUENCY: OK (Not Supported)
+	test VIDIOC_S_HW_FREQ_SEEK: OK (Not Supported)
+	test VIDIOC_ENUMAUDIO: OK (Not Supported)
+	test VIDIOC_G/S/ENUMINPUT: OK (Not Supported)
+	test VIDIOC_G/S_AUDIO: OK (Not Supported)
+	Inputs: 0 Audio Inputs: 0 Tuners: 0
+
+Output ioctls:
+	test VIDIOC_G/S_MODULATOR: OK (Not Supported)
+	test VIDIOC_G/S_FREQUENCY: OK (Not Supported)
+	test VIDIOC_ENUMAUDOUT: OK (Not Supported)
+	test VIDIOC_G/S/ENUMOUTPUT: OK (Not Supported)
+	test VIDIOC_G/S_AUDOUT: OK (Not Supported)
+	Outputs: 0 Audio Outputs: 0 Modulators: 0
+
+Input/Output configuration ioctls:
+	test VIDIOC_ENUM/G/S/QUERY_STD: OK (Not Supported)
+	test VIDIOC_ENUM/G/S/QUERY_DV_TIMINGS: OK (Not Supported)
+	test VIDIOC_DV_TIMINGS_CAP: OK (Not Supported)
+	test VIDIOC_G/S_EDID: OK (Not Supported)
+
+Sub-Device ioctls (Source Pad 0):
+	Try Stream 0
+	test Try VIDIOC_SUBDEV_ENUM_MBUS_CODE/FRAME_SIZE/FRAME_INTERVAL: OK
+	test Try VIDIOC_SUBDEV_G/S_FMT: OK
+	test Try VIDIOC_SUBDEV_G/S_SELECTION/CROP: OK (Not Supported)
+	Active Stream 0
+	test Active VIDIOC_SUBDEV_ENUM_MBUS_CODE/FRAME_SIZE/FRAME_INTERVAL: OK
+	test Active VIDIOC_SUBDEV_G/S_FMT: OK
+	test Active VIDIOC_SUBDEV_G/S_SELECTION/CROP: OK (Not Supported)
+	test Active VIDIOC_SUBDEV_G/S_FRAME_INTERVAL: OK (Not Supported)
+
+Control ioctls:
+	test VIDIOC_QUERY_EXT_CTRL/QUERYMENU: OK
+	test VIDIOC_QUERYCTRL: OK
+	test VIDIOC_G/S_CTRL: OK
+	test VIDIOC_G/S/TRY_EXT_CTRLS: OK
+	test VIDIOC_(UN)SUBSCRIBE_EVENT/DQEVENT: OK
+	test VIDIOC_G/S_JPEGCOMP: OK (Not Supported)
+	Standard Controls: 6 Private Controls: 0
+
+Format ioctls:
+	test VIDIOC_ENUM_FMT/FRAMESIZES/FRAMEINTERVALS: OK (Not Supported)
+	test VIDIOC_G/S_PARM: OK (Not Supported)
+	test VIDIOC_G_FBUF: OK (Not Supported)
+	test VIDIOC_G_FMT: OK (Not Supported)
+	test VIDIOC_TRY_FMT: OK (Not Supported)
+	test VIDIOC_S_FMT: OK (Not Supported)
+	test VIDIOC_G_SLICED_VBI_CAP: OK (Not Supported)
+	test Cropping: OK (Not Supported)
+	test Composing: OK (Not Supported)
+	test Scaling: OK (Not Supported)
+
+Codec ioctls:
+	test VIDIOC_(TRY_)ENCODER_CMD: OK (Not Supported)
+	test VIDIOC_G_ENC_INDEX: OK (Not Supported)
+	test VIDIOC_(TRY_)DECODER_CMD: OK (Not Supported)
+
+Buffer ioctls:
+	test VIDIOC_REQBUFS/CREATE_BUFS/QUERYBUF: OK (Not Supported)
+	test CREATE_BUFS maximum buffers: OK
+	test VIDIOC_REMOVE_BUFS: OK
+	test VIDIOC_EXPBUF: OK (Not Supported)
+	test Requests: OK (Not Supported)
+	test blocking wait: OK (Not Supported)
+
+Total for mali-c55 device /dev/v4l-subdev0: 54, Succeeded: 54, Failed: 0, Warnings: 0
+--------------------------------------------------------------------------------
+Compliance test for mali-c55 device /dev/v4l-subdev1:
+
+Driver Info:
+	Driver version   : 6.14.0
+	Capabilities     : 0x00000000
+	Client Capabilities: 0x0000000000000003
+streams interval-uses-which Media Driver Info:
+	Driver name      : mali-c55
+	Model            : ARM Mali-C55 ISP
+	Serial           :
+	Bus info         : platform:16080000.isp
+	Media version    : 6.14.0
+	Hardware revision: 0x01d982d6 (31032022)
+	Driver version   : 6.14.0
+Interface Info:
+	ID               : 0x03000030
+	Type             : V4L Sub-Device
+Entity Info:
+	ID               : 0x00000003 (3)
+	Name             : mali-c55 isp
+	Function         : Image Signal Processor
+	Pad 0x01000004   : 0: Sink, Must Connect
+	  Link 0x02000019: from remote pad 0x1000002 of entity 'mali-c55 tpg' (Camera Sensor): Data
+	  Link 0x0200002c: from remote pad 0x1000027 of entity 'rzv2h ivc block' (V4L2 I/O): Data, Enabled
+	Pad 0x01000005   : 1: Source
+	  Link 0x0200001b: to remote pad 0x100000a of entity 'mali-c55 resizer fr' (Video Scaler): Data, Enabled, Immutable
+	Pad 0x01000006   : 2: Source
+	  Link 0x0200001d: to remote pad 0x100000c of entity 'mali-c55 resizer fr' (Video Scaler): Data, Enabled, Immutable
+	Pad 0x01000007   : 3: Source
+	  Link 0x02000021: to remote pad 0x1000016 of entity 'mali-c55 3a stats' (V4L2 I/O): Data, Enabled
+	Pad 0x01000008   : 4: Sink
+	  Link 0x02000023: from remote pad 0x1000012 of entity 'mali-c55 3a params' (V4L2 I/O): Data, Enabled
+
+Required ioctls:
+	test MC information (see 'Media Driver Info' above): OK
+	test VIDIOC_SUDBEV_QUERYCAP: OK
+	test invalid ioctls: OK
+
+Allow for multiple opens:
+	test second /dev/v4l-subdev1 open: OK
+	test VIDIOC_SUBDEV_QUERYCAP: OK
+	test for unlimited opens: OK
+
+Debug ioctls:
+	test VIDIOC_LOG_STATUS: OK (Not Supported)
+
+Input ioctls:
+	test VIDIOC_G/S_TUNER/ENUM_FREQ_BANDS: OK (Not Supported)
+	test VIDIOC_G/S_FREQUENCY: OK (Not Supported)
+	test VIDIOC_S_HW_FREQ_SEEK: OK (Not Supported)
+	test VIDIOC_ENUMAUDIO: OK (Not Supported)
+	test VIDIOC_G/S/ENUMINPUT: OK (Not Supported)
+	test VIDIOC_G/S_AUDIO: OK (Not Supported)
+	Inputs: 0 Audio Inputs: 0 Tuners: 0
+
+Output ioctls:
+	test VIDIOC_G/S_MODULATOR: OK (Not Supported)
+	test VIDIOC_G/S_FREQUENCY: OK (Not Supported)
+	test VIDIOC_ENUMAUDOUT: OK (Not Supported)
+	test VIDIOC_G/S/ENUMOUTPUT: OK (Not Supported)
+	test VIDIOC_G/S_AUDOUT: OK (Not Supported)
+	Outputs: 0 Audio Outputs: 0 Modulators: 0
+
+Input/Output configuration ioctls:
+	test VIDIOC_ENUM/G/S/QUERY_STD: OK (Not Supported)
+	test VIDIOC_ENUM/G/S/QUERY_DV_TIMINGS: OK (Not Supported)
+	test VIDIOC_DV_TIMINGS_CAP: OK (Not Supported)
+	test VIDIOC_G/S_EDID: OK (Not Supported)
+
+Sub-Device ioctls (Sink Pad 0):
+	Try Stream 0
+	test Try VIDIOC_SUBDEV_ENUM_MBUS_CODE/FRAME_SIZE/FRAME_INTERVAL: OK
+	test Try VIDIOC_SUBDEV_G/S_FMT: OK
+	test Try VIDIOC_SUBDEV_G/S_SELECTION/CROP: OK
+	Active Stream 0
+	test Active VIDIOC_SUBDEV_ENUM_MBUS_CODE/FRAME_SIZE/FRAME_INTERVAL: OK
+	test Active VIDIOC_SUBDEV_G/S_FMT: OK
+	test Active VIDIOC_SUBDEV_G/S_SELECTION/CROP: OK
+	test Active VIDIOC_SUBDEV_G/S_FRAME_INTERVAL: OK (Not Supported)
+
+Sub-Device ioctls (Source Pad 1):
+	Try Stream 0
+	test Try VIDIOC_SUBDEV_ENUM_MBUS_CODE/FRAME_SIZE/FRAME_INTERVAL: OK
+	test Try VIDIOC_SUBDEV_G/S_FMT: OK
+	test Try VIDIOC_SUBDEV_G/S_SELECTION/CROP: OK (Not Supported)
+	Active Stream 0
+	test Active VIDIOC_SUBDEV_ENUM_MBUS_CODE/FRAME_SIZE/FRAME_INTERVAL: OK
+	test Active VIDIOC_SUBDEV_G/S_FMT: OK
+	test Active VIDIOC_SUBDEV_G/S_SELECTION/CROP: OK (Not Supported)
+	test Active VIDIOC_SUBDEV_G/S_FRAME_INTERVAL: OK (Not Supported)
+
+Sub-Device ioctls (Source Pad 2):
+	Try Stream 0
+	test Try VIDIOC_SUBDEV_ENUM_MBUS_CODE/FRAME_SIZE/FRAME_INTERVAL: OK
+	test Try VIDIOC_SUBDEV_G/S_FMT: OK
+	test Try VIDIOC_SUBDEV_G/S_SELECTION/CROP: OK (Not Supported)
+	Active Stream 0
+	test Active VIDIOC_SUBDEV_ENUM_MBUS_CODE/FRAME_SIZE/FRAME_INTERVAL: OK
+	test Active VIDIOC_SUBDEV_G/S_FMT: OK
+	test Active VIDIOC_SUBDEV_G/S_SELECTION/CROP: OK (Not Supported)
+	test Active VIDIOC_SUBDEV_G/S_FRAME_INTERVAL: OK (Not Supported)
+
+Sub-Device ioctls (Source Pad 3):
+	Try Stream 0
+	test Try VIDIOC_SUBDEV_ENUM_MBUS_CODE/FRAME_SIZE/FRAME_INTERVAL: OK
+		fail: ../utils/v4l2-compliance/v4l2-test-subdevs.cpp(369): fmt.width == 0 || fmt.width > 65536
+		fail: ../utils/v4l2-compliance/v4l2-test-subdevs.cpp(418): checkMBusFrameFmt(node, fmt.format)
+	test Try VIDIOC_SUBDEV_G/S_FMT: FAIL
+	test Try VIDIOC_SUBDEV_G/S_SELECTION/CROP: OK (Not Supported)
+	Active Stream 0
+	test Active VIDIOC_SUBDEV_ENUM_MBUS_CODE/FRAME_SIZE/FRAME_INTERVAL: OK
+		fail: ../utils/v4l2-compliance/v4l2-test-subdevs.cpp(369): fmt.width == 0 || fmt.width > 65536
+		fail: ../utils/v4l2-compliance/v4l2-test-subdevs.cpp(418): checkMBusFrameFmt(node, fmt.format)
+	test Active VIDIOC_SUBDEV_G/S_FMT: FAIL
+	test Active VIDIOC_SUBDEV_G/S_SELECTION/CROP: OK (Not Supported)
+	test Active VIDIOC_SUBDEV_G/S_FRAME_INTERVAL: OK (Not Supported)
+
+Sub-Device ioctls (Sink Pad 4):
+	Try Stream 0
+	test Try VIDIOC_SUBDEV_ENUM_MBUS_CODE/FRAME_SIZE/FRAME_INTERVAL: OK
+		fail: ../utils/v4l2-compliance/v4l2-test-subdevs.cpp(369): fmt.width == 0 || fmt.width > 65536
+		fail: ../utils/v4l2-compliance/v4l2-test-subdevs.cpp(418): checkMBusFrameFmt(node, fmt.format)
+	test Try VIDIOC_SUBDEV_G/S_FMT: FAIL
+	test Try VIDIOC_SUBDEV_G/S_SELECTION/CROP: OK (Not Supported)
+	Active Stream 0
+	test Active VIDIOC_SUBDEV_ENUM_MBUS_CODE/FRAME_SIZE/FRAME_INTERVAL: OK
+		fail: ../utils/v4l2-compliance/v4l2-test-subdevs.cpp(369): fmt.width == 0 || fmt.width > 65536
+		fail: ../utils/v4l2-compliance/v4l2-test-subdevs.cpp(418): checkMBusFrameFmt(node, fmt.format)
+	test Active VIDIOC_SUBDEV_G/S_FMT: FAIL
+	test Active VIDIOC_SUBDEV_G/S_SELECTION/CROP: OK (Not Supported)
+	test Active VIDIOC_SUBDEV_G/S_FRAME_INTERVAL: OK (Not Supported)
+
+Control ioctls:
+	test VIDIOC_QUERY_EXT_CTRL/QUERYMENU: OK
+	test VIDIOC_QUERYCTRL: OK
+	test VIDIOC_G/S_CTRL: OK
+	test VIDIOC_G/S/TRY_EXT_CTRLS: OK
+	test VIDIOC_(UN)SUBSCRIBE_EVENT/DQEVENT: OK
+	test VIDIOC_G/S_JPEGCOMP: OK (Not Supported)
+	Standard Controls: 1 Private Controls: 1
+
+Format ioctls:
+	test VIDIOC_ENUM_FMT/FRAMESIZES/FRAMEINTERVALS: OK (Not Supported)
+	test VIDIOC_G/S_PARM: OK (Not Supported)
+	test VIDIOC_G_FBUF: OK (Not Supported)
+	test VIDIOC_G_FMT: OK (Not Supported)
+	test VIDIOC_TRY_FMT: OK (Not Supported)
+	test VIDIOC_S_FMT: OK (Not Supported)
+	test VIDIOC_G_SLICED_VBI_CAP: OK (Not Supported)
+	test Cropping: OK (Not Supported)
+	test Composing: OK (Not Supported)
+	test Scaling: OK (Not Supported)
+
+Codec ioctls:
+	test VIDIOC_(TRY_)ENCODER_CMD: OK (Not Supported)
+	test VIDIOC_G_ENC_INDEX: OK (Not Supported)
+	test VIDIOC_(TRY_)DECODER_CMD: OK (Not Supported)
+
+Buffer ioctls:
+	test VIDIOC_REQBUFS/CREATE_BUFS/QUERYBUF: OK (Not Supported)
+	test CREATE_BUFS maximum buffers: OK
+	test VIDIOC_REMOVE_BUFS: OK
+	test VIDIOC_EXPBUF: OK (Not Supported)
+	test Requests: OK (Not Supported)
+	test blocking wait: OK (Not Supported)
+
+Total for mali-c55 device /dev/v4l-subdev1: 82, Succeeded: 78, Failed: 4, Warnings: 0
+--------------------------------------------------------------------------------
+Compliance test for mali-c55 device /dev/v4l-subdev2:
+
+Driver Info:
+	Driver version   : 6.14.0
+	Capabilities     : 0x00000002
+		Streams Support
+	Client Capabilities: 0x0000000000000003
+streams interval-uses-which Media Driver Info:
+	Driver name      : mali-c55
+	Model            : ARM Mali-C55 ISP
+	Serial           :
+	Bus info         : platform:16080000.isp
+	Media version    : 6.14.0
+	Hardware revision: 0x01d982d6 (31032022)
+	Driver version   : 6.14.0
+Interface Info:
+	ID               : 0x03000032
+	Type             : V4L Sub-Device
+Entity Info:
+	ID               : 0x00000009 (9)
+	Name             : mali-c55 resizer fr
+	Function         : Video Scaler
+	Pad 0x0100000a   : 0: Sink
+	  Link 0x0200001b: from remote pad 0x1000005 of entity 'mali-c55 isp' (Image Signal Processor): Data, Enabled, Immutable
+	Pad 0x0100000b   : 1: Source
+	  Link 0x0200001f: to remote pad 0x100000e of entity 'mali-c55 fr' (V4L2 I/O): Data, Enabled
+	Pad 0x0100000c   : 2: Sink
+	  Link 0x0200001d: from remote pad 0x1000006 of entity 'mali-c55 isp' (Image Signal Processor): Data, Enabled, Immutable
+
+Required ioctls:
+	test MC information (see 'Media Driver Info' above): OK
+	test VIDIOC_SUDBEV_QUERYCAP: OK
+	test invalid ioctls: OK
+
+Allow for multiple opens:
+	test second /dev/v4l-subdev2 open: OK
+	test VIDIOC_SUBDEV_QUERYCAP: OK
+	test for unlimited opens: OK
+
+Debug ioctls:
+	test VIDIOC_LOG_STATUS: OK (Not Supported)
+
+Input ioctls:
+	test VIDIOC_G/S_TUNER/ENUM_FREQ_BANDS: OK (Not Supported)
+	test VIDIOC_G/S_FREQUENCY: OK (Not Supported)
+	test VIDIOC_S_HW_FREQ_SEEK: OK (Not Supported)
+	test VIDIOC_ENUMAUDIO: OK (Not Supported)
+	test VIDIOC_G/S/ENUMINPUT: OK (Not Supported)
+	test VIDIOC_G/S_AUDIO: OK (Not Supported)
+	Inputs: 0 Audio Inputs: 0 Tuners: 0
+
+Output ioctls:
+	test VIDIOC_G/S_MODULATOR: OK (Not Supported)
+	test VIDIOC_G/S_FREQUENCY: OK (Not Supported)
+	test VIDIOC_ENUMAUDOUT: OK (Not Supported)
+	test VIDIOC_G/S/ENUMOUTPUT: OK (Not Supported)
+	test VIDIOC_G/S_AUDOUT: OK (Not Supported)
+	Outputs: 0 Audio Outputs: 0 Modulators: 0
+
+Input/Output configuration ioctls:
+	test VIDIOC_ENUM/G/S/QUERY_STD: OK (Not Supported)
+	test VIDIOC_ENUM/G/S/QUERY_DV_TIMINGS: OK (Not Supported)
+	test VIDIOC_DV_TIMINGS_CAP: OK (Not Supported)
+	test VIDIOC_G/S_EDID: OK (Not Supported)
+
+Sub-Device routing ioctls:
+	test Try VIDIOC_SUBDEV_G_ROUTING/VIDIOC_SUBDEV_S_ROUTING: OK
+	test Active VIDIOC_SUBDEV_G_ROUTING/VIDIOC_SUBDEV_S_ROUTING: OK
+
+Sub-Device ioctls (Sink Pad 0):
+	Try Stream 0
+	test Try VIDIOC_SUBDEV_ENUM_MBUS_CODE/FRAME_SIZE/FRAME_INTERVAL: OK
+	test Try VIDIOC_SUBDEV_G/S_FMT: OK
+	test Try VIDIOC_SUBDEV_G/S_SELECTION/CROP: OK
+	Active Stream 0
+	test Active VIDIOC_SUBDEV_ENUM_MBUS_CODE/FRAME_SIZE/FRAME_INTERVAL: OK
+	test Active VIDIOC_SUBDEV_G/S_FMT: OK
+	test Active VIDIOC_SUBDEV_G/S_SELECTION/CROP: OK
+	test Active VIDIOC_SUBDEV_G/S_FRAME_INTERVAL: OK (Not Supported)
+
+Sub-Device ioctls (Source Pad 1):
+	Try Stream 0
+	test Try VIDIOC_SUBDEV_ENUM_MBUS_CODE/FRAME_SIZE/FRAME_INTERVAL: OK
+	test Try VIDIOC_SUBDEV_G/S_FMT: OK
+	test Try VIDIOC_SUBDEV_G/S_SELECTION/CROP: OK (Not Supported)
+	Active Stream 0
+	test Active VIDIOC_SUBDEV_ENUM_MBUS_CODE/FRAME_SIZE/FRAME_INTERVAL: OK
+	test Active VIDIOC_SUBDEV_G/S_FMT: OK
+	test Active VIDIOC_SUBDEV_G/S_SELECTION/CROP: OK (Not Supported)
+	test Active VIDIOC_SUBDEV_G/S_FRAME_INTERVAL: OK (Not Supported)
+
+Sub-Device ioctls (Sink Pad 2):
+
+Control ioctls:
+	test VIDIOC_QUERY_EXT_CTRL/QUERYMENU: OK (Not Supported)
+	test VIDIOC_QUERYCTRL: OK (Not Supported)
+	test VIDIOC_G/S_CTRL: OK (Not Supported)
+	test VIDIOC_G/S/TRY_EXT_CTRLS: OK (Not Supported)
+	test VIDIOC_(UN)SUBSCRIBE_EVENT/DQEVENT: OK (Not Supported)
+	test VIDIOC_G/S_JPEGCOMP: OK (Not Supported)
+	Standard Controls: 0 Private Controls: 0
+
+Format ioctls:
+	test VIDIOC_ENUM_FMT/FRAMESIZES/FRAMEINTERVALS: OK (Not Supported)
+	test VIDIOC_G/S_PARM: OK (Not Supported)
+	test VIDIOC_G_FBUF: OK (Not Supported)
+	test VIDIOC_G_FMT: OK (Not Supported)
+	test VIDIOC_TRY_FMT: OK (Not Supported)
+	test VIDIOC_S_FMT: OK (Not Supported)
+	test VIDIOC_G_SLICED_VBI_CAP: OK (Not Supported)
+	test Cropping: OK (Not Supported)
+	test Composing: OK (Not Supported)
+	test Scaling: OK (Not Supported)
+
+Codec ioctls:
+	test VIDIOC_(TRY_)ENCODER_CMD: OK (Not Supported)
+	test VIDIOC_G_ENC_INDEX: OK (Not Supported)
+	test VIDIOC_(TRY_)DECODER_CMD: OK (Not Supported)
+
+Buffer ioctls:
+	test VIDIOC_REQBUFS/CREATE_BUFS/QUERYBUF: OK (Not Supported)
+	test CREATE_BUFS maximum buffers: OK
+	test VIDIOC_REMOVE_BUFS: OK
+	test VIDIOC_EXPBUF: OK (Not Supported)
+	test Requests: OK (Not Supported)
+	test blocking wait: OK (Not Supported)
+
+Total for mali-c55 device /dev/v4l-subdev2: 63, Succeeded: 63, Failed: 0, Warnings: 0
+--------------------------------------------------------------------------------
+Compliance test for mali-c55 device /dev/v4l-subdev3:
+
+Driver Info:
+	Driver version   : 6.14.0
+	Capabilities     : 0x00000000
+	Client Capabilities: 0x0000000000000003
+streams interval-uses-which Media Driver Info:
+	Driver name      : mali-c55
+	Model            : ARM Mali-C55 ISP
+	Serial           :
+	Bus info         : platform:16080000.isp
+	Media version    : 6.14.0
+	Hardware revision: 0x01d982d6 (31032022)
+	Driver version   : 6.14.0
+Interface Info:
+	ID               : 0x03000034
+	Type             : V4L Sub-Device
+Entity Info:
+	ID               : 0x00000025 (37)
+	Name             : rzv2h ivc block
+	Function         : V4L2 I/O
+	Pad 0x01000026   : 0: Sink
+	  Link 0x02000036: from remote pad 0x1000029 of entity 'rzv2h-ivc' (V4L2 I/O): Data, Enabled, Immutable
+	Pad 0x01000027   : 1: Source
+	  Link 0x0200002c: to remote pad 0x1000004 of entity 'mali-c55 isp' (Image Signal Processor): Data, Enabled
+
+Required ioctls:
+	test MC information (see 'Media Driver Info' above): OK
+	test VIDIOC_SUDBEV_QUERYCAP: OK
+	test invalid ioctls: OK
+
+Allow for multiple opens:
+	test second /dev/v4l-subdev3 open: OK
+	test VIDIOC_SUBDEV_QUERYCAP: OK
+	test for unlimited opens: OK
+
+Debug ioctls:
+	test VIDIOC_LOG_STATUS: OK (Not Supported)
+
+Input ioctls:
+	test VIDIOC_G/S_TUNER/ENUM_FREQ_BANDS: OK (Not Supported)
+	test VIDIOC_G/S_FREQUENCY: OK (Not Supported)
+	test VIDIOC_S_HW_FREQ_SEEK: OK (Not Supported)
+	test VIDIOC_ENUMAUDIO: OK (Not Supported)
+	test VIDIOC_G/S/ENUMINPUT: OK (Not Supported)
+	test VIDIOC_G/S_AUDIO: OK (Not Supported)
+	Inputs: 0 Audio Inputs: 0 Tuners: 0
+
+Output ioctls:
+	test VIDIOC_G/S_MODULATOR: OK (Not Supported)
+	test VIDIOC_G/S_FREQUENCY: OK (Not Supported)
+	test VIDIOC_ENUMAUDOUT: OK (Not Supported)
+	test VIDIOC_G/S/ENUMOUTPUT: OK (Not Supported)
+	test VIDIOC_G/S_AUDOUT: OK (Not Supported)
+	Outputs: 0 Audio Outputs: 0 Modulators: 0
+
+Input/Output configuration ioctls:
+	test VIDIOC_ENUM/G/S/QUERY_STD: OK (Not Supported)
+	test VIDIOC_ENUM/G/S/QUERY_DV_TIMINGS: OK (Not Supported)
+	test VIDIOC_DV_TIMINGS_CAP: OK (Not Supported)
+	test VIDIOC_G/S_EDID: OK (Not Supported)
+
+Sub-Device ioctls (Sink Pad 0):
+	Try Stream 0
+	test Try VIDIOC_SUBDEV_ENUM_MBUS_CODE/FRAME_SIZE/FRAME_INTERVAL: OK
+	test Try VIDIOC_SUBDEV_G/S_FMT: OK
+	test Try VIDIOC_SUBDEV_G/S_SELECTION/CROP: OK (Not Supported)
+	Active Stream 0
+	test Active VIDIOC_SUBDEV_ENUM_MBUS_CODE/FRAME_SIZE/FRAME_INTERVAL: OK
+	test Active VIDIOC_SUBDEV_G/S_FMT: OK
+	test Active VIDIOC_SUBDEV_G/S_SELECTION/CROP: OK (Not Supported)
+	test Active VIDIOC_SUBDEV_G/S_FRAME_INTERVAL: OK (Not Supported)
+
+Sub-Device ioctls (Source Pad 1):
+	Try Stream 0
+	test Try VIDIOC_SUBDEV_ENUM_MBUS_CODE/FRAME_SIZE/FRAME_INTERVAL: OK
+	test Try VIDIOC_SUBDEV_G/S_FMT: OK
+	test Try VIDIOC_SUBDEV_G/S_SELECTION/CROP: OK (Not Supported)
+	Active Stream 0
+	test Active VIDIOC_SUBDEV_ENUM_MBUS_CODE/FRAME_SIZE/FRAME_INTERVAL: OK
+	test Active VIDIOC_SUBDEV_G/S_FMT: OK
+	test Active VIDIOC_SUBDEV_G/S_SELECTION/CROP: OK (Not Supported)
+	test Active VIDIOC_SUBDEV_G/S_FRAME_INTERVAL: OK (Not Supported)
+
+Control ioctls:
+	test VIDIOC_QUERY_EXT_CTRL/QUERYMENU: OK (Not Supported)
+	test VIDIOC_QUERYCTRL: OK (Not Supported)
+	test VIDIOC_G/S_CTRL: OK (Not Supported)
+	test VIDIOC_G/S/TRY_EXT_CTRLS: OK (Not Supported)
+	test VIDIOC_(UN)SUBSCRIBE_EVENT/DQEVENT: OK (Not Supported)
+	test VIDIOC_G/S_JPEGCOMP: OK (Not Supported)
+	Standard Controls: 0 Private Controls: 0
+
+Format ioctls:
+	test VIDIOC_ENUM_FMT/FRAMESIZES/FRAMEINTERVALS: OK (Not Supported)
+	test VIDIOC_G/S_PARM: OK (Not Supported)
+	test VIDIOC_G_FBUF: OK (Not Supported)
+	test VIDIOC_G_FMT: OK (Not Supported)
+	test VIDIOC_TRY_FMT: OK (Not Supported)
+	test VIDIOC_S_FMT: OK (Not Supported)
+	test VIDIOC_G_SLICED_VBI_CAP: OK (Not Supported)
+	test Cropping: OK (Not Supported)
+	test Composing: OK (Not Supported)
+	test Scaling: OK (Not Supported)
+
+Codec ioctls:
+	test VIDIOC_(TRY_)ENCODER_CMD: OK (Not Supported)
+	test VIDIOC_G_ENC_INDEX: OK (Not Supported)
+	test VIDIOC_(TRY_)DECODER_CMD: OK (Not Supported)
+
+Buffer ioctls:
+	test VIDIOC_REQBUFS/CREATE_BUFS/QUERYBUF: OK (Not Supported)
+	test CREATE_BUFS maximum buffers: OK
+	test VIDIOC_REMOVE_BUFS: OK
+	test VIDIOC_EXPBUF: OK (Not Supported)
+	test Requests: OK (Not Supported)
+	test blocking wait: OK (Not Supported)
+
+Total for mali-c55 device /dev/v4l-subdev3: 61, Succeeded: 61, Failed: 0, Warnings: 0
+
+Grand Total for mali-c55 device /dev/media0: 464, Succeeded: 460, Failed: 4, Warnings: 0
+
+---
+Daniel Scally (16):
+      media: uapi: Add MEDIA_BUS_FMT_RGB202020_1X60 format code
+      media: uapi: Add 20-bit bayer formats
+      media: v4l2-common: Add RAW16 format info
+      media: v4l2-common: Add RAW14 format info
+      dt-bindings: media: Add bindings for ARM mali-c55
+      media: uapi: Add controls for Mali-C55 ISP
+      media: mali-c55: Add Mali-C55 ISP driver
+      media: Documentation: Add Mali-C55 ISP Documentation
+      MAINTAINERS: Add entry for mali-c55 driver
+      media: Add MALI_C55_3A_STATS meta format
+      media: uapi: Add 3a stats buffer for mali-c55
+      media: platform: Add mali-c55 3a stats devnode
+      Documentation: mali-c55: Add Statistics documentation
+      media: uapi: Add parameters structs to mali-c55-config.h
+      media: platform: Add mali-c55 parameters video node
+      Documentation: mali-c55: Document the mali-c55 parameter setting
+
+Jacopo Mondi (1):
+      media: mali-c55: Add image formats for Mali-C55 parameters buffer
+
+ Documentation/admin-guide/media/mali-c55-graph.dot |   19 +
+ Documentation/admin-guide/media/mali-c55.rst       |  413 +++++++
+ Documentation/admin-guide/media/v4l-drivers.rst    |    1 +
+ .../devicetree/bindings/media/arm,mali-c55.yaml    |   89 ++
+ .../userspace-api/media/drivers/index.rst          |    1 +
+ .../userspace-api/media/drivers/mali-c55.rst       |   55 +
+ .../userspace-api/media/v4l/meta-formats.rst       |    1 +
+ .../media/v4l/metafmt-arm-mali-c55.rst             |   89 ++
+ .../userspace-api/media/v4l/subdev-formats.rst     |  420 ++++++-
+ MAINTAINERS                                        |   14 +
+ drivers/media/platform/Kconfig                     |    1 +
+ drivers/media/platform/Makefile                    |    1 +
+ drivers/media/platform/arm/Kconfig                 |    5 +
+ drivers/media/platform/arm/Makefile                |    2 +
+ drivers/media/platform/arm/mali-c55/Kconfig        |   17 +
+ drivers/media/platform/arm/mali-c55/Makefile       |   11 +
+ .../media/platform/arm/mali-c55/mali-c55-capture.c | 1051 ++++++++++++++++++
+ .../media/platform/arm/mali-c55/mali-c55-common.h  |  316 ++++++
+ .../media/platform/arm/mali-c55/mali-c55-core.c    | 1119 +++++++++++++++++++
+ drivers/media/platform/arm/mali-c55/mali-c55-isp.c |  688 ++++++++++++
+ .../media/platform/arm/mali-c55/mali-c55-params.c  |  918 ++++++++++++++++
+ .../platform/arm/mali-c55/mali-c55-registers.h     |  449 ++++++++
+ .../media/platform/arm/mali-c55/mali-c55-resizer.c | 1156 ++++++++++++++++++++
+ .../media/platform/arm/mali-c55/mali-c55-stats.c   |  528 +++++++++
+ drivers/media/platform/arm/mali-c55/mali-c55-tpg.c |  438 ++++++++
+ drivers/media/v4l2-core/v4l2-common.c              |    8 +
+ drivers/media/v4l2-core/v4l2-ioctl.c               |    2 +
+ include/uapi/linux/media-bus-format.h              |    9 +-
+ include/uapi/linux/media/arm/mali-c55-config.h     |  923 ++++++++++++++++
+ include/uapi/linux/v4l2-controls.h                 |    6 +
+ include/uapi/linux/videodev2.h                     |    4 +
+ 31 files changed, 8750 insertions(+), 4 deletions(-)
+---
+base-commit: 19272b37aa4f83ca52bdf9c16d5d81bdd1354494
+change-id: 20250624-c55-b3c36b2e1d8c
+prerequisite-change-id: 20250623-media-jobs-6f3f9963063c:v2
+prerequisite-patch-id: 0852507344c44fcf4fa3d2a831c01ab23b9dcffb
+prerequisite-patch-id: 039d718b90b570bc4c2766b9da20db9e6bdb5c9b
+prerequisite-patch-id: 78e666f180a0650b8ddcdaad933c886d095c8a4c
+
+Best regards,
+-- 
+Daniel Scally <dan.scally@ideasonboard.com>
 
 
