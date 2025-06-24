@@ -1,48 +1,48 @@
-Return-Path: <devicetree+bounces-188967-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-188968-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 72DB6AE6318
-	for <lists+devicetree@lfdr.de>; Tue, 24 Jun 2025 12:58:07 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 116CAAE6327
+	for <lists+devicetree@lfdr.de>; Tue, 24 Jun 2025 13:01:13 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id F287D7B33A2
-	for <lists+devicetree@lfdr.de>; Tue, 24 Jun 2025 10:55:18 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 3A447172F9C
+	for <lists+devicetree@lfdr.de>; Tue, 24 Jun 2025 11:01:03 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 87484288C04;
-	Tue, 24 Jun 2025 10:55:42 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5EBF12868BD;
+	Tue, 24 Jun 2025 11:00:59 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="rrp/ErDY"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="ecVKd2zi"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5D9C228136F;
-	Tue, 24 Jun 2025 10:55:42 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2D68B229B36;
+	Tue, 24 Jun 2025 11:00:58 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1750762542; cv=none; b=SFsEhBN8lUh+rjA04vbpIouZEky5zXnBKBg0wUTOdymRvzPJ99keL+HVUwkPYinqi/IZLSFOgYjlLPzQCY0wDo7QPtYvRkDPCFTvpBG0eHhyfpEt2DEGMm2MtvaBVvkAt6STDlg8CKceJOkkJq0+bssSmpzkE1q+8R36ZUHOBtU=
+	t=1750762859; cv=none; b=OtgljccUVadyX3P8PSyiqBasLBAqhEleLZ6/eFXhpzqKmhi0dgLv8xWL+D+2tLCL6CHhzlbVYVFcBmRloOpfuaV2cOMQIQtnaZrjlhTGCRyPxScVPeceqvi+lmSLB7bcN0PZseC5k79vKVgCsDSofd0RZO5ij8/bq7xjwFn1yT0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1750762542; c=relaxed/simple;
-	bh=Pu3DHb8aP+XC/W7n3/h0zTNv+tV4W0GTHtRsft6M9TE=;
+	s=arc-20240116; t=1750762859; c=relaxed/simple;
+	bh=FoF0p/Xd6d2XLyOYAUtlJno6CwxeRwrK4FnBNCnaBKY=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=j/bCwZZzJdQjhL+ixiI99ZiNdSWcrNEr8oH3rf58wcDklBFnhyJVid8myLZZ6xhEoyYPZH1vArQC0Ds+zYvXKN9SZ5RbkfVbjIRyrfo1RbVdgPhwDAO7TETtRoDqc8J1PZIJUsDJe4q3zJ4Oh1aMDyvQ5zi8DD0X1FuO652Lapw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=rrp/ErDY; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 2C19DC4CEEE;
-	Tue, 24 Jun 2025 10:55:37 +0000 (UTC)
+	 In-Reply-To:Content-Type; b=ocOEWpDTapHuxHGOoFLqedwwR6wVRCpO77zWiyJxU326vdhN4x+LD0OHb0p9L0560sUb8vXNyBtJ8QoETntan1DJU5PE+Tux7WCEJGmiaJym5/qOFYFyGR5XFZcedSlHYMTjI3IsSj1J3uYUeBED3LLYxGxdWQ3JOXFlh50dWPE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=ecVKd2zi; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id E5AE1C4CEE3;
+	Tue, 24 Jun 2025 11:00:55 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1750762541;
-	bh=Pu3DHb8aP+XC/W7n3/h0zTNv+tV4W0GTHtRsft6M9TE=;
+	s=k20201202; t=1750762858;
+	bh=FoF0p/Xd6d2XLyOYAUtlJno6CwxeRwrK4FnBNCnaBKY=;
 	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=rrp/ErDYDCrpSErtMPyFgneczghqkJ4natiJVaKPRR/5+h+kYiJp5tsihKX7jxcHD
-	 AxpHsQF4BknyYwn6GAcn8jwC4TGjkQa8Q0SP3cYucl8Zx28YtAjDyIkl3IyU1VATrl
-	 4xiWm+l8bOFez4NGm4wCvYl7uYHtxLkoMJ/qAoXmLVH2Qx6rmfQZ7BbfqlQitKA8vY
-	 M9zrCU92PcTRyEUFqFiIU0gzrZN2Mn8XxNcvFu5et6IF0x0Uh1JVV6VTWqIypZ7ISv
-	 M8o6SNJG9TuJjALo/qMR8ihXl9vtd1iOsIm7errENpkHRCsk2P6msB5ZMQgzylgdth
-	 oMDrluo03zeoQ==
-Message-ID: <6f98274a-88c3-4afc-b324-b024f31e1628@kernel.org>
-Date: Tue, 24 Jun 2025 12:55:36 +0200
+	b=ecVKd2ziH/fQHEkxedPGzvc57yYb4PGnT4AeISrq7rgxOOdycnFKL1QeeXTExBEaS
+	 +s2Is64lJgNBCQQ41Tih6hFBVAxMP3N+/X6tx3DSHcLLWuBDwq3xa99d7A/0qsj5MN
+	 U46sSAR/QGw/4sNaoIF5M3BuKJVQ7w/FdOcJpR8DArmFHrRPUVzVRV/YLuJqez+T/Y
+	 gx5TagxPGW+z5vGDjn/GksW3VxXnH8t2qc7+I1604sSo9ija8miEkpBtwpfDp8kzJ/
+	 r/NTxDwIzbxi6cQDCI8AhL9jlIrFgza4rddfgZey0Rkviglq2t8IX7Kb+QIt7djpr0
+	 wVBFmmPQNeuMw==
+Message-ID: <cd98add5-dd2f-455f-b534-c83e62a97bd0@kernel.org>
+Date: Tue, 24 Jun 2025 13:00:53 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,17 +50,16 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCHv4 2/6] dt-bindings: arm: ti: Add bindings for AM62D2 SoC
-To: Paresh Bhagat <p-bhagat@ti.com>, nm@ti.com, vigneshr@ti.com,
- praneeth@ti.com
-Cc: kristo@kernel.org, robh@kernel.org, krzk+dt@kernel.org,
- conor+dt@kernel.org, linux-arm-kernel@lists.infradead.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, khasim@ti.com,
- v-singh1@ti.com, afd@ti.com, bb@ti.com, devarsht@ti.com
-References: <20250623141253.3519546-1-p-bhagat@ti.com>
- <20250623141253.3519546-3-p-bhagat@ti.com>
- <2e26a403-fac2-4217-8525-24e39d4c92c5@kernel.org>
- <c4362d9e-62a4-4c28-b1cd-c338467f92ae@ti.com>
+Subject: Re: [PATCH v3 1/2] dt-bindings: clock: eswin: Documentation for
+ eic7700 SoC
+To: dongxuyang@eswincomputing.com, mturquette@baylibre.com, sboyd@kernel.org,
+ robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
+ linux-clk@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org
+Cc: ningyu@eswincomputing.com, linmin@eswincomputing.com,
+ huangyifeng@eswincomputing.com
+References: <20250624103212.287-1-dongxuyang@eswincomputing.com>
+ <20250624103256.345-1-dongxuyang@eswincomputing.com>
 From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
@@ -106,55 +105,151 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  jWt87ecuHlpL3uuQ0ZZNWqHgZoQLXoqC2ZV5KrtKWb/jyiFX/sxSrodALf0zf+tfHv0FZWT2
  zHjUqd0t4njD/UOsuIMOQn4Ig0SdivYPfZukb5cdasKJukG1NOpbW7yRNivaCnfZz6dTawXw
  XRIV/KDsHQiyVxKvN73bThKhONkcX2LWuD928tAR6XMM2G5ovxLe09vuOzzfTWQDsm++9UKF a/A=
-In-Reply-To: <c4362d9e-62a4-4c28-b1cd-c338467f92ae@ti.com>
+In-Reply-To: <20250624103256.345-1-dongxuyang@eswincomputing.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 24/06/2025 12:39, Paresh Bhagat wrote:
-> 
->>>
->>> This SoC is of part K3 AM62x family, which includes the AM62A and AM62P
->>> variants. While the AM62A and AM62D are largely similar, the AM62D is
->>> specifically targeted for general-purpose DSP applications, whereas the
->>> AM62A focuses on edge AI workloads. A key distinction is that the AM62D
->>> does not include multimedia components such as the video encoder/decoder,
->>> MJPEG encoder, Vision Processing Accelerator (VPAC) for image signal
->>> processing, or the display subsystem. Additionally, the AM62D has a
->>> different pin configuration compared to the AM62A, which impacts
->>> embedded software development.
-> 
-> 
-> This section is important as it clarifies the difference between AM62a 
-> and AM62d, as we are reusing AM62a dtsi files for AM62d. Let me know if 
-> you need a shorter version.
+On 24/06/2025 12:32, dongxuyang@eswincomputing.com wrote:
+> +
+> +properties:
+> +  compatible:
+> +    const: eswin,eic7700-clock
+> +
+> +  reg:
+> +    maxItems: 1
+> +
+> +  '#clock-cells':
+> +    const: 1
+> +
+> +  cpu-default-frequency:
 
-This is not important:
+Frequency has a type - hz, use it as unit suffix if this stays.
 
-"While the AM62A and AM62D are largely similar, the AM62D is
-specifically targeted for general-purpose DSP applications, whereas the
-AM62A focuses on edge AI workloads."
+> +    $ref: /schemas/types.yaml#/definitions/uint32
 
-It is irrelevant. Rest is fine.
+Drop
 
-> 
-> 
->>>
->>> This adds dt bindings for TI's AM62D2 family of devices.
->>>
->>> More details about the SoCs can be found in the Technical Reference Manual:
->>> https://www.ti.com/lit/pdf/sprujd4
->>>
->>> Signed-off-by: Paresh Bhagat <p-bhagat@ti.com>
->>
->> And what happened with the previous comments?
-> 
-> 
-> Yep there were some indentation problems earlier, which is fixed in this 
-> version. There was also an ack from Conor Dooley in v3. I will include that.
+Anyway, why do you need it? Why would this be a different per board and
+why would you ever need to encode it in DT? If firmware initializes
+device, just the registers.
 
-Why you did not include it before?
+> +    default: 1400000000
+> +
+> +required:
+> +  - compatible
+> +  - reg
+> +  - '#clock-cells'
 
-Can you start using b4 for your process of submitting patches?
+
+... and your example is not complete. Add all properties there.
+
+...
+
+> +#define EIC7700_MUX_U_VI_SHUTTER_XTAL_2MUX1_4	68
+> +#define EIC7700_MUX_U_VI_SHUTTER_XTAL_2MUX1_5	69
+> +#define EIC7700_MUX_U_VO_ACLK_XTAL_2MUX1		70
+> +#define EIC7700_MUX_U_IESMCLK_XTAL_2MUX1		71
+> +#define EIC7700_MUX_U_VO_PIXEL_XTAL_2MUX1		72
+> +#define EIC7700_MUX_U_VO_MCLK_2MUX_EXT_MCLK		73
+> +#define EIC7700_MUX_U_VC_ACLK_XTAL_2MUX1		74
+> +#define EIC7700_MUX_U_JD_XTAL_2MUX1		75
+> +#define EIC7700_MUX_U_JE_XTAL_2MUX1		76
+> +#define EIC7700_MUX_U_VE_XTAL_2MUX1		77
+> +#define EIC7700_MUX_U_VD_XTAL_2MUX1		78
+> +#define EIC7700_MUX_U_SATA_PHY_2MUX1		79
+> +#define EIC7700_MUX_U_AONDMA_AXI2MUX1_GFREE		80
+> +#define EIC7700_MUX_U_CRYPTO_XTAL_2MUX1		81
+> +#define EIC7700_MUX_U_RMII_REF_2MUX			82
+> +#define EIC7700_MUX_U_ETH_CORE_2MUX1		83
+> +#define EIC7700_MUX_U_VI_DW_ROOT_2MUX1		84
+> +#define EIC7700_MUX_U_VI_DW_XTAL_2MUX1		85
+> +#define EIC7700_MUX_U_NPU_E31_3MUX1_GFREE		86
+> +#define EIC7700_MUX_U_DDR_ACLK_ROOT_2MUX1_GFREE		87
+> +
+> +/* divider clocks */
+> +#define EIC7700_DIVDER_U_SYS_CFG_DIV_DYNM		100
+
+DIVIDER... or just shorter DIV
+
+> +#define EIC7700_DIVDER_U_NOC_NSP_DIV_DYNM		101
+> +#define EIC7700_DIVDER_U_BOOTSPI_DIV_DYNM		102
+> +#define EIC7700_DIVDER_U_SCPU_CORE_DIV_DYNM		103
+> +#define EIC7700_DIVDER_U_LPCPU_CORE_DIV_DYNM	104
+> +#define EIC7700_DIVDER_U_GPU_ACLK_DIV_DYNM		105
+> +#define EIC7700_DIVDER_U_DSP_ACLK_DIV_DYNM		106
+> +#define EIC7700_DIVDER_U_D2D_ACLK_DIV_DYNM		107
+> +#define EIC7700_DIVDER_U_HSP_ACLK_DIV_DYNM		108
+> +#define EIC7700_DIVDER_U_ETH_TXCLK_DIV_DYNM_0	109
+> +#define EIC7700_DIVDER_U_ETH_TXCLK_DIV_DYNM_1	110
+> +#define EIC7700_DIVDER_U_MSHC_CORE_DIV_DYNM_0	111
+> +#define EIC7700_DIVDER_U_MSHC_CORE_DIV_DYNM_1	112
+> +#define EIC7700_DIVDER_U_MSHC_CORE_DIV_DYNM_2	113
+> +#define EIC7700_DIVDER_U_PCIE_ACLK_DIV_DYNM		114
+> +#define EIC7700_DIVDER_U_NPU_ACLK_DIV_DYNM		115
+> +#define EIC7700_DIVDER_U_NPU_LLC_SRC0_DIV_DYNM	116
+> +#define EIC7700_DIVDER_U_NPU_LLC_SRC1_DIV_DYNM	117
+> +#define EIC7700_DIVDER_U_NPU_CORECLK_DIV_DYNM	118
+> +#define EIC7700_DIVDER_U_VI_ACLK_DIV_DYNM		119
+> +#define EIC7700_DIVDER_U_VI_DVP_DIV_DYNM		120
+> +#define EIC7700_DIVDER_U_VI_DIG_ISP_DIV_DYNM	121
+> +#define EIC7700_DIVDER_U_VI_SHUTTER_DIV_DYNM_0	122
+> +#define EIC7700_DIVDER_U_VI_SHUTTER_DIV_DYNM_1	123
+> +#define EIC7700_DIVDER_U_VI_SHUTTER_DIV_DYNM_2	124
+> +#define EIC7700_DIVDER_U_VI_SHUTTER_DIV_DYNM_3	125
+> +#define EIC7700_DIVDER_U_VI_SHUTTER_DIV_DYNM_4	126
+> +#define EIC7700_DIVDER_U_VI_SHUTTER_DIV_DYNM_5	127
+> +#define EIC7700_DIVDER_U_VO_ACLK_DIV_DYNM		128
+> +#define EIC7700_DIVDER_U_IESMCLK_DIV_DYNM		129
+> +#define EIC7700_DIVDER_U_VO_PIXEL_DIV_DYNM		130
+> +#define EIC7700_DIVDER_U_VO_MCLK_DIV_DYNM		131
+> +#define EIC7700_DIVDER_U_VC_ACLK_DIV_DYNM		132
+> +#define EIC7700_DIVDER_U_JD_DIV_DYNM		133
+> +#define EIC7700_DIVDER_U_JE_DIV_DYNM		134
+> +#define EIC7700_DIVDER_U_VE_DIV_DYNM		135
+> +#define EIC7700_DIVDER_U_VD_DIV_DYNM		136
+> +#define EIC7700_DIVDER_U_G2D_DIV_DYNM		137
+> +#define EIC7700_DIVDER_U_AONDMA_AXI_DIV_DYNM	138
+> +#define EIC7700_DIVDER_U_CRYPTO_DIV_DYNM	139
+> +#define EIC7700_DIVDER_U_VI_DW_DIV_DYNM		140
+> +#define EIC7700_DIVDER_U_NPU_E31_DIV_DYNM	141
+> +#define EIC7700_DIVDER_U_SATA_PHY_REF_DIV_DYNM	142
+> +#define EIC7700_DIVDER_U_DSP_0_ACLK_DIV_DYNM	143
+> +#define EIC7700_DIVDER_U_DSP_1_ACLK_DIV_DYNM	144
+> +#define EIC7700_DIVDER_U_DSP_2_ACLK_DIV_DYNM	145
+> +#define EIC7700_DIVDER_U_DSP_3_ACLK_DIV_DYNM	146
+> +#define EIC7700_DIVDER_U_DDR_ACLK_DIV_DYNM		147
+> +#define EIC7700_DIVDER_U_AON_RTC_DIV_DYNM		148
+> +#define EIC7700_DIVDER_U_U84_RTC_TOGGLE_DIV_DYNM	149
+> +#define EIC7700_DIVDER_U_VO_CEC_DIV_DYNM		150
+> +
+> +/* gate clocks */
+> +#define EIC7700_GATE_CLK_CPU_EXT_SRC_CORE_CLK_0	200
+
+151, there should be no gaps in IDs.
+
+> +#define EIC7700_GATE_CLK_CPU_EXT_SRC_CORE_CLK_1	201
+> +#define EIC7700_GATE_CLK_CPU_EXT_SRC_CORE_CLK_2	202
+> +#define EIC7700_GATE_CLK_CPU_EXT_SRC_CORE_CLK_3	203
+
+
+...
+
+> +
+> +#define EIC7700_CLK_VC_JE_PCLK		685
+> +#define EIC7700_CLK_VC_JD_PCLK		686
+> +#define EIC7700_CLK_VC_VE_PCLK		687
+> +#define EIC7700_CLK_VC_VD_PCLK		688
+> +#define EIC7700_CLK_VC_MON_PCLK		689
+> +
+> +#define EIC7700_CLK_HSP_DMA0_CLK		690
+> +#define EIC7700_CLK_HSP_DMA0_CLK_TEST	691
+> +
+> +#define EIC7700_NR_CLKS		700
+
+Drop
+
+> +
+> +#endif /* _DT_BINDINGS_ESWIN_EIC7700_CLOCK_H_ */
 
 
 Best regards,
