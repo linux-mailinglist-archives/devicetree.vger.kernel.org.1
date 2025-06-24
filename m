@@ -1,177 +1,226 @@
-Return-Path: <devicetree+bounces-188925-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-188930-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id B2E61AE6162
-	for <lists+devicetree@lfdr.de>; Tue, 24 Jun 2025 11:52:01 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id DA75CAE6187
+	for <lists+devicetree@lfdr.de>; Tue, 24 Jun 2025 11:55:22 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id BB0F33AF26A
-	for <lists+devicetree@lfdr.de>; Tue, 24 Jun 2025 09:51:36 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 1C2507B42CC
+	for <lists+devicetree@lfdr.de>; Tue, 24 Jun 2025 09:53:28 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id AEDCC283FF4;
-	Tue, 24 Jun 2025 09:51:20 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 24E4A27F754;
+	Tue, 24 Jun 2025 09:53:28 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="Yy9xyTlz"
+	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="pax3gyJe"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+Received: from lelvem-ot02.ext.ti.com (lelvem-ot02.ext.ti.com [198.47.23.235])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E59FC27C17E;
-	Tue, 24 Jun 2025 09:51:18 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A314127FD46;
+	Tue, 24 Jun 2025 09:53:25 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.23.235
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1750758680; cv=none; b=rIN3Zw3G+tXq4/sbvO8vwnmsV1Zm48Hgf+pzF3f8AavUoRvpjc+fc+zdWs0GmYNDyJHpJfJYvuLxuNmqB9e4cQ9OEWkHxWYCV/uFXdxcGHq5EFTWbSIQJ0SXf799wu6kYDEXpPKjWB9iRmLg4pTLPwgMBYL/wFFlTacu071PJRg=
+	t=1750758808; cv=none; b=vCt+sMGTSwcQVMxJpQ95u5rpW01fxC2WDTLu/46bSUV2jsxHuKOO9VDIC2K+nM/fh7BdNLJg08G0nwjkpmno5tXWzhqu4L8MAR30AfUGJ7fXP7Wcj2biMLx+K1avvWR5w3eeBFkoLTE59lA/6nnF5zcYXJoKkxbUkWdC6EJpBDI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1750758680; c=relaxed/simple;
-	bh=6XS6URW+fNXg4r827A5tTBn0EwBvhnPHXyF2jX2+V+c=;
-	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
-	 MIME-Version; b=gcmcHHwxYYLlHVW0Hu+uYqkuLHRy2edYT3VtHMq0fB7r32i1S5wCcIOb+Yk/ffq3m59TmjeyM92JSGDmCBKSxoiRYsLy3+YX9h//fCq8q2Ddkaz9cGEtBxSL57evVIlpN/L6mKvg0ySQrcKDi3X4BWAvyp7/EM213Vekd/d+RHw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=Yy9xyTlz; arc=none smtp.client-ip=205.220.180.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=qualcomm.com
-Received: from pps.filterd (m0279873.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 55O6Xdxj021624;
-	Tue, 24 Jun 2025 09:51:15 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
-	cc:content-transfer-encoding:date:from:in-reply-to:message-id
-	:mime-version:references:subject:to; s=qcppdkim1; bh=ssZsxr7pETK
-	QAorRIyL3jTyGuLH7UDtlIvyC+WmXQUs=; b=Yy9xyTlzdyE5S7ooFkNaf94BVMD
-	mgFqhaPrC9eeQKhQtuof6N7I2Tu37V6v2oZyNSFcgPEOKo+K5Ic75OncOSRjsntq
-	L4XFuqNEBJ+MaR6y8KHf3ggSMyXLbaAJl9e5RclLw7xCX/EHBiRB0FK+kgju7Y+c
-	/FewPX6m2TX0Id+TjYvqC3aU3KXTApkNfqi+e/sXPflX6Q3HDPrwUqDPE/SERJGg
-	UN63Jie4D7HV1FzEUBZu6XTTv/YivYAkuT+fbhCa6/OSaFaJ/AdqyDjplTvMotaw
-	WZS1+c4BPAO4T+sFJkPcOCeTXhYyKfPvZ96T7iyob+yuVbUAy8Gl/eLqEbg==
-Received: from apblrppmta01.qualcomm.com (blr-bdr-fw-01_GlobalNAT_AllZones-Outside.qualcomm.com [103.229.18.19])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 47f2rputgg-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Tue, 24 Jun 2025 09:51:14 +0000 (GMT)
-Received: from pps.filterd (APBLRPPMTA01.qualcomm.com [127.0.0.1])
-	by APBLRPPMTA01.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTP id 55O9p8qO024192;
-	Tue, 24 Jun 2025 09:51:11 GMT
-Received: from pps.reinject (localhost [127.0.0.1])
-	by APBLRPPMTA01.qualcomm.com (PPS) with ESMTPS id 47dntktdt8-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Tue, 24 Jun 2025 09:51:11 +0000
-Received: from APBLRPPMTA01.qualcomm.com (APBLRPPMTA01.qualcomm.com [127.0.0.1])
-	by pps.reinject (8.17.1.5/8.17.1.5) with ESMTP id 55O9pBvu024231;
-	Tue, 24 Jun 2025 09:51:11 GMT
-Received: from hu-devc-hyd-u22-c.qualcomm.com ([10.213.97.252])
-	by APBLRPPMTA01.qualcomm.com (PPS) with ESMTPS id 55O9pBLb024229
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Tue, 24 Jun 2025 09:51:11 +0000
-Received: by hu-devc-hyd-u22-c.qualcomm.com (Postfix, from userid 4047106)
-	id C35DA56E; Tue, 24 Jun 2025 15:21:10 +0530 (+0530)
-From: Viken Dadhaniya <viken.dadhaniya@oss.qualcomm.com>
-To: andi.shyti@kernel.org, robh@kernel.org, krzk+dt@kernel.org,
-        conor+dt@kernel.org, gregkh@linuxfoundation.org, jirislaby@kernel.org,
-        andersson@kernel.org, konradybcio@kernel.org, johan+linaro@kernel.org,
-        dianders@chromium.org, agross@kernel.org,
-        linux-arm-msm@vger.kernel.org, linux-i2c@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-serial@vger.kernel.org, linux-spi@vger.kernel.org
-Cc: mukesh.savaliya@oss.qualcomm.com, quic_anupkulk@quicinc.com,
-        Viken Dadhaniya <viken.dadhaniya@oss.qualcomm.com>
-Subject: [PATCH v5 5/5] serial: qcom-geni: Load UART qup Firmware from linux side
-Date: Tue, 24 Jun 2025 15:21:02 +0530
-Message-Id: <20250624095102.1587580-6-viken.dadhaniya@oss.qualcomm.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20250624095102.1587580-1-viken.dadhaniya@oss.qualcomm.com>
-References: <20250624095102.1587580-1-viken.dadhaniya@oss.qualcomm.com>
+	s=arc-20240116; t=1750758808; c=relaxed/simple;
+	bh=djiusFSU4ZnEzFWcgopKOjm9/gmdllUK1jWlswikw/I=;
+	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
+	 In-Reply-To:Content-Type; b=aRhnZRuCwW15k27WQvKsBd1jgLgnbBk9UZRKZiihba7tn88/c7XwlT6Oyat+XhwC5n672+lXlpoj2RKVEJPlF1O/XMnfZy5AYfESRpXael7pHniv4J8iAqmLVm4Ip8ptLkH+YdH+WhaKE9G6aZP7B+v7zqIlTz+RmN5+lbyVie8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=pax3gyJe; arc=none smtp.client-ip=198.47.23.235
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
+Received: from fllvem-sh04.itg.ti.com ([10.64.41.54])
+	by lelvem-ot02.ext.ti.com (8.15.2/8.15.2) with ESMTP id 55O9qlrH1755172;
+	Tue, 24 Jun 2025 04:52:47 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+	s=ti-com-17Q1; t=1750758767;
+	bh=YZVEvAwIeno5mxtF28TOIC2+Sya3/YkcRiUwLeTc1F8=;
+	h=Date:Subject:To:CC:References:From:In-Reply-To;
+	b=pax3gyJeRj0BYa2faBAJB+LcBgUqgROBMGAKHezDCxX91XB97ZKmvsUmtxa0MZEm8
+	 s5nEcLZvm3zfpnQt/a8ShCiMbf/oj2mExSwYGEOaLMNJpgcM3OgXV7DOPaeQK+68ZG
+	 aPGmcWiwlqyJSMkIqArStpsbrQhB45s9eA0ttN8c=
+Received: from DFLE111.ent.ti.com (dfle111.ent.ti.com [10.64.6.32])
+	by fllvem-sh04.itg.ti.com (8.18.1/8.18.1) with ESMTPS id 55O9qlQT167167
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-SHA256 bits=128 verify=FAIL);
+	Tue, 24 Jun 2025 04:52:47 -0500
+Received: from DFLE111.ent.ti.com (10.64.6.32) by DFLE111.ent.ti.com
+ (10.64.6.32) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.55; Tue, 24
+ Jun 2025 04:52:46 -0500
+Received: from lelvem-mr06.itg.ti.com (10.180.75.8) by DFLE111.ent.ti.com
+ (10.64.6.32) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.55 via
+ Frontend Transport; Tue, 24 Jun 2025 04:52:46 -0500
+Received: from [172.24.227.115] (abhilash-hp.dhcp.ti.com [172.24.227.115])
+	by lelvem-mr06.itg.ti.com (8.18.1/8.18.1) with ESMTP id 55O9qelt1298916;
+	Tue, 24 Jun 2025 04:52:41 -0500
+Message-ID: <a2712f66-f4fe-4753-bfec-dedd60c8210f@ti.com>
+Date: Tue, 24 Jun 2025 15:22:39 +0530
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-QCInternal: smtphost
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Authority-Analysis: v=2.4 cv=NdDm13D4 c=1 sm=1 tr=0 ts=685a7512 cx=c_pps
- a=Ou0eQOY4+eZoSc0qltEV5Q==:117 a=Ou0eQOY4+eZoSc0qltEV5Q==:17
- a=6IFa9wvqVegA:10 a=VwQbUJbxAAAA:8 a=COk6AnOGAAAA:8 a=EUspDBNiAAAA:8
- a=zIdmu9zckVospZd7ahEA:9 a=TjNXssC_j7lpFel5tvFf:22
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwNjI0MDA4MyBTYWx0ZWRfXyc5gJb9J79B3
- F8N9WEFaDJ5WzRyFz3/2ZjAUz9F7ixEGvpf6CyLESPjMJf2Jt6jr9uMFpy+90CrlIMSUi6OthzY
- 2YYs9oWnTaArQAIBOuJqq7bpCJH1L+30foz1bnxVIjBSV3iUAo4WVGTFFBXm3faFundJFAzDGDt
- QnJH4aKCtOhrYzhp4FjxICRjFIK9hY5sEUSD1R1YbnO68hH23qXr6Dbb4S9ZvXQvitljnh37w0c
- Cst/UnUt6UIyBxni2BwYPdyuDMi9WaEQFL02ZSkxmW1mJCfcSGTHqVoxNFL1IDRL4ud+4dWD1Ks
- +NeVrw3bho2ZaW271pgaws57or2m7UB9tAXOBZwJTwaV377cnVlNNA9UqjX++RrSCt/fzkBZNBX
- wn9/aZNdG8aiHnQ6zmXweq5u8j1cqfOtDP/sDvNTbZqKwtMogUNq1/82mZas22UI9BcnQPwC
-X-Proofpoint-ORIG-GUID: vnsnWfI0FvXeJOFG6F8bOgAI_jXDJs2a
-X-Proofpoint-GUID: vnsnWfI0FvXeJOFG6F8bOgAI_jXDJs2a
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1099,Hydra:6.1.7,FMLib:17.12.80.40
- definitions=2025-06-24_03,2025-06-23_07,2025-03-28_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- bulkscore=0 mlxscore=0 spamscore=0 malwarescore=0 lowpriorityscore=0
- phishscore=0 priorityscore=1501 suspectscore=0 mlxlogscore=999 adultscore=0
- clxscore=1015 impostorscore=0 classifier=spam authscore=0 authtc=n/a authcc=
- route=outbound adjust=0 reason=mlx scancount=1 engine=8.19.0-2505280000
- definitions=main-2506240083
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v4 00/12] media: cadence,ti: CSI2RX Multistream Support
+To: Rishikesh Donadkar <r-donadkar@ti.com>, <jai.luthra@linux.dev>,
+        <laurent.pinchart@ideasonboard.com>, <mripard@kernel.org>
+CC: <devarsht@ti.com>, <vaishnav.a@ti.com>, <s-jain1@ti.com>,
+        <vigneshr@ti.com>, <mchehab@kernel.org>, <robh@kernel.org>,
+        <krzk+dt@kernel.org>, <conor+dt@kernel.org>,
+        <sakari.ailus@linux.intel.com>, <hverkuil-cisco@xs4all.nl>,
+        <tomi.valkeinen@ideasonboard.com>, <jai.luthra@ideasonboard.com>,
+        <changhuang.liang@starfivetech.com>, <jack.zhu@starfivetech.com>,
+        <linux-kernel@vger.kernel.org>, <linux-media@vger.kernel.org>,
+        <devicetree@vger.kernel.org>
+References: <20250514112527.1983068-1-r-donadkar@ti.com>
+Content-Language: en-US
+From: Yemike Abhilash Chandra <y-abhilashchandra@ti.com>
+In-Reply-To: <20250514112527.1983068-1-r-donadkar@ti.com>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 7bit
+X-C2ProcessedOrg: 333ef613-75bf-4e12-a4b1-8e3623f5dcea
 
-Add provision to load firmware of Serial engine for UART protocol from
-Linux Execution Environment on running on APPS processor.
+Hi Rishikesh,
 
-Co-developed-by: Mukesh Kumar Savaliya <mukesh.savaliya@oss.qualcomm.com>
-Signed-off-by: Mukesh Kumar Savaliya <mukesh.savaliya@oss.qualcomm.com>
-Signed-off-by: Viken Dadhaniya <viken.dadhaniya@oss.qualcomm.com>
----
-Dependencies:
+Thank you for the patch series.
 
-This patch depends on patch 2 of this series.
+On 14/05/25 16:55, Rishikesh Donadkar wrote:
+> This series adds multi-stream support for Cadence CSI2RX and TI CSI2RX
+> SHIM drivers.
+> 
+> PATCH 1-6:  Support multiple DMA contexts/video nodes in TI CSI2RX
+> PATCH 7-8:  Use get_frame_desc to propagate virtual channel
+>              information across Cadence and TI CSI-RX subdevs
+> PATCH 9-10: Use new multi-stream APIs across the drivers to support
+>              multiplexed cameras from sources like UB960 (FPDLink)
+> PATCH 11:   Optimize stream on by submitting all queued buffers to DMA
+> PATCH 12:   Change the drain architecture to support multi-stream
+> 
+> Testing for this series has been done on top of media tree with 4x IMX219
+> camera modules connected to TI's AM62A using V3 Link fusion mini board.
+> 
+> Overlay and defconfig changes for the same can be found below:
+> https://github.com/RISHI27-dot/linux/commits/u/multistream_v4
+> 
+> v4l2-compliance results:
+> https://gist.github.com/Rishikesh-D/4ddf957da2f62191eefe7a9e5ff212ab
+> 
 
-v4 -> v5:
+For the entire series,
 
-- Updated the email domain from 'quic' to 'oss'.
+Reviewed-by: Yemike Abhilash Chandra <y-abhilashchandra@ti.com>
 
-v4 Link: https://lore.kernel.org/all/20250503111029.3583807-6-quic_vdadhani@quicinc.com/
-
-v3 -> v4:
-
-- Add a patch dependency note.
-
-v3 Link: https://lore.kernel.org/linux-arm-msm/20250303124349.3474185-10-quic_vdadhani@quicinc.com/
-
-v2 -> v3:
-
-- Load firmware only if the protocol is invalid.
-
-v2 Link: https://lore.kernel.org/linux-arm-msm/20250124105309.295769-9-quic_vdadhani@quicinc.com/
-
-v1 -> v2:
-
-- No change.
-
-v1 Link: https://lore.kernel.org/linux-arm-msm/20241204150326.1470749-8-quic_vdadhani@quicinc.com/
----
----
- drivers/tty/serial/qcom_geni_serial.c | 8 +++++++-
- 1 file changed, 7 insertions(+), 1 deletion(-)
-
-diff --git a/drivers/tty/serial/qcom_geni_serial.c b/drivers/tty/serial/qcom_geni_serial.c
-index 0293b6210aa6..9f905ae3c127 100644
---- a/drivers/tty/serial/qcom_geni_serial.c
-+++ b/drivers/tty/serial/qcom_geni_serial.c
-@@ -1161,7 +1161,13 @@ static int qcom_geni_serial_port_setup(struct uart_port *uport)
- 	int ret;
- 
- 	proto = geni_se_read_proto(&port->se);
--	if (proto != GENI_SE_UART) {
-+	if (proto == GENI_SE_INVALID_PROTO) {
-+		ret = geni_load_se_firmware(&port->se, GENI_SE_UART);
-+		if (ret) {
-+			dev_err(uport->dev, "UART firmware load failed ret: %d\n", ret);
-+			return ret;
-+		}
-+	} else if (proto != GENI_SE_UART) {
- 		dev_err(uport->dev, "Invalid FW loaded, proto: %d\n", proto);
- 		return -ENXIO;
- 	}
--- 
-2.34.1
-
+> ---
+> Changes in v4:
+> 
+> [PATCH 01/13] dt-bindings: media: ti,j721e-csi2rx-shim: Support 32 dma chans
+>    - No change
+> [PATCH 02/13] media: ti: j721e-csi2rx: separate out device and context
+>    - Add ctx identifier in the dev_err() message
+>    - No change
+> [PATCH 04/13] media: ti: j721e-csi2rx: prepare SHIM code for multiple contexts
+>    - Reduced the name string lenght from 32 chars to 5 chars
+> [PATCH 05/13] media: ti: j721e-csi2rx: add a subdev for the core device
+>    - Add .enum_mbus_code callback
+>    - Replace statically allocated struct with a global static const struct
+>      v4l2_mbus_framefmt and used that in the _init_state() function
+> [PATCH 06/13] media: ti: j721e-csi2rx: get number of contexts from device tree
+>    - Fix the drain buffer being leaked
+>    - If the shows more number of ctx than the TI_CSI2RX_MAX_CTX, return an error
+>      instead of warning
+> [PATCH 07/13] media: cadence: csi2rx: add get_frame_desc wrapper
+>    - No change
+> [PATCH 08/13] media: ti: j721e-csi2rx: add support for processing virtual channels
+>    - Call ti_csi2rx_get_vc() only once on first stream start and cache the VC data in
+>      the driver, use the corresponding VC in all subsequent stream starts.
+> [PATCH 09/13] media: cadence: csi2rx: Use new enable stream APIs
+> [PATCH 10/13] media: cadence: csi2rx: Enable multi-stream support
+>    - Squash the above two patches into
+>      [PATCH v4 09/12] media: cadence: csi2rx: add multistream support
+>    - Use already obtained csi2rx->source_pad in enable_streams() and
+>      disable_streams() call
+>    - Update commit message with the reason for using a custom helper for s_stream
+>      instead of v4l2_subdev_s_stream_helper()
+>    - Use v4l2_get_link_freq() variant that takes pad of the source as its first
+>      argument instead of the one that takes v4l2_ctrl_handler
+>    - Call v4l2_get_link_freq() with bpp = 0 to prevent fallback to V4L2_CID_PIXEL_RATE
+>      in multi-stream case
+>    - Use lock guards to simplify error handling
+>    - Call csi2rx_update_vc_select() at first stream start before enabling the controller
+> [PATCH 11/13] media: ti: j721e-csi2rx: add multistream support
+>    - No change
+> [PATCH 12/13] media: ti: j721e-csi2rx: Submit all available buffers
+>    - No change
+> [PATCH 13/13] media: ti: j721e-csi2rx: Change the drain architecture for multistream
+>    - Fix checkpatch warning
+>    - Change commit message to give a better description of the patch
+> 
+> Link to (v3):
+>    https://lore.kernel.org/all/20250417065554.437541-1-r-donadkar@ti.com/
+> 
+> Changes in v3:
+> 
+> - Drop [PATCH v2 01/13] media: cadence: csi2rx: Support runtime PM from
+>    v2, support for runtime PM will be added in a separate series:
+>    https://lore.kernel.org/all/20250224-ti_csi_pm-v1-0-8f8c29ef646d@ideasonboard.com/
+> - Change the drain architecture to prevent FIFO overflow in multistream
+>    usecases.
+> - With the new drain architecture, we don't need the the driver to wait
+>    for userspace to start streaming on all "actively routed" video nodes
+>    before starting streaming on the source. So, revert back to the capture
+>    architecture where streams can be started and stopped independent
+>    to each other.
+> 
+> Link to (v2):
+>    https://lore.kernel.org/r/20240627-multistream-v2-0-6ae96c54c1c3@ti.com
+> 
+> Changes in v2:
+> 
+> - Change the multi-camera capture architecture to be similar to that of
+>    Tomi's RPi5 FE series, where the driver will wait for userspace to
+>    start streaming on all "actively routed" video nodes before starting
+>    streaming on the source. This simplifies things a lot from the HW
+>    perspective, which might run into deadlocks due to a shared FIFO
+>    between multiple DMA channels.
+> 
+> - Drop a few fixes that were posted separately and are already merged
+> - Fix dtschema warnings reported by Rob on [02/13]
+> - Fix warnings for uninitialized `used_vc` variable in cdns-csi2rx.c
+> - Return -EBUSY if someone updates routes for j721e-csi2rx subdev while
+>    streaming
+> - Only allow single-streams to be routed to the source pads (linked to
+>    video nodes) of the j721e-csi2rx device
+> - Squash the patches marked "SQUASH" in the v1 RFC series
+> 
+> Link to RFC (v1):
+> https://lore.kernel.org/r/20240222-multistream-v1-0-1837ed916eeb@ti.com
+> 
+> 
+> Jai Luthra (7):
+>    dt-bindings: media: ti,j721e-csi2rx-shim: Support 32 dma chans
+>    media: ti: j721e-csi2rx: separate out device and context
+>    media: ti: j721e-csi2rx: add a subdev for the core device
+>    media: ti: j721e-csi2rx: add support for processing virtual channels
+>    media: cadence: csi2rx: add multistream support
+>    media: ti: j721e-csi2rx: add multistream support
+>    media: ti: j721e-csi2rx: Submit all available buffers
+> 
+> Pratyush Yadav (4):
+>    media: ti: j721e-csi2rx: prepare SHIM code for multiple contexts
+>    media: ti: j721e-csi2rx: allocate DMA channel based on context index
+>    media: ti: j721e-csi2rx: get number of contexts from device tree
+>    media: cadence: csi2rx: add get_frame_desc wrapper
+> 
+> Rishikesh Donadkar (1):
+>    media: ti: j721e-csi2rx: Change the drain architecture for multistream
+> 
+>   .../bindings/media/ti,j721e-csi2rx-shim.yaml  |  39 +-
+>   drivers/media/platform/cadence/cdns-csi2rx.c  | 372 +++++--
+>   .../platform/ti/j721e-csi2rx/j721e-csi2rx.c   | 958 +++++++++++++-----
+>   3 files changed, 1025 insertions(+), 344 deletions(-)
+> 
 
