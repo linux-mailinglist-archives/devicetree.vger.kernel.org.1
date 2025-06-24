@@ -1,168 +1,165 @@
-Return-Path: <devicetree+bounces-188821-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-188822-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8460CAE5ABC
-	for <lists+devicetree@lfdr.de>; Tue, 24 Jun 2025 06:09:33 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 071D3AE5BBB
+	for <lists+devicetree@lfdr.de>; Tue, 24 Jun 2025 07:04:32 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 85BE72C1B90
-	for <lists+devicetree@lfdr.de>; Tue, 24 Jun 2025 04:09:33 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id D744D2C06B8
+	for <lists+devicetree@lfdr.de>; Tue, 24 Jun 2025 05:04:15 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B075F221DB3;
-	Tue, 24 Jun 2025 04:09:28 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 715801DB148;
+	Tue, 24 Jun 2025 05:04:11 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.b="Uij9b74B"
+	dkim=pass (2048-bit key) header.d=tomeuvizoso-net.20230601.gappssmtp.com header.i=@tomeuvizoso-net.20230601.gappssmtp.com header.b="dWOb3mQR"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pf1-f169.google.com (mail-pf1-f169.google.com [209.85.210.169])
+Received: from mail-yb1-f179.google.com (mail-yb1-f179.google.com [209.85.219.179])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 30E076DCE1
-	for <devicetree@vger.kernel.org>; Tue, 24 Jun 2025 04:09:26 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.169
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B11F43594E
+	for <devicetree@vger.kernel.org>; Tue, 24 Jun 2025 05:04:09 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.219.179
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1750738168; cv=none; b=OI6L3ja59ikHOvxjIzWMov25RDbJ1gQ3ZH3s/g41jlkakJrPwfLjoLl8VD5Y11zbR+WHuSt64t/D5mzzu8/7xBO1v8tdZGO+1dCj3b78i3LAoqg7iqsEf5n/Sh8l+qpRgF1a9pOHjpqep46C5a+jNIqAm8UYLyA+4zYdEP5d+rU=
+	t=1750741451; cv=none; b=cyIOeQgj28mFkmnMy+YVmZq7pr7ayEf/xkElrJ7CI2Du13XdJgtqrKfi4TqkragAtYsxSAe/VtT7XmDuulwIIP9ZZ59qcKKcgmOKHzpSPvQQcADQ8rz9P04lVrV+UH/c0t8Y4zftNihhxukl8gYLhz+uiqbecalMdivWZ6yRdP8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1750738168; c=relaxed/simple;
-	bh=llL1b/tMVw+11+IKe3ZnE3pVeGhnuAyfrOKK27BdZsI=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=T/azTtJZl99zrGAYO87Oi9aD+ejOgZhIBcccQmMGa7S3OcwTR7Ebx4VyH4blIsnXaSexn26ymo/hYIuJsQpsQy7jzxu5hzyGqnH7oAjawMDLMl6a1ffOVvtIH/3e6mvcG4ZzDC8zDN4I6sB4/kvmw39Pe7f8cmuH/VqbWKyhdak=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=chromium.org; spf=pass smtp.mailfrom=chromium.org; dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.b=Uij9b74B; arc=none smtp.client-ip=209.85.210.169
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=chromium.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=chromium.org
-Received: by mail-pf1-f169.google.com with SMTP id d2e1a72fcca58-742c7a52e97so6576b3a.3
-        for <devicetree@vger.kernel.org>; Mon, 23 Jun 2025 21:09:26 -0700 (PDT)
+	s=arc-20240116; t=1750741451; c=relaxed/simple;
+	bh=jTiiCki4eU516Zn3vPoO1DXReBO81r+B3DSrw6+H10g=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=RF1cyBIxjvJi6dFDRmlfvh2K7Wp/PxzfUDFzgBQH14gK7pe2nf29U+ivkr1EVTczKDp2C/kySqeyNlTUAD+zNiXV4HUmsfpkd47eIIiPYLtQEVWWgRaB5NN0AXMypd/1dCUNu2f6m5UC3qgjG3NaDzaPVuZEWLfUOBIRn1vqaY8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=tomeuvizoso.net; spf=pass smtp.mailfrom=tomeuvizoso.net; dkim=pass (2048-bit key) header.d=tomeuvizoso-net.20230601.gappssmtp.com header.i=@tomeuvizoso-net.20230601.gappssmtp.com header.b=dWOb3mQR; arc=none smtp.client-ip=209.85.219.179
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=tomeuvizoso.net
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=tomeuvizoso.net
+Received: by mail-yb1-f179.google.com with SMTP id 3f1490d57ef6-e7d9d480e6cso3722511276.2
+        for <devicetree@vger.kernel.org>; Mon, 23 Jun 2025 22:04:09 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google; t=1750738166; x=1751342966; darn=vger.kernel.org;
-        h=in-reply-to:content-transfer-encoding:content-disposition
-         :mime-version:references:message-id:subject:cc:to:from:date:from:to
-         :cc:subject:date:message-id:reply-to;
-        bh=iZLBQ5GMO3S5FZKU93RAqvRqbEiTSgWH++nyXw8Nmek=;
-        b=Uij9b74BSFX4VCnpzYoOrHnMEd1rTDyh0Ss38HWjhF1sJaA49vSmR9uL89VtCWZ9yp
-         pQkEXBl4QQ+s6SnhHpwqoO+D4QLzmtNBiNPb0GXBoU0OxMwzhfeNoCX8HpkHsZ+CVKbg
-         ySa1FfHVOf6oa+QhkMwOedduFzr/J83hBi13A=
+        d=tomeuvizoso-net.20230601.gappssmtp.com; s=20230601; t=1750741449; x=1751346249; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=ZqEyiR61C1W0/+KTWzUiTKCsg/9mevRSEFCD7wnXFig=;
+        b=dWOb3mQRF+UPwFhKoL82ZgCpokjytvrGjzzYOCFRnGoFh7JwltY36KQQW7GqepvrWw
+         VmklKGm3kvH8kGR5KMNgJY6gXNZyYOgVqrqRDeVMSeV29EFfCw5MLuvbZra6Zd1OMTx4
+         0OHE+FEdOUhii2HHLvg15+50smsv+OsIXm/27HfbztpP48XJ+oGgrp3ib0KZ+AzOZU0h
+         RCN6dmVb7jzPZ2445dllEIuYvxBET1epwa3V5f0ZWAi94+35z4kKJrEGvv7EFwEv6nQD
+         TVwOPnmaHcN5jRuZesvu7rOmk0iHy9HKMUHc+H/WIzyG8kn98qiBFXlfGjJeEeTJ1d8R
+         NWVQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1750738166; x=1751342966;
-        h=in-reply-to:content-transfer-encoding:content-disposition
-         :mime-version:references:message-id:subject:cc:to:from:date
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=iZLBQ5GMO3S5FZKU93RAqvRqbEiTSgWH++nyXw8Nmek=;
-        b=QQr4PQG+HsFQ71VW1weTZa6j50zwYYlC37Cb+Me/aY37Aby9Wc9MwxeiSxCJAqEE8Q
-         368Aq5zCcsVi0FftK6gvgobeKIM6w9XvVZi4R07OoJsq3FoQeNR08uglKH4rDBwEtklV
-         L0XikuzXaSpohp+AveENJ4Ek/Vbd0GSvOpvlSN4mLp1a6UzbM4bXd9j5A/aFawDByRhQ
-         Yd6QemCZmZ4XQIkBryGSIIkxqUyilJw45ZdGIwfXrVCGxoag5u5qrAsSc0HyPstPutQg
-         /yx5VDAPtEyo/WgjwZ64LNauFxURUF7W9eSt9wYLwZpTPzc4tsUXiVKzT1bECYQgcXXp
-         lTOQ==
-X-Forwarded-Encrypted: i=1; AJvYcCXCxrStZGEE5vUj5VBWUkbfz/ZgGZZDJoR2jO39aqw8jPd/4ALB/UM5EVvAhvntuXZtpmSSq6qm7XYj@vger.kernel.org
-X-Gm-Message-State: AOJu0YykgtxSgCwOcjpmJawvwu74IcLNrlmBkAANIx1f7b3HlzGEWKfP
-	lhY3SWhbmKV25IpRh1JuxXwct2pl5egePsSvMW6i5HxP8JHKHvBPta8QdZqJpuVbAw==
-X-Gm-Gg: ASbGncvgPjr+m6XtjqMVA/Qt5IcsDz0YkQWSU2yyrj2v6f7zOuf0aj5dyLNJxwIJp1S
-	oNL4kneB5qq6UYy/ls/1WNuX4NPqx4isIxMlR13SBlRlnRiiKYGn/gQVRpU6+v+Iu2NxUfDX9cr
-	5T+RaA4aXVzG5JHp8n1YeWqc+PORNpgwOeE+rec/riv80/mnR1/co/tX4xfpWzcCNQB+voJ6ljc
-	KkSNx20du55icRUOABAmRjG5vDC2CeUHygTBDlGdtpUCTBguAb8fZBGSjv7ssIeJcszBnOOKBit
-	XNan8uj2Kz6oRXh+93DgpG1JEnYPCmT3TpwzhJOi0hXQoDfA/ehamXk=
-X-Google-Smtp-Source: AGHT+IE7k5HWqp6yZ4coLK9zxOOKVUatWn7F2bJv6NZWHFFs+9T9PielkjniSbuXSSxVbFmuLwM0yQ==
-X-Received: by 2002:a05:6a00:b8f:b0:736:3ea8:4805 with SMTP id d2e1a72fcca58-7490d7a170cmr19157532b3a.7.1750738166415;
-        Mon, 23 Jun 2025 21:09:26 -0700 (PDT)
-Received: from google.com ([2401:fa00:1:10:9e4d:2f37:d5ea:8954])
-        by smtp.gmail.com with ESMTPSA id d2e1a72fcca58-749b5e4069csm679035b3a.65.2025.06.23.21.09.24
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 23 Jun 2025 21:09:26 -0700 (PDT)
-Date: Tue, 24 Jun 2025 12:09:22 +0800
-From: Chen-Yu Tsai <wenst@chromium.org>
-To: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
-Cc: linux-mediatek@lists.infradead.org, robh@kernel.org, krzk+dt@kernel.org,
-	conor+dt@kernel.org, matthias.bgg@gmail.com, weiyi.lu@mediatek.com,
-	tinghan.shen@mediatek.com, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-	kernel@collabora.com
-Subject: Re: [PATCH v1 1/2] arm64: dts: mediatek: mt8195: Add subsys clks for
- PCIe power domains
-Message-ID: <20250624040922.GA1077353@google.com>
-References: <20250402090615.25871-1-angelogioacchino.delregno@collabora.com>
- <20250402090615.25871-2-angelogioacchino.delregno@collabora.com>
- <CAGXv+5GHf5D3JDh+OZ-Cxf91PTAGYk2+jvuwK1gymy=k1YOo_A@mail.gmail.com>
- <33847b76-11b5-4233-a5e6-9f8fd3c691a2@collabora.com>
+        d=1e100.net; s=20230601; t=1750741449; x=1751346249;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=ZqEyiR61C1W0/+KTWzUiTKCsg/9mevRSEFCD7wnXFig=;
+        b=BpvMfvnsRKkPHYxykGvX7fO8jCpHUENhGkcEqKAG2NG6m5WhhlNXLQa4mguN6LfpeG
+         dBOWfGAsSlcRUTQGby3vUE1mgFLc0hSSsK5T994h0UauTaoFMHeqlmpH5USrLgnOA7sW
+         I6gKqxxGEQKZCGb3b5trVnslStwj5F9Rr/lSx0QWmGVHBdRXYxC4gKQHrkc936gTrCog
+         2HaUgwaoSnNWxcFx9uyyYzv7HpykHVSxkQ+0vkASHLlI4lyHuayD2dta+k1O5UpVZcXR
+         kJo3rcZbSTkJkxjmQ9CB4ccVmLA+4I0P6nL6vcGhVyol6FRsphpkza8K/emurxFHBSNw
+         LLjQ==
+X-Forwarded-Encrypted: i=1; AJvYcCVE1itWPL0GjN3dpyFHXUGkHUGvovKJ+t9TIvsmD2LIOZobJHE1QmqilQ1Gs3Y9EQnV1p/p7qcdLSLW@vger.kernel.org
+X-Gm-Message-State: AOJu0YyBlnWaFE8amnyi9pM2MPn8zmVuASvmuQexLT5JTfQmh8DM3GpD
+	3+U6P8UWbr5DpM36nn4RvaegJIEPJWygnI+MZoUaovgmN1K5ytESwCDS1ioh9FF52jIavkfgNpc
+	5eJ5ebutyOA==
+X-Gm-Gg: ASbGncu2JeqOiUD4GUYgeQSx02i/ucSX5R1hhbN/ocBWul6gY2Mv7VMGPY9QyVtmZew
+	qGNtqGhaSO2pGBNiG1fSVzj6h7AnpMps5jYVzMK44q3xs4v2tFcVcfoN92bvyXY7tshOuigyXRr
+	OOAIsZrtiTVfQW/dZc9CM5wR6PE/f2y0dy33tyUxEBITXaeKT1c3c04V18JteHSwQ0JzeUUgeGK
+	scdWPAUtkXl3VpASnAYFchbyxI3c8rnzUVe3gY9SrrHsS1ZdlbHGMwl8BQGQgHXXGqtMuhYAE4i
+	naCaRM0t6g6L0RgqBN/VRuglLyl1Wu+tcEZ81Is0kRDC94e58EJRpV5f2ACEx7eEQlkSjmhQOZ0
+	Ena0kNPqFDyTEJgtjOwzywwawFgxnrw==
+X-Google-Smtp-Source: AGHT+IF3F9RrxJafQc6fNCXixeVgmrwxN9hiUoyARa+iIR0XupA50lrF5OWzVDrOBXlyJO04e1Awpw==
+X-Received: by 2002:a05:6902:6983:b0:e84:3203:1af1 with SMTP id 3f1490d57ef6-e843203255cmr13029358276.3.1750741448743;
+        Mon, 23 Jun 2025 22:04:08 -0700 (PDT)
+Received: from mail-yb1-f177.google.com (mail-yb1-f177.google.com. [209.85.219.177])
+        by smtp.gmail.com with ESMTPSA id 3f1490d57ef6-e842acb5572sm2846478276.53.2025.06.23.22.04.07
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 23 Jun 2025 22:04:07 -0700 (PDT)
+Received: by mail-yb1-f177.google.com with SMTP id 3f1490d57ef6-e7d9d480e6cso3722487276.2;
+        Mon, 23 Jun 2025 22:04:07 -0700 (PDT)
+X-Forwarded-Encrypted: i=1; AJvYcCWlJ+oibwcuEmxlbex4aZZ5MQHRrvvubGu1CQYCqWWu1Bp+pfrf4F3VX0PAIohYnpylRWUDI0WNmQBB@vger.kernel.org, AJvYcCWvQe7csDY5ohki8e2IJLVAL4SzNxQGiSFCRZnFMeFi6YJPI26FFNouBXlUvixftlD2XoKIvw53MD8Ixsc=@vger.kernel.org, AJvYcCXCQslBS5dkTkLG8SU22RdBlpExAgPT/l13hL9gdznvZy6OUigU0p454S7hD0Q8tRqcDswOkfEzaSFa@vger.kernel.org, AJvYcCXqxZq0f6U7y2SdB4CuH3YfjRdHmBdI7/95FeG2E4SsaN2Xois0YeSc0J+mWfmz5SaABsIFr0CrIn+DQVA+@vger.kernel.org
+X-Received: by 2002:a05:6902:2402:b0:e7d:a012:290a with SMTP id
+ 3f1490d57ef6-e842bd31ba5mr17718497276.44.1750741446999; Mon, 23 Jun 2025
+ 22:04:06 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <33847b76-11b5-4233-a5e6-9f8fd3c691a2@collabora.com>
+References: <20250606-6-10-rocket-v7-0-dc16cfe6fe4e@tomeuvizoso.net> <2241399.8hzESeGDPO@phil>
+In-Reply-To: <2241399.8hzESeGDPO@phil>
+From: Tomeu Vizoso <tomeu@tomeuvizoso.net>
+Date: Tue, 24 Jun 2025 07:03:55 +0200
+X-Gmail-Original-Message-ID: <CAAObsKB2tLewhCt6LWtuCW1niCPAHvqjWYAQ8t6fv9YLVsQmJQ@mail.gmail.com>
+X-Gm-Features: AX0GCFuWUi05UoZnTls2Tcn0dm5ovOsTmo6J_0Og6xGh9EfBiQOG6iE0FtJ2MtI
+Message-ID: <CAAObsKB2tLewhCt6LWtuCW1niCPAHvqjWYAQ8t6fv9YLVsQmJQ@mail.gmail.com>
+Subject: Re: [PATCH v7 00/10] New DRM accel driver for Rockchip's RKNN NPU
+To: Heiko Stuebner <heiko@sntech.de>
+Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+	Conor Dooley <conor+dt@kernel.org>, Oded Gabbay <ogabbay@kernel.org>, 
+	Jonathan Corbet <corbet@lwn.net>, Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, 
+	Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>, 
+	David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>, 
+	Sumit Semwal <sumit.semwal@linaro.org>, =?UTF-8?Q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>, 
+	Sebastian Reichel <sebastian.reichel@collabora.com>, 
+	Nicolas Frattaroli <nicolas.frattaroli@collabora.com>, Kever Yang <kever.yang@rock-chips.com>, 
+	Robin Murphy <robin.murphy@arm.com>, Daniel Stone <daniel@fooishbar.org>, Da Xue <da@libre.computer>, 
+	Jeff Hugo <jeff.hugo@oss.qualcomm.com>, devicetree@vger.kernel.org, 
+	linux-arm-kernel@lists.infradead.org, linux-rockchip@lists.infradead.org, 
+	linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org, 
+	linux-doc@vger.kernel.org, linux-media@vger.kernel.org, 
+	linaro-mm-sig@lists.linaro.org, 
+	Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-On Wed, Apr 02, 2025 at 12:07:16PM +0200, AngeloGioacchino Del Regno wrote:
-> Il 02/04/25 11:34, Chen-Yu Tsai ha scritto:
-> > On Wed, Apr 2, 2025 at 5:10 PM AngeloGioacchino Del Regno
-> > <angelogioacchino.delregno@collabora.com> wrote:
-> > > 
-> > > The PCIe MAC needs the sram to be powered on for internal IP
-> > > access and it has always worked before because the bootloader
-> > > on Chromebooks was leaving the PCIe PERI_AO MEM clocks on
-> > > before booting the kernel.
-> > > Add the SRAM (mem) clock as a subsystem clock on the PCIe MAC
-> > > P0 and P1 to correctly describe the hardware and to avoid any
-> > > issue with bootloaders behaving differently.
-> > > 
-> > > Fixes: 2b515194bf0c ("arm64: dts: mt8195: Add power domains controller")
-> > > Signed-off-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
-> > > ---
-> > >   arch/arm64/boot/dts/mediatek/mt8195.dtsi | 4 ++++
-> > >   1 file changed, 4 insertions(+)
-> > > 
-> > > diff --git a/arch/arm64/boot/dts/mediatek/mt8195.dtsi b/arch/arm64/boot/dts/mediatek/mt8195.dtsi
-> > > index b33726da900b..0cb96cba727a 100644
-> > > --- a/arch/arm64/boot/dts/mediatek/mt8195.dtsi
-> > > +++ b/arch/arm64/boot/dts/mediatek/mt8195.dtsi
-> > > @@ -792,12 +792,16 @@ power-domain@MT8195_POWER_DOMAIN_CAM_MRAW {
-> > > 
-> > >                                  power-domain@MT8195_POWER_DOMAIN_PCIE_MAC_P0 {
-> > >                                          reg = <MT8195_POWER_DOMAIN_PCIE_MAC_P0>;
-> > > +                                       clocks = <&pericfg_ao CLK_PERI_AO_PCIE_P0_MEM>;
-> > > +                                       clock-names = "ss-pextp0-mem";
-> > 
-> > Doesn't the PCIe host controller already reference this clock?
-> > 
-> > >                                          mediatek,infracfg = <&infracfg_ao>;
-> > >                                          #power-domain-cells = <0>;
-> > >                                  };
-> > > 
-> > >                                  power-domain@MT8195_POWER_DOMAIN_PCIE_MAC_P1 {
-> > >                                          reg = <MT8195_POWER_DOMAIN_PCIE_MAC_P1>;
-> > > +                                       clocks = <&pericfg_ao CLK_PERI_AO_PCIE_P1_MEM>;
-> > > +                                       clock-names = "ss-pextp1-mem";
-> > 
-> > Not this one though, since:
-> > 
-> >           /* Designer has connect pcie1 with peri_mem_p0 clock */
-> >           <&pericfg_ao CLK_PERI_AO_PCIE_P0_MEM>;
-> > 
-> 
-> I'm not sure what this comment refers to - as in, whether this is referring
-> to the board designer or to the SoC//IP designer...
+On Fri, Jun 20, 2025 at 11:28=E2=80=AFAM Heiko Stuebner <heiko@sntech.de> w=
+rote:
+>
+> Am Freitag, 6. Juni 2025, 08:28:20 Mitteleurop=C3=A4ische Sommerzeit schr=
+ieb Tomeu Vizoso:
+> > This series adds a new driver for the NPU that Rockchip includes in its
+> > newer SoCs, developed by them on the NVDLA base.
+> >
+> > In its current form, it supports the specific NPU in the RK3588 SoC.
+> >
+> > The userspace driver is part of Mesa and an initial draft can be found =
+at:
+> >
+> > https://gitlab.freedesktop.org/mesa/mesa/-/merge_requests/29698
+> >
+> > Signed-off-by: Tomeu Vizoso <tomeu@tomeuvizoso.net>
+>
+> > ---
+> > Nicolas Frattaroli (2):
+> >       arm64: dts: rockchip: add pd_npu label for RK3588 power domains
+> >       arm64: dts: rockchip: enable NPU on ROCK 5B
+> >
+> > Tomeu Vizoso (8):
+> >       accel/rocket: Add registers header
+> >       accel/rocket: Add a new driver for Rockchip's NPU
+> >       accel/rocket: Add IOCTL for BO creation
+> >       accel/rocket: Add job submission IOCTL
+> >       accel/rocket: Add IOCTLs for synchronizing memory accesses
+> >       dt-bindings: npu: rockchip,rknn: Add bindings
+> >       arm64: dts: rockchip: Add nodes for NPU and its MMU to rk3588-bas=
+e
+> >       arm64: dts: rockchip: Enable the NPU on quartzpro64
+>
+> from a handling point of view, I would expect patch 1 - 6
+> (driver code + dt-binding patch) to go through some driver tree
+> but have not clue which one that is.
 
-When MediaTek says "designer" they are referring to the hardware designer,
-in this case I believe it would be the SoC-level hardware designer /
-integrator.
+I think Jeff Hugo would be pulling it into drm-misc? We still need a
+R-b for the job submission patch, and also have the userspace driver
+ready for merging.
 
-> ...but if MediaTek can clarify, I'd be happy :-)
-> 
-> Cheers,
-> Angelo
-> 
-> > 
-> > ChenYu
-> > 
-> > >                                          mediatek,infracfg = <&infracfg_ao>;
-> > >                                          #power-domain-cells = <0>;
-> > >                                  };
-> > > --
-> > > 2.48.1
-> > > 
-> > > 
-> 
+> And afterwards, I would pick up the arm64 devicetree additions
+> patches 7 - 10 .
+
+Sounds great.
+
+Thanks!
+
+Tomeu
 
