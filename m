@@ -1,142 +1,136 @@
-Return-Path: <devicetree+bounces-188960-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-188961-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 645CEAE62CF
-	for <lists+devicetree@lfdr.de>; Tue, 24 Jun 2025 12:47:05 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2D85BAE62DD
+	for <lists+devicetree@lfdr.de>; Tue, 24 Jun 2025 12:50:27 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 658F03B1BD6
-	for <lists+devicetree@lfdr.de>; Tue, 24 Jun 2025 10:46:40 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 17C4B1897E46
+	for <lists+devicetree@lfdr.de>; Tue, 24 Jun 2025 10:50:43 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 56F3E283CA0;
-	Tue, 24 Jun 2025 10:47:00 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4354B28030E;
+	Tue, 24 Jun 2025 10:50:22 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=oldschoolsolutions.biz header.i=jens.glathe@oldschoolsolutions.biz header.b="Nwb/3+Z9"
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="M3PYrtoQ"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mout.kundenserver.de (mout.kundenserver.de [212.227.126.135])
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.10])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E1C352571A1;
-	Tue, 24 Jun 2025 10:46:57 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=212.227.126.135
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 764D01ADFFB;
+	Tue, 24 Jun 2025 10:50:20 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.198.163.10
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1750762020; cv=none; b=K6nncSBBqYcCoYg4tsOGGAFiDBkU27ZgKuslj1831qjodgGjOERwM4qIMudrdOOY64nzdQgU4CxZS8HjEuOelA3pkqEQHZy1o8FgnwT0tory3UzM2M9CCk/8giapc0vDSkFlK25LPGmObYPW/4agRTHxkENjn6/F2zJpX0IdJGQ=
+	t=1750762222; cv=none; b=L0gYBff9C0VQKmsZmhnC9G9Uj0/w4CU9feZqQuLtfvnjs+aVjV8/qpUb84z+SXgL4k9w6boGsoT1sLrGdJXhcmfcIVhxISAsm8P2S73gItu2u+b7SQ4FkL1hDMlKuvu9mYFFi0s9ajKTLokoGTfkxVdSfQX8Am49SMR+Fb3WjTs=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1750762020; c=relaxed/simple;
-	bh=TbJ1l94P2T/t8hCGZfRYJjEcgqmtntEliTN9yS8KlY4=;
-	h=Message-ID:Date:MIME-Version:From:Subject:To:Cc:References:
-	 In-Reply-To:Content-Type; b=NdYVN2rUFB8ZJAOKtSEQ6R44vULLtBnNFz3zh5YzHO/bQjH0B1e1fDDFn8S1ZB5CtLqMAy4tGd3nJLuuMuybCM5dXuC6e+ndAErX1pOIfenXZwsVYclxMcp2kFiRN68qv+F0M28C1viVgN7iNINfolWMKzPsjyzp0LT+359sK+k=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=oldschoolsolutions.biz; spf=pass smtp.mailfrom=oldschoolsolutions.biz; dkim=pass (2048-bit key) header.d=oldschoolsolutions.biz header.i=jens.glathe@oldschoolsolutions.biz header.b=Nwb/3+Z9; arc=none smtp.client-ip=212.227.126.135
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=oldschoolsolutions.biz
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oldschoolsolutions.biz
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=oldschoolsolutions.biz; s=s1-ionos; t=1750762009; x=1751366809;
-	i=jens.glathe@oldschoolsolutions.biz;
-	bh=TbJ1l94P2T/t8hCGZfRYJjEcgqmtntEliTN9yS8KlY4=;
-	h=X-UI-Sender-Class:Message-ID:Date:MIME-Version:From:Subject:To:
-	 Cc:References:In-Reply-To:Content-Type:Content-Transfer-Encoding:
-	 cc:content-transfer-encoding:content-type:date:from:message-id:
-	 mime-version:reply-to:subject:to;
-	b=Nwb/3+Z9Nyhq19xcuLuDaq6UEr+mP+6YAUtHnKGW2Ham0wQuhZSSaXA7A9Tl0eEx
-	 wZmWfBSizcdjFFNzmrw0uQ0QCUXS7edRLDpE9I82r60SraIyNv8IrmzkADai3uqVC
-	 pTpbVXep06iDe5svI4qm+BcLs91ft/qymkGw66+wr+R3AMbfykZkYHK8WP698a8kq
-	 ASOxn0cre7kia7EaZV9eq2HeRBL1LQs+WdqiYrUKfw7xAnAK4nSeRTHK/ZWVV43V2
-	 K5KoemHyqOvQsdg1p7yTfi1O1ZThCGe/DgCkLYbVFWwbYFqlip4vv0yBOcMvz7Ns+
-	 nXunLPGXYixk69awig==
-X-UI-Sender-Class: 55c96926-9e95-11ee-ae09-1f7a4046a0f6
-Received: from [192.168.0.39] ([62.226.41.128]) by mrelayeu.kundenserver.de
- (mreue012 [212.227.15.167]) with ESMTPSA (Nemesis) id
- 1Mxpqo-1ufWkB01mw-00rpl8; Tue, 24 Jun 2025 12:46:49 +0200
-Message-ID: <a825ca43-40e2-48c4-8466-a13a94d3bc0a@oldschoolsolutions.biz>
-Date: Tue, 24 Jun 2025 12:46:47 +0200
+	s=arc-20240116; t=1750762222; c=relaxed/simple;
+	bh=dv6ZN9qLcc39VhlOnYfqWOhVKBnveT9waBSLrEElVx8=;
+	h=From:Date:To:cc:Subject:In-Reply-To:Message-ID:References:
+	 MIME-Version:Content-Type; b=jhHcRCo9rjmB7DPFFAyThl62KZsWu/EGwzH/d3bvKI2WWRBww8O22cmZhCiXvmVDhUdFhdQ8nmPv8OZwzCicaAtH1+0I365kEMBU4Yca8IyO9jfcwFwToRzalVpuJFxdBcG1qMlsTJ6X7/i8WQnFmUGiyOUGje75oJtSt/ZZ4B4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com; spf=none smtp.mailfrom=linux.intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=M3PYrtoQ; arc=none smtp.client-ip=192.198.163.10
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com
+Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=linux.intel.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1750762221; x=1782298221;
+  h=from:date:to:cc:subject:in-reply-to:message-id:
+   references:mime-version;
+  bh=dv6ZN9qLcc39VhlOnYfqWOhVKBnveT9waBSLrEElVx8=;
+  b=M3PYrtoQw2Q3Y3UpwxgLkOzNE/Pjfq9u58YN1eAI7RiDopKcDwpi20QB
+   38c05Ed24Ga7dy5ZB/Tpdme5mZtaY9lVKWIY0W1qVdVhUBihJcC0jbwEK
+   ZeOObmQUEfkX43vhzzUahpFRV3MSS0if8cSZsIKJtysKo377fv+O5gTnV
+   Fi7ygrHsa0x1n2D7SC6lO2iELof1+SWNvUlB5pQgF/7xjjOIV2FU077MP
+   JSL43Egovs8nGCn3NIUX8copsPG+Z7rRa3Ias5UMd/oP0G/lSl+yzwRRv
+   V6ccFChkCPzBY4DIh2TEZ1zlhLkVMXTemytHFr9xtTL8GMApz5kRtGyFY
+   Q==;
+X-CSE-ConnectionGUID: rlsl62z2SW+JqbDoPDCKUA==
+X-CSE-MsgGUID: XJIXwVxtRy6NaxJ+Y1hZmA==
+X-IronPort-AV: E=McAfee;i="6800,10657,11473"; a="64352256"
+X-IronPort-AV: E=Sophos;i="6.16,261,1744095600"; 
+   d="scan'208";a="64352256"
+Received: from orviesa010.jf.intel.com ([10.64.159.150])
+  by fmvoesa104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 24 Jun 2025 03:50:20 -0700
+X-CSE-ConnectionGUID: P3jobHMUQAe9pUeBJdc30Q==
+X-CSE-MsgGUID: JnGhA3LFT8aHV12Y11RQCw==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.16,261,1744095600"; 
+   d="scan'208";a="151306478"
+Received: from ijarvine-mobl1.ger.corp.intel.com (HELO localhost) ([10.245.245.16])
+  by orviesa010-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 24 Jun 2025 03:50:10 -0700
+From: =?UTF-8?q?Ilpo=20J=C3=A4rvinen?= <ilpo.jarvinen@linux.intel.com>
+Date: Tue, 24 Jun 2025 13:50:06 +0300 (EEST)
+To: Jacky Chou <jacky_chou@aspeedtech.com>
+cc: "bhelgaas@google.com" <bhelgaas@google.com>, 
+    "lpieralisi@kernel.org" <lpieralisi@kernel.org>, 
+    "kwilczynski@kernel.org" <kwilczynski@kernel.org>, 
+    "mani@kernel.org" <mani@kernel.org>, "robh@kernel.org" <robh@kernel.org>, 
+    "krzk+dt@kernel.org" <krzk+dt@kernel.org>, 
+    "conor+dt@kernel.org" <conor+dt@kernel.org>, 
+    "joel@jms.id.au" <joel@jms.id.au>, 
+    "andrew@codeconstruct.com.au" <andrew@codeconstruct.com.au>, 
+    "vkoul@kernel.org" <vkoul@kernel.org>, 
+    "kishon@kernel.org" <kishon@kernel.org>, 
+    "linus.walleij@linaro.org" <linus.walleij@linaro.org>, 
+    "p.zabel@pengutronix.de" <p.zabel@pengutronix.de>, 
+    "linux-aspeed@lists.ozlabs.org" <linux-aspeed@lists.ozlabs.org>, 
+    "linux-pci@vger.kernel.org" <linux-pci@vger.kernel.org>, 
+    "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>, 
+    "linux-arm-kernel@lists.infradead.org" <linux-arm-kernel@lists.infradead.org>, 
+    LKML <linux-kernel@vger.kernel.org>, 
+    "linux-phy@lists.infradead.org" <linux-phy@lists.infradead.org>, 
+    "openbmc@lists.ozlabs.org" <openbmc@lists.ozlabs.org>, 
+    "linux-gpio@vger.kernel.org" <linux-gpio@vger.kernel.org>, 
+    "elbadrym@google.com" <elbadrym@google.com>, 
+    "romlem@google.com" <romlem@google.com>, 
+    "anhphan@google.com" <anhphan@google.com>, 
+    "wak@google.com" <wak@google.com>, 
+    "yuxiaozhang@google.com" <yuxiaozhang@google.com>, 
+    BMC-SW <BMC-SW@aspeedtech.com>
+Subject: Re: [PATCH 7/7] pci: aspeed: Add ASPEED PCIe host controller
+ driver
+In-Reply-To: <SEYPR06MB5134973F678EB5B163DD50809D79A@SEYPR06MB5134.apcprd06.prod.outlook.com>
+Message-ID: <a618588d-54fe-69a9-27f7-7b19ba905a52@linux.intel.com>
+References: <20250613033001.3153637-1-jacky_chou@aspeedtech.com> <20250613033001.3153637-8-jacky_chou@aspeedtech.com> <40d1c5bd-0457-55ea-2514-ba27e6a4c720@linux.intel.com> <SEYPR06MB5134973F678EB5B163DD50809D79A@SEYPR06MB5134.apcprd06.prod.outlook.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-From: Jens Glathe <jens.glathe@oldschoolsolutions.biz>
-Subject: Re: [PATCH v2] arm64: dts: qcom: x1e80100-lenovo-yoga-slim7x: add
- Bluetooth support
-To: Stephan Gerhold <stephan.gerhold@linaro.org>,
- Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
-Cc: Bjorn Andersson <andersson@kernel.org>,
- Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, linux-arm-msm@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- Anthony Ruhier <aruhier@mailbox.org>, Johan Hovold <johan@kernel.org>
-References: <20250610-slim7x-bt-v2-1-0dcd9d6576e9@oldschoolsolutions.biz>
- <fbedfcb3-a326-4357-8d10-3be925e5df8f@oss.qualcomm.com>
- <aFlFkD7uNC_lOtHg@linaro.org>
-Content-Language: en-US
-In-Reply-To: <aFlFkD7uNC_lOtHg@linaro.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: quoted-printable
-X-Provags-ID: V03:K1:WJ6+jCbahy8a7VMFCUXkufb8elEFng/GMGhjMPRKP/tBrAhwCMM
- I72zriWKAg2GgExytrFJ6Bq2VhyM1hFESM8P3ptcQIDhC11XCjQ/O07zhaaEG3su+IXWF5m
- ic+mr7C38i1fA02/XWZNnD3/90qgzGipRHslxq+a1wN33ox7r/KNiKCcSjhLPDRna78NylN
- P1GDp84/JTX7U1vFkH0ew==
-X-Spam-Flag: NO
-UI-OutboundReport: notjunk:1;M01:P0:TAJmOecUC7w=;ovZLUIDeRg1egsK6z4Xy9dFPH1C
- 6UyZEo+4oldiop0mTYtdZxmlC/7p6hg1S4Dlp+ItT7IheUTUYj3Uo95zQb8Eqxpi/XhkA1CHy
- EwzFNO6t3tOV/t99L68neTgKNFovJjDKAF9S8/4FV7HI9vRUtLJUOf39sOyBa0J45DwgcQACI
- 7uNIhuxT4mJaLsuPRI/TA8t458P2w3MZStSZq17GrXh3huIzTgIh5/+KmvbnmKT6GRfivCxJv
- cCiMYlVjEtHQkKU77Gq8ptP8PpTs34L6/zL6OvsFNlnVsp15Y0wVp8ddCmc1wEZ2nOiIFAoPl
- ws2hzUmFDPrtjbHUF8GdnmCAmafdaAP8Sd2exNJ2nSD3DfO6N6QPquW4c5hUfVD7UULMexJWl
- icc4HcCMVRyzenEvlXfPbp0TRes/4alHsFRPKtgeVjmnNYxC2XG74WK1hiG/mG6VxmK4jbV9e
- pVAinpFeZoLMp3HQf9fLFy0m7T7vnXMW1nEFJjalVwkTuN0shRYe9pjfvWCPFTNfR1DDxouV+
- 4avfGazLD1H9pHm5WMl3yCAom8+USLAPcDL8ILVrQsqcjorOlhY4hd/9aukbTkgzfphYPqrgP
- xpn4DDqwfiwKMw5DZ3aDARwa+tc62QLXmD6jhqg97hKVH8XFb14ayVLFqVFEuAXFdY2W36NVq
- aWFh2q6ehAyYCa34yqIza1b0r2lf1xvrnPPYJ/v+FIna3Fg/Yg6HYEYnaBA/+ePaKQ/lKr49D
- B+FyJUu3zn1a2ixhAvcORzp1G65HFbSSLAH+8/fN1BxYk1+5rh9w+UoONBLjcfLS3aPt6X80R
- 5cBCdR7Cz73y/9QkjzAEz+x1HUo6WD+tQBN5BtEiUS5IJIEDV3fgGkFovsjpcn6Hw5mED5Cpp
- MyRoyyEuSYumA5a+mjwWh9EaeUC8/gTJSE74q7YWR4sOxg/7ra3jo7A5550tB5L8RHWsgoZ2Q
- +iuSFT0GswfWJfpp9IEZO9yf+66iI5CeoeXSmbCHOUc0A455Zf8dJ3FplG/fF/oVSsK4o2qPw
- v5sqRYEqa7icYe7eMlvLEBeMfdnFoPdqZ+Z3yLTvhyk8vOqxvZS44UKDjL9cT2UvB4uLuEEW3
- mwngFoelyE9H9oPoAtn7Y8Um7xle/IY1gIwnoSWE6p6STDRerhalYyo/lRtL5W1+Q8Jz2FbjM
- Rflpn7AsdL+6DEq6cOUT9YB3QzTGL5Qb98Nm84VUgo4YBXQv1gZPTDaXfQl6WcY/kyozCPhiS
- u3UTBdRwQkwDZQEWPj/dgwBkPxmdQzJU7oLbVAwfEWqIfdobBCg2i1ln1rs8Z2u+C/4EGDROk
- rsqF2CJZUnWX3hnqux8GKAroLwd9yj3D0q9nPkH9E/+uByoI6rL1eqGj5i+BIHISL057dKrU9
- 2C+c+prH9rZUscnv5EfpzVUXz7NT3hNh0e3T0=
+Content-Type: text/plain; charset=US-ASCII
 
-Am 23.06.25 um 14:16 schrieb Stephan Gerhold:
+On Mon, 23 Jun 2025, Jacky Chou wrote:
 
-> Well, Bjorn has already merged two instances of this description in
-> x1e80100-asus-vivobook-s15.dts and x1e80100-hp-omnibook-x14.dts, so it
-> doesn't sound fair anymore to block these kind of patches without
-> proposing an actually viable alternative solution.
-Hell yes.
-> From a quick glance at the Yoga Slim 7x mainboard, I think that WiFi/BT
-> is indeed a M.2 card there (like CRD/T14s, but unlike QCP). We haven't
-> decided on a good way to model that yet. It would be nice to have at
-> least my TODO comment that I added in the CRD/T14s commits so that it is
-> obvious that there is ideally still some rework to be done in the
-> future.
+> > > +static bool aspeed_ast2700_get_link(struct aspeed_pcie *pcie) {
+> > > +	u32 reg;
+> > > +	bool link;
+> > > +
+> > > +	regmap_read(pcie->pciephy, PEHR_MISC_300, &reg);
+> > > +	if (reg & CAPABILITY_GEN2) {
+> > > +		regmap_read(pcie->pciephy, PEHR_MISC_344, &reg);
+> > > +		link = !!(reg & LINK_STATUS_GEN2);
+> > > +	} else {
+> > > +		regmap_read(pcie->pciephy, PEHR_MISC_358, &reg);
+> > > +		link = !!(reg & LINK_STATUS_GEN4);
+> > 
+> > While I don't entirely know the meaning of these bits, what if the link is not
+> > using maximum speed it is capable of, does this check misbehave?
+> > 
+> 
+> In our AST2700, there are gen4 RC and gen2 RC.
+> Therefore, here will get capability to confirm it is gen2 or gen4.
+> And the link status is in different register.
 
- From my glance onto a photo of the pcb it looked soldered on without an=
-=20
-m2 slot.
+Okay, but then I'm a bit worried the naming of the defines as "Link 
+Status" has a well-known meaning in PCIe Spec so it is confusing to call 
+something else LINK_STATUS_*. Does that name come from some AST spec? In 
+not, change the define naming. If yes, you should prefix it with so it is 
+clear this is not referring to a generic PCIe thing and I suggest also 
+adding a comment above those defines too so anyone looking them later 
+won't wonder if you're just duplicating something from the PCIe spec.
 
-I actually collected some experience with removing this card in the=20
-Snapdragon Dev Kit (its normal m2 slot there). Replaced it with an Intel=
-=20
-I226V NIC, which works with the pmu-wcn7850 definition, but not without=20
-it. So... still a bit confused why that is, but probably its also the=20
-kind of working around pcie quirks that the pwrseq-qcom_wcn driver is doin=
-g.
-
-> Jens, can you add the same TODO comment that exists in the other two
-> device trees mentioned above?
-
-I did that in v3. So it should be valid either way :)
-
-with best regards
-
-Jens
-
+-- 
+ i.
 
 
