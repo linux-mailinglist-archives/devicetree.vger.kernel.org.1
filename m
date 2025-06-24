@@ -1,144 +1,110 @@
-Return-Path: <devicetree+bounces-188840-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-188841-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id A8C35AE5C9D
-	for <lists+devicetree@lfdr.de>; Tue, 24 Jun 2025 08:09:05 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6CC61AE5CA8
+	for <lists+devicetree@lfdr.de>; Tue, 24 Jun 2025 08:13:37 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id A95A4169CF1
-	for <lists+devicetree@lfdr.de>; Tue, 24 Jun 2025 06:08:51 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id E246117EDD0
+	for <lists+devicetree@lfdr.de>; Tue, 24 Jun 2025 06:13:37 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 96DCF221DB3;
-	Tue, 24 Jun 2025 06:08:47 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="bleJG0tK"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5A32A221DB3;
+	Tue, 24 Jun 2025 06:13:34 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+Received: from cpanel.siel.si (cpanel.siel.si [46.19.9.99])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F31702222CE;
-	Tue, 24 Jun 2025 06:08:45 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 76FBC1BC9E2;
+	Tue, 24 Jun 2025 06:13:31 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=46.19.9.99
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1750745327; cv=none; b=bO98rjr9PjxobgWE4www+OrBfT0nnN+aCsHeDFZ3hlyaP+84Jl54OjBiHnNzFYwsGgLphdiSPQ37KQFDNatg4l3D+UUzlNoXNfOJPtTtawCMfxWrfS802r/l7Kp0yI6PyQ5sEjz6JGvQARDlX8+Aok+DFSuzdMgYFCZ8c0scIVQ=
+	t=1750745614; cv=none; b=pt94rtmHTAKA3oKhaAlUbKXZjLArdMbphklJ1oidNf2c6bfm4FqRIAc9HwuAXhKdz8eKwm1UhotrKD4T3JYKkMYBGT0pSre7uuJ7loyu9OTZBNrJLCURgyFc1yqDM3kEP9JmI9EjcYs2eYJKnCfb1x7bpKSduEAZ69xf7hZ9Sqo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1750745327; c=relaxed/simple;
-	bh=+X9MtZsUcv4GSkC9cyuG5jWSnASNAwoaLQAkoxpRors=;
-	h=Date:From:To:CC:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=SmjtkiIrorDa+khO6wAr7jOH8sk7BxFjLIvyp72mUfXKWBzRK4PkRmG6U5/3BP9qaSbi7uzLT5JJsh1rylGpqCNNts1yn0xy/9FIsBBoP/Fv+QIz0Qu2WbBHv8+xlFBZt/jPCPeyIx3Y/lh8CrqfGJWmJFFMfZ7EJQr/w6f4ZiU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=bleJG0tK; arc=none smtp.client-ip=205.220.180.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
-Received: from pps.filterd (m0279873.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 55O68Rmg021627;
-	Tue, 24 Jun 2025 06:08:43 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	cc:content-type:date:from:in-reply-to:message-id:mime-version
-	:references:subject:to; s=qcppdkim1; bh=1wDUv5SQjPOU0hH1sA13zx1J
-	1sJ+ZXrjU+iyfsayI5g=; b=bleJG0tKNA7Y2vk2mBcusas5okxzOgSA8X8b8eYg
-	Lpf0fx19vPBLmZAjvB1eSNqHmiESMreHqWI8NTGJ2uddPSp+q4HtchfGfgHujn3C
-	qJb1qCMoFkN/GuSx6xm9mrgyeaCp8nmk9iuBkqDGq01gHb8VeCwvFPNX7as9SrO8
-	l79tRxdOEaOJEcDUoT5TPPlry9NLwM5z7ILHlKdsmdWNK9JpzpNCho5BzL2PFlLP
-	Y9DQp1fquM3RA7z5nVGHi41uvsJmMpcW6z9KL3wocfSbx/QApdotXwI22tbfzDlj
-	RQPznn2BauFkO4JfbM255anW4ymtYwJJ+brwrxjBLVo8Zw==
-Received: from nasanppmta05.qualcomm.com (i-global254.qualcomm.com [199.106.103.254])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 47f2rpu63g-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Tue, 24 Jun 2025 06:08:42 +0000 (GMT)
-Received: from nasanex01b.na.qualcomm.com (nasanex01b.na.qualcomm.com [10.46.141.250])
-	by NASANPPMTA05.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 55O68fcg017083
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Tue, 24 Jun 2025 06:08:41 GMT
-Received: from hu-varada-blr.qualcomm.com (10.80.80.8) by
- nasanex01b.na.qualcomm.com (10.46.141.250) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1544.9; Mon, 23 Jun 2025 23:08:38 -0700
-Date: Tue, 24 Jun 2025 11:38:34 +0530
-From: Varadarajan Narayanan <quic_varada@quicinc.com>
-To: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
-CC: <andersson@kernel.org>, <konradybcio@kernel.org>, <robh@kernel.org>,
-        <krzk+dt@kernel.org>, <conor+dt@kernel.org>, <lumag@kernel.org>,
-        <linux-arm-msm@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>
-Subject: Re: [PATCH] arm64: dts: qcom: ipq9574: Fix 'l2' regulator min/max
- voltages
-Message-ID: <aFpA4mk2L/sxlpO1@hu-varada-blr.qualcomm.com>
-References: <20250623113227.1754156-1-quic_varada@quicinc.com>
- <465751c4-a45a-41ce-ab65-ebddb71dd916@oss.qualcomm.com>
+	s=arc-20240116; t=1750745614; c=relaxed/simple;
+	bh=iQKW8jtVQ5hokU5L9keV/DmzueNNXB3lLUmIeed/Q0E=;
+	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=iHdu7jhGq5LvCJnb4oRT0UlbGlpVue3zrDMcUwYxbXdtVg4pHFhHrzK9L+kna885njcpkQkaHmXfuolaLKy1bmcyRLCzJt1sg4pLNLq39bmQgofrKHov4nRBWetQGDsMd0QIh3r5Dr9TsOKgWvLPQw0aacOcITIrYCRT3ukjmY0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=norik.com; spf=pass smtp.mailfrom=norik.com; arc=none smtp.client-ip=46.19.9.99
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=norik.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=norik.com
+Received: from [89.212.21.243] (port=55180 helo=localhost.localdomain)
+	by cpanel.siel.si with esmtpsa  (TLS1.2) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+	(Exim 4.96.2)
+	(envelope-from <primoz.fiser@norik.com>)
+	id 1uTwuL-002jD9-0R;
+	Tue, 24 Jun 2025 08:13:24 +0200
+From: Primoz Fiser <primoz.fiser@norik.com>
+To: Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Shawn Guo <shawnguo@kernel.org>,
+	Sascha Hauer <s.hauer@pengutronix.de>,
+	Pengutronix Kernel Team <kernel@pengutronix.de>,
+	Fabio Estevam <festevam@gmail.com>
+Cc: devicetree@vger.kernel.org,
+	imx@lists.linux.dev,
+	linux-arm-kernel@lists.infradead.org,
+	linux-kernel@vger.kernel.org,
+	upstream@lists.phytec.de
+Subject: [PATCH] arm64: dts: freescale: imx93-phycore-som: Fix watchdog reset
+Date: Tue, 24 Jun 2025 08:13:23 +0200
+Message-Id: <20250624061323.601550-1-primoz.fiser@norik.com>
+X-Mailer: git-send-email 2.34.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
-Content-Disposition: inline
-In-Reply-To: <465751c4-a45a-41ce-ab65-ebddb71dd916@oss.qualcomm.com>
-X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
- nasanex01b.na.qualcomm.com (10.46.141.250)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Authority-Analysis: v=2.4 cv=NdDm13D4 c=1 sm=1 tr=0 ts=685a40ea cx=c_pps
- a=JYp8KDb2vCoCEuGobkYCKw==:117 a=JYp8KDb2vCoCEuGobkYCKw==:17
- a=GEpy-HfZoHoA:10 a=kj9zAlcOel0A:10 a=6IFa9wvqVegA:10 a=COk6AnOGAAAA:8
- a=hBTOza7BeWqvS7caNNMA:9 a=CjuIK1q_8ugA:10 a=TjNXssC_j7lpFel5tvFf:22
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwNjI0MDA1MSBTYWx0ZWRfX0CVzaeCoc96Y
- 887ER8cYDmrk6w0ZpE96cNi79SFSQgawv45fg0GHgg2/OP9zmkVR3cgrjFTrdRkFU8oNdvCo3T8
- UlghGwm/qAXyOZjZNygtkU93iZ+bLYNEmlbMzM+OQkpmSo21/dAV5KqHx3afv6+4SrJ+0z4GoEM
- F+WFE+Q7qAVyD5nzfA2qJgd9mnGpw6+uZGfYH9w4bSuBYN+KdnEpl33DnYibBLoMFcJb4M+u/d8
- ztgSMmlcLz9YzvXMcNc28o7p8N5WDG7Rgix6PTrWj8crxRn5BK8BO06bHLhYjimyJbaZYZ/zSV/
- aLMzFn25ceM2k6iIRBSWA5qyAcqn21mD475Ddte5xAirTe213dVb8xIl6h5IKseY9n5iX8q770Z
- zsVdEok5Uv8GEzkhpiUepPz5BLhYpN1sW3SD3XTq/1rPas9UDW3tUC7Elkm5FEv94DtQhLHj
-X-Proofpoint-ORIG-GUID: QzpYM4SiRXrFgsB4SfmGR7todxqHUuhC
-X-Proofpoint-GUID: QzpYM4SiRXrFgsB4SfmGR7todxqHUuhC
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1099,Hydra:6.1.7,FMLib:17.12.80.40
- definitions=2025-06-24_02,2025-06-23_07,2025-03-28_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- bulkscore=0 mlxscore=0 spamscore=0 malwarescore=0 lowpriorityscore=0
- phishscore=0 priorityscore=1501 suspectscore=0 mlxlogscore=574 adultscore=0
- clxscore=1015 impostorscore=0 classifier=spam authscore=0 authtc=n/a authcc=
- route=outbound adjust=0 reason=mlx scancount=1 engine=8.19.0-2505280000
- definitions=main-2506240051
+Content-Transfer-Encoding: 8bit
+X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
+X-AntiAbuse: Primary Hostname - cpanel.siel.si
+X-AntiAbuse: Original Domain - vger.kernel.org
+X-AntiAbuse: Originator/Caller UID/GID - [47 12] / [47 12]
+X-AntiAbuse: Sender Address Domain - norik.com
+X-Get-Message-Sender-Via: cpanel.siel.si: authenticated_id: primoz.fiser@norik.com
+X-Authenticated-Sender: cpanel.siel.si: primoz.fiser@norik.com
+X-Source: 
+X-Source-Args: 
+X-Source-Dir: 
 
-On Mon, Jun 23, 2025 at 01:34:22PM +0200, Konrad Dybcio wrote:
-> On 6/23/25 1:32 PM, Varadarajan Narayanan wrote:
-> > The min and max voltages on l2 regulator is 850000uV. This was
-> > incorrectly set at 1800000uV earlier and that affected the
-> > stability of the networking subsystem.
-> >
-> > Fixes: d5506524d9d9 ("arm64: dts: qcom: ipq9574: Add LDO regulator node")
-> > Signed-off-by: Varadarajan Narayanan <quic_varada@quicinc.com>
-> > ---
->
-> Shouldn't there be a consumer for it, instead of it being always-on?
+On phyCORE-i.MX93 SoM, the SoC WDOG_ANY output line is connected to the
+external pca9451a PMIC WDOG_B input. Apply pinctrl and set the property
+"fsl,ext-reset-output" for watchdog to trigger board reset via PMIC on
+timeout/reset.
 
-The uniphy block is the consumer of this voltage. The PMIC configures it
-to 850000uV based on OTP settings and s/w doesn't change it as uniphy
-doesn't do scaling.
+Signed-off-by: Primoz Fiser <primoz.fiser@norik.com>
+---
+ arch/arm64/boot/dts/freescale/imx93-phycore-som.dtsi | 9 +++++++++
+ 1 file changed, 9 insertions(+)
 
--Varada
+diff --git a/arch/arm64/boot/dts/freescale/imx93-phycore-som.dtsi b/arch/arm64/boot/dts/freescale/imx93-phycore-som.dtsi
+index 5ee52774e7bf..729c26f9ac94 100644
+--- a/arch/arm64/boot/dts/freescale/imx93-phycore-som.dtsi
++++ b/arch/arm64/boot/dts/freescale/imx93-phycore-som.dtsi
+@@ -191,6 +191,9 @@ &usdhc1 {
+ 
+ /* Watchdog */
+ &wdog3 {
++	pinctrl-names = "default";
++	pinctrl-0 = <&pinctrl_wdog>;
++	fsl,ext-reset-output;
+ 	status = "okay";
+ };
+ 
+@@ -279,4 +282,10 @@ MX93_PAD_SD1_DATA7__USDHC1_DATA7	0x400013be
+ 			MX93_PAD_SD1_STROBE__USDHC1_STROBE	0x179e
+ 		>;
+ 	};
++
++	pinctrl_wdog: wdoggrp {
++		fsl,pins = <
++			MX93_PAD_WDOG_ANY__WDOG1_WDOG_ANY	0x31e
++		>;
++	};
+ };
+-- 
+2.34.1
 
-> >  arch/arm64/boot/dts/qcom/ipq9574-rdp-common.dtsi | 4 ++--
-> >  1 file changed, 2 insertions(+), 2 deletions(-)
-> >
-> > diff --git a/arch/arm64/boot/dts/qcom/ipq9574-rdp-common.dtsi b/arch/arm64/boot/dts/qcom/ipq9574-rdp-common.dtsi
-> > index bdb396afb992..21b04a2c629d 100644
-> > --- a/arch/arm64/boot/dts/qcom/ipq9574-rdp-common.dtsi
-> > +++ b/arch/arm64/boot/dts/qcom/ipq9574-rdp-common.dtsi
-> > @@ -106,8 +106,8 @@ ipq9574_s1: s1 {
-> >  		};
-> >
-> >  		mp5496_l2: l2 {
-> > -			regulator-min-microvolt = <1800000>;
-> > -			regulator-max-microvolt = <1800000>;
-> > +			regulator-min-microvolt = <850000>;
-> > +			regulator-max-microvolt = <850000>;
-> >  			regulator-always-on;
-> >  			regulator-boot-on;
-> >  		};
-> >
-> > base-commit: 5d4809e25903ab8e74034c1f23c787fd26d52934
 
