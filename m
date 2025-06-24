@@ -1,310 +1,139 @@
-Return-Path: <devicetree+bounces-189130-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-189131-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id AF3C8AE6CF1
-	for <lists+devicetree@lfdr.de>; Tue, 24 Jun 2025 18:52:39 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5F6C0AE6D60
+	for <lists+devicetree@lfdr.de>; Tue, 24 Jun 2025 19:16:18 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id CCA747B22A9
-	for <lists+devicetree@lfdr.de>; Tue, 24 Jun 2025 16:51:15 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id E65E11BC23D2
+	for <lists+devicetree@lfdr.de>; Tue, 24 Jun 2025 17:16:33 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 62AB62E338F;
-	Tue, 24 Jun 2025 16:52:33 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E4DE922B8A9;
+	Tue, 24 Jun 2025 17:16:13 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="QSG828Xw"
 X-Original-To: devicetree@vger.kernel.org
-Received: from foss.arm.com (foss.arm.com [217.140.110.172])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E069226CE2C;
-	Tue, 24 Jun 2025 16:52:30 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.140.110.172
+Received: from mail-wm1-f45.google.com (mail-wm1-f45.google.com [209.85.128.45])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+	(No client certificate requested)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 207B81A8F60;
+	Tue, 24 Jun 2025 17:16:10 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.45
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1750783953; cv=none; b=f/Bzs1n4dPWu54Yhf6JNUQFtGDue201LMJGcqxuPN4vECThL16sz4OqeRwEgGyARrap8cjnkGCkUUvRcsaFyP4gOhKm2oFyZXT3q0SeS0gQ+dIbB8MpwsGSkN79nNDaTLjHPCqGuark8oznXxmmCBbrRn3bwyctbRRcYzZAPZKg=
+	t=1750785373; cv=none; b=kwksxmBWHqFwUe08yG8a1Wf7ZdwcR0ZDT7wcrX1EtCY5yOOFpdtkRPfwzKo/y2hnAZq9q8SU8EEew6nrhRwOmpvjYKP+L0i7kz57nVuGnECXygKVW+xcNdMcgcv1WWYQ3eYZbKpApzsA/wuR21R3ijzgxRiYE7ygiwYjBsxuZhM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1750783953; c=relaxed/simple;
-	bh=HhQSeOW+UrAhP4tDtsSkqb3r9mIye1Th9CINKqmP5Dc=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=YCOxDsDy5mZExPGnONWdQ7hcdQAjch8/eIHH57KrpFPOy/EGUUQFcRsQ+KUDuppRx1XfAikZWEccp+dR9KrgyaOQM28OwgqYmzq1A8mF+jj64K5CuVIFBza7fMEahnlWI5gVr3No2fv1eAWMNdZ+h4QRKMUavEnX54vD9AG/mys=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com; spf=pass smtp.mailfrom=arm.com; arc=none smtp.client-ip=217.140.110.172
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=arm.com
-Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-	by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id D1D731AC1;
-	Tue, 24 Jun 2025 09:52:11 -0700 (PDT)
-Received: from [10.57.29.113] (unknown [10.57.29.113])
-	by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 929923F58B;
-	Tue, 24 Jun 2025 09:52:24 -0700 (PDT)
-Message-ID: <eb5dd1dd-ae08-4ab6-9bdc-c17e99bbacbd@arm.com>
-Date: Tue, 24 Jun 2025 17:52:22 +0100
+	s=arc-20240116; t=1750785373; c=relaxed/simple;
+	bh=QZ1TcpdPgIFJyAZanFzW8cm4WLnFoJuVELAiMeyoopQ=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=HEN7hcyH92PjFUIOmwRuDXIyhi/1zy8bE4tUn7KSm4nWZbIU6ijDJShVpXkBr8k0ICG5RZrObWfb/7jFqQHQSet/RYk0Usu4SbJtufe3QhraeZIeubjfZtPitbjU7ZZKuXTmQ1d1q+5PxwDNlz7W7Znr+bxWklkwdo06ugcmGjM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=QSG828Xw; arc=none smtp.client-ip=209.85.128.45
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-wm1-f45.google.com with SMTP id 5b1f17b1804b1-4537deebb01so5851675e9.0;
+        Tue, 24 Jun 2025 10:16:10 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1750785369; x=1751390169; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=HsR7NJDAwXIG1UDTQq7wzW72HQmPr4b4eMr+oAxOFl0=;
+        b=QSG828XwlltrUThQkxgoHzX8Vk4Pa4pHX5/ETXNA0bGBc/YVh+eBEwWpLlguxu6jHD
+         QxN8BGttYG2iLF9KdNyjbCw25LKTjm2T6paBKXRq2C/g9uqyg0Z3AQS4pixr+wklZmjO
+         bmaL35wXHj9qrdtWEeKtyUEOMKqRwm2/ihkkqK7URZrJO3UHdmsuLUuF/olibNQaoAGu
+         FuaYYnlR0QR1ghQ1EAPCN5NNGUG6o7F3B2wIJ5s97kcxLSnmbehhfPxz5p4wJbGOFTcP
+         noWSVnaXrPROQsmUWkNW1S0d8P/ODAnhsBSoze2umGYzFrdbru3XZJTcP/+381wU1Npb
+         p+uQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1750785369; x=1751390169;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=HsR7NJDAwXIG1UDTQq7wzW72HQmPr4b4eMr+oAxOFl0=;
+        b=r5gYg0nqOI0jV3PZvxhxspQHlJGrmouyuDkjEFaq/j9Jd9beIj/BcG2w2jD4fgOWgn
+         MbOEsMsduJx1nTiZ7zbW59tFZsq59RhusieQN06zwvDfPnkcWCVbBOVUIbb6DPVbTso8
+         3a51j5OErQLFOkVxi28jzASo+THPpxBMmqmcn3/c7DCosR9JyHyEB9un77qqWajXkUH1
+         pD/6caucxmNwkE1XgXRKd1JyetfrsEEhwOtvYg0uDglxxEo6bPQX6k/35d1Kwj4UuJmC
+         WT65MOmfXAcTueM8xr7iGFsfTiQMa1pGstVsdUBvv7E1v0atXuCS+6EGPADao8Ss+cKK
+         y4Ow==
+X-Forwarded-Encrypted: i=1; AJvYcCUTu2LSAzZHAfsWrIgH6yvqbJVSk+8V3DqrGJykOOYtRLnxLHXBJPxH/nkHEEUMyXJjX32Ml7LKsjHZ@vger.kernel.org, AJvYcCX/HWOyXqlhAfv7XfsL1OfBLn0VvPSXvO9CYomt7yfjiaKdYXh4/skGKGjNs9VO9bTeq1A7jwz+7op/5zFGDF+YIKI=@vger.kernel.org
+X-Gm-Message-State: AOJu0YzpT78spLNtpJ0+wCHnSUsONJKlEt0urSdvGqeBniSEMu/ldkPm
+	R67k9Br6huUjBmEE1pJI/HsQxRHWi1PuwT8bnvVJFUXJt0QY6ZKwq1Nu
+X-Gm-Gg: ASbGnctvA84PsCZxQNi3cdvz5lY5zABaMwc3E4u6/AhHtzNc+MMy7L96I5vPlZpuWrq
+	/zsOFYGuZ+MDubiKy8TmLl0RcgwFTgyXrkwK/dq1rTCcJSmO52UOmPB3zOxVFAx1ow57MHGKjZt
+	ct16G8m87/bdh65XSeezojgF9SFDj1ntcHTGGCxelscfHAINhG/DS4A/a7tDm1buFnuLaqNPRLt
+	s4lTJOx6AN2FH+JbkeB1n6f2OnusUfA2rJNTjv42IL1eAkXWX0bgEl7EyBcY7pfnmbjaZufpM3G
+	/kTbPJfdCsXw6E+Js15x2lLmINS8JMPeUTakac5AhpkNt8MziAgIFda9aPsuTA4AWHIdLXY2NM8
+	KU3vXw3o0EJHGiJM7alKX
+X-Google-Smtp-Source: AGHT+IHi7nu6IpK9dIOlmVZ06kuGDTr8M6EYbD6JoMTVVj3VsN5JutQswHRnFATRwnDZUrHT3lbbBA==
+X-Received: by 2002:a05:600c:1c88:b0:43d:82c:2b11 with SMTP id 5b1f17b1804b1-4537e8dd620mr27161145e9.23.1750785369071;
+        Tue, 24 Jun 2025 10:16:09 -0700 (PDT)
+Received: from iku.example.org ([2a06:5906:61b:2d00:a522:16f6:ec97:d332])
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-3a6e80f2a4csm2433515f8f.65.2025.06.24.10.16.08
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 24 Jun 2025 10:16:08 -0700 (PDT)
+From: Prabhakar <prabhakar.csengg@gmail.com>
+X-Google-Original-From: Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+To: Krzysztof Kozlowski <krzk@kernel.org>,
+	Rob Herring <robh@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Geert Uytterhoeven <geert+renesas@glider.be>,
+	Magnus Damm <magnus.damm@gmail.com>,
+	Biju Das <biju.das.jz@bp.renesas.com>
+Cc: linux-kernel@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	linux-renesas-soc@vger.kernel.org,
+	Prabhakar <prabhakar.csengg@gmail.com>,
+	Fabrizio Castro <fabrizio.castro.jz@renesas.com>,
+	Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+Subject: [PATCH] dt-bindings: memory: renesas,rzg3e-xspi: Document RZ/V2H(P) and RZ/V2N support
+Date: Tue, 24 Jun 2025 18:16:05 +0100
+Message-ID: <20250624171605.469724-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
+X-Mailer: git-send-email 2.49.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v7 05/10] accel/rocket: Add IOCTLs for synchronizing
- memory accesses
-To: Tomeu Vizoso <tomeu@tomeuvizoso.net>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Heiko Stuebner <heiko@sntech.de>,
- Oded Gabbay <ogabbay@kernel.org>, Jonathan Corbet <corbet@lwn.net>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>,
- David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
- Sumit Semwal <sumit.semwal@linaro.org>,
- =?UTF-8?Q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>,
- Sebastian Reichel <sebastian.reichel@collabora.com>,
- Nicolas Frattaroli <nicolas.frattaroli@collabora.com>,
- Kever Yang <kever.yang@rock-chips.com>, Daniel Stone <daniel@fooishbar.org>,
- Da Xue <da@libre.computer>, Jeff Hugo <jeff.hugo@oss.qualcomm.com>
-Cc: devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org,
- dri-devel@lists.freedesktop.org, linux-doc@vger.kernel.org,
- linux-media@vger.kernel.org, linaro-mm-sig@lists.linaro.org
-References: <20250606-6-10-rocket-v7-0-dc16cfe6fe4e@tomeuvizoso.net>
- <20250606-6-10-rocket-v7-5-dc16cfe6fe4e@tomeuvizoso.net>
-From: Robin Murphy <robin.murphy@arm.com>
-Content-Language: en-GB
-In-Reply-To: <20250606-6-10-rocket-v7-5-dc16cfe6fe4e@tomeuvizoso.net>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
 
-On 2025-06-06 7:28 am, Tomeu Vizoso wrote:
-> The NPU cores have their own access to the memory bus, and this isn't
-> cache coherent with the CPUs.
-> 
-> Add IOCTLs so userspace can mark when the caches need to be flushed, and
-> also when a writer job needs to be waited for before the buffer can be
-> accessed from the CPU.
-> 
-> Initially based on the same IOCTLs from the Etnaviv driver.
-> 
-> v2:
-> - Don't break UABI by reordering the IOCTL IDs (Jeff Hugo)
-> 
-> v3:
-> - Check that padding fields in IOCTLs are zero (Jeff Hugo)
-> 
-> v6:
-> - Fix conversion logic to make sure we use DMA_BIDIRECTIONAL when needed
->    (Lucas Stach)
-> 
-> Signed-off-by: Tomeu Vizoso <tomeu@tomeuvizoso.net>
-> Reviewed-by: Jeff Hugo <jeff.hugo@oss.qualcomm.com>
-> ---
->   drivers/accel/rocket/rocket_drv.c |  2 +
->   drivers/accel/rocket/rocket_gem.c | 82 +++++++++++++++++++++++++++++++++++++++
->   drivers/accel/rocket/rocket_gem.h |  5 +++
->   include/uapi/drm/rocket_accel.h   | 37 ++++++++++++++++++
->   4 files changed, 126 insertions(+)
-> 
-> diff --git a/drivers/accel/rocket/rocket_drv.c b/drivers/accel/rocket/rocket_drv.c
-> index 4ab78193c186dfcfc3e323f16c588e85e6a8a334..eb9284ee2511f730afe6a532225c2706ce0e2822 100644
-> --- a/drivers/accel/rocket/rocket_drv.c
-> +++ b/drivers/accel/rocket/rocket_drv.c
-> @@ -62,6 +62,8 @@ static const struct drm_ioctl_desc rocket_drm_driver_ioctls[] = {
->   
->   	ROCKET_IOCTL(CREATE_BO, create_bo),
->   	ROCKET_IOCTL(SUBMIT, submit),
-> +	ROCKET_IOCTL(PREP_BO, prep_bo),
-> +	ROCKET_IOCTL(FINI_BO, fini_bo),
->   };
->   
->   DEFINE_DRM_ACCEL_FOPS(rocket_accel_driver_fops);
-> diff --git a/drivers/accel/rocket/rocket_gem.c b/drivers/accel/rocket/rocket_gem.c
-> index 61b7f970a6885aa13784daa1222611a02aa10dee..07024b6e71bf544dc7f00b008b9afb74b0c4e802 100644
-> --- a/drivers/accel/rocket/rocket_gem.c
-> +++ b/drivers/accel/rocket/rocket_gem.c
-> @@ -113,3 +113,85 @@ int rocket_ioctl_create_bo(struct drm_device *dev, void *data, struct drm_file *
->   
->   	return ret;
->   }
-> +
-> +static inline enum dma_data_direction rocket_op_to_dma_dir(u32 op)
-> +{
-> +	op &= ROCKET_PREP_READ | ROCKET_PREP_WRITE;
-> +
-> +	if (op == ROCKET_PREP_READ)
-> +		return DMA_FROM_DEVICE;
-> +	else if (op == ROCKET_PREP_WRITE)
-> +		return DMA_TO_DEVICE;
-> +	else
-> +		return DMA_BIDIRECTIONAL;
-> +}
-> +
-> +int rocket_ioctl_prep_bo(struct drm_device *dev, void *data, struct drm_file *file)
-> +{
-> +	struct drm_rocket_prep_bo *args = data;
-> +	unsigned long timeout = drm_timeout_abs_to_jiffies(args->timeout_ns);
-> +	struct rocket_device *rdev = to_rocket_device(dev);
-> +	struct drm_gem_object *gem_obj;
-> +	struct drm_gem_shmem_object *shmem_obj;
-> +	bool write = !!(args->op & ROCKET_PREP_WRITE);
-> +	long ret = 0;
-> +
-> +	if (args->op & ~(ROCKET_PREP_READ | ROCKET_PREP_WRITE))
-> +		return -EINVAL;
-> +
-> +	gem_obj = drm_gem_object_lookup(file, args->handle);
-> +	if (!gem_obj)
-> +		return -ENOENT;
-> +
-> +	ret = dma_resv_wait_timeout(gem_obj->resv, dma_resv_usage_rw(write),
-> +				    true, timeout);
-> +	if (!ret)
-> +		ret = timeout ? -ETIMEDOUT : -EBUSY;
-> +
-> +	shmem_obj = &to_rocket_bo(gem_obj)->base;
-> +
-> +	for (unsigned int core = 1; core < rdev->num_cores; core++) {
+From: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
 
-Huh? If you need to sync the BO memory ever, then you need to sync it 
-for the same device it was mapped, and certainly not 0 or 2+ times 
-depending on how may cores happen to be enabled. Please throw 
-CONFIG_DMA_API_DEBUG at this.
+Document support for the Expanded Serial Peripheral Interface (xSPI)
+controller found on the Renesas RZ/V2H(P) (R9A09G057) and RZ/V2N
+(R9A09G056) SoCs.
 
-> +		dma_sync_sgtable_for_cpu(rdev->cores[core].dev, shmem_obj->sgt,
-> +					 rocket_op_to_dma_dir(args->op));
+The xSPI hardware block on these SoCs is functionally identical to the
+one on the RZ/G3E (R9A09G047) SoC. Therefore, the existing driver can be
+reused without modification by using `renesas,r9a09g047-xspi` as a
+fallback compatible.
 
-Hmm, the intent of the API is really that the direction for sync should 
-match the direction for map and unmap too; if it was mapped 
-DMA_BIDIRECTIONAL then it should be synced DMA_BIDIRECTIONAL. If you 
-have BOs which are really only used for one-directional purposes then 
-they should be mapped as such at creation.
+Signed-off-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+---
+ .../bindings/memory-controllers/renesas,rzg3e-xspi.yaml  | 9 ++++++++-
+ 1 file changed, 8 insertions(+), 1 deletion(-)
 
-Does anything actually prevent one thread form trying to read from a 
-buffer while another thread is writing it, and thus the read 
-inintuitively destroying newly-written data (and/or the write 
-unwittingly destroying its own data in FINI_BO because last_cpu_prep_op 
-got overwritten)? Unless there's a significant measurable benefit to 
-trying to be clever here (of which I'm somewhjat doubtful), I would be 
-strongly inclined to just keep things simple and straightforward.
-
-Thanks,
-Robin.
-
-> +	}
-> +
-> +	to_rocket_bo(gem_obj)->last_cpu_prep_op = args->op;
-> +
-> +	drm_gem_object_put(gem_obj);
-> +
-> +	return ret;
-> +}
-> +
-> +int rocket_ioctl_fini_bo(struct drm_device *dev, void *data, struct drm_file *file)
-> +{
-> +	struct rocket_device *rdev = to_rocket_device(dev);
-> +	struct drm_rocket_fini_bo *args = data;
-> +	struct drm_gem_shmem_object *shmem_obj;
-> +	struct rocket_gem_object *rkt_obj;
-> +	struct drm_gem_object *gem_obj;
-> +
-> +	if (args->reserved != 0) {
-> +		drm_dbg(dev, "Reserved field in drm_rocket_fini_bo struct should be 0.\n");
-> +		return -EINVAL;
-> +	}
-> +
-> +	gem_obj = drm_gem_object_lookup(file, args->handle);
-> +	if (!gem_obj)
-> +		return -ENOENT;
-> +
-> +	rkt_obj = to_rocket_bo(gem_obj);
-> +	shmem_obj = &rkt_obj->base;
-> +
-> +	WARN_ON(rkt_obj->last_cpu_prep_op == 0);
-> +
-> +	for (unsigned int core = 1; core < rdev->num_cores; core++) {
-> +		dma_sync_sgtable_for_device(rdev->cores[core].dev, shmem_obj->sgt,
-> +					    rocket_op_to_dma_dir(rkt_obj->last_cpu_prep_op));
-> +	}
-> +
-> +	rkt_obj->last_cpu_prep_op = 0;
-> +
-> +	drm_gem_object_put(gem_obj);
-> +
-> +	return 0;
-> +}
-> diff --git a/drivers/accel/rocket/rocket_gem.h b/drivers/accel/rocket/rocket_gem.h
-> index e8a4d6213fd80419be2ec8af04583a67fb1a4b75..a52a63cd78339a6150b99592ab5f94feeeb51fde 100644
-> --- a/drivers/accel/rocket/rocket_gem.h
-> +++ b/drivers/accel/rocket/rocket_gem.h
-> @@ -12,12 +12,17 @@ struct rocket_gem_object {
->   	struct iommu_domain *domain;
->   	size_t size;
->   	u32 offset;
-> +	u32 last_cpu_prep_op;
->   };
->   
->   struct drm_gem_object *rocket_gem_create_object(struct drm_device *dev, size_t size);
->   
->   int rocket_ioctl_create_bo(struct drm_device *dev, void *data, struct drm_file *file);
->   
-> +int rocket_ioctl_prep_bo(struct drm_device *dev, void *data, struct drm_file *file);
-> +
-> +int rocket_ioctl_fini_bo(struct drm_device *dev, void *data, struct drm_file *file);
-> +
->   static inline
->   struct  rocket_gem_object *to_rocket_bo(struct drm_gem_object *obj)
->   {
-> diff --git a/include/uapi/drm/rocket_accel.h b/include/uapi/drm/rocket_accel.h
-> index cb1b5934c201160e7650aabd1b3a2b1c77b1fd7b..b5c80dd767be56e9720b51e4a82617a425a881a1 100644
-> --- a/include/uapi/drm/rocket_accel.h
-> +++ b/include/uapi/drm/rocket_accel.h
-> @@ -13,9 +13,13 @@ extern "C" {
->   
->   #define DRM_ROCKET_CREATE_BO			0x00
->   #define DRM_ROCKET_SUBMIT			0x01
-> +#define DRM_ROCKET_PREP_BO			0x02
-> +#define DRM_ROCKET_FINI_BO			0x03
->   
->   #define DRM_IOCTL_ROCKET_CREATE_BO		DRM_IOWR(DRM_COMMAND_BASE + DRM_ROCKET_CREATE_BO, struct drm_rocket_create_bo)
->   #define DRM_IOCTL_ROCKET_SUBMIT			DRM_IOW(DRM_COMMAND_BASE + DRM_ROCKET_SUBMIT, struct drm_rocket_submit)
-> +#define DRM_IOCTL_ROCKET_PREP_BO		DRM_IOW(DRM_COMMAND_BASE + DRM_ROCKET_PREP_BO, struct drm_rocket_prep_bo)
-> +#define DRM_IOCTL_ROCKET_FINI_BO		DRM_IOW(DRM_COMMAND_BASE + DRM_ROCKET_FINI_BO, struct drm_rocket_fini_bo)
->   
->   /**
->    * struct drm_rocket_create_bo - ioctl argument for creating Rocket BOs.
-> @@ -39,6 +43,39 @@ struct drm_rocket_create_bo {
->   	__u64 offset;
->   };
->   
-> +#define ROCKET_PREP_READ        0x01
-> +#define ROCKET_PREP_WRITE       0x02
-> +
-> +/**
-> + * struct drm_rocket_prep_bo - ioctl argument for starting CPU ownership of the BO.
-> + *
-> + * Takes care of waiting for any NPU jobs that might still use the NPU and performs cache
-> + * synchronization.
-> + */
-> +struct drm_rocket_prep_bo {
-> +	/** Input: GEM handle of the buffer object. */
-> +	__u32 handle;
-> +
-> +	/** Input: mask of ROCKET_PREP_x, direction of the access. */
-> +	__u32 op;
-> +
-> +	/** Input: Amount of time to wait for NPU jobs. */
-> +	__s64 timeout_ns;
-> +};
-> +
-> +/**
-> + * struct drm_rocket_fini_bo - ioctl argument for finishing CPU ownership of the BO.
-> + *
-> + * Synchronize caches for NPU access.
-> + */
-> +struct drm_rocket_fini_bo {
-> +	/** Input: GEM handle of the buffer object. */
-> +	__u32 handle;
-> +
-> +	/** Reserved, must be zero. */
-> +	__u32 reserved;
-> +};
-> +
->   /**
->    * struct drm_rocket_task - A task to be run on the NPU
->    *
-> 
+diff --git a/Documentation/devicetree/bindings/memory-controllers/renesas,rzg3e-xspi.yaml b/Documentation/devicetree/bindings/memory-controllers/renesas,rzg3e-xspi.yaml
+index 2bfe63ec62dc..7a84f5bb7284 100644
+--- a/Documentation/devicetree/bindings/memory-controllers/renesas,rzg3e-xspi.yaml
++++ b/Documentation/devicetree/bindings/memory-controllers/renesas,rzg3e-xspi.yaml
+@@ -23,7 +23,14 @@ allOf:
+ 
+ properties:
+   compatible:
+-    const: renesas,r9a09g047-xspi  # RZ/G3E
++    oneOf:
++      - const: renesas,r9a09g047-xspi  # RZ/G3E
++
++      - items:
++          - enum:
++              - renesas,r9a09g056-xspi  # RZ/V2N
++              - renesas,r9a09g057-xspi  # RZ/V2H(P)
++          - const: renesas,r9a09g047-xspi
+ 
+   reg:
+     items:
+-- 
+2.49.0
 
 
