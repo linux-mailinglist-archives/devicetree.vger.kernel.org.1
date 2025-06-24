@@ -1,137 +1,146 @@
-Return-Path: <devicetree+bounces-189058-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-189059-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2ED0EAE679D
-	for <lists+devicetree@lfdr.de>; Tue, 24 Jun 2025 15:59:44 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 52320AE67A6
+	for <lists+devicetree@lfdr.de>; Tue, 24 Jun 2025 16:00:54 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id D58951BC42CB
-	for <lists+devicetree@lfdr.de>; Tue, 24 Jun 2025 13:58:35 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id E58684C3036
+	for <lists+devicetree@lfdr.de>; Tue, 24 Jun 2025 13:59:53 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id EBA872DFA5C;
-	Tue, 24 Jun 2025 13:53:51 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5CA2B2D1F7B;
+	Tue, 24 Jun 2025 13:58:11 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="YYOJxEzY"
+	dkim=pass (2048-bit key) header.d=bgdev-pl.20230601.gappssmtp.com header.i=@bgdev-pl.20230601.gappssmtp.com header.b="zkLyr3M4"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lf1-f41.google.com (mail-lf1-f41.google.com [209.85.167.41])
+Received: from mail-wr1-f53.google.com (mail-wr1-f53.google.com [209.85.221.53])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 26D1D2DF3D1;
-	Tue, 24 Jun 2025 13:53:49 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.41
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 76D592D2386
+	for <devicetree@vger.kernel.org>; Tue, 24 Jun 2025 13:58:09 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.53
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1750773231; cv=none; b=WVocyq+0+uwlrmjUA/KPiGGCj4boEiVtqDiRy2XusTskinrfJI59MaXXLM7zMJBrqqlfB8XSlVdsnvOVbTy4rYk7+0P2RKYHoocWzBMb4PhaIMDdTz07y8jLmwoXmL+XqSOvCOldOsRjxm+76+UbNFyjuLgNf+nt/jggfUBnaWU=
+	t=1750773491; cv=none; b=dJQTg8hAX3C0CC6Hsr4iPt5V+pOY+Pg7TodZbj5WOiGLrk3kf6VI+1AAm0b/b/CDR4GGOGBWrZVTW7/0veaPBTSePA/kBBcYcdBTLn6jR9wZWloqd4bBx3WtZVSa+J3dJx5Ua+Z6N+vSyoI4U38UME0ga15P1FfJix6q5gFl7IA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1750773231; c=relaxed/simple;
-	bh=oiGDOTQlQJJvb4XNy0QogZP8XaCDTe3pugDhckuwwgU=;
-	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
-	 MIME-Version; b=kVKklP7IO0/UrYiLRLzDRa+Be1DtdVwXq7tTkM7A+eb48ABd2yaNgNlsv4Ub8VuxWZPsuzwfEMOPkPl0kXTtyiIXxgM1zsf5GrQ0uD/y6iaS7I7JvpR9Nvq/hoHl4UJ2b7qIQQloCL9ijAfHm1D47k/8fyMAojpKlLBnWTFIml0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=YYOJxEzY; arc=none smtp.client-ip=209.85.167.41
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-lf1-f41.google.com with SMTP id 2adb3069b0e04-553b51f5218so452233e87.0;
-        Tue, 24 Jun 2025 06:53:49 -0700 (PDT)
+	s=arc-20240116; t=1750773491; c=relaxed/simple;
+	bh=SRjdE7mQm9t+sBYLoVgmd8fzr5KQH8TyP1VOA9ZnGvk=;
+	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=r+66hTFm+hh/7Jpm6i2vFAG+5GQRQW8GI0VJ77SlBxgJhqrH4iAHwnTXWa3mIL8AC5Ji1NZsG4c9gkm1A641R6gdN3pRshBma5WYJy3SP0QYNHiLonv2kIesqgItLnebsRJOgp+pxXSp1ULgfNIcEluJDNTu4L3EiDPqQAOzL48=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=bgdev.pl; spf=none smtp.mailfrom=bgdev.pl; dkim=pass (2048-bit key) header.d=bgdev-pl.20230601.gappssmtp.com header.i=@bgdev-pl.20230601.gappssmtp.com header.b=zkLyr3M4; arc=none smtp.client-ip=209.85.221.53
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=bgdev.pl
+Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=bgdev.pl
+Received: by mail-wr1-f53.google.com with SMTP id ffacd0b85a97d-3a507e88b0aso4545003f8f.1
+        for <devicetree@vger.kernel.org>; Tue, 24 Jun 2025 06:58:09 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1750773228; x=1751378028; darn=vger.kernel.org;
+        d=bgdev-pl.20230601.gappssmtp.com; s=20230601; t=1750773488; x=1751378288; darn=vger.kernel.org;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=at4AGtoJzuUSMRoGQaflHxu5wCpuyRhNqdSwxFevlHw=;
-        b=YYOJxEzY60+mh/G8twOwmhGNRX5erhpyKSAsgProFQdZ3mzxFjxelw0GTnOhplEp0E
-         0Ab1CS+pbbQLs5rhFCBzh2Pj5DX0wD3P1EjLOwFIyiYdXT0FY6nVkKlU3wmsA+fBsvpB
-         5ovqXG/bCloqruYS23+oGbZdrmuCb6SGHF4Y2mC/yGEwjaMgnJkIwtiZ3B+t1T9zHo+x
-         ZF7DqxQ7K3M8SXxPeSXl0BqMNRuYD6SSK3XlJVQwu6TkhaVkkPIvRumXlCj5NgKB7UwL
-         oaXqriViFl7Go2gWYTMESKsO7Qsv20gQ59kx3o0p+9Xtaf8tN2YbWQDuodc9cat947W/
-         Eghw==
+        bh=yfdwBnmwXKVxo4fI9YpCbPX/DuxoUKCmsus+7StatJk=;
+        b=zkLyr3M4dif6AUhJ/unJG1Dxli+hAi3LwxS/pQ9gwc6jo0Wqb/L20TS/fWcUZSVojO
+         M7/XpPdfqDyVVMPCGhr4P2rlLo/hsqxy5lz6HmUicJ1YLQGp+3QS+GF9t3fbGpGRS4gh
+         xmxgVA886av4phe83Nvv/aYWyqbWWTsnHSA1nq/NgztXD+tsJkMdmv5BlbVQ48yQRPD7
+         fCHyYilmjNvLVRFsBXuzn9eVWGFFF0FsgIqwOQyIjYv4UT4SNChp03BXOtnTEvvbQAzp
+         +xIRVF7vmvqwL0tkfJtl0NbKlr5Y2EOgn+Z9yse5DkctMGQBDpy6ErxdZ+VEeEd1TpuI
+         EjaQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1750773228; x=1751378028;
+        d=1e100.net; s=20230601; t=1750773488; x=1751378288;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=at4AGtoJzuUSMRoGQaflHxu5wCpuyRhNqdSwxFevlHw=;
-        b=XNrhd8okYxS5mZgzV1QZJvCOHt5UTx4S8K2EdygFxa7n3i2FCj7HtllKLS6xYUDXCx
-         5diRNh7XudsPf1RxggJU8inxeUleTvm2VgyTlRfYlzy+FRVzbt5ja+6uiar0lvOmNt0H
-         xU5Qwor0pyokULtcX3CsU1cg9MZO1gy2r17EW0qjjTScIERrTWTFkRUM4oRGILLHVJg9
-         2BzhOOl6Gs6dUYGrggeK2jGS1Gij5xatxswg43AMmdnb8zoXwizPqb8oOlr7fMs5B+tG
-         EmfXwxQ/6My6zhIBxSkk8Lw2fCKGOlv4zFY23W+yhLIJNS0LGpkiJFaeWiGzA9sZf+yk
-         NQ/g==
-X-Forwarded-Encrypted: i=1; AJvYcCUNPMRh+LmVGrj3j8rydET7snaqkTmKjXkzuIDtxKm0jUU8VFJQM295eyvi8fYU8KVIS5T+xFtlP12tghBv@vger.kernel.org, AJvYcCXBxM6O3AQoC8m5pz2GlonE28vdPxQmxvQ4LQv+wmHl4KhHKfFfg1S9n9l/x4/ziHAHr71O6KYRxVtN@vger.kernel.org
-X-Gm-Message-State: AOJu0YyU/aLS2ql6ksKFNJm1g1CeJglFYTjrnXCL6bxtpu/8D/8IhODZ
-	thn9ZrpXcHi2V0rvvo3Lq8votiGYONGFzBuZPaUSuD8fWipPf2Ch9MR6RpQu+BAYUPI=
-X-Gm-Gg: ASbGncvw3pSrdzw4+bsiPVIqCLfOlSpJUEXwsEgLrrduPKqYLY7rIQUnSvccca9fTF7
-	2ib052M8K/l4W9aQgDJXW4wHjjPWmfSrBJdqtW7cq8uhqJF50HOIBX+jmRb7UpbOa/+T7MYCKs7
-	45qcPaVcOahkbuKHX/+WRNUXU1mQHqlgqJyUnGnyycFipTvx6w1jqnNqaA+ycTmfWZeeFt0E8rr
-	9Dnn3oolyQXl2yKtrGnGQ9ZnwATWwuUudT3gmkODdtrvFvzNyU/31yKkOKu+gtijrDu6lVPWVQ3
-	z9azADgwARpjA33fsX8xnhsdHBxNgwEr+6tyUTe6uqITeg9IWIyQXggSQnUvghzo5VIgr1R4cSt
-	BLtoVFSYtKWVdKJJPyUq2+qOUJm+uhdHT+IWdXKG+H7OOmf4McF8Lp/m4lV5Amw==
-X-Google-Smtp-Source: AGHT+IFbDE+lWZiMZmwadCBMjxfgjChAjL5/r/S/Zb6cyZMzeD+uljn9vGxJOP6BB4iHquZJI37Mkw==
-X-Received: by 2002:a05:6512:3f19:b0:553:2c93:6140 with SMTP id 2adb3069b0e04-553e3b98f31mr5355681e87.9.1750773228139;
-        Tue, 24 Jun 2025 06:53:48 -0700 (PDT)
-Received: from user-A520M-DS3H.sberdevices.ru (broadband-188-32-30-96.ip.moscow.rt.ru. [188.32.30.96])
-        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-554e6dc186esm1282905e87.114.2025.06.24.06.53.47
+        bh=yfdwBnmwXKVxo4fI9YpCbPX/DuxoUKCmsus+7StatJk=;
+        b=OtxaLE59B/ts/RVznSnGOc/QYoVUYtrRtnS2tRmbUHyVvfud99dylGSnLJfmdOOEzE
+         yO4qwPbghk+gQYWttTaQlqeUmBDR282WuhjvC0576mKoOz9GO0Ls1mf7XTz6Yt8me/Ro
+         wed+UorwCgmRbgxaFNHi8YrzTwjrGOGIZJiPxmwBlyfuCiceahmu1lAoGEnarXuMYOHN
+         2245vFYI9sjwUUOq7fx4TTNhgPBJKC8CvLLudTqOelEJ/Nk/AIytVz7Qx4IoENgpqXvC
+         ISDFXUDyNv5dJiQzUMD1Ghuhh9ZXHFru0EFOH+RFMy2glO4zFzh2896baS9K4jvQ4kd6
+         kPLQ==
+X-Forwarded-Encrypted: i=1; AJvYcCWysxp6o/BV7P4ayMv5LwMbvKLHQh3C1u0O5200WlIR5HUJi+2xQV8EcUPxuQ1FppdbRNK3DA4kiQzZ@vger.kernel.org
+X-Gm-Message-State: AOJu0Yz5YjTw7YN9ClUDgEFy4fVtzb1TatYvZt8WDVywh+GSfDaZ6aye
+	5vlQrc9xqyEJ7ZxeFbiapF370RlZmmEFxcEert9TU+BCsHnT4L23yQXGUSn73vFakGI=
+X-Gm-Gg: ASbGnctVUvWkhptKdgkm7R9f1nq9r+GNvHlndsQtuem657X5XpU/we7/QpUOBezgddh
+	Cbcim/LKzMoxipKnsUY9B+Leo8wYGfGk/JnfKBwZsHqhnd+MWkaD0PVbQwSIGuiPVchXG4bkUEE
+	LtuJkKuGMPMq+IuMOhYM6kbNSgj05Amj1DPNDokmVwUWxiUoBObJGsjZdsKdmAgX/8JQlC0t5rh
+	wNKGHFxsBX6NPhXApx0a0VzfgqUT8WL2FOz07SVVZyjYSZCttGiRCd7NTqfzmeWGHDh2owizyVd
+	1ieTQfajFHTHQu0ZqtaVDZYB8qoIDLSOpuAmAGtCRdS9BaVLZPKUXx9plLWbbw==
+X-Google-Smtp-Source: AGHT+IE2FNywqz+cFb7euMKYbolnteHJlkDlULxTNl06mbXFoTDBF9qk9BsatavRg5P2dnisXCo5bg==
+X-Received: by 2002:a05:6000:4109:b0:3a4:f892:de7f with SMTP id ffacd0b85a97d-3a6d13071e8mr12590091f8f.36.1750773487721;
+        Tue, 24 Jun 2025 06:58:07 -0700 (PDT)
+Received: from brgl-uxlite.home ([2a01:cb1d:dc:7e00:34d2:109c:3293:19e9])
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-3a6e811724bsm1966761f8f.100.2025.06.24.06.58.06
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 24 Jun 2025 06:53:47 -0700 (PDT)
-From: Alexey Romanov <romanov.alexey2000@gmail.com>
-To: neil.armstrong@linaro.org,
-	clabbe@baylibre.com,
-	herbert@gondor.apana.org.au,
-	davem@davemloft.net,
-	robh@kernel.org,
-	krzk+dt@kernel.org,
-	conor+dt@kernel.org,
-	khilman@baylibre.com,
-	jbrunet@baylibre.com,
-	martin.blumenstingl@googlemail.com
-Cc: linux-crypto@vger.kernel.org,
-	linux-amlogic@lists.infradead.org,
+        Tue, 24 Jun 2025 06:58:07 -0700 (PDT)
+From: Bartosz Golaszewski <brgl@bgdev.pl>
+To: Drew Fustini <drew@pdp7.com>,
+	Guo Ren <guoren@kernel.org>,
+	Fu Wei <wefu@redhat.com>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Bartosz Golaszewski <brgl@bgdev.pl>,
+	Philipp Zabel <p.zabel@pengutronix.de>,
+	Frank Binns <frank.binns@imgtec.com>,
+	Matt Coster <matt.coster@imgtec.com>,
+	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+	Maxime Ripard <mripard@kernel.org>,
+	Thomas Zimmermann <tzimmermann@suse.de>,
+	David Airlie <airlied@gmail.com>,
+	Simona Vetter <simona@ffwll.ch>,
+	Paul Walmsley <paul.walmsley@sifive.com>,
+	Palmer Dabbelt <palmer@dabbelt.com>,
+	Albert Ou <aou@eecs.berkeley.edu>,
+	Alexandre Ghiti <alex@ghiti.fr>,
+	Ulf Hansson <ulf.hansson@linaro.org>,
+	Marek Szyprowski <m.szyprowski@samsung.com>,
+	Michal Wilczynski <m.wilczynski@samsung.com>
+Cc: Bartosz Golaszewski <bartosz.golaszewski@linaro.org>,
+	linux-riscv@lists.infradead.org,
 	devicetree@vger.kernel.org,
 	linux-kernel@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	Alexey Romanov <romanov.alexey2000@gmail.com>
-Subject: [PATCH v12 22/22] arm64: dts: amlogic: axg: add crypto node
-Date: Tue, 24 Jun 2025 16:52:14 +0300
-Message-Id: <20250624135214.1355051-23-romanov.alexey2000@gmail.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20250624135214.1355051-1-romanov.alexey2000@gmail.com>
-References: <20250624135214.1355051-1-romanov.alexey2000@gmail.com>
+	linux-pm@vger.kernel.org,
+	dri-devel@lists.freedesktop.org,
+	Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Subject: Re: (subset) [PATCH v6 0/8] Add TH1520 GPU support with power sequencing
+Date: Tue, 24 Jun 2025 15:58:03 +0200
+Message-ID: <175077347940.80530.12388970181360361507.b4-ty@linaro.org>
+X-Mailer: git-send-email 2.48.1
+In-Reply-To: <20250623-apr_14_for_sending-v6-0-6583ce0f6c25@samsung.com>
+References: <CGME20250623114429eucas1p1e74e09e74c5873b2f7f01228073be72a@eucas1p1.samsung.com> <20250623-apr_14_for_sending-v6-0-6583ce0f6c25@samsung.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 8bit
 
-This patch adds a crypto node declaration. With the
-Amlogic crypto driver we can use HW implementation
-of SHA1/224/256 and AES algo.
+From: Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
 
-Signed-off-by: Alexey Romanov <romanov.alexey2000@gmail.com>
----
- arch/arm64/boot/dts/amlogic/meson-axg.dtsi | 7 +++++++
- 1 file changed, 7 insertions(+)
 
-diff --git a/arch/arm64/boot/dts/amlogic/meson-axg.dtsi b/arch/arm64/boot/dts/amlogic/meson-axg.dtsi
-index 2df143aa77ce..f126097ab013 100644
---- a/arch/arm64/boot/dts/amlogic/meson-axg.dtsi
-+++ b/arch/arm64/boot/dts/amlogic/meson-axg.dtsi
-@@ -294,6 +294,13 @@ ethmac: ethernet@ff3f0000 {
- 			status = "disabled";
- 		};
- 
-+		crypto: crypto@ff63e000 {
-+			compatible = "amlogic,axg-crypto";
-+			reg = <0x0 0xff63e000 0x0 0x48>;
-+			interrupts = <GIC_SPI 180 IRQ_TYPE_EDGE_RISING>;
-+			clocks = <&clkc CLKID_CLK81>;
-+		};
-+
- 		pcie_phy: phy@ff644000 {
- 			compatible = "amlogic,axg-pcie-phy";
- 			reg = <0x0 0xff644000 0x0 0x1c>;
+On Mon, 23 Jun 2025 13:42:38 +0200, Michal Wilczynski wrote:
+> This patch series introduces support for the Imagination IMG BXM-4-64
+> GPU found on the T-HEAD TH1520 SoC. A key aspect of this support is
+> managing the GPU's complex power-up and power-down sequence, which
+> involves multiple clocks and resets.
+> 
+> The TH1520 GPU requires a specific sequence to be followed for its
+> clocks and resets to ensure correct operation. Initial discussions and
+> an earlier version of this series explored managing this via the generic
+> power domain (genpd) framework. However, following further discussions
+> with kernel maintainers [1], the approach has been reworked to utilize
+> the dedicated power sequencing (pwrseq) framework.
+> 
+> [...]
+
+Applied, thanks!
+
+[1/8] power: sequencing: Add T-HEAD TH1520 GPU power sequencer driver
+      https://git.kernel.org/brgl/linux/c/d4c2d9b5b7ceed14a3a835fd969bb0699b9608d3
+
+Best regards,
 -- 
-2.34.1
-
+Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
 
