@@ -1,90 +1,90 @@
-Return-Path: <devicetree+bounces-188802-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-188803-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id E5629AE5998
-	for <lists+devicetree@lfdr.de>; Tue, 24 Jun 2025 04:14:34 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6C41DAE599D
+	for <lists+devicetree@lfdr.de>; Tue, 24 Jun 2025 04:14:45 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 59EEC18993B0
-	for <lists+devicetree@lfdr.de>; Tue, 24 Jun 2025 02:14:50 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 78BAA3B3E07
+	for <lists+devicetree@lfdr.de>; Tue, 24 Jun 2025 02:14:20 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 524212248B3;
-	Tue, 24 Jun 2025 02:14:08 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2F11B14B08A;
+	Tue, 24 Jun 2025 02:14:10 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="VKY3KZmf"
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="pjdmwOXO"
 X-Original-To: devicetree@vger.kernel.org
 Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 98BBD21CA07
-	for <devicetree@vger.kernel.org>; Tue, 24 Jun 2025 02:14:06 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 750EF225413
+	for <devicetree@vger.kernel.org>; Tue, 24 Jun 2025 02:14:08 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1750731248; cv=none; b=A3TYfJYkdr6lM5/qZPZNRtARs2nFLFwMwQu3CYIVZRfwQpKkFp7VDGhG0zEslyYkN1nkK7hNJuodLIwk0WFrXJlxF/10a32jE+mnDDBEgEK1sl2UcYVOOuyTIOPfe/nxBSEBMxQA9MHCupeEd32Vn13Fjt+741Uv3aX6VRR7eSg=
+	t=1750731250; cv=none; b=pHlQzS+hPixRoUnaSprLsW1FlJBVS1YNKI3NofPrr4NhUgG3TYOqf/d9yiaxC13xEsKRUucSB0xUpnCUJ/wDRSijWbQA8X03ww0kArJD2NawtLQM74vyCArDzGepc8rSBpldbkRxRXgQbcOhiBi66DK9fjP0EfU7yINfbCzK2dw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1750731248; c=relaxed/simple;
-	bh=0ZB/tSQJTgO/V9bw25UKkVrXHkwPDk176SMtQVZy7AQ=;
+	s=arc-20240116; t=1750731250; c=relaxed/simple;
+	bh=wG551jlH0C2VxSckm5aelE4czzDPVSQlL7LK/7YjW04=;
 	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=ABwLzCinuzQFPfIyu4UGFTGhBhC17wdkQ5i1Qz4hT8GcxeCL8lOILAdWrIMbTnwYduBHS7f/3iAZYeRYJ5ENEVX/ma0pAmYTwPlBMD+QvLHK8II83itUzPzfXdrdYEZ39cexeNSVFSHhd9btkPixbyHwLbzvNZdI1CvME4yfXnk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=VKY3KZmf; arc=none smtp.client-ip=205.220.180.131
+	 In-Reply-To:To:Cc; b=JRyQgSLUWFPncCbTyRlTpccPtg5R3CYf8lTYp7FEFPt2vzZnyjSxLsp0HGWCqLDqP+ctJtxC/FnLGSwlU57JFirqC3i1zQ5+EL0VJR0B/BDU8tEw2nHqrwlroE5bRHDMiVzSvpiKN1C99zpOQO3H4l++sbD3qi9JOnIp18BXcqY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=pjdmwOXO; arc=none smtp.client-ip=205.220.180.131
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
 Received: from pps.filterd (m0279869.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 55NNxWes017387
-	for <devicetree@vger.kernel.org>; Tue, 24 Jun 2025 02:14:05 GMT
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 55NHVf1j006106
+	for <devicetree@vger.kernel.org>; Tue, 24 Jun 2025 02:14:07 GMT
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
 	cc:content-transfer-encoding:content-type:date:from:in-reply-to
 	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	AmT60A9lLQ9BuGQyHbamKb2liQFhTaf9+85rsO1JS60=; b=VKY3KZmfKORozMEd
-	g6Uevva+FWVhlZwL8faIPGLO2lXyItKoexwRQFwnbN+1+Wy04GxrcevaBolvZmLJ
-	MWhmzWWMTo96c47/3DFEDBoL5rEqHedbyvg2SfC/QRzuNWwzy3qNUMUaBJyL0kPl
-	V6p46X+WPf0QSxJGGt1ulHSpmjzhHW6wyLkyUqPqKaK8FO8D3cf3efQiEBNc3eF8
-	Pn3lH1eZpFLvT+QhR+JscCck40xIX6QDZ8KcsAEAcjGI4/JWqrnWDeF15chbcTcT
-	xCsFFt6j09a7wE9c6Vz61+xCbYaw/nZ6RcWS+L4rL0ygUmgS3svMPCm3/7j2Pxlt
-	IKcIUw==
-Received: from mail-qk1-f197.google.com (mail-qk1-f197.google.com [209.85.222.197])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 47f3bgahd6-1
+	cvUFSAy9l8jMi9mogfX6vjAbGULsygLy9EYrsovMUQs=; b=pjdmwOXOmVPsTvYX
+	Wx8Schg4YuQH/zvPFHiWsYud922Kza1sKs9PvLHBX3ff7uGQ8v2V69Fk79Oc0+37
+	SwBpK2gx6ND9SS3jbcakmeahzK3QHNlmSNw4qcbCIt70d9Khslr4e4Dx9l/fMY3G
+	Kd6UKR6eVGyV93+uKd4xqCcxIOAra81gmFd0lbh9i+2nIPrbkCRAdKtApMSEisTR
+	yLDBVP8BYOxTtD3wiKmM5fJGHvmjv1aBn1QayuVt/laImqRysMWnTSrvcd+05M+t
+	VN7d+ixaqmk/ZBQsTRsrThIn2NXXKS/QbZisf8MiNs3pRC9W9qcFR13/dH5WIkXx
+	VO6DSA==
+Received: from mail-qk1-f198.google.com (mail-qk1-f198.google.com [209.85.222.198])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 47f3bgahdb-1
 	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Tue, 24 Jun 2025 02:14:05 +0000 (GMT)
-Received: by mail-qk1-f197.google.com with SMTP id af79cd13be357-7d399070cecso889310985a.3
-        for <devicetree@vger.kernel.org>; Mon, 23 Jun 2025 19:14:05 -0700 (PDT)
+	for <devicetree@vger.kernel.org>; Tue, 24 Jun 2025 02:14:07 +0000 (GMT)
+Received: by mail-qk1-f198.google.com with SMTP id af79cd13be357-7d09bc05b77so799724285a.1
+        for <devicetree@vger.kernel.org>; Mon, 23 Jun 2025 19:14:07 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1750731245; x=1751336045;
+        d=1e100.net; s=20230601; t=1750731246; x=1751336046;
         h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
          :mime-version:subject:date:from:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=AmT60A9lLQ9BuGQyHbamKb2liQFhTaf9+85rsO1JS60=;
-        b=F6O3FmZBlt13aLC2m7O9WR97awOHB7E024ScNbfYbkNGDs6UkeDYZUy7CM34eOL7MQ
-         Ib2oJwplhTfMO/KiinOVD4GYg29U5+XsCCSaK7wNStDog8bzJHHQIK/2vqp/2r59fpYD
-         P7FJltDHdSXvyU0ppRUY0IL3UR3/LR/Z40W6oNvfHge7GqPBIBBuudEFtoz2DzYe9Rmw
-         dpXVorUiXBC+oHVHnpNtmc5EIYIZbu9N0HMqyXhNRjvlO2tFYegtcuObKreXXK3m7Gmm
-         hkBDytcnzKA5sEmbQiBAjU8oAE73eJdMWSzoYJkyt/AnFCYif/T4sao5YLcbN/XL08Wv
-         sORw==
-X-Forwarded-Encrypted: i=1; AJvYcCWBIlIgX93LHXgxlOYnwK5EIF29AvhSmttmbjb/ufHgf7rYEsXS/LYl4LU4oGz7cS7ln2G6vgXLLNz3@vger.kernel.org
-X-Gm-Message-State: AOJu0Yypws+tGobM5+H+OAD44fJO7EgAb0TbNpjjP9uENDuYU7O8LcFI
-	m2HHL9qe8eVGeYDG8cvqpfgg7hud5MYUuHVruudoNIYtHae8wSYqwctmgRfntP5XQ46TTlVsFOE
-	dJ5Pj91re/rV7P9Q6/nVHkmulRnnVENu1CWOYpnpQ6xca/7FZMDWJ8LX9EwQZNbLi
-X-Gm-Gg: ASbGnct1TZGNvSZ+YWZIDLRGnvxOkqLprVtJJRQPfeiLGsN+SyzZnGVWtqltan9EBEJ
-	EppCejECWF0D0581QV5dC2e44O/uOsu/Z6jqv2yUlHe4WF2XvU+UQ1xBSz6HzaI4/FMS0Jpo8oT
-	5bdqetuCUFKvbs1ZO2Zbwh0QesVSXHIzSuBsp3sCVeunVbJFVMlPspv3XYuuLdVVgpa9ZO9jccY
-	3lq32vF1PM++sgbV7pHGx7WqTzyZ0s91rIWGgpMMWXDO9blWMV/AwMTwhsLdyHC3qWlgz+yg6yf
-	54BLfWPYY/eq7B87W90UN2MXgoMWFuoA7fYcVSR1nSlkVxhRTIJf4SxtSwPRvLNXTf5/cXWLvkR
-	OvJVeCl11EkZ/+Q4RRnleU8YcPnm/KaxVvLw=
-X-Received: by 2002:a05:620a:4392:b0:7c5:5a51:d2d1 with SMTP id af79cd13be357-7d3f995f1c7mr2572886785a.55.1750731244574;
-        Mon, 23 Jun 2025 19:14:04 -0700 (PDT)
-X-Google-Smtp-Source: AGHT+IFYIL4+l3frydW5f5l5oqZb7/2v7MXWN/9Lgrqu/VuEHi7B++dwsM5L4Gh5qOtGXS/DiuKkOg==
-X-Received: by 2002:a05:620a:4392:b0:7c5:5a51:d2d1 with SMTP id af79cd13be357-7d3f995f1c7mr2572882785a.55.1750731244164;
-        Mon, 23 Jun 2025 19:14:04 -0700 (PDT)
+        bh=cvUFSAy9l8jMi9mogfX6vjAbGULsygLy9EYrsovMUQs=;
+        b=wM7azJmGmeLKGbJzSyWlglqKW3Vj4hjevdppc2Pquk+mpvnlp52Hilt99GSgmky8Es
+         b1O7NdjJ+K9RufEPE+9y1drILT98FHaGRZZLebzsDqrQeQ3ny62mwlG1HTCLlNrpmzo7
+         Dp4dhKNVddStW0XLivy+/ayCuEpQrLMlkL3E/NqIJ+WUWI6OkkFZpWg5RFp/CXb1rNr3
+         YSPk4/rk83so4qQc4hLgQE8liWVSthPWlxFQDk/bmBx2hTF636tWJpKVXMQvG9epmgo2
+         bsgVhdCMDpfVJa7oXqMEQwNvPqPKo9ODQVliqUGgjKNmJEiou0A29C+/78YdK7yX5WLF
+         y15Q==
+X-Forwarded-Encrypted: i=1; AJvYcCXikHrzprtO6OODoP0lPyxzqSyNPHsvKEjjBX/BMJKAsKbTfvhGjeohJRZwjVRnepaiKNagAxbAdXAG@vger.kernel.org
+X-Gm-Message-State: AOJu0YxlQkR8ZZGtbr9h3KE2hGyKvBalu6Y6GZQuPnt+HjwHZNK97HIj
+	WfJqiZTUr2xUL+j3Y7CDeTvZZPvrm4wPv8GrjuIUZAUfJNmEkW4rBDqgAr/0BT/Xt+M1hvmHt5a
+	CLXfPLGuWS8o1/YkIjF/3VbQCUtcKoKTI+HqN0xvBoJ+ZH8QB69xG+NaEasf6is4D
+X-Gm-Gg: ASbGncsYFWODTEfSOzwywRZadobJmtbyeZuBdS4WVv0Tn2QWLvTZ9AgVao4jhbr20pk
+	FRMBr6prpzM7OkKqon+U5RWJsVUVj/Iw6/ETnbAobg4drTaPmFzhL0KkpBfjSfwkbcRn2kpiTXq
+	sJuJuCHCXyjmWZeFUNCfqih7guNOOvFCkFWl1COQ7c6GZR6WjV6SxR8FgRwV3ZV/o7NCS/DAjMu
+	hSkQtLvlaFnfbVXErjExbB+DfO4/SoOY3ph3+O67DlDvfZlHkLXFQbxwEA67SOhlFy2v9MJBy1F
+	M4PGlWvYInjDZ51OPZ0/iBjQeiyjhfKHhNFIZacCTml/P1YbyeY6x4BL4M+SDyO0aWGxtCnHSEZ
+	VXoEadGJSbJFMyPD+4mBO3w/WHk72dKjFuNo=
+X-Received: by 2002:a05:620a:2947:b0:7d0:97d6:e94b with SMTP id af79cd13be357-7d3f9935975mr2351198485a.31.1750731246366;
+        Mon, 23 Jun 2025 19:14:06 -0700 (PDT)
+X-Google-Smtp-Source: AGHT+IHkXbJittVHOSyXOOLR1ysMuHaAOy9QfdW5AffuasgX73iivo36XMGte8oHvZuzT9Ip0TpTtA==
+X-Received: by 2002:a05:620a:2947:b0:7d0:97d6:e94b with SMTP id af79cd13be357-7d3f9935975mr2351196685a.31.1750731245967;
+        Mon, 23 Jun 2025 19:14:05 -0700 (PDT)
 Received: from umbar.lan (2001-14ba-a0c3-3a00-264b-feff-fe8b-be8a.rev.dnainternet.fi. [2001:14ba:a0c3:3a00:264b:feff:fe8b:be8a])
-        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-553e41446e2sm1637764e87.32.2025.06.23.19.14.01
+        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-553e41446e2sm1637764e87.32.2025.06.23.19.14.04
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 23 Jun 2025 19:14:03 -0700 (PDT)
+        Mon, 23 Jun 2025 19:14:04 -0700 (PDT)
 From: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
-Date: Tue, 24 Jun 2025 05:13:53 +0300
-Subject: [PATCH v3 2/8] firmware: qcom: scm: allow specifying quirks for
- QSEECOM implementations
+Date: Tue, 24 Jun 2025 05:13:54 +0300
+Subject: [PATCH v3 3/8] firmware: qcom: uefisecapp: add support for R/O
+ UEFI vars
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -93,7 +93,7 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-Message-Id: <20250624-more-qseecom-v3-2-95205cd88cc2@oss.qualcomm.com>
+Message-Id: <20250624-more-qseecom-v3-3-95205cd88cc2@oss.qualcomm.com>
 References: <20250624-more-qseecom-v3-0-95205cd88cc2@oss.qualcomm.com>
 In-Reply-To: <20250624-more-qseecom-v3-0-95205cd88cc2@oss.qualcomm.com>
 To: Bjorn Andersson <andersson@kernel.org>,
@@ -106,31 +106,31 @@ Cc: Johan Hovold <johan@kernel.org>, Steev Klimaszewski <steev@kali.org>,
         linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org,
         devicetree@vger.kernel.org, linux-efi@vger.kernel.org
 X-Mailer: b4 0.14.2
-X-Developer-Signature: v=1; a=openpgp-sha256; l=4148;
+X-Developer-Signature: v=1; a=openpgp-sha256; l=2869;
  i=dmitry.baryshkov@oss.qualcomm.com; h=from:subject:message-id;
- bh=0ZB/tSQJTgO/V9bw25UKkVrXHkwPDk176SMtQVZy7AQ=;
- b=owEBbQGS/pANAwAKAYs8ij4CKSjVAcsmYgBoWgnlffFPCByp4RKefp3ZNXphmsBnCnVx4XS1R
- V5Q1j07lkCJATMEAAEKAB0WIQRMcISVXLJjVvC4lX+LPIo+Aiko1QUCaFoJ5QAKCRCLPIo+Aiko
- 1aeYCACWko1A2fakj7OHXikH01sxkD5jypkMNfkD+er9snZS8sOBHOyRBA5xSXFrDKYldT1vpES
- oGdMf5oDThzf9XSVunYVT0tJ4KdkuEmnAznWz9CTByqnEIStF0BB+nfqQYtvg7+GCrbTdX9x4gZ
- 6q2ialmgnWIRTX9Yf2eLw/vE0kOemOH69Ip7ABWh2b80cmazsNbfqQ+Qke3v8ZI7M1M2QVBK35i
- EnVVYASvUZ120xd0DrxuJ4mQJN7sLgQ5mpa8oZrIXltYqU5ovk2Omwjegf/+QF9Oq3Yjx7LFVws
- pe14dBhueJpOTLsPi1XNk9D1DFzknFvgWfE+6LtXAWhZ2f2V
+ bh=wG551jlH0C2VxSckm5aelE4czzDPVSQlL7LK/7YjW04=;
+ b=owGbwMvMwMXYbdNlx6SpcZXxtFoSQ0YU51MeVrlae4UlrlnnYqbzb/6qnhx8TOdaYcICmbnXL
+ vuwf7vXyWjMwsDIxSArpsjiU9AyNWZTctiHHVPrYQaxMoFMYeDiFICJeL9n/+9jxL3+bqdxJOf3
+ 82b9bDekLtscEFZocS+zqC/6L9v3QYxn35TgxxHVi7a0uIXyOr/tVTP443dSgyVdu+vWF7WEjdk
+ LDsj06Lc8+Sb6QFjiRrzcNPd/EzPfRTxuXMf3q6nBY0eL+1kF+8MLd8Qec1jW+qBH2+bGL/+ab9
+ 90/ee8WHO/PCjX6VifckiR644jxVEH3zax7TZl2hB3adYWnc97Nx4IqO3TZSxy7t9SxH0sYE7a0
+ S7JPKZ5/161PklOz27bEGGdWnlOsijIz9y3frPxrq9FZrGH/od+ehryMO78RmZn5TmbX/orJoSV
+ rXkQt9x/6dbFz1U3Ky/slucy47q3dGJsZrZy0rxM3y13AA==
 X-Developer-Key: i=dmitry.baryshkov@oss.qualcomm.com; a=openpgp;
  fpr=8F88381DD5C873E4AE487DA5199BF1243632046A
-X-Proofpoint-ORIG-GUID: vNTefERys-NlW5QanMcR-dzCg2fwjDfB
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwNjI0MDAxNyBTYWx0ZWRfXwFxoZA7Q8JEr
- yPDgGcGF+sQQsYIs/qM6n/5IhxNHvRlefkIOV60gfZImGf+Y/6gRmuUAj17NV5IsArWX0/i8m+T
- 0IxNXzvY3E5Pdp96wY56LseAiWcCg1yusmC3H3NfkNl4jPGxmVtB2BBMW/QRrqxtAh4zLAv/H1p
- tX6Ee7r41pZH2i53uCYJF1TcmrkwXpj8Q1lOLpNia6JudCMXLWZnHrRR2qVM3DoZ7D4TRvbgB9p
- mSgr/znOF4vvejPszJOJfs38oo+WdKer5R6bp0F42oGuc/iGEDDspM2bhlSbOaAILb7klR3IuSh
- bJBnfWINLwPzZyoNuxcaAgwS852DIRzGmc/nNWCOrQjg0AOIGik2h1V9NHGvgYSu4yiA+VlfWFy
- sQCeemc6t/GAjiXSz0X/BwBjGv3uBP4pFenJJai1VUP/b8037FjlVm56STRGFg1LUUSCI2s7
-X-Authority-Analysis: v=2.4 cv=L4kdQ/T8 c=1 sm=1 tr=0 ts=685a09ed cx=c_pps
- a=50t2pK5VMbmlHzFWWp8p/g==:117 a=xqWC_Br6kY4A:10 a=IkcTkHD0fZMA:10
- a=6IFa9wvqVegA:10 a=EUspDBNiAAAA:8 a=wTlJEWXFZO-q-0qxHBMA:9 a=QEXdDO2ut3YA:10
- a=IoWCM6iH3mJn3m4BftBB:22
-X-Proofpoint-GUID: vNTefERys-NlW5QanMcR-dzCg2fwjDfB
+X-Proofpoint-ORIG-GUID: vIk_1jsN7rmpsNK4uq1t6X-7l3iUGkwI
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwNjI0MDAxNyBTYWx0ZWRfX4PSv2+zKZlpF
+ H1qBTQ5IJzgslBZgFJ/xZOtirUl7MRDw3yAQRd5psRUwO44UfSreFs4OOvFgbMpnoYFgkYv/Zc7
+ hbbwcPqDAqC6UB0+iWHRHUyVZeuzgIRI3/dWGvzZes1pdS/ywPgq2cleJWLrvE1rP0L3XMIfG5P
+ UOAmLHNRJEKkQJHxaqlcEIQjcv3EtU5B3zAagO79JuUzIohkN4o/pgPXkqdNBpt++BjRHYRpfeP
+ Jv8BseuPvRipj/QlrX+4fAsDEVSPvqpuRfHbMPniwkKFfSoa6jCfUhQy5E1pi4+H9ZBpwlDxo0z
+ DlrXM6eQKhNAfzmQ2pV/PyqH1GKCxcgNiMPKkxidCmp4XtnzvSYY3DDJxInnTTLcaVzwU7imnQr
+ xhWUwwLsdiO4Qydq2xD60kHVtGWicCz0AcI3pU5VMQ/6/4p28rQNQUeepNYmLegwQIM6Ingf
+X-Authority-Analysis: v=2.4 cv=L4kdQ/T8 c=1 sm=1 tr=0 ts=685a09ef cx=c_pps
+ a=qKBjSQ1v91RyAK45QCPf5w==:117 a=xqWC_Br6kY4A:10 a=IkcTkHD0fZMA:10
+ a=6IFa9wvqVegA:10 a=EUspDBNiAAAA:8 a=hoImanld2GFzOgiN87EA:9 a=QEXdDO2ut3YA:10
+ a=NFOGd7dJGGMPyQGDc5-O:22
+X-Proofpoint-GUID: vIk_1jsN7rmpsNK4uq1t6X-7l3iUGkwI
 X-Proofpoint-Virus-Version: vendor=baseguard
  engine=ICAP:2.0.293,Aquarius:18.0.1099,Hydra:6.1.7,FMLib:17.12.80.40
  definitions=2025-06-24_01,2025-06-23_07,2025-03-28_01
@@ -141,122 +141,74 @@ X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
  authtc=n/a authcc= route=outbound adjust=0 reason=mlx scancount=1
  engine=8.19.0-2505280000 definitions=main-2506240017
 
-Some of QSEECOM implementations might need additional quirks (e.g. some
-of the platforms don't (yet) support read-write UEFI variables access).
-Pass the quirks to the QSEECOM driver and down to individual app
-drivers.
+For some platforms (e.g. Lenovo Yoga C630) we don't yet know a way to
+update variables in the permanent storage. However being able to read
+the vars is still useful as it allows us to get e.g. RTC offset.
+
+Add a quirk for QSEECOM specifying that UEFI variables for this platform
+should be registered in read-only mode.
 
 Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
 ---
- drivers/firmware/qcom/qcom_qseecom.c |  6 +++++-
- drivers/firmware/qcom/qcom_scm.c     | 28 ++++++++++++++--------------
- 2 files changed, 19 insertions(+), 15 deletions(-)
+ drivers/firmware/qcom/qcom_qseecom_uefisecapp.c | 18 +++++++++++++++++-
+ include/linux/firmware/qcom/qcom_qseecom.h      |  2 ++
+ 2 files changed, 19 insertions(+), 1 deletion(-)
 
-diff --git a/drivers/firmware/qcom/qcom_qseecom.c b/drivers/firmware/qcom/qcom_qseecom.c
-index 731e6d5719f9e3e9e698f5de0117540f51ebab63..aab0d61f0420c4f3d6c1a73e384195b9513f3ef9 100644
---- a/drivers/firmware/qcom/qcom_qseecom.c
-+++ b/drivers/firmware/qcom/qcom_qseecom.c
-@@ -36,6 +36,7 @@ static void qseecom_client_remove(void *data)
+diff --git a/drivers/firmware/qcom/qcom_qseecom_uefisecapp.c b/drivers/firmware/qcom/qcom_qseecom_uefisecapp.c
+index 98a463e9774bf04f2deb0f7fa1318bd0d2edfa49..05f700dcb8cf3189f640237ff0e045564abb8264 100644
+--- a/drivers/firmware/qcom/qcom_qseecom_uefisecapp.c
++++ b/drivers/firmware/qcom/qcom_qseecom_uefisecapp.c
+@@ -792,6 +792,12 @@ static efi_status_t qcuefi_query_variable_info(u32 attr, u64 *storage_space, u64
+ 	return status;
  }
  
- static int qseecom_client_register(struct platform_device *qseecom_dev,
-+				   void *data,
- 				   const struct qseecom_app_desc *desc)
- {
- 	struct qseecom_client *client;
-@@ -56,6 +57,7 @@ static int qseecom_client_register(struct platform_device *qseecom_dev,
- 
- 	client->aux_dev.name = desc->dev_name;
- 	client->aux_dev.dev.parent = &qseecom_dev->dev;
-+	client->aux_dev.dev.platform_data = data;
- 	client->aux_dev.dev.release = qseecom_client_release;
- 	client->app_id = app_id;
- 
-@@ -89,12 +91,14 @@ static const struct qseecom_app_desc qcom_qseecom_apps[] = {
- 
- static int qcom_qseecom_probe(struct platform_device *qseecom_dev)
- {
-+	void *data = dev_get_platdata(&qseecom_dev->dev);
- 	int ret;
- 	int i;
- 
- 	/* Set up client devices for each base application */
- 	for (i = 0; i < ARRAY_SIZE(qcom_qseecom_apps); i++) {
--		ret = qseecom_client_register(qseecom_dev, &qcom_qseecom_apps[i]);
-+		ret = qseecom_client_register(qseecom_dev, data,
-+					      &qcom_qseecom_apps[i]);
- 		if (ret)
- 			return ret;
- 	}
-diff --git a/drivers/firmware/qcom/qcom_scm.c b/drivers/firmware/qcom/qcom_scm.c
-index f63b716be5b027550ae3a987e784f0814ea6d678..fc2ed02dbd30b389b5058f5cac70c184df7ca873 100644
---- a/drivers/firmware/qcom/qcom_scm.c
-+++ b/drivers/firmware/qcom/qcom_scm.c
-@@ -2008,10 +2008,10 @@ static const struct of_device_id qcom_scm_qseecom_allowlist[] __maybe_unused = {
- 	{ }
- };
- 
--static bool qcom_scm_qseecom_machine_is_allowed(void)
-+static bool qcom_scm_qseecom_machine_is_allowed(unsigned long *quirks)
- {
-+	const struct of_device_id *match;
- 	struct device_node *np;
--	bool match;
- 
- 	np = of_find_node_by_path("/");
- 	if (!np)
-@@ -2020,6 +2020,11 @@ static bool qcom_scm_qseecom_machine_is_allowed(void)
- 	match = of_match_node(qcom_scm_qseecom_allowlist, np);
- 	of_node_put(np);
- 
-+	if (match && match->data)
-+		*quirks = *(unsigned long *)(match->data);
-+	else
-+		*quirks = 0;
++static const struct efivar_operations qcom_efivars_ro_ops = {
++	.get_variable = qcuefi_get_variable,
++	.get_next_variable = qcuefi_get_next_variable,
++	.query_variable_info = qcuefi_query_variable_info,
++};
 +
- 	return match;
- }
- 
-@@ -2034,6 +2039,7 @@ static void qcom_scm_qseecom_free(void *data)
- static int qcom_scm_qseecom_init(struct qcom_scm *scm)
+ static const struct efivar_operations qcom_efivar_ops = {
+ 	.get_variable = qcuefi_get_variable,
+ 	.set_variable = qcuefi_set_variable,
+@@ -804,7 +810,9 @@ static const struct efivar_operations qcom_efivar_ops = {
+ static int qcom_uefisecapp_probe(struct auxiliary_device *aux_dev,
+ 				 const struct auxiliary_device_id *aux_dev_id)
  {
- 	struct platform_device *qseecom_dev;
-+	unsigned long quirks;
- 	u32 version;
- 	int ret;
++	unsigned long *quirks = aux_dev->dev.platform_data;
+ 	struct qcom_tzmem_pool_config pool_config;
++	const struct efivar_operations *ops;
+ 	struct qcuefi_client *qcuefi;
+ 	int status;
  
-@@ -2054,7 +2060,7 @@ static int qcom_scm_qseecom_init(struct qcom_scm *scm)
+@@ -829,7 +837,15 @@ static int qcom_uefisecapp_probe(struct auxiliary_device *aux_dev,
+ 	if (status)
+ 		return status;
  
- 	dev_info(scm->dev, "qseecom: found qseecom with version 0x%x\n", version);
+-	status = efivars_register(&qcuefi->efivars, &qcom_efivar_ops);
++	if (quirks &&
++	    *quirks & QCOM_QSEECOM_QUIRK_RO_UEFIVARS) {
++		dev_dbg(&aux_dev->dev, "R/O UEFI vars implementation\n");
++		ops = &qcom_efivars_ro_ops;
++	} else {
++		ops = &qcom_efivar_ops;
++	}
++
++	status = efivars_register(&qcuefi->efivars, ops);
+ 	if (status)
+ 		qcuefi_set_reference(NULL);
  
--	if (!qcom_scm_qseecom_machine_is_allowed()) {
-+	if (!qcom_scm_qseecom_machine_is_allowed(&quirks)) {
- 		dev_info(scm->dev, "qseecom: untested machine, skipping\n");
- 		return 0;
- 	}
-@@ -2063,17 +2069,11 @@ static int qcom_scm_qseecom_init(struct qcom_scm *scm)
- 	 * Set up QSEECOM interface device. All application clients will be
- 	 * set up and managed by the corresponding driver for it.
- 	 */
--	qseecom_dev = platform_device_alloc("qcom_qseecom", -1);
--	if (!qseecom_dev)
--		return -ENOMEM;
--
--	qseecom_dev->dev.parent = scm->dev;
--
--	ret = platform_device_add(qseecom_dev);
--	if (ret) {
--		platform_device_put(qseecom_dev);
--		return ret;
--	}
-+	qseecom_dev = platform_device_register_data(scm->dev,
-+						    "qcom_qseecom", -1,
-+						    &quirks, sizeof(quirks));
-+	if (IS_ERR(qseecom_dev))
-+		return PTR_ERR(qseecom_dev);
- 
- 	return devm_add_action_or_reset(scm->dev, qcom_scm_qseecom_free, qseecom_dev);
+diff --git a/include/linux/firmware/qcom/qcom_qseecom.h b/include/linux/firmware/qcom/qcom_qseecom.h
+index 3387897bf36843cccd0bd933dd562390bf674b14..8d6d660e854fdb0fabbef10ab5ee6ff23ad79826 100644
+--- a/include/linux/firmware/qcom/qcom_qseecom.h
++++ b/include/linux/firmware/qcom/qcom_qseecom.h
+@@ -51,4 +51,6 @@ static inline int qcom_qseecom_app_send(struct qseecom_client *client,
+ 	return qcom_scm_qseecom_app_send(client->app_id, req, req_size, rsp, rsp_size);
  }
+ 
++#define QCOM_QSEECOM_QUIRK_RO_UEFIVARS		BIT(0)
++
+ #endif /* __QCOM_QSEECOM_H */
 
 -- 
 2.39.5
