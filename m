@@ -1,382 +1,203 @@
-Return-Path: <devicetree+bounces-188799-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-188800-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id C77D8AE5967
-	for <lists+devicetree@lfdr.de>; Tue, 24 Jun 2025 03:51:39 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 66183AE5991
+	for <lists+devicetree@lfdr.de>; Tue, 24 Jun 2025 04:14:09 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id D9ACF3B8E7B
-	for <lists+devicetree@lfdr.de>; Tue, 24 Jun 2025 01:51:14 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id E80F24A1C1C
+	for <lists+devicetree@lfdr.de>; Tue, 24 Jun 2025 02:14:09 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id F09405464E;
-	Tue, 24 Jun 2025 01:51:34 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 83D241FCCF8;
+	Tue, 24 Jun 2025 02:14:04 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=NXP1.onmicrosoft.com header.i=@NXP1.onmicrosoft.com header.b="LndN7vcU"
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="iPHbmBtp"
 X-Original-To: devicetree@vger.kernel.org
-Received: from DU2PR03CU002.outbound.protection.outlook.com (mail-northeuropeazon11011014.outbound.protection.outlook.com [52.101.65.14])
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 67BF123741;
-	Tue, 24 Jun 2025 01:51:31 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=52.101.65.14
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1750729894; cv=fail; b=oQLgmBv+RZVGx9eMNlfsFfZNZrkZ5YhYRZFaLhicoxLVMLQA9QK8cUqNK9c4bvilIN5D0fuYb1ILp7F0m4Pbl34RjqRAiiUnD7k9lxKJnxJqaHyJt2+thFKQD4V0r78nKPayXsAEC/50IAXWoDP4uk5NTEatMfi65fFuEIPlAOk=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1750729894; c=relaxed/simple;
-	bh=sBPdcQO0Mb9jiPG/6uBNjDkSABrS3YpKL+NvhRhWL9Q=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:Content-Type:
-	 Content-Disposition:In-Reply-To:MIME-Version; b=KDMSphFg2oZrZE2HPkfMyQN4NeJkH0vOkQerwMatIkKeqc42zb88jBpZP/4ky4pD4yPKQcnp7IxBcrzRRz14FqPISm9cXV1ZPjNULEFP89mGrC2haw1247ph3bQwdQAXTkyF3RHW39W+7e5nNb/tFQz+HVHNdCqWBBMRXGIjK1U=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=oss.nxp.com; spf=pass smtp.mailfrom=oss.nxp.com; dkim=pass (2048-bit key) header.d=NXP1.onmicrosoft.com header.i=@NXP1.onmicrosoft.com header.b=LndN7vcU; arc=fail smtp.client-ip=52.101.65.14
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=oss.nxp.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.nxp.com
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=ukCGE+k+buwElj8gXKBrKJh3L7fOhWNJsA+JiW489B++2itRq00Qr+c9JNEXeEDg+hNaKoOeBNDX09sqhdBmh235Y9cwnIqNxQ1iFYW2HN3bHfKI2kadkcVAoly59mrit2xTAC+gi3InofXtZoK3RE4IGuNOxrfm5TwQzdQiGGfiLFhaq4ggV7Q24GapVdQ7Dbj8XUBiWPL3npV48PppFcdE+zE+Li6IC8FKm1abPbrwHwXSAd8+rj79l/RKTzpk78ql5pOYgb0Uex/AoD1s5nG84sw66y6nVuO9D3YKTX8zXn+cmse/XpvwNB+UoClRuTiaUcIsDf2VV7moAf0YhQ==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=BIAZLzULSJjZCFqJp6oevgzmaWICfFl/34J8vAzlSqE=;
- b=ipiMEVvTKcXjoFt47YqOOfl1B7btkTDRlJU/lZFb1FdM+xWKeMieLlm4SIZNXrMAgcVgwmLItMpr4g1g4h6eb2rCwzZ4BVZo6l6scNNFfqWn2KmO/DsSev+/GT6s+czLApXow838RdqsdfW4+1+ntz7anqTvR9dRIe8CY+avLOVX8AEDxEcPl1COvUOpS7izZr4tPWU6m4NYHu8eC4toOmsWDI+wUpM4LWGfzG+GQrRkANZ4tsWMsKNzhemLpblISCz/WDdlPJy211LFA1AfMne7PfO++OSiWpOFouBQ+r6OOotPuq1ux8dx/beMKAnmfwqu5s9IE3SUwQkufSA+TQ==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=oss.nxp.com; dmarc=pass action=none header.from=oss.nxp.com;
- dkim=pass header.d=oss.nxp.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=NXP1.onmicrosoft.com;
- s=selector1-NXP1-onmicrosoft-com;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=BIAZLzULSJjZCFqJp6oevgzmaWICfFl/34J8vAzlSqE=;
- b=LndN7vcU0hlWFqX3rP65Zeop4PiM29g0hWHqm5GI8rVlLL4etPZhnqdLX7VLuQtNTFeFQ3i/vSsKYa4As1EFj3nbLsU8uLWVyqLQeRfgKXhGyZIhhy+rDPI9D0dQ5rVGZG6JIh572zCVE0RfYHKA3WsRRQi42GgssmhLMAhzSsFmRHxpbY0TIfULII+SfJmBYJZ9s0GqLoFSepJm28/EkJMRZHFx+3Ws7bRwTjQpFxnslJoI0wdUieD1GJVlCNqnC3O3oexSFqbwoIeFz1C92ajKqsNZQoJKXmY0x7oWLcb8EmwHWE7FKG8eF1KMt+TXZHwkgMWpxQ+3LLt5a3N73Q==
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=oss.nxp.com;
-Received: from PAXPR04MB8459.eurprd04.prod.outlook.com (2603:10a6:102:1da::15)
- by PR3PR04MB7450.eurprd04.prod.outlook.com (2603:10a6:102:8a::23) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8857.29; Tue, 24 Jun
- 2025 01:51:28 +0000
-Received: from PAXPR04MB8459.eurprd04.prod.outlook.com
- ([fe80::165a:30a2:5835:9630]) by PAXPR04MB8459.eurprd04.prod.outlook.com
- ([fe80::165a:30a2:5835:9630%3]) with mapi id 15.20.8857.026; Tue, 24 Jun 2025
- 01:51:27 +0000
-Date: Tue, 24 Jun 2025 11:01:54 +0800
-From: Peng Fan <peng.fan@oss.nxp.com>
-To: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
-Cc: robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
-	matthias.bgg@gmail.com, sudeep.holla@arm.com,
-	cristian.marussi@arm.com, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-	linux-mediatek@lists.infradead.org, arm-scmi@vger.kernel.org,
-	kernel@collabora.com
-Subject: Re: [PATCH v1 2/2] firmware: arm_scmi: Add MediaTek TinySYS SCMI
- Protocol support
-Message-ID: <20250624030154.GB10415@nxa18884-linux>
-References: <20250623120136.109311-1-angelogioacchino.delregno@collabora.com>
- <20250623120136.109311-3-angelogioacchino.delregno@collabora.com>
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20250623120136.109311-3-angelogioacchino.delregno@collabora.com>
-User-Agent: Mutt/1.10.1 (2018-07-13)
-X-ClientProxiedBy: SG2PR02CA0031.apcprd02.prod.outlook.com
- (2603:1096:3:18::19) To PAXPR04MB8459.eurprd04.prod.outlook.com
- (2603:10a6:102:1da::15)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CB3551C6FE9
+	for <devicetree@vger.kernel.org>; Tue, 24 Jun 2025 02:14:02 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1750731244; cv=none; b=P/QBZnbZHTQ4WtdS+VBjqFvc+TvCW9G6G7l0Ky1eWWiYAq+Cz0tkR8pcVaYGIMTgss7EVXdC61aE/50yTrg4TgXVswq+Ial/RK29tmTKhQugH9PVNlhn31rWXQ1nh0qSwtmUu8l5YkPILDILP7QcMXVGROtwTOMo1N45mVsvBh8=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1750731244; c=relaxed/simple;
+	bh=tjBly2s6mnuGi9HgjrC+Tb4IXYnpF3vQanWgu9BVuLs=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=CQ3N493IDRBw4cDN2CAmmYZcFss69xxxg7lMMaCOXwHDgdmdXn2qm5FOeYeKxsi7/xhpGTIEU7dg5aCMEojA4xI4x5zMVa/8uR4x/dJT6LXo0wSz0QLcmcMhrkFVtZRePBvFyQv2jYDEcz/wOlR5oQk1glWEQdVVHDNdUZEYXLI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=iPHbmBtp; arc=none smtp.client-ip=205.220.180.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
+Received: from pps.filterd (m0279870.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 55NHkHFS032470
+	for <devicetree@vger.kernel.org>; Tue, 24 Jun 2025 02:14:01 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+	cc:content-transfer-encoding:content-type:date:from:message-id
+	:mime-version:subject:to; s=qcppdkim1; bh=kHnh6r0zdR77x91Ki7b9UP
+	DR7LpEx1EneI2WJIuSQmo=; b=iPHbmBtp7gr+r7qSK1vUgPpRYJZRGIxJQoI4MG
+	UCjGDMOqmg7klVEaDxwYG7ha39CFlJP0m2BLgbHvVzNX3kuuH7t/MU/bbiaUrD15
+	bqIH6uwmIJxO21T9S1QbiZre8eV1479Ie9v0/Qu5e/FYS+bHi3UtM54e4+yEjqT7
+	DziGCjG+0+2NQC5J9ceu8gjMKDEMvfikzKEmHU+MH7nrQr7Hd5sNFcHv/eINSRH/
+	tRcDLjotdc7JZy96dhYpPEmbuFPhaF6squYydgbjxd0zbhAJxZvrcMjNqRUlQDCk
+	N7ZAyhPm9FUu14qJv3RAJxMcHPCdYusGldnlN+FGO9wzSTJA==
+Received: from mail-qk1-f197.google.com (mail-qk1-f197.google.com [209.85.222.197])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 47fbm1ryx3-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
+	for <devicetree@vger.kernel.org>; Tue, 24 Jun 2025 02:14:01 +0000 (GMT)
+Received: by mail-qk1-f197.google.com with SMTP id af79cd13be357-7d399070cecso889303385a.3
+        for <devicetree@vger.kernel.org>; Mon, 23 Jun 2025 19:14:01 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1750731240; x=1751336040;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=kHnh6r0zdR77x91Ki7b9UPDR7LpEx1EneI2WJIuSQmo=;
+        b=OtJ+hP+ygRKh5PQ0Ccmw22hy0+EX3Qd0/ntolNFJPAhYnQEOT8DwZf7vNAeFnFJQ8z
+         xbYqOeNYzI9oopH35q84WFvH0/LriVI2Fnlcn7j4AbxaleijAfIXRuaVLXjOdVs2Oa3W
+         fq6sdD+zp/OWnXY0rr+G4SzYOTyTtY7yYa1hsZ41/85fBgf4yBcT5MeiX29mGqmJGpxx
+         SjxLAGc86Z/FNUyonwQo8fDnvEi2e4TK4CNOmF+ZoCenmeatIDgnCDMbUTEDNFW9RtdM
+         QJK0KR8DFYsaXBMdiK5Mi3BnsP5XkvquTeh1bpKuGfkTFlowSHeOwJU8VFpQELB7+KKv
+         mlKA==
+X-Forwarded-Encrypted: i=1; AJvYcCXHgJIe0JyhBiZEGYDtYxW8rel4pHlrF5KiDjp5kXlQypWXHW2G+NCwYg3QH6/K271oqHNZgrANWJYP@vger.kernel.org
+X-Gm-Message-State: AOJu0YxbNRlGSjIHnxgnscjZp9ESLUrHQgFitKJEW4VGebXy3G+mnUPw
+	xgHp/G9B/lezXWh0Z6RDUI2n4COgFTLmo3SWuaU9eHRZXLjHaWYaHEDZG0MecMSfbYUzH7j/ss/
+	qHzD0L6XKqCy5Zqnmj99y5UA9evQIL5Le7VopfavWW0oVRjew3OwQmsgT2uEZFg1A
+X-Gm-Gg: ASbGncvQwFrrzuQ6K1vtEIkUh9NQDFKEJ0nX178wM/LmcIqoXOTqdN4oyZ+OnHA+/sn
+	hb7dt1d2DfvEhsL4FFC4RxdGS98HGlrK6fUR3phyH62AaWDM6YtEgUG2k5eWAi9NoeMZnBbjQww
+	ePsHIs4/JnlQcr2H5QJYjuLDc4V/wQfG4Cv+JtUWvVhAbAcCoKm33Bb+ThcPCY97MQu5hgOb1sT
+	TPUeqL/k5QYrFNak3uiXhVanFZL1SJtIolSkan838TLdaalUOcThRDoaXfvLbkkUJYlYVH8fa5f
+	hXmJxge6DaSJqd/IohSr6Mwg7vjqZL6OEqxtXrFOQsbQWzGWlLc1HXFdnpDkFYCMXm7NeRcil1D
+	xSkdBXtIznQJbgoAlMctapxIHz8dJT5/vuMY=
+X-Received: by 2002:a05:620a:a505:b0:7d4:1ec9:d267 with SMTP id af79cd13be357-7d41ec9d270mr221707385a.11.1750731240456;
+        Mon, 23 Jun 2025 19:14:00 -0700 (PDT)
+X-Google-Smtp-Source: AGHT+IHGjS5BY0iJ2H+V1C6DQrHqElw247aJkhWGwm0mvZnGfA0ak95N5Osv0qEtl4IV8Urb6agVpg==
+X-Received: by 2002:a05:620a:a505:b0:7d4:1ec9:d267 with SMTP id af79cd13be357-7d41ec9d270mr221705985a.11.1750731240081;
+        Mon, 23 Jun 2025 19:14:00 -0700 (PDT)
+Received: from umbar.lan (2001-14ba-a0c3-3a00-264b-feff-fe8b-be8a.rev.dnainternet.fi. [2001:14ba:a0c3:3a00:264b:feff:fe8b:be8a])
+        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-553e41446e2sm1637764e87.32.2025.06.23.19.13.58
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 23 Jun 2025 19:13:59 -0700 (PDT)
+From: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
+Subject: [PATCH v3 0/8] firmware: qcom: enable UEFI variables on Lenovo
+ Yoga C630
+Date: Tue, 24 Jun 2025 05:13:51 +0300
+Message-Id: <20250624-more-qseecom-v3-0-95205cd88cc2@oss.qualcomm.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-MS-Exchange-MessageSentRepresentingType: 1
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: PAXPR04MB8459:EE_|PR3PR04MB7450:EE_
-X-MS-Office365-Filtering-Correlation-Id: fa728b1d-5b06-4d3e-c399-08ddb2c1a1dc
-X-MS-Exchange-SharedMailbox-RoutingAgent-Processed: True
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam:
-	BCL:0;ARA:13230040|52116014|1800799024|376014|7416014|366016|7053199007|38350700014;
-X-Microsoft-Antispam-Message-Info:
-	=?us-ascii?Q?nivwdaTPHFpALkhxTbzvk0JcUmrjqpSCsVCvL/t5G1PdMLn2xqB5a+Cz5QH+?=
- =?us-ascii?Q?4MvCD5yjtPGA4O+F4buKB+p1KYdg38p3ueP4VtOso2RvHoMj84DZsZ1gi2T2?=
- =?us-ascii?Q?eVw/DNhUqB11c2yz7OA8Iys8iPbn+uQHcH3FYkNOltVVs8UsalHGDz7ie1Un?=
- =?us-ascii?Q?qO0wy9+G9/S1eCOVNsWvY1ea/aCgGAnWxLe5fiNRAPFNs2MqIilzHQnFjb+n?=
- =?us-ascii?Q?NlCiIfKDEzEqSP1acVuEuwktjiFr4mq4dRq1fe1c5TIWQL0rmAoau6sLu7g1?=
- =?us-ascii?Q?WWOD1sEpJ4SRuVFNHN8L2PhSJiWymbVOpIrbWLmoyLb0Iz17X4Neu8wzGkhO?=
- =?us-ascii?Q?Zp82dUYyVEKpkc3JLCsb/rkl6gKfOhvKR2Pew+WjfMmUNGGpv62FVdRqKuqY?=
- =?us-ascii?Q?1tAlsVnr2+4nVbvp2xE7qeSGQl7pmeo2tqoIuS/4uaa1gzIYyFucv69hOFm+?=
- =?us-ascii?Q?O2rGt0ZVICkToimCyBxqPmlT/CikkbML6eq+e8PBsPKexN0SBOvXyFYAR4t2?=
- =?us-ascii?Q?h7UdgZSOQ+cM+Ogdo7T/pbHih66vCp0OY7Ky8ApLat4TPo2lG0cmxboyhJXc?=
- =?us-ascii?Q?wFomIc/iWyeHXeHWZKfFRQNuVDALBlijJ7Qgf4lqh6oXg1MLNHsRCwEvDHqZ?=
- =?us-ascii?Q?dCVnssfCGRHX9TMelExrngo5ff/49L4fyz95XQVc8Jk+5erxgfIfmThM0k51?=
- =?us-ascii?Q?UJdtOckvOsVrxUoOx7G7BddNLiSKU9aXcrQaPM1qM0rXhLfrNhI/Pp1cjGab?=
- =?us-ascii?Q?XYOmH3TRs6VtPRgPezmMtjUVe7Ht5ZkIBIx2VtAXjQYtfz+gfVhZaPb4Y3wb?=
- =?us-ascii?Q?15dW+3K4a4WSmm4lalvImHV77PHfxKD8KtbpbcqiyU0mpyY0osju2+us3r2e?=
- =?us-ascii?Q?sHskNDUhniSub4k6tms3G1Mu5pMw6CVZ8r6OfPn3uPe8jEya8GKe0hwJvVWp?=
- =?us-ascii?Q?kY7hwQUSTr+GtVXjR8W7JboiaYOTAKoItDLhx527LbKHjU8DONPGEmhEe8++?=
- =?us-ascii?Q?Gx33ftgvNahJvyAd7rCxBjxKDSQf0mvFIdASrUk9drX2qbmXc1KR3aXhdsMf?=
- =?us-ascii?Q?Lms4kPAz+neCbSwo/7v5SwgNaxdvlB8P/+xmDUxc7PI6lbnBO70J6jCx+Dwo?=
- =?us-ascii?Q?6G90spUggiDe2vOAfM4AiOCPdzdEvSLXOd5anUiYUxDKsYHCIUFt84AWaElg?=
- =?us-ascii?Q?duSMLPh2qlPO3jS5RNMdtOxTlbr0wwjSeCU5Z1n1qOggStbG0guELqyJGHJI?=
- =?us-ascii?Q?ddce4d12JqaJmSM1ZELSeswO38RuXYBxxNk/a/CQmwviD02bU15KnZAbhYBB?=
- =?us-ascii?Q?IJKb3HIw0sTXpuMU8CJQLeewJhrDQs3Z6yM85QdUX8Bd6OyIXkx/z+S5/MO8?=
- =?us-ascii?Q?GzbPIkIQE1kbszWJacXRxLEgDJZ78dn5LHL0kHX6ghtEMk1PeCAj7t3X813t?=
- =?us-ascii?Q?hwn89QL/Xzrbw0DpGpNO3js0kqQYhBR3uyILl3x5t0vV2LpywmLNHw=3D=3D?=
-X-Forefront-Antispam-Report:
-	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:PAXPR04MB8459.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(52116014)(1800799024)(376014)(7416014)(366016)(7053199007)(38350700014);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0:
-	=?us-ascii?Q?NDB84CicpdYjN8hxxm57eTQdTdsdg7MHMtYNNnvcTnf05LnUeQ54dHAxlomR?=
- =?us-ascii?Q?w7fP7mokO3F4NGqB/HWLT6nKifIG5HjnVA6WTK1PtoI7tqAHlbFeGav5V3jw?=
- =?us-ascii?Q?Ntwa9RRwDOBAqEWgjlybIkXcByyqFbS9rEDK8QJvO6+Zb3rwW7hv1Dm3zw/k?=
- =?us-ascii?Q?+G0MV6j0NAX8thf7RiTdKfuD6UfBfUp+zm/RihByxf4KK1oMeUg9ePZVGs58?=
- =?us-ascii?Q?HUO3ACMR8xSD27I81qGKymmMoI5oZJhMtiCSexvL5tZ+IiQ0av48TTKskigj?=
- =?us-ascii?Q?msl6NfPf5aZxy2iZFDsMGuC0aifZf3wrZtvO6oniEZbwgDTCwilWFfQYx4oR?=
- =?us-ascii?Q?M0kF/RE028Yihy9KBuXJWyuXtGWKaLg+BajXNSAxckhtTQFaOvCYJPl3XV8v?=
- =?us-ascii?Q?YMQrLx7a7SCRPr0pGQSmJlJScPXYXj5LwcxfLmuvwE2kYiQHkfmtCA1kKFS5?=
- =?us-ascii?Q?cqMfF9JEqNNmKHalrRGgsUS1KyNqz7bYxwFYw0ZLGzWzEz0xHSTt3RZQ2QNs?=
- =?us-ascii?Q?17LAkzDwfjDGBDcNyCYrsT90/y4Rio0JT+jYQCAOWQk7E8yYxtZiwIvkEd0t?=
- =?us-ascii?Q?kI3OED3Bt8jGOnVQqo55lsJxgW6taDDBqprf6HaCthFkB2zjmd9FUz/YtGcL?=
- =?us-ascii?Q?uU0FwBok1pCoyqerNqZR7vzKsTOG0EfH76Q3unEBnghZe16nK7ICw3zEWsGm?=
- =?us-ascii?Q?5sp+hg+eGjgE/6B2zApyQvkXEs8xXGnRV67D7WU3X7CUtj140IXB31yIQax8?=
- =?us-ascii?Q?vhSI1mgq66K0XHPu3JatNKKpff4dy9g/PWAiL4JZZvXkl0mwmMhzuiT/ydIB?=
- =?us-ascii?Q?9MrH/qpMoFs2WE1E3Ehcy6D9ZhzkftA6c1mUvMJfJoJUUkG7EjlSO32NliAW?=
- =?us-ascii?Q?wsC4r93OhpBzoT9Zm2h7Ex4F82EkBOsqMKb8HnKfyn8wAf+Fa3SJPIPAQ1SG?=
- =?us-ascii?Q?0ffgTgWxiesLGfPoO14rUmlYmLMW1uY/zjMdeBeBxKVIpv7at5VVvY1cLwNt?=
- =?us-ascii?Q?/ujZkq99hKthHD67tb7bnz4BIgkUFsncKd/d+aATa2cDeqLbyT++Ds/0W2lB?=
- =?us-ascii?Q?wWqd/da/yH2yKTiqLxRIXhzNlyDU/5X6PaQbTNYOus++dkth0WPfzvyKg7hK?=
- =?us-ascii?Q?Jkpyao2rWQ4KdpqSP15xBgaePzoF1lWfL/Z+kkX48WiNCp1mCxqVMYhWIrXT?=
- =?us-ascii?Q?4lyamFRDUOx1CS3Q+lPot4Fqw6dFuZZ7bwrZUj6AfbdmaoUV2TbgJPPU9A2W?=
- =?us-ascii?Q?MitYRrfAisEcqLkbhb5KpBMkIMI2LpqyNYqRv+EIETQySt9KNno9aOP12mZ9?=
- =?us-ascii?Q?JTW88D47eELk3lcm11O2X4nZpkRtuGPJQJeZEJITHiks4grAYcLnCOGk5vCM?=
- =?us-ascii?Q?LcV8lcEk1beS6G4fEzOlj/oDkTBCGoMtQiKRLUbMV4M7ttJJC113ARbiGTw3?=
- =?us-ascii?Q?1Anr2A403NjJYzJAUWPr12U3zMqxrnLB+1kc5WSPYSZTI1Es+2KW3Yg3g7xD?=
- =?us-ascii?Q?u4xYpdGmjgunLzFHuh6IlpB4GauxuBsMEJX8Uw9Pt1ptkDSxnhxWQWngsIgR?=
- =?us-ascii?Q?0naR1pIfLLado+WBfz2zzAneDJC8icCbjhJgNYLb?=
-X-OriginatorOrg: oss.nxp.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: fa728b1d-5b06-4d3e-c399-08ddb2c1a1dc
-X-MS-Exchange-CrossTenant-AuthSource: PAXPR04MB8459.eurprd04.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 24 Jun 2025 01:51:27.7444
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: s9tj+y9ypGXHjyvXZTXmnRGNUCwsE+d5yJhuK2Jbm6MvRxlj3M5AesbEywo0YnqlnH9PVpNQ+M+Brknfn9FCyA==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: PR3PR04MB7450
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIAN8JWmgC/3WPzY7CMAyEX6XyGZf8kJRy4j1WHEJxIRJttnaoW
+ CHefVPQXlbiYmnsmU/jBwhxJIFd9QCmOUpMYxF2VUF3CeOZMJ6KBqPMRjXG4ZCYcBKiLg1om7a
+ 19th2jW+hRL6Z+nh/4b4ORV+i5MQ/L/qsl+0H0KxRY3AuWOfsSfe0v8YxcKoTn2EhzeYv7ZQ3+
+ l/aoEJP295b5zeqc/skUk+3cC3XoS4DDs93PabpVp7M745wDEK4mGLeVSPd83oIkomL//kLs5H
+ u0hwBAAA=
+X-Change-ID: 20240725-more-qseecom-379933b9c769
+To: Bjorn Andersson <andersson@kernel.org>,
+        Maximilian Luz <luzmaximilian@gmail.com>,
+        Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>, Ard Biesheuvel <ardb@kernel.org>,
+        Konrad Dybcio <konradybcio@kernel.org>
+Cc: Johan Hovold <johan@kernel.org>, Steev Klimaszewski <steev@kali.org>,
+        linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-efi@vger.kernel.org,
+        Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>,
+        Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+X-Mailer: b4 0.14.2
+X-Developer-Signature: v=1; a=openpgp-sha256; l=2504;
+ i=dmitry.baryshkov@oss.qualcomm.com; h=from:subject:message-id;
+ bh=tjBly2s6mnuGi9HgjrC+Tb4IXYnpF3vQanWgu9BVuLs=;
+ b=owEBbQGS/pANAwAKAYs8ij4CKSjVAcsmYgBoWgnlPAiUDAeHKKGJImPg/+wqx2zOWM4/iRMEI
+ Qgpjw25j1CJATMEAAEKAB0WIQRMcISVXLJjVvC4lX+LPIo+Aiko1QUCaFoJ5QAKCRCLPIo+Aiko
+ 1XxCB/4j9iampdS5PHI9XQvQ0EfyUbZhcV2XQObkKFnwYPwH8Ah/H37UAPRnmU8LDYSWpdwm4km
+ p3B6P3xtxBS31dQz/n4f+Otx8Fi1Ujihkoo1KHyDENtL2TpE8IMTtDtMId1ZgyAfhPyGqd5zYNh
+ 4udsBb8JQ133EF5DWCX75sn9ITLOL56rVa8ELuUdYrIPsERvgfCfg1d2rWXq3r59hnD+Wlotevh
+ 0XkjiTMVCCRDUYX8T/t7IYd+r9NAh7ZzOhRmIU+kFTbZaQUJ2PoQFhGfJoIhXX5Rnsy9UDXrj2K
+ B8TTaoZ36xhsuH/WWGuSINDhiDEy/1cZ7R1+r/JMreOYAb24
+X-Developer-Key: i=dmitry.baryshkov@oss.qualcomm.com; a=openpgp;
+ fpr=8F88381DD5C873E4AE487DA5199BF1243632046A
+X-Authority-Analysis: v=2.4 cv=YYu95xRf c=1 sm=1 tr=0 ts=685a09e9 cx=c_pps
+ a=50t2pK5VMbmlHzFWWp8p/g==:117 a=xqWC_Br6kY4A:10 a=IkcTkHD0fZMA:10
+ a=6IFa9wvqVegA:10 a=VwQbUJbxAAAA:8 a=EUspDBNiAAAA:8 a=KKAkSRfTAAAA:8
+ a=pEElvNPFZa0bE_926OUA:9 a=QEXdDO2ut3YA:10 a=IoWCM6iH3mJn3m4BftBB:22
+ a=cvBusfyB2V15izCimMoJ:22
+X-Proofpoint-GUID: h7uU_ZGmZ0SylfKP7HJbLdI0-j27Jkx7
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwNjI0MDAxNyBTYWx0ZWRfXwY3maZuYJHC7
+ q2vGOBJvBMPB2Znf7sBoV71Kz0o9ixZzRiKB5HZiy7rFNUpZnRNN11SKF1eyredRSUeZyU1vshe
+ YLYPkorDEWV6a5otkdLGIHXQ5I1y20VJ4SzVURwKDJD3LfyxxW5jSgfldreRsfLcUW/0177wKX0
+ 9n1p0Z4491+F0t5zKM3Xs4RyxQm4m69NZgqEKlguo7E3E/9YiB5HgyycoJSyx+xcLuC2mmXHg9+
+ DN1czUZ6o0uap19B4mJH/5ht2Isa6A0BvyEZrHtaIcBGOMfwF1117lZApX5VNu9E4s/AIw7R5rW
+ BFggrZ5tLrLliVCJ54hT6I1Xaxbb4WnV3eOffeLLESmSkHfZ40g5aKdWQONFlhf+X0AY3IJLbIY
+ +kjhdylzZbWPUWu7T9iGxBR3wO1VqWhANG6HKXOBpxMpdpKPDK2eeW5pRmFEiZhDVhnO+MfP
+X-Proofpoint-ORIG-GUID: h7uU_ZGmZ0SylfKP7HJbLdI0-j27Jkx7
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1099,Hydra:6.1.7,FMLib:17.12.80.40
+ definitions=2025-06-24_01,2025-06-23_07,2025-03-28_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ malwarescore=0 adultscore=0 spamscore=0 impostorscore=0 suspectscore=0
+ lowpriorityscore=0 priorityscore=1501 phishscore=0 mlxlogscore=999
+ clxscore=1015 mlxscore=0 bulkscore=0 classifier=spam authscore=0 authtc=n/a
+ authcc= route=outbound adjust=0 reason=mlx scancount=1
+ engine=8.19.0-2505280000 definitions=main-2506240017
 
-On Mon, Jun 23, 2025 at 02:01:36PM +0200, AngeloGioacchino Del Regno wrote:
->Add a driver for the SCMI protocol extensions for MediaTek TinySYS.
->This is used to communicate with various remote processors in some
->MediaTek SoCs, which mainly handle power management related tasks.
->
->Signed-off-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
->---
-> drivers/firmware/arm_scmi/Kconfig             |   1 +
-> drivers/firmware/arm_scmi/Makefile            |   1 +
-> .../arm_scmi/vendors/mediatek/Kconfig         |  16 +
-> .../arm_scmi/vendors/mediatek/Makefile        |   2 +
-> .../arm_scmi/vendors/mediatek/mtk-tinysys.c   | 344 ++++++++++++++++++
-> include/linux/scmi_mtk_protocol.h             |  62 ++++
-> 6 files changed, 426 insertions(+)
-> create mode 100644 drivers/firmware/arm_scmi/vendors/mediatek/Kconfig
-> create mode 100644 drivers/firmware/arm_scmi/vendors/mediatek/Makefile
-> create mode 100644 drivers/firmware/arm_scmi/vendors/mediatek/mtk-tinysys.c
-> create mode 100644 include/linux/scmi_mtk_protocol.h
->
->diff --git a/drivers/firmware/arm_scmi/Kconfig b/drivers/firmware/arm_scmi/Kconfig
->index e3fb36825978..baadf4f7fef6 100644
->--- a/drivers/firmware/arm_scmi/Kconfig
->+++ b/drivers/firmware/arm_scmi/Kconfig
->@@ -84,6 +84,7 @@ config ARM_SCMI_QUIRKS
-> 
-> source "drivers/firmware/arm_scmi/transports/Kconfig"
-> source "drivers/firmware/arm_scmi/vendors/imx/Kconfig"
->+source "drivers/firmware/arm_scmi/vendors/mediatek/Kconfig"
-> 
-> endif #ARM_SCMI_PROTOCOL
-> 
->diff --git a/drivers/firmware/arm_scmi/Makefile b/drivers/firmware/arm_scmi/Makefile
->index 780cd62b2f78..d1b4ec16b8bc 100644
->--- a/drivers/firmware/arm_scmi/Makefile
->+++ b/drivers/firmware/arm_scmi/Makefile
->@@ -13,6 +13,7 @@ scmi-module-objs := $(scmi-driver-y) $(scmi-protocols-y) $(scmi-transport-y)
-> 
-> obj-$(CONFIG_ARM_SCMI_PROTOCOL) += transports/
-> obj-$(CONFIG_ARM_SCMI_PROTOCOL) += vendors/imx/
->+obj-$(CONFIG_ARM_SCMI_PROTOCOL) += vendors/mediatek/
-> 
-> obj-$(CONFIG_ARM_SCMI_PROTOCOL) += scmi-core.o
-> obj-$(CONFIG_ARM_SCMI_PROTOCOL) += scmi-module.o
->diff --git a/drivers/firmware/arm_scmi/vendors/mediatek/Kconfig b/drivers/firmware/arm_scmi/vendors/mediatek/Kconfig
->new file mode 100644
->index 000000000000..8facdcd3819f
->--- /dev/null
->+++ b/drivers/firmware/arm_scmi/vendors/mediatek/Kconfig
->@@ -0,0 +1,16 @@
->+# SPDX-License-Identifier: GPL-2.0-only
->+menu "ARM SCMI MediaTek Vendor Protocols"
->+
->+config MTK_SCMI_TINYSYS
->+	tristate "MediaTek SCMI TinySYS Extension"
->+	depends on ARM_SCMI_PROTOCOL || (COMPILE_TEST && OF)
+Lenovo Yoga C630 is a WoA / WoS laptop, which uses a "standard" QSEECOM /
+uefisecapp application in order to implement UEFI variables. However as
+this platform has only one storage (UFS) shared between Linux and
+SecureOS world, uefisecapp can not update variables directly. It
+requires some additional steps in order to update variables, which are
+not yet reverse engineered.
 
-Should dependency to ARCH_MEDIATEK be added, as below
-ARM_SCMI_PROTOCOL & ARCH_MEDIATEK ?
+However even with the current driver it is possible to implement R/O
+UEFI vars access, which e.g. lets the RTC driver to read RTC offset,
+providing Linux with a correct time.
 
->+	default y if ARCH_MEDIATEK
->+	help
->+	  This enables communication with the MediaTek TinySYS MCU
->+	  to control the power status of various SoC sub-devices
->+	  other than passing other messages for initialization.
->+
->+	  To compile this driver as a module, choose M here: the
->+	  module will be called mtk-tinysys.
->+
->+endmenu
->diff --git a/drivers/firmware/arm_scmi/vendors/mediatek/Makefile b/drivers/firmware/arm_scmi/vendors/mediatek/Makefile
->new file mode 100644
->index 000000000000..dc1ff63c3b69
->--- /dev/null
->+++ b/drivers/firmware/arm_scmi/vendors/mediatek/Makefile
->@@ -0,0 +1,2 @@
->+# SPDX-License-Identifier: GPL-2.0-only
->+obj-$(CONFIG_MTK_SCMI_TINYSYS) += mtk-tinysys.o
->diff --git a/drivers/firmware/arm_scmi/vendors/mediatek/mtk-tinysys.c b/drivers/firmware/arm_scmi/vendors/mediatek/mtk-tinysys.c
->new file mode 100644
->index 000000000000..baeb36493952
->--- /dev/null
->+++ b/drivers/firmware/arm_scmi/vendors/mediatek/mtk-tinysys.c
->@@ -0,0 +1,344 @@
->+// SPDX-License-Identifier: GPL-2.0
->+/*
->+ * System Control and Management Interface (SCMI) MediaTek TinySYS Protocol
->+ *
->+ * Copyright (c) 2021 MediaTek Inc.
->+ * Copyright (c) 2025 Collabora Ltd
->+ *                    AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
->+ */
->+
->+#define pr_fmt(fmt) "SCMI Notifications TinySYS - " fmt
->+
->+#include <linux/bits.h>
->+#include <linux/io.h>
->+#include <linux/module.h>
->+#include <linux/of.h>
->+#include <linux/platform_device.h>
+Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
+---
+Changes in v3:
+- Picked up patches from another series, reworking the QSEECOM
+  allowtable
+- Added a fix for efivar_set_variable() crashing the machine if R/O UEFI
+  vars are provided (Johan)
+- Link to v2: https://lore.kernel.org/r/20250621-more-qseecom-v2-0-6e8f635640c5@oss.qualcomm.com
+- Link to the merged series: https://lore.kernel.org/r/20241103-rework-qseecom-v1-0-1d75d4eedc1e@linaro.org/
 
-This header is not needed, since no user here.
-I just see i.MX also includes this header, but could be dropped.
+Changes in v2:
+- Added QSEECOM quirks in order to make UEFI vars r/o on C630.
+- Added DT patch, specifying the use of UEFI vars for RTC offset.
+- Link to v1: https://lore.kernel.org/r/20240725-more-qseecom-v1-1-a55a3553d1fe@linaro.org
 
->+#include <linux/scmi_protocol.h>
->+#include <linux/scmi_mtk_protocol.h>
->+
->+#include "../../protocols.h"
->+#include "../../notify.h"
->+
->+#define SCMI_MTK_CMD_SSPM_QUERY_ALIVE		0xdead
->+
->+enum scmi_mtk_tinysys_protocol_cmd {
->+	MTK_TINYSYS_COMMON_SET = 0x3,
->+	MTK_TINYSYS_COMMON_GET = 0x4,
->+	MTK_TINYSYS_POWER_STATE_NOTIFY = 0x5,
->+	MTK_TINYSYS_SLBC_CTRL = 0x6,
->+};
->+
->+struct scmi_mtk_tinysys_common_get_payld {
->+	__le32 rsvd;
->+	__le32 param[SCMI_MTK_MSG_COMMON_REPLY_BYTES];
->+};
->+
->+struct scmi_mtk_tinysys_common_set_payld {
->+	__le32 rsvd;
->+	__le32 ctrl_id;
->+	__le32 param[SCMI_MTK_MSG_COMMON_PARAM_BYTES];
->+};
->+
->+struct scmi_mtk_tinysys_slbc_payld {
->+	__le32 rsvd;
->+	__le32 cmd;
->+	__le32 arg[SCMI_MTK_MSG_SLBC_PARAM_BYTES];
->+};
->+
->+struct scmi_mtk_tinysys_pwrst_notify {
->+	__le32 rsvd;
+---
+Dmitry Baryshkov (8):
+      efi: efivars: don't crash in efivar_set_variable{,_locked} in r/o case
+      firmware: qcom: scm: allow specifying quirks for QSEECOM implementations
+      firmware: qcom: uefisecapp: add support for R/O UEFI vars
+      firmware: qcom: enable QSEECOM on Lenovo Yoga C630
+      firmware; qcom: scm: enable QSEECOM on SC8280XP CRD
+      firmware: qcom: scm: add modparam to control QSEECOM enablement
+      firmware: qcom: scm: rework QSEECOM allowlist
+      arm64: dts: qcom: sdm850-lenovo-yoga-c630: fix RTC offset info
 
-Not sure why all upper structure has 'rsvd', meaning reserved?
+ arch/arm64/boot/dts/qcom/pm8998.dtsi               |  2 +-
+ .../boot/dts/qcom/sdm850-lenovo-yoga-c630.dts      |  4 +
+ drivers/firmware/efi/vars.c                        |  2 +
+ drivers/firmware/qcom/qcom_qseecom.c               |  6 +-
+ drivers/firmware/qcom/qcom_qseecom_uefisecapp.c    | 18 +++-
+ drivers/firmware/qcom/qcom_scm.c                   | 99 +++++++++++++---------
+ include/linux/firmware/qcom/qcom_qseecom.h         |  3 +
+ 7 files changed, 93 insertions(+), 41 deletions(-)
+---
+base-commit: 5d4809e25903ab8e74034c1f23c787fd26d52934
+change-id: 20240725-more-qseecom-379933b9c769
 
->+	__le32 fid;
->+	__le32 enable;
->+};
->+
->+struct scmi_mtk_tinysys_notify_payld {
->+	__le32 fid;
->+	__le32 param[SCMI_MTK_MSG_NOTIF_ST_BYTES];
->+};
->+
->+struct scmi_mtk_tinysys_protocol_attributes {
->+	__le32 attributes;
->+};
->+
->+struct scmi_mtk_tinysys_info {
->+	int num_domains;
->+};
->+
->+static int scmi_mtk_tinysys_attributes_get(const struct scmi_protocol_handle *ph,
->+					   struct scmi_mtk_tinysys_info *tinfo)
->+{
->+	struct scmi_mtk_tinysys_protocol_attributes *attr;
->+	struct scmi_xfer *t;
->+	int ret;
->+
->+	ret = ph->xops->xfer_get_init(ph, PROTOCOL_ATTRIBUTES, 0, sizeof(*attr), &t);
->+	if (ret)
->+		return ret;
->+
->+	attr = t->rx.buf;
->+
->+	ret = ph->xops->do_xfer(ph, t);
->+	if (!ret) {
->+		attr->attributes = get_unaligned_le32(t->rx.buf);
->+		tinfo->num_domains = attr->attributes;
+Best regards,
+-- 
+With best wishes
+Dmitry
 
-Not sure the spec use whole 32bits for num_domains, if not, better
-use le32_get_bits to the expect fields
-
->+	}
->+
->+	ph->xops->xfer_put(ph, t);
->+
->+	return ret;
->+}
->+
->+static int scmi_mtk_tinysys_get_num_sources(const struct scmi_protocol_handle *ph)
->+{
->+	struct scmi_mtk_tinysys_info *tinfo = ph->get_priv(ph);
->+
->+	if (!tinfo)
->+		return -EINVAL;
->+
->+	return tinfo->num_domains;
->+}
->+
->+static int scmi_mtk_tinysys_set_notify_enabled(const struct scmi_protocol_handle *ph,
->+					       u8 evt_id, u32 src_id, bool enable)
->+{
->+	struct scmi_mtk_tinysys_pwrst_notify *pwrst_notify;
->+	struct scmi_xfer *t;
->+	int ret;
->+
->+	/* There's only one possible event for now */
->+	if (evt_id != 0)
-
-Use 'evt_id != SCMI_EVENT_MTK_TINYSYS_NOTIFIER' ?
-
->+		return -EINVAL;
->+
-...
->+#endif
->-- 
->2.49.0
->
-
-Regards,
-Peng
 
