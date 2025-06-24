@@ -1,210 +1,202 @@
-Return-Path: <devicetree+bounces-189191-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-189192-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7E68FAE7135
-	for <lists+devicetree@lfdr.de>; Tue, 24 Jun 2025 23:03:53 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id DADADAE713A
+	for <lists+devicetree@lfdr.de>; Tue, 24 Jun 2025 23:04:57 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id C978817A1D6
-	for <lists+devicetree@lfdr.de>; Tue, 24 Jun 2025 21:03:53 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 086DF7B20C5
+	for <lists+devicetree@lfdr.de>; Tue, 24 Jun 2025 21:03:34 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5F72C251793;
-	Tue, 24 Jun 2025 21:03:47 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id EEE4C23C4EB;
+	Tue, 24 Jun 2025 21:04:48 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="Xle/3ZVb"
+	dkim=pass (2048-bit key) header.d=denx.de header.i=@denx.de header.b="Wc0nyWpM"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+Received: from mx.denx.de (mx.denx.de [89.58.32.78])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 836F222A807
-	for <devicetree@vger.kernel.org>; Tue, 24 Jun 2025 21:03:45 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9B4FA3074B5;
+	Tue, 24 Jun 2025 21:04:46 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=89.58.32.78
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1750799027; cv=none; b=uI1rjOB9U4MWD7x7TY7rX91JX8PuG6JrQaCQljkcsZFviqejJe8M8HxD9Qv0n5avL6v08mrqsV+Fbj381r8jeMZBuIsgyKUQROM9W6W4oNIN0xFg3tnoab4onHihSJeKr+J2433ASrNZK49T8yjHAl+tEfy/YSbe30eCJeSppWw=
+	t=1750799088; cv=none; b=BozRAgXIcHnK9nsRH/RxKoz8gt3VHtAAkivFXcbfIMfpBHIU3cqM6LHov8VLPuJqpUM5QbEZlXxuQHCKy6Xb0+PHv7/2e8UpjnJmIXWj45DTCjHXf/Zcdjqs4RKbHLRq1aDFyMqC1Vi/pXaFraAUzSxbODDY09+tEnSmJjN9RAU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1750799027; c=relaxed/simple;
-	bh=kRy3R7VfGoc1bssAiwrUHSgpndwIcCOFEjYQX7QEk9E=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=QEanvJpRMHKkSF40J8DcftGq9+jOjwMwyVJel8nHNzmE09wkruvnb/S7o+KVd3emDdoXtPlj6KyfwuYEqEfjykApdLmV8H1380dTzkGF52P05SKdxPTNvakbSgYNXnkByyduqrDRXpzmFIj3S5y31BIcsAIWJgbyC5pRnMiwvpE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=Xle/3ZVb; arc=none smtp.client-ip=205.220.180.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
-Received: from pps.filterd (m0279870.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 55OESwgb032291
-	for <devicetree@vger.kernel.org>; Tue, 24 Jun 2025 21:03:44 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	mVJI6aOBGl4t4VmrNckaYkNqLm0/IYYdUwHHZ9TzyaQ=; b=Xle/3ZVbKSl5LU4M
-	NV2lwkFhV3XkKoPWc3beKvEv09ETVlRI5aKyLx/HxgVDGiHRJqwwfGeX/8gi+cAF
-	ZjCk6iLcelFOcSbr9WuliGdEsTxvg/gQxe5hnDeJB+riplD+KSHRisE7jcA4/j33
-	WhW0C2JQEiaKHw4CEeqfzqjbALT3RRcKfQjxPHIOYX+WzJFyThBwcsP1/eDiwd1C
-	ETBh5F853UjwHP16GZhTQDO/0pktcgmY8lD7i/Mgi73QOVXevmAaoK1KS8S3cttB
-	3WeeQu4U+LNVEtxHfauN+NVJ852kzgURb1fhNHTUAYM4dk/IVCNXbljwh4nrjIeO
-	TDaYwA==
-Received: from mail-qk1-f198.google.com (mail-qk1-f198.google.com [209.85.222.198])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 47fbm1v67j-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Tue, 24 Jun 2025 21:03:44 +0000 (GMT)
-Received: by mail-qk1-f198.google.com with SMTP id af79cd13be357-7d4133a2081so115172785a.3
-        for <devicetree@vger.kernel.org>; Tue, 24 Jun 2025 14:03:44 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1750799023; x=1751403823;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=mVJI6aOBGl4t4VmrNckaYkNqLm0/IYYdUwHHZ9TzyaQ=;
-        b=M+W//bkXxaPUnJaeGKTV9XinunK5UDzNWNxzejqAUV5IASmHe9pvOryHZDbsQYr7Kg
-         QBR+wZSYgQ+CYHJr1WQzHPUT1vjnjQ8M4Knc2L4fcDM/Rafm34mNGrOe/3gOH4Q8236k
-         AKgJVKLyOHs2V7O48YBICkMQnjGDZINCWYf5nD1FQ/9kysRIYb7neLEDB8Oqm8oEPNvN
-         ydJYloxBdtEMjk6p/eumTXOLT5OZhHytVCiihd6YLExMQ+bJLs/t4UB1UpY6b6sJip5E
-         1SI68PHNJJQjb2Ek5m9zVmWZxQU2nnW1sDDfxP2dvV5PbOa23yJTl/1Cxzgms9+Z0R4D
-         67pQ==
-X-Forwarded-Encrypted: i=1; AJvYcCWxAOD0DOgCYFtBmRWVq36PioBGHauV90T79VhPN3DguO/HKcSTPV661Y45wV0thHo2G1mYfVr0mlQY@vger.kernel.org
-X-Gm-Message-State: AOJu0YwQRm03ep6+3jn/3yZM1AtjgWL7CoQ5bukgTfD3798lQp915nHl
-	yrmmCOuiJ60MaoFlownuyvBbl2PWJg0deNptmHqbOESeMWV5BwhWsWAQQ7ZxBiFJQYf4li7AGh+
-	G1FBmGjR0ZARmQv4UtkvXUIzAFSUQSj9zfqVVyWjpIy2iWIX4vBph+W+0qjOHR8vWgSPKFEssv4
-	E=
-X-Gm-Gg: ASbGncuIozivHcdp2uPMtJdMtgBHkxk+3xQfMg9AmQJS+lWTUBWGpb5qZfyOmv9G/B6
-	YmJTeaQM9SY8vaCSfHJDa7bZXhI0o+vDTsUSFT2PvFZhAjewnL2uH13NocX0Aj3QTlgjzfAiRcV
-	U1y86pLuPppJxVoivjVndBR0tzmD1+Rlcn+YElGXQc6jeHuFyxtc++JVS+BDco1PP34uhBJvwZZ
-	ySj0tzjrauxCDqMvz4o3JJeuEjFp+Bckyveic8SweOX6bF8tywp6dRj0+Sli3jQOCyzx9xGxxBk
-	HL/Xr5cKzpYrCzUybw7NOZBhRTebdR5rwCLcGDH4L3GTRTpI5REmTnBy/XV2ZvtsHahybvG/uqy
-	8UFXtaifh4tiAnRuq+Q2SNMWE
-X-Received: by 2002:a05:620a:4053:b0:7d3:8a1a:9a03 with SMTP id af79cd13be357-7d42965f652mr79132585a.14.1750799023307;
-        Tue, 24 Jun 2025 14:03:43 -0700 (PDT)
-X-Google-Smtp-Source: AGHT+IGdXH0d1f6aDkKnx6CCNg4hy12ddxcs0mjWOfhKxBZypB1VzHs0Gz8oM9mgx/g5oqmSwc4ULw==
-X-Received: by 2002:a05:620a:4053:b0:7d3:8a1a:9a03 with SMTP id af79cd13be357-7d42965f652mr79129285a.14.1750799022848;
-        Tue, 24 Jun 2025 14:03:42 -0700 (PDT)
-Received: from ?IPV6:2001:14ba:a0c3:3a00::4c9? (2001-14ba-a0c3-3a00--4c9.rev.dnainternet.fi. [2001:14ba:a0c3:3a00::4c9])
-        by smtp.gmail.com with ESMTPSA id 38308e7fff4ca-32b980f0800sm17872221fa.114.2025.06.24.14.03.41
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 24 Jun 2025 14:03:41 -0700 (PDT)
-Message-ID: <225b94a0-eea5-4061-aebd-da497d349527@oss.qualcomm.com>
-Date: Wed, 25 Jun 2025 00:03:40 +0300
+	s=arc-20240116; t=1750799088; c=relaxed/simple;
+	bh=6/fK84w0HXJRsQUl54kMy+/q47sIlUEzUHpyiQHauZw=;
+	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=Z8Ej4cDYQRNegMpXo/TxHgOgHIuQNNokbTaBBh7RK9ziWxEkoaIzDtu4p3k0D6ep30wnGnMCTO8HB5JndnCmXFuqsgynlr+3wWdLAg5GkiVZ5exx10LPkGSf18LFHoJaZpMWZgo/1uguY3j5CodwTfaM86xTk076PvmU3qgDTyA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=denx.de; spf=pass smtp.mailfrom=denx.de; dkim=pass (2048-bit key) header.d=denx.de header.i=@denx.de header.b=Wc0nyWpM; arc=none smtp.client-ip=89.58.32.78
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=denx.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=denx.de
+Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id C291F102779C2;
+	Tue, 24 Jun 2025 23:04:39 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=denx.de; s=mx-20241105;
+	t=1750799083; h=from:subject:date:message-id:to:cc:mime-version:content-type:
+	 in-reply-to:references; bh=lKbThwTsY1P7KFQMbDvtgsT2FnCwQe8p9lZusqk5xYk=;
+	b=Wc0nyWpM9El1+10CWZ74uWfVcdDt0SYtJYSHGHEUpe2tX1dYOoTTvOzgkIaIIzCKKSVq8Y
+	lf9S1OrrWOhGJt7x8LQnA3Vp7MopCmav2C8Y0sjQR6g4s0jWq0PPb1X5Y1AMUlI3o/eXke
+	LmAZqppYww2wyiM1onpYxD5+3IAAJ/mYrY8S2YfUIqiCvAx3o9aGh56ChulgTPdXlIlT6p
+	EZ9+sEvaur5PHc0xbaAbWMGbtqeHLXVWkIsmQrK2NHLU1pf4x4mSEY+fpjBkrvMVnY19rG
+	qOzZM+eTOISjJolWT8wL5K1rBYznXr25yP5lesENk5uFVZx7+NF62feHxP+Z/A==
+Date: Tue, 24 Jun 2025 23:04:37 +0200
+From: Lukasz Majewski <lukma@denx.de>
+To: Paolo Abeni <pabeni@redhat.com>
+Cc: Andrew Lunn <andrew+netdev@lunn.ch>, davem@davemloft.net, Eric Dumazet
+ <edumazet@google.com>, Jakub Kicinski <kuba@kernel.org>, Rob Herring
+ <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>, Sascha Hauer
+ <s.hauer@pengutronix.de>, Pengutronix Kernel Team <kernel@pengutronix.de>,
+ Fabio Estevam <festevam@gmail.com>, Richard Cochran
+ <richardcochran@gmail.com>, netdev@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ imx@lists.linux.dev, linux-arm-kernel@lists.infradead.org, Stefan Wahren
+ <wahrenst@gmx.net>, Simon Horman <horms@kernel.org>, Andrew Lunn
+ <andrew@lunn.ch>
+Subject: Re: [net-next v13 04/11] net: mtip: The L2 switch driver for imx287
+Message-ID: <20250624230437.1ede2bcb@wsk>
+In-Reply-To: <b31793de-e34f-438c-aa37-d68f3cb42b80@redhat.com>
+References: <20250622093756.2895000-1-lukma@denx.de>
+	<20250622093756.2895000-5-lukma@denx.de>
+	<b31793de-e34f-438c-aa37-d68f3cb42b80@redhat.com>
+Organization: denx.de
+X-Mailer: Claws Mail 3.19.0 (GTK+ 2.24.33; x86_64-pc-linux-gnu)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 0/4] Start using rpmpd for power domains on MSM8974
-To: Luca Weiss <luca@lucaweiss.eu>
-Cc: ~postmarketos/upstreaming@lists.sr.ht, phone-devel@vger.kernel.org,
-        Bjorn Andersson <andersson@kernel.org>,
-        Mathieu Poirier <mathieu.poirier@linaro.org>,
-        Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley
- <conor+dt@kernel.org>,
-        Manivannan Sadhasivam <mani@kernel.org>,
-        Konrad Dybcio <konradybcio@kernel.org>, linux-arm-msm@vger.kernel.org,
-        linux-remoteproc@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-References: <20250621-msm8974-rpmpd-switch-v1-0-0a2cb303c446@lucaweiss.eu>
- <amfgwjgstu4hoxz4lo7fqrqz5fqtf3r7o6wqvrrjkcfubwrjyz@5i75peprq3wn>
- <841c41cc-e44d-40c7-9431-a77feaa49b05@lucaweiss.eu>
-Content-Language: en-US
-From: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
-In-Reply-To: <841c41cc-e44d-40c7-9431-a77feaa49b05@lucaweiss.eu>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
-X-Authority-Analysis: v=2.4 cv=YYu95xRf c=1 sm=1 tr=0 ts=685b12b0 cx=c_pps
- a=qKBjSQ1v91RyAK45QCPf5w==:117 a=xqWC_Br6kY4A:10 a=IkcTkHD0fZMA:10
- a=6IFa9wvqVegA:10 a=dlmhaOwlAAAA:8 a=6ZqSrkSmcNyY40qCGO8A:9 a=3ZKOabzyN94A:10
- a=QEXdDO2ut3YA:10 a=NFOGd7dJGGMPyQGDc5-O:22 a=y4cfut4LVr_MrANMpYTh:22
-X-Proofpoint-GUID: HMxMrfFqxvwlz0GCbEcoRcsr1JQTKowV
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwNjI0MDE2NyBTYWx0ZWRfX367K68Z0i0JL
- cK5ZFFzpaV86JB7c+NJ5SK8PDJpSFPapam2t12oa2oOpiY8VIjlEImHhAq2THKD8QWsoX2G7yeq
- cmrocU6+3zAzEcgYQ5DCeoL41hCW1Srx65tYczndxzeSx2ujBrkjR0MedPQ5bJkz4n+9fwFkSyd
- 7fvloPrIK465N729uZ6Jy7zLjAQ1JVOj70HJvOR/oRG8OJn06evPRtxYcwodF7B476sntpU96Aq
- gbPdfDM8I2DKdIPXcIrpzwfmSwzlmZqEubkev6id9suqP46YJfb8WTspzmJtFX3twj9MpIAuOfQ
- uS9powp3riW6xUdyE6oP4DY/7LMA6JHtvnJSFCQBILjsZkMj15W42ho/0mJW9j3t7YilsJyQ0RE
- cltUCLEnnxXFNrgrISJMD+hrU/mypUgyTUn1SHJwxgmJbyeeIDfidTSe/gV8C5ysK7q8TB/A
-X-Proofpoint-ORIG-GUID: HMxMrfFqxvwlz0GCbEcoRcsr1JQTKowV
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1099,Hydra:6.1.7,FMLib:17.12.80.40
- definitions=2025-06-24_06,2025-06-23_07,2025-03-28_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- malwarescore=0 adultscore=0 spamscore=0 impostorscore=0 suspectscore=0
- lowpriorityscore=0 priorityscore=1501 phishscore=0 mlxlogscore=999
- clxscore=1015 mlxscore=0 bulkscore=0 classifier=spam authscore=0 authtc=n/a
- authcc= route=outbound adjust=0 reason=mlx scancount=1
- engine=8.19.0-2505280000 definitions=main-2506240167
+Content-Type: multipart/signed; boundary="Sig_/L9I8TrK5V8LcSsjLhyb23zO";
+ protocol="application/pgp-signature"; micalg=pgp-sha512
+X-Last-TLS-Session-Version: TLSv1.3
 
-On 24/06/2025 21:46, Luca Weiss wrote:
-> Hi Dmitry,
-> 
-> On 24-06-2025 2:59 a.m., Dmitry Baryshkov wrote:
->> On Sat, Jun 21, 2025 at 03:19:55PM +0200, Luca Weiss wrote:
->>> Switch over the ADSP PIL to use power-domains instead of a regulator,
->>> and have one commit switching over the MSM8974 SoC plus all the devices
->>> to use power-domains.
->>>
->>> Note, that I'm aware that these changes are not backwards compatible and
->>> not really bisectable, but since it only affects the ADSP on these
->>
->> Why? The cx-supply is handled unconditionally. A single-domain usecase
->> is also handled via a special code path. I think this might be
->> backwards-compatible, by the pure luck.
-> 
-> Honestly I have not tried and not looked much. I mostly added this 
-> paragraph to avoid the response that this change might break and is not 
-> really backwards compatible. If it does (by accident) work with the 
-> updated dts without the driver and the other way around, then even better.
+--Sig_/L9I8TrK5V8LcSsjLhyb23zO
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: quoted-printable
 
-I think it's worth checking that new kernel works with older DTS (that's 
-the usual rule). The platform doesn't have many users upstream, but I 
-think it has been used by some PmOS users, which might mean 
-not-yet-upstreamed DT.
+Hi Paolo,
 
-> 
-> Regards
-> Luca
-> 
->>
->>> pretty old boards, I say it's fine to have this. Get all the patches
->>> into the same release (6.17?) and then we're good again.
->>>
->>> Signed-off-by: Luca Weiss <luca@lucaweiss.eu>
->>> ---
->>> Luca Weiss (4):
->>>        dt-bindings: remoteproc: qcom,adsp: Make msm8974 use CX as 
->>> power domain
->>>        remoteproc: qcom_q6v5_pas: Use resource with CX PD for MSM8974
->>>        ARM: dts: qcom: msm8974: Sort header includes alphabetically
->>>        ARM: dts: qcom: msm8974: Start using rpmpd for power domains
->>>
->>>   .../devicetree/bindings/remoteproc/qcom,adsp.yaml  | 18 ++------
->>>   .../arm/boot/dts/qcom/qcom-apq8074-dragonboard.dts | 13 ------
->>>   .../qcom/qcom-msm8974-lge-nexus5-hammerhead.dts    | 12 ------
->>>   .../boot/dts/qcom/qcom-msm8974-samsung-hlte.dts    | 12 ------
->>>   .../dts/qcom/qcom-msm8974-sony-xperia-rhine.dtsi   | 12 ------
->>>   arch/arm/boot/dts/qcom/qcom-msm8974.dtsi           | 50 +++++++++++ 
->>> +++++++++--
->>>   .../dts/qcom/qcom-msm8974pro-fairphone-fp2.dts     |  8 ----
->>>   arch/arm/boot/dts/qcom/qcom-msm8974pro-htc-m8.dts  | 11 -----
->>>   .../dts/qcom/qcom-msm8974pro-oneplus-bacon.dts     |  9 ----
->>>   .../qcom/qcom-msm8974pro-samsung-klte-common.dtsi  | 11 ++---
->>>   ...qcom-msm8974pro-sony-xperia-shinano-common.dtsi | 12 ------
->>>   drivers/remoteproc/qcom_q6v5_pas.c                 |  2 +-
->>>   12 files changed, 56 insertions(+), 114 deletions(-)
->>> ---
->>> base-commit: 7fa2fb97cd28e1d9670da538095565b6fba83977
->>> change-id: 20250621-msm8974-rpmpd-switch-b19b166c02be
->>>
->>> Best regards,
->>> -- 
->>> Luca Weiss <luca@lucaweiss.eu>
->>>
->>
-> 
+> On 6/22/25 11:37 AM, Lukasz Majewski wrote:
+> > +static void mtip_aging_timer(struct timer_list *t)
+> > +{
+> > +	struct switch_enet_private *fep =3D timer_container_of(fep,
+> > t,
+> > +
+> > timer_aging); +
+> > +	fep->curr_time =3D mtip_timeincrement(fep->curr_time);
+> > +
+> > +	mod_timer(&fep->timer_aging,
+> > +		  jiffies +
+> > msecs_to_jiffies(LEARNING_AGING_INTERVAL)); +} =20
+>=20
+> It's unclear to me why you decided to maintain this function and timer
+> while you could/should have used a macro around jiffies instead.
+
+This is a bit more tricky than just getting value from jiffies.
+
+The current code provides a monotonic, starting from 0 time "base" for
+learning and managing entries in internal routing tables for MTIP.
+
+To be more specific - the fep->curr_time is a value incremented after
+each ~10ms.
+
+Simple masking of jiffies would not provide such features.
+
+However, I've rewritten relevant portions where GENMASK() could be used
+to simplify and make the code more readable.
+
+>=20
+> [...]
+> > +static int mtip_sw_learning(void *arg)
+> > +{
+> > +	struct switch_enet_private *fep =3D arg;
+> > +
+> > +	while (!kthread_should_stop()) {
+> > +		set_current_state(TASK_INTERRUPTIBLE);
+> > +		/* check learning record valid */
+> > +		mtip_atable_dynamicms_learn_migration(fep,
+> > fep->curr_time,
+> > +						      NULL, NULL);
+> > +		schedule_timeout(HZ / 100);
+> > +	}
+> > +
+> > +	return 0;
+> > +} =20
+>=20
+> Why are you using a full blown kernel thread here?=20
+
+The MTIP IP block requires the thread for learning. It is a HW based
+switching accelerator, but the learning feature must be performed by
+SW (by writing values to its registers).
+
+> Here a timer could
+> possibly make more sense.
+
+Unfortunately, not - the code (in
+mtip_atable_dynamicms_learn_migration() must be called). This function
+has another role - it updates internal routing table with timestamps
+(provided by timer mentioned above).
+
+> Why are checking the table every 10ms, while
+> the learning intervall is 100ms?=20
+
+Yes, this is correct. In 10ms interval the internal routing table is
+updated. 100 ms is for learning.
+
+> I guess you could/should align the
+> frequency here with such interval.
+
+IMHO learning with 10ms interval would bring a lot of overhead.
+
+Just to mention - the MTIP IP block can generate interrupt for
+learning event. However, it has been advised (bu NXP support), that a
+thread with 100ms interval shall be used to avoid too many interrupts.
+
+>=20
+> Side note: I think you should move the buffer management to a later
+> patch: this one is still IMHO too big.
+
+And this is problematic - the most time I've spent for v13 to separate
+the code - i.e. I exclude one function, then there are warnings that
+other function is unused (and of course WARNINGS in a separate patches
+are a legitimate reason to call for another patch set revision).
+
+I've already excluded bridge and mgnt patches. Also moved out some code
+from this one.
+
+>=20
+> /P
+>=20
 
 
--- 
-With best wishes
-Dmitry
+Best regards,
+
+Lukasz Majewski
+
+--
+
+DENX Software Engineering GmbH,      Managing Director: Erika Unter
+HRB 165235 Munich, Office: Kirchenstr.5, D-82194 Groebenzell, Germany
+Phone: (+49)-8142-66989-59 Fax: (+49)-8142-66989-80 Email: lukma@denx.de
+
+--Sig_/L9I8TrK5V8LcSsjLhyb23zO
+Content-Type: application/pgp-signature
+Content-Description: OpenPGP digital signature
+
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAEBCgAdFiEEgAyFJ+N6uu6+XupJAR8vZIA0zr0FAmhbEuUACgkQAR8vZIA0
+zr1eeggAn5xkytdRo6m9s2AP7CCf+2DLpUC+BoaHahBz9mSN7/URkVcaHdze2/iF
+Js8HdHNNN+MMqzBxg6sKga9RDwGBRv9/kc1LnJz1+BiQGLIGe4sv5DS8ZwdQ2v72
+dZ0TDq7rIIMNbGC5jvBXZ+KsuWsjUAMGB4UrnppIMei4fNI4PIZQlWWM6p9bAKtW
+f8eqEmwIjW8dfH8fPlv0JwgIw7eGMecjMDbFk1Vcrd9HhLN7MV36CXVIHu4dV9Q/
+3SUpxnQpkL6HoPSbROu+MaR/t8W15KN1iSF2fUbBmDvDFHIUu7qsVfXlcLr9SIio
+69O3l2adUEiFwSicuYxlrKol0M2bVg==
+=bmNZ
+-----END PGP SIGNATURE-----
+
+--Sig_/L9I8TrK5V8LcSsjLhyb23zO--
 
