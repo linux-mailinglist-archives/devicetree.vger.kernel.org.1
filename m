@@ -1,136 +1,187 @@
-Return-Path: <devicetree+bounces-188819-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-188820-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 96993AE5A98
-	for <lists+devicetree@lfdr.de>; Tue, 24 Jun 2025 05:40:01 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1FF38AE5AA7
+	for <lists+devicetree@lfdr.de>; Tue, 24 Jun 2025 05:57:47 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 31AA716886A
-	for <lists+devicetree@lfdr.de>; Tue, 24 Jun 2025 03:40:02 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 522D01B62F06
+	for <lists+devicetree@lfdr.de>; Tue, 24 Jun 2025 03:58:02 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B2F0D1C84CF;
-	Tue, 24 Jun 2025 03:39:56 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5F45F21B9C5;
+	Tue, 24 Jun 2025 03:57:34 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=disroot.org header.i=@disroot.org header.b="MvpY/fp/"
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="d6RmFDjZ"
 X-Original-To: devicetree@vger.kernel.org
-Received: from layka.disroot.org (layka.disroot.org [178.21.23.139])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.17])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2DF2819C558;
-	Tue, 24 Jun 2025 03:39:55 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=178.21.23.139
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7087D1F4161;
+	Tue, 24 Jun 2025 03:57:32 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.198.163.17
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1750736396; cv=none; b=RF+7R6VGrW11/FS0Bm7+IWUUN5s3pzyk7XmZiqCkD94W/DssEUSanO6sX+XaCmK/eN4dFzjlx8EkHsehgpCdfcRMpIF6FH96FXO1fJGdRMqiyQg6tkGlTf6kFO2u15rY1TSGTcQS6nsTxwjKPsxQbeS82xDUBpWQo5av2qq5UJQ=
+	t=1750737454; cv=none; b=L/jIlsr40l5LEp5Ud/6vkM0Rwyun5/EKSi2JFbBZQH4HU7WNR3ppW7gS7lnCSSZRtls0rBi/qBWIJSIjlZ6oqFblVVdSeDeWX+eTls+QF+Qo7kmlaVlGxCMNqB9AH4+i6QaVY84vuOq42E9vaIFT8YC5wFSBWGoZKMGudGAFuSo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1750736396; c=relaxed/simple;
-	bh=Cn577oWTiuD78zUlriRAp/KCdUeL45UyKPT3ZBfVSNg=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=Bdnic/T7q4nS0gILH0lOJDPQjLWW92N4k4n/7vKzII8SBMQ3utO4wHwweiH2XerwR6OXSR3oGN2q8F5Rg4rCkxHxbDFS6Flbf6yfxghi+NSNab6a93G7XuhVf+myxQ7DWzgmWVG4tgKo08RR3G8tfY+uj2hUpP2W+SP9uC9A6f0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=disroot.org; spf=pass smtp.mailfrom=disroot.org; dkim=pass (2048-bit key) header.d=disroot.org header.i=@disroot.org header.b=MvpY/fp/; arc=none smtp.client-ip=178.21.23.139
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=disroot.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=disroot.org
-Received: from mail01.disroot.lan (localhost [127.0.0.1])
-	by disroot.org (Postfix) with ESMTP id E0D6625A24;
-	Tue, 24 Jun 2025 05:39:53 +0200 (CEST)
-X-Virus-Scanned: SPAM Filter at disroot.org
-Received: from layka.disroot.org ([127.0.0.1])
- by localhost (disroot.org [127.0.0.1]) (amavis, port 10024) with ESMTP
- id uTZH90UD7F9r; Tue, 24 Jun 2025 05:39:53 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=disroot.org; s=mail;
-	t=1750736393; bh=Cn577oWTiuD78zUlriRAp/KCdUeL45UyKPT3ZBfVSNg=;
-	h=From:To:Cc:Subject:Date:In-Reply-To:References;
-	b=MvpY/fp/GC/4at6lGtQowOZO/8toL+OLqjdCqhMbcnsa8/RujJ1XHBCvyx83zh3UQ
-	 SPdXvB0xdxZ1NHDQaw0jB6H0bnGJfzavbFAQD/mndyAc9kISM1JNzxngKPd2Ex1rZF
-	 IG9PPmDHiSpId/9jZGyudx10QjTUp5tBZrG2Oytvwv/3dyc7RQ8LoQGgDPMGg6UOtX
-	 h0GgTcqm1z43zl3We7QRRkbR4V4shR1RrrJtfR6PlpUfAB8fh9aygUgsjuHA6mO20P
-	 XcSuczhntnHFm65KZQbJsZsSwdl+U0cAxsj3sjgW1omWilsy7FUvS/bXVB26snkmQr
-	 aD4PaKFyEKcOw==
-From: Yao Zi <ziyao@disroot.org>
-To: Vinod Koul <vkoul@kernel.org>,
-	Kishon Vijay Abraham I <kishon@kernel.org>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Heiko Stuebner <heiko@sntech.de>,
-	Yao Zi <ziyao@disroot.org>,
-	Frank Wang <frank.wang@rock-chips.com>,
-	Andy Yan <andy.yan@rock-chips.com>,
-	Cristian Ciocaltea <cristian.ciocaltea@collabora.com>,
-	Detlev Casanova <detlev.casanova@collabora.com>,
-	Shresth Prasad <shresthprasad7@gmail.com>,
-	Chukun Pan <amadeus@jmu.edu.cn>,
-	Jonas Karlman <jonas@kwiboo.se>
-Cc: linux-phy@lists.infradead.org,
-	devicetree@vger.kernel.org,
+	s=arc-20240116; t=1750737454; c=relaxed/simple;
+	bh=KMEHcEq0X+pga2fcQQgj1lL/UKHHxkGD3F5FhJ7ooD8=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=maj6hof726TlpBDUfEQ0DhF78U2uh8H6udJsPSoX+ra+JlvAL3EOJm/fWueVyAovbBoILBhRvAKGrXbnHHHjAAIMA2n0IYGvhh+nnii2wxWh/sf9Zh1Vlk36CZrdWaOJMrXrtCojib+SQHWmy0j84flQtRyyuPRyewmaLc3paYo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=d6RmFDjZ; arc=none smtp.client-ip=192.198.163.17
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1750737452; x=1782273452;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=KMEHcEq0X+pga2fcQQgj1lL/UKHHxkGD3F5FhJ7ooD8=;
+  b=d6RmFDjZKsU6F3wiF+g7YYpVC9m67JHq4fiE4Uf39aPATJjni+ozNzUn
+   wO0eSF/yQ19Rsm5ulUa4PsA7lc/oa2HrTdDNUmPR76Pc1UkKufBDJppHZ
+   D1VYo5Whk2FMZH736pxFwpHduB+JfUsEgHNvzMm39IW57Ewf87fuOK/UV
+   U91YXuRjP+doD75DeKbQe+FRzWOWuqjk0a/U4JZ6SPCl7Si5D3PoPMX9Q
+   7ooUpJvI7l/eAg3ZG+eSG/AL03aFU62u5794mwwbYy1mJMXfBtH+pHFnc
+   1rbAUh9N+fMK8HT8zB3GByM8eA5UZ53p9PzY73fMoHtxHOgGl0SPO1BBm
+   A==;
+X-CSE-ConnectionGUID: kQ/scjTbRxixVUxglGTWUw==
+X-CSE-MsgGUID: 3FgEbKxWTXmm8xdnAZ6jLw==
+X-IronPort-AV: E=McAfee;i="6800,10657,11473"; a="52900001"
+X-IronPort-AV: E=Sophos;i="6.16,260,1744095600"; 
+   d="scan'208";a="52900001"
+Received: from fmviesa004.fm.intel.com ([10.60.135.144])
+  by fmvoesa111.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 23 Jun 2025 20:57:25 -0700
+X-CSE-ConnectionGUID: VRKdCaRxSG6B/sLih1UGgA==
+X-CSE-MsgGUID: UwxYRyrQQxy2q7hZRfl5dw==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.16,260,1744095600"; 
+   d="scan'208";a="157282862"
+Received: from lkp-server01.sh.intel.com (HELO e8142ee1dce2) ([10.239.97.150])
+  by fmviesa004.fm.intel.com with ESMTP; 23 Jun 2025 20:57:22 -0700
+Received: from kbuild by e8142ee1dce2 with local (Exim 4.96)
+	(envelope-from <lkp@intel.com>)
+	id 1uTume-000RhR-2W;
+	Tue, 24 Jun 2025 03:57:20 +0000
+Date: Tue, 24 Jun 2025 11:56:58 +0800
+From: kernel test robot <lkp@intel.com>
+To: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
+	broonie@kernel.org
+Cc: llvm@lists.linux.dev, oe-kbuild-all@lists.linux.dev,
+	lgirdwood@gmail.com, robh@kernel.org, krzk+dt@kernel.org,
+	conor+dt@kernel.org, matthias.bgg@gmail.com,
+	angelogioacchino.delregno@collabora.com,
+	linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
 	linux-arm-kernel@lists.infradead.org,
-	linux-rockchip@lists.infradead.org,
-	linux-kernel@vger.kernel.org
-Subject: [PATCH v4 6/6] arm64: dts: rockchip: Add naneng-combphy for RK3528
-Date: Tue, 24 Jun 2025 03:37:33 +0000
-Message-ID: <20250624033733.50197-7-ziyao@disroot.org>
-In-Reply-To: <20250624033733.50197-1-ziyao@disroot.org>
-References: <20250624033733.50197-1-ziyao@disroot.org>
+	linux-mediatek@lists.infradead.org, kernel@collabora.com
+Subject: Re: [PATCH v1 2/6] regulator: Add support for MediaTek MT6316 SPMI
+ PMIC Regulators
+Message-ID: <202506241156.TWxCzjh3-lkp@intel.com>
+References: <20250623120016.108732-3-angelogioacchino.delregno@collabora.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20250623120016.108732-3-angelogioacchino.delregno@collabora.com>
 
-Rockchip RK3528 ships a naneng-combphy that is shared by PCIe and USB
-3.0 controllers. Describe it and the pipe-phy grf which it depends on.
+Hi AngeloGioacchino,
 
-Signed-off-by: Yao Zi <ziyao@disroot.org>
----
- arch/arm64/boot/dts/rockchip/rk3528.dtsi | 24 ++++++++++++++++++++++++
- 1 file changed, 24 insertions(+)
+kernel test robot noticed the following build warnings:
 
-diff --git a/arch/arm64/boot/dts/rockchip/rk3528.dtsi b/arch/arm64/boot/dts/rockchip/rk3528.dtsi
-index a22db9d4b518..31b27096566a 100644
---- a/arch/arm64/boot/dts/rockchip/rk3528.dtsi
-+++ b/arch/arm64/boot/dts/rockchip/rk3528.dtsi
-@@ -417,6 +417,11 @@ vpu_grf: syscon@ff340000 {
- 			reg = <0x0 0xff340000 0x0 0x8000>;
- 		};
- 
-+		pipe_phy_grf: syscon@ff348000 {
-+			compatible = "rockchip,rk3528-pipe-phy-grf", "syscon";
-+			reg = <0x0 0xff348000 0x0 0x8000>;
-+		};
-+
- 		vo_grf: syscon@ff360000 {
- 			compatible = "rockchip,rk3528-vo-grf", "syscon";
- 			reg = <0x0 0xff360000 0x0 0x10000>;
-@@ -1085,6 +1090,25 @@ dmac: dma-controller@ffd60000 {
- 			#dma-cells = <1>;
- 			arm,pl330-periph-burst;
- 		};
-+
-+		combphy: phy@ffdc0000 {
-+			compatible = "rockchip,rk3528-naneng-combphy";
-+			reg = <0x0 0xffdc0000 0x0 0x10000>;
-+			assigned-clocks = <&cru CLK_REF_PCIE_INNER_PHY>;
-+			assigned-clock-rates = <100000000>;
-+			clocks = <&cru CLK_REF_PCIE_INNER_PHY>,
-+				 <&cru PCLK_PCIE_PHY>,
-+				 <&cru PCLK_PIPE_GRF>;
-+			clock-names = "ref", "apb", "pipe";
-+			power-domains = <&power RK3528_PD_VPU>;
-+			resets = <&cru SRST_PCIE_PIPE_PHY>,
-+				 <&cru SRST_P_PCIE_PHY>;
-+			reset-names = "phy", "apb";
-+			#phy-cells = <1>;
-+			rockchip,pipe-grf = <&vpu_grf>;
-+			rockchip,pipe-phy-grf = <&pipe_phy_grf>;
-+			status = "disabled";
-+		};
- 	};
- };
- 
+[auto build test WARNING on broonie-regulator/for-next]
+[also build test WARNING on linus/master v6.16-rc3 next-20250623]
+[If your patch is applied to the wrong git tree, kindly drop us a note.
+And when submitting patch, we suggest to use '--base' as documented in
+https://git-scm.com/docs/git-format-patch#_base_tree_information]
+
+url:    https://github.com/intel-lab-lkp/linux/commits/AngeloGioacchino-Del-Regno/dt-bindings-regulator-Document-MediaTek-MT6316-PMIC-Regulators/20250623-200316
+base:   https://git.kernel.org/pub/scm/linux/kernel/git/broonie/regulator.git for-next
+patch link:    https://lore.kernel.org/r/20250623120016.108732-3-angelogioacchino.delregno%40collabora.com
+patch subject: [PATCH v1 2/6] regulator: Add support for MediaTek MT6316 SPMI PMIC Regulators
+config: i386-buildonly-randconfig-004-20250624 (https://download.01.org/0day-ci/archive/20250624/202506241156.TWxCzjh3-lkp@intel.com/config)
+compiler: clang version 20.1.2 (https://github.com/llvm/llvm-project 58df0ef89dd64126512e4ee27b4ac3fd8ddf6247)
+reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20250624/202506241156.TWxCzjh3-lkp@intel.com/reproduce)
+
+If you fix the issue in a separate patch/commit (i.e. not just a new version of
+the same patch/commit), kindly add following tags
+| Reported-by: kernel test robot <lkp@intel.com>
+| Closes: https://lore.kernel.org/oe-kbuild-all/202506241156.TWxCzjh3-lkp@intel.com/
+
+All warnings (new ones prefixed by >>):
+
+>> drivers/regulator/mt6316-regulator.c:205:14: warning: variable 'ret' is used uninitialized whenever 'if' condition is false [-Wsometimes-uninitialized]
+     205 |                 } else if (cur_mode == REGULATOR_MODE_IDLE) {
+         |                            ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+   drivers/regulator/mt6316-regulator.c:218:6: note: uninitialized use occurs here
+     218 |         if (ret) {
+         |             ^~~
+   drivers/regulator/mt6316-regulator.c:205:10: note: remove the 'if' if its condition is always true
+     205 |                 } else if (cur_mode == REGULATOR_MODE_IDLE) {
+         |                        ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+   drivers/regulator/mt6316-regulator.c:189:19: note: initialize the variable 'ret' to silence this warning
+     189 |         int cur_mode, ret;
+         |                          ^
+         |                           = 0
+>> drivers/regulator/mt6316-regulator.c:193:25: warning: variable 'regmap' is uninitialized when used here [-Wuninitialized]
+     193 |                 ret = regmap_set_bits(regmap, info->modeset_reg, info->modeset_mask);
+         |                                       ^~~~~~
+   drivers/regulator/mt6316-regulator.c:188:23: note: initialize the variable 'regmap' to silence this warning
+     188 |         struct regmap *regmap;
+         |                              ^
+         |                               = NULL
+   2 warnings generated.
+
+
+vim +205 drivers/regulator/mt6316-regulator.c
+
+   183	
+   184	static int mt6316_regulator_set_mode(struct regulator_dev *rdev,
+   185					     unsigned int mode)
+   186	{
+   187		struct mt6316_regulator_info *info = rdev_get_drvdata(rdev);
+   188		struct regmap *regmap;
+   189		int cur_mode, ret;
+   190	
+   191		switch (mode) {
+   192		case REGULATOR_MODE_FAST:
+ > 193			ret = regmap_set_bits(regmap, info->modeset_reg, info->modeset_mask);
+   194			break;
+   195		case REGULATOR_MODE_NORMAL:
+   196			cur_mode = mt6316_regulator_get_mode(rdev);
+   197			if (cur_mode < 0) {
+   198				ret = cur_mode;
+   199				break;
+   200			}
+   201	
+   202			if (cur_mode == REGULATOR_MODE_FAST) {
+   203				ret = regmap_clear_bits(regmap, info->modeset_reg, info->modeset_mask);
+   204				break;
+ > 205			} else if (cur_mode == REGULATOR_MODE_IDLE) {
+   206				ret = regmap_clear_bits(regmap, info->lp_mode_reg, info->lp_mode_mask);
+   207				if (ret == 0)
+   208					usleep_range(100, 200);
+   209			}
+   210			break;
+   211		case REGULATOR_MODE_IDLE:
+   212			ret = regmap_set_bits(regmap, info->lp_mode_reg, info->lp_mode_mask);
+   213			break;
+   214		default:
+   215			ret = -EINVAL;
+   216		}
+   217	
+   218		if (ret) {
+   219			dev_err(&rdev->dev, "Failed to set mode %u: %d\n", mode, ret);
+   220			return ret;
+   221		}
+   222	
+   223		return 0;
+   224	}
+   225	
+
 -- 
-2.49.0
-
+0-DAY CI Kernel Test Service
+https://github.com/intel/lkp-tests/wiki
 
