@@ -1,150 +1,178 @@
-Return-Path: <devicetree+bounces-189001-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-189002-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6097EAE650A
-	for <lists+devicetree@lfdr.de>; Tue, 24 Jun 2025 14:33:05 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5CB83AE6527
+	for <lists+devicetree@lfdr.de>; Tue, 24 Jun 2025 14:36:41 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 2A7B419255A5
-	for <lists+devicetree@lfdr.de>; Tue, 24 Jun 2025 12:31:59 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 8E4A41885A6D
+	for <lists+devicetree@lfdr.de>; Tue, 24 Jun 2025 12:36:33 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7928B295DA6;
-	Tue, 24 Jun 2025 12:30:31 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7E8B52882A1;
+	Tue, 24 Jun 2025 12:36:12 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="Pe3zE9vM"
+	dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b="PfOa3l91"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [213.167.242.64])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E8AEF290D8F
-	for <devicetree@vger.kernel.org>; Tue, 24 Jun 2025 12:30:29 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C8DE227A913;
+	Tue, 24 Jun 2025 12:36:10 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=213.167.242.64
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1750768231; cv=none; b=Y6Wk6ZhTGQeAZdn38/Z+sJmkBxiKsxInjlNhPchaB9V8yiFR2r4pOqzz18TBIT+9CPq96cNCeulZ0OFZAN6SJdxTKoJf77xSj1kRaiD3la0sVs4bGybmsr/KAHezcOWbn0lpdR3vQig8c4nmkr4Kly7WXcd58yhYqBwiO+Kmhy0=
+	t=1750768572; cv=none; b=QL7TrN63MJVMZ2YAJUVnlRC1rt5tqVtdx9zvQFRXZ3D74wII2lEPpX2XDJ/+sIyTz+Yt+5j3MFCEe8grTRxWIvZiSmVvSXUntcdcZL9FYnmojSJDmE4vfv05ecA2rdlSqdWiyPPQ31mmo2CaHTlJiUVMMA382fHgXY8sV/onydg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1750768231; c=relaxed/simple;
-	bh=p3Vh7ppCkQ3RhWt9SYYMNRFLOMQlUdGhaIX1EKs0T8s=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=WnXVY3HcwGpUxkJvjZX/ZkHEaKrb9KATT2H5GHMRHibvtPyt3FsEafDi5b8Ht5zWRhyJdu8SFd4bCw/Q5+ItaptEJfSZs9TJWH3fKX15YoizNdxQsT2FwcAc+nmaKCUtIOfCb6koEorVd8QWmNYsdepTPHKx6BaOg4zoP6nFDhc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=Pe3zE9vM; arc=none smtp.client-ip=205.220.168.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
-Received: from pps.filterd (m0279863.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 55O7D6gR025855
-	for <devicetree@vger.kernel.org>; Tue, 24 Jun 2025 12:30:29 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	o36MmkVKK8n8t/NEFQfn2PX3WeZ8yojvxiHzllPypds=; b=Pe3zE9vMJbgJ8yex
-	1RR071wmOaPsVPWxsBATSJL46okgYVo1aeK6Jy50gMzwGYejmMqVBK0WsxG6X8c4
-	pFPvl2HqH/UEbev8lECbev0J4OEnJf/V2Itq1P53Qwp3WdwoF4OJIO99cljvk89Q
-	A//Cbo3GgsURIt8BwK9/6l65C4e7kBetgFnVnAmWtSe8wGLkCW5+hveFcBupQXYh
-	ey3dFKUiq+Ami+Yi608HZ8vwFkwcT2uJv/g9LiCVnCLUmaEePMRlQANbVMUbxE0+
-	snLIA/SG7CJV8wT48cWPmJtja8TXEwe0os4yKcFLMgHE3laGGvAETSrlb3OFfwds
-	u1N1sg==
-Received: from mail-qk1-f197.google.com (mail-qk1-f197.google.com [209.85.222.197])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 47emcmnqqd-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Tue, 24 Jun 2025 12:30:28 +0000 (GMT)
-Received: by mail-qk1-f197.google.com with SMTP id af79cd13be357-7c5af539464so150351885a.0
-        for <devicetree@vger.kernel.org>; Tue, 24 Jun 2025 05:30:28 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1750768227; x=1751373027;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=o36MmkVKK8n8t/NEFQfn2PX3WeZ8yojvxiHzllPypds=;
-        b=F3Pyx7ZckfsgMZzbg0sDo0ZiAw7Kbh5y3rnvMDfswhszNz2TGRzu9FoQBuv+gc+qyq
-         qaq/id3/CTPG7g2uRdReTIh9g19C57iyq88ZDVD7HLpNLbPZTDEuQcxn8FGowukkICWA
-         O7tfrSA44aflduS0cZLQugDzsZP7Xtipct+b8DdzPzuDn3fs9daQ4ISUEBcDGcecgS1J
-         L7wFca6y62KL6CbvxS9xmTYoevTzPsTVg7c809dcNHBNMogBIhVU/P90syQIBoZsWeUa
-         x2D2putTAkNu5I8q4RbF9bzXSldb1d8AB3LY6UfI7LzwKSccasp1Pe+zOPX4rkXbgnC2
-         r5Lg==
-X-Forwarded-Encrypted: i=1; AJvYcCWxWXQxuLP6ik0hJzO3jIfFwoibQvVPCJsyRg+jnFVwvF7B+PQlniYzfjrWK9X1d95aCYstMX7E80Fw@vger.kernel.org
-X-Gm-Message-State: AOJu0Yxy0gspg9NkWxfp2QCeZ5CJNvavDXapVddJzBKK7hEjDE/LSt5F
-	b8sI1ikD/3DVnUv1bYhqnrtQyBM8Uv9pqsCtpp/Vo4z0W7B7zFQweuaMOionkA1iC6Vn2Y5r4Sw
-	mdbhwmHN9H8MKbLQeL6LKTs0MjG8pJ2iI3vLYfuQXZJE8aYqX7QLk5V3G0knPZKAh
-X-Gm-Gg: ASbGncuC2tyKVtZYF0t6H62QBLy+WfdQYqC2CsAi9Tz4g+nRN4vnm+tXWtCKIYndsja
-	mEdMgRLeGYBc2mDvQbKNsp0rp0vdf7lNyCypD8meGIuU9gHbB8/gWlJRcXRdarLdnRy95brR21w
-	JL7hIsUkXMRDcpwSZ8TZmTlV0p7fTU0AJaTEv9J3Oq57qAejMIlmaUYYP7OeYU1mOW3kCTdEUfc
-	KXCkdA++NX7n17Ty+s7s1A/hFGuiJ/Rc88z4vmjP5FV1bi5TvHAyi4NVIlVSTUtNA/SvKwC7U05
-	/YhCjdifhQ+Hr96+A7tYuVpBR/On0EWqfJGFQ6PbYmkhzY367uwSLe8gn9ageg4k7y6h7Gzi402
-	DP+g=
-X-Received: by 2002:a05:620a:2903:b0:7cd:4a08:ea12 with SMTP id af79cd13be357-7d3f98234f9mr843647885a.0.1750768227451;
-        Tue, 24 Jun 2025 05:30:27 -0700 (PDT)
-X-Google-Smtp-Source: AGHT+IGJpYE0/DUFqd1ePpeiVHIpeqkBy3Rf7f7lqO4eXnZNh5L7fNWwe1Er9MbGPKljDCw7XvPFOg==
-X-Received: by 2002:a05:620a:2903:b0:7cd:4a08:ea12 with SMTP id af79cd13be357-7d3f98234f9mr843644185a.0.1750768226844;
-        Tue, 24 Jun 2025 05:30:26 -0700 (PDT)
-Received: from [192.168.143.225] (078088045245.garwolin.vectranet.pl. [78.88.45.245])
-        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-ae0541b719fsm862758866b.128.2025.06.24.05.30.24
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 24 Jun 2025 05:30:26 -0700 (PDT)
-Message-ID: <4f026872-f600-4940-a6a0-ccb0b677be5b@oss.qualcomm.com>
-Date: Tue, 24 Jun 2025 14:30:24 +0200
+	s=arc-20240116; t=1750768572; c=relaxed/simple;
+	bh=ud89OFlq8Us9+ydGvsZ6QhMLLYbGqlgQJvRBMujxdN0=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=FjcbI/xz+b/8I9rG3wOJd9O8zoOad8Z7pS0/UlxtRTRhZWfeasQXP64P2BO5//XYtDbNxh5nzbWefrDkonfQEuKO9zzzUBhK9ECoSDsQiMuhWgpGLS/i3hfAauXAQCw/FG3Hlo44Y/hiQCYtJRQzQcZMxjgw3VyYxvQZJUbchUs=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ideasonboard.com; spf=pass smtp.mailfrom=ideasonboard.com; dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b=PfOa3l91; arc=none smtp.client-ip=213.167.242.64
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ideasonboard.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ideasonboard.com
+Received: from [127.0.1.1] (cpc141996-chfd3-2-0-cust928.12-3.cable.virginm.net [86.13.91.161])
+	by perceval.ideasonboard.com (Postfix) with ESMTPSA id D3686C72;
+	Tue, 24 Jun 2025 14:35:50 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
+	s=mail; t=1750768551;
+	bh=ud89OFlq8Us9+ydGvsZ6QhMLLYbGqlgQJvRBMujxdN0=;
+	h=From:Subject:Date:To:Cc:From;
+	b=PfOa3l91G99JDuYOqphh2WfBESVWM+brr90PWPPeo86fuO9CL+hdV8qpySdp0dTW9
+	 fJHBELsJIBd9/QX0ZjBE3CSO3WPvCvnzmiSDuHAl+CLxy/Kh+7zh0a+yqZ+pnDItYQ
+	 QtjFq/339Ug5+JMtcT3uD7f+QlAGNBeb0Ijx0cKc=
+From: Daniel Scally <dan.scally@ideasonboard.com>
+Subject: [PATCH v2 0/3] Add Input Video Control Block driver for RZ/V2H
+Date: Tue, 24 Jun 2025 13:35:57 +0100
+Message-Id: <20250624-ivc-v2-0-e4ecdddb0a96@ideasonboard.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3] arm64: dts: qcom: x1e80100-lenovo-yoga-slim7x: add
- Bluetooth support
-To: jens.glathe@oldschoolsolutions.biz,
-        Bjorn Andersson
- <andersson@kernel.org>,
-        Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>
-Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org,
-        Stephan Gerhold <stephan.gerhold@linaro.org>,
-        Anthony Ruhier <aruhier@mailbox.org>
-References: <20250624-slim7x-bt-v3-1-7ada18058419@oldschoolsolutions.biz>
-Content-Language: en-US
-From: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
-In-Reply-To: <20250624-slim7x-bt-v3-1-7ada18058419@oldschoolsolutions.biz>
-Content-Type: text/plain; charset=UTF-8
+Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-X-Proofpoint-GUID: t3GvuxgS2Pi3BpajNg744DpIPnwhMxoX
-X-Proofpoint-ORIG-GUID: t3GvuxgS2Pi3BpajNg744DpIPnwhMxoX
-X-Authority-Analysis: v=2.4 cv=J+eq7BnS c=1 sm=1 tr=0 ts=685a9a64 cx=c_pps
- a=50t2pK5VMbmlHzFWWp8p/g==:117 a=FpWmc02/iXfjRdCD7H54yg==:17
- a=IkcTkHD0fZMA:10 a=6IFa9wvqVegA:10 a=gxl3bz0cAAAA:8 a=b3CbU_ItAAAA:8
- a=EUspDBNiAAAA:8 a=XJvFTVVEtqmPlk0kGFkA:9 a=QEXdDO2ut3YA:10
- a=IoWCM6iH3mJn3m4BftBB:22 a=kiRiLd-pWN9FGgpmzFdl:22 a=Rv2g8BkzVjQTVhhssdqe:22
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwNjI0MDEwNSBTYWx0ZWRfX4y5BSz0KlWui
- O/2Rb6MNsaZ9mBkaLUaJdFVYZh9RUHU/O6mHIP3OB/O+cTkfSGIpvxDkiVzYiZvK4uoZ0Z2FEl3
- gSCA59xir9oMS73TMfy34Sp8IUJ31RPyWXvKa5nHjIZF96qcEGwFsT2OcKCDPuFJgesOvABE6wz
- obPAKG4JRSrojQgFDJI42pRZKTucQahFuNv3ovI0L/SR3VqFKar7gjtQDUdqcdW/U0QPNvi3GJN
- MYbkOdLF8iNxK9BtjEG6oTQp3T3JriYBeoW2TupaAey3BPl2wUGhtx0bSxN+CsUrpWGpJsnb9QX
- 8w7yCW7ovuEb8sUf+R9dD2x6VyuUYgqRQKxZxF0Vp691FQwbLequhiuNzTRDfEPUqbF9lLC8CyC
- YdbJkoEv1DmLQ6kUecUwtOCa7xUsTyikI9F8MhQgRG/xUckYqst9Xt7lLcVx94rUWLjfMoum
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1099,Hydra:6.1.7,FMLib:17.12.80.40
- definitions=2025-06-24_04,2025-06-23_07,2025-03-28_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- bulkscore=0 mlxlogscore=898 adultscore=0 impostorscore=0 clxscore=1015
- spamscore=0 malwarescore=0 phishscore=0 priorityscore=1501 suspectscore=0
- mlxscore=0 lowpriorityscore=0 classifier=spam authscore=0 authtc=n/a authcc=
- route=outbound adjust=0 reason=mlx scancount=1 engine=8.19.0-2505280000
- definitions=main-2506240105
+X-B4-Tracking: v=1; b=H4sIAK2bWmgC/3WPy07DMBBFf6Xymon8GjvOiv9AXfjZGiUx2GkEV
+ P13LIoEC1hezT1Xc66kxZpjI9PhSmrcc8tl7YE/HIg/2/UUIYeeCaccqeIS8u5hFCJwKbRiSpP
+ efKkx5bevladjz6mWBbZzjfaHRWaYRI1ykCgpRWAQ7Do0b+f5/TGHaFtZXbE1DL4s36s1vl76S
+ 9t9mjjbIvTrkrfpwAzX3AltrUyj8Ba5C8l4pgKGkbkQmEApjSS/VbrZXURA/TjxGXy9gPbdRTP
+ rqOfTjv8BSwzZwnNxDVQSyRglqBJ+2vnfhASPCE54oRyPLIy9yig53m6fX0b3qHYBAAA=
+X-Change-ID: 20250624-ivc-833d24376167
+To: linux-media@vger.kernel.org, devicetree@vger.kernel.org, 
+ linux-renesas-soc@vger.kernel.org
+Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, 
+ Geert Uytterhoeven <geert+renesas@glider.be>, 
+ Magnus Damm <magnus.damm@gmail.com>, Philipp Zabel <p.zabel@pengutronix.de>, 
+ jacopo.mondi@ideasonboard.com, biju.das.jz@bp.renesas.com, 
+ Daniel Scally <dan.scally@ideasonboard.com>
+X-Mailer: b4 0.14.2
+X-Developer-Signature: v=1; a=openpgp-sha256; l=4821;
+ i=dan.scally@ideasonboard.com; h=from:subject:message-id;
+ bh=ud89OFlq8Us9+ydGvsZ6QhMLLYbGqlgQJvRBMujxdN0=;
+ b=owEBbQKS/ZANAwAKAchJV3psRXUyAcsmYgBoWpu2s770ghA4fUqhGMCx6Ye+PQZ84gM0zW25H
+ VVKboR1Jw6JAjMEAAEKAB0WIQQqyuwyDnZdb+mxmm/ISVd6bEV1MgUCaFqbtgAKCRDISVd6bEV1
+ MmVND/9yONclVrUfmbjD/eZ8RwlPHiaCCtMTS58IFSfi22hlWCFBeCDHyENuYSrcKcOeRB8011h
+ GmM0w27Yb9FokS34aoYFMByKjBoXbvtS7BTUbvcb6hyU0HowZlyUaNe+Fk3wmcLtTekZHnB+Yfy
+ AX1leVCHeaIykbtObqmTXqOc3+3PVuGOUrKovB+PARVuAgBN+X8u1scbY2hDWU9IC2zG2O2rdgo
+ zZu+aW6MxtZPhfXX58ysY5cuAo28/O8XqGI+2nEaRcMehLfp8Qg6e9rUbvg9bs1oeyZ1GAWD+N7
+ UyD84IwdpP9GkMyOoGkDeySgn+cBNgfwAjeG5E053eugO+Jyckmvh8vP2uG90VwMCzx0jptCcNK
+ SpimA6SSSO0Mvhz1DI0j+pufp5XhEH1P6o0bC24bfFtBDG376SU/7ZAPOjckPkeTEWaTxMr2qWu
+ HjhYoz/ikWMu/fsZZiDbOyInKwo31Aj3HvZTxof3Ff1C/p0obPPfJQzhl35w3yMYM+hi6OPI76n
+ myDiwg3mFfxSXmt04+VXVOJnaEmWh0mZx1dSm87eIdKxgoKNbTttkZDUV2KdMek/lrCExIn/fgE
+ pL0JpJJCdMvhvOQJnm7Cotj4vSe1weqGE04saRMFFa2sv1+tbAohDsasvf59Wc56tLUxmZr7A/p
+ xjCCeoQXfWJY9pA==
+X-Developer-Key: i=dan.scally@ideasonboard.com; a=openpgp;
+ fpr=EEC699ACA1B7CB5D31330C0BBD501C2A3546CCF6
 
-On 6/24/25 8:46 AM, Jens Glathe via B4 Relay wrote:
-> From: Jens Glathe <jens.glathe@oldschoolsolutions.biz>
-> 
-> To enable Bluetooth pwrseq appears to be required for the WCN7850.
-> Add the nodes from QCP, add the TODO hint for vreg_wcn_0p95 and
-> vreg_wcn_1p9
-> Add uart14 for the BT interface.
-> 
-> Tested-by: Anthony Ruhier <aruhier@mailbox.org>
-> Signed-off-by: Jens Glathe <jens.glathe@oldschoolsolutions.biz>
-> ---
+Hello all
 
-Reviewed-by: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
+This series adds a driver for the Input Video Control Block in the
+RZ/V2H SoC. The IVC block transmits input image data from memory to
+the ISP core (on this SoC, a Mali-C55 ISP). The driver registers an
+output video device for userspace to queue image buffers to. One
+noteworthy feature is that - because it is not a part of the main ISP
+drive - the IVC driver also registers a subdevice, which connects to
+the media device created by the ISP driver through the usual v4l2
+async framework. This requires delaying the registration of the video
+device until the .registered() callback of the subdevice, so that the
+struct v4l2_dev pointer the subdevice connected to can be set to the
+video device.
 
-Konrad
+To facilitate communication between the ISP driver and the IVC driver
+we use the new media jobs framework that was posted recently [1]. The
+series is also based on top of the latest version of the Mali-C55
+driver [2] and some updates to rzg2l-cru [3].
+
+Note that this is not quite ready to merge, as there's an outstanding
+bug that sometimes causes the driver to hang. The device should fire
+two interrupts per frame; once on completion of data transmission and
+once on expiration of the blanking period. The second interrupt seems
+sometimes not to arrive, and at the moment the problem is worked
+around with a timeout in rzv2h_ivc_send_next_buffer(). We're working
+on that issue, but because the driver lends helpful context to the
+media jobs and mali-c55 series (and is probably otherwise ready for
+comment too) I wanted to post it.
+
+Thanks
+Dan
+
+[1] https://lore.kernel.org/linux-media/20250624-media-jobs-v2-0-8e649b069a96@ideasonboard.com/T/#t
+[2] https://lore.kernel.org/linux-media/20250624-c55-v10-0-54f3d4196990@ideasonboard.com/T/#t
+[3] https://lore.kernel.org/linux-media/20250623-rzg2l-cru-v5-0-1663a8c6719a@ideasonboard.com/T/#t
+
+---
+Daniel Scally (3):
+      dt-bindings: media: Add bindings for the RZ/V2H IVC block
+      media: platform: Add Renesas Input Video Control block driver
+      MAINTAINERS: Add entry for rzv2h-ivc driver
+
+ .../bindings/media/renesas,rzv2h-ivc.yaml          | 103 ++++
+ MAINTAINERS                                        |   7 +
+ drivers/media/platform/renesas/Kconfig             |   2 +
+ drivers/media/platform/renesas/Makefile            |   1 +
+ drivers/media/platform/renesas/rzv2h-ivc/Kconfig   |  15 +
+ drivers/media/platform/renesas/rzv2h-ivc/Makefile  |   5 +
+ .../platform/renesas/rzv2h-ivc/rzv2h-ivc-dev.c     | 237 +++++++
+ .../platform/renesas/rzv2h-ivc/rzv2h-ivc-subdev.c  | 379 ++++++++++++
+ .../platform/renesas/rzv2h-ivc/rzv2h-ivc-video.c   | 678 +++++++++++++++++++++
+ .../media/platform/renesas/rzv2h-ivc/rzv2h-ivc.h   | 133 ++++
+ 10 files changed, 1560 insertions(+)
+---
+base-commit: 19272b37aa4f83ca52bdf9c16d5d81bdd1354494
+change-id: 20250624-ivc-833d24376167
+prerequisite-change-id: 20250623-rzg2l-cru-7c43771ab0c2:v5
+prerequisite-patch-id: 13afcc3f1921d6357cb2d1107945b2d463ee7c88
+prerequisite-patch-id: ff9cfd027783e4943f1281d793dcaf447964c724
+prerequisite-patch-id: a8de5362397c6a4b1d8f43acb123ebbdc4102192
+prerequisite-patch-id: df748b118c52fd426b2701079da8fc0001a71807
+prerequisite-patch-id: a90c6c67405fc348afee8e5b706a868f34838ff8
+prerequisite-patch-id: 0432fd246e55b5cee5c9466c86929ff2fc4388e4
+prerequisite-change-id: 20250623-media-jobs-6f3f9963063c:v2
+prerequisite-patch-id: 0852507344c44fcf4fa3d2a831c01ab23b9dcffb
+prerequisite-patch-id: 039d718b90b570bc4c2766b9da20db9e6bdb5c9b
+prerequisite-patch-id: 78e666f180a0650b8ddcdaad933c886d095c8a4c
+prerequisite-change-id: 20250624-c55-b3c36b2e1d8c:v10
+prerequisite-patch-id: ecc5483454fc52289c093e711d5423e1cdd8bc3b
+prerequisite-patch-id: 1aea6316a2a4a7b56316dbef3ca6034de6ec1672
+prerequisite-patch-id: d4b1a5d9a111ebabc6d7c6a14975c361347ae237
+prerequisite-patch-id: e9aa66a8455fc64be546098dcb0573567ca0a389
+prerequisite-patch-id: e3d958df2440718af06d00ba377126fd9179db1b
+prerequisite-patch-id: f5b45201442182e653991c1d83d70408cfa8e15c
+prerequisite-patch-id: 7ce6b20a0536b6082c0a7ae087202be1bfa140cc
+prerequisite-patch-id: dff49267a0db686172ae90cee86ad82af985b292
+prerequisite-patch-id: 8b5b0ff8043abbe1eb15c005697a91171365e272
+prerequisite-patch-id: 67c6aaf1985cc437c3a82ab88e1b5fbd14bb0737
+prerequisite-patch-id: 09c97e68cbd196d71d289ba2ee71ad6752f7f03d
+prerequisite-patch-id: f450563b57238d7a3984615265ef716de8a58379
+prerequisite-patch-id: 21c8172febed94fe2c42598c927d474574f36b78
+prerequisite-patch-id: 8f4c5c8f7aca170aa951b0ce02a6720a47a231da
+prerequisite-patch-id: 84e105b37245734f9c424d9a0dc4df1401a6315b
+prerequisite-patch-id: b4aee35d1fa86fd955dde9aab38d1537aa0beb67
+prerequisite-patch-id: 179d60e0accb732eda19e9c36687fb42b5488207
+
+Best regards,
+-- 
+Daniel Scally <dan.scally@ideasonboard.com>
+
 
