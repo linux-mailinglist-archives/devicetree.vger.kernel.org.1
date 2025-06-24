@@ -1,191 +1,262 @@
-Return-Path: <devicetree+bounces-188997-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-188998-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 13786AE6499
-	for <lists+devicetree@lfdr.de>; Tue, 24 Jun 2025 14:20:48 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 56A4CAE64C8
+	for <lists+devicetree@lfdr.de>; Tue, 24 Jun 2025 14:25:38 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 73541188F38F
-	for <lists+devicetree@lfdr.de>; Tue, 24 Jun 2025 12:19:27 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id E3452189E557
+	for <lists+devicetree@lfdr.de>; Tue, 24 Jun 2025 12:23:29 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4226728CF75;
-	Tue, 24 Jun 2025 12:15:20 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C9164291C37;
+	Tue, 24 Jun 2025 12:21:26 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="bNEdlFI4"
+	dkim=pass (2048-bit key) header.d=riscstar-com.20230601.gappssmtp.com header.i=@riscstar-com.20230601.gappssmtp.com header.b="S/2cixln"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.7])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-yb1-f180.google.com (mail-yb1-f180.google.com [209.85.219.180])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 71B322882A9;
-	Tue, 24 Jun 2025 12:15:18 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.198.163.7
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B455B291C35
+	for <devicetree@vger.kernel.org>; Tue, 24 Jun 2025 12:21:24 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.219.180
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1750767320; cv=none; b=akq3a7+drnbHUKaHQaeXSz//+oSY1yYBu/JsHcILh/9mOJMYweOVx6fXcDTLkv42BWFYTt3uLRCWtU8ByZsLNKvWiLX+Knpf7cmOiFjiAuRUx1kRwZ82dH086phwz8ftyCBRjj4oeyfJIia4g+EbEhNXlNatRjTqBSeSHx/mNy4=
+	t=1750767686; cv=none; b=D+kTlinjIqWBYoXT8eGJ/sD+wamSi2JWZCHIalxdYQsuKT+1bNYhg4Li02AikJzsc2XquXlBfJWkttWlzkWrWXgJD7YeNhdL5bUfm8KZ/9RRjaUg3PYk/aBO6nuiX4y4nzkAxqYaPaJ1KKpI9cTXahKckwytYLBeuwoGN3m3uX0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1750767320; c=relaxed/simple;
-	bh=RS3Ir0XcZ0wtTv3mLgddInGQ7GnUnQCjtJ18Ke5dvSs=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=EI4UQfCC2Fkr2My/SnFt6oE5k4eJI33rOxCH7qDpoZTEfO7VZFAQ1u1+Qd+QF+nGq8PD+/0QsigacnFYBsLn/iAoN92zPMLbigXALUA6nfxUlvAnZ7XIWvWbI9FvXf4T3THvgRl5itZCp0bJrPTtzHSBZXPd+zeou+LXZZwPbW0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=bNEdlFI4; arc=none smtp.client-ip=192.198.163.7
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1750767318; x=1782303318;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=RS3Ir0XcZ0wtTv3mLgddInGQ7GnUnQCjtJ18Ke5dvSs=;
-  b=bNEdlFI43fANoe8ulXaDdFPRH4gM37lQxFNo6tjeXHPqwU/rqHTC3lXi
-   ylK0IMoVf90+m119HgNdZplv4osxeza4LTlM7Xk2fk+pfPR3zjAmlTj8i
-   rxfzBxrpY4cqkP6iSijSsHuISRSHSTGT9YzIF0axvrb1Ui4CARbFBdDfQ
-   ODuVpYe3bz8VOLWjRqpnwcUjY+y1+xOX3T4W1Pt9PM9Hu+aUeWW3O0FyT
-   +6zVNFCwnRCUMw3jk0DRm1FcWeVdhFClIdFVChnENR/gUUXfgW1+/yvbT
-   +uNoR3fNkHBvvN1FQpK8opDi08Jfp2ED/gt+9v9rqBP1PRAqg+khfOJiX
-   w==;
-X-CSE-ConnectionGUID: 1irAqlk9TiWYqzucKT2t0A==
-X-CSE-MsgGUID: norpp/qmSxOmsZczG+F9sw==
-X-IronPort-AV: E=McAfee;i="6800,10657,11474"; a="78423405"
-X-IronPort-AV: E=Sophos;i="6.16,261,1744095600"; 
-   d="scan'208";a="78423405"
-Received: from orviesa003.jf.intel.com ([10.64.159.143])
-  by fmvoesa101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 24 Jun 2025 05:15:18 -0700
-X-CSE-ConnectionGUID: KMhT0jvkQG6oua368CzdYg==
-X-CSE-MsgGUID: WAduLzKvSmGFelTHd0uYrA==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.16,261,1744095600"; 
-   d="scan'208";a="156295716"
-Received: from lkp-server01.sh.intel.com (HELO e8142ee1dce2) ([10.239.97.150])
-  by orviesa003.jf.intel.com with ESMTP; 24 Jun 2025 05:15:13 -0700
-Received: from kbuild by e8142ee1dce2 with local (Exim 4.96)
-	(envelope-from <lkp@intel.com>)
-	id 1uU2YR-000S5m-0z;
-	Tue, 24 Jun 2025 12:15:11 +0000
-Date: Tue, 24 Jun 2025 20:14:32 +0800
-From: kernel test robot <lkp@intel.com>
-To: Benjamin Gaignard <benjamin.gaignard@collabora.com>, joro@8bytes.org,
-	will@kernel.org, robin.murphy@arm.com, robh@kernel.org,
-	krzk+dt@kernel.org, conor+dt@kernel.org, heiko@sntech.de,
-	nicolas.dufresne@collabora.com, jgg@ziepe.ca
-Cc: llvm@lists.linux.dev, oe-kbuild-all@lists.linux.dev,
-	iommu@lists.linux.dev, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-	linux-rockchip@lists.infradead.org, kernel@collabora.com,
-	Benjamin Gaignard <benjamin.gaignard@collabora.com>
-Subject: Re: [PATCH v4 3/5] iommu: Add verisilicon IOMMU driver
-Message-ID: <202506242057.NVRNN4W1-lkp@intel.com>
-References: <20250623153931.158765-4-benjamin.gaignard@collabora.com>
+	s=arc-20240116; t=1750767686; c=relaxed/simple;
+	bh=lgI8rPf/30CT9dejJ5LxKgvQMKLxnvAGZzdJaKmX/H8=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=IJ3DFL0LVU3IgCxW92m1N1hyGiPvTgXhodHUMMK+7W6Vpx4soapmIc0zd4+dFxe8W3OFv9difqaYl/YQ6aNVrRnFQg3UKvgE00XO+QX1IJnsSQFA1nXFvG0dv7ajqHnSN0nk4iwPCovliPWhubUb1wSnTm2BoutYpyJJSa2bbW0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=riscstar.com; spf=pass smtp.mailfrom=riscstar.com; dkim=pass (2048-bit key) header.d=riscstar-com.20230601.gappssmtp.com header.i=@riscstar-com.20230601.gappssmtp.com header.b=S/2cixln; arc=none smtp.client-ip=209.85.219.180
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=riscstar.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=riscstar.com
+Received: by mail-yb1-f180.google.com with SMTP id 3f1490d57ef6-e75668006b9so4759171276.3
+        for <devicetree@vger.kernel.org>; Tue, 24 Jun 2025 05:21:24 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=riscstar-com.20230601.gappssmtp.com; s=20230601; t=1750767684; x=1751372484; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=sdt6FPscbYSKb9tt2vK8+IJrClb5NOhYOEtuhJW4Z+s=;
+        b=S/2cixlnlQXgeWINsH+Bw4SrJW4OCfwy2dziE/ponJ8l4POwvuG2ymAL3GZ+IYcL7W
+         kzZuE1JBV+RizQWLOXsRPQvlLLnnLAkDaMy/0iQLdYK4OqO2OW2EWBKS19YF+XgHwoh0
+         jaTKn7ti1sagrE0O/mjU7AxSMFXANgVWxTJrH52o07Rr137HvR3xmM+4PA8t7ACKY3D9
+         kPloMYn/WWhgXKTozwAh4Rkyfxh4ivr95lr6C80OBkuLWCWw0vsG0AxRSPvNDi4FhwDV
+         wBRHicNBf8WxLPZ05Noq3bn6KMB7cgza1PtCmBDm++9GH0UuYOa+Cj4gztXzzdBbjUNp
+         8RVQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1750767684; x=1751372484;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=sdt6FPscbYSKb9tt2vK8+IJrClb5NOhYOEtuhJW4Z+s=;
+        b=aQ7cqWZKEdWcF9ER+gsEYPkoRjtuN8lct0GUiSVY3pIDLEkTEQU/qcIhEhgyX6kRbm
+         Ql5ioIRBUGXbAkqNjjFcYb5meduzgQrOkgDzC4RqoJVOOQhgWBU5HfWebokr3LHsK7bG
+         e5BM7oLFkhmB6UVx+bov42Kbxzkq3h68sF2cIONeDozYZcIPsQBj3kdR3tSYz4eECfxF
+         pLCGqKkzvXDq64CGEmS0V6UDksltoul4gmOu0zVW4hs4SwLlglgeAP8cMKhy8+y3+bop
+         ImEq16KIGhZVOeaicF0IXWHcGyISuqQxsFTQxhQ0G4+5Aam7ZN8SJ+I8IkXi5Ttz+W/w
+         R6bg==
+X-Forwarded-Encrypted: i=1; AJvYcCUwhfMNj0K9Oj6NaYqcXCb2UYwYq0eklgrL3l+e6Dz/WGuIqrFkLYB6YBFnUJrRut1W/a2qrXCkwI86@vger.kernel.org
+X-Gm-Message-State: AOJu0YxVKdzqKv11ZOVba8YqIwPPh5U/F0FXKSJQ5/pF3lPTHPdEK591
+	gzOtIUT/p9p186NbePtwhJ3FQ6UdJ9uoP1O6gf7psS5BIy77TqnIfPxmmTczwA7JfFQt35ITEGA
+	vzzq+dkaoIaXri+HLp8Y60e0ILumLhcCC1We+fk/FBA==
+X-Gm-Gg: ASbGncthQNwbsvfLfSo+QKWKXPNdyCcNgUoy4FlbcjCmjIf+x8yRQj04Rll/cBxEA8G
+	tZSbWfzm3nSg045Ga3QmTu7GkvoLn794jGrb5Pk1gZ+XZgn1NB0q1ZynI5cbIjOwTT6mzCLxRLD
+	6E6Ggz6SZD094mxxLoMqxWHJ29LFoNtNnYU4Uv8ksT624htMjh
+X-Google-Smtp-Source: AGHT+IGJixjtqEgMzZmY1PuXA7TtT2lF0deavjre5HoqZIOUmxc9xSAXksOeVZSq/6UOOdGkP5nDZV2XSdYMjHT43+k=
+X-Received: by 2002:a05:690c:931c:10b0:70d:fd2a:1457 with SMTP id
+ 00721157ae682-712c638321emr172100147b3.1.1750767683727; Tue, 24 Jun 2025
+ 05:21:23 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20250623153931.158765-4-benjamin.gaignard@collabora.com>
+References: <20250623-k1-dma-buses-rfc-wip-v1-0-c0144082061f@iscas.ac.cn> <20250623-k1-dma-buses-rfc-wip-v1-2-c0144082061f@iscas.ac.cn>
+In-Reply-To: <20250623-k1-dma-buses-rfc-wip-v1-2-c0144082061f@iscas.ac.cn>
+From: Guodong Xu <guodong@riscstar.com>
+Date: Tue, 24 Jun 2025 20:21:11 +0800
+X-Gm-Features: AX0GCFvU1ePVl3bPsH_HTEhAPE0vAqbMLg9fVZOyMh7JoiSSyJXSXSqwp3WTd6M
+Message-ID: <CAH1PCMZ1YUC9SLOSEuCL3oUhYN23UOL+kLrOk8fbJ+EG-w3Umg@mail.gmail.com>
+Subject: Re: [PATCH 2/3] riscv: dts: spacemit: Move UARTs under dma-bus for K1
+To: Vivian Wang <wangruikang@iscas.ac.cn>
+Cc: Yixun Lan <dlan@gentoo.org>, Ze Huang <huangze@whut.edu.cn>, 
+	Alex Elder <elder@riscstar.com>, spacemit@lists.linux.dev, 
+	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Paul Walmsley <paul.walmsley@sifive.com>, Palmer Dabbelt <palmer@dabbelt.com>, 
+	Albert Ou <aou@eecs.berkeley.edu>, Alexandre Ghiti <alex@ghiti.fr>, Vivian Wang <uwu@dram.page>, 
+	devicetree@vger.kernel.org, linux-riscv@lists.infradead.org, 
+	linux-kernel@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-Hi Benjamin,
+On Mon, Jun 23, 2025 at 6:04=E2=80=AFPM Vivian Wang <wangruikang@iscas.ac.c=
+n> wrote:
+>
+> UART devices in Spacemit K1 use dma-bus DMA translations. Move these
+> nodes under dma-bus to reflect this fact.
+>
+> Signed-off-by: Vivian Wang <wangruikang@iscas.ac.cn>
+> ---
+>  arch/riscv/boot/dts/spacemit/k1.dtsi | 246 ++++++++++++++++++-----------=
+------
+>  1 file changed, 128 insertions(+), 118 deletions(-)
+>
+> diff --git a/arch/riscv/boot/dts/spacemit/k1.dtsi b/arch/riscv/boot/dts/s=
+pacemit/k1.dtsi
+> index 99c76997b367f733c9dda2c30dd85817294ef9b7..0d41694699851e672a833601b=
+62c2b2ad3daae79 100644
+> --- a/arch/riscv/boot/dts/spacemit/k1.dtsi
+> +++ b/arch/riscv/boot/dts/spacemit/k1.dtsi
+> @@ -357,114 +357,6 @@ syscon_apbc: system-controller@d4015000 {
+>                         #reset-cells =3D <1>;
+>                 };
+>
+> -               uart0: serial@d4017000 {
+> -                       compatible =3D "spacemit,k1-uart", "intel,xscale-=
+uart";
+> -                       reg =3D <0x0 0xd4017000 0x0 0x100>;
+> -                       clocks =3D <&syscon_apbc CLK_UART0>,
+> -                                <&syscon_apbc CLK_UART0_BUS>;
+> -                       clock-names =3D "core", "bus";
+> -                       interrupts =3D <42>;
+> -                       reg-shift =3D <2>;
+> -                       reg-io-width =3D <4>;
+> -                       status =3D "disabled";
+> -               };
+> -
+> -               uart2: serial@d4017100 {
+> -                       compatible =3D "spacemit,k1-uart", "intel,xscale-=
+uart";
+> -                       reg =3D <0x0 0xd4017100 0x0 0x100>;
+> -                       clocks =3D <&syscon_apbc CLK_UART2>,
+> -                                <&syscon_apbc CLK_UART2_BUS>;
+> -                       clock-names =3D "core", "bus";
+> -                       interrupts =3D <44>;
+> -                       reg-shift =3D <2>;
+> -                       reg-io-width =3D <4>;
+> -                       status =3D "disabled";
+> -               };
+> -
+> -               uart3: serial@d4017200 {
+> -                       compatible =3D "spacemit,k1-uart", "intel,xscale-=
+uart";
+> -                       reg =3D <0x0 0xd4017200 0x0 0x100>;
+> -                       clocks =3D <&syscon_apbc CLK_UART3>,
+> -                                <&syscon_apbc CLK_UART3_BUS>;
+> -                       clock-names =3D "core", "bus";
+> -                       interrupts =3D <45>;
+> -                       reg-shift =3D <2>;
+> -                       reg-io-width =3D <4>;
+> -                       status =3D "disabled";
+> -               };
+> -
+> -               uart4: serial@d4017300 {
+> -                       compatible =3D "spacemit,k1-uart", "intel,xscale-=
+uart";
+> -                       reg =3D <0x0 0xd4017300 0x0 0x100>;
+> -                       clocks =3D <&syscon_apbc CLK_UART4>,
+> -                                <&syscon_apbc CLK_UART4_BUS>;
+> -                       clock-names =3D "core", "bus";
+> -                       interrupts =3D <46>;
+> -                       reg-shift =3D <2>;
+> -                       reg-io-width =3D <4>;
+> -                       status =3D "disabled";
+> -               };
+> -
+> -               uart5: serial@d4017400 {
+> -                       compatible =3D "spacemit,k1-uart", "intel,xscale-=
+uart";
+> -                       reg =3D <0x0 0xd4017400 0x0 0x100>;
+> -                       clocks =3D <&syscon_apbc CLK_UART5>,
+> -                                <&syscon_apbc CLK_UART5_BUS>;
+> -                       clock-names =3D "core", "bus";
+> -                       interrupts =3D <47>;
+> -                       reg-shift =3D <2>;
+> -                       reg-io-width =3D <4>;
+> -                       status =3D "disabled";
+> -               };
+> -
+> -               uart6: serial@d4017500 {
+> -                       compatible =3D "spacemit,k1-uart", "intel,xscale-=
+uart";
+> -                       reg =3D <0x0 0xd4017500 0x0 0x100>;
+> -                       clocks =3D <&syscon_apbc CLK_UART6>,
+> -                                <&syscon_apbc CLK_UART6_BUS>;
+> -                       clock-names =3D "core", "bus";
+> -                       interrupts =3D <48>;
+> -                       reg-shift =3D <2>;
+> -                       reg-io-width =3D <4>;
+> -                       status =3D "disabled";
+> -               };
+> -
+> -               uart7: serial@d4017600 {
+> -                       compatible =3D "spacemit,k1-uart", "intel,xscale-=
+uart";
+> -                       reg =3D <0x0 0xd4017600 0x0 0x100>;
+> -                       clocks =3D <&syscon_apbc CLK_UART7>,
+> -                                <&syscon_apbc CLK_UART7_BUS>;
+> -                       clock-names =3D "core", "bus";
+> -                       interrupts =3D <49>;
+> -                       reg-shift =3D <2>;
+> -                       reg-io-width =3D <4>;
+> -                       status =3D "disabled";
+> -               };
+> -
+> -               uart8: serial@d4017700 {
+> -                       compatible =3D "spacemit,k1-uart", "intel,xscale-=
+uart";
+> -                       reg =3D <0x0 0xd4017700 0x0 0x100>;
+> -                       clocks =3D <&syscon_apbc CLK_UART8>,
+> -                                <&syscon_apbc CLK_UART8_BUS>;
+> -                       clock-names =3D "core", "bus";
+> -                       interrupts =3D <50>;
+> -                       reg-shift =3D <2>;
+> -                       reg-io-width =3D <4>;
+> -                       status =3D "disabled";
+> -               };
+> -
+> -               uart9: serial@d4017800 {
+> -                       compatible =3D "spacemit,k1-uart", "intel,xscale-=
+uart";
+> -                       reg =3D <0x0 0xd4017800 0x0 0x100>;
+> -                       clocks =3D <&syscon_apbc CLK_UART9>,
+> -                                <&syscon_apbc CLK_UART9_BUS>;
+> -                       clock-names =3D "core", "bus";
+> -                       interrupts =3D <51>;
+> -                       reg-shift =3D <2>;
+> -                       reg-io-width =3D <4>;
+> -                       status =3D "disabled";
+> -               };
+> -
+>                 gpio: gpio@d4019000 {
+>                         compatible =3D "spacemit,k1-gpio";
+>                         reg =3D <0x0 0xd4019000 0x0 0x100>;
+> @@ -562,16 +454,6 @@ clint: timer@e4000000 {
+>                                               <&cpu7_intc 3>, <&cpu7_intc=
+ 7>;
+>                 };
+>
+> -               sec_uart1: serial@f0612000 {
+> -                       compatible =3D "spacemit,k1-uart", "intel,xscale-=
+uart";
+> -                       reg =3D <0x0 0xf0612000 0x0 0x100>;
+> -                       interrupts =3D <43>;
+> -                       clock-frequency =3D <14857000>;
+> -                       reg-shift =3D <2>;
+> -                       reg-io-width =3D <4>;
+> -                       status =3D "reserved"; /* for TEE usage */
+> -               };
+> -
 
-kernel test robot noticed the following build warnings:
+Are you sure sec_uart1 should be placed under the dma_bus? Please double
+check. If sec_uart1 and other peripherals supported by the secure DMA
+(base address: 0xF0600000) share the same address mapping as dma_bus, and
+if they can be accessed by the linux kernel in some cases (as saying
+'reserved'), then that makes sense. If not, better not move them.
 
-[auto build test WARNING on robh/for-next]
-[also build test WARNING on rockchip/for-next arm64/for-next/core linus/master v6.16-rc3 next-20250623]
-[If your patch is applied to the wrong git tree, kindly drop us a note.
-And when submitting patch, we suggest to use '--base' as documented in
-https://git-scm.com/docs/git-format-patch#_base_tree_information]
-
-url:    https://github.com/intel-lab-lkp/linux/commits/Benjamin-Gaignard/dt-bindings-vendor-prefixes-Add-Verisilicon/20250623-234734
-base:   https://git.kernel.org/pub/scm/linux/kernel/git/robh/linux.git for-next
-patch link:    https://lore.kernel.org/r/20250623153931.158765-4-benjamin.gaignard%40collabora.com
-patch subject: [PATCH v4 3/5] iommu: Add verisilicon IOMMU driver
-config: hexagon-allmodconfig (https://download.01.org/0day-ci/archive/20250624/202506242057.NVRNN4W1-lkp@intel.com/config)
-compiler: clang version 17.0.6 (https://github.com/llvm/llvm-project 6009708b4367171ccdbf4b5905cb6a803753fe18)
-reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20250624/202506242057.NVRNN4W1-lkp@intel.com/reproduce)
-
-If you fix the issue in a separate patch/commit (i.e. not just a new version of
-the same patch/commit), kindly add following tags
-| Reported-by: kernel test robot <lkp@intel.com>
-| Closes: https://lore.kernel.org/oe-kbuild-all/202506242057.NVRNN4W1-lkp@intel.com/
-
-All warnings (new ones prefixed by >>):
-
->> drivers/iommu/vsi-iommu.c:657:10: warning: variable 'err' is uninitialized when used here [-Wuninitialized]
-     657 |                 return err;
-         |                        ^~~
-   drivers/iommu/vsi-iommu.c:643:9: note: initialize the variable 'err' to silence this warning
-     643 |         int err;
-         |                ^
-         |                 = 0
-   1 warning generated.
-
-
-vim +/err +657 drivers/iommu/vsi-iommu.c
-
-   638	
-   639	static int vsi_iommu_probe(struct platform_device *pdev)
-   640	{
-   641		struct device *dev = &pdev->dev;
-   642		struct vsi_iommu *iommu;
-   643		int err;
-   644	
-   645		iommu = devm_kzalloc(dev, sizeof(*iommu), GFP_KERNEL);
-   646		if (!iommu)
-   647			return -ENOMEM;
-   648	
-   649		iommu->dev = dev;
-   650	
-   651		iommu->regs = devm_platform_ioremap_resource(pdev, 0);
-   652		if (IS_ERR(iommu->regs))
-   653			return -ENOMEM;
-   654	
-   655		iommu->num_clocks = devm_clk_bulk_get_all(dev, &iommu->clocks);
-   656		if  (iommu->num_clocks < 0)
- > 657			return err;
-   658	
-   659		err = clk_bulk_prepare(iommu->num_clocks, iommu->clocks);
-   660		if (err)
-   661			return err;
-   662	
-   663		iommu->irq = platform_get_irq(pdev, 0);
-   664		if (iommu->irq < 0)
-   665			return iommu->irq;
-   666	
-   667		err = devm_request_irq(iommu->dev, iommu->irq, vsi_iommu_irq,
-   668				       IRQF_SHARED, dev_name(dev), iommu);
-   669		if (err)
-   670			goto err_unprepare_clocks;
-   671	
-   672		spin_lock_init(&iommu->lock);
-   673		dma_set_mask_and_coherent(dev, DMA_BIT_MASK(32));
-   674		platform_set_drvdata(pdev, iommu);
-   675	
-   676		pm_runtime_set_autosuspend_delay(dev, 100);
-   677		pm_runtime_use_autosuspend(dev);
-   678		pm_runtime_enable(dev);
-   679	
-   680		err = iommu_device_sysfs_add(&iommu->iommu, dev, NULL, dev_name(dev));
-   681		if (err)
-   682			goto err_runtime_disable;
-   683	
-   684		err = iommu_device_register(&iommu->iommu, &vsi_iommu_ops, dev);
-   685		if (err)
-   686			goto err_remove_sysfs;
-   687	
-   688		return 0;
-   689	
-   690	err_remove_sysfs:
-   691		iommu_device_sysfs_remove(&iommu->iommu);
-   692	err_runtime_disable:
-   693		pm_runtime_disable(dev);
-   694	err_unprepare_clocks:
-   695		clk_bulk_unprepare(iommu->num_clocks, iommu->clocks);
-   696		return err;
-   697	}
-   698	
-
--- 
-0-DAY CI Kernel Test Service
-https://github.com/intel/lkp-tests/wiki
+--
+Guodong
 
