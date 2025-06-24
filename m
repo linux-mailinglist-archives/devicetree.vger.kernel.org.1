@@ -1,48 +1,48 @@
-Return-Path: <devicetree+bounces-188903-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-188904-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8BB81AE5F73
-	for <lists+devicetree@lfdr.de>; Tue, 24 Jun 2025 10:34:56 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3A145AE5FE6
+	for <lists+devicetree@lfdr.de>; Tue, 24 Jun 2025 10:51:53 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 1C961161C84
-	for <lists+devicetree@lfdr.de>; Tue, 24 Jun 2025 08:33:11 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id A6DCC3B1EC7
+	for <lists+devicetree@lfdr.de>; Tue, 24 Jun 2025 08:51:24 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8BB1B25D1ED;
-	Tue, 24 Jun 2025 08:33:06 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id CB1D427979A;
+	Tue, 24 Jun 2025 08:51:37 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Dzj9ABnR"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="kcHDRVQV"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3EAB125C82C;
-	Tue, 24 Jun 2025 08:33:05 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 93A4925228F;
+	Tue, 24 Jun 2025 08:51:37 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1750753986; cv=none; b=j8siAq/ixnRmEt81XYO7I/xwm7Q5/oxhDFlJdxgHuMi8UZK4CkkQPbOASXQ+v3uSS66YyHeQEFhz+/3zqfEi19lYGpKZo9ztaf8OubCz6KKwULaPgyTsataP/3cA43ZJhm13j8b6vgfO7+66Ng3HiBIGmSl6Jd6aqL+tSF1Z+7s=
+	t=1750755097; cv=none; b=UnAgnD57gkcYeBOp/0Gi81FzD1Ysu7wSBmYtMS8km/+mZ9iQxrKUYIsrXcJSUn4YJ47asJnF08uPvDG62rC9xVJxAzIAqhg4MHvGFqwEOIW9BTihlQDmecLOukJN994YektkGIbdKJKCKUcVit6yv1HMCMjRPEuBPd/4eXw0QpQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1750753986; c=relaxed/simple;
-	bh=6d9ilZKlt54Cy4GygVeA1BUh6llNTH6aW8oKt2FPRxk=;
+	s=arc-20240116; t=1750755097; c=relaxed/simple;
+	bh=MLodOzPhYGDMQ+Y7ezEnI++TZlhu7uSSB3Nn9zw//T4=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=WlCoE+qL61Rz3mMqeSnn7z7x5dJnMczyy09QRo2z84iZYHDtxr6/lMnrDCS5RMkFU3aa+z8mEDJX01pMnqA4DMIMSIkyhD8ebj2TOgZabgkxBV1vi9JFDWhz/Tx5d9AnKrNVPFCocLgSaoL1wg9MJCu/xhrR10Ih6EtKRz8SA9g=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Dzj9ABnR; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id C469CC4CEEF;
-	Tue, 24 Jun 2025 08:33:02 +0000 (UTC)
+	 In-Reply-To:Content-Type; b=od7wrgiEFkqFRQz1Bw/SQ3GAwwumwX3wd45hjqalFngSsdETbWXI2Ej8Ce0E9WhklT3qxYvb+hI/ZtZvuyIf9PW6zT2XDFxGbNw0FP9k6yfFnVqM4ZRAbu5ZLauENzHufrrKJ8iPiJqOVw4B8o7YF0rZgXqMInzd7RxNWGPzMmA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=kcHDRVQV; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id EAA25C4CEE3;
+	Tue, 24 Jun 2025 08:51:31 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1750753985;
-	bh=6d9ilZKlt54Cy4GygVeA1BUh6llNTH6aW8oKt2FPRxk=;
+	s=k20201202; t=1750755097;
+	bh=MLodOzPhYGDMQ+Y7ezEnI++TZlhu7uSSB3Nn9zw//T4=;
 	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=Dzj9ABnRS80dywSl2xcQvuz60BjS/EzVRE/7sQoofkNYQ7RofCuvsObKAXpaQaHhY
-	 zXC0Z9eZQx9FnJKQkn5I3NuTOAOoCzPH53F+3rfQps4BK8S9K3JinrQOaMWzdUPfEX
-	 k5fJq+MzTJDDQZEzILWEIpIPCwhhSXqC1RWwgpyeQoBLjzzKySewQVrL5o6fKCS7DZ
-	 M5XqquZLWD0jRbVTRuQhkN6xqIGL8HazkCLVHd0jg0WbeGDbdDRajTMzQktlQ5yuwM
-	 RbpXXibS/6NldZc7u1AAeN0S3EseToLZxoWwhYt22I98mvRMDa3ZbOp/W7O3DVuTQ3
-	 jT0iISOUpT7eA==
-Message-ID: <ea0d8afb-4d64-4fc5-996b-452420e750da@kernel.org>
-Date: Tue, 24 Jun 2025 10:33:00 +0200
+	b=kcHDRVQVq7uJRx7RF4+IAEBDAVEZwtuowhkI8x8cHjWr/HFUzqutMw+3dFKEm6cQS
+	 mUl8VwZGT6lnKTgWKNEcSRxQfZTU3qC5M8T8s8JYCjCB2KXSS1eY0GikOAZngOlCkQ
+	 3b0XUr7lXqAchsdsnsnS9aS/N2aDD248reKIiD2oum3Q/XAGvfNC/O4gR1vtJy1e31
+	 iop5Q28o5J29sezFVKKsM5eR6TdDM9T1eRc/drLBx2SepwZYtfRY5Jz7diT1VC7Pta
+	 smy9bnhWmzuYk+SZ2vC2csqXPtT4Rr1Q86kk0HNZAusG2AS90efHBeB+8Kb8SNqZt1
+	 LG3PvULBEu4rg==
+Message-ID: <8a985dd1-e2a1-413e-b38c-c109cc7fbb28@kernel.org>
+Date: Tue, 24 Jun 2025 10:51:29 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,21 +50,26 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 1/5] dt-bindings: media: qcom,sm8550-iris: add non_pixel
- and resv_region properties
-To: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>,
- Vikash Garodia <quic_vgarodia@quicinc.com>,
- Dikshita Agarwal <quic_dikshita@quicinc.com>,
- Abhinav Kumar <abhinav.kumar@linux.dev>,
- Bryan O'Donoghue <bryan.odonoghue@linaro.org>,
- Mauro Carvalho Chehab <mchehab@kernel.org>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>
-Cc: linux-media@vger.kernel.org, linux-arm-msm@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <20250620-video_cb-v1-0-9bcac1c8800c@quicinc.com>
- <20250620-video_cb-v1-1-9bcac1c8800c@quicinc.com>
- <a35d3928-8ac6-49ab-8689-16ba69afe197@kernel.org>
- <2bd17ab5-950c-4260-ae7c-9ba9a6441496@oss.qualcomm.com>
+Subject: Re: [PATCH v2 01/32] dt-bindings: mfd: samsung,s2mps11: add s2mpg10
+To: =?UTF-8?Q?Andr=C3=A9_Draszik?= <andre.draszik@linaro.org>
+Cc: Lee Jones <lee@kernel.org>, Rob Herring <robh@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>,
+ Sylwester Nawrocki <s.nawrocki@samsung.com>,
+ Chanwoo Choi <cw00.choi@samsung.com>, Alim Akhtar <alim.akhtar@samsung.com>,
+ Michael Turquette <mturquette@baylibre.com>, Stephen Boyd
+ <sboyd@kernel.org>, Russell King <linux@armlinux.org.uk>,
+ Catalin Marinas <catalin.marinas@arm.com>, Will Deacon <will@kernel.org>,
+ Alexandre Belloni <alexandre.belloni@bootlin.com>,
+ Peter Griffin <peter.griffin@linaro.org>,
+ Tudor Ambarus <tudor.ambarus@linaro.org>,
+ Will McVicker <willmcvicker@google.com>, kernel-team@android.com,
+ linux-kernel@vger.kernel.org, linux-samsung-soc@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-clk@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, linux-rtc@vger.kernel.org
+References: <20250328-s2mpg10-v2-0-b54dee33fb6b@linaro.org>
+ <20250328-s2mpg10-v2-1-b54dee33fb6b@linaro.org>
+ <20250331-prophetic-convivial-dinosaur-efb1af@krzk-bin>
+ <4d8d0d479a1ff19bc3e3a8f5832d924ab822f13a.camel@linaro.org>
 From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
@@ -110,67 +115,42 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  jWt87ecuHlpL3uuQ0ZZNWqHgZoQLXoqC2ZV5KrtKWb/jyiFX/sxSrodALf0zf+tfHv0FZWT2
  zHjUqd0t4njD/UOsuIMOQn4Ig0SdivYPfZukb5cdasKJukG1NOpbW7yRNivaCnfZz6dTawXw
  XRIV/KDsHQiyVxKvN73bThKhONkcX2LWuD928tAR6XMM2G5ovxLe09vuOzzfTWQDsm++9UKF a/A=
-In-Reply-To: <2bd17ab5-950c-4260-ae7c-9ba9a6441496@oss.qualcomm.com>
+In-Reply-To: <4d8d0d479a1ff19bc3e3a8f5832d924ab822f13a.camel@linaro.org>
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
 
-On 20/06/2025 19:27, Konrad Dybcio wrote:
-> On 6/20/25 8:39 AM, Krzysztof Kozlowski wrote:
->> On 20/06/2025 08:20, Vikash Garodia wrote:
->>> Existing definition limits the IOVA to an addressable range of 4GiB, and
->>> even within that range, some of the space is used by IO registers,
->>> thereby limiting the available IOVA to even lesser. Video hardware is
->>> designed to emit different stream-ID for pixel and non_pixel buffers,
->>> thereby introduce a non_pixel sub node to handle non_pixel stream-ID.
->>>
->>> With this, both iris and non_pixel device can have IOVA range of 0-4GiB
->>> individually. Certain video usecases like higher video concurrency needs
->>> IOVA higher than 4GiB.
->>>
->>> Add the "resv_region" property, which defines reserved IOVA regions that
->>> are *excluded* from addressable range. Video hardware generates
->>> different stream IDs based on the range of IOVA addresses. Thereby IOVA
->>> addresses for firmware and data buffers need to be non overlapping. For
->>> ex. 0x0-0x25800000 address range is reserved for firmware stream-ID,
->>> while non_pixel (bitstream ) stream-ID can be generated by hardware only
->>> when bitstream buffers IOVA address is from 0x25800000-0xe0000000.
->>>
->>> Signed-off-by: Vikash Garodia <quic_vgarodia@quicinc.com>
->>> ---
->>>  .../bindings/media/qcom,sm8550-iris.yaml           | 35 ++++++++++++++++++++++
->>>  1 file changed, 35 insertions(+)
->>>
->>> diff --git a/Documentation/devicetree/bindings/media/qcom,sm8550-iris.yaml b/Documentation/devicetree/bindings/media/qcom,sm8550-iris.yaml
->>> index c79bf2101812d83b99704f38b7348a9f728dff44..a1e83bae3c36f3a4c58b212ef457905e38091b97 100644
->>> --- a/Documentation/devicetree/bindings/media/qcom,sm8550-iris.yaml
->>> +++ b/Documentation/devicetree/bindings/media/qcom,sm8550-iris.yaml
->>> @@ -65,10 +65,45 @@ properties:
->>>        - const: core
->>>  
->>>    iommus:
->>> +    minItems: 1
->>
->> As discussed in other patchset, this needs clear explanation, so
->> imperfect patch won't be used in future discussions as argument to take
->> more of such things.
->>
->>>      maxItems: 2
->>>  
->>>    dma-coherent: true
->>>  
->>> +  resv_region:
->>
->> DTS coding style. Anyway, regions go with memory-region bindings. Use that.
+On 31/03/2025 11:50, André Draszik wrote:
+> Hi Krzysztof,
 > 
-> On a tangent, FWIW this is a discussion related to this patchset that
-> never got much attention:
+> On Mon, 2025-03-31 at 09:34 +0200, Krzysztof Kozlowski wrote:
+>> On Fri, Mar 28, 2025 at 01:28:47PM +0000, André Draszik wrote:
+>>>  allOf:
+>>> +  - if:
+>>> +      properties:
+>>> +        compatible:
+>>> +          contains:
+>>> +            const: samsung,s2mpg10-pmic
+>>> +    then:
+>>> +      properties:
+>>> +        reg: false
+>>> +        samsung,s2mps11-acokb-ground: false
+>>> +        samsung,s2mps11-wrstbi-ground: false
+>>> +
+>>> +      oneOf:
+>>> +        - required: [interrupts]
+>>> +        - required: [interrupts-extended]
+>>
+>> Drop, you should require only interrupts.
 > 
-> https://lore.kernel.org/linux-devicetree/9439182e-3338-4d57-aa02-b621bc9498a3@oss.qualcomm.com/
+> As mentioned in the commit message comments, it doesn't work with
+> just interrupts. It appears that dtschema's fixups.py doesn't
+> handle this case. With just interrupts, DT validation will fail
+> if the DT uses interrupts-extended. There was at least one other
+> binding that specified interrupts in the same way, so I went with
+> the same approach.
 
+Please add a comment about this above oneOf.
 
-There is no patchset above, just email describing a problem. It did not
-get attention maybe because of usual kernel process: show the code, we
-do not have time to comment on every problem or idea.
 
 Best regards,
 Krzysztof
