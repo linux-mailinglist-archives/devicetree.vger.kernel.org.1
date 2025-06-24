@@ -1,78 +1,78 @@
-Return-Path: <devicetree+bounces-189193-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-189194-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6C2DCAE715E
-	for <lists+devicetree@lfdr.de>; Tue, 24 Jun 2025 23:11:56 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id AB147AE7164
+	for <lists+devicetree@lfdr.de>; Tue, 24 Jun 2025 23:12:30 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id DDA0C17B8E1
-	for <lists+devicetree@lfdr.de>; Tue, 24 Jun 2025 21:11:56 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 4E3B65A2960
+	for <lists+devicetree@lfdr.de>; Tue, 24 Jun 2025 21:12:05 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1A7D42571C8;
-	Tue, 24 Jun 2025 21:11:47 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 81073258CEF;
+	Tue, 24 Jun 2025 21:12:23 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=broadcom.com header.i=@broadcom.com header.b="LiwNQ/kh"
+	dkim=pass (1024-bit key) header.d=broadcom.com header.i=@broadcom.com header.b="KhGnubNm"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pf1-f180.google.com (mail-pf1-f180.google.com [209.85.210.180])
+Received: from mail-pl1-f180.google.com (mail-pl1-f180.google.com [209.85.214.180])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5161E2475F2
-	for <devicetree@vger.kernel.org>; Tue, 24 Jun 2025 21:11:44 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.180
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1AE532571D9
+	for <devicetree@vger.kernel.org>; Tue, 24 Jun 2025 21:12:22 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.180
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1750799507; cv=none; b=SEAs2RJojBtnA/7nlOW9IKEIQ8ZrWz1W6728yYG1C8XD1rbqpVz9sB15LknnP2QuQJuuYDpN6Vpd+zDefmOqbme/BS1WOl9cnCWQGNbr+Dyje6SjJGIyxPvGuDMAlWrpiK9meYbyuIbvBvlC9oGlGmW4BoILvrS8zY995imCiCU=
+	t=1750799543; cv=none; b=ig6nDZKN4OBgLfp5UUu8WDPnKd6hWpbPcuZWROQR8/cz9gs8mqwZsuWJoetyAj9mKikXnksZ4pu+1P3/ZX5pJbPjR7kuruEyQhIkvg462FiJqN7TkiY5EnHfHFJLAIxFdOxvRns4hBpHlgyrNcQIDFbeqFbEqTaHhZLKw+yyYmA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1750799507; c=relaxed/simple;
-	bh=PFbnWfYExMNiWyWjv+9emyWRUe/yj2S0aeMUTA6DgRQ=;
+	s=arc-20240116; t=1750799543; c=relaxed/simple;
+	bh=vg1ef1oRFT4Gwpd8ueYyQA6/BOZsNA4oa9AALT0Rbxs=;
 	h=Message-ID:Date:MIME-Version:Subject:To:References:From:
-	 In-Reply-To:Content-Type; b=SPveI6fRjVyJeieG6x1cS3DXxT2M/F84nRTwAqzr6qjiJEe5tx4KP4tvFdCQQ1POdC69f3JeW89oCd6eej1LgTRmzaT4TEgWfOcXlF91aJIhhGaquMQ2o9Y5hMuy1fAb8N/eteLj2PHwLSTUca1wRM7bxUJYjfPJCX0I49W16CU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=broadcom.com; spf=fail smtp.mailfrom=broadcom.com; dkim=pass (1024-bit key) header.d=broadcom.com header.i=@broadcom.com header.b=LiwNQ/kh; arc=none smtp.client-ip=209.85.210.180
+	 In-Reply-To:Content-Type; b=iJsqtxuJxlh6d8N6xkhJWG1OFf58bLXUbas1fmsqgCHPpwPP0MNCRZY9D2DERWvEbTTfb/WxkL5hB4zk7+kN2/ytqX3saYoPEnAA6nXlzMSMGKTZrR9hvSzA07LEC3QJAHJGt46D/4DTc+QK7dYJSB/VcHdmQpJCBZAG4yY8c/k=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=broadcom.com; spf=fail smtp.mailfrom=broadcom.com; dkim=pass (1024-bit key) header.d=broadcom.com header.i=@broadcom.com header.b=KhGnubNm; arc=none smtp.client-ip=209.85.214.180
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=broadcom.com
 Authentication-Results: smtp.subspace.kernel.org; spf=fail smtp.mailfrom=broadcom.com
-Received: by mail-pf1-f180.google.com with SMTP id d2e1a72fcca58-747fc77bb2aso4518283b3a.3
-        for <devicetree@vger.kernel.org>; Tue, 24 Jun 2025 14:11:44 -0700 (PDT)
+Received: by mail-pl1-f180.google.com with SMTP id d9443c01a7336-234d3261631so9630585ad.1
+        for <devicetree@vger.kernel.org>; Tue, 24 Jun 2025 14:12:21 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=broadcom.com; s=google; t=1750799504; x=1751404304; darn=vger.kernel.org;
+        d=broadcom.com; s=google; t=1750799541; x=1751404341; darn=vger.kernel.org;
         h=content-transfer-encoding:in-reply-to:autocrypt:from
          :content-language:references:to:subject:user-agent:mime-version:date
          :message-id:from:to:cc:subject:date:message-id:reply-to;
-        bh=Eo2vufChLx1e55QzOzBwTMNU9Z8LIJfaoAcIHFWzr7Q=;
-        b=LiwNQ/khYCK49AlkADU62XP9aeXqysZtDDLWK3LsWbaE22eCtPCeOSGv6zEeFkzxkJ
-         ng7axil/5AnsTznFEp8bj94zas6V4TrbOsx1x0ZBohOyeXSozWH3E7jC/KTi1AhCl2mB
-         7b18cOfH1NevQJgPKqKUFG+dhS50gQVAwYI0U=
+        bh=wkIMyFBlVlgs2Ulo4+3BI7DnkrCtZPojDt3EBpbXk+s=;
+        b=KhGnubNmsT7u5pVY+SRS2xFXm4T/sYLMrizOIUh6hmEE9MlBmOdYfembezeB+sKxo9
+         d9VdW8vGnjlDaSfw/RfnyTAdK9xdNVr0QmHNH/CgiaZK/DQ7PmnjySR+2knRYMYTQ1gR
+         vuxT3dfsXGzE15ACBVV9Q9TVQpQVU6xTLiegw=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1750799504; x=1751404304;
+        d=1e100.net; s=20230601; t=1750799541; x=1751404341;
         h=content-transfer-encoding:in-reply-to:autocrypt:from
          :content-language:references:to:subject:user-agent:mime-version:date
          :message-id:x-gm-message-state:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=Eo2vufChLx1e55QzOzBwTMNU9Z8LIJfaoAcIHFWzr7Q=;
-        b=E1KcIVmWaZU+h+si6WbYWiuCba4fFrN1uJ1VuiGgMiIsuC5pbJrtWus2k6MHIq6C9w
-         7eFpk6+q8GeWpGCPkjhf6xZ8ahVq9dQz2CS9Z5H5Lqle2VMRnbWSgBcihVJ63KZt8ybt
-         svE14LWBhXk7Dqq9xWDBdI/+ZHxyofvyfbqBO0FaOkUfw9YxbU5UHfNHsXZj/9EHHKpf
-         FnXYB9J0C+SRlo7HC2GTUInpbByi+hbxQDYsCRGDvrfVLbOtPcbvoiCdEeXssmQwab/2
-         juQtF8TEpSZrOnrVkSfMFQoa/8wswflwmtJbmck1uSTU98+pAr78B/SdOJ7sfek9mStV
-         CZ4A==
-X-Forwarded-Encrypted: i=1; AJvYcCVzmwDJU2tU8Jccb9iD6uuih47cZJHHmT4u9n5fv4udOa6WrQeuwohZMB/hQYIXOEpi94m4EhCWaiCW@vger.kernel.org
-X-Gm-Message-State: AOJu0YznR8ZHiPt0RUbr5wchVOTAQAOl9czPcBtxGcGGH+nySroFkBUn
-	+gi3YU1bh3LAMiL0zv9wvKoDxhGs/rsUXY+ZtqrXtbc8YdjsIIjlXlVCNRLYj60eGg==
-X-Gm-Gg: ASbGncuDCstprip2TLDbdZIDMvxKeZO9W57RfweB6bhk5O1tXCb/vq4oXujHnxHU3/4
-	0o26vF4IEFzD/vYQLtIIlN0seiv1MJwCtQXzwncgCohXKdgqGgOoZQb9dLA0NiStGxPUHp8nWYk
-	xlfsVp4yR7YJRui7fUuvlbjqNCQgcFcXMMyOKdM0DxW9Q4iNC/Ru0CPvvZG088PfdiyocxGFCLL
-	TraWwiidhOv/+udfjMUOvISQPiDsp2/3LFYy7dMLUlybRcAu9zxhgi4v6Rrq7j1m4yegLnf/EbY
-	6Eyfked4BcsI+oddqZPLURhuHozDNKmWl6yj1fAJ90jQGJJnw4uFIT6XiaufJUFl1riQJviNbCN
-	kWDMW88bSYrJIqFpMAoYOZe2puw==
-X-Google-Smtp-Source: AGHT+IFf3/YeR9gk7+WP5WcaJ4mRmmHJiKPywBy37oskEyKjfGaPDSuW17BELTvjbXXXqhnRst+TYA==
-X-Received: by 2002:a05:6a21:8cc6:b0:21a:eabb:ab93 with SMTP id adf61e73a8af0-2207f19255cmr765020637.6.1750799503649;
-        Tue, 24 Jun 2025 14:11:43 -0700 (PDT)
+        bh=wkIMyFBlVlgs2Ulo4+3BI7DnkrCtZPojDt3EBpbXk+s=;
+        b=VlUQSXu3vlwjFDArpSuknmVXAH8DxmI8qkcsEpEKPHZeV78mehC/25EJ4HgLydS053
+         dCXuhbzFMXZyvDnQaBYl4O0q6waYLsk+AmKrgI/oVoQs651LoCyrUtVYapB6pBWRnBpj
+         adl1gww1pw1V/USBdW9VCY1De8Nv+XO1v2vhR1Bwut14xJtaUZpw7SHFRHUx5IBzfzix
+         3QbgDABp+LYiZDbI/N+c/SfGznq0Kdj45xl4GHRlnMENRV6ZyX8YbO7noP1wfN9QDCOv
+         ws+ItySLFvahhtTaFKZOmXq7aNbopCUMLdhX/v6DOGyWboWJ46A9HlYE7wOZtiaJWHB0
+         AitA==
+X-Forwarded-Encrypted: i=1; AJvYcCUtnIziJkJYb8LaVCp0EdvBgYAltyTGSFONatbdB2AmVlo9pzr1NwIhm02zRTlwdz0nzg+xV1UsR2c/@vger.kernel.org
+X-Gm-Message-State: AOJu0YxUlgMLacv+Qok1oVPGq4vxTZaOzHpvbRUKaUmnREqM7/t6R1qN
+	t0/F/THvomwIJAs4J8DAe2Hz4N4pqfw+fFU4BUd5ckonKchXlQ9iqInVPUWwxyFiaA==
+X-Gm-Gg: ASbGncuoYpayK+ZWctDjumZEupfHBHLpG4bX0hERa23pgjh9QeLbxuwsm3qZafCx7Vz
+	VtrbX1fGTTqzMGdvN7anxpCD2Xpmj0CyZgKNwePMUF/eItR+5JWUPhyBvRoWDEF06YccaM8/ioY
+	Mw+3qx9n09Dwfn1b5J12cVtv2TxFeBFq/Fbhh3XSLB5l40C2mwVm7f42SHU3DGFQVEVn6vuQY5d
+	Y+NnaH7VrwgnXvjSZtX6TfaEtkwbt1DjM+0zc6VJN0IOQzUa2/0qX2bP7wdTfQQU078utvL4pEF
+	Sm9Ilg1R4FHd/KcqIVQ3g2gu/XUPlisXxxb2WVSN7TQylbnhjGZNuWf0Kf1+ZwIqFkKIrcyozFp
+	IKqy+85Fkcb9tCCvAk2Jw8lRrl9f+mzRd3cTn
+X-Google-Smtp-Source: AGHT+IE8AtKCbRL/Ae95ntUOEV0G/Hz0ZyjAAOPX2JCe7DpKTe3ncgHoFdCvDL7h49ynbDxxbTuKNg==
+X-Received: by 2002:a17:902:d60e:b0:234:f6ba:e681 with SMTP id d9443c01a7336-2382409dfc9mr13529245ad.5.1750799541406;
+        Tue, 24 Jun 2025 14:12:21 -0700 (PDT)
 Received: from [10.67.48.245] ([192.19.223.252])
-        by smtp.gmail.com with ESMTPSA id 41be03b00d2f7-b31f1258b55sm9471699a12.61.2025.06.24.14.11.40
+        by smtp.gmail.com with ESMTPSA id 98e67ed59e1d1-315f53d94b1sm23610a91.33.2025.06.24.14.12.18
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 24 Jun 2025 14:11:42 -0700 (PDT)
-Message-ID: <9d31a4d7-ffd1-48ca-8df6-0ddc6683a49c@broadcom.com>
-Date: Tue, 24 Jun 2025 14:11:39 -0700
+        Tue, 24 Jun 2025 14:12:20 -0700 (PDT)
+Message-ID: <78106b8c-3f4e-44d0-9828-9b46952f3fa6@broadcom.com>
+Date: Tue, 24 Jun 2025 14:12:17 -0700
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -80,8 +80,8 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH stblinux/next] pinctrl: rp1: Implement RaspberryPi RP1
- pinmux/pinconf support
+Subject: Re: [PATCH v2 stblinux/next 2/2] clk: rp1: Implement remaining clock
+ tree
 To: Andrea della Porta <andrea.porta@suse.com>,
  Michael Turquette <mturquette@baylibre.com>, Stephen Boyd
  <sboyd@kernel.org>, Rob Herring <robh@kernel.org>,
@@ -106,7 +106,8 @@ To: Andrea della Porta <andrea.porta@suse.com>,
  <andrew@lunn.ch>, Phil Elwell <phil@raspberrypi.com>,
  Dave Stevenson <dave.stevenson@raspberrypi.com>,
  kernel-list@raspberrypi.com, Matthias Brugger <mbrugger@suse.com>
-References: <8c282b89b1aa8b9e3c00f6bd3980332c47d82df7.1750778806.git.andrea.porta@suse.com>
+References: <c20066500908db854aa4816b40e956296bab526a.1750714412.git.andrea.porta@suse.com>
+ <17e5c6e0c085cfa0bf4b63b639cdc92c6a4c1418.1750714412.git.andrea.porta@suse.com>
 Content-Language: en-US
 From: Florian Fainelli <florian.fainelli@broadcom.com>
 Autocrypt: addr=florian.fainelli@broadcom.com; keydata=
@@ -141,24 +142,35 @@ Autocrypt: addr=florian.fainelli@broadcom.com; keydata=
  MIlnaE6V0U8f5zNHB7Y46yJjjYT/Ds1TJo3pvwevDWPvv6rdBeV07D9s43frUS6xYd1uFxHC
  7dZYWJjZmyUf5evr1W1gCgwLXG0PEi9n3qmz1lelQ8lSocmvxBKtMbX/OKhAfuP/iIwnTsww
  95A2SaPiQZA51NywV8OFgsN0ITl2PlZ4Tp9hHERDe6nQCsNI/Us=
-In-Reply-To: <8c282b89b1aa8b9e3c00f6bd3980332c47d82df7.1750778806.git.andrea.porta@suse.com>
+In-Reply-To: <17e5c6e0c085cfa0bf4b63b639cdc92c6a4c1418.1750714412.git.andrea.porta@suse.com>
 Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
 
-On 6/24/25 08:36, Andrea della Porta wrote:
-> The current implementation for the pin controller peripheral
-> on the RP1 chipset supports gpio functionality and just the
-> basic configuration of pin hw capabilities.
+On 6/23/25 14:46, Andrea della Porta wrote:
+> The RP1 clock generator driver currently defines only the fundamental
+> clocks such as the front PLLs for system, audio and video subsystems
+> and the ethernet clock.
 > 
-> Add support for selecting the pin alternate function (pinmux)
-> and full configuration of the pin (pinconf).
+> Add the remaining clocks to the tree so as to be completed, which means
+> that the following RP1 peripherals could now consume their specific clocks
+> and be enabled to work (provided that the relevant driver changes for each
+> specific peripheral, if any, are committed):
 > 
-> Related pins are also gathered into groups.
+> - ADC
+> - Audio IN/OUT
+> - DMA controller
+> - I2S
+> - MIPI DPI/DSI
+> - PWM
+> - SDIO
+> - UART
+> - Video Encoder
 > 
 > Signed-off-by: Andrea della Porta <andrea.porta@suse.com>
 
-Linus, can I get an ack or reviewed by tag from you and take that in the 
-next few days to go with the Broadcom ARM SoC pull requests? Thanks!
+Stephen, can I get an Acked-by or Reviewed-by from you so I can take 
+those changes in the Broadcom ARM SoC pull request that I will submit in 
+the next few days, thanks!
 -- 
 Florian
 
