@@ -1,94 +1,55 @@
-Return-Path: <devicetree+bounces-189131-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-189132-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5F6C0AE6D60
-	for <lists+devicetree@lfdr.de>; Tue, 24 Jun 2025 19:16:18 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6B31BAE6D70
+	for <lists+devicetree@lfdr.de>; Tue, 24 Jun 2025 19:19:34 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id E65E11BC23D2
-	for <lists+devicetree@lfdr.de>; Tue, 24 Jun 2025 17:16:33 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 015DC1761F0
+	for <lists+devicetree@lfdr.de>; Tue, 24 Jun 2025 17:19:34 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E4DE922B8A9;
-	Tue, 24 Jun 2025 17:16:13 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E4FB62989B0;
+	Tue, 24 Jun 2025 17:19:29 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="QSG828Xw"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="cMzeX9fD"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f45.google.com (mail-wm1-f45.google.com [209.85.128.45])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 207B81A8F60;
-	Tue, 24 Jun 2025 17:16:10 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.45
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BDEDB1A8F60
+	for <devicetree@vger.kernel.org>; Tue, 24 Jun 2025 17:19:29 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1750785373; cv=none; b=kwksxmBWHqFwUe08yG8a1Wf7ZdwcR0ZDT7wcrX1EtCY5yOOFpdtkRPfwzKo/y2hnAZq9q8SU8EEew6nrhRwOmpvjYKP+L0i7kz57nVuGnECXygKVW+xcNdMcgcv1WWYQ3eYZbKpApzsA/wuR21R3ijzgxRiYE7ygiwYjBsxuZhM=
+	t=1750785569; cv=none; b=NanKpI+J7lBh5AG9UNjIf4MOVIMmTkPpDMX/Hd4SQzOWiOYgr0SJoHJCcazP8xft0+qrlw7/+CnjTkJnInXYFCh1z0UonXYhENokmBYwPbXSgjwlypo/BgzAc3o5Wk/y1BxrDIvA/AX9Rlu/wZvtzEUCBrTq2WdARYkRSVIaix8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1750785373; c=relaxed/simple;
-	bh=QZ1TcpdPgIFJyAZanFzW8cm4WLnFoJuVELAiMeyoopQ=;
-	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=HEN7hcyH92PjFUIOmwRuDXIyhi/1zy8bE4tUn7KSm4nWZbIU6ijDJShVpXkBr8k0ICG5RZrObWfb/7jFqQHQSet/RYk0Usu4SbJtufe3QhraeZIeubjfZtPitbjU7ZZKuXTmQ1d1q+5PxwDNlz7W7Znr+bxWklkwdo06ugcmGjM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=QSG828Xw; arc=none smtp.client-ip=209.85.128.45
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-wm1-f45.google.com with SMTP id 5b1f17b1804b1-4537deebb01so5851675e9.0;
-        Tue, 24 Jun 2025 10:16:10 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1750785369; x=1751390169; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=HsR7NJDAwXIG1UDTQq7wzW72HQmPr4b4eMr+oAxOFl0=;
-        b=QSG828XwlltrUThQkxgoHzX8Vk4Pa4pHX5/ETXNA0bGBc/YVh+eBEwWpLlguxu6jHD
-         QxN8BGttYG2iLF9KdNyjbCw25LKTjm2T6paBKXRq2C/g9uqyg0Z3AQS4pixr+wklZmjO
-         bmaL35wXHj9qrdtWEeKtyUEOMKqRwm2/ihkkqK7URZrJO3UHdmsuLUuF/olibNQaoAGu
-         FuaYYnlR0QR1ghQ1EAPCN5NNGUG6o7F3B2wIJ5s97kcxLSnmbehhfPxz5p4wJbGOFTcP
-         noWSVnaXrPROQsmUWkNW1S0d8P/ODAnhsBSoze2umGYzFrdbru3XZJTcP/+381wU1Npb
-         p+uQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1750785369; x=1751390169;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=HsR7NJDAwXIG1UDTQq7wzW72HQmPr4b4eMr+oAxOFl0=;
-        b=r5gYg0nqOI0jV3PZvxhxspQHlJGrmouyuDkjEFaq/j9Jd9beIj/BcG2w2jD4fgOWgn
-         MbOEsMsduJx1nTiZ7zbW59tFZsq59RhusieQN06zwvDfPnkcWCVbBOVUIbb6DPVbTso8
-         3a51j5OErQLFOkVxi28jzASo+THPpxBMmqmcn3/c7DCosR9JyHyEB9un77qqWajXkUH1
-         pD/6caucxmNwkE1XgXRKd1JyetfrsEEhwOtvYg0uDglxxEo6bPQX6k/35d1Kwj4UuJmC
-         WT65MOmfXAcTueM8xr7iGFsfTiQMa1pGstVsdUBvv7E1v0atXuCS+6EGPADao8Ss+cKK
-         y4Ow==
-X-Forwarded-Encrypted: i=1; AJvYcCUTu2LSAzZHAfsWrIgH6yvqbJVSk+8V3DqrGJykOOYtRLnxLHXBJPxH/nkHEEUMyXJjX32Ml7LKsjHZ@vger.kernel.org, AJvYcCX/HWOyXqlhAfv7XfsL1OfBLn0VvPSXvO9CYomt7yfjiaKdYXh4/skGKGjNs9VO9bTeq1A7jwz+7op/5zFGDF+YIKI=@vger.kernel.org
-X-Gm-Message-State: AOJu0YzpT78spLNtpJ0+wCHnSUsONJKlEt0urSdvGqeBniSEMu/ldkPm
-	R67k9Br6huUjBmEE1pJI/HsQxRHWi1PuwT8bnvVJFUXJt0QY6ZKwq1Nu
-X-Gm-Gg: ASbGnctvA84PsCZxQNi3cdvz5lY5zABaMwc3E4u6/AhHtzNc+MMy7L96I5vPlZpuWrq
-	/zsOFYGuZ+MDubiKy8TmLl0RcgwFTgyXrkwK/dq1rTCcJSmO52UOmPB3zOxVFAx1ow57MHGKjZt
-	ct16G8m87/bdh65XSeezojgF9SFDj1ntcHTGGCxelscfHAINhG/DS4A/a7tDm1buFnuLaqNPRLt
-	s4lTJOx6AN2FH+JbkeB1n6f2OnusUfA2rJNTjv42IL1eAkXWX0bgEl7EyBcY7pfnmbjaZufpM3G
-	/kTbPJfdCsXw6E+Js15x2lLmINS8JMPeUTakac5AhpkNt8MziAgIFda9aPsuTA4AWHIdLXY2NM8
-	KU3vXw3o0EJHGiJM7alKX
-X-Google-Smtp-Source: AGHT+IHi7nu6IpK9dIOlmVZ06kuGDTr8M6EYbD6JoMTVVj3VsN5JutQswHRnFATRwnDZUrHT3lbbBA==
-X-Received: by 2002:a05:600c:1c88:b0:43d:82c:2b11 with SMTP id 5b1f17b1804b1-4537e8dd620mr27161145e9.23.1750785369071;
-        Tue, 24 Jun 2025 10:16:09 -0700 (PDT)
-Received: from iku.example.org ([2a06:5906:61b:2d00:a522:16f6:ec97:d332])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-3a6e80f2a4csm2433515f8f.65.2025.06.24.10.16.08
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 24 Jun 2025 10:16:08 -0700 (PDT)
-From: Prabhakar <prabhakar.csengg@gmail.com>
-X-Google-Original-From: Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-To: Krzysztof Kozlowski <krzk@kernel.org>,
-	Rob Herring <robh@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Geert Uytterhoeven <geert+renesas@glider.be>,
-	Magnus Damm <magnus.damm@gmail.com>,
-	Biju Das <biju.das.jz@bp.renesas.com>
-Cc: linux-kernel@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	linux-renesas-soc@vger.kernel.org,
-	Prabhakar <prabhakar.csengg@gmail.com>,
-	Fabrizio Castro <fabrizio.castro.jz@renesas.com>,
-	Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-Subject: [PATCH] dt-bindings: memory: renesas,rzg3e-xspi: Document RZ/V2H(P) and RZ/V2N support
-Date: Tue, 24 Jun 2025 18:16:05 +0100
-Message-ID: <20250624171605.469724-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
-X-Mailer: git-send-email 2.49.0
+	s=arc-20240116; t=1750785569; c=relaxed/simple;
+	bh=f4fO3gspUXwm6yLiX9zli1umyV3b5sjU5/AkqFFShks=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=FB2eVUg5JTAU3ij+Nk/f5ao7tE2SNsBiyuPTv0ZzJH+KgcKaXp25f2/oGvQCY93p+G0V/STP7l9jyIdmylK+ye/z2Xy8htQ/MB36tP8Ll3WjygKHSgn+5aSwnF2AZqpFMXRUYet70eSXvPDdoH3ZixQVW+hfLghrKdknSNxN5tw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=cMzeX9fD; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id E4CC4C4CEE3;
+	Tue, 24 Jun 2025 17:19:28 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1750785569;
+	bh=f4fO3gspUXwm6yLiX9zli1umyV3b5sjU5/AkqFFShks=;
+	h=From:To:Cc:Subject:Date:From;
+	b=cMzeX9fDYAPfwDcT/2YNg6t7zbQHMyKrrPk+U5UL57m8jtSJP+LdbPUHOyQ8jN/2o
+	 9ScKApVImDHfm9fQ4amU2soaalaM3QEcy7kYlIptYc3iSdU+DEsoh5Vz/Odc9pzxFA
+	 e6zWZxMGhudd/TI2drgsOlFikkT6q8R7WBfnvR5VO3GCE3gFbnMmNlpJFvkCzahtLs
+	 DP4AzEcGTxOtduWaX5Ba2yXfJx9TGC+z8mGUxxMwUCsu5Gf0KsC1x/Y++HEnrEyRVI
+	 VNJy2HQSUVjTUpWOCnnwSid5sSO7zOQgQO7TbsSjXRRcTGsIKgzMJn8VZ1cfoED+WP
+	 UmZRPesEePKTg==
+From: Dinh Nguyen <dinguyen@kernel.org>
+To: robh+dt@kernel.org,
+	krzysztof.kozlowskii+dt@linaro.org,
+	conor+dt@kernel.org
+Cc: dinguyen@kernel.org,
+	devicetree@vger.kernel.org
+Subject: [PATCHv3] dt-bindings: net: convert socfpga-dwmac.txt to DT schema
+Date: Tue, 24 Jun 2025 12:19:24 -0500
+Message-ID: <20250624171924.433301-1-dinguyen@kernel.org>
+X-Mailer: git-send-email 2.42.0.411.g813d9a9188
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -97,43 +58,229 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 
-From: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+Convert the socfpga-dwmac.txt to yaml.
 
-Document support for the Expanded Serial Peripheral Interface (xSPI)
-controller found on the Renesas RZ/V2H(P) (R9A09G057) and RZ/V2N
-(R9A09G056) SoCs.
-
-The xSPI hardware block on these SoCs is functionally identical to the
-one on the RZ/G3E (R9A09G047) SoC. Therefore, the existing driver can be
-reused without modification by using `renesas,r9a09g047-xspi` as a
-fallback compatible.
-
-Signed-off-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+Signed-off-by: Dinh Nguyen <dinguyen@kernel.org>
 ---
- .../bindings/memory-controllers/renesas,rzg3e-xspi.yaml  | 9 ++++++++-
- 1 file changed, 8 insertions(+), 1 deletion(-)
+v3: Address all of Rob Herring's comments
+v2: Add allOf to include the base dmac yaml
+    fix Rob Herring's dt_binding_check warnings
+---
+ .../bindings/net/altr,dwmac-socfpga.yaml      | 139 ++++++++++++++++++
+ .../devicetree/bindings/net/socfpga-dwmac.txt |  57 -------
+ 2 files changed, 139 insertions(+), 57 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/net/altr,dwmac-socfpga.yaml
+ delete mode 100644 Documentation/devicetree/bindings/net/socfpga-dwmac.txt
 
-diff --git a/Documentation/devicetree/bindings/memory-controllers/renesas,rzg3e-xspi.yaml b/Documentation/devicetree/bindings/memory-controllers/renesas,rzg3e-xspi.yaml
-index 2bfe63ec62dc..7a84f5bb7284 100644
---- a/Documentation/devicetree/bindings/memory-controllers/renesas,rzg3e-xspi.yaml
-+++ b/Documentation/devicetree/bindings/memory-controllers/renesas,rzg3e-xspi.yaml
-@@ -23,7 +23,14 @@ allOf:
- 
- properties:
-   compatible:
--    const: renesas,r9a09g047-xspi  # RZ/G3E
-+    oneOf:
-+      - const: renesas,r9a09g047-xspi  # RZ/G3E
+diff --git a/Documentation/devicetree/bindings/net/altr,dwmac-socfpga.yaml b/Documentation/devicetree/bindings/net/altr,dwmac-socfpga.yaml
+new file mode 100644
+index 000000000000..6ec369ea9e66
+--- /dev/null
++++ b/Documentation/devicetree/bindings/net/altr,dwmac-socfpga.yaml
+@@ -0,0 +1,139 @@
++# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/net/altr,dwmac-socfpga.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
 +
++title: Intel/Altera SoCFPGA DWMAC controller
++
++maintainers:
++  - Dinh Nguyen <dinguyen@kernel.org>
++
++select:
++  properties:
++    compatible:
++      contains:
++        enum:
++          - altr,socfpga-stmmac
++          - altr,socfpga-stmmac-a10-s10
++  required:
++    - compatible
++
++allOf:
++  - $ref: snps,dwmac.yaml#
++
++properties:
++  compatible:
++    oneOf:
 +      - items:
-+          - enum:
-+              - renesas,r9a09g056-xspi  # RZ/V2N
-+              - renesas,r9a09g057-xspi  # RZ/V2H(P)
-+          - const: renesas,r9a09g047-xspi
- 
-   reg:
-     items:
++          - const: altr,socfpga-stmmac
++          - const: snps,dwmac-3.70a
++          - const: snps,dwmac
++      - items:
++          - const: altr,socfpga-stmmac-a10-s10
++          - const: snps,dwmac-3.72a
++          - const: snps,dwmac
++      - items:
++          - const: altr,socfpga-stmmac-a10-s10
++          - const: snps,dwmac-3.74a
++          - const: snps,dwmac
++
++  reg:
++    maxItems: 1
++
++  iommus:
++    minItems: 1
++    maxItems: 2
++
++  clocks:
++    minItems: 1
++    items:
++      - description: GMAC main clock
++      - description: PTP clock
++
++  clock-names:
++    minItems: 1
++    maxItems: 2
++    items:
++      - const: stmmaceth
++      - const: ptp_ref
++
++  resets:
++    minItems: 1
++    items:
++      - description: GMAC stmmaceth reset
++      - description: AHB reset
++
++  reset-names:
++    minItems: 1
++    items:
++      - const: stmmaceth
++      - const: ahb
++
++  interrupts:
++    items:
++      - description: DWMAC interrupt
++
++  interrupt-names:
++    items:
++      - const: macirq
++
++  phy-mode:
++    maxItems: 1
++    items:
++      enum:
++        - rgmii
++        - gmii
++        - mii
++
++  altr,sysmgr-syscon:
++    $ref: /schemas/types.yaml#/definitions/phandle-array
++    items:
++      - items:
++          - description: phandle to the sysmgr node
++          - description: register offset that controls the SDMMC clock phase
++          - description: register shift for the smplsel(drive in) setting
++    description:
++      Should be the phandle to the system manager node that
++      encompasses the glue register, the register offset, and the register shift.
++      On Cyclone5/Arria5, the register shift represents the PHY mode bits, while
++      on the Arria10/Stratix10/Agilex platforms, the register shift represents
++      bit for each emac to enable/disable signals from the FPGA fabric to the
++      EMAC modules.
++
++  altr,emac-splitter:
++    $ref: /schemas/types.yaml#/definitions/phandle
++    description:
++      Should be the phandle to the emac splitter soft IP node if DWMAC
++      controller is connected emac splitter.
++
++  altr,sgmii-to-sgmii-converter:
++    $ref: /schemas/types.yaml#/definitions/phandle
++    description:
++      Phandle to the TSE SGMII converter.
++
++required:
++  - compatible
++  - reg
++  - interrupts
++  - clocks
++  - clock-names
++  - phy-mode
++
++unevaluatedProperties: false
++
++examples:
++  - |
++    gmac0: ethernet@ff700000 {
++            compatible = "altr,socfpga-stmmac", "snps,dwmac-3.70a", "snps,dwmac";
++            altr,sysmgr-syscon = <&sysmgr 0x60 0>;
++            reg = <0xff700000 0x2000>;
++            interrupts = <0 115 4>;
++            interrupt-names = "macirq";
++            mac-address = [00 00 00 00 00 00];/* Filled in by U-Boot */
++            clocks = <&emac_0_clk>;
++            clock-names = "stmmaceth";
++            phy-mode = "rgmii";
++            tx-fifo-depth = <16384>;
++            rx-fifo-depth = <16384>;
++    };
+diff --git a/Documentation/devicetree/bindings/net/socfpga-dwmac.txt b/Documentation/devicetree/bindings/net/socfpga-dwmac.txt
+deleted file mode 100644
+index 612a8e8abc88..000000000000
+--- a/Documentation/devicetree/bindings/net/socfpga-dwmac.txt
++++ /dev/null
+@@ -1,57 +0,0 @@
+-Altera SOCFPGA SoC DWMAC controller
+-
+-This is a variant of the dwmac/stmmac driver an inherits all descriptions
+-present in Documentation/devicetree/bindings/net/stmmac.txt.
+-
+-The device node has additional properties:
+-
+-Required properties:
+- - compatible	: For Cyclone5/Arria5 SoCs it should contain
+-		  "altr,socfpga-stmmac". For Arria10/Agilex/Stratix10 SoCs
+-		  "altr,socfpga-stmmac-a10-s10".
+-		  Along with "snps,dwmac" and any applicable more detailed
+-		  designware version numbers documented in stmmac.txt
+- - altr,sysmgr-syscon : Should be the phandle to the system manager node that
+-   encompasses the glue register, the register offset, and the register shift.
+-   On Cyclone5/Arria5, the register shift represents the PHY mode bits, while
+-   on the Arria10/Stratix10/Agilex platforms, the register shift represents
+-   bit for each emac to enable/disable signals from the FPGA fabric to the
+-   EMAC modules.
+- - altr,f2h_ptp_ref_clk use f2h_ptp_ref_clk instead of default eosc1 clock
+-   for ptp ref clk. This affects all emacs as the clock is common.
+-
+-Optional properties:
+-altr,emac-splitter: Should be the phandle to the emac splitter soft IP node if
+-		DWMAC controller is connected emac splitter.
+-phy-mode: The phy mode the ethernet operates in
+-altr,sgmii-to-sgmii-converter: phandle to the TSE SGMII converter
+-
+-This device node has additional phandle dependency, the sgmii converter:
+-
+-Required properties:
+- - compatible	: Should be altr,gmii-to-sgmii-2.0
+- - reg-names	: Should be "eth_tse_control_port"
+-
+-Example:
+-
+-gmii_to_sgmii_converter: phy@100000240 {
+-	compatible = "altr,gmii-to-sgmii-2.0";
+-	reg = <0x00000001 0x00000240 0x00000008>,
+-		<0x00000001 0x00000200 0x00000040>;
+-	reg-names = "eth_tse_control_port";
+-	clocks = <&sgmii_1_clk_0 &emac1 1 &sgmii_clk_125 &sgmii_clk_125>;
+-	clock-names = "tse_pcs_ref_clk_clock_connection", "tse_rx_cdr_refclk";
+-};
+-
+-gmac0: ethernet@ff700000 {
+-	compatible = "altr,socfpga-stmmac", "snps,dwmac-3.70a", "snps,dwmac";
+-	altr,sysmgr-syscon = <&sysmgr 0x60 0>;
+-	reg = <0xff700000 0x2000>;
+-	interrupts = <0 115 4>;
+-	interrupt-names = "macirq";
+-	mac-address = [00 00 00 00 00 00];/* Filled in by U-Boot */
+-	clocks = <&emac_0_clk>;
+-	clock-names = "stmmaceth";
+-	phy-mode = "sgmii";
+-	altr,gmii-to-sgmii-converter = <&gmii_to_sgmii_converter>;
+-};
 -- 
-2.49.0
+2.42.0.411.g813d9a9188
 
 
