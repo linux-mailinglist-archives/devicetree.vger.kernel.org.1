@@ -1,70 +1,71 @@
-Return-Path: <devicetree+bounces-189104-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-189105-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7EC7BAE6A1A
-	for <lists+devicetree@lfdr.de>; Tue, 24 Jun 2025 17:06:59 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id C6CDAAE6A66
+	for <lists+devicetree@lfdr.de>; Tue, 24 Jun 2025 17:15:45 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id AA73F3AFE28
-	for <lists+devicetree@lfdr.de>; Tue, 24 Jun 2025 15:03:31 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 9139E5A0510
+	for <lists+devicetree@lfdr.de>; Tue, 24 Jun 2025 15:13:58 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2BB6E2D3204;
-	Tue, 24 Jun 2025 15:03:52 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id EDF3E2E9EB4;
+	Tue, 24 Jun 2025 15:08:28 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=collabora.com header.i=nfraprado@collabora.com header.b="BGcojCJT"
+	dkim=pass (1024-bit key) header.d=collabora.com header.i=nfraprado@collabora.com header.b="FtptMFis"
 X-Original-To: devicetree@vger.kernel.org
-Received: from sender4-op-o14.zoho.com (sender4-op-o14.zoho.com [136.143.188.14])
+Received: from sender4-pp-f112.zoho.com (sender4-pp-f112.zoho.com [136.143.188.112])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 586F43C17;
-	Tue, 24 Jun 2025 15:03:50 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=pass smtp.client-ip=136.143.188.14
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0FD5B2D8796;
+	Tue, 24 Jun 2025 15:08:26 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=pass smtp.client-ip=136.143.188.112
 ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1750777432; cv=pass; b=B65uLAV7sQmK/TYSx4xYIGFqNGEHxjonMoOLZTU/oF7V19mc0lQfZcwF72okILNHlp2o5aUNkjDlJJ4aJbukUxQK6dxIsghehi+3KhsfxMuGOr+JHAXF2+BCqKqeWBVfH0lF8jhlGIy04jsToUp1oMAYjQx2mcIkRuJhyHQqSpQ=
+	t=1750777708; cv=pass; b=CJN11n6P7gBHPpOp3jLlF2CZ8TEw7HFoJWeL8o4ME5rsetxTsKk+q1XoAA1IaOXAKKS+PYFXOlCWDW3pqb5f2MvsYxavu8u4QHLj5l2ibjdRCImXTh71nlh0k+941rAjCz/gwrLniMZ1CsuMC+JXRD+fgGUsCQ5y6exTPBqhCSc=
 ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1750777432; c=relaxed/simple;
-	bh=C9Hv1uTZX3yr514rv90DZ1Rmj6G2ElIhixYW3I7htvM=;
+	s=arc-20240116; t=1750777708; c=relaxed/simple;
+	bh=iFbya3akG5s+WS6JIinMfQGqethChzDGcRe3Sr4acZc=;
 	h=Message-ID:Subject:From:To:Cc:Date:In-Reply-To:References:
-	 Content-Type:MIME-Version; b=Zm1uQ0mGtOwLW0xnWCsNq4rBhB4JFkobvtVRxXZm8FT/RUMhArT4gl4d6FZdUXArFC5dYdMXHVSdonlGjo4D4gwzQqHzPNdwh3dZq1u6Xo/4luUwloWJbfhzUzQ4GlTL5WCPJJ/YrTocaGtKZ8yyK7xRpH3YIjM4pLxibaWSlFs=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (1024-bit key) header.d=collabora.com header.i=nfraprado@collabora.com header.b=BGcojCJT; arc=pass smtp.client-ip=136.143.188.14
+	 Content-Type:MIME-Version; b=PT2Zl5qUhYC9Lv2eOUIOXL3U8spbnK1mCycxLJtcwmF+IFfZryZeVY4QNMoZMxwhv/LH5tJWiXwcJSxBxIQ31ofDoWvQHFiGWLbvaG4d4pWeULLiZiofBIe8cbSfBuXJxWNbxQvuC33HFlfcXant53LLVOdyfjb9UDVnvnmMb8U=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (1024-bit key) header.d=collabora.com header.i=nfraprado@collabora.com header.b=FtptMFis; arc=pass smtp.client-ip=136.143.188.112
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
-ARC-Seal: i=1; a=rsa-sha256; t=1750777414; cv=none; 
+ARC-Seal: i=1; a=rsa-sha256; t=1750777688; cv=none; 
 	d=zohomail.com; s=zohoarc; 
-	b=QNhvekAmOyJlSaTPeOgdH1E2Ub4zERAV6edgOXXdI0FUdEpW7V/FCSUdBUnW6H6Puq5FmetNYBwHUNWM0Zs3H+3ExFeDFWsKbiSh/xoyDX/vKm2wf0GCkTF4wFVQDfXQDYeOMYkCrbz2vBVYuilte/Sm/cY8weRn6C3jDdQCXUA=
+	b=j2T9YRPFmYHllAw3Uj+oprvkwNlJuGisTI3I33f9NyyOLPlWD6NhDuy8il1fatk6YzWEAT6XrwlVprtYlftjxk9KXOsWei8/WM3Jt7ueJrqur5UIHs774ZonkCokIsotBBlJA4kWHqrxlsQ/c7E/JH4JKQE0rPpWjI9PNf1xW8s=
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=zohomail.com; s=zohoarc; 
-	t=1750777414; h=Content-Type:Content-Transfer-Encoding:Cc:Cc:Date:Date:From:From:In-Reply-To:MIME-Version:Message-ID:References:Subject:Subject:To:To:Message-Id:Reply-To; 
-	bh=C9Hv1uTZX3yr514rv90DZ1Rmj6G2ElIhixYW3I7htvM=; 
-	b=eTcwFEa7cgN+sJI/MQaEVvj7GY/8WfHQnvRO2JLi4xtAnO1D3JxYrKSVtjLJfXxxl4LDFpTfzppV3hMaG9pw9E5WguludlhgLxIKODPZP9Sd55q7m2iWRlW7hTpGewYANIk3rsdwMgHD0plHMcqM8+HkrPAX+8AqJndn1CSimE0=
+	t=1750777688; h=Content-Type:Content-Transfer-Encoding:Cc:Cc:Date:Date:From:From:In-Reply-To:MIME-Version:Message-ID:References:Subject:Subject:To:To:Message-Id:Reply-To; 
+	bh=iFbya3akG5s+WS6JIinMfQGqethChzDGcRe3Sr4acZc=; 
+	b=h7IxcQ8JPbIC+RE7fTXushzJnYfvEgD8fnuk9Ek59B5Jzz1fUgofQK4SM3ff/+xMIY0rpevizoPXVMBIQJ0JKYpeDAh6oiZD0AxG6tW3hbvbPtaXshOwW54ZZl2eCFnt5w4+LpDIYsNhWD8cCV7Eh2g+WgSa+AdzNWgXGsXtnRE=
 ARC-Authentication-Results: i=1; mx.zohomail.com;
 	dkim=pass  header.i=collabora.com;
 	spf=pass  smtp.mailfrom=nfraprado@collabora.com;
 	dmarc=pass header.from=<nfraprado@collabora.com>
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; t=1750777414;
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; t=1750777688;
 	s=zohomail; d=collabora.com; i=nfraprado@collabora.com;
 	h=Message-ID:Subject:Subject:From:From:To:To:Cc:Cc:Date:Date:In-Reply-To:References:Content-Type:Content-Transfer-Encoding:MIME-Version:Message-Id:Reply-To;
-	bh=C9Hv1uTZX3yr514rv90DZ1Rmj6G2ElIhixYW3I7htvM=;
-	b=BGcojCJTmLwUDU/okdPTeoxUIln1VdOuHJw0JK+z3tpC8f5TzfqvTCYFeb0gxFgT
-	4hURD370c1Ndko/lmXC0l0G0BCuyD1QjzmESRKGIEwiw0up6sZhKXfeUwzUeBFhWbN1
-	l67b63G1lgJAFVeI5OjUXFyy/kNX7mdkFQ3J+cBs=
-Received: by mx.zohomail.com with SMTPS id 1750777412568887.5168202530137;
-	Tue, 24 Jun 2025 08:03:32 -0700 (PDT)
-Message-ID: <60d033a5380674c3ad45d3245de63aacc5d73f73.camel@collabora.com>
-Subject: Re: [PATCH v1 0/2] mfd: Add driver for multifunction MediaTek SPMI
- PMICs
+	bh=iFbya3akG5s+WS6JIinMfQGqethChzDGcRe3Sr4acZc=;
+	b=FtptMFisHQLd/sJ12WNGMcjoOI8gkU4MkUTPkZnp2DNG7YTgyEFoITQdqnxu4Wre
+	UYnu71dhwT3nmywqje6WNh6p5cf3qD3zmUCKG3tK3F/VyLInOFxJD9JHoFNLg2FX/Uj
+	9++aNZ2IsPHD1rdDv629KMriuxFmGV+VSst6vEVY=
+Received: by mx.zohomail.com with SMTPS id 1750777687203110.75444813457466;
+	Tue, 24 Jun 2025 08:08:07 -0700 (PDT)
+Message-ID: <639e695859d632c9527d76876df2a48287197fb9.camel@collabora.com>
+Subject: Re: [PATCH v1 0/5] iio: Add support for MT6363/6373 Auxiliary ADC
 From: =?ISO-8859-1?Q?N=EDcolas?= "F. R. A. Prado" <nfraprado@collabora.com>
 To: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>, 
-	lee@kernel.org
-Cc: robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org, 
- matthias.bgg@gmail.com, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org,  linux-arm-kernel@lists.infradead.org,
- linux-mediatek@lists.infradead.org,  kernel@collabora.com
-Date: Tue, 24 Jun 2025 11:03:30 -0400
-In-Reply-To: <20250623120038.108891-1-angelogioacchino.delregno@collabora.com>
+	jic23@kernel.org
+Cc: dlechner@baylibre.com, nuno.sa@analog.com, andy@kernel.org,
+ robh@kernel.org,  krzk+dt@kernel.org, conor+dt@kernel.org,
+ matthias.bgg@gmail.com,  linux-iio@vger.kernel.org,
+ devicetree@vger.kernel.org,  linux-kernel@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org,  linux-mediatek@lists.infradead.org,
+ kernel@collabora.com
+Date: Tue, 24 Jun 2025 11:08:05 -0400
+In-Reply-To: <20250623120028.108809-1-angelogioacchino.delregno@collabora.com>
 References: 
-	<20250623120038.108891-1-angelogioacchino.delregno@collabora.com>
+	<20250623120028.108809-1-angelogioacchino.delregno@collabora.com>
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 User-Agent: Evolution 3.46.4-2 
@@ -77,23 +78,24 @@ MIME-Version: 1.0
 X-ZohoMailClient: External
 
 On Mon, 2025-06-23 at 14:00 +0200, AngeloGioacchino Del Regno wrote:
-> Some MediaTek SPMI PMICs, like MT6363 and MT6373, are multi-function
-> devices, as they have and expose multiple sub-devices; moreover, some
-> of those also contain an interrupt controller, managing internal IPs
-> interrupts: for those, a chained interrupt handler is registered,
-> which
-> parent is the SPMI controller itself.
+> This series adds support for the Auxiliary ADC IP found on the new
+> MediaTek MT6363 and MT6373 PMICs, found on board designs featuring
+> the MT8196 Chromebook SoC or the MT6991 Dimensity 9400 Smartphone
+> SoC.
 >=20
-> This series adds support for the MT6363, MT6373 SPMI PMICs and their
-> interrupt controller.
->=20
-> AngeloGioacchino Del Regno (2):
-> =C2=A0 dt-bindings: mfd: Add binding for MediaTek MT6363 series SPMI PMIC
-> =C2=A0 drivers: mfd: Add support for MediaTek SPMI PMICs and MT6363/73
+> AngeloGioacchino Del Regno (5):
+> =C2=A0 dt-bindings: iio: adc: mt6359: Add bindings for MT6363 PMIC AuxADC
+> =C2=A0 dt-bindings: iio: adc: mt6359: Add bindings for MT6373 PMIC AuxADC
+> =C2=A0 iio: adc: mt6359: Add ready register index and mask to channel dat=
+a
+> =C2=A0 iio: adc: mt6359: Add support for MediaTek MT6363 PMIC AUXADC
+> =C2=A0 iio: adc: mt6359: Add support for MediaTek MT6373 PMIC AUXADC
 
-For the whole series:
+For the entire series:
 
 Reviewed-by: N=C3=ADcolas F. R. A. Prado <nfraprado@collabora.com>
+
+(as I internally reviewed this before submission)
 
 --=20
 Thanks,
