@@ -1,280 +1,188 @@
-Return-Path: <devicetree+bounces-188916-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-188917-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 626C5AE6067
-	for <lists+devicetree@lfdr.de>; Tue, 24 Jun 2025 11:14:03 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 3E46DAE60B5
+	for <lists+devicetree@lfdr.de>; Tue, 24 Jun 2025 11:21:31 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 98F947A1878
-	for <lists+devicetree@lfdr.de>; Tue, 24 Jun 2025 09:12:39 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 914F17B207D
+	for <lists+devicetree@lfdr.de>; Tue, 24 Jun 2025 09:20:07 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4936C27AC28;
-	Tue, 24 Jun 2025 09:13:59 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4F2E8279DBE;
+	Tue, 24 Jun 2025 09:21:26 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="mzPwTks6"
+	dkim=pass (2048-bit key) header.d=easyb-ch.20230601.gappssmtp.com header.i=@easyb-ch.20230601.gappssmtp.com header.b="24JfGFkJ"
 X-Original-To: devicetree@vger.kernel.org
-Received: from lelvem-ot02.ext.ti.com (lelvem-ot02.ext.ti.com [198.47.23.235])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wm1-f43.google.com (mail-wm1-f43.google.com [209.85.128.43])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2FE3C27A918;
-	Tue, 24 Jun 2025 09:13:56 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.23.235
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 280DB27AC28
+	for <devicetree@vger.kernel.org>; Tue, 24 Jun 2025 09:21:23 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.43
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1750756439; cv=none; b=WD5VyI44/4nTVWmnxktEY1gypIt3tFWSysA77k4GoW1Gx2X0EY8saSTpKxPT3wxL2XuMsaSCPpescoYZ3mgMyTAX35pJKfU7OqDFntbeafwqfC6N0PEV2504nwb5NpKFRqlaR3afbXxYchaotn5MP480wXC+vkZmHi80YIpLoRE=
+	t=1750756886; cv=none; b=JUOXN6i0NMW+hX3lnTdYFhTV8O9qoJCOuHHpTBEvv29cuTPe5C+hR8jYvlGdoNJaovDQWcDroAuYMazDTRamuEC73rPzQMaOzLJa43Qo6Tp3Bt3d5sqZkoSDShBZcxgW6rxfOiREL49f/vu6WEZ/88bSIj8rBy9tuD9urUQ0U3A=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1750756439; c=relaxed/simple;
-	bh=9R4FiXMiHNcEssoGY/nHv3dxHUMNme/fINK4r9pq04w=;
-	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
-	 In-Reply-To:Content-Type; b=lQgMGhAH4sUwVhaOGuAjf0sc9EsBN2HN/lM7edqBtECQVo3SHrcfztNBGJUn83VFdxjSSbHnh1WVxga0ydF97x/sb7A0+JSdLpd0y/vWCItRttY1b1x5KR0mam0vRpbIq0vurT+vRXojsubsfuJ4/fwtTDrATgWafOt8ywS1+sM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=mzPwTks6; arc=none smtp.client-ip=198.47.23.235
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
-Received: from lelvem-sh02.itg.ti.com ([10.180.78.226])
-	by lelvem-ot02.ext.ti.com (8.15.2/8.15.2) with ESMTP id 55O9DpjZ1742541;
-	Tue, 24 Jun 2025 04:13:51 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1750756431;
-	bh=9iG3xsVGlgaAhPeVpSczglMwMQZvy5yTTL4i5JT+vbY=;
-	h=Date:Subject:To:CC:References:From:In-Reply-To;
-	b=mzPwTks63v1PDkCVBbD+JJGC9suzKy0ShdOzJ/pvO6o7pfA6ibNSa7a3bl2ngxBRa
-	 UUf/qnE+G0cempC/wDoTr7FQ98SythMOP9Q1gYIriQG/jLknf76jACvEqgKI18gVEX
-	 MtbR5eOnsghO2hLwhSpXTOBgBXjYMvLN0RpaJhrw=
-Received: from DFLE104.ent.ti.com (dfle104.ent.ti.com [10.64.6.25])
-	by lelvem-sh02.itg.ti.com (8.18.1/8.18.1) with ESMTPS id 55O9Dp401589893
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-SHA256 bits=128 verify=FAIL);
-	Tue, 24 Jun 2025 04:13:51 -0500
-Received: from DFLE112.ent.ti.com (10.64.6.33) by DFLE104.ent.ti.com
- (10.64.6.25) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.55; Tue, 24
- Jun 2025 04:13:51 -0500
-Received: from lelvem-mr05.itg.ti.com (10.180.75.9) by DFLE112.ent.ti.com
- (10.64.6.33) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.55 via
- Frontend Transport; Tue, 24 Jun 2025 04:13:51 -0500
-Received: from [172.24.227.38] (ula0502350.dhcp.ti.com [172.24.227.38])
-	by lelvem-mr05.itg.ti.com (8.18.1/8.18.1) with ESMTP id 55O9Dk9Q1513408;
-	Tue, 24 Jun 2025 04:13:46 -0500
-Message-ID: <48258a26-0a29-4f72-a1a1-42369f1af639@ti.com>
-Date: Tue, 24 Jun 2025 14:43:45 +0530
+	s=arc-20240116; t=1750756886; c=relaxed/simple;
+	bh=4Roq/W4hQ9coTMsn/ZxwRa/AYjAUnZ7hmUnYQZTY8Bw=;
+	h=Content-Type:Mime-Version:Subject:From:In-Reply-To:Date:Cc:
+	 Message-Id:References:To; b=WiUldf67o5lNj8uNr1MIcGp9IyMZ0rwKqitce3lMU89iufq1QBvXgh86AZulTUDKYq3Xg6/ufDYIofQQTiHGC5a1nxOtiMOUTmWO2Obf0a3iChqrDMen7r5s5nkvbGDZNccJm3tUNlnm73c7XmYtOY0biG6+WzqBmctCtzqwZFQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=easyb.ch; spf=none smtp.mailfrom=easyb.ch; dkim=pass (2048-bit key) header.d=easyb-ch.20230601.gappssmtp.com header.i=@easyb-ch.20230601.gappssmtp.com header.b=24JfGFkJ; arc=none smtp.client-ip=209.85.128.43
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=easyb.ch
+Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=easyb.ch
+Received: by mail-wm1-f43.google.com with SMTP id 5b1f17b1804b1-453398e90e9so34116905e9.1
+        for <devicetree@vger.kernel.org>; Tue, 24 Jun 2025 02:21:22 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=easyb-ch.20230601.gappssmtp.com; s=20230601; t=1750756881; x=1751361681; darn=vger.kernel.org;
+        h=to:references:message-id:content-transfer-encoding:cc:date
+         :in-reply-to:from:subject:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=XgqmjJzaPxyt1ZsIY6295iEdPbXgM6l1ZFSOy0jxXTM=;
+        b=24JfGFkJd9yKih869WgtpTrefGp5AyzWPL5SHO6RVoLSU5eDBW0rIN9rPtmht5qQsq
+         44QBCnCPIlDxRf/MGUXqQrClmvVX7IGi9F7qNHgi9mER2/QwOGRu9md2zHfMX1X93W2/
+         jy1hoi6JLde7N3oQL/ySwwMN4QgEk5Nd3NRuat9/u6bTno+fr12pj49T3+TUNQ1EEgn9
+         owZXDQ02WydaY54x2G1CV4q75NoeFF649in6x6B8zHMlGY45j+Cjm9epmFZwn+sRPjJF
+         c0fVv/0ythSpHBmzJarJhCq2sl6xPUNQ3AvkPrjmxtDCxsDu4783uh3boHySDBCDnfSX
+         W8Lw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1750756881; x=1751361681;
+        h=to:references:message-id:content-transfer-encoding:cc:date
+         :in-reply-to:from:subject:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=XgqmjJzaPxyt1ZsIY6295iEdPbXgM6l1ZFSOy0jxXTM=;
+        b=sFnRh535hgQnH9L0Nmxy1bHTO0/lomv2JDXBVxCuEOByOg8ESI6VIIkP/EtEPgwHlJ
+         xkR4YvCHcpRiY2dyt1VafPNwRtE8CLyvQlU0y7165aR55bTBwiXSFZfBc/m8aZRROFbT
+         yhPiwApqY46YSDNzzm2aAj9M1yUvfmHuRC7NUS4hLzDXxMUO265jAeBh/yd2bm9RQF97
+         Vq2Kmg+ZQ3ll4yHY0o5drQVhGzHKiC9GU3DnOFlJq2RsvlbzmkHT1b2CeVq1P+x7t6XM
+         cnRnyYB/Ie9NqAzhB/aNGXkoHzUDu5qkKVgfLSvQmeR4YD/LgrqwB+Yx+fBnH9QinM3N
+         5MVQ==
+X-Forwarded-Encrypted: i=1; AJvYcCV+KhdLZmiApkfDznxojpelhj8GpEnKFoyDHBOunJfjFGKnTkL6QjG4g8xHpMG5YljKrO3NxlygjWjr@vger.kernel.org
+X-Gm-Message-State: AOJu0YxJN690kRevjPXxhVDf8IKQYMLziGdw7/JdRLeMNKV7UcWYfAnm
+	XzoJrzj2yqPpPJnpLubX59bzBOIMztnSGNdxINjD2oG1E5yvevUJcl7TtcCE8X+OLTA=
+X-Gm-Gg: ASbGnctXNOUWn/HbvaIjYrkMDtsrpOgKQsERSZ7fUXLlcwvM4gZUhf8kTgRrRZIP+UT
+	pd6/LQN5xkQy0HrQUkZv0SzPcV3PJNysKLgkfNDwZvNyQpjc3V5qsRDGiFWB7P5Tlfok9H5Nf9u
+	MrlBgns46odsGBtm5+rxYX7ZyJMbLhD/EUAng3HxjIAOXFPaZgItoTxwUgeF2GxlvgGCNFf3lkt
+	0Hj2lc8AtC1rhavodhHPHhhnG2Gb6kefMfJDJPXILamLygph4Qwc9KSlRyEKrtJyh9u13dczpDO
+	mDWQ+lldSaEzFNh1Ed+Pk48i6Kaz9NeSUjazxGpREiX5upANEJh3fZDzWs04W0idbCObe3hRVew
+	K7HZM
+X-Google-Smtp-Source: AGHT+IEHGvWxG1VWj7rDXVCaYbdrbGUVQYD209E9iHHpArrPTW17K/tHD0lsgZerfKnxairsIipZDg==
+X-Received: by 2002:a05:600c:1caa:b0:442:f4a3:9388 with SMTP id 5b1f17b1804b1-453659ec1cemr131426705e9.19.1750756881065;
+        Tue, 24 Jun 2025 02:21:21 -0700 (PDT)
+Received: from smtpclient.apple ([2a02:16a:7402:0:54f7:a1c1:3e0:3848])
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-453646cb692sm137276985e9.2.2025.06.24.02.21.20
+        (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
+        Tue, 24 Jun 2025 02:21:20 -0700 (PDT)
+Content-Type: text/plain;
+	charset=us-ascii
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCHv4 1/6] arm64: dts: ti: Add bootph property to nodes at
- source for am62a
-To: Bryan Brattlof <bb@ti.com>
-CC: <nm@ti.com>, <vigneshr@ti.com>, <praneeth@ti.com>, <kristo@kernel.org>,
-        <robh@kernel.org>, <krzk+dt@kernel.org>, <conor+dt@kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>, <khasim@ti.com>, <v-singh1@ti.com>,
-        <afd@ti.com>, <devarsht@ti.com>
-References: <20250623141253.3519546-1-p-bhagat@ti.com>
- <20250623141253.3519546-2-p-bhagat@ti.com>
- <20250623144547.xuitjtmfq6mswmxk@bryanbrattlof.com>
-Content-Language: en-US
-From: Paresh Bhagat <p-bhagat@ti.com>
-In-Reply-To: <20250623144547.xuitjtmfq6mswmxk@bryanbrattlof.com>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 7bit
-X-C2ProcessedOrg: 333ef613-75bf-4e12-a4b1-8e3623f5dcea
+Mime-Version: 1.0 (Mac OS X Mail 16.0 \(3826.600.51.1.1\))
+Subject: Re: [PATCH v3 1/4] dt-bindings: clock: mediatek,mtmips-sysc: Adapt
+ compatible for MT7688 boards
+From: Ezra Buehler <ezra@easyb.ch>
+In-Reply-To: <db2575e9-b7b2-4a44-8ef7-0979b3f1f60d@kernel.org>
+Date: Tue, 24 Jun 2025 11:21:08 +0200
+Cc: linux-mips@vger.kernel.org,
+ devicetree@vger.kernel.org,
+ Conor Dooley <conor+dt@kernel.org>,
+ Harvey Hunt <harveyhuntnexus@gmail.com>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Reto Schneider <reto.schneider@husqvarnagroup.com>,
+ Rob Herring <robh@kernel.org>,
+ Sergio Paracuellos <sergio.paracuellos@gmail.com>,
+ Stefan Roese <sr@denx.de>,
+ Thomas Bogendoerfer <tsbogend@alpha.franken.de>,
+ Ezra Buehler <ezra.buehler@husqvarnagroup.com>
+Content-Transfer-Encoding: quoted-printable
+Message-Id: <FFA8EEE4-65EF-420C-B041-76394BD8FF9E@easyb.ch>
+References: <20250619203502.1293695-1-ezra@easyb.ch>
+ <20250619203502.1293695-2-ezra@easyb.ch>
+ <20250620-unnatural-bloodhound-of-tenacity-4133bd@kuoka>
+ <C75A767D-BD81-48CB-8D39-9FD19BA67E78@easyb.ch>
+ <db2575e9-b7b2-4a44-8ef7-0979b3f1f60d@kernel.org>
+To: Krzysztof Kozlowski <krzk@kernel.org>
+X-Mailer: Apple Mail (2.3826.600.51.1.1)
 
-Hi Bryan,
+> On 24 Jun 2025, at 11:12, Krzysztof Kozlowski <krzk@kernel.org> wrote:
+>=20
+> On 24/06/2025 11:08, Ezra Buehler wrote:
+>>> On 20 Jun 2025, at 09:42, Krzysztof Kozlowski <krzk@kernel.org> =
+wrote:
+>>>=20
+>>> On Thu, Jun 19, 2025 at 10:34:59PM GMT, Ezra Buehler wrote:
+>>>> From: Ezra Buehler <ezra.buehler@husqvarnagroup.com>
+>>>>=20
+>>>> As the MT7628 and MT7688 are identical in most respects, =
+mt7628a.dtsi is
+>>>> used for both SoCs. To prevent "Kernel panic - not syncing: unable =
+to
+>>>> get CPU clock, err=3D-2" and allow an MT7688-based board to boot, =
+the
+>>>> following must be allowed:
+>>>>=20
+>>>>   compatible =3D "ralink,mt7628-sysc", "ralink,mt7688-sysc", =
+"syscon";
+>>>>=20
+>>>> Signed-off-by: Ezra Buehler <ezra.buehler@husqvarnagroup.com>
+>>>> ---
+>>>> .../bindings/clock/mediatek,mtmips-sysc.yaml  | 27 =
+++++++++++---------
+>>>> 1 file changed, 15 insertions(+), 12 deletions(-)
+>>>>=20
+>>>> diff --git =
+a/Documentation/devicetree/bindings/clock/mediatek,mtmips-sysc.yaml =
+b/Documentation/devicetree/bindings/clock/mediatek,mtmips-sysc.yaml
+>>>> index 83c1803ffd16..3fabaa8acc10 100644
+>>>> --- =
+a/Documentation/devicetree/bindings/clock/mediatek,mtmips-sysc.yaml
+>>>> +++ =
+b/Documentation/devicetree/bindings/clock/mediatek,mtmips-sysc.yaml
+>>>> @@ -26,18 +26,21 @@ description: |
+>>>>=20
+>>>> properties:
+>>>>  compatible:
+>>>> -    items:
+>>>> -      - enum:
+>>>> -          - ralink,mt7620-sysc
+>>>> -          - ralink,mt7628-sysc
+>>>> -          - ralink,mt7688-sysc
+>>>=20
+>>> I do not understand why this is removed and commit msg explains =
+nothing
+>>> about it. Re-add it back.
+>>=20
+>> OK, so you suggest we allow
+>>=20
+>> compatible =3D "ralink,mt7628-sysc", "ralink,mt7688-sysc", "syscon";
+>>=20
+>> and
+>>=20
+>> compatible =3D "ralink,mt7688-sysc", "syscon";
+>>=20
+>> I'll adapt my patch accordingly.
+>>=20
+>> Still, as AFAIK the MT7628 and MT7688 are identical in this regard,
+>=20
+> Standard rules apply expressed in writing bindings, some talks/guides
+> and all modern SoCs...
+>=20
+>=20
+>>=20
+>> compatible =3D "ralink,mt7688-sysc", "ralink,mt7628-sysc", "syscon";
+>>=20
+>> would technically be valid too. Could you elaborate why that is not a
+>> good idea? The MT7688 is basically a subset of the MT7628.
+>=20
+> You did not send such patch.
 
+No, I did not. I am just trying to understand the topic better. Anyway,
+never mind, I will just do it as you suggested.
 
-On 23/06/25 20:15, Bryan Brattlof wrote:
-> On June 23, 2025 thus sayeth Paresh Bhagat:
->> Add bootph property directly into the original definitions of relevant
->> nodes (e.g., power domains, USB controllers, and other peripherals)
->> within their respective DTSI files (ex. main, mcu, and wakeup)i for
->> am62a.
->>
->> By defining bootph in the nodes source definitions instead of appending
->> it later in final DTS files, this change ensures that the property is
->> inherently present wherever the nodes are reused across derived device
->> trees.
->>
->> Signed-off-by: Paresh Bhagat <p-bhagat@ti.com>
->> ---
->>   arch/arm64/boot/dts/ti/k3-am62a-main.dtsi   | 15 +++++++++++++++
->>   arch/arm64/boot/dts/ti/k3-am62a-mcu.dtsi    |  1 +
->>   arch/arm64/boot/dts/ti/k3-am62a-wakeup.dtsi |  3 +++
->>   arch/arm64/boot/dts/ti/k3-am62a.dtsi        |  3 +++
->>   4 files changed, 22 insertions(+)
->>
->> diff --git a/arch/arm64/boot/dts/ti/k3-am62a-main.dtsi b/arch/arm64/boot/dts/ti/k3-am62a-main.dtsi
->> index 63e097ddf988..1b7fe4487475 100644
->> --- a/arch/arm64/boot/dts/ti/k3-am62a-main.dtsi
->> +++ b/arch/arm64/boot/dts/ti/k3-am62a-main.dtsi
->> @@ -51,6 +51,7 @@ phy_gmii_sel: phy@4044 {
->>   			compatible = "ti,am654-phy-gmii-sel";
->>   			reg = <0x4044 0x8>;
->>   			#phy-cells = <1>;
->> +			bootph-all;
->>   		};
->>   
->>   		epwm_tbclk: clock-controller@4130 {
->> @@ -84,6 +85,7 @@ dmss: bus@48000000 {
->>   		#size-cells = <2>;
->>   		dma-ranges;
->>   		ranges = <0x00 0x48000000 0x00 0x48000000 0x00 0x06000000>;
->> +		bootph-all;
->>   
->>   		ti,sci-dev-id = <25>;
->>   
->> @@ -96,6 +98,7 @@ secure_proxy_main: mailbox@4d000000 {
->>   			#mbox-cells = <1>;
->>   			interrupt-names = "rx_012";
->>   			interrupts = <GIC_SPI 34 IRQ_TYPE_LEVEL_HIGH>;
->> +			bootph-all;
->>   		};
->>   
->>   		inta_main_dmss: interrupt-controller@48000000 {
->> @@ -131,6 +134,7 @@ main_bcdma: dma-controller@485c0100 {
->>   			ti,sci-rm-range-bchan = <0x20>; /* BLOCK_COPY_CHAN */
->>   			ti,sci-rm-range-rchan = <0x21>; /* SPLIT_TR_RX_CHAN */
->>   			ti,sci-rm-range-tchan = <0x22>; /* SPLIT_TR_TX_CHAN */
->> +			bootph-all;
->>   		};
->>   
->>   		main_pktdma: dma-controller@485c0000 {
->> @@ -167,6 +171,7 @@ main_pktdma: dma-controller@485c0000 {
->>   						<0x2c>, /* FLOW_CPSW_RX_CHAN */
->>   						<0x2e>, /* FLOW_SAUL_RX_0/1_CHAN */
->>   						<0x32>; /* FLOW_SAUL_RX_2/3_CHAN */
->> +			bootph-all;
->>   		};
->>   	};
->>   
->> @@ -216,20 +221,24 @@ dmsc: system-controller@44043000 {
->>   		mbox-names = "rx", "tx";
->>   		mboxes = <&secure_proxy_main 12>,
->>   			 <&secure_proxy_main 13>;
->> +		bootph-all;
->>   
->>   		k3_pds: power-controller {
->>   			compatible = "ti,sci-pm-domain";
->>   			#power-domain-cells = <2>;
->> +			bootph-all;
->>   		};
->>   
->>   		k3_clks: clock-controller {
->>   			compatible = "ti,k2g-sci-clk";
->>   			#clock-cells = <2>;
->> +			bootph-all;
->>   		};
->>   
->>   		k3_reset: reset-controller {
->>   			compatible = "ti,sci-reset";
->>   			#reset-cells = <2>;
->> +			bootph-all;
->>   		};
->>   	};
->>   
->> @@ -254,6 +263,7 @@ secure_proxy_sa3: mailbox@43600000 {
->>   		 * firmware on non-MPU processors
->>   		 */
->>   		status = "disabled";
->> +		bootph-all;
->>   	};
->>   
->>   	main_pmx0: pinctrl@f4000 {
->> @@ -262,6 +272,7 @@ main_pmx0: pinctrl@f4000 {
->>   		#pinctrl-cells = <1>;
->>   		pinctrl-single,register-width = <32>;
->>   		pinctrl-single,function-mask = <0xffffffff>;
->> +		bootph-all;
->>   	};
->>   
->>   	main_esm: esm@420000 {
->> @@ -282,6 +293,7 @@ main_timer0: timer@2400000 {
->>   		assigned-clock-parents = <&k3_clks 36 3>;
->>   		power-domains = <&k3_pds 36 TI_SCI_PD_EXCLUSIVE>;
->>   		ti,timer-pwm;
->> +		bootph-all;
->>   	};
->>   
->>   	main_timer1: timer@2410000 {
->> @@ -653,6 +665,7 @@ usb0: usb@31000000 {
->>   			dr_mode = "otg";
->>   			snps,usb2-gadget-lpm-disable;
->>   			snps,usb2-lpm-disable;
->> +			bootph-all;
->>   		};
->>   	};
->>   
->> @@ -745,6 +758,7 @@ cpsw_port1: port@1 {
->>   				phys = <&phy_gmii_sel 1>;
->>   				mac-address = [00 00 00 00 00 00];
->>   				ti,syscon-efuse = <&cpsw_mac_syscon 0x0>;
->> +				bootph-all;
->>   			};
->>   
->>   			cpsw_port2: port@2 {
->> @@ -764,6 +778,7 @@ cpsw3g_mdio: mdio@f00 {
->>   			clocks = <&k3_clks 13 0>;
->>   			clock-names = "fck";
->>   			bus_freq = <1000000>;
->> +			bootph-all;
->>   		};
->>   
->>   		cpts@3d000 {
->> diff --git a/arch/arm64/boot/dts/ti/k3-am62a-mcu.dtsi b/arch/arm64/boot/dts/ti/k3-am62a-mcu.dtsi
->> index ee961ced7208..df4aa131097f 100644
->> --- a/arch/arm64/boot/dts/ti/k3-am62a-mcu.dtsi
->> +++ b/arch/arm64/boot/dts/ti/k3-am62a-mcu.dtsi
->> @@ -12,6 +12,7 @@ mcu_pmx0: pinctrl@4084000 {
->>   		#pinctrl-cells = <1>;
->>   		pinctrl-single,register-width = <32>;
->>   		pinctrl-single,function-mask = <0xffffffff>;
->> +		bootph-all;
->>   	};
->>   
->>   	mcu_esm: esm@4100000 {
->> diff --git a/arch/arm64/boot/dts/ti/k3-am62a-wakeup.dtsi b/arch/arm64/boot/dts/ti/k3-am62a-wakeup.dtsi
->> index 259ae6ebbfb5..86aae252385c 100644
->> --- a/arch/arm64/boot/dts/ti/k3-am62a-wakeup.dtsi
->> +++ b/arch/arm64/boot/dts/ti/k3-am62a-wakeup.dtsi
->> @@ -13,10 +13,12 @@ wkup_conf: bus@43000000 {
->>   		#address-cells = <1>;
->>   		#size-cells = <1>;
->>   		ranges = <0x00 0x00 0x43000000 0x20000>;
->> +		bootph-all;
->>   
->>   		chipid: chipid@14 {
->>   			compatible = "ti,am654-chipid";
->>   			reg = <0x14 0x4>;
->> +			bootph-all;
->>   		};
->>   
->>   		opp_efuse_table: syscon@18 {
->> @@ -67,6 +69,7 @@ wkup_uart0: serial@0 {
->>   			reg = <0 0x100>;
->>   			interrupts = <GIC_SPI 186 IRQ_TYPE_LEVEL_HIGH>;
->>   			status = "disabled";
->> +			bootph-pre-ram;
->>   	       };
->>   	};
->>   
->> diff --git a/arch/arm64/boot/dts/ti/k3-am62a.dtsi b/arch/arm64/boot/dts/ti/k3-am62a.dtsi
->> index 4d79b3e9486a..54eab2c93eff 100644
->> --- a/arch/arm64/boot/dts/ti/k3-am62a.dtsi
->> +++ b/arch/arm64/boot/dts/ti/k3-am62a.dtsi
->> @@ -50,6 +50,7 @@ cbass_main: bus@f0000 {
->>   		compatible = "simple-bus";
->>   		#address-cells = <2>;
->>   		#size-cells = <2>;
->> +		bootph-all;
-> We only need to add the bootph-* properties to the leaf nodes. U-Boot is
-> smart enough to propagate these properties all the way to the root when
-> it's pruning the device tree for the bootloaders.
->
-> ~Bryan
+Cheers,
+Ezra.
 
-
-Will fix this. Thanks
 
