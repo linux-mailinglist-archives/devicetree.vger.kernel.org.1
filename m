@@ -1,152 +1,205 @@
-Return-Path: <devicetree+bounces-189066-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-189067-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6A74CAE68C2
-	for <lists+devicetree@lfdr.de>; Tue, 24 Jun 2025 16:32:21 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 47F31AE6916
+	for <lists+devicetree@lfdr.de>; Tue, 24 Jun 2025 16:40:33 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id D4D1D19257FC
-	for <lists+devicetree@lfdr.de>; Tue, 24 Jun 2025 14:27:20 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id A40A4188C26A
+	for <lists+devicetree@lfdr.de>; Tue, 24 Jun 2025 14:34:49 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 35B3B2D1319;
-	Tue, 24 Jun 2025 14:24:59 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id DE6A42D4B67;
+	Tue, 24 Jun 2025 14:33:35 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=collabora.com header.i=nfraprado@collabora.com header.b="Y9Db3CJu"
+	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="Linbs5zY"
 X-Original-To: devicetree@vger.kernel.org
-Received: from sender4-op-o14.zoho.com (sender4-op-o14.zoho.com [136.143.188.14])
+Received: from bali.collaboradmins.com (bali.collaboradmins.com [148.251.105.195])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 35E271F4607;
-	Tue, 24 Jun 2025 14:24:56 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=pass smtp.client-ip=136.143.188.14
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1750775099; cv=pass; b=IxjKXiOAYOTIHrPWvR5zhx/fIXnW8yGoivjfdzMgHa++Cv4ndBzrtNtnGHxo/UAyF+KFyVfZI07vNh0vJ9iPzostisKYlJkn4kZvx61eTBfI3yHINUNin9WGIw1PlpI5R6xxvp/owsPHcpP/s+2LpsGKOLxd/kxxUaYpWUb37RQ=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1750775099; c=relaxed/simple;
-	bh=RrCfd4LRI0YthoKkMgXgWQDEDfg201AKOzW91yg3140=;
-	h=Message-ID:Subject:From:To:Cc:Date:In-Reply-To:References:
-	 Content-Type:MIME-Version; b=QEN7wuRUcQzO//cTlhfhySubGSjrR5g7pSurGsFnST1zHNPjvr7IOacsupqhuBoebp39yv6Ci5riXZXMZ4RcoWsomzVxQv1GfxWd8ZXgaYJ7afiLTVPdvBw/wWD8jmzeKIWpv8FRL79V6TAkAxND67GTGXXfWFMdwQJ1khwMQhU=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (1024-bit key) header.d=collabora.com header.i=nfraprado@collabora.com header.b=Y9Db3CJu; arc=pass smtp.client-ip=136.143.188.14
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A9F492D3A93;
+	Tue, 24 Jun 2025 14:33:33 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=148.251.105.195
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1750775615; cv=none; b=r5KF6MoHFsFnnFvm6Z9ogC6yCr+u5iAmzOD4zTUu2NdBezAdK0dAWIdzJXqYVrHHt4ayPJiaM34/Dbrir7+AvtgtqcuGCe05K0xQ56WsSHpE6ooZErZLZsjol5RnrGk23TvLbSfrceP4fKjDBGaBpw9O4Gr6q1wkB44OQFdwQTA=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1750775615; c=relaxed/simple;
+	bh=T4Clas5bzqxC87iLgxrgDlE8/O1YxVArn4WnJgBEpKA=;
+	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version:Content-Type; b=M4JVpLFlYjP/w/m0RimibXzZx7EBLbO83gHNjvBk1LgIaAM282t1PMe+/7vBaQdqm2Tx5och+5OpAMASI2JukY2faXTzXNAh2Tr/jLrHrh+mzpC+4+mPGsHLfDDvDd5WP6fxggndU4BQA9yrmsHqx8OsqNgpgNfC2BjzkKD0zBI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b=Linbs5zY; arc=none smtp.client-ip=148.251.105.195
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
-ARC-Seal: i=1; a=rsa-sha256; t=1750775065; cv=none; 
-	d=zohomail.com; s=zohoarc; 
-	b=FtqdH5fHsxD5tdO7RpQju9z7Kg83NOATY3cl0059rNyGDnnP3b9v5JTOlHY6/urmd5nUxZXc5cMU39UUrlA0hWZXJpWRMyKMEIiiJydahC6TEBGh01wTwYzKfZc9tM47Yv7ZorSRTjazwYMRLA06vjhSiZ11hNJyrRlsxIsIBNE=
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=zohomail.com; s=zohoarc; 
-	t=1750775065; h=Content-Type:Content-Transfer-Encoding:Cc:Cc:Date:Date:From:From:In-Reply-To:MIME-Version:Message-ID:References:Subject:Subject:To:To:Message-Id:Reply-To; 
-	bh=RrCfd4LRI0YthoKkMgXgWQDEDfg201AKOzW91yg3140=; 
-	b=ACM7SGKNrUHcbiaQDC0GYK/KK410dR4iCIUK8yPanKSUsXcJp94qDBrO+V9ftpLE50I7K1WyacmNirQxm7/ubHcs85iZMTb/f815+arXp/x/bnTPg2TATcQTUADIyJjJD6TtmoNrnBM8zrI6ey6j0Z8kS8BmBfee6gT2iW1uRVw=
-ARC-Authentication-Results: i=1; mx.zohomail.com;
-	dkim=pass  header.i=collabora.com;
-	spf=pass  smtp.mailfrom=nfraprado@collabora.com;
-	dmarc=pass header.from=<nfraprado@collabora.com>
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; t=1750775065;
-	s=zohomail; d=collabora.com; i=nfraprado@collabora.com;
-	h=Message-ID:Subject:Subject:From:From:To:To:Cc:Cc:Date:Date:In-Reply-To:References:Content-Type:Content-Transfer-Encoding:MIME-Version:Message-Id:Reply-To;
-	bh=RrCfd4LRI0YthoKkMgXgWQDEDfg201AKOzW91yg3140=;
-	b=Y9Db3CJu+WCNT9IPnm9GUXLw/oPeRGGIdJ9OZByccR8anQcerUNem9jDBQpmBSh3
-	fsEYbTHqEY6/DS4vW0m35Mv3iNeztEuw6kqgWK1dg/nKqVabW6tRDbfUm3XKQIHqKof
-	3/O+sJ5oh376h1WzFmpK2W7xZXuOhXJkH5D7VTzw=
-Received: by mx.zohomail.com with SMTPS id 1750775063297142.35232576576414;
-	Tue, 24 Jun 2025 07:24:23 -0700 (PDT)
-Message-ID: <2762e08674df39b79dc169ef3791eaeeaff17d17.camel@collabora.com>
-Subject: Re: [PATCH v1 00/13] pmdomain: Partial refactor, add MT8196 support
-From: =?ISO-8859-1?Q?N=EDcolas?= "F. R. A. Prado" <nfraprado@collabora.com>
-To: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>, 
-	linux-mediatek@lists.infradead.org
-Cc: robh@kernel.org, conor+dt@kernel.org, mbrugger@suse.com, 
- y.oudjana@protonmail.com, linux-pm@vger.kernel.org, ulf.hansson@linaro.org,
-  linux-kernel@vger.kernel.org, devicetree@vger.kernel.org, 
- mandyjh.liu@mediatek.com, lihongbo22@huawei.com, wenst@chromium.org, 
- matthias.bgg@gmail.com, krzk+dt@kernel.org, kernel@collabora.com, 
- linux-arm-kernel@lists.infradead.org
-Date: Tue, 24 Jun 2025 10:24:21 -0400
-In-Reply-To: <20250623120154.109429-1-angelogioacchino.delregno@collabora.com>
-References: 
-	<20250623120154.109429-1-angelogioacchino.delregno@collabora.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-User-Agent: Evolution 3.46.4-2 
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+	s=mail; t=1750775611;
+	bh=T4Clas5bzqxC87iLgxrgDlE8/O1YxVArn4WnJgBEpKA=;
+	h=From:To:Cc:Subject:Date:From;
+	b=Linbs5zYmDSJ0zkA/iGPLy8OFrGC6fGw+57BQTCTC71zIlT3Nyk9QKUjc771ILAch
+	 xd1yU/vY6b+L1qWFFhX3FzCv3EAuQzptiptko7Z02We/fYsC7GqOvM1OWzi4wdODs7
+	 L4uCgp2C+KBU08/zwq4qzpKSpsW1GnXqvLiGvKuFAMFknMrRAvwjd4rqm6skxoYP4L
+	 dTRLsL3gBzmexBaIKpLlFCixY+2E3SSEw9xrdbI72jjUm7F/Vu4IK5GQrT4ruwEh2Q
+	 50Ft5IDSE4L9+tqDn75PrER9Sd0H36uY7GQ66tFtxrNwHrYrXZGmXuFH2RMKpeJP7a
+	 KKLDdpwfyab5g==
+Received: from laura.lan (unknown [IPv6:2001:b07:646b:e2:d2c7:2075:2c3c:38e5])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+	(No client certificate requested)
+	(Authenticated sender: laura.nao)
+	by bali.collaboradmins.com (Postfix) with ESMTPSA id 72BA217E0DE3;
+	Tue, 24 Jun 2025 16:33:30 +0200 (CEST)
+From: Laura Nao <laura.nao@collabora.com>
+To: mturquette@baylibre.com,
+	sboyd@kernel.org,
+	robh@kernel.org,
+	krzk+dt@kernel.org,
+	conor+dt@kernel.org,
+	matthias.bgg@gmail.com,
+	angelogioacchino.delregno@collabora.com,
+	p.zabel@pengutronix.de,
+	richardcochran@gmail.com
+Cc: guangjie.song@mediatek.com,
+	wenst@chromium.org,
+	linux-clk@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	linux-mediatek@lists.infradead.org,
+	netdev@vger.kernel.org,
+	kernel@collabora.com,
+	Laura Nao <laura.nao@collabora.com>
+Subject: [PATCH v2 00/29] Add support for MT8196 clock controllers
+Date: Tue, 24 Jun 2025 16:31:51 +0200
+Message-Id: <20250624143220.244549-1-laura.nao@collabora.com>
+X-Mailer: git-send-email 2.39.5
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-ZohoMailClient: External
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 
-On Mon, 2025-06-23 at 14:01 +0200, AngeloGioacchino Del Regno wrote:
-> This series refactors the bus protection regmaps retrieval to avoid
-> searching in all power domain devicetree subnodes for vendor
-> properties
-> to get syscons for different busses, and adds a new property which is
-> located in the power controller root node containing handles to the
-> same.
->=20
-> Retrocompatibility is retained and was tested on multiple SoCs in the
-> Collabora lab - specifically, on Genio 350/510/700/1200, and manually
-> on MT6795 Helio (Xperia M5 Smartphone), MT8186, MT8192 and MT8195
-> Chromebooks.
->=20
-> This was tested *three times*:
-> =C2=A0- Before the per-SoC conversion in drivers/pmdomain/mediatek
-> =C2=A0- With per-SoC conversion code but with *legacy* devicetree
-> =C2=A0- With per-SoC conversion code and with *new* devicetree conversion
->=20
-> All of those tests were successful on all of the aforementioned SoCs.
->=20
-> This also adds support for:
-> =C2=A0- Modem power domain for both old and new MediaTek SoCs, useful for
-> =C2=A0=C2=A0 bringing up the GSM/3G/4G/5G modem for both laptop and smart=
-phone
-> use
-> =C2=A0- RTFF MCU HW, as found in MT8196 Chromebooks and MT6991 Dimensity
-> 9400
-> =C2=A0- Hardware Voter (MT8196/MT6991), allowing ATF, remote processors
-> and
-> =C2=A0=C2=A0 the AP (Linux) to manage the same power domains through a vo=
-ter
-> MCU,
-> =C2=A0=C2=A0 avoiding power racing
-> =C2=A0- Directly controlled power domains for MT8196
-> =C2=A0- Voted power domains for MT8196
-> =C2=A0- Multimedia (voted) power domains for MT8196.
->=20
-> Note that all of the power domains for MT8196 should also work on
-> MT6991
-> but since I have no Dimensity 9400 boards, even though I'm 99.5% sure
-> that
-> it will simply work as those are the same, I avoided to add
-> compatibles
-> for 6991 as it's impossible for me to test.
->=20
-> AngeloGioacchino Del Regno (13):
-> =C2=A0 dt-bindings: power: mediatek: Document mediatek,bus-protection
-> =C2=A0 pmdomain: mediatek: Refactor bus protection regmaps retrieval
-> =C2=A0 pmdomain: mediatek: Handle SoCs with inverted SRAM power-down bits
-> =C2=A0 pmdomain: mediatek: Move ctl sequences out of power_on/off
-> functions
-> =C2=A0 pmdomain: mediatek: Add support for modem power sequences
-> =C2=A0 pmdomain: mediatek: Add support for RTFF Hardware in MT8196/MT6991
-> =C2=A0 pmdomain: mediatek: Add support for Hardware Voter power domains
-> =C2=A0 pmdomain: mediatek: Add support for secure HWCCF infra power on
-> =C2=A0 pmdomain: mediatek: Convert all SoCs to new style regmap retrieval
-> =C2=A0 arm64: dts: mediatek: Convert all SoCs to use mediatek,bus-
-> protection
-> =C2=A0 dt-bindings: power: Add support for MT8196 power controllers
-> =C2=A0 pmdomain: mediatek: Add support for MT8196 SCPSYS power domains
-> =C2=A0 pmdomain: mediatek: Add support for MT8196 HFRPSYS power domains
+Add support for MT8196 clock controllers
 
-For the entire series,
+This patch series introduces support for the clock controllers on the
+MediaTek MT8196 platform, following up on an earlier submission[1].
 
-Reviewed-by: N=C3=ADcolas F. R. A. Prado <nfraprado@collabora.com>
+MT8196 uses a hardware voting mechanism to control some of the clock muxes
+and gates, along with a fence register responsible for tracking PLL and mux
+gate readiness. The series introduces support for these voting and fence
+mechanisms, and includes drivers for all clock controllers on the platform.
 
-(as I've reviewed this internally before submission)
+[1] https://lore.kernel.org/all/20250307032942.10447-1-guangjie.song@mediatek.com/
 
---=20
-Thanks,
+Changes in v2:
+- Fixed incorrect ID numbering in mediatek,mt8196-clock.h
+- Improved description for 'mediatek,hardware-voter' in mediatek,mt8196-clock.yaml and mediatek,mt8196-sys-clock.yaml
+- Added description for '#reset-cells' in mediatek,mt8196-clock.yaml
+- Added missing mediatek,mt8196-vdisp-ao compatible in mediatek,mt8196-clock.yaml
+- Fixed license in mediatek,mt8196-resets.h
+- Fixed missing of_match_table in clk-mt8196-vdisp_ao.c
+- Squashed commit adding UFS and PEXTP reset controller support
+- Reordered commits to place reset controller binding before dependent drivers
+- Added R-b tags
 
-N=C3=ADcolas
+Link to v1: https://lore.kernel.org/all/20250623102940.214269-1-laura.nao@collabora.com/
+
+AngeloGioacchino Del Regno (1):
+  dt-bindings: reset: Add MediaTek MT8196 Reset Controller binding
+
+Laura Nao (28):
+  clk: mediatek: clk-pll: Add set/clr regs for shared PLL enable control
+  clk: mediatek: clk-pll: Add ops for PLLs using set/clr regs and FENC
+  clk: mediatek: clk-mux: Add ops for mux gates with set/clr/upd and
+    FENC
+  clk: mediatek: clk-mtk: Introduce mtk_clk_get_hwv_regmap()
+  clk: mediatek: clk-mux: Add ops for mux gates with HW voter and FENC
+  clk: mediatek: clk-gate: Refactor mtk_clk_register_gate to use
+    mtk_gate struct
+  clk: mediatek: clk-gate: Add ops for gates with HW voter
+  clk: mediatek: clk-mtk: Add MUX_DIV_GATE macro
+  dt-bindings: clock: mediatek: Describe MT8196 peripheral clock
+    controllers
+  clk: mediatek: Add MT8196 apmixedsys clock support
+  clk: mediatek: Add MT8196 topckgen clock support
+  clk: mediatek: Add MT8196 topckgen2 clock support
+  clk: mediatek: Add MT8196 vlpckgen clock support
+  clk: mediatek: Add MT8196 peripheral clock support
+  clk: mediatek: Add MT8196 ufssys clock support
+  clk: mediatek: Add MT8196 pextpsys clock support
+  clk: mediatek: Add MT8196 adsp clock support
+  clk: mediatek: Add MT8196 I2C clock support
+  clk: mediatek: Add MT8196 mcu clock support
+  clk: mediatek: Add MT8196 mdpsys clock support
+  clk: mediatek: Add MT8196 mfg clock support
+  clk: mediatek: Add MT8196 disp0 clock support
+  clk: mediatek: Add MT8196 disp1 clock support
+  clk: mediatek: Add MT8196 disp-ao clock support
+  clk: mediatek: Add MT8196 ovl0 clock support
+  clk: mediatek: Add MT8196 ovl1 clock support
+  clk: mediatek: Add MT8196 vdecsys clock support
+  clk: mediatek: Add MT8196 vencsys clock support
+
+ .../bindings/clock/mediatek,mt8196-clock.yaml |   87 ++
+ .../clock/mediatek,mt8196-sys-clock.yaml      |   81 ++
+ drivers/clk/mediatek/Kconfig                  |   78 +
+ drivers/clk/mediatek/Makefile                 |   14 +
+ drivers/clk/mediatek/clk-gate.c               |  106 +-
+ drivers/clk/mediatek/clk-gate.h               |    3 +
+ drivers/clk/mediatek/clk-mt8196-adsp.c        |  193 +++
+ drivers/clk/mediatek/clk-mt8196-apmixedsys.c  |  203 +++
+ drivers/clk/mediatek/clk-mt8196-disp0.c       |  169 +++
+ drivers/clk/mediatek/clk-mt8196-disp1.c       |  170 +++
+ .../clk/mediatek/clk-mt8196-imp_iic_wrap.c    |  117 ++
+ drivers/clk/mediatek/clk-mt8196-mcu.c         |  166 +++
+ drivers/clk/mediatek/clk-mt8196-mdpsys.c      |  187 +++
+ drivers/clk/mediatek/clk-mt8196-mfg.c         |  150 ++
+ drivers/clk/mediatek/clk-mt8196-ovl0.c        |  154 ++
+ drivers/clk/mediatek/clk-mt8196-ovl1.c        |  153 ++
+ drivers/clk/mediatek/clk-mt8196-peri_ao.c     |  144 ++
+ drivers/clk/mediatek/clk-mt8196-pextp.c       |  131 ++
+ drivers/clk/mediatek/clk-mt8196-topckgen.c    | 1257 +++++++++++++++++
+ drivers/clk/mediatek/clk-mt8196-topckgen2.c   |  662 +++++++++
+ drivers/clk/mediatek/clk-mt8196-ufs_ao.c      |  109 ++
+ drivers/clk/mediatek/clk-mt8196-vdec.c        |  253 ++++
+ drivers/clk/mediatek/clk-mt8196-vdisp_ao.c    |   79 ++
+ drivers/clk/mediatek/clk-mt8196-venc.c        |  235 +++
+ drivers/clk/mediatek/clk-mt8196-vlpckgen.c    |  769 ++++++++++
+ drivers/clk/mediatek/clk-mtk.c                |   16 +
+ drivers/clk/mediatek/clk-mtk.h                |   23 +
+ drivers/clk/mediatek/clk-mux.c                |  119 +-
+ drivers/clk/mediatek/clk-mux.h                |   76 +
+ drivers/clk/mediatek/clk-pll.c                |   46 +-
+ drivers/clk/mediatek/clk-pll.h                |    9 +
+ .../dt-bindings/clock/mediatek,mt8196-clock.h |  867 ++++++++++++
+ .../reset/mediatek,mt8196-resets.h            |   26 +
+ 33 files changed, 6828 insertions(+), 24 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/clock/mediatek,mt8196-clock.yaml
+ create mode 100644 Documentation/devicetree/bindings/clock/mediatek,mt8196-sys-clock.yaml
+ create mode 100644 drivers/clk/mediatek/clk-mt8196-adsp.c
+ create mode 100644 drivers/clk/mediatek/clk-mt8196-apmixedsys.c
+ create mode 100644 drivers/clk/mediatek/clk-mt8196-disp0.c
+ create mode 100644 drivers/clk/mediatek/clk-mt8196-disp1.c
+ create mode 100644 drivers/clk/mediatek/clk-mt8196-imp_iic_wrap.c
+ create mode 100644 drivers/clk/mediatek/clk-mt8196-mcu.c
+ create mode 100644 drivers/clk/mediatek/clk-mt8196-mdpsys.c
+ create mode 100644 drivers/clk/mediatek/clk-mt8196-mfg.c
+ create mode 100644 drivers/clk/mediatek/clk-mt8196-ovl0.c
+ create mode 100644 drivers/clk/mediatek/clk-mt8196-ovl1.c
+ create mode 100644 drivers/clk/mediatek/clk-mt8196-peri_ao.c
+ create mode 100644 drivers/clk/mediatek/clk-mt8196-pextp.c
+ create mode 100644 drivers/clk/mediatek/clk-mt8196-topckgen.c
+ create mode 100644 drivers/clk/mediatek/clk-mt8196-topckgen2.c
+ create mode 100644 drivers/clk/mediatek/clk-mt8196-ufs_ao.c
+ create mode 100644 drivers/clk/mediatek/clk-mt8196-vdec.c
+ create mode 100644 drivers/clk/mediatek/clk-mt8196-vdisp_ao.c
+ create mode 100644 drivers/clk/mediatek/clk-mt8196-venc.c
+ create mode 100644 drivers/clk/mediatek/clk-mt8196-vlpckgen.c
+ create mode 100644 include/dt-bindings/clock/mediatek,mt8196-clock.h
+ create mode 100644 include/dt-bindings/reset/mediatek,mt8196-resets.h
+
+-- 
+2.39.5
+
 
