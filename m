@@ -1,63 +1,48 @@
-Return-Path: <devicetree+bounces-188913-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-188914-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1E2DDAE6058
-	for <lists+devicetree@lfdr.de>; Tue, 24 Jun 2025 11:11:47 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id C369FAE605E
+	for <lists+devicetree@lfdr.de>; Tue, 24 Jun 2025 11:12:27 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id CA098188AFAC
-	for <lists+devicetree@lfdr.de>; Tue, 24 Jun 2025 09:12:02 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 27491177346
+	for <lists+devicetree@lfdr.de>; Tue, 24 Jun 2025 09:12:28 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A519827A90A;
-	Tue, 24 Jun 2025 09:11:42 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id AAB5927A918;
+	Tue, 24 Jun 2025 09:12:16 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="igmHt30s"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="XUPrwANd"
 X-Original-To: devicetree@vger.kernel.org
-Received: from fllvem-ot03.ext.ti.com (fllvem-ot03.ext.ti.com [198.47.19.245])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BC8A62222CC;
-	Tue, 24 Jun 2025 09:11:40 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.19.245
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8124327A90F;
+	Tue, 24 Jun 2025 09:12:16 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1750756302; cv=none; b=qY+LfH34ScSF7wKFmoGPjaizX4rqzHpz09/phTSb7PGNOpE/TXp5aeWuEeAoua+swXyg1BWtqWKw9GgJikMyZlIK81WXkSd/Woeic/qiDN1X9P1PnIj9WAn5pbJmiW2yMk9bL8FSfdcfkKvJi8+Le8lXsgNSqeU/cumnj4SqLNU=
+	t=1750756336; cv=none; b=DxPVRTNnMR28FZt6BK04I0VqPjzLKKD4gn+QCcKYHTdcI4vLtcWNYGS6GCjG85QArVcj0nJSn15FJGE7CojQ8M6KDvyJaMrDmPe1GcnCvqL8NThdiIuPfOH+AGc4twraf/lEqgpBDGbfYvSZKizFUgye5ChhrElfdvmfIxkU9I0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1750756302; c=relaxed/simple;
-	bh=CQjN1aub+G9/6qEb/p3iZsIlFW9S9261hVfK+MBVg+c=;
-	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
-	 In-Reply-To:Content-Type; b=ICcER5ui/EtNbOc2+nT6msuMvi2CN/fC0Qd9lgkQvNToL9AqfchNI/KVqm33dITM2RKZgtgHzyhVasjex0M24rP5Mp6yyEPXWw2RDadNF6UcuE6EbLl6Ur310Shve9ggebKqfdfY6N4oodhWWt7dHkNETnjOkq6/QcPegrYZTbc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=igmHt30s; arc=none smtp.client-ip=198.47.19.245
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
-Received: from fllvem-sh03.itg.ti.com ([10.64.41.86])
-	by fllvem-ot03.ext.ti.com (8.15.2/8.15.2) with ESMTP id 55O9BY3S1512476;
-	Tue, 24 Jun 2025 04:11:34 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1750756294;
-	bh=HjzFE4fmyDlXVsPYzogdifl8Zzt69qws0co4hN/MNgM=;
-	h=Date:Subject:To:CC:References:From:In-Reply-To;
-	b=igmHt30sOLkziNmUmT6sM0zt8tmlv6S351SuqYBNh6XZIs/5aewpKI0DjtOrTuoea
-	 GjosJGDB3ggtYFUfdJCpNyc+BdHxYaqc3bh7e9jnY4q85njgocoX7kE44RDwcyepOq
-	 17XGQ8I7aMAaTZxwVi5a5uNHY+bcQnCyFU6O3nBw=
-Received: from DFLE109.ent.ti.com (dfle109.ent.ti.com [10.64.6.30])
-	by fllvem-sh03.itg.ti.com (8.18.1/8.18.1) with ESMTPS id 55O9BY884077631
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-SHA256 bits=128 verify=FAIL);
-	Tue, 24 Jun 2025 04:11:34 -0500
-Received: from DFLE109.ent.ti.com (10.64.6.30) by DFLE109.ent.ti.com
- (10.64.6.30) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.55; Tue, 24
- Jun 2025 04:11:34 -0500
-Received: from lelvem-mr06.itg.ti.com (10.180.75.8) by DFLE109.ent.ti.com
- (10.64.6.30) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.55 via
- Frontend Transport; Tue, 24 Jun 2025 04:11:34 -0500
-Received: from [172.24.227.38] (ula0502350.dhcp.ti.com [172.24.227.38])
-	by lelvem-mr06.itg.ti.com (8.18.1/8.18.1) with ESMTP id 55O9BTNd1246614;
-	Tue, 24 Jun 2025 04:11:30 -0500
-Message-ID: <15530643-04a1-4c3d-9879-56d668a59667@ti.com>
-Date: Tue, 24 Jun 2025 14:41:28 +0530
+	s=arc-20240116; t=1750756336; c=relaxed/simple;
+	bh=6vq84zqi719eYVcHxTR/B49Tw5wFOE7J95ESVeuLUTA=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=S2KImiU9ugdAz1vgqH8gT2zaZkWor3H6hDhPltD9LPnEQYLdRBMMNT664lmmg/gzro81mdjRI2TR0z1Al0KujDE2CHTWmwfL9glpl4y0fZYu09HU3J877LI9aXOreerxamCU5/JEyzUtesVn4oy6BugX6F2bqB971qyeYz/UPC0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=XUPrwANd; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 0C4DAC4CEE3;
+	Tue, 24 Jun 2025 09:12:12 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1750756336;
+	bh=6vq84zqi719eYVcHxTR/B49Tw5wFOE7J95ESVeuLUTA=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=XUPrwANdYZIJnB9uyTuMXmyjPMIUfqiu/oj1WZhZJiks0KF9RP8vUShfp/oQZLHRv
+	 SxNI364sG046pksiUa5tmMshZ+yRUt1f5/xMHExmaeUCdnNvdH4DPKQ9Ezjg3ew2iL
+	 hzlvWhwwxDWjHMm8ilohbZZ4UiSvpUSRNMYQtrFJxP0EjWrm22/TBxHSGwhpV9O6jA
+	 8oIyGMm4oHG3LYlEIRGm4F3DDxkqs6jKP7CtIxOp8oe2QPKLKiIysesHvhTMk2yZKT
+	 ag1uGnoaXaOJuF4nRsnDQlDrGhYzFph1f0v2c+SLcGv3i5N+HyrjS/0tkyAje2anpQ
+	 w3WiEyZY302pA==
+Message-ID: <db2575e9-b7b2-4a44-8ef7-0979b3f1f60d@kernel.org>
+Date: Tue, 24 Jun 2025 11:12:11 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -65,105 +50,129 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCHv4 6/6] arm64: dts: ti: Add eMMC support for AM62D
-To: Bryan Brattlof <bb@ti.com>
-CC: <nm@ti.com>, <vigneshr@ti.com>, <praneeth@ti.com>, <kristo@kernel.org>,
-        <robh@kernel.org>, <krzk+dt@kernel.org>, <conor+dt@kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>, <khasim@ti.com>, <v-singh1@ti.com>,
-        <afd@ti.com>, <devarsht@ti.com>
-References: <20250623141253.3519546-1-p-bhagat@ti.com>
- <20250623141253.3519546-7-p-bhagat@ti.com>
- <20250623142859.fankjmvhdo2bxjgd@bryanbrattlof.com>
+Subject: Re: [PATCH v3 1/4] dt-bindings: clock: mediatek,mtmips-sysc: Adapt
+ compatible for MT7688 boards
+To: Ezra Buehler <ezra@easyb.ch>
+Cc: linux-mips@vger.kernel.org, devicetree@vger.kernel.org,
+ Conor Dooley <conor+dt@kernel.org>, Harvey Hunt <harveyhuntnexus@gmail.com>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Reto Schneider <reto.schneider@husqvarnagroup.com>,
+ Rob Herring <robh@kernel.org>,
+ Sergio Paracuellos <sergio.paracuellos@gmail.com>, Stefan Roese
+ <sr@denx.de>, Thomas Bogendoerfer <tsbogend@alpha.franken.de>,
+ Ezra Buehler <ezra.buehler@husqvarnagroup.com>
+References: <20250619203502.1293695-1-ezra@easyb.ch>
+ <20250619203502.1293695-2-ezra@easyb.ch>
+ <20250620-unnatural-bloodhound-of-tenacity-4133bd@kuoka>
+ <C75A767D-BD81-48CB-8D39-9FD19BA67E78@easyb.ch>
+From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
-From: Paresh Bhagat <p-bhagat@ti.com>
-In-Reply-To: <20250623142859.fankjmvhdo2bxjgd@bryanbrattlof.com>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
+Autocrypt: addr=krzk@kernel.org; keydata=
+ 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 a/A=
+In-Reply-To: <C75A767D-BD81-48CB-8D39-9FD19BA67E78@easyb.ch>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
-X-C2ProcessedOrg: 333ef613-75bf-4e12-a4b1-8e3623f5dcea
 
-Hi Bryan,
-
-
-On 23/06/25 19:58, Bryan Brattlof wrote:
-> On June 23, 2025 thus sayeth Paresh Bhagat:
->> Add the necessary device tree node for eMMC controller along with the
->> required pinmux configuration.
+On 24/06/2025 11:08, Ezra Buehler wrote:
+>> On 20 Jun 2025, at 09:42, Krzysztof Kozlowski <krzk@kernel.org> wrote:
 >>
-> Could this be squashed in 4/6?
-
-
-Yep will do
-
-
->
->> Signed-off-by: Paresh Bhagat <p-bhagat@ti.com>
->> ---
->>   arch/arm64/boot/dts/ti/k3-am62d2-evm.dts | 27 ++++++++++++++++++++++++
->>   1 file changed, 27 insertions(+)
+>> On Thu, Jun 19, 2025 at 10:34:59PM GMT, Ezra Buehler wrote:
+>>> From: Ezra Buehler <ezra.buehler@husqvarnagroup.com>
+>>>
+>>> As the MT7628 and MT7688 are identical in most respects, mt7628a.dtsi is
+>>> used for both SoCs. To prevent "Kernel panic - not syncing: unable to
+>>> get CPU clock, err=-2" and allow an MT7688-based board to boot, the
+>>> following must be allowed:
+>>>
+>>>    compatible = "ralink,mt7628-sysc", "ralink,mt7688-sysc", "syscon";
+>>>
+>>> Signed-off-by: Ezra Buehler <ezra.buehler@husqvarnagroup.com>
+>>> ---
+>>> .../bindings/clock/mediatek,mtmips-sysc.yaml  | 27 ++++++++++---------
+>>> 1 file changed, 15 insertions(+), 12 deletions(-)
+>>>
+>>> diff --git a/Documentation/devicetree/bindings/clock/mediatek,mtmips-sysc.yaml b/Documentation/devicetree/bindings/clock/mediatek,mtmips-sysc.yaml
+>>> index 83c1803ffd16..3fabaa8acc10 100644
+>>> --- a/Documentation/devicetree/bindings/clock/mediatek,mtmips-sysc.yaml
+>>> +++ b/Documentation/devicetree/bindings/clock/mediatek,mtmips-sysc.yaml
+>>> @@ -26,18 +26,21 @@ description: |
+>>>
+>>> properties:
+>>>   compatible:
+>>> -    items:
+>>> -      - enum:
+>>> -          - ralink,mt7620-sysc
+>>> -          - ralink,mt7628-sysc
+>>> -          - ralink,mt7688-sysc
 >>
->> diff --git a/arch/arm64/boot/dts/ti/k3-am62d2-evm.dts b/arch/arm64/boot/dts/ti/k3-am62d2-evm.dts
->> index c98e4c98c956..5ceecdd68b3f 100644
->> --- a/arch/arm64/boot/dts/ti/k3-am62d2-evm.dts
->> +++ b/arch/arm64/boot/dts/ti/k3-am62d2-evm.dts
->> @@ -20,6 +20,7 @@ aliases {
->>   		serial0 = &wkup_uart0;
->>   		serial1 = &mcu_uart0;
->>   		serial2 = &main_uart0;
->> +		mmc0 = &sdhci0;
->>   		mmc1 = &sdhci1;
->>   		rtc0 = &wkup_rtc0;
->>   		ethernet0 = &cpsw_port1;
->> @@ -226,6 +227,22 @@ AM62DX_IOPAD(0x00b4, PIN_INPUT_PULLUP, 1) /* (M20) GPMC0_CSn3.I2C2_SDA */
->>   		>;
->>   	};
->>   
->> +	main_mmc0_pins_default: main-mmc0-default-pins {
->> +		pinctrl-single,pins = <
->> +			AM62DX_IOPAD(0x0220, PIN_INPUT_PULLUP, 0) /* (Y6) MMC0_CMD */
->> +			AM62DX_IOPAD(0x0218, PIN_OUTPUT, 0) /* (AB7) MMC0_CLK */
->> +			AM62DX_IOPAD(0x0214, PIN_INPUT_PULLUP, 0) /* (AA6) MMC0_DAT0 */
->> +			AM62DX_IOPAD(0x0210, PIN_INPUT_PULLUP, 0) /* (AB6) MMC0_DAT1 */
->> +			AM62DX_IOPAD(0x020c, PIN_INPUT_PULLUP, 0) /* (Y7) MMC0_DAT2 */
->> +			AM62DX_IOPAD(0x0208, PIN_INPUT_PULLUP, 0) /* (AA7) MMC0_DAT3 */
->> +			AM62DX_IOPAD(0x0204, PIN_INPUT_PULLUP, 0) /* (Y8) MMC0_DAT4 */
->> +			AM62DX_IOPAD(0x0200, PIN_INPUT_PULLUP, 0) /* (W7) MMC0_DAT5 */
->> +			AM62DX_IOPAD(0x01fc, PIN_INPUT_PULLUP, 0) /* (W9) MMC0_DAT6 */
->> +			AM62DX_IOPAD(0x01f8, PIN_INPUT_PULLUP, 0) /* (AB8) MMC0_DAT7 */
->> +		>;
->> +		bootph-all;
->> +	};
->> +
->>   	main_mmc1_pins_default: main-mmc1-default-pins {
->>   		pinctrl-single,pins = <
->>   			AM62DX_IOPAD(0x023c, PIN_INPUT, 0) /* (C21) MMC1_CMD */
->> @@ -397,6 +414,16 @@ &main_i2c2 {
->>   	clock-frequency = <400000>;
->>   };
->>   
->> +&sdhci0 {
->> +	/* eMMC */
->> +	bootph-all;
->> +	status = "okay";
->> +	non-removable;
->> +	pinctrl-names = "default";
->> +	pinctrl-0 = <&main_mmc0_pins_default>;
->> +	disable-wp;
->> +};
-> Make sure we follow the ordering of these properties:
->
->      https://www.kernel.org/doc/html/latest/devicetree/bindings/dts-coding-style.html#order-of-properties-in-device-node
+>> I do not understand why this is removed and commit msg explains nothing
+>> about it. Re-add it back.
+> 
+> OK, so you suggest we allow
+> 
+> compatible = "ralink,mt7628-sysc", "ralink,mt7688-sysc", "syscon";
+> 
+> and
+> 
+> compatible = "ralink,mt7688-sysc", "syscon";
+> 
+> I'll adapt my patch accordingly.
+> 
+> Still, as AFAIK the MT7628 and MT7688 are identical in this regard,
+
+Standard rules apply expressed in writing bindings, some talks/guides
+and all modern SoCs...
 
 
-Will fix this. Thanks
+> 
+> compatible = "ralink,mt7688-sysc", "ralink,mt7628-sysc", "syscon";
+> 
+> would technically be valid too. Could you elaborate why that is not a
+> good idea? The MT7688 is basically a subset of the MT7628.
 
+You did not send such patch.
 
->
->> +
->>   &sdhci1 {
->>   	/* SD/MMC */
->>   	status = "okay";
->> -- 
->> 2.34.1
->>
+Best regards,
+Krzysztof
 
