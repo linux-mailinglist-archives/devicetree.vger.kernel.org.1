@@ -1,173 +1,166 @@
-Return-Path: <devicetree+bounces-189128-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-189129-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id CA097AE6C5C
-	for <lists+devicetree@lfdr.de>; Tue, 24 Jun 2025 18:21:07 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id C7CB0AE6CC1
+	for <lists+devicetree@lfdr.de>; Tue, 24 Jun 2025 18:47:34 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 059E73A5B0D
-	for <lists+devicetree@lfdr.de>; Tue, 24 Jun 2025 16:20:42 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 0C9614A382F
+	for <lists+devicetree@lfdr.de>; Tue, 24 Jun 2025 16:46:58 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9D0A5221DB9;
-	Tue, 24 Jun 2025 16:20:57 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="PdJYe4SS"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A88CF2E765D;
+	Tue, 24 Jun 2025 16:45:58 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f44.google.com (mail-wm1-f44.google.com [209.85.128.44])
+Received: from mail-vk1-f176.google.com (mail-vk1-f176.google.com [209.85.221.176])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D57461FDA94;
-	Tue, 24 Jun 2025 16:20:55 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.44
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 961122E7632;
+	Tue, 24 Jun 2025 16:45:55 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.176
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1750782057; cv=none; b=b+9FFZN2Ik0YPQ6rBuLtM4Et2L9uaZ0NnMGJLkNxncm3ckI183DkMAXjVjxlI7GT/0bvIxLcQEiONF80ChC0z0LAJNgHybN0oU1swH5RD7MIltJqncbjDzD/k/4zJiSZhhRuKK6Vn9NpKqjiZqmPbopFXvnsVSuDiMWSJe+dv3E=
+	t=1750783558; cv=none; b=Ib+Zy+mss8kJysoFZirX7ISmtW2m3shgM/ETntG4/iKuUcR6/2utWEnet8yglUehEW02wl4Ck3OuT7Mssy0vs4tZzVUXceXpWMuTB7omH6Hz6dUeheahiK4/6oKKcn/zkpY1Tmgh6hTvapxcKaD9q0rv74xOSXJiQePfYVPRgjA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1750782057; c=relaxed/simple;
-	bh=QBZg28W/fBUTxa5iv7HE7VIvLqKke02D7Qw8NzurT3o=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=kQgcDqki2aG7AzVZINOwy3O4oyFCesYYrjKeSdU9rT8zCxq6W5IdEk1hBY/cTOUk/emAct+czcSWmm8Ip6WCWxsnbDlF1bwPSuQtekyvGR8DCFpyOrOMYM37FOnKR0zsQhFkNWUmcZybTo0woKh39x7jDUerZhDyHSpnJQX0Gwo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=PdJYe4SS; arc=none smtp.client-ip=209.85.128.44
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+	s=arc-20240116; t=1750783558; c=relaxed/simple;
+	bh=QrbtW5TGMUVnqvrKoBCUYz/oCNP1PdFA9txT+OYVSd4=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=L2D1t8keWucfuCUM+Bhx/BisHczUSpgtT+XPZtGks5yr5/u46MHLIB2HOslA5aQbwN0eGNm3+DVZOjJuQGOYeaxQMEqZSZ9Os8T1ECaOYqQGTAv6E/KpL5WBHehcSj1pECTCgcBybK81/t3tAQIVcasBsalHwNAJA8IC0zjU3oc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.221.176
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-wm1-f44.google.com with SMTP id 5b1f17b1804b1-4535fbe0299so31011795e9.3;
-        Tue, 24 Jun 2025 09:20:55 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1750782054; x=1751386854; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:content-language:from
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=pBPEC7Udike9uc6BfC0QMKbP5KqggcKqpjSgmkMdnKY=;
-        b=PdJYe4SS2WUlwqqR5GYlvkAKX5YE8WC5P3IKbjkRQqo72VfC438NXsgyQ3h3R2WCD+
-         ZpYa2Y1QfspELICwBbwuhSN+86zYqMkKfHU0zW48EBdUwElantQ2cVWg/T2gFL+S3nGm
-         BBO9vDMpXyE4RUFIw4iSeh5hPo88xhF4uwRzHYZZx5BzCE+PUuScI1AdUyODZkitRcMo
-         d1cpZ9M54YzjWmp8YJNSwtr2D+vLHSUOd62akAk+b1j+OoGQ6G7RPH4Lre/7oC0zX7kE
-         WY6GQ233lmitAcqnyWUvJPyviEzwmtMSK42wvg1IpwWuJ2S00EAzbptxF4rfHALGIN/9
-         D88g==
+Received: by mail-vk1-f176.google.com with SMTP id 71dfb90a1353d-5316a5e4c6cso187616e0c.1;
+        Tue, 24 Jun 2025 09:45:55 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1750782054; x=1751386854;
-        h=content-transfer-encoding:in-reply-to:content-language:from
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=pBPEC7Udike9uc6BfC0QMKbP5KqggcKqpjSgmkMdnKY=;
-        b=fEwTFcLCs4k5JAJBFktSDz0RD2YGXfZNwx/tE/mEkBfeU9xorQcULdTTnHXrXEWBvh
-         utN9fSFOjTGC4zVv9BL0up7lY8T2iy9bUcEXUG5KdN8UrtFFDIMfh4rAdf2nx+8a30MR
-         wzGodQQLIAHqsU25E0YdzEhLTivVgMvJNAKM498wW4djqT4VypE2lXUIYj9Y4AvVnbwo
-         8Gszn+O35QU872qBIInv8o2EtcpWKMT1yLjMQYcWEqwEI0Roo40pnOoFGKSST1TDGv2r
-         2wvIfN8roH1UV3J1dKh4FtJLTLg/ciaqLBqfMBLUSJwhOSAOzE3G48kP41yqN/EGOUCx
-         b7Og==
-X-Forwarded-Encrypted: i=1; AJvYcCUFY+95IfEMMLsaEOsgB+7OKLDFPtBjcDq7yKQ1Pq/b1yE0kErfU/J/t3C6FQfyUKQZ/iqK4udJU3n1@vger.kernel.org, AJvYcCUbIAt8w7VKqd/GXRERcM24Fx/b8w8UStCIdvH6GhhJGitUTqGRin0OVwqgPSCmFIoAjQl31QgekZsRSfus@vger.kernel.org, AJvYcCV3+GxZT0QxoUR8ildV0PiFhK9Ex/PtELq9zjLF1aEBt4JW/u6Kv/0RiDGyM1ssNrQ0Sxmw0cYOw+iBYQ==@vger.kernel.org
-X-Gm-Message-State: AOJu0YwiwGX+Z/eivia1j/ARXFwZVJSNmvFw/Pf6RKqBcCi8OJAaeEVN
-	BZKQj2Vcocg/yudFHCOql4Re2jTgXB5lOzY406aTc3ukRVBarc+X2XwB
-X-Gm-Gg: ASbGnctpqZCOhnlb45lmtO+1rUQsn+OW4JNvhsOFtY0SRKeeZAUtpdgxZEhPvoMcS/H
-	Yc49EoJ8K2O6RpU6OPI3PfuE+uuJ7lyvT22OIn0p6W7tNpVS93ZmKLQXVm8hAOrfg2JrQmsCXwD
-	wNC9jK7iL0RUrVQHqN4eQlfohrGjtkyDxf/zXykQ98IkYhm0KtmtVlkXW0e0RmAOLbmgoDbMQG+
-	3MhEwe161IwUFgWyTaRhOJJBj9zerAq5cV+bSCRffFb+MvFmSjXFQPyiNHP1lQ+Zubz4zUwrFx2
-	tk2oPb+57AC+lVb2An3NwwmgDv9hZCAkyGmxWpt6W42VPBCmM4kTP2o3VHyo0pZ4TjRS
-X-Google-Smtp-Source: AGHT+IF6pE2IAJ7Y1LDV5YWms/8jtl6+meXsDEGvoE2TkHeD+D5JYR9IpOTJZUfa+CipAih/vfpv8g==
-X-Received: by 2002:a05:600c:a016:b0:450:ceb2:67dd with SMTP id 5b1f17b1804b1-45365a0026dmr149159215e9.33.1750782053900;
-        Tue, 24 Jun 2025 09:20:53 -0700 (PDT)
-Received: from [192.168.0.100] ([188.27.131.45])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-4535eac8c41sm183195695e9.26.2025.06.24.09.20.52
+        d=1e100.net; s=20230601; t=1750783554; x=1751388354;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=E/7SYfxrw1wRG0i1u99YXPQjyYLvHC1mIoHvaxvkaig=;
+        b=YPFaKTd0r8wU+NmbBrcJOKDGkb6IB/WzEbCE+/TLkkanOXm8KwEc5n1RHtG2mPXvPm
+         UXy9njQI2QtZ5FIuSL4Q7rMkFl2Rld57nZRc83tWejW/DpogBnsoK3yQl1W7BCwrzTFz
+         Hv6WtvoUN+zVzTUMIwwblcM0C4qrQdjB2VG+ysUhrfHc0f+WQboqr/6Itc89VRliHOud
+         IE18Tlvd1aA0wc5TUC/xPtmkfTQ75aZ5X6/Dyzfn/0CC2m34axLTq/6LduWYHLG9QdEd
+         jh0LAziLa7Cu5KRcsq3ok5wOlRxy1+Gu9QVB8DtzWSc+tFus5nT6r2skxLUJk3Y1q8UI
+         nOPg==
+X-Forwarded-Encrypted: i=1; AJvYcCVNphc+JTweYtukWwPLbLnfh1P6DHs7dcr1J+LZ4RRapk8mXiFywuKlcyRQeiJzAS1AmIKk+HUVMJ53@vger.kernel.org, AJvYcCWqArDo6/nKI8htNhbADRox6EA0nd+Fy/iJ90O+4BXmwqb1yy4TsJwAVpSngw2Nj2Z7fDsiyEEIySRTxxz5UvX5WqQ=@vger.kernel.org, AJvYcCWw8Fu79MI4u7CvkbMODMcFhITVXqLs9nuK1jWcVwDdTGYByZPSdY9JA5q29TGS20myl3XDtfUl1IdSEuo=@vger.kernel.org
+X-Gm-Message-State: AOJu0YyLAaHAaN163/N1UGHvN6z4FypToUlZUxeIneWDEJ/hA3t7v9O8
+	7T7yDkxzUUFXAnbGXFUHquhiXht9rhiuEC8HL9kTnTKIhPWM1e19bMgXM9K8cWC/
+X-Gm-Gg: ASbGncvHo+lQ8Cx37KkV5oKI6neogmdxLoXTVJ6ltCcXBXEBhE3ypYpq/2S6rMTdfTG
+	wqx+WZYlvI1/2/TRhblssDdk+dMommFqxOKC9uON0pbBAwh4RjWBxGhst4WE2YuuJBzx0aMZrW+
+	4jCOVoww936IenKNVaTW9B+d80F32ud90iTo2eyQbOyEbKJME1P+1htSFWu7bnXg2IK9PHKPysp
+	fhWY5vTmTRmr+77Ve+toIci5s/pc5nXc54iwFFL1uTUft53EKH4xlHL+3RrmaMTVBArcoSX97FC
+	L3zW2vVfqvedscCckDoktLgTsHU35IJymaA30cniTjqtcqemgbSChUlVDh2m2JYL3hLbQlOOaIt
+	8VQnBLrKOlUEH7/wSN0ww6glB
+X-Google-Smtp-Source: AGHT+IEOeSyc83XdKOEPETowTpod2U65ZAsN4ATARVRD5El7FjoJRyHs/spVQURmBrJuC8W1lmT/Hg==
+X-Received: by 2002:a05:6122:2a46:b0:530:6e61:d1e1 with SMTP id 71dfb90a1353d-531ad5ac01emr10713904e0c.4.1750783553525;
+        Tue, 24 Jun 2025 09:45:53 -0700 (PDT)
+Received: from mail-ua1-f42.google.com (mail-ua1-f42.google.com. [209.85.222.42])
+        by smtp.gmail.com with ESMTPSA id 71dfb90a1353d-531bf2a470csm1066957e0c.11.2025.06.24.09.45.53
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 24 Jun 2025 09:20:53 -0700 (PDT)
-Message-ID: <f6847b24-aa57-4ce5-995f-03b3056f88a1@gmail.com>
-Date: Tue, 24 Jun 2025 19:20:48 +0300
+        Tue, 24 Jun 2025 09:45:53 -0700 (PDT)
+Received: by mail-ua1-f42.google.com with SMTP id a1e0cc1a2514c-87f0efa51c0so217260241.1;
+        Tue, 24 Jun 2025 09:45:53 -0700 (PDT)
+X-Forwarded-Encrypted: i=1; AJvYcCV9NITVyqc4IJcsZ2karV37JgGlyIHqXDlbvwC7Tc/ezVtmRyLs+DsFo1kW4U5+/3e2EPN4VQvXO9qd0K0=@vger.kernel.org, AJvYcCVzLE3rbyHk5p6BXgLMFPkhT2Lf8lU5dQlG7Q6T0BsblkfV92fkz4m4vwWmVxcu5OsOPj1s7N7TvXeY@vger.kernel.org, AJvYcCW/+O7jFZcYxqsIwX4GP7Vyu45d4duU25WjwyA04DCloD7CxZRRgezKKHLj71Eaa2Hdb3aqBN4tHKneMLPWL6kb4lw=@vger.kernel.org
+X-Received: by 2002:a05:6102:26d3:b0:4e4:5ed0:19b2 with SMTP id
+ ada2fe7eead31-4e9c2ccd513mr10695969137.9.1750783552778; Tue, 24 Jun 2025
+ 09:45:52 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v4 06/19] dt-bindings: media: i2c: max96717: add support
- for MAX96793
-To: Martin Hecht <mhecht73@gmail.com>,
- Tomi Valkeinen <tomi.valkeinen+renesas@ideasonboard.com>,
- Mauro Carvalho Chehab <mchehab@kernel.org>, Rob Herring <robh@kernel.org>,
- =?UTF-8?Q?Niklas_S=C3=B6derlund?= <niklas.soderlund@ragnatech.se>,
- Julien Massot <julien.massot@collabora.com>,
- Sakari Ailus <sakari.ailus@linux.intel.com>,
- Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
- Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
- Linus Walleij <linus.walleij@linaro.org>
-Cc: "open list:MAXIM GMSL2 SERIALIZERS AND DESERIALIZERS"
- <linux-media@vger.kernel.org>,
- "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS"
- <devicetree@vger.kernel.org>, open list <linux-kernel@vger.kernel.org>,
- "moderated list:ARM64 PORT (AARCH64 ARCHITECTURE)"
- <linux-arm-kernel@lists.infradead.org>,
- "open list:STAGING SUBSYSTEM" <linux-staging@lists.linux.dev>,
- open "list:GPIO"
- "SUBSYSTEM:Keyword:(devm_)?gpio_(request|free|direction|get|set)"
- <linux-gpio@vger.kernel.org>, Cosmin Tanislav <cosmin.tanislav@analog.com>
-References: <20250618095858.2145209-1-demonsingur@gmail.com>
- <20250618095858.2145209-7-demonsingur@gmail.com>
- <49977010-65a5-4ad7-b86d-5e779d0de3de@gmail.com>
-From: Cosmin Tanislav <demonsingur@gmail.com>
-Content-Language: en-US
-In-Reply-To: <49977010-65a5-4ad7-b86d-5e779d0de3de@gmail.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
+References: <20250624-ivc-v2-0-e4ecdddb0a96@ideasonboard.com>
+ <20250624-ivc-v2-1-e4ecdddb0a96@ideasonboard.com> <cfc25ba6-753e-41bd-8cb6-f31ba57593a8@kernel.org>
+ <c2ab887c-398d-49c4-9ae6-1d0986c32781@ideasonboard.com>
+In-Reply-To: <c2ab887c-398d-49c4-9ae6-1d0986c32781@ideasonboard.com>
+From: Geert Uytterhoeven <geert@linux-m68k.org>
+Date: Tue, 24 Jun 2025 18:45:41 +0200
+X-Gmail-Original-Message-ID: <CAMuHMdV-aAyZWU1KMRdQ_F3+LXWGf=6Ci7uEmVe5jdn-O4ZG2A@mail.gmail.com>
+X-Gm-Features: Ac12FXwg0Lj2SBGd1rPpVV21mDq5qin3im7qmwhylZZSNh7Ek6TdUIFwJQ3EcKc
+Message-ID: <CAMuHMdV-aAyZWU1KMRdQ_F3+LXWGf=6Ci7uEmVe5jdn-O4ZG2A@mail.gmail.com>
+Subject: Re: [PATCH v2 1/3] dt-bindings: media: Add bindings for the RZ/V2H
+ IVC block
+To: Dan Scally <dan.scally@ideasonboard.com>
+Cc: Krzysztof Kozlowski <krzk@kernel.org>, linux-media@vger.kernel.org, 
+	devicetree@vger.kernel.org, linux-renesas-soc@vger.kernel.org, 
+	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Magnus Damm <magnus.damm@gmail.com>, Philipp Zabel <p.zabel@pengutronix.de>, 
+	jacopo.mondi@ideasonboard.com, biju.das.jz@bp.renesas.com
+Content-Type: text/plain; charset="UTF-8"
 
+Hi Dan,
 
+On Tue, 24 Jun 2025 at 16:17, Dan Scally <dan.scally@ideasonboard.com> wrote:
+> On 24/06/2025 14:16, Krzysztof Kozlowski wrote:
+> > On 24/06/2025 14:35, Daniel Scally wrote:
+> >> The RZ/V2H SoC has a block called the Input Video Control block which
+> >> feeds image data into the Image Signal Processor. Add dt bindings to
+> >> describe the IVC.
+> >>
+> >> Signed-off-by: Daniel Scally <dan.scally@ideasonboard.com>
+> >> ---
+> >> Changes in v2:
+> >>
+> >>      - compatible matches filename
+> > This is not what I asked.
+>
+> Ah, you meant the other way round. Ok.
+>
+> >
+> >>      - Added power-domains
+> >>      - Aligned clock and reset entries on opening "<"
+> >>      - Removed status = "okay"; from example
+> >> ---
+> >>   .../bindings/media/renesas,rzv2h-ivc.yaml          | 103 +++++++++++++++++++++
+> >>   1 file changed, 103 insertions(+)
+> >>
+> >> diff --git a/Documentation/devicetree/bindings/media/renesas,rzv2h-ivc.yaml b/Documentation/devicetree/bindings/media/renesas,rzv2h-ivc.yaml
+> >> new file mode 100644
+> >> index 0000000000000000000000000000000000000000..ee0849eeeaba840cf43c81d69449c631ad1c6a6a
+> >> --- /dev/null
+> >> +++ b/Documentation/devicetree/bindings/media/renesas,rzv2h-ivc.yaml
+> >> @@ -0,0 +1,103 @@
+> >> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> >> +%YAML 1.2
+> >> +---
+> >> +$id: http://devicetree.org/schemas/media/renesas,rzv2h-ivc.yaml#
+> >> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> >> +
+> >> +title: Renesas RZ/V2H Input Video Control Block
+> >> +
+> >> +maintainers:
+> >> +  - Daniel Scally <dan.scally@ideasonboard.com>
+> >> +
+> >> +description:
+> >> +  The IVC block is a module that takes video frames from memory and feeds them
+> >> +  to the Image Signal Processor for processing.
+> >> +
+> >> +properties:
+> >> +  compatible:
+> >> +    const: renesas,rzv2h-ivc
+> > No, you cannot use generic compatibles. See writing bindings (or
+> > basically every review from DT maintainers).
+>
+>
+> OK...to throw a spanner into this, I think there's actually two soc codes with the IP; r9a09g057h44
+> and r9a09g057h48. renesas,rzg2l-cru.yaml and renesas,rzg2l-csi2.yaml seem to use the 'generic' code
+> in a way that suggests this:
 
-On 6/24/25 7:14 PM, Martin Hecht wrote:
-> Hi Cosmin,
-> 
-> I'm preparing a test with Alvium + max96717 + max96716. I can't see away 
-> to overwrite cfg settings to force pixel mode or tunnel mode. Any plans 
-> to add this? Sometimes it is required to force the other mode than set 
-> by pin-strapping.
-> 
-> BR Martin
-> 
+Do you need to distinguish between r9a09g057h44 and r9a09g057h48 for
+the IVC block? Isn't renesas,r9a09g057-ivc good enough?
 
-Hi Martin.
+https://elixir.bootlin.com/linux/v6.15.3/source/Documentation/devicetree/bindings/soc/renesas/renesas.yaml#L554
 
-Pixel/tunnel mode is chosen automatically based on HW capabilities
-routing, formats, etc.
+Gr{oetje,eeting}s,
 
-I don't plan on adding a way to force it, since the presumption
-is that the serdes framework will pick the best use case available, as
-long as all the data can make its way to the PHY.
+                        Geert
 
-Forcing pixel/tunnel mode shouldn't be done via device-tree since it's
-not related to the way hardware is wired up to the rest of the system.
+-- 
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
 
-> On 6/18/25 11:58, Cosmin Tanislav wrote:
->> MAX96793 is a newer variant of the MAX96717 which also supports GMSL3
->> links.
->>
->> Document this compatibility.
->>
->> Signed-off-by: Cosmin Tanislav <demonsingur@gmail.com>
->> Acked-by: Rob Herring (Arm) <robh@kernel.org>
->> ---
->>   .../devicetree/bindings/media/i2c/maxim,max96717.yaml          | 3 +++
->>   1 file changed, 3 insertions(+)
->>
->> diff --git a/Documentation/devicetree/bindings/media/i2c/ 
->> maxim,max96717.yaml b/Documentation/devicetree/bindings/media/i2c/ 
->> maxim,max96717.yaml
->> index ab46a5f0bd7e..23f611177a87 100644
->> --- a/Documentation/devicetree/bindings/media/i2c/maxim,max96717.yaml
->> +++ b/Documentation/devicetree/bindings/media/i2c/maxim,max96717.yaml
->> @@ -30,6 +30,8 @@ description:
->>     MAX9295A only supports pixel mode.
->> +  MAX96793 also supports GMSL3 mode.
->> +
->>   properties:
->>     compatible:
->>       oneOf:
->> @@ -39,6 +41,7 @@ properties:
->>         - items:
->>             - enum:
->>                 - maxim,max96717
->> +              - maxim,max96793
->>             - const: maxim,max96717f
->>     '#gpio-cells':
-> 
-
+In personal conversations with technical people, I call myself a hacker. But
+when I'm talking to journalists I just say "programmer" or something like that.
+                                -- Linus Torvalds
 
