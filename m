@@ -1,118 +1,75 @@
-Return-Path: <devicetree+bounces-189004-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-189006-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3E6C9AE6522
-	for <lists+devicetree@lfdr.de>; Tue, 24 Jun 2025 14:36:25 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id A002BAE655C
+	for <lists+devicetree@lfdr.de>; Tue, 24 Jun 2025 14:48:16 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id C71C1163F88
-	for <lists+devicetree@lfdr.de>; Tue, 24 Jun 2025 12:36:25 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 8AB811923CB6
+	for <lists+devicetree@lfdr.de>; Tue, 24 Jun 2025 12:48:32 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5EC2E291C23;
-	Tue, 24 Jun 2025 12:36:15 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b="lS1ysr4i"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 417D628A703;
+	Tue, 24 Jun 2025 12:48:12 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [213.167.242.64])
+Received: from mail.prodrive-technologies.com (mail.prodrive-technologies.com [212.61.153.67])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D3DC3291C17;
-	Tue, 24 Jun 2025 12:36:13 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=213.167.242.64
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3B46621765E;
+	Tue, 24 Jun 2025 12:48:08 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=212.61.153.67
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1750768575; cv=none; b=CQWZpbweG7wwNsMRHlxnYyz9unvgOlsZwsC3A1YsI96ydaBNTiAwqMiqQADWuNVudJYyWH5LNOS6n07sqC4mm3L+sN+AxSDCEomhdGfVzAijpAK837HUeX9ctCQ7l1asNnISA5gMMKUWnmZkcvfsrUyCA42bhDIlAFuYDSSqb9E=
+	t=1750769292; cv=none; b=B1/0dlHF0OfaZ72N7/iKMK84kjCp102LqxxVFN47ImsIUtpD4EebPCC8ntCnE2YuXh72W22kX0/XVLBdpSDjkHijm+OYAOnSGfDczdJPFPg6/PupgwYdffc5LtAyvhn3eP9Ozv6S6Rwoypw7w09ZaMMJNpZKi61PBG/aWetAOfs=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1750768575; c=relaxed/simple;
-	bh=eMFmOjsJtHMDEFaiUba8TJXjRl2kdhKtcEwnlhWU2Gg=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=IWPEdps8hOaW31PSmIShoGF4DCvjKYdDjrtak0/meKHHrxyoCyl03OrKXcFuAndc3IWdGIgIcuJzJvjMDbuZOptjlcISfttIOnx7OPWc8MHFi0BIx77Yv2a2o9dmsKB/DaVb1+bHwtdNNGLpU0/gfcffZabPjxVxWP/0XnLubL8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ideasonboard.com; spf=pass smtp.mailfrom=ideasonboard.com; dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b=lS1ysr4i; arc=none smtp.client-ip=213.167.242.64
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ideasonboard.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ideasonboard.com
-Received: from [127.0.1.1] (cpc141996-chfd3-2-0-cust928.12-3.cable.virginm.net [86.13.91.161])
-	by perceval.ideasonboard.com (Postfix) with ESMTPSA id A8A6C1752;
-	Tue, 24 Jun 2025 14:35:52 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
-	s=mail; t=1750768553;
-	bh=eMFmOjsJtHMDEFaiUba8TJXjRl2kdhKtcEwnlhWU2Gg=;
-	h=From:Date:Subject:References:In-Reply-To:To:Cc:From;
-	b=lS1ysr4iG8cEK44KfUBQ6jBjJJ59f2avuyfzgRoV6KEaLjihhcQpNrUhjtaU/rYai
-	 CDRsDTXrFDZo+xTPMEu3nJt1E2BbJTouGf8FoKQiQujBdfb8IT7ydsRUiDBQ2LpNVL
-	 IK9eRsrFKAAsR4TLUkWUyxnOnwy6rLG/mMF3Zspk=
-From: Daniel Scally <dan.scally@ideasonboard.com>
-Date: Tue, 24 Jun 2025 13:36:00 +0100
-Subject: [PATCH v2 3/3] MAINTAINERS: Add entry for rzv2h-ivc driver
+	s=arc-20240116; t=1750769292; c=relaxed/simple;
+	bh=Hilcgacb5T6lcTk4xUKS+2QL0eNiJ3t+yrbfo/oLiPE=;
+	h=From:To:CC:Subject:Date:Message-ID:MIME-Version:Content-Type; b=kTTk04aJ3XL7a+nfuSiOPL4IQenDVjYmooO0aJTUv+vhHUkkCM4Tn7lJuu9y1dDy+PPNknzcxlajzQ6pQtbnhQznctD2Vwd6W1ebixUQv0z351B4qPIgKFkiX5c4FeDsVpIKhhi8kNeYPhr77Rdhi048OmKOCUW4fZ8jn6mFVOo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=prodrive-technologies.com; spf=pass smtp.mailfrom=prodrive-technologies.com; arc=none smtp.client-ip=212.61.153.67
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=prodrive-technologies.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=prodrive-technologies.com
+Received: from EXCOP01.bk.prodrive.nl (10.1.0.22) by EXCOP01.bk.prodrive.nl
+ (10.1.0.22) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.4; Tue, 24 Jun
+ 2025 14:42:59 +0200
+Received: from lnxdevrm02.bk.prodrive.nl (10.1.1.121) by
+ EXCOP01.bk.prodrive.nl (10.1.0.22) with Microsoft SMTP Server id 15.2.1544.4
+ via Frontend Transport; Tue, 24 Jun 2025 14:42:59 +0200
+Received: from paugeu by lnxdevrm02.bk.prodrive.nl with local (Exim 4.96)
+	(envelope-from <paul.geurts@prodrive-technologies.com>)
+	id 1uU2zL-00Bg0N-0d;
+	Tue, 24 Jun 2025 14:42:59 +0200
+From: Paul Geurts <paul.geurts@prodrive-technologies.com>
+To: <mgreer@animalcreek.com>, <krzk@kernel.org>, <andrew+netdev@lunn.ch>,
+	<davem@davemloft.net>, <edumazet@google.com>, <kuba@kernel.org>,
+	<pabeni@redhat.com>, <robh@kernel.org>, <conor+dt@kernel.org>,
+	<linux-wireless@vger.kernel.org>, <netdev@vger.kernel.org>,
+	<devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>
+CC: <martijn.de.gouw@prodrive-technologies.com>, Paul Geurts
+	<paul.geurts@prodrive-technologies.com>
+Subject: [PATCH v2 0/2] NFC: trf7970a: Add option to reduce antenna gain
+Date: Tue, 24 Jun 2025 14:42:45 +0200
+Message-ID: <20250624124247.2763864-1-paul.geurts@prodrive-technologies.com>
+X-Mailer: git-send-email 2.39.2
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20250624-ivc-v2-3-e4ecdddb0a96@ideasonboard.com>
-References: <20250624-ivc-v2-0-e4ecdddb0a96@ideasonboard.com>
-In-Reply-To: <20250624-ivc-v2-0-e4ecdddb0a96@ideasonboard.com>
-To: linux-media@vger.kernel.org, devicetree@vger.kernel.org, 
- linux-renesas-soc@vger.kernel.org
-Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, 
- Geert Uytterhoeven <geert+renesas@glider.be>, 
- Magnus Damm <magnus.damm@gmail.com>, Philipp Zabel <p.zabel@pengutronix.de>, 
- jacopo.mondi@ideasonboard.com, biju.das.jz@bp.renesas.com, 
- Daniel Scally <dan.scally@ideasonboard.com>
-X-Mailer: b4 0.14.2
-X-Developer-Signature: v=1; a=openpgp-sha256; l=1019;
- i=dan.scally@ideasonboard.com; h=from:subject:message-id;
- bh=eMFmOjsJtHMDEFaiUba8TJXjRl2kdhKtcEwnlhWU2Gg=;
- b=owEBbQKS/ZANAwAKAchJV3psRXUyAcsmYgBoWpu3Nrkg6ieVPvJUWsiZNazh7lN5TYCiBAALR
- j3qO0y/agmJAjMEAAEKAB0WIQQqyuwyDnZdb+mxmm/ISVd6bEV1MgUCaFqbtwAKCRDISVd6bEV1
- MigGD/9N3byfFAkkR5IXLuAigfArigGdAkrgTCPC44O3GgKDp46zAB4SvMh1+75upATfZTISnwd
- yrxz2vfsDR/VG7bVaT4JzMJsNz8dUJC4hEYzvCN42DezRgxZ4oDwgf7WsiScpwPcPdU4p01CkIS
- g5RbmfLByierQEoQgaN3r/ZUgmRFiQQnhRtxQSITZAKAU8yB8lTzEujDWcp5e6nBx85o71jVawL
- DEMdg/znTQ7tKS44jRKm/oqN7pcrqz7TgK3dObhOOLdjRtemz6zvCS/GhYQhiv9YnaWsgXCLzaB
- 6TKcs1NeZoTZMQtqA8j+K1pWa3KaljDDxxvAz0DtBeNGs+0NepoB98Ry3dN7gyWEzLt6a8F0jpW
- K5eOwLfl4asBOlSWiyFx/QdePHhpjt6YaS6dZOs3hzA4jqr7V5XkVXPEvGZ2Km3c526BCjM5cmp
- byX5mRNlJg740yzPXAAWnqGrwlQ1bVxD2Iv0+Xwgv7WRz+kFpVucNUmynfEtAGgML5zUTZsgRfx
- JnV9IJbqJNo1ayIA0J7b3/yzwmW36uI9RaKkzxELK0w5sAfHxxaXPMHMTZDg6hwsLpaOOCWuG8h
- SIMgfRfDOfD+udzuWxs9wpVdVRJkRGAGHHcd4dn5jBRNaf5HslTxhqf45nbPyv/OHtjA5GmuBOl
- HX/nCKrZ/DXcDrQ==
-X-Developer-Key: i=dan.scally@ideasonboard.com; a=openpgp;
- fpr=EEC699ACA1B7CB5D31330C0BBD501C2A3546CCF6
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
 
-Add an entry to the MAINTAINERS file for the rzv2h-ivc driver
+The TRF7970a device is sensitive to RF disturbances, which can make it
+hard to pass some EMC immunity tests. By reducing the RX antenna gain,
+the device becomes less sensitive to EMC disturbances, as a trade-off
+against antenna performance.
 
-Signed-off-by: Daniel Scally <dan.scally@ideasonboard.com>
+Signed-off-by: Paul Geurts <paul.geurts@prodrive-technologies.com>
 ---
-Changes in v2:
+v1 -> v2:
+- Added vendor prefix
+- Added units
 
-	- None
----
- MAINTAINERS | 7 +++++++
- 1 file changed, 7 insertions(+)
-
-diff --git a/MAINTAINERS b/MAINTAINERS
-index a92290fffa163f9fe8fe3f04bf66426f9a894409..272255547287b5e87ebb1d1c9b7a656e905a92b5 100644
---- a/MAINTAINERS
-+++ b/MAINTAINERS
-@@ -21165,6 +21165,13 @@ S:	Maintained
- F:	Documentation/devicetree/bindings/net/renesas,r9a09g057-gbeth.yaml
- F:	drivers/net/ethernet/stmicro/stmmac/dwmac-renesas-gbeth.c
- 
-+RENESAS RZ/V2H INPUT VIDEO CONTROL BLOCK DRIVER
-+M:	Daniel Scally <dan.scally@ideasonboard.com>
-+L:	linux-media@vger.kernel.org
-+S:	Maintained
-+F:	Documentation/devicetree/bindings/media/renesas,rzv2h-ivc.yaml
-+F:	drivers/media/platform/renesas/rzv2h-ivc/
-+
- RENESAS RZ/V2H(P) USB2PHY PORT RESET DRIVER
- M:	Fabrizio Castro <fabrizio.castro.jz@renesas.com>
- M:	Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-
--- 
-2.34.1
 
 
