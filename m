@@ -1,86 +1,88 @@
-Return-Path: <devicetree+bounces-189020-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-189021-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6833DAE6656
-	for <lists+devicetree@lfdr.de>; Tue, 24 Jun 2025 15:27:51 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id B5962AE6641
+	for <lists+devicetree@lfdr.de>; Tue, 24 Jun 2025 15:25:44 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 8FF7E16CDB9
-	for <lists+devicetree@lfdr.de>; Tue, 24 Jun 2025 13:24:40 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id B32CA3A78D8
+	for <lists+devicetree@lfdr.de>; Tue, 24 Jun 2025 13:25:19 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id CD37F2BEC3C;
-	Tue, 24 Jun 2025 13:24:35 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id AC1C477111;
+	Tue, 24 Jun 2025 13:25:40 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=redhat.com header.i=@redhat.com header.b="elPmPNa8"
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="cbul+x/5"
 X-Original-To: devicetree@vger.kernel.org
-Received: from us-smtp-delivery-124.mimecast.com (us-smtp-delivery-124.mimecast.com [170.10.133.124])
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0144029B206
-	for <devicetree@vger.kernel.org>; Tue, 24 Jun 2025 13:24:33 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=170.10.133.124
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2B0A4202983
+	for <devicetree@vger.kernel.org>; Tue, 24 Jun 2025 13:25:38 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1750771475; cv=none; b=U7mH3FPM7ury498ycoL1KL33v7jY4qlR7KI6fAFTJeUvIMITUUfBab9+evfM80sLBnBnAnOYRckg/EALUvvhrPSUyag8t2+/KPZA8xjUl7cQUFei5OK/FpneaO+AzSKFkWtnn8W1h7fp3lSULbx+P4k37AKkTVo7b3kwxlpxROk=
+	t=1750771540; cv=none; b=DDpbebh+cus7hPhLMhsY5wz9b34aWlUEgmQsa8VlShq9qRroSW+9YOrUyXZe7gQL6XLmtWYt1f6lqllTT2KDjZwQsLu30SKp+j8i4Gi9AcvZG28iJXws/prY+3d6AQnhGVdnaR5L/kBoI963prZlk5hFTOCgjpmkeU3ZI5+aicM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1750771475; c=relaxed/simple;
-	bh=ayCU+nkPRr6n8YMzwOwtPyFONRi8G8Mx6ULPM9Iu10o=;
+	s=arc-20240116; t=1750771540; c=relaxed/simple;
+	bh=O//ctg+SgVaxYLIL04Z2pIwS9W/cpXKX5+4dHW6Gpu0=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=lqt8FRe5VTDG4TFrUMfiSalbN2UyRoZNPJX/nnJkfWkyg/M9opTL/hIBfT+PpCqvZUEE7H3HjAZj8/nZlBpLI5dzDIS7r+Pv616lMA11QYKrtUj11z7ffTWpb3JvKA4YHekL5ReShyXSBj5xpXnIbgKbPUDrSsX8QcSkCA/ZbHQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=redhat.com; spf=pass smtp.mailfrom=redhat.com; dkim=pass (1024-bit key) header.d=redhat.com header.i=@redhat.com header.b=elPmPNa8; arc=none smtp.client-ip=170.10.133.124
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=redhat.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=redhat.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
-	s=mimecast20190719; t=1750771473;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=aK5RkAHQrhrmbMgDmli1jYjYYGO7nTlMC7kAqH+maLI=;
-	b=elPmPNa8qUY/rQWff6eQw9fVoW1T+iLrXbmOTFvu3Rt86pAylfJf/sYfMvG00ydpMJZsj+
-	4eoMKtOF5QUQsMGiZJltqTKF4SN/FTashuBiLgrjFyqh/P/W6CUoD7ob1PRUzl2V+agnJC
-	WApxmqKWOUFg9B7b+LYenbIPE2OHIJY=
-Received: from mail-wr1-f71.google.com (mail-wr1-f71.google.com
- [209.85.221.71]) by relay.mimecast.com with ESMTP with STARTTLS
- (version=TLSv1.3, cipher=TLS_AES_256_GCM_SHA384) id
- us-mta-148-50nrssHGNfKXvKwQVd5vlA-1; Tue, 24 Jun 2025 09:24:31 -0400
-X-MC-Unique: 50nrssHGNfKXvKwQVd5vlA-1
-X-Mimecast-MFC-AGG-ID: 50nrssHGNfKXvKwQVd5vlA_1750771471
-Received: by mail-wr1-f71.google.com with SMTP id ffacd0b85a97d-3a5058f9ef4so204632f8f.2
-        for <devicetree@vger.kernel.org>; Tue, 24 Jun 2025 06:24:31 -0700 (PDT)
+	 In-Reply-To:Content-Type; b=M1igYxHJBlqOYurRkXgTxcCyLd9jHNIbyiMrghqknZNbDonqxkdsfD3IsfXpTJVemvyc3HNdMQgK8yZQqmvSMSLRFgCcvrurOrFePoTiTTZMDH/zjf8KTRlvAuS8sxKT5dmkO5SmVE7Oyg6h4vWsYF7XcrVjhC0zmg9NaT/gLKc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=cbul+x/5; arc=none smtp.client-ip=205.220.180.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
+Received: from pps.filterd (m0279868.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 55O983Oo008157
+	for <devicetree@vger.kernel.org>; Tue, 24 Jun 2025 13:25:38 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	puqnTEAbiwXXvejvFqHMQDxLMczv/myXUOZnE8pspZY=; b=cbul+x/5zDFIJR/D
+	zoSVQtmbiMSfUxpe5Joqf9z4WRN/GHRJKQ0dBU6x9qEJg99OMKXfIcwBvH3b1xKS
+	ptuT422Jq2dJXuUPeXfMMZZ9nGfBNR7xzhA1qR/x7DySHcMDkT4KHsINHjPxOesO
+	WOucqMNUgflVUTjdXu+Vmb2qpVLOlqXYYceD8zYGd3CROzOoQYzyBk64myVEjB51
+	v5IqA74RHvP/s6bU1ajNvJFPg8ykX9B+aczmvV7f6QqhGuZGIydJrrDG2aIZVKzy
+	z9thC8TevL2Na/Zn9CTrgN8KaVMLSN3ElMgDT1pVpSxE6T4Xxn/aTC2wwa1cOIz7
+	tQn4Ag==
+Received: from mail-qk1-f200.google.com (mail-qk1-f200.google.com [209.85.222.200])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 47f7ttudt2-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
+	for <devicetree@vger.kernel.org>; Tue, 24 Jun 2025 13:25:37 +0000 (GMT)
+Received: by mail-qk1-f200.google.com with SMTP id af79cd13be357-7d094e04aa4so175588285a.1
+        for <devicetree@vger.kernel.org>; Tue, 24 Jun 2025 06:25:37 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1750771470; x=1751376270;
+        d=1e100.net; s=20230601; t=1750771537; x=1751376337;
         h=content-transfer-encoding:in-reply-to:from:content-language
          :references:cc:to:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=aK5RkAHQrhrmbMgDmli1jYjYYGO7nTlMC7kAqH+maLI=;
-        b=OPfOpjfc5ltMdszfzr4sz0x2D/0INSn+5dogvN3BaKcIEBFBYQDjkwCKq/hZW/uSAH
-         yuQtDjz4Hz6KNh5KFsCD7dFnGupEj8v8+20Q5auia5yXodAr4AnGTc7lY6aFFNM5aRKA
-         oxhEQlxHXvNyvg3vLwU5IXQ9RNFg3MWsIOJhdyYdIg1150ns0QU+NUEiA/INlw2zho4z
-         5SucXRdYJJg1Z2OOhroSJp4IOj2BeKAE/jHYZaTovvmRA+qOkbW9YX2VO1MQtMKmEXTU
-         7oFKnpqXAg+lJVbz13i5cgvmtrdD+KveJC2VQqy6oydIkAsXxuoAEUXoJiwNeRRYW4a5
-         b91g==
-X-Forwarded-Encrypted: i=1; AJvYcCXIkaZ9qEAXQ1MorbMiWO1V0HmiW2moJjPNlQJcP/RsuBBF8/ZLhDD6iw0wifogdLE3XsxPTKyL19z8@vger.kernel.org
-X-Gm-Message-State: AOJu0Yym8qKPCRyaqD924ZRkQ8dGA0B3aBOCxG8FPKosuYNg+TS155HT
-	rKtPmi1e+lgeS8t/gXJyU7XxlIwxUnHUOM9WAUyuRNzrpn3UhqWDChdUo3jFVSOnDqnsoSYmCCe
-	mfwTLCVeU2JEzwiLHzoi/+ddpQaJ7dhkhgFiu85blRmGdhQ8DvPcyPpog0anUUtQ=
-X-Gm-Gg: ASbGncuDFrWalZICLcLxWMP2qqW6h7qVReqjo4tQs4e42lJ0Vug8QG9vvan8mbuXDHD
-	8Ehga/4M8EVmm0AZIOfljqlE0WkgedMmyMHwOdjjcXiW72I89xz6UJHpVNgfh8iAFGWMBjpNp8g
-	FxmCeyNVecQ+wpaUSfIWTBFSGaxnIXowtiEc8kKJZM9RuStIXlEadM7CcYHAexoe10iumXfLBPZ
-	HA4Wpmtn5i1II23XGeDIbPOwHy/QFklKtvwU9CcJFPoQJFCuuP+sBIp2xUdTZwTQEQvfNAaUJKR
-	q1KkgIyuR04l2mwxv/jvjgwBYZyFgA==
-X-Received: by 2002:a05:6000:2c0f:b0:3a4:d0dc:184d with SMTP id ffacd0b85a97d-3a6d12da029mr13966781f8f.27.1750771470456;
-        Tue, 24 Jun 2025 06:24:30 -0700 (PDT)
-X-Google-Smtp-Source: AGHT+IFiFZlAyuiksuIl1Yo2GNzHDQQeq8cn/28qYo/og94VXjH6d5Y5X9A9bCgyxSiJRdNpJZsF4Q==
-X-Received: by 2002:a05:6000:2c0f:b0:3a4:d0dc:184d with SMTP id ffacd0b85a97d-3a6d12da029mr13966735f8f.27.1750771469988;
-        Tue, 24 Jun 2025 06:24:29 -0700 (PDT)
-Received: from ?IPV6:2a0d:3344:2445:d510::f39? ([2a0d:3344:2445:d510::f39])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-3a6e80f2274sm1927739f8f.48.2025.06.24.06.24.28
+        bh=puqnTEAbiwXXvejvFqHMQDxLMczv/myXUOZnE8pspZY=;
+        b=cQB3XGo5isSb3L3P6P/FDlhgNA6vzUr51I7Frm1bw6zJDKAVFDi2VQ9OCOeviICQlY
+         C4UC4BGFf1pUh4IQZNX9pKjra5tYkhn+0Oibj9mx+NJFdKry5P9fM+h2mcKTzWusvPCN
+         QdMVi1oshvp7EYAytrFow9u+UmcbipcZyULjUSBob4NSZ8SgmYgn/Mbo93QxCPvHBpUc
+         pQHZZ/zdS+TKZqsML6rH4BgSFPQQo7+fD1nAHVAJZ3CNz5fF5MXZOkYLFflaZilP1guN
+         l7itpwHMAgGNLojeQKHqeqTZq5ggAJrU5j335zdlUI+Ri8jCN0fU4nKKIJudKkYHUTaz
+         acOA==
+X-Forwarded-Encrypted: i=1; AJvYcCWFMUkz4ZVgNdma17c4IWYDgR+IynD5IRxZ8tdr59NGUS0YJSxrwCVWDZzwbU/STocIzLKBceOXG1jy@vger.kernel.org
+X-Gm-Message-State: AOJu0Yx3ETrF+HchtLArHxMH5fZkuDMS918exfi+CUGcjtmy8LgeXULS
+	MUBkn5hcmIZ7OV7cKIJsHvQOl27Cve5+juaV5fF0+tZp0WnMtEJaNFATcnTSm483+jlY4NnkwEw
+	3YL+iVjB9fGBcGoBf5gcQn8MYT+ZwHcfJmpR6S9I7FI9eAxhkI/R4BNkKnScDIIeh
+X-Gm-Gg: ASbGncvKLN14GTyD15Hb8eAfEJz33Mc6VK+sU19oqBDfJvYquSOyNyvnNzG0V8OgTal
+	Wz7opUwBQ5KcHQLURY1mOOilVywV/SDyj8fEOmgSZfkYpT1gmljdkiQqHJPdVXkMJkaZv9eDgvJ
+	XY4Mg+1COPAcPCaOJnbkMsIXCsGNV1zfucnC0SeXR7Y8BX42Ff9cOrzF15OzNnZsMpO1jvxx/hd
+	MUaRhmQ+oxG/pR8mBWQLgRv1ZpJr5rFG+3a7AWBEpL+lKbvEUMTqh+2DnUn7BfgnPqsxwSx01T1
+	jIUkzWEErZK+eoBmKFXd2UdUGLbq10SFOc7Rsr+ZivEr7hgBvFDW4gkiOS5r5JnYvhJ6BR82l5C
+	XsYM=
+X-Received: by 2002:a05:620a:1b97:b0:7c0:b018:5941 with SMTP id af79cd13be357-7d3f98f6cc8mr773215885a.7.1750771536989;
+        Tue, 24 Jun 2025 06:25:36 -0700 (PDT)
+X-Google-Smtp-Source: AGHT+IFdrAg7gq+yCMSKsOWWwPNIbmt3jijAcQ2jxJTGwCS226EaL249p7Qlaj5TFZ6lHgo2gEcMWQ==
+X-Received: by 2002:a05:620a:1b97:b0:7c0:b018:5941 with SMTP id af79cd13be357-7d3f98f6cc8mr773214385a.7.1750771536510;
+        Tue, 24 Jun 2025 06:25:36 -0700 (PDT)
+Received: from [192.168.143.225] (078088045245.garwolin.vectranet.pl. [78.88.45.245])
+        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-ae0541b75b0sm864445466b.126.2025.06.24.06.25.34
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 24 Jun 2025 06:24:29 -0700 (PDT)
-Message-ID: <b31793de-e34f-438c-aa37-d68f3cb42b80@redhat.com>
-Date: Tue, 24 Jun 2025 15:24:27 +0200
+        Tue, 24 Jun 2025 06:25:36 -0700 (PDT)
+Message-ID: <cdf8428f-1407-4482-b946-804ffcdae3c7@oss.qualcomm.com>
+Date: Tue, 24 Jun 2025 15:25:33 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -88,67 +90,79 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [net-next v13 04/11] net: mtip: The L2 switch driver for imx287
-To: Lukasz Majewski <lukma@denx.de>, Andrew Lunn <andrew+netdev@lunn.ch>,
- davem@davemloft.net, Eric Dumazet <edumazet@google.com>,
- Jakub Kicinski <kuba@kernel.org>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>
-Cc: Sascha Hauer <s.hauer@pengutronix.de>,
- Pengutronix Kernel Team <kernel@pengutronix.de>,
- Fabio Estevam <festevam@gmail.com>,
- Richard Cochran <richardcochran@gmail.com>, netdev@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- imx@lists.linux.dev, linux-arm-kernel@lists.infradead.org,
- Stefan Wahren <wahrenst@gmx.net>, Simon Horman <horms@kernel.org>,
- Andrew Lunn <andrew@lunn.ch>
-References: <20250622093756.2895000-1-lukma@denx.de>
- <20250622093756.2895000-5-lukma@denx.de>
+Subject: Re: [PATCH 4/4] ARM: dts: qcom: msm8974: Start using rpmpd for power
+ domains
+To: Luca Weiss <luca@lucaweiss.eu>, ~postmarketos/upstreaming@lists.sr.ht,
+        phone-devel@vger.kernel.org, Bjorn Andersson <andersson@kernel.org>,
+        Mathieu Poirier <mathieu.poirier@linaro.org>,
+        Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley
+ <conor+dt@kernel.org>,
+        Manivannan Sadhasivam <mani@kernel.org>,
+        Konrad Dybcio <konradybcio@kernel.org>
+Cc: linux-arm-msm@vger.kernel.org, linux-remoteproc@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+References: <20250621-msm8974-rpmpd-switch-v1-0-0a2cb303c446@lucaweiss.eu>
+ <20250621-msm8974-rpmpd-switch-v1-4-0a2cb303c446@lucaweiss.eu>
+ <50b0aa77-4ec5-412f-9ce5-6ec613dd0afb@oss.qualcomm.com>
+ <d31bf707-0f8c-4f55-927a-a08c5310b7be@lucaweiss.eu>
 Content-Language: en-US
-From: Paolo Abeni <pabeni@redhat.com>
-In-Reply-To: <20250622093756.2895000-5-lukma@denx.de>
+From: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
+In-Reply-To: <d31bf707-0f8c-4f55-927a-a08c5310b7be@lucaweiss.eu>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
+X-Authority-Analysis: v=2.4 cv=QINoRhLL c=1 sm=1 tr=0 ts=685aa751 cx=c_pps
+ a=hnmNkyzTK/kJ09Xio7VxxA==:117 a=FpWmc02/iXfjRdCD7H54yg==:17
+ a=IkcTkHD0fZMA:10 a=6IFa9wvqVegA:10 a=wIXcl6-ah0yuBUIPcu0A:9
+ a=QEXdDO2ut3YA:10 a=PEH46H7Ffwr30OY-TuGO:22
+X-Proofpoint-ORIG-GUID: F6kNL1hOExrwTMMV6zy2x9DpBrJakWMN
+X-Proofpoint-GUID: F6kNL1hOExrwTMMV6zy2x9DpBrJakWMN
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwNjI0MDExMyBTYWx0ZWRfXyeGXMAOwWKXG
+ rEn786LjhYut4HGt96V+X0aVL8qg8QvCtc8dgRI6IWjRXtm2suBa0QYwTIHSFT1DrSrcehPk6et
+ UM5ycia7q578LcMR+3j/ZV+cnpJV4Qtns+LpH33pHB9iSvcxbeU6uptWX5aM+qngjdD5nGhsZgI
+ Thyu/UZoStkjnDJzqPLmsdhnMOK+k5fJ/AjlGnBYE/dY/F+4TPfQM5ZDORvq3XG39EEFs8PtmKL
+ 1oQ6ZQXH9+iY23vajXknHwpjAdm7mcPNSiPMLOyWz5WHdT4/U6X80vY9fb/PDSf10fj0lb/KQzy
+ /7a68veNPfLzqzwApC/FtSU7a4LTeXztwxG3WOojkRy5EF8wtJBVgBZ3kN0ItMHw7xcXR81acBd
+ fmiTAPTT8K42lShz+rNp8g2R/oLT5eGI+t7Joe92N066GP7aM0Hlsco9AH0cOumvwA/ZKcqY
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1099,Hydra:6.1.7,FMLib:17.12.80.40
+ definitions=2025-06-24_05,2025-06-23_07,2025-03-28_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ spamscore=0 priorityscore=1501 malwarescore=0 adultscore=0 mlxscore=0
+ clxscore=1015 mlxlogscore=993 bulkscore=0 suspectscore=0 phishscore=0
+ impostorscore=0 lowpriorityscore=0 classifier=spam authscore=0 authtc=n/a
+ authcc= route=outbound adjust=0 reason=mlx scancount=1
+ engine=8.19.0-2505280000 definitions=main-2506240113
 
-On 6/22/25 11:37 AM, Lukasz Majewski wrote:
-> +static void mtip_aging_timer(struct timer_list *t)
-> +{
-> +	struct switch_enet_private *fep = timer_container_of(fep, t,
-> +							     timer_aging);
-> +
-> +	fep->curr_time = mtip_timeincrement(fep->curr_time);
-> +
-> +	mod_timer(&fep->timer_aging,
-> +		  jiffies + msecs_to_jiffies(LEARNING_AGING_INTERVAL));
-> +}
+On 6/23/25 6:44 PM, Luca Weiss wrote:
+> On 23-06-2025 2:39 p.m., Konrad Dybcio wrote:
+>> On 6/21/25 3:19 PM, Luca Weiss wrote:
+>>> Due to historical reasons all msm8974 boards have used the CX power rail
+>>> as regulator instead of going through the power domain framework.
+>>>
+>>> Since rpmpd has gained msm8974 support quite a bit ago, let's start
+>>> using it and replace all usages of pm8841_s2 (CX), pm8841_s4 (GFX) and
+>>> for the boards using pma8084 pma8084_s2 (CX), pma8084_s7 (GFX).
+>>>
+>>> For reference, downstream is using GFX power rail as parent-supply for
+>>> mmcc's OXILI_GDSC GDSC which then is used for GPU, but nothing there is
+>>> modelled upstream.
+>>
+>> if you use an opp table with described rpmpd levels and bind the GFX
+>> domain to gpucc, it should propagate - check it out
+> 
+> I don't *really* understand what you mean here. I'd be happy if you provided an example (or better yet, a patch) for this.
 
-It's unclear to me why you decided to maintain this function and timer
-while you could/should have used a macro around jiffies instead.
+sm6115
 
-[...]
-> +static int mtip_sw_learning(void *arg)
-> +{
-> +	struct switch_enet_private *fep = arg;
-> +
-> +	while (!kthread_should_stop()) {
-> +		set_current_state(TASK_INTERRUPTIBLE);
-> +		/* check learning record valid */
-> +		mtip_atable_dynamicms_learn_migration(fep, fep->curr_time,
-> +						      NULL, NULL);
-> +		schedule_timeout(HZ / 100);
-> +	}
-> +
-> +	return 0;
-> +}
+> 
+> Also msm8974 does not have gpucc, only gcc and mmcc.
 
-Why are you using a full blown kernel thread here? Here a timer could
-possibly make more sense. Why are checking the table every 10ms, while
-the learning intervall is 100ms? I guess you could/should align the
-frequency here with such interval.
+*oh*... right
 
-Side note: I think you should move the buffer management to a later
-patch: this one is still IMHO too big.
+You would then have to somehow selectively bind the OXILI_GDSC to
+VDD_GX, for which I don't know if we have a good interface today..
 
-/P
-
+Konrad
 
