@@ -1,127 +1,141 @@
-Return-Path: <devicetree+bounces-188869-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-188870-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 61997AE5D8F
-	for <lists+devicetree@lfdr.de>; Tue, 24 Jun 2025 09:21:04 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 58F7EAE5DA0
+	for <lists+devicetree@lfdr.de>; Tue, 24 Jun 2025 09:27:59 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 332081B6298C
-	for <lists+devicetree@lfdr.de>; Tue, 24 Jun 2025 07:21:20 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 4C43B4008D4
+	for <lists+devicetree@lfdr.de>; Tue, 24 Jun 2025 07:27:34 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 11A16248F64;
-	Tue, 24 Jun 2025 07:20:58 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A32CA2505A9;
+	Tue, 24 Jun 2025 07:27:54 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="bnDQZLiZ"
+	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="MARKBIXl"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.14])
+Received: from bali.collaboradmins.com (bali.collaboradmins.com [148.251.105.195])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1338686347;
-	Tue, 24 Jun 2025 07:20:55 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.198.163.14
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 826F957C9F;
+	Tue, 24 Jun 2025 07:27:52 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=148.251.105.195
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1750749658; cv=none; b=OVGr4luED5sHj0n6XxgBtz5fEg6lH50AQcSU5D9M9WC4fThGwZZHDRtn1QKLWxDeXTIGhZiwFrDhlBrf6JjBzDPLGBzBnCj/bNdY0WskX2bvkPIwDJxZDvsMoQRgjSpyJ1cFmw6aDifpF23bIiHkInbIis8o4D8aILhyfmAWwSE=
+	t=1750750074; cv=none; b=AEdlQo14RVTWaCg4MpV5c791MdYyaFvuE76CmQVHuLmUOp1RVyzJkDnVGI7y9602V9TTd1SutyLhW9138tlpcuvEJuAClVYQpN0jiYxYZeWxw05vLTmy4f+MjzxqDaE2J0qwRz7gQhynM7i9x08f/EAM+bgFn4Zan5AQyZC9U4o=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1750749658; c=relaxed/simple;
-	bh=HvSZSrdL1NnkCo3Suic53nwcH+R7YoRUxgYQYmv+rkY=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=BG9dBdNAi2vYBJuxJWuCLSTGHPx9PFkFq4ZScTgQGVCoUJMSbkG9S8rBFxEq57WhAVQKOEDJAfYC01actT5ea1sFp1V+oEYRUA5p+XDDftOmIMcxs78hfnzuaoYDhYhmFB+RsbSVCQGZDfWoTtIlfcOiQSV122UH9pv4pbjwNQI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=bnDQZLiZ; arc=none smtp.client-ip=192.198.163.14
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1750749656; x=1782285656;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:content-transfer-encoding:in-reply-to;
-  bh=HvSZSrdL1NnkCo3Suic53nwcH+R7YoRUxgYQYmv+rkY=;
-  b=bnDQZLiZ/puPxH2BTMN60LV8OIrg91lSvnKE4l3tvp9TYQWEAb+oc5Cl
-   efURaY/Rv76PYo9IGkJgQ+xQ3e8Z7mafNsTDh14z+xzzDMJxia1ougZjo
-   wW3aTsFKkrUWYhJiecTWTLoagCprXpdyW/UYBRBVMt5XcRc5/Ht4AaJgC
-   M4vSqQ3rBkkYxpSi6gRb1HkPwlP8erNCJ4j9gXwqXX2khMP2cmpl4PG1y
-   hC5GZNPEbgmW6nJ1Zq3eyjNo0bBAcXFmE5VK7QAXp84+72HeOPQlwI4ht
-   nnHSrAbGoUJH4C7K8cV2P6IbaOBIyixMxJ980e8ouDFGmTZKcT49nWCs+
-   Q==;
-X-CSE-ConnectionGUID: /+4/nAcTRweoGK4nYie56g==
-X-CSE-MsgGUID: bn3SL3GSSmu+RnOU+qckCg==
-X-IronPort-AV: E=McAfee;i="6800,10657,11473"; a="53047842"
-X-IronPort-AV: E=Sophos;i="6.16,261,1744095600"; 
-   d="scan'208";a="53047842"
-Received: from orviesa004.jf.intel.com ([10.64.159.144])
-  by fmvoesa108.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 24 Jun 2025 00:20:55 -0700
-X-CSE-ConnectionGUID: tjwPEGqZRY24kUuNOWrP9g==
-X-CSE-MsgGUID: +rYwwwFOSsO/6xuhAWIW+g==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.16,261,1744095600"; 
-   d="scan'208";a="156407388"
-Received: from smile.fi.intel.com ([10.237.72.52])
-  by orviesa004.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 24 Jun 2025 00:20:51 -0700
-Received: from andy by smile.fi.intel.com with local (Exim 4.98.2)
-	(envelope-from <andriy.shevchenko@intel.com>)
-	id 1uTxxX-00000009P4j-3x8d;
-	Tue, 24 Jun 2025 10:20:47 +0300
-Date: Tue, 24 Jun 2025 10:20:47 +0300
-From: Andy Shevchenko <andriy.shevchenko@intel.com>
-To: David Lechner <dlechner@baylibre.com>
-Cc: Michael Hennerich <Michael.Hennerich@analog.com>,
-	Jonathan Cameron <jic23@kernel.org>,
-	Nuno =?iso-8859-1?Q?S=E1?= <nuno.sa@analog.com>,
-	Andy Shevchenko <andy@kernel.org>, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, Mark Brown <broonie@kernel.org>,
-	linux-iio@vger.kernel.org, linux-kernel@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-spi@vger.kernel.org
-Subject: Re: [PATCH 2/9] iio: adc: ad_sigma_delta: use u8 instead of uint8_t
-Message-ID: <aFpRz9GtlEYn_UoF@smile.fi.intel.com>
-References: <20250620-iio-adc-ad7173-add-spi-offload-support-v1-0-0766f6297430@baylibre.com>
- <20250620-iio-adc-ad7173-add-spi-offload-support-v1-2-0766f6297430@baylibre.com>
- <aFj5eEvn2uw_HSl0@smile.fi.intel.com>
- <CAMknhBHuJY=8rxgJsMhvRNxZskmPhEZc1jJMQnHzQHFFoucWRA@mail.gmail.com>
+	s=arc-20240116; t=1750750074; c=relaxed/simple;
+	bh=2VRlaahf+tQJQsFz0DN32NcUbTYYVROMUttudjfToi8=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=uV7n2xDrHnqp9KOXz+wyvBNuNcZJQsBLuNjygqi6oAxqcnJjoAPO7Rlo24BJ5XkvYA6jQNoOUUcanEspQUjIHznJ9IeF6ocByFzXCxVCu5fZbPoPjTVqkk/wuYOryx6i6B5ba7nPftA2T+Ht0rZWY/U68hTwU8rek3jEoLv+yV0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b=MARKBIXl; arc=none smtp.client-ip=148.251.105.195
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+	s=mail; t=1750750065;
+	bh=2VRlaahf+tQJQsFz0DN32NcUbTYYVROMUttudjfToi8=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=MARKBIXlPxz2c3Aj7cq2Yj9Ci3qEsh1TvnReud096eqPVZ1zy9JEPDEDb5Rw7TZgY
+	 nmVnhzQkDecSH1xqCEx+zfoLAGVG+bJ1KUjr8vS1pfECnXeGo6AmRcvWr6xas3T55Z
+	 xdA+r2ds2AAhQ6gXDMZnpuoCgD9yhe0tg/CtBKmzqNxUETe7foLF/woYD6yZ/TPUmX
+	 eeVNbV9UF2DnbuBAf2NBaUUWRJfN7F+bKOBLDr1VzJwgXHJ0/UsfN1EV4nb7yJBDpm
+	 qFKULyxZjxxldJ/ddg5NzqsZ+zAR6H4ZPn1M5jS0hdKUTCY0gTUiFD6/Rg87X1NwLd
+	 cHR1Y9d+vmjfA==
+Received: from [192.168.1.100] (2-237-20-237.ip236.fastwebnet.it [2.237.20.237])
+	(using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
+	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+	(No client certificate requested)
+	(Authenticated sender: kholk11)
+	by bali.collaboradmins.com (Postfix) with ESMTPSA id 9811517E0EA4;
+	Tue, 24 Jun 2025 09:27:44 +0200 (CEST)
+Message-ID: <480c78cc-076f-44e2-bd90-1dcc91a235ee@collabora.com>
+Date: Tue, 24 Jun 2025 09:27:43 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <CAMknhBHuJY=8rxgJsMhvRNxZskmPhEZc1jJMQnHzQHFFoucWRA@mail.gmail.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park, 6
- krs, Bertel Jungin Aukio 5, 02600 Espoo
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v1 1/2] dt-bindings: mfd: Add binding for MediaTek MT6363
+ series SPMI PMIC
+To: "Rob Herring (Arm)" <robh@kernel.org>
+Cc: lee@kernel.org, linux-kernel@vger.kernel.org, conor+dt@kernel.org,
+ linux-arm-kernel@lists.infradead.org, krzk+dt@kernel.org,
+ linux-mediatek@lists.infradead.org, matthias.bgg@gmail.com,
+ kernel@collabora.com, devicetree@vger.kernel.org
+References: <20250623120038.108891-1-angelogioacchino.delregno@collabora.com>
+ <20250623120038.108891-2-angelogioacchino.delregno@collabora.com>
+ <175068852802.3230004.1923972457454728043.robh@kernel.org>
+From: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+Content-Language: en-US
+In-Reply-To: <175068852802.3230004.1923972457454728043.robh@kernel.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 
-On Mon, Jun 23, 2025 at 03:48:30PM -0600, David Lechner wrote:
-> On Mon, Jun 23, 2025 at 12:51 AM Andy Shevchenko
-> <andriy.shevchenko@intel.com> wrote:
-> > On Fri, Jun 20, 2025 at 05:20:08PM -0500, David Lechner wrote:
-> > > Replace uint8_t with u8 in the ad_sigma_delta driver.
-
-...
-
-> > >       unsigned int reset_length = sigma_delta->info->num_resetclks;
-> > > -     uint8_t *buf;
-> > > +     u8 *buf;
-> > >       unsigned int size;
-> > >       int ret;
-> >
-> > Wondering if in the cases like this we may make it to be reversed xmas tree.
+Il 23/06/25 16:22, Rob Herring (Arm) ha scritto:
 > 
-> Fine with me as long as Jonathan doesn't mind the noise since it looks
-> like I will be doing a v2 anyway.
+> On Mon, 23 Jun 2025 14:00:37 +0200, AngeloGioacchino Del Regno wrote:
+>> Add a binding for the MediaTek MT6363/6373 (and similar) multi
+>> function PMICs connected over SPMI.
+>>
+>> These PMICs are found on board designs using newer MediaTek SoCs,
+>> such as the Dimensity 9400 Smartphone chip, or the Chromebook
+>> MT8196 chip.
+>>
+>> Signed-off-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+>> ---
+>>   .../bindings/mfd/mediatek,mt6363.yaml         | 98 +++++++++++++++++++
+>>   1 file changed, 98 insertions(+)
+>>   create mode 100644 Documentation/devicetree/bindings/mfd/mediatek,mt6363.yaml
+>>
+> 
+> My bot found errors running 'make dt_binding_check' on your patch:
+> 
+> yamllint warnings/errors:
+> 
+> dtschema/dtc warnings/errors:
+> /builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/mfd/mediatek,mt6363.yaml:
 
-I mean the cases when you touch already the variables and this won't be any
-*additional* churn to what the change has.
+Yeah, sorry about not adding the information at the very beginning (but I suspect
+the bot would still complain), but anyway that's because this series depends on the
+one that actually introduces the bindings for the regulators that are referenced in
+here...
 
-> >         unsigned int reset_length = sigma_delta->info->num_resetclks;
-> >         unsigned int size;
-> >         u8 *buf;
-> >         int ret;
+https://lore.kernel.org/all/20250623120016.108732-1-angelogioacchino.delregno@collabora.com
 
--- 
-With Best Regards,
-Andy Shevchenko
+
+Cheers,
+Angelo
+
+
+> 	Error in referenced schema matching $id: http://devicetree.org/schemas/regulator/mediatek,mt6363-regulator.yaml
+> 	Tried these paths (check schema $id if path is wrong):
+> 	/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/regulator/mediatek,mt6363-regulator.yaml
+> 	/usr/local/lib/python3.11/dist-packages/dtschema/schemas/regulator/mediatek,mt6363-regulator.yaml
+> /builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/mfd/mediatek,mt6363.example.dtb: pmic@4 (mediatek,mt6363): regulators: 'oneOf' conditional failed, one must be fixed:
+> 	{'compatible': ['mediatek,mt6363-regulator']} should not be valid under {'description': "Can't find referenced schema: http://devicetree.org/schemas/regulator/mediatek,mt6363-regulator.yaml#"}
+> 	{'compatible': ['mediatek,mt6363-regulator']} should not be valid under {'description': "Can't find referenced schema: http://devicetree.org/schemas/regulator/mediatek,mt6373-regulator.yaml#"}
+> 	from schema $id: http://devicetree.org/schemas/mfd/mediatek,mt6363.yaml#
+> Documentation/devicetree/bindings/mfd/mediatek,mt6363.example.dtb: /example-0/spmi/pmic@4/regulators: failed to match any schema with compatible: ['mediatek,mt6363-regulator']
+> 
+> doc reference errors (make refcheckdocs):
+> 
+> See https://patchwork.ozlabs.org/project/devicetree-bindings/patch/20250623120038.108891-2-angelogioacchino.delregno@collabora.com
+> 
+> The base for the series is generally the latest rc1. A different dependency
+> should be noted in *this* patch.
+> 
+> If you already ran 'make dt_binding_check' and didn't see the above
+> error(s), then make sure 'yamllint' is installed and dt-schema is up to
+> date:
+> 
+> pip3 install dtschema --upgrade
+> 
+> Please check and re-submit after running the above command yourself. Note
+> that DT_SCHEMA_FILES can be set to your schema file to speed up checking
+> your schema. However, it must be unset to test all examples with your schema.
+> 
 
 
 
