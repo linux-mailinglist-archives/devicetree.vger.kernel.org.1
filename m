@@ -1,67 +1,65 @@
-Return-Path: <devicetree+bounces-189371-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-189375-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id DF44BAE7B9B
-	for <lists+devicetree@lfdr.de>; Wed, 25 Jun 2025 11:10:07 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id DE2F7AE7BA6
+	for <lists+devicetree@lfdr.de>; Wed, 25 Jun 2025 11:10:58 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id F2E193A9726
-	for <lists+devicetree@lfdr.de>; Wed, 25 Jun 2025 09:09:34 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 7E2A83A3446
+	for <lists+devicetree@lfdr.de>; Wed, 25 Jun 2025 09:10:33 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0AE5428689C;
-	Wed, 25 Jun 2025 09:09:56 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4BF2A2951A8;
+	Wed, 25 Jun 2025 09:10:19 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=foss.st.com header.i=@foss.st.com header.b="rpqSw6Bk"
+	dkim=pass (2048-bit key) header.d=microchip.com header.i=@microchip.com header.b="n0OFNoiS"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx07-00178001.pphosted.com (mx08-00178001.pphosted.com [91.207.212.93])
+Received: from esa.microchip.iphmx.com (esa.microchip.iphmx.com [68.232.154.123])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 712B327CB02;
-	Wed, 25 Jun 2025 09:09:51 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=91.207.212.93
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 88858289E12;
+	Wed, 25 Jun 2025 09:10:16 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=68.232.154.123
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1750842595; cv=none; b=pfI2oEW4eUZyD9atMJk2FUYF54y001cBMiJkboyJgkumfuK3YXZqTxts0m6jkBBXj+TPYQbhPduVKocr6EDhQHx76mPG1t2Vrcvi7Gr71XKPidCA4d8IvKL0S+2b9u5dbnKMrQJKIF940Ha30+SdnKNMYCwCYXg1F6Dbi/UXv8I=
+	t=1750842619; cv=none; b=qRFStVhhFdcIXhMskBDg509rWDormWMNa7jYoD7cdTMRtK+UkrBevcXOR5E5Pp9JzL2a4acs6YVN/zCRg6/oDhiu4LMsQoE0mxadbTYahIk8gvBUKQuFXVWoqZDawbsgzJCGOZsIL7F3FPj38GDc41JG2TxJLqHqH587/xBTMwI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1750842595; c=relaxed/simple;
-	bh=bnYqW+P7cHwEMYJ6/COYnVOE3rPjRiNjIFyIgadqvFI=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-ID:References:
-	 In-Reply-To:To:CC; b=F/zGCBRiftxvY265Z/TB+lEVKyA36hZFnWdAbekY2TSiR7gCpmYaRf4KhSxlMnPx+bNhJQ6JTcmvhcpR9L4HGT/l5LnKQKer/i7Q+Ie0nq7QAxr7WFBJUWQKNWsJrlz5It8n5VUx3PcfHQdqyfL3fOnZlAQkdbOG3TvJQQUmafs=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=foss.st.com; spf=pass smtp.mailfrom=foss.st.com; dkim=pass (2048-bit key) header.d=foss.st.com header.i=@foss.st.com header.b=rpqSw6Bk; arc=none smtp.client-ip=91.207.212.93
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=foss.st.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=foss.st.com
-Received: from pps.filterd (m0046660.ppops.net [127.0.0.1])
-	by mx07-00178001.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 55P5vmrB005164;
-	Wed, 25 Jun 2025 11:09:34 +0200
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=foss.st.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=selector1; bh=
-	IgxTZBT25twzbM3wpJ4isoQbEkFyGOclWHPMbqKTDj0=; b=rpqSw6BkqLi01Pd2
-	BjFfZ520bgPaStrERa8Sjl43OxDy38VzVhf8+iI6fq0ABnAjxbhffqtCyWThU0Rg
-	nIz5U8CxRBCBYOR/7STnDze/qD6wMYU0JvHQk4MzX5nyovLvW359ARgBgJbO55ru
-	F2Sd5FIvXEXhfu9sLmC8p+JrymsoOQndhOnIdo3s7nViYoLDR34jUDDrGj+1u56c
-	yfEM0ndvYuNBfHjkckqx0g0Es+Gql3Ajhb7s1JLe7FG7Gdhx1hMEbUaz0FoV8LCD
-	EjJl1oaVPBJchT2G4nZO5FAd1D0uBLKL2fTYW1EvWq1huEBIU3oI0y6PlmIuPkjH
-	CBYgNg==
-Received: from beta.dmz-ap.st.com (beta.dmz-ap.st.com [138.198.100.35])
-	by mx07-00178001.pphosted.com (PPS) with ESMTPS id 47dhvbrtp6-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Wed, 25 Jun 2025 11:09:33 +0200 (MEST)
-Received: from euls16034.sgp.st.com (euls16034.sgp.st.com [10.75.44.20])
-	by beta.dmz-ap.st.com (STMicroelectronics) with ESMTP id CFEA640044;
-	Wed, 25 Jun 2025 11:08:27 +0200 (CEST)
-Received: from Webmail-eu.st.com (shfdag1node1.st.com [10.75.129.69])
-	by euls16034.sgp.st.com (STMicroelectronics) with ESMTP id 1E4DAB28F50;
-	Wed, 25 Jun 2025 11:07:35 +0200 (CEST)
-Received: from localhost (10.48.87.144) by SHFDAG1NODE1.st.com (10.75.129.69)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.39; Wed, 25 Jun
- 2025 11:07:34 +0200
-From: Gabriel Fernandez <gabriel.fernandez@foss.st.com>
-Date: Wed, 25 Jun 2025 11:07:26 +0200
-Subject: [PATCH RESEND v4 3/3] dt-bindings: stm32: cosmetic fixes for
- STM32MP25 clock and reset bindings
+	s=arc-20240116; t=1750842619; c=relaxed/simple;
+	bh=atWXI272KosC+H1LcVLe8DaxkOffIpJ+2UQelLC0JuI=;
+	h=From:Date:Subject:MIME-Version:Content-Type:Message-ID:To:CC; b=X8RWgtjZKSdSG2BIqCcwShlf0hsohYn5dl/Yltzereo9S//m+pluQkKAY7Yq7eT3TzzDvNlVMP/+MkxEsvTussN3le6IRXflv3DJq8YF2oTaArmyTNuUf+HsOcfDhe5gK6ZKPxPqRwqKrPMSSFsbeeeqmar10UACy26OnvYSAiA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=microchip.com; spf=pass smtp.mailfrom=microchip.com; dkim=pass (2048-bit key) header.d=microchip.com header.i=@microchip.com header.b=n0OFNoiS; arc=none smtp.client-ip=68.232.154.123
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=microchip.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=microchip.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
+  t=1750842617; x=1782378617;
+  h=from:date:subject:mime-version:content-transfer-encoding:
+   message-id:to:cc;
+  bh=atWXI272KosC+H1LcVLe8DaxkOffIpJ+2UQelLC0JuI=;
+  b=n0OFNoiSqFg8RKH3BM5PVH08Az8s8NfYAt5VK9DnbALqSfuCvTGfI03M
+   NDCdNavJy8brlg8wdz4RMrl51F0PrGGJZHKdBf2XYR/cCojctgom8SyMo
+   iskT5gxNZq491S/6uz52r7eEj2WEUzDlGlmrpsAvZTUYMCFLRh1bcbMIN
+   pJTaz1Cutv6iYdEE4c5IdMTe5nHZHvl0l26xC249Otai0uqQDyvzYBJUr
+   mi914YPxXm4mpWXzgnlXEvaOq0UOmFHCBLdz+5Xiy1/XsZ/YPP6CUGRUO
+   3z+lMe1v1RmmFOSgxknh8utIdTzlFuNdBk7AJV14ff4Lxwu5Cocz0u8aP
+   g==;
+X-CSE-ConnectionGUID: sxBLGQKwQuaA8VjKmi+wng==
+X-CSE-MsgGUID: BMrW+8k5QGqrjaSZ5e4Xvg==
+X-IronPort-AV: E=Sophos;i="6.16,264,1744095600"; 
+   d="scan'208";a="43794891"
+X-Amp-Result: SKIPPED(no attachment in message)
+Received: from unknown (HELO email.microchip.com) ([170.129.1.10])
+  by esa2.microchip.iphmx.com with ESMTP/TLS/ECDHE-RSA-AES128-GCM-SHA256; 25 Jun 2025 02:09:14 -0700
+Received: from chn-vm-ex02.mchp-main.com (10.10.85.144) by
+ chn-vm-ex04.mchp-main.com (10.10.85.152) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.44; Wed, 25 Jun 2025 02:08:53 -0700
+Received: from [127.0.0.1] (10.10.85.11) by chn-vm-ex02.mchp-main.com
+ (10.10.85.144) with Microsoft SMTP Server id 15.1.2507.44 via Frontend
+ Transport; Wed, 25 Jun 2025 02:08:49 -0700
+From: Dharma Balasubiramani <dharma.b@microchip.com>
+Date: Wed, 25 Jun 2025 14:38:45 +0530
+Subject: [PATCH] ARM: dts: microchip: sam9x7: Add LVDS controller
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -70,97 +68,60 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-Message-ID: <20250625-upstream_rcc_mp21-v4-3-9368a86c8515@foss.st.com>
-References: <20250625-upstream_rcc_mp21-v4-0-9368a86c8515@foss.st.com>
-In-Reply-To: <20250625-upstream_rcc_mp21-v4-0-9368a86c8515@foss.st.com>
-To: Michael Turquette <mturquette@baylibre.com>,
-        Stephen Boyd
-	<sboyd@kernel.org>, Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski
-	<krzk+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Maxime Coquelin
-	<mcoquelin.stm32@gmail.com>,
-        Alexandre Torgue <alexandre.torgue@foss.st.com>,
-        Philipp Zabel <p.zabel@pengutronix.de>
-CC: <linux-clk@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-stm32@st-md-mailman.stormreply.com>,
-        <linux-arm-kernel@lists.infradead.org>, <linux-kernel@vger.kernel.org>,
-        Gabriel Fernandez <gabriel.fernandez@foss.st.com>,
-        Conor Dooley
-	<conor.dooley@microchip.com>
-X-Mailer: b4 0.14.2
-X-ClientProxiedBy: EQNCAS1NODE4.st.com (10.75.129.82) To SHFDAG1NODE1.st.com
- (10.75.129.69)
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1099,Hydra:6.1.7,FMLib:17.12.80.40
- definitions=2025-06-25_02,2025-06-23_07,2025-03-28_01
+Message-ID: <20250625-b4-sam9x7-dts-v1-1-92aaee14ed16@microchip.com>
+X-B4-Tracking: v=1; b=H4sIAJy8W2gC/6tWKk4tykwtVrJSqFYqSi3LLM7MzwNyDHUUlJIzE
+ vPSU3UzU4B8JSMDI1MDMyNT3SQT3eLEXMsKc92UkmJdU5PEJCNDY2NLkyRDJaCegqLUtMwKsHn
+ RsbW1AFX2L6VfAAAA
+To: Nicolas Ferre <nicolas.ferre@microchip.com>, Alexandre Belloni
+	<alexandre.belloni@bootlin.com>, Claudiu Beznea <claudiu.beznea@tuxon.dev>,
+	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>
+CC: <linux-arm-kernel@lists.infradead.org>, <devicetree@vger.kernel.org>,
+	<linux-kernel@vger.kernel.org>, Dharma Balasubiramani
+	<dharma.b@microchip.com>
+X-Mailer: b4 0.13.0
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1750842526; l=1095;
+ i=dharma.b@microchip.com; s=20240209; h=from:subject:message-id;
+ bh=atWXI272KosC+H1LcVLe8DaxkOffIpJ+2UQelLC0JuI=;
+ b=DM1uwXN9vq1EFJdLT42C8y5Vx4i/g8XY8kgFhPfIPjKVE0Nj1ox5fdWU+bOjosWjWnI6UU6ol
+ uoT6GUrbLVBCDyvYGbtMzgHX42f1bo6qTVOj1AyFVhQu6Q3E0eHdmbM
+X-Developer-Key: i=dharma.b@microchip.com; a=ed25519;
+ pk=kCq31LcpLAe9HDfIz9ZJ1U7T+osjOi7OZSbe0gqtyQ4=
 
-- drop minItems from access-controllers
-- remove rcc label from example
-- fixes typos
-- remove double '::' from 'See also::'
+Add support for LVDS controller.
 
-Acked-by: Conor Dooley <conor.dooley@microchip.com>
-Signed-off-by: Gabriel Fernandez <gabriel.fernandez@foss.st.com>
+Signed-off-by: Dharma Balasubiramani <dharma.b@microchip.com>
 ---
- .../devicetree/bindings/clock/st,stm32mp25-rcc.yaml         | 13 ++++++-------
- 1 file changed, 6 insertions(+), 7 deletions(-)
+ arch/arm/boot/dts/microchip/sam9x7.dtsi | 9 +++++++++
+ 1 file changed, 9 insertions(+)
 
-diff --git a/Documentation/devicetree/bindings/clock/st,stm32mp25-rcc.yaml b/Documentation/devicetree/bindings/clock/st,stm32mp25-rcc.yaml
-index 88e52f10d1ecc68e818cd7d8cb1ca39dceb7a494..1e3b5d218bb01acb247d27bc6902be821cabd98c 100644
---- a/Documentation/devicetree/bindings/clock/st,stm32mp25-rcc.yaml
-+++ b/Documentation/devicetree/bindings/clock/st,stm32mp25-rcc.yaml
-@@ -11,9 +11,9 @@ maintainers:
+diff --git a/arch/arm/boot/dts/microchip/sam9x7.dtsi b/arch/arm/boot/dts/microchip/sam9x7.dtsi
+index 2063507d0c50..66c07e642c3e 100644
+--- a/arch/arm/boot/dts/microchip/sam9x7.dtsi
++++ b/arch/arm/boot/dts/microchip/sam9x7.dtsi
+@@ -1115,6 +1115,15 @@ AT91_XDMAC_DT_PER_IF(1) |
+ 			};
+ 		};
  
- description: |
-   The RCC hardware block is both a reset and a clock controller.
--  RCC makes also power management (resume/supend).
-+  RCC makes also power management (resume/suspend).
- 
--  See also::
-+  See also:
-     include/dt-bindings/clock/st,stm32mp25-rcc.h
-     include/dt-bindings/reset/st,stm32mp25-rcc.h
- 
-@@ -38,7 +38,7 @@ properties:
-       - description: CK_SCMI_MSI Low Power Internal oscillator (~ 4 MHz or ~ 16 MHz)
-       - description: CK_SCMI_LSE Low Speed External oscillator (32 KHz)
-       - description: CK_SCMI_LSI Low Speed Internal oscillator (~ 32 KHz)
--      - description: CK_SCMI_HSE_DIV2 CK_SCMI_HSE divided by 2 (coud be gated)
-+      - description: CK_SCMI_HSE_DIV2 CK_SCMI_HSE divided by 2 (could be gated)
-       - description: CK_SCMI_ICN_HS_MCU High Speed interconnect bus clock
-       - description: CK_SCMI_ICN_LS_MCU Low Speed interconnect bus clock
-       - description: CK_SCMI_ICN_SDMMC SDMMC interconnect bus clock
-@@ -108,15 +108,14 @@ properties:
-       - description: CK_SCMI_ICN_APB2 Peripheral bridge 2
-       - description: CK_SCMI_ICN_APB3 Peripheral bridge 3
-       - description: CK_SCMI_ICN_APB4 Peripheral bridge 4
--      - description: CK_SCMI_ICN_APBDBG Peripheral bridge for degub
-+      - description: CK_SCMI_ICN_APBDBG Peripheral bridge for debug
-       - description: CK_SCMI_TIMG1 Peripheral bridge for timer1
-       - description: CK_SCMI_TIMG2 Peripheral bridge for timer2
-       - description: CK_SCMI_PLL3 PLL3 clock
-       - description: clk_dsi_txbyte DSI byte clock
- 
-   access-controllers:
--    minItems: 1
--    maxItems: 2
-+    maxItems: 1
- 
- required:
-   - compatible
-@@ -131,7 +130,7 @@ examples:
-   - |
-     #include <dt-bindings/clock/st,stm32mp25-rcc.h>
- 
--    rcc: clock-controller@44200000 {
-+    clock-controller@44200000 {
-         compatible = "st,stm32mp25-rcc";
-         reg = <0x44200000 0x10000>;
-         #clock-cells = <1>;
++		lvds_controller: lvds-controller@f8060000 {
++			compatible = "microchip,sam9x75-lvds";
++			reg = <0xf8060000 0x100>;
++			interrupts = <56 IRQ_TYPE_LEVEL_HIGH 0>;
++			clocks = <&pmc PMC_TYPE_PERIPHERAL 56>;
++			clock-names = "pclk";
++			status = "disabled";
++		};
++
+ 		matrix: matrix@ffffde00 {
+ 			compatible = "microchip,sam9x7-matrix", "atmel,at91sam9x5-matrix", "syscon";
+ 			reg = <0xffffde00 0x200>;
 
+---
+base-commit: 1b152eeca84a02bdb648f16b82ef3394007a9dcf
+change-id: 20250625-b4-sam9x7-dts-54ab213394b1
+
+Best regards,
 -- 
-2.25.1
+Dharma Balasubiramani <dharma.b@microchip.com>
 
 
