@@ -1,139 +1,129 @@
-Return-Path: <devicetree+bounces-189689-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-189691-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id E8BF0AE8F0F
-	for <lists+devicetree@lfdr.de>; Wed, 25 Jun 2025 21:59:07 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 97154AE8F1D
+	for <lists+devicetree@lfdr.de>; Wed, 25 Jun 2025 22:04:44 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id ABC867A88DD
-	for <lists+devicetree@lfdr.de>; Wed, 25 Jun 2025 19:57:42 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 360DD5A146B
+	for <lists+devicetree@lfdr.de>; Wed, 25 Jun 2025 20:04:19 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E435C29E0E5;
-	Wed, 25 Jun 2025 19:58:59 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8C77429ACED;
+	Wed, 25 Jun 2025 20:04:38 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="NGQgAtxX"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="ujmi3TUW"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B73233074AF;
-	Wed, 25 Jun 2025 19:58:59 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5A96B1FE47B;
+	Wed, 25 Jun 2025 20:04:38 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1750881539; cv=none; b=Ulnd/c3fjNV8qL6dAWKJHaFeXXWcfpZvscJ38Ypc0ZU0iorJBvU2Qu5zcKnrOZgSkdukuz0guPewZQ7TnXvBwQDgZeTrdZEVer0Eb0ae/xwLY+FhOwDO0Or1v1N6A3ePkGDhFn4vhl6P5tFBgY9MXxVtV8oCuS7BHXP6bsO9BDk=
+	t=1750881878; cv=none; b=cERq0ZBv2zY2MyxUp5yWam7gAXTk2+N727O8awHh4XututqbMMrq/XwV09jqM1tQO0YHahD4S8BV/XTfawRWaT5Tvgf01wdAuPQAsLg1jVuwMI9DQ8BfIX3Im7UgtXsUG3nI0X0RrK1uywOuxslDas+t7h1sCE3dmOZ9HogZYFo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1750881539; c=relaxed/simple;
-	bh=/QqjKA1nb6MHEABcPVKqJW38bKn+uzRsO95qFrtWnas=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=YnF08kkDPaHBLRcCn0LcQRkjjsXKy12lAR1MQYBtxTCIgZwk+K+ECFYMd7FbVikSY8bCdbCwPIEfR06lqKWJL0u+DVa2fg/xOQXs8EwqvfSKMSnIMffWEytJp0R0TsFUx0G7mh3M7oEQLkMYJNkTO89L+E2Lba0+Xrum6ykcb/A=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=NGQgAtxX; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 1ECD4C4CEEA;
-	Wed, 25 Jun 2025 19:58:59 +0000 (UTC)
+	s=arc-20240116; t=1750881878; c=relaxed/simple;
+	bh=oi4nmOkgUH8qBiEH7+3hBQBtcU6SViOVAb/7d5YTPNc=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=H92K1aSBeaEE1kP94BaC1RHGSJyZKG8dD+vY9aoIdVUUHvlyLTZCStC0EijpWBimHxJa51C8Aw6JsrxuUNOX34ztNCJgmPdoGrLg7zgYA2WY1qh2qNKDX/WVUyRR5G3NjMCD67FgEIskEPdyw9DRIMM8lU1EUZfDTyHxV0LknSw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=ujmi3TUW; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPS id DDF37C4CEEA;
+	Wed, 25 Jun 2025 20:04:37 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1750881539;
-	bh=/QqjKA1nb6MHEABcPVKqJW38bKn+uzRsO95qFrtWnas=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=NGQgAtxXVdUaq5D0XGTFjnPhGxs89C40PEYlONinnaK/PlHyPtgQw+SphbOjV6l5Y
-	 LtU0X9Ds5KNGuHEmrBl5oFTrd6u+WP9tPCaNV5Q5nZ49L4sFN1aVZm6D+JZzsuG5Ui
-	 /X0Y5k1fQhzEXcCN/1HUKyQD7/JtcTJjQE8YzgCQ6meTb7mFjRltPQU2TcmJxCppb8
-	 3cDpmgvTzR4s3D8cv005uy5QVF8kFdcC30+2tv7w9YK/klqlVJfImpQLR8t4bdguRQ
-	 qQ0+iFxS3WuUXqIIl61zM1V5SORd0Eho1ue8Bocpu1kGmBCSgKX7Xpbw3FjtQ3fvWN
-	 hZsIowV/uZm4Q==
-Date: Wed, 25 Jun 2025 14:58:58 -0500
-From: Rob Herring <robh@kernel.org>
-To: Conor Dooley <conor@kernel.org>
-Cc: Inochi Amaoto <inochiama@gmail.com>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Chen Wang <unicorn_wang@outlook.com>,
-	Paul Walmsley <paul.walmsley@sifive.com>,
-	Palmer Dabbelt <palmer@dabbelt.com>,
-	Albert Ou <aou@eecs.berkeley.edu>, Alexandre Ghiti <alex@ghiti.fr>,
-	Alexander Sverdlin <alexander.sverdlin@gmail.com>,
-	Yu Yuan <yu.yuan@sjtu.edu.cn>, Yixun Lan <dlan@gentoo.org>,
-	Ze Huang <huangze@whut.edu.cn>,
-	Thomas Bonnefille <thomas.bonnefille@bootlin.com>,
-	devicetree@vger.kernel.org, sophgo@lists.linux.dev,
-	linux-kernel@vger.kernel.org, linux-riscv@lists.infradead.org,
-	Longbin Li <looong.bin@gmail.com>
-Subject: Re: [PATCH RFC 1/3] dt-bindings: soc: sophgo: add TOP syscon for
- CV18XX/SG200X series SoC
-Message-ID: <20250625195858.GA2115486-robh@kernel.org>
-References: <20250611082452.1218817-1-inochiama@gmail.com>
- <20250611082452.1218817-2-inochiama@gmail.com>
- <20250612-culpable-roman-295df1360198@spud>
+	s=k20201202; t=1750881877;
+	bh=oi4nmOkgUH8qBiEH7+3hBQBtcU6SViOVAb/7d5YTPNc=;
+	h=From:Subject:Date:To:Cc:Reply-To:From;
+	b=ujmi3TUW3CY6sYw5UsebZIzckZEIxFBhkWPq0/gim7X5uE26yp0tMMpE7XHNCFTWB
+	 XkNh2H+x1NdmAqp/g0QcMQOfglEjNdP6C96vt7rSeS3VNYEIn9NduBYPqWyP0DHH5p
+	 oFHCRQlV0w2WZircn0YuJIaCaaETFkrnaIgfatq1GqD53meweEZT+r9CWdbhJF6JLn
+	 9bkJK7GeN1qhK9yoGqPP8JgfsQ1M38gCTuz0sVhJ3+ESJt94HXsHBVmWMfBPpatOAo
+	 3byB21rIktU+nB8t45mpMrpLZ5Olcd/rJATzGzJAiY4vuCrH1w5rWCfexgdpOxGM4r
+	 6UvJHtux4jIqQ==
+Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
+	by smtp.lore.kernel.org (Postfix) with ESMTP id C7A29C7EE31;
+	Wed, 25 Jun 2025 20:04:37 +0000 (UTC)
+From: Cristian Cozzolino via B4 Relay <devnull+cristian_ci.protonmail.com@kernel.org>
+Subject: [PATCH v3 0/3] Add initial device tree for Billion Capture+
+Date: Thu, 26 Jun 2025 00:04:25 +0200
+Message-Id: <20250626-rimob-initial-devicetree-v3-0-4017ac9fd93d@protonmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20250612-culpable-roman-295df1360198@spud>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIAGlyXGgC/43NQQrDIBCF4asE17UYk1jpKvcoXagZm4FEg4q0h
+ Ny9JqtCoXT5D7xvVhIhIERyrVYSIGNE70o0p4qYUbkHUBxKE854xwRnNODsNUWHCdVEhzIxkAI
+ AHZQUqtPWGqlJmS8BLD4P+nYvPWJMPryOT7ner3+guaaMShDiAorXVvJ+CT55NyuczsbPZJcz/
+ 9TaHxovWtNawdoOtGnYl7Zt2xuj9rHGEwEAAA==
+X-Change-ID: 20250620-rimob-initial-devicetree-da86a5bffc8b
+To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, Bjorn Andersson <andersson@kernel.org>, 
+ Konrad Dybcio <konradybcio@kernel.org>
+Cc: devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+ linux-arm-msm@vger.kernel.org, ~postmarketos/upstreaming@lists.sr.ht, 
+ phone-devel@vger.kernel.org, 
+ Cristian Cozzolino <cristian_ci@protonmail.com>, 
+ Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
+X-Mailer: b4 0.14.2
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1750889075; l=1601;
+ i=cristian_ci@protonmail.com; s=20250620; h=from:subject:message-id;
+ bh=oi4nmOkgUH8qBiEH7+3hBQBtcU6SViOVAb/7d5YTPNc=;
+ b=8qVk1VlGFAm2TG8RjhqDQ8JZmR+hhMIJO6jSPxyyaszT7QFUf5vuGRrv1N4GRlaVQRc/Jx5lF
+ CjI1UgPQEwvCALijkhMquddBF6QaJovxsIPVWIcgk07LIbxMuwjIWkb
+X-Developer-Key: i=cristian_ci@protonmail.com; a=ed25519;
+ pk=xH5IvIPUNHV1Q8R0/pq2CfuVFR/wTiAyuyi6IwedjZY=
+X-Endpoint-Received: by B4 Relay for cristian_ci@protonmail.com/20250620
+ with auth_id=438
+X-Original-From: Cristian Cozzolino <cristian_ci@protonmail.com>
+Reply-To: cristian_ci@protonmail.com
 
-On Thu, Jun 12, 2025 at 05:04:46PM +0100, Conor Dooley wrote:
-> On Wed, Jun 11, 2025 at 04:24:49PM +0800, Inochi Amaoto wrote:
-> > The Sophgo CV1800/SG2000 SoC top misc system controller provides register
-> > access to configure related modules. It includes a usb2 phy and a dma
-> > multiplexer.
-> > 
-> > Signed-off-by: Inochi Amaoto <inochiama@gmail.com>
-> > ---
-> >  .../soc/sophgo/sophgo,cv1800b-top-syscon.yaml | 57 +++++++++++++++++++
-> >  1 file changed, 57 insertions(+)
-> >  create mode 100644 Documentation/devicetree/bindings/soc/sophgo/sophgo,cv1800b-top-syscon.yaml
-> > 
-> > diff --git a/Documentation/devicetree/bindings/soc/sophgo/sophgo,cv1800b-top-syscon.yaml b/Documentation/devicetree/bindings/soc/sophgo/sophgo,cv1800b-top-syscon.yaml
-> > new file mode 100644
-> > index 000000000000..e8093a558c4e
-> > --- /dev/null
-> > +++ b/Documentation/devicetree/bindings/soc/sophgo/sophgo,cv1800b-top-syscon.yaml
-> > @@ -0,0 +1,57 @@
-> > +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
-> > +%YAML 1.2
-> > +---
-> > +$id: http://devicetree.org/schemas/soc/sophgo/sophgo,cv1800b-top-syscon.yaml#
-> > +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> > +
-> > +title: Sophgo CV18XX/SG200X SoC top system controller
-> > +
-> > +maintainers:
-> > +  - Inochi Amaoto <inochiama@outlook.com>
-> > +
-> > +description:
-> > +  The Sophgo CV18XX/SG200X SoC top misc system controller provides
-> > +  register access to configure related modules.
-> > +
-> > +properties:
-> > +  compatible:
-> > +    oneOf:
-> > +      - items:
-> > +          - const: sophgo,cv1800b-top-syscon
-> > +          - const: syscon
-> > +          - const: simple-mfd
-> > +
-> > +  reg:
-> > +    maxItems: 1
-> > +
-> > +  "#address-cells":
-> > +    const: 1
-> > +
-> > +  "#size-cells":
-> > +    const: 1
-> > +
-> > +patternProperties:
-> > +  "dma-router@[0-9a-f]+$":
-> > +    $ref: /schemas/dma/sophgo,cv1800b-dmamux.yaml#
-> 
-> I think you're supposed to add "unevaluatedProperties: false" to each of
-> these nodes.
+Billion Capture+ is a handset using the MSM8953 SoC released in 2017
+and sold by Flipkart.
 
-Not necessary if the referenced schema has 
-unevaluatedProperties/additionalProperties set to false. The tools check 
-for this.
+Add a device tree with initial support for:
 
-Rob
+- GPIO keys
+- SDHCI (internal and external storage)
+- USB Device Mode
+- Regulators
+- Simple framebuffer
+
+Signed-off-by: Cristian Cozzolino <cristian_ci@protonmail.com>
+---
+Changes in v3:
+- (patch 3/3): pick up tag (Konrad);
+- Link to v2: https://lore.kernel.org/r/20250624-rimob-initial-devicetree-v2-0-34f6045ebc30@protonmail.com
+
+Changes in v2:
+- (patch 3/3):
+  - add unit address and label to qseecom (Luca);
+  - reorder properties alphabetically in gpio-keys node (Konrad);
+  - fix hex values in reg address and size cells: from 0x00 to 0x0 (Konrad);
+  - add regulator-allow-set-load property to regulators supplying sdhc1/sdhc2. 
+- Link to v1: https://lore.kernel.org/r/20250620-rimob-initial-devicetree-v1-0-8e667ea21f82@protonmail.com
+
+---
+Cristian Cozzolino (3):
+      dt-bindings: vendor-prefixes: Add Flipkart
+      dt-bindings: arm: qcom: Add Billion Capture+
+      arm64: dts: qcom: msm8953: Add device tree for Billion Capture+
+
+ Documentation/devicetree/bindings/arm/qcom.yaml    |   1 +
+ .../devicetree/bindings/vendor-prefixes.yaml       |   2 +
+ arch/arm64/boot/dts/qcom/Makefile                  |   1 +
+ .../arm64/boot/dts/qcom/msm8953-flipkart-rimob.dts | 255 +++++++++++++++++++++
+ 4 files changed, 259 insertions(+)
+---
+base-commit: 0ff41df1cb268fc69e703a08a57ee14ae967d0ca
+change-id: 20250620-rimob-initial-devicetree-da86a5bffc8b
+
+Best regards,
+-- 
+Cristian Cozzolino <cristian_ci@protonmail.com>
+
+
 
