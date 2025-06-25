@@ -1,148 +1,86 @@
-Return-Path: <devicetree+bounces-189319-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-189320-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 82934AE7997
-	for <lists+devicetree@lfdr.de>; Wed, 25 Jun 2025 10:09:37 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7BAE2AE79A1
+	for <lists+devicetree@lfdr.de>; Wed, 25 Jun 2025 10:11:03 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id D817E163E30
-	for <lists+devicetree@lfdr.de>; Wed, 25 Jun 2025 08:09:37 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id F3C343A8C07
+	for <lists+devicetree@lfdr.de>; Wed, 25 Jun 2025 08:10:37 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 15D4E20B80D;
-	Wed, 25 Jun 2025 08:09:32 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 149BB20C488;
+	Wed, 25 Jun 2025 08:10:58 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from leonov.paulk.fr (leonov.paulk.fr [185.233.101.22])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E79EB3074AD;
-	Wed, 25 Jun 2025 08:09:29 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.233.101.22
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E6BDE3074AD;
+	Wed, 25 Jun 2025 08:10:57 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1750838972; cv=none; b=lfHr0Zk2+kEgggob74nCnv/XYO9+vjXNFzYNhGzoE0g+X+7N2RZqF9oqev+qLcxv8FC7N33VuXPXGc18M+SYCFSOodE79kdNPz6vo9WCkSl8/cSPktKdVR8v402ZqRI+D9AZ/TPekF3TC70wFjMfPJ8vCqMs5LqInRSuPGGsTsU=
+	t=1750839058; cv=none; b=Pvvmsi8o7g2tXlFw2Owh8tp6v4dZis2wc6DoKDFXKaAGagpZMJcT/iWqPKUhKiJdck2TmrReL9822+wBojZfhngIYhzEbGyvxoWmmw1Ys3a2GdZeWZ5BRXib8oy/o2WxWh4twy+fwgIsPPRxGs0nyAhsFbF1lj3n2ErYybRd2aE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1750838972; c=relaxed/simple;
-	bh=ilhyZvA6BRCD5gISnlqFJ3xUsdlqaHhGlkwq3ALrQJ0=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=q9QRtYEyDyKrUlt/BqzfyhDZAfTj8u2J9IgCDfL6eHmdim5OYbRMEYYXmdR1j+8oOruQZHeh+HQEr4sWeOTKHR3OLs1ppP6NvSNRWkmkdyVyCzF79Y1wbp6iHVnVIYweMEFuJ2vB2wvnAihirH5Rz++Rap5MCHib2zf6dKqz9tE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=sys-base.io; spf=pass smtp.mailfrom=sys-base.io; arc=none smtp.client-ip=185.233.101.22
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=sys-base.io
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=sys-base.io
-Received: from laika.paulk.fr (12.234.24.109.rev.sfr.net [109.24.234.12])
-	by leonov.paulk.fr (Postfix) with ESMTPS id C9DEA1F00055;
-	Wed, 25 Jun 2025 08:09:22 +0000 (UTC)
-Received: by laika.paulk.fr (Postfix, from userid 65534)
-	id 5B38EAC7A02; Wed, 25 Jun 2025 08:09:21 +0000 (UTC)
-X-Spam-Level: 
-Received: from shepard (unknown [192.168.1.1])
-	by laika.paulk.fr (Postfix) with ESMTPSA id 37E5AAC7A00;
-	Wed, 25 Jun 2025 08:09:19 +0000 (UTC)
-Date: Wed, 25 Jun 2025 10:09:16 +0200
-From: Paul Kocialkowski <paulk@sys-base.io>
-To: Kuba =?utf-8?Q?Szczodrzy=C5=84ski?= <kuba@szczodrzynski.pl>
-Cc: Maxime Ripard <mripard@kernel.org>,
-	Samuel Holland <samuel@sholland.org>, Chen-Yu Tsai <wens@csie.org>,
-	Jernej Skrabec <jernej.skrabec@gmail.com>,
-	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
-	Thomas Zimmermann <tzimmermann@suse.de>,
+	s=arc-20240116; t=1750839058; c=relaxed/simple;
+	bh=w4XBhTXvsyJ9T1RijrpxWM3w73mJ20E248FeBMP007I=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=t2bi0gXUJE2f+oGVyXO0Tam8yhvmo/mS8KUpeWXtbtYj59E+2E+pz25fYj9HC0TNn06L27Pm+FLuYQ0U7wf61B6MIho38T9oB6LVqc+qnhJc5iB1j2+OZ/69cb3dg7iqb+RyXI6tpLnymXH/Md3PkNc1PoyyGthsVqgeZ6mRWHw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id EA7D4C4CEEA;
+	Wed, 25 Jun 2025 08:10:54 +0000 (UTC)
+From: Geert Uytterhoeven <geert+renesas@glider.be>
+To: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>,
+	Andrew Lunn <andrew+netdev@lunn.ch>,
+	"David S . Miller" <davem@davemloft.net>,
+	Eric Dumazet <edumazet@google.com>,
+	Jakub Kicinski <kuba@kernel.org>,
+	Paolo Abeni <pabeni@redhat.com>,
 	Rob Herring <robh@kernel.org>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
-	linux-arm-kernel@lists.infradead.org, linux-sunxi@lists.linux.dev,
-	linux-kernel@vger.kernel.org, linux-riscv@lists.infradead.org,
-	linux-phy@lists.infradead.org, devicetree@vger.kernel.org,
-	dri-devel@lists.freedesktop.org
-Subject: Re: [PATCH 4/5] riscv: dts: allwinner: d1s-t113: Add D-PHY to TCON
- LCD0
-Message-ID: <aFuurDqkJ3yaMqRS@shepard>
-References: <20250221161751.1278049-1-kuba@szczodrzynski.pl>
- <20250221161751.1278049-5-kuba@szczodrzynski.pl>
+	Conor Dooley <conor+dt@kernel.org>
+Cc: netdev@vger.kernel.org,
+	linux-renesas-soc@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	Geert Uytterhoeven <geert+renesas@glider.be>
+Subject: [PATCH] dt-bindings: net: Rename renesas,r9a09g057-gbeth.yaml
+Date: Wed, 25 Jun 2025 10:10:48 +0200
+Message-ID: <721f6e0e09777e0842ecaca4578bc50c953d2428.1750838954.git.geert+renesas@glider.be>
+X-Mailer: git-send-email 2.43.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="id1qkDeCEtzLoxTA"
-Content-Disposition: inline
-In-Reply-To: <20250221161751.1278049-5-kuba@szczodrzynski.pl>
+Content-Transfer-Encoding: 8bit
 
+The DT bindings file "renesas,r9a09g057-gbeth.yaml" applies to a whole
+family of SoCs, and uses "renesas,rzv2h-gbeth" as a fallback compatible
+value.  Hence rename it to the more generic "renesas,rzv2h-gbeth.yaml".
 
---id1qkDeCEtzLoxTA
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+Signed-off-by: Geert Uytterhoeven <geert+renesas@glider.be>
+---
+ .../{renesas,r9a09g057-gbeth.yaml => renesas,rzv2h-gbeth.yaml}  | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+ rename Documentation/devicetree/bindings/net/{renesas,r9a09g057-gbeth.yaml => renesas,rzv2h-gbeth.yaml} (98%)
 
-Hi,
+diff --git a/Documentation/devicetree/bindings/net/renesas,r9a09g057-gbeth.yaml b/Documentation/devicetree/bindings/net/renesas,rzv2h-gbeth.yaml
+similarity index 98%
+rename from Documentation/devicetree/bindings/net/renesas,r9a09g057-gbeth.yaml
+rename to Documentation/devicetree/bindings/net/renesas,rzv2h-gbeth.yaml
+index 9961253d1d411bd0..23e39bcea96b31db 100644
+--- a/Documentation/devicetree/bindings/net/renesas,r9a09g057-gbeth.yaml
++++ b/Documentation/devicetree/bindings/net/renesas,rzv2h-gbeth.yaml
+@@ -1,7 +1,7 @@
+ # SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+ %YAML 1.2
+ ---
+-$id: http://devicetree.org/schemas/net/renesas,r9a09g057-gbeth.yaml#
++$id: http://devicetree.org/schemas/net/renesas,rzv2h-gbeth.yaml#
+ $schema: http://devicetree.org/meta-schemas/core.yaml#
+ 
+ title: GBETH glue layer for Renesas RZ/V2H(P) (and similar SoCs)
+-- 
+2.43.0
 
-On Fri 21 Feb 25, 17:17, Kuba Szczodrzy=C5=84ski wrote:
-> The sun4i TCON needs a reference to the D-PHY in order to support LVDS
-> on Allwinner D1s/T113.
->=20
-> Signed-off-by: Kuba Szczodrzy=C5=84ski <kuba@szczodrzynski.pl>
-> ---
->  arch/riscv/boot/dts/allwinner/sunxi-d1s-t113.dtsi | 2 ++
->  1 file changed, 2 insertions(+)
->=20
-> diff --git a/arch/riscv/boot/dts/allwinner/sunxi-d1s-t113.dtsi b/arch/ris=
-cv/boot/dts/allwinner/sunxi-d1s-t113.dtsi
-> index e4175adb0..d241ba306 100644
-> --- a/arch/riscv/boot/dts/allwinner/sunxi-d1s-t113.dtsi
-> +++ b/arch/riscv/boot/dts/allwinner/sunxi-d1s-t113.dtsi
-> @@ -828,6 +828,8 @@ tcon_lcd0: lcd-controller@5461000 {
->  			resets =3D <&ccu RST_BUS_TCON_LCD0>,
->  				 <&ccu RST_BUS_LVDS0>;
->  			reset-names =3D "lcd", "lvds";
-> +			phys =3D <&dphy>;
-> +			phy-names =3D "dphy";
-
-Like I mentionned in the other patch, I don't think the name "dphy" makes s=
-ense.
-"combo-phy" probably makes a lot more sense here.
-
-Also the dt binding should be updated to reflect the introduction of the
-property.
-
-Paul
-
->  			#clock-cells =3D <0>;
-> =20
->  			ports {
-> --=20
-> 2.25.1
->=20
->=20
-
---=20
-Paul Kocialkowski,
-
-Independent contractor - sys-base - https://www.sys-base.io/
-Free software developer - https://www.paulk.fr/
-
-Expert in multimedia, graphics and embedded hardware support with Linux.
-
---id1qkDeCEtzLoxTA
-Content-Type: application/pgp-signature; name=signature.asc
-
------BEGIN PGP SIGNATURE-----
-
-iQIzBAEBCgAdFiEEAbcMXZQMtj1fphLChP3B6o/ulQwFAmhbrqwACgkQhP3B6o/u
-lQw7sg//WLoQpyAqStd6AsRVh1QrfKNATtlAD2vpTMd1iAFGZif40Xf/eIUFKSHc
-SzaFwDnYhc5d/1hJbOJ4gs866AaSGCTexQtq4wAOHuPQE+Kk3NqJ49L26Td3MtCk
-aRmQ9brdHzvAK2DyMxWxro6Xrc5D3A7wtt0FM8Jwo5CpKJgOsC3OcAgmIx/eVkYr
-pwHh3ajrnCvcPDOLvQRaALp6OOrgL1DiAs+Y61v7nDdU7U7wWNNPXd1fh4dtQbjC
-lqsM2zbhxY8+pBU6Ec6XEKPC7yvwBYxmoah6D5ophlnyQoGJbah4nzZcJwILdlJl
-6Ptb2oaRIA5D7u+2SgPKNj4ZQbhX4hdWPXn9yRMeAnf2LGziJU4BQ/AegTPWT4Zc
-N7W1TsD/4SJ9fqsZYCu8FuKUHEWUfSLl36yROAoVOWLk6hVtEfMae/f2P3gUOUle
-XXCVmn7In8LRK8THK/40O076jqSiytSnnHl2Do5wNnb95g+Rh06BVPf3OL6Z4O8i
-hJaV4vdNSSR7ta+IenShS1fZcl15dIt1vjNFGoPUflEJUY+OVfL8zTwVRgi2KGSb
-DRFue9mLKEvEtyGkGvZKscxaLVZtqfCkDg9D6w3WZG4OOigyI+N8jVTuaoVjzcWC
-ohQ6sFkD+3w4n6uDKid8NSxD1p34DxSWphNP1vsz6OftJO/xFLM=
-=LCaF
------END PGP SIGNATURE-----
-
---id1qkDeCEtzLoxTA--
 
