@@ -1,82 +1,139 @@
-Return-Path: <devicetree+bounces-189567-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-189568-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2EB98AE84F2
-	for <lists+devicetree@lfdr.de>; Wed, 25 Jun 2025 15:38:45 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2108AAE852B
+	for <lists+devicetree@lfdr.de>; Wed, 25 Jun 2025 15:49:42 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 1A9751887399
-	for <lists+devicetree@lfdr.de>; Wed, 25 Jun 2025 13:38:33 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 3A7DF1676F1
+	for <lists+devicetree@lfdr.de>; Wed, 25 Jun 2025 13:49:42 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 35AFB261568;
-	Wed, 25 Jun 2025 13:38:12 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B8452263C8C;
+	Wed, 25 Jun 2025 13:49:33 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (1024-bit key) header.d=samsung.com header.i=@samsung.com header.b="HQu6sHKv"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mailout2.w1.samsung.com (mailout2.w1.samsung.com [210.118.77.12])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0CF4B25D8E6;
-	Wed, 25 Jun 2025 13:38:10 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 60FEC25BEF6
+	for <devicetree@vger.kernel.org>; Wed, 25 Jun 2025 13:49:31 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=210.118.77.12
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1750858692; cv=none; b=cmzpAdvNEgcTt6mWL3Oy7LQ57XFukP/onUIR9f/WSgg0Wxn6Lm9tI/B3hPkWGu9ZoEH8CqdRZVQtt39Ok2vPll0SSctzUa42Mi7J0ke4Sq0NAM3E4tHqttfr6tlrbZ8vf/ZQtVjBGRCLknzmn0goicvJ57EeTjLZvf2bs3v3upU=
+	t=1750859373; cv=none; b=IcuvWFJMgs52OaLcmVjUmSxMGbQkSJaxE3DUtXqoxq93o9g5NiOEqHXaKO0ZZDSleck1AaZbVFpCZSL+Ph938gUqTdxWFa/7N+Ot7mXO36OiDyqQSJc0TjS2lUug01g5kJ+KYDb8hGSt+Fb7s9L3CnxldqLG1oxgRvMXvBtp51I=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1750858692; c=relaxed/simple;
-	bh=J5j0nF7I3E6C/XHVjnQpT7AY6DSdrtjx8lmPTDEg38A=;
-	h=From:To:Cc:In-Reply-To:References:Subject:Message-Id:Date:
-	 MIME-Version:Content-Type; b=Kx0enYtxIA3J2nGfXnQUIjwy2L//wInlaF/YO5eqWy23fFviB9hX+t6ZffHvZZcK3Gu/viiJOXGABHFY/x8ot/UNBBBq3qknsypLACOUyM+TDGu6bpeI2Fb+AXlv/GwPGTveEBX6hNrTQfLZQZD2obNqkbEmmPA3a5wdoQoGJKM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 4D721C4CEEA;
-	Wed, 25 Jun 2025 13:38:10 +0000 (UTC)
-Received: from wens.tw (localhost [127.0.0.1])
-	by wens.tw (Postfix) with ESMTP id EDAF45FB4D;
-	Wed, 25 Jun 2025 21:38:07 +0800 (CST)
-From: Chen-Yu Tsai <wens@csie.org>
-To: Stephen Boyd <sboyd@kernel.org>, Rob Herring <robh@kernel.org>, 
- Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, Jernej Skrabec <jernej@kernel.org>, 
- Samuel Holland <samuel@sholland.org>, Chen-Yu Tsai <wens@kernel.org>
-Cc: Andre Przywara <andre.przywara@arm.com>, 
- Philipp Zabel <p.zabel@pengutronix.de>, devicetree@vger.kernel.org, 
- linux-sunxi@lists.linux.dev, linux-clk@vger.kernel.org, 
- linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
-In-Reply-To: <20250619171025.3359384-1-wens@kernel.org>
-References: <20250619171025.3359384-1-wens@kernel.org>
-Subject: Re: [PATCH 0/2] clk: sunxi-ng: sun55i-a523-r-ccu: Add missing PPU0
- reset
-Message-Id: <175085868792.1673542.16405302707690855377.b4-ty@csie.org>
-Date: Wed, 25 Jun 2025 21:38:07 +0800
+	s=arc-20240116; t=1750859373; c=relaxed/simple;
+	bh=Ez3h2hcedkCPo5tU5X3TK6D6K7FlG6mpkgJxcG02l30=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:From:In-Reply-To:
+	 Content-Type:References; b=WNzq6pXyskugkueKfScPmC5P9IGnk8yGjewGgvT179h90/65z70kleM2r8B5Nb3DxoHQIemXTBPyiMYhfVRzBIkSB3pa93VH6/ZOfjkMWyGgpIBH96fMUQMiemWYmxtZa+8bxUlJ1vSC+me3OSbI/eptPDUFuQfGYsJVSXJ/VRw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=samsung.com; spf=pass smtp.mailfrom=samsung.com; dkim=pass (1024-bit key) header.d=samsung.com header.i=@samsung.com header.b=HQu6sHKv; arc=none smtp.client-ip=210.118.77.12
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=samsung.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=samsung.com
+Received: from eucas1p2.samsung.com (unknown [182.198.249.207])
+	by mailout2.w1.samsung.com (KnoxPortal) with ESMTP id 20250625134929euoutp029f3673497f3b023a2938895989458404~MTVHyWtEx0646506465euoutp02U
+	for <devicetree@vger.kernel.org>; Wed, 25 Jun 2025 13:49:29 +0000 (GMT)
+DKIM-Filter: OpenDKIM Filter v2.11.0 mailout2.w1.samsung.com 20250625134929euoutp029f3673497f3b023a2938895989458404~MTVHyWtEx0646506465euoutp02U
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=samsung.com;
+	s=mail20170921; t=1750859369;
+	bh=jet5Z3oHYs+Jf13HfgUgZVZFfowNJyNZZd5QLwXLsCI=;
+	h=Date:Subject:To:Cc:From:In-Reply-To:References:From;
+	b=HQu6sHKvhjbMr5lVaeA2ReHrbImqud2jLsnzmbuml9ACbzaa475kFfb4bRZhxtkjP
+	 wfTM9ksJ1g/EW7ECpOw0oD8J4CkvTPk35uwYRm2pD5qresCgjM2Ah9dhritgHugYhV
+	 7hcnLuPtoyD8WqwSCzTGcorGSLk89uvlduamNDPk=
+Received: from eusmtip1.samsung.com (unknown [203.254.199.221]) by
+	eucas1p2.samsung.com (KnoxPortal) with ESMTPA id
+	20250625134928eucas1p20116c6f28849c9efd79be3d1c9f83e6d~MTVG8cjqV2648326483eucas1p2s;
+	Wed, 25 Jun 2025 13:49:28 +0000 (GMT)
+Received: from [192.168.1.44] (unknown [106.210.136.40]) by
+	eusmtip1.samsung.com (KnoxPortal) with ESMTPA id
+	20250625134927eusmtip15bc8d3e11211e663cc281314615c3b89~MTVF7n4xZ1371313713eusmtip1E;
+	Wed, 25 Jun 2025 13:49:27 +0000 (GMT)
+Message-ID: <4e2e770a-0b94-4c73-a98d-ce14c3e3c364@samsung.com>
+Date: Wed, 25 Jun 2025 15:49:27 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v6 4/8] drm/imagination: Use pwrseq for TH1520 GPU power
+ management
+To: Matt Coster <Matt.Coster@imgtec.com>
+Cc: Drew Fustini <drew@pdp7.com>, Guo Ren <guoren@kernel.org>, Fu Wei
+	<wefu@redhat.com>, Rob Herring <robh@kernel.org>, Krzysztof Kozlowski
+	<krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, Bartosz
+	Golaszewski <brgl@bgdev.pl>, Philipp Zabel <p.zabel@pengutronix.de>, Frank
+	Binns <Frank.Binns@imgtec.com>, Maarten Lankhorst
+	<maarten.lankhorst@linux.intel.com>, Maxime Ripard <mripard@kernel.org>,
+	Thomas Zimmermann <tzimmermann@suse.de>, David Airlie <airlied@gmail.com>,
+	Simona Vetter <simona@ffwll.ch>, Paul Walmsley <paul.walmsley@sifive.com>,
+	Palmer Dabbelt <palmer@dabbelt.com>, Albert Ou <aou@eecs.berkeley.edu>,
+	Alexandre Ghiti <alex@ghiti.fr>, Ulf Hansson <ulf.hansson@linaro.org>, Marek
+	Szyprowski <m.szyprowski@samsung.com>, Bartosz Golaszewski
+	<bartosz.golaszewski@linaro.org>, "linux-riscv@lists.infradead.org"
+	<linux-riscv@lists.infradead.org>, "devicetree@vger.kernel.org"
+	<devicetree@vger.kernel.org>, "linux-kernel@vger.kernel.org"
+	<linux-kernel@vger.kernel.org>, "linux-pm@vger.kernel.org"
+	<linux-pm@vger.kernel.org>, "dri-devel@lists.freedesktop.org"
+	<dri-devel@lists.freedesktop.org>
+Content-Language: en-US
+From: Michal Wilczynski <m.wilczynski@samsung.com>
+In-Reply-To: <a265a20e-8908-40d8-b4e0-2c8b8f773742@imgtec.com>
 Content-Transfer-Encoding: 7bit
-X-Mailer: b4 0.14.2
+X-CMS-MailID: 20250625134928eucas1p20116c6f28849c9efd79be3d1c9f83e6d
+X-Msg-Generator: CA
+Content-Type: text/plain; charset="utf-8"
+X-RootMTR: 20250623114433eucas1p1659c22d6696f3eb51d4169eee80b7cb2
+X-EPHeader: CA
+X-CMS-RootMailID: 20250623114433eucas1p1659c22d6696f3eb51d4169eee80b7cb2
+References: <20250623-apr_14_for_sending-v6-0-6583ce0f6c25@samsung.com>
+	<CGME20250623114433eucas1p1659c22d6696f3eb51d4169eee80b7cb2@eucas1p1.samsung.com>
+	<20250623-apr_14_for_sending-v6-4-6583ce0f6c25@samsung.com>
+	<a265a20e-8908-40d8-b4e0-2c8b8f773742@imgtec.com>
 
-On Fri, 20 Jun 2025 01:10:23 +0800, Chen-Yu Tsai wrote:
-> From: Chen-Yu Tsai <wens@csie.org>
+
+
+On 6/24/25 15:53, Matt Coster wrote:
+> On 23/06/2025 12:42, Michal Wilczynski wrote:
+>> Update the Imagination PVR DRM driver to leverage the pwrseq framework
+>> for managing the power sequence of the GPU on the T-HEAD TH1520 SoC.
+>>
+>> To cleanly handle the TH1520's specific power requirements in the
+>> generic driver, this patch implements the "driver match data" pattern.
+>> The pvr_soc_data struct, associated with a compatible string in the
+>> of_device_id table, now holds pointers to platform-specific power_on and
+>> power_off functions.
+>>
+>> At probe time, the driver inspects the assigned power_on function
+>> pointer. If it points to the pwrseq variant, the driver calls
+>> devm_pwrseq_get("gpu-power"), requiring a valid sequencer and deferring
+>> probe on failure. Otherwise, it falls back to its standard manual reset
+>> initialization.
+>>
+>> The runtime PM callbacks, pvr_power_device_resume() and
+>> pvr_power_device_suspend(), call the power_on and power_off function
+>> pointers. Helper functions for both manual and pwrseq-based sequences
+>> are introduced to support this.
 > 
-> There is a PPU0 reset control bit in the same register as the PPU1
-> reset control. This missing reset control is for the PCK-600 unit
-> in the SoC. Manual tests show that the reset control indeed exists,
-> and if not configured, the system will hang when the PCK-600
-> registers are accessed.
+> Hi Michal,
 > 
-> [...]
+> My apologies for not responding to previous revisions of this series. In
+> general, my main earlier complaints were already addressed by others and
+> the series generally looks good to me.
+> 
+> Just a few notes from me in this and subsequent patches.
+> 
+>>
 
-Applied to sunxi/clk-for-6.17 in local tree, thanks!
+Thanks for the feedback.
 
-[1/2] dt-bindings: reset: sun55i-a523-r-ccu: Add missing PPU0 reset
-      commit: 61977ccf6568f9d104462727b49412a80c22c519
-[2/2] clk: sunxi-ng: sun55i-a523-r-ccu: Add missing PPU0 reset
-      commit: c17b1b6c86059664e91008a23547ef0aadfc2228
+I will send an updated revision based on the linux-next and skip patches
+that have already been applied to Ulf's and Bartosz's trees.
 
 Best regards,
 -- 
-Chen-Yu Tsai <wens@csie.org>
-
+Michal Wilczynski <m.wilczynski@samsung.com>
 
