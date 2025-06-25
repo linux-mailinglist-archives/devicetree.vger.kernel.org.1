@@ -1,78 +1,115 @@
-Return-Path: <devicetree+bounces-189647-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-189648-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1CF12AE8B5E
-	for <lists+devicetree@lfdr.de>; Wed, 25 Jun 2025 19:15:38 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id DFF30AE8B77
+	for <lists+devicetree@lfdr.de>; Wed, 25 Jun 2025 19:25:56 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id C9A603A6B00
-	for <lists+devicetree@lfdr.de>; Wed, 25 Jun 2025 17:15:12 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 47B8C174CD6
+	for <lists+devicetree@lfdr.de>; Wed, 25 Jun 2025 17:25:57 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6E65928D8FE;
-	Wed, 25 Jun 2025 17:15:33 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2D2592C1596;
+	Wed, 25 Jun 2025 17:25:50 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="NIAxI9Q+"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="jE67b83Q"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wr1-f52.google.com (mail-wr1-f52.google.com [209.85.221.52])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3C813224F6;
-	Wed, 25 Jun 2025 17:15:32 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 61454189F43
+	for <devicetree@vger.kernel.org>; Wed, 25 Jun 2025 17:25:48 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.52
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1750871733; cv=none; b=C5mBOVE3aDHvIB/49/SugPObJJsidHDxlrxNP2gk0NM6JiCjPLCc9aT7Sr+Qia+AeaRBzLCW3/OFJweSwLQnOQmjV6m6APsyO/0l8DH5EAtE+EG6oBK8zaSIsUzmfJJzNT1liyb9mLl8oWH+PxM3uGAhxu92k0VGpeycaSKnrXE=
+	t=1750872350; cv=none; b=c1SuWs+C21BmyA4frE2wUeMzyi4kThSjIiOutYrBZRFLsKQ/1TgVLoB5xEsFuF4jqGb9bjrk7Jyq5uoLD0JoYCEgj/pqVNF3q/0kj/wk4FGKzpOwBBo5J/a0nxPV87gKGBOk+EQnitgmWbnuGFtPS0yEuL0Hm6nnZwsNE7z7Mi0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1750871733; c=relaxed/simple;
-	bh=tsPO0OiBG0PBkJSG9uxmHSEGiRUT65aNlEBWC9J6YaY=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=bMfxru8/sPGv/VBM6CddvxZmKRQltgOK85g0w6xVp+UZtLFdaVd12LgyxCwyyrQt0KcJxO7uMBCwyyZsMnX78OU7wcnM3lVBc95fh9MhKzDe33w7oY8y/YikVmDGXGQgCOt4+Ozgej+Gi09gEVyoAtvEYnL24VcIHdaGTKrJDIs=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=NIAxI9Q+; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 481A7C4CEEA;
-	Wed, 25 Jun 2025 17:15:30 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1750871732;
-	bh=tsPO0OiBG0PBkJSG9uxmHSEGiRUT65aNlEBWC9J6YaY=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=NIAxI9Q+V8bIHjAs4Fxp6lyInGwd77wN+e9vmBEL9ifR9OCEFHhAzhrvlKGvgHS5W
-	 N7hCw9fCHd1xuPRiJSY4Jk8ElbiVC7OjcsaHCvY1KhIstYCJRuc2xIzo3jQf1ZpB6A
-	 DV7fO5csG6cSpBbstMfChRSNOoEchn4g1yEKtb8EaeZVSSn5+njtXTuCmzvWFlkKM9
-	 OPRt/QlEg+cQJn9yI4LqKLcUth3kBuk6eaBMjfC1xxzdD7MNGEUqHYyoLNc9UwqtRS
-	 Su0X5XW80XeRCwGEkcS7giV/udeIDDuHieRiDiMvqJTBPjgTbs9LGckRkB4BeRWBJe
-	 DMAt42uMfA4rA==
-Date: Wed, 25 Jun 2025 18:15:28 +0100
-From: Simon Horman <horms@kernel.org>
-To: Geert Uytterhoeven <geert+renesas@glider.be>
-Cc: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>,
-	Andrew Lunn <andrew+netdev@lunn.ch>,
-	"David S . Miller" <davem@davemloft.net>,
-	Eric Dumazet <edumazet@google.com>,
-	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, netdev@vger.kernel.org,
-	linux-renesas-soc@vger.kernel.org, devicetree@vger.kernel.org
-Subject: Re: [PATCH] dt-bindings: net: Rename renesas,r9a09g057-gbeth.yaml
-Message-ID: <20250625171528.GK1562@horms.kernel.org>
-References: <721f6e0e09777e0842ecaca4578bc50c953d2428.1750838954.git.geert+renesas@glider.be>
+	s=arc-20240116; t=1750872350; c=relaxed/simple;
+	bh=6O7A/YC5TjvPF+nYhT2LrlK3lJoYuXaotH9sOdtaJq4=;
+	h=Message-ID:Subject:From:To:Cc:Date:In-Reply-To:References:
+	 Content-Type:MIME-Version; b=nUJ51IbsZusm4jbEtDe+P96aQhtpAwbn5TDGkLduhwiWrb397tM2Zg149IZi8Hq1PvRrz9ayUkggnLjR3Ld0Fqsq/fs/3YCOxZRQUH30BDKztAIbcnr0ktQr3pr/rKjZOhT5ExWJQzKl/6Fvh3hsQTJSEriJTeWT4O+cVr6aW78=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=jE67b83Q; arc=none smtp.client-ip=209.85.221.52
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-wr1-f52.google.com with SMTP id ffacd0b85a97d-3a52874d593so77322f8f.0
+        for <devicetree@vger.kernel.org>; Wed, 25 Jun 2025 10:25:48 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1750872347; x=1751477147; darn=vger.kernel.org;
+        h=mime-version:user-agent:content-transfer-encoding:references
+         :in-reply-to:date:cc:to:from:subject:message-id:from:to:cc:subject
+         :date:message-id:reply-to;
+        bh=6O7A/YC5TjvPF+nYhT2LrlK3lJoYuXaotH9sOdtaJq4=;
+        b=jE67b83QgwZcy6pHW8GumX2NRNDq0snQKw5l8LoV39RDzm998i1h2inlkvN5yiEyFy
+         gfEuT+a/azn6tvE37Y01vL5tzWboOreQuuWlOjKLbeUDdrc6T+T93smKTBWNuGwJBkEf
+         n9j8nHRZ6QDtb4ynm3Ydz0J898zvRpnA/Thk2bWOuRFxBIqq77SZYYqmX3DEF7HD7+Ce
+         h2i5gC9e16aNeAKjiU9xUs9bDTh2Gk8mtG55XR3VEBiLsjdpoofek7riMheJRp30r88f
+         DUm5mmvAT3lEbbq0w1Rym6B74AJfoWxOr3dplJ3AFELv42OHmCpyuDrjHr/sjHB/sVfy
+         U7Zw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1750872347; x=1751477147;
+        h=mime-version:user-agent:content-transfer-encoding:references
+         :in-reply-to:date:cc:to:from:subject:message-id:x-gm-message-state
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=6O7A/YC5TjvPF+nYhT2LrlK3lJoYuXaotH9sOdtaJq4=;
+        b=e268IDBlibuAf05kSEFFO1US8Z4gttvHO3cGrjMqgioIIQlIQDueWk7Jbanv0RsBPF
+         DMyNDf4r2q8huRmUhqboFB9PHHVMSDRDY9KzTf2wlQZqwTjRhlZew9GiRsyEOsUkdLq6
+         waA81+6mJ0GwuZJNpEr6xwd+Hye4v7IXWX2ELAKnmhE06u+juT0qp8B7TYdFk6d8uMUE
+         X8JxhRFOMbDKiS4SxbNGQXwFznpdd9cFyVUgvo3qQ5gf94jUhQ9uUp26EERKw9CoR0ka
+         FMsaP/mDn+AmnEUBXm3xjmPnbYf/yscCjIjzAbSDQvf7q8X4yn4XvfOxWDETbT5eAKhp
+         OJsw==
+X-Forwarded-Encrypted: i=1; AJvYcCX0VywZTlKuQYanfTL7BwfezGFbOb63icFANmwZfeGlXt/Cp7WeLNEPp+Pt2Pb28TUNwWvptfgq+i6J@vger.kernel.org
+X-Gm-Message-State: AOJu0YwUuS6x6HGpC6S9i9l2Fi8C1rBMidBjBzjLSpWHfjWtocWDr8eV
+	Xemp8bNW57bIzlQ/T0NQgL4jg2TNLC9zVw6gWqtcyT9dvenC9ElCcu6RNFWGLnmedKI=
+X-Gm-Gg: ASbGncsRYn/L3AIQt1lfG7GV1IsKbYnodtb0MlcnejDlz/a80Yf9RgA/lH1zgCsAcH6
+	xGY9y2Uq1yDpffb1usmSurk2yrPSicNzGY07UpiajKnOEE7GEh2t3mH+lV9DuSBTGSJwcaM4eA9
+	kBsSNIp83TRTz7tn1btDDsko/QJW73LXMr+Kk4tQN2pPYtGFqHQsYqmNAexE7hQ60U1a9hJ6fL1
+	agcorSpuYRcEARRdwAG+KXgAEJffDBY2xRWmUzIBR0kW9ufDtAmuZ0Z8HSi6sUzebQbUICAqjaU
+	ruMc2CAtg8qGKWIsfeNDg/orIhuDxpoVE/mgKvH2dSq/iTSusx7USG9ud7v9oP/zhiOeOx+m/ii
+	6
+X-Google-Smtp-Source: AGHT+IEWqQYs8mY+5uoMYCKPajkMpm7F+LqZUiSbpYVGFaDjaB+825h/sM7EDs5jZzTatPcapcPi/g==
+X-Received: by 2002:a05:6000:4186:b0:3a5:298a:3207 with SMTP id ffacd0b85a97d-3a6ed64bdb6mr2932119f8f.48.1750872346775;
+        Wed, 25 Jun 2025 10:25:46 -0700 (PDT)
+Received: from draszik.lan ([80.111.64.44])
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-453823b6e9esm26240185e9.28.2025.06.25.10.25.45
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 25 Jun 2025 10:25:46 -0700 (PDT)
+Message-ID: <5113e57e0475a62f2f50006a7178377c508f9403.camel@linaro.org>
+Subject: Re: [PATCH v2 0/4] gs101 max77759 enablement (DT)
+From: =?ISO-8859-1?Q?Andr=E9?= Draszik <andre.draszik@linaro.org>
+To: Catalin Marinas <catalin.marinas@arm.com>, Will Deacon
+ <will@kernel.org>,  Peter Griffin <peter.griffin@linaro.org>, Tudor Ambarus
+ <tudor.ambarus@linaro.org>, Rob Herring	 <robh@kernel.org>, Krzysztof
+ Kozlowski <krzk+dt@kernel.org>, Conor Dooley	 <conor+dt@kernel.org>, Alim
+ Akhtar <alim.akhtar@samsung.com>
+Cc: Will McVicker <willmcvicker@google.com>, kernel-team@android.com, 
+	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org, 
+	linux-samsung-soc@vger.kernel.org, devicetree@vger.kernel.org
+Date: Wed, 25 Jun 2025 18:25:45 +0100
+In-Reply-To: <20250524-b4-max77759-mfd-dts-v2-0-b479542eb97d@linaro.org>
+References: <20250524-b4-max77759-mfd-dts-v2-0-b479542eb97d@linaro.org>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+User-Agent: Evolution 3.56.1-1 
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <721f6e0e09777e0842ecaca4578bc50c953d2428.1750838954.git.geert+renesas@glider.be>
 
-On Wed, Jun 25, 2025 at 10:10:48AM +0200, Geert Uytterhoeven wrote:
-> The DT bindings file "renesas,r9a09g057-gbeth.yaml" applies to a whole
-> family of SoCs, and uses "renesas,rzv2h-gbeth" as a fallback compatible
-> value.  Hence rename it to the more generic "renesas,rzv2h-gbeth.yaml".
-> 
-> Signed-off-by: Geert Uytterhoeven <geert+renesas@glider.be>
+On Sat, 2025-05-24 at 06:21 +0100, Andr=C3=A9 Draszik wrote:
+> Hi,
+>=20
+> This series enables the recently merged Maxim max77759 driver and
+> updates the DT for the Google Pixel 6 / Pro (oriole / raven) boards
+> accordingly.
+>=20
+> This gives us some extra GPIOs, and enables NVMEM which is used to
+> communicate the requested boot mode to the bootloader when doing a cold
+> reset.
 
-Reviewed-by: Simon Horman <horms@kernel.org>
+Friendly ping.
 
+Cheers,
+Andre'
 
