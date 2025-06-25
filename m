@@ -1,156 +1,188 @@
-Return-Path: <devicetree+bounces-189483-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-189485-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id C845CAE7ED5
-	for <lists+devicetree@lfdr.de>; Wed, 25 Jun 2025 12:14:40 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 159DEAE7EFE
+	for <lists+devicetree@lfdr.de>; Wed, 25 Jun 2025 12:21:43 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id F278A5A4773
-	for <lists+devicetree@lfdr.de>; Wed, 25 Jun 2025 10:12:40 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 8C3E7188FBB6
+	for <lists+devicetree@lfdr.de>; Wed, 25 Jun 2025 10:21:58 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8B44C2BD011;
-	Wed, 25 Jun 2025 10:11:32 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id F155627E059;
+	Wed, 25 Jun 2025 10:21:38 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=foss.st.com header.i=@foss.st.com header.b="tzkHB94w"
 X-Original-To: devicetree@vger.kernel.org
-Received: from leonov.paulk.fr (leonov.paulk.fr [185.233.101.22])
+Received: from mx07-00178001.pphosted.com (mx08-00178001.pphosted.com [91.207.212.93])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3A4662BCF7F;
-	Wed, 25 Jun 2025 10:11:30 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.233.101.22
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1A0811EE7B7;
+	Wed, 25 Jun 2025 10:21:36 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=91.207.212.93
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1750846292; cv=none; b=pQOT/6Zy2eXC8cQ6HqJqyORbQUA+OfEpR3h+T6bVskpXHn+qvo4Oi228xUlQ/1gvsX03pUAqn2FH2KYfTr5jE/nMfk01Ut8RpQNGlp9e0lx6BfBpIOLR9HRIgPOolNg7kwKofU7T6AU4YQ3hQSc4ju8A3+VMEiFwJ2napEQBK5k=
+	t=1750846898; cv=none; b=Q2E4ino0fjE5yuD6t6KCGrk2xUQo4cOkNSiQYGmEwfpgVIRk8XnYFPHb8kHSoqq49ozwb0uzSorGSlkvC+POqeKc/hYnMRcVyUuK9sHZw637X0z9gVOTQxVDXHAsUqGL2iXHaX3PO9iZFUFsEsZMwT36T8DPs8qWvZDL4RE5Qt4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1750846292; c=relaxed/simple;
-	bh=evgwnQ6wjQ/l/an0YGPGf/N9dzJNpcYErEe2QytG78M=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=S+eFaPzdoag7CfY0AbeNV/HernGYJtekEz4KADu+lTr1oSB1xskSp2ITANfS5hIhPxd6JlR3Ws8+UOofDmNq/i08yo/lIkh/B+s96iqQ7uLq9IXz2MuwqiFWE8B1NWSSG8suqhRLn30EXnRftiTA0qCKLps26WO6sP5zmTuaQSU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=sys-base.io; spf=pass smtp.mailfrom=sys-base.io; arc=none smtp.client-ip=185.233.101.22
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=sys-base.io
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=sys-base.io
-Received: from laika.paulk.fr (12.234.24.109.rev.sfr.net [109.24.234.12])
-	by leonov.paulk.fr (Postfix) with ESMTPS id 988241F00058;
-	Wed, 25 Jun 2025 10:11:15 +0000 (UTC)
-Received: by laika.paulk.fr (Postfix, from userid 65534)
-	id B18A5AC7B19; Wed, 25 Jun 2025 10:11:12 +0000 (UTC)
-X-Spam-Level: 
-Received: from shepard (unknown [192.168.1.1])
-	by laika.paulk.fr (Postfix) with ESMTPSA id DA68DAC7B19;
-	Wed, 25 Jun 2025 10:11:09 +0000 (UTC)
-Date: Wed, 25 Jun 2025 12:11:07 +0200
-From: Paul Kocialkowski <paulk@sys-base.io>
-To: Parthiban <parthiban@linumiz.com>
-Cc: Joerg Roedel <joro@8bytes.org>, Will Deacon <will@kernel.org>,
-	Robin Murphy <robin.murphy@arm.com>, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, Chen-Yu Tsai <wens@csie.org>,
-	Jernej Skrabec <jernej.skrabec@gmail.com>,
-	Samuel Holland <samuel@sholland.org>,
-	Maxime Ripard <mripard@kernel.org>,
-	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
-	Thomas Zimmermann <tzimmermann@suse.de>,
-	David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
-	Michael Turquette <mturquette@baylibre.com>,
-	Stephen Boyd <sboyd@kernel.org>,
-	Philipp Zabel <p.zabel@pengutronix.de>,
-	Linus Walleij <linus.walleij@linaro.org>,
-	Vinod Koul <vkoul@kernel.org>,
-	Kishon Vijay Abraham I <kishon@kernel.org>, iommu@lists.linux.dev,
-	devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-	linux-sunxi@lists.linux.dev, linux-kernel@vger.kernel.org,
-	dri-devel@lists.freedesktop.org, linux-clk@vger.kernel.org,
-	linux-gpio@vger.kernel.org, linux-phy@lists.infradead.org
-Subject: Re: [PATCH 10/22] pinctrl: sunxi: add missed lvds pins for a100/a133
-Message-ID: <aFvLO6GUY6NezkcF@shepard>
-References: <20241227-a133-display-support-v1-0-13b52f71fb14@linumiz.com>
- <20241227-a133-display-support-v1-10-13b52f71fb14@linumiz.com>
- <aFu3fAMa8KPwjPbX@shepard>
- <9c3ea5fb-a045-46bd-9753-26ffa67fe1bc@linumiz.com>
+	s=arc-20240116; t=1750846898; c=relaxed/simple;
+	bh=MOhEYC1cKOgyHi8EznYqnXZzLpwz8XMCahZZ5D2On4U=;
+	h=Message-ID:Date:MIME-Version:From:Subject:To:CC:References:
+	 In-Reply-To:Content-Type; b=VIniTiDys0sQJA9zxabaqJHHx3iuD6UKXc5NM0vRaf5LveP5E16o59Bl7hnr+9VnStC1w8nkdHiYXXpD7qKn3i11CeJ6ujBjZQzOf/ud9uf9SdYy/mJqT6ZHU41mg7Y61+JAXfou1lg0Wwcu92p2koOR9zaIhDzUCXKn7EGQwfc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=foss.st.com; spf=pass smtp.mailfrom=foss.st.com; dkim=pass (2048-bit key) header.d=foss.st.com header.i=@foss.st.com header.b=tzkHB94w; arc=none smtp.client-ip=91.207.212.93
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=foss.st.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=foss.st.com
+Received: from pps.filterd (m0046661.ppops.net [127.0.0.1])
+	by mx07-00178001.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 55P62V3v021991;
+	Wed, 25 Jun 2025 12:21:11 +0200
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=foss.st.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=selector1; bh=
+	C4yzJ1noedDWVQEaOZSM94W1Wxwn8zZ9kpiO6XR9LxU=; b=tzkHB94wRKqAwx4c
+	0lvTUd/MYGBUx70suX7tiBjmz0UtKwRUjtVPIihur62TbMpXnmXpdcWmAcdp5xpW
+	pJhiDVqchowhT7pV99S6j6SU6rDAOWYXhkkVwFxxMyC4wjjDYTsf0eHmDBFfiURV
+	rU9kKk2Ce52GLRFVg3ZaOeyIaes040BDjPmJk81aWNwBTwCNso39GT/ejla9qTYW
+	PqSVpiw4Ed0mzE2VIisvjpYOTdwxw3RJNg0AR5LWINIBu6zV9J+fp3aNyf5Y4M+D
+	HRRQsYRdb9v8xpc3neYRQgJVZHr4su1XCjrpysVrcRguZdv2L4yM2cGfSe5ewNjS
+	3LpBlw==
+Received: from beta.dmz-ap.st.com (beta.dmz-ap.st.com [138.198.100.35])
+	by mx07-00178001.pphosted.com (PPS) with ESMTPS id 47dkmjryqn-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Wed, 25 Jun 2025 12:21:11 +0200 (MEST)
+Received: from euls16034.sgp.st.com (euls16034.sgp.st.com [10.75.44.20])
+	by beta.dmz-ap.st.com (STMicroelectronics) with ESMTP id 04F1A40046;
+	Wed, 25 Jun 2025 12:19:41 +0200 (CEST)
+Received: from Webmail-eu.st.com (shfdag1node3.st.com [10.75.129.71])
+	by euls16034.sgp.st.com (STMicroelectronics) with ESMTP id 12132AE5D21;
+	Wed, 25 Jun 2025 12:18:21 +0200 (CEST)
+Received: from [10.130.77.120] (10.130.77.120) by SHFDAG1NODE3.st.com
+ (10.75.129.71) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.39; Wed, 25 Jun
+ 2025 12:18:20 +0200
+Message-ID: <01dbb6cf-3ab4-4922-b301-661464c9e56d@foss.st.com>
+Date: Wed, 25 Jun 2025 12:18:16 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="hh+oSgryr9OFE2vD"
-Content-Disposition: inline
-In-Reply-To: <9c3ea5fb-a045-46bd-9753-26ffa67fe1bc@linumiz.com>
+User-Agent: Mozilla Thunderbird
+From: Christian Bruel <christian.bruel@foss.st.com>
+Subject: Re: (subset) [PATCH v12 0/9] Add STM32MP25 PCIe drivers
+To: Manivannan Sadhasivam <mani@kernel.org>,
+        Bjorn Helgaas
+	<helgaas@kernel.org>,
+        Linus Walleij <linus.walleij@linaro.org>
+CC: <lpieralisi@kernel.org>, <kwilczynski@kernel.org>, <robh@kernel.org>,
+        <bhelgaas@google.com>, <krzk+dt@kernel.org>, <conor+dt@kernel.org>,
+        <mcoquelin.stm32@gmail.com>, <alexandre.torgue@foss.st.com>,
+        <p.zabel@pengutronix.de>, <johan+linaro@kernel.org>,
+        <cassel@kernel.org>, <shradha.t@samsung.com>,
+        <thippeswamy.havalige@amd.com>, <quic_schintav@quicinc.com>,
+        <linux-pci@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-stm32@st-md-mailman.stormreply.com>,
+        <linux-arm-kernel@lists.infradead.org>, <linux-kernel@vger.kernel.org>
+References: <175068078778.15794.15418191733712827693.b4-ty@kernel.org>
+ <20250624222206.GA1537968@bhelgaas>
+ <3bmw76gzqjq2nmjvj7tb6gi5x233zzfrhv44uyjopl2lxyzbkh@zg5skeu62nbh>
+Content-Language: en-US
+In-Reply-To: <3bmw76gzqjq2nmjvj7tb6gi5x233zzfrhv44uyjopl2lxyzbkh@zg5skeu62nbh>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 8bit
+X-ClientProxiedBy: EQNCAS1NODE4.st.com (10.75.129.82) To SHFDAG1NODE3.st.com
+ (10.75.129.71)
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1099,Hydra:6.1.7,FMLib:17.12.80.40
+ definitions=2025-06-25_02,2025-06-23_07,2025-03-28_01
 
 
---hh+oSgryr9OFE2vD
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
 
-On Wed 25 Jun 25, 15:06, Parthiban wrote:
->=20
-> On 6/25/25 2:16 PM, Paul Kocialkowski wrote:
-> > Hi and thanks for your work!
-> >=20
-> > On Fri 27 Dec 24, 16:37, Parthiban Nallathambi wrote:
-> >> lvds, lcd, dsi all shares the same GPIO D bank and lvds0
-> >> data 3 lines and lvds1 pins are missed, add them.
-> > Would it also make sense to submit device-tree pin definitions here?
->=20
-> this patch is already merged.=20
-> git show --stat cef4f1b5ba99a964cd6dd248bb373520573c972f
-> commit cef4f1b5ba99a964cd6dd248bb373520573c972f
-> Author: Parthiban Nallathambi <parthiban@linumiz.com>
-> Date:   Fri Dec 27 16:37:57 2024 +0530
->=20
->     pinctrl: sunxi: add missed lvds pins for a100/a133
->    =20
->     lvds, lcd, dsi all shares the same GPIO D bank and lvds0
->     data 3 lines and lvds1 pins are missed, add them.
->    =20
->     Signed-off-by: Parthiban Nallathambi <parthiban@linumiz.com>
->     Link: https://lore.kernel.org/20241227-a133-display-support-v1-10-13b=
-52f71fb14@linumiz.com
->     Signed-off-by: Linus Walleij <linus.walleij@linaro.org>
->=20
->  drivers/pinctrl/sunxi/pinctrl-sun50i-a100.c | 12 ++++++++++++
->  1 file changed, 12 insertions(+)
->=20
-> Do you mean the consumer/board devicetree changes?
+On 6/25/25 06:00, Manivannan Sadhasivam wrote:
+> On Tue, Jun 24, 2025 at 05:22:06PM -0500, Bjorn Helgaas wrote:
+>> On Mon, Jun 23, 2025 at 06:13:07AM -0600, Manivannan Sadhasivam wrote:
+>>> On Tue, 10 Jun 2025 11:07:05 +0200, Christian Bruel wrote:
+>>>> Changes in v12;
+>>>>     Fix warning reported by kernel test robot <lkp@intel.com>
+>>>>
+>>>> Changes in v11;
+>>>>     Address comments from Manivanna:
+>>>>     - RC driver: Do not call pm_runtime_get_noresume in probe
+>>>>                  More uses of dev_err_probe
+>>>>     - EP driver: Use level triggered PERST# irq
+>>>>
+>>>> [...]
+>>>
+>>> Applied, thanks!
+>>>
+>>> [1/9] dt-bindings: PCI: Add STM32MP25 PCIe Root Complex bindings
+>>>        commit: 41d5cfbdda7a61c5d646a54035b697205cff1cf0
+>>> [2/9] PCI: stm32: Add PCIe host support for STM32MP25
+>>>        commit: f6111bc2d8fe6ffc741661126a2174523124dc11
+>>> [3/9] dt-bindings: PCI: Add STM32MP25 PCIe Endpoint bindings
+>>>        commit: 203cfc4a23506ffb9c48d1300348c290dbf9368e
+>>> [4/9] PCI: stm32: Add PCIe Endpoint support for STM32MP25
+>>>        commit: 8869fb36a107a9ff18dab8c224de6afff1e81dec
+>>> [5/9] MAINTAINERS: add entry for ST STM32MP25 PCIe drivers
+>>>        commit: 003902ed7778d62083120253cd282a9112674986
+>>
+>> This doesn't build for me with the attached config:
+>>
+>>    $ make drivers/pci/controller/dwc/pcie-stm32.o
+>>      CALL    scripts/checksyscalls.sh
+>>      DESCEND objtool
+>>      INSTALL libsubcmd_headers
+>>      CC      drivers/pci/controller/dwc/pcie-stm32.o
+>>    drivers/pci/controller/dwc/pcie-stm32.c: In function ‘stm32_pcie_suspend_noirq’:
+>>    drivers/pci/controller/dwc/pcie-stm32.c:83:16: error: implicit declaration of function ‘pinctrl_pm_select_sleep_state’ [-Werror=implicit-function-declaration]
+>>       83 |         return pinctrl_pm_select_sleep_state(dev);
+>> 	|                ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+>>    drivers/pci/controller/dwc/pcie-stm32.c: In function ‘stm32_pcie_resume_noirq’:
+>>    drivers/pci/controller/dwc/pcie-stm32.c:96:24: error: ‘structdevice’ has no member named ‘pins’
+>>       96 |         if (!IS_ERR(dev->pins->init_state))
+>> 	|                        ^~
+>>    drivers/pci/controller/dwc/pcie-stm32.c:97:23: error: implicit declaration of function ‘pinctrl_select_state’ [-Werror=implicit-function-declaration]
+>>       97 |                 ret = pinctrl_select_state(dev->pins->p, dev->pins->init_state);
+>> 	|                       ^~~~~~~~~~~~~~~~~~~~
+>>    drivers/pci/controller/dwc/pcie-stm32.c:97:47: error: ‘structdevice’ has no member named ‘pins’
+>>       97 |                 ret = pinctrl_select_state(dev->pins->p, dev->pins->init_state);
+>> 	|                                               ^~
+>>    drivers/pci/controller/dwc/pcie-stm32.c:97:61: error: ‘structdevice’ has no member named ‘pins’
+>>       97 |                 ret = pinctrl_select_state(dev->pins->p, dev->pins->init_state);
+>> 	|                                                             ^~
+>>    drivers/pci/controller/dwc/pcie-stm32.c:99:23: error: implicit declaration of function ‘pinctrl_pm_select_default_state’ [-Werror=implicit-function-declaration]
+>>       99 |                 ret = pinctrl_pm_select_default_state(dev);
+>> 	|                       ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+>>
+> 
+> Hmm... I see two issues here. First is, wrong pinctrl header used. The correct
+> one is:
+> 
+> #include <linux/pinctrl/consumer.h>
 
-I mean the pin definitions for lvds in the sun50i-a100.dtsi device-tree.
+ah yes, the missing pinctrl_pm_select_default_state() should indeed be 
+fixed by using the correct header.
 
-But maybe you wanted to submit those after the bindings/driver changes are
-merged?
+> 
+> Second issue is the driver accessing "struct device::pins" directly. The "pins"
+> member won't be available if CONFIG_PINCTRL is not set (which is what your
+> .config has). So either the member should not be accessed directly or the
+> driver has to depend on CONFIG_PINCTRL. The latter one is not acceptable.It
+> also looks weird that only this driver is accessing the "pins" member directly
+> apart from the pinctrl core. So I think this part needs a revisit.
+> 
+> Christian?
+The pinctrl "init" and "default" configurations are managed effectively 
+by the probing code. The same approach is required in 
+stm32_pcie_resume_noirq().
 
-Cheers,
+In this case, would introducing a new helper function, 
+pinctrl_pm_select_init_state(), be preferable, even if we are the only 
+consumer?
 
-Paul
+Thank you
 
---=20
-Paul Kocialkowski,
 
-Independent contractor - sys-base - https://www.sys-base.io/
-Free software developer - https://www.paulk.fr/
-
-Expert in multimedia, graphics and embedded hardware support with Linux.
-
---hh+oSgryr9OFE2vD
-Content-Type: application/pgp-signature; name=signature.asc
-
------BEGIN PGP SIGNATURE-----
-
-iQIzBAEBCgAdFiEEAbcMXZQMtj1fphLChP3B6o/ulQwFAmhbyzsACgkQhP3B6o/u
-lQyMGQ//f2vAQYHKFknpEFa9G97bwQAoBFvWmQSD1wmDY326lLbX+9Y05O/nICdQ
-datMQbAA6GBDyn///enJBKK2AURU+BrqhBgKbsbBFFSRcfxgqOrBRts1XgjbAA4J
-jdl51KH2mhO3rL83JU/DhlwedeW2q/JeZrlFxVV/DL94tc3WRVFHINq3XipGHfk/
-l2VdJ9XHwzIz1it4ZG/ypB5reTIvdskJQCjGqqEwpLy2BkYsVvVIW4ASYCWR76A4
-CJfYGi3RTEZxDTmiLpLrUiezKLT2y0sZybhIDlFYZG8aVAoMvmDYZafpsotsRD+E
-jv9Et5dsl/In0DiCJLdmNGgwdmVgQcn/Ln7D5Ad5hqUqHx5tteJ5Vc+XWVVXTVEh
-ngvtcEvY3PornqJ/yAmYqz8UZ0+ZPMjLUM5cBrO0kiVYU6//99FOZRLba7VpDrqt
-PpwHreipKusGGSgKjwNU0JBszR61dT9eEBF4CnyTJmsnH/CYgXk3ToqbwYrWInUD
-rmClxHtOUwQ+BUAz3GL7YszrAzifLjqmKTFtIydFEIi/xWI/7LDeImEjAjHtk0Vk
-eGDxBau9WCqk8IUf7kneF6UcCD2M+9rs8k+2p8rvO6gQOv6I7Ioq1sPfqmWSyA5v
-uVQSDI7Amj0SKgFZmKuXry4Qw/EWu+BNGf3Xii0csbO0ZAuxVos=
-=Yy5s
------END PGP SIGNATURE-----
-
---hh+oSgryr9OFE2vD--
+> 
+> - Mani
+> 
 
