@@ -1,190 +1,169 @@
-Return-Path: <devicetree+bounces-189517-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-189518-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 66344AE808D
-	for <lists+devicetree@lfdr.de>; Wed, 25 Jun 2025 13:07:11 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id C8BFEAE80B0
+	for <lists+devicetree@lfdr.de>; Wed, 25 Jun 2025 13:14:31 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id EAF233AC534
-	for <lists+devicetree@lfdr.de>; Wed, 25 Jun 2025 11:06:45 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 3558E16C014
+	for <lists+devicetree@lfdr.de>; Wed, 25 Jun 2025 11:14:32 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id AEBF52BCF66;
-	Wed, 25 Jun 2025 11:07:04 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9C4542820D5;
+	Wed, 25 Jun 2025 11:14:27 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="V2npjSuG"
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="TKxOXR7o"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 79BD01E1C3F;
-	Wed, 25 Jun 2025 11:07:04 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F1A461C07C4;
+	Wed, 25 Jun 2025 11:14:25 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1750849624; cv=none; b=YXCosEv0vQPFNl8QpBkONX2ghuW9cPcl06xgUMn4DCBnwVJFE1YukfgVEgFu2psex0glfRe5EzjRHRJy/zOL9IEgB7jGhnWlmJcXyioQPreyI9nZeeszcsvO+87VgaYG6nx/oZ9WHfmdBP7Vn4E45Xqg+MizyFX4GPHrqFgMp34=
+	t=1750850067; cv=none; b=SkOJ2dTEk9MjwdiG9FqFcY8hgWKCD5nZvdqRCL3sxHbFI46bzLwM75OU5SxF6tVY8Bjuac2a27gsxPJijlLZiFRp/u3T5rAeZnQchNhjBCPxsRNwcqvlzto+hRW+320B6x8GNkkBdMb37l4bGQoGQKngbndXwPbbh1KJhgZlNDg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1750849624; c=relaxed/simple;
-	bh=Du5M54IwYdOnXf3aWRLYEWi5vYiuJM7fkemw9YzMmhI=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=d5mlRIqL0PdC+BGjzcJ4hSCZ+Aq3F8zgz2b7Z3pqEEtnou1MbFduHEAITdkdwhexcPGlJWRIEdtDg6ZkKU04UUT5VPIaQ5SYnjr90DTQqcXYon/dz6Yizc7XYgRLx3jMXirR8NYy6o/d+h1r7oKNq8ZXhw0gY+tvl0O9kVoLeyA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=V2npjSuG; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 84DF0C4CEF3;
-	Wed, 25 Jun 2025 11:06:59 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1750849624;
-	bh=Du5M54IwYdOnXf3aWRLYEWi5vYiuJM7fkemw9YzMmhI=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=V2npjSuGkDaZbAiIfvwChljQPGkoIx25/DuLkqurOMb68Mtv9JxFZ9Xs2DqbAfwwt
-	 MOZB5Fli4sKbXoWq8PcHKAgoDvnYVIQ67YSYn7p5ElRJyPTq2TcUp1LN+USkozNjOm
-	 XLPf4KDOSKBe0UqsLPnYrAP4p3crqE2MnWuCGHfaMWgrR0rVct+2BS6yAXClZvom/j
-	 sa5iXgml/zyhDooN2wJFS3TULsVcXX27FGAxjLEIoS7H8AvrjgKeMjYSbhm7h1Y/4a
-	 oh8EgY9Lr4/5+X/H/Wunb9WehB8mer9EsWFowRkPCsRI1+i6ODYnjOSHl+KoDApXv2
-	 mquTNGLIgOpiA==
-Message-ID: <86654ad1-a2ab-4add-b9de-4d56c67f377b@kernel.org>
-Date: Wed, 25 Jun 2025 13:06:57 +0200
+	s=arc-20240116; t=1750850067; c=relaxed/simple;
+	bh=LOPv5WqptweOmR1yymCn5oKhJpo7RUAOzx3z/ZgZlNA=;
+	h=From:Subject:Date:Message-ID:MIME-Version:Content-Type:To:CC; b=C6P/P4N3E3k6SmVfeYHkWIsXqjgfoy5TgNAGe1WOXu3prYyAQfJ0gZBcM8A1FFR1iI+qHTPV3C5lXb8vDhhi+m38qYEkuopgeAKojqLmZDISyYQ9efUIX0R/bZF2wpIQ9uYjIhc45bC2Cb+1io8ks6qDI5DPIgmVOH/2dfb4VH4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=TKxOXR7o; arc=none smtp.client-ip=205.220.180.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
+Received: from pps.filterd (m0279870.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 55P3hUel012128;
+	Wed, 25 Jun 2025 11:14:22 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
+	cc:content-transfer-encoding:content-type:date:from:message-id
+	:mime-version:subject:to; s=qcppdkim1; bh=6bbj0+aXCCnzJm3pnpDXir
+	ltoLKCrKhW0s2kjapC1xE=; b=TKxOXR7ofdLYU0mHogunLZNNZ2MGeTLmEfJhtz
+	HiBwbOZslBaKGyl/4sqJM9PiUKxExGT408OiC1ikYv4CD91fkp0TIH1dUsB6G2ie
+	X5WapHT1R8K7xSteb9N9xH0Ze65XwgWW1aEjc8EVJAGxbargWqmjuyRbeIpdUTGD
+	yl88+9PLnvlzJz7lMRC+7Yo/+b9u23lC9vIoo5tFVMThHyTbRzCLn/kd7ckBV+Q+
+	fT7gAQZt3DHjTHRj58m6xQO52qnu1/UlwAT8F5X/EQ7D/P5V/wDnqYkBWWz6nA/5
+	zuXEKDzKXypdwmClEdgnJI4MyMTKtxSBtzyfpYOMXhtUL8DA==
+Received: from nalasppmta03.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 47fbm1x7cw-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Wed, 25 Jun 2025 11:14:22 +0000 (GMT)
+Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
+	by NALASPPMTA03.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 55PBELME022236
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Wed, 25 Jun 2025 11:14:21 GMT
+Received: from hu-tdas-hyd.qualcomm.com (10.80.80.8) by
+ nalasex01a.na.qualcomm.com (10.47.209.196) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.1544.9; Wed, 25 Jun 2025 04:14:17 -0700
+From: Taniya Das <quic_tdas@quicinc.com>
+Subject: [PATCH v4 0/2] Add support for clock controllers and CPU scaling
+ for QCS615
+Date: Wed, 25 Jun 2025 16:43:59 +0530
+Message-ID: <20250625-qcs615-mm-cpu-dt-v4-v4-0-9ca880c53560@quicinc.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 09/29] dt-bindings: clock: mediatek: Describe MT8196
- peripheral clock controllers
-To: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
- Laura Nao <laura.nao@collabora.com>, mturquette@baylibre.com,
- sboyd@kernel.org, robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
- matthias.bgg@gmail.com, p.zabel@pengutronix.de, richardcochran@gmail.com
-Cc: guangjie.song@mediatek.com, wenst@chromium.org,
- linux-clk@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- linux-mediatek@lists.infradead.org, netdev@vger.kernel.org,
- kernel@collabora.com
-References: <20250624143220.244549-1-laura.nao@collabora.com>
- <20250624143220.244549-10-laura.nao@collabora.com>
- <7dfba01a-6ede-44c2-87e3-3ecb439b48e3@kernel.org>
- <284a4ee5-806b-45f9-8d57-d02ec291e389@collabora.com>
- <0870a2ba-936b-4eb2-a570-f2c9dea471b8@kernel.org>
- <9fc32523-5009-4f48-8d82-6c3fd285801d@collabora.com>
-From: Krzysztof Kozlowski <krzk@kernel.org>
-Content-Language: en-US
-Autocrypt: addr=krzk@kernel.org; keydata=
- xsFNBFVDQq4BEAC6KeLOfFsAvFMBsrCrJ2bCalhPv5+KQF2PS2+iwZI8BpRZoV+Bd5kWvN79
- cFgcqTTuNHjAvxtUG8pQgGTHAObYs6xeYJtjUH0ZX6ndJ33FJYf5V3yXqqjcZ30FgHzJCFUu
- JMp7PSyMPzpUXfU12yfcRYVEMQrmplNZssmYhiTeVicuOOypWugZKVLGNm0IweVCaZ/DJDIH
- gNbpvVwjcKYrx85m9cBVEBUGaQP6AT7qlVCkrf50v8bofSIyVa2xmubbAwwFA1oxoOusjPIE
- J3iadrwpFvsZjF5uHAKS+7wHLoW9hVzOnLbX6ajk5Hf8Pb1m+VH/E8bPBNNYKkfTtypTDUCj
- NYcd27tjnXfG+SDs/EXNUAIRefCyvaRG7oRYF3Ec+2RgQDRnmmjCjoQNbFrJvJkFHlPeHaeS
- BosGY+XWKydnmsfY7SSnjAzLUGAFhLd/XDVpb1Een2XucPpKvt9ORF+48gy12FA5GduRLhQU
- vK4tU7ojoem/G23PcowM1CwPurC8sAVsQb9KmwTGh7rVz3ks3w/zfGBy3+WmLg++C2Wct6nM
- Pd8/6CBVjEWqD06/RjI2AnjIq5fSEH/BIfXXfC68nMp9BZoy3So4ZsbOlBmtAPvMYX6U8VwD
- TNeBxJu5Ex0Izf1NV9CzC3nNaFUYOY8KfN01X5SExAoVTr09ewARAQABzSVLcnp5c3p0b2Yg
- S296bG93c2tpIDxrcnprQGtlcm5lbC5vcmc+wsGVBBMBCgA/AhsDBgsJCAcDAgYVCAIJCgsE
- FgIDAQIeAQIXgBYhBJvQfg4MUfjVlne3VBuTQ307QWKbBQJoF1BKBQkWlnSaAAoJEBuTQ307
- QWKbHukP/3t4tRp/bvDnxJfmNdNVn0gv9ep3L39IntPalBFwRKytqeQkzAju0whYWg+R/rwp
- +r2I1Fzwt7+PTjsnMFlh1AZxGDmP5MFkzVsMnfX1lGiXhYSOMP97XL6R1QSXxaWOpGNCDaUl
- ajorB0lJDcC0q3xAdwzRConxYVhlgmTrRiD8oLlSCD5baEAt5Zw17UTNDnDGmZQKR0fqLpWy
- 786Lm5OScb7DjEgcA2PRm17st4UQ1kF0rQHokVaotxRM74PPDB8bCsunlghJl1DRK9s1aSuN
- hL1Pv9VD8b4dFNvCo7b4hfAANPU67W40AaaGZ3UAfmw+1MYyo4QuAZGKzaP2ukbdCD/DYnqi
- tJy88XqWtyb4UQWKNoQqGKzlYXdKsldYqrLHGoMvj1UN9XcRtXHST/IaLn72o7j7/h/Ac5EL
- 8lSUVIG4TYn59NyxxAXa07Wi6zjVL1U11fTnFmE29ALYQEXKBI3KUO1A3p4sQWzU7uRmbuxn
- naUmm8RbpMcOfa9JjlXCLmQ5IP7Rr5tYZUCkZz08LIfF8UMXwH7OOEX87Y++EkAB+pzKZNNd
- hwoXulTAgjSy+OiaLtuCys9VdXLZ3Zy314azaCU3BoWgaMV0eAW/+gprWMXQM1lrlzvwlD/k
- whyy9wGf0AEPpLssLVt9VVxNjo6BIkt6d1pMg6mHsUEVzsFNBFVDXDQBEADNkrQYSREUL4D3
- Gws46JEoZ9HEQOKtkrwjrzlw/tCmqVzERRPvz2Xg8n7+HRCrgqnodIYoUh5WsU84N03KlLue
- MNsWLJBvBaubYN4JuJIdRr4dS4oyF1/fQAQPHh8Thpiz0SAZFx6iWKB7Qrz3OrGCjTPcW6ei
- OMheesVS5hxietSmlin+SilmIAPZHx7n242u6kdHOh+/SyLImKn/dh9RzatVpUKbv34eP1wA
- GldWsRxbf3WP9pFNObSzI/Bo3kA89Xx2rO2roC+Gq4LeHvo7ptzcLcrqaHUAcZ3CgFG88CnA
- 6z6lBZn0WyewEcPOPdcUB2Q7D/NiUY+HDiV99rAYPJztjeTrBSTnHeSBPb+qn5ZZGQwIdUW9
- YegxWKvXXHTwB5eMzo/RB6vffwqcnHDoe0q7VgzRRZJwpi6aMIXLfeWZ5Wrwaw2zldFuO4Dt
- 91pFzBSOIpeMtfgb/Pfe/a1WJ/GgaIRIBE+NUqckM+3zJHGmVPqJP/h2Iwv6nw8U+7Yyl6gU
- BLHFTg2hYnLFJI4Xjg+AX1hHFVKmvl3VBHIsBv0oDcsQWXqY+NaFahT0lRPjYtrTa1v3tem/
- JoFzZ4B0p27K+qQCF2R96hVvuEyjzBmdq2esyE6zIqftdo4MOJho8uctOiWbwNNq2U9pPWmu
- 4vXVFBYIGmpyNPYzRm0QPwARAQABwsF8BBgBCgAmAhsMFiEEm9B+DgxR+NWWd7dUG5NDfTtB
- YpsFAmgXUF8FCRaWWyoACgkQG5NDfTtBYptO0w//dlXJs5/42hAXKsk+PDg3wyEFb4NpyA1v
- qmx7SfAzk9Hf6lWwU1O6AbqNMbh6PjEwadKUk1m04S7EjdQLsj/MBSgoQtCT3MDmWUUtHZd5
- RYIPnPq3WVB47GtuO6/u375tsxhtf7vt95QSYJwCB+ZUgo4T+FV4hquZ4AsRkbgavtIzQisg
- Dgv76tnEv3YHV8Jn9mi/Bu0FURF+5kpdMfgo1sq6RXNQ//TVf8yFgRtTUdXxW/qHjlYURrm2
- H4kutobVEIxiyu6m05q3e9eZB/TaMMNVORx+1kM3j7f0rwtEYUFzY1ygQfpcMDPl7pRYoJjB
- dSsm0ZuzDaCwaxg2t8hqQJBzJCezTOIkjHUsWAK+tEbU4Z4SnNpCyM3fBqsgYdJxjyC/tWVT
- AQ18NRLtPw7tK1rdcwCl0GFQHwSwk5pDpz1NH40e6lU+NcXSeiqkDDRkHlftKPV/dV+lQXiu
- jWt87ecuHlpL3uuQ0ZZNWqHgZoQLXoqC2ZV5KrtKWb/jyiFX/sxSrodALf0zf+tfHv0FZWT2
- zHjUqd0t4njD/UOsuIMOQn4Ig0SdivYPfZukb5cdasKJukG1NOpbW7yRNivaCnfZz6dTawXw
- XRIV/KDsHQiyVxKvN73bThKhONkcX2LWuD928tAR6XMM2G5ovxLe09vuOzzfTWQDsm++9UKF a/A=
-In-Reply-To: <9fc32523-5009-4f48-8d82-6c3fd285801d@collabora.com>
-Content-Type: text/plain; charset=UTF-8
+Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIAPfZW2gC/22Ny27DIBBFf8Vi3anwGPBDUdX/qLKA8dCiGpOAY
+ 1WK8u+lzrbLc6R77l0UzoGLmJq7yLyHEtJaQb00gr7s+skQ5soCJWppUMOVimk1xAh0ucG8wa7
+ AGTc66ueOtRF1ecnsw89R/Tg/OfP1VuPbU4rIpdgjPjWnf9p7K4GWRN9Aad1yWhbO5bASmNSAW
+ vtRzsN7rVJY6ZVSfPu7drZw3cQYtqlBy2it9Q5bpZVX/dBSJ/tOjXokj9hZpwbDXpwfj19ANTq
+ ZCgEAAA==
+X-Change-ID: 20250625-qcs615-mm-cpu-dt-v4-b6b9bc7d3e56
+To: Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio
+	<konradybcio@kernel.org>, Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski
+	<krzk+dt@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>
+CC: Ajit Pandey <quic_ajipan@quicinc.com>,
+        Imran Shaik
+	<quic_imrashai@quicinc.com>,
+        Jagadeesh Kona <quic_jkona@quicinc.com>,
+        <linux-arm-msm@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>, Taniya Das <quic_tdas@quicinc.com>,
+        "Konrad
+ Dybcio" <konrad.dybcio@oss.qualcomm.com>
+X-Mailer: b4 0.15-dev-aa3f6
+X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
+ nalasex01a.na.qualcomm.com (10.47.209.196)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Authority-Analysis: v=2.4 cv=YYu95xRf c=1 sm=1 tr=0 ts=685bda0e cx=c_pps
+ a=ouPCqIW2jiPt+lZRy3xVPw==:117 a=ouPCqIW2jiPt+lZRy3xVPw==:17
+ a=GEpy-HfZoHoA:10 a=IkcTkHD0fZMA:10 a=6IFa9wvqVegA:10 a=VwQbUJbxAAAA:8
+ a=COk6AnOGAAAA:8 a=a7MBU3iHR-4UK4nVPLsA:9 a=QEXdDO2ut3YA:10
+ a=TjNXssC_j7lpFel5tvFf:22
+X-Proofpoint-GUID: Q0OVEKoZW4_pfs_snn061a9E1jagyYTh
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwNjI1MDA4NCBTYWx0ZWRfX7SHlwq9twNO1
+ ecWiKmWZx0X0UxB3y6euylxZEps3uae1yqGlBrnnsvWbA2fQM5/cqtIn1fRiCQvQ9er7L3atTaM
+ 788/C17VBqjIbCqrnL4LO8oPyu9B/BNRD51LOXf5nfZBmRGtcaw+qgUyDVqBFFd+d4pPX3ufkUb
+ MQUOCpZtVw7edK9y9RElfFIVFcv7SiVyfkkhl87Cwy4tGFlsUsKJfwqMboRWXhbCrkZ00nkXbdP
+ 6PI9ZUh+/wda6tas3qM+bTRbPpdb/oD/4dGbB+vn1aQWl9OZqdS9HrFJm6C3L0F3h9ekxv5HMU8
+ rdWoVm12WYfVZeho8FGLpFV8xLaAs14tqNs/9kCrG9InrBslDRtCejfa066/nH5md2NUM84EdE2
+ KVA+3wdCGpVLkeAxZdA2uC+R6hncTbD8/xqT8NBv5xXrHoH1rkh8xruYr59FIdTOi5ykOU8p
+X-Proofpoint-ORIG-GUID: Q0OVEKoZW4_pfs_snn061a9E1jagyYTh
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1099,Hydra:6.1.7,FMLib:17.12.80.40
+ definitions=2025-06-25_03,2025-06-23_07,2025-03-28_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ malwarescore=0 adultscore=0 spamscore=0 impostorscore=0 suspectscore=0
+ lowpriorityscore=0 priorityscore=1501 phishscore=0 mlxlogscore=785
+ clxscore=1015 mlxscore=0 bulkscore=0 classifier=spam authscore=0 authtc=n/a
+ authcc= route=outbound adjust=0 reason=mlx scancount=1
+ engine=8.19.0-2505280000 definitions=main-2506250084
 
-On 25/06/2025 11:45, AngeloGioacchino Del Regno wrote:
-> Il 25/06/25 10:57, Krzysztof Kozlowski ha scritto:
->> On 25/06/2025 10:20, AngeloGioacchino Del Regno wrote:
->>> Il 24/06/25 18:02, Krzysztof Kozlowski ha scritto:
->>>> On 24/06/2025 16:32, Laura Nao wrote:
->>>>> +  '#reset-cells':
->>>>> +    const: 1
->>>>> +    description:
->>>>> +      Reset lines for PEXTP0/1 and UFS blocks.
->>>>> +
->>>>> +  mediatek,hardware-voter:
->>>>> +    $ref: /schemas/types.yaml#/definitions/phandle
->>>>> +    description:
->>>>> +      On the MT8196 SoC, a Hardware Voter (HWV) backed by a fixed-function
->>>>> +      MCU manages clock and power domain control across the AP and other
->>>>> +      remote processors. By aggregating their votes, it ensures clocks are
->>>>> +      safely enabled/disabled and power domains are active before register
->>>>> +      access.
->>>>
->>>> Resource voting is not via any phandle, but either interconnects or
->>>> required opps for power domain.
->>>
->>> Sorry, I'm not sure who is actually misunderstanding what, here... let me try to
->>> explain the situation:
->>>
->>> This is effectively used as a syscon - as in, the clock controllers need to perform
->>> MMIO R/W on both the clock controller itself *and* has to place a vote to the clock
->>> controller specific HWV register.
->>
->> syscon is not the interface to place a vote for clocks. "clocks"
->> property is.
->>
->>>
->>> This is done for MUX-GATE and GATE clocks, other than for power domains.
->>>
->>> Note that the HWV system is inside of the power domains controller, and it's split
->>> on a per hardware macro-block basis (as per usual MediaTek hardware layout...).
->>>
->>> The HWV, therefore, does *not* vote for clock *rates* (so, modeling OPPs would be
->>> a software quirk, I think?), does *not* manage bandwidth (and interconnect is for
->>> voting BW only?), and is just a "switch to flip".
->>
->> That's still clocks. Gate is a clock.
->>
->>>
->>> Is this happening because the description has to be improved and creating some
->>> misunderstanding, or is it because we are underestimating and/or ignoring something
->>> here?
->>>
->>
->> Other vendors, at least qcom, represent it properly - clocks. Sometimes
->> they mix up and represent it as power domains, but that's because
->> downstream is a mess and because we actually (at upstream) don't really
->> know what is inside there - is it a clock or power domain.
->>
-> 
-> ....but the hardware voter cannot be represented as a clock, because you use it
-> for clocks *or* power domains (but at the same time, and of course in different
-> drivers, and in different *intertwined* registers).
+Add the video, camera, display and gpu clock controller nodes and the
+cpufreq-hw node to support cpu scaling.
 
-BTW:
+Clock Dependency:
+https://lore.kernel.org/lkml/20250625-qcs615-mm-v10-clock-controllers-v10-0-ec48255f90d8@quicinc.com
 
-git grep mediatek,hardware-voter
-0 results
+Changes in v4:
+- Fix the typo(removal of "") from cpufreq-hw node
+- Link to v3: https://lore.kernel.org/r/20250612-qcs615-mm-cpu-dt-v3-v3-0-721d5db70342@quicinc.com
 
-so I do not accept explanation that you use it in different drivers. Now
-is the first time this is being upstream, so now is the time when this
-is shaped.
+Changes in v3:
+- Move the cpufreq-hw node under /soc {}
+- Add the RB-tag on (v2) from [Konrad]
+
+Changes in v2:
+- pad address field to 8 digits [Dmitry]
+- Replace cpu/CPU in commit [Dmitry]
+- Update the binding to use SC7180 compatible, as QCS615 uses the same
+  hardware version.
+- Link to v1: https://lore.kernel.org/r/20241108-qcs615-mm-dt-nodes-v1-0-b2669cac0624@quicinc.com
+
+Signed-off-by: Taniya Das <quic_tdas@quicinc.com>
+
+Signed-off-by: Taniya Das <quic_tdas@quicinc.com>
+---
+Taniya Das (2):
+      arm64: dts: qcom: qcs615: Add clock nodes for multimedia clock
+      arm64: dts: qcom: qcs615: Add CPU scaling clock node
+
+ arch/arm64/boot/dts/qcom/qcs615.dtsi | 80 ++++++++++++++++++++++++++++++++++++
+ 1 file changed, 80 insertions(+)
+---
+base-commit: 2ae2aaafb21454f4781c30734959cf223ab486ef
+change-id: 20250625-qcs615-mm-cpu-dt-v4-b6b9bc7d3e56
+prerequisite-message-id: <20250625-qcs615-mm-v10-clock-controllers-v10-0-ec48255f90d8@quicinc.com>
+prerequisite-patch-id: 932a0fe6ddfcc9720eea7e2b29e1bd6ed21fbfca
+prerequisite-patch-id: 6414e91724ba90fe820c3d2bb5caa720c99cf3be
+prerequisite-patch-id: e4e24f3dc507891b70936c9587ee1416f1a53e6f
+prerequisite-patch-id: 23062409b23977940c958bf22a215ae5dc45e93a
+prerequisite-patch-id: c35335d37fdf9a7f665f1c6d79d34b091d45e291
+prerequisite-patch-id: 9a0caaaa8d25634dd0db5edffbc939eb7e734c6c
+prerequisite-patch-id: 66386f8e3c0b0594dad7794f8ff04e6eea2ffb5d
+prerequisite-patch-id: 2327271def3656283d53dadb2ce9f8cd561249d1
+prerequisite-patch-id: c97840c551e081b0b9bf6c0e77b551935454f62d
+prerequisite-patch-id: 71f0eb0fb98c3177dcbe6736c120cba4efef0c33
 
 Best regards,
-Krzysztof
+-- 
+Taniya Das <quic_tdas@quicinc.com>
+
 
