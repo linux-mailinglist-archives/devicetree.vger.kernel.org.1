@@ -1,48 +1,48 @@
-Return-Path: <devicetree+bounces-189271-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-189272-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id C1D63AE76BA
-	for <lists+devicetree@lfdr.de>; Wed, 25 Jun 2025 08:07:57 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 34AE5AE76C5
+	for <lists+devicetree@lfdr.de>; Wed, 25 Jun 2025 08:10:19 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 7EBF4189933F
-	for <lists+devicetree@lfdr.de>; Wed, 25 Jun 2025 06:08:13 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id C9CC93AD328
+	for <lists+devicetree@lfdr.de>; Wed, 25 Jun 2025 06:09:53 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8746A1E47CC;
-	Wed, 25 Jun 2025 06:07:52 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id DF4F11E5B63;
+	Wed, 25 Jun 2025 06:10:13 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="RSVL7Kx7"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="YHt7DH9H"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 51DE0367;
-	Wed, 25 Jun 2025 06:07:52 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AC822307498;
+	Wed, 25 Jun 2025 06:10:13 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1750831672; cv=none; b=D3q0dWj+32WoEwSy3z21z1AiZk7mDvElmyqoW3Mw3jCoPA+VU0d0paYUqlqni5tt2hUUykurMfLaM8fwnsk6aF7IfbNlJNnsXpTGPAx9vDnLIzYVMkTxkewsLE1wI/2KyimoxINPLmyv0js2+KUkGyftX52EZC8xDZnng+pzo9o=
+	t=1750831813; cv=none; b=ev1N62trm3C70nsgcdEGst5USo+VRqle3a8t2keH3uIk1f6C55CFSswYzuGKfiz8JnCppj3FtWgpUZL8X3YSq5WjTiJ4RagjhM3wn+OrncM0hoQjSnLAmLbJjv205d+E6nit4sTdMSlN1mxTBv8ZC7mMVtVbXbmlitMRCi73aDI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1750831672; c=relaxed/simple;
-	bh=16077y7PohfoJ5YRxrXRfL4a/jQzc6nyzs7y1vOMPPo=;
-	h=Message-ID:Date:MIME-Version:Subject:From:To:Cc:References:
-	 In-Reply-To:Content-Type; b=X8jdu1lFBExipPGbf4BG8mzydRvy9KEbZu+ZOxUvnrlT1EsyXgOz33RQLu+jX9NGsjQw54CcUaOpeiBHxFdQ1Z8I6Nmy5B9wD/Ak8bOWWcy/pDQFJ3wWx3PF3KAhhAY3Y5zgAJe610uWU4fS+f0nbRcGixhKJwIa1r+GD/ODG3w=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=RSVL7Kx7; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 615A2C4CEEA;
-	Wed, 25 Jun 2025 06:07:49 +0000 (UTC)
+	s=arc-20240116; t=1750831813; c=relaxed/simple;
+	bh=TEf+0zBo4DYSNOvhVuH60cDQ+vbZMzygF71dL+Jh798=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=dLEcULn9nFlbC9/VAV6UGZsvcoLv40AGFcdV5YMxdwBIRWLVvzYRvJPh3Ge+E8jvYWgFBGdOnMmxtOtrvCIbsWy4mKaL4UZ9DHSL0ej/PkHYEgaSOf2i0WaBEhJrAMVTBgJYj6oEgM+ixSqPYMYkqJ0KjeSQBjT/37eSx5kCeF8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=YHt7DH9H; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 889EAC4CEEA;
+	Wed, 25 Jun 2025 06:10:06 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1750831672;
-	bh=16077y7PohfoJ5YRxrXRfL4a/jQzc6nyzs7y1vOMPPo=;
-	h=Date:Subject:From:To:Cc:References:In-Reply-To:From;
-	b=RSVL7Kx7D7kvhkKsJcc0TkOJ1QsNutwZCgCkDExhM3SZ7njZpSV/EINUixZEtzNCw
-	 t7b5onVR1mp2m4x9dA3ij6aEuRWh1qa6rsEYYMRm/mOxob4nSMAy6PtGnandi4kfCO
-	 wtqWz4A2REzHfjbvwvFxfk/GKTR92Lq9Z0DOvyyneTUpS0Ij63aNBevVUJQ5uDhuro
-	 1eYadkwVK+mNnsuUl4D90aVXXkkE3elZFnFTDYpzTyoiZsgIFwFgoGqxFvrqy1LqlL
-	 dOrrY/fDIK61lSZItatLKlSUljVltihYUf4AmSe/sc4M2BbZ4wn872hWnCm+6vmeub
-	 AqVflerUzpGkA==
-Message-ID: <0175c006-c4ad-40b1-a7e0-aa0abf0b6411@kernel.org>
-Date: Wed, 25 Jun 2025 08:07:47 +0200
+	s=k20201202; t=1750831813;
+	bh=TEf+0zBo4DYSNOvhVuH60cDQ+vbZMzygF71dL+Jh798=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=YHt7DH9HLA5kBMzdtXsLfXrnOhUdtHDP4wZC/HNvVcwcIAn+kqlRrPXMZk/Trh2QJ
+	 oQ/YvsxqF8mGocksilcrPtZgaEmeXWDo7lrvXCG1dJ9OjyOo1BgEhZ9gIt3E5y7ZP1
+	 YI8Z+06o7onSqrN9VUIuQ1PAR1HdvZU/I4LLULSx991gQ8ZlSNfxMJCUBueVY+v+4m
+	 ldMMqaTZnEKxw8T0pQllV7ZrLNEoPfWHWlMINdGN2lUe7qUMn/qFkZ1zVKmVT7bLVh
+	 lsJOmzEFc2CGOSO8AjAiduJRTDDwuUOSMPiUm6aAH2PNjwaheLw/d7xxLlZDJu1/4o
+	 3lPOZV/1BQYEA==
+Message-ID: <22d911a2-3bf1-45ee-9037-c6d8cbd686fa@kernel.org>
+Date: Wed, 25 Jun 2025 08:10:04 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,18 +50,27 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3 1/2] dt-bindings: clock: eswin: Documentation for
- eic7700 SoC
+Subject: Re: [PATCH v6 2/9] dt-bindings: soc: imx-blk-ctrl: add i.MX91
+ blk-ctrl compatible
+To: Frank Li <Frank.li@nxp.com>
+Cc: Joy Zou <joy.zou@nxp.com>, robh@kernel.org, krzk+dt@kernel.org,
+ conor+dt@kernel.org, shawnguo@kernel.org, s.hauer@pengutronix.de,
+ catalin.marinas@arm.com, will@kernel.org, andrew+netdev@lunn.ch,
+ davem@davemloft.net, edumazet@google.com, kuba@kernel.org,
+ pabeni@redhat.com, mcoquelin.stm32@gmail.com, alexandre.torgue@foss.st.com,
+ ulf.hansson@linaro.org, richardcochran@gmail.com, kernel@pengutronix.de,
+ festevam@gmail.com, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, imx@lists.linux.dev,
+ linux-arm-kernel@lists.infradead.org, netdev@vger.kernel.org,
+ linux-stm32@st-md-mailman.stormreply.com, linux-pm@vger.kernel.or,
+ ye.li@nxp.com, ping.bai@nxp.com, aisheng.dong@nxp.com
+References: <20250623095732.2139853-1-joy.zou@nxp.com>
+ <20250623095732.2139853-3-joy.zou@nxp.com>
+ <urgfsmkl25woqy5emucfkqs52qu624po6rd532hpusg3fdnyg3@s5iwmhnfsi26>
+ <aFq7WJ3Fqe9p0EhA@lizhi-Precision-Tower-5810>
+ <e32c3a47-e32e-4f93-becb-ebad31065b73@kernel.org>
+ <aFr3yExb6vObn5W4@lizhi-Precision-Tower-5810>
 From: Krzysztof Kozlowski <krzk@kernel.org>
-To: dongxuyang@eswincomputing.com, mturquette@baylibre.com, sboyd@kernel.org,
- robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
- linux-clk@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org
-Cc: ningyu@eswincomputing.com, linmin@eswincomputing.com,
- huangyifeng@eswincomputing.com
-References: <20250624103212.287-1-dongxuyang@eswincomputing.com>
- <20250624103256.345-1-dongxuyang@eswincomputing.com>
- <cd98add5-dd2f-455f-b534-c83e62a97bd0@kernel.org>
 Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
  xsFNBFVDQq4BEAC6KeLOfFsAvFMBsrCrJ2bCalhPv5+KQF2PS2+iwZI8BpRZoV+Bd5kWvN79
@@ -106,37 +115,34 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  jWt87ecuHlpL3uuQ0ZZNWqHgZoQLXoqC2ZV5KrtKWb/jyiFX/sxSrodALf0zf+tfHv0FZWT2
  zHjUqd0t4njD/UOsuIMOQn4Ig0SdivYPfZukb5cdasKJukG1NOpbW7yRNivaCnfZz6dTawXw
  XRIV/KDsHQiyVxKvN73bThKhONkcX2LWuD928tAR6XMM2G5ovxLe09vuOzzfTWQDsm++9UKF a/A=
-In-Reply-To: <cd98add5-dd2f-455f-b534-c83e62a97bd0@kernel.org>
+In-Reply-To: <aFr3yExb6vObn5W4@lizhi-Precision-Tower-5810>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 24/06/2025 13:00, Krzysztof Kozlowski wrote:
-> On 24/06/2025 12:32, dongxuyang@eswincomputing.com wrote:
->> +
->> +properties:
->> +  compatible:
->> +    const: eswin,eic7700-clock
->> +
->> +  reg:
->> +    maxItems: 1
->> +
->> +  '#clock-cells':
->> +    const: 1
->> +
->> +  cpu-default-frequency:
+On 24/06/2025 21:08, Frank Li wrote:
+>>>>> +        clock-names:
+>>>>> +          items:
+>>>>> +            - const: apb
+>>>>> +            - const: axi
+>>>>> +            - const: nic
+>>>>> +            - const: disp
+>>>>> +            - const: cam
+>>>>> +            - const: lcdif
+>>>>> +            - const: isi
+>>>>> +            - const: csi
+>>>>
+>>>> No, look at other bindings how they share clock lists.
+>>>
+>>> Sorry, this method is what I suggested. becuase there are pxp between cam
+>>> and lcdif, can't use simple minItems/maxItems to limit list.
+>>
+>> The point is to put new items, so pxp, at the end.
 > 
-> Frequency has a type - hz, use it as unit suffix if this stays.
-> 
->> +    $ref: /schemas/types.yaml#/definitions/uint32
-> 
-> Drop
-> 
-> Anyway, why do you need it? Why would this be a different per board and
-> why would you ever need to encode it in DT? If firmware initializes
-> device, just the registers.
-
-I missed here a word: ", just read the registers".
-
+> There are already a list for imx93. If change list order, it will break
+> ABI. This was rejected at other binding doc review.
+I see, I mixed the SoCs. It is a pity you upstream that way and do not
+try to make the list common. Anyway names indeed need to be constrained
+per variant, but the rest of the comments stay.
 
 Best regards,
 Krzysztof
