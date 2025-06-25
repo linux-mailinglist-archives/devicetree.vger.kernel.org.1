@@ -1,196 +1,102 @@
-Return-Path: <devicetree+bounces-189306-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-189307-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 02074AE7902
-	for <lists+devicetree@lfdr.de>; Wed, 25 Jun 2025 09:48:37 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id D0C3DAE7911
+	for <lists+devicetree@lfdr.de>; Wed, 25 Jun 2025 09:53:03 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id B8CC43A4BFE
-	for <lists+devicetree@lfdr.de>; Wed, 25 Jun 2025 07:48:11 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 8B32D1BC4D46
+	for <lists+devicetree@lfdr.de>; Wed, 25 Jun 2025 07:53:19 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A6B001F9406;
-	Wed, 25 Jun 2025 07:48:33 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3CE43207A26;
+	Wed, 25 Jun 2025 07:52:58 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Eosilbo1"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="k71rOBxX"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7EE5186338;
-	Wed, 25 Jun 2025 07:48:33 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0F0C6204098;
+	Wed, 25 Jun 2025 07:52:57 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1750837713; cv=none; b=FN6ssvfoVsiazgQP/2o5oPYLEQlfRtOkuDptJSrZC9tL90VYVs0WzMzgFpHP4siI4oTLJ3Letaa+y65CmQBCuEQ3+PRSPyeq8VbZb82PPG+CohAznwY2eNf5+kbImgm7aavE3sG7DKgyIrT2LT7vRJITE7+0RKIK1RD3UwMShcA=
+	t=1750837978; cv=none; b=ojKE6X/T0RzNTS/Nvbd8ekazt7lwMTbRgvE9Hv5UpD9KJ+C1QWcD/xiOvYiEx35kLKDu/m3so1OrQ5HEPDr1PJBIHiR6kaCkthDGu0rT3DGMPVLSZgnWIrd9KCGMf3UmWU3G83vCNnMCcDjG5Os0yl52r4d2U31JuDgUMvwojoY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1750837713; c=relaxed/simple;
-	bh=wcxbDOO23BZSK9SuEAS8HrjXgynk1/RQtyt2aVRPI9g=;
+	s=arc-20240116; t=1750837978; c=relaxed/simple;
+	bh=QzwD4sMONbq8aB+WPPxxUFLeFmTcglnxmIWy9yRJUjY=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=tFoTQbLyvN03EhKUHhfpvExEy8Cgx+Gxcpk9164wF6FIBlhyXQtjL22YaFLvU4ECbzn+w+Y+gkhyb40jHj7M59nZ7LmndD2HQm68OnGPPepkyIYOiUYIHjaIgBKBTYxAUF6DrlKHBKc0PwYOogOVsGB/bXbBoHxRd4dEFNZWjSA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Eosilbo1; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 88541C4CEEA;
-	Wed, 25 Jun 2025 07:48:32 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=SPjv2IA2honMXb5FNuiKIqJXpRK9G1u2YMugK9FpWJbxWvbjzDDWMKdpoQT4I8/GpMn9sxus19ONZ4DrLC/vfd+oKZyHQaVWkeIw9cx6mesYpvwEimU5slzT8UzNKpg+otmJIDzi0cik3Avjzlt0XstOR4TmR3VMKoVs8zp+4SU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=k71rOBxX; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 77778C4CEEA;
+	Wed, 25 Jun 2025 07:52:57 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1750837713;
-	bh=wcxbDOO23BZSK9SuEAS8HrjXgynk1/RQtyt2aVRPI9g=;
+	s=k20201202; t=1750837977;
+	bh=QzwD4sMONbq8aB+WPPxxUFLeFmTcglnxmIWy9yRJUjY=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=Eosilbo1a2u7ZIOph35J9pAazHEt04/+SO+151EwKwNke744IyH4NyXjCLNf60pBS
-	 cwvDeXlnq6rLavGYUmVZt1m8j3lpPhrUEx4XSr2wjnwBGntgWaojhZBAd5XROkxjxf
-	 ozkxp4dSh5YLUGGTsYAf4noiL1Z38howiQReahs4TWooTvpyRu0EEnR5xiJou9e2mz
-	 nefeMarc1jT9Sb9UrYzj6wgR27gvON90TUz4n2Q6TYAysQT2BA9hBBHZGAIpR9Hj8j
-	 0grxp/QMPTJDnuaPDJNz/6hDk99NzcxxEHfFbDgmQmP2K94Ejp9jOGuxi/A/3qkxR4
-	 4ZidlxkWJc77w==
-Date: Wed, 25 Jun 2025 09:48:30 +0200
-From: Krzysztof Kozlowski <krzk@kernel.org>
-To: Chris Morgan <macroalpha82@gmail.com>
-Cc: linux-pm@vger.kernel.org, linux-rockchip@lists.infradead.org, 
-	devicetree@vger.kernel.org, broonie@kernel.org, lgirdwood@gmail.com, sre@kernel.org, 
-	heiko@sntech.de, conor+dt@kernel.org, krzk+dt@kernel.org, robh@kernel.org, 
-	lee@kernel.org, Chris Morgan <macromorgan@hotmail.com>
-Subject: Re: [PATCH V3 1/5] dt-bindings: mfd: ti,bq25703a: Add TI BQ25703A
- Charger
-Message-ID: <5qeo2xqjprozcjd553qmozzrmbciuf66gic65tzw7jspoub5n4@5wzkqasisgcz>
-References: <20250623162223.184304-1-macroalpha82@gmail.com>
- <20250623162223.184304-2-macroalpha82@gmail.com>
+	b=k71rOBxXAuMnnj9HIxnQwUhAzmLhCEUaWN7coJoNUde7n1a1zt927o/PmpDRmM395
+	 ara8dJdDFsqVNESZgG7hnbOvVk+9sVJJ+resu+4edvufJyMGG+d+mmqswqGl/Oa4EJ
+	 Ki/fTxx5WUS21Cyuh/bgfXI3QZFpFwkXTluAmrpY/fTrh7xFaIb78xV/jbfgYKa34i
+	 vyd83mUgq3D39ZYt5gBUJdfV16JofG3dwidEsseQdmMa7i658a8njDtWRcMDqWOAQx
+	 U18wW5r7a4PtPjJcAcBqlzP1O6J70OXu8xF3OGTHCjAeSkUCLdDL/xmz66qrd+OySW
+	 GZ44ICod6YG/Q==
+Received: from johan by xi.lan with local (Exim 4.97.1)
+	(envelope-from <johan@kernel.org>)
+	id 1uUKwC-000000005tJ-1Tq8;
+	Wed, 25 Jun 2025 09:52:56 +0200
+Date: Wed, 25 Jun 2025 09:52:56 +0200
+From: Johan Hovold <johan@kernel.org>
+To: Aleksandrs Vinarskis <alex.vinarskis@gmail.com>
+Cc: Bjorn Andersson <andersson@kernel.org>, linux-arm-msm@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	Konrad Dybcio <konradybcio@kernel.org>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>, laurentiu.tudor1@dell.com,
+	abel.vesa@linaro.org, bryan.odonoghue@linaro.org,
+	jens.glathe@oldschoolsolutions.biz
+Subject: Re: [PATCH v1 1/1] arm64: dts: qcom: x1e80100-pmics: Disable pm8010
+ by default
+Message-ID: <aFuq2JFZZhC1r3N4@hovoldconsulting.com>
+References: <20250624225056.1056974-1-alex.vinarskis@gmail.com>
+ <20250624225056.1056974-2-alex.vinarskis@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20250623162223.184304-2-macroalpha82@gmail.com>
+In-Reply-To: <20250624225056.1056974-2-alex.vinarskis@gmail.com>
 
-On Mon, Jun 23, 2025 at 11:22:19AM -0500, Chris Morgan wrote:
-> From: Chris Morgan <macromorgan@hotmail.com>
+On Wed, Jun 25, 2025 at 12:41:20AM +0200, Aleksandrs Vinarskis wrote:
+> pm8010 is a camera specific PMIC, and may not be present on some
+> devices. These may instead use a dedicated vreg for this purpose (Dell
+> XPS 9345, Dell Inspiron..) or use USB webcam instead of a MIPI one
+> alltogether (Lenovo Thinbook 16, Lenovo Yoga..).
 > 
-> Document the Texas instruments BQ25703A series of charger managers/
-> buck/boost regulators.
+> Disable pm8010 by default, let platforms that actually have one onboard
+> enable it instead.
 > 
-> Signed-off-by: Chris Morgan <macromorgan@hotmail.com>
-> ---
->  .../devicetree/bindings/mfd/ti,bq25703a.yaml  | 121 ++++++++++++++++++
->  1 file changed, 121 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/mfd/ti,bq25703a.yaml
+> This fixes dmesg errors of PMIC failing to probe, and on Dell XPS 9345
+> fixes the issue of power button not working as power off/suspend (only
+> long press cuts the power).
 > 
-> diff --git a/Documentation/devicetree/bindings/mfd/ti,bq25703a.yaml b/Documentation/devicetree/bindings/mfd/ti,bq25703a.yaml
-> new file mode 100644
-> index 000000000000..0727f24b8e54
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/mfd/ti,bq25703a.yaml
-> @@ -0,0 +1,121 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/mfd/ti,bq25703a.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: BQ25703A Charger Manager/Buck/Boost Converter
-> +
-> +maintainers:
-> +  - Chris Morgan <macromorgan@hotmail.com>
-> +
-> +allOf:
-> +  - $ref: /schemas/power/supply/power-supply.yaml#
-> +
-> +properties:
-> +  compatible:
-> +    const: ti,bq25703a
-> +
-> +  reg:
-> +    const: 0x6b
-> +
-> +  interrupts:
-> +    maxItems: 1
-> +
-> +  power-supplies: true
+> Fixes: 2559e61e7ef4 ("arm64: dts: qcom: x1e80100-pmics: Add the missing PMICs")
+> 
 
-Drop, redundant.
+Nit: There shouldn't be a new line here after the Fixes tag.
 
-> +
-> +  monitored-battery:
-> +    description:
-> +      The phandle for a simple-battery connected to this gauge.
+Not sure how this breaks the power button on the XPS, but sounds like
+this one should be marked for stable backport:
 
-This part is redundant. It cannot be anything else, according to
-power-supply.yaml
+Cc: stable@vger.kernel.org
 
-> +      A minimum of constant-charge-current-max-microamp,
-> +      constant-charge-voltage-max-microvolt, and
-> +      voltage-min-design-microvolt are required.
+> Signed-off-by: Aleksandrs Vinarskis <alex.vinarskis@gmail.com>
 
-This is fine.
+Reviewed-by: Johan Hovold <johan+linaro@kernel.org>
 
-> +
-> +  input-current-limit-microamp:
-> +    description:
-> +      Maximum total input current allowed used for both charging and
-> +      powering the device.
-> +    minimum: 50000
-> +    maximum: 6400000
-> +    default: 3250000
-> +
-> +  regulators:
-> +    type: object
-> +    additionalProperties: false
-> +    description:
-> +      Boost converter regulator output of bq257xx.
-> +
-> +    properties:
-> +      "usb-otg-vbus":
-
-Drop quotes. Is this the name of regulator called in datasheet? To which
-pin this corresponds to? I cannot find anything on usb-otg or usb_otg.
-
-
-> +        type: object
-> +        $ref: /schemas/regulator/regulator.yaml
-> +
-> +        properties:
-> +          regulator-name: true
-> +          regulator-min-microamp:
-> +            minimum: 0
-> +            maximum: 6350000
-> +          regulator-max-microamp:
-> +            minimum: 0
-> +            maximum: 6350000
-> +          regulator-min-microvolt:
-> +            minimum: 4480000
-> +            maximum: 20800000
-> +          regulator-max-microvolt:
-> +            minimum: 4480000
-> +            maximum: 20800000
-> +          enable-gpios:
-> +            description:
-> +              The BQ25703 may require both a register write and a GPIO
-> +              toggle to enable the boost regulator.
-> +
-> +        additionalProperties: false
-
-Please place it after $ref.
-
-> +
-> +        required:
-> +          - regulator-name
-> +          - regulator-min-microamp
-> +          - regulator-max-microamp
-> +          - regulator-min-microvolt
-> +          - regulator-max-microvolt
-> +
-> +unevaluatedProperties: false
-> +
-> +required:
-> +  - compatible
-> +  - reg
-> +  - input-current-limit-microamp
-> +  - monitored-battery
-> +  - power-supplies
-
-Keep the same order as in properties.
-
-Best regards,
-Krzysztof
-
+Johan
 
