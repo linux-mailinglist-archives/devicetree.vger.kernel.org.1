@@ -1,166 +1,129 @@
-Return-Path: <devicetree+bounces-189490-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-189492-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0422FAE7F56
-	for <lists+devicetree@lfdr.de>; Wed, 25 Jun 2025 12:32:07 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 30E86AE7F9C
+	for <lists+devicetree@lfdr.de>; Wed, 25 Jun 2025 12:37:02 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 3BF1417D493
-	for <lists+devicetree@lfdr.de>; Wed, 25 Jun 2025 10:32:07 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id C15605A4FC2
+	for <lists+devicetree@lfdr.de>; Wed, 25 Jun 2025 10:36:36 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 50ADD288CB7;
-	Wed, 25 Jun 2025 10:32:02 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="XzToSTZ0"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C02D52BDC19;
+	Wed, 25 Jun 2025 10:34:45 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+Received: from metis.whiteo.stw.pengutronix.de (metis.whiteo.stw.pengutronix.de [185.203.201.7])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 15B6C234973;
-	Wed, 25 Jun 2025 10:31:59 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 23C452BD5A0
+	for <devicetree@vger.kernel.org>; Wed, 25 Jun 2025 10:34:43 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.203.201.7
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1750847522; cv=none; b=WFM7kfL9uVKvu6liSIXvp0LTkvKfANncNwvokXBjgQWQuOWCcGRxaiIs0Vih4X6UmXP2RmER0WCAVDVJkRku1QgJKeCu152N4uhgiehsjW5tGiJiil4aKcCe1/B1blnsLLuO+HYsDCegStWjkxo8o1iVB5D1tqzShQG0C0aunTU=
+	t=1750847685; cv=none; b=R4Zshhkcg0ENXGOxh1CAnw3n9u4w5SJVIVnaEYJyOHpxpyG8K55eqy3qIcjDzSytDF7hxhjlsC0cVYiuYnPTJ3kLSD2rynA9trEBhR4iN4jIMPNs9bMmqDvYl+vF1l570qgmPmKNyUuxLen63VptWRzVijklSS0wL8o8qyWrKTw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1750847522; c=relaxed/simple;
-	bh=MVQyRP7ou3C9eiGaJ25M29N920io5Ky5/lKMuqm1vLw=;
-	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
-	 In-Reply-To:Content-Type; b=pK7DkKUo1u++jOutbIUwf01QF+nYlBam3zsOJNSZVJW76L0jBU7M6mWV3GPNy8iboCwkJJTFIwqXa4GeYFrG+Z9iYzT3FTvV4YDsu+48rsy0lyCm/Xmbed8a2Q2X1rJr8Uv1NEANjgoji3Kd8Kml5EyQDkHIOJFBlDd+y1TGs64=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=XzToSTZ0; arc=none smtp.client-ip=205.220.180.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
-Received: from pps.filterd (m0279873.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 55P5Uaie014612;
-	Wed, 25 Jun 2025 10:31:51 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	bqNfxhiVgtp6+b+dgaD2EKdBvt2O27n714u9pvQagvI=; b=XzToSTZ0KsbbIJtH
-	RpNbVkpTzIIIb1YzfKdUbgPnLWnMBaLCaaVtDyUl+GnP2rx29vzWXTyGHLnS2h5Q
-	vexLBZGPXICymQWLnnPPLU7GRHi7vFIcn6dmXSDsQ7U8SQKMlKHQbjrWz6YJhMsv
-	RT9wcWroniGIrkgomUmbc/T6fRrH81Fc/OKVQHifYL4ITNrx05vKEEXKkmO27uxb
-	H4ZoAucXMoo8k03wj8RcbIoH29Q9tNP+NQYXaJHwzZFgjQONRkLyF+ACrlbyg1HQ
-	T+and0y93ENwubsYz3+mv2T3Ome4lsF9KsdGQBIl0lTi7cjiF85F07+3J705Bl+c
-	tp08Lw==
-Received: from nalasppmta01.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 47f2rpys08-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Wed, 25 Jun 2025 10:31:51 +0000 (GMT)
-Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
-	by NALASPPMTA01.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 55PAVo2x005987
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Wed, 25 Jun 2025 10:31:50 GMT
-Received: from [10.217.217.109] (10.80.80.8) by nalasex01a.na.qualcomm.com
- (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.9; Wed, 25 Jun
- 2025 03:31:44 -0700
-Message-ID: <d2821ffe-32c4-4153-84fd-df4bc7d2b3e5@quicinc.com>
-Date: Wed, 25 Jun 2025 16:01:41 +0530
+	s=arc-20240116; t=1750847685; c=relaxed/simple;
+	bh=MN0a0M5SY8qVye0UR6x7OgeBX33RCLWkHTWSqb1SIG0=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=DYKRdVcO1h52fJm19hxYUWihetnUIHvmp4IGqITHsYO8rhl1Hq32Xi/1vkm5nIeLqa7AIhzcwuXLKYxYFzSdNB1ARpvCmLhl//cp7gStvIGbK5tu11cAAx8Du7ysuZmx2rHfhqWON19UL+IDCfVvtLEfVqLdOvCkOC6fpkyBMdM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de; spf=pass smtp.mailfrom=pengutronix.de; arc=none smtp.client-ip=185.203.201.7
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=pengutronix.de
+Received: from drehscheibe.grey.stw.pengutronix.de ([2a0a:edc0:0:c01:1d::a2])
+	by metis.whiteo.stw.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
+	(Exim 4.92)
+	(envelope-from <mfe@pengutronix.de>)
+	id 1uUNSO-0007Kd-Gq; Wed, 25 Jun 2025 12:34:20 +0200
+Received: from pty.whiteo.stw.pengutronix.de ([2a0a:edc0:2:b01:1d::c5])
+	by drehscheibe.grey.stw.pengutronix.de with esmtps  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+	(Exim 4.96)
+	(envelope-from <mfe@pengutronix.de>)
+	id 1uUNSO-005GSi-08;
+	Wed, 25 Jun 2025 12:34:20 +0200
+Received: from mfe by pty.whiteo.stw.pengutronix.de with local (Exim 4.96)
+	(envelope-from <mfe@pengutronix.de>)
+	id 1uUNSN-00H7jR-2z;
+	Wed, 25 Jun 2025 12:34:19 +0200
+Date: Wed, 25 Jun 2025 12:34:19 +0200
+From: Marco Felsch <m.felsch@pengutronix.de>
+To: Pankaj Gupta <pankaj.gupta@nxp.com>
+Cc: Jonathan Corbet <corbet@lwn.net>, Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
+	Sascha Hauer <s.hauer@pengutronix.de>,
+	Pengutronix Kernel Team <kernel@pengutronix.de>,
+	Fabio Estevam <festevam@gmail.com>, devicetree@vger.kernel.org,
+	imx@lists.linux.dev, linux-doc@vger.kernel.org,
+	Frank Li <Frank.Li@nxp.com>, linux-kernel@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org
+Subject: Re: [PATCH v18 0/7] firmware: imx: driver for NXP secure-enclave
+Message-ID: <20250625103419.h32apyxfjztpoi7k@pengutronix.de>
+References: <20250619-imx-se-if-v18-0-c98391ba446d@nxp.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v9 03/10] clk: qcom: camcc-qcs615: Add QCS615 camera clock
- controller driver
-To: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>,
-        Bjorn Andersson
-	<andersson@kernel.org>,
-        Michael Turquette <mturquette@baylibre.com>,
-        "Stephen
- Boyd" <sboyd@kernel.org>, Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski
-	<krzk+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Konrad Dybcio
-	<konradybcio@kernel.org>, Will Deacon <will@kernel.org>,
-        Catalin Marinas
-	<catalin.marinas@arm.com>
-CC: Ajit Pandey <quic_ajipan@quicinc.com>,
-        Imran Shaik
-	<quic_imrashai@quicinc.com>,
-        Jagadeesh Kona <quic_jkona@quicinc.com>,
-        <linux-arm-msm@vger.kernel.org>, <linux-clk@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        Bryan O'Donoghue
-	<bryan.odonoghue@linaro.org>
-References: <20250612-qcs615-mm-v9-clock-controllers-v9-0-b34dc78d6e1b@quicinc.com>
- <20250612-qcs615-mm-v9-clock-controllers-v9-3-b34dc78d6e1b@quicinc.com>
- <b89c5809-38c3-4b62-b26f-073869674b95@oss.qualcomm.com>
-Content-Language: en-US
-From: Taniya Das <quic_tdas@quicinc.com>
-In-Reply-To: <b89c5809-38c3-4b62-b26f-073869674b95@oss.qualcomm.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
- nalasex01a.na.qualcomm.com (10.47.209.196)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Authority-Analysis: v=2.4 cv=NdDm13D4 c=1 sm=1 tr=0 ts=685bd017 cx=c_pps
- a=ouPCqIW2jiPt+lZRy3xVPw==:117 a=ouPCqIW2jiPt+lZRy3xVPw==:17
- a=GEpy-HfZoHoA:10 a=IkcTkHD0fZMA:10 a=6IFa9wvqVegA:10 a=KKAkSRfTAAAA:8
- a=COk6AnOGAAAA:8 a=EUspDBNiAAAA:8 a=G33nDIIeno827tu5fgsA:9 a=QEXdDO2ut3YA:10
- a=cvBusfyB2V15izCimMoJ:22 a=TjNXssC_j7lpFel5tvFf:22
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwNjI1MDA3OCBTYWx0ZWRfX+tZcl40zosdR
- ECvQ8R20nwv+WOy7ENtVN5lr/KaamnN6XC8t5gYQMBGk3Pzk8HZ6JBY0lBhvvfND3Xcg+DlnwB8
- n+FrAqhNQ+iB7PLOzk6/fkhe46A3rnO0LcOABsa0noQD3XUt9VGJukQrh9YqYUpCVYK2DAI8WyS
- rsPknSaUifiRcv32P/8sbuNogv85GG9d+ZRt1rMAysLysjmcwEpWuloGIFpA5hvfWltKHIiMoC6
- 9MnSXK+8Fg9GSugoikOme82jOhZEdUEnSOH2CvWPkxcR/xjp04WJ6RkkV8IYhvmxDcmF/T/BsJf
- 4qUE31Qc5BjGCrEe8a3n9LaHf/xdNgMbs/F1TCfTy7RsuggRJ44xtJxz2qpK5CJbRwU25YPLqfm
- suvMPeRqedn/t0NUdzQEnJhFN/KToufJb0nszJzXeLLqvLwClLb1RR24l0X0hhsOk+W2RBVU
-X-Proofpoint-ORIG-GUID: aVU9lOVhjQEr9x5G9R3MQaOsCUQ8-jFN
-X-Proofpoint-GUID: aVU9lOVhjQEr9x5G9R3MQaOsCUQ8-jFN
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1099,Hydra:6.1.7,FMLib:17.12.80.40
- definitions=2025-06-25_02,2025-06-23_07,2025-03-28_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- bulkscore=0 mlxscore=0 spamscore=0 malwarescore=0 lowpriorityscore=0
- phishscore=0 priorityscore=1501 suspectscore=0 mlxlogscore=999 adultscore=0
- clxscore=1015 impostorscore=0 classifier=spam authscore=0 authtc=n/a authcc=
- route=outbound adjust=0 reason=mlx scancount=1 engine=8.19.0-2505280000
- definitions=main-2506250078
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20250619-imx-se-if-v18-0-c98391ba446d@nxp.com>
+X-SA-Exim-Connect-IP: 2a0a:edc0:0:c01:1d::a2
+X-SA-Exim-Mail-From: mfe@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.whiteo.stw.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: devicetree@vger.kernel.org
 
+Hi Pankaj,
 
+thank you for the patchset and sorry for jumping late.
 
-On 6/15/2025 12:37 AM, Konrad Dybcio wrote:
-> On 6/12/25 11:55 AM, Taniya Das wrote:
->> Add support for the camera clock controller for camera clients to
->> be able to request for camcc clocks on QCS615 platform.
->>
->> Reviewed-by: Bryan O'Donoghue <bryan.odonoghue@linaro.org>
->> Signed-off-by: Taniya Das <quic_tdas@quicinc.com>
->> ---
-> 
-> [...]
-> 
->> +static int cam_cc_qcs615_probe(struct platform_device *pdev)
->> +{
->> +	struct regmap *regmap;
->> +
->> +	regmap = qcom_cc_map(pdev, &cam_cc_qcs615_desc);
->> +	if (IS_ERR(regmap))
->> +		return PTR_ERR(regmap);
->> +
->> +	clk_alpha_pll_configure(&cam_cc_pll0, regmap, &cam_cc_pll0_config);
->> +	clk_alpha_pll_configure(&cam_cc_pll1, regmap, &cam_cc_pll1_config);
->> +	clk_alpha_pll_configure(&cam_cc_pll2, regmap, &cam_cc_pll2_config);
->> +	clk_alpha_pll_configure(&cam_cc_pll3, regmap, &cam_cc_pll3_config);
-> 
-> Please convert to use Jagadeesh's recent helpers
-> 
+On 25-06-19, Pankaj Gupta wrote:
 
-Yes, will update in the next patch.
+...
+> ---
+> Pankaj Gupta (7):
+>       Documentation/firmware: add imx/se to other_interfaces
+>       dt-bindings: arm: fsl: add imx-se-fw binding doc
+>       firmware: imx: add driver for NXP EdgeLock Enclave
+>       firmware: imx: device context dedicated to priv
+>       firmware: drivers: imx: adds miscdev
 
-> with that:
-> 
-> Reviewed-by: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
-> 
-> Konrad
-> 
+I didn't had the time for a detailed review but the patches3-5 (e.g. all
+firmware: *) can be squashed. In patch3 you add a set of files which
+you're going to patch in patch4 and patch5.
 
+Please have a look at my comment on patch3.
+
+Regards,
+  Marco
+
+>       arm64: dts: imx8ulp: add secure enclave node
+>       arm64: dts: imx8ulp-evk: add reserved memory property
+> 
+>  Documentation/ABI/testing/se-cdev                  |   43 +
+>  .../devicetree/bindings/firmware/fsl,imx-se.yaml   |   91 ++
+>  .../driver-api/firmware/other_interfaces.rst       |  123 +++
+>  arch/arm64/boot/dts/freescale/imx8ulp-evk.dts      |   12 +-
+>  arch/arm64/boot/dts/freescale/imx8ulp.dtsi         |   11 +-
+>  drivers/firmware/imx/Kconfig                       |   13 +
+>  drivers/firmware/imx/Makefile                      |    2 +
+>  drivers/firmware/imx/ele_base_msg.c                |  269 +++++
+>  drivers/firmware/imx/ele_base_msg.h                |   95 ++
+>  drivers/firmware/imx/ele_common.c                  |  354 ++++++
+>  drivers/firmware/imx/ele_common.h                  |   49 +
+>  drivers/firmware/imx/se_ctrl.c                     | 1145 ++++++++++++++++++++
+>  drivers/firmware/imx/se_ctrl.h                     |  128 +++
+>  include/linux/firmware/imx/se_api.h                |   14 +
+>  include/uapi/linux/se_ioctl.h                      |   97 ++
+>  15 files changed, 2443 insertions(+), 3 deletions(-)
+> ---
+> base-commit: 9e9eef5925a5d2b1938484c4edc906e384145959
+> change-id: 20240507-imx-se-if-a40055093dc6
+> 
+> Best regards,
+> -- 
+> Pankaj Gupta <pankaj.gupta@nxp.com>
+> 
+> 
+> 
 
