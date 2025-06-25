@@ -1,151 +1,140 @@
-Return-Path: <devicetree+bounces-189469-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-189470-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id B282FAE7DFB
-	for <lists+devicetree@lfdr.de>; Wed, 25 Jun 2025 11:51:28 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 76AC8AE7E15
+	for <lists+devicetree@lfdr.de>; Wed, 25 Jun 2025 11:53:28 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 817B3166DA4
-	for <lists+devicetree@lfdr.de>; Wed, 25 Jun 2025 09:49:02 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 71923188A4B6
+	for <lists+devicetree@lfdr.de>; Wed, 25 Jun 2025 09:49:56 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6CDEA275B04;
-	Wed, 25 Jun 2025 09:46:13 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0ACE027146C;
+	Wed, 25 Jun 2025 09:49:26 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b="pdS7kaLK"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="QNISsXNj"
 X-Original-To: devicetree@vger.kernel.org
-Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [213.167.242.64])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wr1-f45.google.com (mail-wr1-f45.google.com [209.85.221.45])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3FB2727587D;
-	Wed, 25 Jun 2025 09:46:09 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=213.167.242.64
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1F387273D90;
+	Wed, 25 Jun 2025 09:49:23 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.45
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1750844773; cv=none; b=e7JGEQDgpJv3lQqHX+U3KqFEqS+WlRY+tbs2y75CzUpPb33aQYqSpN1lb6HUoOs06aCc6CsYD/UhHIL3WOTtIHV0ruzVxjlAZ3A0BSs95v+LRa/2elbbgaAwLN1QVkOL2RhxvVdtG4xlAiUALwVCxGa6DgBg/1qgN9nvaGDYi24=
+	t=1750844965; cv=none; b=Ywe2JucQEI2MpFw/ropW5arBjM0kMmaod6U4P6XGCb5AEdRdDvMOnjHzyyK+stcngVg9dvLCVJ77eCYxZ5JG+7miw941RjU+L/S+pBQgr3oig5EjTR9KH5DLqRTPqtapiQ7khG6pWCmVUyz+EaLQNrOfiGCrJ7wG0vkCKYuZMCU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1750844773; c=relaxed/simple;
-	bh=iC7tw8rqjOwT7CRcW6Mq+d/a7tYQ72tc28+vmbMXUEU=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=Rhg9arL9slm4npz9/6EDmDr9QD0h3+VTdiZFLe8J5xv2hF4BNenN2jeoLbdflGCe6qGgm16Uz7p6NKMApFRUiDNEFYp5nH46AsS8w2glwDV2phyudTmhtKKA55cL7Kkq+xiQs67DjOWHn1hp9BNF7JlgrZ9pbRU7v/GXXk4Pf5o=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ideasonboard.com; spf=pass smtp.mailfrom=ideasonboard.com; dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b=pdS7kaLK; arc=none smtp.client-ip=213.167.242.64
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ideasonboard.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ideasonboard.com
-Received: from [192.168.0.43] (cpc141996-chfd3-2-0-cust928.12-3.cable.virginm.net [86.13.91.161])
-	by perceval.ideasonboard.com (Postfix) with ESMTPSA id 9F9296F3;
-	Wed, 25 Jun 2025 11:45:49 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
-	s=mail; t=1750844750;
-	bh=iC7tw8rqjOwT7CRcW6Mq+d/a7tYQ72tc28+vmbMXUEU=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=pdS7kaLKH8wuE7VR4Nom6WdhA8tK1gPpxd43yiQ0BTFckQrHxfzqMqqYKW1tgujCU
-	 QRkw8zYI4o/sARMPzGlvP9WkPWnD1EuEFwnXEDspHmgrtMIDlFWUxn3UUfB2jIGf10
-	 5qIQPh5sqUC9liJ8b9nNOC4ATpnIN1pGTNWKfamc=
-Message-ID: <78e03817-5a9a-4d5c-b765-cfe56650a93d@ideasonboard.com>
-Date: Wed, 25 Jun 2025 10:46:04 +0100
+	s=arc-20240116; t=1750844965; c=relaxed/simple;
+	bh=njyKbOLtLQeqzlE3NFqljLHpeOQTtmP3fsZXPwv+m3M=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=cDR+qiupd9ZjVoSyGP4Up1EGmjE8H6PYm6zLcoNmVlKC/upop9+gSMQkXC88JoFlOcbaChq/E4nNYmo01oLgbrH4l51qnVNGJC/SvfTzp3ZM1UEsvTjs4JwPjLsqKKEM2xJb+MmxqWhh40wpGKqHp+r9q/IsXgfpSG2GTUkhd1k=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=QNISsXNj; arc=none smtp.client-ip=209.85.221.45
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-wr1-f45.google.com with SMTP id ffacd0b85a97d-3a575a988f9so828762f8f.0;
+        Wed, 25 Jun 2025 02:49:23 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1750844962; x=1751449762; darn=vger.kernel.org;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=njyKbOLtLQeqzlE3NFqljLHpeOQTtmP3fsZXPwv+m3M=;
+        b=QNISsXNjvyPFf0XiUOfqb7EMW2N9gNYuhHIfQxk8Av2VlXiLh1AvmNs6Mwk2N6ei3f
+         QOQBoD8ldZL8+xMZjvaxB8mTMMjznG8YClS6JT9CWmJS/ffUQtE9nO29GinLTUHcS5FM
+         r6MPygK7axhGBK2i/Kl72/9ONIPguPXhztf4D3gawe3cXUIYxXSwH5/owyjrEKwWif3x
+         89ZjDKkcni7jjeVeld6WNBspVHfMpRzW4xjThyXjCl5qaAdouJ9Yr+ND7HaFXV/Sd6SW
+         3T5SpWv5299PsGrCkQbawORpv9vHrZo8IvKUnFf2C4QCpDxmae767u8ZoA94YuD0S99G
+         S4HA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1750844962; x=1751449762;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=njyKbOLtLQeqzlE3NFqljLHpeOQTtmP3fsZXPwv+m3M=;
+        b=UQLMS//+nSrSkM9LwKqKBJcp3WDm7+KeZimmd6iYDcqOHG0r18APstCQwmaeTaOXRP
+         LQNgg2IjHi8e+/QqF8r62PTQqnx3HDuMRyPp6mIqNJRVW8MqwqDsXvlM/MloUaoaNIuR
+         D/25gD1KhYzDrL8kfgcOloR+g+0qDie0kZ7GtyTy2j+scE3fnXPub5U4/m/StxfWrl+i
+         Zm7PqbXH5LFkAcPc0iS1oTmCy+UQkpPUJtxls9oT1kdVH5z3mKHPPVDcUuWSzwvMqv4R
+         gVBFlz3J45gmFUVzW0/4QcHaZgvZpmrnMdXIM37PSDdXEOwoQGGI1OmF0PBve0P0zHv6
+         NSKA==
+X-Forwarded-Encrypted: i=1; AJvYcCVN7nw6vDyhRxtTKgi84qpSCdXFXSoCn3VQQmSGZnMP7GvHUBR5wVbyJ8k9avnRQT8ciZOHObyfKN1OQYBVig==@vger.kernel.org, AJvYcCVowdbXrD7oSUn+C9qMfYaaSKxlnFG1kTzl27X7UhBNYUE/kxiJ1noh/2WEk0b5tV4HD2XhVrBDK6Wb@vger.kernel.org, AJvYcCXyBkZ8PbOQWBJg3w+O2QrV/74mcZg1rBk/aurUEwsVGYUlwMUUP+k/h5UeapgSgIE2qO3ishiYukKlSGXa@vger.kernel.org
+X-Gm-Message-State: AOJu0YxV4lJRETwGT1X/b4Oz12b/Y5pvkAjWOFXoC0WjbySSwadmXD/o
+	ai7YH9dl6zbpVkv5QB4OmzJlwqs650N6cyrLlYoyb5Y8E0/sLJ0KDqb831K1WySrr4h18jQVtqH
+	CGINOaIOah5TGPQMHrX1Phcx7NqNcNA==
+X-Gm-Gg: ASbGncvUgoutFko2zLmr369AQe9efECHx0mY63lSgKw0DfbtWkGLLJ8R34HZDnhoxxc
+	rRvMWy/7yf1TzfGQS9NyzNMLR70FW8kJfgEbVy88+SP6L8bnBTrxN7nlPwfniiOJJGe8XKJInOT
+	WhZjiIy0+IxgO7TyWuqSAMwsRCl9h6CP+xA6mAPnE6NXU=
+X-Google-Smtp-Source: AGHT+IEJ442JhAOHIWyZBURFpryxYK2v8sGLkiTMcUZP34/SamRW2qxVIMhwFQh6GD1kXXh3lReE/naRrec1aznr3QU=
+X-Received: by 2002:a05:6000:200d:b0:3a6:d95c:5e8 with SMTP id
+ ffacd0b85a97d-3a6ed66464dmr2006514f8f.35.1750844961972; Wed, 25 Jun 2025
+ 02:49:21 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v10 05/17] dt-bindings: media: Add bindings for ARM
- mali-c55
-To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
- linux-media@vger.kernel.org, devicetree@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org
-Cc: Anthony.McGivern@arm.com, jacopo.mondi@ideasonboard.com,
- nayden.kanchev@arm.com, robh+dt@kernel.org, mchehab@kernel.org,
- krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
- jerome.forissier@linaro.org, kieran.bingham@ideasonboard.com,
- laurent.pinchart@ideasonboard.com,
- Sakari Ailus <sakari.ailus@linux.intel.com>
-References: <20250624-c55-v10-0-54f3d4196990@ideasonboard.com>
- <20250624-c55-v10-5-54f3d4196990@ideasonboard.com>
- <2b32b8ed-c841-4862-afab-c583da644217@linaro.org>
- <8438a336-94d3-44e1-9e92-1fac0b2a602d@linaro.org>
-Content-Language: en-US
-From: Dan Scally <dan.scally@ideasonboard.com>
-Autocrypt: addr=dan.scally@ideasonboard.com; keydata=
- xsFNBGLydlEBEADa5O2s0AbUguprfvXOQun/0a8y2Vk6BqkQALgeD6KnXSWwaoCULp18etYW
- B31bfgrdphXQ5kUQibB0ADK8DERB4wrzrUb5CMxLBFE7mQty+v5NsP0OFNK9XTaAOcmD+Ove
- eIjYvqurAaro91jrRVrS1gBRxIFqyPgNvwwL+alMZhn3/2jU2uvBmuRrgnc/e9cHKiuT3Dtq
- MHGPKL2m+plk+7tjMoQFfexoQ1JKugHAjxAhJfrkXh6uS6rc01bYCyo7ybzg53m1HLFJdNGX
- sUKR+dQpBs3SY4s66tc1sREJqdYyTsSZf80HjIeJjU/hRunRo4NjRIJwhvnK1GyjOvvuCKVU
- RWpY8dNjNu5OeAfdrlvFJOxIE9M8JuYCQTMULqd1NuzbpFMjc9524U3Cngs589T7qUMPb1H1
- NTA81LmtJ6Y+IV5/kiTUANflpzBwhu18Ok7kGyCq2a2jsOcVmk8gZNs04gyjuj8JziYwwLbf
- vzABwpFVcS8aR+nHIZV1HtOzyw8CsL8OySc3K9y+Y0NRpziMRvutrppzgyMb9V+N31mK9Mxl
- 1YkgaTl4ciNWpdfUe0yxH03OCuHi3922qhPLF4XX5LN+NaVw5Xz2o3eeWklXdouxwV7QlN33
- u4+u2FWzKxDqO6WLQGjxPE0mVB4Gh5Pa1Vb0ct9Ctg0qElvtGQARAQABzShEYW4gU2NhbGx5
- IDxkYW4uc2NhbGx5QGlkZWFzb25ib2FyZC5jb20+wsGNBBMBCAA3FiEEsdtt8OWP7+8SNfQe
- kiQuh/L+GMQFAmLydlIFCQWjmoACGwMECwkIBwUVCAkKCwUWAgMBAAAKCRCSJC6H8v4YxDI2
- EAC2Gz0iyaXJkPInyshrREEWbo0CA6v5KKf3I/HlMPqkZ48bmGoYm4mEQGFWZJAT3K4ir8bg
- cEfs9V54gpbrZvdwS4abXbUK4WjKwEs8HK3XJv1WXUN2bsz5oEJWZUImh9gD3naiLLI9QMMm
- w/aZkT+NbN5/2KvChRWhdcha7+2Te4foOY66nIM+pw2FZM6zIkInLLUik2zXOhaZtqdeJZQi
- HSPU9xu7TRYN4cvdZAnSpG7gQqmLm5/uGZN1/sB3kHTustQtSXKMaIcD/DMNI3JN/t+RJVS7
- c0Jh/ThzTmhHyhxx3DRnDIy7kwMI4CFvmhkVC2uNs9kWsj1DuX5kt8513mvfw2OcX9UnNKmZ
- nhNCuF6DxVrL8wjOPuIpiEj3V+K7DFF1Cxw1/yrLs8dYdYh8T8vCY2CHBMsqpESROnTazboh
- AiQ2xMN1cyXtX11Qwqm5U3sykpLbx2BcmUUUEAKNsM//Zn81QXKG8vOx0ZdMfnzsCaCzt8f6
- 9dcDBBI3tJ0BI9ByiocqUoL6759LM8qm18x3FYlxvuOs4wSGPfRVaA4yh0pgI+ModVC2Pu3y
- ejE/IxeatGqJHh6Y+iJzskdi27uFkRixl7YJZvPJAbEn7kzSi98u/5ReEA8Qhc8KO/B7wprj
- xjNMZNYd0Eth8+WkixHYj752NT5qshKJXcyUU87BTQRi8nZSARAAx0BJayh1Fhwbf4zoY56x
- xHEpT6DwdTAYAetd3yiKClLVJadYxOpuqyWa1bdfQWPb+h4MeXbWw/53PBgn7gI2EA7ebIRC
- PJJhAIkeym7hHZoxqDQTGDJjxFEL11qF+U3rhWiL2Zt0Pl+zFq0eWYYVNiXjsIS4FI2+4m16
- tPbDWZFJnSZ828VGtRDQdhXfx3zyVX21lVx1bX4/OZvIET7sVUufkE4hrbqrrufre7wsjD1t
- 8MQKSapVrr1RltpzPpScdoxknOSBRwOvpp57pJJe5A0L7+WxJ+vQoQXj0j+5tmIWOAV1qBQp
- hyoyUk9JpPfntk2EKnZHWaApFp5TcL6c5LhUvV7F6XwOjGPuGlZQCWXee9dr7zym8iR3irWT
- +49bIh5PMlqSLXJDYbuyFQHFxoiNdVvvf7etvGfqFYVMPVjipqfEQ38ST2nkzx+KBICz7uwj
- JwLBdTXzGFKHQNckGMl7F5QdO/35An/QcxBnHVMXqaSd12tkJmoRVWduwuuoFfkTY5mUV3uX
- xGj3iVCK4V+ezOYA7c2YolfRCNMTza6vcK/P4tDjjsyBBZrCCzhBvd4VVsnnlZhVaIxoky4K
- aL+AP+zcQrUZmXmgZjXOLryGnsaeoVrIFyrU6ly90s1y3KLoPsDaTBMtnOdwxPmo1xisH8oL
- a/VRgpFBfojLPxMAEQEAAcLBfAQYAQgAJhYhBLHbbfDlj+/vEjX0HpIkLofy/hjEBQJi8nZT
- BQkFo5qAAhsMAAoJEJIkLofy/hjEXPcQAMIPNqiWiz/HKu9W4QIf1OMUpKn3YkVIj3p3gvfM
- Res4fGX94Ji599uLNrPoxKyaytC4R6BTxVriTJjWK8mbo9jZIRM4vkwkZZ2bu98EweSucxbp
- vjESsvMXGgxniqV/RQ/3T7LABYRoIUutARYq58p5HwSP0frF0fdFHYdTa2g7MYZl1ur2JzOC
- FHRpGadlNzKDE3fEdoMobxHB3Lm6FDml5GyBAA8+dQYVI0oDwJ3gpZPZ0J5Vx9RbqXe8RDuR
- du90hvCJkq7/tzSQ0GeD3BwXb9/R/A4dVXhaDd91Q1qQXidI+2jwhx8iqiYxbT+DoAUkQRQy
- xBtoCM1CxH7u45URUgD//fxYr3D4B1SlonA6vdaEdHZOGwECnDpTxecENMbz/Bx7qfrmd901
- D+N9SjIwrbVhhSyUXYnSUb8F+9g2RDY42Sk7GcYxIeON4VzKqWM7hpkXZ47pkK0YodO+dRKM
- yMcoUWrTK0Uz6UzUGKoJVbxmSW/EJLEGoI5p3NWxWtScEVv8mO49gqQdrRIOheZycDmHnItt
- 9Qjv00uFhEwv2YfiyGk6iGF2W40s2pH2t6oeuGgmiZ7g6d0MEK8Ql/4zPItvr1c1rpwpXUC1
- u1kQWgtnNjFHX3KiYdqjcZeRBiry1X0zY+4Y24wUU0KsEewJwjhmCKAsju1RpdlPg2kC
-In-Reply-To: <8438a336-94d3-44e1-9e92-1fac0b2a602d@linaro.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+References: <20250624225056.1056974-1-alex.vinarskis@gmail.com>
+ <20250624225056.1056974-2-alex.vinarskis@gmail.com> <aFuq2JFZZhC1r3N4@hovoldconsulting.com>
+In-Reply-To: <aFuq2JFZZhC1r3N4@hovoldconsulting.com>
+From: Aleksandrs Vinarskis <alex.vinarskis@gmail.com>
+Date: Wed, 25 Jun 2025 11:49:08 +0200
+X-Gm-Features: Ac12FXz6py_g4izWfb6HHN6uycpIk3UcyhlAK4llx3dEWGlTUorZ7CmrZDAximg
+Message-ID: <CAMcHhXotN7mWwUkAAX8J6d4Yo8xSLV=_=DDJJ5Nhh=Cy98_JNg@mail.gmail.com>
+Subject: Re: [PATCH v1 1/1] arm64: dts: qcom: x1e80100-pmics: Disable pm8010
+ by default
+To: Johan Hovold <johan@kernel.org>
+Cc: Bjorn Andersson <andersson@kernel.org>, linux-arm-msm@vger.kernel.org, 
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+	Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, laurentiu.tudor1@dell.com, 
+	abel.vesa@linaro.org, bryan.odonoghue@linaro.org, 
+	jens.glathe@oldschoolsolutions.biz
+Content-Type: text/plain; charset="UTF-8"
 
-Morning Krzysztof
+On Wed, 25 Jun 2025 at 09:52, Johan Hovold <johan@kernel.org> wrote:
+>
+> On Wed, Jun 25, 2025 at 12:41:20AM +0200, Aleksandrs Vinarskis wrote:
+> > pm8010 is a camera specific PMIC, and may not be present on some
+> > devices. These may instead use a dedicated vreg for this purpose (Dell
+> > XPS 9345, Dell Inspiron..) or use USB webcam instead of a MIPI one
+> > alltogether (Lenovo Thinbook 16, Lenovo Yoga..).
+> >
+> > Disable pm8010 by default, let platforms that actually have one onboard
+> > enable it instead.
+> >
+> > This fixes dmesg errors of PMIC failing to probe, and on Dell XPS 9345
+> > fixes the issue of power button not working as power off/suspend (only
+> > long press cuts the power).
+> >
+> > Fixes: 2559e61e7ef4 ("arm64: dts: qcom: x1e80100-pmics: Add the missing PMICs")
+> >
+>
+> Nit: There shouldn't be a new line here after the Fixes tag.
 
-On 25/06/2025 10:08, Krzysztof Kozlowski wrote:
-> On 25/06/2025 11:05, Krzysztof Kozlowski wrote:
->> On 24/06/2025 12:21, Daniel Scally wrote:
->>> Add the yaml binding for ARM's Mali-C55 Image Signal Processor.
->>>
->>> Reviewed-by: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
->>> Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
->> You changed the binding significantly - adding new properties (which do
->> not even follow DTS coding style).
->>
->> This invalidates the review. You cannot just keep growing it after you
->> received a review.
->>
-> Although if it is conflicting with my earlier message that some earlier
-> changes - reset properties - were trivial and review should be kept,
-> then apologies. Adding new, custom, vendor properties is not trivial.
-> Adding obvious existing properties usually is, although I understand why
-> it could also be a reason to drop review. In any case sorry for
-> confusion, but this needs re-review.
-
-No problem; I was a bit unsure about that indeed - in last version I sent an email to bring 
-attention to the fact that I'd added the property whilst keeping the tags, should have done the same 
-again.
-
-
-Thanks
-
-Dan
+Thanks, will fix it next time,
 
 >
-> Best regards,
-> Krzysztof
+> Not sure how this breaks the power button on the XPS, but sounds like
+> this one should be marked for stable backport:
+
+I suspect it's because the power button "pmic_pwrkey" is coming from
+one of the PMICs (..spmi-0/...pmic@0). As pm8010 is on the same spmi
+bus, it appears failing to probe breaks communication on the entire
+bus? pm8010 is the last one in the list, so it could be that other
+PMICs were already initialized to correct voltage, that would explain
+why everything else still works. Just a theory though.
+
+>
+> Cc: stable@vger.kernel.org
+
+Did not think of that, but you are probably right.
+
+Alex
+
+>
+> > Signed-off-by: Aleksandrs Vinarskis <alex.vinarskis@gmail.com>
+>
+> Reviewed-by: Johan Hovold <johan+linaro@kernel.org>
+>
+> Johan
 
