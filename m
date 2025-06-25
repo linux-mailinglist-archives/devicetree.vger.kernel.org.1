@@ -1,59 +1,67 @@
-Return-Path: <devicetree+bounces-189685-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-189686-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 04CABAE8EF0
-	for <lists+devicetree@lfdr.de>; Wed, 25 Jun 2025 21:46:45 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 46EF2AE8EFE
+	for <lists+devicetree@lfdr.de>; Wed, 25 Jun 2025 21:51:46 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 966433B7AFD
-	for <lists+devicetree@lfdr.de>; Wed, 25 Jun 2025 19:46:19 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 0D0AE1C234A6
+	for <lists+devicetree@lfdr.de>; Wed, 25 Jun 2025 19:52:02 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D240D1F3FDC;
-	Wed, 25 Jun 2025 19:46:39 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 48C4A20459A;
+	Wed, 25 Jun 2025 19:51:42 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="as2omF8E"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="cCSOhsIW"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A49003074B1;
-	Wed, 25 Jun 2025 19:46:38 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1A9BB1494C3;
+	Wed, 25 Jun 2025 19:51:41 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1750880799; cv=none; b=fhnDnDEWQbmgCdz+mGvc4ipqoObHXHazDAcQQ9/gLccsfi3JOSpmHmhhfBd3/G6RZwXDXzFs7HwgpZFHxfsNTbtv6CfwIRPwUy4nmmaisyy8BL0XDr1O9L6Foz2pPed3rukEz8kRtmV5+CKf1RfO/cQP3EE9Ewn3RRH4OnSMlPg=
+	t=1750881102; cv=none; b=gH3JiwfbP4bWAlgrF+6Yx20ExJvWGlHkh51deD+2UAlaOOSwmBMvsx5AIeaH8LD9pJDZxL5WoqDdjL2j2iQZdsN6s8yQZzLYDJNAtY/sPkB3AoGdRAKv4Fg3DYjFEmMgDiU7DKNLUhMKUY7ep9PO7TIJ5OMsV09FeerrBwK3+YM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1750880799; c=relaxed/simple;
-	bh=NODulXK9mLHVaLI9aDIG8467kKcmn3NIW0YaOkXodiY=;
+	s=arc-20240116; t=1750881102; c=relaxed/simple;
+	bh=pn4yOJ7V8K3SjQEg+pUrZx/VF4fsacmdLeHB0AnwAss=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=MUwxdiR2pSZIWBCDgigMQ6/CF44KgOoS/0hKDy8mzp+kckOyAOKeUPYKhzmou6qsY+Ajl8s4s9a+A0ymWG3xHxqPJ7KOZLemZHWDMmUiCCNZ7u3vsJt6dVj1463fefAmdRMzU07KiOK7ytUw36uHiM8MOwV05mEpDt91KFKpdl4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=as2omF8E; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 08D85C4CEEA;
-	Wed, 25 Jun 2025 19:46:37 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=PvCmxK2tMD7geBi49WbCXCQcp20WJ6FNvsuILnzoE+cAIN5fgOLyJ6dv5jDw1TK8v0pKDlv14brBd6lNYZPguahjdz2+0RS9BVONNZuKsl8F4Ja1ChHfFA3Ij/J8dMfsKUoM5eNttz/5oDEQZF7A4zZ1McytLuI0Y3+e52EMYn4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=cCSOhsIW; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 69A81C4CEEA;
+	Wed, 25 Jun 2025 19:51:41 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1750880798;
-	bh=NODulXK9mLHVaLI9aDIG8467kKcmn3NIW0YaOkXodiY=;
+	s=k20201202; t=1750881101;
+	bh=pn4yOJ7V8K3SjQEg+pUrZx/VF4fsacmdLeHB0AnwAss=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=as2omF8Ee8BkRGXkdGdQQSLwl2mF2fOIbCOBaJx1KR9FgkLStWvbk2ML3Ql9DlQaI
-	 cd8bd4cxc9c6kyLTi2aYDkP7WW1cOEm8eePxXBbLDELH/sns1RTZwVUyk+cy8yJs7p
-	 DTFa+wXt+FXHAlI7jmD3NRZF3+qUz9yCQjGa0lQ12lVI+Q0pZSldXZbqyVTwGqkR2l
-	 s5Q3epf1dJy+GVOUU/IMgfQycUwcwjAMPWAcb+8qdEWcThi9SKKV6oLL4tW/DmKcdE
-	 0LLu2/p1YCrsNgEHnLZukj5qh0kWxq9DA7aCXEgpLqMUfBnQxV9us8KGVVE9Z2vnrH
-	 1xFNQRShp4G/g==
-Date: Wed, 25 Jun 2025 14:46:37 -0500
-From: "Rob Herring (Arm)" <robh@kernel.org>
-To: Varshini Rajendran <varshini.rajendran@microchip.com>
-Cc: alexandre.belloni@bootlin.com, devicetree@vger.kernel.org,
-	nicolas.ferre@microchip.com, linux-sound@vger.kernel.org,
-	lgirdwood@gmail.com, linux-arm-kernel@lists.infradead.org,
-	linux-kernel@vger.kernel.org, conor+dt@kernel.org,
-	broonie@kernel.org, krzk+dt@kernel.org, andrei.simion@microchip.com,
-	claudiu.beznea@tuxon.dev
-Subject: Re: [PATCH] ASoC: dt-bindings: atmel,at91-ssc: add
- microchip,sam9x7-ssc
-Message-ID: <175088079681.2102370.15282339476917735877.robh@kernel.org>
-References: <20250610065005.64070-1-varshini.rajendran@microchip.com>
+	b=cCSOhsIWw4JTqOPW8l8XkAyBPtDsA7YopuibZ+ZhlYEPSw004AjmWfIdrrMqbHTz6
+	 cUxx2INaN2g8+Pow3iijTA16x/B/C15A7iAH/WRisA7DMEPyf0ZRKmOrngWupjsfy3
+	 Wt0rKspsQYJg5NpzCiJNpP51PgCsWbbwfpa5mDlbyCxE6H2CGqFSfeQlVTYJoLh/GM
+	 E6SIMCfXLSXEOcS7yMARNugQbJKFkS1YidwRuhiZkTn2JRqX7wnLdO5FKCS4uk26AI
+	 gS4MEBEcaalX5A0z8mtsUDsnp8l9FWvI1BPrHzE8jKRuc8uyPqP2abwk+SO0NoNBNQ
+	 bOzp6xOZyrz5A==
+Date: Wed, 25 Jun 2025 14:51:40 -0500
+From: Rob Herring <robh@kernel.org>
+To: Vladimir Zapolskiy <vladimir.zapolskiy@linaro.org>
+Cc: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>,
+	Bryan O'Donoghue <bryan.odonoghue@linaro.org>,
+	Robert Foss <rfoss@kernel.org>, Todor Tomov <todor.too@gmail.com>,
+	Mauro Carvalho Chehab <mchehab@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Hans Verkuil <hverkuil@xs4all.nl>, linux-arm-msm@vger.kernel.org,
+	linux-media@vger.kernel.org, devicetree@vger.kernel.org
+Subject: Re: [PATCH 1/2] dt-bindings: media: qcom,x1e80100-camss: Sort
+ interconnect alphabetically
+Message-ID: <20250625195140.GA2102516-robh@kernel.org>
+References: <20250610083318.2773727-1-vladimir.zapolskiy@linaro.org>
+ <a072d00e-df91-420b-9363-424bcdf1ed8e@linaro.org>
+ <3e8f8220-1fad-437e-9fa4-5eb628891110@linaro.org>
+ <ae364f1c-5d64-4178-b26c-e58e352feee0@linaro.org>
+ <97e51ab0-737b-496e-81df-b73c9f598bb0@linaro.org>
+ <35muvo7h7ynfvzjt6jomasr54xaomfgt5etjc3uuczhfxww2ds@u5xsayanthx7>
+ <0943821e-603a-4ee6-9bcb-e5fe690358c5@linaro.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -62,26 +70,48 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20250610065005.64070-1-varshini.rajendran@microchip.com>
+In-Reply-To: <0943821e-603a-4ee6-9bcb-e5fe690358c5@linaro.org>
 
+On Wed, Jun 11, 2025 at 02:00:48AM +0300, Vladimir Zapolskiy wrote:
+> On 6/11/25 01:21, Dmitry Baryshkov wrote:
+> > On Tue, Jun 10, 2025 at 06:10:33PM +0300, Vladimir Zapolskiy wrote:
+> > > On 6/10/25 18:02, Bryan O'Donoghue wrote:
+> > > > On 10/06/2025 13:45, Vladimir Zapolskiy wrote:
+> > > > > > 
+> > > > > > How is this a Fixes: ?
+> > > > > 
+> > > > > I call it the fix to the dt-bindings documentation, then what is this
+> > > > > change, if it's not a fix?..
+> > > > > 
+> > > > > Anyway, if there is a strong disagreement about if it's a fix or not,
+> > > > > the Fixes tag can be dropped from the change, since it's so secondary.
+> > > > 
+> > > > Since we don't have a committed upstream user I don't think this is an
+> > > > ABI break.
+> > > 
+> > > Well, Dmitry says it's an ABI break... It would be beneficial to come to
+> > > a common understanding here.
+> > > 
+> > > > But I also don't think it warrants a Fixes: tag either, there's no bug.
+> > > 
+> > > There is no bug, but there are Documentation/ changes with Fixes tags,
+> > > it's okay.
+> > 
+> > Fixes means that there was a bug / issue that needs to be fixed. For
+> > example, if there was a user for the bindings and the user had these
+> 
+> That's "for example" only, I don't think it's an all-descriptive definition.
+> 
+> From Documentation/process/submitting-patches.rst:
+> 
+>   A Fixes: tag indicates that the patch fixes an issue in a previous commit.
+> 
+> In my opinion this is quite applicable here, the "fixed issue" in the device
+> tree binding documentation file is well set, and anyone can get it from
+> the provided commit message.
 
-On Tue, 10 Jun 2025 12:20:05 +0530, Varshini Rajendran wrote:
-> Add microchip,sam9x7-ssc to DT bindings documentation.
-> 
-> Signed-off-by: Varshini Rajendran <varshini.rajendran@microchip.com>
-> ---
-> 
-> This patch is a rework (adapting to the newly converted yaml file) of the
-> leftout patch sent [1] as a part of the series adding support for sam9x7 SoC
-> and sam9x75 curiosity board.
-> 
-> [1] https://lore.kernel.org/lkml/20241010120345.92844-1-varshini.rajendran@microchip.com/
-> 
-> ---
->  .../devicetree/bindings/sound/atmel,at91-ssc.yaml     | 11 ++++++++---
->  1 file changed, 8 insertions(+), 3 deletions(-)
-> 
+I tend to agree. I would say Fixes should be used anywhere you wish you 
+could re-write history and amend the original commit with the fix.
 
-Acked-by: Rob Herring (Arm) <robh@kernel.org>
-
+Rob
 
