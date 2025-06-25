@@ -1,91 +1,98 @@
-Return-Path: <devicetree+bounces-189666-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-189667-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 358FCAE8E1F
-	for <lists+devicetree@lfdr.de>; Wed, 25 Jun 2025 21:11:33 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 70109AE8E0C
+	for <lists+devicetree@lfdr.de>; Wed, 25 Jun 2025 21:10:12 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 3049A3BFB38
-	for <lists+devicetree@lfdr.de>; Wed, 25 Jun 2025 19:08:45 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id BF0FB1C26BC7
+	for <lists+devicetree@lfdr.de>; Wed, 25 Jun 2025 19:10:01 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 638552DFA47;
-	Wed, 25 Jun 2025 19:04:14 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id DDA982E0B76;
+	Wed, 25 Jun 2025 19:06:36 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Qjs7O3FQ"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="cBIWj6da"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 349C52DA752;
-	Wed, 25 Jun 2025 19:04:13 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AC5D32E0B6C;
+	Wed, 25 Jun 2025 19:06:35 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1750878254; cv=none; b=BIyNh4oZIMJ6gzKoZFdQrIfq5+2P1VFMMotavwgL8WW7IsolQ4mVDZkeZHIkHU7b6oSaujM8Oy5fCXdSPms0qEzJQbxciZGeIGkFoq+nFM1zjRFCyfMys7thHsmMqFjgE1OxL19T76J/tnq63WXg7l8B3Uv2M5fj/GasR9KDjHQ=
+	t=1750878396; cv=none; b=KN28uGRkk5zcseMr3hl1nc4OREw8aTxPlYDlBZz2pfh6EvWmQmiDVZJnRToHlsuauFNvfbSNR2brUDOEOPMMsAfXZKJMpwqHmLC8fsMN+cycwJhFM/H8n2panykWk4AgZJrP5ER1bMGMO3DjBraASw+Wbbi6e8jH7LzL8yRhuc8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1750878254; c=relaxed/simple;
-	bh=LUWB9Eb61V9HjLpTF0w5obOuUqX387nmjakU4den64w=;
+	s=arc-20240116; t=1750878396; c=relaxed/simple;
+	bh=mt41Fb0q1YhHKfjDtHyYRotEsd67rfLrbLZk+qxV9gA=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=bi+R74CWArKPtCwkjDogqnmLGqHZMTXoxSHnJDAprKPMxSLIJP8MK5CRhGLyk2maYuSaTsErNlUvbHflY+sMYOFi4gwZ6yidZa9BuAkGGgOa6jMivdXf6khDmYtYTK7rL70hePhph0R+MFXHmIFJJipmvl1lC/UhY9h2h6OK+x8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Qjs7O3FQ; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 9053BC4CEF0;
-	Wed, 25 Jun 2025 19:04:13 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=qiQYNa3IGMe3HJijgbaYS9Ycp7VsM7Jc7DlCYn3VNyOt/oVyyNEAIddXsGxaDpIIE7QyuvGwPhe7xQ+JTXYrTduwberrUyk0bultiiBzBYXYu9jYeWtejLE0l2A9e3P18v9RZrrzzNMHSDqXtHEDP5koOXG5mrkXMwtL0stkzMU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=cBIWj6da; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id EF815C4CEEA;
+	Wed, 25 Jun 2025 19:06:34 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1750878253;
-	bh=LUWB9Eb61V9HjLpTF0w5obOuUqX387nmjakU4den64w=;
+	s=k20201202; t=1750878395;
+	bh=mt41Fb0q1YhHKfjDtHyYRotEsd67rfLrbLZk+qxV9gA=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=Qjs7O3FQiRGsi2y6To/++keHWR78/5TFsK6SYKyHHMYYxEJEeffMoT5pc4yiJU13a
-	 vKebR8SzlbO0utXZFDZOCOUf+GySf6+SD8dfYl5B+v7IWN9OpxfOTERw0cxn9u2uGf
-	 61wOjYwH11OYCjDBCn0oZYuVzSIAhD0HesvYW5aXA0n50iGpNzZyHUb/+GE9SxOtMI
-	 IT+xxR5x8hW9fRnQwp4pon/eayH+OLvliC9G58jFc/HSCUoMnmr6PMfqzrRMUnZWWA
-	 gbVPgWbfedsNIk2huEGJelVlaTl4TN49g99afx8x1UsLFenGj5SFN8Ptnk4EtKy+aT
-	 /xSa8d54PG1EQ==
-Date: Wed, 25 Jun 2025 14:04:12 -0500
+	b=cBIWj6daJ2/j7eMRSz1WZoK1fQzvuFIbKA3ujFVOwzwFQgQUFqRzb4VcI/0TzmRi1
+	 MQbK8UqQ6+wrYd03mjrTGw5QunO6u3fJv7XIqGo4REHjwJVmoC4FsonsRF+f49FB1o
+	 Qcc9662DGCUZjVJc+4CmJZ+ZvmbuAgOidrrSsdfAoNBaMcfXgEgtngQKc+DbgoO4f4
+	 HDGvy/v3iBv6jZH8P0oU4gs5s5LZe+3SJ2X0lgDObx2FLzYmT3dHpaQE5LqDWvwkKy
+	 iMrGDmDFZyR9l7ask/n02TT40PPBSKyfUaJx6tbPFoFg13B7F0d0r+7RXB+Ubv0BJP
+	 lNCjQgJv5rH1A==
+Date: Wed, 25 Jun 2025 14:06:34 -0500
 From: "Rob Herring (Arm)" <robh@kernel.org>
-To: =?iso-8859-1?Q?Andr=E9?= Draszik <andre.draszik@linaro.org>
-Cc: devicetree@vger.kernel.org, Peter Griffin <peter.griffin@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>, kernel-team@android.com,
-	linux-gpio@vger.kernel.org, Mark Brown <broonie@kernel.org>,
-	linux-kernel@vger.kernel.org, Lee Jones <lee@kernel.org>,
-	Will McVicker <willmcvicker@google.com>,
-	linux-samsung-soc@vger.kernel.org,
-	Liam Girdwood <lgirdwood@gmail.com>,
-	Tudor Ambarus <tudor.ambarus@linaro.org>,
-	Krzysztof Kozlowski <krzk@kernel.org>,
-	Bartosz Golaszewski <brgl@bgdev.pl>,
-	Linus Walleij <linus.walleij@linaro.org>
-Subject: Re: [PATCH v2 01/17] dt-bindings: firmware: google,gs101-acpm-ipc:
- convert regulators to lowercase
-Message-ID: <175087825207.2044005.6909193130559642909.robh@kernel.org>
-References: <20250606-s2mpg1x-regulators-v2-0-b03feffd2621@linaro.org>
- <20250606-s2mpg1x-regulators-v2-1-b03feffd2621@linaro.org>
+To: Frank Li <Frank.Li@nxp.com>
+Cc: Andrew Lunn <andrew+netdev@lunn.ch>,
+	"David S. Miller" <davem@davemloft.net>,
+	Alexandre Belloni <alexandre.belloni@bootlin.com>,
+	devicetree@vger.kernel.org, imx@lists.linux.dev,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, netdev@vger.kernel.org,
+	linux-kernel@vger.kernel.org, Eric Dumazet <edumazet@google.com>,
+	Jakub Kicinski <kuba@kernel.org>,
+	linux-arm-kernel@lists.infradead.org,
+	Claudiu Beznea <claudiu.beznea@tuxon.dev>,
+	Nicolas Ferre <nicolas.ferre@microchip.com>,
+	Conor Dooley <conor+dt@kernel.org>, Paolo Abeni <pabeni@redhat.com>
+Subject: Re: [PATCH v3 1/1] dt-bindings: ieee802154: Convert at86rf230.txt
+ yaml format
+Message-ID: <175087839356.2050766.5864325742697685736.robh@kernel.org>
+References: <20250606155638.1355908-1-Frank.Li@nxp.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20250606-s2mpg1x-regulators-v2-1-b03feffd2621@linaro.org>
+In-Reply-To: <20250606155638.1355908-1-Frank.Li@nxp.com>
 
 
-On Fri, 06 Jun 2025 16:02:57 +0100, André Draszik wrote:
-> Using lowercase for the buck and ldo nodenames is preferred, as
-> evidenced e.g. in [1].
+On Fri, 06 Jun 2025 11:56:33 -0400, Frank Li wrote:
+> Convert at86rf230.txt yaml format.
 > 
-> Convert the example here to lowercase before we add any bindings
-> describing the s2mpg1x regulators that will enforce the spelling.
+> Additional changes:
+> - Add ref to spi-peripheral-props.yaml.
+> - Add parent spi node in examples.
 > 
-> Link: https://lore.kernel.org/all/20250223-mysterious-infrared-civet-e5bcbf@krzk-bin/ [1]
-> Signed-off-by: André Draszik <andre.draszik@linaro.org>
+> Signed-off-by: Frank Li <Frank.Li@nxp.com>
 > ---
->  Documentation/devicetree/bindings/firmware/google,gs101-acpm-ipc.yaml | 4 ++--
->  1 file changed, 2 insertions(+), 2 deletions(-)
+> change in v3
+> - add maximum: 0xf for xtal-trim
+> - drop 'u8 value ...' for xtal-trim's description
+> 
+> change in v2
+> - xtal-trim to uint8
+> ---
+>  .../bindings/net/ieee802154/at86rf230.txt     | 27 --------
+>  .../net/ieee802154/atmel,at86rf233.yaml       | 66 +++++++++++++++++++
+>  2 files changed, 66 insertions(+), 27 deletions(-)
+>  delete mode 100644 Documentation/devicetree/bindings/net/ieee802154/at86rf230.txt
+>  create mode 100644 Documentation/devicetree/bindings/net/ieee802154/atmel,at86rf233.yaml
 > 
 
-Acked-by: Rob Herring (Arm) <robh@kernel.org>
+Reviewed-by: Rob Herring (Arm) <robh@kernel.org>
 
 
