@@ -1,140 +1,198 @@
-Return-Path: <devicetree+bounces-189608-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-189609-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4CA85AE8796
-	for <lists+devicetree@lfdr.de>; Wed, 25 Jun 2025 17:13:16 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id C111FAE87B7
+	for <lists+devicetree@lfdr.de>; Wed, 25 Jun 2025 17:17:02 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 10CC25A3A74
-	for <lists+devicetree@lfdr.de>; Wed, 25 Jun 2025 15:12:43 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 58D251C22785
+	for <lists+devicetree@lfdr.de>; Wed, 25 Jun 2025 15:15:59 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id F35FC26A0DD;
-	Wed, 25 Jun 2025 15:13:04 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B83F426B0BC;
+	Wed, 25 Jun 2025 15:14:59 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=altera.com header.i=@altera.com header.b="k19fJ7Bl"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-qk1-f173.google.com (mail-qk1-f173.google.com [209.85.222.173])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from NAM10-DM6-obe.outbound.protection.outlook.com (mail-dm6nam10on2089.outbound.protection.outlook.com [40.107.93.89])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3193F26A0AB;
-	Wed, 25 Jun 2025 15:13:01 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.222.173
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1750864384; cv=none; b=KM0P46mkZsgukny+kRe53/6C4B7e/M6DnyXjgGPyCYeiExxKG7hgppiFA9DljY5ONhZKrjZlGccIniJgwZIZh+zyW06T1WgvVExdZqOsAwtSkLU8gQfQRocIA8gmnxLKs+UR76wPyrdFCYhWTuZM7kvYHdiKNO3+Wwd8pHvijK4=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1750864384; c=relaxed/simple;
-	bh=doujq3pVBT4abticu6BLUeL7j4/UINv+1VAnO6ZjsA0=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=s21zADg5ISHqPT4oTFtgwYADH4L+xzJOXbCdH1QftOVW3JrJ2C80RUR7QOXedFIVd+sPD/ptmitZI3JZJWJdhDO6VBAZeM6VQUic9MC0r2JiQNRBi4d1EOXGr530LUgsTUXsJ165Y9K4mzEExPrV4u1WrMuMWqF9xBoVq5N8Qp8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.222.173
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-qk1-f173.google.com with SMTP id af79cd13be357-7d3862646eeso431752385a.2;
-        Wed, 25 Jun 2025 08:13:00 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1750864380; x=1751469180;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=H0dyYw8IfQp7v2LRIThG2Iy4gcFWIs987F5cu/YPOvY=;
-        b=Wb8lIzQZFgQRJUuqYZmgWPAaJXbaUz2rM6RXblHn5pyyKz24SN0EiRXeJI99N0kgXu
-         J0/uJWFubekD7XBiS1SlMSE+sYiimSCsOaDQJgQJ51h118klPGRDBa7nIfhYvUaFBlge
-         o5cZ1Sp6h85WGwN33Ha6QnN17HsOUpbdG84wlYvU9hwxWB7m94vxGCa1t2ENkiiy3OdE
-         ukwabW8PXa10HwszCJ5zC3nmHWhXQrMDqcR90jFJ/dD6NM2ISqKURzIVz3k+MvH3ASML
-         /wRxPTRVNqAJdqgtv2jjqNZB+5ZrtrLskvDnno0Mcu15ALe8XdDgzU54+IhLllC7oxXh
-         0LtA==
-X-Forwarded-Encrypted: i=1; AJvYcCUOcNGqnyG8YEbSKhvqpFdMfIPc8GpH8La/0lVy412hYFXwUQDyjAiLv2T3Y7RBIRikuhhhnvY23G0l@vger.kernel.org, AJvYcCVUlQ5Qp8i/WijVTHfcjTNRJc5WnfMpkBDGDZOjhnGFWOwoqOJkyxcSRv1Kt+ywl2SY8M3ZM3vUSQZl@vger.kernel.org, AJvYcCVpKeDdPqEkkMOBLhj5pl+W1QA7dWbBxOH068I9u+OviDmzIPuMZCpvXW23wNJaYxwyE4xEoTI4@vger.kernel.org, AJvYcCWHmM5mFd/kCGXUIMPOZSnv0m9NFZeaIJqWJ/RLu/R60dk9+XXx4jk7Of1GWEbDHPamUaJZc+i54Lsu2NHfDtNfnVo=@vger.kernel.org, AJvYcCXFG92Blqg619NRdx6jeQX7l9OHxotV4HrHimvViJMA0qm3e8dmmAtkcONTXuSm7PZd27y51CFl/s8+ZYN7@vger.kernel.org
-X-Gm-Message-State: AOJu0YzV6Cr7Rlu+eNzIDxkk7AMf/NR4LgkLQ3NgOi+CcnXuY18uv9Fc
-	FIoOENxpLc1CCvoMGmEPOVBTf/9GIPJgAPCUSrZDnLOikEyJNR9JbQwR2RsrhxNI
-X-Gm-Gg: ASbGnctRze2QNlOHvjx/vuOgmGztN6ayJ6au89lYmTUnd3XrvZr49VIlovdzP6JINos
-	IvQuKgY9LJ8/dleHnjN3W40AEqecjkL63jaSS86iWBndODGbXGi+nqrySLQ10FKd8CWd2OCvwUr
-	bs+dxp/OXJ7HArzOLKtluyNMwC39NMHJHISIvMdE+jQL1mJlWhBg6EjaLJpnx2MNJ6SYUSWjn9z
-	JVI8GxbXNolXnKICX9vs4JluusimWeBLqR0OZ/cVtExos2KZAO915D7e4tHLJAn6mvmU0H7H4LE
-	6Tunuxg4oEy1qUw9y2SBavv/LhDSZ+AWNWf2aXaae2xUUL20czQdoHjqM78PtNYe2CmW9CGM9ri
-	z+WhWP3sPjvEIRdE3RTdDxe73+AiK
-X-Google-Smtp-Source: AGHT+IFx8NK8Tgdd2qrdrRfFqYVP7IvywERkDpj9fdLMh7ThdkqFVU10uIK+Ey9qN9wP0RiTZ4zKPQ==
-X-Received: by 2002:a05:620a:1a08:b0:7d3:90e4:157d with SMTP id af79cd13be357-7d4297cbf79mr529875985a.54.1750864379587;
-        Wed, 25 Jun 2025 08:12:59 -0700 (PDT)
-Received: from mail-qk1-f179.google.com (mail-qk1-f179.google.com. [209.85.222.179])
-        by smtp.gmail.com with ESMTPSA id af79cd13be357-7d3f999db4csm620263485a.15.2025.06.25.08.12.59
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 25 Jun 2025 08:12:59 -0700 (PDT)
-Received: by mail-qk1-f179.google.com with SMTP id af79cd13be357-7d3e5df4785so443617685a.0;
-        Wed, 25 Jun 2025 08:12:59 -0700 (PDT)
-X-Forwarded-Encrypted: i=1; AJvYcCUEgzjCLwfMr8aQ553RjQ/Aq3CA2GKx5RMSGqdWPrX9H4gZSa2/w1s+ZFf3sfTdlxUduRpHM03us4Kx1a9f@vger.kernel.org, AJvYcCUv8DJBmlP3Fw8W6l/zKMXc7QWjf7xQ6gyMll4WDhdgvqx4+WXjB9T5SJ0NwbkpAQnMqeOaJH6L5n9NAqSUN/lHlBc=@vger.kernel.org, AJvYcCVUhtf8rSR2xgZf+WkoVvkvmE16W5Q5jzdKEEVgoRdjUtYnlE2zbcLuE8Howqnv1xSE98W6kagS@vger.kernel.org, AJvYcCVu9MfrcMIeSDNvUWkWZAQUCijgQFv4sr1WQ5PAByRwR79KqzjJOCMUFfoKh+WrJ976Kmd6nhGJtQjv@vger.kernel.org, AJvYcCVxD5p0MQp/4OI/ydX8Sq7Go07O/+uOMp7N7oyXD3yHY0FgnZgUvskhUQDvfKnmhrySYP+TbFE4+0Qf@vger.kernel.org
-X-Received: by 2002:a05:620a:1a28:b0:7d4:f7:3baa with SMTP id
- af79cd13be357-7d42970ffa4mr479610485a.8.1750864378765; Wed, 25 Jun 2025
- 08:12:58 -0700 (PDT)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E52A526A1CF;
+	Wed, 25 Jun 2025 15:14:57 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.93.89
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1750864499; cv=fail; b=RMrw7FXJSMOwQ0menGgRyZWJFP5sqC3Qmt/+jBPqRFjCttbwdqKBP0TKfTpyHL7NW53ikMsXYi4vPG5wFHtkw4AauAIPR9LD0+3OW47qOoNtm36uwWaywCBqKwFydI/TKVP5y7z3y1YesrvmP7EMy9EFwiq3gkjsoGH3tB91UsU=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1750864499; c=relaxed/simple;
+	bh=HiblJLqrOIdSVNkiUm1NS9RgzqOII9BR8AAW3UkYaHQ=;
+	h=From:To:Cc:Subject:Date:Message-ID:Content-Type:MIME-Version; b=rgfch/XAF2Yw6dvBWhEHE7gzhM139nLb7jwaTUwgRMJvKb8O8kyJPfqRpA44AHX1q9gbXqTaFUMECX9iUJW69t1d6DoWvLHLc1pREGg22PqeP+JXMjVWyLBNKkgrX+057I1NLjSsyyddSnVA/JG/5/myXPw7wdpbbklhTa6bwbE=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=altera.com; spf=pass smtp.mailfrom=altera.com; dkim=pass (2048-bit key) header.d=altera.com header.i=@altera.com header.b=k19fJ7Bl; arc=fail smtp.client-ip=40.107.93.89
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=altera.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=altera.com
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=iQdlmIAvKNmn7UASa4DvnRaBd41tNWy8PzQaUzZvnzyeQe0WTuTLksy1SZn/a6zRCWuXWoPUzErlFUck3gubgIchaEt6g42fSjRnewX1lG1GmqMmiz2hcqbfwudGjDcMFj22i3popx6rkbVsjSB4MieD2OdtxD9GyvhppfKqKPSoGl48hZHplnfJxe1doYsu4vHupcrZElAqiz5oMC3Abl8K7ivJWFxlA7t/XXsWBlTMXRIfdg/mq4woKB5S0/2IsmAuwPcT+/OkyFkwuznK/kBb21qRrpDmgwGKSU6tWUrs4jRf3BkjOwSLJlqw1FAcnSZRIHqaBa0HW7P1YYIXng==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=t41KmohNHrm3FIltMkEj2sowDlAjvbT/1IffcPcCBtY=;
+ b=Uu+/3ompaajxp9crTuAr3cz8o7EuXsRzDLo4PRRO9j1J2u4j4q8FHPzdLwdGymyWc42hZ7IA5j2voryQK1m2T93P8wLJeYi220VSkJlQI3BzhuWRNnK7zfgvuPoWS3fEKssQcIGtuZYZf8kZ34MFHXCAA9knxKwboxragaxKTkrOW6GYdwv/cD+njQ4V+fLmlcCi5RFT7c6uxQ7azSnwFNCAUYWk9SEJZGVHqrwb1WoVqfkQf8e0mxwiIDEhJu0oAIyTa4Obcn+n/RRU3Eh4fPM4D8UreFH0MIPifPHpHXDktpIVYxllF+XR0BLxfPFZzWN6QsGZMPfDgwa9ecawHQ==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=altera.com; dmarc=pass action=none header.from=altera.com;
+ dkim=pass header.d=altera.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=altera.com;
+ s=selector2;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=t41KmohNHrm3FIltMkEj2sowDlAjvbT/1IffcPcCBtY=;
+ b=k19fJ7BlrDQFEl/s+L91Li6H7iB0nOlMJNtp/+3jUZxHzhYIf3Y3FanmygJAEOrfqHMgUfERkyOoS7Lx/Ukb4V6wuYTCDwEOd8+JePpFmN86w7a7ActZrD3lV48OP0pUY27kHDAqUeBb9x29yxsWbTJyO+P4EMwZlXhuYThma+tqmfBSSJF8fOuY64ALAfcK9cxsCBvywAU+68BZq1ThLkhN21Og9ZBJN1Suwi1yR8TIvkRAjc60o+HuJ6v+Q4i/jH6A4rv8ompOPEUn0fGaolh9mvH6V4opWI91e/Agwr9BIogRCO2dQ58N4Ddgwo0DzKAQgyhTcABkX5mnK3PIqQ==
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=altera.com;
+Received: from BYAPR03MB3461.namprd03.prod.outlook.com (2603:10b6:a02:b4::23)
+ by PH7PR03MB7048.namprd03.prod.outlook.com (2603:10b6:510:2b2::14) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8857.28; Wed, 25 Jun
+ 2025 15:14:53 +0000
+Received: from BYAPR03MB3461.namprd03.prod.outlook.com
+ ([fe80::706b:dd15:bc81:313c]) by BYAPR03MB3461.namprd03.prod.outlook.com
+ ([fe80::706b:dd15:bc81:313c%6]) with mapi id 15.20.8880.015; Wed, 25 Jun 2025
+ 15:14:53 +0000
+From: Matthew Gerlach <matthew.gerlach@altera.com>
+To: dinguyen@kernel.org,
+	robh@kernel.org,
+	krzk+dt@kernel.org,
+	conor+dt@kernel.org,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org
+Cc: Matthew Gerlach <matthew.gerlach@altera.com>
+Subject: [PATCH] arm64: dts: altera: socfpga_stratix10: update internal oscillators
+Date: Wed, 25 Jun 2025 08:14:42 -0700
+Message-ID: <20250625151442.42191-1-matthew.gerlach@altera.com>
+X-Mailer: git-send-email 2.49.0
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-ClientProxiedBy: BYAPR04CA0010.namprd04.prod.outlook.com
+ (2603:10b6:a03:40::23) To BYAPR03MB3461.namprd03.prod.outlook.com
+ (2603:10b6:a02:b4::23)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20250623080405.355083-1-john.madieu.xa@bp.renesas.com> <20250623080405.355083-2-john.madieu.xa@bp.renesas.com>
-In-Reply-To: <20250623080405.355083-2-john.madieu.xa@bp.renesas.com>
-From: Geert Uytterhoeven <geert@linux-m68k.org>
-Date: Wed, 25 Jun 2025 17:12:46 +0200
-X-Gmail-Original-Message-ID: <CAMuHMdU1mEfiL3e=NwSjTchpDXt1YTM3AkS7K3aR5h4FK94WCg@mail.gmail.com>
-X-Gm-Features: Ac12FXwsfcXtQcl1AL1H_21vDL8HbRYTR4_tq-vWVjK1gZ980dyatR86pYQllnY
-Message-ID: <CAMuHMdU1mEfiL3e=NwSjTchpDXt1YTM3AkS7K3aR5h4FK94WCg@mail.gmail.com>
-Subject: Re: [PATCH v3 1/3] clk: renesas: r9a09g047: Add clock and reset
- signals for the GBETH IPs
-To: John Madieu <john.madieu.xa@bp.renesas.com>
-Cc: magnus.damm@gmail.com, robh@kernel.org, krzk+dt@kernel.org, 
-	conor+dt@kernel.org, mturquette@baylibre.com, sboyd@kernel.org, 
-	richardcochran@gmail.com, linux-renesas-soc@vger.kernel.org, 
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	linux-clk@vger.kernel.org, netdev@vger.kernel.org, biju.das.jz@bp.renesas.com, 
-	"Lad, Prabhakar" <prabhakar.mahadev-lad.rj@bp.renesas.com>
-Content-Type: text/plain; charset="UTF-8"
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: BYAPR03MB3461:EE_|PH7PR03MB7048:EE_
+X-MS-Office365-Filtering-Correlation-Id: 24005973-0c46-4e0d-1046-08ddb3fb091b
+X-MS-Exchange-AtpMessageProperties: SA
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;ARA:13230040|1800799024|376014|366016;
+X-Microsoft-Antispam-Message-Info:
+	=?us-ascii?Q?mr6ZT+4JFOwWOE6B82/hwmrytyTN5AZgMqrPgH2ub2/hrYkGjRIdIt+mSTRU?=
+ =?us-ascii?Q?ZEpto2oI3pgpRrCtv9fzJYlXVj4Nxc3TPBnyQsELV4NNYsFVTZ50x9LQ13ik?=
+ =?us-ascii?Q?S+vZgr/+fNZhN3hwzHW3AXei2xSo823QIQNrgW17VljiQHPXPR7ZRQNf2xes?=
+ =?us-ascii?Q?bzk9eryEi1AUQXcppCiK8V/5zrjqwJXHpiYRqduUzqh2uTb5MaS55lTe4mOe?=
+ =?us-ascii?Q?7sHKaCbvReKUxakNxf+TE0fF9Wsle7asDK5T/cTMkFoHIyZHSaeMCMRaIy06?=
+ =?us-ascii?Q?UyNfTMdUDTdjd6pDY1nFbetSByp5mWtC2c25t0RQPdIngqz9cwrvK5qrxovx?=
+ =?us-ascii?Q?TnmjSw4lMmrKofSguLwG73hhN41MZ0/WeikPnhjptq641b3aeDh3f7uKGRcN?=
+ =?us-ascii?Q?igzUtKY5UKEf2yjlZUUL+o9WZOIiUG8GcvtfB9Ec8YktTx1bOisqZFI2EAie?=
+ =?us-ascii?Q?UMW8crMkcM2ASfozfDYnusxuysJNgXD/4eCnDwcdnv7rAFJPusnvEGIafmGE?=
+ =?us-ascii?Q?VNUpD6IQHAftxZVigUjhCtLlpb9D8WXK7adUFrcZNM3w+9Pv+hORODIMFPa7?=
+ =?us-ascii?Q?XKocHUGqgFvl+tZjlsFm2WX93KdSNLcwQhJJnscblxzaB26x8UJIjynWDbdt?=
+ =?us-ascii?Q?jIc/MsFF8Ku5aycJHzL7NUaMnBpikLTF+Xr8Wbc07ly9xJhivo7q39f6f67W?=
+ =?us-ascii?Q?xoyAE8Td1N5KaX6MhURInw76LYQsWEVeO4lh+uPjQdVOFO4uw93ZsbLEeAKL?=
+ =?us-ascii?Q?Tunib9lv21bUr+QvuN5N9YOwooiFO6KzBb1AXYTYXj/sFHT3p9yK7+lxxRgN?=
+ =?us-ascii?Q?N3dLtmrZSNCAmAKrXt/aUQXAXjkME3VJbj6dkbCXV2Mm1S2b/TF9FgKD4ba3?=
+ =?us-ascii?Q?avRIMOcVa0F+q9RhYJ3xIZ/wtFidGU1zCp1q7SeK/3wfTjP/mF6nlCajpZ3b?=
+ =?us-ascii?Q?afGcvFeTDShcHmF34SLUC2BrK7tOxFz17ptqeFwqxlVf7+UiYyh31TjJPOfE?=
+ =?us-ascii?Q?2WSB8lxhwRsjS8YbH3ueZOS50xTEPOQK+6S68nA8rN+GZPNFTBkdyNgQiWiM?=
+ =?us-ascii?Q?5LD3aSI9PtzDUVgs9zybQGBTg/PwgKCs+mP5K41wXQ9796Tw1wNjCiEFriM1?=
+ =?us-ascii?Q?xLCNaPBd95n6SZqXDRqrvL51r7hhyPZ9oxAYna4RRemf8uM6nxBw+Jm9X+A6?=
+ =?us-ascii?Q?/060IvBs5RRP9cA0X/1WfzFrqfjIPW30YicKRn1ylBIz3kjKFREJfQCVkg4i?=
+ =?us-ascii?Q?BJaP3GOounewxb2LaThHC6cPU6OaZQMlgxtZp1rke1+ZjquSEsHBVcJNsCOI?=
+ =?us-ascii?Q?nvnVgMtj0DK1uo6N4QxrfVh3fMc+h1h1QUGFjBAPVjiGJR+mTGs4avjM46mG?=
+ =?us-ascii?Q?rGNfuHw3rlc4XJIlbUeUMit28ku+u+wNUT9EYXWJt41anKDqnud0UhuP1EVC?=
+ =?us-ascii?Q?RyY//BG4mPs=3D?=
+X-Forefront-Antispam-Report:
+	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:BYAPR03MB3461.namprd03.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(1800799024)(376014)(366016);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0:
+	=?us-ascii?Q?Sa3VHY7zdroxJ3slGt0dpkI60nNkFtvx9p5zFoLWAWFy4gI48Kv+mAn44GR8?=
+ =?us-ascii?Q?XONhZVJdO0EQ3AKsabLe/etbYb1pWZXEluEVwa+PfK2l5K35/21wk2XSe3zb?=
+ =?us-ascii?Q?N3oSBEfsrdukQ/F47gSuLdoys19poBuDAyv+/Lwi9KkaMyVjaH57SBTopv08?=
+ =?us-ascii?Q?eAivfcHJu/TfsSYpoOJxyIb8l9BEieVpC1UzHgne6W8rByB855AgcShn7pUV?=
+ =?us-ascii?Q?ArtuEu3ckT7x6fq7ZAxnZNsj/XCP6VnYLD9GkN2Z9c1hi1fHab3oVBDvRBJc?=
+ =?us-ascii?Q?gKvEMiGUatOnfXQR/q13VSKHjvE/JSaHegpmum0bIPgjud33SC5+QmlRxfY9?=
+ =?us-ascii?Q?M5ET09LnvdFUPDGQ/Y37E2sb8lcCQTDkMjXhgCOeOgxUQQaGBlbcwoS59hjR?=
+ =?us-ascii?Q?XDoUeOytkiLQfBeo7F3w4qN1q76148sWzKzchtSP1Tgm/k54HMhCspBcg8Zy?=
+ =?us-ascii?Q?lJCgmhAVmWf1sOoX3iyoT2I6BFZS0Up4rFxuhnjV2YelCIe82d/SI832BeP3?=
+ =?us-ascii?Q?fHSHpy1lKj+RCikSriBnd/CvstQlJt/cvkyKzN78FZJinZPK43jhD3ivfETb?=
+ =?us-ascii?Q?3+CGTBHkofeOFPKk4qeaZ4UcLOpTsZRAL10D8GF5Amu0oRQhzISEqXryT9TT?=
+ =?us-ascii?Q?e3s5pA80cLFwNkEP89RGzXakAHoqgCxEWKx02T25vYz4zCCcl47ikTFnjT2h?=
+ =?us-ascii?Q?gZIeVnNqYDKv2/n9pK9CKIi6mQdY+Q14oqtD/PgvIvc5xYN07gl5AO5+WzUQ?=
+ =?us-ascii?Q?WP4JEujCB6GYCddPbKetCyXOwP5zhsEJNL99Y+Dlw7KM/stbbmqoBJJdlFTD?=
+ =?us-ascii?Q?I3BNzOBNbfWFzbbNdZzuit/aQ+7kD4CaQsfExDxNqTgvaoMtaXRFJv6+eWPm?=
+ =?us-ascii?Q?/ONW59Emqj75RYJjnO24xp9w8FCsiyrplZuKyhp+b2TvmOpFrnttnacgEdEo?=
+ =?us-ascii?Q?ldmey8KIEEsoGi/W3hO701bMsYx4IWn7A9gfmfcXe5bXTionIr85SBvdUlOs?=
+ =?us-ascii?Q?R9ztTBAnNNF77lHUEoZAi5mEdvVyjx/hHDn8Om8izNvEpDh8/DT4uhZ7/ciT?=
+ =?us-ascii?Q?MgEH2uKh7/8I8d85bWl6gH1dn1zn9m4KCBSIjPiRToUHtgTx6d0hEK+IEcjX?=
+ =?us-ascii?Q?Owy939KOvVCLcbhoVgqXDHfGn5BS5VOs9F6o77SX3OUwYmqw8pB3XWYuh5Q9?=
+ =?us-ascii?Q?ewjn6ibISgZAaIoAlAots5+ll64k0NVvGBtkfYjdqO7cXCEqr/WSaPmZzgcG?=
+ =?us-ascii?Q?70iLcmcSy2fnZiKRRZIbn7aWFBf3vhDBbbswParRN6P0hhMcVKePZMnA73VV?=
+ =?us-ascii?Q?j9vV7NQAnmZ29GrLpfmm95CJcYmhByo9w3+dp2lpOzLnz8yqaLBiXTOeWt3Q?=
+ =?us-ascii?Q?EAaXuTJjQuSIpnKCSVCNrSYdVhTRHAxkbf+M3crdLLtg2hpnEheT3OqDoUHX?=
+ =?us-ascii?Q?y9r9lR532lhXBivMbL0hwcTuWyV8pDsVbtlEHpLs55a+7f3WywiWqZ+fwCxF?=
+ =?us-ascii?Q?DoGCGvFlB84Bq73nEsvp0+dof6iWwWFPflGJLdHtsKktt0Sdie7OMZDGnJYu?=
+ =?us-ascii?Q?nqGP/VcudSO1mz0+SCUz/8QKXd/EJ8LYKaD7o9gFINSzV0K1SSmvnjeOE5W3?=
+ =?us-ascii?Q?Gg=3D=3D?=
+X-OriginatorOrg: altera.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 24005973-0c46-4e0d-1046-08ddb3fb091b
+X-MS-Exchange-CrossTenant-AuthSource: BYAPR03MB3461.namprd03.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 25 Jun 2025 15:14:53.2598
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: fbd72e03-d4a5-4110-adce-614d51f2077a
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: 07SpfoEJtRVfRNOpKwQ83krsxMYH6cCDJNXBoj6NBdyDeVhdKDPvagQpzdszOGzI09J1YGUmmpxXWHe0sD8+2pZti2/X7eC9PdbI0F4Zyxs=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: PH7PR03MB7048
 
-Hi John,
+Add the clock-frequency property to the cb_intosc_ls_clk and
+cb_intosc_hs_div2_clk device tree nodes.
 
-On Mon, 23 Jun 2025 at 10:04, John Madieu <john.madieu.xa@bp.renesas.com> wrote:
-> Add clock and reset entries for the Gigabit Ethernet Interfaces (GBETH 0-1)
-> IPs found on the RZ/G3E SoC. This includes various PLLs, dividers, and mux
-> clocks needed by these two GBETH IPs.
->
-> Reviewed-by: Biju Das <biju.das.jz@bp.renesas.com>
-> Tested-by: Biju Das <biju.das.jz@bp.renesas.com>
-> Signed-off-by: John Madieu <john.madieu.xa@bp.renesas.com>
-> ---
->
-> v2:
-> No changes but resending without dt-bindings patch
->
-> v3:
-> Uses underscores instead of dashes in clock names
+The f2s_free_clk is implemented by custom logic in the FPGA; so it
+should be disabled in the dtsi by default and enabled by a
+dts for a specific FPGA design on a specific board.
 
-Thanks for the update!
+Signed-off-by: Matthew Gerlach <matthew.gerlach@altera.com>
+---
+ arch/arm64/boot/dts/altera/socfpga_stratix10.dtsi | 3 +++
+ 1 file changed, 3 insertions(+)
 
-> --- a/drivers/clk/renesas/r9a09g047-cpg.c
-> +++ b/drivers/clk/renesas/r9a09g047-cpg.c
-
-> +
->  /* Mux clock tables */
-> +static const char * const smux2_gbe0_rxclk[] = { ".plleth_gbe0", "et0_rxc_rx_clk" };
-> +static const char * const smux2_gbe0_txclk[] = { ".plleth_gbe0", "et0_txc_tx_clk" };
-> +static const char * const smux2_gbe1_rxclk[] = { ".plleth_gbe1", "et1_rxc_rx_clk" };
-> +static const char * const smux2_gbe1_txclk[] = { ".plleth_gbe1", "et1_txc_tx_clk" };
-
-I have to ask you again: these still differ from the similar names used
-on RZ/V2H. Is there a reason for that? Will that cause issues later?
-Or is this to be sorted out only when the PHY driver will start
-supporting these clocks?
-
->  static const char * const smux2_xspi_clk0[] = { ".pllcm33_div3", ".pllcm33_div4" };
->  static const char * const smux2_xspi_clk1[] = { ".smux2_xspi_clk0", ".pllcm33_div5" };
-
-Gr{oetje,eeting}s,
-
-                        Geert
-
+diff --git a/arch/arm64/boot/dts/altera/socfpga_stratix10.dtsi b/arch/arm64/boot/dts/altera/socfpga_stratix10.dtsi
+index 0def0b0daaf7..ad611f9e431a 100644
+--- a/arch/arm64/boot/dts/altera/socfpga_stratix10.dtsi
++++ b/arch/arm64/boot/dts/altera/socfpga_stratix10.dtsi
+@@ -130,16 +130,19 @@ clocks {
+ 		cb_intosc_hs_div2_clk: cb-intosc-hs-div2-clk {
+ 			#clock-cells = <0>;
+ 			compatible = "fixed-clock";
++			clock-frequency = <150000000>;
+ 		};
+ 
+ 		cb_intosc_ls_clk: cb-intosc-ls-clk {
+ 			#clock-cells = <0>;
+ 			compatible = "fixed-clock";
++			clock-frequency = <300000000>;
+ 		};
+ 
+ 		f2s_free_clk: f2s-free-clk {
+ 			#clock-cells = <0>;
+ 			compatible = "fixed-clock";
++			status = "disabled";
+ 		};
+ 
+ 		osc1: osc1 {
 -- 
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
+2.35.3
 
-In personal conversations with technical people, I call myself a hacker. But
-when I'm talking to journalists I just say "programmer" or something like that.
-                                -- Linus Torvalds
 
