@@ -1,108 +1,141 @@
-Return-Path: <devicetree+bounces-189591-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-189593-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2EB51AE8660
-	for <lists+devicetree@lfdr.de>; Wed, 25 Jun 2025 16:25:52 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id D34D5AE8673
+	for <lists+devicetree@lfdr.de>; Wed, 25 Jun 2025 16:28:06 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 1DA1F1C2167A
-	for <lists+devicetree@lfdr.de>; Wed, 25 Jun 2025 14:25:38 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 9B67A7B9C09
+	for <lists+devicetree@lfdr.de>; Wed, 25 Jun 2025 14:26:10 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id F3AE9264A7C;
-	Wed, 25 Jun 2025 14:25:16 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C9B1F264A74;
+	Wed, 25 Jun 2025 14:27:26 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="rO3IxLe0"
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="mU+nKfkS"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.14])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CDF0F263C9B;
-	Wed, 25 Jun 2025 14:25:16 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 30FF120C00B;
+	Wed, 25 Jun 2025 14:27:25 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.175.65.14
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1750861516; cv=none; b=XcwTQr1s/z8SYwwTinP0X3dJFY1DpOeo67Ajxcp0WxOtXUrAW2TO9dF4zBgiC9ZoAw1dP6l1lxyIJ46sy4IAkUDNPWo8pFaAdHPE2PpTOhg3jA9X6iJrT81bd19Emi6vMW+4xjpdMGijwP1tzc18aTF1TR29Np87LFJBfd6O5+8=
+	t=1750861646; cv=none; b=KnAHctbdQfbhhpcFXVLcVEkO8dE83wAkLBiO/pRH3TUox8ynXsJSiHuUaeoDRhJOheAVgL+nh9SFqN7Kk+GzPTZqlRsYsAo6qEs7oSApjcapIGhbRECTZhTMJqqC8tSt1dIshCX4HUUKrivwXlF6XfuakZg0K/oEHxwI3+qX/h8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1750861516; c=relaxed/simple;
-	bh=gIZwiFDHx2s0parZhM/vFYkw+llVp5IIeVaP9k00Kz4=;
-	h=Date:Content-Type:MIME-Version:From:Cc:To:In-Reply-To:References:
-	 Message-Id:Subject; b=L0WJuooOtvi95aN1DR1BW/ln67bpoofEhdSB0E3hWo8t5s3CUnv4wJKC5zdsNXVLLo7iceEolA2YnQyzvkvQ2M3C0OD39T5krsB7tMYL/IDNasxE7LO5k4JWhwAp7LrpzSaYs+Ay6irCjeD83YMUILnRC7+z3e/+2u4tK96zB3g=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=rO3IxLe0; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 37455C4CEEA;
-	Wed, 25 Jun 2025 14:25:16 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1750861516;
-	bh=gIZwiFDHx2s0parZhM/vFYkw+llVp5IIeVaP9k00Kz4=;
-	h=Date:From:Cc:To:In-Reply-To:References:Subject:From;
-	b=rO3IxLe0y98Aa+TBhnVRMW8EDC8jpipS4BCaCL5vCAh2n8+7aeZ7jhaOraQMgb35v
-	 iT1PqyGzUNtg7O9wzmOU5+vS+e27TBxlHG0ilpiwnLEV1GaqjFVomclH+G+KxrWMoU
-	 ob/Z6p0U7PwOkZo/PU2IQQ9eIMvJk63Hb08IdCNCaGLB07wk36yIyDSZ0qlySmilfj
-	 DIwqjPy0oYSULDE65PILOvU4lP9/POFpdgxJ4HYUBAmEeyBzyPYTbSXxBwZ2otCVvW
-	 di0loxqHsJOwvrQ5/H/LMqybkU7frVpgsljwSMoUja0Vq+toA69paGMORRPo9UWDmw
-	 y6MQtv/UH+OCQ==
-Date: Wed, 25 Jun 2025 09:25:15 -0500
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
+	s=arc-20240116; t=1750861646; c=relaxed/simple;
+	bh=aiCBfShnv6jIIgQ4bpuIfMp5r40wbfensHpHCEm3pBM=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=tH+XbgzH4Xd4WC8txwHpcxlRtJ6iRfhXEwKRdEAdiORO7jebIr4ddHigFYA3Ei2fN+iv0MC/mVCJedk3awUdzKrF2VQrtqmhfHHx78e2vCYHoATTC1RVXY31kpbKaJfcB0l83/wD8N+8UjQFYAL74hZ1yxYXxmuCXR7/JUaIu80=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=mU+nKfkS; arc=none smtp.client-ip=198.175.65.14
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1750861646; x=1782397646;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=aiCBfShnv6jIIgQ4bpuIfMp5r40wbfensHpHCEm3pBM=;
+  b=mU+nKfkS2z3z9O0xwUk5kQ0cuEPjqmKzxvvq/Z6FYVrq5C0CRu0lhWOO
+   cCK6bv2XpjmAqbQNMzHYaVwZdSBZvv+zLtbAInNunTJubqF/ggWsjhap6
+   fLM6KbYWKdVlq7NWUEy/1wUCigXjUpaZKk8Hc40U46XCAKaivobECZK0j
+   ZGo/oyMsoLasZt4fv+Xoi728oJcA01PN2b6hJlKCwy+2JI3WzHKzfrQmM
+   zhfTQf0+pnFQCgdYMxcCKTk53Df/IMWMDtV8MjTFsd1ShedmPA6ko3cdF
+   uo3T97eUKQnoXdbJ+4+6KAPKE0IwQKscvTu8zqIvJWBVq68F1Ze9URKaS
+   A==;
+X-CSE-ConnectionGUID: dkxlRjhbQqC2rBspwRddlA==
+X-CSE-MsgGUID: XVwLUXiITWqaTCLDJbXwwg==
+X-IronPort-AV: E=McAfee;i="6800,10657,11475"; a="56920079"
+X-IronPort-AV: E=Sophos;i="6.16,264,1744095600"; 
+   d="scan'208";a="56920079"
+Received: from fmviesa002.fm.intel.com ([10.60.135.142])
+  by orvoesa106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 25 Jun 2025 07:27:25 -0700
+X-CSE-ConnectionGUID: NYVNjaqgRd2C28PhusN2oA==
+X-CSE-MsgGUID: Vm3m4nwNToS9MwdDCSPhkw==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.16,264,1744095600"; 
+   d="scan'208";a="175877583"
+Received: from smile.fi.intel.com ([10.237.72.52])
+  by fmviesa002.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 25 Jun 2025 07:27:21 -0700
+Received: from andy by smile.fi.intel.com with local (Exim 4.98.2)
+	(envelope-from <andriy.shevchenko@intel.com>)
+	id 1uUR5q-00000009nnt-1JQk;
+	Wed, 25 Jun 2025 17:27:18 +0300
+Date: Wed, 25 Jun 2025 17:27:18 +0300
+From: Andy Shevchenko <andriy.shevchenko@intel.com>
+To: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+Cc: jic23@kernel.org, dlechner@baylibre.com, nuno.sa@analog.com,
+	andy@kernel.org, robh@kernel.org, krzk+dt@kernel.org,
+	conor+dt@kernel.org, matthias.bgg@gmail.com,
+	linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+	linux-mediatek@lists.infradead.org, kernel@collabora.com
+Subject: Re: [PATCH v1 4/5] iio: adc: mt6359: Add support for MediaTek MT6363
+ PMIC AUXADC
+Message-ID: <aFwHRigf95hPKTE7@smile.fi.intel.com>
+References: <20250623120028.108809-1-angelogioacchino.delregno@collabora.com>
+ <20250623120028.108809-5-angelogioacchino.delregno@collabora.com>
+ <aFlk-l5LhgO8dnXK@smile.fi.intel.com>
+ <1b173e16-f681-4256-8dd2-92db2e90ca73@collabora.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-From: "Rob Herring (Arm)" <robh@kernel.org>
-Cc: Conor Dooley <conor+dt@kernel.org>, 
- Neil Armstrong <neil.armstrong@linaro.org>, 
- Jessica Zhang <quic_jesszhan@quicinc.com>, dri-devel@lists.freedesktop.org, 
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, 
- David Airlie <airlied@gmail.com>, devicetree@vger.kernel.org, 
- linux-kernel@vger.kernel.org, 
- Jessica Zhang <jessica.zhang@oss.qualcomm.com>, 
- Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>, 
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Simona Vetter <simona@ffwll.ch>
-To: Kaustabh Chakraborty <kauschluss@disroot.org>
-In-Reply-To: <20250625-panel-synaptics-tddi-v2-1-7a62ab1d13c7@disroot.org>
-References: <20250625-panel-synaptics-tddi-v2-0-7a62ab1d13c7@disroot.org>
- <20250625-panel-synaptics-tddi-v2-1-7a62ab1d13c7@disroot.org>
-Message-Id: <175086151529.908340.14015506927066516002.robh@kernel.org>
-Subject: Re: [PATCH v2 1/2] dt-bindings: display: panel: document Synaptics
- TDDI panel driver
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <1b173e16-f681-4256-8dd2-92db2e90ca73@collabora.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park, 6
+ krs, Bertel Jungin Aukio 5, 02600 Espoo
 
+On Wed, Jun 25, 2025 at 03:29:47PM +0200, AngeloGioacchino Del Regno wrote:
+> Il 23/06/25 16:30, Andy Shevchenko ha scritto:
+> > On Mon, Jun 23, 2025 at 02:00:27PM +0200, AngeloGioacchino Del Regno wrote:
 
-On Wed, 25 Jun 2025 15:38:44 +0530, Kaustabh Chakraborty wrote:
-> Document the driver for Synaptics TDDI (Touch/Display Integration) panels.
-> Along with the MIPI-DSI panel, these devices also have an in-built LED
-> backlight device and a touchscreen, all packed together in a single chip.
-> Also, add compatibles for supported panels - TD4101 and TD4300.
+...
+
+> > > +	if (MTK_AUXADC_HAS_FLAG(cinfo, IS_SPMI)) {
+> > > +		/* If the previous read succeeded, this can't fail */
+> > > +		regmap_read(regmap, reg - 1, &lval);
+> > 
+> > No error check? lval may contain garbage here, right?
 > 
-> Signed-off-by: Kaustabh Chakraborty <kauschluss@disroot.org>
-> ---
->  .../display/panel/synaptics,td4300-panel.yaml      | 89 ++++++++++++++++++++++
->  1 file changed, 89 insertions(+)
+> No, because if the previous read succeeded, this can't fail, and also cannot ever
+> possibly contain garbage (and if it does, - but again, that can't happen - there is
+> no way to validate that because valid values are [0x00..0xff] anyway).
+
+Never say never. Any regmap_*() call that performs I/O might fail. You can't
+predict with 100% guarantee the HW behaviour in all possible scenarios.
+
+> > > +		val = (val << 8) | lval;
+> > 
+> > Is it guaranteed that lval is always less than 256 (if unsigned)?
 > 
+> Yes, with SPMI that is guaranteed.
+> 
+> > > +	}
 
-My bot found errors running 'make dt_binding_check' on your patch:
+...
 
-yamllint warnings/errors:
+> > > +		regmap_update_bits(regmap, cinfo->regs[desc->ext_sel_idx],
+> > > +				   MT6363_EXT_PURES_MASK, ext_sel);
+> > 
+> > No  error check?
+> 
+> No, because if the previous reads and/or writes succeeded, it is impossible for
+> this to fail :-)
 
-dtschema/dtc warnings/errors:
-Documentation/devicetree/bindings/display/panel/synaptics,td4300-panel.example.dtb: /example-0/dsi/panel@0: failed to match any schema with compatible: ['synaptics,td4300-panel']
+Ditto.
 
-doc reference errors (make refcheckdocs):
+I.o.w. the failed regmap_*() call can be a signal that something on the
+communication channel with the HW went wrong, Depending on the severity of this
+call the device driver may decide what to do next.
 
-See https://patchwork.ozlabs.org/project/devicetree-bindings/patch/20250625-panel-synaptics-tddi-v2-1-7a62ab1d13c7@disroot.org
+-- 
+With Best Regards,
+Andy Shevchenko
 
-The base for the series is generally the latest rc1. A different dependency
-should be noted in *this* patch.
-
-If you already ran 'make dt_binding_check' and didn't see the above
-error(s), then make sure 'yamllint' is installed and dt-schema is up to
-date:
-
-pip3 install dtschema --upgrade
-
-Please check and re-submit after running the above command yourself. Note
-that DT_SCHEMA_FILES can be set to your schema file to speed up checking
-your schema. However, it must be unset to test all examples with your schema.
 
 
