@@ -1,55 +1,57 @@
-Return-Path: <devicetree+bounces-189545-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-189546-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id F20B1AE831F
-	for <lists+devicetree@lfdr.de>; Wed, 25 Jun 2025 14:48:49 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 16533AE836F
+	for <lists+devicetree@lfdr.de>; Wed, 25 Jun 2025 14:58:01 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id B49D91C22CD1
-	for <lists+devicetree@lfdr.de>; Wed, 25 Jun 2025 12:49:05 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id AC3851C261E9
+	for <lists+devicetree@lfdr.de>; Wed, 25 Jun 2025 12:56:59 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id AF6582609E1;
-	Wed, 25 Jun 2025 12:48:44 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 80380264A84;
+	Wed, 25 Jun 2025 12:53:54 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="GbOkb+N1"
+	dkim=pass (1024-bit key) header.d=samsung.com header.i=@samsung.com header.b="MqvdsWfu"
 X-Original-To: devicetree@vger.kernel.org
-Received: from bali.collaboradmins.com (bali.collaboradmins.com [148.251.105.195])
+Received: from mailout1.w1.samsung.com (mailout1.w1.samsung.com [210.118.77.11])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8F8DC1B4248;
-	Wed, 25 Jun 2025 12:48:42 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=148.251.105.195
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5BB0C264A71
+	for <devicetree@vger.kernel.org>; Wed, 25 Jun 2025 12:53:52 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=210.118.77.11
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1750855724; cv=none; b=pGPnKCF7sOfSfDrrbCVfxh5P/9430rQVoGJbwQ9gg/zLroi09b2MM7Ikuuliz4cgTfB/xrAYxKZZAr4j9ub7edTCpuZMJzzaoy/71io3OpnZUzkECg3hpOFBYM9AwZQJ08mCglYPVj6cMf+FEkKUhCsdgEqSbxoDrnxFsMICSog=
+	t=1750856034; cv=none; b=h/pLQGZBZVxRBtVLgwJUbHXp3ZIdFqn15Tp/WH053pVZ8fmaDI9q3LXYxWkP7Tb+ZuRYvDpmX2Fxu3yYMSgfFM9FLfm0xZzp+L24Yzrg7qfoiJotQQBhb4zsbJcEeuYVSpfmLB7topDawY8VDLSMmRmhlbZCe6jkvhhEXhetSuU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1750855724; c=relaxed/simple;
-	bh=zcJsv7RSUd1k6hYpfDkJX66HKFLsw5n2ZnJr/lyGLII=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=hheKe8QArML1KVfhYzizDzN+ToWsN7GAjOXIyOVUzqWYi26znbcP8Y3EfkdwUiVD8BUz7GBuyoE7UFF8JFPO0c8RwzI0pWBv/KosRjF9vH7EslfKu0SBExv7WPsPOcHG8cTljPASF6vAjyl8cGgFv9y0Ss2pG5dBo/gjVAz1tug=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b=GbOkb+N1; arc=none smtp.client-ip=148.251.105.195
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-	s=mail; t=1750855720;
-	bh=zcJsv7RSUd1k6hYpfDkJX66HKFLsw5n2ZnJr/lyGLII=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=GbOkb+N11olTudUbTceHiGbgWU4ugpVPHk7DG2+rYuY7IuICJKjPrkBPEap98VRiv
-	 zsJGbeCSJmqlpPRbcOAnfE3A3Pkh+9UHYt9IbrnJ6cBDCBSClzPQogeKNc8JK4vvsi
-	 euonaTxwPuaiUnmvQps3qdIMG92qduqrXdomHSBWutJ/daCpA9rL40MV3xyX74LEGB
-	 HphiH3w2tYtX4vbMqBnDUkSz7H1V+l4aKxHWRgYz3narHbTvBHfHHZHBKX121okKIu
-	 6Ex3wjzr51kNQumXFsYj7w+k21B0w5I/apx4pGEsxICksnATjE7KzAk1NuwFaxRCq0
-	 FOScaYRCp1++Q==
-Received: from [192.168.1.100] (2-237-20-237.ip236.fastwebnet.it [2.237.20.237])
-	(using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
-	 key-exchange X25519 server-signature RSA-PSS (4096 bits))
-	(No client certificate requested)
-	(Authenticated sender: kholk11)
-	by bali.collaboradmins.com (Postfix) with ESMTPSA id BD92F17E0CE7;
-	Wed, 25 Jun 2025 14:48:39 +0200 (CEST)
-Message-ID: <ae478fd7-c627-433c-a614-b76dcd4164d2@collabora.com>
-Date: Wed, 25 Jun 2025 14:48:39 +0200
+	s=arc-20240116; t=1750856034; c=relaxed/simple;
+	bh=V5vRw37irrlS8OlidSqX3//zwRh1Kiq+TQw+3YvYvnA=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:From:In-Reply-To:
+	 Content-Type:References; b=XP6LXtmZikIl+9qE7+0MrZhP9PHjE6c5GFg+IfMjBfrf/UI8dMPxlcCQZYDQ0n+A2Dnz8CqlEYbRHEPh3wdZjJDkMTdPEA5iDuFfD1/cA4EPXNv9Ct6yHsGVvmy5rWBxCGADtuFGIG155+eaZEi9TZXzmHlKrKEfInxCtTrn3M8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=samsung.com; spf=pass smtp.mailfrom=samsung.com; dkim=pass (1024-bit key) header.d=samsung.com header.i=@samsung.com header.b=MqvdsWfu; arc=none smtp.client-ip=210.118.77.11
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=samsung.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=samsung.com
+Received: from eucas1p1.samsung.com (unknown [182.198.249.206])
+	by mailout1.w1.samsung.com (KnoxPortal) with ESMTP id 20250625125350euoutp010f722bdc6828f02866d1ebd068530511~MSkiQvoVk2095020950euoutp01B
+	for <devicetree@vger.kernel.org>; Wed, 25 Jun 2025 12:53:50 +0000 (GMT)
+DKIM-Filter: OpenDKIM Filter v2.11.0 mailout1.w1.samsung.com 20250625125350euoutp010f722bdc6828f02866d1ebd068530511~MSkiQvoVk2095020950euoutp01B
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=samsung.com;
+	s=mail20170921; t=1750856030;
+	bh=aHXPUrYiaWgQA8BN5Zf+BoDPK1tGYC0F+73wV5XjTXY=;
+	h=Date:Subject:To:Cc:From:In-Reply-To:References:From;
+	b=MqvdsWfuDOMUFFdpZ++uCNDRxIxCYkqgAv84879K/bIrv/0/5F8bSGtujVlCGo0Mi
+	 2TWRc/cy9lNQA6MawjAhJV+EChId0q2Qo+ybYx2viknaXnZ5ZFh++pV8cpExALdK+e
+	 AnqE2vKquHMcYIQjfNAMwsCUKOQJY7GIO+5WumIA=
+Received: from eusmtip1.samsung.com (unknown [203.254.199.221]) by
+	eucas1p1.samsung.com (KnoxPortal) with ESMTPA id
+	20250625125350eucas1p1dad14e84a8cc44516174ecc9053727b1~MSkhvbtf41252112521eucas1p14;
+	Wed, 25 Jun 2025 12:53:50 +0000 (GMT)
+Received: from [192.168.1.44] (unknown [106.210.136.40]) by
+	eusmtip1.samsung.com (KnoxPortal) with ESMTPA id
+	20250625125349eusmtip10a4e23d9061b04dad7c3aa6ff3064088~MSkgtbupw0720807208eusmtip1C;
+	Wed, 25 Jun 2025 12:53:48 +0000 (GMT)
+Message-ID: <0b3d2deb-7f27-4390-b43e-353d4ba17bd7@samsung.com>
+Date: Wed, 25 Jun 2025 14:53:48 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -57,110 +59,134 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 09/29] dt-bindings: clock: mediatek: Describe MT8196
- peripheral clock controllers
-To: Krzysztof Kozlowski <krzk@kernel.org>, Laura Nao
- <laura.nao@collabora.com>, mturquette@baylibre.com, sboyd@kernel.org,
- robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
- matthias.bgg@gmail.com, p.zabel@pengutronix.de, richardcochran@gmail.com
-Cc: guangjie.song@mediatek.com, wenst@chromium.org,
- linux-clk@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- linux-mediatek@lists.infradead.org, netdev@vger.kernel.org,
- kernel@collabora.com
-References: <20250624143220.244549-1-laura.nao@collabora.com>
- <20250624143220.244549-10-laura.nao@collabora.com>
- <7dfba01a-6ede-44c2-87e3-3ecb439b48e3@kernel.org>
- <284a4ee5-806b-45f9-8d57-d02ec291e389@collabora.com>
- <0870a2ba-936b-4eb2-a570-f2c9dea471b8@kernel.org>
- <9fc32523-5009-4f48-8d82-6c3fd285801d@collabora.com>
- <86654ad1-a2ab-4add-b9de-4d56c67f377b@kernel.org>
-From: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+Subject: Re: [PATCH v6 8/8] drm/imagination: Enable PowerVR driver for
+ RISC-V
+To: Matt Coster <Matt.Coster@imgtec.com>
+Cc: Drew Fustini <drew@pdp7.com>, Guo Ren <guoren@kernel.org>, Fu Wei
+	<wefu@redhat.com>, Rob Herring <robh@kernel.org>, Krzysztof Kozlowski
+	<krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, Bartosz
+	Golaszewski <brgl@bgdev.pl>, Philipp Zabel <p.zabel@pengutronix.de>, Frank
+	Binns <Frank.Binns@imgtec.com>, Maarten Lankhorst
+	<maarten.lankhorst@linux.intel.com>, Maxime Ripard <mripard@kernel.org>,
+	Thomas Zimmermann <tzimmermann@suse.de>, David Airlie <airlied@gmail.com>,
+	Simona Vetter <simona@ffwll.ch>, Paul Walmsley <paul.walmsley@sifive.com>,
+	Palmer Dabbelt <palmer@dabbelt.com>, Albert Ou <aou@eecs.berkeley.edu>,
+	Alexandre Ghiti <alex@ghiti.fr>, Ulf Hansson <ulf.hansson@linaro.org>, Marek
+	Szyprowski <m.szyprowski@samsung.com>, Bartosz Golaszewski
+	<bartosz.golaszewski@linaro.org>, "linux-riscv@lists.infradead.org"
+	<linux-riscv@lists.infradead.org>, "devicetree@vger.kernel.org"
+	<devicetree@vger.kernel.org>, "linux-kernel@vger.kernel.org"
+	<linux-kernel@vger.kernel.org>, "linux-pm@vger.kernel.org"
+	<linux-pm@vger.kernel.org>, "dri-devel@lists.freedesktop.org"
+	<dri-devel@lists.freedesktop.org>
 Content-Language: en-US
-In-Reply-To: <86654ad1-a2ab-4add-b9de-4d56c67f377b@kernel.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
+From: Michal Wilczynski <m.wilczynski@samsung.com>
+In-Reply-To: <ff96ee1f-23ad-4e7f-9ac1-11f410e459e3@imgtec.com>
 Content-Transfer-Encoding: 7bit
+X-CMS-MailID: 20250625125350eucas1p1dad14e84a8cc44516174ecc9053727b1
+X-Msg-Generator: CA
+Content-Type: text/plain; charset="utf-8"
+X-RootMTR: 20250623114439eucas1p17e4405b95a5693a972bf40a3b3ecdc11
+X-EPHeader: CA
+X-CMS-RootMailID: 20250623114439eucas1p17e4405b95a5693a972bf40a3b3ecdc11
+References: <20250623-apr_14_for_sending-v6-0-6583ce0f6c25@samsung.com>
+	<CGME20250623114439eucas1p17e4405b95a5693a972bf40a3b3ecdc11@eucas1p1.samsung.com>
+	<20250623-apr_14_for_sending-v6-8-6583ce0f6c25@samsung.com>
+	<ff96ee1f-23ad-4e7f-9ac1-11f410e459e3@imgtec.com>
 
-Il 25/06/25 13:06, Krzysztof Kozlowski ha scritto:
-> On 25/06/2025 11:45, AngeloGioacchino Del Regno wrote:
->> Il 25/06/25 10:57, Krzysztof Kozlowski ha scritto:
->>> On 25/06/2025 10:20, AngeloGioacchino Del Regno wrote:
->>>> Il 24/06/25 18:02, Krzysztof Kozlowski ha scritto:
->>>>> On 24/06/2025 16:32, Laura Nao wrote:
->>>>>> +  '#reset-cells':
->>>>>> +    const: 1
->>>>>> +    description:
->>>>>> +      Reset lines for PEXTP0/1 and UFS blocks.
->>>>>> +
->>>>>> +  mediatek,hardware-voter:
->>>>>> +    $ref: /schemas/types.yaml#/definitions/phandle
->>>>>> +    description:
->>>>>> +      On the MT8196 SoC, a Hardware Voter (HWV) backed by a fixed-function
->>>>>> +      MCU manages clock and power domain control across the AP and other
->>>>>> +      remote processors. By aggregating their votes, it ensures clocks are
->>>>>> +      safely enabled/disabled and power domains are active before register
->>>>>> +      access.
->>>>>
->>>>> Resource voting is not via any phandle, but either interconnects or
->>>>> required opps for power domain.
->>>>
->>>> Sorry, I'm not sure who is actually misunderstanding what, here... let me try to
->>>> explain the situation:
->>>>
->>>> This is effectively used as a syscon - as in, the clock controllers need to perform
->>>> MMIO R/W on both the clock controller itself *and* has to place a vote to the clock
->>>> controller specific HWV register.
->>>
->>> syscon is not the interface to place a vote for clocks. "clocks"
->>> property is.
->>>
->>>>
->>>> This is done for MUX-GATE and GATE clocks, other than for power domains.
->>>>
->>>> Note that the HWV system is inside of the power domains controller, and it's split
->>>> on a per hardware macro-block basis (as per usual MediaTek hardware layout...).
->>>>
->>>> The HWV, therefore, does *not* vote for clock *rates* (so, modeling OPPs would be
->>>> a software quirk, I think?), does *not* manage bandwidth (and interconnect is for
->>>> voting BW only?), and is just a "switch to flip".
->>>
->>> That's still clocks. Gate is a clock.
->>>
->>>>
->>>> Is this happening because the description has to be improved and creating some
->>>> misunderstanding, or is it because we are underestimating and/or ignoring something
->>>> here?
->>>>
->>>
->>> Other vendors, at least qcom, represent it properly - clocks. Sometimes
->>> they mix up and represent it as power domains, but that's because
->>> downstream is a mess and because we actually (at upstream) don't really
->>> know what is inside there - is it a clock or power domain.
->>>
+
+
+On 6/24/25 15:54, Matt Coster wrote:
+> On 23/06/2025 12:42, Michal Wilczynski wrote:
+>> Several RISC-V boards feature Imagination GPUs that are compatible with
+>> the PowerVR driver. An example is the IMG BXM-4-64 GPU on the Lichee Pi
+>> 4A board. This commit adjusts the driver's Kconfig dependencies to allow
+>> the PowerVR driver to be compiled on the RISC-V architecture.
 >>
->> ....but the hardware voter cannot be represented as a clock, because you use it
->> for clocks *or* power domains (but at the same time, and of course in different
->> drivers, and in different *intertwined* registers).
+>> By enabling compilation on RISC-V, we expand support for these GPUs,
+>> providing graphics acceleration capabilities and enhancing hardware
+>> compatibility on RISC-V platforms.
+>>
+>> Add a dependency on MMU to fix a build warning on RISC-V configurations
+>> without an MMU.
+>>
+>> Reviewed-by: Ulf Hansson <ulf.hansson@linaro.org>
+>> Reviewed-by: Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
+>> Signed-off-by: Michal Wilczynski <m.wilczynski@samsung.com>
+>> ---
+>>  drivers/gpu/drm/imagination/Kconfig | 3 ++-
+>>  1 file changed, 2 insertions(+), 1 deletion(-)
+>>
+>> diff --git a/drivers/gpu/drm/imagination/Kconfig b/drivers/gpu/drm/imagination/Kconfig
+>> index 5f9fff43d6baadc42ebf48d91729bfbf27e06caa..a7da858a5b301e8f088e3e22f5641feb2e078681 100644
+>> --- a/drivers/gpu/drm/imagination/Kconfig
+>> +++ b/drivers/gpu/drm/imagination/Kconfig
+>> @@ -3,9 +3,10 @@
+>>  
+>>  config DRM_POWERVR
+>>  	tristate "Imagination Technologies PowerVR (Series 6 and later) & IMG Graphics"
+>> -	depends on ARM64
+>> +	depends on (ARM64 || RISCV)
 > 
-> BTW:
+> There were two issues you encountered when enabling COMPILE_TEST in v5,
+> both of which are somewhat simple to workaround but expose underlying
+> assumptions we made during early development.
 > 
-> git grep mediatek,hardware-voter
-> 0 results
+> The first [1] is due to us assuming a 64-bit platform, which was never a
+> problem with the ARM64 dependency, but may actually be a problem with
+> RISCV given this allows for 32-bit as well. You should probably make
+> this (RISCV && 64BIT) until the implicit 64-bit dependency can be worked
+> out.
+
+Yeah will incude that in next revision.
+
 > 
-> so I do not accept explanation that you use it in different drivers. Now
-> is the first time this is being upstream, so now is the time when this
-> is shaped.
+> Somewhat related, we also assume a little-endian host. Technically ARM64
+> can also be big-endian, you just don't encounter that in the wild too
+> often so it's never been a "real" issue. I do wonder if swapping out
+> (ARM64 || RISCV) for (64BIT && CPU_LITTLE_ENDIAN) entirely would be a
+> reasonable change, perhaps for another day though...
+> 
+> The other [2] is slightly more subtle. To keep things straightforward,
+> we currently map CPU pages to GPU pages 1:1, meaning we use the CPU page
+> size to define the GPU page size. That GPU page size is configurable,
+> but does not support every possible size the CPU could support on any
+> architecture. The failing test there was sparc64 with an 8K page size
+> causing no GPU page size to be defined. See the #if/#elif ladder at the
+> top of pvr_mmu.c for the supported sizes and the doc comment above
+> PVR_DEVICE_PAGE_SIZE in pvr_mmu.h for the acknowledgement of the page
+> size restrictions.
+> 
+> The "proper" fix here would be for us to make these two sizes
+> independent, but that's not a trivial change. The "quick" fix I suppose
+> would be to depend on one of the supported page sizes, so maybe
+> (PAGE_SIZE_4KB || PAGE_SIZE_16KB || PAGE_SIZE_64KB || PAGE_SIZE_256KB)
+> since the larger page sizes appear unsupported (probably for good
+> reason).
 
-I was simply trying to explain how I'm using it in the current design and nothing
-else; and I am happy to understand what other solution could there be for this and
-if there's anything cleaner.
+Thanks for a great explanation !
 
-You see what I do, and I'm *sure* that you definitely know that my goal is *not* to
-just tick yet another box, but to make things right, - and with the best possible
-shape and, especially, community agreement.
+> 
+>>  	depends on DRM
+>>  	depends on PM
+>> +	depends on MMU
+> 
+> Nit: can you keep this alphabetical?
+> 
+> Cheers,
+> Matt
+> 
+> [1]: https://lore.kernel.org/r/202506191323.zD1fszQb-lkp@intel.com/
+> [2]: https://lore.kernel.org/r/202506201103.GX6DA9Gx-lkp@intel.com/
+> 
+>>  	select DRM_EXEC
+>>  	select DRM_GEM_SHMEM_HELPER
+>>  	select DRM_SCHED
+>>
+> 
+> 
 
-Cheers,
-Angelo
-
-
+Best regards,
+-- 
+Michal Wilczynski <m.wilczynski@samsung.com>
 
