@@ -1,124 +1,109 @@
-Return-Path: <devicetree+bounces-189664-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-189665-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 261CAAE8D1C
-	for <lists+devicetree@lfdr.de>; Wed, 25 Jun 2025 20:56:23 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2FBA5AE8DF6
+	for <lists+devicetree@lfdr.de>; Wed, 25 Jun 2025 21:08:48 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id B8F96189E8BB
-	for <lists+devicetree@lfdr.de>; Wed, 25 Jun 2025 18:56:38 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id D764E1C25D46
+	for <lists+devicetree@lfdr.de>; Wed, 25 Jun 2025 19:08:59 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0D63F2DAFD5;
-	Wed, 25 Jun 2025 18:56:10 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 469112DAFA4;
+	Wed, 25 Jun 2025 19:03:47 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Gff5cji2"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="oyBBKXOw"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C1FBC1CAA7B;
-	Wed, 25 Jun 2025 18:56:09 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 129C915278E;
+	Wed, 25 Jun 2025 19:03:45 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1750877769; cv=none; b=A8qBfwJ9GH0yFSBIf0ykcRfC1ft9hlHylkehLbvqA5ijbPVvUh92rvjtiFfzjtT60lvBYoO84HNrZ4MP5M4v/BWcrOJ3TbZURw4I/l9vzMJH+Zzk4EU+X8wbpmVyfyBSRmRpH6AW0Ky62OmeikrQ3BUF2oOhevPXhTq3zpadl9k=
+	t=1750878227; cv=none; b=sFLm42lYeQn8krcRQYE0+paoGc6efJRQWdcIlbPl+FZV56F10v+yT7lwttIKGLlepEkp4ZBAr8lxjHsW3J6UIHq2Lni4EcqUSwSyCtoR6sCPdUQCm26OV0KLDZfyvGd6U09BXJG9WWqrLzD95hKIMX58Z9sEOmZJeoclmGa51XU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1750877769; c=relaxed/simple;
-	bh=6xdnTIn9JsUPsSYNpRZM+JxKZeDZmlbySNAsX2t+WTI=;
+	s=arc-20240116; t=1750878227; c=relaxed/simple;
+	bh=klFBqqktO+5hBILMy1Yyqcdg/qsxpTv08B4SUmcvGX0=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=ou7V+M4w+0VrpHIjlkb4ssZCRyusQ0qGztpBoSwhDiwKmDZ89aiXYbhEeUtXay1u1KSk4Qxbfrj71kJcvoXNHqquhzMWR8w1xfbd+61fVN/se8PULGkw36yMcvICNzvE5scT+GbjzX7SqXvZCeMKmNSw6M/4RaKNlUQo2T05lh8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Gff5cji2; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 338B7C4CEEA;
-	Wed, 25 Jun 2025 18:56:09 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=lEHKy+ELb9tbI9dBHv9RRGOCCevZFpO3+fcAffYBHEA8f1KHMIA2EhIBUaTjNwKYkiKs7UsRmZ8d14ahK8gbOAWDFxiZV4YD6f/OCplYWHkzwYL7n2ezhdMDNpv9Xvh0XTNoEssAIQjWDgO0RCn4sHR+J9COpmnvCyyE630LbdQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=oyBBKXOw; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 62EA9C4CEEA;
+	Wed, 25 Jun 2025 19:03:45 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1750877769;
-	bh=6xdnTIn9JsUPsSYNpRZM+JxKZeDZmlbySNAsX2t+WTI=;
+	s=k20201202; t=1750878225;
+	bh=klFBqqktO+5hBILMy1Yyqcdg/qsxpTv08B4SUmcvGX0=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=Gff5cji2w4rVgfmpej2qu34cYAMMr+BzZ4UHZaIH5XAbQTuM9i+g7mUq2U5j40fHZ
-	 Z1q5bI29k3jsZWhuNj5yhDbG1Cf2CK2Ja0Ff7LDDsR3OOFfZ9Vzt2j15k/nXxeuZkT
-	 9YjFuV7bOl1cksFgU80Bm0WScsAeKZPxiJYfl/Gw6Nw4fguHRhvgpQzb9a5DuxXi9k
-	 r0a99nd/yLYW3OjYml4ONi/ceLO8lUzrdNYHwjtC2OmZGRegktJ+ySI9PYIagF4iS1
-	 BZaw35eG2KRHrrYA05zBh06BuCSR5KKlQpVgpHHc3LUu/B0aN9NxM4wAvkXLn1IoOB
-	 S80u/83hMdyFA==
-Date: Wed, 25 Jun 2025 13:56:08 -0500
+	b=oyBBKXOwF3m96jrO7yH8LwgCWA5SYwBc31Yn+nPXckxzBV5pgCHczzrfvNf8a3f3X
+	 qw+QbmC6iZhYRqw+NXn3obFj6jUAD0HHRBF5ECGWdq3nGrHz7DofMuNemLsOT5pSEO
+	 ONA/lJe8G0ay+G95byCo06/DADOxeNMwDCR/Rt3FMyURI6oiwrkNExOKMA0LZA077P
+	 lb2Uew9edSNpcTwEW43v4aYb4QqsU7MBZ+tS6mTekTd474m0MvRYGYvE34nVzxQkUJ
+	 KwOlHWGPjPbvfgzuJStQvdykJqsz+5XZv/EcCfvAxC2cF67WPoAgk2DtdTyhq1Myxv
+	 YvsNFZEBSAoKw==
+Date: Wed, 25 Jun 2025 14:03:44 -0500
 From: Rob Herring <robh@kernel.org>
-To: Ricardo Ribalda <ribalda@chromium.org>
-Cc: Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
-	Hans de Goede <hdegoede@redhat.com>,
-	Mauro Carvalho Chehab <mchehab@kernel.org>,
-	Hans Verkuil <hverkuil@xs4all.nl>,
-	Sakari Ailus <sakari.ailus@linux.intel.com>,
-	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+To: =?iso-8859-1?Q?Andr=E9?= Draszik <andre.draszik@linaro.org>
+Cc: Krzysztof Kozlowski <krzk@kernel.org>,
+	Tudor Ambarus <tudor.ambarus@linaro.org>,
 	Conor Dooley <conor+dt@kernel.org>,
+	Liam Girdwood <lgirdwood@gmail.com>,
+	Mark Brown <broonie@kernel.org>, Lee Jones <lee@kernel.org>,
 	Linus Walleij <linus.walleij@linaro.org>,
 	Bartosz Golaszewski <brgl@bgdev.pl>,
-	"Rafael J. Wysocki" <rafael@kernel.org>,
-	Len Brown <lenb@kernel.org>, linux-media@vger.kernel.org,
-	linux-kernel@vger.kernel.org, linux-usb@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-gpio@vger.kernel.org,
-	linux-acpi@vger.kernel.org
-Subject: Re: [PATCH v2 06/12] dt-bindings: usb: usb-device: Add orientation
- and rotation
-Message-ID: <20250625185608.GA2010256-robh@kernel.org>
-References: <20250605-uvc-orientation-v2-0-5710f9d030aa@chromium.org>
- <20250605-uvc-orientation-v2-6-5710f9d030aa@chromium.org>
+	Peter Griffin <peter.griffin@linaro.org>,
+	Will McVicker <willmcvicker@google.com>, kernel-team@android.com,
+	linux-kernel@vger.kernel.org, linux-samsung-soc@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-gpio@vger.kernel.org
+Subject: Re: [PATCH v2 01/17] dt-bindings: firmware: google,gs101-acpm-ipc:
+ convert regulators to lowercase
+Message-ID: <20250625190344.GA2023865-robh@kernel.org>
+References: <20250606-s2mpg1x-regulators-v2-0-b03feffd2621@linaro.org>
+ <20250606-s2mpg1x-regulators-v2-1-b03feffd2621@linaro.org>
+ <20250611-robust-vehement-dog-2bf6ac@kuoka>
+ <013f55a0adf0b23e0836e33ee4ea0e1e7864a467.camel@linaro.org>
+ <1ada43bbb20b806975d6b0503e36a3b464287612.camel@linaro.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: text/plain; charset=iso-8859-1
 Content-Disposition: inline
-In-Reply-To: <20250605-uvc-orientation-v2-6-5710f9d030aa@chromium.org>
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <1ada43bbb20b806975d6b0503e36a3b464287612.camel@linaro.org>
 
-On Thu, Jun 05, 2025 at 05:52:59PM +0000, Ricardo Ribalda wrote:
-> For some devices, such as cameras, the OS needs to know where they are
-> mounted.
+On Wed, Jun 25, 2025 at 04:05:34PM +0100, André Draszik wrote:
+> Hi Krzysztof,
 > 
-> ACPI has a property for this purpose, which is parsed by
-> acpi_get_physical_device_location():
-> https://uefi.org/htmlspecs/ACPI_Spec_6_4_html/06_Device_Configuration/Device_Configuration.html#pld-physical-location-of-device
+> On Wed, 2025-06-11 at 10:08 +0100, André Draszik wrote:
+> > Hi Krzysztof,
+> > 
+> > On Wed, 2025-06-11 at 11:04 +0200, Krzysztof Kozlowski wrote:
+> > > On Fri, Jun 06, 2025 at 04:02:57PM GMT, André Draszik wrote:
+> > > > Using lowercase for the buck and ldo nodenames is preferred, as
+> > > > evidenced e.g. in [1].
+> > > > 
+> > > > Convert the example here to lowercase before we add any bindings
+> > > > describing the s2mpg1x regulators that will enforce the spelling.
+> > > > 
+> > > > Link: https://lore.kernel.org/all/20250223-mysterious-infrared-civet-e5bcbf@krzk-bin/ [1]
+> > > > Signed-off-by: André Draszik <andre.draszik@linaro.org>
+> > > > ---
+> > > >  Documentation/devicetree/bindings/firmware/google,gs101-acpm-ipc.yaml | 4 ++--
+> > > >  1 file changed, 2 insertions(+), 2 deletions(-)
+> > > 
+> > > So this is also a dependency for the rest of the patches?
+> > 
+> > My thinking was that it makes sense to have it in context with
+> > the other patches, but it indeed could go stand-alone if that's the
+> > preference.
 > 
-> In DT we have similar properties for video-interface-devices called
-> orientation and rotation:
-> Documentation/devicetree/bindings/media/video-interface-devices.yaml
-> 
-> Add rotation and orientation for usb-devices that matches the already
-> existing properties of video-interface-devices.
-> 
-> Signed-off-by: Ricardo Ribalda <ribalda@chromium.org>
-> ---
->  Documentation/devicetree/bindings/usb/usb-device.yaml | 10 ++++++++++
->  1 file changed, 10 insertions(+)
+> Can you take just that patch as-is from this series (then it's at
+> least out of the way :-), or should I resend it separately?
 
-Comments from v1 still apply. Add a schema for *your* device (i.e. one 
-that only matches the compatible string of your device). Look for 
-anything that includes usb-device.yaml for an example. Your schema 
-should have something like this if you want to use 
-video-interface-devices.yaml properties:
-
-allOf:
-  - $ref: /schemas/usb/usb-device.yaml#
-  - $ref: /schemas/media/video-interface-devices.yaml#
-
-> 
-> diff --git a/Documentation/devicetree/bindings/usb/usb-device.yaml b/Documentation/devicetree/bindings/usb/usb-device.yaml
-> index c676956810331b81f11f3624340fc3e612c98315..a44eb24c657993f88145377a4706ec419b6cd998 100644
-> --- a/Documentation/devicetree/bindings/usb/usb-device.yaml
-> +++ b/Documentation/devicetree/bindings/usb/usb-device.yaml
-> @@ -44,6 +44,14 @@ properties:
->        - minimum: 1
->          maximum: 255
->  
-> +  orientation:
-> +    description: If present, specifies the orientation of the usb device.
-> +    $ref: /schemas/media/video-interface-devices.yaml#/properties/orientation
-
-Again, this is generally the wrong way to add properties from another 
-schema for your device. Above is the right way.
+No. If you take it out, then the rest of the series will have warnings.
 
 Rob
 
