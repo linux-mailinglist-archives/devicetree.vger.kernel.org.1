@@ -1,181 +1,136 @@
-Return-Path: <devicetree+bounces-189554-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-189559-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 87EB2AE8417
-	for <lists+devicetree@lfdr.de>; Wed, 25 Jun 2025 15:15:38 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id F1FD2AE8471
+	for <lists+devicetree@lfdr.de>; Wed, 25 Jun 2025 15:23:33 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 6F019189E64E
-	for <lists+devicetree@lfdr.de>; Wed, 25 Jun 2025 13:14:00 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id CA4481890649
+	for <lists+devicetree@lfdr.de>; Wed, 25 Jun 2025 13:19:53 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E6C2626A1A4;
-	Wed, 25 Jun 2025 13:11:16 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B499926B754;
+	Wed, 25 Jun 2025 13:17:07 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="mdrpuFgG"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="fohGDIt2"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pl1-f171.google.com (mail-pl1-f171.google.com [209.85.214.171])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 17F22262FDE;
-	Wed, 25 Jun 2025 13:11:14 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.171
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7A5D4265CC5;
+	Wed, 25 Jun 2025 13:17:05 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1750857076; cv=none; b=avZUmsMSpm7WSQeYadZGToUCOsZMG9HDLpzu529NZz6C0IfiMHdaOIhmGHjT3B7uNpw17Fg7W3v2NW0LDRClmiXIZzG764TtZcyFm/yqnAN++IP/mSBqCsTBluynURX7Oyo+2fv7WB1BXWrvBDQN8mIhfSq+wPLjyyucPpoJcrA=
+	t=1750857427; cv=none; b=kD8eMGdbwWyJDUeAm4IOERdJDk8FAtCOmFoSBrvtpQEqicUnMqoB2BsHvgKj2rjd3zEwv1V2eTmbT/RH8Dv8/TMc14vt5ptlg9WHX6/1SG5OaGaUGn2Ar0KBUCxrI635fjxDIMj7u0JgZ7P0rzW8EuUNRvrC3Vgws7mZYxAtc9o=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1750857076; c=relaxed/simple;
-	bh=j8C2e6tDckdTRfkOURaqEkwk7kmVI0oyt3RA3Hwp+uI=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=hNd8Bo1+vUojSm6iZVz1rgLa0/vQvBCv8+WQwjzF5Fgn3Uwr73lnlV0wbZF0jek9Ue8EpSPH9AhidGvy/6KeO32kleQ5cp48wWQvZLvbHLP7ntuoHkUg3IPGgrCQkj/UWVatInmh4RZl4moLtd0J1oaItrrnsvt2BeGbYX+N6pA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=roeck-us.net; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=mdrpuFgG; arc=none smtp.client-ip=209.85.214.171
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=roeck-us.net
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-pl1-f171.google.com with SMTP id d9443c01a7336-2363e973db1so8376855ad.0;
-        Wed, 25 Jun 2025 06:11:14 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1750857074; x=1751461874; darn=vger.kernel.org;
-        h=in-reply-to:content-transfer-encoding:content-disposition
-         :mime-version:references:message-id:subject:cc:to:from:date:sender
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=pINmzrGfM7W/3B9anyGB+QhxgI2dWFZ69bm3f0khYUI=;
-        b=mdrpuFgGJJGA6TQkUtweiw5NkxOABpGpjP2rYDl0/eMNflyc8HI+uOi+CDX9RLp+P1
-         6VDxrm9UrHeuLnqbaMGoJ2TkU5Z2nj3GFXRS4+lq+4zNvHbxlwg1GORquijfNP2NvEiD
-         ltvb7kcRRkkMtc6ni0oF1w+m1LkcZlwoCkpuYyujXnAe/TmacYEt9EyYBjSeBXFuf3oA
-         QhTzq/I0FAAh2YQNOzPAVhlm65XbR8eRik1rsa6+X9/HgPbVMP+6atlssi0el9Ha1Vws
-         LuGWsEcXxtfDaQvepkrlDUQKNHoqGuqTwYFpyKt+7YP/9C/SbZH9Fq3B83nQo4XZO+Rd
-         +G9w==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1750857074; x=1751461874;
-        h=in-reply-to:content-transfer-encoding:content-disposition
-         :mime-version:references:message-id:subject:cc:to:from:date:sender
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=pINmzrGfM7W/3B9anyGB+QhxgI2dWFZ69bm3f0khYUI=;
-        b=jyElNzbH5sYscs3qN1AwDlJkugjECQmRL8fWsgcpcYeOnUz6ljRTJkTEPi2TXdJ9of
-         jO4Ovq6fC6F1egwzo3bYc2fC/pvtTVYJCvuXSYa4Qd7d8cO6LUE/JOTNLBsc1EdKI+lI
-         WMhTyYa+1BW4dFDuTrOm7lhanRe4L93U24Kv/evuVeXkIiI+vaGzm0Q7c4el/Kdmn2fO
-         dh1i6KfsSxeQsKYcpF1FS4XUAtjHzRJX4brlE+z/VGcne2IcTYH91ykeqMDPS2BXWZiK
-         gzHrGcfWtf2YJzxpMsH1ju5aqrz8IF8zshf1vY0a2yZOFJZ/C6XqOSjCCpouqkTLcN94
-         r/Eg==
-X-Forwarded-Encrypted: i=1; AJvYcCV0khw1YQcU8Z1uT8hkfTDoBB94wRBMMHc7zhZfqum756ie0kzkuW+OANHS46DTLlDA5C9AoESQN+2/@vger.kernel.org, AJvYcCVCamQHF7x7JXcpQ2h7rtydTVypladjViJ15zvoV7Mm8QWFPQV8KuJWwU8lnowSG/GKknNrLDIB3SpWtTDk@vger.kernel.org, AJvYcCVMY1eLVWza1lABvFOH8lmIxFvcu12We3xWRcP+Px+Y/m0d3QfnDDf4H8Veuu2eGiAYFPCNbb7mDKeUzcY=@vger.kernel.org, AJvYcCXoGW8+rzcuoDEWZlpNSCaPgZAUgw66aLMNNc4TWja48zR/H5e+Tx4HZ0vVlEJ69yF42gz3bvOaq9lv@vger.kernel.org
-X-Gm-Message-State: AOJu0Yy+fUbOmah72nEQV4GnqgxPpE9klFBn0+72bMFfn3warsRkfGA0
-	kIGx0nlt49gUnn9MYJI6DpGmC0uAUQiVfhQ0jIRZyYlag5Ia+X1InWra
-X-Gm-Gg: ASbGncueERItYGfptAeNePxTZDfl+Kc5KKm3kiSYEbVzxsL71v6g9pomOqx4M7nFwOo
-	TngfqlozJZv0ow4cHsSjQoADqjwLUtlsJhr4KLzOJIybGxPkSVdXzejbKDzzuk8OJkCDDFl8zEe
-	QUBHVNmQCA8wteRDlLz7le2hNvHUkfZGQIvBP7xfyTu3tweGN0xcosN8p15N5ilVJS9xTiMDKv7
-	Ik3ad2mRi4qrRnCfQ4z5mQ/DbyDZ39Z9psk+iGLQvqIqC1kQe7gtrRPn+7I7qzHswtaMIaMU/jd
-	RbBMeJl6qBWablywo4BeB6dOPw+SoOaPmvZYo/M8YVAqknNnR2NSTAQ+dzAm2FZHGSbb94tdAxA
-	=
-X-Google-Smtp-Source: AGHT+IGFwa6G2iKD65nivo9JPbJnbMdbeBIL5HNDz82Jr9/nArUgZKtC6neqtfHGwF4oRip87mYzHQ==
-X-Received: by 2002:a17:902:fc46:b0:234:b445:3f31 with SMTP id d9443c01a7336-238024b07b2mr133494025ad.17.1750857073974;
-        Wed, 25 Jun 2025 06:11:13 -0700 (PDT)
-Received: from server.roeck-us.net ([2600:1700:e321:62f0:da43:aeff:fecc:bfd5])
-        by smtp.gmail.com with ESMTPSA id d9443c01a7336-237d839325fsm131346655ad.47.2025.06.25.06.11.13
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 25 Jun 2025 06:11:13 -0700 (PDT)
-Sender: Guenter Roeck <groeck7@gmail.com>
-Date: Wed, 25 Jun 2025 06:11:11 -0700
-From: Guenter Roeck <linux@roeck-us.net>
-To: =?utf-8?B?5ZCz5qKT6LGq?= <tzuhao.wtmh@gmail.com>
-Cc: Krzysztof Kozlowski <krzk@kernel.org>, Rob Herring <robh@kernel.org>,
+	s=arc-20240116; t=1750857427; c=relaxed/simple;
+	bh=XAgpjW/O3CM0ZnOLk2RcDGdLgfzXfUkXBKJ3HCpD1Qk=;
+	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=apK8EP3U6uP81lx6M65pTdojAfAvsyf0CHGG1ZO3AJVVo/06cOZdWB2zT2MK8uIcOpAzs9KMxHGPMRwsQaIyhURdb6hhUaq0Y4WT0tWWufcPrSyLYq/ecEYfco8iGD8ah4IUyPp1/H35/aMoWTjq25+GDZsus5QD7GTcqtD5L1U=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=fohGDIt2; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id DDF4DC4CEF3;
+	Wed, 25 Jun 2025 13:17:04 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1750857425;
+	bh=XAgpjW/O3CM0ZnOLk2RcDGdLgfzXfUkXBKJ3HCpD1Qk=;
+	h=From:To:Cc:Subject:Date:From;
+	b=fohGDIt2S5dW8eGGmDkgtYKdXBnWVxx7EZCq9ZBJqvIvFqHEpmJsFQemA+NiTOmuk
+	 Z8D4iDoTqT+8q/rEwcLMGOTRDwwCN/jPdOIQ/rpRc8CUlXCX4D25l+YmMYVjOPNhGu
+	 XxsAqHH+GSDsSwbm5HuD7OwP9Q03l9IbFQnFDKQkgtBrcpnkCnEc5ku+3piBFcfa8d
+	 vGL3ebutZ3I1skb7vrhjs0oGPQYemnRSy3UgFa89E9i+pzpNzJ0O3CuM5bg7lmBoMp
+	 3tAogbbKgZD8b564kogcAbcVNKNSdkmQ4el/+BjxKF+cCTrpJLLED4uQVQCj2EmYfx
+	 ZvGas7sQMl9hw==
+Received: by wens.tw (Postfix, from userid 1000)
+	id 4953A5FC6F; Wed, 25 Jun 2025 21:17:02 +0800 (CST)
+From: Chen-Yu Tsai <wens@kernel.org>
+To: Rob Herring <robh@kernel.org>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
 	Conor Dooley <conor+dt@kernel.org>,
-	Jean Delvare <jdelvare@suse.com>, Jonathan Corbet <corbet@lwn.net>,
-	Jonathan Cameron <Jonathan.Cameron@huawei.com>,
-	Naresh Solanki <naresh.solanki@9elements.com>,
-	Rodrigo Gobbi <rodrigo.gobbi.7@gmail.com>,
-	Michal Simek <michal.simek@amd.com>,
-	Fabio Estevam <festevam@gmail.com>,
-	Henry Wu <Henry_Wu@quantatw.com>,
-	Grant Peltier <grantpeltier93@gmail.com>,
-	Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
-	Cedric Encarnacion <cedricjustine.encarnacion@analog.com>,
-	Kim Seer Paller <kimseer.paller@analog.com>,
-	Leo Yang <leo.yang.sy0@gmail.com>,
-	Ninad Palsule <ninad@linux.ibm.com>,
-	Alex Vdovydchenko <xzeol@yahoo.com>,
-	John Erasmus Mari Geronimo <johnerasmusmari.geronimo@analog.com>,
-	Nuno Sa <nuno.sa@analog.com>, Jerome Brunet <jbrunet@baylibre.com>,
-	Noah Wang <noahwang.wang@outlook.com>,
-	Mariel Tinaco <Mariel.Tinaco@analog.com>,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	linux-hwmon@vger.kernel.org, linux-doc@vger.kernel.org
-Subject: Re: [PATCH 1/2] hwmon: (pmbus) Add support for MPS multi-phase
- mp2869a/mp29612a controllers
-Message-ID: <331d77c4-fa53-4d3b-a17e-22481bf72d32@roeck-us.net>
-References: <20250624074156.291176-1-Henry_Wu@quantatw.tw>
- <9bd05709-7702-4b74-85e1-3df25b57c535@kernel.org>
- <CAL3H=v3s6H4ZpnS=EhPrpEiu-9N-xFCkunHuwWW0xnkXbzY9Kg@mail.gmail.com>
+	Chen-Yu Tsai <wens@csie.org>,
+	Jernej Skrabec <jernej@kernel.org>,
+	Samuel Holland <samuel@sholland.org>
+Cc: devicetree@vger.kernel.org,
+	linux-sunxi@lists.linux.dev,
+	linux-arm-kernel@lists.infradead.org,
+	linux-kernel@vger.kernel.org,
+	Andre Przywara <andre.przywara@arm.com>
+Subject: [PATCH v2 0/5] arm64: allwinner: t527: Add OrangePi 4A board
+Date: Wed, 25 Jun 2025 21:16:47 +0800
+Message-Id: <20250625131652.1667345-1-wens@kernel.org>
+X-Mailer: git-send-email 2.39.5
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <CAL3H=v3s6H4ZpnS=EhPrpEiu-9N-xFCkunHuwWW0xnkXbzY9Kg@mail.gmail.com>
 
-On Wed, Jun 25, 2025 at 02:31:02PM +0800, 吳梓豪 wrote:
-> Krzysztof Kozlowski <krzk@kernel.org> 於 2025年6月24日 週二 下午3:48寫道：
-> >
-> > On 24/06/2025 09:41, tzuhao.wtmh@gmail.com wrote:
-> > > +static int
-> > > +MP2869A_read_byte_data(struct i2c_client *client, int page, int reg)
-> > > +{
-> > > +     switch (reg) {
-> > > +     case PMBUS_VOUT_MODE:
-> > > +             /* Enforce VOUT direct format. */
-> > > +             return PB_VOUT_MODE_DIRECT;
-> > > +     default:
-> > > +             return -ENODATA;
-> > > +     }
-> > > +}
-> > > +
-> > > +static int
-> > > +MP2869A_identify_vout_format(struct i2c_client *client,
-> >
-> > Use Linux coding style, so lowercase for variables, types and functions.
-> > Everywhere (except when coding style tells you different, so please read
-> > it).
-> >
-> > > +                         struct MP2869A_data *data)
-> > > +{
-> > > +     int i, ret;
-> > > +
-> > > +     for (i = 0; i < data->info.pages; i++) {
-> > > +             ret = i2c_smbus_write_byte_data(client, PMBUS_PAGE, i);
-> > > +             if (ret < 0)
-> > > +                     return ret;
-> > > +
-> > > +             ret = i2c_smbus_read_word_data(client, MP2869A_VOUT_MODE);
-> > > +             if (ret < 0)
-> > > +                     return ret;
-> > > +
-> > > +             switch (ret & MP2869A_VOUT_MODE_MASK) {
-> > > +             case MP2869A_VOUT_MODE_VID:
-> > > +                     data->vout_format[i] = vid;
-> > > +                     break;
-> > > +             default:
-> > > +             return -EINVAL;
-> > > +             }
-> > > +             }
-> >
-> > Messed indentation in multiple places.
-> >
-> > > +     return 0;
-> > > +}
-> > > +
-> > > +static struct pmbus_driver_info MP2869A_info = {
-> >
-> > This is const.
-> Since info will be modified by mp2869a_read_vout at runtime, I chose
-> not to make it constant
+From: Chen-Yu Tsai <wens@csie.org>
 
-That is a no-go. There can be multiple instances of the chip in a system,
-each requiring its own info data structure. If the structure is modified
-at runtime it needs to be copied first.
+Hi everyone,
 
-Guenter
+This is v2 of my OrangePi 4A series. Changes since v1:
+- Fixed regulator names for bldo3 and bldo4
+- Dropped labels for aldo1, bldo3, and bldo4, which are not really used
+- Added voltage constraints to aldo2, based on specifications from
+  schematic
+- Appended "-usb-0v9" to cpusldo's regulator name
+- Added comments to explain how axp323 aldo1 and dldo1 are tied together
+
+This series adds support for the OrangePi 4A board. This is a Raspberry
+Pi model B form factor development board based on the Allwinner T527
+SoC.
+
+The board has the following features:
+- Allwinner T527 SoC
+- AXP717B + AXP323 PMICs
+- Up to 4GB LPDDR4 DRAM
+- micro SD slot
+- optional eMMC module
+- M.2 slot for PCIe 2.0 x1
+- 16 MB SPI-NOR flash
+- 4x USB 2.0 type-A ports (one can be used in gadget mode)
+- 1x Gigabit ethernet w/ Motorcomm PHY (through yet to be supported GMAC200)
+- 3.5mm audio jack via internal audio codec
+- HDMI 2.0 output
+- eDP, MIPI CSI (2-lane and 4-lane) and MIPI DSI (4-lane) connectors
+- USB type-C port purely for power
+- AP6256 (Broadcom BCM4345) WiFi 5.0 + BT 5.0
+- unsoldered headers for ADC and an additional USB 2.0 host port
+- 40-pin GPIO header
+
+Patch 1 adds a new entry to the list of board compatibles.
+
+Patch 2 and 3 are minor cleanups.
+
+Patch 4 adds pins for UART1, which is used for BT on the board.
+
+Patch 5 adds a dts file for the new board.
+
+
+Please take a look. I will take all the patches through the sunxi tree.
+
+
+Thanks
+ChenYu
+
+
+Chen-Yu Tsai (5):
+  dt-bindings: arm: sunxi: Add Xunlong OrangePi 4A board
+  arm64: dts: allwinner: a523: Move mmc nodes to correct position
+  arm64: dts: allwinner: a523: Move rgmii0 pins to correct location
+  arm64: dts: allwinner: a523: Add UART1 pins
+  arm64: dts: allwinner: t527: Add OrangePi 4A board
+
+ .../devicetree/bindings/arm/sunxi.yaml        |   5 +
+ arch/arm64/boot/dts/allwinner/Makefile        |   1 +
+ .../arm64/boot/dts/allwinner/sun55i-a523.dtsi | 160 ++++----
+ .../dts/allwinner/sun55i-t527-orangepi-4a.dts | 383 ++++++++++++++++++
+ 4 files changed, 476 insertions(+), 73 deletions(-)
+ create mode 100644 arch/arm64/boot/dts/allwinner/sun55i-t527-orangepi-4a.dts
+
+-- 
+2.39.5
+
 
