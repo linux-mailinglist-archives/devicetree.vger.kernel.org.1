@@ -1,187 +1,102 @@
-Return-Path: <devicetree+bounces-189297-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-189298-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 39377AE785A
-	for <lists+devicetree@lfdr.de>; Wed, 25 Jun 2025 09:20:07 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 56B7FAE78AB
+	for <lists+devicetree@lfdr.de>; Wed, 25 Jun 2025 09:34:52 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 7E3AB167E22
-	for <lists+devicetree@lfdr.de>; Wed, 25 Jun 2025 07:20:07 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id E1A50189783C
+	for <lists+devicetree@lfdr.de>; Wed, 25 Jun 2025 07:35:06 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A1F5672626;
-	Wed, 25 Jun 2025 07:20:02 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="bADYCqdk"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id DA29C1E9B23;
+	Wed, 25 Jun 2025 07:34:28 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from TWMBX01.aspeed.com (mail.aspeedtech.com [211.20.114.72])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 770C33597E;
-	Wed, 25 Jun 2025 07:20:02 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DE3521DB958;
+	Wed, 25 Jun 2025 07:34:25 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=211.20.114.72
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1750836002; cv=none; b=R2allyfr8NEtF38cD44RauNhcizOL+nS/6quMtTb0Z3K5QnMkMrHYA4c4OWpncrsRXGoDK0pO9/Tfj49RrgxGoxFgJ+b9tw4NqvoGAfgw9DvvES63VA80u6B12nUB7twjqk3z6Dhnak+fvVuUNHQI+as5qWFjX7zDPVJX2tF/GM=
+	t=1750836868; cv=none; b=plAcxfBZAVY6LFvtpEiljZQe7wufb+I/bzQv8UnLPjOUHRSWFvGIYrNPzfeetjTnR64rquxMyWbGbgje3SW9Qr2WZCIZMNYKOr1e1/nVkxiTvdg3MLWQGndrBoGfPiH4DiUb2W8CDac/oQPl2xLwgBlDknyW2gGA4U+L2lIimX0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1750836002; c=relaxed/simple;
-	bh=LuJi1VNE/G1vKjVvK+xAlqsoT8AAVna9tG+hj4b7RFo=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=PFuf9P37kYmfyA8eZuk6m8jsRwOk04Q/S+6pZ9IJSSHk/TJryGrjK/Xqv2w0njK7C8tqxLMt9MTVdNkoUdFS4u0kLPnUBwPyM4zAVKy5EbfzideMzd3qAHAydC92bTlDIXVlNjU9DsNKjOZt6oWvPbzZWzj9KYaRGlBerUuJ1RQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=bADYCqdk; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 9A366C4CEEA;
-	Wed, 25 Jun 2025 07:20:01 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1750836002;
-	bh=LuJi1VNE/G1vKjVvK+xAlqsoT8AAVna9tG+hj4b7RFo=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=bADYCqdkD3ZNIf1+Eb8K3j67BIAQrorSJEnvXZKYAnnvvbYP+mHniMOxO6gBJjuli
-	 XebWDmwLVmZEoykCEHg9YZXCMoMIMUDzcFECae4G/5vaDD/LdlThcb6R8O3jMEmvtf
-	 3oOUKAvToc6y5KfhLLEm0n7nRHACLDlfUigQFIf8orGck+QDphJ79Qc3xoxT6bZbJt
-	 AXhIwuE9hK6bEqhzGVQvSWEF4+oLzxft464zT3ZRmr0yaN8eJ6dqPHvvqvypBERWxi
-	 tlJxyYt3oVxRd8jEcqHisL2g1D+opks5KFWxhI38eCu5tqIm5QOYKabDs/SG3nFgF6
-	 YgYb/gzfDydvg==
-Date: Wed, 25 Jun 2025 09:19:58 +0200
-From: Uwe =?utf-8?Q?Kleine-K=C3=B6nig?= <ukleinek@kernel.org>
-To: Marek Vasut <marek.vasut@mailbox.org>
-Cc: linux-pwm@vger.kernel.org, Conor Dooley <conor+dt@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Rob Herring <robh@kernel.org>, devicetree@vger.kernel.org, 
-	linux-renesas-soc@vger.kernel.org
-Subject: Re: [PATCH v4 3/3] pwm: argon-fan-hat: Add Argon40 Fan HAT support
-Message-ID: <n5euqjvuc6efyi3mums7ggmmmgycuda7ol5d6mz5htetqpebwl@6zumq5ruftee>
-References: <20250621172056.160855-1-marek.vasut+renesas@mailbox.org>
- <20250621172056.160855-3-marek.vasut+renesas@mailbox.org>
- <purpjdp72jw2rok5ihyua635izyih54ufom2knsbaiwdd3jzgk@6wjf364fao2g>
- <dbec18f0-5df4-4eb8-93ab-da6ccfedf8ab@mailbox.org>
- <apbocxuzcptlpghphh7nchnwyxpfhmiwosgxrt4y5awsb67ar3@fbskfbulwsma>
- <033bbb7d-ab00-467e-ab21-877f76d027a2@mailbox.org>
+	s=arc-20240116; t=1750836868; c=relaxed/simple;
+	bh=pFGAiFD7LUEJrgd8t0OpEUTJgUbOH8Ykp9q5zrIdDUU=;
+	h=From:To:Subject:Date:Message-ID:MIME-Version:Content-Type; b=gjHqt7Lx28qHVtqpSKYbml3KpBM++eyYA9Q9PGTjjVTZUCobHHkgmT1AFJER40EPGvRl0S39aQuRiJXXgEQ1pUYiOfkyMkzEoMd3VKV4/q5sG1vFbHFjdkM9c8Kpf38gIXOL5o1fvAi2oADssgg6fO5hbRl7gnfliFquhSbl0Y8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=aspeedtech.com; spf=pass smtp.mailfrom=aspeedtech.com; arc=none smtp.client-ip=211.20.114.72
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=aspeedtech.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=aspeedtech.com
+Received: from TWMBX01.aspeed.com (192.168.0.62) by TWMBX01.aspeed.com
+ (192.168.0.62) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1748.10; Wed, 25 Jun
+ 2025 15:34:18 +0800
+Received: from mail.aspeedtech.com (192.168.10.13) by TWMBX01.aspeed.com
+ (192.168.0.62) with Microsoft SMTP Server id 15.2.1748.10 via Frontend
+ Transport; Wed, 25 Jun 2025 15:34:17 +0800
+From: Jammy Huang <jammy_huang@aspeedtech.com>
+To: <jassisinghbrar@gmail.com>, <robh@kernel.org>, <krzk+dt@kernel.org>,
+	<conor+dt@kernel.org>, <joel@jms.id.au>, <andrew@codeconstruct.com.au>,
+	<linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>,
+	<linux-arm-kernel@lists.infradead.org>, <linux-aspeed@lists.ozlabs.org>
+Subject: [PATCH v5 0/2] ASPEED: Add mailbox driver for AST2700 series
+Date: Wed, 25 Jun 2025 15:34:15 +0800
+Message-ID: <20250625073417.2395037-1-jammy_huang@aspeedtech.com>
+X-Mailer: git-send-email 2.34.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="pbpjsoz762zsasuf"
-Content-Disposition: inline
-In-Reply-To: <033bbb7d-ab00-467e-ab21-877f76d027a2@mailbox.org>
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+
+Add mailbox controller driver for AST27XX SoCs, which provides
+independent tx/rx mailbox between different processors. There are 4
+channels for each tx/rx mailbox and each channel has an 32-byte FIFO.
+
+ v5 changes:
+  - Update document
+     1. Separate reg from 1 to 2. 1st is tx controller; 2nd is rx.
+     2. Remove 'Reviewed-by' since the patch has changed.
+  - Update driver, no functional changes.
+     1. Update since there is 2 reg base now.
+     2. Refine reg definitions
+     3. Add spinlock to protect registers
+     4. Use bool as return value for ast2700_mbox_tx_done
+     5. Rename variable from drv_data to dev_data.
+
+ v4 changes:
+  - Update driver, no functional changes.
+     1. Remove unused variable, rx_buff, in struct ast2700_mbox.
+     2. Remove unneeded cast on device_get_match_data.
+     3. Remove the usage of writel/readl_relaxed.
+     4. Improve readability.
+ v3 changes:
+  - Correct document
+     1. Use 32-bit addressing in dts example property, reg.
+ v2 changes:
+  - Update document
+     1. Correct error in dts example.
+     2. Drop description for mbox-cell per suggestion previously.
+
+Jammy Huang (2):
+  dt-bindings: mailbox: Add ASPEED AST2700 series SoC
+  mailbox: aspeed: add mailbox driver for AST27XX series SoC
+
+ .../mailbox/aspeed,ast2700-mailbox.yaml       |  60 +++++
+ drivers/mailbox/Kconfig                       |   8 +
+ drivers/mailbox/Makefile                      |   2 +
+ drivers/mailbox/ast2700-mailbox.c             | 240 ++++++++++++++++++
+ 4 files changed, 310 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/mailbox/aspeed,ast2700-mailbox.yaml
+ create mode 100644 drivers/mailbox/ast2700-mailbox.c
 
 
---pbpjsoz762zsasuf
-Content-Type: text/plain; protected-headers=v1; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
-Subject: Re: [PATCH v4 3/3] pwm: argon-fan-hat: Add Argon40 Fan HAT support
-MIME-Version: 1.0
+base-commit: ec7714e4947909190ffb3041a03311a975350fe0
+-- 
+2.25.1
 
-Hello Marek,
-
-On Mon, Jun 23, 2025 at 10:44:28PM +0200, Marek Vasut wrote:
-> On 6/23/25 9:53 PM, Uwe Kleine-K=F6nig wrote:
-> > On Mon, Jun 23, 2025 at 07:30:33PM +0200, Marek Vasut wrote:
-> > > On 6/23/25 11:11 AM, Uwe Kleine-K=F6nig wrote:
-> > > > when I replied to v3 this v4 was already on the list which I missed=
-=2E My
-> > > > concern applies here, too, though.
-> > > >=20
-> > > > On Sat, Jun 21, 2025 at 07:19:56PM +0200, Marek Vasut wrote:
-> > > > > +static void argon_fan_hat_i2c_shutdown(struct i2c_client *i2c)
-> > > > > +{
-> > > > > +	argon_fan_hat_write(i2c, 100);
-> > > > > +}
-> > > >=20
-> > > > If you drop this, I'm willing to apply.
-> > >=20
-> > > Dropping this would make the hardware which uses this device more
-> > > susceptible to thermal damage, e.g. in case it gets stuck during rebo=
-ot and
-> > > does not boot Linux afterward. I don't want to risk such thermal dama=
-ge.
-> >=20
-> > We agree here. But the right place to address this is the pwm-fan
-> > driver. A PWM is supposed to do exactly and only what its consumer wants
-> > it to do (in the limits set by hardware). Officially a PWM driver
-> > doesn't know the polarity of a fan, so `argon_fan_hat_write(i2c, 100)`
-> > might fully enable or complete disable the fan. The fan-driver knows the
-> > polarity. The PWM driver doesn't even know that it controls a fan. And
-> > the next guy takes the argon device and controls a motor with it --- and
-> > wonders that the vehicle gives full-speed at shutdown.
->=20
-> I suspect this cannot happen without non-standard hardware change of this
-> device, see the link which shows what this device is, it is an integrated
-> PWM+fan device:
->=20
-> Argon Fan HAT https://argon40.com/products/argon-fan-hat
-
-I know people using hardware in different ways than specified by the
-vendor, so this is a weak argument.
-
-> > So I hope we also agree that the pwm-fan driver (or an even more generic
-> > place if possible that applies to all fan drivers) is the right layer to
-> > fix this. And note that the pwm-fan driver already has such a decision
-> > implemented, it's just the wrong one from your POV as it disables the
-> > fan at shutdown. For me this is another confirmation that having a
-> > shutdown callback in the PWM driver is wrong. The two affected drivers
-> > shouldn't fight about what is the right policy.
->=20
-> I would fully agree with this argument for a generic PWM controller, but
-> this isn't one, this is a combined PWM+fan device.
-
-You model it as PWM + fan, and that's fine. I don't want special sauce
-in the PWM driver part. And you don't need special sauce in the PWM
-driver part to ensure the fan to spin up at shutdown.
-
-> The PWM driver is the last one that is being shut down, it is being shut
-> down after the pwm-fan driver.
-
-Did you notice that the i2c bus driver is shut down still later? I
-suggest to ensure there that the fan isn't disabled. /s
-
-> If the pwm-fan driver fails for whatever
-> reason, the PWM driver -- in this case driver for a combined PWM+fan devi=
-ce
-> -- should make sure that the hardware does not melt. So I would argue tha=
-t,
-> for this specific device, the shutdown hook here is correct.
-
-The most likely problem in the pwm-fan driver is that the i2c bus is
-broken, the pwm driver doesn't help here either. How far do you want to
-go? Force the driver to =3Dy in .config? Probe it even when it's missing
-in the device tree? Provide the fan device if PWM_FAN is disabled?
-
-=46rom a software architecture POV splitting responsibilities to different
-components is the right thing to do. This helps to keep maintainability
-efforts within bounds, doesn't surprise developers that research the fan
-behaviour and so check the fan driver, and increase reusability and
-solving problems only once. Also the next PWM driver author creating an
-i2c based PWM driver won't copy the shutdown hook from the argon40
-driver which probably is even more wrong for that one.
-
-> I would propose to keep the shutdown hook here, and extend the pwm-fan
-> driver to be aligned with the behavior of the shutdown hook here. Does th=
-at
-> work for you ?
-
-I stand to my request: Drop the shutdown hook and adapt the pwm-fan
-driver to your needs.
-
-Best regards
-Uwe
-
---pbpjsoz762zsasuf
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQEzBAABCgAdFiEEP4GsaTp6HlmJrf7Tj4D7WH0S/k4FAmhboxwACgkQj4D7WH0S
-/k55+gf/dN2PkFx0Wau4xvX9qA+TxSD+j6m0BISKvrRoXw8iqySCwgDTSGju2eNX
-HKV/G1PrOpE7iOayyfi7VFAuBprFzFjPluMFnt6k1pgR7jqVSzYKLqu9OrF+fNkO
-W90XLEHRbCvEb/7p1xi03guEk2QCt3482DUpcRBelcxg7aVh3Blcl7tgK83ScJ0f
-KasNtPZRwS8jqaACXamebkzVLPmAMYNzVO8FWwbOiyrZ/m2CCHYCNBe1XjiKryyZ
-YOKHtchyyqUg7smGKBiW6hsmB1zPXjYGYXvDAyryurIC+4WX88doAbJ284P3fwyI
-MYSqSjxpZp5ZIIGWuhO7q/m9p2i9nw==
-=l2Zr
------END PGP SIGNATURE-----
-
---pbpjsoz762zsasuf--
 
