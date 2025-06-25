@@ -1,190 +1,129 @@
-Return-Path: <devicetree+bounces-189604-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-189605-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6A45AAE8779
-	for <lists+devicetree@lfdr.de>; Wed, 25 Jun 2025 17:08:27 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 633B9AE877F
+	for <lists+devicetree@lfdr.de>; Wed, 25 Jun 2025 17:09:49 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id B491F16E329
-	for <lists+devicetree@lfdr.de>; Wed, 25 Jun 2025 15:08:08 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id EBA845A31D2
+	for <lists+devicetree@lfdr.de>; Wed, 25 Jun 2025 15:09:23 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8349326A0A7;
-	Wed, 25 Jun 2025 15:08:06 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id CF73B269B0D;
+	Wed, 25 Jun 2025 15:09:43 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="SkTnQF1k"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="u0PLn9cr"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5912326980C;
-	Wed, 25 Jun 2025 15:08:06 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A351B26980C;
+	Wed, 25 Jun 2025 15:09:42 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1750864086; cv=none; b=BeUOHIA+fqCRmvrHO8+PQdiV3rzvk2r3PnjZIMylw/MLQr83frEh94WnnzlRotWGqxCIev5ldFuHcZ1FpuovgIReb39WwiyUbspkzo91OnMO53eQAkJALw1ovv7sJB6kao5An5C/n38c0CJmCs+K0qd+wtCmVKcpcm2CJUxgufw=
+	t=1750864183; cv=none; b=Zoddwvfey9W6ClXnfbVjyLPZy1nhkkt4yBdd+WQhaxIOrekVcdi/hl+dnA4631XRXoZOKtUxdBFysQDtqG2d47yK9U/HY6PcmF26FZ4lRWaMP7rsRzaiw/sXBgLpcRe2cOTbYtvNl8gA5eCZBzhueLQbHORa5tdjxT/IYZ9FD24=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1750864086; c=relaxed/simple;
-	bh=JmhAkoif1otrp384soDK37/o6hqYnuIKtKUb9uvXqk8=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=A/rjbNkdVloId7Oep4dssNQQlpkHsYDzlcPzzlC+lXn5ToZ7Fz3/gvBOl7h3KOESp7lchXo/NV3N7G6GYsfcnneoQlL14Ye5X5Qs2Tx6IYVinzqzoMRBj+Xjdrc8P5K+SMgE+nt4vyUXbQTni3KfYsT+tcJ6jJsKVMsIvVl9no0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=SkTnQF1k; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id C1312C4CEEA;
-	Wed, 25 Jun 2025 15:08:05 +0000 (UTC)
+	s=arc-20240116; t=1750864183; c=relaxed/simple;
+	bh=gXTrknQJEN2InCoQs4DfBMZwTkg+EzezKbyu9cjLKd0=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=TQ+YPpcPmPLgojQ/zYRF3DYOF2fSafD58t1WtbOgVWuMpVQrahJpCfZz1QgxzCtoIWBKSHsMKiBUv3Y968Y6YNOVELpwdA52xTw7/uY1Tr0KZyQRPBZzYGfPTTiPsoROjGK86dAymNVieDEUaaWrRTeiMAmKpo3sNJ8zTc2Bxt4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=u0PLn9cr; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id B3131C4CEEA;
+	Wed, 25 Jun 2025 15:09:38 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1750864085;
-	bh=JmhAkoif1otrp384soDK37/o6hqYnuIKtKUb9uvXqk8=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=SkTnQF1kyikqilYsD7Cczd6oJ8b1ODVaVkobfCt2Vx/C1mGrS3OEP/0IPQEIY024y
-	 klkF+vtj6vKHtgnKajEtGt8/uTXf0OLUA5RwfIvl24T1XdGW9bxiLGfgcrK6yaehC5
-	 rSu6aPzzOLMUc+hVINWtEmCPCo8Uo8QcpPQWRIz675T2H4/2GSSfTlO8+8WHiczNlP
-	 mXGyBWv+D2H8Vnj5PSx+4p0q6brFUrCqyY9MoDTaAfLRJx8drbwr3g24Gum3FgOJbN
-	 b3Xpjv/JucxgDLzwqJH7eoG5upgbyI3UfXrGH75udDUmJo9IwBQ3pYmGKyjQ9IjfWK
-	 3Ocx9DbtPgFwQ==
-Date: Wed, 25 Jun 2025 10:08:04 -0500
-From: Rob Herring <robh@kernel.org>
-To: Kaustabh Chakraborty <kauschluss@disroot.org>
-Cc: Neil Armstrong <neil.armstrong@linaro.org>,
-	Jessica Zhang <quic_jesszhan@quicinc.com>,
-	David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
-	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
-	Maxime Ripard <mripard@kernel.org>,
-	Thomas Zimmermann <tzimmermann@suse.de>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Jessica Zhang <jessica.zhang@oss.qualcomm.com>,
-	dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v2 1/2] dt-bindings: display: panel: document Synaptics
- TDDI panel driver
-Message-ID: <20250625150804.GA1201460-robh@kernel.org>
-References: <20250625-panel-synaptics-tddi-v2-0-7a62ab1d13c7@disroot.org>
- <20250625-panel-synaptics-tddi-v2-1-7a62ab1d13c7@disroot.org>
+	s=k20201202; t=1750864182;
+	bh=gXTrknQJEN2InCoQs4DfBMZwTkg+EzezKbyu9cjLKd0=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=u0PLn9crr+axy2rYzqoJGjcvfEiSGK9hhM979kA+/G695wC1d6YWe8ziw5ZSuK1Vv
+	 Bvt6fbecPTYZFWJagWccaBrKgkNeYQSCOcPZcoEy1v8R/qIR0azzTjCZaHQBQU9gTr
+	 dXg9n+caddyGG6WecQZWOnsqL2Im+/AifJaxSyFR3k3s/NVJ6zMbBUxqvDLChCkjZc
+	 Qs1kOvjrXsikBZN8kF3GYJfyTU90ALf5+Il/AcK8bN7kNwp3NBCW1MTusVza5k22Mu
+	 b7IWSsbs344BQm1JAx05KbkC61ySuBbZwok4cWMQgd81u4UOMnIl/l1FhI19mymaJL
+	 517W4942n0O8Q==
+Message-ID: <bcd9c013-4df3-4c35-82d1-e6fdde7829ea@kernel.org>
+Date: Wed, 25 Jun 2025 17:09:36 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20250625-panel-synaptics-tddi-v2-1-7a62ab1d13c7@disroot.org>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v1 3/3] samples: rust: platform: Add property child and
+ reference args examples
+To: Rob Herring <robh@kernel.org>
+Cc: Remo Senekowitsch <remo@buenzli.dev>,
+ Saravana Kannan <saravanak@google.com>,
+ Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+ "Rafael J. Wysocki" <rafael@kernel.org>, Miguel Ojeda <ojeda@kernel.org>,
+ Alex Gaynor <alex.gaynor@gmail.com>, Boqun Feng <boqun.feng@gmail.com>,
+ Gary Guo <gary@garyguo.net>, =?UTF-8?Q?Bj=C3=B6rn_Roy_Baron?=
+ <bjorn3_gh@protonmail.com>, Benno Lossin <lossin@kernel.org>,
+ Andreas Hindborg <a.hindborg@kernel.org>, Alice Ryhl <aliceryhl@google.com>,
+ Trevor Gross <tmgross@umich.edu>, Mark Brown <broonie@kernel.org>,
+ Dirk Behme <dirk.behme@de.bosch.com>, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, rust-for-linux@vger.kernel.org
+References: <20250616154511.1862909-1-remo@buenzli.dev>
+ <20250616154511.1862909-4-remo@buenzli.dev>
+ <CAL_JsqKXrsdGjTE5KDkqmVHUK5urMJnWSLWgEi8H1yM21gcOCA@mail.gmail.com>
+ <aFXipz-B1vEYkww9@cassiopeiae> <20250625143930.GA1006384-robh@kernel.org>
+From: Danilo Krummrich <dakr@kernel.org>
+Content-Language: en-US
+In-Reply-To: <20250625143930.GA1006384-robh@kernel.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
 
-On Wed, Jun 25, 2025 at 03:38:44PM +0530, Kaustabh Chakraborty wrote:
-> Document the driver for Synaptics TDDI (Touch/Display Integration) panels.
-
-We document the h/w, not 'the driver'.
-
-> Along with the MIPI-DSI panel, these devices also have an in-built LED
-> backlight device and a touchscreen, all packed together in a single chip.
-> Also, add compatibles for supported panels - TD4101 and TD4300.
+On 6/25/25 4:39 PM, Rob Herring wrote:
+> On Sat, Jun 21, 2025 at 12:37:27AM +0200, Danilo Krummrich wrote:
+>> On Tue, Jun 17, 2025 at 08:01:08AM -0500, Rob Herring wrote:
+>>> On Mon, Jun 16, 2025 at 10:45 AM Remo Senekowitsch <remo@buenzli.dev> wrote:
+>>>>
+>>>> Add some example usage of the device property methods for reading
+>>>> DT/ACPI/swnode child nodes and reference args.
+>>>>
+>>>> Signed-off-by: Remo Senekowitsch <remo@buenzli.dev>
+>>>> ---
+>>>>   drivers/of/unittest-data/tests-platform.dtsi |  7 +++++++
+>>>>   samples/rust/rust_driver_platform.rs         | 13 ++++++++++++-
+>>>>   2 files changed, 19 insertions(+), 1 deletion(-)
+>>>>
+>>>> diff --git a/drivers/of/unittest-data/tests-platform.dtsi b/drivers/of/unittest-data/tests-platform.dtsi
+>>>> index 50a51f38afb6..509eb614ab2b 100644
+>>>> --- a/drivers/of/unittest-data/tests-platform.dtsi
+>>>> +++ b/drivers/of/unittest-data/tests-platform.dtsi
+>>>> @@ -40,6 +40,13 @@ test-device@2 {
+>>>>
+>>>>                                  test,u32-prop = <0xdeadbeef>;
+>>>>                                  test,i16-array = /bits/ 16 <1 2 (-3) (-4)>;
+>>>> +
+>>>> +                               ref_child_0: child@0 {
+>>>
+>>> child-0 or you need to add 'reg' property if you keep the unit-address.
+>>
+>> Adding child nodes here creates the following dt-test failues.
+>>
+>> 	[    1.031239] ### dt-test ### FAIL of_unittest_platform_populate():1862 Could not create device for node 'child'
+>> 	[    1.031647] ### dt-test ### FAIL of_unittest_platform_populate():1862 Could not create device for node 'child'
+>>
+>> @Rob: What do you suggest?
 > 
-> Signed-off-by: Kaustabh Chakraborty <kauschluss@disroot.org>
-> ---
->  .../display/panel/synaptics,td4300-panel.yaml      | 89 ++++++++++++++++++++++
->  1 file changed, 89 insertions(+)
+> This should fix it:
 > 
-> diff --git a/Documentation/devicetree/bindings/display/panel/synaptics,td4300-panel.yaml b/Documentation/devicetree/bindings/display/panel/synaptics,td4300-panel.yaml
-> new file mode 100644
-> index 0000000000000000000000000000000000000000..10ac24afdfbc43ca6913bf8a343413eed81f12ff
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/display/panel/synaptics,td4300-panel.yaml
-> @@ -0,0 +1,89 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/display/panel/synaptics,td4300-panel.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Synaptics TDDI Display Panel Controller
-> +
-> +maintainers:
-> +  - Kaustabh Chakraborty <kauschluss@disroot.org>
-> +
-> +allOf:
-> +  - $ref: panel-common.yaml#
-> +
-> +properties:
-> +  compatible:
-> +    enum:
-> +      - syna,td4101-panel
-> +      - syna,td4300-panel
+> index eeb370e0f507..e3503ec20f6c 100644
+> --- a/drivers/of/unittest.c
+> +++ b/drivers/of/unittest.c
+> @@ -1856,6 +1856,8 @@ static void __init of_unittest_platform_populate(void)
+>          of_platform_populate(np, match, NULL, &test_bus->dev);
+>          for_each_child_of_node(np, child) {
+>                  for_each_child_of_node(child, grandchild) {
+> +                       if (!of_property_present(grandchild, "compatible"))
+> +                               continue;
+>                          pdev = of_find_device_by_node(grandchild);
+>                          unittest(pdev,
+>                                   "Could not create device for node '%pOFn'\n",
+> 
 
-Can a TD4101 be anything other than a panel (controller)? If not, then 
-'-panel' is redundant.
-
-> +
-> +  reg:
-> +    maxItems: 1
-> +
-> +  vio-supply:
-> +    description: core I/O voltage supply
-> +
-> +  vsn-supply:
-> +    description: negative voltage supply for analog circuits
-> +
-> +  vsp-supply:
-> +    description: positive voltage supply for analog circuits
-> +
-> +  backlight-gpios:
-> +    maxItems: 1
-> +    description: backlight enable GPIO
-> +
-> +  reset-gpios: true
-> +  width-mm: true
-> +  height-mm: true
-> +  panel-timing: true
-> +
-> +required:
-> +  - compatible
-> +  - reg
-> +  - width-mm
-> +  - height-mm
-> +  - panel-timing
-> +
-> +additionalProperties: false
-> +
-> +examples:
-> +  - |
-> +    #include <dt-bindings/gpio/gpio.h>
-> +
-> +    dsi {
-> +        #address-cells = <1>;
-> +        #size-cells = <0>;
-> +
-> +        panel@0 {
-> +            compatible = "synaptics,td4300-panel";
-> +            reg = <0>;
-> +
-> +            vio-supply = <&panel_vio_reg>;
-> +            vsn-supply = <&panel_vsn_reg>;
-> +            vsp-supply = <&panel_vsp_reg>;
-> +
-> +            backlight-gpios = <&gpd3 5 GPIO_ACTIVE_LOW>;
-> +            reset-gpios = <&gpd3 4 GPIO_ACTIVE_LOW>;
-> +
-> +            width-mm = <68>;
-> +            height-mm = <121>;
-> +
-> +            panel-timing {
-> +                clock-frequency = <144389520>;
-> +
-> +                hactive = <1080>;
-> +                hsync-len = <4>;
-> +                hfront-porch = <120>;
-> +                hback-porch = <32>;
-> +
-> +                vactive = <1920>;
-> +                vsync-len = <2>;
-> +                vfront-porch = <21>;
-> +                vback-porch = <4>;
-> +            };
-> +        };
-> +    };
-> +
-> +...
-> 
-> -- 
-> 2.49.0
-> 
+Do you want this to be a separate patch? Otherwise, I'd fine just adding it to
+this one.
 
