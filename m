@@ -1,88 +1,80 @@
-Return-Path: <devicetree+bounces-189571-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-189572-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 19DD0AE857F
-	for <lists+devicetree@lfdr.de>; Wed, 25 Jun 2025 16:03:26 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3E538AE85A8
+	for <lists+devicetree@lfdr.de>; Wed, 25 Jun 2025 16:08:15 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 1BCB63BA7CA
-	for <lists+devicetree@lfdr.de>; Wed, 25 Jun 2025 14:02:56 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 2E73E1881612
+	for <lists+devicetree@lfdr.de>; Wed, 25 Jun 2025 14:07:52 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id AB675264A74;
-	Wed, 25 Jun 2025 14:03:13 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C84E2266F00;
+	Wed, 25 Jun 2025 14:07:09 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="X4cMehir"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="GTOFuJPa"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-lj1-f173.google.com (mail-lj1-f173.google.com [209.85.208.173])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5AD14262FF6
-	for <devicetree@vger.kernel.org>; Wed, 25 Jun 2025 14:03:11 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C6B9A266B66
+	for <devicetree@vger.kernel.org>; Wed, 25 Jun 2025 14:07:07 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.173
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1750860193; cv=none; b=J99vwcRp1iMZzzp/3HWwtsSPnSuOUVMOUosFsnpeS4ojfySrXSFjtzrRIYFVueQmNPqsyTDg0Dk3Dw/GnFRK4hy5/JyZKrcTsFyyK2pzP5wI1BoPwXNNfUS9TyUx11M6tgp9lhSpf0d9fh1Usrtutowo/RcI83zXKz+BWueUtPs=
+	t=1750860429; cv=none; b=T9I1LVa4Y8znkUa4hAjv8F/sA1gNKmCPkiVyO3N+6qBYm6bpaztozvxOzNdMoLiiFzLzzlL5lDrYlBcSet8COjUItacgEs8nZ/eg0FyToDHzD7Mr9FIqUM/q4Ga6nLsq/+I/0wAx79CQBW5uKW3ds8fozaeGkuc4K7e+6Woz4Xc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1750860193; c=relaxed/simple;
-	bh=5zMJXwwWW08GGXTySP2knMOGm23otbDvAH32Yql1p7k=;
+	s=arc-20240116; t=1750860429; c=relaxed/simple;
+	bh=oOhaT8mTYEY5X5et6rvG3bx8HBvDxtByzzQfyXrYKlo=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=sCETCSeG3/k9ALsYh7UdEh7GXWQR5V+tQ69EUiewXpoEDx9ZsYc0iJlgoAs6s2SUMaHeEFKxh2zRszE8wg200xv2cSArsK2Na1CCGs0EndlRikcRw1IZpFgJHZARxyVgmNtauCFZlQRSkBP+QrjkEuyt6Bfw/6POX0xERJFkvKc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=X4cMehir; arc=none smtp.client-ip=205.220.180.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
-Received: from pps.filterd (m0279870.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 55PC6Amo013337
-	for <devicetree@vger.kernel.org>; Wed, 25 Jun 2025 14:03:10 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	XFqnMVGRQpupfxD1RJ2vO64N/c6NtFXjip6hXI1/5Fc=; b=X4cMehirXtoXBVvk
-	ABmJsgAVU1YrN1uzZ6MEUfYF9AjNbW4SRjuWooTtKuxPC08owya/wc/Ckcyn+W8c
-	OVOQ0H2BfBGrhgvhlX0VXyTiKmW1nsD+xNsyLqLuJy0edGOtiFXIK19qvKw86ZAj
-	fcdo6v5zEd2tJX9qVdC+0rYnGPTxm+l0hTSE9T996loTAcNuGhLItlIB6mk+Zpoq
-	FtsMDXw9IRBU7XSb5F4dyKD1G7g3hbMdXNGScjC6rtUasl+tokn1kXKiYoGt+b4U
-	VwlzAo4aCBIRAyS3h/kjvHW6TGi8v1zUvzalSjARgzEZj9N22tLApLFw6QN53eJ9
-	fFoFqg==
-Received: from mail-qk1-f200.google.com (mail-qk1-f200.google.com [209.85.222.200])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 47fbm1xp90-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Wed, 25 Jun 2025 14:03:10 +0000 (GMT)
-Received: by mail-qk1-f200.google.com with SMTP id af79cd13be357-7d3ba561898so115526385a.3
-        for <devicetree@vger.kernel.org>; Wed, 25 Jun 2025 07:03:10 -0700 (PDT)
+	 In-Reply-To:Content-Type; b=UVYSqHgEhPQu0Cq9HmovNOUyCjklwkWFyAFAFLA9mHvtg3wyTlIsGSmoL4Lmj3l9pbae4/tgDl/MFnl4AL7r8TOCq5A5nINgsviQFdWAZSaokAS7BqcmG3VVGsKVWTRJ3c3kzKsHdOZy0H4B3IyfGl1mKOwtbCwo+JrJoQVllRQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=GTOFuJPa; arc=none smtp.client-ip=209.85.208.173
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-lj1-f173.google.com with SMTP id 38308e7fff4ca-32b4c37ebf3so3831271fa.3
+        for <devicetree@vger.kernel.org>; Wed, 25 Jun 2025 07:07:07 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1750860426; x=1751465226; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=x9U+9h12lJAfO0glI+fb9gKVyQtO2npmEpYVEgQ5jDI=;
+        b=GTOFuJPakG8ntWv8k0qmI6iA4uwiCMc8KNagnkzZSCVDmUyGu6e71f+hwe7KP1D0T0
+         AA5d1k7cdnJO8l1Qb+yZQCfLUym4AOB0vxilEus/trGcHI6FY67fkvRHhZammf2hb3Ly
+         SiH84VweJ1oNZEhmcO/RhVHfYoyF/wZgFgvZBLIraTtMDR+gMoko3ltIpEDxJkBRqMAG
+         gg3UCuNDE8T2PBi8YihOwoG3aWtuMkNqHBTRQQlxCDWUVLkKyC20azMMyzZw4uGRdmlT
+         //Bp5IIZVNCxKLeVlUr7rx/JmvXdmByuiOdK2J2ZCEJioW0d1Qzk6djphapaoIN65oE/
+         o4Wg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1750860189; x=1751464989;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
+        d=1e100.net; s=20230601; t=1750860426; x=1751465226;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=XFqnMVGRQpupfxD1RJ2vO64N/c6NtFXjip6hXI1/5Fc=;
-        b=RU4XTex+Xi+BVYcSC4d46UAHeO/JDQbjS+n/HR7JVxGIsx7s/dBcEd2Cl9sKcRrj+V
-         imEZG5eNKbERZ8GnKbhdFbZ6S7eYKcunf14Dmyb0cF8kgkjWhVnP98l2VVzCYaYdJKV5
-         LHeeVJdakw39tkuuJl8fZrpW/zwsCZybarSNtw2v7t2uOjOojVnaUjciKW51/fVRiSeM
-         A2AuYWtIVSGRSyLOGKPUTTErD+23Efy+JAMJ/Kq+idujrcrftYPcMzci8ZAyjUsHRdGB
-         amR8eQA7N95dWMnW6nha08OF5Pd7crkAInhmENWL0uYIwukc9icpauIVeFmUNuVtf1md
-         pebg==
-X-Forwarded-Encrypted: i=1; AJvYcCVqCX5U2cm+cf2IH14gPeWFwiTVcya6o60OiSKGqqSOjGvLuRc626lZ5iMBUVp23JqxD7xRlSQ4J3uf@vger.kernel.org
-X-Gm-Message-State: AOJu0YzTBI8xcNF2zDmlw5Z74CNdaJc/6/Uvt9zO5pH6AxYfQnsraIRD
-	u0Xbf5/4E6qVJ6MCyxepg92Vm3yqHuScpa8nYcmpcRlMVDa/DF1LhJjnV80EPhGWJAZucze0g94
-	I5hwcch2BkYm6BP+HTq1QrHEe73Gd9ikQj6X8j3oIAHNxcraKJQUQ9+mah3k9vrWp
-X-Gm-Gg: ASbGncu+rDHK3dvPqUWODcJWoUA7so3cIdp1COTkrXm+JZYJvigpGKZAwOiUxs3iAyf
-	9yMQ5qJqUMcA6MGhq1IFhmoK9JPekYGFXNXE03u74bdeyLMeq2H9OtlwJVddf1pLffCy/S34wKC
-	xi9dPvETpH5DVQrauyhd594O3G6pY8rIjCY/HueRJT8xg06McYCBVR4+uQAhX1aP8P/H3Vc2sGN
-	n+fRYyrPxuxUsn+/jPqCE8+hEwseR3dO87XRstv2B4AID/GRLbZMFao1NkJYiyL1NhgLdQ4xL7e
-	jRWyJvKo761rCBi+lX87T5MPoVqotLrdwgea4kob/g4H2zf3aptfLD4FRa7BWtD04zOHI1k0aou
-	m/jw=
-X-Received: by 2002:a05:620a:1b89:b0:7ce:e99e:bc87 with SMTP id af79cd13be357-7d4297074cfmr151196585a.6.1750860188771;
-        Wed, 25 Jun 2025 07:03:08 -0700 (PDT)
-X-Google-Smtp-Source: AGHT+IGdIBsWsp4TsebQh9ea0CxfPNx1LapgZvLTSmHhJ3o+vsH2NNt9o3OqUtv9riIIP+wKvxF8wQ==
-X-Received: by 2002:a05:620a:1b89:b0:7ce:e99e:bc87 with SMTP id af79cd13be357-7d4297074cfmr151193085a.6.1750860188053;
-        Wed, 25 Jun 2025 07:03:08 -0700 (PDT)
-Received: from [192.168.143.225] (078088045245.garwolin.vectranet.pl. [78.88.45.245])
-        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-ae054209ad2sm1067888966b.148.2025.06.25.07.03.05
+        bh=x9U+9h12lJAfO0glI+fb9gKVyQtO2npmEpYVEgQ5jDI=;
+        b=lcmsBssh8ApGJcO3U5czb+oDwi5ETt8toKK3tllk8YWtwQ59eAQxxxuBgPjwl3bmrS
+         Uok26l5qLbMaWmlWM3YClvAqD57Vk8mjQs2zN6UxqOiK/9g+yLifhe7sISm4vJ//dDHU
+         GYoMZT8QzbcsMwLYk7Ufkk+I+tXf5ICmAHy3GxuRTQ9f9uR0k0Sj4VefldGm1s2Ge9we
+         WpjZaCufBfxYDKoxNKzl9iFHuXPXaZVKo5inkVIzRNcJe0dUAJUEf97RfsM4EoGgaKMq
+         GNZCjWEsRauaRy9g2RjjtDzakm/5/KnmCYgJsUIUdEB1KaDdpSBn8R2LQtWBJaLj54Tr
+         J70g==
+X-Forwarded-Encrypted: i=1; AJvYcCVequxumZO+iN9saHUrt+TMgB2daKFriUDiqKmke1ml6Jk3sC4EYYJZwMmqrnoJ1k4m9RMlZZ0ZhCng@vger.kernel.org
+X-Gm-Message-State: AOJu0Yy2V/3Jdz8rYxkVIDrup6/JKr87qE85QWqpv16mPX7ruxzYrF8q
+	rfb02jN4dLJf1UarG4BXXlsqkd+ikkeAuPdy0BZq0VVhob1mvYEev1yI9ahfWzZ04gU=
+X-Gm-Gg: ASbGncvrwy43N1RR8BcTupAV25/bFhe5ogHlZVQg0RSPS74YqqQpUD1xSeOwXayrLVd
+	kR1ut4YP0sFgVUKziaZJ2pZsZw1QJynxYENfh1K+Xchwo6rDcRF+lIYnJS1BIE9E3WdCyRnha9F
+	H5c/k03EEsyGu4spEs+AE9VmGWBMC+6/w8Jfgxm3l8y2s1G6Xr2/nn3zBc5oMhpKQbKJHBY3dVR
+	nsS/go1bmCBkPTVIb1qsj3YbXa7YGoFAVhWBwGVlT/cKaOicVII30jLO3BJR0hOK1F0/ToltEet
+	oesPMfNaPT/d+S5KfVwkMf9OO3sFfunsm8vXRLKMeG+FbDDb/hI5Iz5PhUGssANJUqMFKAtcbUa
+	6I1Sx5XKatOTixhF/B1Tg/3QF1kNNwNaLTndifRDb
+X-Google-Smtp-Source: AGHT+IG8sE28xELVkAXdzTaChY6Ag5Ds42n+2E0Ni8kbtssG1by8s3qZhrB18Z2t3kMbNyJ5nXk4AA==
+X-Received: by 2002:a2e:a54f:0:b0:30c:40d6:f564 with SMTP id 38308e7fff4ca-32cc655e9a1mr4393141fa.9.1750860424131;
+        Wed, 25 Jun 2025 07:07:04 -0700 (PDT)
+Received: from [192.168.1.4] (88-112-131-206.elisa-laajakaista.fi. [88.112.131.206])
+        by smtp.gmail.com with ESMTPSA id 38308e7fff4ca-32b97f594ebsm20117791fa.10.2025.06.25.07.07.03
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 25 Jun 2025 07:03:06 -0700 (PDT)
-Message-ID: <8ed0cca0-c2ed-47b9-b2e0-bbd66e133f78@oss.qualcomm.com>
-Date: Wed, 25 Jun 2025 16:03:04 +0200
+        Wed, 25 Jun 2025 07:07:03 -0700 (PDT)
+Message-ID: <e0eb8d55-b4fd-4f3b-94b0-5c56d48b4671@linaro.org>
+Date: Wed, 25 Jun 2025 17:07:02 +0300
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -90,61 +82,115 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 3/4] regulator: qcom-rpmh: add support for pmr735b
- regulators
-To: Luca Weiss <luca.weiss@fairphone.com>,
-        Liam Girdwood
- <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>,
-        Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>
-Cc: ~postmarketos/upstreaming@lists.sr.ht, phone-devel@vger.kernel.org,
-        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org
-References: <20250625-pm7550-pmr735b-rpmh-regs-v1-0-cab8ef2e5c92@fairphone.com>
- <20250625-pm7550-pmr735b-rpmh-regs-v1-3-cab8ef2e5c92@fairphone.com>
-Content-Language: en-US
-From: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
-In-Reply-To: <20250625-pm7550-pmr735b-rpmh-regs-v1-3-cab8ef2e5c92@fairphone.com>
-Content-Type: text/plain; charset=UTF-8
+Subject: Re: [PATCH v2 1/2] dt-bindings: media: qcom,x1e80100-camss: Sort
+ interconnects alphabetically
+Content-Language: ru-RU
+To: Krzysztof Kozlowski <krzk@kernel.org>, Robert Foss <rfoss@kernel.org>,
+ Todor Tomov <todor.too@gmail.com>,
+ Bryan O'Donoghue <bryan.odonoghue@linaro.org>
+Cc: Mauro Carvalho Chehab <mchehab@kernel.org>, Rob Herring
+ <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>,
+ Conor Dooley <conor+dt@kernel.org>, linux-arm-msm@vger.kernel.org,
+ linux-media@vger.kernel.org, devicetree@vger.kernel.org
+References: <20250624094253.57441-1-vladimir.zapolskiy@linaro.org>
+ <20250624094253.57441-2-vladimir.zapolskiy@linaro.org>
+ <aa56b956-95f3-484d-8afa-058925b95bfd@kernel.org>
+ <fff77f71-e21b-43b9-9da5-6cf819add970@linaro.org>
+ <5a5b78f7-e156-4c5e-8407-b249040e227d@kernel.org>
+ <c29385d4-30ea-4774-9cf9-699b08e29800@linaro.org>
+ <329b89a4-85a9-496f-8b1b-6239dfc9057b@kernel.org>
+ <930edec1-7403-4ecf-bb17-2e68b8d351f8@kernel.org>
+From: Vladimir Zapolskiy <vladimir.zapolskiy@linaro.org>
+In-Reply-To: <930edec1-7403-4ecf-bb17-2e68b8d351f8@kernel.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
-X-Authority-Analysis: v=2.4 cv=YYu95xRf c=1 sm=1 tr=0 ts=685c019e cx=c_pps
- a=hnmNkyzTK/kJ09Xio7VxxA==:117 a=FpWmc02/iXfjRdCD7H54yg==:17
- a=IkcTkHD0fZMA:10 a=6IFa9wvqVegA:10 a=6H0WHjuAAAAA:8 a=EUspDBNiAAAA:8
- a=FIv874YiPNcmhJNsip8A:9 a=QEXdDO2ut3YA:10 a=PEH46H7Ffwr30OY-TuGO:22
- a=Soq9LBFxuPC4vsCAQt-j:22
-X-Proofpoint-GUID: 2uwjPpR7n-6RiwSPTzu-DsYlHlO0HTbV
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwNjI1MDEwMSBTYWx0ZWRfXz9UjaMTd2qvL
- C+R1QmojNO9Jp/njQuK9X+olsmJAZDFKWxEWpMo1U7ICNkHy/iPGeaAP1I+jgt5VNhu+w3ObpxI
- Tdv4lWUUOw7LgdUy8ZOd1T0E7P9v1LkJSKxqCfbYUMHjHY6L4nAiBawjjv8gR/b/+vQNne9qFAK
- GsW89HsnA6LK7uZHPsBdaK5ppznW+LPrcKT3to2JX4PGayH1V5gJEylu5a/e88WL86Wu9+XKRzg
- JtLb9qI2U2VV3GrZxFufu5BuwDAqAUrlC8JZXyIr6V96JAWvWD01mdF2RlGiWbKwoO8281Sc9xS
- CsqxFkjsQlt4uwdydvwTKx7rbqwIMnYInoG6l9jqnoz1PQg2w8wcDsl1lMKQcfJRpekHp4QpwAo
- uXDSiC4KCAWgDeLqTOvpOY8Di4t6wFX7Tnfh+meNjElqXyknEKkdeQuwGvI+b5PVsL1s0xGP
-X-Proofpoint-ORIG-GUID: 2uwjPpR7n-6RiwSPTzu-DsYlHlO0HTbV
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1099,Hydra:6.1.7,FMLib:17.12.80.40
- definitions=2025-06-25_04,2025-06-25_01,2025-03-28_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- malwarescore=0 adultscore=0 spamscore=0 impostorscore=0 suspectscore=0
- lowpriorityscore=0 priorityscore=1501 phishscore=0 mlxlogscore=911
- clxscore=1015 mlxscore=0 bulkscore=0 classifier=spam authscore=0 authtc=n/a
- authcc= route=outbound adjust=0 reason=mlx scancount=1
- engine=8.19.0-2505280000 definitions=main-2506250101
 
-On 6/25/25 11:18 AM, Luca Weiss wrote:
-> Add RPMH regulators exposed by Qualcomm Technologies, Inc. PMR735B PMIC.
-> It has 12 LDOs with 2 different types, L4 & L10 are LDO512 LV PMOS
-> and the rest are LDO512 NMOS.
+On 6/25/25 10:01, Krzysztof Kozlowski wrote:
+> On 25/06/2025 08:58, Krzysztof Kozlowski wrote:
+>> On 24/06/2025 15:29, Vladimir Zapolskiy wrote:
+>>> On 6/24/25 15:04, Krzysztof Kozlowski wrote:
+>>>> On 24/06/2025 13:38, Vladimir Zapolskiy wrote:
+>>>>> On 6/24/25 13:10, Krzysztof Kozlowski wrote:
+>>>>>> On 24/06/2025 11:42, Vladimir Zapolskiy wrote:
+>>>>>>> Sort the entries of interconnect and interconnect-names lists in the
+>>>>>>> alphabetical order of values in the latter property.
+>>>>>>
+>>>>>> We do not sort these entries alphabetically and you did not explain why
+>>>>>> you are doing this.
+>>>>>
+>>>>> I did it, because I assume that the preference is to sort all named
+>>>>> values alphanumerically.
+>>>>
+>>>> Where is such preference documented?
+>>>
+>>> There is no such preference documented, as I stated it was my assumption
+>>> and it was based on your firm insistance to apply a particular sorting
+>>> order for regs, clocks and interrupts properties. Apparently you are
+>>
+>> Hm? And the rule is by name? I don't think I ever expressed that or
+>> insisted on some sorting by name. During previous talks on camss
+>> numerous times you ignored the ONLY rule of sorting I was insisting:
+>> keep the same as all other devices. That was the one and only rule.
+>>
+>>> fine with out of the same sort order for 'interconnects' values, the
+>>> criteria of picked properties remains unclear for me.
+>>
+>> I don't understand why it is unclear. That time with Bryan you both
+>> received VERY CLEAR feedback from me: there is no such rule of sorting
+>> any values. Yet you were pushing the discussion and patchset like there
+>> was something.
+>>
+> Look, the first reply:
 > 
-> Signed-off-by: Luca Weiss <luca.weiss@fairphone.com>
-> ---
+> https://lore.kernel.org/all/65e5796a-8b8d-44f0-aef4-e420083b9d52@kernel.org/
+> 
+> "You are supposed to keep the same order, as much as
+> possible."
+> 
+> What rule is unclear here?
 
-As far as I can tell, this is in order
+At the moment of the given comment "the same order" was not "sorting by
+values", it was "sorting to address".
 
-Reviewed-by: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
+Check the next message right in the same thread:
 
-Konrad
+https://lore.kernel.org/all/c1539cce-92eb-43fc-9267-f6e002611bbb@linaro.org/
+
+"We always sort by address". And that was the correct statement at
+the time of the discussion.
+
+Did it help to "keep the same order" in any sense? No, the message was
+plainly ignored, and after the long discussion with you the sorting order
+has been brutally enforced to become the new "sorting by values" order,
+and to my sincere today's surprise there is no such rule. Apparently now
+I have to believe it was Bryan's and my voluntary and deliberate decision
+to change the sorting order, all right.
+
+> Even more precise reply from me:
+> 
+> https://lore.kernel.org/all/8f11c99b-f3ca-4501-aec4-0795643fc3a9@kernel.org/
+> 
+> "I don't imply sorting by name is any better."
+> 
+> And:
+> 
+> "The only rule is that all
+> devices from same family type must have the same order."
+> 
+> 
+> And now you claim there was from me "firm insistance to apply a
+> particular sorting" in context of name?
+> 
+> So again, my entire feedback repeated multiple times during that
+> discussion is totally ignored and twisted to some fake new rule of name
+> sorting.
+> 
+
+Thank you for the explanation, and not just your messages are ignored
+sometimes, it happens with anybody regularly.
+
+--
+Best wishes,
+Vladimir
 
