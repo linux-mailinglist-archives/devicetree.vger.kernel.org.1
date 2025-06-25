@@ -1,249 +1,133 @@
-Return-Path: <devicetree+bounces-189614-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-189615-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 96FB7AE8818
-	for <lists+devicetree@lfdr.de>; Wed, 25 Jun 2025 17:29:46 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id F3E8CAE883D
+	for <lists+devicetree@lfdr.de>; Wed, 25 Jun 2025 17:34:25 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 00EC77A1CB2
-	for <lists+devicetree@lfdr.de>; Wed, 25 Jun 2025 15:28:17 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 56F851884AB8
+	for <lists+devicetree@lfdr.de>; Wed, 25 Jun 2025 15:31:18 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E225A26A1BB;
-	Wed, 25 Jun 2025 15:29:34 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 84C4C262FC1;
+	Wed, 25 Jun 2025 15:30:56 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="WhsV+4MU"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="WwLBLA75"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-oa1-f48.google.com (mail-oa1-f48.google.com [209.85.160.48])
+Received: from mail-wr1-f49.google.com (mail-wr1-f49.google.com [209.85.221.49])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BB1491E3772;
-	Wed, 25 Jun 2025 15:29:32 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.160.48
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BE6BC1D63C7;
+	Wed, 25 Jun 2025 15:30:54 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.49
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1750865374; cv=none; b=XpRaGWdNOnt1W7EV6DVmEpme1VOqv84I0qrn9kcH5/4RCgZ3mKAU71Y5pzMuow7H/yC48DJbazTyKYVhaylVH1tH1JtSj5MxZTRFjSCNgBOtN7TGJfnLbT/b9y973rrNDKsCopZAAAa0Kn3YabYZWqfM9sxHcZuwjbEFH6jsOtM=
+	t=1750865456; cv=none; b=Oa/YhdMkkFPEY/Zaikb7TT3HgcJMtyowdh2UyYipStLZWoHF0AcmJMLkVZwMPkGg1g7jdCxNcBt8vMOL2g0+1oEKovCpgitPETl0ksPTLeB2TIyZBpJemkuK+BZ2XkrtySbB3cFdXspPZD9wY7or4E8CIP90DA9di/kDM2olkP0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1750865374; c=relaxed/simple;
-	bh=7Nva2+gS8Wqv4UQiN4BmS+skEo3e1+v7eDoMcNNWbak=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=S2V2hAXRuHrRlTEaexva4gSXdeoo+X05BwFt9gj5xi154XAH8wfxk83xMg4KexvPihbZuhrdAkAgP9f7rADYFKRaMUcEgISSELF404EgNrYfMADxjMpQRlEZ8NFocKRBtdNselbJS19EMmiA7I+w82CIUTrXyEYo6PYz58fTtww=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=WhsV+4MU; arc=none smtp.client-ip=209.85.160.48
+	s=arc-20240116; t=1750865456; c=relaxed/simple;
+	bh=fn76d1OT07aR5qMhS70rOda0WppW8FvGLdPQDYy2UrA=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=CNqy1Co3getZSLjlPByTxxt6MICrxb9eR+Xk5lGTVVgAYoFF4clPeJy0rBwj2kIc1q0juxcc1MckzuI6omW1v9xw1xIO/DFDJBrKkdPNj6BVNKyGVQkIXKooWcVzwh3S/a+/q/q/sc2JZkHAZiPQ4lUPtiydGD7n7uSiSg1Jir0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=WwLBLA75; arc=none smtp.client-ip=209.85.221.49
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-oa1-f48.google.com with SMTP id 586e51a60fabf-2d09d495c6cso10814fac.3;
-        Wed, 25 Jun 2025 08:29:32 -0700 (PDT)
+Received: by mail-wr1-f49.google.com with SMTP id ffacd0b85a97d-3a4fb9c2436so1255389f8f.1;
+        Wed, 25 Jun 2025 08:30:54 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1750865372; x=1751470172; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=2iLRZWU9mr0yxqJABvEamfRCguJhr8FEzZR2ailCaPI=;
-        b=WhsV+4MU7qaSwVxrWwFlZTHccS0cmlsTDx9abuaKxNbX6spOA8kNohLqkhBsWZwd7b
-         +0DrJTm9E8HDdySGaIqzLK/4f5pdgfZiywJvUQMEhEpHwbjMWnX7jqHBvh4PznevTCx9
-         Kds42q6UOR98qL8FSYl/9ckL1yAn6Wv0zBrAUDYOEgLw2kANkonCvuAHRnYOH0tiR3qR
-         5SXGaclNPaS2wQz9qXL5HX+B2yFUv3jRdiCppx7GslJ9Ov/m4eGakLYmcA/5dmQNDVBN
-         HtaaZA/TSFn+Jb8tr2ox+IAYc6z0EK0q7uzGbMCFsmPgVYwF+62HFgku3f4dvpKdl7z1
-         TG5A==
+        d=gmail.com; s=20230601; t=1750865453; x=1751470253; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=pPydrEYqCEEDJzLImKYbu5KqQM5JsZ5hylWTlIASPC4=;
+        b=WwLBLA75inmpOe5DguYNLmMwmTeyq1iHl5E6lPHtonghMevwEEd6mF7NnGrDO9wbkm
+         wIIi+RYIl1xLzaQOSbAJuD6PDefG91M4KkxzmMYMkVr8WVEsICeO/c8pHeGVLurOkYo6
+         bryMI66p2cfCsIu9tFtsh2Q/3EmlHxaclsynPOF2igNd5T73PvvJSG9diwxhaziwNDlx
+         opffTC2FvX3RznjJjnamyEhMCVkA9SqPQLzw0OP8fgPtuCNaWYwht+fSE9IlW3kLNuUn
+         q1YU3unyyywUnVYtZvw2UwE6Uq+1B2LbRGIxwCzOWWSnLJdYM4e90WwsLZkZF4LNMiFc
+         3P7w==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1750865372; x=1751470172;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=2iLRZWU9mr0yxqJABvEamfRCguJhr8FEzZR2ailCaPI=;
-        b=GlB7WTcrm7Am59ocnM8Hix3kaUf3pVd0ydEDBH+IcY9w09w/1z6sUlXGOYRYyB7UJR
-         sD1Rml0xmR9pbPillsNPwLFcjP2SsCJt9nb1Oh0UANxHaMV5XH90bmNfec/T+4eMAiJg
-         Ae+WSpwlq2tuNC/OONU3d9dMVCjWeqx82U5hegmcp9EevZa4N4sxnsK1AIhnilCFJDuE
-         azzBxLMa2XG4bzUBkLdr/YuqdbYHtXIFJg8d5+c+T3+mkcvYTMxQ3ny4YKeqEpyUZYyU
-         uwdMZy6HfFhZ+VYAKpGDP6TDKVAQIpYFe7YdOXDQYs6vrX8yir2hm5VKo/N83NdxwdJX
-         LcCQ==
-X-Forwarded-Encrypted: i=1; AJvYcCXi6CJI0BX9RSv6qGFSyxK2QFQ4GbZ8iTojpbPp/Dfk/Bx+PVRELdJHVHMk+ix9dztVW+Or6KswOXnv@vger.kernel.org
-X-Gm-Message-State: AOJu0YzGjhgKPYZdfBwug7SBtXENCu8jrt15IwrZUnt/qZZJNHPQCn6p
-	llLlB4mLnDjGH/hZeX1jappZF+NlaKaBuG/9a9gcronEwsKvO1O5PjN6
-X-Gm-Gg: ASbGncuhbbm5Qy+RTbkk9gdVXnQAa9Vycs0iYynZT46IWxJrAzPFFkjnlR5SINfkdEt
-	luSHvox/seosMEDPND2XwbuXoO8H9tGjyVnk+og5KijoCoRQAfD3+8LIVPZEHRSsMqIEemPeOzj
-	dTgo9Rb854Y3M/5DDYuMhMFGLLWYBo9MNgTWsv7/B3vlFrPKl0ZyxKdUBa251SxtnG6iSqEopkD
-	NQ3eaiOj99PyswSViHIIULMm3qcw3bn5t+LuuF8EV9cNerxIXGSml6UaNLP3Z/AC6mKrXpWqWaB
-	MME7uXQf9SwTmvs7AO4dLjFnTZoUKgr51xg5DRUMeUUUQvPsDeDtAQo9s03MmwARguL8EGXvB3a
-	agY3yEYl3lqb8ppwMv4s=
-X-Google-Smtp-Source: AGHT+IGi8VRBTkcie2M82z62av9T1Lo0xgSLRRW+ViiR/xkeT8MTD0vEHx52CiLPrSexevn2OM8fgA==
-X-Received: by 2002:a05:6870:9488:b0:2d5:230f:b34a with SMTP id 586e51a60fabf-2efb26d1599mr2456383fac.9.1750865371705;
-        Wed, 25 Jun 2025 08:29:31 -0700 (PDT)
-Received: from neuromancer.localdomain ([2600:1700:fb0:1bc0:d84e:5284:c7b2:e237])
-        by smtp.gmail.com with ESMTPSA id 586e51a60fabf-2ee8a8ea8a4sm2624297fac.24.2025.06.25.08.29.30
+        d=1e100.net; s=20230601; t=1750865453; x=1751470253;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=pPydrEYqCEEDJzLImKYbu5KqQM5JsZ5hylWTlIASPC4=;
+        b=oVJzM02/r6uHTcon5zW2TdX9e1iF1iQy6zg8yJdBRC01Uw5V6BlJNG9OMAMBtyjy/3
+         1UH0fcbXCVoZ/wajAv0Z9R97GoxW4t0JjmIVYr8MvbXQ72z5z7OvUC6tpYb62efenecK
+         yvxwxuledoX3W7xCCqFOUSzdTc3oMuA2Z0gXiYDkw96/HZXqgCAy5e9Hhc1oUMGF7bmM
+         B/lA8g5nDcF/jXcQyluluKokzaorH8FfQLs5JMbXbIYBUUz0XaWP8SkhAs/ttfCSnurx
+         6glHmVf9LC0budh+SrmBRKtJCOM2GQmguk+K+PNBwhJTZXxzDQZiHWwNJ4j4MaFz+uxw
+         zbcw==
+X-Forwarded-Encrypted: i=1; AJvYcCUEkdeI0oIosdxBC3mQoVGtQuO9k6cjmlmhhMimicDsFqGYlKKsson8pAZZbhA05lqQv0O/Y/XLWUq0@vger.kernel.org, AJvYcCXcnreZV9/SUPVa3TQ5ZVw5Frghi86TaA3YY1UqNwr4YAPAtGDVNZvUqB4QUOTRmOBoLcY9Qw06jhVjQHoj@vger.kernel.org
+X-Gm-Message-State: AOJu0YwzJMJn5etjDLzPlBHfbe++Guk6SgSwWP4Q2RpZNsn9zIbZh7j8
+	XKMrPpPUZPKWF7D0P+bXZmaQrUAi8MjiTFj5k80pAPLWAihja7LgurlF
+X-Gm-Gg: ASbGncu8G/L3bIuIWRvA467QcFTj4UVAS074we9z8Ws7ulPJzZHhBn0KPdvSvtx4HL6
+	Y2Baw3L7CZoN5UwzCvk4iPiux6RTMbHN/05r5Qkg0piNnyvI6x+UvbKmyO1qAs572GPAj8ssuRO
+	b01l7xgS+SB2Fb+PcDA8TrhSKuL7/nKRAIKsp7fsD+C92OtpGFvhpG1TFUeqkrkZl6eqlY7DFqO
+	h3nfoURU8dGPLNiULNedBrTOQ7cmSgpZepqtJ9QZy/Aa6cXGWXC4n6tgMqhS+myoh96z4uZICkf
+	4z55g3L1AquKZK1fgz82CYoD2NhrH2eRhEwrTJGKJtxCVN9iQYlJOalMvAanP2X5ZfUn8xIbnIt
+	SwF+1NrKCNe8wDwp3jvQ90C+K6lQX/qk=
+X-Google-Smtp-Source: AGHT+IH+WHdgTTdUhNtpMR28teFc2LxiwcjuubN83yEUP5heQPe2O9PuWCIzbWnfcXOH8Fk5gplfRg==
+X-Received: by 2002:a05:6000:2906:b0:3a5:51a3:3a2 with SMTP id ffacd0b85a97d-3a6ed66e23cmr3187422f8f.45.1750865452667;
+        Wed, 25 Jun 2025 08:30:52 -0700 (PDT)
+Received: from iku.example.org ([2a06:5906:61b:2d00:c47e:d783:f875:2c7c])
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-3a6e80f296bsm4899180f8f.60.2025.06.25.08.30.49
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 25 Jun 2025 08:29:31 -0700 (PDT)
-Date: Wed, 25 Jun 2025 10:29:29 -0500
-From: Chris Morgan <macroalpha82@gmail.com>
-To: Krzysztof Kozlowski <krzk@kernel.org>
-Cc: linux-pm@vger.kernel.org, linux-rockchip@lists.infradead.org,
-	devicetree@vger.kernel.org, broonie@kernel.org, lgirdwood@gmail.com,
-	sre@kernel.org, heiko@sntech.de, conor+dt@kernel.org,
-	krzk+dt@kernel.org, robh@kernel.org, lee@kernel.org,
-	Chris Morgan <macromorgan@hotmail.com>
-Subject: Re: [PATCH V3 1/5] dt-bindings: mfd: ti,bq25703a: Add TI BQ25703A
- Charger
-Message-ID: <aFwV2Xxyjhi6KQkw@neuromancer.localdomain>
-References: <20250623162223.184304-1-macroalpha82@gmail.com>
- <20250623162223.184304-2-macroalpha82@gmail.com>
- <5qeo2xqjprozcjd553qmozzrmbciuf66gic65tzw7jspoub5n4@5wzkqasisgcz>
+        Wed, 25 Jun 2025 08:30:50 -0700 (PDT)
+From: Prabhakar <prabhakar.csengg@gmail.com>
+X-Google-Original-From: Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+To: Geert Uytterhoeven <geert+renesas@glider.be>,
+	Magnus Damm <magnus.damm@gmail.com>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>
+Cc: linux-renesas-soc@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	Prabhakar <prabhakar.csengg@gmail.com>,
+	Biju Das <biju.das.jz@bp.renesas.com>,
+	Fabrizio Castro <fabrizio.castro.jz@renesas.com>,
+	Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+Subject: [PATCH 0/6] arm64: dts: renesas: Add I2C and SDHI nodes for RZ/T2H and RZ/N2H SoCs
+Date: Wed, 25 Jun 2025 16:30:36 +0100
+Message-ID: <20250625153042.159690-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
+X-Mailer: git-send-email 2.49.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <5qeo2xqjprozcjd553qmozzrmbciuf66gic65tzw7jspoub5n4@5wzkqasisgcz>
+Content-Transfer-Encoding: 8bit
 
-On Wed, Jun 25, 2025 at 09:48:30AM +0200, Krzysztof Kozlowski wrote:
-> On Mon, Jun 23, 2025 at 11:22:19AM -0500, Chris Morgan wrote:
-> > From: Chris Morgan <macromorgan@hotmail.com>
-> > 
-> > Document the Texas instruments BQ25703A series of charger managers/
-> > buck/boost regulators.
-> > 
-> > Signed-off-by: Chris Morgan <macromorgan@hotmail.com>
-> > ---
-> >  .../devicetree/bindings/mfd/ti,bq25703a.yaml  | 121 ++++++++++++++++++
-> >  1 file changed, 121 insertions(+)
-> >  create mode 100644 Documentation/devicetree/bindings/mfd/ti,bq25703a.yaml
-> > 
-> > diff --git a/Documentation/devicetree/bindings/mfd/ti,bq25703a.yaml b/Documentation/devicetree/bindings/mfd/ti,bq25703a.yaml
-> > new file mode 100644
-> > index 000000000000..0727f24b8e54
-> > --- /dev/null
-> > +++ b/Documentation/devicetree/bindings/mfd/ti,bq25703a.yaml
-> > @@ -0,0 +1,121 @@
-> > +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> > +%YAML 1.2
-> > +---
-> > +$id: http://devicetree.org/schemas/mfd/ti,bq25703a.yaml#
-> > +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> > +
-> > +title: BQ25703A Charger Manager/Buck/Boost Converter
-> > +
-> > +maintainers:
-> > +  - Chris Morgan <macromorgan@hotmail.com>
-> > +
-> > +allOf:
-> > +  - $ref: /schemas/power/supply/power-supply.yaml#
-> > +
-> > +properties:
-> > +  compatible:
-> > +    const: ti,bq25703a
-> > +
-> > +  reg:
-> > +    const: 0x6b
-> > +
-> > +  interrupts:
-> > +    maxItems: 1
-> > +
-> > +  power-supplies: true
-> 
-> Drop, redundant.
+From: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
 
-Acknowledged.
+Hi All,
 
-> 
-> > +
-> > +  monitored-battery:
-> > +    description:
-> > +      The phandle for a simple-battery connected to this gauge.
-> 
-> This part is redundant. It cannot be anything else, according to
-> power-supply.yaml
-> 
+This patch series adds I2C and SDHI nodes for the Renesas RZ/T2H
+(R9A09G077) and RZ/N2H (R9A09G087) SoCs. The I2C/SDHI nodes are added
+to the respective SoC DTSI files. Additionally, user LEDs are added
+to the RZ/T2H EVK and RZ/N2H EVK boards.
 
-Acknowleged.
+Note, these patches apply on top of the series:
+https://lore.kernel.org/all/20250617171957.162145-1-prabhakar.mahadev-lad.rj@bp.renesas.com/
+https://lore.kernel.org/all/20250617162810.154332-1-prabhakar.mahadev-lad.rj@bp.renesas.com/
 
-> > +      A minimum of constant-charge-current-max-microamp,
-> > +      constant-charge-voltage-max-microvolt, and
-> > +      voltage-min-design-microvolt are required.
-> 
-> This is fine.
-> 
-> > +
-> > +  input-current-limit-microamp:
-> > +    description:
-> > +      Maximum total input current allowed used for both charging and
-> > +      powering the device.
-> > +    minimum: 50000
-> > +    maximum: 6400000
-> > +    default: 3250000
-> > +
-> > +  regulators:
-> > +    type: object
-> > +    additionalProperties: false
-> > +    description:
-> > +      Boost converter regulator output of bq257xx.
-> > +
-> > +    properties:
-> > +      "usb-otg-vbus":
-> 
-> Drop quotes. Is this the name of regulator called in datasheet? To which
-> pin this corresponds to? I cannot find anything on usb-otg or usb_otg.
-> 
+Cheers,
+Prabhakar
 
-This corresponds to the VBUS pin. VBUS is an input usually but becomes
-an output when OTG output voltage and OTG output current are set; OTG
-enable is set, and a GPIO connected to EN_OTG is set high (per section
-8.3.3 of the bq25703a technical docs).
+Lad Prabhakar (6):
+  arm64: dts: renesas: r9a09g077: Add I2C controller nodes
+  arm64: dts: renesas: r9a09g087: Add I2C controller nodes
+  arm64: dts: renesas: r9a09g077: Add SDHI nodes
+  arm64: dts: renesas: r9a09g087: Add SDHI nodes
+  arm64: dts: renesas: r9a09g077m44-rzt2h-evk: Add user LEDs
+  arm64: dts: renesas: r9a09g087m44-rzn2h-evk: Add user LEDs
 
-> 
-> > +        type: object
-> > +        $ref: /schemas/regulator/regulator.yaml
-> > +
-> > +        properties:
-> > +          regulator-name: true
-> > +          regulator-min-microamp:
-> > +            minimum: 0
-> > +            maximum: 6350000
-> > +          regulator-max-microamp:
-> > +            minimum: 0
-> > +            maximum: 6350000
-> > +          regulator-min-microvolt:
-> > +            minimum: 4480000
-> > +            maximum: 20800000
-> > +          regulator-max-microvolt:
-> > +            minimum: 4480000
-> > +            maximum: 20800000
-> > +          enable-gpios:
-> > +            description:
-> > +              The BQ25703 may require both a register write and a GPIO
-> > +              toggle to enable the boost regulator.
-> > +
-> > +        additionalProperties: false
-> 
-> Please place it after $ref.
-> 
-> > +
-> > +        required:
-> > +          - regulator-name
-> > +          - regulator-min-microamp
-> > +          - regulator-max-microamp
-> > +          - regulator-min-microvolt
-> > +          - regulator-max-microvolt
-> > +
-> > +unevaluatedProperties: false
-> > +
-> > +required:
-> > +  - compatible
-> > +  - reg
-> > +  - input-current-limit-microamp
-> > +  - monitored-battery
-> > +  - power-supplies
-> 
-> Keep the same order as in properties.
-> 
-> Best regards,
-> Krzysztof
-> 
+ arch/arm64/boot/dts/renesas/r9a09g077.dtsi    | 85 +++++++++++++++++++
+ .../dts/renesas/r9a09g077m44-rzt2h-evk.dts    | 50 +++++++++++
+ arch/arm64/boot/dts/renesas/r9a09g087.dtsi    | 85 +++++++++++++++++++
+ .../dts/renesas/r9a09g087m44-rzn2h-evk.dts    | 54 ++++++++++++
+ 4 files changed, 274 insertions(+)
 
-Let me know if you have more questions about the VBUS, otherwise I'll
-make the requested changes and resubmit.
+-- 
+2.49.0
 
-Thank you.
-
--Chris
 
