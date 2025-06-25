@@ -1,158 +1,149 @@
-Return-Path: <devicetree+bounces-189506-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-189507-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 59071AE8005
-	for <lists+devicetree@lfdr.de>; Wed, 25 Jun 2025 12:47:33 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id C10F3AE800D
+	for <lists+devicetree@lfdr.de>; Wed, 25 Jun 2025 12:48:10 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id D7B257AF6EB
-	for <lists+devicetree@lfdr.de>; Wed, 25 Jun 2025 10:46:06 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 15A381889385
+	for <lists+devicetree@lfdr.de>; Wed, 25 Jun 2025 10:48:10 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4DD131EA7CF;
-	Wed, 25 Jun 2025 10:45:33 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5D3D52D879F;
+	Wed, 25 Jun 2025 10:45:39 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="L3RxeuIV"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="fETzP+Wx"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wm1-f49.google.com (mail-wm1-f49.google.com [209.85.128.49])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CC2162D5C79;
-	Wed, 25 Jun 2025 10:45:31 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8DEE22D8762;
+	Wed, 25 Jun 2025 10:45:35 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.49
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1750848333; cv=none; b=Hhu08L6vAhVlzr9kJa1CrTPu9ccP55u4Ecb4xEkqzoYUkk3Ti71lB1pg2BkY96LwWsi1h5TCQDpxssyGeHhwHZ6vTafdQxzVuqSuEeHfOADN3LQBP9Kg71m/lKTXSng0Za4TOixloacs5HvHRJst+hyxTe8tlvmsyW+1xnGQPFA=
+	t=1750848339; cv=none; b=SOxJymVuzxwXavql1U00gVvAKq/CUOnjncuiU0Bc8oBjp31TcxZXmCWsiIj0Gh54LSgCjUb1amn5ubqzJVnRnRfLrCSL9JUvUX3r/ITFSVOl6WabhKWZJhMV4R6xmiJ42Iw0llEewxN+KZekIIKlia4u5ozbHEETvkHmVr+TfsQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1750848333; c=relaxed/simple;
-	bh=VZX8FhOZn+A2VpoDlQnaJSm+6rFeBl/toi1Zd8pgfQI=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-ID:References:
-	 In-Reply-To:To:CC; b=lATiJChrkv4HyJgTVPSZ1MmyFfx+iXLkhintN1W0dQ3ccWstsuF9g4skMOZLtNP/kDtXiWHKp4Ebx1/IrMNytfa2rsUjOqVmjjzfCX0sk137S0XbV6QteG0EB0aIdmTpZr+y06XuPEPXUhetnuO2J8jmuFARdbUcIqbfMr9zWPE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=L3RxeuIV; arc=none smtp.client-ip=205.220.168.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
-Received: from pps.filterd (m0279867.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 55PAfEYF000685;
-	Wed, 25 Jun 2025 10:45:21 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	4D5xBGxSr4jfA7P6+oNyoTxU2RBo4soyNKPqrCLRTt0=; b=L3RxeuIVxh5uFPnw
-	7S2T3NACZcmdWobfvAGeAC93XFllG1i3oqG65rTdVcnKCdziZpdipIMKhmb0gGQj
-	gM8knIhPbZhPbzdeLlbxBBh4MFLsW+I+VMDEqBws0umh+6j089UwCHwkSLzTW17e
-	YDdyit57lm04jsXvZC67mJxtXQ8bxl3GbFhaMrXFj99tdJ+BBxKmdL+uZ6eeUzov
-	mlF4H5JP4zrv4qseXcOv7FYrZ9dD40mjZtwGME0zd58D+9pYPLQov3VMN2KtjaFb
-	lNzZNA64UiAXLJPHICWprJjODASAFBfZDJfBivzL2nwMGvUDEglsS4sS5mT8txeA
-	95qRRw==
-Received: from nalasppmta04.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 47g7td9d6f-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Wed, 25 Jun 2025 10:45:21 +0000 (GMT)
-Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
-	by NALASPPMTA04.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 55PAjKG0000741
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Wed, 25 Jun 2025 10:45:20 GMT
-Received: from hu-tdas-hyd.qualcomm.com (10.80.80.8) by
- nalasex01a.na.qualcomm.com (10.47.209.196) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1544.9; Wed, 25 Jun 2025 03:45:15 -0700
-From: Taniya Das <quic_tdas@quicinc.com>
-Date: Wed, 25 Jun 2025 16:13:35 +0530
-Subject: [PATCH v10 10/10] arm64: defconfig: Enable QCS615 clock
- controllers
+	s=arc-20240116; t=1750848339; c=relaxed/simple;
+	bh=3CxHp1TGay9ZGXz33grGZBOt3lLRZaab+Cmaf5i7/0U=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=YyovE4El3hWCOW1NPW+etnXpnzNpg5g9D3aCmJz9DoVFVx9Z2XEmhNdPNRCSdJu3Lbbm96ECjuJcfFkk+OvzpHSql6TA+8nJ7kA2+LgFjSabydzQ0XQpw8b8juHF6A0b+E3Y9lGt4HdW/ZahS5272FyK0zWb9vRCyKjm9WrgMDk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=fETzP+Wx; arc=none smtp.client-ip=209.85.128.49
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-wm1-f49.google.com with SMTP id 5b1f17b1804b1-450ccda1a6eso53709565e9.2;
+        Wed, 25 Jun 2025 03:45:35 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1750848334; x=1751453134; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=BTT8M9lvOnuNo47cLpUQJQekotV2eBvCU0pRSn/QWrY=;
+        b=fETzP+Wxg6whK3zik2T0AHimZBdJ2LOpNm+hBRe397QVFoHpcJyt8qbZ4pfic7F2Vn
+         Z3hA5mEkCJ4nPVks3xXmO2mXSMGA5DVx+2zU0bmFI0J9d1gwE/lf5jSDKkMH72275Mjs
+         LL0FvSiLstUOnYS1h2h+gvBikIzxg3cviJtiWEHGpyR2RkDnxr5YSHWWdWMoOd5KXUeW
+         J/zKMbFCc333IdMhaBW+nheuyIoG5Nmv+ojAbBlw65REN0BNrNHE2+X/owuNs0yctQY0
+         f1YN8C21/wth7pRRaDla9n0Aeuk1jLn/IDmwShdunLz34MX/zsqrHwjkfDkBtDDPlI9L
+         ZICg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1750848334; x=1751453134;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=BTT8M9lvOnuNo47cLpUQJQekotV2eBvCU0pRSn/QWrY=;
+        b=f+0YJY2o5qiRN6HhkwXxlrIgiqa83AiuUniVGZ1ESGmQ3yTgiklNnQ4PzMwQFg8ZMs
+         M0Iw68ddnaOtbC/k8KkhvcIKuGKc9OSbyx8c9biTGGEosXTmqMn739dyS8KbsIEVJwxq
+         vA1QF+NH5GoD5T53bXC0Qr7BM+BOFygZoQo16o7AswKEsqpSz29SaCtHJpdTHIY0iytY
+         bokUnMntvd/AKyGf7KpFVW6a9vNtVEX5MwiPuwDh5ucYotiQaUVkHW3hA3joVTuCwrHT
+         17E/EBksNsCWDNAg/yY9Qm+8I335sZ6nBsXx1idelffdWOGWLxXAMURftfwVCRj1MNfq
+         a/Iw==
+X-Forwarded-Encrypted: i=1; AJvYcCVFIcfSWBDnNgbGVxLCilLxTe5hR4IFCkARy/8IoMpURJ4EsQAXUxAgutXhgYj8/YO3XeL0xenicrYhhk5L@vger.kernel.org, AJvYcCW0Sbxh+F8WskZlnLA+WzZe4QPjlApxpQsDP1L21i3Qwd+O4dzLRnenq+e+R85iZJ71bXtzprG53OUM@vger.kernel.org, AJvYcCWYwZQFHnKmCr206c+NYL5+qbRaLHK0eYfTuJ+l2Koq4YZ6RHjRimxGguuOij8r6Z01W6Pr5EutfPJo@vger.kernel.org
+X-Gm-Message-State: AOJu0YwqgQkjQ+8RWoXFn3hPUwjmtLM6a3lxeuSs9a842fEQ4sLfgxil
+	sZdt+aAvWL/LGpFY2/aPQMRwRJq7T9IhD8J1LhtQJGyD1n3es3YEMLCb
+X-Gm-Gg: ASbGncsJAr/Bx1tAKN23OjhD4FFzsU5F31ry4eZErpkp3qKF0KFi7NkMPoBCXomiyGE
+	n2mNyoGct6/DkOzPktXDkS+FDm9LVaIPpfs1EAJg9TPbrZkpeKJQms1yUZgyOp4zkuDe6rGwm8s
+	SMYCamBS509L3LjVe4F3iukEA9hX3i+QwuY1n0EqOX7ldZgNzReqlmaOWhGT14hAaChLvx0fPi4
+	Miz7WU8cgy0vEh7gYt9XlGy4V7vVfgbP7NaWCgFmgOzbK/whvDgQC5A8Qp4mCNEu73zvvyQxSw2
+	EMrtdiwADdNMx0DY59YjjEyHtLm6kzCqOaJ9FNhX+OtA9Ew/fsojvEXKqSn1fD0nFi+43DcC7IV
+	7n4WG9Wpbk+CFqrwTpwnO
+X-Google-Smtp-Source: AGHT+IGKPYsJWUF5K8s7+an7VhPz/9OGomk5Q2CRXWrqQKmk402hv6nhjeXiw6R5slm5rTdfE9EjuA==
+X-Received: by 2002:a05:600c:5490:b0:444:34c7:3ed9 with SMTP id 5b1f17b1804b1-45381ae9142mr21753105e9.26.1750848333570;
+        Wed, 25 Jun 2025 03:45:33 -0700 (PDT)
+Received: from iku.example.org ([2a06:5906:61b:2d00:c47e:d783:f875:2c7c])
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-4538233c1easm16036175e9.3.2025.06.25.03.45.32
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 25 Jun 2025 03:45:33 -0700 (PDT)
+From: Prabhakar <prabhakar.csengg@gmail.com>
+X-Google-Original-From: Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+To: Chris Brandt <chris.brandt@renesas.com>,
+	Andi Shyti <andi.shyti@kernel.org>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Geert Uytterhoeven <geert+renesas@glider.be>,
+	Magnus Damm <magnus.damm@gmail.com>,
+	Wolfram Sang <wsa+renesas@sang-engineering.com>,
+	Andy Shevchenko <andy@kernel.org>
+Cc: linux-renesas-soc@vger.kernel.org,
+	linux-i2c@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	Prabhakar <prabhakar.csengg@gmail.com>,
+	Biju Das <biju.das.jz@bp.renesas.com>,
+	Fabrizio Castro <fabrizio.castro.jz@renesas.com>,
+	Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+Subject: [PATCH v4 0/5] Add RIIC support for RZ/T2H and RZ/N2H SoCs
+Date: Wed, 25 Jun 2025 11:45:21 +0100
+Message-ID: <20250625104526.101004-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
+X-Mailer: git-send-email 2.49.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-ID: <20250625-qcs615-mm-v10-clock-controllers-v10-10-ec48255f90d8@quicinc.com>
-References: <20250625-qcs615-mm-v10-clock-controllers-v10-0-ec48255f90d8@quicinc.com>
-In-Reply-To: <20250625-qcs615-mm-v10-clock-controllers-v10-0-ec48255f90d8@quicinc.com>
-To: Bjorn Andersson <andersson@kernel.org>,
-        Michael Turquette
-	<mturquette@baylibre.com>,
-        Stephen Boyd <sboyd@kernel.org>, Rob Herring
-	<robh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley
-	<conor+dt@kernel.org>,
-        Konrad Dybcio <konradybcio@kernel.org>,
-        "Catalin
- Marinas" <catalin.marinas@arm.com>,
-        Will Deacon <will@kernel.org>
-CC: Ajit Pandey <quic_ajipan@quicinc.com>,
-        Imran Shaik
-	<quic_imrashai@quicinc.com>,
-        Jagadeesh Kona <quic_jkona@quicinc.com>,
-        <linux-arm-msm@vger.kernel.org>, <linux-clk@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        Taniya Das <quic_tdas@quicinc.com>,
-        Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
-X-Mailer: b4 0.15-dev-aa3f6
-X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
- nalasex01a.na.qualcomm.com (10.47.209.196)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Authority-Analysis: v=2.4 cv=CPYqXQrD c=1 sm=1 tr=0 ts=685bd341 cx=c_pps
- a=ouPCqIW2jiPt+lZRy3xVPw==:117 a=ouPCqIW2jiPt+lZRy3xVPw==:17
- a=GEpy-HfZoHoA:10 a=IkcTkHD0fZMA:10 a=6IFa9wvqVegA:10 a=EUspDBNiAAAA:8
- a=COk6AnOGAAAA:8 a=AElZlkIX1ip-SmTVEvQA:9 a=QEXdDO2ut3YA:10
- a=TjNXssC_j7lpFel5tvFf:22
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwNjI1MDA4MCBTYWx0ZWRfXzA66QZK+FjFN
- eKCKEtsChPGESg+DIWZgLI+rFXVT53hvpyWJ9m3YJTEVOU4hUk5eRrCx5VyF5EI6ZWnYhROaBbe
- RBlW2E4/DFF4MpuevYSuy6I0QGlYBsfVGvpYfLryAhAwJf/kxCXhP8ZNeZycLm7zMMwxk+PmaVH
- mp88zl98QhmLg9wy028g7Gf02l+McigJ6qjKpBYtIt35J6tmkUKDkM9VXt2FQlXMPPSBglyXgH0
- zUcXgnxY2PHq8D4HEk4katJ+xfd5W7QyFZe5McPYK0cg3+MwkoefyMa/HbJvTLfjTITYXxoBuvO
- /wqHKt62nU7MhJgiWXeb3ANaQrtpH+UOcvzzDX2d43Ws2op2xHbQh+5mc/Wdgwm1lbEIxnojAp6
- V6Lh9YJuux6dMk3tkUp6BQ6AfZbJMY9rCa+Ji77rnU9/lDUg9hDt69OQNT0CbHlGUCzpR8oc
-X-Proofpoint-GUID: CiLf5sYbP2_7lyylUu7L9_5nDRq3Ho-S
-X-Proofpoint-ORIG-GUID: CiLf5sYbP2_7lyylUu7L9_5nDRq3Ho-S
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1099,Hydra:6.1.7,FMLib:17.12.80.40
- definitions=2025-06-25_03,2025-06-23_07,2025-03-28_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- bulkscore=0 phishscore=0 mlxlogscore=760 lowpriorityscore=0 malwarescore=0
- impostorscore=0 suspectscore=0 clxscore=1015 spamscore=0 priorityscore=1501
- adultscore=0 mlxscore=0 classifier=spam authscore=0 authtc=n/a authcc=
- route=outbound adjust=0 reason=mlx scancount=1 engine=8.19.0-2505280000
- definitions=main-2506250080
+Content-Transfer-Encoding: 8bit
 
-Enable the QCS615 display, video, camera and graphics clock controller
-for their respective functionalities on the Qualcomm QCS615 ride
-platform.
+From: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
 
-Reviewed-by: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
-Signed-off-by: Taniya Das <quic_tdas@quicinc.com>
----
- arch/arm64/configs/defconfig | 4 ++++
- 1 file changed, 4 insertions(+)
+Hi All,
 
-diff --git a/arch/arm64/configs/defconfig b/arch/arm64/configs/defconfig
-index e071f8f45607dbfd8e00b915b27999949ee0fc88..3c5c1901ca5670d1bfd0a6edd73f0591ccb9c76f 100644
---- a/arch/arm64/configs/defconfig
-+++ b/arch/arm64/configs/defconfig
-@@ -1375,11 +1375,15 @@ CONFIG_MSM_GCC_8998=y
- CONFIG_MSM_MMCC_8998=m
- CONFIG_QCM_GCC_2290=y
- CONFIG_QCM_DISPCC_2290=m
-+CONFIG_QCS_DISPCC_615=m
-+CONFIG_QCS_CAMCC_615=m
- CONFIG_QCS_GCC_404=y
- CONFIG_QCS_GCC_615=y
- CONFIG_QCS_GCC_8300=y
- CONFIG_SC_CAMCC_7280=m
- CONFIG_SA_CAMCC_8775P=m
-+CONFIG_QCS_GPUCC_615=m
-+CONFIG_QCS_VIDEOCC_615=m
- CONFIG_QDU_GCC_1000=y
- CONFIG_SC_CAMCC_8280XP=m
- CONFIG_SC_DISPCC_7280=m
+This patch series adds support for I2C Bus Interface (RIIC) found on
+the Renesas RZ/T2H (R9A09G077) and RZ/N2H (R9A09G087) SoCs. The RIIC
+IP on these SoCs is similar to that on the RZ/V2H(P) SoC but has some
+differences in interrupt handling and does not require resets.
+
+v3->v4:
+- Collected RB tag from Geert
+- Squshed patch 2/6 and 3/6 into single patch
+
+v2->v3:
+- Replaced `Transmit Error` -> `Transfer Error`
+- Fixed the order of interrupts in the DT binding
+  documentation to match the HW manual.
+
+v1-> v2:
+- Added Acked-by, Reviewed-by and Tested-by tags.
+- Listed the interrupts in the order as mentioned in the
+  HW manual.
+- Renamed the interrupt names to match the HW manual.
+- Initialized the members of `riic_of_data` in the order they are
+  declared in the struct.
+
+Cheers,
+Prabhakar
+
+Lad Prabhakar (5):
+  dt-bindings: i2c: renesas,riic: Move ref for i2c-controller.yaml to
+    the end
+  dt-bindings: i2c: renesas,riic: Document RZ/T2H and RZ/N2H support
+  i2c: riic: Pass IRQ desc array as part of OF data
+  i2c: riic: Move generic compatible string to end of array
+  i2c: riic: Add support for RZ/T2H SoC
+
+ .../devicetree/bindings/i2c/renesas,riic.yaml | 105 ++++++++++++------
+ drivers/i2c/busses/i2c-riic.c                 |  54 +++++++--
+ 2 files changed, 117 insertions(+), 42 deletions(-)
 
 -- 
-2.34.1
+2.49.0
 
 
