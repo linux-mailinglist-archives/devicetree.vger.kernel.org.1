@@ -1,141 +1,109 @@
-Return-Path: <devicetree+bounces-189593-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-189595-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id D34D5AE8673
-	for <lists+devicetree@lfdr.de>; Wed, 25 Jun 2025 16:28:06 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id E11D4AE8694
+	for <lists+devicetree@lfdr.de>; Wed, 25 Jun 2025 16:34:20 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 9B67A7B9C09
-	for <lists+devicetree@lfdr.de>; Wed, 25 Jun 2025 14:26:10 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 1F1CA4A6475
+	for <lists+devicetree@lfdr.de>; Wed, 25 Jun 2025 14:34:18 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C9B1F264A74;
-	Wed, 25 Jun 2025 14:27:26 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 29FD8269823;
+	Wed, 25 Jun 2025 14:33:58 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="mU+nKfkS"
+	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="fLVjoexH"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.14])
+Received: from lelvem-ot02.ext.ti.com (lelvem-ot02.ext.ti.com [198.47.23.235])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 30FF120C00B;
-	Wed, 25 Jun 2025 14:27:25 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.175.65.14
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7F605267F53;
+	Wed, 25 Jun 2025 14:33:56 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.23.235
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1750861646; cv=none; b=KnAHctbdQfbhhpcFXVLcVEkO8dE83wAkLBiO/pRH3TUox8ynXsJSiHuUaeoDRhJOheAVgL+nh9SFqN7Kk+GzPTZqlRsYsAo6qEs7oSApjcapIGhbRECTZhTMJqqC8tSt1dIshCX4HUUKrivwXlF6XfuakZg0K/oEHxwI3+qX/h8=
+	t=1750862038; cv=none; b=TfjGhuB9OugKn3BFzBMF225o07zrXaPdmGXFmWRR1H9+Yt1AGbd5c2LTAx2NEz0bj2d6BbjU0kwnXh1QbZZJYJrUG8X6wuFFvH72YGHw2sl3XN39zR+Tsja85QEmrxrt7lZxYME9J6Bw0s15CTM7Wdda8hQeSY/UxC+S79+qGoA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1750861646; c=relaxed/simple;
-	bh=aiCBfShnv6jIIgQ4bpuIfMp5r40wbfensHpHCEm3pBM=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=tH+XbgzH4Xd4WC8txwHpcxlRtJ6iRfhXEwKRdEAdiORO7jebIr4ddHigFYA3Ei2fN+iv0MC/mVCJedk3awUdzKrF2VQrtqmhfHHx78e2vCYHoATTC1RVXY31kpbKaJfcB0l83/wD8N+8UjQFYAL74hZ1yxYXxmuCXR7/JUaIu80=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=mU+nKfkS; arc=none smtp.client-ip=198.175.65.14
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1750861646; x=1782397646;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=aiCBfShnv6jIIgQ4bpuIfMp5r40wbfensHpHCEm3pBM=;
-  b=mU+nKfkS2z3z9O0xwUk5kQ0cuEPjqmKzxvvq/Z6FYVrq5C0CRu0lhWOO
-   cCK6bv2XpjmAqbQNMzHYaVwZdSBZvv+zLtbAInNunTJubqF/ggWsjhap6
-   fLM6KbYWKdVlq7NWUEy/1wUCigXjUpaZKk8Hc40U46XCAKaivobECZK0j
-   ZGo/oyMsoLasZt4fv+Xoi728oJcA01PN2b6hJlKCwy+2JI3WzHKzfrQmM
-   zhfTQf0+pnFQCgdYMxcCKTk53Df/IMWMDtV8MjTFsd1ShedmPA6ko3cdF
-   uo3T97eUKQnoXdbJ+4+6KAPKE0IwQKscvTu8zqIvJWBVq68F1Ze9URKaS
-   A==;
-X-CSE-ConnectionGUID: dkxlRjhbQqC2rBspwRddlA==
-X-CSE-MsgGUID: XVwLUXiITWqaTCLDJbXwwg==
-X-IronPort-AV: E=McAfee;i="6800,10657,11475"; a="56920079"
-X-IronPort-AV: E=Sophos;i="6.16,264,1744095600"; 
-   d="scan'208";a="56920079"
-Received: from fmviesa002.fm.intel.com ([10.60.135.142])
-  by orvoesa106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 25 Jun 2025 07:27:25 -0700
-X-CSE-ConnectionGUID: NYVNjaqgRd2C28PhusN2oA==
-X-CSE-MsgGUID: Vm3m4nwNToS9MwdDCSPhkw==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.16,264,1744095600"; 
-   d="scan'208";a="175877583"
-Received: from smile.fi.intel.com ([10.237.72.52])
-  by fmviesa002.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 25 Jun 2025 07:27:21 -0700
-Received: from andy by smile.fi.intel.com with local (Exim 4.98.2)
-	(envelope-from <andriy.shevchenko@intel.com>)
-	id 1uUR5q-00000009nnt-1JQk;
-	Wed, 25 Jun 2025 17:27:18 +0300
-Date: Wed, 25 Jun 2025 17:27:18 +0300
-From: Andy Shevchenko <andriy.shevchenko@intel.com>
-To: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
-Cc: jic23@kernel.org, dlechner@baylibre.com, nuno.sa@analog.com,
-	andy@kernel.org, robh@kernel.org, krzk+dt@kernel.org,
-	conor+dt@kernel.org, matthias.bgg@gmail.com,
-	linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-	linux-mediatek@lists.infradead.org, kernel@collabora.com
-Subject: Re: [PATCH v1 4/5] iio: adc: mt6359: Add support for MediaTek MT6363
- PMIC AUXADC
-Message-ID: <aFwHRigf95hPKTE7@smile.fi.intel.com>
-References: <20250623120028.108809-1-angelogioacchino.delregno@collabora.com>
- <20250623120028.108809-5-angelogioacchino.delregno@collabora.com>
- <aFlk-l5LhgO8dnXK@smile.fi.intel.com>
- <1b173e16-f681-4256-8dd2-92db2e90ca73@collabora.com>
+	s=arc-20240116; t=1750862038; c=relaxed/simple;
+	bh=mryvQn1AUsDhNxTd87dfmhlmM2rUxFC9bnecWyDM2O4=;
+	h=From:To:CC:Subject:Date:Message-ID:MIME-Version:Content-Type; b=CF/jjkuY+SEAiaYFNDqmWYazhPWTW927aE/GBUWUaXJ9tMN/8hKAgMoikRDew6gFvEeX0QyzP55xaDNaKyixLChI3SZ4KEN93pg0VFzfh5NQBp6Dsxc1YGRY2jAkVKAAEbrU0iPdXFW7Hz0YNaxnnPU/O6vs0I96ftKBIbopPnI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=fLVjoexH; arc=none smtp.client-ip=198.47.23.235
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
+Received: from lelvem-sh02.itg.ti.com ([10.180.78.226])
+	by lelvem-ot02.ext.ti.com (8.15.2/8.15.2) with ESMTP id 55PEXd2K2139733;
+	Wed, 25 Jun 2025 09:33:39 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+	s=ti-com-17Q1; t=1750862019;
+	bh=w6DGEV6ofEq9PT3PQmAnbPJaKGlqyXr0Gq+CyGdb9jw=;
+	h=From:To:CC:Subject:Date;
+	b=fLVjoexHvr92IuFTiSu2u8Uy1m4/X0UGAHSbkQVDhSZM+OBIgFZ7fATgIx570bgY1
+	 T14OsyIhxh8gcC5jnc78rDMK5q8V2K0M7tEY6qopZKjktYEEjSP5/2HmNLfhMTwClx
+	 mdllT5w6G18MwT6o3F+ImavL536eCnVnogb3HsU4=
+Received: from DFLE115.ent.ti.com (dfle115.ent.ti.com [10.64.6.36])
+	by lelvem-sh02.itg.ti.com (8.18.1/8.18.1) with ESMTPS id 55PEXdpf2749208
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-SHA256 bits=128 verify=FAIL);
+	Wed, 25 Jun 2025 09:33:39 -0500
+Received: from DFLE112.ent.ti.com (10.64.6.33) by DFLE115.ent.ti.com
+ (10.64.6.36) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.55; Wed, 25
+ Jun 2025 09:33:38 -0500
+Received: from lelvem-mr05.itg.ti.com (10.180.75.9) by DFLE112.ent.ti.com
+ (10.64.6.33) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.55 via
+ Frontend Transport; Wed, 25 Jun 2025 09:33:39 -0500
+Received: from judy-hp.dhcp.ti.com (judy-hp.dhcp.ti.com [128.247.81.105])
+	by lelvem-mr05.itg.ti.com (8.18.1/8.18.1) with ESMTP id 55PEXco13804070;
+	Wed, 25 Jun 2025 09:33:38 -0500
+From: Judith Mendez <jm@ti.com>
+To: Judith Mendez <jm@ti.com>, Wim Van Sebroeck <wim@linux-watchdog.org>,
+        Guenter Roeck <linux@roeck-us.net>, Rob Herring <robh@kernel.org>,
+        Krzysztof
+ Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>
+CC: Vignesh Raghavendra <vigneshr@ti.com>, Tero Kristo <kristo@kernel.org>,
+        <linux-watchdog@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>
+Subject: [PATCH v2 0/2] Add reaction control in rti
+Date: Wed, 25 Jun 2025 09:33:36 -0500
+Message-ID: <20250625143338.2381726-1-jm@ti.com>
+X-Mailer: git-send-email 2.49.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <1b173e16-f681-4256-8dd2-92db2e90ca73@collabora.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park, 6
- krs, Bertel Jungin Aukio 5, 02600 Espoo
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-C2ProcessedOrg: 333ef613-75bf-4e12-a4b1-8e3623f5dcea
 
-On Wed, Jun 25, 2025 at 03:29:47PM +0200, AngeloGioacchino Del Regno wrote:
-> Il 23/06/25 16:30, Andy Shevchenko ha scritto:
-> > On Mon, Jun 23, 2025 at 02:00:27PM +0200, AngeloGioacchino Del Regno wrote:
+This allows for reaction control in rti driver. Since AM62L SoC [0]
+does not have WWD reset output routed to a ESM module like all other
+K3 SoC's and has a reset signal routed to the reset HW block, add a new
+compatible for AM62L and configure reset reaction for AM62L SoC instead
+of NMI.
 
-...
+This patch has been tested on AM62L EVM [1].
 
-> > > +	if (MTK_AUXADC_HAS_FLAG(cinfo, IS_SPMI)) {
-> > > +		/* If the previous read succeeded, this can't fail */
-> > > +		regmap_read(regmap, reg - 1, &lval);
-> > 
-> > No error check? lval may contain garbage here, right?
-> 
-> No, because if the previous read succeeded, this can't fail, and also cannot ever
-> possibly contain garbage (and if it does, - but again, that can't happen - there is
-> no way to validate that because valid values are [0x00..0xff] anyway).
+Changes since v1-resend:
+- Binding: order compatible alphabetically
 
-Never say never. Any regmap_*() call that performs I/O might fail. You can't
-predict with 100% guarantee the HW behaviour in all possible scenarios.
+v1-resend: https://lore.kernel.org/linux-devicetree/20250624202605.1333645-1-jm@ti.com/
+v1: https://lore.kernel.org/linux-devicetree/20250624194509.1314095-1-jm@ti.com/
 
-> > > +		val = (val << 8) | lval;
-> > 
-> > Is it guaranteed that lval is always less than 256 (if unsigned)?
-> 
-> Yes, with SPMI that is guaranteed.
-> 
-> > > +	}
+[0] https://www.ti.com/product/AM62L
+[1] https://www.ti.com/tool/TMDS62LEVM
 
-...
+Judith Mendez (2):
+  dt-bindings: watchdog: ti,rti-wdt: Add ti,am62l-rti-wdt compatible
+  watchdog: rti_wdt: Add reaction control
 
-> > > +		regmap_update_bits(regmap, cinfo->regs[desc->ext_sel_idx],
-> > > +				   MT6363_EXT_PURES_MASK, ext_sel);
-> > 
-> > No  error check?
-> 
-> No, because if the previous reads and/or writes succeeded, it is impossible for
-> this to fail :-)
-
-Ditto.
-
-I.o.w. the failed regmap_*() call can be a signal that something on the
-communication channel with the HW went wrong, Depending on the severity of this
-call the device driver may decide what to do next.
+ .../bindings/watchdog/ti,rti-wdt.yaml         |  1 +
+ drivers/watchdog/rti_wdt.c                    | 31 ++++++++++++++++---
+ 2 files changed, 28 insertions(+), 4 deletions(-)
 
 -- 
-With Best Regards,
-Andy Shevchenko
-
+2.49.0
 
 
