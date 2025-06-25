@@ -1,157 +1,138 @@
-Return-Path: <devicetree+bounces-189706-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-189707-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id D0C35AE8FD9
-	for <lists+devicetree@lfdr.de>; Wed, 25 Jun 2025 23:05:08 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 16528AE900D
+	for <lists+devicetree@lfdr.de>; Wed, 25 Jun 2025 23:17:01 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 31A201888F2B
-	for <lists+devicetree@lfdr.de>; Wed, 25 Jun 2025 21:05:19 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 9DCDD189DC5B
+	for <lists+devicetree@lfdr.de>; Wed, 25 Jun 2025 21:17:16 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 367C6204863;
-	Wed, 25 Jun 2025 21:04:58 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C80971E5B69;
+	Wed, 25 Jun 2025 21:16:54 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="fcsXt6oS"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="QPWmotoN"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F27171C84DF;
-	Wed, 25 Jun 2025 21:04:57 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9EC2C33991;
+	Wed, 25 Jun 2025 21:16:54 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1750885498; cv=none; b=RnadZxYpuRbXYsZEfzZdZjY0gJZ5+IEq/yEAeG0sjP0CPFbMtV43qygdGSQaOHR3M4XA0ZTIUQWTJOh3mpA2slOF3PofkQxRxav6nYwF3eisI7Pi4cLxJkQWSLMXI8p2zGbSZuyVtiwnSIpoD82UgBRH2GYBfsdYjLmd4o4/9Lw=
+	t=1750886214; cv=none; b=moZedVUL2c+uWjUJebNj4XllD+y0+O/rqrDf9WqHWIPI/S6ZkAZ7EF2m6HZWnq/o7ZznDNyUWvdxZC9vn7jkUuoWNu5jkfk4cd/fieOCAKOeA3f+F1r8c8zYHitiCMDdW50mNXu3GWo5j3BCvuw6X66TrYrMdfdspSyQXSorIqM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1750885498; c=relaxed/simple;
-	bh=TwGs9xcqNKKZwXveR38XoItJjJjoTUCut41NngfDuik=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=jnOe2mImGgwIgZDR6q7iH/yOUidOx3q4y0IrTLzLw+MRGnRvZXWCFdn7SDWcf35Mha4jlFpl8pZG467tx8NL5aQvcAg6L8V8OWQ3X2xTopo36yPMhkeZFO4eQDtEki/TgQftMLm90OUXnw1rMjUnTRCtZ8LM0QhJzx9xYKAJhvs=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=fcsXt6oS; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 5DDAFC4CEEA;
-	Wed, 25 Jun 2025 21:04:57 +0000 (UTC)
+	s=arc-20240116; t=1750886214; c=relaxed/simple;
+	bh=4prugb93ZC+OeAoNZx1cEeiLG8KuCXkhRSGGMhghjJA=;
+	h=Date:Content-Type:MIME-Version:From:Cc:To:In-Reply-To:References:
+	 Message-Id:Subject; b=cq8mZm8rLzc2X678j8cDIxfs3ucH5H94T6K4GizXlCuMe59qHLT/X7ATrmYSp6hi3oGgEULlEuLb8UzWARhuSCMM7PlNDCNMEmNKAjyK/JZGNoWximbPMN3XhY4GC+UKIlt8iM6HHVC4G9qvva7QBoy4oEdatRb/xoT8Z4396uw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=QPWmotoN; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 1A947C4CEEA;
+	Wed, 25 Jun 2025 21:16:54 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1750885497;
-	bh=TwGs9xcqNKKZwXveR38XoItJjJjoTUCut41NngfDuik=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=fcsXt6oS90PgQatLapdwcdjg5ia5EOeRBAAxyHyXaqEq509DGgKqAH4YB16oiKVbi
-	 gCHFaQ6danRokdU3VaXQHaDBpqN/4H24MIIog8UlfyAJYxnzu99ooq2/0+YXRDMXjk
-	 a9h+XgpAz6LVGHwkYUTGPmFSqAw6Rfoq3exAjLjg2aU6Zz53xULEhZAIRc0t8jhoT9
-	 keXTLpmUQpCKAziaUZLLNRHIFLP9x6Qp6neDgp5c2sLkHaPj7K9hMh7DOMSGfE1WEI
-	 Dn4XES7ca5/ZSM6IXyhhIwbx4CwW+gZ1caGsKqpyzW1G/Hnkz0ubIxFbpmYQvQhnkv
-	 O3QPMeeYOd9Og==
-Date: Wed, 25 Jun 2025 16:04:56 -0500
-From: Rob Herring <robh@kernel.org>
-To: Jacky Chou <jacky_chou@aspeedtech.com>
-Cc: bhelgaas@google.com, lpieralisi@kernel.org, kwilczynski@kernel.org,
-	mani@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
-	joel@jms.id.au, andrew@codeconstruct.com.au, vkoul@kernel.org,
-	kishon@kernel.org, linus.walleij@linaro.org, p.zabel@pengutronix.de,
-	linux-aspeed@lists.ozlabs.org, linux-pci@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-	linux-kernel@vger.kernel.org, linux-phy@lists.infradead.org,
-	openbmc@lists.ozlabs.org, linux-gpio@vger.kernel.org,
-	elbadrym@google.com, romlem@google.com, anhphan@google.com,
-	wak@google.com, yuxiaozhang@google.com, BMC-SW@aspeedtech.com
-Subject: Re: [PATCH 3/7] dt-bindings: pci: Add document for ASPEED PCIe RC
-Message-ID: <20250625210456.GA2177479-robh@kernel.org>
-References: <20250613033001.3153637-1-jacky_chou@aspeedtech.com>
- <20250613033001.3153637-4-jacky_chou@aspeedtech.com>
+	s=k20201202; t=1750886214;
+	bh=4prugb93ZC+OeAoNZx1cEeiLG8KuCXkhRSGGMhghjJA=;
+	h=Date:From:Cc:To:In-Reply-To:References:Subject:From;
+	b=QPWmotoN6Pr3ty6QhJmEQgUMG5YfGeAEEOQn7LC7Z7cZDOKx91RJlaLsvaPGR0rXv
+	 IC60ujHJyn7RboNytYtA1jiZNinAFcw6L8FJBst5hFcJFmLamq3mdJKTHR9/7Y42cC
+	 pWJwSiR1PbEkdqKtcy85s1MqZc/X4XuWlxiSiXDEvhJTLhUREsrDnhNsFkdvXP04GJ
+	 aTaL3+VOuBZyIH6fypOyWoYPbaRlgtfJ0xFnKp+Eshkgy3pNnYxTl77CkM3M5npCYI
+	 sePXc+qVfF6lFbJIQwnah57Pq1pjnvUryjvjZqnXYe9jk338LFpejeTYzlvkrKZd1C
+	 Z9QhLgBPnhu+A==
+Date: Wed, 25 Jun 2025 16:16:53 -0500
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20250613033001.3153637-4-jacky_chou@aspeedtech.com>
+From: "Rob Herring (Arm)" <robh@kernel.org>
+Cc: Rafal Milecki <zajec5@gmail.com>, linux-kernel@vger.kernel.org, 
+ Conor Dooley <conor+dt@kernel.org>, Stefan Wahren <wahrenst@gmx.net>, 
+ Florian Fainelli <florian.fainelli@broadcom.com>, 
+ Hauke Mehrtens <hauke@hauke-m.de>, linux-arm-kernel@lists.infradead.org, 
+ Broadcom internal kernel review list <bcm-kernel-feedback-list@broadcom.com>, 
+ Linus Walleij <linus.walleij@linaro.org>, 
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, devicetree@vger.kernel.org
+To: Taishi Shimizu <s.taishi14142@gmail.com>
+In-Reply-To: <20250625154315.114139-1-s.taishi14142@gmail.com>
+References: <20250625154315.114139-1-s.taishi14142@gmail.com>
+Message-Id: <175088617875.2239084.4449036167098088262.robh@kernel.org>
+Subject: Re: [PATCH 1/2] dt-bindings: arm: bcm: Add support for Buffalo
+ WXR-1750DHP
 
-On Fri, Jun 13, 2025 at 11:29:57AM +0800, Jacky Chou wrote:
-> Add device tree binding documentation for the ASPEED PCIe Root Complex
-> controller. This binding describes the required and optional properties
-> for configuring the PCIe RC node, including support for syscon phandles,
-> MSI, clocks, resets, and interrupt mapping. The schema enforces strict
-> property validation and provides a comprehensive example for reference.
+
+On Thu, 26 Jun 2025 00:43:14 +0900, Taishi Shimizu wrote:
+> Add Buffalo WXR-1750DHP under BCM4708 based boards.
 > 
-> Signed-off-by: Jacky Chou <jacky_chou@aspeedtech.com>
+> Signed-off-by: Taishi Shimizu <s.taishi14142@gmail.com>
 > ---
->  .../devicetree/bindings/pci/aspeed-pcie.yaml  | 159 ++++++++++++++++++
->  1 file changed, 159 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/pci/aspeed-pcie.yaml
+>  Documentation/devicetree/bindings/arm/bcm/brcm,bcm4708.yaml | 1 +
+>  1 file changed, 1 insertion(+)
 > 
-> diff --git a/Documentation/devicetree/bindings/pci/aspeed-pcie.yaml b/Documentation/devicetree/bindings/pci/aspeed-pcie.yaml
-> new file mode 100644
-> index 000000000000..5b50a9e2d472
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/pci/aspeed-pcie.yaml
-> @@ -0,0 +1,159 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/pci/aspeed-pcie.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: ASPEED PCIe Root Complex Controller
-> +
-> +maintainers:
-> +  - Jacky Chou <jacky_chou@aspeedtech.com>
-> +
-> +description: |
-> +  Device tree binding for the ASPEED PCIe Root Complex controller.
-> +
-> +properties:
-> +  compatible:
-> +    enum:
-> +      - aspeed,ast2600-pcie
-> +      - aspeed,ast2700-pcie
-> +
-> +  device_type:
-> +    const: pci
-> +
-> +  reg:
-> +    maxItems: 1
-> +
-> +  ranges:
-> +    minItems: 2
-> +    maxItems: 2
-> +
-> +  interrupts:
-> +    description: IntX and MSI interrupt
-> +
-> +  resets:
-> +    items:
-> +      - description: Module reset
-> +      - description: PCIe PERST
-> +
-> +  reset-names:
-> +    items:
-> +      - const: h2x
-> +      - const: perst
-> +
-> +  msi-parent: true
-> +
-> +  msi_address:
-> +    $ref: /schemas/types.yaml#/definitions/uint32
-> +    description: MSI address
 
-What's this for?
 
-> +
-> +  aspeed,ahbc:
-> +    $ref: /schemas/types.yaml#/definitions/phandle
-> +    description: Phandle to ASPEED AHBC syscon.
-> +
-> +  aspeed,pciecfg:
-> +    $ref: /schemas/types.yaml#/definitions/phandle
-> +    description: Phandle to ASPEED PCIe configuration syscon.
-> +
-> +  aspeed,pciephy:
-> +    $ref: /schemas/types.yaml#/definitions/phandle
-> +    description: Phandle to ASPEED PCIe PHY syscon.
+My bot found new DTB warnings on the .dts files added or changed in this
+series.
 
-Use the phy binding and make the phy control a separate driver.
+Some warnings may be from an existing SoC .dtsi. Or perhaps the warnings
+are fixed by another series. Ultimately, it is up to the platform
+maintainer whether these warnings are acceptable or not. No need to reply
+unless the platform maintainer has comments.
 
-Rob
+If you already ran DT checks and didn't see these error(s), then
+make sure dt-schema is up to date:
+
+  pip3 install dtschema --upgrade
+
+
+This patch series was applied (using b4) to base:
+ Base: attempting to guess base-commit...
+ Base: tags/next-20250625 (exact match)
+
+If this is not the correct base, please add 'base-commit' tag
+(or use b4 which does this automatically)
+
+New warnings running 'make CHECK_DTBS=y for arch/arm/boot/dts/broadcom/' for 20250625154315.114139-1-s.taishi14142@gmail.com:
+
+arch/arm/boot/dts/broadcom/bcm4708-buffalo-wxr-1750dhp.dtb: /axi@18000000: failed to match any schema with compatible: ['brcm,bus-axi']
+arch/arm/boot/dts/broadcom/bcm4708-buffalo-wxr-1750dhp.dtb: pcie@12000: 'device_type' is a required property
+	from schema $id: http://devicetree.org/schemas/pci/pci-bus-common.yaml#
+arch/arm/boot/dts/broadcom/bcm4708-buffalo-wxr-1750dhp.dtb: pcie@12000: 'ranges' is a required property
+	from schema $id: http://devicetree.org/schemas/pci/pci-bus-common.yaml#
+arch/arm/boot/dts/broadcom/bcm4708-buffalo-wxr-1750dhp.dtb: pcie@13000: 'device_type' is a required property
+	from schema $id: http://devicetree.org/schemas/pci/pci-bus-common.yaml#
+arch/arm/boot/dts/broadcom/bcm4708-buffalo-wxr-1750dhp.dtb: pcie@13000: 'ranges' is a required property
+	from schema $id: http://devicetree.org/schemas/pci/pci-bus-common.yaml#
+arch/arm/boot/dts/broadcom/bcm4708-buffalo-wxr-1750dhp.dtb: pcie@14000: 'device_type' is a required property
+	from schema $id: http://devicetree.org/schemas/pci/pci-bus-common.yaml#
+arch/arm/boot/dts/broadcom/bcm4708-buffalo-wxr-1750dhp.dtb: pcie@14000: 'ranges' is a required property
+	from schema $id: http://devicetree.org/schemas/pci/pci-bus-common.yaml#
+arch/arm/boot/dts/broadcom/bcm4708-buffalo-wxr-1750dhp.dtb: ethernet-switch@18007000 (brcm,bcm53011-srab): ports:port@5: 'phy-mode' is a required property
+	from schema $id: http://devicetree.org/schemas/net/dsa/brcm,b53.yaml#
+arch/arm/boot/dts/broadcom/bcm4708-buffalo-wxr-1750dhp.dtb: ethernet-switch@18007000 (brcm,bcm53011-srab): ports:port@5: 'oneOf' conditional failed, one must be fixed:
+	'fixed-link' is a required property
+	'phy-handle' is a required property
+	'managed' is a required property
+	from schema $id: http://devicetree.org/schemas/net/dsa/brcm,b53.yaml#
+arch/arm/boot/dts/broadcom/bcm4708-buffalo-wxr-1750dhp.dtb: ethernet-switch@18007000 (brcm,bcm53011-srab): ports:port@7: 'phy-mode' is a required property
+	from schema $id: http://devicetree.org/schemas/net/dsa/brcm,b53.yaml#
+arch/arm/boot/dts/broadcom/bcm4708-buffalo-wxr-1750dhp.dtb: ethernet-switch@18007000 (brcm,bcm53011-srab): ports:port@7: 'oneOf' conditional failed, one must be fixed:
+	'fixed-link' is a required property
+	'phy-handle' is a required property
+	'managed' is a required property
+	from schema $id: http://devicetree.org/schemas/net/dsa/brcm,b53.yaml#
+arch/arm/boot/dts/broadcom/bcm4708-buffalo-wxr-1750dhp.dtb: ethernet-switch@18007000 (brcm,bcm53011-srab): ports:port@8: 'phy-mode' is a required property
+	from schema $id: http://devicetree.org/schemas/net/dsa/brcm,b53.yaml#
+arch/arm/boot/dts/broadcom/bcm4708-buffalo-wxr-1750dhp.dtb: ethernet-switch@18007000 (brcm,bcm53011-srab): Unevaluated properties are not allowed ('ports' was unexpected)
+	from schema $id: http://devicetree.org/schemas/net/dsa/brcm,b53.yaml#
+
+
+
+
+
 
