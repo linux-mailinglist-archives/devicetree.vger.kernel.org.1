@@ -1,166 +1,332 @@
-Return-Path: <devicetree+bounces-189243-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-189244-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 63C18AE7450
-	for <lists+devicetree@lfdr.de>; Wed, 25 Jun 2025 03:27:13 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5066EAE7455
+	for <lists+devicetree@lfdr.de>; Wed, 25 Jun 2025 03:34:08 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 5374B3AB785
-	for <lists+devicetree@lfdr.de>; Wed, 25 Jun 2025 01:26:48 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id E8613189DFFE
+	for <lists+devicetree@lfdr.de>; Wed, 25 Jun 2025 01:34:23 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 888111519AC;
-	Wed, 25 Jun 2025 01:27:07 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2002D1519AC;
+	Wed, 25 Jun 2025 01:34:04 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=collabora.com header.i=sebastian.reichel@collabora.com header.b="LahF0Ho6"
+	dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b="JqTerPlC"
 X-Original-To: devicetree@vger.kernel.org
-Received: from sender4-pp-f112.zoho.com (sender4-pp-f112.zoho.com [136.143.188.112])
+Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [213.167.242.64])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A1C61149C7B;
-	Wed, 25 Jun 2025 01:27:05 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=pass smtp.client-ip=136.143.188.112
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1750814827; cv=pass; b=I5t2V/svYq/fKgNOv4YLtkdt3ZE1fGJILBUcIq9MSxHd4JVqzvhgcTsFCyuIqN96dJq1R+rxx+r+vOX5My39p5P5Lf0ADFli8kISDiM/CWV5U5C+k4+lDkvPgnqnlShH7ICkqxRgDfxGut9MPrcPwN8q96kME+YsvYGP7EuNzlw=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1750814827; c=relaxed/simple;
-	bh=vQB/W2IkJNqXCMaS9Cmyrzf7dYHr7eR9DcU/CwYCrkA=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=YrOh8+3SI60R+hwD06isEQyCpxpjBf5Jz99Qq0olc5ljDj7qQBj6tN5IRm4vBNwEvSLW1gtTEQdrJby3pvZ5tjJnnEVfzvf4EmBorCE0lYdib6cS1/xPRHxTK0Os5vuP5XQED9knIhWitdyepgc+9aDjzXyQ1XbaXPaW5hGZUsk=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (1024-bit key) header.d=collabora.com header.i=sebastian.reichel@collabora.com header.b=LahF0Ho6; arc=pass smtp.client-ip=136.143.188.112
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
-ARC-Seal: i=1; a=rsa-sha256; t=1750814804; cv=none; 
-	d=zohomail.com; s=zohoarc; 
-	b=CY915g0J9dwjK/VuSxR3Ffb2t1N38ldg0Jy+2nyRBgZNhBed6yO5jhUrmOXr/QaA5NvXAItDUu/Cj80vNjRC2OiC4I5rSHa1vyZC0898ca22VdJC7pkWPV7Iuc9/efdnUIZFKykJ3hV9wL6elXVUTkT7q/CzgEcmF7SlZkYsg6c=
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=zohomail.com; s=zohoarc; 
-	t=1750814804; h=Content-Type:Cc:Cc:Date:Date:From:From:In-Reply-To:MIME-Version:Message-ID:References:Subject:Subject:To:To:Message-Id:Reply-To; 
-	bh=dqqXtvz4DGOvWCpKBme8+JTNyTNkM/rvX9pTimfD8GY=; 
-	b=lzp4Uqo4vMKzwljxxWSslksGnaQBzYt2u7eNQ6QY5jPXFdz4KcueMKnI7PRJShbhBG7LOXzQ022afliCV+oaodps0kewlIqW3oItZauEnMenl0TbubjrYtbmz9hgxM+4p2xXZ/CMYsPLrrJnfekxu8ZJ8KAQlAFKGnH5jwxSqek=
-ARC-Authentication-Results: i=1; mx.zohomail.com;
-	dkim=pass  header.i=collabora.com;
-	spf=pass  smtp.mailfrom=sebastian.reichel@collabora.com;
-	dmarc=pass header.from=<sebastian.reichel@collabora.com>
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; t=1750814804;
-	s=zohomail; d=collabora.com; i=sebastian.reichel@collabora.com;
-	h=Date:Date:From:From:To:To:Cc:Cc:Subject:Subject:Message-ID:References:MIME-Version:Content-Type:In-Reply-To:Message-Id:Reply-To;
-	bh=dqqXtvz4DGOvWCpKBme8+JTNyTNkM/rvX9pTimfD8GY=;
-	b=LahF0Ho6qrRFiBpniTx85Y2OsPAc3ydS7skuSodBj2tnsf/Kdb/3KOauk3+N+R6+
-	D5FwuUYG/IkZdjbKbT3m7rHIpShXP2NnEAGkj4ephBMxNPvqiGD7w8356EQpLjDJ8y9
-	x/sj4IxY7JVNo/95Kynr3zAi8Wb6BTfA16HmjWPQ=
-Received: by mx.zohomail.com with SMTPS id 1750814803177217.20995854983448;
-	Tue, 24 Jun 2025 18:26:43 -0700 (PDT)
-Received: by venus (Postfix, from userid 1000)
-	id 118841809B8; Wed, 25 Jun 2025 03:26:38 +0200 (CEST)
-Date: Wed, 25 Jun 2025 03:26:37 +0200
-From: Sebastian Reichel <sebastian.reichel@collabora.com>
-To: Quentin Schulz <quentin.schulz@cherry.de>
-Cc: Quentin Schulz <foss+kernel@0leil.net>, Lee Jones <lee@kernel.org>, 
-	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
-	Conor Dooley <conor+dt@kernel.org>, Heiko Stuebner <heiko@sntech.de>, 
-	Lukasz Czechowski <lukasz.czechowski@thaumatec.com>, Daniel Semkowicz <dse@thaumatec.com>, 
-	Nicolas Frattaroli <nicolas.frattaroli@collabora.com>, devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
-	linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v3 3/5] arm64: dts: rockchip: add header for RK8XX PMIC
- constants
-Message-ID: <nja7c4ikyoxpoque62c52eboa22gt4zt72vaseaoo5bbzyrlor@gte3jm2sbecv>
-References: <20250618-rk8xx-rst-fun-v3-0-081f02d3d348@cherry.de>
- <20250618-rk8xx-rst-fun-v3-3-081f02d3d348@cherry.de>
- <t3wbjpbw7phqvip4yvxm5kux6hor5pehzamrw6hjv3hq2b3j3n@zuf2vuhgpdpp>
- <7149b6a8-7715-4920-829d-5b416d40fc16@cherry.de>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 04C6F86338;
+	Wed, 25 Jun 2025 01:34:01 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=213.167.242.64
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1750815244; cv=none; b=r+h2kwMLBlz2KhE6mbjBcogXzYDEJXbSi0tHMScjxqMyvJjFye8x9MJ9risuhZGj3orBs0JflaYMBavute46VNjDXD8oHK3RrqPEzDd5U0+EXqeNlNfweqbG8cL32qxLGncMiCKWugV5mZoyhNUHAUenKDXsGQg486gWVwS7Cck=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1750815244; c=relaxed/simple;
+	bh=jCiYhVobIE8vru8xScAz++vjjNziaIN1FPr6ZOLizAo=;
+	h=Content-Type:MIME-Version:Content-Disposition:In-Reply-To:
+	 References:Subject:From:Cc:To:Date:Message-ID; b=m+x/YNq/eFZU1HgjPB/2BjDKf8maIoe72944GHzOdWxA/s3/8ZAe2kUS6pho67KEEP2G6m2xSmqwtOPcahvgqdpAs9DoKk2xgepx9KdXo2INBoncnvNk/qUjYH9t2n+Eqe0WL73y9GtP/kB8MKVHrUXBxk4OHC4EuYwLSiiC7ZY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ideasonboard.com; spf=pass smtp.mailfrom=ideasonboard.com; dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b=JqTerPlC; arc=none smtp.client-ip=213.167.242.64
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ideasonboard.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ideasonboard.com
+Received: from mail.ideasonboard.com (unknown [IPv6:2601:602:8100:c320::cf66])
+	by perceval.ideasonboard.com (Postfix) with ESMTPSA id DCD9FD77;
+	Wed, 25 Jun 2025 03:33:41 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
+	s=mail; t=1750815222;
+	bh=jCiYhVobIE8vru8xScAz++vjjNziaIN1FPr6ZOLizAo=;
+	h=In-Reply-To:References:Subject:From:Cc:To:Date:From;
+	b=JqTerPlCF5iHX4/tvbpy8jtA1WZpDflNn/xw4hVyNykIBUC4hDlNxbg8ETOqu3edB
+	 OSSH5WGpQO07g+JLKUpveY5ZfS2pDdsXQoLZUKdI8TaSxjkR8QGMNdTYmxOrwLLvxt
+	 +qCy6aHE2FCPIu/AHjxOHFWHDjLbs4dfMN/6EloI=
+Content-Type: multipart/signed; micalg="pgp-sha512"; protocol="application/pgp-signature"; boundary="===============5002358159074849269=="
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="lor23qymgpuiul5d"
 Content-Disposition: inline
-In-Reply-To: <7149b6a8-7715-4920-829d-5b416d40fc16@cherry.de>
-X-Zoho-Virus-Status: 1
-X-Zoho-Virus-Status: 1
-X-Zoho-AV-Stamp: zmail-av-1.4.2/250.326.2
-X-ZohoMailClient: External
+In-Reply-To: <20250514112527.1983068-13-r-donadkar@ti.com>
+References: <20250514112527.1983068-1-r-donadkar@ti.com> <20250514112527.1983068-13-r-donadkar@ti.com>
+Subject: Re: [PATCH v4 12/12] media: ti: j721e-csi2rx: Change the drain architecture for multistream
+From: Jai Luthra <jai.luthra@ideasonboard.com>
+Cc: y-abhilashchandra@ti.com, devarsht@ti.com, vaishnav.a@ti.com, s-jain1@ti.com, vigneshr@ti.com, mchehab@kernel.org, robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org, sakari.ailus@linux.intel.com, hverkuil-cisco@xs4all.nl, tomi.valkeinen@ideasonboard.com, changhuang.liang@starfivetech.com, jack.zhu@starfivetech.com, linux-kernel@vger.kernel.org, linux-media@vger.kernel.org, devicetree@vger.kernel.org
+To: Rishikesh Donadkar <r-donadkar@ti.com>, jai.luthra@linux.dev, laurent.pinchart@ideasonboard.com, mripard@kernel.org
+Date: Tue, 24 Jun 2025 18:33:54 -0700
+Message-ID: <175081523471.8144.8244237988305732382@freya>
+User-Agent: alot/0.12.dev28+gd2c823fe
 
-
---lor23qymgpuiul5d
-Content-Type: text/plain; protected-headers=v1; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
-Subject: Re: [PATCH v3 3/5] arm64: dts: rockchip: add header for RK8XX PMIC
- constants
+--===============5002358159074849269==
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
+Content-Transfer-Encoding: quoted-printable
 
-Hi,
+Hi Rishikesh,
 
-On Mon, Jun 23, 2025 at 11:48:27AM +0200, Quentin Schulz wrote:
-> On 6/19/25 5:51 PM, Sebastian Reichel wrote:
-> > On Wed, Jun 18, 2025 at 12:32:42PM +0200, Quentin Schulz wrote:
-> > > From: Quentin Schulz <quentin.schulz@cherry.de>
-> > >=20
-> > > To make it easier to read the device tree, let's add constants for the
-> > > rockchip,reset-mode property values that are currently only applicable
-> > > to RK806 PMIC.
-> > >=20
-> > > Signed-off-by: Quentin Schulz <quentin.schulz@cherry.de>
-> > > ---
-> > >   arch/arm64/boot/dts/rockchip/rk8xx.h | 18 ++++++++++++++++++
-> >=20
-> > I think this header should be in include/dt-bindings/, otherwise the
+Thanks for the patch.
+
+Quoting Rishikesh Donadkar (2025-05-14 04:25:27)
+> On buffer starvation the DMA is marked IDLE, and the stale data in the
+> internal FIFOs gets drained only on the next VIDIOC_QBUF call from the
+> userspace. This approach works fine for a single stream case.
 >=20
-> v2 did that and the feedback from dt-binding people was they didn't want =
-(as
-> far as I understood) unused constants as ABI[1][2].
+> But in multistream scenarios, buffer starvation for one stream i.e. one
+> virtual channel, can block the shared HW FIFO of the CSI2RX IP. This can
+> stall the pipeline for all other virtual channels, even if buffers are
+> available for them.
 >=20
-> [1]
-> https://lore.kernel.org/all/704d75df-a484-4da3-9bcb-85b480e2ecf0@kernel.o=
-rg/
-> [2]
-> https://lore.kernel.org/all/a9baf6b0-b668-4d10-b9de-b63eb3fd8f23@kernel.o=
-rg/
+> This patch introduces a new architecture, that continuously drains data
+> from the shared HW FIFO into a small (32KiB) buffer if no buffers are made
+> available to the driver from the userspace. This ensures independence
+> between different streams, where a slower downstream element for one
+> camera does not block streaming for other cameras.
+>=20
+> Signed-off-by: Rishikesh Donadkar <r-donadkar@ti.com>
+> ---
+>  .../platform/ti/j721e-csi2rx/j721e-csi2rx.c   | 96 +++++++------------
+>  1 file changed, 33 insertions(+), 63 deletions(-)
+>=20
+> diff --git a/drivers/media/platform/ti/j721e-csi2rx/j721e-csi2rx.c b/driv=
+ers/media/platform/ti/j721e-csi2rx/j721e-csi2rx.c
+> index ba2a30bfed37d..3b046d3cf7e5a 100644
+> --- a/drivers/media/platform/ti/j721e-csi2rx/j721e-csi2rx.c
+> +++ b/drivers/media/platform/ti/j721e-csi2rx/j721e-csi2rx.c
+> @@ -57,7 +57,6 @@
+>  #define TI_CSI2RX_MAX_SOURCE_PADS      TI_CSI2RX_MAX_CTX
+>  #define TI_CSI2RX_MAX_PADS             (1 + TI_CSI2RX_MAX_SOURCE_PADS)
+> =20
+> -#define DRAIN_TIMEOUT_MS               50
+>  #define DRAIN_BUFFER_SIZE              SZ_32K
+> =20
+>  struct ti_csi2rx_fmt {
+> @@ -77,7 +76,6 @@ struct ti_csi2rx_buffer {
+> =20
+>  enum ti_csi2rx_dma_state {
+>         TI_CSI2RX_DMA_STOPPED,  /* Streaming not started yet. */
+> -       TI_CSI2RX_DMA_IDLE,     /* Streaming but no pending DMA operation=
+. */
+>         TI_CSI2RX_DMA_ACTIVE,   /* Streaming and pending DMA operation. */
+>  };
+> =20
+> @@ -245,6 +243,10 @@ static const struct ti_csi2rx_fmt ti_csi2rx_formats[=
+] =3D {
+>  static int ti_csi2rx_start_dma(struct ti_csi2rx_ctx *ctx,
+>                                struct ti_csi2rx_buffer *buf);
+> =20
+> +/* Forward declarations needed by ti_csi2rx_drain_callback. */
+> +static int ti_csi2rx_drain_dma(struct ti_csi2rx_ctx *ctx);
+> +static int ti_csi2rx_dma_submit_pending(struct ti_csi2rx_ctx *ctx);
+> +
+>  static const struct ti_csi2rx_fmt *find_format_by_fourcc(u32 pixelformat)
+>  {
+>         unsigned int i;
+> @@ -596,9 +598,28 @@ static void ti_csi2rx_setup_shim(struct ti_csi2rx_ct=
+x *ctx)
+> =20
+>  static void ti_csi2rx_drain_callback(void *param)
+>  {
+> -       struct completion *drain_complete =3D param;
+> +       struct ti_csi2rx_ctx *ctx =3D param;
+> +       struct ti_csi2rx_dma *dma =3D &ctx->dma;
+> +       unsigned long flags;
+> +
+> +       spin_lock_irqsave(&dma->lock, flags);
+> =20
+> -       complete(drain_complete);
+> +       if (dma->state =3D=3D TI_CSI2RX_DMA_STOPPED) {
+> +               spin_unlock_irqrestore(&dma->lock, flags);
+> +               return;
+> +       }
+> +
+> +       /*
+> +        * If dma->queue is empty, it signals no buffer has arrived from
+> +        * user space, so, queue more transaction to drain dma
+> +        */
+> +       if (list_empty(&dma->queue)) {
+> +               if (ti_csi2rx_drain_dma(ctx))
+> +                       dev_warn(ctx->csi->dev, "DMA drain failed\n");
+> +       } else {
+> +               ti_csi2rx_dma_submit_pending(ctx);
+> +       }
+> +       spin_unlock_irqrestore(&dma->lock, flags);
+>  }
+> =20
+>  /*
+> @@ -616,12 +637,9 @@ static int ti_csi2rx_drain_dma(struct ti_csi2rx_ctx =
+*ctx)
+>  {
+>         struct ti_csi2rx_dev *csi =3D ctx->csi;
+>         struct dma_async_tx_descriptor *desc;
+> -       struct completion drain_complete;
+>         dma_cookie_t cookie;
+>         int ret;
+> =20
+> -       init_completion(&drain_complete);
+> -
+>         desc =3D dmaengine_prep_slave_single(ctx->dma.chan, csi->drain.pa=
+ddr,
+>                                            csi->drain.len, DMA_DEV_TO_MEM,
+>                                            DMA_PREP_INTERRUPT | DMA_CTRL_=
+ACK);
+> @@ -631,7 +649,7 @@ static int ti_csi2rx_drain_dma(struct ti_csi2rx_ctx *=
+ctx)
+>         }
+> =20
+>         desc->callback =3D ti_csi2rx_drain_callback;
+> -       desc->callback_param =3D &drain_complete;
+> +       desc->callback_param =3D ctx;
+> =20
+>         cookie =3D dmaengine_submit(desc);
+>         ret =3D dma_submit_error(cookie);
+> @@ -640,13 +658,6 @@ static int ti_csi2rx_drain_dma(struct ti_csi2rx_ctx =
+*ctx)
+> =20
+>         dma_async_issue_pending(ctx->dma.chan);
+> =20
+> -       if (!wait_for_completion_timeout(&drain_complete,
+> -                                        msecs_to_jiffies(DRAIN_TIMEOUT_M=
+S))) {
+> -               dmaengine_terminate_sync(ctx->dma.chan);
+> -               dev_dbg(csi->dev, "DMA transfer timed out for drain buffe=
+r\n");
+> -               ret =3D -ETIMEDOUT;
+> -               goto out;
+> -       }
+>  out:
+>         return ret;
+>  }
+> @@ -694,9 +705,11 @@ static void ti_csi2rx_dma_callback(void *param)
+> =20
+>         ti_csi2rx_dma_submit_pending(ctx);
+> =20
+> -       if (list_empty(&dma->submitted))
+> -               dma->state =3D TI_CSI2RX_DMA_IDLE;
+> -
+> +       if (list_empty(&dma->submitted)) {
+> +               if (ti_csi2rx_drain_dma(ctx))
+> +                       dev_warn(ctx->csi->dev,
+> +                                "DMA drain failed on one of the transact=
+ions\n");
+> +       }
+>         spin_unlock_irqrestore(&dma->lock, flags);
+>  }
+> =20
+> @@ -749,7 +762,7 @@ static void ti_csi2rx_stop_dma(struct ti_csi2rx_ctx *=
+ctx)
+>                  * enforced before terminating DMA.
+>                  */
+>                 ret =3D ti_csi2rx_drain_dma(ctx);
+> -               if (ret && ret !=3D -ETIMEDOUT)
+> +               if (ret)
+>                         dev_warn(ctx->csi->dev,
+>                                  "Failed to drain DMA. Next frame might b=
+e bogus\n");
+>         }
+> @@ -816,57 +829,14 @@ static void ti_csi2rx_buffer_queue(struct vb2_buffe=
+r *vb)
+>         struct ti_csi2rx_ctx *ctx =3D vb2_get_drv_priv(vb->vb2_queue);
+>         struct ti_csi2rx_buffer *buf;
+>         struct ti_csi2rx_dma *dma =3D &ctx->dma;
+> -       bool restart_dma =3D false;
+>         unsigned long flags =3D 0;
+> -       int ret;
+> =20
+>         buf =3D container_of(vb, struct ti_csi2rx_buffer, vb.vb2_buf);
+>         buf->ctx =3D ctx;
+> =20
+>         spin_lock_irqsave(&dma->lock, flags);
+> -       /*
+> -        * Usually the DMA callback takes care of queueing the pending bu=
+ffers.
+> -        * But if DMA has stalled due to lack of buffers, restart it now.
+> -        */
+> -       if (dma->state =3D=3D TI_CSI2RX_DMA_IDLE) {
+> -               /*
+> -                * Do not restart DMA with the lock held because
+> -                * ti_csi2rx_drain_dma() might block for completion.
+> -                * There won't be a race on queueing DMA anyway since the
+> -                * callback is not being fired.
+> -                */
+> -               restart_dma =3D true;
+> -               dma->state =3D TI_CSI2RX_DMA_ACTIVE;
+> -       } else {
+> -               list_add_tail(&buf->list, &dma->queue);
+> -       }
+> +       list_add_tail(&buf->list, &dma->queue);
+>         spin_unlock_irqrestore(&dma->lock, flags);
+> -
+> -       if (restart_dma) {
+> -               /*
+> -                * Once frames start dropping, some data gets stuck in th=
+e DMA
+> -                * pipeline somewhere. So the first DMA transfer after fr=
+ame
+> -                * drops gives a partial frame. This is obviously not use=
+ful to
 
-I wonder if it would be considered an ABI, if the drivers would use
-the values like this:
+I think it would be good to retain a similar comment in the code, and also
+in the commit message, as there is a possibility of returning a partial fra=
+me
+to the user post drain.
 
-switch (value_from_dt) {
-case RK806_RESTART:
-case RK806_RESET:
-case RK806_RESET_NOTIFY:
-    program_register(...);
-    break;
-default:
-    return dev_err_probe(dev, -EINVAL, "invalid restart setting");
-}
+With that change,
 
-IMHO register values not being an ABI is kind of weird, as this is a
-very strong ABI from my POV - it's just not defined by us. But I don't
-intent to fight for this, so ignore my comment :)
+Reviewed-by: Jai Luthra <jai.luthra@ideasonboard.com>
 
-Greetings,
-
--- Sebastian
-
---lor23qymgpuiul5d
-Content-Type: application/pgp-signature; name="signature.asc"
+> -                * the application and will only confuse it. Issue a DMA
+> -                * transaction to drain that up.
+> -                */
+> -               ret =3D ti_csi2rx_drain_dma(ctx);
+> -               if (ret && ret !=3D -ETIMEDOUT)
+> -                       dev_warn(ctx->csi->dev,
+> -                                "Failed to drain DMA. Next frame might b=
+e bogus\n");
+> -
+> -               spin_lock_irqsave(&dma->lock, flags);
+> -               ret =3D ti_csi2rx_start_dma(ctx, buf);
+> -               if (ret) {
+> -                       vb2_buffer_done(&buf->vb.vb2_buf, VB2_BUF_STATE_E=
+RROR);
+> -                       dma->state =3D TI_CSI2RX_DMA_IDLE;
+> -                       spin_unlock_irqrestore(&dma->lock, flags);
+> -                       dev_err(ctx->csi->dev, "Failed to start DMA: %d\n=
+", ret);
+> -               } else {
+> -                       list_add_tail(&buf->list, &dma->submitted);
+> -                       spin_unlock_irqrestore(&dma->lock, flags);
+> -               }
+> -       }
+>  }
+> =20
+>  static int ti_csi2rx_get_route(struct ti_csi2rx_ctx *ctx)
+> --=20
+> 2.34.1
+>
+--===============5002358159074849269==
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Content-Description: signature
+Content-Type: application/pgp-signature; name="signature.asc"; charset="us-ascii"
 
 -----BEGIN PGP SIGNATURE-----
 
-iQIzBAABCgAdFiEE72YNB0Y/i3JqeVQT2O7X88g7+poFAmhbUEoACgkQ2O7X88g7
-+prfGRAAhMwSZGvBSU4k92HD+ibNltYMwuzkm2IBNQ3+JJq/HlqKZcpbwMSWr/+y
-sjFgtalHlfR40P0lGMaXHuYW/cxy95VVa4Qmh+PQHgiijyWwdxFoHtHmvm+OHBCQ
-pV3ifwm6n6GdzEE3CbnAWlk8FnidWYjLTOwsQYkFPhX/4YL/A+cmkn/2HcBhK24v
-EI1n09NHzS9Q3pHXrNDuhkVYLWME8mdTDeje3rp9lJ8w5MA5a1aYU5AjDw6nobNf
-Didji/DO+WsQPX2TQ4PogSft9RPMx8HeXA0KO0kFguGfdKMcRoOfE6R9dvd4Xe9+
-JEOj6XQI0fl2Ql1eBIdh5uEzcTmnzbWgq15BXFpHOWYeg62eCM3QVOQDh3bkkDFE
-lXITizn3MmrsQ0w+xHKskAekDtIArt2gKB+HVrwXmd6eFPniH1WNbD6ZUsDq3sjX
-7DmXoN34UE1Sj9H7vheZGBS7bzNyxk/CGUnoZ6GQTGAVJ99E9WwqCGsK9GNwx57w
-k7uqOmIVt4dzbj9c47i80FQc7Ipp1OiZyhsBMlGjMSzEgg1q62O4GtAl4UI5qACh
-UEjAGubnqSOgfES9lhZ3sG1pnqV/KOGA9lZA78POC0oqFENuH5krigAazYNZ55tN
-9KZbpmolU2/lakgWt49Zcq8yPohbfgJYeOtM9Bz3ByUq6FvLmds=
-=ovhb
+iQIzBAABCgAdFiEETeDYGOXVdejUWq/FQ96R+SSacUUFAmhbUfgACgkQQ96R+SSa
+cUUYCRAAgNZRhrRuTYsTSz7SUZoiDss//pcSSPr1PZ5Zunx2tVPE+j7Lq/79H35E
+XAb08Pmcot5vt/PKXKaR1t+8LFBxQ5fNQfF/8YNtb4vItStbQimMRZlxScSywMnI
+nxlrgiwxywaeAnLwXBj+4ql8yIlVqvzrYAdOnlq1SXNo5oyOIeR62NqTelmVh+QG
+/UsYwnkjchp9HkiThIzU+5YpZeHWjD4i/CYSEXiq8anhGC0btvUYogq9UFupZO4v
+V9utoBZymzL3EHdqlLCJGD0JcHKIM/eDfi337T+W50vytcSM8OSy6Z/4vc3Ijeyj
+1XnnRo4pCoG3E1cRyZqwJcYaCZsRTYTDHhXHWX4f5P2LOn/FpjOacmBGUE4OjgqE
+Ems0bL5+3Z57M5jt2RdoMnDwuPW0F76kguzdeBV6XBaUolgOJMLUoHsis8YkwB9h
++tgbxaxv5owIwT3Ct7ixlnyaZmuvfZuC54dwgTjTuPBEtTGq7r6dn4UdbbOxOg6V
+GvQh6O0hajqAdxPDV1RN1Pmuglq4oLSZj0m5hJjC5z+uY8OCNrlTXGVeg+/66ncv
+etgPIka1NVMa+z8aDnBmCRTWESbXOIPOWPAkHhqd3Oq6dWIe5CAFOL6hfS/KgBTp
+X8czLyYBlm9TYi7MKb41rLkwRB8v0JGLO9HvH3XahQcQsylv464=
+=jt1I
 -----END PGP SIGNATURE-----
 
---lor23qymgpuiul5d--
+--===============5002358159074849269==--
 
