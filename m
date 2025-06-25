@@ -1,58 +1,55 @@
-Return-Path: <devicetree+bounces-189676-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-189677-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7EBBCAE8E74
-	for <lists+devicetree@lfdr.de>; Wed, 25 Jun 2025 21:20:29 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5F5D1AE8E7A
+	for <lists+devicetree@lfdr.de>; Wed, 25 Jun 2025 21:20:55 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 663A83AAE7D
-	for <lists+devicetree@lfdr.de>; Wed, 25 Jun 2025 19:20:03 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 2BA3D1C20603
+	for <lists+devicetree@lfdr.de>; Wed, 25 Jun 2025 19:21:11 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 38F642DAFDB;
-	Wed, 25 Jun 2025 19:20:14 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 758FA2DAFB3;
+	Wed, 25 Jun 2025 19:20:53 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="PoGIOwmJ"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="eKn/Am9G"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0E0442DAFD5;
-	Wed, 25 Jun 2025 19:20:13 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4D6402D3A77;
+	Wed, 25 Jun 2025 19:20:52 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1750879214; cv=none; b=CvpFqMaoKvm21Vg3SdimXEyXR7tETRPHhEygqzwj/u+QxvQ6Wlo0tb0q6tszG06DiSlSOakjCaynFsCezsDOOj4e+aHwQ3vOg+WUUdrXEufGAloo8VqPapz5/DGVcO5KFooDzWima5d3k92itQlPftrP1XtVZd4DJX+j/LU6aUc=
+	t=1750879253; cv=none; b=jZ1hYOaDvR+8uxdauBeZ4yRFwje1LG1o7t73tV5GilMDdeNWzoXoRZUoegDIcUAo1ujYezP6sanQ9U0u4VPGHL6skZct+55gHx9wdCpdE/r3aOtrPdpLv8vJIahBLCpq8UgTeY73iY5s+dNTKw3ayBVOiaRMKHmCugyDlev/hC0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1750879214; c=relaxed/simple;
-	bh=sca62JZH9B7G+ctNvBdw9GUebLjtvA5SkuZvnF4DILI=;
+	s=arc-20240116; t=1750879253; c=relaxed/simple;
+	bh=0M5isegZ+u88QFyNHKXhyISo4jB/zwu5zpA+8O1xpgg=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=czocllUJ9eNXgHsZMjN1/gWk7TU4XM6BQng6gkRPje/wQWjBlR+m9vWQll4i9qdFeKrT9beUbzc9SO81YS63/bWYZN2iM6f6NEZrlbR9CkcRl9ewm7asmcBnSz5A/gHVuBpddry072gXaOVaZqnFBDhnCo1ZNuwoxnQ/cqXNYII=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=PoGIOwmJ; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 7BB60C4CEEA;
-	Wed, 25 Jun 2025 19:20:13 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=d9/sg7pBSukHRyFUsIv/UDFBskCbZ79P4hq46Ksiy5wb/rQ8qyOg/Eu4ttmviwHkXh5VXaI6Ma3vNCaZIFrUUomHhgssh4pdeBXPUnRv1iSYORFSd+g9kmBkyZraLijZ605lg2FUtuAc9hW1jZX2R9y9G8mIlvfPQv4ayY7klvQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=eKn/Am9G; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id ADC56C4CEEA;
+	Wed, 25 Jun 2025 19:20:52 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1750879213;
-	bh=sca62JZH9B7G+ctNvBdw9GUebLjtvA5SkuZvnF4DILI=;
+	s=k20201202; t=1750879252;
+	bh=0M5isegZ+u88QFyNHKXhyISo4jB/zwu5zpA+8O1xpgg=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=PoGIOwmJsG0aWLCJxONJJ33xF2KR+Cq8zPFTXZ3/jcDW8a1G05z17E1otXTarIxnn
-	 Svgv00k99h6AQM9aHgvLibweNd3HPeoBeJdbhx+ChkboDTWekjolHPJX8vHBnSfcT1
-	 wzoMi+R16ZdmOumeMWBQUJbdIJIH4uGllxuLFHIuf5dlt+RBP9tS2ZGM9EiWmZHV/1
-	 0mINmFUxcAwB7ZncOfzuNT6Qw/+NYiFfmeV8//qVW7uB3fEUBmxTRnxL9TTg6aZNBl
-	 TN1KaAVYaMlKTAAdlWOneEm3RHZXM/L1IP7haxKFO/p827jzbKW1AC8BYzrlk7SutO
-	 rPypx71p5nVIw==
-Date: Wed, 25 Jun 2025 14:20:12 -0500
+	b=eKn/Am9GrBnYVo/vRcXGXe/epWOjVSybz0XxzThZ6Jgg4oUFOvDIXKt6NlJM3x7WC
+	 E8jQEXbcgrk+jjI1BUl6yrTd5r7wgC3surQRs5f5fBdR/2k8ZuaRYBvihcBA2hQ54k
+	 XjKgcIHiWxnsn6+yh8PxQ04eteLonRTA859Uy02ZmkbWHNklD1Qs7Gdg+uzv79AwaO
+	 70cpwasBQKNPPSVz6qR2RCtk5I7wrRB9D8AEvMVdTGRTgwMCD3CZYjtPLooxqD5A8a
+	 4RxRNcHf+cEAtfYBoKVcvFWoTwy5J9aakDv1ZhyMAayPAWJVwHf9jSlCtn8CwEjT72
+	 dJ6/Uvi5P+gyw==
+Date: Wed, 25 Jun 2025 14:20:51 -0500
 From: "Rob Herring (Arm)" <robh@kernel.org>
-To: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
-Cc: Icenowy Zheng <uwu@icenowy.me>, linux-kernel@vger.kernel.org,
-	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-	devicetree@vger.kernel.org, Conor Dooley <conor+dt@kernel.org>,
-	linux-usb@vger.kernel.org, Krzysztof Kozlowski <krzk+dt@kernel.org>
-Subject: Re: [PATCH 2/2] dt-bindings: usb: genesys,gl850g: add downstream
- facing ports
-Message-ID: <175087921220.2067965.6337398694001968932.robh@kernel.org>
-References: <20250608-genesys-ports-v1-0-09ca19f6838e@oss.qualcomm.com>
- <20250608-genesys-ports-v1-2-09ca19f6838e@oss.qualcomm.com>
+To: Wolfram Sang <wsa+renesas@sang-engineering.com>
+Cc: Conor Dooley <conor+dt@kernel.org>, devicetree@vger.kernel.org,
+	linux-renesas-soc@vger.kernel.org,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>
+Subject: Re: [PATCH] dt-bindings: trivial-devices: Add Analog Devices ADT7411
+Message-ID: <175087925106.2068953.11227381201215645741.robh@kernel.org>
+References: <20250608162240.3023-2-wsa+renesas@sang-engineering.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -61,21 +58,24 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20250608-genesys-ports-v1-2-09ca19f6838e@oss.qualcomm.com>
+In-Reply-To: <20250608162240.3023-2-wsa+renesas@sang-engineering.com>
 
 
-On Sun, 08 Jun 2025 19:07:31 +0300, Dmitry Baryshkov wrote:
-> In order to describe connections between Genesys GL850G hub and
-> corresponding Type-C connectors, follow example of RTS5411 and describe
-> downstream facing ports. Unline normal case of ports being connected to
-> a USB device, hotplug ports use OF graph representation.
+On Sun, 08 Jun 2025 18:21:09 +0200, Wolfram Sang wrote:
+> Describe this SPI-/I2C-Compatible, 10-Bit Digital Temperature Sensor and
+> 8-Channel ADC. The driver is in hwmon for ages.
 > 
-> Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
+> Signed-off-by: Wolfram Sang <wsa+renesas@sang-engineering.com>
 > ---
->  Documentation/devicetree/bindings/usb/genesys,gl850g.yaml | 12 ++++++++++++
->  1 file changed, 12 insertions(+)
+> 
+> Found while using a local setup, but there are upstream users already:
+> 
+> arch/arm/boot/dts/nxp/vf/vf610-zii-scu4-aib.dts:                compatible = "adi,adt7411";
+> 
+>  Documentation/devicetree/bindings/trivial-devices.yaml | 2 ++
+>  1 file changed, 2 insertions(+)
 > 
 
-Reviewed-by: Rob Herring (Arm) <robh@kernel.org>
+Applied, thanks!
 
 
