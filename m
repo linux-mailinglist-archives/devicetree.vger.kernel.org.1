@@ -1,30 +1,31 @@
-Return-Path: <devicetree+bounces-189298-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-189299-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 56B7FAE78AB
-	for <lists+devicetree@lfdr.de>; Wed, 25 Jun 2025 09:34:52 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6A303AE78AE
+	for <lists+devicetree@lfdr.de>; Wed, 25 Jun 2025 09:35:14 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id E1A50189783C
-	for <lists+devicetree@lfdr.de>; Wed, 25 Jun 2025 07:35:06 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id C77DA1640A6
+	for <lists+devicetree@lfdr.de>; Wed, 25 Jun 2025 07:35:14 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id DA29C1E9B23;
-	Wed, 25 Jun 2025 07:34:28 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 48B0A20CCD8;
+	Wed, 25 Jun 2025 07:34:31 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from TWMBX01.aspeed.com (mail.aspeedtech.com [211.20.114.72])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DE3521DB958;
-	Wed, 25 Jun 2025 07:34:25 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0B4732040B6;
+	Wed, 25 Jun 2025 07:34:29 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=211.20.114.72
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1750836868; cv=none; b=plAcxfBZAVY6LFvtpEiljZQe7wufb+I/bzQv8UnLPjOUHRSWFvGIYrNPzfeetjTnR64rquxMyWbGbgje3SW9Qr2WZCIZMNYKOr1e1/nVkxiTvdg3MLWQGndrBoGfPiH4DiUb2W8CDac/oQPl2xLwgBlDknyW2gGA4U+L2lIimX0=
+	t=1750836871; cv=none; b=bxr/6PI6LZUrY3Y/Wqy3+HEan4wVFc+OZojBnlx+tG/POPY1gSIGd7/B1hK60SCCLUn4d0qmXDMw11dWvuyEZtVSowTOpJ5Wm7tJ1sQK+jYrNk76LP8hK9wWPVeVR0gpiFsBh1GbK8Ahl2sSFiW/Dt01+z+WzmaTrqnxEKGy5ek=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1750836868; c=relaxed/simple;
-	bh=pFGAiFD7LUEJrgd8t0OpEUTJgUbOH8Ykp9q5zrIdDUU=;
-	h=From:To:Subject:Date:Message-ID:MIME-Version:Content-Type; b=gjHqt7Lx28qHVtqpSKYbml3KpBM++eyYA9Q9PGTjjVTZUCobHHkgmT1AFJER40EPGvRl0S39aQuRiJXXgEQ1pUYiOfkyMkzEoMd3VKV4/q5sG1vFbHFjdkM9c8Kpf38gIXOL5o1fvAi2oADssgg6fO5hbRl7gnfliFquhSbl0Y8=
+	s=arc-20240116; t=1750836871; c=relaxed/simple;
+	bh=MFUynQYKC8TeFM9g8g4aaiAVStZlY2yKQEpZEWi1ma4=;
+	h=From:To:Subject:Date:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=InmOhrQDieWy1cbL12H7wOko1AMXuW4N84Nbi6wGGLk6FGSkLJjypDyB0o+/oGfLLMm3rTawNB3FCPHkGL02doZLKWallDkiNycAl7B4Z2FRlByysyx/wfwi/wLgKJK4HDviEXxJvcsBjAxdHYyk1BJc1NVhAe8LrywQ6JfBpSI=
 ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=aspeedtech.com; spf=pass smtp.mailfrom=aspeedtech.com; arc=none smtp.client-ip=211.20.114.72
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=aspeedtech.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=aspeedtech.com
@@ -34,16 +35,18 @@ Received: from TWMBX01.aspeed.com (192.168.0.62) by TWMBX01.aspeed.com
  2025 15:34:18 +0800
 Received: from mail.aspeedtech.com (192.168.10.13) by TWMBX01.aspeed.com
  (192.168.0.62) with Microsoft SMTP Server id 15.2.1748.10 via Frontend
- Transport; Wed, 25 Jun 2025 15:34:17 +0800
+ Transport; Wed, 25 Jun 2025 15:34:18 +0800
 From: Jammy Huang <jammy_huang@aspeedtech.com>
 To: <jassisinghbrar@gmail.com>, <robh@kernel.org>, <krzk+dt@kernel.org>,
 	<conor+dt@kernel.org>, <joel@jms.id.au>, <andrew@codeconstruct.com.au>,
 	<linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>,
 	<linux-arm-kernel@lists.infradead.org>, <linux-aspeed@lists.ozlabs.org>
-Subject: [PATCH v5 0/2] ASPEED: Add mailbox driver for AST2700 series
-Date: Wed, 25 Jun 2025 15:34:15 +0800
-Message-ID: <20250625073417.2395037-1-jammy_huang@aspeedtech.com>
+Subject: [PATCH v5 1/2] dt-bindings: mailbox: Add ASPEED AST2700 series SoC
+Date: Wed, 25 Jun 2025 15:34:16 +0800
+Message-ID: <20250625073417.2395037-2-jammy_huang@aspeedtech.com>
 X-Mailer: git-send-email 2.34.1
+In-Reply-To: <20250625073417.2395037-1-jammy_huang@aspeedtech.com>
+References: <20250625073417.2395037-1-jammy_huang@aspeedtech.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -53,49 +56,81 @@ MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 Content-Type: text/plain
 
-Add mailbox controller driver for AST27XX SoCs, which provides
-independent tx/rx mailbox between different processors. There are 4
-channels for each tx/rx mailbox and each channel has an 32-byte FIFO.
+Introduce the mailbox module for AST27XX series SoC, which is responsible
+for interchanging messages between asymmetric processors.
 
- v5 changes:
-  - Update document
-     1. Separate reg from 1 to 2. 1st is tx controller; 2nd is rx.
-     2. Remove 'Reviewed-by' since the patch has changed.
-  - Update driver, no functional changes.
-     1. Update since there is 2 reg base now.
-     2. Refine reg definitions
-     3. Add spinlock to protect registers
-     4. Use bool as return value for ast2700_mbox_tx_done
-     5. Rename variable from drv_data to dev_data.
-
- v4 changes:
-  - Update driver, no functional changes.
-     1. Remove unused variable, rx_buff, in struct ast2700_mbox.
-     2. Remove unneeded cast on device_get_match_data.
-     3. Remove the usage of writel/readl_relaxed.
-     4. Improve readability.
- v3 changes:
-  - Correct document
-     1. Use 32-bit addressing in dts example property, reg.
- v2 changes:
-  - Update document
-     1. Correct error in dts example.
-     2. Drop description for mbox-cell per suggestion previously.
-
-Jammy Huang (2):
-  dt-bindings: mailbox: Add ASPEED AST2700 series SoC
-  mailbox: aspeed: add mailbox driver for AST27XX series SoC
-
- .../mailbox/aspeed,ast2700-mailbox.yaml       |  60 +++++
- drivers/mailbox/Kconfig                       |   8 +
- drivers/mailbox/Makefile                      |   2 +
- drivers/mailbox/ast2700-mailbox.c             | 240 ++++++++++++++++++
- 4 files changed, 310 insertions(+)
+Signed-off-by: Jammy Huang <jammy_huang@aspeedtech.com>
+---
+ .../mailbox/aspeed,ast2700-mailbox.yaml       | 60 +++++++++++++++++++
+ 1 file changed, 60 insertions(+)
  create mode 100644 Documentation/devicetree/bindings/mailbox/aspeed,ast2700-mailbox.yaml
- create mode 100644 drivers/mailbox/ast2700-mailbox.c
 
-
-base-commit: ec7714e4947909190ffb3041a03311a975350fe0
+diff --git a/Documentation/devicetree/bindings/mailbox/aspeed,ast2700-mailbox.yaml b/Documentation/devicetree/bindings/mailbox/aspeed,ast2700-mailbox.yaml
+new file mode 100644
+index 000000000000..0a5f43de5f28
+--- /dev/null
++++ b/Documentation/devicetree/bindings/mailbox/aspeed,ast2700-mailbox.yaml
+@@ -0,0 +1,60 @@
++# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/mailbox/aspeed,ast2700-mailbox.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: ASPEED AST2700 mailbox controller
++
++maintainers:
++  - Jammy Huang <jammy_huang@aspeedtech.com>
++
++description:
++  ASPEED AST2700 has multiple processors that need to communicate with each
++  other. The mailbox controller provides a way for these processors to send
++  messages to each other. It is a hardware-based inter-processor communication
++  mechanism that allows processors to send and receive messages through
++  dedicated channels.
++  The mailbox's tx/rx are independent, meaning that one processor can send a
++  message while another processor is receiving a message simultaneously.
++  There are 4 channels available for both tx and rx operations. Each channel
++  has a FIFO buffer that can hold messages of a fixed size (32 bytes in this
++  case).
++  The mailbox controller also supports interrupt generation, allowing
++  processors to notify each other when a message is available or when an event
++  occurs.
++
++properties:
++  compatible:
++    const: aspeed,ast2700-mailbox
++
++  reg:
++    maxItems: 2
++    description:
++      Contains the base addresses and sizes of the mailbox controller. 1st one
++      is for TX control register; 2nd one is for RX control register.
++
++  interrupts:
++    maxItems: 1
++
++  "#mbox-cells":
++    const: 1
++
++required:
++  - compatible
++  - reg
++  - interrupts
++  - "#mbox-cells"
++
++additionalProperties: false
++
++examples:
++  - |
++    #include <dt-bindings/interrupt-controller/arm-gic.h>
++
++    mailbox@12c1c200 {
++        compatible = "aspeed,ast2700-mailbox";
++        reg = <0x12c1c200 0x100>, <0x12c1c300 0x100>;
++        interrupts = <GIC_SPI 103 IRQ_TYPE_LEVEL_HIGH>;
++        #mbox-cells = <1>;
++    };
 -- 
 2.25.1
 
