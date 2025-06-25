@@ -1,63 +1,84 @@
-Return-Path: <devicetree+bounces-189695-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-189696-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 20EA4AE8F2A
-	for <lists+devicetree@lfdr.de>; Wed, 25 Jun 2025 22:07:16 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id B1EE7AE8F2D
+	for <lists+devicetree@lfdr.de>; Wed, 25 Jun 2025 22:08:32 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 54B93171BED
-	for <lists+devicetree@lfdr.de>; Wed, 25 Jun 2025 20:07:16 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 716E75A79CB
+	for <lists+devicetree@lfdr.de>; Wed, 25 Jun 2025 20:08:07 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 34A1F20C026;
-	Wed, 25 Jun 2025 20:07:11 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D57B52C2ACE;
+	Wed, 25 Jun 2025 20:08:28 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="bDeAAmM7"
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="dFJvusXS"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.11])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0C9321FE47B;
-	Wed, 25 Jun 2025 20:07:10 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1D98E1FE47B;
+	Wed, 25 Jun 2025 20:08:26 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.198.163.11
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1750882031; cv=none; b=sl3qaTJ0Ay7QAjwrJM36y1Tf9JAp+A2pSLBmOUQRDbG/XnNP/Tx2yaQtJ3EBin5Q/llkMRSAAstBFEiyGh+CYWsevU9oUH6qP/xqf+4veItNXp4VGNBdeKB0IZ3oF03THmj1C2zn988+3nAXpnP6BpbmtZ6og9iV1h32c6clplo=
+	t=1750882108; cv=none; b=lPuDGtAVmYbK8nvw6avknZVQrziNFMlikSBjO7Ymb0QM6o69l8tCHKhfVW1KL1F4arkVXNU2VR3k748CKxnDM8Ts5PUpZUG3Uz2QfvKT7aZroJ2Te1e6zxOTbxPGtF0+0qgXPT0UuAEpXquVCgdesoWY7L4dE0uczVsFuZSmAJU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1750882031; c=relaxed/simple;
-	bh=3nMq3/Hym2/YQbY6AJkgEG17d/VOkEQF9DjdSEWeZyk=;
+	s=arc-20240116; t=1750882108; c=relaxed/simple;
+	bh=xUpMEIzpFjRDAERBUMObbNI+oufFrlvJkWbPLwaUzp0=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=pHJTRObpXX/2Xl5+udzxKzDkcuXVMup/XBGWsk0STehTyyaRQR9zgwjX/x9CSB4X35WZCjdbh/x8t9lxWsg8lqYF2hGslcmBllLFeOgOGWcxBT1B3OGS9w3C7/X+Y6czfsB0uq9M+v/nC3Ddt+mLwg0XSkqQKJ8ahI0a80bNz+0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=bDeAAmM7; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 69FB3C4CEEA;
-	Wed, 25 Jun 2025 20:07:10 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1750882030;
-	bh=3nMq3/Hym2/YQbY6AJkgEG17d/VOkEQF9DjdSEWeZyk=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=bDeAAmM7YFLQOvDlRTxPOgr1KPTZLElt9jK0PkSZQcrL/JcgOkvDGOgmFCWlQohoB
-	 xeC0L04ed8DvBzsaIY42FMQ8ETnfxfT7XFdTIa9haZi38NXpY/3FX93suJLMxN+0Qs
-	 xnFuGuSmocj2UgqJmyRDi2McdVmr4sQVIp78a+I/zwn06bC7zvlwzNDq1ObNHVOECA
-	 SlYQQGVTUYd78mbJUeKLQeiTA1E9TO77uwibbWPok7rgmHiu1ECjaDFx8De8VqRNGp
-	 5CCGH+hHSho6h1H09zuHAry0LZm0r+HCoAo5mRKS/bXBWifAlxNjMIg71MgDQ8gyNr
-	 KGKsKD47YH9pg==
-Date: Wed, 25 Jun 2025 15:07:09 -0500
-From: Rob Herring <robh@kernel.org>
-To: Wolfram Sang <wsa+renesas@sang-engineering.com>
-Cc: linux-renesas-soc@vger.kernel.org,
-	Tommaso Merciai <tommaso.merciai.xr@bp.renesas.com>,
-	Alexandre Belloni <alexandre.belloni@bootlin.com>,
-	Frank Li <Frank.Li@nxp.com>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	 Content-Type:Content-Disposition:In-Reply-To; b=etBUnZUQTQCsToX2sWMTogAZVQ5GfbdC5xirLfPl3TZ0kbefPQ8uci7dJymeENqMMNfYQtfRYK4nzw+3yiZ8iiMphlZEc/m7MK6IxuKDhC+JW0HVDioDEAv5pq0ZmurGcsGG4v2Nzk7v17/9Tg+SpMvBdgvUB+Pjq/SlGMNtljo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=dFJvusXS; arc=none smtp.client-ip=192.198.163.11
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1750882107; x=1782418107;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=xUpMEIzpFjRDAERBUMObbNI+oufFrlvJkWbPLwaUzp0=;
+  b=dFJvusXSSnTUtEoMw+ge5lgkqAsi2YMxLLvv0V/xwhkZ/bsjImzSEPmC
+   PEMKIMD1Bfs/PwlZeBJ5lcZarbauTwHOeijR5Ltltg7JXTBuq55hCVgBn
+   TMuHYW5vWPm/PgMXylaLHeFLZi4N4wRy1xqisFNXBpJEObgWKsIrPYef7
+   Z2uBtYL/P6rTq/RV5uaRHu8D6sOww6PdT+MjRYHG37U3xnxD5MXdJ0LvW
+   KC2m5LYYj62Mfi7zSckoYU3VzlVTUd/xmeclOW99jTz9cRltAGCuZI3Z+
+   G52/YB7eoBl0GFsE75rDen+rYn37F38FBgN3TZDCPhbc32LEsG7b4uNvg
+   A==;
+X-CSE-ConnectionGUID: +UaOQrb5Q/mlId2UukCGXg==
+X-CSE-MsgGUID: sV/HvzV3TAeWvbnSQxuxPA==
+X-IronPort-AV: E=McAfee;i="6800,10657,11475"; a="63766168"
+X-IronPort-AV: E=Sophos;i="6.16,265,1744095600"; 
+   d="scan'208";a="63766168"
+Received: from fmviesa010.fm.intel.com ([10.60.135.150])
+  by fmvoesa105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 25 Jun 2025 13:08:26 -0700
+X-CSE-ConnectionGUID: YpEsUcroSXaqWKY9aziD2Q==
+X-CSE-MsgGUID: Tn6UOuwBSeC9ZqjURSczQA==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.16,265,1744095600"; 
+   d="scan'208";a="153033344"
+Received: from lkp-server01.sh.intel.com (HELO e8142ee1dce2) ([10.239.97.150])
+  by fmviesa010.fm.intel.com with ESMTP; 25 Jun 2025 13:08:23 -0700
+Received: from kbuild by e8142ee1dce2 with local (Exim 4.96)
+	(envelope-from <lkp@intel.com>)
+	id 1uUWPt-000TRa-0m;
+	Wed, 25 Jun 2025 20:08:21 +0000
+Date: Thu, 26 Jun 2025 04:07:43 +0800
+From: kernel test robot <lkp@intel.com>
+To: Luca Weiss <luca.weiss@fairphone.com>,
+	Bjorn Andersson <andersson@kernel.org>,
+	Michael Turquette <mturquette@baylibre.com>,
+	Stephen Boyd <sboyd@kernel.org>, Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk@kernel.org>,
 	Conor Dooley <conor+dt@kernel.org>,
-	Geert Uytterhoeven <geert+renesas@glider.be>,
-	Magnus Damm <magnus.damm@gmail.com>, linux-i3c@lists.infradead.org,
-	devicetree@vger.kernel.org
-Subject: Re: [PATCH RFC 3/7] dt-bindings: i3c: renesas,i3c: Add binding for
- Renesas I3C controller
-Message-ID: <20250625200709.GA2125481-robh@kernel.org>
-References: <20250611093934.4208-1-wsa+renesas@sang-engineering.com>
- <20250611093934.4208-4-wsa+renesas@sang-engineering.com>
+	Konrad Dybcio <konradybcio@kernel.org>
+Cc: oe-kbuild-all@lists.linux.dev, ~postmarketos/upstreaming@lists.sr.ht,
+	phone-devel@vger.kernel.org, linux-arm-msm@vger.kernel.org,
+	linux-clk@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org, Luca Weiss <luca.weiss@fairphone.com>
+Subject: Re: [PATCH 08/10] clk: qcom: Add Graphics Clock controller (GPUCC)
+ driver for SM7635
+Message-ID: <202506260357.DyPYkEZb-lkp@intel.com>
+References: <20250625-sm7635-clocks-v1-8-ca3120e3a80e@fairphone.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -66,119 +87,50 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20250611093934.4208-4-wsa+renesas@sang-engineering.com>
+In-Reply-To: <20250625-sm7635-clocks-v1-8-ca3120e3a80e@fairphone.com>
 
-On Wed, Jun 11, 2025 at 11:39:27AM +0200, Wolfram Sang wrote:
-> From: Tommaso Merciai <tommaso.merciai.xr@bp.renesas.com>
-> 
-> Available in RZ/G3S and G3E SoCs. The G3S has 17 interrupts, the G3E 16
-> with the "HDR exit" interrupt missing. This interrupt is put to the end
-> of the list, so we can handle the difference using "minItems" instead of
-> defining a separate interrupt list per SoC.
-> 
-> Signed-off-by: Tommaso Merciai <tommaso.merciai.xr@bp.renesas.com>
-> Signed-off-by: Wolfram Sang <wsa+renesas@sang-engineering.com>
-> ---
-> 
-> Tommaso also did a version with two interrupt lists and using 'oneOf'. I
-> prefer this version but maybe the other one is preferred upstream?
-> 
->  .../devicetree/bindings/i3c/renesas,i3c.yaml  | 186 ++++++++++++++++++
->  1 file changed, 186 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/i3c/renesas,i3c.yaml
-> 
-> diff --git a/Documentation/devicetree/bindings/i3c/renesas,i3c.yaml b/Documentation/devicetree/bindings/i3c/renesas,i3c.yaml
-> new file mode 100644
-> index 000000000000..e6e6c57bb56c
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/i3c/renesas,i3c.yaml
-> @@ -0,0 +1,186 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/i3c/renesas,i3c.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Renesas I3C Bus Interface
-> +
-> +maintainers:
-> +  - Wolfram Sang <wsa+renesas@sang-engineering.com>
-> +  - Tommaso Merciai <tommaso.merciai.xr@bp.renesas.com>
-> +
-> +properties:
-> +  compatible:
-> +    items:
-> +      - enum:
-> +          - renesas,r9a08g045-i3c # RZ/G3S
-> +          - renesas,r9a09g047-i3c # RZ/G3E
-> +      - const: renesas,i3c
-> +
-> +  reg:
-> +    maxItems: 1
-> +
-> +  interrupts:
-> +    items:
-> +      - description: Non-recoverable internal error interrupt
-> +      - description: Normal transfer error interrupt
-> +      - description: Normal transfer abort interrupt
-> +      - description: Normal response status buffer full interrupt
-> +      - description: Normal command buffer empty interrupt
-> +      - description: Normal IBI status buffer full interrupt
-> +      - description: Normal Rx data buffer full interrupt
-> +      - description: Normal Tx data buffer empty interrupt
-> +      - description: Normal receive status buffer full interrupt
-> +      - description: START condition detection interrupt
-> +      - description: STOP condition detection interrupt
-> +      - description: Transmit end interrupt
-> +      - description: NACK detection interrupt
-> +      - description: Arbitration lost interrupt
-> +      - description: Timeout detection interrupt
-> +      - description: Wake-up condition detection interrupt
-> +      - description: HDR Exit Pattern detection interrupt
-> +    minItems: 16
-> +
-> +  interrupt-names:
-> +    items:
-> +      - const: ierr
-> +      - const: terr
-> +      - const: abort
-> +      - const: resp
-> +      - const: cmd
-> +      - const: ibi
-> +      - const: rx
-> +      - const: tx
-> +      - const: rcv
-> +      - const: st
-> +      - const: sp
-> +      - const: tend
-> +      - const: nack
-> +      - const: al
-> +      - const: tmo
-> +      - const: wu
-> +      - const: exit
-> +    minItems: 16
-> +
-> +  clocks:
-> +    oneOf:
-> +      - items:
-> +          - description: APB bus clock
-> +          - description: transfer clock
-> +      - items:
-> +          - description: APB bus clock
-> +          - description: SFRs clock
-> +          - description: transfer clock
+Hi Luca,
 
-It's a new binding, why don't you put SFRs clock last and simplify the 
-schema?
+kernel test robot noticed the following build warnings:
 
-> +
-> +  clock-names:
-> +    oneOf:
-> +      - items:
-> +          - const: pclk
-> +          - const: tclk
-> +      - items:
-> +          - const: pclk
-> +          - const: pclkrw
-> +          - const: tclk
+[auto build test WARNING on 19272b37aa4f83ca52bdf9c16d5d81bdd1354494]
+
+url:    https://github.com/intel-lab-lkp/linux/commits/Luca-Weiss/dt-bindings-clock-qcom-document-the-SM7635-Global-Clock-Controller/20250625-171703
+base:   19272b37aa4f83ca52bdf9c16d5d81bdd1354494
+patch link:    https://lore.kernel.org/r/20250625-sm7635-clocks-v1-8-ca3120e3a80e%40fairphone.com
+patch subject: [PATCH 08/10] clk: qcom: Add Graphics Clock controller (GPUCC) driver for SM7635
+config: loongarch-allyesconfig (https://download.01.org/0day-ci/archive/20250626/202506260357.DyPYkEZb-lkp@intel.com/config)
+compiler: loongarch64-linux-gcc (GCC) 15.1.0
+reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20250626/202506260357.DyPYkEZb-lkp@intel.com/reproduce)
+
+If you fix the issue in a separate patch/commit (i.e. not just a new version of
+the same patch/commit), kindly add following tags
+| Reported-by: kernel test robot <lkp@intel.com>
+| Closes: https://lore.kernel.org/oe-kbuild-all/202506260357.DyPYkEZb-lkp@intel.com/
+
+All warnings (new ones prefixed by >>):
+
+>> drivers/clk/qcom/gpucc-sm7635.c:135:37: warning: 'gpu_cc_parent_data_2' defined but not used [-Wunused-const-variable=]
+     135 | static const struct clk_parent_data gpu_cc_parent_data_2[] = {
+         |                                     ^~~~~~~~~~~~~~~~~~~~
+>> drivers/clk/qcom/gpucc-sm7635.c:131:32: warning: 'gpu_cc_parent_map_2' defined but not used [-Wunused-const-variable=]
+     131 | static const struct parent_map gpu_cc_parent_map_2[] = {
+         |                                ^~~~~~~~~~~~~~~~~~~
+
+
+vim +/gpu_cc_parent_data_2 +135 drivers/clk/qcom/gpucc-sm7635.c
+
+   130	
+ > 131	static const struct parent_map gpu_cc_parent_map_2[] = {
+   132		{ P_BI_TCXO, 0 },
+   133	};
+   134	
+ > 135	static const struct clk_parent_data gpu_cc_parent_data_2[] = {
+   136		{ .index = DT_BI_TCXO },
+   137	};
+   138	
+
+-- 
+0-DAY CI Kernel Test Service
+https://github.com/intel/lkp-tests/wiki
 
