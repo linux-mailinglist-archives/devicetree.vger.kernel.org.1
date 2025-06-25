@@ -1,195 +1,138 @@
-Return-Path: <devicetree+bounces-189384-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-189376-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 90348AE7BC8
-	for <lists+devicetree@lfdr.de>; Wed, 25 Jun 2025 11:13:49 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id E2182AE7BAD
+	for <lists+devicetree@lfdr.de>; Wed, 25 Jun 2025 11:11:54 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 03D001BC6FF4
-	for <lists+devicetree@lfdr.de>; Wed, 25 Jun 2025 09:14:05 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 984803AF0E8
+	for <lists+devicetree@lfdr.de>; Wed, 25 Jun 2025 09:11:29 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8848A29C35B;
-	Wed, 25 Jun 2025 09:12:26 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B8513288516;
+	Wed, 25 Jun 2025 09:11:43 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=foss.st.com header.i=@foss.st.com header.b="Vwf8UUn5"
+	dkim=pass (2048-bit key) header.d=fairphone.com header.i=@fairphone.com header.b="LA8l7xCC"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx07-00178001.pphosted.com (mx07-00178001.pphosted.com [185.132.182.106])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-ed1-f41.google.com (mail-ed1-f41.google.com [209.85.208.41])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AE71429A9FE;
-	Wed, 25 Jun 2025 09:12:24 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.132.182.106
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8B77227C863
+	for <devicetree@vger.kernel.org>; Wed, 25 Jun 2025 09:11:40 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.41
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1750842746; cv=none; b=HDvqEOWjsItnd1mqZ40jpQIh9JAaMf5mau18klSZLGEO+YwaQ3KEMOOz7JkJZBTpigGTvb67i0JINVDJG97w6MBfjHT25ZxIK0Ckj8mNrvR2A4MV8r5gwUHD8V75nBzQZlhP6Xqi5qWfYLtDkPTTPdSQyxbsJ/3fEYAAtiio1Cs=
+	t=1750842703; cv=none; b=QposY3qlNKAcKcIj9u99xVZunKyabHOUOs4YPy7mz67PwlW2V450lEXb8Lz8LsSQZoYJFeYLTRtl2EU2fJc0diYaZZZhDgRWoLK+GzcujfP10NSUovbr1qO1wh4ltBGj0Hl3Zbg0/sdj/xfoEOwEY3i5MBlTJrepM3evHBUta+M=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1750842746; c=relaxed/simple;
-	bh=Ku1JP3VucsE7gqGwrbjDhzOU4k9tMt5YcgLvazIy0lg=;
-	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
-	 In-Reply-To:Content-Type; b=bKaT/+Xr347j8c8MVxeUt9pq58o/WTKO8m7wBPhfvJZo3a/okHnWrMMUgSAJx/D1znPW+ZGXVJyYwKIN+wsVA3kLAB7aX4cubxCdjegN4mNNsz8NJrTCLvAK8jM8ywhXaZEZ5/KtJVoDLY0YMc43X/VV0qQY+iX2wxgEYGMfCy0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=foss.st.com; spf=pass smtp.mailfrom=foss.st.com; dkim=pass (2048-bit key) header.d=foss.st.com header.i=@foss.st.com header.b=Vwf8UUn5; arc=none smtp.client-ip=185.132.182.106
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=foss.st.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=foss.st.com
-Received: from pps.filterd (m0369458.ppops.net [127.0.0.1])
-	by mx07-00178001.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 55P510l9032381;
-	Wed, 25 Jun 2025 11:12:05 +0200
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=foss.st.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=selector1; bh=
-	7ONVBi6t27yoHOLom4q+9fNttcSqpjkl1fBEaeAnNkw=; b=Vwf8UUn5XqH75K2i
-	fscZ6KsiCvCjx7WJPqQv23IzCGzpmhbdb1xkGE7uHQA9PyER1EFSCXUkQPBiHlW+
-	4uwmJYQWpOhdd6Xqb43cGBt89mdGyI4ppGLqD0yH1sy3yZx/kSdVbeJbpm7/B+03
-	Z9f1dnJinZdTX1NVip71mTOSvnuabKIaG0/CX1WLLaIsmVKwNQzNqUc9OI0pJPJR
-	+iV48oYu9RNwLmIxPb3rBTaniPK+oj3phiUfDazp0779JUqdQ6+GrWs/PsBHyMyh
-	9Jjsu1AigmntTDkS0pGejX+t7nZFk2GI47Nkl0M9/6Pv5QZ3GQ6LWYth0Mh1SWTm
-	kubHIA==
-Received: from beta.dmz-ap.st.com (beta.dmz-ap.st.com [138.198.100.35])
-	by mx07-00178001.pphosted.com (PPS) with ESMTPS id 47e6a6pxh5-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Wed, 25 Jun 2025 11:12:05 +0200 (MEST)
-Received: from euls16034.sgp.st.com (euls16034.sgp.st.com [10.75.44.20])
-	by beta.dmz-ap.st.com (STMicroelectronics) with ESMTP id B9BB140045;
-	Wed, 25 Jun 2025 11:10:18 +0200 (CEST)
-Received: from Webmail-eu.st.com (shfdag1node2.st.com [10.75.129.70])
-	by euls16034.sgp.st.com (STMicroelectronics) with ESMTP id 4176DB29C43;
-	Wed, 25 Jun 2025 11:09:07 +0200 (CEST)
-Received: from [10.48.86.185] (10.48.86.185) by SHFDAG1NODE2.st.com
- (10.75.129.70) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.39; Wed, 25 Jun
- 2025 11:09:06 +0200
-Message-ID: <dabecbc6-967e-4912-8297-4d53fd2d9cc1@foss.st.com>
-Date: Wed, 25 Jun 2025 11:09:05 +0200
+	s=arc-20240116; t=1750842703; c=relaxed/simple;
+	bh=20OgU07hYw0BKvki0Oaix0JpyTN3z8RUI0obpczt4ZI=;
+	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:To:Cc; b=czoTPwaeuE0dnU+WJE4Qa4+931TkZUUZVXXe+PtRCx7ZGlwsLV6QrBxkgCEoz+dVxzOoLxL0IPkMxCVAOwT+Ubw16oB9fRlgvB5yQzNe6+eTU7tV/19XgkLeofmVdh1e925wenV3KQthABuXj94oKaotqru8d11BttyovF1YYRs=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=fairphone.com; spf=pass smtp.mailfrom=fairphone.com; dkim=pass (2048-bit key) header.d=fairphone.com header.i=@fairphone.com header.b=LA8l7xCC; arc=none smtp.client-ip=209.85.208.41
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=fairphone.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=fairphone.com
+Received: by mail-ed1-f41.google.com with SMTP id 4fb4d7f45d1cf-60c5b8ee2d9so272619a12.2
+        for <devicetree@vger.kernel.org>; Wed, 25 Jun 2025 02:11:40 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=fairphone.com; s=fair; t=1750842699; x=1751447499; darn=vger.kernel.org;
+        h=cc:to:message-id:content-transfer-encoding:mime-version:subject
+         :date:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=uMKYOxxD7UdxTP/ee1363S4GDcIjdo0gX+UMgMSM07M=;
+        b=LA8l7xCCcO9COtBMNSD+0HzPlMsC9vYezNo01bYnblQcNA/yCbIrI434lsJidHFI8Y
+         Y7OhoTnd4TNZBOL4BO5UFhv/foxW/3kSTV2J2UjQqpyg7jdCtsPKf45y1uOj7aaIvkbw
+         ezs9VH6Lp2woTb3+/h0F7EB+aENYptXVroPkLD9v9jVQl3+V+9rJYE+tcpxYI0xvUNil
+         AwpWximdECgYzl5yFGKngL6/tGQSx303sBbgOUUP2iWV8zv0OL2HjKTK2MgxcnWBYqFl
+         B9Dm7SqufpC2sva7t7vHQmxQcARIQLwNZC0oMM3wQ4o01bEMcuF6Bijljmcfg36CNRTo
+         tIEQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1750842699; x=1751447499;
+        h=cc:to:message-id:content-transfer-encoding:mime-version:subject
+         :date:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=uMKYOxxD7UdxTP/ee1363S4GDcIjdo0gX+UMgMSM07M=;
+        b=SPMDXwUxEKwSRAKPbZqAwnMM3sM/BiZsb1tekItUegpn5u/feGakMKWeOlkOHSdX1v
+         kP5P4pBsL5l9SKt3as5dopGujaYNTA4kAu1aPT0E1dmhNNGPZVu151aVb826fRfaLXLG
+         yiXaJYISVoO35sCHaO+UzgH1gYYx21qDbHDrJG5JR5z3O7mTeAMOgyM+AM6Ot7SPjDJg
+         g7o1P4YArTh6KeeLCGmnTgFDyi/11FGY4AjxrSVSNfmiphNrYL+mBh+p/qc9dNBVCo1H
+         TB1f/6x930weqUhf4SYBwLc/UD5yY/ouDCpk8q5NbWBzbjL2gSDz+HdAUJogpaAVO8es
+         a34A==
+X-Forwarded-Encrypted: i=1; AJvYcCVZ1jZcgtAQp9ccIBdc3IOjValDfosEBHml5xS7X/RsgCQwlMSuIphlWGWc7PfJPAWc+TKLsc+OnfM1@vger.kernel.org
+X-Gm-Message-State: AOJu0Yz8In3IT4RpVVMxI9yMFybZHgMZiYVvRS3oKbweWvrYI1JEm+qq
+	T4vvo3aZoHDE6A4kJjULVeoRP6ujEyw3nnqK9JRWv5+6daltJ3Y5GQeZpr0l/esi2tQ=
+X-Gm-Gg: ASbGnctmZoI7WEuZj7J8q0LQ0eBoj4J0eccuX43ivJy9S7Nm7gGi4UCkBEedwcVtsnq
+	gCbM/9gxCkFZGdSjfaTePjMVya5RQLSFcfmZcJ47HaY/6aLiaRSRYHsz+GS7rwvmJ/YSuZ3pzRu
+	yjFYDCIKcCyELTrBpz6mMWTNzpsCld95EwNfmBperu+N3W0OuoEymNMn0ORUzYJdRdaAI48KUZW
+	gpP+vYAD8ImcCNkWHRDyBesDFZfF2Dh0mZVLYQ1Z1cuCT7WxMtCVF+IBTR0X4GKnuySLVp919u0
+	2/8VW5jPZ5Yqtb6Kl9eab0YYpEEBCAJNo29ESnbnSfG1twI72sCG00XUEJtVSyu6cryQcaaRyMd
+	XvSs9ad8K9eGocGj9ugi+t7eCZt/xIktt
+X-Google-Smtp-Source: AGHT+IEc7/hN2f9cmghjg+sMULShIBvhh5KvCrY+8l12A4p/2NB5EXrD1TehNzU0qc52lkbGcpeGcA==
+X-Received: by 2002:a05:6402:2b95:b0:601:89d4:968e with SMTP id 4fb4d7f45d1cf-60c4ddc2ec6mr1441560a12.27.1750842698815;
+        Wed, 25 Jun 2025 02:11:38 -0700 (PDT)
+Received: from otso.local (144-178-202-138.static.ef-service.nl. [144.178.202.138])
+        by smtp.gmail.com with ESMTPSA id 4fb4d7f45d1cf-60c2f485d0asm2167101a12.64.2025.06.25.02.11.37
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 25 Jun 2025 02:11:38 -0700 (PDT)
+From: Luca Weiss <luca.weiss@fairphone.com>
+Date: Wed, 25 Jun 2025 11:11:25 +0200
+Subject: [PATCH] arm64: dts: qcom: pmk8550: Correct gpio node name
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 06/13] perf: stm32: introduce DDRPERFM driver
-To: Krzysztof Kozlowski <krzk@kernel.org>, Will Deacon <will@kernel.org>,
-        Mark
- Rutland <mark.rutland@arm.com>, Rob Herring <robh@kernel.org>,
-        Krzysztof
- Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Maxime
- Coquelin <mcoquelin.stm32@gmail.com>,
-        Alexandre Torgue
-	<alexandre.torgue@foss.st.com>,
-        Philipp Zabel <p.zabel@pengutronix.de>,
-        Jonathan Corbet <corbet@lwn.net>,
-        Gatien Chevallier
-	<gatien.chevallier@foss.st.com>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Gabriel Fernandez
-	<gabriel.fernandez@foss.st.com>
-CC: <linux-arm-kernel@lists.infradead.org>, <linux-perf-users@vger.kernel.org>,
-        <devicetree@vger.kernel.org>,
-        <linux-stm32@st-md-mailman.stormreply.com>,
-        <linux-kernel@vger.kernel.org>, <linux-doc@vger.kernel.org>,
-        <linux-clk@vger.kernel.org>
-References: <20250623-ddrperfm-upstream-v1-0-7dffff168090@foss.st.com>
- <20250623-ddrperfm-upstream-v1-6-7dffff168090@foss.st.com>
- <9cb1575e-ae27-4a78-adb7-8a9e7072375e@kernel.org>
- <5044c733-8836-43bd-85d7-0f552b000fb1@foss.st.com>
- <49483568-b287-45ca-a66c-1e0ad0490225@kernel.org>
- <e2400615-f21e-40bf-84f8-384242632193@foss.st.com>
- <a6440cbf-f7b5-4bce-8e2b-8aa3ec4d2342@kernel.org>
-Content-Language: en-US
-From: Clement LE GOFFIC <clement.legoffic@foss.st.com>
-In-Reply-To: <a6440cbf-f7b5-4bce-8e2b-8aa3ec4d2342@kernel.org>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 8bit
-X-ClientProxiedBy: SHFCAS1NODE1.st.com (10.75.129.72) To SHFDAG1NODE2.st.com
- (10.75.129.70)
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1099,Hydra:6.1.7,FMLib:17.12.80.40
- definitions=2025-06-25_02,2025-06-23_07,2025-03-28_01
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+Message-Id: <20250625-pmk8550-gpio-name-v1-1-58402849f365@fairphone.com>
+X-B4-Tracking: v=1; b=H4sIADy9W2gC/x3MTQqAIBBA4avErBswzf6uEi0kxxoiE4UIpLsnL
+ b/FexkSRaYEU5Uh0s2JL1/Q1BWsu/EbIdtikEJq0UmF4TwGrQVugS/05iRUzkhS7Wh110PpQiT
+ Hz/+cl/f9AJE4wKNjAAAA
+X-Change-ID: 20250623-pmk8550-gpio-name-3fa2e349d567
+To: Bjorn Andersson <andersson@kernel.org>, 
+ Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>, 
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, 
+ Neil Armstrong <neil.armstrong@linaro.org>
+Cc: ~postmarketos/upstreaming@lists.sr.ht, phone-devel@vger.kernel.org, 
+ linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org, 
+ linux-kernel@vger.kernel.org, Luca Weiss <luca.weiss@fairphone.com>
+X-Mailer: b4 0.14.2
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1750842697; l=992;
+ i=luca.weiss@fairphone.com; s=20250611; h=from:subject:message-id;
+ bh=20OgU07hYw0BKvki0Oaix0JpyTN3z8RUI0obpczt4ZI=;
+ b=wdifaQe+6/HlEDQF8LAH/wkqmOA1J/D1j9RVM28OKGvP2EQPBSEIw3ic+R9Uf3/dOocYrdNGd
+ OSrCrGT94wkBZ+fFM6Wdza3osAI0Fsm92N1CGDGA6RUbsmWs90PSKxp
+X-Developer-Key: i=luca.weiss@fairphone.com; a=ed25519;
+ pk=O1aw+AAust5lEmgrNJ1Bs7PTY0fEsJm+mdkjExA69q8=
 
-On 6/25/25 10:48, Krzysztof Kozlowski wrote:
-> On 25/06/2025 10:33, Clement LE GOFFIC wrote:
->> On 6/25/25 08:35, Krzysztof Kozlowski wrote:
->>> On 24/06/2025 12:43, Clement LE GOFFIC wrote:
->>>> On 6/23/25 11:45, Krzysztof Kozlowski wrote:
->>>> [...]
->>>>
->>>> Hi Krzysztof,
->>>>
->>>> Sorry I forgot to address comments below.
->>>>
->>>>>> +
->>>>>> +static const struct stm32_ddr_pmu_cfg stm32_ddr_pmu_cfg_mp1 = {
->>>>>> +	.regs = &stm32_ddr_pmu_regspec_mp1,
->>>>>> +	.attribute = stm32_ddr_pmu_attr_groups_mp1,
->>>>>> +	.counters_nb = MP1_CNT_NB,
->>>>>> +	.evt_counters_nb = MP1_CNT_NB - 1, /* Time counter is not an event counter */
->>>>>> +	.time_cnt_idx = MP1_TIME_CNT_IDX,
->>>>>> +	.get_counter = stm32_ddr_pmu_get_event_counter_mp1,
->>>>>> +};
->>>>>> +
->>>>>> +static const struct stm32_ddr_pmu_cfg stm32_ddr_pmu_cfg_mp2 = {
->>>>>> +	.regs = &stm32_ddr_pmu_regspec_mp2,
->>>>>> +	.attribute = stm32_ddr_pmu_attr_groups_mp2,
->>>>>> +	.counters_nb = MP2_CNT_NB,
->>>>>> +	.evt_counters_nb = MP2_CNT_NB - 1, /* Time counter is an event counter */
->>>>>> +	.time_cnt_idx = MP2_TIME_CNT_IDX,
->>>>>> +	.get_counter = stm32_ddr_pmu_get_event_counter_mp2,
->>>>>> +};
->>>>>> +
->>>>>> +static const struct dev_pm_ops stm32_ddr_pmu_pm_ops = {
->>>>>> +	SET_SYSTEM_SLEEP_PM_OPS(NULL, stm32_ddr_pmu_device_resume)
->>>>>> +};
->>>>>> +
->>>>>> +static const struct of_device_id stm32_ddr_pmu_of_match[] = {
->>>>>> +	{
->>>>>> +		.compatible = "st,stm32mp131-ddr-pmu",
->>>>>> +		.data = &stm32_ddr_pmu_cfg_mp1
->>>>>> +	},
->>>>>> +	{
->>>>>> +		.compatible = "st,stm32mp151-ddr-pmu",
->>>>>> +		.data = &stm32_ddr_pmu_cfg_mp1
->>>>>
->>>>> So devices are compatible, thus express it correctly and drop this.
->>>>
->>>> Ok so I assume this comes with your comment in the bindings and
->>>> basically don't get you point here.
->>>> Can you please be more precise ?
->>>
->>> Express compatibility in the bindings, like 90% of SoCs are doing, so
->>> with proper fallback and drop this entry in the table. My comment was
->>> pretty precise, because this is completely standard pattern, also used
->>> already in stm32.
->>>
->>
->> Ok I remember your discussion with Alex in my V1 of pinctrl-hdp :
->> https://lore.kernel.org/all/1de58672-5355-4b75-99f4-c48687017d2f@kernel.org/
->>
->> Does it suits you :
->> In the SoC DT:
->> MP13: compatible = "st,stm32mp131-ddr-pmu", "st,stm32mp1-ddr-pmu";
->> MP15: compatible = "st,stm32mp151-ddr-pmu", "st,stm32mp1-ddr-pmu";
-> 
-> No, because I did not say to change other entry in the table. Please
-> read again what I asked: drop this. "This" means ONLY this entry. "Drop
-> this" does not mean "change something else". Do not change other entries
-> by introducing some generic compatible. That's not the pattern ever
-> endorsed by DT maintainers. Add front compatible and you are done,
-> smallest amount of changes, most obvious code.
->
+The reg for the GPIOs is 0xb800 and not 0x8800, so fix this copy-paste
+mistake.
 
-Ok so in the SoC DT I'll keep:
-MP13: compatible = "st,stm32mp131-ddr-pmu";
-MP15: compatible = "st,stm32mp151-ddr-pmu", "st,stm32mp131-ddr-pmu";
+Fixes: e9c0a4e48489 ("arm64: dts: qcom: Add PMK8550 pmic dtsi")
+Signed-off-by: Luca Weiss <luca.weiss@fairphone.com>
+---
+ arch/arm64/boot/dts/qcom/pmk8550.dtsi | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-Thanks for clarifying.
+diff --git a/arch/arm64/boot/dts/qcom/pmk8550.dtsi b/arch/arm64/boot/dts/qcom/pmk8550.dtsi
+index c7ac9b2eaacfe6e8363448d9d2ffb4ac8f5f4dd2..583f61fc16ad570972ac166aef12183382ebb4c5 100644
+--- a/arch/arm64/boot/dts/qcom/pmk8550.dtsi
++++ b/arch/arm64/boot/dts/qcom/pmk8550.dtsi
+@@ -64,7 +64,7 @@ reboot_reason: reboot-reason@48 {
+ 			};
+ 		};
+ 
+-		pmk8550_gpios: gpio@8800 {
++		pmk8550_gpios: gpio@b800 {
+ 			compatible = "qcom,pmk8550-gpio", "qcom,spmi-gpio";
+ 			reg = <0xb800>;
+ 			gpio-controller;
+
+---
+base-commit: 19272b37aa4f83ca52bdf9c16d5d81bdd1354494
+change-id: 20250623-pmk8550-gpio-name-3fa2e349d567
 
 Best regards,
-Clément
-
-> Best regards,
-> Krzysztof
+-- 
+Luca Weiss <luca.weiss@fairphone.com>
 
 
