@@ -1,127 +1,241 @@
-Return-Path: <devicetree+bounces-189599-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-189600-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 496CCAE86BA
-	for <lists+devicetree@lfdr.de>; Wed, 25 Jun 2025 16:39:44 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 04572AE86CB
+	for <lists+devicetree@lfdr.de>; Wed, 25 Jun 2025 16:41:55 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id EE1833AA7ED
-	for <lists+devicetree@lfdr.de>; Wed, 25 Jun 2025 14:39:17 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id AC6E6178EB7
+	for <lists+devicetree@lfdr.de>; Wed, 25 Jun 2025 14:41:48 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2F5FE267F61;
-	Wed, 25 Jun 2025 14:39:33 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D60F4269AF3;
+	Wed, 25 Jun 2025 14:41:37 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="qoqSyi6s"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="RPTkFSpG"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F3D0B25C837;
-	Wed, 25 Jun 2025 14:39:32 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A9CD2268C42;
+	Wed, 25 Jun 2025 14:41:37 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1750862373; cv=none; b=heEY7rHeMKEM3F/Z13VKhNzzIA2aB1zQutPB3b/FSsDsxEi35w/BH+RsMDS27aAfdhwssgcF5b035WWCN6TvmbfGHQc/W8w8EU+nTbEwaRyEIJHnIa5Ow3My0RUm9ldqtZF+bgz3kEaM9joPpiLCTjUo9ochPjR0hOmlZHohjSE=
+	t=1750862497; cv=none; b=qDariLkbExGQDWg86aJ4fJod71w+idWZDw6sQUTDPJdYDrsiMYsl7H2Rh/zwm466HlBTnHnmSz4e2U+Qb/tBVXhgPyVLObnf3xh+4D3W3BAh0WuPDZCbJBva0OK5EshKDSYYp5MK8zSHEEc0Otw2iWTgEzkdRiZp5coJyK76iH8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1750862373; c=relaxed/simple;
-	bh=X/lKwA8QAaVG1SwWzEqYk8hwBUZQD0NFX6fGDFDDcw8=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=e67tXGYmMgaDMoRtpwzzV6P9mdicVcJxy2uJOAK+ighPiDeyBcssAwFOiKuRYctimkMZ0cvtNN/VyCIAxWfmiiILdIK2paJmtxQuQe0z9OI2evONato/UFwtqWic2u9Afk3Q4GkXpggaMfmH3K83bCMChniTLtOWk5Dmj0PO5CY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=qoqSyi6s; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 70C2BC4CEEA;
-	Wed, 25 Jun 2025 14:39:32 +0000 (UTC)
+	s=arc-20240116; t=1750862497; c=relaxed/simple;
+	bh=G6puNagQFSMyUjbE+LIXearsZJYWlEPDrvFoYitM1po=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=MX5Yg0MbdycTdWOavldiPfUOKDpfnzNU8ml6mzx31jaWkRH83o1FjV4zxI6WDT2bvEZIPQ83A4qEBsMXTx3egriO6Nz5MY8Nb4bEjRdT55K03TrAooqUGFQB/zdFeWyjKbPahFM+c+Oh36FTxaW2hS50AGgvtwm4E/v8WqxSTVs=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=RPTkFSpG; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 4C3CAC4CEEA;
+	Wed, 25 Jun 2025 14:41:30 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1750862372;
-	bh=X/lKwA8QAaVG1SwWzEqYk8hwBUZQD0NFX6fGDFDDcw8=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=qoqSyi6sAVEZNykoMV15NDGfMlVn3r7azbeV4h3f6pQIx9JcL2DDrzEXw6xoM+aJZ
-	 9nXefeCRVIx9fbEFbv9kLxQkSrOaQg6JDv6kjYhOEHLsBeRJuzzasUgJy8HItXfAov
-	 mdt7MLFnqFCWBHY8OebOPRjOtXmipbGR3NGb93rxY8nE6rtfYg2q795ZsdPt6GMGuP
-	 6CUOuK68VlayuUkgM7vsbje9kaPY92h/RbAw37mnWSpXjIA5Fg7WEqzcWzzQkGqGc2
-	 VVxjPltHfPwEXDQKu3x+73Z1WOa0zUKSErW8q3Kydzje2+YCPpvs3RGeUzxw/ybDeH
-	 SmEiBGbN/5s4Q==
-Date: Wed, 25 Jun 2025 09:39:30 -0500
-From: Rob Herring <robh@kernel.org>
-To: Danilo Krummrich <dakr@kernel.org>
-Cc: Remo Senekowitsch <remo@buenzli.dev>,
-	Saravana Kannan <saravanak@google.com>,
-	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-	"Rafael J. Wysocki" <rafael@kernel.org>,
-	Miguel Ojeda <ojeda@kernel.org>,
-	Alex Gaynor <alex.gaynor@gmail.com>,
-	Boqun Feng <boqun.feng@gmail.com>, Gary Guo <gary@garyguo.net>,
-	=?iso-8859-1?Q?Bj=F6rn?= Roy Baron <bjorn3_gh@protonmail.com>,
-	Benno Lossin <lossin@kernel.org>,
-	Andreas Hindborg <a.hindborg@kernel.org>,
-	Alice Ryhl <aliceryhl@google.com>, Trevor Gross <tmgross@umich.edu>,
-	Mark Brown <broonie@kernel.org>,
-	Dirk Behme <dirk.behme@de.bosch.com>, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org, rust-for-linux@vger.kernel.org
-Subject: Re: [PATCH v1 3/3] samples: rust: platform: Add property child and
- reference args examples
-Message-ID: <20250625143930.GA1006384-robh@kernel.org>
-References: <20250616154511.1862909-1-remo@buenzli.dev>
- <20250616154511.1862909-4-remo@buenzli.dev>
- <CAL_JsqKXrsdGjTE5KDkqmVHUK5urMJnWSLWgEi8H1yM21gcOCA@mail.gmail.com>
- <aFXipz-B1vEYkww9@cassiopeiae>
+	s=k20201202; t=1750862497;
+	bh=G6puNagQFSMyUjbE+LIXearsZJYWlEPDrvFoYitM1po=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=RPTkFSpGXwsznlbnK1kUH0xY734FEMB9huWys+Ev9Cd+4RJT8ipohTvGXg1+rNrW2
+	 xZXfCYR8VgiqpycgDQJU81jj7xQmtcM7lUCtaXdTKEsFK07SBk0DaA58xdjAtQT/0f
+	 ErLdmRUotPrLCgcHkamQUiCRjkBx+tzhoSM6XbZ0szoBmgSrosAW8TAg6NPWKtKGyR
+	 7BtssmQmLb903HrvtT6vIoSUszrN5gfh8b46F9KOoPTmVlI1Rg8AbfNLeSEmq4iE5o
+	 wyhdS1BfCk4M1YjE+no4eesqtrBibQTlgAk4QmmTo/CGP2ZO4DNpPZontcAgGNLi4O
+	 gq/YUuVWNzbWQ==
+Message-ID: <27068fd3-92b5-402b-9f3c-fd786db56668@kernel.org>
+Date: Wed, 25 Jun 2025 16:41:28 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v6 5/8] dt-bindings: gpu: img,powervr-rogue: Add TH1520
+ GPU compatible
+To: Michal Wilczynski <m.wilczynski@samsung.com>,
+ Matt Coster <Matt.Coster@imgtec.com>
+Cc: Drew Fustini <drew@pdp7.com>, Guo Ren <guoren@kernel.org>,
+ Fu Wei <wefu@redhat.com>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Bartosz Golaszewski <brgl@bgdev.pl>,
+ Philipp Zabel <p.zabel@pengutronix.de>, Frank Binns
+ <Frank.Binns@imgtec.com>,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>,
+ David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
+ Paul Walmsley <paul.walmsley@sifive.com>, Palmer Dabbelt
+ <palmer@dabbelt.com>, Albert Ou <aou@eecs.berkeley.edu>,
+ Alexandre Ghiti <alex@ghiti.fr>, Ulf Hansson <ulf.hansson@linaro.org>,
+ Marek Szyprowski <m.szyprowski@samsung.com>,
+ Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+ Bartosz Golaszewski <bartosz.golaszewski@linaro.org>,
+ "linux-riscv@lists.infradead.org" <linux-riscv@lists.infradead.org>,
+ "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+ "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+ "linux-pm@vger.kernel.org" <linux-pm@vger.kernel.org>,
+ "dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>
+References: <20250623-apr_14_for_sending-v6-0-6583ce0f6c25@samsung.com>
+ <CGME20250623114436eucas1p1ab8455b32937a472f5f656086e38f428@eucas1p1.samsung.com>
+ <20250623-apr_14_for_sending-v6-5-6583ce0f6c25@samsung.com>
+ <9c82a6bc-c6ff-4656-8f60-9d5fa499b61a@imgtec.com>
+ <d154d2d0-3d59-4176-a8fb-3cb754cf2734@samsung.com>
+ <e1a3d854-93bc-4771-9b8e-1639ca57b687@kernel.org>
+ <d12fd4fb-0adb-40c4-8a0a-c685cd6327b3@samsung.com>
+From: Krzysztof Kozlowski <krzk@kernel.org>
+Content-Language: en-US
+Autocrypt: addr=krzk@kernel.org; keydata=
+ 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 a/A=
+In-Reply-To: <d12fd4fb-0adb-40c4-8a0a-c685cd6327b3@samsung.com>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <aFXipz-B1vEYkww9@cassiopeiae>
 
-On Sat, Jun 21, 2025 at 12:37:27AM +0200, Danilo Krummrich wrote:
-> On Tue, Jun 17, 2025 at 08:01:08AM -0500, Rob Herring wrote:
-> > On Mon, Jun 16, 2025 at 10:45 AM Remo Senekowitsch <remo@buenzli.dev> wrote:
-> > >
-> > > Add some example usage of the device property methods for reading
-> > > DT/ACPI/swnode child nodes and reference args.
-> > >
-> > > Signed-off-by: Remo Senekowitsch <remo@buenzli.dev>
-> > > ---
-> > >  drivers/of/unittest-data/tests-platform.dtsi |  7 +++++++
-> > >  samples/rust/rust_driver_platform.rs         | 13 ++++++++++++-
-> > >  2 files changed, 19 insertions(+), 1 deletion(-)
-> > >
-> > > diff --git a/drivers/of/unittest-data/tests-platform.dtsi b/drivers/of/unittest-data/tests-platform.dtsi
-> > > index 50a51f38afb6..509eb614ab2b 100644
-> > > --- a/drivers/of/unittest-data/tests-platform.dtsi
-> > > +++ b/drivers/of/unittest-data/tests-platform.dtsi
-> > > @@ -40,6 +40,13 @@ test-device@2 {
-> > >
-> > >                                 test,u32-prop = <0xdeadbeef>;
-> > >                                 test,i16-array = /bits/ 16 <1 2 (-3) (-4)>;
-> > > +
-> > > +                               ref_child_0: child@0 {
-> > 
-> > child-0 or you need to add 'reg' property if you keep the unit-address.
+On 25/06/2025 16:18, Michal Wilczynski wrote:
 > 
-> Adding child nodes here creates the following dt-test failues.
 > 
-> 	[    1.031239] ### dt-test ### FAIL of_unittest_platform_populate():1862 Could not create device for node 'child'
-> 	[    1.031647] ### dt-test ### FAIL of_unittest_platform_populate():1862 Could not create device for node 'child'
+> On 6/25/25 15:55, Krzysztof Kozlowski wrote:
+>> On 25/06/2025 14:45, Michal Wilczynski wrote:
+>>>
+>>>
+>>> On 6/24/25 15:53, Matt Coster wrote:
+>>>> On 23/06/2025 12:42, Michal Wilczynski wrote:
+>>>>> Update the img,powervr-rogue.yaml to include the T-HEAD TH1520 SoC's
+>>>>> specific GPU compatible string.
+>>>>>
+>>>>> The thead,th1520-gpu compatible, along with its full chain
+>>>>> img,img-bxm-4-64, and img,img-rogue, is added to the
+>>>>> list of recognized GPU types.
+>>>>>
+>>>>> The power-domains property requirement for img,img-bxm-4-64 is also
+>>>>> ensured by adding it to the relevant allOf condition.
+>>>>>
+>>>>> Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+>>>>> Reviewed-by: Ulf Hansson <ulf.hansson@linaro.org>
+>>>>> Reviewed-by: Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
+>>>>> Signed-off-by: Michal Wilczynski <m.wilczynski@samsung.com>
+>>>>> ---
+>>>>>  Documentation/devicetree/bindings/gpu/img,powervr-rogue.yaml | 9 ++++++++-
+>>>>>  1 file changed, 8 insertions(+), 1 deletion(-)
+>>>>>
+>>>>> diff --git a/Documentation/devicetree/bindings/gpu/img,powervr-rogue.yaml b/Documentation/devicetree/bindings/gpu/img,powervr-rogue.yaml
+>>>>> index 4450e2e73b3ccf74d29f0e31e2e6687d7cbe5d65..9b241a0c1f5941dc58a1e23970f6d3773d427c22 100644
+>>>>> --- a/Documentation/devicetree/bindings/gpu/img,powervr-rogue.yaml
+>>>>> +++ b/Documentation/devicetree/bindings/gpu/img,powervr-rogue.yaml
+>>>>> @@ -21,6 +21,11 @@ properties:
+>>>>>            # work with newer dts.
+>>>>>            - const: img,img-axe
+>>>>>            - const: img,img-rogue
+>>>>> +      - items:
+>>>>> +          - enum:
+>>>>> +              - thead,th1520-gpu
+>>>>> +          - const: img,img-bxm-4-64
+>>>>> +          - const: img,img-rogue
+>>>>>        - items:
+>>>>>            - enum:
+>>>>>                - ti,j721s2-gpu
+>>>>> @@ -93,7 +98,9 @@ allOf:
+>>>>>        properties:
+>>>>>          compatible:
+>>>>>            contains:
+>>>>> -            const: img,img-axe-1-16m
+>>>>> +            enum:
+>>>>> +              - img,img-axe-1-16m
+>>>>> +              - img,img-bxm-4-64
+>>>>
+>>>> This isn't right – BXM-4-64 has two power domains like BXS-4-64. I don't
+>>>> really know what the right way to handle that in devicetree is given the
+>>>> TH1520 appears to expose only a top-level domain for the entire GPU, but
+>>>> there are definitely two separate domains underneath that as far as the
+>>>> GPU is concerned (see the attached snippet from integration guide).
+>>>>
+>>>> Since power nodes are ref-counted anyway, do we just use the same node
+>>>> for both domains and let the driver up/down-count it twice?
+>>>
+>>> Hi Matt,
+>>>
+>>> Thanks for the very helpful insight. That's a great point, it seems the
+>>> SoC's design presents a tricky case for the bindings.
+>>>
+>>> I see what you mean about potentially using the same power domain node
+>>> twice. My only hesitation is that it might be a bit unclear for someone
+>>> reading the devicetree later. Perhaps another option could be to relax
+>>> the constraint for this compatible?
+>>>
+>>> Krzysztof, we'd be grateful for your thoughts on how to best model this
+>>> situation.
+>>
+>>
+>> It's your hardware, you should tell us, not me. I don't know how many
+>> power domains you have there, but for sure it is not one AND two domains
+>> the same time. It is either one or two, because power domains are not
+>> the same as regulator supplies.
 > 
-> @Rob: What do you suggest?
+> Hi Krzysztof, Matt,
+> 
+> The img,bxm-4-64 GPU IP itself is designed with two separate power
+> domains. The TH1520 SoC, which integrates this GPU, wires both of these
+> to a single OS controllable power gate (controlled via mailbox and E902
+> co-processor).
 
-This should fix it:
+This helps... and also sounds a lot like regulator supplies, not power
+domains. :/
 
-index eeb370e0f507..e3503ec20f6c 100644
---- a/drivers/of/unittest.c
-+++ b/drivers/of/unittest.c
-@@ -1856,6 +1856,8 @@ static void __init of_unittest_platform_populate(void)
-        of_platform_populate(np, match, NULL, &test_bus->dev);
-        for_each_child_of_node(np, child) {
-                for_each_child_of_node(child, grandchild) {
-+                       if (!of_property_present(grandchild, "compatible"))
-+                               continue;
-                        pdev = of_find_device_by_node(grandchild);
-                        unittest(pdev,
-                                 "Could not create device for node '%pOFn'\n",
+> 
+> This means a devicetree for the TH1520 can only ever provide one power
+> domain for the GPU. However, a generic binding for img,bxm-4-64 should
 
+If this was a supply, you would have two supplies. Anyway internal
+wirings of GPU do not matter in such case and more important what the
+SoC has wired. And it has one power domain.
+
+
+> account for a future SoC that might implement both power domains.
+> 
+> That's why I proposed to relax the constraints on the img,bmx-4-64 GPU.
+
+This should be constrained per each device, so 1 for you and 2 for
+everyone else.
+
+Best regards,
+Krzysztof
 
