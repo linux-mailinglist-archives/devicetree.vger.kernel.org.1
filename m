@@ -1,149 +1,132 @@
-Return-Path: <devicetree+bounces-189272-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-189273-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 34AE5AE76C5
-	for <lists+devicetree@lfdr.de>; Wed, 25 Jun 2025 08:10:19 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7F089AE76DF
+	for <lists+devicetree@lfdr.de>; Wed, 25 Jun 2025 08:18:35 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id C9CC93AD328
-	for <lists+devicetree@lfdr.de>; Wed, 25 Jun 2025 06:09:53 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 3CBE03B06B4
+	for <lists+devicetree@lfdr.de>; Wed, 25 Jun 2025 06:18:10 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id DF4F11E5B63;
-	Wed, 25 Jun 2025 06:10:13 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7F9511E47AD;
+	Wed, 25 Jun 2025 06:18:30 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="YHt7DH9H"
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="LDn6Q2vH"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.11])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AC822307498;
-	Wed, 25 Jun 2025 06:10:13 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 61ADE23AD;
+	Wed, 25 Jun 2025 06:18:26 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.175.65.11
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1750831813; cv=none; b=ev1N62trm3C70nsgcdEGst5USo+VRqle3a8t2keH3uIk1f6C55CFSswYzuGKfiz8JnCppj3FtWgpUZL8X3YSq5WjTiJ4RagjhM3wn+OrncM0hoQjSnLAmLbJjv205d+E6nit4sTdMSlN1mxTBv8ZC7mMVtVbXbmlitMRCi73aDI=
+	t=1750832310; cv=none; b=Pw9448DADMhADGZGJv+eFerQcylpF/SHqnqnPvdWlG4qwHwves2we5mDQDfPiW6N5LIFerfqS3ktEOgOQDooPAswigg48mGSUbOfj+T0/2ajzw4SsDhpcGpwjOG0y6ggJIlZ7EGOKEs9o0MTvbLoU90EzSGWTQUgLSWsFxqsUJ0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1750831813; c=relaxed/simple;
-	bh=TEf+0zBo4DYSNOvhVuH60cDQ+vbZMzygF71dL+Jh798=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=dLEcULn9nFlbC9/VAV6UGZsvcoLv40AGFcdV5YMxdwBIRWLVvzYRvJPh3Ge+E8jvYWgFBGdOnMmxtOtrvCIbsWy4mKaL4UZ9DHSL0ej/PkHYEgaSOf2i0WaBEhJrAMVTBgJYj6oEgM+ixSqPYMYkqJ0KjeSQBjT/37eSx5kCeF8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=YHt7DH9H; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 889EAC4CEEA;
-	Wed, 25 Jun 2025 06:10:06 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1750831813;
-	bh=TEf+0zBo4DYSNOvhVuH60cDQ+vbZMzygF71dL+Jh798=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=YHt7DH9HLA5kBMzdtXsLfXrnOhUdtHDP4wZC/HNvVcwcIAn+kqlRrPXMZk/Trh2QJ
-	 oQ/YvsxqF8mGocksilcrPtZgaEmeXWDo7lrvXCG1dJ9OjyOo1BgEhZ9gIt3E5y7ZP1
-	 YI8Z+06o7onSqrN9VUIuQ1PAR1HdvZU/I4LLULSx991gQ8ZlSNfxMJCUBueVY+v+4m
-	 ldMMqaTZnEKxw8T0pQllV7ZrLNEoPfWHWlMINdGN2lUe7qUMn/qFkZ1zVKmVT7bLVh
-	 lsJOmzEFc2CGOSO8AjAiduJRTDDwuUOSMPiUm6aAH2PNjwaheLw/d7xxLlZDJu1/4o
-	 3lPOZV/1BQYEA==
-Message-ID: <22d911a2-3bf1-45ee-9037-c6d8cbd686fa@kernel.org>
-Date: Wed, 25 Jun 2025 08:10:04 +0200
+	s=arc-20240116; t=1750832310; c=relaxed/simple;
+	bh=v8dGxdpXvhwjMLSxtF/xObVxeM0eFoe68UmmiFX3esY=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=SIo0YI3myhP0Jf3/jJmbDi8vT6a1S7PsX5qOYpKJw6xtN3qd6KoTAL7PKKEYC0ooeU8WZ27HjClP/9OyXYMbpsB7riJQxFyz0/ty/0qz3mRVg9+A11DKzaxn7e79C6CK5r5cOE2NBhwTIW9Qr9B6hU6pmq2735hZ8PnfcXssGTY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=LDn6Q2vH; arc=none smtp.client-ip=198.175.65.11
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1750832308; x=1782368308;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=v8dGxdpXvhwjMLSxtF/xObVxeM0eFoe68UmmiFX3esY=;
+  b=LDn6Q2vHZG0rMXB0T95iwUg1HA07fH1Pyej/kB7dIqAM8yOjXiNCL0lP
+   7BigNKszp1hTV4AhMZna5W4KULzFUZjUOrw8Iq8hf7jtnHhE3sA0kiR09
+   iRebdbJopnrhSLAJ4lolwyW5U5lq5BbkTUco7v6LdcLwYZvPTE/4s97d0
+   ewuHMTpvXbinxNGPByYsN+c9/GSWJlNDF/rzx1x1ruSnvayJ/XeIYF/p7
+   it3X941eU7ash1y9draCTfJ+RUREiv6L5KrszVovzXzemUK4HYEglgMFh
+   cb1rbILwW2qsvkBFFdUj0pBsj56vLGJkvoCyL9ss8lLfYgtV+hCK5aXmu
+   Q==;
+X-CSE-ConnectionGUID: ZUP59z1eTI2YEcS9BTlLZA==
+X-CSE-MsgGUID: Het6v8EkR5KuveHWIg8EqQ==
+X-IronPort-AV: E=McAfee;i="6800,10657,11474"; a="63351727"
+X-IronPort-AV: E=Sophos;i="6.16,264,1744095600"; 
+   d="scan'208";a="63351727"
+Received: from fmviesa004.fm.intel.com ([10.60.135.144])
+  by orvoesa103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 24 Jun 2025 23:18:06 -0700
+X-CSE-ConnectionGUID: 61QiRcVBRhaW/fx0UykyOw==
+X-CSE-MsgGUID: SyFgvC+DRVaCzbOgdTJ5wg==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.16,264,1744095600"; 
+   d="scan'208";a="157624492"
+Received: from lkp-server01.sh.intel.com (HELO e8142ee1dce2) ([10.239.97.150])
+  by fmviesa004.fm.intel.com with ESMTP; 24 Jun 2025 23:18:00 -0700
+Received: from kbuild by e8142ee1dce2 with local (Exim 4.96)
+	(envelope-from <lkp@intel.com>)
+	id 1uUJSI-000So2-0t;
+	Wed, 25 Jun 2025 06:17:58 +0000
+Date: Wed, 25 Jun 2025 14:17:41 +0800
+From: kernel test robot <lkp@intel.com>
+To: Pengyu Luo <mitltlatltl@gmail.com>,
+	Bjorn Andersson <andersson@kernel.org>,
+	Konrad Dybcio <konradybcio@kernel.org>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Eric Biggers <ebiggers@google.com>, Len Brown <len.brown@intel.com>,
+	Benno Lossin <lossin@kernel.org>,
+	Ilpo =?iso-8859-1?Q?J=E4rvinen?= <ilpo.jarvinen@linux.intel.com>,
+	Ingo Molnar <mingo@kernel.org>, Miguel Ojeda <ojeda@kernel.org>,
+	Joel Granados <joel.granados@kernel.org>,
+	Al Viro <viro@zeniv.linux.org.uk>,
+	Alice Ryhl <aliceryhl@google.com>,
+	Stephen Rothwell <sfr@canb.auug.org.au>
+Cc: llvm@lists.linux.dev, oe-kbuild-all@lists.linux.dev,
+	linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org, Pengyu Luo <mitltlatltl@gmail.com>,
+	Hong Zhu <vanyang@smail.nju.edu.cn>
+Subject: Re: [PATCH 3/4] arm64: dts: qcom: sc8280xp: Add initial support for
+ Ntmer TW220
+Message-ID: <202506251320.oOPGzTPQ-lkp@intel.com>
+References: <20250617092929.1492750-4-mitltlatltl@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v6 2/9] dt-bindings: soc: imx-blk-ctrl: add i.MX91
- blk-ctrl compatible
-To: Frank Li <Frank.li@nxp.com>
-Cc: Joy Zou <joy.zou@nxp.com>, robh@kernel.org, krzk+dt@kernel.org,
- conor+dt@kernel.org, shawnguo@kernel.org, s.hauer@pengutronix.de,
- catalin.marinas@arm.com, will@kernel.org, andrew+netdev@lunn.ch,
- davem@davemloft.net, edumazet@google.com, kuba@kernel.org,
- pabeni@redhat.com, mcoquelin.stm32@gmail.com, alexandre.torgue@foss.st.com,
- ulf.hansson@linaro.org, richardcochran@gmail.com, kernel@pengutronix.de,
- festevam@gmail.com, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, imx@lists.linux.dev,
- linux-arm-kernel@lists.infradead.org, netdev@vger.kernel.org,
- linux-stm32@st-md-mailman.stormreply.com, linux-pm@vger.kernel.or,
- ye.li@nxp.com, ping.bai@nxp.com, aisheng.dong@nxp.com
-References: <20250623095732.2139853-1-joy.zou@nxp.com>
- <20250623095732.2139853-3-joy.zou@nxp.com>
- <urgfsmkl25woqy5emucfkqs52qu624po6rd532hpusg3fdnyg3@s5iwmhnfsi26>
- <aFq7WJ3Fqe9p0EhA@lizhi-Precision-Tower-5810>
- <e32c3a47-e32e-4f93-becb-ebad31065b73@kernel.org>
- <aFr3yExb6vObn5W4@lizhi-Precision-Tower-5810>
-From: Krzysztof Kozlowski <krzk@kernel.org>
-Content-Language: en-US
-Autocrypt: addr=krzk@kernel.org; keydata=
- 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 a/A=
-In-Reply-To: <aFr3yExb6vObn5W4@lizhi-Precision-Tower-5810>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20250617092929.1492750-4-mitltlatltl@gmail.com>
 
-On 24/06/2025 21:08, Frank Li wrote:
->>>>> +        clock-names:
->>>>> +          items:
->>>>> +            - const: apb
->>>>> +            - const: axi
->>>>> +            - const: nic
->>>>> +            - const: disp
->>>>> +            - const: cam
->>>>> +            - const: lcdif
->>>>> +            - const: isi
->>>>> +            - const: csi
->>>>
->>>> No, look at other bindings how they share clock lists.
->>>
->>> Sorry, this method is what I suggested. becuase there are pxp between cam
->>> and lcdif, can't use simple minItems/maxItems to limit list.
->>
->> The point is to put new items, so pxp, at the end.
-> 
-> There are already a list for imx93. If change list order, it will break
-> ABI. This was rejected at other binding doc review.
-I see, I mixed the SoCs. It is a pity you upstream that way and do not
-try to make the list common. Anyway names indeed need to be constrained
-per variant, but the rest of the comments stay.
+Hi Pengyu,
 
-Best regards,
-Krzysztof
+kernel test robot noticed the following build errors:
+
+[auto build test ERROR on robh/for-next]
+[also build test ERROR on linus/master v6.16-rc3 next-20250624]
+[If your patch is applied to the wrong git tree, kindly drop us a note.
+And when submitting patch, we suggest to use '--base' as documented in
+https://git-scm.com/docs/git-format-patch#_base_tree_information]
+
+url:    https://github.com/intel-lab-lkp/linux/commits/Pengyu-Luo/dt-bindings-vendor-prefixes-Add-Ntmer/20250617-173338
+base:   https://git.kernel.org/pub/scm/linux/kernel/git/robh/linux.git for-next
+patch link:    https://lore.kernel.org/r/20250617092929.1492750-4-mitltlatltl%40gmail.com
+patch subject: [PATCH 3/4] arm64: dts: qcom: sc8280xp: Add initial support for Ntmer TW220
+config: arm64-randconfig-001-20250624 (https://download.01.org/0day-ci/archive/20250625/202506251320.oOPGzTPQ-lkp@intel.com/config)
+compiler: clang version 21.0.0git (https://github.com/llvm/llvm-project e04c938cc08a90ae60440ce22d072ebc69d67ee8)
+reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20250625/202506251320.oOPGzTPQ-lkp@intel.com/reproduce)
+
+If you fix the issue in a separate patch/commit (i.e. not just a new version of
+the same patch/commit), kindly add following tags
+| Reported-by: kernel test robot <lkp@intel.com>
+| Closes: https://lore.kernel.org/oe-kbuild-all/202506251320.oOPGzTPQ-lkp@intel.com/
+
+All errors (new ones prefixed by >>):
+
+>> Error: arch/arm64/boot/dts/qcom/sc8280xp-ntmer-tw220.dts:751.1-10 Label or path gpi_dma0 not found
+>> Error: arch/arm64/boot/dts/qcom/sc8280xp-ntmer-tw220.dts:755.1-10 Label or path gpi_dma1 not found
+>> Error: arch/arm64/boot/dts/qcom/sc8280xp-ntmer-tw220.dts:759.1-10 Label or path gpi_dma2 not found
+>> FATAL ERROR: Syntax error parsing input tree
+
+-- 
+0-DAY CI Kernel Test Service
+https://github.com/intel/lkp-tests/wiki
 
