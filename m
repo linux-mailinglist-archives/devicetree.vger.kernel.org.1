@@ -1,183 +1,127 @@
-Return-Path: <devicetree+bounces-189289-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-189293-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 39431AE77A9
-	for <lists+devicetree@lfdr.de>; Wed, 25 Jun 2025 09:01:19 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 35B99AE77BE
+	for <lists+devicetree@lfdr.de>; Wed, 25 Jun 2025 09:06:17 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 1F977167CEA
-	for <lists+devicetree@lfdr.de>; Wed, 25 Jun 2025 07:01:18 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 8B5C716E2F8
+	for <lists+devicetree@lfdr.de>; Wed, 25 Jun 2025 07:06:17 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C92D11E25ED;
-	Wed, 25 Jun 2025 07:01:10 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E1DED20297E;
+	Wed, 25 Jun 2025 07:05:50 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="iLbygNTJ"
+	dkim=pass (1024-bit key) header.d=yeah.net header.i=@yeah.net header.b="G4tgqzcO"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mail-m16.yeah.net (mail-m16.yeah.net [1.95.21.16])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9C3533074B1;
-	Wed, 25 Jun 2025 07:01:10 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EB2671FF1C8;
+	Wed, 25 Jun 2025 07:05:46 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=1.95.21.16
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1750834870; cv=none; b=YwQbT2TmHk+Wn22waSYPptA8dosEt/i484G9rpHbpmpuyyTIM7KsHkPIAHXiRgvr/NN62lov+h5UtkyLlK5T5JI5+jSiT9Wy2ZrKc0s2kCW5grFRQ2Bre79yxft+jSxktZAt2Hz5FxYhnrvyW+DOx661cQJe7OrF4CJd+gXUqac=
+	t=1750835150; cv=none; b=qvTT/lTeuLg1qi81vN16Fh0vQkkkyWM4ETOK442uDS2VFY8n6w6zE+lEcVILuN7D8YSPAwx9Zf16TQqNhFCzSJADpS/yCA+emN224TN1r+x9hBv9RjrT/F/Rg6Xe87Jdlb6ft4FzvNjNNTlRGMOWuBvJlEOuIXjsij8w5MuuQrs=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1750834870; c=relaxed/simple;
-	bh=KNaD9WNpMpezEzpF6Wf5xJnjTCe/it9JfR5wVoryt8Q=;
-	h=Message-ID:Date:MIME-Version:Subject:From:To:Cc:References:
-	 In-Reply-To:Content-Type; b=mx3EnCUR/k+sdzjVHD301+0Xe+gtseNPc8srfDbPS32N8Tt+dTg/r4ugeVsWvjo8+PydrEYmXY61GdgtQbNWQxHXdFwfsYeZki6mUkhp9hxVkg0MBc+Ord5D2u1Amv1DP5bucw2KHrWZvNOaWZXgL1DphYe95ZYMZ6RaHwa4Iao=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=iLbygNTJ; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id BCF84C4CEEA;
-	Wed, 25 Jun 2025 07:01:07 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1750834870;
-	bh=KNaD9WNpMpezEzpF6Wf5xJnjTCe/it9JfR5wVoryt8Q=;
-	h=Date:Subject:From:To:Cc:References:In-Reply-To:From;
-	b=iLbygNTJddfXZuz4w8BeHSOP+USrDuHqKsSt2cvBjbpZOnzfpis4KiyHsFSqo1JkQ
-	 Trk74in6TSUwkwWftyp0uMeR20IJKy4ZfwqcivZpw2cnOwhX6jhVCRaM4EdC5h4zEF
-	 PpZhp3sQv3HLcmJpEBlJWei7sGeYRqX3Z/hJLK+WjSi0d0Ezvcg4GhTTRewCK7Dgsn
-	 i0VK9DxS11k6cwSyZQ2WpC02R9iWOc4ceax/AGi6DJtiVYWKzgclbMlxqlFaWPe969
-	 pJhaNuZ0GQAoDGDGB7Da3ggP/vEEYEcmo2zbI4IEG/aC/QjRD1n+2PkNeSHP507ZBG
-	 jJKo3DLzDPFbA==
-Message-ID: <930edec1-7403-4ecf-bb17-2e68b8d351f8@kernel.org>
-Date: Wed, 25 Jun 2025 09:01:06 +0200
+	s=arc-20240116; t=1750835150; c=relaxed/simple;
+	bh=AIx9KgGY4+P85oNCOJVwREtiXdk9pNQmRPz0GTokeXA=;
+	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
+	 MIME-Version; b=Ep7kW7qYpVngX8LHv6KzOgUYBrT8SzxJnlwoVTkT9ciriXcxgbvjPTAa7UwOjOjdxh+esi5sntGl4L/ytg6dHNUEqFGbOPSgsWP4sSroX9P4CuBGe0UCokXUR9jEbgYzL7jQCjE2kz14AK7leo87gb7YjNvNDdGJIIBwJLgU2pI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=yeah.net; spf=pass smtp.mailfrom=yeah.net; dkim=pass (1024-bit key) header.d=yeah.net header.i=@yeah.net header.b=G4tgqzcO; arc=none smtp.client-ip=1.95.21.16
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=yeah.net
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=yeah.net
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=yeah.net;
+	s=s110527; h=From:To:Subject:Date:Message-Id:MIME-Version; bh=VP
+	ZrqWa7/07CY5diTNNl5DfBiV7kIBBHm24n3oMQpiI=; b=G4tgqzcO6EI46wfhcK
+	X0so4VJH4E7Vll1OEXZwlQzW/PMtukVfkDH14jGEwCg8UCSYm//I8SzxZWg/1q1i
+	cq1Z49sXLg0I8/cMGTYuDLeTfb7bRQ5rt1tE/51xOuLtejTARWtK2L9RM+JjYhDF
+	cspdCZjI/rrNdcX7uap2l6QoM=
+Received: from mps-HP-EliteBook-840-G3.monolithicpower.com (unknown [])
+	by gzsmtp1 (Coremail) with SMTP id Mc8vCgDXbU9Un1toEmaCAQ--.23207S2;
+	Wed, 25 Jun 2025 15:03:51 +0800 (CST)
+From: wenswang@yeah.net
+To: robh@kernel.org,
+	krzk+dt@kernel.org,
+	conor+dt@kernel.org,
+	jdelvare@suse.com,
+	linux@roeck-us.net,
+	corbet@lwn.net
+Cc: Jonathan.Cameron@huawei.com,
+	michal.simek@amd.com,
+	naresh.solanki@9elements.com,
+	festevam@gmail.com,
+	rodrigo.gobbi.7@gmail.com,
+	grantpeltier93@gmail.com,
+	laurent.pinchart@ideasonboard.com,
+	cedricjustine.encarnacion@analog.com,
+	nuno.sa@analog.com,
+	ninad@linux.ibm.com,
+	jbrunet@baylibre.com,
+	kimseer.paller@analog.com,
+	xzeol@yahoo.com,
+	leo.yang.sy0@gmail.com,
+	Mariel.Tinaco@analog.com,
+	johnerasmusmari.geronimo@analog.com,
+	linux@weissschuh.net,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	linux-hwmon@vger.kernel.org,
+	linux-doc@vger.kernel.org,
+	Wensheng Wang <wenswang@yeah.net>
+Subject: [PATCH 1/4] dt-bindings: hwmon: Add MPS mp2869 series
+Date: Wed, 25 Jun 2025 15:03:35 +0800
+Message-Id: <20250625070338.965168-1-wenswang@yeah.net>
+X-Mailer: git-send-email 2.25.1
+In-Reply-To: <20250625065956.964759-1-wenswang@yeah.net>
+References: <20250625065956.964759-1-wenswang@yeah.net>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 1/2] dt-bindings: media: qcom,x1e80100-camss: Sort
- interconnects alphabetically
-From: Krzysztof Kozlowski <krzk@kernel.org>
-To: Vladimir Zapolskiy <vladimir.zapolskiy@linaro.org>,
- Robert Foss <rfoss@kernel.org>, Todor Tomov <todor.too@gmail.com>,
- Bryan O'Donoghue <bryan.odonoghue@linaro.org>
-Cc: Mauro Carvalho Chehab <mchehab@kernel.org>, Rob Herring
- <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>,
- Conor Dooley <conor+dt@kernel.org>, linux-arm-msm@vger.kernel.org,
- linux-media@vger.kernel.org, devicetree@vger.kernel.org
-References: <20250624094253.57441-1-vladimir.zapolskiy@linaro.org>
- <20250624094253.57441-2-vladimir.zapolskiy@linaro.org>
- <aa56b956-95f3-484d-8afa-058925b95bfd@kernel.org>
- <fff77f71-e21b-43b9-9da5-6cf819add970@linaro.org>
- <5a5b78f7-e156-4c5e-8407-b249040e227d@kernel.org>
- <c29385d4-30ea-4774-9cf9-699b08e29800@linaro.org>
- <329b89a4-85a9-496f-8b1b-6239dfc9057b@kernel.org>
-Content-Language: en-US
-Autocrypt: addr=krzk@kernel.org; keydata=
- xsFNBFVDQq4BEAC6KeLOfFsAvFMBsrCrJ2bCalhPv5+KQF2PS2+iwZI8BpRZoV+Bd5kWvN79
- cFgcqTTuNHjAvxtUG8pQgGTHAObYs6xeYJtjUH0ZX6ndJ33FJYf5V3yXqqjcZ30FgHzJCFUu
- JMp7PSyMPzpUXfU12yfcRYVEMQrmplNZssmYhiTeVicuOOypWugZKVLGNm0IweVCaZ/DJDIH
- gNbpvVwjcKYrx85m9cBVEBUGaQP6AT7qlVCkrf50v8bofSIyVa2xmubbAwwFA1oxoOusjPIE
- J3iadrwpFvsZjF5uHAKS+7wHLoW9hVzOnLbX6ajk5Hf8Pb1m+VH/E8bPBNNYKkfTtypTDUCj
- NYcd27tjnXfG+SDs/EXNUAIRefCyvaRG7oRYF3Ec+2RgQDRnmmjCjoQNbFrJvJkFHlPeHaeS
- BosGY+XWKydnmsfY7SSnjAzLUGAFhLd/XDVpb1Een2XucPpKvt9ORF+48gy12FA5GduRLhQU
- vK4tU7ojoem/G23PcowM1CwPurC8sAVsQb9KmwTGh7rVz3ks3w/zfGBy3+WmLg++C2Wct6nM
- Pd8/6CBVjEWqD06/RjI2AnjIq5fSEH/BIfXXfC68nMp9BZoy3So4ZsbOlBmtAPvMYX6U8VwD
- TNeBxJu5Ex0Izf1NV9CzC3nNaFUYOY8KfN01X5SExAoVTr09ewARAQABzSVLcnp5c3p0b2Yg
- S296bG93c2tpIDxrcnprQGtlcm5lbC5vcmc+wsGVBBMBCgA/AhsDBgsJCAcDAgYVCAIJCgsE
- FgIDAQIeAQIXgBYhBJvQfg4MUfjVlne3VBuTQ307QWKbBQJoF1BKBQkWlnSaAAoJEBuTQ307
- QWKbHukP/3t4tRp/bvDnxJfmNdNVn0gv9ep3L39IntPalBFwRKytqeQkzAju0whYWg+R/rwp
- +r2I1Fzwt7+PTjsnMFlh1AZxGDmP5MFkzVsMnfX1lGiXhYSOMP97XL6R1QSXxaWOpGNCDaUl
- ajorB0lJDcC0q3xAdwzRConxYVhlgmTrRiD8oLlSCD5baEAt5Zw17UTNDnDGmZQKR0fqLpWy
- 786Lm5OScb7DjEgcA2PRm17st4UQ1kF0rQHokVaotxRM74PPDB8bCsunlghJl1DRK9s1aSuN
- hL1Pv9VD8b4dFNvCo7b4hfAANPU67W40AaaGZ3UAfmw+1MYyo4QuAZGKzaP2ukbdCD/DYnqi
- tJy88XqWtyb4UQWKNoQqGKzlYXdKsldYqrLHGoMvj1UN9XcRtXHST/IaLn72o7j7/h/Ac5EL
- 8lSUVIG4TYn59NyxxAXa07Wi6zjVL1U11fTnFmE29ALYQEXKBI3KUO1A3p4sQWzU7uRmbuxn
- naUmm8RbpMcOfa9JjlXCLmQ5IP7Rr5tYZUCkZz08LIfF8UMXwH7OOEX87Y++EkAB+pzKZNNd
- hwoXulTAgjSy+OiaLtuCys9VdXLZ3Zy314azaCU3BoWgaMV0eAW/+gprWMXQM1lrlzvwlD/k
- whyy9wGf0AEPpLssLVt9VVxNjo6BIkt6d1pMg6mHsUEVzsFNBFVDXDQBEADNkrQYSREUL4D3
- Gws46JEoZ9HEQOKtkrwjrzlw/tCmqVzERRPvz2Xg8n7+HRCrgqnodIYoUh5WsU84N03KlLue
- MNsWLJBvBaubYN4JuJIdRr4dS4oyF1/fQAQPHh8Thpiz0SAZFx6iWKB7Qrz3OrGCjTPcW6ei
- OMheesVS5hxietSmlin+SilmIAPZHx7n242u6kdHOh+/SyLImKn/dh9RzatVpUKbv34eP1wA
- GldWsRxbf3WP9pFNObSzI/Bo3kA89Xx2rO2roC+Gq4LeHvo7ptzcLcrqaHUAcZ3CgFG88CnA
- 6z6lBZn0WyewEcPOPdcUB2Q7D/NiUY+HDiV99rAYPJztjeTrBSTnHeSBPb+qn5ZZGQwIdUW9
- YegxWKvXXHTwB5eMzo/RB6vffwqcnHDoe0q7VgzRRZJwpi6aMIXLfeWZ5Wrwaw2zldFuO4Dt
- 91pFzBSOIpeMtfgb/Pfe/a1WJ/GgaIRIBE+NUqckM+3zJHGmVPqJP/h2Iwv6nw8U+7Yyl6gU
- BLHFTg2hYnLFJI4Xjg+AX1hHFVKmvl3VBHIsBv0oDcsQWXqY+NaFahT0lRPjYtrTa1v3tem/
- JoFzZ4B0p27K+qQCF2R96hVvuEyjzBmdq2esyE6zIqftdo4MOJho8uctOiWbwNNq2U9pPWmu
- 4vXVFBYIGmpyNPYzRm0QPwARAQABwsF8BBgBCgAmAhsMFiEEm9B+DgxR+NWWd7dUG5NDfTtB
- YpsFAmgXUF8FCRaWWyoACgkQG5NDfTtBYptO0w//dlXJs5/42hAXKsk+PDg3wyEFb4NpyA1v
- qmx7SfAzk9Hf6lWwU1O6AbqNMbh6PjEwadKUk1m04S7EjdQLsj/MBSgoQtCT3MDmWUUtHZd5
- RYIPnPq3WVB47GtuO6/u375tsxhtf7vt95QSYJwCB+ZUgo4T+FV4hquZ4AsRkbgavtIzQisg
- Dgv76tnEv3YHV8Jn9mi/Bu0FURF+5kpdMfgo1sq6RXNQ//TVf8yFgRtTUdXxW/qHjlYURrm2
- H4kutobVEIxiyu6m05q3e9eZB/TaMMNVORx+1kM3j7f0rwtEYUFzY1ygQfpcMDPl7pRYoJjB
- dSsm0ZuzDaCwaxg2t8hqQJBzJCezTOIkjHUsWAK+tEbU4Z4SnNpCyM3fBqsgYdJxjyC/tWVT
- AQ18NRLtPw7tK1rdcwCl0GFQHwSwk5pDpz1NH40e6lU+NcXSeiqkDDRkHlftKPV/dV+lQXiu
- jWt87ecuHlpL3uuQ0ZZNWqHgZoQLXoqC2ZV5KrtKWb/jyiFX/sxSrodALf0zf+tfHv0FZWT2
- zHjUqd0t4njD/UOsuIMOQn4Ig0SdivYPfZukb5cdasKJukG1NOpbW7yRNivaCnfZz6dTawXw
- XRIV/KDsHQiyVxKvN73bThKhONkcX2LWuD928tAR6XMM2G5ovxLe09vuOzzfTWQDsm++9UKF a/A=
-In-Reply-To: <329b89a4-85a9-496f-8b1b-6239dfc9057b@kernel.org>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
+X-CM-TRANSID:Mc8vCgDXbU9Un1toEmaCAQ--.23207S2
+X-Coremail-Antispam: 1Uf129KBjvJXoW7Kr48Aw47AryDZw13WF4kJFb_yoW8GrWrpF
+	WkCF4xtF4FgF17Ca12gF1kGF45WrZrAw4kJayqyr17Krya9rZ7Ww4a93s5Xan8Crs3ZFWU
+	JrnFy34F9Fyjv3DanT9S1TB71UUUUU7qnTZGkaVYY2UrUUUUjbIjqfuFe4nvWSU5nxnvy2
+	9KBjDUYxBIdaVFxhVjvjDU0xZFpf9x07j2pBhUUUUU=
+X-CM-SenderInfo: 5zhq24xdqjq5hhdkh0dhw/1tbiBAZ3pGhbdveNoQAAsP
 
-On 25/06/2025 08:58, Krzysztof Kozlowski wrote:
-> On 24/06/2025 15:29, Vladimir Zapolskiy wrote:
->> On 6/24/25 15:04, Krzysztof Kozlowski wrote:
->>> On 24/06/2025 13:38, Vladimir Zapolskiy wrote:
->>>> On 6/24/25 13:10, Krzysztof Kozlowski wrote:
->>>>> On 24/06/2025 11:42, Vladimir Zapolskiy wrote:
->>>>>> Sort the entries of interconnect and interconnect-names lists in the
->>>>>> alphabetical order of values in the latter property.
->>>>>
->>>>> We do not sort these entries alphabetically and you did not explain why
->>>>> you are doing this.
->>>>
->>>> I did it, because I assume that the preference is to sort all named
->>>> values alphanumerically.
->>>
->>> Where is such preference documented?
->>
->> There is no such preference documented, as I stated it was my assumption
->> and it was based on your firm insistance to apply a particular sorting
->> order for regs, clocks and interrupts properties. Apparently you are
-> 
-> Hm? And the rule is by name? I don't think I ever expressed that or
-> insisted on some sorting by name. During previous talks on camss
-> numerous times you ignored the ONLY rule of sorting I was insisting:
-> keep the same as all other devices. That was the one and only rule.
-> 
->> fine with out of the same sort order for 'interconnects' values, the
->> criteria of picked properties remains unclear for me.
-> 
-> I don't understand why it is unclear. That time with Bryan you both
-> received VERY CLEAR feedback from me: there is no such rule of sorting
-> any values. Yet you were pushing the discussion and patchset like there
-> was something.
-> 
-Look, the first reply:
+From: Wensheng Wang <wenswang@yeah.net>
 
-https://lore.kernel.org/all/65e5796a-8b8d-44f0-aef4-e420083b9d52@kernel.org/
+Add support for MPS mp2869 series controller
 
-"You are supposed to keep the same order, as much as
-possible."
+Signed-off-by: Wensheng Wang <wenswang@yeah.net>
+---
+ Documentation/devicetree/bindings/trivial-devices.yaml | 8 ++++++++
+ 1 file changed, 8 insertions(+)
 
-What rule is unclear here?
+diff --git a/Documentation/devicetree/bindings/trivial-devices.yaml b/Documentation/devicetree/bindings/trivial-devices.yaml
+index 27930708ccd5..493e7232f09f 100644
+--- a/Documentation/devicetree/bindings/trivial-devices.yaml
++++ b/Documentation/devicetree/bindings/trivial-devices.yaml
+@@ -285,10 +285,18 @@ properties:
+           - mps,mp2856
+             # Monolithic Power Systems Inc. multi-phase controller mp2857
+           - mps,mp2857
++            # Monolithic Power Systems Inc. multi-phase controller mp2869
++          - mps,mp2869
+             # Monolithic Power Systems Inc. multi-phase controller mp2888
+           - mps,mp2888
+             # Monolithic Power Systems Inc. multi-phase controller mp2891
+           - mps,mp2891
++            # Monolithic Power Systems Inc. multi-phase controller mp29608
++          - mps,mp29608
++            # Monolithic Power Systems Inc. multi-phase controller mp29612
++          - mps,mp29612
++            # Monolithic Power Systems Inc. multi-phase controller mp29816
++          - mps,mp29816
+             # Monolithic Power Systems Inc. multi-phase controller mp2993
+           - mps,mp2993
+             # Monolithic Power Systems Inc. multi-phase hot-swap controller mp5920
+-- 
+2.25.1
 
-Even more precise reply from me:
-
-https://lore.kernel.org/all/8f11c99b-f3ca-4501-aec4-0795643fc3a9@kernel.org/
-
-"I don't imply sorting by name is any better. "
-
-And:
-
-"The only rule is that all
-devices from same family type must have the same order."
-
-
-And now you claim there was from me "firm insistance to apply a
-particular sorting" in context of name?
-
-So again, my entire feedback repeated multiple times during that
-discussion is totally ignored and twisted to some fake new rule of name
-sorting.
-
-Best regards,
-Krzysztof
 
