@@ -1,63 +1,111 @@
-Return-Path: <devicetree+bounces-189553-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-189554-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0877BAE83CB
-	for <lists+devicetree@lfdr.de>; Wed, 25 Jun 2025 15:10:00 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 87EB2AE8417
+	for <lists+devicetree@lfdr.de>; Wed, 25 Jun 2025 15:15:38 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id CCA1C1663A6
-	for <lists+devicetree@lfdr.de>; Wed, 25 Jun 2025 13:09:58 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 6F019189E64E
+	for <lists+devicetree@lfdr.de>; Wed, 25 Jun 2025 13:14:00 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id F0477261586;
-	Wed, 25 Jun 2025 13:09:53 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E6C2626A1A4;
+	Wed, 25 Jun 2025 13:11:16 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="BP67WiGn"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="mdrpuFgG"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-pl1-f171.google.com (mail-pl1-f171.google.com [209.85.214.171])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C14FB261585;
-	Wed, 25 Jun 2025 13:09:53 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 17F22262FDE;
+	Wed, 25 Jun 2025 13:11:14 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.171
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1750856993; cv=none; b=m4T3lrj1ggXqcaq/4lg7ptSgKCwoP8hIsBnw+n1FhX7Dxs3lWGd40uWmS3zI+eCpGpRuycVRhfzI2LwxQFluP/B9UedjFcxxywbYlOuC8GTtpFUnpgPsAyat3MFodLFEVrjdwiJ2f+wWWCBd3FcwDqWXzha495gAyD/TTSesoW0=
+	t=1750857076; cv=none; b=avZUmsMSpm7WSQeYadZGToUCOsZMG9HDLpzu529NZz6C0IfiMHdaOIhmGHjT3B7uNpw17Fg7W3v2NW0LDRClmiXIZzG764TtZcyFm/yqnAN++IP/mSBqCsTBluynURX7Oyo+2fv7WB1BXWrvBDQN8mIhfSq+wPLjyyucPpoJcrA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1750856993; c=relaxed/simple;
-	bh=T9ZXwJirupaKaXo4ecAOelspdWpyR5VZVpCl4hYbx3c=;
+	s=arc-20240116; t=1750857076; c=relaxed/simple;
+	bh=j8C2e6tDckdTRfkOURaqEkwk7kmVI0oyt3RA3Hwp+uI=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=Be0vR3O6f1tDl6JLr3AspsbrnoMkyXTNoMg6v0WMfw7woysbMMaY+WSVvv9oTAgloP/LFrwgWIOqO45DJn/OEpcZ8/hqhXZJRD/dcjLv0di2lYRIiauKljNfREDAsnHENZxGPqLMLBGWYNUzo+uJh+SIDfgbEquzsbFSw7aKj5Q=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=BP67WiGn; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id E2ABCC4CEEE;
-	Wed, 25 Jun 2025 13:09:51 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1750856993;
-	bh=T9ZXwJirupaKaXo4ecAOelspdWpyR5VZVpCl4hYbx3c=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=BP67WiGnasC0Vt6bloul/aKmhoNifBCSM8pWwrvq07m5W/NrxA5Is8Jk0xU5rXvl3
-	 k34sCBKYmNhH+BKq3Dz7jz1NZIamMubN/ojAwL9j+ZwqdhT6smK7YfV9ublG/xcH7M
-	 1xTG8MEYfG9mkNkmI3eXi6cl2FAof5xOgH4pfI8/5GUf/MmsQOb1NRRA53pv1HRgqN
-	 wjA2aK1lttJMfmW5TW4UNQMTbgU9wt7zIf468QG7yNcHvEIVDK5sBhX0xoyAqH91p6
-	 4F/Wo8ARnZk18CcjSNRM+bdo9oOmiIH0HiVSWvPk4uRDAoAGKtmu/FzeFGzzaABapE
-	 GaIq3TrPVpOXw==
-Date: Wed, 25 Jun 2025 07:09:49 -0600
-From: Manivannan Sadhasivam <mani@kernel.org>
-To: Christian Bruel <christian.bruel@foss.st.com>
-Cc: Bjorn Helgaas <helgaas@kernel.org>, 
-	Linus Walleij <linus.walleij@linaro.org>, lpieralisi@kernel.org, kwilczynski@kernel.org, robh@kernel.org, 
-	bhelgaas@google.com, krzk+dt@kernel.org, conor+dt@kernel.org, 
-	mcoquelin.stm32@gmail.com, alexandre.torgue@foss.st.com, p.zabel@pengutronix.de, 
-	johan+linaro@kernel.org, cassel@kernel.org, shradha.t@samsung.com, 
-	thippeswamy.havalige@amd.com, quic_schintav@quicinc.com, linux-pci@vger.kernel.org, 
-	devicetree@vger.kernel.org, linux-stm32@st-md-mailman.stormreply.com, 
-	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
-Subject: Re: (subset) [PATCH v12 0/9] Add STM32MP25 PCIe drivers
-Message-ID: <bybl3ss5z6jgbhjqny5qwh25a5khhcvixoknrzqsnmennzcfdv@46j4grd35mx5>
-References: <175068078778.15794.15418191733712827693.b4-ty@kernel.org>
- <20250624222206.GA1537968@bhelgaas>
- <3bmw76gzqjq2nmjvj7tb6gi5x233zzfrhv44uyjopl2lxyzbkh@zg5skeu62nbh>
- <01dbb6cf-3ab4-4922-b301-661464c9e56d@foss.st.com>
+	 Content-Type:Content-Disposition:In-Reply-To; b=hNd8Bo1+vUojSm6iZVz1rgLa0/vQvBCv8+WQwjzF5Fgn3Uwr73lnlV0wbZF0jek9Ue8EpSPH9AhidGvy/6KeO32kleQ5cp48wWQvZLvbHLP7ntuoHkUg3IPGgrCQkj/UWVatInmh4RZl4moLtd0J1oaItrrnsvt2BeGbYX+N6pA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=roeck-us.net; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=mdrpuFgG; arc=none smtp.client-ip=209.85.214.171
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=roeck-us.net
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-pl1-f171.google.com with SMTP id d9443c01a7336-2363e973db1so8376855ad.0;
+        Wed, 25 Jun 2025 06:11:14 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1750857074; x=1751461874; darn=vger.kernel.org;
+        h=in-reply-to:content-transfer-encoding:content-disposition
+         :mime-version:references:message-id:subject:cc:to:from:date:sender
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=pINmzrGfM7W/3B9anyGB+QhxgI2dWFZ69bm3f0khYUI=;
+        b=mdrpuFgGJJGA6TQkUtweiw5NkxOABpGpjP2rYDl0/eMNflyc8HI+uOi+CDX9RLp+P1
+         6VDxrm9UrHeuLnqbaMGoJ2TkU5Z2nj3GFXRS4+lq+4zNvHbxlwg1GORquijfNP2NvEiD
+         ltvb7kcRRkkMtc6ni0oF1w+m1LkcZlwoCkpuYyujXnAe/TmacYEt9EyYBjSeBXFuf3oA
+         QhTzq/I0FAAh2YQNOzPAVhlm65XbR8eRik1rsa6+X9/HgPbVMP+6atlssi0el9Ha1Vws
+         LuGWsEcXxtfDaQvepkrlDUQKNHoqGuqTwYFpyKt+7YP/9C/SbZH9Fq3B83nQo4XZO+Rd
+         +G9w==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1750857074; x=1751461874;
+        h=in-reply-to:content-transfer-encoding:content-disposition
+         :mime-version:references:message-id:subject:cc:to:from:date:sender
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=pINmzrGfM7W/3B9anyGB+QhxgI2dWFZ69bm3f0khYUI=;
+        b=jyElNzbH5sYscs3qN1AwDlJkugjECQmRL8fWsgcpcYeOnUz6ljRTJkTEPi2TXdJ9of
+         jO4Ovq6fC6F1egwzo3bYc2fC/pvtTVYJCvuXSYa4Qd7d8cO6LUE/JOTNLBsc1EdKI+lI
+         WMhTyYa+1BW4dFDuTrOm7lhanRe4L93U24Kv/evuVeXkIiI+vaGzm0Q7c4el/Kdmn2fO
+         dh1i6KfsSxeQsKYcpF1FS4XUAtjHzRJX4brlE+z/VGcne2IcTYH91ykeqMDPS2BXWZiK
+         gzHrGcfWtf2YJzxpMsH1ju5aqrz8IF8zshf1vY0a2yZOFJZ/C6XqOSjCCpouqkTLcN94
+         r/Eg==
+X-Forwarded-Encrypted: i=1; AJvYcCV0khw1YQcU8Z1uT8hkfTDoBB94wRBMMHc7zhZfqum756ie0kzkuW+OANHS46DTLlDA5C9AoESQN+2/@vger.kernel.org, AJvYcCVCamQHF7x7JXcpQ2h7rtydTVypladjViJ15zvoV7Mm8QWFPQV8KuJWwU8lnowSG/GKknNrLDIB3SpWtTDk@vger.kernel.org, AJvYcCVMY1eLVWza1lABvFOH8lmIxFvcu12We3xWRcP+Px+Y/m0d3QfnDDf4H8Veuu2eGiAYFPCNbb7mDKeUzcY=@vger.kernel.org, AJvYcCXoGW8+rzcuoDEWZlpNSCaPgZAUgw66aLMNNc4TWja48zR/H5e+Tx4HZ0vVlEJ69yF42gz3bvOaq9lv@vger.kernel.org
+X-Gm-Message-State: AOJu0Yy+fUbOmah72nEQV4GnqgxPpE9klFBn0+72bMFfn3warsRkfGA0
+	kIGx0nlt49gUnn9MYJI6DpGmC0uAUQiVfhQ0jIRZyYlag5Ia+X1InWra
+X-Gm-Gg: ASbGncueERItYGfptAeNePxTZDfl+Kc5KKm3kiSYEbVzxsL71v6g9pomOqx4M7nFwOo
+	TngfqlozJZv0ow4cHsSjQoADqjwLUtlsJhr4KLzOJIybGxPkSVdXzejbKDzzuk8OJkCDDFl8zEe
+	QUBHVNmQCA8wteRDlLz7le2hNvHUkfZGQIvBP7xfyTu3tweGN0xcosN8p15N5ilVJS9xTiMDKv7
+	Ik3ad2mRi4qrRnCfQ4z5mQ/DbyDZ39Z9psk+iGLQvqIqC1kQe7gtrRPn+7I7qzHswtaMIaMU/jd
+	RbBMeJl6qBWablywo4BeB6dOPw+SoOaPmvZYo/M8YVAqknNnR2NSTAQ+dzAm2FZHGSbb94tdAxA
+	=
+X-Google-Smtp-Source: AGHT+IGFwa6G2iKD65nivo9JPbJnbMdbeBIL5HNDz82Jr9/nArUgZKtC6neqtfHGwF4oRip87mYzHQ==
+X-Received: by 2002:a17:902:fc46:b0:234:b445:3f31 with SMTP id d9443c01a7336-238024b07b2mr133494025ad.17.1750857073974;
+        Wed, 25 Jun 2025 06:11:13 -0700 (PDT)
+Received: from server.roeck-us.net ([2600:1700:e321:62f0:da43:aeff:fecc:bfd5])
+        by smtp.gmail.com with ESMTPSA id d9443c01a7336-237d839325fsm131346655ad.47.2025.06.25.06.11.13
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 25 Jun 2025 06:11:13 -0700 (PDT)
+Sender: Guenter Roeck <groeck7@gmail.com>
+Date: Wed, 25 Jun 2025 06:11:11 -0700
+From: Guenter Roeck <linux@roeck-us.net>
+To: =?utf-8?B?5ZCz5qKT6LGq?= <tzuhao.wtmh@gmail.com>
+Cc: Krzysztof Kozlowski <krzk@kernel.org>, Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Jean Delvare <jdelvare@suse.com>, Jonathan Corbet <corbet@lwn.net>,
+	Jonathan Cameron <Jonathan.Cameron@huawei.com>,
+	Naresh Solanki <naresh.solanki@9elements.com>,
+	Rodrigo Gobbi <rodrigo.gobbi.7@gmail.com>,
+	Michal Simek <michal.simek@amd.com>,
+	Fabio Estevam <festevam@gmail.com>,
+	Henry Wu <Henry_Wu@quantatw.com>,
+	Grant Peltier <grantpeltier93@gmail.com>,
+	Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
+	Cedric Encarnacion <cedricjustine.encarnacion@analog.com>,
+	Kim Seer Paller <kimseer.paller@analog.com>,
+	Leo Yang <leo.yang.sy0@gmail.com>,
+	Ninad Palsule <ninad@linux.ibm.com>,
+	Alex Vdovydchenko <xzeol@yahoo.com>,
+	John Erasmus Mari Geronimo <johnerasmusmari.geronimo@analog.com>,
+	Nuno Sa <nuno.sa@analog.com>, Jerome Brunet <jbrunet@baylibre.com>,
+	Noah Wang <noahwang.wang@outlook.com>,
+	Mariel Tinaco <Mariel.Tinaco@analog.com>,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	linux-hwmon@vger.kernel.org, linux-doc@vger.kernel.org
+Subject: Re: [PATCH 1/2] hwmon: (pmbus) Add support for MPS multi-phase
+ mp2869a/mp29612a controllers
+Message-ID: <331d77c4-fa53-4d3b-a17e-22481bf72d32@roeck-us.net>
+References: <20250624074156.291176-1-Henry_Wu@quantatw.tw>
+ <9bd05709-7702-4b74-85e1-3df25b57c535@kernel.org>
+ <CAL3H=v3s6H4ZpnS=EhPrpEiu-9N-xFCkunHuwWW0xnkXbzY9Kg@mail.gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -67,103 +115,67 @@ MIME-Version: 1.0
 Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <01dbb6cf-3ab4-4922-b301-661464c9e56d@foss.st.com>
+In-Reply-To: <CAL3H=v3s6H4ZpnS=EhPrpEiu-9N-xFCkunHuwWW0xnkXbzY9Kg@mail.gmail.com>
 
-On Wed, Jun 25, 2025 at 12:18:16PM +0200, Christian Bruel wrote:
-> 
-> 
-> On 6/25/25 06:00, Manivannan Sadhasivam wrote:
-> > On Tue, Jun 24, 2025 at 05:22:06PM -0500, Bjorn Helgaas wrote:
-> > > On Mon, Jun 23, 2025 at 06:13:07AM -0600, Manivannan Sadhasivam wrote:
-> > > > On Tue, 10 Jun 2025 11:07:05 +0200, Christian Bruel wrote:
-> > > > > Changes in v12;
-> > > > >     Fix warning reported by kernel test robot <lkp@intel.com>
-> > > > > 
-> > > > > Changes in v11;
-> > > > >     Address comments from Manivanna:
-> > > > >     - RC driver: Do not call pm_runtime_get_noresume in probe
-> > > > >                  More uses of dev_err_probe
-> > > > >     - EP driver: Use level triggered PERST# irq
-> > > > > 
-> > > > > [...]
-> > > > 
-> > > > Applied, thanks!
-> > > > 
-> > > > [1/9] dt-bindings: PCI: Add STM32MP25 PCIe Root Complex bindings
-> > > >        commit: 41d5cfbdda7a61c5d646a54035b697205cff1cf0
-> > > > [2/9] PCI: stm32: Add PCIe host support for STM32MP25
-> > > >        commit: f6111bc2d8fe6ffc741661126a2174523124dc11
-> > > > [3/9] dt-bindings: PCI: Add STM32MP25 PCIe Endpoint bindings
-> > > >        commit: 203cfc4a23506ffb9c48d1300348c290dbf9368e
-> > > > [4/9] PCI: stm32: Add PCIe Endpoint support for STM32MP25
-> > > >        commit: 8869fb36a107a9ff18dab8c224de6afff1e81dec
-> > > > [5/9] MAINTAINERS: add entry for ST STM32MP25 PCIe drivers
-> > > >        commit: 003902ed7778d62083120253cd282a9112674986
-> > > 
-> > > This doesn't build for me with the attached config:
-> > > 
-> > >    $ make drivers/pci/controller/dwc/pcie-stm32.o
-> > >      CALL    scripts/checksyscalls.sh
-> > >      DESCEND objtool
-> > >      INSTALL libsubcmd_headers
-> > >      CC      drivers/pci/controller/dwc/pcie-stm32.o
-> > >    drivers/pci/controller/dwc/pcie-stm32.c: In function ‘stm32_pcie_suspend_noirq’:
-> > >    drivers/pci/controller/dwc/pcie-stm32.c:83:16: error: implicit declaration of function ‘pinctrl_pm_select_sleep_state’ [-Werror=implicit-function-declaration]
-> > >       83 |         return pinctrl_pm_select_sleep_state(dev);
-> > > 	|                ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-> > >    drivers/pci/controller/dwc/pcie-stm32.c: In function ‘stm32_pcie_resume_noirq’:
-> > >    drivers/pci/controller/dwc/pcie-stm32.c:96:24: error: ‘structdevice’ has no member named ‘pins’
-> > >       96 |         if (!IS_ERR(dev->pins->init_state))
-> > > 	|                        ^~
-> > >    drivers/pci/controller/dwc/pcie-stm32.c:97:23: error: implicit declaration of function ‘pinctrl_select_state’ [-Werror=implicit-function-declaration]
-> > >       97 |                 ret = pinctrl_select_state(dev->pins->p, dev->pins->init_state);
-> > > 	|                       ^~~~~~~~~~~~~~~~~~~~
-> > >    drivers/pci/controller/dwc/pcie-stm32.c:97:47: error: ‘structdevice’ has no member named ‘pins’
-> > >       97 |                 ret = pinctrl_select_state(dev->pins->p, dev->pins->init_state);
-> > > 	|                                               ^~
-> > >    drivers/pci/controller/dwc/pcie-stm32.c:97:61: error: ‘structdevice’ has no member named ‘pins’
-> > >       97 |                 ret = pinctrl_select_state(dev->pins->p, dev->pins->init_state);
-> > > 	|                                                             ^~
-> > >    drivers/pci/controller/dwc/pcie-stm32.c:99:23: error: implicit declaration of function ‘pinctrl_pm_select_default_state’ [-Werror=implicit-function-declaration]
-> > >       99 |                 ret = pinctrl_pm_select_default_state(dev);
-> > > 	|                       ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-> > > 
-> > 
-> > Hmm... I see two issues here. First is, wrong pinctrl header used. The correct
-> > one is:
-> > 
-> > #include <linux/pinctrl/consumer.h>
-> 
-> ah yes, the missing pinctrl_pm_select_default_state() should indeed be fixed
-> by using the correct header.
-> 
+On Wed, Jun 25, 2025 at 02:31:02PM +0800, 吳梓豪 wrote:
+> Krzysztof Kozlowski <krzk@kernel.org> 於 2025年6月24日 週二 下午3:48寫道：
+> >
+> > On 24/06/2025 09:41, tzuhao.wtmh@gmail.com wrote:
+> > > +static int
+> > > +MP2869A_read_byte_data(struct i2c_client *client, int page, int reg)
+> > > +{
+> > > +     switch (reg) {
+> > > +     case PMBUS_VOUT_MODE:
+> > > +             /* Enforce VOUT direct format. */
+> > > +             return PB_VOUT_MODE_DIRECT;
+> > > +     default:
+> > > +             return -ENODATA;
+> > > +     }
+> > > +}
+> > > +
+> > > +static int
+> > > +MP2869A_identify_vout_format(struct i2c_client *client,
+> >
+> > Use Linux coding style, so lowercase for variables, types and functions.
+> > Everywhere (except when coding style tells you different, so please read
+> > it).
+> >
+> > > +                         struct MP2869A_data *data)
+> > > +{
+> > > +     int i, ret;
+> > > +
+> > > +     for (i = 0; i < data->info.pages; i++) {
+> > > +             ret = i2c_smbus_write_byte_data(client, PMBUS_PAGE, i);
+> > > +             if (ret < 0)
+> > > +                     return ret;
+> > > +
+> > > +             ret = i2c_smbus_read_word_data(client, MP2869A_VOUT_MODE);
+> > > +             if (ret < 0)
+> > > +                     return ret;
+> > > +
+> > > +             switch (ret & MP2869A_VOUT_MODE_MASK) {
+> > > +             case MP2869A_VOUT_MODE_VID:
+> > > +                     data->vout_format[i] = vid;
+> > > +                     break;
+> > > +             default:
+> > > +             return -EINVAL;
+> > > +             }
+> > > +             }
+> >
+> > Messed indentation in multiple places.
+> >
+> > > +     return 0;
+> > > +}
+> > > +
+> > > +static struct pmbus_driver_info MP2869A_info = {
+> >
+> > This is const.
+> Since info will be modified by mp2869a_read_vout at runtime, I chose
+> not to make it constant
 
-I've fixed it in the branch.
+That is a no-go. There can be multiple instances of the chip in a system,
+each requiring its own info data structure. If the structure is modified
+at runtime it needs to be copied first.
 
-> > 
-> > Second issue is the driver accessing "struct device::pins" directly. The "pins"
-> > member won't be available if CONFIG_PINCTRL is not set (which is what your
-> > .config has). So either the member should not be accessed directly or the
-> > driver has to depend on CONFIG_PINCTRL. The latter one is not acceptable.It
-> > also looks weird that only this driver is accessing the "pins" member directly
-> > apart from the pinctrl core. So I think this part needs a revisit.
-> > 
-> > Christian?
-> The pinctrl "init" and "default" configurations are managed effectively by
-> the probing code. The same approach is required in
-> stm32_pcie_resume_noirq().
-> 
-> In this case, would introducing a new helper function,
-> pinctrl_pm_select_init_state(), be preferable, even if we are the only
-> consumer?
-> 
-
-Sounds reasonable. If you end up creating an API, get it acked by the pinctrl
-maintainer so that I can merge it (and the use of it in this driver) through
-the PCI tree to avoid cross tree dependency.
-
-- Mani
-
--- 
-மணிவண்ணன் சதாசிவம்
+Guenter
 
