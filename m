@@ -1,232 +1,144 @@
-Return-Path: <devicetree+bounces-189256-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-189257-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1A8DCAE753C
-	for <lists+devicetree@lfdr.de>; Wed, 25 Jun 2025 05:27:14 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 855D4AE7598
+	for <lists+devicetree@lfdr.de>; Wed, 25 Jun 2025 06:00:50 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 8755B7A9CAC
-	for <lists+devicetree@lfdr.de>; Wed, 25 Jun 2025 03:25:49 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id BFA787A4F98
+	for <lists+devicetree@lfdr.de>; Wed, 25 Jun 2025 03:59:26 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5005E1D432D;
-	Wed, 25 Jun 2025 03:27:06 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 33D9AE545;
+	Wed, 25 Jun 2025 04:00:44 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="o2daXyu1"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="sBr5dcep"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2633ECA5E;
-	Wed, 25 Jun 2025 03:27:05 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 05086AD58;
+	Wed, 25 Jun 2025 04:00:42 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1750822026; cv=none; b=HXQ/O0Fq6W8pW/0SYWllxSzfgAZOKejcV4PR/h5vK+wk7yZnJYPs9N1wisPU/A/lvvcLoNyYNP/Ds0cYWXpCSVAvwq4R003SFSQWIclcwGuEXG1MIJ+iUgDyGIlNqmpL/zxZNQeX5dWJBqpqUR0GUSrJQ5GZCjaRJGk/1ui1FWE=
+	t=1750824044; cv=none; b=VXLW2M8FpLQ3PY54PbW+wb4d+pAIv318ity6G+YRhRZePk1/dz7pk0DDBKYRMlb1vt2txaJ4KD88ldZ5vKkD6Bkudg9OzObZk8RdeYnLomtDCbRiAuSpDefItF8v+1jX4x6qawUcCKQruCwMBfmd84eBT0MNTd/2s7iK/hy5mpE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1750822026; c=relaxed/simple;
-	bh=g8yJbDRU3cigldhY2jqAOJeXToTfsEDC/4DEmKLPWWE=;
+	s=arc-20240116; t=1750824044; c=relaxed/simple;
+	bh=3knVkmzjeB1aYkBJciYzDKyPEWCxuge1R6dKhWJvBcQ=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=oBQfH/MPF9p4HojZ3nLQIahJd/TfTTZo1IOB+9bmVWQiONUkP1q+EXeaUbISoOdfkjHAsrYV4IXzVIi2C/f/0wTBCqSMifT06rfQAI8aOAjWiZpZArWuA/K9OqPF9HnxxkT8cie2eHB5k05WUyqRZroJj8U/K/0OjZQ41scBSm4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=o2daXyu1; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 8E88EC4CEE3;
-	Wed, 25 Jun 2025 03:27:05 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=HeEO2G6RUdBPBsghziM1bf8E9toFK7h+yhISiLZ2+EqM2EZmXrwuR+UgpEpN+js4ARDf7gbWvG4ES8h+1qHJ5LrnwMaRYzttWFtmpS2B5kQwkOUfPwX4hLO4I5pl1OMwytjUW+sDXpM8CZ6lxQko1yLrnRH4gjKKbmsHwkG8ntQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=sBr5dcep; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id C19BCC4CEEA;
+	Wed, 25 Jun 2025 04:00:35 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1750822025;
-	bh=g8yJbDRU3cigldhY2jqAOJeXToTfsEDC/4DEmKLPWWE=;
+	s=k20201202; t=1750824042;
+	bh=3knVkmzjeB1aYkBJciYzDKyPEWCxuge1R6dKhWJvBcQ=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=o2daXyu1mjcbU+WNa1Hiu8jmZ3UJdwfSQU96P8Zd2FSxQnnGPdN0LjmXFDnswdIb9
-	 S04xiCXepWjrXqkU4SlgUejuciGOrrFoAe6lKClL+DqaVUOvgtwuHmEDuiVITGc95U
-	 R4dUheblRKk172WbPW4bbuNXSABw7yWyf6Mqyo+MFHDK3npR0gPHmclnWxO3lYlg/m
-	 2ANBAWl4y+dCe/rbzM0xxwDt/NIikHQbdwaDtqOUadQGVWuHah+btzObG55/Wl1fp/
-	 jcIyp0wcD70eLgmlyiF9jHmV98kumRqBdzRrLEUtpamzvf/h9212ex4grqMwT7MBxh
-	 uR9Il1AAbY0Pw==
-Date: Tue, 24 Jun 2025 22:27:04 -0500
-From: Rob Herring <robh@kernel.org>
-To: Daniel Scally <dan.scally@ideasonboard.com>
-Cc: linux-media@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org, Anthony.McGivern@arm.com,
-	jacopo.mondi@ideasonboard.com, nayden.kanchev@arm.com,
-	mchehab@kernel.org, krzysztof.kozlowski+dt@linaro.org,
-	conor+dt@kernel.org, jerome.forissier@linaro.org,
-	kieran.bingham@ideasonboard.com, laurent.pinchart@ideasonboard.com,
-	Sakari Ailus <sakari.ailus@linux.intel.com>,
-	Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Subject: Re: [PATCH v10 05/17] dt-bindings: media: Add bindings for ARM
- mali-c55
-Message-ID: <20250625032704.GA2501351-robh@kernel.org>
-References: <20250624-c55-v10-0-54f3d4196990@ideasonboard.com>
- <20250624-c55-v10-5-54f3d4196990@ideasonboard.com>
+	b=sBr5dcepNEQgPiRg3aaI/tOgzPBOPr6ZvrJJamIx77DLo+9nA/3P0YctklKIDpPgk
+	 GVgjcQZPPDQo8k/1JJWkLGuYvOHk2Ec3sWXraK+bXtoLMKw/NBYJnrE5XgpNoBXNRM
+	 +SA1hpeV+Cv/l0SzOmGGHtFioAgWm9GbHdatVZtm1IYur/9FCnDMr50my/rQ8JPTzk
+	 VOXoKAkPCtBWdsfe+Yld1NzyP7dmRUN+R1+h5q6keBuzDwQUMCfnhCEkWtS2aYrRpu
+	 emtMVAvw6xPvsun4VXM0pkq19W9i4LIX8GqygUiSuq5BVoS5Vz72U9+9zVLN/DeiMH
+	 H2UjHxxWO23CQ==
+Date: Tue, 24 Jun 2025 22:00:31 -0600
+From: Manivannan Sadhasivam <mani@kernel.org>
+To: Bjorn Helgaas <helgaas@kernel.org>
+Cc: lpieralisi@kernel.org, kwilczynski@kernel.org, robh@kernel.org, 
+	bhelgaas@google.com, krzk+dt@kernel.org, conor+dt@kernel.org, 
+	mcoquelin.stm32@gmail.com, alexandre.torgue@foss.st.com, p.zabel@pengutronix.de, 
+	johan+linaro@kernel.org, cassel@kernel.org, shradha.t@samsung.com, 
+	thippeswamy.havalige@amd.com, quic_schintav@quicinc.com, 
+	Christian Bruel <christian.bruel@foss.st.com>, linux-pci@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-stm32@st-md-mailman.stormreply.com, linux-arm-kernel@lists.infradead.org, 
+	linux-kernel@vger.kernel.org
+Subject: Re: (subset) [PATCH v12 0/9] Add STM32MP25 PCIe drivers
+Message-ID: <3bmw76gzqjq2nmjvj7tb6gi5x233zzfrhv44uyjopl2lxyzbkh@zg5skeu62nbh>
+References: <175068078778.15794.15418191733712827693.b4-ty@kernel.org>
+ <20250624222206.GA1537968@bhelgaas>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <20250624-c55-v10-5-54f3d4196990@ideasonboard.com>
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20250624222206.GA1537968@bhelgaas>
 
-On Tue, Jun 24, 2025 at 11:21:18AM +0100, Daniel Scally wrote:
-> Add the yaml binding for ARM's Mali-C55 Image Signal Processor.
+On Tue, Jun 24, 2025 at 05:22:06PM -0500, Bjorn Helgaas wrote:
+> On Mon, Jun 23, 2025 at 06:13:07AM -0600, Manivannan Sadhasivam wrote:
+> > On Tue, 10 Jun 2025 11:07:05 +0200, Christian Bruel wrote:
+> > > Changes in v12;
+> > >    Fix warning reported by kernel test robot <lkp@intel.com>
+> > > 
+> > > Changes in v11;
+> > >    Address comments from Manivanna:
+> > >    - RC driver: Do not call pm_runtime_get_noresume in probe
+> > >                 More uses of dev_err_probe
+> > >    - EP driver: Use level triggered PERST# irq
+> > > 
+> > > [...]
+> > 
+> > Applied, thanks!
+> > 
+> > [1/9] dt-bindings: PCI: Add STM32MP25 PCIe Root Complex bindings
+> >       commit: 41d5cfbdda7a61c5d646a54035b697205cff1cf0
+> > [2/9] PCI: stm32: Add PCIe host support for STM32MP25
+> >       commit: f6111bc2d8fe6ffc741661126a2174523124dc11
+> > [3/9] dt-bindings: PCI: Add STM32MP25 PCIe Endpoint bindings
+> >       commit: 203cfc4a23506ffb9c48d1300348c290dbf9368e
+> > [4/9] PCI: stm32: Add PCIe Endpoint support for STM32MP25
+> >       commit: 8869fb36a107a9ff18dab8c224de6afff1e81dec
+> > [5/9] MAINTAINERS: add entry for ST STM32MP25 PCIe drivers
+> >       commit: 003902ed7778d62083120253cd282a9112674986
 > 
-> Reviewed-by: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-> Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-> Acked-by: Nayden Kanchev <nayden.kanchev@arm.com>
-> Co-developed-by: Jacopo Mondi <jacopo.mondi@ideasonboard.com>
-> Signed-off-by: Jacopo Mondi <jacopo.mondi@ideasonboard.com>
-> Signed-off-by: Daniel Scally <dan.scally@ideasonboard.com>
-> ---
-> Changes in v10:
+> This doesn't build for me with the attached config:
 > 
-> 	- None
+>   $ make drivers/pci/controller/dwc/pcie-stm32.o
+>     CALL    scripts/checksyscalls.sh
+>     DESCEND objtool
+>     INSTALL libsubcmd_headers
+>     CC      drivers/pci/controller/dwc/pcie-stm32.o
+>   drivers/pci/controller/dwc/pcie-stm32.c: In function ‘stm32_pcie_suspend_noirq’:
+>   drivers/pci/controller/dwc/pcie-stm32.c:83:16: error: implicit declaration of function ‘pinctrl_pm_select_sleep_state’ [-Werror=implicit-function-declaration]
+>      83 |         return pinctrl_pm_select_sleep_state(dev);
+> 	|                ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+>   drivers/pci/controller/dwc/pcie-stm32.c: In function ‘stm32_pcie_resume_noirq’:
+>   drivers/pci/controller/dwc/pcie-stm32.c:96:24: error: ‘struct device’ has no member named ‘pins’
+>      96 |         if (!IS_ERR(dev->pins->init_state))
+> 	|                        ^~
+>   drivers/pci/controller/dwc/pcie-stm32.c:97:23: error: implicit declaration of function ‘pinctrl_select_state’ [-Werror=implicit-function-declaration]
+>      97 |                 ret = pinctrl_select_state(dev->pins->p, dev->pins->init_state);
+> 	|                       ^~~~~~~~~~~~~~~~~~~~
+>   drivers/pci/controller/dwc/pcie-stm32.c:97:47: error: ‘struct device’ has no member named ‘pins’
+>      97 |                 ret = pinctrl_select_state(dev->pins->p, dev->pins->init_state);
+> 	|                                               ^~
+>   drivers/pci/controller/dwc/pcie-stm32.c:97:61: error: ‘struct device’ has no member named ‘pins’
+>      97 |                 ret = pinctrl_select_state(dev->pins->p, dev->pins->init_state);
+> 	|                                                             ^~
+>   drivers/pci/controller/dwc/pcie-stm32.c:99:23: error: implicit declaration of function ‘pinctrl_pm_select_default_state’ [-Werror=implicit-function-declaration]
+>      99 |                 ret = pinctrl_pm_select_default_state(dev);
+> 	|                       ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 > 
-> Changes in v9:
-> 
-> 	- Added the arm,inline_mode property to differentiate between inline and
-> 	  memory input configurations
-> 
-> Changes in v8:
-> 
-> 	- Added the video clock back in. Now that we have actual hardware it's
-> 	  clear that it's necessary.
-> 	- Added reset lines
-> 	- Dropped R-bs
-> 
-> Changes in v7:
-> 
-> 	- None
-> 
-> Changes in v6:
-> 
-> 	- None
-> 
-> Changes in v5:
-> 
-> 	- None
-> 
-> Changes in v4:
-> 
-> 	- Switched to port instead of ports
-> 
-> Changes in v3:
-> 
-> 	- Dropped the video clock as suggested by Laurent. I didn't retain it
-> 	for the purposes of the refcount since this driver will call .s_stream()
-> 	for the sensor driver which will refcount the clock anyway.
-> 	- Clarified that the port is a parallel input port rather (Sakari)
-> 
-> Changes in v2:
-> 
-> 	- Added clocks information
-> 	- Fixed the warnings raised by Rob
-> ---
->  .../devicetree/bindings/media/arm,mali-c55.yaml    | 89 ++++++++++++++++++++++
->  1 file changed, 89 insertions(+)
-> 
-> diff --git a/Documentation/devicetree/bindings/media/arm,mali-c55.yaml b/Documentation/devicetree/bindings/media/arm,mali-c55.yaml
-> new file mode 100644
-> index 0000000000000000000000000000000000000000..539fa8163bd07cf8a80c361012400cbcc7d073eb
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/media/arm,mali-c55.yaml
-> @@ -0,0 +1,89 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/media/arm,mali-c55.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: ARM Mali-C55 Image Signal Processor
-> +
-> +maintainers:
-> +  - Daniel Scally <dan.scally@ideasonboard.com>
-> +  - Jacopo Mondi <jacopo.mondi@ideasonboard.com>
-> +
-> +properties:
-> +  compatible:
-> +    const: arm,mali-c55
-> +
-> +  reg:
-> +    maxItems: 1
-> +
-> +  interrupts:
-> +    maxItems: 1
-> +
-> +  clocks:
-> +    items:
-> +      - description: ISP Video Clock
-> +      - description: ISP AXI clock
-> +      - description: ISP AHB-lite clock
-> +
-> +  clock-names:
-> +    items:
-> +      - const: vclk
-> +      - const: aclk
-> +      - const: hclk
-> +
-> +  resets:
-> +    items:
-> +      - description: vclk domain reset
-> +      - description: aclk domain reset
-> +      - description: hclk domain reset
-> +
-> +  reset-names:
-> +    items:
-> +      - const: vresetn
-> +      - const: aresetn
-> +      - const: hresetn
-> +
-> +  port:
-> +    $ref: /schemas/graph.yaml#/properties/port
-> +    description: Input parallel video bus
-> +
-> +    properties:
-> +      endpoint:
-> +        $ref: /schemas/graph.yaml#/properties/endpoint
-> +
-> +  arm,inline_mode:
 
-arm,inline-mode
+Hmm... I see two issues here. First is, wrong pinctrl header used. The correct
+one is:
 
-> +    description:
-> +      The ISP can be either electrically connected to sensor and CSI-2 receiver
-> +      or driven through a DMA input device. This property declares the ISP as
-> +      being electrically connected to the source of image data.
-> +    type: boolean
-> +
-> +required:
-> +  - compatible
-> +  - reg
-> +  - interrupts
-> +  - clocks
-> +  - clock-names
-> +  - port
-> +
-> +additionalProperties: false
-> +
-> +examples:
-> +  - |
-> +    mali_c55: isp@400000 {
+#include <linux/pinctrl/consumer.h>
 
-Drop unused labels.
+Second issue is the driver accessing "struct device::pins" directly. The "pins"
+member won't be available if CONFIG_PINCTRL is not set (which is what your
+.config has). So either the member should not be accessed directly or the
+driver has to depend on CONFIG_PINCTRL. The latter one is not acceptable. It
+also looks weird that only this driver is accessing the "pins" member directly
+apart from the pinctrl core. So I think this part needs a revisit.
 
-> +      compatible = "arm,mali-c55";
-> +      reg = <0x400000 0x200000>;
-> +      clocks = <&clk 0>, <&clk 1>, <&clk 2>;
-> +      clock-names = "vclk", "aclk", "hclk";
-> +      resets = <&resets 0>, <&resets 1>, <&resets 2>;
-> +      reset-names = "vresetn", "aresetn", "hresetn";
-> +      interrupts = <0>;
-> +
-> +      port {
-> +        isp_in: endpoint {
-> +            remote-endpoint = <&csi2_rx_out>;
-> +        };
-> +      };
-> +    };
-> +...
-> 
-> -- 
-> 2.34.1
-> 
+Christian?
+
+- Mani
+
+-- 
+மணிவண்ணன் சதாசிவம்
 
