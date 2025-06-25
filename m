@@ -1,163 +1,162 @@
-Return-Path: <devicetree+bounces-189366-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-189367-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7A6D8AE7B47
-	for <lists+devicetree@lfdr.de>; Wed, 25 Jun 2025 11:02:55 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1615DAE7B6E
+	for <lists+devicetree@lfdr.de>; Wed, 25 Jun 2025 11:05:20 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 292945A4C22
-	for <lists+devicetree@lfdr.de>; Wed, 25 Jun 2025 09:01:47 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id A1A0C1889373
+	for <lists+devicetree@lfdr.de>; Wed, 25 Jun 2025 09:05:35 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 762A329AB13;
-	Wed, 25 Jun 2025 09:01:21 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1D2DE28689C;
+	Wed, 25 Jun 2025 09:05:16 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="TDmYPDKA"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="xUIvl8+3"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wm1-f43.google.com (mail-wm1-f43.google.com [209.85.128.43])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E80D829AB02;
-	Wed, 25 Jun 2025 09:01:17 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5046C26C385
+	for <devicetree@vger.kernel.org>; Wed, 25 Jun 2025 09:05:14 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.43
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1750842081; cv=none; b=EaYFKLt9kAb7d2CEm4wTCdcdA8o2B3HItOuIFbc37tnWDQyJWV+iSW9J51dwj8gD+DdOIXP2Y3HIZPT1sV9RSTOEVxATYgEiSP5K8S7qqJKOALzEjas8jHcthmQSFZEHs51gbah0CuzKFa9fXxSNvztrtYqupCPh7L6UcF/bprU=
+	t=1750842316; cv=none; b=Y66X2lkn7Gvt88MHiCMAWCK2K+iLWJRzuIR4IOpd7Rjt0RGeFQIbChCT7vxqMUnRUFZGSdPesSvX+KoyBWOQwHXYXMVpBQ+2WsSPRDudUuFKvxeAcoScevMF/MoC6pTI/8dWLiPUIs/lRuS5ODG5xSPRbljHfW77A7a/7s4QjpM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1750842081; c=relaxed/simple;
-	bh=llIoZ65iZRbE6HKRxtDXoE+2sFnVDysUCy+rkRbLInw=;
-	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
-	 MIME-Version; b=nJPoF86KI1a9dZjGaF3TYQwhnSPyWkHVjVTPJpr0o9QQ5zLkNki0jv3RFDp5p/b+vdKQQzQK07OX+M3nnsLvgP1GxH5mMvzwRJns9+T6GeVou6DSDQgR0xhW1flpKWz2fruR4T3OYA+XOHUELvD1JVa9qkWcWQ7tHdzN/0BIig0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=qualcomm.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=TDmYPDKA; arc=none smtp.client-ip=205.220.168.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=qualcomm.com
-Received: from pps.filterd (m0279867.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 55P1q5KG002448;
-	Wed, 25 Jun 2025 09:01:02 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	cc:content-transfer-encoding:date:from:in-reply-to:message-id
-	:mime-version:references:subject:to; s=qcppdkim1; bh=EF6AjC4MUUF
-	M1cgFCRP63nmXpijP6PySoR7J70JajKg=; b=TDmYPDKAnoBX3MHJDmhRzgUN/aL
-	wjMZ2OjxuSdJYiHrMxYQr8z9ZvavzuoqnOkaJ4WwoRFnpmLgdwBe0jFIQHAkk0QC
-	ElV4ySsr62BssW9P2pf47hQG+mta+9JS3bqEL9RNyJlnavO3o4eLzDPSNF3maqw7
-	qSImKvSGcwSU+y5s1WUstSGK6Psd4gBC2xerh+Q0AS4ZM3npTr1wt+9DQl2NSGfc
-	oc7VQxOo9YDHd68l9bOSrYPH/o5oTKbbAm+b90JtWIJPvPjG2CoF6HYAE1b0NlRy
-	ke/lkOQJQRlir3YbnBuyvxTxgYN7ac72BqOo9X0aSIejPW4EnJFkhjJ08PQ==
-Received: from aptaippmta01.qualcomm.com (tpe-colo-wan-fw-bordernet.qualcomm.com [103.229.16.4])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 47g7td921d-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Wed, 25 Jun 2025 09:01:02 +0000 (GMT)
-Received: from pps.filterd (APTAIPPMTA01.qualcomm.com [127.0.0.1])
-	by APTAIPPMTA01.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTP id 55P910or032353;
-	Wed, 25 Jun 2025 09:01:00 GMT
-Received: from pps.reinject (localhost [127.0.0.1])
-	by APTAIPPMTA01.qualcomm.com (PPS) with ESMTPS id 47dntmargj-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Wed, 25 Jun 2025 09:01:00 +0000
-Received: from APTAIPPMTA01.qualcomm.com (APTAIPPMTA01.qualcomm.com [127.0.0.1])
-	by pps.reinject (8.17.1.5/8.17.1.5) with ESMTP id 55P90xxr032337;
-	Wed, 25 Jun 2025 09:00:59 GMT
-Received: from cse-cd02-lnx.ap.qualcomm.com (cse-cd02-lnx.qualcomm.com [10.64.75.246])
-	by APTAIPPMTA01.qualcomm.com (PPS) with ESMTPS id 55P90x6U032334
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Wed, 25 Jun 2025 09:00:59 +0000
-Received: by cse-cd02-lnx.ap.qualcomm.com (Postfix, from userid 4438065)
-	id 25A143864; Wed, 25 Jun 2025 17:00:58 +0800 (CST)
-From: Ziyue Zhang <quic_ziyuzhan@quicinc.com>
-To: andersson@kernel.org, konradybcio@kernel.org, robh@kernel.org,
-        krzk+dt@kernel.org, conor+dt@kernel.org, jingoohan1@gmail.com,
-        mani@kernel.org, lpieralisi@kernel.org, kwilczynski@kernel.org,
-        bhelgaas@google.com, johan+linaro@kernel.org, vkoul@kernel.org,
-        kishon@kernel.org, neil.armstrong@linaro.org, abel.vesa@linaro.org,
-        kw@linux.com
-Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-pci@vger.kernel.org,
-        linux-phy@lists.infradead.org, qiang.yu@oss.qualcomm.com,
-        quic_krichai@quicinc.com, quic_vbadigan@quicinc.com,
-        Ziyue Zhang <quic_ziyuzhan@quicinc.com>,
-        Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
-Subject: [PATCH v3 4/4] arm64: dts: qcom: sa8775p: add link_down reset for pcie
-Date: Wed, 25 Jun 2025 17:00:48 +0800
-Message-Id: <20250625090048.624399-5-quic_ziyuzhan@quicinc.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20250625090048.624399-1-quic_ziyuzhan@quicinc.com>
-References: <20250625090048.624399-1-quic_ziyuzhan@quicinc.com>
+	s=arc-20240116; t=1750842316; c=relaxed/simple;
+	bh=ofGLBeV8YvNpQlj6p7A7WvoAdljAiZc3L23Hg6zDPrg=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=ccwSpYis3dCL5VSSbJGve56Yi0FosABMxpfB+F3K6EKSAVso3l6LvSXCHWRTgnbAKv2BB72b6pOzznfTpwoIOjqgkjNdDEQTIYr6d2rXOrs2BLi5pR+zFdGRYWtKwnXpzFqFywmFjv+xJfwEmT+u59Ko8NzLZOnphkFzX8zZ0hM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=xUIvl8+3; arc=none smtp.client-ip=209.85.128.43
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-wm1-f43.google.com with SMTP id 5b1f17b1804b1-45368313a7bso920135e9.3
+        for <devicetree@vger.kernel.org>; Wed, 25 Jun 2025 02:05:14 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1750842313; x=1751447113; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:autocrypt:content-language
+         :from:references:cc:to:subject:user-agent:mime-version:date
+         :message-id:from:to:cc:subject:date:message-id:reply-to;
+        bh=etDFN6wtvcavr2f8yVWmXNqZFsdQ0B/RvviXTfGgdHI=;
+        b=xUIvl8+3pHYSY5ZYZpHwj+sCBIjZDurs/qPx2tlLrJ5PJrli+fpYpbIPWk1mIXdOHH
+         cxEySAgt3UdwBysbSm6phA8s7V2F+rMd4qZF+Au8HGEabceTF/2FVmTkUgaI/THQx3fW
+         EbnWmxgjB+astNEyDO0cyQxkSuq4ta62/es58dLM4RSxvOYfIOoYy55fDhsbpIj208cs
+         cIZOU3bCOqShiddcAElg1765G209SgNOOtix5GFaZJQ5dtBGzu+K69v7Nvs+5wJFdGkb
+         yzjY+SlLal+l8EM3dH0rr0ToIvwAQKgm7nNBpP5OSTpFIgrEfO7NdB9a3D+QPXDC7boG
+         MbTw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1750842313; x=1751447113;
+        h=content-transfer-encoding:in-reply-to:autocrypt:content-language
+         :from:references:cc:to:subject:user-agent:mime-version:date
+         :message-id:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=etDFN6wtvcavr2f8yVWmXNqZFsdQ0B/RvviXTfGgdHI=;
+        b=PTIvqO1BJ2erRmEGK0HWGt3UNYVQwha8QAr7+bwL0jA6ZUO/k92oQ3r/tu4C3cMOMS
+         IRnuzS8xdm4Bs9ll3NZ4HR6tMpzoM1vhUfK0NwQ3fZQOZIKuVILKh5SamBMAeRE+ajaB
+         CbCojSgcNJn3amAF9b7ERIvxYS1FJAJUvvePQpRnbSha6coL+qjanj3zcvUwIzx8efwh
+         gdQfnRQTHSD42c8qDPbFbL6b03O7guyaCp/9e5sM/X1vRzeWVCPDNMc7h8zEFJldPtq9
+         KGQ4WpZxTemfIaGbEHbJwCrWQu45v7Z7Zcw7M+Ch4wxg/ztazppCw9xzcVdWK7i52zN5
+         +6bw==
+X-Forwarded-Encrypted: i=1; AJvYcCUmrI6+JAJJdVLuxsHcCTMhwJRFjp5ZMFIPTMfwp0sh4kh3cAg9lflDFbcBNKhkCJwAlp0MmFO1leqR@vger.kernel.org
+X-Gm-Message-State: AOJu0YwvrjPXlnUnN9jJ4P5w8n/Tv8DUCpIalKetX2xx4thIX5QoIZ79
+	z7sadNQi9a/J/EyvNKcFW8jOA4KioFxaJE2ea9ZN1J5TCucGCAUOW/NuVq2qURlF/w8=
+X-Gm-Gg: ASbGncv0wwSotDbjoz73ipKsml26Ito1KiAJeKWoxAefOi59Ggbkestoh/CyYa5GV1k
+	L34lMwXAge+2BibE2tAQ+Uzu/YgN9HjAOg8jdDsQ8Eak2jnJrXFWwNJEw01eYMftPeIfo+YP2LY
+	KPT9177fr5PsHKD0//NIGc9CQHmEk+mwESHpqA2rX7FGRL/WJkHZlv3+BPpRXBWNtDIV8jPry/G
+	rTl4ae5LwxLJvB1SvtOxggKkKrBuTgqy5fVGO07D4yaYp80XD5Tg/JkSO4nllejvt+cdYusmrUE
+	94LxrrPN58+rqEKhTVJMIYMnF0Z3KQGCTvU/DUNXbCBjCvLjDrAc+W7M5o1QR9WbApzheoT+Nh7
+	kHHoIfA==
+X-Google-Smtp-Source: AGHT+IF8op0IxbzSI3ROl+ecmGm2SzX7vVGkRXnPCuboGaPdO95czrLIN3iOd0fglW0Ut9sjEj5wgg==
+X-Received: by 2002:a05:600c:8b85:b0:453:7011:fce3 with SMTP id 5b1f17b1804b1-45381af8609mr7565455e9.5.1750842312540;
+        Wed, 25 Jun 2025 02:05:12 -0700 (PDT)
+Received: from [192.168.1.29] ([178.197.222.89])
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-3a6e80fed75sm4116645f8f.66.2025.06.25.02.05.10
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 25 Jun 2025 02:05:11 -0700 (PDT)
+Message-ID: <2b32b8ed-c841-4862-afab-c583da644217@linaro.org>
+Date: Wed, 25 Jun 2025 11:05:10 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-QCInternal: smtphost
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Authority-Analysis: v=2.4 cv=CPYqXQrD c=1 sm=1 tr=0 ts=685bbace cx=c_pps
- a=nuhDOHQX5FNHPW3J6Bj6AA==:117 a=nuhDOHQX5FNHPW3J6Bj6AA==:17
- a=6IFa9wvqVegA:10 a=EUspDBNiAAAA:8 a=COk6AnOGAAAA:8 a=UMluCPnEzjiUAf4N7sYA:9
- a=TjNXssC_j7lpFel5tvFf:22
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwNjI1MDA2NyBTYWx0ZWRfXxF7PsBNX5ZT0
- KfSBZ4/fb59o7KkYMBVxxLF2DtloynEMvoJ5HkzhR+uwoQ4yBPkwtPwV2R4Z6cMNANLrQVdRQ9X
- jrnipQcOM1Nnduk6h6cqmcwpMV9lXa7QlvDviiZEE0wnnDG9JHXq5PCasVkDTw6LUKknqmNjSLX
- OtiiFixV4FvbgMikyrbeFHuEV4aEFmvJ0jasr9Dr5m+4QPu9oKJBvvKi1VIY0joYSERrnxJD1ep
- CtXNKCqqPnqLyRlm4ag7FbjggrkI6Zog8UGajGkkf5ncLeWR0QVZCNpQL2NtrvveW9tmDdLqQRR
- 7kND6fnztAIq/9gchEbwo1t2D8+IS7pMj20B3hMX0LQ1Z7MRfEXo2PITcqef7wimiUj+kZ8wxPn
- McAgGu8FOiulhnWH0FsKrtOnp/0cgKi+FpI3BgPBKDkmaVsu5pwPmfKNuL4zq8b/gXMhnsJm
-X-Proofpoint-GUID: dyx6eiLlFOj_jh9uXRcZ1JWQDNoy6omj
-X-Proofpoint-ORIG-GUID: dyx6eiLlFOj_jh9uXRcZ1JWQDNoy6omj
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1099,Hydra:6.1.7,FMLib:17.12.80.40
- definitions=2025-06-25_02,2025-06-23_07,2025-03-28_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- bulkscore=0 phishscore=0 mlxlogscore=999 lowpriorityscore=0 malwarescore=0
- impostorscore=0 suspectscore=0 clxscore=1015 spamscore=0 priorityscore=1501
- adultscore=0 mlxscore=0 classifier=spam authscore=0 authtc=n/a authcc=
- route=outbound adjust=0 reason=mlx scancount=1 engine=8.19.0-2505280000
- definitions=main-2506250067
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v10 05/17] dt-bindings: media: Add bindings for ARM
+ mali-c55
+To: Daniel Scally <dan.scally@ideasonboard.com>, linux-media@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org
+Cc: Anthony.McGivern@arm.com, jacopo.mondi@ideasonboard.com,
+ nayden.kanchev@arm.com, robh+dt@kernel.org, mchehab@kernel.org,
+ krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
+ jerome.forissier@linaro.org, kieran.bingham@ideasonboard.com,
+ laurent.pinchart@ideasonboard.com,
+ Sakari Ailus <sakari.ailus@linux.intel.com>
+References: <20250624-c55-v10-0-54f3d4196990@ideasonboard.com>
+ <20250624-c55-v10-5-54f3d4196990@ideasonboard.com>
+From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Content-Language: en-US
+Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
+ 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
+ 2+47PN9NZAOyb771QoVr8A==
+In-Reply-To: <20250624-c55-v10-5-54f3d4196990@ideasonboard.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-SA8775p supports 'link_down' reset on hardware, so add it for both pcie0
-and pcie1, which can provide a better user experience.
+On 24/06/2025 12:21, Daniel Scally wrote:
+> Add the yaml binding for ARM's Mali-C55 Image Signal Processor.
+> 
+> Reviewed-by: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+> Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
-Reviewed-by: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
-Signed-off-by: Ziyue Zhang <quic_ziyuzhan@quicinc.com>
----
- arch/arm64/boot/dts/qcom/sa8775p.dtsi | 14 ++++++++++----
- 1 file changed, 10 insertions(+), 4 deletions(-)
+You changed the binding significantly - adding new properties (which do
+not even follow DTS coding style).
 
-diff --git a/arch/arm64/boot/dts/qcom/sa8775p.dtsi b/arch/arm64/boot/dts/qcom/sa8775p.dtsi
-index 731bd80fc806..d0a6303cb133 100644
---- a/arch/arm64/boot/dts/qcom/sa8775p.dtsi
-+++ b/arch/arm64/boot/dts/qcom/sa8775p.dtsi
-@@ -7635,8 +7635,11 @@ pcie0: pcie@1c00000 {
- 		iommu-map = <0x0 &pcie_smmu 0x0000 0x1>,
- 			    <0x100 &pcie_smmu 0x0001 0x1>;
- 
--		resets = <&gcc GCC_PCIE_0_BCR>;
--		reset-names = "pci";
-+		resets = <&gcc GCC_PCIE_0_BCR>,
-+			 <&gcc GCC_PCIE_0_LINK_DOWN_BCR>;
-+		reset-names = "pci",
-+			      "link_down";
-+
- 		power-domains = <&gcc PCIE_0_GDSC>;
- 
- 		phys = <&pcie0_phy>;
-@@ -7803,8 +7806,11 @@ pcie1: pcie@1c10000 {
- 		iommu-map = <0x0 &pcie_smmu 0x0080 0x1>,
- 			    <0x100 &pcie_smmu 0x0081 0x1>;
- 
--		resets = <&gcc GCC_PCIE_1_BCR>;
--		reset-names = "pci";
-+		resets = <&gcc GCC_PCIE_1_BCR>,
-+			 <&gcc GCC_PCIE_1_LINK_DOWN_BCR>;
-+		reset-names = "pci",
-+			      "link_down";
-+
- 		power-domains = <&gcc PCIE_1_GDSC>;
- 
- 		phys = <&pcie1_phy>;
--- 
-2.34.1
+This invalidates the review. You cannot just keep growing it after you
+received a review.
 
+Best regards,
+Krzysztof
 
