@@ -1,230 +1,234 @@
-Return-Path: <devicetree+bounces-189334-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-189338-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id A0305AE7A29
-	for <lists+devicetree@lfdr.de>; Wed, 25 Jun 2025 10:30:47 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id A9C5EAE7A44
+	for <lists+devicetree@lfdr.de>; Wed, 25 Jun 2025 10:33:10 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id E4B2218905B7
-	for <lists+devicetree@lfdr.de>; Wed, 25 Jun 2025 08:31:02 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 4E1CF1BC720A
+	for <lists+devicetree@lfdr.de>; Wed, 25 Jun 2025 08:33:26 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2645A26E711;
-	Wed, 25 Jun 2025 08:29:55 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B37D1275B12;
+	Wed, 25 Jun 2025 08:30:49 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="eZSQDx54"
+	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="G+acDOmu"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+Received: from bali.collaboradmins.com (bali.collaboradmins.com [148.251.105.195])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4AA3826CE39;
-	Wed, 25 Jun 2025 08:29:53 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6280927587E;
+	Wed, 25 Jun 2025 08:30:47 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=148.251.105.195
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1750840195; cv=none; b=FCTtP69XaKp9scrzXjiqhvZ3cCUgFr+8+KBPxsPullDkLTb+Bq1sLq1P5IpYr9420fFJsXZKveN/QH4osmb61FBxvChbnP4Z0SiPp0r7OnlHegJ7HVPv/0d2MG1MsM5cdWmz7VluRItf8VFm/ZRmDk5ucZ03wNNSgqFGcWMAdk0=
+	t=1750840249; cv=none; b=bhMZUgBL7k4ECtZduQNIzeRVhiWUBBJgBdVbg4HgKlVcxp0rGvzxanZLJf0sQvTs30qs3rpVMIQWaRYszhzDwY8lhJFTKqgUdr0QOMSu63qBCsLS/zhMx9Q5d+hXPiBGN0lJwDPZGx+aNXnW8FMQG2/s4Euw4La67ndbj/Yh/BQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1750840195; c=relaxed/simple;
-	bh=Pn0IAq+EW3ZPpfC2bBtXNhslVya1++GpwORTqaNMocw=;
-	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
-	 MIME-Version; b=rN1YrVkFfBve6KEI4dRCWc79p4aA7hzWtzxG51C2Bo6Szu8Aw4Cp5dNUjC1itdBnAQziu6zHcWQN+m125pMtYIos7ot3BIm+IsgFjmGBzibE83fX/6qvIfcQFByW1jLE83M2XuZHIQOs3wCxrRHGxnSRthWfUsT3e2fQhW6N9Hk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=qualcomm.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=eZSQDx54; arc=none smtp.client-ip=205.220.168.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=qualcomm.com
-Received: from pps.filterd (m0279865.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 55P3iWDM014481;
-	Wed, 25 Jun 2025 08:29:48 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	cc:content-transfer-encoding:date:from:in-reply-to:message-id
-	:mime-version:references:subject:to; s=qcppdkim1; bh=Dal1OWBcSXu
-	ztEXKmLQhnv0TMe5eFbyOMUlSVoNQl1E=; b=eZSQDx54bIUwqyQN0WjukPDazGJ
-	ja9A18CV5nJBIz7I2G6pWxMs0MmkV4WC0TCkLbQZNmdzKtJwAjy5she8mdyCkApG
-	3VIEefccmshTFNkqloDtY9bxjNhBdYo9zcqZ57L5NRwvXSEl59BXVQlAz9kwK6uj
-	wfsChJLw0Tv4Z1vT8C9xW37DFYZmPQPli1yBV6BmW/DqhrNjZBwVnFG2GXSG7cFZ
-	fHRc4EebDtgVAfzEvIFXFN/r9x2hhDqmxO2T/29LOm/jBnOQFH6sJYrYBBE63c10
-	oQnmnZjG59LhD0D3N66opaUBKYF011OWT8TsW366GRlDZPVI87BT9c0tSnA==
-Received: from apblrppmta01.qualcomm.com (blr-bdr-fw-01_GlobalNAT_AllZones-Outside.qualcomm.com [103.229.18.19])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 47evc5r636-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Wed, 25 Jun 2025 08:29:47 +0000 (GMT)
-Received: from pps.filterd (APBLRPPMTA01.qualcomm.com [127.0.0.1])
-	by APBLRPPMTA01.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTP id 55P8ThPr032600;
-	Wed, 25 Jun 2025 08:29:44 GMT
-Received: from pps.reinject (localhost [127.0.0.1])
-	by APBLRPPMTA01.qualcomm.com (PPS) with ESMTPS id 47dntm2eq7-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Wed, 25 Jun 2025 08:29:44 +0000
-Received: from APBLRPPMTA01.qualcomm.com (APBLRPPMTA01.qualcomm.com [127.0.0.1])
-	by pps.reinject (8.17.1.5/8.17.1.5) with ESMTP id 55P8ThBi032573;
-	Wed, 25 Jun 2025 08:29:44 GMT
-Received: from hu-devc-hyd-u22-c.qualcomm.com (hu-pkumpatl-hyd.qualcomm.com [10.147.245.204])
-	by APBLRPPMTA01.qualcomm.com (PPS) with ESMTPS id 55P8TiU4032615
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Wed, 25 Jun 2025 08:29:44 +0000
-Received: by hu-devc-hyd-u22-c.qualcomm.com (Postfix, from userid 3914174)
-	id C3C505D0; Wed, 25 Jun 2025 13:59:41 +0530 (+0530)
-From: Prasad Kumpatla <quic_pkumpatl@quicinc.com>
-To: Bjorn Andersson <andersson@kernel.org>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Srinivas Kandagatla <srini@kernel.org>,
-        Liam Girdwood <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>,
-        Konrad Dybcio <konradybcio@kernel.org>
-Cc: cros-qcom-dts-watchers@chromium.org, linux-arm-msm@vger.kernel.org,
-        linux-gpio@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-sound@vger.kernel.org,
-        quic_pkumpatl@quicinc.com, kernel@oss.qualcomm.com,
-        Mohammad Rafi Shaik <quic_mohs@quicinc.com>
-Subject: [PATCH v5 9/9] arm64: dts: qcom: qcm6490-idp: Add sound card
-Date: Wed, 25 Jun 2025 13:59:27 +0530
-Message-Id: <20250625082927.31038-10-quic_pkumpatl@quicinc.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20250625082927.31038-1-quic_pkumpatl@quicinc.com>
-References: <20250625082927.31038-1-quic_pkumpatl@quicinc.com>
+	s=arc-20240116; t=1750840249; c=relaxed/simple;
+	bh=GoLMTJ5NvhpYjJ7hIqjrAw3zcslSPMdRspKOkp5l6d8=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=gt4VVXAqYQsgn9KKCDBDULO0WaZyrUucN56AHdXahbkquyJDmh1vmWzNXvGadQXGX0JR1PB2IoLUPoGfVRbDASVGXkWO/Y9EZCX0tNfl0ripkdX9aMuBybKojrH21duE9qBRGsbPywTYjCmAg1Zy2wfaULtTEb8xYWLjkwLh5BU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b=G+acDOmu; arc=none smtp.client-ip=148.251.105.195
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+	s=mail; t=1750840245;
+	bh=GoLMTJ5NvhpYjJ7hIqjrAw3zcslSPMdRspKOkp5l6d8=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=G+acDOmu1pxZ24nxZJNj+sUs6llxBi8KdD/86tnqBI8for3Sjrio00+50/56aEAbH
+	 EL5Z6lROPfzgq8sayOgsaJJcjE1PIbi7M7kjxfatHPdhdStTXIit/aWlub/jQXI5/e
+	 /mWxbU90o2DkznZ2OcNdmC8gB8s2w4L1m8mb5gP1QZUFTQcFfKsx0/n8tqnp94Mg2u
+	 8130KW+GT8DrTHkmHm9v+QipXb9aqLAUFrkadDcQB0OkMpSsf3LN6S64n+xzLuphnc
+	 ydkIJ69GyiYUkn/AvhSB8caNAurghLHDI99hWaKhogjHE7oSse4jpLnGo9kqGg/9yE
+	 ZooY3qML1Y2rw==
+Received: from [192.168.1.100] (2-237-20-237.ip236.fastwebnet.it [2.237.20.237])
+	(using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
+	 key-exchange X25519 server-signature RSA-PSS (4096 bits))
+	(No client certificate requested)
+	(Authenticated sender: kholk11)
+	by bali.collaboradmins.com (Postfix) with ESMTPSA id E609917E017D;
+	Wed, 25 Jun 2025 10:30:44 +0200 (CEST)
+Message-ID: <40f07604-f4eb-4a7d-88b4-ed29e9242d6e@collabora.com>
+Date: Wed, 25 Jun 2025 10:30:44 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-QCInternal: smtphost
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-GUID: 35IMiFKRx-ag7QkZqdXt2xLPEYv0eCmB
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwNjI1MDA2MiBTYWx0ZWRfX0+wg984PgDP+
- owJDQLskVF2NFEg//gJj65pCU5HtjXvbhZj5qevxzlnJ3Da6Ir/6cGSRboOq53dklK0nQbQLYtd
- aLCWM1Jfy34ekYu5tX+1z+LTid7yBGu1AwRRF4ZKjdF+A+1/ay8+640KcmkL5J//qHOf32hdNRM
- JoAjFHDv+v4N4HbJMEai2PwYs+ZG//lisdVgyGaUnl9/zFMgT1fUgsrrf8dgz3MCcUw87ucqeFn
- yWbZPyWMsTNTfUDUkYmjfwtRq7h0qurlbHOOEP/sYYIWcirLen+LXowwrdiQo0rwp5ORO4oCv+h
- 1Gw74+oCpKk8sMN3K+VqtrBKb7NCNDfKHWyjOBnBuArHP3EOILmB49tf734g1cuUIWKUrJEIRJh
- uTYKg+m3QmzoVPgugE6qz49JavIhHZqxAhO5pSOxI5voKSwYLUwvalw4aNgx+lSNsNOvHR9o
-X-Authority-Analysis: v=2.4 cv=caHSrmDM c=1 sm=1 tr=0 ts=685bb37c cx=c_pps
- a=Ou0eQOY4+eZoSc0qltEV5Q==:117 a=Ou0eQOY4+eZoSc0qltEV5Q==:17
- a=6IFa9wvqVegA:10 a=COk6AnOGAAAA:8 a=h_l79siUWkRGThfnGhIA:9
- a=TjNXssC_j7lpFel5tvFf:22
-X-Proofpoint-ORIG-GUID: 35IMiFKRx-ag7QkZqdXt2xLPEYv0eCmB
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1099,Hydra:6.1.7,FMLib:17.12.80.40
- definitions=2025-06-25_01,2025-06-23_07,2025-03-28_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- impostorscore=0 mlxlogscore=999 suspectscore=0 priorityscore=1501
- lowpriorityscore=0 bulkscore=0 adultscore=0 mlxscore=0 spamscore=0
- malwarescore=0 phishscore=0 clxscore=1015 classifier=spam authscore=0
- authtc=n/a authcc= route=outbound adjust=0 reason=mlx scancount=1
- engine=8.19.0-2505280000 definitions=main-2506250062
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v1 1/2] dt-bindings: mfd: Add binding for MediaTek MT6363
+ series SPMI PMIC
+To: Rob Herring <robh@kernel.org>
+Cc: lee@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
+ matthias.bgg@gmail.com, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ linux-mediatek@lists.infradead.org, kernel@collabora.com
+References: <20250623120038.108891-1-angelogioacchino.delregno@collabora.com>
+ <20250623120038.108891-2-angelogioacchino.delregno@collabora.com>
+ <20250625005130.GA2106374-robh@kernel.org>
+From: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+Content-Language: en-US
+In-Reply-To: <20250625005130.GA2106374-robh@kernel.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 
-From: Mohammad Rafi Shaik <quic_mohs@quicinc.com>
+Il 25/06/25 02:51, Rob Herring ha scritto:
+> On Mon, Jun 23, 2025 at 02:00:37PM +0200, AngeloGioacchino Del Regno wrote:
+>> Add a binding for the MediaTek MT6363/6373 (and similar) multi
+>> function PMICs connected over SPMI.
+>>
+>> These PMICs are found on board designs using newer MediaTek SoCs,
+>> such as the Dimensity 9400 Smartphone chip, or the Chromebook
+>> MT8196 chip.
+>>
+>> Signed-off-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+>> ---
+>>   .../bindings/mfd/mediatek,mt6363.yaml         | 98 +++++++++++++++++++
+>>   1 file changed, 98 insertions(+)
+>>   create mode 100644 Documentation/devicetree/bindings/mfd/mediatek,mt6363.yaml
+>>
+>> diff --git a/Documentation/devicetree/bindings/mfd/mediatek,mt6363.yaml b/Documentation/devicetree/bindings/mfd/mediatek,mt6363.yaml
+>> new file mode 100644
+>> index 000000000000..2ce57e659d12
+>> --- /dev/null
+>> +++ b/Documentation/devicetree/bindings/mfd/mediatek,mt6363.yaml
+>> @@ -0,0 +1,98 @@
+>> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+>> +%YAML 1.2
+>> +---
+>> +$id: http://devicetree.org/schemas/mfd/mediatek,mt6363.yaml#
+>> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+>> +
+>> +title: MediaTek MT6363 series SPMI PMICs multi-function device
+>> +
+>> +maintainers:
+>> +  - AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+>> +
+>> +description: |
+>> +  Some MediaTek Power Management ICs (PMICs) found in board designs with
+>> +  the Helio, Dimensity and/or Kompanio series of SoCs are interfaced to
+>> +  the chip via the System Power Management Interface (SPMI) bus.
+>> +
+>> +  These PMICs are multi-function devices with various sub modules.
+>> +  For example, those may include one, or more of the following:
+>> +  - Auxiliary ADC Controller
+>> +  - Clock Controller
+>> +  - eFuses
+>> +  - GPIO Controller
+>> +  - Interrupt Controller
+>> +  - Keys
+>> +  - LEDs Controller
+>> +  - Regulators
+>> +  - RTC
+>> +
+>> +properties:
+>> +  compatible:
+>> +    items:
+>> +      - enum:
+>> +          - mediatek,mt6363
+>> +          - mediatek,mt6373
+>> +
+>> +  reg:
+>> +    maxItems: 1
+>> +
+>> +  '#address-cells':
+>> +    const: 0
+>> +
+>> +  '#size-cells':
+>> +    const: 0
+>> +
+>> +  interrupts:
+>> +    maxItems: 1
+>> +
+>> +  interrupt-controller: true
+>> +
+>> +  "#interrupt-cells":
+>> +    const: 3
+>> +
+>> +  adc:
+>> +    type: object
+>> +    $ref: /schemas/iio/adc/mediatek,mt6359-auxadc.yaml#
+>> +    unevaluatedProperties: false
+>> +
+>> +  regulators:
+>> +    type: object
+>> +    oneOf:
+>> +      - $ref: /schemas/regulator/mediatek,mt6363-regulator.yaml#
+>> +      - $ref: /schemas/regulator/mediatek,mt6373-regulator.yaml#
+> 
+> This causes the schemas to be applied 4 times (2 each). Better if you
+> do:
+> 
+> properties:
+>    compatible:
+>      contains:
+>        enum: [ the compatibles in those schemas ]
+> 
+> 
 
-Add the sound card node with tested playback over WSA8835 speakers,
-digital on-board mics along with wcd9370 headset playabck and record.
+Noted, thanks!
 
-Signed-off-by: Mohammad Rafi Shaik <quic_mohs@quicinc.com>
-Co-developed-by: Prasad Kumpatla <quic_pkumpatl@quicinc.com>
-Signed-off-by: Prasad Kumpatla <quic_pkumpatl@quicinc.com>
----
- arch/arm64/boot/dts/qcom/qcm6490-idp.dts | 84 ++++++++++++++++++++++++
- 1 file changed, 84 insertions(+)
+>> +    additionalProperties: true
+>> +
+>> +  keys:
+>> +    type: object
+>> +    $ref: /schemas/input/mediatek,pmic-keys.yaml
+>> +    unevaluatedProperties: false
+>> +
+>> +required:
+>> +  - compatible
+>> +  - reg
+>> +  - '#address-cells'
+>> +
+>> +additionalProperties: false
+>> +
+>> +examples:
+>> +  - |
+>> +    #include <dt-bindings/interrupt-controller/irq.h>
+>> +    #include <dt-bindings/spmi/spmi.h>
+>> +
+>> +    spmi {
+>> +      #address-cells = <2>;
+>> +      #size-cells = <0>;
+>> +
+>> +      pmic@4 {
+>> +        compatible = "mediatek,mt6363";
+>> +        reg = <0x4 SPMI_USID>;
+>> +        interrupts = <4 64 IRQ_TYPE_LEVEL_HIGH>;
+>> +        interrupt-controller;
+>> +        #address-cells = <0>;
+>> +        #interrupt-cells = <3>;
+>> +
+>> +        regulators {
+>> +            compatible = "mediatek,mt6363-regulator";
+>> +        };
+> 
+> Make the example complete. with adc and keys nodes.
+> 
 
-diff --git a/arch/arm64/boot/dts/qcom/qcm6490-idp.dts b/arch/arm64/boot/dts/qcom/qcm6490-idp.dts
-index 468f5f9c0779..acc338e9b60a 100644
---- a/arch/arm64/boot/dts/qcom/qcm6490-idp.dts
-+++ b/arch/arm64/boot/dts/qcom/qcm6490-idp.dts
-@@ -757,6 +757,90 @@ &sdhc_2 {
- 	cd-gpios = <&tlmm 91 GPIO_ACTIVE_LOW>;
- };
- 
-+&sound {
-+	compatible = "qcom,qcm6490-idp-sndcard";
-+	model = "qcm6490-idp-snd-card";
-+
-+	audio-routing = "SpkrLeft IN", "WSA_SPK1 OUT",
-+			"SpkrRight IN", "WSA_SPK2 OUT",
-+			"IN1_HPHL", "HPHL_OUT",
-+			"IN2_HPHR", "HPHR_OUT",
-+			"AMIC2", "MIC BIAS2",
-+			"TX DMIC0", "MIC BIAS1",
-+			"TX DMIC1", "MIC BIAS2",
-+			"TX DMIC2", "MIC BIAS3",
-+			"TX SWR_ADC1", "ADC2_OUTPUT",
-+			"VA DMIC0", "VA MIC BIAS3",
-+			"VA DMIC1", "VA MIC BIAS3",
-+			"VA DMIC2", "VA MIC BIAS1",
-+			"VA DMIC3", "VA MIC BIAS1";
-+
-+	wsa-dai-link {
-+		link-name = "WSA Playback";
-+
-+		codec {
-+			sound-dai = <&left_spkr>, <&right_spkr>,
-+				    <&swr2 0>, <&lpass_wsa_macro 0>;
-+		};
-+
-+		cpu {
-+			sound-dai = <&q6apmbedai WSA_CODEC_DMA_RX_0>;
-+		};
-+
-+		platform {
-+			sound-dai = <&q6apm>;
-+		};
-+	};
-+
-+	wcd-playback-dai-link {
-+		link-name = "WCD Playback";
-+
-+		codec {
-+			sound-dai = <&wcd9370 0>, <&swr0 0>, <&lpass_rx_macro 0>;
-+		};
-+
-+		cpu {
-+			sound-dai = <&q6apmbedai RX_CODEC_DMA_RX_0>;
-+		};
-+
-+		platform {
-+			sound-dai = <&q6apm>;
-+		};
-+	};
-+
-+	wcd-capture-dai-link {
-+		link-name = "WCD Capture";
-+
-+		codec {
-+			sound-dai = <&wcd9370 1>, <&swr1 0>, <&lpass_tx_macro 0>;
-+		};
-+
-+		cpu {
-+			sound-dai = <&q6apmbedai TX_CODEC_DMA_TX_3>;
-+		};
-+
-+		platform {
-+			sound-dai = <&q6apm>;
-+		};
-+	};
-+
-+	va-dai-link {
-+		link-name = "VA Capture";
-+
-+		codec {
-+			sound-dai = <&lpass_va_macro 0>;
-+		};
-+
-+		cpu {
-+			sound-dai = <&q6apmbedai VA_CODEC_DMA_TX_0>;
-+		};
-+
-+		platform {
-+			sound-dai = <&q6apm>;
-+		};
-+	};
-+};
-+
- &swr0 {
- 	status = "okay";
- 
--- 
-2.34.1
+You mean just adding a
+
+adc {
+   compatible = xyz;
+};
+
+keys {
+   compatible = xyz;
+};
+
+right?
+
+I will add the full example in the next version :-)
+
+Thank you!
+Angelo
+
+>> +      };
+>> +    };
+>> -- 
+>> 2.49.0
+>>
+
 
 
