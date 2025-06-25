@@ -1,187 +1,208 @@
-Return-Path: <devicetree+bounces-189316-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-189318-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1D63AAE797F
-	for <lists+devicetree@lfdr.de>; Wed, 25 Jun 2025 10:06:56 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 81A03AE7995
+	for <lists+devicetree@lfdr.de>; Wed, 25 Jun 2025 10:09:17 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 7B92B3A845D
-	for <lists+devicetree@lfdr.de>; Wed, 25 Jun 2025 08:06:30 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 8766417C4F7
+	for <lists+devicetree@lfdr.de>; Wed, 25 Jun 2025 08:08:55 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E7A4E20C01C;
-	Wed, 25 Jun 2025 08:06:50 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D059320C038;
+	Wed, 25 Jun 2025 08:08:49 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="gtytpBMF"
 X-Original-To: devicetree@vger.kernel.org
-Received: from leonov.paulk.fr (leonov.paulk.fr [185.233.101.22])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 423E122083;
-	Wed, 25 Jun 2025 08:06:49 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.233.101.22
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9BD441E25ED;
+	Wed, 25 Jun 2025 08:08:49 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1750838810; cv=none; b=V/6sXW9VXkeHfVNla9HApOamam01oH8lfNPGf1KuE0l8TxK2Uuae/+4irYA3uHEw9ikbBY1ssSiZ/ukpNmbAW1+LuhiwzZAGl0AEdBEaJ54Ha/qt//Xn6gi7r0Cw7paN67lmGSHS8D8yDqEmuTNMCw/zkuN5MRm5By4irUNkUhs=
+	t=1750838929; cv=none; b=fM3RbGsSNPvbt4ophm1e6of//RHXAO9WoKeYaOhNigv27ysunF6ivutqgPNwp/GcVxTUqeIX7SY3FsvL6DTL+OZi/1OS3vbglr/kGCtE7zA8/pikDPOKhbNNyZLtnxet5jr8wb0cv1aWVX996zMGdYXWOCb5/rCs27Ree5dmpG4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1750838810; c=relaxed/simple;
-	bh=SUQMaFhUsjhVyG2G9qQt9mhfmHW9G7AFOmwCMv9clcc=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=qEgIZVlpg0TOqyk+pxVBpGc/QIOuy7ZDzD3iVpOiB1aB6pyoA+CDSw5itPISbJNLMqsXVpeDIHW/550hlHNQ0Yk/Zzrjv37rV1SQUBUbUkqq6CtKUvZomu+Ydv9ndUKfmPOFaYGfrtkkjwRjNYjpvFuzkLHUtY71gVh+AGfnjkk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=sys-base.io; spf=pass smtp.mailfrom=sys-base.io; arc=none smtp.client-ip=185.233.101.22
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=sys-base.io
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=sys-base.io
-Received: from laika.paulk.fr (12.234.24.109.rev.sfr.net [109.24.234.12])
-	by leonov.paulk.fr (Postfix) with ESMTPS id 922901F00047;
-	Wed, 25 Jun 2025 08:06:40 +0000 (UTC)
-Received: by laika.paulk.fr (Postfix, from userid 65534)
-	id 07F15AC79F8; Wed, 25 Jun 2025 08:06:38 +0000 (UTC)
-X-Spam-Level: 
-Received: from shepard (unknown [192.168.1.1])
-	by laika.paulk.fr (Postfix) with ESMTPSA id C2E29AC79F3;
-	Wed, 25 Jun 2025 08:06:36 +0000 (UTC)
-Date: Wed, 25 Jun 2025 10:06:19 +0200
-From: Paul Kocialkowski <paulk@sys-base.io>
-To: Kuba =?utf-8?Q?Szczodrzy=C5=84ski?= <kuba@szczodrzynski.pl>
-Cc: Maxime Ripard <mripard@kernel.org>,
-	Samuel Holland <samuel@sholland.org>, Chen-Yu Tsai <wens@csie.org>,
-	Jernej Skrabec <jernej.skrabec@gmail.com>,
-	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
-	Thomas Zimmermann <tzimmermann@suse.de>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
-	linux-arm-kernel@lists.infradead.org, linux-sunxi@lists.linux.dev,
-	linux-kernel@vger.kernel.org, linux-riscv@lists.infradead.org,
-	linux-phy@lists.infradead.org, devicetree@vger.kernel.org,
-	dri-devel@lists.freedesktop.org
-Subject: Re: [PATCH 3/5] drm/sun4i: Enable LVDS output on sun20i D1s/T113
-Message-ID: <aFut-yuJS2lfWaE8@shepard>
-References: <20250221161751.1278049-1-kuba@szczodrzynski.pl>
- <20250221161751.1278049-4-kuba@szczodrzynski.pl>
+	s=arc-20240116; t=1750838929; c=relaxed/simple;
+	bh=HmAaA2Cbn5fJ3+qoi+KT7WNEvwt3kqHBs14BB0Pz3bc=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=MIXpgR4gw6N9v0HOppwCBORskF/ULEVG7Mp6vw0rZHvkreGop5Z3IenNyW1fvFaXRBRTqeYE4V4nBSFdq2xhJJkFOwJphFF4iC7Dv+GjQWJ0mKk+rfRgTjyUg8bXeI286hdxlMxKHH4LScy0HeUGy1L9Iu67wlRT1tQpiHcI1Gs=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=gtytpBMF; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 15D42C4CEEE;
+	Wed, 25 Jun 2025 08:08:42 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1750838929;
+	bh=HmAaA2Cbn5fJ3+qoi+KT7WNEvwt3kqHBs14BB0Pz3bc=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=gtytpBMFcb5Gvj9eFabwFEmqlqVOpn2W7bYKYBNKWpm2wh26UB8zlUZIFyTGtz4y5
+	 8ThgkB+NeDDfCrqgCc1Zko0++U0tEN24v8V/Oq3aK3qEAwRjWW68tnIgE5WQb/Od5i
+	 vXT2Y6+lCQBGRJQzv7D46DENCoZJ9l5hQ2PMpvufJMlCxFp59FPxfqyxG/NbkKB0ZI
+	 hKjdlTOUY75osMJ3lD8g8hngvY+t4lKg9KmtXAJTbtS62OT9zQf6nIT1rBxtOuGj2+
+	 lvvuTOcq3WkSfl0hswu/tiTs1jAlglaR9W3f/fABS/PDblqizW9yLSuXSn2BMbnjMP
+	 tgljCBtkt9ETQ==
+Message-ID: <71a6398f-1cda-4d83-992d-328d906ad8af@kernel.org>
+Date: Wed, 25 Jun 2025 10:08:41 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="Zc2DNXh9m8XgbscL"
-Content-Disposition: inline
-In-Reply-To: <20250221161751.1278049-4-kuba@szczodrzynski.pl>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 1/2] hwmon: (pmbus) Add support for MPS multi-phase
+ mp2869a/mp29612a controllers
+To: =?UTF-8?B?5ZCz5qKT6LGq?= <tzuhao.wtmh@gmail.com>
+Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, Jean Delvare <jdelvare@suse.com>,
+ Guenter Roeck <linux@roeck-us.net>, Jonathan Corbet <corbet@lwn.net>,
+ Jonathan Cameron <Jonathan.Cameron@huawei.com>,
+ Naresh Solanki <naresh.solanki@9elements.com>,
+ Rodrigo Gobbi <rodrigo.gobbi.7@gmail.com>,
+ Michal Simek <michal.simek@amd.com>, Fabio Estevam <festevam@gmail.com>,
+ Henry Wu <Henry_Wu@quantatw.com>, Grant Peltier <grantpeltier93@gmail.com>,
+ Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
+ Cedric Encarnacion <cedricjustine.encarnacion@analog.com>,
+ Kim Seer Paller <kimseer.paller@analog.com>,
+ Leo Yang <leo.yang.sy0@gmail.com>, Ninad Palsule <ninad@linux.ibm.com>,
+ Alex Vdovydchenko <xzeol@yahoo.com>,
+ John Erasmus Mari Geronimo <johnerasmusmari.geronimo@analog.com>,
+ Nuno Sa <nuno.sa@analog.com>, Jerome Brunet <jbrunet@baylibre.com>,
+ Noah Wang <noahwang.wang@outlook.com>,
+ Mariel Tinaco <Mariel.Tinaco@analog.com>, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, linux-hwmon@vger.kernel.org,
+ linux-doc@vger.kernel.org
+References: <20250624074156.291176-1-Henry_Wu@quantatw.tw>
+ <9bd05709-7702-4b74-85e1-3df25b57c535@kernel.org>
+ <CAL3H=v3s6H4ZpnS=EhPrpEiu-9N-xFCkunHuwWW0xnkXbzY9Kg@mail.gmail.com>
+From: Krzysztof Kozlowski <krzk@kernel.org>
+Content-Language: en-US
+Autocrypt: addr=krzk@kernel.org; keydata=
+ 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 a/A=
+In-Reply-To: <CAL3H=v3s6H4ZpnS=EhPrpEiu-9N-xFCkunHuwWW0xnkXbzY9Kg@mail.gmail.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+
+On 25/06/2025 08:31, 吳梓豪 wrote:
+>>
+>>> +     return 0;
+>>> +}
+>>> +
+>>> +static struct pmbus_driver_info MP2869A_info = {
+>>
+>> This is const.
+> Since info will be modified by mp2869a_read_vout at runtime, I chose
+> not to make it constant
+
+No, this makes it a singleton. I don't see the code in current driver,
+so I don't get whether you meant current code or future. If current:
+where is it modified?
+
+mp2869a_read_vout() has terrible style btw, really not looking like
+Linux coding style. Be sure you carefully follow the style.
+
+>>
+>>> +     .pages = MP2869A_PAGE_NUM,
+>>> +     .format[PSC_VOLTAGE_IN] = linear,
+>>> +     .format[PSC_VOLTAGE_OUT] = direct,
+>>> +     .format[PSC_TEMPERATURE] = linear,
+>>> +     .format[PSC_CURRENT_IN] = linear,
+>>> +     .format[PSC_CURRENT_OUT] = linear,
+>>> +     .format[PSC_POWER] = linear,
+>>> +     .m[PSC_VOLTAGE_OUT] = 1,
+>>> +     .b[PSC_VOLTAGE_OUT] = 0,
+>>> +     .R[PSC_VOLTAGE_OUT] = -3,
+>>> +     .func[0] = PMBUS_HAVE_VIN | PMBUS_HAVE_VOUT | PMBUS_HAVE_STATUS_VOUT |
+>>> +             PMBUS_HAVE_IIN | PMBUS_HAVE_IOUT | PMBUS_HAVE_STATUS_IOUT |
+>>> +             PMBUS_HAVE_TEMP | PMBUS_HAVE_STATUS_TEMP | PMBUS_HAVE_POUT |
+>>> +             PMBUS_HAVE_PIN | PMBUS_HAVE_STATUS_INPUT,
+>>> +     .func[1] = PMBUS_HAVE_VOUT | PMBUS_HAVE_STATUS_VOUT | PMBUS_HAVE_IOUT |
+>>> +             PMBUS_HAVE_STATUS_IOUT | PMBUS_HAVE_POUT | PMBUS_HAVE_TEMP,
+>>> +     .read_byte_data = MP2869A_read_byte_data,
+>>> +     .read_word_data = MP2869A_read_word_data,
+>>> +};
+>>> +
+>>> +static int mp2869a_probe(struct i2c_client *client)
+>>> +{
+>>> +     struct pmbus_driver_info *info;
+>>> +     struct MP2869A_data *data;
+>>> +     int ret;
+>>> +
+>>> +     data = devm_kzalloc(&client->dev, sizeof(struct MP2869A_data),
+>>
+>> sizeof(*)
+>>
+>>> +             GFP_KERNEL);
+>>
+>> Misaligned. Run checkpatch --srtict
+>>
+>>> +     if (!data)
+>>> +             return -ENOMEM;
+>>> +
+>>> +     data->chip_id = (enum chips)(uintptr_t)i2c_get_match_data(client);
+>>
+>> These are just wrong or redundant casts. You need only one cast -
+>> kernel_ulong_t
+>>
+>>> +
+>>> +     memcpy(data->max_phases, mp2869a_max_phases[data->chip_id],
+>>> +             sizeof(data->max_phases));
+>>
+>> Why you cannot just store the pointer?
+> As chip_id and max_phase will be constant, it should be acceptable to
+> handle them via pointers in this case.
+>>
+>>> +
+>>> +     memcpy(&data->info, &MP2869A_info, sizeof(*info));
+>>
+>> Why you cannot just store the pointer?
+> Considering that the info can change at runtime, using memcpy is a
+> safer approach
+
+Where do you modify the contents?
 
 
---Zc2DNXh9m8XgbscL
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
-
-Hi,
-
-Some comments below.
-
-On Fri 21 Feb 25, 17:17, Kuba Szczodrzy=C5=84ski wrote:
-> The Allwinner D1s/T113 needs to use the combo D-PHY to enable LVDS
-> output.
->=20
-> Enable LVDS support in the TCON and configure it using the PHY.
->=20
-> Signed-off-by: Kuba Szczodrzy=C5=84ski <kuba@szczodrzynski.pl>
-> ---
->  drivers/gpu/drm/sun4i/sun4i_tcon.c | 28 ++++++++++++++++++++++++++++
->  1 file changed, 28 insertions(+)
->=20
-> diff --git a/drivers/gpu/drm/sun4i/sun4i_tcon.c b/drivers/gpu/drm/sun4i/s=
-un4i_tcon.c
-> index ccf335a61..58230a552 100644
-> --- a/drivers/gpu/drm/sun4i/sun4i_tcon.c
-> +++ b/drivers/gpu/drm/sun4i/sun4i_tcon.c
-> @@ -171,6 +171,30 @@ static void sun6i_tcon_setup_lvds_phy(struct sun4i_t=
-con *tcon,
->  			  SUN6I_TCON0_LVDS_ANA0_EN_DRVD(val));
->  }
-> =20
-> +static void sun20i_tcon_setup_lvds_dphy(struct sun4i_tcon *tcon,
-> +					const struct drm_encoder *encoder)
-> +{
-> +	union phy_configure_opts opts =3D { };
-> +
-> +	if (!tcon->quirks->has_combo_dphy || !tcon->dphy)
-> +		return;
-> +
-> +	phy_init(tcon->dphy);
-> +	phy_set_mode(tcon->dphy, PHY_MODE_LVDS);
-> +	phy_configure(tcon->dphy, &opts);
-> +	phy_power_on(tcon->dphy);
-
-While the callback doesn't have any return code (and it probably should, fe=
-el
-free to fix that), the return codes for the phy_ calls should be checked and
-the function aborted early in case of error.
-
-> +}
-> +
-> +static void sun20i_tcon_disable_lvds_dphy(struct sun4i_tcon *tcon,
-> +					  const struct drm_encoder *encoder)
-> +{
-> +	if (!tcon->quirks->has_combo_dphy || !tcon->dphy)
-> +		return;
-> +
-> +	phy_power_off(tcon->dphy);
-> +	phy_exit(tcon->dphy);
-
-Same comment here.
-
-> +}
-> +
->  static void sun4i_tcon_lvds_set_status(struct sun4i_tcon *tcon,
->  				       const struct drm_encoder *encoder,
->  				       bool enabled)
-> @@ -1550,8 +1574,12 @@ static const struct sun4i_tcon_quirks sun9i_a80_tc=
-on_tv_quirks =3D {
-> =20
->  static const struct sun4i_tcon_quirks sun20i_d1_lcd_quirks =3D {
->  	.has_channel_0		=3D true,
-> +	.has_combo_dphy		=3D true,
-> +	.supports_lvds		=3D true,
->  	.dclk_min_div		=3D 1,
->  	.set_mux		=3D sun8i_r40_tcon_tv_set_mux,
-> +	.setup_lvds_phy		=3D sun20i_tcon_setup_lvds_dphy,
-> +	.disable_lvds_phy	=3D sun20i_tcon_disable_lvds_dphy,
->  };
-> =20
->  /* sun4i_drv uses this list to check if a device node is a TCON */
-> --=20
-> 2.25.1
->=20
->=20
-
---=20
-Paul Kocialkowski,
-
-Independent contractor - sys-base - https://www.sys-base.io/
-Free software developer - https://www.paulk.fr/
-
-Expert in multimedia, graphics and embedded hardware support with Linux.
-
---Zc2DNXh9m8XgbscL
-Content-Type: application/pgp-signature; name=signature.asc
-
------BEGIN PGP SIGNATURE-----
-
-iQIzBAEBCgAdFiEEAbcMXZQMtj1fphLChP3B6o/ulQwFAmhbrfsACgkQhP3B6o/u
-lQwpAQ//ejWbFNBH4z9VJ16EP4vlDwIeCKa/jCLxdPV14o7aRNZfyfLW+MU5LoZb
-583jqZAEAzyLgyElFfWOmpTVzZgoPzfZArozcWQKfzfTpvcn2y0/DSVXrh8XWVRW
-v9xC8/hIeMXflvorPgeJKJw2UagKbgwHTipQ1dq49by/uIz0UpidtfyfUI5Gc5Qz
-+wxS9jIEyYX2Hq5hmQhDsVYjnL2MrCC6ITlCeE1Sq+ifiBA+bZ1UqQQKswh2IO2O
-BVzOseWscsfG1BazmVGLPOba0PyS/qRMuesCE1hDTmFMvvLKN6TDYw/fYAC4gE64
-xJm72Ou4GtoIz+7YSKZNDeVkap1ulDNxim4FpOFgTwssha1vNIM2YK1HoFAo5YhD
-H9mDqrpol1+ti4L4R9UjDtt7RAg97hxwXfvWhQzt6gMRDWsfkiMqAz2gB9Tn4SDP
-DzQZJYhL+k1AkxxIoQtw89+eQ6Ipcss4EBHu5LjB340x4CruXUrFXNXRPdDQyFUi
-qV6cV9fvMev1lDvQAmH8z2U45ezhLm0kdkgzXyHXGfXfV24UmuST3TcbBIhdrBcL
-2L0SJqcj87i4YLrrmp05O/oen1QseIlxyn6Y3l2HWq/35Q8iSA63iOnw+NySZnb6
-RUqGYYj48OX2EZHaCLWaiDRUh41yCSwbWQmyXPEfmgfu6K+YKGQ=
-=1Zjq
------END PGP SIGNATURE-----
-
---Zc2DNXh9m8XgbscL--
+Best regards,
+Krzysztof
 
