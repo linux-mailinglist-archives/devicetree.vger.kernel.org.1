@@ -1,349 +1,246 @@
-Return-Path: <devicetree+bounces-189527-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-189528-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 73D88AE81E1
-	for <lists+devicetree@lfdr.de>; Wed, 25 Jun 2025 13:47:42 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 96E3AAE81E8
+	for <lists+devicetree@lfdr.de>; Wed, 25 Jun 2025 13:48:25 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 142D67B6D46
-	for <lists+devicetree@lfdr.de>; Wed, 25 Jun 2025 11:46:18 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id AF1C2170E58
+	for <lists+devicetree@lfdr.de>; Wed, 25 Jun 2025 11:48:25 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3F40125D539;
-	Wed, 25 Jun 2025 11:47:36 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C223525CC51;
+	Wed, 25 Jun 2025 11:48:20 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="dKhbwi0l"
+	dkim=pass (2048-bit key) header.d=riscstar-com.20230601.gappssmtp.com header.i=@riscstar-com.20230601.gappssmtp.com header.b="W+MlwwoE"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-io1-f48.google.com (mail-io1-f48.google.com [209.85.166.48])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 72E43205E02
-	for <devicetree@vger.kernel.org>; Wed, 25 Jun 2025 11:47:34 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DBF6F258CD3
+	for <devicetree@vger.kernel.org>; Wed, 25 Jun 2025 11:48:18 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.166.48
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1750852056; cv=none; b=M/HCMqA3eDerktjOwYDyc8ippJsZm2lC3T3rT3YURh0YSfQNuGiPo0CAYBMeDu0DlQkUF8LSfQ3c8p7LG4ucsIAEA+UkVi4noj8KkvpbtssC4XbCpPnzsDjYlZI2h6XHgxLQz6NlgKlVAwurPcc4oq//EDUKT1Zh8jJxzKrRV7w=
+	t=1750852100; cv=none; b=pw/XG+xh+pZiujktxvX84PWZbJBlt7MqoAmw2GKqBJxFZlzzbotC/z5+fp7L2gZsHk6VOAyDT1cLdXb5uKeTm++svBWld9IBHs4NoirZyOF9lfLgbxIyBi2QQvHXhC3UwWTgubTMloX1dqxTAWohjXoGR2+0rc8Sfl3AGk9jD78=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1750852056; c=relaxed/simple;
-	bh=H6Ux8Hu+A7NcbgXUY+irrhi4jCk8KQ7ofE6RNJ+jxTs=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=EYaVqrrQs4PwnDUsxxN/DD29tcTj/xBp/a3zhRIdCyCeuQseMJ1MklUJH4ZTbst+HL505b+RgigNg3nvNM8m4Ife7JQjyHZr+vLRVe8mffzXb/Eznu/c0t1k3go2o4vrwTEg2DGj0xndFPZs9IB9tCDOV6qvmp56n5qTs1riIRg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=dKhbwi0l; arc=none smtp.client-ip=205.220.180.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
-Received: from pps.filterd (m0279871.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 55P53FSe016718
-	for <devicetree@vger.kernel.org>; Wed, 25 Jun 2025 11:47:33 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
-	cc:content-type:date:from:in-reply-to:message-id:mime-version
-	:references:subject:to; s=qcppdkim1; bh=R6FqCG7b8R+qhzgHna3f9JAx
-	3Wwa0Pc3B238JWiWJdY=; b=dKhbwi0lp4Iz7gAelPuOZdLiUUGKwi17dtuEDlSK
-	lnEuhOx+kPGKhZidKhkI4h27FRDAU8eAs7iMTStfhog3aJWxhWviWTwWYlZmbE7T
-	2BtMH5t8Z3kfdSroA23iY8VHQ65aNaU+A9gCEzafXX6Q+mgfCan0+V2PKvxLeWCa
-	tRNyH9RTNE7T/wHkjlmu86G8GZp4qqzvN+Oa1jC/ISkdyEcA8zmyhBHSY4448IGz
-	TPgjwI7xWoNy6hfaRP5vC0oI3Aw13spL9TmM49O/QV8WdPhrJepRywYApSpN53ls
-	TiWvGWCllnRxEJ6POH39r+yAHBZMseF0FTSvdoUbF4fduA==
-Received: from mail-qk1-f198.google.com (mail-qk1-f198.google.com [209.85.222.198])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 47fbhqp7ff-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Wed, 25 Jun 2025 11:47:33 +0000 (GMT)
-Received: by mail-qk1-f198.google.com with SMTP id af79cd13be357-7d40185a630so994841285a.2
-        for <devicetree@vger.kernel.org>; Wed, 25 Jun 2025 04:47:33 -0700 (PDT)
+	s=arc-20240116; t=1750852100; c=relaxed/simple;
+	bh=iubtQzSGaL5IT9evDDu/ispcoI51l6N0oykEk0q0Lgo=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=sEMA93RIk56Pwn4LcXnaoETKTy1B5cuqR37N1W2FdlQPG7MJTOsjnE4aK+Xy1DDHtYvOTyMpeIDTN1Mh4lPGYo5BHO7nM0eKVNi0e+AYhWAReBBuk6PY1sZzA+iZtnyXxr3BP04lKkKpEeZf+oxpi4eiGFAAyC54WTkP9j1GtII=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=riscstar.com; spf=pass smtp.mailfrom=riscstar.com; dkim=pass (2048-bit key) header.d=riscstar-com.20230601.gappssmtp.com header.i=@riscstar-com.20230601.gappssmtp.com header.b=W+MlwwoE; arc=none smtp.client-ip=209.85.166.48
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=riscstar.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=riscstar.com
+Received: by mail-io1-f48.google.com with SMTP id ca18e2360f4ac-875b52a09d1so177529739f.0
+        for <devicetree@vger.kernel.org>; Wed, 25 Jun 2025 04:48:18 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=riscstar-com.20230601.gappssmtp.com; s=20230601; t=1750852098; x=1751456898; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=JkGM3U0bOIiDIPecsvnKSmSyDzqRmOLHZH3WgTAbQFY=;
+        b=W+MlwwoEOYPlMkT0256gbkrB899XrAwda2NIA2fdHwI22H2Y6KLi2ROKVVCKKuCMTC
+         9k8pA7uwWLvKOexvwP0rpXUp1xiDUQ1DZ+uqVA7dOieY0iReFR0kdjaX889Nd+uLBwYz
+         lIyc5bH6cMMO5u1VmoTJtKKHA742wEeQkYV6ACeG2ASMOEm8T3c8eMLf6KxSPaCwZcm0
+         k/jwx7qjA5p8N9NiFVHxgNAxUDJW46Z4aoibPXIMBx3AQ659zjj9vFJxBovQtGZDTnDT
+         adtl4fQuD6os5z+rUQksmdn6rpY2Td5mGsSzZ8efyTq8S+8rRWte2jPNvUxq9L3k9sIA
+         8exA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1750852052; x=1751456852;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=R6FqCG7b8R+qhzgHna3f9JAx3Wwa0Pc3B238JWiWJdY=;
-        b=nWcqmdzVigAzhAQ80/QdnhxtSAYZP7AxeyDJqqIc4vgFa+7a0xn9erjIOYQTAdUWST
-         tGzQ3/nb92cDGvInMJn085pR4DZu94H5RvnrATFo9ah43GuhWjg0bmYIOfRruLunBuW5
-         f4mZ6gynvtpq35TlU0nQlHGFdyoGXBFWGJKM57uInyvRq6/N3ARiArWJ/ZKlH5TbAVb0
-         IlYzF2mRHCRhVgRXwYjfm1tUxSaXBKl6KHMXVsPiOiVYy4ZsaXyiuit4WJ4hhKChZ/wW
-         tVoBX4NcuN5iOZ34AOoZDq/4qce4rB9egHRorrsXWUXVxAtu7GolZPcbClQ8fSZQYBk6
-         JFHg==
-X-Forwarded-Encrypted: i=1; AJvYcCU2QZ2bZ3/zLNbS5kUsD74Vdv/ECZVdIn+Akn0LeEnuT2YJjwbMlfTQEVavKaRghcEenaCE5MQGM202@vger.kernel.org
-X-Gm-Message-State: AOJu0YwhhJYd5VEbGnfjHUOjL7OcMpMZDkw9PhgPChmyAAotD3R5ndu2
-	8NYIXrFyJkECAm2C3kilsGrM9CMcgCGyPZ3ilknco6M1Fx9ep/+0Vpd2YIm6aL66KXCeXRnaLx+
-	KzbvPeuyUApL7VGtrmEi/ur73mKnfZD7UZbtNtBvfJM2RkaOZ56GAtulnlUvWeh6j
-X-Gm-Gg: ASbGnctbPRqZ25zmpnvCVx9RjNWMVzaRIZ9nFIMIDcW7BeQfpPtCNu3MPEkkxOYwzIS
-	AsbKU3hEpnangVAMdKYMwkaGfWbeZ6UF0sk5G19gN+T0QzOBCU1PECbzx9Fte13T1hpn6HZNrcJ
-	9y4sHfbAkS7kM+9N4uCZ3b1tWTfRQL+9s8f/mE4L1lguY0UG1gFB8xGum3NdhB53y1hSzZcdNIo
-	92ZFjvhZACHxNS+6hA+VJIRNASQc8gw6dsXgzvzUBiw2YdJiejalrLGr83LF0sfr6pxyMJZsqgx
-	YrRkLJ0B7YNVpOSOsvGGGtB9uS/mpf/drO2APjakY7o7ip55p2LrKkdilXpVVYP/bFbvpEdCJGa
-	8ZaleZwH3O6YTFqXzBhe9WMpF0DqCJclW5jg=
-X-Received: by 2002:a05:620a:4444:b0:7d3:ed55:c92b with SMTP id af79cd13be357-7d42974b899mr326666185a.38.1750852052252;
-        Wed, 25 Jun 2025 04:47:32 -0700 (PDT)
-X-Google-Smtp-Source: AGHT+IHwN9V0DIMaqLW3c8P1cQrAhb/E9grjRFPmdzpe/w+9SMMXrfRLILkEXZLWzYsCSaZ100tLfQ==
-X-Received: by 2002:a05:620a:4444:b0:7d3:ed55:c92b with SMTP id af79cd13be357-7d42974b899mr326662985a.38.1750852051789;
-        Wed, 25 Jun 2025 04:47:31 -0700 (PDT)
-Received: from umbar.lan (2001-14ba-a0c3-3a00-264b-feff-fe8b-be8a.rev.dnainternet.fi. [2001:14ba:a0c3:3a00:264b:feff:fe8b:be8a])
-        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-553e41cc0easm2167738e87.208.2025.06.25.04.47.30
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 25 Jun 2025 04:47:30 -0700 (PDT)
-Date: Wed, 25 Jun 2025 14:47:29 +0300
-From: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
-To: Taniya Das <quic_tdas@quicinc.com>
-Cc: Bjorn Andersson <andersson@kernel.org>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Stephen Boyd <sboyd@kernel.org>, Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Konrad Dybcio <konradybcio@kernel.org>,
-        Catalin Marinas <catalin.marinas@arm.com>,
-        Will Deacon <will@kernel.org>, Ajit Pandey <quic_ajipan@quicinc.com>,
-        Imran Shaik <quic_imrashai@quicinc.com>,
-        Jagadeesh Kona <quic_jkona@quicinc.com>, linux-arm-msm@vger.kernel.org,
-        linux-clk@vger.kernel.org, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org
-Subject: Re: [PATCH v10 01/10] clk: qcom: clk-alpha-pll: Add support for
- dynamic update for slewing PLLs
-Message-ID: <trwdfk2oz2udtbiqxh3ybuqbvasfqywmqxgi4xyvsknz6svs2r@icpp7snpq6c5>
-References: <20250625-qcs615-mm-v10-clock-controllers-v10-0-ec48255f90d8@quicinc.com>
- <20250625-qcs615-mm-v10-clock-controllers-v10-1-ec48255f90d8@quicinc.com>
+        d=1e100.net; s=20230601; t=1750852098; x=1751456898;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=JkGM3U0bOIiDIPecsvnKSmSyDzqRmOLHZH3WgTAbQFY=;
+        b=UCNd8Ub68jeaV+vs01CPf+Tz+9W9AiP1CIdLEiOI4LQp6+RCSv0W95685RXci+LdkI
+         7TfXqgGVIFpF2/IBBJCKMjbpGe3H+OAnPhcsXItIx1xhKVNXMqilDMl9WQaXj4uxes57
+         kcK94tqDSNrlk07LWTeZhRxLxD7LmDYCHPlL3rRMaoypd8zvf1q6HUcCqJ2x5n7aUzPJ
+         FwiEj6Vvj4jeFv8lSQBuMHrSmozrzz7p4n20v5+x5tIUQe0iQjgVUNR5wB81APEFyShs
+         45A+n+b0VcV1z7uvuHHHPcYJs8Cge8LIHEOQyjStHmfmJE3JaNu3FLMmCt1B1ZEGkGp0
+         LamA==
+X-Forwarded-Encrypted: i=1; AJvYcCUby9y/7yqN01vGTFMmXoUmqKKSyV6zoleXpH9ICT9EdVxHzcRSdkwBiHbXYkbPqSotWOTRBs/S7H6w@vger.kernel.org
+X-Gm-Message-State: AOJu0YzQ9PAIDaKgLk3j6aA8OIthCn2yqYavpM0e1VM5bZuFIptasBz9
+	so9pxEnjEHKRqWRdij2N3fRXxG4iTAKmnLGTOXlNgfH2oRCl+Lu1Lv8fGNMIkQZqE4o=
+X-Gm-Gg: ASbGnctXr934E2vWzY/cKYiejuoq20yq6jcjAZStWjjsHwqLJ93wIWTWgO89dyBKc2l
+	/lYPYQzWhBLnEPyYJG3K9ZsgTaSEqKT5LiJkSdaXyTHSYGmuds1VMFsLYv9pJpjSncTtS9CEJPw
+	yFIXsY9GePWnF9YAKJcAJShxGP1Yhc2okX8UAtPYj7VT1rvDOHXnhcaGdd+HfVaBTa0AN3Tv6wz
+	v+oEYOmue4ogKaYFg1kJgcUpct0WClM4VuRqh/Njra52fS6gdqI8l8BT7ASC5LHOA3FPh2cL9wd
+	PJSj5aeJBZGNSBdSAbS+gVhXlDOo0G7CSjDhjed2gaIN6jcMJ0S/rqsjMNTT01Zj3w2RNPp6moI
+	Hnazuus5iASgulfdoX56NRdLkVQ==
+X-Google-Smtp-Source: AGHT+IGF27PdZyeg1EvX94pFQxAflTBu48c8D8WbPdR0KPQVaTt6mijyvklij71b/3o9/nVYsvtdaA==
+X-Received: by 2002:a05:6e02:2389:b0:3dd:8663:d19e with SMTP id e9e14a558f8ab-3df32936eb5mr24619895ab.10.1750852097696;
+        Wed, 25 Jun 2025 04:48:17 -0700 (PDT)
+Received: from [172.22.22.28] (c-73-228-159-35.hsd1.mn.comcast.net. [73.228.159.35])
+        by smtp.gmail.com with ESMTPSA id e9e14a558f8ab-3de37618a92sm45180245ab.2.2025.06.25.04.48.16
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 25 Jun 2025 04:48:17 -0700 (PDT)
+Message-ID: <5005ba79-d5a5-4d6f-ab0c-4df51407a549@riscstar.com>
+Date: Wed, 25 Jun 2025 06:48:16 -0500
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20250625-qcs615-mm-v10-clock-controllers-v10-1-ec48255f90d8@quicinc.com>
-X-Proofpoint-ORIG-GUID: ZWFpfttyvsXJbWT3ajsimp83SIEG73PJ
-X-Authority-Analysis: v=2.4 cv=Id+HWXqa c=1 sm=1 tr=0 ts=685be1d5 cx=c_pps
- a=qKBjSQ1v91RyAK45QCPf5w==:117 a=xqWC_Br6kY4A:10 a=kj9zAlcOel0A:10
- a=6IFa9wvqVegA:10 a=COk6AnOGAAAA:8 a=2-BSLW4CMbL1kKF9A54A:9 a=CjuIK1q_8ugA:10
- a=NFOGd7dJGGMPyQGDc5-O:22 a=TjNXssC_j7lpFel5tvFf:22
-X-Proofpoint-GUID: ZWFpfttyvsXJbWT3ajsimp83SIEG73PJ
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwNjI1MDA4NyBTYWx0ZWRfXzTpPct7uymnR
- Ii/w9F8w4tqi32sDzaBEcgQQyambCrgJ+/OCNjS2yc/5/fwMbFqePvtlwd8vwf4oSRz4Ql3X0om
- cN6+mU2i7mFAtqsTzr54XUoLsSksnoiL8ZLakF82XtRizI8mueExHlFQAQJprnNBVUENCY+N45A
- aqOE5m87jbSGPGLiKvgCE8A0C8yr+bQlMa+o4t/5K2hSeuDLrk1Y4vIS5JTcQFCoQKXGch2qSxj
- vUScEW2lWnVEzs4j3VrHEGzr/RyR221Dbz4Lmam0N/6EvihEOnQvMpx9OoD2EeGqWYE0Ez3WhPK
- JEhNWaaWS1L5byifnoJajHHI1wfumQ0d0W/MEw7qvWKcz8mkdKmnAZr9JhRcPMOQNpaiboXU/Ig
- yKm/qM9nac6QoffZhPaOSvMt8lAzQ2z483n5SF89mdJICDlcP94moOK5K/PlEUad4Ib23aOV
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1099,Hydra:6.1.7,FMLib:17.12.80.40
- definitions=2025-06-25_03,2025-06-25_01,2025-03-28_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- spamscore=0 priorityscore=1501 mlxlogscore=999 phishscore=0 bulkscore=0
- clxscore=1015 impostorscore=0 mlxscore=0 lowpriorityscore=0 malwarescore=0
- suspectscore=0 adultscore=0 classifier=spam authscore=0 authtc=n/a authcc=
- route=outbound adjust=0 reason=mlx scancount=1 engine=8.19.0-2505280000
- definitions=main-2506250087
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 2/6] mfd: spacemit: add support for SpacemiT PMICs
+To: Lee Jones <lee@kernel.org>
+Cc: lgirdwood@gmail.com, broonie@kernel.org, robh@kernel.org,
+ krzk+dt@kernel.org, conor+dt@kernel.org, dlan@gentoo.org,
+ paul.walmsley@sifive.com, palmer@dabbelt.com, aou@eecs.berkeley.edu,
+ alex@ghiti.fr, troymitchell988@gmail.com, guodong@riscstar.com,
+ devicetree@vger.kernel.org, linux-riscv@lists.infradead.org,
+ spacemit@lists.linux.dev, linux-kernel@vger.kernel.org
+References: <20250613210150.1468845-1-elder@riscstar.com>
+ <20250613210150.1468845-3-elder@riscstar.com>
+ <20250619144023.GG795775@google.com>
+ <8126de92-0338-4cd0-98fc-4f8c37500201@riscstar.com>
+ <20250625082149.GO795775@google.com>
+Content-Language: en-US
+From: Alex Elder <elder@riscstar.com>
+In-Reply-To: <20250625082149.GO795775@google.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 
-On Wed, Jun 25, 2025 at 04:13:26PM +0530, Taniya Das wrote:
-> The alpha PLLs which slew to a new frequency at runtime would require
-> the PLL to calibrate at the mid point of the VCO. Add the new PLL ops
-> which can support the slewing of the PLL to a new frequency.
+On 6/25/25 3:21 AM, Lee Jones wrote:
+> On Fri, 20 Jun 2025, Alex Elder wrote:
 > 
-> Reviewed-by: Imran Shaik <quic_imrashai@quicinc.com>
-> Signed-off-by: Taniya Das <quic_tdas@quicinc.com>
-> ---
->  drivers/clk/qcom/clk-alpha-pll.c | 169 +++++++++++++++++++++++++++++++++++++++
->  drivers/clk/qcom/clk-alpha-pll.h |   1 +
->  2 files changed, 170 insertions(+)
+>> On 6/19/25 9:40 AM, Lee Jones wrote:
+>>> On Fri, 13 Jun 2025, Alex Elder wrote:
+>>>
+>>>> Add support for SpacemiT PMICs. Initially only the P1 PMIC is supported
+>>>> but the driver is structured to allow support for others to be added.
+>>>>
+>>>> The P1 PMIC is controlled by I2C, and is normally implemented with the
+>>>> SpacemiT K1 SoC.  This PMIC provides six buck converters and 12 LDO
+>>>
+>>> six or 12.  Please pick a format and remain consistent.
+>>
+>> "Numbers smaller than ten should be spelled out."
 > 
-> diff --git a/drivers/clk/qcom/clk-alpha-pll.c b/drivers/clk/qcom/clk-alpha-pll.c
-> index d8e1cd1263317814da2d0414600988de4b87c56f..354ebf48435f1ef7f76ead05e9ca882085dcc46d 100644
-> --- a/drivers/clk/qcom/clk-alpha-pll.c
-> +++ b/drivers/clk/qcom/clk-alpha-pll.c
-> @@ -3017,3 +3017,172 @@ void qcom_clk_alpha_pll_configure(struct clk_alpha_pll *pll, struct regmap *regm
->  	}
->  }
->  EXPORT_SYMBOL_GPL(qcom_clk_alpha_pll_configure);
-> +
-> +static int clk_alpha_pll_slew_update(struct clk_alpha_pll *pll)
-> +{
-> +	u32 val;
-> +	int ret;
-> +
-> +	regmap_set_bits(pll->clkr.regmap, PLL_MODE(pll), PLL_UPDATE);
-> +	regmap_read(pll->clkr.regmap, PLL_MODE(pll), &val);
-> +
-> +	ret = wait_for_pll_update(pll);
-> +	if (ret)
-> +		return ret;
-> +	/*
-> +	 * Hardware programming mandates a wait of at least 570ns before polling the LOCK
-> +	 * detect bit. Have a delay of 1us just to be safe.
-> +	 */
-> +	udelay(1);
-> +
-> +	return wait_for_pll_enable_lock(pll);
-> +}
-> +
-> +static int clk_alpha_pll_slew_set_rate(struct clk_hw *hw, unsigned long rate,
-> +					unsigned long parent_rate)
-> +{
-> +	struct clk_alpha_pll *pll = to_clk_alpha_pll(hw);
-> +	const struct pll_vco *curr_vco, *vco;
-> +	unsigned long freq_hz;
-> +	u64 a;
-> +	u32 l;
-> +
-> +	freq_hz = alpha_pll_round_rate(rate, parent_rate, &l, &a, ALPHA_REG_BITWIDTH);
-> +	if (freq_hz != rate) {
-> +		pr_err("alpha_pll: Call clk_set_rate with rounded rates!\n");
-> +		return -EINVAL;
-> +	}
-> +
-> +	curr_vco = alpha_pll_find_vco(pll, clk_hw_get_rate(hw));
-> +	if (!curr_vco) {
-> +		pr_err("alpha pll: not in a valid vco range\n");
-> +		return -EINVAL;
-> +	}
-> +
-> +	vco = alpha_pll_find_vco(pll, freq_hz);
-> +	if (!vco) {
-> +		pr_err("alpha pll: not in a valid vco range\n");
-> +		return -EINVAL;
-> +	}
-> +
-> +	/*
-> +	 * Dynamic pll update will not support switching frequencies across
-> +	 * vco ranges. In those cases fall back to normal alpha set rate.
-> +	 */
-> +	if (curr_vco->val != vco->val)
-> +		return clk_alpha_pll_set_rate(hw, rate, parent_rate);
-> +
-> +	a <<= ALPHA_REG_BITWIDTH - ALPHA_BITWIDTH;
-> +
-> +	regmap_write(pll->clkr.regmap, PLL_L_VAL(pll), l);
-> +	regmap_write(pll->clkr.regmap, PLL_ALPHA_VAL(pll), lower_32_bits(a));
-> +	regmap_write(pll->clkr.regmap, PLL_ALPHA_VAL_U(pll), upper_32_bits(a));
+> Never heard of that before Googling it.  Formal writing is odd. :)
+> 
+>> But I'll use 6 and 12.
 
-We have code that does this in __clk_alpha_pll_set_rate() and now you
-are adding two more copies. Please extract PLL_L_VAL, PLL_ALPHA_VAL and
-PLL_USER_CTL / PLL_VCO_MASK into a helper function.
+. . .
 
-> +
-> +	/* Ensure that the write above goes before slewing the PLL */
-> +	mb();
-> +
-> +	if (clk_hw_is_enabled(hw))
-> +		return clk_alpha_pll_slew_update(pll);
-> +
-> +	return 0;
-> +}
-> +
-> +/*
-> + * Slewing plls should be bought up at frequency which is in the middle of the
-> + * desired VCO range. So after bringing up the pll at calibration freq, set it
-> + * back to desired frequency(that was set by previous clk_set_rate).
-> + */
-> +static int clk_alpha_pll_calibrate(struct clk_hw *hw)
-> +{
-> +	struct clk_alpha_pll *pll = to_clk_alpha_pll(hw);
-> +	struct clk_hw *parent;
-> +	const struct pll_vco *vco;
-> +	unsigned long calibration_freq, freq_hz;
-> +	u64 a;
-> +	u32 l;
-> +	int rc;
-> +
-> +	parent = clk_hw_get_parent(hw);
-> +	if (!parent) {
-> +		pr_err("alpha pll: no valid parent found\n");
-> +		return -EINVAL;
-> +	}
-> +
-> +	vco = alpha_pll_find_vco(pll, clk_hw_get_rate(hw));
-> +	if (!vco) {
-> +		pr_err("alpha pll: not in a valid vco range\n");
-> +		return -EINVAL;
-> +	}
-> +
-> +	/*
-> +	 * As during slewing plls vco_sel won't be allowed to change, vco table
-> +	 * should have only one entry table, i.e. index = 0, find the
-> +	 * calibration frequency.
-> +	 */
-> +	calibration_freq = (pll->vco_table[0].min_freq + pll->vco_table[0].max_freq) / 2;
-> +
-> +	freq_hz = alpha_pll_round_rate(calibration_freq, clk_hw_get_rate(parent),
-> +					&l, &a, ALPHA_REG_BITWIDTH);
-> +	if (freq_hz != calibration_freq) {
-> +		pr_err("alpha_pll: call clk_set_rate with rounded rates!\n");
-> +		return -EINVAL;
-> +	}
-> +
-> +	/* Setup PLL for calibration frequency */
-> +	a <<= (ALPHA_REG_BITWIDTH - ALPHA_BITWIDTH);
-> +
-> +	regmap_write(pll->clkr.regmap, PLL_L_VAL(pll), l);
-> +	regmap_write(pll->clkr.regmap, PLL_ALPHA_VAL(pll), lower_32_bits(a));
-> +	regmap_write(pll->clkr.regmap, PLL_ALPHA_VAL_U(pll), upper_32_bits(a));
-> +
-> +	regmap_update_bits(pll->clkr.regmap, PLL_USER_CTL(pll), PLL_VCO_MASK << PLL_VCO_SHIFT,
-> +				vco->val << PLL_VCO_SHIFT);
-> +
-> +	/* Bringup the pll at calibration frequency */
-> +	rc = clk_alpha_pll_enable(hw);
-> +	if (rc) {
-> +		pr_err("alpha pll calibration failed\n");
-> +		return rc;
-> +	}
-> +
-> +	/*
-> +	 * PLL is already running at calibration frequency.
-> +	 * So slew pll to the previously set frequency.
-> +	 */
-> +	freq_hz = alpha_pll_round_rate(clk_hw_get_rate(hw),
-> +			clk_hw_get_rate(parent), &l, &a, ALPHA_REG_BITWIDTH);
-> +
-> +	pr_debug("pll %s: setting back to required rate %lu, freq_hz %ld\n",
-> +		clk_hw_get_name(hw), clk_hw_get_rate(hw), freq_hz);
-> +
-> +	/* Setup the PLL for the new frequency */
-> +	a <<= (ALPHA_REG_BITWIDTH - ALPHA_BITWIDTH);
-> +
-> +	regmap_write(pll->clkr.regmap, PLL_L_VAL(pll), l);
-> +	regmap_write(pll->clkr.regmap, PLL_ALPHA_VAL(pll), lower_32_bits(a));
-> +	regmap_write(pll->clkr.regmap, PLL_ALPHA_VAL_U(pll), upper_32_bits(a));
-> +
-> +	regmap_set_bits(pll->clkr.regmap, PLL_USER_CTL(pll), PLL_ALPHA_EN);
-> +
-> +	return clk_alpha_pll_slew_update(pll);
-> +}
-> +
-> +static int clk_alpha_pll_slew_enable(struct clk_hw *hw)
-> +{
-> +	int rc;
-> +
-> +	rc = clk_alpha_pll_calibrate(hw);
-> +	if (rc)
-> +		return rc;
-> +
-> +	return clk_alpha_pll_enable(hw);
-> +}
-> +
-> +const struct clk_ops clk_alpha_pll_slew_ops = {
-> +	.enable = clk_alpha_pll_slew_enable,
-> +	.disable = clk_alpha_pll_disable,
-> +	.recalc_rate = clk_alpha_pll_recalc_rate,
-> +	.round_rate = clk_alpha_pll_round_rate,
-> +	.set_rate = clk_alpha_pll_slew_set_rate,
-> +};
-> +EXPORT_SYMBOL(clk_alpha_pll_slew_ops);
-> diff --git a/drivers/clk/qcom/clk-alpha-pll.h b/drivers/clk/qcom/clk-alpha-pll.h
-> index 7f35aaa7a35d88411beb11fd2be5d5dd5bfbe066..ff41aeab0ab9844cd4e43c9b8e1ba0b50205e48e 100644
-> --- a/drivers/clk/qcom/clk-alpha-pll.h
-> +++ b/drivers/clk/qcom/clk-alpha-pll.h
-> @@ -206,6 +206,7 @@ extern const struct clk_ops clk_alpha_pll_rivian_evo_ops;
->  #define clk_alpha_pll_postdiv_rivian_evo_ops clk_alpha_pll_postdiv_fabia_ops
->  
->  extern const struct clk_ops clk_alpha_pll_regera_ops;
-> +extern const struct clk_ops clk_alpha_pll_slew_ops;
->  
->  void clk_alpha_pll_configure(struct clk_alpha_pll *pll, struct regmap *regmap,
->  			     const struct alpha_pll_config *config);
+>>>> +/* The name field defines the *driver* name that should bind to the device */
+>>>
+>>> This comment is superfluous.
+>>
+>> I'll delete it.
+>>
+>> I was expecting the driver to recognize the device, not
+>> the device specifying what driver to use, but I guess
+>> I'm used to the DT model.
 > 
-> -- 
-> 2.34.1
+> Even in DT, the *driver* compatible is specified.
+> 
+>    .driver.of_match_table->compatible
+
+I guess I just interpret that differently than you do.  I think
+of the device compatible string as saying "this is what I am,"
+much like a VID/PID in USB or PCI.
+
+Then the driver's of_match table says "if a device claims to
+be compatible with any of these it should be bound to me."
+
+Meanwhile, the MFD device method has the device (cell) saying
+"I should be bound to the driver having this name."
+
+>>>> +	/* We currently have no need for a device-specific structure */
+>>>
+>>> Then why are we adding one?
+>>
+>> I don't understand, but it might be moot once I add support
+>> for another (sub)device.
+> 
+> There are 2 rules in play here:
+> 
+>    - Only add what you need, when you need it
+>    - MFDs must contain more than 1 device
+> 
+> ... and you're right.  The second rule moots the first here.
+
+What the comment meant to say is "we have no need to kzalloc()
+any special structure here" as most drivers do. Simply adding
+the set of MFDs defined by the cells is enough.  The same is
+true in "simple-mfd-i2c.c".
+
+But this entire source file is gone now, so it's moot for that
+reason.
+
+. . .
+
+>>>> +static const struct of_device_id spacemit_pmic_match[] = {
+>>>> +	{
+>>>> +		.compatible	= "spacemit,p1",
+>>>> +		.data		= &p1_pmic_data,
+>>>
+>>> Ah, now I see.
+>>>
+>>> We do not allow one data from registration mechanism (MFD) to be piped
+>>> through another (OF).  If you have to match platform data to device (you
+>>> don't), then pass through identifiers and match on those in a switch()
+>>> statement instead.
+>>
+>> I haven't done an MFD driver before and it took some time
+>> to get this working.  I'll tell you what led me to it.
+>>
+>> I used code posted by Troy Mitchell (plus downstream) as a
+>> starting point.
+>>    https://lore.kernel.org/lkml/20241230-k1-p1-v1-0-aa4e02b9f993@gmail.com/
+>>
+>> Krzysztof Kozlowski made this comment on Troy's DT binding:
+>>    Drop compatible, regulators are not re-usable blocks.
+>>
+>> So my goal was to have the PMIC regulators get bound to a
+>> driver without specifying a DT compatible string, and I
+>> found this worked.
+>>
+>> You say I don't need to match platform data to device, but
+>> if I did I would pass through identifiers.  Can you refer
+>> me to an example of code that correctly does what I should
+>> be doing instead?
+> 
+> git grep -A5 compatible -- drivers/mfd | grep -E "\.data = .*[A-Z]+"
+> 
+> Those identifiers are usually matched in a swtich() statement.
+
+OK now I see what you you're talking about.  But these
+compatible strings (and data) are for the PMIC.  I was
+trying to avoid using compatible strings for the *regulators*,
+based on Krzysztof's comment.  And in the process I learned
+that the MFD cell needs to specify the name of a driver,
+not a compatible string.
+
+>> One other comment/question:
+>>    This driver is structured as if it could support a different
+>>    PMIC (in addition to P1).  Should I *not* do that, and simply
+>>    make a source file hard-coded for this one PMIC?
+> 
+> This comes back to the "add only what you need, when you need it" rule.
+
+Yes, and I agree with that rule.  Thanks for your clarifications.
+
+Using simple-mfd-i2c.c is much better.  I was surprised (and I guess
+pleased) to see that it was almost *identical* to what I came up with.
+
+					-Alex
+. . .
+
+>>>> +module_init(spacemit_pmic_init);
+>>>> +module_exit(spacemit_pmic_exit);
+>>>
+>>> Are you sure there isn't some boiler plate to do all of this?
+>>>
+>>> Ah ha:
+>>>
+>>>     module_i2c_driver()
+>>
+>> Thanks for Googling that for me.  And thank you very much
+>> for the review.
+> 
+> `git grep` is my bestie! =:-)
 > 
 
--- 
-With best wishes
-Dmitry
 
