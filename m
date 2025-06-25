@@ -1,55 +1,57 @@
-Return-Path: <devicetree+bounces-189542-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-189543-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 32500AE82F9
-	for <lists+devicetree@lfdr.de>; Wed, 25 Jun 2025 14:43:01 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6DD6CAE8306
+	for <lists+devicetree@lfdr.de>; Wed, 25 Jun 2025 14:45:35 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id D403D3B979D
-	for <lists+devicetree@lfdr.de>; Wed, 25 Jun 2025 12:42:35 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 8CD1D7A1E28
+	for <lists+devicetree@lfdr.de>; Wed, 25 Jun 2025 12:44:09 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8F9BB25FA06;
-	Wed, 25 Jun 2025 12:42:22 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6BE75260567;
+	Wed, 25 Jun 2025 12:45:27 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="kUvKEvfP"
+	dkim=pass (1024-bit key) header.d=samsung.com header.i=@samsung.com header.b="WnPJvUam"
 X-Original-To: devicetree@vger.kernel.org
-Received: from bali.collaboradmins.com (bali.collaboradmins.com [148.251.105.195])
+Received: from mailout1.w1.samsung.com (mailout1.w1.samsung.com [210.118.77.11])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DCB1E25CC47;
-	Wed, 25 Jun 2025 12:42:19 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=148.251.105.195
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B954C25C711
+	for <devicetree@vger.kernel.org>; Wed, 25 Jun 2025 12:45:24 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=210.118.77.11
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1750855342; cv=none; b=WLoKJoKArIvyGwN2BdqenAQhq6AdqSxtq4b1qWih/rcQiMcXVzDy/Y2tkL3O67mQdNJfEf2MMC+SaMb9hcge+iP7hQJsL6RTVj0FqdvrdeakoYV8y1qMP9GPzEEJ5MLWnROfyhsxs6SWhD6i8LL2n+wq+wMv8Qj4VnSI0tRDRvE=
+	t=1750855527; cv=none; b=By+ITDLB5rwRgQsUFgbttB099zTh2StTxaSECkW76pfXVBTr/jBy4+LNozj6S1F4aMKVv+B8PFqCoqGqKTEB+rdTveQ+EAaIaSSLoJCrPyk3HmKooCuFNfOaUdlcWiZS4YEg93gXGFwOTNFcfsHJZnpsIwkhJFg8eeXV3nYW5dI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1750855342; c=relaxed/simple;
-	bh=3HMbk0mlakx6BcqWOIOd4rz9lzz+qzLD1ex6XrftVc8=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=tbB8QaDH5Y54nOg+ZqdDTaQJBjouQHlUG0uF0b+FCcYYbFHiGBVQq+Y7N8/OXLsPlLOf7w1Qx9ly+12nZdMRqn9KWbQ+1n7UdgelEr6M2/tUC8flklUQQRFkmdbsa5uhsanOaz+7CIlWU+SARVAPBMTKvUi4SE0gm9snywaVwa8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b=kUvKEvfP; arc=none smtp.client-ip=148.251.105.195
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-	s=mail; t=1750855336;
-	bh=3HMbk0mlakx6BcqWOIOd4rz9lzz+qzLD1ex6XrftVc8=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=kUvKEvfP28rCadwxCPxPAhgINhFv3i+gKsNHbIxhS6lgOKanUqqojUkYpmTFl+2qU
-	 xKEFQ6Mftpep0s/y/DE2CLmB6jJc3tq3tKgFS2Y5SAn+TAjuElOcRu5r07h2agLESi
-	 GbsR+DcVn808Nybdup+HbY5g1/X58/38H3JO04TKrM8Sm7S+1XSfYCyiuv3wSHmxAT
-	 P/Y7+hwzIZplzxTq0Pb9T8krjfgSN/7Az2Dw2fQrGlxvdXUkGE7Kb+bgXjMWj82z63
-	 tbRQQePrDju6i22poUBAYZXHQGhVw7OQNkhV9lMBG4fw4Z8xepWyff7IidpBO+aAe5
-	 9p5OceBXbSxGA==
-Received: from [192.168.1.100] (2-237-20-237.ip236.fastwebnet.it [2.237.20.237])
-	(using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
-	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
-	(No client certificate requested)
-	(Authenticated sender: kholk11)
-	by bali.collaboradmins.com (Postfix) with ESMTPSA id E0BE117E0202;
-	Wed, 25 Jun 2025 14:42:15 +0200 (CEST)
-Message-ID: <312f321f-2e49-48ac-bc41-a741f5e3b3a5@collabora.com>
-Date: Wed, 25 Jun 2025 14:42:15 +0200
+	s=arc-20240116; t=1750855527; c=relaxed/simple;
+	bh=Zplv4nOS9R8KfxnaHMhSo9UaCkN92kVOCry+4a6NzqA=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:From:In-Reply-To:
+	 Content-Type:References; b=GXEjAtZSvbXFCRyawdVBOJbAVyL9/YckQ216PgOTXq5RzJKfuFaS5gOiVZOGeyCZYHO+zUc7DiP2+f3EAggfkFaqEChLCRqou8S29DObAUa5W67dxTa0xhqQPpzZVkq7mHEUfQcjzk4DDv5hP8UGvSPctP56YzmrOQhTuCBP81I=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=samsung.com; spf=pass smtp.mailfrom=samsung.com; dkim=pass (1024-bit key) header.d=samsung.com header.i=@samsung.com header.b=WnPJvUam; arc=none smtp.client-ip=210.118.77.11
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=samsung.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=samsung.com
+Received: from eucas1p1.samsung.com (unknown [182.198.249.206])
+	by mailout1.w1.samsung.com (KnoxPortal) with ESMTP id 20250625124523euoutp0110d1b98ff86dec3f8685fb39468f8640~MSdJnYdag1171611716euoutp01F
+	for <devicetree@vger.kernel.org>; Wed, 25 Jun 2025 12:45:23 +0000 (GMT)
+DKIM-Filter: OpenDKIM Filter v2.11.0 mailout1.w1.samsung.com 20250625124523euoutp0110d1b98ff86dec3f8685fb39468f8640~MSdJnYdag1171611716euoutp01F
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=samsung.com;
+	s=mail20170921; t=1750855523;
+	bh=li13uomVIBNy/2kXVMydN0UNjlz7j3CE3FoJs7BtxsE=;
+	h=Date:Subject:To:Cc:From:In-Reply-To:References:From;
+	b=WnPJvUamiquioaZ6cdfiTIA1RJPVBBRed/gTb61NfY9zxn5QZUq41j7BxlqjoxICP
+	 g5YLmDLenLnke7L2prZ0ylrCyngQjzdulyKDaPEIRBx6Hg+izjfspun1deuO7OjtQY
+	 SSBEqreBHxqjhIIsv2vv68gIXUwAFqZXmpQwiQ1k=
+Received: from eusmtip2.samsung.com (unknown [203.254.199.222]) by
+	eucas1p2.samsung.com (KnoxPortal) with ESMTPA id
+	20250625124522eucas1p20e5ac7f9f29dd397d16647c341b886ce~MSdIqCv4c2367423674eucas1p2m;
+	Wed, 25 Jun 2025 12:45:22 +0000 (GMT)
+Received: from [192.168.1.44] (unknown [106.210.136.40]) by
+	eusmtip2.samsung.com (KnoxPortal) with ESMTPA id
+	20250625124521eusmtip23e10383c21022da7c38afee3b97fd9aa~MSdHo9v8m1900619006eusmtip2m;
+	Wed, 25 Jun 2025 12:45:21 +0000 (GMT)
+Message-ID: <d154d2d0-3d59-4176-a8fb-3cb754cf2734@samsung.com>
+Date: Wed, 25 Jun 2025 14:45:20 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -57,205 +59,124 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 09/29] dt-bindings: clock: mediatek: Describe MT8196
- peripheral clock controllers
-To: Krzysztof Kozlowski <krzk@kernel.org>, Laura Nao
- <laura.nao@collabora.com>, mturquette@baylibre.com, sboyd@kernel.org,
- robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
- matthias.bgg@gmail.com, p.zabel@pengutronix.de, richardcochran@gmail.com
-Cc: guangjie.song@mediatek.com, wenst@chromium.org,
- linux-clk@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- linux-mediatek@lists.infradead.org, netdev@vger.kernel.org,
- kernel@collabora.com
-References: <20250624143220.244549-1-laura.nao@collabora.com>
- <20250624143220.244549-10-laura.nao@collabora.com>
- <7dfba01a-6ede-44c2-87e3-3ecb439b48e3@kernel.org>
- <284a4ee5-806b-45f9-8d57-d02ec291e389@collabora.com>
- <0870a2ba-936b-4eb2-a570-f2c9dea471b8@kernel.org>
- <9fc32523-5009-4f48-8d82-6c3fd285801d@collabora.com>
- <29eeae4f-59ed-4781-88b1-4fd76714ecb6@kernel.org>
-From: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+Subject: Re: [PATCH v6 5/8] dt-bindings: gpu: img,powervr-rogue: Add TH1520
+ GPU compatible
+To: Matt Coster <Matt.Coster@imgtec.com>, Krzysztof Kozlowski
+	<krzk@kernel.org>
+Cc: Drew Fustini <drew@pdp7.com>, Guo Ren <guoren@kernel.org>, Fu Wei
+	<wefu@redhat.com>, Rob Herring <robh@kernel.org>, Krzysztof Kozlowski
+	<krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, Bartosz
+	Golaszewski <brgl@bgdev.pl>, Philipp Zabel <p.zabel@pengutronix.de>, Frank
+	Binns <Frank.Binns@imgtec.com>, Maarten Lankhorst
+	<maarten.lankhorst@linux.intel.com>, Maxime Ripard <mripard@kernel.org>,
+	Thomas Zimmermann <tzimmermann@suse.de>, David Airlie <airlied@gmail.com>,
+	Simona Vetter <simona@ffwll.ch>, Paul Walmsley <paul.walmsley@sifive.com>,
+	Palmer Dabbelt <palmer@dabbelt.com>, Albert Ou <aou@eecs.berkeley.edu>,
+	Alexandre Ghiti <alex@ghiti.fr>, Ulf Hansson <ulf.hansson@linaro.org>, Marek
+	Szyprowski <m.szyprowski@samsung.com>, Krzysztof Kozlowski
+	<krzysztof.kozlowski@linaro.org>, Bartosz Golaszewski
+	<bartosz.golaszewski@linaro.org>, "linux-riscv@lists.infradead.org"
+	<linux-riscv@lists.infradead.org>, "devicetree@vger.kernel.org"
+	<devicetree@vger.kernel.org>, "linux-kernel@vger.kernel.org"
+	<linux-kernel@vger.kernel.org>, "linux-pm@vger.kernel.org"
+	<linux-pm@vger.kernel.org>, "dri-devel@lists.freedesktop.org"
+	<dri-devel@lists.freedesktop.org>
 Content-Language: en-US
-In-Reply-To: <29eeae4f-59ed-4781-88b1-4fd76714ecb6@kernel.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+From: Michal Wilczynski <m.wilczynski@samsung.com>
+In-Reply-To: <9c82a6bc-c6ff-4656-8f60-9d5fa499b61a@imgtec.com>
+Content-Transfer-Encoding: 8bit
+X-CMS-MailID: 20250625124522eucas1p20e5ac7f9f29dd397d16647c341b886ce
+X-Msg-Generator: CA
+Content-Type: text/plain; charset="utf-8"
+X-RootMTR: 20250623114436eucas1p1ab8455b32937a472f5f656086e38f428
+X-EPHeader: CA
+X-CMS-RootMailID: 20250623114436eucas1p1ab8455b32937a472f5f656086e38f428
+References: <20250623-apr_14_for_sending-v6-0-6583ce0f6c25@samsung.com>
+	<CGME20250623114436eucas1p1ab8455b32937a472f5f656086e38f428@eucas1p1.samsung.com>
+	<20250623-apr_14_for_sending-v6-5-6583ce0f6c25@samsung.com>
+	<9c82a6bc-c6ff-4656-8f60-9d5fa499b61a@imgtec.com>
 
-Il 25/06/25 13:05, Krzysztof Kozlowski ha scritto:
-> On 25/06/2025 11:45, AngeloGioacchino Del Regno wrote:
->> Il 25/06/25 10:57, Krzysztof Kozlowski ha scritto:
->>> On 25/06/2025 10:20, AngeloGioacchino Del Regno wrote:
->>>> Il 24/06/25 18:02, Krzysztof Kozlowski ha scritto:
->>>>> On 24/06/2025 16:32, Laura Nao wrote:
->>>>>> +  '#reset-cells':
->>>>>> +    const: 1
->>>>>> +    description:
->>>>>> +      Reset lines for PEXTP0/1 and UFS blocks.
->>>>>> +
->>>>>> +  mediatek,hardware-voter:
->>>>>> +    $ref: /schemas/types.yaml#/definitions/phandle
->>>>>> +    description:
->>>>>> +      On the MT8196 SoC, a Hardware Voter (HWV) backed by a fixed-function
->>>>>> +      MCU manages clock and power domain control across the AP and other
->>>>>> +      remote processors. By aggregating their votes, it ensures clocks are
->>>>>> +      safely enabled/disabled and power domains are active before register
->>>>>> +      access.
->>>>>
->>>>> Resource voting is not via any phandle, but either interconnects or
->>>>> required opps for power domain.
->>>>
->>>> Sorry, I'm not sure who is actually misunderstanding what, here... let me try to
->>>> explain the situation:
->>>>
->>>> This is effectively used as a syscon - as in, the clock controllers need to perform
->>>> MMIO R/W on both the clock controller itself *and* has to place a vote to the clock
->>>> controller specific HWV register.
->>>
->>> syscon is not the interface to place a vote for clocks. "clocks"
->>> property is.
->>>
->>>>
->>>> This is done for MUX-GATE and GATE clocks, other than for power domains.
->>>>
->>>> Note that the HWV system is inside of the power domains controller, and it's split
->>>> on a per hardware macro-block basis (as per usual MediaTek hardware layout...).
->>>>
->>>> The HWV, therefore, does *not* vote for clock *rates* (so, modeling OPPs would be
->>>> a software quirk, I think?), does *not* manage bandwidth (and interconnect is for
->>>> voting BW only?), and is just a "switch to flip".
->>>
->>> That's still clocks. Gate is a clock.
->>>
->>>>
->>>> Is this happening because the description has to be improved and creating some
->>>> misunderstanding, or is it because we are underestimating and/or ignoring something
->>>> here?
->>>>
->>>
->>> Other vendors, at least qcom, represent it properly - clocks. Sometimes
->>> they mix up and represent it as power domains, but that's because
->>> downstream is a mess and because we actually (at upstream) don't really
->>> know what is inside there - is it a clock or power domain.
->>>
+
+
+On 6/24/25 15:53, Matt Coster wrote:
+> On 23/06/2025 12:42, Michal Wilczynski wrote:
+>> Update the img,powervr-rogue.yaml to include the T-HEAD TH1520 SoC's
+>> specific GPU compatible string.
 >>
->> ....but the hardware voter cannot be represented as a clock, because you use it
->> for clocks *or* power domains (but at the same time, and of course in different
->> drivers, and in different *intertwined* registers).
+>> The thead,th1520-gpu compatible, along with its full chain
+>> img,img-bxm-4-64, and img,img-rogue, is added to the
+>> list of recognized GPU types.
 >>
->> So the hardware voter itself (and/or bits inside of its registers) cannot be
->> represented as a clock :\
+>> The power-domains property requirement for img,img-bxm-4-64 is also
+>> ensured by adding it to the relevant allOf condition.
 >>
->> In the context of clocks, it's used for clocks, (and not touching power domains at
->> all), but in the context of power domains it's used for power domains (and not
->> touching clocks at all).
-> 
-> I don't understand this. Earlier you mentioned "MUX-GATE and GATE
-> clocks", so these are clocks, right? How these clocks are used in other
-> places as power domains?
-
-I think you've misread, or I've explained badly enough to make you misread...
-let me describe some more to try to let you understand this properly.
-
-The hardware voter is a unit that is used to vote for "flipping various switches",
-in particular, you can vote for, *either*:
-  - Enabling or disabling a *clock*; or
-  - Enabling or disabling a *power domain*.
-
-There may be multiple (by hardware, in-silicon) copies of the Hardware Voter; in
-the specific case of the MediaTek Dimensity 9400 MT6991 and of the MediaTek MT8196
-Chromebook SoC, there is only one instance.
-
-The Hardware Voter, there, is located in the SCPSYS macro-block.
-
-The SCPSYS macro-block contains:
-  - A system controller
-  - A Hardware Voter IP (new in MT6991/MT8196)
-  - A power domains controller
-  - Other hardware that is not relevant for this discussion
-
-The HWV is MMIO-accessible, and there is one (small, for now) set of registers,
-allowing to vote for turning on/off one (or maybe multiple too, not sure about
-that as there's no documentation and when I tried with multi-votes it didn't work)
-clk/pd at a time.
-
-Probably not important but worth mentioning: the HWV can vote for clocks or for
-power domains in macro-blocks outside of its own (so, outside of the SCPSYS block,
-for example - it can vote to turn on a clock or a power domain in HFRPSYS as well).
-
-The register set in the HWV is *not* split between clock voters and PDs voters,
-in the sense that the register set of clock voters is *not contiguous*; trying
-to be as clear as possible, you have something like (mock register names ahead):
-  0x0 - CLOCK_VOTER_0 (each bit is a clock)
-  0x4 - PD_VOTER_0 (each bit is a power domain)
-  0x8 - SECURE_WORLD_CLOCK_VOTER_1
-  0xc - PD_VOTER_1
-  0x10 - SECURE_WORLD_PD_VOTER_0
-
-...etc etc.
-
- >> If they are, this either has to be fixed or
-> apparently this is a power domain and use it as power domain also here.
-
-So no, clocks are not used as power domains, and power domains are not used as
-clocks; we are talking purely about something that aggregates votes internally
-and decides to turn on/off "whatever thing it is" (one of the clocks, or one of
-the power domains) - and to do that, you flip a bit in a register, and then you
-read another two registers to know the status of the internal state machine....
-
-....and you do that atomically, this can't sleep, the system has to lock up
-until HWV is done (I think I know what you're thinking, and yes, it's really
-like this) otherwise you're surely racing.
-
-> 
-> Really, something called as hardware voter is not that uncommon and it
-> does fit existing bindings.
-> 
-
-Do you mean the interconnect/qcom/bcm-voter.c?
-
-That one seems to aggregate votes in software to place a vote in a hardware voter
-(the Bus Clock Manager) and I see it as being really convoluted.
-
-For MediaTek's HWV, you don't need to aggregate anything - actually, the HWV itself
-is taking care of aggregating requests internally...
-
-Also, checking sdx75 and x1e80100 DTs, I see a virtual clock controller described,
-placing votes through the bcm-voter, and with clocks that looks like being kind
-of disguised/faked as interconnects?
-
-That's a bit unclear, and even if I'm wrong about those being disguised as icc,
-and not virtual, purely looking at the usage of the clk_virt and bcm-voters, I
-seriously don't think that any similar structure with interconnect would fit
-MediaTek SoCs in any way...
-
+>> Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+>> Reviewed-by: Ulf Hansson <ulf.hansson@linaro.org>
+>> Reviewed-by: Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
+>> Signed-off-by: Michal Wilczynski <m.wilczynski@samsung.com>
+>> ---
+>>  Documentation/devicetree/bindings/gpu/img,powervr-rogue.yaml | 9 ++++++++-
+>>  1 file changed, 8 insertions(+), 1 deletion(-)
 >>
->> I'm not sure what qcom does - your reply makes me think that they did it such that
->> the clocks part is in a MMIO and the power domains part is in a different MMIO,
->> without having clock/pd intertwined voting registers...
+>> diff --git a/Documentation/devicetree/bindings/gpu/img,powervr-rogue.yaml b/Documentation/devicetree/bindings/gpu/img,powervr-rogue.yaml
+>> index 4450e2e73b3ccf74d29f0e31e2e6687d7cbe5d65..9b241a0c1f5941dc58a1e23970f6d3773d427c22 100644
+>> --- a/Documentation/devicetree/bindings/gpu/img,powervr-rogue.yaml
+>> +++ b/Documentation/devicetree/bindings/gpu/img,powervr-rogue.yaml
+>> @@ -21,6 +21,11 @@ properties:
+>>            # work with newer dts.
+>>            - const: img,img-axe
+>>            - const: img,img-rogue
+>> +      - items:
+>> +          - enum:
+>> +              - thead,th1520-gpu
+>> +          - const: img,img-bxm-4-64
+>> +          - const: img,img-rogue
+>>        - items:
+>>            - enum:
+>>                - ti,j721s2-gpu
+>> @@ -93,7 +98,9 @@ allOf:
+>>        properties:
+>>          compatible:
+>>            contains:
+>> -            const: img,img-axe-1-16m
+>> +            enum:
+>> +              - img,img-axe-1-16m
+>> +              - img,img-bxm-4-64
 > 
-> No, you just never have direct access to hardware. You place votes and
-> votes go to the firmware. Now depending on person submitting it or
-> writing internal docs, they call it differently, but eventually it is
-> the same. You want to vote for some specific signal to be active or
-> running at some performance level.
+> This isn't right – BXM-4-64 has two power domains like BXS-4-64. I don't
+> really know what the right way to handle that in devicetree is given the
+> TH1520 appears to expose only a top-level domain for the entire GPU, but
+> there are definitely two separate domains underneath that as far as the
+> GPU is concerned (see the attached snippet from integration guide).
+> 
+> Since power nodes are ref-counted anyway, do we just use the same node
+> for both domains and let the driver up/down-count it twice?
+
+Hi Matt,
+
+Thanks for the very helpful insight. That's a great point, it seems the
+SoC's design presents a tricky case for the bindings.
+
+I see what you mean about potentially using the same power domain node
+twice. My only hesitation is that it might be a bit unclear for someone
+reading the devicetree later. Perhaps another option could be to relax
+the constraint for this compatible?
+
+Krzysztof, we'd be grateful for your thoughts on how to best model this
+situation.
+
+> 
+> Cheers,
+> Matt
+> 
+>>      then:
+>>        properties:
+>>          power-domains:
+>>
+> 
 > 
 
-Okay then there is one similarity, but it's different; MTK HWV is only arbitering
-a on/off request; Nothing else.
-
-No RATE votes.
-No performance levels.
-Literally, that's it.
-
-You have direct access to the hardware, and you can also access the same HW that is
-arbitered by HWV, effectively overriding whatever HWV is voting for, and you're
-free to race with HWV if you want, even (why would you want that I don't know, but
-anyway..!).
-
-Am I still missing anything, or have you got any other doubt, question,
-consideration, (etc)?
-
-Cheers,
-Angelo
-
+Best regards,
+-- 
+Michal Wilczynski <m.wilczynski@samsung.com>
 
