@@ -1,329 +1,124 @@
-Return-Path: <devicetree+bounces-189663-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-189664-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9042CAE8D14
-	for <lists+devicetree@lfdr.de>; Wed, 25 Jun 2025 20:53:49 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 261CAAE8D1C
+	for <lists+devicetree@lfdr.de>; Wed, 25 Jun 2025 20:56:23 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 48B33189FBC5
-	for <lists+devicetree@lfdr.de>; Wed, 25 Jun 2025 18:54:05 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id B8F96189E8BB
+	for <lists+devicetree@lfdr.de>; Wed, 25 Jun 2025 18:56:38 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 99C662D5C8B;
-	Wed, 25 Jun 2025 18:53:44 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0D63F2DAFD5;
+	Wed, 25 Jun 2025 18:56:10 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="ppeUKjip"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Gff5cji2"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6A5051CAA7B;
-	Wed, 25 Jun 2025 18:53:44 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C1FBC1CAA7B;
+	Wed, 25 Jun 2025 18:56:09 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1750877624; cv=none; b=KzkY2rR7MQkK6FaTzpuR0D1Sw4q5UZ30xT3TVZgkBF4Kf491C9rZuSAZlxasdYOrDsUbG3oPmt5vBikwVYaB1t79PapejtK2xSheXGrS6Ss3EDL+QnP8LjqZyNyf97q4hd5CaIlWDEv2EtIes2+22wmaX7bYjyYCdVBavrn6Oo0=
+	t=1750877769; cv=none; b=A8qBfwJ9GH0yFSBIf0ykcRfC1ft9hlHylkehLbvqA5ijbPVvUh92rvjtiFfzjtT60lvBYoO84HNrZ4MP5M4v/BWcrOJ3TbZURw4I/l9vzMJH+Zzk4EU+X8wbpmVyfyBSRmRpH6AW0Ky62OmeikrQ3BUF2oOhevPXhTq3zpadl9k=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1750877624; c=relaxed/simple;
-	bh=8MrvaYOz4FiqCxr7LmGqB3MEhbBqse7v9vTKMvsiFOM=;
-	h=Date:Message-ID:From:To:Cc:Subject:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=MwmWUega1XUjaFRmVOf0J3eYwBBIm1hz5aVEoaAQlCF7b5iOfiEch9Tb0ZcfMqo4/H1/AbNdMtPjgR+PdyAs5iZS1sKmswP9IxdQyCk617Ls3kTkGvohhUoXSJr1AaugTbZoQ2IJhr8O5OD2eMVNQPssvHvJQJv7W6Q/zWzpv5s=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=ppeUKjip; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id BB210C4CEEA;
-	Wed, 25 Jun 2025 18:53:43 +0000 (UTC)
+	s=arc-20240116; t=1750877769; c=relaxed/simple;
+	bh=6xdnTIn9JsUPsSYNpRZM+JxKZeDZmlbySNAsX2t+WTI=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=ou7V+M4w+0VrpHIjlkb4ssZCRyusQ0qGztpBoSwhDiwKmDZ89aiXYbhEeUtXay1u1KSk4Qxbfrj71kJcvoXNHqquhzMWR8w1xfbd+61fVN/se8PULGkw36yMcvICNzvE5scT+GbjzX7SqXvZCeMKmNSw6M/4RaKNlUQo2T05lh8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Gff5cji2; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 338B7C4CEEA;
+	Wed, 25 Jun 2025 18:56:09 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1750877623;
-	bh=8MrvaYOz4FiqCxr7LmGqB3MEhbBqse7v9vTKMvsiFOM=;
-	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
-	b=ppeUKjipB2yJbHdKKPlRyVDqbUX77oJxRhZL7ud1YUoWYEEc27uWBBlAZLBezVolW
-	 ChewIFEAAclm7IdOJPUUGDjVZ3/MC0WzysEt8xqtZhMGJw4yJc6tZeINByuTKz+boE
-	 mhJR9E962ubHGzH0zDyasotU1RFr2cXiBV6mV/yQvTWXA5gDQ2BcKdR56Y3+jPDvJq
-	 wZvA5EjnucM0MTLaIkoACEQuaQo7rhBTC4CQ+sYZkwrsTT2uurEexbd/VVyqEs9Z3h
-	 9paYrB25VlQFRZ1OhgEbXOFw+pJLk1BlNon+BKDU+oehoL3sbV4KqlXl1PUIgVhP2Y
-	 vtjkp9a0WbjMw==
-Received: from sofa.misterjones.org ([185.219.108.64] helo=goblin-girl.misterjones.org)
-	by disco-boy.misterjones.org with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-	(Exim 4.95)
-	(envelope-from <maz@kernel.org>)
-	id 1uUVFd-00A04o-Gz;
-	Wed, 25 Jun 2025 19:53:41 +0100
-Date: Wed, 25 Jun 2025 19:53:41 +0100
-Message-ID: <861pr7d556.wl-maz@kernel.org>
-From: Marc Zyngier <maz@kernel.org>
-To: Lorenzo Pieralisi <lpieralisi@kernel.org>
-Cc: Thomas Gleixner <tglx@linutronix.de>,
-	Rob Herring <robh@kernel.org>,
+	s=k20201202; t=1750877769;
+	bh=6xdnTIn9JsUPsSYNpRZM+JxKZeDZmlbySNAsX2t+WTI=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=Gff5cji2w4rVgfmpej2qu34cYAMMr+BzZ4UHZaIH5XAbQTuM9i+g7mUq2U5j40fHZ
+	 Z1q5bI29k3jsZWhuNj5yhDbG1Cf2CK2Ja0Ff7LDDsR3OOFfZ9Vzt2j15k/nXxeuZkT
+	 9YjFuV7bOl1cksFgU80Bm0WScsAeKZPxiJYfl/Gw6Nw4fguHRhvgpQzb9a5DuxXi9k
+	 r0a99nd/yLYW3OjYml4ONi/ceLO8lUzrdNYHwjtC2OmZGRegktJ+ySI9PYIagF4iS1
+	 BZaw35eG2KRHrrYA05zBh06BuCSR5KKlQpVgpHHc3LUu/B0aN9NxM4wAvkXLn1IoOB
+	 S80u/83hMdyFA==
+Date: Wed, 25 Jun 2025 13:56:08 -0500
+From: Rob Herring <robh@kernel.org>
+To: Ricardo Ribalda <ribalda@chromium.org>
+Cc: Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
+	Hans de Goede <hdegoede@redhat.com>,
+	Mauro Carvalho Chehab <mchehab@kernel.org>,
+	Hans Verkuil <hverkuil@xs4all.nl>,
+	Sakari Ailus <sakari.ailus@linux.intel.com>,
+	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
 	Conor Dooley <conor+dt@kernel.org>,
-	Catalin Marinas <catalin.marinas@arm.com>,
-	Will Deacon <will@kernel.org>,
-	Arnd Bergmann <arnd@arndb.de>,
-	Sascha Bischoff <sascha.bischoff@arm.com>,
-	Jonathan Cameron <Jonathan.Cameron@huawei.com>,
-	Timothy Hayes <timothy.hayes@arm.com>,
-	Bjorn Helgaas <bhelgaas@google.com>,
-	"Liam R. Howlett" <Liam.Howlett@oracle.com>,
-	Peter Maydell <peter.maydell@linaro.org>,
-	Mark Rutland <mark.rutland@arm.com>,
-	Jiri Slaby <jirislaby@kernel.org>,
-	linux-arm-kernel@lists.infradead.org,
-	linux-kernel@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	linux-pci@vger.kernel.org
-Subject: Re: [PATCH v5 18/27] arm64: smp: Support non-SGIs for IPIs
-In-Reply-To: <20250618-gicv5-host-v5-18-d9e622ac5539@kernel.org>
-References: <20250618-gicv5-host-v5-0-d9e622ac5539@kernel.org>
-	<20250618-gicv5-host-v5-18-d9e622ac5539@kernel.org>
-User-Agent: Wanderlust/2.15.9 (Almost Unreal) SEMI-EPG/1.14.7 (Harue)
- FLIM-LB/1.14.9 (=?UTF-8?B?R29qxY0=?=) APEL-LB/10.8 EasyPG/1.0.0 Emacs/30.1
- (aarch64-unknown-linux-gnu) MULE/6.0 (HANACHIRUSATO)
+	Linus Walleij <linus.walleij@linaro.org>,
+	Bartosz Golaszewski <brgl@bgdev.pl>,
+	"Rafael J. Wysocki" <rafael@kernel.org>,
+	Len Brown <lenb@kernel.org>, linux-media@vger.kernel.org,
+	linux-kernel@vger.kernel.org, linux-usb@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-gpio@vger.kernel.org,
+	linux-acpi@vger.kernel.org
+Subject: Re: [PATCH v2 06/12] dt-bindings: usb: usb-device: Add orientation
+ and rotation
+Message-ID: <20250625185608.GA2010256-robh@kernel.org>
+References: <20250605-uvc-orientation-v2-0-5710f9d030aa@chromium.org>
+ <20250605-uvc-orientation-v2-6-5710f9d030aa@chromium.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-MIME-Version: 1.0 (generated by SEMI-EPG 1.14.7 - "Harue")
-Content-Type: text/plain; charset=US-ASCII
-X-SA-Exim-Connect-IP: 185.219.108.64
-X-SA-Exim-Rcpt-To: lpieralisi@kernel.org, tglx@linutronix.de, robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org, catalin.marinas@arm.com, will@kernel.org, arnd@arndb.de, sascha.bischoff@arm.com, Jonathan.Cameron@huawei.com, timothy.hayes@arm.com, bhelgaas@google.com, Liam.Howlett@oracle.com, peter.maydell@linaro.org, mark.rutland@arm.com, jirislaby@kernel.org, linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org, devicetree@vger.kernel.org, linux-pci@vger.kernel.org
-X-SA-Exim-Mail-From: maz@kernel.org
-X-SA-Exim-Scanned: No (on disco-boy.misterjones.org); SAEximRunCond expanded to false
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20250605-uvc-orientation-v2-6-5710f9d030aa@chromium.org>
 
-On Wed, 18 Jun 2025 11:17:33 +0100,
-Lorenzo Pieralisi <lpieralisi@kernel.org> wrote:
+On Thu, Jun 05, 2025 at 05:52:59PM +0000, Ricardo Ribalda wrote:
+> For some devices, such as cameras, the OS needs to know where they are
+> mounted.
 > 
-> From: Marc Zyngier <maz@kernel.org>
+> ACPI has a property for this purpose, which is parsed by
+> acpi_get_physical_device_location():
+> https://uefi.org/htmlspecs/ACPI_Spec_6_4_html/06_Device_Configuration/Device_Configuration.html#pld-physical-location-of-device
 > 
-> The arm64 arch has relied so far on GIC architectural software
-> generated interrupt (SGIs) to handle IPIs. Those are per-cpu
-> software generated interrupts.
+> In DT we have similar properties for video-interface-devices called
+> orientation and rotation:
+> Documentation/devicetree/bindings/media/video-interface-devices.yaml
 > 
-> arm64 architecture code that allocates the IPIs virtual IRQs and
-> IRQ descriptors was written accordingly.
+> Add rotation and orientation for usb-devices that matches the already
+> existing properties of video-interface-devices.
 > 
-> On GICv5 systems, IPIs are implemented using LPIs that are not
-> per-cpu interrupts - they are just normal routable IRQs.
-> 
-> Add arch code to set-up IPIs on systems where they are handled
-> using normal routable IRQs.
-> 
-> For those systems, force the IRQ affinity (and make it immutable)
-> to the cpu a given IRQ was assigned to.
-> 
-> Signed-off-by: Marc Zyngier <maz@kernel.org>
-> [timothy.hayes@arm.com: fixed ipi/irq conversion, irq flags]
-> Signed-off-by: Timothy Hayes <timothy.hayes@arm.com>
-> [lpieralisi: changed affinity set-up, log]
-> Signed-off-by: Lorenzo Pieralisi <lpieralisi@kernel.org>
-> Cc: Will Deacon <will@kernel.org>
-> Cc: Catalin Marinas <catalin.marinas@arm.com>
+> Signed-off-by: Ricardo Ribalda <ribalda@chromium.org>
 > ---
->  arch/arm64/include/asm/smp.h |   7 ++-
->  arch/arm64/kernel/smp.c      | 142 ++++++++++++++++++++++++++++++++-----------
->  2 files changed, 114 insertions(+), 35 deletions(-)
+>  Documentation/devicetree/bindings/usb/usb-device.yaml | 10 ++++++++++
+>  1 file changed, 10 insertions(+)
+
+Comments from v1 still apply. Add a schema for *your* device (i.e. one 
+that only matches the compatible string of your device). Look for 
+anything that includes usb-device.yaml for an example. Your schema 
+should have something like this if you want to use 
+video-interface-devices.yaml properties:
+
+allOf:
+  - $ref: /schemas/usb/usb-device.yaml#
+  - $ref: /schemas/media/video-interface-devices.yaml#
+
 > 
-> diff --git a/arch/arm64/include/asm/smp.h b/arch/arm64/include/asm/smp.h
-> index 2510eec026f7..d6fd6efb66a6 100644
-> --- a/arch/arm64/include/asm/smp.h
-> +++ b/arch/arm64/include/asm/smp.h
-> @@ -53,7 +53,12 @@ extern void smp_init_cpus(void);
->  /*
->   * Register IPI interrupts with the arch SMP code
->   */
-> -extern void set_smp_ipi_range(int ipi_base, int nr_ipi);
-> +extern void set_smp_ipi_range_percpu(int ipi_base, int nr_ipi, int ncpus);
-> +
-> +static inline void set_smp_ipi_range(int ipi_base, int n)
-> +{
-> +	set_smp_ipi_range_percpu(ipi_base, n, 0);
-> +}
+> diff --git a/Documentation/devicetree/bindings/usb/usb-device.yaml b/Documentation/devicetree/bindings/usb/usb-device.yaml
+> index c676956810331b81f11f3624340fc3e612c98315..a44eb24c657993f88145377a4706ec419b6cd998 100644
+> --- a/Documentation/devicetree/bindings/usb/usb-device.yaml
+> +++ b/Documentation/devicetree/bindings/usb/usb-device.yaml
+> @@ -44,6 +44,14 @@ properties:
+>        - minimum: 1
+>          maximum: 255
 >  
->  /*
->   * Called from the secondary holding pen, this is the secondary CPU entry point.
-> diff --git a/arch/arm64/kernel/smp.c b/arch/arm64/kernel/smp.c
-> index 3b3f6b56e733..7fd6bec80750 100644
-> --- a/arch/arm64/kernel/smp.c
-> +++ b/arch/arm64/kernel/smp.c
-> @@ -83,7 +83,31 @@ enum ipi_msg_type {
->  
->  static int ipi_irq_base __ro_after_init;
->  static int nr_ipi __ro_after_init = NR_IPI;
-> -static struct irq_desc *ipi_desc[MAX_IPI] __ro_after_init;
-> +
-> +struct ipi_descs {
-> +	struct irq_desc *descs[MAX_IPI];
-> +};
-> +
-> +static DEFINE_PER_CPU(struct ipi_descs, pcpu_ipi_desc);
+> +  orientation:
+> +    description: If present, specifies the orientation of the usb device.
+> +    $ref: /schemas/media/video-interface-devices.yaml#/properties/orientation
 
-I wish we would make this __ro_after_init, but it doesn't see to be
-possible to do that. At least make it read_mostly, which may help a
-bit.
+Again, this is generally the wrong way to add properties from another 
+schema for your device. Above is the right way.
 
-> +
-> +#define get_ipi_desc(__cpu, __ipi) (per_cpu_ptr(&pcpu_ipi_desc, __cpu)->descs[__ipi])
-> +
-> +static bool percpu_ipi_descs __ro_after_init;
-> +
-> +static int ipi_to_irq_percpu(int ipi, int cpu)
-> +{
-> +	return ipi_irq_base + (cpu * nr_ipi) + ipi;
-> +}
-> +
-> +static int ipi_to_irq(int ipi)
-> +{
-> +	return ipi_to_irq_percpu(ipi, 0);
-> +}
-> +
-> +static int irq_to_ipi(int irq)
-> +{
-> +	return (irq - ipi_irq_base) % nr_ipi;
-> +}
-
-Most of these helpers are used only once, and they are so similar that
-I get cross-eyed. Consider expanding them in their calling spot.
-
->  
->  static bool crash_stop;
->  
-> @@ -844,7 +868,7 @@ int arch_show_interrupts(struct seq_file *p, int prec)
->  		seq_printf(p, "%*s%u:%s", prec - 1, "IPI", i,
->  			   prec >= 4 ? " " : "");
->  		for_each_online_cpu(cpu)
-> -			seq_printf(p, "%10u ", irq_desc_kstat_cpu(ipi_desc[i], cpu));
-> +			seq_printf(p, "%10u ", irq_desc_kstat_cpu(get_ipi_desc(cpu, i), cpu));
->  		seq_printf(p, "      %s\n", ipi_types[i]);
->  	}
->  
-> @@ -919,7 +943,13 @@ static void __noreturn ipi_cpu_crash_stop(unsigned int cpu, struct pt_regs *regs
->  
->  static void arm64_backtrace_ipi(cpumask_t *mask)
->  {
-> -	__ipi_send_mask(ipi_desc[IPI_CPU_BACKTRACE], mask);
-> +	unsigned int cpu;
-> +
-> +	if (!percpu_ipi_descs)
-> +		__ipi_send_mask(get_ipi_desc(0, IPI_CPU_BACKTRACE), mask);
-> +	else
-> +		for_each_cpu(cpu, mask)
-> +			__ipi_send_single(get_ipi_desc(cpu, IPI_CPU_BACKTRACE), cpu);
->  }
->  
->  void arch_trigger_cpumask_backtrace(const cpumask_t *mask, int exclude_cpu)
-> @@ -944,7 +974,7 @@ void kgdb_roundup_cpus(void)
->  		if (cpu == this_cpu)
->  			continue;
->  
-> -		__ipi_send_single(ipi_desc[IPI_KGDB_ROUNDUP], cpu);
-> +		__ipi_send_single(get_ipi_desc(cpu, IPI_KGDB_ROUNDUP), cpu);
->  	}
->  }
->  #endif
-> @@ -1013,14 +1043,21 @@ static void do_handle_IPI(int ipinr)
->  
->  static irqreturn_t ipi_handler(int irq, void *data)
->  {
-> -	do_handle_IPI(irq - ipi_irq_base);
-> +	do_handle_IPI(irq_to_ipi(irq));
->  	return IRQ_HANDLED;
->  }
->  
->  static void smp_cross_call(const struct cpumask *target, unsigned int ipinr)
->  {
-> +	unsigned int cpu;
-> +
->  	trace_ipi_raise(target, ipi_types[ipinr]);
-> -	__ipi_send_mask(ipi_desc[ipinr], target);
-> +
-> +	if (!percpu_ipi_descs)
-> +		__ipi_send_mask(get_ipi_desc(0, ipinr), target);
-> +	else
-> +		for_each_cpu(cpu, target)
-> +			__ipi_send_single(get_ipi_desc(cpu, ipinr), cpu);
-
-Having a helper for this construct would definitely be a good thing:
-
-@@ -924,15 +919,20 @@ static void __noreturn ipi_cpu_crash_stop(unsigned int cpu, struct pt_regs *regs
- #endif
- }
- 
--static void arm64_backtrace_ipi(cpumask_t *mask)
-+static void arm64_send_ipi(const cpumask_t *mask, unsigned int nr)
- {
- 	unsigned int cpu;
- 
- 	if (!percpu_ipi_descs)
--		__ipi_send_mask(get_ipi_desc(0, IPI_CPU_BACKTRACE), mask);
-+		__ipi_send_mask(get_ipi_desc(0, nr), mask);
- 	else
- 		for_each_cpu(cpu, mask)
--			__ipi_send_single(get_ipi_desc(cpu, IPI_CPU_BACKTRACE), cpu);
-+			__ipi_send_single(get_ipi_desc(cpu, nr), cpu);
-+}
-+
-+static void arm64_backtrace_ipi(cpumask_t *mask)
-+{
-+	arm64_send_ipi(mask, IPI_CPU_BACKTRACE);
- }
- 
-and similarly for smp_cross_call().
-
->  }
->  
->  static bool ipi_should_be_nmi(enum ipi_msg_type ipi)
-> @@ -1046,11 +1083,15 @@ static void ipi_setup(int cpu)
->  		return;
->  
->  	for (i = 0; i < nr_ipi; i++) {
-> -		if (ipi_should_be_nmi(i)) {
-> -			prepare_percpu_nmi(ipi_irq_base + i);
-> -			enable_percpu_nmi(ipi_irq_base + i, 0);
-> +		if (!percpu_ipi_descs) {
-> +			if (ipi_should_be_nmi(i)) {
-> +				prepare_percpu_nmi(ipi_irq_base + i);
-> +				enable_percpu_nmi(ipi_irq_base + i, 0);
-> +			} else {
-> +				enable_percpu_irq(ipi_irq_base + i, 0);
-> +			}
->  		} else {
-> -			enable_percpu_irq(ipi_irq_base + i, 0);
-> +			enable_irq(irq_desc_get_irq(get_ipi_desc(cpu, i)));
->  		}
->  	}
->  }
-> @@ -1064,44 +1105,77 @@ static void ipi_teardown(int cpu)
->  		return;
->  
->  	for (i = 0; i < nr_ipi; i++) {
-> -		if (ipi_should_be_nmi(i)) {
-> -			disable_percpu_nmi(ipi_irq_base + i);
-> -			teardown_percpu_nmi(ipi_irq_base + i);
-> +		if (!percpu_ipi_descs) {
-> +			if (ipi_should_be_nmi(i)) {
-> +				disable_percpu_nmi(ipi_irq_base + i);
-> +				teardown_percpu_nmi(ipi_irq_base + i);
-> +			} else {
-> +				disable_percpu_irq(ipi_irq_base + i);
-> +			}
->  		} else {
-> -			disable_percpu_irq(ipi_irq_base + i);
-> +			disable_irq(irq_desc_get_irq(get_ipi_desc(cpu, i)));
->  		}
->  	}
->  }
->  #endif
->  
-> -void __init set_smp_ipi_range(int ipi_base, int n)
-> +static void ipi_setup_ppi(int ipi)
-
-This sets up SGIs, not PPIs. They are indeed Per Processor Interrupts,
-but given that you use "lpi" for GICv5, consider naming it
-consistently.
-
-Thanks,
-
-	M.
-
--- 
-Without deviation from the norm, progress is not possible.
+Rob
 
