@@ -1,135 +1,226 @@
-Return-Path: <devicetree+bounces-189352-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-189353-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1CDF6AE7ABA
-	for <lists+devicetree@lfdr.de>; Wed, 25 Jun 2025 10:48:33 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id D8A5DAE7AC0
+	for <lists+devicetree@lfdr.de>; Wed, 25 Jun 2025 10:49:05 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id B42193A8235
-	for <lists+devicetree@lfdr.de>; Wed, 25 Jun 2025 08:48:07 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id CE8BF1BC45D7
+	for <lists+devicetree@lfdr.de>; Wed, 25 Jun 2025 08:49:03 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E845D28981D;
-	Wed, 25 Jun 2025 08:47:08 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="dV5HAFvz"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id CCDE929AB03;
+	Wed, 25 Jun 2025 08:47:11 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wr1-f43.google.com (mail-wr1-f43.google.com [209.85.221.43])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from leonov.paulk.fr (leonov.paulk.fr [185.233.101.22])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2B8E5285CBC;
-	Wed, 25 Jun 2025 08:47:06 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.43
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D4A2228DF36;
+	Wed, 25 Jun 2025 08:47:09 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.233.101.22
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1750841228; cv=none; b=qLVrF7CJThM3QgUrFUSHzSG3EdmRxS88XV0d+N3fSGTFIL11TUbkAvmuadFLkUjZtSPZ3+i2CejhF960lNlY3/KMTY+LMO9NmOU31cCHP7md/VKcyV01nudNZ+M5TypKcIYjWEP38lU8i+huKfeztWP435BrRrEvOxKA+WWBldI=
+	t=1750841231; cv=none; b=ir9lKydMHDKN7CY5m1jQ3pCowSxwlQckv1Sbrurehx3xc8QqYq2ccARiTFbUQgLYEG1BetK28SzA6CauiQiaWcbvhz8L9Kh7VHF4Dt5c7pkQYp6JqdytnLCehI4YYqkKdK2KjQe9AV7vyvVDFG8Eqd3mg0yD5q2WcKAJXiwuf1g=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1750841228; c=relaxed/simple;
-	bh=lDA2+D4K8jLzcqWHyNUWKnoO1uZ3+NKKkE0bfDP7PF0=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=W4KQkud+D03U+3UEgho4O2IwSevxZbg1E4aWVeRAgAaRinB6gq9+ll5UbGERtkSTf9ZSd54u536KBq6bmpZ6EbUVFJbKHphdQ5y2u7/E2konx9kNyIJF8XxOuVIrEbXnHDOx2nlaobhoTYuABCymrO8UL6BTutv4wq1nCWxGxpQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=dV5HAFvz; arc=none smtp.client-ip=209.85.221.43
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-wr1-f43.google.com with SMTP id ffacd0b85a97d-3a6e8b1fa37so1553127f8f.2;
-        Wed, 25 Jun 2025 01:47:06 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1750841225; x=1751446025; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=aiq9kMFH9F7vJnvGPd+O1hgKLbEQsqIi3Mrcnkf+nZA=;
-        b=dV5HAFvzM3RVLrldFx0l5VSQ9tjlkD3iHut57qObmqtkKtd4OLMsaixknnDVTew9Ai
-         90QuWgLIpRcB7ANPHYf1aYd5K3NnnviNKOjoNH/xpvA3Bubi1mnsCKkPGu1OmZM43PnF
-         tkQcjhboIi4MCnipz3+5NPCBIAs/M5+TxL2dVpov7gVD39GWcVuU1uBDuUSZboMXKKjZ
-         gUvhJZR3z3AqgMjoFsRHSGEfcSbB+hXGH6mIgMhb1Pntue0KkOy2xo47KCLtk0m3i4fx
-         05XMCtiGVVmjwmhpzxl3iODeb7dwqUzz6K4L0xCPSYCFObuFc7qP7ITJ494KI4tZc31S
-         UhJQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1750841225; x=1751446025;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=aiq9kMFH9F7vJnvGPd+O1hgKLbEQsqIi3Mrcnkf+nZA=;
-        b=M8CCMpQMSyYtz3SYo4kT1FPvF6uApx9g5Xn8C0TmxSjDzmWlKyDlat6Yz6ZskeFYwK
-         mvkp0gqWGmsfF2jv6/3jFuuzcYnW5feCPIC3MgxngQrlnbLMszmFwoLv2HPHwX5ijuKw
-         vsPgQOBUbMRjw8dLVVim8mWN4EvqSIRy2750MbXFoYo84caGEqCcl0mXabPRGxfsq2FL
-         LgIwFshLPTCCBBfDeCimjV5u+D99YLzJrv4HmM9IzVF0Pyl8UVyrOxmOBeYcu04I29GM
-         k6itXdyMGJY1NiW6/R2URwHIh87B2VgSpL75obFlcFe5rsBK66IyKO63l3hlTPwjbtci
-         RLrg==
-X-Forwarded-Encrypted: i=1; AJvYcCU/6tlNdLh9Ts8IB2KdzePYYOFAOzVVG/4LqvRNY+ZYCDf0J969cD45d3mGMKUazwNxCrDnl1vJIeKo@vger.kernel.org, AJvYcCWTV1QhZWOiDkUTA9xQVIpDgjrRH9jcPaYXCGLxTWklUHKpBoNxykQiA9yhlwhXIBsF4AfQijVjFtSlM9LmNv++Ad4=@vger.kernel.org, AJvYcCWjSGk6bcuXPAurq55CXDIDlOioF7mkP37Z2BH1bNLZ9U6R7i34CDW1+MNJWgFydpiXUsbhSBy1@vger.kernel.org
-X-Gm-Message-State: AOJu0YyfnEfzeI24XWE7E00BYyQ6izW6iXolClknZKIY01zPMTRoGEbF
-	uIy1axr2H73CrvCxhDZMioXJQcEiR9kqNwQCJ3bBmM++zf2mrm4a6rlFA2PtQDaznpXIAAYsCne
-	RkBJa+SrhJoBeqMkKpDgUbR3k6n0RRKc=
-X-Gm-Gg: ASbGncuiTY57QAUllPlJWOOq/H8huvF6DSjvmqhGdgV0Xdhnu3Sd5fsqwZRIMapq+SM
-	lQwKuGTtwtQsiXZNRgQihcgu6xO55nqPPAoqRRPSwotcbM/e9KouW4hjiCtVjGbmDbX5yIg3VCI
-	9Q2Kg+aMQZvN+A20b46OPKZgelYr4LpvlMhCkpZRbsXhgdQg==
-X-Google-Smtp-Source: AGHT+IFChcgu3Oo7mLs5bbOfibDzsRiAxGriJGS52bXullFp8cPPdshfQTKjsMrNP8w1Na4ld5d5MyRAGXEBmCASjVQ=
-X-Received: by 2002:a05:6000:26d2:b0:3a5:2cf3:d6ab with SMTP id
- ffacd0b85a97d-3a6ed6464d7mr1623447f8f.39.1750841225180; Wed, 25 Jun 2025
- 01:47:05 -0700 (PDT)
+	s=arc-20240116; t=1750841231; c=relaxed/simple;
+	bh=5DFnaMl8KPQFxZg9FtmxKd82C1J6wGByoHO9CIwmHDk=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=HOAWwkWwkdp/iphM1JxTHT/nKcR0seXrJDUopdoFlXMntIMIEwI58HXuLgKN7uhyFMH8b7rDLSjT45Od9+DBMYe72/dlWauv3vRPDYdj33bngbEz/+bijeH8YF4miTIWydz1BA2cBUEDixDkLWhDmQCliu7YFOHZDYHPrdXpDgE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=sys-base.io; spf=pass smtp.mailfrom=sys-base.io; arc=none smtp.client-ip=185.233.101.22
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=sys-base.io
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=sys-base.io
+Received: from laika.paulk.fr (12.234.24.109.rev.sfr.net [109.24.234.12])
+	by leonov.paulk.fr (Postfix) with ESMTPS id A55D21F00057;
+	Wed, 25 Jun 2025 08:47:00 +0000 (UTC)
+Received: by laika.paulk.fr (Postfix, from userid 65534)
+	id A8CA9AC7A6A; Wed, 25 Jun 2025 08:46:57 +0000 (UTC)
+X-Spam-Level: 
+Received: from shepard (unknown [192.168.1.1])
+	by laika.paulk.fr (Postfix) with ESMTPSA id B42DBAC7A56;
+	Wed, 25 Jun 2025 08:46:54 +0000 (UTC)
+Date: Wed, 25 Jun 2025 10:46:52 +0200
+From: Paul Kocialkowski <paulk@sys-base.io>
+To: Parthiban Nallathambi <parthiban@linumiz.com>
+Cc: Joerg Roedel <joro@8bytes.org>, Will Deacon <will@kernel.org>,
+	Robin Murphy <robin.murphy@arm.com>, Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>, Chen-Yu Tsai <wens@csie.org>,
+	Jernej Skrabec <jernej.skrabec@gmail.com>,
+	Samuel Holland <samuel@sholland.org>,
+	Maxime Ripard <mripard@kernel.org>,
+	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+	Thomas Zimmermann <tzimmermann@suse.de>,
+	David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
+	Michael Turquette <mturquette@baylibre.com>,
+	Stephen Boyd <sboyd@kernel.org>,
+	Philipp Zabel <p.zabel@pengutronix.de>,
+	Linus Walleij <linus.walleij@linaro.org>,
+	Vinod Koul <vkoul@kernel.org>,
+	Kishon Vijay Abraham I <kishon@kernel.org>, iommu@lists.linux.dev,
+	devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+	linux-sunxi@lists.linux.dev, linux-kernel@vger.kernel.org,
+	dri-devel@lists.freedesktop.org, linux-clk@vger.kernel.org,
+	linux-gpio@vger.kernel.org, linux-phy@lists.infradead.org
+Subject: Re: [PATCH 10/22] pinctrl: sunxi: add missed lvds pins for a100/a133
+Message-ID: <aFu3fAMa8KPwjPbX@shepard>
+References: <20241227-a133-display-support-v1-0-13b52f71fb14@linumiz.com>
+ <20241227-a133-display-support-v1-10-13b52f71fb14@linumiz.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <721f6e0e09777e0842ecaca4578bc50c953d2428.1750838954.git.geert+renesas@glider.be>
-In-Reply-To: <721f6e0e09777e0842ecaca4578bc50c953d2428.1750838954.git.geert+renesas@glider.be>
-From: "Lad, Prabhakar" <prabhakar.csengg@gmail.com>
-Date: Wed, 25 Jun 2025 09:46:36 +0100
-X-Gm-Features: Ac12FXwGDD0wK9R16XQVBpAwEzQWjUk-oPFNtpG5nL9WzdpZiuFF_pkYBSIMwKI
-Message-ID: <CA+V-a8sj0cVc2y6HbQjfPWxH9GRaDootusg+NARQdOv1DKxV1g@mail.gmail.com>
-Subject: Re: [PATCH] dt-bindings: net: Rename renesas,r9a09g057-gbeth.yaml
-To: Geert Uytterhoeven <geert+renesas@glider.be>
-Cc: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>, 
-	Andrew Lunn <andrew+netdev@lunn.ch>, "David S . Miller" <davem@davemloft.net>, 
-	Eric Dumazet <edumazet@google.com>, Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>, 
-	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	netdev@vger.kernel.org, linux-renesas-soc@vger.kernel.org, 
-	devicetree@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: multipart/signed; micalg=pgp-sha512;
+	protocol="application/pgp-signature"; boundary="eDJzuACllP3V3fib"
+Content-Disposition: inline
+In-Reply-To: <20241227-a133-display-support-v1-10-13b52f71fb14@linumiz.com>
+
+
+--eDJzuACllP3V3fib
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
 Content-Transfer-Encoding: quoted-printable
 
-On Wed, Jun 25, 2025 at 9:11=E2=80=AFAM Geert Uytterhoeven
-<geert+renesas@glider.be> wrote:
->
-> The DT bindings file "renesas,r9a09g057-gbeth.yaml" applies to a whole
-> family of SoCs, and uses "renesas,rzv2h-gbeth" as a fallback compatible
-> value.  Hence rename it to the more generic "renesas,rzv2h-gbeth.yaml".
->
-> Signed-off-by: Geert Uytterhoeven <geert+renesas@glider.be>
+Hi and thanks for your work!
+
+On Fri 27 Dec 24, 16:37, Parthiban Nallathambi wrote:
+> lvds, lcd, dsi all shares the same GPIO D bank and lvds0
+> data 3 lines and lvds1 pins are missed, add them.
+
+Would it also make sense to submit device-tree pin definitions here?
+
+Thanks!
+
+Paul
+
+> Signed-off-by: Parthiban Nallathambi <parthiban@linumiz.com>
 > ---
->  .../{renesas,r9a09g057-gbeth.yaml =3D> renesas,rzv2h-gbeth.yaml}  | 2 +-
->  1 file changed, 1 insertion(+), 1 deletion(-)
->  rename Documentation/devicetree/bindings/net/{renesas,r9a09g057-gbeth.ya=
-ml =3D> renesas,rzv2h-gbeth.yaml} (98%)
->
-Reviewed-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+>  drivers/pinctrl/sunxi/pinctrl-sun50i-a100.c | 12 ++++++++++++
+>  1 file changed, 12 insertions(+)
+>=20
+> diff --git a/drivers/pinctrl/sunxi/pinctrl-sun50i-a100.c b/drivers/pinctr=
+l/sunxi/pinctrl-sun50i-a100.c
+> index df90c75fb3c5..b97de80ae2f3 100644
+> --- a/drivers/pinctrl/sunxi/pinctrl-sun50i-a100.c
+> +++ b/drivers/pinctrl/sunxi/pinctrl-sun50i-a100.c
+> @@ -256,72 +256,84 @@ static const struct sunxi_desc_pin a100_pins[] =3D {
+>  		  SUNXI_FUNCTION(0x0, "gpio_in"),
+>  		  SUNXI_FUNCTION(0x1, "gpio_out"),
+>  		  SUNXI_FUNCTION(0x2, "lcd0"),		/* D12 */
+> +		  SUNXI_FUNCTION(0x3, "lvds0"),		/* D3P */
+>  		  SUNXI_FUNCTION(0x4, "dsi0"),		/* DP3 */
+>  		  SUNXI_FUNCTION_IRQ_BANK(0x6, 2, 8)),
+>  	SUNXI_PIN(SUNXI_PINCTRL_PIN(D, 9),
+>  		  SUNXI_FUNCTION(0x0, "gpio_in"),
+>  		  SUNXI_FUNCTION(0x1, "gpio_out"),
+>  		  SUNXI_FUNCTION(0x2, "lcd0"),		/* D13 */
+> +		  SUNXI_FUNCTION(0x3, "lvds0"),		/* D3N */
+>  		  SUNXI_FUNCTION(0x4, "dsi0"),		/* DM3 */
+>  		  SUNXI_FUNCTION_IRQ_BANK(0x6, 2, 9)),
+>  	SUNXI_PIN(SUNXI_PINCTRL_PIN(D, 10),
+>  		  SUNXI_FUNCTION(0x0, "gpio_in"),
+>  		  SUNXI_FUNCTION(0x1, "gpio_out"),
+>  		  SUNXI_FUNCTION(0x2, "lcd0"),		/* D14 */
+> +		  SUNXI_FUNCTION(0x3, "lvds1"),		/* D0P */
+>  		  SUNXI_FUNCTION(0x4, "spi1"),		/* CS */
+>  		  SUNXI_FUNCTION_IRQ_BANK(0x6, 2, 10)),
+>  	SUNXI_PIN(SUNXI_PINCTRL_PIN(D, 11),
+>  		  SUNXI_FUNCTION(0x0, "gpio_in"),
+>  		  SUNXI_FUNCTION(0x1, "gpio_out"),
+>  		  SUNXI_FUNCTION(0x2, "lcd0"),		/* D15 */
+> +		  SUNXI_FUNCTION(0x3, "lvds1"),		/* D0N */
+>  		  SUNXI_FUNCTION(0x4, "spi1"),		/* CLK */
+>  		  SUNXI_FUNCTION_IRQ_BANK(0x6, 2, 11)),
+>  	SUNXI_PIN(SUNXI_PINCTRL_PIN(D, 12),
+>  		  SUNXI_FUNCTION(0x0, "gpio_in"),
+>  		  SUNXI_FUNCTION(0x1, "gpio_out"),
+>  		  SUNXI_FUNCTION(0x2, "lcd0"),		/* D18 */
+> +		  SUNXI_FUNCTION(0x3, "lvds1"),		/* D1P */
+>  		  SUNXI_FUNCTION(0x4, "spi1"),		/* MOSI */
+>  		  SUNXI_FUNCTION_IRQ_BANK(0x6, 2, 12)),
+>  	SUNXI_PIN(SUNXI_PINCTRL_PIN(D, 13),
+>  		  SUNXI_FUNCTION(0x0, "gpio_in"),
+>  		  SUNXI_FUNCTION(0x1, "gpio_out"),
+>  		  SUNXI_FUNCTION(0x2, "lcd0"),		/* D19 */
+> +		  SUNXI_FUNCTION(0x3, "lvds1"),		/* D1N */
+>  		  SUNXI_FUNCTION(0x4, "spi1"),		/* MISO */
+>  		  SUNXI_FUNCTION_IRQ_BANK(0x6, 2, 13)),
+>  	SUNXI_PIN(SUNXI_PINCTRL_PIN(D, 14),
+>  		  SUNXI_FUNCTION(0x0, "gpio_in"),
+>  		  SUNXI_FUNCTION(0x1, "gpio_out"),
+>  		  SUNXI_FUNCTION(0x2, "lcd0"),		/* D20 */
+> +		  SUNXI_FUNCTION(0x3, "lvds1"),		/* D2P */
+>  		  SUNXI_FUNCTION(0x4, "uart3"),		/* TX */
+>  		  SUNXI_FUNCTION_IRQ_BANK(0x6, 2, 14)),
+>  	SUNXI_PIN(SUNXI_PINCTRL_PIN(D, 15),
+>  		  SUNXI_FUNCTION(0x0, "gpio_in"),
+>  		  SUNXI_FUNCTION(0x1, "gpio_out"),
+>  		  SUNXI_FUNCTION(0x2, "lcd0"),		/* D21 */
+> +		  SUNXI_FUNCTION(0x3, "lvds1"),		/* D2N */
+>  		  SUNXI_FUNCTION(0x4, "uart3"),		/* RX */
+>  		  SUNXI_FUNCTION_IRQ_BANK(0x6, 2, 15)),
+>  	SUNXI_PIN(SUNXI_PINCTRL_PIN(D, 16),
+>  		  SUNXI_FUNCTION(0x0, "gpio_in"),
+>  		  SUNXI_FUNCTION(0x1, "gpio_out"),
+>  		  SUNXI_FUNCTION(0x2, "lcd0"),		/* D22 */
+> +		  SUNXI_FUNCTION(0x3, "lvds1"),		/* CKP */
+>  		  SUNXI_FUNCTION(0x4, "uart3"),		/* RTS */
+>  		  SUNXI_FUNCTION_IRQ_BANK(0x6, 2, 16)),
+>  	SUNXI_PIN(SUNXI_PINCTRL_PIN(D, 17),
+>  		  SUNXI_FUNCTION(0x0, "gpio_in"),
+>  		  SUNXI_FUNCTION(0x1, "gpio_out"),
+>  		  SUNXI_FUNCTION(0x2, "lcd0"),		/* D23 */
+> +		  SUNXI_FUNCTION(0x3, "lvds1"),		/* CKN */
+>  		  SUNXI_FUNCTION(0x4, "uart3"),		/* CTS */
+>  		  SUNXI_FUNCTION_IRQ_BANK(0x6, 2, 17)),
+>  	SUNXI_PIN(SUNXI_PINCTRL_PIN(D, 18),
+>  		  SUNXI_FUNCTION(0x0, "gpio_in"),
+>  		  SUNXI_FUNCTION(0x1, "gpio_out"),
+>  		  SUNXI_FUNCTION(0x2, "lcd0"),		/* CLK */
+> +		  SUNXI_FUNCTION(0x3, "lvds1"),		/* D3P */
+>  		  SUNXI_FUNCTION(0x4, "uart4"),		/* TX */
+>  		  SUNXI_FUNCTION_IRQ_BANK(0x6, 2, 18)),
+>  	SUNXI_PIN(SUNXI_PINCTRL_PIN(D, 19),
+>  		  SUNXI_FUNCTION(0x0, "gpio_in"),
+>  		  SUNXI_FUNCTION(0x1, "gpio_out"),
+>  		  SUNXI_FUNCTION(0x2, "lcd0"),		/* DE */
+> +		  SUNXI_FUNCTION(0x3, "lvds1"),		/* D3N */
+>  		  SUNXI_FUNCTION(0x4, "uart4"),		/* RX */
+>  		  SUNXI_FUNCTION_IRQ_BANK(0x6, 2, 19)),
+>  	SUNXI_PIN(SUNXI_PINCTRL_PIN(D, 20),
+>=20
+> --=20
+> 2.39.5
+>=20
 
-Cheers,
-Prabhakar
+--=20
+Paul Kocialkowski,
 
-> diff --git a/Documentation/devicetree/bindings/net/renesas,r9a09g057-gbet=
-h.yaml b/Documentation/devicetree/bindings/net/renesas,rzv2h-gbeth.yaml
-> similarity index 98%
-> rename from Documentation/devicetree/bindings/net/renesas,r9a09g057-gbeth=
-.yaml
-> rename to Documentation/devicetree/bindings/net/renesas,rzv2h-gbeth.yaml
-> index 9961253d1d411bd0..23e39bcea96b31db 100644
-> --- a/Documentation/devicetree/bindings/net/renesas,r9a09g057-gbeth.yaml
-> +++ b/Documentation/devicetree/bindings/net/renesas,rzv2h-gbeth.yaml
-> @@ -1,7 +1,7 @@
->  # SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
->  %YAML 1.2
->  ---
-> -$id: http://devicetree.org/schemas/net/renesas,r9a09g057-gbeth.yaml#
-> +$id: http://devicetree.org/schemas/net/renesas,rzv2h-gbeth.yaml#
->  $schema: http://devicetree.org/meta-schemas/core.yaml#
->
->  title: GBETH glue layer for Renesas RZ/V2H(P) (and similar SoCs)
-> --
-> 2.43.0
->
->
+Independent contractor - sys-base - https://www.sys-base.io/
+Free software developer - https://www.paulk.fr/
+
+Expert in multimedia, graphics and embedded hardware support with Linux.
+
+--eDJzuACllP3V3fib
+Content-Type: application/pgp-signature; name=signature.asc
+
+-----BEGIN PGP SIGNATURE-----
+
+iQIzBAEBCgAdFiEEAbcMXZQMtj1fphLChP3B6o/ulQwFAmhbt3wACgkQhP3B6o/u
+lQyEFg//TrQuoq7rBWw2GiGLkr841GKFMfwbOgCvkZ1O7uCpLuCvW5wITVjF4qW8
+flSBcs6qcLbz66ZXQS/86ukYfNUAvm1r4vfhJ3Ptf7m3ko5sCrkCNC3jtlukzG+k
+Eq4GzElnseT7TosPmjtImNkDjp3u/Vh/pxOdRnUHzi6N7+jGWLvU72LcF6LJKq4d
+ftamg9783Xb1QAjNnot6b+fLooAtozg34ftrIe2SE2KXt+U7qeiXtrxNerNAd6Br
+Ld34QB2oMk23sar7GQTPgvoJRCiLUNEV3hJexXf/FNHz9OviwE8irhf6BBjNz7eQ
+XwnsDeqkt5p2IF/ClwfrlsviI8HRAzqX1G7WDtuPqHTsDm67QJb8LztQ4hAUqpmS
+hUjh+BowsXfez8fVAqyp+onplRVK07SebprsBd026Uhb/cG5kBMtg3Z5H+ENCFXg
+TDLc46jsp32Mplo6wP3CVFHz0qurThqF6L8XyzIn6VoreU5uX/FRkN8jAuWtmXup
+rYNpDSE54yEL5c5P0bO1fLMtwBNKZlHEhgxHlZJCNvxgegJrtXT9hDJfYC0cnCoa
+mjeOwFuo2wZziH22TX/5QxhZzUZzOVR0CeMPn+TjJhX/qgTRXwS4DO8RexsKHHm2
+u2Fj8LAaR6bglReFWl4F+LKIeo2AswAzTyS6581R7n62JhNuXGk=
+=9BCo
+-----END PGP SIGNATURE-----
+
+--eDJzuACllP3V3fib--
 
