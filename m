@@ -1,82 +1,329 @@
-Return-Path: <devicetree+bounces-189662-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-189663-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 35078AE8D01
-	for <lists+devicetree@lfdr.de>; Wed, 25 Jun 2025 20:51:33 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9042CAE8D14
+	for <lists+devicetree@lfdr.de>; Wed, 25 Jun 2025 20:53:49 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id D11367AADAF
-	for <lists+devicetree@lfdr.de>; Wed, 25 Jun 2025 18:47:42 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 48B33189FBC5
+	for <lists+devicetree@lfdr.de>; Wed, 25 Jun 2025 18:54:05 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0DED72BEFE2;
-	Wed, 25 Jun 2025 18:49:00 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 99C662D5C8B;
+	Wed, 25 Jun 2025 18:53:44 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="oMJBhwH4"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="ppeUKjip"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D88942690F9;
-	Wed, 25 Jun 2025 18:48:59 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6A5051CAA7B;
+	Wed, 25 Jun 2025 18:53:44 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1750877339; cv=none; b=ZVSF+e9xHCKrLZT5JGcVznVJYzOvwHBAgocUZH6c2jkRJcF5y/aGDBb8N/CmMqLQoCITAcMGE//1E39WkhimYL/gmL0b2zDB1ii0pWf0tLcNACMzm1Nluqe4Spparke+EFNKS+cR4rlnuMZgLTrt+2jqdTjrqouU3rrjySvK7oM=
+	t=1750877624; cv=none; b=KzkY2rR7MQkK6FaTzpuR0D1Sw4q5UZ30xT3TVZgkBF4Kf491C9rZuSAZlxasdYOrDsUbG3oPmt5vBikwVYaB1t79PapejtK2xSheXGrS6Ss3EDL+QnP8LjqZyNyf97q4hd5CaIlWDEv2EtIes2+22wmaX7bYjyYCdVBavrn6Oo0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1750877339; c=relaxed/simple;
-	bh=7ax4htsn3Fwg4rqcMH5Pa0holPGvKyZnXDOQSai1m+Y=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=c1oSu+GWNMR01R+S3a/CJF8PnlHFugmv8TuCRmiDZodyvzeluAkw9sTV/Lhg83JlI63C+E1XrAwUF6+kVo/tGeUQgEgDnEQIMCIgqy94JrZcONiTzoC0kHoufg46pjX+nPGaJ2hMkLDHPP7j0ZxIPbMWUBUvdW+q3N+MnE/dq2Q=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=oMJBhwH4; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 3E275C4CEEA;
-	Wed, 25 Jun 2025 18:48:59 +0000 (UTC)
+	s=arc-20240116; t=1750877624; c=relaxed/simple;
+	bh=8MrvaYOz4FiqCxr7LmGqB3MEhbBqse7v9vTKMvsiFOM=;
+	h=Date:Message-ID:From:To:Cc:Subject:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=MwmWUega1XUjaFRmVOf0J3eYwBBIm1hz5aVEoaAQlCF7b5iOfiEch9Tb0ZcfMqo4/H1/AbNdMtPjgR+PdyAs5iZS1sKmswP9IxdQyCk617Ls3kTkGvohhUoXSJr1AaugTbZoQ2IJhr8O5OD2eMVNQPssvHvJQJv7W6Q/zWzpv5s=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=ppeUKjip; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id BB210C4CEEA;
+	Wed, 25 Jun 2025 18:53:43 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1750877339;
-	bh=7ax4htsn3Fwg4rqcMH5Pa0holPGvKyZnXDOQSai1m+Y=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=oMJBhwH48fKOA/r9ZNid8t+OJZMQ7gZ72pT477GQ3YTF4h+oEa/k7bHp3DeM36GoC
-	 zlJLc7xnHhz4F6ZMHEeMcsTDLt7yl4uibq3g/vDB4omZVZmLRugakQNcEm8ZGN6Ys9
-	 ZmGhGC9PR5B2LRzRI/mE3HOPFoSgq3yiE2XyZCOBhg7kQhesGODPfiKqOLhm3p5FRS
-	 htVxX6Z3Rc5jsd0bWE6Li/Q/+jqy2qpWih8Q+mehYLGguD0XaogQSGRK2VanO6HgzO
-	 /0NxDP/z1XdO68VkYBOwzTwS16JD5KtVDvId5J6ySangHT2wLOCFwj4OaHWWPmxVmU
-	 I5RVN3qcEQL7Q==
-Date: Wed, 25 Jun 2025 13:48:58 -0500
-From: Rob Herring <robh@kernel.org>
-To: Chintan Vankar <c-vankar@ti.com>
-Cc: Thorsten Blum <thorsten.blum@linux.dev>, Andrew Davis <afd@ti.com>,
-	Conor Dooley <conor+dt@kernel.org>,
+	s=k20201202; t=1750877623;
+	bh=8MrvaYOz4FiqCxr7LmGqB3MEhbBqse7v9vTKMvsiFOM=;
+	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
+	b=ppeUKjipB2yJbHdKKPlRyVDqbUX77oJxRhZL7ud1YUoWYEEc27uWBBlAZLBezVolW
+	 ChewIFEAAclm7IdOJPUUGDjVZ3/MC0WzysEt8xqtZhMGJw4yJc6tZeINByuTKz+boE
+	 mhJR9E962ubHGzH0zDyasotU1RFr2cXiBV6mV/yQvTWXA5gDQ2BcKdR56Y3+jPDvJq
+	 wZvA5EjnucM0MTLaIkoACEQuaQo7rhBTC4CQ+sYZkwrsTT2uurEexbd/VVyqEs9Z3h
+	 9paYrB25VlQFRZ1OhgEbXOFw+pJLk1BlNon+BKDU+oehoL3sbV4KqlXl1PUIgVhP2Y
+	 vtjkp9a0WbjMw==
+Received: from sofa.misterjones.org ([185.219.108.64] helo=goblin-girl.misterjones.org)
+	by disco-boy.misterjones.org with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+	(Exim 4.95)
+	(envelope-from <maz@kernel.org>)
+	id 1uUVFd-00A04o-Gz;
+	Wed, 25 Jun 2025 19:53:41 +0100
+Date: Wed, 25 Jun 2025 19:53:41 +0100
+Message-ID: <861pr7d556.wl-maz@kernel.org>
+From: Marc Zyngier <maz@kernel.org>
+To: Lorenzo Pieralisi <lpieralisi@kernel.org>
+Cc: Thomas Gleixner <tglx@linutronix.de>,
+	Rob Herring <robh@kernel.org>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Peter Rosin <peda@axentia.se>, linux-kernel@vger.kernel.org,
-	devicetree@vger.kernel.org, s-vadapalli@ti.com, vigneshr@ti.com,
-	nm@ti.com, danishanwar@ti.com
-Subject: Re: [PATCH 1/2] devicetree: bindings: mux: reg-mux: Add support for
- new property 'mux-reg-masks-state'
-Message-ID: <20250625184858.GA2004209-robh@kernel.org>
-References: <20250605063422.3813260-1-c-vankar@ti.com>
- <20250605063422.3813260-2-c-vankar@ti.com>
+	Conor Dooley <conor+dt@kernel.org>,
+	Catalin Marinas <catalin.marinas@arm.com>,
+	Will Deacon <will@kernel.org>,
+	Arnd Bergmann <arnd@arndb.de>,
+	Sascha Bischoff <sascha.bischoff@arm.com>,
+	Jonathan Cameron <Jonathan.Cameron@huawei.com>,
+	Timothy Hayes <timothy.hayes@arm.com>,
+	Bjorn Helgaas <bhelgaas@google.com>,
+	"Liam R. Howlett" <Liam.Howlett@oracle.com>,
+	Peter Maydell <peter.maydell@linaro.org>,
+	Mark Rutland <mark.rutland@arm.com>,
+	Jiri Slaby <jirislaby@kernel.org>,
+	linux-arm-kernel@lists.infradead.org,
+	linux-kernel@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	linux-pci@vger.kernel.org
+Subject: Re: [PATCH v5 18/27] arm64: smp: Support non-SGIs for IPIs
+In-Reply-To: <20250618-gicv5-host-v5-18-d9e622ac5539@kernel.org>
+References: <20250618-gicv5-host-v5-0-d9e622ac5539@kernel.org>
+	<20250618-gicv5-host-v5-18-d9e622ac5539@kernel.org>
+User-Agent: Wanderlust/2.15.9 (Almost Unreal) SEMI-EPG/1.14.7 (Harue)
+ FLIM-LB/1.14.9 (=?UTF-8?B?R29qxY0=?=) APEL-LB/10.8 EasyPG/1.0.0 Emacs/30.1
+ (aarch64-unknown-linux-gnu) MULE/6.0 (HANACHIRUSATO)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20250605063422.3813260-2-c-vankar@ti.com>
+MIME-Version: 1.0 (generated by SEMI-EPG 1.14.7 - "Harue")
+Content-Type: text/plain; charset=US-ASCII
+X-SA-Exim-Connect-IP: 185.219.108.64
+X-SA-Exim-Rcpt-To: lpieralisi@kernel.org, tglx@linutronix.de, robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org, catalin.marinas@arm.com, will@kernel.org, arnd@arndb.de, sascha.bischoff@arm.com, Jonathan.Cameron@huawei.com, timothy.hayes@arm.com, bhelgaas@google.com, Liam.Howlett@oracle.com, peter.maydell@linaro.org, mark.rutland@arm.com, jirislaby@kernel.org, linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org, devicetree@vger.kernel.org, linux-pci@vger.kernel.org
+X-SA-Exim-Mail-From: maz@kernel.org
+X-SA-Exim-Scanned: No (on disco-boy.misterjones.org); SAEximRunCond expanded to false
 
-On Thu, Jun 05, 2025 at 12:04:21PM +0530, Chintan Vankar wrote:
-> The DT binding for reg-mux currenly requires specifying register offset
-> and masks in the "mux-reg-masks" property, while corresponding register
-> values are defined in the "idle-states" property. This approach imposes a
-> constraint where "mux-reg-masks" and "idle-states" must remain
-> synchroniszed, adding complexity when configuring specific registers or a
-> set of registers with large memory spaces.
+On Wed, 18 Jun 2025 11:17:33 +0100,
+Lorenzo Pieralisi <lpieralisi@kernel.org> wrote:
+> 
+> From: Marc Zyngier <maz@kernel.org>
+> 
+> The arm64 arch has relied so far on GIC architectural software
+> generated interrupt (SGIs) to handle IPIs. Those are per-cpu
+> software generated interrupts.
+> 
+> arm64 architecture code that allocates the IPIs virtual IRQs and
+> IRQ descriptors was written accordingly.
+> 
+> On GICv5 systems, IPIs are implemented using LPIs that are not
+> per-cpu interrupts - they are just normal routable IRQs.
+> 
+> Add arch code to set-up IPIs on systems where they are handled
+> using normal routable IRQs.
+> 
+> For those systems, force the IRQ affinity (and make it immutable)
+> to the cpu a given IRQ was assigned to.
+> 
+> Signed-off-by: Marc Zyngier <maz@kernel.org>
+> [timothy.hayes@arm.com: fixed ipi/irq conversion, irq flags]
+> Signed-off-by: Timothy Hayes <timothy.hayes@arm.com>
+> [lpieralisi: changed affinity set-up, log]
+> Signed-off-by: Lorenzo Pieralisi <lpieralisi@kernel.org>
+> Cc: Will Deacon <will@kernel.org>
+> Cc: Catalin Marinas <catalin.marinas@arm.com>
+> ---
+>  arch/arm64/include/asm/smp.h |   7 ++-
+>  arch/arm64/kernel/smp.c      | 142 ++++++++++++++++++++++++++++++++-----------
+>  2 files changed, 114 insertions(+), 35 deletions(-)
+> 
+> diff --git a/arch/arm64/include/asm/smp.h b/arch/arm64/include/asm/smp.h
+> index 2510eec026f7..d6fd6efb66a6 100644
+> --- a/arch/arm64/include/asm/smp.h
+> +++ b/arch/arm64/include/asm/smp.h
+> @@ -53,7 +53,12 @@ extern void smp_init_cpus(void);
+>  /*
+>   * Register IPI interrupts with the arch SMP code
+>   */
+> -extern void set_smp_ipi_range(int ipi_base, int nr_ipi);
+> +extern void set_smp_ipi_range_percpu(int ipi_base, int nr_ipi, int ncpus);
+> +
+> +static inline void set_smp_ipi_range(int ipi_base, int n)
+> +{
+> +	set_smp_ipi_range_percpu(ipi_base, n, 0);
+> +}
+>  
+>  /*
+>   * Called from the secondary holding pen, this is the secondary CPU entry point.
+> diff --git a/arch/arm64/kernel/smp.c b/arch/arm64/kernel/smp.c
+> index 3b3f6b56e733..7fd6bec80750 100644
+> --- a/arch/arm64/kernel/smp.c
+> +++ b/arch/arm64/kernel/smp.c
+> @@ -83,7 +83,31 @@ enum ipi_msg_type {
+>  
+>  static int ipi_irq_base __ro_after_init;
+>  static int nr_ipi __ro_after_init = NR_IPI;
+> -static struct irq_desc *ipi_desc[MAX_IPI] __ro_after_init;
+> +
+> +struct ipi_descs {
+> +	struct irq_desc *descs[MAX_IPI];
+> +};
+> +
+> +static DEFINE_PER_CPU(struct ipi_descs, pcpu_ipi_desc);
 
-Sorry, but I don't follow why there's complexity. Having to support 2 
-different ways to express the same thing adds complexity we have to 
-maintain forever. I prefer to impose the complexity on the .dts than 
-maintainers.
+I wish we would make this __ro_after_init, but it doesn't see to be
+possible to do that. At least make it read_mostly, which may help a
+bit.
 
-Rob
+> +
+> +#define get_ipi_desc(__cpu, __ipi) (per_cpu_ptr(&pcpu_ipi_desc, __cpu)->descs[__ipi])
+> +
+> +static bool percpu_ipi_descs __ro_after_init;
+> +
+> +static int ipi_to_irq_percpu(int ipi, int cpu)
+> +{
+> +	return ipi_irq_base + (cpu * nr_ipi) + ipi;
+> +}
+> +
+> +static int ipi_to_irq(int ipi)
+> +{
+> +	return ipi_to_irq_percpu(ipi, 0);
+> +}
+> +
+> +static int irq_to_ipi(int irq)
+> +{
+> +	return (irq - ipi_irq_base) % nr_ipi;
+> +}
+
+Most of these helpers are used only once, and they are so similar that
+I get cross-eyed. Consider expanding them in their calling spot.
+
+>  
+>  static bool crash_stop;
+>  
+> @@ -844,7 +868,7 @@ int arch_show_interrupts(struct seq_file *p, int prec)
+>  		seq_printf(p, "%*s%u:%s", prec - 1, "IPI", i,
+>  			   prec >= 4 ? " " : "");
+>  		for_each_online_cpu(cpu)
+> -			seq_printf(p, "%10u ", irq_desc_kstat_cpu(ipi_desc[i], cpu));
+> +			seq_printf(p, "%10u ", irq_desc_kstat_cpu(get_ipi_desc(cpu, i), cpu));
+>  		seq_printf(p, "      %s\n", ipi_types[i]);
+>  	}
+>  
+> @@ -919,7 +943,13 @@ static void __noreturn ipi_cpu_crash_stop(unsigned int cpu, struct pt_regs *regs
+>  
+>  static void arm64_backtrace_ipi(cpumask_t *mask)
+>  {
+> -	__ipi_send_mask(ipi_desc[IPI_CPU_BACKTRACE], mask);
+> +	unsigned int cpu;
+> +
+> +	if (!percpu_ipi_descs)
+> +		__ipi_send_mask(get_ipi_desc(0, IPI_CPU_BACKTRACE), mask);
+> +	else
+> +		for_each_cpu(cpu, mask)
+> +			__ipi_send_single(get_ipi_desc(cpu, IPI_CPU_BACKTRACE), cpu);
+>  }
+>  
+>  void arch_trigger_cpumask_backtrace(const cpumask_t *mask, int exclude_cpu)
+> @@ -944,7 +974,7 @@ void kgdb_roundup_cpus(void)
+>  		if (cpu == this_cpu)
+>  			continue;
+>  
+> -		__ipi_send_single(ipi_desc[IPI_KGDB_ROUNDUP], cpu);
+> +		__ipi_send_single(get_ipi_desc(cpu, IPI_KGDB_ROUNDUP), cpu);
+>  	}
+>  }
+>  #endif
+> @@ -1013,14 +1043,21 @@ static void do_handle_IPI(int ipinr)
+>  
+>  static irqreturn_t ipi_handler(int irq, void *data)
+>  {
+> -	do_handle_IPI(irq - ipi_irq_base);
+> +	do_handle_IPI(irq_to_ipi(irq));
+>  	return IRQ_HANDLED;
+>  }
+>  
+>  static void smp_cross_call(const struct cpumask *target, unsigned int ipinr)
+>  {
+> +	unsigned int cpu;
+> +
+>  	trace_ipi_raise(target, ipi_types[ipinr]);
+> -	__ipi_send_mask(ipi_desc[ipinr], target);
+> +
+> +	if (!percpu_ipi_descs)
+> +		__ipi_send_mask(get_ipi_desc(0, ipinr), target);
+> +	else
+> +		for_each_cpu(cpu, target)
+> +			__ipi_send_single(get_ipi_desc(cpu, ipinr), cpu);
+
+Having a helper for this construct would definitely be a good thing:
+
+@@ -924,15 +919,20 @@ static void __noreturn ipi_cpu_crash_stop(unsigned int cpu, struct pt_regs *regs
+ #endif
+ }
+ 
+-static void arm64_backtrace_ipi(cpumask_t *mask)
++static void arm64_send_ipi(const cpumask_t *mask, unsigned int nr)
+ {
+ 	unsigned int cpu;
+ 
+ 	if (!percpu_ipi_descs)
+-		__ipi_send_mask(get_ipi_desc(0, IPI_CPU_BACKTRACE), mask);
++		__ipi_send_mask(get_ipi_desc(0, nr), mask);
+ 	else
+ 		for_each_cpu(cpu, mask)
+-			__ipi_send_single(get_ipi_desc(cpu, IPI_CPU_BACKTRACE), cpu);
++			__ipi_send_single(get_ipi_desc(cpu, nr), cpu);
++}
++
++static void arm64_backtrace_ipi(cpumask_t *mask)
++{
++	arm64_send_ipi(mask, IPI_CPU_BACKTRACE);
+ }
+ 
+and similarly for smp_cross_call().
+
+>  }
+>  
+>  static bool ipi_should_be_nmi(enum ipi_msg_type ipi)
+> @@ -1046,11 +1083,15 @@ static void ipi_setup(int cpu)
+>  		return;
+>  
+>  	for (i = 0; i < nr_ipi; i++) {
+> -		if (ipi_should_be_nmi(i)) {
+> -			prepare_percpu_nmi(ipi_irq_base + i);
+> -			enable_percpu_nmi(ipi_irq_base + i, 0);
+> +		if (!percpu_ipi_descs) {
+> +			if (ipi_should_be_nmi(i)) {
+> +				prepare_percpu_nmi(ipi_irq_base + i);
+> +				enable_percpu_nmi(ipi_irq_base + i, 0);
+> +			} else {
+> +				enable_percpu_irq(ipi_irq_base + i, 0);
+> +			}
+>  		} else {
+> -			enable_percpu_irq(ipi_irq_base + i, 0);
+> +			enable_irq(irq_desc_get_irq(get_ipi_desc(cpu, i)));
+>  		}
+>  	}
+>  }
+> @@ -1064,44 +1105,77 @@ static void ipi_teardown(int cpu)
+>  		return;
+>  
+>  	for (i = 0; i < nr_ipi; i++) {
+> -		if (ipi_should_be_nmi(i)) {
+> -			disable_percpu_nmi(ipi_irq_base + i);
+> -			teardown_percpu_nmi(ipi_irq_base + i);
+> +		if (!percpu_ipi_descs) {
+> +			if (ipi_should_be_nmi(i)) {
+> +				disable_percpu_nmi(ipi_irq_base + i);
+> +				teardown_percpu_nmi(ipi_irq_base + i);
+> +			} else {
+> +				disable_percpu_irq(ipi_irq_base + i);
+> +			}
+>  		} else {
+> -			disable_percpu_irq(ipi_irq_base + i);
+> +			disable_irq(irq_desc_get_irq(get_ipi_desc(cpu, i)));
+>  		}
+>  	}
+>  }
+>  #endif
+>  
+> -void __init set_smp_ipi_range(int ipi_base, int n)
+> +static void ipi_setup_ppi(int ipi)
+
+This sets up SGIs, not PPIs. They are indeed Per Processor Interrupts,
+but given that you use "lpi" for GICv5, consider naming it
+consistently.
+
+Thanks,
+
+	M.
+
+-- 
+Without deviation from the norm, progress is not possible.
 
