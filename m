@@ -1,194 +1,174 @@
-Return-Path: <devicetree+bounces-189276-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-189279-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 64DEFAE771F
-	for <lists+devicetree@lfdr.de>; Wed, 25 Jun 2025 08:34:09 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id B42B6AE772C
+	for <lists+devicetree@lfdr.de>; Wed, 25 Jun 2025 08:35:17 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 2C7BD5A6241
-	for <lists+devicetree@lfdr.de>; Wed, 25 Jun 2025 06:33:03 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id D328717C7D2
+	for <lists+devicetree@lfdr.de>; Wed, 25 Jun 2025 06:35:17 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8CF8E1F91F6;
-	Wed, 25 Jun 2025 06:32:43 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id DD7E51DF725;
+	Wed, 25 Jun 2025 06:35:13 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="bfAs61uU"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Z7iEtdGk"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C38811F4CBE;
-	Wed, 25 Jun 2025 06:32:41 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AA56637160;
+	Wed, 25 Jun 2025 06:35:13 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1750833163; cv=none; b=EsNhv5MVnfFbiAIElslE3elFBqN3xv7S6OKIQkY4JYlCTN1wh45tazlrklcH5nv1yWqkg6xR2l63SBGBQEt29hvAwvJkeQ4g3faAIYjBvss7IzGM3YjMn3KeMEusRYTpqDlHx1BHre56H19vgT4ZgoldTQWlAtElhHFRUYOF34s=
+	t=1750833313; cv=none; b=hsS6vLpOilXlQUu5muH0bWL6EAb+JlGtIvzX3YF8GKL8rPhZQTXArpYusB7D86IshPaObPqmgmDOX8lL5nugUBIYY3/2C6NwQOEhONwxPkCL2WEmHkcAvDicmBhEln+zR5vBzdiIy9/HIDGJskWkPEG2Y1+hGP82aI36VbcvkiQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1750833163; c=relaxed/simple;
-	bh=J2cIrhTJb1tAt+xF0cRJxyboRXrNf66T5q+wxh2vAbA=;
-	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
-	 MIME-Version; b=BBo+zbEajem0cB2aqkAU34tDcmJsjvWPryR6p5lLTGFn8WOBuRwajxw7pOh86l8Df/GVG5XtMnWVQwWsISC/iwVGgbLX8apq2/BN4oniChYV7R0O0eZCzIgP/bGkkp5RzRfzvpk5Q0ij0EkQWKK5zzC8y9NjFbVVP9hCGaq90tE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=qualcomm.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=bfAs61uU; arc=none smtp.client-ip=205.220.180.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=qualcomm.com
-Received: from pps.filterd (m0279869.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 55P2eiS0005909;
-	Wed, 25 Jun 2025 06:32:31 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	cc:content-transfer-encoding:date:from:in-reply-to:message-id
-	:mime-version:references:subject:to; s=qcppdkim1; bh=tikAt8XZpHo
-	ce+4trJX3SM0Syq+g0NPg1ReVquG7As4=; b=bfAs61uUPxubwsjzr6ldYEXY+aq
-	ST+9cjcqhO87rOpLzAP5vpjBhKdwXg9BhAFBXpRf8e1SsDdAd+KHTM6vH04wH2Xr
-	0VZJsyItCPvdoCyQEFePtGKHE+nCR1a7CEQopnhxBpXdbD3nxjkLx1SWdDGNVGue
-	luw6IrhZ4BX2GB0sT5AEuba2hdCIszCJDt8IKlzY9d+SUFxabYPoQNfZkHrYMjWu
-	zc+YAEX4b0v/r+fQBCoY8sfNmroN5IPBoWqN8+kOPGTilqiK6sdhTEdvC6aP1H+c
-	IjNIgb/Vsj8WMKTwoHJ28ij7g75EdmDqzZajJlS+oDGbXN+8YJIs9O2UFiQ==
-Received: from aptaippmta01.qualcomm.com (tpe-colo-wan-fw-bordernet.qualcomm.com [103.229.16.4])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 47f3bgess5-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Wed, 25 Jun 2025 06:32:30 +0000 (GMT)
-Received: from pps.filterd (APTAIPPMTA01.qualcomm.com [127.0.0.1])
-	by APTAIPPMTA01.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTP id 55P6WSGS009137;
-	Wed, 25 Jun 2025 06:32:28 GMT
-Received: from pps.reinject (localhost [127.0.0.1])
-	by APTAIPPMTA01.qualcomm.com (PPS) with ESMTPS id 47dntma31p-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Wed, 25 Jun 2025 06:32:28 +0000
-Received: from APTAIPPMTA01.qualcomm.com (APTAIPPMTA01.qualcomm.com [127.0.0.1])
-	by pps.reinject (8.17.1.5/8.17.1.5) with ESMTP id 55P6WRO3009130;
-	Wed, 25 Jun 2025 06:32:28 GMT
-Received: from cse-cd02-lnx.ap.qualcomm.com (cse-cd02-lnx.qualcomm.com [10.64.75.246])
-	by APTAIPPMTA01.qualcomm.com (PPS) with ESMTPS id 55P6WRt0009124
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Wed, 25 Jun 2025 06:32:27 +0000
-Received: by cse-cd02-lnx.ap.qualcomm.com (Postfix, from userid 4438065)
-	id 1020D3839; Wed, 25 Jun 2025 14:32:26 +0800 (CST)
-From: Ziyue Zhang <quic_ziyuzhan@quicinc.com>
-To: andersson@kernel.org, konradybcio@kernel.org, robh@kernel.org,
-        krzk+dt@kernel.org, conor+dt@kernel.org, jingoohan1@gmail.com,
-        mani@kernel.org, lpieralisi@kernel.org, kwilczynski@kernel.org,
-        bhelgaas@google.com, johan+linaro@kernel.org, vkoul@kernel.org,
-        kishon@kernel.org, neil.armstrong@linaro.org, abel.vesa@linaro.org,
-        kw@linux.com
-Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-pci@vger.kernel.org,
-        linux-phy@lists.infradead.org, qiang.yu@oss.qualcomm.com,
-        quic_krichai@quicinc.com, quic_vbadigan@quicinc.com,
-        Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>,
-        Ziyue Zhang <quic_ziyuzhan@quicinc.com>
-Subject: [PATCH v6 3/3] arm64: dts: qcom: qcs615-ride: Enable PCIe interface
-Date: Wed, 25 Jun 2025 14:32:13 +0800
-Message-Id: <20250625063213.1416442-4-quic_ziyuzhan@quicinc.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20250625063213.1416442-1-quic_ziyuzhan@quicinc.com>
-References: <20250625063213.1416442-1-quic_ziyuzhan@quicinc.com>
+	s=arc-20240116; t=1750833313; c=relaxed/simple;
+	bh=vwTWK+tYNZHhkq/xqWMABVn6M86lPQdnixn3JPY3DUU=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=bDjChaMoA6cHB6x2G9qIoTjdCvhNLYWR9O+myDPkdj6WrkqXPUjJR0zKdTGLnNsacL+oUURRquRJsqHhdg81WzlDoLZ8+elLKlP/y7etaO6GvZwLnP+XqmkZkE+g2kiMYgnylOoKdw73f958z393hhQTc66TC4HKqjsKMmIwJ5A=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Z7iEtdGk; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 995E0C4CEEA;
+	Wed, 25 Jun 2025 06:35:08 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1750833313;
+	bh=vwTWK+tYNZHhkq/xqWMABVn6M86lPQdnixn3JPY3DUU=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=Z7iEtdGkFUpmfIgo90PZe5ORPYF+PkxouXBYkAbbKpm+ZQWRXxtG80XjdafjOE5mE
+	 T/zr6BG6oFquAkxgjG/g82i9KZmat5lBibXx2XExAahgl55aKYsaA7FTmgsozS/i3Q
+	 TJjYP4QctNSMyJeqikUXcrt6o/aJsspw1QVmqLbnK3lORVujH37OTxsC1w8NW1QSfd
+	 54O5eEqv6A9rGD4fNjqHr+l0EFR8hDGa6rTcdS7bgZMhggQ3FffGu2Lg2lHU4IB7Th
+	 DSDSrceO9+KQN5L4ekA6/hGyFaTrpcTIM86oG6JS+VUxqXK+Zh+iHG8f8nDuUgLGAT
+	 xL+QTeq7yM7cg==
+Message-ID: <49483568-b287-45ca-a66c-1e0ad0490225@kernel.org>
+Date: Wed, 25 Jun 2025 08:35:06 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-QCInternal: smtphost
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-ORIG-GUID: VLh9eUt4YB79w6quYwANEg8H5udDFVwr
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwNjI1MDA0NyBTYWx0ZWRfX6j1PtgGtCJ5z
- 6rWnGBRCxOZJvNv6qIZ7bvH9uHARbTQcdKnbHQtts/QkVohp/70meUmPQufEsZM5yInT1X8hQ8R
- EfXaMWUTZ5ApoQBORu20g5sgFRNlPtkCgXXzxVs3+JSJn13DDhI6trcUOCVirWPB1voYQ2d03RP
- EB+rzM7OjLAztftx1qYpEhP/J4mj8RNNenDa8HlpqzM+L7BJ4ew3aX/HesRdtGL4y9Ae8zp3/cP
- /JQQamsmlGXtcC2Xz5dNSm5OV4cTdsUF664nWYwO385IXfsbT2Lum99hk2aIPin9FagREAEMuQV
- aQYR8tPu8l8TC0XOBkjeFwcyqmWq0LQEI+Kho5JfYazV6bgk4QVtk1MrA6L+/7TRIKC10ZdENJG
- g46a9I74G8SRCzaY3PZRfsrHX8THckMIfqvyHdtpB9d+Nay599qmvoXfkpe02nQDT+3CFWkd
-X-Authority-Analysis: v=2.4 cv=L4kdQ/T8 c=1 sm=1 tr=0 ts=685b97fe cx=c_pps
- a=nuhDOHQX5FNHPW3J6Bj6AA==:117 a=nuhDOHQX5FNHPW3J6Bj6AA==:17
- a=6IFa9wvqVegA:10 a=COk6AnOGAAAA:8 a=EUspDBNiAAAA:8 a=3zbVK_edIv7hY8gRkFcA:9
- a=TjNXssC_j7lpFel5tvFf:22
-X-Proofpoint-GUID: VLh9eUt4YB79w6quYwANEg8H5udDFVwr
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1099,Hydra:6.1.7,FMLib:17.12.80.40
- definitions=2025-06-25_01,2025-06-23_07,2025-03-28_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- mlxscore=0 malwarescore=0 bulkscore=0 clxscore=1015 suspectscore=0
- adultscore=0 priorityscore=1501 impostorscore=0 lowpriorityscore=0
- spamscore=0 phishscore=0 mlxlogscore=999 classifier=spam authscore=0
- authtc=n/a authcc= route=outbound adjust=0 reason=mlx scancount=1
- engine=8.19.0-2505280000 definitions=main-2506250047
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 06/13] perf: stm32: introduce DDRPERFM driver
+To: Clement LE GOFFIC <clement.legoffic@foss.st.com>,
+ Will Deacon <will@kernel.org>, Mark Rutland <mark.rutland@arm.com>,
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>,
+ Maxime Coquelin <mcoquelin.stm32@gmail.com>,
+ Alexandre Torgue <alexandre.torgue@foss.st.com>,
+ Philipp Zabel <p.zabel@pengutronix.de>, Jonathan Corbet <corbet@lwn.net>,
+ Gatien Chevallier <gatien.chevallier@foss.st.com>,
+ Michael Turquette <mturquette@baylibre.com>, Stephen Boyd
+ <sboyd@kernel.org>, Gabriel Fernandez <gabriel.fernandez@foss.st.com>
+Cc: linux-arm-kernel@lists.infradead.org, linux-perf-users@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-stm32@st-md-mailman.stormreply.com,
+ linux-kernel@vger.kernel.org, linux-doc@vger.kernel.org,
+ linux-clk@vger.kernel.org
+References: <20250623-ddrperfm-upstream-v1-0-7dffff168090@foss.st.com>
+ <20250623-ddrperfm-upstream-v1-6-7dffff168090@foss.st.com>
+ <9cb1575e-ae27-4a78-adb7-8a9e7072375e@kernel.org>
+ <5044c733-8836-43bd-85d7-0f552b000fb1@foss.st.com>
+From: Krzysztof Kozlowski <krzk@kernel.org>
+Content-Language: en-US
+Autocrypt: addr=krzk@kernel.org; keydata=
+ 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 a/A=
+In-Reply-To: <5044c733-8836-43bd-85d7-0f552b000fb1@foss.st.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-From: Krishna chaitanya chundru <quic_krichai@quicinc.com>
+On 24/06/2025 12:43, Clement LE GOFFIC wrote:
+> On 6/23/25 11:45, Krzysztof Kozlowski wrote:
+> [...]
+> 
+> Hi Krzysztof,
+> 
+> Sorry I forgot to address comments below.
+> 
+>>> +
+>>> +static const struct stm32_ddr_pmu_cfg stm32_ddr_pmu_cfg_mp1 = {
+>>> +	.regs = &stm32_ddr_pmu_regspec_mp1,
+>>> +	.attribute = stm32_ddr_pmu_attr_groups_mp1,
+>>> +	.counters_nb = MP1_CNT_NB,
+>>> +	.evt_counters_nb = MP1_CNT_NB - 1, /* Time counter is not an event counter */
+>>> +	.time_cnt_idx = MP1_TIME_CNT_IDX,
+>>> +	.get_counter = stm32_ddr_pmu_get_event_counter_mp1,
+>>> +};
+>>> +
+>>> +static const struct stm32_ddr_pmu_cfg stm32_ddr_pmu_cfg_mp2 = {
+>>> +	.regs = &stm32_ddr_pmu_regspec_mp2,
+>>> +	.attribute = stm32_ddr_pmu_attr_groups_mp2,
+>>> +	.counters_nb = MP2_CNT_NB,
+>>> +	.evt_counters_nb = MP2_CNT_NB - 1, /* Time counter is an event counter */
+>>> +	.time_cnt_idx = MP2_TIME_CNT_IDX,
+>>> +	.get_counter = stm32_ddr_pmu_get_event_counter_mp2,
+>>> +};
+>>> +
+>>> +static const struct dev_pm_ops stm32_ddr_pmu_pm_ops = {
+>>> +	SET_SYSTEM_SLEEP_PM_OPS(NULL, stm32_ddr_pmu_device_resume)
+>>> +};
+>>> +
+>>> +static const struct of_device_id stm32_ddr_pmu_of_match[] = {
+>>> +	{
+>>> +		.compatible = "st,stm32mp131-ddr-pmu",
+>>> +		.data = &stm32_ddr_pmu_cfg_mp1
+>>> +	},
+>>> +	{
+>>> +		.compatible = "st,stm32mp151-ddr-pmu",
+>>> +		.data = &stm32_ddr_pmu_cfg_mp1
+>>
+>> So devices are compatible, thus express it correctly and drop this.
+> 
+> Ok so I assume this comes with your comment in the bindings and 
+> basically don't get you point here.
+> Can you please be more precise ?
 
-Add platform configurations in devicetree for PCIe, board related
-gpios, PMIC regulators, etc.
+Express compatibility in the bindings, like 90% of SoCs are doing, so
+with proper fallback and drop this entry in the table. My comment was
+pretty precise, because this is completely standard pattern, also used
+already in stm32.
 
-Reviewed-by: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
-Signed-off-by: Krishna chaitanya chundru <quic_krichai@quicinc.com>
-Signed-off-by: Ziyue Zhang <quic_ziyuzhan@quicinc.com>
----
- arch/arm64/boot/dts/qcom/qcs615-ride.dts | 42 ++++++++++++++++++++++++
- 1 file changed, 42 insertions(+)
-
-diff --git a/arch/arm64/boot/dts/qcom/qcs615-ride.dts b/arch/arm64/boot/dts/qcom/qcs615-ride.dts
-index a6652e4817d1..011f8ae077c2 100644
---- a/arch/arm64/boot/dts/qcom/qcs615-ride.dts
-+++ b/arch/arm64/boot/dts/qcom/qcs615-ride.dts
-@@ -217,6 +217,23 @@ &gcc {
- 		 <&sleep_clk>;
- };
- 
-+&pcie {
-+	perst-gpios = <&tlmm 101 GPIO_ACTIVE_LOW>;
-+	wake-gpios = <&tlmm 100 GPIO_ACTIVE_HIGH>;
-+
-+	pinctrl-0 = <&pcie_default_state>;
-+	pinctrl-names = "default";
-+
-+	status = "okay";
-+};
-+
-+&pcie_phy {
-+	vdda-phy-supply = <&vreg_l5a>;
-+	vdda-pll-supply = <&vreg_l12a>;
-+
-+	status = "okay";
-+};
-+
- &pm8150_gpios {
- 	usb2_en: usb2-en-state {
- 		pins = "gpio10";
-@@ -256,6 +273,31 @@ &rpmhcc {
- 	clocks = <&xo_board_clk>;
- };
- 
-+&tlmm {
-+	pcie_default_state: pcie-default-state {
-+		clkreq-pins {
-+			pins = "gpio90";
-+			function = "pcie_clk_req";
-+			drive-strength = <2>;
-+			bias-pull-up;
-+		};
-+
-+		perst-pins {
-+			pins = "gpio101";
-+			function = "gpio";
-+			drive-strength = <2>;
-+			bias-pull-down;
-+		};
-+
-+		wake-pins {
-+			pins = "gpio100";
-+			function = "gpio";
-+			drive-strength = <2>;
-+			bias-pull-up;
-+		};
-+	};
-+};
-+
- &sdhc_1 {
- 	pinctrl-0 = <&sdc1_state_on>;
- 	pinctrl-1 = <&sdc1_state_off>;
--- 
-2.34.1
-
+Best regards,
+Krzysztof
 
