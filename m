@@ -1,248 +1,94 @@
-Return-Path: <devicetree+bounces-189627-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-189628-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 49935AE88F2
-	for <lists+devicetree@lfdr.de>; Wed, 25 Jun 2025 17:59:23 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6A4AEAE8937
+	for <lists+devicetree@lfdr.de>; Wed, 25 Jun 2025 18:08:38 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id CCA743B6622
-	for <lists+devicetree@lfdr.de>; Wed, 25 Jun 2025 15:58:41 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 1CBCE1634DB
+	for <lists+devicetree@lfdr.de>; Wed, 25 Jun 2025 16:08:32 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 47B622BD01A;
-	Wed, 25 Jun 2025 15:58:45 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6DE7E26A0EE;
+	Wed, 25 Jun 2025 16:08:27 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="N3hQVCh/"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="tmYDLEut"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 13FB726A0A7;
-	Wed, 25 Jun 2025 15:58:44 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4464825E803;
+	Wed, 25 Jun 2025 16:08:26 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1750867125; cv=none; b=AQJLL/t7he0QJSDjaXxQoeooh/58jSLmLUfVOSCsQPguHsOx84DwRJ0tx+Fxiw2x64O02ikx7wSJihcIFTqpf29tSFZkajxTGtui/r+eFvSeGp5PnxXqB7UWTofOzGXtxdQy9KxqtyOoQq6rmx3hCypU6m+8TDKhzkrSQQ5SeTg=
+	t=1750867707; cv=none; b=KOp+rbFJn9dGvbq2lx8WAfSdEx9+5iHDVDfUrXdPEi01FWsSpjX8cDKkCZ3Det38uz03u69vWT4uR0VGGySk7dKBEfxFLvZNVCs+DO/l8tWBn6P0hL4aWWpv/sOFEy1y73YXW+69KwUrqiqpnPzCPa87bZ29nmQ4zf8Hy0FkjHY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1750867125; c=relaxed/simple;
-	bh=D86EJE+46L/7mawYbJNG86v24Im/NiRYBeI4AnD8EQc=;
+	s=arc-20240116; t=1750867707; c=relaxed/simple;
+	bh=BTlJ1RmUpaujJ0EmKDLMF0jllMSYXyhOOUgPEVzg2sM=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=A57nZbpzEgRAviM7GLy8qzzYX0Tqc9QENscogwE37QLtONLoCXjnN8DhpRj5YIw3VC1Tdrk5FyY2X8EssP1ZEkrl2/6uHY/n0rxecrd/1570GJ8IPYTj2akRTtM1I1Ao1bmXRACSKZ6LT5h+OUEUWiaHD9sAI+sGlCNatbMrN7A=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=N3hQVCh/; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 65706C4CEEB;
-	Wed, 25 Jun 2025 15:58:43 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=TgjR/zC7576pJe8sMlI3XtfzVBU+lUoP0bG6flGyczaGLvC2MZE3+BVn4kg+TSicZUbxRXoabkR6OLizaV21mqIMC6/2xMH/kL/ZnvkR6b1aMSY7Kb+ILizlHK8gV4iL/T32XRgPTs/pWDud0+fTqi2gKV1EPXyLOGvJwNTPeOY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=tmYDLEut; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 012C1C4CEEA;
+	Wed, 25 Jun 2025 16:08:22 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1750867124;
-	bh=D86EJE+46L/7mawYbJNG86v24Im/NiRYBeI4AnD8EQc=;
+	s=k20201202; t=1750867706;
+	bh=BTlJ1RmUpaujJ0EmKDLMF0jllMSYXyhOOUgPEVzg2sM=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=N3hQVCh/66qpNUimTd+Mb047vi7Jnu+csvc1JVj2vp7Y4ikcMTp0K1OSn5ZiZXIkE
-	 klCM+NZ366LMrcRDTdvQZKpWXIUp48xXEmHJfFYe1Q+heVjiQwYcUrHJvQ73kWJ3e1
-	 qfB0/tQ7/aIh/DrGfqNxk9hDlu4B1+BjUqBVX6H1EYtBy8gNeXRTfseac7SHCZqEPx
-	 998A5zBhEbslHVUBCKqZkr40PFQoCl2KEvPCmgsOOOoMs695mWRsiZkhcqbO3iqNu6
-	 SLvVZgmJ61kQ/wRlgQr8PRBXF+M1jzLukXT5gawCBVx+ufi2NUWjaGSHAH3wGhcmLz
-	 V8HdTMxSiwyUA==
-Date: Wed, 25 Jun 2025 09:58:40 -0600
-From: Manivannan Sadhasivam <mani@kernel.org>
-To: Ziyue Zhang <quic_ziyuzhan@quicinc.com>
-Cc: andersson@kernel.org, konradybcio@kernel.org, robh@kernel.org, 
-	krzk+dt@kernel.org, conor+dt@kernel.org, jingoohan1@gmail.com, lpieralisi@kernel.org, 
-	kwilczynski@kernel.org, bhelgaas@google.com, johan+linaro@kernel.org, vkoul@kernel.org, 
-	kishon@kernel.org, neil.armstrong@linaro.org, abel.vesa@linaro.org, kw@linux.com, 
-	linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	linux-pci@vger.kernel.org, linux-phy@lists.infradead.org, qiang.yu@oss.qualcomm.com, 
-	quic_krichai@quicinc.com, quic_vbadigan@quicinc.com
-Subject: Re: [PATCH v3 1/3] PCI: qcom: Add equalization settings for 8.0 GT/s
-Message-ID: <uakd5br4e5l24xmb6rxqs2drlt3fcmemfjilxo7ozph6vysjzs@ag3wjtic3qfm>
-References: <20250625085801.526669-1-quic_ziyuzhan@quicinc.com>
- <20250625085801.526669-2-quic_ziyuzhan@quicinc.com>
+	b=tmYDLEutTKPozey9jE6pu0FKkRL8dSHlAlF3HZr5kYZ1ghFttO9NgLIW3uIW1C5sT
+	 DFaMMR4w82wuIPHfEVYLK2SQJ5Kk495T0rw/l3vlmMu+RQf4bhW7QGm2BLGkTGnrHg
+	 hvn3NInm8RruYB/AVyXhlu8iiUai/V2jgJEUuGbpCVUnRt4lSS+6C0Aj7R6GQW/EXD
+	 Uzi504qgXSrUdOAsFValQSqiSZRLuM1opQRFRtOxb7xEwFVHOH63HQRNYXxFGdAmyk
+	 wGMgFhc3yoqlkG6+7QQ+0K9VnOFmJ2CtwvBW32KfQSCdICjz8hDnYeMIIW4RJhrCDA
+	 AUBcAZPExly9g==
+Date: Wed, 25 Jun 2025 18:08:20 +0200
+From: Danilo Krummrich <dakr@kernel.org>
+To: Remo Senekowitsch <remo@buenzli.dev>
+Cc: Rob Herring <robh@kernel.org>, Saravana Kannan <saravanak@google.com>,
+	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+	"Rafael J. Wysocki" <rafael@kernel.org>,
+	Miguel Ojeda <ojeda@kernel.org>,
+	Alex Gaynor <alex.gaynor@gmail.com>,
+	Boqun Feng <boqun.feng@gmail.com>, Gary Guo <gary@garyguo.net>,
+	=?iso-8859-1?Q?Bj=F6rn?= Roy Baron <bjorn3_gh@protonmail.com>,
+	Benno Lossin <lossin@kernel.org>,
+	Andreas Hindborg <a.hindborg@kernel.org>,
+	Alice Ryhl <aliceryhl@google.com>, Trevor Gross <tmgross@umich.edu>,
+	Mark Brown <broonie@kernel.org>,
+	Dirk Behme <dirk.behme@de.bosch.com>, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org, rust-for-linux@vger.kernel.org
+Subject: Re: [PATCH v1 0/3] Add Rust bindings for device property child nodes
+ and reference args
+Message-ID: <aFwe9MD4QpBEked3@pollux>
+References: <20250616154511.1862909-1-remo@buenzli.dev>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20250625085801.526669-2-quic_ziyuzhan@quicinc.com>
+In-Reply-To: <20250616154511.1862909-1-remo@buenzli.dev>
 
-On Wed, Jun 25, 2025 at 04:57:59PM +0800, Ziyue Zhang wrote:
-> Add lane equalization setting for 8.0 GT/s to enhance link stability and
-> aviod AER Correctable Errors reported on some platforms (eg. SA8775P).
+On Mon, Jun 16, 2025 at 05:45:08PM +0200, Remo Senekowitsch wrote:
+> This patch series was split-off from an earlier one. [1]
 > 
-> 8.0 GT/s and 16.0 GT/s require the same equalization setting. This
-> setting is programmed into a group of shadow registers, which can be
-> switched to configure equalization for different speeds by writing 00b,
-> 01b to `RATE_SHADOW_SEL`.
-> 
-> Hence program equalization registers in a loop using link speed as index,
-> so that equalization setting can be programmed for both 8.0 GT/s and
-> 16.0 GT/s.
-> 
-> Co-developed-by: Qiang Yu <qiang.yu@oss.qualcomm.com>
-> Signed-off-by: Qiang Yu <qiang.yu@oss.qualcomm.com>
-> Signed-off-by: Ziyue Zhang <quic_ziyuzhan@quicinc.com>
-> ---
->  drivers/pci/controller/dwc/pcie-designware.h  |  1 -
->  drivers/pci/controller/dwc/pcie-qcom-common.c | 55 +++++++++++--------
->  drivers/pci/controller/dwc/pcie-qcom-common.h |  2 +-
->  drivers/pci/controller/dwc/pcie-qcom-ep.c     |  6 +-
->  drivers/pci/controller/dwc/pcie-qcom.c        |  6 +-
->  5 files changed, 38 insertions(+), 32 deletions(-)
-> 
-> diff --git a/drivers/pci/controller/dwc/pcie-designware.h b/drivers/pci/controller/dwc/pcie-designware.h
-> index ce9e18554e42..388306991467 100644
-> --- a/drivers/pci/controller/dwc/pcie-designware.h
-> +++ b/drivers/pci/controller/dwc/pcie-designware.h
-> @@ -127,7 +127,6 @@
->  #define GEN3_RELATED_OFF_GEN3_EQ_DISABLE	BIT(16)
->  #define GEN3_RELATED_OFF_RATE_SHADOW_SEL_SHIFT	24
->  #define GEN3_RELATED_OFF_RATE_SHADOW_SEL_MASK	GENMASK(25, 24)
-> -#define GEN3_RELATED_OFF_RATE_SHADOW_SEL_16_0GT	0x1
->  
->  #define GEN3_EQ_CONTROL_OFF			0x8A8
->  #define GEN3_EQ_CONTROL_OFF_FB_MODE		GENMASK(3, 0)
-> diff --git a/drivers/pci/controller/dwc/pcie-qcom-common.c b/drivers/pci/controller/dwc/pcie-qcom-common.c
-> index 3aad19b56da8..ed466496f077 100644
-> --- a/drivers/pci/controller/dwc/pcie-qcom-common.c
-> +++ b/drivers/pci/controller/dwc/pcie-qcom-common.c
-> @@ -8,9 +8,11 @@
->  #include "pcie-designware.h"
->  #include "pcie-qcom-common.h"
->  
-> -void qcom_pcie_common_set_16gt_equalization(struct dw_pcie *pci)
-> +void qcom_pcie_common_set_equalization(struct dw_pcie *pci)
->  {
->  	u32 reg;
-> +	u16 speed, max_speed = PCIE_SPEED_16_0GT;
-> +	struct device *dev = pci->dev;
->  
->  	/*
->  	 * GEN3_RELATED_OFF register is repurposed to apply equalization
-> @@ -19,32 +21,37 @@ void qcom_pcie_common_set_16gt_equalization(struct dw_pcie *pci)
->  	 * determines the data rate for which these equalization settings are
->  	 * applied.
->  	 */
-> -	reg = dw_pcie_readl_dbi(pci, GEN3_RELATED_OFF);
-> -	reg &= ~GEN3_RELATED_OFF_GEN3_ZRXDC_NONCOMPL;
-> -	reg &= ~GEN3_RELATED_OFF_RATE_SHADOW_SEL_MASK;
-> -	reg |= FIELD_PREP(GEN3_RELATED_OFF_RATE_SHADOW_SEL_MASK,
-> -			  GEN3_RELATED_OFF_RATE_SHADOW_SEL_16_0GT);
-> -	dw_pcie_writel_dbi(pci, GEN3_RELATED_OFF, reg);
-> +	if (pcie_link_speed[pci->max_link_speed] < PCIE_SPEED_32_0GT)
-> +		max_speed = pcie_link_speed[pci->max_link_speed];
+> [1] https://lore.kernel.org/lkml/20250611102908.212514-1-remo@buenzli.dev/
 
-So the logic here is that you want to limit the max_speed to < 32 GT/s because
-you are not sure if 32 GT/s or more would require the same settings?
+Applied to driver-core-testing, thanks!
 
-If so, why can't you just simply bail out early if the link speed > 16 GT/s and
-just use pci->max_link_speed directly? Right now, 32 GT/s or more would be
-skipped implicitly because you have initialized max_speed to PCIE_SPEED_16_0GT.
+> Remo Senekowitsch (3):
+>   rust: device: Add child accessor and iterator
+>   rust: device: Add property_get_reference_args
 
-- Mani
+    [ Move up NArgs; refer to FwNodeReferenceArgs in NArgs doc-comment.
+      - Danilo ]
 
->  
-> -	reg = dw_pcie_readl_dbi(pci, GEN3_EQ_FB_MODE_DIR_CHANGE_OFF);
-> -	reg &= ~(GEN3_EQ_FMDC_T_MIN_PHASE23 |
-> -		GEN3_EQ_FMDC_N_EVALS |
-> -		GEN3_EQ_FMDC_MAX_PRE_CUSROR_DELTA |
-> -		GEN3_EQ_FMDC_MAX_POST_CUSROR_DELTA);
-> -	reg |= FIELD_PREP(GEN3_EQ_FMDC_T_MIN_PHASE23, 0x1) |
-> -		FIELD_PREP(GEN3_EQ_FMDC_N_EVALS, 0xd) |
-> -		FIELD_PREP(GEN3_EQ_FMDC_MAX_PRE_CUSROR_DELTA, 0x5) |
-> -		FIELD_PREP(GEN3_EQ_FMDC_MAX_POST_CUSROR_DELTA, 0x5);
-> -	dw_pcie_writel_dbi(pci, GEN3_EQ_FB_MODE_DIR_CHANGE_OFF, reg);
-> +	for (speed = PCIE_SPEED_8_0GT; speed <= max_speed; ++speed) {
-> +		reg = dw_pcie_readl_dbi(pci, GEN3_RELATED_OFF);
-> +		reg &= ~GEN3_RELATED_OFF_GEN3_ZRXDC_NONCOMPL;
-> +		reg &= ~GEN3_RELATED_OFF_RATE_SHADOW_SEL_MASK;
-> +		reg |= FIELD_PREP(GEN3_RELATED_OFF_RATE_SHADOW_SEL_MASK,
-> +			  speed - PCIE_SPEED_8_0GT);
-> +		dw_pcie_writel_dbi(pci, GEN3_RELATED_OFF, reg);
->  
-> -	reg = dw_pcie_readl_dbi(pci, GEN3_EQ_CONTROL_OFF);
-> -	reg &= ~(GEN3_EQ_CONTROL_OFF_FB_MODE |
-> -		GEN3_EQ_CONTROL_OFF_PHASE23_EXIT_MODE |
-> -		GEN3_EQ_CONTROL_OFF_FOM_INC_INITIAL_EVAL |
-> -		GEN3_EQ_CONTROL_OFF_PSET_REQ_VEC);
-> -	dw_pcie_writel_dbi(pci, GEN3_EQ_CONTROL_OFF, reg);
-> +		reg = dw_pcie_readl_dbi(pci, GEN3_EQ_FB_MODE_DIR_CHANGE_OFF);
-> +		reg &= ~(GEN3_EQ_FMDC_T_MIN_PHASE23 |
-> +			GEN3_EQ_FMDC_N_EVALS |
-> +			GEN3_EQ_FMDC_MAX_PRE_CUSROR_DELTA |
-> +			GEN3_EQ_FMDC_MAX_POST_CUSROR_DELTA);
-> +		reg |= FIELD_PREP(GEN3_EQ_FMDC_T_MIN_PHASE23, 0x1) |
-> +			FIELD_PREP(GEN3_EQ_FMDC_N_EVALS, 0xd) |
-> +			FIELD_PREP(GEN3_EQ_FMDC_MAX_PRE_CUSROR_DELTA, 0x5) |
-> +			FIELD_PREP(GEN3_EQ_FMDC_MAX_POST_CUSROR_DELTA, 0x5);
-> +		dw_pcie_writel_dbi(pci, GEN3_EQ_FB_MODE_DIR_CHANGE_OFF, reg);
-> +
-> +		reg = dw_pcie_readl_dbi(pci, GEN3_EQ_CONTROL_OFF);
-> +		reg &= ~(GEN3_EQ_CONTROL_OFF_FB_MODE |
-> +			GEN3_EQ_CONTROL_OFF_PHASE23_EXIT_MODE |
-> +			GEN3_EQ_CONTROL_OFF_FOM_INC_INITIAL_EVAL |
-> +			GEN3_EQ_CONTROL_OFF_PSET_REQ_VEC);
-> +		dw_pcie_writel_dbi(pci, GEN3_EQ_CONTROL_OFF, reg);
-> +	}
->  }
-> -EXPORT_SYMBOL_GPL(qcom_pcie_common_set_16gt_equalization);
-> +EXPORT_SYMBOL_GPL(qcom_pcie_common_set_equalization);
->  
->  void qcom_pcie_common_set_16gt_lane_margining(struct dw_pcie *pci)
->  {
-> diff --git a/drivers/pci/controller/dwc/pcie-qcom-common.h b/drivers/pci/controller/dwc/pcie-qcom-common.h
-> index 7d88d29e4766..7f5ca2fd9a72 100644
-> --- a/drivers/pci/controller/dwc/pcie-qcom-common.h
-> +++ b/drivers/pci/controller/dwc/pcie-qcom-common.h
-> @@ -8,7 +8,7 @@
->  
->  struct dw_pcie;
->  
-> -void qcom_pcie_common_set_16gt_equalization(struct dw_pcie *pci);
-> +void qcom_pcie_common_set_equalization(struct dw_pcie *pci);
->  void qcom_pcie_common_set_16gt_lane_margining(struct dw_pcie *pci);
->  
->  #endif
-> diff --git a/drivers/pci/controller/dwc/pcie-qcom-ep.c b/drivers/pci/controller/dwc/pcie-qcom-ep.c
-> index bf7c6ac0f3e3..aaf060bf39d4 100644
-> --- a/drivers/pci/controller/dwc/pcie-qcom-ep.c
-> +++ b/drivers/pci/controller/dwc/pcie-qcom-ep.c
-> @@ -511,10 +511,10 @@ static int qcom_pcie_perst_deassert(struct dw_pcie *pci)
->  		goto err_disable_resources;
->  	}
->  
-> -	if (pcie_link_speed[pci->max_link_speed] == PCIE_SPEED_16_0GT) {
-> -		qcom_pcie_common_set_16gt_equalization(pci);
-> +	qcom_pcie_common_set_equalization(pci);
-> +
-> +	if (pcie_link_speed[pci->max_link_speed] == PCIE_SPEED_16_0GT)
->  		qcom_pcie_common_set_16gt_lane_margining(pci);
-> -	}
->  
->  	/*
->  	 * The physical address of the MMIO region which is exposed as the BAR
-> diff --git a/drivers/pci/controller/dwc/pcie-qcom.c b/drivers/pci/controller/dwc/pcie-qcom.c
-> index c789e3f85655..0fcb17ffd2e9 100644
-> --- a/drivers/pci/controller/dwc/pcie-qcom.c
-> +++ b/drivers/pci/controller/dwc/pcie-qcom.c
-> @@ -298,10 +298,10 @@ static int qcom_pcie_start_link(struct dw_pcie *pci)
->  {
->  	struct qcom_pcie *pcie = to_qcom_pcie(pci);
->  
-> -	if (pcie_link_speed[pci->max_link_speed] == PCIE_SPEED_16_0GT) {
-> -		qcom_pcie_common_set_16gt_equalization(pci);
-> +	qcom_pcie_common_set_equalization(pci);
-> +
-> +	if (pcie_link_speed[pci->max_link_speed] == PCIE_SPEED_16_0GT)
->  		qcom_pcie_common_set_16gt_lane_margining(pci);
-> -	}
->  
->  	/* Enable Link Training state machine */
->  	if (pcie->cfg->ops->ltssm_enable)
-> -- 
-> 2.34.1
-> 
+>   samples: rust: platform: Add property child and reference args
+>     examples
 
--- 
-மணிவண்ணன் சதாசிவம்
+    [ Convert 'child@{0,1}' to 'child-{0,1}'; skip child nodes without
+      'compatible' property in of_unittest_platform_populate() as proposed
+      by Rob Herring. - Danilo]
 
