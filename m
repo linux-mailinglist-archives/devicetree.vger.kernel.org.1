@@ -1,136 +1,190 @@
-Return-Path: <devicetree+bounces-189603-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-189604-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 08758AE8768
-	for <lists+devicetree@lfdr.de>; Wed, 25 Jun 2025 17:05:44 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6A45AAE8779
+	for <lists+devicetree@lfdr.de>; Wed, 25 Jun 2025 17:08:27 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id A04253ABA05
-	for <lists+devicetree@lfdr.de>; Wed, 25 Jun 2025 15:05:18 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id B491F16E329
+	for <lists+devicetree@lfdr.de>; Wed, 25 Jun 2025 15:08:08 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9CE42267714;
-	Wed, 25 Jun 2025 15:05:40 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8349326A0A7;
+	Wed, 25 Jun 2025 15:08:06 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="kKSQ+wo9"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="SkTnQF1k"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wr1-f53.google.com (mail-wr1-f53.google.com [209.85.221.53])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B6045209F38
-	for <devicetree@vger.kernel.org>; Wed, 25 Jun 2025 15:05:38 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.53
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5912326980C;
+	Wed, 25 Jun 2025 15:08:06 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1750863940; cv=none; b=M/2eGRzaZWKh+Fi2AJov+KCs5l7CTjiPKQDy4IyhdZqHsVSYowgcKYLTeQJGret+FcE2TRSxieqWSJ0Xqjo3khhY9m/qhYjtecW1V5zzxJaSEGhWvtHxtWvUd1J2342xrwNQmEW20i/Nivk6kn6E6q/G7AFo03SGrUHUO7eBkLs=
+	t=1750864086; cv=none; b=BeUOHIA+fqCRmvrHO8+PQdiV3rzvk2r3PnjZIMylw/MLQr83frEh94WnnzlRotWGqxCIev5ldFuHcZ1FpuovgIReb39WwiyUbspkzo91OnMO53eQAkJALw1ovv7sJB6kao5An5C/n38c0CJmCs+K0qd+wtCmVKcpcm2CJUxgufw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1750863940; c=relaxed/simple;
-	bh=wlj7HklWXe5YtCatjQKwWuAP/xP3g/dB4xsuny3pKlk=;
-	h=Message-ID:Subject:From:To:Cc:Date:In-Reply-To:References:
-	 Content-Type:MIME-Version; b=tuBPXlZC/nHreol0FviH/s9ScmEY2EGRLqaW4TFVClMM7buML3E9AtwkU3BNrnuJmOo/T83G4mPK3j8DUsBJaa82pOKlP2yd4DTiiwh11Qhp3Oyk3pVs4kAFfPHS+qG//2AMxQqMTmqCr4CHvVFS6z4P5CAL48nmeaqtrXWR6JY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=kKSQ+wo9; arc=none smtp.client-ip=209.85.221.53
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-wr1-f53.google.com with SMTP id ffacd0b85a97d-3a54700a463so10349f8f.1
-        for <devicetree@vger.kernel.org>; Wed, 25 Jun 2025 08:05:38 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1750863937; x=1751468737; darn=vger.kernel.org;
-        h=mime-version:user-agent:content-transfer-encoding:references
-         :in-reply-to:date:cc:to:from:subject:message-id:from:to:cc:subject
-         :date:message-id:reply-to;
-        bh=wlj7HklWXe5YtCatjQKwWuAP/xP3g/dB4xsuny3pKlk=;
-        b=kKSQ+wo9oT4PkbrUUZKhpI+S+N4jOlQGfiE8lvJWDeGpX8dhARAQSHw6Zd5qkTLbm2
-         /rZ2srKSxSFCLeipJLGV85UllC0v60+4WdUdKmS3isHvluM8yN4kDtgZTXPd9vBQ+0xQ
-         b1kdAw0P5xPgiohw1eb0X5AZCd7OoRz3Zgm5GBJOw2DuqhJhGCuHLHEJ7IPxTdVPE01U
-         WOQhacOtW/oRcYO7YIoJYvu01RheQr5c0MZYn1zEBXmung0hdZ5XO53Vgl6QYTASHgm5
-         tF3a/cpD7F59refays/NJAGYlVtedrQg+YKWKVy21xnxMrgNolepnscnjbgHrZO61LDA
-         MY/Q==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1750863937; x=1751468737;
-        h=mime-version:user-agent:content-transfer-encoding:references
-         :in-reply-to:date:cc:to:from:subject:message-id:x-gm-message-state
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=wlj7HklWXe5YtCatjQKwWuAP/xP3g/dB4xsuny3pKlk=;
-        b=W9gWaf151ICQQsdGefTe25s4KBBfN8fPBz3AjJpXecWJ/mV2NJQ7G+8TaPWBAHn7jD
-         kGM3w0CC/mxeJJV322XlLT8iEWC+ZSvxlXdrE6thdVf8mrM+QZYaw+Pkper4/Cs4UNHV
-         z1gTbMns/rXWQmVE2u8qhDAbSpS1nr+gvzyPEZYu0MAygxMFiqD3nyvzZBUb6OnPI1Fd
-         xVId4jo1qMdLXMlVOWr4IJzK93/q5WuK0TD3087nVjaNLXpImkLFGGuA3p+ASnE3pHBq
-         ci2Ix7yWCVkb+U2j6aUf+9QfUplTpOqFNaJiWwoliYKTfPK7/j7orX9RQrkHpeznKGIU
-         T5Tw==
-X-Forwarded-Encrypted: i=1; AJvYcCWVOScNBxCi3ld0PkKGfRtiJH5hH1Kt9kyYYVnPMudBK1pIH0ZW7S6M3eBX4CCjjjHeiwpD3qxPc8+n@vger.kernel.org
-X-Gm-Message-State: AOJu0Ywevt3CAZMPlY4J4Ky/oyIWWoySP0EvdxsdxynjbR4opAysioBP
-	9L6MDST9qeUo2nOaQvYNsrbSgk1Vs+1YCfWPFa0OMv351AnAEy546MQeRIeaMZdLC9A=
-X-Gm-Gg: ASbGnct59kv/hSKd6+Ck2kdtmCxk34VYFe06TdZkLqixKqpqhoFa7eiGELFsJvS2xPv
-	3/MbkYf0tMZDGEQydw5/gUjFGtVm3Gdm6hJSsAeYpqCf1BICUGYh3fhZDaDKE+693EOxRcb9fml
-	gsosHkJWdwz6b7mYS/Pp9Q+iVg8PpTvmbA0NY6p0ilyG9sOZI1l4HH1Ff854UuuGPCz68KFZnBf
-	l/n5kEPRLgU3AxJUJtLuFiwOVgmg39aPoJPkrFlgvu8VKdj6xjXrJ9v2oT7ce9KnnS7Pfh3Sj8V
-	eqhB0HfBGmZE10j2CG2QcpT2kDJnQcWud4D2zj3+/NXKlCiAoV5d2W78vvy9sJ7qrQ==
-X-Google-Smtp-Source: AGHT+IEQo60y4nSkYuBCYnImSLe6MfyhEpVaq6bM9xHgfeeGrTtXV15DQSuydeKSFGHOA76Afhx/vg==
-X-Received: by 2002:a05:6000:1882:b0:3a5:5136:bd25 with SMTP id ffacd0b85a97d-3a6e71b8792mr7030428f8f.1.1750863936643;
-        Wed, 25 Jun 2025 08:05:36 -0700 (PDT)
-Received: from draszik.lan ([80.111.64.44])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-4538234957esm22170335e9.11.2025.06.25.08.05.34
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 25 Jun 2025 08:05:35 -0700 (PDT)
-Message-ID: <1ada43bbb20b806975d6b0503e36a3b464287612.camel@linaro.org>
-Subject: Re: [PATCH v2 01/17] dt-bindings: firmware: google,gs101-acpm-ipc:
- convert regulators to lowercase
-From: =?ISO-8859-1?Q?Andr=E9?= Draszik <andre.draszik@linaro.org>
-To: Krzysztof Kozlowski <krzk@kernel.org>
-Cc: Tudor Ambarus <tudor.ambarus@linaro.org>, Rob Herring <robh@kernel.org>,
-  Conor Dooley <conor+dt@kernel.org>, Liam Girdwood <lgirdwood@gmail.com>,
- Mark Brown <broonie@kernel.org>,  Lee Jones <lee@kernel.org>, Linus Walleij
- <linus.walleij@linaro.org>, Bartosz Golaszewski	 <brgl@bgdev.pl>, Peter
- Griffin <peter.griffin@linaro.org>, Will McVicker	
- <willmcvicker@google.com>, kernel-team@android.com, 
-	linux-kernel@vger.kernel.org, linux-samsung-soc@vger.kernel.org, 
-	devicetree@vger.kernel.org, linux-gpio@vger.kernel.org
-Date: Wed, 25 Jun 2025 16:05:34 +0100
-In-Reply-To: <013f55a0adf0b23e0836e33ee4ea0e1e7864a467.camel@linaro.org>
-References: <20250606-s2mpg1x-regulators-v2-0-b03feffd2621@linaro.org>
-		 <20250606-s2mpg1x-regulators-v2-1-b03feffd2621@linaro.org>
-		 <20250611-robust-vehement-dog-2bf6ac@kuoka>
-	 <013f55a0adf0b23e0836e33ee4ea0e1e7864a467.camel@linaro.org>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-User-Agent: Evolution 3.56.1-1 
+	s=arc-20240116; t=1750864086; c=relaxed/simple;
+	bh=JmhAkoif1otrp384soDK37/o6hqYnuIKtKUb9uvXqk8=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=A/rjbNkdVloId7Oep4dssNQQlpkHsYDzlcPzzlC+lXn5ToZ7Fz3/gvBOl7h3KOESp7lchXo/NV3N7G6GYsfcnneoQlL14Ye5X5Qs2Tx6IYVinzqzoMRBj+Xjdrc8P5K+SMgE+nt4vyUXbQTni3KfYsT+tcJ6jJsKVMsIvVl9no0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=SkTnQF1k; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id C1312C4CEEA;
+	Wed, 25 Jun 2025 15:08:05 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1750864085;
+	bh=JmhAkoif1otrp384soDK37/o6hqYnuIKtKUb9uvXqk8=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=SkTnQF1kyikqilYsD7Cczd6oJ8b1ODVaVkobfCt2Vx/C1mGrS3OEP/0IPQEIY024y
+	 klkF+vtj6vKHtgnKajEtGt8/uTXf0OLUA5RwfIvl24T1XdGW9bxiLGfgcrK6yaehC5
+	 rSu6aPzzOLMUc+hVINWtEmCPCo8Uo8QcpPQWRIz675T2H4/2GSSfTlO8+8WHiczNlP
+	 mXGyBWv+D2H8Vnj5PSx+4p0q6brFUrCqyY9MoDTaAfLRJx8drbwr3g24Gum3FgOJbN
+	 b3Xpjv/JucxgDLzwqJH7eoG5upgbyI3UfXrGH75udDUmJo9IwBQ3pYmGKyjQ9IjfWK
+	 3Ocx9DbtPgFwQ==
+Date: Wed, 25 Jun 2025 10:08:04 -0500
+From: Rob Herring <robh@kernel.org>
+To: Kaustabh Chakraborty <kauschluss@disroot.org>
+Cc: Neil Armstrong <neil.armstrong@linaro.org>,
+	Jessica Zhang <quic_jesszhan@quicinc.com>,
+	David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
+	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+	Maxime Ripard <mripard@kernel.org>,
+	Thomas Zimmermann <tzimmermann@suse.de>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Jessica Zhang <jessica.zhang@oss.qualcomm.com>,
+	dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v2 1/2] dt-bindings: display: panel: document Synaptics
+ TDDI panel driver
+Message-ID: <20250625150804.GA1201460-robh@kernel.org>
+References: <20250625-panel-synaptics-tddi-v2-0-7a62ab1d13c7@disroot.org>
+ <20250625-panel-synaptics-tddi-v2-1-7a62ab1d13c7@disroot.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20250625-panel-synaptics-tddi-v2-1-7a62ab1d13c7@disroot.org>
 
-Hi Krzysztof,
+On Wed, Jun 25, 2025 at 03:38:44PM +0530, Kaustabh Chakraborty wrote:
+> Document the driver for Synaptics TDDI (Touch/Display Integration) panels.
 
-On Wed, 2025-06-11 at 10:08 +0100, Andr=C3=A9 Draszik wrote:
-> Hi Krzysztof,
->=20
-> On Wed, 2025-06-11 at 11:04 +0200, Krzysztof Kozlowski wrote:
-> > On Fri, Jun 06, 2025 at 04:02:57PM GMT, Andr=C3=A9 Draszik wrote:
-> > > Using lowercase for the buck and ldo nodenames is preferred, as
-> > > evidenced e.g. in [1].
-> > >=20
-> > > Convert the example here to lowercase before we add any bindings
-> > > describing the s2mpg1x regulators that will enforce the spelling.
-> > >=20
-> > > Link: https://lore.kernel.org/all/20250223-mysterious-infrared-civet-=
-e5bcbf@krzk-bin/=C2=A0[1]
-> > > Signed-off-by: Andr=C3=A9 Draszik <andre.draszik@linaro.org>
-> > > ---
-> > > =C2=A0Documentation/devicetree/bindings/firmware/google,gs101-acpm-ip=
-c.yaml | 4 ++--
-> > > =C2=A01 file changed, 2 insertions(+), 2 deletions(-)
-> >=20
-> > So this is also a dependency for the rest of the patches?
->=20
-> My thinking was that it makes sense to have it in context with
-> the other patches, but it indeed could go stand-alone if that's the
-> preference.
+We document the h/w, not 'the driver'.
 
-Can you take just that patch as-is from this series (then it's at
-least out of the way :-), or should I resend it separately?
+> Along with the MIPI-DSI panel, these devices also have an in-built LED
+> backlight device and a touchscreen, all packed together in a single chip.
+> Also, add compatibles for supported panels - TD4101 and TD4300.
+> 
+> Signed-off-by: Kaustabh Chakraborty <kauschluss@disroot.org>
+> ---
+>  .../display/panel/synaptics,td4300-panel.yaml      | 89 ++++++++++++++++++++++
+>  1 file changed, 89 insertions(+)
+> 
+> diff --git a/Documentation/devicetree/bindings/display/panel/synaptics,td4300-panel.yaml b/Documentation/devicetree/bindings/display/panel/synaptics,td4300-panel.yaml
+> new file mode 100644
+> index 0000000000000000000000000000000000000000..10ac24afdfbc43ca6913bf8a343413eed81f12ff
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/display/panel/synaptics,td4300-panel.yaml
+> @@ -0,0 +1,89 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/display/panel/synaptics,td4300-panel.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Synaptics TDDI Display Panel Controller
+> +
+> +maintainers:
+> +  - Kaustabh Chakraborty <kauschluss@disroot.org>
+> +
+> +allOf:
+> +  - $ref: panel-common.yaml#
+> +
+> +properties:
+> +  compatible:
+> +    enum:
+> +      - syna,td4101-panel
+> +      - syna,td4300-panel
 
-Cheers,
-Andre'
+Can a TD4101 be anything other than a panel (controller)? If not, then 
+'-panel' is redundant.
+
+> +
+> +  reg:
+> +    maxItems: 1
+> +
+> +  vio-supply:
+> +    description: core I/O voltage supply
+> +
+> +  vsn-supply:
+> +    description: negative voltage supply for analog circuits
+> +
+> +  vsp-supply:
+> +    description: positive voltage supply for analog circuits
+> +
+> +  backlight-gpios:
+> +    maxItems: 1
+> +    description: backlight enable GPIO
+> +
+> +  reset-gpios: true
+> +  width-mm: true
+> +  height-mm: true
+> +  panel-timing: true
+> +
+> +required:
+> +  - compatible
+> +  - reg
+> +  - width-mm
+> +  - height-mm
+> +  - panel-timing
+> +
+> +additionalProperties: false
+> +
+> +examples:
+> +  - |
+> +    #include <dt-bindings/gpio/gpio.h>
+> +
+> +    dsi {
+> +        #address-cells = <1>;
+> +        #size-cells = <0>;
+> +
+> +        panel@0 {
+> +            compatible = "synaptics,td4300-panel";
+> +            reg = <0>;
+> +
+> +            vio-supply = <&panel_vio_reg>;
+> +            vsn-supply = <&panel_vsn_reg>;
+> +            vsp-supply = <&panel_vsp_reg>;
+> +
+> +            backlight-gpios = <&gpd3 5 GPIO_ACTIVE_LOW>;
+> +            reset-gpios = <&gpd3 4 GPIO_ACTIVE_LOW>;
+> +
+> +            width-mm = <68>;
+> +            height-mm = <121>;
+> +
+> +            panel-timing {
+> +                clock-frequency = <144389520>;
+> +
+> +                hactive = <1080>;
+> +                hsync-len = <4>;
+> +                hfront-porch = <120>;
+> +                hback-porch = <32>;
+> +
+> +                vactive = <1920>;
+> +                vsync-len = <2>;
+> +                vfront-porch = <21>;
+> +                vback-porch = <4>;
+> +            };
+> +        };
+> +    };
+> +
+> +...
+> 
+> -- 
+> 2.49.0
+> 
 
