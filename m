@@ -1,194 +1,329 @@
-Return-Path: <devicetree+bounces-189354-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-189357-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 66539AE7AC9
-	for <lists+devicetree@lfdr.de>; Wed, 25 Jun 2025 10:49:53 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id E54D8AE7B13
+	for <lists+devicetree@lfdr.de>; Wed, 25 Jun 2025 10:58:31 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 073853AD4E4
-	for <lists+devicetree@lfdr.de>; Wed, 25 Jun 2025 08:49:28 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 33FBA179AA1
+	for <lists+devicetree@lfdr.de>; Wed, 25 Jun 2025 08:58:32 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4C129288CB2;
-	Wed, 25 Jun 2025 08:48:44 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0317F28935D;
+	Wed, 25 Jun 2025 08:57:54 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="QWAAHgBT"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="aPkRTUuU"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wm1-f43.google.com (mail-wm1-f43.google.com [209.85.128.43])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 196382882CA;
-	Wed, 25 Jun 2025 08:48:43 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 12E57286D50
+	for <devicetree@vger.kernel.org>; Wed, 25 Jun 2025 08:57:50 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.43
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1750841324; cv=none; b=OLPTvxqx34BWqTy2gZIkD31DVnhSVeqCvhD3HIb+T2wvWEWYyvomXD3zby/icqu6u4XzyT+T1dx7ILw9BkrozqAh4eg8dllzq3QJ9oDJZUasRPXJn7DsqzeXV2i2FQ8hHyv7aM3Tz5SHtYhnPh5WK3plCyRsNAlwQOlqIQABqnE=
+	t=1750841873; cv=none; b=mM99PARrSr2oWRB3VZeDyRiXtZJVGWhTu9bxaZ4J0HFoSSvg+4XUcB8D3A3LuL6J+WrOmYxAc7d/NIWi4QfM4IXQc30j+oW2wSkqMeXF/GUgVtad9GwkTQ9IXpvRuuHtIE3s+BAQ/ZO240x327QaXionWla3SBvpHetKTPAFOP0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1750841324; c=relaxed/simple;
-	bh=MHBZGoaoMcLa2LG0Yh6EdemoDEGT5KReqDlcQpZb7Xg=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=ezcuW3X+PKqlmMj+ppR89j0jsNOqeN9JlP3TQrgzp3Yew28zTEszisDpZJLosEQrVOWLl/gcAKtoe6bTkecx6WBGkKSl3GK30v5HC+EX2ZvyVm7VFodZcy5c6W5WEhBySHcXoaTcHZp6BTE/D1Q2YDwxbe3ZDOVzyLdSjzQBjf4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=QWAAHgBT; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 35B63C4CEEA;
-	Wed, 25 Jun 2025 08:48:39 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1750841323;
-	bh=MHBZGoaoMcLa2LG0Yh6EdemoDEGT5KReqDlcQpZb7Xg=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=QWAAHgBTocPEPd/QUDnRrg7PlySkZ+mQhXIeVrFkmWrj5XE11rF7T36Plj0XN1/id
-	 IkRmnuYv2lw9HBhciUlgXnHZRGcmHblYt2TW0epifrKqWg3Defzq1QJO+WZ1CiGUPB
-	 vguNkoOI8gIJpuJZV7ydp6QaseiOAcYE2QiKnixOUadthVBSu0WQJJdX30tNmdC6wl
-	 8/+7/F3AYHLgBdjYB5vz6dzTX5or7it4vijSy89ppsJ9O2JoOUSjbjA8HAniDHr0F2
-	 rab/uipHpePrfAjSZ31xUsLf1Xl/p/n2jjOhK7R+AybOtr4itGmQ9igOP9+l3UcK5l
-	 lh3Ix3Pj0c9vw==
-Message-ID: <a6440cbf-f7b5-4bce-8e2b-8aa3ec4d2342@kernel.org>
-Date: Wed, 25 Jun 2025 10:48:37 +0200
+	s=arc-20240116; t=1750841873; c=relaxed/simple;
+	bh=B8VTcpsowDz3sev4yfwaePzneci0l6MQ4WF5zwPGjZI=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version:Content-Type; b=JGBk5KktoLjofnliIdA1BoT1eFXOWNG6Lag8Idv3PNWXqjGtD2E8b4dQYeJl5Bkc3iQqBwy+NnhjjniVsiYJNTWmBk9hcVttvohtBno1EwHlqIYht59y2gno01EedcBfiZVUK29oa6l/LKp+xuw/4d6uFJjROiYhJuMdPXlGrrI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=aPkRTUuU; arc=none smtp.client-ip=209.85.128.43
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-wm1-f43.google.com with SMTP id 5b1f17b1804b1-442fda876a6so56652925e9.0
+        for <devicetree@vger.kernel.org>; Wed, 25 Jun 2025 01:57:50 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1750841869; x=1751446669; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=SADKG0uwMn26DRziP1/OCZLA535poEGj5OLmu5EiSm0=;
+        b=aPkRTUuUiOYRsgOtEETbIG+3uIAmckArv+gsDYQgqvflM82jAwvZFCiQNgej0AtRLD
+         QVGAC2vYkajfj221nuNUah699iR/l/8dQfiNx2yX/x7xSf5ZQy1BlZWfa2y82BwnHvEl
+         P1LkPwCtA4cX1xhepVhAIBa9EL0YG2wMqmlTAn3SbadyGaHGQn9uGO7J8E1ijkDBMPqw
+         wXkUBzneXaT9AinHQwLLdeELANn+/dCufYegD8+iq0SqyekfCtKxxdLgE3+rIsyDEP2V
+         07qEEVMqTYJ3k39UCJzhc+Jkq4rNpB8T6E3hZM3LsL4B8CA6G0Tag8R1UQ4Du9M2L6zd
+         0TPQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1750841869; x=1751446669;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=SADKG0uwMn26DRziP1/OCZLA535poEGj5OLmu5EiSm0=;
+        b=NXmUcYrfzd/TgfCyisIzA512AZkKVDUavyMTu2P/NyNfudG9txeRFDiUixnVf2UATt
+         FmUkV7yQ5JsJgBb1EZyc9X0qgRGOcnGXyHY9sqh3PTSCbxgP7VSkOYSRGPexi9W3sa2D
+         ZjaG7uw2pRcKcbuldhp1x9yg0UW0ZyxIezM54TnR4nrfPzHYindbdHTsutS9OVYdGzpC
+         85Mf/+P2jKBEL9ojUeET5258n3e8T3yLPZ82GVXtSGGlRTGek49m+HdkCbgP7R9FL+PH
+         z48RJ+MgK2vLPlpbK7YCpGPN3XglcfvKqP9HeH6E8wF27uupRZL33dW9MjJp+PhIvVcI
+         LHVg==
+X-Forwarded-Encrypted: i=1; AJvYcCW+6gfvdRtW+O1xeqqNQK4Gga5MhYflKWJ3DnX+eXUsvzrNjzNZEBWI9OrBK+rlVFhKJl5vQVFCIssS@vger.kernel.org
+X-Gm-Message-State: AOJu0YyaZz/vXtmmgdVi/QI1AUnQDxoSnffxFD/+D8E1aV5hhKEfvjyJ
+	nvOOxsFf+DU1ydvrqrBLil+YlSGLdakQecv4EB/mt9egk5icxlBTuu6Z/6vn9RvLUVDDKds3Y8C
+	U7Agm
+X-Gm-Gg: ASbGncuFLorY2cMnLK1nb1DaSmG9h5OD/TNRFoWei4/lem/+EiVXa6K8r5vHGn49P6S
+	FiQMs/MrCMKsMUmTa1d7c94P7wMN61blgHmtDEh6SFOpOmVF9bBafeyr6u4/51NiM1FR1cihT2+
+	FcY8iRNCQJGTXWaGuJB2oP5IZ85AcnzsPR3zoO1ln8C8oAgMimqGZ85W4nUKlTf4laM7JgurMJ7
+	M10m7HFol/B8iK0CPVFvni57s3pyvpJDyG8cbkdhOqY2mtfGUYn4847kH016utX91vUpD7+g0nA
+	dXWCFBGTijbEwlwCNanAiyZhVl7BZJnxKn2Qps6BOROnxsJYIjRi6xLQtVwBNOx5FL2e7W+u2iQ
+	UlGnYRNJfPKFNMtFmqPoV2Fk=
+X-Google-Smtp-Source: AGHT+IHzMVJfrHXCjXHshtclnrE/v4KUBBCxErF0KOKyfY0QaR4ysz5FmsebbjYtC5zGTYdLAylaCA==
+X-Received: by 2002:a05:600c:4594:b0:450:c20d:64c3 with SMTP id 5b1f17b1804b1-45381ae454fmr21365925e9.18.1750841869300;
+        Wed, 25 Jun 2025 01:57:49 -0700 (PDT)
+Received: from mai.. (146725694.box.freepro.com. [130.180.211.218])
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-4538234db3bsm13205945e9.16.2025.06.25.01.57.48
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 25 Jun 2025 01:57:48 -0700 (PDT)
+From: Daniel Lezcano <daniel.lezcano@linaro.org>
+To: gregkh@linuxfoundation.org
+Cc: linux-kernel@vger.kernel.org,
+	lorenzo.pieralisi@linaro.org,
+	Hans de Goede <hansg@kernel.org>,
+	=?UTF-8?q?Ilpo=20J=C3=A4rvinen?= <ilpo.jarvinen@linux.intel.com>,
+	Bryan O'Donoghue <bryan.odonoghue@linaro.org>,
+	Rob Herring <robh@kernel.org>,
+	Thomas Gleixner <tglx@linutronix.de>,
+	Arnd Bergmann <arnd@arndb.de>,
+	John Stultz <jstultz@google.com>,
+	Stephen Boyd <sboyd@kernel.org>,
+	Saravana Kannan <saravanak@google.com>,
+	linux-arch@vger.kernel.org (open list:GENERIC INCLUDE/ASM HEADER FILES),
+	devicetree@vger.kernel.org (open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE)
+Subject: [PATCH RFC] timer: of: Create a platform_device before the framework is initialized
+Date: Wed, 25 Jun 2025 10:57:15 +0200
+Message-ID: <20250625085715.889837-1-daniel.lezcano@linaro.org>
+X-Mailer: git-send-email 2.43.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 06/13] perf: stm32: introduce DDRPERFM driver
-To: Clement LE GOFFIC <clement.legoffic@foss.st.com>,
- Will Deacon <will@kernel.org>, Mark Rutland <mark.rutland@arm.com>,
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>,
- Maxime Coquelin <mcoquelin.stm32@gmail.com>,
- Alexandre Torgue <alexandre.torgue@foss.st.com>,
- Philipp Zabel <p.zabel@pengutronix.de>, Jonathan Corbet <corbet@lwn.net>,
- Gatien Chevallier <gatien.chevallier@foss.st.com>,
- Michael Turquette <mturquette@baylibre.com>, Stephen Boyd
- <sboyd@kernel.org>, Gabriel Fernandez <gabriel.fernandez@foss.st.com>
-Cc: linux-arm-kernel@lists.infradead.org, linux-perf-users@vger.kernel.org,
- devicetree@vger.kernel.org, linux-stm32@st-md-mailman.stormreply.com,
- linux-kernel@vger.kernel.org, linux-doc@vger.kernel.org,
- linux-clk@vger.kernel.org
-References: <20250623-ddrperfm-upstream-v1-0-7dffff168090@foss.st.com>
- <20250623-ddrperfm-upstream-v1-6-7dffff168090@foss.st.com>
- <9cb1575e-ae27-4a78-adb7-8a9e7072375e@kernel.org>
- <5044c733-8836-43bd-85d7-0f552b000fb1@foss.st.com>
- <49483568-b287-45ca-a66c-1e0ad0490225@kernel.org>
- <e2400615-f21e-40bf-84f8-384242632193@foss.st.com>
-From: Krzysztof Kozlowski <krzk@kernel.org>
-Content-Language: en-US
-Autocrypt: addr=krzk@kernel.org; keydata=
- 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 a/A=
-In-Reply-To: <e2400615-f21e-40bf-84f8-384242632193@foss.st.com>
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
 
-On 25/06/2025 10:33, Clement LE GOFFIC wrote:
-> On 6/25/25 08:35, Krzysztof Kozlowski wrote:
->> On 24/06/2025 12:43, Clement LE GOFFIC wrote:
->>> On 6/23/25 11:45, Krzysztof Kozlowski wrote:
->>> [...]
->>>
->>> Hi Krzysztof,
->>>
->>> Sorry I forgot to address comments below.
->>>
->>>>> +
->>>>> +static const struct stm32_ddr_pmu_cfg stm32_ddr_pmu_cfg_mp1 = {
->>>>> +	.regs = &stm32_ddr_pmu_regspec_mp1,
->>>>> +	.attribute = stm32_ddr_pmu_attr_groups_mp1,
->>>>> +	.counters_nb = MP1_CNT_NB,
->>>>> +	.evt_counters_nb = MP1_CNT_NB - 1, /* Time counter is not an event counter */
->>>>> +	.time_cnt_idx = MP1_TIME_CNT_IDX,
->>>>> +	.get_counter = stm32_ddr_pmu_get_event_counter_mp1,
->>>>> +};
->>>>> +
->>>>> +static const struct stm32_ddr_pmu_cfg stm32_ddr_pmu_cfg_mp2 = {
->>>>> +	.regs = &stm32_ddr_pmu_regspec_mp2,
->>>>> +	.attribute = stm32_ddr_pmu_attr_groups_mp2,
->>>>> +	.counters_nb = MP2_CNT_NB,
->>>>> +	.evt_counters_nb = MP2_CNT_NB - 1, /* Time counter is an event counter */
->>>>> +	.time_cnt_idx = MP2_TIME_CNT_IDX,
->>>>> +	.get_counter = stm32_ddr_pmu_get_event_counter_mp2,
->>>>> +};
->>>>> +
->>>>> +static const struct dev_pm_ops stm32_ddr_pmu_pm_ops = {
->>>>> +	SET_SYSTEM_SLEEP_PM_OPS(NULL, stm32_ddr_pmu_device_resume)
->>>>> +};
->>>>> +
->>>>> +static const struct of_device_id stm32_ddr_pmu_of_match[] = {
->>>>> +	{
->>>>> +		.compatible = "st,stm32mp131-ddr-pmu",
->>>>> +		.data = &stm32_ddr_pmu_cfg_mp1
->>>>> +	},
->>>>> +	{
->>>>> +		.compatible = "st,stm32mp151-ddr-pmu",
->>>>> +		.data = &stm32_ddr_pmu_cfg_mp1
->>>>
->>>> So devices are compatible, thus express it correctly and drop this.
->>>
->>> Ok so I assume this comes with your comment in the bindings and
->>> basically don't get you point here.
->>> Can you please be more precise ?
->>
->> Express compatibility in the bindings, like 90% of SoCs are doing, so
->> with proper fallback and drop this entry in the table. My comment was
->> pretty precise, because this is completely standard pattern, also used
->> already in stm32.
->>
-> 
-> Ok I remember your discussion with Alex in my V1 of pinctrl-hdp :
-> https://lore.kernel.org/all/1de58672-5355-4b75-99f4-c48687017d2f@kernel.org/
-> 
-> Does it suits you :
-> In the SoC DT:
-> MP13: compatible = "st,stm32mp131-ddr-pmu", "st,stm32mp1-ddr-pmu";
-> MP15: compatible = "st,stm32mp151-ddr-pmu", "st,stm32mp1-ddr-pmu";
+In the context of the time keeping and the timers, some platforms have
+timers which need to be initialized very early. It is the case of the
+ARM platform which do not have the architected timers.
 
-No, because I did not say to change other entry in the table. Please
-read again what I asked: drop this. "This" means ONLY this entry. "Drop
-this" does not mean "change something else". Do not change other entries
-by introducing some generic compatible. That's not the pattern ever
-endorsed by DT maintainers. Add front compatible and you are done,
-smallest amount of changes, most obvious code.
+The macro TIMER_OF_DECLARE adds an entry in the timer init functions
+array at compile time and the function timer_probe is called from the
+timer_init() function in kernel/time.c
 
-Best regards,
-Krzysztof
+This array contains a t-uple with the init function and the compatible
+string.
+
+The init function has a device node pointer parameter.
+
+The timer_probe() function browses the of nodes and find the ones
+matching the compatible string given when using the TIMER_OF_DECLARE
+macro. It then calls the init function with the device node as a
+pointer.
+
+But there are some platforms where there are multiple timers like the
+ARM64 with the architected timers. Those are always initialized very
+early and the other timers can be initialized later.
+
+For this reason we find timer drivers with the platform_driver
+incarnation. Consequently their init functions are different, they
+have a platform_device pointer parameter and rely on the devm_
+function for rollbacking.
+
+To summarize, we have:
+ - TIMER_OF_DECLARE with init function prototype:
+   int (*init)(struct device_node *np);
+
+ - module_platform_driver (and variant) with the probe function
+   prototype:
+   int (*init)(struct platform_device *pdev);
+
+The current situation with the timers is the following:
+
+ - Two platforms can have the same timer hardware, hence the same
+   driver but one without alternate timers and the other with multiple
+   timers. For example, the Exynos platform has only the Exynos MCT on
+   ARM but has the architeched timers in addition on the ARM64.
+
+ - The timer drivers can be modules now which was not the case until
+   recently. TIMER_OF_DECLARE do not allow the build as a module.
+
+It results in duplicate init functions (one with rollback and one with
+devm_) and different way to declare the driver (TIMER_OF_DECLARE and
+module_platform_driver).
+
+This proposed change is to unify the prototyping of the init functions
+to receive a platform_device pointer as parameter. Consequently, it
+will allow a smoother and nicer module conversion and a huge cleanup
+of the init functions by removing all the rollback code from all the
+timer drivers. It introduces a TIMER_OF_DECLARE_PDEV macro.
+
+If the macro is used a platform_device is manually allocated and
+initialized with the needed information for the probe
+function. Otherwise module_platform_driver can be use instead with the
+same probe function without the timer_probe() initialization.
+
+I don't have an expert knowledge of the platform_device internal
+subtilitie so I'm not sure if this approach is valid. However, it has
+been tested on a Rockchip board with the "rockchip,rk3288-timer" and
+verified the macro and the devm_ rollback work correctly.
+
+Signed-off-by: Daniel Lezcano <daniel.lezcano@linaro.org>
+Cc: Hans de Goede <hansg@kernel.org>
+Cc: Ilpo Järvinen <ilpo.jarvinen@linux.intel.com>
+Cc: Bryan O'Donoghue <bryan.odonoghue@linaro.org>
+Cc: Rob Herring <robh@kernel.org>
+Cc: Greg Kroah-Hartman <gregkh@linuxfoundation.org>
+---
+ drivers/clocksource/timer-probe.c | 61 ++++++++++++++++++++++++++++++-
+ include/asm-generic/vmlinux.lds.h |  2 +
+ include/linux/clocksource.h       |  3 ++
+ include/linux/of.h                |  5 +++
+ 4 files changed, 70 insertions(+), 1 deletion(-)
+
+diff --git a/drivers/clocksource/timer-probe.c b/drivers/clocksource/timer-probe.c
+index b7860bc0db4b..6b2b341b8c95 100644
+--- a/drivers/clocksource/timer-probe.c
++++ b/drivers/clocksource/timer-probe.c
+@@ -7,13 +7,18 @@
+ #include <linux/init.h>
+ #include <linux/of.h>
+ #include <linux/clocksource.h>
++#include <linux/platform_device.h>
+ 
+ extern struct of_device_id __timer_of_table[];
++extern struct of_device_id __timer_pdev_of_table[];
+ 
+ static const struct of_device_id __timer_of_table_sentinel
+ 	__used __section("__timer_of_table_end");
+ 
+-void __init timer_probe(void)
++static const struct of_device_id __timer_pdev_of_table_sentinel
++	__used __section("__timer_pdev_of_table_end");
++
++static int __init timer_of_probe(void)
+ {
+ 	struct device_node *np;
+ 	const struct of_device_id *match;
+@@ -38,6 +43,60 @@ void __init timer_probe(void)
+ 		timers++;
+ 	}
+ 
++	return timers;
++}
++
++static int __init timer_pdev_of_probe(void)
++{
++	struct device_node *np;
++	struct platform_device *pdev;
++	const struct of_device_id *match;
++	of_init_fn_pdev init_func;
++	unsigned int timers = 0;
++	int ret;
++
++	for_each_matching_node_and_match(np, __timer_pdev_of_table, &match) {
++		if (!of_device_is_available(np))
++			continue;
++
++		init_func = match->data;
++
++		pdev = platform_device_alloc(of_node_full_name(np), -1);
++		if (!pdev)
++			continue;
++
++		ret = device_add_of_node(&pdev->dev, np);
++		if (ret) {
++			platform_device_put(pdev);
++			continue;
++		}
++
++		dev_set_name(&pdev->dev, pdev->name);
++
++		ret = init_func(pdev);
++		if (!ret) {
++			timers++;
++			continue;
++		}
++
++		if (ret != -EPROBE_DEFER)
++			pr_err("Failed to initialize '%pOF': %d\n", np,
++			       ret);
++
++		device_remove_of_node(&pdev->dev);
++
++		platform_device_put(pdev);
++	}
++
++	return timers;
++}
++
++void __init timer_probe(void)
++{
++	unsigned timers = 0;
++
++	timers += timer_of_probe();
++	timers += timer_pdev_of_probe();
+ 	timers += acpi_probe_device_table(timer);
+ 
+ 	if (!timers)
+diff --git a/include/asm-generic/vmlinux.lds.h b/include/asm-generic/vmlinux.lds.h
+index fa5f19b8d53a..97606499c8d7 100644
+--- a/include/asm-generic/vmlinux.lds.h
++++ b/include/asm-generic/vmlinux.lds.h
+@@ -318,6 +318,7 @@ defined(CONFIG_AUTOFDO_CLANG) || defined(CONFIG_PROPELLER_CLANG)
+ 	KEEP(*(__##name##_of_table_end))
+ 
+ #define TIMER_OF_TABLES()	OF_TABLE(CONFIG_TIMER_OF, timer)
++#define TIMER_PDEV_OF_TABLES()	OF_TABLE(CONFIG_TIMER_OF, timer_pdev)
+ #define IRQCHIP_OF_MATCH_TABLE() OF_TABLE(CONFIG_IRQCHIP, irqchip)
+ #define CLK_OF_TABLES()		OF_TABLE(CONFIG_COMMON_CLK, clk)
+ #define RESERVEDMEM_OF_TABLES()	OF_TABLE(CONFIG_OF_RESERVED_MEM, reservedmem)
+@@ -714,6 +715,7 @@ defined(CONFIG_AUTOFDO_CLANG) || defined(CONFIG_PROPELLER_CLANG)
+ 	CLK_OF_TABLES()							\
+ 	RESERVEDMEM_OF_TABLES()						\
+ 	TIMER_OF_TABLES()						\
++	TIMER_PDEV_OF_TABLES()						\
+ 	CPU_METHOD_OF_TABLES()						\
+ 	CPUIDLE_METHOD_OF_TABLES()					\
+ 	KERNEL_DTB()							\
+diff --git a/include/linux/clocksource.h b/include/linux/clocksource.h
+index 65b7c41471c3..0eeabd207040 100644
+--- a/include/linux/clocksource.h
++++ b/include/linux/clocksource.h
+@@ -289,6 +289,9 @@ extern int clocksource_i8253_init(void);
+ #define TIMER_OF_DECLARE(name, compat, fn) \
+ 	OF_DECLARE_1_RET(timer, name, compat, fn)
+ 
++#define TIMER_OF_DECLARE_PDEV(name, compat, fn) \
++	OF_DECLARE_PDEV(timer_pdev, name, compat, fn)
++
+ #ifdef CONFIG_TIMER_PROBE
+ extern void timer_probe(void);
+ #else
+diff --git a/include/linux/of.h b/include/linux/of.h
+index a62154aeda1b..a312a6f5ecc1 100644
+--- a/include/linux/of.h
++++ b/include/linux/of.h
+@@ -1540,9 +1540,12 @@ static inline int of_get_available_child_count(const struct device_node *np)
+ 	_OF_DECLARE_STUB(table, name, compat, fn, fn_type)
+ #endif
+ 
++struct platform_device;
++
+ typedef int (*of_init_fn_2)(struct device_node *, struct device_node *);
+ typedef int (*of_init_fn_1_ret)(struct device_node *);
+ typedef void (*of_init_fn_1)(struct device_node *);
++typedef int (*of_init_fn_pdev)(struct platform_device *);
+ 
+ #define OF_DECLARE_1(table, name, compat, fn) \
+ 		_OF_DECLARE(table, name, compat, fn, of_init_fn_1)
+@@ -1550,6 +1553,8 @@ typedef void (*of_init_fn_1)(struct device_node *);
+ 		_OF_DECLARE(table, name, compat, fn, of_init_fn_1_ret)
+ #define OF_DECLARE_2(table, name, compat, fn) \
+ 		_OF_DECLARE(table, name, compat, fn, of_init_fn_2)
++#define OF_DECLARE_PDEV(table, name, compat, fn) \
++		_OF_DECLARE(table, name, compat, fn, of_init_fn_pdev)
+ 
+ /**
+  * struct of_changeset_entry	- Holds a changeset entry
+-- 
+2.43.0
+
 
