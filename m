@@ -1,251 +1,173 @@
-Return-Path: <devicetree+bounces-190000-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-190001-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id CFF3AAEA0F6
-	for <lists+devicetree@lfdr.de>; Thu, 26 Jun 2025 16:42:15 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 21CEDAEA113
+	for <lists+devicetree@lfdr.de>; Thu, 26 Jun 2025 16:45:44 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 943161889C60
-	for <lists+devicetree@lfdr.de>; Thu, 26 Jun 2025 14:39:07 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 1B3A84E6EC1
+	for <lists+devicetree@lfdr.de>; Thu, 26 Jun 2025 14:40:09 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 683B82EBDD3;
-	Thu, 26 Jun 2025 14:36:30 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C14472ECEB9;
+	Thu, 26 Jun 2025 14:37:49 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="FOCDYFei"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="y43KUiSx"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ed1-f50.google.com (mail-ed1-f50.google.com [209.85.208.50])
+Received: from mail-wm1-f54.google.com (mail-wm1-f54.google.com [209.85.128.54])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8083A2EAB7F;
-	Thu, 26 Jun 2025 14:36:28 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.50
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B64082EACFB
+	for <devicetree@vger.kernel.org>; Thu, 26 Jun 2025 14:37:47 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.54
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1750948590; cv=none; b=fDzpImYc9j8rBxDOz9YYS89XNYlMw7h/rR/Q6VPrxtVP7eo27uPYqj3w7iJuHbQnkN6PI69CbZYADeOdXpnNzU3mShPIjY0Qd9h2nxGnlGGMsSB8LPnARMKyUG2b3+GTvWhrRk6nEsSqKSkaQSouGUWE3YnwkulnzxTeQb/ruRs=
+	t=1750948669; cv=none; b=u6dNy3YAEyiqiZ1QZIPCvX5JAiyX0NeW4fVxaGso8/LjTUaMA3YuRzHv+yPK1FkoaHS4lNOzbO87IFlAQ49VQp44X5ccFvXMkOGlCm5NaD7ZMhoMoB9+sJ5yMEQzx1Rw+aVAX80ewStOE+c7Efa2NcB93kQR+OcIf/iYKJa7BVw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1750948590; c=relaxed/simple;
-	bh=4MiqkkriQBlV+nEZU4vsU82B47r4lAT7W5HOK1FQACY=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=fsWLIaOVyI6tHeT74YJbWgNRsunbcmrcrHAg7XtDnDnsyZ4GUDPNAgNTjSevmyyxGmxSFLDWBfDi9D/FlYw1vNsZ44A982toqmXwAMawTGvGWBmnIxsdA9coRYY7vBuKd2Jea8xeel2g6PHjRDEF9hMVd31krOjAEJm7FS+Uzmo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=FOCDYFei; arc=none smtp.client-ip=209.85.208.50
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-ed1-f50.google.com with SMTP id 4fb4d7f45d1cf-60867565fb5so1749293a12.3;
-        Thu, 26 Jun 2025 07:36:28 -0700 (PDT)
+	s=arc-20240116; t=1750948669; c=relaxed/simple;
+	bh=j9P7Y9k+d1qUN1LH7k7uyoyd043tfylXAAkm4D+rmLA=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=aVO8vzXmq7oMdW7CbjMhpwuFVixBDNhPMcWyoIdiJ2gRPaGXyANdWx5P/UKbcUWsW+N+98IISbsWIR1Icr8JY1XPxfFGu3OAjoani2PKBM+heTfC+IQHmxhoKNW/5NQ/YO5fhJZ6G+GKAnnsRmK1Dva9L/XKQC11eN5NBZO/eGw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=y43KUiSx; arc=none smtp.client-ip=209.85.128.54
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-wm1-f54.google.com with SMTP id 5b1f17b1804b1-4537fdec33bso6829745e9.1
+        for <devicetree@vger.kernel.org>; Thu, 26 Jun 2025 07:37:47 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1750948587; x=1751553387; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=zeiWsIBvFrWgna5yEgaH/IXXNiu0EY7mLCIeHhCpakg=;
-        b=FOCDYFeiZhefQODLQCtaaLm436uBG20J3Z/7wmU7MnIQmi7qKETw9Y7D2nS9PQneVM
-         zunyhN8fMFKH5AOSKOx9OvKfXcA6N+rEpYvn5EoAR/47D0whkGNbHjOUBm7bBLUnWtIw
-         miQcDGnzmrzZo0CVqbRVNXPhU6zP4MBYEc3bkm9/L7EFzEiGwpWohifbiYze/QToL1w5
-         saaFMTM5/VKFF2CMH8LyGzfTlX/zOdz7BN14MGlLVf/M2CKOPKcP8+IlYH6rXW+PJ+Ii
-         0EqDsYMY8DorBhZU76Pq21T7WfluJMvJ26z9kcRuEClxetLiYEP52EjpJBiohvU2jEsD
-         jc9A==
+        d=linaro.org; s=google; t=1750948666; x=1751553466; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=S1AOh6zFRHKrc6fml+09g5+eTgQ+NcQY8jLNiJxnmas=;
+        b=y43KUiSxwwUsC+kxWzoN08sFvWosK/wOJl8qGBh+YOa8ybgtHl/6v3hbafXtrW5lOH
+         PpIOl+U0YsoOjiqD9EDOs1pnhBYAAGQ6flw80Osynu81qp9l27KxZdbUqsJZCA1O7w6d
+         +R/r8HRJ1tynzL4MF0BLPX4ZOXyn/MnVRYCpRhpanI1Yzmfa8l01C+aQ87lPz6JaF8x9
+         mflGKNCf1eMt2DjGJAwEnSOX+1Mft1OVzpKrg6vxfKIWefUtHGkz84QnNRMXqKBZxo2X
+         KrEhVsQBu4m3W9gXgbnLQYr/US60WP0BDBBWUEg3W+r/8OybqtmWwxX3HOB/csmjCW/k
+         1UxQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1750948587; x=1751553387;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=zeiWsIBvFrWgna5yEgaH/IXXNiu0EY7mLCIeHhCpakg=;
-        b=Df5lUr+Owknh1/8PuNOHRJO4hN+DsQfMrxjg8I+KLW5jGh/k5gojKhduUNSxu963cf
-         YYHsJ4eg7X3Klz74310MkUGQ3gHF66Nr2+HJX1gWeq66CNr21wRbCvMlpJlBoDyN0jjV
-         x7y9ahwYX+E1/5PAXBuHcf55o8O2gKOEVBdymhh4Zy2px5TIldr5sxna9dky/hu7QmAn
-         v8PwErS4neZNLJutFgnn08bGCJ1WOm4gkqtS+u/9uc/VSn90S1xwFDnFSqp668Q/gsJl
-         rp8sgBZdU4mwhRDAToKg8RzwIEG/vtPifc4i3dnYWKjxmWB7yNjki7qURfI+VZBXhQ65
-         tgwA==
-X-Forwarded-Encrypted: i=1; AJvYcCUkz3KzreGQ0XXpHl71Mqq8XiCHnacp4AQ9PTbsOy83U1E3mqcZgNevTB5UPuAXCE+JWD0YkPQNobDyj965@vger.kernel.org, AJvYcCW5/GaLcCfVAugc3u/iY4AHSM4qwk5EYP6gpi2f+ZtRg5F68SZtW3/tL/6fwrDnuyZSrYWkyBE5tZe+@vger.kernel.org
-X-Gm-Message-State: AOJu0YwX+Y7IO8/UKaFhV6bGwPj8iAPxzn4q5sHr6CtF9x0Fj1on+hkz
-	eeQnRQt5kjeX72Rvb+8V7HMkIEIWbP++yGdvhP6F5WUuKymY0TiJOPWh
-X-Gm-Gg: ASbGnctR9JbNhaNneoC1JR3Fv/n+k0tqqjoDYgTWtn3xgra8yKVYLbkQbqJhflvkP9V
-	b24sf0dj/nWrGFRoHE9QMaWlHa0bXZkG2fOoCUZCEL0FcHq6z1P3AvY0smDSkgkMf5rUwrv2ieH
-	USkNoyrwUR8SdU6OZ4S1PL0AhlEEJYzEGTU99blAzyOv3hFL/H+CJPI1pg/jMrc4oCzpOQnTX8M
-	jGSnm4YaDS0Z9BuRuHbFAOOLXNZcEpcBDuxxCyRO6p0ZNKn3a9oSvPJs5p/TngP5FBwdCDFR0yH
-	1QzgyTDhB/H5Iobq0B0A4THzmMrZTKAnGFjB3wM87w2aeb2SY0GNrpk5BlVORsXxi+ILSAwZQhK
-	lrHsGIv7enXDN
-X-Google-Smtp-Source: AGHT+IGBfj0HisJC5Hs7wbCAlRtLKFU3fvp+QXCNcRi1xOH0OF9hMH/GCsxQFG5ls3pbZPdGawEVYA==
-X-Received: by 2002:a17:906:f581:b0:ade:43e8:8fa4 with SMTP id a640c23a62f3a-ae0bec4e39cmr782595366b.18.1750948586462;
-        Thu, 26 Jun 2025 07:36:26 -0700 (PDT)
-Received: from localhost.localdomain ([176.227.88.86])
-        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-ae2143da38fsm7884666b.78.2025.06.26.07.36.24
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 26 Jun 2025 07:36:25 -0700 (PDT)
-From: muhammed.efecetin.67@gmail.com
-To: neil.armstrong@linaro.org
-Cc: daniel.lezcano@linaro.org,
-	devicetree@vger.kernel.org,
-	efectn@protonmail.com,
-	heiko@sntech.de,
-	krzysztof.kozlowski+dt@linaro.org,
-	lee@kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	linux-kernel@vger.kernel.org,
-	linux-rockchip@lists.infradead.org,
-	muhammed.efecetin.67@gmail.com,
-	rafael@kernel.org,
-	robh+dt@kernel.org
-Subject: Re: [PATCH 4/5] thermal: khadas_mcu_fan: add support for Khadas Edge 2
-Date: Thu, 26 Jun 2025 17:36:07 +0300
-Message-ID: <20250626143607.1423954-1-muhammed.efecetin.67@gmail.com>
-X-Mailer: git-send-email 2.49.0
-In-Reply-To: <09af27e2-34a7-4cda-b36c-5577829cc173@linaro.org>
-References: <09af27e2-34a7-4cda-b36c-5577829cc173@linaro.org>
+        d=1e100.net; s=20230601; t=1750948666; x=1751553466;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=S1AOh6zFRHKrc6fml+09g5+eTgQ+NcQY8jLNiJxnmas=;
+        b=GGPBCbolTHLOBXx1mjs5MTw/5nTMr910i+x7/+4f+81N0eiETaIwzaog2q4rkho3Ts
+         kN0NRtUNvydhm50vwj6VmummdBBkC8nSX37+TZbauSTXXfqHjmbTl02ekX6p+iyY5hUN
+         y3KrkqSUW3IhXHDbPITfKovdBUt6N6onh4ANf6AdwTJhz0dxsqeoch4zpjRcSZv2ptZa
+         N1AJb7dMP2STGyP77WY0KKWeK1iYrJWjA2Ft//bvckEy9XQ8Jp0lpFZbyTXiz+QOKezW
+         Et+eT20nZ9ngPYL4o4mJPZtijGxE72tKg/9MT+FZPlj+LhRW7Omts6XLo3aRkpDHX9Af
+         neuQ==
+X-Forwarded-Encrypted: i=1; AJvYcCUtprRpzHZJyUyIcQuQAq41MjOH82VG2xoRneA1/P0AH7hLHVXoGpFUE1FSzFYmZDe8SU3oQ1iWCNs/@vger.kernel.org
+X-Gm-Message-State: AOJu0YwKv7Pj1m/8IWPMSZk+ZRcp4IQnL7y8UzIDxL8a1tcsutoGKMiJ
+	njj8yiBAndLBe0c6KdpD1G+zMv7QY5GObcI4ferTBYAXaD6lwPlxJchz0CJr3OgW7qo=
+X-Gm-Gg: ASbGncvCcg7TjddyPTSMn3/C5lNyKfkhWg5490yYLrVEYVswe+gnc7uiGRxPn4zLfr0
+	KFmiK0Xov1K2wMGCyhWozHvt3cdtmaZL3SJTNSHWTvBQJkj5rB6Fur+PPjxyCY4XOqY63IfA+ym
+	tEjxvaYFt5JnG6L6//QBsJu/+JhuGm0JYwQ18gJ7KzpC336LSrbLIMvZ9jf/+4hRaAhVLg9mCst
+	YEQoRBu2xypz/7zQFxS1NTu5z81qpVyiFqza8Vc/Zcy8lx/b1UTk3084uLV6duy+8Elhshg34Sx
+	HlMS75qXvjaPSScfvaedpB4tHd4whoqIBsqn3OOdvOaUEvwxUPTU1441n61Fs8DhstEdPQgpgmX
+	S7Wn8y2lC4rXIasL24g2uub/xKh4=
+X-Google-Smtp-Source: AGHT+IHTUDQzELvy6oqBw8zJr8Bm+VBPGXCOgJa1zh4Kjeaae/Qc9Ajc6QxCV0Bm5N0eMq1HGfMA7Q==
+X-Received: by 2002:a05:600c:190b:b0:43c:e70d:44f0 with SMTP id 5b1f17b1804b1-45381ae45d4mr69774515e9.19.1750948665981;
+        Thu, 26 Jun 2025 07:37:45 -0700 (PDT)
+Received: from [192.168.0.35] (188-141-3-146.dynamic.upc.ie. [188.141.3.146])
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-4538234b30dsm52097475e9.12.2025.06.26.07.37.44
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 26 Jun 2025 07:37:45 -0700 (PDT)
+Message-ID: <4aa924e9-d570-45eb-b874-133f12d00fd5@linaro.org>
+Date: Thu, 26 Jun 2025 15:37:43 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v5 4/5] media: venus: core: Add qcm2290 DT compatible and
+ resource data
+To: Jorge Ramirez-Ortiz <jorge.ramirez@oss.qualcomm.com>, krzk+dt@kernel.org,
+ quic_vgarodia@quicinc.com, quic_dikshita@quicinc.com, mchehab@kernel.org,
+ robh@kernel.org, conor+dt@kernel.org, konradybcio@kernel.org,
+ andersson@kernel.org
+Cc: linux-arm-msm@vger.kernel.org, linux-media@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+References: <20250626135931.700937-1-jorge.ramirez@oss.qualcomm.com>
+ <20250626135931.700937-5-jorge.ramirez@oss.qualcomm.com>
+Content-Language: en-US
+From: Bryan O'Donoghue <bryan.odonoghue@linaro.org>
+In-Reply-To: <20250626135931.700937-5-jorge.ramirez@oss.qualcomm.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 
-On 6/26/25 17:11, neil.armstrong@linaro.org wrote:
-> On 26/06/2025 16:04, muhammed.efecetin.67@gmail.com wrote:
->> From: Muhammed Efe Cetin <efectn@protonmail.com>
->>
->> Fan control on the Khadas Edge 2 is controlled with the 0x8A register,
->> using percentage values from 0 to 100, whereas there are only 3 constant steps in previous Khadas boards.
->> Therefore, i added a new cooling-levels property, similar to the one used in the pwm-fan driver.
->> The original behavior can still be used when the cooling-levels property is not specified,
->> ensuring that the new functionality does not break old boards. 
->
-> Thanks for the explanation, but would would you like to change that ? The MCU can accept
-> any value between 0 and 99, so why change the levels from DT ?
->
-> Neil
+On 26/06/2025 14:59, Jorge Ramirez-Ortiz wrote:
+> Add a qcm2290 compatible binding to the venus core.
+> 
+> Video encoding support is not exposed until the relevant hardware
+> capabilities are enabled.
+> 
+> Co-developed-by: Loic Poulain <loic.poulain@oss.qualcomm.com>
+> Signed-off-by: Loic Poulain <loic.poulain@oss.qualcomm.com>
+> Signed-off-by: Jorge Ramirez-Ortiz <jorge.ramirez@oss.qualcomm.com>
+> ---
+>   drivers/media/platform/qcom/venus/core.c | 39 ++++++++++++++++++++++++
+>   1 file changed, 39 insertions(+)
+> 
+> diff --git a/drivers/media/platform/qcom/venus/core.c b/drivers/media/platform/qcom/venus/core.c
+> index 736ef53d988d..f1f211ca1ce2 100644
+> --- a/drivers/media/platform/qcom/venus/core.c
+> +++ b/drivers/media/platform/qcom/venus/core.c
+> @@ -1062,6 +1062,44 @@ static const struct venus_resources sc7280_res = {
+>   	.enc_nodename = "video-encoder",
+>   };
+>   
+> +static const struct freq_tbl qcm2290_freq_table[] = {
+> +	{ 352800, 240000000 },	/* 1920x1088 @ 30 + 1280x720 @ 30 */
+> +	{ 244800, 133000000 },	/* 1920x1088 @ 30 */
+> +};
+> +
+> +static const struct bw_tbl qcm2290_bw_table_dec[] = {
+> +	{ 244800, 2128000, 0, 2128000, 0}, /* 1920x1088 @ 30 */
+> +};
+> +
+> +static const struct venus_resources qcm2290_res = {
+> +	.freq_tbl = qcm2290_freq_table,
+> +	.freq_tbl_size = ARRAY_SIZE(qcm2290_freq_table),
+> +	.bw_tbl_dec = qcm2290_bw_table_dec,
+> +	.bw_tbl_dec_size = ARRAY_SIZE(qcm2290_bw_table_dec),
+> +	.clks = { "core", "iface", "bus", "throttle" },
+> +	.clks_num = 4,
+> +	.vcodec0_clks = { "vcodec0_core", "vcodec0_bus" },
+> +	.vcodec_clks_num = 2,
+> +	.vcodec_pmdomains = (const char *[]) { "venus", "vcodec0" },
+> +	.vcodec_pmdomains_num = 2,
+> +	.opp_pmdomain = (const char *[]) { "cx" },
+> +	.vcodec_num = 1,
+> +	.hfi_version = HFI_VERSION_6XX_LITE,
+> +	.vpu_version = VPU_VERSION_AR50_LITE,
+> +	.max_load = 352800,
+> +	.num_vpp_pipes = 1,
+> +	.vmem_id = VIDC_RESOURCE_NONE,
+> +	.vmem_size = 0,
+> +	.vmem_addr = 0,
+> +	.cp_start = 0,
+> +	.cp_size = 0x70800000,
+> +	.cp_nonpixel_start = 0x1000000,
+> +	.cp_nonpixel_size = 0x24800000,
+> +	.dma_mask = 0xe0000000 - 1,
+> +	.fwname = "qcom/venus-6.0/venus.mbn",
+> +	.dec_nodename = "video-decoder",
+> +};
+> +
+>   static const struct of_device_id venus_dt_match[] = {
+>   	{ .compatible = "qcom,msm8916-venus", .data = &msm8916_res, },
+>   	{ .compatible = "qcom,msm8996-venus", .data = &msm8996_res, },
+> @@ -1072,6 +1110,7 @@ static const struct of_device_id venus_dt_match[] = {
+>   	{ .compatible = "qcom,sc7180-venus", .data = &sc7180_res, },
+>   	{ .compatible = "qcom,sc7280-venus", .data = &sc7280_res, },
+>   	{ .compatible = "qcom,sm8250-venus", .data = &sm8250_res, },
+> +	{ .compatible = "qcom,qcm2290-venus", .data = &qcm2290_res, },
+>   	{ }
+>   };
+>   MODULE_DEVICE_TABLE(of, venus_dt_match);
 
-Thanks for the review. Therefore, you say just add values between 0-100 to cooling-device instead of remapping them using cooling-levels property?
-
-What would be the best practise of detecting whether the board is Khadas Edge 2? Adding new bool property, reading model propety from devicetree etc.
-
-Best regards.
-
->
->>
->> Signed-off-by: Muhammed Efe Cetin <efectn@protonmail.com>
->> ---
->>   drivers/thermal/khadas_mcu_fan.c | 76 ++++++++++++++++++++++++++++++--
->>   1 file changed, 72 insertions(+), 4 deletions(-)
->>
->> diff --git a/drivers/thermal/khadas_mcu_fan.c b/drivers/thermal/khadas_mcu_fan.c
->> index d35e5313b..504e7d254 100644
->> --- a/drivers/thermal/khadas_mcu_fan.c
->> +++ b/drivers/thermal/khadas_mcu_fan.c
->> @@ -15,10 +15,16 @@
->>   #include <linux/thermal.h>
->>     #define MAX_LEVEL 3
->> +#define MAX_SPEED 0x64
->>     struct khadas_mcu_fan_ctx {
->>       struct khadas_mcu *mcu;
->>       unsigned int level;
->> +
->> +    unsigned int fan_max_level;
->> +    unsigned int fan_register;
->> +    unsigned int *fan_cooling_levels;
->> +
->>       struct thermal_cooling_device *cdev;
->>   };
->>   @@ -26,9 +32,21 @@ static int khadas_mcu_fan_set_level(struct khadas_mcu_fan_ctx *ctx,
->>                       unsigned int level)
->>   {
->>       int ret;
->> +    unsigned int write_level = level;
->> +
->> +    if (level > ctx->fan_max_level)
->> +        return -EINVAL;
->> +
->> +    if (ctx->fan_cooling_levels != NULL) {
->> +        write_level = ctx->fan_cooling_levels[level];
->> +
->> +        if (write_level > MAX_SPEED)
->> +            return -EINVAL;
->> +    }
->> +
->> +    ret = regmap_write(ctx->mcu->regmap, ctx->fan_register,
->> +               write_level);
->>   -    ret = regmap_write(ctx->mcu->regmap, KHADAS_MCU_CMD_FAN_STATUS_CTRL_REG,
->> -               level);
->>       if (ret)
->>           return ret;
->>   @@ -40,7 +58,9 @@ static int khadas_mcu_fan_set_level(struct khadas_mcu_fan_ctx *ctx,
->>   static int khadas_mcu_fan_get_max_state(struct thermal_cooling_device *cdev,
->>                       unsigned long *state)
->>   {
->> -    *state = MAX_LEVEL;
->> +    struct khadas_mcu_fan_ctx *ctx = cdev->devdata;
->> +
->> +    *state = ctx->fan_max_level;
->>         return 0;
->>   }
->> @@ -61,7 +81,7 @@ khadas_mcu_fan_set_cur_state(struct thermal_cooling_device *cdev,
->>   {
->>       struct khadas_mcu_fan_ctx *ctx = cdev->devdata;
->>   -    if (state > MAX_LEVEL)
->> +    if (state > ctx->fan_max_level)
->>           return -EINVAL;
->>         if (state == ctx->level)
->> @@ -76,6 +96,47 @@ static const struct thermal_cooling_device_ops khadas_mcu_fan_cooling_ops = {
->>       .set_cur_state = khadas_mcu_fan_set_cur_state,
->>   };
->>   +static int khadas_mcu_fan_get_cooling_data_edge2(struct khadas_mcu_fan_ctx *ctx, struct device *dev)
->> +{
->> +    struct device_node *np = ctx->mcu->dev->of_node;
->> +    int num, i, ret;
->> +
->> +    if (!of_property_present(np, "cooling-levels"))
->> +        return 0;
->> +
->> +    ret = of_property_count_u32_elems(np, "cooling-levels");
->> +    if (ret <= 0) {
->> +        dev_err(dev, "Wrong data!\n");
->> +        return ret ? : -EINVAL;
->> +    }
->> +
->> +    num = ret;
->> +    ctx->fan_cooling_levels = devm_kcalloc(dev, num, sizeof(u32),
->> +                           GFP_KERNEL);
->> +    if (!ctx->fan_cooling_levels)
->> +        return -ENOMEM;
->> +
->> +    ret = of_property_read_u32_array(np, "cooling-levels",
->> +                     ctx->fan_cooling_levels, num);
->> +    if (ret) {
->> +        dev_err(dev, "Property 'cooling-levels' cannot be read!\n");
->> +        return ret;
->> +    }
->> +
->> +    for (i = 0; i < num; i++) {
->> +        if (ctx->fan_cooling_levels[i] > MAX_SPEED) {
->> +            dev_err(dev, "MCU fan state[%d]:%d > %d\n", i,
->> +                ctx->fan_cooling_levels[i], MAX_SPEED);
->> +            return -EINVAL;
->> +        }
->> +    }
->> +
->> +    ctx->fan_max_level = num - 1;
->> +    ctx->fan_register = KHADAS_MCU_CMD_FAN_STATUS_CTRL_REG_V2;
->> +
->> +    return 0;
->> +}
->> +
->>   static int khadas_mcu_fan_probe(struct platform_device *pdev)
->>   {
->>       struct khadas_mcu *mcu = dev_get_drvdata(pdev->dev.parent);
->> @@ -90,6 +151,13 @@ static int khadas_mcu_fan_probe(struct platform_device *pdev)
->>       ctx->mcu = mcu;
->>       platform_set_drvdata(pdev, ctx);
->>   +    ctx->fan_max_level = MAX_LEVEL;
->> +    ctx->fan_register = KHADAS_MCU_CMD_FAN_STATUS_CTRL_REG;
->> +
->> +    ret = khadas_mcu_fan_get_cooling_data_edge2(ctx, dev);
->> +    if (ret)
->> +        return ret;
->> +
->>       cdev = devm_thermal_of_cooling_device_register(dev->parent,
->>               dev->parent->of_node, "khadas-mcu-fan", ctx,
->>               &khadas_mcu_fan_cooling_ops); 
->
-
+Reviewed-by: Bryan O'Donoghue <bryan.odonoghue@linaro.org>
 
