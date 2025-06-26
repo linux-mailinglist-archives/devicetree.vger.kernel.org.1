@@ -1,281 +1,158 @@
-Return-Path: <devicetree+bounces-189913-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-189914-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9CF5BAE9D13
-	for <lists+devicetree@lfdr.de>; Thu, 26 Jun 2025 14:02:50 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3E3F3AE9D20
+	for <lists+devicetree@lfdr.de>; Thu, 26 Jun 2025 14:05:06 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id DFE867A9148
-	for <lists+devicetree@lfdr.de>; Thu, 26 Jun 2025 12:00:25 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id E8B44188E08F
+	for <lists+devicetree@lfdr.de>; Thu, 26 Jun 2025 12:02:28 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6BA65259CA0;
-	Thu, 26 Jun 2025 11:58:16 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 61C5E275AFA;
+	Thu, 26 Jun 2025 11:58:29 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b="bLnAdtiI"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-vs1-f52.google.com (mail-vs1-f52.google.com [209.85.217.52])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from vps0.lunn.ch (vps0.lunn.ch [156.67.10.101])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 164D02F1FEC;
-	Thu, 26 Jun 2025 11:58:13 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.217.52
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 62C6527587F;
+	Thu, 26 Jun 2025 11:58:27 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=156.67.10.101
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1750939096; cv=none; b=DFanh/jB2Qg2RvHTcy8Uq5ZOcVKIgR6dNJthBjGfOVOrMw7QHtrMerTT7kBw4Cbm2t0hCEiU5d7OT92rU7TQ1fjBY/dWvEqXoBABOHij105NFCvAzgQ/IsGQCFBUybPsmgOSkPWXFmV+qwTR0E3kTSgv/RX3e1NPRMlC9qKrw9s=
+	t=1750939109; cv=none; b=OWJ74MWKmkMu5wnuExKuVrJiHTVktYTr8ru6y3C2leJWa5pagWfCx7z+8FKmJxh0MvJml4flkNRq5h6adcEnbjBVGLdSla89Bsg/77vo5bDBLOEi1IogyBMz139Cebkys69LTk70mUe3OCTHAtJYM6nHXm3RcBnS0r9kdyDI/A4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1750939096; c=relaxed/simple;
-	bh=fbs1q+JsuaSJKXWhauDT9K8vAUjLhnIklFMIMSl/P+E=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=PSu4RGu3iOSLUbLUoK0Jnc5102GQjMSf2b0Lmrt5+6MNDSevKEFI8f23lE3HMPa5QPVxWpYh0XjGw+EBaTeEa7IXI3h2hPfLzgYFq5ADZkj6/s/VkHMaDnCHtiMKzMtasH3j/dj6xp6XxD5jsA9Gp6fQUIQhM0sWdDoLemuTL/0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.217.52
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-vs1-f52.google.com with SMTP id ada2fe7eead31-4e79dde8511so196520137.0;
-        Thu, 26 Jun 2025 04:58:13 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1750939092; x=1751543892;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=B5D+86CEEwzC4+/VJmAWquleszRXVYD3WE2XTmHeq9A=;
-        b=gm+iReD90ppHCdzuPBB+Gg7IxUEc5grPYNNkH/WHcIjZ0W6a+OkAmdYJVNaBvgQvav
-         1aWtg8x5+U5qL132bZAGverCmavMfFDY/CORFgQhsHZOzqwupwxrBMgiNv+gPWR+2jwB
-         MzjQwvMbFMgLCg7XhVQsXTwu43xKFIEQbvc6etAlaArHLcZlKRH6OVAmdpAYoadZNzVu
-         jkcP56hwot1Onm8p9V+hU47wk2/w3wtAdw701s2OZ6HQVpeA0HwI3xPlnD/B0GVlgCxG
-         ni1h4K6aDqRZdE+nj5xWgaP8ZCais8dHatjRav1taHjHQ5kgyZ6OZgtprORE782eWjGI
-         aYaA==
-X-Forwarded-Encrypted: i=1; AJvYcCWKX1RQii/hHqzF+QKJbtyWiuwIHhzbMeCj4Ft8ciMIYCzVKVr/mPCuVA2bQJnXkxUFWN1vicmcDjKS@vger.kernel.org, AJvYcCXN29P/KoI7Y43ljimgZ1S0ZtvD0IdquyRSleGdazt3ghZqoMB6Tt4nLenHfclTngb9kobXwd3v8DwfVVqK9x+/8KE=@vger.kernel.org, AJvYcCXVtGjuXcEz/mShGMeLV2TivFNxH9NdaqRHKM2ntRAsFgq15Dv1XWXHldQ2fLJAQxsNR8AuCiDz/u2K2QR0@vger.kernel.org
-X-Gm-Message-State: AOJu0YzP1EcN017/nTR17jZ0d+oHv5s0/QkvXpvGuzZGBsve2A3F7v/t
-	HrodVIHj+e+/syJsIPz+vVs/XDpJwNaYVLNRWT7wPm4Sl2nsMWPNsQifQJUsrA5H
-X-Gm-Gg: ASbGnctHxEeGZp9uNxz207zMis2BFMSQ+kSqgAz8P9e42voNvt48JnGgILQTK55zi6J
-	jRBX6N1XyjKGuONH4A7xz0kOIe7eyCDD+j9qdBW/vuTuui0mYeZENbX7Bl4hGs6HqTMfoM80zLe
-	e0qUDqMzW7qlvIDG1Ps2CPlEalldjagSbBAFMVOKN4gXd9PMwdDIwFdCGHincVl48ai1RAxKwMS
-	i7Sw308nRGu66B+dUstYJnl3DvBNR2DtW1VX/7iXrClfJ1VkLeL9V2qnvQpmY0J46b+MXDshMxx
-	NQ7+LEkLhbegFay2jLGPcIClArlA8XwQj7hu+9xDl87LkPv1mVrQqckeOscvL6rpniU/N0XLplX
-	s707LrX79WMbeIcH3nXPSzbwA
-X-Google-Smtp-Source: AGHT+IE9lsdK8q4AcG0YMa9tINPYrYjS67hM7RqqbEo9bNmUzBEzC2T4fophGsPk9RiUEM/5wMF4IQ==
-X-Received: by 2002:a05:6102:1610:b0:4eb:efc6:740 with SMTP id ada2fe7eead31-4ecc7688ef2mr4639546137.18.1750939092038;
-        Thu, 26 Jun 2025 04:58:12 -0700 (PDT)
-Received: from mail-vs1-f43.google.com (mail-vs1-f43.google.com. [209.85.217.43])
-        by smtp.gmail.com with ESMTPSA id ada2fe7eead31-4e9c2e8158csm2340693137.11.2025.06.26.04.58.11
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 26 Jun 2025 04:58:11 -0700 (PDT)
-Received: by mail-vs1-f43.google.com with SMTP id ada2fe7eead31-4dfa2aeec86so276911137.1;
-        Thu, 26 Jun 2025 04:58:11 -0700 (PDT)
-X-Forwarded-Encrypted: i=1; AJvYcCWR7MfLJ0hig21u9aYRyO+SM+xc+QGHpfCYZ80VV01Ln88v8Ar3UwOdlKPiNtMxB0X5ZF1b7aDPzaC9@vger.kernel.org, AJvYcCWwK5kQ+RlDZL49Pq4vrk5uB17zWOPzUSzDODP4pWRnXqtGn3Usd6tvBKbFbw1IaKaMpw3szMTb6GL0W1qBDm7BmDI=@vger.kernel.org, AJvYcCXmtRzNDhSpZiD3CX4RhQTd7hmCGILA48AQ/5irtO2TWf2oZ+uE4ltI0UXiosHxHuhzbm/z19/G0pTuHc0U@vger.kernel.org
-X-Received: by 2002:a05:6102:2909:b0:4e9:c7c8:5dff with SMTP id
- ada2fe7eead31-4ecc766bedcmr5187924137.15.1750939091232; Thu, 26 Jun 2025
- 04:58:11 -0700 (PDT)
+	s=arc-20240116; t=1750939109; c=relaxed/simple;
+	bh=Qx5wfOItoi1+VQTwbp4aWjc7EP/neC9kgAUf1miAZdU=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=A+eWQuoVCmM/HDE9tyhUkjhXTu6JoA+BtHv3H0Z8q9Yt5kFOLLGrFFqjSRacQv3d86jnbkF6HY6AuHi7jJ6czlWD0V0n/vXEd096gGBJd4nGV+bLkSGoJe8gQkxT342onvVb0GXhUQYLEMTmbyHHVy31rHeJWsXPuWCQSIsmRTc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch; spf=pass smtp.mailfrom=lunn.ch; dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b=bLnAdtiI; arc=none smtp.client-ip=156.67.10.101
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=lunn.ch
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
+	s=20171124; h=In-Reply-To:Content-Disposition:Content-Type:MIME-Version:
+	References:Message-ID:Subject:Cc:To:From:Date:From:Sender:Reply-To:Subject:
+	Date:Message-ID:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding:
+	Content-ID:Content-Description:Content-Disposition:In-Reply-To:References;
+	bh=E7sAEgdd707TI8toifhEogagOBUn3n5FZn7TngN4ra8=; b=bLnAdtiIn4wQsxsNQ9E4g1vdj+
+	dzmL9IPFWW/ZMhnrr9WlYwj7N1V3Yk8elPHBYwDwSADNFMfaYKdAY8OL9xcwQft8P5YXlebsKs71F
+	IV52ILHh2KP0GqomfNcwhnB/a3I3oFOSaiXvVaiKOjsrjflriRqGVpKMnt6yVzJq4VBw=;
+Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
+	(envelope-from <andrew@lunn.ch>)
+	id 1uUlF1-00H2Xz-3Z; Thu, 26 Jun 2025 13:58:07 +0200
+Date: Thu, 26 Jun 2025 13:58:07 +0200
+From: Andrew Lunn <andrew@lunn.ch>
+To: Siddharth Vadapalli <s-vadapalli@ti.com>
+Cc: Matthias Schiffer <matthias.schiffer@ew.tq-group.com>,
+	Andrew Lunn <andrew+netdev@lunn.ch>,
+	"David S. Miller" <davem@davemloft.net>,
+	Eric Dumazet <edumazet@google.com>,
+	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Andy Whitcroft <apw@canonical.com>,
+	Dwaipayan Ray <dwaipayanray1@gmail.com>,
+	Lukas Bulwahn <lukas.bulwahn@gmail.com>,
+	Joe Perches <joe@perches.com>, Jonathan Corbet <corbet@lwn.net>,
+	Nishanth Menon <nm@ti.com>, Vignesh Raghavendra <vigneshr@ti.com>,
+	Roger Quadros <rogerq@kernel.org>, Tero Kristo <kristo@kernel.org>,
+	linux-doc@vger.kernel.org, linux-kernel@vger.kernel.org,
+	netdev@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org, linux@ew.tq-group.com,
+	Maxime Chevallier <maxime.chevallier@bootlin.com>
+Subject: Re: [PATCH net-next v2 2/3] net: ethernet: ti: am65-cpsw: fixup PHY
+ mode for fixed RGMII TX delay
+Message-ID: <8a99444a-a4e4-4c4f-8cec-225a10d5d418@lunn.ch>
+References: <cover.1750756583.git.matthias.schiffer@ew.tq-group.com>
+ <9b3fb1fbf719bef30702192155c6413cd5de5dcf.1750756583.git.matthias.schiffer@ew.tq-group.com>
+ <54d6cd05-65ef-4e1d-8041-3e4a2c50b443@ti.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20250620121045.56114-1-prabhakar.mahadev-lad.rj@bp.renesas.com> <20250620121045.56114-2-prabhakar.mahadev-lad.rj@bp.renesas.com>
-In-Reply-To: <20250620121045.56114-2-prabhakar.mahadev-lad.rj@bp.renesas.com>
-From: Geert Uytterhoeven <geert@linux-m68k.org>
-Date: Thu, 26 Jun 2025 13:57:59 +0200
-X-Gmail-Original-Message-ID: <CAMuHMdXP95AsuS2E=SWvzfo89y_VtyXPWoZUKT6mjj_xeLb=Eg@mail.gmail.com>
-X-Gm-Features: Ac12FXzRz_hjrthcj_xKPSNqDepD5CqeREFVrqO6uKI-zZQfrqwm2e12re8273g
-Message-ID: <CAMuHMdXP95AsuS2E=SWvzfo89y_VtyXPWoZUKT6mjj_xeLb=Eg@mail.gmail.com>
-Subject: Re: [PATCH 1/3] arm64: dts: renesas: Add CN15 eMMC and SD overlays
- for RZ/V2N EVK
-To: Prabhakar <prabhakar.csengg@gmail.com>
-Cc: Magnus Damm <magnus.damm@gmail.com>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	linux-renesas-soc@vger.kernel.org, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, Biju Das <biju.das.jz@bp.renesas.com>, 
-	Fabrizio Castro <fabrizio.castro.jz@renesas.com>, 
-	Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <54d6cd05-65ef-4e1d-8041-3e4a2c50b443@ti.com>
 
-Hi Prabhakar,
+On Thu, Jun 26, 2025 at 03:10:50PM +0530, Siddharth Vadapalli wrote:
+> On Tue, Jun 24, 2025 at 12:53:33PM +0200, Matthias Schiffer wrote:
+> 
+> Hello Matthias,
+> 
+> > All am65-cpsw controllers have a fixed TX delay, so the PHY interface
+> > mode must be fixed up to account for this.
+> > 
+> > Modes that claim to a delay on the PCB can't actually work. Warn people
+> > to update their Device Trees if one of the unsupported modes is specified.
+> > 
+> > Signed-off-by: Matthias Schiffer <matthias.schiffer@ew.tq-group.com>
+> > Reviewed-by: Maxime Chevallier <maxime.chevallier@bootlin.com>
+> > Reviewed-by: Andrew Lunn <andrew@lunn.ch>
+> > ---
+> >  drivers/net/ethernet/ti/am65-cpsw-nuss.c | 27 ++++++++++++++++++++++--
+> >  1 file changed, 25 insertions(+), 2 deletions(-)
+> > 
+> > diff --git a/drivers/net/ethernet/ti/am65-cpsw-nuss.c b/drivers/net/ethernet/ti/am65-cpsw-nuss.c
+> > index f20d1ff192efe..519757e618ad0 100644
+> > --- a/drivers/net/ethernet/ti/am65-cpsw-nuss.c
+> > +++ b/drivers/net/ethernet/ti/am65-cpsw-nuss.c
+> > @@ -2602,6 +2602,7 @@ static int am65_cpsw_nuss_init_slave_ports(struct am65_cpsw_common *common)
+> >  		return -ENOENT;
+> >  
+> >  	for_each_child_of_node(node, port_np) {
+> > +		phy_interface_t phy_if;
+> >  		struct am65_cpsw_port *port;
+> >  		u32 port_id;
+> >  
+> > @@ -2667,14 +2668,36 @@ static int am65_cpsw_nuss_init_slave_ports(struct am65_cpsw_common *common)
+> >  
+> >  		/* get phy/link info */
+> >  		port->slave.port_np = of_node_get(port_np);
+> > -		ret = of_get_phy_mode(port_np, &port->slave.phy_if);
+> > +		ret = of_get_phy_mode(port_np, &phy_if);
+> >  		if (ret) {
+> >  			dev_err(dev, "%pOF read phy-mode err %d\n",
+> >  				port_np, ret);
+> >  			goto of_node_put;
+> >  		}
+> >  
+> > -		ret = phy_set_mode_ext(port->slave.ifphy, PHY_MODE_ETHERNET, port->slave.phy_if);
+> > +		/* CPSW controllers supported by this driver have a fixed
+> > +		 * internal TX delay in RGMII mode. Fix up PHY mode to account
+> > +		 * for this and warn about Device Trees that claim to have a TX
+> > +		 * delay on the PCB.
+> > +		 */
+> > +		switch (phy_if) {
+> > +		case PHY_INTERFACE_MODE_RGMII_ID:
+> > +			phy_if = PHY_INTERFACE_MODE_RGMII_RXID;
+> > +			break;
+> > +		case PHY_INTERFACE_MODE_RGMII_TXID:
+> > +			phy_if = PHY_INTERFACE_MODE_RGMII;
+> > +			break;
+> > +		case PHY_INTERFACE_MODE_RGMII:
+> > +		case PHY_INTERFACE_MODE_RGMII_RXID:
+> > +			dev_warn(dev,
+> > +				 "RGMII mode without internal TX delay unsupported; please fix your Device Tree\n");
+> 
+> Existing users designed boards and enabled Ethernet functionality using
+> "rgmii-rxid" in the device-tree and implementing the PCB traces in a
+> way that they interpret "rgmii-rxid". So their (mis)interpretation of
+> it is being challenged by the series. While it is true that we are updating
+> the bindings and driver to move towards the correct definition, I believe that
+> the above message would cause confusion. Would it be alright to update it to
+> something similar to:
+> 
+> "Interpretation of RGMII delays has been corrected; no functional impact; please fix your Device Tree"
 
-On Fri, 20 Jun 2025 at 14:10, Prabhakar <prabhakar.csengg@gmail.com> wrote:
-> From: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
->
-> Introduce device tree overlays to support the eMMC (RTK0EF0186B02000BJ)
-> and microSD (RTK0EF0186B01000BJ) sub-boards via the CN15 connector on the
-> RZ/V2N EVK. These overlays enable SDHI0 with appropriate pinctrl settings,
-> regulator configurations, and GPIO handling.
->
-> Shared DTSI fragments (rzv2-evk-cn15-emmc-common.dtsi and
-> rzv2-evk-cn15-sd-common.dtsi) provide reusable configurations for both
-> RZ/V2N and RZ/V2H EVKs, as both support the same CN15 sub-boards.
->
-> Additionally, the base board DTS is updated to define an `mmc0` alias
-> pointing to `&sdhi0`, and to add a fixed 1.8V regulator node (`reg_1p8v`)
-> intended for use by the optional eMMC sub-board and, in the future, the
-> ADV7535 HDMI encoder (not yet enabled in the DTS).
->
-> Signed-off-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+It is dev_warn() not dev_err(), so it should be read as a warning. And
+the device will continue to probe and work. So I think the message is
+O.K. What we don't want is DT developers thinking they can just ignore
+it. So i would keep it reasonably strongly worded.
 
-Thanks for your patch!
-
-> --- /dev/null
-> +++ b/arch/arm64/boot/dts/renesas/r9a09g056n48-rzv2n-evk-cn15-emmc.dtso
-> @@ -0,0 +1,15 @@
-> +// SPDX-License-Identifier: GPL-2.0
-> +/*
-> + * Device Tree overlay for the RZ/V2N EVK with the eMMC sub-board
-> + * (RTK0EF0186802000BJ) connected to the CN15 connector.
-> + *
-> + * Copyright (C) 2025 Renesas Electronics Corp.
-> + */
-> +
-> +/dts-v1/;
-> +/plugin/;
-> +
-> +#define RZV2N_PA               10
-
-This is duplicated from r9a09g056.dtsi, but unused?
-
-> +#define EMMC_GPIO(port, pin)   RZG2L_GPIO(RZV2N_P##port, pin)
-
-Unused?
-
-> +
-> +#include "rzv2-evk-cn15-emmc-common.dtsi"
-
-Hence you can just have a single rzv2-evk-cn15-emmc.dtso that works
-on both RZ/V2H and RZ/V2N.
-
-> diff --git a/arch/arm64/boot/dts/renesas/r9a09g056n48-rzv2n-evk-cn15-sd.dtso b/arch/arm64/boot/dts/renesas/r9a09g056n48-rzv2n-evk-cn15-sd.dtso
-> new file mode 100644
-> index 000000000000..6268dda138ab
-> --- /dev/null
-> +++ b/arch/arm64/boot/dts/renesas/r9a09g056n48-rzv2n-evk-cn15-sd.dtso
-> @@ -0,0 +1,16 @@
-> +// SPDX-License-Identifier: GPL-2.0
-> +/*
-> + * Device Tree overlay for the RZ/V2N EVK with the SD sub-board
-> + * (RTK0EF0186B01000BJ) connected to the CN15 connector.
-> + *
-> + * Copyright (C) 2025 Renesas Electronics Corp.
-> + */
-> +
-> +/dts-v1/;
-> +/plugin/;
-> +
-> +#define RZV2N_PA               10
-
-This is duplicated from r9a09g056.dtsi. Can we avoid that?
-If not, I think we found the justification for moving these definitions
-to include/dt-bindings/pinctrl/renesas,r9a09g056-pinctrl.h...
-
-> +#define SD_GPIO(port, pin)     RZG2L_GPIO(RZV2N_P##port, pin)
-> +#define SD_PORT_PINMUX(b, p, f)        RZG2L_PORT_PINMUX(RZV2N_P##b, p, f)
-> +
-> +#include "rzv2-evk-cn15-sd-common.dtsi"
-> diff --git a/arch/arm64/boot/dts/renesas/r9a09g056n48-rzv2n-evk.dts b/arch/arm64/boot/dts/renesas/r9a09g056n48-rzv2n-evk.dts
-> index b63ee1ff18d5..795d9f6b9651 100644
-> --- a/arch/arm64/boot/dts/renesas/r9a09g056n48-rzv2n-evk.dts
-> +++ b/arch/arm64/boot/dts/renesas/r9a09g056n48-rzv2n-evk.dts
-> @@ -24,6 +24,7 @@ aliases {
->                 i2c6 = &i2c6;
->                 i2c7 = &i2c7;
->                 i2c8 = &i2c8;
-> +               mmc0 = &sdhi0;
-
-While (out-of-tree) dynamic DT overlays do not support updating aliases
-yet, this logically belongs in the overlay, so please move it there.
-
->                 mmc1 = &sdhi1;
->                 serial0 = &scif;
->         };
-> --- /dev/null
-> +++ b/arch/arm64/boot/dts/renesas/rzv2-evk-cn15-emmc-common.dtsi
-> @@ -0,0 +1,46 @@
-> +// SPDX-License-Identifier: GPL-2.0
-> +/*
-> + * Shared DT include for the eMMC Sub Board (RTK0EF0186B02000BJ), which
-> + * is connected to the CN15 connector on the RZ/V2H and RZ/V2N EVKs.
-> + *
-> + * Contains common pinctrl and SDHI0 definitions.
-> + *
-> + * Copyright (C) 2025 Renesas Electronics Corp.
-> + */
-> +
-> +/dts-v1/;
-> +/plugin/;
-
-These two directives belong in the .dtso files (and you already have
-them there).
-
-> --- /dev/null
-> +++ b/arch/arm64/boot/dts/renesas/rzv2-evk-cn15-sd-common.dtsi
-> @@ -0,0 +1,67 @@
-> +// SPDX-License-Identifier: GPL-2.0
-> +/*
-> + * Shared DT include for the microSD Sub Board (RTK0EF0186B01000BJ), which
-> + * is connected to the CN15 connector on the RZ/V2H and RZ/V2N EVKs.
-> + *
-> + * Contains common pinctrl and SDHI0 definitions.
-> + *
-> + * Copyright (C) 2025 Renesas Electronics Corp.
-> + */
-> +
-> +/dts-v1/;
-> +/plugin/;
-
-Likewise.
-
-> +
-> +#include <dt-bindings/gpio/gpio.h>
-> +#include <dt-bindings/pinctrl/rzg2l-pinctrl.h>
-> +
-> +&{/} {
-> +       vqmmc_sdhi0: regulator-vqmmc-sdhi0 {
-> +               compatible = "regulator-gpio";
-> +               regulator-name = "SDHI0 VqmmC";
-> +               gpios = <&pinctrl SD_GPIO(A, 0) GPIO_ACTIVE_HIGH>;
-
-If you use a macro to abstract the GPIO number, please include the
-bank and port number in the abstraction.
-
-Alternatively, as both RZ/V2H and RZ/V2N use PA0, you can use
-RZG2L_GPIO(10, 10) directly.  That just leaves us with a desire to
-express "A" instead of 10...
-
-Note that you end up with the exact same .dtbo for RZ/V2H and RZ/V2N
-again...
-
-> +               regulator-min-microvolt = <1800000>;
-> +               regulator-max-microvolt = <3300000>;
-> +               gpios-states = <0>;
-> +               states = <3300000 0>, <1800000 1>;
-> +       };
-> +};
-> +
-> +&pinctrl {
-> +       sdhi0-pwr-en-hog {
-> +               gpio-hog;
-> +               gpios = <SD_GPIO(A, 1) GPIO_ACTIVE_HIGH>;
-
-Likewise.
-
-> +               output-high;
-> +               line-name = "sd0_pwr_en";
-> +       };
-> +
-> +       sdhi0_pins: sd0 {
-> +               sd0-cd {
-> +                       pinmux = <SD_PORT_PINMUX(A, 5, 15)>; /* SD0_CD */
-
-Likewise.
-
-> +               };
-
-The rest LGTM.
-
-Gr{oetje,eeting}s,
-
-                        Geert
-
---
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
-
-In personal conversations with technical people, I call myself a hacker. But
-when I'm talking to journalists I just say "programmer" or something like that.
-                                -- Linus Torvalds
+	Andrew
 
