@@ -1,174 +1,134 @@
-Return-Path: <devicetree+bounces-189942-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-189943-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 84EC7AE9E89
-	for <lists+devicetree@lfdr.de>; Thu, 26 Jun 2025 15:22:36 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id E141CAE9E9C
+	for <lists+devicetree@lfdr.de>; Thu, 26 Jun 2025 15:25:01 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id AADFA7B3433
-	for <lists+devicetree@lfdr.de>; Thu, 26 Jun 2025 13:21:11 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 1793A4E1A0A
+	for <lists+devicetree@lfdr.de>; Thu, 26 Jun 2025 13:24:28 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3808828B3F9;
-	Thu, 26 Jun 2025 13:22:28 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8CAEE28DF07;
+	Thu, 26 Jun 2025 13:23:25 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="tkkWc5QV"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-qk1-f171.google.com (mail-qk1-f171.google.com [209.85.222.171])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 52B45289E0D;
-	Thu, 26 Jun 2025 13:22:26 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.222.171
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6281D21CC62;
+	Thu, 26 Jun 2025 13:23:25 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1750944148; cv=none; b=uQL6zgVhN8vKnFetdxcNa8A4XH89J7r2LFaV/+wfI6qT3BU+IVs8PjPO3sgT3Sdra0xiCOJwqX+9UH3qb8T1IX0dLO19uQhNvpyjFiBLWOSqtU747I/wJv4T+ZVu2P7j+CGJWBzh2pRFrAo49Uf8ZMKiu+uPkqIaR1XXPN2BIWI=
+	t=1750944205; cv=none; b=qWItZIWu8u5eRCLdVfhU9lESppf3YuNsSsSKTNpD5v4YJjErXQ0vvrVTu4h8dczw7+e0boMbJpdQ/LBTIJmBFsvqiev+Kl6Of2TCNOVQOK3zhv+40P7XcOzTiT+ZqPQdYRFsDAxGJxEL39L/UsNRxS7ooZnGsq8WfDzcgJdZ/5A=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1750944148; c=relaxed/simple;
-	bh=mV9mNsEWH/V5Q2P6cS/JQcjMaDc3Rijx9fBYLM4n7Mg=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=hTDWjH144ySA0KQsHAA8vy3XoxTIlWg6eHyz8UMVNfX6kOlnrQdzpWRnmXHgbKAy14VUWMlKVW47NMwZ1WLyMzsnJYqF0vCc5e6Ffu7go5z3pGMWO3jE/XNLvzrZS3fHWhmC8ssMxh0eolhSfdE5LFzu5gsmlLHcRWvgoshljCs=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.222.171
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-qk1-f171.google.com with SMTP id af79cd13be357-7d219896edeso102440585a.1;
-        Thu, 26 Jun 2025 06:22:26 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1750944145; x=1751548945;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=p8hDBb4/b+eNSRxSeGUOjC6YvOZSs2hSxxLjv9B1kfc=;
-        b=pyvDHdV2/cChNrb497rGo0S1BgPoBV3ts9A3TPYAkvsKszfa7Hyzxxk0UtOae3jV70
-         wHGD5X1rmhRlfM0yV+n27zQuyDomr+ksQxpoDt1pnb5oTz0xmR911hu7w7QSeQtEKyUn
-         8Ukna+Myj/F71KoYXcYhL3Lprg6tRRZpMpHWu48f5WJIp+UOd32zEekA5/u+EUya5CM1
-         KLiZH6vMaJyW/SKE7YTdiYgXG2h3QuFUXt6cxniIwXk8ItYghfa8y7oq5a3vhUeeXWaT
-         rMOlZcs6uHF1r+T6PgtP2QxTautT6QYWf0gYaQCqPUcQcOAccDqujGMJ4KgLWIYCh4nI
-         RdYQ==
-X-Forwarded-Encrypted: i=1; AJvYcCUj/ynQo9ZWwRNiBWxrZnNQdplmHiuOnz9wEZrUBHHz2EOoxHrU84CvLHlESYMBIIzs0ri7QpQt8OVk@vger.kernel.org, AJvYcCVuZAXq0leclSaFGT0KxI3MVBgAOli4GOh8nlLTBt8PDcNdtkwvKiJkgJz9YxkyIprFia0sw8qWANU8GyRs@vger.kernel.org, AJvYcCWmG2Lg38rx9Jba4ZcNHICH0MkrAGvxH8owO2ZYCAo6dFHqZOuNq5kJySkf5WC1xOh8sbRvUoJ9y1vW@vger.kernel.org, AJvYcCXOEhiiuMolOvqEmI6Y9uxUNIqhz2cMzZI+VZ9hNbcEvx0KGyhTv7Ng+09Dwewlr7sFFG43rM9ij1D2fJO9VHeoeK0=@vger.kernel.org
-X-Gm-Message-State: AOJu0Yxo469uHANnWG2UYJLXVKDuD1WnQi87JtVF6ycv7d6LUYhrk4n2
-	9lv1EXb2+bN+uC0OQ8WLtBRhx20P6qsnhcBU1XdCsh22XLFNyDc4/SK6ayZl4QBE
-X-Gm-Gg: ASbGncvZ33Vl16sO8Enu7aknHewTtfUbxjjA89tGxT0Knb8F4Nr2SCezl4xURkHkv9J
-	R0YlqbCV3IhnlQGs3vX1nUjMDRyqIyqZMKYI350Wd1tSTOe4WQX/Dpl6surXT8NqTlU9Pqe+7gx
-	VMjoaY+VVlLQ9oIlRRYe5UPjlmu7LVqdx1WvD5DNYu59a6r+jd60dpbUYWmLEyNIEmxWxU96K3m
-	VahLTD1VwMpuaL8nV1SA3AtsnuuUVdSkuyM+SdLsY5o1FxOmsYojW7U9ntiN+AfATFUpKtvgvcK
-	K++2Nh3SjG6vC3qfzlUXCJ46L0gPB282pwGR7p5Yt0F4FVOVfTjGx8Siopp5blBpM4rnak6bv9W
-	UMT6LP3Qp4/JJSQF0Q6Anuzf5lcez
-X-Google-Smtp-Source: AGHT+IEAymfAGWqa1lsc+lE9aekt+GQmzOq8aWOhlreKofdFa70OokYDqTp4i8/hZux35lG7OKU96A==
-X-Received: by 2002:a05:620a:7004:b0:7c7:ba67:38a with SMTP id af79cd13be357-7d4296920c1mr1162621385a.6.1750944144634;
-        Thu, 26 Jun 2025 06:22:24 -0700 (PDT)
-Received: from mail-qk1-f180.google.com (mail-qk1-f180.google.com. [209.85.222.180])
-        by smtp.gmail.com with ESMTPSA id af79cd13be357-7d443150adesm378585a.26.2025.06.26.06.22.24
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 26 Jun 2025 06:22:24 -0700 (PDT)
-Received: by mail-qk1-f180.google.com with SMTP id af79cd13be357-7d412988b14so97565685a.3;
-        Thu, 26 Jun 2025 06:22:24 -0700 (PDT)
-X-Forwarded-Encrypted: i=1; AJvYcCUNy6i86XkyaVNTZAgIUZSt1s9WmUMYW6X7DQLgk9QOjK+k1wlhiDP4rTFCmUmDB2oVYkFr14cLW02I@vger.kernel.org, AJvYcCUSo3KGRhHPZKEVW4WDFS3i48pjyES51AfBJvya780NMApbdVZ3M/RJTZlQlfgg9nkuZYiAYSGJTBvoumgk@vger.kernel.org, AJvYcCUdbKItAQVz20QuyJYVT3cWuTyUYDW2k8X0axzF+uQAo6JxUpRKgV7zjjqMzSfDACE0j0/rO7qW776lQjLv42cHBSI=@vger.kernel.org, AJvYcCUlO/6kAh2YeY5nO9IrCBpFaRD4K9SRXdouxtQGeX8oppSwN/PQ871p6o205npRNqO/B3OTXg8D7uEL@vger.kernel.org
-X-Received: by 2002:a05:620a:1a28:b0:7d4:2922:14a4 with SMTP id
- af79cd13be357-7d4296e5269mr1006485085a.23.1750944143752; Thu, 26 Jun 2025
- 06:22:23 -0700 (PDT)
+	s=arc-20240116; t=1750944205; c=relaxed/simple;
+	bh=LzwMvI0WtdgZVBFvOn34g2sO0CPljoYhy99ZfKmMNs0=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=sd1YC29uFLiHUfVZi++fjFvkhO0QYqIP++3rm77ZwWxUUV2sXsxbu9QnEcITuFNuFTU6lTwRoLevM4yt48IWGgPHNlUYETU5Y2yHEoIxDCMSQptdQRZEh99bIO4acFCfxsnHeIR8IHrj3OkSYpG2CvwBnyCVYYp/YjXoAeuDmT4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=tkkWc5QV; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 42506C4CEEB;
+	Thu, 26 Jun 2025 13:23:19 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1750944204;
+	bh=LzwMvI0WtdgZVBFvOn34g2sO0CPljoYhy99ZfKmMNs0=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=tkkWc5QVE3tJMOd64AAvozxZIc4Gjy1OrXPUM8ChqPKMZQgE2z1LwVSaI7C9tX726
+	 UjhJGrPhlcuMzvX2KEXj6KBhdiF4RTMmZASp7mIlq2jCvBezqbVN6nZVchV1xOdXjS
+	 TLlCdh9fsehT8n7zEODyLTLDzTb24ouNEWLl/hZiQ/2FJHFE0DimvWQNXpRKzML+5D
+	 oQsKO5d75bYcRA65P/GlRibYfmKcFDJUdoPuHM9dOMfPAJfvZ2jtSqKEpaMFXnAhJA
+	 4+aytDxDUYXUpDNWvXaWJyArlUY0wFNJgJOVh+bomeL+e4yp/sETcqYbfhuWGDgWZU
+	 O5iqx3Db86DgQ==
+Message-ID: <3e863f9d-6659-4c76-9d82-74d63cfd6eb4@kernel.org>
+Date: Thu, 26 Jun 2025 15:23:17 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20250624173030.472196-1-prabhakar.mahadev-lad.rj@bp.renesas.com> <20250624173030.472196-5-prabhakar.mahadev-lad.rj@bp.renesas.com>
-In-Reply-To: <20250624173030.472196-5-prabhakar.mahadev-lad.rj@bp.renesas.com>
-From: Geert Uytterhoeven <geert@linux-m68k.org>
-Date: Thu, 26 Jun 2025 15:22:10 +0200
-X-Gmail-Original-Message-ID: <CAMuHMdWsA4mC+D8ftx74_XeuBjpv-9EQN0rgVLPsxjmrO3+rWg@mail.gmail.com>
-X-Gm-Features: Ac12FXyZOhKLUwzapIWzq_IcowUr7r_QEZiZS2TBQeWgQqz_SzAvs4KKWCo_QvU
-Message-ID: <CAMuHMdWsA4mC+D8ftx74_XeuBjpv-9EQN0rgVLPsxjmrO3+rWg@mail.gmail.com>
-Subject: Re: [PATCH 4/6] clk: renesas: rzv2h: Add fixed-factor module clocks
- with status reporting
-To: Prabhakar <prabhakar.csengg@gmail.com>
-Cc: Michael Turquette <mturquette@baylibre.com>, Stephen Boyd <sboyd@kernel.org>, 
-	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Magnus Damm <magnus.damm@gmail.com>, linux-renesas-soc@vger.kernel.org, 
-	linux-clk@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	devicetree@vger.kernel.org, Biju Das <biju.das.jz@bp.renesas.com>, 
-	Fabrizio Castro <fabrizio.castro.jz@renesas.com>, 
-	Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-Content-Type: text/plain; charset="UTF-8"
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2 0/4] gs101 max77759 enablement (DT)
+To: =?UTF-8?Q?Andr=C3=A9_Draszik?= <andre.draszik@linaro.org>,
+ Catalin Marinas <catalin.marinas@arm.com>, Will Deacon <will@kernel.org>,
+ Peter Griffin <peter.griffin@linaro.org>,
+ Tudor Ambarus <tudor.ambarus@linaro.org>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Alim Akhtar <alim.akhtar@samsung.com>
+Cc: Will McVicker <willmcvicker@google.com>, kernel-team@android.com,
+ linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+ linux-samsung-soc@vger.kernel.org, devicetree@vger.kernel.org
+References: <20250524-b4-max77759-mfd-dts-v2-0-b479542eb97d@linaro.org>
+ <5113e57e0475a62f2f50006a7178377c508f9403.camel@linaro.org>
+From: Krzysztof Kozlowski <krzk@kernel.org>
+Content-Language: en-US
+Autocrypt: addr=krzk@kernel.org; keydata=
+ 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 a/A=
+In-Reply-To: <5113e57e0475a62f2f50006a7178377c508f9403.camel@linaro.org>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 
-Hi Prabhakar,
+On 25/06/2025 19:25, André Draszik wrote:
+> On Sat, 2025-05-24 at 06:21 +0100, André Draszik wrote:
+>> Hi,
+>>
+>> This series enables the recently merged Maxim max77759 driver and
+>> updates the DT for the Google Pixel 6 / Pro (oriole / raven) boards
+>> accordingly.
+>>
+>> This gives us some extra GPIOs, and enables NVMEM which is used to
+>> communicate the requested boot mode to the bootloader when doing a cold
+>> reset.
+> 
+> Friendly ping.
 
-On Tue, 24 Jun 2025 at 19:30, Prabhakar <prabhakar.csengg@gmail.com> wrote:
-> From: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
->
-> Add support for fixed-factor module clocks that can report their enable
-> status through the module status monitor. Introduce a new clock type,
-> CLK_TYPE_FF_MOD_STATUS, and define the associated structure,
-> rzv2h_ff_mod_status_clk, to manage these clocks.
->
-> Implement the .is_enabled callback by reading the module status register
-> using monitor index and bit definitions. Provide a helper macro,
-> DEF_FIXED_MOD_STATUS, to simplify the definition of such clocks.
->
-> Signed-off-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+Oh, I am really sorry, for some reason I thought it waits on
+dependencies. I'll look at this today and hopefully merge it. Apologies
+for delays.
 
-Thanks for your patch!
-
-One early review comment below...
-
-> --- a/drivers/clk/renesas/rzv2h-cpg.c
-> +++ b/drivers/clk/renesas/rzv2h-cpg.c
-
-> +static struct clk_ops rzv2h_clk_ff_mod_status_ops;
-
-This is an empty block of 200 bytes, consuming memory even when running
-on a different platform.
-
-> +static struct clk * __init
-> +rzv2h_cpg_fixed_mod_status_clk_register(const struct cpg_core_clk *core,
-> +                                       struct rzv2h_cpg_priv *priv)
-> +{
-> +       struct rzv2h_ff_mod_status_clk *clk_hw_data;
-> +       struct clk_init_data init = { };
-> +       struct clk_fixed_factor *fix;
-> +       const struct clk *parent;
-> +       const char *parent_name;
-> +       int ret;
-> +
-> +       WARN_DEBUG(core->parent >= priv->num_core_clks);
-> +       parent = priv->clks[core->parent];
-> +       if (IS_ERR(parent))
-> +               return ERR_CAST(parent);
-> +
-> +       parent_name = __clk_get_name(parent);
-> +       parent = priv->clks[core->parent];
-> +       if (IS_ERR(parent))
-> +               return ERR_CAST(parent);
-> +
-> +       clk_hw_data = devm_kzalloc(priv->dev, sizeof(*clk_hw_data), GFP_KERNEL);
-> +       if (!clk_hw_data)
-> +               return ERR_PTR(-ENOMEM);
-> +
-> +       clk_hw_data->priv = priv;
-> +       clk_hw_data->conf = core->cfg.fixed_mod;
-> +
-> +       rzv2h_clk_ff_mod_status_ops = clk_fixed_factor_ops;
-
-This overwrites rzv2h_clk_ff_mod_status_ops in every call (currently
-there is only one).
-
-> +       rzv2h_clk_ff_mod_status_ops.is_enabled = rzv2h_clk_ff_mod_status_is_enabled;
-
-If there would be multiple calls, there is a short time window where
-rzv2h_clk_ff_mod_status_ops.is_enabled is NULL, possibly affecting
-already-registered clocks of the same type.
-
-Hence I think you better store rzv2h_clk_ff_mod_status_ops inside
-rzv2h_cpg_priv (so it is allocated dynamically), and initialize it from
-rzv2h_cpg_probe (so it is initialized once).
-
-Gr{oetje,eeting}s,
-
-                        Geert
-
--- 
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
-
-In personal conversations with technical people, I call myself a hacker. But
-when I'm talking to journalists I just say "programmer" or something like that.
-                                -- Linus Torvalds
+Best regards,
+Krzysztof
 
