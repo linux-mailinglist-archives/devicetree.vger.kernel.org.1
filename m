@@ -1,145 +1,157 @@
-Return-Path: <devicetree+bounces-190068-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-190069-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 87896AEA767
-	for <lists+devicetree@lfdr.de>; Thu, 26 Jun 2025 21:53:29 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 18A9EAEA77B
+	for <lists+devicetree@lfdr.de>; Thu, 26 Jun 2025 21:56:17 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 6C0E11C42FDB
-	for <lists+devicetree@lfdr.de>; Thu, 26 Jun 2025 19:53:45 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id A33FD7AF37D
+	for <lists+devicetree@lfdr.de>; Thu, 26 Jun 2025 19:54:52 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 672372F0C4E;
-	Thu, 26 Jun 2025 19:53:22 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id BF0612EFD91;
+	Thu, 26 Jun 2025 19:56:08 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="lPaB/mxw"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="EnYe7yPY"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-oo1-f49.google.com (mail-oo1-f49.google.com [209.85.161.49])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 363572F0055;
-	Thu, 26 Jun 2025 19:53:21 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2AA121C5F09;
+	Thu, 26 Jun 2025 19:56:06 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.161.49
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1750967602; cv=none; b=KE+71AAZS49g+Qw4JTJLqWlK4Rim92mKHTLteVduPLJhtXHn/zus+aMjf83I3A8pzhpYCyp134p7SFsxAtZkDoEAPla1zWTec0xYcBjxU7jRjo41L5zYhQc4I/Zbs+FvHz7vt3pRHhGFL6TIbO5quSvwpgOy2mYKRcI8K0VyH5U=
+	t=1750967768; cv=none; b=f19VIcHn8m1Q4MX9RMEGqZQaMyW5cBDJfaMDU0HbBXBCDrqC9c2D1YHp8pC7Otj6k7MmgGaderDuENpy25Vjc0DibUPn0bZ7Xfbp6loAeTxRTaerT0ZvQ5SWMPqb52Cez/fekhxng1L6Jo3VuEunUolzvHY7PwxR11OHbzrgOMQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1750967602; c=relaxed/simple;
-	bh=3102csKV0qk6voV51MLhEB4N+SYWBLbDze9z6LLrQTY=;
-	h=Date:Content-Type:MIME-Version:From:Cc:To:In-Reply-To:References:
-	 Message-Id:Subject; b=gX0046dEqoQslQA9vR0ownFPosL1r4ahzhRrvNa1Q2XQ3j2RUHNxR8+d2aY8hHanEn0JAquUNckhW3/vHcvQWNzOZFgJFEi1mnLJ+aCCbpAPcgo7rmvec5Ht56ndUTc8S/rS8eEEbBn02FbmyGfsBlGTXQqJlQ8dVwdWWrNwbcI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=lPaB/mxw; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 9D454C4CEF0;
-	Thu, 26 Jun 2025 19:53:21 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1750967601;
-	bh=3102csKV0qk6voV51MLhEB4N+SYWBLbDze9z6LLrQTY=;
-	h=Date:From:Cc:To:In-Reply-To:References:Subject:From;
-	b=lPaB/mxwZsS3UmvJMcbgXPS2qNa6wiA1EJFZDjqHTdz/53VQZXTRxKnNUwfqwTp4G
-	 c/XA1T0jBjRx+neRvXbfmuZ9/yB6gP6T6U5rEiejOiJqXl/aSb0+Xvpgfbn+M9Bgi/
-	 YpTyjhm8NpmUkoYwK0Hsyak4qwA4vidpDjfe8vVqIcg8VTOPOstl/xyo9+aVqcl+ef
-	 yjgUpVAgeV+1f4JZv/GqKY9WpRqJCCLYbsuA8FvLDiPPQP0oqCliztZTV5Fblg37z1
-	 j+AU8Z4CHtVAd2RWcI8Jsp9xuL42nf9O2YZgsNR0wUdzx39ts/kfjdyDYe2uMfg6qT
-	 r4k5LVm9ANgwQ==
-Date: Thu, 26 Jun 2025 14:53:20 -0500
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
+	s=arc-20240116; t=1750967768; c=relaxed/simple;
+	bh=X1Kj3oXzK/sHnfb7WSAnH8aI7lOTApcpAFqVP2q9HXs=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=OohcAww2tPFMLCu5iO8LRxQ22CDtnTkh/KTmyT/Cpx0PWsLiLnFXoWab0o8RgaFLa63nov+jOnSPV/tQhn2TogYPuxk4uniJNKX8USuiskT/6418gpoNUbK5m9oA8MnID+bB+dGjOYZcG/zjk9nQB2y7/yH24cUTEroLxkm4xkE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=EnYe7yPY; arc=none smtp.client-ip=209.85.161.49
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-oo1-f49.google.com with SMTP id 006d021491bc7-6113e68da82so584826eaf.1;
+        Thu, 26 Jun 2025 12:56:06 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1750967766; x=1751572566; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=hk3radOrdiIbqfj9Koe35i0uF/bY0CW4+GPlMQ1CzR0=;
+        b=EnYe7yPYtV69lI7u3Ky9BP30Mzg8vlGuCc1DDZZ1+lxGO1dh9VTZznIX2ZhZwaObja
+         GvBRDRl590g8B3hcLCInQ/dpGh+5/8ofxcWpx3c4dAby5rYJNouo7pX/hzeyPefuRvTg
+         Prez783wIm8I+G6LShnRXRcK1oQ79Ld2pA0oWia8/XfnFuaxauopZ1Ydo891TizDuQbO
+         xmASOKic6wH6gQmh8ddb/Hbq74frKuDvjbwFcuFjuM6NKI1ufs7ph/jpvFlMa2noZbeO
+         rEaQInmWF40VS1CyVIkcNZPPysdG/1AH/3WsfGVDglU5uNuMLagVAxncHtxnwhdxRC39
+         /v2A==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1750967766; x=1751572566;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=hk3radOrdiIbqfj9Koe35i0uF/bY0CW4+GPlMQ1CzR0=;
+        b=cwBJP5W1qETl1wZ/g5rgnR95kOGcwIYBBZTzMn5PePxzJdFuFaRyvP2xFzj6eF6v3p
+         ApImRn//XdF6v/AUbBiqFZR3XZ77TMxGSecQ0x4v0tyBkc36K+Tg9eHwcMNdL8jntYgK
+         U/GM3lxvsmyP/PJOUAh4ahWnT1dpWPyryGJH+LD4aoGtMBgi+57D5+b485CIPWfjOck+
+         Nc52nlbS6cOcunCe5aBHY42QGviqu/y4DaDxY1Fa0CuzKT4X1UhyN/+fcrgDTqf4u4Lt
+         9EXoQhopI5gJYjTW3yxk36sepZyalm8zLeig43sSnNoRP3oapjfsdmuxPGiOjGpp1eBO
+         CxRQ==
+X-Forwarded-Encrypted: i=1; AJvYcCXaEcX8eKBkLJcdrai+hyD2GcFYgJp9bO8dbfVQVx89dx24X7gp5lGq2IFTQdmsjIvkvDV5jbFGCeV4@vger.kernel.org
+X-Gm-Message-State: AOJu0Yw7l4dCzBvTS31Lo4q/LSR/BO+W7OWUjfeuY1fx7wnBSq33f7Fx
+	0meLoW1C+NAJcZuBPyVzSZZNv7AcEOON9OdzLoVS8nxnQN2tZIQ3RvzuovnS5w==
+X-Gm-Gg: ASbGncuVr7wpqDSD6lyOorRqXD1leqCiH0k6KtL9xL2Q/2IRHwDhy8RR4dAn4Lh0sG1
+	RIxNEDwD9bL3BvPbDBrAVyqX90rM4yNPK77eHTOQ3B7hi5k6TH5QMlv2e2Obt/x/lGpUojyabXF
+	VWlzWluV+fCgD64Gqca40nlr2PbwmltfZl8mVLMCic9Ao5eoca1Yhy6BONK4fHgNeMGf29BvnbN
+	v4uVnHd1QluF39ePNp9pJbN4sAmsGQ0icTNKEHeLeyJTHWuE2sjQe8+L/KCKsglT5SAKKiGRmf+
+	HRbyxba3y/mv/A74Eiioflwdtzs7XaSZLywlkR9wS5BKjXZe/P1EDeq6IiQtHJmZkjL3NvuojgF
+	kmD9ddw==
+X-Google-Smtp-Source: AGHT+IF5S5CU5Uz4mqpGNWHcGdAzqV7+uNsJZkPUL952E2bpu12FDSIRsUQQsy2Cu0EA2r19IrYvpw==
+X-Received: by 2002:a05:6820:8189:b0:611:7385:77a0 with SMTP id 006d021491bc7-611b90a898fmr432166eaf.4.1750967765969;
+        Thu, 26 Jun 2025 12:56:05 -0700 (PDT)
+Received: from localhost.localdomain ([2600:1700:fb0:1bc0:f978:7e9c:c207:c035])
+        by smtp.gmail.com with ESMTPSA id 006d021491bc7-611b8582352sm66915eaf.22.2025.06.26.12.56.05
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 26 Jun 2025 12:56:05 -0700 (PDT)
+From: Chris Morgan <macroalpha82@gmail.com>
+To: linux-pm@vger.kernel.org
+Cc: linux-rockchip@lists.infradead.org,
+	devicetree@vger.kernel.org,
+	broonie@kernel.org,
+	lgirdwood@gmail.com,
+	sre@kernel.org,
+	heiko@sntech.de,
+	conor+dt@kernel.org,
+	krzk+dt@kernel.org,
+	robh@kernel.org,
+	lee@kernel.org,
+	Chris Morgan <macromorgan@hotmail.com>
+Subject: [PATCH V4 0/5] Add Texas Instruments BQ25703A Charger
+Date: Thu, 26 Jun 2025 14:53:38 -0500
+Message-ID: <20250626195343.54653-1-macroalpha82@gmail.com>
+X-Mailer: git-send-email 2.43.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-From: "Rob Herring (Arm)" <robh@kernel.org>
-Cc: devicetree@vger.kernel.org, Bjorn Andersson <andersson@kernel.org>, 
- Krzysztof Kozlowski <krzk+dt@kernel.org>, linux-arm-msm@vger.kernel.org, 
- Konrad Dybcio <konradybcio@kernel.org>, 
- Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>, 
- ~postmarketos/upstreaming@lists.sr.ht, phone-devel@vger.kernel.org, 
- Conor Dooley <conor+dt@kernel.org>, linux-kernel@vger.kernel.org
-To: Cristian Cozzolino <cristian_ci@protonmail.com>
-In-Reply-To: <20250626-rimob-initial-devicetree-v3-0-4017ac9fd93d@protonmail.com>
-References: <20250626-rimob-initial-devicetree-v3-0-4017ac9fd93d@protonmail.com>
-Message-Id: <175096753958.717956.3150907167726764280.robh@kernel.org>
-Subject: Re: [PATCH v3 0/3] Add initial device tree for Billion Capture+
+Content-Transfer-Encoding: 8bit
 
+From: Chris Morgan <macromorgan@hotmail.com>
 
-On Thu, 26 Jun 2025 00:04:25 +0200, Cristian Cozzolino wrote:
-> Billion Capture+ is a handset using the MSM8953 SoC released in 2017
-> and sold by Flipkart.
-> 
-> Add a device tree with initial support for:
-> 
-> - GPIO keys
-> - SDHCI (internal and external storage)
-> - USB Device Mode
-> - Regulators
-> - Simple framebuffer
-> 
-> Signed-off-by: Cristian Cozzolino <cristian_ci@protonmail.com>
-> ---
-> Changes in v3:
-> - (patch 3/3): pick up tag (Konrad);
-> - Link to v2: https://lore.kernel.org/r/20250624-rimob-initial-devicetree-v2-0-34f6045ebc30@protonmail.com
-> 
-> Changes in v2:
-> - (patch 3/3):
->   - add unit address and label to qseecom (Luca);
->   - reorder properties alphabetically in gpio-keys node (Konrad);
->   - fix hex values in reg address and size cells: from 0x00 to 0x0 (Konrad);
->   - add regulator-allow-set-load property to regulators supplying sdhc1/sdhc2.
-> - Link to v1: https://lore.kernel.org/r/20250620-rimob-initial-devicetree-v1-0-8e667ea21f82@protonmail.com
-> 
-> ---
-> Cristian Cozzolino (3):
->       dt-bindings: vendor-prefixes: Add Flipkart
->       dt-bindings: arm: qcom: Add Billion Capture+
->       arm64: dts: qcom: msm8953: Add device tree for Billion Capture+
-> 
->  Documentation/devicetree/bindings/arm/qcom.yaml    |   1 +
->  .../devicetree/bindings/vendor-prefixes.yaml       |   2 +
->  arch/arm64/boot/dts/qcom/Makefile                  |   1 +
->  .../arm64/boot/dts/qcom/msm8953-flipkart-rimob.dts | 255 +++++++++++++++++++++
->  4 files changed, 259 insertions(+)
-> ---
-> base-commit: 0ff41df1cb268fc69e703a08a57ee14ae967d0ca
-> change-id: 20250620-rimob-initial-devicetree-da86a5bffc8b
-> 
-> Best regards,
-> --
-> Cristian Cozzolino <cristian_ci@protonmail.com>
-> 
-> 
-> 
+Add support for the Texas Instruments BQ25703A charger manager. The
+device integrates a boost converter with the charger manager. This
+series adds the device as an MFD with separate regulator and power
+supply drivers. This allows us to manage a circular dependency with
+a type-c port manager which depends on the regulator for usb-otg
+but supplies power to the BQ25703A charger.
 
+---
+Changes since RFC
+ - Corrected some minor issues with code and device-tree labels.
+ - Replaced most of the manufacturer specific device-tree properties
+   with monitored-battery properties.
+Changes since V2
+ - Added reference to power-supply.yaml and removed note for i2c
+   address per recommendation from Sebastian.
+ - Corrected documentation error for charger driver found by kernel
+   test robot.
+ - Corrected duplicate POWER_SUPPLY_USB_TYPE_PD entry and corrected
+   ichg logic in power supply changed function.
+ - Corrected missing linux/bitfield.h header in regulator driver found
+   by kernel test robot.
+Changes since V3
+ - Changed name of regulator from usb_otg_vbus to just vbus to align
+   with datasheet.
+ - Additional cleanup of the device tree documentation.
+---
 
-My bot found new DTB warnings on the .dts files added or changed in this
-series.
+Chris Morgan (5):
+  dt-bindings: mfd: ti,bq25703a: Add TI BQ25703A Charger
+  mfd: bq257xx: Add support for BQ25703A core driver
+  power: supply: bq257xx: Add support for BQ257XX charger
+  regulator: bq257xx: Add bq257xx boost regulator driver
+  arm64: dts: rockchip: Add USB and charger to Gameforce Ace
 
-Some warnings may be from an existing SoC .dtsi. Or perhaps the warnings
-are fixed by another series. Ultimately, it is up to the platform
-maintainer whether these warnings are acceptable or not. No need to reply
-unless the platform maintainer has comments.
+ .../devicetree/bindings/mfd/ti,bq25703a.yaml  | 117 +++
+ .../dts/rockchip/rk3588s-gameforce-ace.dts    | 122 +++
+ drivers/mfd/Kconfig                           |  11 +
+ drivers/mfd/Makefile                          |   1 +
+ drivers/mfd/bq257xx.c                         | 104 +++
+ drivers/power/supply/Kconfig                  |   7 +
+ drivers/power/supply/Makefile                 |   1 +
+ drivers/power/supply/bq257xx_charger.c        | 754 ++++++++++++++++++
+ drivers/regulator/Kconfig                     |   8 +
+ drivers/regulator/Makefile                    |   1 +
+ drivers/regulator/bq257xx-regulator.c         | 189 +++++
+ include/linux/mfd/bq257xx.h                   | 108 +++
+ 12 files changed, 1423 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/mfd/ti,bq25703a.yaml
+ create mode 100644 drivers/mfd/bq257xx.c
+ create mode 100644 drivers/power/supply/bq257xx_charger.c
+ create mode 100644 drivers/regulator/bq257xx-regulator.c
+ create mode 100644 include/linux/mfd/bq257xx.h
 
-If you already ran DT checks and didn't see these error(s), then
-make sure dt-schema is up to date:
-
-  pip3 install dtschema --upgrade
-
-
-This patch series was applied (using b4) to base:
- Base: using specified base-commit 0ff41df1cb268fc69e703a08a57ee14ae967d0ca
-
-If this is not the correct base, please add 'base-commit' tag
-(or use b4 which does this automatically)
-
-New warnings running 'make CHECK_DTBS=y for arch/arm64/boot/dts/qcom/' for 20250626-rimob-initial-devicetree-v3-0-4017ac9fd93d@protonmail.com:
-
-arch/arm64/boot/dts/qcom/msm8953-flipkart-rimob.dtb: gpu@1c00000 (qcom,adreno-506.0): clock-names:5: 'alwayson' is not one of ['core', 'iface', 'mem', 'mem_iface', 'alt_mem_iface', 'gfx3d', 'rbbmtimer', 'rbcpr']
-	from schema $id: http://devicetree.org/schemas/display/msm/gpu.yaml#
-
-
-
-
+-- 
+2.43.0
 
 
