@@ -1,80 +1,74 @@
-Return-Path: <devicetree+bounces-189945-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-189946-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 66D6AAE9EDC
-	for <lists+devicetree@lfdr.de>; Thu, 26 Jun 2025 15:34:31 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 314C6AE9F56
+	for <lists+devicetree@lfdr.de>; Thu, 26 Jun 2025 15:48:57 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id A5347177E76
-	for <lists+devicetree@lfdr.de>; Thu, 26 Jun 2025 13:34:13 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 862FC3A9F91
+	for <lists+devicetree@lfdr.de>; Thu, 26 Jun 2025 13:48:26 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 75C112E3375;
-	Thu, 26 Jun 2025 13:34:11 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 389EB2E716D;
+	Thu, 26 Jun 2025 13:48:42 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="ZPVVsuOv"
+	dkim=pass (2048-bit key) header.d=linutronix.de header.i=@linutronix.de header.b="GaawndPC";
+	dkim=permerror (0-bit key) header.d=linutronix.de header.i=@linutronix.de header.b="l5/j29XU"
 X-Original-To: devicetree@vger.kernel.org
-Received: from lelvem-ot02.ext.ti.com (lelvem-ot02.ext.ti.com [198.47.23.235])
+Received: from galois.linutronix.de (Galois.linutronix.de [193.142.43.55])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 59909267F59;
-	Thu, 26 Jun 2025 13:34:09 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.23.235
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B3A362E1C7E;
+	Thu, 26 Jun 2025 13:48:40 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=193.142.43.55
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1750944851; cv=none; b=ZlR7BUX9mM7NC1wdDq46YeQLKYw7B/pLwb7dl8E7X3hsl6C1IW2RC2WftTDSuLeX7nJqgZaf6RrQK5FsD9vC1vPX2VvAYC6MSNUVMyrs/g4kbjB0RcJfY2HlO7CGKrjYtg4BBMvT61OV/2FxhfKAC6/p0UIfGFj/HpFGHmlrm7A=
+	t=1750945722; cv=none; b=rRtGx8CqvlAtOpFvzZL4l1gA7w9/zStBs5mgqnr4AwnKGhHhUrv9D7tdL0UbW7GCh3y+9Z5cwH1JRaoBtO44tnrV4R9sEDRiBFwKcmLd1aTFXqYKDZEQgXyfbMiqCL1YHS6C2h8fY3E2fNGHEwrxCYZI28FX9KaB2uMlO9tSMxA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1750944851; c=relaxed/simple;
-	bh=MTfufscCs55245yA3t2uLj7ZB0URFKvgjXsaLoyy3XA=;
-	h=From:To:CC:Subject:In-Reply-To:References:Date:Message-ID:
-	 MIME-Version:Content-Type; b=PvvZncFwngox63vnziiXKE3EvJ+wYWApjSN7sZ0LGpKYy4gQXAdGfqrFWaKeGhxsZEzQgNiTLG52Z/tSRXNGz2XBdDfgO6GBRSPl0d7yooLGNvm1F/vEffqcBT9RJqkxLC8kxGgynxmYq0kNFEmSHUO+33ZH+PwcznNQw/5NjTk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=ZPVVsuOv; arc=none smtp.client-ip=198.47.23.235
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
-Received: from lelvem-sh02.itg.ti.com ([10.180.78.226])
-	by lelvem-ot02.ext.ti.com (8.15.2/8.15.2) with ESMTP id 55QDXtJ12434115;
-	Thu, 26 Jun 2025 08:33:55 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1750944835;
-	bh=L+HNIO6gQFtowO13mUz9/yujQ4NufV5X6l/IZVQUHrw=;
-	h=From:To:CC:Subject:In-Reply-To:References:Date;
-	b=ZPVVsuOvBUrnmrwQhRMGy331+A4qzclgdS0oMzNijrX83d4lvwTD5AlHuLchHsc2i
-	 OHGS1iKXJPpVQHR+9NZIk9ZBYFFkziFSBBwbIW+S90f5GHoBaqsaHcLr0sxITCe9eO
-	 /CMbsNCfOBt9EfCR1zFwDEnXJLMm8m+Nc//Qmhp4=
-Received: from DLEE115.ent.ti.com (dlee115.ent.ti.com [157.170.170.26])
-	by lelvem-sh02.itg.ti.com (8.18.1/8.18.1) with ESMTPS id 55QDXtdQ3666006
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-SHA256 bits=128 verify=FAIL);
-	Thu, 26 Jun 2025 08:33:55 -0500
-Received: from DLEE110.ent.ti.com (157.170.170.21) by DLEE115.ent.ti.com
- (157.170.170.26) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.55; Thu, 26
- Jun 2025 08:33:54 -0500
-Received: from lelvem-mr06.itg.ti.com (10.180.75.8) by DLEE110.ent.ti.com
- (157.170.170.21) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.55 via
- Frontend Transport; Thu, 26 Jun 2025 08:33:55 -0500
-Received: from localhost (kamlesh.dhcp.ti.com [172.24.227.123])
-	by lelvem-mr06.itg.ti.com (8.18.1/8.18.1) with ESMTP id 55QDXsHX1076756;
-	Thu, 26 Jun 2025 08:33:54 -0500
-From: Kamlesh Gurudasani <kamlesh@ti.com>
-To: Eric Biggers <ebiggers@kernel.org>
-CC: T Pratham <t-pratham@ti.com>, Herbert Xu <herbert@gondor.apana.org.au>,
-        "David S. Miller" <davem@davemloft.net>, Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>, <linux-crypto@vger.kernel.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        "Vignesh Raghavendra" <vigneshr@ti.com>,
-        Praneeth Bajjuri <praneeth@ti.com>,
-        "Manorit Chawdhry" <m-chawdhry@ti.com>
-Subject: Re: [PATCH v5 0/2] Add support for Texas Instruments DTHE V2 crypto
- accelerator
-In-Reply-To: <20250618175847.GA1639822@google.com>
-References: <20250603124217.957116-1-t-pratham@ti.com>
- <20250617042755.GG8289@sol>
- <87ikktgx57.fsf@kamlesh.mail-host-address-is-not-set>
- <20250618175847.GA1639822@google.com>
-Date: Thu, 26 Jun 2025 19:03:53 +0530
-Message-ID: <8734bmsk3i.fsf@kamlesh.mail-host-address-is-not-set>
+	s=arc-20240116; t=1750945722; c=relaxed/simple;
+	bh=9gQSknL79pJ8IOxl4ObzSYmMYFOI5aawI+JojD35p7Q=;
+	h=From:To:Cc:Subject:In-Reply-To:References:Date:Message-ID:
+	 MIME-Version:Content-Type; b=up+0AwaUu9J5p03aNwZDoxAZZZ5U+/mONNrIni+Ji69PcAT7VAhcqtaK4t8SFlR/Ds0u6obiMfYeclEnZL+sRd8S+9S1+C+84E6sJ0Yb1LZarnjn36DBkHVUBIC3pKPtqAiEyLtsc9fYPm2LdvLkVznO/7xNDmRNWT3WtRrdH1I=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linutronix.de; spf=pass smtp.mailfrom=linutronix.de; dkim=pass (2048-bit key) header.d=linutronix.de header.i=@linutronix.de header.b=GaawndPC; dkim=permerror (0-bit key) header.d=linutronix.de header.i=@linutronix.de header.b=l5/j29XU; arc=none smtp.client-ip=193.142.43.55
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linutronix.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linutronix.de
+From: Thomas Gleixner <tglx@linutronix.de>
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linutronix.de;
+	s=2020; t=1750945716;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 in-reply-to:in-reply-to:references:references;
+	bh=oGFsGaDc7A/iv6amXFrZJ2p4lD8QHxWg/O8VbpAqBE8=;
+	b=GaawndPCLcbH0vtikGwu74OYD/tQD4YKZsCGIoqeoWPnEq7Skn031WCaFXU8q2Wa3SwM3t
+	SZmiiF1NfVSGLeUG7CvTHrUVRD4ncF1EIcpm2oMlFXpOh2iWZM4WpvfDUOBlAvF/jAT3Qf
+	nBHKDs32ggwzFkcNu+JSMRhHVSkCZG5z4x6EWVk4yeaIlsL3I5zANGmKZJIeQ0/e73ODes
+	at0PJLQMRZt4ZAt7J8IBKEm6G0/XJAmUK50nnMPkPCq9pLzVfBkxNj2IGHCzIPdTcifrzf
+	S1E+ZiIPUTB4BBHrakeUTFNggghHpTd8FOx22pK1NxKy9x0rK7UimP3B71n7HA==
+DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=linutronix.de;
+	s=2020e; t=1750945716;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 in-reply-to:in-reply-to:references:references;
+	bh=oGFsGaDc7A/iv6amXFrZJ2p4lD8QHxWg/O8VbpAqBE8=;
+	b=l5/j29XUJJcTB0Wfh3QngXEc/2MEVzwBbRdlBUIk8igVqy/SPjHUfc8QvksCYULQlQVl27
+	WZbNSf8spvlZ5IBg==
+To: Vladimir Kondratiev <vladimir.kondratiev@mobileye.com>, Rob Herring
+ <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Paul Walmsley <paul.walmsley@sifive.com>, Palmer
+ Dabbelt <palmer@dabbelt.com>, Albert Ou <aou@eecs.berkeley.edu>, Alexandre
+ Ghiti <alex@ghiti.fr>, Anup Patel <anup@brainfault.org>, Chen Wang
+ <unicorn_wang@outlook.com>, Inochi Amaoto <inochiama@gmail.com>, Sunil V L
+ <sunilvl@ventanamicro.com>, "Rafael J . Wysocki"
+ <rafael.j.wysocki@intel.com>, Ryo Takakura <takakura@valinux.co.jp>
+Cc: linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-riscv@lists.infradead.org, sophgo@lists.linux.dev, Vladimir
+ Kondratiev <vladimir.kondratiev@mobileye.com>
+Subject: Re: [PATCH v3 0/7] MIPS P8700 variant of the ACLINT IPI controller
+In-Reply-To: <20250612143911.3224046-1-vladimir.kondratiev@mobileye.com>
+References: <20250609134749.1453835-1-vladimir.kondratiev@mobileye.com>
+ <20250612143911.3224046-1-vladimir.kondratiev@mobileye.com>
+Date: Thu, 26 Jun 2025 15:48:35 +0200
+Message-ID: <874iw2r4uk.ffs@tglx>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -82,94 +76,30 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain
-X-C2ProcessedOrg: 333ef613-75bf-4e12-a4b1-8e3623f5dcea
 
-Eric Biggers <ebiggers@kernel.org> writes:
-
+On Thu, Jun 12 2025 at 17:39, Vladimir Kondratiev wrote:
+> Patches 1 and 2 refactor "hart index" support, replacing
+> APLIC specific implementation with generic helper
 >
-> Okay, so you admit that your "accelerator" is much slower than the CPU.  So (1)
-> does not apply.
+> Patch 3 adds dt-bindings
 >
-> As for (2), it's not clear that applies here.  Sure, your AES engine *by itself*
-> may be more power-efficient than the AES instructions on the CPU.  However,
-> using the offload requires all the additional work associated with offloading
-> the operation from the CPU.  Since it's much slower, it will also cause the
-> operation to be dragged out over much a longer period of time, keeping the
-> system awake for longer when it could have gone into suspend earlier.
+> Patch 4 refactors Thead-specific SSWI, adding MIPS variant
 >
-> Thus, using the "accelerator" could actually increase power usage.
+> Patch 5 adds "riscv,hart-indexes" support
 >
-> As for (3), a couple issues.  First, you're just making an argument from
-> generalities and are not claiming that it's actually true in this case.  ARMv8
-> CE instructions are in fact constant time.
->
-> Sure, ARMv8 CE is generally not hardened against power analysis attacks.  But
-> you haven't actually claimed that your crypto engine is either.
-1. AES/PKE engine inside DTHEv2 is DPA and EMA resistant.
+> Patches 6 and 7 do some minor improvements for the SSWI
 
->
-> Second, these side channels, especially the ones other than timing, just aren't
-> part of the threat model of most users.
-2. Certification like SESIP, PSA and
-IEC62443(being certified for CIP kernel- LFX [1])
-All these have requirements for sidechannel attacks resistance.(check
-lvl 3+)
-Most of our users have these requirements and they don't even care about
-performance in terms of speed.
+It seems I'm the only one who cares about this series aside of Conor
+looking at the DT part and of course Vladimir himself.
 
->
-> Meanwhile, a security issue we do have is that the hardware drivers tend not to
-> be tested before the kernel is released, and often are released in a broken
-> state where they don't even do the en/decryption correctly.  Furthermore,
-> unprivileged userspace programs may use AF_ALG to exploit buggy drivers.
-3. We have devices in kerneCI and we have regular testing and engineers
-working on acceleratprs internally too, we can be more careful about
-that these drivers are going through prescribed testing for all
-revisions.
+This whole thing looks reasonable to me and I'm not longer waiting for
+those who keep me busy with their own patches and fail to look at stuff
+which affects the architecture/drivers they depend on. I don't want to
+hear complaints about any fallout of this further down the road.
 
-We can reduce the prority for hw Accelerator by default if that's what
-you're trying to imply and let users decide.
->
-> It seems implausible that this patch is more helpful than harmful.
->
-I don't understand why you call it harmful when it is providing the
-security against side channel attacks.
+Oh well.
 
-If ARM itself prescribing to use crypto acclerators if they are
-avialable, then it is beyond my understanding why would you push towards
-using CE extensions.[3]
+Thanks,
 
-Are we not serious about the security than the performance itself?
-
-For us,
-Point 1 and 2 is at top priority and being a SOC vendor we want to make
-sure that we provide all support that is needed by end customers for
-their threat modeling.  
-
-For embedded systems, resource utilization is also very important,
-I can use crypto accelerator and save CPU for other activities
-
-But lets look at numbers, They are not 50x worse as you have mentioned in
-earlier mail, they are just 2x bad. These a system with one core cpu
-833Mhz and DTHEv2 at 400Mhz
-
-root@am62lxx-evm:~# cryptsetup benchmark --cipher aes-cbc
-cryptsetup benchmark --cipher aes-cbc
-# Tests are approximate using memory only (no storage IO).
-# Algorithm |       Key |      Encryption |      Decryption
-    aes-cbc        256b        77.7 MiB/s        77.5 MiB/s
-root@am62lxx-evm:~# modprobe -r dthev2
-modprobe -r dthev2
-root@am62lxx-evm:~# cryptsetup benchmark --cipher aes-cbc
-cryptsetup benchmark --cipher aes-cbc
-# Tests are approximate using memory only (no storage IO).
-# Algorithm |       Key |      Encryption |      Decryption
-    aes-cbc        256b       150.4 MiB/s       163.8 MiB/s
-
-[1]https://dashboard.kernelci.org/hardware?hs=ti
-[2]https://www.cip-project.org/about/security-iec-62443-4-2
-[3]https://www.trustedfirmware.org/docs/Introduction_to_Physical_protection_for_MCU_developers_final.pdf
-
-Cheers,
-Kamlesh
+        tglx
 
