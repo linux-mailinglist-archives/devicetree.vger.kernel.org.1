@@ -1,172 +1,131 @@
-Return-Path: <devicetree+bounces-189825-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-189826-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 53898AE9A34
-	for <lists+devicetree@lfdr.de>; Thu, 26 Jun 2025 11:36:24 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6EF6BAE9A39
+	for <lists+devicetree@lfdr.de>; Thu, 26 Jun 2025 11:36:42 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 69F207B05AF
-	for <lists+devicetree@lfdr.de>; Thu, 26 Jun 2025 09:34:13 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 487521C42EF8
+	for <lists+devicetree@lfdr.de>; Thu, 26 Jun 2025 09:36:00 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A78542BF012;
-	Thu, 26 Jun 2025 09:34:27 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id AE63D2C08C4;
+	Thu, 26 Jun 2025 09:34:46 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=ventanamicro.com header.i=@ventanamicro.com header.b="Rb+DO2DP"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="VCQc3imn"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f41.google.com (mail-wm1-f41.google.com [209.85.128.41])
+Received: from mail-wr1-f66.google.com (mail-wr1-f66.google.com [209.85.221.66])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BF535224B0D
-	for <devicetree@vger.kernel.org>; Thu, 26 Jun 2025 09:34:24 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.41
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EA76F2BF3E0
+	for <devicetree@vger.kernel.org>; Thu, 26 Jun 2025 09:34:44 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.66
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1750930467; cv=none; b=ivCyL3pwwdvWIPGgkMRIXobFHShu/nWj7b+MCDhzgLtINN7/Z+XpxpEuAJ/BZw6BwE4hXV6xaBViLrTNfP5vpvDIkv9yWUFISvaR9+PvD5sJa2hR69NK7SS5u0Gfkutr0G8GwZGc/D8zOoa7H4YyGxbXWzR0lDX0Bz54KwTymNk=
+	t=1750930486; cv=none; b=oD9tSeeoJ74cIBYcI5go2wcVoCb4V05ENcO1CZSZCq+JtFXXvAmjVM/dz7bq5B3rx+gZJ9iCS/RKFwjvkMG4BF6KFtNYP7g38KuPxOtt/SJ2STMR3+6S4mlPqEr7N4OuGvJ76gPWJmEqqzYtdzPnqvv6rfCEd21xZ7DwbOqMJyg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1750930467; c=relaxed/simple;
-	bh=H/yx7nPzP76TAlzmC3FWo7JFHzEZKFIksKif6BUcz8E=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=ZV0boeA1UgmCOc9yEbVJvNwpAYcmdHRNOcSA/8qC8nPJY27RQVJSWa7/Ok926VNzv+VAqYE1umUCvSsXa5/9t9iOBy4AVPxQ1Cw9q8UYAPsY4anbpygP2n8hPNCV1corarEsQjk8sxENsMXQ7MTDd5Dyzde4ZVteOgSTESOUyAE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ventanamicro.com; spf=pass smtp.mailfrom=ventanamicro.com; dkim=pass (2048-bit key) header.d=ventanamicro.com header.i=@ventanamicro.com header.b=Rb+DO2DP; arc=none smtp.client-ip=209.85.128.41
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ventanamicro.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ventanamicro.com
-Received: by mail-wm1-f41.google.com with SMTP id 5b1f17b1804b1-45348bff79fso7620665e9.2
-        for <devicetree@vger.kernel.org>; Thu, 26 Jun 2025 02:34:24 -0700 (PDT)
+	s=arc-20240116; t=1750930486; c=relaxed/simple;
+	bh=daWENH4sK516masqOiqrmZ6Qx3lAJVRs4pOEyMGTS2Y=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=moJwVaRdCiiRufaiS8Vxdsm39Uvdj/7Av6XNzrikcGf5RvwAxmA4g1WcUBCLXqUPOknnF/43+H07A0JZM3BqS1ghg8UuJ8zqVVkat5lQf9+phqTrLhXECaL6TYh8zc7Y8kcuOU5yDtQpsYd0ePuxHl1kPwg5A0h4CdONvJD2rv8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=VCQc3imn; arc=none smtp.client-ip=209.85.221.66
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-wr1-f66.google.com with SMTP id ffacd0b85a97d-3a536ecbf6fso402818f8f.2
+        for <devicetree@vger.kernel.org>; Thu, 26 Jun 2025 02:34:44 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=ventanamicro.com; s=google; t=1750930463; x=1751535263; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=54yRkloeTOXwJZtYTXvyBltimxLORdzQsrxNGOdvL4Y=;
-        b=Rb+DO2DPE62pxVVXEdYYT4NrN7ttozsN+WcuQvtPvnA0dyrDm12/ltOI8mpdpZSW9K
-         2vSxqtoEv5rOVVeJVhS0oOuf/P9FQcxfeoxKLnHpQK7I/0fdLJ37AUWDwDNxTfp+tNce
-         QloABJp91bkXNGDn0YpLCCtU6mqP99IKE7BwmNJHCGMuY5IfQkmpGNJkLR112ct0MvxZ
-         47bJzwiq6/Ri3P4ju7lkzATdyqHzGuDFTAhP5f1UDjJko6vwA7c4RCnooQabvqQzerpJ
-         CBW/aioZyA2dOGZNIsWUI+C5LctKqPgpYAVLJsaF2S8pAoNwrkYsv6IwriBtBnNbQ2jO
-         LCjg==
+        d=linaro.org; s=google; t=1750930483; x=1751535283; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=jmk5itUcCIG6Y80ZPXMFyz9ACwii6tzjqEWxl1mzR5U=;
+        b=VCQc3imnVsBnNK9cD8sfl6GgjI8pRKX2KrqquL8wXHhsYO9X425iJ7Gt8YWN23djrD
+         s0WCjgG7D9OhM57kheWlhdsd5xr1r64NoWZt6dyzksvpRappQNGLqsOb47kX8GB8b9Ly
+         c+qDyNT3HhfPNsYDIDvQTdQByOj7FBbnSuOZm22CwIjp63pclj4//e3XtnL/fxkqqO2a
+         AJgiTRCo7ZeB5RoOlAxR7PW2yr+ahMBNSe0CFFDLrGVn8wCni4K1z22J/f4fqBthShZH
+         iQ6Y15k0oQKbA9V++JM+iiiJA5gLGKUeArR70Ir7y/G/nVr+Fb1JUp0LnhOqGF4f8oiZ
+         Qj9Q==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1750930463; x=1751535263;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=54yRkloeTOXwJZtYTXvyBltimxLORdzQsrxNGOdvL4Y=;
-        b=HA8zQrH+ToCRiyYnhjLr3LZZWUXtapME8soysJWyrUHYi2st3FQpCT4ZUhVPVgBMNM
-         PBpTRjBJaEEiVMWap4Dyutz1tcAdPLDXuJznW/cO90heSAgvPZ+Nf6+PzJhS/IvApy94
-         oHSnY8Sxcejginzl4v8Cxga1YRIV9lcu6ukX7PbyX/jYE46mGv72qJEoC/n9nkCkICEM
-         tATJLOESlZq36Td8nSxIIcNKj0rbZfYKSaLuCWG1NVpw1fhXtMEL64B9aoz6kxMnG7A7
-         mHkfEAhAHbTlkMjZ8hQQ6IlBpmW+FJNotIujoNA1bUybh1PPbhNphP6KeV6cNc5OKtTr
-         j5tQ==
-X-Forwarded-Encrypted: i=1; AJvYcCVpLFjl5lScNN6eZCxswJXdNrKeZtFioq0jg0DpsZ7AiyiRWd0ujaOFVyk0fnBsoR4NWNy7ROHb0LlL@vger.kernel.org
-X-Gm-Message-State: AOJu0YyfxnTOB33hBPgeb/0cM+627pbgc+dx6EcHQxe0Yox9Z5eS7yTw
-	23FMa+qI6n3qIqse2L8qdXItU0j47m37CRRWEWhE5nv8rlgcoBxAo56VLHADykFx9ao=
-X-Gm-Gg: ASbGncuGJkKeIugo0Iud7TUTqdao7KFFvj9v0PDim7kYjxGY4q0E2/y+h++nJ5TsqnG
-	XkTXUdlV+alsi8gmLIYLIYUWm2/CipocoG9UkqW9Xu8ebBNBzx/OunXJ0Kc047suNPdCQ+me8uN
-	MGmxD9cNL8yWzVvEQ7IGN3m1ZWxBv6MZlk45aA/dE++cY4dD5sUs2B2Imb5R8rt1ypZKW87vno8
-	B1EXU0+B1n9vNLJqkzZDGFOo9RCjsYlD2buTvb5zEgqvu9+XBF877pu8qOLkMxDd9MDyfLESp4f
-	RYwxWmuHOmmaIEDQ5ZMvBL3F+ZEzC+W1qUIaend4LNbbYyGPdWXS+AccwMFs
-X-Google-Smtp-Source: AGHT+IE7SPMJdXg6Uib8sBAANFP0uaWykfjpxucbRqhrErUMyjsBzbnn2KGBiDxo71YCebyhHfo6RA==
-X-Received: by 2002:a05:600c:8b6d:b0:442:e109:3027 with SMTP id 5b1f17b1804b1-45381ae5182mr57051005e9.24.1750930463049;
-        Thu, 26 Jun 2025 02:34:23 -0700 (PDT)
-Received: from localhost ([2a02:8308:a00c:e200::5485])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-3a6e80f26ebsm6897038f8f.51.2025.06.26.02.34.22
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 26 Jun 2025 02:34:22 -0700 (PDT)
-Date: Thu, 26 Jun 2025 11:34:21 +0200
-From: Andrew Jones <ajones@ventanamicro.com>
-To: Aleksa Paunovic via B4 Relay <devnull+aleksa.paunovic.htecgroup.com@kernel.org>
-Cc: Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Paul Walmsley <paul.walmsley@sifive.com>, Palmer Dabbelt <palmer@dabbelt.com>, 
-	Albert Ou <aou@eecs.berkeley.edu>, Alexandre Ghiti <alex@ghiti.fr>, 
-	Jonathan Corbet <corbet@lwn.net>, Palmer Dabbelt <palmer@sifive.com>, 
-	Conor Dooley <conor@kernel.org>, devicetree@vger.kernel.org, linux-riscv@lists.infradead.org, 
-	linux-kernel@vger.kernel.org, linux-doc@vger.kernel.org, 
-	Aleksa Paunovic <aleksa.paunovic@htecgroup.com>
-Subject: Re: [PATCH v4 6/7] riscv: Add tools support for xmipsexectl
-Message-ID: <20250626-0186dfe9df28f9bb72a91426@orel>
-References: <20250625-p8700-pause-v4-0-6c7dd7f85756@htecgroup.com>
- <20250625-p8700-pause-v4-6-6c7dd7f85756@htecgroup.com>
- <20250626-a1aca9887bbf5410741e17c4@orel>
+        d=1e100.net; s=20230601; t=1750930483; x=1751535283;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=jmk5itUcCIG6Y80ZPXMFyz9ACwii6tzjqEWxl1mzR5U=;
+        b=iMXVn495xkQUtHJcF+IoVJd1gT7iyHJvd6d2UMusa2prgPmTAzt02TDnm2k6APw2gF
+         BcaZsGI8a7MatIx475cTWyJZXYeNG6lJkgkYqhvJwZvGhEUylRbxBwU05TYbgQuBQBoe
+         ExJHFH40IeE1A/OkRdkjwM1lc3EWnEK2GlVjADhPHE9bYFDLuCenjtTgAfo1+MaUbi7U
+         bzx0rpZ5grOGkj1Y0hQ/70Vkyw9V0eGuHheG9yR8RAgRI1Z/mbq4nN9ZsnXooOl7lzJf
+         rPcnsBhO84TLU3ZCuWy9lBGNDg762rqsAsz3Nydy/8Ad8lyG2f/yofphXA4kR7uvBNih
+         wseA==
+X-Forwarded-Encrypted: i=1; AJvYcCVSO7K2hCKPpabpltRXHE/MYGdBQpSBSEgCjyiBKcZ73GQ7oNWpFdWGqhnAJQOOeGXRkUJkH8cVTRGx@vger.kernel.org
+X-Gm-Message-State: AOJu0YxDLtrkjvBhhJQsIQUJTHTAzcY2yHf8qpgXp8/vqlvZcUS5x+/J
+	v6rry8Aio0b1O+jSBpkJyI2LXwAtVC5RW/8bsjuj86pS0wR82y5RbVJS+WAOelCeY08=
+X-Gm-Gg: ASbGncuWqTJ7LgpS0Cq4sdYUW+Np/Gi7kR6608mmTbuLpKkeBSRWPwhcZJ6cIhcNU+P
+	xclt4vPzhQ9QxUd2N3Oh+sZzj1SWfHugGNELgleXUQZUuQcr6Jeq8mduXxM6JKycGFwWJAhc8tn
+	qkMbrGoucN9ADLBOoE8ve82FesLKfxEhZ52brIabl/WeIYxNGkPx+g3mrQx4El5rfl5nKdc46ME
+	20eCQfBbwMuFqF6GrOdLx7kd//WjT9QNdMzUk80T95+KvhkTcNoduTDej0FsnLwbL+3vEWgUUI/
+	6qtGRXWPfvn8xXNMj/UHUBeibloC+uv6cp1hVmOzd95c3qs2qwsMp/vwObUR6nnFqDMYK0FpA2S
+	HEDPvx+1Kqya0iw1qWPV/t/TjITg=
+X-Google-Smtp-Source: AGHT+IFsKTdNJ5UoksfB3ZzoCCyLEvAmb7v32X3qcFkFmLrA7HtlHe0xa0JRXmgqGSDIbpaNAIULcQ==
+X-Received: by 2002:a5d:5847:0:b0:3a3:7593:818b with SMTP id ffacd0b85a97d-3a6ed62eb62mr5516826f8f.21.1750930483250;
+        Thu, 26 Jun 2025 02:34:43 -0700 (PDT)
+Received: from [192.168.0.35] (188-141-3-146.dynamic.upc.ie. [188.141.3.146])
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-4538a4213f0sm13810175e9.36.2025.06.26.02.34.42
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 26 Jun 2025 02:34:42 -0700 (PDT)
+Message-ID: <2dce02ad-6913-494b-afa3-315e9b50529b@linaro.org>
+Date: Thu, 26 Jun 2025 10:34:41 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20250626-a1aca9887bbf5410741e17c4@orel>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2 1/2] dt-bindings: media: qcom,x1e80100-camss: Sort
+ interconnects alphabetically
+To: Krzysztof Kozlowski <krzk@kernel.org>,
+ Vladimir Zapolskiy <vladimir.zapolskiy@linaro.org>,
+ Robert Foss <rfoss@kernel.org>, Todor Tomov <todor.too@gmail.com>
+Cc: Mauro Carvalho Chehab <mchehab@kernel.org>, Rob Herring
+ <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>,
+ Conor Dooley <conor+dt@kernel.org>, linux-arm-msm@vger.kernel.org,
+ linux-media@vger.kernel.org, devicetree@vger.kernel.org
+References: <20250624094253.57441-1-vladimir.zapolskiy@linaro.org>
+ <20250624094253.57441-2-vladimir.zapolskiy@linaro.org>
+ <aa56b956-95f3-484d-8afa-058925b95bfd@kernel.org>
+ <fff77f71-e21b-43b9-9da5-6cf819add970@linaro.org>
+ <5a5b78f7-e156-4c5e-8407-b249040e227d@kernel.org>
+ <c29385d4-30ea-4774-9cf9-699b08e29800@linaro.org>
+ <329b89a4-85a9-496f-8b1b-6239dfc9057b@kernel.org>
+ <930edec1-7403-4ecf-bb17-2e68b8d351f8@kernel.org>
+ <e0eb8d55-b4fd-4f3b-94b0-5c56d48b4671@linaro.org>
+ <c923723f-5e94-4621-9bb8-36c8572f9b51@kernel.org>
+Content-Language: en-US
+From: Bryan O'Donoghue <bryan.odonoghue@linaro.org>
+In-Reply-To: <c923723f-5e94-4621-9bb8-36c8572f9b51@kernel.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 
-On Thu, Jun 26, 2025 at 11:21:10AM +0200, Andrew Jones wrote:
-> On Wed, Jun 25, 2025 at 04:21:01PM +0200, Aleksa Paunovic via B4 Relay wrote:
-> > From: Aleksa Paunovic <aleksa.paunovic@htecgroup.com>
-> > 
-> > Use the hwprobe syscall to decide which PAUSE instruction to execute in
-> > userspace code.
-> > 
-> > Signed-off-by: Aleksa Paunovic <aleksa.paunovic@htecgroup.com>
-> > ---
-> >  tools/arch/riscv/include/asm/vdso/processor.h | 27 +++++++++++++++++----------
-> >  1 file changed, 17 insertions(+), 10 deletions(-)
-> > 
-> > diff --git a/tools/arch/riscv/include/asm/vdso/processor.h b/tools/arch/riscv/include/asm/vdso/processor.h
-> > index 662aca03984817f9c69186658b19e9dad9e4771c..027219a486b7b93814888190f8224af29498707c 100644
-> > --- a/tools/arch/riscv/include/asm/vdso/processor.h
-> > +++ b/tools/arch/riscv/include/asm/vdso/processor.h
-> > @@ -4,26 +4,33 @@
-> >  
-> >  #ifndef __ASSEMBLY__
-> >  
-> > +#include <asm/hwprobe.h>
-> > +#include <sys/hwprobe.h>
-> > +#include <asm/vendor/mips.h>
-> >  #include <asm-generic/barrier.h>
-> >  
-> >  static inline void cpu_relax(void)
-> >  {
-> > +	struct riscv_hwprobe pair;
-> > +	bool has_mipspause;
-> >  #ifdef __riscv_muldiv
-> >  	int dummy;
-> >  	/* In lieu of a halt instruction, induce a long-latency stall. */
-> >  	__asm__ __volatile__ ("div %0, %0, zero" : "=r" (dummy));
-> >  #endif
-> >  
-> > -#ifdef CONFIG_TOOLCHAIN_HAS_ZIHINTPAUSE
-> > -	/*
-> > -	 * Reduce instruction retirement.
-> > -	 * This assumes the PC changes.
-> > -	 */
-> > -	__asm__ __volatile__ ("pause");
-> > -#else
-> > -	/* Encoding of the pause instruction */
-> > -	__asm__ __volatile__ (".4byte 0x100000F");
-> > -#endif
-> > +	pair.key = RISCV_HWPROBE_KEY_VENDOR_EXT_MIPS_0;
-> > +	__riscv_hwprobe(&pair, 1, 0, NULL, 0);
-> > +	has_mipspause = pair.value & RISCV_HWPROBE_VENDOR_EXT_XMIPSEXECTL;
-> > +
-> > +	if (has_mipspause) {
-> > +		/* Encoding of the mips pause instruction */
-> > +		__asm__ __volatile__(".4byte 0x00501013");
-> > +	} else {
-> > +		/* Encoding of the pause instruction */
-> > +		__asm__ __volatile__(".4byte 0x100000F");
-> > +	}
-> > +
+On 26/06/2025 10:11, Krzysztof Kozlowski wrote:
+> Hm? This was not a true statement and anyway this was not from me. Why
+> are you both with Bryan creating some fake rules and then later use them
+> in arguments in discussions?
 > 
-> cpu_relax() is used in places where we cannot afford the overhead nor call
-> arbitrary functions which may take locks, etc. We've even had trouble
-> using a static key here in the past since this is inlined and it bloated
-> the size too much. You'll need to use ALTERNATIVE().
+> We don't talk here what sort of rule other person invented.
 
-Oh, I see now that the next patch is handling the kernel cpu_relax with
-ALTERNATIVE and this was just the tools cpu_relax. We don't want to make
-a syscall inside cpu_relax though either, since it gets called in loops.
-It'd be better to just call the standard pause (0x100000F) even if it
-does nothing. Or maybe there's some define that can be added/used to
-select the correct instruction?
+Ah here lads stop dragging this up
 
-Thanks,
-drew
+https://lore.kernel.org/all/c1539cce-92eb-43fc-9267-f6e002611bbb@linaro.org/
+Date: Mon, 30 Sep 2024 09:55:19 +0100	
+
+We've subsequently discussed this twice now face-to-face, subsequently.
+
+It's very clearly not OK to reorder the interconnect nodes.
+
+Stop @ me about this.
+
+---
+bod
 
