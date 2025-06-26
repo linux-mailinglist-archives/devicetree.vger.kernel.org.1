@@ -1,174 +1,112 @@
-Return-Path: <devicetree+bounces-189928-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-189929-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4ABBDAE9DB7
-	for <lists+devicetree@lfdr.de>; Thu, 26 Jun 2025 14:42:59 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9BEE3AE9DD7
+	for <lists+devicetree@lfdr.de>; Thu, 26 Jun 2025 14:51:49 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id F02A67B392B
-	for <lists+devicetree@lfdr.de>; Thu, 26 Jun 2025 12:41:34 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id D94C81739D6
+	for <lists+devicetree@lfdr.de>; Thu, 26 Jun 2025 12:51:49 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 169AE2E11A7;
-	Thu, 26 Jun 2025 12:42:52 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id DF75E2E11CD;
+	Thu, 26 Jun 2025 12:51:43 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b="Bq4Wvv7+"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="ImCv6ObT"
 X-Original-To: devicetree@vger.kernel.org
-Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [213.167.242.64])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 62378201017;
-	Thu, 26 Jun 2025 12:42:50 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=213.167.242.64
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B09CF25B30A;
+	Thu, 26 Jun 2025 12:51:43 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1750941772; cv=none; b=qVG49866NjakCfNk1lCrK+V0pMZ0eryEOW+OYzQkNP5W2LYbOKMZtQ0NgrP12zVCrnQoAB8zQZpvwbUseoEU7g4KxXK0J0x0FkoIwNrs1pi5D89xK7rnT3U3KGWlPOBR05v/+2pCir6X46BpPQXF4nba6X6E/n/4THAqyl+jTHI=
+	t=1750942303; cv=none; b=dHeKrKE2c58cRk5Ug8Y1+r0qm1ldn2FWSsOgcxnbBLqbmveXGzyfExGdXnfrBJWuMVBOle7e99JnP66HnMBiAKAHpUqttDWmwl8pe6yOauTZPW0lv/EgAKkc0BsYGyfBlUbF5b3VJaAdlHECLosffpw1Gh2k3GBMg1me5pTLYhw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1750941772; c=relaxed/simple;
-	bh=/a+MiBN3U4KcgRah2otQEl2ZAfbGFptjDWZeI5tiwVM=;
+	s=arc-20240116; t=1750942303; c=relaxed/simple;
+	bh=8afNf7PyPPaAQWANU7A3DLhpaQ+s9j1MDXRhxYStnjE=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=YCNbCtnITuDTFsP9j0GQYoQuWfk7qTu6TQzAJaV44Ht2Vplcy1mpIShlACmUxFt5DqYIaSv0qH/xDxM8uhEP/01hs4IGkXko0M2w09kG9yS3qzQpZpj6yt5bZU84AdlU0YBVUJnjhwo9zOO7EU3xMp9apKHY1EFSMoRiBntHJZQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ideasonboard.com; spf=pass smtp.mailfrom=ideasonboard.com; dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b=Bq4Wvv7+; arc=none smtp.client-ip=213.167.242.64
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ideasonboard.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ideasonboard.com
-Received: from pendragon.ideasonboard.com (85-76-34-12-nat.elisa-mobile.fi [85.76.34.12])
-	by perceval.ideasonboard.com (Postfix) with UTF8SMTPSA id 132F13D5;
-	Thu, 26 Jun 2025 14:42:29 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
-	s=mail; t=1750941750;
-	bh=/a+MiBN3U4KcgRah2otQEl2ZAfbGFptjDWZeI5tiwVM=;
+	 Content-Type:Content-Disposition:In-Reply-To; b=o7K08nDHI72nl7w7K5qPTawrPEvcVzHaqtsWUDUs3UDaulrgH4ELc9cOd7aGklotop1sZmmxDwXvW4dVJ+lafTksZUYUgde0GFZ4/8qznqkXlPnTJ+UC/KuLmgqUBuezv1buxJ9IyuS63YeDz2g61TEJec0dRX1F4bFdYQAen3k=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=ImCv6ObT; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 828A6C4CEEB;
+	Thu, 26 Jun 2025 12:51:43 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1750942303;
+	bh=8afNf7PyPPaAQWANU7A3DLhpaQ+s9j1MDXRhxYStnjE=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=Bq4Wvv7+34jFLzYlwax7THsGzi1+IcvoqEvmMityKXbu1cRceUKUfyPc9xLPq6Yg1
-	 5e7lBeQMd1mjDDUf7CAbCWM6vKjjRSCnysXhkVZNSJHFXG8dQxWTAF/53UWhBurTCL
-	 nwcJ1NV6NnTQjYrHmqVW+4izlymLQFc3gg4w9n5c=
-Date: Thu, 26 Jun 2025 15:42:24 +0300
-From: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-To: Frank Li <Frank.li@nxp.com>
-Cc: Mauro Carvalho Chehab <mchehab@kernel.org>,
+	b=ImCv6ObToIuXugjVBqaNgFeXhZChj1a82IRrLH+3tN2CrHKIh2EIw3YC9E0TEbZ7K
+	 X30O3wYuHkBKaFx/L3rCEwrXw+JhF8sfIK8MfnL8K1tA0a9n8cxPKcUQvip226z7fo
+	 KgbtgP7eimMk5TBd2prDdGutJzIFLJZFZOMs+V60HDf/WmdAA/zbyZz9V+6a3xwtaO
+	 uYnHDw+UAZe8xx/I8IL60apeV+Ip/UWmD849kujQnEVRBW+e872LwXGppmFHwwFpR6
+	 8DG9iLyfOdYv0d4yfYQGddjjflnIX5bVLLIMe9oA+waW4FL2JlbLfmdE+Q6CfURM20
+	 VaUjlcwNELXag==
+Received: from johan by xi.lan with local (Exim 4.97.1)
+	(envelope-from <johan@kernel.org>)
+	id 1uUm4t-000000002F3-2CQw;
+	Thu, 26 Jun 2025 14:51:43 +0200
+Date: Thu, 26 Jun 2025 14:51:43 +0200
+From: Johan Hovold <johan@kernel.org>
+To: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
+Cc: Bjorn Andersson <andersson@kernel.org>,
+	Maximilian Luz <luzmaximilian@gmail.com>,
+	Konrad Dybcio <konradybcio@kernel.org>,
 	Rob Herring <robh@kernel.org>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
 	Conor Dooley <conor+dt@kernel.org>,
-	Kumar M <anil.mamidala@xilinx.com>, linux-media@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	imx@lists.linux.dev, "Guoniu.zhou" <guoniu.zhou@nxp.com>,
-	Stefan Hladnik <stefan.hladnik@gmail.com>,
-	Florian Rebaudo <frebaudo@witekio.com>
-Subject: Re: [PATCH v3 2/2] media: i2c: Add ON Semiconductor AP1302 ISP driver
-Message-ID: <20250626124224.GK8738@pendragon.ideasonboard.com>
-References: <20250623-ap1302-v3-0-c9ca5b791494@nxp.com>
- <20250623-ap1302-v3-2-c9ca5b791494@nxp.com>
- <20250623224701.GE15951@pendragon.ideasonboard.com>
- <aFryrpyDByI6wu5b@lizhi-Precision-Tower-5810>
- <20250624185643.GE20757@pendragon.ideasonboard.com>
- <aFr6Ehpl5Kk+nt7m@lizhi-Precision-Tower-5810>
+	Ard Biesheuvel <ardb@kernel.org>,
+	Steev Klimaszewski <steev@kali.org>, linux-arm-msm@vger.kernel.org,
+	linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-efi@vger.kernel.org
+Subject: Re: [PATCH v4 1/8] efi: efivars: don't crash in
+ efivar_set_variable{,_locked} in r/o case
+Message-ID: <aF1CX2uWZ_KaMDVR@hovoldconsulting.com>
+References: <20250625-more-qseecom-v4-0-aacca9306cee@oss.qualcomm.com>
+ <20250625-more-qseecom-v4-1-aacca9306cee@oss.qualcomm.com>
+ <aF0bLtnABcGTi0wM@hovoldconsulting.com>
+ <zw5u5c2itmpxq34d22y5wmtr32d4zsmjj5clf77ryeqs5jgd4v@t3wjfyj43yra>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <aFr6Ehpl5Kk+nt7m@lizhi-Precision-Tower-5810>
+In-Reply-To: <zw5u5c2itmpxq34d22y5wmtr32d4zsmjj5clf77ryeqs5jgd4v@t3wjfyj43yra>
 
-On Tue, Jun 24, 2025 at 03:18:42PM -0400, Frank Li wrote:
-> On Tue, Jun 24, 2025 at 09:56:43PM +0300, Laurent Pinchart wrote:
-> > On Tue, Jun 24, 2025 at 02:47:10PM -0400, Frank Li wrote:
-> > > On Tue, Jun 24, 2025 at 01:47:01AM +0300, Laurent Pinchart wrote:
-> > > > On Mon, Jun 23, 2025 at 03:17:38PM -0400, Frank Li wrote:
-> > > > > From: Anil Kumar Mamidala <anil.mamidala@xilinx.com>
-> > > > >
-> > > > > The AP1302 is a standalone ISP for ON Semiconductor sensors.
-> > > > > AP1302 ISP supports single and dual sensor inputs. The driver
-> > > > > code supports AR1335, AR0144 and AR0330 sensors with single and
-> > > > > dual mode by loading the corresponding firmware.
-> > > > >
-> > > > > Signed-off-by: Anil Kumar Mamidala <anil.mamidala@xilinx.com>
-> > > > > Signed-off-by: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-> > > > > Signed-off-by: Stefan Hladnik <stefan.hladnik@gmail.com>
-> > > > > Signed-off-by: Florian Rebaudo <frebaudo@witekio.com>
-> > > > > Signed-off-by: Frank Li <Frank.Li@nxp.com>
-> > > > > ---
-> > > > > Change in v3:
-> > > > > - add extra empty line between difference register define
-> > > > > - add bits.h
-> > > > > - use GEN_MASK and align regiser bit define from 31 to 0.
-> > > > > - add ap1302_sensor_supply
-> > > > > - add enable gpio
-> > > > > - update firmware header format
-> > > >
-> > > > One of the main issues with this driver is that we need to standardize
-> > > > the header format. The standardized format will need to be approved by
-> > > > onsemi as we will need to provide not just a driver, but also a
-> > > > toolchain that will produce firmwares in the right format. Furthermore,
-> > > > some time ago the AP1302 firmware was extended with the ability to
-> > > > dynamically compute PLL parameters IIRC. This needs to be taken into
-> > > > account.
-> > >
-> > > It is quite common when work with firmwares. Generally, it need version
-> > > information at header.
-> > >
-> > > The driver need check firmware's API version, if miss match or incompatible,
-> > > just return and report error.
-> > >
-> > > we can't assume firmware always align driver code because many user just
-> > > update kernel without update rootfs or firmware package.
-> >
-> > Sure, but that's not the point. The point is that there are multiple
-> > out-of-tree ap1302 driver versions, developed or adapted by different
-> > SoC vendors. Those variants use firmware files produced by those SoC
-> > vendors, and they not standard.
+On Thu, Jun 26, 2025 at 02:03:44PM +0300, Dmitry Baryshkov wrote:
+> On Thu, Jun 26, 2025 at 12:04:30PM +0200, Johan Hovold wrote:
+> > On Wed, Jun 25, 2025 at 01:53:20AM +0300, Dmitry Baryshkov wrote:
+> > > If efivar implementation doesn't provide write support, then calling
+> > > efivar_set_variable() (e.g. when PM8xxx RTC driver tries to update the
+> > > RTC offset) will crash the system. Prevent that by checking that
+> > > set_variable callback is actually provided and fail with an
+> > > EFI_WRITE_PROTECTED if it is not.
+> > > 
+> > > Fixes: 472831d4c4b2 ("efi: vars: Add thin wrapper around EFI get/set variable interface")
+> > 
+> > I don't think a fixes tag is warranted here as it currently appears to
+> > be expected that the callers check if setvar is supported before calling
+> > this helper (e.g. by calling efivar_supports_writes() as efivarfs does).
 > 
-> I am not sure if firwmare is open source. Most like not.
+> It is not documented as such. So, I think, we'd better not crash the
+> callers.
 
-The firmware is not open-source, but I don't think that's relevant.
+You need to look at the backstory to determine that before jumping to
+conclusions (e.g. start by looking at f88814cc2578 ("efi/efivars: Expose
+RT service availability via efivars abstraction")).
 
-> We need create
-> difference compatible string for difference Soc vendor.
-
-No, that we must absolutely not do :-) If it's the same AP1302 and same
-camera sensor, we must not have different compatible strings when the
-AP1302 is connected to an NXP SoC or a MediaTek SoC.
-
-> > We need to standardize on a firmware
-> > format to upstream a driver, and that standardization needs to involve
-> > the device manufacturer.
+> > So should perhaps be fixed in the RTC driver if we agree that supporting
+> > read-only offsets is indeed something we want.
+> > 
+> > Are there any other current user that may possibly benefit from
+> > something like this?
 > 
-> we need workable version (easy extend) firstly, when let other vendor follow.
-> 
-> Frank Li
-> >
-> > > > I want to resuscitate this driver and get it merged. There's more work
-> > > > to do, in collaboration with onsemi, and I haven't had time to tackle
-> > > > it. If you want to propose a proper design for firmware handling I would
-> > > > be happy to participate in the discussion.
-> > >
-> > > who is onsemi contact windows.
-> > >
-> > > > > - update raw sensor supply delay time
-> > > > > - use gpiod_set_value_cansleep() insteand gpiod_set_value()
-> > > > > - update use latest v4l2 api
-> > > > > - use ctrl_to_sd() helper function
-> > > > > - add ap1302_g_volatile_ctrl()
-> > > > > - remove ap1302_get_fmt()
-> > > > > - use guard for mutex.
-> > > > > - use dev_err_probe
-> > > > > - use devm_add_action_or_reset to simple error handle at probe.
-> > > > > - use read_poll_timeout() simple dma idle polling.
-> > > > >
-> > > > > previous upstream:
-> > > > > https://lore.kernel.org/linux-media/1631091372-16191-1-git-send-email-anil.mamidala@xilinx.com/
-> > > > > ---
-> > > > >  MAINTAINERS                |    1 +
-> > > > >  drivers/media/i2c/Kconfig  |    9 +
-> > > > >  drivers/media/i2c/Makefile |    1 +
-> > > > >  drivers/media/i2c/ap1302.c | 2838 ++++++++++++++++++++++++++++++++++++++++++++
-> > > > >  4 files changed, 2849 insertions(+)
-> > > >
-> > > > [snip]
+> efi-pstore comes to my mind.
 
--- 
-Regards,
+No, that driver is also disabled when efivar_supports_writes() returns
+false.
 
-Laurent Pinchart
+Johan
 
