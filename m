@@ -1,283 +1,276 @@
-Return-Path: <devicetree+bounces-190005-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-190006-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 82345AEA139
-	for <lists+devicetree@lfdr.de>; Thu, 26 Jun 2025 16:50:22 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 2016AAEA217
+	for <lists+devicetree@lfdr.de>; Thu, 26 Jun 2025 17:13:26 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 0A8BF162828
-	for <lists+devicetree@lfdr.de>; Thu, 26 Jun 2025 14:46:31 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id ABED14E6380
+	for <lists+devicetree@lfdr.de>; Thu, 26 Jun 2025 15:06:58 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6E8A72E92C3;
-	Thu, 26 Jun 2025 14:46:27 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3AD262ED872;
+	Thu, 26 Jun 2025 14:59:01 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="AtvkXdD9"
+	dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b="aYZQymBo"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f42.google.com (mail-wm1-f42.google.com [209.85.128.42])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from OSPPR02CU001.outbound.protection.outlook.com (mail-norwayeastazon11013020.outbound.protection.outlook.com [40.107.159.20])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 819682E5424
-	for <devicetree@vger.kernel.org>; Thu, 26 Jun 2025 14:46:25 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.42
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1750949187; cv=none; b=rMS9+N954qkcDFADUw64nsDf8l34iVm6qcPu/iP2xiQudWak6TO5FY4sK7EqRSfbMWgChggBYJ/SqA8K5KRxPzlXdexBcCJWSquwNgx+bWVPj0wUwJKcsvUZxOUjByHCAiBF2113Qs/Hzz8k6S+FVMKl0onzrm1gGOPdFFD9ERs=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1750949187; c=relaxed/simple;
-	bh=zs1k4F0WNXZx9dehb9lbFIbLtYbdzEPbKTaBYS/ieXo=;
-	h=Message-ID:Date:MIME-Version:From:Subject:To:Cc:References:
-	 In-Reply-To:Content-Type; b=EoQE2C48guefSJdqhpvxVueRTHA1MGhWplhOBCGo8aNxGZNBg33LCbKSuJT+7F0KB4Q7m+Suvkaj5m/o6jyZrV4ylm8HsSLBx+x74Rt4WdvmYtWDNL6XmfQpNyOf5Vm25+7dY6Td0eibXHC4un7IO+bNedzVy56QPN+pQabNuPc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=AtvkXdD9; arc=none smtp.client-ip=209.85.128.42
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-wm1-f42.google.com with SMTP id 5b1f17b1804b1-453647147c6so12052525e9.2
-        for <devicetree@vger.kernel.org>; Thu, 26 Jun 2025 07:46:25 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1750949184; x=1751553984; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:organization:autocrypt
-         :content-language:references:cc:to:subject:reply-to:from:user-agent
-         :mime-version:date:message-id:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=y6UYLrhSUYbPMjdcWaSI5xPFmPT6JWIBNYaLngCWsVY=;
-        b=AtvkXdD9zOUBDASDH7uQF4KI4biV2x27CpmglvsLqxOeZkjY7IoR5WaIN34KxGS18k
-         Z/aSqxfgaYZwbQ/tvFSiPE8kX5gBOf5PnAk381e+C27DthOo9HXqNEvsnSog0ZmtnmyZ
-         0/gf3MMd4O3oD3Q0d6IahYR0g0b30bmjNp7IvezyUkjIcKhPwDmfInnOvj4OIGFpw5fs
-         ibZV+ERv/Z/oCBqO+WK0tOkQ1okp7B9lKFGdWiimvzij5aMeSN20nzZdXfCvwGuMg3+K
-         hS6dg34SGhYUeYScUIlUq5yrknEvZp/iXSFmKQ7YduXYchg3EFvQ3Z2KhASAUlvwzWab
-         DCDg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1750949184; x=1751553984;
-        h=content-transfer-encoding:in-reply-to:organization:autocrypt
-         :content-language:references:cc:to:subject:reply-to:from:user-agent
-         :mime-version:date:message-id:x-gm-message-state:from:to:cc:subject
-         :date:message-id:reply-to;
-        bh=y6UYLrhSUYbPMjdcWaSI5xPFmPT6JWIBNYaLngCWsVY=;
-        b=t5Q/aHykYRUbr4GtBz3jaXG9NbXnVkO8/BtoC8n3atwnANU3uneRiLXb6KuTZ4iWcm
-         6h8NEPX4ccX3Ug3S/oh9ebQcn5ana/dsLtIQ1AgDbDgw576QhEKothilIErfm1+r6s/6
-         WW88VamAzu7lx4yaKbfnjTU1h4Jj2smxp0ZlWYVMahUDRMxiiEbk7w1rbsmoLoFMRS6x
-         +kXuIm5i1jJ1RToNsGwlsVsK/BCViRJ1FJuFYVYWQXLvVYj9p6ivSW7/TPiocZoA+OXd
-         Z6n4k5R9nEs5/ybJBZTna5DpU+u6lf6Er6FeaSc7/1LKubSKaAwso3VHAzUoy2XK1RVv
-         KWQg==
-X-Forwarded-Encrypted: i=1; AJvYcCUZ5qWHgfUerf46i9ymgR/i87pqyt+oN4Ow16CnpyuXALvU9JaLUdjQZlOVZDXLltMosGEst3H/eMSX@vger.kernel.org
-X-Gm-Message-State: AOJu0YzkpflTVMaFYs2iOcr2flOQ4mC78OOjmRg8E0fhtO5AdDsWPu77
-	SlJ7A49tpqG/9+EYyAP/vnV/mKrr4U02BAx347Lbx7orInMK33dk9OUEGRV6CYIwT2w=
-X-Gm-Gg: ASbGncu1fEhcHMntb5st+jM/uMYg0awMDPvszBrObGUPmV/4jkclCY9zqX41MHRE1YD
-	AYIw6C6owDlgaWKk+0ywEvEuElLajuwpBBuvuRk9Om9/HyfMLZrFZnW6qzHqTwnEUbmG/KfkUCu
-	jUpErSFQYGYFgBsOUSGLwfXSIhLGfosf4Mz0h0lD+ucQh4A6u7eqZd8IVk9x4BJeI+E6c/fcErL
-	JdbZ//RrluGSG5pI7IdlR8x7ExwvYgvPa4Zeq73MUmxemkyCv4qQXV+RuwFBU4v2utOGjiPErq4
-	+FQj0FzQOHkHeD4ivNExK2T19sLf2YeF3NHMbBItXtpEaKQ3/1FpufVOoAo//Amq+cM+F7NneG+
-	TrzXWHef5PVDhswZu16EAsi7hBVQrEvm3d+ToDU8=
-X-Google-Smtp-Source: AGHT+IHSIfxpDtvk3b/o/PTfPvJVJIuPEiExp0FjAt9JCuDCjQ/lxdskoiYS4v6Pweak4/OZQri5nw==
-X-Received: by 2002:a05:600c:4fc5:b0:441:a715:664a with SMTP id 5b1f17b1804b1-45381b0f414mr67611325e9.20.1750949183748;
-        Thu, 26 Jun 2025 07:46:23 -0700 (PDT)
-Received: from ?IPV6:2a01:e0a:3d9:2080:fa6f:b132:4858:18cc? ([2a01:e0a:3d9:2080:fa6f:b132:4858:18cc])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-453823ad247sm54579635e9.26.2025.06.26.07.46.20
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 26 Jun 2025 07:46:23 -0700 (PDT)
-Message-ID: <b4fa3620-53d2-41c3-9b3a-27cc2c1d846a@linaro.org>
-Date: Thu, 26 Jun 2025 16:46:19 +0200
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 04E172EBDCA;
+	Thu, 26 Jun 2025 14:58:58 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.159.20
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1750949941; cv=fail; b=uqo1YpZfjlDlf2nWYQ7qSQIIqWL75bAMI0tq1FabWOWzrMIAr/nUCkVW+bmeNBIUgIeXbAFk/BKEWpS1ErNGa0k/n50pv8/xGKlrDG1WjRHG+Rbnc1Nt95EDx9TmJVV+QAhrfQO2XiEXQKH7t7nNiE/xx5BT8U6saVP00uqBzMk=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1750949941; c=relaxed/simple;
+	bh=0EoPE+lgozMwme7OBgnq2a79gulSW18EWI4YbW+uOvw=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:Content-Type:
+	 Content-Disposition:In-Reply-To:MIME-Version; b=RNGHS49oUxL6153B7hlSj4C9hFujVqyWxhXnBgO5No3T/Lt82FKHqt+ORUIDk4yO10moNotgaGbQL8TOHPGDEOu/HDRNFom/gqwnrNhkO7y6Ghb4E/uQk0TtF9yvqxtT9W/cuOm270bnlJwM1MiVG8pKdAz+1Q+9ImjFyosRd2I=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com; spf=pass smtp.mailfrom=nxp.com; dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b=aYZQymBo; arc=fail smtp.client-ip=40.107.159.20
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=nxp.com
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=K3ZUhizdGU9mMQ1nuo7yTfa5Qooj5rERH8OoVNP4HQ9/D2z3r7+Wnv7QcOUnZ2QUbSMP3P/l6/CLri6GDFYL1afcICOlpOln2n98VGMt/XtsLDxnpfQq5aZu2R8isHVvAWcTqqZ+qZTvtQFQWZ2VlxHIXiAGdqP/WakdUZsdgSNsaWBlWw8JxtxPxXV1SFpqH7TOFB2YNnokBpmfM/OUbWOKrcDiiYDOHR8D2erW8vh2V1nOjfCpQj8ItCvge9Thzd58SwWHjzCG3gOcj5XxUNJxwM27S10m9yqDe94ctlBnF89BEKNI3XjiDKG3KKFQhUkVh1gJZlUvnJBOjIr8/w==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=Fr0GLTkojtx4mcGiZPz9uMMWE+SjPmqYqOLDy5Krr8Q=;
+ b=dn+Pq7oio93ww6slTslCFhT+A2RERqWPKHww2jayGa/xEe9Fp2hcmsHk69LnLJova6HBnZTTte3rgvYKHkbhIciDL+szp+tPbV8gpk9WQeQiuYt5ycOfdULv3B0yz5ndMarMygZEd9a3lJeL6EVM3bNc8j8hSD/WtFDMe63aPGI/Xggcug3WbgszdC6Z8X6Jb1Lkqo3BklbDG5At9vQxWq2U1fDMU74sJJYK6s1fcPF0NAczRVqP/9AREcy7BNfv2jRDoSzsNRW5OgO1OBYowhlU6fm5w91+7BpaDcHP2r4fvvaq9exLWWRg5UpBcP6TgCrtj39SHLiGkpzwUSU61w==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
+ header.d=nxp.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=Fr0GLTkojtx4mcGiZPz9uMMWE+SjPmqYqOLDy5Krr8Q=;
+ b=aYZQymBoQ6gtavOK4oWZzAMg0bzkB88vhjXlSqyaZCagnU9YP4HmGQqvXBhgctARhmMxyiQ/Y3kEOKLjCvwBezCng9dK4Gg8ekFiOKqywsk5V0z2rpDzqizghWmpjO1qHQfl6bpShkOmebA7mM4/wDy5PskLTNFMuDvULLSxVIUo2r6AqVyW+lphhHvQO5WuJ1YSOiroHJXN1pd20Fe0Ccfbe5sYfFVNsJdQDkWo7qtJdZU3i6XKvkMmpSkUDPtbe/Lt7HngbIyhHZMh2Ct8C4RMi/BK/qtYaQy2V41PSj83Fvb++Y2vsI8IWbHkDzsg/bPzE3PNaxjMdDtBI+bLCA==
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=nxp.com;
+Received: from PAXPR04MB9642.eurprd04.prod.outlook.com (2603:10a6:102:240::14)
+ by PAXPR04MB8653.eurprd04.prod.outlook.com (2603:10a6:102:21c::24) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8880.21; Thu, 26 Jun
+ 2025 14:58:55 +0000
+Received: from PAXPR04MB9642.eurprd04.prod.outlook.com
+ ([fe80::9126:a61e:341d:4b06]) by PAXPR04MB9642.eurprd04.prod.outlook.com
+ ([fe80::9126:a61e:341d:4b06%7]) with mapi id 15.20.8880.015; Thu, 26 Jun 2025
+ 14:58:55 +0000
+Date: Thu, 26 Jun 2025 10:58:48 -0400
+From: Frank Li <Frank.li@nxp.com>
+To: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+Cc: Mauro Carvalho Chehab <mchehab@kernel.org>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Kumar M <anil.mamidala@xilinx.com>, linux-media@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	imx@lists.linux.dev, "Guoniu.zhou" <guoniu.zhou@nxp.com>,
+	Stefan Hladnik <stefan.hladnik@gmail.com>,
+	Florian Rebaudo <frebaudo@witekio.com>
+Subject: Re: [PATCH v3 2/2] media: i2c: Add ON Semiconductor AP1302 ISP driver
+Message-ID: <aF1gKGjpbEPZYBr2@lizhi-Precision-Tower-5810>
+References: <20250623-ap1302-v3-0-c9ca5b791494@nxp.com>
+ <20250623-ap1302-v3-2-c9ca5b791494@nxp.com>
+ <20250623224701.GE15951@pendragon.ideasonboard.com>
+ <aFryrpyDByI6wu5b@lizhi-Precision-Tower-5810>
+ <20250624185643.GE20757@pendragon.ideasonboard.com>
+ <aFr6Ehpl5Kk+nt7m@lizhi-Precision-Tower-5810>
+ <20250626124224.GK8738@pendragon.ideasonboard.com>
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20250626124224.GK8738@pendragon.ideasonboard.com>
+X-ClientProxiedBy: AS4P189CA0055.EURP189.PROD.OUTLOOK.COM
+ (2603:10a6:20b:659::22) To PAXPR04MB9642.eurprd04.prod.outlook.com
+ (2603:10a6:102:240::14)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-From: neil.armstrong@linaro.org
-Reply-To: Neil Armstrong <neil.armstrong@linaro.org>
-Subject: Re: [PATCH 4/5] thermal: khadas_mcu_fan: add support for Khadas Edge
- 2
-To: muhammed.efecetin.67@gmail.com
-Cc: daniel.lezcano@linaro.org, devicetree@vger.kernel.org,
- efectn@protonmail.com, heiko@sntech.de, krzysztof.kozlowski+dt@linaro.org,
- lee@kernel.org, linux-arm-kernel@lists.infradead.org,
- linux-kernel@vger.kernel.org, linux-rockchip@lists.infradead.org,
- rafael@kernel.org, robh+dt@kernel.org
-References: <09af27e2-34a7-4cda-b36c-5577829cc173@linaro.org>
- <20250626143607.1423954-1-muhammed.efecetin.67@gmail.com>
-Content-Language: en-US, fr
-Autocrypt: addr=neil.armstrong@linaro.org; keydata=
- xsBNBE1ZBs8BCAD78xVLsXPwV/2qQx2FaO/7mhWL0Qodw8UcQJnkrWmgTFRobtTWxuRx8WWP
- GTjuhvbleoQ5Cxjr+v+1ARGCH46MxFP5DwauzPekwJUD5QKZlaw/bURTLmS2id5wWi3lqVH4
- BVF2WzvGyyeV1o4RTCYDnZ9VLLylJ9bneEaIs/7cjCEbipGGFlfIML3sfqnIvMAxIMZrvcl9
- qPV2k+KQ7q+aXavU5W+yLNn7QtXUB530Zlk/d2ETgzQ5FLYYnUDAaRl+8JUTjc0CNOTpCeik
- 80TZcE6f8M76Xa6yU8VcNko94Ck7iB4vj70q76P/J7kt98hklrr85/3NU3oti3nrIHmHABEB
- AAHNKk5laWwgQXJtc3Ryb25nIDxuZWlsLmFybXN0cm9uZ0BsaW5hcm8ub3JnPsLAkQQTAQoA
- OwIbIwULCQgHAwUVCgkICwUWAgMBAAIeAQIXgBYhBInsPQWERiF0UPIoSBaat7Gkz/iuBQJk
- Q5wSAhkBAAoJEBaat7Gkz/iuyhMIANiD94qDtUTJRfEW6GwXmtKWwl/mvqQtaTtZID2dos04
- YqBbshiJbejgVJjy+HODcNUIKBB3PSLaln4ltdsV73SBcwUNdzebfKspAQunCM22Mn6FBIxQ
- GizsMLcP/0FX4en9NaKGfK6ZdKK6kN1GR9YffMJd2P08EO8mHowmSRe/ExAODhAs9W7XXExw
- UNCY4pVJyRPpEhv373vvff60bHxc1k/FF9WaPscMt7hlkbFLUs85kHtQAmr8pV5Hy9ezsSRa
- GzJmiVclkPc2BY592IGBXRDQ38urXeM4nfhhvqA50b/nAEXc6FzqgXqDkEIwR66/Gbp0t3+r
- yQzpKRyQif3OwE0ETVkGzwEIALyKDN/OGURaHBVzwjgYq+ZtifvekdrSNl8TIDH8g1xicBYp
- QTbPn6bbSZbdvfeQPNCcD4/EhXZuhQXMcoJsQQQnO4vwVULmPGgtGf8PVc7dxKOeta+qUh6+
- SRh3vIcAUFHDT3f/Zdspz+e2E0hPV2hiSvICLk11qO6cyJE13zeNFoeY3ggrKY+IzbFomIZY
- 4yG6xI99NIPEVE9lNBXBKIlewIyVlkOaYvJWSV+p5gdJXOvScNN1epm5YHmf9aE2ZjnqZGoM
- Mtsyw18YoX9BqMFInxqYQQ3j/HpVgTSvmo5ea5qQDDUaCsaTf8UeDcwYOtgI8iL4oHcsGtUX
- oUk33HEAEQEAAcLAXwQYAQIACQUCTVkGzwIbDAAKCRAWmrexpM/4rrXiB/sGbkQ6itMrAIfn
- M7IbRuiSZS1unlySUVYu3SD6YBYnNi3G5EpbwfBNuT3H8//rVvtOFK4OD8cRYkxXRQmTvqa3
- 3eDIHu/zr1HMKErm+2SD6PO9umRef8V82o2oaCLvf4WeIssFjwB0b6a12opuRP7yo3E3gTCS
- KmbUuLv1CtxKQF+fUV1cVaTPMyT25Od+RC1K+iOR0F54oUJvJeq7fUzbn/KdlhA8XPGzwGRy
- 4zcsPWvwnXgfe5tk680fEKZVwOZKIEuJC3v+/yZpQzDvGYJvbyix0lHnrCzq43WefRHI5XTT
- QbM0WUIBIcGmq38+OgUsMYu4NzLu7uZFAcmp6h8g
-Organization: Linaro
-In-Reply-To: <20250626143607.1423954-1-muhammed.efecetin.67@gmail.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: PAXPR04MB9642:EE_|PAXPR04MB8653:EE_
+X-MS-Office365-Filtering-Correlation-Id: 25fa7ef7-b190-43e5-f716-08ddb4c1f8fc
+X-LD-Processed: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635,ExtAddr
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam:
+ BCL:0;ARA:13230040|366016|1800799024|52116014|7416014|376014|7053199007|38350700014;
+X-Microsoft-Antispam-Message-Info:
+ =?us-ascii?Q?ek8i3344kY3GthSlH+VghhEzqKfU7lIDGtzu5Oc0SLDLMjpTN77NAkVgA1bl?=
+ =?us-ascii?Q?eUeUZVJFrfsAzBWc5uHgyLsvGX0Dp10HLo8tk/hVyd5S0k961aj0yiN4DudC?=
+ =?us-ascii?Q?y0ANSYhDJvRX6/7DW2nx9eRvIa7kqA0kDD3XNRNO5q/V31zll/2kUnriZlhA?=
+ =?us-ascii?Q?immrsIvecKo1NgZo20nBFubZv1GpZEBTx0gKLVN/k1D2e3DDiZFIGqTcZwMV?=
+ =?us-ascii?Q?paYg4mSmtLY2qYdzb7CwBT45Z40W/LCVElnYcAIjUN5dS5TiAwId4xUZT+TA?=
+ =?us-ascii?Q?/F+wX5e4uVMv+r2oJGahN9Mx7ip8jLj7wIS9wEeyFtlp/b+VjuGqqFba197S?=
+ =?us-ascii?Q?b3rTd3DtRexc+8ULG2iWYZDyYX4e9ooca0wUv+D1/KIg4z7XSNLm7kvXasG7?=
+ =?us-ascii?Q?QTMkVXsdE1CZSWATNg72K+tWF4bOzDHbGvtJTfDjY8VCOVBGoq8dRu+yIAsU?=
+ =?us-ascii?Q?aj8qQ8YHp+XpFf2SP0bA6DvSrJ+Yxq8qBjz/WkjGrR37q4gvqlRE/L750AXq?=
+ =?us-ascii?Q?jpTMB5XO6mU0EC71d8Gp8ZLh/mk0zcivF9Zr025cnCK13BLSq0I6ko7cWrb6?=
+ =?us-ascii?Q?aTYeMmAD/e3HA1I3WAkP6D3D12GG48sC8jpVyjsCclWfl8oqnPMsujmSejcU?=
+ =?us-ascii?Q?UoOZJFwBVeVBp9FtFx0tiZ4Vv9qQmLLEAYg9tGXX0JXPudv6t7Yr0Z+tK0FO?=
+ =?us-ascii?Q?EHFdvFeAsDuxl2sqTFD12l9YGpYTahf21bzASRQPrixRtRFM0w/d++z1hHmx?=
+ =?us-ascii?Q?xp3lyCU/XRm82Im+7G9UA6o2naTR+XlhQqCZsCD8SBC0NTXmFhNAkXEwe+LW?=
+ =?us-ascii?Q?Fv4xwitpdODoL+iw7070ByFkGhAHRFFruO4IeqLFXpgITUphv/vsiFuQgoa7?=
+ =?us-ascii?Q?QBIaaXmh7Pif0K+MR2TKcqez4VapCk+PxLxdMkasiJx0JqeHxxp0e7nmORIZ?=
+ =?us-ascii?Q?TBaZY4RUoLqaOFups00EH8fS/taxeYZGu6eZ+4UiFNEYNWIHKOA9OVncY8UV?=
+ =?us-ascii?Q?AZzVXP7UAMIqZDInGc9hB6BtyGFPV00bFffbMb8au1gTL2IukwzEAoocAFeP?=
+ =?us-ascii?Q?4Heq6dJMekBPWncNLtQtOnc09WdkENkZrVmeUMOnWrgIyAY7Jv81uQl77TQS?=
+ =?us-ascii?Q?KpUAhOo2GMuW6jwSNBPGvXPZs305FgRNLLHHInIpZWEKH3tQbFi7HCYWBiry?=
+ =?us-ascii?Q?vlz/aHiJqUe3vGh7o7CmwPuQUjumb87Y4kpJ8VDc1vWYDblH3maPcezug/qG?=
+ =?us-ascii?Q?9ebviqnbxV4G8YQ4v2mNp7crnwHvhuX9KIwjJPUDcst/eEE891F6ROf7FI4+?=
+ =?us-ascii?Q?BgHfe1qhVs6hlpkSvcIy1d9XNOdYUCcTcrMWLMxt+7FikW7+WzgrvJLZdaOu?=
+ =?us-ascii?Q?PhpmhBb0jpEGBwtu+PWQMh5XcbmJnISGKoo4X3EAZZBhKrV3SefZkQRLtzQM?=
+ =?us-ascii?Q?2/VVnC7tpnv/9qT/quUeJOIYMPjhVs7BguJhKkgzUTWlISSiWFUIRA=3D=3D?=
+X-Forefront-Antispam-Report:
+ CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:PAXPR04MB9642.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(366016)(1800799024)(52116014)(7416014)(376014)(7053199007)(38350700014);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0:
+ =?us-ascii?Q?6Ozh9iSuXvhSZDXhxs4GOCnVXKNpsQo3Yumsbj033Hz9150efSbXzZvdDf+T?=
+ =?us-ascii?Q?6d0fFNIuQ3vhs692bsGgaqCpWvxaFvdf0nx/DhbRcAX3RfkpHP9IObZYsdXq?=
+ =?us-ascii?Q?40ugwhpjV0aKEU3AisZExABTVI5yMwfZhzix72gmPD4+y555dSBWqNBnMZvi?=
+ =?us-ascii?Q?V8aVruLwD+0g8HIFWymRdarEv4UsZmpA54WpFaI/UeyC8zaEWQJ8l+fZTf5+?=
+ =?us-ascii?Q?n/DP+S0wt3a+paHt506MNVYKzfqidmDZnKc7rH37OvphVk2/OsnAKlczi1fl?=
+ =?us-ascii?Q?ufBh11LZTV6kc6/7NTanba7UOKoeLNvpk/GXcB9p4rSMIyc4BRgxVVv3MuJm?=
+ =?us-ascii?Q?HUHbLLBhrjoiaEQHBih2fOA09xlc57zb0aADZAZdXU4Z039CjYkMxQ2AWVAB?=
+ =?us-ascii?Q?v4FoblmvRTHovpdMtQEuJyGGQJBFk5zzOw9JLCczC17s3M5Xxw1ILrMyfwWr?=
+ =?us-ascii?Q?7blhzNNyNPXRRt6lkvfQVN50r5efKLc/DzH7LWcdEky3gWYT63K8Waxt7B+E?=
+ =?us-ascii?Q?psmBAplodo1Xvyv3iCDWk2v9HPX9K0CzbHd24UqWxk4XemtcmmJ5iL4rKAVm?=
+ =?us-ascii?Q?Y13fOjpDFc1N747TpOGZWK8bQwAqCLP72gPgjlgdAKfZLLXckF0uGiBnoDJg?=
+ =?us-ascii?Q?q4W0rWq7si/PEc3S2VkdKLUkeQHpsic1bnhkxLQ/n6dwvDkY3gUdRxTwgDqB?=
+ =?us-ascii?Q?uULr6/ZB+U677xAEQk/hhAXLBAmzoG61qRJ+0QdRFV5Dc0CRe0/07SdkhV5g?=
+ =?us-ascii?Q?nYi65jFZtoFvQQJSpm2ZnQcOdmOWpQ39sP5Jr4B9Yj/zS7s3qIgAdqOW+IYE?=
+ =?us-ascii?Q?CrdAeY/EEXn2omWW2o4iMmJmSU2dl0pUwCTNI/XXat8OYu7zqjbpF2dgnKtc?=
+ =?us-ascii?Q?GyePM/Tzax0olYUp++4oMtoBi5j+KIFawBuVEIlQp7JJuBCC66ZN6x84yCK6?=
+ =?us-ascii?Q?OTNUDtaCrcLDPw9I3E811hQ95Suw0WHsNbFHWJZ804KBuofLanMqc4zeaGLw?=
+ =?us-ascii?Q?0RTa9YfL3X8orD8pjin7Net66HpU+5Bigax0TFlEzphvq+VFimHZjQ4Hq2sI?=
+ =?us-ascii?Q?l0RwMm2tFVxzRYmlDy0lDokYw4vabhU9FQBVjPdFW32eA7f33bcZnJwM9pt8?=
+ =?us-ascii?Q?OP6qzWETYpvZ6/qlVKVMP/gz6coDmaA6Ob9JcXq1Rn6rhzWdNOHoITrtr6r4?=
+ =?us-ascii?Q?mT3cUEzjXD8RERUhjrH5TdIeP2DAk8luO9UZn7NG4Un0XcY+NdMIcx0sbNbo?=
+ =?us-ascii?Q?zMkGiPijDY5zt9n8f3/WPCdBubHeIuaw2ldW0xtbwhx1s+VPfj7iXpzbMCCw?=
+ =?us-ascii?Q?AgaoerPbs712CF20NpU7Erd1eFgLfddDhQiGiuRFDoQkgCCJqEVas1rQnxyF?=
+ =?us-ascii?Q?SN8p7IO+z/nZJCyJfXOIGi6YARBzf/P0Gdv6upoc+A07ORU17HbGBZuxt6e8?=
+ =?us-ascii?Q?DxyUovI2DuQlX+NaAbUpMlRK80H979W4RPpMK1JHpPSGEzaQvZ/N0eTv8Xm2?=
+ =?us-ascii?Q?GVDfzhJQUybRzt7mD90t1gzs35zVYJTIdVbcZhVYOexWOxjWW9F8cSia6ru1?=
+ =?us-ascii?Q?3o6P3JS4I9hYg4SqvF3iduMSN5GGWyrY8q1Xznt7?=
+X-OriginatorOrg: nxp.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 25fa7ef7-b190-43e5-f716-08ddb4c1f8fc
+X-MS-Exchange-CrossTenant-AuthSource: PAXPR04MB9642.eurprd04.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 26 Jun 2025 14:58:55.7109
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: MBhODxYQxcEiOjscHitAqm6JvJLk+uTKpFSO5CdYe2gveUYPD+3R7lrEVy5iLesCXT7uPTJZHQ4ce/f1TkdPlQ==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: PAXPR04MB8653
 
-On 26/06/2025 16:36, muhammed.efecetin.67@gmail.com wrote:
-> On 6/26/25 17:11, neil.armstrong@linaro.org wrote:
->> On 26/06/2025 16:04, muhammed.efecetin.67@gmail.com wrote:
->>> From: Muhammed Efe Cetin <efectn@protonmail.com>
->>>
->>> Fan control on the Khadas Edge 2 is controlled with the 0x8A register,
->>> using percentage values from 0 to 100, whereas there are only 3 constant steps in previous Khadas boards.
->>> Therefore, i added a new cooling-levels property, similar to the one used in the pwm-fan driver.
->>> The original behavior can still be used when the cooling-levels property is not specified,
->>> ensuring that the new functionality does not break old boards.
->>
->> Thanks for the explanation, but would would you like to change that ? The MCU can accept
->> any value between 0 and 99, so why change the levels from DT ?
->>
->> Neil
-> 
-> Thanks for the review. Therefore, you say just add values between 0-100 to cooling-device instead of remapping them using cooling-levels property?
-> 
-> What would be the best practise of detecting whether the board is Khadas Edge 2? Adding new bool property, reading model propety from devicetree etc.
+On Thu, Jun 26, 2025 at 03:42:24PM +0300, Laurent Pinchart wrote:
+> On Tue, Jun 24, 2025 at 03:18:42PM -0400, Frank Li wrote:
+> > On Tue, Jun 24, 2025 at 09:56:43PM +0300, Laurent Pinchart wrote:
+> > > On Tue, Jun 24, 2025 at 02:47:10PM -0400, Frank Li wrote:
+> > > > On Tue, Jun 24, 2025 at 01:47:01AM +0300, Laurent Pinchart wrote:
+> > > > > On Mon, Jun 23, 2025 at 03:17:38PM -0400, Frank Li wrote:
+> > > > > > From: Anil Kumar Mamidala <anil.mamidala@xilinx.com>
+> > > > > >
+> > > > > > The AP1302 is a standalone ISP for ON Semiconductor sensors.
+> > > > > > AP1302 ISP supports single and dual sensor inputs. The driver
+> > > > > > code supports AR1335, AR0144 and AR0330 sensors with single and
+> > > > > > dual mode by loading the corresponding firmware.
+> > > > > >
+> > > > > > Signed-off-by: Anil Kumar Mamidala <anil.mamidala@xilinx.com>
+> > > > > > Signed-off-by: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+> > > > > > Signed-off-by: Stefan Hladnik <stefan.hladnik@gmail.com>
+> > > > > > Signed-off-by: Florian Rebaudo <frebaudo@witekio.com>
+> > > > > > Signed-off-by: Frank Li <Frank.Li@nxp.com>
+> > > > > > ---
+> > > > > > Change in v3:
+> > > > > > - add extra empty line between difference register define
+> > > > > > - add bits.h
+> > > > > > - use GEN_MASK and align regiser bit define from 31 to 0.
+> > > > > > - add ap1302_sensor_supply
+> > > > > > - add enable gpio
+> > > > > > - update firmware header format
+> > > > >
+> > > > > One of the main issues with this driver is that we need to standardize
+> > > > > the header format. The standardized format will need to be approved by
+> > > > > onsemi as we will need to provide not just a driver, but also a
+> > > > > toolchain that will produce firmwares in the right format. Furthermore,
+> > > > > some time ago the AP1302 firmware was extended with the ability to
+> > > > > dynamically compute PLL parameters IIRC. This needs to be taken into
+> > > > > account.
+> > > >
+> > > > It is quite common when work with firmwares. Generally, it need version
+> > > > information at header.
+> > > >
+> > > > The driver need check firmware's API version, if miss match or incompatible,
+> > > > just return and report error.
+> > > >
+> > > > we can't assume firmware always align driver code because many user just
+> > > > update kernel without update rootfs or firmware package.
+> > >
+> > > Sure, but that's not the point. The point is that there are multiple
+> > > out-of-tree ap1302 driver versions, developed or adapted by different
+> > > SoC vendors. Those variants use firmware files produced by those SoC
+> > > vendors, and they not standard.
+> >
+> > I am not sure if firwmare is open source. Most like not.
+>
+> The firmware is not open-source, but I don't think that's relevant.
+>
+> > We need create
+> > difference compatible string for difference Soc vendor.
+>
+> No, that we must absolutely not do :-) If it's the same AP1302 and same
+> camera sensor, we must not have different compatible strings when the
+> AP1302 is connected to an NXP SoC or a MediaTek SoC.
 
-The register DEVICE_NO should be set at 0x12 for Edge V, 0x11 for Edge 1. I don't have the number for Edge 2, perhaps you can read it ?
+After read code, firwmare header only used for sanity checks. can remove
+it for initialization version?
 
-Neil
+Frank
 
-> 
-> Best regards.
-> 
->>
->>>
->>> Signed-off-by: Muhammed Efe Cetin <efectn@protonmail.com>
->>> ---
->>>    drivers/thermal/khadas_mcu_fan.c | 76 ++++++++++++++++++++++++++++++--
->>>    1 file changed, 72 insertions(+), 4 deletions(-)
->>>
->>> diff --git a/drivers/thermal/khadas_mcu_fan.c b/drivers/thermal/khadas_mcu_fan.c
->>> index d35e5313b..504e7d254 100644
->>> --- a/drivers/thermal/khadas_mcu_fan.c
->>> +++ b/drivers/thermal/khadas_mcu_fan.c
->>> @@ -15,10 +15,16 @@
->>>    #include <linux/thermal.h>
->>>      #define MAX_LEVEL 3
->>> +#define MAX_SPEED 0x64
->>>      struct khadas_mcu_fan_ctx {
->>>        struct khadas_mcu *mcu;
->>>        unsigned int level;
->>> +
->>> +    unsigned int fan_max_level;
->>> +    unsigned int fan_register;
->>> +    unsigned int *fan_cooling_levels;
->>> +
->>>        struct thermal_cooling_device *cdev;
->>>    };
->>>    @@ -26,9 +32,21 @@ static int khadas_mcu_fan_set_level(struct khadas_mcu_fan_ctx *ctx,
->>>                        unsigned int level)
->>>    {
->>>        int ret;
->>> +    unsigned int write_level = level;
->>> +
->>> +    if (level > ctx->fan_max_level)
->>> +        return -EINVAL;
->>> +
->>> +    if (ctx->fan_cooling_levels != NULL) {
->>> +        write_level = ctx->fan_cooling_levels[level];
->>> +
->>> +        if (write_level > MAX_SPEED)
->>> +            return -EINVAL;
->>> +    }
->>> +
->>> +    ret = regmap_write(ctx->mcu->regmap, ctx->fan_register,
->>> +               write_level);
->>>    -    ret = regmap_write(ctx->mcu->regmap, KHADAS_MCU_CMD_FAN_STATUS_CTRL_REG,
->>> -               level);
->>>        if (ret)
->>>            return ret;
->>>    @@ -40,7 +58,9 @@ static int khadas_mcu_fan_set_level(struct khadas_mcu_fan_ctx *ctx,
->>>    static int khadas_mcu_fan_get_max_state(struct thermal_cooling_device *cdev,
->>>                        unsigned long *state)
->>>    {
->>> -    *state = MAX_LEVEL;
->>> +    struct khadas_mcu_fan_ctx *ctx = cdev->devdata;
->>> +
->>> +    *state = ctx->fan_max_level;
->>>          return 0;
->>>    }
->>> @@ -61,7 +81,7 @@ khadas_mcu_fan_set_cur_state(struct thermal_cooling_device *cdev,
->>>    {
->>>        struct khadas_mcu_fan_ctx *ctx = cdev->devdata;
->>>    -    if (state > MAX_LEVEL)
->>> +    if (state > ctx->fan_max_level)
->>>            return -EINVAL;
->>>          if (state == ctx->level)
->>> @@ -76,6 +96,47 @@ static const struct thermal_cooling_device_ops khadas_mcu_fan_cooling_ops = {
->>>        .set_cur_state = khadas_mcu_fan_set_cur_state,
->>>    };
->>>    +static int khadas_mcu_fan_get_cooling_data_edge2(struct khadas_mcu_fan_ctx *ctx, struct device *dev)
->>> +{
->>> +    struct device_node *np = ctx->mcu->dev->of_node;
->>> +    int num, i, ret;
->>> +
->>> +    if (!of_property_present(np, "cooling-levels"))
->>> +        return 0;
->>> +
->>> +    ret = of_property_count_u32_elems(np, "cooling-levels");
->>> +    if (ret <= 0) {
->>> +        dev_err(dev, "Wrong data!\n");
->>> +        return ret ? : -EINVAL;
->>> +    }
->>> +
->>> +    num = ret;
->>> +    ctx->fan_cooling_levels = devm_kcalloc(dev, num, sizeof(u32),
->>> +                           GFP_KERNEL);
->>> +    if (!ctx->fan_cooling_levels)
->>> +        return -ENOMEM;
->>> +
->>> +    ret = of_property_read_u32_array(np, "cooling-levels",
->>> +                     ctx->fan_cooling_levels, num);
->>> +    if (ret) {
->>> +        dev_err(dev, "Property 'cooling-levels' cannot be read!\n");
->>> +        return ret;
->>> +    }
->>> +
->>> +    for (i = 0; i < num; i++) {
->>> +        if (ctx->fan_cooling_levels[i] > MAX_SPEED) {
->>> +            dev_err(dev, "MCU fan state[%d]:%d > %d\n", i,
->>> +                ctx->fan_cooling_levels[i], MAX_SPEED);
->>> +            return -EINVAL;
->>> +        }
->>> +    }
->>> +
->>> +    ctx->fan_max_level = num - 1;
->>> +    ctx->fan_register = KHADAS_MCU_CMD_FAN_STATUS_CTRL_REG_V2;
->>> +
->>> +    return 0;
->>> +}
->>> +
->>>    static int khadas_mcu_fan_probe(struct platform_device *pdev)
->>>    {
->>>        struct khadas_mcu *mcu = dev_get_drvdata(pdev->dev.parent);
->>> @@ -90,6 +151,13 @@ static int khadas_mcu_fan_probe(struct platform_device *pdev)
->>>        ctx->mcu = mcu;
->>>        platform_set_drvdata(pdev, ctx);
->>>    +    ctx->fan_max_level = MAX_LEVEL;
->>> +    ctx->fan_register = KHADAS_MCU_CMD_FAN_STATUS_CTRL_REG;
->>> +
->>> +    ret = khadas_mcu_fan_get_cooling_data_edge2(ctx, dev);
->>> +    if (ret)
->>> +        return ret;
->>> +
->>>        cdev = devm_thermal_of_cooling_device_register(dev->parent,
->>>                dev->parent->of_node, "khadas-mcu-fan", ctx,
->>>                &khadas_mcu_fan_cooling_ops);
->>
-> 
-
+>
+> > > We need to standardize on a firmware
+> > > format to upstream a driver, and that standardization needs to involve
+> > > the device manufacturer.
+> >
+> > we need workable version (easy extend) firstly, when let other vendor follow.
+> >
+> > Frank Li
+> > >
+> > > > > I want to resuscitate this driver and get it merged. There's more work
+> > > > > to do, in collaboration with onsemi, and I haven't had time to tackle
+> > > > > it. If you want to propose a proper design for firmware handling I would
+> > > > > be happy to participate in the discussion.
+> > > >
+> > > > who is onsemi contact windows.
+> > > >
+> > > > > > - update raw sensor supply delay time
+> > > > > > - use gpiod_set_value_cansleep() insteand gpiod_set_value()
+> > > > > > - update use latest v4l2 api
+> > > > > > - use ctrl_to_sd() helper function
+> > > > > > - add ap1302_g_volatile_ctrl()
+> > > > > > - remove ap1302_get_fmt()
+> > > > > > - use guard for mutex.
+> > > > > > - use dev_err_probe
+> > > > > > - use devm_add_action_or_reset to simple error handle at probe.
+> > > > > > - use read_poll_timeout() simple dma idle polling.
+> > > > > >
+> > > > > > previous upstream:
+> > > > > > https://lore.kernel.org/linux-media/1631091372-16191-1-git-send-email-anil.mamidala@xilinx.com/
+> > > > > > ---
+> > > > > >  MAINTAINERS                |    1 +
+> > > > > >  drivers/media/i2c/Kconfig  |    9 +
+> > > > > >  drivers/media/i2c/Makefile |    1 +
+> > > > > >  drivers/media/i2c/ap1302.c | 2838 ++++++++++++++++++++++++++++++++++++++++++++
+> > > > > >  4 files changed, 2849 insertions(+)
+> > > > >
+> > > > > [snip]
+>
+> --
+> Regards,
+>
+> Laurent Pinchart
 
