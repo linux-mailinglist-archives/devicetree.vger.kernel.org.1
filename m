@@ -1,55 +1,61 @@
-Return-Path: <devicetree+bounces-190038-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-190040-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id E010CAEA61C
-	for <lists+devicetree@lfdr.de>; Thu, 26 Jun 2025 21:09:51 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1FEC3AEA620
+	for <lists+devicetree@lfdr.de>; Thu, 26 Jun 2025 21:10:07 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id E5D901654BB
-	for <lists+devicetree@lfdr.de>; Thu, 26 Jun 2025 19:09:51 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 5226E1667CB
+	for <lists+devicetree@lfdr.de>; Thu, 26 Jun 2025 19:10:07 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 07F9E25DCFD;
-	Thu, 26 Jun 2025 19:09:48 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 935FD2EF656;
+	Thu, 26 Jun 2025 19:10:01 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="HbBcBqdF"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Elq4s9t9"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D78471E7C03
-	for <devicetree@vger.kernel.org>; Thu, 26 Jun 2025 19:09:47 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 65E142ED155;
+	Thu, 26 Jun 2025 19:10:01 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1750964987; cv=none; b=P3gMXXjbYUfQcZx0WYldG0lVQtZVxSQ/w6oFv/F8ihBoCwjVujmy/dwDW1WzBSVy4W7MJH3tJg9gGkFM9FYSD2cHiX2PYaT7Dul2mY5Bn7FrCoVWDzO7+Ml+4xKq5222xi1Wm/5WOKmYEJXoQImYMjimiipwsUujyypyg6CkXu4=
+	t=1750965001; cv=none; b=l4EuyawgMi48EXQKJFZjzQwIUwin7KxprWfKIMT4285rzKVwbt/jr4wDi7AtcEjyTPn8hyHigdOKFujOs/Co/6V+uSvbXXjch49KY6l8iuXAamF+hpp6UkOoEm8B9zbGuDv78GKIXpt+4iQCnfcOiR9VEuVEtmiCa2MbvyHztrQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1750964987; c=relaxed/simple;
-	bh=zfknxCOmCe2JBks4BUA0MGDzjDNCPZlbesOLlMW5WUk=;
+	s=arc-20240116; t=1750965001; c=relaxed/simple;
+	bh=XZlMQtOpbNIhRZ9pHesx/nbn3+6U5J4RnnbP/llCorU=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=a9EdKvNdScSQeBHHfAdErUal+iCE+PkuTPfQy7xvwX2syiecfbF4d+HTKUfUIc5iJHvaIrKJuCXetl/66+Vkl6fWX+wcRw3LtXdMPPmlq0DXcHsU6OlWPZp7fFu5PFkhUZGBF4CrGrLSUZVPZ+91grSuUwXjf6EUNpOlKzuZTjs=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=HbBcBqdF; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 42FD1C4CEEF;
-	Thu, 26 Jun 2025 19:09:47 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=RC6G4FkTTtfZdwKAwvOaESs+a+qwbpmuYSXnIGE6wSkq6RfBYSbvzUjZJrcB251HhkR4rn3bXP+BVkgwTpQOrlxkFt0VXfHa4Hbh8//zKYhKk6BrOTkDjyEEmEMpUH/MQXm0D9QvU2c9Y7ZDawxc19ygwzwsVIZcA6R5QyKqtQk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Elq4s9t9; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 1224AC4CEEB;
+	Thu, 26 Jun 2025 19:10:01 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1750964987;
-	bh=zfknxCOmCe2JBks4BUA0MGDzjDNCPZlbesOLlMW5WUk=;
+	s=k20201202; t=1750965001;
+	bh=XZlMQtOpbNIhRZ9pHesx/nbn3+6U5J4RnnbP/llCorU=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=HbBcBqdF5qBCiNZVpMUMjHP4rRMMCEPe16LzkGt0fPlsBHokFdVuNLfThWdQjHzzo
-	 4R7TIpkQItWn7QajkQHh+7bzejqD6GNOBh/Ac0bb/Edy0+i4e0VpeLpeRemK61WitE
-	 FMv1LJl2tocAck5kRgb7U8XxdokcBuVcEleg9F/prbfPrnxkaczZ0kmRFE3GXiguAn
-	 LZVSx50y5fTqOPv2ni4uj+xYC1TnIAKKXeRMHCT2q6xUTyxvbV9Jfo2dfC7/w2buSs
-	 O/YSW/U9mN9sJFHtIyTBPYqMnB/FthpoY7mbY7rIrrKr1fubKXvGPApXYZ1A5KREiZ
-	 377lDh7RquQaQ==
-Date: Thu, 26 Jun 2025 14:09:46 -0500
+	b=Elq4s9t98ApYLWb9OT7lHEbs4xMsxf2C5cA+eNoj6yT+o4TQfi86YXu3fLIiWB1kG
+	 3ucymYmROlOKDVAhNxpCWdQMU3E24QiddwEyG6ADo5oy0+OSvcwfNXYP7shPa+fx1a
+	 zjx7onUFkYHoaozmapAO+gAV3Fp+iv/5jS6/5QN+ayMIC31UXxLVaNpr7UXrGR53IN
+	 rryDOgP7oY35ZfNS9ns5pZijkY/7T/wmDPTiaChHmxDuBA/m/WOD+JyZi54f1IcO8P
+	 +7+fCq0+RxDwayCQuOqSi7rdtTcothfgaXeVRHnquI+yo9FGbLew4oVrG7XiHOlpde
+	 aUQLSQ6l8qThw==
+Date: Thu, 26 Jun 2025 14:10:00 -0500
 From: "Rob Herring (Arm)" <robh@kernel.org>
-To: Dinh Nguyen <dinguyen@kernel.org>
-Cc: devicetree@vger.kernel.org, krzysztof.kozlowskii+dt@linaro.org,
-	robh+dt@kernel.org, conor+dt@kernel.org
-Subject: Re: [PATCHv4] dt-bindings: net: convert socfpga-dwmac.txt to DT
- schema
-Message-ID: <175096498596.599528.16276086521169554127.robh@kernel.org>
-References: <20250624191549.474686-1-dinguyen@kernel.org>
+To: Geert Uytterhoeven <geert+renesas@glider.be>
+Cc: Conor Dooley <conor+dt@kernel.org>,
+	Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>,
+	devicetree@vger.kernel.org, Jakub Kicinski <kuba@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Paolo Abeni <pabeni@redhat.com>,
+	Andrew Lunn <andrew+netdev@lunn.ch>,
+	"David S . Miller" <davem@davemloft.net>,
+	linux-renesas-soc@vger.kernel.org, netdev@vger.kernel.org,
+	Eric Dumazet <edumazet@google.com>
+Subject: Re: [PATCH] dt-bindings: net: Rename renesas,r9a09g057-gbeth.yaml
+Message-ID: <175096499970.600223.16523078298033164696.robh@kernel.org>
+References: <721f6e0e09777e0842ecaca4578bc50c953d2428.1750838954.git.geert+renesas@glider.be>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -58,26 +64,21 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20250624191549.474686-1-dinguyen@kernel.org>
+In-Reply-To: <721f6e0e09777e0842ecaca4578bc50c953d2428.1750838954.git.geert+renesas@glider.be>
 
 
-On Tue, 24 Jun 2025 14:15:49 -0500, Dinh Nguyen wrote:
-> Convert the socfpga-dwmac.txt to yaml.
+On Wed, 25 Jun 2025 10:10:48 +0200, Geert Uytterhoeven wrote:
+> The DT bindings file "renesas,r9a09g057-gbeth.yaml" applies to a whole
+> family of SoCs, and uses "renesas,rzv2h-gbeth" as a fallback compatible
+> value.  Hence rename it to the more generic "renesas,rzv2h-gbeth.yaml".
 > 
-> Signed-off-by: Dinh Nguyen <dinguyen@kernel.org>
+> Signed-off-by: Geert Uytterhoeven <geert+renesas@glider.be>
 > ---
-> v4: remove maxItems for clock-names
-> v3: Address all of Rob Herring's comments
-> v2: Add allOf to include the base dmac yaml
->     fix Rob Herring's dt_binding_check warnings
-> ---
->  .../bindings/net/altr,dwmac-socfpga.yaml      | 138 ++++++++++++++++++
->  .../devicetree/bindings/net/socfpga-dwmac.txt |  57 --------
->  2 files changed, 138 insertions(+), 57 deletions(-)
->  create mode 100644 Documentation/devicetree/bindings/net/altr,dwmac-socfpga.yaml
->  delete mode 100644 Documentation/devicetree/bindings/net/socfpga-dwmac.txt
+>  .../{renesas,r9a09g057-gbeth.yaml => renesas,rzv2h-gbeth.yaml}  | 2 +-
+>  1 file changed, 1 insertion(+), 1 deletion(-)
+>  rename Documentation/devicetree/bindings/net/{renesas,r9a09g057-gbeth.yaml => renesas,rzv2h-gbeth.yaml} (98%)
 > 
 
-Reviewed-by: Rob Herring (Arm) <robh@kernel.org>
+Acked-by: Rob Herring (Arm) <robh@kernel.org>
 
 
