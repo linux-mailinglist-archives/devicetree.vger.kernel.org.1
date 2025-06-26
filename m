@@ -1,176 +1,140 @@
-Return-Path: <devicetree+bounces-189793-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-189794-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id E5AC0AE98FE
-	for <lists+devicetree@lfdr.de>; Thu, 26 Jun 2025 10:52:04 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id CCC8EAE990F
+	for <lists+devicetree@lfdr.de>; Thu, 26 Jun 2025 10:54:05 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 0E3AC7A8AC3
-	for <lists+devicetree@lfdr.de>; Thu, 26 Jun 2025 08:50:40 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id E36E817AA77
+	for <lists+devicetree@lfdr.de>; Thu, 26 Jun 2025 08:54:05 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 04170295D96;
-	Thu, 26 Jun 2025 08:51:56 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2F490296173;
+	Thu, 26 Jun 2025 08:53:58 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="pI0/t2+k"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="DKMrfeFU"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D79932264CA
-	for <devicetree@vger.kernel.org>; Thu, 26 Jun 2025 08:51:53 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EA89A295DB2;
+	Thu, 26 Jun 2025 08:53:57 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1750927915; cv=none; b=uK9P3sKb7JhcijM9uWwesCEtORdD+MsgBUFzRICJ9+AUmBSJ1CcAGWND91iehAcgq381IicSLIdEqGyLrF8QgwpBXhyzmmf9ZOUo1nbSVvGvsZ4OXFZ1oYx7JSswIUMPC0Z/mSk8PGh2Yavs3kNjpPEbrU2D+piohHnGhVNpcos=
+	t=1750928038; cv=none; b=UTNpKMyCDF5838DHFx8Oq8yyIRAgjiNauOoo6SgP0slE9kLkamrNHNZopVRm7I2ejP+Gc2W/M/e6sAI1PagoPYZQFJe4NR7Z7D1NNa7IBCcwHKQtLd+JeeJiuYLAqH9VmSskDDizYgtUEoBpqVztw4qqaqmn7R1NbxdunMOAs7Q=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1750927915; c=relaxed/simple;
-	bh=aznDneGB5ZSRcgyw+5JpEXuiR1KCupx+SXPzTLp24oo=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=FrkqsTmBKuh3ucUATVwjdb68WvVMRBx6393yLI0XjTpT7DfZ7XK89DEgNQcxYZ5pkrTRlrbb8ikSjnvnsXnrayhqGgE2xZ94+oAs91qY3xiSYuXVckrjPq2pUrARpQ0/xvMfikQi3z8DqOmszo+U9JQKTYuYP1Gk2XiumjDWRG4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=pI0/t2+k; arc=none smtp.client-ip=205.220.180.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
-Received: from pps.filterd (m0279871.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 55Q0DmW7008202
-	for <devicetree@vger.kernel.org>; Thu, 26 Jun 2025 08:51:53 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	mgfcLjhJkXI1R1iwfIXHzXxGB6xPeQaB1Fa4Lnbay6g=; b=pI0/t2+k37GowChq
-	slrM9V81tfI3008e9t5Oh19Ci3phkWDQb3qhHYAxkas0x6YnSk+3s52MyTbkoCSu
-	vzA37m/uHeJ6hIHdyNkntoACiZ44lXsG5vPQ1Cs1e4HBrm3UeubKlA462i4TJ8MA
-	5TzOBE6bopGwwW+mLuYhdTKihB/g8p6X0AuSQuiaLwym55smUcsbHi12rCcwCa0/
-	8T0RsZHIKFrTW+M022TZ5bMqLu6EehcHLq1D39hAP/35C5bFVwiygPTXOIfpmeOl
-	JOB+7WTFaIEn8UMgweIhaTJHNdoW4zro6KSY9D+9hj+T/vKtSpgGwsiXdxRoRs2G
-	i9ZzXw==
-Received: from mail-qt1-f199.google.com (mail-qt1-f199.google.com [209.85.160.199])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 47fbhqs3s2-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Thu, 26 Jun 2025 08:51:52 +0000 (GMT)
-Received: by mail-qt1-f199.google.com with SMTP id d75a77b69052e-4a6f59d5ac6so1909451cf.0
-        for <devicetree@vger.kernel.org>; Thu, 26 Jun 2025 01:51:52 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1750927912; x=1751532712;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=mgfcLjhJkXI1R1iwfIXHzXxGB6xPeQaB1Fa4Lnbay6g=;
-        b=tAPEQK3e4e+xCr8fAXzPXz3UKeZ48PpXdc0aQdoEkLzxQtjdIMbO0V4iSz+fhSrMq7
-         ZUbvxp61Ou0OgudyG4aHgkCgqhEUstvvlTJ4OepqULlpOmx02tisQC/k/KdEvYaZXFTl
-         4bBqIfXhf0evqrNO2g+ep3VPJ8rJInK9ZqHShunkIdIjMRfJ3g7FaBhsCg0IKif9PgbJ
-         MAQFJDG+UsFsBm5Wb5YJZjd453MI3zbbZ4S/khfc0GF3IcoijFxLvvhGEom3/Au3jR4S
-         b3EFjN2ssNFPeC3NVoEkt2DPHWhAIElCg8Cm/Ls48eGpI8oENYu3CHtjOjfNffIl/6KJ
-         rxRw==
-X-Forwarded-Encrypted: i=1; AJvYcCVqAmbf8TMXzlHuFWj0YTjs/9qHF4dEMMAq4SePiFmYXwBXKPPsoLO9Ica5Mmn/SlxPJ/vYrdeBAMTU@vger.kernel.org
-X-Gm-Message-State: AOJu0Yx6pAtJ9AknZTrweYwlk6oGwuu+1ISiV6NuUkVaXARU4XNQgdJx
-	OOWbS13Ivgr/enHA47tQ/rm5Z8mNEm1ROtn3mnunpq74ySYF6oSczuVTcLq5FbLDkyFUyj7r5W9
-	0FUftCCx4xkH23ze21YEUU4kNcQANZr4MsFFjmHd+aY1yu7k+ump5wzUtYsMTssgW
-X-Gm-Gg: ASbGnctlzDtZ0Qfi3nwELdyfc8rERDJoG3XmsYEihXKZP0nX1vOaEXWFHi22Ffe0xPV
-	LpHpkX2QLT3y3vqaG989CmnO4UzCdUhmgxd6kEk04EhyorMd52ZROlByVthwRWb+vr8mye1Payr
-	P/yuwzheiyopLbhC5jyUZLjRZGlsFeIpZlKjGQMseHQI13YBhZVHqO2eThgH6OYxNlxeJ9uiEsU
-	qjokDBQ3/roDkKkOPisJjXefyKmY+YoLQdSd6lxDIL3rG1EFUo5thL1KnUT8lKXODyFtopFarfU
-	I7mpJSJFQ7eU1lhFqaso94ioABKigtMwzZFip7tD+Pf3sa/4XsonZ5gxvx6JVKN5YxBs+6Fuz1x
-	FiOE=
-X-Received: by 2002:a05:622a:54f:b0:4a6:fd66:3458 with SMTP id d75a77b69052e-4a7c0a039f4mr40604371cf.10.1750927911801;
-        Thu, 26 Jun 2025 01:51:51 -0700 (PDT)
-X-Google-Smtp-Source: AGHT+IEOmDH0KAs+XZortwRNF91JwBtBfCGAk9k2TesPeECiTsTLjvyA5O5SpXyDnT2kgnA3WVQCcg==
-X-Received: by 2002:a05:622a:54f:b0:4a6:fd66:3458 with SMTP id d75a77b69052e-4a7c0a039f4mr40604151cf.10.1750927911085;
-        Thu, 26 Jun 2025 01:51:51 -0700 (PDT)
-Received: from [192.168.143.225] (078088045245.garwolin.vectranet.pl. [78.88.45.245])
-        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-ae0c7994f6asm228368766b.38.2025.06.26.01.51.49
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 26 Jun 2025 01:51:50 -0700 (PDT)
-Message-ID: <688d2d3f-6cb9-43bf-be39-7c7651def3a8@oss.qualcomm.com>
-Date: Thu, 26 Jun 2025 10:51:48 +0200
+	s=arc-20240116; t=1750928038; c=relaxed/simple;
+	bh=OwU7D8PADIgeGXWG37O9GOsus96bJ6yiGEjt9OCGGg4=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=Q7kNzV0UV1g5yDrXwx1XvHFfqgciauKbs0ClPrt4/HfaDa3Xcj1RKavZPGfDnnFGpVX3v7cchi5l6x5Z9e10i20WxIVU+Bb7D5NleQYJODLgdzwcwOME0b9Fb5DQ0NMu2ZFGpgNwTTyrLBqaZLQhwVQJcUzJTy9gtaJl9GCg96c=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=DKMrfeFU; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPS id B0B46C4CEEB;
+	Thu, 26 Jun 2025 08:53:57 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1750928037;
+	bh=OwU7D8PADIgeGXWG37O9GOsus96bJ6yiGEjt9OCGGg4=;
+	h=From:Subject:Date:To:Cc:Reply-To:From;
+	b=DKMrfeFUOrzQ+q2EjnOdTN75U7ouLUQ/xGrr0CJQ1ZSQNT/f3MPL+kKaCiJMvSUaZ
+	 8VFZvHva0c1Wt48gaqJzxTgM2bccFrcvtdGSIXFBwUrk3P90kqm0GaaF7fWOKcyUP8
+	 /2yh0oiAQ+EXezl/oOzS2tydyd+/xn2kwJk1sPM3UUnRmgpIBFpWRjvk9+ctLt241K
+	 tLnselK0Og2mQVFgpfAMFLIUwW8zT0MI2QqFcbeXM/0jR7pZkd2f90zzvz4GO4bDXf
+	 55o0XKyqY4DSLizwSQK1mVMeaIE8NbrXxQzN9+JVmX4xK7c/GzEQR0PFZATLuT8ptb
+	 SX2JZ7sFv5bzw==
+Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 97CD3C7EE32;
+	Thu, 26 Jun 2025 08:53:57 +0000 (UTC)
+From: Max Shevchenko via B4 Relay <devnull+wctrl.proton.me@kernel.org>
+Subject: [PATCH v2 00/11] ARM: Add support for MediaTek MT6572 SoC
+Date: Thu, 26 Jun 2025 11:53:53 +0300
+Message-Id: <20250626-mt6572-v2-0-f7f842196986@proton.me>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 0/2] Add support for IQ-8275-evk board
-To: Krzysztof Kozlowski <krzk@kernel.org>,
-        "Rob Herring (Arm)"
- <robh@kernel.org>,
-        Umang Chheda <umang.chheda@oss.qualcomm.com>
-Cc: linux-arm-msm@vger.kernel.org, Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        linux-kernel@vger.kernel.org, Konrad Dybcio <konradybcio@kernel.org>,
-        kernel@oss.qualcomm.com, Conor Dooley <conor+dt@kernel.org>,
-        devicetree@vger.kernel.org, Bjorn Andersson <andersson@kernel.org>
-References: <20250623130420.3981916-1-umang.chheda@oss.qualcomm.com>
- <175069348269.3797007.5540625905808833666.robh@kernel.org>
- <bcfbfaed-e857-44be-86bd-d4e977fd4d27@oss.qualcomm.com>
- <0e632d8a-fdd3-4401-ae6e-a0ac6df61bfe@kernel.org>
-Content-Language: en-US
-From: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
-In-Reply-To: <0e632d8a-fdd3-4401-ae6e-a0ac6df61bfe@kernel.org>
-Content-Type: text/plain; charset=UTF-8
+Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-X-Proofpoint-ORIG-GUID: Gq9yH9pstoz3za-DAGkGvmPgscn1UdIv
-X-Authority-Analysis: v=2.4 cv=Id+HWXqa c=1 sm=1 tr=0 ts=685d0a28 cx=c_pps
- a=WeENfcodrlLV9YRTxbY/uA==:117 a=FpWmc02/iXfjRdCD7H54yg==:17
- a=IkcTkHD0fZMA:10 a=6IFa9wvqVegA:10 a=gEfo2CItAAAA:8 a=EUspDBNiAAAA:8
- a=p9_aX5AVk4CqX6A2AiYA:9 a=QEXdDO2ut3YA:10 a=kacYvNCVWA4VmyqE58fU:22
- a=sptkURWiP4Gy88Gu7hUp:22
-X-Proofpoint-GUID: Gq9yH9pstoz3za-DAGkGvmPgscn1UdIv
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwNjI2MDA3MyBTYWx0ZWRfXzLj5HyJyKEnk
- THSe5oTl4tiLoSqZNpp1oOqS80qQKvxzIi108l7yKo+TmquyKlwfjxO+/Ac/5s/Ir46PkucHFpH
- VjrSshu0xSVxnhb5vOUffgjpNXFbMcH4G1caymtjFJCtGl6qngvQt4kg3vbSavSbDAw9iXXyCwE
- Efr8/+SlfVWU+uemHiaSXRxq6kGlsMCs1Jv6mZhHH6cZl9vQkgqaUpuJUE2QmLXrEKGeqBHgzE7
- EPrRnEHR5IrqeWiOEuveEPDndUmqoabXsOBYPNkqAfDnhvChzmXDo7O40CNJh98bWBPrkWgsHBr
- lLWyyzD34zCBiWMFuRznVs0M5mOXOMD0+ytcmZEoVE1WQkwasrDAO/i7wG04TLOWBc1Rr8MghMW
- cJxqVKR2VfYyLEW9C/5omVVE95Xo1fyI5JDbZCRR9NCT1TQj4KxR6POYkIroaTabA3GLfGoR
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1099,Hydra:6.1.7,FMLib:17.12.80.40
- definitions=2025-06-26_04,2025-06-25_01,2025-03-28_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- spamscore=0 priorityscore=1501 mlxlogscore=999 phishscore=0 bulkscore=0
- clxscore=1015 impostorscore=0 mlxscore=0 lowpriorityscore=0 malwarescore=0
- suspectscore=0 adultscore=0 classifier=spam authscore=0 authtc=n/a authcc=
- route=outbound adjust=0 reason=mlx scancount=1 engine=8.19.0-2505280000
- definitions=main-2506260073
+X-B4-Tracking: v=1; b=H4sIAKEKXWgC/zXMSw7CIBSF4a00dywGrrzsyH2YDhq5WAaFBhqia
+ bp3sdHhf3LybVAoByrQdxtkqqGEFFvgqYPHNMYnseBaA3JUXIsrm1etDDLyxo4XJ5XQFtp5yeT
+ D64DuQ+splDXl9+FW8V1/BPI/UQXjjNBJY5F7LvG25LSmeJ4Jhn3fP/dlbN+cAAAA
+X-Change-ID: 20250619-mt6572-ef78a3d45168
+To: Greg Kroah-Hartman <gregkh@linuxfoundation.org>, 
+ Jiri Slaby <jirislaby@kernel.org>, Rob Herring <robh@kernel.org>, 
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, 
+ Matthias Brugger <matthias.bgg@gmail.com>, 
+ AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>, 
+ Thomas Gleixner <tglx@linutronix.de>, 
+ Daniel Lezcano <daniel.lezcano@linaro.org>, 
+ Wim Van Sebroeck <wim@linux-watchdog.org>, 
+ Guenter Roeck <linux@roeck-us.net>, Sean Wang <sean.wang@mediatek.com>, 
+ Russell King <linux@armlinux.org.uk>
+Cc: linux-kernel@vger.kernel.org, linux-serial@vger.kernel.org, 
+ devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
+ linux-mediatek@lists.infradead.org, linux-watchdog@vger.kernel.org, 
+ Max Shevchenko <wctrl@proton.me>, 
+ Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+X-Mailer: b4 0.14.2
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1750928035; l=2226;
+ i=wctrl@proton.me; s=20250603; h=from:subject:message-id;
+ bh=OwU7D8PADIgeGXWG37O9GOsus96bJ6yiGEjt9OCGGg4=;
+ b=baIgSdGhRpPQDRrIAAZqPHxm2ghrGJjBIImam6uwo0RV19u1bA8Bu0NK72e5cy9k8IIzWH1kz
+ Jy6jsC+ed2PBY0D7f7rUV2LakXFzOBxjLQCNTbuWlHUPAtXa2IdsUgK
+X-Developer-Key: i=wctrl@proton.me; a=ed25519;
+ pk=JXUx3mL/OrnRvbK57HXgugBjEBKq4QgDKJqp7BALm74=
+X-Endpoint-Received: by B4 Relay for wctrl@proton.me/20250603 with
+ auth_id=421
+X-Original-From: Max Shevchenko <wctrl@proton.me>
+Reply-To: wctrl@proton.me
 
-On 6/26/25 10:43 AM, Krzysztof Kozlowski wrote:
-> On 23/06/2025 17:50, Konrad Dybcio wrote:
->> On 6/23/25 5:46 PM, 'Rob Herring (Arm)' via kernel wrote:
->>>
->>> On Mon, 23 Jun 2025 18:34:18 +0530, Umang Chheda wrote:
->>>> This series:
->>>>
->>>> Add support for Qualcomm's IQ-8275-evk board using QCS8275 SOC.
->>
->> [...]
->>
->>>>
->>>>  .../devicetree/bindings/arm/qcom.yaml         |   7 +
->>>>  arch/arm64/boot/dts/qcom/Makefile             |   1 +
->>>>  .../boot/dts/qcom/qcs8275-iq-8275-evk.dts     | 241 ++++++++++++++++++
->>>>  3 files changed, 249 insertions(+)
->>>>  create mode 100644 arch/arm64/boot/dts/qcom/qcs8275-iq-8275-evk.dts
->>>>
->>
->> [...]
->>
->>>
->>> New warnings running 'make CHECK_DTBS=y for arch/arm64/boot/dts/qcom/' for 20250623130420.3981916-1-umang.chheda@oss.qualcomm.com:
->>>
->>> arch/arm64/boot/dts/qcom/msm8916-samsung-gt58.dtb: panel@0 (samsung,lsl080al03): 'port' does not match any of the regexes: '^pinctrl-[0-9]+$'
->>> 	from schema $id: http://devicetree.org/schemas/display/panel/samsung,s6d7aa0.yaml#
->>
->> Seems like a fluke..
-> No, it is a correct report. Schema does not allow port and needs to be
-> fixed.
-> 
-> What's more, this would be pointed out if contributor checked their DTS,
-> so obviously this never happened.
-> 
-> Internal guideline already asks for it, we asked for it, so why this
-> keeps happening?
+This series of patches adds support for the MT6572 SoC and
+the JTY D101 tablet and Lenovo A369i smartphone based on it.
 
-What I'm saying is, look at the diffstat that I purposefully kept above
-- unless modifying qcom.yaml retriggered it (but not any other errors?)
+Signed-off-by: Max Shevchenko <wctrl@proton.me>
+---
+Changes in v2:
+- Drop the status property for the board devicetrees
+- Add an soc node for the MT6572 and reorder the nodes and properties
+- Change the commit title to a more descriptive one
+- Change the cover title to the correct one
+- Link to v1: https://lore.kernel.org/r/20250620-mt6572-v1-0-e2d47820f042@proton.me
 
-Konrad
+---
+Max Shevchenko (11):
+      dt-bindings: serial: mediatek,uart: add MT6572
+      dt-bindings: interrupt-controller: mediatek,mt6577-sysirq: add MT6572
+      dt-bindings: timer: mediatek: add MT6572
+      dt-bindings: watchdog: mediatek,mtk-wdt: add MT6572
+      dt-bindings: vendor-prefixes: add JTY
+      dt-bindings: arm: mediatek: add boards based on the MT6572 SoC
+      ARM: mediatek: add board_dt_compat entry for the MT6572 SoC
+      ARM: mediatek: add MT6572 smp bring up code
+      ARM: dts: mediatek: add basic support for MT6572 SoC
+      ARM: dts: mediatek: add basic support for JTY D101 board
+      ARM: dts: mediatek: add basic support for Lenovo A369i board
+
+ .../devicetree/bindings/arm/mediatek.yaml          |   5 +
+ .../mediatek,mt6577-sysirq.yaml                    |   1 +
+ .../devicetree/bindings/serial/mediatek,uart.yaml  |   1 +
+ .../devicetree/bindings/timer/mediatek,timer.yaml  |   1 +
+ .../devicetree/bindings/vendor-prefixes.yaml       |   2 +
+ .../bindings/watchdog/mediatek,mtk-wdt.yaml        |   1 +
+ arch/arm/boot/dts/mediatek/Makefile                |   2 +
+ arch/arm/boot/dts/mediatek/mt6572-jty-d101.dts     |  61 ++++++++++++
+ arch/arm/boot/dts/mediatek/mt6572-lenovo-a369i.dts |  56 +++++++++++
+ arch/arm/boot/dts/mediatek/mt6572.dtsi             | 109 +++++++++++++++++++++
+ arch/arm/mach-mediatek/Kconfig                     |   4 +
+ arch/arm/mach-mediatek/mediatek.c                  |   1 +
+ arch/arm/mach-mediatek/platsmp.c                   |   7 ++
+ 13 files changed, 251 insertions(+)
+---
+base-commit: 0ff41df1cb268fc69e703a08a57ee14ae967d0ca
+change-id: 20250619-mt6572-ef78a3d45168
+
+Best regards,
+-- 
+Max Shevchenko <wctrl@proton.me>
+
+
 
