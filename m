@@ -1,123 +1,87 @@
-Return-Path: <devicetree+bounces-190105-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-190106-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 63181AEA9A7
-	for <lists+devicetree@lfdr.de>; Fri, 27 Jun 2025 00:31:49 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 08870AEA9FC
+	for <lists+devicetree@lfdr.de>; Fri, 27 Jun 2025 00:49:07 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 0EE9F3AE9DB
-	for <lists+devicetree@lfdr.de>; Thu, 26 Jun 2025 22:31:24 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id D91C24E3F88
+	for <lists+devicetree@lfdr.de>; Thu, 26 Jun 2025 22:48:59 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 86E70217719;
-	Thu, 26 Jun 2025 22:31:45 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0EC752264C7;
+	Thu, 26 Jun 2025 22:48:09 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="lER7JrcF"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="pdkwpipH"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 569C62F1FC9;
-	Thu, 26 Jun 2025 22:31:44 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D409A2264BE;
+	Thu, 26 Jun 2025 22:48:08 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1750977105; cv=none; b=b+WJCgncel1mhDGhgQt6jrgmyKJRy5u6IZxrfqS6GMM42NqasfD68IsAP7jvlce0iDF+J45NE7GPyGGV6eTmEmuXFyLyJUVgAJjPKFZNAbnzwUthV1rpHitlGWHM9js8hO6VA/XMvQBMK03XYtmitEiB3fYq+a3DPg59SetXhNY=
+	t=1750978088; cv=none; b=JT3EtkyemTTsbjAaFiNV4S2hJT1sU8UwfImvx3tw6DlnnFR04pYTFEMe4zaUmL97u2iioYqzcnOGfpsqTHQU3O06OeZgFDNakaa2kWS/p07AM60DGY8Ctq0yEFup22q0SUSiSVfRZfnYUc9S8dcFXwEFiqY+8u/fdZJNzZhLF/s=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1750977105; c=relaxed/simple;
-	bh=+CQJY0+DuNHsVmZwiK35TQ1qMC4owqret5SDfy7LxGw=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=iUlhZOpoVBpoaz7hhYyKL7osqBa2Wpklpn9yKsHPVRJ3zjVlhvqDLf/Ddr3+EKSJ8WfF7ATeQeG+J4JqGmZLK/O0T9tQoauolVdi5PV/aiwBU2NGGBXOFkqRUb5X3Xz64ZTxcd6w0qN18K0Dtyql5hoh1f5zVtDMz1sSda/EcA4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=lER7JrcF; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 26A80C4CEEB;
-	Thu, 26 Jun 2025 22:31:37 +0000 (UTC)
+	s=arc-20240116; t=1750978088; c=relaxed/simple;
+	bh=74tRgRyzUdH97iXrqvLAwp3+I+AkyJCcT0uVquQrKgo=;
+	h=From:To:Cc:In-Reply-To:References:Subject:Message-Id:Date:
+	 MIME-Version:Content-Type; b=Ul+ju5yg92I5PT+lR9TWqE7LniGx2DEQtcQPgoMa9a9WPc21taJi7zoGMI/ZFIeGkAi2PK7QUQZ7eQsppSFPhMUztpFS/NdGghNyzKImm8M1fvcw/FFGtoha6mtuDSkk8gR8o1TEEogvt+uHhLtusCYGPDsc5t3KveLeH3T6Gwk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=pdkwpipH; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id EF5BEC4CEEF;
+	Thu, 26 Jun 2025 22:48:07 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1750977103;
-	bh=+CQJY0+DuNHsVmZwiK35TQ1qMC4owqret5SDfy7LxGw=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=lER7JrcFZjHSzqGxOBBcK7oiMnjPfglcXOex5pYqeDtFKZd29FXReVWUgDESIFTzH
-	 BM8UIZiaLs7GhJaUVAixEirnTeKerDF/XoBDPq7MLE9423t9vIUNwOr0/QqrUxY5WV
-	 7STgZLAeaPSdK97O/Mcgopy0PzEwmwfGNw4IXrS7suINCSx4XBzjU+8GL2zQECsLaz
-	 asVw7rBHrZBnFsf3nCquibIcwVQvo1ynFqcyHGTCXbZQIY66imiCZMjdPYLctXkmb4
-	 fmuSv7d3URPAbUdSum3wbcGqPpiedmv3JtMJ3C/NN1Wi1zo4NctVHue9joKhlmspBa
-	 tTxWUwCLkLelA==
-Date: Fri, 27 Jun 2025 00:31:35 +0200
-From: Danilo Krummrich <dakr@kernel.org>
-To: Igor Korotin <igor.korotin.linux@gmail.com>
-Cc: "Rafael J . Wysocki" <rafael@kernel.org>,
-	Alex Gaynor <alex.gaynor@gmail.com>,
-	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-	Miguel Ojeda <ojeda@kernel.org>, Rob Herring <robh@kernel.org>,
-	Saravana Kannan <saravanak@google.com>,
-	Alex Hung <alex.hung@amd.com>,
-	Andrew Morton <akpm@linux-foundation.org>,
-	Jakub Kicinski <kuba@kernel.org>,
-	Jonathan Cameron <Jonathan.Cameron@huawei.com>,
-	Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-	Mauro Carvalho Chehab <mchehab+huawei@kernel.org>,
-	Remo Senekowitsch <remo@buenzli.dev>,
-	Tamir Duberstein <tamird@gmail.com>,
-	Viresh Kumar <viresh.kumar@linaro.org>,
-	Wedson Almeida Filho <wedsonaf@gmail.com>,
-	Xiangfei Ding <dingxiangfei2009@gmail.com>,
-	devicetree@vger.kernel.org, linux-acpi@vger.kernel.org,
-	linux-kernel@vger.kernel.org, rust-for-linux@vger.kernel.org,
-	=?iso-8859-1?Q?Bj=F6rn?= Roy Baron <bjorn3_gh@protonmail.com>,
-	Alice Ryhl <aliceryhl@google.com>,
-	Andreas Hindborg <a.hindborg@kernel.org>,
-	Benno Lossin <lossin@kernel.org>, Boqun Feng <boqun.feng@gmail.com>,
-	Gary Guo <gary@garyguo.net>, Len Brown <lenb@kernel.org>,
-	Trevor Gross <tmgross@umich.edu>
-Subject: Re: [PATCH v8 0/9] rust: Add ACPI match table support for Rust
- drivers
-Message-ID: <aF3KR0dXTD7RyU9c@cassiopeiae>
-References: <20250620150914.276272-1-igor.korotin.linux@gmail.com>
+	s=k20201202; t=1750978088;
+	bh=74tRgRyzUdH97iXrqvLAwp3+I+AkyJCcT0uVquQrKgo=;
+	h=From:To:Cc:In-Reply-To:References:Subject:Date:From;
+	b=pdkwpipHKaiF+d5pMuf42HxFj55b/cPwdg+uKcLZ9zxyhePT8RWubttjzhz/hfj3A
+	 63410EWF55ILPlb46JOP5PuK2vC0HMeTrVa+jnABmQ4SnaQTZsWSY7Q9vTiilq90S5
+	 qhX0ZxLHpGKb/DVENZC+BZeqiiphW6rqoZGuNFKP8BtbN1iCw2VZicHnI64OotnGCD
+	 1BFsdRa3Ug1kyXZTUBBYc2ReyqiWJk4uoY7G5CCBG+DS63x0dlbtW0COibMWv+F12Y
+	 7GqGwYWYlFijoObWSaa/LzIf5jEyhsid3raTgrhk678icHjWopjYQuYc2/vAHC8KR3
+	 QWBym6kse06jA==
+From: Vinod Koul <vkoul@kernel.org>
+To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, Bjorn Andersson <andersson@kernel.org>, 
+ Konrad Dybcio <konradybcio@kernel.org>, 
+ Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>, 
+ Pengyu Luo <mitltlatltl@gmail.com>
+Cc: linux-arm-msm@vger.kernel.org, dmaengine@vger.kernel.org, 
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+In-Reply-To: <20250617090032.1487382-1-mitltlatltl@gmail.com>
+References: <20250617090032.1487382-1-mitltlatltl@gmail.com>
+Subject: Re: (subset) [PATCH v3 0/2] arm64: dts: qcom: Add GPI DMA support
+ for sc8280xp
+Message-Id: <175097808791.79884.6630733557400720199.b4-ty@kernel.org>
+Date: Thu, 26 Jun 2025 15:48:07 -0700
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20250620150914.276272-1-igor.korotin.linux@gmail.com>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-Mailer: b4 0.13.0
 
-On Fri, Jun 20, 2025 at 04:09:13PM +0100, Igor Korotin wrote:
-> This patch series introduces support for ACPI match tables in Rust 
-> drivers.
 
-Applied to driver-core-testing, thanks!
-
-Once 0-day testing completed successfully, the patches are merged into
-driver-core-next.
-
-> Danilo Krummrich (3):
->   rust: device: implement FwNode::is_of_node()
->   samples: rust: platform: don't call as_ref() repeatedly
->   samples: rust: platform: conditionally call Self::properties_parse()
+On Tue, 17 Jun 2025 17:00:30 +0800, Pengyu Luo wrote:
+> This series adds GPI DMA support for the sc8280xp platform. This option is
+> required only on devices where the touch panel is connected over SPI.
 > 
-> Igor Korotin (6):
->   rust: acpi: add `acpi::DeviceId` abstraction
+> base-commit: 176e917e010cb7dcc605f11d2bc33f304292482b
+> 
+> 
 
-    [ Always inline DeviceId::new() and use &'static CStr; slightly reword
-      commit message. - Danilo ]
+Applied, thanks!
 
->   rust: driver: Consolidate `Adapter::of_id_info` methods using `#[cfg]`
+[1/2] dt-bindings: dma: qcom,gpi: Document the sc8280xp GPI DMA engine
+      commit: e54dd5059d46e44606395cb6ab15f022dc5a5902
 
-    [ Fix clippy warning if #[cfg(not(CONFIG_OF))]; fix checkpatch.pl line
-      length warnings. - Danilo ]
+Best regards,
+-- 
+~Vinod
 
->   rust: driver: Add ACPI id table support to Adapter trait
 
-    [ Fix clippy warning if #[cfg(not(CONFIG_OF))]; fix checkpatch.pl line
-      length warnings. - Danilo ]
-
->   rust: platform: Set `OF_ID_TABLE` default to `None` in `Driver` trait
->   rust: platform: Add ACPI match table support to `Driver` trait
-
-    [ Use 'LNUXBEEF' as ACPI ID. - Danilo ]
-
->   samples: rust: add ACPI match table example to platform driver
-
-    [ Use 'LNUXBEEF' as ACPI ID. - Danilo ]
 
