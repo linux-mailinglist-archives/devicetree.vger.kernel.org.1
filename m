@@ -1,129 +1,125 @@
-Return-Path: <devicetree+bounces-190062-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-190049-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id CB06CAEA73D
-	for <lists+devicetree@lfdr.de>; Thu, 26 Jun 2025 21:45:54 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id A8AAAAEA71A
+	for <lists+devicetree@lfdr.de>; Thu, 26 Jun 2025 21:43:21 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 012394E30E5
-	for <lists+devicetree@lfdr.de>; Thu, 26 Jun 2025 19:45:55 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 851B11C43C84
+	for <lists+devicetree@lfdr.de>; Thu, 26 Jun 2025 19:43:04 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C37DE2FCFEC;
-	Thu, 26 Jun 2025 19:42:00 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id DDA6C2F2707;
+	Thu, 26 Jun 2025 19:39:20 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=disroot.org header.i=@disroot.org header.b="Ebgh8tF9"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="WlzMNQiD"
 X-Original-To: devicetree@vger.kernel.org
-Received: from layka.disroot.org (layka.disroot.org [178.21.23.139])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4CF1B2FCE12;
-	Thu, 26 Jun 2025 19:41:59 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=178.21.23.139
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AB77927510C;
+	Thu, 26 Jun 2025 19:39:20 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1750966920; cv=none; b=Jqkjv2zwMf/KmN4QsPFpd62Tl6dtJYQtBcWpUtN0x0wB51KUo9df6MBp7bfdKiyNICj/4xCHWA/GIPKCrW8ZHG4ky2hWclYpoT+AOznFiCKKDGDu0Kph63LZEaTPkp9/sfwZaxys3WvpbcTloJydj4jPHtxfbg4/zhS1UT46mew=
+	t=1750966760; cv=none; b=t/amUaWyJikjdM9CNihgUJ0MyhcIjbySH45Kt5OUTnJ8W0Ztjuw4tiwRl5bsiPB47elZ8uJ4AxknTsK2mwAJr9MILoGmo7ob33dxI1fVCwgrKH9vRjds4iG6T7fPfB7P5hUiUh+0ZYFLsGoJcvygxLjTqyP79AT4s8/JYdMSrXU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1750966920; c=relaxed/simple;
-	bh=l4Nuu5usU3hvRSdSwV3bQf/gyHyhMjDbMhpD0WU6O88=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=uG2SvIWxZrECGCU4ZOxpGPywIDsNgb8CL37h/BdMm4K4579vJagO2PFVVoV6cJtKwTK61iXClHvRts0LDXr3cZK3PZXRYBuf1ne8LruMN8FCpSN/Ozm5RBGHJ52LLynY4No9t1RR6ZZLxtx4+TjhEWQ5R2ToK4Jlm7qqoqaWZSM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=disroot.org; spf=pass smtp.mailfrom=disroot.org; dkim=pass (2048-bit key) header.d=disroot.org header.i=@disroot.org header.b=Ebgh8tF9; arc=none smtp.client-ip=178.21.23.139
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=disroot.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=disroot.org
-Received: from mail01.disroot.lan (localhost [127.0.0.1])
-	by disroot.org (Postfix) with ESMTP id 0D27125B63;
-	Thu, 26 Jun 2025 21:41:58 +0200 (CEST)
-X-Virus-Scanned: SPAM Filter at disroot.org
-Received: from layka.disroot.org ([127.0.0.1])
- by localhost (disroot.org [127.0.0.1]) (amavis, port 10024) with ESMTP
- id OEHH2EbSFcj2; Thu, 26 Jun 2025 21:41:57 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=disroot.org; s=mail;
-	t=1750966917; bh=l4Nuu5usU3hvRSdSwV3bQf/gyHyhMjDbMhpD0WU6O88=;
-	h=From:Date:Subject:References:In-Reply-To:To:Cc;
-	b=Ebgh8tF90SxYheUm/XdL3l3+tUf8vUBXPF3ErugG+gm18/zE2KxQL4wzegTl+SblX
-	 16F6td1BGUt0W1cV/unT2a54AdxrzXnnJnmGU8WrrS38bhLVw00F+md5LgHejUNfKF
-	 JVmz0jAM3LPscys4ZK9puADwfrM46LaS22h5KC/VZwo/wHmfQl0hW4sDqVjWLblWUF
-	 eHlKjCp9Gf5/rJetrUGHEI16VhATSxbbtj5VkGV+M5dOpI58CFOGpp882a0Us1f8NJ
-	 I0RmrQi26vVsJldm0CiGOY2kcpSumu2giASUHyZ/3ciWjsFv7Vqt3BMzI93YxZ1C1G
-	 f/e17oc0oY8LA==
-From: Kaustabh Chakraborty <kauschluss@disroot.org>
-Date: Fri, 27 Jun 2025 01:09:02 +0530
-Subject: [PATCH v2 13/13] drm/exynos: dsi: add support for exynos7870
+	s=arc-20240116; t=1750966760; c=relaxed/simple;
+	bh=ZLyachA0cZ1ZFfHJZ8gOmKDO10e/vQrJvgnBljltnug=;
+	h=Date:Content-Type:MIME-Version:From:Cc:To:In-Reply-To:References:
+	 Message-Id:Subject; b=ZYZiA0rOy0GmRDc5minoB3IARFW2VbT8Z1QwWPLdtB7BLVwuus+XyYKjWsQi8cAeE57JZl/jxHwDzr2vMdsYKsZC7HuNJdo63RANaVbzNHOy1la+MUQvMjM9vz+D6wD4fL5udQgfzrabTtQct3sCtqFuwWh1zVVx9KOmQ+PIEjw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=WlzMNQiD; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 1CD3DC4CEEB;
+	Thu, 26 Jun 2025 19:39:20 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1750966760;
+	bh=ZLyachA0cZ1ZFfHJZ8gOmKDO10e/vQrJvgnBljltnug=;
+	h=Date:From:Cc:To:In-Reply-To:References:Subject:From;
+	b=WlzMNQiDZzb5bKE9Hzr92+/WOb3CNnGAHDTCcc2tFnVEe/z9wvqAoX0HnOBqIqBRb
+	 i4t3MFMJkVWzFcbECQ5lx/EakxhhIWADGGyh5Mcl5cx79TO+VjQObu5ZYj5EvMqeFS
+	 qwP9hENAcggby7r/OE7pLh6cy3/RUamyvnMQZz6gom1svqap0f5PHXW3NNR8bEiTBT
+	 UQUmIiZzs3C9A6UKCN+kwZQ6r3MCo3K6Pxih3RKF0uxitXvOzE1iJqqFKXQ/x74FwF
+	 jYgbnSjr0M8Z8fYuL1Za4giyH6InMG/PUWmgLbgPqznqYPpT32fzBFrjH2ErStWTMj
+	 pMX8KhB4eh82g==
+Date: Thu, 26 Jun 2025 14:39:19 -0500
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20250627-exynos7870-dsim-v2-13-1433b67378d3@disroot.org>
-References: <20250627-exynos7870-dsim-v2-0-1433b67378d3@disroot.org>
-In-Reply-To: <20250627-exynos7870-dsim-v2-0-1433b67378d3@disroot.org>
-To: Inki Dae <inki.dae@samsung.com>, 
- Jagan Teki <jagan@amarulasolutions.com>, 
- Marek Szyprowski <m.szyprowski@samsung.com>, 
- Andrzej Hajda <andrzej.hajda@intel.com>, 
- Neil Armstrong <neil.armstrong@linaro.org>, Robert Foss <rfoss@kernel.org>, 
- Laurent Pinchart <Laurent.pinchart@ideasonboard.com>, 
- Jonas Karlman <jonas@kwiboo.se>, Jernej Skrabec <jernej.skrabec@gmail.com>, 
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, 
- Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>, 
- David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>, 
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, Seung-Woo Kim <sw0312.kim@samsung.com>, 
- Kyungmin Park <kyungmin.park@samsung.com>, 
- Krzysztof Kozlowski <krzk@kernel.org>, 
- Alim Akhtar <alim.akhtar@samsung.com>
-Cc: dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org, 
- devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
- linux-samsung-soc@vger.kernel.org, 
- Kaustabh Chakraborty <kauschluss@disroot.org>
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1750966738; l=1284;
- i=kauschluss@disroot.org; s=20250202; h=from:subject:message-id;
- bh=l4Nuu5usU3hvRSdSwV3bQf/gyHyhMjDbMhpD0WU6O88=;
- b=cmuo+JuT3QMzZHDqDYnGiREXiuNl6V2a1LJCsYS2y5UQKcrN5wI1ZKfhiayYuBYF2UrypP+5V
- p9GshsYm9IyD7GMQtRWhReztr3kMfLpJ+dEqvdjF0sqybYP9335jEqI
-X-Developer-Key: i=kauschluss@disroot.org; a=ed25519;
- pk=h2xeR+V2I1+GrfDPAhZa3M+NWA0Cnbdkkq1bH3ct1hE=
+From: "Rob Herring (Arm)" <robh@kernel.org>
+Cc: tiwai@suse.de, alsa-devel@alsa-project.org, lgirdwood@gmail.com, 
+ devicetree@vger.kernel.org, krzk+dt@kernel.org, broonie@kernel.org, 
+ liam.r.girdwood@intel.com, andriy.shevchenko@linux.intel.com, 
+ baojun.xu@ti.com, shenghao-ding@ti.com, linux-sound@vger.kernel.org, 
+ v-hampiholi@ti.com, conor+dt@kernel.org, navada@ti.com
+To: Niranjan H Y <niranjan.hy@ti.com>
+In-Reply-To: <20250626181334.1200-3-niranjan.hy@ti.com>
+References: <20250626181334.1200-1-niranjan.hy@ti.com>
+ <20250626181334.1200-3-niranjan.hy@ti.com>
+Message-Id: <175096675929.695498.5504104608098121359.robh@kernel.org>
+Subject: Re: [PATCH v3 2/4] dt-bindings: sound: bindings for tac5x1x family
+ of codecs
 
-Add glue layer support for Exynos7870's DSIM IP bridge driver.
 
-Signed-off-by: Kaustabh Chakraborty <kauschluss@disroot.org>
----
- drivers/gpu/drm/exynos/exynos_drm_dsi.c | 9 +++++++++
- 1 file changed, 9 insertions(+)
+On Thu, 26 Jun 2025 23:43:31 +0530, Niranjan H Y wrote:
+> tac5x1x family are series of low-power and high performance
+> mono/stereo audio codecs consists of ADC and DAC combinations.
+> The family consist of Codecs(DAC & ADC), ADC only and DAC only
+> configurations. The documentation explains the list of devices
+> in the family, their power supply configurations and gpio
+> configuration options available for various functionality.
+> 
+> Signed-off-by: Niranjan H Y <niranjan.hy@ti.com>
+> 
+> ---
+> v2:
+> - Document newly added dts entries ti,adc1-impedance,
+>   ti,adc2-impedance, ti,out2x-vcom-cfg
+> v3:
+> - add documentation for ti,pdm-input-pins
+> - Update required section
+> ---
+>  .../devicetree/bindings/sound/ti,tac5x1x.yaml | 262 ++++++++++++++++++
+>  1 file changed, 262 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/sound/ti,tac5x1x.yaml
+> 
 
-diff --git a/drivers/gpu/drm/exynos/exynos_drm_dsi.c b/drivers/gpu/drm/exynos/exynos_drm_dsi.c
-index 896a03639e2d9b80971d43aff540fc7fb9f005bd..c4d098ab7863890b2111742c07953c148304e4ec 100644
---- a/drivers/gpu/drm/exynos/exynos_drm_dsi.c
-+++ b/drivers/gpu/drm/exynos/exynos_drm_dsi.c
-@@ -154,6 +154,11 @@ static const struct samsung_dsim_plat_data exynos5433_dsi_pdata = {
- 	.host_ops = &exynos_dsi_exynos_host_ops,
- };
- 
-+static const struct samsung_dsim_plat_data exynos7870_dsi_pdata = {
-+	.hw_type = DSIM_TYPE_EXYNOS7870,
-+	.host_ops = &exynos_dsi_exynos_host_ops,
-+};
-+
- static const struct of_device_id exynos_dsi_of_match[] = {
- 	{
- 		.compatible = "samsung,exynos3250-mipi-dsi",
-@@ -175,6 +180,10 @@ static const struct of_device_id exynos_dsi_of_match[] = {
- 		.compatible = "samsung,exynos5433-mipi-dsi",
- 		.data = &exynos5433_dsi_pdata,
- 	},
-+	{
-+		.compatible = "samsung,exynos7870-mipi-dsi",
-+		.data = &exynos7870_dsi_pdata,
-+	},
- 	{ /* sentinel. */ }
- };
- MODULE_DEVICE_TABLE(of, exynos_dsi_of_match);
+My bot found errors running 'make dt_binding_check' on your patch:
 
--- 
-2.49.0
+yamllint warnings/errors:
+
+dtschema/dtc warnings/errors:
+Warning: Duplicate compatible "ti,taa5412" found in schemas matching "$id":
+	http://devicetree.org/schemas/sound/ti,pcm6240.yaml#
+	http://devicetree.org/schemas/sound/ti,tac5x1x.yaml#
+Warning: Duplicate compatible "ti,taa5212" found in schemas matching "$id":
+	http://devicetree.org/schemas/sound/ti,pcm6240.yaml#
+	http://devicetree.org/schemas/sound/ti,tac5x1x.yaml#
+Warning: Duplicate compatible "ti,tad5212" found in schemas matching "$id":
+	http://devicetree.org/schemas/sound/ti,pcm6240.yaml#
+	http://devicetree.org/schemas/sound/ti,tac5x1x.yaml#
+/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/sound/ti,tac5x1x.example.dtb: tac5x1x@52 (ti,tac5212): ti,gpa-gpio: 0 is not of type 'array'
+	from schema $id: http://devicetree.org/schemas/gpio/gpio-consumer.yaml#
+
+doc reference errors (make refcheckdocs):
+
+See https://patchwork.ozlabs.org/project/devicetree-bindings/patch/20250626181334.1200-3-niranjan.hy@ti.com
+
+The base for the series is generally the latest rc1. A different dependency
+should be noted in *this* patch.
+
+If you already ran 'make dt_binding_check' and didn't see the above
+error(s), then make sure 'yamllint' is installed and dt-schema is up to
+date:
+
+pip3 install dtschema --upgrade
+
+Please check and re-submit after running the above command yourself. Note
+that DT_SCHEMA_FILES can be set to your schema file to speed up checking
+your schema. However, it must be unset to test all examples with your schema.
 
 
