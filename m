@@ -1,147 +1,323 @@
-Return-Path: <devicetree+bounces-190100-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-190101-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 49ACCAEA8D5
-	for <lists+devicetree@lfdr.de>; Thu, 26 Jun 2025 23:27:43 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8578DAEA8F0
+	for <lists+devicetree@lfdr.de>; Thu, 26 Jun 2025 23:42:04 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 887A756828D
-	for <lists+devicetree@lfdr.de>; Thu, 26 Jun 2025 21:26:51 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id B1AA317051E
+	for <lists+devicetree@lfdr.de>; Thu, 26 Jun 2025 21:42:04 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id BBAFA28D8CF;
-	Thu, 26 Jun 2025 21:24:14 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5032F260560;
+	Thu, 26 Jun 2025 21:42:00 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="PpSZrbtI"
+	dkim=pass (2048-bit key) header.d=ragnatech.se header.i=@ragnatech.se header.b="pxECusUj";
+	dkim=pass (2048-bit key) header.d=messagingengine.com header.i=@messagingengine.com header.b="dEu44YR/"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f42.google.com (mail-wm1-f42.google.com [209.85.128.42])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from fout-b2-smtp.messagingengine.com (fout-b2-smtp.messagingengine.com [202.12.124.145])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CB9D5260577;
-	Thu, 26 Jun 2025 21:24:12 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.42
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C16BB25EF81;
+	Thu, 26 Jun 2025 21:41:57 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=202.12.124.145
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1750973054; cv=none; b=QzrrSBoByzAk8F/JYEPwbbz1GEd5caiv8EsLIFmeBxpLrRIg/YiA6Pe/HJlCt00hqx/enD4WP7yOop2R7hIjBeKfpu6FOs+qt/JTaAgYDkiUCIdMANakpdw0tPOsBEaQ8mltxxpzmEbQYc+O1Fy2Lm8W8ocKQ88xWY++nDB505s=
+	t=1750974120; cv=none; b=bFPr9yRgaN8RIVZmeEvEZpXXJ6rVfr2xas3W0cY/uOvEAuxx9+hiWvcV4D+vulUaddVi1lT1ufdb6rwRFZ3EuCzg9PsnhlsZ/rBSa0Zmnmny9NQM1fVgYX9wSO3LbFU8ZI+MkmIbX+XH2NqEQknQjnCnDG7R2wojISXEdW+b7mg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1750973054; c=relaxed/simple;
-	bh=EQzUDFfnxMaPCgzvLAWUznL40gFuxneWacKGexy4pOs=;
-	h=From:To:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=jLP+QidceskUKS7qS9UHQBT5oFMnnMrg4jXigRpwkeg7DXST3UsbJN2bguwaS4Xr12xWDTVV01w9yWlHnYEwcjJF4MIxvzCMpSO3FRy58wm0vZW7H42EG7JvNoqMjUK7zC851A7Ke6gzN13ZH7MkO2wPa3hJoOsLiD7MgjQO8P0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=PpSZrbtI; arc=none smtp.client-ip=209.85.128.42
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-wm1-f42.google.com with SMTP id 5b1f17b1804b1-453398e90e9so10655805e9.1;
-        Thu, 26 Jun 2025 14:24:12 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1750973051; x=1751577851; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:to:from:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=Q/W0x52D15NfB+BOP8T/m/ZC7owLNeVqs+BHfnihvT0=;
-        b=PpSZrbtI+glez34OxYMIJQZEuIjC+Fvm40mLVsCuNTe7hI39CwPczCNZzMGqnhiDzG
-         sPlPKhBdjh3ZU/MuyC/XfrTfMa2lZCY+4jYI6qkbov33RqrRf2wS7/no7fYf/zPsAAjk
-         foB2fYwI6Dov7luXsCC0PvFg4lTosTEWPQ0I5G00JrZMgLfqxDdIget3d4l+lflYt1mt
-         xbzj7orABmYq3w49FlyWSBZ6khg8FdkMJ98hAb8pugz1pJnoeKAQos2yfa1Enft0aklY
-         gyT7vcPcqD0h5BmREuGLoGkHVbxCnS1+tp7tOGsTJLkJiNyaNU86S1vn2HYV8C0xOyL5
-         13Mg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1750973051; x=1751577851;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=Q/W0x52D15NfB+BOP8T/m/ZC7owLNeVqs+BHfnihvT0=;
-        b=kRyXD1NFiKBCls5GpCVkxq5FEY3rmAQNE/fm6MLjtBGcYsYarAvckgcBNE+LIGT4+u
-         JIgPMVux4oFaNiksc4+MenQUZX1FiHnfdExGHNX//DNOKjbgAiEgkEQqOJo4NPIX0ce2
-         C6eQ+PM2wU/pFICcvBYx6IXMQVkzFq72yyKwufUBmCRY/D6SCB5DsVFM79JBtxgDfphA
-         /Yuew6kJWxfstKBnoJu+KZYfgeDNBo3ItWjt6yGi2sYUKsGMykd8dUxbXBW4I0skqShH
-         6XEKzKsUPEIGnODpqCXdNY8k25RKdHcrI7D8ZKItx9FkdV/XVQ2KpLY4BoDBXE5wW0x+
-         SOrQ==
-X-Forwarded-Encrypted: i=1; AJvYcCVX+JvBQ86DjiRGTpJIaNuUT4AJUuRl0b++7P0szyMDCvYySxATtAuk9sBBRE1pb5lUiCBQOmQP@vger.kernel.org, AJvYcCVjeIOkGXLEZgzkD+RgevF9SUOslr2hp0T+fwgZRLPkzwA/xuYUleLK+vxfUymgO1PkgajA9GxCiuVUmzXV@vger.kernel.org, AJvYcCWkP2mB4QMuRlm5IMHfY9zGEBlcq7WGRS1jn654qHI5tDIscfWArOV/c6R5V28JtHfxp3Ky3uJPD+v2@vger.kernel.org
-X-Gm-Message-State: AOJu0YzMrgqJnVT4weLFvTmFSaOo2b3HEbHPLA4b1oVB3YJhWwYZF5dt
-	cv9k204L7LBXXsrbxElZ2ZWmlTFBePHTp4LDgLzY/fS/YVL171KZaijc
-X-Gm-Gg: ASbGncs2ZEeBmCUEC+jkophRoWWMJ4fIKq3iwOuA9mkoZ8bAh7l63SrjJ3f8A73c47p
-	5UtXScQY08pd98Oh8xu7M+HCpK1lDpNb2lBruqlVlXVHQIgl3bU7EtxBBDMs1F76S5jvX+YiRH1
-	zW4e7q1Jot0Jk5zg1RUizi4EzK7qBASijbZUZW68BK7ckwGg9xSwU5ItqgS05fGtcL/gOS+bsvg
-	vTpFxXbnNtAHZlxq0AZXEwWW5lub0ioim3sJW0/gYO3kSsQMbSKxfsS3VxI8fJ1JjOgWYnuKHa9
-	IQ+CIfzzYT3OO3dqOjsCHPUXxc5Zj0U36IuIpXXtBPkdCMjWerQUeA263J9h08l6782c7N03Wjt
-	RfDFG48+F7t5V606jhZIPr+XcRS9JCgc=
-X-Google-Smtp-Source: AGHT+IHVLPfvW6O1oNCC2LT9oj+Qg1mkz0+DDsJBKHwZ+LBvaK0h+vlqLp0ai9AzKkbhD2TEc+EdQA==
-X-Received: by 2002:a05:600c:4750:b0:43b:ca39:6c7d with SMTP id 5b1f17b1804b1-4538ee30effmr9653155e9.3.1750973051054;
-        Thu, 26 Jun 2025 14:24:11 -0700 (PDT)
-Received: from localhost.localdomain (93-34-88-225.ip49.fastwebnet.it. [93.34.88.225])
-        by smtp.googlemail.com with ESMTPSA id 5b1f17b1804b1-453835798acsm57186475e9.10.2025.06.26.14.24.09
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 26 Jun 2025 14:24:10 -0700 (PDT)
-From: Christian Marangi <ansuelsmth@gmail.com>
-To: Christian Marangi <ansuelsmth@gmail.com>,
-	Lee Jones <lee@kernel.org>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	s=arc-20240116; t=1750974120; c=relaxed/simple;
+	bh=SbhTlf+ZNN4wj/OqDrKJkt12GpvChqIALuSr1fGWjtY=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=YzoKLZmxVxZswaQkvKoxRkRNgRxzTOLwFI70aGmcAeaWmGL6TCFZ3olnR5+jgsJiJOvHiILdZkB+5vxcubbDiypdrdgqWVgi+4kp+IKPONltIXbakekfc3wkUUs9wSEtw/nPfktzR3+slWhYCZTDiHuQFHAA5wc5zk/kOZJDtO4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ragnatech.se; spf=pass smtp.mailfrom=ragnatech.se; dkim=pass (2048-bit key) header.d=ragnatech.se header.i=@ragnatech.se header.b=pxECusUj; dkim=pass (2048-bit key) header.d=messagingengine.com header.i=@messagingengine.com header.b=dEu44YR/; arc=none smtp.client-ip=202.12.124.145
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ragnatech.se
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ragnatech.se
+Received: from phl-compute-03.internal (phl-compute-03.phl.internal [10.202.2.43])
+	by mailfout.stl.internal (Postfix) with ESMTP id A7DF21D00119;
+	Thu, 26 Jun 2025 17:41:54 -0400 (EDT)
+Received: from phl-mailfrontend-01 ([10.202.2.162])
+  by phl-compute-03.internal (MEProxy); Thu, 26 Jun 2025 17:41:54 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ragnatech.se; h=
+	cc:cc:content-transfer-encoding:content-type:content-type:date
+	:date:from:from:in-reply-to:in-reply-to:message-id:mime-version
+	:references:reply-to:subject:subject:to:to; s=fm1; t=1750974114;
+	 x=1751060514; bh=gkj2mMHh0GxLUj/eKGxZgIwvH9Co0awqJJJrJZL4T18=; b=
+	pxECusUjGGx3J3kjU40da8OIvnNP+kKo+jTZ+jlW/7QovnmEoQvgQlrM99A64P8I
+	UKEKKOsSXQ6/YHOYonAJwLr4oyZAGFTez7Senc1cH8hIPtZdAumfzaUPco9sTA/S
+	wKNgnGA2GKP1RdYX6pqgxK4fCD1A8WnndpzsxkgvgBnRdBHY7L028bLxYRzMV+0V
+	IlA/kQZ0sX7gMPrDnsh2xXd7uaHtkjOfiHtpTZo1haqChq1QB5LOHH10KqeLHLga
+	PbXIPvLGrj2W5XhI90+yIBjXQY0vT0tXX1Xr07DvJswmDCLPNtOwuceJw05qV+RS
+	E6vwy0LuBcSlg5kkDQj9jg==
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
+	messagingengine.com; h=cc:cc:content-transfer-encoding
+	:content-type:content-type:date:date:feedback-id:feedback-id
+	:from:from:in-reply-to:in-reply-to:message-id:mime-version
+	:references:reply-to:subject:subject:to:to:x-me-proxy
+	:x-me-sender:x-me-sender:x-sasl-enc; s=fm2; t=1750974114; x=
+	1751060514; bh=gkj2mMHh0GxLUj/eKGxZgIwvH9Co0awqJJJrJZL4T18=; b=d
+	Eu44YR/gGl1crkcj/CjBg8RWJBHU14zGSZeTsZXe7t17AFG/IrSgbLo7YdDkSAbo
+	ZICx4qve7xO3yvY3FQJWGTwfwz3eMmILr0XZ+X7UqAqEZA3vjn2tBeB4I+Fofu/P
+	Cvdt8hkG+4dvCD9WTAYvymbMmRAKwha1AHmFV5DPK+PqiG155ifT8HDYnj/mjQzt
+	QakdsiuFL/+U8Wy5C/gee15gjnojQxEYSGS2BftsqW3AWPT+wXlV95+tx+AlDTFN
+	TlLplfBbeMn5izaf3x46USvIaIK8uh6VOelrC0WPo7Umphzc4eRTY14b0tqUc7wZ
+	rT8TYx6zGG6Cpp+peUCRw==
+X-ME-Sender: <xms:ob5daPtpSYMHkpxuQZ6UNV19w74wRpigYUXsiblCTFZkPkJ3iWWkcQ>
+    <xme:ob5daAe-04Ao55PHg8CMLk-MnzHbLRUrY75D6eps23G7empv90QpTQ-PPxpIJ9Msq
+    EfDvGECK8Acsu5FItY>
+X-ME-Received: <xmr:ob5daCyLtk6S1-qetEFRMd8BCkYaY9gp7X6ikXEPTQlvJ-mp9y17WJ1YjpX78a4SbxdeY7QFLNaaBR7zYU6UHDQJFzvZgr01VQ>
+X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgeeffedrtdefgdduvdelucetufdoteggodetrfdotf
+    fvucfrrhhofhhilhgvmecuhfgrshhtofgrihhlpdfurfetoffkrfgpnffqhgenuceurghi
+    lhhouhhtmecufedttdenucesvcftvggtihhpihgvnhhtshculddquddttddmnecujfgurh
+    epfffhvfevuffkfhggtggugfgjsehtkeertddttdejnecuhfhrohhmpefpihhklhgrshcu
+    ufpnuggvrhhluhhnugcuoehnihhklhgrshdrshhouggvrhhluhhnugesrhgrghhnrghtvg
+    gthhdrshgvqeenucggtffrrghtthgvrhhnpeevteegtddvvdfhtdekgefhfeefheetheek
+    keegfeejudeiudeuleegtdehkeekteenucevlhhushhtvghrufhiiigvpedtnecurfgrrh
+    grmhepmhgrihhlfhhrohhmpehnihhklhgrshdrshhouggvrhhluhhnugesrhgrghhnrght
+    vggthhdrshgvpdhnsggprhgtphhtthhopeelpdhmohguvgepshhmthhpohhuthdprhgtph
+    htthhopehmrghrvghkrdhvrghsuhhtodhrvghnvghsrghssehmrghilhgsohigrdhorhhg
+    pdhrtghpthhtoheplhhinhhugidqrghrmhdqkhgvrhhnvghlsehlihhsthhsrdhinhhfrh
+    gruggvrggurdhorhhgpdhrtghpthhtoheptghonhhorhdoughtsehkvghrnhgvlhdrohhr
+    ghdprhgtphhtthhopehgvggvrhhtodhrvghnvghsrghssehglhhiuggvrhdrsggvpdhrtg
+    hpthhtohepkhhriihkodgutheskhgvrhhnvghlrdhorhhgpdhrtghpthhtohepmhgrghhn
+    uhhsrdgurghmmhesghhmrghilhdrtghomhdprhgtphhtthhopehrohgshheskhgvrhhnvg
+    hlrdhorhhgpdhrtghpthhtohepuggvvhhitggvthhrvggvsehvghgvrhdrkhgvrhhnvghl
+    rdhorhhgpdhrtghpthhtoheplhhinhhugidqrhgvnhgvshgrshdqshhotgesvhhgvghrrd
+    hkvghrnhgvlhdrohhrgh
+X-ME-Proxy: <xmx:ob5daOM1Nj7wEN9jhX5fhm3KmEYhKsWOWNCAgRYixxWybykqeJq9Tw>
+    <xmx:ob5daP-nBvUVn5OZVoHy9SKv32G_OqTknl4WXCJis2n4vgnU_0BGgQ>
+    <xmx:ob5daOU9v9DiYVT9nPUHNCbYxLvTsDnjQy73Zv-5DFad2XBuhdEeTg>
+    <xmx:ob5daAeqwsrOLKLqY_UQ4_R7wQxRfdddXmPQAhKo04zs_pUZoAQLBQ>
+    <xmx:or5daGTQLtIwmqNSVqJVpCRY0YCh-AiXgZmWc7pxNK9CArwxuI52uouC>
+Feedback-ID: i80c9496c:Fastmail
+Received: by mail.messagingengine.com (Postfix) with ESMTPA; Thu,
+ 26 Jun 2025 17:41:53 -0400 (EDT)
+Date: Thu, 26 Jun 2025 23:41:52 +0200
+From: Niklas =?utf-8?Q?S=C3=B6derlund?= <niklas.soderlund@ragnatech.se>
+To: Marek Vasut <marek.vasut+renesas@mailbox.org>
+Cc: linux-arm-kernel@lists.infradead.org,
 	Conor Dooley <conor+dt@kernel.org>,
-	Andrew Lunn <andrew+netdev@lunn.ch>,
-	"David S. Miller" <davem@davemloft.net>,
-	Eric Dumazet <edumazet@google.com>,
-	Jakub Kicinski <kuba@kernel.org>,
-	Paolo Abeni <pabeni@redhat.com>,
-	Vladimir Oltean <olteanv@gmail.com>,
-	Srinivas Kandagatla <srini@kernel.org>,
-	Heiner Kallweit <hkallweit1@gmail.com>,
-	Russell King <linux@armlinux.org.uk>,
-	"Chester A. Unal" <chester.a.unal@arinc9.com>,
-	Daniel Golle <daniel@makrotopia.org>,
-	DENG Qingfang <dqfext@gmail.com>,
-	Sean Wang <sean.wang@mediatek.com>,
-	Simon Horman <horms@kernel.org>,
-	Matthias Brugger <matthias.bgg@gmail.com>,
-	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
-	linux-arm-kernel@lists.infradead.org,
-	linux-mediatek@lists.infradead.org,
-	netdev@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org
-Subject: [net-next PATCH v15 12/12] net: dsa: tag_mtk: add comments about Airoha usage of this TAG
-Date: Thu, 26 Jun 2025 23:23:11 +0200
-Message-ID: <20250626212321.28114-13-ansuelsmth@gmail.com>
-X-Mailer: git-send-email 2.48.1
-In-Reply-To: <20250626212321.28114-1-ansuelsmth@gmail.com>
-References: <20250626212321.28114-1-ansuelsmth@gmail.com>
+	Geert Uytterhoeven <geert+renesas@glider.be>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Magnus Damm <magnus.damm@gmail.com>, Rob Herring <robh@kernel.org>,
+	devicetree@vger.kernel.org, linux-renesas-soc@vger.kernel.org
+Subject: Re: [PATCH] arm64: dts: renesas: r8a779g3: Update thermal trip
+ points on V4H Sparrow Hawk
+Message-ID: <20250626214152.GA1817595@ragnatech.se>
+References: <20250625100330.7629-1-marek.vasut+renesas@mailbox.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
+In-Reply-To: <20250625100330.7629-1-marek.vasut+renesas@mailbox.org>
 
-Add comments about difference between Airoha AN8855 and Mediatek tag
-bitmap.
+Hi Marek,
 
-Airoha AN88555 doesn't support controlling SA learning and Leaky VLAN
-from tag. Although these bits are not used (and even not defined for
-Leaky VLAN), it's worth to add comments for these difference to prevent
-any kind of regression in the future if ever these bits will be used.
+Thanks for your work.
 
-Signed-off-by: Christian Marangi <ansuelsmth@gmail.com>
----
- net/dsa/tag_mtk.c | 3 +++
- 1 file changed, 3 insertions(+)
+On 2025-06-25 12:01:56 +0200, Marek Vasut wrote:
+> Since the Sparrow Hawk has a smaller PCB than the White Hawk, it tends
+> to generate more heat. To prevent potential damage to the board, adjust
+> the temperature trip points.
+> 
+> Add four "passive" trip points which increasingly throttle the CPU to
+> prevent overheating. The first trip point at 68°C disables the 1.8 GHz
+> and 1.7 GHz modes and limits the CPU to 1.5 GHz frequency. The second
+> trip point at 72°C disables the 1.5 GHz mode and limits the CPU to 1.0
+> GHz frequency. The third trip point at 76°C uses thermal-idle to start
+> inserting idle cycles into the CPU instruction stream to cool the CPU
+> cores down. The fourth and last trip point at 80°C disables the 1.0 GHz
+> mode and limits the CPU to 500 MHz frequency.
+> 
+> In case the SoC heats up further, in case either of the thermal sensors
+> readings passes the 100°C, a thermal shutdown is triggered to prevent
+> any damage to the hardware.
+> 
+> Signed-off-by: Marek Vasut <marek.vasut+renesas@mailbox.org>
+> ---
+> Cc: Conor Dooley <conor+dt@kernel.org>
+> Cc: Geert Uytterhoeven <geert+renesas@glider.be>
+> Cc: Krzysztof Kozlowski <krzk+dt@kernel.org>
+> Cc: Magnus Damm <magnus.damm@gmail.com>
+> Cc: "Niklas Söderlund" <niklas.soderlund@ragnatech.se>
+> Cc: Rob Herring <robh@kernel.org>
+> Cc: devicetree@vger.kernel.org
+> Cc: linux-renesas-soc@vger.kernel.org
+> ---
+>  .../dts/renesas/r8a779g3-sparrow-hawk.dts     | 137 ++++++++++++++++++
+>  1 file changed, 137 insertions(+)
+> 
+> diff --git a/arch/arm64/boot/dts/renesas/r8a779g3-sparrow-hawk.dts b/arch/arm64/boot/dts/renesas/r8a779g3-sparrow-hawk.dts
+> index 9ba23129e65e..ba81df3c779d 100644
+> --- a/arch/arm64/boot/dts/renesas/r8a779g3-sparrow-hawk.dts
+> +++ b/arch/arm64/boot/dts/renesas/r8a779g3-sparrow-hawk.dts
+> @@ -38,6 +38,7 @@
+>  
+>  /dts-v1/;
+>  #include <dt-bindings/gpio/gpio.h>
+> +#include <dt-bindings/thermal/thermal.h>
+>  
+>  #include "r8a779g3.dtsi"
+>  
+> @@ -797,3 +798,139 @@ &rwdt {
+>  &scif_clk {	/* X12 */
+>  	clock-frequency = <24000000>;
+>  };
+> +
+> +/* thermal-idle cooling for all SoC cores */
+> +&a76_0 {
+> +	#cooling-cells = <2>;
+> +
+> +	a76_0_thermal_idle: thermal-idle {
+> +		#cooling-cells = <2>;
+> +		duration-us = <10000>;
+> +		exit-latency-us = <500>;
+> +	};
+> +};
+> +
+> +&a76_1 {
+> +	a76_1_thermal_idle: thermal-idle {
+> +		#cooling-cells = <2>;
+> +		duration-us = <10000>;
+> +		exit-latency-us = <500>;
+> +	};
+> +};
+> +
+> +&a76_2 {
+> +	a76_2_thermal_idle: thermal-idle {
+> +		#cooling-cells = <2>;
+> +		duration-us = <10000>;
+> +		exit-latency-us = <500>;
+> +	};
+> +};
+> +
+> +&a76_3 {
+> +	a76_3_thermal_idle: thermal-idle {
+> +		#cooling-cells = <2>;
+> +		duration-us = <10000>;
+> +		exit-latency-us = <500>;
+> +	};
+> +};
 
-diff --git a/net/dsa/tag_mtk.c b/net/dsa/tag_mtk.c
-index b670e3c53e91..ac3f956abe39 100644
---- a/net/dsa/tag_mtk.c
-+++ b/net/dsa/tag_mtk.c
-@@ -18,6 +18,9 @@
- #define MTK_HDR_XMIT_TAGGED_TPID_88A8	2
- #define MTK_HDR_RECV_SOURCE_PORT_MASK	GENMASK(2, 0)
- #define MTK_HDR_XMIT_DP_BIT_MASK	GENMASK(5, 0)
-+/* AN8855 doesn't support SA_DIS and Leaky VLAN
-+ * control in tag as these bits doesn't exist.
-+ */
- #define MTK_HDR_XMIT_SA_DIS		BIT(6)
- 
- static struct sk_buff *mtk_tag_xmit(struct sk_buff *skb,
+I did not know you could do this and use it as a cooling device, thanks 
+for teaching me something new!
+
+> +
+> +/* THS sensors in SoC, critical temperature trip point is 100C */
+> +&sensor1_crit {
+> +	temperature = <100000>;
+> +};
+> +
+> +&sensor2_crit {
+> +	temperature = <100000>;
+> +};
+> +
+> +&sensor3_crit {
+> +	temperature = <100000>;
+> +};
+> +
+> +&sensor4_crit {
+> +	temperature = <100000>;
+> +};
+> +
+> +&sensor_thermal_cr52 {
+> +	critical-action = "shutdown";
+> +};
+> +
+> +&sensor_thermal_cnn {
+> +	critical-action = "shutdown";
+> +};
+
+Is this not the default action for critical trip points? In my testing 
+in the past R-Car systems have always shutdown when the critical trip is 
+reached. If it's not I think we should move these to r8a779g0.dtsi. And 
+likely add them for all other SoCs too?
+
+> +
+> +/* THS sensor in SoC near CA76 cores does more progressive cooling. */
+> +&sensor_thermal_ca76 {
+> +	critical-action = "shutdown";
+> +
+> +	cooling-maps {
+> +		/*
+> +		 * The cooling-device minimum and maximum parameters inversely
+> +		 * match opp-table-0 {} node entries in r8a779g0.dtsi, in other
+> +		 * words, 0 refers to 1.8 GHz OPP and 4 refers to 500 MHz OPP.
+> +		 * This is because they refer to cooling levels, where maximum
+> +		 * cooling level happens at 500 MHz OPP, when the CPU core is
+> +		 * running slowly and therefore generates least heat.
+> +		 */
+> +		map0 {
+> +			/* At 68C, inhibit 1.7 GHz and 1.8 GHz modes */
+> +			trip = <&sensor3_passive_low>;
+> +			cooling-device = <&a76_0 2 4>;
+> +			contribution = <128>;
+> +		};
+> +
+> +		map1 {
+> +			/* At 72C, inhibit 1.5 GHz mode */
+> +			trip = <&sensor3_passive_mid>;
+> +			cooling-device = <&a76_0 3 4>;
+> +			contribution = <256>;
+> +		};
+> +
+> +		map2 {
+> +			/* At 76C, start injecting idle states */
+> +			trip = <&sensor3_passive_hi>;
+> +			cooling-device = <&a76_0_thermal_idle 0 80>,
+> +					 <&a76_1_thermal_idle 0 80>,
+> +					 <&a76_2_thermal_idle 0 80>,
+> +					 <&a76_3_thermal_idle 0 80>;
+> +			contribution = <512>;
+> +		};
+> +
+> +		map3 {
+> +			/* At 80C, inhibit 1.0 GHz mode */
+> +			trip = <&sensor3_passive_crit>;
+> +			cooling-device = <&a76_0 4 4>;
+> +			contribution = <1024>;
+> +		};
+> +	};
+> +
+> +	trips {
+> +		sensor3_passive_low: sensor3-passive-low {
+> +			temperature = <68000>;
+> +			hysteresis = <2000>;
+> +			type = "passive";
+> +		};
+> +
+> +		sensor3_passive_mid: sensor3-passive-mid {
+> +			temperature = <72000>;
+> +			hysteresis = <2000>;
+> +			type = "passive";
+> +		};
+> +
+> +		sensor3_passive_hi: sensor3-passive-hi {
+> +			temperature = <76000>;
+> +			hysteresis = <2000>;
+> +			type = "passive";
+> +		};
+> +
+> +		sensor3_passive_crit: sensor3-passive-crit {
+> +			temperature = <80000>;
+> +			hysteresis = <2000>;
+> +			type = "passive";
+> +		};
+> +	};
+> +};
+> +
+> +&sensor_thermal_ddr1 {
+> +	critical-action = "shutdown";
+> +};
+> -- 
+> 2.47.2
+> 
+
 -- 
-2.48.1
-
+Kind Regards,
+Niklas Söderlund
 
