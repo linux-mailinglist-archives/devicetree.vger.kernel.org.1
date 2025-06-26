@@ -1,157 +1,281 @@
-Return-Path: <devicetree+bounces-189912-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-189913-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7A6E8AE9CFC
-	for <lists+devicetree@lfdr.de>; Thu, 26 Jun 2025 13:58:56 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9CF5BAE9D13
+	for <lists+devicetree@lfdr.de>; Thu, 26 Jun 2025 14:02:50 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id F39893B927D
-	for <lists+devicetree@lfdr.de>; Thu, 26 Jun 2025 11:58:30 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id DFE867A9148
+	for <lists+devicetree@lfdr.de>; Thu, 26 Jun 2025 12:00:25 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id DC96B277C93;
-	Thu, 26 Jun 2025 11:56:53 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="gwtb8FUF"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6BA65259CA0;
+	Thu, 26 Jun 2025 11:58:16 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-vs1-f52.google.com (mail-vs1-f52.google.com [209.85.217.52])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A9F55277C87;
-	Thu, 26 Jun 2025 11:56:53 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 164D02F1FEC;
+	Thu, 26 Jun 2025 11:58:13 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.217.52
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1750939013; cv=none; b=eTSOm7vREmlBqJd+8FQFnAg4YTtkB0Ets8CA04Skai4ENGTXDlVDFj8UZmrl/eF2WNcWtaT1vGaa4X7ZguwFRGQf52Lrif0NTn+SXOZnR8Q5MTx8jMzcYoGs8AyHKl7fSq0ptxMUIZGpMr+ZKGom0/UyE769P5/geD5bIIn1aZc=
+	t=1750939096; cv=none; b=DFanh/jB2Qg2RvHTcy8Uq5ZOcVKIgR6dNJthBjGfOVOrMw7QHtrMerTT7kBw4Cbm2t0hCEiU5d7OT92rU7TQ1fjBY/dWvEqXoBABOHij105NFCvAzgQ/IsGQCFBUybPsmgOSkPWXFmV+qwTR0E3kTSgv/RX3e1NPRMlC9qKrw9s=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1750939013; c=relaxed/simple;
-	bh=2cRA5Ews7AECae0hutCZ8TsFpfNmeytIVE/Jq/tTjEU=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=b1k/JCCwZqHrhZBmPTBHlrl4A5vY/aaZmG3BUweShvcTd2ox+lEFnKJaN18xMBpgdcRZrw5M/7NvwOMdnU+HanGC/nSq4MWrmlBNcmmiNGMCeDSdE4dazIEIrf9XCPaVIgrh11LvVyZ3xA6J0K/uCPQuBI4HLh39Kqk0LCWWeB4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=gwtb8FUF; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 704BAC4CEEE;
-	Thu, 26 Jun 2025 11:56:52 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1750939013;
-	bh=2cRA5Ews7AECae0hutCZ8TsFpfNmeytIVE/Jq/tTjEU=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=gwtb8FUFoGPOS2KoSj1v0brWpY9gOEDgifWy77vb6DGnhGdT0RdZThLNFWgQpywGw
-	 s2BCgbOoub8Bb22XvWQ9nXm2V79SQSPdyAO6aHyXEzgGTBQ/zH5fS01unA71RAiBYL
-	 ZjWGjCXPO7x1B4HpMP53MrGR7L47w/XbrFqxF7kw4qE9+VQO74fvo2gmaCLfxMPBYp
-	 8CPs3tIxe7esgQrjF2y2Kj4FM303Cs3Jv7wcn4WwhmXp5AxrVdnUeaacBf5ghDSQ8J
-	 eae4EzMOFE4wOQ85lrP1ZnqHKeThCHDeuA7ixrIR6Drf2aNX4CdD7oJEjnn2eR1imZ
-	 6W+5G/uy8HaOg==
-Date: Thu, 26 Jun 2025 12:56:49 +0100
-From: Mark Brown <broonie@kernel.org>
-To: Alexey Klimov <alexey.klimov@linaro.org>
-Cc: Srinivas Kandagatla <srini@kernel.org>,
-	Liam Girdwood <lgirdwood@gmail.com>, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, Stephen Boyd <sboyd@kernel.org>,
-	Lee Jones <lee@kernel.org>, Jaroslav Kysela <perex@perex.cz>,
-	Takashi Iwai <tiwai@suse.com>, linux-arm-msm@vger.kernel.org,
-	linux-sound@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>,
-	Srinivas Kandagatla <srinivas.kandagatla@oss.qualcomm.com>
-Subject: Re: [PATCH 3/3] ASoC: codecs: add new pm4125 audio codec driver
-Message-ID: <aF01gRFjsKgy6j4V@finisterre.sirena.org.uk>
-References: <20250626-pm4125_audio_codec_v1-v1-0-e52933c429a0@linaro.org>
- <20250626-pm4125_audio_codec_v1-v1-3-e52933c429a0@linaro.org>
+	s=arc-20240116; t=1750939096; c=relaxed/simple;
+	bh=fbs1q+JsuaSJKXWhauDT9K8vAUjLhnIklFMIMSl/P+E=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=PSu4RGu3iOSLUbLUoK0Jnc5102GQjMSf2b0Lmrt5+6MNDSevKEFI8f23lE3HMPa5QPVxWpYh0XjGw+EBaTeEa7IXI3h2hPfLzgYFq5ADZkj6/s/VkHMaDnCHtiMKzMtasH3j/dj6xp6XxD5jsA9Gp6fQUIQhM0sWdDoLemuTL/0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.217.52
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-vs1-f52.google.com with SMTP id ada2fe7eead31-4e79dde8511so196520137.0;
+        Thu, 26 Jun 2025 04:58:13 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1750939092; x=1751543892;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=B5D+86CEEwzC4+/VJmAWquleszRXVYD3WE2XTmHeq9A=;
+        b=gm+iReD90ppHCdzuPBB+Gg7IxUEc5grPYNNkH/WHcIjZ0W6a+OkAmdYJVNaBvgQvav
+         1aWtg8x5+U5qL132bZAGverCmavMfFDY/CORFgQhsHZOzqwupwxrBMgiNv+gPWR+2jwB
+         MzjQwvMbFMgLCg7XhVQsXTwu43xKFIEQbvc6etAlaArHLcZlKRH6OVAmdpAYoadZNzVu
+         jkcP56hwot1Onm8p9V+hU47wk2/w3wtAdw701s2OZ6HQVpeA0HwI3xPlnD/B0GVlgCxG
+         ni1h4K6aDqRZdE+nj5xWgaP8ZCais8dHatjRav1taHjHQ5kgyZ6OZgtprORE782eWjGI
+         aYaA==
+X-Forwarded-Encrypted: i=1; AJvYcCWKX1RQii/hHqzF+QKJbtyWiuwIHhzbMeCj4Ft8ciMIYCzVKVr/mPCuVA2bQJnXkxUFWN1vicmcDjKS@vger.kernel.org, AJvYcCXN29P/KoI7Y43ljimgZ1S0ZtvD0IdquyRSleGdazt3ghZqoMB6Tt4nLenHfclTngb9kobXwd3v8DwfVVqK9x+/8KE=@vger.kernel.org, AJvYcCXVtGjuXcEz/mShGMeLV2TivFNxH9NdaqRHKM2ntRAsFgq15Dv1XWXHldQ2fLJAQxsNR8AuCiDz/u2K2QR0@vger.kernel.org
+X-Gm-Message-State: AOJu0YzP1EcN017/nTR17jZ0d+oHv5s0/QkvXpvGuzZGBsve2A3F7v/t
+	HrodVIHj+e+/syJsIPz+vVs/XDpJwNaYVLNRWT7wPm4Sl2nsMWPNsQifQJUsrA5H
+X-Gm-Gg: ASbGnctHxEeGZp9uNxz207zMis2BFMSQ+kSqgAz8P9e42voNvt48JnGgILQTK55zi6J
+	jRBX6N1XyjKGuONH4A7xz0kOIe7eyCDD+j9qdBW/vuTuui0mYeZENbX7Bl4hGs6HqTMfoM80zLe
+	e0qUDqMzW7qlvIDG1Ps2CPlEalldjagSbBAFMVOKN4gXd9PMwdDIwFdCGHincVl48ai1RAxKwMS
+	i7Sw308nRGu66B+dUstYJnl3DvBNR2DtW1VX/7iXrClfJ1VkLeL9V2qnvQpmY0J46b+MXDshMxx
+	NQ7+LEkLhbegFay2jLGPcIClArlA8XwQj7hu+9xDl87LkPv1mVrQqckeOscvL6rpniU/N0XLplX
+	s707LrX79WMbeIcH3nXPSzbwA
+X-Google-Smtp-Source: AGHT+IE9lsdK8q4AcG0YMa9tINPYrYjS67hM7RqqbEo9bNmUzBEzC2T4fophGsPk9RiUEM/5wMF4IQ==
+X-Received: by 2002:a05:6102:1610:b0:4eb:efc6:740 with SMTP id ada2fe7eead31-4ecc7688ef2mr4639546137.18.1750939092038;
+        Thu, 26 Jun 2025 04:58:12 -0700 (PDT)
+Received: from mail-vs1-f43.google.com (mail-vs1-f43.google.com. [209.85.217.43])
+        by smtp.gmail.com with ESMTPSA id ada2fe7eead31-4e9c2e8158csm2340693137.11.2025.06.26.04.58.11
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 26 Jun 2025 04:58:11 -0700 (PDT)
+Received: by mail-vs1-f43.google.com with SMTP id ada2fe7eead31-4dfa2aeec86so276911137.1;
+        Thu, 26 Jun 2025 04:58:11 -0700 (PDT)
+X-Forwarded-Encrypted: i=1; AJvYcCWR7MfLJ0hig21u9aYRyO+SM+xc+QGHpfCYZ80VV01Ln88v8Ar3UwOdlKPiNtMxB0X5ZF1b7aDPzaC9@vger.kernel.org, AJvYcCWwK5kQ+RlDZL49Pq4vrk5uB17zWOPzUSzDODP4pWRnXqtGn3Usd6tvBKbFbw1IaKaMpw3szMTb6GL0W1qBDm7BmDI=@vger.kernel.org, AJvYcCXmtRzNDhSpZiD3CX4RhQTd7hmCGILA48AQ/5irtO2TWf2oZ+uE4ltI0UXiosHxHuhzbm/z19/G0pTuHc0U@vger.kernel.org
+X-Received: by 2002:a05:6102:2909:b0:4e9:c7c8:5dff with SMTP id
+ ada2fe7eead31-4ecc766bedcmr5187924137.15.1750939091232; Thu, 26 Jun 2025
+ 04:58:11 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="PuAiEYJCFXajbSr9"
-Content-Disposition: inline
-In-Reply-To: <20250626-pm4125_audio_codec_v1-v1-3-e52933c429a0@linaro.org>
-X-Cookie: Do not cut switchbacks.
+References: <20250620121045.56114-1-prabhakar.mahadev-lad.rj@bp.renesas.com> <20250620121045.56114-2-prabhakar.mahadev-lad.rj@bp.renesas.com>
+In-Reply-To: <20250620121045.56114-2-prabhakar.mahadev-lad.rj@bp.renesas.com>
+From: Geert Uytterhoeven <geert@linux-m68k.org>
+Date: Thu, 26 Jun 2025 13:57:59 +0200
+X-Gmail-Original-Message-ID: <CAMuHMdXP95AsuS2E=SWvzfo89y_VtyXPWoZUKT6mjj_xeLb=Eg@mail.gmail.com>
+X-Gm-Features: Ac12FXzRz_hjrthcj_xKPSNqDepD5CqeREFVrqO6uKI-zZQfrqwm2e12re8273g
+Message-ID: <CAMuHMdXP95AsuS2E=SWvzfo89y_VtyXPWoZUKT6mjj_xeLb=Eg@mail.gmail.com>
+Subject: Re: [PATCH 1/3] arm64: dts: renesas: Add CN15 eMMC and SD overlays
+ for RZ/V2N EVK
+To: Prabhakar <prabhakar.csengg@gmail.com>
+Cc: Magnus Damm <magnus.damm@gmail.com>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	linux-renesas-soc@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, Biju Das <biju.das.jz@bp.renesas.com>, 
+	Fabrizio Castro <fabrizio.castro.jz@renesas.com>, 
+	Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+Content-Type: text/plain; charset="UTF-8"
 
+Hi Prabhakar,
 
---PuAiEYJCFXajbSr9
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
+On Fri, 20 Jun 2025 at 14:10, Prabhakar <prabhakar.csengg@gmail.com> wrote:
+> From: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+>
+> Introduce device tree overlays to support the eMMC (RTK0EF0186B02000BJ)
+> and microSD (RTK0EF0186B01000BJ) sub-boards via the CN15 connector on the
+> RZ/V2N EVK. These overlays enable SDHI0 with appropriate pinctrl settings,
+> regulator configurations, and GPIO handling.
+>
+> Shared DTSI fragments (rzv2-evk-cn15-emmc-common.dtsi and
+> rzv2-evk-cn15-sd-common.dtsi) provide reusable configurations for both
+> RZ/V2N and RZ/V2H EVKs, as both support the same CN15 sub-boards.
+>
+> Additionally, the base board DTS is updated to define an `mmc0` alias
+> pointing to `&sdhi0`, and to add a fixed 1.8V regulator node (`reg_1p8v`)
+> intended for use by the optional eMMC sub-board and, in the future, the
+> ADV7535 HDMI encoder (not yet enabled in the DTS).
+>
+> Signed-off-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
 
-On Thu, Jun 26, 2025 at 12:50:31AM +0100, Alexey Klimov wrote:
+Thanks for your patch!
 
-> --- a/sound/soc/codecs/Kconfig
-> +++ b/sound/soc/codecs/Kconfig
-> @@ -297,6 +297,7 @@ config SND_SOC_ALL_CODECS
->  	imply SND_SOC_WCD937X_SDW
->  	imply SND_SOC_WCD938X_SDW
->  	imply SND_SOC_WCD939X_SDW
-> +	imply SND_SOC_PM4125_SDW
->  	imply SND_SOC_LPASS_MACRO_COMMON
->  	imply SND_SOC_LPASS_RX_MACRO
->  	imply SND_SOC_LPASS_TX_MACRO
+> --- /dev/null
+> +++ b/arch/arm64/boot/dts/renesas/r9a09g056n48-rzv2n-evk-cn15-emmc.dtso
+> @@ -0,0 +1,15 @@
+> +// SPDX-License-Identifier: GPL-2.0
+> +/*
+> + * Device Tree overlay for the RZ/V2N EVK with the eMMC sub-board
+> + * (RTK0EF0186802000BJ) connected to the CN15 connector.
+> + *
+> + * Copyright (C) 2025 Renesas Electronics Corp.
+> + */
+> +
+> +/dts-v1/;
+> +/plugin/;
+> +
+> +#define RZV2N_PA               10
 
-Please keep this file sorted, there's obviously been some things missed
-but please don't make it worse.
+This is duplicated from r9a09g056.dtsi, but unused?
 
-> +obj-$(CONFIG_SND_SOC_PM4125_SDW) += snd-soc-pm4125-sdw.o
-> +obj-$(CONFIG_SND_SOC_PM4125)   += snd-soc-pm4125.o
-> +ifdef CONFIG_SND_SOC_PM4125_SDW
-> +# avoid link failure by forcing sdw code built-in when needed
-> +obj-$(CONFIG_SND_SOC_PM4125) += snd-soc-pm4125-sdw.o
-> +endif
+> +#define EMMC_GPIO(port, pin)   RZG2L_GPIO(RZV2N_P##port, pin)
 
-Other drivers sort this out in Kconfig, do as they do.
+Unused?
 
-> +static int pm4125_micbias_control(struct snd_soc_component *component,
-> +				  int micb_num, int req, bool is_dapm)
-> +{
-> +	return 0;
-> +}
+> +
+> +#include "rzv2-evk-cn15-emmc-common.dtsi"
 
-Why have this empty function which is only called from within the
-driver?  At best it's making the callers look like they do something.
+Hence you can just have a single rzv2-evk-cn15-emmc.dtso that works
+on both RZ/V2H and RZ/V2N.
 
-> +static irqreturn_t pm4125_wd_handle_irq(int irq, void *data)
-> +{
-> +	return IRQ_HANDLED;
-> +}
+> diff --git a/arch/arm64/boot/dts/renesas/r9a09g056n48-rzv2n-evk-cn15-sd.dtso b/arch/arm64/boot/dts/renesas/r9a09g056n48-rzv2n-evk-cn15-sd.dtso
+> new file mode 100644
+> index 000000000000..6268dda138ab
+> --- /dev/null
+> +++ b/arch/arm64/boot/dts/renesas/r9a09g056n48-rzv2n-evk-cn15-sd.dtso
+> @@ -0,0 +1,16 @@
+> +// SPDX-License-Identifier: GPL-2.0
+> +/*
+> + * Device Tree overlay for the RZ/V2N EVK with the SD sub-board
+> + * (RTK0EF0186B01000BJ) connected to the CN15 connector.
+> + *
+> + * Copyright (C) 2025 Renesas Electronics Corp.
+> + */
+> +
+> +/dts-v1/;
+> +/plugin/;
+> +
+> +#define RZV2N_PA               10
 
-Why bother regisering for the interrupt at all if you're just going to
-ignore it?
+This is duplicated from r9a09g056.dtsi. Can we avoid that?
+If not, I think we found the justification for moving these definitions
+to include/dt-bindings/pinctrl/renesas,r9a09g056-pinctrl.h...
 
-> +#if defined(CONFIG_OF)
-> +static const struct of_device_id pm4125_of_match[] = {
-> +	{ .compatible = "qcom,pm4125-codec" },
-> +	{ }
+> +#define SD_GPIO(port, pin)     RZG2L_GPIO(RZV2N_P##port, pin)
+> +#define SD_PORT_PINMUX(b, p, f)        RZG2L_PORT_PINMUX(RZV2N_P##b, p, f)
+> +
+> +#include "rzv2-evk-cn15-sd-common.dtsi"
+> diff --git a/arch/arm64/boot/dts/renesas/r9a09g056n48-rzv2n-evk.dts b/arch/arm64/boot/dts/renesas/r9a09g056n48-rzv2n-evk.dts
+> index b63ee1ff18d5..795d9f6b9651 100644
+> --- a/arch/arm64/boot/dts/renesas/r9a09g056n48-rzv2n-evk.dts
+> +++ b/arch/arm64/boot/dts/renesas/r9a09g056n48-rzv2n-evk.dts
+> @@ -24,6 +24,7 @@ aliases {
+>                 i2c6 = &i2c6;
+>                 i2c7 = &i2c7;
+>                 i2c8 = &i2c8;
+> +               mmc0 = &sdhi0;
+
+While (out-of-tree) dynamic DT overlays do not support updating aliases
+yet, this logically belongs in the overlay, so please move it there.
+
+>                 mmc1 = &sdhi1;
+>                 serial0 = &scif;
+>         };
+> --- /dev/null
+> +++ b/arch/arm64/boot/dts/renesas/rzv2-evk-cn15-emmc-common.dtsi
+> @@ -0,0 +1,46 @@
+> +// SPDX-License-Identifier: GPL-2.0
+> +/*
+> + * Shared DT include for the eMMC Sub Board (RTK0EF0186B02000BJ), which
+> + * is connected to the CN15 connector on the RZ/V2H and RZ/V2N EVKs.
+> + *
+> + * Contains common pinctrl and SDHI0 definitions.
+> + *
+> + * Copyright (C) 2025 Renesas Electronics Corp.
+> + */
+> +
+> +/dts-v1/;
+> +/plugin/;
+
+These two directives belong in the .dtso files (and you already have
+them there).
+
+> --- /dev/null
+> +++ b/arch/arm64/boot/dts/renesas/rzv2-evk-cn15-sd-common.dtsi
+> @@ -0,0 +1,67 @@
+> +// SPDX-License-Identifier: GPL-2.0
+> +/*
+> + * Shared DT include for the microSD Sub Board (RTK0EF0186B01000BJ), which
+> + * is connected to the CN15 connector on the RZ/V2H and RZ/V2N EVKs.
+> + *
+> + * Contains common pinctrl and SDHI0 definitions.
+> + *
+> + * Copyright (C) 2025 Renesas Electronics Corp.
+> + */
+> +
+> +/dts-v1/;
+> +/plugin/;
+
+Likewise.
+
+> +
+> +#include <dt-bindings/gpio/gpio.h>
+> +#include <dt-bindings/pinctrl/rzg2l-pinctrl.h>
+> +
+> +&{/} {
+> +       vqmmc_sdhi0: regulator-vqmmc-sdhi0 {
+> +               compatible = "regulator-gpio";
+> +               regulator-name = "SDHI0 VqmmC";
+> +               gpios = <&pinctrl SD_GPIO(A, 0) GPIO_ACTIVE_HIGH>;
+
+If you use a macro to abstract the GPIO number, please include the
+bank and port number in the abstraction.
+
+Alternatively, as both RZ/V2H and RZ/V2N use PA0, you can use
+RZG2L_GPIO(10, 10) directly.  That just leaves us with a desire to
+express "A" instead of 10...
+
+Note that you end up with the exact same .dtbo for RZ/V2H and RZ/V2N
+again...
+
+> +               regulator-min-microvolt = <1800000>;
+> +               regulator-max-microvolt = <3300000>;
+> +               gpios-states = <0>;
+> +               states = <3300000 0>, <1800000 1>;
+> +       };
 > +};
-> +MODULE_DEVICE_TABLE(of, pm4125_of_match);
-> +#endif
+> +
+> +&pinctrl {
+> +       sdhi0-pwr-en-hog {
+> +               gpio-hog;
+> +               gpios = <SD_GPIO(A, 1) GPIO_ACTIVE_HIGH>;
 
-Why does this compatible exist?  If the driver is instantiated from a
-as a Linux software contruct it shouldn't appear in the DT.
+Likewise.
 
-> +const u8 pm4125_reg_access_digital[
-> +	PM4125_REG(PM4125_DIGITAL_REGISTERS_MAX_SIZE)] = {
-> +		[PM4125_REG(PM4125_DIG_SWR_CHIP_ID0)] = RD_REG,
-> +		[PM4125_REG(PM4125_DIG_SWR_CHIP_ID1)] = RD_REG,
-> +		[PM4125_REG(PM4125_DIG_SWR_CHIP_ID2)] = RD_REG,
+> +               output-high;
+> +               line-name = "sd0_pwr_en";
+> +       };
+> +
+> +       sdhi0_pins: sd0 {
+> +               sd0-cd {
+> +                       pinmux = <SD_PORT_PINMUX(A, 5, 15)>; /* SD0_CD */
 
-Data tables like this shouldn't be in headers, they should be in C
-files.  At worst you might end up with duplicate copies in the object
-code.
+Likewise.
 
---PuAiEYJCFXajbSr9
-Content-Type: application/pgp-signature; name="signature.asc"
+> +               };
 
------BEGIN PGP SIGNATURE-----
+The rest LGTM.
 
-iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmhdNVcACgkQJNaLcl1U
-h9D5CAf/RRC2a5uS/BLF6xNL01DzPx9aCXjnyAgTQG80np8rHi7O6vg7gMm/lmI7
-jTORay2DZAyHk1HJeu0CV/i871LFG7SStgwmuV2oXLvyrp5Xiix6vfi8f/WzTOaW
-pGBaicThLjbIIeGw3Tj0G04GbwapGWrH4MgPkZ3fnahQ2SfLxrc9p57DBHGqjVRE
-unTE0dXexH4anhDgcUZ+UAjdcYeKY18v1q425oezGKSQfGYuV8x9QRxfdshHlSPk
-/uyEQw/Z1ZXh1Cal9nac1aOPUdiU9RpdHemAolIFOXXM33Jxpizk6s2H97fkHfdn
-MjML1c79uWqgSL/QutPiQ3wYRW9FwA==
-=Hwsm
------END PGP SIGNATURE-----
+Gr{oetje,eeting}s,
 
---PuAiEYJCFXajbSr9--
+                        Geert
+
+--
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
+
+In personal conversations with technical people, I call myself a hacker. But
+when I'm talking to journalists I just say "programmer" or something like that.
+                                -- Linus Torvalds
 
