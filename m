@@ -1,144 +1,111 @@
-Return-Path: <devicetree+bounces-189717-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-189718-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 976F9AE938A
-	for <lists+devicetree@lfdr.de>; Thu, 26 Jun 2025 02:55:21 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 942F2AE93B9
+	for <lists+devicetree@lfdr.de>; Thu, 26 Jun 2025 03:31:07 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 817071898D1F
-	for <lists+devicetree@lfdr.de>; Thu, 26 Jun 2025 00:55:37 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id DCE0F4A5851
+	for <lists+devicetree@lfdr.de>; Thu, 26 Jun 2025 01:31:06 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9B5A6190664;
-	Thu, 26 Jun 2025 00:55:19 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 931E1189F56;
+	Thu, 26 Jun 2025 01:31:01 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="Xz6UF0D0"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="SivDk4eE"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pf1-f178.google.com (mail-pf1-f178.google.com [209.85.210.178])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 338171494A9;
-	Thu, 26 Jun 2025 00:55:16 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.178
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5EE9F1494A9;
+	Thu, 26 Jun 2025 01:31:01 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1750899319; cv=none; b=qwWYUWxXGZt4qeQ0WGf/TaOJZsQpkm2NKnhXji9a11ipuDmtd/xmQkG98cMnxJ0oFEXUBGUv+TfuIKDRlJD0aOkXKFo5eNli4+ZvCODbIMiH1mf/2CjFwgwN1a6MoXzvuiZuScoZm65M4FPt/4tUAww8p5Yjx6iiFh8nI2OHffQ=
+	t=1750901461; cv=none; b=WEolbF0tB3NcPcYOpKEj3VT3S7MQpiYxU5rho9uQrzjvxPlS31xJc7gK+5mrxKK4WAgdNQj9KBnoAOoUi+ab2mVEHhKJUbn8TMsMkpBkcaVuJ8e6Dq4nzNrxOYIiwU7kT2YvgrZzbDucKnVtSGsBLd5QlwMC8+QJr8J/Rl/e8mY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1750899319; c=relaxed/simple;
-	bh=zFqd3/bjLRPp+NI2rL3/KcSshFSOhdj8iHHpRSps3Mc=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=eSPCvrSGOQ+eX4cNFYvOqz3MORalSUybmxJSNFh0r8mZXdB6ICmxmqzD8K5c8P7j2sDlMFVcEjlkI9C1L2pWbfVh+QrLVx8MJDQwKVIfUVzRG0HAwpOCTkdyPV9psJc6oBkMESFWsGlhO4+sBjqr50yYM0XkW485PtVVspP/6os=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=Xz6UF0D0; arc=none smtp.client-ip=209.85.210.178
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-pf1-f178.google.com with SMTP id d2e1a72fcca58-742c7a52e97so562893b3a.3;
-        Wed, 25 Jun 2025 17:55:16 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1750899316; x=1751504116; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=FKP9uNgbOA7UG3M4PzocnFVU56S59A2JUS0TA3YuX7c=;
-        b=Xz6UF0D0oCb1oO89q5T6Zj52TOGpouq5Bd5vtbJpOKP0DJ5Yv/r/9urp2U6ddwVLKY
-         T45b2G8TxLZmJDzbi18gN6JOSXRVt5W4zrt2qBvzgk7ilKqTkzL88bvOOfaN4S7wM+AO
-         RtLL6VfDkR/hWlvaK3TWItTKh5U6g+F0FIr7pon2rYOzNfVBojSD6kn2JQPPIppSOF7V
-         uKzftlU/iGvOl5raQIG4Geac2HjawAy6KwAP/4ZtieiN1jqF1MrsA2uAAfS75jRmpYz2
-         PS3j8FOriBIoBLmV5uvB9zxhPVTkVm7Qc0HpXM7P5FjSV7HAk8nkcQJxtK6lM667EcES
-         XyCw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1750899316; x=1751504116;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=FKP9uNgbOA7UG3M4PzocnFVU56S59A2JUS0TA3YuX7c=;
-        b=aCHqs/O7IvQAEMay5WZbd05oBPdE+EwqzCctYaLQk1r2GJeahYZb3Axu+YhMDt5YOy
-         Qg8dOVHdprADWckD7Q6cYReGtQN/o3LcVI1UAXNkJsW3BZ973cR0/qqDGTGBGRZdiZMU
-         3W6sj0uusYMl1oye6WDkKRTBaQOPErSsIgy63yzHwL3SWk/4KIqpikgohoq9jsDtUKay
-         UpG0KNoUNaHWkZwwFCJm/frSV0EihclmeGRmNOVZTTVtKnbrnPkTSnhdK0NTy/T2KXNp
-         fQ/l8JmC/yxYMn8rrREtDKBVA7KeKylTRu1Us7NgbtADuPcKOA6nUBqTDJUlE/6+DhEy
-         lWiQ==
-X-Forwarded-Encrypted: i=1; AJvYcCUEkbksvQF/amLDPIfrKcAx6phpcj7uUlYIX3Z5E9YLGqbPA82omKUHs9EBVDFQ4SNSv6qInGeZiVm3X3Kx@vger.kernel.org, AJvYcCWhdFU2p9FD5Sb8lR8Ma4nGMrmlOltR1qwtsAePvReQYnE13xPPEtjHfA6DiaVFKJkXsya2zLGTFX5O@vger.kernel.org
-X-Gm-Message-State: AOJu0YwJJTfmGza3RlWn4bIigdFzKD6/NikE+4589I3dL6T6DN6myMWD
-	9KzqshNLMMcM0gd855VQGOiHBoZIgVzYdHcJn9FeEayxW+GpA83SlM7q
-X-Gm-Gg: ASbGnctlzy2WrJ2fdy8H5dvF2IYuIbXoKVdKBOpcfsOF4jWU63Qg8d0/rCWbXgWJGOC
-	lutMhB54lO7o/CiiU9R6LzGj+aow0HWeBpPJ/lQOg7kqtZiA9MR2dYAgR4na76rTSpXbLSaEyA6
-	Z08g35l1VjOiTs+e8V3LGaHB+wTzlDAuyy4bFYDRBhbpQOOIZzOgQ4MklNsvx/cOz9AxvVrWNuf
-	lpxUww3DUz1rlZ7/fNqU5zfc7OMt3uq3ZfOXcDz3UbYwRK0z1W0LmicldDg4uGz2NlqMFB+eEU3
-	A/Mvu5hZPugsthPyAg0aW+f71ehaDe8HbEm3QJiOj9Dc/Mix7WIK3zSCrOIm/A==
-X-Google-Smtp-Source: AGHT+IEQdAUYETW/gFl9/oAcelA7lj1OlgJJckAOnjGK9HyiGax3+ORLzbkl8qg66/CLNj/A5zHCVA==
-X-Received: by 2002:a05:6a00:3e23:b0:736:9f20:a175 with SMTP id d2e1a72fcca58-74ad4462133mr7446024b3a.2.1750899316199;
-        Wed, 25 Jun 2025 17:55:16 -0700 (PDT)
-Received: from localhost ([2001:19f0:ac00:4eb8:5400:5ff:fe30:7df3])
-        by smtp.gmail.com with UTF8SMTPSA id d2e1a72fcca58-749c882cd8fsm5330612b3a.77.2025.06.25.17.55.15
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 25 Jun 2025 17:55:15 -0700 (PDT)
-From: Inochi Amaoto <inochiama@gmail.com>
-To: sophgo@lists.linux.dev,
-	soc@lists.linux.dev,
-	Alexander Sverdlin <alexander.sverdlin@gmail.com>
-Cc: Inochi Amaoto <inochiama@gmail.com>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Chen Wang <unicorn_wang@outlook.com>,
-	Paul Walmsley <paul.walmsley@sifive.com>,
-	Palmer Dabbelt <palmer@dabbelt.com>,
-	Albert Ou <aou@eecs.berkeley.edu>,
-	Alexandre Ghiti <alex@ghiti.fr>,
-	Catalin Marinas <catalin.marinas@arm.com>,
-	Will Deacon <will@kernel.org>,
-	Arnd Bergmann <arnd@arndb.de>,
-	Jisheng Zhang <jszhang@kernel.org>,
-	Haylen Chu <heylenay@outlook.com>,
-	Chao Wei <chao.wei@sophgo.com>,
-	devicetree@vger.kernel.org,
-	linux-riscv@lists.infradead.org,
-	linux-kernel@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org
-Subject: Re: [PATCH v8 0/6] arm64 support for Milk-V Duo Module 01 EVB
-Date: Thu, 26 Jun 2025 08:55:03 +0800
-Message-ID: <175089922824.136282.4248920975036123392.b4-ty@gmail.com>
-X-Mailer: git-send-email 2.50.0
-In-Reply-To: <20250612132844.767216-1-alexander.sverdlin@gmail.com>
-References: <20250612132844.767216-1-alexander.sverdlin@gmail.com>
+	s=arc-20240116; t=1750901461; c=relaxed/simple;
+	bh=NDQSvvYRBsU/VaEDIahaF/xTnl/9PAVZzq2BKXAfSIg=;
+	h=Date:Content-Type:MIME-Version:From:Cc:To:In-Reply-To:References:
+	 Message-Id:Subject; b=qHKPqnb2w8rIZJs6BvUvy+0uttmPXs8fy9gKH+gXBJThl7uTsIeXRO2uDV/3BU2VOYUYpeOB3av1Q2LUf9seaEFx9trZu6PbwHmZpsAgazEWExjxDenSt7IqMWEbmmqaZF4xWAoGVQVOEo+bTwYmgTeCOF0lBfVErrummydumZ0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=SivDk4eE; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id AF1FDC4CEEA;
+	Thu, 26 Jun 2025 01:31:00 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1750901460;
+	bh=NDQSvvYRBsU/VaEDIahaF/xTnl/9PAVZzq2BKXAfSIg=;
+	h=Date:From:Cc:To:In-Reply-To:References:Subject:From;
+	b=SivDk4eEahk+3uEn9qZu4Lj3gOWkBciKl+eY2uRIHXGkeIesJy6yt++2AEUv4+hSJ
+	 zBGwa2cvsub4fD/Su3NH4zOutLvOAgQ4HJn7S5737zqA2pyXShnQKVVubF399nOZXm
+	 oAbG0EG48Ln5tBCa67ZkLwncye5B4+i43dEF9YyanWOlnwW1kOxvZFYeuRztzcwhV6
+	 6nuNz/aD9Po7ZlrQmPMsK0sTc2rLdqXmslEN/tIj0YvHFoBFIrn73pQECwTFmKV4gy
+	 LQIj3PELy2klUosGiVKHkmcimV0Bz1RsKs4VY6MiEzKuauVBceB3UeXaaG96Tx40dg
+	 MLmKDbPwkXfiw==
+Date: Wed, 25 Jun 2025 20:30:59 -0500
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
+From: "Rob Herring (Arm)" <robh@kernel.org>
+Cc: Srinivas Kandagatla <srinivas.kandagatla@oss.qualcomm.com>, 
+ devicetree@vger.kernel.org, Jaroslav Kysela <perex@perex.cz>, 
+ linux-arm-msm@vger.kernel.org, Srinivas Kandagatla <srini@kernel.org>, 
+ Takashi Iwai <tiwai@suse.com>, Mark Brown <broonie@kernel.org>, 
+ linux-kernel@vger.kernel.org, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Stephen Boyd <sboyd@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+ Lee Jones <lee@kernel.org>, linux-sound@vger.kernel.org, 
+ Liam Girdwood <lgirdwood@gmail.com>, 
+ Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
+To: Alexey Klimov <alexey.klimov@linaro.org>
+In-Reply-To: <20250626-pm4125_audio_codec_v1-v1-1-e52933c429a0@linaro.org>
+References: <20250626-pm4125_audio_codec_v1-v1-0-e52933c429a0@linaro.org>
+ <20250626-pm4125_audio_codec_v1-v1-1-e52933c429a0@linaro.org>
+Message-Id: <175090145961.2702141.17071553013552846812.robh@kernel.org>
+Subject: Re: [PATCH 1/3] dt-bindings: sound: add bindings for pm4125 audio
+ codec
 
-On Thu, 12 Jun 2025 15:28:08 +0200, Alexander Sverdlin wrote:
-> This series adds very basic support for Milk-V Duo Module 01 EVB [1] in
-> arm64 mode. The SoC (SG2000) is dual-arch, RiscV and ARM64, the latter has
-> been chosen because the upstream toolchain can be utilized.
+
+On Thu, 26 Jun 2025 00:50:29 +0100, Alexey Klimov wrote:
+> The audio codec IC is found on Qualcomm PM4125/PM2250 PMIC.
+> It has TX and RX soundwire slave devices hence two files
+> are added.
 > 
-> Sophgo SG2000 seems to be a continuation of the Cvitek CV18xx series, same
-> peripherals with an addition of ARM64 core. Therefore it would be
-> beneficial not to copy-paste the peripherals' device-tree, but rather split
-> the most suitable riscv DT into ARCH-specific and peripherals parts and
-> just include the latter on the arm64 side.
+> Signed-off-by: Alexey Klimov <alexey.klimov@linaro.org>
+> ---
+>  .../bindings/sound/qcom,pm4125-codec.yaml          | 147 +++++++++++++++++++++
+>  .../devicetree/bindings/sound/qcom,pm4125-sdw.yaml |  86 ++++++++++++
+>  2 files changed, 233 insertions(+)
 > 
-> [...]
 
-Applied to for-next, thanks!
+My bot found errors running 'make dt_binding_check' on your patch:
 
-[1/6] dt-bindings: soc: sophgo: Move SoCs/boards from riscv into soc, add SG2000
-      https://github.com/sophgo/linux/commit/f71cc64dde536e1e805e5b38855d8d3a01eec845
-[2/6] arm64: dts: sophgo: Add initial SG2000 SoC device tree
-      https://github.com/sophgo/linux/commit/7846621ce517375537ae2772e54f033a241fe382
-[3/6] arm64: dts: sophgo: Add Duo Module 01
-      https://github.com/sophgo/linux/commit/7a2f4a250a1129e9d92ed8c43c02f528181df679
-[4/6] arm64: dts: sophgo: Add Duo Module 01 Evaluation Board
-      https://github.com/sophgo/linux/commit/29f4eab1d97c89a0a72793823db287ea6649baf6
-[5/6] arm64: Add SOPHGO SOC family Kconfig support
-      https://github.com/sophgo/linux/commit/af00cebfbb31190dd0124c431d1baabae456c313
-[6/6] arm64: defconfig: Enable rudimentary Sophgo SG2000 support
-      https://github.com/sophgo/linux/commit/1793a187e20257c260f520d42611966d6d249f22
+yamllint warnings/errors:
 
-Thanks,
-Inochi
+dtschema/dtc warnings/errors:
+/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/sound/qcom,pm4125-codec.example.dtb: pmic@0 (qcom,pm8916): audio-codec@f000: 'qcom,micbias1-microvolt', 'qcom,micbias2-microvolt', 'qcom,micbias3-microvolt', 'qcom,rx-device', 'qcom,tx-device', 'vdd-cp-supply', 'vdd-io-supply', 'vdd-mic-bias-supply', 'vdd-pa-vpos-supply' do not match any of the regexes: '^pinctrl-[0-9]+$'
+	from schema $id: http://devicetree.org/schemas/mfd/qcom,spmi-pmic.yaml#
+/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/sound/qcom,pm4125-codec.example.dtb: pmic@0 (qcom,pm8916): audio-codec@f000:compatible:0: 'qcom,pm8916-wcd-analog-codec' was expected
+	from schema $id: http://devicetree.org/schemas/mfd/qcom,spmi-pmic.yaml#
+
+doc reference errors (make refcheckdocs):
+
+See https://patchwork.ozlabs.org/project/devicetree-bindings/patch/20250626-pm4125_audio_codec_v1-v1-1-e52933c429a0@linaro.org
+
+The base for the series is generally the latest rc1. A different dependency
+should be noted in *this* patch.
+
+If you already ran 'make dt_binding_check' and didn't see the above
+error(s), then make sure 'yamllint' is installed and dt-schema is up to
+date:
+
+pip3 install dtschema --upgrade
+
+Please check and re-submit after running the above command yourself. Note
+that DT_SCHEMA_FILES can be set to your schema file to speed up checking
+your schema. However, it must be unset to test all examples with your schema.
 
 
