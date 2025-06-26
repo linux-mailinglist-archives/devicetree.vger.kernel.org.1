@@ -1,48 +1,48 @@
-Return-Path: <devicetree+bounces-189791-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-189792-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 04AC6AE98F4
-	for <lists+devicetree@lfdr.de>; Thu, 26 Jun 2025 10:51:18 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 010B4AE9903
+	for <lists+devicetree@lfdr.de>; Thu, 26 Jun 2025 10:52:29 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id A67FA6A5BB5
-	for <lists+devicetree@lfdr.de>; Thu, 26 Jun 2025 08:49:41 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 228306A407F
+	for <lists+devicetree@lfdr.de>; Thu, 26 Jun 2025 08:50:43 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D36CF29824E;
-	Thu, 26 Jun 2025 08:48:56 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id CA0C3293C69;
+	Thu, 26 Jun 2025 08:51:03 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="QfVPpkIX"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="WGuXnmX0"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 97F3825B30F;
-	Thu, 26 Jun 2025 08:48:56 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9B2F21E25FA;
+	Thu, 26 Jun 2025 08:51:03 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1750927736; cv=none; b=OuyUKYxsf7rh8fnJWVw9fIC6LvU5hREOCYiJDqyN3GMnf2q2qPbwrpVYFe3akNxbFKFHaM4P/C7rDVuz7EZ/sXLuvqzlCc6SHV5L/1y9KJSw+P7nsjrICrpIo9v9VgHCP6ampNKjb6em5z/WJf2+K/JHko8TCKgjzWoWZmLPJ5c=
+	t=1750927863; cv=none; b=H6kdv3gtXtdzNAhnCb8/SFtqGZBYHIY2+rpHmMU3kaySmcwKzhiUsP/m+XDaYNMN6ndT2zReMechU+nqN5vo1r7lnihhaYUJbshJoHPHICkQJj0YKghz3WZNnbN8v7LBVBEUIX01ZH/EvEdLSjmxXWrNLc3/8wHElr8sF/BZ6ow=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1750927736; c=relaxed/simple;
-	bh=Uwt3NsX0GNfYi5o7KvMJmNAuuFirfChPcaC6V4I9kis=;
+	s=arc-20240116; t=1750927863; c=relaxed/simple;
+	bh=e2p4f2/iOiUSQDA2nFxcMvv3DWNGbwvjFJsWM+uhxF8=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=EeU9RsgnQ58VDD+n7O6tv0UUTYh7LMEVrxRWzmVa3Urea7InjoxFl4O64l3NevmQpnBs9f8111day2YMmtq+sgAETLM/FsokfxkAuAmfUpjrN/XdKaSzT57hmM3TocsCgvLzz+EPXSufmZLwmrdXgroEqHY2WEyy3V34LJ13xys=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=QfVPpkIX; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id CE2C3C4CEF1;
-	Thu, 26 Jun 2025 08:48:50 +0000 (UTC)
+	 In-Reply-To:Content-Type; b=mUc3Y1567WngwbA3zwtCkmpPEMoM/PmR/ooaT+3M1e0VF0KXfq1kMURjnqF7l7N7Cc8U8vDPOPgtj8U/a0DAq8SQdxQkQ3RY/SltjPpgVrkQzGbxhOeqNEN7M4crCTd0lOFjkQRSxOnCkXSbkXIv32AypsAJfZ4b1LYgtKX6Vdk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=WGuXnmX0; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 4E730C4CEEB;
+	Thu, 26 Jun 2025 08:50:58 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1750927736;
-	bh=Uwt3NsX0GNfYi5o7KvMJmNAuuFirfChPcaC6V4I9kis=;
+	s=k20201202; t=1750927863;
+	bh=e2p4f2/iOiUSQDA2nFxcMvv3DWNGbwvjFJsWM+uhxF8=;
 	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=QfVPpkIX+jWUbuSczOWZ9NquDlgSzicGyHu84P5TiIWRYK43fK2fCiQ0YD/8dchij
-	 2RG4mqh3aUQVg571PhDWOQD/Ct7Mdw3MxJagG0/wzVlzOjxc+3gcMIpOv4u2m0qjRC
-	 E/IH4GtjIRSHHmzyC/CxOpJTzHkr+NrdCP/boNCsIs4qlx66SvO7Fp3U98/u3kEahA
-	 u6I0VE/78chhSv3zqKB2ftZcUwW9pykj/BkeUeQBhNgr38j4LwDYeqq2fakt10pisc
-	 s6i+mEW49MAiRZVVwfm0ioQTVWqOS1um15eHVqcddUtqoDOr/aQpAI/NXjOpYy2ju3
-	 0rFy1oDVdoZmA==
-Message-ID: <eb5cdcb6-7e40-4ed2-9cc6-6eff43da353d@kernel.org>
-Date: Thu, 26 Jun 2025 10:48:48 +0200
+	b=WGuXnmX00NjICaTXz1kB4Shl3++Lrg9p6SAZubUXY8TNcQS1r8r4A0+QyugGPhqm+
+	 hWoITMejv6nZA/45MR9pPJJuDRaIF40oCWzEQ0MI7kWrT4pec4pOFGHaC2QUwX5oxY
+	 gwKJaHtxOb42clnxt3DuzXx0W4ywSuuUPCbWYORpor1w4mqcetagfC5oFsaYfgx4s0
+	 yhr0Ruha0QLATWCuvga7bDdZPtQqClro2CouKjOZdZZFtU5pPIZtHUUGFF8s5axbT5
+	 pJBQ3KTRgDp1//DbOxPp4To26fztv41/sqxnAVBgbBCeG0ig67y0wkHvCsywepTAL+
+	 //5aTQ7sIfiUg==
+Message-ID: <3660b275-8513-4017-aba4-5c4432eb5b6b@kernel.org>
+Date: Thu, 26 Jun 2025 10:50:55 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,21 +50,26 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 2/3] dt-bindings: mfd: qcom,spmi-pmic: add pm4125 audio
- codec
-To: Alexey Klimov <alexey.klimov@linaro.org>,
- Srinivas Kandagatla <srini@kernel.org>, Liam Girdwood <lgirdwood@gmail.com>,
- Mark Brown <broonie@kernel.org>, Rob Herring <robh@kernel.org>,
+Subject: Re: [PATCH v3 5/7] arm64: dts: axiado: Add initial support for AX3000
+ SoC and eval board
+To: Harshit Shah <hshah@axiado.com>, Rob Herring <robh@kernel.org>,
  Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Stephen Boyd <sboyd@kernel.org>
-Cc: Lee Jones <lee@kernel.org>, Jaroslav Kysela <perex@perex.cz>,
- Takashi Iwai <tiwai@suse.com>, linux-arm-msm@vger.kernel.org,
- linux-sound@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org,
- Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>,
- Srinivas Kandagatla <srinivas.kandagatla@oss.qualcomm.com>
-References: <20250626-pm4125_audio_codec_v1-v1-0-e52933c429a0@linaro.org>
- <20250626-pm4125_audio_codec_v1-v1-2-e52933c429a0@linaro.org>
+ <conor+dt@kernel.org>, Linus Walleij <linus.walleij@linaro.org>,
+ Bartosz Golaszewski <brgl@bgdev.pl>, Arnd Bergmann <arnd@arndb.de>,
+ Catalin Marinas <catalin.marinas@arm.com>, Will Deacon <will@kernel.org>,
+ Jan Kotas <jank@cadence.com>
+Cc: "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+ "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+ "linux-arm-kernel@lists.infradead.org"
+ <linux-arm-kernel@lists.infradead.org>,
+ "linux-gpio@vger.kernel.org" <linux-gpio@vger.kernel.org>,
+ "soc@lists.linux.dev" <soc@lists.linux.dev>
+References: <20250623-axiado-ax3000-soc-and-evaluation-board-support-v3-0-b3e66a7491f5@axiado.com>
+ <20250623-axiado-ax3000-soc-and-evaluation-board-support-v3-5-b3e66a7491f5@axiado.com>
+ <0709a0a6-1313-452c-85e7-2926a6a03741@kernel.org>
+ <19d78e69-4a38-420b-b9f8-d0eb90cdcaf6@axiado.com>
+ <a0feb67f-3a73-4247-8383-7255616cb22b@kernel.org>
+ <a6e27c0e-0703-4444-b6e7-d4db1340e802@axiado.com>
 From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
@@ -110,19 +115,35 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  jWt87ecuHlpL3uuQ0ZZNWqHgZoQLXoqC2ZV5KrtKWb/jyiFX/sxSrodALf0zf+tfHv0FZWT2
  zHjUqd0t4njD/UOsuIMOQn4Ig0SdivYPfZukb5cdasKJukG1NOpbW7yRNivaCnfZz6dTawXw
  XRIV/KDsHQiyVxKvN73bThKhONkcX2LWuD928tAR6XMM2G5ovxLe09vuOzzfTWQDsm++9UKF a/A=
-In-Reply-To: <20250626-pm4125_audio_codec_v1-v1-2-e52933c429a0@linaro.org>
+In-Reply-To: <a6e27c0e-0703-4444-b6e7-d4db1340e802@axiado.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 26/06/2025 01:50, Alexey Klimov wrote:
-> PM4125 has audio codec hardware block. Add pattern for respecive node
-> so the devicetree for those blocks can be validated properly.
+On 26/06/2025 03:31, Harshit Shah wrote:
+> On 6/24/2025 11:05 PM, Krzysztof Kozlowski wrote:
+>>>
+>>>
+>>>>> +                     compatible = "xlnx,zynqmp-uart", "cdns,uart-r1p12";
+>>>> NAK, you do not have xlnx here. Look at your SoC: name of vendor is
+>>>> axiado. Not xlnx. How is your SoC called? Also zynqmp? You cannot just
+>>>> randomly pick any compatibles and stuff them around.
+>>>>
+>>>> Please carefully read writing bindings from DT directory.
+>>>
+>>> We are using the "cdns,uart-r1p12" for the UART. However, that alone
+>>> can't be added alone in the compatible as per the DT bindings doc.
+>> Exactly. See writing bindings... or any guides/talks.
 > 
-> Signed-off-by: Alexey Klimov <alexey.klimov@linaro.org>
+> We will add the "compatible = "axiado,ax-uart", "cdns,uart-r1p12". We 
+> will append in the dt-bindings doc and driver.
+> 
+> Is this name look good?
 
-Remember to ALWAYS explain the dependencies between patches (merging
-strategy), because this now creates impression is independent patch. It
-is not and should be squashed into previous.
+No, all compatibles for SoC must be SoC specific. Take any recent
+Qualcomm SM8650 or SM8750 as example.
+
+I asked to read writing bindings. Did you read it? It covers exactly
+this case.
 
 Best regards,
 Krzysztof
