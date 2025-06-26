@@ -1,143 +1,230 @@
-Return-Path: <devicetree+bounces-189885-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-189882-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 49D71AE9BDB
-	for <lists+devicetree@lfdr.de>; Thu, 26 Jun 2025 12:52:36 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id C2663AE9BBE
+	for <lists+devicetree@lfdr.de>; Thu, 26 Jun 2025 12:48:22 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 980695A259D
-	for <lists+devicetree@lfdr.de>; Thu, 26 Jun 2025 10:52:08 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 9356B5A0A05
+	for <lists+devicetree@lfdr.de>; Thu, 26 Jun 2025 10:47:56 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 455EA27146E;
-	Thu, 26 Jun 2025 10:49:55 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C911A2356D9;
+	Thu, 26 Jun 2025 10:48:17 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=analog.com header.i=@analog.com header.b="rxIIx9iY"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="Z6YsGLt/"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-00128a01.pphosted.com (mx0a-00128a01.pphosted.com [148.163.135.77])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wm1-f65.google.com (mail-wm1-f65.google.com [209.85.128.65])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A2B41270EA4;
-	Thu, 26 Jun 2025 10:49:53 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=148.163.135.77
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 114571FBCB2
+	for <devicetree@vger.kernel.org>; Thu, 26 Jun 2025 10:48:15 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.65
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1750934995; cv=none; b=Wk2i6qULxfBemTQvNYghNoHNTU4S89OtIdTSFYDZLBv9zAe4H2YXyTDttlO+Bi3/xtHZo2ggPmPUx+BZmkB9giwTrpE1ZJzfcNqrDPDr7c7J+UR47eoeGUlEkw5QthUhSkWgWfEFxKuZqJZf4VcIbBoD8cNh1JM5JHXBsBkg+FY=
+	t=1750934897; cv=none; b=LOXU4wm9a1iL69IZzHZMNgTwBubxH/0hdsWOwmBz0NhotwAZSoGr8jOuipgy+MKG3qB6ZCKC/PQX2P24K4R9WbG8XkuSX0dAo2uhXKEm73D/ec3gsQxb0lAUF+pbejkync7nD8kiRJbl6BNwwMHZlmPe6PErM4Ly3/9X8BCzEqg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1750934995; c=relaxed/simple;
-	bh=mFRjb8fmFiaBhT2JXLP52myv4IP5BBvNB5AttQVOReE=;
-	h=From:To:CC:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=blYCUWgmGTm5vThngpRiF8G3CAEpk42SzlT2Q9tsQxX4KtBojoe8SSZ3MsMcbv4n0k+Ax5xMG0hUskt7iXotF1DgeQ06eCTN56D2yZawo9LnYXp/G0zmVyXGCybd0HnwjDWrynS4Oo3siVDMJ9YGfr5cMe/71ghu8pbu2l/zW10=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=analog.com; spf=pass smtp.mailfrom=analog.com; dkim=pass (2048-bit key) header.d=analog.com header.i=@analog.com header.b=rxIIx9iY; arc=none smtp.client-ip=148.163.135.77
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=analog.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=analog.com
-Received: from pps.filterd (m0167088.ppops.net [127.0.0.1])
-	by mx0a-00128a01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 55Q8LhbS024510;
-	Thu, 26 Jun 2025 06:49:51 -0400
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=analog.com; h=cc
-	:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=DKIM; bh=mkpwI
-	HepDdARJDTm2KwRycIbq3HZ+9Mn5HWM+DOoWhQ=; b=rxIIx9iYl+2esGXQYUnwD
-	Fj82CmO/RvNBTm/E4mCxOf/GDa2JXFc0u8b5CmghhsyqjLYJK+KCi61c5cXqbGUb
-	DGB6pbvWb5Zgl+nwc1Dqf/pGQZDx1fJC6I0pujSyaKAWLZYjAByr8OTxOFNZOzZQ
-	HQSQhXYEqUaGigb0ZLxSOFWNAnB45dKYNIP0P/7h2hBL5D92U5+fv+FRWfJl0WOt
-	wnxpqzdZcq003oonE83QT8A70VnNobWnF9GidGEVj0ftypWuN2rDpBXlBqvdhCLp
-	6E1Fk2QVJUmv4KC4l63CZdGboQcpA9ZMsyC0KaiHtAzsF5nFNU+Lly72s06DlPcK
-	A==
-Received: from nwd2mta4.analog.com ([137.71.173.58])
-	by mx0a-00128a01.pphosted.com (PPS) with ESMTPS id 47ge72xsgc-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Thu, 26 Jun 2025 06:49:51 -0400 (EDT)
-Received: from ASHBMBX8.ad.analog.com (ASHBMBX8.ad.analog.com [10.64.17.5])
-	by nwd2mta4.analog.com (8.14.7/8.14.7) with ESMTP id 55QAnn7s047057
-	(version=TLSv1/SSLv3 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=FAIL);
-	Thu, 26 Jun 2025 06:49:49 -0400
-Received: from ASHBCASHYB4.ad.analog.com (10.64.17.132) by
- ASHBMBX8.ad.analog.com (10.64.17.5) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1748.10; Thu, 26 Jun 2025 06:49:49 -0400
-Received: from ASHBMBX8.ad.analog.com (10.64.17.5) by
- ASHBCASHYB4.ad.analog.com (10.64.17.132) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1748.10; Thu, 26 Jun 2025 06:49:49 -0400
-Received: from zeus.spd.analog.com (10.66.68.11) by ashbmbx8.ad.analog.com
- (10.64.17.5) with Microsoft SMTP Server id 15.2.1748.10 via Frontend
- Transport; Thu, 26 Jun 2025 06:49:49 -0400
-Received: from amiclaus-VirtualBox.ad.analog.com (AMICLAUS-L02.ad.analog.com [10.48.65.167])
-	by zeus.spd.analog.com (8.15.1/8.15.1) with ESMTP id 55QAnclv000419;
-	Thu, 26 Jun 2025 06:49:44 -0400
-From: Antoniu Miclaus <antoniu.miclaus@analog.com>
-To: <jic23@kernel.org>, <robh@kernel.org>, <conor+dt@kernel.org>,
-        <devicetree@vger.kernel.org>, <linux-iio@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>
-CC: Antoniu Miclaus <antoniu.miclaus@analog.com>
-Subject: [PATCH 2/2] iio: adc: ad4851: add spi 3-wire support
-Date: Thu, 26 Jun 2025 13:40:24 +0300
-Message-ID: <20250626104024.8645-2-antoniu.miclaus@analog.com>
-X-Mailer: git-send-email 2.49.0
-In-Reply-To: <20250626104024.8645-1-antoniu.miclaus@analog.com>
-References: <20250626104024.8645-1-antoniu.miclaus@analog.com>
+	s=arc-20240116; t=1750934897; c=relaxed/simple;
+	bh=iDPYcXFSHqv1aXfl8/YJ053KuD2moVV4g3YDzQAcxtc=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=EGtW9LFNK+RPt4oa58OZRLmgy50TzAwgaRFZgioQyrPt8+UwnofijHf1Pt+TLlsHq+EKrTG7TEjuS44heecrvmpHTtI+aj7xOgS0/N5NOLlBVy4+5w4HfhpNdAbEjaCFinjCm+JKtydW3KBsrPjAncie7vAA0JRj85RRaEAwusg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=Z6YsGLt/; arc=none smtp.client-ip=209.85.128.65
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-wm1-f65.google.com with SMTP id 5b1f17b1804b1-450cf0120cdso6591185e9.2
+        for <devicetree@vger.kernel.org>; Thu, 26 Jun 2025 03:48:15 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1750934894; x=1751539694; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=HUjw7qBE83HsX3Aeqbgt73oRkerz87TNCfkEGmj2ZvU=;
+        b=Z6YsGLt/8q+q8W5vV82LSVtbDK5gha9W0hqjDhIcqeSh5Dh8k1Gh4R/hqRSdw94aHe
+         euJPuorv3vsF/0ZJBbE2Tt4whDpaKAyRZcR6NM+IxTHUk9+BOlJALFNlhcXi/xU2G5XG
+         VbHz8E7yjx7RRf/nO/mlB5Ulkgn7L+Ppa5wqmUSzYA/4YhI0DEMJIl52eSBL5e1S4ZlZ
+         1VjDRIv2HS7twWHKqsgt1EXFl8q4XP/m91MhVyEFPuPAF3Gk65SQcjW9//8k1nXIUeE0
+         2p+JkYglpuFS7IC2K7f8YQTWDfqIatptlsSMA8p0nO3WndzbOfFOfqOMX0phQ8s0GNvC
+         gzmg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1750934894; x=1751539694;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=HUjw7qBE83HsX3Aeqbgt73oRkerz87TNCfkEGmj2ZvU=;
+        b=HmictmgsaK7H/4eHq5OaTYui8l/9NIzER2RnBgv36tNyAX7cH+IqrSm8TowRn54wmM
+         2EGOBA4cWI00dmfXS7+yJBsQxQp/WGOiLfHVXmYOWo6JtjgbqpXIkRgOhEpbYGblt14n
+         FfDBVkNR9hh9y0n+XMOTDCcrbrYHC4te/svZuj9TEAuUA6BprGpeEYTtmcC5OjpPv5FH
+         dkLEnloonyVBE+YP/y9q+RHEOc/DohEw2md0XhpsOt77TtUxDu6qar1GlakGkWSuKQeJ
+         zNq1NaaVIcksStaxzmW4T75E7cpNcG/6OY2eRKpxX3UQ3rpRpYdrRKRtY4XnvJcHnoBS
+         J0tw==
+X-Forwarded-Encrypted: i=1; AJvYcCUstMYX1CjOaZQEFvrUUb18Y2dQC8ctrCojNJ9P39PfpJQccJseVkk7qhSP0H60OwnZe6n3K213crvo@vger.kernel.org
+X-Gm-Message-State: AOJu0YzXZtrSYEVNDNS+5A99k8930EbnHNjZPHMvkbSCrf9vHGU1dpNt
+	3hR/Xd+wHVLNSqJ7mH+2bPBWNRcAqKhFcK8zuRtDBNCnsVM34MLXLO2TeTMc8s/3j/Y=
+X-Gm-Gg: ASbGncun3AYWkxTniagU6L8/pbpN9KwkIKXmre2xUsAu+yN4tY++vldDzw8yH7lHIm2
+	RnVnA1lzuufy9iHG/3ow4YxmD00YqxkOmMX1rSYf20yYmhJi+OBSkTESI3X//E5jPBmt/LGV+X3
+	ewHEE0p0prS8igA5DNrBenCOSFsv+vCqnELdBsmwaTJXklfQ+QkObcPhg08RbVHkCh4g+LGBZ6g
+	PGw4Nvgn3uFlbMrQ19lQSof2t3FmXA1o3MN2sqtbX2ct8vxHbyEM6ujrObF3Us3v8tyMX9CQIqV
+	a6nQ1g84rYH5J2Uu2E4NZ8kkAb5kMRdwFCwJMBTsMd7zRPkfzOMY1aMMFnp9+vOEAIbgGShe0Ky
+	MxBm0GKdG1pTkyigErbLnEXPB4zg=
+X-Google-Smtp-Source: AGHT+IGsQdj4iGv9FBGfoAWi9XRLBBqhbfDylK0ITEXpt4PSByT7nYhuvCMByEIesH6nO5RpBBlepQ==
+X-Received: by 2002:a05:600c:5490:b0:453:81a:2f3f with SMTP id 5b1f17b1804b1-45381afa899mr71269575e9.30.1750934894357;
+        Thu, 26 Jun 2025 03:48:14 -0700 (PDT)
+Received: from [192.168.0.35] (188-141-3-146.dynamic.upc.ie. [188.141.3.146])
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-3a6e8114774sm7141630f8f.94.2025.06.26.03.48.13
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 26 Jun 2025 03:48:13 -0700 (PDT)
+Message-ID: <d1b0b5c1-a031-4429-bb4b-ad8bc914c971@linaro.org>
+Date: Thu, 26 Jun 2025 11:48:12 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-ADIRuleOP-NewSCL: Rule Triggered
-X-Proofpoint-GUID: qY9YEawe6QgjNLlwx2kwSz5-Oi8VVYwQ
-X-Authority-Analysis: v=2.4 cv=DKGP4zNb c=1 sm=1 tr=0 ts=685d25cf cx=c_pps
- a=3WNzaoukacrqR9RwcOSAdA==:117 a=3WNzaoukacrqR9RwcOSAdA==:17
- a=6IFa9wvqVegA:10 a=gAnH3GRIAAAA:8 a=4TnTp_t2Nb-xTEFrOlkA:9
-X-Proofpoint-ORIG-GUID: qY9YEawe6QgjNLlwx2kwSz5-Oi8VVYwQ
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwNjI2MDA4OSBTYWx0ZWRfXyGxO46DPO2+4
- aVmsH46vDVmwdLGQfsRigbsNf5OpkLQUYXoV06qoUypqZ3ZpX/3WFLiRBogdxr2USjfHEI1oVH1
- f9v62GrMXmM77mOWX10K0ki7euIBgTVDdIbaBr9G8Y0iVzZ9obH8DXdFsHVKimBZUi3HZahRvrH
- LNdt8ZbB62RpaTb+Dxb9UxGxT0K35VE/E4BtPn3mln2t8kECXjluZsVQUBal2Afkxh6grrWcM1Q
- VFiS6EdsMBCBkxRQapRSwz9d7T8GIO4nKmVmgoExl45weVoDIZAMHdRMiYbiaXMYCk1DRJ5G7T2
- 587b2Rcez4EM3UiQbfklQE2GhE9n3nejAUeIWW925jFDGXAMVsaVYkHl0ljbmUkXdOaQJcU62IM
- bwNOcd7nY+48GFEzX0y8F1DBl7lZHx6hCFPPd3VBSvfxxDDVChOsYpJz66gBOEbKotX0BLNa
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1099,Hydra:6.1.7,FMLib:17.12.80.40
- definitions=2025-06-26_05,2025-06-25_01,2025-03-28_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- mlxscore=0 bulkscore=0 adultscore=0 priorityscore=1501 lowpriorityscore=0
- clxscore=1015 phishscore=0 suspectscore=0 malwarescore=0 impostorscore=0
- spamscore=0 mlxlogscore=998 classifier=spam authscore=0 authtc=n/a authcc=
- route=outbound adjust=0 reason=mlx scancount=1 engine=8.19.0-2505280000
- definitions=main-2506260089
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v5 3/4] media: dt-bindings: Add qcom,msm8939-camss
+To: Krzysztof Kozlowski <krzk@kernel.org>, vincent.knecht@mailoo.org,
+ Robert Foss <rfoss@kernel.org>, Todor Tomov <todor.too@gmail.com>,
+ Mauro Carvalho Chehab <mchehab@kernel.org>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Bjorn Andersson <andersson@kernel.org>,
+ Konrad Dybcio <konradybcio@kernel.org>
+Cc: linux-kernel@vger.kernel.org, linux-media@vger.kernel.org,
+ linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+ =?UTF-8?Q?Andr=C3=A9_Apitzsch?= <git@apitzsch.eu>,
+ phone-devel@vger.kernel.org, ~postmarketos/upstreaming@lists.sr.ht,
+ Vladimir Zapolskiy <vladimir.zapolskiy@linaro.org>,
+ Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+References: <20250613-camss-8x39-vbif-v5-0-a002301a7730@mailoo.org>
+ <20250613-camss-8x39-vbif-v5-3-a002301a7730@mailoo.org>
+ <50fa344c-d683-420c-a3b5-837ec6d8e93e@kernel.org>
+ <e928a7c5-56d5-4f2b-b667-bdbefb506d1f@linaro.org>
+ <0e030c09-0a89-4883-b958-85ddd6831407@kernel.org>
+Content-Language: en-US
+From: Bryan O'Donoghue <bryan.odonoghue@linaro.org>
+In-Reply-To: <0e030c09-0a89-4883-b958-85ddd6831407@kernel.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 
-Add support for 3-wire configuration within the driver.
-By default 4-wire configuration is used.
+On 26/06/2025 11:28, Krzysztof Kozlowski wrote:
+> On 26/06/2025 12:19, Bryan O'Donoghue wrote:
+>> On 26/06/2025 11:00, Krzysztof Kozlowski wrote:
+>>>> +  reg-names:
+>>>> +    items:
+>>>> +      - const: csi_clk_mux
+>>> No, I already provided arguments in two lengthy discussions - this is
+>>> not sorted by name.
+>>>
+>>> Keep the same order as in previous device, so msm8916 for example. Or
+>>> any other, but listen to some requests to sort it by some arbitrary rule
+>>> which was never communicated by DT maintainers.
+>>
+>> I don't think if you look through the history that you can find a
+>> consistent rule that was used to arrange the registers.
+>>
+>> So we are trying to have a consistent way of doing that. Thats why the
+>> last number of additions have been sort by name, because it seemed to be
+>> the most consistent.
+> 
+> 
+> Why are we discussing it again? You asked me the same here:
+> https://lore.kernel.org/all/8f11c99b-f3ca-4501-aec4-0795643fc3a9@kernel.org/
+> 
+> and I already said - not sorting by name. You take the same order as
+> previous.
+> 
+> If you ever want to sort by name, answer to yourself:
+> NO. Take the same order as other existing device.
+> 
+> If you ever want to sort by value, answer to yourself:
+> NO.
+> 
+> You both came with some new, invented rules of sorting, applied it, and
+> now you claim that "existing devices were sorted like that". What? NO!
+> 
+> Best regards,
+> Krzysztof
 
-Signed-off-by: Antoniu Miclaus <antoniu.miclaus@analog.com>
+OK.
+
+Discussed this on Slack with Krzysztof.
+
+8939 should be like 8916 because these are devices of a similar class.
+
+x1e has a particular order if a new device x1e+1 comes along with a new 
+register then
+
+reg-names:
+  23     items:
+  24       - const: csid0
+  25       - const: csid1
+  26       - const: csid2
+  27       - const: csid_lite0
+  28       - const: csid_lite1
+  29       - const: csid_wrapper
+  30       - const: csiphy0
+  31       - const: csiphy1
+  32       - const: csiphy2
+  33       - const: csiphy4
+  34       - const: csitpg0
+  35       - const: csitpg1
+  36       - const: csitpg2
+  37       - const: vfe0
+  38       - const: vfe1
+  39       - const: vfe_lite0
+  40       - const: vfe_lite1
+
+reg-names:
+  23     items:
+  24       - const: csid0
+  25       - const: csid1
+  26       - const: csid2
+  27       - const: csid_lite0
+  28       - const: csid_lite1
+  29       - const: csid_wrapper
+  30       - const: csiphy0
+  31       - const: csiphy1
+  32       - const: csiphy2
+  33       - const: csiphy4
+  34       - const: csitpg0
+  35       - const: csitpg1
+  36       - const: csitpg2
+  37       - const: vfe0
+  38       - const: vfe1
+  39       - const: vfe_lite0
+  40       - const: vfe_lite1
+           - NEW ENTRY GOES HERE csid3
+
+A new SoC with a significantly different architecture could have 
+different ordering of regs.
+
+The main block should go first which means the above should look like:
+
+reg-names:
+  23     items:
+  24       - const: csid_wrapper
+  25       - const: csid0
+  26       - const: csid1
+  27       - const: csid2
+  28       - const: csid_lite0
+  29       - const: csid_lite1
+  30       - const: csiphy0
+  31       - const: csiphy1
+  32       - const: csiphy2
+  33       - const: csiphy4
+  34       - const: csitpg0
+  35       - const: csitpg1
+  36       - const: csitpg2
+  37       - const: vfe0
+  38       - const: vfe1
+  39       - const: vfe_lite0
+  40       - const: vfe_lite1
+
+I think I personally haven't understood what was meant by "devices of a 
+class" but its clearer now.
+
+Appreciate the explanation.
+
 ---
- drivers/iio/adc/ad4851.c | 10 ++++++----
- 1 file changed, 6 insertions(+), 4 deletions(-)
-
-diff --git a/drivers/iio/adc/ad4851.c b/drivers/iio/adc/ad4851.c
-index 31e1e02c0ce3..1ad77f2a4580 100644
---- a/drivers/iio/adc/ad4851.c
-+++ b/drivers/iio/adc/ad4851.c
-@@ -444,10 +444,12 @@ static int ad4851_setup(struct ad4851_state *st)
- 	if (ret)
- 		return ret;
- 
--	ret = regmap_write(st->regmap, AD4851_REG_INTERFACE_CONFIG_A,
--			   AD4851_SDO_ENABLE);
--	if (ret)
--		return ret;
-+	if (!(st->spi->mode & SPI_3WIRE)) {
-+		ret = regmap_write(st->regmap, AD4851_REG_INTERFACE_CONFIG_A,
-+				   AD4851_SDO_ENABLE);
-+		if (ret)
-+			return ret;
-+	}
- 
- 	ret = regmap_read(st->regmap, AD4851_REG_PRODUCT_ID_L, &product_id);
- 	if (ret)
--- 
-2.49.0
-
+bod
 
