@@ -1,79 +1,140 @@
-Return-Path: <devicetree+bounces-190047-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-190048-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 04C31AEA682
-	for <lists+devicetree@lfdr.de>; Thu, 26 Jun 2025 21:33:35 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 96A95AEA70E
+	for <lists+devicetree@lfdr.de>; Thu, 26 Jun 2025 21:42:36 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 82D853AF027
-	for <lists+devicetree@lfdr.de>; Thu, 26 Jun 2025 19:33:09 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id DF96B4E0B54
+	for <lists+devicetree@lfdr.de>; Thu, 26 Jun 2025 19:42:36 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id BA6ED2EF66C;
-	Thu, 26 Jun 2025 19:33:31 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 29C822F0C62;
+	Thu, 26 Jun 2025 19:39:14 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Fm+G0/oi"
+	dkim=pass (2048-bit key) header.d=disroot.org header.i=@disroot.org header.b="MVXt5OEn"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from layka.disroot.org (layka.disroot.org [178.21.23.139])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 90BE97263E;
-	Thu, 26 Jun 2025 19:33:30 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5CBA127510C;
+	Thu, 26 Jun 2025 19:39:12 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=178.21.23.139
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1750966411; cv=none; b=frnvfYPjxlQdyf2zvkqoUigQ3Sh1k7N+N/ujbgYMTafhOtvfGveh1PmpRuWE8nUNNl6F2OX2k9tnbywlfO05B3vr3MmAd3dcbtK+6Mk8Zot7qOhhiB5N5t34WAzp3WycwSSUbt/4r0BPa8MJdlhYrbOWfgBdV8oHL30/Jn68T9w=
+	t=1750966754; cv=none; b=Zd9Vyv1MCdEhda/jcvC3UkWdSWcHVkU2Wyz2W1FCGi0v97SR6Z+gPdm+F4GTSYeV5mtQO2zP2PBCq+OPi9aazXFJV3JTIBcCDaV7qoIMUucbgovRUWNvXHkBRnhJqky68odpMgdLolKYNlwXOrb8sXlzfwzwBtx0ngmWk27gsqk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1750966411; c=relaxed/simple;
-	bh=/dhtCNwKik3qseApudE400UB4M+ojDUxzBOEx/mEhPE=;
-	h=Subject:From:In-Reply-To:References:Message-Id:Date:To:Cc; b=ZzaD18TiwMlnV1StBEVIpZ/gYZwoHR5Kn+WHbgG4wQgdRT8mgN2nUR5UmxmoWipJ+iQElZ73jGvyN7phu91ZXSkyhGuZBX+6A5njSokgg79MuV2WpTwZImNPreXiXct8qUQvMVmahrrpTwbJKje00bRuLcNdy4urQuISBdsylB4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Fm+G0/oi; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id ACD87C4CEEB;
-	Thu, 26 Jun 2025 19:33:30 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1750966410;
-	bh=/dhtCNwKik3qseApudE400UB4M+ojDUxzBOEx/mEhPE=;
-	h=Subject:From:In-Reply-To:References:Date:To:Cc:From;
-	b=Fm+G0/oiczdzQTnRHiK6sAsj3dH6QO/AsPio6mNB+B91Rk7sjWACVJUkzFv3U7dha
-	 oNCDLxcrTqEX+Izto0ZbpQFNqXIFPDuSktbE8llrAjJI4peA3OjnM5iLgMfJUOmgEA
-	 IBD0KYMHM2m1/i/WgmHo2IbYTl3fjhJTe+PN51kIZXENfZtdfaXoTvEOFAGQsUocIm
-	 YF2xcMWDUj8NnqM4DQd38aO3KPcWIPveVCL80KQ9K0QD6l6tujofmPhq/IT6QMSAwG
-	 7i2aFhk/Wsb9SvHohu9ggivoHaUpBT76rQU8TgH4TDHVj7/fVaPyq1KiFYzkZCJO/G
-	 fpGfIA66v06tQ==
-Received: from [10.30.226.235] (localhost [IPv6:::1])
-	by aws-us-west-2-korg-oddjob-rhel9-1.codeaurora.org (Postfix) with ESMTP id 33F413A40FCB;
-	Thu, 26 Jun 2025 19:33:58 +0000 (UTC)
-Subject: Re: [GIT PULL] Devicetree fixes for v6.16, part 1
-From: pr-tracker-bot@kernel.org
-In-Reply-To: <20250626191220.GA607595-robh@kernel.org>
-References: <20250626191220.GA607595-robh@kernel.org>
-X-PR-Tracked-List-Id: <devicetree.vger.kernel.org>
-X-PR-Tracked-Message-Id: <20250626191220.GA607595-robh@kernel.org>
-X-PR-Tracked-Remote: ssh://git@gitolite.kernel.org/pub/scm/linux/kernel/git/robh/linux.git tags/devicetree-fixes-for-6.16-1
-X-PR-Tracked-Commit-Id: f75794b6077ec729f57de9a1ad24f14d288a68bb
-X-PR-Merge-Tree: torvalds/linux.git
-X-PR-Merge-Refname: refs/heads/master
-X-PR-Merge-Commit-Id: f02769e7f272d6f42b9767f066c5a99afd2338f3
-Message-Id: <175096643670.1312595.4282270768459499979.pr-tracker-bot@kernel.org>
-Date: Thu, 26 Jun 2025 19:33:56 +0000
-To: Rob Herring <robh@kernel.org>
-Cc: Linus Torvalds <torvalds@linux-foundation.org>, Saravana Kannan <saravanak@google.com>, Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
+	s=arc-20240116; t=1750966754; c=relaxed/simple;
+	bh=zxNeykMCVsQL9yo26mI9JxjmjAGRyfaJ2CumE34l/70=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=ABjaIz9Qp1XW/Bd/P4ftjCXFKMkAbtV4uPsrJMU4U0cDIUu2JI/eyQKBVn41JRpJNxlAmA2LvpLevoq8rWXzppsYR6awN6lFkx2WSlkV2yBXZWCKRt4pss3KOEp0x1KJ+2+IzxcNdp3l17oqHHGSiA12fLOmfUBKUoDrl00IZsM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=disroot.org; spf=pass smtp.mailfrom=disroot.org; dkim=pass (2048-bit key) header.d=disroot.org header.i=@disroot.org header.b=MVXt5OEn; arc=none smtp.client-ip=178.21.23.139
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=disroot.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=disroot.org
+Received: from mail01.disroot.lan (localhost [127.0.0.1])
+	by disroot.org (Postfix) with ESMTP id A8CED25AFA;
+	Thu, 26 Jun 2025 21:39:10 +0200 (CEST)
+X-Virus-Scanned: SPAM Filter at disroot.org
+Received: from layka.disroot.org ([127.0.0.1])
+ by localhost (disroot.org [127.0.0.1]) (amavis, port 10024) with ESMTP
+ id 3H0ggFo7uRMP; Thu, 26 Jun 2025 21:39:09 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=disroot.org; s=mail;
+	t=1750966749; bh=zxNeykMCVsQL9yo26mI9JxjmjAGRyfaJ2CumE34l/70=;
+	h=From:Subject:Date:To:Cc;
+	b=MVXt5OEnu7jbyXJ3UpjIBENx14KAqgtmQmaU+TamH36rvJpaIQiQo+8NFUqZi/p0f
+	 zE1r0VPdJwD2+sAA74H/GVjp/CuTh8BmToPYNEr/cH3i+Yyf/8wfiGKoLbRtaNmevL
+	 +sP79OfdAwHauQMsHcEvhHcExx+w/t5Olf3gXkOmBb8aDdVVD81dY08YyWpHvJ6RMh
+	 PEv3nQKCcqZA9QfLckI2WZZvIPtzrE8sRDWW28gFJegVzULInSl1GZQ3c1KLfFAySN
+	 zG8uLmJ03k6bBJQRhNIvoR6Odg19e8zSQE4fiteJ8p8SOhrWESP4wHcGcX8SVYmbZg
+	 74XdTDYil227g==
+From: Kaustabh Chakraborty <kauschluss@disroot.org>
+Subject: [PATCH v2 00/13] Support for Exynos7870 DSIM bridge
+Date: Fri, 27 Jun 2025 01:08:49 +0530
+Message-Id: <20250627-exynos7870-dsim-v2-0-1433b67378d3@disroot.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
+MIME-Version: 1.0
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIAMmhXWgC/2WNOw6DMBAFr4K2jiN7Eb9UuUdE4eA1bBEceZEFQ
+ tw9DilTzkhv3g5CkUngVuwQKbFwmDPgpYBhsvNIil1mQI2VrrBUtG5zkKZttHLCL+WxczVZP9g
+ KIa/ekTyvZ/HRZ55YlhC38yCZr/21aoN/rWSUVsaWpX4Otu2cvzuWGMJyDXGE/jiODz2lotmwA
+ AAA
+X-Change-ID: 20250523-exynos7870-dsim-f29d6eafca52
+To: Inki Dae <inki.dae@samsung.com>, 
+ Jagan Teki <jagan@amarulasolutions.com>, 
+ Marek Szyprowski <m.szyprowski@samsung.com>, 
+ Andrzej Hajda <andrzej.hajda@intel.com>, 
+ Neil Armstrong <neil.armstrong@linaro.org>, Robert Foss <rfoss@kernel.org>, 
+ Laurent Pinchart <Laurent.pinchart@ideasonboard.com>, 
+ Jonas Karlman <jonas@kwiboo.se>, Jernej Skrabec <jernej.skrabec@gmail.com>, 
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, 
+ Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>, 
+ David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>, 
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, Seung-Woo Kim <sw0312.kim@samsung.com>, 
+ Kyungmin Park <kyungmin.park@samsung.com>, 
+ Krzysztof Kozlowski <krzk@kernel.org>, 
+ Alim Akhtar <alim.akhtar@samsung.com>
+Cc: dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org, 
+ devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
+ linux-samsung-soc@vger.kernel.org, 
+ Kaustabh Chakraborty <kauschluss@disroot.org>
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1750966738; l=2348;
+ i=kauschluss@disroot.org; s=20250202; h=from:subject:message-id;
+ bh=zxNeykMCVsQL9yo26mI9JxjmjAGRyfaJ2CumE34l/70=;
+ b=ZHhes87ocrYxF2VsFJm2KKHstyoR/9FavFvLc3C3qp3ZRWk5Rf7ws+ppeLl+J37J0O5IodIQi
+ Mp5UnS9CbjBCyG2Nlt5Tp1a49gcp8WjjWQD52G+xbAUTj+m+GSOUKSA
+X-Developer-Key: i=kauschluss@disroot.org; a=ed25519;
+ pk=h2xeR+V2I1+GrfDPAhZa3M+NWA0Cnbdkkq1bH3ct1hE=
 
-The pull request you sent on Thu, 26 Jun 2025 14:12:20 -0500:
+This patch series introduces a lot of changes to the existing DSIM
+bridge driver, by introdcing new registers and making register offsets
+configurable for different SoCs. These preliminary changes are followed
+by the introduction of support for Exynos7870's DSIM IP block.
 
-> ssh://git@gitolite.kernel.org/pub/scm/linux/kernel/git/robh/linux.git tags/devicetree-fixes-for-6.16-1
+Work is heavily inspired and only possible due to Samsung's vendor
+kernel sources. Testing has been done with Samsung Galaxy J7 Prime
+(samsung-on7xelte), Samsung Galaxy A2 Core (samsung-a2corelte), and
+Samsung Galaxy J6 (samsung-j6lte), all with DSI video mode panels.
 
-has been merged into torvalds/linux.git:
-https://git.kernel.org/torvalds/c/f02769e7f272d6f42b9767f066c5a99afd2338f3
+Signed-off-by: Kaustabh Chakraborty <kauschluss@disroot.org>
+---
+Changes in v2:
+- added commit to isolate clock names for each variant
+- replaced clock names with generic ones
+- added maxItems to clocks property in dtschema
+- Link to v1: https://lore.kernel.org/r/20250612-exynos7870-dsim-v1-0-1a330bca89df@disroot.org
 
-Thank you!
+---
+Kaustabh Chakraborty (13):
+      drm/bridge: samsung-dsim: separate LINK and DPHY status registers
+      drm/bridge: samsung-dsim: add SFRCTRL register
+      drm/bridge: samsung-dsim: add flag to control header FIFO wait
+      drm/bridge: samsung-dsim: allow configuring bits and offsets of CLKCTRL register
+      drm/bridge: samsung-dsim: allow configuring the MAIN_VSA offset
+      drm/bridge: samsung-dsim: allow configuring the VIDEO_MODE bit
+      drm/bridge: samsung-dsim: allow configuring PLL_M and PLL_S offsets
+      drm/bridge: samsung-dsim: allow configuring the PLL_STABLE bit
+      drm/bridge: samsung-dsim: increase timeout value for PLL_STABLE
+      drm/bridge: samsung-dsim: add ability to define clock names for every variant
+      dt-bindings: samsung,mipi-dsim: document exynos7870 DSIM compatible
+      drm/bridge: samsung-dsim: add driver support for exynos7870 DSIM bridge
+      drm/exynos: dsi: add support for exynos7870
 
+ .../bindings/display/bridge/samsung,mipi-dsim.yaml |  27 ++
+ drivers/gpu/drm/bridge/samsung-dsim.c              | 346 +++++++++++++++------
+ drivers/gpu/drm/exynos/exynos_drm_dsi.c            |   9 +
+ include/drm/bridge/samsung-dsim.h                  |  15 +-
+ 4 files changed, 307 insertions(+), 90 deletions(-)
+---
+base-commit: 1b152eeca84a02bdb648f16b82ef3394007a9dcf
+change-id: 20250523-exynos7870-dsim-f29d6eafca52
+
+Best regards,
 -- 
-Deet-doot-dot, I am a bot.
-https://korg.docs.kernel.org/prtracker.html
+Kaustabh Chakraborty <kauschluss@disroot.org>
+
 
