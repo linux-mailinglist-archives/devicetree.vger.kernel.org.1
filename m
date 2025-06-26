@@ -1,109 +1,117 @@
-Return-Path: <devicetree+bounces-190086-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-190087-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 81AD1AEA883
-	for <lists+devicetree@lfdr.de>; Thu, 26 Jun 2025 22:57:58 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 08B5BAEA8A7
+	for <lists+devicetree@lfdr.de>; Thu, 26 Jun 2025 23:19:20 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id D1D6D4E2687
-	for <lists+devicetree@lfdr.de>; Thu, 26 Jun 2025 20:57:58 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 3830D4E38E2
+	for <lists+devicetree@lfdr.de>; Thu, 26 Jun 2025 21:19:20 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 56A3125DB15;
-	Thu, 26 Jun 2025 20:57:45 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3D5A825D1F1;
+	Thu, 26 Jun 2025 21:19:18 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="H2xrVoGt"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="bbF9XJlu"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pf1-f178.google.com (mail-pf1-f178.google.com [209.85.210.178])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EA7E925A334;
-	Thu, 26 Jun 2025 20:57:43 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.178
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0F9D119D06A;
+	Thu, 26 Jun 2025 21:19:16 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1750971465; cv=none; b=tyWguNuaKPbDgN/okFFoCC/JYOXy9ebo1HFqVnKHF2M/Kr8Ht2wDV04GqEAJ1xqQF0A/M9VY5QEjhemMsa10rPoTcAcpLjIYGcrv8h3eZLAVCtonaM0GUI+gTESrPh8NyoY5CC1Z+Pr2Z1EPoc7fwAyO/max+Jy8O8bEW2EM0N4=
+	t=1750972758; cv=none; b=q6/RqvBao/iB0lpv14h1LDVCAKF1qLbVxFmceEbNzxshFyHWG46RWzzQEziS6qicjQnXNv02BEJCBGUjTrsBRkA5NpLfx4+wNGVDaZlNAKeh+Wfv3nTQi6SY4CYfs9MvtgtD7I0XQzch/4wjJwYQisyej6P/ajxWL9QP1L6vFIE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1750971465; c=relaxed/simple;
-	bh=fboFooiv5nQCNWPaoV3T7R8k3RIvcK1dRe+5TeMQ214=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=p+QHU/oR0LUvEV9mVutzD3OVhMrZeWYn0zN1YqKlQXqYxPo4G3oiHbuvgK3w9vCMUUIf+r6jod8huzAlXM7CSX2vC/9vj6FEVT35WveT8O9Fad0UdRCaJVIvm9VqVbR3B4jO4yKFJbq6pJFUemQz0yc5whoIEmXhTH4LPbhKpRU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=H2xrVoGt; arc=none smtp.client-ip=209.85.210.178
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-pf1-f178.google.com with SMTP id d2e1a72fcca58-74af4af04fdso412653b3a.1;
-        Thu, 26 Jun 2025 13:57:43 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1750971463; x=1751576263; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=fboFooiv5nQCNWPaoV3T7R8k3RIvcK1dRe+5TeMQ214=;
-        b=H2xrVoGtgqABU379MSLXy5p/OM/FRfEwUmcEsFAe+w58Br0lcAqUfaA5/9CrMYSzA5
-         7VBQ93LUwa56h6eh2fW2g8SOGtfwCJZGyzC4kvz44NNcrftBuixxahibMYTguZXGazVM
-         BJkAtWV12J/Mk0yvm2tI08hzQ5LmldgXVAGMwBozjPpLQNih6KAsBgMbGs4T2RjP3fPX
-         y86lKf+/ugAtFDpBzSmKpGL56ficg82/yq4feT64nj3LUT51SX4qq9mOARzeDP9FbI2M
-         HUg17VYaGc0IiOSEXY8SqWLEo075z+k0wUJ/s4u/y5yQQVH14c+db7wL72c6BHB/xo0r
-         5Pzg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1750971463; x=1751576263;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=fboFooiv5nQCNWPaoV3T7R8k3RIvcK1dRe+5TeMQ214=;
-        b=r67qgQ2URV44PY+3AsqSofHenpTS1MeFTrD1ne3EbMA0m7PbrQKj01Kw2p68ru6a9Z
-         eEETEvuWf4whyoUNGdkA2y2/3iMcyZzAyF3yeSs2PpNTxcOC4CA9/I9zt/P6KGS4xxJd
-         h5J30YUUt8z4DVAQrpQ3UHc0GOZjhSskCBU+lfjOz77+nHAmPLQbx5nYB2DzJcojYC8F
-         qPNVH5UdRHu1NHYj21WGjyZwNlRoOGPT3XC31okRW7ZdY8/nGoJ6x9ag4wiVNu78UfDE
-         UoY98+ow/2sQ69fOikHeCxCvlhMWOnDvBOtA6WvOuuUMYh4U5Ek+sg+JzOi/fH+S8MNh
-         UP1A==
-X-Forwarded-Encrypted: i=1; AJvYcCU36tVT6BOJzj9K/V2cVGMjhuCOqz7RTcOeAiVZxwybGv7KmyHeNBlO2qhyqR6r6KtlMcjzdOMmYz+SWVxg@vger.kernel.org, AJvYcCU5KfiEa4MJXsC73gq3Ppbz1u6ufov7MKhxlhjUEoxl7T/yB6tDeW8r9yWy+1lEuNo0cuplpRy7bT06@vger.kernel.org, AJvYcCUZDQ7/DnNxtxSvJab6tG6v0rPeerqEvDVXYv6NzJDPqZyEVEQVcT6Z4udDWArFl3dpdeuRr3QaA1pk@vger.kernel.org
-X-Gm-Message-State: AOJu0Yy7c+D6zSiwPWaeJoVTrwnyUcaLto2eHNv1q20a/KTo0OYR0nqR
-	tZNs3QkM7LdIthE9NGQvwx7r25InxLimn/hjbWHcRlU1dIKAGvQvEqJo
-X-Gm-Gg: ASbGncs7hNLSOvNRq/CwSab9PVuOxLoRO4G26xHZjbCq4FwlJm6/zGj/U5PMOhWUI8I
-	x0QF/0jQSRZedET5cpCBkKiW3owTaeVgFl7GSJY7LaGJaRil9zt2pXSoV2K8/8pgnoK2qPnwBTq
-	ICDFz0NdyaGRhvw72R7koYhqO8Of/I4N+8r9mKNmy6W/oiCXZy1j4U3J7EruDn8qsRrxLlTMXtz
-	li080t3SGRDM1oWdxBA/l/vNm4jVBM3xUQC7ErRw6LgkbwcnED55s/8dWu/073jE+em1tWN/WIx
-	Wzh91ogJu8R9uWnLCEXzD7LlNkHYCyCw0bqZ7Dmlv3wZk1ixcyrP0c6xKRynHoYMyhDQ9XlS/z9
-	XZEDl5OtMoxuIBrWwkOY=
-X-Google-Smtp-Source: AGHT+IHOMStf689VxqL03BfuyX0jEndQjIUPRMfj87Aj79T5t0yVc3e26PVqXcYYXZ9eoinzT1hcnw==
-X-Received: by 2002:a05:6a00:8ca:b0:749:1e60:bdd with SMTP id d2e1a72fcca58-74af7893218mr609513b3a.2.1750971463012;
-        Thu, 26 Jun 2025 13:57:43 -0700 (PDT)
-Received: from localhost.localdomain ([2804:14d:4c64:81ec:4ff:1626:32b1:712a])
-        by smtp.gmail.com with ESMTPSA id d2e1a72fcca58-74af57ef669sm498169b3a.158.2025.06.26.13.57.38
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 26 Jun 2025 13:57:42 -0700 (PDT)
-From: Rodrigo Gobbi <rodrigo.gobbi.7@gmail.com>
-To: conor@kernel.org
-Cc: andy@kernel.org,
-	conor+dt@kernel.org,
-	devicetree@vger.kernel.org,
-	dlechner@baylibre.com,
-	jic23@kernel.org,
-	krzk+dt@kernel.org,
-	linux-iio@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	nuno.sa@analog.com,
-	robh@kernel.org,
-	rodrigo.gobbi.7@gmail.com,
-	~lkcamp/patches@lists.sr.ht
-Subject: Re: [PATCH v3] dt-bindings: iio: adc: st,spear600-adc: txt to yaml format conversion.
-Date: Thu, 26 Jun 2025 17:54:01 -0300
-Message-ID: <20250626205733.6354-1-rodrigo.gobbi.7@gmail.com>
-X-Mailer: git-send-email 2.49.0
-In-Reply-To: <20250526-overtake-charger-6c5ffcc2bc09@spud>
-References: <20250526-overtake-charger-6c5ffcc2bc09@spud>
+	s=arc-20240116; t=1750972758; c=relaxed/simple;
+	bh=28uNc/vEFpqvghgBWV99ylJqmaORBokqPOIAZlT5Edg=;
+	h=Date:Content-Type:MIME-Version:From:Cc:To:In-Reply-To:References:
+	 Message-Id:Subject; b=tuT8ZMo4cy5YDUXyk92dx/FxWZZys3v6PcuTU/2uawxkhQtMs0d3Lzi1CZtPbdKVdB+/7sEUpSjEVWKsNtz3shd+chsdAw+16yKdj8xJ2+O9tT5l+OWDX6K3TGvccBLTN/ugweROncpo7w6P3jMG3b5vB/mU648BpXycXamdMOw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=bbF9XJlu; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 7B9E8C4CEEB;
+	Thu, 26 Jun 2025 21:19:16 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1750972756;
+	bh=28uNc/vEFpqvghgBWV99ylJqmaORBokqPOIAZlT5Edg=;
+	h=Date:From:Cc:To:In-Reply-To:References:Subject:From;
+	b=bbF9XJlul92CmEGz3T4uQ+yndC/DlJOuuo42kGpnawZlzPRbvVNUAo6S1NnSvvvqJ
+	 mGLgTWTcyPGSpu74VJjKbv8HrO3lcGcLqj1eTACiGW7PwR8fKbklDtULObkihl1Ue7
+	 PPi/EI5Dw3ZMUccOKbL5/fISnsfHPTQxB5cUEivQV8vItuLr6JxecvCBNO1YEENwqQ
+	 qcc0e6LguLIwq34dOxDixADb2i9t8PlGSiIgwYXD8AGhrgiVvX1JWn+6kQnV80QWcf
+	 9L6Yh0PXMyH5ilHF58rjqvrbzb3ZepOM25v3iGmIcC2smqNXGYYbswVPhcDu5IrXtG
+	 6c47qfe4l0hgQ==
+Date: Thu, 26 Jun 2025 16:19:15 -0500
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+From: "Rob Herring (Arm)" <robh@kernel.org>
+Cc: linux-arm-kernel@lists.infradead.org, 
+ Mark Rutland <mark.rutland@arm.com>, 
+ Maxime Coquelin <mcoquelin.stm32@gmail.com>, 
+ Conor Dooley <conor+dt@kernel.org>, 
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Alexandre Torgue <alexandre.torgue@foss.st.com>, 
+ linux-perf-users@vger.kernel.org, devicetree@vger.kernel.org, 
+ Will Deacon <will@kernel.org>, Krzysztof Kozlowski <krzk@kernel.org>, 
+ linux-stm32@st-md-mailman.stormreply.com, linux-kernel@vger.kernel.org
+To: =?utf-8?q?Cl=C3=A9ment_Le_Goffic?= <clement.legoffic@foss.st.com>
+In-Reply-To: <20250626-ddr-bindings-v1-2-cae30933c54c@foss.st.com>
+References: <20250626-ddr-bindings-v1-0-cae30933c54c@foss.st.com>
+ <20250626-ddr-bindings-v1-2-cae30933c54c@foss.st.com>
+Message-Id: <175097275573.957711.15313846796838099778.robh@kernel.org>
+Subject: Re: [PATCH RFC 2/2] dt-bindings: perf: stm32: introduce DDRPERFM
+ dt-bindings
 
-Hi, all,
 
-Just a gentle ping here since it was already been reviewed.
-If there is any other concerns, let me know.
-Tks and regards.
+On Thu, 26 Jun 2025 21:48:35 +0200, Clément Le Goffic wrote:
+> DDRPERFM is the DDR Performance Monitor embedded in STM32MPU SoC.
+> It allows to monitor DDR events that come from the DDR Controller
+> such as read or write events.
+> 
+> Signed-off-by: Clément Le Goffic <clement.legoffic@foss.st.com>
+> ---
+>  .../devicetree/bindings/perf/st,stm32-ddr-pmu.yaml | 90 ++++++++++++++++++++++
+>  1 file changed, 90 insertions(+)
+> 
+
+My bot found errors running 'make dt_binding_check' on your patch:
+
+yamllint warnings/errors:
+
+dtschema/dtc warnings/errors:
+/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/perf/st,stm32-ddr-pmu.yaml: ignoring, error in schema: properties: compatible: oneOf
+/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/perf/st,stm32-ddr-pmu.yaml: properties:compatible:oneOf: {'enum': ['st,stm32mp131-ddr-pmu', 'st,stm32mp151-ddr-pmu'], 'const': 'st,stm32mp251-ddr-pmu'} is not of type 'array'
+	from schema $id: http://json-schema.org/draft-07/schema#
+/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/perf/st,stm32-ddr-pmu.yaml: properties:compatible:oneOf: {'enum': ['st,stm32mp131-ddr-pmu', 'st,stm32mp151-ddr-pmu'], 'const': 'st,stm32mp251-ddr-pmu'} should not be valid under {'items': {'propertyNames': {'const': 'const'}, 'required': ['const']}}
+	hint: Use 'enum' rather than 'oneOf' + 'const' entries
+	from schema $id: http://devicetree.org/meta-schemas/keywords.yaml#
+/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/perf/st,stm32-ddr-pmu.yaml: properties:compatible:oneOf: {'enum': ['st,stm32mp131-ddr-pmu', 'st,stm32mp151-ddr-pmu'], 'const': 'st,stm32mp251-ddr-pmu'} is not of type 'array'
+	from schema $id: http://devicetree.org/meta-schemas/string-array.yaml#
+Documentation/devicetree/bindings/perf/st,stm32-ddr-pmu.example.dts:44.37-47.11: Warning (unit_address_vs_reg): /example-1/ddr4-channel@0: node has a unit name, but no reg or ranges property
+Documentation/devicetree/bindings/perf/st,stm32-ddr-pmu.example.dtb: /example-0/perf@5a007000: failed to match any schema with compatible: ['st,stm32mp151-ddr-pmu']
+Documentation/devicetree/bindings/perf/st,stm32-ddr-pmu.example.dtb: /example-1/perf@48041000: failed to match any schema with compatible: ['st,stm32mp251-ddr-pmu']
+
+doc reference errors (make refcheckdocs):
+
+See https://patchwork.ozlabs.org/project/devicetree-bindings/patch/20250626-ddr-bindings-v1-2-cae30933c54c@foss.st.com
+
+The base for the series is generally the latest rc1. A different dependency
+should be noted in *this* patch.
+
+If you already ran 'make dt_binding_check' and didn't see the above
+error(s), then make sure 'yamllint' is installed and dt-schema is up to
+date:
+
+pip3 install dtschema --upgrade
+
+Please check and re-submit after running the above command yourself. Note
+that DT_SCHEMA_FILES can be set to your schema file to speed up checking
+your schema. However, it must be unset to test all examples with your schema.
+
 
