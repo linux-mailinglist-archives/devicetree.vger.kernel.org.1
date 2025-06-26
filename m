@@ -1,127 +1,117 @@
-Return-Path: <devicetree+bounces-189739-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-189740-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3CBC1AE94D2
-	for <lists+devicetree@lfdr.de>; Thu, 26 Jun 2025 06:02:38 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9B1BFAE94D6
+	for <lists+devicetree@lfdr.de>; Thu, 26 Jun 2025 06:03:41 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id C72543BE402
-	for <lists+devicetree@lfdr.de>; Thu, 26 Jun 2025 04:02:12 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id C5C691700D8
+	for <lists+devicetree@lfdr.de>; Thu, 26 Jun 2025 04:03:41 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 09F9E19DF8D;
-	Thu, 26 Jun 2025 04:02:34 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C117D1BD01D;
+	Thu, 26 Jun 2025 04:03:36 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="LtENwyHI"
+	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="Mr0PnvVy"
 X-Original-To: devicetree@vger.kernel.org
-Received: from lelvem-ot02.ext.ti.com (lelvem-ot02.ext.ti.com [198.47.23.235])
+Received: from lelvem-ot01.ext.ti.com (lelvem-ot01.ext.ti.com [198.47.23.234])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 428B4376F1;
-	Thu, 26 Jun 2025 04:02:31 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.23.235
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E898A19DF8D;
+	Thu, 26 Jun 2025 04:03:34 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.23.234
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1750910553; cv=none; b=tLVJzPjzLJT4fOVNaA3miComhHFL3adTbIUsgLGD3DS1Chh6toNo95X68Dw2BY9NwRXXzlfDDl3wS3LuP+dW3TRshmr0vK+faaiANTVrd+6zrFONreOCca0HCzWl6uxc9Fh9p1WIEo54PvRn1GqHFZTy+lbrRc9eSWbcVnqIxSA=
+	t=1750910616; cv=none; b=FJoLH93VsaBtP68YlrGxPHEh7s1cfaFGHLzFJNgwaoOikBmCDwUv9dqtxal82IfWZNmL7qBzlb09aJTzx5ezsCSRc8FALZIO/AwOuliK2XuDj+9DINS4gWWF/ugKF0ucIoQO6Ca63gFpJwWJzv3H8sygrsvGsF1JkPeOaUhbep4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1750910553; c=relaxed/simple;
-	bh=fiZjViH+B1QJRbbCy6n/b7e/cdVKmHz/rpcg/h4EbE4=;
-	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
-	 In-Reply-To:Content-Type; b=u3KAbyTrOlfCmVTfyFTVE51apbdApo7NLYi0lBYUXTSZMb6D63/QW+Rz66oQYwWwBiCIjKN9hFnQ9s3PRq4yGd9vKk4kP9FM3Tlq2Kl1Wnb50Q5an3DiESr4B6GL5Sxb1k9Hc8YVkoEy7Hwd4BT7DQX3rIePUk0NyS7jNtDwLSQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=LtENwyHI; arc=none smtp.client-ip=198.47.23.235
+	s=arc-20240116; t=1750910616; c=relaxed/simple;
+	bh=EGCYA6Ia8JjXx5Zi+WidqGYWyqjJgcHRMZOR5faZVog=;
+	h=From:To:CC:Subject:Date:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=O4PdHwfhhUFm9YgFBab34fayprhavDzAqnIXy7pZ7LAyqlHQKDNvNVDl4dQEcvY4PYZUAY9GD7nBWuhNx0oF5XAMepAwwpjJ5ByBbd792kTrAU68gNznROBPmh3JAfJPzGyvWfdA6xWKeDcrcPCKf2eMyhlrC9lPubUH/365eW4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=Mr0PnvVy; arc=none smtp.client-ip=198.47.23.234
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
-Received: from fllvem-sh03.itg.ti.com ([10.64.41.86])
-	by lelvem-ot02.ext.ti.com (8.15.2/8.15.2) with ESMTP id 55Q42PC02303186;
-	Wed, 25 Jun 2025 23:02:25 -0500
+Received: from fllvem-sh04.itg.ti.com ([10.64.41.54])
+	by lelvem-ot01.ext.ti.com (8.15.2/8.15.2) with ESMTP id 55Q43T771633102;
+	Wed, 25 Jun 2025 23:03:29 -0500
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1750910545;
-	bh=xB9dRw9uYtsjuxMgsVAuJMwlfiDy5nUxbGT1YdqIT4Y=;
-	h=Date:Subject:To:CC:References:From:In-Reply-To;
-	b=LtENwyHIM4ucwSkRJQ9KOEvrYvSzOBCfJH9ixv/Z2eXbeuB3V7tapudz5WMv8PiqC
-	 QOXtZMKGjpW6MC+Febpx2xtBM/6kWOLX/SzARFfZY8UxDin7aan2nWalDuN1CEWHKV
-	 ZvhDzQ2nPUey1VbGJGNSuoZoMj1yjwGoonWVIpIk=
-Received: from DLEE104.ent.ti.com (dlee104.ent.ti.com [157.170.170.34])
-	by fllvem-sh03.itg.ti.com (8.18.1/8.18.1) with ESMTPS id 55Q42Pox1619858
+	s=ti-com-17Q1; t=1750910609;
+	bh=+dnVtknQv5unSt09zTMluxW0WiuV+41j8zc6sLmjj/U=;
+	h=From:To:CC:Subject:Date:In-Reply-To:References;
+	b=Mr0PnvVy+FToonHdyvFPYahran27QULnLODpbU36O25tJZjaJ7/rC9auta0SunTRO
+	 XSxdWHCP1OQlAGaKCVX6KCKUr1jIilN3mhpqzYKZ7o0p8hqMmNBuI46jIt3I6QunjW
+	 WZHPwPBDHQZCGbIoMgABtlplAL2DhnxznoU3TIJY=
+Received: from DFLE106.ent.ti.com (dfle106.ent.ti.com [10.64.6.27])
+	by fllvem-sh04.itg.ti.com (8.18.1/8.18.1) with ESMTPS id 55Q43TX21886244
 	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-SHA256 bits=128 verify=FAIL);
-	Wed, 25 Jun 2025 23:02:25 -0500
-Received: from DLEE107.ent.ti.com (157.170.170.37) by DLEE104.ent.ti.com
- (157.170.170.34) with Microsoft SMTP Server (version=TLS1_2,
+	Wed, 25 Jun 2025 23:03:29 -0500
+Received: from DFLE109.ent.ti.com (10.64.6.30) by DFLE106.ent.ti.com
+ (10.64.6.27) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.55; Wed, 25
- Jun 2025 23:02:24 -0500
-Received: from lelvem-mr06.itg.ti.com (10.180.75.8) by DLEE107.ent.ti.com
- (157.170.170.37) with Microsoft SMTP Server (version=TLS1_2,
+ Jun 2025 23:03:28 -0500
+Received: from lelvem-mr05.itg.ti.com (10.180.75.9) by DFLE109.ent.ti.com
+ (10.64.6.30) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.55 via
- Frontend Transport; Wed, 25 Jun 2025 23:02:24 -0500
-Received: from [172.24.227.245] (uda0132425.dhcp.ti.com [172.24.227.245])
-	by lelvem-mr06.itg.ti.com (8.18.1/8.18.1) with ESMTP id 55Q42LBe334729;
-	Wed, 25 Jun 2025 23:02:22 -0500
-Message-ID: <02a85bf3-0c2e-48b6-9938-c4f8a50d662b@ti.com>
-Date: Thu, 26 Jun 2025 09:32:22 +0530
+ Frontend Transport; Wed, 25 Jun 2025 23:03:28 -0500
+Received: from uda0132425.dhcp.ti.com (uda0132425.dhcp.ti.com [172.24.227.245])
+	by lelvem-mr05.itg.ti.com (8.18.1/8.18.1) with ESMTP id 55Q43OPX598962;
+	Wed, 25 Jun 2025 23:03:25 -0500
+From: Vignesh Raghavendra <vigneshr@ti.com>
+To: <nm@ti.com>, <kristo@kernel.org>, <robh@kernel.org>, <krzk+dt@kernel.org>,
+        <conor+dt@kernel.org>, Hrushikesh Salunke <h-salunke@ti.com>
+CC: Vignesh Raghavendra <vigneshr@ti.com>, <s-vadapalli@ti.com>,
+        <linux-arm-kernel@lists.infradead.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>, <danishanwar@ti.com>
+Subject: Re: [PATCH v2] arm64: dts: ti: k3-am642-evm-pcie0-ep: Add boot phase tag to "pcie0_ep"
+Date: Thu, 26 Jun 2025 09:33:20 +0530
+Message-ID: <175079060339.1874839.2990512844164359233.b4-ty@ti.com>
+X-Mailer: git-send-email 2.49.0
+In-Reply-To: <20250610054920.2395509-1-h-salunke@ti.com>
+References: <20250610054920.2395509-1-h-salunke@ti.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH] arm64: dts: ti: k3-am62: copy bootph flags to Linux
-To: Bryan Brattlof <bb@ti.com>, Nishanth Menon <nm@ti.com>,
-        Tero Kristo
-	<kristo@kernel.org>, Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski
-	<krzk+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>
-CC: <linux-arm-kernel@lists.infradead.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>
-References: <20250624-62-uboot-cleanup-v1-1-c36230ab0375@ti.com>
-From: Vignesh Raghavendra <vigneshr@ti.com>
-Content-Language: en-US
-In-Reply-To: <20250624-62-uboot-cleanup-v1-1-c36230ab0375@ti.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
 X-C2ProcessedOrg: 333ef613-75bf-4e12-a4b1-8e3623f5dcea
 
+Hi Hrushikesh Salunke,
 
-
-On 24/06/25 20:20, Bryan Brattlof wrote:
-> To keep things as organized as possible, copy the bootph-all properties
-> from U-Boot for the packet DMA controller to indicate it should be
-> available during all phases of bootup.
+On Tue, 10 Jun 2025 11:19:20 +0530, Hrushikesh Salunke wrote:
+> AM64X SoC has one instance of PCIe which is PCIe0. To support PCIe boot
+> on AM64X SoC, PCIe0 needs to be in endpoint mode and it needs to be
+> functional at all stages of PCIe boot process. Thus add the
+> "bootph-all" boot phase tag to "pcie0_ep" device tree node.
+> 
 > 
 
-Above isn't a valid reason to add bootph-all properties to a node. You
-would need to say why this DMA controller is needed during all phases of
-boot, does this enable a certain boot-mode? Fix $subject to reflect the
-same.
+I have applied the following to branch ti-k3-dts-next on [1].
+Thank you!
 
-> Signed-off-by: Bryan Brattlof <bb@ti.com>
-> ---
->  arch/arm64/boot/dts/ti/k3-am62-main.dtsi | 1 +
->  1 file changed, 1 insertion(+)
-> 
-> diff --git a/arch/arm64/boot/dts/ti/k3-am62-main.dtsi b/arch/arm64/boot/dts/ti/k3-am62-main.dtsi
-> index 9e0b6eee9ac77d66869915b2d7bec3e2275c03ea..2a727caf36ec44e4a023c5985d1bad9b80737633 100644
-> --- a/arch/arm64/boot/dts/ti/k3-am62-main.dtsi
-> +++ b/arch/arm64/boot/dts/ti/k3-am62-main.dtsi
-> @@ -150,6 +150,7 @@ main_pktdma: dma-controller@485c0000 {
->  				    "ring", "tchan", "rchan", "rflow";
->  			msi-parent = <&inta_main_dmss>;
->  			#dma-cells = <2>;
-> +			bootph-all;
->  
->  			ti,sci = <&dmsc>;
->  			ti,sci-dev-id = <30>;
-> 
-> ---
-> base-commit: 19272b37aa4f83ca52bdf9c16d5d81bdd1354494
-> change-id: 20250623-62-uboot-cleanup-dbec66f9e257
-> 
-> Best regards,
+[1/1] arm64: dts: ti: k3-am642-evm-pcie0-ep: Add boot phase tag to "pcie0_ep"
+      commit: 26bc2019542fe262b799546c5211cc4b88b3f5ea
 
--- 
-Regards
+All being well this means that it will be integrated into the linux-next
+tree (usually sometime in the next 24 hours) and sent up the chain during
+the next merge window (or sooner if it is a relevant bug fix), however if
+problems are discovered then the patch may be dropped or reverted.
+
+You may get further e-mails resulting from automated or manual testing
+and review of the tree, please engage with people reporting problems and
+send followup patches addressing any issues that are reported if needed.
+
+If any updates are required or you are submitting further changes they
+should be sent as incremental updates against current git, existing
+patches will not be replaced.
+
+Please add any relevant lists and maintainers to the CCs when replying
+to this mail.
+
+[1] https://git.kernel.org/pub/scm/linux/kernel/git/ti/linux.git
+--
 Vignesh
-https://ti.com/opensource
 
 
