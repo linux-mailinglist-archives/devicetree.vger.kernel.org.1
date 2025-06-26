@@ -1,179 +1,137 @@
-Return-Path: <devicetree+bounces-189939-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-189940-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id C7A1CAE9E50
-	for <lists+devicetree@lfdr.de>; Thu, 26 Jun 2025 15:12:21 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id CC8F1AE9E5A
+	for <lists+devicetree@lfdr.de>; Thu, 26 Jun 2025 15:13:47 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id EAD5C4A42BE
-	for <lists+devicetree@lfdr.de>; Thu, 26 Jun 2025 13:12:21 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id A09E37A3124
+	for <lists+devicetree@lfdr.de>; Thu, 26 Jun 2025 13:12:23 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E35492E540B;
-	Thu, 26 Jun 2025 13:12:19 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 35DBF2E5410;
+	Thu, 26 Jun 2025 13:13:43 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="NOElbKXY"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="iT7kcXIG"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B6CB72E427A;
-	Thu, 26 Jun 2025 13:12:19 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0B1262E540B;
+	Thu, 26 Jun 2025 13:13:43 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1750943539; cv=none; b=CU0rCYSQx+/zMYRHtsJGWZrQGMz0sr/cZbidGJVU/+WQUM+viYRooYc/BnuLvTwsfK7T6vTIMOo+qrQNLXkMYYJr8d6lVBg4bb13Ws2iroXdAHZrYWTDim13DckjUN3BZhTOujt7OV40xZC2IuSMZzM7/IYrmToWvEihpKnEJaY=
+	t=1750943623; cv=none; b=p5fa11bDopLlOh4W6VVJ0MU5j6YfJDpIuhPvOeBkM3OFC94++E0i5OwDuc8Y0xo0AjcIAqBCcSkwKWSuln3zTTj/28h1oasZVeQ/2uDoe31j511fj8TpZE1SJS14i9SWIOZyt7lmlrnYdGmmjJXBYtQrk3oggZmK0HpKFtoJEQw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1750943539; c=relaxed/simple;
-	bh=hgnNwmNHQIaHTRV7by3eS6rJbwsUw32zvUf2T8ZhwYs=;
+	s=arc-20240116; t=1750943623; c=relaxed/simple;
+	bh=eGe6DgFdnWVzmqfcizRNhuUwNbmovbKrb7hpTd0/7pc=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=jaNJe939CFNZSbB4mUbuMnlafQB6TR0wSuVJ+E6hQO9l1YXEyFXV72l5vrippA1szat4jWULBl2Eg8p606V9oAZwrK0SGGAuiMU7XGpfdrcFVNfjMMgtrRKnBpyxq2OKrby7jwD0kSysr2frzKLeX9dGOusv087fJ70oeLR+6eA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=NOElbKXY; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 780F7C4CEEB;
-	Thu, 26 Jun 2025 13:12:16 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=NooJXOEyOZaC4yAkpJ4dnZHgLh28YeBUsobZ6aZX+GIPvVGKOr2XkdXk8c6L9kAfsK3TPGOsYrwzV2Oqg6nvv9PM5YbOkDeZ5b0lktJS6rSkg7wbje2e182UwOBTLO/zgm7gl3a89aJdvMMJymx7NUE+O9x/SXE+VXHOk3nyMyU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=iT7kcXIG; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id D4043C4CEEB;
+	Thu, 26 Jun 2025 13:13:42 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1750943539;
-	bh=hgnNwmNHQIaHTRV7by3eS6rJbwsUw32zvUf2T8ZhwYs=;
+	s=k20201202; t=1750943622;
+	bh=eGe6DgFdnWVzmqfcizRNhuUwNbmovbKrb7hpTd0/7pc=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=NOElbKXY02VgrNiUrX1G/CcXLwzVfADp9KoK5skUSphltZI3P73cgUEtUXAMBGo/u
-	 ixImxf7cXZRPS5KU1ivVi4KzG8HICGYn2MGL9v2RFIXcIjMJOUwzE8jhqL7cHSW1bD
-	 rmdb6hLTdQvoSQI6kEeUGpNW6fj2hTjo3VIkIzHpu7hTUPVg29f2yBjwFKygytBFo/
-	 HU/W3V3hkgnjSh/dyeYkByQBU1a64SlDNz6/GvGyqoeta8oZDxIYMeYSQqQOlu4oAy
-	 ScfKU5DiHBQoOEd2zHamINSZJKEq2WqjAFhMA3+rbw7I9CKAr5+Nh0k+y/4JgvHLRN
-	 ldBCrWUtWU9tA==
-Date: Thu, 26 Jun 2025 14:12:13 +0100
-From: Lee Jones <lee@kernel.org>
-To: Quentin Schulz <foss+kernel@0leil.net>
-Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Heiko Stuebner <heiko@sntech.de>,
-	Sebastian Reichel <sebastian.reichel@collabora.com>,
-	Lukasz Czechowski <lukasz.czechowski@thaumatec.com>,
-	Daniel Semkowicz <dse@thaumatec.com>,
-	Nicolas Frattaroli <nicolas.frattaroli@collabora.com>,
-	devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-	linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org,
-	Quentin Schulz <quentin.schulz@cherry.de>
-Subject: Re: [PATCH v3 2/5] mfd: rk8xx-core: allow to customize RK806 reset
- mode
-Message-ID: <20250626131213.GD10134@google.com>
-References: <20250618-rk8xx-rst-fun-v3-0-081f02d3d348@cherry.de>
- <20250618-rk8xx-rst-fun-v3-2-081f02d3d348@cherry.de>
+	b=iT7kcXIGtuQWv0kv2WBwECq7p9++xG2lC/+zPx0xDYojnP5/mcnnL2YgLwgX8Xu6s
+	 Q/QqOMG4RwtCIjds4OZSE+RXrZZhwb/YseG7tX3xg1kPetIxYHZGijm2OAXbZdhLNK
+	 gezvMhIMNG41cqWGC+NrBkIA0CddoOI/gdEAiINzP5+r0TWJNnrp8xQid49aqwTdBZ
+	 LzrjgfqKOR/97p8dIbdvfv/rgPJPHTvR1pcKi/vuoNAxvwv4fhN3DDf9zVO47xdL00
+	 GSpZeUk8UZ7TCtBb86MmN27IYQJegrl0LJ1GucTzTpb1s4j67VjPhWMzQZdRCPS8LH
+	 2qUf8uicTelRQ==
+Received: from johan by xi.lan with local (Exim 4.97.1)
+	(envelope-from <johan@kernel.org>)
+	id 1uUmQA-000000002fg-2GtK;
+	Thu, 26 Jun 2025 15:13:43 +0200
+Date: Thu, 26 Jun 2025 15:13:42 +0200
+From: Johan Hovold <johan@kernel.org>
+To: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
+Cc: Bjorn Andersson <andersson@kernel.org>,
+	Maximilian Luz <luzmaximilian@gmail.com>,
+	Konrad Dybcio <konradybcio@kernel.org>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>, linux-arm-msm@vger.kernel.org,
+	linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
+Subject: Re: [PATCH v2 2/4] firmware: qcom: uefisecapp: add support for R/O
+ UEFI vars
+Message-ID: <aF1Hhs0JAS747SVi@hovoldconsulting.com>
+References: <20250621-more-qseecom-v2-0-6e8f635640c5@oss.qualcomm.com>
+ <20250621-more-qseecom-v2-2-6e8f635640c5@oss.qualcomm.com>
+ <aFloifxONXnQbVg6@hovoldconsulting.com>
+ <aFlps9iUcD42vN4w@hovoldconsulting.com>
+ <diarijcqernpm4v5s6u22jep3gzdrzy7o4dtw5wzmlec75og6y@wlbyjbtvnv3s>
+ <aF0WGmnN_8rvI9n1@hovoldconsulting.com>
+ <zufyvg4hoxxz4i45pynzta3gyglqvecrmeslnpphsgwmtujivl@t2zbdtejt3x4>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20250618-rk8xx-rst-fun-v3-2-081f02d3d348@cherry.de>
+In-Reply-To: <zufyvg4hoxxz4i45pynzta3gyglqvecrmeslnpphsgwmtujivl@t2zbdtejt3x4>
 
-On Wed, 18 Jun 2025, Quentin Schulz wrote:
-
-> From: Quentin Schulz <quentin.schulz@cherry.de>
+On Thu, Jun 26, 2025 at 02:15:26PM +0300, Dmitry Baryshkov wrote:
+> On Thu, Jun 26, 2025 at 11:42:50AM +0200, Johan Hovold wrote:
+> > On Tue, Jun 24, 2025 at 04:13:34AM +0300, Dmitry Baryshkov wrote:
+> > > On Mon, Jun 23, 2025 at 04:50:27PM +0200, Johan Hovold wrote:
+> > > > On Mon, Jun 23, 2025 at 04:45:30PM +0200, Johan Hovold wrote:
+> > 
+> > > > > Also not sure how useful it is to only be able to read variables,
+> > > > > including for the RTC where you'll end up with an RTC that's always
+> > > > > slightly off due to drift (even if you can set it when booting into
+> > > > > Windows or possibly from the UEFI setup).
+> > > > > 
+> > > > > Don't you have any SDAM blocks in the PMICs that you can use instead for
+> > > > > a proper functioning RTC on these machines?
+> > > 
+> > > I'd rather not poke into an SDAM, especially since we don't have docs
+> > > which SDAM blocks are used and which are not.
+> > 
+> > You're with Qualcomm now so you should be able to dig up this
+> > information like we did for the X13s (even if I'm quite aware that it
+> > may still be easier said than done).
 > 
-> The RK806 PMIC has a bitfield for configuring the restart/reset behavior
-> (which I assume Rockchip calls "function") whenever the PMIC is reset
-> either programmatically (c.f. DEV_RST in the datasheet) or via PWRCTRL
-> or RESETB pins.
+> I'd rather try to find information on how to update UEFI vars on the
+> storage.
+
+You can do both, especially if it turns out you won't be able to have
+persistent variables on these machines.
+
+> Moreover, using the UEFI variable doesn't send the wrong
+> message to other developers (if I remember correctly, I've seen patches
+> poking to semi-random SDAM just because it seemed to be unused).
+
+That's for the Qualcomm maintainers, and the rest of us, to catch during
+review. And people putting random values into devicetrees is
+unfortunately not limited to SDAM addresses.
+
+Furthermore, getting an allocated block of addresses in SDAM for Linux
+could be useful for other things too.
+ 
+> > > I think the slightly drifted RTC is still much better than ending up
+> > > with an RTC value which is significantly off, because it was set via the
+> > > file modification time.
+> > 
+> > I measured drift of 1 second every 3.5 h on the X13s, so having an
+> > almost correct time with massive drift that cannot be corrected for may
+> > not necessarily be better.
 > 
-> For RK806, the following values are possible for RST_FUN:
-> 
-> 0b00 means "restart PMU"
+> For me it provided a better user experience. Yes, I'm using C630 from
+> time to time, including the kernel development. A drifted but ticking
+> RTC is better than the RTC that rolls backs by several months at a
+> reboot, because of the missing RTC offset info.
 
-"Restart PMU"
+Does it have to roll back? Can't you just keep it running after whatever
+semi-random date it started at? And there is ntp and services like
+fake-hwclock which saves the time on shutdown too.
 
-> 0b01 means "Reset all the power off reset registers, forcing
-> 	the state to switch to ACTIVE mode"
-> 0b10 means "Reset all the power off reset registers, forcing
-> 	the state to switch to ACTIVE mode, and simultaneously
-> 	pull down the RESETB PIN for 5mS before releasing"
-> 0b11 means the same as for 0b10 just above.
-> 
-> This adds the appropriate logic in the driver to parse the new
-> rockchip,reset-mode DT property to pass this information. It just
-> happens that the values in the binding match the values to write in the
-> bitfield so no mapping is necessary.
-> 
-> If it is missing, the register is left untouched and relies either on
-> the silicon default or on whatever was set earlier in the boot stages
-> (e.g. the bootloader).
-> 
-> Signed-off-by: Quentin Schulz <quentin.schulz@cherry.de>
-> ---
->  drivers/mfd/rk8xx-core.c  | 15 +++++++++++++++
->  include/linux/mfd/rk808.h |  2 ++
->  2 files changed, 17 insertions(+)
-> 
-> diff --git a/drivers/mfd/rk8xx-core.c b/drivers/mfd/rk8xx-core.c
-> index 71c2b80a4678d627e86cfbec8135f08e262559d3..23ff92f89f3357e3f47c5dd0e9f80cca453f22c0 100644
-> --- a/drivers/mfd/rk8xx-core.c
-> +++ b/drivers/mfd/rk8xx-core.c
-> @@ -10,6 +10,7 @@
->   * Author: Wadim Egorov <w.egorov@phytec.de>
->   */
->  
-> +#include <linux/bitfield.h>
->  #include <linux/interrupt.h>
->  #include <linux/mfd/rk808.h>
->  #include <linux/mfd/core.h>
-> @@ -699,6 +700,7 @@ int rk8xx_probe(struct device *dev, int variant, unsigned int irq, struct regmap
->  	const struct mfd_cell *cells;
->  	int dual_support = 0;
->  	int nr_pre_init_regs;
-> +	u32 rst_fun = 0;
->  	int nr_cells;
->  	int ret;
->  	int i;
-> @@ -726,6 +728,19 @@ int rk8xx_probe(struct device *dev, int variant, unsigned int irq, struct regmap
->  		cells = rk806s;
->  		nr_cells = ARRAY_SIZE(rk806s);
->  		dual_support = IRQF_SHARED;
-> +
-> +		ret = device_property_read_u32(dev, "rockchip,reset-mode", &rst_fun);
-> +		if (ret) {
-> +			dev_dbg(dev,
-> +				"rockchip,reset-mode property missing, not setting RST_FUN\n");
+Anyway, I still do no understand why you seem so reluctant to having a
+proper functioning RTC using an SDAM offset.
 
-I suggest that this debug message is not that useful and can be removed.
-
-> +			break;
-> +		}
-> +
-> +		ret = regmap_update_bits(rk808->regmap, RK806_SYS_CFG3,
-> +					 RK806_RST_FUN_MSK,
-
-Place on the line above?
-
-> +					 FIELD_PREP(RK806_RST_FUN_MSK, rst_fun));
-> +		if (ret)
-> +			return dev_err_probe(dev, ret, "RST_FUN write err\n");
-
-Failed to configure requested restart/reset behavior"
-
->  		break;
->  	case RK808_ID:
->  		rk808->regmap_irq_chip = &rk808_irq_chip;
-> diff --git a/include/linux/mfd/rk808.h b/include/linux/mfd/rk808.h
-> index 69cbea78b430b562a23d995263369d475daa6287..28170ee08898ca59c76a741a1d42763a42b72380 100644
-> --- a/include/linux/mfd/rk808.h
-> +++ b/include/linux/mfd/rk808.h
-> @@ -812,6 +812,8 @@ enum rk806_pin_dr_sel {
->  #define RK806_INT_POL_H			BIT(1)
->  #define RK806_INT_POL_L			0
->  
-> +/* SYS_CFG3 */
-> +#define RK806_RST_FUN_MSK		GENMASK(7, 6)
->  #define RK806_SLAVE_RESTART_FUN_MSK	BIT(1)
->  #define RK806_SLAVE_RESTART_FUN_EN	BIT(1)
->  #define RK806_SLAVE_RESTART_FUN_OFF	0
-> 
-> -- 
-> 2.49.0
-> 
-
--- 
-Lee Jones [李琼斯]
+Johan
 
