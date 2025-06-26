@@ -1,121 +1,125 @@
-Return-Path: <devicetree+bounces-189787-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-189788-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id B38B7AE9830
-	for <lists+devicetree@lfdr.de>; Thu, 26 Jun 2025 10:25:13 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 08B8BAE984F
+	for <lists+devicetree@lfdr.de>; Thu, 26 Jun 2025 10:30:09 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id DD5464A1409
-	for <lists+devicetree@lfdr.de>; Thu, 26 Jun 2025 08:25:13 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id C941F174FFA
+	for <lists+devicetree@lfdr.de>; Thu, 26 Jun 2025 08:30:08 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5C6E026B77D;
-	Thu, 26 Jun 2025 08:25:08 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="ZOP3EYIk"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3FC032727FF;
+	Thu, 26 Jun 2025 08:30:05 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from lelvem-ot01.ext.ti.com (lelvem-ot01.ext.ti.com [198.47.23.234])
+Received: from mail.prodrive-technologies.com (mail.prodrive-technologies.com [212.61.153.67])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8B33F25F960;
-	Thu, 26 Jun 2025 08:25:06 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.23.234
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4199B267713;
+	Thu, 26 Jun 2025 08:30:01 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=212.61.153.67
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1750926308; cv=none; b=NdbFI4/mX3NJHmhiWDWnIhwPS4+zT7lyOyEFGZ1AByqCYsqZqst/zDWzKaF1n1wvqBFSz00k7SVnWz6lZu93d+x/iKWDl+Nx0qodwJsftXtGDpngjNC8ZsjjBCBzLrmco14ew/6qShNPqvG03kuBxqqxWZZARODce/PHTL4SpY4=
+	t=1750926605; cv=none; b=mqata9UBPnIdcoGIh/Km2UX+Jc43uC/miaGWFsPuN2j9ricN2hllTe8+5UGCjgs5kj34juSNnvMuUFkVxi+R8zbDPmfJ0EJxE/NwHV2H0FXUVvhbQ6XScL7JPrlYTq+cgO2FHJlnK+tj2IN29O9unkmj/XC/WJsxbvGL4E4yi7I=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1750926308; c=relaxed/simple;
-	bh=k3f252cEAxamxhPkDPBAW94+28LGJ6g9/3f2pCDKQQU=;
-	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
-	 In-Reply-To:Content-Type; b=FKLrnIXmVD023UKKTKKlW1yX7xog9sBTE9YtK9QURBwYY+49cR14dEsSzFiPEl93rWGdHvNtHzAkBfjS3/fNWVG3ir9yXWSX50bXEzQAKL064ud3YgdEplhQrTNsLhioZ8upQc2wp+G/H1cC6DMQ680aqZsPXw1t+XTDvxlkSGo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=ZOP3EYIk; arc=none smtp.client-ip=198.47.23.234
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
-Received: from lelvem-sh02.itg.ti.com ([10.180.78.226])
-	by lelvem-ot01.ext.ti.com (8.15.2/8.15.2) with ESMTP id 55Q8OtI41687514;
-	Thu, 26 Jun 2025 03:24:55 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1750926295;
-	bh=zXM74UcI3u4k+JqE0dnEaDmrDYErzhRMmIPodB5MjSc=;
-	h=Date:Subject:To:CC:References:From:In-Reply-To;
-	b=ZOP3EYIkT1Y9S1WA4H37Otn9+Dm5Kb1brjFZW/Ku+jce1kb3TEkoH20dkt3D/iino
-	 V/a6XOZv8Q0d5arEs4YqP4isD4wW5JqMZvLFaKmsaal6Jz9AGZd1ExgolExqXgG4kX
-	 sILMvtLSv2aU68vxK72sMZ4dcjbpypRa3BiJv0zc=
-Received: from DLEE112.ent.ti.com (dlee112.ent.ti.com [157.170.170.23])
-	by lelvem-sh02.itg.ti.com (8.18.1/8.18.1) with ESMTPS id 55Q8Otdx3455408
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-SHA256 bits=128 verify=FAIL);
-	Thu, 26 Jun 2025 03:24:55 -0500
-Received: from DLEE106.ent.ti.com (157.170.170.36) by DLEE112.ent.ti.com
- (157.170.170.23) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.55; Thu, 26
- Jun 2025 03:24:55 -0500
-Received: from lelvem-mr06.itg.ti.com (10.180.75.8) by DLEE106.ent.ti.com
- (157.170.170.36) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.55 via
- Frontend Transport; Thu, 26 Jun 2025 03:24:55 -0500
-Received: from [172.24.227.38] (ula0502350.dhcp.ti.com [172.24.227.38])
-	by lelvem-mr06.itg.ti.com (8.18.1/8.18.1) with ESMTP id 55Q8Onfa684895;
-	Thu, 26 Jun 2025 03:24:50 -0500
-Message-ID: <4fc54cf9-6417-42f1-8da4-4c8182f74adf@ti.com>
-Date: Thu, 26 Jun 2025 13:54:49 +0530
+	s=arc-20240116; t=1750926605; c=relaxed/simple;
+	bh=pkxTjPhLMGyJG2LYhRzWNpcmEeQWv2oYgzhEsh6CSMQ=;
+	h=From:To:CC:Subject:Date:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=je7Txk+jxoGtQv2ngawkqPJb9vIoQ6yrdQCja7A/cqkCbRvYQL0EZzvWNlEPBoAPbz6DJEZ5fdPZ4Ksv1KFSBJ9MMbdgroviigs/+Iq4hMzV1S2PhWqC5zvvZaY0PMnNkdC5KDxmLw6CvrEsY4V2aIh9dlPlagXr5NOKl5YeKCg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=prodrive-technologies.com; spf=pass smtp.mailfrom=prodrive-technologies.com; arc=none smtp.client-ip=212.61.153.67
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=prodrive-technologies.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=prodrive-technologies.com
+Received: from EXCOP01.bk.prodrive.nl (10.1.0.22) by EXCOP01.bk.prodrive.nl
+ (10.1.0.22) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.4; Thu, 26 Jun
+ 2025 10:29:53 +0200
+Received: from lnxdevrm02.bk.prodrive.nl (10.1.1.121) by
+ EXCOP01.bk.prodrive.nl (10.1.0.22) with Microsoft SMTP Server id 15.2.1544.4
+ via Frontend Transport; Thu, 26 Jun 2025 10:29:53 +0200
+Received: from paugeu by lnxdevrm02.bk.prodrive.nl with local (Exim 4.96)
+	(envelope-from <paul.geurts@prodrive-technologies.com>)
+	id 1uUhzV-00GdE8-2n;
+	Thu, 26 Jun 2025 10:29:53 +0200
+From: Paul Geurts <paul.geurts@prodrive-technologies.com>
+To: <andrew@lunn.ch>
+CC: <mgreer@animalcreek.com>, <krzk@kernel.org>, <andrew+netdev@lunn.ch>,
+	<davem@davemloft.net>, <edumazet@google.com>, <kuba@kernel.org>,
+	<pabeni@redhat.com>, <robh@kernel.org>, <conor+dt@kernel.org>,
+	<linux-wireless@vger.kernel.org>, <netdev@vger.kernel.org>,
+	<devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+	<martijn.de.gouw@prodrive-technologies.com>
+Subject: Re: [PATCH v2 1/2] dt-bindings: net/nfc: ti,trf7970a: Add ti,rx-gain-reduction option
+Date: Thu, 26 Jun 2025 10:29:53 +0200
+Message-ID: <20250626082953.3963992-1-paul.geurts@prodrive-technologies.com>
+X-Mailer: git-send-email 2.39.2
+In-Reply-To: cf871c23-963a-4d50-a13b-97e84ee0ddb7@lunn.ch
+References:
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [EXTERNAL] Re: [PATCHv4 4/6] arm64: dts: ti: Add support for
- AM62D2-EVM
-To: Andrew Lunn <andrew@lunn.ch>
-CC: <nm@ti.com>, <vigneshr@ti.com>, <praneeth@ti.com>, <kristo@kernel.org>,
-        <robh@kernel.org>, <krzk+dt@kernel.org>, <conor+dt@kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>, <khasim@ti.com>, <v-singh1@ti.com>,
-        <afd@ti.com>, <bb@ti.com>, <devarsht@ti.com>,
-        "Vadapalli, Siddharth"
-	<s-vadapalli@ti.com>
-References: <20250623141253.3519546-1-p-bhagat@ti.com>
- <20250623141253.3519546-5-p-bhagat@ti.com>
- <bf784ce6-aee7-4366-87ab-f0f79f8ef28c@lunn.ch>
-Content-Language: en-US
-From: Paresh Bhagat <p-bhagat@ti.com>
-In-Reply-To: <bf784ce6-aee7-4366-87ab-f0f79f8ef28c@lunn.ch>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
 Content-Transfer-Encoding: 8bit
-X-C2ProcessedOrg: 333ef613-75bf-4e12-a4b1-8e3623f5dcea
+Content-Type: text/plain
 
-Hi Andrew,
+> On Tue, Jun 24, 2025 at 02:42:46PM +0200, Paul Geurts wrote:
+> > Add option to reduce the RX antenna gain to be able to reduce the
+> > sensitivity.
+> > 
+> > Signed-off-by: Paul Geurts <paul.geurts@prodrive-technologies.com>
+> > ---
+> >  Documentation/devicetree/bindings/net/nfc/ti,trf7970a.yaml | 7 +++++++
+> >  1 file changed, 7 insertions(+)
+> > 
+> > diff --git a/Documentation/devicetree/bindings/net/nfc/ti,trf7970a.yaml b/Documentation/devicetree/bindings/net/nfc/ti,trf7970a.yaml
+> > index d0332eb76ad2..066a7abc41e0 100644
+> > --- a/Documentation/devicetree/bindings/net/nfc/ti,trf7970a.yaml
+> > +++ b/Documentation/devicetree/bindings/net/nfc/ti,trf7970a.yaml
+> > @@ -55,6 +55,12 @@ properties:
+> >      description: |
+> >        Regulator for supply voltage to VIN pin
+> >  
+> > +  ti,rx-gain-reduction:
+> 
+> You should include the units, "ti,rx-gain-reduction-db"
 
-On 24/06/25 13:51, Andrew Lunn wrote:
-> > +&cpsw_port1 { > + status = "okay"; > + phy-mode = "rgmii-rxid"; > + 
-> phy-handle = <&cpsw3g_phy0>; Does the PCB have extra long RX clock 
-> lines? More likely, this should be 'rgmii-id', and you should delete 
-> the ti,rx-internal-delay
-> ZjQcmQRYFpfptBannerStart
-> This message was sent from outside of Texas Instruments.
-> Do not click links or open attachments unless you recognize the source 
-> of this email and know the content is safe.
-> Report Suspicious
-> <https://us-phishalarm-ewt.proofpoint.com/EWT/v1/G3vK!uXdgV9dududxisXOFnkjP9PiILYQjt7Q3CKXWbpFj_azwskWiOd4wL5JX89-p35UM2TbsxxlxwNFQJTlPm4wjyyHNTY$> 
->
-> ZjQcmQRYFpfptBannerEnd
-> > +&cpsw_port1 {
-> > +	status = "okay";
-> > +	phy-mode = "rgmii-rxid";
-> > +	phy-handle = <&cpsw3g_phy0>;
->
-> Does the PCB have extra long RX clock lines?
->
-> More likely, this should be 'rgmii-id', and you should delete the
-> ti,rx-internal-delay in the PHY node, allowing it to insert the 2ns
-> delay in the normal way.
->
+Well, Currently it's not really a dB value (see below).
+
+> 
+> > +    $ref: /schemas/types.yaml#/definitions/uint32
+> > +    description: |
+> > +      Specify a RX gain reduction to reduce antenna sensitivity with 5dB per
+> > +      increment, with a maximum of 15dB.
+> 
+> Given that description i think you can provide a list of values, [0,
+> 5, 10, 15] and the tools will validate values in .dts files.
+> 
+> > +
+> >  required:
+> >    - compatible
+> >    - interrupts
+> > @@ -95,5 +101,6 @@ examples:
+> >              irq-status-read-quirk;
+> >              en2-rf-quirk;
+> >              clock-frequency = <27120000>;
+> > +            ti,rx-gain-reduction = <3>;
+> 
+> Err, how does 3 fit into 5dB increments?
+
+I implemented it in a way that the value of ti,rx-gain-reduction is programmed
+directly into the RX_GAIN reduction register, and there it means 5 dB/LSB. My
+description probably was not clear enough about that. So a value of 3 here actually
+means 15dB.
+So I could either improve the description here that this is the case, or make the
+value in here in actual dB, and do some calculations in the driver. What has your
+preference?
+
+> 
 > 	Andrew
+> 
 
-I assume you are referring to the changes in a patch here
-https://lore.kernel.org/r/cover.1750756583.git.matthias.schiffer@ew.tq-group.com/
+Thanks!
 
-Will fix this in next version. Thanks for the review.
-
+Paul
 
