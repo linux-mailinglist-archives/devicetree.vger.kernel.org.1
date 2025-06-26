@@ -1,397 +1,361 @@
-Return-Path: <devicetree+bounces-189751-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-189752-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6F62AAE95B4
-	for <lists+devicetree@lfdr.de>; Thu, 26 Jun 2025 08:10:30 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4D876AE95FE
+	for <lists+devicetree@lfdr.de>; Thu, 26 Jun 2025 08:15:06 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 10A481C4018E
-	for <lists+devicetree@lfdr.de>; Thu, 26 Jun 2025 06:10:41 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id BEC334A66C2
+	for <lists+devicetree@lfdr.de>; Thu, 26 Jun 2025 06:14:37 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C5BAE2264B3;
-	Thu, 26 Jun 2025 06:10:19 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6252F23B624;
+	Thu, 26 Jun 2025 06:13:33 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=bp.renesas.com header.i=@bp.renesas.com header.b="r72Spdsx"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Tnsp22j+"
 X-Original-To: devicetree@vger.kernel.org
-Received: from TYVP286CU001.outbound.protection.outlook.com (mail-japaneastazon11011069.outbound.protection.outlook.com [52.101.125.69])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 745711A0BF1;
-	Thu, 26 Jun 2025 06:10:15 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=52.101.125.69
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1750918219; cv=fail; b=JB80wdBjVpeSjUxkTufoz8Qr5ZNDBbG6q8i8oGK6QoVkgj6ww4mUNr41OFzYgJpxHO4Uh67w05neQ4lEYLcf6PT/WOKXXeGw3HE7yUIfivw2GPH9JBcqxe2RQ6BkS8L4rmIGD5v1aZR94aSMYGB2BPQieIL4oL2goSJ79jna6xM=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1750918219; c=relaxed/simple;
-	bh=2LF7AyHxwkD1xq/JsbWj+ELtUzA+ti9/CWsBwe4RQrs=;
-	h=From:To:CC:Subject:Date:Message-ID:References:In-Reply-To:
-	 Content-Type:MIME-Version; b=DJi6vmCq5Ejz+qv0OU1l9zVdvkblmtKrYEUkkRoGAVYtt5ny3LAeTE2c+UuEqICFT3NL4ZggbErlVBYUCgf6vex2xuG+JxjqkiwAH2pVA2Awle0qGkzvPzk6vMiQzqHY79qFEWsWvsU4OpSeQl0rq5LU4oAXuckg9AGlGhKiV64=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=bp.renesas.com; spf=pass smtp.mailfrom=bp.renesas.com; dkim=pass (1024-bit key) header.d=bp.renesas.com header.i=@bp.renesas.com header.b=r72Spdsx; arc=fail smtp.client-ip=52.101.125.69
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=bp.renesas.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bp.renesas.com
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=QPQz4esn3iYYy0F0siomokCmlH8mIpEm4NCNkWOmdWTfoOCOmzTW/w2SO6vzTC/tcX4a3BozxnwpW7PkTQnPvDl38V+N5KNgVo8wtW5eftXwKyHF8H+T9+wZMRbWpDTKHBgjxgTAR9Thrz9UWB1ujlhyMO3yra5GuC379y4+bzMiLH8stRUVO5tOQrfaPI94DuT+dppWiWvqXJY1qt70xPZduaDbr/GiDTMb479a54lKrEk+yLDfb+T3SBAco8mTe9+IRvd5U/F2p69Yo3tLDamkWUsZEKYXQHjo3yT1b4FMY3Jp8Gs8js7Na5r2VNLgQmchJLcJajW4BjqxbVZPBg==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=xEafgiyl2GgZrh2PV4sRBRInj23t2ADe0Hrl3qyAB4g=;
- b=pC9y+GVY6QSEV9Onsd8PGT0SpdacDO88vlMrOTFRYMbV+ZrNAAj7zvNqUXyxqsC1xto/BTe2KU7GxEI0jDRVTDAxGbXm5v/8ZnvuFigd/y42AfDtiLB3Ms7UHfls/Vs8kAra6fmRuV4EmqHJfDLuZ28xBe6o9DT0PvtPDSkHcsYQD5He4nwAe2kgH/145OA1i59gYnOVqcfU40HcM5fuqey2Np8ja5ZWAiJeK7bGs4ikU4K4oSnhB44hGBvL4EIRW45M4lZrIRr5MRiXWd0/O1xUY10DFTqRAplSHXlXHPd21/gnIOd0fkpggDCITgm5zWhwcqy3DZPhs7gP6Czijw==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=bp.renesas.com; dmarc=pass action=none
- header.from=bp.renesas.com; dkim=pass header.d=bp.renesas.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bp.renesas.com;
- s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=xEafgiyl2GgZrh2PV4sRBRInj23t2ADe0Hrl3qyAB4g=;
- b=r72SpdsxiBWBnXNFs2AXP/Lig+Rrl4iNYLYXwnaK+Cu0++Ignu35V9KrrCEVyXCikuNeLNGXRIYw1naRQTiL5LEqLEnONgSFOXBW8ImCsgfbE+RA97e3Bdi/P6PE4rkf6R2Ujhf+z60+gU/ira2JjFIICmRPFYDXbiMnlEyS378=
-Received: from TY3PR01MB11346.jpnprd01.prod.outlook.com (2603:1096:400:3d0::7)
- by TY4PR01MB14639.jpnprd01.prod.outlook.com (2603:1096:405:236::6) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8880.18; Thu, 26 Jun
- 2025 06:10:13 +0000
-Received: from TY3PR01MB11346.jpnprd01.prod.outlook.com
- ([fe80::86ef:ca98:234d:60e1]) by TY3PR01MB11346.jpnprd01.prod.outlook.com
- ([fe80::86ef:ca98:234d:60e1%5]) with mapi id 15.20.8857.026; Thu, 26 Jun 2025
- 06:10:13 +0000
-From: Biju Das <biju.das.jz@bp.renesas.com>
-To: Prabhakar <prabhakar.csengg@gmail.com>, Geert Uytterhoeven
-	<geert+renesas@glider.be>, Andrzej Hajda <andrzej.hajda@intel.com>, Neil
- Armstrong <neil.armstrong@linaro.org>, Robert Foss <rfoss@kernel.org>,
-	laurent.pinchart <laurent.pinchart@ideasonboard.com>, Jonas Karlman
-	<jonas@kwiboo.se>, Jernej Skrabec <jernej.skrabec@gmail.com>, Maarten
- Lankhorst <maarten.lankhorst@linux.intel.com>, Maxime Ripard
-	<mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>, David Airlie
-	<airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>, Rob Herring
-	<robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
-	<conor+dt@kernel.org>, Michael Turquette <mturquette@baylibre.com>, Stephen
- Boyd <sboyd@kernel.org>, Magnus Damm <magnus.damm@gmail.com>
-CC: "dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>,
-	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-	"linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-	"linux-renesas-soc@vger.kernel.org" <linux-renesas-soc@vger.kernel.org>,
-	"linux-clk@vger.kernel.org" <linux-clk@vger.kernel.org>, Fabrizio Castro
-	<fabrizio.castro.jz@renesas.com>, Prabhakar Mahadev Lad
-	<prabhakar.mahadev-lad.rj@bp.renesas.com>, Krzysztof Kozlowski
-	<krzysztof.kozlowski@linaro.org>
-Subject: RE: [PATCH v6 3/4] dt-bindings: display: bridge: renesas,dsi: Add
- support for RZ/V2H(P) SoC
-Thread-Topic: [PATCH v6 3/4] dt-bindings: display: bridge: renesas,dsi: Add
- support for RZ/V2H(P) SoC
-Thread-Index: AQHb0YbwzqUt/5SkrU22YEsdgOgdWrQVHfXw
-Date: Thu, 26 Jun 2025 06:10:13 +0000
-Message-ID:
- <TY3PR01MB11346D4F0B35092B85AA7B197867AA@TY3PR01MB11346.jpnprd01.prod.outlook.com>
-References: <20250530171841.423274-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
- <20250530171841.423274-4-prabhakar.mahadev-lad.rj@bp.renesas.com>
-In-Reply-To: <20250530171841.423274-4-prabhakar.mahadev-lad.rj@bp.renesas.com>
-Accept-Language: en-GB, en-US
-Content-Language: en-US
-X-MS-Has-Attach:
-X-MS-TNEF-Correlator:
-authentication-results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=bp.renesas.com;
-x-ms-publictraffictype: Email
-x-ms-traffictypediagnostic: TY3PR01MB11346:EE_|TY4PR01MB14639:EE_
-x-ms-office365-filtering-correlation-id: 53b09dd7-af9e-4ae0-6a06-08ddb4781d0b
-x-ld-processed: 53d82571-da19-47e4-9cb4-625a166a4a2a,ExtAddr
-x-ms-exchange-senderadcheck: 1
-x-ms-exchange-antispam-relay: 0
-x-microsoft-antispam:
- BCL:0;ARA:13230040|376014|1800799024|366016|7416014|921020|38070700018;
-x-microsoft-antispam-message-info:
- =?us-ascii?Q?Tl6J3dmRvOKKda77XYUWIv2Vtyi7sFF2c8Zehs9pEzACN1T4ba99sMQ/tOfi?=
- =?us-ascii?Q?1p/WaYDHChRp5XgfQEe6IcN17mBdAlBUZPtGfiyhvnIJ9jfgznmnG5VVoUNT?=
- =?us-ascii?Q?KQix/KxKJL1tf9wKl2wHHRBqdTXGrKGPN9Opuwt5kevG5/kAjrCk9kPkZHDl?=
- =?us-ascii?Q?1f0FPprrxO+MSfxEYDyUQ4T0Xz1/f7yrH+7/1pV+msTuL448T/zblrCWgUb4?=
- =?us-ascii?Q?oH0xr7jsjHB6YDTuAm/0Co/xFniymnCTEiXRK8UFqcaFuHBBKkDgS9IA6zWJ?=
- =?us-ascii?Q?RJlDm1eYZ8niodL1LFjJuc/e2XnIOi4lk3iNpYT0BhrguXZZZL0Fk+XYHgQy?=
- =?us-ascii?Q?H01P5s1MnUVecm1KnFOsLVxEAK7tQuZVwO9/ylmZOWEy7XgYYGgL3XZW5h4o?=
- =?us-ascii?Q?LGpyIi5dItjh3i0h4U1Ui1fZUEOt4C5iBmeRoghHuLmG4LYsSmkWHI1nCr5J?=
- =?us-ascii?Q?BtRGL6vz0BNNUat9IheazzM8RKLKbYvRsyg3MNTBpmZdtlXNoWbLpnWLGrXk?=
- =?us-ascii?Q?MxvdS9M1MEgnOtWZQQ9L/KeU8BlXLIiucVXgwL/hMl4M+QURnL3q41WWzjgk?=
- =?us-ascii?Q?g1Yn4msSki8MVqk209olDgD65UrWS6U3OOttiWe1fNLgllOZNcGi4mXeacBZ?=
- =?us-ascii?Q?EhZMyCuF+oKSgB+Ny0E3QnK5Lt6iHGPwiqtRYd/Hby7lYBK8YCuIg3qO5r4p?=
- =?us-ascii?Q?IqnnaQLEqIQJ9qwC7tQS6xvRKXb1tVxBVCx9xWBBDov6LnX3IULwehyv3qUd?=
- =?us-ascii?Q?qfo0A++YYNKTnOwpy2Mh89JcInT69cblHx4LA7VqkbR7Zg83n4CoUFZYlEgu?=
- =?us-ascii?Q?nPpSKF3vsLVR0vr2Le07G4Q0mqKZaZY1mA9L1rdNJg41hU+DyQ6Vjpn+ObOs?=
- =?us-ascii?Q?6Iwe8e1jhK6sga/wY2ME/C3OvabpTsyyLhsgHOnAFTmpGTVTzp/UjVH+91z9?=
- =?us-ascii?Q?xXHnJiQ39Njwbyqtjj2c9YjELAlGphy0ie6IvXEWDuP/PVJTDMbV929sLdeV?=
- =?us-ascii?Q?rNAV3Tdw6h3KPizMfd1PcQlnIT9OF31lvn8drzpjduYY4glLlX2L5wq+Hw/d?=
- =?us-ascii?Q?jqdT5bAVlRdBGYhlITFdS8PK7Fo/grUsurDudTV9CjW5eEBew2p2u9RqbtFz?=
- =?us-ascii?Q?ao2uhzpg+/IZK58WH7waaKaGrLVuinYrMKwPqY1kTdXOWz0TkNpYY3yDx9Nz?=
- =?us-ascii?Q?WsF4MYQLVPNzP0AJ8OKDwfl82tA9sEk84NuUztItJf6/zGPSjmeC1mvukTic?=
- =?us-ascii?Q?AVw54jOfYuXaB+dIChXq1nSU/q8dGj1SEdfUVXOvwdEbz4yqtBNCs78T4DkA?=
- =?us-ascii?Q?rjA3nfpTbij9mdh8ostap3sa6YOUXinRRcTnhWetn5zIoegsMa6LOq+2DQ6t?=
- =?us-ascii?Q?giqBMwADyCZOkC4aYN9tN+z+EQTJ1U7LY6GA3V2SPegKdN6wPs8QQOjJay0H?=
- =?us-ascii?Q?Rq0B+ECw6iJnhebhtBTC+NyKcf2wWT2uap1EEeNDo14kJsbeJL644sKCbugL?=
- =?us-ascii?Q?XrLvuOnP2GrEeyY=3D?=
-x-forefront-antispam-report:
- CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:TY3PR01MB11346.jpnprd01.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(376014)(1800799024)(366016)(7416014)(921020)(38070700018);DIR:OUT;SFP:1101;
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0:
- =?us-ascii?Q?4OQ14uRmBpH3tD0t4WdD/WGb27lFyQe9sg2AStF2GKWUxUpmsYju+xum6CFS?=
- =?us-ascii?Q?Dwp+mE3FLNtb74gGE/cCJY8BTRpo8DD1y76cCzd7yYkoB2LBN4UQYDR0xGQ4?=
- =?us-ascii?Q?l13Raq2OiZPbUgq/WGlntZQMzYMQgUbPVC2Ge8aWolKPrAX8Lwb/ZTCtAFz0?=
- =?us-ascii?Q?malmBKdC8Gu82Ul7V6PpJYZ6502Pj8+vbsFbgzCZLMjqIFc/CyeBDmPQuYAX?=
- =?us-ascii?Q?MVq4emVJjFvfeUa7D1wfln0/glUM/JmnEr0qjKD2/LDsQXOG0104aVW4npgE?=
- =?us-ascii?Q?On6lt4lNTdWmZNas8S0Y3QW1qPS7iA9qwUrmyrAFMrzs2hjG+AE0A1miVFrl?=
- =?us-ascii?Q?7z9gGvl25qFHlGVrZ+uctMLhQTQY57uyGeCjh0TbziqLYfkWYI+C9hbaHXRQ?=
- =?us-ascii?Q?a6hf6uIHbbB5iN5LaTczLQEjehSkMJ9xeJ5gD6kRbOUIb9M39UHveXhuctqa?=
- =?us-ascii?Q?rZ+vTSOqID//WCTdQGl7XBkhmuL0BHkiBlodO+6T8PS7CoWFpM33uuIwZif6?=
- =?us-ascii?Q?1ksWUi8gQKPajFULIIXvAwYWynA0zxgWqJSekk0iuiova+gXP9eMZfYNuRev?=
- =?us-ascii?Q?77MxgPrNx4euC6w7bDh/5EW83IzOXo8zzk62wpXWaz0+1CqxP1YlQ5jD9GMZ?=
- =?us-ascii?Q?lVqYU9Es/kYHr5aL1ROPx/KqszyAFNYsJWEv9D09QQeaFvfrVhcU3Pwg9BPg?=
- =?us-ascii?Q?n/1h+UUQUiBIafSw10GhQP1yPgGDtDgiNDhl+A3FOCjB26DzazAid/hvu5Ip?=
- =?us-ascii?Q?kyOaMA5zAVWKjNXGOWSlO13JzmAUJMuIlwzugLEuLii6b39YSwLhdiHc6FCm?=
- =?us-ascii?Q?tthLRcafVp5jZuO2yNMKOqquIvdJN3i7aqgZd1vNPfvi1yn+0h1AUN9SU+r9?=
- =?us-ascii?Q?v+MEkSyPvXDlmjf0aRglh31LIBaM5u3d33lSRF1CgNGdgDai+GrjpG8efB89?=
- =?us-ascii?Q?6E8VPgrmjvZwTC7n+XqJ0vCew4rL5AGBgkfGLw6XvqSTTFLQ+u5UzIKA7ZK4?=
- =?us-ascii?Q?N3N4Ul7OCT4I7ZVWKglQfspvGzclC++eN6ZzGlzPzAvqnElmOXc1Mt3VhsyD?=
- =?us-ascii?Q?aEi7v7OeTn5rn4apGYPhq6wZVUPnAYAZS07hf709d5xfplg4HPK15/m7ugmI?=
- =?us-ascii?Q?OoNA6y925bCHaSqxDDrt38cWdER8vDs3sLzhJ2c9EgF7zxOfOvW8WNhrZZiT?=
- =?us-ascii?Q?vG5JFlpJDn8nx5V4dkl05bUCf86jCMD4hC3ID0n85uU/5A+Ow2WadlAzTsGH?=
- =?us-ascii?Q?WasPcfYp0/LjJQZgSsle95a0MOQa6ISBpedcTDclI9XsQZAWfOlrjkKqm6+2?=
- =?us-ascii?Q?cRyW2mNJeMu773Pzd6yjjlCPNjiN0FnCghBW1YnQQDY8i1YogXw2nWkTVagf?=
- =?us-ascii?Q?H0fM+jrMuGLtH/bupdUHESLRaWEpidySR2xw8nPCWZVjYtTCGGp7Z0QXKbgO?=
- =?us-ascii?Q?Fmgdnc3WDruiaa1wR38DBLehLX65AbO6PNB4LV+DpQdb+TBtsOXBCPf5qoj5?=
- =?us-ascii?Q?O2KRnkSAgsV+UQFM0+WdkF4VGmqMUxfkQPCjPeuZzzAv5OMpHGAzj+pwVc+Y?=
- =?us-ascii?Q?NsD9lVrl8E6KWjz1tR8tZNNrOIep7idvJmKyNOtVQ9DctatGr9GCPXZa0HBN?=
- =?us-ascii?Q?rQ=3D=3D?=
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1E02B230D35;
+	Thu, 26 Jun 2025 06:13:32 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1750918413; cv=none; b=j7dGwuOAgrAS95G30Dx9HHMJDydv712HFSDGSTFCqXiIvIQLgMYUIBgk1URgQvF50nYqfYuNNgbhp7UB2Ic8dkn5rxQsOknZJO+qw58kNC8SdsaymDpTIjd3SdsXmHlmRBn2NyE/O1qSNvw2J77XGxZLeKyjHrC4U1joYloHCkk=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1750918413; c=relaxed/simple;
+	bh=kQewIcHxcZZzUysSl/BZpgfpwvZeD8Ca8Hj0O8Cl/Hs=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=EC0+7N3XcWK285REhxDEeMTzSZQRhQWZM29fAtu2erKwmGl0kHLK12KPmqLwBW7TVEsIrdF9681qI7Ske1Z3DGIa3OJm0MVPt2aagV5a6IJ/zTG4xPEGPpmwj+B4Od4QHtMawFXqcsZ5q2nms74SSKD+c6eqbPYD1XWbnTt7dzM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Tnsp22j+; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 0D0AAC4CEEB;
+	Thu, 26 Jun 2025 06:13:31 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1750918412;
+	bh=kQewIcHxcZZzUysSl/BZpgfpwvZeD8Ca8Hj0O8Cl/Hs=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=Tnsp22j+vp13zbP1mtxwo5fvGrZk9OQB+FnMpG7f7tdgVJEdEi2t9HN6iQeuDpvAz
+	 0Q5lIZdkzCyOei98grEUK24Lrz63XwYeOVBfIHZ2t1/jBYAAR24L7+Rg4MPwPva4yF
+	 Ddwz7wS1OR8YUrviNlvTwJqwGTm9oH/IX+T0BwzW+cGGUUH1rbZjigGdnOSrRNXKSV
+	 CEctUr8kA6PBrbZD9Z/R9E9rKFAvyp+DQiGpyb6nck9qv9KOOTS0dV+vo1IRlcMEPn
+	 IAAjnUUn28C30O/yg4IuffIrNYoMT/DouM/0LKfCYgAWKBug6/z4EF9nXZ1Hbl6PWb
+	 p8SWOtSxImdvg==
+Date: Thu, 26 Jun 2025 08:13:29 +0200
+From: Krzysztof Kozlowski <krzk@kernel.org>
+To: Alexey Klimov <alexey.klimov@linaro.org>
+Cc: Srinivas Kandagatla <srini@kernel.org>, 
+	Liam Girdwood <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Stephen Boyd <sboyd@kernel.org>, Lee Jones <lee@kernel.org>, Jaroslav Kysela <perex@perex.cz>, 
+	Takashi Iwai <tiwai@suse.com>, linux-arm-msm@vger.kernel.org, linux-sound@vger.kernel.org, 
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+	Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>, Srinivas Kandagatla <srinivas.kandagatla@oss.qualcomm.com>
+Subject: Re: [PATCH 1/3] dt-bindings: sound: add bindings for pm4125 audio
+ codec
+Message-ID: <wcmalvywoginosy5pp7wskgdzjbwbydividmk4dtwguoltiobf@muw5lzkvgu5c>
+References: <20250626-pm4125_audio_codec_v1-v1-0-e52933c429a0@linaro.org>
+ <20250626-pm4125_audio_codec_v1-v1-1-e52933c429a0@linaro.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-OriginatorOrg: bp.renesas.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: TY3PR01MB11346.jpnprd01.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 53b09dd7-af9e-4ae0-6a06-08ddb4781d0b
-X-MS-Exchange-CrossTenant-originalarrivaltime: 26 Jun 2025 06:10:13.2240
- (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 53d82571-da19-47e4-9cb4-625a166a4a2a
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: G34vK7k73pl1RSKUrYzBUM7GbvtiSNel6/Hubip1N2Sfymxag3Y+9mKXD+lbUzyMRaFbiD+6JLrwsh5ohrtKhJBf8NYT1/ghiW57es++Ass=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: TY4PR01MB14639
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+In-Reply-To: <20250626-pm4125_audio_codec_v1-v1-1-e52933c429a0@linaro.org>
 
-Hi Prabhakar,
-
-Thanks for the patch.
-
-> -----Original Message-----
-> From: Prabhakar <prabhakar.csengg@gmail.com>
-> Sent: 30 May 2025 18:19
->
-> Subject: [PATCH v6 3/4] dt-bindings: display: bridge: renesas,dsi: Add su=
-pport for RZ/V2H(P) SoC
->=20
-> From: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
->=20
-> The MIPI DSI interface on the RZ/V2H(P) SoC is nearly identical to that o=
-f the RZ/G2L SoC. While the
-> LINK registers are the same for both SoCs, the D-PHY registers differ. Ad=
-ditionally, the number of
-> resets for DSI on
-> RZ/V2H(P) is two compared to three on the RZ/G2L.
->=20
-> To accommodate these differences, a SoC-specific `renesas,r9a09g057-mipi-=
-dsi` compatible string has
-> been added for the
-> RZ/V2H(P) SoC.
->=20
-> Signed-off-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-> Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-> Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
+On Thu, Jun 26, 2025 at 12:50:29AM +0100, Alexey Klimov wrote:
+> The audio codec IC is found on Qualcomm PM4125/PM2250 PMIC.
+> It has TX and RX soundwire slave devices hence two files
+> are added.
+> 
+> Signed-off-by: Alexey Klimov <alexey.klimov@linaro.org>
 > ---
-> v5->v6:
-> - Preserved the sort order (by part number).
-> - Added reviewed tag from Geert.
->=20
-> v4->v5:
-> - No changes
->=20
-> v3->v4:
-> - No changes
->=20
-> v2->v3:
-> - Collected reviewed tag from Krzysztof
->=20
-> v1->v2:
-> - Kept the sort order for schema validation
-> - Added  `port@1: false` for RZ/V2H(P) SoC
-> ---
->  .../bindings/display/bridge/renesas,dsi.yaml  | 116 +++++++++++++-----
->  1 file changed, 87 insertions(+), 29 deletions(-)
->=20
-> diff --git a/Documentation/devicetree/bindings/display/bridge/renesas,dsi=
-.yaml
-> b/Documentation/devicetree/bindings/display/bridge/renesas,dsi.yaml
-> index e08c24633926..8c7e2b17ba79 100644
-> --- a/Documentation/devicetree/bindings/display/bridge/renesas,dsi.yaml
-> +++ b/Documentation/devicetree/bindings/display/bridge/renesas,dsi.yaml
-> @@ -14,16 +14,17 @@ description: |
->    RZ/G2L alike family of SoC's. The encoder can operate in DSI mode, wit=
-h
->    up to four data lanes.
->=20
-> -allOf:
-> -  - $ref: /schemas/display/dsi-controller.yaml#
-> -
->  properties:
->    compatible:
-> -    items:
-> +    oneOf:
-> +      - items:
-> +          - enum:
-> +              - renesas,r9a07g044-mipi-dsi # RZ/G2{L,LC}
-> +              - renesas,r9a07g054-mipi-dsi # RZ/V2L
-> +          - const: renesas,rzg2l-mipi-dsi
+>  .../bindings/sound/qcom,pm4125-codec.yaml          | 147 +++++++++++++++++++++
+>  .../devicetree/bindings/sound/qcom,pm4125-sdw.yaml |  86 ++++++++++++
+>  2 files changed, 233 insertions(+)
+> 
+> diff --git a/Documentation/devicetree/bindings/sound/qcom,pm4125-codec.yaml b/Documentation/devicetree/bindings/sound/qcom,pm4125-codec.yaml
+> new file mode 100644
+> index 0000000000000000000000000000000000000000..1b6ce8d4397b4c1c048899bd2cc4d02318cc46c9
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/sound/qcom,pm4125-codec.yaml
+> @@ -0,0 +1,147 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/sound/qcom,pm4125-codec.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
 > +
->        - enum:
-> -          - renesas,r9a07g044-mipi-dsi # RZ/G2{L,LC}
-> -          - renesas,r9a07g054-mipi-dsi # RZ/V2L
-> -      - const: renesas,rzg2l-mipi-dsi
-> +          - renesas,r9a09g057-mipi-dsi # RZ/V2H(P)
->=20
->    reg:
->      maxItems: 1
-> @@ -49,34 +50,56 @@ properties:
->        - const: debug
->=20
->    clocks:
-> -    items:
-> -      - description: DSI D-PHY PLL multiplied clock
-> -      - description: DSI D-PHY system clock
-> -      - description: DSI AXI bus clock
-> -      - description: DSI Register access clock
-> -      - description: DSI Video clock
-> -      - description: DSI D-PHY Escape mode transmit clock
-> +    oneOf:
-> +      - items:
-> +          - description: DSI D-PHY PLL multiplied clock
-> +          - description: DSI D-PHY system clock
-> +          - description: DSI AXI bus clock
-> +          - description: DSI Register access clock
-> +          - description: DSI Video clock
-> +          - description: DSI D-PHY Escape mode transmit clock
-> +      - items:
-> +          - description: DSI D-PHY PLL multiplied clock
-
-This is PLL_Reference_CLK(24 MHz) compared to the DSI D-PHY PLL multiplied =
-clock in RZ/G2L(~3000MHz).
-
-> +          - description: DSI AXI bus clock
-> +          - description: DSI Register access clock
-> +          - description: DSI Video clock
-> +          - description: DSI D-PHY Escape mode transmit clock
->=20
->    clock-names:
-> -    items:
-> -      - const: pllclk
-> -      - const: sysclk
-> -      - const: aclk
-> -      - const: pclk
-> -      - const: vclk
-> -      - const: lpclk
-> +    oneOf:
-> +      - items:
-> +          - const: pllclk
-> +          - const: sysclk
-> +          - const: aclk
-> +          - const: pclk
-> +          - const: vclk
-> +          - const: lpclk
-> +      - items:
-> +          - const: pllclk
-
-pll_ref_clk ??
-
-Cheers,
-Biju
-
-> +          - const: aclk
-> +          - const: pclk
-> +          - const: vclk
-> +          - const: lpclk
->=20
->    resets:
-> -    items:
-> -      - description: MIPI_DSI_CMN_RSTB
-> -      - description: MIPI_DSI_ARESET_N
-> -      - description: MIPI_DSI_PRESET_N
-> +    oneOf:
-> +      - items:
-> +          - description: MIPI_DSI_CMN_RSTB
-> +          - description: MIPI_DSI_ARESET_N
-> +          - description: MIPI_DSI_PRESET_N
-> +      - items:
-> +          - description: MIPI_DSI_ARESET_N
-> +          - description: MIPI_DSI_PRESET_N
->=20
->    reset-names:
-> -    items:
-> -      - const: rst
-> -      - const: arst
-> -      - const: prst
-> +    oneOf:
-> +      - items:
-> +          - const: rst
-> +          - const: arst
-> +          - const: prst
-> +      - items:
-> +          - const: arst
-> +          - const: prst
->=20
->    power-domains:
->      maxItems: 1
-> @@ -130,6 +153,41 @@ required:
->=20
->  additionalProperties: false
->=20
+> +title: Qualcomm PM4125 Audio Codec
+> +
+> +maintainers:
+> +  - Alexey Klimov <alexey.klimov@linaro.org>
+> +
+> +description:
+> +  The audio codec IC found on Qualcomm PM4125/PM2250 PMIC.
+> +  It has RX and TX Soundwire slave devices.
+> +
 > +allOf:
-> +  - $ref: ../dsi-controller.yaml#
+> +  - $ref: dai-common.yaml#
 > +
-> +  - if:
-> +      properties:
-> +        compatible:
-> +          contains:
-> +            const: renesas,r9a09g057-mipi-dsi
-> +    then:
-> +      properties:
-> +        clocks:
-> +          maxItems: 5
+> +properties:
+> +  compatible:
+> +    const: qcom,pm4125-codec
 > +
-> +        clock-names:
-> +          maxItems: 5
+> +  reg:
+> +    description:
+> +      Specifies the SPMI base address for the audio codec peripherals. The
+> +      address space contains reset register needed to power-on the codec.
+> +    maxItems: 1
 > +
-> +        resets:
-> +          maxItems: 2
+> +  reg-names:
+> +    maxItems: 1
 > +
-> +        reset-names:
-> +          maxItems: 2
-> +    else:
-> +      properties:
-> +        clocks:
-> +          minItems: 6
+> +  vdd-io-supply:
+> +    description: A reference to the 1.8V I/O supply
 > +
-> +        clock-names:
-> +          minItems: 6
+> +  vdd-cp-supply:
+> +    description: A reference to the charge pump I/O supply
 > +
-> +        resets:
-> +          minItems: 3
+> +  vdd-mic-bias-supply:
+> +    description: A reference to the 3.3V mic bias supply
 > +
-> +        reset-names:
-> +          minItems: 3
+> +  vdd-pa-vpos-supply:
+> +    description: A reference to the PA VPOS supply
 > +
->  examples:
->    - |
->      #include <dt-bindings/clock/r9a07g044-cpg.h>
-> --
-> 2.49.0
+> +  qcom,tx-device:
+> +    $ref: /schemas/types.yaml#/definitions/phandle-array
+> +    description: A reference to Soundwire tx device phandle
+> +
+> +  qcom,rx-device:
+> +    $ref: /schemas/types.yaml#/definitions/phandle-array
+> +    description: A reference to Soundwire rx device phandle
+> +
+> +  qcom,micbias1-microvolt:
+> +    description: micbias1 voltage
+> +    minimum: 1800000
+> +    maximum: 2850000
+> +
+> +  qcom,micbias2-microvolt:
+> +    description: micbias2 voltage
+> +    minimum: 1800000
+> +    maximum: 2850000
+> +
+> +  qcom,micbias3-microvolt:
+> +    description: micbias3 voltage
+> +    minimum: 1800000
+> +    maximum: 2850000
+> +
+> +  qcom,mbhc-buttons-vthreshold-microvolt:
+> +    description:
+> +      Array of 8 Voltage threshold values corresponding to headset
+> +      button0 - button7
+> +    minItems: 8
+> +    maxItems: 8
+> +
+> +  '#sound-dai-cells':
+> +    const: 1
+> +
+> +required:
+> +  - compatible
+> +  - reg
+> +  - vdd-io-supply
+> +  - vdd-cp-supply
+> +  - vdd-mic-bias-supply
+> +  - vdd-pa-vpos-supply
+> +  - qcom,tx-device
+> +  - qcom,rx-device
+> +  - qcom,micbias1-microvolt
+> +  - qcom,micbias2-microvolt
+> +  - qcom,micbias3-microvolt
+> +  - "#sound-dai-cells"
 
+Keep consistent quotes, either ' or "
+
+> +
+> +additionalProperties: false
+
+This has to unevaluatedProperties
+
+> +
+> +examples:
+> +  - |
+> +    #include <dt-bindings/spmi/spmi.h>
+> +
+> +    spmi {
+> +        #address-cells = <2>;
+> +        #size-cells = <0>;
+> +
+> +        pmic@0 {
+
+pmic {
+
+> +            compatible = "qcom,pm8916", "qcom,spmi-pmic";
+
+Drop, you have warnings here.
+
+> +            reg = <0x0 SPMI_USID>;
+
+Drop
+
+> +            #address-cells = <1>;
+> +            #size-cells = <0>;
+> +
+> +            audio-codec@f000 {
+> +                compatible = "qcom,pm4125-codec";
+> +                reg = <0xf000>;
+> +                vdd-io-supply = <&pm4125_l15>;
+> +                vdd-cp-supply = <&pm4125_s4>;
+> +                vdd-pa-vpos-supply = <&pm4125_s4>;
+> +                vdd-mic-bias-supply = <&pm4125_l22>;
+> +                qcom,micbias1-microvolt = <1800000>;
+> +                qcom,micbias2-microvolt = <1800000>;
+> +                qcom,micbias3-microvolt = <1800000>;
+> +                qcom,rx-device = <&pm4125_rx>;
+> +                qcom,tx-device = <&pm4125_tx>;
+> +                #sound-dai-cells = <1>;
+> +            };
+> +        };
+> +    };
+> +
+> +    /* ... */
+> +
+> +    soundwire@a610000 {
+
+Drop this and next one.
+
+> +        reg = <0x0a610000 0x2000>;
+> +        #address-cells = <2>;
+> +        #size-cells = <0>;
+> +        pm4125_rx: audio-codec@0,4 {
+> +            compatible = "sdw20217010c00";
+> +            reg = <0 4>;
+> +            qcom,rx-port-mapping = <1 3>;
+> +        };
+> +    };
+> +
+> +    soundwire@a740000 {
+> +        reg = <0x0a740000 0x2000>;
+> +        #address-cells = <2>;
+> +        #size-cells = <0>;
+> +        pm4125_tx: audio-codec@0,3 {
+> +            compatible = "sdw20217010c00";
+> +            reg = <0 3>;
+> +            qcom,tx-port-mapping = <1 1>;
+> +        };
+> +    };
+> +...
+> diff --git a/Documentation/devicetree/bindings/sound/qcom,pm4125-sdw.yaml b/Documentation/devicetree/bindings/sound/qcom,pm4125-sdw.yaml
+> new file mode 100644
+> index 0000000000000000000000000000000000000000..7241d2ab5dcf4a0d5f25a75acb33a335f93d3b5e
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/sound/qcom,pm4125-sdw.yaml
+> @@ -0,0 +1,86 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/sound/qcom,pm4125-sdw.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Qualcomm SoundWire Slave devices on PM4125/PM2250 PMIC audio codec.
+> +
+> +maintainers:
+> +  - Alexey Klimov <alexey.klimov@linaro.org>
+> +
+> +description: |
+
+Drop |
+
+> +  The audio codec IC found on Qualcomm PM4125/PM2250 PMICs.
+> +  It has RX and TX Soundwire slave devices. This bindings is for the
+> +  slave devices.
+
+Last sentence is redundant and makes no sense. Codec has only slave
+devices, so how this can be anything else than for slave devices?
+
+
+> +
+> +properties:
+> +  compatible:
+> +    const: sdw20217010c00
+> +
+> +  reg:
+> +    maxItems: 1
+> +
+> +  qcom,tx-port-mapping:
+> +    description: |
+> +      Specifies static port mapping between device and host tx ports.
+> +      In the order of the device port index which are adc1_port, adc23_port,
+> +      dmic03_mbhc_port, dmic46_port.
+> +      Supports maximum 2 tx soundwire ports.
+> +
+> +      PM4125 TX Port 1 (ADC1,2 & DMIC0 & MBHC)    <=> SWR0 Port 1
+> +      PM4125 TX Port 2 (ADC1 & DMIC0,1,2 & MBHC)  <=> SWR0 Port 2
+> +
+> +    $ref: /schemas/types.yaml#/definitions/uint32-array
+> +    minItems: 2
+> +    maxItems: 2
+> +    items:
+> +      enum: [1, 2, 3, 4]
+> +
+> +  qcom,rx-port-mapping:
+> +    description: |
+> +      Specifies static port mapping between device and host rx ports.
+> +      In the order of device port index which are hph_port, clsh_port,
+> +      comp_port, lo_port, dsd port.
+> +      Supports maximum 2 rx soundwire ports.
+> +
+> +      PM4125 RX Port 1 (HPH_L/R)       <==>    SWR1 Port 1 (HPH_L/R)
+> +      PM4125 RX Port 2 (COMP_L/R)      <==>    SWR1 Port 3 (COMP_L/R)
+> +
+> +    $ref: /schemas/types.yaml#/definitions/uint32-array
+> +    minItems: 2
+> +    maxItems: 2
+> +    items:
+> +      enum: [1, 2, 3, 4, 5]
+> +
+> +required:
+> +  - compatible
+> +  - reg
+
+rx and tx are excluding, so this should be here encoded.
+
+> +
+> +additionalProperties: false
+> +
+> +examples:
+> +  - |
+> +    soundwire@a610000 {
+> +        reg = <0x0a610000 0x2000>;
+> +        #address-cells = <2>;
+> +        #size-cells = <0>;
+> +        pm4125_rx: codec@0,1 {
+> +            compatible = "sdw20217010c00";
+> +            reg = <0 1>;
+> +            qcom,rx-port-mapping = <1 3>;
+> +        };
+> +    };
+> +
+> +    soundwire@a740000 {
+> +        reg = <0x0a740000 0x2000>;
+
+One example is enough, they are the same.
+
+> +        #address-cells = <2>;
+> +        #size-cells = <0>;
+> +        pm4125_tx: codec@0,1 {
+> +            compatible = "sdw20217010c00";
+> +            reg = <0 1>;
+> +            qcom,tx-port-mapping = <1 1>;
+> +        };
+> +    };
+> +
+> +...
+> 
+> -- 
+> 2.47.2
+> 
 
