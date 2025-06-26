@@ -1,125 +1,131 @@
-Return-Path: <devicetree+bounces-190049-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-190064-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id A8AAAAEA71A
-	for <lists+devicetree@lfdr.de>; Thu, 26 Jun 2025 21:43:21 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id B41BAAEA756
+	for <lists+devicetree@lfdr.de>; Thu, 26 Jun 2025 21:51:00 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 851B11C43C84
-	for <lists+devicetree@lfdr.de>; Thu, 26 Jun 2025 19:43:04 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 6A6157A19FC
+	for <lists+devicetree@lfdr.de>; Thu, 26 Jun 2025 19:49:36 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id DDA6C2F2707;
-	Thu, 26 Jun 2025 19:39:20 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 62F2E243946;
+	Thu, 26 Jun 2025 19:50:53 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="WlzMNQiD"
+	dkim=pass (2048-bit key) header.d=foss.st.com header.i=@foss.st.com header.b="vwbBIqqE"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mx07-00178001.pphosted.com (mx07-00178001.pphosted.com [185.132.182.106])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AB77927510C;
-	Thu, 26 Jun 2025 19:39:20 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9FAB21552FA;
+	Thu, 26 Jun 2025 19:50:51 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.132.182.106
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1750966760; cv=none; b=t/amUaWyJikjdM9CNihgUJ0MyhcIjbySH45Kt5OUTnJ8W0Ztjuw4tiwRl5bsiPB47elZ8uJ4AxknTsK2mwAJr9MILoGmo7ob33dxI1fVCwgrKH9vRjds4iG6T7fPfB7P5hUiUh+0ZYFLsGoJcvygxLjTqyP79AT4s8/JYdMSrXU=
+	t=1750967453; cv=none; b=tjONUMYoH4kCbGSf7u077W33lADONZqWNHcbEJBNNxtTo5lb9/2VkOlk3LSjWDzCb1WgQX2KCBpPRjvK0intyLBrgqp5oMWTm/WMo8YCjmoekeQJjms9Hn4ZFOnL9HxWTUViBBdtI9mHmbG5XfHBohEs4Nx/OwntqbiMx8XSrHM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1750966760; c=relaxed/simple;
-	bh=ZLyachA0cZ1ZFfHJZ8gOmKDO10e/vQrJvgnBljltnug=;
-	h=Date:Content-Type:MIME-Version:From:Cc:To:In-Reply-To:References:
-	 Message-Id:Subject; b=ZYZiA0rOy0GmRDc5minoB3IARFW2VbT8Z1QwWPLdtB7BLVwuus+XyYKjWsQi8cAeE57JZl/jxHwDzr2vMdsYKsZC7HuNJdo63RANaVbzNHOy1la+MUQvMjM9vz+D6wD4fL5udQgfzrabTtQct3sCtqFuwWh1zVVx9KOmQ+PIEjw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=WlzMNQiD; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 1CD3DC4CEEB;
-	Thu, 26 Jun 2025 19:39:20 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1750966760;
-	bh=ZLyachA0cZ1ZFfHJZ8gOmKDO10e/vQrJvgnBljltnug=;
-	h=Date:From:Cc:To:In-Reply-To:References:Subject:From;
-	b=WlzMNQiDZzb5bKE9Hzr92+/WOb3CNnGAHDTCcc2tFnVEe/z9wvqAoX0HnOBqIqBRb
-	 i4t3MFMJkVWzFcbECQ5lx/EakxhhIWADGGyh5Mcl5cx79TO+VjQObu5ZYj5EvMqeFS
-	 qwP9hENAcggby7r/OE7pLh6cy3/RUamyvnMQZz6gom1svqap0f5PHXW3NNR8bEiTBT
-	 UQUmIiZzs3C9A6UKCN+kwZQ6r3MCo3K6Pxih3RKF0uxitXvOzE1iJqqFKXQ/x74FwF
-	 jYgbnSjr0M8Z8fYuL1Za4giyH6InMG/PUWmgLbgPqznqYPpT32fzBFrjH2ErStWTMj
-	 pMX8KhB4eh82g==
-Date: Thu, 26 Jun 2025 14:39:19 -0500
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
+	s=arc-20240116; t=1750967453; c=relaxed/simple;
+	bh=YViufr8wDcvR2AP3dS+wOtrVu/Rjl5g24coHgH/kfy4=;
+	h=From:Subject:Date:Message-ID:MIME-Version:Content-Type:To:CC; b=Hipf4wXNV2Ttq4y75Q3tFpd2ZRYz5kqKDojmdyWlcokTKj7RaDfdT7tZ/98zBVASLe0tGJ98FHk8TfuaJgeqd9N0whNFvqkk8pRoZ9ZI61fs0FNVmgcKkS+BwbuycUc45uyXhQ4KunV07WpemHaFs23f39JA8FcFvRjIPbMTyAc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=foss.st.com; spf=pass smtp.mailfrom=foss.st.com; dkim=pass (2048-bit key) header.d=foss.st.com header.i=@foss.st.com header.b=vwbBIqqE; arc=none smtp.client-ip=185.132.182.106
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=foss.st.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=foss.st.com
+Received: from pps.filterd (m0241204.ppops.net [127.0.0.1])
+	by mx07-00178001.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 55QFvBVk009049;
+	Thu, 26 Jun 2025 21:50:30 +0200
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=foss.st.com; h=
+	cc:content-transfer-encoding:content-type:date:from:message-id
+	:mime-version:subject:to; s=selector1; bh=0rlrS+BB1a4km1rs1/r4Dw
+	n4U0O9ETz8kgdC8TDIbZQ=; b=vwbBIqqEhkvE27+fHaTNvB/Iz87u32du8q760f
+	PLT5XZro5KM4JHJ0APaB2G7nR76CDXTW5zBdeAOwD4Rh41X8MaQR1ytK6a9iOM+p
+	73eBWGv8UlOWZJEcxtC/QLmtbLBEpFXdCuqaC+GaLZsa0WQP/IFTqnaLQQC5Jecz
+	HqvgUP0gxrqxuGaesLQHfR2cEoPrVyjy4ARKDsuwyKpgNXu6PkQ1edV9zfm2M8ZW
+	qBjYQrhwjGE/6aGd76vLMO199DlmqyO4K1wDg9fnNGtNVc0tNlbHqhMXsKmWm//n
+	6EOC7lsgouKMJaYMjbPoPoUlQk4TOeA3gRl7Yn7hbMocAkZQ==
+Received: from beta.dmz-ap.st.com (beta.dmz-ap.st.com [138.198.100.35])
+	by mx07-00178001.pphosted.com (PPS) with ESMTPS id 47dm33ruyp-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Thu, 26 Jun 2025 21:50:30 +0200 (MEST)
+Received: from euls16034.sgp.st.com (euls16034.sgp.st.com [10.75.44.20])
+	by beta.dmz-ap.st.com (STMicroelectronics) with ESMTP id F3D7040044;
+	Thu, 26 Jun 2025 21:49:31 +0200 (CEST)
+Received: from Webmail-eu.st.com (shfdag1node2.st.com [10.75.129.70])
+	by euls16034.sgp.st.com (STMicroelectronics) with ESMTP id E0CE8BD23A2;
+	Thu, 26 Jun 2025 21:48:41 +0200 (CEST)
+Received: from localhost (10.252.1.90) by SHFDAG1NODE2.st.com (10.75.129.70)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.39; Thu, 26 Jun
+ 2025 21:48:40 +0200
+From: =?utf-8?q?Cl=C3=A9ment_Le_Goffic?= <clement.legoffic@foss.st.com>
+Subject: [PATCH RFC 0/2] Introduce ddr[3-4]-channel binding
+Date: Thu, 26 Jun 2025 21:48:33 +0200
+Message-ID: <20250626-ddr-bindings-v1-0-cae30933c54c@foss.st.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-From: "Rob Herring (Arm)" <robh@kernel.org>
-Cc: tiwai@suse.de, alsa-devel@alsa-project.org, lgirdwood@gmail.com, 
- devicetree@vger.kernel.org, krzk+dt@kernel.org, broonie@kernel.org, 
- liam.r.girdwood@intel.com, andriy.shevchenko@linux.intel.com, 
- baojun.xu@ti.com, shenghao-ding@ti.com, linux-sound@vger.kernel.org, 
- v-hampiholi@ti.com, conor+dt@kernel.org, navada@ti.com
-To: Niranjan H Y <niranjan.hy@ti.com>
-In-Reply-To: <20250626181334.1200-3-niranjan.hy@ti.com>
-References: <20250626181334.1200-1-niranjan.hy@ti.com>
- <20250626181334.1200-3-niranjan.hy@ti.com>
-Message-Id: <175096675929.695498.5504104608098121359.robh@kernel.org>
-Subject: Re: [PATCH v3 2/4] dt-bindings: sound: bindings for tac5x1x family
- of codecs
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
+X-B4-Tracking: v=1; b=H4sIABGkXWgC/6tWKk4tykwtVrJSqFYqSi3LLM7MzwNyDHUUlJIzE
+ vPSU3UzU4B8JSMDI1MDMyMz3ZSUIt2kzLyUzLz0Yt2UpFQj46TktFQjS0sloJaCotS0zAqwcdF
+ KQW7OSrG1tQDB4daQYwAAAA==
+X-Change-ID: 20250626-ddr-bindings-dbe23bcfe299
+To: Krzysztof Kozlowski <krzk@kernel.org>, Rob Herring <robh@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>, Will Deacon <will@kernel.org>,
+        Mark
+ Rutland <mark.rutland@arm.com>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
+        Alexandre Torgue
+	<alexandre.torgue@foss.st.com>
+CC: <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <linux-perf-users@vger.kernel.org>,
+        <linux-stm32@st-md-mailman.stormreply.com>,
+        =?utf-8?q?Cl=C3=A9ment_Le_Goffic?= <clement.legoffic@foss.st.com>
+X-Mailer: b4 0.15-dev-c25d1
+X-ClientProxiedBy: SHFCAS1NODE2.st.com (10.75.129.73) To SHFDAG1NODE2.st.com
+ (10.75.129.70)
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1099,Hydra:6.1.7,FMLib:17.12.80.40
+ definitions=2025-06-26_06,2025-06-26_05,2025-03-28_01
 
+This series aims to request comments for the ddr-channel binding as I'll
+need them for the stm32-ddr-pmu driver.
+The V1 of the driver and a start of discussion can be found here:
+https://lore.kernel.org/r/20250623-ddrperfm-upstream-v1-0-7dffff168090@foss.st.com
 
-On Thu, 26 Jun 2025 23:43:31 +0530, Niranjan H Y wrote:
-> tac5x1x family are series of low-power and high performance
-> mono/stereo audio codecs consists of ADC and DAC combinations.
-> The family consist of Codecs(DAC & ADC), ADC only and DAC only
-> configurations. The documentation explains the list of devices
-> in the family, their power supply configurations and gpio
-> configuration options available for various functionality.
-> 
-> Signed-off-by: Niranjan H Y <niranjan.hy@ti.com>
-> 
-> ---
-> v2:
-> - Document newly added dts entries ti,adc1-impedance,
->   ti,adc2-impedance, ti,out2x-vcom-cfg
-> v3:
-> - add documentation for ti,pdm-input-pins
-> - Update required section
-> ---
->  .../devicetree/bindings/sound/ti,tac5x1x.yaml | 262 ++++++++++++++++++
->  1 file changed, 262 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/sound/ti,tac5x1x.yaml
-> 
+The first patch contains a base of binding, which I find sufficient for
+my needs but perhaps you'll have suggestion for addition or rework as this is
+mainly inspirate from lpddrX-channel binding.
+As we can find the same property in the two channel binding maybe this can be
+shared properties.
 
-My bot found errors running 'make dt_binding_check' on your patch:
+The second patch, that contains stm32-ddr-pmu binding, aims to provide an
+example of usage of this ddr-channel bindings.
+Note the "memory-channel" property which I mainly want to discuss about
+and gather some feedbacks.
 
-yamllint warnings/errors:
+For your knowledge, the stm32-ddr-pmu driver (DDRPERFM peripheral) needs
+the dram type information for its internal working with ddr events.
 
-dtschema/dtc warnings/errors:
-Warning: Duplicate compatible "ti,taa5412" found in schemas matching "$id":
-	http://devicetree.org/schemas/sound/ti,pcm6240.yaml#
-	http://devicetree.org/schemas/sound/ti,tac5x1x.yaml#
-Warning: Duplicate compatible "ti,taa5212" found in schemas matching "$id":
-	http://devicetree.org/schemas/sound/ti,pcm6240.yaml#
-	http://devicetree.org/schemas/sound/ti,tac5x1x.yaml#
-Warning: Duplicate compatible "ti,tad5212" found in schemas matching "$id":
-	http://devicetree.org/schemas/sound/ti,pcm6240.yaml#
-	http://devicetree.org/schemas/sound/ti,tac5x1x.yaml#
-/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/sound/ti,tac5x1x.example.dtb: tac5x1x@52 (ti,tac5212): ti,gpa-gpio: 0 is not of type 'array'
-	from schema $id: http://devicetree.org/schemas/gpio/gpio-consumer.yaml#
+Signed-off-by: Clément Le Goffic <clement.legoffic@foss.st.com>
+---
+Clément Le Goffic (2):
+      dt-bindings: memory: add jedec,ddr[3-4]-channel binding
+      dt-bindings: perf: stm32: introduce DDRPERFM dt-bindings
 
-doc reference errors (make refcheckdocs):
+ .../memory-controllers/ddr/jedec,ddr-channel.yaml  | 53 +++++++++++++
+ .../devicetree/bindings/perf/st,stm32-ddr-pmu.yaml | 90 ++++++++++++++++++++++
+ 2 files changed, 143 insertions(+)
+---
+base-commit: e34a79b96ab9d49ed8b605fee11099cf3efbb428
+change-id: 20250626-ddr-bindings-dbe23bcfe299
 
-See https://patchwork.ozlabs.org/project/devicetree-bindings/patch/20250626181334.1200-3-niranjan.hy@ti.com
-
-The base for the series is generally the latest rc1. A different dependency
-should be noted in *this* patch.
-
-If you already ran 'make dt_binding_check' and didn't see the above
-error(s), then make sure 'yamllint' is installed and dt-schema is up to
-date:
-
-pip3 install dtschema --upgrade
-
-Please check and re-submit after running the above command yourself. Note
-that DT_SCHEMA_FILES can be set to your schema file to speed up checking
-your schema. However, it must be unset to test all examples with your schema.
+Best regards,
+-- 
+Clément Le Goffic <clement.legoffic@foss.st.com>
 
 
