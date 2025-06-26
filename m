@@ -1,163 +1,127 @@
-Return-Path: <devicetree+bounces-189972-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-189981-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id B12E5AEA03D
-	for <lists+devicetree@lfdr.de>; Thu, 26 Jun 2025 16:19:42 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0A441AEA05C
+	for <lists+devicetree@lfdr.de>; Thu, 26 Jun 2025 16:22:50 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id D7A6C3B8F53
-	for <lists+devicetree@lfdr.de>; Thu, 26 Jun 2025 14:18:18 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id A9B6A7B8C64
+	for <lists+devicetree@lfdr.de>; Thu, 26 Jun 2025 14:19:56 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 140C528C5C9;
-	Thu, 26 Jun 2025 14:18:36 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id F216428A406;
+	Thu, 26 Jun 2025 14:20:39 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=riscstar-com.20230601.gappssmtp.com header.i=@riscstar-com.20230601.gappssmtp.com header.b="VNMLL8rl"
+	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="Um9jdZEC"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-qt1-f171.google.com (mail-qt1-f171.google.com [209.85.160.171])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from fllvem-ot04.ext.ti.com (fllvem-ot04.ext.ti.com [198.47.19.246])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1AD0028507F
-	for <devicetree@vger.kernel.org>; Thu, 26 Jun 2025 14:18:33 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.160.171
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E43091FFC41;
+	Thu, 26 Jun 2025 14:20:37 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.19.246
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1750947516; cv=none; b=n3T4hClssO11iHabDeRA6Sr86r0hGHvU50D1YYp3dP6nU9bZOCFSAmY0TwGhyjFQuVF7PvcderYpCh45PuFqtNWFV5Hci4486M3xd6jdfSK7KLAnfwE8nLbZ+Hg96wcJvVulrf4iNImycbvz0cypWps15XSNEeROeOc5/HZfHII=
+	t=1750947639; cv=none; b=dW4urIVcmzXwhEoQ8NowZEO1gxdSu1M5lloGp9zUaFzPV9QxOn7XMDvS2KkfeO8L1E/REgzHPgSykUGsLhS18WVZAAGYi8ZwTO6PCs+R+yxsKPGO7ejGD5Pc2JYg4tiEIDBbYkHOZ4gWHtBMP5qQEdP90qL0OUr/n7JOeHd8L7s=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1750947516; c=relaxed/simple;
-	bh=X0GjaqTTAa5JidnwmIm7FesIRgbpydxFUu/Rva0HYuA=;
-	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=Yp/vbZ6NGirA/6aBi/ZVrYv+s7EC3nkOlStVHDVa1+oG8dcrRIi/hV2mV7l5FQnvEsGoLoNJ5hxQhdYPsf/k+vi8gMXVUqxzKyqXVMUdkfUaIambulU7PzRKdkytifOxIHaQ1ASJl1nOIhHhAgtqRep5SzICPSjMh8ySGtvZBu8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=riscstar.com; spf=pass smtp.mailfrom=riscstar.com; dkim=pass (2048-bit key) header.d=riscstar-com.20230601.gappssmtp.com header.i=@riscstar-com.20230601.gappssmtp.com header.b=VNMLL8rl; arc=none smtp.client-ip=209.85.160.171
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=riscstar.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=riscstar.com
-Received: by mail-qt1-f171.google.com with SMTP id d75a77b69052e-4a5903bceffso14499351cf.3
-        for <devicetree@vger.kernel.org>; Thu, 26 Jun 2025 07:18:33 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=riscstar-com.20230601.gappssmtp.com; s=20230601; t=1750947513; x=1751552313; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=c1+njo/PU0WQA3UwaVXdY9MyHtDa5fqeWJD6Uqs2k9w=;
-        b=VNMLL8rllbupPZMvcyxhWWcoHrF6OS0EKkR/8C2YYXpkhhfnuSGgzKE5ReCi6P0MsY
-         MfmsRVlki/es7j3vwOn0MPJOLxYRsLu8kmc2DjTi9oTaDFcLHKBKg6d7uQDMkOmOmQVs
-         LUWVV8vQfGf/qNhGB0v/fZnHmGaIje++/mJbTTfnn5J/dSOHNwUtjH5Sdy/wZ9JI2aEZ
-         1mhNK3s0cjIbDid3M5csMOTADJop6mONVhjQItwPyTUhnVZwOQVy/W11rVpK6vFJ4phd
-         HsKxBnqLcBgCNX5PAGYk7mz1aguP+uynBOLNqBoYM2FbM/z1PqRWuK8dsdFBobyhTWKt
-         /4FA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1750947513; x=1751552313;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=c1+njo/PU0WQA3UwaVXdY9MyHtDa5fqeWJD6Uqs2k9w=;
-        b=eAIYXmuLHY2AbbZfhf7rC9lnBCVhLsTQng6YEhruwZnctyX5/ScIKN60swxDxm3Eh/
-         blB3rRyQbUhHkjL+cjAifSOLQ028uic2gMcNm9Hro8RcJ5n1ZDHEyapPPuaeOgeHdupL
-         j+vOlbbKdzr4p9itb61ZvE/rGGMMPJjE4wc3gMhPNXHqR0XsjqQHy4Ve8fmCWYRoJsN5
-         WN3x0O2TZPhCA6p0kGThUYXm1a2iKpU3vwUZRRTr7D2TTyAiz3xGwG6lfPtd4mzCeYTr
-         d1KQYG1vDtjXuOHjZ+7m08hMkIE3dGLWYgVR9p2rTi6m+GNUx5GTYf4GNsD2HhxKAb6n
-         AD7g==
-X-Forwarded-Encrypted: i=1; AJvYcCUK7VJvBDUqKakLPtWyhd6EDiMCllOi2HU0JU968rvOlFGNlX13O3tnmhsAfQPoVZgIGdiSdMUh6xXJ@vger.kernel.org
-X-Gm-Message-State: AOJu0Yx2a0RM/AHhGmsLOCxlEkKRdJqvIHM4gKbx9bGLfBp9FC9cvA0S
-	vqFdLkP0i9GYcZcqwn7ITV3OX9lj7/QOKP6nZ1y8YsV3/wDqhiaSiJEqc0vGBy7No+8=
-X-Gm-Gg: ASbGnctWTXzzdY6yaDsim00ZXz/WueLgqFicqmDMM/h7o9puB+QJtOtoeCIGUNdXB1G
-	WmyzMVCxrt57f78RRoWncrgeJRxtEnckDUCjMLKvF908jKIQWsG/hXau52v08fIFWWUGBULV11f
-	qnAg6lwMoJrtBvI9w5fK7RxOC//GLquE/zsAeSXgNaHep6/41kp4sqFiIK01LNJYcadDAoDFg0I
-	9hbN4md2E3MmimzQ8IW/d/I/6IEByYEj+E358iqDth17HZCcqrUl9475LozSAbTRQeSuE8Pj3xr
-	bnZl6N8awZwdGgMrJSNvbWbQjAB+3mumcYu7exmxKTZU5huXK5kazdd3MUu2yYCCJfAxL80rhHt
-	9iYBBbxd+bfSGZ1oMlcWQSCqKzY/QbddA3p0=
-X-Google-Smtp-Source: AGHT+IH50fVe+8buCV/yNDQQL4G1EmkNFITk4SYtG40d0e2VPlg856V2s5HzZ2dfEIhiKOw+A+yqaA==
-X-Received: by 2002:ac8:7d43:0:b0:4a5:a7a8:fd83 with SMTP id d75a77b69052e-4a7f2a3c555mr61902301cf.44.1750947512103;
-        Thu, 26 Jun 2025 07:18:32 -0700 (PDT)
-Received: from localhost.localdomain (c-73-228-159-35.hsd1.mn.comcast.net. [73.228.159.35])
-        by smtp.gmail.com with ESMTPSA id d75a77b69052e-4a779d6df17sm70266101cf.30.2025.06.26.07.18.30
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 26 Jun 2025 07:18:31 -0700 (PDT)
-From: Alex Elder <elder@riscstar.com>
-To: lee@kernel.org,
-	lgirdwood@gmail.com,
-	broonie@kernel.org,
-	alexandre.belloni@bootlin.com,
-	robh@kernel.org,
-	krzk+dt@kernel.org,
-	conor+dt@kernel.org
-Cc: mat.jonczyk@o2.pl,
-	dlan@gentoo.org,
-	paul.walmsley@sifive.com,
-	palmer@dabbelt.com,
-	aou@eecs.berkeley.edu,
-	alex@ghiti.fr,
-	troymitchell988@gmail.com,
-	guodong@riscstar.com,
-	linux-rtc@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	linux-riscv@lists.infradead.org,
-	spacemit@lists.linux.dev,
-	linux-kernel@vger.kernel.org
-Subject: [PATCH v5 0/7] spacemit: introduce P1 PMIC support
-Date: Thu, 26 Jun 2025 09:18:19 -0500
-Message-ID: <20250626141827.1140403-1-elder@riscstar.com>
-X-Mailer: git-send-email 2.45.2
+	s=arc-20240116; t=1750947639; c=relaxed/simple;
+	bh=yxN2RrdCi+oF75J4+SNsoBdRHTZ0fryD0gPR4jugiYI=;
+	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
+	 In-Reply-To:Content-Type; b=REvL08YDYgmxTt42aJ+g4/eVd98NcbFCHbkvPD1aLlxb7lYErqWlIuS/o6r0t1LKuWTy4r1uwpilasijoJ+I42/X+m2fIITyFQRT3P3S4WkPeL+wDK4etEfd++gGPqE6aLzcz1/v3Ausk3pTqJJlc5fKOgCDT6jp+Vj1D5VAMqo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=Um9jdZEC; arc=none smtp.client-ip=198.47.19.246
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
+Received: from fllvem-sh03.itg.ti.com ([10.64.41.86])
+	by fllvem-ot04.ext.ti.com (8.15.2/8.15.2) with ESMTP id 55QEILMu2480443;
+	Thu, 26 Jun 2025 09:18:21 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+	s=ti-com-17Q1; t=1750947501;
+	bh=wFsFiLH1AC8uaOEAXzwfhn+J6kmqxAKDCggsNNyWAkM=;
+	h=Date:Subject:To:CC:References:From:In-Reply-To;
+	b=Um9jdZECWIV0e9EakqymbBQVn/y22bAgmlwIMh7BrwDp1eSY+Jw0Spcn38rvaRLgK
+	 e6pzZhrYMic51XSVuJrW1UJddRUkZmyKs2egFV+STbr+Uuh1h04GhqWKfgKLm/YDC5
+	 L9g0TCz9PAFbcJo6i3tjyRPFmt8JQae2OytW9GOs=
+Received: from DFLE109.ent.ti.com (dfle109.ent.ti.com [10.64.6.30])
+	by fllvem-sh03.itg.ti.com (8.18.1/8.18.1) with ESMTPS id 55QEILfC2053280
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-SHA256 bits=128 verify=FAIL);
+	Thu, 26 Jun 2025 09:18:21 -0500
+Received: from DFLE101.ent.ti.com (10.64.6.22) by DFLE109.ent.ti.com
+ (10.64.6.30) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.55; Thu, 26
+ Jun 2025 09:18:20 -0500
+Received: from lelvem-mr06.itg.ti.com (10.180.75.8) by DFLE101.ent.ti.com
+ (10.64.6.22) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.55 via
+ Frontend Transport; Thu, 26 Jun 2025 09:18:20 -0500
+Received: from [128.247.81.105] (judy-hp.dhcp.ti.com [128.247.81.105])
+	by lelvem-mr06.itg.ti.com (8.18.1/8.18.1) with ESMTP id 55QEIKGq1132823;
+	Thu, 26 Jun 2025 09:18:20 -0500
+Message-ID: <44649612-ea42-43af-b07a-f2f504a199fa@ti.com>
+Date: Thu, 26 Jun 2025 09:18:20 -0500
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 2/3] arm64: dts: ti: k3-am62-main: Remove eMMC High Speed
+ DDR support
+To: Vignesh Raghavendra <vigneshr@ti.com>,
+        Ulf Hansson
+	<ulf.hansson@linaro.org>,
+        Adrian Hunter <adrian.hunter@intel.com>
+CC: Nishanth Menon <nm@ti.com>, Tero Kristo <kristo@kernel.org>,
+        Rob Herring
+	<robh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley
+	<conor+dt@kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>, <linux-mmc@vger.kernel.org>
+References: <20250624221230.1952291-1-jm@ti.com>
+ <20250624221230.1952291-3-jm@ti.com>
+ <5428ecbd-8154-43b1-a77c-9eda550c47e7@ti.com>
+Content-Language: en-US
+From: Judith Mendez <jm@ti.com>
+In-Reply-To: <5428ecbd-8154-43b1-a77c-9eda550c47e7@ti.com>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 7bit
+X-C2ProcessedOrg: 333ef613-75bf-4e12-a4b1-8e3623f5dcea
 
-The SpacemiT P1 is an I2C-controlled PMIC that implements 6 buck
-converters and 12 LDOs.  It contains a load switch, ADC channels,
-GPIOs, a real-time clock, and a watchdog timer.
+Hi Vignesh,
 
-This series introduces a multifunction driver for the P1 PMIC as well
-as drivers for its regulators and RTC.
+On 6/25/25 10:58 PM, Vignesh Raghavendra wrote:
+> 
+> 
+> On 25/06/25 03:42, Judith Mendez wrote:
+>> For eMMC, High Speed DDR mode is not supported [0], so remove
+>> mmc-ddr-1_8v flag which adds the capability.
+>>
+> 
+> Needs a Fixes tag.
 
-This version updates the RTC code in patch 4 based on a few review
-comments from Alexandre Belloni.
+Ok, will add fixes tag and send in a separate series.
 
-					-Alex
-
-This series is available here:
-  https://github.com/riscstar/linux/tree/outgoing/pmic-v5
-
-Between version 4 and version 5:
-  - Only check the seconds register for change when looping on read
-  - Return without re-enabling the RTC if writing registers fails
-  - If the RTC is disabled when reading, return an error
-
-Here is version 4 of this series:
-  https://lore.kernel.org/lkml/20250625164119.1068842-1-elder@riscstar.com/
-
-More complete history is available at that link.
-
-Alex Elder (7):
-  dt-bindings: mfd: add support the SpacemiT P1 PMIC
-  mfd: simple-mfd-i2c: add SpacemiT P1 support
-  regulator: spacemit: support SpacemiT P1 regulators
-  rtc: spacemit: support the SpacemiT P1 RTC
-  riscv: dts: spacemit: enable the i2c8 adapter
-  riscv: dts: spacemit: define fixed regulators
-  riscv: dts: spacemit: define regulator constraints
-
- .../devicetree/bindings/mfd/spacemit,p1.yaml  |  86 +++++++++
- .../boot/dts/spacemit/k1-bananapi-f3.dts      | 138 +++++++++++++++
- arch/riscv/boot/dts/spacemit/k1-pinctrl.dtsi  |   7 +
- arch/riscv/boot/dts/spacemit/k1.dtsi          |  11 ++
- drivers/mfd/Kconfig                           |  11 ++
- drivers/mfd/simple-mfd-i2c.c                  |  18 ++
- drivers/regulator/Kconfig                     |  12 ++
- drivers/regulator/Makefile                    |   1 +
- drivers/regulator/spacemit-p1.c               | 157 ++++++++++++++++
- drivers/rtc/Kconfig                           |  10 ++
- drivers/rtc/Makefile                          |   1 +
- drivers/rtc/rtc-spacemit-p1.c                 | 167 ++++++++++++++++++
- 12 files changed, 619 insertions(+)
- create mode 100644 Documentation/devicetree/bindings/mfd/spacemit,p1.yaml
- create mode 100644 drivers/regulator/spacemit-p1.c
- create mode 100644 drivers/rtc/rtc-spacemit-p1.c
-
-
-base-commit: ecb259c4f70dd5c83907809f45bf4dc6869961d7
--- 
-2.45.2
+> 
+>> [0] https://www.ti.com/lit/gpn/am625
+>> Signed-off-by: Judith Mendez <jm@ti.com>
+>> ---
+>>   arch/arm64/boot/dts/ti/k3-am62-main.dtsi | 1 -
+>>   1 file changed, 1 deletion(-)
+>>
+>> diff --git a/arch/arm64/boot/dts/ti/k3-am62-main.dtsi b/arch/arm64/boot/dts/ti/k3-am62-main.dtsi
+>> index 9e0b6eee9ac7..120ba8f9dd0e 100644
+>> --- a/arch/arm64/boot/dts/ti/k3-am62-main.dtsi
+>> +++ b/arch/arm64/boot/dts/ti/k3-am62-main.dtsi
+>> @@ -553,7 +553,6 @@ sdhci0: mmc@fa10000 {
+>>   		clocks = <&k3_clks 57 5>, <&k3_clks 57 6>;
+>>   		clock-names = "clk_ahb", "clk_xin";
+>>   		bus-width = <8>;
+>> -		mmc-ddr-1_8v;
+>>   		mmc-hs200-1_8v;
+>>   		ti,clkbuf-sel = <0x7>;
+>>   		ti,otap-del-sel-legacy = <0x0>;
+> 
 
 
