@@ -1,48 +1,63 @@
-Return-Path: <devicetree+bounces-189878-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-189881-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id B2DD0AE9B7C
-	for <lists+devicetree@lfdr.de>; Thu, 26 Jun 2025 12:35:09 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1A04BAE9BA1
+	for <lists+devicetree@lfdr.de>; Thu, 26 Jun 2025 12:39:15 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id E1D4816D968
-	for <lists+devicetree@lfdr.de>; Thu, 26 Jun 2025 10:34:47 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id DFD693BE16F
+	for <lists+devicetree@lfdr.de>; Thu, 26 Jun 2025 10:36:52 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1B8A02E06F3;
-	Thu, 26 Jun 2025 10:29:05 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 23C8126B2BF;
+	Thu, 26 Jun 2025 10:35:00 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="oi7VIXxn"
+	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="EZ2oMctZ"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from lelvem-ot02.ext.ti.com (lelvem-ot02.ext.ti.com [198.47.23.235])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E380B2E06EA;
-	Thu, 26 Jun 2025 10:29:04 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 69A51237162;
+	Thu, 26 Jun 2025 10:34:58 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.23.235
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1750933745; cv=none; b=u/tj6ZIYcMHcbBtLJI3LMZL6SssydfT92J4cji15mS8OX1hF6Sc0CebPhoZKz241Q3tZFzOJNXWKTAOtWwZZGSo+RLcc5T6GbpvByvuDEzbBSBEsKcHukCxD7zLs0mM+oC4wC2SqemNMozff7gvLL2MJuNrXHCFOchukFT/hXYc=
+	t=1750934100; cv=none; b=Vm8EtgUHXtXObxW6EFQutH98bERiym+Cl8d8j0VUpJ5eu6RYyQPS6mu/VcrlL3gVUOR+Q8X5285wazX2W9J9/ohHXAi/1rSs0aYc5mqTHS0UREkrm99jDxMZfAnQ3dWUHimF4EONGD2ktjSpGtXh9jcNitppweDx0CTQmo/Ojg0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1750933745; c=relaxed/simple;
-	bh=G5ybaN75pAel1FxnSt/1K7ti6SyLbaLmGmBlE6NQkY4=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=f8ebPY2KoYUfXMPSFYc9+9HAMTjDv/cYkC2g1nelv9malyiuzdoobYQO0AufCFGr8l7zS6IEc7pUOK97+2AO6vmi6vuVP48f/3shN/7M2YHzAQA2HKS7hu+6P21PMcnWPJ8sMdQmsFD3H9T2d0yAus20cVDsXW7+1b6njqVto3s=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=oi7VIXxn; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 4BF55C4CEEB;
-	Thu, 26 Jun 2025 10:28:58 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1750933744;
-	bh=G5ybaN75pAel1FxnSt/1K7ti6SyLbaLmGmBlE6NQkY4=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=oi7VIXxn29z7R8O8P8c9fQZnkn5IDAMaBnv8A0nbr4CLZlfHsf3gDQ2BzBmPN6HCT
-	 Z1EBjkyAw2UicwTc9q/WzN03EQPEZyP7Xm21/eINdIlByYbHKbQoRo7SJTsHWqLqI/
-	 Q+PKXAp8KLYBwTI3rgWQ8EZSyWMcGGwSdjJ+KTx+UoqW7Xfm+ewsxenLGuooSforAT
-	 qtQ2xU8C7apJslZEGMFqfyCekIOafvgNGwuAW6a9SjIP2aq3VjeP9VLgIFBZFg3O3r
-	 2EKUQiV+j5oIYpfXGG4mRw+OxjYJFDM2H4il8Cr8wcNNsbVtExmGL3gQMmoGpFFUUP
-	 Ar0xBVDZvD9AQ==
-Message-ID: <0e030c09-0a89-4883-b958-85ddd6831407@kernel.org>
-Date: Thu, 26 Jun 2025 12:28:56 +0200
+	s=arc-20240116; t=1750934100; c=relaxed/simple;
+	bh=dQ2Zex+ov2PCncLQ7U1GbKR7W8qycO6k0YuiZMLpeH4=;
+	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
+	 In-Reply-To:Content-Type; b=qXZ6WG4Yd6pzXjRM0Wu/y+qvii2RqfOagY6Sv18U42lW7hBx1EySh0KiLzqK0oriS6nOZmHzxRW80oq0BvzdZFUWHlvNhhfL6KSWwGPKRdM01zH79EbkIpQhyhqAdbmVKexsXLZMW0O5Jy0evpZyf/x20r5u7gYPRE3+sQwyjQE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=EZ2oMctZ; arc=none smtp.client-ip=198.47.23.235
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
+Received: from fllvem-sh04.itg.ti.com ([10.64.41.54])
+	by lelvem-ot02.ext.ti.com (8.15.2/8.15.2) with ESMTP id 55QAYql52391124;
+	Thu, 26 Jun 2025 05:34:52 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+	s=ti-com-17Q1; t=1750934092;
+	bh=pdqJ3/ldB4zuQCaDnWbImn2eySoaM0afbT1+2XUy9J0=;
+	h=Date:Subject:To:CC:References:From:In-Reply-To;
+	b=EZ2oMctZVZApUtrJijsJRvVhgoS3zGvOLgr3frisLx+HD6anG1y1/JvK8IEsxcJ7q
+	 IKwBbW4ZZ0C2Fk//YO80M0uKb22hQc6p09zjtKjJc6g4A36bptnXSOyrcO+qvCRMEe
+	 zpE+5rUUJmsvoHNGfnmbifxpfWycSPTsS+L798GE=
+Received: from DLEE109.ent.ti.com (dlee109.ent.ti.com [157.170.170.41])
+	by fllvem-sh04.itg.ti.com (8.18.1/8.18.1) with ESMTPS id 55QAYqan2165138
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-SHA256 bits=128 verify=FAIL);
+	Thu, 26 Jun 2025 05:34:52 -0500
+Received: from DLEE108.ent.ti.com (157.170.170.38) by DLEE109.ent.ti.com
+ (157.170.170.41) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.55; Thu, 26
+ Jun 2025 05:34:51 -0500
+Received: from lelvem-mr06.itg.ti.com (10.180.75.8) by DLEE108.ent.ti.com
+ (157.170.170.38) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.55 via
+ Frontend Transport; Thu, 26 Jun 2025 05:34:51 -0500
+Received: from [172.24.31.248] (lt5cd2489kgj.dhcp.ti.com [172.24.31.248])
+	by lelvem-mr06.itg.ti.com (8.18.1/8.18.1) with ESMTP id 55QAYl0f855804;
+	Thu, 26 Jun 2025 05:34:48 -0500
+Message-ID: <b37efc4e-0959-47a0-8fae-6cb35899752e@ti.com>
+Date: Thu, 26 Jun 2025 16:04:46 +0530
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,107 +65,144 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v5 3/4] media: dt-bindings: Add qcom,msm8939-camss
-To: Bryan O'Donoghue <bryan.odonoghue@linaro.org>, vincent.knecht@mailoo.org,
- Robert Foss <rfoss@kernel.org>, Todor Tomov <todor.too@gmail.com>,
- Mauro Carvalho Chehab <mchehab@kernel.org>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Bjorn Andersson <andersson@kernel.org>,
- Konrad Dybcio <konradybcio@kernel.org>
-Cc: linux-kernel@vger.kernel.org, linux-media@vger.kernel.org,
- linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
- =?UTF-8?Q?Andr=C3=A9_Apitzsch?= <git@apitzsch.eu>,
- phone-devel@vger.kernel.org, ~postmarketos/upstreaming@lists.sr.ht,
- Vladimir Zapolskiy <vladimir.zapolskiy@linaro.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-References: <20250613-camss-8x39-vbif-v5-0-a002301a7730@mailoo.org>
- <20250613-camss-8x39-vbif-v5-3-a002301a7730@mailoo.org>
- <50fa344c-d683-420c-a3b5-837ec6d8e93e@kernel.org>
- <e928a7c5-56d5-4f2b-b667-bdbefb506d1f@linaro.org>
-From: Krzysztof Kozlowski <krzk@kernel.org>
+Subject: Re: [PATCH v2 6/7] arm64: dts: ti: k3-j721s2-common-proc-board:
+ Enable DisplayPort-1
+To: Jayesh Choudhary <j-choudhary@ti.com>, <nm@ti.com>, <vigneshr@ti.com>,
+        <devicetree@vger.kernel.org>
+CC: <kristo@kernel.org>, <robh@kernel.org>, <krzk+dt@kernel.org>,
+        <conor+dt@kernel.org>, <linux-arm-kernel@lists.infradead.org>,
+        <linux-kernel@vger.kernel.org>, <devarsht@ti.com>, <u-kumar1@ti.com>
+References: <20250624082619.324851-1-j-choudhary@ti.com>
+ <20250624082619.324851-7-j-choudhary@ti.com>
 Content-Language: en-US
-Autocrypt: addr=krzk@kernel.org; keydata=
- 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 a/A=
-In-Reply-To: <e928a7c5-56d5-4f2b-b667-bdbefb506d1f@linaro.org>
-Content-Type: text/plain; charset=UTF-8
+From: "Kumar, Udit" <u-kumar1@ti.com>
+In-Reply-To: <20250624082619.324851-7-j-choudhary@ti.com>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
 Content-Transfer-Encoding: 7bit
-
-On 26/06/2025 12:19, Bryan O'Donoghue wrote:
-> On 26/06/2025 11:00, Krzysztof Kozlowski wrote:
->>> +  reg-names:
->>> +    items:
->>> +      - const: csi_clk_mux
->> No, I already provided arguments in two lengthy discussions - this is
->> not sorted by name.
->>
->> Keep the same order as in previous device, so msm8916 for example. Or
->> any other, but listen to some requests to sort it by some arbitrary rule
->> which was never communicated by DT maintainers.
-> 
-> I don't think if you look through the history that you can find a 
-> consistent rule that was used to arrange the registers.
-> 
-> So we are trying to have a consistent way of doing that. Thats why the 
-> last number of additions have been sort by name, because it seemed to be 
-> the most consistent.
+X-C2ProcessedOrg: 333ef613-75bf-4e12-a4b1-8e3623f5dcea
 
 
-Why are we discussing it again? You asked me the same here:
-https://lore.kernel.org/all/8f11c99b-f3ca-4501-aec4-0795643fc3a9@kernel.org/
+On 6/24/2025 1:56 PM, Jayesh Choudhary wrote:
+> Enable DSI display for J721S2 EVM.
+>
+> Add the endpoint nodes to describe connection from:
+> DSS => DSI Bridge => DSI to eDP bridge => DisplayPort-1
+>
+> Set status for all required nodes for DisplayPort-1 as 'okay'.
+>
+> Signed-off-by: Jayesh Choudhary <j-choudhary@ti.com>
+> ---
+>   .../dts/ti/k3-j721s2-common-proc-board.dts    | 89 +++++++++++++++++++
+>   1 file changed, 89 insertions(+)
+>
+> diff --git a/arch/arm64/boot/dts/ti/k3-j721s2-common-proc-board.dts b/arch/arm64/boot/dts/ti/k3-j721s2-common-proc-board.dts
+> index 793d50344fad..efe857a50bb1 100644
+> --- a/arch/arm64/boot/dts/ti/k3-j721s2-common-proc-board.dts
+> +++ b/arch/arm64/boot/dts/ti/k3-j721s2-common-proc-board.dts
+> @@ -93,6 +93,29 @@ vdd_sd_dv: gpio-regulator-TLV71033 {
+>   			 <3300000 0x1>;
+>   	};
+>   
+> +	dp1_pwr_3v3: regulator-dp1-prw {
+> +		compatible = "regulator-fixed";
+> +		regulator-name = "dp1-pwr";
+> +		regulator-min-microvolt = <3300000>;
+> +		regulator-max-microvolt = <3300000>;
+> +		gpio = <&exp4 1 GPIO_ACTIVE_HIGH>; /* P1 - DP1_PWR_SW_EN */
+> +		enable-active-high;
+> +		regulator-always-on;
 
-and I already said - not sorting by name. You take the same order as
-previous.
+Please check once, if this regulator falls under regulator-always-on case,
 
-If you ever want to sort by name, answer to yourself:
-NO. Take the same order as other existing device.
+I can imagine a case, where DP1 is not used and still regulator is kept on
 
-If you ever want to sort by value, answer to yourself:
-NO.
 
-You both came with some new, invented rules of sorting, applied it, and
-now you claim that "existing devices were sorted like that". What? NO!
-
-Best regards,
-Krzysztof
+> +	};
+> +
+> +	dp1: connector-dp1 {
+> +		compatible = "dp-connector";
+> +		label = "DP1";
+> +		type = "full-size";
+> +		dp-pwr-supply = <&dp1_pwr_3v3>;
+> +
+> +		port {
+> +			dp1_connector_in: endpoint {
+> +				remote-endpoint = <&dp1_out>;
+> +			};
+> +		};
+> +	};
+> +
+>   	transceiver1: can-phy1 {
+>   		compatible = "ti,tcan1043";
+>   		#phy-cells = <0>;
+> @@ -563,3 +586,69 @@ &main_mcan5 {
+>   	pinctrl-0 = <&main_mcan5_pins_default>;
+>   	phys = <&transceiver4>;
+>   };
+> +
+> +&dss {
+> +	/*
+> +	 * DSS on J721S2-EVM supports DP on VP0 and DSI on VP2.
+> +	 * These clock assignments are chosen to enable the following outputs:
+> +	 * VP0 - DisplayPort SST
+> +	 * VP2 - DSI
+> +	 */
+> +	status = "okay";
+> +	assigned-clocks = <&k3_clks 158 2>,
+> +			  <&k3_clks 158 14>;
+> +	assigned-clock-parents = <&k3_clks 158 3>,
+> +				 <&k3_clks 158 16>;
+> +};
+> +
+> +&dss_ports {
+> +	#address-cells = <1>;
+> +	#size-cells = <0>;
+> +
+> +	port@2 {
+> +		reg = <2>;
+> +		dpi2_out: endpoint {
+> +			remote-endpoint = <&dsi0_in>;
+> +		};
+> +	};
+> +};
+> +
+> +&dsi0_ports {
+> +	port@0 {
+> +		reg = <0>;
+> +		dsi0_out: endpoint {
+> +			remote-endpoint = <&dp1_in>;
+> +		};
+> +	};
+> +
+> +	port@1 {
+> +		reg = <1>;
+> +		dsi0_in: endpoint {
+> +			remote-endpoint = <&dpi2_out>;
+> +		};
+> +	};
+> +};
+> +
+> +&dsi_edp_bridge_ports {
+> +	port@0 {
+> +		reg = <0>;
+> +		dp1_in: endpoint {
+> +			remote-endpoint = <&dsi0_out>;
+> +		};
+> +	};
+> +
+> +	port@1 {
+> +		reg = <1>;
+> +		dp1_out: endpoint {
+> +			remote-endpoint = <&dp1_connector_in>;
+> +		};
+> +	};
+> +};
+> +
+> +&dphy_tx0 {
+> +	status = "okay";
+> +};
+> +
+> +&dsi0 {
+> +	status = "okay";
+> +};
 
