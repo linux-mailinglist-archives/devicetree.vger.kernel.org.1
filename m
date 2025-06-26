@@ -1,183 +1,155 @@
-Return-Path: <devicetree+bounces-189883-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-189886-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 98716AE9BCD
-	for <lists+devicetree@lfdr.de>; Thu, 26 Jun 2025 12:51:06 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2D9A6AE9BF8
+	for <lists+devicetree@lfdr.de>; Thu, 26 Jun 2025 12:56:54 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 1CF875A2269
-	for <lists+devicetree@lfdr.de>; Thu, 26 Jun 2025 10:50:41 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id B47651C421E6
+	for <lists+devicetree@lfdr.de>; Thu, 26 Jun 2025 10:57:09 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7947325A2CF;
-	Thu, 26 Jun 2025 10:49:42 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 31B1B26B773;
+	Thu, 26 Jun 2025 10:56:49 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=ventanamicro.com header.i=@ventanamicro.com header.b="g/qC2zeH"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="UEYEKqWd"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wr1-f49.google.com (mail-wr1-f49.google.com [209.85.221.49])
+Received: from mail-lj1-f175.google.com (mail-lj1-f175.google.com [209.85.208.175])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B7E5D264A9D
-	for <devicetree@vger.kernel.org>; Thu, 26 Jun 2025 10:49:40 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.49
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4C14C26B974
+	for <devicetree@vger.kernel.org>; Thu, 26 Jun 2025 10:56:47 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.175
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1750934982; cv=none; b=Uud9Tk22AASa5/Qwr0kR9zCxnLYG7h2tPWzWf5+/0NjYAqtxUzszGOOxTYA8MeYw3O68N0mUAbwkeNDWhGR/hO+oakpAGGHSTPo0MFA60ztzwYIu9yeYLLXkywZR7+KETKVaFXfkVRRGVFHPcg13iQuXVV4/ntAmKjQ7pz3LowA=
+	t=1750935409; cv=none; b=flcdARo6WKRav0bPRlBzR1cYEvT4ohQLlNGaFtssZJlAlYD3k7ldvLXXntG+81lmBCpiRGbQa5aV13jef5dCXBQ0JCxINWEONr8TADbDn8lUMYZu8irlh+HrlmLk4hg/MqYtB5Nctpzik8wT7sfQGU5KoWGXOCoHmILKaJGxvTA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1750934982; c=relaxed/simple;
-	bh=rBGBxF+i3sBjEDYBJzXyfsL97dNuu5H4YUuYuuclALQ=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=rA+q9CVvjKO+/oHYczuj4bUgk70NsFZUoKPoQT6bESveNmHCYmKqXpim1W0rqW340Y3ht6lPW+VFj8nQQJ+cFh6QtUXYRDXWYMHzm64xfAdoSkC7AQJHcezC36tSW5+qkBXW7VtkE0O2eILPSt+NtR6qJ/L3D87Ao7SgSCt3WN8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ventanamicro.com; spf=pass smtp.mailfrom=ventanamicro.com; dkim=pass (2048-bit key) header.d=ventanamicro.com header.i=@ventanamicro.com header.b=g/qC2zeH; arc=none smtp.client-ip=209.85.221.49
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ventanamicro.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ventanamicro.com
-Received: by mail-wr1-f49.google.com with SMTP id ffacd0b85a97d-3a588da60dfso516163f8f.1
-        for <devicetree@vger.kernel.org>; Thu, 26 Jun 2025 03:49:40 -0700 (PDT)
+	s=arc-20240116; t=1750935409; c=relaxed/simple;
+	bh=unJVU3Xl3Wm7HDliPBmbf0uw3veqwlYT5BkTyANO19U=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=U0Q5+WKklOibt5oOzzZH0RbCMmSjIGoHGc8Eq/SH7SFRt6dPHdQTn9Earh1yBVV/5RhTArG4+AH0OSd94qWwEF9ejnPQFGwROKXBOVbmqDzOiQ14yE/bvQaMISW+/+uB5NZR4QkwyhP+5qzMmT65opQbcsrNvGtV8TfJQwYc6PY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=UEYEKqWd; arc=none smtp.client-ip=209.85.208.175
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-lj1-f175.google.com with SMTP id 38308e7fff4ca-32b4eb13e8cso992841fa.1
+        for <devicetree@vger.kernel.org>; Thu, 26 Jun 2025 03:56:47 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=ventanamicro.com; s=google; t=1750934979; x=1751539779; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=1a0bjQkrE0lXOwbpfOZiZMnL8XuL0L+bDp2YasyQuLw=;
-        b=g/qC2zeH57dA3Ddn2gBt06KrRw5rhOs/KrOwGt5DINU95mZqhr06obNUacy9cV+p5A
-         DkE92d60c4gDQGnhO+CGFGzW53ioXrpTr6HnuWHdi4UnDFQzAKvPk0RjSdQqw+aVgITa
-         ZyT0LT1n1amgAVYFYuv0b5fl+3xIBz5Vqf91wD14ojgXD3qyOORIJWH90WtMnkvqjnfZ
-         wc1p1Q/dh+qGKr3a+ESg5QBXmrD5IyQCqt3j3cRZVWEL90bZBuFvn0Nb2fxaHTsQKIH6
-         NSmUD9PQEZEOzzzi3WV6KhXNQKKwUtt7V70JJilpBtA2xLL4p+iboVRooAhwo9nJZDoa
-         LVrw==
+        d=linaro.org; s=google; t=1750935405; x=1751540205; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=RrVEb7SOHXOjIaJsMr6PdsN8zJOeLk7RyAInvGFhJ0Q=;
+        b=UEYEKqWdJJgWuMFvBOsD4Q6B/UfuBOrxO0TvlXtnGGFC2fcQgqtvwC5yuFviBretQI
+         U5W6hcU9Lskj41m0iWJ59Supnxik4DeJ7Yb96UF9660zRiqfFTjIi0O+jJ0PCY6nq0pD
+         J/g4icH0y+p3xlKTqlbS7Nbi0iUcL2jWtfhuBywdLqZF/sdVfVLKrLx3TA3ZG4vo4f4I
+         Cn1evGDvVSE0KuJH33zrEmlYpEBQilUQj9ss6a11SUqfEZWnRFMppL4xEGMmBS+FIljU
+         wOqop6o9/fznGMq5qtWhULatKz9lDHxXqpV40EZCM2CCkbbr8bUVHK6qORgAhmN6aNZV
+         4S8g==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1750934979; x=1751539779;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=1a0bjQkrE0lXOwbpfOZiZMnL8XuL0L+bDp2YasyQuLw=;
-        b=ThMIUiaabrjqCBRSB9NY4mTby2jmvElowpXMn1GAAUpWnLiaV8ZkiSDbo7KEqikl2H
-         ri5ldd51JiGs3VeCaeLLeJKpThnwn4Boplk5YSRPF/ajZ7rfUhO4FzT5QYN6Abx4Fl87
-         YakQ+8HH7GbjWoc/sGYlQuZQtJMFHfJV3hrARat9exGCy4YvmVBISvyRrYAj7mM2V9yo
-         gEWVRpJW2YlhYpPop4ZkRcNw6i+TrheJ1n/sIlJPB5m8KC4PUsP4/0wfJwhkHP+d+3Ns
-         wfXLAxmkYT9iDZjOUYxvt5Jwzmq7iHGrU9w3/32BJUJao1fhEodmsREwJFMv0h3qrUoj
-         /98g==
-X-Forwarded-Encrypted: i=1; AJvYcCU4m+Fc/jPFDq0FYZ7nt2yzhm7Vrs3WLLlXRfLQ1HqV/w2dQtDrlGG2tGGpTmsbFp5HA4T9w5Gz0ISQ@vger.kernel.org
-X-Gm-Message-State: AOJu0YycvrRzjLPIs7/p+DD9ugzAzT2BH9uheXsIp+FdJURpn+cS0sCE
-	a1r5dHH/SogUW7nwfvSzNkE7InakR24DU9idR3MK6rCXDkJZbNSNHCK1A6RF3ZsXbCE=
-X-Gm-Gg: ASbGncv0dT1guEBG/vEiS939RlzFlwN6KMEoO8QboUlwI2CyqLM/l4sugEqsK4twDIl
-	yJJ6tGwvcqnrW6gxUR91ic3kV2m6uhUudC7coBcW761GN5bQy4T+cAoKs5eDDZNomsYS4gqgfhE
-	zrCM2zWpqwl1PvTp9Jy1rUNlJceQoGcy8zOeaj8mUBDJK72lW1fOCy6i6Ah7EvauGE/OIYWv26S
-	NGBi5LWbloijSpF2Kc/NelmBrNa69sRoUZMFTDOZQnXOWP68qPwE26nRM4YEM94YOQy07Cbn/qm
-	FdroEjMyq5D7elX7CfCEAXMbcCUbM/R/PF6WoHZpYz3ATHpBB8hpmAdmybvG
-X-Google-Smtp-Source: AGHT+IHq/vFRkJj/oJMZi+3J+q9S/bpmTny3iypeXTqCnR6Swc4ofLBoKTbFvUTAYU6DIEK0HRcCDQ==
-X-Received: by 2002:a5d:64e1:0:b0:3a6:d92d:9f7c with SMTP id ffacd0b85a97d-3a6ed5e9c5bmr5333270f8f.9.1750934978974;
-        Thu, 26 Jun 2025 03:49:38 -0700 (PDT)
-Received: from localhost ([2a02:8308:a00c:e200::5485])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-3a6f3a79377sm1808780f8f.20.2025.06.26.03.49.38
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 26 Jun 2025 03:49:38 -0700 (PDT)
-Date: Thu, 26 Jun 2025 12:49:37 +0200
-From: Andrew Jones <ajones@ventanamicro.com>
-To: Aleksa Paunovic via B4 Relay <devnull+aleksa.paunovic.htecgroup.com@kernel.org>
-Cc: Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Paul Walmsley <paul.walmsley@sifive.com>, Palmer Dabbelt <palmer@dabbelt.com>, 
-	Albert Ou <aou@eecs.berkeley.edu>, Alexandre Ghiti <alex@ghiti.fr>, 
-	Jonathan Corbet <corbet@lwn.net>, Palmer Dabbelt <palmer@sifive.com>, 
-	Conor Dooley <conor@kernel.org>, devicetree@vger.kernel.org, linux-riscv@lists.infradead.org, 
-	linux-kernel@vger.kernel.org, linux-doc@vger.kernel.org, 
-	Aleksa Paunovic <aleksa.paunovic@htecgroup.com>
-Subject: Re: [PATCH v4 6/7] riscv: Add tools support for xmipsexectl
-Message-ID: <20250626-af013235ad8d22421b2fe5b1@orel>
-References: <20250625-p8700-pause-v4-0-6c7dd7f85756@htecgroup.com>
- <20250625-p8700-pause-v4-6-6c7dd7f85756@htecgroup.com>
- <20250626-a1aca9887bbf5410741e17c4@orel>
- <20250626-0186dfe9df28f9bb72a91426@orel>
+        d=1e100.net; s=20230601; t=1750935405; x=1751540205;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=RrVEb7SOHXOjIaJsMr6PdsN8zJOeLk7RyAInvGFhJ0Q=;
+        b=UNniVwtmEV3FbnbC8Ssgp7CnbqcaaTyzSVFeP4A9VXo8x9ZHEVlGWD/0viU8/dVSkl
+         2l8cpz2h2WyO3LYsKspITGkR072gKJ4V5NGEvfI6k0WWuY+Ht4ejuj02IUzW7ZfcMo3B
+         8PjHRDFgqlOLnrCN6QeTG6qmjRwQ8O6Le+sQ1bU8rEA+SzGpf3oJ9rv42DKFojyJZKP1
+         MMSEaVdtRS44NfvUcNfoszlvrg622m3R2gxPMWDNk1PPpX8F90P1Cc9t7JR2VOGenHqh
+         NojCenHj65Uww+VtLIKYl9dgIwdrNET7cuTvwkR9bJj/3HWRJZX4iOy1hxeG7TJAmUQ8
+         2Ggw==
+X-Forwarded-Encrypted: i=1; AJvYcCXRVo3G5OK49GX7qVPm+O18OjkYT2iKVxaalGr7VocKqqai2/IaiAv+yxLraDWZMIt4JugoiM8wuIJj@vger.kernel.org
+X-Gm-Message-State: AOJu0YwnE9JrZSmKmJyAABWLXhBGluX4NhMRwzsTd2Ki77XTcSe1uNt3
+	jLApwXmOVsP52irjt3le3kirt32iB+D4lSEBxWmb5NNyREMvxPkSyW+PQQu0ezd9tOs=
+X-Gm-Gg: ASbGnct83GFszVg9m6nxCrIQGfDRToE0Uq7ZZQm/HXOf3CSu510Ylxs1xaW6SJ7ZNN5
+	hyN0anC8ARDbYIES5am/k3P7pvlMllvGiRhehrwC899yOYBKasxcuMueEyBeHijkA/QtzC9UKGp
+	9kltfVlj/EATs5Y0adDUVIIFNNuxQaOnwJX0fTCFYea7SNa6xBdsChmvw7438Sgoei0AZN1qkkk
+	A1WxB4PxWQUdNyoQFg96AsKu8xCnfjMFCqxry2LZunGpulWdu8QLwikZimpRjNlDv2/z9vQRZGd
+	VQBWfUkN0nDGwsNM5O4+keAylLzNwJpZvWvE7atp8hClmbXW8xFHybQR7Jv1lldriieHLQokMsn
+	Wzhke5B/V13eP2Z8sK7XyIpvUUHinJIzw6O1Si0Lf
+X-Google-Smtp-Source: AGHT+IH57sZpqtFwHoa4JW0LInHA8kw3WhTt17SJ6Qp+hkH5OY5V3UsY/0SWnVUa5DXSYTbv462qjA==
+X-Received: by 2002:a05:6512:234e:b0:554:f74e:9f0a with SMTP id 2adb3069b0e04-554fdd59ee7mr658062e87.14.1750935405424;
+        Thu, 26 Jun 2025 03:56:45 -0700 (PDT)
+Received: from [192.168.1.4] (88-112-131-206.elisa-laajakaista.fi. [88.112.131.206])
+        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-553e41c2ef7sm2581675e87.144.2025.06.26.03.56.44
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 26 Jun 2025 03:56:45 -0700 (PDT)
+Message-ID: <c4fc49d5-e946-4526-9100-0e891c4a5e4c@linaro.org>
+Date: Thu, 26 Jun 2025 13:56:44 +0300
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20250626-0186dfe9df28f9bb72a91426@orel>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v5 2/4] media: qcom: camss: Add support for MSM8939
+Content-Language: ru-RU
+To: vincent.knecht@mailoo.org, Robert Foss <rfoss@kernel.org>,
+ Todor Tomov <todor.too@gmail.com>,
+ Bryan O'Donoghue <bryan.odonoghue@linaro.org>,
+ Mauro Carvalho Chehab <mchehab@kernel.org>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Bjorn Andersson <andersson@kernel.org>,
+ Konrad Dybcio <konradybcio@kernel.org>
+Cc: linux-kernel@vger.kernel.org, linux-media@vger.kernel.org,
+ linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+ =?UTF-8?Q?Andr=C3=A9_Apitzsch?= <git@apitzsch.eu>,
+ phone-devel@vger.kernel.org, ~postmarketos/upstreaming@lists.sr.ht
+References: <20250613-camss-8x39-vbif-v5-0-a002301a7730@mailoo.org>
+ <20250613-camss-8x39-vbif-v5-2-a002301a7730@mailoo.org>
+From: Vladimir Zapolskiy <vladimir.zapolskiy@linaro.org>
+In-Reply-To: <20250613-camss-8x39-vbif-v5-2-a002301a7730@mailoo.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 
-On Thu, Jun 26, 2025 at 11:34:21AM +0200, Andrew Jones wrote:
-> On Thu, Jun 26, 2025 at 11:21:10AM +0200, Andrew Jones wrote:
-> > On Wed, Jun 25, 2025 at 04:21:01PM +0200, Aleksa Paunovic via B4 Relay wrote:
-> > > From: Aleksa Paunovic <aleksa.paunovic@htecgroup.com>
-> > > 
-> > > Use the hwprobe syscall to decide which PAUSE instruction to execute in
-> > > userspace code.
-> > > 
-> > > Signed-off-by: Aleksa Paunovic <aleksa.paunovic@htecgroup.com>
-> > > ---
-> > >  tools/arch/riscv/include/asm/vdso/processor.h | 27 +++++++++++++++++----------
-> > >  1 file changed, 17 insertions(+), 10 deletions(-)
-> > > 
-> > > diff --git a/tools/arch/riscv/include/asm/vdso/processor.h b/tools/arch/riscv/include/asm/vdso/processor.h
-> > > index 662aca03984817f9c69186658b19e9dad9e4771c..027219a486b7b93814888190f8224af29498707c 100644
-> > > --- a/tools/arch/riscv/include/asm/vdso/processor.h
-> > > +++ b/tools/arch/riscv/include/asm/vdso/processor.h
-> > > @@ -4,26 +4,33 @@
-> > >  
-> > >  #ifndef __ASSEMBLY__
-> > >  
-> > > +#include <asm/hwprobe.h>
-> > > +#include <sys/hwprobe.h>
-> > > +#include <asm/vendor/mips.h>
-> > >  #include <asm-generic/barrier.h>
-> > >  
-> > >  static inline void cpu_relax(void)
-> > >  {
-> > > +	struct riscv_hwprobe pair;
-> > > +	bool has_mipspause;
-> > >  #ifdef __riscv_muldiv
-> > >  	int dummy;
-> > >  	/* In lieu of a halt instruction, induce a long-latency stall. */
-> > >  	__asm__ __volatile__ ("div %0, %0, zero" : "=r" (dummy));
-> > >  #endif
-> > >  
-> > > -#ifdef CONFIG_TOOLCHAIN_HAS_ZIHINTPAUSE
-> > > -	/*
-> > > -	 * Reduce instruction retirement.
-> > > -	 * This assumes the PC changes.
-> > > -	 */
-> > > -	__asm__ __volatile__ ("pause");
-> > > -#else
-> > > -	/* Encoding of the pause instruction */
-> > > -	__asm__ __volatile__ (".4byte 0x100000F");
-> > > -#endif
-> > > +	pair.key = RISCV_HWPROBE_KEY_VENDOR_EXT_MIPS_0;
-> > > +	__riscv_hwprobe(&pair, 1, 0, NULL, 0);
-> > > +	has_mipspause = pair.value & RISCV_HWPROBE_VENDOR_EXT_XMIPSEXECTL;
-> > > +
-> > > +	if (has_mipspause) {
-> > > +		/* Encoding of the mips pause instruction */
-> > > +		__asm__ __volatile__(".4byte 0x00501013");
-> > > +	} else {
-> > > +		/* Encoding of the pause instruction */
-> > > +		__asm__ __volatile__(".4byte 0x100000F");
-> > > +	}
-> > > +
-> > 
-> > cpu_relax() is used in places where we cannot afford the overhead nor call
-> > arbitrary functions which may take locks, etc. We've even had trouble
-> > using a static key here in the past since this is inlined and it bloated
-> > the size too much. You'll need to use ALTERNATIVE().
+Hello Vincent.
+
+On 6/13/25 12:33, Vincent Knecht via B4 Relay wrote:
+> From: Vincent Knecht <vincent.knecht@mailoo.org>
 > 
-> Oh, I see now that the next patch is handling the kernel cpu_relax with
-> ALTERNATIVE and this was just the tools cpu_relax. We don't want to make
-> a syscall inside cpu_relax though either, since it gets called in loops.
-
-(Another follow up to myself...)
-
-I guess with the vdso cached result it should only be a handful of
-instructions, but it still seems odd to embed a call in cpu_relax.
-
-Thanks,
-drew
-
-> It'd be better to just call the standard pause (0x100000F) even if it
-> does nothing. Or maybe there's some define that can be added/used to
-> select the correct instruction?
+> The camera subsystem for the MSM8939 is the same as MSM8916 except with
+> 3 CSID instead of 2, and some higher clock rates.
 > 
-> Thanks,
-> drew
+> As a quirk, this SoC needs writing values to 2 VFE VBIF registers
+> (see downstream msm8939-camera.dtsi vbif-{regs,settings} properties).
+> This fixes black stripes across sensor and garbage in CSID TPG outputs.
+> 
+> Add support for the MSM8939 camera subsystem.
+> 
+> Reviewed-by: Bryan O'Donoghue <bryan.odonoghue@linaro.org>
+> Signed-off-by: Vincent Knecht <vincent.knecht@mailoo.org>
+
+I would repeat my ask given previously:
+
+https://lore.kernel.org/all/877a72fa-cdae-4a66-9991-5ea86ef76aac@linaro.org/
+
+<snip>
+
+>   
+> +static const struct camss_resources msm8939_resources = {
+> +	.version = CAMSS_8x39,
+> +	.csiphy_res = csiphy_res_8x39,
+> +	.csid_res = csid_res_8x39,
+> +	.ispif_res = &ispif_res_8x39,
+> +	.vfe_res = vfe_res_8x39,
+> +	.csiphy_num = ARRAY_SIZE(csiphy_res_8x39),
+> +	.csid_num = ARRAY_SIZE(csid_res_8x39),
+> +	.vfe_num = ARRAY_SIZE(vfe_res_8x39),
+> +	.link_entities = camss_link_entities
+
+There shall be no more dragging of the .link_entities, it's gone
+a bit more than 6 weeks ago.
+
+https://lore.kernel.org/all/20250513142353.2572563-4-vladimir.zapolskiy@linaro.org/
+
+> +};
+> +
+
+For sake of simplicty you may include that particular change preserving
+all its tags into your MSM8939 changeset, it will help a maintainer
+to resolve merge conflicts.
+
+-- 
+Best wishes,
+Vladimir
 
