@@ -1,206 +1,1830 @@
-Return-Path: <devicetree+bounces-189808-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-189809-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6F36CAE99B5
-	for <lists+devicetree@lfdr.de>; Thu, 26 Jun 2025 11:11:39 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id D0E81AE99CA
+	for <lists+devicetree@lfdr.de>; Thu, 26 Jun 2025 11:20:52 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 1C60F189BE81
-	for <lists+devicetree@lfdr.de>; Thu, 26 Jun 2025 09:11:55 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 96B791C24353
+	for <lists+devicetree@lfdr.de>; Thu, 26 Jun 2025 09:21:07 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 54D6B296161;
-	Thu, 26 Jun 2025 09:11:35 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 72B19207A2A;
+	Thu, 26 Jun 2025 09:20:38 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="X66W3j2s"
+	dkim=pass (4096-bit key) header.d=prolan.hu header.i=@prolan.hu header.b="kfaMBISP"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from fw2.prolan.hu (fw2.prolan.hu [193.68.50.107])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 283C926B76D;
-	Thu, 26 Jun 2025 09:11:34 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 656192620E4;
+	Thu, 26 Jun 2025 09:20:32 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=193.68.50.107
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1750929095; cv=none; b=fu75KmiXAg5GlylSME5A5BmO4YzSIEpGQhuj926tql6xAmE1I1wwuTfWS3H5NHekaNiRyk9kvaeADGf6lrW6KtCsZwPcIBF30KkvyCsQKUgSeUuBtubYCUNxHNMIUwnDrBdgIr2aPWRpDSm+SYT6Yymp0fntnti+JawDDLA6MC8=
+	t=1750929638; cv=none; b=nXsxjE9ZBIPxVPCRs/n1pLb/Hm+IbOwMPXcLUFQwx6RrkXSMOSOI2oyv+I9CiDiOLltGxzKoRPzQGSzqDYJf0V+Y89zJKCpbszfrBhj5wBaUMjOCSAkmYOX1BvbqTrqDMGpbi4x+y4LQ+gt+U0NwXqgEYmzNib04oRGZ5DQhl2s=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1750929095; c=relaxed/simple;
-	bh=izvdoDHPwap29gsMm8KjSGY+FSECgCE9vlOURjOlLe4=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=GeRtqjMux2Jl9vJPrCmYC5Q3xS5soe+gi0i+4XIgF9PZRIkNVKzTK3qTJ3FijhKFbDOkA2OJ8LrY6Grbt8/BcbaTnGUn3qQYIlivLI8t2TI0HqXB/9IzVmpEBfH268LcLHEcg3+5IzwwRvwCIGMVWuJO1zGrqIpfBc+VBQeGVm0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=X66W3j2s; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 959A8C4CEEB;
-	Thu, 26 Jun 2025 09:11:30 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1750929094;
-	bh=izvdoDHPwap29gsMm8KjSGY+FSECgCE9vlOURjOlLe4=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=X66W3j2sZRlOI7urjMz3QGefFhUcabD2n4EAl3FuuuvR5EKsFAA7ms8+Vl4okRf8k
-	 rl0m85ccKq4XFJQ/AEEyVMyZKWryweQtVcTKeVhaVOf5/HNGvl/x10MHIxCBiH5LdJ
-	 s66qfxWK/C9QzI2CskRknUzjNGLy2X5cXX+cB0rOIre1FrbjSvt6PRMSgz+rgN+xYK
-	 82Z2tgCN7iHvjGZo+Pa2sswVZ5sqlpLiNUmOq+vlNvj4MCcvj3qq6BbmjgfH+w9eiY
-	 sVssYXyddrV2me1vnnDoYWbUxRdcSZ1f0RsLGv2F2hI0A/PzQZOeuQODFaGlFfu09Z
-	 llQFUuVJxVvoQ==
-Message-ID: <c923723f-5e94-4621-9bb8-36c8572f9b51@kernel.org>
-Date: Thu, 26 Jun 2025 11:11:28 +0200
+	s=arc-20240116; t=1750929638; c=relaxed/simple;
+	bh=MYTxy0WCxgvpb0ZxLjAuL6+iHIYLVPPTQmMGYsrxV2c=;
+	h=From:Date:Subject:MIME-Version:Content-Type:Message-ID:To:CC; b=X8rP7RsHhQn6FJ+dFIDnsDsQ/wMxeG0vgsHg1Jj/5fPxl9VIN7pKALmYoeAwLDsG1n3Stqvhu/dnruhg/vvXXOPTrFK/ntti840AJ9oazjGxeCujUnOT/JGIkb7EknGBUs6098B3FZE310vya24Zq4pOMCJu56LWbAeCOI6/9e4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=prolan.hu; spf=pass smtp.mailfrom=prolan.hu; dkim=pass (4096-bit key) header.d=prolan.hu header.i=@prolan.hu header.b=kfaMBISP; arc=none smtp.client-ip=193.68.50.107
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=prolan.hu
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=prolan.hu
+Received: from proxmox-mailgw.intranet.prolan.hu (localhost.localdomain [127.0.0.1])
+	by proxmox-mailgw.intranet.prolan.hu (Proxmox) with ESMTP id 9FA8CA02E5;
+	Thu, 26 Jun 2025 11:20:23 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=prolan.hu; h=cc
+	:cc:content-transfer-encoding:content-type:content-type:date
+	:from:from:message-id:mime-version:reply-to:subject:subject:to
+	:to; s=mail; bh=6OmIJmp/d1Y7fK8AC0VSDilmYV2ChKoULLugzrzRqqo=; b=
+	kfaMBISPtqpi/I1Bet9JvK5lc6DrOi89BxkH/zEFqOTL+vExaU87C/vht/fE4K/O
+	iV+OjiqgpWG1WxVinVbbSZwBngsFNi9Fgm98IyopvtIWLRKZe53N6BN3c2A7TLUr
+	/q69WUE1ZZiSl4eNXr2RvE5UqizDu24t4/0hYNH6z/M7JXZahxxXF0YuMBWI0n4l
+	Gvx5aoM2wjEvqJhmGtCyWbInSONc6blg8OV5ZpzK+yGEWcdlxlIAPQHUPjcFAFlk
+	gyI3LjXna2VmRuIJ4MtCYWlJP3dR1WZkfMyss7TBa67DDDRpH6E70UgtiKGWn338
+	oCiKSWJ7FMfhoSao+FewgsLpRWGdT/fSyzn06SIwgz9kmrMjQe05tcTnyKNSlrzY
+	61vQd9x51M/nE0KkYhtX511SzVX3jeBmCO5BRMcm6d1H0kE9OkCahBHrAI8/TvEb
+	DVqz6D6MvaHrk2P52fDaZa9xGuspzJSREo2VMYYiWfRNMNRc92qjve/6kBR3IVXf
+	xoZc+8v6TUdarwhOFxuiQ3Rm4UDphWWqZnkHd8B3QlTnFD1TfaHOZm31d2O/KaQr
+	yDWNhzpEE9QIjBAec/4QqH3DrA1yvnfkw4iwL/29gNkjjihmU6dkmH7gEkGm1+5V
+	yDcB3KFyJ2qqSJROHZAyFT4kqtM8fxH/FxH38QZkEX0=
+From: =?utf-8?q?Bence_Cs=C3=B3k=C3=A1s?= <csokas.bence@prolan.hu>
+Date: Thu, 26 Jun 2025 11:19:56 +0200
+Subject: [PATCH] arm: DT: imx6: Replace license text comment with SPDX
+ identifier
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 1/2] dt-bindings: media: qcom,x1e80100-camss: Sort
- interconnects alphabetically
-To: Vladimir Zapolskiy <vladimir.zapolskiy@linaro.org>,
- Robert Foss <rfoss@kernel.org>, Todor Tomov <todor.too@gmail.com>,
- Bryan O'Donoghue <bryan.odonoghue@linaro.org>
-Cc: Mauro Carvalho Chehab <mchehab@kernel.org>, Rob Herring
- <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>,
- Conor Dooley <conor+dt@kernel.org>, linux-arm-msm@vger.kernel.org,
- linux-media@vger.kernel.org, devicetree@vger.kernel.org
-References: <20250624094253.57441-1-vladimir.zapolskiy@linaro.org>
- <20250624094253.57441-2-vladimir.zapolskiy@linaro.org>
- <aa56b956-95f3-484d-8afa-058925b95bfd@kernel.org>
- <fff77f71-e21b-43b9-9da5-6cf819add970@linaro.org>
- <5a5b78f7-e156-4c5e-8407-b249040e227d@kernel.org>
- <c29385d4-30ea-4774-9cf9-699b08e29800@linaro.org>
- <329b89a4-85a9-496f-8b1b-6239dfc9057b@kernel.org>
- <930edec1-7403-4ecf-bb17-2e68b8d351f8@kernel.org>
- <e0eb8d55-b4fd-4f3b-94b0-5c56d48b4671@linaro.org>
-From: Krzysztof Kozlowski <krzk@kernel.org>
-Content-Language: en-US
-Autocrypt: addr=krzk@kernel.org; keydata=
- xsFNBFVDQq4BEAC6KeLOfFsAvFMBsrCrJ2bCalhPv5+KQF2PS2+iwZI8BpRZoV+Bd5kWvN79
- cFgcqTTuNHjAvxtUG8pQgGTHAObYs6xeYJtjUH0ZX6ndJ33FJYf5V3yXqqjcZ30FgHzJCFUu
- JMp7PSyMPzpUXfU12yfcRYVEMQrmplNZssmYhiTeVicuOOypWugZKVLGNm0IweVCaZ/DJDIH
- gNbpvVwjcKYrx85m9cBVEBUGaQP6AT7qlVCkrf50v8bofSIyVa2xmubbAwwFA1oxoOusjPIE
- J3iadrwpFvsZjF5uHAKS+7wHLoW9hVzOnLbX6ajk5Hf8Pb1m+VH/E8bPBNNYKkfTtypTDUCj
- NYcd27tjnXfG+SDs/EXNUAIRefCyvaRG7oRYF3Ec+2RgQDRnmmjCjoQNbFrJvJkFHlPeHaeS
- BosGY+XWKydnmsfY7SSnjAzLUGAFhLd/XDVpb1Een2XucPpKvt9ORF+48gy12FA5GduRLhQU
- vK4tU7ojoem/G23PcowM1CwPurC8sAVsQb9KmwTGh7rVz3ks3w/zfGBy3+WmLg++C2Wct6nM
- Pd8/6CBVjEWqD06/RjI2AnjIq5fSEH/BIfXXfC68nMp9BZoy3So4ZsbOlBmtAPvMYX6U8VwD
- TNeBxJu5Ex0Izf1NV9CzC3nNaFUYOY8KfN01X5SExAoVTr09ewARAQABzSVLcnp5c3p0b2Yg
- S296bG93c2tpIDxrcnprQGtlcm5lbC5vcmc+wsGVBBMBCgA/AhsDBgsJCAcDAgYVCAIJCgsE
- FgIDAQIeAQIXgBYhBJvQfg4MUfjVlne3VBuTQ307QWKbBQJoF1BKBQkWlnSaAAoJEBuTQ307
- QWKbHukP/3t4tRp/bvDnxJfmNdNVn0gv9ep3L39IntPalBFwRKytqeQkzAju0whYWg+R/rwp
- +r2I1Fzwt7+PTjsnMFlh1AZxGDmP5MFkzVsMnfX1lGiXhYSOMP97XL6R1QSXxaWOpGNCDaUl
- ajorB0lJDcC0q3xAdwzRConxYVhlgmTrRiD8oLlSCD5baEAt5Zw17UTNDnDGmZQKR0fqLpWy
- 786Lm5OScb7DjEgcA2PRm17st4UQ1kF0rQHokVaotxRM74PPDB8bCsunlghJl1DRK9s1aSuN
- hL1Pv9VD8b4dFNvCo7b4hfAANPU67W40AaaGZ3UAfmw+1MYyo4QuAZGKzaP2ukbdCD/DYnqi
- tJy88XqWtyb4UQWKNoQqGKzlYXdKsldYqrLHGoMvj1UN9XcRtXHST/IaLn72o7j7/h/Ac5EL
- 8lSUVIG4TYn59NyxxAXa07Wi6zjVL1U11fTnFmE29ALYQEXKBI3KUO1A3p4sQWzU7uRmbuxn
- naUmm8RbpMcOfa9JjlXCLmQ5IP7Rr5tYZUCkZz08LIfF8UMXwH7OOEX87Y++EkAB+pzKZNNd
- hwoXulTAgjSy+OiaLtuCys9VdXLZ3Zy314azaCU3BoWgaMV0eAW/+gprWMXQM1lrlzvwlD/k
- whyy9wGf0AEPpLssLVt9VVxNjo6BIkt6d1pMg6mHsUEVzsFNBFVDXDQBEADNkrQYSREUL4D3
- Gws46JEoZ9HEQOKtkrwjrzlw/tCmqVzERRPvz2Xg8n7+HRCrgqnodIYoUh5WsU84N03KlLue
- MNsWLJBvBaubYN4JuJIdRr4dS4oyF1/fQAQPHh8Thpiz0SAZFx6iWKB7Qrz3OrGCjTPcW6ei
- OMheesVS5hxietSmlin+SilmIAPZHx7n242u6kdHOh+/SyLImKn/dh9RzatVpUKbv34eP1wA
- GldWsRxbf3WP9pFNObSzI/Bo3kA89Xx2rO2roC+Gq4LeHvo7ptzcLcrqaHUAcZ3CgFG88CnA
- 6z6lBZn0WyewEcPOPdcUB2Q7D/NiUY+HDiV99rAYPJztjeTrBSTnHeSBPb+qn5ZZGQwIdUW9
- YegxWKvXXHTwB5eMzo/RB6vffwqcnHDoe0q7VgzRRZJwpi6aMIXLfeWZ5Wrwaw2zldFuO4Dt
- 91pFzBSOIpeMtfgb/Pfe/a1WJ/GgaIRIBE+NUqckM+3zJHGmVPqJP/h2Iwv6nw8U+7Yyl6gU
- BLHFTg2hYnLFJI4Xjg+AX1hHFVKmvl3VBHIsBv0oDcsQWXqY+NaFahT0lRPjYtrTa1v3tem/
- JoFzZ4B0p27K+qQCF2R96hVvuEyjzBmdq2esyE6zIqftdo4MOJho8uctOiWbwNNq2U9pPWmu
- 4vXVFBYIGmpyNPYzRm0QPwARAQABwsF8BBgBCgAmAhsMFiEEm9B+DgxR+NWWd7dUG5NDfTtB
- YpsFAmgXUF8FCRaWWyoACgkQG5NDfTtBYptO0w//dlXJs5/42hAXKsk+PDg3wyEFb4NpyA1v
- qmx7SfAzk9Hf6lWwU1O6AbqNMbh6PjEwadKUk1m04S7EjdQLsj/MBSgoQtCT3MDmWUUtHZd5
- RYIPnPq3WVB47GtuO6/u375tsxhtf7vt95QSYJwCB+ZUgo4T+FV4hquZ4AsRkbgavtIzQisg
- Dgv76tnEv3YHV8Jn9mi/Bu0FURF+5kpdMfgo1sq6RXNQ//TVf8yFgRtTUdXxW/qHjlYURrm2
- H4kutobVEIxiyu6m05q3e9eZB/TaMMNVORx+1kM3j7f0rwtEYUFzY1ygQfpcMDPl7pRYoJjB
- dSsm0ZuzDaCwaxg2t8hqQJBzJCezTOIkjHUsWAK+tEbU4Z4SnNpCyM3fBqsgYdJxjyC/tWVT
- AQ18NRLtPw7tK1rdcwCl0GFQHwSwk5pDpz1NH40e6lU+NcXSeiqkDDRkHlftKPV/dV+lQXiu
- jWt87ecuHlpL3uuQ0ZZNWqHgZoQLXoqC2ZV5KrtKWb/jyiFX/sxSrodALf0zf+tfHv0FZWT2
- zHjUqd0t4njD/UOsuIMOQn4Ig0SdivYPfZukb5cdasKJukG1NOpbW7yRNivaCnfZz6dTawXw
- XRIV/KDsHQiyVxKvN73bThKhONkcX2LWuD928tAR6XMM2G5ovxLe09vuOzzfTWQDsm++9UKF a/A=
-In-Reply-To: <e0eb8d55-b4fd-4f3b-94b0-5c56d48b4671@linaro.org>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
+Message-ID: <20250626-karo-dts-lic-v1-1-315f43121aaa@prolan.hu>
+X-B4-Tracking: v=1; b=H4sIALsQXWgC/x3MQQrCMBBG4auUWTtQY43gVcTFJP1jBzWVmSJC6
+ d2NLr/Feys5TOF07lYyvNV1rg37XUd5knoD69hMoQ/HPoaB72Izj4vzQzOHcjrEiFiQBmrJy1D
+ 0899drs1JHJxMap5+k6f4AqNt+wJ7U9PDdwAAAA==
+To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>, "Sascha
+ Hauer" <s.hauer@pengutronix.de>, Pengutronix Kernel Team
+	<kernel@pengutronix.de>, Fabio Estevam <festevam@gmail.com>
+CC: <devicetree@vger.kernel.org>, <imx@lists.linux.dev>,
+	<linux-arm-kernel@lists.infradead.org>, <linux-kernel@vger.kernel.org>,
+	=?utf-8?q?Lothar_Wa=C3=9Fmann?= <LW@KARO-electronics.de>,
+	=?utf-8?q?Bence_Cs=C3=B3k=C3=A1s?= <csokas.bence@prolan.hu>
+X-Mailer: b4 0.13.0
+X-ESET-AS: R=OK;S=0;OP=CALC;TIME=1750929619;VERSION=7993;MC=2467657063;ID=240621;TRN=0;CRV=0;IPC=;SP=0;SIPS=0;PI=3;F=0
+X-ESET-Antispam: OK
+X-EsetResult: clean, is OK
+X-EsetId: 37303A296767155D6C7560
 
-On 25/06/2025 16:07, Vladimir Zapolskiy wrote:
-> On 6/25/25 10:01, Krzysztof Kozlowski wrote:
->> On 25/06/2025 08:58, Krzysztof Kozlowski wrote:
->>> On 24/06/2025 15:29, Vladimir Zapolskiy wrote:
->>>> On 6/24/25 15:04, Krzysztof Kozlowski wrote:
->>>>> On 24/06/2025 13:38, Vladimir Zapolskiy wrote:
->>>>>> On 6/24/25 13:10, Krzysztof Kozlowski wrote:
->>>>>>> On 24/06/2025 11:42, Vladimir Zapolskiy wrote:
->>>>>>>> Sort the entries of interconnect and interconnect-names lists in the
->>>>>>>> alphabetical order of values in the latter property.
->>>>>>>
->>>>>>> We do not sort these entries alphabetically and you did not explain why
->>>>>>> you are doing this.
->>>>>>
->>>>>> I did it, because I assume that the preference is to sort all named
->>>>>> values alphanumerically.
->>>>>
->>>>> Where is such preference documented?
->>>>
->>>> There is no such preference documented, as I stated it was my assumption
->>>> and it was based on your firm insistance to apply a particular sorting
->>>> order for regs, clocks and interrupts properties. Apparently you are
->>>
->>> Hm? And the rule is by name? I don't think I ever expressed that or
->>> insisted on some sorting by name. During previous talks on camss
->>> numerous times you ignored the ONLY rule of sorting I was insisting:
->>> keep the same as all other devices. That was the one and only rule.
->>>
->>>> fine with out of the same sort order for 'interconnects' values, the
->>>> criteria of picked properties remains unclear for me.
->>>
->>> I don't understand why it is unclear. That time with Bryan you both
->>> received VERY CLEAR feedback from me: there is no such rule of sorting
->>> any values. Yet you were pushing the discussion and patchset like there
->>> was something.
->>>
->> Look, the first reply:
->>
->> https://lore.kernel.org/all/65e5796a-8b8d-44f0-aef4-e420083b9d52@kernel.org/
->>
->> "You are supposed to keep the same order, as much as
->> possible."
->>
->> What rule is unclear here?
-> 
-> At the moment of the given comment "the same order" was not "sorting by
-> values", it was "sorting to address".
-> 
-> Check the next message right in the same thread:
-> 
-> https://lore.kernel.org/all/c1539cce-92eb-43fc-9267-f6e002611bbb@linaro.org/
-> 
-> "We always sort by address". And that was the correct statement at
+Replace verbatim license text with a SPDX-License-Identifier:
 
-Hm? This was not a true statement and anyway this was not from me. Why
-are you both with Bryan creating some fake rules and then later use them
-in arguments in discussions?
+The comment heades mis-attributes this license to be "X11", but the
+license text does not include the last line "Except as contained in this
+notice, the name of the X Consortium shall not be used in advertising or
+otherwise to promote the sale, use or other dealings in this Software
+without prior written authorization from the X Consortium.". Therefore,
+this license is actually equivalent to the SPDX "MIT" license (confirmed
+by text diffing).
 
-We don't talk here what sort of rule other person invented.
+Cc: Lothar Waßmann <LW@KARO-electronics.de>
+Signed-off-by: Bence Csókás <csokas.bence@prolan.hu>
+---
+ arch/arm/boot/dts/nxp/imx/imx53-tx53-x03x.dts      | 38 +------------------
+ arch/arm/boot/dts/nxp/imx/imx53-tx53-x13x.dts      | 44 +---------------------
+ arch/arm/boot/dts/nxp/imx/imx53-tx53.dtsi          | 38 +------------------
+ arch/arm/boot/dts/nxp/imx/imx6dl-tx6dl-comtft.dts  | 38 +------------------
+ arch/arm/boot/dts/nxp/imx/imx6dl-tx6s-8034-mb7.dts | 38 +------------------
+ arch/arm/boot/dts/nxp/imx/imx6dl-tx6s-8034.dts     | 38 +------------------
+ arch/arm/boot/dts/nxp/imx/imx6dl-tx6s-8035-mb7.dts | 38 +------------------
+ arch/arm/boot/dts/nxp/imx/imx6dl-tx6s-8035.dts     | 38 +------------------
+ arch/arm/boot/dts/nxp/imx/imx6dl-tx6u-801x.dts     | 38 +------------------
+ arch/arm/boot/dts/nxp/imx/imx6dl-tx6u-8033-mb7.dts | 38 +------------------
+ arch/arm/boot/dts/nxp/imx/imx6dl-tx6u-8033.dts     | 38 +------------------
+ arch/arm/boot/dts/nxp/imx/imx6dl-tx6u-80xx-mb7.dts | 38 +------------------
+ arch/arm/boot/dts/nxp/imx/imx6dl-tx6u-811x.dts     | 38 +------------------
+ arch/arm/boot/dts/nxp/imx/imx6dl-tx6u-81xx-mb7.dts | 38 +------------------
+ .../boot/dts/nxp/imx/imx6q-tx6q-1010-comtft.dts    | 38 +------------------
+ arch/arm/boot/dts/nxp/imx/imx6q-tx6q-1010.dts      | 38 +------------------
+ .../boot/dts/nxp/imx/imx6q-tx6q-1020-comtft.dts    | 38 +------------------
+ arch/arm/boot/dts/nxp/imx/imx6q-tx6q-1020.dts      | 38 +------------------
+ arch/arm/boot/dts/nxp/imx/imx6q-tx6q-1036-mb7.dts  | 38 +------------------
+ arch/arm/boot/dts/nxp/imx/imx6q-tx6q-1036.dts      | 38 +------------------
+ arch/arm/boot/dts/nxp/imx/imx6q-tx6q-10x0-mb7.dts  | 38 +------------------
+ arch/arm/boot/dts/nxp/imx/imx6q-tx6q-1110.dts      | 38 +------------------
+ arch/arm/boot/dts/nxp/imx/imx6q-tx6q-11x0-mb7.dts  | 38 +------------------
+ arch/arm/boot/dts/nxp/imx/imx6qdl-tx6-lcd.dtsi     | 38 +------------------
+ arch/arm/boot/dts/nxp/imx/imx6qdl-tx6-lvds.dtsi    | 38 +------------------
+ arch/arm/boot/dts/nxp/imx/imx6qdl-tx6-mb7.dtsi     | 38 +------------------
+ arch/arm/boot/dts/nxp/imx/imx6qdl-tx6.dtsi         | 38 +------------------
+ .../arm/boot/dts/nxp/imx/imx6qp-tx6qp-8037-mb7.dts | 38 +------------------
+ arch/arm/boot/dts/nxp/imx/imx6qp-tx6qp-8037.dts    | 38 +------------------
+ .../arm/boot/dts/nxp/imx/imx6qp-tx6qp-8137-mb7.dts | 38 +------------------
+ arch/arm/boot/dts/nxp/imx/imx6qp-tx6qp-8137.dts    | 38 +------------------
+ arch/arm/boot/dts/nxp/imx/imx6ul-tx6ul-0010.dts    | 38 +------------------
+ arch/arm/boot/dts/nxp/imx/imx6ul-tx6ul-0011.dts    | 38 +------------------
+ .../boot/dts/nxp/imx/imx6ul-tx6ul-mainboard.dts    | 38 +------------------
+ arch/arm/boot/dts/nxp/imx/imx6ul-tx6ul.dtsi        | 38 +------------------
+ 35 files changed, 35 insertions(+), 1301 deletions(-)
 
-> the time of the discussion.
-> 
-> Did it help to "keep the same order" in any sense? No, the message was
-> plainly ignored, and after the long discussion with you the sorting order
+diff --git a/arch/arm/boot/dts/nxp/imx/imx53-tx53-x03x.dts b/arch/arm/boot/dts/nxp/imx/imx53-tx53-x03x.dts
+index 5f62c99909c5..872cf7e16f20 100644
+--- a/arch/arm/boot/dts/nxp/imx/imx53-tx53-x03x.dts
++++ b/arch/arm/boot/dts/nxp/imx/imx53-tx53-x03x.dts
+@@ -1,42 +1,6 @@
++// SPDX-License-Identifier: (GPL-2.0-only OR MIT)
+ /*
+  * Copyright 2013-2017 Lothar Waßmann <LW@KARO-electronics.de>
+- *
+- * This file is dual-licensed: you can use it either under the terms
+- * of the GPL or the X11 license, at your option. Note that this dual
+- * licensing only applies to this file, and not this project as a
+- * whole.
+- *
+- *  a) This file is free software; you can redistribute it and/or
+- *     modify it under the terms of the GNU General Public License
+- *     version 2 as published by the Free Software Foundation.
+- *
+- *     This file is distributed in the hope that it will be useful,
+- *     but WITHOUT ANY WARRANTY; without even the implied warranty of
+- *     MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+- *     GNU General Public License for more details.
+- *
+- * Or, alternatively,
+- *
+- *  b) Permission is hereby granted, free of charge, to any person
+- *     obtaining a copy of this software and associated documentation
+- *     files (the "Software"), to deal in the Software without
+- *     restriction, including without limitation the rights to use,
+- *     copy, modify, merge, publish, distribute, sublicense, and/or
+- *     sell copies of the Software, and to permit persons to whom the
+- *     Software is furnished to do so, subject to the following
+- *     conditions:
+- *
+- *     The above copyright notice and this permission notice shall be
+- *     included in all copies or substantial portions of the Software.
+- *
+- *     THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
+- *     EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES
+- *     OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
+- *     NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT
+- *     HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY,
+- *     WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
+- *     FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR
+- *     OTHER DEALINGS IN THE SOFTWARE.
+  */
+ 
+ /dts-v1/;
+diff --git a/arch/arm/boot/dts/nxp/imx/imx53-tx53-x13x.dts b/arch/arm/boot/dts/nxp/imx/imx53-tx53-x13x.dts
+index 9c9122da3737..96c37f4296e5 100644
+--- a/arch/arm/boot/dts/nxp/imx/imx53-tx53-x13x.dts
++++ b/arch/arm/boot/dts/nxp/imx/imx53-tx53-x13x.dts
+@@ -1,48 +1,6 @@
++// SPDX-License-Identifier: (GPL-2.0-only OR MIT)
+ /*
+  * Copyright 2013-2017 Lothar Waßmann <LW@KARO-electronics.de>
+- *
+- * This file is dual-licensed: you can use it either under the terms
+- * of the GPL or the X11 license, at your option. Note that this dual
+- * licensing only applies to this file, and not this project as a
+- * whole.
+- *
+- *  a) This file is free software; you can redistribute it and/or
+- *     modify it under the terms of the GNU General Public License
+- *     version 2 as published by the Free Software Foundation.
+- *
+- *     This file is distributed in the hope that it will be useful,
+- *     but WITHOUT ANY WARRANTY; without even the implied warranty of
+- *     MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+- *     GNU General Public License for more details.
+- *
+- * Or, alternatively,
+- *
+- *  b) Permission is hereby granted, free of charge, to any person
+- *     obtaining a copy of this software and associated documentation
+- *     files (the "Software"), to deal in the Software without
+- *     restriction, including without limitation the rights to use,
+- *     copy, modify, merge, publish, distribute, sublicense, and/or
+- *     sell copies of the Software, and to permit persons to whom the
+- *     Software is furnished to do so, subject to the following
+- *     conditions:
+- *
+- *     The above copyright notice and this permission notice shall be
+- *     included in all copies or substantial portions of the Software.
+- *
+- *     THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
+- *     EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES
+- *     OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
+- *     NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT
+- *     HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY,
+- *     WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
+- *     FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR
+- *     OTHER DEALINGS IN THE SOFTWARE.
+- * The code contained herein is licensed under the GNU General Public
+- * License. You may obtain a copy of the GNU General Public License
+- * Version 2 at the following locations:
+- *
+- * http://www.opensource.org/licenses/gpl-license.html
+- * http://www.gnu.org/copyleft/gpl.html
+  */
+ 
+ /dts-v1/;
+diff --git a/arch/arm/boot/dts/nxp/imx/imx53-tx53.dtsi b/arch/arm/boot/dts/nxp/imx/imx53-tx53.dtsi
+index 29e3f5f37c25..88855d3b2031 100644
+--- a/arch/arm/boot/dts/nxp/imx/imx53-tx53.dtsi
++++ b/arch/arm/boot/dts/nxp/imx/imx53-tx53.dtsi
+@@ -1,45 +1,9 @@
++// SPDX-License-Identifier: (GPL-2.0-only OR MIT)
+ /*
+  * Copyright 2012-2017 <LW@KARO-electronics.de>
+  * based on imx53-qsb.dts
+  *   Copyright 2011 Freescale Semiconductor, Inc.
+  *   Copyright 2011 Linaro Ltd.
+- *
+- * This file is dual-licensed: you can use it either under the terms
+- * of the GPL or the X11 license, at your option. Note that this dual
+- * licensing only applies to this file, and not this project as a
+- * whole.
+- *
+- *  a) This file is free software; you can redistribute it and/or
+- *     modify it under the terms of the GNU General Public License
+- *     version 2 as published by the Free Software Foundation.
+- *
+- *     This file is distributed in the hope that it will be useful,
+- *     but WITHOUT ANY WARRANTY; without even the implied warranty of
+- *     MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+- *     GNU General Public License for more details.
+- *
+- * Or, alternatively,
+- *
+- *  b) Permission is hereby granted, free of charge, to any person
+- *     obtaining a copy of this software and associated documentation
+- *     files (the "Software"), to deal in the Software without
+- *     restriction, including without limitation the rights to use,
+- *     copy, modify, merge, publish, distribute, sublicense, and/or
+- *     sell copies of the Software, and to permit persons to whom the
+- *     Software is furnished to do so, subject to the following
+- *     conditions:
+- *
+- *     The above copyright notice and this permission notice shall be
+- *     included in all copies or substantial portions of the Software.
+- *
+- *     THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
+- *     EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES
+- *     OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
+- *     NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT
+- *     HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY,
+- *     WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
+- *     FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR
+- *     OTHER DEALINGS IN THE SOFTWARE.
+  */
+ 
+ #include "imx53.dtsi"
+diff --git a/arch/arm/boot/dts/nxp/imx/imx6dl-tx6dl-comtft.dts b/arch/arm/boot/dts/nxp/imx/imx6dl-tx6dl-comtft.dts
+index 7436626673fc..136ae7841878 100644
+--- a/arch/arm/boot/dts/nxp/imx/imx6dl-tx6dl-comtft.dts
++++ b/arch/arm/boot/dts/nxp/imx/imx6dl-tx6dl-comtft.dts
+@@ -1,42 +1,6 @@
++// SPDX-License-Identifier: (GPL-2.0-only OR MIT)
+ /*
+  * Copyright 2014-2017 Lothar Waßmann <LW@KARO-electronics.de>
+- *
+- * This file is dual-licensed: you can use it either under the terms
+- * of the GPL or the X11 license, at your option. Note that this dual
+- * licensing only applies to this file, and not this project as a
+- * whole.
+- *
+- *  a) This file is free software; you can redistribute it and/or
+- *     modify it under the terms of the GNU General Public License
+- *     version 2 as published by the Free Software Foundation.
+- *
+- *     This file is distributed in the hope that it will be useful,
+- *     but WITHOUT ANY WARRANTY; without even the implied warranty of
+- *     MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+- *     GNU General Public License for more details.
+- *
+- * Or, alternatively,
+- *
+- *  b) Permission is hereby granted, free of charge, to any person
+- *     obtaining a copy of this software and associated documentation
+- *     files (the "Software"), to deal in the Software without
+- *     restriction, including without limitation the rights to use,
+- *     copy, modify, merge, publish, distribute, sublicense, and/or
+- *     sell copies of the Software, and to permit persons to whom the
+- *     Software is furnished to do so, subject to the following
+- *     conditions:
+- *
+- *     The above copyright notice and this permission notice shall be
+- *     included in all copies or substantial portions of the Software.
+- *
+- *     THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
+- *     EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES
+- *     OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
+- *     NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT
+- *     HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY,
+- *     WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
+- *     FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR
+- *     OTHER DEALINGS IN THE SOFTWARE.
+  */
+ 
+ /dts-v1/;
+diff --git a/arch/arm/boot/dts/nxp/imx/imx6dl-tx6s-8034-mb7.dts b/arch/arm/boot/dts/nxp/imx/imx6dl-tx6s-8034-mb7.dts
+index fc23b4d291a1..e1b525ed292a 100644
+--- a/arch/arm/boot/dts/nxp/imx/imx6dl-tx6s-8034-mb7.dts
++++ b/arch/arm/boot/dts/nxp/imx/imx6dl-tx6s-8034-mb7.dts
+@@ -1,42 +1,6 @@
++// SPDX-License-Identifier: (GPL-2.0-only OR MIT)
+ /*
+  * Copyright 2017 Lothar Waßmann <LW@KARO-electronics.de>
+- *
+- * This file is dual-licensed: you can use it either under the terms
+- * of the GPL or the X11 license, at your option. Note that this dual
+- * licensing only applies to this file, and not this project as a
+- * whole.
+- *
+- *  a) This file is free software; you can redistribute it and/or
+- *     modify it under the terms of the GNU General Public License
+- *     version 2 as published by the Free Software Foundation.
+- *
+- *     This file is distributed in the hope that it will be useful,
+- *     but WITHOUT ANY WARRANTY; without even the implied warranty of
+- *     MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+- *     GNU General Public License for more details.
+- *
+- * Or, alternatively,
+- *
+- *  b) Permission is hereby granted, free of charge, to any person
+- *     obtaining a copy of this software and associated documentation
+- *     files (the "Software"), to deal in the Software without
+- *     restriction, including without limitation the rights to use,
+- *     copy, modify, merge, publish, distribute, sublicense, and/or
+- *     sell copies of the Software, and to permit persons to whom the
+- *     Software is furnished to do so, subject to the following
+- *     conditions:
+- *
+- *     The above copyright notice and this permission notice shall be
+- *     included in all copies or substantial portions of the Software.
+- *
+- *     THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
+- *     EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES
+- *     OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
+- *     NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT
+- *     HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY,
+- *     WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
+- *     FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR
+- *     OTHER DEALINGS IN THE SOFTWARE.
+  */
+ 
+ /dts-v1/;
+diff --git a/arch/arm/boot/dts/nxp/imx/imx6dl-tx6s-8034.dts b/arch/arm/boot/dts/nxp/imx/imx6dl-tx6s-8034.dts
+index 9eb2ef17339c..9a6a5cda9a3b 100644
+--- a/arch/arm/boot/dts/nxp/imx/imx6dl-tx6s-8034.dts
++++ b/arch/arm/boot/dts/nxp/imx/imx6dl-tx6s-8034.dts
+@@ -1,42 +1,6 @@
++// SPDX-License-Identifier: (GPL-2.0-only OR MIT)
+ /*
+  * Copyright 2015-2017 Lothar Waßmann <LW@KARO-electronics.de>
+- *
+- * This file is dual-licensed: you can use it either under the terms
+- * of the GPL or the X11 license, at your option. Note that this dual
+- * licensing only applies to this file, and not this project as a
+- * whole.
+- *
+- *  a) This file is free software; you can redistribute it and/or
+- *     modify it under the terms of the GNU General Public License
+- *     version 2 as published by the Free Software Foundation.
+- *
+- *     This file is distributed in the hope that it will be useful,
+- *     but WITHOUT ANY WARRANTY; without even the implied warranty of
+- *     MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+- *     GNU General Public License for more details.
+- *
+- * Or, alternatively,
+- *
+- *  b) Permission is hereby granted, free of charge, to any person
+- *     obtaining a copy of this software and associated documentation
+- *     files (the "Software"), to deal in the Software without
+- *     restriction, including without limitation the rights to use,
+- *     copy, modify, merge, publish, distribute, sublicense, and/or
+- *     sell copies of the Software, and to permit persons to whom the
+- *     Software is furnished to do so, subject to the following
+- *     conditions:
+- *
+- *     The above copyright notice and this permission notice shall be
+- *     included in all copies or substantial portions of the Software.
+- *
+- *     THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
+- *     EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES
+- *     OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
+- *     NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT
+- *     HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY,
+- *     WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
+- *     FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR
+- *     OTHER DEALINGS IN THE SOFTWARE.
+  */
+ 
+ /dts-v1/;
+diff --git a/arch/arm/boot/dts/nxp/imx/imx6dl-tx6s-8035-mb7.dts b/arch/arm/boot/dts/nxp/imx/imx6dl-tx6s-8035-mb7.dts
+index 4101c6597721..0e8f4c3f3760 100644
+--- a/arch/arm/boot/dts/nxp/imx/imx6dl-tx6s-8035-mb7.dts
++++ b/arch/arm/boot/dts/nxp/imx/imx6dl-tx6s-8035-mb7.dts
+@@ -1,42 +1,6 @@
++// SPDX-License-Identifier: (GPL-2.0-only OR MIT)
+ /*
+  * Copyright 2017 Lothar Waßmann <LW@KARO-electronics.de>
+- *
+- * This file is dual-licensed: you can use it either under the terms
+- * of the GPL or the X11 license, at your option. Note that this dual
+- * licensing only applies to this file, and not this project as a
+- * whole.
+- *
+- *  a) This file is free software; you can redistribute it and/or
+- *     modify it under the terms of the GNU General Public License
+- *     version 2 as published by the Free Software Foundation.
+- *
+- *     This file is distributed in the hope that it will be useful,
+- *     but WITHOUT ANY WARRANTY; without even the implied warranty of
+- *     MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+- *     GNU General Public License for more details.
+- *
+- * Or, alternatively,
+- *
+- *  b) Permission is hereby granted, free of charge, to any person
+- *     obtaining a copy of this software and associated documentation
+- *     files (the "Software"), to deal in the Software without
+- *     restriction, including without limitation the rights to use,
+- *     copy, modify, merge, publish, distribute, sublicense, and/or
+- *     sell copies of the Software, and to permit persons to whom the
+- *     Software is furnished to do so, subject to the following
+- *     conditions:
+- *
+- *     The above copyright notice and this permission notice shall be
+- *     included in all copies or substantial portions of the Software.
+- *
+- *     THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
+- *     EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES
+- *     OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
+- *     NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT
+- *     HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY,
+- *     WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
+- *     FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR
+- *     OTHER DEALINGS IN THE SOFTWARE.
+  */
+ 
+ /dts-v1/;
+diff --git a/arch/arm/boot/dts/nxp/imx/imx6dl-tx6s-8035.dts b/arch/arm/boot/dts/nxp/imx/imx6dl-tx6s-8035.dts
+index a5532ecc18c5..9958e8701c98 100644
+--- a/arch/arm/boot/dts/nxp/imx/imx6dl-tx6s-8035.dts
++++ b/arch/arm/boot/dts/nxp/imx/imx6dl-tx6s-8035.dts
+@@ -1,42 +1,6 @@
++// SPDX-License-Identifier: (GPL-2.0-only OR MIT)
+ /*
+  * Copyright 2015-2017 Lothar Waßmann <LW@KARO-electronics.de>
+- *
+- * This file is dual-licensed: you can use it either under the terms
+- * of the GPL or the X11 license, at your option. Note that this dual
+- * licensing only applies to this file, and not this project as a
+- * whole.
+- *
+- *  a) This file is free software; you can redistribute it and/or
+- *     modify it under the terms of the GNU General Public License
+- *     version 2 as published by the Free Software Foundation.
+- *
+- *     This file is distributed in the hope that it will be useful,
+- *     but WITHOUT ANY WARRANTY; without even the implied warranty of
+- *     MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+- *     GNU General Public License for more details.
+- *
+- * Or, alternatively,
+- *
+- *  b) Permission is hereby granted, free of charge, to any person
+- *     obtaining a copy of this software and associated documentation
+- *     files (the "Software"), to deal in the Software without
+- *     restriction, including without limitation the rights to use,
+- *     copy, modify, merge, publish, distribute, sublicense, and/or
+- *     sell copies of the Software, and to permit persons to whom the
+- *     Software is furnished to do so, subject to the following
+- *     conditions:
+- *
+- *     The above copyright notice and this permission notice shall be
+- *     included in all copies or substantial portions of the Software.
+- *
+- *     THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
+- *     EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES
+- *     OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
+- *     NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT
+- *     HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY,
+- *     WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
+- *     FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR
+- *     OTHER DEALINGS IN THE SOFTWARE.
+  */
+ 
+ /dts-v1/;
+diff --git a/arch/arm/boot/dts/nxp/imx/imx6dl-tx6u-801x.dts b/arch/arm/boot/dts/nxp/imx/imx6dl-tx6u-801x.dts
+index 67ed0452f5de..d9bfd340efb2 100644
+--- a/arch/arm/boot/dts/nxp/imx/imx6dl-tx6u-801x.dts
++++ b/arch/arm/boot/dts/nxp/imx/imx6dl-tx6u-801x.dts
+@@ -1,42 +1,6 @@
++// SPDX-License-Identifier: (GPL-2.0-only OR MIT)
+ /*
+  * Copyright 2014-2017 Lothar Waßmann <LW@KARO-electronics.de>
+- *
+- * This file is dual-licensed: you can use it either under the terms
+- * of the GPL or the X11 license, at your option. Note that this dual
+- * licensing only applies to this file, and not this project as a
+- * whole.
+- *
+- *  a) This file is free software; you can redistribute it and/or
+- *     modify it under the terms of the GNU General Public License
+- *     version 2 as published by the Free Software Foundation.
+- *
+- *     This file is distributed in the hope that it will be useful,
+- *     but WITHOUT ANY WARRANTY; without even the implied warranty of
+- *     MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+- *     GNU General Public License for more details.
+- *
+- * Or, alternatively,
+- *
+- *  b) Permission is hereby granted, free of charge, to any person
+- *     obtaining a copy of this software and associated documentation
+- *     files (the "Software"), to deal in the Software without
+- *     restriction, including without limitation the rights to use,
+- *     copy, modify, merge, publish, distribute, sublicense, and/or
+- *     sell copies of the Software, and to permit persons to whom the
+- *     Software is furnished to do so, subject to the following
+- *     conditions:
+- *
+- *     The above copyright notice and this permission notice shall be
+- *     included in all copies or substantial portions of the Software.
+- *
+- *     THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
+- *     EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES
+- *     OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
+- *     NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT
+- *     HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY,
+- *     WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
+- *     FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR
+- *     OTHER DEALINGS IN THE SOFTWARE.
+  */
+ 
+ /dts-v1/;
+diff --git a/arch/arm/boot/dts/nxp/imx/imx6dl-tx6u-8033-mb7.dts b/arch/arm/boot/dts/nxp/imx/imx6dl-tx6u-8033-mb7.dts
+index d34189fc52d9..8243f0d6d387 100644
+--- a/arch/arm/boot/dts/nxp/imx/imx6dl-tx6u-8033-mb7.dts
++++ b/arch/arm/boot/dts/nxp/imx/imx6dl-tx6u-8033-mb7.dts
+@@ -1,42 +1,6 @@
++// SPDX-License-Identifier: (GPL-2.0-only OR MIT)
+ /*
+  * Copyright 2017 Lothar Waßmann <LW@KARO-electronics.de>
+- *
+- * This file is dual-licensed: you can use it either under the terms
+- * of the GPL or the X11 license, at your option. Note that this dual
+- * licensing only applies to this file, and not this project as a
+- * whole.
+- *
+- *  a) This file is free software; you can redistribute it and/or
+- *     modify it under the terms of the GNU General Public License
+- *     version 2 as published by the Free Software Foundation.
+- *
+- *     This file is distributed in the hope that it will be useful,
+- *     but WITHOUT ANY WARRANTY; without even the implied warranty of
+- *     MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+- *     GNU General Public License for more details.
+- *
+- * Or, alternatively,
+- *
+- *  b) Permission is hereby granted, free of charge, to any person
+- *     obtaining a copy of this software and associated documentation
+- *     files (the "Software"), to deal in the Software without
+- *     restriction, including without limitation the rights to use,
+- *     copy, modify, merge, publish, distribute, sublicense, and/or
+- *     sell copies of the Software, and to permit persons to whom the
+- *     Software is furnished to do so, subject to the following
+- *     conditions:
+- *
+- *     The above copyright notice and this permission notice shall be
+- *     included in all copies or substantial portions of the Software.
+- *
+- *     THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
+- *     EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES
+- *     OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
+- *     NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT
+- *     HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY,
+- *     WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
+- *     FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR
+- *     OTHER DEALINGS IN THE SOFTWARE.
+  */
+ 
+ /dts-v1/;
+diff --git a/arch/arm/boot/dts/nxp/imx/imx6dl-tx6u-8033.dts b/arch/arm/boot/dts/nxp/imx/imx6dl-tx6u-8033.dts
+index 7030b2654bbd..2d031403ab19 100644
+--- a/arch/arm/boot/dts/nxp/imx/imx6dl-tx6u-8033.dts
++++ b/arch/arm/boot/dts/nxp/imx/imx6dl-tx6u-8033.dts
+@@ -1,42 +1,6 @@
++// SPDX-License-Identifier: (GPL-2.0-only OR MIT)
+ /*
+  * Copyright 2014-2017 Lothar Waßmann <LW@KARO-electronics.de>
+- *
+- * This file is dual-licensed: you can use it either under the terms
+- * of the GPL or the X11 license, at your option. Note that this dual
+- * licensing only applies to this file, and not this project as a
+- * whole.
+- *
+- *  a) This file is free software; you can redistribute it and/or
+- *     modify it under the terms of the GNU General Public License
+- *     version 2 as published by the Free Software Foundation.
+- *
+- *     This file is distributed in the hope that it will be useful,
+- *     but WITHOUT ANY WARRANTY; without even the implied warranty of
+- *     MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+- *     GNU General Public License for more details.
+- *
+- * Or, alternatively,
+- *
+- *  b) Permission is hereby granted, free of charge, to any person
+- *     obtaining a copy of this software and associated documentation
+- *     files (the "Software"), to deal in the Software without
+- *     restriction, including without limitation the rights to use,
+- *     copy, modify, merge, publish, distribute, sublicense, and/or
+- *     sell copies of the Software, and to permit persons to whom the
+- *     Software is furnished to do so, subject to the following
+- *     conditions:
+- *
+- *     The above copyright notice and this permission notice shall be
+- *     included in all copies or substantial portions of the Software.
+- *
+- *     THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
+- *     EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES
+- *     OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
+- *     NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT
+- *     HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY,
+- *     WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
+- *     FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR
+- *     OTHER DEALINGS IN THE SOFTWARE.
+  */
+ 
+ /dts-v1/;
+diff --git a/arch/arm/boot/dts/nxp/imx/imx6dl-tx6u-80xx-mb7.dts b/arch/arm/boot/dts/nxp/imx/imx6dl-tx6u-80xx-mb7.dts
+index aef5fcc42904..684a2583db75 100644
+--- a/arch/arm/boot/dts/nxp/imx/imx6dl-tx6u-80xx-mb7.dts
++++ b/arch/arm/boot/dts/nxp/imx/imx6dl-tx6u-80xx-mb7.dts
+@@ -1,42 +1,6 @@
++// SPDX-License-Identifier: (GPL-2.0-only OR MIT)
+ /*
+  * Copyright 2017 Lothar Waßmann <LW@KARO-electronics.de>
+- *
+- * This file is dual-licensed: you can use it either under the terms
+- * of the GPL or the X11 license, at your option. Note that this dual
+- * licensing only applies to this file, and not this project as a
+- * whole.
+- *
+- *  a) This file is free software; you can redistribute it and/or
+- *     modify it under the terms of the GNU General Public License
+- *     version 2 as published by the Free Software Foundation.
+- *
+- *     This file is distributed in the hope that it will be useful,
+- *     but WITHOUT ANY WARRANTY; without even the implied warranty of
+- *     MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+- *     GNU General Public License for more details.
+- *
+- * Or, alternatively,
+- *
+- *  b) Permission is hereby granted, free of charge, to any person
+- *     obtaining a copy of this software and associated documentation
+- *     files (the "Software"), to deal in the Software without
+- *     restriction, including without limitation the rights to use,
+- *     copy, modify, merge, publish, distribute, sublicense, and/or
+- *     sell copies of the Software, and to permit persons to whom the
+- *     Software is furnished to do so, subject to the following
+- *     conditions:
+- *
+- *     The above copyright notice and this permission notice shall be
+- *     included in all copies or substantial portions of the Software.
+- *
+- *     THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
+- *     EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES
+- *     OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
+- *     NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT
+- *     HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY,
+- *     WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
+- *     FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR
+- *     OTHER DEALINGS IN THE SOFTWARE.
+  */
+ 
+ /dts-v1/;
+diff --git a/arch/arm/boot/dts/nxp/imx/imx6dl-tx6u-811x.dts b/arch/arm/boot/dts/nxp/imx/imx6dl-tx6u-811x.dts
+index 5342f2f5a8a8..7fdc794615f2 100644
+--- a/arch/arm/boot/dts/nxp/imx/imx6dl-tx6u-811x.dts
++++ b/arch/arm/boot/dts/nxp/imx/imx6dl-tx6u-811x.dts
+@@ -1,42 +1,6 @@
++// SPDX-License-Identifier: (GPL-2.0-only OR MIT)
+ /*
+  * Copyright 2014-2017 Lothar Waßmann <LW@KARO-electronics.de>
+- *
+- * This file is dual-licensed: you can use it either under the terms
+- * of the GPL or the X11 license, at your option. Note that this dual
+- * licensing only applies to this file, and not this project as a
+- * whole.
+- *
+- *  a) This file is free software; you can redistribute it and/or
+- *     modify it under the terms of the GNU General Public License
+- *     version 2 as published by the Free Software Foundation.
+- *
+- *     This file is distributed in the hope that it will be useful,
+- *     but WITHOUT ANY WARRANTY; without even the implied warranty of
+- *     MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+- *     GNU General Public License for more details.
+- *
+- * Or, alternatively,
+- *
+- *  b) Permission is hereby granted, free of charge, to any person
+- *     obtaining a copy of this software and associated documentation
+- *     files (the "Software"), to deal in the Software without
+- *     restriction, including without limitation the rights to use,
+- *     copy, modify, merge, publish, distribute, sublicense, and/or
+- *     sell copies of the Software, and to permit persons to whom the
+- *     Software is furnished to do so, subject to the following
+- *     conditions:
+- *
+- *     The above copyright notice and this permission notice shall be
+- *     included in all copies or substantial portions of the Software.
+- *
+- *     THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
+- *     EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES
+- *     OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
+- *     NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT
+- *     HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY,
+- *     WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
+- *     FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR
+- *     OTHER DEALINGS IN THE SOFTWARE.
+  */
+ 
+ /dts-v1/;
+diff --git a/arch/arm/boot/dts/nxp/imx/imx6dl-tx6u-81xx-mb7.dts b/arch/arm/boot/dts/nxp/imx/imx6dl-tx6u-81xx-mb7.dts
+index c4588fb0bf6f..209aaebe148a 100644
+--- a/arch/arm/boot/dts/nxp/imx/imx6dl-tx6u-81xx-mb7.dts
++++ b/arch/arm/boot/dts/nxp/imx/imx6dl-tx6u-81xx-mb7.dts
+@@ -1,42 +1,6 @@
++// SPDX-License-Identifier: (GPL-2.0-only OR MIT)
+ /*
+  * Copyright 2016-2017 Lothar Waßmann <LW@KARO-electronics.de>
+- *
+- * This file is dual-licensed: you can use it either under the terms
+- * of the GPL or the X11 license, at your option. Note that this dual
+- * licensing only applies to this file, and not this project as a
+- * whole.
+- *
+- *  a) This file is free software; you can redistribute it and/or
+- *     modify it under the terms of the GNU General Public License
+- *     version 2 as published by the Free Software Foundation.
+- *
+- *     This file is distributed in the hope that it will be useful,
+- *     but WITHOUT ANY WARRANTY; without even the implied warranty of
+- *     MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+- *     GNU General Public License for more details.
+- *
+- * Or, alternatively,
+- *
+- *  b) Permission is hereby granted, free of charge, to any person
+- *     obtaining a copy of this software and associated documentation
+- *     files (the "Software"), to deal in the Software without
+- *     restriction, including without limitation the rights to use,
+- *     copy, modify, merge, publish, distribute, sublicense, and/or
+- *     sell copies of the Software, and to permit persons to whom the
+- *     Software is furnished to do so, subject to the following
+- *     conditions:
+- *
+- *     The above copyright notice and this permission notice shall be
+- *     included in all copies or substantial portions of the Software.
+- *
+- *     THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
+- *     EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES
+- *     OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
+- *     NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT
+- *     HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY,
+- *     WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
+- *     FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR
+- *     OTHER DEALINGS IN THE SOFTWARE.
+  */
+ 
+ /dts-v1/;
+diff --git a/arch/arm/boot/dts/nxp/imx/imx6q-tx6q-1010-comtft.dts b/arch/arm/boot/dts/nxp/imx/imx6q-tx6q-1010-comtft.dts
+index 393bfec58e2f..d630c572c704 100644
+--- a/arch/arm/boot/dts/nxp/imx/imx6q-tx6q-1010-comtft.dts
++++ b/arch/arm/boot/dts/nxp/imx/imx6q-tx6q-1010-comtft.dts
+@@ -1,42 +1,6 @@
++// SPDX-License-Identifier: (GPL-2.0-only OR MIT)
+ /*
+  * Copyright 2014-2017 Lothar Waßmann <LW@KARO-electronics.de>
+- *
+- * This file is dual-licensed: you can use it either under the terms
+- * of the GPL or the X11 license, at your option. Note that this dual
+- * licensing only applies to this file, and not this project as a
+- * whole.
+- *
+- *  a) This file is free software; you can redistribute it and/or
+- *     modify it under the terms of the GNU General Public License
+- *     version 2 as published by the Free Software Foundation.
+- *
+- *     This file is distributed in the hope that it will be useful,
+- *     but WITHOUT ANY WARRANTY; without even the implied warranty of
+- *     MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+- *     GNU General Public License for more details.
+- *
+- * Or, alternatively,
+- *
+- *  b) Permission is hereby granted, free of charge, to any person
+- *     obtaining a copy of this software and associated documentation
+- *     files (the "Software"), to deal in the Software without
+- *     restriction, including without limitation the rights to use,
+- *     copy, modify, merge, publish, distribute, sublicense, and/or
+- *     sell copies of the Software, and to permit persons to whom the
+- *     Software is furnished to do so, subject to the following
+- *     conditions:
+- *
+- *     The above copyright notice and this permission notice shall be
+- *     included in all copies or substantial portions of the Software.
+- *
+- *     THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
+- *     EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES
+- *     OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
+- *     NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT
+- *     HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY,
+- *     WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
+- *     FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR
+- *     OTHER DEALINGS IN THE SOFTWARE.
+  */
+ 
+ /dts-v1/;
+diff --git a/arch/arm/boot/dts/nxp/imx/imx6q-tx6q-1010.dts b/arch/arm/boot/dts/nxp/imx/imx6q-tx6q-1010.dts
+index 4ee860b626ff..01ac3493fa32 100644
+--- a/arch/arm/boot/dts/nxp/imx/imx6q-tx6q-1010.dts
++++ b/arch/arm/boot/dts/nxp/imx/imx6q-tx6q-1010.dts
+@@ -1,42 +1,6 @@
++// SPDX-License-Identifier: (GPL-2.0-only OR MIT)
+ /*
+  * Copyright 2014-2017 Lothar Waßmann <LW@KARO-electronics.de>
+- *
+- * This file is dual-licensed: you can use it either under the terms
+- * of the GPL or the X11 license, at your option. Note that this dual
+- * licensing only applies to this file, and not this project as a
+- * whole.
+- *
+- *  a) This file is free software; you can redistribute it and/or
+- *     modify it under the terms of the GNU General Public License
+- *     version 2 as published by the Free Software Foundation.
+- *
+- *     This file is distributed in the hope that it will be useful,
+- *     but WITHOUT ANY WARRANTY; without even the implied warranty of
+- *     MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+- *     GNU General Public License for more details.
+- *
+- * Or, alternatively,
+- *
+- *  b) Permission is hereby granted, free of charge, to any person
+- *     obtaining a copy of this software and associated documentation
+- *     files (the "Software"), to deal in the Software without
+- *     restriction, including without limitation the rights to use,
+- *     copy, modify, merge, publish, distribute, sublicense, and/or
+- *     sell copies of the Software, and to permit persons to whom the
+- *     Software is furnished to do so, subject to the following
+- *     conditions:
+- *
+- *     The above copyright notice and this permission notice shall be
+- *     included in all copies or substantial portions of the Software.
+- *
+- *     THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
+- *     EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES
+- *     OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
+- *     NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT
+- *     HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY,
+- *     WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
+- *     FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR
+- *     OTHER DEALINGS IN THE SOFTWARE.
+  */
+ 
+ /dts-v1/;
+diff --git a/arch/arm/boot/dts/nxp/imx/imx6q-tx6q-1020-comtft.dts b/arch/arm/boot/dts/nxp/imx/imx6q-tx6q-1020-comtft.dts
+index 1ab175ffa238..1013025cb2d5 100644
+--- a/arch/arm/boot/dts/nxp/imx/imx6q-tx6q-1020-comtft.dts
++++ b/arch/arm/boot/dts/nxp/imx/imx6q-tx6q-1020-comtft.dts
+@@ -1,42 +1,6 @@
++// SPDX-License-Identifier: (GPL-2.0-only OR MIT)
+ /*
+  * Copyright 2014-2017 Lothar Waßmann <LW@KARO-electronics.de>
+- *
+- * This file is dual-licensed: you can use it either under the terms
+- * of the GPL or the X11 license, at your option. Note that this dual
+- * licensing only applies to this file, and not this project as a
+- * whole.
+- *
+- *  a) This file is free software; you can redistribute it and/or
+- *     modify it under the terms of the GNU General Public License
+- *     version 2 as published by the Free Software Foundation.
+- *
+- *     This file is distributed in the hope that it will be useful,
+- *     but WITHOUT ANY WARRANTY; without even the implied warranty of
+- *     MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+- *     GNU General Public License for more details.
+- *
+- * Or, alternatively,
+- *
+- *  b) Permission is hereby granted, free of charge, to any person
+- *     obtaining a copy of this software and associated documentation
+- *     files (the "Software"), to deal in the Software without
+- *     restriction, including without limitation the rights to use,
+- *     copy, modify, merge, publish, distribute, sublicense, and/or
+- *     sell copies of the Software, and to permit persons to whom the
+- *     Software is furnished to do so, subject to the following
+- *     conditions:
+- *
+- *     The above copyright notice and this permission notice shall be
+- *     included in all copies or substantial portions of the Software.
+- *
+- *     THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
+- *     EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES
+- *     OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
+- *     NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT
+- *     HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY,
+- *     WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
+- *     FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR
+- *     OTHER DEALINGS IN THE SOFTWARE.
+  */
+ 
+ /dts-v1/;
+diff --git a/arch/arm/boot/dts/nxp/imx/imx6q-tx6q-1020.dts b/arch/arm/boot/dts/nxp/imx/imx6q-tx6q-1020.dts
+index 0a4daec8d3ad..5dd8f1642db3 100644
+--- a/arch/arm/boot/dts/nxp/imx/imx6q-tx6q-1020.dts
++++ b/arch/arm/boot/dts/nxp/imx/imx6q-tx6q-1020.dts
+@@ -1,42 +1,6 @@
++// SPDX-License-Identifier: (GPL-2.0-only OR MIT)
+ /*
+  * Copyright 2014-2017 Lothar Waßmann <LW@KARO-electronics.de>
+- *
+- * This file is dual-licensed: you can use it either under the terms
+- * of the GPL or the X11 license, at your option. Note that this dual
+- * licensing only applies to this file, and not this project as a
+- * whole.
+- *
+- *  a) This file is free software; you can redistribute it and/or
+- *     modify it under the terms of the GNU General Public License
+- *     version 2 as published by the Free Software Foundation.
+- *
+- *     This file is distributed in the hope that it will be useful,
+- *     but WITHOUT ANY WARRANTY; without even the implied warranty of
+- *     MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+- *     GNU General Public License for more details.
+- *
+- * Or, alternatively,
+- *
+- *  b) Permission is hereby granted, free of charge, to any person
+- *     obtaining a copy of this software and associated documentation
+- *     files (the "Software"), to deal in the Software without
+- *     restriction, including without limitation the rights to use,
+- *     copy, modify, merge, publish, distribute, sublicense, and/or
+- *     sell copies of the Software, and to permit persons to whom the
+- *     Software is furnished to do so, subject to the following
+- *     conditions:
+- *
+- *     The above copyright notice and this permission notice shall be
+- *     included in all copies or substantial portions of the Software.
+- *
+- *     THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
+- *     EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES
+- *     OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
+- *     NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT
+- *     HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY,
+- *     WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
+- *     FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR
+- *     OTHER DEALINGS IN THE SOFTWARE.
+  */
+ 
+ /dts-v1/;
+diff --git a/arch/arm/boot/dts/nxp/imx/imx6q-tx6q-1036-mb7.dts b/arch/arm/boot/dts/nxp/imx/imx6q-tx6q-1036-mb7.dts
+index 9ffbb0fe7df8..ffa79c0eb05a 100644
+--- a/arch/arm/boot/dts/nxp/imx/imx6q-tx6q-1036-mb7.dts
++++ b/arch/arm/boot/dts/nxp/imx/imx6q-tx6q-1036-mb7.dts
+@@ -1,42 +1,6 @@
++// SPDX-License-Identifier: (GPL-2.0-only OR MIT)
+ /*
+  * Copyright 2017 Lothar Waßmann <LW@KARO-electronics.de>
+- *
+- * This file is dual-licensed: you can use it either under the terms
+- * of the GPL or the X11 license, at your option. Note that this dual
+- * licensing only applies to this file, and not this project as a
+- * whole.
+- *
+- *  a) This file is free software; you can redistribute it and/or
+- *     modify it under the terms of the GNU General Public License
+- *     version 2 as published by the Free Software Foundation.
+- *
+- *     This file is distributed in the hope that it will be useful,
+- *     but WITHOUT ANY WARRANTY; without even the implied warranty of
+- *     MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+- *     GNU General Public License for more details.
+- *
+- * Or, alternatively,
+- *
+- *  b) Permission is hereby granted, free of charge, to any person
+- *     obtaining a copy of this software and associated documentation
+- *     files (the "Software"), to deal in the Software without
+- *     restriction, including without limitation the rights to use,
+- *     copy, modify, merge, publish, distribute, sublicense, and/or
+- *     sell copies of the Software, and to permit persons to whom the
+- *     Software is furnished to do so, subject to the following
+- *     conditions:
+- *
+- *     The above copyright notice and this permission notice shall be
+- *     included in all copies or substantial portions of the Software.
+- *
+- *     THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
+- *     EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES
+- *     OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
+- *     NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT
+- *     HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY,
+- *     WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
+- *     FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR
+- *     OTHER DEALINGS IN THE SOFTWARE.
+  */
+ 
+ /dts-v1/;
+diff --git a/arch/arm/boot/dts/nxp/imx/imx6q-tx6q-1036.dts b/arch/arm/boot/dts/nxp/imx/imx6q-tx6q-1036.dts
+index cb2fcb4896c6..1346fd663d68 100644
+--- a/arch/arm/boot/dts/nxp/imx/imx6q-tx6q-1036.dts
++++ b/arch/arm/boot/dts/nxp/imx/imx6q-tx6q-1036.dts
+@@ -1,42 +1,6 @@
++// SPDX-License-Identifier: (GPL-2.0-only OR MIT)
+ /*
+  * Copyright 2014-2017 Lothar Waßmann <LW@KARO-electronics.de>
+- *
+- * This file is dual-licensed: you can use it either under the terms
+- * of the GPL or the X11 license, at your option. Note that this dual
+- * licensing only applies to this file, and not this project as a
+- * whole.
+- *
+- *  a) This file is free software; you can redistribute it and/or
+- *     modify it under the terms of the GNU General Public License
+- *     version 2 as published by the Free Software Foundation.
+- *
+- *     This file is distributed in the hope that it will be useful,
+- *     but WITHOUT ANY WARRANTY; without even the implied warranty of
+- *     MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+- *     GNU General Public License for more details.
+- *
+- * Or, alternatively,
+- *
+- *  b) Permission is hereby granted, free of charge, to any person
+- *     obtaining a copy of this software and associated documentation
+- *     files (the "Software"), to deal in the Software without
+- *     restriction, including without limitation the rights to use,
+- *     copy, modify, merge, publish, distribute, sublicense, and/or
+- *     sell copies of the Software, and to permit persons to whom the
+- *     Software is furnished to do so, subject to the following
+- *     conditions:
+- *
+- *     The above copyright notice and this permission notice shall be
+- *     included in all copies or substantial portions of the Software.
+- *
+- *     THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
+- *     EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES
+- *     OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
+- *     NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT
+- *     HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY,
+- *     WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
+- *     FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR
+- *     OTHER DEALINGS IN THE SOFTWARE.
+  */
+ 
+ /dts-v1/;
+diff --git a/arch/arm/boot/dts/nxp/imx/imx6q-tx6q-10x0-mb7.dts b/arch/arm/boot/dts/nxp/imx/imx6q-tx6q-10x0-mb7.dts
+index d43a5d8f1749..eac07d5944cc 100644
+--- a/arch/arm/boot/dts/nxp/imx/imx6q-tx6q-10x0-mb7.dts
++++ b/arch/arm/boot/dts/nxp/imx/imx6q-tx6q-10x0-mb7.dts
+@@ -1,42 +1,6 @@
++// SPDX-License-Identifier: (GPL-2.0-only OR MIT)
+ /*
+  * Copyright 2017 Lothar Waßmann <LW@KARO-electronics.de>
+- *
+- * This file is dual-licensed: you can use it either under the terms
+- * of the GPL or the X11 license, at your option. Note that this dual
+- * licensing only applies to this file, and not this project as a
+- * whole.
+- *
+- *  a) This file is free software; you can redistribute it and/or
+- *     modify it under the terms of the GNU General Public License
+- *     version 2 as published by the Free Software Foundation.
+- *
+- *     This file is distributed in the hope that it will be useful,
+- *     but WITHOUT ANY WARRANTY; without even the implied warranty of
+- *     MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+- *     GNU General Public License for more details.
+- *
+- * Or, alternatively,
+- *
+- *  b) Permission is hereby granted, free of charge, to any person
+- *     obtaining a copy of this software and associated documentation
+- *     files (the "Software"), to deal in the Software without
+- *     restriction, including without limitation the rights to use,
+- *     copy, modify, merge, publish, distribute, sublicense, and/or
+- *     sell copies of the Software, and to permit persons to whom the
+- *     Software is furnished to do so, subject to the following
+- *     conditions:
+- *
+- *     The above copyright notice and this permission notice shall be
+- *     included in all copies or substantial portions of the Software.
+- *
+- *     THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
+- *     EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES
+- *     OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
+- *     NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT
+- *     HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY,
+- *     WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
+- *     FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR
+- *     OTHER DEALINGS IN THE SOFTWARE.
+  */
+ 
+ /dts-v1/;
+diff --git a/arch/arm/boot/dts/nxp/imx/imx6q-tx6q-1110.dts b/arch/arm/boot/dts/nxp/imx/imx6q-tx6q-1110.dts
+index f7b0acb65352..c485da35d333 100644
+--- a/arch/arm/boot/dts/nxp/imx/imx6q-tx6q-1110.dts
++++ b/arch/arm/boot/dts/nxp/imx/imx6q-tx6q-1110.dts
+@@ -1,42 +1,6 @@
++// SPDX-License-Identifier: (GPL-2.0-only OR MIT)
+ /*
+  * Copyright 2014-2017 Lothar Waßmann <LW@KARO-electronics.de>
+- *
+- * This file is dual-licensed: you can use it either under the terms
+- * of the GPL or the X11 license, at your option. Note that this dual
+- * licensing only applies to this file, and not this project as a
+- * whole.
+- *
+- *  a) This file is free software; you can redistribute it and/or
+- *     modify it under the terms of the GNU General Public License
+- *     version 2 as published by the Free Software Foundation.
+- *
+- *     This file is distributed in the hope that it will be useful,
+- *     but WITHOUT ANY WARRANTY; without even the implied warranty of
+- *     MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+- *     GNU General Public License for more details.
+- *
+- * Or, alternatively,
+- *
+- *  b) Permission is hereby granted, free of charge, to any person
+- *     obtaining a copy of this software and associated documentation
+- *     files (the "Software"), to deal in the Software without
+- *     restriction, including without limitation the rights to use,
+- *     copy, modify, merge, publish, distribute, sublicense, and/or
+- *     sell copies of the Software, and to permit persons to whom the
+- *     Software is furnished to do so, subject to the following
+- *     conditions:
+- *
+- *     The above copyright notice and this permission notice shall be
+- *     included in all copies or substantial portions of the Software.
+- *
+- *     THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
+- *     EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES
+- *     OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
+- *     NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT
+- *     HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY,
+- *     WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
+- *     FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR
+- *     OTHER DEALINGS IN THE SOFTWARE.
+  */
+ 
+ /dts-v1/;
+diff --git a/arch/arm/boot/dts/nxp/imx/imx6q-tx6q-11x0-mb7.dts b/arch/arm/boot/dts/nxp/imx/imx6q-tx6q-11x0-mb7.dts
+index 387edf2b3f96..53304fc3a90b 100644
+--- a/arch/arm/boot/dts/nxp/imx/imx6q-tx6q-11x0-mb7.dts
++++ b/arch/arm/boot/dts/nxp/imx/imx6q-tx6q-11x0-mb7.dts
+@@ -1,42 +1,6 @@
++// SPDX-License-Identifier: (GPL-2.0-only OR MIT)
+ /*
+  * Copyright 2016-2017 Lothar Waßmann <LW@KARO-electronics.de>
+- *
+- * This file is dual-licensed: you can use it either under the terms
+- * of the GPL or the X11 license, at your option. Note that this dual
+- * licensing only applies to this file, and not this project as a
+- * whole.
+- *
+- *  a) This file is free software; you can redistribute it and/or
+- *     modify it under the terms of the GNU General Public License
+- *     version 2 as published by the Free Software Foundation.
+- *
+- *     This file is distributed in the hope that it will be useful,
+- *     but WITHOUT ANY WARRANTY; without even the implied warranty of
+- *     MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+- *     GNU General Public License for more details.
+- *
+- * Or, alternatively,
+- *
+- *  b) Permission is hereby granted, free of charge, to any person
+- *     obtaining a copy of this software and associated documentation
+- *     files (the "Software"), to deal in the Software without
+- *     restriction, including without limitation the rights to use,
+- *     copy, modify, merge, publish, distribute, sublicense, and/or
+- *     sell copies of the Software, and to permit persons to whom the
+- *     Software is furnished to do so, subject to the following
+- *     conditions:
+- *
+- *     The above copyright notice and this permission notice shall be
+- *     included in all copies or substantial portions of the Software.
+- *
+- *     THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
+- *     EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES
+- *     OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
+- *     NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT
+- *     HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY,
+- *     WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
+- *     FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR
+- *     OTHER DEALINGS IN THE SOFTWARE.
+  */
+ 
+ /dts-v1/;
+diff --git a/arch/arm/boot/dts/nxp/imx/imx6qdl-tx6-lcd.dtsi b/arch/arm/boot/dts/nxp/imx/imx6qdl-tx6-lcd.dtsi
+index 77594546ef37..cdeaca36867e 100644
+--- a/arch/arm/boot/dts/nxp/imx/imx6qdl-tx6-lcd.dtsi
++++ b/arch/arm/boot/dts/nxp/imx/imx6qdl-tx6-lcd.dtsi
+@@ -1,42 +1,6 @@
++// SPDX-License-Identifier: (GPL-2.0-only OR MIT)
+ /*
+  * Copyright 2017 Lothar Waßmann <LW@KARO-electronics.de>
+- *
+- * This file is dual-licensed: you can use it either under the terms
+- * of the GPL or the X11 license, at your option. Note that this dual
+- * licensing only applies to this file, and not this project as a
+- * whole.
+- *
+- *  a) This file is free software; you can redistribute it and/or
+- *     modify it under the terms of the GNU General Public License
+- *     version 2 as published by the Free Software Foundation.
+- *
+- *     This file is distributed in the hope that it will be useful,
+- *     but WITHOUT ANY WARRANTY; without even the implied warranty of
+- *     MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+- *     GNU General Public License for more details.
+- *
+- * Or, alternatively,
+- *
+- *  b) Permission is hereby granted, free of charge, to any person
+- *     obtaining a copy of this software and associated documentation
+- *     files (the "Software"), to deal in the Software without
+- *     restriction, including without limitation the rights to use,
+- *     copy, modify, merge, publish, distribute, sublicense, and/or
+- *     sell copies of the Software, and to permit persons to whom the
+- *     Software is furnished to do so, subject to the following
+- *     conditions:
+- *
+- *     The above copyright notice and this permission notice shall be
+- *     included in all copies or substantial portions of the Software.
+- *
+- *     THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
+- *     EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES
+- *     OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
+- *     NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT
+- *     HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY,
+- *     WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
+- *     FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR
+- *     OTHER DEALINGS IN THE SOFTWARE.
+  */
+ 
+ / {
+diff --git a/arch/arm/boot/dts/nxp/imx/imx6qdl-tx6-lvds.dtsi b/arch/arm/boot/dts/nxp/imx/imx6qdl-tx6-lvds.dtsi
+index 4eb53d5677a6..63d09c01a3c6 100644
+--- a/arch/arm/boot/dts/nxp/imx/imx6qdl-tx6-lvds.dtsi
++++ b/arch/arm/boot/dts/nxp/imx/imx6qdl-tx6-lvds.dtsi
+@@ -1,42 +1,6 @@
++// SPDX-License-Identifier: (GPL-2.0-only OR MIT)
+ /*
+  * Copyright 2017 Lothar Waßmann <LW@KARO-electronics.de>
+- *
+- * This file is dual-licensed: you can use it either under the terms
+- * of the GPL or the X11 license, at your option. Note that this dual
+- * licensing only applies to this file, and not this project as a
+- * whole.
+- *
+- *  a) This file is free software; you can redistribute it and/or
+- *     modify it under the terms of the GNU General Public License
+- *     version 2 as published by the Free Software Foundation.
+- *
+- *     This file is distributed in the hope that it will be useful,
+- *     but WITHOUT ANY WARRANTY; without even the implied warranty of
+- *     MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+- *     GNU General Public License for more details.
+- *
+- * Or, alternatively,
+- *
+- *  b) Permission is hereby granted, free of charge, to any person
+- *     obtaining a copy of this software and associated documentation
+- *     files (the "Software"), to deal in the Software without
+- *     restriction, including without limitation the rights to use,
+- *     copy, modify, merge, publish, distribute, sublicense, and/or
+- *     sell copies of the Software, and to permit persons to whom the
+- *     Software is furnished to do so, subject to the following
+- *     conditions:
+- *
+- *     The above copyright notice and this permission notice shall be
+- *     included in all copies or substantial portions of the Software.
+- *
+- *     THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
+- *     EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES
+- *     OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
+- *     NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT
+- *     HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY,
+- *     WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
+- *     FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR
+- *     OTHER DEALINGS IN THE SOFTWARE.
+  */
+ 
+ / {
+diff --git a/arch/arm/boot/dts/nxp/imx/imx6qdl-tx6-mb7.dtsi b/arch/arm/boot/dts/nxp/imx/imx6qdl-tx6-mb7.dtsi
+index bae7313d729d..dd4e5bce4a55 100644
+--- a/arch/arm/boot/dts/nxp/imx/imx6qdl-tx6-mb7.dtsi
++++ b/arch/arm/boot/dts/nxp/imx/imx6qdl-tx6-mb7.dtsi
+@@ -1,42 +1,6 @@
++// SPDX-License-Identifier: (GPL-2.0-only OR MIT)
+ /*
+  * Copyright 2017 Lothar Waßmann <LW@KARO-electronics.de>
+- *
+- * This file is dual-licensed: you can use it either under the terms
+- * of the GPL or the X11 license, at your option. Note that this dual
+- * licensing only applies to this file, and not this project as a
+- * whole.
+- *
+- *  a) This file is free software; you can redistribute it and/or
+- *     modify it under the terms of the GNU General Public License
+- *     version 2 as published by the Free Software Foundation.
+- *
+- *     This file is distributed in the hope that it will be useful,
+- *     but WITHOUT ANY WARRANTY; without even the implied warranty of
+- *     MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+- *     GNU General Public License for more details.
+- *
+- * Or, alternatively,
+- *
+- *  b) Permission is hereby granted, free of charge, to any person
+- *     obtaining a copy of this software and associated documentation
+- *     files (the "Software"), to deal in the Software without
+- *     restriction, including without limitation the rights to use,
+- *     copy, modify, merge, publish, distribute, sublicense, and/or
+- *     sell copies of the Software, and to permit persons to whom the
+- *     Software is furnished to do so, subject to the following
+- *     conditions:
+- *
+- *     The above copyright notice and this permission notice shall be
+- *     included in all copies or substantial portions of the Software.
+- *
+- *     THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
+- *     EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES
+- *     OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
+- *     NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT
+- *     HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY,
+- *     WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
+- *     FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR
+- *     OTHER DEALINGS IN THE SOFTWARE.
+  */
+ 
+ / {
+diff --git a/arch/arm/boot/dts/nxp/imx/imx6qdl-tx6.dtsi b/arch/arm/boot/dts/nxp/imx/imx6qdl-tx6.dtsi
+index 2fa37d1b16cc..2bb5b762c984 100644
+--- a/arch/arm/boot/dts/nxp/imx/imx6qdl-tx6.dtsi
++++ b/arch/arm/boot/dts/nxp/imx/imx6qdl-tx6.dtsi
+@@ -1,42 +1,6 @@
++// SPDX-License-Identifier: (GPL-2.0-only OR MIT)
+ /*
+  * Copyright 2014-2017 Lothar Waßmann <LW@KARO-electronics.de>
+- *
+- * This file is dual-licensed: you can use it either under the terms
+- * of the GPL or the X11 license, at your option. Note that this dual
+- * licensing only applies to this file, and not this project as a
+- * whole.
+- *
+- *  a) This file is free software; you can redistribute it and/or
+- *     modify it under the terms of the GNU General Public License
+- *     version 2 as published by the Free Software Foundation.
+- *
+- *     This file is distributed in the hope that it will be useful,
+- *     but WITHOUT ANY WARRANTY; without even the implied warranty of
+- *     MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+- *     GNU General Public License for more details.
+- *
+- * Or, alternatively,
+- *
+- *  b) Permission is hereby granted, free of charge, to any person
+- *     obtaining a copy of this software and associated documentation
+- *     files (the "Software"), to deal in the Software without
+- *     restriction, including without limitation the rights to use,
+- *     copy, modify, merge, publish, distribute, sublicense, and/or
+- *     sell copies of the Software, and to permit persons to whom the
+- *     Software is furnished to do so, subject to the following
+- *     conditions:
+- *
+- *     The above copyright notice and this permission notice shall be
+- *     included in all copies or substantial portions of the Software.
+- *
+- *     THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
+- *     EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES
+- *     OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
+- *     NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT
+- *     HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY,
+- *     WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
+- *     FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR
+- *     OTHER DEALINGS IN THE SOFTWARE.
+  */
+ 
+ #include <dt-bindings/gpio/gpio.h>
+diff --git a/arch/arm/boot/dts/nxp/imx/imx6qp-tx6qp-8037-mb7.dts b/arch/arm/boot/dts/nxp/imx/imx6qp-tx6qp-8037-mb7.dts
+index 92b38e6699aa..3183abdd25aa 100644
+--- a/arch/arm/boot/dts/nxp/imx/imx6qp-tx6qp-8037-mb7.dts
++++ b/arch/arm/boot/dts/nxp/imx/imx6qp-tx6qp-8037-mb7.dts
+@@ -1,42 +1,6 @@
++// SPDX-License-Identifier: (GPL-2.0-only OR MIT)
+ /*
+  * Copyright 2017 Lothar Waßmann <LW@KARO-electronics.de>
+- *
+- * This file is dual-licensed: you can use it either under the terms
+- * of the GPL or the X11 license, at your option. Note that this dual
+- * licensing only applies to this file, and not this project as a
+- * whole.
+- *
+- *  a) This file is free software; you can redistribute it and/or
+- *     modify it under the terms of the GNU General Public License
+- *     version 2 as published by the Free Software Foundation.
+- *
+- *     This file is distributed in the hope that it will be useful,
+- *     but WITHOUT ANY WARRANTY; without even the implied warranty of
+- *     MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+- *     GNU General Public License for more details.
+- *
+- * Or, alternatively,
+- *
+- *  b) Permission is hereby granted, free of charge, to any person
+- *     obtaining a copy of this software and associated documentation
+- *     files (the "Software"), to deal in the Software without
+- *     restriction, including without limitation the rights to use,
+- *     copy, modify, merge, publish, distribute, sublicense, and/or
+- *     sell copies of the Software, and to permit persons to whom the
+- *     Software is furnished to do so, subject to the following
+- *     conditions:
+- *
+- *     The above copyright notice and this permission notice shall be
+- *     included in all copies or substantial portions of the Software.
+- *
+- *     THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
+- *     EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES
+- *     OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
+- *     NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT
+- *     HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY,
+- *     WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
+- *     FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR
+- *     OTHER DEALINGS IN THE SOFTWARE.
+  */
+ 
+ /dts-v1/;
+diff --git a/arch/arm/boot/dts/nxp/imx/imx6qp-tx6qp-8037.dts b/arch/arm/boot/dts/nxp/imx/imx6qp-tx6qp-8037.dts
+index ffc0f2ee11d2..174824a8138e 100644
+--- a/arch/arm/boot/dts/nxp/imx/imx6qp-tx6qp-8037.dts
++++ b/arch/arm/boot/dts/nxp/imx/imx6qp-tx6qp-8037.dts
+@@ -1,42 +1,6 @@
++// SPDX-License-Identifier: (GPL-2.0-only OR MIT)
+ /*
+  * Copyright 2017 Lothar Waßmann <LW@KARO-electronics.de>
+- *
+- * This file is dual-licensed: you can use it either under the terms
+- * of the GPL or the X11 license, at your option. Note that this dual
+- * licensing only applies to this file, and not this project as a
+- * whole.
+- *
+- *  a) This file is free software; you can redistribute it and/or
+- *     modify it under the terms of the GNU General Public License
+- *     version 2 as published by the Free Software Foundation.
+- *
+- *     This file is distributed in the hope that it will be useful,
+- *     but WITHOUT ANY WARRANTY; without even the implied warranty of
+- *     MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+- *     GNU General Public License for more details.
+- *
+- * Or, alternatively,
+- *
+- *  b) Permission is hereby granted, free of charge, to any person
+- *     obtaining a copy of this software and associated documentation
+- *     files (the "Software"), to deal in the Software without
+- *     restriction, including without limitation the rights to use,
+- *     copy, modify, merge, publish, distribute, sublicense, and/or
+- *     sell copies of the Software, and to permit persons to whom the
+- *     Software is furnished to do so, subject to the following
+- *     conditions:
+- *
+- *     The above copyright notice and this permission notice shall be
+- *     included in all copies or substantial portions of the Software.
+- *
+- *     THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
+- *     EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES
+- *     OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
+- *     NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT
+- *     HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY,
+- *     WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
+- *     FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR
+- *     OTHER DEALINGS IN THE SOFTWARE.
+  */
+ 
+ /dts-v1/;
+diff --git a/arch/arm/boot/dts/nxp/imx/imx6qp-tx6qp-8137-mb7.dts b/arch/arm/boot/dts/nxp/imx/imx6qp-tx6qp-8137-mb7.dts
+index 07ad70718aec..31854bc52e76 100644
+--- a/arch/arm/boot/dts/nxp/imx/imx6qp-tx6qp-8137-mb7.dts
++++ b/arch/arm/boot/dts/nxp/imx/imx6qp-tx6qp-8137-mb7.dts
+@@ -1,42 +1,6 @@
++// SPDX-License-Identifier: (GPL-2.0-only OR MIT)
+ /*
+  * Copyright 2017 Lothar Waßmann <LW@KARO-electronics.de>
+- *
+- * This file is dual-licensed: you can use it either under the terms
+- * of the GPL or the X11 license, at your option. Note that this dual
+- * licensing only applies to this file, and not this project as a
+- * whole.
+- *
+- *  a) This file is free software; you can redistribute it and/or
+- *     modify it under the terms of the GNU General Public License
+- *     version 2 as published by the Free Software Foundation.
+- *
+- *     This file is distributed in the hope that it will be useful,
+- *     but WITHOUT ANY WARRANTY; without even the implied warranty of
+- *     MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+- *     GNU General Public License for more details.
+- *
+- * Or, alternatively,
+- *
+- *  b) Permission is hereby granted, free of charge, to any person
+- *     obtaining a copy of this software and associated documentation
+- *     files (the "Software"), to deal in the Software without
+- *     restriction, including without limitation the rights to use,
+- *     copy, modify, merge, publish, distribute, sublicense, and/or
+- *     sell copies of the Software, and to permit persons to whom the
+- *     Software is furnished to do so, subject to the following
+- *     conditions:
+- *
+- *     The above copyright notice and this permission notice shall be
+- *     included in all copies or substantial portions of the Software.
+- *
+- *     THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
+- *     EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES
+- *     OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
+- *     NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT
+- *     HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY,
+- *     WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
+- *     FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR
+- *     OTHER DEALINGS IN THE SOFTWARE.
+  */
+ 
+ /dts-v1/;
+diff --git a/arch/arm/boot/dts/nxp/imx/imx6qp-tx6qp-8137.dts b/arch/arm/boot/dts/nxp/imx/imx6qp-tx6qp-8137.dts
+index dd494d587014..dfe1535128fe 100644
+--- a/arch/arm/boot/dts/nxp/imx/imx6qp-tx6qp-8137.dts
++++ b/arch/arm/boot/dts/nxp/imx/imx6qp-tx6qp-8137.dts
+@@ -1,42 +1,6 @@
++// SPDX-License-Identifier: (GPL-2.0-only OR MIT)
+ /*
+  * Copyright 2017 Lothar Waßmann <LW@KARO-electronics.de>
+- *
+- * This file is dual-licensed: you can use it either under the terms
+- * of the GPL or the X11 license, at your option. Note that this dual
+- * licensing only applies to this file, and not this project as a
+- * whole.
+- *
+- *  a) This file is free software; you can redistribute it and/or
+- *     modify it under the terms of the GNU General Public License
+- *     version 2 as published by the Free Software Foundation.
+- *
+- *     This file is distributed in the hope that it will be useful,
+- *     but WITHOUT ANY WARRANTY; without even the implied warranty of
+- *     MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+- *     GNU General Public License for more details.
+- *
+- * Or, alternatively,
+- *
+- *  b) Permission is hereby granted, free of charge, to any person
+- *     obtaining a copy of this software and associated documentation
+- *     files (the "Software"), to deal in the Software without
+- *     restriction, including without limitation the rights to use,
+- *     copy, modify, merge, publish, distribute, sublicense, and/or
+- *     sell copies of the Software, and to permit persons to whom the
+- *     Software is furnished to do so, subject to the following
+- *     conditions:
+- *
+- *     The above copyright notice and this permission notice shall be
+- *     included in all copies or substantial portions of the Software.
+- *
+- *     THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
+- *     EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES
+- *     OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
+- *     NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT
+- *     HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY,
+- *     WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
+- *     FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR
+- *     OTHER DEALINGS IN THE SOFTWARE.
+  */
+ 
+ /dts-v1/;
+diff --git a/arch/arm/boot/dts/nxp/imx/imx6ul-tx6ul-0010.dts b/arch/arm/boot/dts/nxp/imx/imx6ul-tx6ul-0010.dts
+index 8c2f3df79b47..188f3a2a312f 100644
+--- a/arch/arm/boot/dts/nxp/imx/imx6ul-tx6ul-0010.dts
++++ b/arch/arm/boot/dts/nxp/imx/imx6ul-tx6ul-0010.dts
+@@ -1,42 +1,6 @@
++// SPDX-License-Identifier: (GPL-2.0-only OR MIT)
+ /*
+  * Copyright 2015 Lothar Waßmann <LW@KARO-electronics.de>
+- *
+- * This file is dual-licensed: you can use it either under the terms
+- * of the GPL or the X11 license, at your option. Note that this dual
+- * licensing only applies to this file, and not this project as a
+- * whole.
+- *
+- *  a) This file is free software; you can redistribute it and/or
+- *     modify it under the terms of the GNU General Public License
+- *     version 2 as published by the Free Software Foundation.
+- *
+- *     This file is distributed in the hope that it will be useful,
+- *     but WITHOUT ANY WARRANTY; without even the implied warranty of
+- *     MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+- *     GNU General Public License for more details.
+- *
+- * Or, alternatively,
+- *
+- *  b) Permission is hereby granted, free of charge, to any person
+- *     obtaining a copy of this software and associated documentation
+- *     files (the "Software"), to deal in the Software without
+- *     restriction, including without limitation the rights to use,
+- *     copy, modify, merge, publish, distribute, sublicense, and/or
+- *     sell copies of the Software, and to permit persons to whom the
+- *     Software is furnished to do so, subject to the following
+- *     conditions:
+- *
+- *     The above copyright notice and this permission notice shall be
+- *     included in all copies or substantial portions of the Software.
+- *
+- *     THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
+- *     EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES
+- *     OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
+- *     NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT
+- *     HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY,
+- *     WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
+- *     FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR
+- *     OTHER DEALINGS IN THE SOFTWARE.
+  */
+ 
+ /dts-v1/;
+diff --git a/arch/arm/boot/dts/nxp/imx/imx6ul-tx6ul-0011.dts b/arch/arm/boot/dts/nxp/imx/imx6ul-tx6ul-0011.dts
+index d82698e7d50f..247a0aab7791 100644
+--- a/arch/arm/boot/dts/nxp/imx/imx6ul-tx6ul-0011.dts
++++ b/arch/arm/boot/dts/nxp/imx/imx6ul-tx6ul-0011.dts
+@@ -1,42 +1,6 @@
++// SPDX-License-Identifier: (GPL-2.0-only OR MIT)
+ /*
+  * Copyright 2015 Lothar Waßmann <LW@KARO-electronics.de>
+- *
+- * This file is dual-licensed: you can use it either under the terms
+- * of the GPL or the X11 license, at your option. Note that this dual
+- * licensing only applies to this file, and not this project as a
+- * whole.
+- *
+- *  a) This file is free software; you can redistribute it and/or
+- *     modify it under the terms of the GNU General Public License
+- *     version 2 as published by the Free Software Foundation.
+- *
+- *     This file is distributed in the hope that it will be useful,
+- *     but WITHOUT ANY WARRANTY; without even the implied warranty of
+- *     MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+- *     GNU General Public License for more details.
+- *
+- * Or, alternatively,
+- *
+- *  b) Permission is hereby granted, free of charge, to any person
+- *     obtaining a copy of this software and associated documentation
+- *     files (the "Software"), to deal in the Software without
+- *     restriction, including without limitation the rights to use,
+- *     copy, modify, merge, publish, distribute, sublicense, and/or
+- *     sell copies of the Software, and to permit persons to whom the
+- *     Software is furnished to do so, subject to the following
+- *     conditions:
+- *
+- *     The above copyright notice and this permission notice shall be
+- *     included in all copies or substantial portions of the Software.
+- *
+- *     THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
+- *     EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES
+- *     OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
+- *     NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT
+- *     HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY,
+- *     WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
+- *     FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR
+- *     OTHER DEALINGS IN THE SOFTWARE.
+  */
+ 
+ /dts-v1/;
+diff --git a/arch/arm/boot/dts/nxp/imx/imx6ul-tx6ul-mainboard.dts b/arch/arm/boot/dts/nxp/imx/imx6ul-tx6ul-mainboard.dts
+index 20c810a81403..84b45542814e 100644
+--- a/arch/arm/boot/dts/nxp/imx/imx6ul-tx6ul-mainboard.dts
++++ b/arch/arm/boot/dts/nxp/imx/imx6ul-tx6ul-mainboard.dts
+@@ -1,42 +1,6 @@
++// SPDX-License-Identifier: (GPL-2.0-only OR MIT)
+ /*
+  * Copyright 2015 Lothar Waßmann <LW@KARO-electronics.de>
+- *
+- * This file is dual-licensed: you can use it either under the terms
+- * of the GPL or the X11 license, at your option. Note that this dual
+- * licensing only applies to this file, and not this project as a
+- * whole.
+- *
+- *  a) This file is free software; you can redistribute it and/or
+- *     modify it under the terms of the GNU General Public License
+- *     version 2 as published by the Free Software Foundation.
+- *
+- *     This file is distributed in the hope that it will be useful,
+- *     but WITHOUT ANY WARRANTY; without even the implied warranty of
+- *     MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+- *     GNU General Public License for more details.
+- *
+- * Or, alternatively,
+- *
+- *  b) Permission is hereby granted, free of charge, to any person
+- *     obtaining a copy of this software and associated documentation
+- *     files (the "Software"), to deal in the Software without
+- *     restriction, including without limitation the rights to use,
+- *     copy, modify, merge, publish, distribute, sublicense, and/or
+- *     sell copies of the Software, and to permit persons to whom the
+- *     Software is furnished to do so, subject to the following
+- *     conditions:
+- *
+- *     The above copyright notice and this permission notice shall be
+- *     included in all copies or substantial portions of the Software.
+- *
+- *     THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
+- *     EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES
+- *     OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
+- *     NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT
+- *     HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY,
+- *     WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
+- *     FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR
+- *     OTHER DEALINGS IN THE SOFTWARE.
+  */
+ 
+ /dts-v1/;
+diff --git a/arch/arm/boot/dts/nxp/imx/imx6ul-tx6ul.dtsi b/arch/arm/boot/dts/nxp/imx/imx6ul-tx6ul.dtsi
+index 278120404d31..f053358bc931 100644
+--- a/arch/arm/boot/dts/nxp/imx/imx6ul-tx6ul.dtsi
++++ b/arch/arm/boot/dts/nxp/imx/imx6ul-tx6ul.dtsi
+@@ -1,42 +1,6 @@
++// SPDX-License-Identifier: (GPL-2.0-only OR MIT)
+ /*
+  * Copyright 2015 Lothar Waßmann <LW@KARO-electronics.de>
+- *
+- * This file is dual-licensed: you can use it either under the terms
+- * of the GPL or the X11 license, at your option. Note that this dual
+- * licensing only applies to this file, and not this project as a
+- * whole.
+- *
+- *  a) This file is free software; you can redistribute it and/or
+- *     modify it under the terms of the GNU General Public License
+- *     version 2 as published by the Free Software Foundation.
+- *
+- *     This file is distributed in the hope that it will be useful,
+- *     but WITHOUT ANY WARRANTY; without even the implied warranty of
+- *     MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+- *     GNU General Public License for more details.
+- *
+- * Or, alternatively,
+- *
+- *  b) Permission is hereby granted, free of charge, to any person
+- *     obtaining a copy of this software and associated documentation
+- *     files (the "Software"), to deal in the Software without
+- *     restriction, including without limitation the rights to use,
+- *     copy, modify, merge, publish, distribute, sublicense, and/or
+- *     sell copies of the Software, and to permit persons to whom the
+- *     Software is furnished to do so, subject to the following
+- *     conditions:
+- *
+- *     The above copyright notice and this permission notice shall be
+- *     included in all copies or substantial portions of the Software.
+- *
+- *     THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
+- *     EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES
+- *     OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
+- *     NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT
+- *     HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY,
+- *     WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
+- *     FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR
+- *     OTHER DEALINGS IN THE SOFTWARE.
+  */
+ 
+ #include <dt-bindings/gpio/gpio.h>
 
-And that's some sort of my job to read every possible comment
-everywhere? I have way too many emails to respond to, so no, I will
-ignore most of them.
-
-> has been brutally enforced to become the new "sorting by values" order,
-
-What? Where? This never happened!
-
-Point me to any guidance by DT maintainers. Not to some other people
-telling you random stuff.
-
-> and to my sincere today's surprise there is no such rule. Apparently now
-> I have to believe it was Bryan's and my voluntary and deliberate decision
-> to change the sorting order, all right.
-
-Point to arguments where any DT maintainer asked you to sort by value.
-
+---
+base-commit: 86731a2a651e58953fc949573895f2fa6d456841
+change-id: 20250624-karo-dts-lic-2f7366e6feb4
 
 Best regards,
-Krzysztof
+-- 
+Bence Csókás <csokas.bence@prolan.hu>
+
+
 
