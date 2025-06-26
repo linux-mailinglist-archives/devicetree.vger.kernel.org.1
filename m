@@ -1,64 +1,58 @@
-Return-Path: <devicetree+bounces-190128-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-190130-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 65DC7AEAAE6
-	for <lists+devicetree@lfdr.de>; Fri, 27 Jun 2025 01:53:15 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 416A0AEAAED
+	for <lists+devicetree@lfdr.de>; Fri, 27 Jun 2025 01:53:43 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 634CE173CB1
-	for <lists+devicetree@lfdr.de>; Thu, 26 Jun 2025 23:53:15 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 4E1561C42F4A
+	for <lists+devicetree@lfdr.de>; Thu, 26 Jun 2025 23:53:59 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9F9882264CB;
-	Thu, 26 Jun 2025 23:53:11 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 35B1B2264D5;
+	Thu, 26 Jun 2025 23:53:39 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="lUlzV2g8"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="s2on4yBp"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 72C231459FA;
-	Thu, 26 Jun 2025 23:53:10 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0C0422264C7;
+	Thu, 26 Jun 2025 23:53:36 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1750981991; cv=none; b=NEFyubvMbC4UYTQbpbi2MwEnpG6fglakdy2syvnd0umbLV/Sh2ar+SnJCHlpVd3Qi0+rzDBgSpkKOFtiVd8XrMJc59WyNOb6HDskZtn7QXN7V1CO6jitAn1r0+WgcqEV39xJRIvLf2YcC457COEy3ejHt4WIaXF09eRVF6F2Z08=
+	t=1750982019; cv=none; b=TJEDf39u4sZSevHhyyQI0Lyw7QIarjPQlHx5XCyB8kfuCg731flSfcDzrr3M8YRBl6YW1nip+PbUR7EHXk4tzFol/EIs539NIuoLdtrJbd4HUZcgBoJlySyuu3dGH/f25KO0tXSOGkQEOi+bZ2NBWrAde3i+cGlxplB9EIle2eo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1750981991; c=relaxed/simple;
-	bh=TdxFMzkDmceycHMGUT+/GaOu22cW5VtyaQX7bh6gXws=;
+	s=arc-20240116; t=1750982019; c=relaxed/simple;
+	bh=N5pKkhGR3QP96XtzFcSDhYGgqn/gFEdccQcQ5m8XHK8=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=iKlDQTBc0MyXMamDzYWCLlLqZiedW5RUZAuR+HWaVHFViTCEq3569Kgxq3hdAJ1FsQ2VPiEpJAcZBgskeCOUrXM82Yc7H1EO09KxDK8wgE7t9v4UUEbIRMp1WlamydHZ58olKxg7LPH18gLde3T81qVKgbcI5D1JAVmvOMlO5XA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=lUlzV2g8; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id CE508C4CEEB;
-	Thu, 26 Jun 2025 23:53:09 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=pLAC8a+rMYxXCr5UAlx3kSVRAX0Wkswtc3GEMGRMettswHuEoNlknMlxVVICk3VJGvIh3BSiZWXsvvjSsAA1ujOJHuuZoTF8IZtq0+aE0w2G1Lgm6j9aElzwfzGKS+Wg3ref1dONoy1fJtAWVbIpyrC+T60opdRkL9e3zmuDWUo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=s2on4yBp; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 69308C4CEEB;
+	Thu, 26 Jun 2025 23:53:36 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1750981990;
-	bh=TdxFMzkDmceycHMGUT+/GaOu22cW5VtyaQX7bh6gXws=;
+	s=k20201202; t=1750982016;
+	bh=N5pKkhGR3QP96XtzFcSDhYGgqn/gFEdccQcQ5m8XHK8=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=lUlzV2g8qduvo92J37qQ7DdcWNfFRuItddr/O9vC1RapuqkPeMIH+Qb5nt4ymPxML
-	 p3xBdzA18aNV/1E8r1KAoE6oNDO0068XHVMnV8Q2/KF4YFQHrfcy+ykQp88Y2ZInWC
-	 dr2vIFXXadD26xzZr1faJbQVf2v1NUOh4+TvutJOhcdTbxB1Kk2qWAlfihbSWKM8ug
-	 9pedV1FRuRhmMGpMUHnXuduISjyYoKWPZ1ppeKreHT7N5DEzJywYzb9HMI7LZDcOaX
-	 6LJVEPGqzg+MglNbusY1ykbV9NvfZ6tzN2YZ8iDs9vFyuN1CWRJpPHOwSyCn8aGiVV
-	 TybLXZBNtyekA==
-Date: Thu, 26 Jun 2025 18:53:09 -0500
+	b=s2on4yBpfJ10nNsGwKhMughoTXH/b3fP3kRkR1wrgAaZgGvhTlKSSrP3f9gnLYgu9
+	 50iuAWupWw9jlzUew/uwqmlnA6u0nFWIEStRYuJlOTwgOCysIYTiJrCGPEogLHQqnP
+	 EXmPuT9YtJXqulwi7cp6NfkMFiR7mOhvp9v9+6HnYWa8EgU5IQ6riOGg4fVLxKnKp1
+	 +ZO6CkUpLDpZkXvHaHiJkC/fsrGv+axhLjDSLhgAbydDsYeDacaIZfkliZOnzj2ssS
+	 FhygtQA+FkKCOUIUxOM9zo9dbjfgNhlfnGvpIOxsiuhAHT7784IzJ+1bPnOgI6tOyQ
+	 0ceQLy9fRAzvQ==
+Date: Thu, 26 Jun 2025 18:53:35 -0500
 From: "Rob Herring (Arm)" <robh@kernel.org>
-To: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-Cc: Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Fabio Estevam <festevam@gmail.com>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Sascha Hauer <s.hauer@pengutronix.de>,
-	Lucas Stach <l.stach@pengutronix.de>, linux-media@vger.kernel.org,
-	devicetree@vger.kernel.org, imx@lists.linux.dev,
-	Stefan Klug <stefan.klug@ideasonboard.com>,
-	Dafna Hirschfeld <dafna@fastmail.com>,
-	Pengutronix Kernel Team <kernel@pengutronix.de>,
-	Shawn Guo <shawnguo@kernel.org>
-Subject: Re: [PATCH 2/6] dt-bindings: media: rkisp1: Add second power domain
- on i.MX8MP
-Message-ID: <175098198851.1429967.7588079065255956191.robh@kernel.org>
-References: <20250616011115.19515-1-laurent.pinchart@ideasonboard.com>
- <20250616011115.19515-3-laurent.pinchart@ideasonboard.com>
+To: Andy Yan <andyshrk@163.com>
+Cc: linux-kernel@vger.kernel.org, krzk+dt@kernel.org,
+	neil.armstrong@linaro.org, conor+dt@kernel.org,
+	sebastian.reichel@collabora.com, quic_jesszhan@quicinc.com,
+	devicetree@vger.kernel.org, tzimmermann@suse.de,
+	dri-devel@lists.freedesktop.org, Andy Yan <andy.yan@rock-chips.com>
+Subject: Re: [PATCH 1/2] dt-bindings: display: panel: Make reset-gpio as
+ optional for Raydium RM67200
+Message-ID: <175098201489.1430871.16529661509700275956.robh@kernel.org>
+References: <20250616070536.670519-1-andyshrk@163.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -67,20 +61,26 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20250616011115.19515-3-laurent.pinchart@ideasonboard.com>
+In-Reply-To: <20250616070536.670519-1-andyshrk@163.com>
 
 
-On Mon, 16 Jun 2025 04:11:11 +0300, Laurent Pinchart wrote:
-> In the NXP i.MX8MP, the pclk clock required by the ISP is gated by the
-> MIPI CSI-2 power domain. Add it to the power-domains property, and
-> require specifying power-domain-names accordingly.
+On Mon, 16 Jun 2025 15:05:16 +0800, Andy Yan wrote:
+> From: Andy Yan <andy.yan@rock-chips.com>
 > 
-> Signed-off-by: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+> Although the datasheet of the panel module describes that it has a
+> reset pin, in the actual hardware design, we often use an RC circuit
+> to control the reset, and rarely use GPIO to control the reset. This
+> is the way it is done on our numerous development boards (such as RK3568,
+> RK3576 EVB).
+> So make the reset-gpio optional.
+> 
+> Signed-off-by: Andy Yan <andy.yan@rock-chips.com>
 > ---
->  .../bindings/media/rockchip-isp1.yaml         | 19 ++++++++++++++++++-
->  1 file changed, 18 insertions(+), 1 deletion(-)
+> 
+>  .../devicetree/bindings/display/panel/raydium,rm67200.yaml       | 1 -
+>  1 file changed, 1 deletion(-)
 > 
 
-Reviewed-by: Rob Herring (Arm) <robh@kernel.org>
+Acked-by: Rob Herring (Arm) <robh@kernel.org>
 
 
