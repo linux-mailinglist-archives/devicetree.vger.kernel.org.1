@@ -1,167 +1,251 @@
-Return-Path: <devicetree+bounces-189999-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-190000-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id E1025AEA0EF
-	for <lists+devicetree@lfdr.de>; Thu, 26 Jun 2025 16:41:30 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id CFF3AAEA0F6
+	for <lists+devicetree@lfdr.de>; Thu, 26 Jun 2025 16:42:15 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 925241630EE
-	for <lists+devicetree@lfdr.de>; Thu, 26 Jun 2025 14:36:59 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 943161889C60
+	for <lists+devicetree@lfdr.de>; Thu, 26 Jun 2025 14:39:07 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9EA0A2F0E5A;
-	Thu, 26 Jun 2025 14:32:50 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 683B82EBDD3;
+	Thu, 26 Jun 2025 14:36:30 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="g9A3ZDMb"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="FOCDYFei"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-ed1-f50.google.com (mail-ed1-f50.google.com [209.85.208.50])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 18CE32F0E53;
-	Thu, 26 Jun 2025 14:32:49 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8083A2EAB7F;
+	Thu, 26 Jun 2025 14:36:28 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.50
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1750948370; cv=none; b=fZ+OHJoB1j+zAyTR2dgEjWxqKHWckABf2SV7wuETgA1KFUIAFoWQa6e1tY0a2o0gLTpxz1050NPRTfaGIm6npurXHsy8kMbbFxBcw901uDdyUg65GGXC4UuZVlmRq4KDyzX2LWDLh6U37TvRzif3R2wvwelN4aifNk8EH+k+uUU=
+	t=1750948590; cv=none; b=fDzpImYc9j8rBxDOz9YYS89XNYlMw7h/rR/Q6VPrxtVP7eo27uPYqj3w7iJuHbQnkN6PI69CbZYADeOdXpnNzU3mShPIjY0Qd9h2nxGnlGGMsSB8LPnARMKyUG2b3+GTvWhrRk6nEsSqKSkaQSouGUWE3YnwkulnzxTeQb/ruRs=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1750948370; c=relaxed/simple;
-	bh=ONPWX20WA6qg25+gxiS1uLXoDdNaK1ZJN5gPDyCRy0w=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-ID:References:
-	 In-Reply-To:To:CC; b=iMbD5iAQDwSSYDbYAdCOIGhWdeFpRRVyyw46kJli/TNiT/SXXjuGPabDpn0B4IGi9lVHBcR7+XnCGfUdYCmx98hmzVuYq/CI+xKIzD1Tjk0gdlZ8T0PSkTo4ZD3SJKqQVg6dFaWwRzJdWZ8TpXQ/BsAUARTFWRnHA1S0Sp8EDlU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=g9A3ZDMb; arc=none smtp.client-ip=205.220.180.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
-Received: from pps.filterd (m0279869.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 55QA3nm7013542;
-	Thu, 26 Jun 2025 14:32:35 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	m4+dSjQjm1WnKHruCfwC33TXgveKpDKLK/3NL0lhC/E=; b=g9A3ZDMbG5qmXP/P
-	4UDmBJtfhmZFlfrE1YIGRa12kqpc2MCMRK3HOwrWR0HkYlRKjw3FQ82bTrDKPk2Y
-	sWiVixvSSwBBF61O5yCwYlqyt9n5wfbcO6eqoGMUY9idoSIuOLPEYQ4YLbKlmkw3
-	17I8gWp0JKNfrlpIlFCy9ERtLzvX/ZcLM93Vq50Eh1EitGznBTDvgU9L6BKzAYd2
-	fp9KoEEjoPcEpzpK36yyU7++hUvFTdAW7qQY1auDbbe78532iCCD2ye5DBDwURn2
-	VmV+5FZmN6a5+pqHlkcKFBkScm2rTPhhUHTyqrLB1nJxYLLVO1JVJG5B4I7IBd7s
-	DWIp8A==
-Received: from nasanppmta04.qualcomm.com (i-global254.qualcomm.com [199.106.103.254])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 47f3bgkm4d-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Thu, 26 Jun 2025 14:32:35 +0000 (GMT)
-Received: from nasanex01b.na.qualcomm.com (nasanex01b.na.qualcomm.com [10.46.141.250])
-	by NASANPPMTA04.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 55QEWYjS006413
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Thu, 26 Jun 2025 14:32:34 GMT
-Received: from nsssdc-sh01-lnx.ap.qualcomm.com (10.80.80.8) by
- nasanex01b.na.qualcomm.com (10.46.141.250) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1544.9; Thu, 26 Jun 2025 07:32:29 -0700
-From: Luo Jie <quic_luoj@quicinc.com>
-Date: Thu, 26 Jun 2025 22:31:13 +0800
-Subject: [PATCH net-next v5 14/14] MAINTAINERS: Add maintainer for Qualcomm
- PPE driver
+	s=arc-20240116; t=1750948590; c=relaxed/simple;
+	bh=4MiqkkriQBlV+nEZU4vsU82B47r4lAT7W5HOK1FQACY=;
+	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
+	 MIME-Version; b=fsWLIaOVyI6tHeT74YJbWgNRsunbcmrcrHAg7XtDnDnsyZ4GUDPNAgNTjSevmyyxGmxSFLDWBfDi9D/FlYw1vNsZ44A982toqmXwAMawTGvGWBmnIxsdA9coRYY7vBuKd2Jea8xeel2g6PHjRDEF9hMVd31krOjAEJm7FS+Uzmo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=FOCDYFei; arc=none smtp.client-ip=209.85.208.50
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-ed1-f50.google.com with SMTP id 4fb4d7f45d1cf-60867565fb5so1749293a12.3;
+        Thu, 26 Jun 2025 07:36:28 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1750948587; x=1751553387; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=zeiWsIBvFrWgna5yEgaH/IXXNiu0EY7mLCIeHhCpakg=;
+        b=FOCDYFeiZhefQODLQCtaaLm436uBG20J3Z/7wmU7MnIQmi7qKETw9Y7D2nS9PQneVM
+         zunyhN8fMFKH5AOSKOx9OvKfXcA6N+rEpYvn5EoAR/47D0whkGNbHjOUBm7bBLUnWtIw
+         miQcDGnzmrzZo0CVqbRVNXPhU6zP4MBYEc3bkm9/L7EFzEiGwpWohifbiYze/QToL1w5
+         saaFMTM5/VKFF2CMH8LyGzfTlX/zOdz7BN14MGlLVf/M2CKOPKcP8+IlYH6rXW+PJ+Ii
+         0EqDsYMY8DorBhZU76Pq21T7WfluJMvJ26z9kcRuEClxetLiYEP52EjpJBiohvU2jEsD
+         jc9A==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1750948587; x=1751553387;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=zeiWsIBvFrWgna5yEgaH/IXXNiu0EY7mLCIeHhCpakg=;
+        b=Df5lUr+Owknh1/8PuNOHRJO4hN+DsQfMrxjg8I+KLW5jGh/k5gojKhduUNSxu963cf
+         YYHsJ4eg7X3Klz74310MkUGQ3gHF66Nr2+HJX1gWeq66CNr21wRbCvMlpJlBoDyN0jjV
+         x7y9ahwYX+E1/5PAXBuHcf55o8O2gKOEVBdymhh4Zy2px5TIldr5sxna9dky/hu7QmAn
+         v8PwErS4neZNLJutFgnn08bGCJ1WOm4gkqtS+u/9uc/VSn90S1xwFDnFSqp668Q/gsJl
+         rp8sgBZdU4mwhRDAToKg8RzwIEG/vtPifc4i3dnYWKjxmWB7yNjki7qURfI+VZBXhQ65
+         tgwA==
+X-Forwarded-Encrypted: i=1; AJvYcCUkz3KzreGQ0XXpHl71Mqq8XiCHnacp4AQ9PTbsOy83U1E3mqcZgNevTB5UPuAXCE+JWD0YkPQNobDyj965@vger.kernel.org, AJvYcCW5/GaLcCfVAugc3u/iY4AHSM4qwk5EYP6gpi2f+ZtRg5F68SZtW3/tL/6fwrDnuyZSrYWkyBE5tZe+@vger.kernel.org
+X-Gm-Message-State: AOJu0YwX+Y7IO8/UKaFhV6bGwPj8iAPxzn4q5sHr6CtF9x0Fj1on+hkz
+	eeQnRQt5kjeX72Rvb+8V7HMkIEIWbP++yGdvhP6F5WUuKymY0TiJOPWh
+X-Gm-Gg: ASbGnctR9JbNhaNneoC1JR3Fv/n+k0tqqjoDYgTWtn3xgra8yKVYLbkQbqJhflvkP9V
+	b24sf0dj/nWrGFRoHE9QMaWlHa0bXZkG2fOoCUZCEL0FcHq6z1P3AvY0smDSkgkMf5rUwrv2ieH
+	USkNoyrwUR8SdU6OZ4S1PL0AhlEEJYzEGTU99blAzyOv3hFL/H+CJPI1pg/jMrc4oCzpOQnTX8M
+	jGSnm4YaDS0Z9BuRuHbFAOOLXNZcEpcBDuxxCyRO6p0ZNKn3a9oSvPJs5p/TngP5FBwdCDFR0yH
+	1QzgyTDhB/H5Iobq0B0A4THzmMrZTKAnGFjB3wM87w2aeb2SY0GNrpk5BlVORsXxi+ILSAwZQhK
+	lrHsGIv7enXDN
+X-Google-Smtp-Source: AGHT+IGBfj0HisJC5Hs7wbCAlRtLKFU3fvp+QXCNcRi1xOH0OF9hMH/GCsxQFG5ls3pbZPdGawEVYA==
+X-Received: by 2002:a17:906:f581:b0:ade:43e8:8fa4 with SMTP id a640c23a62f3a-ae0bec4e39cmr782595366b.18.1750948586462;
+        Thu, 26 Jun 2025 07:36:26 -0700 (PDT)
+Received: from localhost.localdomain ([176.227.88.86])
+        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-ae2143da38fsm7884666b.78.2025.06.26.07.36.24
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 26 Jun 2025 07:36:25 -0700 (PDT)
+From: muhammed.efecetin.67@gmail.com
+To: neil.armstrong@linaro.org
+Cc: daniel.lezcano@linaro.org,
+	devicetree@vger.kernel.org,
+	efectn@protonmail.com,
+	heiko@sntech.de,
+	krzysztof.kozlowski+dt@linaro.org,
+	lee@kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	linux-kernel@vger.kernel.org,
+	linux-rockchip@lists.infradead.org,
+	muhammed.efecetin.67@gmail.com,
+	rafael@kernel.org,
+	robh+dt@kernel.org
+Subject: Re: [PATCH 4/5] thermal: khadas_mcu_fan: add support for Khadas Edge 2
+Date: Thu, 26 Jun 2025 17:36:07 +0300
+Message-ID: <20250626143607.1423954-1-muhammed.efecetin.67@gmail.com>
+X-Mailer: git-send-email 2.49.0
+In-Reply-To: <09af27e2-34a7-4cda-b36c-5577829cc173@linaro.org>
+References: <09af27e2-34a7-4cda-b36c-5577829cc173@linaro.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-ID: <20250626-qcom_ipq_ppe-v5-14-95bdc6b8f6ff@quicinc.com>
-References: <20250626-qcom_ipq_ppe-v5-0-95bdc6b8f6ff@quicinc.com>
-In-Reply-To: <20250626-qcom_ipq_ppe-v5-0-95bdc6b8f6ff@quicinc.com>
-To: Andrew Lunn <andrew+netdev@lunn.ch>,
-        "David S. Miller"
-	<davem@davemloft.net>,
-        Eric Dumazet <edumazet@google.com>, Jakub Kicinski
-	<kuba@kernel.org>,
-        Paolo Abeni <pabeni@redhat.com>, Rob Herring
-	<robh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley
-	<conor+dt@kernel.org>, Lei Wei <quic_leiwei@quicinc.com>,
-        Suruchi Agarwal
-	<quic_suruchia@quicinc.com>,
-        Pavithra R <quic_pavir@quicinc.com>,
-        "Simon
- Horman" <horms@kernel.org>, Jonathan Corbet <corbet@lwn.net>,
-        Kees Cook
-	<kees@kernel.org>,
-        "Gustavo A. R. Silva" <gustavoars@kernel.org>,
-        "Philipp
- Zabel" <p.zabel@pengutronix.de>
-CC: <linux-arm-msm@vger.kernel.org>, <netdev@vger.kernel.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <linux-doc@vger.kernel.org>, <linux-hardening@vger.kernel.org>,
-        <quic_kkumarcs@quicinc.com>, <quic_linchen@quicinc.com>,
-        Luo Jie
-	<quic_luoj@quicinc.com>
-X-Mailer: b4 0.14.1
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1750948277; l=880;
- i=quic_luoj@quicinc.com; s=20250209; h=from:subject:message-id;
- bh=ONPWX20WA6qg25+gxiS1uLXoDdNaK1ZJN5gPDyCRy0w=;
- b=PLjLC6sQFruHl8j/3TntePCRC7EQJQScnEWxZ+aCmcSaCtqC+g9PFt6J5GAm750eIW5dZrg33
- FBnwpywC+lfCxEKJF0TvieRquNiIRtDPCyUCbKsqmLb8MvzlA3Um+bq
-X-Developer-Key: i=quic_luoj@quicinc.com; a=ed25519;
- pk=pzwy8bU5tJZ5UKGTv28n+QOuktaWuriznGmriA9Qkfc=
-X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
- nasanex01b.na.qualcomm.com (10.46.141.250)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-ORIG-GUID: fTR6SmECYJPksb_WsP5iDm2hT-ftFmmK
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwNjI2MDEyMyBTYWx0ZWRfX8lcFdAsZM/cM
- X4s/zIQtsYMinr0AXVd1VPfdem6WeWgUN9ZHsRcqiVkY1MHBWtyRG0rzzgfs0NG1OmdKG3P9ihR
- sY1j9Hb4/118mplOKF5oUROBnoSC1Q9VufFHzxLMIphdCJj0p7z2dtrjPYg4A5hn9kMy2oGWvV0
- TfXnXQQME0rcZcwTA/FSPXP32wbFAw1e3/cQAMUATgtEsLSbJx2gczDVCi3e6CoxNYz6eYS6AE8
- nInLljof0X+hk9aPnR9ZvrJeCX/tOGOx7gi4bUW9s4ZVdkpCrNpmEBuZXWr3N0lgXWn9EpKa3JZ
- 0XGmsFrvFqiWjx3np5OC36uM+JfIYFUbmtUWUcxTKLUflg1OHjGdSi2v+0cfMs6mxepMyOCBD5z
- 2npzP4rkAWXg+286ETvly/jw8EAzBUrItInKNN2C6RiNORJQbZqQIoFA+SfCmf9cxwdoCQri
-X-Authority-Analysis: v=2.4 cv=L4kdQ/T8 c=1 sm=1 tr=0 ts=685d5a03 cx=c_pps
- a=JYp8KDb2vCoCEuGobkYCKw==:117 a=JYp8KDb2vCoCEuGobkYCKw==:17
- a=GEpy-HfZoHoA:10 a=IkcTkHD0fZMA:10 a=6IFa9wvqVegA:10 a=COk6AnOGAAAA:8
- a=VwQbUJbxAAAA:8 a=pGLkceISAAAA:8 a=-_PooAnB-Ua2z9syxaEA:9 a=QEXdDO2ut3YA:10
- a=TjNXssC_j7lpFel5tvFf:22
-X-Proofpoint-GUID: fTR6SmECYJPksb_WsP5iDm2hT-ftFmmK
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1099,Hydra:6.1.7,FMLib:17.12.80.40
- definitions=2025-06-26_06,2025-06-26_04,2025-03-28_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- mlxscore=0 malwarescore=0 bulkscore=0 clxscore=1015 suspectscore=0
- adultscore=0 priorityscore=1501 impostorscore=0 lowpriorityscore=0
- spamscore=0 phishscore=0 mlxlogscore=683 classifier=spam authscore=0
- authtc=n/a authcc= route=outbound adjust=0 reason=mlx scancount=1
- engine=8.19.0-2505280000 definitions=main-2506260123
+Content-Transfer-Encoding: 8bit
 
-Add maintainer entry for PPE (Packet Process Engine) driver supported
-for Qualcomm IPQ SoCs.
+On 6/26/25 17:11, neil.armstrong@linaro.org wrote:
+> On 26/06/2025 16:04, muhammed.efecetin.67@gmail.com wrote:
+>> From: Muhammed Efe Cetin <efectn@protonmail.com>
+>>
+>> Fan control on the Khadas Edge 2 is controlled with the 0x8A register,
+>> using percentage values from 0 to 100, whereas there are only 3 constant steps in previous Khadas boards.
+>> Therefore, i added a new cooling-levels property, similar to the one used in the pwm-fan driver.
+>> The original behavior can still be used when the cooling-levels property is not specified,
+>> ensuring that the new functionality does not break old boards. 
+>
+> Thanks for the explanation, but would would you like to change that ? The MCU can accept
+> any value between 0 and 99, so why change the levels from DT ?
+>
+> Neil
 
-Signed-off-by: Luo Jie <quic_luoj@quicinc.com>
----
- MAINTAINERS | 8 ++++++++
- 1 file changed, 8 insertions(+)
+Thanks for the review. Therefore, you say just add values between 0-100 to cooling-device instead of remapping them using cooling-levels property?
 
-diff --git a/MAINTAINERS b/MAINTAINERS
-index b9e58aa296e0..3a4b58352c28 100644
---- a/MAINTAINERS
-+++ b/MAINTAINERS
-@@ -20523,6 +20523,14 @@ S:	Maintained
- F:	Documentation/devicetree/bindings/mtd/qcom,nandc.yaml
- F:	drivers/mtd/nand/raw/qcom_nandc.c
- 
-+QUALCOMM PPE DRIVER
-+M:	Luo Jie <quic_luoj@quicinc.com>
-+L:	netdev@vger.kernel.org
-+S:	Supported
-+F:	Documentation/devicetree/bindings/net/qcom,ipq9574-ppe.yaml
-+F:	Documentation/networking/device_drivers/ethernet/qualcomm/ppe/ppe.rst
-+F:	drivers/net/ethernet/qualcomm/ppe/
-+
- QUALCOMM QSEECOM DRIVER
- M:	Maximilian Luz <luzmaximilian@gmail.com>
- L:	linux-arm-msm@vger.kernel.org
+What would be the best practise of detecting whether the board is Khadas Edge 2? Adding new bool property, reading model propety from devicetree etc.
 
--- 
-2.34.1
+Best regards.
+
+>
+>>
+>> Signed-off-by: Muhammed Efe Cetin <efectn@protonmail.com>
+>> ---
+>>   drivers/thermal/khadas_mcu_fan.c | 76 ++++++++++++++++++++++++++++++--
+>>   1 file changed, 72 insertions(+), 4 deletions(-)
+>>
+>> diff --git a/drivers/thermal/khadas_mcu_fan.c b/drivers/thermal/khadas_mcu_fan.c
+>> index d35e5313b..504e7d254 100644
+>> --- a/drivers/thermal/khadas_mcu_fan.c
+>> +++ b/drivers/thermal/khadas_mcu_fan.c
+>> @@ -15,10 +15,16 @@
+>>   #include <linux/thermal.h>
+>>     #define MAX_LEVEL 3
+>> +#define MAX_SPEED 0x64
+>>     struct khadas_mcu_fan_ctx {
+>>       struct khadas_mcu *mcu;
+>>       unsigned int level;
+>> +
+>> +    unsigned int fan_max_level;
+>> +    unsigned int fan_register;
+>> +    unsigned int *fan_cooling_levels;
+>> +
+>>       struct thermal_cooling_device *cdev;
+>>   };
+>>   @@ -26,9 +32,21 @@ static int khadas_mcu_fan_set_level(struct khadas_mcu_fan_ctx *ctx,
+>>                       unsigned int level)
+>>   {
+>>       int ret;
+>> +    unsigned int write_level = level;
+>> +
+>> +    if (level > ctx->fan_max_level)
+>> +        return -EINVAL;
+>> +
+>> +    if (ctx->fan_cooling_levels != NULL) {
+>> +        write_level = ctx->fan_cooling_levels[level];
+>> +
+>> +        if (write_level > MAX_SPEED)
+>> +            return -EINVAL;
+>> +    }
+>> +
+>> +    ret = regmap_write(ctx->mcu->regmap, ctx->fan_register,
+>> +               write_level);
+>>   -    ret = regmap_write(ctx->mcu->regmap, KHADAS_MCU_CMD_FAN_STATUS_CTRL_REG,
+>> -               level);
+>>       if (ret)
+>>           return ret;
+>>   @@ -40,7 +58,9 @@ static int khadas_mcu_fan_set_level(struct khadas_mcu_fan_ctx *ctx,
+>>   static int khadas_mcu_fan_get_max_state(struct thermal_cooling_device *cdev,
+>>                       unsigned long *state)
+>>   {
+>> -    *state = MAX_LEVEL;
+>> +    struct khadas_mcu_fan_ctx *ctx = cdev->devdata;
+>> +
+>> +    *state = ctx->fan_max_level;
+>>         return 0;
+>>   }
+>> @@ -61,7 +81,7 @@ khadas_mcu_fan_set_cur_state(struct thermal_cooling_device *cdev,
+>>   {
+>>       struct khadas_mcu_fan_ctx *ctx = cdev->devdata;
+>>   -    if (state > MAX_LEVEL)
+>> +    if (state > ctx->fan_max_level)
+>>           return -EINVAL;
+>>         if (state == ctx->level)
+>> @@ -76,6 +96,47 @@ static const struct thermal_cooling_device_ops khadas_mcu_fan_cooling_ops = {
+>>       .set_cur_state = khadas_mcu_fan_set_cur_state,
+>>   };
+>>   +static int khadas_mcu_fan_get_cooling_data_edge2(struct khadas_mcu_fan_ctx *ctx, struct device *dev)
+>> +{
+>> +    struct device_node *np = ctx->mcu->dev->of_node;
+>> +    int num, i, ret;
+>> +
+>> +    if (!of_property_present(np, "cooling-levels"))
+>> +        return 0;
+>> +
+>> +    ret = of_property_count_u32_elems(np, "cooling-levels");
+>> +    if (ret <= 0) {
+>> +        dev_err(dev, "Wrong data!\n");
+>> +        return ret ? : -EINVAL;
+>> +    }
+>> +
+>> +    num = ret;
+>> +    ctx->fan_cooling_levels = devm_kcalloc(dev, num, sizeof(u32),
+>> +                           GFP_KERNEL);
+>> +    if (!ctx->fan_cooling_levels)
+>> +        return -ENOMEM;
+>> +
+>> +    ret = of_property_read_u32_array(np, "cooling-levels",
+>> +                     ctx->fan_cooling_levels, num);
+>> +    if (ret) {
+>> +        dev_err(dev, "Property 'cooling-levels' cannot be read!\n");
+>> +        return ret;
+>> +    }
+>> +
+>> +    for (i = 0; i < num; i++) {
+>> +        if (ctx->fan_cooling_levels[i] > MAX_SPEED) {
+>> +            dev_err(dev, "MCU fan state[%d]:%d > %d\n", i,
+>> +                ctx->fan_cooling_levels[i], MAX_SPEED);
+>> +            return -EINVAL;
+>> +        }
+>> +    }
+>> +
+>> +    ctx->fan_max_level = num - 1;
+>> +    ctx->fan_register = KHADAS_MCU_CMD_FAN_STATUS_CTRL_REG_V2;
+>> +
+>> +    return 0;
+>> +}
+>> +
+>>   static int khadas_mcu_fan_probe(struct platform_device *pdev)
+>>   {
+>>       struct khadas_mcu *mcu = dev_get_drvdata(pdev->dev.parent);
+>> @@ -90,6 +151,13 @@ static int khadas_mcu_fan_probe(struct platform_device *pdev)
+>>       ctx->mcu = mcu;
+>>       platform_set_drvdata(pdev, ctx);
+>>   +    ctx->fan_max_level = MAX_LEVEL;
+>> +    ctx->fan_register = KHADAS_MCU_CMD_FAN_STATUS_CTRL_REG;
+>> +
+>> +    ret = khadas_mcu_fan_get_cooling_data_edge2(ctx, dev);
+>> +    if (ret)
+>> +        return ret;
+>> +
+>>       cdev = devm_thermal_of_cooling_device_register(dev->parent,
+>>               dev->parent->of_node, "khadas-mcu-fan", ctx,
+>>               &khadas_mcu_fan_cooling_ops); 
+>
 
 
