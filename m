@@ -1,67 +1,67 @@
-Return-Path: <devicetree+bounces-190113-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-190115-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id E3031AEAA80
-	for <lists+devicetree@lfdr.de>; Fri, 27 Jun 2025 01:22:35 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id AD30CAEAA87
+	for <lists+devicetree@lfdr.de>; Fri, 27 Jun 2025 01:24:36 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 5F8FD4E1B26
-	for <lists+devicetree@lfdr.de>; Thu, 26 Jun 2025 23:22:36 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 54FD56401E1
+	for <lists+devicetree@lfdr.de>; Thu, 26 Jun 2025 23:24:11 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id DBDD921FF47;
-	Thu, 26 Jun 2025 23:22:31 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 48504221275;
+	Thu, 26 Jun 2025 23:24:32 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="T/sVwzH4"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="XgMvjXc4"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B00EE1DED7B;
-	Thu, 26 Jun 2025 23:22:31 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1AB6821CA08;
+	Thu, 26 Jun 2025 23:24:31 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1750980151; cv=none; b=OEwtmUWA4898BNQN/kp1aoN+H0AMhDDj0ZOI7H2FCE6TUlK17svh8jIrlSFTOfZ0wuEX8KV01yZ59Dp5fYj3ISiB3IPV/gW8m8J2FtEXlyfDWQOS9daDUEDajlO5Ycm0zE55al60X5Rud/mEIdEWZrxZoCAnLa2PVi48OCZmRTQ=
+	t=1750980272; cv=none; b=dDrZ66YeTTky9T8yc1LiSeAmk3oxfKkjPNVZppQavmS7fXZbfEaey/QvI9X6T1NQb1eqnUu0QF6KKtR5bvDidg2Z5IrxRP5LIgVLKcEnLhQ5i4SGQweEw4FTu1upY4sFHTCboffZWLSGdI4+37mXVCpGRxSna45wdEix6LlhUB8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1750980151; c=relaxed/simple;
-	bh=iCtlLNqs4td/sAbrwzzl0mCercZnD9PWCfAlyf24ubY=;
+	s=arc-20240116; t=1750980272; c=relaxed/simple;
+	bh=3iYSIjl6d68LlL0ejDj5mcWaYaC3T+fv98YPCHJ3fTM=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=t1DSqlbux4x5RuyfnnBaXz0uAfmcx1FoJf1o/CvmcFiEgw7zjCbyZhmNDf5LU/moC83Qzaj13EZHOyZxtgj16OAO9WFyTnhwdh01b+yFo1SS9mNX6DlsAjclghNBnHWk/P5yawl3SKjaszX/Cf2Xu4I1jOvDvkv6udS2l+G07Kg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=T/sVwzH4; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 1A71AC4CEEB;
-	Thu, 26 Jun 2025 23:22:31 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=AXuwDiEdMqTXR6l7EIaA/LpTLCF0saMwZO/UXRbiT1EcbP5zXH6qwlrMtaZGgADYuyyMX8apduH6E3yKwS9iX7GxYw/0/7CQi/nFO9/qsL7G3JwCvWGDpT7I7bkZxhHOg4EdYN9oAzwwu1bVRojzFZ/OZ83XgovQUy7OZgmYvjg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=XgMvjXc4; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 6E3A3C4CEEB;
+	Thu, 26 Jun 2025 23:24:31 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1750980151;
-	bh=iCtlLNqs4td/sAbrwzzl0mCercZnD9PWCfAlyf24ubY=;
+	s=k20201202; t=1750980271;
+	bh=3iYSIjl6d68LlL0ejDj5mcWaYaC3T+fv98YPCHJ3fTM=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=T/sVwzH47ESATrCJ0HpGSUIe/ZVAy1lcIGLcaz2gT0L8bIT5xS569DM9OVyVNd0fq
-	 5bWbdk3NrbB6tXd1SsbqXt8VmxdPmVAaogdwIoGr9o8czZIpV7YGSey0HdLleOuPoL
-	 okmfCDoAo36E7LberQTXRTCSLw/WSjyvFFsCdZXlrRJHHYGNWcTokM2rnr1fSWOKw+
-	 7RZrX0xC5lgN+ziRnFMSqghhMF82DDJLFjLFfKMOoJ99rQsgSIRSpUOO+WYB5yzhac
-	 b/yEuypL0Mw0/Pp0wAP7hoT72Ehu1To3srB/YPuI5j5AJKfKDgUo91AqqqV++LI3CR
-	 7jTOfSYGTVkiA==
-Date: Thu, 26 Jun 2025 18:22:30 -0500
+	b=XgMvjXc4WdjDgwxyvHc2vg/f6VLnOix6GSsAs0057BSFLwx50Jak4odQh2wiqBlRM
+	 /DoEOpZ0xrOndlPf2BWV6ocn6lt7KNeq6pl5xFBmnmBSoo7Oyg47UZPtgnUFOsvlm6
+	 lATCkAR3de9ehf2tRs4vkSCeMwC831j/7XHkql/c3VQiEZgn5aTuQYmrmLNc8hUgf3
+	 r+nhGKXrRtIfVzKOU3/En+E/yTQZXTdldvQ7zXhx5ZXGWnn9OC87BEeFvd4zKkf9dP
+	 OUcSsMGTRxsTIdJkH5Nh2veJv/kRIDTvVrBwGFvMTt+jtqibnPgOS3E6BHlRtemQCo
+	 inTsjBqfaqC8Q==
+Date: Thu, 26 Jun 2025 18:24:30 -0500
 From: "Rob Herring (Arm)" <robh@kernel.org>
-To: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-Cc: Sascha Hauer <s.hauer@pengutronix.de>,
-	Mauro Carvalho Chehab <mchehab@kernel.org>,
-	Shawn Guo <shawnguo@kernel.org>, devicetree@vger.kernel.org,
-	Purism Kernel Team <kernel@puri.sm>,
-	Fabio Estevam <festevam@gmail.com>,
-	Conor Dooley <conor+dt@kernel.org>,
+To: Cristian Ciocaltea <cristian.ciocaltea@collabora.com>
+Cc: Andy Yan <andyshrk@163.com>, David Airlie <airlied@gmail.com>,
+	Heiko =?iso-8859-1?Q?St=FCbner?= <heiko@sntech.de>,
 	linux-arm-kernel@lists.infradead.org,
-	Isaac Scott <isaac.scott@ideasonboard.com>,
-	Martin Kepplinger <martink@posteo.de>,
-	Pengutronix Kernel Team <kernel@pengutronix.de>,
-	imx@lists.linux.dev, Rui Miguel Silva <rmfrfs@gmail.com>,
-	linux-media@vger.kernel.org,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>
-Subject: Re: [PATCH 6/8] dt-bindings: media: nxp,imx-mipi-csi2: Add
- fsl,num-channels property
-Message-ID: <175098014957.1390900.11681586327735894598.robh@kernel.org>
-References: <20250608235840.23871-1-laurent.pinchart@ideasonboard.com>
- <20250608235840.23871-7-laurent.pinchart@ideasonboard.com>
+	Andy Yan <andy.yan@rock-chips.com>,
+	Conor Dooley <conor+dt@kernel.org>, devicetree@vger.kernel.org,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, stable@vger.kernel.org,
+	linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org,
+	Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+	dri-devel@lists.freedesktop.org, Maxime Ripard <mripard@kernel.org>,
+	Sandy Huang <hjc@rock-chips.com>, kernel@collabora.com,
+	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+	Thomas Zimmermann <tzimmermann@suse.de>,
+	Simona Vetter <simona@ffwll.ch>
+Subject: Re: [PATCH 1/3] dt-bindings: display: vop2: Add optional PLL clock
+ property for rk3576
+Message-ID: <175098027014.1394278.11992805068398675511.robh@kernel.org>
+References: <20250612-rk3576-hdmitx-fix-v1-0-4b11007d8675@collabora.com>
+ <20250612-rk3576-hdmitx-fix-v1-1-4b11007d8675@collabora.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -70,23 +70,25 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20250608235840.23871-7-laurent.pinchart@ideasonboard.com>
+In-Reply-To: <20250612-rk3576-hdmitx-fix-v1-1-4b11007d8675@collabora.com>
 
 
-On Mon, 09 Jun 2025 02:58:38 +0300, Laurent Pinchart wrote:
-> The CSI-2 receiver can be instantiated with up to four output channels.
-> This is an integration-specific property, specify the number of
-> instantiated channels through a new fsl,num-channels property. The
-> property is optional, and defaults to 1 as only one channel is currently
-> supported by drivers.
+On Thu, 12 Jun 2025 00:47:47 +0300, Cristian Ciocaltea wrote:
+> As with the RK3588 SoC, RK3576 also allows the use of HDMI PHY PLL as an
+> alternative and more accurate pixel clock source for VOP2.
 > 
-> The only known SoC to have more than one channel is the i.MX8MP. As the
-> binding examples do not cover that SoC, don't update them.
+> Document the optional PLL clock property.
 > 
-> Signed-off-by: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+> Moreover, given that this is part of a series intended to address some
+> recent display problems, provide the appropriate tags to facilitate
+> backporting.
+> 
+> Fixes: c3b7c5a4d7c1 ("dt-bindings: display: vop2: Add rk3576 support")
+> Cc: stable@vger.kernel.org
+> Signed-off-by: Cristian Ciocaltea <cristian.ciocaltea@collabora.com>
 > ---
->  .../devicetree/bindings/media/nxp,imx-mipi-csi2.yaml       | 7 +++++++
->  1 file changed, 7 insertions(+)
+>  .../bindings/display/rockchip/rockchip-vop2.yaml   | 56 +++++++++++++++++-----
+>  1 file changed, 44 insertions(+), 12 deletions(-)
 > 
 
 Reviewed-by: Rob Herring (Arm) <robh@kernel.org>
