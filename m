@@ -1,103 +1,103 @@
-Return-Path: <devicetree+bounces-189892-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-189893-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 65F3FAE9C3D
-	for <lists+devicetree@lfdr.de>; Thu, 26 Jun 2025 13:10:51 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id C7775AE9C44
+	for <lists+devicetree@lfdr.de>; Thu, 26 Jun 2025 13:15:36 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 92B601751BE
-	for <lists+devicetree@lfdr.de>; Thu, 26 Jun 2025 11:10:51 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id F41374A08D4
+	for <lists+devicetree@lfdr.de>; Thu, 26 Jun 2025 11:15:35 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id ECE472750EC;
-	Thu, 26 Jun 2025 11:10:45 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 45138221FAC;
+	Thu, 26 Jun 2025 11:15:33 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="cGjtip2j"
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="pJC14zyL"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 570C24204E
-	for <devicetree@vger.kernel.org>; Thu, 26 Jun 2025 11:10:44 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C26DA215191
+	for <devicetree@vger.kernel.org>; Thu, 26 Jun 2025 11:15:31 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1750936245; cv=none; b=JhmVnVTtxDB7B+/6ItNAwl0hqQR2ATdwacqnZuat+asOg/yXEvFp5aUJUji9pUoymt8c4vcg3LW2CrVkaGW/4q7YUSbjOENTHWaFrFn4vM9id72mxZsXAfbc3VZhExJv9xRcyzZpRe0RH/TVDX0L/MDvE/JNNe3oIGYN76KOOes=
+	t=1750936533; cv=none; b=FQS39o+WLf1lvyO0t0ciQAL8GWtKvGk6o2APr48BqzP+RZsOEj8SA3bkZJiEk3i0LiczD1OqGEv+LGpzfsHU239t8Un/iyvUcYaDpPviDT/jINtqAWgsUziEJEP+jJZUHyYZWUJnX6kmNbQMIWHrrKJGoSlBkpKkGFHhtXxOdlg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1750936245; c=relaxed/simple;
-	bh=+Nh7arEhb4mdiIAA47zJAjhf1JoxtTqPoXIZGzCdPRo=;
+	s=arc-20240116; t=1750936533; c=relaxed/simple;
+	bh=32XSTeEJZcISds9DTA+DR+OV7Dix3D2J+SHP5xIR+Ek=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=UtHwJ/51+5n4snCUJ9PRf3aERJ4mwaPfZj4oujJZzx6juLUBJDz74fw5mx5gYWRKV1bYs3rPvLABduY8r6uAI0+K/ZHkX4pIi7tPXVlCZXCJYQXBOuUPYFWDCXaRO7q5gkoLVYjpWfAGkIPFPdORJ1y8P7rPqPu2fgr0+QjF0OU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=cGjtip2j; arc=none smtp.client-ip=205.220.180.131
+	 Content-Type:Content-Disposition:In-Reply-To; b=gaf2qakFoYXMZO7nrCZ+hT5VqeR/kOgPr//9F2su4CKxcFMdbpwdAILATG+T+qI7dZUUk00fTqdxekMJhcuOutK1N1s6hs6er7x5tIN+15h8pm/rlSwkl8KHz/xvebPQQzGrgHJ3zHd0fs78Nq9/50gv3vcFfHt0A0mYL/Z5PJs=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=pJC14zyL; arc=none smtp.client-ip=205.220.168.131
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
-Received: from pps.filterd (m0279873.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 55Q9flhN000433
-	for <devicetree@vger.kernel.org>; Thu, 26 Jun 2025 11:10:43 GMT
+Received: from pps.filterd (m0279863.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 55Q9cDsN002583
+	for <devicetree@vger.kernel.org>; Thu, 26 Jun 2025 11:15:31 GMT
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
 	cc:content-type:date:from:in-reply-to:message-id:mime-version
-	:references:subject:to; s=qcppdkim1; bh=cYqt5KyHbC7L0Vd38ScC2cJZ
-	2gNgSimq/dQgr20ruzc=; b=cGjtip2j6+BIXEt74Q7TzPgDNrkfy5s8AZt5O+x4
-	XFVjrtqgX4tg8caenZ9UvSKQ9q5rvIEPXEJsebV4dNGllfttOXMEwgM9xBaq2q1C
-	Ce+VIv3+o1XziKum5pq9pnyIA7xIAc2G5SBic0KPxXXuQ118IfIdQau3quJTreC5
-	AxB/4dZKwK7tlMsZM7jZFASu2Gt2vJdIL3v5nC6SN36Uj6KMICjhYlZOi+WfVjKB
-	2MLER2Nf4nWCCwJ/mo4zUSMT52oJwHx+5RfNtrORP1C0U+fIH7xfedWxiuB6eKZu
-	yglROC0YOp9sdnFqVXCaEzxjgcgjig7cBaqblsUV/vTzbQ==
+	:references:subject:to; s=qcppdkim1; bh=yX2bTATYBJ3NZgM8w5gxCAy9
+	tlE6wz9SQyztWxSWqxs=; b=pJC14zyLetOqOQkfVFVIWR4kRcR9ISuyan7XajKP
+	J29GuxWuvz3TX6IV3kSTZWw/YiUoTL3g2/FPPM37PQbnu5SiSuH/coMnvImyPxsa
+	5XctR+fONpIxb4ytYqXxLLb8yiExl7AwJ3RAahd/ZeFMsMuL2nKU3ZGbV0Althav
+	OfdoW2GjMMkg2qLJz30fPSVHhTPHXwKeag1u3L+vem0mpG0HcMa8/71g2NkqZIPk
+	+OPlCKYLf30hkIlWzZzRjWbrLzqvw9GzhCLOkXxfpmUHyLQ7Iqu2nfp+xfCfRZFh
+	XgTJrmEo+ujxuhrXWBcYp/kTjuME44hLUEEcj/mKnx2H/w==
 Received: from mail-qk1-f198.google.com (mail-qk1-f198.google.com [209.85.222.198])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 47f2rq3a1h-1
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 47emcmvswf-1
 	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Thu, 26 Jun 2025 11:10:43 +0000 (GMT)
-Received: by mail-qk1-f198.google.com with SMTP id af79cd13be357-7cf6c53390eso57046085a.2
-        for <devicetree@vger.kernel.org>; Thu, 26 Jun 2025 04:10:43 -0700 (PDT)
+	for <devicetree@vger.kernel.org>; Thu, 26 Jun 2025 11:15:30 +0000 (GMT)
+Received: by mail-qk1-f198.google.com with SMTP id af79cd13be357-7d09ed509aaso121004785a.3
+        for <devicetree@vger.kernel.org>; Thu, 26 Jun 2025 04:15:30 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1750936242; x=1751541042;
+        d=1e100.net; s=20230601; t=1750936530; x=1751541330;
         h=in-reply-to:content-disposition:mime-version:references:message-id
          :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=cYqt5KyHbC7L0Vd38ScC2cJZ2gNgSimq/dQgr20ruzc=;
-        b=ws+FZfXsstaWqdyfVvsAZ1d1GGVvm/MXaRpiTfrBcWtsTnzDzJqb0keMKQSCJYL4fX
-         3ePZiyRh7aMMy0SM9V269MbSKiKQ5ns0XgNXxHAv5WmJLPmkZZH/ly6wlyOUfTWiZiuE
-         BXHrNk90+BdFazBh7YAg0WowOA52usYO6lWXFd6G9nDqpjcr95jsQiGYPpg6o5dS4XSN
-         PN+u7vL9vqSYPN6KLhJZAAfhYloRLwzektvGRs0AOOoCcHTEJFtiCiMr3zOkWKJdLuV1
-         qNslcJRv9eb5mDLmZF9O3H1JxNyfqWa1VTE1WrKdBuL70k18nQp9V6KIVipkDNOMq+lO
-         8oqg==
-X-Forwarded-Encrypted: i=1; AJvYcCVS93eUrUVTCOwpbJLAKJsFqr0RtpVQt3V4Y/ygLrE5jXZZ8y3g4sTnX4YKmxB3dJ12cSuqan6Z3nhu@vger.kernel.org
-X-Gm-Message-State: AOJu0YxO7KLPUxwZgSOMVgffM6aWynhjJA9KiypWUCLuavl5/6ODOBxI
-	b+pDLwEE8U2EPeyZdUVxEnAkrv+JkUcUhGlpZnjsz4/q+dt0nIUylpj6h9wNxMdMXBjHQQlfBk6
-	VEchNtb4fYfQ5wE7fxgNDz2slgxW7sjKf7TZcKOGYUDrO6+ucIM6g0o/ARYEkbDh1
-X-Gm-Gg: ASbGncujJDNbEnF1w/6TiaHvLL4aBCjcK42kXeSrFPcG2MSJJptpbKY7ARDfkzzhEcz
-	DjzUQ5PloZc0CWd9ynPPVf5R2DwLUujZVm5aRectjk/DMhuNu/NIXfgtEoxrJoU7wgzNHL6qHaN
-	MtSifpKan1X0A4Fk1KgVLcsuknXeGA2dpolm71Ho8xwrkuBOq1PBW4s+9EPzxJ1XLo9QN2lwBv+
-	zJC/WzBVf+XVk0WmNRNi4n1pcWMlSOdvSp5AuJLxpl04xiF5gsDtTz/8G5Mr4X9sAbCcAw8FUZG
-	zbSSLBjK/X6AanGqW8zxLViSeSo9XHmnHB6x68CcctVVRZUbE+XqkZMd1m68+1FEeBhmkksj/Zo
-	2Fmej6hJmMwMUtYYOGKKt6Re8xB5PeKUvazY=
-X-Received: by 2002:a05:620a:7083:b0:7d3:ba53:d88c with SMTP id af79cd13be357-7d42978f2c2mr996162085a.30.1750936242239;
-        Thu, 26 Jun 2025 04:10:42 -0700 (PDT)
-X-Google-Smtp-Source: AGHT+IHjtAiIEi52PqDdVHz1fI8lluW9aTCSB2ftm6y/pWoW4VAWz4SzJ2hSwGJSK/pOX00PIVi2pQ==
-X-Received: by 2002:a05:620a:7083:b0:7d3:ba53:d88c with SMTP id af79cd13be357-7d42978f2c2mr996157985a.30.1750936241770;
-        Thu, 26 Jun 2025 04:10:41 -0700 (PDT)
+        bh=yX2bTATYBJ3NZgM8w5gxCAy9tlE6wz9SQyztWxSWqxs=;
+        b=eAZ15TktfEVrd7xxEQpuGfZvhTshwZcijUhkQYL2GE6SQZugCUfd6qWDMHrpPqwadu
+         Wy4f3ONyqLf3FZxIs2rQzIo207FFTBMTPcLeHMq5b3jzpc/k67i4U14yYyPaiaYwji3w
+         7mzM0kQWu/8oYmq/cOitfsmPGbYJ8L4dgRP5+e7WAhlJh2Kx4O9jYPI5JZOmDBplHpeT
+         pv5h5HRi6PEOSdpGua7aF54DvL/+6F64Nd1hY06DYTWy0kBwwnF+Or9i8OPT6fLd8T+E
+         4Z9j6hwQ6+n/NQtJYvm8hwPRD3n3p1y96uXni5K7vKpmtJ1P46Wb0kxjewt9CLISxf7B
+         FPMg==
+X-Forwarded-Encrypted: i=1; AJvYcCUZO5tBVcTtgU8UP5HrG4v5lHlbSZspeAL9RoNsEluD94ipqZQvHI1u4xjIOcDHe6M9qN7qphnAVjtf@vger.kernel.org
+X-Gm-Message-State: AOJu0YwygbIREboe1g4QOOOgixOLcfEXlas7EO3yRY4gmY4GAPt/MEcc
+	vsSYAN5DO8AK4c6IvanrfBMYEAhv1/Jx8a5uTWZKgpQncL+dJQFcXs5Ga6z/xxM/CIOJmhijDER
+	ynHI28QrxMsQn5cKjpERedsWBg6O5SlIn1zPZtwNHau42KbTcrtlwqZyhP9LQvcim
+X-Gm-Gg: ASbGnctYOatrXmMs4StltsIEAhghpghPfXouSktXCkBVizRbaodPoJOb4xQ0hY9PNS3
+	RLz0Kz6jPcsvf581JNNaA7E0GLMXMdaShG3j204iGmr/oIPI3e122BD+CnuF1yqsdHv4R7QCgbH
+	QuNzCqcQkAbHuAqh0FQXaxXHvsahhhTF8wpD3q+EgsoZniULtJpUWYM/5mdH3Lq1ABbK9OpRYLZ
+	myxQ+Lgw4zn0T1bVEsFOt43i4bJCCj+YHgmVH5HHyZJqCxPJTg0OmQCx44F5TEAZd/4vk/mtrd5
+	aYhbGZKPidSWoLIiHuR24XRdJR4ntCgZC+678L7Wfw5Yw0D9m9MATFLS6JPV6prUUCtsPYjXWos
+	rk+pTzpwQBbqY8XIWHiKwsbgHrmyYCEsNqlE=
+X-Received: by 2002:a05:620a:628b:b0:7d3:c4c7:75d6 with SMTP id af79cd13be357-7d429743dc3mr986148385a.47.1750936529346;
+        Thu, 26 Jun 2025 04:15:29 -0700 (PDT)
+X-Google-Smtp-Source: AGHT+IFctx73pTCKHtA6mKNt7OeTyPjiWUhKOAyFo+qoWYU70OgchfQGmJXs/kzhbu09xU4sks2pVQ==
+X-Received: by 2002:a05:620a:628b:b0:7d3:c4c7:75d6 with SMTP id af79cd13be357-7d429743dc3mr986139485a.47.1750936528687;
+        Thu, 26 Jun 2025 04:15:28 -0700 (PDT)
 Received: from umbar.lan (2001-14ba-a0c3-3a00-264b-feff-fe8b-be8a.rev.dnainternet.fi. [2001:14ba:a0c3:3a00:264b:feff:fe8b:be8a])
-        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-553e414beb2sm2535941e87.53.2025.06.26.04.10.40
+        by smtp.gmail.com with ESMTPSA id 38308e7fff4ca-32cd2deadf3sm1866441fa.13.2025.06.26.04.15.27
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 26 Jun 2025 04:10:40 -0700 (PDT)
-Date: Thu, 26 Jun 2025 14:10:39 +0300
+        Thu, 26 Jun 2025 04:15:27 -0700 (PDT)
+Date: Thu, 26 Jun 2025 14:15:26 +0300
 From: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
 To: Johan Hovold <johan@kernel.org>
 Cc: Bjorn Andersson <andersson@kernel.org>,
         Maximilian Luz <luzmaximilian@gmail.com>,
         Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>,
         Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>, Ard Biesheuvel <ardb@kernel.org>,
-        Steev Klimaszewski <steev@kali.org>, linux-arm-msm@vger.kernel.org,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-efi@vger.kernel.org,
-        Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
-Subject: Re: [PATCH v4 8/8] arm64: dts: qcom: sdm850-lenovo-yoga-c630: fix
- RTC offset info
-Message-ID: <xddgggbyt7dyy6a75dup7dgt6fxy27sopkv6febckstcpamv72@sfbul63yeex5>
-References: <20250625-more-qseecom-v4-0-aacca9306cee@oss.qualcomm.com>
- <20250625-more-qseecom-v4-8-aacca9306cee@oss.qualcomm.com>
- <aF0eEWK8d-l1Mxma@hovoldconsulting.com>
+        Conor Dooley <conor+dt@kernel.org>, linux-arm-msm@vger.kernel.org,
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
+Subject: Re: [PATCH v2 2/4] firmware: qcom: uefisecapp: add support for R/O
+ UEFI vars
+Message-ID: <zufyvg4hoxxz4i45pynzta3gyglqvecrmeslnpphsgwmtujivl@t2zbdtejt3x4>
+References: <20250621-more-qseecom-v2-0-6e8f635640c5@oss.qualcomm.com>
+ <20250621-more-qseecom-v2-2-6e8f635640c5@oss.qualcomm.com>
+ <aFloifxONXnQbVg6@hovoldconsulting.com>
+ <aFlps9iUcD42vN4w@hovoldconsulting.com>
+ <diarijcqernpm4v5s6u22jep3gzdrzy7o4dtw5wzmlec75og6y@wlbyjbtvnv3s>
+ <aF0WGmnN_8rvI9n1@hovoldconsulting.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -106,59 +106,75 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <aF0eEWK8d-l1Mxma@hovoldconsulting.com>
-X-Authority-Analysis: v=2.4 cv=NdDm13D4 c=1 sm=1 tr=0 ts=685d2ab3 cx=c_pps
+In-Reply-To: <aF0WGmnN_8rvI9n1@hovoldconsulting.com>
+X-Proofpoint-GUID: bcd-TS-1UfD1D9Eb0t0WRI8WH4uQ3VeP
+X-Proofpoint-ORIG-GUID: bcd-TS-1UfD1D9Eb0t0WRI8WH4uQ3VeP
+X-Authority-Analysis: v=2.4 cv=J+eq7BnS c=1 sm=1 tr=0 ts=685d2bd3 cx=c_pps
  a=qKBjSQ1v91RyAK45QCPf5w==:117 a=xqWC_Br6kY4A:10 a=kj9zAlcOel0A:10
- a=6IFa9wvqVegA:10 a=rtKsz54fpWh7oidnevsA:9 a=CjuIK1q_8ugA:10
+ a=6IFa9wvqVegA:10 a=TWiC2UeppOsHrghBY90A:9 a=CjuIK1q_8ugA:10
  a=NFOGd7dJGGMPyQGDc5-O:22
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwNjI2MDA5MyBTYWx0ZWRfX7jo9MXHGacuc
- Sz1RBVOF6I0yBuFKwJPmK8StWP3AQa0WCAGP9N4Gz4x1ZivdV6zjSZpRh5Oco8d4CqfzV1fj3S5
- giEG+eQzWfL4L+7vnSKZ0OzS7Tz7WWsp48Q6lWuoFaJ2fu5ElABANVulpkgT1UWLFAiiM/5YDvY
- mLlGG7ALy3qCJxidiATrHjbvmdzZRn6S2GT4ljymHl5OTgead/ncksp8FHgr0psxNWEKbivuX69
- j9PEih31xEKJGSlg4euiWjjEz4pxORo5LcsBQpAIxrkeYWR3jau0t1gkgeAUBmLKbrJJQjzPl8r
- 7lzz5DGupBfasZNFwm5yRlDxU9/XJT06Ge7kcmdiMY+34VufGlF08KmWe68V8izjLXYZjABVHS+
- O2wtYkZQOu4hiP17lK6TZszhBtZAJRpEKzMI6b+1rv0TAZwFzKwb178woM6S0oAwOjs8IIAC
-X-Proofpoint-ORIG-GUID: xc7PSMWiodhI7bNK3g2AE6KEdTH8BHGE
-X-Proofpoint-GUID: xc7PSMWiodhI7bNK3g2AE6KEdTH8BHGE
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwNjI2MDA5NCBTYWx0ZWRfX7AZOVg2qEHcH
+ 4vbFxSxKE2uIOo+CuHUE8FGREIQ6nPjlrPEt0Cua8kIfqDJb4xCBka771GuB21ubryxB16EDgbQ
+ h6M8bqKJdizrg3ih4fEupXCF4eSQ18Wrf+tx8ss232DuDYeys/ZcfQDPGG+Nnepc8I84ixPS9OZ
+ s/5pHYfAufBiLi4Rkz+CCWVyYgurr4rPiKdJEVirSQrLgluzY8zc4MRcstWQ0eHiRtWylSdVbS/
+ qV8G6eBRHXbn5yWxNNViRknKWt1AI7H1GqjbO3kWs7HNI8szCPwXpNl6Rs33c18iSNS9/4VHEh8
+ C/iTraBr1dE2UKODToJciSVvzTCwurwDSGFvjSrSyYW2/GH/784TQXfMhQSluOLvkY8tuSkBLqj
+ WICVD2+PwC0LZue6BUlo4O6xa6BhywAnD+IrIAlc3sQjFZZp7oFN/SpXkWYgp1ryCjV/qGkg
 X-Proofpoint-Virus-Version: vendor=baseguard
  engine=ICAP:2.0.293,Aquarius:18.0.1099,Hydra:6.1.7,FMLib:17.12.80.40
  definitions=2025-06-26_05,2025-06-26_01,2025-03-28_01
 X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- bulkscore=0 mlxscore=0 spamscore=0 malwarescore=0 lowpriorityscore=0
- phishscore=0 priorityscore=1501 suspectscore=0 mlxlogscore=937 adultscore=0
- clxscore=1015 impostorscore=0 classifier=spam authscore=0 authtc=n/a authcc=
+ bulkscore=0 mlxlogscore=999 adultscore=0 impostorscore=0 clxscore=1015
+ spamscore=0 malwarescore=0 phishscore=0 priorityscore=1501 suspectscore=0
+ mlxscore=0 lowpriorityscore=0 classifier=spam authscore=0 authtc=n/a authcc=
  route=outbound adjust=0 reason=mlx scancount=1 engine=8.19.0-2505280000
- definitions=main-2506260093
+ definitions=main-2506260094
 
-On Thu, Jun 26, 2025 at 12:16:49PM +0200, Johan Hovold wrote:
-> On Wed, Jun 25, 2025 at 01:53:27AM +0300, Dmitry Baryshkov wrote:
-> > Lenovo Yoga C630 as most of the other WoA devices stores RTC offset in
-> > the UEFI variable. Add corresponding property to the RTC device in order
-> > to make RTC driver wait for UEFI variables to become available and then
-> > read offset value from the corresponding variable.
+On Thu, Jun 26, 2025 at 11:42:50AM +0200, Johan Hovold wrote:
+> On Tue, Jun 24, 2025 at 04:13:34AM +0300, Dmitry Baryshkov wrote:
+> > On Mon, Jun 23, 2025 at 04:50:27PM +0200, Johan Hovold wrote:
+> > > On Mon, Jun 23, 2025 at 04:45:30PM +0200, Johan Hovold wrote:
 > 
-> This is not a fix so please drop that word from Subject.
+> > > > Also not sure how useful it is to only be able to read variables,
+> > > > including for the RTC where you'll end up with an RTC that's always
+> > > > slightly off due to drift (even if you can set it when booting into
+> > > > Windows or possibly from the UEFI setup).
+> > > > 
+> > > > Don't you have any SDAM blocks in the PMICs that you can use instead for
+> > > > a proper functioning RTC on these machines?
+> > 
+> > I'd rather not poke into an SDAM, especially since we don't have docs
+> > which SDAM blocks are used and which are not.
+> 
+> You're with Qualcomm now so you should be able to dig up this
+> information like we did for the X13s (even if I'm quite aware that it
+> may still be easier said than done).
 
-ack
+I'd rather try to find information on how to update UEFI vars on the
+storage. Moreover, using the UEFI variable doesn't send the wrong
+message to other developers (if I remember correctly, I've seen patches
+poking to semi-random SDAM just because it seemed to be unused).
+
+> > I think the slightly drifted RTC is still much better than ending up
+> > with an RTC value which is significantly off, because it was set via the
+> > file modification time.
+> 
+> I measured drift of 1 second every 3.5 h on the X13s, so having an
+> almost correct time with massive drift that cannot be corrected for may
+> not necessarily be better.
+
+For me it provided a better user experience. Yes, I'm using C630 from
+time to time, including the kernel development. A drifted but ticking
+RTC is better than the RTC that rolls backs by several months at a
+reboot, because of the missing RTC offset info.
 
 > 
-> I'd also expect you to mention that the RTC would be heavily crippled on
-> this machine as the efi variables cannot be updated.
-
-ack
-
+> > Anyway, let me pick up some more patches in the next revision, maybe it
+> > would be more obvious why I'd like to get R/O support.
 > 
-> Is there even a UEFI setup setting for this so that users that have
-> blown away Windows can ever set the time (which may become totally off
-> due to drift)?
-
-There is a UEFI setup UI.
-
-> I'm still not convinced that this is something we want, especially since
-> you could have a fully functional RTC by providing an SDAM offset
-> instead like we do on the sc8280xp CRD.
-
-No, I don't want to go that way.
+> I'll try to take a look.
+> 
+> Johan
 
 -- 
 With best wishes
