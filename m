@@ -1,48 +1,81 @@
-Return-Path: <devicetree+bounces-189960-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-189961-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id A8FF7AE9FF1
-	for <lists+devicetree@lfdr.de>; Thu, 26 Jun 2025 16:09:54 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0D1C7AE9FE3
+	for <lists+devicetree@lfdr.de>; Thu, 26 Jun 2025 16:07:43 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id D1D071899D70
-	for <lists+devicetree@lfdr.de>; Thu, 26 Jun 2025 14:06:23 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id F277A7B3D29
+	for <lists+devicetree@lfdr.de>; Thu, 26 Jun 2025 14:06:01 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3F5C92EA15D;
-	Thu, 26 Jun 2025 14:05:09 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3500928FFEE;
+	Thu, 26 Jun 2025 14:07:20 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="qC2UnD8B"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="fhkJJWdF"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wr1-f48.google.com (mail-wr1-f48.google.com [209.85.221.48])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0D8792E92DD;
-	Thu, 26 Jun 2025 14:05:08 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5F7952E175E
+	for <devicetree@vger.kernel.org>; Thu, 26 Jun 2025 14:07:18 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.48
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1750946709; cv=none; b=qKWBoaFIlD0C8eNDoSnwZlCLD5wPvvsQPruxJu8EBmJtAOfU/GslW6cFf8W2yDJakOpbkw5dNjmI8eDHSpCe2U1n88WsUghiLmeXHcfvCF++NbDADpje9M/z/49TwFrlftBigOwqd3rUw0onFILuXS8BLjSu1FmpzEFgq9QvgbY=
+	t=1750946840; cv=none; b=onQB4IOhTPffm0D3ojEUzThxFiRJtAhNF+cchAA3ZVpO7e0tciFH1DP9rIp0T75ieAbkRouou0WTRJWJNeNvCn55KcN93nRweFWFpOYoBfA6SCarjOIwOVMn5l/PnqjQrsZDDhug+d4C1cKv5U5XdV/uG00v0LUg53RK9dWnXT4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1750946709; c=relaxed/simple;
-	bh=+K5n0VGk4TM353jmviQuCJl/tzxvNnr3dzj2b/7AuQk=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=GHpMXhMvAH5xACJhRAlKOYyaYnchudqlO/n6UHDss41yUA/xsVRS/6BoWWPXzaRWXBrHNk43WHG/7SOZdG2rEkwEEAAPtNJE8IdtzCg/qFlttb7dxAbkiYvvPSwn1GtCX5ILUVBHgA7ncK71rQ4t7TU/WbfBVUw4uWnRW0rPDuM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=qC2UnD8B; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 29AB5C4CEED;
-	Thu, 26 Jun 2025 14:05:02 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1750946708;
-	bh=+K5n0VGk4TM353jmviQuCJl/tzxvNnr3dzj2b/7AuQk=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=qC2UnD8Bp0yw+P5bfz7aM7qzZ4eTinyxf/NB1mFB4GDJ3ZE+uw+gOPmzpmFsSgtb9
-	 fZGdvSIv60Ae68wdPc6qizeivAe8kDnlM1OWSi/YgLEwY7Z60EWoPut9sepJiMhXUP
-	 4+lJTvi+uI5BslaLaNam1tJGppwlFLIKZmOeRHtRt64ESBtGP4Fp9w6OmX3h7Acd09
-	 yaDsWigBaXq+cloTin6zsq7yyHBLHc19qZYeM2gOuYa0fdbANpUx553IKpRRrPSIZO
-	 s7Gpc0z1BZPmnuPudS6vhwr989zaSfCaC4q2aAFz3kREwciCFbAAYoBNjhQIQmIhNe
-	 w+ThtjU7u/Tvg==
-Message-ID: <08e3c707-3b39-4b67-ae9d-f9fe65ad210e@kernel.org>
-Date: Thu, 26 Jun 2025 16:05:00 +0200
+	s=arc-20240116; t=1750946840; c=relaxed/simple;
+	bh=iiHkbrBBGv/V6j0x1qrEIpF50wlkCHnl6q7L7xGOios=;
+	h=Message-ID:Date:MIME-Version:From:Subject:To:Cc:References:
+	 In-Reply-To:Content-Type; b=XtWmWvGjAWU1txJP60+AgxlDypMqBfzz+5k9QKb+P2T3C/Iy10giWdGzv3LP+It8Ai/W8STSqaDzqMB5+hmITJW+VZ7cg85VSBX+0zOs1i35JU0z2wlFWSI699qql+7jcTZ7gtTwxp9H8hfl6LGz5OLycET+MSlQJHM/rSpXs+w=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=fhkJJWdF; arc=none smtp.client-ip=209.85.221.48
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-wr1-f48.google.com with SMTP id ffacd0b85a97d-3a522224582so496198f8f.3
+        for <devicetree@vger.kernel.org>; Thu, 26 Jun 2025 07:07:18 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1750946837; x=1751551637; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:organization:autocrypt
+         :content-language:references:cc:to:subject:reply-to:from:user-agent
+         :mime-version:date:message-id:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=4tyfKJ3iWwfYhEwtvlvqYH/qs9dAR1n1suyqwAjSqmI=;
+        b=fhkJJWdFQRMsrgow1sWb9V6L/7zTY0krVvG2v2VyY/DX7uMvuAgQRlzPlU3wYpA2Z9
+         MgW+l75ru1y3RbMqPg9hXRW/n3XIhWo4fg03Dj34FrzHMPvIy1MhScV8LYGYMGCYsmUy
+         ncMJFPksDBUCvcjOsbJT7QJFLhgHOOfUkK5g8LEbokIH7vBAaxscsBl+c0ldwsvo5ene
+         XAhaVG44Ye1KCB0YJade3KG927OFnweqLwr45GvLB2bI2ovA3NEg5+hHVyeuwgLsoUmx
+         vsxMzT0N7Jyz9LNuNtM9olWeGoSGXEEPHdPxRT+FIfPi/qM9237NCV3qFWg5Sh/xMRcB
+         lQmQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1750946837; x=1751551637;
+        h=content-transfer-encoding:in-reply-to:organization:autocrypt
+         :content-language:references:cc:to:subject:reply-to:from:user-agent
+         :mime-version:date:message-id:x-gm-message-state:from:to:cc:subject
+         :date:message-id:reply-to;
+        bh=4tyfKJ3iWwfYhEwtvlvqYH/qs9dAR1n1suyqwAjSqmI=;
+        b=EU0DLkR57JOnpX6P//oIEanNdpok4I0ZZob1vIgnsjiiWjwGnbckRhRHgoSGG/rRBP
+         86en2vVdPmDqWDCW5SPmomToTIx2XOzqaJMgHM9CAdJpm/5p72itpgXA/tnOJ+VbkUqY
+         9Mk3p0nLEKx88cLoWA1WkTo6zh9+tCxB2m3kunqZSlfLfkcLfqYGumL5mjS2D0afMSek
+         IIBS6eYHHv71PF2cz7CoFRPfdoJEi1D+yyDOFoGkZ2ymJ6fV5O5KhVliI7h7czQrY/Fh
+         tGaYrbmbkKHHuoU7xgG7WTxadBTjGWGXUSD1YJZ9DIsyn4bjFQFaxpDHxRWFEqLoDlvs
+         dHPA==
+X-Gm-Message-State: AOJu0Yz71ljgnGPWYGh+2lYbN2apMqdz0xu32P54YGTsPoVNIIqiCjTf
+	Ys4nWmgUCpX4uY4pbc1gAO+5vnmgJ6q9FfUAZ2qTuK73n8OajgvDkaWiMr6h4qUxLC8=
+X-Gm-Gg: ASbGncubO5UPSFm2pHDZtKb0T7hi9eLJy76jp64esONTFihU6cNskrG2/Dh14kdDpyU
+	xDXzyqrPlEUzRPBBGlZ89DiV/q72sXte2bdUU+tcQgjQuBUic4UspKNRjecDIfjOiSPHzGeNCTx
+	NbhgZIXPD4jRKP/2+8XcRhVYxDqRXaZ06hpSh8GWdRlUL+wo+xeDLWs7tBVurF5wHkAvl8X7yYw
+	QCuGTXS4pg10+yRH735hjriVD8RMEn7i8UrUHEKW8Z0oogRy+hUJpXITJ3SUiuAnryYN5XimuQz
+	r8t26y45LnW9D1rc6yuA0jglnFzUPkWhGLHAkalrL8WQzCRViwsACgdOrqW7kvs80JihW3ArU+N
+	OFoCQoqHdetUXSZLhwTiAeiUAs52D8ayRUpO7Bgg=
+X-Google-Smtp-Source: AGHT+IH2o/48Q3NSxhVyfkjDMI5iDi5m1hTz1aTZlrpWBbENmqy1WfQrH0ZoXoOKjfZDADuR+Pkv4w==
+X-Received: by 2002:a05:6000:420c:b0:3a6:e2d5:f161 with SMTP id ffacd0b85a97d-3a6f2e8725bmr2928225f8f.8.1750946832282;
+        Thu, 26 Jun 2025 07:07:12 -0700 (PDT)
+Received: from ?IPV6:2a01:e0a:3d9:2080:fa6f:b132:4858:18cc? ([2a01:e0a:3d9:2080:fa6f:b132:4858:18cc])
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-3a88c7e72c1sm18312f8f.1.2025.06.26.07.07.11
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 26 Jun 2025 07:07:12 -0700 (PDT)
+Message-ID: <f92836f5-c81a-4bfd-a77f-903e74452c59@linaro.org>
+Date: Thu, 26 Jun 2025 16:07:11 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,78 +83,85 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v5 5/5] arm64: dts: qcom: qcm2290: Add venus video node
-To: Jorge Ramirez-Ortiz <jorge.ramirez@oss.qualcomm.com>, krzk+dt@kernel.org,
- bryan.odonoghue@linaro.org, quic_vgarodia@quicinc.com,
- quic_dikshita@quicinc.com, mchehab@kernel.org, robh@kernel.org,
- conor+dt@kernel.org, konradybcio@kernel.org, andersson@kernel.org
-Cc: linux-arm-msm@vger.kernel.org, linux-media@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <20250626135931.700937-1-jorge.ramirez@oss.qualcomm.com>
- <20250626135931.700937-6-jorge.ramirez@oss.qualcomm.com>
-From: Krzysztof Kozlowski <krzk@kernel.org>
-Content-Language: en-US
-Autocrypt: addr=krzk@kernel.org; keydata=
- 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 a/A=
-In-Reply-To: <20250626135931.700937-6-jorge.ramirez@oss.qualcomm.com>
-Content-Type: text/plain; charset=UTF-8
+From: neil.armstrong@linaro.org
+Reply-To: Neil Armstrong <neil.armstrong@linaro.org>
+Subject: Re: [PATCH 2/5] mfd: khadas-mcu: drop unused nvmem code
+To: muhammed.efecetin.67@gmail.com, linux-rockchip@lists.infradead.org
+Cc: devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ linux-kernel@vger.kernel.org, robh+dt@kernel.org,
+ krzysztof.kozlowski+dt@linaro.org, heiko@sntech.de, lee@kernel.org,
+ rafael@kernel.org, efectn@protonmail.com, daniel.lezcano@linaro.org
+References: <cover.1746518265.git.efectn@protonmail.com>
+ <1b421ddfd44d096cd3a979462ced002e2356eb21.1746518265.git.efectn@protonmail.com>
+Content-Language: en-US, fr
+Autocrypt: addr=neil.armstrong@linaro.org; keydata=
+ xsBNBE1ZBs8BCAD78xVLsXPwV/2qQx2FaO/7mhWL0Qodw8UcQJnkrWmgTFRobtTWxuRx8WWP
+ GTjuhvbleoQ5Cxjr+v+1ARGCH46MxFP5DwauzPekwJUD5QKZlaw/bURTLmS2id5wWi3lqVH4
+ BVF2WzvGyyeV1o4RTCYDnZ9VLLylJ9bneEaIs/7cjCEbipGGFlfIML3sfqnIvMAxIMZrvcl9
+ qPV2k+KQ7q+aXavU5W+yLNn7QtXUB530Zlk/d2ETgzQ5FLYYnUDAaRl+8JUTjc0CNOTpCeik
+ 80TZcE6f8M76Xa6yU8VcNko94Ck7iB4vj70q76P/J7kt98hklrr85/3NU3oti3nrIHmHABEB
+ AAHNKk5laWwgQXJtc3Ryb25nIDxuZWlsLmFybXN0cm9uZ0BsaW5hcm8ub3JnPsLAkQQTAQoA
+ OwIbIwULCQgHAwUVCgkICwUWAgMBAAIeAQIXgBYhBInsPQWERiF0UPIoSBaat7Gkz/iuBQJk
+ Q5wSAhkBAAoJEBaat7Gkz/iuyhMIANiD94qDtUTJRfEW6GwXmtKWwl/mvqQtaTtZID2dos04
+ YqBbshiJbejgVJjy+HODcNUIKBB3PSLaln4ltdsV73SBcwUNdzebfKspAQunCM22Mn6FBIxQ
+ GizsMLcP/0FX4en9NaKGfK6ZdKK6kN1GR9YffMJd2P08EO8mHowmSRe/ExAODhAs9W7XXExw
+ UNCY4pVJyRPpEhv373vvff60bHxc1k/FF9WaPscMt7hlkbFLUs85kHtQAmr8pV5Hy9ezsSRa
+ GzJmiVclkPc2BY592IGBXRDQ38urXeM4nfhhvqA50b/nAEXc6FzqgXqDkEIwR66/Gbp0t3+r
+ yQzpKRyQif3OwE0ETVkGzwEIALyKDN/OGURaHBVzwjgYq+ZtifvekdrSNl8TIDH8g1xicBYp
+ QTbPn6bbSZbdvfeQPNCcD4/EhXZuhQXMcoJsQQQnO4vwVULmPGgtGf8PVc7dxKOeta+qUh6+
+ SRh3vIcAUFHDT3f/Zdspz+e2E0hPV2hiSvICLk11qO6cyJE13zeNFoeY3ggrKY+IzbFomIZY
+ 4yG6xI99NIPEVE9lNBXBKIlewIyVlkOaYvJWSV+p5gdJXOvScNN1epm5YHmf9aE2ZjnqZGoM
+ Mtsyw18YoX9BqMFInxqYQQ3j/HpVgTSvmo5ea5qQDDUaCsaTf8UeDcwYOtgI8iL4oHcsGtUX
+ oUk33HEAEQEAAcLAXwQYAQIACQUCTVkGzwIbDAAKCRAWmrexpM/4rrXiB/sGbkQ6itMrAIfn
+ M7IbRuiSZS1unlySUVYu3SD6YBYnNi3G5EpbwfBNuT3H8//rVvtOFK4OD8cRYkxXRQmTvqa3
+ 3eDIHu/zr1HMKErm+2SD6PO9umRef8V82o2oaCLvf4WeIssFjwB0b6a12opuRP7yo3E3gTCS
+ KmbUuLv1CtxKQF+fUV1cVaTPMyT25Od+RC1K+iOR0F54oUJvJeq7fUzbn/KdlhA8XPGzwGRy
+ 4zcsPWvwnXgfe5tk680fEKZVwOZKIEuJC3v+/yZpQzDvGYJvbyix0lHnrCzq43WefRHI5XTT
+ QbM0WUIBIcGmq38+OgUsMYu4NzLu7uZFAcmp6h8g
+Organization: Linaro
+In-Reply-To: <1b421ddfd44d096cd3a979462ced002e2356eb21.1746518265.git.efectn@protonmail.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
 
-On 26/06/2025 15:59, Jorge Ramirez-Ortiz wrote:
-> +
-> +			interconnects = <&mmnrt_virt MASTER_VIDEO_P0 RPM_ALWAYS_TAG
-> +					 &bimc SLAVE_EBI1 RPM_ALWAYS_TAG>,
-> +					<&bimc MASTER_APPSS_PROC RPM_ACTIVE_TAG
-> +					 &config_noc SLAVE_VENUS_CFG RPM_ACTIVE_TAG>;
-> +			interconnect-names = "video-mem",
-> +					     "cpu-cfg";
-> +
-> +			status = "okay";
+On 26/06/2025 16:04, muhammed.efecetin.67@gmail.com wrote:
+> From: Muhammed Efe Cetin <efectn@protonmail.com>
+> 
+> Drop "khadas-mcu-user-mem" code since it is not used anywhere.
+> 
+> Signed-off-by: Muhammed Efe Cetin <efectn@protonmail.com>
+> ---
+>   drivers/mfd/khadas-mcu.c | 11 -----------
+>   1 file changed, 11 deletions(-)
+> 
+> diff --git a/drivers/mfd/khadas-mcu.c b/drivers/mfd/khadas-mcu.c
+> index ba981a788..ca4bd6cf5 100644
+> --- a/drivers/mfd/khadas-mcu.c
+> +++ b/drivers/mfd/khadas-mcu.c
+> @@ -80,10 +80,6 @@ static struct mfd_cell khadas_mcu_fan_cells[] = {
+>   	{ .name = "khadas-mcu-fan-ctrl", },
+>   };
+>   
+> -static struct mfd_cell khadas_mcu_cells[] = {
+> -	{ .name = "khadas-mcu-user-mem", },
+> -};
+> -
+>   static int khadas_mcu_probe(struct i2c_client *client)
+>   {
+>   	struct device *dev = &client->dev;
+> @@ -105,13 +101,6 @@ static int khadas_mcu_probe(struct i2c_client *client)
+>   		return ret;
+>   	}
+>   
+> -	ret = devm_mfd_add_devices(dev, PLATFORM_DEVID_NONE,
+> -				   khadas_mcu_cells,
+> -				   ARRAY_SIZE(khadas_mcu_cells),
+> -				   NULL, 0, NULL);
+> -	if (ret)
+> -		return ret;
+> -
+>   	if (of_property_present(dev->of_node, "#cooling-cells"))
+>   		return devm_mfd_add_devices(dev, PLATFORM_DEVID_NONE,
+>   					    khadas_mcu_fan_cells,
 
-Drop, unless you override existing node, but then this should follow
-standard override-label/phandle syntax.
-
-Best regards,
-Krzysztof
+Reviewed-by: Neil Armstrong <neil.armstrong@linaro.org>
 
