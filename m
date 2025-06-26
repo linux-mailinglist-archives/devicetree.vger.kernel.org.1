@@ -1,120 +1,174 @@
-Return-Path: <devicetree+bounces-189941-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-189942-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5F811AE9E76
-	for <lists+devicetree@lfdr.de>; Thu, 26 Jun 2025 15:19:49 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 84EC7AE9E89
+	for <lists+devicetree@lfdr.de>; Thu, 26 Jun 2025 15:22:36 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id B29291C4343A
-	for <lists+devicetree@lfdr.de>; Thu, 26 Jun 2025 13:20:04 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id AADFA7B3433
+	for <lists+devicetree@lfdr.de>; Thu, 26 Jun 2025 13:21:11 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 86FA92E5412;
-	Thu, 26 Jun 2025 13:19:40 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3808828B3F9;
+	Thu, 26 Jun 2025 13:22:28 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail.prodrive-technologies.com (mail.prodrive-technologies.com [212.61.153.67])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-qk1-f171.google.com (mail-qk1-f171.google.com [209.85.222.171])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A106D1AAA1B;
-	Thu, 26 Jun 2025 13:19:36 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=212.61.153.67
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 52B45289E0D;
+	Thu, 26 Jun 2025 13:22:26 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.222.171
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1750943980; cv=none; b=P38uyRcxbsbG5X+MWK19L3KAeV3IucX7QqpbPBRAisMSZeZCfdsFoh/JE0+p4iZZjpj9pcgWDqhD44911vxJ1Pk0YprhgFpzpJv+S50TcsKaQXtMz8ReeQ7jCm6ElNxdgTtIge/BBpa7uxbKIZ2nOdcsXkbL2KATcYuzdmIc+vw=
+	t=1750944148; cv=none; b=uQL6zgVhN8vKnFetdxcNa8A4XH89J7r2LFaV/+wfI6qT3BU+IVs8PjPO3sgT3Sdra0xiCOJwqX+9UH3qb8T1IX0dLO19uQhNvpyjFiBLWOSqtU747I/wJv4T+ZVu2P7j+CGJWBzh2pRFrAo49Uf8ZMKiu+uPkqIaR1XXPN2BIWI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1750943980; c=relaxed/simple;
-	bh=75mkrs7dNrjFqYbU96pjzxClIJ/jiib6Uq9QOKp4sF8=;
-	h=From:To:CC:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=GsWdQ1UxRfaoDDGuIBfKdqdFp7pyZRZymwzB6+RVMnXkjtvUfS8Tcoub/Gwo4Yoh4gQXjdy8Ao1wnaIt1bvJ8dhepeIiNMfc99y5xVfGF0/mKjdRi9Mu8bmGC8S1KkSfz9ewCaqhnZVaySWA44iuO6hV3See/WVK89gjXJB7Fy0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=prodrive-technologies.com; spf=pass smtp.mailfrom=prodrive-technologies.com; arc=none smtp.client-ip=212.61.153.67
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=prodrive-technologies.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=prodrive-technologies.com
-Received: from EXCOP01.bk.prodrive.nl (10.1.0.22) by EXCOP01.bk.prodrive.nl
- (10.1.0.22) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.4; Thu, 26 Jun
- 2025 15:19:34 +0200
-Received: from lnxdevrm02.bk.prodrive.nl (10.1.1.121) by
- EXCOP01.bk.prodrive.nl (10.1.0.22) with Microsoft SMTP Server id 15.2.1544.4
- via Frontend Transport; Thu, 26 Jun 2025 15:19:34 +0200
-Received: from paugeu by lnxdevrm02.bk.prodrive.nl with local (Exim 4.96)
-	(envelope-from <paul.geurts@prodrive-technologies.com>)
-	id 1uUmVq-00Gq2g-29;
-	Thu, 26 Jun 2025 15:19:34 +0200
-From: Paul Geurts <paul.geurts@prodrive-technologies.com>
-To: <andrew@lunn.ch>
-CC: <andrew+netdev@lunn.ch>, <conor+dt@kernel.org>, <davem@davemloft.net>,
-	<devicetree@vger.kernel.org>, <edumazet@google.com>, <krzk@kernel.org>,
-	<kuba@kernel.org>, <linux-kernel@vger.kernel.org>,
-	<linux-wireless@vger.kernel.org>,
-	<martijn.de.gouw@prodrive-technologies.com>, <mgreer@animalcreek.com>,
-	<netdev@vger.kernel.org>, <pabeni@redhat.com>,
-	<paul.geurts@prodrive-technologies.com>, <robh@kernel.org>
-Subject: Re: [PATCH v2 1/2] dt-bindings: net/nfc: ti,trf7970a: Add ti,rx-gain-reduction option
-Date: Thu, 26 Jun 2025 15:19:34 +0200
-Message-ID: <20250626131934.4013096-1-paul.geurts@prodrive-technologies.com>
-X-Mailer: git-send-email 2.39.2
-In-Reply-To: <ddb9a1a9-7070-416c-848e-00d151846999@lunn.ch>
-References: <ddb9a1a9-7070-416c-848e-00d151846999@lunn.ch>
+	s=arc-20240116; t=1750944148; c=relaxed/simple;
+	bh=mV9mNsEWH/V5Q2P6cS/JQcjMaDc3Rijx9fBYLM4n7Mg=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=hTDWjH144ySA0KQsHAA8vy3XoxTIlWg6eHyz8UMVNfX6kOlnrQdzpWRnmXHgbKAy14VUWMlKVW47NMwZ1WLyMzsnJYqF0vCc5e6Ffu7go5z3pGMWO3jE/XNLvzrZS3fHWhmC8ssMxh0eolhSfdE5LFzu5gsmlLHcRWvgoshljCs=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.222.171
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-qk1-f171.google.com with SMTP id af79cd13be357-7d219896edeso102440585a.1;
+        Thu, 26 Jun 2025 06:22:26 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1750944145; x=1751548945;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=p8hDBb4/b+eNSRxSeGUOjC6YvOZSs2hSxxLjv9B1kfc=;
+        b=pyvDHdV2/cChNrb497rGo0S1BgPoBV3ts9A3TPYAkvsKszfa7Hyzxxk0UtOae3jV70
+         wHGD5X1rmhRlfM0yV+n27zQuyDomr+ksQxpoDt1pnb5oTz0xmR911hu7w7QSeQtEKyUn
+         8Ukna+Myj/F71KoYXcYhL3Lprg6tRRZpMpHWu48f5WJIp+UOd32zEekA5/u+EUya5CM1
+         KLiZH6vMaJyW/SKE7YTdiYgXG2h3QuFUXt6cxniIwXk8ItYghfa8y7oq5a3vhUeeXWaT
+         rMOlZcs6uHF1r+T6PgtP2QxTautT6QYWf0gYaQCqPUcQcOAccDqujGMJ4KgLWIYCh4nI
+         RdYQ==
+X-Forwarded-Encrypted: i=1; AJvYcCUj/ynQo9ZWwRNiBWxrZnNQdplmHiuOnz9wEZrUBHHz2EOoxHrU84CvLHlESYMBIIzs0ri7QpQt8OVk@vger.kernel.org, AJvYcCVuZAXq0leclSaFGT0KxI3MVBgAOli4GOh8nlLTBt8PDcNdtkwvKiJkgJz9YxkyIprFia0sw8qWANU8GyRs@vger.kernel.org, AJvYcCWmG2Lg38rx9Jba4ZcNHICH0MkrAGvxH8owO2ZYCAo6dFHqZOuNq5kJySkf5WC1xOh8sbRvUoJ9y1vW@vger.kernel.org, AJvYcCXOEhiiuMolOvqEmI6Y9uxUNIqhz2cMzZI+VZ9hNbcEvx0KGyhTv7Ng+09Dwewlr7sFFG43rM9ij1D2fJO9VHeoeK0=@vger.kernel.org
+X-Gm-Message-State: AOJu0Yxo469uHANnWG2UYJLXVKDuD1WnQi87JtVF6ycv7d6LUYhrk4n2
+	9lv1EXb2+bN+uC0OQ8WLtBRhx20P6qsnhcBU1XdCsh22XLFNyDc4/SK6ayZl4QBE
+X-Gm-Gg: ASbGncvZ33Vl16sO8Enu7aknHewTtfUbxjjA89tGxT0Knb8F4Nr2SCezl4xURkHkv9J
+	R0YlqbCV3IhnlQGs3vX1nUjMDRyqIyqZMKYI350Wd1tSTOe4WQX/Dpl6surXT8NqTlU9Pqe+7gx
+	VMjoaY+VVlLQ9oIlRRYe5UPjlmu7LVqdx1WvD5DNYu59a6r+jd60dpbUYWmLEyNIEmxWxU96K3m
+	VahLTD1VwMpuaL8nV1SA3AtsnuuUVdSkuyM+SdLsY5o1FxOmsYojW7U9ntiN+AfATFUpKtvgvcK
+	K++2Nh3SjG6vC3qfzlUXCJ46L0gPB282pwGR7p5Yt0F4FVOVfTjGx8Siopp5blBpM4rnak6bv9W
+	UMT6LP3Qp4/JJSQF0Q6Anuzf5lcez
+X-Google-Smtp-Source: AGHT+IEAymfAGWqa1lsc+lE9aekt+GQmzOq8aWOhlreKofdFa70OokYDqTp4i8/hZux35lG7OKU96A==
+X-Received: by 2002:a05:620a:7004:b0:7c7:ba67:38a with SMTP id af79cd13be357-7d4296920c1mr1162621385a.6.1750944144634;
+        Thu, 26 Jun 2025 06:22:24 -0700 (PDT)
+Received: from mail-qk1-f180.google.com (mail-qk1-f180.google.com. [209.85.222.180])
+        by smtp.gmail.com with ESMTPSA id af79cd13be357-7d443150adesm378585a.26.2025.06.26.06.22.24
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 26 Jun 2025 06:22:24 -0700 (PDT)
+Received: by mail-qk1-f180.google.com with SMTP id af79cd13be357-7d412988b14so97565685a.3;
+        Thu, 26 Jun 2025 06:22:24 -0700 (PDT)
+X-Forwarded-Encrypted: i=1; AJvYcCUNy6i86XkyaVNTZAgIUZSt1s9WmUMYW6X7DQLgk9QOjK+k1wlhiDP4rTFCmUmDB2oVYkFr14cLW02I@vger.kernel.org, AJvYcCUSo3KGRhHPZKEVW4WDFS3i48pjyES51AfBJvya780NMApbdVZ3M/RJTZlQlfgg9nkuZYiAYSGJTBvoumgk@vger.kernel.org, AJvYcCUdbKItAQVz20QuyJYVT3cWuTyUYDW2k8X0axzF+uQAo6JxUpRKgV7zjjqMzSfDACE0j0/rO7qW776lQjLv42cHBSI=@vger.kernel.org, AJvYcCUlO/6kAh2YeY5nO9IrCBpFaRD4K9SRXdouxtQGeX8oppSwN/PQ871p6o205npRNqO/B3OTXg8D7uEL@vger.kernel.org
+X-Received: by 2002:a05:620a:1a28:b0:7d4:2922:14a4 with SMTP id
+ af79cd13be357-7d4296e5269mr1006485085a.23.1750944143752; Thu, 26 Jun 2025
+ 06:22:23 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
+References: <20250624173030.472196-1-prabhakar.mahadev-lad.rj@bp.renesas.com> <20250624173030.472196-5-prabhakar.mahadev-lad.rj@bp.renesas.com>
+In-Reply-To: <20250624173030.472196-5-prabhakar.mahadev-lad.rj@bp.renesas.com>
+From: Geert Uytterhoeven <geert@linux-m68k.org>
+Date: Thu, 26 Jun 2025 15:22:10 +0200
+X-Gmail-Original-Message-ID: <CAMuHMdWsA4mC+D8ftx74_XeuBjpv-9EQN0rgVLPsxjmrO3+rWg@mail.gmail.com>
+X-Gm-Features: Ac12FXyZOhKLUwzapIWzq_IcowUr7r_QEZiZS2TBQeWgQqz_SzAvs4KKWCo_QvU
+Message-ID: <CAMuHMdWsA4mC+D8ftx74_XeuBjpv-9EQN0rgVLPsxjmrO3+rWg@mail.gmail.com>
+Subject: Re: [PATCH 4/6] clk: renesas: rzv2h: Add fixed-factor module clocks
+ with status reporting
+To: Prabhakar <prabhakar.csengg@gmail.com>
+Cc: Michael Turquette <mturquette@baylibre.com>, Stephen Boyd <sboyd@kernel.org>, 
+	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Magnus Damm <magnus.damm@gmail.com>, linux-renesas-soc@vger.kernel.org, 
+	linux-clk@vger.kernel.org, linux-kernel@vger.kernel.org, 
+	devicetree@vger.kernel.org, Biju Das <biju.das.jz@bp.renesas.com>, 
+	Fabrizio Castro <fabrizio.castro.jz@renesas.com>, 
+	Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+Content-Type: text/plain; charset="UTF-8"
 
-> > > You should include the units, "ti,rx-gain-reduction-db"
-> > 
-> > Well, Currently it's not really a dB value (see below).
-> > 
-> > > 
-> > > > +    $ref: /schemas/types.yaml#/definitions/uint32
-> > > > +    description: |
-> > > > +      Specify a RX gain reduction to reduce antenna sensitivity with 5dB per
-> > > > +      increment, with a maximum of 15dB.
-> > > 
-> > > Given that description i think you can provide a list of values, [0, 
-> > > 5, 10, 15] and the tools will validate values in .dts files.
-> > > 
-> > > > +
-> > > >  required:
-> > > >    - compatible
-> > > >    - interrupts
-> > > > @@ -95,5 +101,6 @@ examples:
-> > > >              irq-status-read-quirk;
-> > > >              en2-rf-quirk;
-> > > >              clock-frequency = <27120000>;
-> > > > +            ti,rx-gain-reduction = <3>;
-> > > 
-> > > Err, how does 3 fit into 5dB increments?
-> > 
-> > I implemented it in a way that the value of ti,rx-gain-reduction is 
-> > programmed directly into the RX_GAIN reduction register, and there it 
-> > means 5 dB/LSB. My description probably was not clear enough about 
-> > that. So a value of 3 here actually means 15dB.
-> > So I could either improve the description here that this is the case, 
-> > or make the value in here in actual dB, and do some calculations in 
-> > the driver. What has your preference?
-> 
-> DT should use SI units, Volts, Amps, degrees C, meters, etc. The driver then should do whatever conversion is needed to convert to hardware register values.
-> 
-> Less important, but i'm also wondering if this should be negative, ti,rx-gain-db, with a value of -15. You say this receiver is overly sensitive, so you need to reduce the gain. But are there TI devices where you can actually increase the gain? Ideally the property should be generic and be able to cover that use case as well.
+Hi Prabhakar,
 
-As far as I am aware, I cannot put a negative number in a dts property. I can interpret the property as s32, but that would mean I need to put it in the dts like
+On Tue, 24 Jun 2025 at 19:30, Prabhakar <prabhakar.csengg@gmail.com> wrote:
+> From: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+>
+> Add support for fixed-factor module clocks that can report their enable
+> status through the module status monitor. Introduce a new clock type,
+> CLK_TYPE_FF_MOD_STATUS, and define the associated structure,
+> rzv2h_ff_mod_status_clk, to manage these clocks.
+>
+> Implement the .is_enabled callback by reading the module status register
+> using monitor index and bit definitions. Provide a helper macro,
+> DEF_FIXED_MOD_STATUS, to simplify the definition of such clocks.
+>
+> Signed-off-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
 
-ti,rx-gain = <0xfffffff1>;
+Thanks for your patch!
 
-which looks like a bad idea. I will just convert it to a dB value for v3.
+One early review comment below...
 
-> 
->     Andrew
-> 
-> ---
-> pw-bot: cr
-> 
+> --- a/drivers/clk/renesas/rzv2h-cpg.c
+> +++ b/drivers/clk/renesas/rzv2h-cpg.c
 
-Thanks!
+> +static struct clk_ops rzv2h_clk_ff_mod_status_ops;
 
-Paul
+This is an empty block of 200 bytes, consuming memory even when running
+on a different platform.
+
+> +static struct clk * __init
+> +rzv2h_cpg_fixed_mod_status_clk_register(const struct cpg_core_clk *core,
+> +                                       struct rzv2h_cpg_priv *priv)
+> +{
+> +       struct rzv2h_ff_mod_status_clk *clk_hw_data;
+> +       struct clk_init_data init = { };
+> +       struct clk_fixed_factor *fix;
+> +       const struct clk *parent;
+> +       const char *parent_name;
+> +       int ret;
+> +
+> +       WARN_DEBUG(core->parent >= priv->num_core_clks);
+> +       parent = priv->clks[core->parent];
+> +       if (IS_ERR(parent))
+> +               return ERR_CAST(parent);
+> +
+> +       parent_name = __clk_get_name(parent);
+> +       parent = priv->clks[core->parent];
+> +       if (IS_ERR(parent))
+> +               return ERR_CAST(parent);
+> +
+> +       clk_hw_data = devm_kzalloc(priv->dev, sizeof(*clk_hw_data), GFP_KERNEL);
+> +       if (!clk_hw_data)
+> +               return ERR_PTR(-ENOMEM);
+> +
+> +       clk_hw_data->priv = priv;
+> +       clk_hw_data->conf = core->cfg.fixed_mod;
+> +
+> +       rzv2h_clk_ff_mod_status_ops = clk_fixed_factor_ops;
+
+This overwrites rzv2h_clk_ff_mod_status_ops in every call (currently
+there is only one).
+
+> +       rzv2h_clk_ff_mod_status_ops.is_enabled = rzv2h_clk_ff_mod_status_is_enabled;
+
+If there would be multiple calls, there is a short time window where
+rzv2h_clk_ff_mod_status_ops.is_enabled is NULL, possibly affecting
+already-registered clocks of the same type.
+
+Hence I think you better store rzv2h_clk_ff_mod_status_ops inside
+rzv2h_cpg_priv (so it is allocated dynamically), and initialize it from
+rzv2h_cpg_probe (so it is initialized once).
+
+Gr{oetje,eeting}s,
+
+                        Geert
+
+-- 
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
+
+In personal conversations with technical people, I call myself a hacker. But
+when I'm talking to journalists I just say "programmer" or something like that.
+                                -- Linus Torvalds
 
