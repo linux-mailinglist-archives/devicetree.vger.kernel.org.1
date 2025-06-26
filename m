@@ -1,379 +1,129 @@
-Return-Path: <devicetree+bounces-189760-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-189761-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 28653AE968E
-	for <lists+devicetree@lfdr.de>; Thu, 26 Jun 2025 09:03:01 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 08AAAAE96A4
+	for <lists+devicetree@lfdr.de>; Thu, 26 Jun 2025 09:16:44 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 96D557B43D9
-	for <lists+devicetree@lfdr.de>; Thu, 26 Jun 2025 07:01:36 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 4F3AD4A2243
+	for <lists+devicetree@lfdr.de>; Thu, 26 Jun 2025 07:16:44 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6412F238C04;
-	Thu, 26 Jun 2025 07:02:53 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B58512367BA;
+	Thu, 26 Jun 2025 07:16:40 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=ventanamicro.com header.i=@ventanamicro.com header.b="i1gVJWfN"
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=norik.com header.i=@norik.com header.b="WDgrXAck"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pg1-f181.google.com (mail-pg1-f181.google.com [209.85.215.181])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from cpanel.siel.si (cpanel.siel.si [46.19.9.99])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BAE3D2367C4
-	for <devicetree@vger.kernel.org>; Thu, 26 Jun 2025 07:02:51 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.215.181
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A80082264B3;
+	Thu, 26 Jun 2025 07:16:37 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=46.19.9.99
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1750921373; cv=none; b=hM6eqtHCpQnVFxzPV06ptFmeISpzJyBJytkwzj78IGsp8rOprqEeo2UlNXQCOTaor9mUgnDjtuqJnPySqlR5kefC0hL8wsXnC9ctQHPbnF9xZi1khCi3fgbgx6mmNafOtx1LB0qAbyiDMtvs6AHX3nzvSxfxkHhoojKsET5M5lI=
+	t=1750922200; cv=none; b=hkZvQGP8SyLU7oZgWR6m3aKuqKnWPXmH3SbVCUZstVbDlbzjRVGkZdCIkvVAS3jB1QimvtXoK6va7wHW6YpU2j2Ny3tgM9iXP6Y5ZT2KkV0Ryt+BVLrdTZ2fXXd/pVmLKUSHiKBwSjO2NEV3khgACSa1SthH33JQZE3pRwJRqyQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1750921373; c=relaxed/simple;
-	bh=JeCIQ4IL3sxvd31af3WXViJMtBO5qnzW2MhlAjyRs1A=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=hprIfWYghbPwWw9H1/fzxl6PEL6iJ0Xvf/EWVF7iQpb1060EEiqJgOeK+YHzKe9e69XS0tGYFc9sMEMYeIdP/xGP9SvIJ3LWQyhqKedVJvzA6FLvxrVCAXDR1SRgO2A9WlvoPHjBwaOEWgMAMfyhbugz04bxCXBSmjG9JBqJunI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ventanamicro.com; spf=pass smtp.mailfrom=ventanamicro.com; dkim=pass (2048-bit key) header.d=ventanamicro.com header.i=@ventanamicro.com header.b=i1gVJWfN; arc=none smtp.client-ip=209.85.215.181
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ventanamicro.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ventanamicro.com
-Received: by mail-pg1-f181.google.com with SMTP id 41be03b00d2f7-b321bd36a41so477266a12.2
-        for <devicetree@vger.kernel.org>; Thu, 26 Jun 2025 00:02:51 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=ventanamicro.com; s=google; t=1750921371; x=1751526171; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=8ezoYursQ3Oig93OOMoe1zsrf1bzMlW/yf403T+KaH4=;
-        b=i1gVJWfNiLyhUcEcFUbfe/c/uC7/h+7IK74qX4Vp4Skj2ekvmi5K+ARpUJaC3eLrt+
-         lXCYlz/ytrjo2KK8IehtCYyEdAAgCPdcv18GH+bEN60IhRusVgtsOFCyHrY/5TzbWUCC
-         K+XruDWEGSnvhmMKG/ITx22LxuJWoTFOL1F28bJtq2NfsFcfUZmWOtGiGMz2E2CWawOT
-         T+8Kcq671boFyGMoo+3G5JlR9NnjI9fNTp7gGwpZTB336xfHOPoZQtxkzJHJBKnVKZGH
-         OUIgGsxVDQ/eLWjvaB+I6ketc/WFKBWrPWWvWHa6+6hp6E0iCJJHo3rYilIBZp4jba7U
-         KoOg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1750921371; x=1751526171;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=8ezoYursQ3Oig93OOMoe1zsrf1bzMlW/yf403T+KaH4=;
-        b=kgINUDFlyMQf5y2WhYOXLcr/skfbe8lav7lLo9x6AZRhU3DuwfjxkczNTEoYGGxhie
-         Q1QjBM/5f3IYt91HdSEeldEjsW2ncgKVoMwPn0/XQC16X4kmazgccDkbXJqvjtaLU9X/
-         2jXUYrIbjH0plBrvD00+tSTNN3UIy/+++q2XtDKbHvtb5au21aRWydxrBRclP+f/YqEt
-         vIj2Z0LZneZRvHHAVTWciBrhsIa5J2KGWlAIKO4WnpFpCTA9jhUDsY8kXwHa5aD0E2HB
-         5YwnLT7IJe3ICT8E0H/FxASxcScM79+wtTJhg+pcnSS0yklWrXLHSZeppJmF/aVxuPxB
-         cl4w==
-X-Forwarded-Encrypted: i=1; AJvYcCXfmU9JWvnY4MrqNAdGnfoC89w2xylLmP2olZJjzp3vlrTej9tmPEDTu4z1m4Ry3Jstn5iKWmGvzn81@vger.kernel.org
-X-Gm-Message-State: AOJu0YxhpiGOmE8786Z0VHkMS7edOKTpXLv83dN6PbtWsM6RKnIeoD08
-	msTx2a7+drfJT+w/8koTO7tcjGFeKxhZbIVtvYX/nKwWRAlJjWLy2pDCLpA0Rt/g1f5aQG07leq
-	o7l62miNGW+bEy8nQ3+xfyyNqqAIBeG3K3UIzF5dmbg==
-X-Gm-Gg: ASbGncu81v4hU29HSc37QPisHk+ulJoJG0K81pIF+xtJqG988OHCFfhEHGkOuvKyFEB
-	7TvCe4iHJS60oJAt2IwU14IPdyDJ3/5pI4V+rco4dMCuugNdp5Xy/bKDv3bgmuB749UQtCtDrkA
-	/vAtkZGfHcLAValyQtWiw2Qad5tVQN0hYMndW1Td0ZC66HZRaaKgiRTbqkMB+Gy3zd0nxg32B4Y
-	TT5zxoaxNloz7U=
-X-Google-Smtp-Source: AGHT+IFAHFhc1sG2VjqU+uJ8gNcDmA7e/PrfZ8E+mKfaFvA9q0lqjh6eFhvh0NJwzb3bJOHZBhk/+7B5CQz0QdRGscA=
-X-Received: by 2002:a17:90a:d60d:b0:313:f6fa:5bb5 with SMTP id
- 98e67ed59e1d1-315f26893d4mr9452944a91.18.1750921370751; Thu, 26 Jun 2025
- 00:02:50 -0700 (PDT)
+	s=arc-20240116; t=1750922200; c=relaxed/simple;
+	bh=0q2JKjk5rlpL1746jH/ubWzmc6KZ+IZsAj+d8WcyzPk=;
+	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=Y/cNVh5fAKA2vRDcWU5WgRBXjVDPuGQ0U2cfvJLBb4EgWibYtEujG0JYLE4nvnbBfQRkXawqOLU7Hx7GZTgPNwa2ecy/p9Y2jEFou2qmnMO2WGOxSdC8Gh5RImjTCreWZ884fwFIX12xjQysZFbdRSiHi+2ziKQXO1Nl+99rueg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=norik.com; spf=pass smtp.mailfrom=norik.com; dkim=pass (2048-bit key) header.d=norik.com header.i=@norik.com header.b=WDgrXAck; arc=none smtp.client-ip=46.19.9.99
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=norik.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=norik.com
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=norik.com;
+	s=default; h=Content-Transfer-Encoding:MIME-Version:Message-Id:Date:Subject:
+	Cc:To:From:Sender:Reply-To:Content-Type:Content-ID:Content-Description:
+	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	In-Reply-To:References:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
+	List-Post:List-Owner:List-Archive;
+	bh=Op03+qucqVF+nZEGn/AJUKWrnarNtLlz6bXQbzmKHKo=; b=WDgrXAck+b+Fb89P+1pfJvOa7o
+	hkmcyJOlDNvaik2y7zg4BIznyeoU9Q/YtKp2tiFkrZ4F4K5NjBZy/g35m4TcKR3yTQ1lncUjCc3Ht
+	8U44m50bQiR7evULsQRTR3QdY7cQJZcLTcFveMPQV7z9DqZTRxV6b6QDTd2t3O2UpHd96SplZ5jnM
+	gLM9oHvNOaat6fwSKMVV+tl0nj39o9WKEJ9nq3ZP52FekEmiRyY0ns5Vm0d82dJKI1guYi//iIuXh
+	hgyTd9n2oX5IfLy4I+SwCPtX8KCrhidrJbpKiD7TqIQs3SnA+jg/NYn7wYiqNrrDO1GQKbVKbTugO
+	PYucaynw==;
+Received: from [89.212.21.243] (port=34404 helo=localhost.localdomain)
+	by cpanel.siel.si with esmtpsa  (TLS1.2) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+	(Exim 4.96.2)
+	(envelope-from <primoz.fiser@norik.com>)
+	id 1uUgqU-00D1LJ-2V;
+	Thu, 26 Jun 2025 09:16:29 +0200
+From: Primoz Fiser <primoz.fiser@norik.com>
+To: Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Shawn Guo <shawnguo@kernel.org>,
+	Sascha Hauer <s.hauer@pengutronix.de>,
+	Pengutronix Kernel Team <kernel@pengutronix.de>,
+	Fabio Estevam <festevam@gmail.com>
+Cc: devicetree@vger.kernel.org,
+	imx@lists.linux.dev,
+	linux-arm-kernel@lists.infradead.org,
+	linux-kernel@vger.kernel.org,
+	upstream@lists.phytec.de
+Subject: [PATCH v2] arm64: dts: freescale: imx93-phycore-som: Add watchdog ext-reset-output pin
+Date: Thu, 26 Jun 2025 09:16:29 +0200
+Message-Id: <20250626071629.3380656-1-primoz.fiser@norik.com>
+X-Mailer: git-send-email 2.34.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20250618121358.503781-1-apatel@ventanamicro.com>
- <20250618121358.503781-10-apatel@ventanamicro.com> <aFkZJKnweqBi64b8@smile.fi.intel.com>
-In-Reply-To: <aFkZJKnweqBi64b8@smile.fi.intel.com>
-From: Rahul Pathak <rpathak@ventanamicro.com>
-Date: Thu, 26 Jun 2025 12:32:14 +0530
-X-Gm-Features: Ac12FXy2D20JGtdoC12UYlFRQvl9rpENvx4ZUy4WrZrFd5OnE24sZvklsv5hZz4
-Message-ID: <CA+Oz1=a65HvfXHWjeSq4Ubq=5kzHp9pkLJVr77hvTYAGFHv0Mg@mail.gmail.com>
-Subject: Re: [PATCH v6 09/23] clk: Add clock driver for the RISC-V RPMI clock
- service group
-To: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
-Cc: Anup Patel <apatel@ventanamicro.com>, Michael Turquette <mturquette@baylibre.com>, 
-	Stephen Boyd <sboyd@kernel.org>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Jassi Brar <jassisinghbrar@gmail.com>, Thomas Gleixner <tglx@linutronix.de>, 
-	"Rafael J . Wysocki" <rafael@kernel.org>, Mika Westerberg <mika.westerberg@linux.intel.com>, 
-	Linus Walleij <linus.walleij@linaro.org>, Bartosz Golaszewski <brgl@bgdev.pl>, 
-	=?UTF-8?Q?Uwe_Kleine=2DK=C3=B6nig?= <ukleinek@kernel.org>, 
-	Palmer Dabbelt <palmer@dabbelt.com>, Paul Walmsley <paul.walmsley@sifive.com>, 
-	Len Brown <lenb@kernel.org>, Sunil V L <sunilvl@ventanamicro.com>, 
-	Leyfoon Tan <leyfoon.tan@starfivetech.com>, Atish Patra <atish.patra@linux.dev>, 
-	Andrew Jones <ajones@ventanamicro.com>, Samuel Holland <samuel.holland@sifive.com>, 
-	Anup Patel <anup@brainfault.org>, linux-clk@vger.kernel.org, devicetree@vger.kernel.org, 
-	linux-riscv@lists.infradead.org, linux-kernel@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Transfer-Encoding: 8bit
+X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
+X-AntiAbuse: Primary Hostname - cpanel.siel.si
+X-AntiAbuse: Original Domain - vger.kernel.org
+X-AntiAbuse: Originator/Caller UID/GID - [47 12] / [47 12]
+X-AntiAbuse: Sender Address Domain - norik.com
+X-Get-Message-Sender-Via: cpanel.siel.si: authenticated_id: primoz.fiser@norik.com
+X-Authenticated-Sender: cpanel.siel.si: primoz.fiser@norik.com
+X-Source: 
+X-Source-Args: 
+X-Source-Dir: 
 
-On Mon, Jun 23, 2025 at 2:36=E2=80=AFPM Andy Shevchenko
-<andriy.shevchenko@linux.intel.com> wrote:
->
-> On Wed, Jun 18, 2025 at 05:43:44PM +0530, Anup Patel wrote:
-> > From: Rahul Pathak <rpathak@ventanamicro.com>
-> >
-> > The RPMI specification defines a clock service group which can be
-> > accessed via SBI MPXY extension or dedicated S-mode RPMI transport.
-> >
-> > Add mailbox client based clock driver for the RISC-V RPMI clock
-> > service group.
->
-> ...
->
-> ...
->
-> > +enum rpmi_clk_config {
-> > +     RPMI_CLK_DISABLE =3D 0,
-> > +     RPMI_CLK_ENABLE =3D 1
->
-> It's still unclear if this enum can be expanded in the future (and no, yo=
-u may
-> not answer this either). Hence, to reduce potential churn in the future, =
-leave
-> the trailing comma here.
->
+On phyCORE-i.MX93 SoM, the SoC WDOG_ANY output line is connected to the
+external pca9451a PMIC WDOG_B input. Apply pinctrl and set the property
+"fsl,ext-reset-output" for watchdog to trigger board reset via PMIC on
+timeout/reset.
 
-Ok, will update
+Signed-off-by: Primoz Fiser <primoz.fiser@norik.com>
+---
+Changes in v2:
+- reword commit title as suggested by Frank Li in v1
 
-> > +};
->
-> ...
->
-> > +union rpmi_clk_rates {
-> > +     u64 discrete[RPMI_CLK_DISCRETE_MAX_NUM_RATES];
-> > +     struct {
-> > +             u64 min;
-> > +             u64 max;
-> > +             u64 step;
-> > +     } linear;
->
-> Have you looked at the linear_range.h? Why can it not be (re-)used here?
->
+Link to v1: https://lore.kernel.org/all/20250624061323.601550-1-primoz.fiser@norik.com/
 
-I did the first time only when you commented. And i dont see any
-benefit in that.
-linear_range has slightly different way to access any value using `sel`.
-Here this union represents how RPMI protocol represents the rates and
-reusing linear_range will only introduce conversion to and fro.
+ arch/arm64/boot/dts/freescale/imx93-phycore-som.dtsi | 9 +++++++++
+ 1 file changed, 9 insertions(+)
 
-> > +};
->
-> ...
->
-> > +static u32 rpmi_clk_get_num_clocks(struct rpmi_clk_context *context)
-> > +{
-> > +     struct rpmi_get_num_clocks_rx rx;
-> > +     struct rpmi_mbox_message msg;
-> > +     int ret;
-> > +
-> > +     rpmi_mbox_init_send_with_response(&msg, RPMI_CLK_SRV_GET_NUM_CLOC=
-KS,
-> > +                                       NULL, 0, &rx, sizeof(rx));
->
-> ...here
->
-> > +     ret =3D rpmi_mbox_send_message(context->chan, &msg);
-> > +
->
-> This blank line should be rather ^^^
+diff --git a/arch/arm64/boot/dts/freescale/imx93-phycore-som.dtsi b/arch/arm64/boot/dts/freescale/imx93-phycore-som.dtsi
+index 5ee52774e7bf..729c26f9ac94 100644
+--- a/arch/arm64/boot/dts/freescale/imx93-phycore-som.dtsi
++++ b/arch/arm64/boot/dts/freescale/imx93-phycore-som.dtsi
+@@ -191,6 +191,9 @@ &usdhc1 {
+ 
+ /* Watchdog */
+ &wdog3 {
++	pinctrl-names = "default";
++	pinctrl-0 = <&pinctrl_wdog>;
++	fsl,ext-reset-output;
+ 	status = "okay";
+ };
+ 
+@@ -279,4 +282,10 @@ MX93_PAD_SD1_DATA7__USDHC1_DATA7	0x400013be
+ 			MX93_PAD_SD1_STROBE__USDHC1_STROBE	0x179e
+ 		>;
+ 	};
++
++	pinctrl_wdog: wdoggrp {
++		fsl,pins = <
++			MX93_PAD_WDOG_ANY__WDOG1_WDOG_ANY	0x31e
++		>;
++	};
+ };
+-- 
+2.34.1
 
-Sure, I will update.
-
->
-> > +     if (ret || rx.status)
-> > +             return 0;
->
-> Why rx.status can't be checked before calling to a sending message?
-> Sounds like the rpmi_mbox_init_send_with_response() links rx to msg someh=
-ow.
-> If this is the case, use msg here, otherwise move the check to be in the
-> correct place.
-
-Yes, the rpmi_mbox_init_send_with_response is a helper function which links
-the rx to msg. It's a very simple function which only performs assignments.
-
-Using msg instead of rx directly will require additional typecasting
-which will only clutter
-I can add a comment if that helps wherever the rpmi_mbox_init_send_with_res=
-ponse
-is used.
-
->
-> Seems the same question to the all similar checks in the code.
->
-> > +     return le32_to_cpu(rx.num_clocks);
-> > +}
->
-> ...
->
-> > +static int rpmi_clk_get_supported_rates(u32 clkid, struct rpmi_clk *rp=
-mi_clk)
-> > +{
-> > +     struct rpmi_clk_context *context =3D rpmi_clk->context;
-> > +     struct rpmi_clk_rate_discrete *rate_discrete;
-> > +     struct rpmi_clk_rate_linear *rate_linear;
-> > +     struct rpmi_get_supp_rates_rx *rx __free(kfree) =3D NULL;
-> > +     struct rpmi_get_supp_rates_tx tx;
-> > +     struct rpmi_mbox_message msg;
->
-> > +     size_t clk_rate_idx =3D 0;
->
-> This kind of assignments is hard to maintain and it's mistake prone in ca=
-se
-> some additional code is injected in the future that might reuse it.
->
-I dont understand what is the problem with this assignment. If any
-code added in the future reuse it then it has to make sure that
-clk_rate_idx has the correct initial value before any further references.
-
-> > +     int ret, rateidx, j;
-> > +
-
-...
-
-> > +static void rpmi_clk_disable(struct clk_hw *hw)
-> > +{
-> > +     struct rpmi_clk *rpmi_clk =3D to_rpmi_clk(hw);
-> > +     struct rpmi_clk_context *context =3D rpmi_clk->context;
-> > +     struct rpmi_mbox_message msg;
-> > +     struct rpmi_set_config_tx tx;
-> > +     struct rpmi_set_config_rx rx;
-> > +     int ret;
-> > +
-> > +     tx.config =3D cpu_to_le32(RPMI_CLK_DISABLE);
-> > +     tx.clkid =3D cpu_to_le32(rpmi_clk->id);
-> > +
-> > +     rpmi_mbox_init_send_with_response(&msg, RPMI_CLK_SRV_SET_CONFIG,
-> > +                                       &tx, sizeof(tx), &rx, sizeof(rx=
-));
-> > +     ret =3D rpmi_mbox_send_message(context->chan, &msg);
-> > +     if (ret || rx.status)
-> > +             pr_err("Failed to disable clk-%u\n", rpmi_clk->id);
->
-> Close to useless message. You may improve it by splitting to two and prin=
-ting
-> rx.status in one and ret in the other with different text. Or drop it.
-
-Sure, I think it's better to keep and split it into two as you suggest
-instead of dropping.
-
->
-> > +}
->
-> > +static int rpmi_clk_probe(struct platform_device *pdev)
-> > +{
-> > +     int ret;
-> > +     unsigned int num_clocks, i;
-> > +     struct clk_hw_onecell_data *clk_data;
-> > +     struct rpmi_clk_context *context;
-> > +     struct rpmi_mbox_message msg;
-> > +     struct clk_hw *hw_ptr;
-> > +     struct device *dev =3D &pdev->dev;
-> > +
-> > +     context =3D devm_kzalloc(dev, sizeof(*context), GFP_KERNEL);
-> > +     if (!context)
-> > +             return -ENOMEM;
-> > +     context->dev =3D dev;
-> > +     platform_set_drvdata(pdev, context);
-> > +
-> > +     context->client.dev             =3D context->dev;
-> > +     context->client.rx_callback     =3D NULL;
-> > +     context->client.tx_block        =3D false;
-> > +     context->client.knows_txdone    =3D true;
-> > +     context->client.tx_tout         =3D 0;
-> > +
-> > +     context->chan =3D mbox_request_channel(&context->client, 0);
-> > +     if (IS_ERR(context->chan))
-> > +             return PTR_ERR(context->chan);
->
-> Here is an incorrect order of the freeing resources. Besides that, wrappi=
-ng the
-> mbox_free_channel() into managed resources reduces this code by more
-> than 10 LoCs! At bare minimum if will fix the bug,
-
-Understood. So we can use devm_add_action_or_reset to link a release functi=
-on
-with the context->chan. Is this what you are suggesting? This will also mak=
-e
-the .remove callback redundant which can be removed.
-
-...
-
-> > +
-> > +     rpmi_mbox_init_get_attribute(&msg, RPMI_MBOX_ATTR_MAX_MSG_DATA_SI=
-ZE);
-> > +     ret =3D rpmi_mbox_send_message(context->chan, &msg);
-> > +     if (ret) {
-> > +             mbox_free_channel(context->chan);
-> > +             return dev_err_probe(dev, ret, "Failed to get max message=
- data size\n");
-> > +     }
-> > +
-> > +     context->max_msg_data_size =3D msg.attr.value;
-> > +     num_clocks =3D rpmi_clk_get_num_clocks(context);
-> > +     if (!num_clocks) {
-> > +             mbox_free_channel(context->chan);
-> > +             return dev_err_probe(dev, -ENODEV, "No clocks found\n");
-> > +     }
-> > +
-> > +     clk_data =3D devm_kzalloc(dev, struct_size(clk_data, hws, num_clo=
-cks),
-> > +                             GFP_KERNEL);
->
-> (The above mention problem comes here after the successful allocation of
->  clk_data but failing of any further code.
-
-Once the change mentioned in above comment will be done this will take
-care of the rest of the exit scenarios.
-
->
-> > +     if (!clk_data) {
-> > +             mbox_free_channel(context->chan);
-> > +             return dev_err_probe(dev, -ENOMEM, "No memory for clock d=
-ata\n");
-> > +     }
-> > +     clk_data->num =3D num_clocks;
-> > +
-> > +     for (i =3D 0; i < clk_data->num; i++) {
-> > +             hw_ptr =3D rpmi_clk_enumerate(context, i);
-> > +             if (IS_ERR(hw_ptr)) {
-> > +                     mbox_free_channel(context->chan);
-> > +                     return dev_err_probe(dev, PTR_ERR(hw_ptr),
-> > +                                          "failed to register clk-%d\n=
-", i);
-> > +             }
-> > +             clk_data->hws[i] =3D hw_ptr;
-> > +     }
-> > +
-> > +     ret =3D devm_of_clk_add_hw_provider(dev, of_clk_hw_onecell_get, c=
-lk_data);
-> > +     if (ret) {
-> > +             mbox_free_channel(context->chan);
-> > +             return dev_err_probe(dev, ret, "failed to register clock =
-HW provider\n");
-> > +     }
-> > +
-> > +     return 0;
-> > +}
->
-> ...
->
-> > +static void rpmi_clk_remove(struct platform_device *pdev)
-> > +{
-> > +     struct rpmi_clk_context *context =3D platform_get_drvdata(pdev);
-> > +
-> > +     mbox_free_channel(context->chan);
-> > +}
->
-> This function will be gone. See above.
-
-Agree
-
->
-> --
-> With Best Regards,
-> Andy Shevchenko
->
->
-
-
---=20
-
-Thanks
-Rahul Pathak
 
