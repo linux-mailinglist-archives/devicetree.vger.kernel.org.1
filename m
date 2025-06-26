@@ -1,146 +1,196 @@
-Return-Path: <devicetree+bounces-190025-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-190026-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 663ADAEA563
-	for <lists+devicetree@lfdr.de>; Thu, 26 Jun 2025 20:28:27 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7E7DFAEA573
+	for <lists+devicetree@lfdr.de>; Thu, 26 Jun 2025 20:31:55 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id ABE6D56477D
-	for <lists+devicetree@lfdr.de>; Thu, 26 Jun 2025 18:28:01 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id C09E1177469
+	for <lists+devicetree@lfdr.de>; Thu, 26 Jun 2025 18:31:55 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E0BA32EE989;
-	Thu, 26 Jun 2025 18:28:14 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id BC9191FFC49;
+	Thu, 26 Jun 2025 18:31:51 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="j8QqsWw7"
+	dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b="Qjr/j6aI"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from DU2PR03CU002.outbound.protection.outlook.com (mail-northeuropeazon11011034.outbound.protection.outlook.com [52.101.65.34])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B0B79267F53;
-	Thu, 26 Jun 2025 18:28:14 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1750962494; cv=none; b=eaRruSciuZN3wZqtwixBwUIdsQjgUHMXw4ofkfd+30WXb1l65igWR0rNo0ks//sBQnvMCqP1Gd0FuLsdA6VnuewolRcr0ud5rX+gAKxFZ8C9i4Z1gpVVl5fUC2T56MjvStOVDaftyRIy6eKaZbZ/zFsrzWkuooCF8hAYieEdBvM=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1750962494; c=relaxed/simple;
-	bh=nEf1l43KaouDikpuorZWPUKVVUh+pNAxFKrEO2DfOrw=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=Hs76pU/dMZbAggdH2OggNgMIldIN/ZbOvl1WTR0wBgolbrxv9wBKicJ2cgvqfvhXOCFCMNOkCv66l1SIGXcuaUdkwfKyQg+eNrDdLvSy5/04SWMxPVf164rZjLAdHMyl7mlIEgDfksl3DNczGoqBcD3Qtu18KFqM9vCJmXcz/c4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=j8QqsWw7; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id A2163C4CEEF;
-	Thu, 26 Jun 2025 18:28:08 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1750962494;
-	bh=nEf1l43KaouDikpuorZWPUKVVUh+pNAxFKrEO2DfOrw=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=j8QqsWw7SxYPuWEQUdlpamK5i1Am6fGyFs6uVZ6EnbAK1d82ueqY47YTELqwHV5ca
-	 uSue5FB2tg7Fut+ebftqQe1aIvA4mftQdfupMWJ1lpDdrFV+iBGPYMoWcYr6e+0zyp
-	 UBwwlm0Lc6k1BL7Y/+q2nkn/V6EV6yzdfstl02JunYllygysVlxui/9XFY55RWIKyb
-	 owr+sq1MFkso/nQh9I4dqq4GBrW23p1+RpXECksn88ZyLY/Udmhde8TTdNcyF2ibnY
-	 PATTqcr3ow4+2kQcddVzsHlwyLAjj3h288g3KtXfxFOp/WUFYETF39mjY2OxbJfVdE
-	 5JAu1evmwaxmA==
-Date: Thu, 26 Jun 2025 20:28:05 +0200
-From: Danilo Krummrich <dakr@kernel.org>
-To: Igor Korotin <igor.korotin.linux@gmail.com>
-Cc: "Rafael J . Wysocki" <rafael@kernel.org>,
-	Alex Gaynor <alex.gaynor@gmail.com>,
-	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-	Miguel Ojeda <ojeda@kernel.org>, Rob Herring <robh@kernel.org>,
-	Saravana Kannan <saravanak@google.com>,
-	Alex Hung <alex.hung@amd.com>,
-	Andrew Morton <akpm@linux-foundation.org>,
-	Jakub Kicinski <kuba@kernel.org>,
-	Jonathan Cameron <Jonathan.Cameron@huawei.com>,
-	Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-	Mauro Carvalho Chehab <mchehab+huawei@kernel.org>,
-	Remo Senekowitsch <remo@buenzli.dev>,
-	Tamir Duberstein <tamird@gmail.com>,
-	Viresh Kumar <viresh.kumar@linaro.org>,
-	Wedson Almeida Filho <wedsonaf@gmail.com>,
-	Xiangfei Ding <dingxiangfei2009@gmail.com>,
-	devicetree@vger.kernel.org, linux-acpi@vger.kernel.org,
-	linux-kernel@vger.kernel.org, rust-for-linux@vger.kernel.org,
-	=?iso-8859-1?Q?Bj=F6rn?= Roy Baron <bjorn3_gh@protonmail.com>,
-	Alice Ryhl <aliceryhl@google.com>,
-	Andreas Hindborg <a.hindborg@kernel.org>,
-	Benno Lossin <lossin@kernel.org>, Boqun Feng <boqun.feng@gmail.com>,
-	Gary Guo <gary@garyguo.net>, Len Brown <lenb@kernel.org>,
-	Trevor Gross <tmgross@umich.edu>
-Subject: Re: [PATCH v8 4/9] rust: acpi: add `acpi::DeviceId` abstraction
-Message-ID: <aF2RNVJVIHyKuead@cassiopeiae>
-References: <20250620150914.276272-1-igor.korotin.linux@gmail.com>
- <20250620152425.285683-1-igor.korotin.linux@gmail.com>
- <c5d750fd-ffcf-4d07-bfff-ebe206faa41a@kernel.org>
- <31804bbf-1a0b-4312-8db6-532a008528a2@gmail.com>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 870172F1FCE;
+	Thu, 26 Jun 2025 18:31:49 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=52.101.65.34
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1750962711; cv=fail; b=DQwYW8UMDEQMn65bWfJZLPyjC89fsLStl5tphhG6QyipgMCTiULHKEZI+d4JL5uIhodASUx1fOgL4mgRxQyNpeeCvQ4cibPR3Ow0TOJthPrer0YjwGaWoyTFEewCvlGfhu+NysoC4kX11MWB2U9njp9Z+4ZkNDI4CkCcUA7Fwas=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1750962711; c=relaxed/simple;
+	bh=JkM/xbZAatE41deXfCtzfHUQTkLTodtJLMDjyA+CzQk=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:Content-Type:
+	 Content-Disposition:In-Reply-To:MIME-Version; b=LXMRNH6CZLb3bJALISckFJI/JQIGhfwuj6vp1KF4CMADlKrzmpvIZCWVq2/QxNlTQTjKenlxZ3Fe3eqePu9ykMXa9qGulYfxbsDvBHugcr3Q2Uz9vOGniz65awZNIrt1v6dy+gglGoJ7qrYvb3a2AlRwihnXTg+UgqSucNsbQUA=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com; spf=pass smtp.mailfrom=nxp.com; dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b=Qjr/j6aI; arc=fail smtp.client-ip=52.101.65.34
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=nxp.com
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=GIz4uExgJCzY7bZ2SezQKG4Lee73hR9HkbZlW4toW4R5W6OpiSeYYHqpEh3xinnW5RJZIGlWiS26oj1B7gwqWWPp7u8K9vrTyun3hF7wcL65LwdFGxK+8N+KmHohINDxBCHy4xjyWzZvOnocvsnTXOoIFkvwIQ28OfuX27aegNl66Z6cPr8m7e9X/ixahm/hN9+En4SuFty03R8NoMaPts7J12oJlENe2uA8vB8fnXXPhkoMKLshbIFpC3kOUyGZLJqMU3EX+b2AJQ3L/NUGAvUqWWih+l3R3xh9oiOyCWE+kQfYqtgOEeTPK2AV94VJIV1nPm8jngr9wa3wqVBHcA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=L6Vq9okYbpY4wuKmVVB5Jr6ywD/sCcKlIU9ZgIlhkc4=;
+ b=jbqrtqS6DD3wwIeaYzpI5cn8I+CjwfeKNXj0mcXrxPauZh2P+oXinGyCq1bFxjKYW5gTvGXThdjJLf5HliGuXDsq4w0lhl18HYzrU2LaA1HU+2ZOi5ptWdPMyu2Y/GjLO4MwldVtk9VnkE1K/hlHje4NlhFfvKMJJsP/doqh5BahTKDFux/3KRDoH73lB5WjZXQHRRDfgS5CbgfNUBeorH4R2dfJXD7zXIcAQaqoRjdpdIu1+sFSCWzaussTzuVyMEZR3YUEATNuSgdf0Da9oIH1iTACzWu11lSCv/gUnBC1okqGLjDpOioDOmE1oVBU70HxGFbi6xZO7Gm4ugR+2Q==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
+ header.d=nxp.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=L6Vq9okYbpY4wuKmVVB5Jr6ywD/sCcKlIU9ZgIlhkc4=;
+ b=Qjr/j6aIwb2ozT0MVWKvjfVq2Gm1w117Ii8iThf+uohe68MbSioHKLIKHxz55Mqc85I8aH/IlEjlToMkOl4bK6tMvzd3afZCeRfUhXeacVlb9fzJG+uBi0vq7xeFJXgAb1Ushw/klHV2gHMGbgOmcLPChJRO0R9JQP+ihGZcCd3SJo+F1Sm3DRjAckbwIWg5VU+efyiGcZniNiSmFYMkWGE4GCTeNVZ0A8j7luYcienzMv8eqLpqLaE7DFa1+obwDMYRiGhwdrQs1aBZHfdixKzvNPX6iek0/2VTCRkcp31W8oh8zmCToYn6jEHNAi6FM4fhodEriiszFi0/HMA7Cw==
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=nxp.com;
+Received: from PAXPR04MB9642.eurprd04.prod.outlook.com (2603:10a6:102:240::14)
+ by AS8PR04MB8370.eurprd04.prod.outlook.com (2603:10a6:20b:3b1::22) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8880.18; Thu, 26 Jun
+ 2025 18:31:47 +0000
+Received: from PAXPR04MB9642.eurprd04.prod.outlook.com
+ ([fe80::9126:a61e:341d:4b06]) by PAXPR04MB9642.eurprd04.prod.outlook.com
+ ([fe80::9126:a61e:341d:4b06%7]) with mapi id 15.20.8880.015; Thu, 26 Jun 2025
+ 18:31:47 +0000
+Date: Thu, 26 Jun 2025 14:31:41 -0400
+From: Frank Li <Frank.li@nxp.com>
+To: Richard Zhu <hongxing.zhu@nxp.com>
+Cc: l.stach@pengutronix.de, lpieralisi@kernel.org, kwilczynski@kernel.org,
+	mani@kernel.org, robh@kernel.org, krzk+dt@kernel.org,
+	conor+dt@kernel.org, bhelgaas@google.com, shawnguo@kernel.org,
+	s.hauer@pengutronix.de, kernel@pengutronix.de, festevam@gmail.com,
+	linux-pci@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+	devicetree@vger.kernel.org, imx@lists.linux.dev,
+	linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v4 1/3] dt-bindings: PCI: dwc: Add one more reference
+ clock
+Message-ID: <aF2SDX94hce6+AQD@lizhi-Precision-Tower-5810>
+References: <20250626073804.3113757-1-hongxing.zhu@nxp.com>
+ <20250626073804.3113757-2-hongxing.zhu@nxp.com>
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20250626073804.3113757-2-hongxing.zhu@nxp.com>
+X-ClientProxiedBy: AM0PR08CA0023.eurprd08.prod.outlook.com
+ (2603:10a6:208:d2::36) To PAXPR04MB9642.eurprd04.prod.outlook.com
+ (2603:10a6:102:240::14)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <31804bbf-1a0b-4312-8db6-532a008528a2@gmail.com>
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: PAXPR04MB9642:EE_|AS8PR04MB8370:EE_
+X-MS-Office365-Filtering-Correlation-Id: 59107f15-20bd-4ddf-0339-08ddb4dfb548
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam:
+	BCL:0;ARA:13230040|376014|52116014|366016|7416014|1800799024|38350700014;
+X-Microsoft-Antispam-Message-Info:
+	=?us-ascii?Q?G2QYm/N4uw3yykYJCj0E/Npoh8uXDQnBe9cetHCEbRrUG31EtiSf+I/8EWYQ?=
+ =?us-ascii?Q?+AoI2UB+NtvS/nkS0E6P350MREbcjWshE5OlrSYWCGq1teYYVNbuvqVQUvMF?=
+ =?us-ascii?Q?REfJKswdHy5aGPriWdtR9Oy9P6ap7PNBGMRrgxmT8ugSZi1lY1frdhC1xZlX?=
+ =?us-ascii?Q?HJYxMa+wdSCb0JgbpDu8aKoFeonlD/YDq4oW+KOyQlXgpWtxpbY2itShlmZt?=
+ =?us-ascii?Q?h/Vuu2kV7QtyqEnK3u/+/6QLUa1Cs4vkmbikSYI1Mo2HKO5xGa5EBzqpVZ3D?=
+ =?us-ascii?Q?hJzTLogXMF8YodvQDNOPqZt6aKmcBcA0YMiw45iQNRdisvVWj05nzt1UcNmm?=
+ =?us-ascii?Q?WpaGbCbp8UW7v2LtfvzL20K0LpWsxd6k0yC5YDMW1uOmJwyltlVgS34jetSI?=
+ =?us-ascii?Q?o6SO0POlHTMi8aZ6ySHWt8YmTis6+8HzK75HC7fwJNHWz857OSy2UfaCQP6o?=
+ =?us-ascii?Q?YSVJ2LcJy0fUlx6B5/RBKugt6Bc1taJ6CGQ3OebjODzR+8b8K/PWTuKcdvin?=
+ =?us-ascii?Q?xa17yJyYKxpHESeqHK3gCkgcPLGm4N2msQmjW378JARcofBpiDxXLoCmQj06?=
+ =?us-ascii?Q?tT4GrBEbSStm68r/KT4BbZlVkm/oqrERQwUfIlu0r/rOuUaouWg0EhvGDmZd?=
+ =?us-ascii?Q?8158O4vPnJ5+s4ecbjT+C9DWnNRSfV0ShJzD+aMWhrIRZThSxPkwMa2+I1Qo?=
+ =?us-ascii?Q?JCs9Wy4EKgVeN6kHUyQflddUy9uCk/kKMBQIdZjxiQBNwnbwXE5Wf4YqKhjX?=
+ =?us-ascii?Q?adfYcSq4aua77QLeZ6HJi95Ew1jvoGL97pIzDwLNQPGVVYJGT+FriPExK45H?=
+ =?us-ascii?Q?U6yq4Ybc7SLzWNi2uz8reEoYJTof9jPgcTG+gGwTr5u2MxoCdyYsnUmJ62Gu?=
+ =?us-ascii?Q?LRetbCAmdGeK4fEIdfGMZek9KdO7tIG2KYAjzjBUX7XnKX7X7yYsgNrzq0Kr?=
+ =?us-ascii?Q?gSxA/vkerIL9fpYdIsHvnI9PlnJeQJ/jkTtT1C4L8OvJJ9mgpWd384Im2EkA?=
+ =?us-ascii?Q?dU1Lze7mRQy/PZiMgXym79kYXf1ow5fk52ydN/uneajV5bRY1gzDvdTUkhko?=
+ =?us-ascii?Q?PSH5Zflp4DRQvhcZ/T/zF3pHu1h2ms+SPVLY+CO1XfVvlJBAr6/Elvm+skSW?=
+ =?us-ascii?Q?iUFoHYpM9eyA8g9RB1Ig7Hr4gD8/y4f/tsutGpos8RVvlS1UYRZxDAec9pUj?=
+ =?us-ascii?Q?XLJpDj+BxCOwVubTmMXeVUdo5siJeUqobsP5NKvE0p/EdbNyzwP3VgViOcaB?=
+ =?us-ascii?Q?Lp2I/Uem+4UHYD4tjIhz+Cu/mYYvzcZAZWHz64bIqVPwPIo40ceu41MUh7RI?=
+ =?us-ascii?Q?f9VgMuS4HBkZgm47CFXFS7iLWACmjleIepENNg5KMV6aIexFpl0STaOJwJ09?=
+ =?us-ascii?Q?CeeWEDx6HubZ7GyPbzHaUX8dogXUu/qyhql3O4Q7GwjA/aH6AfHJgg5vGgnT?=
+ =?us-ascii?Q?43n0cTObYH6lgEzx5EdAWbpU0tQuhVbqyMaAd6crcepi3irBiU/M1Q=3D=3D?=
+X-Forefront-Antispam-Report:
+	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:PAXPR04MB9642.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(376014)(52116014)(366016)(7416014)(1800799024)(38350700014);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0:
+	=?us-ascii?Q?BHObugFOdB3IGZcWdS/FSckGPUJBUHKr3YYuhpNFD/pND71N7qlxJyT75Vq7?=
+ =?us-ascii?Q?jyd7jVaGnmjoWqsnagu53jUfXVSgumoWqPvbo+jHOy9N6Vlq3A1a2q86QYTh?=
+ =?us-ascii?Q?kXq1OU/yAIVmiVn/ZCA2DJCJdXDGqKH9uQ5K2ip9bct9XyGgG6t15PUDEjoD?=
+ =?us-ascii?Q?/hJHzPaPrJX6brXXxhAZiO8OYUR6Ya9wsoDtb67vOs2Z4hCiLHVCIuCDAw6h?=
+ =?us-ascii?Q?s/vwcPRZKDMT4rXOG/SAxXsZI8WbMHWp166irTYvxNClzcciRwy+F0VSt+ZE?=
+ =?us-ascii?Q?Y/Y4IazqAsdcDnaXjQsTKOi47uLCuM8sVYXqZgfdos5l6zGOoJ4bJd485pzS?=
+ =?us-ascii?Q?AAzdE9977txrPSidfDSyvBPp4OcMh7jbXYhsnO8SLSJbvElXLrY5g4hseqpe?=
+ =?us-ascii?Q?T0ySmE62yTKFlUMhv7i0IWNdm3s1elMguglvp5OcXE27jjPp6cLFWfLp34Cb?=
+ =?us-ascii?Q?9vzimj8L6POSfA28MFYTdHJBmw1OXSLDEs28TZZaShnScSSIQZjNIFZIfMiQ?=
+ =?us-ascii?Q?LESBFyC/tYLTvu6dClAOAoR3GVUQ7LF1OZ69M3IVIxkoY0JO1g5dVtmXCr7r?=
+ =?us-ascii?Q?bvI3b7OL9QTjK7ZRtEO6q22cQQh5zoiBhC2KKZ8IXJDrcD3e9Tjc4Pn1i9ls?=
+ =?us-ascii?Q?XWrDyznHePerLPbCY0uuLwPlkmmg/2frn7ddqA742YEyO02tNHx8Z0NtDCK6?=
+ =?us-ascii?Q?vovIbYjuT3XPnX+wy23eyUAYb33yDGDyuOQLXSszRYWpkeoD1y6TjAa1YiZ+?=
+ =?us-ascii?Q?hdURJdR7NrX5eR9MNM8qhjA8Th4wfP+pr2dWkU729EWaVVT/rM5WPwCvcZyt?=
+ =?us-ascii?Q?E2kSS2MclpY2eldVesdnvRyltmlPRMol18wndVPaKfUbIXn2mUZzl4CPAP11?=
+ =?us-ascii?Q?udgu5QfK0C+3Y3StcRl2aFKu+6l9X7ogKQ28McJW9LlK0k2uHBIlkY3/+m95?=
+ =?us-ascii?Q?hiff8cetYI8/Ce13kQiVwYB9mA4RU1CPxwMuoJgm2Xx5v4oIjWMylZiN2UYk?=
+ =?us-ascii?Q?5GRQfr5q7lV3qVEVsBWS8q6Hx2RupUSs8xwdTDHAOTZ//52EEF6A3zrDV5wL?=
+ =?us-ascii?Q?fel7WhnyJ/9YF1JpUFRlwnKd+QrMS3qVgM6OKPQfbQyvyworCszHMCbfPdHX?=
+ =?us-ascii?Q?8jkM4MPr26DsaA7BHoRZpbOeXFkMnxTROlEQ6WJOg6n+V7rDmU3mPa6EUuBC?=
+ =?us-ascii?Q?El9skrkxQ4c5pJ8TqI2wUQ9PpY8PfQs+fDHBxEDDYv6JHk7zqKqcnTJ7hHXC?=
+ =?us-ascii?Q?3xhHLEFhkVL4LG8eEecxctUCIdQW85JcfUC0LDRzcqlia2mfnGYTonuuW3l0?=
+ =?us-ascii?Q?+dx7dW7I8BVSGWuRtf4sGEuXP4EOCghhOwASL2MAvtHz86Dbqnrik13dmHpz?=
+ =?us-ascii?Q?BW1vK6gMlgBKqIbmpIirG7uIhQHGuqzju/BkRYyE9OXSXlFpTWImQfzFxLJa?=
+ =?us-ascii?Q?5iOSW5DiFkuoQ3TnGfyBMGwmbXvRt5/0PiofL3EyVNnujULhoLboNpgAzVWX?=
+ =?us-ascii?Q?xVZpbjeXZKr221ULxoLpZXgYp0Sqpx8ifYDK99RrbSzlhLZnZT+TCZWh8NPQ?=
+ =?us-ascii?Q?eJah88mJwQm0fBN/RhJCk2GrarILDehss6mFt2GW?=
+X-OriginatorOrg: nxp.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 59107f15-20bd-4ddf-0339-08ddb4dfb548
+X-MS-Exchange-CrossTenant-AuthSource: PAXPR04MB9642.eurprd04.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 26 Jun 2025 18:31:47.0508
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: Krmrusoptd/AIL3smW2X1CHfb/6Yxbef1nBmsHymtQmJ8CUL0+gM42KjLNET2yF4lIHq7uY+i+9cJDJeNZQgWA==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: AS8PR04MB8370
 
-On Thu, Jun 26, 2025 at 06:40:06PM +0100, Igor Korotin wrote:
-> 
-> 
-> On 6/26/25 16:25, Danilo Krummrich wrote:
-> > On 6/20/25 5:24 PM, Igor Korotin wrote:
-> >> +impl DeviceId {
-> >> +    const ACPI_ID_LEN: usize = 16;
-> >> +
-> >> +    /// Create a new device id from an ACPI 'id' string.
-> >> +    pub const fn new<const N: usize>(id: &[u8; N]) -> Self {
-> > 
-> > Didn't notice before, but why was this silently changed from &CStr to
-> > &[u8; N]
-> > from v6 to v7?
-> > 
-> >> +        build_assert!(N <= Self::ACPI_ID_LEN, "ID exceeds 16 bytes");
-> >> +        // Replace with `bindings::acpi_device_id::default()` once
-> >> stabilized for `const`.
-> >> +        // SAFETY: FFI type is valid to be zero-initialized.
-> >> +        let mut acpi: bindings::acpi_device_id = unsafe
-> >> { core::mem::zeroed() };
-> >> +        let mut i = 0;
-> >> +        while i < N {
-> >> +            acpi.id[i] = id[i];
-> >> +            i += 1;
-> >> +        }
-> >> +
-> >> +        Self(acpi)
-> >> +    }
-> >> +}
-> 
-> In v6 I was asked to change assert! (runtime) to build_assert! (build time)
-> It was as follows:
-> 
-> > +    pub const fn new(id: &'static CStr) -> Self {
-> > +        assert!(id.len() <= Self::ACPI_ID_LEN, "ID exceeds 16 bytes");
-> 
-> but id.len() breaks const context and so build_assert! triggers
-> assertion.
+On Thu, Jun 26, 2025 at 03:38:02PM +0800, Richard Zhu wrote:
+> Add one more reference clock "extref" to be onhalf the reference clock
+> that comes from external crystal oscillator.
+>
+> Signed-off-by: Richard Zhu <hongxing.zhu@nxp.com>
+> ---
+>  .../devicetree/bindings/pci/snps,dw-pcie-common.yaml        | 6 ++++++
+>  1 file changed, 6 insertions(+)
+>
+> diff --git a/Documentation/devicetree/bindings/pci/snps,dw-pcie-common.yaml b/Documentation/devicetree/bindings/pci/snps,dw-pcie-common.yaml
+> index 34594972d8db..ee09e0d3bbab 100644
+> --- a/Documentation/devicetree/bindings/pci/snps,dw-pcie-common.yaml
+> +++ b/Documentation/devicetree/bindings/pci/snps,dw-pcie-common.yaml
+> @@ -105,6 +105,12 @@ properties:
+>              define it with this name (for instance pipe, core and aux can
+>              be connected to a single source of the periodic signal).
+>            const: ref
+> +        - description:
+> +            Some dwc wrappers (like i.MX95 PCIes) have two reference clock
+> +            inputs, one from internal PLL, the other from off chip crystal
+> +            oscillator. Use extref clock name to be onhalf of the reference
+> +            clock comes form external crystal oscillator.
 
-It does indeed, but I'm not sure why it does...
+typo form, should be 'from'
 
-> If I needed to explicitly describe change from CStr to
-> [u8;20], then it's my bad.
+Frank
 
-Yes, that's usually better. Otherwise reviewers might skip the changed part. In
-this case I think it actually introduced a bug:
-
-Checking for N <= Self::ACPI_ID_LEN it can happen that acpi_device_id::id is not
-NULL terminated anymore, whereas before this was ensured by
-CStr::as_bytes_with_nul(). See also [1].
-
-I think we can easily fix this by just checking N < Self::ACPI_ID_LEN.
-
-However, I'd still like to check why build_assert!() does not work with
-CStr::len() in this case first.
-
-[1] https://elixir.bootlin.com/linux/v6.15.3/source/drivers/acpi/bus.c#L899
+> +          const: extref
+>          - description:
+>              Clock for the PHY registers interface. Originally this is
+>              a PHY-viewport-based interface, but some platform may have
+> --
+> 2.37.1
+>
 
