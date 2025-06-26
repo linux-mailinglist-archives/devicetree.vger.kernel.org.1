@@ -1,56 +1,63 @@
-Return-Path: <devicetree+bounces-190124-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-190125-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 046F9AEAADB
-	for <lists+devicetree@lfdr.de>; Fri, 27 Jun 2025 01:50:05 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 56CD9AEAADC
+	for <lists+devicetree@lfdr.de>; Fri, 27 Jun 2025 01:50:55 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 42F66171038
-	for <lists+devicetree@lfdr.de>; Thu, 26 Jun 2025 23:50:05 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 4CEC01C42E4A
+	for <lists+devicetree@lfdr.de>; Thu, 26 Jun 2025 23:51:11 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C4C74222575;
-	Thu, 26 Jun 2025 23:49:59 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id BE5A32248B3;
+	Thu, 26 Jun 2025 23:50:49 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="ORcxfw8U"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Pfm5cde7"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A16141459FA
-	for <devicetree@vger.kernel.org>; Thu, 26 Jun 2025 23:49:59 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 946301459FA;
+	Thu, 26 Jun 2025 23:50:49 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1750981799; cv=none; b=lK7JEq4bA7f83nIVawMAHUhFhz6QV0CT2ZycaJxLHn6MO/IwC8cI3YBiFs7/fOYCQaGWGRNqrUfLrECJ/fnVy0dns7MZOfymW/4U2buoVLnzE04yHPJK938AwXQhYztAN3iMrK6+GD3DbQQaOhBCN8UpbPcSw9EuxBYLXBZEfME=
+	t=1750981849; cv=none; b=e+S0glPh/mOUKdtxTwjJed6WYd5Mf2lvQFwjWT8ALsW8WgYOtObnpT5iflp9iFco5SwC8w8qCfjpH2hwc3vJDyi/lLvshCKRmBpdNi9kq9IWPYXQAVdIjYa09LL0YL2s9wiWDQR+WE9cqOX2DoP7uMoy5LXkKnZWfhJxUNj1onY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1750981799; c=relaxed/simple;
-	bh=zzfDn6YDUhDZ8MX4WKtVlq2p1ECD1EhyFPvN85Yh8vM=;
+	s=arc-20240116; t=1750981849; c=relaxed/simple;
+	bh=Cux7d7o6s1reAw2y55484JgLSPWg5ReReLlow0n8JmY=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=CCcG1qPOhDfy2PYuEMaRS/nXlIhAhuSwUsYr94qAzTa4cjXSj90qsmCKoyv90jsQ71oaww4/zBjDbAyU2HmfFwwqfcnptwnxC4NYntrH5h+eHjpKfg+qsCXcOiHrLSZKofMz4DXfD+17951Q/DS03QO/qqyFtc98LRJ3gG15TbA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=ORcxfw8U; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 10B36C4CEEB;
-	Thu, 26 Jun 2025 23:49:58 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=VSY9vA72x3U/dW3Pr+HdoAa5Zz33V3tMOKTrxPPrl2D1JL75R+GBlh7N3PtNhg54Ym4t3nwr9unJp9vjT7Ea2L4KX4A1aUlj+kt6iw6d7KcA3n+QOz69Fwb6NOKreSYbPH5WHtuaq922Ym0Nshb48RwYbcAJGzL9reAWowfdEmQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Pfm5cde7; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id F38CBC4CEEB;
+	Thu, 26 Jun 2025 23:50:48 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1750981799;
-	bh=zzfDn6YDUhDZ8MX4WKtVlq2p1ECD1EhyFPvN85Yh8vM=;
+	s=k20201202; t=1750981849;
+	bh=Cux7d7o6s1reAw2y55484JgLSPWg5ReReLlow0n8JmY=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=ORcxfw8UvH+UpK7IEchFnFUzSj5BqQrWCxxrdMjx7vsKAB+EvLdC3ohDGlIQV97QL
-	 ErYFRuoZVxRIFkheJ0yZhtoZhy1gi7dpyWSoIOS5JYngWNb/I8y9/Q4p9wKtjG91f7
-	 p+1P+bA+oWBIGKekSJeIAHFZEy6Qlkv/B5pIi4qLoaOGiMf2JbYxvuiQYvDELorSKB
-	 P6uru7WhkA7PiE/9JlceFt9o/QfztcuqT54WC9yVjr/2qsp+w17j+/3AdGryupm9Vs
-	 wcw6LsFypmnTwTjhbFw4p1fXv6VeK3HC+fcZHE9XEMq76HnvXTqEws1xLNe+tEwLes
-	 r6VuiLksi9cpA==
-Date: Thu, 26 Jun 2025 18:49:58 -0500
-From: Rob Herring <robh@kernel.org>
-To: Dinh Nguyen <dinguyen@kernel.org>
-Cc: devicetree@vger.kernel.org, krzysztof.kozlowskii+dt@linaro.org,
-	conor+dt@kernel.org
-Subject: Re: [PATCHv4] dt-bindings: net: convert socfpga-dwmac.txt to DT
- schema
-Message-ID: <20250626234958.GA1424355-robh@kernel.org>
-References: <20250624191549.474686-1-dinguyen@kernel.org>
- <175096498596.599528.16276086521169554127.robh@kernel.org>
+	b=Pfm5cde7edrH+jAJkui0gcpO/BUhE39G7FXZlqDhra38fSk9u/n+eRJ3054+20CSY
+	 JVTo0cSTz5UcBEl5HvAdST8Nh51rFlDOoGyaY89AWZK/5kYfA6YRnohPkAg8veWAWG
+	 TJP6SXH8M9zp7sxvf5r6bzO3ZRgiDZt3KmemtmhBBkY3Cr28gUi3lkdcAuewTXxYNh
+	 d3MYdd3/vrtpzNHkfK6dXqNIZ4B/eigYLcbvyD+Mg197vItlZHGKTvEHxL6nPexz6y
+	 kr89EW1wA4SL6zLps7WCR/8igpgDBZgISLgXjx1Cz66maEpVAX7kG5AUgHE2w2LU4m
+	 0JbeJyJWTPmeQ==
+Date: Thu, 26 Jun 2025 18:50:48 -0500
+From: "Rob Herring (Arm)" <robh@kernel.org>
+To: Josua Mayer <josua@solid-run.com>
+Cc: Pengutronix Kernel Team <kernel@pengutronix.de>,
+	Fabio Estevam <festevam@gmail.com>,
+	Mikhail Anikin <mikhail.anikin@solid-run.com>,
+	Jon Nettleton <jon@solid-run.com>, Shawn Guo <shawnguo@kernel.org>,
+	linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+	Conor Dooley <conor+dt@kernel.org>, imx@lists.linux.dev,
+	Yazan Shhady <yazan.shhady@solid-run.com>,
+	devicetree@vger.kernel.org, Sascha Hauer <s.hauer@pengutronix.de>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>
+Subject: Re: [PATCH 1/3] dt-bindings: arm: fsl: Add bindings for SolidRun
+ i.MX8MP SoM and boards
+Message-ID: <175098184781.1426950.6408937893785063066.robh@kernel.org>
+References: <20250614-imx8mp-sr-som-v1-0-3ca3269883c4@solid-run.com>
+ <20250614-imx8mp-sr-som-v1-1-3ca3269883c4@solid-run.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -59,33 +66,22 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <175096498596.599528.16276086521169554127.robh@kernel.org>
+In-Reply-To: <20250614-imx8mp-sr-som-v1-1-3ca3269883c4@solid-run.com>
 
-On Thu, Jun 26, 2025 at 02:09:46PM -0500, Rob Herring (Arm) wrote:
+
+On Sat, 14 Jun 2025 17:20:56 +0300, Josua Mayer wrote:
+> Add bindings for SolidRun i.MX8M Plus System on Module based boards:
 > 
-> On Tue, 24 Jun 2025 14:15:49 -0500, Dinh Nguyen wrote:
-> > Convert the socfpga-dwmac.txt to yaml.
-> > 
-> > Signed-off-by: Dinh Nguyen <dinguyen@kernel.org>
-> > ---
-> > v4: remove maxItems for clock-names
-> > v3: Address all of Rob Herring's comments
-> > v2: Add allOf to include the base dmac yaml
-> >     fix Rob Herring's dt_binding_check warnings
-> > ---
-> >  .../bindings/net/altr,dwmac-socfpga.yaml      | 138 ++++++++++++++++++
-> >  .../devicetree/bindings/net/socfpga-dwmac.txt |  57 --------
-> >  2 files changed, 138 insertions(+), 57 deletions(-)
-> >  create mode 100644 Documentation/devicetree/bindings/net/altr,dwmac-socfpga.yaml
-> >  delete mode 100644 Documentation/devicetree/bindings/net/socfpga-dwmac.txt
-> > 
+> - CuBox-M is a complete produc with enclosure including the SoM
+> - HummingBoard Mate/Pro/Pulse/Ripple are evaluation boards with common
+>   design but different available interfaces.
 > 
-> Reviewed-by: Rob Herring (Arm) <robh@kernel.org>
+> Signed-off-by: Josua Mayer <josua@solid-run.com>
+> ---
+>  Documentation/devicetree/bindings/arm/fsl.yaml | 11 +++++++++++
+>  1 file changed, 11 insertions(+)
+> 
 
-Unreviewed... There's also this conversion[1] which came first and is 
-more complete. Please comment on it.
+Acked-by: Rob Herring (Arm) <robh@kernel.org>
 
-Rob
-
-[1] https://lore.kernel.org/all/20250613225844.43148-1-matthew.gerlach@altera.com/
 
