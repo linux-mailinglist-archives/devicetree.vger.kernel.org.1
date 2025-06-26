@@ -1,129 +1,109 @@
-Return-Path: <devicetree+bounces-189761-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-189762-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 08AAAAE96A4
-	for <lists+devicetree@lfdr.de>; Thu, 26 Jun 2025 09:16:44 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 05055AE96C5
+	for <lists+devicetree@lfdr.de>; Thu, 26 Jun 2025 09:33:29 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 4F3AD4A2243
-	for <lists+devicetree@lfdr.de>; Thu, 26 Jun 2025 07:16:44 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id E079416DBBF
+	for <lists+devicetree@lfdr.de>; Thu, 26 Jun 2025 07:33:24 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B58512367BA;
-	Thu, 26 Jun 2025 07:16:40 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9C3FF23B620;
+	Thu, 26 Jun 2025 07:33:19 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=norik.com header.i=@norik.com header.b="WDgrXAck"
+	dkim=pass (2048-bit key) header.d=disroot.org header.i=@disroot.org header.b="DGykVyZn"
 X-Original-To: devicetree@vger.kernel.org
-Received: from cpanel.siel.si (cpanel.siel.si [46.19.9.99])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from layka.disroot.org (layka.disroot.org [178.21.23.139])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A80082264B3;
-	Thu, 26 Jun 2025 07:16:37 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=46.19.9.99
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id ACF4C33993;
+	Thu, 26 Jun 2025 07:33:14 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=178.21.23.139
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1750922200; cv=none; b=hkZvQGP8SyLU7oZgWR6m3aKuqKnWPXmH3SbVCUZstVbDlbzjRVGkZdCIkvVAS3jB1QimvtXoK6va7wHW6YpU2j2Ny3tgM9iXP6Y5ZT2KkV0Ryt+BVLrdTZ2fXXd/pVmLKUSHiKBwSjO2NEV3khgACSa1SthH33JQZE3pRwJRqyQ=
+	t=1750923199; cv=none; b=VM52ELH87lZvPvtmpNCdD9BEGLy0ybsq5qQxW+E1i+eCyzl8iDFL6ijXgwtsVkBBOIsmIyygczlaPBkIlbP5X1feR6EKNu9diNUD2kGu2wwSlv5fZtyy/38eL5e2WvlfLFMY8MhBRQdOOFcclq1+vhcXgzUvkrUT8/5huJaxJxA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1750922200; c=relaxed/simple;
-	bh=0q2JKjk5rlpL1746jH/ubWzmc6KZ+IZsAj+d8WcyzPk=;
-	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=Y/cNVh5fAKA2vRDcWU5WgRBXjVDPuGQ0U2cfvJLBb4EgWibYtEujG0JYLE4nvnbBfQRkXawqOLU7Hx7GZTgPNwa2ecy/p9Y2jEFou2qmnMO2WGOxSdC8Gh5RImjTCreWZ884fwFIX12xjQysZFbdRSiHi+2ziKQXO1Nl+99rueg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=norik.com; spf=pass smtp.mailfrom=norik.com; dkim=pass (2048-bit key) header.d=norik.com header.i=@norik.com header.b=WDgrXAck; arc=none smtp.client-ip=46.19.9.99
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=norik.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=norik.com
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=norik.com;
-	s=default; h=Content-Transfer-Encoding:MIME-Version:Message-Id:Date:Subject:
-	Cc:To:From:Sender:Reply-To:Content-Type:Content-ID:Content-Description:
-	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	In-Reply-To:References:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
-	List-Post:List-Owner:List-Archive;
-	bh=Op03+qucqVF+nZEGn/AJUKWrnarNtLlz6bXQbzmKHKo=; b=WDgrXAck+b+Fb89P+1pfJvOa7o
-	hkmcyJOlDNvaik2y7zg4BIznyeoU9Q/YtKp2tiFkrZ4F4K5NjBZy/g35m4TcKR3yTQ1lncUjCc3Ht
-	8U44m50bQiR7evULsQRTR3QdY7cQJZcLTcFveMPQV7z9DqZTRxV6b6QDTd2t3O2UpHd96SplZ5jnM
-	gLM9oHvNOaat6fwSKMVV+tl0nj39o9WKEJ9nq3ZP52FekEmiRyY0ns5Vm0d82dJKI1guYi//iIuXh
-	hgyTd9n2oX5IfLy4I+SwCPtX8KCrhidrJbpKiD7TqIQs3SnA+jg/NYn7wYiqNrrDO1GQKbVKbTugO
-	PYucaynw==;
-Received: from [89.212.21.243] (port=34404 helo=localhost.localdomain)
-	by cpanel.siel.si with esmtpsa  (TLS1.2) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-	(Exim 4.96.2)
-	(envelope-from <primoz.fiser@norik.com>)
-	id 1uUgqU-00D1LJ-2V;
-	Thu, 26 Jun 2025 09:16:29 +0200
-From: Primoz Fiser <primoz.fiser@norik.com>
-To: Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Shawn Guo <shawnguo@kernel.org>,
-	Sascha Hauer <s.hauer@pengutronix.de>,
-	Pengutronix Kernel Team <kernel@pengutronix.de>,
-	Fabio Estevam <festevam@gmail.com>
-Cc: devicetree@vger.kernel.org,
-	imx@lists.linux.dev,
-	linux-arm-kernel@lists.infradead.org,
-	linux-kernel@vger.kernel.org,
-	upstream@lists.phytec.de
-Subject: [PATCH v2] arm64: dts: freescale: imx93-phycore-som: Add watchdog ext-reset-output pin
-Date: Thu, 26 Jun 2025 09:16:29 +0200
-Message-Id: <20250626071629.3380656-1-primoz.fiser@norik.com>
-X-Mailer: git-send-email 2.34.1
+	s=arc-20240116; t=1750923199; c=relaxed/simple;
+	bh=Z99aNcXqaaS4SQlpIEbclMo5h6ka62mxFrYm2osbZKs=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=SBZWo/4sBJjx8d9n0jV8pPPN9w6f0ttYLC3A7RgV44Ky7FxI+iFWMm6uoosVkYEAljFt15K0dm+MNrXGamCxVafusc7USQlkAaoq9EpBCrUexkP/g0rrjyM7tfP2gt5mZ/s4qXABt8NIIsNLhGuo2JwnX855sAcs56vLg1sOSr0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=disroot.org; spf=pass smtp.mailfrom=disroot.org; dkim=pass (2048-bit key) header.d=disroot.org header.i=@disroot.org header.b=DGykVyZn; arc=none smtp.client-ip=178.21.23.139
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=disroot.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=disroot.org
+Received: from mail01.disroot.lan (localhost [127.0.0.1])
+	by disroot.org (Postfix) with ESMTP id 53C5F22E3A;
+	Thu, 26 Jun 2025 09:33:07 +0200 (CEST)
+X-Virus-Scanned: SPAM Filter at disroot.org
+Received: from layka.disroot.org ([127.0.0.1])
+ by localhost (disroot.org [127.0.0.1]) (amavis, port 10024) with ESMTP
+ id lA0oNzrxne4X; Thu, 26 Jun 2025 09:33:06 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=disroot.org; s=mail;
+	t=1750923186; bh=Z99aNcXqaaS4SQlpIEbclMo5h6ka62mxFrYm2osbZKs=;
+	h=From:Subject:Date:To:Cc;
+	b=DGykVyZnSgU7L8FuWvFz4dE7oQADIL3db9sS12sHuUSmJ7hL1ECX9KDicnMk+LrpA
+	 tETM6jewN1vUr6eVFWjzudVD1y6v8gugGxNPQih+ADsmDCv03a+29zvsgSmG7mHOJU
+	 JO2ShhpNyPibY9KsateFM5llJDeIVmAwMqtlQPmqWp7yIH/veKLylfP7d9vVQ9trxh
+	 ZuaqaKL7J1X/TqQIGDBiraZoP9uDIQSKHE/WEBKxcoSaDpjguvQPNTo7F4ww4dAt4z
+	 D8+nyc3ekMg01KAeTEQtohdNgtmyeZdRldmKLFP/VcnBF95zb9i2yJygdqQD7GBCSn
+	 5LJxPuVmSzuTg==
+From: Kaustabh Chakraborty <kauschluss@disroot.org>
+Subject: [PATCH 0/3] Various devicetree fixes for Exynos7870 devices
+Date: Thu, 26 Jun 2025 13:02:55 +0530
+Message-Id: <20250626-exynos7870-dts-fixes-v1-0-349987874d9a@disroot.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
-X-AntiAbuse: Primary Hostname - cpanel.siel.si
-X-AntiAbuse: Original Domain - vger.kernel.org
-X-AntiAbuse: Originator/Caller UID/GID - [47 12] / [47 12]
-X-AntiAbuse: Sender Address Domain - norik.com
-X-Get-Message-Sender-Via: cpanel.siel.si: authenticated_id: primoz.fiser@norik.com
-X-Authenticated-Sender: cpanel.siel.si: primoz.fiser@norik.com
-X-Source: 
-X-Source-Args: 
-X-Source-Dir: 
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIAKf3XGgC/x3LMQqAMAxA0atIZgOxYlu8ijiIjZqllUZEEe9uc
+ Xx8/gPKWVihrx7IfIpKigVNXcG8TXFllFAMhkxH1ljk645JnXeE4VBc5GJFdi0tjrwNYYay7pn
+ /UM5hfN8PlUgOzGYAAAA=
+X-Change-ID: 20250626-exynos7870-dts-fixes-e730f7086ddc
+To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, Alim Akhtar <alim.akhtar@samsung.com>
+Cc: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>, 
+ devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
+ linux-samsung-soc@vger.kernel.org, linux-kernel@vger.kernel.org, 
+ Kaustabh Chakraborty <kauschluss@disroot.org>, stable@vger.kernel.org
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1750923181; l=1265;
+ i=kauschluss@disroot.org; s=20250202; h=from:subject:message-id;
+ bh=Z99aNcXqaaS4SQlpIEbclMo5h6ka62mxFrYm2osbZKs=;
+ b=gpI29wz7F38DO8rebomTMbfIBORH6VaFkBhC5ETvLNG6NyrNcG/DIgfYlkqsHiYc9tCbQbeO4
+ GAkOSnkgr9nC1dUZxNRTo0cT6zVcwTX8Htuvqg9kgpW/SPAjjNVYhT7
+X-Developer-Key: i=kauschluss@disroot.org; a=ed25519;
+ pk=h2xeR+V2I1+GrfDPAhZa3M+NWA0Cnbdkkq1bH3ct1hE=
 
-On phyCORE-i.MX93 SoM, the SoC WDOG_ANY output line is connected to the
-external pca9451a PMIC WDOG_B input. Apply pinctrl and set the property
-"fsl,ext-reset-output" for watchdog to trigger board reset via PMIC on
-timeout/reset.
+This patch series introduces a few minor fixes on Exynos7870 devices.
+These fix USB gadget problems and serious crashes on certain variants of
+devices. More information is provided in respective commits.
 
-Signed-off-by: Primoz Fiser <primoz.fiser@norik.com>
+This series has no dependencies. Would be nice to get them merged in
+6.16 itself. I assume it's okay to cc stable as the -rc releases are
+also owned by the "Stable Group" in git.kernel.org... [1] [2]
+
+[1] https://git.kernel.org/?q=Stable+Group
+[2] https://git.kernel.org/pub/scm/linux/kernel/git/stable/linux.git
+
+Signed-off-by: Kaustabh Chakraborty <kauschluss@disroot.org>
 ---
-Changes in v2:
-- reword commit title as suggested by Frank Li in v1
+Kaustabh Chakraborty (3):
+      arm64: dts: exynos7870: add quirk to disable USB2 LPM in gadget mode
+      arm64: dts: exynos7870-on7xelte: reduce memory ranges to base amount
+      arm64: dts: exynos7870-j6lte: reduce memory ranges to base amount
 
-Link to v1: https://lore.kernel.org/all/20250624061323.601550-1-primoz.fiser@norik.com/
+ arch/arm64/boot/dts/exynos/exynos7870-j6lte.dts    | 2 +-
+ arch/arm64/boot/dts/exynos/exynos7870-on7xelte.dts | 2 +-
+ arch/arm64/boot/dts/exynos/exynos7870.dtsi         | 1 +
+ 3 files changed, 3 insertions(+), 2 deletions(-)
+---
+base-commit: 1b152eeca84a02bdb648f16b82ef3394007a9dcf
+change-id: 20250626-exynos7870-dts-fixes-e730f7086ddc
 
- arch/arm64/boot/dts/freescale/imx93-phycore-som.dtsi | 9 +++++++++
- 1 file changed, 9 insertions(+)
-
-diff --git a/arch/arm64/boot/dts/freescale/imx93-phycore-som.dtsi b/arch/arm64/boot/dts/freescale/imx93-phycore-som.dtsi
-index 5ee52774e7bf..729c26f9ac94 100644
---- a/arch/arm64/boot/dts/freescale/imx93-phycore-som.dtsi
-+++ b/arch/arm64/boot/dts/freescale/imx93-phycore-som.dtsi
-@@ -191,6 +191,9 @@ &usdhc1 {
- 
- /* Watchdog */
- &wdog3 {
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&pinctrl_wdog>;
-+	fsl,ext-reset-output;
- 	status = "okay";
- };
- 
-@@ -279,4 +282,10 @@ MX93_PAD_SD1_DATA7__USDHC1_DATA7	0x400013be
- 			MX93_PAD_SD1_STROBE__USDHC1_STROBE	0x179e
- 		>;
- 	};
-+
-+	pinctrl_wdog: wdoggrp {
-+		fsl,pins = <
-+			MX93_PAD_WDOG_ANY__WDOG1_WDOG_ANY	0x31e
-+		>;
-+	};
- };
+Best regards,
 -- 
-2.34.1
+Kaustabh Chakraborty <kauschluss@disroot.org>
 
 
