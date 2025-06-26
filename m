@@ -1,232 +1,390 @@
-Return-Path: <devicetree+bounces-189896-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-189898-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2E90EAE9C51
-	for <lists+devicetree@lfdr.de>; Thu, 26 Jun 2025 13:16:59 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1C999AE9C59
+	for <lists+devicetree@lfdr.de>; Thu, 26 Jun 2025 13:17:54 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id B9EBB18989B6
-	for <lists+devicetree@lfdr.de>; Thu, 26 Jun 2025 11:17:11 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id B0FEE4A68AB
+	for <lists+devicetree@lfdr.de>; Thu, 26 Jun 2025 11:17:44 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id DEDB2275AF0;
-	Thu, 26 Jun 2025 11:16:28 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 37179275877;
+	Thu, 26 Jun 2025 11:17:07 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=axis.com header.i=@axis.com header.b="MYhmSyNZ"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="ktaGs3hu"
 X-Original-To: devicetree@vger.kernel.org
-Received: from DUZPR83CU001.outbound.protection.outlook.com (mail-northeuropeazon11012038.outbound.protection.outlook.com [52.101.66.38])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wr1-f65.google.com (mail-wr1-f65.google.com [209.85.221.65])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DE534275112;
-	Thu, 26 Jun 2025 11:16:25 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=52.101.66.38
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1750936588; cv=fail; b=nnCGkSvGbSXN1/OW7RDmoANZxim4pMvXobLPccFQBsrcC2GCkiQDEYbeuANOlhOwz5j0SdUN/MlIb0BEhKQGdr7+dYjhMUZ19JTcyDeHp+aySxd7yeKJNCLRhqARVAfl5r6H7RvlneC2W7kWZ84iKgFnG1cttpKno1Fj/+gMSXE=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1750936588; c=relaxed/simple;
-	bh=IHtvyqE95H8ROJBll+b5DokC/pyhUOkHQb5/V8Zstbg=;
-	h=From:To:CC:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=sUX6dhUeUjcPNomE/KC2AVFHKb4bnAV7wQkdPCdti/G6V37pUqUwadKZjo4op19kTICJGIXkRTI+xetVgDTor/ONBHsnY1pkbf5F9epimTbcmO7/SrfI6Ox7oO78H5RhRCL9iRkfQp8elCG7vH4iBOOImvBgsDmwm5kwn0i57Do=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=axis.com; spf=pass smtp.mailfrom=2n.com; dkim=pass (1024-bit key) header.d=axis.com header.i=@axis.com header.b=MYhmSyNZ; arc=fail smtp.client-ip=52.101.66.38
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=axis.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=2n.com
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=qdw/7IS8zz8R4+bYLfw0C882tDu5ypXY+vixRnHAg/I01BXnYr7W2A/z+KAPlb6koSyHDOi2A5hxV534P2O7Tam6sc7IyQ/Pq5CzFwcOhX1/fZ0dWYyI1XU02hN0RbR7UaaspVaiM2p7jo4ZXeOqCF0X0zcMuHAE3rXM8vK5L7tBeBM9yNbRKjd/w1mj8dqrFXyjRsKLOW2c+awxFJR7CuxlfgwXhGfeOdXt0NdYqWyvYTfQRdxsggV8F+cIn2wQncAjhF3wV4feqAzT9MkGLdb0wn26iY7jSm4kfOtGXzJ3lZIk13ylEB3oMahDXwDCy358EFj/GlSwIPDjGLW8kQ==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=Klbt0P3AtEn8kc4ft+BcHu8U1DUMBOD8AganLYCB3Do=;
- b=CCEAS7YlBoFkgk8XrS3ympWpYtrocPvquC1Rrre69NyJRvHtdINcsAyH/p+aBDs0gE3odedu+JLpTehuuBcRSmB0AIhTHs1TcyWjkpgIF/dhWy20W2l6EEmBsHvhzNlnKvSzS4Ba0d23jjlkhLxKTv3RE8f4gkY1r9IfbpRPS1rED8n3gGlRNP4cD8mUaje6yczspExsP+r025QDxsQAQQyHvLt68TawoFq5D6aiJhZ6ZgAYXcMz8OgvsFnZDoCoOwe553qGN/rgmy2yevAYYdVwouUYkJGFC8/tghMPXzlorcIXWjx5pU8rE+ALRrU6BF1Pl17h6fpvpWo5Ot5lTg==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
- 195.60.68.100) smtp.rcpttodomain=broadcom.com smtp.mailfrom=2n.com;
- dmarc=fail (p=none sp=none pct=100) action=none header.from=axis.com;
- dkim=none (message not signed); arc=none (0)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=axis.com; s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=Klbt0P3AtEn8kc4ft+BcHu8U1DUMBOD8AganLYCB3Do=;
- b=MYhmSyNZGOW1WydVS1Xchbi8WtDd9F9ZqN6bfrCH+sMSDfofLsCPz9iiqTgDKxSiAaPEGy6eiW1JMI/rh+xkI2cJ+8ZutZrF689SRbVIYwR1Dz0NVpemCAM6KzmFIfUzbrg0sRUgs8INtadLPep5w5iDR10k++PomoPRcLUoo3k=
-Received: from AM8P189CA0018.EURP189.PROD.OUTLOOK.COM (2603:10a6:20b:218::23)
- by AS2PR02MB9439.eurprd02.prod.outlook.com (2603:10a6:20b:59c::18) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8857.29; Thu, 26 Jun
- 2025 11:16:22 +0000
-Received: from AM4PEPF00027A67.eurprd04.prod.outlook.com
- (2603:10a6:20b:218:cafe::4d) by AM8P189CA0018.outlook.office365.com
- (2603:10a6:20b:218::23) with Microsoft SMTP Server (version=TLS1_3,
- cipher=TLS_AES_256_GCM_SHA384) id 15.20.8835.25 via Frontend Transport; Thu,
- 26 Jun 2025 11:16:22 +0000
-X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 195.60.68.100)
- smtp.mailfrom=2n.com; dkim=none (message not signed) header.d=none;dmarc=fail
- action=none header.from=axis.com;
-Received-SPF: Pass (protection.outlook.com: domain of 2n.com designates
- 195.60.68.100 as permitted sender) receiver=protection.outlook.com;
- client-ip=195.60.68.100; helo=mail.axis.com; pr=C
-Received: from mail.axis.com (195.60.68.100) by
- AM4PEPF00027A67.mail.protection.outlook.com (10.167.16.84) with Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.20.8880.14 via Frontend Transport; Thu, 26 Jun 2025 11:16:22 +0000
-Received: from pcczc3457tyd.2n.cz.axis.com (10.4.0.13) by se-mail01w.axis.com
- (10.20.40.7) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.44; Thu, 26 Jun
- 2025 13:16:20 +0200
-From: =?UTF-8?q?Kamil=20Hor=C3=A1k=20-=202N?= <kamilh@axis.com>
-To: <florian.fainelli@broadcom.com>, <bcm-kernel-feedback-list@broadcom.com>,
-	<andrew@lunn.ch>, <hkallweit1@gmail.com>, <linux@armlinux.org.uk>,
-	<davem@davemloft.net>, <edumazet@google.com>, <kuba@kernel.org>,
-	<pabeni@redhat.com>, <krzk+dt@kernel.org>, <conor+dt@kernel.org>
-CC: <kamilh@axis.com>, <netdev@vger.kernel.org>, <devicetree@vger.kernel.org>,
-	<linux-kernel@vger.kernel.org>, <f.fainelli@gmail.com>, <robh@kernel.org>,
-	<andrew+netdev@lunn.ch>
-Subject: [PATCH net-next v3 3/3] net: phy: bcm54811: Fix the PHY initialization
-Date: Thu, 26 Jun 2025 13:16:03 +0200
-Message-ID: <20250626111603.3620376-4-kamilh@axis.com>
-X-Mailer: git-send-email 2.39.5
-In-Reply-To: <20250626111603.3620376-1-kamilh@axis.com>
-References: <20250626111603.3620376-1-kamilh@axis.com>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 07109275865
+	for <devicetree@vger.kernel.org>; Thu, 26 Jun 2025 11:17:04 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.65
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1750936627; cv=none; b=UjU10a+YmFVGNtBS69tL8AhjSTJ4ig6jSOo7uNCjMQVbkq+CAIfM4Ozf5Nlq8RW5SnNgaoecteci6m8FkLrsYYi62pJK1EacyYfAPVsHQmxJLCPwQ4akbJwsFVW6odz9DXKp67KeSX+G/4X70Ja9YI0SL7PJmBLq94OJJqHQbLY=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1750936627; c=relaxed/simple;
+	bh=XcwxXmF6zSHfXn/quotUGx5sUVWoEq2Qvc437Bg9Hgc=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=pHvQlYUmlBpMtPLeEYUJmYkuI96hUK3mzOPL+Pyz/gYmV2XNn7e1mCo87nqznAugxsQe6hDOvJm0flTP79RXNUOm78/cAYWiD5jqRKKIjZ+7PLScZ/E3MdcAIZCemXpC/1gIX/8YqJTSsgwVK2c1noj3hvkqze+C3m8UvPY0vdM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=ktaGs3hu; arc=none smtp.client-ip=209.85.221.65
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-wr1-f65.google.com with SMTP id ffacd0b85a97d-3a6cd1a6fecso815006f8f.3
+        for <devicetree@vger.kernel.org>; Thu, 26 Jun 2025 04:17:04 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1750936623; x=1751541423; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=XP8xDt9zHE198oeyEIph4G3vaFbGuZqa2m+s3UehFrg=;
+        b=ktaGs3hu5AruLXAPAFBW+PaaAPx1ldV5kBovL1jMmtMAHPCgKcvCfaNSYwkgEpNBjW
+         ev5tWqNfu7s7Hq97Sow6ZjnoDr6T1Ex+d8pTHt8GiCldxZwU/crHzysPMr9JUPQSj7Zc
+         BHzNm0soPvzJyR59ijEFKdrBU0KtMby2s2EkGLtGfjBbX6CSADjAghSoO8xCgp95oOjS
+         Sf9om/d806JTyDY1HNwU//zzLaEX9kN6291rqv9ce4vNnaJ0SPu/1EwMfwS96THi/0YZ
+         CDsjrR2WilTdszNcSl4ZaoQCL6paNZ0waSywkEbUe6IEja0jNLfb6OaePMh1mmnc1JCN
+         YEfg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1750936623; x=1751541423;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=XP8xDt9zHE198oeyEIph4G3vaFbGuZqa2m+s3UehFrg=;
+        b=s7fBOp3c4za0saN+4qH9sb6Xn9QQl9nRci3EH3REhWgitz3bkR2bgwGAECKbuZBD1G
+         c8yhucjVixk11lGFpoLg9uCiwLOdZb3ZClAAgPJpNaWJNq2cAftSfyAOz8bFT3P88EQd
+         zPT/ppqU/4JsR7+N4XtMG0Ake1FHRWhuihXICaPP+8W39tVeNDON9p0AargyhHRr1Myy
+         FfqA1biaP6fEr4Lyf+9KiJsndL4kcaR7ZMj2J2zpR/nJFGAAN0QPcOshl1Xed8VsHYYT
+         +JWBlR7JNwdMkroqkKbHkA8N5kk59221SF1oniL9cpyItLKOOf+dIHS+Xc6jhP8tY52u
+         3Srw==
+X-Forwarded-Encrypted: i=1; AJvYcCXb5ZSdRm8hc8UT87jkRN1YJimwi4qwvOoDD9cglFVpOakVayjqlcVxnaSL6UdT+hzcss10s3P48NmP@vger.kernel.org
+X-Gm-Message-State: AOJu0YxRrBZKi4bA6Pab8tdrN6/OsOi9cEWfwHhro1/9zceyyiKWlBMN
+	9iEQIgVWdEBEvE5eBEjttnNnmeqBEyhQqcngVDQ+jNMuNCRZb7FbhNpgY2V8+g+FjoI=
+X-Gm-Gg: ASbGncvbmRrDlNdl+VT+HJ8i3+1dCvdtMfM9QgymKPPCVcqhfh5qYWCeUEKeNkNPEng
+	dis8TXPt+56iaQviBe8PfU3gINl5KL6i+sUvhIKdid6kn238CTdIOIz1Z1JEWkZivzuWGnu62kt
+	spwOmHAEENa5F2TKr77oBicjphiCw/z8NI9KBOSRAHMOzphNWLpeWYECaJQgq2qa297sfojmrWS
+	XiO1xHOQqSGDj0ZJwEAYnttvXY6TtOhh5KJGNRUjt/aeKYEXvIv5nRtQ7OYmCUpeUHVCVKl95F7
+	Uactk8r40zzh0baDhXl16baowFTwoLhkkb3ePFnvmYB9cWmUlKAg3p8lhpjI0kN9WBBxq70LIV8
+	s+4/YQdElhBGHAvJLspoGI1RWMbo=
+X-Google-Smtp-Source: AGHT+IF9Fs46hD/L1eBvXtk9XHkDEVT3U5qRnYEc2khequYkVflqMidoXDDX3uefM4joe4S8TNONVg==
+X-Received: by 2002:a5d:584a:0:b0:3a3:65b5:51d7 with SMTP id ffacd0b85a97d-3a6ed601d8emr5767870f8f.26.1750936623110;
+        Thu, 26 Jun 2025 04:17:03 -0700 (PDT)
+Received: from [192.168.0.35] (188-141-3-146.dynamic.upc.ie. [188.141.3.146])
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-3a6e81106b8sm7232461f8f.91.2025.06.26.04.17.01
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 26 Jun 2025 04:17:02 -0700 (PDT)
+Message-ID: <c5652e34-3697-4657-8bbb-aae5c2b903dd@linaro.org>
+Date: Thu, 26 Jun 2025 12:17:01 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 8bit
-X-ClientProxiedBy: se-mail02w.axis.com (10.20.40.8) To se-mail01w.axis.com
- (10.20.40.7)
-X-EOPAttributedMessage: 0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: AM4PEPF00027A67:EE_|AS2PR02MB9439:EE_
-X-MS-Office365-Filtering-Correlation-Id: 03063389-8b3e-49f4-d65f-08ddb4a2e1ed
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam:
-	BCL:0;ARA:13230040|376014|82310400026|7416014|1800799024|36860700013|921020;
-X-Microsoft-Antispam-Message-Info:
-	=?utf-8?B?Z3V1OUlCckpHOVBPWFJpdXJOdjN2UVpZbUpXcC8vVjJuelhuaGpnaERKbktr?=
- =?utf-8?B?U256WEt2bzd4VUlKYkd6UzIxSUNneitVRFZnVU1tWHgyeVdkU1NpZ1AwZ2xi?=
- =?utf-8?B?aVE0MmdJMlovUTRyNCtFUmpiNFRlUTJLVnVvWlppd1dSODV6STN2YmtYOGJB?=
- =?utf-8?B?TDNhV3hzTTBLT3UvTlpDQjhTSTMyalVubmlHV2FlYWZzb2M4TldmZFdlWEcx?=
- =?utf-8?B?djdTN1hPU2pZWXl3ek0yTjA3WUJhWTJ5Zkl1czI3RnF5Nnl4ODlkbFhvMS9M?=
- =?utf-8?B?NXRRMHNycGJFM2lMcFN1SGFQWlZJMi9uVFBpQWdkcVIwVW5ET1JPK1FjOGxk?=
- =?utf-8?B?UVp4Zk50YkN3TkJNMFlFOWxKNjVPM083eXVBSjBmNkkrdHN4OVhBWlZYNUR5?=
- =?utf-8?B?NjF0V2VyWHdoSGpaZDk4dWFkNjhlOUtxcXF5am5hMCtpVDFnVlZBb0JtSVRt?=
- =?utf-8?B?cUYvZGtlMmM5RVRuZTM0eXFKa2lZUStMYWpuanZzTStiWFZkR2prTXRvai93?=
- =?utf-8?B?U3JpS3ArNWxnTHVINFYyUTFVZXk0aC9NeHo1bit2dTgrZnJSR1kxOWRSWWo3?=
- =?utf-8?B?T2NWakhzeTF4a3VVSzYyUW5ma0pnQ3JvNnhZbm4rZXlrd2NsamY5ZW56RENR?=
- =?utf-8?B?SFNHbWo3TXIwdHdsTnVZeGR5VFRMUEQvQ2hmZEZXand4NkhmUGdmdGVnWEpO?=
- =?utf-8?B?VUpBbjVBa1lkMi94MFRyMU1mNUkvU3hjdVl5d01Vajh2bFJub3FIR1d3YmpL?=
- =?utf-8?B?SUkzMFlxK1F5eE9TTkRXek5nVnRuREdncmZrRFVMQ2ZpVFF2QVp1dVphU1dE?=
- =?utf-8?B?WFVFbDBsYmpXaTMySjEwbjRwSlJ3OWRPWXRGWlFKMGMrYWVIYS9VRlBRbi9n?=
- =?utf-8?B?RFVjeWI0MjR2SjJja1F4UFBPd09NeWJsNHFoSFNPWDBtQzNVbUlyWnlybDFJ?=
- =?utf-8?B?OWxSOXJFUWlJcFkzQnFzZWk1WitpQTFqbW1QZzYwSmU1eXNJUmlXVTlWUlVq?=
- =?utf-8?B?d0loUlhRTnJ1UEdiKzJNemR4bGtGK3k5MU1vc1h6SVliTm8zdFZyRXhuU0Z1?=
- =?utf-8?B?Z1gvRUhybXBJUUdRbkw0T2RQSjRZM1k3a0dBcXZ2N1N6bWJkanRpaGZ0Qno5?=
- =?utf-8?B?ZnhGSHEzK1k4enZrT0lDUlRlZzJMVTNCdGhBRDFrb09NbldNRlVMb3psMDJp?=
- =?utf-8?B?MCt5SEF2VTdhWCtwbjhSaTFXNVRqM0JqYnRQV25RYUdlSG9LQlgzRm4ySklZ?=
- =?utf-8?B?VW8wMkE5dVFUdUhrSzR1UGtTYStnL0NTWUxqb3FEOFMzR2sxTVZRNUZ4TEh6?=
- =?utf-8?B?ck0xZHVDNy8yQ0ZSWUxEdDZyNmRwZWZoQ29aQUxndHQ2dGFrNEtZR2M1WUdR?=
- =?utf-8?B?WG5kM0tnZU1EUElCRkw4U1JLT3d6d1lvZ01hRWNoK1JIYUtrS1hlMFVlTzVy?=
- =?utf-8?B?Q2xOeHl4d04xL3ZDTjgzdGJSMys2Z09sT2RZa1R5VlJrUlRlYnduZzVVL2l0?=
- =?utf-8?B?TzRwbVFVM2xUY094eFdWRDFzQnc2RERJM2hXRC9tMzREK0ZVMm9WZXNxNExC?=
- =?utf-8?B?NlY0Nzh5NGwrZUQ0blZzd2o3c3c0Z05EbEZWa1ZRMVRSaDludE9ZY1Z1Tnc5?=
- =?utf-8?B?TUNtdDRORS9wZmJlTFFtYjhKRGY2SnpvenhtWWJxYjBQdGdvR3RLNlZoN0Yz?=
- =?utf-8?B?d3JmWW5WK0htMjNtQStBNWZJWk80TTFaeVVjdERPWDFsaHBqQzBQVEIvUHpQ?=
- =?utf-8?B?NTQ0ZEhaWUxJaWpxckFUbzRkdXdHMVFYb2JpOFZ3aTBCLzdTbkduKzdjVlJ3?=
- =?utf-8?B?SlBlempRbVlXdS9sOG9PMXlaR3hHVWhBSS8yakZMeCs1WmFiaWtFUzExYVM3?=
- =?utf-8?B?cUNUdk1jYUwvQmtYYjNRODEzTk9ZWkdSeldQQUU1RlZwSS9Vbnk0cGdGaEZu?=
- =?utf-8?B?dU5jejRUMlRNbFArZldwNFc2dHRtUnJCMzJwQTh2NVA1L3JhanJralByZkVn?=
- =?utf-8?B?eVFyeEY3ZndxaWNNaHBXeEZqT3k3VEg0RFRtVENXWFA3ZXdyWnZ1TlNWeVVV?=
- =?utf-8?B?b2pGR2RURmZKKyt4QlZSbkxCMG5oK3E3T1AxQT09?=
-X-Forefront-Antispam-Report:
-	CIP:195.60.68.100;CTRY:SE;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:mail.axis.com;PTR:InfoDomainNonexistent;CAT:NONE;SFS:(13230040)(376014)(82310400026)(7416014)(1800799024)(36860700013)(921020);DIR:OUT;SFP:1101;
-X-OriginatorOrg: axis.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 26 Jun 2025 11:16:22.4212
- (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: 03063389-8b3e-49f4-d65f-08ddb4a2e1ed
-X-MS-Exchange-CrossTenant-Id: 78703d3c-b907-432f-b066-88f7af9ca3af
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=78703d3c-b907-432f-b066-88f7af9ca3af;Ip=[195.60.68.100];Helo=[mail.axis.com]
-X-MS-Exchange-CrossTenant-AuthSource:
-	AM4PEPF00027A67.eurprd04.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Anonymous
-X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: AS2PR02MB9439
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v5 3/4] media: dt-bindings: Add qcom,msm8939-camss
+To: vincent.knecht@mailoo.org, Robert Foss <rfoss@kernel.org>,
+ Todor Tomov <todor.too@gmail.com>, Mauro Carvalho Chehab
+ <mchehab@kernel.org>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Bjorn Andersson <andersson@kernel.org>,
+ Konrad Dybcio <konradybcio@kernel.org>
+Cc: linux-kernel@vger.kernel.org, linux-media@vger.kernel.org,
+ linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+ =?UTF-8?Q?Andr=C3=A9_Apitzsch?= <git@apitzsch.eu>,
+ phone-devel@vger.kernel.org, ~postmarketos/upstreaming@lists.sr.ht,
+ Vladimir Zapolskiy <vladimir.zapolskiy@linaro.org>,
+ Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+References: <20250613-camss-8x39-vbif-v5-0-a002301a7730@mailoo.org>
+ <20250613-camss-8x39-vbif-v5-3-a002301a7730@mailoo.org>
+Content-Language: en-US
+From: Bryan O'Donoghue <bryan.odonoghue@linaro.org>
+In-Reply-To: <20250613-camss-8x39-vbif-v5-3-a002301a7730@mailoo.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 
-From: Kamil Horák (2N) <kamilh@axis.com>
+On 13/06/2025 10:33, Vincent Knecht via B4 Relay wrote:
+> From: Vincent Knecht <vincent.knecht@mailoo.org>
+> 
+> Add bindings for qcom,msm8939-camss in order to support the camera
+> subsystem for MSM8939.
+> 
+> Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+> Signed-off-by: Vincent Knecht <vincent.knecht@mailoo.org>
+> ---
+>   .../bindings/media/qcom,msm8939-camss.yaml         | 254 +++++++++++++++++++++
+>   1 file changed, 254 insertions(+)
+> 
+> diff --git a/Documentation/devicetree/bindings/media/qcom,msm8939-camss.yaml b/Documentation/devicetree/bindings/media/qcom,msm8939-camss.yaml
+> new file mode 100644
+> index 0000000000000000000000000000000000000000..9fbb4b204ac8728b822864ad8336aa9d826d6b5b
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/media/qcom,msm8939-camss.yaml
+> @@ -0,0 +1,254 @@
+> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/media/qcom,msm8939-camss.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Qualcomm MSM8939 Camera Subsystem (CAMSS)
+> +
+> +maintainers:
+> +  - Vincent Knecht <vincent.knecht@mailoo.org>
+> +
+> +description:
+> +  The CAMSS IP is a CSI decoder and ISP present on Qualcomm platforms
+> +
+> +properties:
+> +  compatible:
+> +    const: qcom,msm8939-camss
+> +
+> +  reg:
+> +    maxItems: 11
+> +
+> +  reg-names:
+> +    items:
+> +      - const: csi_clk_mux
+> +      - const: csid0
+> +      - const: csid1
+> +      - const: csid2
+> +      - const: csiphy0
+> +      - const: csiphy0_clk_mux
+> +      - const: csiphy1
+> +      - const: csiphy1_clk_mux
+> +      - const: ispif
+> +      - const: vfe0
+> +      - const: vfe0_vbif
+> +
+> +  clocks:
+> +    maxItems: 24
+> +
+> +  clock-names:
+> +    items:
+> +      - const: ahb
+> +      - const: csi0
+> +      - const: csi0_ahb
+> +      - const: csi0_phy
+> +      - const: csi0_pix
+> +      - const: csi0_rdi
+> +      - const: csi1
+> +      - const: csi1_ahb
+> +      - const: csi1_phy
+> +      - const: csi1_pix
+> +      - const: csi1_rdi
+> +      - const: csi2
+> +      - const: csi2_ahb
+> +      - const: csi2_phy
+> +      - const: csi2_pix
+> +      - const: csi2_rdi
+> +      - const: csi_vfe0
+> +      - const: csiphy0_timer
+> +      - const: csiphy1_timer
+> +      - const: ispif_ahb
+> +      - const: top_ahb
+> +      - const: vfe0
+> +      - const: vfe_ahb
+> +      - const: vfe_axi
+> +
+> +  interrupts:
+> +    maxItems: 7
+> +
+> +  interrupt-names:
+> +    items:
+> +      - const: csid0
+> +      - const: csid1
+> +      - const: csid2
+> +      - const: csiphy0
+> +      - const: csiphy1
+> +      - const: ispif
+> +      - const: vfe0
+> +
+> +  iommus:
+> +    maxItems: 1
+> +
+> +  power-domains:
+> +    items:
+> +      - description: VFE GDSC - Video Front End, Global Distributed Switch
+> +          Controller.
+> +
+> +  vdda-supply:
+> +    description:
+> +      Definition of the regulator used as 1.2V analog power supply.
+> +
+> +  ports:
+> +    $ref: /schemas/graph.yaml#/properties/ports
+> +
+> +    description:
+> +      CSI input ports.
+> +
+> +    patternProperties:
+> +      "^port@[0-1]$":
+> +        $ref: /schemas/graph.yaml#/$defs/port-base
+> +        unevaluatedProperties: false
+> +
+> +        description:
+> +          Input port for receiving CSI data.
+> +
+> +        properties:
+> +          endpoint:
+> +            $ref: video-interfaces.yaml#
+> +            unevaluatedProperties: false
+> +
+> +            properties:
+> +              data-lanes:
+> +                minItems: 1
+> +                maxItems: 4
+> +
+> +              bus-type:
+> +                enum:
+> +                  - 4 # MEDIA_BUS_TYPE_CSI2_DPHY
+> +
+> +            required:
+> +              - data-lanes
+> +
+> +required:
+> +  - compatible
+> +  - reg
+> +  - reg-names
+> +  - clocks
+> +  - clock-names
+> +  - interrupts
+> +  - interrupt-names
+> +  - iommus
+> +  - power-domains
+> +  - vdda-supply
+> +  - ports
+> +
+> +additionalProperties: false
+> +
+> +examples:
+> +  - |
+> +    #include <dt-bindings/interrupt-controller/arm-gic.h>
+> +    #include <dt-bindings/clock/qcom,gcc-msm8939.h>
+> +
+> +    isp@1b00020 {
+> +        compatible = "qcom,msm8939-camss";
+> +
+> +        reg = <0x01b00020 0x10>,
+> +              <0x01b08000 0x100>,
+> +              <0x01b08400 0x100>,
+> +              <0x01b08800 0x100>,
+> +              <0x01b0ac00 0x200>,
+> +              <0x01b00030 0x4>,
+> +              <0x01b0b000 0x200>,
+> +              <0x01b00038 0x4>,
+> +              <0x01b0a000 0x500>,
+> +              <0x01b10000 0x1000>,
+> +              <0x01b40000 0x200>;
+> +
+> +        reg-names = "csi_clk_mux",
+> +                    "csid0",
+> +                    "csid1",
+> +                    "csid2",
+> +                    "csiphy0",
+> +                    "csiphy0_clk_mux",
+> +                    "csiphy1",
+> +                    "csiphy1_clk_mux",
+> +                    "ispif",
+> +                    "vfe0",
+> +                    "vfe0_vbif";
+> +
+> +        clocks = <&gcc GCC_CAMSS_AHB_CLK>,
+> +                 <&gcc GCC_CAMSS_CSI0_CLK>,
+> +                 <&gcc GCC_CAMSS_CSI0_AHB_CLK>,
+> +                 <&gcc GCC_CAMSS_CSI0PHY_CLK>,
+> +                 <&gcc GCC_CAMSS_CSI0PIX_CLK>,
+> +                 <&gcc GCC_CAMSS_CSI0RDI_CLK>,
+> +                 <&gcc GCC_CAMSS_CSI1_CLK>,
+> +                 <&gcc GCC_CAMSS_CSI1_AHB_CLK>,
+> +                 <&gcc GCC_CAMSS_CSI1PHY_CLK>,
+> +                 <&gcc GCC_CAMSS_CSI1PIX_CLK>,
+> +                 <&gcc GCC_CAMSS_CSI1RDI_CLK>,
+> +                 <&gcc GCC_CAMSS_CSI2_CLK>,
+> +                 <&gcc GCC_CAMSS_CSI2_AHB_CLK>,
+> +                 <&gcc GCC_CAMSS_CSI2PHY_CLK>,
+> +                 <&gcc GCC_CAMSS_CSI2PIX_CLK>,
+> +                 <&gcc GCC_CAMSS_CSI2RDI_CLK>,
+> +                 <&gcc GCC_CAMSS_CSI_VFE0_CLK>,
+> +                 <&gcc GCC_CAMSS_CSI0PHYTIMER_CLK>,
+> +                 <&gcc GCC_CAMSS_CSI1PHYTIMER_CLK>,
+> +                 <&gcc GCC_CAMSS_ISPIF_AHB_CLK>,
+> +                 <&gcc GCC_CAMSS_TOP_AHB_CLK>,
+> +                 <&gcc GCC_CAMSS_VFE0_CLK>,
+> +                 <&gcc GCC_CAMSS_VFE_AHB_CLK>,
+> +                 <&gcc GCC_CAMSS_VFE_AXI_CLK>;
+> +
+> +        clock-names = "ahb",
+> +                      "csi0",
+> +                      "csi0_ahb",
+> +                      "csi0_phy",
+> +                      "csi0_pix",
+> +                      "csi0_rdi",
+> +                      "csi1",
+> +                      "csi1_ahb",
+> +                      "csi1_phy",
+> +                      "csi1_pix",
+> +                      "csi1_rdi",
+> +                      "csi2",
+> +                      "csi2_ahb",
+> +                      "csi2_phy",
+> +                      "csi2_pix",
+> +                      "csi2_rdi",
+> +                      "csi_vfe0",
+> +                      "csiphy0_timer",
+> +                      "csiphy1_timer",
+> +                      "ispif_ahb",
+> +                      "top_ahb",
+> +                      "vfe0",
+> +                      "vfe_ahb",
+> +                      "vfe_axi";
+> +
+> +        interrupts = <GIC_SPI 51 IRQ_TYPE_EDGE_RISING>,
+> +                     <GIC_SPI 52 IRQ_TYPE_EDGE_RISING>,
+> +                     <GIC_SPI 153 IRQ_TYPE_EDGE_RISING>,
+> +                     <GIC_SPI 78 IRQ_TYPE_EDGE_RISING>,
+> +                     <GIC_SPI 79 IRQ_TYPE_EDGE_RISING>,
+> +                     <GIC_SPI 55 IRQ_TYPE_EDGE_RISING>,
+> +                     <GIC_SPI 57 IRQ_TYPE_EDGE_RISING>;
+> +
+> +        interrupt-names = "csid0",
+> +                          "csid1",
+> +                          "csid2",
+> +                          "csiphy0",
+> +                          "csiphy1",
+> +                          "ispif",
+> +                          "vfe0";
+> +
+> +        iommus = <&apps_iommu 3>;
+> +
+> +        power-domains = <&gcc VFE_GDSC>;
+> +
+> +        vdda-supply = <&reg_1v2>;
+> +
+> +        ports {
+> +            #address-cells = <1>;
+> +            #size-cells = <0>;
+> +
+> +            port@1 {
+> +                reg = <1>;
+> +
+> +                csiphy1_ep: endpoint {
+> +                    data-lanes = <0 2>;
+> +                    remote-endpoint = <&sensor_ep>;
+> +                };
+> +            };
+> +        };
+> +    };
+> 
 
-Reset the bit 12 in PHY's LRE Control register upon initialization.
-According to the datasheet, this bit must be written to zero after
-every device reset.
+Hi Vincent.
 
-Signed-off-by: Kamil Horák (2N) <kamilh@axis.com>
+Would appreciate if you could make the order of items here the same as 
+in 8916 per discussions with Krzysztof clarifying.
+
+8916, 8939, 8953 are of a similar class of device so the correct 
+ordering here is as with 8916.
+
 ---
- drivers/net/phy/broadcom.c | 23 +++++++++++++++++++----
- include/linux/brcmphy.h    |  1 +
- 2 files changed, 20 insertions(+), 4 deletions(-)
-
-diff --git a/drivers/net/phy/broadcom.c b/drivers/net/phy/broadcom.c
-index 7d3b85a07b8c..9d38aa7f3b45 100644
---- a/drivers/net/phy/broadcom.c
-+++ b/drivers/net/phy/broadcom.c
-@@ -662,7 +662,7 @@ static int bcm5481x_read_abilities(struct phy_device *phydev)
- {
- 	struct device_node *np = phydev->mdio.dev.of_node;
- 	struct bcm54xx_phy_priv *priv = phydev->priv;
--	int i, val, err;
-+	int i, val, err, aneg;
- 
- 	for (i = 0; i < ARRAY_SIZE(bcm54811_linkmodes); i++)
- 		linkmode_clear_bit(bcm54811_linkmodes[i], phydev->supported);
-@@ -683,9 +683,17 @@ static int bcm5481x_read_abilities(struct phy_device *phydev)
- 		if (val < 0)
- 			return val;
- 
-+		/* BCM54811 is not capable of LDS but the corresponding bit
-+		 * in LRESR is set to 1 and marked "Ignore" in the datasheet.
-+		 * So we must read the bcm54811 as unable to auto-negotiate
-+		 * in BroadR-Reach mode.
-+		 */
-+		aneg = (BRCM_PHY_MODEL(phydev) != PHY_ID_BCM54811) ?
-+			(val & LRESR_LDSABILITY) : 0;
-+
- 		linkmode_mod_bit(ETHTOOL_LINK_MODE_Autoneg_BIT,
- 				 phydev->supported,
--				 val & LRESR_LDSABILITY);
-+				 aneg);
- 		linkmode_mod_bit(ETHTOOL_LINK_MODE_100baseT1_Full_BIT,
- 				 phydev->supported,
- 				 val & LRESR_100_1PAIR);
-@@ -742,8 +750,15 @@ static int bcm54811_config_aneg(struct phy_device *phydev)
- 
- 	/* Aneg firstly. */
- 	if (priv->brr_mode) {
--		/* BCM54811 is only capable of autonegotiation in IEEE mode */
--		phydev->autoneg = 0;
-+		/* BCM54811 is only capable of autonegotiation in IEEE mode.
-+		 * In BroadR-Reach mode, disable the Long Distance Signaling,
-+		 * the BRR mode autoneg as supported in other Broadcom PHYs.
-+		 * This bit is marked as "Reserved" and "Default 1, must be
-+		 *  written to 0 after every device reset" in the datasheet.
-+		 */
-+		ret = phy_modify(phydev, MII_BCM54XX_LRECR, LRECR_LDSEN, 0);
-+		if (ret < 0)
-+			return ret;
- 		ret = bcm_config_lre_aneg(phydev, false);
- 	} else {
- 		ret = genphy_config_aneg(phydev);
-diff --git a/include/linux/brcmphy.h b/include/linux/brcmphy.h
-index 15c35655f482..115a964f3006 100644
---- a/include/linux/brcmphy.h
-+++ b/include/linux/brcmphy.h
-@@ -137,6 +137,7 @@
- 
- #define MII_BCM54XX_AUXCTL_SHDWSEL_MISC			0x07
- #define MII_BCM54XX_AUXCTL_SHDWSEL_MISC_WIRESPEED_EN	0x0010
-+#define MII_BCM54XX_AUXCTL_SHDWSEL_MISC_RSVD		0x0060
- #define MII_BCM54XX_AUXCTL_SHDWSEL_MISC_RGMII_EN	0x0080
- #define MII_BCM54XX_AUXCTL_SHDWSEL_MISC_RGMII_SKEW_EN	0x0100
- #define MII_BCM54XX_AUXCTL_MISC_FORCE_AMDIX		0x0200
--- 
-2.39.5
-
+bod
 
