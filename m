@@ -1,436 +1,244 @@
-Return-Path: <devicetree+bounces-190002-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-190003-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 976D8AEA11B
-	for <lists+devicetree@lfdr.de>; Thu, 26 Jun 2025 16:46:53 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id ABB64AEA122
+	for <lists+devicetree@lfdr.de>; Thu, 26 Jun 2025 16:47:48 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 0A9266A4EFA
-	for <lists+devicetree@lfdr.de>; Thu, 26 Jun 2025 14:40:50 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 16C2C3BCB88
+	for <lists+devicetree@lfdr.de>; Thu, 26 Jun 2025 14:41:30 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E09D32EACF5;
-	Thu, 26 Jun 2025 14:40:30 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 96FE12ECE88;
+	Thu, 26 Jun 2025 14:40:57 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="vWaN82d/"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="g2hDXUb4"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-oi1-f170.google.com (mail-oi1-f170.google.com [209.85.167.170])
+Received: from mail-wm1-f67.google.com (mail-wm1-f67.google.com [209.85.128.67])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D26D82EB5B2
-	for <devicetree@vger.kernel.org>; Thu, 26 Jun 2025 14:40:28 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.170
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 99FEB2EB5D8
+	for <devicetree@vger.kernel.org>; Thu, 26 Jun 2025 14:40:55 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.67
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1750948830; cv=none; b=WcarmBACZqAbOmzyV4FK+IilyiO9ePmIDQZhVxMt6VCe8DQDe8Wv+18aZHiKm6pBEQeEljyH/WXnaBVubJMFc4jHSHPZTK21HpkHmVe9GyeT5eUec+l0M//vi9Tvi41wLRUwrGX4gCTpI5hWTXztCnaY28uEvQStIaIyR89CAiI=
+	t=1750948857; cv=none; b=ixcu+AVkAlJzfuTY+Hp00N2DBeWPjPoa61h07o4jp9Ly+7ZcHR5phmVOlqg7ryurzJVMT0MsrAvv+P202SyoYo1vXmgSbEzo2SIt5SSxIEksW8nP7nC387JvUp6fn1GvnKxjQoPJnr9wZ5S4o2EpPuM6XyPGPfLqQucjPRKMxaI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1750948830; c=relaxed/simple;
-	bh=aHV1jI1fkhodloHyH4Cmzv72r5jWv5VROLncg/taXkU=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=oz5AGZb2cKRyAkbcroCOP20ChUzvizo0XvTZKwnPkVyi+zNKQc/XAgirGTHu+hGjRM2aH4mPGzrUrXjrEmuF+kQmaO7HI+IFdRaQdPSeyaDuyKdRZjyaMG9xsDmx/gu3xpfRmyzRXimRFnPdfckU23G4XdjFmHHa0yh4SYuAnKw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=vWaN82d/; arc=none smtp.client-ip=209.85.167.170
+	s=arc-20240116; t=1750948857; c=relaxed/simple;
+	bh=8O3gt7jx+aGh1tZT01SJ9L2g6Jsx6u6+UXl+1sLn5b0=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=HPCuWQzJWkxYTKlz0cUwDycSj5EqZrkY2LZeyvDfzTU5m30egWQlmqfcgG7UdNgiPxg8NmTic0HZaa2XYnLm5FGCSzc3UkIJY+XmSzHCrKR80VH252MOxcvB7seJqFgRtTjJ/ff0ebYRNcK4QLMkzQo11M7DvjM77Mz3wNuZ550=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=g2hDXUb4; arc=none smtp.client-ip=209.85.128.67
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-oi1-f170.google.com with SMTP id 5614622812f47-408d14c7ebeso675585b6e.1
-        for <devicetree@vger.kernel.org>; Thu, 26 Jun 2025 07:40:28 -0700 (PDT)
+Received: by mail-wm1-f67.google.com with SMTP id 5b1f17b1804b1-45348bff79fso11283535e9.2
+        for <devicetree@vger.kernel.org>; Thu, 26 Jun 2025 07:40:55 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1750948828; x=1751553628; darn=vger.kernel.org;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=mxnJ+JMAeXEe0tFyoruENV/4pmqUfnDATYgkfRCTwwk=;
-        b=vWaN82d/4v3L7a5QEPbqqEo3ZXz8m8USzJkGZUPOHQExRr6EYc+iBSFKsFj0sEpcSv
-         gzTT5/fC3f7tClqcIX8HaAnMM4JknybP6zerMsS0nbdbNV/S2o84bS7XaYHAM+XV81g5
-         iP7vb+GZ3Q7YW4DZsulR1m2y1zH0EwMhvOFtUH9PwF65GPi1aZ2goqzLhORHJZ8RI2Ow
-         joIkLKa6UFPbwH60ybf+rXR+4kguQQ9HlbbFJywAdr8MPIJa+RkfVbh1eQqjPPsmXvAw
-         YWmvPaEs++leM6XSAQTyauO0YsHHr37uCbCJEB0iPah9j4eYm/kdoVd2cWWvi5XE9/es
-         BhOQ==
+        d=linaro.org; s=google; t=1750948854; x=1751553654; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=wy/zTlmBvKUKunUHtc1dVVfJLd3o8GbdKsSB+SxoJFU=;
+        b=g2hDXUb4QacfOpPn+MT5V3QfAjYn04J5eDTmhK3HRBPEex51PLUAqS0PDpyqvAsBpk
+         54ljAhx3ScqUk5DqY06V1XsHqv3rtMhdft7wQltxMB6rcB/zoqBKB+R6LCayhqI7KJsf
+         t1efI39GDUbHCswPdRfQV/nh08eo3mbEdFRzmTu6+ysQ0reZwxs6Ne5nUvnUIu2zpynF
+         TM0X+WTy6ZfUs6o/99FwLIMA/v9ilXJoYULUFCznm9+5U8t2Un6IkPH2tjVjcC1GsjfV
+         WZYvV/nZnPIQLEoGiLozOEydTHMOV8eRETF9BqoyvWMTfUGQNKVvebncqP4ERuxh7GsW
+         V7ww==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1750948828; x=1751553628;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=mxnJ+JMAeXEe0tFyoruENV/4pmqUfnDATYgkfRCTwwk=;
-        b=hhgPNnwurwbgO7CSLxbmnNfu5oMOT3fO255qYwTq7suy9Wy1JBV8B/9chJqxD4QuXJ
-         h298CFWClNm/C7oQAB6YG1wrcE5vlBZhwy+OxQx26xdYFsldo32V93xNUUK/VvCjIu6t
-         7xQOhADwwMWtFpfzUt4SWtYUnOrDVfbwBB8Dw4Nj+42bdJiIostQSa7NuzwHuJuY/3Hy
-         fQUAOsF28OtL/dMlottgn42MOljDrlMPtrCIl8yX4WRWz71W+MoJglQiOvrrcmJ7DWeh
-         EEPi5VH98uTYV9xw/YoavWiqaV/MNQtgz3FffdUObBqAsY8asGHayGN3AScbebwagRKf
-         zZDg==
-X-Forwarded-Encrypted: i=1; AJvYcCXjPQ5oSSqRYpIllfLrK0NSFMF0q61pf0kd9z6xsEdDR4/mCnv5bT1YEs5VuI7MERymE4OV8pgAkQ7k@vger.kernel.org
-X-Gm-Message-State: AOJu0YxHKx5ThC/wk0nW71Q6HnG28Kq+7im7WFId3P4Tt125cL/z0lON
-	k7Ph/HwItCujm4XXsY2sanMMi/1ZA2vPiIR8vZZS9EcQFnOcyGnia8Shp2FH7lYn+fII5pxJ/Mr
-	/NfBoujivLFoSueLOVSMGXHWJ2LfiX/RSlzthhp6EWg==
-X-Gm-Gg: ASbGncsNWTN3DK63Ona3thK4822spvSZRzgK/9ul9h6QDDxmzLLwhjC05eBc90ELf6h
-	jO75IpFoAQPeSurjM3Pbh/4fTI7HU7B0BeyjGlZyChnFJ1K8LM6dKSF6EA9tNYVU83za2Wmwao0
-	nohNawIqNabC6Eslx96cDH8iTm3k+0gy8tXoT4GvAbZqxt
-X-Google-Smtp-Source: AGHT+IGHmBJjuI+jjZm5dEoJCIPgYdOyi9w4BnG28G9e5pmpEj5kPuV2QO71c3KUdTEVfpTi32Y/zFwNrd073ovM1Nk=
-X-Received: by 2002:a05:6808:4fe3:b0:401:e67c:b3be with SMTP id
- 5614622812f47-40b31c96519mr95767b6e.4.1750948827854; Thu, 26 Jun 2025
- 07:40:27 -0700 (PDT)
+        d=1e100.net; s=20230601; t=1750948854; x=1751553654;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=wy/zTlmBvKUKunUHtc1dVVfJLd3o8GbdKsSB+SxoJFU=;
+        b=ijI8twrHZtMg/Sqevue1AnuLkGFfY++2yHheL6dvXJwnyGAbQYHhnnBrfCu6P7dndh
+         NTiMHD6N9HiMcHhqeG41ur1WuDF7CHyBlQEicIchLcfVrvRgLDwErhKSNTbtv17gVMk0
+         DByxR20s0KDfeLuJeHd1Q3DaZEdp9gBTGeS5QxDtJo03h57YDOZUfQfJEPzDljne3Znr
+         Rr8H3h09xtjOBoCEMOMgzI6O7JxVkVUyltwLRgsEeLQMk5u6Evs+SDRRZdYlHD4Y/USd
+         IXodVR2y7zhRv8OHVD6kWudTCFPGBsVKFfo+W+Qhuv/7XFDK8lhB8DlvcTQjYXru+HDG
+         9PDw==
+X-Forwarded-Encrypted: i=1; AJvYcCV6GQU/oqDZ2RwRiS5p2bBfIWJyqb7T3QuFrerympbheICmMPh+8WH/v3lBhYrq8CKWuMUd0R7PhUoh@vger.kernel.org
+X-Gm-Message-State: AOJu0YxuYVF3pAEFCLq7K1ogDsKXAIC2AITUml1RYWfR0CxNkLsvyrfs
+	4UCVPMCbcKHWJWGMmTpE1p8AKGGD4QcRSmQzgvuPfRS2NgwBZDN7qPgJUqcyXUKSltU=
+X-Gm-Gg: ASbGnctRFy0/JJYg1g4suDzYGSg6HJf0mV0R/a1HSVBjfkqkkLVDPEu6XjwXFjG4VRQ
+	sJF3ym5BELFHuFRKpDX+HLzmrjPe5EMZ9WVkgeJdla8HbF57RJwv/+HecJvmtvO8r4o405vjvvR
+	tWql/eSlzCStSqBj5nhqOAFXmT7iY5f386qa7wTAlFogrvRg4FFeqzmkTekDdQCc+jhqIoguRIB
+	hyX/hegHZYvFqTuL8BmyenRvUFpQJ/bAwSBLq0L6rdcfyVBZQCCZ7Op30s89HgHFL6yKP5bQvRI
+	oAaudmfDjkEZV9x8A7BDw1OXxuOAFkCXEMUZl6rhg9rw7bvZkLrgZARoZdLagT3P6/Btg1OxzaN
+	02HRMU1WChfUQWDhIpAshn7XdIIM=
+X-Google-Smtp-Source: AGHT+IFJsf8jt4eAr1bTr8MT4go/FTU7WrRQVFp9b4j12cJ2ErH5LEoba2mg/H/VfQkHwRZCUZYOLw==
+X-Received: by 2002:a05:600c:5014:b0:442:ccfa:fa with SMTP id 5b1f17b1804b1-45381aeb284mr63726245e9.27.1750948853943;
+        Thu, 26 Jun 2025 07:40:53 -0700 (PDT)
+Received: from [192.168.0.35] (188-141-3-146.dynamic.upc.ie. [188.141.3.146])
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-453883d81besm32042595e9.38.2025.06.26.07.40.52
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 26 Jun 2025 07:40:53 -0700 (PDT)
+Message-ID: <fd6914ca-5431-4c82-925b-7dab3f0d026a@linaro.org>
+Date: Thu, 26 Jun 2025 15:40:51 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20250611-gs101-cpuidle-v2-0-4fa811ec404d@linaro.org>
- <20250611-gs101-cpuidle-v2-2-4fa811ec404d@linaro.org> <4e827037-1bde-4eb3-a6f2-6416dace10b5@kernel.org>
-In-Reply-To: <4e827037-1bde-4eb3-a6f2-6416dace10b5@kernel.org>
-From: Peter Griffin <peter.griffin@linaro.org>
-Date: Thu, 26 Jun 2025 15:40:16 +0100
-X-Gm-Features: Ac12FXyqVtwDD2H_scgEAaexOZMihIpWC1bKrXvc2_bGE_Q9OwsMvGA0M86meco
-Message-ID: <CADrjBPrWZ4JkNJ-c9Qiw=5mmMKePqg6ZW=ATwi8g-1F8Qekn=Q@mail.gmail.com>
-Subject: Re: [PATCH v2 2/2] soc: samsung: exynos-pmu: Enable CPU Idle for gs101
-To: Krzysztof Kozlowski <krzk@kernel.org>
-Cc: =?UTF-8?Q?Andr=C3=A9_Draszik?= <andre.draszik@linaro.org>, 
-	Tudor Ambarus <tudor.ambarus@linaro.org>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Alim Akhtar <alim.akhtar@samsung.com>, William Mcvicker <willmcvicker@google.com>, 
-	Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>, linux-arm-kernel@lists.infradead.org, 
-	linux-samsung-soc@vger.kernel.org, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, kernel-team@android.com
-Content-Type: text/plain; charset="UTF-8"
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v5 1/5] media: dt-bindings: venus: Add qcm2290 dt schema
+To: Jorge Ramirez-Ortiz <jorge.ramirez@oss.qualcomm.com>, krzk+dt@kernel.org,
+ quic_vgarodia@quicinc.com, quic_dikshita@quicinc.com, mchehab@kernel.org,
+ robh@kernel.org, conor+dt@kernel.org, konradybcio@kernel.org,
+ andersson@kernel.org
+Cc: linux-arm-msm@vger.kernel.org, linux-media@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+References: <20250626135931.700937-1-jorge.ramirez@oss.qualcomm.com>
+ <20250626135931.700937-2-jorge.ramirez@oss.qualcomm.com>
+Content-Language: en-US
+From: Bryan O'Donoghue <bryan.odonoghue@linaro.org>
+In-Reply-To: <20250626135931.700937-2-jorge.ramirez@oss.qualcomm.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 
-Hi Krzysztof,
-
-Thanks a lot for your review feedback!
-
-On Wed, 18 Jun 2025 at 11:22, Krzysztof Kozlowski <krzk@kernel.org> wrote:
->
-> On 11/06/2025 11:34, Peter Griffin wrote:
-> > Register cpu pm notifiers for gs101 which call the
-> > gs101_cpu_pmu_online/offline callbacks which in turn
-> > program the ACPM hint. This is required to actually
-> > enter the idle state.
-> >
-> > A couple of corner cases are handled, namely when the
-> > system is rebooting or suspending we ignore the request.
-> > Additionally the request is ignored if the CPU is in
-> > CPU hot plug.
-> >
-> > Note: this patch has a runtime dependency on adding
-> > 'local-timer-stop' dt property to the CPU nodes. This
-> > informs the time framework to switch to a broadcast timer
-> > as the local timer will be shutdown. Without that DT
-> > property specified the system hangs in early boot with
-> > this patch applied.
->
-> Please wrap commit message according to Linux coding style / submission
-> process (neither too early nor over the limit):
-> https://elixir.bootlin.com/linux/v6.4-rc1/source/Documentation/process/submitting-patches.rst#L597
-
-Noted, will fix
-
->
-> >
-> > Signed-off-by: Peter Griffin <peter.griffin@linaro.org>
-> > ---
-> > Changes in v2
-> >  * Add ifdef CONFIG_PM_SLEEP to avoid
-> >    Fix warning: unused variable 'cpupm_pm_ops' [-Wunused-const-variable] (0-day)
-> > ---
-> >  drivers/soc/samsung/exynos-pmu.c | 137 +++++++++++++++++++++++++++++++++++++--
-> >  1 file changed, 133 insertions(+), 4 deletions(-)
-> >
-> > diff --git a/drivers/soc/samsung/exynos-pmu.c b/drivers/soc/samsung/exynos-pmu.c
-> > index a77288f49d249f890060c595556708334383c910..7f72ecd60994f18bb639dd8e09e1c6ff6158066b 100644
-> > --- a/drivers/soc/samsung/exynos-pmu.c
-> > +++ b/drivers/soc/samsung/exynos-pmu.c
-> > @@ -8,6 +8,7 @@
-> >  #include <linux/array_size.h>
-> >  #include <linux/arm-smccc.h>
-> >  #include <linux/cpuhotplug.h>
-> > +#include <linux/cpu_pm.h>
-> >  #include <linux/of.h>
-> >  #include <linux/of_address.h>
-> >  #include <linux/mfd/core.h>
-> > @@ -15,6 +16,7 @@
-> >  #include <linux/of_platform.h>
-> >  #include <linux/platform_device.h>
-> >  #include <linux/delay.h>
-> > +#include <linux/reboot.h>
-> >  #include <linux/regmap.h>
-> >
-> >  #include <linux/soc/samsung/exynos-regs-pmu.h>
-> > @@ -35,6 +37,10 @@ struct exynos_pmu_context {
-> >       const struct exynos_pmu_data *pmu_data;
-> >       struct regmap *pmureg;
-> >       struct regmap *pmuintrgen;
-> > +     spinlock_t cpupm_lock;  /* serialization lock */
->
-> serialization of what? Or rather, can it be not a serialization lock? Is
-> it possible? It's as useful as saying "protection against concurrent
-> accesses lock". No, you need to be explicit which members and/or code
-> are protected.
-
-I can update the comment to be more verbose, but the lock is used to
-ensure the cpu online/offline sequence called from CPU hotplug
-callbacks and cpu pm notifiers are serialized.
-
->
-> > +     bool __percpu *hotplug_ing;
-> > +     atomic_t sys_suspended;
->
-> Why re-implementing own refcnt of pm suspend status?
-> pm_runtime_suspended() and others?
-
-sys_suspended is being used to detect whether a *system* wide sleep
-state is happening. I see a bunch of different drivers using a similar
-approach in the kernel to set a flag from their suspend/resume
-callback. Grep for things like system_suspending, is_suspending etc.
-An alternative approach could be to use register_pm_notifier() and set
-the flag from the callback there.
-
-pm_runtime_suspended() tells me the runtime pm status, which is not
-what I want here.
-
-> > +     atomic_t sys_rebooting;
-> >  };
-> >
-> >  void __iomem *pmu_base_addr;
-> > @@ -336,7 +342,7 @@ EXPORT_SYMBOL_GPL(exynos_get_pmu_regmap_by_phandle);
-> >  #define CPU_INFORM_CLEAR     0
-> >  #define CPU_INFORM_C2                1
-> >
-> > -static int gs101_cpuhp_pmu_online(unsigned int cpu)
-> > +static int gs101_cpu_pmu_online(unsigned int cpu)
-> >  {
-> >       unsigned int cpuhint = smp_processor_id();
-> >       u32 reg, mask;
-> > @@ -358,10 +364,26 @@ static int gs101_cpuhp_pmu_online(unsigned int cpu)
-> >       return 0;
-> >  }
-> >
-> > -static int gs101_cpuhp_pmu_offline(unsigned int cpu)
-> > +static int gs101_cpuhp_pmu_online(unsigned int cpu)
->
-> This needs either renaming or comments. One is cpu_pmu_online other is
-> cpuhp_pmu_online. Sounds the same to me.
-
-I can add some comments, but one function is specifically for CPU Hot
-Plug, which is what the 'cpuhp' part was trying to convey.
-
->
->
-> > +{
-> > +     gs101_cpu_pmu_online(cpu);
-> > +
-> > +     /*
-> > +      * Mark this CPU as having finished the hotplug.
-> > +      * This means this CPU can now enter C2 idle state.
-> > +      */
-> > +     *per_cpu_ptr(pmu_context->hotplug_ing, cpu) = false;
->
-> Quoting docs: "Per cpu data structures are designed to be used by one
-> cpu exclusively".
->
-> ... and further about write access. Adding standard driver code using
-> "highly discouraged" practice is not something expected.
-
-I'll update this to dynamically allocate based on num_possible_cpus()
-and then read/write the flag with cpupm lock held. I didn't realize
-the docs described the per_cpu remote writes as "highly discouraged
-unless absolutely necessary", so thanks for highlighting that. The
-per_cpu variables with remote writes seem quite widely used in the
-downstream exynos-cpupm driver, but then it takes all sorts of locks
-through all the different cal layers.
-
->
->
-> > +
-> > +     return 0;
-> > +}
-> > +
-> > +static int gs101_cpu_pmu_offline(unsigned int cpu)
-> >  {
-> >       u32 reg, mask;
-> > -     unsigned int cpuhint = smp_processor_id();
-> > +     unsigned int cpuhint;
-> > +
-> > +     spin_lock(&pmu_context->cpupm_lock);
->
-> This does not disable interrupts...
->
-> > +     cpuhint = smp_processor_id();
->
-> ... which is a requirement here, according to docs, no? Maybe the
-> original code had an issue, though.
-
-CPU notifiers are called with interrupts disabled. We do use a similar
-pattern in the CPU hot plug path which isn't called with IRQs disabled
-though, so I'll add some locking there in the next version.
-
-Thanks,
-
-Peter
-
-
-
->
-> >
-> >       /* set cpu inform hint */
-> >       regmap_write(pmu_context->pmureg, GS101_CPU_INFORM(cpuhint),
-> > @@ -379,16 +401,89 @@ static int gs101_cpuhp_pmu_offline(unsigned int cpu)
-> >       regmap_read(pmu_context->pmuintrgen, GS101_GRP1_INTR_BID_UPEND, &reg);
-> >       regmap_write(pmu_context->pmuintrgen, GS101_GRP1_INTR_BID_CLEAR,
-> >                    reg & mask);
-> > +
-> > +     spin_unlock(&pmu_context->cpupm_lock);
-> >       return 0;
-> >  }
-> >
-> > +static int gs101_cpuhp_pmu_offline(unsigned int cpu)
-> > +{
-> > +     /*
-> > +      * Mark this CPU as entering hotplug. So as not to confuse
-> > +      * ACPM the CPU entering hotplug should not enter C2 idle state.
-> > +      */
-> > +     *per_cpu_ptr(pmu_context->hotplug_ing, cpu) = true;
-> > +
-> > +     gs101_cpu_pmu_offline(cpu);
-> > +
-> > +     return 0;
-> > +}
-> > +
-> > +static int gs101_cpu_pm_notify_callback(struct notifier_block *self,
-> > +                                     unsigned long action, void *v)
-> > +{
-> > +     int cpu = smp_processor_id();
-> > +
-> > +     switch (action) {
-> > +     case CPU_PM_ENTER:
-> > +             /*
-> > +              * Ignore CPU_PM_ENTER event in reboot or
-> > +              * suspend sequence.
-> > +              */
-> > +
-> > +             if (atomic_read(&pmu_context->sys_suspended) ||
-> > +                 atomic_read(&pmu_context->sys_rebooting))
-> > +                     return NOTIFY_OK;
-> > +
-> > +             if (*per_cpu_ptr(pmu_context->hotplug_ing, cpu))
-> > +                     return NOTIFY_BAD;
-> > +
-> > +             gs101_cpu_pmu_offline(cpu);
-> > +
-> > +             break;
-> > +     case CPU_PM_EXIT:
-> > +
-> > +             if (atomic_read(&pmu_context->sys_rebooting))
-> > +                     return NOTIFY_OK;
-> > +
-> > +             gs101_cpu_pmu_online(cpu);
-> > +
-> > +             break;
-> > +     }
-> > +
-> > +     return NOTIFY_OK;
-> > +}
-> > +
-> > +static struct notifier_block gs101_cpu_pm_notifier = {
-> > +     .notifier_call = gs101_cpu_pm_notify_callback,
-> > +     .priority = INT_MAX     /* we want to be called first */
->
-> You should say why. Everyone wants to be the first.
->
-> > +};
-> > +
-> > +static int exynos_cpupm_reboot_notifier(struct notifier_block *nb,
-> > +                                     unsigned long event, void *v)
-> > +{
-> > +     switch (event) {
-> > +     case SYS_POWER_OFF:
-> > +     case SYS_RESTART:
-> > +             atomic_set(&pmu_context->sys_rebooting, 1);
-> > +             break;
-> > +     }
-> > +
-> > +     return NOTIFY_OK;
-> > +}
-> > +
-> > +static struct notifier_block exynos_cpupm_reboot_nb = {
-> > +     .priority = INT_MAX,
-> > +     .notifier_call = exynos_cpupm_reboot_notifier,
-> > +};
-> > +
-> >  static int exynos_pmu_probe(struct platform_device *pdev)
-> >  {
-> >       struct device *dev = &pdev->dev;
-> >       struct regmap_config pmu_regmcfg;
-> >       struct regmap *regmap;
-> >       struct resource *res;
-> > -     int ret;
-> > +     int ret, cpu;
-> >
-> >       pmu_base_addr = devm_platform_ioremap_resource(pdev, 0);
-> >       if (IS_ERR(pmu_base_addr))
-> > @@ -444,6 +539,12 @@ static int exynos_pmu_probe(struct platform_device *pdev)
-> >                        */
-> >                       dev_warn(&pdev->dev, "pmu-intr-gen syscon unavailable\n");
-> >               } else {
-> > +                     pmu_context->hotplug_ing = alloc_percpu(bool);
-> > +
-> > +                     /* set PMU to power on */
-> > +                     for_each_online_cpu(cpu)
-> > +                             gs101_cpuhp_pmu_online(cpu);
-> > +
-> >                       cpuhp_setup_state(CPUHP_BP_PREPARE_DYN,
-> >                                         "soc/exynos-pmu:prepare",
-> >                                         gs101_cpuhp_pmu_online, NULL);
-> > @@ -451,6 +552,12 @@ static int exynos_pmu_probe(struct platform_device *pdev)
-> >                       cpuhp_setup_state(CPUHP_AP_ONLINE_DYN,
-> >                                         "soc/exynos-pmu:online",
-> >                                         NULL, gs101_cpuhp_pmu_offline);
-> > +
-> > +                     cpu_pm_register_notifier(&gs101_cpu_pm_notifier);
-> > +                     spin_lock_init(&pmu_context->cpupm_lock);
-> > +                     atomic_set(&pmu_context->sys_rebooting, 0);
-> > +                     atomic_set(&pmu_context->sys_suspended, 0);
-> > +                     register_reboot_notifier(&exynos_cpupm_reboot_nb);
-> >               }
-> >       }
-> >
-> > @@ -471,10 +578,32 @@ static int exynos_pmu_probe(struct platform_device *pdev)
-> >       return 0;
-> >  }
-> >
-> > +#ifdef CONFIG_PM_SLEEP
-> > +static int exynos_cpupm_suspend_noirq(struct device *dev)
-> > +{
-> > +     atomic_set(&pmu_context->sys_suspended, 1);
-> > +     return 0;
-> > +}
-> > +
-> > +static int exynos_cpupm_resume_noirq(struct device *dev)
-> > +{
-> > +     atomic_set(&pmu_context->sys_suspended, 0);
-> > +     return 0;
-> > +}
-> > +
-> > +static const struct dev_pm_ops cpupm_pm_ops = {
-> > +     .suspend_noirq = exynos_cpupm_suspend_noirq,
-> > +     .resume_noirq = exynos_cpupm_resume_noirq,
->
-> SET_LATE_SYSTEM_SLEEP_PM_OPS or one of other wrappers.
->
-> > +};
-> > +#endif
-> > +
-> >  static struct platform_driver exynos_pmu_driver = {
-> >       .driver  = {
-> >               .name   = "exynos-pmu",
-> >               .of_match_table = exynos_pmu_of_device_ids,
-> > +#ifdef CONFIG_PM_SLEEP
-> > +             .pm = &cpupm_pm_ops,
->
-> pm_ptr
-> > +#endif
-> >       },
-> >       .probe = exynos_pmu_probe,
-> >  };
-> >
->
->
-> Best regards,
-> Krzysztof
+On 26/06/2025 14:59, Jorge Ramirez-Ortiz wrote:
+> Add a schema for the venus video encoder/decoder on the qcm2290.
+> 
+> Signed-off-by: Jorge Ramirez-Ortiz <jorge.ramirez@oss.qualcomm.com>
+> Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+> ---
+>   .../bindings/media/qcom,qcm2290-venus.yaml    | 127 ++++++++++++++++++
+>   1 file changed, 127 insertions(+)
+>   create mode 100644 Documentation/devicetree/bindings/media/qcom,qcm2290-venus.yaml
+> 
+> diff --git a/Documentation/devicetree/bindings/media/qcom,qcm2290-venus.yaml b/Documentation/devicetree/bindings/media/qcom,qcm2290-venus.yaml
+> new file mode 100644
+> index 000000000000..a9f89b545334
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/media/qcom,qcm2290-venus.yaml
+> @@ -0,0 +1,127 @@
+> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/media/qcom,qcm2290-venus.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Qualcomm QCM2290 Venus video encode and decode accelerators
+> +
+> +maintainers:
+> +  - Vikash Garodia <quic_vgarodia@quicinc.com>
+> +
+> +description:
+> +  The Venus AR50_LITE IP is a video encode and decode accelerator present
+> +  on Qualcomm platforms
+> +
+> +allOf:
+> +  - $ref: qcom,venus-common.yaml#
+> +
+> +properties:
+> +  compatible:
+> +    const: qcom,qcm2290-venus
+> +
+> +  power-domains:
+> +    maxItems: 3
+> +
+> +  power-domain-names:
+> +    items:
+> +      - const: venus
+> +      - const: vcodec0
+> +      - const: cx
+> +
+> +  clocks:
+> +    maxItems: 6
+> +
+> +  clock-names:
+> +    items:
+> +      - const: core
+> +      - const: iface
+> +      - const: bus
+> +      - const: throttle
+> +      - const: vcodec0_core
+> +      - const: vcodec0_bus
+> +
+> +  iommus:
+> +    minItems: 1
+> +    maxItems: 5
+> +
+> +  interconnects:
+> +    maxItems: 2
+> +
+> +  interconnect-names:
+> +    items:
+> +      - const: video-mem
+> +      - const: cpu-cfg
+> +
+> +  operating-points-v2: true
+> +  opp-table:
+> +    type: object
+> +
+> +required:
+> +  - compatible
+> +  - power-domain-names
+> +  - iommus
+> +
+> +unevaluatedProperties: false
+> +
+> +examples:
+> +  - |
+> +    #include <dt-bindings/interrupt-controller/arm-gic.h>
+> +    #include <dt-bindings/clock/qcom,gcc-qcm2290.h>
+> +    #include <dt-bindings/interconnect/qcom,qcm2290.h>
+> +    #include <dt-bindings/interconnect/qcom,rpm-icc.h>
+> +    #include <dt-bindings/power/qcom-rpmpd.h>
+> +
+> +    venus: video-codec@5a00000 {
+> +        compatible = "qcom,qcm2290-venus";
+> +        reg = <0x5a00000 0xf0000>;
+> +        interrupts = <GIC_SPI 225 IRQ_TYPE_LEVEL_HIGH>;
+> +
+> +        power-domains = <&gcc GCC_VENUS_GDSC>,
+> +                        <&gcc GCC_VCODEC0_GDSC>,
+> +                        <&rpmpd QCM2290_VDDCX>;
+> +        power-domain-names = "venus",
+> +                             "vcodec0",
+> +                             "cx";
+> +        operating-points-v2 = <&venus_opp_table>;
+> +
+> +        clocks = <&gcc GCC_VIDEO_VENUS_CTL_CLK>,
+> +                 <&gcc GCC_VIDEO_AHB_CLK>,
+> +                 <&gcc GCC_VENUS_CTL_AXI_CLK>,
+> +                 <&gcc GCC_VIDEO_THROTTLE_CORE_CLK>,
+> +                 <&gcc GCC_VIDEO_VCODEC0_SYS_CLK>,
+> +                 <&gcc GCC_VCODEC0_AXI_CLK>;
+> +        clock-names = "core",
+> +                       "iface",
+> +                       "bus",
+> +                       "throttle",
+> +                       "vcodec0_core",
+> +                       "vcodec0_bus";
+> +
+> +        memory-region = <&pil_video_mem>;
+> +        iommus = <&apps_smmu 0x860 0x0>,
+> +                 <&apps_smmu 0x880 0x0>,
+> +                 <&apps_smmu 0x861 0x04>,
+> +                 <&apps_smmu 0x863 0x0>,
+> +                 <&apps_smmu 0x804 0xE0>;
+> +
+> +        interconnects = <&mmnrt_virt MASTER_VIDEO_P0 RPM_ALWAYS_TAG
+> +                         &bimc SLAVE_EBI1 RPM_ALWAYS_TAG>,
+> +                        <&bimc MASTER_APPSS_PROC RPM_ACTIVE_TAG
+> +                         &config_noc SLAVE_VENUS_CFG RPM_ACTIVE_TAG>;
+> +        interconnect-names = "video-mem",
+> +                             "cpu-cfg";
+> +
+> +        venus_opp_table: opp-table {
+> +            compatible = "operating-points-v2";
+> +
+> +            opp-133000000 {
+> +                opp-hz = /bits/ 64 <133000000>;
+> +                required-opps = <&rpmpd_opp_low_svs>;
+> +            };
+> +            opp-240000000 {
+> +                opp-hz = /bits/ 64 <240000000>;
+> +                required-opps = <&rpmpd_opp_svs>;
+> +            };
+> +        };
+> +    };
+Reviewed-by: Bryan O'Donoghue <bryan.odonoghue@linaro.org>
 
