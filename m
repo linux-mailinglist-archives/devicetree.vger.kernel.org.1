@@ -1,130 +1,175 @@
-Return-Path: <devicetree+bounces-189944-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-189945-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 704E9AE9EA0
-	for <lists+devicetree@lfdr.de>; Thu, 26 Jun 2025 15:25:24 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 66D6AAE9EDC
+	for <lists+devicetree@lfdr.de>; Thu, 26 Jun 2025 15:34:31 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 32837188EC0C
-	for <lists+devicetree@lfdr.de>; Thu, 26 Jun 2025 13:25:02 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id A5347177E76
+	for <lists+devicetree@lfdr.de>; Thu, 26 Jun 2025 13:34:13 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1731B2E62D2;
-	Thu, 26 Jun 2025 13:23:46 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 75C112E3375;
+	Thu, 26 Jun 2025 13:34:11 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="SAYSqkfK"
+	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="ZPVVsuOv"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wr1-f53.google.com (mail-wr1-f53.google.com [209.85.221.53])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from lelvem-ot02.ext.ti.com (lelvem-ot02.ext.ti.com [198.47.23.235])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5AF8F28F93F
-	for <devicetree@vger.kernel.org>; Thu, 26 Jun 2025 13:23:44 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.53
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 59909267F59;
+	Thu, 26 Jun 2025 13:34:09 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.23.235
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1750944226; cv=none; b=J/Q2rwTTDk2FYgfVPOOc//AFnxsmh7DUWF6y1u0osVzep6zNPqoZ9vvU2RZCbetsi5KfG3iza5rU4zqILTWzXMbJUiEMOQxzGvWOwGkExqrYC4kep5A7d1XQtLknECyNHZBLO4Ca304ajpnU3z4BQsVULretN0dHcB0Js8lvj80=
+	t=1750944851; cv=none; b=ZlR7BUX9mM7NC1wdDq46YeQLKYw7B/pLwb7dl8E7X3hsl6C1IW2RC2WftTDSuLeX7nJqgZaf6RrQK5FsD9vC1vPX2VvAYC6MSNUVMyrs/g4kbjB0RcJfY2HlO7CGKrjYtg4BBMvT61OV/2FxhfKAC6/p0UIfGFj/HpFGHmlrm7A=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1750944226; c=relaxed/simple;
-	bh=nsHewx2VL2AMVIeqVCjKf9A1TsR7pvGBhC7x1KZydl4=;
-	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=sxSUftO6fbZtKQ0C3O2lPdM1+MzUmfOgwnNrbTcPASjKof5PLoMjfjC5LPwtzf6VdZM9fzR08BlGDzSDcJl9uxVGGuLBcQpEdBrH+YIVfIYHlzxt1pYfC2GCYjrSlV5GsaDrXeqdwXkW7YQLnw4fMnJBtotOpNDdv4x49lr3XbE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=SAYSqkfK; arc=none smtp.client-ip=209.85.221.53
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-wr1-f53.google.com with SMTP id ffacd0b85a97d-3a531fcaa05so558238f8f.3
-        for <devicetree@vger.kernel.org>; Thu, 26 Jun 2025 06:23:44 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1750944223; x=1751549023; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=XvZ6uX77hyNJJ7iBgJDLTyukijUbXgdBZZJDIwJY4lY=;
-        b=SAYSqkfK5ScK42JoSBrjdwNiAx3k4kBI6o9CiX/AeaK2pKipi1QflrVwElwkH9ERof
-         M8w8bIOuRsZFM2TcxRK3jHxw+PGs5fBmSJh7SxcLXtC+cadLqgc3fv2id0/zwFDxOPIS
-         VLbu5ZMWL8zBgnTnqnXYIfveGsl2sylbplOARQyeEBb5dJuLRd6Y/b5RSfBv3rHrxImd
-         E3kpUxodBLS+M7qc9Cm1xmzZ5ZqwvUSbe2s3RokpmJayKqgf085AZVsM2W1RFKcxz0C/
-         0IWZ8C1QJKHJyNG2nM6kBf9EX6I8S7KYUojQ7UrSrGxiEBL7s8R5y9M7q7BKAaRkLw9v
-         8WUA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1750944223; x=1751549023;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=XvZ6uX77hyNJJ7iBgJDLTyukijUbXgdBZZJDIwJY4lY=;
-        b=b7PlLgbloBAKiZG0YIMyp8j+se6sd8CdhslpHLpT0J46dgg/wmMdk1XEPTzrOu2CuP
-         K4tmNlYfQ7Xjri4DUpD84KVUKUP7WBBiCM4HFpuImsqkmOuuw30D4+6vHo5ZiH8p9VDa
-         34Hel/IKvESft0K8UlsiG5SNFHi5pcsw++4L1fSP9Eze453X/5PmiybVblm9rg+X5jAj
-         r0Stdwf95rjEgXEHtBm2tG4Wk1uPw9+H+uNzRpUIctkT7vo9H0rAJu9R78G8f2k7Npph
-         fXDpfOCTSB8YnozlnYhGw5poeIf8QJA3ZRPDrVleUeaKIectzIOK6dFQ9VcvMmyt5Gap
-         Gt4Q==
-X-Forwarded-Encrypted: i=1; AJvYcCU08tUVm1+M8liodYuxvtwTLfdHIFEWrpuU4CSYNyE6I/jTmG4wrNVpGfSs9dciA6qB5loDlgGPcHBk@vger.kernel.org
-X-Gm-Message-State: AOJu0YziB+4ygAXVibeaHyVzcolU4fO1d23IN49/WJQyQi6nO4dmI7W9
-	1JBg4Ehma+aeJTT319tbdQJVgrTaNlWX2OvhmgOuNh/t9p+0jN0s8uqPhdbVKBjvFA0=
-X-Gm-Gg: ASbGncuJ2M6nkl/OQYTaG0nb4EGvlOk2ezqEVqF5N0emEweNQkbnnrD10Xc0708OgsA
-	q7Y69pOz83r6FSsKAh+WQrJO40RnRsPeMrauO23bJifFNUta1OYndefkgxFUc+yNcv8kM/elpKM
-	iXwcYR0p1ftKXGo3YzWa4G6Tmsihuwd5PCICM/s5uAn0bkFNMR8uANkuSxjOEf4BagzqzaMRFcK
-	ixBf9aWpoP5L/4eKFN7ogyvtjalT9oLDjj1QgeMAgH1vw94PkalqN3abo/ZTM8qbn9Fptsy03pw
-	+c8lnfEA729W5PQ/pjy5L+QVh3dUQSl8drE0VDDk5I6zzJKIem459PxNwohAkciXwcsDQy4tP7m
-	/XKCoV0+CJ/zCqC3O7pLYQIsti+/VaSatmg==
-X-Google-Smtp-Source: AGHT+IHLgWDCWKhldR992iGGgdKmiQvfEEbj/qhGSBInZBEK/oh7BDBrhDGEkY0fPEStJ7yCE/2CSA==
-X-Received: by 2002:a05:6000:310f:b0:3a5:2cb5:642f with SMTP id ffacd0b85a97d-3a6ed64b8cbmr5290102f8f.34.1750944222377;
-        Thu, 26 Jun 2025 06:23:42 -0700 (PDT)
-Received: from toyger.localdomain (p5b29ef66.dip0.t-ipconnect.de. [91.41.239.102])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-4538a3a57c2sm19868645e9.12.2025.06.26.06.23.41
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 26 Jun 2025 06:23:41 -0700 (PDT)
-From: Casey Connolly <casey.connolly@linaro.org>
-To: Bjorn Andersson <andersson@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Konrad Dybcio <konradybcio@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Rob Herring <robh@kernel.org>,
-	cros-qcom-dts-watchers@chromium.org
-Cc: Stephan Gerhold <stephan.gerhold@linaro.org>,
-	Casey Connolly <casey.connolly@linaro.org>,
-	devicetree@vger.kernel.org,
-	linux-arm-msm@vger.kernel.org
-Subject: [PATCH] arm64: dts: qcom: sc7280.dtsi: prevent garbage on serial port
-Date: Thu, 26 Jun 2025 15:23:30 +0200
-Message-ID: <20250626132333.351351-1-casey.connolly@linaro.org>
-X-Mailer: git-send-email 2.50.0
+	s=arc-20240116; t=1750944851; c=relaxed/simple;
+	bh=MTfufscCs55245yA3t2uLj7ZB0URFKvgjXsaLoyy3XA=;
+	h=From:To:CC:Subject:In-Reply-To:References:Date:Message-ID:
+	 MIME-Version:Content-Type; b=PvvZncFwngox63vnziiXKE3EvJ+wYWApjSN7sZ0LGpKYy4gQXAdGfqrFWaKeGhxsZEzQgNiTLG52Z/tSRXNGz2XBdDfgO6GBRSPl0d7yooLGNvm1F/vEffqcBT9RJqkxLC8kxGgynxmYq0kNFEmSHUO+33ZH+PwcznNQw/5NjTk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=ZPVVsuOv; arc=none smtp.client-ip=198.47.23.235
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
+Received: from lelvem-sh02.itg.ti.com ([10.180.78.226])
+	by lelvem-ot02.ext.ti.com (8.15.2/8.15.2) with ESMTP id 55QDXtJ12434115;
+	Thu, 26 Jun 2025 08:33:55 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+	s=ti-com-17Q1; t=1750944835;
+	bh=L+HNIO6gQFtowO13mUz9/yujQ4NufV5X6l/IZVQUHrw=;
+	h=From:To:CC:Subject:In-Reply-To:References:Date;
+	b=ZPVVsuOvBUrnmrwQhRMGy331+A4qzclgdS0oMzNijrX83d4lvwTD5AlHuLchHsc2i
+	 OHGS1iKXJPpVQHR+9NZIk9ZBYFFkziFSBBwbIW+S90f5GHoBaqsaHcLr0sxITCe9eO
+	 /CMbsNCfOBt9EfCR1zFwDEnXJLMm8m+Nc//Qmhp4=
+Received: from DLEE115.ent.ti.com (dlee115.ent.ti.com [157.170.170.26])
+	by lelvem-sh02.itg.ti.com (8.18.1/8.18.1) with ESMTPS id 55QDXtdQ3666006
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-SHA256 bits=128 verify=FAIL);
+	Thu, 26 Jun 2025 08:33:55 -0500
+Received: from DLEE110.ent.ti.com (157.170.170.21) by DLEE115.ent.ti.com
+ (157.170.170.26) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.55; Thu, 26
+ Jun 2025 08:33:54 -0500
+Received: from lelvem-mr06.itg.ti.com (10.180.75.8) by DLEE110.ent.ti.com
+ (157.170.170.21) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.55 via
+ Frontend Transport; Thu, 26 Jun 2025 08:33:55 -0500
+Received: from localhost (kamlesh.dhcp.ti.com [172.24.227.123])
+	by lelvem-mr06.itg.ti.com (8.18.1/8.18.1) with ESMTP id 55QDXsHX1076756;
+	Thu, 26 Jun 2025 08:33:54 -0500
+From: Kamlesh Gurudasani <kamlesh@ti.com>
+To: Eric Biggers <ebiggers@kernel.org>
+CC: T Pratham <t-pratham@ti.com>, Herbert Xu <herbert@gondor.apana.org.au>,
+        "David S. Miller" <davem@davemloft.net>, Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>, <linux-crypto@vger.kernel.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        "Vignesh Raghavendra" <vigneshr@ti.com>,
+        Praneeth Bajjuri <praneeth@ti.com>,
+        "Manorit Chawdhry" <m-chawdhry@ti.com>
+Subject: Re: [PATCH v5 0/2] Add support for Texas Instruments DTHE V2 crypto
+ accelerator
+In-Reply-To: <20250618175847.GA1639822@google.com>
+References: <20250603124217.957116-1-t-pratham@ti.com>
+ <20250617042755.GG8289@sol>
+ <87ikktgx57.fsf@kamlesh.mail-host-address-is-not-set>
+ <20250618175847.GA1639822@google.com>
+Date: Thu, 26 Jun 2025 19:03:53 +0530
+Message-ID: <8734bmsk3i.fsf@kamlesh.mail-host-address-is-not-set>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-C2ProcessedOrg: 333ef613-75bf-4e12-a4b1-8e3623f5dcea
 
-During early boot phases there can be garbage characters on the serial
-RX port unless it is configured as pull-up. Add the pull-up bias and
-mark the rx/tx pinconfs as being necessary for all boot phases.
+Eric Biggers <ebiggers@kernel.org> writes:
 
-Signed-off-by: Casey Connolly <casey.connolly@linaro.org>
----
- arch/arm64/boot/dts/qcom/sc7280.dtsi | 3 +++
- 1 file changed, 3 insertions(+)
+>
+> Okay, so you admit that your "accelerator" is much slower than the CPU.  So (1)
+> does not apply.
+>
+> As for (2), it's not clear that applies here.  Sure, your AES engine *by itself*
+> may be more power-efficient than the AES instructions on the CPU.  However,
+> using the offload requires all the additional work associated with offloading
+> the operation from the CPU.  Since it's much slower, it will also cause the
+> operation to be dragged out over much a longer period of time, keeping the
+> system awake for longer when it could have gone into suspend earlier.
+>
+> Thus, using the "accelerator" could actually increase power usage.
+>
+> As for (3), a couple issues.  First, you're just making an argument from
+> generalities and are not claiming that it's actually true in this case.  ARMv8
+> CE instructions are in fact constant time.
+>
+> Sure, ARMv8 CE is generally not hardened against power analysis attacks.  But
+> you haven't actually claimed that your crypto engine is either.
+1. AES/PKE engine inside DTHEv2 is DPA and EMA resistant.
 
-diff --git a/arch/arm64/boot/dts/qcom/sc7280.dtsi b/arch/arm64/boot/dts/qcom/sc7280.dtsi
-index 64a2abd30100..60e4a311405a 100644
---- a/arch/arm64/boot/dts/qcom/sc7280.dtsi
-+++ b/arch/arm64/boot/dts/qcom/sc7280.dtsi
-@@ -5742,13 +5742,16 @@ qup_uart4_rx: qup-uart4-rx-state {
- 
- 			qup_uart5_tx: qup-uart5-tx-state {
- 				pins = "gpio22";
- 				function = "qup05";
-+				bootph-all;
- 			};
- 
- 			qup_uart5_rx: qup-uart5-rx-state {
- 				pins = "gpio23";
- 				function = "qup05";
-+				bootph-all;
-+				bias-pull-up;
- 			};
- 
- 			qup_uart6_cts: qup-uart6-cts-state {
- 				pins = "gpio24";
--- 
-2.50.0
+>
+> Second, these side channels, especially the ones other than timing, just aren't
+> part of the threat model of most users.
+2. Certification like SESIP, PSA and
+IEC62443(being certified for CIP kernel- LFX [1])
+All these have requirements for sidechannel attacks resistance.(check
+lvl 3+)
+Most of our users have these requirements and they don't even care about
+performance in terms of speed.
 
+>
+> Meanwhile, a security issue we do have is that the hardware drivers tend not to
+> be tested before the kernel is released, and often are released in a broken
+> state where they don't even do the en/decryption correctly.  Furthermore,
+> unprivileged userspace programs may use AF_ALG to exploit buggy drivers.
+3. We have devices in kerneCI and we have regular testing and engineers
+working on acceleratprs internally too, we can be more careful about
+that these drivers are going through prescribed testing for all
+revisions.
+
+We can reduce the prority for hw Accelerator by default if that's what
+you're trying to imply and let users decide.
+>
+> It seems implausible that this patch is more helpful than harmful.
+>
+I don't understand why you call it harmful when it is providing the
+security against side channel attacks.
+
+If ARM itself prescribing to use crypto acclerators if they are
+avialable, then it is beyond my understanding why would you push towards
+using CE extensions.[3]
+
+Are we not serious about the security than the performance itself?
+
+For us,
+Point 1 and 2 is at top priority and being a SOC vendor we want to make
+sure that we provide all support that is needed by end customers for
+their threat modeling.  
+
+For embedded systems, resource utilization is also very important,
+I can use crypto accelerator and save CPU for other activities
+
+But lets look at numbers, They are not 50x worse as you have mentioned in
+earlier mail, they are just 2x bad. These a system with one core cpu
+833Mhz and DTHEv2 at 400Mhz
+
+root@am62lxx-evm:~# cryptsetup benchmark --cipher aes-cbc
+cryptsetup benchmark --cipher aes-cbc
+# Tests are approximate using memory only (no storage IO).
+# Algorithm |       Key |      Encryption |      Decryption
+    aes-cbc        256b        77.7 MiB/s        77.5 MiB/s
+root@am62lxx-evm:~# modprobe -r dthev2
+modprobe -r dthev2
+root@am62lxx-evm:~# cryptsetup benchmark --cipher aes-cbc
+cryptsetup benchmark --cipher aes-cbc
+# Tests are approximate using memory only (no storage IO).
+# Algorithm |       Key |      Encryption |      Decryption
+    aes-cbc        256b       150.4 MiB/s       163.8 MiB/s
+
+[1]https://dashboard.kernelci.org/hardware?hs=ti
+[2]https://www.cip-project.org/about/security-iec-62443-4-2
+[3]https://www.trustedfirmware.org/docs/Introduction_to_Physical_protection_for_MCU_developers_final.pdf
+
+Cheers,
+Kamlesh
 
