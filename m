@@ -1,137 +1,120 @@
-Return-Path: <devicetree+bounces-189940-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-189941-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id CC8F1AE9E5A
-	for <lists+devicetree@lfdr.de>; Thu, 26 Jun 2025 15:13:47 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5F811AE9E76
+	for <lists+devicetree@lfdr.de>; Thu, 26 Jun 2025 15:19:49 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id A09E37A3124
-	for <lists+devicetree@lfdr.de>; Thu, 26 Jun 2025 13:12:23 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id B29291C4343A
+	for <lists+devicetree@lfdr.de>; Thu, 26 Jun 2025 13:20:04 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 35DBF2E5410;
-	Thu, 26 Jun 2025 13:13:43 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="iT7kcXIG"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 86FA92E5412;
+	Thu, 26 Jun 2025 13:19:40 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mail.prodrive-technologies.com (mail.prodrive-technologies.com [212.61.153.67])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0B1262E540B;
-	Thu, 26 Jun 2025 13:13:43 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A106D1AAA1B;
+	Thu, 26 Jun 2025 13:19:36 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=212.61.153.67
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1750943623; cv=none; b=p5fa11bDopLlOh4W6VVJ0MU5j6YfJDpIuhPvOeBkM3OFC94++E0i5OwDuc8Y0xo0AjcIAqBCcSkwKWSuln3zTTj/28h1oasZVeQ/2uDoe31j511fj8TpZE1SJS14i9SWIOZyt7lmlrnYdGmmjJXBYtQrk3oggZmK0HpKFtoJEQw=
+	t=1750943980; cv=none; b=P38uyRcxbsbG5X+MWK19L3KAeV3IucX7QqpbPBRAisMSZeZCfdsFoh/JE0+p4iZZjpj9pcgWDqhD44911vxJ1Pk0YprhgFpzpJv+S50TcsKaQXtMz8ReeQ7jCm6ElNxdgTtIge/BBpa7uxbKIZ2nOdcsXkbL2KATcYuzdmIc+vw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1750943623; c=relaxed/simple;
-	bh=eGe6DgFdnWVzmqfcizRNhuUwNbmovbKrb7hpTd0/7pc=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=NooJXOEyOZaC4yAkpJ4dnZHgLh28YeBUsobZ6aZX+GIPvVGKOr2XkdXk8c6L9kAfsK3TPGOsYrwzV2Oqg6nvv9PM5YbOkDeZ5b0lktJS6rSkg7wbje2e182UwOBTLO/zgm7gl3a89aJdvMMJymx7NUE+O9x/SXE+VXHOk3nyMyU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=iT7kcXIG; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id D4043C4CEEB;
-	Thu, 26 Jun 2025 13:13:42 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1750943622;
-	bh=eGe6DgFdnWVzmqfcizRNhuUwNbmovbKrb7hpTd0/7pc=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=iT7kcXIGtuQWv0kv2WBwECq7p9++xG2lC/+zPx0xDYojnP5/mcnnL2YgLwgX8Xu6s
-	 Q/QqOMG4RwtCIjds4OZSE+RXrZZhwb/YseG7tX3xg1kPetIxYHZGijm2OAXbZdhLNK
-	 gezvMhIMNG41cqWGC+NrBkIA0CddoOI/gdEAiINzP5+r0TWJNnrp8xQid49aqwTdBZ
-	 LzrjgfqKOR/97p8dIbdvfv/rgPJPHTvR1pcKi/vuoNAxvwv4fhN3DDf9zVO47xdL00
-	 GSpZeUk8UZ7TCtBb86MmN27IYQJegrl0LJ1GucTzTpb1s4j67VjPhWMzQZdRCPS8LH
-	 2qUf8uicTelRQ==
-Received: from johan by xi.lan with local (Exim 4.97.1)
-	(envelope-from <johan@kernel.org>)
-	id 1uUmQA-000000002fg-2GtK;
-	Thu, 26 Jun 2025 15:13:43 +0200
-Date: Thu, 26 Jun 2025 15:13:42 +0200
-From: Johan Hovold <johan@kernel.org>
-To: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
-Cc: Bjorn Andersson <andersson@kernel.org>,
-	Maximilian Luz <luzmaximilian@gmail.com>,
-	Konrad Dybcio <konradybcio@kernel.org>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, linux-arm-msm@vger.kernel.org,
-	linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
-Subject: Re: [PATCH v2 2/4] firmware: qcom: uefisecapp: add support for R/O
- UEFI vars
-Message-ID: <aF1Hhs0JAS747SVi@hovoldconsulting.com>
-References: <20250621-more-qseecom-v2-0-6e8f635640c5@oss.qualcomm.com>
- <20250621-more-qseecom-v2-2-6e8f635640c5@oss.qualcomm.com>
- <aFloifxONXnQbVg6@hovoldconsulting.com>
- <aFlps9iUcD42vN4w@hovoldconsulting.com>
- <diarijcqernpm4v5s6u22jep3gzdrzy7o4dtw5wzmlec75og6y@wlbyjbtvnv3s>
- <aF0WGmnN_8rvI9n1@hovoldconsulting.com>
- <zufyvg4hoxxz4i45pynzta3gyglqvecrmeslnpphsgwmtujivl@t2zbdtejt3x4>
+	s=arc-20240116; t=1750943980; c=relaxed/simple;
+	bh=75mkrs7dNrjFqYbU96pjzxClIJ/jiib6Uq9QOKp4sF8=;
+	h=From:To:CC:Subject:Date:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=GsWdQ1UxRfaoDDGuIBfKdqdFp7pyZRZymwzB6+RVMnXkjtvUfS8Tcoub/Gwo4Yoh4gQXjdy8Ao1wnaIt1bvJ8dhepeIiNMfc99y5xVfGF0/mKjdRi9Mu8bmGC8S1KkSfz9ewCaqhnZVaySWA44iuO6hV3See/WVK89gjXJB7Fy0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=prodrive-technologies.com; spf=pass smtp.mailfrom=prodrive-technologies.com; arc=none smtp.client-ip=212.61.153.67
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=prodrive-technologies.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=prodrive-technologies.com
+Received: from EXCOP01.bk.prodrive.nl (10.1.0.22) by EXCOP01.bk.prodrive.nl
+ (10.1.0.22) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.4; Thu, 26 Jun
+ 2025 15:19:34 +0200
+Received: from lnxdevrm02.bk.prodrive.nl (10.1.1.121) by
+ EXCOP01.bk.prodrive.nl (10.1.0.22) with Microsoft SMTP Server id 15.2.1544.4
+ via Frontend Transport; Thu, 26 Jun 2025 15:19:34 +0200
+Received: from paugeu by lnxdevrm02.bk.prodrive.nl with local (Exim 4.96)
+	(envelope-from <paul.geurts@prodrive-technologies.com>)
+	id 1uUmVq-00Gq2g-29;
+	Thu, 26 Jun 2025 15:19:34 +0200
+From: Paul Geurts <paul.geurts@prodrive-technologies.com>
+To: <andrew@lunn.ch>
+CC: <andrew+netdev@lunn.ch>, <conor+dt@kernel.org>, <davem@davemloft.net>,
+	<devicetree@vger.kernel.org>, <edumazet@google.com>, <krzk@kernel.org>,
+	<kuba@kernel.org>, <linux-kernel@vger.kernel.org>,
+	<linux-wireless@vger.kernel.org>,
+	<martijn.de.gouw@prodrive-technologies.com>, <mgreer@animalcreek.com>,
+	<netdev@vger.kernel.org>, <pabeni@redhat.com>,
+	<paul.geurts@prodrive-technologies.com>, <robh@kernel.org>
+Subject: Re: [PATCH v2 1/2] dt-bindings: net/nfc: ti,trf7970a: Add ti,rx-gain-reduction option
+Date: Thu, 26 Jun 2025 15:19:34 +0200
+Message-ID: <20250626131934.4013096-1-paul.geurts@prodrive-technologies.com>
+X-Mailer: git-send-email 2.39.2
+In-Reply-To: <ddb9a1a9-7070-416c-848e-00d151846999@lunn.ch>
+References: <ddb9a1a9-7070-416c-848e-00d151846999@lunn.ch>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <zufyvg4hoxxz4i45pynzta3gyglqvecrmeslnpphsgwmtujivl@t2zbdtejt3x4>
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
 
-On Thu, Jun 26, 2025 at 02:15:26PM +0300, Dmitry Baryshkov wrote:
-> On Thu, Jun 26, 2025 at 11:42:50AM +0200, Johan Hovold wrote:
-> > On Tue, Jun 24, 2025 at 04:13:34AM +0300, Dmitry Baryshkov wrote:
-> > > On Mon, Jun 23, 2025 at 04:50:27PM +0200, Johan Hovold wrote:
-> > > > On Mon, Jun 23, 2025 at 04:45:30PM +0200, Johan Hovold wrote:
+> > > You should include the units, "ti,rx-gain-reduction-db"
 > > 
-> > > > > Also not sure how useful it is to only be able to read variables,
-> > > > > including for the RTC where you'll end up with an RTC that's always
-> > > > > slightly off due to drift (even if you can set it when booting into
-> > > > > Windows or possibly from the UEFI setup).
-> > > > > 
-> > > > > Don't you have any SDAM blocks in the PMICs that you can use instead for
-> > > > > a proper functioning RTC on these machines?
+> > Well, Currently it's not really a dB value (see below).
+> > 
 > > > 
-> > > I'd rather not poke into an SDAM, especially since we don't have docs
-> > > which SDAM blocks are used and which are not.
+> > > > +    $ref: /schemas/types.yaml#/definitions/uint32
+> > > > +    description: |
+> > > > +      Specify a RX gain reduction to reduce antenna sensitivity with 5dB per
+> > > > +      increment, with a maximum of 15dB.
+> > > 
+> > > Given that description i think you can provide a list of values, [0, 
+> > > 5, 10, 15] and the tools will validate values in .dts files.
+> > > 
+> > > > +
+> > > >  required:
+> > > >    - compatible
+> > > >    - interrupts
+> > > > @@ -95,5 +101,6 @@ examples:
+> > > >              irq-status-read-quirk;
+> > > >              en2-rf-quirk;
+> > > >              clock-frequency = <27120000>;
+> > > > +            ti,rx-gain-reduction = <3>;
+> > > 
+> > > Err, how does 3 fit into 5dB increments?
 > > 
-> > You're with Qualcomm now so you should be able to dig up this
-> > information like we did for the X13s (even if I'm quite aware that it
-> > may still be easier said than done).
+> > I implemented it in a way that the value of ti,rx-gain-reduction is 
+> > programmed directly into the RX_GAIN reduction register, and there it 
+> > means 5 dB/LSB. My description probably was not clear enough about 
+> > that. So a value of 3 here actually means 15dB.
+> > So I could either improve the description here that this is the case, 
+> > or make the value in here in actual dB, and do some calculations in 
+> > the driver. What has your preference?
 > 
-> I'd rather try to find information on how to update UEFI vars on the
-> storage.
-
-You can do both, especially if it turns out you won't be able to have
-persistent variables on these machines.
-
-> Moreover, using the UEFI variable doesn't send the wrong
-> message to other developers (if I remember correctly, I've seen patches
-> poking to semi-random SDAM just because it seemed to be unused).
-
-That's for the Qualcomm maintainers, and the rest of us, to catch during
-review. And people putting random values into devicetrees is
-unfortunately not limited to SDAM addresses.
-
-Furthermore, getting an allocated block of addresses in SDAM for Linux
-could be useful for other things too.
- 
-> > > I think the slightly drifted RTC is still much better than ending up
-> > > with an RTC value which is significantly off, because it was set via the
-> > > file modification time.
-> > 
-> > I measured drift of 1 second every 3.5 h on the X13s, so having an
-> > almost correct time with massive drift that cannot be corrected for may
-> > not necessarily be better.
+> DT should use SI units, Volts, Amps, degrees C, meters, etc. The driver then should do whatever conversion is needed to convert to hardware register values.
 > 
-> For me it provided a better user experience. Yes, I'm using C630 from
-> time to time, including the kernel development. A drifted but ticking
-> RTC is better than the RTC that rolls backs by several months at a
-> reboot, because of the missing RTC offset info.
+> Less important, but i'm also wondering if this should be negative, ti,rx-gain-db, with a value of -15. You say this receiver is overly sensitive, so you need to reduce the gain. But are there TI devices where you can actually increase the gain? Ideally the property should be generic and be able to cover that use case as well.
 
-Does it have to roll back? Can't you just keep it running after whatever
-semi-random date it started at? And there is ntp and services like
-fake-hwclock which saves the time on shutdown too.
+As far as I am aware, I cannot put a negative number in a dts property. I can interpret the property as s32, but that would mean I need to put it in the dts like
 
-Anyway, I still do no understand why you seem so reluctant to having a
-proper functioning RTC using an SDAM offset.
+ti,rx-gain = <0xfffffff1>;
 
-Johan
+which looks like a bad idea. I will just convert it to a dB value for v3.
+
+> 
+>     Andrew
+> 
+> ---
+> pw-bot: cr
+> 
+
+Thanks!
+
+Paul
 
