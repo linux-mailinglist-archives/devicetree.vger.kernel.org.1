@@ -1,161 +1,81 @@
-Return-Path: <devicetree+bounces-190081-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-190082-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 96893AEA828
-	for <lists+devicetree@lfdr.de>; Thu, 26 Jun 2025 22:15:58 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id C320BAEA859
+	for <lists+devicetree@lfdr.de>; Thu, 26 Jun 2025 22:44:35 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id E3CA44A4558
-	for <lists+devicetree@lfdr.de>; Thu, 26 Jun 2025 20:15:39 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id DADE01C41B3B
+	for <lists+devicetree@lfdr.de>; Thu, 26 Jun 2025 20:44:49 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E66CD2F2360;
-	Thu, 26 Jun 2025 20:14:43 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 11AD32F0E22;
+	Thu, 26 Jun 2025 20:44:31 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=disroot.org header.i=@disroot.org header.b="UVaRZlgG"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="aU54u4/c"
 X-Original-To: devicetree@vger.kernel.org
-Received: from layka.disroot.org (layka.disroot.org [178.21.23.139])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6D97D2EFD8C;
-	Thu, 26 Jun 2025 20:14:41 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=178.21.23.139
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D4A892F0C7F;
+	Thu, 26 Jun 2025 20:44:30 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1750968883; cv=none; b=JyywXdQscM8/PbgKjjhQcmyTyDJneODfFljsRitL+Alu1AVlRGs1+etHZdbzK8jHyeE4sY9lw/zApFYoV15TvGxlr950+vxxqkAKGuNj/U7I9RqnT0ymQ1TBTDaxZUNezjqCF/hX6qTeta1FFYzJVUPt2XcKsYyy85uV34w7AgE=
+	t=1750970671; cv=none; b=lfYg5+h/k5stLrEND3IWL1AFZcYh1DDo9ht9/fcddKDn+6J98GLz5Np3Lizio0MduxauUco1bW2sjplNkvzJ9NkrelQkx4a5LwtLbI23Wj2KCNUFWNA81lkuxTBukgCIwDM/fPHXl0VYFHVAD9ytXiv51b4Zb32gy/D1dkyZTWQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1750968883; c=relaxed/simple;
-	bh=cg7s6ZiVvmErjdj1DTXd7oxh6Zhi0Y1dn8W/u4K8qBE=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=YVP2Vv+xY9FAzUUpmRukQ3ZeHvLst/RUqpPd9SLAoDdEIJczyBUfCt5WK0qvKGfDQbl+wnvvUr3S941BGXEmTbgHh8J8rP9rokyy17pVRb23/KxxfuCN7o21kQrdUG89OobnEUPrDtqGoDyqhP+e72wBE3g/uT7/1ByctgOl3/w=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=disroot.org; spf=pass smtp.mailfrom=disroot.org; dkim=pass (2048-bit key) header.d=disroot.org header.i=@disroot.org header.b=UVaRZlgG; arc=none smtp.client-ip=178.21.23.139
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=disroot.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=disroot.org
-Received: from mail01.disroot.lan (localhost [127.0.0.1])
-	by disroot.org (Postfix) with ESMTP id F33CC25F8C;
-	Thu, 26 Jun 2025 22:14:39 +0200 (CEST)
-X-Virus-Scanned: SPAM Filter at disroot.org
-Received: from layka.disroot.org ([127.0.0.1])
- by localhost (disroot.org [127.0.0.1]) (amavis, port 10024) with ESMTP
- id ROlUM-guIM2E; Thu, 26 Jun 2025 22:14:39 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=disroot.org; s=mail;
-	t=1750968879; bh=cg7s6ZiVvmErjdj1DTXd7oxh6Zhi0Y1dn8W/u4K8qBE=;
-	h=From:Date:Subject:References:In-Reply-To:To:Cc;
-	b=UVaRZlgG9nWYsZtd+jxjqxzTwkGvROfDUUMR780HiuU6G3dbVIKviaEvSMWhypouh
-	 OOfzEMv/cCmp+ozPpOGlea0q4rIcFlnTA6eAGKxt0Z4ePRRsdI0NNGwZaCy5RCmVuA
-	 NGBrY6nJK2vxE8A986TmFZBXVZRvnlURjE9nxMbfHozyB1dY5iXGQ+2qpn4VCbLX5H
-	 m29Mu9QLBoaioXBXAqoSg82dcU76oo7i7tU87tCGadL7uElhTfZX5SMKqkbV9DeWvF
-	 0EF7b/TMv18b93fE9rmw0IAsuWLVQDxEDQwVVhPpsBCIhtoz2L1Fzd9hK+S+x7oqQt
-	 1Zhu1Rkduaf/Q==
-From: Kaustabh Chakraborty <kauschluss@disroot.org>
-Date: Fri, 27 Jun 2025 01:43:29 +0530
-Subject: [PATCH v2 6/6] arm64: dts: exynos7870-j6lte: enable display panel
- support
+	s=arc-20240116; t=1750970671; c=relaxed/simple;
+	bh=abaYV/TxoNSuyHl0eTqG9SzcI4RVLABBdwTCYM/IuUE=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=R4fv/g1TqF2y4fz6Fl/IyxlxRRWlAknG+9UUQGgRPsBx4gZjvNQ4GNK2nNckAvRt7VoVN6Ounw53cgj4h1THkpvtcuxtX2MV9xCdR/yuacrzkXYQtpYdpCoxKLamAI0CVZdZnFDvtslhTpFGILWvP0/NhJ2WVD7xsmzxJFZlvdA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=aU54u4/c; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 787D6C4CEEB;
+	Thu, 26 Jun 2025 20:44:29 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1750970670;
+	bh=abaYV/TxoNSuyHl0eTqG9SzcI4RVLABBdwTCYM/IuUE=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=aU54u4/cN2JAQ9nEf5AfYIcmyjgFIqvA3lOdGsnxB02qthvI85iMArx7c9v/YLgWu
+	 ygsqR33ijsfk/UZYDmcPdO0v1uiPvqvRIGfi+fbJrWhlKHk84USM1XV5tMsg92zp07
+	 I7dNUfRMysVq9ebTu+To/GRg0xIoYUxblBkeoO/rGWF16ARF7m57Mvt5MKTEaPy03V
+	 dS//DqTwW0VVdwewQK2DOoXqQs6MmHcKAkUnaHENeK5XZqMKw4lj2DGHWYDU+PK2n0
+	 IqqLAJkhnN1U23rLmnr4+mmURiiJAuhInR7XWkwnGV7f/+ndTiKEiMmtwgDyvub4qc
+	 O85FInCQCIeqQ==
+Date: Thu, 26 Jun 2025 22:44:25 +0200
+From: Andi Shyti <andi.shyti@kernel.org>
+To: Prabhakar <prabhakar.csengg@gmail.com>
+Cc: Chris Brandt <chris.brandt@renesas.com>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Geert Uytterhoeven <geert+renesas@glider.be>, Magnus Damm <magnus.damm@gmail.com>, 
+	Wolfram Sang <wsa+renesas@sang-engineering.com>, Andy Shevchenko <andy@kernel.org>, 
+	linux-renesas-soc@vger.kernel.org, linux-i2c@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, Biju Das <biju.das.jz@bp.renesas.com>, 
+	Fabrizio Castro <fabrizio.castro.jz@renesas.com>, Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+Subject: Re: [PATCH v4 0/5] Add RIIC support for RZ/T2H and RZ/N2H SoCs
+Message-ID: <va2iyipvikhgt6uq6n6bjydsqbmeep267ue4w24z2ptzdq4t4c@w36e3vstxnzh>
+References: <20250625104526.101004-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20250627-exynos7870-drm-dts-v2-6-d4a59207390d@disroot.org>
-References: <20250627-exynos7870-drm-dts-v2-0-d4a59207390d@disroot.org>
-In-Reply-To: <20250627-exynos7870-drm-dts-v2-0-d4a59207390d@disroot.org>
-To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, Alim Akhtar <alim.akhtar@samsung.com>
-Cc: Krzysztof Kozlowski <krzk@kernel.org>, devicetree@vger.kernel.org, 
- linux-arm-kernel@lists.infradead.org, linux-samsung-soc@vger.kernel.org, 
- linux-kernel@vger.kernel.org, Kaustabh Chakraborty <kauschluss@disroot.org>
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1750968815; l=1916;
- i=kauschluss@disroot.org; s=20250202; h=from:subject:message-id;
- bh=cg7s6ZiVvmErjdj1DTXd7oxh6Zhi0Y1dn8W/u4K8qBE=;
- b=pqzZ0zpa9IlCWMHbS2c9JInserNn+o8T+yBmHd8KRENeWQfhVP3CCni/c0jioa1iZn/kjJvHg
- 0BO5isJX0MOD5qO3IqlUcew7aAyB/kk8e0ROSIrMxEQenW54uhd6Nxq
-X-Developer-Key: i=kauschluss@disroot.org; a=ed25519;
- pk=h2xeR+V2I1+GrfDPAhZa3M+NWA0Cnbdkkq1bH3ct1hE=
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20250625104526.101004-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
 
-Enable DECON and DSI nodes, and add the compatible display panel and
-appropriate panel timings for this device. Also, remove the
-simple-framebuffer node in favor of the panel.
+Hi Prabhakar,
 
-This device has a 720x1480 AMOLED Samsung S6E8AA5X01 display panel.
+> Lad Prabhakar (5):
+>   dt-bindings: i2c: renesas,riic: Move ref for i2c-controller.yaml to
+>     the end
+>   dt-bindings: i2c: renesas,riic: Document RZ/T2H and RZ/N2H support
+>   i2c: riic: Pass IRQ desc array as part of OF data
+>   i2c: riic: Move generic compatible string to end of array
+>   i2c: riic: Add support for RZ/T2H SoC
 
-Signed-off-by: Kaustabh Chakraborty <kauschluss@disroot.org>
----
- arch/arm64/boot/dts/exynos/exynos7870-j6lte.dts | 49 ++++++++++++++++++-------
- 1 file changed, 36 insertions(+), 13 deletions(-)
+Merged to i2c/i2c-host.
 
-diff --git a/arch/arm64/boot/dts/exynos/exynos7870-j6lte.dts b/arch/arm64/boot/dts/exynos/exynos7870-j6lte.dts
-index 61eec1aff32ef397c69ee3f0cba8050755f74fc6..6d57f583d687003850f0b03bd19fa9e2f6e33332 100644
---- a/arch/arm64/boot/dts/exynos/exynos7870-j6lte.dts
-+++ b/arch/arm64/boot/dts/exynos/exynos7870-j6lte.dts
-@@ -27,20 +27,7 @@ aliases {
- 	};
- 
- 	chosen {
--		#address-cells = <2>;
--		#size-cells = <1>;
--		ranges;
--
- 		stdout-path = &serial2;
--
--		framebuffer@67000000 {
--			compatible = "simple-framebuffer";
--			reg = <0x0 0x67000000 (720 * 1480 * 4)>;
--			width = <720>;
--			height = <1480>;
--			stride = <(720 * 4)>;
--			format = "a8r8g8b8";
--		};
- 	};
- 
- 	gpio-hall-effect-sensor {
-@@ -133,6 +120,42 @@ vibrator {
- 	};
- };
- 
-+&decon {
-+	status = "okay";
-+};
-+
-+&dsi {
-+	status = "okay";
-+	#address-cells = <1>;
-+	#size-cells = <0>;
-+
-+	samsung,burst-clock-frequency = <500000000>;
-+	samsung,esc-clock-frequency = <16000000>;
-+	samsung,pll-clock-frequency = <26000000>;
-+
-+	panel@0 {
-+		compatible = "samsung,s6e8aa5x01";
-+		reg = <0>;
-+
-+		width-mm = <62>;
-+		height-mm = <128>;
-+
-+		panel-timing {
-+			clock-frequency = <73094400>;
-+
-+			hactive = <720>;
-+			hsync-len = <2>;
-+			hfront-porch = <62>;
-+			hback-porch = <26>;
-+
-+			vactive = <1480>;
-+			vsync-len = <2>;
-+			vfront-porch = <12>;
-+			vback-porch = <10>;
-+		};
-+	};
-+};
-+
- &gpu {
- 	status = "okay";
- };
-
--- 
-2.49.0
-
+Thanks,
+Andi
 
