@@ -1,48 +1,48 @@
-Return-Path: <devicetree+bounces-189918-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-189919-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id A89DDAE9D3A
-	for <lists+devicetree@lfdr.de>; Thu, 26 Jun 2025 14:08:14 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id D983AAE9D56
+	for <lists+devicetree@lfdr.de>; Thu, 26 Jun 2025 14:19:35 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id C501E1894A8E
-	for <lists+devicetree@lfdr.de>; Thu, 26 Jun 2025 12:04:34 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 85B1C1C25EFA
+	for <lists+devicetree@lfdr.de>; Thu, 26 Jun 2025 12:19:51 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 96A6A17BA1;
-	Thu, 26 Jun 2025 12:03:52 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 559F433F9;
+	Thu, 26 Jun 2025 12:19:32 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="nGbCeBRE"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="oxxS9XvU"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6DA902F1FDA;
-	Thu, 26 Jun 2025 12:03:52 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2E4583595C;
+	Thu, 26 Jun 2025 12:19:31 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1750939432; cv=none; b=WEPW0P77x8ErcaandYyk/mioQfQwDoIcY4g7VMJ4UTWk6CGrle2Dockz4VUD9nOc52OaFPOnxs80sGD6vNCRf5lwEZ8I+xrXgkZaREkNQ6Zw3BI7fYV2eoSOilb91ibR1bwoacZZqIOwp9z5OnJHwD81b6fkF8xiIEe3uvdhkYE=
+	t=1750940372; cv=none; b=O5N5m4/GUqsgK7s6P5I4CYd6s+6odFwXsxo+vfFm8PFv+DSlqZ+SQN5js3HsZy2e4AGwdfwmoeab4ocukIbZm2QUZkCzHrSrvEd8QafBEqTrZWTRtjpaDKmC0PxcX8DpNvUfIxOisF8FE5K1oM2jqaor5AgmkGez5Zmn9oJ6hWI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1750939432; c=relaxed/simple;
-	bh=4hnWVm/WUKrVcAQs3GScuoi2DpfD6MZHWSrLCp87cMU=;
-	h=Message-ID:Date:MIME-Version:Subject:To:References:From:
-	 In-Reply-To:Content-Type; b=c5mZjBDzbhUE05bCgbTPWdNRAc+Vv8ok3rRbhcabUc3MYwGyaIdDVagd2OObtSU0PCzUfaoWIvgkRlAaFfuGncSvRBPBuO24Ts8e6CHm/eOGtXeJRtoWwnaOBsLYvTcWnGc9KOvd1Y7lsJ1P4XvQzJogPuHFtGegwtrXsOtBQS8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=nGbCeBRE; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 8F90AC4CEED;
-	Thu, 26 Jun 2025 12:03:51 +0000 (UTC)
+	s=arc-20240116; t=1750940372; c=relaxed/simple;
+	bh=mLbLjTFgE9PkBVKwP4YFWFFMW2e1uyxtG2hFyx7CYF0=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=SxleBSNMrxMv3oF6gUEh3CgBOjC7XH5H6BJ72sUCszaBRiWHaux4gzjCnF8vx3UA9Avvmkk/8QQt+JXAWP2yMkGZ0X1cMadoXxzv3mrASgrm7D3roiC6cBB8AVScl7MQ8Q4Nd/YeE6aW+Y2xMmp8ecbV13BPvEo0zeetGHCK9TY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=oxxS9XvU; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 19E24C4CEEB;
+	Thu, 26 Jun 2025 12:19:31 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1750939432;
-	bh=4hnWVm/WUKrVcAQs3GScuoi2DpfD6MZHWSrLCp87cMU=;
-	h=Date:Subject:To:References:From:In-Reply-To:From;
-	b=nGbCeBREC5eH1u5LoXmzBL/KyhNMgjcwCqBdp4VdTIiAPPhxf0igOOfG1q8sKILbB
-	 rjqtIZZfEJtiR4pE0nED5VcTVLpfFwRRcybg7U/wD9It/vIp1T9grEuJGWyYVeEw0c
-	 uiK17aLdxBZ7+Gherpbb0j752P5rVT0xpduFeR1ACZK0LbzIEHsrT3jct9rOvhx+ku
-	 6SGou8vV75LAtsu4aq1wb/UWy9rGafJK6zWeCcPkovfedTu/J5TnQ5KN2/2snXpzIs
-	 LaeW0byiRY8HQUJI5Z0qRQr0Vj0rH8d3WP0jFIdgKKb1HQQy6zsyStwmDAxl7TgOL2
-	 ZnG8sFtnnp9yQ==
-Message-ID: <e038c70c-e7ce-41c5-9b6e-f7d5ca04b600@kernel.org>
-Date: Thu, 26 Jun 2025 07:03:48 -0500
+	s=k20201202; t=1750940371;
+	bh=mLbLjTFgE9PkBVKwP4YFWFFMW2e1uyxtG2hFyx7CYF0=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=oxxS9XvUGvtX92eZPuUsrgrHfDUGsOp/Dr3Ezs+d7LtQjR/n/2DsWPNKi0PoPmglq
+	 afTsQ927N6s1LyY5pUn42guebH4fykoiQ3rmV/sEZl5U305BBlCEi/bPYVyI7jrlmp
+	 xK1E8ppVYzfdVWtKrb3mgsrcQ+uyHrEYHSYYICsgxsLe+GGSHHhN5PqcqHV6Z6uWsc
+	 Q11Uv/8mzVD2kgmZjOhCI+sHyri8oIyv4RG24MHpYGd9QMNV1kVewVjY4ufyhPN1pg
+	 NhPf8b27ofykI9lTivdK7rRnIhL0YDrCFPeLwl/oY1NgU5vqdXUoyKarEe/DUz3Fsb
+	 qGyAta6mwgiRw==
+Message-ID: <e3ac4f22-e19c-407f-a448-c54b2ca34428@kernel.org>
+Date: Thu, 26 Jun 2025 07:19:28 -0500
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,35 +50,35 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH] arm64: dts: altera: socfpga_stratix10: update internal
- oscillators
-To: Matthew Gerlach <matthew.gerlach@altera.com>, robh@kernel.org,
- krzk+dt@kernel.org, conor+dt@kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org
-References: <20250625151442.42191-1-matthew.gerlach@altera.com>
+Subject: Re: [PATCH v3 1/4] dt-bindings: dma: snps,dw-axi-dmac: Add iommus
+ dma-coherent and dma-addressable-bits property
+To: adrianhoyin.ng@altera.com, robh@kernel.org, krzk+dt@kernel.org,
+ conor+dt@kernel.org, Eugeniy.Paltsev@synopsys.com, vkoul@kernel.org,
+ dmaengine@vger.kernel.org, devicetree@vger.kernel.org
+Cc: Matthew Gerlach <matthew.gerlach@altrera.com>
+References: <cover.1750084527.git.adrianhoyin.ng@altera.com>
+ <144d2070c7b2f69f034b6f16bc938a538afa9f15.1750084527.git.adrianhoyin.ng@altera.com>
 Content-Language: en-US
 From: Dinh Nguyen <dinguyen@kernel.org>
-In-Reply-To: <20250625151442.42191-1-matthew.gerlach@altera.com>
+In-Reply-To: <144d2070c7b2f69f034b6f16bc938a538afa9f15.1750084527.git.adrianhoyin.ng@altera.com>
 Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
 
-On 6/25/25 10:14, Matthew Gerlach wrote:
-> Add the clock-frequency property to the cb_intosc_ls_clk and
-> cb_intosc_hs_div2_clk device tree nodes.
+On 6/16/25 09:40, adrianhoyin.ng@altera.com wrote:
+> From: Adrian Ng Ho Yin <adrianhoyin.ng@altera.com>
 > 
-> The f2s_free_clk is implemented by custom logic in the FPGA; so it
-> should be disabled in the dtsi by default and enabled by a
-> dts for a specific FPGA design on a specific board.
+> Intel Agilex5 address bus only supports up to 40 bits. Add
+> dma-addressable-bits property to allow configuration of number of dma
+> addressable bits.Add iommu property for SMMU support. Add dma-coherent
+> property for cache coherent support.
 > 
-> Signed-off-by: Matthew Gerlach <matthew.gerlach@altera.com>
-> ---
->   arch/arm64/boot/dts/altera/socfpga_stratix10.dtsi | 3 +++
->   1 file changed, 3 insertions(+)
+> Signed-off-by: Adrian Ng Ho Yin <adrianhoyin.ng@altera.com>
+> Reviewed-by: Matthew Gerlach <matthew.gerlach@altrera.com>
 > 
-> diff --git a/arch/arm64/boot/dts/altera/socfpga_stratix10.dtsi b/arch/arm64/boot/dts/altera/socfpga_stratix10.dtsi
 
-Applied!
+Add a '---' above to signify the version history..
+
+Applies to all of your patches.
 
 Dinh
-
 
