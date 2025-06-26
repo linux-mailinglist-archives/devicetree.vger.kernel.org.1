@@ -1,230 +1,183 @@
-Return-Path: <devicetree+bounces-189882-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-189883-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id C2663AE9BBE
-	for <lists+devicetree@lfdr.de>; Thu, 26 Jun 2025 12:48:22 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 98716AE9BCD
+	for <lists+devicetree@lfdr.de>; Thu, 26 Jun 2025 12:51:06 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 9356B5A0A05
-	for <lists+devicetree@lfdr.de>; Thu, 26 Jun 2025 10:47:56 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 1CF875A2269
+	for <lists+devicetree@lfdr.de>; Thu, 26 Jun 2025 10:50:41 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C911A2356D9;
-	Thu, 26 Jun 2025 10:48:17 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7947325A2CF;
+	Thu, 26 Jun 2025 10:49:42 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="Z6YsGLt/"
+	dkim=pass (2048-bit key) header.d=ventanamicro.com header.i=@ventanamicro.com header.b="g/qC2zeH"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f65.google.com (mail-wm1-f65.google.com [209.85.128.65])
+Received: from mail-wr1-f49.google.com (mail-wr1-f49.google.com [209.85.221.49])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 114571FBCB2
-	for <devicetree@vger.kernel.org>; Thu, 26 Jun 2025 10:48:15 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.65
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B7E5D264A9D
+	for <devicetree@vger.kernel.org>; Thu, 26 Jun 2025 10:49:40 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.49
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1750934897; cv=none; b=LOXU4wm9a1iL69IZzHZMNgTwBubxH/0hdsWOwmBz0NhotwAZSoGr8jOuipgy+MKG3qB6ZCKC/PQX2P24K4R9WbG8XkuSX0dAo2uhXKEm73D/ec3gsQxb0lAUF+pbejkync7nD8kiRJbl6BNwwMHZlmPe6PErM4Ly3/9X8BCzEqg=
+	t=1750934982; cv=none; b=Uud9Tk22AASa5/Qwr0kR9zCxnLYG7h2tPWzWf5+/0NjYAqtxUzszGOOxTYA8MeYw3O68N0mUAbwkeNDWhGR/hO+oakpAGGHSTPo0MFA60ztzwYIu9yeYLLXkywZR7+KETKVaFXfkVRRGVFHPcg13iQuXVV4/ntAmKjQ7pz3LowA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1750934897; c=relaxed/simple;
-	bh=iDPYcXFSHqv1aXfl8/YJ053KuD2moVV4g3YDzQAcxtc=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=EGtW9LFNK+RPt4oa58OZRLmgy50TzAwgaRFZgioQyrPt8+UwnofijHf1Pt+TLlsHq+EKrTG7TEjuS44heecrvmpHTtI+aj7xOgS0/N5NOLlBVy4+5w4HfhpNdAbEjaCFinjCm+JKtydW3KBsrPjAncie7vAA0JRj85RRaEAwusg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=Z6YsGLt/; arc=none smtp.client-ip=209.85.128.65
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-wm1-f65.google.com with SMTP id 5b1f17b1804b1-450cf0120cdso6591185e9.2
-        for <devicetree@vger.kernel.org>; Thu, 26 Jun 2025 03:48:15 -0700 (PDT)
+	s=arc-20240116; t=1750934982; c=relaxed/simple;
+	bh=rBGBxF+i3sBjEDYBJzXyfsL97dNuu5H4YUuYuuclALQ=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=rA+q9CVvjKO+/oHYczuj4bUgk70NsFZUoKPoQT6bESveNmHCYmKqXpim1W0rqW340Y3ht6lPW+VFj8nQQJ+cFh6QtUXYRDXWYMHzm64xfAdoSkC7AQJHcezC36tSW5+qkBXW7VtkE0O2eILPSt+NtR6qJ/L3D87Ao7SgSCt3WN8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ventanamicro.com; spf=pass smtp.mailfrom=ventanamicro.com; dkim=pass (2048-bit key) header.d=ventanamicro.com header.i=@ventanamicro.com header.b=g/qC2zeH; arc=none smtp.client-ip=209.85.221.49
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ventanamicro.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ventanamicro.com
+Received: by mail-wr1-f49.google.com with SMTP id ffacd0b85a97d-3a588da60dfso516163f8f.1
+        for <devicetree@vger.kernel.org>; Thu, 26 Jun 2025 03:49:40 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1750934894; x=1751539694; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=HUjw7qBE83HsX3Aeqbgt73oRkerz87TNCfkEGmj2ZvU=;
-        b=Z6YsGLt/8q+q8W5vV82LSVtbDK5gha9W0hqjDhIcqeSh5Dh8k1Gh4R/hqRSdw94aHe
-         euJPuorv3vsF/0ZJBbE2Tt4whDpaKAyRZcR6NM+IxTHUk9+BOlJALFNlhcXi/xU2G5XG
-         VbHz8E7yjx7RRf/nO/mlB5Ulkgn7L+Ppa5wqmUSzYA/4YhI0DEMJIl52eSBL5e1S4ZlZ
-         1VjDRIv2HS7twWHKqsgt1EXFl8q4XP/m91MhVyEFPuPAF3Gk65SQcjW9//8k1nXIUeE0
-         2p+JkYglpuFS7IC2K7f8YQTWDfqIatptlsSMA8p0nO3WndzbOfFOfqOMX0phQ8s0GNvC
-         gzmg==
+        d=ventanamicro.com; s=google; t=1750934979; x=1751539779; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=1a0bjQkrE0lXOwbpfOZiZMnL8XuL0L+bDp2YasyQuLw=;
+        b=g/qC2zeH57dA3Ddn2gBt06KrRw5rhOs/KrOwGt5DINU95mZqhr06obNUacy9cV+p5A
+         DkE92d60c4gDQGnhO+CGFGzW53ioXrpTr6HnuWHdi4UnDFQzAKvPk0RjSdQqw+aVgITa
+         ZyT0LT1n1amgAVYFYuv0b5fl+3xIBz5Vqf91wD14ojgXD3qyOORIJWH90WtMnkvqjnfZ
+         wc1p1Q/dh+qGKr3a+ESg5QBXmrD5IyQCqt3j3cRZVWEL90bZBuFvn0Nb2fxaHTsQKIH6
+         NSmUD9PQEZEOzzzi3WV6KhXNQKKwUtt7V70JJilpBtA2xLL4p+iboVRooAhwo9nJZDoa
+         LVrw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1750934894; x=1751539694;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=HUjw7qBE83HsX3Aeqbgt73oRkerz87TNCfkEGmj2ZvU=;
-        b=HmictmgsaK7H/4eHq5OaTYui8l/9NIzER2RnBgv36tNyAX7cH+IqrSm8TowRn54wmM
-         2EGOBA4cWI00dmfXS7+yJBsQxQp/WGOiLfHVXmYOWo6JtjgbqpXIkRgOhEpbYGblt14n
-         FfDBVkNR9hh9y0n+XMOTDCcrbrYHC4te/svZuj9TEAuUA6BprGpeEYTtmcC5OjpPv5FH
-         dkLEnloonyVBE+YP/y9q+RHEOc/DohEw2md0XhpsOt77TtUxDu6qar1GlakGkWSuKQeJ
-         zNq1NaaVIcksStaxzmW4T75E7cpNcG/6OY2eRKpxX3UQ3rpRpYdrRKRtY4XnvJcHnoBS
-         J0tw==
-X-Forwarded-Encrypted: i=1; AJvYcCUstMYX1CjOaZQEFvrUUb18Y2dQC8ctrCojNJ9P39PfpJQccJseVkk7qhSP0H60OwnZe6n3K213crvo@vger.kernel.org
-X-Gm-Message-State: AOJu0YzXZtrSYEVNDNS+5A99k8930EbnHNjZPHMvkbSCrf9vHGU1dpNt
-	3hR/Xd+wHVLNSqJ7mH+2bPBWNRcAqKhFcK8zuRtDBNCnsVM34MLXLO2TeTMc8s/3j/Y=
-X-Gm-Gg: ASbGncun3AYWkxTniagU6L8/pbpN9KwkIKXmre2xUsAu+yN4tY++vldDzw8yH7lHIm2
-	RnVnA1lzuufy9iHG/3ow4YxmD00YqxkOmMX1rSYf20yYmhJi+OBSkTESI3X//E5jPBmt/LGV+X3
-	ewHEE0p0prS8igA5DNrBenCOSFsv+vCqnELdBsmwaTJXklfQ+QkObcPhg08RbVHkCh4g+LGBZ6g
-	PGw4Nvgn3uFlbMrQ19lQSof2t3FmXA1o3MN2sqtbX2ct8vxHbyEM6ujrObF3Us3v8tyMX9CQIqV
-	a6nQ1g84rYH5J2Uu2E4NZ8kkAb5kMRdwFCwJMBTsMd7zRPkfzOMY1aMMFnp9+vOEAIbgGShe0Ky
-	MxBm0GKdG1pTkyigErbLnEXPB4zg=
-X-Google-Smtp-Source: AGHT+IGsQdj4iGv9FBGfoAWi9XRLBBqhbfDylK0ITEXpt4PSByT7nYhuvCMByEIesH6nO5RpBBlepQ==
-X-Received: by 2002:a05:600c:5490:b0:453:81a:2f3f with SMTP id 5b1f17b1804b1-45381afa899mr71269575e9.30.1750934894357;
-        Thu, 26 Jun 2025 03:48:14 -0700 (PDT)
-Received: from [192.168.0.35] (188-141-3-146.dynamic.upc.ie. [188.141.3.146])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-3a6e8114774sm7141630f8f.94.2025.06.26.03.48.13
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 26 Jun 2025 03:48:13 -0700 (PDT)
-Message-ID: <d1b0b5c1-a031-4429-bb4b-ad8bc914c971@linaro.org>
-Date: Thu, 26 Jun 2025 11:48:12 +0100
+        d=1e100.net; s=20230601; t=1750934979; x=1751539779;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=1a0bjQkrE0lXOwbpfOZiZMnL8XuL0L+bDp2YasyQuLw=;
+        b=ThMIUiaabrjqCBRSB9NY4mTby2jmvElowpXMn1GAAUpWnLiaV8ZkiSDbo7KEqikl2H
+         ri5ldd51JiGs3VeCaeLLeJKpThnwn4Boplk5YSRPF/ajZ7rfUhO4FzT5QYN6Abx4Fl87
+         YakQ+8HH7GbjWoc/sGYlQuZQtJMFHfJV3hrARat9exGCy4YvmVBISvyRrYAj7mM2V9yo
+         gEWVRpJW2YlhYpPop4ZkRcNw6i+TrheJ1n/sIlJPB5m8KC4PUsP4/0wfJwhkHP+d+3Ns
+         wfXLAxmkYT9iDZjOUYxvt5Jwzmq7iHGrU9w3/32BJUJao1fhEodmsREwJFMv0h3qrUoj
+         /98g==
+X-Forwarded-Encrypted: i=1; AJvYcCU4m+Fc/jPFDq0FYZ7nt2yzhm7Vrs3WLLlXRfLQ1HqV/w2dQtDrlGG2tGGpTmsbFp5HA4T9w5Gz0ISQ@vger.kernel.org
+X-Gm-Message-State: AOJu0YycvrRzjLPIs7/p+DD9ugzAzT2BH9uheXsIp+FdJURpn+cS0sCE
+	a1r5dHH/SogUW7nwfvSzNkE7InakR24DU9idR3MK6rCXDkJZbNSNHCK1A6RF3ZsXbCE=
+X-Gm-Gg: ASbGncv0dT1guEBG/vEiS939RlzFlwN6KMEoO8QboUlwI2CyqLM/l4sugEqsK4twDIl
+	yJJ6tGwvcqnrW6gxUR91ic3kV2m6uhUudC7coBcW761GN5bQy4T+cAoKs5eDDZNomsYS4gqgfhE
+	zrCM2zWpqwl1PvTp9Jy1rUNlJceQoGcy8zOeaj8mUBDJK72lW1fOCy6i6Ah7EvauGE/OIYWv26S
+	NGBi5LWbloijSpF2Kc/NelmBrNa69sRoUZMFTDOZQnXOWP68qPwE26nRM4YEM94YOQy07Cbn/qm
+	FdroEjMyq5D7elX7CfCEAXMbcCUbM/R/PF6WoHZpYz3ATHpBB8hpmAdmybvG
+X-Google-Smtp-Source: AGHT+IHq/vFRkJj/oJMZi+3J+q9S/bpmTny3iypeXTqCnR6Swc4ofLBoKTbFvUTAYU6DIEK0HRcCDQ==
+X-Received: by 2002:a5d:64e1:0:b0:3a6:d92d:9f7c with SMTP id ffacd0b85a97d-3a6ed5e9c5bmr5333270f8f.9.1750934978974;
+        Thu, 26 Jun 2025 03:49:38 -0700 (PDT)
+Received: from localhost ([2a02:8308:a00c:e200::5485])
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-3a6f3a79377sm1808780f8f.20.2025.06.26.03.49.38
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 26 Jun 2025 03:49:38 -0700 (PDT)
+Date: Thu, 26 Jun 2025 12:49:37 +0200
+From: Andrew Jones <ajones@ventanamicro.com>
+To: Aleksa Paunovic via B4 Relay <devnull+aleksa.paunovic.htecgroup.com@kernel.org>
+Cc: Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Paul Walmsley <paul.walmsley@sifive.com>, Palmer Dabbelt <palmer@dabbelt.com>, 
+	Albert Ou <aou@eecs.berkeley.edu>, Alexandre Ghiti <alex@ghiti.fr>, 
+	Jonathan Corbet <corbet@lwn.net>, Palmer Dabbelt <palmer@sifive.com>, 
+	Conor Dooley <conor@kernel.org>, devicetree@vger.kernel.org, linux-riscv@lists.infradead.org, 
+	linux-kernel@vger.kernel.org, linux-doc@vger.kernel.org, 
+	Aleksa Paunovic <aleksa.paunovic@htecgroup.com>
+Subject: Re: [PATCH v4 6/7] riscv: Add tools support for xmipsexectl
+Message-ID: <20250626-af013235ad8d22421b2fe5b1@orel>
+References: <20250625-p8700-pause-v4-0-6c7dd7f85756@htecgroup.com>
+ <20250625-p8700-pause-v4-6-6c7dd7f85756@htecgroup.com>
+ <20250626-a1aca9887bbf5410741e17c4@orel>
+ <20250626-0186dfe9df28f9bb72a91426@orel>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v5 3/4] media: dt-bindings: Add qcom,msm8939-camss
-To: Krzysztof Kozlowski <krzk@kernel.org>, vincent.knecht@mailoo.org,
- Robert Foss <rfoss@kernel.org>, Todor Tomov <todor.too@gmail.com>,
- Mauro Carvalho Chehab <mchehab@kernel.org>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Bjorn Andersson <andersson@kernel.org>,
- Konrad Dybcio <konradybcio@kernel.org>
-Cc: linux-kernel@vger.kernel.org, linux-media@vger.kernel.org,
- linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
- =?UTF-8?Q?Andr=C3=A9_Apitzsch?= <git@apitzsch.eu>,
- phone-devel@vger.kernel.org, ~postmarketos/upstreaming@lists.sr.ht,
- Vladimir Zapolskiy <vladimir.zapolskiy@linaro.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-References: <20250613-camss-8x39-vbif-v5-0-a002301a7730@mailoo.org>
- <20250613-camss-8x39-vbif-v5-3-a002301a7730@mailoo.org>
- <50fa344c-d683-420c-a3b5-837ec6d8e93e@kernel.org>
- <e928a7c5-56d5-4f2b-b667-bdbefb506d1f@linaro.org>
- <0e030c09-0a89-4883-b958-85ddd6831407@kernel.org>
-Content-Language: en-US
-From: Bryan O'Donoghue <bryan.odonoghue@linaro.org>
-In-Reply-To: <0e030c09-0a89-4883-b958-85ddd6831407@kernel.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20250626-0186dfe9df28f9bb72a91426@orel>
 
-On 26/06/2025 11:28, Krzysztof Kozlowski wrote:
-> On 26/06/2025 12:19, Bryan O'Donoghue wrote:
->> On 26/06/2025 11:00, Krzysztof Kozlowski wrote:
->>>> +  reg-names:
->>>> +    items:
->>>> +      - const: csi_clk_mux
->>> No, I already provided arguments in two lengthy discussions - this is
->>> not sorted by name.
->>>
->>> Keep the same order as in previous device, so msm8916 for example. Or
->>> any other, but listen to some requests to sort it by some arbitrary rule
->>> which was never communicated by DT maintainers.
->>
->> I don't think if you look through the history that you can find a
->> consistent rule that was used to arrange the registers.
->>
->> So we are trying to have a consistent way of doing that. Thats why the
->> last number of additions have been sort by name, because it seemed to be
->> the most consistent.
+On Thu, Jun 26, 2025 at 11:34:21AM +0200, Andrew Jones wrote:
+> On Thu, Jun 26, 2025 at 11:21:10AM +0200, Andrew Jones wrote:
+> > On Wed, Jun 25, 2025 at 04:21:01PM +0200, Aleksa Paunovic via B4 Relay wrote:
+> > > From: Aleksa Paunovic <aleksa.paunovic@htecgroup.com>
+> > > 
+> > > Use the hwprobe syscall to decide which PAUSE instruction to execute in
+> > > userspace code.
+> > > 
+> > > Signed-off-by: Aleksa Paunovic <aleksa.paunovic@htecgroup.com>
+> > > ---
+> > >  tools/arch/riscv/include/asm/vdso/processor.h | 27 +++++++++++++++++----------
+> > >  1 file changed, 17 insertions(+), 10 deletions(-)
+> > > 
+> > > diff --git a/tools/arch/riscv/include/asm/vdso/processor.h b/tools/arch/riscv/include/asm/vdso/processor.h
+> > > index 662aca03984817f9c69186658b19e9dad9e4771c..027219a486b7b93814888190f8224af29498707c 100644
+> > > --- a/tools/arch/riscv/include/asm/vdso/processor.h
+> > > +++ b/tools/arch/riscv/include/asm/vdso/processor.h
+> > > @@ -4,26 +4,33 @@
+> > >  
+> > >  #ifndef __ASSEMBLY__
+> > >  
+> > > +#include <asm/hwprobe.h>
+> > > +#include <sys/hwprobe.h>
+> > > +#include <asm/vendor/mips.h>
+> > >  #include <asm-generic/barrier.h>
+> > >  
+> > >  static inline void cpu_relax(void)
+> > >  {
+> > > +	struct riscv_hwprobe pair;
+> > > +	bool has_mipspause;
+> > >  #ifdef __riscv_muldiv
+> > >  	int dummy;
+> > >  	/* In lieu of a halt instruction, induce a long-latency stall. */
+> > >  	__asm__ __volatile__ ("div %0, %0, zero" : "=r" (dummy));
+> > >  #endif
+> > >  
+> > > -#ifdef CONFIG_TOOLCHAIN_HAS_ZIHINTPAUSE
+> > > -	/*
+> > > -	 * Reduce instruction retirement.
+> > > -	 * This assumes the PC changes.
+> > > -	 */
+> > > -	__asm__ __volatile__ ("pause");
+> > > -#else
+> > > -	/* Encoding of the pause instruction */
+> > > -	__asm__ __volatile__ (".4byte 0x100000F");
+> > > -#endif
+> > > +	pair.key = RISCV_HWPROBE_KEY_VENDOR_EXT_MIPS_0;
+> > > +	__riscv_hwprobe(&pair, 1, 0, NULL, 0);
+> > > +	has_mipspause = pair.value & RISCV_HWPROBE_VENDOR_EXT_XMIPSEXECTL;
+> > > +
+> > > +	if (has_mipspause) {
+> > > +		/* Encoding of the mips pause instruction */
+> > > +		__asm__ __volatile__(".4byte 0x00501013");
+> > > +	} else {
+> > > +		/* Encoding of the pause instruction */
+> > > +		__asm__ __volatile__(".4byte 0x100000F");
+> > > +	}
+> > > +
+> > 
+> > cpu_relax() is used in places where we cannot afford the overhead nor call
+> > arbitrary functions which may take locks, etc. We've even had trouble
+> > using a static key here in the past since this is inlined and it bloated
+> > the size too much. You'll need to use ALTERNATIVE().
 > 
+> Oh, I see now that the next patch is handling the kernel cpu_relax with
+> ALTERNATIVE and this was just the tools cpu_relax. We don't want to make
+> a syscall inside cpu_relax though either, since it gets called in loops.
+
+(Another follow up to myself...)
+
+I guess with the vdso cached result it should only be a handful of
+instructions, but it still seems odd to embed a call in cpu_relax.
+
+Thanks,
+drew
+
+> It'd be better to just call the standard pause (0x100000F) even if it
+> does nothing. Or maybe there's some define that can be added/used to
+> select the correct instruction?
 > 
-> Why are we discussing it again? You asked me the same here:
-> https://lore.kernel.org/all/8f11c99b-f3ca-4501-aec4-0795643fc3a9@kernel.org/
-> 
-> and I already said - not sorting by name. You take the same order as
-> previous.
-> 
-> If you ever want to sort by name, answer to yourself:
-> NO. Take the same order as other existing device.
-> 
-> If you ever want to sort by value, answer to yourself:
-> NO.
-> 
-> You both came with some new, invented rules of sorting, applied it, and
-> now you claim that "existing devices were sorted like that". What? NO!
-> 
-> Best regards,
-> Krzysztof
-
-OK.
-
-Discussed this on Slack with Krzysztof.
-
-8939 should be like 8916 because these are devices of a similar class.
-
-x1e has a particular order if a new device x1e+1 comes along with a new 
-register then
-
-reg-names:
-  23     items:
-  24       - const: csid0
-  25       - const: csid1
-  26       - const: csid2
-  27       - const: csid_lite0
-  28       - const: csid_lite1
-  29       - const: csid_wrapper
-  30       - const: csiphy0
-  31       - const: csiphy1
-  32       - const: csiphy2
-  33       - const: csiphy4
-  34       - const: csitpg0
-  35       - const: csitpg1
-  36       - const: csitpg2
-  37       - const: vfe0
-  38       - const: vfe1
-  39       - const: vfe_lite0
-  40       - const: vfe_lite1
-
-reg-names:
-  23     items:
-  24       - const: csid0
-  25       - const: csid1
-  26       - const: csid2
-  27       - const: csid_lite0
-  28       - const: csid_lite1
-  29       - const: csid_wrapper
-  30       - const: csiphy0
-  31       - const: csiphy1
-  32       - const: csiphy2
-  33       - const: csiphy4
-  34       - const: csitpg0
-  35       - const: csitpg1
-  36       - const: csitpg2
-  37       - const: vfe0
-  38       - const: vfe1
-  39       - const: vfe_lite0
-  40       - const: vfe_lite1
-           - NEW ENTRY GOES HERE csid3
-
-A new SoC with a significantly different architecture could have 
-different ordering of regs.
-
-The main block should go first which means the above should look like:
-
-reg-names:
-  23     items:
-  24       - const: csid_wrapper
-  25       - const: csid0
-  26       - const: csid1
-  27       - const: csid2
-  28       - const: csid_lite0
-  29       - const: csid_lite1
-  30       - const: csiphy0
-  31       - const: csiphy1
-  32       - const: csiphy2
-  33       - const: csiphy4
-  34       - const: csitpg0
-  35       - const: csitpg1
-  36       - const: csitpg2
-  37       - const: vfe0
-  38       - const: vfe1
-  39       - const: vfe_lite0
-  40       - const: vfe_lite1
-
-I think I personally haven't understood what was meant by "devices of a 
-class" but its clearer now.
-
-Appreciate the explanation.
-
----
-bod
+> Thanks,
+> drew
 
