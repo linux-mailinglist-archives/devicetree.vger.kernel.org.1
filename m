@@ -1,107 +1,173 @@
-Return-Path: <devicetree+bounces-189834-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-189835-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 78CC3AE9A72
-	for <lists+devicetree@lfdr.de>; Thu, 26 Jun 2025 11:52:07 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 58F47AE9A7A
+	for <lists+devicetree@lfdr.de>; Thu, 26 Jun 2025 11:56:08 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 18A6B3B6578
-	for <lists+devicetree@lfdr.de>; Thu, 26 Jun 2025 09:51:30 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 2CE801C20287
+	for <lists+devicetree@lfdr.de>; Thu, 26 Jun 2025 09:56:23 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8D31129008E;
-	Thu, 26 Jun 2025 09:51:51 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3AE622BF015;
+	Thu, 26 Jun 2025 09:56:02 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="HnENumIZ"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 717DA239E79;
-	Thu, 26 Jun 2025 09:51:51 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0B90529C35F;
+	Thu, 26 Jun 2025 09:56:01 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1750931511; cv=none; b=Oh3LG4Gze8V5jIQ1po9tIiGINBUON/gRsK0VnIJvlWNurwoHTrH5eKJop9dDkcN5KihIhELQxTPmEWvcb3BuLGTrjpr0CksXbqF7jgncZNXcoWnILnWKwiEargA3tWhu6jtUgxSN/p0R+XOjPYx/GGv7276y7pUfO/kYJ1TyIGo=
+	t=1750931762; cv=none; b=YtDzeVGFKfAbIFdw3Z+4cNN9mO1t7CPy8RIEwPEdtZRmgqCt2CR7Twjx0QzVMEy1DDJBfuwa+ZGZDOZlv3HgQ4myzJJyiNCBsoovFEyZD/zlbDbCSyXB1LSQcUKe0260WchSL5M45fH1EKdRs4gKUhEGvyi0PXVwNoySaY+ys+0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1750931511; c=relaxed/simple;
-	bh=8tOGyrg9VRQ4qFFw8FVu9F2qt2sA6hzl5WlN8naaUfc=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=QqB+UNRnhLZRAvRKK4FiZ4A88ETy1dQVhiF/trXMzXOexGMqTKWWzc39zngqrNNH3w0CDsMgioIMVmglGycNPVo2eK3nc7t2Plttq36hiGcNG04EcxiGp8NwNJQrZKLj+H2eJY2EYOWVtJB8CZtWKn8H1FtiTbiLgMZ6v+84E9A=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 461FFC4CEEB;
-	Thu, 26 Jun 2025 09:51:49 +0000 (UTC)
-From: Geert Uytterhoeven <geert+renesas@glider.be>
-To: Magnus Damm <magnus.damm@gmail.com>,
+	s=arc-20240116; t=1750931762; c=relaxed/simple;
+	bh=NIdi9vkSfJQtqbtgSmTPBIUYBGUucA44r7jAMoBWtrk=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=I+lzrRUm/gh4bbyYP9drzsaKM4m95/Z9P2MrLRWF7FL+h/IBUUSdudIL7NePZAGVpjBfBMCiKZcI8di/fX5NolY+1TwkAlfHOS2fbwXW+Yiv2APpj40KeGswCCMFBKOLndp6o/Ht1j055Zah4WqQhBRxI1kQGDPxFvxEIqDG/Fg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=HnENumIZ; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 91818C4CEF1;
+	Thu, 26 Jun 2025 09:56:01 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1750931761;
+	bh=NIdi9vkSfJQtqbtgSmTPBIUYBGUucA44r7jAMoBWtrk=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=HnENumIZ1fVJVgXx+uIFkAExIWrr/yFkI5BgCQKsBLrcN0eNG0YjWT+DYcEaq98qa
+	 x3AICdrkpFbiul9hG1ulv7WFcbaG7YPqRFhkVVygDubPbLK8ZIJkE0MRP2A+ztSqiC
+	 1OkvauffDOxDlz1F0jlM5d8Nsn6d8AXmVUL9Wd5srmTqkJsI9GKJ/SCZWe1fbiYpWw
+	 XOxfdxgwQUTg+IsIyE+gmMY+ED/RbUWNmriWmqNm8eQSwzoJPv/hNKWO+7n8aI6NP1
+	 HNVeHrfPWl1Wecdj3GCXVtM6QfbkP6IE4tSLWf4nOCnY0aNbLGCWpjZva42jpV+HvE
+	 56YSqi4fqJ0+A==
+Received: from johan by xi.lan with local (Exim 4.97.1)
+	(envelope-from <johan@kernel.org>)
+	id 1uUjKr-000000007WP-1woe;
+	Thu, 26 Jun 2025 11:56:01 +0200
+Date: Thu, 26 Jun 2025 11:56:01 +0200
+From: Johan Hovold <johan@kernel.org>
+To: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
+Cc: Bjorn Andersson <andersson@kernel.org>,
+	Maximilian Luz <luzmaximilian@gmail.com>,
+	Konrad Dybcio <konradybcio@kernel.org>,
 	Rob Herring <robh@kernel.org>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>
-Cc: linux-renesas-soc@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	devicetree@vger.kernel.org,
-	Geert Uytterhoeven <geert+renesas@glider.be>
-Subject: [PATCH 4/4] arm64: dts: renesas: r8a779h2: Add Gray Hawk Single support
-Date: Thu, 26 Jun 2025 11:51:35 +0200
-Message-ID: <d2e0e7b746063368b83148100aa553cff55b8b60.1750931027.git.geert+renesas@glider.be>
-X-Mailer: git-send-email 2.43.0
-In-Reply-To: <cover.1750931027.git.geert+renesas@glider.be>
-References: <cover.1750931027.git.geert+renesas@glider.be>
+	Conor Dooley <conor+dt@kernel.org>,
+	Ard Biesheuvel <ardb@kernel.org>,
+	Steev Klimaszewski <steev@kali.org>, linux-arm-msm@vger.kernel.org,
+	linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-efi@vger.kernel.org,
+	Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
+	Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
+Subject: Re: [PATCH v4 7/8] firmware: qcom: scm: rework QSEECOM allowlist
+Message-ID: <aF0ZMcVcgHpqsKoG@hovoldconsulting.com>
+References: <20250625-more-qseecom-v4-0-aacca9306cee@oss.qualcomm.com>
+ <20250625-more-qseecom-v4-7-aacca9306cee@oss.qualcomm.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20250625-more-qseecom-v4-7-aacca9306cee@oss.qualcomm.com>
 
-The Gray Hawk Single board with R-Car V4M-7 (R8A779H2) uses an updated
-version of the R-Car V4M (R8A779H0) SoC.
+On Wed, Jun 25, 2025 at 01:53:26AM +0300, Dmitry Baryshkov wrote:
+> From: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+> 
+> Listing individual machines in qcom_scm_qseecom_allowlist doesn't scale.
+> Allow it to function as allow and disallow list at the same time by the
+> means of the match->data and list the SoC families instead of devices.
+> 
+> In case a particular device has buggy or incompatible firmware user
+> still can disable QSEECOM by specifying qcom_scm.qseecom=off kernel
+> param and (in the longer term) adding machine-specific entry to the
+> qcom_scm_qseecom_allowlist table.
+> 
+> Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+> Reviewed-by: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
+> Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
 
-For now, there are no visible differences compared to the variant
-equipped with an R-Car V4M (R8A779H0) SoC.
+>  /*
+>   * We do not yet support re-entrant calls via the qseecom interface. To prevent
+> - * any potential issues with this, only allow validated machines for now. Users
+> + * any potential issues with this, only allow validated platforms for now. Users
+>   * still can manually enable or disable it via the qcom_scm.qseecom modparam.
+> + *
+> + * To disable QSEECOM for a particular machine, add compatible entry and set
+> + * data to &qcom_qseecom_disable.
+>   */
+>  static const struct of_device_id qcom_scm_qseecom_allowlist[] __maybe_unused = {
+> -	{ .compatible = "asus,vivobook-s15" },
+> -	{ .compatible = "asus,zenbook-a14-ux3407qa" },
+> -	{ .compatible = "asus,zenbook-a14-ux3407ra" },
+> -	{ .compatible = "dell,xps13-9345" },
+> -	{ .compatible = "hp,elitebook-ultra-g1q" },
+> -	{ .compatible = "hp,omnibook-x14" },
+> -	{ .compatible = "huawei,gaokun3" },
+> -	{ .compatible = "lenovo,flex-5g" },
+> -	{ .compatible = "lenovo,thinkpad-t14s" },
+> -	{ .compatible = "lenovo,thinkpad-x13s", },
+>  	{ .compatible = "lenovo,yoga-c630", .data = &qcom_qseecom_ro_uefi, },
+> -	{ .compatible = "lenovo,yoga-slim7x" },
+> -	{ .compatible = "microsoft,arcata", },
+> -	{ .compatible = "microsoft,blackrock" },
+> -	{ .compatible = "microsoft,romulus13", },
+> -	{ .compatible = "microsoft,romulus15", },
+> -	{ .compatible = "qcom,sc8180x-primus" },
+> +	{ .compatible = "qcom,sc8180x", },
+> +	{ .compatible = "qcom,sc8280xp", },
+>  	{ .compatible = "qcom,sc8280xp-crd", .data = &qcom_qseecom_ro_uefi, },
 
-Signed-off-by: Geert Uytterhoeven <geert+renesas@glider.be>
----
- arch/arm64/boot/dts/renesas/Makefile            |  2 ++
- .../dts/renesas/r8a779h2-gray-hawk-single.dts   | 17 +++++++++++++++++
- 2 files changed, 19 insertions(+)
- create mode 100644 arch/arm64/boot/dts/renesas/r8a779h2-gray-hawk-single.dts
+You need to have the machine specific entries before the SoC fallbacks
+for this to work.
 
-diff --git a/arch/arm64/boot/dts/renesas/Makefile b/arch/arm64/boot/dts/renesas/Makefile
-index 677ba3aa8931788a..cbd0202c4a1744e9 100644
---- a/arch/arm64/boot/dts/renesas/Makefile
-+++ b/arch/arm64/boot/dts/renesas/Makefile
-@@ -105,6 +105,8 @@ dtb-$(CONFIG_ARCH_R8A779G0) += r8a779g3-white-hawk-single-ard-audio-da7212.dtb
- 
- dtb-$(CONFIG_ARCH_R8A779H0) += r8a779h0-gray-hawk-single.dtb
- 
-+dtb-$(CONFIG_ARCH_R8A779H0) += r8a779h2-gray-hawk-single.dtb
-+
- dtb-$(CONFIG_ARCH_R8A77951) += r8a779m1-salvator-xs.dtb
- r8a779m1-salvator-xs-panel-aa104xd12-dtbs := r8a779m1-salvator-xs.dtb salvator-panel-aa104xd12.dtbo
- dtb-$(CONFIG_ARCH_R8A77951) += r8a779m1-salvator-xs-panel-aa104xd12.dtb
-diff --git a/arch/arm64/boot/dts/renesas/r8a779h2-gray-hawk-single.dts b/arch/arm64/boot/dts/renesas/r8a779h2-gray-hawk-single.dts
-new file mode 100644
-index 0000000000000000..aeb32c77099ea20f
---- /dev/null
-+++ b/arch/arm64/boot/dts/renesas/r8a779h2-gray-hawk-single.dts
-@@ -0,0 +1,17 @@
-+// SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-+/*
-+ * Device Tree Source for the R-Car V4M-7 Gray Hawk Single board
-+ *
-+ * Copyright (C) 2025 Glider bv
-+ */
-+
-+/dts-v1/;
-+
-+#include "r8a779h2.dtsi"
-+#include "gray-hawk-single.dtsi"
-+
-+/ {
-+	model = "Renesas Gray Hawk Single board based on r8a779h2";
-+	compatible = "renesas,gray-hawk-single", "renesas,r8a779h2",
-+		     "renesas,r8a779h0";
-+};
--- 
-2.43.0
+Perhaps this should be made more clear in the table by adding a
+separator comment before the SoC entries or similar.
 
+> -	{ .compatible = "qcom,x1e001de-devkit" },
+> -	{ .compatible = "qcom,x1e80100-crd" },
+> -	{ .compatible = "qcom,x1e80100-qcp" },
+> -	{ .compatible = "qcom,x1p42100-crd" },
+> +	{ .compatible = "qcom,sdm845", .data = &qcom_qseecom_disable, },
+> +	{ .compatible = "qcom,x1e80100", },
+> +	{ .compatible = "qcom,x1p42100", },
+>  	{ }
+>  };
+>  
+> @@ -2046,12 +2035,22 @@ static bool qcom_scm_qseecom_machine_is_allowed(struct device *scm_dev,
+>  	match = of_match_node(qcom_scm_qseecom_allowlist, np);
+>  	of_node_put(np);
+>  
+> -	if (match && match->data)
+> +	if (!match) {
+> +		dev_info(scm_dev, "qseecom: untested machine, skipping\n");
+> +		return false;
+> +	}
+> +
+> +	if (match->data)
+>  		*quirks = *(unsigned long *)(match->data);
+>  	else
+>  		*quirks = 0;
+>  
+> -	return match;
+> +	if (*quirks & QCOM_QSEECOM_QUIRK_DISABLE) {
+> +		dev_info(scm_dev, "qseecom: disabled by the quirk\n");
+
+Not sure this is needed since it presumably has been disabled because it
+has been tested and found not to work. No need to spam the logs with
+that on every boot.
+
+In any case I don't think you should be referring to "the quirk" which
+makes little sense without looking at the implementation.
+
+> +		return false;
+> +	}
+> +
+> +	return true;
+>  }
+
+Johan
 
