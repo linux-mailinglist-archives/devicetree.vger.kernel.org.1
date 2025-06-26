@@ -1,109 +1,96 @@
-Return-Path: <devicetree+bounces-189829-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-189830-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 90251AE9A5B
-	for <lists+devicetree@lfdr.de>; Thu, 26 Jun 2025 11:42:57 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 69863AE9A6A
+	for <lists+devicetree@lfdr.de>; Thu, 26 Jun 2025 11:51:46 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 438BB189206D
-	for <lists+devicetree@lfdr.de>; Thu, 26 Jun 2025 09:43:13 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id C68314A3939
+	for <lists+devicetree@lfdr.de>; Thu, 26 Jun 2025 09:51:46 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8FA4029008E;
-	Thu, 26 Jun 2025 09:42:52 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="ALxxWE+O"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B9B2E25F785;
+	Thu, 26 Jun 2025 09:51:42 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 640D818035;
-	Thu, 26 Jun 2025 09:42:51 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9FAB9239E79;
+	Thu, 26 Jun 2025 09:51:42 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1750930972; cv=none; b=O16fOA5Gn9tXfjWTbq1w33+Yfbi6pl8kwBG/ThjddR77nyNL/UohUrJZnWH0v+vAgqmXAKVE9QrGtMmTsJAN2tKBIVo+mTsPyd/xVG30Ueg8Qonf+Imj5dC+htGXaKuIcCp29ny7V/t83e8Agma6MpxSAuoB8eaI92Ape8xAUE4=
+	t=1750931502; cv=none; b=Btgj9/fpZiWc+Ef+xAlng/ibV4cm7QcoaBgQ2E7X8eOx4ijmAyR+BoqOsdnlcvMfXlzKAhs4r2yNQ/OsrvowrtAhTSgTEVQQ690kNMcdL40iSJ6+AxdkodNRsEo/YCj87Wh476Zz3fJOhhpzT7iYhMZD4kqL0P4uaUgy0ekZObk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1750930972; c=relaxed/simple;
-	bh=yxr8jkkGpgSkf59PSayEt3iCwdXnKO9NB8pyouoEjO0=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=AUMqYqorh/UnVNyGrq9dj+XszysQsy6F5+SOpqE6cut0lfZqIt49W/vePwlJLPvhLk3hCoUKK8Rr+9xQ9RZtTiAWdWJSWiXFqcbjhKB5XYfNDJ+WWA0AtPLE0jM2aRowhMHvicNwBuhHb1z09nhDpr1G8OD5sAcnWt0czmBvp94=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=ALxxWE+O; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id AA8EDC4CEF4;
-	Thu, 26 Jun 2025 09:42:51 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1750930971;
-	bh=yxr8jkkGpgSkf59PSayEt3iCwdXnKO9NB8pyouoEjO0=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=ALxxWE+OyyAEN793dNZxPXlaxUD8qWsejSbr9+ou0JUjszr/243/supU2Py/r+KNY
-	 i1Svuh2TpEGu9EWb6C3+PqB8AR1UCIkEthUTs+mh5mfBA1LAY7qoYdQwbTlLLfJO6o
-	 0kL/STpOX0HcoLJxGj9Mfy4MqCK+2hqycG9v+n6DX88CZ8xVsRzdREzsA7B2W6P8tT
-	 WCFLUvn4Ppk/vOJuKzzwhXfKftv4YDHEwDCi6YbhGF875zelOtMU9MopfJZl8gYwiH
-	 XS58g8spscSzHdcb38yyfP4JMvW5XSJvEZA1EySh378JR2RhZFditbRHz1yaRXOwxt
-	 upQDK3bt5Yt5g==
-Received: from johan by xi.lan with local (Exim 4.97.1)
-	(envelope-from <johan@kernel.org>)
-	id 1uUj86-000000007Kg-2oNt;
-	Thu, 26 Jun 2025 11:42:51 +0200
-Date: Thu, 26 Jun 2025 11:42:50 +0200
-From: Johan Hovold <johan@kernel.org>
-To: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
-Cc: Bjorn Andersson <andersson@kernel.org>,
-	Maximilian Luz <luzmaximilian@gmail.com>,
-	Konrad Dybcio <konradybcio@kernel.org>,
+	s=arc-20240116; t=1750931502; c=relaxed/simple;
+	bh=GAogl0MVLOfOGpNGLd25LIjqf8QgUf7LzfIvUj35LgA=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=G4Cme/jAP/MihiAnJtR30StYE8zmiiQoCBEp/kZjM8xpyehxzyW44ehxEXrgDKgb/1W+NeQ0BSDfHoliHOj4Uiv52WaIhVov675DwZ6lL+CIphQj8ZMMb8CEPXWp5/JbGz7iBsBMi8bph3wsfERGtWbmQ69FR1effJSWLy1/kqE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 89DC4C4CEEB;
+	Thu, 26 Jun 2025 09:51:40 +0000 (UTC)
+From: Geert Uytterhoeven <geert+renesas@glider.be>
+To: Magnus Damm <magnus.damm@gmail.com>,
 	Rob Herring <robh@kernel.org>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, linux-arm-msm@vger.kernel.org,
-	linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
-Subject: Re: [PATCH v2 2/4] firmware: qcom: uefisecapp: add support for R/O
- UEFI vars
-Message-ID: <aF0WGmnN_8rvI9n1@hovoldconsulting.com>
-References: <20250621-more-qseecom-v2-0-6e8f635640c5@oss.qualcomm.com>
- <20250621-more-qseecom-v2-2-6e8f635640c5@oss.qualcomm.com>
- <aFloifxONXnQbVg6@hovoldconsulting.com>
- <aFlps9iUcD42vN4w@hovoldconsulting.com>
- <diarijcqernpm4v5s6u22jep3gzdrzy7o4dtw5wzmlec75og6y@wlbyjbtvnv3s>
+	Conor Dooley <conor+dt@kernel.org>
+Cc: linux-renesas-soc@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	devicetree@vger.kernel.org,
+	Geert Uytterhoeven <geert+renesas@glider.be>
+Subject: [PATCH 0/4] arm64: renesas: Add support for Gray Hawk Single with R-Car V4M-7
+Date: Thu, 26 Jun 2025 11:51:31 +0200
+Message-ID: <cover.1750931027.git.geert+renesas@glider.be>
+X-Mailer: git-send-email 2.43.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <diarijcqernpm4v5s6u22jep3gzdrzy7o4dtw5wzmlec75og6y@wlbyjbtvnv3s>
+Content-Transfer-Encoding: 8bit
 
-On Tue, Jun 24, 2025 at 04:13:34AM +0300, Dmitry Baryshkov wrote:
-> On Mon, Jun 23, 2025 at 04:50:27PM +0200, Johan Hovold wrote:
-> > On Mon, Jun 23, 2025 at 04:45:30PM +0200, Johan Hovold wrote:
+        Hi all,
 
-> > > Also not sure how useful it is to only be able to read variables,
-> > > including for the RTC where you'll end up with an RTC that's always
-> > > slightly off due to drift (even if you can set it when booting into
-> > > Windows or possibly from the UEFI setup).
-> > > 
-> > > Don't you have any SDAM blocks in the PMICs that you can use instead for
-> > > a proper functioning RTC on these machines?
-> 
-> I'd rather not poke into an SDAM, especially since we don't have docs
-> which SDAM blocks are used and which are not.
+This patch series adds support for the Gray Hawk Single development
+board variant equipped with an R-Car V4M-7 SoC.
 
-You're with Qualcomm now so you should be able to dig up this
-information like we did for the X13s (even if I'm quite aware that it
-may still be easier said than done).
+Changes compared to the internal RFC:
+  - Correct board part number.
 
-> I think the slightly drifted RTC is still much better than ending up
-> with an RTC value which is significantly off, because it was set via the
-> file modification time.
+I plan to queue this in renesas-devel for v6.17.
 
-I measured drift of 1 second every 3.5 h on the X13s, so having an
-almost correct time with massive drift that cannot be corrected for may
-not necessarily be better.
+Thanks for your comments!
 
-> Anyway, let me pick up some more patches in the next revision, maybe it
-> would be more obvious why I'd like to get R/O support.
+Geert Uytterhoeven (3):
+  dt-bindings: soc: renesas: Document R-Car V4M-7 Gray Hawk Single
+  arm64: dts: renesas: Factor out Gray Hawk Single board support
+  arm64: dts: renesas: r8a779h2: Add Gray Hawk Single support
 
-I'll try to take a look.
+Tam Nguyen (1):
+  arm64: dts: renesas: Add Renesas R8A779H2 SoC support
 
-Johan
+ .../bindings/soc/renesas/renesas.yaml         |   7 +
+ arch/arm64/boot/dts/renesas/Makefile          |   2 +
+ ...-hawk-single.dts => gray-hawk-single.dtsi} |  12 +-
+ .../dts/renesas/r8a779h0-gray-hawk-single.dts | 855 +-----------------
+ .../dts/renesas/r8a779h2-gray-hawk-single.dts |  17 +
+ arch/arm64/boot/dts/renesas/r8a779h2.dtsi     |  12 +
+ 6 files changed, 43 insertions(+), 862 deletions(-)
+ copy arch/arm64/boot/dts/renesas/{r8a779h0-gray-hawk-single.dts => gray-hawk-single.dtsi} (98%)
+ create mode 100644 arch/arm64/boot/dts/renesas/r8a779h2-gray-hawk-single.dts
+ create mode 100644 arch/arm64/boot/dts/renesas/r8a779h2.dtsi
+
+-- 
+2.43.0
+
+Gr{oetje,eeting}s,
+
+						Geert
+
+--
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
+
+In personal conversations with technical people, I call myself a hacker. But
+when I'm talking to journalists I just say "programmer" or something like that.
+							    -- Linus Torvalds
 
