@@ -1,268 +1,379 @@
-Return-Path: <devicetree+bounces-189759-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-189760-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id B35BAAE967E
-	for <lists+devicetree@lfdr.de>; Thu, 26 Jun 2025 08:52:09 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 28653AE968E
+	for <lists+devicetree@lfdr.de>; Thu, 26 Jun 2025 09:03:01 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 48D981C20572
-	for <lists+devicetree@lfdr.de>; Thu, 26 Jun 2025 06:52:24 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 96D557B43D9
+	for <lists+devicetree@lfdr.de>; Thu, 26 Jun 2025 07:01:36 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id BF20E2367D6;
-	Thu, 26 Jun 2025 06:52:03 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6412F238C04;
+	Thu, 26 Jun 2025 07:02:53 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="QEHBUHfq"
+	dkim=pass (2048-bit key) header.d=ventanamicro.com header.i=@ventanamicro.com header.b="i1gVJWfN"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.12])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-pg1-f181.google.com (mail-pg1-f181.google.com [209.85.215.181])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2E0F6219E0;
-	Thu, 26 Jun 2025 06:51:57 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=192.198.163.12
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1750920723; cv=fail; b=ut0xx1Ff1Sm3j1fg/ZjGHQffsoUKprnMxLI5uFnNZVTU9toL+OGSJwaDASE1s/lYvRJj2FNEA3Vv/yjpBwP/TEEzH6UDLkPfkwAomVU+uOllEFDOAjJxlXEjazwyeAHeKdfG6EV+F5fT0giR2CWXblIfE62p0pLcrllOijwoFF4=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1750920723; c=relaxed/simple;
-	bh=2PAdhgBdnGKCJD68gy4hwn2GvsDGyKVf6wNv08H6GYY=;
-	h=Message-ID:Date:Subject:To:CC:References:From:In-Reply-To:
-	 Content-Type:MIME-Version; b=h0zEP7kAT4Om5L+JXqL+AXSJf93NDiaCrdzDSPWfs8sEwQYzfx8qAApbipP8p7tQSi49J6pe168zTQDmg0fsXSl9hP6wuMv5Ah8AY5o46QGud0vekl8xkPJskZazkul3hTwIuomv79ZpMmmI94kmqG2cCasYFU5Ou1VRkkJ3/4c=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=QEHBUHfq; arc=fail smtp.client-ip=192.198.163.12
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1750920722; x=1782456722;
-  h=message-id:date:subject:to:cc:references:from:
-   in-reply-to:content-transfer-encoding:mime-version;
-  bh=2PAdhgBdnGKCJD68gy4hwn2GvsDGyKVf6wNv08H6GYY=;
-  b=QEHBUHfqJL7omFlnWa2cvpTWUt4ZYLTXk+qFEFPYLasLdUctlpjsOhbw
-   Z7sLW86MFaQpT03+Sn+ij4E9rBpt4skZcp4Oifmj2rthBsLVSGlVaAvKA
-   yBjqomRzM25REqU8OVtG1hh4LuCjMEMGMTD2Hns2Zh/g/VlQZ6fxrqeJa
-   hNWX+n/rF5IwzB1SO2orYtV6RCaZn6IZdn0fLd8EYtcze+Ih0NbjMGSnG
-   UI3x2NDliwGzcBqxStNT256oduCI85MYDkb32Shn/lOpOaV+BhN+RvCyJ
-   LgtNmnNgP3/q6wy/Fss6p6/80nnNvxQCpuZoJAv+c8lrpVaKgj5Zhax+E
-   Q==;
-X-CSE-ConnectionGUID: o/AQlqA8Tam1eoeVRCg1+w==
-X-CSE-MsgGUID: 4OBHCFj6Szmw7oNz6Ff2ww==
-X-IronPort-AV: E=McAfee;i="6800,10657,11475"; a="57011316"
-X-IronPort-AV: E=Sophos;i="6.16,267,1744095600"; 
-   d="scan'208";a="57011316"
-Received: from orviesa006.jf.intel.com ([10.64.159.146])
-  by fmvoesa106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 25 Jun 2025 23:51:52 -0700
-X-CSE-ConnectionGUID: nbE3MnNcTxGQYtZ+SawHtA==
-X-CSE-MsgGUID: AL5WU9roRweIvzzMtmXV1A==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.16,267,1744095600"; 
-   d="scan'208";a="151947805"
-Received: from orsmsx901.amr.corp.intel.com ([10.22.229.23])
-  by orviesa006.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 25 Jun 2025 23:51:52 -0700
-Received: from ORSMSX901.amr.corp.intel.com (10.22.229.23) by
- ORSMSX901.amr.corp.intel.com (10.22.229.23) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1544.25; Wed, 25 Jun 2025 23:51:51 -0700
-Received: from ORSEDG902.ED.cps.intel.com (10.7.248.12) by
- ORSMSX901.amr.corp.intel.com (10.22.229.23) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1544.25 via Frontend Transport; Wed, 25 Jun 2025 23:51:51 -0700
-Received: from NAM12-BN8-obe.outbound.protection.outlook.com (40.107.237.56)
- by edgegateway.intel.com (134.134.137.112) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1544.25; Wed, 25 Jun 2025 23:51:51 -0700
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=W5R3jDTIIGKiCvRYjlvkejsJpgbhX5s1gIukkhnZuYobtrXzYJsGm7cpKeDHHNVeFHpe5TXvfoYoACnCwFFK/CP0zicc16A6+NmtysvIwizi2BlHsn0eZ+/rEkwjK6X/3waDksDcYLCNpV11HEZLd4VeHzfqtp9P0L0p+VzZdnZrka7nd2K+H9/dI7h3O7AteEVpX7NWo1t8hqw2iSFJkGpWz3Rn0NGXoe3VM6My33iy1xOo62eB1zqX7zgs2AHGca9oDZxEmEfV5/gaBVWwEBVDnAoL6l0ywXgVXI1cTIXUJDbyP36BoDAIljV/INtLRpqb7b5+fAPPBPJkMfu6aw==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=aR4C6yQECsWVisJKQMipZAirWurqIkTHv+BxqytxM/4=;
- b=f2oZ9YOc/eWw3+eO/pzfTDjTRTn6ou2dWG/KjWwOvNvTwKGLqlxAMA+2hS/kzIBwz1HYxHzxEK9AgXNSHzEKYjvhqg8loul9YksD8j+UfVdEzb1y3Gsnjm51+d3NxR38tBR/KgT+QXaC4KEjYWeRJhiUci96cSFloPjIfQIPRsglGcx/XxTX8yruxA6i1YR5msPKkPlRt94FbwkXud4MaZw/jKQBmJYtYc3P+p4GjLehoOdul3mEH0nNNSfgiezGQHFMB+wSPpapn3MxdMtTjruNmw8vDJVUz+Bp+LgUBVmdfRYwVgzHe0Z3dDN09DgOtqvDmvQwopc/jDkuykHaNg==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
- dkim=pass header.d=intel.com; arc=none
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=intel.com;
-Received: from BN7PR11MB2708.namprd11.prod.outlook.com (2603:10b6:406:a9::11)
- by DS0PR11MB7577.namprd11.prod.outlook.com (2603:10b6:8:142::20) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8857.26; Thu, 26 Jun
- 2025 06:51:34 +0000
-Received: from BN7PR11MB2708.namprd11.prod.outlook.com
- ([fe80::6790:e12f:b391:837d]) by BN7PR11MB2708.namprd11.prod.outlook.com
- ([fe80::6790:e12f:b391:837d%5]) with mapi id 15.20.8857.026; Thu, 26 Jun 2025
- 06:51:34 +0000
-Message-ID: <b473517d-3a59-4554-9673-a49b9e3a84f7@intel.com>
-Date: Thu, 26 Jun 2025 09:51:28 +0300
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 1/3] mmc: sdhci_am654: Workaround for Errata i2312
-To: Judith Mendez <jm@ti.com>, Ulf Hansson <ulf.hansson@linaro.org>, "Vignesh
- Raghavendra" <vigneshr@ti.com>
-CC: Nishanth Menon <nm@ti.com>, Tero Kristo <kristo@kernel.org>, Rob Herring
-	<robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
-	<conor+dt@kernel.org>, <linux-arm-kernel@lists.infradead.org>,
-	<devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-	<linux-mmc@vger.kernel.org>
-References: <20250624221230.1952291-1-jm@ti.com>
- <20250624221230.1952291-2-jm@ti.com>
-Content-Language: en-US
-From: Adrian Hunter <adrian.hunter@intel.com>
-Organization: Intel Finland Oy, Registered Address: c/o Alberga Business Park,
- 6 krs, Bertel Jungin Aukio 5, 02600 Espoo, Business Identity Code: 0357606 -
- 4, Domiciled in Helsinki
-In-Reply-To: <20250624221230.1952291-2-jm@ti.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: LO4P123CA0521.GBRP123.PROD.OUTLOOK.COM
- (2603:10a6:600:272::22) To BN7PR11MB2708.namprd11.prod.outlook.com
- (2603:10b6:406:a9::11)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BAE3D2367C4
+	for <devicetree@vger.kernel.org>; Thu, 26 Jun 2025 07:02:51 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.215.181
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1750921373; cv=none; b=hM6eqtHCpQnVFxzPV06ptFmeISpzJyBJytkwzj78IGsp8rOprqEeo2UlNXQCOTaor9mUgnDjtuqJnPySqlR5kefC0hL8wsXnC9ctQHPbnF9xZi1khCi3fgbgx6mmNafOtx1LB0qAbyiDMtvs6AHX3nzvSxfxkHhoojKsET5M5lI=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1750921373; c=relaxed/simple;
+	bh=JeCIQ4IL3sxvd31af3WXViJMtBO5qnzW2MhlAjyRs1A=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=hprIfWYghbPwWw9H1/fzxl6PEL6iJ0Xvf/EWVF7iQpb1060EEiqJgOeK+YHzKe9e69XS0tGYFc9sMEMYeIdP/xGP9SvIJ3LWQyhqKedVJvzA6FLvxrVCAXDR1SRgO2A9WlvoPHjBwaOEWgMAMfyhbugz04bxCXBSmjG9JBqJunI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ventanamicro.com; spf=pass smtp.mailfrom=ventanamicro.com; dkim=pass (2048-bit key) header.d=ventanamicro.com header.i=@ventanamicro.com header.b=i1gVJWfN; arc=none smtp.client-ip=209.85.215.181
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ventanamicro.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ventanamicro.com
+Received: by mail-pg1-f181.google.com with SMTP id 41be03b00d2f7-b321bd36a41so477266a12.2
+        for <devicetree@vger.kernel.org>; Thu, 26 Jun 2025 00:02:51 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=ventanamicro.com; s=google; t=1750921371; x=1751526171; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=8ezoYursQ3Oig93OOMoe1zsrf1bzMlW/yf403T+KaH4=;
+        b=i1gVJWfNiLyhUcEcFUbfe/c/uC7/h+7IK74qX4Vp4Skj2ekvmi5K+ARpUJaC3eLrt+
+         lXCYlz/ytrjo2KK8IehtCYyEdAAgCPdcv18GH+bEN60IhRusVgtsOFCyHrY/5TzbWUCC
+         K+XruDWEGSnvhmMKG/ITx22LxuJWoTFOL1F28bJtq2NfsFcfUZmWOtGiGMz2E2CWawOT
+         T+8Kcq671boFyGMoo+3G5JlR9NnjI9fNTp7gGwpZTB336xfHOPoZQtxkzJHJBKnVKZGH
+         OUIgGsxVDQ/eLWjvaB+I6ketc/WFKBWrPWWvWHa6+6hp6E0iCJJHo3rYilIBZp4jba7U
+         KoOg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1750921371; x=1751526171;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=8ezoYursQ3Oig93OOMoe1zsrf1bzMlW/yf403T+KaH4=;
+        b=kgINUDFlyMQf5y2WhYOXLcr/skfbe8lav7lLo9x6AZRhU3DuwfjxkczNTEoYGGxhie
+         Q1QjBM/5f3IYt91HdSEeldEjsW2ncgKVoMwPn0/XQC16X4kmazgccDkbXJqvjtaLU9X/
+         2jXUYrIbjH0plBrvD00+tSTNN3UIy/+++q2XtDKbHvtb5au21aRWydxrBRclP+f/YqEt
+         vIj2Z0LZneZRvHHAVTWciBrhsIa5J2KGWlAIKO4WnpFpCTA9jhUDsY8kXwHa5aD0E2HB
+         5YwnLT7IJe3ICT8E0H/FxASxcScM79+wtTJhg+pcnSS0yklWrXLHSZeppJmF/aVxuPxB
+         cl4w==
+X-Forwarded-Encrypted: i=1; AJvYcCXfmU9JWvnY4MrqNAdGnfoC89w2xylLmP2olZJjzp3vlrTej9tmPEDTu4z1m4Ry3Jstn5iKWmGvzn81@vger.kernel.org
+X-Gm-Message-State: AOJu0YxhpiGOmE8786Z0VHkMS7edOKTpXLv83dN6PbtWsM6RKnIeoD08
+	msTx2a7+drfJT+w/8koTO7tcjGFeKxhZbIVtvYX/nKwWRAlJjWLy2pDCLpA0Rt/g1f5aQG07leq
+	o7l62miNGW+bEy8nQ3+xfyyNqqAIBeG3K3UIzF5dmbg==
+X-Gm-Gg: ASbGncu81v4hU29HSc37QPisHk+ulJoJG0K81pIF+xtJqG988OHCFfhEHGkOuvKyFEB
+	7TvCe4iHJS60oJAt2IwU14IPdyDJ3/5pI4V+rco4dMCuugNdp5Xy/bKDv3bgmuB749UQtCtDrkA
+	/vAtkZGfHcLAValyQtWiw2Qad5tVQN0hYMndW1Td0ZC66HZRaaKgiRTbqkMB+Gy3zd0nxg32B4Y
+	TT5zxoaxNloz7U=
+X-Google-Smtp-Source: AGHT+IFAHFhc1sG2VjqU+uJ8gNcDmA7e/PrfZ8E+mKfaFvA9q0lqjh6eFhvh0NJwzb3bJOHZBhk/+7B5CQz0QdRGscA=
+X-Received: by 2002:a17:90a:d60d:b0:313:f6fa:5bb5 with SMTP id
+ 98e67ed59e1d1-315f26893d4mr9452944a91.18.1750921370751; Thu, 26 Jun 2025
+ 00:02:50 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: BN7PR11MB2708:EE_|DS0PR11MB7577:EE_
-X-MS-Office365-Filtering-Correlation-Id: 3eb97752-88ba-4efa-11d6-08ddb47de33d
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;ARA:13230040|376014|1800799024|7416014|366016|7053199007;
-X-Microsoft-Antispam-Message-Info: =?utf-8?B?eForb3dCZEFaa2MwWWppZjR0OFRYUldVa01zT3BvK2tTUndqbGhReWZJMGVi?=
- =?utf-8?B?OG5FcTFuM25uZkdwWDRDaWpjKy83ZGNaZFdCRUp6RVo2MVErL1FUcUcyMHh1?=
- =?utf-8?B?dXJ5aUFGMDNPS3ZOdUQxZEFUTk1md1BTcjF4c25Xc1dzOEtNYTVGYkVlbXc2?=
- =?utf-8?B?NFNNbEtNSVQ2dHFHNk03UjJ1cFFKRnhVL0hjeWxxclI5TWM5VjFCYjg2eWVE?=
- =?utf-8?B?U1BDRUEzZ25saFRQVHlpN3NyM3ZIQ0JnZS91MlNtY2lXbFpzR0puLzlqY2lv?=
- =?utf-8?B?VFdhTzdZUHBCaDlEQUFGNU9OdjBjV0xMMnQ1MEdQUk5nU3RXODVRMlRlTEZR?=
- =?utf-8?B?amU3NVo0WFhEVmZsUTQ2L0xTZE45dGZwYnRzZFZhMFZLSXhMeVc3RDE4Z0hx?=
- =?utf-8?B?b2dSQitiUlV5ejk4MnR5RUQvM2pSWEF5Q2lnYWwrbkVNSzNaS3pKaDBRaTE0?=
- =?utf-8?B?QUptVjY3b1lBU2xWSloxanJ3SkkxRkplUzVwNEEvTy80L3RXSE44YU9NQ3Fh?=
- =?utf-8?B?YXEybklTek40YWRnd2F2Q25wK0gvZUZkcEtqU3NyOGlJM25LMVFHQUdyZWtJ?=
- =?utf-8?B?Q2ZCaWRhTnJhMWNpMXcyamxFWURkNEhJKzBQMW1XRlBXRHpsTVl4TW5HdnZr?=
- =?utf-8?B?UGZGaGxBdWluSTRKaDJHSzN0bU1CVEoxSHhKMEdnNHJQVm9hL2FnK2JIdG8v?=
- =?utf-8?B?WHMvN0ZoYmJRVU1hb1BBRWdhWGRibzMrUkNLbHJJUCtrbHVSWHE5QWFpYzgr?=
- =?utf-8?B?YndSR2NLRHJkWTdpQUtHeVpaTkIzSUk1WThXbm1oTXF6M0pXWEI4TC9aMVFZ?=
- =?utf-8?B?aW9RNlNKWHNmTFFrdG55VmVHRFN1bm5IOE52MzdnK25VNWVac3dtMmx4aDIz?=
- =?utf-8?B?Mi9pd1dXWUsyNmROV29Lbm0wbjJxcTJTNlNRQS9mK3A5SmVVenlWUzMwMGJY?=
- =?utf-8?B?MmlGQWZLUWN5ZVNLOHdsSFNsVGQ1UWlJRlZBckd6K0EzUmNtcmFmR2g3em9G?=
- =?utf-8?B?MCtURDNtaEgyVFovQ2NXQzJvSHR5V2I4N3ZGZW1WaE5DQ3hjZEo1Q1FmaW4r?=
- =?utf-8?B?MFZhVnV1dUxuMU9acTBPQ3YxRktNNGtNTUI2cmVpTDUvSlBHWWxhUnhXTFl2?=
- =?utf-8?B?d2pETDFydnRwYUdDcUg3andId2NFOUlweEUyVWRCYVBZT2FuWWdadjVubmVX?=
- =?utf-8?B?VUNDdHQ1Nk04Qzhib1RSYm9YTGdBbjNOcW5uZG4ram5hU1k2bXJmRCtVQUxv?=
- =?utf-8?B?U3ZwU2dGZGw0djhhcGNnRm1aVTlaOFcxY0hkQURBb0pHSm1HcXJSQi9rTnZE?=
- =?utf-8?B?c09QVHB0ZzJzakNicTluMkdYL25kcjIyRWc1QmNRYTNlNzk0bUFFaWxxeG1T?=
- =?utf-8?B?dDhSVFRVUGZZT3l6enByT3N0VjZFaXM3ZHVyQ1pDRkE4Q1QrQ2xYZzRXYVBC?=
- =?utf-8?B?UmZ1WjcvVS94b29vTW1xVmN4RmIvTTQ3c1F4RTI3QVI5dDdWNXNUbjY5UEJs?=
- =?utf-8?B?dGp1MFRnb1ZzaVl4Qnp3dk1NUUhrcWJFOENlRnk1S3B6SFJNcEtsQm91STZZ?=
- =?utf-8?B?ZmVsTVV0VU42bDNzOEsxcjJXNEhocy9jVW1JaDQxZW9wM2J0NVRXSHg0T2JQ?=
- =?utf-8?B?a0dPcmozWnloUXJPV3JwSTdtTG5TQzNYZ0xDWk1LdEVGVlhRQ0xvTHFWTW1O?=
- =?utf-8?B?N0cwYTZCTVFvU3RoYWtTZnk0MktUV0h6MFBHblVTNGNyc1FFcnp5akpOcm0r?=
- =?utf-8?B?SEZ5cTBvYUloV1JZY3E5ckFBVzkyN2dsNWJoY0tOc2M5YnQ4TThJOExSNWZa?=
- =?utf-8?B?OFdJd08veDVGWUQ4S0lIbU1JY3ptekZ0blVwVjY3bE5IVzNtYnplVEx6eXNx?=
- =?utf-8?B?QWpQYnMzY2pua0k4S3lKR20vNThMTWxOUHhiemZ3S2Y3RmU2T09pKzV2NnJ0?=
- =?utf-8?Q?NBZqxDlSFEI=3D?=
-X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:BN7PR11MB2708.namprd11.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(376014)(1800799024)(7416014)(366016)(7053199007);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?RGFkUklVc25YSGRnL1FHNmErMC8rTVFPOHphVEJMeGZFNVJvdFdmWmxyTGhw?=
- =?utf-8?B?aWtYK0tVcFhXakROOUQ1SHYrWXpmTDlpTFVFRk1OSDI4Z2tFemd3Z0VXR1Nu?=
- =?utf-8?B?c1ZnSzMzNWZ2YW00SkRGbFNleUNlUmp1YnZwQnFDUUpxcFF6NjRhazVFc0Jw?=
- =?utf-8?B?Sm5YQU53bHhoeXdqSmxXeU1HMkJVa2VhMmZFMWJTbEZzQ1BQMHZ1TVlxR2lT?=
- =?utf-8?B?cW0xL2NjRFVHV3JBNW1qUHVpTXBpWllpYlhZcDF3bWJHeEFIdVZPK0lsd1M5?=
- =?utf-8?B?ekxWSW9qVXFZRWtQUHdsNWd5M3ZtTWNLTndRMk5Nb1M5ZGtXTHd0TzRvd2F3?=
- =?utf-8?B?SDh1bXdlQTVYVk82SlowMUJURzBHYnpsZURzb3dMWVVEV3ZXaHZXaXNKTUJs?=
- =?utf-8?B?VW1BZjlYN2NNQVZPaFFXanpFamhiVUVmTHBVRWRyK28zTUJxampUUktPRWly?=
- =?utf-8?B?bVd4M0xBUFg0NTBSdkF0RFhRVUQ5cW1GY0IxNGhaaEduSkVsbkJKN1RobVBo?=
- =?utf-8?B?OTdUVjc4SzdGREk3M1JoRyt1aEk4aDE3L2NZQUhWQUZrVTNCeDVtcERnS2NC?=
- =?utf-8?B?RGdkZC9uVHZJZHNmWmxjTVhDeEJWK2FnVysxL2ROd2tuK1BiN1J5VlppZ21Y?=
- =?utf-8?B?ZDVVS1FNakViSUJwMTN2ZVRhUWZrSHlTUlcrdkdxMGY2SXNDVWw4K3o5R0I1?=
- =?utf-8?B?SEM4T0k0RnBYRUpxbnA0UklpQmFEYmlhbHI5VzNnaEtZZmxJTEYwL1hxdG5m?=
- =?utf-8?B?dCs4NThBZU81TG9Oc0ZNMk9RSnpKdFRlSFM0WmQzWmh3MzVGYWF2Z0twc1JQ?=
- =?utf-8?B?Nk0xcFNaRXZCNFNENFhpVEw0K3NWMUIzMklUNkU0emRYdDh5MlJqNHFJdkpx?=
- =?utf-8?B?K0xYOXhrNkdQRnF2RDJVQy9oaEUxUmgrYVpnS0dmSFhtSEtlc1k1VHYrQUl0?=
- =?utf-8?B?QXJHRkd3SEpDQkROM01VeFFpUGJ4Vzl6TmZNbURCSlVaV1NmRXhwTi9kMUR2?=
- =?utf-8?B?SmlQWTNCbGNCVm82RzJYMzczbjh1bXVZcW80c0lhdlFjV25TbzFBSnhIRzgy?=
- =?utf-8?B?M0ZGUTEvdFJCQUFpSVB0RDVuL3pIaGRwQ3dCZTY2QjlHNTdYL2NsM3FsVTdX?=
- =?utf-8?B?UGxNcEtyNkRBMjVaTG40dHd5c2pmTW83NlVHMkUrMEIvSm5pRmh3MnFBZmFP?=
- =?utf-8?B?RnlvQ0R6YWNLQXZ1TTVIdXUwTDI1TFp5akpQQTJhS2s0bjQvSE8rZnRYdTAx?=
- =?utf-8?B?UElIdk1hS2hDRWFCMXlyQnptS2Exdi84MzQ5SUVOQUF6SXA1S2dzSDFSclNr?=
- =?utf-8?B?SE5namVlcy82dWJnU3dwMmlkSC9Pbms0SmpBSitNT3JlQlIybGQvcEY5enl0?=
- =?utf-8?B?V3Rma2tNcHMyM2M5Q2pjeVlTK1hQYUg4cW1ucE4zQ05ENkl0SUx4dzVETXdK?=
- =?utf-8?B?VmxSb3dmQWx1SjVmZzJ3T2k2S0k1MUV4RHQ3N3RGMkc1aGlSVzFHb3d5K05S?=
- =?utf-8?B?NEZESFF1Myt4cTRBbzRBOGpVNGpvZCtXMXU3Q2dqaTFUM0V1VExqemJxT3BX?=
- =?utf-8?B?d3lpWldrRFVESitPWmZsNTBmT1ZIWjhUZy9MWWMrbVRWdGx1YVNBenFHZVZV?=
- =?utf-8?B?bnB0SFJaMFNFbXJyUTVvTkJMNnlXc0dqT2UxWURPNm81TzlDL2JlMlhTdHcz?=
- =?utf-8?B?R0lFV0NnbllkcFNNcDBIVmY5WXBhMWRkUHdCWTUzd0h5VDIrNHZOd0o1SHly?=
- =?utf-8?B?dnN0dDI5VVdKN1p1THZRMXVjR3dhN01mVTJZd01VdnA4S3drak8vMEJxNFZs?=
- =?utf-8?B?dk0vR1VpbGZKRFBWbkVTTFBTMkcxK2lxSkVMS2FVNXlaTWZydFhBOW5CTE1I?=
- =?utf-8?B?VDdaQ2ZkczYrRUs5RUhEVkhkWmtENi9RNTVLYktXVjFzOTg0bGNSMHN2ZmVL?=
- =?utf-8?B?S2tJNGRqRUlFb2tYUDZ5SnpCVCtsSE42ZmpzckhNd21ycUNCa2xoN3hyaE1w?=
- =?utf-8?B?WGI3Nk1wNlR0RStUSXgvOUg4QVJhV2I4Sm5Rdm55bXRUMmVlWDRxOTI4WDE0?=
- =?utf-8?B?OXlEdTZ1Y29OMFJ5eXE5cXdGNXNTbXB6cXozUS9LZ2VQUDRxOVNLbEFBVjB6?=
- =?utf-8?B?RW1PMzZRdE1qdzNyUGVtRHNwTWZ6QTdsN2g2ejVzR0RjK2EvMGNnd0tJNkk2?=
- =?utf-8?B?V3c9PQ==?=
-X-MS-Exchange-CrossTenant-Network-Message-Id: 3eb97752-88ba-4efa-11d6-08ddb47de33d
-X-MS-Exchange-CrossTenant-AuthSource: BN7PR11MB2708.namprd11.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 26 Jun 2025 06:51:33.9938
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: RjjZvUrlFrWegv9FiRz6JSUvwuriaW2KISwsgX0+y6Yp2VnGMuW4N1lMYDeYsFmCP6oxlUpTtiaFdtuTps0z2g==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DS0PR11MB7577
-X-OriginatorOrg: intel.com
+References: <20250618121358.503781-1-apatel@ventanamicro.com>
+ <20250618121358.503781-10-apatel@ventanamicro.com> <aFkZJKnweqBi64b8@smile.fi.intel.com>
+In-Reply-To: <aFkZJKnweqBi64b8@smile.fi.intel.com>
+From: Rahul Pathak <rpathak@ventanamicro.com>
+Date: Thu, 26 Jun 2025 12:32:14 +0530
+X-Gm-Features: Ac12FXy2D20JGtdoC12UYlFRQvl9rpENvx4ZUy4WrZrFd5OnE24sZvklsv5hZz4
+Message-ID: <CA+Oz1=a65HvfXHWjeSq4Ubq=5kzHp9pkLJVr77hvTYAGFHv0Mg@mail.gmail.com>
+Subject: Re: [PATCH v6 09/23] clk: Add clock driver for the RISC-V RPMI clock
+ service group
+To: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
+Cc: Anup Patel <apatel@ventanamicro.com>, Michael Turquette <mturquette@baylibre.com>, 
+	Stephen Boyd <sboyd@kernel.org>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Jassi Brar <jassisinghbrar@gmail.com>, Thomas Gleixner <tglx@linutronix.de>, 
+	"Rafael J . Wysocki" <rafael@kernel.org>, Mika Westerberg <mika.westerberg@linux.intel.com>, 
+	Linus Walleij <linus.walleij@linaro.org>, Bartosz Golaszewski <brgl@bgdev.pl>, 
+	=?UTF-8?Q?Uwe_Kleine=2DK=C3=B6nig?= <ukleinek@kernel.org>, 
+	Palmer Dabbelt <palmer@dabbelt.com>, Paul Walmsley <paul.walmsley@sifive.com>, 
+	Len Brown <lenb@kernel.org>, Sunil V L <sunilvl@ventanamicro.com>, 
+	Leyfoon Tan <leyfoon.tan@starfivetech.com>, Atish Patra <atish.patra@linux.dev>, 
+	Andrew Jones <ajones@ventanamicro.com>, Samuel Holland <samuel.holland@sifive.com>, 
+	Anup Patel <anup@brainfault.org>, linux-clk@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-riscv@lists.infradead.org, linux-kernel@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-On 25/06/2025 01:12, Judith Mendez wrote:
-> Errata i2312 [0] for K3 silicon mentions the maximum obtainable
-> timeout through MMC host controller is 700ms. And for commands taking
-> longer than 700ms, hardware timeout should be disabled and software
-> timeout should be used.
-> 
-> The workaround for Errata i2312 can be achieved by adding
-> SDHCI_QUIRK2_DISABLE_HW_TIMEOUT quirk in sdhci_am654.
-> 
-> [0] https://www.ti.com/lit/pdf/sprz487
-> 
-> Signed-off-by: Judith Mendez <jm@ti.com>
+On Mon, Jun 23, 2025 at 2:36=E2=80=AFPM Andy Shevchenko
+<andriy.shevchenko@linux.intel.com> wrote:
+>
+> On Wed, Jun 18, 2025 at 05:43:44PM +0530, Anup Patel wrote:
+> > From: Rahul Pathak <rpathak@ventanamicro.com>
+> >
+> > The RPMI specification defines a clock service group which can be
+> > accessed via SBI MPXY extension or dedicated S-mode RPMI transport.
+> >
+> > Add mailbox client based clock driver for the RISC-V RPMI clock
+> > service group.
+>
+> ...
+>
+> ...
+>
+> > +enum rpmi_clk_config {
+> > +     RPMI_CLK_DISABLE =3D 0,
+> > +     RPMI_CLK_ENABLE =3D 1
+>
+> It's still unclear if this enum can be expanded in the future (and no, yo=
+u may
+> not answer this either). Hence, to reduce potential churn in the future, =
+leave
+> the trailing comma here.
+>
 
-Acked-by: Adrian Hunter <adrian.hunter@intel.com>
+Ok, will update
 
-> ---
->  drivers/mmc/host/sdhci_am654.c | 9 ++++++---
->  1 file changed, 6 insertions(+), 3 deletions(-)
-> 
-> diff --git a/drivers/mmc/host/sdhci_am654.c b/drivers/mmc/host/sdhci_am654.c
-> index ea14d56558c4..86d87d8e0675 100644
-> --- a/drivers/mmc/host/sdhci_am654.c
-> +++ b/drivers/mmc/host/sdhci_am654.c
-> @@ -613,7 +613,8 @@ static const struct sdhci_ops sdhci_am654_ops = {
->  static const struct sdhci_pltfm_data sdhci_am654_pdata = {
->  	.ops = &sdhci_am654_ops,
->  	.quirks = SDHCI_QUIRK_MULTIBLOCK_READ_ACMD12,
-> -	.quirks2 = SDHCI_QUIRK2_PRESET_VALUE_BROKEN,
-> +	.quirks2 = SDHCI_QUIRK2_PRESET_VALUE_BROKEN |
-> +		   SDHCI_QUIRK2_DISABLE_HW_TIMEOUT,
->  };
->  
->  static const struct sdhci_am654_driver_data sdhci_am654_sr1_drvdata = {
-> @@ -643,7 +644,8 @@ static const struct sdhci_ops sdhci_j721e_8bit_ops = {
->  static const struct sdhci_pltfm_data sdhci_j721e_8bit_pdata = {
->  	.ops = &sdhci_j721e_8bit_ops,
->  	.quirks = SDHCI_QUIRK_MULTIBLOCK_READ_ACMD12,
-> -	.quirks2 = SDHCI_QUIRK2_PRESET_VALUE_BROKEN,
-> +	.quirks2 = SDHCI_QUIRK2_PRESET_VALUE_BROKEN |
-> +		   SDHCI_QUIRK2_DISABLE_HW_TIMEOUT,
->  };
->  
->  static const struct sdhci_am654_driver_data sdhci_j721e_8bit_drvdata = {
-> @@ -667,7 +669,8 @@ static const struct sdhci_ops sdhci_j721e_4bit_ops = {
->  static const struct sdhci_pltfm_data sdhci_j721e_4bit_pdata = {
->  	.ops = &sdhci_j721e_4bit_ops,
->  	.quirks = SDHCI_QUIRK_MULTIBLOCK_READ_ACMD12,
-> -	.quirks2 = SDHCI_QUIRK2_PRESET_VALUE_BROKEN,
-> +	.quirks2 = SDHCI_QUIRK2_PRESET_VALUE_BROKEN |
-> +		   SDHCI_QUIRK2_DISABLE_HW_TIMEOUT,
->  };
->  
->  static const struct sdhci_am654_driver_data sdhci_j721e_4bit_drvdata = {
+> > +};
+>
+> ...
+>
+> > +union rpmi_clk_rates {
+> > +     u64 discrete[RPMI_CLK_DISCRETE_MAX_NUM_RATES];
+> > +     struct {
+> > +             u64 min;
+> > +             u64 max;
+> > +             u64 step;
+> > +     } linear;
+>
+> Have you looked at the linear_range.h? Why can it not be (re-)used here?
+>
 
+I did the first time only when you commented. And i dont see any
+benefit in that.
+linear_range has slightly different way to access any value using `sel`.
+Here this union represents how RPMI protocol represents the rates and
+reusing linear_range will only introduce conversion to and fro.
+
+> > +};
+>
+> ...
+>
+> > +static u32 rpmi_clk_get_num_clocks(struct rpmi_clk_context *context)
+> > +{
+> > +     struct rpmi_get_num_clocks_rx rx;
+> > +     struct rpmi_mbox_message msg;
+> > +     int ret;
+> > +
+> > +     rpmi_mbox_init_send_with_response(&msg, RPMI_CLK_SRV_GET_NUM_CLOC=
+KS,
+> > +                                       NULL, 0, &rx, sizeof(rx));
+>
+> ...here
+>
+> > +     ret =3D rpmi_mbox_send_message(context->chan, &msg);
+> > +
+>
+> This blank line should be rather ^^^
+
+Sure, I will update.
+
+>
+> > +     if (ret || rx.status)
+> > +             return 0;
+>
+> Why rx.status can't be checked before calling to a sending message?
+> Sounds like the rpmi_mbox_init_send_with_response() links rx to msg someh=
+ow.
+> If this is the case, use msg here, otherwise move the check to be in the
+> correct place.
+
+Yes, the rpmi_mbox_init_send_with_response is a helper function which links
+the rx to msg. It's a very simple function which only performs assignments.
+
+Using msg instead of rx directly will require additional typecasting
+which will only clutter
+I can add a comment if that helps wherever the rpmi_mbox_init_send_with_res=
+ponse
+is used.
+
+>
+> Seems the same question to the all similar checks in the code.
+>
+> > +     return le32_to_cpu(rx.num_clocks);
+> > +}
+>
+> ...
+>
+> > +static int rpmi_clk_get_supported_rates(u32 clkid, struct rpmi_clk *rp=
+mi_clk)
+> > +{
+> > +     struct rpmi_clk_context *context =3D rpmi_clk->context;
+> > +     struct rpmi_clk_rate_discrete *rate_discrete;
+> > +     struct rpmi_clk_rate_linear *rate_linear;
+> > +     struct rpmi_get_supp_rates_rx *rx __free(kfree) =3D NULL;
+> > +     struct rpmi_get_supp_rates_tx tx;
+> > +     struct rpmi_mbox_message msg;
+>
+> > +     size_t clk_rate_idx =3D 0;
+>
+> This kind of assignments is hard to maintain and it's mistake prone in ca=
+se
+> some additional code is injected in the future that might reuse it.
+>
+I dont understand what is the problem with this assignment. If any
+code added in the future reuse it then it has to make sure that
+clk_rate_idx has the correct initial value before any further references.
+
+> > +     int ret, rateidx, j;
+> > +
+
+...
+
+> > +static void rpmi_clk_disable(struct clk_hw *hw)
+> > +{
+> > +     struct rpmi_clk *rpmi_clk =3D to_rpmi_clk(hw);
+> > +     struct rpmi_clk_context *context =3D rpmi_clk->context;
+> > +     struct rpmi_mbox_message msg;
+> > +     struct rpmi_set_config_tx tx;
+> > +     struct rpmi_set_config_rx rx;
+> > +     int ret;
+> > +
+> > +     tx.config =3D cpu_to_le32(RPMI_CLK_DISABLE);
+> > +     tx.clkid =3D cpu_to_le32(rpmi_clk->id);
+> > +
+> > +     rpmi_mbox_init_send_with_response(&msg, RPMI_CLK_SRV_SET_CONFIG,
+> > +                                       &tx, sizeof(tx), &rx, sizeof(rx=
+));
+> > +     ret =3D rpmi_mbox_send_message(context->chan, &msg);
+> > +     if (ret || rx.status)
+> > +             pr_err("Failed to disable clk-%u\n", rpmi_clk->id);
+>
+> Close to useless message. You may improve it by splitting to two and prin=
+ting
+> rx.status in one and ret in the other with different text. Or drop it.
+
+Sure, I think it's better to keep and split it into two as you suggest
+instead of dropping.
+
+>
+> > +}
+>
+> > +static int rpmi_clk_probe(struct platform_device *pdev)
+> > +{
+> > +     int ret;
+> > +     unsigned int num_clocks, i;
+> > +     struct clk_hw_onecell_data *clk_data;
+> > +     struct rpmi_clk_context *context;
+> > +     struct rpmi_mbox_message msg;
+> > +     struct clk_hw *hw_ptr;
+> > +     struct device *dev =3D &pdev->dev;
+> > +
+> > +     context =3D devm_kzalloc(dev, sizeof(*context), GFP_KERNEL);
+> > +     if (!context)
+> > +             return -ENOMEM;
+> > +     context->dev =3D dev;
+> > +     platform_set_drvdata(pdev, context);
+> > +
+> > +     context->client.dev             =3D context->dev;
+> > +     context->client.rx_callback     =3D NULL;
+> > +     context->client.tx_block        =3D false;
+> > +     context->client.knows_txdone    =3D true;
+> > +     context->client.tx_tout         =3D 0;
+> > +
+> > +     context->chan =3D mbox_request_channel(&context->client, 0);
+> > +     if (IS_ERR(context->chan))
+> > +             return PTR_ERR(context->chan);
+>
+> Here is an incorrect order of the freeing resources. Besides that, wrappi=
+ng the
+> mbox_free_channel() into managed resources reduces this code by more
+> than 10 LoCs! At bare minimum if will fix the bug,
+
+Understood. So we can use devm_add_action_or_reset to link a release functi=
+on
+with the context->chan. Is this what you are suggesting? This will also mak=
+e
+the .remove callback redundant which can be removed.
+
+...
+
+> > +
+> > +     rpmi_mbox_init_get_attribute(&msg, RPMI_MBOX_ATTR_MAX_MSG_DATA_SI=
+ZE);
+> > +     ret =3D rpmi_mbox_send_message(context->chan, &msg);
+> > +     if (ret) {
+> > +             mbox_free_channel(context->chan);
+> > +             return dev_err_probe(dev, ret, "Failed to get max message=
+ data size\n");
+> > +     }
+> > +
+> > +     context->max_msg_data_size =3D msg.attr.value;
+> > +     num_clocks =3D rpmi_clk_get_num_clocks(context);
+> > +     if (!num_clocks) {
+> > +             mbox_free_channel(context->chan);
+> > +             return dev_err_probe(dev, -ENODEV, "No clocks found\n");
+> > +     }
+> > +
+> > +     clk_data =3D devm_kzalloc(dev, struct_size(clk_data, hws, num_clo=
+cks),
+> > +                             GFP_KERNEL);
+>
+> (The above mention problem comes here after the successful allocation of
+>  clk_data but failing of any further code.
+
+Once the change mentioned in above comment will be done this will take
+care of the rest of the exit scenarios.
+
+>
+> > +     if (!clk_data) {
+> > +             mbox_free_channel(context->chan);
+> > +             return dev_err_probe(dev, -ENOMEM, "No memory for clock d=
+ata\n");
+> > +     }
+> > +     clk_data->num =3D num_clocks;
+> > +
+> > +     for (i =3D 0; i < clk_data->num; i++) {
+> > +             hw_ptr =3D rpmi_clk_enumerate(context, i);
+> > +             if (IS_ERR(hw_ptr)) {
+> > +                     mbox_free_channel(context->chan);
+> > +                     return dev_err_probe(dev, PTR_ERR(hw_ptr),
+> > +                                          "failed to register clk-%d\n=
+", i);
+> > +             }
+> > +             clk_data->hws[i] =3D hw_ptr;
+> > +     }
+> > +
+> > +     ret =3D devm_of_clk_add_hw_provider(dev, of_clk_hw_onecell_get, c=
+lk_data);
+> > +     if (ret) {
+> > +             mbox_free_channel(context->chan);
+> > +             return dev_err_probe(dev, ret, "failed to register clock =
+HW provider\n");
+> > +     }
+> > +
+> > +     return 0;
+> > +}
+>
+> ...
+>
+> > +static void rpmi_clk_remove(struct platform_device *pdev)
+> > +{
+> > +     struct rpmi_clk_context *context =3D platform_get_drvdata(pdev);
+> > +
+> > +     mbox_free_channel(context->chan);
+> > +}
+>
+> This function will be gone. See above.
+
+Agree
+
+>
+> --
+> With Best Regards,
+> Andy Shevchenko
+>
+>
+
+
+--=20
+
+Thanks
+Rahul Pathak
 
