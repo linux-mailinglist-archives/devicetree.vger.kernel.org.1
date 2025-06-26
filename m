@@ -1,87 +1,100 @@
-Return-Path: <devicetree+bounces-189733-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-189734-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 30EB8AE9472
-	for <lists+devicetree@lfdr.de>; Thu, 26 Jun 2025 04:58:15 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 92209AE9481
+	for <lists+devicetree@lfdr.de>; Thu, 26 Jun 2025 05:17:31 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 130931C27EA6
-	for <lists+devicetree@lfdr.de>; Thu, 26 Jun 2025 02:58:31 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 5BD0A1C248E7
+	for <lists+devicetree@lfdr.de>; Thu, 26 Jun 2025 03:17:47 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5697B202962;
-	Thu, 26 Jun 2025 02:58:05 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1C44319066B;
+	Thu, 26 Jun 2025 03:17:27 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="PblPNg/S"
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="diKasmMg"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.11])
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 86475202961;
-	Thu, 26 Jun 2025 02:58:03 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.198.163.11
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 929CC1C683
+	for <devicetree@vger.kernel.org>; Thu, 26 Jun 2025 03:17:25 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1750906685; cv=none; b=kXti0SrmOC2QnmvoJ4PU0ZO3sm0TAcf/VZVVIGUNxxTsHfYUw86rrMHHEwtlPx+PpaZeqOB5i4OsY0CPhQbxIu9eZReYpdzm4UJOcEvWdiihP9ABsWjagFPzH6JWirFw2WaqbEJXGtKTQJSm95l6JndWgXFY3dCYiQX8t+OJsf8=
+	t=1750907847; cv=none; b=tziOlny9xoRpI8+ypAZ5mvgJMYvZjHImS9F2+LPV5xjzyl/GpRtUoBj/04EpmNF6i0bvhu4w+K2HeUpsKx/sB8LMBOOmupYCWx66wstKRMUpq41HnFm+uAWryLp79jvTDjVkJvVblvMEG8nKlWaV42DdvQ1vgknQ1QK2mnAmnL4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1750906685; c=relaxed/simple;
-	bh=U4PNK5Viw/uVhts0OTE2xo+hRXKVL1sSoE1wzsR7ZBQ=;
+	s=arc-20240116; t=1750907847; c=relaxed/simple;
+	bh=x31mGF7s/0RHh07FGyqoXnkN/evj/qdApu57bE/qeio=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=Yus7s56MSc/5CoSUz93ouIcbb0r+zHaGqkPesniOCW6ie++1KnP2Z6KXLnR+JQ2LRUobfzE0/0rREaL/uwOOu9RWmnvjcJHisP+N0ii+H9nCYdh6PJ04qRdC4K2LQRyn1YRkzlkjRC8MVpF1uWDR2f7N0RTYjW2+e3hAfQbTAhM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=PblPNg/S; arc=none smtp.client-ip=192.198.163.11
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1750906684; x=1782442684;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=U4PNK5Viw/uVhts0OTE2xo+hRXKVL1sSoE1wzsR7ZBQ=;
-  b=PblPNg/SPjRL8W6nzEPMzGxBiNW5HJqbAqIOTdHtM6+DsS4yuRgwbenT
-   iatfly4kX1d7jVkcD/7QblG/9aln/cjAyhbOramcVSvy5zV4nVjxvsSnV
-   HCN1YJDZy8M1Voa85yfHMgGt2WZDuWume6IAYsIjPoJTEJxm+FIWIshqH
-   M2/BtKi4wx++/pm8HAEOwoReIkTRVtyTgUT9UHxSbINBOaYUM/hdUv+LP
-   m9IX0O6gxvRC3CN/BYGEA5PjgdUH/4jYqhGnEqwsCOyzVAFSbqnUUn8kP
-   8QlTwmHVj6vY/+C53ftmLQE3yPyhP3JhkkHk6R/XZLj0xatEuQbAAALub
-   A==;
-X-CSE-ConnectionGUID: 5wn777HBTiCTDIvRxwacYw==
-X-CSE-MsgGUID: V6wJ8GkLT7W1UlERaMjmUQ==
-X-IronPort-AV: E=McAfee;i="6800,10657,11475"; a="63789879"
-X-IronPort-AV: E=Sophos;i="6.16,266,1744095600"; 
-   d="scan'208";a="63789879"
-Received: from fmviesa001.fm.intel.com ([10.60.135.141])
-  by fmvoesa105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 25 Jun 2025 19:58:03 -0700
-X-CSE-ConnectionGUID: KdLI1+gSSrezQWLe7I8q7Q==
-X-CSE-MsgGUID: yRddVIpyQFGN6hzDj2zmLg==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.16,266,1744095600"; 
-   d="scan'208";a="183277814"
-Received: from lkp-server01.sh.intel.com (HELO e8142ee1dce2) ([10.239.97.150])
-  by fmviesa001.fm.intel.com with ESMTP; 25 Jun 2025 19:57:59 -0700
-Received: from kbuild by e8142ee1dce2 with local (Exim 4.96)
-	(envelope-from <lkp@intel.com>)
-	id 1uUcoH-000TeY-0i;
-	Thu, 26 Jun 2025 02:57:57 +0000
-Date: Thu, 26 Jun 2025 10:57:41 +0800
-From: kernel test robot <lkp@intel.com>
-To: Prabhakar <prabhakar.csengg@gmail.com>,
-	Geert Uytterhoeven <geert+renesas@glider.be>,
-	Linus Walleij <linus.walleij@linaro.org>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Magnus Damm <magnus.damm@gmail.com>,
-	Bartosz Golaszewski <brgl@bgdev.pl>
-Cc: llvm@lists.linux.dev, oe-kbuild-all@lists.linux.dev,
-	linux-renesas-soc@vger.kernel.org, linux-gpio@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	Prabhakar <prabhakar.csengg@gmail.com>,
-	Biju Das <biju.das.jz@bp.renesas.com>,
-	Fabrizio Castro <fabrizio.castro.jz@renesas.com>,
-	Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-Subject: Re: [PATCH v2 2/3] pinctrl: renesas: Add support for RZ/T2H
-Message-ID: <202506261030.cncLTO3X-lkp@intel.com>
-References: <20250625130712.140778-3-prabhakar.mahadev-lad.rj@bp.renesas.com>
+	 Content-Type:Content-Disposition:In-Reply-To; b=tYQHmOb0B2LCWoLqTSNHlHhP5HPn/Q7nVODuXPe/CTmAcywmipf3qKOvAlHJNI4RwZFP0Xl1aOKnFMCZQgGxhlqoIlT8DftTuFAQjpMffp/dZDwno+PFTMcIVYdbXtYOlVXJlHYCNeocYcvtr6NtQhuyL1rWloEopqxo6RWie84=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=diKasmMg; arc=none smtp.client-ip=205.220.168.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
+Received: from pps.filterd (m0279867.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 55Q0FFgI022078
+	for <devicetree@vger.kernel.org>; Thu, 26 Jun 2025 03:17:24 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+	cc:content-type:date:from:in-reply-to:message-id:mime-version
+	:references:subject:to; s=qcppdkim1; bh=ErBUOcE2lsiiqTjUOQb6F1cA
+	j3KxdxJhCA7no6eV1V0=; b=diKasmMgHdFRDruQV16ajkorWL8ivqnLHQJyqUoB
+	SC7mNZrO5GTA+JfDJxhVWv5K6BCRc3K7zP13TMQ/qti/lIQC4OngR9pmLzfM6Uwv
+	wip6va9+sjUplzEkInaIrnljhG/oBoMpWvO23carllT3pNSJ6oKET3d2vhZ85ndZ
+	lXutHiSjCg4w3F0COxDVclaaZyBDrFfbrPtK4XpRjJt7oA7KxhvUjxEe5BzWgZ33
+	MSJ2HhX6b2c5pOh5WGV6N0XkYu71SvksfKZ5z7y8/LOoRzT6aWNLqP997JbBPXyo
+	Xmh1z0j63B3RINDGKyaAtJT1dNEBuTRTfEpOMsNKSY6Q2g==
+Received: from mail-pl1-f200.google.com (mail-pl1-f200.google.com [209.85.214.200])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 47g7tdbpsq-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
+	for <devicetree@vger.kernel.org>; Thu, 26 Jun 2025 03:17:24 +0000 (GMT)
+Received: by mail-pl1-f200.google.com with SMTP id d9443c01a7336-235f77f86f6so4687725ad.2
+        for <devicetree@vger.kernel.org>; Wed, 25 Jun 2025 20:17:24 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1750907844; x=1751512644;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=ErBUOcE2lsiiqTjUOQb6F1cAj3KxdxJhCA7no6eV1V0=;
+        b=aoMcOdCLx1vDS7Pw8mT47aMO40GrmfbAZ1roVd+VsfThgTdFM0GII9QPM2xiwWFF3u
+         Ui5LgIlR/hMaYzjlCuCzBq9vOlZrHhFSf81XbKE8V9D2JzbAcvtvUXfZTqjTiS3ZBgKH
+         u1PwVnSI9KSjp92tArvMd8xyxvBufxLbz9g3Dr2rt/QOR2QYubrBHLFawdJYzGVlynnZ
+         vO57OVML1XkPJ9S5LeExlwE95jKayzkO8y4L/YO9qoMk4TbfhxbDAQqLwOQNMKoBYhNq
+         pU/dH8kNuAscupIZORjk/iB9JEABQJ/SgnKnjauqOUe4daD30FkDx+TkpwFYE/oKqH6r
+         /DsA==
+X-Forwarded-Encrypted: i=1; AJvYcCXuUeU9qcAL3iPUv0TVwZwkLttQcQHaWhyN4TfJI12G57/8M3R3F2K/y2bIi7pYy7Uem9yYQ6t/hUw6@vger.kernel.org
+X-Gm-Message-State: AOJu0YyK1inCW+uDyISJjE8EBhKTaztFmwFd2Lv5K4GHbPjRrJnCMPQs
+	ehKFHPrZBkw1KQx1jE80vMGm/G8/fk+qvBjhYfFfpiyLDAseI3SgpXtGFuCl0EqeccKZUhkFEW+
+	qk0im5mM3D7KGxsSG9E46uez/PQMQhwy6eY1xjLSHzGmXk+zmSk4uKuSga/9kyMkP
+X-Gm-Gg: ASbGncvM1Ihaw5RvrSwp16z4J0j+5w9NBbGf0FMbCru3PttvpCaf95ecC1vNriryO9y
+	U8j58o2ZuovXDBHyjODUF+OeaRvgoczALCM+kTFfT36BeHFZxUUGLmkGm5EfPmBAG+rouFiF2ju
+	XYq8VPoqM4vlnRkeZQB2p1jb0CeiRDq8ZrMnWkcGM3Uq+0MDKSLLSiizJI/sL+RjJOoP7OPjlF8
+	ChEAvyCifnYqP/dObG42pOsjOUmf2JzrfPnnyFCz5anOiOCVCRxJRZVmOO9s1L1GQ7V4l/im7s8
+	vq8iJe9Js4G+b1YirgiuCc7/P/3P0/QQUxBJzDPSgAjxfQ/7lCCEydf2cGSxBpQcQQhvvBQsqz8
+	WPSbbbQ==
+X-Received: by 2002:a17:903:187:b0:234:d679:72f7 with SMTP id d9443c01a7336-23823fead84mr95627295ad.23.1750907843609;
+        Wed, 25 Jun 2025 20:17:23 -0700 (PDT)
+X-Google-Smtp-Source: AGHT+IHmDn5qi3w4LtcEg2tNZs4Bk6hVI5/xpEnIq/0nSUsclWzPvoDTvtuUsmOO4aLVTEXCpBXtZw==
+X-Received: by 2002:a17:903:187:b0:234:d679:72f7 with SMTP id d9443c01a7336-23823fead84mr95626695ad.23.1750907842898;
+        Wed, 25 Jun 2025 20:17:22 -0700 (PDT)
+Received: from hu-bjorande-lv.qualcomm.com (Global_NAT1.qualcomm.com. [129.46.96.20])
+        by smtp.gmail.com with ESMTPSA id d9443c01a7336-237d86cf609sm149804835ad.203.2025.06.25.20.17.21
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 25 Jun 2025 20:17:22 -0700 (PDT)
+Date: Wed, 25 Jun 2025 20:17:20 -0700
+From: Bjorn Andersson <bjorn.andersson@oss.qualcomm.com>
+To: Umang Chheda <umang.chheda@oss.qualcomm.com>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
+Cc: Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>, linux-arm-msm@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        kernel@oss.qualcomm.com
+Subject: Re: [PATCH 1/2] dt-bindings: arm: qcom: Add bindings for IQ8 EVK
+ board
+Message-ID: <aFy7wEmP0EzGUHX+@hu-bjorande-lv.qualcomm.com>
+References: <20250623130420.3981916-1-umang.chheda@oss.qualcomm.com>
+ <20250623130420.3981916-2-umang.chheda@oss.qualcomm.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -90,64 +103,89 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20250625130712.140778-3-prabhakar.mahadev-lad.rj@bp.renesas.com>
+In-Reply-To: <20250623130420.3981916-2-umang.chheda@oss.qualcomm.com>
+X-Authority-Analysis: v=2.4 cv=CPYqXQrD c=1 sm=1 tr=0 ts=685cbbc4 cx=c_pps
+ a=IZJwPbhc+fLeJZngyXXI0A==:117 a=ouPCqIW2jiPt+lZRy3xVPw==:17
+ a=kj9zAlcOel0A:10 a=6IFa9wvqVegA:10 a=EUspDBNiAAAA:8 a=PMlHnbKYs8XDBWqhuCgA:9
+ a=CjuIK1q_8ugA:10 a=uG9DUKGECoFWVXl0Dc02:22
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwNjI2MDAyMyBTYWx0ZWRfXyNstIeFtbaef
+ SUxbimFG9lOkrvfI6fokzHuzRFw89WL4i1u5A5x/RifRKazPFbRCMw2nOqNjaE7kwh1E0OaTlD0
+ OfiZnP6+WjlL2qwH62f0ERapvhXIlzu/dHG/G0vbHT8fau1r6Rmm13Na64p3GnNZBFalx6/xDGk
+ iF51/FDhqeYmKYs3UVx2hUeKs/xVOx1GbdxOgVqLpmmq1kmGmZR/nE2aEhK44l7j6EJFYALEZTG
+ J9OJT3jSa+EqO0rustvc5F0GMy1IKsFLVx+S5QI8U0S1mZZYEuvO8o1C0NMs/guwHJcnvXXJjE6
+ GqaXg+6sybzb4KyDS2gcr8JnfnaL69kNiQoE/oQUjaIx82ms/PXcVAuCRj3tMzzWT3PjqrLusZy
+ 1BEGV12QUWkkqAz9c5XKK5NKXtQYh9+FCAXCL3yXzwzIw5QvtDA0Fvy+jJaXHnbgsp8kWFKF
+X-Proofpoint-GUID: PtQlFax-z7cXe6rEZh8Gzlv2dM6v0EuU
+X-Proofpoint-ORIG-GUID: PtQlFax-z7cXe6rEZh8Gzlv2dM6v0EuU
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1099,Hydra:6.1.7,FMLib:17.12.80.40
+ definitions=2025-06-26_02,2025-06-25_01,2025-03-28_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ bulkscore=0 phishscore=0 mlxlogscore=999 lowpriorityscore=0 malwarescore=0
+ impostorscore=0 suspectscore=0 clxscore=1011 spamscore=0 priorityscore=1501
+ adultscore=0 mlxscore=0 classifier=spam authscore=0 authtc=n/a authcc=
+ route=outbound adjust=0 reason=mlx scancount=1 engine=8.19.0-2505280000
+ definitions=main-2506260023
 
-Hi Prabhakar,
+On Mon, Jun 23, 2025 at 06:34:19PM +0530, Umang Chheda wrote:
+> QCS8275 is another SoC under IQ8 series of SoCs. Unlike QCS8300
+> which has safety features, it doesn't have safety monitoring feature
+> of Safety-Island(SAIL) subsystem, which affects thermal management.
+> 
 
-kernel test robot noticed the following build errors:
+QCS8300 and QCS8275 are both the "Monaco" SoC, with some differences in
+which nodes are "okay" and "disabled", and as you say here some side
+effects thereof.
 
-[auto build test ERROR on geert-renesas-drivers/renesas-pinctrl]
-[also build test ERROR on linusw-pinctrl/devel linusw-pinctrl/for-next robh/for-next linus/master v6.16-rc3 next-20250625]
-[If your patch is applied to the wrong git tree, kindly drop us a note.
-And when submitting patch, we suggest to use '--base' as documented in
-https://git-scm.com/docs/git-format-patch#_base_tree_information]
+Describing these as "Monaco" and "Monaco with Sail" would lend itself
+for a better structure.
 
-url:    https://github.com/intel-lab-lkp/linux/commits/Prabhakar/dt-bindings-pinctrl-renesas-document-RZ-T2H-and-RZ-N2H-SoCs/20250625-210839
-base:   https://git.kernel.org/pub/scm/linux/kernel/git/geert/renesas-drivers.git renesas-pinctrl
-patch link:    https://lore.kernel.org/r/20250625130712.140778-3-prabhakar.mahadev-lad.rj%40bp.renesas.com
-patch subject: [PATCH v2 2/3] pinctrl: renesas: Add support for RZ/T2H
-config: hexagon-allmodconfig (https://download.01.org/0day-ci/archive/20250626/202506261030.cncLTO3X-lkp@intel.com/config)
-compiler: clang version 17.0.6 (https://github.com/llvm/llvm-project 6009708b4367171ccdbf4b5905cb6a803753fe18)
-reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20250626/202506261030.cncLTO3X-lkp@intel.com/reproduce)
+> qcs8275-iq-8275-evk board is based on QCS8275 SOC.
+> 
+> Signed-off-by: Umang Chheda <umang.chheda@oss.qualcomm.com>
+> ---
+>  Documentation/devicetree/bindings/arm/qcom.yaml | 7 +++++++
+>  1 file changed, 7 insertions(+)
+> 
+> diff --git a/Documentation/devicetree/bindings/arm/qcom.yaml b/Documentation/devicetree/bindings/arm/qcom.yaml
+> index b14206d11f8b..19823bc91a3b 100644
+> --- a/Documentation/devicetree/bindings/arm/qcom.yaml
+> +++ b/Documentation/devicetree/bindings/arm/qcom.yaml
+> @@ -54,6 +54,7 @@ description: |
+>          msm8998
+>          qcs404
+>          qcs615
+> +        qcs8275
 
-If you fix the issue in a separate patch/commit (i.e. not just a new version of
-the same patch/commit), kindly add following tags
-| Reported-by: kernel test robot <lkp@intel.com>
-| Closes: https://lore.kernel.org/oe-kbuild-all/202506261030.cncLTO3X-lkp@intel.com/
+Please add "monaco" instead.
 
-All errors (new ones prefixed by >>):
+>          qcs8300
+>          qcs8550
+>          qcm2290
+> @@ -935,6 +936,12 @@ properties:
+>            - const: qcom,qcs404-evb
+>            - const: qcom,qcs404
+>  
+> +      - items:
+> +          - enum:
+> +              - qcom,qcs8275-iq-8275-evk
 
->> drivers/pinctrl/renesas/pinctrl-rzt2h.c:106:1: error: call to undeclared function 'writeq'; ISO C99 and later do not support implicit function declarations [-Wimplicit-function-declaration]
-     106 | RZT2H_PINCTRL_REG_ACCESS(q, u64)
-         | ^
-   drivers/pinctrl/renesas/pinctrl-rzt2h.c:91:3: note: expanded from macro 'RZT2H_PINCTRL_REG_ACCESS'
-      91 |                 write##size(val, pctrl->base0 + offset); \
-         |                 ^
-   <scratch space>:123:1: note: expanded from here
-     123 | writeq
-         | ^
->> drivers/pinctrl/renesas/pinctrl-rzt2h.c:106:1: error: call to undeclared function 'readq'; ISO C99 and later do not support implicit function declarations [-Wimplicit-function-declaration]
-   drivers/pinctrl/renesas/pinctrl-rzt2h.c:99:10: note: expanded from macro 'RZT2H_PINCTRL_REG_ACCESS'
-      99 |                 return read##size(pctrl->base0 + offset); \
-         |                        ^
-   <scratch space>:126:1: note: expanded from here
-     126 | readq
-         | ^
->> drivers/pinctrl/renesas/pinctrl-rzt2h.c:311:13: error: call to undeclared function 'FIELD_GET'; ISO C99 and later do not support implicit function declarations [-Wimplicit-function-declaration]
-     311 |                 pins[i] = FIELD_GET(MUX_PIN_ID_MASK, value);
-         |                           ^
-   3 errors generated.
+Please use the qcom,monaco- prefix. Is qcom,monaco-evk unique enough?
+We can sync up offline on this.
 
+> +          - const: qcom,qcs8275
+> +          - const: qcom,qcs8300
 
-vim +/writeq +106 drivers/pinctrl/renesas/pinctrl-rzt2h.c
+Please replace these two with just qcom,monaco.
 
-   103	
-   104	RZT2H_PINCTRL_REG_ACCESS(b, u8)
-   105	RZT2H_PINCTRL_REG_ACCESS(w, u16)
- > 106	RZT2H_PINCTRL_REG_ACCESS(q, u64)
-   107	
+Regards,
+Bjorn
 
--- 
-0-DAY CI Kernel Test Service
-https://github.com/intel/lkp-tests/wiki
+> +
+>        - items:
+>            - enum:
+>                - qcom,qcs8300-ride
+> -- 
+> 2.25.1
+> 
 
