@@ -1,113 +1,416 @@
-Return-Path: <devicetree+bounces-189925-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-189926-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 96A8FAE9D87
-	for <lists+devicetree@lfdr.de>; Thu, 26 Jun 2025 14:32:38 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 671C7AE9DB3
+	for <lists+devicetree@lfdr.de>; Thu, 26 Jun 2025 14:40:44 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id DED254A551C
-	for <lists+devicetree@lfdr.de>; Thu, 26 Jun 2025 12:32:17 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 96F16162F5E
+	for <lists+devicetree@lfdr.de>; Thu, 26 Jun 2025 12:40:43 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5A1022E0B72;
-	Thu, 26 Jun 2025 12:32:03 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2A9C32E1C4D;
+	Thu, 26 Jun 2025 12:40:30 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b="iLBTes13"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-qv1-f48.google.com (mail-qv1-f48.google.com [209.85.219.48])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [213.167.242.64])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A9D1B2E06E4;
-	Thu, 26 Jun 2025 12:32:01 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.219.48
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C725B2E11BF;
+	Thu, 26 Jun 2025 12:40:27 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=213.167.242.64
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1750941123; cv=none; b=QsBnwBha0H96EeItJCFJzZxVqqHnVCy1cI60mf8LzJxasxDyHG3eaq+TaCxK6pMszpO4jgkTyQbx3a8gx/RT9b9Y2is0V+la0HeOovFTMJKRWMneTz2axjoruvFY1beNfZkpIZzobQ4RTC/vRXc8dAJI2zqkfzLmgDlA9QzfNwU=
+	t=1750941630; cv=none; b=chLT/ATKLMZmB8mzZuldOxgraf898ZuHGIrgsth4MDh+dF3KwgOwjuZC565tBmcN3ZnzJ47/377GlCuHmcMcvS6eIiGFf9lodTkZtZK4JkSNSx5Ah+irWtUIaN/bmx8Bn5CBP9bBSUjHFAAG0vVPYrabkb2FrgopbUZNiIjT/Mg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1750941123; c=relaxed/simple;
-	bh=R406E7aTx9nftAo+npNCuL0z+9TS/Ddep2sOGrAWnJ8=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=LX88ySAfAeTRpnSd3Mx8qGmJD+Kbfd2fZk54B5rX3+pz8iBK2bbMNA2BBru4BwIGIMez7NaNTnPkjFxaw8y204l0uhuA5Dbx3wXsaN9eQTc+c09nwqXvZu8BA7CQ3b9FPQttWwTZvgn1GwVgHz17nJtQEncPbcjHH7nlIKP2OHQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.219.48
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-qv1-f48.google.com with SMTP id 6a1803df08f44-6fafdd322d3so11162126d6.3;
-        Thu, 26 Jun 2025 05:32:01 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1750941120; x=1751545920;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=nxNrve9T9gi+GNOSoG1/RnrvLgc8XNYEUQ9CWlM5sRU=;
-        b=Bpkt5iP379D8kG4dB9VWH2BZovjCxFjln20cMse3LhBPepqljtMH+/Y4xthwuo0kI8
-         CmZA4meydIcZY5EVsru9beEFhFhs58ftA33RpaxFkJzQ86/1w4IJHIOxA7gT38JBgoHH
-         HcNUyIUO2i78d1ZeRpOkUYgiJbNa66/a6nNNiQusc2oO18Q/By2IlEFF5z2HgepynjMB
-         0VhJD+n74J0S0pK3atPdwOGrj/eY3GREsWz41i+kRbMUxDOvrWBFdC/vTilA9nv60wPB
-         rlT1gRepv9XMF4dpAzatVNZ4Tk/q0KFKoSTRjb/5eviNRcPD9zP7jpm2zhPnjy5w+I3F
-         gsWQ==
-X-Forwarded-Encrypted: i=1; AJvYcCU/n4IShENGjsYFEGkzBee5kgoheGKApUnLqKKNvNBHwLkmRi12wGuB+yl8nGfDohKVHwaD0POZgIKclEoFMctWxJI=@vger.kernel.org, AJvYcCUbVXzkj5BN0+LREGTBctXD8suqWE9eFLPon5XoQWbApiIg5NWxgJQxX4fyBnleGxSM+zRC9eq9FXnB@vger.kernel.org, AJvYcCVs23G6sz8bo3C2/K4/r1Cy8FAWKzJoth+yLAWL8Px/Ox8WRFRibXhj7tvVrPG4LN7FzOd3skk8Ltpq@vger.kernel.org, AJvYcCWCa0wN8wTrlxi7n0ayq2r04jm3hhnDlWJ8KHq4SOX3J9phZAuxobA59B9KgfJe6z/8xnRB4bFI@vger.kernel.org, AJvYcCXbU9NQEUs0JDPRbXJLNjZi4/BSu57cOCdr+S8lJaX9G/bencIHPNn8jVaZFVCEn/Zf6/SJ1oyVGLYZ8Y8W@vger.kernel.org
-X-Gm-Message-State: AOJu0Yxq6OSLW+O9L7IT7hzRwhr5CHtat+mN7VxUY12y/qgvAS7VtHSI
-	vLTAZ06M5WNicprycefwW4BiCQU+1Vz2WTfnDc5rFuUtoQhSWhRx6JSCMZYlmg7I
-X-Gm-Gg: ASbGncvwul51AbqyFSpUXYvs15n53rxczdevIy9f5V98U44PJA4AjwyNTXPWqzQCiHo
-	gDkIfHJN7xrlORDErRMGNzkWUkRqD3cl4NpODp6ckNK6VagMgojVJeFWd4Co6NJgxonshw3l3C6
-	ohopiclzF3hePkdhRVXtEA265AUYYRpx87/6/oYunaRDX2yKmOS36lC38OSvlG+O7O4dCJjj1gm
-	aK1Sd5NtUf6TQwthF1K5II+69Yy1pDfGJVz+ZZ6RW/HXzNroAtyt8KhnU0VTLXRQNAkrFr0hSAX
-	Spp7SqsVN47sGg4BE4JPHWdkF1KA3Pt8YZYYwYNo+mVsUwrdZm3UeneUJAUYKbXls/wEsKN1ztQ
-	BFczd+BIs2NoZ+q36LrVc9EDT8Dpvyeh8bqNJswM=
-X-Google-Smtp-Source: AGHT+IFMcDhs+jApIf22vPRkqGanag5A9ET+xYuh/7vx5BXkZHmFaIrdwkf/HasdLQViGtJ5HHwIQw==
-X-Received: by 2002:a05:6214:5098:b0:6fa:faf7:7545 with SMTP id 6a1803df08f44-6fd5ef8c915mr122820756d6.31.1750941119247;
-        Thu, 26 Jun 2025 05:31:59 -0700 (PDT)
-Received: from mail-qk1-f174.google.com (mail-qk1-f174.google.com. [209.85.222.174])
-        by smtp.gmail.com with ESMTPSA id 6a1803df08f44-6fd7718f5ddsm6815056d6.14.2025.06.26.05.31.58
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 26 Jun 2025 05:31:58 -0700 (PDT)
-Received: by mail-qk1-f174.google.com with SMTP id af79cd13be357-7d0976776dcso96907885a.2;
-        Thu, 26 Jun 2025 05:31:58 -0700 (PDT)
-X-Forwarded-Encrypted: i=1; AJvYcCU1mf2/eEv0M2yPeHYJa4sIA+z3A6HHPjbUpVtk7xypL4jgewEpM3OImPOrBy6ucP+UcwUx4Kkn@vger.kernel.org, AJvYcCUjXVWoZn/kXiNrIusDA5P2Kn8vK1xz+xIZhBxam7JV3QidI0412THcVCvgY0ElBKjMLywACfsLY2BaoyLZMrKQMMA=@vger.kernel.org, AJvYcCXCKJKJDGp7uL9qT738/oyiipeCPoWE4VmWMH/btyNPmgp4wap9zJW7PC71OMGuY31ycDqqcc0S1m8w@vger.kernel.org, AJvYcCXj6M/vYp5ftWSkG5apRbmXAlgg0/+WlHXwgVahB0xl2dsVmHUwPFkSrKt/aiMQh4N3M7frvvpcUILViAIo@vger.kernel.org, AJvYcCXkD9eesBtvKl9rBxhgp5/S/vNPw8iBxNmcI1T6RpSeSOMDn4qYtaaIOgbBYSVlVe34DChq4Ei/gTMJ@vger.kernel.org
-X-Received: by 2002:a05:620a:708a:b0:7d4:4214:2cba with SMTP id
- af79cd13be357-7d44214358dmr71619285a.40.1750941117802; Thu, 26 Jun 2025
- 05:31:57 -0700 (PDT)
+	s=arc-20240116; t=1750941630; c=relaxed/simple;
+	bh=4FTE9DNWkrVV32lab4THCL2LY/03yZgsW1Lc7HyMkkI=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=LO//bK09/ZjiD0nOEmvxjlGy6YJ0kElGzt5MuLtzAuCjy7xkl+c2kIrKC6suzu6GGYXrBgqU29bSbVa+sL1LFvp5t/wJ+hwzhM9IXbwvMyXGjF+O9jWi1R4uSYEEALrsRQ0xGTurR0zybTuOE7quzHKllvHzSmIo1swjkPlRKRI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ideasonboard.com; spf=pass smtp.mailfrom=ideasonboard.com; dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b=iLBTes13; arc=none smtp.client-ip=213.167.242.64
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ideasonboard.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ideasonboard.com
+Received: from pendragon.ideasonboard.com (85-76-34-12-nat.elisa-mobile.fi [85.76.34.12])
+	by perceval.ideasonboard.com (Postfix) with UTF8SMTPSA id E1761743;
+	Thu, 26 Jun 2025 14:40:06 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
+	s=mail; t=1750941607;
+	bh=4FTE9DNWkrVV32lab4THCL2LY/03yZgsW1Lc7HyMkkI=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=iLBTes13B9sBZT6iySo+qJeuuMOsVJj1pFbVz5j/FFLkzSvtM9+ZcFN54S/TVQagV
+	 I8aCtQX7s84R752vryFm3Ziu44ZvhAhLxzyScn2MXW30gqH6NjkMRGh7/Rm5jDK4VW
+	 nNPk4TU2BniB+NkkAD1VY+FPoHm92Qwj5/8Z5dbI=
+Date: Thu, 26 Jun 2025 15:40:02 +0300
+From: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+To: Frank Li <Frank.li@nxp.com>
+Cc: Mauro Carvalho Chehab <mchehab@kernel.org>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Kumar M <anil.mamidala@xilinx.com>, linux-media@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	imx@lists.linux.dev, "Guoniu.zhou" <guoniu.zhou@nxp.com>,
+	Stefan Hladnik <stefan.hladnik@gmail.com>,
+	Florian Rebaudo <frebaudo@witekio.com>
+Subject: Re: [PATCH v3 1/2] dt-bindings: media: i2c: Add bindings for AP1302
+ and AR0144
+Message-ID: <20250626124002.GJ8738@pendragon.ideasonboard.com>
+References: <20250623-ap1302-v3-0-c9ca5b791494@nxp.com>
+ <20250623-ap1302-v3-1-c9ca5b791494@nxp.com>
+ <20250623224109.GD15951@pendragon.ideasonboard.com>
+ <aFrxSOapkQ/QIXT8@lizhi-Precision-Tower-5810>
+ <20250624185404.GD20757@pendragon.ideasonboard.com>
+ <aFsAY1Nz2bIFH+t+@lizhi-Precision-Tower-5810>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20250623080405.355083-1-john.madieu.xa@bp.renesas.com> <20250623080405.355083-3-john.madieu.xa@bp.renesas.com>
-In-Reply-To: <20250623080405.355083-3-john.madieu.xa@bp.renesas.com>
-From: Geert Uytterhoeven <geert@linux-m68k.org>
-Date: Thu, 26 Jun 2025 14:31:45 +0200
-X-Gmail-Original-Message-ID: <CAMuHMdX2EGutZTPPNMdC5LTaVAQzpcVADBy9KMTSgYQHMxQ7-Q@mail.gmail.com>
-X-Gm-Features: Ac12FXznJsGPV2UOxrW_ydw441QmYNHWnstaX0n4g87XOD9sgfoD3vhkXgwlTyc
-Message-ID: <CAMuHMdX2EGutZTPPNMdC5LTaVAQzpcVADBy9KMTSgYQHMxQ7-Q@mail.gmail.com>
-Subject: Re: [PATCH v3 2/3] arm64: dts: renesas: r9a09g047: Add GBETH nodes
-To: John Madieu <john.madieu.xa@bp.renesas.com>
-Cc: magnus.damm@gmail.com, robh@kernel.org, krzk+dt@kernel.org, 
-	conor+dt@kernel.org, mturquette@baylibre.com, sboyd@kernel.org, 
-	richardcochran@gmail.com, linux-renesas-soc@vger.kernel.org, 
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	linux-clk@vger.kernel.org, netdev@vger.kernel.org, biju.das.jz@bp.renesas.com
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+In-Reply-To: <aFsAY1Nz2bIFH+t+@lizhi-Precision-Tower-5810>
 
-On Mon, 23 Jun 2025 at 10:04, John Madieu <john.madieu.xa@bp.renesas.com> wrote:
-> Add GBETH nodes to RZ/G3E (R9A09G047) SoC DTSI.
->
-> Reviewed-by: Biju Das <biju.das.jz@bp.renesas.com>
-> Tested-by: Biju Das <biju.das.jz@bp.renesas.com>
-> Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
-> Signed-off-by: John Madieu <john.madieu.xa@bp.renesas.com>
+Hi Frank,
 
-> v3:
-> Labels mdio nodes
+On Tue, Jun 24, 2025 at 03:45:39PM -0400, Frank Li wrote:
+> On Tue, Jun 24, 2025 at 09:54:04PM +0300, Laurent Pinchart wrote:
+> > On Tue, Jun 24, 2025 at 02:41:12PM -0400, Frank Li wrote:
+> > > On Tue, Jun 24, 2025 at 01:41:09AM +0300, Laurent Pinchart wrote:
+> > > > On Mon, Jun 23, 2025 at 03:17:37PM -0400, Frank Li wrote:
+> > > > > From: Anil Kumar Mamidala <anil.mamidala@xilinx.com>
+> > > > >
+> > > > > The AP1302 is a standalone ISP for ON Semiconductor sensors, which can
+> > > > > connect RAW sensors (AR0144).
+> > > > >
+> > > > > Add corresponding DT bindings.
+> > > > >
+> > > > > Signed-off-by: Anil Kumar Mamidala <anil.mamidala@xilinx.com>
+> > > > > Signed-off-by: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+> > > > > Signed-off-by: Stefan Hladnik <stefan.hladnik@gmail.com>
+> > > > > Signed-off-by: Florian Rebaudo <frebaudo@witekio.com>
+> > > > > Signed-off-by: Frank Li <Frank.Li@nxp.com>
+> > > > > ---
+> > > > > Previous try:
+> > > > > https://lore.kernel.org/linux-media/1631091372-16191-2-git-send-email-anil.mamidala@xilinx.com/
+> > > > >
+> > > > > Change in v3:
+> > > > > - Move sensors under ports
+> > > > > - use compatible string to indentify connected raw sensors
+> > > > > - Add onnn,ar0144.yaml
+> > > > > ---
+> > > > >  .../devicetree/bindings/media/i2c/onnn,ap1302.yaml | 151 +++++++++++++++++++++
+> > > > >  .../devicetree/bindings/media/i2c/onnn,ar0144.yaml |  75 ++++++++++
+> > > > >  MAINTAINERS                                        |   9 ++
+> > > > >  3 files changed, 235 insertions(+)
+> > > > >
+> > > > > diff --git a/Documentation/devicetree/bindings/media/i2c/onnn,ap1302.yaml b/Documentation/devicetree/bindings/media/i2c/onnn,ap1302.yaml
+> > > > > new file mode 100644
+> > > > > index 0000000000000..6b745dcf3fd3f
+> > > > > --- /dev/null
+> > > > > +++ b/Documentation/devicetree/bindings/media/i2c/onnn,ap1302.yaml
+> > > > > @@ -0,0 +1,151 @@
+> > > > > +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> > > > > +%YAML 1.2
+> > > > > +---
+> > > > > +$id: http://devicetree.org/schemas/media/i2c/onnn,ap1302.yaml#
+> > > > > +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> > > > > +
+> > > > > +title: ON Semiconductor AP1302 Advanced Image Coprocessor
+> > > > > +
+> > > > > +maintainers:
+> > > > > +  - Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+> > > > > +  - Anil Kumar M <anil.mamidala@xilinx.com>
+> > > > > +
+> > > > > +description:
+> > > > > +  The AP1302 is a standalone ISP for ON Semiconductor sensors. It interfaces to
+> > > > > +  up to two RAW CMOS sensors over MIPI CSI-2 connections, processes the two
+> > > > > +  video streams and outputs YUV frames to the host over a MIPI CSI-2 interface.
+> > > > > +  Frames are output side by side or on two virtual channels.
+> > > > > +
+> > > > > +  The sensors must be identical. They are connected to the AP1302 on dedicated
+> > > > > +  I2C buses, and are controlled by the AP1302 firmware. They are not accessible
+> > > > > +  from the host.
+> > > > > +
+> > > > > +properties:
+> > > > > +  compatible:
+> > > > > +    const: onnn,ap1302
+> > > > > +
+> > > > > +  reg:
+> > > > > +    maxItems: 1
+> > > > > +
+> > > > > +  clocks:
+> > > > > +    items:
+> > > > > +      - description:
+> > > > > +          Reference to the CLK clock.
+> > > > > +
+> > > > > +  reset-gpios:
+> > > > > +    items:
+> > > > > +      - description:
+> > > > > +          Reference to the GPIO connected to the RST pin (active low).
+> > > > > +
+> > > > > +  standby-gpios:
+> > > > > +    items:
+> > > > > +      - description:
+> > > > > +          Reference to the GPIO connected to the STANDBY pin (active high).
+> > > > > +
+> > > > > +  enable-gpios:
+> > > > > +    items:
+> > > > > +      - description:
+> > > > > +          Reference to the GPIO connected to the EN pin (active high).
+> > > > > +
+> > > > > +  dvdd-supply: true
+> > > > > +
+> > > > > +  hmisc-supply: true
+> > > > > +
+> > > > > +  smisc-supply: true
+> > > > > +
+> > > > > +  ports:
+> > > > > +    $ref: /schemas/graph.yaml#/properties/ports
+> > > > > +    unevaluatedProperties: false
+> > > > > +
+> > > > > +    patternProperties:
+> > > > > +      "^port@[01]":
+> > > > > +        description:
+> > > > > +          Sensors connected to the first and second input, if no sensor
+> > > > > +          connect, isp generate test pattern. The compatible string under
+> > > > > +          port@0 and port@1 have to be the same.
+> > > > > +
+> > > > > +        allOf:
+> > > > > +          - $ref: /schemas/graph.yaml#/$defs/port-base
+> > > > > +          - $ref: onnn,ar0144.yaml
+> > > >
+> > > > You can't do that, that's plain wrong, sorry. There are issue raised in
+> > > > the review of v2, please try to understand the problem and propose a
+> > > > solution there. This is not what we need.
+> > >
+> > > After review previous thread, Rob suggest use compatible string instead
+> > > vendor specific onnn,model property. I also think Rob's suggest is good
+> > > because compatible already descript the raw sensor model, needn't involve
+> > > new property for it and we can reuse other property like xxx-supply.
+> > >
+> > > Your concern is that port0 and port1 have to be the same. Rob suggest check
+> > > at the code to make sure both are the same.
+> > >
+> > > I think Rob may have method to add restriction at binding doc to make dts
+> > > have the same compatble string.
+> > >
+> > > Anything what I misssed?
+> >
+> > The discussion died out in that thread, I didn't have time to reply
+> > right away, and then the mails got buried in my inbox. My bad.
+> >
+> > The sensor node does not describe a device in the traditional DT sense,
+> > as the AP1302 completely hides the sensor from the host.
+> 
+> Yes, but still need some informations like xxx-supply
 
-Thanks, will queue in renesas-devel for v6.17.
+That's right, DT needs to provide information to describe how the sensor
+is controlled by the AP1302.
 
-Gr{oetje,eeting}s,
+> > The DT node,
+> > and its properties, need to be interpreted in the context of the AP1302
+> > DT binding. Use a "compatible" property, beside duplicating a value and
+> > introducing room for mistakes, is misleading, as "compatible" implies
+> > that the node is meant to go through the standard matching procedure
+> > with drivers. Sure, we could use a "compatible" property without letting
+> > the operating system match it with drivers, but it would still be
+> > misleading. I don't see any advantage in using "compatible".
+> 
+> According to what I worked with Rob, DT don't care how driver probe device
+> driver, and what they most care is how hardware components connected.
+> 
+> Use "compatible"'s benefit is if sensor direct connect to Soc or other ISP,
+> needn't add new property. improve reusability.
 
-                        Geert
+I don't see how it improves reusability, no. There is no generic code
+that will parse the "compatible" property for a sensor behind the
+AP1302.
+
+> > Regardless, you should *not* reference the ar0144.yaml. A DT binding for
+> > the AR0144 (see below for a link to proper DT binding for this sensor)
+> > would need to describe the device from the point of view of the host.
+> 
+> DT have not concept about view of the host. It looks like hardware schematic,
+> just descript how difference hardware components connected together.
+
+I don't think that's quite right. DT describes the system from the point
+of view of the host. It's quite apparent when you look at the tree
+structure, devices are arranged based on what control bus they are
+connected to.
+
+> > Here you need to describe it from the point of view of the AP1302, which
+> > is very different.
+> 
+> what different?
+
+The sensors are fully controlled by the AP1302. They need to be
+identified first and foremost in order to load the correct AP1302
+firmware, and also to know which power supplies to control. That's about
+it, there's no driver matching the sensors, there will be no device
+corresponding to them in the operating system.
+
+The data that needs to be provided in DT when the same sensor is
+connected directly to the SoC or when it is connected to the AP1302 is
+different, as you can see in the DT binding I posted for the AR0144. I
+understand your confusion as the hardware component is the same, but
+from a DT point of view it's two very different things.
+
+> >  Even if we end up using the compatible property to
+> > identify the sensor model, that compatible property would *not* match a
+> > onnn,ar0144.yaml. That's yet another reason for not using "compatible".
+> 
+> we can add extra restrictions here if need. onnn,ap0144, some time later,
+> new compatible model onnn,ap0145 appear, we still use
+> 
+> compatible = "onnn,ap0145", "onnn,ap0144";
+
+I'm sorry, I don't see how that's related.
+
+> > > > > +
+> > > > > +        unevaluatedProperties: false
+> > > > > +
+> > >
+> > > ...
+> > >
+> > > > > +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> > > > > +
+> > > > > +title: ON Semiconductor AP0144 RAW CMOS sensor
+> > > >
+> > > > AP0144 seems to be a typo.
+> > > >
+> > > > > +
+> > > > > +maintainers:
+> > > > > +  - Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+> > > > > +  - Anil Kumar M <anil.mamidala@xilinx.com>
+> > > >
+> > > > Listing people as maintainers when they had nothing to do with
+> > > > development of a file isn't very polite.
+> > >
+> > > It is continue previous thread and copy from ap1302, If you have concern
+> > > I can put my name here.
+> >
+> > It's a separate binding, not part of the previous version.
+> >
+> > > > > +
+> > > > > +description:
+> > > > > +  AP0144 RAW CMOS can be use standalone with any SOCs, or work with AP1302
+> > > > > +  ISP.
+> > > >
+> > > > How a sensor is used is not relevant for its DT bindings.
+> > >
+> > > DT is that descript hardware. Many sensors have SPI and I2C interface, but
+> > > they use the same binding.
+> > >
+> > > DT just descript hardware feature, such as how many clocks, how many power
+> > > supply. All of property does not related usage at all.
+> > >
+> > > Some legacy binding related usage, but that is what try to avoid now.
+> >
+> > Yes, so you shouldn't mention the AP1302 here.
+> >
+> > > > > +
+> > > > > +properties:
+> > > > > +  compatible:
+> > > > > +    enum:
+> > > > > +      - onnn,ar0144
+> > > > > +      - onnn,ar0330
+> > > > > +      - onnn,ar1335
+> > > >
+> > > > There's also no explanation for this.
+> > >
+> > > It is just chip's compatible string, what do you want to add? Most compatible
+> > > string have not descrption.
+> > >
+> > > > > +
+> > > > > +  reg:
+> > > > > +    maxItems: 1
+> > > > > +
+> > > > > +  vaa-supply: true
+> > > > > +
+> > > > > +  vdd-supply: true
+> > > > > +
+> > > > > +  vddio-supply: true
+> > > > > +
+> > > > > +  vddpll-supply: true
+> > > > > +
+> > > > > +  port:
+> > > > > +    $ref: /schemas/graph.yaml#/$defs/port-base
+> > > > > +    additionalProperties: false
+> > > > > +
+> > > > > +    properties:
+> > > > > +      endpoint:
+> > > > > +        $ref: /schemas/media/video-interfaces.yaml#
+> > > > > +        unevaluatedProperties: false
+> > > > > +
+> > > > > +required:
+> > > > > +  - compatible
+> > > > > +  - reg
+> > > > > +
+> > > > > +allOf:
+> > > > > +  - if:
+> > > > > +      properties:
+> > > > > +        compatible:
+> > > > > +          not:
+> > > > > +            contains:
+> > > > > +              const: onnn,ar0330
+> > > > > +    then:
+> > > > > +      properties:
+> > > > > +        vddpll-supply: false
+> > > > > +
+> > > > > +additionalProperties: false
+> > > > > +
+> > > > > +examples:
+> > > > > +  - |
+> > > > > +    i2c {
+> > > > > +        #address-cells = <1>;
+> > > > > +        #size-cells = <0>;
+> > > > > +
+> > > > > +        camera@10 {
+> > > > > +            compatible = "onnn,ar0144";
+> > > > > +            reg = <0x10>;
+> > > > > +            vaa-supply = <&vaa>;
+> > > > > +            vddio-supply = <&vddio>;
+> > > > > +            vdd-supply = <&vdd>;
+> > > >
+> > > > No input clock, reset signal, ports ?
+> > >
+> > > I am not famillar with this sensor, just extract from code. Do you know
+> > > where download spec?
+> >
+> > The datasheet is not public, but I have posted a driver, with DT
+> > bindings, to the linux-media mailing list. See
+> > https://lore.kernel.org/linux-media/20240905225308.11267-1-laurent.pinchart@ideasonboard.com
+> >
+> > > at least ports is needed.
+> > >
+> > > > > +        };
+> > > > > +    };
+> > > > > +
+> > > > > diff --git a/MAINTAINERS b/MAINTAINERS
+> > > > > index d6f1670290589..1362d351f2574 100644
+> > > > > --- a/MAINTAINERS
+> > > > > +++ b/MAINTAINERS
+> > > > > @@ -1766,6 +1766,15 @@ L:	linux-sound@vger.kernel.org
+> > > > >  S:	Maintained
+> > > > >  F:	sound/aoa/
+> > > > >
+> > > > > +AP1302 ON SEMICONDUCTOR ISP DRIVER
+> > > > > +M:	Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+> > > > > +R:	Frank Li <Frank.Li@nxp.com>
+> > > > > +L:	linux-media@vger.kernel.org
+> > > > > +S:	Maintained
+> > > > > +T:	git git://linuxtv.org/media.git
+> > > > > +F:	Documentation/devicetree/bindings/media/i2c/onnn,ap1302.yaml
+> > > > > +F:	Documentation/devicetree/bindings/media/i2c/onnn,ar0144.yaml
+> > > > > +
+> > > > >  APEX EMBEDDED SYSTEMS STX104 IIO DRIVER
+> > > > >  M:	William Breathitt Gray <wbg@kernel.org>
+> > > > >  L:	linux-iio@vger.kernel.org
 
 -- 
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
+Regards,
 
-In personal conversations with technical people, I call myself a hacker. But
-when I'm talking to journalists I just say "programmer" or something like that.
-                                -- Linus Torvalds
+Laurent Pinchart
 
