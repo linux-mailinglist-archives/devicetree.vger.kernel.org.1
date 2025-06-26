@@ -1,173 +1,436 @@
-Return-Path: <devicetree+bounces-190001-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-190002-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 21CEDAEA113
-	for <lists+devicetree@lfdr.de>; Thu, 26 Jun 2025 16:45:44 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 976D8AEA11B
+	for <lists+devicetree@lfdr.de>; Thu, 26 Jun 2025 16:46:53 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 1B3A84E6EC1
-	for <lists+devicetree@lfdr.de>; Thu, 26 Jun 2025 14:40:09 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 0A9266A4EFA
+	for <lists+devicetree@lfdr.de>; Thu, 26 Jun 2025 14:40:50 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C14472ECEB9;
-	Thu, 26 Jun 2025 14:37:49 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E09D32EACF5;
+	Thu, 26 Jun 2025 14:40:30 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="y43KUiSx"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="vWaN82d/"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f54.google.com (mail-wm1-f54.google.com [209.85.128.54])
+Received: from mail-oi1-f170.google.com (mail-oi1-f170.google.com [209.85.167.170])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B64082EACFB
-	for <devicetree@vger.kernel.org>; Thu, 26 Jun 2025 14:37:47 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.54
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D26D82EB5B2
+	for <devicetree@vger.kernel.org>; Thu, 26 Jun 2025 14:40:28 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.170
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1750948669; cv=none; b=u6dNy3YAEyiqiZ1QZIPCvX5JAiyX0NeW4fVxaGso8/LjTUaMA3YuRzHv+yPK1FkoaHS4lNOzbO87IFlAQ49VQp44X5ccFvXMkOGlCm5NaD7ZMhoMoB9+sJ5yMEQzx1Rw+aVAX80ewStOE+c7Efa2NcB93kQR+OcIf/iYKJa7BVw=
+	t=1750948830; cv=none; b=WcarmBACZqAbOmzyV4FK+IilyiO9ePmIDQZhVxMt6VCe8DQDe8Wv+18aZHiKm6pBEQeEljyH/WXnaBVubJMFc4jHSHPZTK21HpkHmVe9GyeT5eUec+l0M//vi9Tvi41wLRUwrGX4gCTpI5hWTXztCnaY28uEvQStIaIyR89CAiI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1750948669; c=relaxed/simple;
-	bh=j9P7Y9k+d1qUN1LH7k7uyoyd043tfylXAAkm4D+rmLA=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=aVO8vzXmq7oMdW7CbjMhpwuFVixBDNhPMcWyoIdiJ2gRPaGXyANdWx5P/UKbcUWsW+N+98IISbsWIR1Icr8JY1XPxfFGu3OAjoani2PKBM+heTfC+IQHmxhoKNW/5NQ/YO5fhJZ6G+GKAnnsRmK1Dva9L/XKQC11eN5NBZO/eGw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=y43KUiSx; arc=none smtp.client-ip=209.85.128.54
+	s=arc-20240116; t=1750948830; c=relaxed/simple;
+	bh=aHV1jI1fkhodloHyH4Cmzv72r5jWv5VROLncg/taXkU=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=oz5AGZb2cKRyAkbcroCOP20ChUzvizo0XvTZKwnPkVyi+zNKQc/XAgirGTHu+hGjRM2aH4mPGzrUrXjrEmuF+kQmaO7HI+IFdRaQdPSeyaDuyKdRZjyaMG9xsDmx/gu3xpfRmyzRXimRFnPdfckU23G4XdjFmHHa0yh4SYuAnKw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=vWaN82d/; arc=none smtp.client-ip=209.85.167.170
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-wm1-f54.google.com with SMTP id 5b1f17b1804b1-4537fdec33bso6829745e9.1
-        for <devicetree@vger.kernel.org>; Thu, 26 Jun 2025 07:37:47 -0700 (PDT)
+Received: by mail-oi1-f170.google.com with SMTP id 5614622812f47-408d14c7ebeso675585b6e.1
+        for <devicetree@vger.kernel.org>; Thu, 26 Jun 2025 07:40:28 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1750948666; x=1751553466; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=S1AOh6zFRHKrc6fml+09g5+eTgQ+NcQY8jLNiJxnmas=;
-        b=y43KUiSxwwUsC+kxWzoN08sFvWosK/wOJl8qGBh+YOa8ybgtHl/6v3hbafXtrW5lOH
-         PpIOl+U0YsoOjiqD9EDOs1pnhBYAAGQ6flw80Osynu81qp9l27KxZdbUqsJZCA1O7w6d
-         +R/r8HRJ1tynzL4MF0BLPX4ZOXyn/MnVRYCpRhpanI1Yzmfa8l01C+aQ87lPz6JaF8x9
-         mflGKNCf1eMt2DjGJAwEnSOX+1Mft1OVzpKrg6vxfKIWefUtHGkz84QnNRMXqKBZxo2X
-         KrEhVsQBu4m3W9gXgbnLQYr/US60WP0BDBBWUEg3W+r/8OybqtmWwxX3HOB/csmjCW/k
-         1UxQ==
+        d=linaro.org; s=google; t=1750948828; x=1751553628; darn=vger.kernel.org;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=mxnJ+JMAeXEe0tFyoruENV/4pmqUfnDATYgkfRCTwwk=;
+        b=vWaN82d/4v3L7a5QEPbqqEo3ZXz8m8USzJkGZUPOHQExRr6EYc+iBSFKsFj0sEpcSv
+         gzTT5/fC3f7tClqcIX8HaAnMM4JknybP6zerMsS0nbdbNV/S2o84bS7XaYHAM+XV81g5
+         iP7vb+GZ3Q7YW4DZsulR1m2y1zH0EwMhvOFtUH9PwF65GPi1aZ2goqzLhORHJZ8RI2Ow
+         joIkLKa6UFPbwH60ybf+rXR+4kguQQ9HlbbFJywAdr8MPIJa+RkfVbh1eQqjPPsmXvAw
+         YWmvPaEs++leM6XSAQTyauO0YsHHr37uCbCJEB0iPah9j4eYm/kdoVd2cWWvi5XE9/es
+         BhOQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1750948666; x=1751553466;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=S1AOh6zFRHKrc6fml+09g5+eTgQ+NcQY8jLNiJxnmas=;
-        b=GGPBCbolTHLOBXx1mjs5MTw/5nTMr910i+x7/+4f+81N0eiETaIwzaog2q4rkho3Ts
-         kN0NRtUNvydhm50vwj6VmummdBBkC8nSX37+TZbauSTXXfqHjmbTl02ekX6p+iyY5hUN
-         y3KrkqSUW3IhXHDbPITfKovdBUt6N6onh4ANf6AdwTJhz0dxsqeoch4zpjRcSZv2ptZa
-         N1AJb7dMP2STGyP77WY0KKWeK1iYrJWjA2Ft//bvckEy9XQ8Jp0lpFZbyTXiz+QOKezW
-         Et+eT20nZ9ngPYL4o4mJPZtijGxE72tKg/9MT+FZPlj+LhRW7Omts6XLo3aRkpDHX9Af
-         neuQ==
-X-Forwarded-Encrypted: i=1; AJvYcCUtprRpzHZJyUyIcQuQAq41MjOH82VG2xoRneA1/P0AH7hLHVXoGpFUE1FSzFYmZDe8SU3oQ1iWCNs/@vger.kernel.org
-X-Gm-Message-State: AOJu0YwKv7Pj1m/8IWPMSZk+ZRcp4IQnL7y8UzIDxL8a1tcsutoGKMiJ
-	njj8yiBAndLBe0c6KdpD1G+zMv7QY5GObcI4ferTBYAXaD6lwPlxJchz0CJr3OgW7qo=
-X-Gm-Gg: ASbGncvCcg7TjddyPTSMn3/C5lNyKfkhWg5490yYLrVEYVswe+gnc7uiGRxPn4zLfr0
-	KFmiK0Xov1K2wMGCyhWozHvt3cdtmaZL3SJTNSHWTvBQJkj5rB6Fur+PPjxyCY4XOqY63IfA+ym
-	tEjxvaYFt5JnG6L6//QBsJu/+JhuGm0JYwQ18gJ7KzpC336LSrbLIMvZ9jf/+4hRaAhVLg9mCst
-	YEQoRBu2xypz/7zQFxS1NTu5z81qpVyiFqza8Vc/Zcy8lx/b1UTk3084uLV6duy+8Elhshg34Sx
-	HlMS75qXvjaPSScfvaedpB4tHd4whoqIBsqn3OOdvOaUEvwxUPTU1441n61Fs8DhstEdPQgpgmX
-	S7Wn8y2lC4rXIasL24g2uub/xKh4=
-X-Google-Smtp-Source: AGHT+IHTUDQzELvy6oqBw8zJr8Bm+VBPGXCOgJa1zh4Kjeaae/Qc9Ajc6QxCV0Bm5N0eMq1HGfMA7Q==
-X-Received: by 2002:a05:600c:190b:b0:43c:e70d:44f0 with SMTP id 5b1f17b1804b1-45381ae45d4mr69774515e9.19.1750948665981;
-        Thu, 26 Jun 2025 07:37:45 -0700 (PDT)
-Received: from [192.168.0.35] (188-141-3-146.dynamic.upc.ie. [188.141.3.146])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-4538234b30dsm52097475e9.12.2025.06.26.07.37.44
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 26 Jun 2025 07:37:45 -0700 (PDT)
-Message-ID: <4aa924e9-d570-45eb-b874-133f12d00fd5@linaro.org>
-Date: Thu, 26 Jun 2025 15:37:43 +0100
+        d=1e100.net; s=20230601; t=1750948828; x=1751553628;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=mxnJ+JMAeXEe0tFyoruENV/4pmqUfnDATYgkfRCTwwk=;
+        b=hhgPNnwurwbgO7CSLxbmnNfu5oMOT3fO255qYwTq7suy9Wy1JBV8B/9chJqxD4QuXJ
+         h298CFWClNm/C7oQAB6YG1wrcE5vlBZhwy+OxQx26xdYFsldo32V93xNUUK/VvCjIu6t
+         7xQOhADwwMWtFpfzUt4SWtYUnOrDVfbwBB8Dw4Nj+42bdJiIostQSa7NuzwHuJuY/3Hy
+         fQUAOsF28OtL/dMlottgn42MOljDrlMPtrCIl8yX4WRWz71W+MoJglQiOvrrcmJ7DWeh
+         EEPi5VH98uTYV9xw/YoavWiqaV/MNQtgz3FffdUObBqAsY8asGHayGN3AScbebwagRKf
+         zZDg==
+X-Forwarded-Encrypted: i=1; AJvYcCXjPQ5oSSqRYpIllfLrK0NSFMF0q61pf0kd9z6xsEdDR4/mCnv5bT1YEs5VuI7MERymE4OV8pgAkQ7k@vger.kernel.org
+X-Gm-Message-State: AOJu0YxHKx5ThC/wk0nW71Q6HnG28Kq+7im7WFId3P4Tt125cL/z0lON
+	k7Ph/HwItCujm4XXsY2sanMMi/1ZA2vPiIR8vZZS9EcQFnOcyGnia8Shp2FH7lYn+fII5pxJ/Mr
+	/NfBoujivLFoSueLOVSMGXHWJ2LfiX/RSlzthhp6EWg==
+X-Gm-Gg: ASbGncsNWTN3DK63Ona3thK4822spvSZRzgK/9ul9h6QDDxmzLLwhjC05eBc90ELf6h
+	jO75IpFoAQPeSurjM3Pbh/4fTI7HU7B0BeyjGlZyChnFJ1K8LM6dKSF6EA9tNYVU83za2Wmwao0
+	nohNawIqNabC6Eslx96cDH8iTm3k+0gy8tXoT4GvAbZqxt
+X-Google-Smtp-Source: AGHT+IGHmBJjuI+jjZm5dEoJCIPgYdOyi9w4BnG28G9e5pmpEj5kPuV2QO71c3KUdTEVfpTi32Y/zFwNrd073ovM1Nk=
+X-Received: by 2002:a05:6808:4fe3:b0:401:e67c:b3be with SMTP id
+ 5614622812f47-40b31c96519mr95767b6e.4.1750948827854; Thu, 26 Jun 2025
+ 07:40:27 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v5 4/5] media: venus: core: Add qcm2290 DT compatible and
- resource data
-To: Jorge Ramirez-Ortiz <jorge.ramirez@oss.qualcomm.com>, krzk+dt@kernel.org,
- quic_vgarodia@quicinc.com, quic_dikshita@quicinc.com, mchehab@kernel.org,
- robh@kernel.org, conor+dt@kernel.org, konradybcio@kernel.org,
- andersson@kernel.org
-Cc: linux-arm-msm@vger.kernel.org, linux-media@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <20250626135931.700937-1-jorge.ramirez@oss.qualcomm.com>
- <20250626135931.700937-5-jorge.ramirez@oss.qualcomm.com>
-Content-Language: en-US
-From: Bryan O'Donoghue <bryan.odonoghue@linaro.org>
-In-Reply-To: <20250626135931.700937-5-jorge.ramirez@oss.qualcomm.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+References: <20250611-gs101-cpuidle-v2-0-4fa811ec404d@linaro.org>
+ <20250611-gs101-cpuidle-v2-2-4fa811ec404d@linaro.org> <4e827037-1bde-4eb3-a6f2-6416dace10b5@kernel.org>
+In-Reply-To: <4e827037-1bde-4eb3-a6f2-6416dace10b5@kernel.org>
+From: Peter Griffin <peter.griffin@linaro.org>
+Date: Thu, 26 Jun 2025 15:40:16 +0100
+X-Gm-Features: Ac12FXyqVtwDD2H_scgEAaexOZMihIpWC1bKrXvc2_bGE_Q9OwsMvGA0M86meco
+Message-ID: <CADrjBPrWZ4JkNJ-c9Qiw=5mmMKePqg6ZW=ATwi8g-1F8Qekn=Q@mail.gmail.com>
+Subject: Re: [PATCH v2 2/2] soc: samsung: exynos-pmu: Enable CPU Idle for gs101
+To: Krzysztof Kozlowski <krzk@kernel.org>
+Cc: =?UTF-8?Q?Andr=C3=A9_Draszik?= <andre.draszik@linaro.org>, 
+	Tudor Ambarus <tudor.ambarus@linaro.org>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Alim Akhtar <alim.akhtar@samsung.com>, William Mcvicker <willmcvicker@google.com>, 
+	Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>, linux-arm-kernel@lists.infradead.org, 
+	linux-samsung-soc@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, kernel-team@android.com
+Content-Type: text/plain; charset="UTF-8"
 
-On 26/06/2025 14:59, Jorge Ramirez-Ortiz wrote:
-> Add a qcm2290 compatible binding to the venus core.
-> 
-> Video encoding support is not exposed until the relevant hardware
-> capabilities are enabled.
-> 
-> Co-developed-by: Loic Poulain <loic.poulain@oss.qualcomm.com>
-> Signed-off-by: Loic Poulain <loic.poulain@oss.qualcomm.com>
-> Signed-off-by: Jorge Ramirez-Ortiz <jorge.ramirez@oss.qualcomm.com>
-> ---
->   drivers/media/platform/qcom/venus/core.c | 39 ++++++++++++++++++++++++
->   1 file changed, 39 insertions(+)
-> 
-> diff --git a/drivers/media/platform/qcom/venus/core.c b/drivers/media/platform/qcom/venus/core.c
-> index 736ef53d988d..f1f211ca1ce2 100644
-> --- a/drivers/media/platform/qcom/venus/core.c
-> +++ b/drivers/media/platform/qcom/venus/core.c
-> @@ -1062,6 +1062,44 @@ static const struct venus_resources sc7280_res = {
->   	.enc_nodename = "video-encoder",
->   };
->   
-> +static const struct freq_tbl qcm2290_freq_table[] = {
-> +	{ 352800, 240000000 },	/* 1920x1088 @ 30 + 1280x720 @ 30 */
-> +	{ 244800, 133000000 },	/* 1920x1088 @ 30 */
-> +};
-> +
-> +static const struct bw_tbl qcm2290_bw_table_dec[] = {
-> +	{ 244800, 2128000, 0, 2128000, 0}, /* 1920x1088 @ 30 */
-> +};
-> +
-> +static const struct venus_resources qcm2290_res = {
-> +	.freq_tbl = qcm2290_freq_table,
-> +	.freq_tbl_size = ARRAY_SIZE(qcm2290_freq_table),
-> +	.bw_tbl_dec = qcm2290_bw_table_dec,
-> +	.bw_tbl_dec_size = ARRAY_SIZE(qcm2290_bw_table_dec),
-> +	.clks = { "core", "iface", "bus", "throttle" },
-> +	.clks_num = 4,
-> +	.vcodec0_clks = { "vcodec0_core", "vcodec0_bus" },
-> +	.vcodec_clks_num = 2,
-> +	.vcodec_pmdomains = (const char *[]) { "venus", "vcodec0" },
-> +	.vcodec_pmdomains_num = 2,
-> +	.opp_pmdomain = (const char *[]) { "cx" },
-> +	.vcodec_num = 1,
-> +	.hfi_version = HFI_VERSION_6XX_LITE,
-> +	.vpu_version = VPU_VERSION_AR50_LITE,
-> +	.max_load = 352800,
-> +	.num_vpp_pipes = 1,
-> +	.vmem_id = VIDC_RESOURCE_NONE,
-> +	.vmem_size = 0,
-> +	.vmem_addr = 0,
-> +	.cp_start = 0,
-> +	.cp_size = 0x70800000,
-> +	.cp_nonpixel_start = 0x1000000,
-> +	.cp_nonpixel_size = 0x24800000,
-> +	.dma_mask = 0xe0000000 - 1,
-> +	.fwname = "qcom/venus-6.0/venus.mbn",
-> +	.dec_nodename = "video-decoder",
-> +};
-> +
->   static const struct of_device_id venus_dt_match[] = {
->   	{ .compatible = "qcom,msm8916-venus", .data = &msm8916_res, },
->   	{ .compatible = "qcom,msm8996-venus", .data = &msm8996_res, },
-> @@ -1072,6 +1110,7 @@ static const struct of_device_id venus_dt_match[] = {
->   	{ .compatible = "qcom,sc7180-venus", .data = &sc7180_res, },
->   	{ .compatible = "qcom,sc7280-venus", .data = &sc7280_res, },
->   	{ .compatible = "qcom,sm8250-venus", .data = &sm8250_res, },
-> +	{ .compatible = "qcom,qcm2290-venus", .data = &qcm2290_res, },
->   	{ }
->   };
->   MODULE_DEVICE_TABLE(of, venus_dt_match);
+Hi Krzysztof,
 
-Reviewed-by: Bryan O'Donoghue <bryan.odonoghue@linaro.org>
+Thanks a lot for your review feedback!
+
+On Wed, 18 Jun 2025 at 11:22, Krzysztof Kozlowski <krzk@kernel.org> wrote:
+>
+> On 11/06/2025 11:34, Peter Griffin wrote:
+> > Register cpu pm notifiers for gs101 which call the
+> > gs101_cpu_pmu_online/offline callbacks which in turn
+> > program the ACPM hint. This is required to actually
+> > enter the idle state.
+> >
+> > A couple of corner cases are handled, namely when the
+> > system is rebooting or suspending we ignore the request.
+> > Additionally the request is ignored if the CPU is in
+> > CPU hot plug.
+> >
+> > Note: this patch has a runtime dependency on adding
+> > 'local-timer-stop' dt property to the CPU nodes. This
+> > informs the time framework to switch to a broadcast timer
+> > as the local timer will be shutdown. Without that DT
+> > property specified the system hangs in early boot with
+> > this patch applied.
+>
+> Please wrap commit message according to Linux coding style / submission
+> process (neither too early nor over the limit):
+> https://elixir.bootlin.com/linux/v6.4-rc1/source/Documentation/process/submitting-patches.rst#L597
+
+Noted, will fix
+
+>
+> >
+> > Signed-off-by: Peter Griffin <peter.griffin@linaro.org>
+> > ---
+> > Changes in v2
+> >  * Add ifdef CONFIG_PM_SLEEP to avoid
+> >    Fix warning: unused variable 'cpupm_pm_ops' [-Wunused-const-variable] (0-day)
+> > ---
+> >  drivers/soc/samsung/exynos-pmu.c | 137 +++++++++++++++++++++++++++++++++++++--
+> >  1 file changed, 133 insertions(+), 4 deletions(-)
+> >
+> > diff --git a/drivers/soc/samsung/exynos-pmu.c b/drivers/soc/samsung/exynos-pmu.c
+> > index a77288f49d249f890060c595556708334383c910..7f72ecd60994f18bb639dd8e09e1c6ff6158066b 100644
+> > --- a/drivers/soc/samsung/exynos-pmu.c
+> > +++ b/drivers/soc/samsung/exynos-pmu.c
+> > @@ -8,6 +8,7 @@
+> >  #include <linux/array_size.h>
+> >  #include <linux/arm-smccc.h>
+> >  #include <linux/cpuhotplug.h>
+> > +#include <linux/cpu_pm.h>
+> >  #include <linux/of.h>
+> >  #include <linux/of_address.h>
+> >  #include <linux/mfd/core.h>
+> > @@ -15,6 +16,7 @@
+> >  #include <linux/of_platform.h>
+> >  #include <linux/platform_device.h>
+> >  #include <linux/delay.h>
+> > +#include <linux/reboot.h>
+> >  #include <linux/regmap.h>
+> >
+> >  #include <linux/soc/samsung/exynos-regs-pmu.h>
+> > @@ -35,6 +37,10 @@ struct exynos_pmu_context {
+> >       const struct exynos_pmu_data *pmu_data;
+> >       struct regmap *pmureg;
+> >       struct regmap *pmuintrgen;
+> > +     spinlock_t cpupm_lock;  /* serialization lock */
+>
+> serialization of what? Or rather, can it be not a serialization lock? Is
+> it possible? It's as useful as saying "protection against concurrent
+> accesses lock". No, you need to be explicit which members and/or code
+> are protected.
+
+I can update the comment to be more verbose, but the lock is used to
+ensure the cpu online/offline sequence called from CPU hotplug
+callbacks and cpu pm notifiers are serialized.
+
+>
+> > +     bool __percpu *hotplug_ing;
+> > +     atomic_t sys_suspended;
+>
+> Why re-implementing own refcnt of pm suspend status?
+> pm_runtime_suspended() and others?
+
+sys_suspended is being used to detect whether a *system* wide sleep
+state is happening. I see a bunch of different drivers using a similar
+approach in the kernel to set a flag from their suspend/resume
+callback. Grep for things like system_suspending, is_suspending etc.
+An alternative approach could be to use register_pm_notifier() and set
+the flag from the callback there.
+
+pm_runtime_suspended() tells me the runtime pm status, which is not
+what I want here.
+
+> > +     atomic_t sys_rebooting;
+> >  };
+> >
+> >  void __iomem *pmu_base_addr;
+> > @@ -336,7 +342,7 @@ EXPORT_SYMBOL_GPL(exynos_get_pmu_regmap_by_phandle);
+> >  #define CPU_INFORM_CLEAR     0
+> >  #define CPU_INFORM_C2                1
+> >
+> > -static int gs101_cpuhp_pmu_online(unsigned int cpu)
+> > +static int gs101_cpu_pmu_online(unsigned int cpu)
+> >  {
+> >       unsigned int cpuhint = smp_processor_id();
+> >       u32 reg, mask;
+> > @@ -358,10 +364,26 @@ static int gs101_cpuhp_pmu_online(unsigned int cpu)
+> >       return 0;
+> >  }
+> >
+> > -static int gs101_cpuhp_pmu_offline(unsigned int cpu)
+> > +static int gs101_cpuhp_pmu_online(unsigned int cpu)
+>
+> This needs either renaming or comments. One is cpu_pmu_online other is
+> cpuhp_pmu_online. Sounds the same to me.
+
+I can add some comments, but one function is specifically for CPU Hot
+Plug, which is what the 'cpuhp' part was trying to convey.
+
+>
+>
+> > +{
+> > +     gs101_cpu_pmu_online(cpu);
+> > +
+> > +     /*
+> > +      * Mark this CPU as having finished the hotplug.
+> > +      * This means this CPU can now enter C2 idle state.
+> > +      */
+> > +     *per_cpu_ptr(pmu_context->hotplug_ing, cpu) = false;
+>
+> Quoting docs: "Per cpu data structures are designed to be used by one
+> cpu exclusively".
+>
+> ... and further about write access. Adding standard driver code using
+> "highly discouraged" practice is not something expected.
+
+I'll update this to dynamically allocate based on num_possible_cpus()
+and then read/write the flag with cpupm lock held. I didn't realize
+the docs described the per_cpu remote writes as "highly discouraged
+unless absolutely necessary", so thanks for highlighting that. The
+per_cpu variables with remote writes seem quite widely used in the
+downstream exynos-cpupm driver, but then it takes all sorts of locks
+through all the different cal layers.
+
+>
+>
+> > +
+> > +     return 0;
+> > +}
+> > +
+> > +static int gs101_cpu_pmu_offline(unsigned int cpu)
+> >  {
+> >       u32 reg, mask;
+> > -     unsigned int cpuhint = smp_processor_id();
+> > +     unsigned int cpuhint;
+> > +
+> > +     spin_lock(&pmu_context->cpupm_lock);
+>
+> This does not disable interrupts...
+>
+> > +     cpuhint = smp_processor_id();
+>
+> ... which is a requirement here, according to docs, no? Maybe the
+> original code had an issue, though.
+
+CPU notifiers are called with interrupts disabled. We do use a similar
+pattern in the CPU hot plug path which isn't called with IRQs disabled
+though, so I'll add some locking there in the next version.
+
+Thanks,
+
+Peter
+
+
+
+>
+> >
+> >       /* set cpu inform hint */
+> >       regmap_write(pmu_context->pmureg, GS101_CPU_INFORM(cpuhint),
+> > @@ -379,16 +401,89 @@ static int gs101_cpuhp_pmu_offline(unsigned int cpu)
+> >       regmap_read(pmu_context->pmuintrgen, GS101_GRP1_INTR_BID_UPEND, &reg);
+> >       regmap_write(pmu_context->pmuintrgen, GS101_GRP1_INTR_BID_CLEAR,
+> >                    reg & mask);
+> > +
+> > +     spin_unlock(&pmu_context->cpupm_lock);
+> >       return 0;
+> >  }
+> >
+> > +static int gs101_cpuhp_pmu_offline(unsigned int cpu)
+> > +{
+> > +     /*
+> > +      * Mark this CPU as entering hotplug. So as not to confuse
+> > +      * ACPM the CPU entering hotplug should not enter C2 idle state.
+> > +      */
+> > +     *per_cpu_ptr(pmu_context->hotplug_ing, cpu) = true;
+> > +
+> > +     gs101_cpu_pmu_offline(cpu);
+> > +
+> > +     return 0;
+> > +}
+> > +
+> > +static int gs101_cpu_pm_notify_callback(struct notifier_block *self,
+> > +                                     unsigned long action, void *v)
+> > +{
+> > +     int cpu = smp_processor_id();
+> > +
+> > +     switch (action) {
+> > +     case CPU_PM_ENTER:
+> > +             /*
+> > +              * Ignore CPU_PM_ENTER event in reboot or
+> > +              * suspend sequence.
+> > +              */
+> > +
+> > +             if (atomic_read(&pmu_context->sys_suspended) ||
+> > +                 atomic_read(&pmu_context->sys_rebooting))
+> > +                     return NOTIFY_OK;
+> > +
+> > +             if (*per_cpu_ptr(pmu_context->hotplug_ing, cpu))
+> > +                     return NOTIFY_BAD;
+> > +
+> > +             gs101_cpu_pmu_offline(cpu);
+> > +
+> > +             break;
+> > +     case CPU_PM_EXIT:
+> > +
+> > +             if (atomic_read(&pmu_context->sys_rebooting))
+> > +                     return NOTIFY_OK;
+> > +
+> > +             gs101_cpu_pmu_online(cpu);
+> > +
+> > +             break;
+> > +     }
+> > +
+> > +     return NOTIFY_OK;
+> > +}
+> > +
+> > +static struct notifier_block gs101_cpu_pm_notifier = {
+> > +     .notifier_call = gs101_cpu_pm_notify_callback,
+> > +     .priority = INT_MAX     /* we want to be called first */
+>
+> You should say why. Everyone wants to be the first.
+>
+> > +};
+> > +
+> > +static int exynos_cpupm_reboot_notifier(struct notifier_block *nb,
+> > +                                     unsigned long event, void *v)
+> > +{
+> > +     switch (event) {
+> > +     case SYS_POWER_OFF:
+> > +     case SYS_RESTART:
+> > +             atomic_set(&pmu_context->sys_rebooting, 1);
+> > +             break;
+> > +     }
+> > +
+> > +     return NOTIFY_OK;
+> > +}
+> > +
+> > +static struct notifier_block exynos_cpupm_reboot_nb = {
+> > +     .priority = INT_MAX,
+> > +     .notifier_call = exynos_cpupm_reboot_notifier,
+> > +};
+> > +
+> >  static int exynos_pmu_probe(struct platform_device *pdev)
+> >  {
+> >       struct device *dev = &pdev->dev;
+> >       struct regmap_config pmu_regmcfg;
+> >       struct regmap *regmap;
+> >       struct resource *res;
+> > -     int ret;
+> > +     int ret, cpu;
+> >
+> >       pmu_base_addr = devm_platform_ioremap_resource(pdev, 0);
+> >       if (IS_ERR(pmu_base_addr))
+> > @@ -444,6 +539,12 @@ static int exynos_pmu_probe(struct platform_device *pdev)
+> >                        */
+> >                       dev_warn(&pdev->dev, "pmu-intr-gen syscon unavailable\n");
+> >               } else {
+> > +                     pmu_context->hotplug_ing = alloc_percpu(bool);
+> > +
+> > +                     /* set PMU to power on */
+> > +                     for_each_online_cpu(cpu)
+> > +                             gs101_cpuhp_pmu_online(cpu);
+> > +
+> >                       cpuhp_setup_state(CPUHP_BP_PREPARE_DYN,
+> >                                         "soc/exynos-pmu:prepare",
+> >                                         gs101_cpuhp_pmu_online, NULL);
+> > @@ -451,6 +552,12 @@ static int exynos_pmu_probe(struct platform_device *pdev)
+> >                       cpuhp_setup_state(CPUHP_AP_ONLINE_DYN,
+> >                                         "soc/exynos-pmu:online",
+> >                                         NULL, gs101_cpuhp_pmu_offline);
+> > +
+> > +                     cpu_pm_register_notifier(&gs101_cpu_pm_notifier);
+> > +                     spin_lock_init(&pmu_context->cpupm_lock);
+> > +                     atomic_set(&pmu_context->sys_rebooting, 0);
+> > +                     atomic_set(&pmu_context->sys_suspended, 0);
+> > +                     register_reboot_notifier(&exynos_cpupm_reboot_nb);
+> >               }
+> >       }
+> >
+> > @@ -471,10 +578,32 @@ static int exynos_pmu_probe(struct platform_device *pdev)
+> >       return 0;
+> >  }
+> >
+> > +#ifdef CONFIG_PM_SLEEP
+> > +static int exynos_cpupm_suspend_noirq(struct device *dev)
+> > +{
+> > +     atomic_set(&pmu_context->sys_suspended, 1);
+> > +     return 0;
+> > +}
+> > +
+> > +static int exynos_cpupm_resume_noirq(struct device *dev)
+> > +{
+> > +     atomic_set(&pmu_context->sys_suspended, 0);
+> > +     return 0;
+> > +}
+> > +
+> > +static const struct dev_pm_ops cpupm_pm_ops = {
+> > +     .suspend_noirq = exynos_cpupm_suspend_noirq,
+> > +     .resume_noirq = exynos_cpupm_resume_noirq,
+>
+> SET_LATE_SYSTEM_SLEEP_PM_OPS or one of other wrappers.
+>
+> > +};
+> > +#endif
+> > +
+> >  static struct platform_driver exynos_pmu_driver = {
+> >       .driver  = {
+> >               .name   = "exynos-pmu",
+> >               .of_match_table = exynos_pmu_of_device_ids,
+> > +#ifdef CONFIG_PM_SLEEP
+> > +             .pm = &cpupm_pm_ops,
+>
+> pm_ptr
+> > +#endif
+> >       },
+> >       .probe = exynos_pmu_probe,
+> >  };
+> >
+>
+>
+> Best regards,
+> Krzysztof
 
