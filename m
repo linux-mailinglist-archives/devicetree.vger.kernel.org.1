@@ -1,147 +1,182 @@
-Return-Path: <devicetree+bounces-189923-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-189924-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id C2005AE9D6E
-	for <lists+devicetree@lfdr.de>; Thu, 26 Jun 2025 14:27:20 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 61C59AE9D7A
+	for <lists+devicetree@lfdr.de>; Thu, 26 Jun 2025 14:30:59 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 7CB837B1E0A
-	for <lists+devicetree@lfdr.de>; Thu, 26 Jun 2025 12:25:56 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id E55925A362C
+	for <lists+devicetree@lfdr.de>; Thu, 26 Jun 2025 12:30:33 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 52C87267721;
-	Thu, 26 Jun 2025 12:27:13 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5C5A02DD5F1;
+	Thu, 26 Jun 2025 12:30:56 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="IYfEs+yY"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="AFdvFmGz"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CE713238140
-	for <devicetree@vger.kernel.org>; Thu, 26 Jun 2025 12:27:11 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 312222DCC10;
+	Thu, 26 Jun 2025 12:30:54 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1750940833; cv=none; b=OYiHUWkCldbD1yPqrr/w2sHl0p8d+BKvBl12i1Qm8N8EWjarLsGA1ykpoOeXpHtZHDWrVyYUdsI3wGJory0tDzdtjelRq76n+pGwAWaSOpJgcdTkAMhZ1ovepp+L9wz5p/GDA1wA2X+1p3dYwW+na4XyCDo6l5UaRYNdhdId6/A=
+	t=1750941056; cv=none; b=hyH1FcjIIYEmrf3hP2ARk+fj6TZWlJD4tOkm9RG3Wlm4CPoJc2ciwCPzXkkMiwbN01XSs8AOmdV4E5QUNJEhY0XiN1H+O/AiAIhH1IWf8fxmAIlCekOUVPhrXP208hSfoc3uwjKrM0Dctv9PdVWOiqKhYSZGasbfDqjnahZOJsQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1750940833; c=relaxed/simple;
-	bh=OeUXM4PnAiSmHZwptWygkH9IPNf5qkAr4wW1Y9Ro3/4=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=F6vMbYHm2H0soZEbWK/r/jsBH2UKwXE6uyhzCUvk5ora69sM+3I7WmzMnyVptOl/Rrol6PzpIYVvCB6FTk29UMaG5bgspV6GYs8mzVFamjFW2U99TROwKi9XayCkHKY6Ed0vuBtu0Yn4M/eQXiM+zExlYXri4ZpLTRHF7fETsG4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=IYfEs+yY; arc=none smtp.client-ip=205.220.168.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
-Received: from pps.filterd (m0279866.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 55Q9Dn7C019207
-	for <devicetree@vger.kernel.org>; Thu, 26 Jun 2025 12:27:11 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
-	cc:content-type:date:from:in-reply-to:message-id:mime-version
-	:references:subject:to; s=qcppdkim1; bh=Z4ld+nvIY43lmGSOTvBqUnW1
-	/Skj+9qjlyioayiU/uk=; b=IYfEs+yY474NZPBK6U6Z+R0Ufasg731pkB7bfpur
-	VRPpgLw4daMNjA/w1BJMQ+4thwDrYuwyTndkvabJuU/I6DI9GdqpoRL/720IRoYU
-	U/LpC9Any/aINvhjlU/PyizpjJNx/YNhQS2U2M5/hjExJEHUIZk17LqquDS8nP92
-	/NUyE1ChzmaXJSRu7B5xDGCc2SEHODUyEf0o4JKPXFYbkHHVstyfxPHZdlYOoX52
-	OZ3PM7MHqJE//7VWcAlnqzT4p8wmjW1DC5EmseuBfbfUf8Dfx27lOExjkV4egRSA
-	0UK7bc29uU/2XeBdiXREcs2bdJVWpr9KOLZuB7p6YayAmg==
-Received: from mail-qk1-f199.google.com (mail-qk1-f199.google.com [209.85.222.199])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 47ec26djt9-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Thu, 26 Jun 2025 12:27:10 +0000 (GMT)
-Received: by mail-qk1-f199.google.com with SMTP id af79cd13be357-7d40f335529so300433785a.0
-        for <devicetree@vger.kernel.org>; Thu, 26 Jun 2025 05:27:10 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1750940829; x=1751545629;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=Z4ld+nvIY43lmGSOTvBqUnW1/Skj+9qjlyioayiU/uk=;
-        b=ZzMtgMyHF3QudON5yy0bhDMiR6Fgin81B6WZJP6Pbpzz07ZXiUm7atK9PRmuwycxH0
-         VcKv0Ptv1oyRYBAQiUedjWVqGMWBjeprhkSAT04pnbJdksnGd6l8D6jSoNJd5iKwFUIT
-         8l0D6I55FKj1DCNIZ5p2ugvPoeC1QAOdj5Fm6WfApJuyCjMzSLCD7tGATNdrGf7L2cSR
-         TySLuwqwC8LiabZd6TdMdwl53WanW0s1MsTOciJYMfYsfJsdB0EhTELLxHoonvYWy5II
-         v9njDhQtM3+orfgG1BuOuqHichd9cCJ8aStL93ikYtPMMjFH7qqVpRb95F9b6+tduV2v
-         gEHQ==
-X-Forwarded-Encrypted: i=1; AJvYcCWr+Sz163KbuJzz17VSt1usrc/89s7PYMJOzOq2OLPGD0bFjlFELnb+RaDcfRL25I59anvrwMtiTL+t@vger.kernel.org
-X-Gm-Message-State: AOJu0YxmMIg/m7KF5i/lQvUV6tUw/7cSmbsdpHkNOENrC2ISL7xw6kkQ
-	W1aCxq5X/+cYzPH8TWZnGN9NfCXhswOPYmt+F+J2yms4jKd11R8yizdXK81N1gYI4Hbq31ohOKu
-	htqFgqATWgwhA4a57CaPANqTsFXgS8gxkFIBmszoU16rvankhr34DnmZxcfA9Lj9g
-X-Gm-Gg: ASbGncuAfBZf2r/Pj0Z66PTmlouzsdrK3KnoG2E9boegI8WNt7mVkh35wFnTGyRpHEv
-	di2J0zAvsTDVSDyZOaqFpk5IWI9EpCMtxH2HbfqvDSt8n+sD6GjZuKp4wBkmnqoZb7CA7JiiDzh
-	7Uk77SCHhfUThMVMzbA+YFcPwTENlSvnjWuKFpto5UJfGL2iEgXXumuHG14AaNtFqvyj3lchDyN
-	3cEaUzaUH68GLRQ/bLqYT/MC4x2Bn5vlhyBwBmoXIL26ZhWcbTLknxlR5CbmJtM22BAWefyaCGI
-	e7BEv7EyKoZhhu1ycdkExevv9aec8izslVZLUVO95dK/lfCWyzARCM+SqJv9SsJyBQN/3PLm6Q2
-	kQj/v5AbLJSzrlIG1qaufrtz3LJDXnt75gkw=
-X-Received: by 2002:a05:620a:4593:b0:7d3:ed4d:812e with SMTP id af79cd13be357-7d43bb920famr497281885a.9.1750940829355;
-        Thu, 26 Jun 2025 05:27:09 -0700 (PDT)
-X-Google-Smtp-Source: AGHT+IFP9tZg/2hbx2W8BI5QOCq/2uHaNR/sHZ4rDZWc3hvxSUiXPr+NjfiZoQeQMqAZk5rWU6PG6g==
-X-Received: by 2002:a05:620a:4593:b0:7d3:ed4d:812e with SMTP id af79cd13be357-7d43bb920famr497275985a.9.1750940828667;
-        Thu, 26 Jun 2025 05:27:08 -0700 (PDT)
-Received: from umbar.lan (2001-14ba-a0c3-3a00-264b-feff-fe8b-be8a.rev.dnainternet.fi. [2001:14ba:a0c3:3a00:264b:feff:fe8b:be8a])
-        by smtp.gmail.com with ESMTPSA id 38308e7fff4ca-32cd2f00aa6sm2006921fa.99.2025.06.26.05.27.07
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 26 Jun 2025 05:27:07 -0700 (PDT)
-Date: Thu, 26 Jun 2025 15:27:06 +0300
-From: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
-To: Ling Xu <quic_lxu5@quicinc.com>
-Cc: cros-qcom-dts-watchers@chromium.org, andersson@kernel.org,
-        konradybcio@kernel.org, robh@kernel.org, krzk+dt@kernel.org,
-        conor+dt@kernel.org, quic_kuiw@quicinc.com,
-        ekansh.gupta@oss.qualcomm.com, devicetree@vger.kernel.org,
-        linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v3 1/2] arm64: dts: qcom: sc7280: Add memory region for
- audiopd
-Message-ID: <bch5jprookxuenjejuwlgvueigaporjgdd7h7ny2a7rb2fnsh5@lateboeubkun>
-References: <20250626092952.847393-1-quic_lxu5@quicinc.com>
- <20250626092952.847393-2-quic_lxu5@quicinc.com>
+	s=arc-20240116; t=1750941056; c=relaxed/simple;
+	bh=Tcuj9liMYKxMkRvp81H+oER4dm3a08kA2i8lcMgGi1o=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=NHfNlurfY1CB7/VJBuYXVzidIUzFREnIBZh8zhrQs9KtIvXZorIX/JsbuQIXBSRv/xwrI8H9azQnXmMR7Bb8SMqUbGLHLynNYxHlcradPuaXSuAXNs9EAIOZApxHWCHrEA0kBvpGUlWk30wrsc/gc2k8W8PDn4aYjBoPy8CYyCE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=AFdvFmGz; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id C0B73C4AF0C;
+	Thu, 26 Jun 2025 12:30:54 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1750941054;
+	bh=Tcuj9liMYKxMkRvp81H+oER4dm3a08kA2i8lcMgGi1o=;
+	h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+	b=AFdvFmGzLMJjZXxDjZV/m01zQTuxCUKxLXf0Gg84qB9aK2KhYYiKcdc+mUHnLphwh
+	 pY1p04inasnEKd5nBA2oVSnGZoOP+WRuTkRVo1dfqk01FfhtM56sUQedMdg3NRVSt0
+	 BlzHUtz4HOTNryNTvoWFwB+cIcvzVAiFSiIj8heUxirAbQWxQ8DlIMrokAZtRf76Ql
+	 rrscEOcxyO+r2P+8fR6bsb/j6Nvfcvquv6N6t7HPBMFOWrrIZ27KXcA58zCYtOfCWl
+	 UcdwBYo13JyBVy9NWin6/ulhdNf+E2T3on7horUyivOGmqSn4IPA9dZUUk5b7tIWRH
+	 1LMqAm1Mc3MWQ==
+Received: by mail-ed1-f46.google.com with SMTP id 4fb4d7f45d1cf-60c5b8ee2d9so1908164a12.2;
+        Thu, 26 Jun 2025 05:30:54 -0700 (PDT)
+X-Forwarded-Encrypted: i=1; AJvYcCUr6+C4mwzfWqg/7LPTsP+qQVGiypLcoQ9GL6pfCFuZR4cRyTmQkPaglcn1AhUIeLnlNeSPPCYGkVaf@vger.kernel.org, AJvYcCVcmGgGxP3WracRdn8W6iyPfwje4gjzNmmQ2op0bRUqr1uPFT+Er/ivS2LVnB+M0x4lQd4L2mPbhZte@vger.kernel.org
+X-Gm-Message-State: AOJu0YxPdhr/tR038oKjUCg1oTqAbsWfaxiMGOnp4c804OmV7UKytdAv
+	qulc77mtvXUKDIHtAQX+f/o0+EmLtk+R9hV8Bt/2l2J400C+HokjIILGrsz5lWxDsFcL91RNubl
+	zXliWD8TlZTd3NUOkRH8rBf6psSxz4R4=
+X-Google-Smtp-Source: AGHT+IGB1r0RULOVkDK+7jbmAQV6m/K9tlzxxAPjyOT0QbB5tXfeb9acQUc0hgS9pLNBlMdu72qPEKROtVEjnWhhHgs=
+X-Received: by 2002:a05:6402:3513:b0:608:4945:ca47 with SMTP id
+ 4fb4d7f45d1cf-60c6698f22dmr3238889a12.17.1750941053172; Thu, 26 Jun 2025
+ 05:30:53 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20250626092952.847393-2-quic_lxu5@quicinc.com>
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwNjI2MDEwNSBTYWx0ZWRfX5INiPFJJYRQt
- zsB+8mjKLRpGJKVgnv4/wGrkb+MUfLuxJOOv7lqmT0L10lGukc7BgSHCs7S23JTaZLR1hMUuPt3
- wRo23u2jTmhGD3yxr3tevfgp6oLGNb1/s9+TgzJTxqxfDaJLwgH3XM482cokEcSqQpBMG+Bn/DH
- Zxt8XusxiJqgRGDDOEtyDBn/miHYrnwxLoB5HSokLTfbIQ3a9kCy4jyQmmEpCnqr0v872KBPmWY
- Df3hulj9Zk19r4dwfnK1ZuCE0RFkeSsr/iWg1p8jH6d4j8PyNn/YUjVJS16nUNSM0whKxuLSVAo
- h4c/58GNfhj9oHATPyQNa4FgocXaHaqqGoH+5UpXc57CM38ZHskPowsJSyzMRLLQSq3hD79vm35
- /5VEMHG862vkz2923N79t6U1Ve2R+Qcqm6Vddd/lcxEvd6r54ZnRb3TjOiDj0BWSIovFXCsr
-X-Authority-Analysis: v=2.4 cv=XPQwSRhE c=1 sm=1 tr=0 ts=685d3c9e cx=c_pps
- a=HLyN3IcIa5EE8TELMZ618Q==:117 a=xqWC_Br6kY4A:10 a=kj9zAlcOel0A:10
- a=6IFa9wvqVegA:10 a=EUspDBNiAAAA:8 a=COk6AnOGAAAA:8 a=y0QActD64cBbDUrEtRIA:9
- a=CjuIK1q_8ugA:10 a=bTQJ7kPSJx9SKPbeHEYW:22 a=TjNXssC_j7lpFel5tvFf:22
-X-Proofpoint-GUID: D589AUbadXgJFhdpPmVjBdSqSynyJxEz
-X-Proofpoint-ORIG-GUID: D589AUbadXgJFhdpPmVjBdSqSynyJxEz
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1099,Hydra:6.1.7,FMLib:17.12.80.40
- definitions=2025-06-26_05,2025-06-26_02,2025-03-28_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- lowpriorityscore=0 impostorscore=0 clxscore=1015 suspectscore=0 mlxscore=0
- spamscore=0 phishscore=0 malwarescore=0 mlxlogscore=549 bulkscore=0
- priorityscore=1501 adultscore=0 classifier=spam authscore=0 authtc=n/a
- authcc= route=outbound adjust=0 reason=mlx scancount=1
- engine=8.19.0-2505280000 definitions=main-2506260105
+References: <cover.1750765495.git.zhoubinbin@loongson.cn>
+In-Reply-To: <cover.1750765495.git.zhoubinbin@loongson.cn>
+From: Huacai Chen <chenhuacai@kernel.org>
+Date: Thu, 26 Jun 2025 20:30:39 +0800
+X-Gmail-Original-Message-ID: <CAAhV-H6f9CWGkAJVM45Wir1PYTZaL-tDq4m=5=zazvPzqNSa5A@mail.gmail.com>
+X-Gm-Features: Ac12FXzVVRuUM40OXySAmf7n49eft0EfQfUP6aqZIGlcvt6H_OodNRlHwWbaJQg
+Message-ID: <CAAhV-H6f9CWGkAJVM45Wir1PYTZaL-tDq4m=5=zazvPzqNSa5A@mail.gmail.com>
+Subject: Re: [PATCH v4 0/4] LoongArch: Introduce the Loongson-2K MMC host
+ controller driver
+To: Binbin Zhou <zhoubinbin@loongson.cn>
+Cc: Binbin Zhou <zhoubb.aaron@gmail.com>, Huacai Chen <chenhuacai@loongson.cn>, 
+	Rob Herring <robh+dt@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+	Conor Dooley <conor+dt@kernel.org>, Ulf Hansson <ulf.hansson@linaro.org>, 
+	Xuerui Wang <kernel@xen0n.name>, loongarch@lists.linux.dev, devicetree@vger.kernel.org, 
+	linux-mmc@vger.kernel.org, wanghongliang@loongson.cn
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-On Thu, Jun 26, 2025 at 02:59:51PM +0530, Ling Xu wrote:
-> Add reserved memory region and VMIDs for audio PD dynamic loading and
-> remote heap memory requirements.
+Hi, Binbin,
 
-Please specify whether this is required for a standard audio playback /
-capture or for some extended usecases.
+On Tue, Jun 24, 2025 at 7:58=E2=80=AFPM Binbin Zhou <zhoubinbin@loongson.cn=
+> wrote:
+>
+> Hi all:
+>
+> This patchset introduce the MMC host controller on Loongson-2K series
+> CPUs.
+>
+> They are similar, except for the interface characteristics and the use of
+> DMA engine, specifically, the Loongson-2K0500/Loongson-2K1000 use an
+> externally shared APBDMA engine, while the Loongson-2K2000 uses an
+> internally exclusive DMA.
+>
+> Based on this, I'm splitting the driver into two patches.
+>
+> List of the patchset:
+> Patch1: bindings for Loongson-2K0500/Loongson-2K1000;
+> Patch2: driver for MMC controller using externally shared APBDMA engine;
+> Patch3: bindings for Loongson-2K2000;
+> Patch4: driver for MMC controller using internally exclusive DMA.
+>
+> Thanks.
+>
+> -------
+> V4:
+> patch(2/4):
+>  - Code formatting;
+>  - Fix lkp error
+>     https://lore.kernel.org/all/202506202031.TNchn822-lkp@intel.com/
+> patch(4/4):
+>  - Rename function names:
+>         ls2k1000_mmc_regmap_config -> ls2k0500_mmc_regmap_config
+In Patch-1 there is still ls2k1000_mmc_regmap_config(), others look good to=
+ me.
+Reviewed-by: Huacai Chen <chenhuacai@loongson.cn>
 
-> 
-> Co-developed-by: Ekansh Gupta <ekansh.gupta@oss.qualcomm.com>
-> Signed-off-by: Ekansh Gupta <ekansh.gupta@oss.qualcomm.com>
-> Signed-off-by: Ling Xu <quic_lxu5@quicinc.com>
-> ---
->  arch/arm64/boot/dts/qcom/sc7280.dtsi | 11 +++++++++++
->  1 file changed, 11 insertions(+)
-> 
+Huacai
 
--- 
-With best wishes
-Dmitry
+>         loongson2_mmc_reorder_cmd_data -> ls2k0500_mmc_reorder_cmd_data
+>         loongson2_mmc_set_internal_dma -> ls2k2000_mmc_set_internal_dma
+>  - Use macro definitions for magic numbers.
+>
+> Link to V3:
+> https://lore.kernel.org/all/cover.1750216134.git.zhoubinbin@loongson.cn/
+>
+> V3:
+> patch(1/4):
+>  - Rename dt-binding file as loongson,ls2k0500-mmc.yaml.
+> patch(2/4):
+>  - Fix lkp error;
+>     https://lore.kernel.org/all/202505130918.uanOGxju-lkp@intel.com/
+>  - Add regulators support for ios ops;
+>  - Add ack_sdio_irq() callback;
+>  - Add MMC_CAP2_SDIO_IRQ_NOTHREAD flag;
+> patch(3/4):
+>  - Add Ack-by tag.
+> patch(4/4):
+>  - Update commit for fix_data_timeout().
+>
+> Link to V2:
+> https://lore.kernel.org/all/cover.1746581751.git.zhoubinbin@loongson.cn/
+>
+> V2:
+> patch(1/4):
+>  - Add reg define for each reg entry.
+>
+> patch(2/4):
+>  - Put all code in the c-file;
+>  - Use mmc_from_priv() instead of host->mmc;
+>  - Use sdio_signal_irq() instead of mmc_signal_sdio_irq();
+>  - Use devm_mmc_alloc_host() instead of mmc_alloc_host();
+>  - Use mmc_regulator_get_supply();
+>
+> patch(4/4):
+>  - Add fix_cmd_interrupt function which is needed by Loongson-2K2000.
+>
+> Link to V1:
+> https://lore.kernel.org/linux-mmc/cover.1744273956.git.zhoubinbin@loongso=
+n.cn/
+>
+> Binbin Zhou (4):
+>   dt-bindings: mmc: Add Loongson-2K SD/SDIO/eMMC controller binding
+>   mmc: loongson2: Add Loongson-2K SD/SDIO controller driver
+>   dt-bindings: mmc: loongson,ls2k0500-mmc: Add compatible for
+>     Loongson-2K2000
+>   mmc: loongson2: Add Loongson-2K2000 SD/SDIO/eMMC controller driver
+>
+>  .../bindings/mmc/loongson,ls2k0500-mmc.yaml   |  112 ++
+>  MAINTAINERS                                   |    7 +
+>  drivers/mmc/host/Kconfig                      |   13 +
+>  drivers/mmc/host/Makefile                     |    1 +
+>  drivers/mmc/host/loongson2-mmc.c              | 1029 +++++++++++++++++
+>  5 files changed, 1162 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/mmc/loongson,ls2k05=
+00-mmc.yaml
+>  create mode 100644 drivers/mmc/host/loongson2-mmc.c
+>
+>
+> base-commit: f5c755ef810009b85350884c483705bd04365370
+> --
+> 2.47.1
+>
 
