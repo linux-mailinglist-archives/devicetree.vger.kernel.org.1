@@ -1,50 +1,58 @@
-Return-Path: <devicetree+bounces-190595-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-190596-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id C7D69AEC250
-	for <lists+devicetree@lfdr.de>; Fri, 27 Jun 2025 23:49:49 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 31D6CAEC27F
+	for <lists+devicetree@lfdr.de>; Sat, 28 Jun 2025 00:01:15 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 38CB616903D
-	for <lists+devicetree@lfdr.de>; Fri, 27 Jun 2025 21:49:50 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 96D9B1C46895
+	for <lists+devicetree@lfdr.de>; Fri, 27 Jun 2025 22:01:30 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3468728A1E3;
-	Fri, 27 Jun 2025 21:49:45 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E7DCF28C5AC;
+	Fri, 27 Jun 2025 22:01:11 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="QyU5z3NZ"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="dQhqkObn"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 02DA71FBCB5;
-	Fri, 27 Jun 2025 21:49:42 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BEDDE28C02B;
+	Fri, 27 Jun 2025 22:01:11 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1751060985; cv=none; b=VTC1+keLqFZ2cJfVwysRKg0wQ7uDlzDyBuT3qwsMqmedIfsDLl/J8ZPJRAvQHD4ceGydFsBXBXLvT8K808QED0OBkQynBGCih9drKdJCUNutkFCDF0LJWlddtrDPyDszacm3sF5XV3vxywR1EGkoSN2LFTVyyJNLjmneUUO5a3E=
+	t=1751061671; cv=none; b=JJx4iUXy3NP48IogSvWfu49ZLI/mbCfJJdSUxtC8Vc5nVbnQ1WK1SLsY70k1LAPFrHOfZxrHepiK0KtCNUcCwYeMfbk1rsFUGqpQBqH00PTeYdFuf5UL6IxiS34Ed57jtGgEbPFd8USCUJVZC8oOvnxHDjNtPUIjEC0jONZqYIQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1751060985; c=relaxed/simple;
-	bh=hgxUL7xiwE4tUa2rsvfo7VjsWj47kenno+ivK9/co2A=;
-	h=Content-Type:MIME-Version:Subject:From:Message-Id:Date:References:
-	 In-Reply-To:To:Cc; b=XurXetwZH/K7rg6OfgMtZ0bk1Ux0uk7RMq8K/wVsM/I5lM06fL3/CLEd4Ol80nv0D4UpST2Fry9nwLa3egv8T1OrPpv9K2veeYp8ZZBlQ5hpIluAG8HXBLbz52wagZHBAvMjAzRUOqd35lr9Fd4r9n2/6Z5DYz0dwszoYIPXzsI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=QyU5z3NZ; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 796E5C4CEE3;
-	Fri, 27 Jun 2025 21:49:42 +0000 (UTC)
+	s=arc-20240116; t=1751061671; c=relaxed/simple;
+	bh=BBDMuacztTBtEROA79o/9jfSg7I2yx27X8lo9p2vjMI=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=fBzvrjaSClaJ2i3bKkpLBhqO2lQzFeUnjxtHwXAfi1ojeVJ6+5TtLppW755a/wFrh7er3wEdiUX6NvrEUUqIWRzqibQIKsgm/rOp99VQTKgdJ3K51J5bsNTnReJo/+fQM6LwL+TU6mTul1upF4z/fHExajpaSOc01J5DYdNcJIk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=dQhqkObn; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 3AA5AC4CEE3;
+	Fri, 27 Jun 2025 22:01:11 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1751060982;
-	bh=hgxUL7xiwE4tUa2rsvfo7VjsWj47kenno+ivK9/co2A=;
-	h=Subject:From:Date:References:In-Reply-To:To:Cc:From;
-	b=QyU5z3NZtnm1FUgsQrvzhTsvTdZLqZBMwPMpdbjFsh2KRiSZbCAN4cviBuHL2qAXA
-	 5jeC5SJa3AqZ7P2S6oXxXzXN6uxWQzW9qKavhW7+TsH7d23RQHhIH9vehMqkx4Xqgw
-	 Y8MQaFJR1okqo//v7I5dXNQTOQU9Tayok/yyog3WSHmyVDguXzA2DQ75WSIRQVltKv
-	 mA3qtnqrs5shvB85pW+EdaQw+QZu34Ogbs5TFxmEGNpsqd+zGNEfbCb2cOraEdKOpF
-	 4OXRKrHmKu0m/UoMN6IduKgaGBAVA4oF2H7cubOi/3+uU2+a4Y6K7Ct2GnxgOXQw1i
-	 Jw2OLkBYB9qiQ==
-Received: from [10.30.226.235] (localhost [IPv6:::1])
-	by aws-us-west-2-korg-oddjob-rhel9-1.codeaurora.org (Postfix) with ESMTP id ADF3838111CE;
-	Fri, 27 Jun 2025 21:50:09 +0000 (UTC)
-Content-Type: text/plain; charset="utf-8"
+	s=k20201202; t=1751061671;
+	bh=BBDMuacztTBtEROA79o/9jfSg7I2yx27X8lo9p2vjMI=;
+	h=From:To:Cc:Subject:Date:From;
+	b=dQhqkObnkc688nkTHLB1YNw+nkGpECLKTrcGZicJVv8dZnR8PU8BemzkPgj2ZD12N
+	 N7PX7/OyDQtenL2S4MiJcoaTi9jiRQB8K3Y8GL3l1K6x+OdcLT8eYAxzAC+Qd4VYbG
+	 9Q74EfVF/dtBENO2yEq6IFHBVJGy/C/qx6k1H8MpI4sDPLJksnIkSz+DoT8Q2AKFjR
+	 OMEBJVwgtSSOHMXAPOLQgiXPmMWkF/xe3WNynjC+xcecG3ICmSMObRUwJnsrXPfEH0
+	 FezZ8HAVdeaxXruSwoboLyaoBA1p6hmc8eRqRrO6s+zMX3iFk13pFp6zk91OkL1l7t
+	 MevjIQnyY4OSA==
+From: "Rob Herring (Arm)" <robh@kernel.org>
+To: Vinod Koul <vkoul@kernel.org>,
+	Kishon Vijay Abraham I <kishon@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	David Lechner <david@lechnology.com>
+Cc: linux-phy@lists.infradead.org,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org
+Subject: [PATCH v2] dt-bindings: phy: Convert ti,da830-usb-phy to DT schema
+Date: Fri, 27 Jun 2025 17:01:06 -0500
+Message-ID: <20250627220107.214162-1-robh@kernel.org>
+X-Mailer: git-send-email 2.47.2
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -52,43 +60,129 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-Subject: Re: [PATCH 1/1] dt-bindings: net: convert lpc-eth.txt yaml format
-From: patchwork-bot+netdevbpf@kernel.org
-Message-Id: 
- <175106100851.2070276.13573893060080860455.git-patchwork-notify@kernel.org>
-Date: Fri, 27 Jun 2025 21:50:08 +0000
-References: <20250624202028.2516257-1-Frank.Li@nxp.com>
-In-Reply-To: <20250624202028.2516257-1-Frank.Li@nxp.com>
-To: Frank Li <Frank.Li@nxp.com>
-Cc: andrew+netdev@lunn.ch, davem@davemloft.net, edumazet@google.com,
- kuba@kernel.org, pabeni@redhat.com, robh@kernel.org, krzk+dt@kernel.org,
- conor+dt@kernel.org, netdev@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, imx@lists.linux.dev
 
-Hello:
+Convert the TI DA830 USB PHY binding to DT schema format. Add "clocks"
+and "clock-names" which are already in use. As they are always present,
+make them required as well.
 
-This patch was applied to netdev/net-next.git (main)
-by Jakub Kicinski <kuba@kernel.org>:
+Signed-off-by: Rob Herring (Arm) <robh@kernel.org>
+---
+v2:
+ - Move some description to #phy-cells
+ - Make clocks/clock-names required
+---
+ .../devicetree/bindings/phy/phy-da8xx-usb.txt | 40 --------------
+ .../bindings/phy/ti,da830-usb-phy.yaml        | 53 +++++++++++++++++++
+ 2 files changed, 53 insertions(+), 40 deletions(-)
+ delete mode 100644 Documentation/devicetree/bindings/phy/phy-da8xx-usb.txt
+ create mode 100644 Documentation/devicetree/bindings/phy/ti,da830-usb-phy.yaml
 
-On Tue, 24 Jun 2025 16:20:27 -0400 you wrote:
-> Convert lpc-eth.txt yaml format.
-> 
-> Signed-off-by: Frank Li <Frank.Li@nxp.com>
-> ---
->  .../devicetree/bindings/net/lpc-eth.txt       | 28 -----------
->  .../devicetree/bindings/net/nxp,lpc-eth.yaml  | 48 +++++++++++++++++++
->  2 files changed, 48 insertions(+), 28 deletions(-)
->  delete mode 100644 Documentation/devicetree/bindings/net/lpc-eth.txt
->  create mode 100644 Documentation/devicetree/bindings/net/nxp,lpc-eth.yaml
-
-Here is the summary with links:
-  - [1/1] dt-bindings: net: convert lpc-eth.txt yaml format
-    https://git.kernel.org/netdev/net-next/c/cb70b1bb73e8
-
-You are awesome, thank you!
+diff --git a/Documentation/devicetree/bindings/phy/phy-da8xx-usb.txt b/Documentation/devicetree/bindings/phy/phy-da8xx-usb.txt
+deleted file mode 100644
+index c26478be391b..000000000000
+--- a/Documentation/devicetree/bindings/phy/phy-da8xx-usb.txt
++++ /dev/null
+@@ -1,40 +0,0 @@
+-TI DA8xx/OMAP-L1xx/AM18xx USB PHY
+-
+-Required properties:
+- - compatible: must be "ti,da830-usb-phy".
+- - #phy-cells: must be 1.
+-
+-This device controls the PHY for both the USB 1.1 OHCI and USB 2.0 OTG
+-controllers on DA8xx SoCs. Consumers of this device should use index 0 for
+-the USB 2.0 phy device and index 1 for the USB 1.1 phy device.
+-
+-It also requires a "syscon" node with compatible = "ti,da830-cfgchip", "syscon"
+-to access the CFGCHIP2 register.
+-
+-Example:
+-
+-	cfgchip: cfgchip@1417c {
+-		compatible = "ti,da830-cfgchip", "syscon";
+-		reg = <0x1417c 0x14>;
+-	};
+-
+-	usb_phy: usb-phy {
+-		compatible = "ti,da830-usb-phy";
+-		#phy-cells = <1>;
+-	};
+-
+-	usb20: usb@200000 {
+-		compatible = "ti,da830-musb";
+-		reg = <0x200000 0x1000>;
+-		interrupts = <58>;
+-		phys = <&usb_phy 0>;
+-		phy-names = "usb-phy";
+-	};
+-
+-	usb11: usb@225000 {
+-		compatible = "ti,da830-ohci";
+-		reg = <0x225000 0x1000>;
+-		interrupts = <59>;
+-		phys = <&usb_phy 1>;
+-		phy-names = "usb-phy";
+-	};
+diff --git a/Documentation/devicetree/bindings/phy/ti,da830-usb-phy.yaml b/Documentation/devicetree/bindings/phy/ti,da830-usb-phy.yaml
+new file mode 100644
+index 000000000000..1d6f30b5a159
+--- /dev/null
++++ b/Documentation/devicetree/bindings/phy/ti,da830-usb-phy.yaml
+@@ -0,0 +1,53 @@
++# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/phy/ti,da830-usb-phy.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: TI DA8xx/OMAP-L1xx/AM18xx USB PHY
++
++maintainers:
++  - David Lechner <david@lechnology.com>
++
++description: >
++  This device controls the PHY for both the USB 1.1 OHCI and USB 2.0 OTG
++  controllers on DA8xx SoCs.
++  
++  It also requires a "syscon" node with compatible = "ti,da830-cfgchip", "syscon"
++  to access the CFGCHIP2 register.
++
++properties:
++  compatible:
++    items:
++      - const: ti,da830-usb-phy
++
++  '#phy-cells':
++    const: 1
++    description:
++      Consumers of this device should use index 0 for the USB 2.0 phy device and
++      index 1 for the USB 1.1 phy device.
++
++  clocks:
++    maxItems: 2
++
++  clock-names:
++    items:
++      - const: usb0_clk48
++      - const: usb1_clk48
++
++required:
++  - compatible
++  - '#phy-cells'
++  - clocks
++  - clock-names
++
++additionalProperties: false
++
++examples:
++  - |
++    usb-phy {
++        compatible = "ti,da830-usb-phy";
++        #phy-cells = <1>;
++        clocks = <&usb_phy_clk 0>, <&usb_phy_clk 1>;
++        clock-names = "usb0_clk48", "usb1_clk48";
++    };
 -- 
-Deet-doot-dot, I am a bot.
-https://korg.docs.kernel.org/patchwork/pwbot.html
-
+2.47.2
 
 
