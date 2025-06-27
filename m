@@ -1,424 +1,182 @@
-Return-Path: <devicetree+bounces-190178-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-190179-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id C87CFAEAF06
-	for <lists+devicetree@lfdr.de>; Fri, 27 Jun 2025 08:30:50 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6A7FFAEAF2B
+	for <lists+devicetree@lfdr.de>; Fri, 27 Jun 2025 08:48:45 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id AA2F61BC7137
-	for <lists+devicetree@lfdr.de>; Fri, 27 Jun 2025 06:31:04 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 3FB3A4A780D
+	for <lists+devicetree@lfdr.de>; Fri, 27 Jun 2025 06:48:43 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 68B32211A05;
-	Fri, 27 Jun 2025 06:30:41 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5CA07219A97;
+	Fri, 27 Jun 2025 06:48:24 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="EdCI56KR"
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="a0YRaaiX"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pl1-f178.google.com (mail-pl1-f178.google.com [209.85.214.178])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8E81D2F3E;
-	Fri, 27 Jun 2025 06:30:39 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.178
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A88A4217648;
+	Fri, 27 Jun 2025 06:48:22 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1751005841; cv=none; b=dyJ0tswjsGh77VjNaESa6j49kbnYD7t0i7jeDw2yL20iHUA3hEAgAt9G91EkIteouHNVtPI2CpZb09rWqdWt0ZmFa4H4vj2udY+tIAdQ7E+ik8yEjWo4Qq87lcnXrrQXgTCuOvLZtFtWRz6ibd8U13BM7eq476gvIcMqZpOpJLE=
+	t=1751006904; cv=none; b=F+OEZhMsQdoEoCRyvTD+uAf8AzpUGZXurCCsrHZpCOrD+GSU3d9V7RfVt1gMe3IiC7YyKMAy1XqQ6ey+IFkPlQUgfSWldYTFdXeh8htBtmBaY8tSnPOE1xzMEnA3E1Zr66+L9k7fJourGDF+qjf2uDjsZLv7w0r1fsmjHsj5EVQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1751005841; c=relaxed/simple;
-	bh=A8g893xtk1dK4cJaLgB0wst2X+UBVHooFVW6CTqVfTo=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=ESEjcINqF34qLpvKjOPaFirUGs6V8rcmptltr7ObjBK7XxNh+Tq3dwXPtU2n1wjNdu/KB2UUstJwxV5fnM6M41dBpnl4X3KjkQA4q+82t7Pclg8Vsv+AUzp+R8mp3/0UOfnQN39WGcfyQ+YyArcrsWH1Lr0ce+zdeUSllsKIUJQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=EdCI56KR; arc=none smtp.client-ip=209.85.214.178
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-pl1-f178.google.com with SMTP id d9443c01a7336-23633a6ac50so25789115ad.2;
-        Thu, 26 Jun 2025 23:30:39 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1751005839; x=1751610639; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=iS5tVSNWUllBELvROnskbRuvuRv6gr3FeSaDzg0SVcg=;
-        b=EdCI56KRkmjAUyUrH4RRUSrGWzDzv6HOvtj1bHaIXPx+8TdwJ9p0X0JApgQvQ830T/
-         hO+B66OoUDG9N9ihN3573yQQP51qC/1OVpOb2GnYnW/5OKMvgVM0w47LMPBC6nAGw9tD
-         6SKgXyH7UMx7/YZ7RT1Zt4O6jK2v1zN1oraaX9hCA94a0yrwe9Ybptp0E+8RXpdmtyAp
-         SPB+06+aip0VyNxVf/S7VXoWCYpKWGS7vY7iB//BGCXYu7JFMQIYDQiEjlCRCKOokBuD
-         A7HWpaq7RlI6bpIG4yN+fbQIhiVpepAofDovyE43FNIToVBJZx9O6a3ySr1bPLLwlY25
-         Gdpw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1751005839; x=1751610639;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=iS5tVSNWUllBELvROnskbRuvuRv6gr3FeSaDzg0SVcg=;
-        b=AI+pd0BmgcToIJHYX9Y3WFPY0wInV3zPgTnVX3oJHknHTaazHLoCWlaxVr910ezQFe
-         t0cfP0XEqJFF1otkoMh0ZY4f4+6i1D9qjF/imnupv5SMIOou4JABp7tTTSpKPz9DVxFe
-         x29ataI5AQPJxzmyAv38surh5qhpBID3rgYtdQ3aNGxcglrI0t2jVOCJYwblmm4aBhgY
-         GUfRkftRavOUBIMxLrnHiS3c00UI3RUjwYmnzbKaaXYVwqurEZfFus8bl0VBYcLEINfT
-         5q9Fs9sIWLSlSpvj/l6nT+ZA6P3m5pSKagFwrUyL7o7YCo24iV43EY/JHCQYS8M5WR4b
-         C29Q==
-X-Forwarded-Encrypted: i=1; AJvYcCXUBYwfTlyoPWewohajOfkIzOcD41K6nVhFKj0ACsFi1gOZ+KkQfAJKOHB+m+3LvXPi6+ljXXYmVLsFYbTR@vger.kernel.org, AJvYcCXgA05ZRWdtkESPFwG8qZrPsYpmcOOvEC4/4pjnA01YH+QvVucL5iTaVDVpyGU5FUUS+5wmSTZm2FTm@vger.kernel.org
-X-Gm-Message-State: AOJu0YwSXpgd2uFXZNdvajDDazdUIT/VILEdRmR21tKAqeljqZdpvO+x
-	eJ4s9yG49t7D8RX7aYqEBaklOSgm5Av02y2Uk1y0edQwYj7LxjJ7gf1s
-X-Gm-Gg: ASbGncuRYAMTap1yBpoKpF7RreukG58Tpi4S4RWvqXtShujnm84DDOFKEdmrq06fWvS
-	yEo6bv+RAJnfv2ntrDQIupHP6xGlhd5n5LE6p6NVtoTGR00hBKBaZWRAOqLDbxQg/M75rYFuFl5
-	4fZ6t8zSRyy09dMhb0MHPxuN9TLEguwnta17RXkAaxS71LeV8ZgUMoqbBytCC2yxGvSVTbCGmJQ
-	jf4wjz/VFKWPhz0h2ZyxZr4NOeHQQSxZyyv3ATfQLNcJ56ycFZoBHKiClkpAniSfx73TRTmv0V6
-	7F4XSM65I5HdqpLuBwULYKN+yUCTAcH5IJtg4+RFbveNFdkU/AMsPSG415RiXg==
-X-Google-Smtp-Source: AGHT+IE+7b9v9Zj2LkXyd2nC+NZQDpDyK3bypoGbpAIzajLvSyCeyoIKvei7PJggtI88oZ0VmbeCOg==
-X-Received: by 2002:a17:902:ea0e:b0:238:f2a:8893 with SMTP id d9443c01a7336-23ac4654004mr32944735ad.42.1751005838719;
-        Thu, 26 Jun 2025 23:30:38 -0700 (PDT)
-Received: from localhost ([2001:19f0:ac00:4eb8:5400:5ff:fe30:7df3])
-        by smtp.gmail.com with UTF8SMTPSA id d9443c01a7336-23acb2e219asm9090255ad.40.2025.06.26.23.30.37
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 26 Jun 2025 23:30:38 -0700 (PDT)
-Date: Fri, 27 Jun 2025 14:30:25 +0800
-From: Inochi Amaoto <inochiama@gmail.com>
-To: Vinod Koul <vkoul@kernel.org>, Inochi Amaoto <inochiama@gmail.com>
-Cc: Kishon Vijay Abraham I <kishon@kernel.org>, 
-	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
-	Conor Dooley <conor+dt@kernel.org>, Chen Wang <unicorn_wang@outlook.com>, 
-	Paul Walmsley <paul.walmsley@sifive.com>, Palmer Dabbelt <palmer@dabbelt.com>, 
-	Albert Ou <aou@eecs.berkeley.edu>, Alexandre Ghiti <alex@ghiti.fr>, linux-phy@lists.infradead.org, 
-	devicetree@vger.kernel.org, sophgo@lists.linux.dev, linux-kernel@vger.kernel.org, 
-	linux-riscv@lists.infradead.org, Yixun Lan <dlan@gentoo.org>, Longbin Li <looong.bin@gmail.com>
-Subject: Re: [PATCH v4 2/2] phy: sophgo: Add USB 2.0 PHY driver for Sophgo
- CV18XX/SG200X
-Message-ID: <kt3envdgn7kxjjvu6mm5hozb3ml64d4s54ssozljmr7qttvxij@hnuzfawjspoy>
-References: <20250611081804.1196397-1-inochiama@gmail.com>
- <20250611081804.1196397-3-inochiama@gmail.com>
- <aF3i3L4BF6YgUMcO@vaman>
+	s=arc-20240116; t=1751006904; c=relaxed/simple;
+	bh=CPmH2UhNzzOyJtYz2BQ/oL4YX14EzvZdOTMg/i8Nq0U=;
+	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
+	 In-Reply-To:Content-Type; b=nrg2BCi3tF2EWuqlkvRI1CHcsshg4E8GwKicOVp74ZBQYSl5rcAHhOU4wZNnX9g+b/m0I3FblSMc/Ggl7LMi8wjwXf5WdfieyxsMV5pReiGF6aSeoC2nrmj4OflWZEmoW18ZKvwfPrTiJrl6kvNOmOEe7xIRaDSGv+BNQ+B5zRE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=a0YRaaiX; arc=none smtp.client-ip=205.220.180.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
+Received: from pps.filterd (m0279872.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 55R4D6aQ017705;
+	Fri, 27 Jun 2025 06:48:17 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	mSsPZr6Ke43hyQo46CPdW0QQxvYRDMtBeeUW7tXGa8Q=; b=a0YRaaiXK3fy6bYV
+	uxoSsQTQy3ytNXmSWZJ+zd6kNzw9PlvTaTu3Ui7X8TKJZzUreJEtwXw+h67m8KkE
+	W4MDh/QTeGc0nMa4wJOyFS/zhvej0bF4VFlrpCwrD56ZPGGHOHmRPHBzMVJUmeML
+	oacmAe9Yb2+qTcuc9y7cd3Z0jDt+tnPxiBBt8p1cBqRMC93nuKGNgN3g/NNDrrjZ
+	A+fhvWgihFqXCijUnJMp4WWNIG7cdY9KaRQoSYnTDoijSlZiWHWPFBTVeuqBZBC5
+	0bbntNrpwv9rgF7gMkAnucPM9uxamJeBYISjOLI3Lj3P+b0s55I0frlrvzocegYb
+	VWY0/w==
+Received: from nalasppmta04.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 47fdfx425k-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Fri, 27 Jun 2025 06:48:16 +0000 (GMT)
+Received: from nalasex01b.na.qualcomm.com (nalasex01b.na.qualcomm.com [10.47.209.197])
+	by NALASPPMTA04.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 55R6mFVe014123
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Fri, 27 Jun 2025 06:48:15 GMT
+Received: from [10.216.48.74] (10.80.80.8) by nalasex01b.na.qualcomm.com
+ (10.47.209.197) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1748.10; Thu, 26 Jun
+ 2025 23:48:09 -0700
+Message-ID: <f6ae7d50-e021-bc82-741e-935af3a4496b@quicinc.com>
+Date: Fri, 27 Jun 2025 12:18:03 +0530
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <aF3i3L4BF6YgUMcO@vaman>
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
+ Thunderbird/102.10.0
+Subject: Re: [PATCH V3 1/4] dt-bindings: mmc: Add dll-hsr-list for HS400 and
+ HS200 modes
+Content-Language: en-US
+To: Krzysztof Kozlowski <krzk@kernel.org>,
+        Sachin Gupta
+	<quic_sachgupt@quicinc.com>,
+        Ulf Hansson <ulf.hansson@linaro.org>, "Rob
+ Herring" <robh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        "Conor
+ Dooley" <conor+dt@kernel.org>,
+        Adrian Hunter <adrian.hunter@intel.com>,
+        Bhupesh Sharma <bhupesh.sharma@linaro.org>
+CC: <linux-mmc@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>, <linux-arm-msm@vger.kernel.org>,
+        <quic_cang@quicinc.com>, <quic_nguyenb@quicinc.com>,
+        <quic_bhaskarv@quicinc.com>, <quic_mapa@quicinc.com>,
+        <quic_nitirawa@quicinc.com>, <quic_sartgarg@quicinc.com>,
+        <kernel@oss.qualcomm.com>
+References: <20250122094707.24859-1-quic_sachgupt@quicinc.com>
+ <20250122094707.24859-2-quic_sachgupt@quicinc.com>
+ <72b02fd1-5195-4bb0-b01d-5481b49a5680@kernel.org>
+ <379e9199-4a9e-cd38-20cb-0fbd76fa33b3@quicinc.com>
+ <abdde4ff-eae2-44c4-8608-89c762790549@kernel.org>
+From: Ram Prakash Gupta <quic_rampraka@quicinc.com>
+In-Reply-To: <abdde4ff-eae2-44c4-8608-89c762790549@kernel.org>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
+ nalasex01b.na.qualcomm.com (10.47.209.197)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-GUID: 069sUsop3btBy8DGgJZzhcy9wXDqBk3B
+X-Proofpoint-ORIG-GUID: 069sUsop3btBy8DGgJZzhcy9wXDqBk3B
+X-Authority-Analysis: v=2.4 cv=MtZS63ae c=1 sm=1 tr=0 ts=685e3eb0 cx=c_pps
+ a=ouPCqIW2jiPt+lZRy3xVPw==:117 a=ouPCqIW2jiPt+lZRy3xVPw==:17
+ a=GEpy-HfZoHoA:10 a=IkcTkHD0fZMA:10 a=6IFa9wvqVegA:10 a=COk6AnOGAAAA:8
+ a=RBDf3ioivJUjA6cGglgA:9 a=QEXdDO2ut3YA:10 a=TjNXssC_j7lpFel5tvFf:22
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwNjI3MDA1MiBTYWx0ZWRfX9lpa1pXDb9Bk
+ dGjVD21mfbTT00m4gM9C1BqSOGS9HYpf2PhoOJ4V0VPCdu+Cz+w/Tk3BfX/jgDNrVoWwxLKhYZU
+ 8TXJ6F/pkc6wrlyrzoobQaBHpmX1KmuMywMktm4Wq7pcR5GT51RTDPy61WlGW1b9atsPPlM1EMM
+ 6BN7aHTdmr+1mOCuzShUEkoVLwRgN8I0hdraE99bCktOjDz2rvqqrkMDjzSwlWxA+R0xUiLg4DK
+ qMRLpBjf2goaREdR2Th2+R1tV//cNFLBbQRdS1Pis86TCriOzxe6j3JUANoeTGMocUhOlD4sNyG
+ AIvmOzH+pkKu2s0L/QtRvK6IFtXrVzq+ferizxlThhBGTO3HWG/QHYoNNtGUICDI9UAx5SzpDu6
+ Hnb8en4Pg75ZhFW3vP9vYHmxRIue1TZDU9XX1+o/Vr3Gu8Spn8E4B17Yw/x0jgKhDVAm8lJV
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1099,Hydra:6.1.7,FMLib:17.12.80.40
+ definitions=2025-06-27_02,2025-06-26_05,2025-03-28_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ bulkscore=0 impostorscore=0 suspectscore=0 adultscore=0 phishscore=0
+ mlxlogscore=999 spamscore=0 malwarescore=0 priorityscore=1501
+ lowpriorityscore=0 clxscore=1015 mlxscore=0 classifier=spam authscore=0
+ authtc=n/a authcc= route=outbound adjust=0 reason=mlx scancount=1
+ engine=8.19.0-2505280000 definitions=main-2506270052
 
-On Thu, Jun 26, 2025 at 05:16:28PM -0700, Vinod Koul wrote:
-> On 11-06-25, 16:18, Inochi Amaoto wrote:
-> > Add USB 2.0 PHY driver for Sophgo CV18XX/SG200X. Currently
-> > this driver does not support OTG mode as lack of document.
-> > 
-> > Signed-off-by: Inochi Amaoto <inochiama@gmail.com>
-> > ---
-> >  drivers/phy/Kconfig                  |   1 +
-> >  drivers/phy/Makefile                 |   1 +
-> >  drivers/phy/sophgo/Kconfig           |  19 +++
-> >  drivers/phy/sophgo/Makefile          |   2 +
-> >  drivers/phy/sophgo/phy-cv1800-usb2.c | 222 +++++++++++++++++++++++++++
-> >  5 files changed, 245 insertions(+)
-> >  create mode 100644 drivers/phy/sophgo/Kconfig
-> >  create mode 100644 drivers/phy/sophgo/Makefile
-> >  create mode 100644 drivers/phy/sophgo/phy-cv1800-usb2.c
-> > 
-> > diff --git a/drivers/phy/Kconfig b/drivers/phy/Kconfig
-> > index 58c911e1b2d2..678dd0452f0a 100644
-> > --- a/drivers/phy/Kconfig
-> > +++ b/drivers/phy/Kconfig
-> > @@ -122,6 +122,7 @@ source "drivers/phy/renesas/Kconfig"
-> >  source "drivers/phy/rockchip/Kconfig"
-> >  source "drivers/phy/samsung/Kconfig"
-> >  source "drivers/phy/socionext/Kconfig"
-> > +source "drivers/phy/sophgo/Kconfig"
-> >  source "drivers/phy/st/Kconfig"
-> >  source "drivers/phy/starfive/Kconfig"
-> >  source "drivers/phy/sunplus/Kconfig"
-> > diff --git a/drivers/phy/Makefile b/drivers/phy/Makefile
-> > index c670a8dac468..bfb27fb5a494 100644
-> > --- a/drivers/phy/Makefile
-> > +++ b/drivers/phy/Makefile
-> > @@ -35,6 +35,7 @@ obj-y					+= allwinner/	\
-> >  					   rockchip/	\
-> >  					   samsung/	\
-> >  					   socionext/	\
-> > +					   sophgo/	\
-> >  					   st/		\
-> >  					   starfive/	\
-> >  					   sunplus/	\
-> > diff --git a/drivers/phy/sophgo/Kconfig b/drivers/phy/sophgo/Kconfig
-> > new file mode 100644
-> > index 000000000000..2c943bbe1f81
-> > --- /dev/null
-> > +++ b/drivers/phy/sophgo/Kconfig
-> > @@ -0,0 +1,19 @@
-> > +# SPDX-License-Identifier: GPL-2.0-only
-> > +#
-> > +# Phy drivers for Sophgo platforms
-> > +#
-> > +
-> > +if ARCH_SOPHGO || COMPILE_TEST
-> > +
-> > +config PHY_SOPHGO_CV1800_USB2
-> > +	tristate "Sophgo CV18XX/SG200X USB 2.0 PHY support"
-> > +	depends on MFD_SYSCON
-> > +	depends on USB_SUPPORT
-> > +	select GENERIC_PHY
-> > +	help
-> > +	  Enable this to support the USB 2.0 PHY used with
-> > +	  the DWC2 USB controller in Sophgo CV18XX/SG200X
-> > +	  series SoC.
-> > +	  If unsure, say N.
-> > +
-> > +endif # ARCH_SOPHGO || COMPILE_TEST
-> > diff --git a/drivers/phy/sophgo/Makefile b/drivers/phy/sophgo/Makefile
-> > new file mode 100644
-> > index 000000000000..318060661759
-> > --- /dev/null
-> > +++ b/drivers/phy/sophgo/Makefile
-> > @@ -0,0 +1,2 @@
-> > +# SPDX-License-Identifier: GPL-2.0
-> > +obj-$(CONFIG_PHY_SOPHGO_CV1800_USB2)	+= phy-cv1800-usb2.o
-> > diff --git a/drivers/phy/sophgo/phy-cv1800-usb2.c b/drivers/phy/sophgo/phy-cv1800-usb2.c
-> > new file mode 100644
-> > index 000000000000..1d21db7f875b
-> > --- /dev/null
-> > +++ b/drivers/phy/sophgo/phy-cv1800-usb2.c
-> > @@ -0,0 +1,222 @@
-> > +// SPDX-License-Identifier: GPL-2.0
-> > +/*
-> > + * Copyright (C) 2025 Inochi Amaoto <inochiama@outlook.com>
-> > + */
-> > +
-> > +#include <linux/clk.h>
-> > +#include <linux/bitfield.h>
-> > +#include <linux/debugfs.h>
-> > +#include <linux/kernel.h>
-> > +#include <linux/mfd/syscon.h>
-> > +#include <linux/module.h>
-> > +#include <linux/of.h>
-> > +#include <linux/of_address.h>
-> > +#include <linux/of_gpio.h>
-> > +#include <linux/platform_device.h>
-> > +#include <linux/phy/phy.h>
-> > +#include <linux/regmap.h>
-> > +#include <linux/spinlock.h>
-> > +
-> > +#define REG_USB_PHY_CTRL		0x048
-> > +
-> > +#define PHY_ID_OVERWRITE_EN		BIT(6)
-> > +#define PHY_ID_OVERWRITE_MODE		BIT(7)
-> > +#define PHY_ID_OVERWRITE_MODE_HOST	FIELD_PREP(BIT(7), 0)
-> > +#define PHY_ID_OVERWRITE_MODE_DEVICE	FIELD_PREP(BIT(7), 1)
-> > +
-> > +#define PHY_APP_CLK_RATE		125000000
-> > +#define PHY_LPM_CLK_RATE		12000000
-> > +#define PHY_STB_CLK_RATE		333334
-> > +
-> > +struct cv1800_usb_phy {
-> > +	struct phy	*phy;
-> > +	struct regmap	*syscon;
-> > +	spinlock_t	lock;
-> > +	struct clk	*usb_app_clk;
-> > +	struct clk	*usb_lpm_clk;
-> > +	struct clk	*usb_stb_clk;
-> > +	bool		support_otg;
-> > +};
-> > +
-> > +static int cv1800_usb_phy_set_mode(struct phy *_phy,
-> > +				   enum phy_mode mode, int submode)
-> > +{
-> > +	struct cv1800_usb_phy *phy = phy_get_drvdata(_phy);
-> > +	unsigned int regval = 0;
-> > +	int ret;
-> > +
-> > +	switch (mode) {
-> > +	case PHY_MODE_USB_DEVICE:
-> > +		regval = PHY_ID_OVERWRITE_EN | PHY_ID_OVERWRITE_MODE_DEVICE;
-> > +		break;
-> > +	case PHY_MODE_USB_HOST:
-> > +		regval = PHY_ID_OVERWRITE_EN | PHY_ID_OVERWRITE_MODE_HOST;
-> > +		break;
-> > +	case PHY_MODE_USB_OTG:
-> > +		if (!phy->support_otg)
-> > +			return 0;
-> > +
-> > +		ret = regmap_read(phy->syscon, REG_USB_PHY_CTRL, &regval);
-> > +		if (ret)
-> > +			return ret;
-> > +
-> > +		regval = FIELD_GET(PHY_ID_OVERWRITE_MODE, regval);
-> > +		break;
-> > +	default:
-> > +		return -EINVAL;
-> > +	}
-> > +
-> > +	return regmap_update_bits(phy->syscon, REG_USB_PHY_CTRL,
-> > +				  PHY_ID_OVERWRITE_EN | PHY_ID_OVERWRITE_MODE,
-> > +				  regval);
-> > +}
-> > +
-> > +static ssize_t dr_mode_write(struct file *file, const char __user *_buf,
-> > +			     size_t count, loff_t *ppos)
-> > +{
-> > +	struct seq_file *seq = file->private_data;
-> > +	struct cv1800_usb_phy *phy = seq->private;
-> > +	enum phy_mode mode;
-> > +	char buf[16];
-> > +
-> > +	if (copy_from_user(&buf, _buf, min_t(size_t, sizeof(buf) - 1, count)))
-> > +		return -EFAULT;
-> > +
-> > +	if (sysfs_streq(buf, "host"))
-> > +		mode = PHY_MODE_USB_DEVICE;
-> > +	else if (sysfs_streq(buf, "peripheral"))
-> > +		mode = PHY_MODE_USB_DEVICE;
-> > +	else if (sysfs_streq(buf, "otg"))
-> > +		mode = PHY_MODE_USB_OTG;
-> > +	else
-> > +		return -EINVAL;
-> > +
-> > +	return cv1800_usb_phy_set_mode(phy->phy, mode, 0);
-> > +}
-> > +
-> > +static int dr_mode_show(struct seq_file *seq, void *v)
-> > +{
-> > +	struct cv1800_usb_phy *phy = seq->private;
-> > +	unsigned long flags;
-> > +	unsigned int regval;
-> > +	bool is_host = true;
-> > +	int ret;
-> > +
-> > +	spin_lock_irqsave(&phy->lock, flags);
-> > +	ret = regmap_read(phy->syscon, REG_USB_PHY_CTRL, &regval);
-> > +	spin_unlock_irqrestore(&phy->lock, flags);
-> > +
-> > +	if (ret)
-> > +		return ret;
-> > +
-> > +	if (regval & PHY_ID_OVERWRITE_MODE)
-> > +		is_host = false;
-> > +
-> > +	if (!(regval & PHY_ID_OVERWRITE_EN))
-> > +		seq_puts(seq, "otg: ");
-> > +
-> > +	seq_puts(seq, is_host ? "host\n" : "peripheral\n");
-> > +
-> > +	return 0;
-> > +}
-> 
-> This should be done by host controller and not phy and then use apis to
-> set the mode for phy from controller, pls see other driver on how they
-> do this
-> 
 
-Cool, I will remove this thing and let the controller do this.
+On 6/26/2025 11:12 PM, Krzysztof Kozlowski wrote:
+> On 26/06/2025 16:16, Ram Prakash Gupta wrote:
+>> On 1/22/2025 3:56 PM, Krzysztof Kozlowski wrote:
+>>> On 22/01/2025 10:47, Sachin Gupta wrote:
+>>>> Document the 'dll-hsr-list' property for MMC device tree bindings.
+>>>> The 'dll-hsr-list' property defines the DLL configurations for HS400
+>>>> and HS200 modes.
+>>>>
+>>>> Signed-off-by: Sachin Gupta <quic_sachgupt@quicinc.com>
+>>>> ---
+>>>>  Documentation/devicetree/bindings/mmc/sdhci-msm.yaml | 5 +++++
+>>>>  1 file changed, 5 insertions(+)
+>>>>
+>>>> diff --git a/Documentation/devicetree/bindings/mmc/sdhci-msm.yaml b/Documentation/devicetree/bindings/mmc/sdhci-msm.yaml
+>>>> index 8b393e26e025..65dc3053df75 100644
+>>>> --- a/Documentation/devicetree/bindings/mmc/sdhci-msm.yaml
+>>>> +++ b/Documentation/devicetree/bindings/mmc/sdhci-msm.yaml
+>>>> @@ -133,6 +133,11 @@ properties:
+>>>>      $ref: /schemas/types.yaml#/definitions/uint32
+>>>>      description: platform specific settings for DLL_CONFIG reg.
+>>>>  
+>>>> +  qcom,dll-hsr-list:
+>>>> +    maxItems: 10
+>>>> +    $ref: /schemas/types.yaml#/definitions/uint32
+>>> uint32 has only one item. Anyway, there is already DLL there, so don't
+>>> duplicate or explain why this is different. Explain also why this is not
+>>> deducible from the compatible.
+>
+> Timeline still amazes me. I will be grumpy on this thread.
+>
+>> I will change it to reflect array from uint32.
+>> There is change with artanis DLL hw addition where it need total of 5 entries
+>> (dll_config, dll_config_2, dll_config_3, dll_usr_ctl, ddr_config)
+>> for each HS400 and HS200 modes, hence the new addition in dt. And these values
+>> are not fixed and varies for every SoC, hence this needs to be passed through
+>> dt like it was passed earlier for qcom,dll-config & qcom,ddr-config.
+>
+> Eh, no. That's not a valid reason. It's still SoC deducible. Don't bring
+> your downstream practices here, but remove EVERYTHING from downstream
+> and start doing things like upstream is doing.
+>
+> Best regards,
+> Krzysztof
 
-> > +
-> > +DEFINE_SHOW_STORE_ATTRIBUTE(dr_mode);
-> > +
-> > +static int cv1800_usb_phy_set_clock(struct cv1800_usb_phy *phy)
-> > +{
-> > +	int ret;
-> > +
-> > +	ret = clk_set_rate(phy->usb_app_clk, PHY_APP_CLK_RATE);
-> > +	if (ret)
-> > +		return ret;
-> > +
-> > +	ret = clk_set_rate(phy->usb_lpm_clk, PHY_LPM_CLK_RATE);
-> > +	if (ret)
-> > +		return ret;
-> > +
-> > +	ret = clk_set_rate(phy->usb_stb_clk, PHY_STB_CLK_RATE);
-> > +	if (ret)
-> > +		return ret;
-> > +
-> > +	return 0;
-> 
-> Should this not be return ret here? or just do return clk_set_rate()
-> here
-> 
+Sorry I did not get it - you mean to say keep these values in driver file?
+how is it possible to tie these value with only one compatible which can vary
+with every soc or you are suggesting me to make code change in driver for every
+target having artanis dll hw.
 
-I think return ret is the same as return 0. And it is a good
-idea to just do return clk_set_rate.
+And sorry but considering upstream only this design was put in place, its not
+about downstream, since there are already dll_config and ddr_config which are
+passed through dt, its logical here to pass rest of the dll related parameters
+through dt only.
 
-> 
-> > +}
-> > +
-> > +static const struct phy_ops cv1800_usb_phy_ops = {
-> > +	.set_mode	= cv1800_usb_phy_set_mode,
-> > +	.owner		= THIS_MODULE,
-> > +};
-> > +
-> > +static int cv1800_usb_phy_probe(struct platform_device *pdev)
-> > +{
-> > +	struct device *dev = &pdev->dev;
-> > +	struct device *parent = dev->parent;
-> > +	struct cv1800_usb_phy *phy;
-> > +	struct phy_provider *phy_provider;
-> > +	int ret;
-> > +
-> > +	if (!parent)
-> > +		return -ENODEV;
-> > +
-> > +	phy = devm_kmalloc(dev, sizeof(*phy), GFP_KERNEL);
-> > +	if (!phy)
-> > +		return -ENOMEM;
-> > +
-> > +	phy->syscon = syscon_node_to_regmap(parent->of_node);
-> > +	if (IS_ERR_OR_NULL(phy->syscon))
-> > +		return -ENODEV;
-> > +
-> > +	phy->support_otg = false;
-> > +
-> > +	spin_lock_init(&phy->lock);
-> > +
-> > +	phy->usb_app_clk = devm_clk_get_enabled(dev, "app");
-> > +	if (IS_ERR(phy->usb_app_clk))
-> > +		return dev_err_probe(dev, PTR_ERR(phy->usb_app_clk),
-> > +			"Failed to get app clock\n");
-> > +
-> > +	phy->usb_lpm_clk = devm_clk_get_enabled(dev, "lpm");
-> > +	if (IS_ERR(phy->usb_lpm_clk))
-> > +		return dev_err_probe(dev, PTR_ERR(phy->usb_lpm_clk),
-> > +			"Failed to get lpm clock\n");
-> > +
-> > +	phy->usb_stb_clk = devm_clk_get_enabled(dev, "stb");
-> > +	if (IS_ERR(phy->usb_stb_clk))
-> > +		return dev_err_probe(dev, PTR_ERR(phy->usb_stb_clk),
-> > +			"Failed to get stb clock\n");
-> > +
-> > +	phy->phy = devm_phy_create(dev, NULL, &cv1800_usb_phy_ops);
-> > +	if (IS_ERR(phy->phy))
-> > +		return dev_err_probe(dev, PTR_ERR(phy->phy),
-> > +			"Failed to create phy\n");
-> > +
-> > +	ret = cv1800_usb_phy_set_clock(phy);
-> > +	if (ret)
-> > +		return ret;
-> > +
-> > +	debugfs_create_file("dr_mode", 0644, phy->phy->debugfs,
-> > +			    phy, &dr_mode_fops);
-> > +
-> > +	phy_set_drvdata(phy->phy, phy);
-> > +	phy_provider = devm_of_phy_provider_register(dev, of_phy_simple_xlate);
-> > +
-> > +	return PTR_ERR_OR_ZERO(phy_provider);
-> > +}
-> > +
-> > +static const struct of_device_id cv1800_usb_phy_ids[] = {
-> > +	{ .compatible = "sophgo,cv1800b-usb2-phy" },
-> > +	{ },
-> > +};
-> > +MODULE_DEVICE_TABLE(of, cv1800_usb_phy_ids);
-> > +
-> > +static struct platform_driver cv1800_usb_phy_driver = {
-> > +	.probe = cv1800_usb_phy_probe,
-> > +	.driver = {
-> > +		.name = "cv1800-usb2-phy",
-> > +		.of_match_table = cv1800_usb_phy_ids,
-> > +	 },
-> > +};
-> > +module_platform_driver(cv1800_usb_phy_driver);
-> > +
-> > +MODULE_AUTHOR("Inochi Amaoto <inochiama@outlook.com>");
-> > +MODULE_DESCRIPTION("CV1800/SG2000 SoC USB 2.0 PHY driver");
-> > +MODULE_LICENSE("GPL");
-> > -- 
-> > 2.49.0
-> 
-> -- 
-> ~Vinod
+Thanks,
+Ram
+
 
