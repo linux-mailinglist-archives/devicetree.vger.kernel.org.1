@@ -1,137 +1,134 @@
-Return-Path: <devicetree+bounces-190285-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-190287-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id B3876AEB477
-	for <lists+devicetree@lfdr.de>; Fri, 27 Jun 2025 12:25:25 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id F1FC0AEB507
+	for <lists+devicetree@lfdr.de>; Fri, 27 Jun 2025 12:35:39 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 4E15656351A
-	for <lists+devicetree@lfdr.de>; Fri, 27 Jun 2025 10:24:42 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 6BC2F1880509
+	for <lists+devicetree@lfdr.de>; Fri, 27 Jun 2025 10:34:13 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id BE5622D979B;
-	Fri, 27 Jun 2025 10:20:48 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 681E7202C50;
+	Fri, 27 Jun 2025 10:33:53 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=thegoodpenguin-co-uk.20230601.gappssmtp.com header.i=@thegoodpenguin-co-uk.20230601.gappssmtp.com header.b="VQNmMWZH"
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="fq+LxtBA"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wr1-f49.google.com (mail-wr1-f49.google.com [209.85.221.49])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6BCAD2BF015
-	for <devicetree@vger.kernel.org>; Fri, 27 Jun 2025 10:20:46 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.49
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AA5B3253F00;
+	Fri, 27 Jun 2025 10:33:51 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1751019648; cv=none; b=DSdJPZdO/p+Omgj5v5g+SYfhgzAebCQt9RjhN0VQCj8qG/KKPoFk7KHXiX/hEOPrXn163X4HjzpiQDuJi0kwZtiXfjlErTrCds0CN3NzQdBKwXzGAVdb1ky3uyQef4lSiEaItvxZcDHmY0x8Aty6c2dWEEwzZIEYItCsSpFXI5U=
+	t=1751020433; cv=none; b=GBCrrUbH0j7rA0Km4/PhdPEtmpQ8+cD0d0yViRAorNk5VOubY56rzI030iXGAtgoc0b22CUpvA0ed76rBFWtsFjw03HvnlCYQCVj3SxgN4jEZqFb6Bv+B0dy8+Yf74nvlgblkyZQj8eUXywDII+B0Ex46gQOpqTNHjidY17YMdc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1751019648; c=relaxed/simple;
-	bh=pC0l6WHANk7+BDn4DSC1TDZ/W9QIUe5+pxJCXm1fLz0=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=Q91pyyYmX9pliNFRClO4xIbYCN8tiHh/nZMyWfKtuxHe5nmQUOSGHwYk8lXNlT8P/b9WBK2k5l7ElWejY+dmcl01FbYlKFsHn/gHHCfybncnSGGyCKZhLdLwqhdn2sxWvFG7I0KMdYdif0lQU6exvndWIjYyDrHqSq7wzE4+/A0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=thegoodpenguin.co.uk; spf=pass smtp.mailfrom=thegoodpenguin.co.uk; dkim=pass (2048-bit key) header.d=thegoodpenguin-co-uk.20230601.gappssmtp.com header.i=@thegoodpenguin-co-uk.20230601.gappssmtp.com header.b=VQNmMWZH; arc=none smtp.client-ip=209.85.221.49
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=thegoodpenguin.co.uk
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=thegoodpenguin.co.uk
-Received: by mail-wr1-f49.google.com with SMTP id ffacd0b85a97d-3a4f72cba73so1946658f8f.1
-        for <devicetree@vger.kernel.org>; Fri, 27 Jun 2025 03:20:46 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=thegoodpenguin-co-uk.20230601.gappssmtp.com; s=20230601; t=1751019645; x=1751624445; darn=vger.kernel.org;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=aq559hpnsPALC3Gw2Iq/fQPfs7dODjMgP+m9Jus9x+s=;
-        b=VQNmMWZHVzeL0mVBpx7BRB9YshokMKuy5XmYkd55pfjczrubIUPxxnHeuKFXl79lSK
-         lu8jflTmGa6NQ8lVbGsXmQ+PDwQ2wLrVBvzF/6SxfoOC83hODDMetVCFpW96VPAFMQ0b
-         0xE1RSRwVmmuTLrWYLXTuw+5aSLbeOYfDe8SSGGdJpj53QvRyVFyrzP6NGfXH2xwckUC
-         0l0to+teDyDtcvueK3WkukSoM/Mmc04amEZRkWrbdWIDKU+zlMFYQF9QEfzummMDItNU
-         Xpr79f4H9Q/6sa7EbJ9tvNPDxPzKifNmlM5ceVJ8DAc6NSSVKUPElpP0G/PXjpq6nbRf
-         VImg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1751019645; x=1751624445;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=aq559hpnsPALC3Gw2Iq/fQPfs7dODjMgP+m9Jus9x+s=;
-        b=Z8YnHO/aLrd6ghl4En6dS+UumwM2hpgs2eNq1k9YgEjeiKfdZNzY/2//9eLPrWl/ez
-         bOopvEyc7VsVu2YFmo3Thnjql+jpMhH7JMIQHsAl3xUuWvBoqKHQV5utxyjYLPpgZNha
-         mlpREXuaf4xc51TjjC/+pJ+TNdLLp8fufl2cXHifMeJRmXtnVC1gNR5i/VNjdC1Fvuyx
-         HrbfInyUVBuH2jMx9Wy2Lbc5AZsgO/kIl8AoU7rwqGyyjg19baaylMufKGmM8Oru7LGL
-         Cxx9fvtuXjPXxdxbYZi4yz4AOT9/4HQsnBAHjUjmUjBhqik3qwEjfYd7AO5MGNWdhKdt
-         vxjw==
-X-Forwarded-Encrypted: i=1; AJvYcCXBYZMDuvhfe3T5JGlgYHmt+DyxxZPXT3s81K72ZyhbwWXNfYCOyzGG+wO26EjjaSJFAJvynos1Nm+/@vger.kernel.org
-X-Gm-Message-State: AOJu0YymeTBAKcMVacmKT+kAVwhdcm635afrbTkM6+MB27rBqhiktCTP
-	H8GKoXc+ynwUwNabeQ0BWq5HTQJMKAkfa/dxvnCkGmRquAhCclbyENBp9x8RPMvA8KI=
-X-Gm-Gg: ASbGncvIbJmpVA6uXw2kcZhXwd3GmbB1kapTChh9ePPuFbLBAb5yaXUP+ZXWixjbEsU
-	dj/ez/fH7syxUY09FuX4uWN8BPkcq9mREBkl8u6DvTaUSPJJhcuY1nB+hscj4SJ/IckibCkS7T9
-	XIdOc2tVMpqYzxXpqF3uiWBKsbFYshPaBTFfl7CpFlDcNZhZwglO/K/98REwklUG51IUIern5qy
-	aVtr4KShIPqvT5VD2OWRm1392ue7JFnTEbVOivgMp5mRm6qhgViYjkev3U9qXHm4UXo8mF0T+nI
-	5dr0c54do1HUWv37rH6JZYmGQga6AdG+Q7mWVhEgvid/2rPh6xrYPEVKQZ3CertYGBkuszh5MO+
-	y1xCC4cd0T53dKA==
-X-Google-Smtp-Source: AGHT+IF6vUJQw7zfzcWiAUbOQNcZ/wL7goXlO+7umDbwfPrBooPMhK6yAVqjRPepYyvldjekGiZ3iQ==
-X-Received: by 2002:a05:6000:430e:b0:3a5:7895:7f6b with SMTP id ffacd0b85a97d-3a980296d2amr2004224f8f.7.1751019644761;
-        Fri, 27 Jun 2025 03:20:44 -0700 (PDT)
-Received: from [127.0.1.1] ([2a00:23c7:1d1a:9c01:1a4a:198c:c191:f3d7])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-3a88c7e7524sm2331700f8f.12.2025.06.27.03.20.43
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 27 Jun 2025 03:20:44 -0700 (PDT)
-From: Pawel Zalewski <pzalewski@thegoodpenguin.co.uk>
-Date: Fri, 27 Jun 2025 11:20:37 +0100
-Subject: [PATCH v2 3/3] dt-bindings: leds: is31fl3236: add issi,22kHz-pwm
- property
+	s=arc-20240116; t=1751020433; c=relaxed/simple;
+	bh=VP/dnezPn4QiNsfJL0cEcXD71vgexIS6ujKQqzJYGLc=;
+	h=From:To:CC:Subject:Date:Message-ID:MIME-Version:Content-Type; b=gsEhg0nK8kIAqaMSrBMt7kyvXfT+OeAx6qsxDjh4hgZGdnLZy6dM9Lcj6r16agGvBYI9oGVYUPYL0bS5Uq59s4hnM6BbFrNDROGp2ARNhW5vu6ag25BAUaZ4vyKIn9OmP3GRrJmtQOHovh8DF1vG8JhqUPw3xZVmq0Aw0k9NWsM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=fq+LxtBA; arc=none smtp.client-ip=205.220.180.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
+Received: from pps.filterd (m0279870.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 55R4DtBB015139;
+	Fri, 27 Jun 2025 10:33:46 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
+	cc:content-transfer-encoding:content-type:date:from:message-id
+	:mime-version:subject:to; s=qcppdkim1; bh=olCj1v8P/I3CvFhsgigwhz
+	rq5RbTz3yGHfA546iFpUw=; b=fq+LxtBANxcTrB8JACHibzXElVGoC7WC2KU6Ck
+	UoD7Afvo5UWu0FZeQHuP+5I//Wk3CO/00CqdG1rYfukUr0h+nMAGYdXAnAP2AWY7
+	fvcEe+tcbBSy9mK3/oD12GM8OLYKi0awmRx9NMCcT5iRdcY/y1wm1Q8V4vmT7CGq
+	/29Qxe+0g7/5XhXQS585VhV93PYeEZcBmClvMWF8gy1RQQ3OMNnch2+UPus/0kB7
+	1XQh2dguLugn/Oi0X1PxoJbvwge3k+nqkB/wb67sdNNrZn1w0xzB95SN7gq2tKHl
+	nN7oSmjMq88KGh1sDb5DXL1gZfO7GrW+BXoI2n/pT0wJkJZQ==
+Received: from nasanppmta01.qualcomm.com (i-global254.qualcomm.com [199.106.103.254])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 47fbm253pc-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Fri, 27 Jun 2025 10:33:45 +0000 (GMT)
+Received: from nasanex01c.na.qualcomm.com (nasanex01c.na.qualcomm.com [10.45.79.139])
+	by NASANPPMTA01.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 55RAXi9k012595
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Fri, 27 Jun 2025 10:33:44 GMT
+Received: from hu-lxu5-sha.qualcomm.com (10.80.80.8) by
+ nasanex01c.na.qualcomm.com (10.45.79.139) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.1748.10; Fri, 27 Jun 2025 03:33:41 -0700
+From: Ling Xu <quic_lxu5@quicinc.com>
+To: <srini@kernel.org>, <amahesh@qti.qualcomm.com>, <robh@kernel.org>,
+        <krzk+dt@kernel.org>, <conor+dt@kernel.org>, <andersson@kernel.org>,
+        <konradybcio@kernel.org>, <arnd@arndb.de>,
+        <gregkh@linuxfoundation.org>
+CC: <quic_kuiw@quicinc.com>, <ekansh.gupta@oss.qualcomm.com>,
+        <devicetree@vger.kernel.org>, <linux-arm-msm@vger.kernel.org>,
+        <dri-devel@lists.freedesktop.org>, <linux-kernel@vger.kernel.org>,
+        Ling Xu
+	<quic_lxu5@quicinc.com>
+Subject: [PATCH v4 0/4] Add support for gdsp remoteproc on sa8775p
+Date: Fri, 27 Jun 2025 16:03:15 +0530
+Message-ID: <20250627103319.2883613-1-quic_lxu5@quicinc.com>
+X-Mailer: git-send-email 2.34.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20250627-leds-is31fl3236a-v2-3-f6ef7495ce65@thegoodpenguin.co.uk>
-References: <20250627-leds-is31fl3236a-v2-0-f6ef7495ce65@thegoodpenguin.co.uk>
-In-Reply-To: <20250627-leds-is31fl3236a-v2-0-f6ef7495ce65@thegoodpenguin.co.uk>
-To: Lee Jones <lee@kernel.org>, Pavel Machek <pavel@kernel.org>, 
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>
-Cc: linux-leds@vger.kernel.org, linux-kernel@vger.kernel.org, 
- Pavel Machek <pavel@ucw.cz>, devicetree@vger.kernel.org, 
- Pawel Zalewski <pzalewski@thegoodpenguin.co.uk>
-X-Mailer: b4 0.14.2
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1751019641; l=1100;
- i=pzalewski@thegoodpenguin.co.uk; s=20250625; h=from:subject:message-id;
- bh=pC0l6WHANk7+BDn4DSC1TDZ/W9QIUe5+pxJCXm1fLz0=;
- b=37L+LM2vw4vz1KW53lZHMXE5vyMJwCaux/OoJrnYWkR7OK4MA9KkFhQrj9SsHiTziBPHg7JRi
- q2gGD9QZRBPCM5BpWv8kpMgb391bih/Sc/uIMZG4H4jlPafGui/Ckxd
-X-Developer-Key: i=pzalewski@thegoodpenguin.co.uk; a=ed25519;
- pk=hHrwBom/yjrVTqpEvKpVXLYfxr6nqBNP16RkQopIRrI=
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
+ nasanex01c.na.qualcomm.com (10.45.79.139)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Authority-Analysis: v=2.4 cv=YYu95xRf c=1 sm=1 tr=0 ts=685e7389 cx=c_pps
+ a=JYp8KDb2vCoCEuGobkYCKw==:117 a=JYp8KDb2vCoCEuGobkYCKw==:17
+ a=GEpy-HfZoHoA:10 a=6IFa9wvqVegA:10 a=VwQbUJbxAAAA:8 a=COk6AnOGAAAA:8
+ a=qgJfyGv91k1fQCYRv54A:9 a=TjNXssC_j7lpFel5tvFf:22
+X-Proofpoint-GUID: --txrtWjGz-DVbVLqDDqyvF1EEcAq7s9
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwNjI3MDA4NiBTYWx0ZWRfX5CvdDJrGB8V5
+ YPrCP71K7TsRgsZkipN5HwUb0pNbYUmd/xqIXsba5l7l4Isvm5UnHI/g9st4sxtapsU7iefRsxE
+ WUKuu2wLQzSSc0ZhAqN1th4xO92+sUwS8TZe4GwS+7D7BBhTZ9N+8rT9KMKzeCPug91SKYXzhRC
+ qG5n6cjF/viL8jCbS2UQnubdvFhoBMEe8nhmt+qOWEqgX4hrqWuCJ/pwaNGYtJ9YNXpQVirufcQ
+ fCpuSlwbbgA++J5A6xoEnUjrBXQpkVbcAt+0M+Zhec+mhaIV1j0zkZ09UpvqGyIftvPR+E7rd7p
+ Qk4hDFsfb0YnVp4c+rLW0Q7zuNncvCG1aL3mDiBFgYfxFop0pIkR46gH3Cpfh2QQL+jGz7lItSB
+ FXRcUqlBsrx06TpSnzrS9cWD2KZ0fQ16ixwv9GIrIHW9vRCwwWB5bSF6q3V0IrISk2CTqRs+
+X-Proofpoint-ORIG-GUID: --txrtWjGz-DVbVLqDDqyvF1EEcAq7s9
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1099,Hydra:6.1.7,FMLib:17.12.80.40
+ definitions=2025-06-27_04,2025-06-26_05,2025-03-28_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ malwarescore=0 adultscore=0 spamscore=0 impostorscore=0 suspectscore=0
+ lowpriorityscore=0 priorityscore=1501 phishscore=0 mlxlogscore=697
+ clxscore=1015 mlxscore=0 bulkscore=0 classifier=spam authscore=0 authtc=n/a
+ authcc= route=outbound adjust=0 reason=mlx scancount=1
+ engine=8.19.0-2505280000 definitions=main-2506270086
 
-Add an additional and optional control property for setting
-the output PWM frequency to 22kHz. The default is 3kHz and
-this option puts the operational frequency outside of the
-audible range.
+The fastrpc driver has support for 5 types of remoteprocs. There are
+some products which support GDSP remoteprocs. GDSP is General Purpose
+DSP where tasks can be offloaded. Add fastrpc nodes and task offload
+support for GDSP. Also strict domain IDs for domain.
+Patch [v3]: https://lore.kernel.org/linux-arm-msm/20250622133820.18369-1-quic_lxu5@quicinc.com/
 
-Signed-off-by: Pawel Zalewski <pzalewski@thegoodpenguin.co.uk>
----
- Documentation/devicetree/bindings/leds/leds-is31fl3236.yaml | 6 ++++++
- 1 file changed, 6 insertions(+)
+Changes in v4:
+  - Split patch and change to common syntax.
+Changes in v3:
+  - Restrict domain IDs to represent a domain.
+Changes in v2:
+  - Add GPDSP labels in dt-bindings.
 
-diff --git a/Documentation/devicetree/bindings/leds/leds-is31fl3236.yaml b/Documentation/devicetree/bindings/leds/leds-is31fl3236.yaml
-index f26340850647d1c642fb345b7cf90764200e13ee..cea93f4d8fe0bcc80d6932be1f346bad321bcd38 100644
---- a/Documentation/devicetree/bindings/leds/leds-is31fl3236.yaml
-+++ b/Documentation/devicetree/bindings/leds/leds-is31fl3236.yaml
-@@ -42,6 +42,12 @@ properties:
-   "#size-cells":
-     const: 0
- 
-+  issi,22kHz-pwm:
-+    type: boolean
-+    description:
-+      When present, the chip's PWM will operate at ~22kHz as opposed
-+      to ~3kHz to move the operating frequency out of the audible range.
-+
- patternProperties:
-   "^led@[1-9][0-9]*$":
-     type: object
+Ling Xu (4):
+  dt-bindings: misc: qcom,fastrpc: Add GDSP label
+  arm64: dts: qcom: sa8775p: add GDSP fastrpc-compute-cb nodes
+  misc: fastrpc: Refactor domain ID to enforce strict mapping
+  misc: fastrpc: add support for gdsp remoteproc
+
+ .../bindings/misc/qcom,fastrpc.yaml           |  2 +
+ arch/arm64/boot/dts/qcom/sa8775p.dtsi         | 57 +++++++++++++++++++
+ drivers/misc/fastrpc.c                        | 57 ++++++++-----------
+ include/uapi/misc/fastrpc.h                   |  8 +++
+ 4 files changed, 91 insertions(+), 33 deletions(-)
 
 -- 
-2.48.1
+2.34.1
 
 
