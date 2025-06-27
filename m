@@ -1,78 +1,78 @@
-Return-Path: <devicetree+bounces-190389-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-190390-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6AD6EAEB9BD
-	for <lists+devicetree@lfdr.de>; Fri, 27 Jun 2025 16:24:18 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id C376EAEB9C1
+	for <lists+devicetree@lfdr.de>; Fri, 27 Jun 2025 16:24:30 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id B63547A3E2B
-	for <lists+devicetree@lfdr.de>; Fri, 27 Jun 2025 14:22:53 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 0EEA13A5A21
+	for <lists+devicetree@lfdr.de>; Fri, 27 Jun 2025 14:24:05 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 244BD2E266F;
-	Fri, 27 Jun 2025 14:23:23 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 91DFB2E541D;
+	Fri, 27 Jun 2025 14:23:25 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=riscstar-com.20230601.gappssmtp.com header.i=@riscstar-com.20230601.gappssmtp.com header.b="AZWvhTr+"
+	dkim=pass (2048-bit key) header.d=riscstar-com.20230601.gappssmtp.com header.i=@riscstar-com.20230601.gappssmtp.com header.b="bo3+biOD"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-qk1-f173.google.com (mail-qk1-f173.google.com [209.85.222.173])
+Received: from mail-qk1-f175.google.com (mail-qk1-f175.google.com [209.85.222.175])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DFF4A2E338B
-	for <devicetree@vger.kernel.org>; Fri, 27 Jun 2025 14:23:20 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.222.173
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4601E2E4243
+	for <devicetree@vger.kernel.org>; Fri, 27 Jun 2025 14:23:22 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.222.175
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1751034203; cv=none; b=gXtz9chd8QTvFv6qTmYEDod0W+jrFHXVoDHRktQGEHwKdyyE5XQP8U2wdWO0h567OJdegTS6XfOczdwSX6vz1N5DrBIppxBBhxYD5k0uWe6eJ9WykJV9xbBE+neys7S2CgrOdWTwu0jbMzRoOXN2kPXCm3HpnclUaOZ/iRRWE8U=
+	t=1751034205; cv=none; b=cPB2Qd420qTRgbzPFngevojBnqMSYuvHRar7xjTg9jEAgecQUTS7kq70Q2Ir2Ync1s86u72pQlgTyGwChU8w91PkgK3zw+3kixDgOPfWeubzq3bADjDOCP3Cga8z3nD91tCEnyRF2pjqxEm7VPuMzC7vK91Pyhy3hIgVQD+Jho0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1751034203; c=relaxed/simple;
-	bh=zclW5evbD26kO18GZgybKpcCRCtcM25Tzi+558CiH3U=;
+	s=arc-20240116; t=1751034205; c=relaxed/simple;
+	bh=PfwZzjjqJBdpG245rW9fZ43Yt8RFpe6Kf9hR0M/wvXw=;
 	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=icOJ4MSzpLMxNuBDO+ww5UEomviGTjv9LiT/bpD2D6hDv/h7fbw8zV3qcTjdasnPKltjt5Aw/WPPxWRfUuPCfFUuym7MP6RbSZYMQdxfiKhTmJ2qsQUY++1zSwcyP7kzm6H8LA2O+Sgg32ww1diMJ+FtOprIF3OJJe8U51udMYQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=riscstar.com; spf=pass smtp.mailfrom=riscstar.com; dkim=pass (2048-bit key) header.d=riscstar-com.20230601.gappssmtp.com header.i=@riscstar-com.20230601.gappssmtp.com header.b=AZWvhTr+; arc=none smtp.client-ip=209.85.222.173
+	 MIME-Version; b=WKVNOAZWVi2uknomEbtuZKqBSaludoGBFKaS23ewMX1rQJm8M1A+eP/VRj4B9lZjaruckBbqOokd+pHq0msGB+CuwKlYrF/Ix0e+9fliok50Cb98cjAMHag3kKfOP+pAWb71b64rS7Sc2BOGahKTyVcMJqk3VvkaEY+z52UIFXM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=riscstar.com; spf=pass smtp.mailfrom=riscstar.com; dkim=pass (2048-bit key) header.d=riscstar-com.20230601.gappssmtp.com header.i=@riscstar-com.20230601.gappssmtp.com header.b=bo3+biOD; arc=none smtp.client-ip=209.85.222.175
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=riscstar.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=riscstar.com
-Received: by mail-qk1-f173.google.com with SMTP id af79cd13be357-7d3f5796755so211044785a.1
-        for <devicetree@vger.kernel.org>; Fri, 27 Jun 2025 07:23:20 -0700 (PDT)
+Received: by mail-qk1-f175.google.com with SMTP id af79cd13be357-7d3dd14a7edso306736785a.2
+        for <devicetree@vger.kernel.org>; Fri, 27 Jun 2025 07:23:22 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=riscstar-com.20230601.gappssmtp.com; s=20230601; t=1751034200; x=1751639000; darn=vger.kernel.org;
+        d=riscstar-com.20230601.gappssmtp.com; s=20230601; t=1751034201; x=1751639001; darn=vger.kernel.org;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=GtlkaFHjvmTy5RrCm3lhHAt4uNxWGS/x5o/PAIyMoV4=;
-        b=AZWvhTr++f/ceg7baJecD/J0C1Q8DeNx3oX5DdB/vcNrAVe8yjyxmM+sowY7gHMNIh
-         9dYOxcvyVz3heubAlebRW6zvPJVvEvowh+U5uaE3qeDVk/zWsMCWKUhPYVLhoJG32dUH
-         z8RQfnhJurnEzBA2zZqBfkqMOpDEA5wX4mMrVaJwxKEiqJJ7iw/doNUB84wW8wT2t5eo
-         K7mWeo4x+C5W7+OBVWYdynW7MltsTQq0JHkpX2eHbfBf4zMXBiHT62zD/Pk6PSMjL+rq
-         c39AI3UsRfKJO8M/xqDDUS15Tm6bMmWjyqC34Rqkv0UY/0oJkwAqAeRktJ5jXx5Iua+S
-         aBoA==
+        bh=NWnze/SjFdW+lfNDCsnEitBUx1r5ZcEMc14OReZ/axQ=;
+        b=bo3+biODD7LGhBMJw9JZexn307AmIA2AtUnAF5Cjl/lX8LYCg5ZkdIWaU4QrG7VtoU
+         kHjewxGKCQ0YfPzX/9YwY0H8HmFsQXGIMcCfgfSYmgubfPoN+1iejl6NxOqQUYQqmY1C
+         Y3vqwah+1m/vS9f2ASOFSBkhPJA+x9eAIXCCNaOZH/g8dTxICtfkQ6gwtlqpxW9sTQWs
+         PUeugbP9/KDQSKWMxtgfv+8PnONY3zFt+s4QievGN8KAn1IWZNxR1J75wyI5HV/d8sTI
+         KHZR4ObeKzMg0bJ6C6U1/6xtcd75TYRLNfQDtYlwR+uUWeTjMVnoHnQ/tNLJUZZCqwN+
+         L3YQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1751034200; x=1751639000;
+        d=1e100.net; s=20230601; t=1751034201; x=1751639001;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=GtlkaFHjvmTy5RrCm3lhHAt4uNxWGS/x5o/PAIyMoV4=;
-        b=S7qLgf5a8Xm8D9/0898gNau9SyA7WY1mC3UC5AkCpTc9g7mjwTV3dfVqhGDYAG4faG
-         sAqF5XBvZf73GKgK0vppmNdimIqvYe6oNPQO0fx8IMkHzqCxLhO5Kfj9dCODRgqtRsNr
-         Gr5E+BsfdunvLb0w8WnqBa1lrmUsQtkoA6sdE+ubu3oQL2SAc3/zQKAm/p6J87iGxJqW
-         BCD+Ika19zHQ3QRdwcRYI+b49Isj/zBQsDm49FvyW0KylBtst13ME121nzlmro+8ndfm
-         Qv/4abOVtEFaxUHqHfDRSOoFjS+vAE3zhQ1tC0dO3jW7Hu4f/fGI9eenenTnQ0Xd2CkH
-         AxPA==
-X-Forwarded-Encrypted: i=1; AJvYcCU2OXxuGD80yJP7aTGlb0JWk8ntVHuDmebwk6rVkvYkXDtHFyyKI2aKA4tZKMsAidPonv+3kP2U5A+O@vger.kernel.org
-X-Gm-Message-State: AOJu0YxheADzydfLmD5uzHVQTgdy8hbvieLGOTIAv0gXNWW6LZVLdw3K
-	RQBDueklMyPVDalXG9n743vn/V657JYDP48KZjQLpd6ditGdODEL26HQNjooFxrd0U4=
-X-Gm-Gg: ASbGnctWG/8E8AnbptErytpYMkZi+WJBfIthKzqbBEBMbF7IIrXJsmO65O9fYbuYHuB
-	2EZYjEGTo2DV+mjuDM/S1mUsmVo8bi0ZezAVe55YdalM31vAg073xsK2GPTBVz2BiVRSWl0FWi2
-	6mY6mP/MdEs9tqLcHmjQeRv38Yjp5WOVbJSLP3gQzQgWZAv8u+ksree4TGoQtUC1aaoOKUdw524
-	7wYQgBABq2z3MLnxnWUAkoTAl44hjfVQOPjnw1362SptjwNtvnCvthE5X/pubEpH8Em5XrsSk0v
-	2kUqPTJAs3zJyf2n5kvtqt0tvCP0xDKHiiRiG43I8IwX83tgO+ZAYUKgBUvmM5DiSxlXCFGyIfc
-	o2CTkZna3QElNZb9ZgO/REUuuZwXv8l5XM0I=
-X-Google-Smtp-Source: AGHT+IEgrYKhOCKiOsFX0gYQTF47XaE9uXp1Sdf+EyZSPFtjULtMu+TN2F343Xkf+TDAeAcNg0SfPA==
-X-Received: by 2002:a05:620a:4406:b0:7c7:739d:5cea with SMTP id af79cd13be357-7d443979080mr551276885a.35.1751034199591;
-        Fri, 27 Jun 2025 07:23:19 -0700 (PDT)
+        bh=NWnze/SjFdW+lfNDCsnEitBUx1r5ZcEMc14OReZ/axQ=;
+        b=PFg3RlcCxh011BbS6daRn3vSCFXj3xLL7ibWBDGn7kMy6jXnj5LF0dCnr2w6mlwMn3
+         Y/Y/iKiSQYs5jkvBIgN4Ds4kdiVeawzUwrPaxVL20W7x9PtQF7x6fo+ySbJrJFMzVDH+
+         NkmryxrV7JdtCE5c7ydCs1SlceOLFLBcEJNPLK9Rwqo8sgvuKsOVTbDhqlOfLlsTPr4b
+         GC5guQNoVFZcOHIKXNV2pa4hktUqB24rD/6z43ZxjF+G2w5eFiUyGls78U1FsqzU4ECZ
+         Z2l+6tve1PtjgM16E43ZVo4c98ozx2pAkElPGzvC6BnRZO7EoD740/zrxrhxG3ZAt8BA
+         64mQ==
+X-Forwarded-Encrypted: i=1; AJvYcCUia9YbS2AsBdDMGbjJjuOxsU4cbU7N0s59hJrbRN6Z0s1KeafknC+S5NVpeilms1GM5Gv9XLR+HIpp@vger.kernel.org
+X-Gm-Message-State: AOJu0Yy4+DphiQoVcrLjwSew7uP7ARwbk/geo+iC+X1JjQai9uJkp49T
+	LtmDHatAuv/4bwMq1tahocEPJwN0ihRe1asAivm/ouX/YikQIHzeysTJGDmGiJvR/Gc=
+X-Gm-Gg: ASbGncvTIbRMjdU8jFDcBFNEgUxQI46UF9vCmbPGxGP+JY4mYsbAoTIGPmk45WIIUnf
+	40f2DfCU2hPGsyhWqIwauH52zPD1E4SBrQa0mmTtTyG4TTYc4doTXGnwzENNw4Wtz48AQQ5JQwk
+	c+AHfJHY/J6AYs2a5i5SsRm7fmJbDwgAzS3o3IqgSeHiEtCsU/VxQyp+ybVZ44rHeSb3zsCEcye
+	nCU/HeeQFVuMJCZI3ugf6LNnCtw1O/NBue5momTCSFeLi/0CwZpChoaLcJXwVPYojYoEXpd07kx
+	aOSxSNdbK+s/D6lteYzEbd/gyO3/HenI3TumdZ0FQBvrEFgGY//OneZUoCRfOpxuM+CeK5XGat9
+	FV43Rr440Nk4hSqNZ7nbEFjMQVRg0nj9GHj0=
+X-Google-Smtp-Source: AGHT+IGbR8LfUszD/aEIdWwkUQ61eynSIqFyVoyDA8206vPOUxXJejP9vRZ618fRX8/VdY8/tjO/YQ==
+X-Received: by 2002:a05:620a:198b:b0:7d3:9113:7902 with SMTP id af79cd13be357-7d44397f5e8mr481566285a.38.1751034201091;
+        Fri, 27 Jun 2025 07:23:21 -0700 (PDT)
 Received: from localhost.localdomain (c-73-228-159-35.hsd1.mn.comcast.net. [73.228.159.35])
-        by smtp.gmail.com with ESMTPSA id af79cd13be357-7d44323b4c4sm135708785a.106.2025.06.27.07.23.18
+        by smtp.gmail.com with ESMTPSA id af79cd13be357-7d44323b4c4sm135708785a.106.2025.06.27.07.23.19
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 27 Jun 2025 07:23:19 -0700 (PDT)
+        Fri, 27 Jun 2025 07:23:20 -0700 (PDT)
 From: Alex Elder <elder@riscstar.com>
 To: lee@kernel.org,
 	lgirdwood@gmail.com,
@@ -94,9 +94,9 @@ Cc: mat.jonczyk@o2.pl,
 	linux-riscv@lists.infradead.org,
 	spacemit@lists.linux.dev,
 	linux-kernel@vger.kernel.org
-Subject: [PATCH v6 5/8] rtc: spacemit: support the SpacemiT P1 RTC
-Date: Fri, 27 Jun 2025 09:23:04 -0500
-Message-ID: <20250627142309.1444135-6-elder@riscstar.com>
+Subject: [PATCH v6 6/8] riscv: dts: spacemit: enable the i2c8 adapter
+Date: Fri, 27 Jun 2025 09:23:05 -0500
+Message-ID: <20250627142309.1444135-7-elder@riscstar.com>
 X-Mailer: git-send-email 2.45.2
 In-Reply-To: <20250627142309.1444135-1-elder@riscstar.com>
 References: <20250627142309.1444135-1-elder@riscstar.com>
@@ -108,227 +108,82 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 
-Add support for the RTC found in the SpacemiT P1 PMIC.  Initially
-only setting and reading the time are supported.
-
-The PMIC is implemented as a multi-function device.  This RTC is
-probed based on this driver being named in a MFD cell in the simple
-MFD I2C driver.
+Define properties for the I2C adapter that provides access to the
+SpacemiT P1 PMIC.  Enable this adapter on the Banana Pi BPI-F3.
 
 Signed-off-by: Alex Elder <elder@riscstar.com>
 ---
- drivers/rtc/Kconfig           |  10 ++
- drivers/rtc/Makefile          |   1 +
- drivers/rtc/rtc-spacemit-p1.c | 167 ++++++++++++++++++++++++++++++++++
- 3 files changed, 178 insertions(+)
- create mode 100644 drivers/rtc/rtc-spacemit-p1.c
+ arch/riscv/boot/dts/spacemit/k1-bananapi-f3.dts | 15 +++++++++++++++
+ arch/riscv/boot/dts/spacemit/k1-pinctrl.dtsi    |  7 +++++++
+ arch/riscv/boot/dts/spacemit/k1.dtsi            | 11 +++++++++++
+ 3 files changed, 33 insertions(+)
 
-diff --git a/drivers/rtc/Kconfig b/drivers/rtc/Kconfig
-index 9aec922613cec..93620f2c9b29c 100644
---- a/drivers/rtc/Kconfig
-+++ b/drivers/rtc/Kconfig
-@@ -406,6 +406,16 @@ config RTC_DRV_MAX77686
- 	  This driver can also be built as a module. If so, the module
- 	  will be called rtc-max77686.
+diff --git a/arch/riscv/boot/dts/spacemit/k1-bananapi-f3.dts b/arch/riscv/boot/dts/spacemit/k1-bananapi-f3.dts
+index fe22c747c5012..7c9f91c88e01a 100644
+--- a/arch/riscv/boot/dts/spacemit/k1-bananapi-f3.dts
++++ b/arch/riscv/boot/dts/spacemit/k1-bananapi-f3.dts
+@@ -40,6 +40,21 @@ &emmc {
+ 	status = "okay";
+ };
  
-+config RTC_DRV_SPACEMIT_P1
-+	tristate "SpacemiT P1 RTC"
-+	depends on ARCH_SPACEMIT || COMPILE_TEST
-+	select MFD_SPACEMIT_P1
-+	default ARCH_SPACEMIT
-+	help
-+	  Enable support for the RTC function in the SpacemiT P1 PMIC.
-+	  This driver can also be built as a module, which will be called
-+	  "spacemit-p1-rtc".
++&i2c8 {
++	pinctrl-0 = <&i2c8_cfg>;
++	pinctrl-names = "default";
++	#address-cells = <1>;
++	#size-cells = <0>;
++	status = "okay";
 +
- config RTC_DRV_NCT3018Y
- 	tristate "Nuvoton NCT3018Y"
- 	depends on OF
-diff --git a/drivers/rtc/Makefile b/drivers/rtc/Makefile
-index 4619aa2ac4697..a24ff6ad5ca58 100644
---- a/drivers/rtc/Makefile
-+++ b/drivers/rtc/Makefile
-@@ -171,6 +171,7 @@ obj-$(CONFIG_RTC_DRV_SD2405AL)	+= rtc-sd2405al.o
- obj-$(CONFIG_RTC_DRV_SD3078)	+= rtc-sd3078.o
- obj-$(CONFIG_RTC_DRV_SH)	+= rtc-sh.o
- obj-$(CONFIG_RTC_DRV_SNVS)	+= rtc-snvs.o
-+obj-$(CONFIG_RTC_DRV_SPACEMIT_P1)	+= rtc-spacemit-p1.o
- obj-$(CONFIG_RTC_DRV_SPEAR)	+= rtc-spear.o
- obj-$(CONFIG_RTC_DRV_STARFIRE)	+= rtc-starfire.o
- obj-$(CONFIG_RTC_DRV_STK17TA8)	+= rtc-stk17ta8.o
-diff --git a/drivers/rtc/rtc-spacemit-p1.c b/drivers/rtc/rtc-spacemit-p1.c
-new file mode 100644
-index 0000000000000..5f1bcca00549c
---- /dev/null
-+++ b/drivers/rtc/rtc-spacemit-p1.c
-@@ -0,0 +1,167 @@
-+// SPDX-License-Identifier: GPL-2.0
-+/*
-+ * Driver for the RTC found in the SpacemiT P1 PMIC
-+ *
-+ * Copyright (C) 2025 by RISCstar Solutions Corporation.  All rights reserved.
-+ */
-+
-+#include <linux/bits.h>
-+#include <linux/device.h>
-+#include <linux/module.h>
-+#include <linux/platform_device.h>
-+#include <linux/regmap.h>
-+#include <linux/rtc.h>
-+
-+#define MOD_NAME	"spacemit-p1-rtc"
-+
-+/*
-+ * Six consecutive 1-byte registers hold the seconds, minutes, hours,
-+ * day-of-month, month, and year (respectively).
-+ *
-+ * The range of values in these registers is:
-+ *    seconds	0-59
-+ *    minutes	0-59
-+ *    hours	0-59
-+ *    day	0-30 (struct tm is 1-31)
-+ *    month	0-11
-+ *    year	years since 2000 (struct tm is since 1900)
-+ *
-+ * Note that the day and month must be converted after reading and
-+ * before writing.
-+ */
-+#define RTC_TIME		0x0d	/* Offset of the seconds register */
-+
-+#define RTC_CTRL		0x1d
-+#define RTC_EN		BIT(2)
-+
-+/* Number of attempts to read a consistent time stamp before giving up */
-+#define RTC_READ_TRIES		20	/* At least 1 */
-+
-+struct p1_rtc {
-+	struct regmap *regmap;
-+	struct rtc_device *rtc;
++	pmic@41 {
++		compatible = "spacemit,p1";
++		reg = <0x41>;
++		interrupts = <64>;
++		status = "okay";
++	};
 +};
 +
-+/*
-+ * The P1 hardware documentation states that the register values are
-+ * latched to ensure a consistent time snapshot within the registers,
-+ * but these are in fact unstable due to a bug in the hardware design.
-+ * So we loop until we get two identical readings.
-+ */
-+static int p1_rtc_read_time(struct device *dev, struct rtc_time *t)
-+{
-+	struct p1_rtc *p1 = dev_get_drvdata(dev);
-+	struct regmap *regmap = p1->regmap;
-+	u32 count = RTC_READ_TRIES;
-+	u8 seconds;
-+	u8 time[6];
-+	int ret;
+ &uart0 {
+ 	pinctrl-names = "default";
+ 	pinctrl-0 = <&uart0_2_cfg>;
+diff --git a/arch/riscv/boot/dts/spacemit/k1-pinctrl.dtsi b/arch/riscv/boot/dts/spacemit/k1-pinctrl.dtsi
+index 283663647a86f..9d6d4503fe751 100644
+--- a/arch/riscv/boot/dts/spacemit/k1-pinctrl.dtsi
++++ b/arch/riscv/boot/dts/spacemit/k1-pinctrl.dtsi
+@@ -11,6 +11,13 @@
+ #define K1_GPIO(x)	(x / 32) (x % 32)
+ 
+ &pinctrl {
++	i2c8_cfg: i2c8-cfg {
++		i2c8-0-pins {
++			pinmux = <K1_PADCONF(93, 0)>,	/* PWR_SCL */
++				 <K1_PADCONF(94, 0)>;	/* PWR_SDA */
++		};
++	};
 +
-+	if (!regmap_test_bits(regmap, RTC_CTRL, RTC_EN))
-+		return -ENODEV;		/* RTC is disabled */
+ 	uart0_2_cfg: uart0-2-cfg {
+ 		uart0-2-pins {
+ 			pinmux = <K1_PADCONF(68, 2)>,
+diff --git a/arch/riscv/boot/dts/spacemit/k1.dtsi b/arch/riscv/boot/dts/spacemit/k1.dtsi
+index 14097f1f6f447..a85239e8e430b 100644
+--- a/arch/riscv/boot/dts/spacemit/k1.dtsi
++++ b/arch/riscv/boot/dts/spacemit/k1.dtsi
+@@ -483,6 +483,17 @@ gpio: gpio@d4019000 {
+ 				      <&pinctrl 3 0 96 32>;
+ 		};
+ 
++		i2c8: i2c@d401d800 {
++			compatible = "spacemit,k1-i2c";
++			reg = <0x0 0xd401d800 0x0 0x38>;
++			interrupts = <19>;
++			clocks = <&syscon_apbc CLK_TWSI8>,
++				 <&syscon_apbc CLK_TWSI8_BUS>;
++			clock-names = "func", "bus";
++			clock-frequency = <400000>;
++			status = "disabled";
++		};
 +
-+	ret = regmap_bulk_read(regmap, RTC_TIME, time, sizeof(time));
-+	if (ret)
-+		return ret;
-+
-+	do {
-+		seconds = time[0];
-+		ret = regmap_bulk_read(regmap, RTC_TIME, time, sizeof(time));
-+		if (ret)
-+			return ret;
-+	} while (time[0] != seconds && --count);
-+
-+	if (!count)
-+		return -EIO;		/* Unable to get a consistent result */
-+
-+	t->tm_sec = time[0] & GENMASK(5, 0);
-+	t->tm_min = time[1] & GENMASK(5, 0);
-+	t->tm_hour = time[2] & GENMASK(4, 0);
-+	t->tm_mday = (time[3] & GENMASK(4, 0)) + 1;
-+	t->tm_mon = time[4] & GENMASK(3, 0);
-+	t->tm_year = (time[5] & GENMASK(5, 0)) + 100;
-+
-+	return 0;
-+}
-+
-+/*
-+ * The P1 hardware documentation states that values in the registers are
-+ * latched so when written they represent a consistent time snapshot.
-+ * Nevertheless, this is not guaranteed by the implementation, so we must
-+ * disable the RTC while updating it.
-+ */
-+static int p1_rtc_set_time(struct device *dev, struct rtc_time *t)
-+{
-+	struct p1_rtc *p1 = dev_get_drvdata(dev);
-+	struct regmap *regmap = p1->regmap;
-+	u8 time[6];
-+	int ret;
-+
-+	time[0] = t->tm_sec;
-+	time[1] = t->tm_min;
-+	time[2] = t->tm_hour;
-+	time[3] = t->tm_mday - 1;
-+	time[4] = t->tm_mon;
-+	time[5] = t->tm_year - 100;
-+
-+	/* Disable the RTC to update; re-enable again when done */
-+	ret = regmap_clear_bits(regmap, RTC_CTRL, RTC_EN);
-+	if (ret)
-+		return ret;
-+
-+	/* If something goes wrong, leave the RTC disabled */
-+	ret = regmap_bulk_write(regmap, RTC_TIME, time, sizeof(time));
-+	if (ret)
-+		return ret;
-+
-+	return regmap_set_bits(regmap, RTC_CTRL, RTC_EN);
-+}
-+
-+static const struct rtc_class_ops p1_rtc_class_ops = {
-+	.read_time = p1_rtc_read_time,
-+	.set_time = p1_rtc_set_time,
-+};
-+
-+static int p1_rtc_probe(struct platform_device *pdev)
-+{
-+	struct device *dev = &pdev->dev;
-+	struct rtc_device *rtc;
-+	struct p1_rtc *p1;
-+
-+	p1 = devm_kzalloc(dev, sizeof(*p1), GFP_KERNEL);
-+	if (!p1)
-+		return -ENOMEM;
-+	dev_set_drvdata(dev, p1);
-+
-+	p1->regmap = dev_get_regmap(dev->parent, NULL);
-+	if (!p1->regmap)
-+		return dev_err_probe(dev, -ENODEV, "failed to get regmap\n");
-+
-+	rtc = devm_rtc_allocate_device(dev);
-+	if (IS_ERR(rtc))
-+		return dev_err_probe(dev, PTR_ERR(rtc),
-+				     "error allocating device\n");
-+	p1->rtc = rtc;
-+
-+	rtc->ops = &p1_rtc_class_ops;
-+	rtc->range_min = RTC_TIMESTAMP_BEGIN_2000;
-+	rtc->range_max = RTC_TIMESTAMP_END_2063;
-+
-+	clear_bit(RTC_FEATURE_ALARM, rtc->features);
-+	clear_bit(RTC_FEATURE_UPDATE_INTERRUPT, rtc->features);
-+
-+	return devm_rtc_register_device(rtc);
-+}
-+
-+static struct platform_driver p1_rtc_driver = {
-+	.probe = p1_rtc_probe,
-+	.driver = {
-+		.name = MOD_NAME,
-+	},
-+};
-+
-+module_platform_driver(p1_rtc_driver);
-+
-+MODULE_DESCRIPTION("SpacemiT P1 RTC driver");
-+MODULE_LICENSE("GPL");
-+MODULE_ALIAS("platform:" MOD_NAME);
+ 		pinctrl: pinctrl@d401e000 {
+ 			compatible = "spacemit,k1-pinctrl";
+ 			reg = <0x0 0xd401e000 0x0 0x400>;
 -- 
 2.45.2
 
