@@ -1,58 +1,60 @@
-Return-Path: <devicetree+bounces-190537-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-190538-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id AC6C4AEC0B5
-	for <lists+devicetree@lfdr.de>; Fri, 27 Jun 2025 22:12:25 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9AF12AEC0B8
+	for <lists+devicetree@lfdr.de>; Fri, 27 Jun 2025 22:14:10 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 155503B997D
-	for <lists+devicetree@lfdr.de>; Fri, 27 Jun 2025 20:12:00 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id BD13656356F
+	for <lists+devicetree@lfdr.de>; Fri, 27 Jun 2025 20:14:10 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E3CBF2EBDEF;
-	Fri, 27 Jun 2025 20:12:20 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 444462ECD08;
+	Fri, 27 Jun 2025 20:14:06 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="dbvaIv84"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Z/h+Thul"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BB4DA20B80B;
-	Fri, 27 Jun 2025 20:12:20 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 184C82EBDE5;
+	Fri, 27 Jun 2025 20:14:06 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1751055140; cv=none; b=SYH3Arryk4B9MytT9O15tEa5k/04r+PJMsgV+XSno2XMCMnjuXXGvpi3vOBV3e17UeRyfbicIvIxUj8+SlXNdq27PEDOujryrN6+Kt9KSi3NWRroEyN8oWCGRy+VWHSLkG498t/5jN0t4bsV3pumWnUBW/7dp7IFi7TkMakBaP8=
+	t=1751055246; cv=none; b=RLxxbyL5lVYRpmxzz90yOecbTRrffNWTs5UXy+7+szSB67fXBs9NCt0FVNGZWHkq3OSeqIUUvuyn9FIEGjI+dJ+oAxzCq8iWutjnpYx0PaxaBJQebwgdb3y8znCfd6RKB5W4c8yoWOZzeYVQko2OZegRvJSBKiqx/qEsh0snqeQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1751055140; c=relaxed/simple;
-	bh=s0Xged9J2HnvN6x2GXvoVG4DhENWGLcw1Wvk3UDfhk0=;
+	s=arc-20240116; t=1751055246; c=relaxed/simple;
+	bh=VYYXKd4DVhfkDjJTOWxBgy92/r8CsxVv0INxt3+97j4=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=nbN8HWAtbojg8EC6UwJi4Gnb3A6lC2CBUtITnpFnbeYiHqpGPoS16gws+F0FFniAN6bZiSF+cq7XoW3KgUH7b6NJXFtQx2StqTnFL03en71eOm0WPAH1BZI50bLdBSPEr8I1nX35CROx0EgUJUSQqyP9MEsNvBWx4RPEtix7fPo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=dbvaIv84; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 6C113C4CEE3;
-	Fri, 27 Jun 2025 20:12:20 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=qECGyPvz9BuEJy2b0hjmHV3KASnS+9Z7n79ke4lT124Pdjs08gavrROk7RczdF5ABbtjszcprKkwQMu7cwx/uZQkG+GWDAo0tAI7+uDVvLGVXJP9x+34cEcqBOXEyPqa76y5+GRjOC9uxVMjzVVfNlhfYiA+8hCqhLvXXLuhOXI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Z/h+Thul; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id BE296C4CEE3;
+	Fri, 27 Jun 2025 20:14:05 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1751055140;
-	bh=s0Xged9J2HnvN6x2GXvoVG4DhENWGLcw1Wvk3UDfhk0=;
+	s=k20201202; t=1751055245;
+	bh=VYYXKd4DVhfkDjJTOWxBgy92/r8CsxVv0INxt3+97j4=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=dbvaIv84Q8/hxga+QPQuAVOJo1iAVrT3k3tciBHSB01FYbsIbgXMqUtXbZrrFDe7X
-	 OnKj4xc8bpec1TE1VMfxS3vlCZrcGxvj7bc4r/NIR12UEp/SiKK/CgY2CumCXTuN7V
-	 8ojRypb9bxPPbTwJJTbX8Y0o79DHcv9DNRt7NoAumwz+/uSm65r2kqL93yx6KZuk2k
-	 vsuNKV59kFj7IlI25mMmAv0GEed5gou1mK4SZao+NxLP+Ze3pG4lvXbCZD8EujeMN7
-	 G7xBF+ar5OYrvQi6rlNIqhmgeLhNuhYmpf3qvkYTWYnf7f0L7XCyGqDRTGHUWiQKp9
-	 LaEvc20NP2RCg==
-Date: Fri, 27 Jun 2025 15:12:19 -0500
-From: "Rob Herring (Arm)" <robh@kernel.org>
+	b=Z/h+ThulbxEHu/znIGjOtmBfK3QVP+9m7X7rsOhRBfipwgL6fy267ecQXtR6nHCIW
+	 ei7Z5DrFQx44UYPwalMOGhWVIG4TKI+2bXYZYYKBCou+ua3RmCMQgj4cRaGCMwHEbL
+	 g55YQfwq2jk6wuTm2CgadnwpR2YOOY9U60KRa+e6VUD51yWgMuXukMZm6C6VCnfYUX
+	 18vhQka3tjURh0/9ZNbxCHJVJlSkpSsSHNchQAJinehUZq+C9v1Vp4SL3fUY82HOcK
+	 a+VoYgRb1akhChMPxA3wf3yzWqHV1IFMlEbHCS9jcdPbboSq4Aoqq3Xc3FxTfIyfTO
+	 LYEsckce9Rftw==
+Date: Fri, 27 Jun 2025 15:14:04 -0500
+From: Rob Herring <robh@kernel.org>
 To: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
-Cc: conor+dt@kernel.org, kernel@collabora.com, krzk+dt@kernel.org,
-	linux-mediatek@lists.infradead.org, matthias.bgg@gmail.com,
+Cc: krzk+dt@kernel.org, conor+dt@kernel.org, matthias.bgg@gmail.com,
+	sudeep.holla@arm.com, cristian.marussi@arm.com,
 	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org, jassisinghbrar@gmail.com
-Subject: Re: [PATCH v1 1/2] dt-bindings: mailbox: Add MediaTek TinySYS MHU
- mailbox
-Message-ID: <175105513896.4155718.5094277254740319329.robh@kernel.org>
-References: <20250623120127.109237-1-angelogioacchino.delregno@collabora.com>
- <20250623120127.109237-2-angelogioacchino.delregno@collabora.com>
+	linux-arm-kernel@lists.infradead.org,
+	linux-mediatek@lists.infradead.org, arm-scmi@vger.kernel.org,
+	kernel@collabora.com
+Subject: Re: [PATCH v1 1/2] dt-bindings: firmware: Add MediaTek TinySYS SCMI
+ Extension protocol
+Message-ID: <20250627201404.GA4156149-robh@kernel.org>
+References: <20250623120136.109311-1-angelogioacchino.delregno@collabora.com>
+ <20250623120136.109311-2-angelogioacchino.delregno@collabora.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -61,23 +63,53 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20250623120127.109237-2-angelogioacchino.delregno@collabora.com>
+In-Reply-To: <20250623120136.109311-2-angelogioacchino.delregno@collabora.com>
 
-
-On Mon, 23 Jun 2025 14:01:26 +0200, AngeloGioacchino Del Regno wrote:
-> Add a binding for the MediaTek TinySYS MHU mailbox, used for IPC
-> with the TinySYS hardware integrated in various MediaTek SoCs.
+On Mon, Jun 23, 2025 at 02:01:35PM +0200, AngeloGioacchino Del Regno wrote:
+> Add the MediaTek TinySYS SCMI Extension protocol as found on a
+> number of SoCs, including MT6895 and MT8196.
 > 
-> This mailbox handles a custom MHU enabling communication through
-> the TinySYS SCMI protocol.
+> This includes controls and power state notifications for the GPU,
+> CPU Memory latency Manager (cm_mgr), SLBC, SSPM and others.
 > 
 > Signed-off-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
 > ---
->  .../mediatek,mt6985-tinysys-mhu-mbox.yaml     | 52 +++++++++++++++++++
->  1 file changed, 52 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/mailbox/mediatek,mt6985-tinysys-mhu-mbox.yaml
+>  .../firmware/mediatek,mt6895-scmi.yaml        | 22 +++++++++++++++++++
+>  1 file changed, 22 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/firmware/mediatek,mt6895-scmi.yaml
 > 
+> diff --git a/Documentation/devicetree/bindings/firmware/mediatek,mt6895-scmi.yaml b/Documentation/devicetree/bindings/firmware/mediatek,mt6895-scmi.yaml
+> new file mode 100644
+> index 000000000000..98a5b81983b1
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/firmware/mediatek,mt6895-scmi.yaml
+> @@ -0,0 +1,22 @@
+> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
+> +# Copyright 2025 Collabora Ltd
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/firmware/mediatek,mt6895-scmi.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: MediaTek System Control and Management Interface(SCMI) Vendor Protocols Extension
+> +
+> +maintainers:
+> +  - AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+> +
 
-Reviewed-by: Rob Herring (Arm) <robh@kernel.org>
+This schema will never be applied.
 
+> +properties:
+> +  protocol@80:
+> +    $ref: '/schemas/firmware/arm,scmi.yaml#/$defs/protocol-node'
+> +    unevaluatedProperties: false
+> +
+> +    properties:
+> +      reg:
+> +        const: 0x80
+> +
+> +additionalProperties: true
+> -- 
+> 2.49.0
+> 
 
