@@ -1,141 +1,98 @@
-Return-Path: <devicetree+bounces-190586-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-190587-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id BFCA1AEC21B
-	for <lists+devicetree@lfdr.de>; Fri, 27 Jun 2025 23:35:01 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 3F3AFAEC22A
+	for <lists+devicetree@lfdr.de>; Fri, 27 Jun 2025 23:41:11 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 282121BC0B8A
-	for <lists+devicetree@lfdr.de>; Fri, 27 Jun 2025 21:35:17 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 051E01BC0B8C
+	for <lists+devicetree@lfdr.de>; Fri, 27 Jun 2025 21:41:27 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7F318289E37;
-	Fri, 27 Jun 2025 21:34:55 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 55A4028A1D6;
+	Fri, 27 Jun 2025 21:41:05 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="d1CTpwJH"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="dN9mwFeZ"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 502A625D906;
-	Fri, 27 Jun 2025 21:34:54 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 25D2A171092;
+	Fri, 27 Jun 2025 21:41:04 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1751060095; cv=none; b=YIevwUXtyfokOdjuViJPZCJE0aNBxdFhDOtAhZuHg2kw8g3y4hYgmj6ejb4fUJn2aXYTyvS8ybCinFA6iNl88+oiji6OusMQFFPKVBmHkYlkH0RixHDz1TSecGsWC/rYY7yucp77IasYvrYOUyGwYBFypzJGS5ELf5LoA943BAs=
+	t=1751060465; cv=none; b=sl/RHvTLxvBKeJTYUBNz43VRwMLsX6XIsVErFMOqiMc5aKnszRvso3osmXmBEZ8Q0P5ZQhJ0bw/7F7E13HwsOv/7GCSdKgpM+Y3QGJ//DUMDzxwWMfAt3V6gVTA/LnZWvgKHgDDCPmHEXZypqNMRBHmDkEUDJ0Jixil7Rz1UZFs=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1751060095; c=relaxed/simple;
-	bh=zDxcpATlxc/Xh8U0U+KtEf8oiXFU2XjfI0G0D8EaqQo=;
+	s=arc-20240116; t=1751060465; c=relaxed/simple;
+	bh=3oXq16alLr2nxtGsTFfoEGRR7gxgyYoWYgqZxLOZzs4=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=U91C/5XucszjhzNQovqLnnO3lmVxS/gpMvuQ3D7K6XLsStxosIq2Xa6+fydNZ3sirOMx2YIzbvARzmEo2ZeHvrbjgYpsVMGnbVw8kxx7HQrkIp1PDgvbJI0kghbaFigtshDkXi5LRTf69klXvdb9tWIHn4olVGDLlQGUgXYdM+4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=d1CTpwJH; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id B5CFAC4CEE3;
-	Fri, 27 Jun 2025 21:34:54 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=U25nk5gAklc1QsfyWwWb5dxG8armI56Z41DNZls5Wk4nE8WVlh6AeIYukUY9Gs8bBH2nrIz4ZjiMvK83u2IQN2pB7+K/ugCm/MHMeQu7cm8Dfg81AYoNn1LXphF/C80YNzh39Eo70lDDxQgmg+9+7aHjjSXFdWXqqyMKvHIrTw8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=dN9mwFeZ; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 83AF9C4CEE3;
+	Fri, 27 Jun 2025 21:41:04 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1751060094;
-	bh=zDxcpATlxc/Xh8U0U+KtEf8oiXFU2XjfI0G0D8EaqQo=;
+	s=k20201202; t=1751060464;
+	bh=3oXq16alLr2nxtGsTFfoEGRR7gxgyYoWYgqZxLOZzs4=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=d1CTpwJHnQwqKrl2xNH8xRpw5kLaRBQKnMk03iQ56YATlXbgBelLS0emjVWcNtLtt
-	 3o9xNsv560f0MiHFveA6HAcZeKZxdKmzL45J0ZN4uOwr2rzSXLvx1kcMUEeRzap7MH
-	 BF48sOe2Wv4C+NUobBsTFwKMlQEDBkd6iosqrllwebh6/s49Yx/Z+DbRSRgQsDKvGj
-	 PM7nGRnCrvXhC0KJTrOiCt1o3AF++naEfTql19XhD8AvNM5dUhBcAY+LmPEq0n4JBO
-	 +xlcl+Jb6cU7fqTeU5tgHCZmIP1Dl7fAUzAvfBggziUHT0FLHiahsogGpFBGCIRc0C
-	 IcL6aWuADOWpg==
-Date: Fri, 27 Jun 2025 16:34:54 -0500
-From: Rob Herring <robh@kernel.org>
-To: =?iso-8859-1?Q?=C1lvaro_Fern=E1ndez?= Rojas <noltari@gmail.com>
-Cc: jdelvare@suse.com, linux@roeck-us.net, krzk+dt@kernel.org,
-	conor+dt@kernel.org, corbet@lwn.net, linux-hwmon@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	linux-doc@vger.kernel.org
-Subject: Re: [PATCH 2/3] dt-bindings: hwmon: Add Microchip EMC2101 support
-Message-ID: <20250627213454.GA179652-robh@kernel.org>
-References: <20250626113351.52873-1-noltari@gmail.com>
- <20250626113351.52873-3-noltari@gmail.com>
+	b=dN9mwFeZPT7JwxGHE4dWUQZAF4GxPqyzFm6eryAnlLNFZfVVNmi5QK5zjzBA+Th5d
+	 g8o++TJeOe0lEoTkudPKFxP56TyZhhOZzukJM2aKk9x+DswgJkBhwdQ9B11aba7Cn/
+	 +u5ifsFlNcp5adThOkEIEtfjxVQzC+xR0979KalprhiA81vf09dK4ZFhQkR5+CKObq
+	 SIZOV0orxaK+5EfL0Moe5tQJgH41RsGfAuw6lEOlYRA4qAJYT20xMOmmaUGu6LW3rA
+	 RM6Zi5c1orSB3VPQCpNW7Bj5DvLK2ujsGgRYfs7KeQDDJIaa9e8HGDOV3ya1mn9BSX
+	 pFawy5P3w3uvw==
+Date: Fri, 27 Jun 2025 16:41:03 -0500
+From: "Rob Herring (Arm)" <robh@kernel.org>
+To: Kaustabh Chakraborty <kauschluss@disroot.org>
+Cc: devicetree@vger.kernel.org, Neil Armstrong <neil.armstrong@linaro.org>,
+	Seung-Woo Kim <sw0312.kim@samsung.com>,
+	Inki Dae <inki.dae@samsung.com>, Simona Vetter <simona@ffwll.ch>,
+	Maxime Ripard <mripard@kernel.org>,
+	Alim Akhtar <alim.akhtar@samsung.com>,
+	Andrzej Hajda <andrzej.hajda@intel.com>,
+	Robert Foss <rfoss@kernel.org>,
+	Marek Szyprowski <m.szyprowski@samsung.com>,
+	Jonas Karlman <jonas@kwiboo.se>,
+	Thomas Zimmermann <tzimmermann@suse.de>,
+	Jernej Skrabec <jernej.skrabec@gmail.com>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	linux-arm-kernel@lists.infradead.org,
+	Conor Dooley <conor+dt@kernel.org>, dri-devel@lists.freedesktop.org,
+	Krzysztof Kozlowski <krzk@kernel.org>,
+	Kyungmin Park <kyungmin.park@samsung.com>,
+	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+	Jagan Teki <jagan@amarulasolutions.com>,
+	Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
+	linux-samsung-soc@vger.kernel.org, linux-kernel@vger.kernel.org,
+	David Airlie <airlied@gmail.com>
+Subject: Re: [PATCH v2 11/13] dt-bindings: samsung,mipi-dsim: document
+ exynos7870 DSIM compatible
+Message-ID: <175106045083.188354.11616800580280221197.robh@kernel.org>
+References: <20250627-exynos7870-dsim-v2-0-1433b67378d3@disroot.org>
+ <20250627-exynos7870-dsim-v2-11-1433b67378d3@disroot.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20250626113351.52873-3-noltari@gmail.com>
+In-Reply-To: <20250627-exynos7870-dsim-v2-11-1433b67378d3@disroot.org>
 
-On Thu, Jun 26, 2025 at 01:33:50PM +0200, Álvaro Fernández Rojas wrote:
-> Introduce yaml schema for Microchip emc2101 pwm fan controller with
-> temperature monitoring.
+
+On Fri, 27 Jun 2025 01:09:00 +0530, Kaustabh Chakraborty wrote:
+> Add compatible string for Exynos7870 DSIM bridge controller. The
+> device requires four clock sources, in schema they're named as "bus",
+> "pll", "byte", and "esc".
 > 
-> Signed-off-by: Álvaro Fernández Rojas <noltari@gmail.com>
+> Suggested-by: Krzysztof Kozlowski <krzk@kernel.org>
+> Signed-off-by: Kaustabh Chakraborty <kauschluss@disroot.org>
 > ---
->  .../bindings/hwmon/microchip,emc2101.yaml     | 52 +++++++++++++++++++
->  1 file changed, 52 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/hwmon/microchip,emc2101.yaml
+>  .../bindings/display/bridge/samsung,mipi-dsim.yaml | 27 ++++++++++++++++++++++
+>  1 file changed, 27 insertions(+)
 > 
-> diff --git a/Documentation/devicetree/bindings/hwmon/microchip,emc2101.yaml b/Documentation/devicetree/bindings/hwmon/microchip,emc2101.yaml
-> new file mode 100644
-> index 000000000000..e73f1f9d43f4
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/hwmon/microchip,emc2101.yaml
-> @@ -0,0 +1,52 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/hwmon/microchip,emc2101.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Microchip EMC2101 SMBus compliant PWM fan controller
-> +
-> +maintainers:
-> +  - Álvaro Fernández Rojas <noltari@gmail.com>
-> +
-> +description:
-> +  Microchip EMC2101 pwm controller which supports up to 1 fan, 1 internal
-> +  temperature sensor, 1 external temperature sensor and an 8 entry look
-> +  up table to create a programmable temperature response.
-> +
-> +properties:
-> +  compatible:
-> +    enum:
-> +      - microchip,emc2101
-> +      - microchip,emc2101-r
-> +
-> +  reg:
-> +    maxItems: 1
-> +
 
-> +  '#address-cells':
-> +    const: 1
-> +
-> +  '#size-cells':
-> +    const: 0
+Reviewed-by: Rob Herring (Arm) <robh@kernel.org>
 
-What are these for? You don't have any child nodes.
-
-> +
-> +required:
-> +  - compatible
-> +  - reg
-> +
-> +additionalProperties: false
-> +
-> +examples:
-> +  - |
-> +    i2c {
-> +        #address-cells = <1>;
-> +        #size-cells = <0>;
-> +
-> +        fan_controller: fan-controller@4c {
-> +            compatible = "microchip,emc2101";
-> +            reg = <0x4c>;
-> +
-> +            #address-cells = <1>;
-> +            #size-cells = <0>;
-> +        };
-> +    };
-> +...
-> -- 
-> 2.39.5
-> 
 
