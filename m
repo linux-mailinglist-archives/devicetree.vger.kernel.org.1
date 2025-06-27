@@ -1,99 +1,99 @@
-Return-Path: <devicetree+bounces-190300-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-190301-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3E627AEB5C5
-	for <lists+devicetree@lfdr.de>; Fri, 27 Jun 2025 13:04:42 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 25DB0AEB5D8
+	for <lists+devicetree@lfdr.de>; Fri, 27 Jun 2025 13:06:26 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id E83927B1BEC
-	for <lists+devicetree@lfdr.de>; Fri, 27 Jun 2025 11:01:49 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id CA346188E56B
+	for <lists+devicetree@lfdr.de>; Fri, 27 Jun 2025 11:06:41 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1BE8C2D29D7;
-	Fri, 27 Jun 2025 11:01:47 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7D2B629C32B;
+	Fri, 27 Jun 2025 11:04:17 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Vuim5axm"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Vy9i0A8c"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E134029CB3C;
-	Fri, 27 Jun 2025 11:01:46 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 524BF29B205;
+	Fri, 27 Jun 2025 11:04:17 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1751022107; cv=none; b=tp/7GkMdS6DQzYqXylnqE1Jo23SS8xc9zBZpPLVNXwz9m/ws0sLdLw2p8U3+48syp9urLSDk1Tj9ZtEfyJDgrt9v7+JMVFPxmnrSTP1SCIbVeDe1ATBYUCHgOm5xp9nGVWUojm3Hkj3BLCZ7BWGMhtSCX/USIiBnBq0WZdep9zw=
+	t=1751022257; cv=none; b=NWXmemmr8dsDvDGWJQnLhbmvr6U5cY+Mqt+yZWTGkY+1MtuIH42OwNfQ/oKecRRPIrA4g3zb7+b7PNj+0jIMik0wrXM53wam3f6DWsNqEZuJEEhJeNVHDPQv6G8b8uGlqZ6A7Mb/WcFywHbpmimNimhxI1RVYy529FtFOfhyqTg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1751022107; c=relaxed/simple;
-	bh=A1bxFNSWz35yFvhEfWY+CykpQc2zGdJBAlx9+90e2dY=;
-	h=From:To:Cc:In-Reply-To:References:Subject:Message-Id:Date:
-	 MIME-Version:Content-Type; b=BbyE+JDoiV8JDf2VHJQge6VIiS6I+viCr67VZ7rXvF/gU37J+2jZ8ceQSWXMKktK9/ZhP1nGCqMVEmRK4ng4R5BXG/qCnuJf9P0fUkbYl2vCuleSmUFPuXiPBNivqQtcFERGbORUXA2eRSQ08vDN+qpepdGtw8EpuyYumP59tTo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Vuim5axm; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 12B3FC4CEEB;
-	Fri, 27 Jun 2025 11:01:36 +0000 (UTC)
+	s=arc-20240116; t=1751022257; c=relaxed/simple;
+	bh=ILopEhlpi3Ezeg8jJ09kRy0qj4a+MztRff2cwbyCFPM=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=nzHZc9yC094UJ3EGSoBP7bANxeJkKPdAZvcqvG51hLlr+EkRW8NbotfiCHXhaDnjja6I5hsEikQfe3GIrWdLpJpvy1+FctoWWeU+djuhMFL2fgGVHZM/loYPEff5m+skx3DXYZnBj59R6RieKrAXP6HynM/u3SzpPDGuwCltOY8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Vy9i0A8c; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id D469BC4CEE3;
+	Fri, 27 Jun 2025 11:04:15 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1751022106;
-	bh=A1bxFNSWz35yFvhEfWY+CykpQc2zGdJBAlx9+90e2dY=;
-	h=From:To:Cc:In-Reply-To:References:Subject:Date:From;
-	b=Vuim5axmcv1budcLMxptutxipo6ZXvXL5obJaxzRyYtPfv94hXtUQ50S0joXsI5o3
-	 9kZN1cwE8jTBmE2kvjaQ9swQ5QN15VrgHV1Zu8UPHTSJE5cbn4KCZswpmABjlYHyQC
-	 Fx1fErSFiH43/LDVA7C8QrVBo/5V9REKDIMxsXNsOT3KF3J+raB9qbpnUV3YIt3BYC
-	 Hu9pjITmoTEsHzLTi09CCXiEtuPPEPwJ9JhJXoSNvXtw9oL46iotjuwmYmZmyc64Hg
-	 oAJ4v/eYtXsLLnPpjdwaUKZ4dpYaxQqaXBM5UeKOw7kw0BA7mQdFx0f73RivtvOwdk
-	 1iC2N58+q8Tog==
+	s=k20201202; t=1751022256;
+	bh=ILopEhlpi3Ezeg8jJ09kRy0qj4a+MztRff2cwbyCFPM=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=Vy9i0A8cL2ZjxXzbz19E5J+jC1wg0IdB+sMIxrILXvSbcN/mpOqZbHGCMOwQElk4b
+	 V4KsRKKvZNtFTNkEMtyv/z8uJ3h4EngYfas/CncPPRw7Oj93m9ZJb1CgSIbUAb3bMs
+	 b8C214qGctg9UiZzJkKHnD0Ltwz0w5VYR4VFGMpUFyRX+B6bxM/0bsJbGXBm4KGuAG
+	 /h6Tqs6Vnxps8wNQGrlNpARvOAH9/OKg73LXn+TYp83XeMIO5GUb7yg4/6A+tVn6Ag
+	 9QHYPsB3oI6hYsFJRC0Ph2eFZqOn4s8o+wAIu21lMW0mOxRPTH4SSFX35KdxUQCpg8
+	 3CGqRLgQLK4Dw==
+Date: Fri, 27 Jun 2025 12:04:11 +0100
 From: Mark Brown <broonie@kernel.org>
-To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, linux-spi@vger.kernel.org, 
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
- Frank Li <Frank.Li@nxp.com>
-Cc: imx@lists.linux.dev
-In-Reply-To: <20250625215255.2640538-1-Frank.Li@nxp.com>
-References: <20250625215255.2640538-1-Frank.Li@nxp.com>
-Subject: Re: [PATCH 1/1] spi: dt-bindings: add nxp,lpc3220-spi.yaml
-Message-Id: <175102209646.386964.15013271820664016381.b4-ty@kernel.org>
-Date: Fri, 27 Jun 2025 12:01:36 +0100
+To: Niranjan H Y <niranjan.hy@ti.com>
+Cc: krzk+dt@kernel.org, conor+dt@kernel.org,
+	andriy.shevchenko@linux.intel.com, tiwai@suse.de,
+	alsa-devel@alsa-project.org, baojun.xu@ti.com, shenghao-ding@ti.com,
+	liam.r.girdwood@intel.com, lgirdwood@gmail.com, robh@kernel.org,
+	linux-sound@vger.kernel.org, devicetree@vger.kernel.org,
+	navada@ti.com, v-hampiholi@ti.com
+Subject: Re: [PATCH v3 1/4] ASoc: tac5x1x: add codec driver tac5x1x family
+Message-ID: <aF56q4eOqFdy7rsr@finisterre.sirena.org.uk>
+References: <20250626181334.1200-1-niranjan.hy@ti.com>
+ <20250626181334.1200-2-niranjan.hy@ti.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-X-Mailer: b4 0.15-dev-07fe9
+Content-Type: multipart/signed; micalg=pgp-sha512;
+	protocol="application/pgp-signature"; boundary="90qajOVw17IHWpFd"
+Content-Disposition: inline
+In-Reply-To: <20250626181334.1200-2-niranjan.hy@ti.com>
+X-Cookie: Do not cut switchbacks.
 
-On Wed, 25 Jun 2025 17:52:54 -0400, Frank Li wrote:
-> Add lpc3220 spi controller binding doc to fix below CHECK_DTBS warning:
->   arch/arm/boot/dts/nxp/lpc/lpc3250-ea3250.dtb: /ahb/apb/spi@20088000: failed to match any schema with compatible: ['nxp,lpc3220-spi']
-> 
-> 
 
-Applied to
+--90qajOVw17IHWpFd
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
 
-   https://git.kernel.org/pub/scm/linux/kernel/git/broonie/spi.git for-next
+On Thu, Jun 26, 2025 at 11:43:30PM +0530, Niranjan H Y wrote:
+> tac5x1x family are series of low-power and high performance
+> mono/stereo audio codecs consists of ADC and DAC combinations.
+> The patch adds supports for Codecs(DAC & ADC), ADC only and
+> DAC only configurations available in the tac5x1x family.
 
-Thanks!
+This looks basically good from a driver point of view, but I see there
+will be some more changes needed due to the DT bindings review.
 
-[1/1] spi: dt-bindings: add nxp,lpc3220-spi.yaml
-      commit: ac4c064f67d3cdf9118b9b09c1e3b28b6c10a7ea
+--90qajOVw17IHWpFd
+Content-Type: application/pgp-signature; name="signature.asc"
 
-All being well this means that it will be integrated into the linux-next
-tree (usually sometime in the next 24 hours) and sent to Linus during
-the next merge window (or sooner if it is a bug fix), however if
-problems are discovered then the patch may be dropped or reverted.
+-----BEGIN PGP SIGNATURE-----
 
-You may get further e-mails resulting from automated or manual testing
-and review of the tree, please engage with people reporting problems and
-send followup patches addressing any issues that are reported if needed.
+iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmheepUACgkQJNaLcl1U
+h9Ciiwf+PegXUaWt830Lu6e+CvncsslfB6PB+MiJe2C+Yki1zkMxYh/7bwkRjti9
+dUal9lk+Iiazjv8BzYWmtKRytZFgKZFOabl0gNWiq+nKn8nOXzvPkSkmFtDNYJqC
+5BerNIJrxomntBEimgLHB44Q4IlYC207EeaBHPcdQRWEFw3KSQ/MVbnGf6hupE19
+7KOMvPjM2yxSDHe8qhZT2qasE3Mz4S/NpYCknvb8sccDVpqMmOKvm1aWxz39w6Ev
+fmzMuxvwn6mahln7YTiOHcLDk4hz3FOtzorNJpPtK0dg5Q6BF0tqvGP7rtiGX47D
+DVOOWMdOxAxmxofskITqSLL9efGsVA==
+=B1lY
+-----END PGP SIGNATURE-----
 
-If any updates are required or you are submitting further changes they
-should be sent as incremental updates against current git, existing
-patches will not be replaced.
-
-Please add any relevant lists and maintainers to the CCs when replying
-to this mail.
-
-Thanks,
-Mark
-
+--90qajOVw17IHWpFd--
 
