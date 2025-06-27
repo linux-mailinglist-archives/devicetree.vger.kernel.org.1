@@ -1,122 +1,119 @@
-Return-Path: <devicetree+bounces-190500-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-190501-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 82743AEBF5E
-	for <lists+devicetree@lfdr.de>; Fri, 27 Jun 2025 21:00:33 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 20D8FAEBF7E
+	for <lists+devicetree@lfdr.de>; Fri, 27 Jun 2025 21:13:14 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id CD8F017F46C
-	for <lists+devicetree@lfdr.de>; Fri, 27 Jun 2025 19:00:33 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 4A45C4A429D
+	for <lists+devicetree@lfdr.de>; Fri, 27 Jun 2025 19:13:14 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A2B401F7586;
-	Fri, 27 Jun 2025 19:00:28 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7C241202C38;
+	Fri, 27 Jun 2025 19:13:09 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="jXuD8baw"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="iB1lk3F2"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lj1-f176.google.com (mail-lj1-f176.google.com [209.85.208.176])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D5DAF1EE03D
-	for <devicetree@vger.kernel.org>; Fri, 27 Jun 2025 19:00:26 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.176
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 547211B423C;
+	Fri, 27 Jun 2025 19:13:09 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1751050828; cv=none; b=d3OraDc1HGG484qG/vGy+X8bfLVwciaOKK7gGI22vAmTdiX2dOP0eyysEFdfcgEoRIwXV4pCfGr8fa0qsVjov6KgJUUFWHTxZyxEzvrUrBLOeexyBAdKoFmBO789LwK1IRetwUW7mT5TFI9ZATUFWNgwfiB9cA/ocZjIensBWCo=
+	t=1751051589; cv=none; b=i7ZzrTTaJBsJgVTInlkUfvQP58vdku5CR1NZoCIcnFczt5swC5stcr6l9mTaoWliUO62/M/oD+vWLDgZEBrNQpx46d7M7qMMo7FM5hvjwenlKAJe8c0RD98nLL6E5p5lLD6bUe/xHN/lfiZQy5X1T+n78J16g7hPjHQxBJW4fMs=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1751050828; c=relaxed/simple;
-	bh=ndRWdxr49e/jXxQYWjxwHuoYEIrfH/0Wj+KnGgJHgrg=;
-	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=UBjBl6eqWFPShAeXvKDaiPn4MBoe0vsGZo27adUbstEz7ttA4RErsOEhgrCjpSfXcQSsXCiWjFnTnckWY20hGwU0oKJ+Z/T4QA7B6LjuAtaLErV0we5IO7Aq4fTyVeANs+D5O5u8owY5a5mpPy9wHlAPtlEp0KbChmEWC9J9U3w=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=jXuD8baw; arc=none smtp.client-ip=209.85.208.176
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-lj1-f176.google.com with SMTP id 38308e7fff4ca-32b3afec1c4so2055571fa.3
-        for <devicetree@vger.kernel.org>; Fri, 27 Jun 2025 12:00:26 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1751050825; x=1751655625; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=UjZwMJhvPU4TchnxBQBmlDx0CKx7+6S3ru5N/9YysgE=;
-        b=jXuD8baw+V291Eh8D/XwcOlX99utHuuVxKsY2YqYDZvrcAcdmn9U8RAqWfNytbyhdO
-         WMRwHJc5uV7Tb8TYwdWwmZ+F0XntssMiU4YuUX50/SbYJo6H2K9K4n1QJo02hP+uIAiZ
-         lZUbAmQhA4wqfmAoSceh9QPzn0e6KwL75SQlnAx08w+/QTJecXTJLl3jNjPgeA/1to9b
-         JR8MgbK1AuhlMWQphfmJpWucAf1t4l52vnE1W+5KMCFHonptTfZ8cpC6XZKip3rhoz9K
-         IDOF/BkOO+tIqqs123zW7liRL6Rg5jA9eu+VAIseiv6hnNZuqjzMlg1BDTQf2HZuu48I
-         km7g==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1751050825; x=1751655625;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=UjZwMJhvPU4TchnxBQBmlDx0CKx7+6S3ru5N/9YysgE=;
-        b=aUHIlcbhaz8zgfMp8sM7wxwiW/RfWixJXEs6vQslfm8K3NWANlwFnTjFZ9akrQpUUN
-         POlRlo/L4RXEzQgO0tSmaWHP+h3So2O3Wq74+4aB6WzEF0Nbi3ji+mUp+hBoOU+6Poj4
-         XOMzapMmmTT4ewAluXrxAa6FdeT0vsjEHdD/Qg3GsZofryDDdCbpPa+L16NifUldPel5
-         A3XJ3qDxFGIDtPOEVjY7Id/fAt38TrxD/kzXgm5birzxnTOkY+sQQXWmqIPfHBacI7oz
-         weXGG3FeznTMnZk4Ey9xkbdRTe58lkvRwysdtF40ZPpbRWoF+aLYGE2O2DuQV/wJSfOL
-         gz9g==
-X-Forwarded-Encrypted: i=1; AJvYcCVX2jGHkjjKX7XBFflPNw/FmR3hlTs+riA5rgOKorc5yYNusC1FFJXwDNi+OUKcqrgahcnUIN9UrMDH@vger.kernel.org
-X-Gm-Message-State: AOJu0Yy7qCY+XZDCxOBInYTCVotC25KQGW6LT/Eathf1ogL1jeCxnajS
-	NEL0P/YL9OFCEOjrzSFpB5dhWUHhfADpSQxlit+3+UlaTwO8RS8GvFqOncup5rNQME6qVbCgf0p
-	DGn4P
-X-Gm-Gg: ASbGncuJ/C8UvUVC/Adq6kLxACFn7+LN0mQGTkIuW2861EyTZe4JQplTc7tAvlRsy2s
-	pOVSPhQBTZkn9i9O1OqkV1vC6y6juplt72sQ+Gbb00fnOo6BfTlIfw6TPcQW4JcTgsF20Qb4SkG
-	FlQv1a3SPRB24quioayNIRCS1V9PC8sDWKNaj8JIUUtU0UBKTsE3yezcBKhshbVxq2mXgAAtZJ8
-	7H9JqEd6AygC0qWKEGv9bOsSrRpAwLOQDbKCXnm7b3C405BVspRKgVil0ZVBNm8XUnd1tawSKC5
-	pLB1wFgykqAIxGSrcq0FQP1v/OUNkUwvwOUieFO9zsTc6VUOD0yS8yIvEYv2TL2CFPgtI06NV3i
-	UIfjv7nC1bL9xr6NoBVsQXYX9YeeWAqf6KGVSg3lMaaTGz2yxgKA=
-X-Google-Smtp-Source: AGHT+IHS7/YUdVd9N78mZEq7odVLeFh5PX4g1N6Q7PSq9p1Ya0HmgAlKpprzVfyGeSWO0V84ErR5iA==
-X-Received: by 2002:a05:651c:4098:b0:328:423:cd41 with SMTP id 38308e7fff4ca-32ce6d66fdamr406581fa.8.1751050824938;
-        Fri, 27 Jun 2025 12:00:24 -0700 (PDT)
-Received: from localhost.localdomain (88-112-131-206.elisa-laajakaista.fi. [88.112.131.206])
-        by smtp.gmail.com with ESMTPSA id 38308e7fff4ca-32cd2c2dbe8sm6312981fa.0.2025.06.27.12.00.23
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 27 Jun 2025 12:00:23 -0700 (PDT)
-From: Vladimir Zapolskiy <vladimir.zapolskiy@linaro.org>
-To: Robert Foss <rfoss@kernel.org>,
-	Todor Tomov <todor.too@gmail.com>,
-	Bryan O'Donoghue <bryan.odonoghue@linaro.org>
-Cc: Mauro Carvalho Chehab <mchehab@kernel.org>,
-	Rob Herring <robh@kernel.org>,
+	s=arc-20240116; t=1751051589; c=relaxed/simple;
+	bh=uJye5eK2gZUT/fK47GMXXoLFMlDyOz0ZGd3spyloggQ=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=gVsu9xnPWVQQnaj7tuoLJcUMQMFLtemkmJsPn0VHW+4IemFqrx0vbK9rf56JZMoUFNVvm5Wux28k+qpw5rLl6qQaTGdgfI4IZSmjU9m1ROgmelkVbsli8JwlF56KaBkfnalUPhnsvxc/dMw58XpCGk0KKuNF50yLrGpBLTPk4YM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=iB1lk3F2; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id D8AA3C4CEE3;
+	Fri, 27 Jun 2025 19:13:08 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1751051589;
+	bh=uJye5eK2gZUT/fK47GMXXoLFMlDyOz0ZGd3spyloggQ=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=iB1lk3F2T356oNJVMmfGW3mUXttN+O4Q0YNEqBR16/Y2HcYAsOsQmrZwAcIpxtqG7
+	 kMYVAVn1kM5gkteG+F2XtyiQt1YhpaCut8LnHkpqwxqt9TPuvYlAxzdUg5xW3H7KjV
+	 PgFHanWaxdwksk1wc7/+BRW8WPGVGbE+ZsZNz3Vz840c09y4aPgl4p3qxPHFq9PFs4
+	 KgSFAD4nH6Veqn3mYE6K7UsOxZWPhhDW+ncaizatpW1U8B+kWfpKKFU3ONZ9yu0BzX
+	 7B6cjHqR6FxQl2qagJ/qumO64/KC5wzOIMLW/9EkI72myLEC+HaSeP/LVl00Cnx01i
+	 zw9JOvo3R3ljA==
+Date: Fri, 27 Jun 2025 14:13:08 -0500
+From: "Rob Herring (Arm)" <robh@kernel.org>
+To: Quentin Schulz <foss+kernel@0leil.net>
+Cc: Conor Dooley <conor+dt@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+	Daniel Semkowicz <dse@thaumatec.com>,
+	Nicolas Frattaroli <nicolas.frattaroli@collabora.com>,
+	Sebastian Reichel <sebastian.reichel@collabora.com>,
+	linux-arm-kernel@lists.infradead.org,
+	Lukasz Czechowski <lukasz.czechowski@thaumatec.com>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	linux-arm-msm@vger.kernel.org,
-	linux-media@vger.kernel.org,
-	devicetree@vger.kernel.org
-Subject: [PATCH] dt-bindings: media: qcom,x1e80100-camss: correct description of vdd-csiphy-1p2-supply
-Date: Fri, 27 Jun 2025 22:00:21 +0300
-Message-ID: <20250627190021.139373-1-vladimir.zapolskiy@linaro.org>
-X-Mailer: git-send-email 2.49.0
+	devicetree@vger.kernel.org, linux-rockchip@lists.infradead.org,
+	Heiko Stuebner <heiko@sntech.de>, Lee Jones <lee@kernel.org>,
+	Quentin Schulz <quentin.schulz@cherry.de>,
+	linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v4 1/5] dt-bindings: mfd: rk806: allow to customize PMIC
+ reset mode
+Message-ID: <175105158757.4019943.860671576753586474.robh@kernel.org>
+References: <20250627-rk8xx-rst-fun-v4-0-ce05d041b45f@cherry.de>
+ <20250627-rk8xx-rst-fun-v4-1-ce05d041b45f@cherry.de>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20250627-rk8xx-rst-fun-v4-1-ce05d041b45f@cherry.de>
 
-Correct the given description of vdd-csiphy-1p2-supply property,
-it shall indicate a 1.2V supply.
 
-Signed-off-by: Vladimir Zapolskiy <vladimir.zapolskiy@linaro.org>
----
- .../devicetree/bindings/media/qcom,x1e80100-camss.yaml          | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+On Fri, 27 Jun 2025 12:53:53 +0200, Quentin Schulz wrote:
+> From: Quentin Schulz <quentin.schulz@cherry.de>
+> 
+> The RK806 PMIC allows to configure its reset/restart behavior whenever
+> the PMIC is reset either programmatically or via some external pins
+> (e.g. PWRCTRL or RESETB).
+> 
+> The following modes exist:
+>  - 0; restart PMU,
+>  - 1; reset all power off reset registers and force state to switch to
+>    ACTIVE mode,
+>  - 2; same as mode 1 and also pull RESETB pin down for 5ms,
+> 
+> For example, some hardware may require a full restart (mode 0) in order
+> to function properly as regulators are shortly interrupted in this mode.
+> 
+> This is the case for RK3588 Jaguar and RK3588 Tiger which have a
+> companion microcontroller running on an independent power supply and
+> monitoring the PMIC power rail to know the state of the main system.
+> When it detects a restart, it resets its own IPs exposed to the main
+> system as if to simulate its own reset. Failing to perform this fake
+> reset of the microcontroller may break things (e.g. watchdog not
+> automatically disabled, buzzer still running until manually disabled,
+> leftover configuration from previous main system state, etc...).
+> 
+> Some other systems may be depending on the power rails to not be
+> interrupted even for a small amount of time[1].
+> 
+> This allows to specify how the PMIC should perform on the hardware level
+> and may differ between harwdare designs, so a DT property seems
+> warranted. I unfortunately do not see how this could be made generic
+> enough to make it a non-vendor property.
+> 
+> [1] https://lore.kernel.org/linux-rockchip/2577051.irdbgypaU6@workhorse/
+> 
+> Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+> Signed-off-by: Quentin Schulz <quentin.schulz@cherry.de>
+> ---
+>  .../devicetree/bindings/mfd/rockchip,rk806.yaml     | 21 +++++++++++++++++++++
+>  1 file changed, 21 insertions(+)
+> 
 
-diff --git a/Documentation/devicetree/bindings/media/qcom,x1e80100-camss.yaml b/Documentation/devicetree/bindings/media/qcom,x1e80100-camss.yaml
-index 113565cf2a99..b5fbf7476da9 100644
---- a/Documentation/devicetree/bindings/media/qcom,x1e80100-camss.yaml
-+++ b/Documentation/devicetree/bindings/media/qcom,x1e80100-camss.yaml
-@@ -124,7 +124,7 @@ properties:
- 
-   vdd-csiphy-1p2-supply:
-     description:
--      Phandle to 1.8V regulator supply to a PHY.
-+      Phandle to 1.2V regulator supply to a PHY.
- 
-   ports:
-     $ref: /schemas/graph.yaml#/properties/ports
--- 
-2.49.0
+Reviewed-by: Rob Herring (Arm) <robh@kernel.org>
 
 
