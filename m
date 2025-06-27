@@ -1,134 +1,193 @@
-Return-Path: <devicetree+bounces-190422-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-190426-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 46852AEBB6A
-	for <lists+devicetree@lfdr.de>; Fri, 27 Jun 2025 17:15:25 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 51A68AEBBA6
+	for <lists+devicetree@lfdr.de>; Fri, 27 Jun 2025 17:27:07 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 1CE777AC9E0
-	for <lists+devicetree@lfdr.de>; Fri, 27 Jun 2025 15:13:25 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 6518256177A
+	for <lists+devicetree@lfdr.de>; Fri, 27 Jun 2025 15:27:07 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B2D982E88A2;
-	Fri, 27 Jun 2025 15:14:37 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 865002E92AD;
+	Fri, 27 Jun 2025 15:27:03 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=fairphone.com header.i=@fairphone.com header.b="I2YkeXsc"
+	dkim=pass (2048-bit key) header.d=cknow.org header.i=@cknow.org header.b="EAo49fA0"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ed1-f48.google.com (mail-ed1-f48.google.com [209.85.208.48])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from out-174.mta0.migadu.com (out-174.mta0.migadu.com [91.218.175.174])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DDEF72E88A7
-	for <devicetree@vger.kernel.org>; Fri, 27 Jun 2025 15:14:35 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.48
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D0FBA2E8E14
+	for <devicetree@vger.kernel.org>; Fri, 27 Jun 2025 15:27:00 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=91.218.175.174
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1751037277; cv=none; b=h6H+D4+Mwg9J1Bvvho93Kaud3lkVRXIFVfKCpkYHIPMy6gk++oSNVwRk2GU/rxxPAlh+yXQNB3/MS+4Mr+h/sboVEKOCGODGwgQSJoXLRHA3AAP7ZA2HObSMZYipachm+C7KtITDJKP6WMKWfR8oBhTw904T+ZxD2DyEKHfn3I4=
+	t=1751038023; cv=none; b=AO8xVK9k5/El0AJyIxAKg2/oictkS+xyc3+XhnD8Blm0st8HCSkIMWH/T7vjL/LXlpusIeYSY+Nuq4SdBGmvdFmpi96H8G02poenjWKJFEALkuS0SUrK61n3eCJJM0WnGYq4cci0uPdLNpyxSUInCHtl+0hPmy+caTSDWwPfioI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1751037277; c=relaxed/simple;
-	bh=9xXvH/B+/8ovxyiaGuMlHCWofUTZqieLqJyknmO4BWc=;
-	h=Mime-Version:Content-Type:Date:Message-Id:Cc:Subject:From:To:
-	 References:In-Reply-To; b=g6vrFllj1jktPwBthsAPqBhIhSa6VLxIGlkFgK6gaspV5uj+Va5epzJNO3ZJy+HbeQiaeXwvQpO0Q53BgTSW51YYJG5UCcR9S/GTw488bYY5AaK6zwmy67r3fr+HbQmqhdQt9OBIBbtWc0hqUfz2ir/Hei4m0BqpqnsE43LAsPI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=fairphone.com; spf=pass smtp.mailfrom=fairphone.com; dkim=pass (2048-bit key) header.d=fairphone.com header.i=@fairphone.com header.b=I2YkeXsc; arc=none smtp.client-ip=209.85.208.48
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=fairphone.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=fairphone.com
-Received: by mail-ed1-f48.google.com with SMTP id 4fb4d7f45d1cf-608acb0a27fso3679944a12.0
-        for <devicetree@vger.kernel.org>; Fri, 27 Jun 2025 08:14:35 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=fairphone.com; s=fair; t=1751037274; x=1751642074; darn=vger.kernel.org;
-        h=in-reply-to:references:to:from:subject:cc:message-id:date
-         :content-transfer-encoding:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=4YdwBq8x/9yTkh9TL6YeeP2ANBhnQ2yJ1UlsY3OJMpQ=;
-        b=I2YkeXscYPiN5DOWsol9nyFJ1uwD/uU109bB+OU8zaelyHH2VWoPjPmrhpNIw8Feff
-         +TYD95Q4jwbMd8jh5wC+f8tZ4P2kW7cKtHtDq2q3oZW6uLy+i7BC/ihEBlJbPeRWG1YJ
-         ZHVr2VXNytYyN3YvjxAKj4+2HJWy+hmsb9qhj1jglrigO40T1ABM8VhfX61Bb/9eowtd
-         oNjj3LTj4IdICvQHQ7s40CBDMh8geJsuoT0XTIFV/yflmcZFW/OINt59Ez4JfuAP9CdL
-         JjN8CyWCMPYbBHu1VrRPe0UsX4TnPbxGHzjzhzN6P6rD/3E4O88bJslKCmKbf1jp1kUk
-         Qn5g==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1751037274; x=1751642074;
-        h=in-reply-to:references:to:from:subject:cc:message-id:date
-         :content-transfer-encoding:mime-version:x-gm-message-state:from:to
-         :cc:subject:date:message-id:reply-to;
-        bh=4YdwBq8x/9yTkh9TL6YeeP2ANBhnQ2yJ1UlsY3OJMpQ=;
-        b=tU99TtwlhaTyHqicNH/yS6fQIpm1t2mod6DFxhRvG16/7goe/7Gn/4PDT+lZXA8mb0
-         F8c/tRY9qo8D8+2mPK/SZ8SuhjGqIl9HMxO2CLsFo0cFZ7iHNRsNr25eKqbEbLn98sIV
-         TsNq+PeFtMZoSGBrgOl/8R+oom+AUxcFeozyibjIuYxYKbaZ1aCagjkZbNhlOnt0l1PD
-         QyanUtFVQQVZJn36BgdkYDxRvA+cpopJDN6foKu9S8JmJCvNNglhlSxWtx1DnodyQtbU
-         +3Yrvpb1uqJ/rlqMJCiUuxGIWDwLYmYImvjEk6nh/oe6XBNdcSWBFW2dBgKn9ULcXyfG
-         Y1eQ==
-X-Forwarded-Encrypted: i=1; AJvYcCViATZzUd5MaHNYGz7WfDno0FmXoICb2jwWtrU29lpAgv9FwZeKtCD/NHHX8UJrjDPLXp8wd6IHowiU@vger.kernel.org
-X-Gm-Message-State: AOJu0YwriMyth0iKny+eutDFT2M1YAcomzln0n3GTAzL6GlwlOzjEmIh
-	geAd7QDFTe3gtsZdVeOoww6KvR4advzhSB/twMO3vjf0d4GiCAvUNMnR7Cmn5LGBKTk=
-X-Gm-Gg: ASbGncu+dew4l7Q0QPV54WX0uqq+E19jiigHVvchFhv9pE7DAbpaJNiZWjwjS1PPqZZ
-	Je5zOSAtiQYLVyqMFzQHmHIw7zuDF8dat8bhhI8kTAh+CZmnbbiR+jtpWLq2uFZoiLM0fC8ZXB9
-	CJWdLKwFOY66eMdRw7THO6SD5Y8+4OXUQyB1dWpQIl1FvIQ3Rye7K3EZ/peiHwHKSC/SVhcolJ0
-	StH+b7ox0W8dh1u3iPJ2v6zBNv0HfTwTAxJkCa1pKpHVdOeEfgNgHz+19MedROvNojo88llywim
-	vfbzPzfVnLwRkwec1G6QDUUV6caqgR7PsYeEKMEs3pnC6HJ+EPKay6jGs5tfoCFY1JZAoryMIum
-	eve2L/ciX/I7iqQazqwXkNaY2P4GgR10=
-X-Google-Smtp-Source: AGHT+IGXK10sOdRHQiQDlGMMOAu00b6+1HTHgeTGZsSXRorQQ5K4SHjAIMDlViazK5Rw9QI+EWq3mQ==
-X-Received: by 2002:a05:6402:2063:b0:602:36ce:d0e7 with SMTP id 4fb4d7f45d1cf-60c88dd63d7mr2289708a12.14.1751037274070;
-        Fri, 27 Jun 2025 08:14:34 -0700 (PDT)
-Received: from localhost (144-178-202-138.static.ef-service.nl. [144.178.202.138])
-        by smtp.gmail.com with ESMTPSA id 4fb4d7f45d1cf-60c828bbea9sm1617466a12.1.2025.06.27.08.14.33
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 27 Jun 2025 08:14:33 -0700 (PDT)
+	s=arc-20240116; t=1751038023; c=relaxed/simple;
+	bh=QdWPQwZ258Ab/VZrY6VldT/YJcJLb2BH+Pd02n6KAVc=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=EdjTpmjJz27Ekle3VmTSiFXo7wKdlcvXQsku1DLJWrOm5W4aegZ91lc29HvTk8cyY/jiTRFUmoNltJHCOZa9YvWMNzLPCCt2TsyG0NPYoV/75ESbDiRGB8ibZ1sb0WCSyOKdQ4lHL9YFukSutpMI8ZrVoiwCXMh/37BazD0qiEQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=cknow.org; spf=pass smtp.mailfrom=cknow.org; dkim=pass (2048-bit key) header.d=cknow.org header.i=@cknow.org header.b=EAo49fA0; arc=none smtp.client-ip=91.218.175.174
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=cknow.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=cknow.org
+X-Report-Abuse: Please report any abuse attempt to abuse@migadu.com and include these headers.
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cknow.org; s=key1;
+	t=1751038018;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:
+	 content-transfer-encoding:content-transfer-encoding;
+	bh=Wj/6Y49cGnCGvWUR5KcgCT6qJh/Cr23hC+RaEqDcaIo=;
+	b=EAo49fA0xMK8ES/V94l1Hk1DWaZx3MuabqUD2R+mtfqVz/YOuKB23817ppMo3m6rPnT6uj
+	22wyCu/uf2rXh7PY4u6qEZZD6CVHsZEs80cpcp3nb1J3pj78OzQMFjqOKjbFLjyd476/DS
+	ipVyQgmHL8RxyFajkdjEi0ygt7jB5NMwOuRjh3JGa4Sa/r1j5cBcqe/wasElpdBGlwU5lx
+	vKRTuC2fM+ynw5REjtD+D/7ED4ylZSKmH5A0+R3FlaNGevw3mpXmdOX/PSllPBNp5GPJLn
+	uQL0tt0CmtfBAPaCNTGyzPQugtCT5YUZkdkHYkqWxUIbm3DMZoHtF4+4CAJHrA==
+From: Diederik de Haas <didi.debian@cknow.org>
+To: Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Heiko Stuebner <heiko@sntech.de>
+Cc: Dragan Simic <dsimic@manjaro.org>,
+	Quentin Schulz <quentin.schulz@cherry.de>,
+	Johan Jonker <jbx6244@gmail.com>,
+	devicetree@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	linux-rockchip@lists.infradead.org,
+	linux-kernel@vger.kernel.org,
+	Diederik de Haas <didi.debian@cknow.org>
+Subject: [PATCH 0/8] Fix several DTB validation issues
+Date: Fri, 27 Jun 2025 17:16:19 +0200
+Message-ID: <20250627152645.740981-1-didi.debian@cknow.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-Mime-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-Content-Type: text/plain; charset=UTF-8
-Date: Fri, 27 Jun 2025 17:14:33 +0200
-Message-Id: <DAXEWQ93VELV.3HJXPNWASYBT7@fairphone.com>
-Cc: <~postmarketos/upstreaming@lists.sr.ht>, <phone-devel@vger.kernel.org>,
- <linux-arm-msm@vger.kernel.org>, <linux-clk@vger.kernel.org>,
- <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>
-Subject: Re: [PATCH 00/10] Add clock drivers for SM7635
-From: "Luca Weiss" <luca.weiss@fairphone.com>
-To: "Konrad Dybcio" <konrad.dybcio@oss.qualcomm.com>, "Bjorn Andersson"
- <andersson@kernel.org>, "Michael Turquette" <mturquette@baylibre.com>,
- "Stephen Boyd" <sboyd@kernel.org>, "Rob Herring" <robh@kernel.org>,
- "Krzysztof Kozlowski" <krzk+dt@kernel.org>, "Conor Dooley"
- <conor+dt@kernel.org>, "Konrad Dybcio" <konradybcio@kernel.org>
-X-Mailer: aerc 0.20.1-0-g2ecb8770224a-dirty
-References: <20250625-sm7635-clocks-v1-0-ca3120e3a80e@fairphone.com>
- <68056b4a-b1c3-401f-8720-8e0c3cda6249@oss.qualcomm.com>
-In-Reply-To: <68056b4a-b1c3-401f-8720-8e0c3cda6249@oss.qualcomm.com>
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
+X-Migadu-Flow: FLOW_OUT
 
-On Fri Jun 27, 2025 at 5:10 PM CEST, Konrad Dybcio wrote:
-> On 6/25/25 11:12 AM, Luca Weiss wrote:
->> Document and add the clock drivers for GCC, CAMCC, DISPCC, GPUCC and
->> VIDEOCC on the SM7635 SoC.
->>=20
->> Signed-off-by: Luca Weiss <luca.weiss@fairphone.com>
->> ---
->> Luca Weiss (10):
->>       dt-bindings: clock: qcom: document the SM7635 Global Clock Control=
-ler
->>       clk: qcom: Add Global Clock controller (GCC) driver for SM7635
->>       dt-bindings: clock: qcom: document the SM7635 Camera Clock Control=
-ler
->>       clk: qcom: Add Camera Clock controller (CAMCC) driver for SM7635
->>       dt-bindings: clock: qcom: document the SM7635 Display Clock Contro=
-ller
->>       clk: qcom: Add Display Clock controller (DISPCC) driver for SM7635
->>       dt-bindings: clock: qcom: document the SM7635 GPU Clock Controller
->>       clk: qcom: Add Graphics Clock controller (GPUCC) driver for SM7635
->>       dt-bindings: clock: qcom: document the SM7635 Video Clock Controll=
-er
->>       clk: qcom: Add Video Clock controller (VIDEOCC) driver for SM7635
->
-> We had a massive yak shaving patchset go in this season, please move
-> the magic settings in .probe to qcom_cc_driver_data {}
+This patch set to fix several DTB validation issues consists of 2 parts:
+1) dsi refactoring
+2) various low-hanging fruit
 
-Okay cool, I found them
-https://lore.kernel.org/linux-arm-msm/174970084192.547582.61230540758298270=
-6.b4-ty@kernel.org/
+ad 1) The display/rockchip/rockchip,dw-mipi-dsi.yaml binding had:
+- #address-cells
+- #size-cells
 
->
-> Konrad
+My guess is that those properties were added for panel(s) which could
+be connected. While convenient, it's not a property of the DSI
+controller (in the SoC). And caused DTB validation issues when a panel
+was not connected to the board. So add the #address/#size-cells
+properties to the board dts[i] file where there is a panel and then
+remove the properties from the SoC dtsi file ... and then from the
+binding file as well.
+
+Another part of the DSI refactoring had to do with the declaration of
+endpoints in which various properties got redefined ... to the same
+values they had in the SoC dsi node. The SoC dsi node already defined
+the structure where each port got a label/phandle. That allows for a
+simplification of the endpoint by referencing that label/phandle.
+
+ad 2)
+There were a number of issues which were obvious to me how to fix, so
+I fixed those as well
+
+My changes were based on yesterday's v6.17-armsoc/dts64 branch:
+7f9509791507 ("arm64: dts: rockchip: add DTs for Firefly ROC-RK3588S-PC")
+
+Then applied the following patches:
+86491c2b99e5 ("dt-bindings: pinctrl: rockchip: increase max amount of device functions")
+6f446bbe412a ("dt-bindings: gpu: mali-utgard: Add Rockchip RK3528 compatible")
+ab9be0b75af5 ("dt-bindings: display: himax-hx8394: Add Huiling hl055fhav028c")
+8358102806c6 ("dt-bindings: power: rockchip: Add support for RK3528")
+233eda069994 ("dt-bindings: rockchip: pmu: Add compatible for RK3528")
+
+And then validated it with W=1 using dtschema-2025.6.1.
+The validation log file sizes:
+- base: 99.8 KiB
+- dsi: 82.1 KiB
+- low-hanging-fruit: 68.9 KiB
+
+I then checked whether dmesg wouldn't indicate problem on these boards:
+- Rock64 (rk3328)
+- RockPro64 (rk3399)
+- PineTab2 (rk3566)
+
+Even with removing timestamps there were quite some differences, but
+that seems related to different boots (and thus the exact order in which
+things are probed/configured. But I didn't spot difference due to this
+patch set.
+
+I don't have any px30 or rk3399-gru-* based boards, so I couldn't test
+with those.
+
+
+I also identified some other items which could reduce the DTB
+validation 'noise' substantially:
+
+"failed to match any schema with compatible" errors:
+
+- 'mps,mp8859': regulator/mp8859.txt
+- 'realtek,rt5651': sound/rt5651.txt
+- 'rockchip,rk3368-mailbox': mailbox/rockchip-mailbox.txt
+- 'rockchip,rk3399-gru-sound': sound/rockchip,rk3399-gru-sound.txt
+- 'ti,tsc2007': input/touchscreen/tsc2007.txt
+
+Other issues where a (small?) fix may help a lot:
+
+px30:
+- /isp@ff4a0000/ports: graph node has single child node 'port@0',
+    #address-cells/#size-cells are not necessary
+- /syscon@ff140000/lvds/ports/port@0: graph node has single child node
+    'endpoint@0', #address-cells/#size-cells are not necessary
+- /dsi@ff450000/ports/port@0: graph node has single child node
+    'endpoint@0', #address-cells/#size-cells are not necessary
+
+rk3399:
+- /usb@fe800000: node has a unit name, but no reg or ranges property
+- /usb@fe900000: node has a unit name, but no reg or ranges property
+
+Cheers,
+  Diederik
+
+Diederik de Haas (8):
+  arm64: dts: rockchip: Refactor DSI nodes on px30 boards
+  arm64: dts: rockchip: Refactor DSI nodes on rk3399 boards
+  dt-bindings: display: rockchip,dw-mipi-dsi: Drop address/size cells
+  arm64: dts: rockchip: Simplify VOP port definition on rk3328
+  arm64: dts: rockchip: Simplify edp endpoints on several rk3399 boards
+  arm64: dts: rockchip: Fix LCD panel port on rk3566-pinetab2
+  arm64: dts: rockchip: Drop unneeded address+size-cells on px30
+  arm64: dts: rockchip: Drop regulator-compatible property on rk3399
+
+ .../rockchip/rockchip,dw-mipi-dsi.yaml        |  6 ----
+ .../rockchip/px30-cobra-ltk050h3146w-a2.dts   |  2 ++
+ .../dts/rockchip/px30-cobra-ltk050h3146w.dts  |  2 ++
+ .../dts/rockchip/px30-cobra-ltk050h3148w.dts  |  2 ++
+ .../dts/rockchip/px30-cobra-ltk500hd1829.dts  |  2 ++
+ arch/arm64/boot/dts/rockchip/px30-evb.dts     |  2 ++
+ .../rockchip/px30-pp1516-ltk050h3146w-a2.dts  |  2 ++
+ .../dts/rockchip/px30-pp1516-ltk050h3148w.dts |  2 ++
+ arch/arm64/boot/dts/rockchip/px30.dtsi        |  6 ----
+ .../dts/rockchip/rk3326-anbernic-rg351m.dtsi  |  2 ++
+ .../dts/rockchip/rk3326-gameforce-chi.dts     |  2 ++
+ .../boot/dts/rockchip/rk3326-odroid-go.dtsi   |  2 ++
+ arch/arm64/boot/dts/rockchip/rk3328.dtsi      |  6 +---
+ arch/arm64/boot/dts/rockchip/rk3399-base.dtsi |  4 ---
+ .../dts/rockchip/rk3399-gru-chromebook.dtsi   | 15 +++-------
+ .../boot/dts/rockchip/rk3399-gru-scarlet.dtsi | 30 ++++++++-----------
+ .../boot/dts/rockchip/rk3399-hugsun-x99.dts   |  2 --
+ .../boot/dts/rockchip/rk3399-pinebook-pro.dts | 15 +++-------
+ .../dts/rockchip/rk3399-pinephone-pro.dts     |  2 ++
+ .../rk3399-puma-haikou-video-demo.dtso        | 12 ++++----
+ .../boot/dts/rockchip/rk3399-rock-4c-plus.dts |  2 --
+ .../dts/rockchip/rk3399-rockpro64-screen.dtso | 21 ++++---------
+ .../rockchip/rk3399-sapphire-excavator.dts    | 16 +++-------
+ .../boot/dts/rockchip/rk3566-pinetab2.dtsi    |  6 ++--
+ 24 files changed, 62 insertions(+), 101 deletions(-)
+
+-- 
+2.50.0
 
 
