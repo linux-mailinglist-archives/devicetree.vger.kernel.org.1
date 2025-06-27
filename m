@@ -1,43 +1,57 @@
-Return-Path: <devicetree+bounces-190297-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-190300-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id A1239AEB599
-	for <lists+devicetree@lfdr.de>; Fri, 27 Jun 2025 13:00:42 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3E627AEB5C5
+	for <lists+devicetree@lfdr.de>; Fri, 27 Jun 2025 13:04:42 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 8346C1C22041
-	for <lists+devicetree@lfdr.de>; Fri, 27 Jun 2025 11:00:58 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id E83927B1BEC
+	for <lists+devicetree@lfdr.de>; Fri, 27 Jun 2025 11:01:49 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 568CF299931;
-	Fri, 27 Jun 2025 11:00:34 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1BE8C2D29D7;
+	Fri, 27 Jun 2025 11:01:47 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Vuim5axm"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp-1909.mail.infomaniak.ch (smtp-1909.mail.infomaniak.ch [185.125.25.9])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D7DAC225A40
-	for <devicetree@vger.kernel.org>; Fri, 27 Jun 2025 11:00:31 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.125.25.9
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E134029CB3C;
+	Fri, 27 Jun 2025 11:01:46 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1751022034; cv=none; b=QoK67QDAUkjbOF9sYiN9STxV6a9jwB3Yp7OqpTzulAxmO6bOLXKKxprN2oRUOIVeM3jW3sLLS+6vRmiTFGyFQKyNA3ax5eOrmJcqFFs/Zczk0mJpCZwybl5HV0S1MIZI9DuiRQS2434O3i4mZogUd+CWN8ygp8BvAVjhI1qnlKo=
+	t=1751022107; cv=none; b=tp/7GkMdS6DQzYqXylnqE1Jo23SS8xc9zBZpPLVNXwz9m/ws0sLdLw2p8U3+48syp9urLSDk1Tj9ZtEfyJDgrt9v7+JMVFPxmnrSTP1SCIbVeDe1ATBYUCHgOm5xp9nGVWUojm3Hkj3BLCZ7BWGMhtSCX/USIiBnBq0WZdep9zw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1751022034; c=relaxed/simple;
-	bh=QVNN6PEuKtjv/LwBBEU6+ak92MwPeasvGzcyPAw29aY=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=F+szwEkyTB+3BVicN1f16er7M/4j5cyRTPkKZYx6ILcAYwAqriP8HnBjPN1HnZKfSyK8jDNvKTiP32kBVl5KXoPQ66M7FptG6buhVGDfDHkPr/msjsanDY1sFTZPTjDCJwecrB9jsNTcWSQyRjd+0veQo1O8/7dcOLfPQ3wdrtw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=0leil.net; spf=pass smtp.mailfrom=0leil.net; arc=none smtp.client-ip=185.125.25.9
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=0leil.net
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=0leil.net
-Received: from smtp-4-0001.mail.infomaniak.ch (unknown [IPv6:2001:1600:7:10::a6c])
-	by smtp-4-3000.mail.infomaniak.ch (Postfix) with ESMTPS id 4bTC9Q2slpzVtZ;
-	Fri, 27 Jun 2025 12:54:18 +0200 (CEST)
-Received: from unknown by smtp-4-0001.mail.infomaniak.ch (Postfix) with ESMTPA id 4bTC9P25PgzxLs;
-	Fri, 27 Jun 2025 12:54:17 +0200 (CEST)
-From: Quentin Schulz <foss+kernel@0leil.net>
-Date: Fri, 27 Jun 2025 12:53:57 +0200
-Subject: [PATCH v4 5/5] arm64: dts: rockchip: force PMIC reset behavior to
- restart PMU on RK3588 Tiger
+	s=arc-20240116; t=1751022107; c=relaxed/simple;
+	bh=A1bxFNSWz35yFvhEfWY+CykpQc2zGdJBAlx9+90e2dY=;
+	h=From:To:Cc:In-Reply-To:References:Subject:Message-Id:Date:
+	 MIME-Version:Content-Type; b=BbyE+JDoiV8JDf2VHJQge6VIiS6I+viCr67VZ7rXvF/gU37J+2jZ8ceQSWXMKktK9/ZhP1nGCqMVEmRK4ng4R5BXG/qCnuJf9P0fUkbYl2vCuleSmUFPuXiPBNivqQtcFERGbORUXA2eRSQ08vDN+qpepdGtw8EpuyYumP59tTo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Vuim5axm; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 12B3FC4CEEB;
+	Fri, 27 Jun 2025 11:01:36 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1751022106;
+	bh=A1bxFNSWz35yFvhEfWY+CykpQc2zGdJBAlx9+90e2dY=;
+	h=From:To:Cc:In-Reply-To:References:Subject:Date:From;
+	b=Vuim5axmcv1budcLMxptutxipo6ZXvXL5obJaxzRyYtPfv94hXtUQ50S0joXsI5o3
+	 9kZN1cwE8jTBmE2kvjaQ9swQ5QN15VrgHV1Zu8UPHTSJE5cbn4KCZswpmABjlYHyQC
+	 Fx1fErSFiH43/LDVA7C8QrVBo/5V9REKDIMxsXNsOT3KF3J+raB9qbpnUV3YIt3BYC
+	 Hu9pjITmoTEsHzLTi09CCXiEtuPPEPwJ9JhJXoSNvXtw9oL46iotjuwmYmZmyc64Hg
+	 oAJ4v/eYtXsLLnPpjdwaUKZ4dpYaxQqaXBM5UeKOw7kw0BA7mQdFx0f73RivtvOwdk
+	 1iC2N58+q8Tog==
+From: Mark Brown <broonie@kernel.org>
+To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, linux-spi@vger.kernel.org, 
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+ Frank Li <Frank.Li@nxp.com>
+Cc: imx@lists.linux.dev
+In-Reply-To: <20250625215255.2640538-1-Frank.Li@nxp.com>
+References: <20250625215255.2640538-1-Frank.Li@nxp.com>
+Subject: Re: [PATCH 1/1] spi: dt-bindings: add nxp,lpc3220-spi.yaml
+Message-Id: <175102209646.386964.15013271820664016381.b4-ty@kernel.org>
+Date: Fri, 27 Jun 2025 12:01:36 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -46,63 +60,40 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-Message-Id: <20250627-rk8xx-rst-fun-v4-5-ce05d041b45f@cherry.de>
-References: <20250627-rk8xx-rst-fun-v4-0-ce05d041b45f@cherry.de>
-In-Reply-To: <20250627-rk8xx-rst-fun-v4-0-ce05d041b45f@cherry.de>
-To: Lee Jones <lee@kernel.org>, Rob Herring <robh@kernel.org>, 
- Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, Heiko Stuebner <heiko@sntech.de>, 
- Sebastian Reichel <sebastian.reichel@collabora.com>
-Cc: Lukasz Czechowski <lukasz.czechowski@thaumatec.com>, 
- Daniel Semkowicz <dse@thaumatec.com>, 
- Nicolas Frattaroli <nicolas.frattaroli@collabora.com>, 
- devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
- linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org, 
- Quentin Schulz <quentin.schulz@cherry.de>
-X-Mailer: b4 0.14.2
-X-Infomaniak-Routing: alpha
+X-Mailer: b4 0.15-dev-07fe9
 
-From: Quentin Schulz <quentin.schulz@cherry.de>
+On Wed, 25 Jun 2025 17:52:54 -0400, Frank Li wrote:
+> Add lpc3220 spi controller binding doc to fix below CHECK_DTBS warning:
+>   arch/arm/boot/dts/nxp/lpc/lpc3250-ea3250.dtb: /ahb/apb/spi@20088000: failed to match any schema with compatible: ['nxp,lpc3220-spi']
+> 
+> 
 
-The bootloader for RK3588 Tiger currently forces the PMIC reset behavior
-(stored in RST_FUN bitfield in register SYS_CFG3 of the PMIC) to 0b1X
-which is incorrect for our devices.
+Applied to
 
-It is required to restart the PMU as otherwise the companion
-microcontroller cannot detect the PMIC (and by extension the full
-product and main SoC) being rebooted which is an issue as that is used
-to reset a few things like the PWM beeper and watchdogs.
+   https://git.kernel.org/pub/scm/linux/kernel/git/broonie/spi.git for-next
 
-Let's add the new rockchip,reset-mode property to make sure the PMIC
-reset behavior is the expected one.
+Thanks!
 
-Signed-off-by: Quentin Schulz <quentin.schulz@cherry.de>
----
- arch/arm64/boot/dts/rockchip/rk3588-tiger.dtsi | 2 ++
- 1 file changed, 2 insertions(+)
+[1/1] spi: dt-bindings: add nxp,lpc3220-spi.yaml
+      commit: ac4c064f67d3cdf9118b9b09c1e3b28b6c10a7ea
 
-diff --git a/arch/arm64/boot/dts/rockchip/rk3588-tiger.dtsi b/arch/arm64/boot/dts/rockchip/rk3588-tiger.dtsi
-index c4933a08dd1e3c92f3e0747135faf97c5eeca906..b44e89e1bb1599ee70b921598c2eb6fd54614f55 100644
---- a/arch/arm64/boot/dts/rockchip/rk3588-tiger.dtsi
-+++ b/arch/arm64/boot/dts/rockchip/rk3588-tiger.dtsi
-@@ -6,6 +6,7 @@
- #include <dt-bindings/gpio/gpio.h>
- #include <dt-bindings/leds/common.h>
- #include <dt-bindings/pinctrl/rockchip.h>
-+#include "rk8xx.h"
- #include "rk3588.dtsi"
- 
- / {
-@@ -440,6 +441,7 @@ pmic@0 {
- 		vcc13-supply = <&vcc_1v1_nldo_s3>;
- 		vcc14-supply = <&vcc_1v1_nldo_s3>;
- 		vcca-supply = <&vcc5v0_sys>;
-+		rockchip,reset-mode = <RK806_RESTART>;
- 
- 		rk806_dvs1_null: dvs1-null-pins {
- 			pins = "gpio_pwrctrl1";
+All being well this means that it will be integrated into the linux-next
+tree (usually sometime in the next 24 hours) and sent to Linus during
+the next merge window (or sooner if it is a bug fix), however if
+problems are discovered then the patch may be dropped or reverted.
 
--- 
-2.50.0
+You may get further e-mails resulting from automated or manual testing
+and review of the tree, please engage with people reporting problems and
+send followup patches addressing any issues that are reported if needed.
+
+If any updates are required or you are submitting further changes they
+should be sent as incremental updates against current git, existing
+patches will not be replaced.
+
+Please add any relevant lists and maintainers to the CCs when replying
+to this mail.
+
+Thanks,
+Mark
 
 
