@@ -1,107 +1,147 @@
-Return-Path: <devicetree+bounces-190480-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-190481-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6F540AEBDC8
-	for <lists+devicetree@lfdr.de>; Fri, 27 Jun 2025 18:49:57 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 91CA7AEBDD8
+	for <lists+devicetree@lfdr.de>; Fri, 27 Jun 2025 18:52:38 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 666A8188E15E
-	for <lists+devicetree@lfdr.de>; Fri, 27 Jun 2025 16:50:13 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id B5C57646ACF
+	for <lists+devicetree@lfdr.de>; Fri, 27 Jun 2025 16:52:09 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 95FB02E973C;
-	Fri, 27 Jun 2025 16:49:53 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 09D342E9EBE;
+	Fri, 27 Jun 2025 16:52:32 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=linux.microsoft.com header.i=@linux.microsoft.com header.b="pfB+Hrac"
+	dkim=pass (2048-bit key) header.d=cknow.org header.i=@cknow.org header.b="kSjCkU4w"
 X-Original-To: devicetree@vger.kernel.org
-Received: from linux.microsoft.com (linux.microsoft.com [13.77.154.182])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 27C7C136327;
-	Fri, 27 Jun 2025 16:49:52 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=13.77.154.182
+Received: from out-177.mta1.migadu.com (out-177.mta1.migadu.com [95.215.58.177])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+	(No client certificate requested)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C95C22E9746
+	for <devicetree@vger.kernel.org>; Fri, 27 Jun 2025 16:52:29 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=95.215.58.177
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1751042993; cv=none; b=C69XlEEzIUqrOYS6K8WEXRj8xb+QbjoaKCviKtDG3Hc7CLddrCLKUdp6DAmtrQfrIBzNY0CrZ55fp3oSJSTuSFOjgDIkbYFF2Yvj3vxNMAEHUXwOB3taiYIjAuCqV848zBDkUTYtlw8S4sed4rlGqMn/d8vn+k+RGO/BjBacQDU=
+	t=1751043151; cv=none; b=GVYmkPIMquNI8aWbSYZgTJCPtubDndm2U2CUrsnBl3EpxOjulcrRLn34fm0EFMWhRh1Do12G2MCl58mFk5PcgbW2Ld1RY9blm6MItCZ4KLKT6++OhI3vper92vcHJISOKnP+DoSQ1h85EXxDLH4sJcX4bYaiN6UrlaDUWXwCfzY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1751042993; c=relaxed/simple;
-	bh=Ut0hDs2xzJjclDoUXoEl19F/suL8ZmdlnTYiWKO8xI8=;
-	h=Message-ID:Date:MIME-Version:From:Subject:To:Cc:References:
-	 In-Reply-To:Content-Type; b=nK4i6DtYHJe6/1aSuNTClMZXU0y/CZnNgVMJNXkE76BvDk+AgfCShF68qHP05+RKTm7ESjEnjaMPa/VeKizdWcZX5ZEcVlz0zJ8u13oCFx7tZcbTsDy4HI3DNAlS1FBtHoB40V1YY+JkU10uBkPHC+qpacnI5C0KWbnrL0jSGD0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.microsoft.com; spf=pass smtp.mailfrom=linux.microsoft.com; dkim=pass (1024-bit key) header.d=linux.microsoft.com header.i=@linux.microsoft.com header.b=pfB+Hrac; arc=none smtp.client-ip=13.77.154.182
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.microsoft.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linux.microsoft.com
-Received: from [100.93.64.84] (unknown [40.86.181.13])
-	by linux.microsoft.com (Postfix) with ESMTPSA id F228E211868B;
-	Fri, 27 Jun 2025 09:49:50 -0700 (PDT)
-DKIM-Filter: OpenDKIM Filter v2.11.0 linux.microsoft.com F228E211868B
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linux.microsoft.com;
-	s=default; t=1751042991;
-	bh=rNdlKLnZPLYy6iWQ0vPS3Zwmc9YtKKUxvYxLseth3KU=;
-	h=Date:From:Subject:To:Cc:References:In-Reply-To:From;
-	b=pfB+Hrach67IKX2fa05SS07V9OFDcNFPWu82og4AVR6lO3I7RykWtdK7B0s7hdijI
-	 vFJ1jJFLQIYMnArTMgUACq7x5ikxp2bNgLVGlutaBNL93YIQc1RGPfMTn3Ep2/xBa3
-	 xbDSXtlKSLk3CVm0CYQ22QA2tasPKBmp4ZZXP+0I=
-Message-ID: <3f7e0d7c-cddb-47f7-9520-6740ccd81579@linux.microsoft.com>
-Date: Fri, 27 Jun 2025 09:49:50 -0700
+	s=arc-20240116; t=1751043151; c=relaxed/simple;
+	bh=TvVhlkSBQgA8D8CdZgP7NPU7n2uqpjHVluJFfZDjn6E=;
+	h=Mime-Version:Content-Type:Date:Message-Id:To:Cc:Subject:From:
+	 References:In-Reply-To; b=tGGv+ThwOlaJzVC3r9EVQWyschNfoK0OsJSTquinFp31wWNXDNDI+BR56OGR6vdY2Q951M7qrR/8alChPqkcqPydjrsfXSNyFvvLixUPTWqf2GFYtDXTYQkE9AI9nwUDgiVlSliMUsyPyxKFU1XePXghE9KpMeUrb5yyTqIPjaY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=cknow.org; spf=pass smtp.mailfrom=cknow.org; dkim=pass (2048-bit key) header.d=cknow.org header.i=@cknow.org header.b=kSjCkU4w; arc=none smtp.client-ip=95.215.58.177
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=cknow.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=cknow.org
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-From: Vijay Balakrishna <vijayb@linux.microsoft.com>
-Subject: Re: [v11 PATCH 0/2] Add L1 and L2 error detection for A72
-To: Borislav Petkov <bp@alien8.de>
-Cc: Tony Luck <tony.luck@intel.com>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, James Morse <james.morse@arm.com>,
- Mauro Carvalho Chehab <mchehab@kernel.org>, Robert Richter
- <rric@kernel.org>, linux-edac@vger.kernel.org, linux-kernel@vger.kernel.org,
- Tyler Hicks <code@tyhicks.com>, Marc Zyngier <maz@kernel.org>,
- Sascha Hauer <s.hauer@pengutronix.de>,
- Lorenzo Pieralisi <lpieralisi@kernel.org>, devicetree@vger.kernel.org
-References: <1748487628-30123-1-git-send-email-vijayb@linux.microsoft.com>
- <20250529095547.GBaDgvI0mCLSXsM0dR@fat_crate.local>
-Content-Language: en-US
-In-Reply-To: <20250529095547.GBaDgvI0mCLSXsM0dR@fat_crate.local>
+Mime-Version: 1.0
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cknow.org; s=key1;
+	t=1751043147;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 in-reply-to:in-reply-to:references:references;
+	bh=tGcjuL2slpWhzqeNUJrDqbaR1n+v8Pj6UenPCqATS+g=;
+	b=kSjCkU4w5siXqHmivmcrSVGuVOGanuQatBxL5wL6DA7gbq3/cV4Iz+Lt3bjWGA0ajFitZH
+	ZRcTzfoYnXJ0J3gb2FPrM45P9fvqLHjTdZ/VimZ1zl+Q+SdJ5VO/nb6tSqEpcpZUsaMXye
+	U7Nt1zsLU/xbGHw+WBxhPQciMCe9RWu+1+OrLxi9/DSI/PTsOJkpuXuU5j6bqqD4jpq8Xg
+	rDN5lZNB/Di8qrpx5Q2LGyE6E4WLg9f7qhYJNyJnER2rRgoQWPR8wSfVKN/+svwCDu6JuR
+	xMCpyS+wRGTW8Dt9OA6SezudNoWmpTMbdgPKnT0TPs1QsBZQ8faG6pFn5ouD6g==
+Content-Type: multipart/signed;
+ boundary=96f61c01bf8107678ee9012b3e19c12962b79f2f2124dfe2dc8bdea55bc2;
+ micalg=pgp-sha512; protocol="application/pgp-signature"
+Date: Fri, 27 Jun 2025 18:52:08 +0200
+Message-Id: <DAXGZG0DEKS2.7RLXKSDO0C9T@cknow.org>
+To: "Quentin Schulz" <quentin.schulz@cherry.de>, "Rob Herring"
+ <robh@kernel.org>, "Krzysztof Kozlowski" <krzk+dt@kernel.org>, "Conor
+ Dooley" <conor+dt@kernel.org>, "Heiko Stuebner" <heiko@sntech.de>
+Cc: "Dragan Simic" <dsimic@manjaro.org>, "Johan Jonker" <jbx6244@gmail.com>,
+ <devicetree@vger.kernel.org>, <linux-arm-kernel@lists.infradead.org>,
+ <linux-rockchip@lists.infradead.org>, <linux-kernel@vger.kernel.org>
+Subject: Re: [PATCH 2/8] arm64: dts: rockchip: Refactor DSI nodes on rk3399
+ boards
+X-Report-Abuse: Please report any abuse attempt to abuse@migadu.com and include these headers.
+From: "Diederik de Haas" <didi.debian@cknow.org>
+References: <20250627152645.740981-1-didi.debian@cknow.org>
+ <20250627152645.740981-3-didi.debian@cknow.org>
+ <b1c789bf-1369-42ec-8bb3-d7a45c92abf0@cherry.de>
+In-Reply-To: <b1c789bf-1369-42ec-8bb3-d7a45c92abf0@cherry.de>
+X-Migadu-Flow: FLOW_OUT
+
+--96f61c01bf8107678ee9012b3e19c12962b79f2f2124dfe2dc8bdea55bc2
+Content-Transfer-Encoding: quoted-printable
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
 
-On 5/29/25 02:55, Borislav Petkov wrote:
-> On Wed, May 28, 2025 at 08:00:26PM -0700, Vijay Balakrishna wrote:
->> Changes since v10: 
->> - edac_a72.c: copyright line add (Jonathan)
->> - cpus.yaml: drop stale comment line (Krzysztof)
->> - added "Reviewed-by" tags
-> 
-> It seems you're new to kernel development:
-> 
-> From: Documentation/process/submitting-patches.rst
-> 
-> "Don't get discouraged - or impatient
-> ------------------------------------
-> 
-> After you have submitted your change, be patient and wait.  Reviewers are
-> busy people and may not get to your patch right away.
-> 
-> Once upon a time, patches used to disappear into the void without comment,
-> but the development process works more smoothly than that now.  You should
-> receive comments within a week or so; if that does not happen, make sure
-> that you have sent your patches to the right place.  Wait for a minimum of
-> one week before resubmitting or pinging reviewers - possibly longer during
-> busy times like merge windows."
-> 
-> And we have a merge window right now.
-> 
+Hi Quentin,
 
-Hi Boris,
+Thanks for taking a look.
 
-I apologize for sending v10 and v11 in quick succession during the merge
-window last month. Our goal was to provide you with the latest patch
-series, ensuring all comments were addressed and ready for your review
-at your convenience. Please share your feedback so I can address it
-accordingly. Thank you for your time.
+On Fri Jun 27, 2025 at 6:10 PM CEST, Quentin Schulz wrote:
+> On 6/27/25 5:16 PM, Diederik de Haas wrote:
+>> The #address-cells and #size-cells properties are not useful on the DSI
+>> controller nodes; they are only useful/required on ports and panel(s).
+>> So remove them from the controller node and add them where actually
+>> needed on the various rk3399 based boards.
+>>=20
+>> Next to that, there were several (exact) redefinitions of nodes which
+>> are already present in rk3399-base.dtsi to add a mipi_out endpoint.
+>> Simplify that by referencing the mipi_out phandle and add the endpoint
+>> to that, which allows the removeal of the ports redefinition.
+>>=20
+>> And fix 1 instance where the mipi_out referenced node was not sorted
+>> correctly.
+>>=20
+>> This fixes the following DTB validation warnings:
+>>=20
+>>    unnecessary #address-cells/#size-cells without "ranges",
+>>    "dma-ranges" or child "reg" property
+>>=20
+>
+> Too many unrelated changes in this commit, please split into multiple=20
+> commits.
+>
+> I could identify:
+>
+> - moving address-cells/size-cells from SoC.dtsi to board dts(i)s,
+> - reordering properties to better match DT coding style=20
+> https://www.kernel.org/doc/html/latest/devicetree/bindings/dts-coding-sty=
+le.html#order-of-properties-in-device-node
+> - use phandle to directly access ports,
+> - reorder DT node to better match DT coding style=20
+> https://www.kernel.org/doc/html/latest/devicetree/bindings/dts-coding-sty=
+le.html#order-of-nodes
 
-Vijay
+I initially had it as several commits, but that resulted in (f.e.) 1
+issue being fixed, but 1 (or more) others would pop up.
+Those were then fixed in follow-up commits, but I assumed I'd get Rob's
+bot screaming at me for introducing new warnings (first).
 
+And as they all relate(d) to fixing the dsi node, I then choose to
+combine them (but still separated by SoC).
+IMO there are several ways to organize the commits and each would have
+their pros and cons, so I 'settled' for this arrangement.
+
+So I prefer to wait for other people's opinion first before reorganizing
+the commits again (if there's a different consensus).
+
+> The change for RK3399 Puma Haikou Video Demo DTSO is fine for me.
+
+Thanks :)
+
+Cheers,
+  Diederik
+
+--96f61c01bf8107678ee9012b3e19c12962b79f2f2124dfe2dc8bdea55bc2
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYKAB0WIQT1sUPBYsyGmi4usy/XblvOeH7bbgUCaF7MRAAKCRDXblvOeH7b
+bvDfAP9WGhpdcQcQ06Wxrsu8JLAg+fmJPYyjmIUtlZTFnFqf1AEAx9/kmKAqTewV
+XzVG0YMlKfLnQS0bh46/FwKpZg/SlAc=
+=EA9N
+-----END PGP SIGNATURE-----
+
+--96f61c01bf8107678ee9012b3e19c12962b79f2f2124dfe2dc8bdea55bc2--
 
