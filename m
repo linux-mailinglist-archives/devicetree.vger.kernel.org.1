@@ -1,64 +1,61 @@
-Return-Path: <devicetree+bounces-190543-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-190544-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 61E38AEC0E0
-	for <lists+devicetree@lfdr.de>; Fri, 27 Jun 2025 22:26:32 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 95773AEC0E6
+	for <lists+devicetree@lfdr.de>; Fri, 27 Jun 2025 22:27:24 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id DCDAD3AE007
-	for <lists+devicetree@lfdr.de>; Fri, 27 Jun 2025 20:26:03 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id AA5CA5657BB
+	for <lists+devicetree@lfdr.de>; Fri, 27 Jun 2025 20:27:23 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 321A421D590;
-	Fri, 27 Jun 2025 20:26:25 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0AE6521D5B5;
+	Fri, 27 Jun 2025 20:27:08 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="PZmoX9n2"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="H5JLU9Yk"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0600221CFF4;
-	Fri, 27 Jun 2025 20:26:24 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D56DE21CFFA;
+	Fri, 27 Jun 2025 20:27:06 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1751055985; cv=none; b=HG0zBcmdwLncZO0ILGw/BgAtdD+iwyPWQvEOYMhx899GloyTHMq1aaAlge1MLHJD+lo34vNt/jN+MA4APL6B+nqpzuflh0JcsWzPh+EmocGyFsJGKnKULW4YfaDsYFnRwPufDVsBO8paRp7jkRuqWAbgpH1/ZOWMLGHYxx7Gg4Q=
+	t=1751056027; cv=none; b=LZlCd+514zpe64cVuw9mpDSP+X3yay1aZucHssnHz99FYjuRn3QikE8jYvwHBEDcCS9cCOUeyfUPum9DB0+wsHP0RdHHiTydQksOGqrGohMHlBPO+QWH0s6LmjKB6dU+P+h/oAbjQGpJPFJRp7dJQ1N3qS02EdE40JqAvF/fgic=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1751055985; c=relaxed/simple;
-	bh=xiXaILIEtvdfMijC9n0nmMDCB4bsijR8COa326qvLUg=;
+	s=arc-20240116; t=1751056027; c=relaxed/simple;
+	bh=qNK7dEzaOLJvdesOTwk2VkOCP9fphOf7o6LF1BKG/7g=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=V2aVzcdE8i9LY0Nwb+Tce/s+YU7Jmuzsyp2ZP+XcNuImR6Bplx9tH2GeuUdpmXeRcZi+/KrWbHZMhHHhFqHgNOIhqEzUiJ6OG2SZfgbE7S0YM9lGk76/hSlYlZxaH+Ar+5WNCGYFmKqhULTROtVf5FaVQo4SZa/qzxif1Sl4HOM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=PZmoX9n2; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 6C797C4CEE3;
-	Fri, 27 Jun 2025 20:26:24 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=l690JTEOk0Mpf8hq76bSuYFUlQhJuKJUr+0zJDraUuoxT5b2VGMUlZXrzQpw+lI9UqHKlBPFS6hnPNPtFyCsOD8SZKY3dBoZjXJTV/GE812eoRvOxYbFYbne6GHGTED5r/unPD+JrtLBZEZnabhm4FcMGZT8tTM9RwLoTNAKV2Q=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=H5JLU9Yk; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 444ACC4CEE3;
+	Fri, 27 Jun 2025 20:27:06 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1751055984;
-	bh=xiXaILIEtvdfMijC9n0nmMDCB4bsijR8COa326qvLUg=;
+	s=k20201202; t=1751056026;
+	bh=qNK7dEzaOLJvdesOTwk2VkOCP9fphOf7o6LF1BKG/7g=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=PZmoX9n2SxjvsVU0mt0+IyyHnt4zsT02TnmrAcUyPxzY41tnk/I3tkc4hMIUH6BM7
-	 b/PgpUGBNgPUr9/Yf1FlQZ6TssuhvMh/uLaThLaYP2fL5LVH0fhhNVv3IHqCYwI9A8
-	 fkEplNXulb3BJOWdzILpJ9WswhUw5RXjn7p5qNHmaD1pF0TDQoLWGX8Qo+7gyIJmQY
-	 pEd8LB5xo/iMEScxyrZzeJpOnngDVbDxgukHze4KI0SGef1bQiDGhkSER77s0eH9C6
-	 jNg+hp5BXLMZGUedEE7Uy7BwPIP1zIPbzLnUS6o4ewGXqtey5ePfbGIy0tbbv6PGkE
-	 vtfDLiLPSrEYw==
-Date: Fri, 27 Jun 2025 15:26:23 -0500
+	b=H5JLU9Yk6eFPEMyC4qi89NEH7glV4esQO+Mz0b9VH3llwUdMe5GGI7Kj3YttFYy0/
+	 CTeDp1FCYG9GdeXBfsywrvq/Zqvm7GtThajWvVZ2a6QCgEP0y95W7W1VPRfdDpHNny
+	 c+656w7btHu3MkhFqy4RxtysCUKrmiZIePoW8z0DIOJG2UffJut8YM/wCsTn3onP4y
+	 6FVfOU8FJxY51D5GFhSJY17hNmkiCLHTN2iWeKzwsmkC1wlI87tRuzSQazaRWnmN+m
+	 D6mpn3v6W17lpgHVQz7jQibrVWeduAqm9Qany/cP8/BXtOAl6lYzPNAgiif6nqHvC7
+	 LreOYvSGFzFkw==
+Date: Fri, 27 Jun 2025 15:27:05 -0500
 From: "Rob Herring (Arm)" <robh@kernel.org>
-To: Binbin Zhou <zhoubinbin@loongson.cn>
-Cc: devicetree@vger.kernel.org, wanghongliang@loongson.cn,
-	Huacai Chen <chenhuacai@loongson.cn>,
-	Rob Herring <robh+dt@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Xuerui Wang <kernel@xen0n.name>,
-	Binbin Zhou <zhoubb.aaron@gmail.com>,
-	Ulf Hansson <ulf.hansson@linaro.org>,
-	Huacai Chen <chenhuacai@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, linux-mmc@vger.kernel.org,
-	loongarch@lists.linux.dev
-Subject: Re: [PATCH v4 1/4] dt-bindings: mmc: Add Loongson-2K SD/SDIO/eMMC
- controller binding
-Message-ID: <175105598309.27283.7574752844130118767.robh@kernel.org>
-References: <cover.1750765495.git.zhoubinbin@loongson.cn>
- <949c55be120a806ea3d74b47fa2cc96ced2905fc.1750765495.git.zhoubinbin@loongson.cn>
+To: Prabhakar <prabhakar.csengg@gmail.com>
+Cc: Geert Uytterhoeven <geert+renesas@glider.be>,
+	Biju Das <biju.das.jz@bp.renesas.com>,
+	Magnus Damm <magnus.damm@gmail.com>,
+	Krzysztof Kozlowski <krzk@kernel.org>, devicetree@vger.kernel.org,
+	Fabrizio Castro <fabrizio.castro.jz@renesas.com>,
+	linux-renesas-soc@vger.kernel.org, linux-kernel@vger.kernel.org,
+	Conor Dooley <conor+dt@kernel.org>,
+	Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+Subject: Re: [PATCH] dt-bindings: memory: renesas,rzg3e-xspi: Document
+ RZ/V2H(P) and RZ/V2N support
+Message-ID: <175105600974.27885.5771735601508516833.robh@kernel.org>
+References: <20250624171605.469724-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -67,21 +64,27 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <949c55be120a806ea3d74b47fa2cc96ced2905fc.1750765495.git.zhoubinbin@loongson.cn>
+In-Reply-To: <20250624171605.469724-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
 
 
-On Tue, 24 Jun 2025 19:58:10 +0800, Binbin Zhou wrote:
-> Add the Loongson-2K SoC's SD/SDIO/eMMC controller binding with DT schema
-> format using json-schema.
+On Tue, 24 Jun 2025 18:16:05 +0100, Prabhakar wrote:
+> From: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
 > 
-> Signed-off-by: Binbin Zhou <zhoubinbin@loongson.cn>
+> Document support for the Expanded Serial Peripheral Interface (xSPI)
+> controller found on the Renesas RZ/V2H(P) (R9A09G057) and RZ/V2N
+> (R9A09G056) SoCs.
+> 
+> The xSPI hardware block on these SoCs is functionally identical to the
+> one on the RZ/G3E (R9A09G047) SoC. Therefore, the existing driver can be
+> reused without modification by using `renesas,r9a09g047-xspi` as a
+> fallback compatible.
+> 
+> Signed-off-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
 > ---
->  .../bindings/mmc/loongson,ls2k0500-mmc.yaml   | 69 +++++++++++++++++++
->  MAINTAINERS                                   |  6 ++
->  2 files changed, 75 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/mmc/loongson,ls2k0500-mmc.yaml
+>  .../bindings/memory-controllers/renesas,rzg3e-xspi.yaml  | 9 ++++++++-
+>  1 file changed, 8 insertions(+), 1 deletion(-)
 > 
 
-Reviewed-by: Rob Herring (Arm) <robh@kernel.org>
+Acked-by: Rob Herring (Arm) <robh@kernel.org>
 
 
