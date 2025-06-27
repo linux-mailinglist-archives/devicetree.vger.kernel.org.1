@@ -1,102 +1,139 @@
-Return-Path: <devicetree+bounces-190590-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-190592-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1EF24AEC23A
-	for <lists+devicetree@lfdr.de>; Fri, 27 Jun 2025 23:44:45 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 83805AEC245
+	for <lists+devicetree@lfdr.de>; Fri, 27 Jun 2025 23:47:04 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 83B6D3AEEBA
-	for <lists+devicetree@lfdr.de>; Fri, 27 Jun 2025 21:44:19 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id D4CC6566294
+	for <lists+devicetree@lfdr.de>; Fri, 27 Jun 2025 21:47:04 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 758E628A1E4;
-	Fri, 27 Jun 2025 21:44:39 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 63EA228A1C7;
+	Fri, 27 Jun 2025 21:46:45 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="X7LZXGuM"
+	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="fh2/IP5s"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from fllvem-ot03.ext.ti.com (fllvem-ot03.ext.ti.com [198.47.19.245])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4B875289E2D;
-	Fri, 27 Jun 2025 21:44:38 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 77C191FBCB5;
+	Fri, 27 Jun 2025 21:46:43 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.19.245
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1751060679; cv=none; b=dc0lEsi8Y1QZMOvqTjBmPBNbpbfFp0p4+kX/gx8hmUHyfwmC/WEOpQshhA1fl89prYKtNFu9Ek1H1A7ZM2lE8jOPrxVdC9lOgTjyIA4UoDN9VdyhEyt/X7oDb4cFMI8D5Nb4c81adMo1oHdQLBU36EhEVHNSMWmKfxNKBl5BY5M=
+	t=1751060805; cv=none; b=WmJtuJibPafhJUFMvQJRaYmb/GlByD+znMfQp56T4+u/rbrb8RgooXZV9L0I/GU9edTcMDTHMAPUfh42WXxeJvQQtOri3DwxOOsYwl7+h48805IBxQLEiq5pFuB5LxT4esOjM0kGpR9V9m2BNIDPTH6cDixpWHuqu+AKxs1opAs=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1751060679; c=relaxed/simple;
-	bh=b4bjcqtYTMlbCBJkkYv4E30QbkPwT0gz6mXrIsFMar4=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=mX1KyYIPY+xKR8nFRRl4KMT2TqFkUNqswfwgaRe0w9mFQ+RlMgVkeXMF+uz09Ae2muQtuRQENSZsnk2vNbqvOV90S70t087kag8VH8xVA8lWEoIco7LFRoukOkt/bBhk1UKj7sLI9gSQi8mFwXP+nTC+mWLWjjccGrx4833OFn4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=X7LZXGuM; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id A4687C4CEE3;
-	Fri, 27 Jun 2025 21:44:38 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1751060678;
-	bh=b4bjcqtYTMlbCBJkkYv4E30QbkPwT0gz6mXrIsFMar4=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=X7LZXGuMzoYAPwAVmFLgM9ZXHBrFMbRhTDriRlOw/PJEGiL5TsFIW55+ILevN3XMZ
-	 e0I6+5cJhuher+4bqd+U2LfXSYPU1v+C8ZXAhGEOqJ0SfhsGyEAePZNtQCakduJ0tv
-	 3UTT1loKWWpkGN1J0XT9NCfWxPctHlKYyf4GuAqyB+iDe6ka2AUX82cXGALqIwXk7F
-	 1a/R2EQr9ihzEcrnjSusgAEB93D6/wSeg0xDv4Wy5aDEHyotgzbh+Fg5R3SWQa0qXs
-	 0ka6FS6xpazzLpq5KgRvPF2slmlnFRq1YDEQ/rCtEWQMLOPQH07iLvCdIQjCNuvKhX
-	 JK3kJJ14iL/tg==
-Date: Fri, 27 Jun 2025 16:44:37 -0500
-From: "Rob Herring (Arm)" <robh@kernel.org>
-To: Christian Marangi <ansuelsmth@gmail.com>
-Cc: linux-mediatek@lists.infradead.org,
-	Russell King <linux@armlinux.org.uk>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Sean Wang <sean.wang@mediatek.com>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Lee Jones <lee@kernel.org>,
-	Matthias Brugger <matthias.bgg@gmail.com>,
-	Jakub Kicinski <kuba@kernel.org>, devicetree@vger.kernel.org,
-	Paolo Abeni <pabeni@redhat.com>, linux-kernel@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	Eric Dumazet <edumazet@google.com>,
-	DENG Qingfang <dqfext@gmail.com>,
-	Daniel Golle <daniel@makrotopia.org>,
-	Simon Horman <horms@kernel.org>,
-	Srinivas Kandagatla <srini@kernel.org>,
-	Andrew Lunn <andrew+netdev@lunn.ch>,
-	Vladimir Oltean <olteanv@gmail.com>, netdev@vger.kernel.org,
-	Heiner Kallweit <hkallweit1@gmail.com>,
-	"Chester A. Unal" <chester.a.unal@arinc9.com>,
-	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
-	"David S. Miller" <davem@davemloft.net>
-Subject: Re: [net-next PATCH v15 02/12] dt-bindings: net: Document support
- for Airoha AN8855 Switch PBUS MDIO
-Message-ID: <175106067736.193475.3574090852380015869.robh@kernel.org>
-References: <20250626212321.28114-1-ansuelsmth@gmail.com>
- <20250626212321.28114-3-ansuelsmth@gmail.com>
+	s=arc-20240116; t=1751060805; c=relaxed/simple;
+	bh=MjnAslqJJMl32jVN4ZvTbGfDWSSZ3EjKaYsG3TsFGR4=;
+	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
+	 In-Reply-To:Content-Type; b=lgHAdthV1L7IUyGY5ViBzXWM5tLEegJ5sk0DTjcJpG/gezARoC4igwbaoczKJf+0g7hYlHVRelbNkCo0K84LNEbpTFatACk9T+MOwmHHIjQgVOAQrd8E9O7lJhZRHSjS50RYrzztBvMcsbOQQHpe8fdb55r6QPRyPIrDvoUd2ys=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=fh2/IP5s; arc=none smtp.client-ip=198.47.19.245
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
+Received: from lelvem-sh02.itg.ti.com ([10.180.78.226])
+	by fllvem-ot03.ext.ti.com (8.15.2/8.15.2) with ESMTP id 55RLjxNJ2516423;
+	Fri, 27 Jun 2025 16:45:59 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+	s=ti-com-17Q1; t=1751060759;
+	bh=I87Av/MwXWoM8xzWi/f8xlGiaslW/Qp2/zw+nq+E/Yc=;
+	h=Date:Subject:To:CC:References:From:In-Reply-To;
+	b=fh2/IP5sT0iO0Fdz0SLIWRGWUqjsQ5p6QI03ou4g3cjTPnc9ZQRUidtxGED9Y4yOF
+	 pWhx1EoTftKw2bxS7O+hRSColqRh+vELSsaYs3wOWp4TQGjBMJG5V6vU9NMS+QJh6/
+	 DrwQiBJfpd5DMgyg2ZOASUgiQ9uiek6MaWPhL0UI=
+Received: from DFLE110.ent.ti.com (dfle110.ent.ti.com [10.64.6.31])
+	by lelvem-sh02.itg.ti.com (8.18.1/8.18.1) with ESMTPS id 55RLjw3G750176
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-SHA256 bits=128 verify=FAIL);
+	Fri, 27 Jun 2025 16:45:59 -0500
+Received: from DFLE107.ent.ti.com (10.64.6.28) by DFLE110.ent.ti.com
+ (10.64.6.31) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.55; Fri, 27
+ Jun 2025 16:45:58 -0500
+Received: from lelvem-mr06.itg.ti.com (10.180.75.8) by DFLE107.ent.ti.com
+ (10.64.6.28) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.55 via
+ Frontend Transport; Fri, 27 Jun 2025 16:45:58 -0500
+Received: from [128.247.81.105] (judy-hp.dhcp.ti.com [128.247.81.105])
+	by lelvem-mr06.itg.ti.com (8.18.1/8.18.1) with ESMTP id 55RLjwh93486775;
+	Fri, 27 Jun 2025 16:45:58 -0500
+Message-ID: <a754b9e8-dc89-4188-bd2f-18c29c299fb7@ti.com>
+Date: Fri, 27 Jun 2025 16:45:58 -0500
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20250626212321.28114-3-ansuelsmth@gmail.com>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v5 0/5] Add support for BeagleBone Green Eco board
+To: Robert Nelson <robertcnelson@gmail.com>
+CC: Kory Maincent <kory.maincent@bootlin.com>,
+        Tony Lindgren
+	<tony@atomide.com>, Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski
+	<krzk+dt@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Aaro Koskinen
+	<aaro.koskinen@iki.fi>,
+        Andreas Kemnade <andreas@kemnade.info>,
+        Kevin Hilman
+	<khilman@baylibre.com>,
+        Roger Quadros <rogerq@kernel.org>,
+        Russell King
+	<linux@armlinux.org.uk>,
+        Paul Barker <paul.barker@sancloud.com>,
+        Marc Murphy
+	<marc.murphy@sancloud.com>,
+        Jason Kridner <jkridner@gmail.com>, Andrew Davis
+	<afd@ti.com>,
+        Bajjuri Praneeth <praneeth@ti.com>,
+        Liam Girdwood
+	<lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>,
+        Thomas Petazzoni
+	<thomas.petazzoni@bootlin.com>,
+        <linux-omap@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>, <linux-arm-kernel@lists.infradead.org>,
+        Thomas Bonnefille
+	<thomas.bonnefille@bootlin.com>,
+        Romain Gantois <romain.gantois@bootlin.com>,
+        Conor Dooley <conor.dooley@microchip.com>
+References: <20250620-bbg-v5-0-84f9b9a2e3a8@bootlin.com>
+ <e49a3fff-8a50-44aa-aa0c-1ba1bf478eb6@ti.com>
+ <CAOCHtYgNfnAK43GBTdN675dFSHrbTJfy_2GbRE88E-0keoChrg@mail.gmail.com>
+Content-Language: en-US
+From: Judith Mendez <jm@ti.com>
+In-Reply-To: <CAOCHtYgNfnAK43GBTdN675dFSHrbTJfy_2GbRE88E-0keoChrg@mail.gmail.com>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 8bit
+X-C2ProcessedOrg: 333ef613-75bf-4e12-a4b1-8e3623f5dcea
+
+Hi Robert
+
+On 6/26/25 7:03 PM, Robert Nelson wrote:
+> On Thu, Jun 26, 2025 at 6:23 PM Judith Mendez <jm@ti.com> wrote:
+>>
+>> Hi Kory,
+>>
+>> On 6/20/25 3:15 AM, Kory Maincent wrote:
+>>> SeeedStudio BeagleBone Green Eco (BBGE) is a clone of the BeagleBone Green
+>>> (BBG). It has minor differences from the BBG, such as a different PMIC,
+>>> a different Ethernet PHY, and a larger eMMC.
+>>
+>> Thanks for the patches.
+>> I was testing against next and noticed a kernel paging request error:
+>> https://gist.github.com/jmenti/d861528f98035b07259c29e76e5fae8b
+>>
+>> Did you see this by chance?
+>>
+>> I will double check that I tested correctly and come back, but was just
+>> curious to see if this is expected.
+> 
+> The tps65219-regulator.c has a bug, make sure with this board you also
+> have: https://patchew.org/linux/20250620154541.2713036-1-s-ramamoorthy@ti.com/
 
 
-On Thu, 26 Jun 2025 23:23:01 +0200, Christian Marangi wrote:
-> Document support for Airoha AN8855 PBUS MDIO. Airoha AN8855 Switch
-> expose a way to access internal PHYs via Switch register.
-> This is named internally PBUS and does the function of an MDIO bus
-> for the internal PHYs.
-> 
-> It does support a maximum of 5 PHYs (matching the number of port
-> the Switch support)
-> 
-> Signed-off-by: Christian Marangi <ansuelsmth@gmail.com>
-> ---
->  .../bindings/net/airoha,an8855-mdio.yaml      | 57 +++++++++++++++++++
->  1 file changed, 57 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/net/airoha,an8855-mdio.yaml
-> 
+Thanks! I don't see the issue anymore! (:
 
-Reviewed-by: Rob Herring (Arm) <robh@kernel.org>
+~ Judith
 
 
