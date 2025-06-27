@@ -1,161 +1,116 @@
-Return-Path: <devicetree+bounces-190167-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-190168-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9909FAEAE39
-	for <lists+devicetree@lfdr.de>; Fri, 27 Jun 2025 06:56:50 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 185FCAEAE40
+	for <lists+devicetree@lfdr.de>; Fri, 27 Jun 2025 06:57:55 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 395175630C2
-	for <lists+devicetree@lfdr.de>; Fri, 27 Jun 2025 04:56:25 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 2AA901BC62E6
+	for <lists+devicetree@lfdr.de>; Fri, 27 Jun 2025 04:58:11 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 733B51DB34B;
-	Fri, 27 Jun 2025 04:56:45 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 32F461DB34B;
+	Fri, 27 Jun 2025 04:57:51 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="AizqWq9j"
+	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="wmfGUjYM"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-vs1-f48.google.com (mail-vs1-f48.google.com [209.85.217.48])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from fllvem-ot04.ext.ti.com (fllvem-ot04.ext.ti.com [198.47.19.246])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D29E11D86FF;
-	Fri, 27 Jun 2025 04:56:43 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.217.48
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F38061A705C;
+	Fri, 27 Jun 2025 04:57:48 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.19.246
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1751000205; cv=none; b=dU1uc9H32lj/uipZjB9smR8w0Nkq/fjJNJsXvolkkbJDqA/02Ic7ljGnXiw6RFKRft79nR0bhrqCdUg15lGpLTknE9ssXPY4KXIs2A7jVOhJQtlH+d4XknwyhsE48iLWm/XpSP3guS7ZxRdm4CUrf4bhSOfr0JCHPSFQ+LHBJ+I=
+	t=1751000271; cv=none; b=mDhNtQMQwFk9Ed0McMjDS2xcwP1/NFwRTGeo/eG8QW+aipvIVCtNKnlhqVn2fDpPUdH+X2mPYdzM3e/t6t9GZsJZ5lYJg38lIaphxchof1zPE1nksA24+M5zHYcUyr627A2MFVlHoDfB3ZicDlz6GlKHrQIl2Mboxh3hx7kmJwM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1751000205; c=relaxed/simple;
-	bh=83afpayJE6U1T0aoAEzP5u1PnMIk9sJYc8MFC9piAA0=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=PAQoupKIhsAXw+RGSdezRaPjnGVNL8q+V/HkHlr5LY5va6eBk/oqyaLIcRe/g5XlZKTSuCV6ojbSUFzk8caJD4kjo3kwSXpyF+Dxh4UqFgheiJScB7PG/h97jT2nHR8S16AY4s1Ob8OwSgwBzcIRj2p+7X5oncRru9mu8GL2Was=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=AizqWq9j; arc=none smtp.client-ip=209.85.217.48
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-vs1-f48.google.com with SMTP id ada2fe7eead31-4e7fb730078so522610137.1;
-        Thu, 26 Jun 2025 21:56:43 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1751000203; x=1751605003; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=a2HGv8LGZ8DzKrZFUO2v+eei1l2wUynW3XD4JObL1Tw=;
-        b=AizqWq9jmfpAVQ3p9F0+bryXy5gdrRLRTBjknoYuEcW+5TAXm0nu5Dxc8awZAXyePE
-         4LxJCgk4r3GKkNcP1iV2fusXsg1De0dD2gJ2Z5uszU6d3Oe9jw6LmGUgbrwl+aghvRlw
-         Mn0VFcCjRWD/Xr6caegQc0YIJjFQoQJKMzk2vl+/VlOrJWZk0NTKZ6zhU5dOAk2SNjpK
-         VtiuLfdHkViJm0q+ciYlaYEfCW1KJxgJFbpOXu6/OPf4nqo/E57XQMz4QenaAibuUhn9
-         osZ7Poig5rVqoukUsv9EvyS9rQjyYfS4y4gaY1c7yGrw5/1PMGIGN4UWyBeyiU88jiKo
-         2vSg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1751000203; x=1751605003;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=a2HGv8LGZ8DzKrZFUO2v+eei1l2wUynW3XD4JObL1Tw=;
-        b=jKDuGo/QMnPuI0ZObINmnWq5LnKwR4JVWRcehDxVjxZWAjGBSvgsq/+C7dG/rl8k2m
-         LEwBV3qGGAbXDwP2OTR6gpeZACj2/7/OCZbHHHQqGyiNuP5LtuARsP32RM9RVJ2pD1hz
-         PdjTUIc8V3HoFozoREzRbBVhLPdO3Fuqe4FO6mdlpgWJSbSCXhxNmZSHSaZMOdE5frSI
-         rvhzN/o+jh02pB/fczVXhimTVwIUI1TQ3uVfzR+ciQ+UAZUPw/8qPCBJmIvHNHKq0EWA
-         FN4DqV+6C73zOrHmt7OGKwKJD8D3bA3foCTSZLvKrmEZjPo6KCnzjemeaD2gatTzipir
-         Ks7g==
-X-Forwarded-Encrypted: i=1; AJvYcCUG8daHG8TPRwysqkCMShSwkAHlqF6c3RIb4E6G341gPsGQt/CMjhWzGIYH9DfoalLw3GxbbIQJUxgi@vger.kernel.org, AJvYcCVPPblp0g0PmdFB03nOqYaJ7UsYVERYTy1Q7e/GfsaVGT+x8QgAuVb3BrLgT9B95zUxgsZenuzj@vger.kernel.org, AJvYcCVi+znc5rg5zGZsBNJ4KGqy+yU1LyQfwyT2Ke5wTu4rygr3/wBd7YakMeMRJJGF1dsDOQv9pJFREyubkmhbaKr7B8s=@vger.kernel.org, AJvYcCX+aDL5K7ZC9rE32kn2aVSN48IHN+SMxtALDKDLQQJus2/LvX7ghrKV40br6qhN0IAJByQjUtek75EUs6G0@vger.kernel.org
-X-Gm-Message-State: AOJu0Yy22Q52/M1oiU0SEeCre4vY/jUz6SFVShuj0jWKvNO0ArQJ3mld
-	eJBlGvzmxAk7sh1HIYt1yLtmsPaFrFd1KQVAnzCjW3smY71w/xLz2f4dCs5cU8Ux3zvk/5VXXlV
-	cXDz1Xznpf7GL6vPZHhyFU0j4hkZ5uvU=
-X-Gm-Gg: ASbGnctEc/7me0VPEtAuSiGHoD96I5ZmoFj/PE/ZrX4aWBz0svbol4No2mLL8zRdpsF
-	11mFyoy6MBUR0Qm7MSgYu7fqoY5/LSjYowP/U5FpQv9PLGRx6aUNC1JaY2kTgq7evT90++gkC8h
-	jE4eHG6KIAjM89cm4eQSdRaR3RPCXk4/T1juFW1tHvfg==
-X-Google-Smtp-Source: AGHT+IE+07qHBqPDCXthKdPHB/7LUX6RLsYmY1o5ORrW1h7tii2FCLcpiV2074k1N7ZSn36YN5VNYrTVJdSCyPltG5g=
-X-Received: by 2002:a05:6102:442b:b0:4e7:b728:e34b with SMTP id
- ada2fe7eead31-4ee4f57ed09mr1865136137.3.1751000202837; Thu, 26 Jun 2025
- 21:56:42 -0700 (PDT)
+	s=arc-20240116; t=1751000271; c=relaxed/simple;
+	bh=ioWUImYH/NHoRctZbvnT74UnjKm9PIAYzlU7tSarR6A=;
+	h=From:To:CC:Subject:Date:Message-ID:Content-Type:MIME-Version; b=U9kLnviBtKiuQJioFl0eIXQNlzJR8V2E3UCe3fN1QCrG/qT2Z9x4wK0vdKIBXkva38QUKyOmMNtcOCeZBO+fz4GeBg/pTQk8SXfjhYwAnVXUTDX9HbsDPAXVTvlV5Du2OF7ET/vC2frSCILyL0eLj2cnKdWnmu5UnU33xi4Ih+k=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=wmfGUjYM; arc=none smtp.client-ip=198.47.19.246
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
+Received: from lelvem-sh02.itg.ti.com ([10.180.78.226])
+	by fllvem-ot04.ext.ti.com (8.15.2/8.15.2) with ESMTP id 55R4vUu52650629;
+	Thu, 26 Jun 2025 23:57:30 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+	s=ti-com-17Q1; t=1751000250;
+	bh=ioWUImYH/NHoRctZbvnT74UnjKm9PIAYzlU7tSarR6A=;
+	h=From:To:CC:Subject:Date;
+	b=wmfGUjYMefVao4i02x2/u7u6UYIEe2e4LFCNQaDBFD1t3vVSbGd6rT8ycswCbtxxQ
+	 hEgHg61dEigc7p78eOeG65ax/SXn6/Yk5owvou8b3JL5doxOL8IUip+2AD1nW4gTc5
+	 C5MLF9XhmnzHsN/xazAsSsxxAwWXNujHLlGV7DAQ=
+Received: from DLEE103.ent.ti.com (dlee103.ent.ti.com [157.170.170.33])
+	by lelvem-sh02.itg.ti.com (8.18.1/8.18.1) with ESMTPS id 55R4vUS9073281
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-SHA256 bits=128 verify=FAIL);
+	Thu, 26 Jun 2025 23:57:30 -0500
+Received: from DLEE107.ent.ti.com (157.170.170.37) by DLEE103.ent.ti.com
+ (157.170.170.33) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.55; Thu, 26
+ Jun 2025 23:57:29 -0500
+Received: from DLEE107.ent.ti.com ([fe80::1c91:43d:d71:d7b6]) by
+ DLEE107.ent.ti.com ([fe80::1c91:43d:d71:d7b6%17]) with mapi id
+ 15.01.2507.055; Thu, 26 Jun 2025 23:57:29 -0500
+From: "Holalu Yogendra, Niranjan" <niranjan.hy@ti.com>
+To: "Rob Herring (Arm)" <robh@kernel.org>
+CC: "tiwai@suse.de" <tiwai@suse.de>,
+        "alsa-devel@alsa-project.org"
+	<alsa-devel@alsa-project.org>,
+        "lgirdwood@gmail.com" <lgirdwood@gmail.com>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "krzk+dt@kernel.org" <krzk+dt@kernel.org>,
+        "broonie@kernel.org"
+	<broonie@kernel.org>,
+        "liam.r.girdwood@intel.com"
+	<liam.r.girdwood@intel.com>,
+        "andriy.shevchenko@linux.intel.com"
+	<andriy.shevchenko@linux.intel.com>,
+        "Xu, Baojun" <baojun.xu@ti.com>,
+        "Ding,
+ Shenghao" <shenghao-ding@ti.com>,
+        "linux-sound@vger.kernel.org"
+	<linux-sound@vger.kernel.org>,
+        "Hampiholi, Vallabha" <v-hampiholi@ti.com>,
+        "conor+dt@kernel.org" <conor+dt@kernel.org>,
+        "Navada Kanyana, Mukund"
+	<navada@ti.com>
+Subject: Re: [PATCH v3 2/4] dt-bindings: sound: bindings for tac5x1x family of
+ codecs
+Thread-Topic: [PATCH v3 2/4] dt-bindings: sound: bindings for tac5x1x family
+ of codecs
+Thread-Index: AdvnF9HmTFLrcLE5ScmquuxsqrwJVA==
+Date: Fri, 27 Jun 2025 04:57:29 +0000
+Message-ID: <3c54f7d51e1941cbb8a15147c99d64ee@ti.com>
+Accept-Language: en-US
+Content-Language: en-US
+X-MS-Has-Attach:
+X-MS-TNEF-Correlator:
+x-c2processedorg: 333ef613-75bf-4e12-a4b1-8e3623f5dcea
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20250627-exynosdrm-decon-v3-0-5b456f88cfea@disroot.org> <20250627-exynosdrm-decon-v3-3-5b456f88cfea@disroot.org>
-In-Reply-To: <20250627-exynosdrm-decon-v3-3-5b456f88cfea@disroot.org>
-From: Inki Dae <daeinki@gmail.com>
-Date: Fri, 27 Jun 2025 13:56:06 +0900
-X-Gm-Features: Ac12FXyCRtmqlVxLH-ZQ8PS-fwNE9eVFG2Sf48qY_m8XFevvCiJLCVczBK1_h0o
-Message-ID: <CAAQKjZNbEAiDC_2dUMKZHyPO4nS9TM7TrdjyNx0uLcjvh=PyZw@mail.gmail.com>
-Subject: Re: [PATCH v3 3/3] drm/exynos: exynos7_drm_decon: add vblank check in
- IRQ handling
-To: Kaustabh Chakraborty <kauschluss@disroot.org>
-Cc: Seung-Woo Kim <sw0312.kim@samsung.com>, Kyungmin Park <kyungmin.park@samsung.com>, 
-	David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>, 
-	Krzysztof Kozlowski <krzk@kernel.org>, Alim Akhtar <alim.akhtar@samsung.com>, 
-	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, Maxime Ripard <mripard@kernel.org>, 
-	Thomas Zimmermann <tzimmermann@suse.de>, Rob Herring <robh@kernel.org>, Conor Dooley <conor@kernel.org>, 
-	Ajay Kumar <ajaykumar.rs@samsung.com>, Akshu Agrawal <akshua@gmail.com>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	dri-devel@lists.freedesktop.org, linux-arm-kernel@lists.infradead.org, 
-	linux-samsung-soc@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	devicetree@vger.kernel.org, stable@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
 
-2025=EB=85=84 6=EC=9B=94 27=EC=9D=BC (=EA=B8=88) =EC=98=A4=EC=A0=84 4:21, K=
-austabh Chakraborty <kauschluss@disroot.org>=EB=8B=98=EC=9D=B4 =EC=9E=91=EC=
-=84=B1:
->
-> If there's support for another console device (such as a TTY serial),
-> the kernel occasionally panics during boot. The panic message and a
-> relevant snippet of the call stack is as follows:
->
->   Unable to handle kernel NULL pointer dereference at virtual address 000=
-000000000000
->   Call trace:
->     drm_crtc_handle_vblank+0x10/0x30 (P)
->     decon_irq_handler+0x88/0xb4
->     [...]
->
-
-It seems that if the display is already enabled by the bootloader
-during the boot process, a vblank interrupt may be triggered before
-the initialization of drm_dev is complete. This could be the root
-cause of the issue.
-
-Applied.
-
-Thanks,
-Inki Dae
-
-> Otherwise, the panics don't happen. This indicates that it's some sort
-> of race condition.
->
-> Add a check to validate if the drm device can handle vblanks before
-> calling drm_crtc_handle_vblank() to avoid this.
->
-> Cc: stable@vger.kernel.org
-> Fixes: 96976c3d9aff ("drm/exynos: Add DECON driver")
-> Signed-off-by: Kaustabh Chakraborty <kauschluss@disroot.org>
-> ---
->  drivers/gpu/drm/exynos/exynos7_drm_decon.c | 4 ++++
->  1 file changed, 4 insertions(+)
->
-> diff --git a/drivers/gpu/drm/exynos/exynos7_drm_decon.c b/drivers/gpu/drm=
-/exynos/exynos7_drm_decon.c
-> index 43bcbe2e2917df43d7c2d27a9771e892628dd682..c0c0f23169c993ac315fc8d7b=
-cbd09ea6ec9966a 100644
-> --- a/drivers/gpu/drm/exynos/exynos7_drm_decon.c
-> +++ b/drivers/gpu/drm/exynos/exynos7_drm_decon.c
-> @@ -636,6 +636,10 @@ static irqreturn_t decon_irq_handler(int irq, void *=
-dev_id)
->         if (!ctx->drm_dev)
->                 goto out;
->
-> +       /* check if crtc and vblank have been initialized properly */
-> +       if (!drm_dev_has_vblank(ctx->drm_dev))
-> +               goto out;
-> +
->         if (!ctx->i80_if) {
->                 drm_crtc_handle_vblank(&ctx->crtc->base);
->
->
-> --
-> 2.49.0
->
->
+VGhhbmtzIGZvciBxdWljayByZXZpZXcuDQo+IEZyb206IFJvYiBIZXJyaW5nIChBcm0pIDxyb2Jo
+QGtlcm5lbC5vcmc+DQo+IFNlbnQ6IEZyaWRheSwgSnVuZSAyNywgMjAyNSAxOjA5IEFNDQo+IFRv
+OiBIb2xhbHUgWW9nZW5kcmEsIE5pcmFuamFuIDxuaXJhbmphbi5oeUB0aS5jb20+DQo+IFN1Ympl
+Y3Q6IFJlOiBbUEFUQ0ggdjMgMi80XSBkdC1iaW5kaW5nczogc291bmQ6IGJpbmRpbmdzIGZvcg0K
+PiB0YWM1eDF4IGZhbWlseSBvZiBjb2RlY3MNCj4gT24gVGh1LCAyNiBKdW4gMjAyNSAyMzo0Mzoz
+MSArMDUzMCwgTmlyYW5qYW4gSCBZIHdyb3RlOg0KPiA+IERvY3VtZW50YXRpb24vZGV2aWNldHJl
+ZS9iaW5kaW5ncy9zb3VuZC90aSx0YWM1eDF4LnlhbWwNCi4uLg0KPiB5YW1sbGludCB3YXJuaW5n
+cy9lcnJvcnM6DQo+IA0KPiBkdHNjaGVtYS9kdGMgd2FybmluZ3MvZXJyb3JzOg0KPiBXYXJuaW5n
+OiBEdXBsaWNhdGUgY29tcGF0aWJsZSAidGksdGFhNTQxMiIgZm91bmQgaW4gc2NoZW1hcyBtYXRj
+aGluZw0KPiBXYXJuaW5nOiBEdXBsaWNhdGUgY29tcGF0aWJsZSAidGksdGFhNTIxMiIgZm91bmQg
+aW4gc2NoZW1hcyBtYXRjaGluZw0KPiBXYXJuaW5nOiBEdXBsaWNhdGUgY29tcGF0aWJsZSAidGks
+dGFkNTIxMiIgZm91bmQgaW4gc2NoZW1hcyBtYXRjaGluZw0KVGhlIGR1cGxpY2F0ZSBjb21wYXRp
+YmxlIGFyZSBhbHJlYWR5IHJlbW92ZWQgYXMgcGFydCBvZiB0aGUgcGF0Y2ggc2VyaWVzIA0KaW4g
+cGF0Y2ggW3YzLDQvNF0gZHQtYmluZGluZ3M6IHNvdW5kOiBkZXZpY2Ugc3VwcG9ydCBsaXN0IGZv
+ciBwY202MjQwIC4NCmh0dHBzOi8vcGF0Y2h3b3JrLm96bGFicy5vcmcvcHJvamVjdC9kZXZpY2V0
+cmVlLWJpbmRpbmdzL3BhdGNoLzIwMjUwNjI2MTgxMzM0LjEyMDAtNS1uaXJhbmphbi5oeUB0aS5j
+b20vDQpQbGVhc2UgbGV0IG1lIGtub3cgaWYgc3RpbGwgYWRkaXRpb25hbCBhY3Rpb24gaXMgcmVx
+dWlyZWQuIA0KDQpSZWdhcmRzDQpOaXJhbmphbiBIIFkNCg==
 
