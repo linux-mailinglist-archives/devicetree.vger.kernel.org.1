@@ -1,130 +1,176 @@
-Return-Path: <devicetree+bounces-190344-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-190345-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 06220AEB7A6
-	for <lists+devicetree@lfdr.de>; Fri, 27 Jun 2025 14:27:51 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 052BDAEB7AF
+	for <lists+devicetree@lfdr.de>; Fri, 27 Jun 2025 14:29:12 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 69ED53BDCA8
-	for <lists+devicetree@lfdr.de>; Fri, 27 Jun 2025 12:27:25 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 3C4544A69A1
+	for <lists+devicetree@lfdr.de>; Fri, 27 Jun 2025 12:29:12 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id F30DB2BD593;
-	Fri, 27 Jun 2025 12:27:46 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9D43B2C159C;
+	Fri, 27 Jun 2025 12:29:07 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="J1bxSfWL"
+	dkim=pass (2048-bit key) header.d=disroot.org header.i=@disroot.org header.b="Iz5OfdKj"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from layka.disroot.org (layka.disroot.org [178.21.23.139])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C212117C21C;
-	Fri, 27 Jun 2025 12:27:46 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9ADA617C21C;
+	Fri, 27 Jun 2025 12:29:05 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=178.21.23.139
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1751027266; cv=none; b=oejWYIaCQmUlCwagb26AiQbJ/kYn+JpJO0aARFKdu/6cLPsR3aTZMTDYS231ORKgYco3l2hWTDlQDNJrL6aj/cQ4g1pgrws270+vkKGCvyDsgDMzMwj3K7DBFhm+sLYlF/lpW0ChKPJWU0nf8WDPBscN6qNnVNk6htsNoQk7kJU=
+	t=1751027347; cv=none; b=J2snNB0jdmcg6UPPaawR3C3IZG++ey8TXedW1f0tLatHmtO+yaTAe2gSbz8DBQM1L/vcfQS5abTqRQ0xnKaKoyAKt0JU7MFaypkwlMcgNW+M78N74UbRcyATL940nd6GoC/iyaE8FWbX11fVl2XLOE0mZiJu1ltga4Iwy3ob5xo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1751027266; c=relaxed/simple;
-	bh=ko46wf74UPuaBf8qnx6d5+XlMWO0mj08q8KVAwi9ZFE=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=Ez5kOjuLFe1GBEsI8T+RLTBcV3zOy1f3dAsUzm3rrza5pdV/GDakOT8v4fojpjr8gkWKZxLRg1YgpWG957tPeocBtz1mTp4SbH9takN3N39JWryCAlmgmdGoTZ8RVve1OO8KTWh6+BsULnSZFjKja2SI1oxmX4zeGaD+Dcc7SoU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=J1bxSfWL; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 43684C4CEF0;
-	Fri, 27 Jun 2025 12:27:46 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1751027266;
-	bh=ko46wf74UPuaBf8qnx6d5+XlMWO0mj08q8KVAwi9ZFE=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=J1bxSfWL4g6xsJkilr3TAIfqSUt/R2hOXsMVfmDMZLJ98xgpU0Lp8xnXgpmIQf7ef
-	 O4roDp19sddFW3lpHahY1Ns4binuzsEczk4seEwR/bRad+6Cs7t8nFI8xBTbCCRS3D
-	 7HHAGBMrRyd6YMr6VbYBPa7GPWMBS3OGpHopeFKGXoCReqIBCmevpASFr4n4MxXrD6
-	 VBBwog7JKqzdg5hLLIosguSgpoWMqMgUpt0a5qmHJkconL/hC+U108leCgfvYDH+tn
-	 CixlwGK0bopQzkPhoI8s0a6jF+ne9mgOc7xPMx5z+PAwW59G0ReoiRBjQ36MpWv75Y
-	 Yj/iLtLWAPWOg==
-Received: from johan by xi.lan with local (Exim 4.97.1)
-	(envelope-from <johan@kernel.org>)
-	id 1uV8BG-000000004eC-3OB0;
-	Fri, 27 Jun 2025 14:27:46 +0200
-Date: Fri, 27 Jun 2025 14:27:46 +0200
-From: Johan Hovold <johan@kernel.org>
-To: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
-Cc: Bjorn Andersson <andersson@kernel.org>,
-	Maximilian Luz <luzmaximilian@gmail.com>,
-	Konrad Dybcio <konradybcio@kernel.org>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Ard Biesheuvel <ardb@kernel.org>,
-	Steev Klimaszewski <steev@kali.org>, linux-arm-msm@vger.kernel.org,
-	linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-efi@vger.kernel.org
-Subject: Re: [PATCH v4 1/8] efi: efivars: don't crash in
- efivar_set_variable{,_locked} in r/o case
-Message-ID: <aF6OQqD9V7AYUkwO@hovoldconsulting.com>
-References: <20250625-more-qseecom-v4-0-aacca9306cee@oss.qualcomm.com>
- <20250625-more-qseecom-v4-1-aacca9306cee@oss.qualcomm.com>
- <aF0bLtnABcGTi0wM@hovoldconsulting.com>
- <zw5u5c2itmpxq34d22y5wmtr32d4zsmjj5clf77ryeqs5jgd4v@t3wjfyj43yra>
- <aF1CX2uWZ_KaMDVR@hovoldconsulting.com>
- <CAO9ioeWwyxSgG9DNYpW-Z_SU_Scv+4sSBs8UeZnxFz+tOaESEQ@mail.gmail.com>
+	s=arc-20240116; t=1751027347; c=relaxed/simple;
+	bh=EtshUSUcNz/EcdgguxC9OOdXGB2IBgMhJVAOJyuE9yY=;
+	h=MIME-Version:Date:From:To:Cc:Subject:In-Reply-To:References:
+	 Message-ID:Content-Type; b=gwIlCuGcKi6HSHUTo+xg1d9m3Jv+NTl50yJGOO6xBWnjoIRWUAwVYZB5RPqGN8KffbCUZ5s99ZQ5BkA4xHFbW3ote7mXlWNNPKRetzrUCd36ou3GSqN9PKQviOPoGrEf03iBbTsOHzAOQTFq4mUgR1HLiwoSaMRAOiD8A7RfC4Q=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=disroot.org; spf=pass smtp.mailfrom=disroot.org; dkim=pass (2048-bit key) header.d=disroot.org header.i=@disroot.org header.b=Iz5OfdKj; arc=none smtp.client-ip=178.21.23.139
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=disroot.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=disroot.org
+Received: from mail01.disroot.lan (localhost [127.0.0.1])
+	by disroot.org (Postfix) with ESMTP id BE00824CE2;
+	Fri, 27 Jun 2025 14:29:03 +0200 (CEST)
+X-Virus-Scanned: SPAM Filter at disroot.org
+Received: from layka.disroot.org ([127.0.0.1])
+ by localhost (disroot.org [127.0.0.1]) (amavis, port 10024) with ESMTP
+ id a-Vi0xHrL_L8; Fri, 27 Jun 2025 14:29:02 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=disroot.org; s=mail;
+	t=1751027342; bh=EtshUSUcNz/EcdgguxC9OOdXGB2IBgMhJVAOJyuE9yY=;
+	h=Date:From:To:Cc:Subject:In-Reply-To:References;
+	b=Iz5OfdKj6tJy1F91PBHFqCdCfHs+sxsFQcWGG3bBiYzpqR1aPcf7Lzxm6Ff+GuGXk
+	 1OXZThqT8gFO7exnrQIQVG84R/sQd5c+Hj/B+ceIWiFssn79jGI7jweBHA0FTFLs+7
+	 /pewIt+aa0AmzeDs6lnlC6PRlMp8auU3FBSOmbB3bpIQrEkMrJHRqPhHi1n49wNBTL
+	 J9RUeRH+h2LEbUd7ZMiRaa0AQyx9D6t/VT7w4GxW/8yBaC+eyGOyQ1SRlA7NF0a2N+
+	 G1rhJBnMJxswRIYj9mNn47hmhyNPC6+x2sk+3jRfy2EB+MRYfIAXU0QEO9ra53ZmPy
+	 8mPJdvLa2xdPA==
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <CAO9ioeWwyxSgG9DNYpW-Z_SU_Scv+4sSBs8UeZnxFz+tOaESEQ@mail.gmail.com>
+Date: Fri, 27 Jun 2025 12:29:01 +0000
+From: Kaustabh Chakraborty <kauschluss@disroot.org>
+To: Inki Dae <daeinki@gmail.com>
+Cc: Jagan Teki <jagan@amarulasolutions.com>, Marek Szyprowski
+ <m.szyprowski@samsung.com>, Andrzej Hajda <andrzej.hajda@intel.com>, Neil
+ Armstrong <neil.armstrong@linaro.org>, Robert Foss <rfoss@kernel.org>,
+ Laurent Pinchart <Laurent.pinchart@ideasonboard.com>, Jonas Karlman
+ <jonas@kwiboo.se>, Jernej Skrabec <jernej.skrabec@gmail.com>, Maarten
+ Lankhorst <maarten.lankhorst@linux.intel.com>, Maxime Ripard
+ <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>, David Airlie
+ <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>, Rob Herring
+ <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Seung-Woo Kim <sw0312.kim@samsung.com>, Kyungmin Park
+ <kyungmin.park@samsung.com>, Krzysztof Kozlowski <krzk@kernel.org>, Alim
+ Akhtar <alim.akhtar@samsung.com>, dri-devel@lists.freedesktop.org,
+ linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, linux-samsung-soc@vger.kernel.org
+Subject: Re: [PATCH v2 01/13] drm/bridge: samsung-dsim: separate LINK and DPHY
+ status registers
+In-Reply-To: <CAAQKjZOHUGg8WEZxfhVxrUPS3O68BQJ6=cDnUSk6BomYjuY62Q@mail.gmail.com>
+References: <20250627-exynos7870-dsim-v2-0-1433b67378d3@disroot.org>
+ <20250627-exynos7870-dsim-v2-1-1433b67378d3@disroot.org>
+ <CAAQKjZOHUGg8WEZxfhVxrUPS3O68BQJ6=cDnUSk6BomYjuY62Q@mail.gmail.com>
+Message-ID: <922117777d718b77c86be3a43e86dd7f@disroot.org>
+X-Sender: kauschluss@disroot.org
+Content-Type: text/plain; charset=UTF-8;
+ format=flowed
+Content-Transfer-Encoding: 8bit
 
-On Thu, Jun 26, 2025 at 03:54:11PM +0300, Dmitry Baryshkov wrote:
-> On Thu, 26 Jun 2025 at 15:51, Johan Hovold <johan@kernel.org> wrote:
-> >
-> > On Thu, Jun 26, 2025 at 02:03:44PM +0300, Dmitry Baryshkov wrote:
-> > > On Thu, Jun 26, 2025 at 12:04:30PM +0200, Johan Hovold wrote:
-> > > > On Wed, Jun 25, 2025 at 01:53:20AM +0300, Dmitry Baryshkov wrote:
-> > > > > If efivar implementation doesn't provide write support, then calling
-> > > > > efivar_set_variable() (e.g. when PM8xxx RTC driver tries to update the
-> > > > > RTC offset) will crash the system. Prevent that by checking that
-> > > > > set_variable callback is actually provided and fail with an
-> > > > > EFI_WRITE_PROTECTED if it is not.
-> > > > >
-> > > > > Fixes: 472831d4c4b2 ("efi: vars: Add thin wrapper around EFI get/set variable interface")
-> > > >
-> > > > I don't think a fixes tag is warranted here as it currently appears to
-> > > > be expected that the callers check if setvar is supported before calling
-> > > > this helper (e.g. by calling efivar_supports_writes() as efivarfs does).
-> > >
-> > > It is not documented as such. So, I think, we'd better not crash the
-> > > callers.
-> >
-> > You need to look at the backstory to determine that before jumping to
-> > conclusions (e.g. start by looking at f88814cc2578 ("efi/efivars: Expose
-> > RT service availability via efivars abstraction")).
+On 2025-06-27 10:07, Inki Dae wrote:
+> 2025년 6월 27일 (금) 오전 4:42, Kaustabh Chakraborty 
+> <kauschluss@disroot.org>님이 작성:
+>> 
+>> Exynos7870's DSIM has separate registers for LINK and DPHY status. 
+>> This
+>> is in contrast to other devices in the driver which use a single
+>> register for both.
+>> 
+>> Add their respective entries in the register list. Devices having a
+>> single status register have been assigned the same offset for both
+>> entries.
+>> 
+>> Signed-off-by: Kaustabh Chakraborty <kauschluss@disroot.org>
+>> ---
+>>  drivers/gpu/drm/bridge/samsung-dsim.c | 15 +++++++++------
+>>  1 file changed, 9 insertions(+), 6 deletions(-)
+>> 
+>> diff --git a/drivers/gpu/drm/bridge/samsung-dsim.c 
+>> b/drivers/gpu/drm/bridge/samsung-dsim.c
+>> index 
+>> f2f666b27d2d5ec016d7a7f47c87fcdf1377d41a..7fd4c34cdc3170d363942f98feec048097da3c06 
+>> 100644
+>> --- a/drivers/gpu/drm/bridge/samsung-dsim.c
+>> +++ b/drivers/gpu/drm/bridge/samsung-dsim.c
+>> @@ -30,7 +30,7 @@
+>>  /* returns true iff both arguments logically differs */
+>>  #define NEQV(a, b) (!(a) ^ !(b))
+>> 
+>> -/* DSIM_STATUS */
+>> +/* DSIM_DPHY_STATUS */
+>>  #define DSIM_STOP_STATE_DAT(x)         (((x) & 0xf) << 0)
+>>  #define DSIM_STOP_STATE_CLK            BIT(8)
+>>  #define DSIM_TX_READY_HS_CLK           BIT(10)
+>> @@ -239,7 +239,8 @@ enum samsung_dsim_transfer_type {
+>>  };
+>> 
+>>  enum reg_idx {
+>> -       DSIM_STATUS_REG,        /* Status register */
 > 
-> _documented_. I'll update documentation for efivar_set_variable() in
-> the next iteration and add a check to the RTC driver. However I still
-> think that this patch is valid.
-
-Still depends on *how* we want to address this.
-
-> > > > So should perhaps be fixed in the RTC driver if we agree that supporting
-> > > > read-only offsets is indeed something we want.
-> > > >
-> > > > Are there any other current user that may possibly benefit from
-> > > > something like this?
-> > >
-> > > efi-pstore comes to my mind.
-> >
-> > No, that driver is also disabled when efivar_supports_writes() returns
-> > false.
+> According to the datasheets I have, both Exynos5422 and Exynos7420 use
+> DSIM_STATUS, while Exynos8890 splits this into DSIM_LINK_STATUS and
+> DSIM_PHY_STATUS. It appears that Exynos7870 follows the same approach
+> as Exynos8890.
 > 
-> Good.
+> The current modification removes the legacy DSIM_STATUS_REG and adds
+> new DSIM_LINK_STATUS_REG and DSIM_DPHY_STATUS_REG. However, this
+> change causes the register names used for older SoC versions to differ
+> from those in the datasheets, so I think it is better to keep the
+> legacy name for backward compatibility.
+> 
+> How about modifying it as follows?
+> enum reg_idx {
+>     DSIM_STATUS_REG,          /* Status register (legacy) */
+>     DSIM_LINK_STATUS_REG,     /* Link status register (Exynos7870, ...) 
+> */
+>     DSIM_PHY_STATUS_REG,      /* PHY status register (Exynos7870, ...) 
+> */
+>     ...
+> };
+> 
+> static const unsigned int exynos7870_reg_ofs[] = {
+>     [DSIM_STATUS_REG] = 0x00,        /* Legacy compatibility - use
+> LINK_STATUS */
+>     [DSIM_LINK_STATUS_REG] = 0x04,   /* Link status register */
+>     [DSIM_PHY_STATUS_REG] = 0x08,    /* PHY status register */
+>     ...
+> };
+> 
+> Additionally, by configuring the hw_type field in the
+> samsung_dsim_plat_data structure like you did with the patch[1], you
+> can use the appropriate register name for each SoC as shown below:
+> if (dsi->plat_data->hw_type == DSIM_TYPE_EXYNOS7870)
 
-Ok, so then there are no current drivers that will benefit from your
-change, but you may (or may not) need it if you enable RO efivars on
-this particular platform. That is, this patch is not actually fixing
-anything that is broken currently.
+I've instead added a flag to the driver data indicating the
+availability of legacy status register. In my opinion, this
+approach quickly turns cumbersome as the number of variants
+increase.
 
-Johan
+Thanks for the suggestion.
+
+>     reg = samsung_dsim_read(dsi, DSIM_LINK_STATUS_REG);
+> else
+>     reg = samsung_dsim_read(dsi, DSIM_STATUS_REG);
+> 
+> 
+> [1] [PATCH v2 12/13] drm/bridge: samsung-dsim: add driver support for
+> exynos7870 DSIM bridge
+> 
+> Thanks,
+> Inki Dae
 
