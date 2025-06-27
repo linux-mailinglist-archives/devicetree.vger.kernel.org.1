@@ -1,124 +1,164 @@
-Return-Path: <devicetree+bounces-190221-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-190222-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 49DB3AEB117
-	for <lists+devicetree@lfdr.de>; Fri, 27 Jun 2025 10:18:47 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 39420AEB11D
+	for <lists+devicetree@lfdr.de>; Fri, 27 Jun 2025 10:20:29 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id CB2693A38E4
-	for <lists+devicetree@lfdr.de>; Fri, 27 Jun 2025 08:18:21 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 75EC456036A
+	for <lists+devicetree@lfdr.de>; Fri, 27 Jun 2025 08:20:29 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id DDC38233D7C;
-	Fri, 27 Jun 2025 08:18:42 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C8ADE23ABAD;
+	Fri, 27 Jun 2025 08:20:26 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="mqPvWOJU"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="kY8bbLyV"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wr1-f50.google.com (mail-wr1-f50.google.com [209.85.221.50])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B63D217741;
-	Fri, 27 Jun 2025 08:18:42 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 000C11DC9B8;
+	Fri, 27 Jun 2025 08:20:24 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.50
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1751012322; cv=none; b=QRJEFt7dzcOBYcUhlmtqk76ud+joo3tVvEBTNwpypPlxs4glleV3TnFEyPxOTKTfLp4pSETr0uRquRmroRJzFxNqcLzrMI8f9P0FSKrg/IJnN35LVq1b137p/+LWJO1zGfcAnZQteQCoF53+oRtpxo4+7qCfLfpnZxN0jbkBNZo=
+	t=1751012426; cv=none; b=B2YtOM0bw9TjhVzC9gFjBt4nya9ypvcicptT5HZE4M/yYTXfeAAJxRGy3/Z+HK4mDO+gBfheFGeLv537+Y+ctRTbwsklly0UgwywyUVVn5Layv0UsF+g8waqPG/yrqPcLIt5bVzztpF5dplXiNF3UnfX0ATCGw/9TA9mDACJ5bg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1751012322; c=relaxed/simple;
-	bh=/o9ZO57wn41Pket5Wzm+vGinxIbfR+TSFjHBB2eIaw4=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=EiBwb28KR08264zFaXw6sKz9BT1HXzI34pXPiVQXlI3KdCjriamEbwici6X6WF4cEL8SQ/cqsqH5yzBzNVf4q3pEqfgFohKCXvCT3Zi0WXyPfgm4akmiREroVgomtfQk794G8U5NrS1QVMrztMUV9LFlRwIedfcw633QpfoAA9w=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=mqPvWOJU; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 3F9D9C4CEE3;
-	Fri, 27 Jun 2025 08:18:40 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1751012322;
-	bh=/o9ZO57wn41Pket5Wzm+vGinxIbfR+TSFjHBB2eIaw4=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=mqPvWOJUhq4fNqUaLX6/zVEbiJ2ufRXlXJd7iW5yx4AHgsSLPzllrYXxv9XZzT9+2
-	 G8WzmyyT9tjvwtDSzZU5k8kzB1IgZ+LVupkvMVDDxDg125evJNNdWpdryOPa+WFEXY
-	 Ln8Msa63aBbT1ragSp1KsJhOg7xOtAHByGSVqQjoxkwoyAAq0p7KfuxvnY5DjOcWns
-	 OGbi+1/L12w6tXsfPCFRZQXn/MccoPSWkQF+5WKzwAgZNWNU+7XuEYnyuIFkVETk53
-	 3U05TSllX4qHMt7Qc1RzWLDIPF/o9mQp3I7Spdz1Lz0nfnrddAvc0AoP0qbi/8q1D9
-	 wTS106R9JjfuA==
-Date: Fri, 27 Jun 2025 10:18:38 +0200
-From: Krzysztof Kozlowski <krzk@kernel.org>
-To: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
-Cc: broonie@kernel.org, lgirdwood@gmail.com, robh@kernel.org, 
-	krzk+dt@kernel.org, conor+dt@kernel.org, matthias.bgg@gmail.com, 
-	linux-kernel@vger.kernel.org, devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
-	linux-mediatek@lists.infradead.org, kernel@collabora.com
-Subject: Re: [PATCH v2 3/6] dt-bindings: regulator: Document MediaTek MT6363
- PMIC Regulators
-Message-ID: <20250627-neon-hidden-sheep-ed8dae@krzk-bin>
-References: <20250624073548.29732-1-angelogioacchino.delregno@collabora.com>
- <20250624073548.29732-4-angelogioacchino.delregno@collabora.com>
+	s=arc-20240116; t=1751012426; c=relaxed/simple;
+	bh=Oh4TD3SGQIYcYPmXM4CeF0rb8he7Z8jtXWch8rytSpA=;
+	h=Message-ID:Date:From:To:Cc:Subject:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=iHfA+9NmQ4dAP2HGAuUyCBbtPW2hhCT2gyyMasUshXLb1lS9IF4HU7iEAQ/wXe1EM19tPBTy2g6N8ppPwqISD4x3b4ZF34YESZqjXf8acmurUm6WKaDiJqmpZynD8eQgfrbdsZkVO9vaw9WVRoZg2bWP1bnRjmMRqmd5LClWYa4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=kY8bbLyV; arc=none smtp.client-ip=209.85.221.50
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-wr1-f50.google.com with SMTP id ffacd0b85a97d-3a4ef2c2ef3so1674796f8f.2;
+        Fri, 27 Jun 2025 01:20:24 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1751012423; x=1751617223; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references:subject:cc
+         :to:from:date:message-id:from:to:cc:subject:date:message-id:reply-to;
+        bh=IWBRBcY6kXuI6+1Do3ghha4t7BmkCU/pF8IxkFP+m00=;
+        b=kY8bbLyVM8RZnEyJtoRtoBge3f7aOfqzKBZLBIbLekKKwCBWLjwq3XiVxTCP5hQLwn
+         hehQU3xP3sWMvnMgyXJQxhlEWt8+ErF3vxCb+XAgVS2U+0ArwBbav18ah3ltHe5aeADI
+         reohYZtC4AUpQbU1Cn82G5hZoKrCfVfzvrGXgzHUaGNNrFSKmJy1bDhJ0Yz3LAGflPQS
+         DTJg+us7fFKITMJyfSSaS7FHp3tMAnS7VCfgsHzz84xzpav5NS7h8qP3r8MrWWurxVCo
+         WTuis5DBdd4dllHFkls1VgxGGSo4NsLAVD40wWLGOI6vGYOVnOi6t2TurfWGF/vetuzd
+         p/Cg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1751012423; x=1751617223;
+        h=in-reply-to:content-disposition:mime-version:references:subject:cc
+         :to:from:date:message-id:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=IWBRBcY6kXuI6+1Do3ghha4t7BmkCU/pF8IxkFP+m00=;
+        b=kuHMGvmBzqOULld4keVT6+Uxh7yThI9jxgGaWFD/sEH7ycdxTr87tFrE5+NqJJOb38
+         vmQ/N6X8/A08Vhb7m888QgDQUZeiYJzOHToYp/JdOx6Ihth325lOoLfvxOJNX4/6Zq7J
+         3n5jD+XjkhvcguFaXCgKFGzIeQntlMmeJ6S+Fo4x0YB612Rbh8nIxZkjfZAlXb+OQacd
+         +vMxX9jHIUlH2sjs9XhFCkTzI5LVnx2+YcydaTmCf8y2B0Pal21OYUBl8/AaTc1Sl1uL
+         vAw/y4c0hUh8omXCvmMHpqjK6iOEJwDHS7X84mSiC0q5eBNVt4YNtQuNRt32S6bJE9PW
+         6f6g==
+X-Forwarded-Encrypted: i=1; AJvYcCVH5AIlOtTuHiQee6HzKiIJuzWGFXqQ6u/fgTyhekOibYkID9KSxhw761HefEZEdXzsDaKSMFmS36vp@vger.kernel.org, AJvYcCWQwiCO9OaxBWCeokhx6BzYF0tdkOnvs0vhJKxH/v9t16ngfr7mm26g/izgWn09UkoafhVOW+c5471beM3r@vger.kernel.org, AJvYcCXmO9XZBuqe8YCU+YgajPDRrneM+96y2cg6OAMsAdzSeaF9daepcYH1WLiD1Begtahvi6kreVOuSoqq@vger.kernel.org
+X-Gm-Message-State: AOJu0YwVQAXoMbdzTACXk58ym9N3cYikV7chb8qUyNtWtEnj1gxRMlDV
+	c0cjYl/QlzGkroxxhN6ymP97nidVPoBbbI0vRk9Aj1v4KcnGtBI+zgO/
+X-Gm-Gg: ASbGncvLttxiWV9FTabWm/FY3zrvHmiy0n69t32r0GDBaWApE1rxgYKB45PgW2vbLRH
+	iuSqcDc9tgzv+WAsAq/vnOhyNOCBSUPpnBeDu0TlMJu5vN8hTuqJ9wOTgxS7IsXfz5zQ+nk5lTL
+	2eYVzpqd8lk/wOwxZRjfO+sTgUXpF2UFnLRHzufGdO/IocvDCyR0Ppt2IgzEKjsiAYdLgvV2xWI
+	Naa09gCoES1T4kpRXUl9UiN5FIGTVay9OjpklePfyXgABfI5UENlbrNWoxMAt3JQ0J9kNw66QDK
+	aKz+W5Z+qMZlIaC/NHwjCEkd/q47YAYzSSYZg1Fwxz0Z/1yhr1BofgxCIoWaXTNIS29UjxvRoOl
+	T1p4akl1xcjXz8B6VdxULJqjMrp9U
+X-Google-Smtp-Source: AGHT+IFyrWOPafLVznMIr337ZwVduzg2vwEuHZZVpqaz1/9FfTAHeXsSa1kc2uxwBBxJaIqMooSWoQ==
+X-Received: by 2002:a05:6000:2893:b0:3a9:dc5:df15 with SMTP id ffacd0b85a97d-3a90dc5df54mr2292293f8f.13.1751012423025;
+        Fri, 27 Jun 2025 01:20:23 -0700 (PDT)
+Received: from Ansuel-XPS. (93-34-88-225.ip49.fastwebnet.it. [93.34.88.225])
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-3a88c7ec6aesm2009045f8f.5.2025.06.27.01.20.21
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 27 Jun 2025 01:20:22 -0700 (PDT)
+Message-ID: <685e5446.df0a0220.369e9e.8cb1@mx.google.com>
+X-Google-Original-Message-ID: <aF5UQC9s3T1sDuzo@Ansuel-XPS.>
+Date: Fri, 27 Jun 2025 10:20:16 +0200
+From: Christian Marangi <ansuelsmth@gmail.com>
+To: Krzysztof Kozlowski <krzk@kernel.org>
+Cc: Michael Turquette <mturquette@baylibre.com>,
+	Stephen Boyd <sboyd@kernel.org>, Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Philipp Zabel <p.zabel@pengutronix.de>,
+	Felix Fietkau <nbd@nbd.name>, linux-clk@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v2 06/10] dt-bindings: clock: airoha: Document new
+ property airoha,chip-scu
+References: <20250617130455.32682-1-ansuelsmth@gmail.com>
+ <20250617130455.32682-7-ansuelsmth@gmail.com>
+ <20250627-determined-helpful-rabbit-be2dfe@krzk-bin>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20250624073548.29732-4-angelogioacchino.delregno@collabora.com>
+In-Reply-To: <20250627-determined-helpful-rabbit-be2dfe@krzk-bin>
 
-On Tue, Jun 24, 2025 at 09:35:45AM +0200, AngeloGioacchino Del Regno wrote:
-> Add bindings for the regulators found in the MediaTek MT6363 PMIC,
-> usually found in board designs using the MT6991 Dimensity 9400 and
-> on MT8196 Kompanio SoC for Chromebooks, along with the MT6316 and
-> MT6373 PMICs.
+On Fri, Jun 27, 2025 at 09:59:34AM +0200, Krzysztof Kozlowski wrote:
+> On Tue, Jun 17, 2025 at 03:04:49PM +0200, Christian Marangi wrote:
+> > Document new property airoha,chip-scu used on new Airoha SoC to
+> > reference the Chip SCU syscon node used for PCIe configuration.
+> > 
+> > Signed-off-by: Christian Marangi <ansuelsmth@gmail.com>
+> > ---
+> >  .../devicetree/bindings/clock/airoha,en7523-scu.yaml      | 8 ++++++++
+> >  1 file changed, 8 insertions(+)
+> > 
+> > diff --git a/Documentation/devicetree/bindings/clock/airoha,en7523-scu.yaml b/Documentation/devicetree/bindings/clock/airoha,en7523-scu.yaml
+> > index fe2c5c1baf43..bce77a14c938 100644
+> > --- a/Documentation/devicetree/bindings/clock/airoha,en7523-scu.yaml
+> > +++ b/Documentation/devicetree/bindings/clock/airoha,en7523-scu.yaml
+> > @@ -49,6 +49,11 @@ properties:
+> >      description: ID of the controller reset line
+> >      const: 1
+> >  
+> > +  airoha,chip-scu:
 > 
-> Signed-off-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
-> ---
->  .../regulator/mediatek,mt6363-regulator.yaml  | 123 ++++++++++++++++++
->  1 file changed, 123 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/regulator/mediatek,mt6363-regulator.yaml
+> So the scu has phandle to scu... That's not what we discussed. Your
+> changelog also is very vague here, no links to previous discussions does
+> not make reviewing it easier.
+>
+
+Do you think it might be better to add to the changlog link to the
+previous version?
+
+> You clearly said you have SCU node wich clocks and now you claim you
+> have here some different device thus you need phandle. This is what your
+> schema says.
 > 
-> diff --git a/Documentation/devicetree/bindings/regulator/mediatek,mt6363-regulator.yaml b/Documentation/devicetree/bindings/regulator/mediatek,mt6363-regulator.yaml
-> new file mode 100644
-> index 000000000000..f866c89c56f7
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/regulator/mediatek,mt6363-regulator.yaml
-> @@ -0,0 +1,123 @@
-> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/regulator/mediatek,mt6363-regulator.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: MediaTek MT6363 PMIC Regulators
-> +
-> +maintainers:
-> +  - AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
-> +
-> +description:
-> +  The MT6363 SPMI PMIC provides 10 BUCK and 26 LDO (Low Dropout) regulators
-> +  and can optionally provide overcurrent warnings with one ocp interrupt
-> +  for each voltage regulator.
-> +
-> +properties:
-> +  compatible:
-> +    const: mediatek,mt6363-regulator
-> +
-> +  interrupts:
-> +    description: Overcurrent warning interrupts
 
-Are you sure interrupts are physically not connected?
+There is "SCU" and "Chip SCU". This new schema is to keep consistency
+with an7581 as MFD is quite problematic.
 
-> +    minItems: 1
-> +    maxItems: 36
-> +
-> +  interrupt-names:
-> +    description:
-> +      Names for the overcurrent interrupts are the same as the name
-> +      of a regulator (hence the same as each regulator's node name).
-> +      For example, the interrupt name for regulator vs2 will be "vs2".
+Also I implemented the current mdio schema with 2 line with compatible
+and reg from suggestion of Rob review.
 
-You need to define the items or pattern if this is really flexible in
-the hardware (not drivers).
+> No.
+> 
+> Where is the DTS with COMPLETE picture?
+> 
+> 
 
-Best regards,
-Krzysztof
+Here the current DTS [1]. Nothing is stable for this and we can change
+it but I want to stress that the current HW block are VERY CONFUSING and
+SCRAMBELED. So it's really a matter of finding the least bad solution.
 
+In SCU there are:
+- PART fot the clock register
+- 2 MDIO controller register
+
+In chip SCU:
+- Other part of the clock register
+- Thermal driver register
+- PART of the pinctrl register
+
+[1] https://github.com/Ansuel/openwrt/blob/openwrt-24.10-airoha-an7581-stable/target/linux/airoha/dts/an7583.dtsi#L361
+
+-- 
+	Ansuel
 
