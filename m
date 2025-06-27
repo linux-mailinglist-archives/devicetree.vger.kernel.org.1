@@ -1,62 +1,62 @@
-Return-Path: <devicetree+bounces-190189-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-190190-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 08AA1AEAFC1
-	for <lists+devicetree@lfdr.de>; Fri, 27 Jun 2025 09:07:06 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id E01E1AEAFC9
+	for <lists+devicetree@lfdr.de>; Fri, 27 Jun 2025 09:08:11 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 44FB34E18D3
-	for <lists+devicetree@lfdr.de>; Fri, 27 Jun 2025 07:06:27 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 4A38A3A7065
+	for <lists+devicetree@lfdr.de>; Fri, 27 Jun 2025 07:07:46 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 71546218589;
-	Fri, 27 Jun 2025 07:06:22 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E071D219E8F;
+	Fri, 27 Jun 2025 07:08:06 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="QlhhgT01"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="rQG24HIg"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3F2411FFC59;
-	Fri, 27 Jun 2025 07:06:22 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B04641922DE;
+	Fri, 27 Jun 2025 07:08:06 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1751007982; cv=none; b=kP7uC0wJKkyrqfZFfLy/99y+rZ3jB4CREbgahE+QOdGRondA6TeyeVpQc5tOa4meFlN1yWedVEEaBjgubSRMsgYTbI0iCeUpyvTYJXdp7NvWkk2w9yJIoI5kK0OPrEY0I3MGhCEpfXEWNvuMtW8LnFQBaEHyPOcmvwT+/LK2j9o=
+	t=1751008086; cv=none; b=sZFCBtH86wJVhk2J9zPwdUBWq6vuTZqyjuNsJs0U/64gPzIvd/fbmoBs774Bii/JZVJKernZhwlaRFpld6Heo1dlhj4bh04Hy2v/xXPN/Fd/etb5o4ucV6nLKeHX+e/zIrZ+Nex3HN2UzKDH8wh15Jp2bNEBtt+/GIbOiEqHx74=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1751007982; c=relaxed/simple;
-	bh=/EqmbAddrBe3sC3E4/NL8P/ElonLTvB2i50FUAlbfZc=;
+	s=arc-20240116; t=1751008086; c=relaxed/simple;
+	bh=qPIY1fmZkbzHrI9oc6GJqjDbb45CZC+fXwI9YDyLsLU=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=OZ4ZfPPN+JuIQ0EP6UXeeIMwvP8wZALzN411fENgWHKqjWV0hUbv0imi4XxP9TufLBMQKGQNEg1X3x0sqtkPzuFv0/0srqWIPpakurhYX08tb5Ift6nYmoydL0tVbZFULjKmYGX4D56lY7AvpD3DAb+SX3jWsvPXGf8qulKYMQQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=QlhhgT01; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 470CBC4CEE3;
-	Fri, 27 Jun 2025 07:06:21 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=OK3jf98MkXcid4eimdaW/0CxYf6wVrW0ckTQbJA3r9WYyVdIvZ5pvzFZxuB7uU3ptJ8CtLeETJlCfANX3WAreVJ39uUuAwxk9xAhAefMpHuFFt0BEKZCik/W/bQS8m2QmBISDDopFkCHBNSCHXDWVNIgGlWXYlS0rVa82+VkIKs=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=rQG24HIg; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 4E8CEC4CEE3;
+	Fri, 27 Jun 2025 07:08:05 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1751007982;
-	bh=/EqmbAddrBe3sC3E4/NL8P/ElonLTvB2i50FUAlbfZc=;
+	s=k20201202; t=1751008086;
+	bh=qPIY1fmZkbzHrI9oc6GJqjDbb45CZC+fXwI9YDyLsLU=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=QlhhgT01QFwkK+tQ8E/QRH4IcSsZdRubxsCP2dZRJAySq3PluNhZIBqdISbYnAV1O
-	 KtEOj3fJ++oUiRh/Z6elHNO1LIR/Vog1nwTgItuFfrnsjnB1gPcosJGal/MX++h7p4
-	 Fin51fnxkHL1wDG36Iz7wt2kMmCGufkhRtx6aIJGuEXPH0qXEtgDFTiOacMpTw0XlE
-	 be9IoyfQLpd8wwRMQtsvM9HyLxtWKYi7eZWrRBoWgJTjN32Uy739khE0dlnGH0xAHU
-	 OceAXsyEsN+zMVuruFChe4FakDZgwMMBygplBSFx3fi4LAm+oBgnv8gOrTzJ5Eestl
-	 XNPm502aEcGmA==
-Date: Fri, 27 Jun 2025 09:06:18 +0200
+	b=rQG24HIgwtX2nEJAbCbGrkSmGsCg6MTegv2UU06UpctZ0nF8cdqxoC5fUh7Q23Fdj
+	 fVxDDiMgeIrbDcyh2YPjXwMPqDEVZ9C8Da35MB2dq8B4ZcjKbX9eDn1b6vqV1tE0ng
+	 QAh0rc/4Gj9l92MKqP+oeaMaVrxRBK9zg3JtkSTsWjT/EvAHWktswNi2M3cd9b8X+/
+	 QR5ngwsUx3/2CvYv4Acv2YkuMwyuWgwKPqKgK4I/dUK9MQJZ8+/4rrekQ1f7DP6ReO
+	 E0ko7WWE086WrB9noli8lAKjKEfAG3c9F/Vu0frE+WAoSddoBFepQPdHTDqpZ+6/6z
+	 kO9CeZxF/ywEw==
+Date: Fri, 27 Jun 2025 09:08:02 +0200
 From: Krzysztof Kozlowski <krzk@kernel.org>
-To: "Peng Fan (OSS)" <peng.fan@oss.nxp.com>
-Cc: Bjorn Andersson <andersson@kernel.org>, 
-	Mathieu Poirier <mathieu.poirier@linaro.org>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Shawn Guo <shawnguo@kernel.org>, Sascha Hauer <s.hauer@pengutronix.de>, 
-	Pengutronix Kernel Team <kernel@pengutronix.de>, Fabio Estevam <festevam@gmail.com>, Frank Li <frank.li@nxp.com>, 
-	Daniel Baluta <daniel.baluta@nxp.com>, Iuliana Prodan <iuliana.prodan@nxp.com>, 
-	linux-remoteproc@vger.kernel.org, devicetree@vger.kernel.org, imx@lists.linux.dev, 
-	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org, Peng Fan <peng.fan@nxp.com>
-Subject: Re: [PATCH v3 1/5] dt-bindings: remoteproc: fsl,imx-rproc: Add
- support for i.MX95
-Message-ID: <20250627-black-skua-of-admiration-f6ccbb@krzk-bin>
-References: <20250625-imx95-rproc-1-v3-0-699031f5926d@nxp.com>
- <20250625-imx95-rproc-1-v3-1-699031f5926d@nxp.com>
+To: Ziyue Zhang <quic_ziyuzhan@quicinc.com>
+Cc: andersson@kernel.org, konradybcio@kernel.org, robh@kernel.org, 
+	krzk+dt@kernel.org, conor+dt@kernel.org, jingoohan1@gmail.com, mani@kernel.org, 
+	lpieralisi@kernel.org, kwilczynski@kernel.org, bhelgaas@google.com, 
+	johan+linaro@kernel.org, vkoul@kernel.org, kishon@kernel.org, neil.armstrong@linaro.org, 
+	abel.vesa@linaro.org, kw@linux.com, linux-arm-msm@vger.kernel.org, 
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, linux-pci@vger.kernel.org, 
+	linux-phy@lists.infradead.org, qiang.yu@oss.qualcomm.com, quic_krichai@quicinc.com, 
+	quic_vbadigan@quicinc.com
+Subject: Re: [PATCH v3 2/4] dt-bindings: PCI: qcom,pcie-sa8775p: document
+ link_down reset
+Message-ID: <20250627-flashy-flounder-of-hurricane-d4c8d8@krzk-bin>
+References: <20250625090048.624399-1-quic_ziyuzhan@quicinc.com>
+ <20250625090048.624399-3-quic_ziyuzhan@quicinc.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -65,19 +65,18 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <20250625-imx95-rproc-1-v3-1-699031f5926d@nxp.com>
+In-Reply-To: <20250625090048.624399-3-quic_ziyuzhan@quicinc.com>
 
-On Wed, Jun 25, 2025 at 10:23:27AM +0800, Peng Fan (OSS) wrote:
-> From: Peng Fan <peng.fan@nxp.com>
-> 
-> Add compatible string for the Cortex-M7 core in i.MX95
-> 
-> Signed-off-by: Peng Fan <peng.fan@nxp.com>
-> ---
->  Documentation/devicetree/bindings/remoteproc/fsl,imx-rproc.yaml | 1 +
->  1 file changed, 1 insertion(+)
+On Wed, Jun 25, 2025 at 05:00:46PM +0800, Ziyue Zhang wrote:
+> Each PCIe controller on sa8775p includes 'link_down'reset on hardware,
+> document it.
 
-Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+This is an ABI break, so you need to clearly express it and explain the
+impact. Following previous Qualcomm feedback we cannot give review to
+imperfect commits, because this would be precedent to accept such
+imperfectness in the future.
+
+Therefore follow all standard rules about ABI.
 
 Best regards,
 Krzysztof
