@@ -1,188 +1,293 @@
-Return-Path: <devicetree+bounces-190525-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-190526-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 90D85AEC046
-	for <lists+devicetree@lfdr.de>; Fri, 27 Jun 2025 21:42:57 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9B22DAEC05E
+	for <lists+devicetree@lfdr.de>; Fri, 27 Jun 2025 21:48:53 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 429BB189294B
-	for <lists+devicetree@lfdr.de>; Fri, 27 Jun 2025 19:43:13 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 6DF0F17DB64
+	for <lists+devicetree@lfdr.de>; Fri, 27 Jun 2025 19:48:39 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 904D425334B;
-	Fri, 27 Jun 2025 19:42:53 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 33B5E21ADC7;
+	Fri, 27 Jun 2025 19:48:36 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="qIp70078"
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="px0IywtZ"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-oi1-f181.google.com (mail-oi1-f181.google.com [209.85.167.181])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AA1681A2387
-	for <devicetree@vger.kernel.org>; Fri, 27 Jun 2025 19:42:51 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.181
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 77C7021ABC8
+	for <devicetree@vger.kernel.org>; Fri, 27 Jun 2025 19:48:34 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1751053373; cv=none; b=W5MaRxdvienmnv0T23rymJeFhf3A5BUaBwFUEPToMPjGktpdpVUrzoZbp01PPlNwejyljdVAFj0aH9msxlNVilcPtux5zVWxVaRr4OaJuCQ5e8eeuDBH+yXEgHWrjN5l0GBTDb0JSevQuSzJ8pgsL093/XOhhIGBd63Q8P18zaU=
+	t=1751053716; cv=none; b=PuiX4eRA02kzDglnEtm7YtBxA4WxkAocpxW18KukvuP2XTlKacKfZ3O/OBHW3uvrvYbVY0w9GNfloG2IIoTvq98CTdQt7aCt4wTb6A5c9IwXBQBWv2JAMWO5156EYIFYaTKEE38WjKpFm5mW32YfSi2EjVP7mTAJ0y1ZkBn4iEk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1751053373; c=relaxed/simple;
-	bh=QihDfFv9ga4JrI1pfJodLb6y/r8Sk3I1rAJV/82jHOE=;
-	h=Date:From:To:Cc:Subject:Message-ID:MIME-Version:Content-Type:
-	 Content-Disposition:In-Reply-To; b=KEjWy5/H+LF4Mhthj9KO+TuyGJOZUByv/ORJf7bpRnjzEBFVTzSmYxReuwU2cToC2rnN85qP3teTecL2FlN2P6inQHRPYMehB6njutfyxZ299UJpT/yZy1ZKRz/0+culRCCiziZiI/X/9wZmCOrCDA/W3PdOCXMAtAk12GN9GtI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=qIp70078; arc=none smtp.client-ip=209.85.167.181
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-oi1-f181.google.com with SMTP id 5614622812f47-40af40aeef6so824537b6e.3
-        for <devicetree@vger.kernel.org>; Fri, 27 Jun 2025 12:42:51 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1751053371; x=1751658171; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:message-id:subject:cc
-         :to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=ZHw+WJ64dHACnc7Bud37Nl/T15dKpBv+JiMjM+lyrgA=;
-        b=qIp70078W3UO8k0RL5HQTU8zV9d9huyEwxO6PXXdMK7uwIDEWWc1/RceYVOSKGcy0k
-         rQAzZ73XlgV+mS2apqddYFv84HBoa5YMZQJNVuOGDaqNAz2Zut3hw0ZOXBERIkigkhLQ
-         Fe+P/GfUy0JdxXnboYpr46xJLcJ8PIe8jxIpfEzG5pC7DaxytaH0J5mC3ejCIp/AcK0U
-         TMtMpJLkEg4MRx6cnI2AcRd1ma8E1jRkHlSGI2FZuFM0MltH/Sz04tGhS3EDUCjq/zI4
-         fIMjaB99CbmuvMxw6U/NAYFIH2lypkbn5GlUEQDqrR7pQZIedTLmVcy7bA1YM8XUBidM
-         g90w==
+	s=arc-20240116; t=1751053716; c=relaxed/simple;
+	bh=nMS5gvRnB8iFHWWe9Z/+BocySw+E+oISgb0lIZGQ4mw=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=NhHsG5vtnFuxOHw9EPKEI2cN+jsUabw1v7XrVOlznEOOdxTbwknHL0DBPH9AVuO0MQzIUULK365lwbNmD8awrCmXMXrPLVVQyQPyS3Bo+YaxRwYjTXcb7Lwn0W0Skm+C+pt2eAr25l3sRL2+cn4XnltaoyamgHmKzUlqayrgXc4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=px0IywtZ; arc=none smtp.client-ip=205.220.168.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
+Received: from pps.filterd (m0279862.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 55RBlhrc009551
+	for <devicetree@vger.kernel.org>; Fri, 27 Jun 2025 19:48:33 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	XqEtBo1jQOvR+LgMxe85gP0xuHDuAtLZcp3UvPcyCQk=; b=px0IywtZ4oeH8MNf
+	ThWflDYhnKTfOmG6IzSeR8j8AqOlMWePoFuUjqy7XCL7/XKSUFWKwTtcuwTK0CHU
+	dlibwy+nOB7AehHlqAagsLI1gjfyjrucKPAy2ND6EwD3wPPGaZDNiYBAUzBI5fMH
+	4RsjI/s0VUzBAETRT0duV/ImNEhbi0/lgV4rpNrSPdiuZmQSgbKWJVd8Y0y/nGI6
+	4oS3DixOjtwIfCuetrIWLvX38uSCS9yT1fgiAbpw9R1LFUwoQdoRdiiIE7QITgsq
+	6CTYN+XRaWJJqCFNnlZQ4EMV5y5m2ffa4/uxFrsl5CMrxcQmpBN4ri0/ybr0J3Tv
+	3z+dAw==
+Received: from mail-qk1-f197.google.com (mail-qk1-f197.google.com [209.85.222.197])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 47f4b47tft-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
+	for <devicetree@vger.kernel.org>; Fri, 27 Jun 2025 19:48:33 +0000 (GMT)
+Received: by mail-qk1-f197.google.com with SMTP id af79cd13be357-7d09b74dc4bso47803485a.2
+        for <devicetree@vger.kernel.org>; Fri, 27 Jun 2025 12:48:33 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1751053371; x=1751658171;
-        h=in-reply-to:content-disposition:mime-version:message-id:subject:cc
-         :to:from:date:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=ZHw+WJ64dHACnc7Bud37Nl/T15dKpBv+JiMjM+lyrgA=;
-        b=ETYAO6h592MPoABIJdmrm43ARkqZsiQOmYy4PL0APkClPmsfXSZym2i4wLbD1QP69w
-         NxLr4CU1IcgOvasn/jAyj7nz/O/HzfYb+v3g8Hl789HnCbX2hRONHoRvXZPFsLa7mKS/
-         8Q6PKjCDeo5yQJ9wHXXarSLMAsFYyB0cnxP5m8fFJC/OU5YeX/WWWTxXuWik4H7fGpFZ
-         A6n0shRANPN5Cr4cK/+bvrg0edGta5kHX3WYhDUAz95pNbdzPm5ONutEkfIak+QsrvgE
-         3L68HJHupKxjot8Hzk/cd8j84f64Yc0gp0HQ+U1P8DaEWEAL9Cz239UJ4kX4Q2M5/cf4
-         wwsQ==
-X-Forwarded-Encrypted: i=1; AJvYcCVCHzE+uOhi7Nu9MnoK2BvQsFjymXmL0uup5j91BXxviPAfT5WEXKTEpwwsJR/Q7XTZM+3xHkng1MEX@vger.kernel.org
-X-Gm-Message-State: AOJu0YyX6An+9+4cgBo9Qq7mMSNBE0y/xuTFEvdX3U5rbTFbhu3rPbZR
-	HoWOtnnhxVU6psHQgUqNwLglTxtkvQW3yeD8jcf4R3ejKPCt5D67weDGw9N7VeuexDFjVa3GN6F
-	waHajS3k=
-X-Gm-Gg: ASbGncvdfRRwOVrCkCytdFIBY/e7TGF69gtHyUcAHiSLi3+Uevrw+8VNPpxSv+vE0Mx
-	lmUuYoq0JA2vwIUzMZfOGX9NA4uQeeS6yHRYGnfXQWXZsYS7DosyJLEKasc2RG1N6QLtjP5mZRP
-	97yV0gM7PAZVDkTGH50hAhWZHgu0qph0muzA0yFesq9S1uJoNP4ECEAFDxxMh/ao45aoSSxd7DP
-	PqtMwaIw71ktXo335WVlRS2cL95pKdJl1tS2PzmWZ55ZVjwNk5kv4eGqU3LV801EXlGsLDSgOvs
-	Gh1nJHTronCz9XaCv2J8/Cg3YFgzKiaHQG3HdlQOiucH80tbQ0CIDzt0/mMV5t+WYTr3Dw==
-X-Google-Smtp-Source: AGHT+IH5uoBFw2Udb6ovo2SD8dpCsBqIYrHL9XKo8HZbUvvBBEOdNkQdnf9VE5Fth+7RjBV02SNJVQ==
-X-Received: by 2002:a05:6808:6a85:b0:40a:a8ad:bc11 with SMTP id 5614622812f47-40b33da6484mr2866471b6e.17.1751053370665;
-        Fri, 27 Jun 2025 12:42:50 -0700 (PDT)
-Received: from localhost ([2603:8080:b800:f700:f3a4:7b11:3bf4:5d7b])
-        by smtp.gmail.com with ESMTPSA id 5614622812f47-40b3241e38csm483938b6e.34.2025.06.27.12.42.49
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 27 Jun 2025 12:42:50 -0700 (PDT)
-Date: Fri, 27 Jun 2025 22:42:48 +0300
-From: Dan Carpenter <dan.carpenter@linaro.org>
-To: oe-kbuild@lists.linux.dev,
-	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
-	broonie@kernel.org
-Cc: lkp@intel.com, oe-kbuild-all@lists.linux.dev, lgirdwood@gmail.com,
-	robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
-	matthias.bgg@gmail.com, angelogioacchino.delregno@collabora.com,
-	linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	linux-mediatek@lists.infradead.org, kernel@collabora.com
-Subject: Re: [PATCH v2 4/6] regulator: Add support for MediaTek MT6363 SPMI
- PMIC Regulators
-Message-ID: <f4ec5c4b-78e6-423b-8b19-97171c9d93ec@suswa.mountain>
+        d=1e100.net; s=20230601; t=1751053712; x=1751658512;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=XqEtBo1jQOvR+LgMxe85gP0xuHDuAtLZcp3UvPcyCQk=;
+        b=XpLUIfv/WviGdAt0IQYDMr864YhaKB+m8Af1oOb8+wmhc7/6sfmNExpZPlT1LbHCYA
+         BZ+3mg1LfCoRUquqJ3P4aC1dP+MDkWtMfvajE3qxZ0fnTuAyRYDuSv5Lmrg+UtnPJgL/
+         hLoZKjTP9UlWQrpHLUsgRPBDPXjNsP6WuuhveIM+5ANeuzruFRBsav8uDdwlJlkIgx7V
+         RbFH04n9kP5GsVYEwxQF8wtA049ZM+vvq+9EZwxiiJ0l6AK7136UZ3UYk4fXGKiNB5Ht
+         q0GUDDbFaLrMxU0Effw8D6Q9KilDNx+gzSQVdwBe3eXqzxRDGsnc+m8VyT0c+QEsgnM3
+         r2Vw==
+X-Forwarded-Encrypted: i=1; AJvYcCUM/bYs6B7QuZWPUsdj/ecZqfp/2gB+bP0iIQGdd64a05PLKvh0FLDSEMKzighI+WUNBgxXSxTl76QF@vger.kernel.org
+X-Gm-Message-State: AOJu0YzAemWo4WBPk67b9kosfY5KCEwNCOQO7gJeSHs6yZL1DorEezts
+	MZSOmfnpSl+5IMvyrwPDWeZzar7RCaSa66ylRFfddEbc85avthlRkxkPvA40f8I2m95Cfn/PnZ6
+	T8BCEuVpwN0qR+ELosX4keDkbl652yG863kz16xUx5MGCozeQlCpxpCqp8Zmr54Wb
+X-Gm-Gg: ASbGncsrl7DlMXjTEOfM86BW7uFx5nwRLCidJ+4IHYrPXUWKjruY+KNYToXuQqeSE83
+	RYYIOYCPpOmIjWnYqmq1X2mmeWF33vKkj3fwW2m4bjM5uu7Rv8RdHmlDwoailapiDiYlrlReSWQ
+	BA20KSFyaz5AeuuGoLmGDR0Sh7YBq+xLG4Ni9GB02v9FYK3bUpt0rHADjEkG1bBAX+3jk3cp611
+	PQmUJjyPH5jXoMGtMt9opTIOGG7906RYjyjcxD65mzr/qVGQ+PGnFSlpSrC6hWxBEW/ZvhhHsOd
+	3E2dZSr5kcoQC3CnZ9ZFJScMw6W6fM/eZb28IBlAkdtwUPVeHfW34ob7wRVa5iRHArOtUN0G1dl
+	3NFU=
+X-Received: by 2002:a05:620a:2911:b0:7c7:a574:c6d2 with SMTP id af79cd13be357-7d44c26c479mr24140085a.9.1751053711896;
+        Fri, 27 Jun 2025 12:48:31 -0700 (PDT)
+X-Google-Smtp-Source: AGHT+IGuo69OZ1gPlnL8mmmPx8kVRl+wj2GVKlqnxh/y2aknDxvte0VDP27AkH9DGLYNw2bZWacjuA==
+X-Received: by 2002:a05:620a:2911:b0:7c7:a574:c6d2 with SMTP id af79cd13be357-7d44c26c479mr24137985a.9.1751053711386;
+        Fri, 27 Jun 2025 12:48:31 -0700 (PDT)
+Received: from [192.168.143.225] (078088045245.garwolin.vectranet.pl. [78.88.45.245])
+        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-ae353c6bb6dsm180072466b.120.2025.06.27.12.48.28
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 27 Jun 2025 12:48:30 -0700 (PDT)
+Message-ID: <de111b27-9126-4c03-a7bb-8cce9ea2780e@oss.qualcomm.com>
+Date: Fri, 27 Jun 2025 21:48:27 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20250624073548.29732-5-angelogioacchino.delregno@collabora.com>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 3/4] arm64: dts: qcom: sc8280xp: Add initial support for
+ Ntmer TW220
+To: Pengyu Luo <mitltlatltl@gmail.com>,
+        Bjorn Andersson
+ <andersson@kernel.org>,
+        Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>, Eric Biggers <ebiggers@google.com>,
+        Len Brown <len.brown@intel.com>, Benno Lossin <lossin@kernel.org>,
+        =?UTF-8?Q?Ilpo_J=C3=A4rvinen?= <ilpo.jarvinen@linux.intel.com>,
+        Ingo Molnar <mingo@kernel.org>, Miguel Ojeda <ojeda@kernel.org>,
+        Joel Granados <joel.granados@kernel.org>,
+        Al Viro <viro@zeniv.linux.org.uk>, Alice Ryhl <aliceryhl@google.com>,
+        Stephen Rothwell <sfr@canb.auug.org.au>
+Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, Hong Zhu <vanyang@smail.nju.edu.cn>
+References: <20250617092929.1492750-1-mitltlatltl@gmail.com>
+ <20250617092929.1492750-4-mitltlatltl@gmail.com>
+Content-Language: en-US
+From: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
+In-Reply-To: <20250617092929.1492750-4-mitltlatltl@gmail.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwNjI3MDE2MCBTYWx0ZWRfX7zqgWBA3MBGd
+ rqEBBafkqAf/fqUCdd+atdksLin1TzWaYSeQlBsN4fsQ+Qk9CxfqExqFw314fLOtzlLoiXPevv8
+ GzYM+gyMX//InWicYvT12+EdQnMVP0H7zdIlNh2N+Di1CcIN/rdH7Ie7zLeLfJ6CkaDrm/pzkEd
+ fB6h+mAlWeM7YFfmOcUPnm1yJPnSnPamc9Mz7KCFP1cDR0aGwLDVTM+IPPLDTxLyh6+S0dQwge3
+ +rVdQqaFOMPIGam6MoBYaxLvkPhn/UGqSUM70XTEoNKLwrGa0r3RUMs03M4d/MFnQBzaXS3hPMa
+ +NANzM7nUvMxBvn6ARiUY7lCnPu/EUC8tMi/i/GJJhG+ZwrLpZzj5+gKImzynINpBUXEBt9HKL5
+ AYjkfJVnkKOE9wwiaz+UfynH+uaVnoDMeQYwaWMRYpWF3/SWK2wxd3UGU+7dmVnnDBAWqmZ3
+X-Proofpoint-ORIG-GUID: UqecVtIHSqnXBPGAXbidvEWYvr7pR6AK
+X-Proofpoint-GUID: UqecVtIHSqnXBPGAXbidvEWYvr7pR6AK
+X-Authority-Analysis: v=2.4 cv=A8BsP7WG c=1 sm=1 tr=0 ts=685ef591 cx=c_pps
+ a=50t2pK5VMbmlHzFWWp8p/g==:117 a=FpWmc02/iXfjRdCD7H54yg==:17
+ a=IkcTkHD0fZMA:10 a=6IFa9wvqVegA:10 a=VwQbUJbxAAAA:8 a=pGLkceISAAAA:8
+ a=MkzzvC3VeMUM0ldRBtYA:9 a=QEXdDO2ut3YA:10 a=IoWCM6iH3mJn3m4BftBB:22
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1099,Hydra:6.1.7,FMLib:17.12.80.40
+ definitions=2025-06-27_05,2025-06-27_01,2025-03-28_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ lowpriorityscore=0 mlxlogscore=999 malwarescore=0 spamscore=0 bulkscore=0
+ phishscore=0 adultscore=0 impostorscore=0 suspectscore=0 mlxscore=0
+ clxscore=1015 priorityscore=1501 classifier=spam authscore=0 authtc=n/a
+ authcc= route=outbound adjust=0 reason=mlx scancount=1
+ engine=8.19.0-2505280000 definitions=main-2506270160
 
-Hi AngeloGioacchino,
+On 6/17/25 11:29 AM, Pengyu Luo wrote:
+> The Ntmer TW220 is a WOS tablet based on the Qualcomm SC8280XP platform,
+> also known as the Robo&Kala 2-in-1 Laptop. Thanks to Hong for providing
+> the unlocked device and early development work. This patch adds an
+> initial device tree to enable basic functionality.
+> 
+> Currently supported components include:
+> - Bluetooth & Wi-Fi (board file regeneration required)
+> - Battery charging (up to 15V/3A fixed PDO) and reporting via pmic-glink
+> - Flash LEDs (front and rear)
+> - Hall sensor (lid detection)
+> - Keyboard (via Bluetooth or USB)
+> - NVMe SSD
+> - Power and volume keys
+> - Simple-framebuffer
+> - Sound (playback and capture; top-left DMIC only, top-right works only
+>   on Windows)
+> - Touchscreen and stylus (requires GPI DMA support [1] and stylus support [2])
+> - USB Type-C ports
+> 
+> The following components are currently non-functional:
+> - Cameras (GalaxyCore GC5035; only sensor ID is detectable, no frames in libcamera;
+>   partial driver can be found on LKML archives)
+> - DSI display (blank screen with `dsi_err_worker: status=4`; primary DSI register
+>   dump included below)
+> - Stylus wireless charger (CPS4035)
+> - UCSI over GLINK
+> 
+> [1]: https://lore.kernel.org/linux-arm-msm/20250617090032.1487382-3-mitltlatltl@gmail.com
+> [2]: https://lore.kernel.org/linux-input/20250605054855.403487-2-mitltlatltl@gmail.com
+> 
+> Note: This series does **not** include any confidential material. Those
+> who wish to run Linux on this device should contact Ntmer, as the
+> bootloader is locked via secure boot.
+> 
+> Co-developed-by: Hong Zhu <vanyang@smail.nju.edu.cn>
+> Signed-off-by: Hong Zhu <vanyang@smail.nju.edu.cn>
+> Signed-off-by: Pengyu Luo <mitltlatltl@gmail.com>
+> 
+> dsi_ctrl, reg = <0 0x0ae94000 0 0x400>;
+> 0xae94000 20050001 000001f3 0000000b dddd1011
 
-kernel test robot noticed the following build warnings:
+This is not something we want in the commit log
 
-https://git-scm.com/docs/git-format-patch#_base_tree_information]
+[...]
 
-url:    https://github.com/intel-lab-lkp/linux/commits/AngeloGioacchino-Del-Regno/dt-bindings-regulator-Document-MediaTek-MT6316-PMIC-Regulators/20250624-154048
-base:   https://git.kernel.org/pub/scm/linux/kernel/git/broonie/regulator.git for-next
-patch link:    https://lore.kernel.org/r/20250624073548.29732-5-angelogioacchino.delregno%40collabora.com
-patch subject: [PATCH v2 4/6] regulator: Add support for MediaTek MT6363 SPMI PMIC Regulators
-config: x86_64-randconfig-161-20250627 (https://download.01.org/0day-ci/archive/20250628/202506280258.somyWWgp-lkp@intel.com/config)
-compiler: clang version 20.1.7 (https://github.com/llvm/llvm-project 6146a88f60492b520a36f8f8f3231e15f3cc6082)
+> +	gpio-leds {
+> +		compatible = "gpio-leds";
+> +
+> +		pinctrl-names = "default";
+> +		pinctrl-0 = <&camf_indicator_en>, <&camr_indicator_en>;
 
-If you fix the issue in a separate patch/commit (i.e. not just a new version of
-the same patch/commit), kindly add following tags
-| Reported-by: kernel test robot <lkp@intel.com>
-| Reported-by: Dan Carpenter <dan.carpenter@linaro.org>
-| Closes: https://lore.kernel.org/r/202506280258.somyWWgp-lkp@intel.com/
+property-n
+property-names
 
-New smatch warnings:
-drivers/regulator/mt6363-regulator.c:351 mt6363_regulator_set_mode() error: uninitialized symbol 'regmap'.
-drivers/regulator/mt6363-regulator.c:388 mt6363_regulator_set_mode() error: uninitialized symbol 'ret'.
+in that order, across the file, please
 
-vim +/regmap +351 drivers/regulator/mt6363-regulator.c
+[...]
 
-5dae648aed0eaf AngeloGioacchino Del Regno 2025-06-24  342  static int mt6363_regulator_set_mode(struct regulator_dev *rdev,
-5dae648aed0eaf AngeloGioacchino Del Regno 2025-06-24  343  				     unsigned int mode)
-5dae648aed0eaf AngeloGioacchino Del Regno 2025-06-24  344  {
-5dae648aed0eaf AngeloGioacchino Del Regno 2025-06-24  345  	struct mt6363_regulator_info *info = rdev_get_drvdata(rdev);
-5dae648aed0eaf AngeloGioacchino Del Regno 2025-06-24  346  	struct regmap *regmap;
-5dae648aed0eaf AngeloGioacchino Del Regno 2025-06-24  347  	int cur_mode, ret;
-5dae648aed0eaf AngeloGioacchino Del Regno 2025-06-24  348  
-5dae648aed0eaf AngeloGioacchino Del Regno 2025-06-24  349  	switch (mode) {
-5dae648aed0eaf AngeloGioacchino Del Regno 2025-06-24  350  	case REGULATOR_MODE_FAST:
-5dae648aed0eaf AngeloGioacchino Del Regno 2025-06-24 @351  		ret = mt6363_buck_unlock(regmap, true);
-                                                                                                 ^^^^^
-Uninitialized.
+> +		wsa-dai-link {
+> +			link-name = "WSA Playback";
+> +
+> +			cpu {
+> +				sound-dai = <&q6apmbedai WSA_CODEC_DMA_RX_0>;
+> +			};
+> +
+> +			codec {
 
-5dae648aed0eaf AngeloGioacchino Del Regno 2025-06-24  352  		if (ret)
-5dae648aed0eaf AngeloGioacchino Del Regno 2025-06-24  353  			break;
-5dae648aed0eaf AngeloGioacchino Del Regno 2025-06-24  354  
-5dae648aed0eaf AngeloGioacchino Del Regno 2025-06-24  355  		ret = regmap_set_bits(regmap, info->modeset_reg, info->modeset_mask);
-5dae648aed0eaf AngeloGioacchino Del Regno 2025-06-24  356  
-5dae648aed0eaf AngeloGioacchino Del Regno 2025-06-24  357  		mt6363_buck_unlock(regmap, false);
-5dae648aed0eaf AngeloGioacchino Del Regno 2025-06-24  358  		break;
-5dae648aed0eaf AngeloGioacchino Del Regno 2025-06-24  359  	case REGULATOR_MODE_NORMAL:
-5dae648aed0eaf AngeloGioacchino Del Regno 2025-06-24  360  		cur_mode = mt6363_regulator_get_mode(rdev);
-5dae648aed0eaf AngeloGioacchino Del Regno 2025-06-24  361  		if (cur_mode < 0) {
-5dae648aed0eaf AngeloGioacchino Del Regno 2025-06-24  362  			ret = cur_mode;
-5dae648aed0eaf AngeloGioacchino Del Regno 2025-06-24  363  			break;
-5dae648aed0eaf AngeloGioacchino Del Regno 2025-06-24  364  		}
-5dae648aed0eaf AngeloGioacchino Del Regno 2025-06-24  365  
-5dae648aed0eaf AngeloGioacchino Del Regno 2025-06-24  366  		if (cur_mode == REGULATOR_MODE_FAST) {
-5dae648aed0eaf AngeloGioacchino Del Regno 2025-06-24  367  			ret = mt6363_buck_unlock(regmap, true);
-5dae648aed0eaf AngeloGioacchino Del Regno 2025-06-24  368  			if (ret)
-5dae648aed0eaf AngeloGioacchino Del Regno 2025-06-24  369  				break;
-5dae648aed0eaf AngeloGioacchino Del Regno 2025-06-24  370  
-5dae648aed0eaf AngeloGioacchino Del Regno 2025-06-24  371  			ret = regmap_clear_bits(regmap, info->modeset_reg, info->modeset_mask);
-5dae648aed0eaf AngeloGioacchino Del Regno 2025-06-24  372  
-5dae648aed0eaf AngeloGioacchino Del Regno 2025-06-24  373  			mt6363_buck_unlock(regmap, false);
-5dae648aed0eaf AngeloGioacchino Del Regno 2025-06-24  374  			break;
-5dae648aed0eaf AngeloGioacchino Del Regno 2025-06-24  375  		} else if (cur_mode == REGULATOR_MODE_IDLE) {
-5dae648aed0eaf AngeloGioacchino Del Regno 2025-06-24  376  			ret = regmap_clear_bits(regmap, info->lp_mode_reg, info->lp_mode_mask);
-5dae648aed0eaf AngeloGioacchino Del Regno 2025-06-24  377  			if (ret == 0)
-5dae648aed0eaf AngeloGioacchino Del Regno 2025-06-24  378  				usleep_range(100, 200);
-5dae648aed0eaf AngeloGioacchino Del Regno 2025-06-24  379  		}
+'co'dec < 'cp'u
 
-ret not initialized on else path.
+[...]
 
-5dae648aed0eaf AngeloGioacchino Del Regno 2025-06-24  380  		break;
-5dae648aed0eaf AngeloGioacchino Del Regno 2025-06-24  381  	case REGULATOR_MODE_IDLE:
-5dae648aed0eaf AngeloGioacchino Del Regno 2025-06-24  382  		ret = regmap_set_bits(regmap, info->lp_mode_reg, info->lp_mode_mask);
-5dae648aed0eaf AngeloGioacchino Del Regno 2025-06-24  383  		break;
-5dae648aed0eaf AngeloGioacchino Del Regno 2025-06-24  384  	default:
-5dae648aed0eaf AngeloGioacchino Del Regno 2025-06-24  385  		ret = -EINVAL;
-5dae648aed0eaf AngeloGioacchino Del Regno 2025-06-24  386  	}
-5dae648aed0eaf AngeloGioacchino Del Regno 2025-06-24  387  
-5dae648aed0eaf AngeloGioacchino Del Regno 2025-06-24 @388  	if (ret) {
-5dae648aed0eaf AngeloGioacchino Del Regno 2025-06-24  389  		dev_err(&rdev->dev, "Failed to set mode %u: %d\n", mode, ret);
-5dae648aed0eaf AngeloGioacchino Del Regno 2025-06-24  390  		return ret;
-5dae648aed0eaf AngeloGioacchino Del Regno 2025-06-24  391  	}
-5dae648aed0eaf AngeloGioacchino Del Regno 2025-06-24  392  
-5dae648aed0eaf AngeloGioacchino Del Regno 2025-06-24  393  	return 0;
-5dae648aed0eaf AngeloGioacchino Del Regno 2025-06-24  394  }
+> +/*
+> + * cci0_i2c1
+> + * sda: gpio115, scl: gpio116
+> + *
+> + * CAMI ov9234 @36 @48
+> + *
+> + * power on sequence
+> + * gpio7 out low
+> + * l3q 1p8
+> + * l6q 2p8
+> + * l2q 1p2
+> + * gpio7 out high
+> + * msleep 5
+> + * cam_cc_mclk4_clk 2.4MHz (gpio6)
+> + */
 
--- 
-0-DAY CI Kernel Test Service
-https://github.com/intel/lkp-tests/wiki
+It would be useful to enable these buses and set up what we can,
+otherwise this is quite a lot of text for comments..
 
+[...]
+
+> +&spi22 {
+> +	status = "okay";
+> +	pinctrl-0 = <&spi22_default>;
+> +	pinctrl-names = "default";
+
+status should be the last property (before subnodes), preferably
+with a newline before it, so:
+
+pinctrl-0 = <&spi22_default>;
+pinctrl-names = "default";
+
+status = "okay";
+
+
+> +
+> +	touchscreen@0 {
+> +		/*
+> +		 * The ACPI device ID is GXTS7986, its exact suffix is unknown.
+> +		 * The Windows driver suggests it is a GTBerlinB variant and
+> +		 * communicates via HID over SPI, which aligns with the Linux
+> +		 * driver `drivers/hid/hid-goodix-spi.c`.
+> +		 *
+> +		 * However, the HID descriptor read from the device appears
+> +		 * garbled, preventing proper probe with the HID driver. In
+> +		 * contrast, the driver at
+> +		 * `drivers/input/touchscreen/goodix_berlin_spi.c` shares many
+> +		 * similarities and functions correctly with this hardware.
+> +		 *
+> +		 * Therefore, we choose to use the goodix_berlin_spi driver
+> +		 * instead.
+
+Is this something you could work out with the aforementioned drivers'
+maintainers?
+
+[...]
+
+> +&pcie4_port0 {
+> +	wifi@0 {
+> +		compatible = "pci17cb,1103";
+> +		reg = <0x10000 0x0 0x0 0x0 0x0>;
+> +
+> +		vddrfacmn-supply = <&vreg_pmu_rfa_cmn_0p8>;
+> +		vddaon-supply = <&vreg_pmu_aon_0p8>;
+> +		vddwlcx-supply = <&vreg_pmu_wlcx_0p8>;
+> +		vddwlmx-supply = <&vreg_pmu_wlmx_0p8>;
+> +		vddpcie1p8-supply = <&vreg_pmu_pcie_1p8>;
+> +		vddpcie0p9-supply = <&vreg_pmu_pcie_0p9>;
+> +		vddrfa0p8-supply = <&vreg_pmu_rfa_0p8>;
+> +		vddrfa1p2-supply = <&vreg_pmu_rfa_1p2>;
+> +		vddrfa1p8-supply = <&vreg_pmu_rfa_1p7>;
+> +
+> +		/*
+> +		 * bus=pci,vendor=17cb,device=1103,subsystem-vendor=17cb,
+> +		 * subsystem-device=0108,qmi-chip-id=18,qmi-board-id=255
+> +		 *
+> +		 * Regenerate board file, x13s one works well
+
+Please post on the ath11k mailing list and propose and ask for
+that variant to be included
+
+Konrad
 
