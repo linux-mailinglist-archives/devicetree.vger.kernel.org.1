@@ -1,81 +1,81 @@
-Return-Path: <devicetree+bounces-190610-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-190612-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6B142AEC32D
-	for <lists+devicetree@lfdr.de>; Sat, 28 Jun 2025 01:42:33 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id DFF67AEC333
+	for <lists+devicetree@lfdr.de>; Sat, 28 Jun 2025 01:42:55 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id C21314A6B8D
-	for <lists+devicetree@lfdr.de>; Fri, 27 Jun 2025 23:42:33 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 45F034A6DC3
+	for <lists+devicetree@lfdr.de>; Fri, 27 Jun 2025 23:42:56 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 464BC299AA4;
-	Fri, 27 Jun 2025 23:41:34 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 54C5F2ED14B;
+	Fri, 27 Jun 2025 23:41:36 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b="BbzEC8gP"
+	dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b="XtRQkJSu"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-oi1-f178.google.com (mail-oi1-f178.google.com [209.85.167.178])
+Received: from mail-oi1-f182.google.com (mail-oi1-f182.google.com [209.85.167.182])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 08DED295528
-	for <devicetree@vger.kernel.org>; Fri, 27 Jun 2025 23:41:31 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.178
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DF6F8299928
+	for <devicetree@vger.kernel.org>; Fri, 27 Jun 2025 23:41:33 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.182
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1751067694; cv=none; b=p/EZX9BzIR8iHGnlgFbHEMYPQkwA3/XiTHklIxMBHQGP4o/GlBMm9bkDbxxpYYaujrHe/s0+LL5WxHMOSDBpQ92/g2WT1mUzNqW+Q8SDKXgk9dotXqfBj7dme2sKJ5T9K2oSmdLmVzMsVXKxMwKG7Yl0hH2AnD5aF/HsI/exmnw=
+	t=1751067696; cv=none; b=n9zsGPLkF6QqfMxbYmcli3Q8U0Ae9KKDaX9zRLJM9c9w0188+b1LMAcF7qnl8WB1bEk1pPUmN4dE9ZW4/g/fT0zeCW0oSDDu9YhbuF0f9gKVhPXgZsUciKf01Q8vGaMvS/XsefP27sTHR4B6jUfmNk1/9z+y0rHkmK7Rg36b4pA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1751067694; c=relaxed/simple;
-	bh=rTMPy0vWx9yUwEty5cvxFd319Z4yZNxLlJgbcACjydc=;
+	s=arc-20240116; t=1751067696; c=relaxed/simple;
+	bh=UWnNQjC9xY1Xwfu0SBlWSeVKesQj5uaRhdQrBvWhhA0=;
 	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=Z4Wze2+UUPHbHmpqOam5OOfVPoFDv0HrrizrpgVvbXYu2FmIIZwtXHYYFsxhyzK+Bg2FsKL04H8p1Uk4I1jEcme83KZHRK73Rs93KSzbKFek3Sk9MtTJHwQMgfj9WTZ09Vdpxs5xm9ScC0U85ggQREuhGHu0UwkWalKwK3l0yJo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com; spf=pass smtp.mailfrom=baylibre.com; dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b=BbzEC8gP; arc=none smtp.client-ip=209.85.167.178
+	 In-Reply-To:To:Cc; b=RfB2d6Z7sJKBOAuKTuVp3r7wCIvId6ADMqFbYqD35CaXDXcCmTI3i+aWhI/vudYk7zimEAuFs8ya6Z4NKa26gkCLFTuCDs34L3DdFQTF/Z9S99yXrlQKqVjk87LifZnLKXYqa1mwyp395SkytYdtgNYDuSpXlY5IXX1/B6ZZJhs=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com; spf=pass smtp.mailfrom=baylibre.com; dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b=XtRQkJSu; arc=none smtp.client-ip=209.85.167.182
 Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=baylibre.com
-Received: by mail-oi1-f178.google.com with SMTP id 5614622812f47-408fa4be483so264338b6e.0
-        for <devicetree@vger.kernel.org>; Fri, 27 Jun 2025 16:41:31 -0700 (PDT)
+Received: by mail-oi1-f182.google.com with SMTP id 5614622812f47-40af40aef06so1886706b6e.3
+        for <devicetree@vger.kernel.org>; Fri, 27 Jun 2025 16:41:33 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1751067691; x=1751672491; darn=vger.kernel.org;
+        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1751067693; x=1751672493; darn=vger.kernel.org;
         h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
          :mime-version:subject:date:from:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=M8Mb5Ax/ZzHIZ0v1JkgbwozpX3DBIbsec6z6Okbm1Lo=;
-        b=BbzEC8gPANpaAn+uSNtPtMD/Pe1+/6msI3iKmX9vRg1JnCKl9MkM9w8V9UMI9+xUXt
-         3QkLrLuLCtHrMuSTgwIDDw+OI6WRS3cISfrj5pPLgbR72NXBap2f3rhISULtHnfyDCsk
-         FOaRaXdaURoQfccJSMDJfdHtg3AmuAJoVLrrxUuVUBbe3enV257D+CKIQzwZlTn/dXZJ
-         ZDNJJ8pNFZafWt+51DujSqe0AYH3loUnxiQnl2hCf80Ft8m6B7JTU6XqEvwtez/g5xA1
-         rhDtMnPcjVMNOMmBuYrc3dV9peVvxc4xrdktXS3DR+yZKcHJYmSFBrVcykCMW8fhLz06
-         2R3w==
+        bh=9iwbNmWnwrhGbfrT7YdfqYIeoba1brn/qJ+hnINiPsI=;
+        b=XtRQkJSusSANrW+LjCncPv0Gb0LGW0zhaGJnAWOt90IEAI2atnCRnSgUy9MqNo9Itk
+         kFB7PvK0Q/NrkKX7APBFNaar42N5Lg1Cv/M5r8PCV1pvrsEFc6R4FReUGWXTS6l/5pp3
+         drp0D/LBtT3kTn/t4pKx234P3gHHcGzqFrpdNkUfVq7m6/PhJZN6MPJg4T/EnhdWsIRh
+         TdGB8K+ZyAxdshhcopfsDtvllpdosOZDE8LJZcHzh3imxWb1R3z+LzI5XE7otQBZA73i
+         D0SdYQ1JVchFNOx0yFA3qyHAkkg3K2EnsGgjUeZlAdCcbK1oVSImUs2zTmpY5nL72WGX
+         1qww==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1751067691; x=1751672491;
+        d=1e100.net; s=20230601; t=1751067693; x=1751672493;
         h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
          :mime-version:subject:date:from:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=M8Mb5Ax/ZzHIZ0v1JkgbwozpX3DBIbsec6z6Okbm1Lo=;
-        b=UxoXGZUHYSEXdKwcaiEzBJWhhdhd6lCJZNlTKJlQ9tkwTsz8VJY31MI64lQbPlCe8A
-         tJxaEQCG7FnXkWuz2xDjdQU9kh01igXKGBjXEuaWfzbPlY/LvZ/k3Jq1KdQVQKbTiJlo
-         JFqu8wMHsCZuKbH2/07TPuPx4mXVbm2GHfQX06Wskf5uOGcmxFExfc5wc5j0zbpUrygp
-         0Bi++2bZyw5BkKIfnLgBsw4FeQvZ8q4SzjTuqNojWp/O1OKAKJYFUlBWszNXIYV3iZ8N
-         NbK3dE6yguLYfRoZI5uzOOevFQFV+TKhG6qM8wdU16t4Eg63LBtWHJa4TPf2nPI9tdw3
-         8NFA==
-X-Forwarded-Encrypted: i=1; AJvYcCUbv1tjLCqyHxRcpXTsOGHev5Ezhqs5ml6dwSbFcYyPpS4s0izlCLql24jjTe2rMTpkqwOlAj0Qf9z0@vger.kernel.org
-X-Gm-Message-State: AOJu0YwOgSogmaSuYtA5PR/8KMkJA8xUe+aLdSdi4aPYVDF7EmCrP9tT
-	N0UOP8Uwg/VK5OOsVogt3jnJkueAGXTt/CajNyn34v4dlNkWE/Z+ap9/4yAIvFOWi7M=
-X-Gm-Gg: ASbGncvzckqpwZ7n+aON1I6MRAjfCV2/si0Cr294/GrxXb+2RT7fr7QpUCypvyA8zol
-	8SLEZtlERNKdmfNreCKU0ijXVXUzijyCuQ4yFlci4EHXyhltURkBQr+VXUcIzb3iiLFzxW+kzE9
-	4/U1eAJ/7y7wyU4ryMToC8R/rVmQmp/w5isF16oimaFdWJFvSgGK9cjpu3wKKcuSbj9j6ldrZvR
-	rA3oW3bpktYQqp4J6XHK7O/A2t46sYi5c+ETa8L3QgvS4pH3W8R7K1a5u28NrMrc3XoS2f1WxUc
-	hZ0J+CiCyhJq3o+AY+WexFsLfBUN0fg1Pc0gBt4XHBHibkKUE91jtgAc38MuYapJfTA=
-X-Google-Smtp-Source: AGHT+IH38PitXxn1VKaiQ2a7qcSfWel57rt41qRDl8nNA2/UdFYx6tdyKS66zYHhzvBf1Y8k36T3ew==
-X-Received: by 2002:a05:6808:2202:b0:3fe:aecb:5c49 with SMTP id 5614622812f47-40b33e324abmr4839837b6e.21.1751067691140;
-        Fri, 27 Jun 2025 16:41:31 -0700 (PDT)
+        bh=9iwbNmWnwrhGbfrT7YdfqYIeoba1brn/qJ+hnINiPsI=;
+        b=lhN1gEeXBL242o+IaNciclQ4mAHFYyOA5eLZq16Jr9UdbbCg/8Lp1suMKeax1yfsMb
+         jZjXx83TUYv1P2uf9zL+4gh0MW9eprO7X9NbwFWl9Ks1x7jZjm4WJwJVCRZU/zXN0zcq
+         J7gB8Sgx6loo/g/j+mbg6kpOfAq9TwWcqu9VbeMCNIyDKQDD9+c4VhEbygriDkl6kJ+7
+         TZZKi7zDf98BiZnpeTBdwesf1LtgvQcPPqE8YX1gVZkHw21uOM4TDc9VFi+lSizBbhfv
+         MXQVlD0Z+3EzfeJT9gdRssKDofk4DqhCitQuCpslnpa/IIiCEGFGh79iIEcqy5R7ZFb2
+         Jasw==
+X-Forwarded-Encrypted: i=1; AJvYcCW905W8lCACfC4EPnDGuYD8RCVtqGMJ2RAFyOYyhyrfRjNXLfyMlPIW0+yLEXQ/8QzJcdzDwX3QW+Lb@vger.kernel.org
+X-Gm-Message-State: AOJu0Yyuz6yMn3BiUdOP/hYnhlW++EtGdL/Hpd5kUpJ1vRfQ81Ny2VeX
+	e1CIB15vDBd5IHEwewHxn/NYaC+MZxBLrgSbpVhNNTLKf8vnkNK8MST3JpoKGUec2Q8=
+X-Gm-Gg: ASbGncupxDKLqZKw8tMzN6OEvJatVmccz4SRHM2ATuxDbLjHF62A0O6i2LS46/WKSwq
+	WfPCM3dYyiQCPpLF8TjpGI2XeIVirf7kIPHGUulQEthygjgx1B7pC1YTBIMAptfV28D9JtJ1UuE
+	3Y4BTiUE70xt4Mpx9gEMT2JKmoJ5AC9vHFezUKVri38VMMP0+GHESRO3TlJ8D/jEBvn3WqOyd6a
+	ktDVSeA1mzKp7NLswU/P8a1zU2ntRXL6B4K9m8w6wITnJZX8KWH0imnCjEp5xhgzLoRa/uB+9oq
+	gicmfLUpHkP+N8ubq3/GO3G+Ax/PZ1UK9FAtLvjVb5Ygg0qHVT9H0f+zD50Jj5qg9PQ=
+X-Google-Smtp-Source: AGHT+IH+448kgf864CgSqLTWJUXw1D/YDaapL6g2xhmRXZborzFLiyfuV3mt5ne9VPRC9riu+hk1fg==
+X-Received: by 2002:a05:6808:2385:b0:3fb:85cc:9f27 with SMTP id 5614622812f47-40b33ac8e41mr4264778b6e.0.1751067692936;
+        Fri, 27 Jun 2025 16:41:32 -0700 (PDT)
 Received: from [127.0.1.1] ([2600:8803:e7e4:1d00:1715:453e:e133:7d6])
-        by smtp.gmail.com with ESMTPSA id 5614622812f47-40b322ae4e9sm568483b6e.17.2025.06.27.16.41.30
+        by smtp.gmail.com with ESMTPSA id 5614622812f47-40b322ae4e9sm568483b6e.17.2025.06.27.16.41.31
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 27 Jun 2025 16:41:30 -0700 (PDT)
+        Fri, 27 Jun 2025 16:41:32 -0700 (PDT)
 From: David Lechner <dlechner@baylibre.com>
-Date: Fri, 27 Jun 2025 18:40:02 -0500
-Subject: [PATCH v2 06/11] iio: adc: ad_sigma_delta: refactor setting read
- address
+Date: Fri, 27 Jun 2025 18:40:03 -0500
+Subject: [PATCH v2 07/11] iio: adc: ad_sigma_delta: use
+ spi_optimize_message()
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -84,7 +84,7 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-Message-Id: <20250627-iio-adc-ad7173-add-spi-offload-support-v2-6-f49c55599113@baylibre.com>
+Message-Id: <20250627-iio-adc-ad7173-add-spi-offload-support-v2-7-f49c55599113@baylibre.com>
 References: <20250627-iio-adc-ad7173-add-spi-offload-support-v2-0-f49c55599113@baylibre.com>
 In-Reply-To: <20250627-iio-adc-ad7173-add-spi-offload-support-v2-0-f49c55599113@baylibre.com>
 To: Michael Hennerich <Michael.Hennerich@analog.com>, 
@@ -97,69 +97,175 @@ Cc: linux-iio@vger.kernel.org, linux-kernel@vger.kernel.org,
  devicetree@vger.kernel.org, linux-spi@vger.kernel.org, 
  David Lechner <dlechner@baylibre.com>
 X-Mailer: b4 0.14.2
-X-Developer-Signature: v=1; a=openpgp-sha256; l=2048; i=dlechner@baylibre.com;
- h=from:subject:message-id; bh=rTMPy0vWx9yUwEty5cvxFd319Z4yZNxLlJgbcACjydc=;
- b=owEBbQGS/pANAwAKAcLMIAH/AY/AAcsmYgBoXyv61Esyd/0HrepT/Mwg/nk56ba6vSv5xUaps
- Fq7m9VtsDmJATMEAAEKAB0WIQTsGNmeYg6D1pzYaJjCzCAB/wGPwAUCaF8r+gAKCRDCzCAB/wGP
- wPZVB/9h/ljBYaDCSu9HP10Y2f/kXGZgaDjCpK470WehwiOXQ6+fXJZGn3lfHprs/kVW4LSUY4v
- t3hjuznSZsVzWzqtuVzpdTG/wbS9c0v8fP2MCq3kVmMQyQARtuiOaj9s39RbqCxnu8sK0Q7vrju
- x0Iq6ADVPBNbV/y/tDP8kUaGEFh4FnjY0bHc/a7+h9NoiPxPwP1CMDArrUlhRtPOFITNWFoBYwF
- Gsuc6wtphoAyoiisbevfXfxsSktzP16TLTLjtQ3HabXD9HiKNp7JXtwDbwPOlfk77i7eelroEJ5
- qioj5543MnqVO4UshP1Pg5xIeThrz3rSwsu6eQYOqqEmv6c0
+X-Developer-Signature: v=1; a=openpgp-sha256; l=5695; i=dlechner@baylibre.com;
+ h=from:subject:message-id; bh=UWnNQjC9xY1Xwfu0SBlWSeVKesQj5uaRhdQrBvWhhA0=;
+ b=owEBbQGS/pANAwAKAcLMIAH/AY/AAcsmYgBoXywBjJObaNHVaWoiK2VxvYxEPhXkdoVtYA3bg
+ od/i5eAfpuJATMEAAEKAB0WIQTsGNmeYg6D1pzYaJjCzCAB/wGPwAUCaF8sAQAKCRDCzCAB/wGP
+ wCiFCACQ6zcWMQqtw6hEuiiyHHeH1+ZeloLoNUEIXcuGbUjkYnHLS0Po1PFxPZ7XFKns/cuunIZ
+ 1PVB5YpfoxEhTc0kOz1Z0tTKK95g1nM7aGWH8Iom//T1fSp5q0gMzgPqmOwxIarH1kU5VX4xr43
+ 97TGyDU526jH7dtBH5Kx0X11iUxXf/dtzyPWmiFTeV5jTxiuOV8EUg+ydanMvAOHiBoHum3Dkor
+ 8TrRBE/gnlWBSz6h2bFPX00inWhEw7uQ5VsKxgZmyQnf9kPhF7SvmOLEtGRcw2OU6LeLgE5Y9Z3
+ CILib2nqlXiGfGlHyWQYYsrL3+i5ooubCUePwDrRv6KILtfq
 X-Developer-Key: i=dlechner@baylibre.com; a=openpgp;
  fpr=8A73D82A6A1F509907F373881F8AF88C82F77C03
 
-Refactor code to set the read address in a separate function.
+Use spi_optimize_message() to improve the performance of buffered reads.
 
-This code is already duplicated twice and we will need to use it a third
-time in a later commit.
+By setting up the SPI message and pre-optimizing it in the buffer
+postenable callback, we can reduce overhead during each sample read.
+
+A rough estimate shows that this reduced the CPU usage of the interrupt
+handler thread from 22% to 16% using an EVAL-AD4112ARDZ board on a
+DE10-Nano (measuring a single channel at the default 6.2 kHz sample
+rate).
 
 Signed-off-by: David Lechner <dlechner@baylibre.com>
 ---
- drivers/iio/adc/ad_sigma_delta.c | 16 ++++++++++------
- 1 file changed, 10 insertions(+), 6 deletions(-)
+ drivers/iio/adc/ad_sigma_delta.c       | 72 ++++++++++++++++------------------
+ include/linux/iio/adc/ad_sigma_delta.h |  3 ++
+ 2 files changed, 37 insertions(+), 38 deletions(-)
 
 diff --git a/drivers/iio/adc/ad_sigma_delta.c b/drivers/iio/adc/ad_sigma_delta.c
-index ab34ff5e09146535fd6edbd288888c3afb0188a7..d8101f5d443f957a398e66db1dad0d1f73c16078 100644
+index d8101f5d443f957a398e66db1dad0d1f73c16078..30ae7ef6d3f9f686b02176508813c689e6fb92f2 100644
 --- a/drivers/iio/adc/ad_sigma_delta.c
 +++ b/drivers/iio/adc/ad_sigma_delta.c
-@@ -107,6 +107,14 @@ int ad_sd_write_reg(struct ad_sigma_delta *sigma_delta, unsigned int reg,
- }
- EXPORT_SYMBOL_NS_GPL(ad_sd_write_reg, "IIO_AD_SIGMA_DELTA");
- 
-+static void ad_sd_set_read_reg_addr(struct ad_sigma_delta *sigma_delta, u8 reg,
-+				    u8 *data)
-+{
-+	data[0] = reg << sigma_delta->info->addr_shift;
-+	data[0] |= sigma_delta->info->read_mask;
-+	data[0] |= sigma_delta->comm;
-+}
-+
- static int ad_sd_read_reg_raw(struct ad_sigma_delta *sigma_delta,
- 			      unsigned int reg, unsigned int size, u8 *val)
+@@ -466,8 +466,9 @@ static int ad_sd_buffer_postenable(struct iio_dev *indio_dev)
  {
-@@ -127,9 +135,7 @@ static int ad_sd_read_reg_raw(struct ad_sigma_delta *sigma_delta,
- 	spi_message_init(&m);
+ 	struct ad_sigma_delta *sigma_delta = iio_device_get_drvdata(indio_dev);
+ 	const struct iio_scan_type *scan_type = &indio_dev->channels[0].scan_type;
++	struct spi_transfer *xfer = sigma_delta->sample_xfer;
+ 	unsigned int i, slot, samples_buf_size;
+-	unsigned int channel;
++	unsigned int channel, scan_size;
+ 	u8 *samples_buf;
+ 	int ret;
  
- 	if (sigma_delta->info->has_registers) {
--		data[0] = reg << sigma_delta->info->addr_shift;
--		data[0] |= sigma_delta->info->read_mask;
--		data[0] |= sigma_delta->comm;
-+		ad_sd_set_read_reg_addr(sigma_delta, reg, data);
- 		spi_message_add_tail(&t[0], &m);
- 	}
- 	spi_message_add_tail(&t[1], &m);
-@@ -288,9 +294,7 @@ static int ad_sigma_delta_clear_pending_event(struct ad_sigma_delta *sigma_delta
- 	if (sigma_delta->info->has_registers) {
- 		unsigned int data_reg = sigma_delta->info->data_reg ?: AD_SD_REG_DATA;
+@@ -509,6 +510,28 @@ static int ad_sd_buffer_postenable(struct iio_dev *indio_dev)
+ 		return -ENOMEM;
  
--		data[0] = data_reg << sigma_delta->info->addr_shift;
--		data[0] |= sigma_delta->info->read_mask;
--		data[0] |= sigma_delta->comm;
-+		ad_sd_set_read_reg_addr(sigma_delta, data_reg, data);
- 		t[0].tx_buf = data;
- 		spi_message_add_tail(&t[0], &m);
- 	}
+ 	sigma_delta->samples_buf = samples_buf;
++	scan_size = BITS_TO_BYTES(scan_type->realbits + scan_type->shift);
++	/* For 24-bit data, there is an extra byte of padding. */
++	xfer[1].rx_buf = &sigma_delta->rx_buf[scan_size == 3 ? 1 : 0];
++	xfer[1].len = scan_size + (sigma_delta->status_appended ? 1 : 0);
++	xfer[1].cs_change = 1;
++
++	if (sigma_delta->info->has_registers) {
++		xfer[0].tx_buf = &sigma_delta->sample_addr;
++		xfer[0].len = 1;
++
++		ad_sd_set_read_reg_addr(sigma_delta,
++					sigma_delta->info->data_reg ?: AD_SD_REG_DATA,
++					&sigma_delta->sample_addr);
++		spi_message_init_with_transfers(&sigma_delta->sample_msg, xfer, 2);
++	} else {
++		spi_message_init_with_transfers(&sigma_delta->sample_msg,
++						&xfer[1], 1);
++	}
++
++	ret = spi_optimize_message(sigma_delta->spi, &sigma_delta->sample_msg);
++	if (ret)
++		return ret;
+ 
+ 	spi_bus_lock(sigma_delta->spi->controller);
+ 	sigma_delta->bus_locked = true;
+@@ -528,6 +551,7 @@ static int ad_sd_buffer_postenable(struct iio_dev *indio_dev)
+ 
+ err_unlock:
+ 	spi_bus_unlock(sigma_delta->spi->controller);
++	spi_unoptimize_message(&sigma_delta->sample_msg);
+ 
+ 	return ret;
+ }
+@@ -549,7 +573,10 @@ static int ad_sd_buffer_postdisable(struct iio_dev *indio_dev)
+ 
+ 	ad_sigma_delta_disable_all(sigma_delta);
+ 	sigma_delta->bus_locked = false;
+-	return spi_bus_unlock(sigma_delta->spi->controller);
++	spi_bus_unlock(sigma_delta->spi->controller);
++	spi_unoptimize_message(&sigma_delta->sample_msg);
++
++	return 0;
+ }
+ 
+ static irqreturn_t ad_sd_trigger_handler(int irq, void *p)
+@@ -559,50 +586,19 @@ static irqreturn_t ad_sd_trigger_handler(int irq, void *p)
+ 	const struct iio_scan_type *scan_type = &indio_dev->channels[0].scan_type;
+ 	struct ad_sigma_delta *sigma_delta = iio_device_get_drvdata(indio_dev);
+ 	u8 *data = sigma_delta->rx_buf;
+-	unsigned int transfer_size;
+ 	unsigned int sample_size;
+ 	unsigned int sample_pos;
+ 	unsigned int status_pos;
+ 	unsigned int reg_size;
+-	unsigned int data_reg;
++	int ret;
+ 
+ 	reg_size = BITS_TO_BYTES(scan_type->realbits + scan_type->shift);
++	/* For 24-bit data, there is an extra byte of padding. */
++	status_pos = reg_size + (reg_size == 3 ? 1 : 0);
+ 
+-	if (sigma_delta->info->data_reg != 0)
+-		data_reg = sigma_delta->info->data_reg;
+-	else
+-		data_reg = AD_SD_REG_DATA;
+-
+-	/* Status word will be appended to the sample during transfer */
+-	if (sigma_delta->status_appended)
+-		transfer_size = reg_size + 1;
+-	else
+-		transfer_size = reg_size;
+-
+-	switch (reg_size) {
+-	case 4:
+-	case 2:
+-	case 1:
+-		status_pos = reg_size;
+-		ad_sd_read_reg_raw(sigma_delta, data_reg, transfer_size, &data[0]);
+-		break;
+-	case 3:
+-		/*
+-		 * Data array after transfer will look like (if status is appended):
+-		 * data[] = { [0][sample][sample][sample][status] }
+-		 * Keeping the first byte 0 shifts the status position by 1 byte to the right.
+-		 */
+-		status_pos = reg_size + 1;
+-
+-		/* We store 24 bit samples in a 32 bit word. Keep the upper
+-		 * byte set to zero. */
+-		ad_sd_read_reg_raw(sigma_delta, data_reg, transfer_size, &data[1]);
+-		break;
+-
+-	default:
+-		dev_err_ratelimited(&indio_dev->dev, "Unsupported reg_size: %u\n", reg_size);
++	ret = spi_sync_locked(sigma_delta->spi, &sigma_delta->sample_msg);
++	if (ret)
+ 		goto irq_handled;
+-	}
+ 
+ 	/*
+ 	 * For devices sampling only one channel at
+diff --git a/include/linux/iio/adc/ad_sigma_delta.h b/include/linux/iio/adc/ad_sigma_delta.h
+index 5056677c9941afadc2383febbcafeb02e23a4f44..2037bb68b44115681ff48f66b580b63f50c2ea9e 100644
+--- a/include/linux/iio/adc/ad_sigma_delta.h
++++ b/include/linux/iio/adc/ad_sigma_delta.h
+@@ -105,6 +105,8 @@ struct ad_sigma_delta {
+ 	bool			status_appended;
+ 	/* map slots to channels in order to know what to expect from devices */
+ 	unsigned int		*slots;
++	struct spi_message	sample_msg;
++	struct spi_transfer	sample_xfer[2];
+ 	u8			*samples_buf;
+ 
+ 	/*
+@@ -116,6 +118,7 @@ struct ad_sigma_delta {
+ 	 */
+ 	u8				tx_buf[4] __aligned(IIO_DMA_MINALIGN);
+ 	u8				rx_buf[16] __aligned(8);
++	u8				sample_addr;
+ };
+ 
+ static inline int ad_sigma_delta_set_channel(struct ad_sigma_delta *sd,
 
 -- 
 2.43.0
