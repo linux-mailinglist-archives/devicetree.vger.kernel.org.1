@@ -1,65 +1,60 @@
-Return-Path: <devicetree+bounces-190553-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-190554-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id AC7C9AEC113
-	for <lists+devicetree@lfdr.de>; Fri, 27 Jun 2025 22:37:01 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id E97BFAEC11A
+	for <lists+devicetree@lfdr.de>; Fri, 27 Jun 2025 22:38:13 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 05CD43BFBB7
-	for <lists+devicetree@lfdr.de>; Fri, 27 Jun 2025 20:36:36 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 789D11C6336E
+	for <lists+devicetree@lfdr.de>; Fri, 27 Jun 2025 20:38:29 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3923922B8C2;
-	Fri, 27 Jun 2025 20:36:57 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C23DD2309B9;
+	Fri, 27 Jun 2025 20:38:09 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="oQRo5Qdn"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="SKIP1j95"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 084CD171092;
-	Fri, 27 Jun 2025 20:36:56 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9A9C922B8C2;
+	Fri, 27 Jun 2025 20:38:09 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1751056617; cv=none; b=E7vEB2CViaUGG008OJPd7DVEtvmfBs+cVms/2LqHqQ2yAIMNXWW4sYIuEGomXnN7guXG6miqrKxBHNybrBShYckzPQjXa++iRCI5ZFCYJEUkAMqi/KVmopvNp3H99lpK5p1FlwO1hQaTf+aUPiFXuxlL8K6Gzsgsjm4Z3goohgA=
+	t=1751056689; cv=none; b=TWeYmRV5dtnmOblcpmHeCv6nEc5wSs/rOKuBmMCEyADZ3gHFjZEcAnCWXXozi5vD9ixc3FRof2LvocFoiEjKrWxukLdvNY5uKnklmqPjTiXOnZKH+95Y11eM5R/TIw4DRTzYXEHySLuVVLRXvM7liYs2KTQ1BiPn/4907mC+KYI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1751056617; c=relaxed/simple;
-	bh=qxYr4GkNyEMz/Smdf4p2vqNgb00Iz+tup5dPkYdZ95Y=;
+	s=arc-20240116; t=1751056689; c=relaxed/simple;
+	bh=VLsRMIIbHkcIiBubCm2O/Vz1rQK6YmG+Kz4kjvRqN0Y=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=VdNZpP+s7n/UoOcKLdz34ECQR452xaazRmwopKG61CKOPGIRslKLH6uWwct4KPmir8KliIU40SFggIzcno6E2R7g/XRh5Rtc9EBzImCJZsHs5/WASeDjUaRg+rcET1Q8h6hBx+rYzLWJ20hRY8OB4mMLFf65wu/ZuHF/NiIUiD0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=oQRo5Qdn; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 6C2C8C4CEE3;
-	Fri, 27 Jun 2025 20:36:56 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=MDDuiDgricr8eIlirVpu/7znHg1KM7yVRPPVyAdDxLtij1KvSRuAgdQzZL7vOAy8wM4/6+VSfOzxaFdkheW0ZHpfeemeHGaBCbfVg1x8r3XUu9fSyAdWebK9nRkOmnrLHS1pKcNBz4yyS5bxcmKlHQFC3x2duHVOjHpPk+CtDpo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=SKIP1j95; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 0E939C4CEE3;
+	Fri, 27 Jun 2025 20:38:09 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1751056616;
-	bh=qxYr4GkNyEMz/Smdf4p2vqNgb00Iz+tup5dPkYdZ95Y=;
+	s=k20201202; t=1751056689;
+	bh=VLsRMIIbHkcIiBubCm2O/Vz1rQK6YmG+Kz4kjvRqN0Y=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=oQRo5QdnBY2LfNw9m8t4c7E2pOB2VALFmeeE2/SBnAW4thoTdzwmuSVIfOPXSceiQ
-	 PfX6LwXLORBNJkv2d0lB2vGOHVvvx+f91KU8dipL2lyWUBqtCie+UCgLVsLoGp+B+n
-	 u4Wp1O9rhMoK7iG/JC/X4aL8Ui8pUOoAXyTMccJHDqmiuzV7lOGS/JnpivCYN/Cgvb
-	 7y4my/H+7D98BzKqa6Fer3BsSq87Q9kY8RghRVdwFMrqrZUY0cJjqdTFbEHkPtZc+f
-	 Z4G+nkaSQMZ/VPvKP0adoBetL5feHcynIP5eQ7dHOVr9Rs22S6K4zd6zt6ICHfIrDx
-	 zgFkLy1A+lJWg==
-Date: Fri, 27 Jun 2025 15:36:55 -0500
+	b=SKIP1j956FjIIkOUncDjuT3hx0qNF41n5qrEKUpQVoCNQRT14I/QbIlMbuZZRzQGE
+	 WRfRw3pNyPaFk74ZWQQM+CoP2UfMaiaJxc0Uyeqg19H/+YLzoqG40oymmerNEAJ0VY
+	 qboL7vpIkacDV4GZNNg6iHvYpUYVYF/Q8hZjod64XS+BVejhySidY9eGsksc16/3r4
+	 M0DLJZq5KxPIpXd2jPoPI9kzHAhW8/pPbYBZxtU1xNp5B73qdmGg3FEeGoUhf8gDda
+	 uDGZujIMvAzm2buJq7BAJQIUf8rjlBKhV7Xgeo5j/CxSGy5uFMatAKJql1NZINKjSI
+	 Hf1MqS/pHZYkw==
+Date: Fri, 27 Jun 2025 15:38:08 -0500
 From: "Rob Herring (Arm)" <robh@kernel.org>
-To: wenswang@yeah.net
-Cc: corbet@lwn.net, cedricjustine.encarnacion@analog.com,
-	johnerasmusmari.geronimo@analog.com, leo.yang.sy0@gmail.com,
-	linux@weissschuh.net, naresh.solanki@9elements.com,
-	festevam@gmail.com, rodrigo.gobbi.7@gmail.com,
-	linux-kernel@vger.kernel.org, linux-doc@vger.kernel.org,
-	xzeol@yahoo.com, jbrunet@baylibre.com,
-	laurent.pinchart@ideasonboard.com, linux-hwmon@vger.kernel.org,
-	Mariel.Tinaco@analog.com, grantpeltier93@gmail.com,
-	ninad@linux.ibm.com, michal.simek@amd.com, conor+dt@kernel.org,
-	kimseer.paller@analog.com, nuno.sa@analog.com,
-	Jonathan.Cameron@huawei.com, devicetree@vger.kernel.org,
-	krzk+dt@kernel.org, linux@roeck-us.net, jdelvare@suse.com
-Subject: Re: [PATCH 1/4] dt-bindings: hwmon: Add MPS mp2869 series
-Message-ID: <175105661522.41086.17889038565748312846.robh@kernel.org>
-References: <20250625065956.964759-1-wenswang@yeah.net>
- <20250625070338.965168-1-wenswang@yeah.net>
+To: Fred Chen <fredchen.openbmc@gmail.com>
+Cc: Krzysztof Kozlowski <krzk+dt@kernel.org>, Joel Stanley <joel@jms.id.au>,
+	devicetree@vger.kernel.org, linux-aspeed@lists.ozlabs.org,
+	linux-arm-kernel@lists.infradead.org,
+	Conor Dooley <conor+dt@kernel.org>,
+	Andrew Jeffery <andrew@codeconstruct.com.au>,
+	linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v2 1/2] dt-bindings: arm: aspeed: add Meta Santabarbara
+ board
+Message-ID: <175105668797.42558.2699449089558464482.robh@kernel.org>
+References: <20250625073847.4054971-1-fredchen.openbmc@gmail.com>
+ <20250625073847.4054971-2-fredchen.openbmc@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -68,18 +63,16 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20250625070338.965168-1-wenswang@yeah.net>
+In-Reply-To: <20250625073847.4054971-2-fredchen.openbmc@gmail.com>
 
 
-On Wed, 25 Jun 2025 15:03:35 +0800, wenswang@yeah.net wrote:
-> From: Wensheng Wang <wenswang@yeah.net>
+On Wed, 25 Jun 2025 15:38:37 +0800, Fred Chen wrote:
+> Document the new compatibles used on Facebook Santabarbara.
 > 
-> Add support for MPS mp2869 series controller
-> 
-> Signed-off-by: Wensheng Wang <wenswang@yeah.net>
+> Signed-off-by: Fred Chen <fredchen.openbmc@gmail.com>
 > ---
->  Documentation/devicetree/bindings/trivial-devices.yaml | 8 ++++++++
->  1 file changed, 8 insertions(+)
+>  Documentation/devicetree/bindings/arm/aspeed/aspeed.yaml | 1 +
+>  1 file changed, 1 insertion(+)
 > 
 
 Acked-by: Rob Herring (Arm) <robh@kernel.org>
