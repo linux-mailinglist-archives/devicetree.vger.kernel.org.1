@@ -1,48 +1,48 @@
-Return-Path: <devicetree+bounces-190403-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-190404-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 36892AEBA46
-	for <lists+devicetree@lfdr.de>; Fri, 27 Jun 2025 16:47:29 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id A8BC5AEBA55
+	for <lists+devicetree@lfdr.de>; Fri, 27 Jun 2025 16:50:05 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 7D8623B965C
-	for <lists+devicetree@lfdr.de>; Fri, 27 Jun 2025 14:47:03 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id C80C018908A7
+	for <lists+devicetree@lfdr.de>; Fri, 27 Jun 2025 14:49:47 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4012D2E1C78;
-	Fri, 27 Jun 2025 14:47:26 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 330A52E718E;
+	Fri, 27 Jun 2025 14:49:27 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Y9csjxZp"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="RPomRV2F"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 11037156F3C;
-	Fri, 27 Jun 2025 14:47:25 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 09DAC27FB31;
+	Fri, 27 Jun 2025 14:49:26 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1751035646; cv=none; b=skKcTNThH0tcejGy5JiiCUuNCZxN6FmQGCoC8Hg3KA9rVJB9MEL4G/s4zlVtq1YJPkQeTdUadN2kV1WD8lXvNh/kaZAY/ygdJ9ce+t6wPTmUplVCP9bJaN7CTTF+AhrKdtKLpmrDjFbTo2c8vwbpawnxq2qdcmm6tDD7YRHKbSI=
+	t=1751035767; cv=none; b=XdDE/qBiQEZC0OHKmhZEuL4MYtOe9LE8tw5uIvAtbKi9eBUDylsP7ppk+bmNzQNeuFgg92w1bXhEAxfwieCSYcWbvSV2euIn8DPfebvnSJtUbopiSSgCzeHUiAYwZ14bnIrui7RjKXjIhiaR2wmDUT48I55XdRQDCEuW635Wvno=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1751035646; c=relaxed/simple;
-	bh=zJy8DXqoG6CILsDNc8bv2NztRVduZLB9R1XokmiByWQ=;
+	s=arc-20240116; t=1751035767; c=relaxed/simple;
+	bh=7w6aib36RD+Q4FxhteWwo/GmIX4Y6wvc3f/T7vDzvwk=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=hCIvaCbIC7TMuYK/8Us3b2cCjBA+yZ/U8U9HYtr0H/GPAQzV40MASjdBzAsIGkdL64mTUSN3H4R2FOJbZHXugpwMGQk4efXleKZz6UYND8TyNdafXoCjcOtpbwRKDRfI8YmOFtbJpRbiy+8sobeGq/7x5jaeFs9HOOL8MmY8MvA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Y9csjxZp; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 40526C4CEE3;
-	Fri, 27 Jun 2025 14:47:18 +0000 (UTC)
+	 In-Reply-To:Content-Type; b=MkbKWzYZNwlZTZ2JzCBypGkmKsSa4GeMbuYNkZ/iN1OtPzGx0qQt0QdX/jqo9f1IFM2/pXuz6mLVxVUoCDOyHzqgiQuCwtcnKdQlM19QjiLWnj+cyoWlaAUHuS1UT/b7PUISBkdsTtySwMSKz0UDRfJJO932WLW6z0w/MznYUpI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=RPomRV2F; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id A77CDC4CEE3;
+	Fri, 27 Jun 2025 14:49:22 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1751035645;
-	bh=zJy8DXqoG6CILsDNc8bv2NztRVduZLB9R1XokmiByWQ=;
+	s=k20201202; t=1751035766;
+	bh=7w6aib36RD+Q4FxhteWwo/GmIX4Y6wvc3f/T7vDzvwk=;
 	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=Y9csjxZpH2hosPAAFRJYXHijHz+wX46Xoke9TVNos6FXsV0RQXVqw1Om2hg68wMTl
-	 2H3Vsyl/idFNtQHRTuJbyX05u5aHXhxk4lBBPeC0X4X6TVX3jsEqrMyV1HG0RK6l49
-	 0z6IUaF2skpKNMjWbg7KVWBoQeK7m3f9id3CoEdwxzKZ3ZWlruj1MqqM++vH9VtnMG
-	 XImCYeqcqK3ZII+ZAj7rVjZ0k80ZbKoXWZfbaRY+Gid0yES7zzeJUcwvdZ/jj4vYew
-	 JrmIbGUEb4ognv81dc2CK4QaccxOq9CIW4KTRGUbKV4dYH8rc09vX6Qrdf1M2QXvX7
-	 ZysPukc7DN1MQ==
-Message-ID: <06178661-5665-4b9d-8652-de12c2a55f94@kernel.org>
-Date: Fri, 27 Jun 2025 16:47:16 +0200
+	b=RPomRV2FqQp+leYnc9kJdzq/gYpnJjPNvCAEJOsYnQmVifbJ0CL+KBSCcJj5nPo/h
+	 0WPtLVOgx5SH5+zt7Bpx63rhN0tW26y/ePWbOSqkT3GtICA//RdkuC1sHID00zwVnH
+	 mh7MIExYeWhtnwKckT8dSKf1+bMYffaUSx/Qv1Nqzi44UJBKEKCq22nHAlLQEzpnmE
+	 b3sI+ZjhpVer1ZS/6fSDzagnXlxKSfinTvlrjQOLgUke4vzepNdKLyNQpQEcPtxsB2
+	 MV0EnPR6gm76elp1gKMgLtG9/4iIN8BsvTTFIvmrTmYyzj7NcyvAnKJgKoYWrvOXH2
+	 IwAy4hxvSedSQ==
+Message-ID: <41782ded-908b-46ef-8f75-4d2565476b7c@kernel.org>
+Date: Fri, 27 Jun 2025 16:49:19 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,21 +50,18 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v5 2/2] ARM: dts: aspeed: clemente: add Meta Clemente BMC
-To: Leo Wang <leo.jt.wang@gmail.com>, Rob Herring <robh@kernel.org>,
+Subject: Re: [PATCH v4 1/2] dt-bindings: i3c: Add adi-i3c-master
+To: Jorge Marques <gastmaier@gmail.com>
+Cc: Jorge Marques <jorge.marques@analog.com>,
+ Alexandre Belloni <alexandre.belloni@bootlin.com>,
+ Frank Li <Frank.Li@nxp.com>, Rob Herring <robh@kernel.org>,
  Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Joel Stanley <joel@jms.id.au>,
- Andrew Jeffery <andrew@codeconstruct.com.au>, Kees Cook <kees@kernel.org>,
- Tony Luck <tony.luck@intel.com>, "Guilherme G. Piccoli"
- <gpiccoli@igalia.com>, Geert Uytterhoeven <geert+renesas@glider.be>,
- Magnus Damm <magnus.damm@gmail.com>
-Cc: devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- linux-aspeed@lists.ozlabs.org, linux-kernel@vger.kernel.org,
- linux-hardening@vger.kernel.org, linux-renesas-soc@vger.kernel.org,
- bruce.jy.hung@fii-foxconn.com, george.kw.lee@fii-foxconn.com,
- Leo Wang <leo.jt.wang@fii-foxconn.com>
-References: <20250627-add-support-for-meta-clemente-bmc-v5-0-038ed6f1cb9f@fii-foxconn.com>
- <20250627-add-support-for-meta-clemente-bmc-v5-2-038ed6f1cb9f@fii-foxconn.com>
+ <conor+dt@kernel.org>, linux-i3c@lists.infradead.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+References: <20250626-adi-i3c-master-v4-0-3846a1f66d5e@analog.com>
+ <20250626-adi-i3c-master-v4-1-3846a1f66d5e@analog.com>
+ <20250627-steadfast-ferret-of-expertise-5c8ff2@krzk-bin>
+ <tl5fckhrivaqfyzwyb2o2a7gykpigwend7z2nduqgbbej3hqbs@vxxtsadhtdmt>
 From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
@@ -110,18 +107,45 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  jWt87ecuHlpL3uuQ0ZZNWqHgZoQLXoqC2ZV5KrtKWb/jyiFX/sxSrodALf0zf+tfHv0FZWT2
  zHjUqd0t4njD/UOsuIMOQn4Ig0SdivYPfZukb5cdasKJukG1NOpbW7yRNivaCnfZz6dTawXw
  XRIV/KDsHQiyVxKvN73bThKhONkcX2LWuD928tAR6XMM2G5ovxLe09vuOzzfTWQDsm++9UKF a/A=
-In-Reply-To: <20250627-add-support-for-meta-clemente-bmc-v5-2-038ed6f1cb9f@fii-foxconn.com>
+In-Reply-To: <tl5fckhrivaqfyzwyb2o2a7gykpigwend7z2nduqgbbej3hqbs@vxxtsadhtdmt>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 27/06/2025 09:31, Leo Wang wrote:
-> From: Leo Wang <leo.jt.wang@gmail.com>
+On 27/06/2025 16:38, Jorge Marques wrote:
+> On Fri, Jun 27, 2025 at 08:56:55AM +0200, Krzysztof Kozlowski wrote:
+>> On Thu, Jun 26, 2025 at 12:07:36PM +0200, Jorge Marques wrote:
+>>> Add bindings doc for ADI I3C Controller IP core, a FPGA synthesizable IP
+>>> core that implements the MIPI I3C Basic controller specification.
+>>
+>> How did you resolve my last comment? I don't see any explanation -
+>> neither here nor in the binding description. Binding description is
+>> actually better place, I think now.
+>>
+>> Best regards,
+>> Krzysztof
+>>
 > 
-> Add linux device tree entry for Meta Clemente compute-tray
-> BMC using AST2600 SoC.
+> Hi Krzysztof,
 > 
-> Signed-off-by: Leo Wang <leo.jt.wang@fii-foxconn.com>
-No, still checkpatch issues.
+> I forgot to condense out discussion on v4.
+> What about this binding description:
+> 
+>   description: |
+>     FPGA-based I3C controller designed to interface with I3C and I2C
+>     peripherals, implementing a subset of the I3C-basic specification.
+>     The IP core is tested on arm, microblaze, and arm64 architectures.
+>     It takes one or two clocks, axi and i3c. If only axi is provided,
+>     then there is no clock signal to the i3c input clock pin and axi
+
+This is obvious from the schema, drop.
+
+>     clock drives the whole IP. The compatible is suffixed by 1.00.a
+>     foreseeing future controllers by Analog Devices Inc. and breaking
+>     changes.
+
+I don't understand that. How are you breaking any changes? And how
+1.00.a predicts future? I don't think this reflects previous discussion.
+Why you were asked to go with v1.00.a?
 
 Best regards,
 Krzysztof
