@@ -1,232 +1,204 @@
-Return-Path: <devicetree+bounces-190278-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-190279-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 01828AEB3CF
-	for <lists+devicetree@lfdr.de>; Fri, 27 Jun 2025 12:08:32 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 24EB7AEB430
+	for <lists+devicetree@lfdr.de>; Fri, 27 Jun 2025 12:18:47 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 8387A3A7C71
-	for <lists+devicetree@lfdr.de>; Fri, 27 Jun 2025 10:08:06 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id C5AC07B32F6
+	for <lists+devicetree@lfdr.de>; Fri, 27 Jun 2025 10:13:51 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 475F7296155;
-	Fri, 27 Jun 2025 10:08:30 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 93BCE29A31C;
+	Fri, 27 Jun 2025 10:14:11 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="gcuqosY8"
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="IyM2L3Rw"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-vk1-f169.google.com (mail-vk1-f169.google.com [209.85.221.169])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 82E7026AABA;
-	Fri, 27 Jun 2025 10:08:27 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.169
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D2961299A93;
+	Fri, 27 Jun 2025 10:14:09 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1751018910; cv=none; b=CQEG5getZh7HdLP93dz3VLxjLKjFVvcl8ruw6kPb6Hr4e6W+fxhPMtw+wcLlXBkZ8tWPs2Lwk7Ny8S5HZc3rMoQClI3LbS5LxXPOdvO+boMNOBG9KrBk6aFqCy1UllCn/hhP94Loq1NP7UBVvlzG28jBzxBZxQ5Q7iBkR0y5rcs=
+	t=1751019251; cv=none; b=gIM56plqA5rmfAa+u60tbU0MfKtZTKZk4J8zw6U62BZOYoq2hfzVDu5605uBfimY7HVCIVZ5IKtfF2uGP9l+fVwpJMXK3uwq1OkWBv/bwryMokyzBq/lsrodYsZI1o7ptYQi0joBYMbD+ZHMaUPns0K+F1SRw98WsI6UifrI70c=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1751018910; c=relaxed/simple;
-	bh=FIy0/y/zMlf/GXhAarxtRPGiPVqxkoRF0oTT6TLnBT4=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=IDUzxnhy4q1DCpc4L92as4ir78+J/l7D9bzcMCd7RMPCz+0w30XMJDj96rjBZGrSC9odZ09N6pvnMmD3iBTZdOwtJVQPWeXFqWP2Rm/fxmXIboeZA7CAYaj6Tyr17P9Gm3J3VrZGKY9e+wS2RGMoqkf+E8V3YHTTTsAWALu+mpU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=gcuqosY8; arc=none smtp.client-ip=209.85.221.169
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-vk1-f169.google.com with SMTP id 71dfb90a1353d-5316a5e4c6cso623630e0c.1;
-        Fri, 27 Jun 2025 03:08:27 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1751018906; x=1751623706; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=LKqKeEQIi5rBs6NnW9qgvGwfpsv4wtOKoQMRdiWhtWU=;
-        b=gcuqosY8EZcMopxo70Mxvh/OYMdsg8yZKMTjtnAIzY9LdWcJNpfcD7kwP0byMyn5cq
-         /Tv60UWMvzzag/5eMqmKA/Obxf018213xJmyay5iQwDrLByI9bdIyGvdZij0U1UCXvVC
-         otnvdlcAG6v5+EhilXUPUP6mJx9c9u/JVTSWVEM3c36DS9XxBMdjVEhZyZqau/faihlz
-         XYAEEoZbVn5CDoZL45vBD5qdVaaJLVd2Cn86f77te0JMWal1wMxqpEbV55R6i/IYLCv4
-         pEgH49i5oQT8RihyeNufvYAP62g5FrVTo+78d7koBnyjXpVoxvw/xtmEe8+hKcHTUHNY
-         ea4w==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1751018906; x=1751623706;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=LKqKeEQIi5rBs6NnW9qgvGwfpsv4wtOKoQMRdiWhtWU=;
-        b=qFiS0rHvVNL3C90ckYiEp2ZKcPLJmXx2WewQgUNEQaRYtkV4SSUD388MBK58Mb8Sur
-         BMy7kUXR1W1Ze3oD40Mmkq6FMnr8JbIx1fDWH0yvEEvqt3IS+x62UuG+/k/a1nmP4OSa
-         xXRUXbbAnzZQ7epoixAKT+TpiuE3YL4Z02OvTO3bAMdFjftsiqKQ+rFrTPpoiJOYFkQy
-         JhlIVgrwYrUvg5eeoc8LR6d+qKy2WBTSxWODB7h/ienYN7dLf/5EgpFDEmJgHqahoZjE
-         qgQKO0lPJybfezriF4MBU7I3z50HuVXEnQqPG8e6F2GzFjANk6ian1xme5NkgMN+mQL+
-         prCA==
-X-Forwarded-Encrypted: i=1; AJvYcCUU8E/1dGk7TK1931wq36dsHbA+DmanHiPOgx49N4O4K+JdJsFLKOrbF7V2sOxFF31dT4QfKppyQREAszx3@vger.kernel.org, AJvYcCUZKQP9A4xwYxBaF7Gh9Cjsft2YQlnr8bjboIcb1lT5n6NnbdDpsZtfCwg0mG6Cb6ZV9vgF83I9iTzl@vger.kernel.org, AJvYcCWQvhgGFA9XTU/JM+9v/yRWQWpvoXBV40+67vXH8kbL96YDHi4PW8aSqowAL7iuFcdlxW/KYC/ESLcCl3UQ9eCu0KI=@vger.kernel.org
-X-Gm-Message-State: AOJu0YwpDs9Dv25UEhviPX0+8sRZTUbHEuWLuAl+O5qaPIQ7XrcjbBmm
-	fexXkpNNr5aJijHcdH/Y8uS9dlPvc+Ex0P5Fi5CLYbp8VouBwX7+cN/e2ofCFn7EndJHc9pKUv1
-	asmZGpgcOcgLKLRGGvG9pG5nitTY0HhQ=
-X-Gm-Gg: ASbGncvGks4UXW7F+Vo1/9i90sw9cYmkCEuMLIM93r29hT7mFN5JpluGDf84fImcZK6
-	vLP0hxUdeXKBBFSPahmAFhBqkj9NhtM0X71/vnqlw6XekRAt1ChZ23YirtAi/bizJF5F1BZC5bl
-	o0RHlnTrpOVeH0cDumS94AKKFokCtqoCOojRkDA/RmwA==
-X-Google-Smtp-Source: AGHT+IFJR1ekkTakx7iLzFg2MmwPx3iR2frkf7yCwLG0DMtrwqa0Ef2TsBzcDBBDhQMnhbqRc/4wjrzOgmYP5u2BEfo=
-X-Received: by 2002:a05:6122:201d:b0:529:2644:8c with SMTP id
- 71dfb90a1353d-5330c05f7e3mr1650742e0c.8.1751018906374; Fri, 27 Jun 2025
- 03:08:26 -0700 (PDT)
+	s=arc-20240116; t=1751019251; c=relaxed/simple;
+	bh=8BWuLnGZyNe1IdI4PvN5SHysfziaBNx00RMaZBO2Z64=;
+	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
+	 In-Reply-To:Content-Type; b=m0Vo0XKbBEwNk8JuP88hIYTN5OmcZAsqGx2uXuu0xErfuf8VYvXIH/Dqy65ywLR527K1TfGhYwXs72MdgSJv4dib8KPDA/K9gxmnN7k6cc/Rl05iqVDfoWLzyw/UV0wCK/dh92fvDs0yuSXYP3x8y3CxEnnju0y4Gz8SYai87G4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=IyM2L3Rw; arc=none smtp.client-ip=205.220.168.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
+Received: from pps.filterd (m0279866.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 55R4D2UE027381;
+	Fri, 27 Jun 2025 10:14:00 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	o9gExB8qngC32GYREHosqCK0Ok2ayEYAjcDkJDPTGGs=; b=IyM2L3Rw+7gMNeTt
+	qHyjo+jyAnNc6fn2mSYg+5bnLbUoKABJR3a8/pO9qjLTAr9pLYySYHPZZIi1TJlf
+	92bSO4df5TyRRhrF173AcscW5HcLSNyDXSbk3G2ua+GxQOj16drKfzPTuUJuSYof
+	S+B1yrfzuHqooGfZA6FRucdoefKO+anNGc32H1XgQKaaXKArhx3Z+yZ64ht7BzB3
+	G/RB+HvkTvw/SskE1klXcTHGdxZXCe97E6OoSFwa0odIry5IyBYJZheoyVs3fKOA
+	8GBPpYDBuNfCUOBK34NrJMFUPwYkOPIaF2pzMsVdhVd3PIJNiFjtxHseNSAMFCeY
+	6hfZ2Q==
+Received: from nasanppmta01.qualcomm.com (i-global254.qualcomm.com [199.106.103.254])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 47ec26gu7a-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Fri, 27 Jun 2025 10:14:00 +0000 (GMT)
+Received: from nasanex01b.na.qualcomm.com (nasanex01b.na.qualcomm.com [10.46.141.250])
+	by NASANPPMTA01.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 55RADxfB032595
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Fri, 27 Jun 2025 10:13:59 GMT
+Received: from [10.217.217.109] (10.80.80.8) by nasanex01b.na.qualcomm.com
+ (10.46.141.250) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.9; Fri, 27 Jun
+ 2025 03:13:54 -0700
+Message-ID: <44dddd3f-d2d2-4d4b-831a-21e6d9050445@quicinc.com>
+Date: Fri, 27 Jun 2025 15:43:49 +0530
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20250627-exynos7870-dsim-v2-0-1433b67378d3@disroot.org> <20250627-exynos7870-dsim-v2-1-1433b67378d3@disroot.org>
-In-Reply-To: <20250627-exynos7870-dsim-v2-1-1433b67378d3@disroot.org>
-From: Inki Dae <daeinki@gmail.com>
-Date: Fri, 27 Jun 2025 19:07:47 +0900
-X-Gm-Features: Ac12FXwuq4aPAVgwoZvhR-bhfqA6nFAJEthK_CWI5Sw-XpWQOZJfdg9HyifhjZA
-Message-ID: <CAAQKjZOHUGg8WEZxfhVxrUPS3O68BQJ6=cDnUSk6BomYjuY62Q@mail.gmail.com>
-Subject: Re: [PATCH v2 01/13] drm/bridge: samsung-dsim: separate LINK and DPHY
- status registers
-To: Kaustabh Chakraborty <kauschluss@disroot.org>
-Cc: Jagan Teki <jagan@amarulasolutions.com>, Marek Szyprowski <m.szyprowski@samsung.com>, 
-	Andrzej Hajda <andrzej.hajda@intel.com>, Neil Armstrong <neil.armstrong@linaro.org>, 
-	Robert Foss <rfoss@kernel.org>, Laurent Pinchart <Laurent.pinchart@ideasonboard.com>, 
-	Jonas Karlman <jonas@kwiboo.se>, Jernej Skrabec <jernej.skrabec@gmail.com>, 
-	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, Maxime Ripard <mripard@kernel.org>, 
-	Thomas Zimmermann <tzimmermann@suse.de>, David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>, 
-	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Seung-Woo Kim <sw0312.kim@samsung.com>, Kyungmin Park <kyungmin.park@samsung.com>, 
-	Krzysztof Kozlowski <krzk@kernel.org>, Alim Akhtar <alim.akhtar@samsung.com>, 
-	dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org, 
-	devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
-	linux-samsung-soc@vger.kernel.org
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v10 01/10] clk: qcom: clk-alpha-pll: Add support for
+ dynamic update for slewing PLLs
+To: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
+CC: Bjorn Andersson <andersson@kernel.org>,
+        Michael Turquette
+	<mturquette@baylibre.com>,
+        Stephen Boyd <sboyd@kernel.org>, Rob Herring
+	<robh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley
+	<conor+dt@kernel.org>,
+        Konrad Dybcio <konradybcio@kernel.org>,
+        "Catalin
+ Marinas" <catalin.marinas@arm.com>,
+        Will Deacon <will@kernel.org>, Ajit
+ Pandey <quic_ajipan@quicinc.com>,
+        Imran Shaik <quic_imrashai@quicinc.com>,
+        "Jagadeesh Kona" <quic_jkona@quicinc.com>,
+        <linux-arm-msm@vger.kernel.org>, <linux-clk@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>
+References: <20250625-qcs615-mm-v10-clock-controllers-v10-0-ec48255f90d8@quicinc.com>
+ <20250625-qcs615-mm-v10-clock-controllers-v10-1-ec48255f90d8@quicinc.com>
+ <trwdfk2oz2udtbiqxh3ybuqbvasfqywmqxgi4xyvsknz6svs2r@icpp7snpq6c5>
+Content-Language: en-US
+From: Taniya Das <quic_tdas@quicinc.com>
+In-Reply-To: <trwdfk2oz2udtbiqxh3ybuqbvasfqywmqxgi4xyvsknz6svs2r@icpp7snpq6c5>
 Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-
-2025=EB=85=84 6=EC=9B=94 27=EC=9D=BC (=EA=B8=88) =EC=98=A4=EC=A0=84 4:42, K=
-austabh Chakraborty <kauschluss@disroot.org>=EB=8B=98=EC=9D=B4 =EC=9E=91=EC=
-=84=B1:
->
-> Exynos7870's DSIM has separate registers for LINK and DPHY status. This
-> is in contrast to other devices in the driver which use a single
-> register for both.
->
-> Add their respective entries in the register list. Devices having a
-> single status register have been assigned the same offset for both
-> entries.
->
-> Signed-off-by: Kaustabh Chakraborty <kauschluss@disroot.org>
-> ---
->  drivers/gpu/drm/bridge/samsung-dsim.c | 15 +++++++++------
->  1 file changed, 9 insertions(+), 6 deletions(-)
->
-> diff --git a/drivers/gpu/drm/bridge/samsung-dsim.c b/drivers/gpu/drm/brid=
-ge/samsung-dsim.c
-> index f2f666b27d2d5ec016d7a7f47c87fcdf1377d41a..7fd4c34cdc3170d363942f98f=
-eec048097da3c06 100644
-> --- a/drivers/gpu/drm/bridge/samsung-dsim.c
-> +++ b/drivers/gpu/drm/bridge/samsung-dsim.c
-> @@ -30,7 +30,7 @@
->  /* returns true iff both arguments logically differs */
->  #define NEQV(a, b) (!(a) ^ !(b))
->
-> -/* DSIM_STATUS */
-> +/* DSIM_DPHY_STATUS */
->  #define DSIM_STOP_STATE_DAT(x)         (((x) & 0xf) << 0)
->  #define DSIM_STOP_STATE_CLK            BIT(8)
->  #define DSIM_TX_READY_HS_CLK           BIT(10)
-> @@ -239,7 +239,8 @@ enum samsung_dsim_transfer_type {
->  };
->
->  enum reg_idx {
-> -       DSIM_STATUS_REG,        /* Status register */
-
-According to the datasheets I have, both Exynos5422 and Exynos7420 use
-DSIM_STATUS, while Exynos8890 splits this into DSIM_LINK_STATUS and
-DSIM_PHY_STATUS. It appears that Exynos7870 follows the same approach
-as Exynos8890.
-
-The current modification removes the legacy DSIM_STATUS_REG and adds
-new DSIM_LINK_STATUS_REG and DSIM_DPHY_STATUS_REG. However, this
-change causes the register names used for older SoC versions to differ
-from those in the datasheets, so I think it is better to keep the
-legacy name for backward compatibility.
-
-How about modifying it as follows?
-enum reg_idx {
-    DSIM_STATUS_REG,          /* Status register (legacy) */
-    DSIM_LINK_STATUS_REG,     /* Link status register (Exynos7870, ...) */
-    DSIM_PHY_STATUS_REG,      /* PHY status register (Exynos7870, ...) */
-    ...
-};
-
-static const unsigned int exynos7870_reg_ofs[] =3D {
-    [DSIM_STATUS_REG] =3D 0x00,        /* Legacy compatibility - use
-LINK_STATUS */
-    [DSIM_LINK_STATUS_REG] =3D 0x04,   /* Link status register */
-    [DSIM_PHY_STATUS_REG] =3D 0x08,    /* PHY status register */
-    ...
-};
-
-Additionally, by configuring the hw_type field in the
-samsung_dsim_plat_data structure like you did with the patch[1], you
-can use the appropriate register name for each SoC as shown below:
-if (dsi->plat_data->hw_type =3D=3D DSIM_TYPE_EXYNOS7870)
-    reg =3D samsung_dsim_read(dsi, DSIM_LINK_STATUS_REG);
-else
-    reg =3D samsung_dsim_read(dsi, DSIM_STATUS_REG);
+Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
+ nasanex01b.na.qualcomm.com (10.46.141.250)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwNjI3MDA4MyBTYWx0ZWRfXxDbfDPh9Gw4w
+ QQLNMYHi4qFHyxMn7xxfy4p1gRsc3ksdmHLT5Q9wZ9T1hskLSYVH3MQQyKjicJLi794AVtmBgLv
+ hu/ne5ZPeHGv+1QANVvbly8f5+uvlWTNYL+bIle/9ch6cPyUZY914wgGL11HUgmSHLaxgtpHjDw
+ xwb1QFSlU5BRY59jvoLjyky+I15UAIzNWSZgRqr8zDCn1d/0pKeH6QJv9/ZeKGdVw6Dqi92FvqY
+ NGjd/XIA8HMFqxzEituAcf2jluLbQa5DnhGUhTugtIK6AVFQ6/t0hNCPBXL2KBh2Fp+5DI8AqHl
+ 3jI5FuBvf/3+gXrYOI6wdU7CMiRTcP9ZRFvzLrD4g1Jp8jy6etiMCR4bnGhsWPtIrY/+a1K3BaV
+ 2Hdm3S1PkHAYdumjSSVItsqsOWvc9u++niSgHvxNIfDtNJcI9YBubDPh6AZDL/ZuYFin6Ubf
+X-Authority-Analysis: v=2.4 cv=XPQwSRhE c=1 sm=1 tr=0 ts=685e6ee8 cx=c_pps
+ a=JYp8KDb2vCoCEuGobkYCKw==:117 a=JYp8KDb2vCoCEuGobkYCKw==:17
+ a=GEpy-HfZoHoA:10 a=IkcTkHD0fZMA:10 a=6IFa9wvqVegA:10 a=COk6AnOGAAAA:8
+ a=25x4RPGbu_Wr1P5MSWYA:9 a=QEXdDO2ut3YA:10 a=TjNXssC_j7lpFel5tvFf:22
+X-Proofpoint-GUID: 600Aztl8yIgBolypmsQcXWRCeJsUqr6X
+X-Proofpoint-ORIG-GUID: 600Aztl8yIgBolypmsQcXWRCeJsUqr6X
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1099,Hydra:6.1.7,FMLib:17.12.80.40
+ definitions=2025-06-27_03,2025-06-26_05,2025-03-28_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ lowpriorityscore=0 impostorscore=0 clxscore=1015 suspectscore=0 mlxscore=0
+ spamscore=0 phishscore=0 malwarescore=0 mlxlogscore=999 bulkscore=0
+ priorityscore=1501 adultscore=0 classifier=spam authscore=0 authtc=n/a
+ authcc= route=outbound adjust=0 reason=mlx scancount=1
+ engine=8.19.0-2505280000 definitions=main-2506270083
 
 
-[1] [PATCH v2 12/13] drm/bridge: samsung-dsim: add driver support for
-exynos7870 DSIM bridge
 
-Thanks,
-Inki Dae
+On 6/25/2025 5:17 PM, Dmitry Baryshkov wrote:
+> On Wed, Jun 25, 2025 at 04:13:26PM +0530, Taniya Das wrote:
+>> The alpha PLLs which slew to a new frequency at runtime would require
+>> the PLL to calibrate at the mid point of the VCO. Add the new PLL ops
+>> which can support the slewing of the PLL to a new frequency.
+>>
+>> Reviewed-by: Imran Shaik <quic_imrashai@quicinc.com>
+>> Signed-off-by: Taniya Das <quic_tdas@quicinc.com>
+>> ---
+>>  drivers/clk/qcom/clk-alpha-pll.c | 169 +++++++++++++++++++++++++++++++++++++++
+>>  drivers/clk/qcom/clk-alpha-pll.h |   1 +
+>>  2 files changed, 170 insertions(+)
+>>
+
+>> +	/*
+>> +	 * Dynamic pll update will not support switching frequencies across
+>> +	 * vco ranges. In those cases fall back to normal alpha set rate.
+>> +	 */
+>> +	if (curr_vco->val != vco->val)
+>> +		return clk_alpha_pll_set_rate(hw, rate, parent_rate);
+>> +
+>> +	a <<= ALPHA_REG_BITWIDTH - ALPHA_BITWIDTH;
+>> +
+>> +	regmap_write(pll->clkr.regmap, PLL_L_VAL(pll), l);
+>> +	regmap_write(pll->clkr.regmap, PLL_ALPHA_VAL(pll), lower_32_bits(a));
+>> +	regmap_write(pll->clkr.regmap, PLL_ALPHA_VAL_U(pll), upper_32_bits(a));
+> 
+> We have code that does this in __clk_alpha_pll_set_rate() and now you
+> are adding two more copies. Please extract PLL_L_VAL, PLL_ALPHA_VAL and
+> PLL_USER_CTL / PLL_VCO_MASK into a helper function.
+> 
+
+Dmitry, I was thinking of implementing the following as a reusable
+helper since it can be leveraged by most of the functions. I'd
+appreciate your suggestions or feedback.
+
+static void clk_alpha_pll_update_configs(struct clk_alpha_pll *pll,
+const struct pll_vco *vco, u32 l, u64 a, u32 alpha_width, bool alpha_en)
+{
+	regmap_write(pll->clkr.regmap, PLL_L_VAL(pll), l);
+
+	if (alpha_width > ALPHA_BITWIDTH)
+		a <<= alpha_width - ALPHA_BITWIDTH;
+
+	if (alpha_width > 32)
+		regmap_write(pll->clkr.regmap, PLL_ALPHA_VAL_U(pll), upper_32_bits(a));
+
+	regmap_write(pll->clkr.regmap, PLL_ALPHA_VAL(pll), lower_32_bits(a));
+
+	if (vco) {
+		regmap_update_bits(pll->clkr.regmap, PLL_USER_CTL(pll),
+				   PLL_VCO_MASK << PLL_VCO_SHIFT,
+				   vco->val << PLL_VCO_SHIFT);
+	}
+
+	if (alpha_en)
+		regmap_set_bits(pll->clkr.regmap, PLL_USER_CTL(pll), PLL_ALPHA_EN);
+}
 
 
-> +       DSIM_LINK_STATUS_REG,   /* Link status register */
-> +       DSIM_DPHY_STATUS_REG,   /* D-PHY status register */
->         DSIM_SWRST_REG,         /* Software reset register */
->         DSIM_CLKCTRL_REG,       /* Clock control register */
->         DSIM_TIMEOUT_REG,       /* Time out register */
-> @@ -264,7 +265,8 @@ enum reg_idx {
->  };
->
->  static const unsigned int exynos_reg_ofs[] =3D {
-> -       [DSIM_STATUS_REG] =3D  0x00,
-> +       [DSIM_LINK_STATUS_REG] =3D  0x00,
-> +       [DSIM_DPHY_STATUS_REG] =3D  0x00,
->         [DSIM_SWRST_REG] =3D  0x04,
->         [DSIM_CLKCTRL_REG] =3D  0x08,
->         [DSIM_TIMEOUT_REG] =3D  0x0c,
-> @@ -288,7 +290,8 @@ static const unsigned int exynos_reg_ofs[] =3D {
->  };
->
->  static const unsigned int exynos5433_reg_ofs[] =3D {
-> -       [DSIM_STATUS_REG] =3D 0x04,
-> +       [DSIM_LINK_STATUS_REG] =3D 0x04,
-> +       [DSIM_DPHY_STATUS_REG] =3D 0x04,
->         [DSIM_SWRST_REG] =3D 0x0C,
->         [DSIM_CLKCTRL_REG] =3D 0x10,
->         [DSIM_TIMEOUT_REG] =3D 0x14,
-> @@ -690,7 +693,7 @@ static unsigned long samsung_dsim_set_pll(struct sams=
-ung_dsim *dsi,
->                         dev_err(dsi->dev, "PLL failed to stabilize\n");
->                         return 0;
->                 }
-> -               reg =3D samsung_dsim_read(dsi, DSIM_STATUS_REG);
-> +               reg =3D samsung_dsim_read(dsi, DSIM_LINK_STATUS_REG);
->         } while ((reg & DSIM_PLL_STABLE) =3D=3D 0);
->
->         dsi->hs_clock =3D fout;
-> @@ -966,7 +969,7 @@ static int samsung_dsim_init_link(struct samsung_dsim=
- *dsi)
->                         return -EFAULT;
->                 }
->
-> -               reg =3D samsung_dsim_read(dsi, DSIM_STATUS_REG);
-> +               reg =3D samsung_dsim_read(dsi, DSIM_DPHY_STATUS_REG);
->                 if ((reg & DSIM_STOP_STATE_DAT(lanes_mask))
->                     !=3D DSIM_STOP_STATE_DAT(lanes_mask))
->                         continue;
->
-> --
-> 2.49.0
->
->
+>> +
+>> +	/* Ensure that the write above goes before slewing the PLL */
+>> +	mb();
+>> +
+>> +	if (clk_hw_is_enabled(hw))
+>> +		return clk_alpha_pll_slew_update(pll);
+>> +
+>> +	return 0;
+>> +}
+>> +
+>> +/*
+>> + * Slewing plls should be bought up at frequency which is in the middle of the
+>> + * desired VCO range. So after bringing up the pll at calibration freq, set it
+>> + * back to desired frequency(that was set by previous clk_set_rate).
+
+>>
+> 
+
 
