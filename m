@@ -1,151 +1,142 @@
-Return-Path: <devicetree+bounces-190169-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-190170-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 17447AEAE4D
-	for <lists+devicetree@lfdr.de>; Fri, 27 Jun 2025 07:03:23 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id F1E14AEAE55
+	for <lists+devicetree@lfdr.de>; Fri, 27 Jun 2025 07:08:05 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 08B7A1BC6706
-	for <lists+devicetree@lfdr.de>; Fri, 27 Jun 2025 05:03:39 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 9BB181BC6C9B
+	for <lists+devicetree@lfdr.de>; Fri, 27 Jun 2025 05:08:21 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B226B1DB356;
-	Fri, 27 Jun 2025 05:03:16 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D482C1DEFE8;
+	Fri, 27 Jun 2025 05:07:54 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="jE3vtlam"
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="N8RdC4uU"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ua1-f47.google.com (mail-ua1-f47.google.com [209.85.222.47])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2E68213AA2F;
-	Fri, 27 Jun 2025 05:03:14 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.222.47
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 457A51DE2BF
+	for <devicetree@vger.kernel.org>; Fri, 27 Jun 2025 05:07:52 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1751000596; cv=none; b=ApdMfYtWrg0uEhSY73lHFrxbbhjKa0LZ/cLFctDK61oOiIjvbNh4dTLM3ZAuBG8noFa7scVQp9aI/OB7zAvohp8Tt8dkQDFGZcKW5p08WguQuFtzfb0wJX11+IKS28Wy0GsklynpkJ0GFugbH4FXHA/stRV/wBgrfZWQuf8Pulo=
+	t=1751000874; cv=none; b=R7CnmOz823V0lc86PmoH7CZ6fp4bUFnWMn94qwljBUO4uXlZUH5SxWm4vOZMILJsJGyZ57xSELcW0cXoqamkyyUOf+O/c+wM7dYmqoBnslXPaEGpiB7yUM/18bkuFXUPN4BesLmzzooOdYMI5vZQug+5LHJYq0LpHr5TAQ4pfq4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1751000596; c=relaxed/simple;
-	bh=bCxLgBWa7qh7fI3aJyT2Vs16rxfLHHiT+sd7cIbc8xM=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=dFfq61ZjkdQZZGXhPenNAyKPZNQ+oLDWqWNpyMEviqVX/cexajfyhtOHIPT6FxynFXR9X3lFeDj1l4+dutWRtEdPxyE6xIxs2zE3z/L6nJ/YHBik7G1MSG5xvITKT+hoHMpkio/T4kAJCdvQ9R8SsnZk4dq5jzTQdbuZ8wsMD7k=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=jE3vtlam; arc=none smtp.client-ip=209.85.222.47
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-ua1-f47.google.com with SMTP id a1e0cc1a2514c-88150e9fba7so1048840241.1;
-        Thu, 26 Jun 2025 22:03:14 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1751000594; x=1751605394; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=Sm4hHqZdHlJKjq+/RMjrxVZ+kQH4qjoP0GpZOg4z/2c=;
-        b=jE3vtlamoDFV7/RkgghW2tuSjtPepjWeWJJd9OpGNG9vb6LrqX/ViQcNuxaEhudlgb
-         tD9TIgQoSAwzr2m/a5zmnBkd0lZkqaC6plpK5z1vzzmWdXjWRRtCiG41WbQRbPmY3nTp
-         N90XBMwsxJGNo3rkr0EmO06bFfuPZQaF7zNx1jeWeFWEavRDsi3+Z8gPrrFEIGRNjcJp
-         os3aSghE5+QeP1SkaBL8igLWZBlVIgYRiu9rqV8uqDXRLj6b3/jx5DotMOj8JYqk60ME
-         pNk6b7FbsHJ92fAV0NSRptYhwrJVVfMiPH5he+SMaif4WOS5wam9byzjOKD2kB3gcrWs
-         Cz1g==
+	s=arc-20240116; t=1751000874; c=relaxed/simple;
+	bh=lfx4w5PLHzZtl7g7tKnMoL691KQ07239Cuv6LeDipmA=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=tnLjJB9DcSPA3JnmIuFVubFlPQjDM7HFYXVWm2Tu/qUE2xEj2U16+VnylevX7ytwjLh5rBnmU75IxelP5q7+38tspuo1DA5PBOGqAcyUQ/9ZHkpSuHCNNpCHIuboZ+VzU71tklkIpnb5YOqyrKmi8nyZLekMQruiMQEqo+6GdzI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=N8RdC4uU; arc=none smtp.client-ip=205.220.180.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
+Received: from pps.filterd (m0279870.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 55R4DCPF014518
+	for <devicetree@vger.kernel.org>; Fri, 27 Jun 2025 05:07:52 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	FgNJiyaML1WffY5YxWh2k0JTtZoKYshdhU1UyOu/WNk=; b=N8RdC4uUoPcQYbEH
+	RJ68G/R/v9vvefr/8tzEZueF4Y/33jrudWfm47/MnKeohnUCe7mG1xq1Wk01kydp
+	wBYzZSYLJLKAuEro+dSotPR+zpsJV8cvQNFFRzmdrAyiSaErYw5KfPEWFcubzSuW
+	2520ueZPaBRzOBY9ot8sT0yBuonp+DDPBseCjs1iBfsQwKvyaKG/ILr10QyboaCV
+	mEhvbOnyzeSDtNdP7YoyNy7Ai5iO62K7D3OXL9WIUnOUUkZTv96WUKwKNIDcn+fg
+	45R5b09nK3WokgEAGuerdrTXxO0FNMVCueBbv3WvSEtltQOnTE9Y6lGmRb4RfcTd
+	ikmGeQ==
+Received: from mail-pl1-f199.google.com (mail-pl1-f199.google.com [209.85.214.199])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 47fbm24484-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
+	for <devicetree@vger.kernel.org>; Fri, 27 Jun 2025 05:07:51 +0000 (GMT)
+Received: by mail-pl1-f199.google.com with SMTP id d9443c01a7336-235089528a0so24552725ad.1
+        for <devicetree@vger.kernel.org>; Thu, 26 Jun 2025 22:07:51 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1751000594; x=1751605394;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=Sm4hHqZdHlJKjq+/RMjrxVZ+kQH4qjoP0GpZOg4z/2c=;
-        b=ED58i52qfMiYSQtBkyBvrTzAfwgveGGODBaLu/OrEF7kDYmXwk+sLEKCQAF3Dm/965
-         GzDHK6cwb95WVbF/V6SUUcNItEB+NKvN0HbEEYV/646pY6LotTqRnvDYXLDFMSAiU3sW
-         h0IezKVa8CuLI4b/YZLMIyeMLAHeoB8N0nIzhPMm5yBd5arkPj/7cyKyZT6nbWwuCG9x
-         5ZfkIuHIJ2FkeBR/qycw564xFNi6TsQfuBig++2BkZ4ofpbPtp3F9fpsDETNmcVUiITp
-         s41ehWXiyfCssJRYIEPTlwWLcHECG6twoNr9udPOk619xDIWeooXxYZwvSC8C2xgJy3F
-         7WAg==
-X-Forwarded-Encrypted: i=1; AJvYcCU/Y0Jqu4x6uUPDidKpvr1InYHu1eAji/odweVNWpjlZt1nTvjNtxD/Af5IjI1uLch8NdwToqW1wi0BDHHE@vger.kernel.org, AJvYcCUZl0L2WPA4/mgMdW4ZIq+ideu9KD0iGuOy62zvZrm34qGMOonkKuB62j1H3ixDPrEOz+G+dgzZBgKhOmpw/5yrlvg=@vger.kernel.org, AJvYcCXJ/WUXMUTpWZd5V1Oh86RnFfDdKEJBUJJQbmJX4ibpTcgae+rXbEPauFAUcZQN2bdeRvtfPvNz6EYe@vger.kernel.org
-X-Gm-Message-State: AOJu0Yz7zXzaZ32ezsti6Y8lXfJiAuhqTPFDqsEleJYDtOVzOI+PYYoj
-	wQSLOipS6TlzIsPYn39tZFAvJvqjf80/SIjM9myK9+/XzgtIRKsFO+YmILIPvK2DandgqQwVVLT
-	tZqZpXWwOJiiHY83A+Ux0ov3AC/+A+bI=
-X-Gm-Gg: ASbGncuNHv1osFn77NtPetZvvDQtyQ/Dw1v8O7P5+iIrzJcddIDsKqQskFvnydwh6ru
-	VfXM5buai21WO9FJFmQKFxg8vwQn5WzLRvqVcKG+P9kXOFksT6PXSjx61fW3pJ2oK/oaGeLi9rJ
-	6c976ubKQsBckjb30SpVXIzM4hVf8q+spyC4eIQdcZOtVIY0VCKSij
-X-Google-Smtp-Source: AGHT+IF4cUJtxH83RDJft3O2FqQ5XUKOZe1zx/Bmli/7Ru2jER/I3z6z3oYtVafld19HMBo5LW8Ej/HPfe6pAovzDOo=
-X-Received: by 2002:a05:6102:2ac3:b0:4ec:e1fa:ed7b with SMTP id
- ada2fe7eead31-4ee50a67c4bmr1229948137.9.1751000593950; Thu, 26 Jun 2025
- 22:03:13 -0700 (PDT)
+        d=1e100.net; s=20230601; t=1751000870; x=1751605670;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=FgNJiyaML1WffY5YxWh2k0JTtZoKYshdhU1UyOu/WNk=;
+        b=m5kjeuweF+ybWMDW12mv2e7TCJTsuYy4MEAqKRfND4/cOxUQRK8mEItlON0Ks/hW21
+         A7vu4SuoPpB1DTFFmsDe8hEk2Ywv5Durcn8HwR+zRoNzGKv4hSfOwpRgXTgxlpK1LCHB
+         funD3OCNGSPIjqIX5l5cJ1nUB48u3RqR676Q2c7svhW3R76KqcYP0Winj3H2XrUZAhgx
+         geDu3NdR9fAimm4YOyIalEwF1+z3YG35wg875FyDDjqZDQFSHWBUrSggy6VE7ygNpKKX
+         9SlWoeLTGcPuqwvZQ98aSwBl/JqspVWH4Wa9Hag6a7UgER4o1blPcLOEyeTUWHdmiiVJ
+         krRw==
+X-Forwarded-Encrypted: i=1; AJvYcCWJtD1s4otmaNcP7LLNktMgv0IrfOdlLFFCMl+cTqhax4BuwMMDJJmHYGLs2Ba94BodxFbgQHblTORD@vger.kernel.org
+X-Gm-Message-State: AOJu0Ywx9k1PcevMe/aKuudPrnkuRiJVNW15S3eL++yOqeaQX50Aeet4
+	xNBYmjPKreEFKM7ecODt8lFXK5AiJlhXdn3XekznQ348IYZt+Zsx1razoEAsN3FfPITf4t0rYbf
+	LM7gBAMzKwOnJ+m8qkSHM4Qt0DN/jw4CqmfIcXwh1vToEZig25oLZ6FsF+1/MnczU
+X-Gm-Gg: ASbGncvbV2XxuWUmEM/CWuVRvlPQPJIgxuv9LYPkYr0Afumodd3dlXtpCZRrUtSB+ex
+	f6eej7kJ1yB6/beFXEREwkuN7aUbDImKwkQNAQcDu6VW0eUicMX+VFcNi1AaWczRo05El8DH7bX
+	XuM8IxkW4ORDhHgBrbvJulNTDcN9Kz0IEh1nQW8S8f1ZL5e5G5UMTGrftgnW61XTbNDp+EOj6/U
+	vdvsfH/Kuw/mFJnsf0iwqyGLk/3s61OXl+DiOh5LOOnZ5ldszqOY7bYzd2QeRZr5XNlsuMoPzZ3
+	EYCFgT4wfaooQ8S4jsfC10rvQQWe9F9CZbIg2Ce8an9EHweYdVo9+kM=
+X-Received: by 2002:a17:903:3503:b0:232:609:86c9 with SMTP id d9443c01a7336-238e9e1cbd9mr82900045ad.9.1751000870560;
+        Thu, 26 Jun 2025 22:07:50 -0700 (PDT)
+X-Google-Smtp-Source: AGHT+IFmFFD1sc3TnhJFATkK52HnmEtQ7bQJi41dupwVvYX6GFgmLB8KypB/A+WO5bcGBxSpG+UStw==
+X-Received: by 2002:a17:903:3503:b0:232:609:86c9 with SMTP id d9443c01a7336-238e9e1cbd9mr82899635ad.9.1751000870063;
+        Thu, 26 Jun 2025 22:07:50 -0700 (PDT)
+Received: from [192.168.0.105] ([49.205.254.130])
+        by smtp.gmail.com with ESMTPSA id d9443c01a7336-23acb2e21a7sm7230315ad.4.2025.06.26.22.07.46
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 26 Jun 2025 22:07:49 -0700 (PDT)
+Message-ID: <595e5d07-67d4-4352-81fb-0e5cc9ed0bc5@oss.qualcomm.com>
+Date: Fri, 27 Jun 2025 10:37:45 +0530
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20250627-exynosdrm-decon-v3-0-5b456f88cfea@disroot.org> <20250627-exynosdrm-decon-v3-1-5b456f88cfea@disroot.org>
-In-Reply-To: <20250627-exynosdrm-decon-v3-1-5b456f88cfea@disroot.org>
-From: Inki Dae <daeinki@gmail.com>
-Date: Fri, 27 Jun 2025 14:02:37 +0900
-X-Gm-Features: Ac12FXz2dc5tsxsGmjdAH92okDL5yeiAijcWTCVAjDOYfNAbUY5poc38568eg-s
-Message-ID: <CAAQKjZPAsE8LGE00fWE1aPj03b6tu1rk9ScTDSN+HeKzVXMZvw@mail.gmail.com>
-Subject: Re: [PATCH v3 1/3] dt-bindings: display: samsung,exynos7-decon: add
- properties for iommus and ports
-To: Kaustabh Chakraborty <kauschluss@disroot.org>
-Cc: Seung-Woo Kim <sw0312.kim@samsung.com>, Kyungmin Park <kyungmin.park@samsung.com>, 
-	David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>, 
-	Krzysztof Kozlowski <krzk@kernel.org>, Alim Akhtar <alim.akhtar@samsung.com>, 
-	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, Maxime Ripard <mripard@kernel.org>, 
-	Thomas Zimmermann <tzimmermann@suse.de>, Rob Herring <robh@kernel.org>, Conor Dooley <conor@kernel.org>, 
-	Ajay Kumar <ajaykumar.rs@samsung.com>, Akshu Agrawal <akshua@gmail.com>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	dri-devel@lists.freedesktop.org, linux-arm-kernel@lists.infradead.org, 
-	linux-samsung-soc@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	devicetree@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 1/1] arm64: dts: qcom: qcs615: add missing dt property in
+ QUP SEs
+To: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
+Cc: andersson@kernel.org, konradybcio@kernel.org, robh@kernel.org,
+        krzk+dt@kernel.org, conor+dt@kernel.org, linux-arm-msm@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        quic_msavaliy@quicinc.com, quic_anupkulk@quicinc.com
+References: <20250626102826.3422984-1-viken.dadhaniya@oss.qualcomm.com>
+ <x3cmdir4lotf3yekbu3tsmts6idsvwygrp35opszmgabhpvdda@nlwrs5qojcml>
+Content-Language: en-US
+From: Viken Dadhaniya <viken.dadhaniya@oss.qualcomm.com>
+In-Reply-To: <x3cmdir4lotf3yekbu3tsmts6idsvwygrp35opszmgabhpvdda@nlwrs5qojcml>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Authority-Analysis: v=2.4 cv=YYu95xRf c=1 sm=1 tr=0 ts=685e2728 cx=c_pps
+ a=JL+w9abYAAE89/QcEU+0QA==:117 a=gik7yjij9jROcwxpePOrKg==:17
+ a=IkcTkHD0fZMA:10 a=6IFa9wvqVegA:10 a=EUspDBNiAAAA:8 a=uL1e5Wp_dwoLeR8WhnsA:9
+ a=QEXdDO2ut3YA:10 a=324X-CrmTo6CU4MGRt3R:22
+X-Proofpoint-GUID: wiiTNQf0kKRckoyGkwaQhIajmuKI6Ddx
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwNjI3MDAzOCBTYWx0ZWRfX9FLP1V+zavp4
+ PqwbEq6+yw1v75A+bGYVfxHIEq0ZOgX3aKPNYJ7ZzzhgxDkltZI8xYcbeA2emdjVNrRByrTKdOr
+ PdWwVaI+Y9lg8j6+1xPGzBfSV3Qfb+F5JKIoG1rLItul0wNMKjH1I6npY3sCWuE+BNWaI9Oq0w2
+ XrmjDa8vtxhGsm4+m1qxYkSxqoj8/0RNUKfUJImH/kEhhotU+7Kyc3ijBlRyup+plT3N0z5DHRs
+ OT+F+cauVjWoDABjMKPsR42T1wUTiuTJImwW3n4YQQzgDCjJxX2y/96uZQiHgX+xmuQSuVqNI0r
+ lo/bqe49f5e8yBtQUhh3WH13Bn16IAXF6cMJ/HlC7T2sDy1zmxXJHPUCouPyyUhrZ8WV1KMA5uV
+ qgxJwU2Nwvo8javoHO2wVByw9Lq4pqc+WzfEBk9OzpiF8bfu1bWEFJ/7787eAc9qUfHejuWH
+X-Proofpoint-ORIG-GUID: wiiTNQf0kKRckoyGkwaQhIajmuKI6Ddx
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1099,Hydra:6.1.7,FMLib:17.12.80.40
+ definitions=2025-06-27_01,2025-06-26_05,2025-03-28_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ malwarescore=0 adultscore=0 spamscore=0 impostorscore=0 suspectscore=0
+ lowpriorityscore=0 priorityscore=1501 phishscore=0 mlxlogscore=615
+ clxscore=1015 mlxscore=0 bulkscore=0 classifier=spam authscore=0 authtc=n/a
+ authcc= route=outbound adjust=0 reason=mlx scancount=1
+ engine=8.19.0-2505280000 definitions=main-2506270038
 
-2025=EB=85=84 6=EC=9B=94 27=EC=9D=BC (=EA=B8=88) =EC=98=A4=EC=A0=84 4:21, K=
-austabh Chakraborty <kauschluss@disroot.org>=EB=8B=98=EC=9D=B4 =EC=9E=91=EC=
-=84=B1:
->
-> Similar to FIMD and Exynos5433's DECON, the Exynos7 DECON hardware:
-> - May optionally require an IOMMU to initialize a display region.
-> - May require a port connection to another block, say an MIC or a DSI
->   master.
->
-> Document these bindings in the devicetree schema.
 
-Applied.
-
-Thanks,
-Inki Dae
-
->
-> Signed-off-by: Kaustabh Chakraborty <kauschluss@disroot.org>
-> ---
->  .../bindings/display/samsung/samsung,exynos7-decon.yaml           | 8 ++=
-++++++
->  1 file changed, 8 insertions(+)
->
-> diff --git a/Documentation/devicetree/bindings/display/samsung/samsung,ex=
-ynos7-decon.yaml b/Documentation/devicetree/bindings/display/samsung/samsun=
-g,exynos7-decon.yaml
-> index 53916e4c95d8c0369138941a556c23f5d42fbd39..1e9500c86590d555cfa6f0479=
-0e2b64da291b78b 100644
-> --- a/Documentation/devicetree/bindings/display/samsung/samsung,exynos7-d=
-econ.yaml
-> +++ b/Documentation/devicetree/bindings/display/samsung/samsung,exynos7-d=
-econ.yaml
-> @@ -80,6 +80,14 @@ properties:
->        - const: vsync
->        - const: lcd_sys
->
-> +  iommus:
-> +    maxItems: 1
-> +
-> +  ports:
-> +    $ref: /schemas/graph.yaml#/properties/ports
-> +    description:
-> +      Contains a port which is connected to mic or dsim node.
-> +
->    power-domains:
->      maxItems: 1
->
->
-> --
-> 2.49.0
->
->
+On 6/26/2025 4:32 PM, Dmitry Baryshkov wrote:
+> On Thu, Jun 26, 2025 at 03:58:26PM +0530, Viken Dadhaniya wrote:
+>> Add the missing required-opps and operating-points-v2 properties to
+>> several I2C, SPI, and UART nodes in the QUP SEs.
+>>
+>> Signed-off-by: Viken Dadhaniya <viken.dadhaniya@oss.qualcomm.com>
+>> ---
+>>   arch/arm64/boot/dts/qcom/qcs615.dtsi | 6 ++++++
+>>   1 file changed, 6 insertions(+)
+>>
+> Missing Fixes tag(s)
+Sure, will add in next patch.
 
