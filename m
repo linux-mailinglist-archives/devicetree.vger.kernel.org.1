@@ -1,83 +1,91 @@
-Return-Path: <devicetree+bounces-190529-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-190530-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 90878AEC081
-	for <lists+devicetree@lfdr.de>; Fri, 27 Jun 2025 21:59:59 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1C7D4AEC089
+	for <lists+devicetree@lfdr.de>; Fri, 27 Jun 2025 22:02:30 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 17B1E1C4592B
-	for <lists+devicetree@lfdr.de>; Fri, 27 Jun 2025 20:00:15 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 46B1D5641C7
+	for <lists+devicetree@lfdr.de>; Fri, 27 Jun 2025 20:02:30 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 190B32E9742;
-	Fri, 27 Jun 2025 19:59:54 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id EE350209F45;
+	Fri, 27 Jun 2025 20:02:25 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="jl75e3BH"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="CDlCWlVc"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DEC7F212D97;
-	Fri, 27 Jun 2025 19:59:53 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C306715E8B;
+	Fri, 27 Jun 2025 20:02:25 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1751054394; cv=none; b=mSK/STpPSdxMOr/FPXM5owd/P2sg+SFiIbZALslxsK2x2TU4kxyrzOTeuXb5O+jqr+PNYpAYodyQPDCEcH/6c/QWc5sl/YYKVgCOAWcnrZk1OcjpuU8+YJLr2125rDD3+LL3OmUvSb00cTZAkVfG+wwQN/mzMxPvucL4qjQfB9g=
+	t=1751054545; cv=none; b=LRLLFMqZPSz5LzF6O5Lq8BZqqImJSqABxmo+asjxNUf4zpi0HsEtQTjfeFgw/sWa4hM5ZsxyR58Aar2LMHmHBgtBs/FNezY8VuYAj9CYMNIYr6BY/wld3uw2ftse1WMRoygpes/k2/l7Vj7GD9y5hWeJZLBFOLeZlhjWfzWaGJY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1751054394; c=relaxed/simple;
-	bh=4mRsa86Oo0RFDcooBdEjv4m67WRLaTXVEDibhrLW7SY=;
+	s=arc-20240116; t=1751054545; c=relaxed/simple;
+	bh=9J/SexegBYQTZd2KoTPTstXhcyF4Eldv2Z7ahO3a3OM=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=F/e1eSWbacYi9qgJWYusqOXIyuhawaXAnLPJ3WZybY7ll28Hb8ZRlp4m+NP6bQ/jH+jPfs3cWk9g14hVyzQPZG38rkivsLVoiZ+U5u1zVmqKU8l2uK4oASsDHvZd6Q31DdrClDFK6Ar662UUAh8Ac/Az5V7DxV4a6auTCUBqzcA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=jl75e3BH; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id A629EC4CEE3;
-	Fri, 27 Jun 2025 19:59:53 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=QijICl7V8fn/PHNd/WAdA4Ip4kSUO60hCqFHOi1VsnjRJ4mCtbIsncCNd3gUrOWQlfCH9o72zZEmRr6eJKRRgWgalrne7c4WH7obRKPBEHaa2Z2ezSaVl44SFnvpkRG2EtMwmZhMVp9DsP4TtVlAcknvdtyb3zNFx0mbLWN1FyI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=CDlCWlVc; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 3D95CC4CEE3;
+	Fri, 27 Jun 2025 20:02:25 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1751054393;
-	bh=4mRsa86Oo0RFDcooBdEjv4m67WRLaTXVEDibhrLW7SY=;
+	s=k20201202; t=1751054545;
+	bh=9J/SexegBYQTZd2KoTPTstXhcyF4Eldv2Z7ahO3a3OM=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=jl75e3BHTr61OF4y9Ruh5ZrjXbWeATtjFLcSR4SLt8Y7t+ldMj3iilKEXNTROseP8
-	 ugBzgD8m/W+9q1q/+7hHmEiV4mwrPx6vyQfXxuxjMMAJtUdhN63fzVt6KiBr+cixed
-	 95ljvUeD31tVeHd9TBFjpPnlda4XFeel3/f8THBjIFion7z6/iQpVqAy+NfCzHWMOE
-	 jwf/vNK9/PPg0Peon5qT+yPaCwTRowUFGMWp+/cFRdb2Nel1A+UlM3R8vv3H2nx0tC
-	 EraGgWC2idAENTo3Cf6NN3DY2jRcpJsz+Ri6C2Xu8RHkscCP2Ou2ItrUSSsIkAXiBz
-	 DucY2roYat2dQ==
-Date: Fri, 27 Jun 2025 14:59:52 -0500
+	b=CDlCWlVcepWCHva+Y5h93NEXXRFpMNVPEo4PoAhuMWsIuccu9CDLuqr2fgxZyg0Pi
+	 h/SNtldmZIcpkeVO38rAC8vwFKDaphO6uuawJ7VLmHoAQCabybApDkNk3H9NnESgUg
+	 zeY1BFg17NXzfLq0HMpYXt7erM87rOkuLsrw/pIFYKQrmGXjVaAUzPIiafGgkbqIvH
+	 7n0LLvi9rIuNELy3zWvfG03zd0Flj7ZNmL/GbrvZObMndxK6C/adGdveLQBpMloxtT
+	 GJKV4J/PBaUDZttMHH9tad/A14MAe6zu6d1lgu1lexzc/1aaeocG0WOm65IRd5z8u3
+	 kXHN/m2NEKFZg==
+Date: Fri, 27 Jun 2025 15:02:24 -0500
 From: "Rob Herring (Arm)" <robh@kernel.org>
-To: David Lechner <dlechner@baylibre.com>
-Cc: Michael Hennerich <Michael.Hennerich@analog.com>,
-	Mark Brown <broonie@kernel.org>, linux-kernel@vger.kernel.org,
-	devicetree@vger.kernel.org, Andy Shevchenko <andy@kernel.org>,
-	Jonathan Cameron <jic23@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, linux-spi@vger.kernel.org,
-	Conor Dooley <conor+dt@kernel.org>, linux-iio@vger.kernel.org,
-	Nuno =?iso-8859-1?Q?S=E1?= <nuno.sa@analog.com>
-Subject: Re: [PATCH 6/9] dt-bindings: trigger-source: add ADI Util
- Sigma-Delta SPI
-Message-ID: <175105439247.4081173.1981785333834339523.robh@kernel.org>
-References: <20250620-iio-adc-ad7173-add-spi-offload-support-v1-0-0766f6297430@baylibre.com>
- <20250620-iio-adc-ad7173-add-spi-offload-support-v1-6-0766f6297430@baylibre.com>
+To: Marek Vasut <marek.vasut+renesas@mailbox.org>
+Cc: linux-renesas-soc@vger.kernel.org, Conor Dooley <conor+dt@kernel.org>,
+	devicetree@vger.kernel.org,
+	Uwe =?iso-8859-1?Q?Kleine-K=F6nig?= <ukleinek@kernel.org>,
+	linux-pwm@vger.kernel.org, Krzysztof Kozlowski <krzk+dt@kernel.org>
+Subject: Re: [PATCH v4 2/3] dt-bindings: pwm: argon40,fan-hat: Document
+ Argon40 Fan HAT
+Message-ID: <175105454403.4088109.10563926694624108240.robh@kernel.org>
+References: <20250621172056.160855-1-marek.vasut+renesas@mailbox.org>
+ <20250621172056.160855-2-marek.vasut+renesas@mailbox.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: text/plain; charset=iso-8859-1
 Content-Disposition: inline
-In-Reply-To: <20250620-iio-adc-ad7173-add-spi-offload-support-v1-6-0766f6297430@baylibre.com>
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20250621172056.160855-2-marek.vasut+renesas@mailbox.org>
 
 
-On Fri, 20 Jun 2025 17:20:12 -0500, David Lechner wrote:
-> Add new binding for the ADI Util Sigma-Delta SPI FPGA IP Core.
+On Sat, 21 Jun 2025 19:19:55 +0200, Marek Vasut wrote:
+> Document trivial PWM on Argon40 Fan HAT, which is a RaspberryPi
+> blower fan hat which can be controlled over I2C.
 > 
-> This is used to trigger a SPI offload based on a RDY signal from the
-> ADC while masking out other signals on the same line.
-> 
-> Signed-off-by: David Lechner <dlechner@baylibre.com>
+> Signed-off-by: Marek Vasut <marek.vasut+renesas@mailbox.org>
 > ---
->  .../trigger-source/adi,util-sigma-delta-spi.yaml   | 49 ++++++++++++++++++++++
->  MAINTAINERS                                        |  5 +++
->  2 files changed, 54 insertions(+)
+> Cc: "Uwe Kleine-König" <ukleinek@kernel.org>
+> Cc: Conor Dooley <conor+dt@kernel.org>
+> Cc: Krzysztof Kozlowski <krzk+dt@kernel.org>
+> Cc: Rob Herring <robh@kernel.org>
+> Cc: devicetree@vger.kernel.org
+> Cc: linux-pwm@vger.kernel.org
+> Cc: linux-renesas-soc@vger.kernel.org
+> ---
+> V2: Implement dedicated binding document
+> V3: Update the description and pwm-cells
+> V4: Drop | from description and fix up pwm-cells = <2> in example
+> ---
+>  .../bindings/pwm/argon40,fan-hat.yaml         | 48 +++++++++++++++++++
+>  1 file changed, 48 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/pwm/argon40,fan-hat.yaml
 > 
 
 Reviewed-by: Rob Herring (Arm) <robh@kernel.org>
