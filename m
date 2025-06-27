@@ -1,142 +1,170 @@
-Return-Path: <devicetree+bounces-190376-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-190377-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id D9B9DAEB913
-	for <lists+devicetree@lfdr.de>; Fri, 27 Jun 2025 15:36:48 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id AB517AEB91C
+	for <lists+devicetree@lfdr.de>; Fri, 27 Jun 2025 15:39:46 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id B44D51C42720
-	for <lists+devicetree@lfdr.de>; Fri, 27 Jun 2025 13:37:04 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id DC42E567513
+	for <lists+devicetree@lfdr.de>; Fri, 27 Jun 2025 13:39:20 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D404E2D97B5;
-	Fri, 27 Jun 2025 13:36:44 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1A4122D9798;
+	Fri, 27 Jun 2025 13:39:40 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=riscstar-com.20230601.gappssmtp.com header.i=@riscstar-com.20230601.gappssmtp.com header.b="rboZDMuW"
+	dkim=pass (2048-bit key) header.d=disroot.org header.i=@disroot.org header.b="Gd611RXt"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-io1-f50.google.com (mail-io1-f50.google.com [209.85.166.50])
+Received: from layka.disroot.org (layka.disroot.org [178.21.23.139])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DB3182D9798
-	for <devicetree@vger.kernel.org>; Fri, 27 Jun 2025 13:36:42 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.166.50
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6EC502F1FDF;
+	Fri, 27 Jun 2025 13:39:37 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=178.21.23.139
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1751031404; cv=none; b=Ewrmubjt7Kza+xMoSjPmrvs5T3XaP/6kWg/2cAKI439dzqoUkepe6oKmDhalZOu+yzVAcwfKNKCQCx3KmGP3L2RokIWgDU8lkSxFyZ0XJF+D4pab6M3Jnw6QLeLVK8PCHkEwlaB8PAhJG6VwFFrpGbjQz+1gYLqUZ/jlmLCn+ko=
+	t=1751031580; cv=none; b=AWzuK2JMBkF4hw+Yzc2js93tNJyVmczEuHxMD0tvAT10Ee5hWzrhSzeWrtbxMs6vWFCYJwnTSRV7nr9mL6MBCI3rTerDTj+Bv+dE7KdiwPbuHU7owkl4uZ9CIr84/yH1jo0lZ9VHTfgxDheQ7pic4t6FHU6xZHbQRdStu7xsVpE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1751031404; c=relaxed/simple;
-	bh=fk+HBAiRPVdgGsHsF5qNIsiflq+XoguW2NtWdyg8cgg=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=LNQkD9rF4GPEynWGJtnU8xOVdQ1KDYpTQurBuvyjTJ8ptim9MVW7moN/5sqz3rPwILm0LIefvYvDv5Z2HF95IHZ2fKBnLQx5+m+J95KQfRco1Cz3bBIL0vTY0KxJZpxKRctvJ1WWJXjKNdxsRsJ00Fi8OuWQClNSMUM9tQQzU6k=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=riscstar.com; spf=pass smtp.mailfrom=riscstar.com; dkim=pass (2048-bit key) header.d=riscstar-com.20230601.gappssmtp.com header.i=@riscstar-com.20230601.gappssmtp.com header.b=rboZDMuW; arc=none smtp.client-ip=209.85.166.50
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=riscstar.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=riscstar.com
-Received: by mail-io1-f50.google.com with SMTP id ca18e2360f4ac-87611ac3456so68374739f.0
-        for <devicetree@vger.kernel.org>; Fri, 27 Jun 2025 06:36:42 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=riscstar-com.20230601.gappssmtp.com; s=20230601; t=1751031402; x=1751636202; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=XfiJnZdQRFrCAW+w9heCSHyeWa3Z+YlU9j/j6ABGxx8=;
-        b=rboZDMuWGH1edkinpn1mbrXlNFB4mh1CE6QzDJ8PMsXs2KPxFKTkkmgi7HdVQPEArs
-         EEZ3ekcWmdawzlOllhGppgtWfHyjsE5r3T6jthdHHO7hoGCVK/db6B+629tho8zUpTOK
-         hT7949ZMamxuejP0P3OnjmWF/7gjOfDlzcONKP3hCzd+bn2l6qgAHOWxdxMlM+Rk4+gy
-         xh6ZfWhqLxNIgntS4Kxy1SsBzBDGoUDzWnK39FIuxmLSsyPx1VdP8j/q0MutQQQA8Rmc
-         Phsf5eUIyqQ8r8DiwE7Cm5WQ0e5o0V5k0Dm3WHZV3Wcp/jbZInux7yU3CLQ0JM19svoR
-         2vwg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1751031402; x=1751636202;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=XfiJnZdQRFrCAW+w9heCSHyeWa3Z+YlU9j/j6ABGxx8=;
-        b=rCw7VscSfia+jVfio15EG1k10O0LF9OHqV9iw5Ha6plYsDNZ43qMm/2OAKqae2aeHg
-         CAcqdFDkII1JQ4UaiupCLhFmGse/aMHkTJBUEm4OgwKzpttDIqXth48tPIRRVFFo/ZCl
-         1pjvPauY/1pdM19QGEk/Tv1bOc12ElkK3bJxZRdiotNSI4qVNkSYP6SmX81lVjkeTkU0
-         MbtP0biO6FHU5Uf2JQhJX+QefphLtjEz6UEeViIZrEDA9pgMiwe8eaEbC6dXh0uQTPd7
-         glZVm6PvZTKbZ1M2l+WNehZYR/XFn6bYaiojLB821Ii5fKO+kSn3XKjyglzaBd+fdB+s
-         4K/g==
-X-Forwarded-Encrypted: i=1; AJvYcCUBDw08GS+1GdLu2XXb28Ob5ANII+vwYXYQHwr8WNwkbJvVrwOIFx2N/7lrNEGEP9L8yYN28ByuIJ2y@vger.kernel.org
-X-Gm-Message-State: AOJu0YxvgYQqOg8jZLnauqF+aqot8iWuIguKZkxUw/hOjdhRZlfl/6jA
-	DbMZRdW+at8i0rMyHJpvCQm3sRbAxTqRpCpQqvyVgO/r/y1DFmqIp1X7ogp+JVFhqbA=
-X-Gm-Gg: ASbGncsbZi6SPiX3LM0gmKGbNUKvVxvOP+ZyZY5z/MlJA3dxmIfASBP8zEocwKC38rU
-	etL9Q7KDnfry8D/Q5KB9drd2QeMCyT0NeK5Jbt2pnA8WfXN7Srqr6Hab18y/2PIE3ajSxT8Z5Ez
-	IsrHDqGrFxppJKm/1SBCUMqGRPYBCePUDjMBlTe2rUXJMUPTtiBHnQxC+tLdSjyvGJk4FUIH+lt
-	JSzk4sHhAnskjIYsOd2HfQIy5KGKxxakv12t2/9Cmnt8JH7B1DX91xAxYBrU6OaG5aO9GMjLHP8
-	Pbc8+RWIEx2SB2eXMtX4BtWrJja4+F9kLHNjA5yVgVn/8OWoD/DI5vk35GSOX9SVuClnpoylt/7
-	3LXiaMAg/I7MdhBC8FD4hCaBFHQ==
-X-Google-Smtp-Source: AGHT+IF1O8tzv2KWCzSl21OTyig59TTY0gf7CGovzXL+B16wQcpv5kKezeVDaVnpkiTgGZ9wCICGDQ==
-X-Received: by 2002:a05:6602:2dcc:b0:873:3691:6fb8 with SMTP id ca18e2360f4ac-876882cb88dmr404639839f.8.1751031401882;
-        Fri, 27 Jun 2025 06:36:41 -0700 (PDT)
-Received: from [172.22.22.28] (c-73-228-159-35.hsd1.mn.comcast.net. [73.228.159.35])
-        by smtp.gmail.com with ESMTPSA id ca18e2360f4ac-876879f3584sm46791339f.9.2025.06.27.06.36.40
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 27 Jun 2025 06:36:41 -0700 (PDT)
-Message-ID: <0eda5bf4-ce63-43da-9c2f-7d4ec902758c@riscstar.com>
-Date: Fri, 27 Jun 2025 08:36:39 -0500
+	s=arc-20240116; t=1751031580; c=relaxed/simple;
+	bh=TEJGRf1FlIgDbcSTQNxCwfvvmdMjzuRrveS8ic9DKO8=;
+	h=MIME-Version:Date:From:To:Cc:Subject:In-Reply-To:References:
+	 Message-ID:Content-Type; b=G3XexwP/QDWgG6FLVAODhh6W8fDuhzZkghpksMWMhu35nQJOqqCsQGwsauGOYX06xBZiGdIw4k8EYjS2OUlodY6ocOq/ltdVuB2Z3Vz/uIG2Ewus1H4pbnmKyIT3BS/Pj62kLuuySea0B+cluCWT+C4vLf1ATjfGSBzv9+cA/jA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=disroot.org; spf=pass smtp.mailfrom=disroot.org; dkim=pass (2048-bit key) header.d=disroot.org header.i=@disroot.org header.b=Gd611RXt; arc=none smtp.client-ip=178.21.23.139
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=disroot.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=disroot.org
+Received: from mail01.disroot.lan (localhost [127.0.0.1])
+	by disroot.org (Postfix) with ESMTP id 0C36E26091;
+	Fri, 27 Jun 2025 15:39:35 +0200 (CEST)
+X-Virus-Scanned: SPAM Filter at disroot.org
+Received: from layka.disroot.org ([127.0.0.1])
+ by localhost (disroot.org [127.0.0.1]) (amavis, port 10024) with ESMTP
+ id z_DBtCRPQosI; Fri, 27 Jun 2025 15:39:34 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=disroot.org; s=mail;
+	t=1751031574; bh=TEJGRf1FlIgDbcSTQNxCwfvvmdMjzuRrveS8ic9DKO8=;
+	h=Date:From:To:Cc:Subject:In-Reply-To:References;
+	b=Gd611RXtDUZ0eMsj5UIbALHq5iK/naVa74b1YVOj7JFRHqo5mtjuCj6SVb4R7ZlF3
+	 E/RfVgUSG9gCG6F+kirZgVXVL9zb+soJQe6bl1bzc/g6ZKIGkJZDXd+DVbvBaTdB0k
+	 UnVLNZsgX+lWxlVHtv0hartInLi0BGjipjNH0S5tTd1EnWTIgyK8xhXMI4MHSkSfa4
+	 Q4HS5x5/4zSEQB+a59M6MQCtSUte1dl9XC3GotadKWwDod9EsyQswm32ejXt2+Koyh
+	 7UV5ld8aCL5fmXVsKpYs2lhrWdIlPUBlvO8v0jPUcphwmsqPY38Xan9OMyuLddf+NW
+	 sIF6VTF7uZIyg==
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v4 2/7] mfd: simple-mfd-i2c: add SpacemiT P1 support
-To: Lee Jones <lee@kernel.org>
-Cc: lgirdwood@gmail.com, broonie@kernel.org, alexandre.belloni@bootlin.com,
- robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org, mat.jonczyk@o2.pl,
- dlan@gentoo.org, paul.walmsley@sifive.com, palmer@dabbelt.com,
- aou@eecs.berkeley.edu, alex@ghiti.fr, troymitchell988@gmail.com,
- linux-rtc@vger.kernel.org, devicetree@vger.kernel.org,
- linux-riscv@lists.infradead.org, spacemit@lists.linux.dev,
- linux-kernel@vger.kernel.org
-References: <20250625164119.1068842-1-elder@riscstar.com>
- <20250625164119.1068842-3-elder@riscstar.com>
- <20250627125119.GF10134@google.com>
-Content-Language: en-US
-From: Alex Elder <elder@riscstar.com>
-In-Reply-To: <20250627125119.GF10134@google.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+Date: Fri, 27 Jun 2025 13:39:33 +0000
+From: Kaustabh Chakraborty <kauschluss@disroot.org>
+To: Inki Dae <daeinki@gmail.com>
+Cc: Seung-Woo Kim <sw0312.kim@samsung.com>, Kyungmin Park
+ <kyungmin.park@samsung.com>, David Airlie <airlied@gmail.com>, Simona Vetter
+ <simona@ffwll.ch>, Krzysztof Kozlowski <krzk@kernel.org>, Alim Akhtar
+ <alim.akhtar@samsung.com>, Maarten Lankhorst
+ <maarten.lankhorst@linux.intel.com>, Maxime Ripard <mripard@kernel.org>,
+ Thomas Zimmermann <tzimmermann@suse.de>, Rob Herring <robh@kernel.org>,
+ Conor Dooley <conor@kernel.org>, Ajay Kumar <ajaykumar.rs@samsung.com>,
+ Akshu Agrawal <akshua@gmail.com>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, dri-devel@lists.freedesktop.org,
+ linux-arm-kernel@lists.infradead.org, linux-samsung-soc@vger.kernel.org,
+ linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+ stable@vger.kernel.org
+Subject: Re: [PATCH v3 2/3] drm/exynos: exynos7_drm_decon: fix call of
+ decon_commit()
+In-Reply-To: <CAAQKjZM+++P3ozLZZYEusYepamF0qdeuOe+thDb2BevLCsab_Q@mail.gmail.com>
+References: <20250627-exynosdrm-decon-v3-0-5b456f88cfea@disroot.org>
+ <20250627-exynosdrm-decon-v3-2-5b456f88cfea@disroot.org>
+ <CAAQKjZM+++P3ozLZZYEusYepamF0qdeuOe+thDb2BevLCsab_Q@mail.gmail.com>
+Message-ID: <c4348867644c2e1d0a4fc47f3291855b@disroot.org>
+X-Sender: kauschluss@disroot.org
+Content-Type: text/plain; charset=UTF-8;
+ format=flowed
+Content-Transfer-Encoding: 8bit
 
-On 6/27/25 7:51 AM, Lee Jones wrote:
->> @@ -93,12 +93,30 @@ static const struct simple_mfd_data maxim_mon_max77705 = {
->>   	.mfd_cell_size = ARRAY_SIZE(max77705_sensor_cells),
->>   };
->>   
->> +static const struct regmap_config spacemit_p1_regmap_config = {
->> +	.reg_bits = 8,
->> +	.val_bits = 8,
->> +	.max_register = 0xaa,
->> +};
-> Suggest making this more widely useful by adding the 'max_register'
-> attribute to 'struct simple_mfd' and conditionally overriding
-> regmap_config_8r_8v's value during probe.
+On 2025-06-27 04:06, Inki Dae wrote:
+> Hi,
+> 
+> 2025년 6월 27일 (금) 오전 4:21, Kaustabh Chakraborty 
+> <kauschluss@disroot.org>님이 작성:
+>> 
+>> decon_commit() has a condition guard at the beginning:
+>> 
+>>         if (ctx->suspended)
+>>                 return;
+>> 
+>> But, when it is being called from decon_atomic_enable(), 
+>> ctx->suspended
+>> is still set to true, which prevents its execution. decon_commit() is
+>> vital for setting up display timing values, without which the display
+>> pipeline fails to function properly. Call the function after
+>> ctx->suspended is set to false as a fix.
+> 
+> Good observation. However, I think a more generic solution is needed.
+> 
+>> 
+>> Cc: stable@vger.kernel.org
+>> Fixes: 96976c3d9aff ("drm/exynos: Add DECON driver")
+>> Signed-off-by: Kaustabh Chakraborty <kauschluss@disroot.org>
+>> ---
+>>  drivers/gpu/drm/exynos/exynos7_drm_decon.c | 4 ++--
+>>  1 file changed, 2 insertions(+), 2 deletions(-)
+>> 
+>> diff --git a/drivers/gpu/drm/exynos/exynos7_drm_decon.c 
+>> b/drivers/gpu/drm/exynos/exynos7_drm_decon.c
+>> index 
+>> f91daefa9d2bc5e314c279822047e60ee0d7ca99..43bcbe2e2917df43d7c2d27a9771e892628dd682 
+>> 100644
+>> --- a/drivers/gpu/drm/exynos/exynos7_drm_decon.c
+>> +++ b/drivers/gpu/drm/exynos/exynos7_drm_decon.c
+>> @@ -583,9 +583,9 @@ static void decon_atomic_enable(struct 
+>> exynos_drm_crtc *crtc)
+>>         if (test_and_clear_bit(0, &ctx->irq_flags))
+>>                 decon_enable_vblank(ctx->crtc);
+>> 
+>> -       decon_commit(ctx->crtc);
+>> -
+>>         ctx->suspended = false;
+>> +
+>> +       decon_commit(ctx->crtc);
+> 
+> There seem to be three possible solutions:
+> 
+> 1. Remove all code related to ctx->suspended. If the pipeline flow is
+> properly managed as in the exynos5433_drm_decon.c module, checking the
+> ctx->suspended state may no longer be necessary.
+> 2. Remove the ctx->suspended check from decon_commit(). Since the
+> runtime PM resume is already called before decon_commit() in
+> decon_atomic_enable(), the DECON controller should already be enabled
+> at the hardware level, and decon_commit() should work correctly.
+> 3. Move the code that updates ctx->suspended from
+> decon_atomic_enable() and decon_atomic_disable() to
+> exynos7_decon_resume() and exynos7_decon_suspend(), respectively. The
+> decon_atomic_enable() function calls pm_runtime_resume_and_get(),
+> which ultimately triggers exynos7_decon_resume(). It would be more
+> appropriate to set ctx->suspended = false in the
+> exynos7_decon_resume() function, as this is the standard place to
+> handle hardware state changes and resume actions.
+> decon_atomic_enable() is responsible for requesting enablement of the
+> DECON controller, but actual hardware state transitions will be
+> handled within exynos7_decon_resume() and exynos7_decon_suspend().
+> 
+> 
+> Unfortunately, I do not have hardware to test this patch myself. Would
+> it be possible for you to try one of these approaches and verify the
+> behavior?
+> Option 1 would be the best solution if feasible.
 
-So you're suggesting I make a general improvement to
-"simple-mfd-i2c.c", because everybody else just uses
-the generic fallback regmap config?
-
-(I'm asking because at first I didn't understand your
-statement, and the "more widely useful" comment).
-
-I would be happy to do this, and it's not that hard.
-Can I do it as a follow-on patch though?  It's adding
-scope (again), beyond what I anticipated and honestly
-I'm ready to be done with this...
-
-Anyway, if you say "no" I'll send another version of
-this series today.
-
-					-Alex
-
+Yes, it works fine indeed. Thanks!
 
 > 
->> +static const struct mfd_cell spacemit_p1_cells[] = {
->> +	{ .name = "spacemit-p1-regulator", },
->> +	{ .name = "spacemit-p1-rtc", },
->> +};
->> +
-
+> Thanks,
+> Inki Dae
+> 
+>>  }
+>> 
+>>  static void decon_atomic_disable(struct exynos_drm_crtc *crtc)
+>> 
+>> --
+>> 2.49.0
+>> 
+>> 
 
