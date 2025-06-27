@@ -1,43 +1,43 @@
-Return-Path: <devicetree+bounces-190296-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-190299-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7E97CAEB584
-	for <lists+devicetree@lfdr.de>; Fri, 27 Jun 2025 12:54:41 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7BD53AEB5A1
+	for <lists+devicetree@lfdr.de>; Fri, 27 Jun 2025 13:01:38 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 477F63AD141
-	for <lists+devicetree@lfdr.de>; Fri, 27 Jun 2025 10:54:14 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 5EA267ACFC5
+	for <lists+devicetree@lfdr.de>; Fri, 27 Jun 2025 10:59:43 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2BF4E29B78E;
-	Fri, 27 Jun 2025 10:54:26 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 670B926B77D;
+	Fri, 27 Jun 2025 11:00:41 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp-1909.mail.infomaniak.ch (smtp-1909.mail.infomaniak.ch [185.125.25.9])
+Received: from smtp-190f.mail.infomaniak.ch (smtp-190f.mail.infomaniak.ch [185.125.25.15])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CD184298CA6
-	for <devicetree@vger.kernel.org>; Fri, 27 Jun 2025 10:54:23 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.125.25.9
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0B1A729B773;
+	Fri, 27 Jun 2025 11:00:37 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.125.25.15
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1751021666; cv=none; b=cqTeqcs/VkKHNSZaI80EwMtmoq+4oyStJ7Hlzmnn+Cibrb1VtXki9vq3x5XtFO5M2dZ0xXptpO801AWOhL7TWsRatezRGnuOtNoHA6Dp+3OWcQ0P3MwWPqK9CSKjgrdWUoKV6zRlGm6YYxvurkD7D38+F/ei+xaXPoAzl/CtwWE=
+	t=1751022041; cv=none; b=L8m+TzKiD8QProopxWPJzHBVhpBFejncrQC8Umnt/EVr/s3Rs86rlP8o1QZHN0kDLzb6N5aFua9UiHLBkmTha2ZjcMYZVrL8ceH6mtO4YJge6PQYd1Tl5pFeBn3wLcUayA0er8lYbMIxSmdQd7aaZ/7n+EEsk/3rkPFphRAA6LI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1751021666; c=relaxed/simple;
-	bh=LsaoDkpHaIvDprZXOBsbjGmnELRN0iRLh8XBRohcrgk=;
+	s=arc-20240116; t=1751022041; c=relaxed/simple;
+	bh=30Dnyv1dF4DnBpa2oEEXfw7yRvrgEeQITsAYxnpbgS8=;
 	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=KML7HKDLFQTV2DOno8RlYGw6GBI8DMut9uzf5AG4tfZwyK1UkLw5vHsCjPEuJB7wM/SuQEHUk7DsHOv6KjvsMPJMqkBwd8CNAxKcFRFUcdz8K93QZuph7JH38GNFw0tSBCGTqe0zTIPNf1QxTewbzMqyaQ8F6GEjQomC2IqUn8s=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=0leil.net; spf=pass smtp.mailfrom=0leil.net; arc=none smtp.client-ip=185.125.25.9
+	 In-Reply-To:To:Cc; b=qSEEhorgY65veJR5H7dgDriwtypl4DR+/XvTcCMwazGanhvUdhCP8OE0K2PYXceEGef6mN7+tx7z9qsZ1vPybw40So+6YBuylvV4qcXeWcnkxmEM2oHoBdUuqUY9JhrtJ5/G12CfSNs8KVUaFU9KdVB/o8bW++H24hZFw7Gv6qY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=0leil.net; spf=pass smtp.mailfrom=0leil.net; arc=none smtp.client-ip=185.125.25.15
 Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=0leil.net
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=0leil.net
 Received: from smtp-4-0001.mail.infomaniak.ch (smtp-4-0001.mail.infomaniak.ch [10.7.10.108])
-	by smtp-4-3000.mail.infomaniak.ch (Postfix) with ESMTPS id 4bTC9N0HHJzZJB;
+	by smtp-4-3000.mail.infomaniak.ch (Postfix) with ESMTPS id 4bTC9P1q2ZzZJF;
+	Fri, 27 Jun 2025 12:54:17 +0200 (CEST)
+Received: from unknown by smtp-4-0001.mail.infomaniak.ch (Postfix) with ESMTPA id 4bTC9N13KQzw8D;
 	Fri, 27 Jun 2025 12:54:16 +0200 (CEST)
-Received: from unknown by smtp-4-0001.mail.infomaniak.ch (Postfix) with ESMTPA id 4bTC9L6XsKzvrY;
-	Fri, 27 Jun 2025 12:54:14 +0200 (CEST)
 From: Quentin Schulz <foss+kernel@0leil.net>
-Date: Fri, 27 Jun 2025 12:53:55 +0200
-Subject: [PATCH v4 3/5] arm64: dts: rockchip: add header for RK8XX PMIC
- constants
+Date: Fri, 27 Jun 2025 12:53:56 +0200
+Subject: [PATCH v4 4/5] arm64: dts: rockchip: force PMIC reset behavior to
+ restart PMU on RK3588 Jaguar
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -46,7 +46,7 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-Message-Id: <20250627-rk8xx-rst-fun-v4-3-ce05d041b45f@cherry.de>
+Message-Id: <20250627-rk8xx-rst-fun-v4-4-ce05d041b45f@cherry.de>
 References: <20250627-rk8xx-rst-fun-v4-0-ce05d041b45f@cherry.de>
 In-Reply-To: <20250627-rk8xx-rst-fun-v4-0-ce05d041b45f@cherry.de>
 To: Lee Jones <lee@kernel.org>, Rob Herring <robh@kernel.org>, 
@@ -64,39 +64,43 @@ X-Infomaniak-Routing: alpha
 
 From: Quentin Schulz <quentin.schulz@cherry.de>
 
-To make it easier to read the device tree, let's add constants for the
-rockchip,reset-mode property values that are currently only applicable
-to RK806 PMIC.
+The bootloader for RK3588 Jaguar currently forces the PMIC reset
+behavior (stored in RST_FUN bitfield in register SYS_CFG3 of the PMIC)
+to 0b1X which is incorrect for our devices.
+
+It is required to restart the PMU as otherwise the companion
+microcontroller cannot detect the PMIC (and by extension the full
+product and main SoC) being rebooted which is an issue as that is used
+to reset a few things like the PWM beeper and watchdogs.
+
+Let's add the new rockchip,reset-mode property to make sure the PMIC
+reset behavior is the expected one.
 
 Signed-off-by: Quentin Schulz <quentin.schulz@cherry.de>
 ---
- arch/arm64/boot/dts/rockchip/rk8xx.h | 18 ++++++++++++++++++
- 1 file changed, 18 insertions(+)
+ arch/arm64/boot/dts/rockchip/rk3588-jaguar.dts | 2 ++
+ 1 file changed, 2 insertions(+)
 
-diff --git a/arch/arm64/boot/dts/rockchip/rk8xx.h b/arch/arm64/boot/dts/rockchip/rk8xx.h
-new file mode 100644
-index 0000000000000000000000000000000000000000..a6fbef71c06493c35b0f3697476167aaafa24f30
---- /dev/null
-+++ b/arch/arm64/boot/dts/rockchip/rk8xx.h
-@@ -0,0 +1,18 @@
-+/* SPDX-License-Identifier: (GPL-2.0-or-later OR MIT) */
-+/*
-+ * Device Tree defines for Rockchip RK8xx PMICs
-+ *
-+ * Copyright 2025 Cherry Embedded Solutions GmbH
-+ *
-+ * Author: Quentin Schulz <quentin.schulz@cherry.de>
-+ */
-+
-+#ifndef _DT_MFD_ROCKCHIP_RK8XX_H
-+#define _DT_MFD_ROCKCHIP_RK8XX_H
-+
-+/* For use with rockchip,reset-mode property */
-+#define RK806_RESTART		0
-+#define RK806_RESET		1
-+#define RK806_RESET_NOTIFY	2
-+
-+#endif
+diff --git a/arch/arm64/boot/dts/rockchip/rk3588-jaguar.dts b/arch/arm64/boot/dts/rockchip/rk3588-jaguar.dts
+index ebe77cdd24e803b00fb848dc81258909472290f1..176925d0a1a809d1e2500f5e5efbbfa6a6d0bd42 100644
+--- a/arch/arm64/boot/dts/rockchip/rk3588-jaguar.dts
++++ b/arch/arm64/boot/dts/rockchip/rk3588-jaguar.dts
+@@ -10,6 +10,7 @@
+ #include <dt-bindings/pinctrl/rockchip.h>
+ #include <dt-bindings/soc/rockchip,vop2.h>
+ #include <dt-bindings/usb/pd.h>
++#include "rk8xx.h"
+ #include "rk3588.dtsi"
+ 
+ / {
+@@ -693,6 +694,7 @@ pmic@0 {
+ 		vcc13-supply = <&vcc_1v1_nldo_s3>;
+ 		vcc14-supply = <&vcc_1v1_nldo_s3>;
+ 		vcca-supply = <&vcc5v0_sys>;
++		rockchip,reset-mode = <RK806_RESTART>;
+ 
+ 		rk806_dvs1_null: dvs1-null-pins {
+ 			pins = "gpio_pwrctrl1";
 
 -- 
 2.50.0
