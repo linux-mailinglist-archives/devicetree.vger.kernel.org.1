@@ -1,69 +1,56 @@
-Return-Path: <devicetree+bounces-190515-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-190521-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 82C41AEC01B
-	for <lists+devicetree@lfdr.de>; Fri, 27 Jun 2025 21:38:42 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id CBEE4AEC037
+	for <lists+devicetree@lfdr.de>; Fri, 27 Jun 2025 21:40:32 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 5B753564374
-	for <lists+devicetree@lfdr.de>; Fri, 27 Jun 2025 19:38:27 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 7F6EF566694
+	for <lists+devicetree@lfdr.de>; Fri, 27 Jun 2025 19:40:14 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id EC64A20CCF4;
-	Fri, 27 Jun 2025 19:38:19 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 847D620DD40;
+	Fri, 27 Jun 2025 19:40:09 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="hv3JKSY7"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="QQ1rcBXH"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B945D20B80B;
-	Fri, 27 Jun 2025 19:38:19 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5A5E6CA6F;
+	Fri, 27 Jun 2025 19:40:09 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1751053099; cv=none; b=Rp9UYrO4PjGc7O5b5eb77Cgmtrei1YOqSZES7MWLA6169tzxOkV0vThB8H27TqAj7+dkli+1g/NQRo3udST6gOb2in1ECAu/uve1Wtu2U56M1AUHKw/CkHnswIYtiqZunsAoyq2WW8WobO3MTCSJqf+9BqV2jC/hIbFu8vW6uEw=
+	t=1751053209; cv=none; b=gyrH++avsTiD1io13pfFob+7SMPb393L33QGuIdJOyRJUoUekT7w8M0cyybz6kxsbYSCdwaYBLN1l+Fhkm326Yqpzrw1a36JimGnncQ52VlQdteTFIPLAN6Q7NU21a/F4mTybPQ3ZMGLsajE/Rmdq1gb3KVGsGAt1y9CP3rqoLU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1751053099; c=relaxed/simple;
-	bh=735/kAbCuqWFzGQy/87S1JSxB/l43GhAFiWH7b5eExk=;
+	s=arc-20240116; t=1751053209; c=relaxed/simple;
+	bh=QBQ5PbKZcuWX1G/YfP/veVQZ4ZF54IS/+gFkJ/EWdDY=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=j/9W4l5Qx/UQ7v0i7XvxksKByQsgMeejvCSu/K45OgY/X4LIEl7Rm/TLRjZuncejxZEWcwJK4pdLN2Qh3Hgk1taTm64iPjuUsNuk2BPM+ElmGp01j8e+rotdl+RJFuELQ3fOR0rOaB705lUbMybHy59oxDsJk0CU06AB9s0YQlM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=hv3JKSY7; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 29E1FC4CEE3;
-	Fri, 27 Jun 2025 19:38:19 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=o9Axn4+2nve9rirFaJBDiuuDaMDCvsTWTRGvJZ1qabpcvEbGYr0xdjJamjnLynPFt95jbpNoiQDidnkYcz4Ns4ws3KJm6xzWPQwuvoJIiJ+HzSjzlDWXYeqj1L5a3YyfAB48MbxGTzMrhyWvUGFsxzk/+u1v0lR4QY3VmY0K9xs=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=QQ1rcBXH; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id C76E3C4CEE3;
+	Fri, 27 Jun 2025 19:40:08 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1751053099;
-	bh=735/kAbCuqWFzGQy/87S1JSxB/l43GhAFiWH7b5eExk=;
+	s=k20201202; t=1751053208;
+	bh=QBQ5PbKZcuWX1G/YfP/veVQZ4ZF54IS/+gFkJ/EWdDY=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=hv3JKSY7xsPIult6z98FBvCjWmWYP+vOw7hFbC3qqSEDzWLGlk9PB39DMgGDn4NbS
-	 pHfesi22YUwypbfO06LdjDiPBepbwwUV1YFgR4acriSIeqXYQWqEBT+xyJhpOeahKn
-	 r2iS7ymkJ5GArX5aC8dKyaISXLaOO5Cq2/hrfIwT9OBZc2jZFjLwGn8cgyMsk+DUDu
-	 /ZgfrfM7hy2HGNXH29qTY70aGBlxRrIEeXfZirFgMwfS+LY3sw1hA1uPy8d+GHKjZx
-	 gtBQo+pT8bnVY0eWfKkuhV+Sf8qJss6lFFzr2aDlf9dKhPRoW+bnqVgaCd8+lcWERm
-	 wYwtnbRbpOv4w==
-Date: Fri, 27 Jun 2025 14:38:18 -0500
+	b=QQ1rcBXHg3aw9LDgs/KzYu8roJFYuFH+VxcwSO/Mk0opubVEpt9SIZa30d1gbhdau
+	 3Pt00B/ImQEwKkR6tyiHphSqGBlzwOaaemO1QoRnI4WadQ+BKRPiHY90HlQIumk/l2
+	 qZ0+EApyeTZcPBg19qzQlNs0b1bjbi4wxSDylK3vS5GUqlR8oCdKCej3pLvqpJRd6w
+	 2JPdL0tlzRu/WCv4UGHQmPaft6ht06WaD7HjToIk9HtiMGylnzwjWYs1WvqjohXNge
+	 UzuoWaVzpju/jUiRxOCH1LLWyv1soBzqG0fKo8Xaf/0hZ8mc+MFkbNDkc/b7yqnYMN
+	 E7no2SG8Ww+4Q==
+Date: Fri, 27 Jun 2025 14:40:08 -0500
 From: Rob Herring <robh@kernel.org>
-To: Cosmin Tanislav <demonsingur@gmail.com>
-Cc: Tomi Valkeinen <tomi.valkeinen+renesas@ideasonboard.com>,
-	Mauro Carvalho Chehab <mchehab@kernel.org>,
-	Niklas =?iso-8859-1?Q?S=F6derlund?= <niklas.soderlund@ragnatech.se>,
-	Julien Massot <julien.massot@collabora.com>,
-	Sakari Ailus <sakari.ailus@linux.intel.com>,
-	Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
-	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-	Linus Walleij <linus.walleij@linaro.org>,
-	"open list:MAXIM GMSL2 SERIALIZERS AND DESERIALIZERS" <linux-media@vger.kernel.org>,
-	"open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" <devicetree@vger.kernel.org>,
-	open list <linux-kernel@vger.kernel.org>,
-	"moderated list:ARM64 PORT (AARCH64 ARCHITECTURE)" <linux-arm-kernel@lists.infradead.org>,
-	"open list:STAGING SUBSYSTEM" <linux-staging@lists.linux.dev>,
-	"open list:GPIO SUBSYSTEM:Keyword:(devm_)?gpio_(request|free|direction|get|set)" <linux-gpio@vger.kernel.org>,
-	Cosmin Tanislav <cosmin.tanislav@analog.com>
-Subject: Re: [PATCH v4 04/19] dt-bindings: media: i2c: max96717: add support
- for pinctrl/pinconf
-Message-ID: <20250627193818.GA4051037-robh@kernel.org>
-References: <20250618095858.2145209-1-demonsingur@gmail.com>
- <20250618095858.2145209-5-demonsingur@gmail.com>
+To: Sayali Lokhande <quic_sayalil@quicinc.com>
+Cc: andersson@kernel.org, konradybcio@kernel.org, krzk+dt@kernel.org,
+	conor+dt@kernel.org, linux-arm-msm@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH V2 2/2] dt-bindings: mmc: Add sdhci compatible for qcs8300
+Message-ID: <20250627194008.GA4055609-robh@kernel.org>
+References: <20250619070224.23428-1-quic_sayalil@quicinc.com>
+ <20250619070224.23428-3-quic_sayalil@quicinc.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -72,90 +59,34 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20250618095858.2145209-5-demonsingur@gmail.com>
+In-Reply-To: <20250619070224.23428-3-quic_sayalil@quicinc.com>
 
-On Wed, Jun 18, 2025 at 12:58:40PM +0300, Cosmin Tanislav wrote:
-> MAX96717 is capable of configuring various pin properties.
+On Thu, Jun 19, 2025 at 12:32:24PM +0530, Sayali Lokhande wrote:
+> Document the sdhci compatible for Qualcomm qcs8300
+> to support function for emmc on the Soc.
 > 
-> Add pinctrl/pinconf properties to support this usecase.
-> 
-> Signed-off-by: Cosmin Tanislav <demonsingur@gmail.com>
+> Signed-off-by: Sayali Lokhande <quic_sayalil@quicinc.com>
 > ---
->  .../bindings/media/i2c/maxim,max96717.yaml    | 110 ++++++++++++++++++
->  1 file changed, 110 insertions(+)
+>  Documentation/devicetree/bindings/mmc/sdhci-msm.yaml | 1 +
+>  1 file changed, 1 insertion(+)
+
+Bindings come before users.
+
 > 
-> diff --git a/Documentation/devicetree/bindings/media/i2c/maxim,max96717.yaml b/Documentation/devicetree/bindings/media/i2c/maxim,max96717.yaml
-> index 167c3dd50683..5998e2518be9 100644
-> --- a/Documentation/devicetree/bindings/media/i2c/maxim,max96717.yaml
-> +++ b/Documentation/devicetree/bindings/media/i2c/maxim,max96717.yaml
-> @@ -121,6 +121,116 @@ required:
->    - reg
->    - ports
->  
-> +patternProperties:
-> +  '-pins$':
-> +    type: object
-> +    additionalProperties: false
-> +
-> +    properties:
-> +      function:
-> +        enum: [gpio, rclkout]
-> +
-> +      pins: true
-> +      drive-open-drain: true
-> +      drive-push-pull: true
-> +      bias-disable: true
-> +      output-disable: true
-> +      output-enable: true
-> +      output-low: true
-> +      output-high: true
-> +      input-enable: true
-> +
-> +      slew-rate:
-> +        description: |
-> +          Slew rate.
-> +          0 - Fastest
-> +          1 - Fast
-> +          2 - Slow
-> +          3 - Slowest
-> +        maximum: 3
-> +
-> +      bias-pull-up:
-> +        oneOf:
-> +          - type: boolean
-> +            description: Enable regular 40kOhm pull-up
-> +          - enum: [ 40000, 1000000 ]
-> +            description: Enable either the 40kOhm or the 1MOhm pull-up
-> +
-> +      bias-pull-down:
-> +        oneOf:
-> +          - type: boolean
-> +            description: Enable regular 40kOhm pull-down
-> +          - enum: [ 40000, 1000000 ]
-> +            description: Enable either the 40kOhm or the 1MOhm pull-down
-> +
-> +      maxim,jitter-compensation:
-> +        type: boolean
-> +        description: Enables jitter compensation.
-> +
-> +      maxim,gmsl-tx:
-> +        type: boolean
-> +        description: Enable transmitting pin value to GMSL link.
-> +
-> +      maxim,gmsl-rx:
-> +        type: boolean
-> +        description: Enable receiving pin value from GMSL link.
-> +
-> +      maxim,gmsl-tx-id:
-> +        $ref: /schemas/types.yaml#/definitions/uint32
-> +        description:
-> +          Identifier used while transmitting value to GMSL link.
-> +          Default value matches the pin number.
-> +        minimum: 0
-
-The minimum is already 0 being unsigned. Elsewhere too.
-
-With that,
-
-Reviewed-by: Rob Herring (Arm) <robh@kernel.org>
+> diff --git a/Documentation/devicetree/bindings/mmc/sdhci-msm.yaml b/Documentation/devicetree/bindings/mmc/sdhci-msm.yaml
+> index 2b2cbce2458b..5ba2da8dbc7d 100644
+> --- a/Documentation/devicetree/bindings/mmc/sdhci-msm.yaml
+> +++ b/Documentation/devicetree/bindings/mmc/sdhci-msm.yaml
+> @@ -45,6 +45,7 @@ properties:
+>                - qcom,qcm2290-sdhci
+>                - qcom,qcs404-sdhci
+>                - qcom,qcs615-sdhci
+> +              - qcom,qcs8300-sdhci
+>                - qcom,qdu1000-sdhci
+>                - qcom,sar2130p-sdhci
+>                - qcom,sc7180-sdhci
+> -- 
+> The Qualcomm Innovation Center, Inc. is a member of the Code Aurora Forum,
+> a Linux Foundation Collaborative Project
+> 
 
