@@ -1,49 +1,49 @@
-Return-Path: <devicetree+bounces-190598-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-190600-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 34A58AEC292
-	for <lists+devicetree@lfdr.de>; Sat, 28 Jun 2025 00:19:51 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1CF7DAEC2AD
+	for <lists+devicetree@lfdr.de>; Sat, 28 Jun 2025 00:39:58 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 736686E694E
-	for <lists+devicetree@lfdr.de>; Fri, 27 Jun 2025 22:19:24 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 461F1720428
+	for <lists+devicetree@lfdr.de>; Fri, 27 Jun 2025 22:39:30 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0E1E728BABD;
-	Fri, 27 Jun 2025 22:19:48 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6EA0428FAB9;
+	Fri, 27 Jun 2025 22:39:51 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="TeVBI21d"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="ZUp+rSQz"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D03EF14F9D6;
-	Fri, 27 Jun 2025 22:19:47 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 45C7628F53F;
+	Fri, 27 Jun 2025 22:39:50 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1751062787; cv=none; b=J4sZ/GMM5O2O4SsqR99cdiwfHCjdD/aQ730UDD1pBwdGNyEDbyo8v/IP37IQrx/KMZ71J3guIqHiJi9u9LPfrhbbVxNRbYJzU5FqJz06Wnds+nnmI61pRajH4YWHLY3Hlwi0/rjPOlWHSAHu8XlSegknnr3BGYZ+opstgVoYUTE=
+	t=1751063991; cv=none; b=TdA22tMpnrYWrTEcyj6h/wFTlFkOnAKTJgaWhC97sIcW9lMNwU9JukCIjDJpf/ro1XIISSnqZVvxkbt9S8w3PpzPUH7VV4GMR7r850VwvdmH1PIeYwpvvezMAzIENxYV0EfnA0v9bwKevddwQhbUtHBuSSshfpWMMXuxsBgg9qA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1751062787; c=relaxed/simple;
-	bh=N0V4BZdMH/VMOZWlTiUnUi2RLPy+t6c7H7VRP1hkvI4=;
+	s=arc-20240116; t=1751063991; c=relaxed/simple;
+	bh=z8f9aWk8yGtQixJ8Z4YfCx407+0w1mz+aF5kHovQ8gA=;
 	h=Content-Type:MIME-Version:Subject:From:Message-Id:Date:References:
-	 In-Reply-To:To:Cc; b=Pvvg1sA15DdHU1oTEzJOwMD6sVruAtxMD6ctob0Ue/kILa203NJK414/AXfSwq/+EhO79nf5I5Hhv1vdHHqI3gNioRXrp6zZP35AIHanR8BjemgZdFzBGK6o7lwYsFciPN0Ez1LUrZ0azNIDlcLNXatgd5HxbQLFoqQmvTEzReU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=TeVBI21d; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 49578C4CEE3;
-	Fri, 27 Jun 2025 22:19:47 +0000 (UTC)
+	 In-Reply-To:To:Cc; b=KR35RpBLawMoeWKq0Zht/Le24W0TKQgL3ef2ay9LmR7YRqOF02CEEOz+gfDIiOcRRb8w8MNyDSEYQjI6gdrAd7CSqDCAGgvt7kkk2faqvHNmamufxdVyptNe5U2rdjoz0Yef8ia6PxI/8hPgTxlNMXWN8WDELVRffBr5jjq1Vow=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=ZUp+rSQz; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id C6D6DC4CEE3;
+	Fri, 27 Jun 2025 22:39:50 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1751062787;
-	bh=N0V4BZdMH/VMOZWlTiUnUi2RLPy+t6c7H7VRP1hkvI4=;
+	s=k20201202; t=1751063990;
+	bh=z8f9aWk8yGtQixJ8Z4YfCx407+0w1mz+aF5kHovQ8gA=;
 	h=Subject:From:Date:References:In-Reply-To:To:Cc:From;
-	b=TeVBI21dhl1/DYXVMMVKW2B705RhlpboV6f4DisDbPbjiTsap8ypete8NTP5D4fec
-	 pzvE+wXwp/Xm302YK9sP3ZJ+WAn20UiKglAwi/eAfO5BrBX1YBGe6xbt1NhzUO50fP
-	 p9oIAFBcIk1ONe4Smm4GRmG/id1OvEoRFXKKVw/AZ0YhugVKHL/ub6/5vCzdafl10V
-	 x22tJi6dzPbpsrmbVS5zoGNYtVOq428UeFc705zAGJoG4RCRe7rpUn1pHE/d/jr5oS
-	 /C9aBmRP3RcfHvVR/RB9wYfPBRPdXZgwABvdkXdoZnivnunjpcSOH8rVUjzluDqFtP
-	 cFr1fiazE3ZXA==
+	b=ZUp+rSQzzZ5eGwKUQ7Qn6bclfqGSeuJ8gxlo6+kFDn198zWdkz/AR4HDLmSCskXaN
+	 QHVNOIKlx1cS01KHTgRwEiod99L+U6OAkHVvFN6uPOuMbaZWdfz0nBV/7JM+B1t+e8
+	 DjA0eYQ+KB2FQ8bLjkhv6+HchZErdLwIyzPt0oVcvOTY4QMBXRUZ4GyHXKiScavsEq
+	 Dw6WBQOdFMp05nm0sf9mc/fiRJgzupmR/za3SDX7qbKP4O5iF8veYkd8t44RulE5Xl
+	 LX0jDpb2oDP/NCVSQDfXi/vcbQ8484vhcZbpbr3FvFdUCNmGtwn1uRKr/gBnAI8cnm
+	 RAjBka8YoM18g==
 Received: from [10.30.226.235] (localhost [IPv6:::1])
-	by aws-us-west-2-korg-oddjob-rhel9-1.codeaurora.org (Postfix) with ESMTP id 70DA238111CE;
-	Fri, 27 Jun 2025 22:20:14 +0000 (UTC)
+	by aws-us-west-2-korg-oddjob-rhel9-1.codeaurora.org (Postfix) with ESMTP id EAD9E38111CE;
+	Fri, 27 Jun 2025 22:40:17 +0000 (UTC)
 Content-Type: text/plain; charset="utf-8"
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
@@ -52,40 +52,46 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-Subject: Re: [PATCH v3 0/2] NFC: trf7970a: Add option to reduce antenna gain
+Subject: Re: [PATCH net-next v2 0/2] net: dsa: ks8995: Fix up bindings
 From: patchwork-bot+netdevbpf@kernel.org
 Message-Id: 
- <175106281324.2076129.2162106005861598496.git-patchwork-notify@kernel.org>
-Date: Fri, 27 Jun 2025 22:20:13 +0000
-References: <20250626141242.3749958-1-paul.geurts@prodrive-technologies.com>
-In-Reply-To: <20250626141242.3749958-1-paul.geurts@prodrive-technologies.com>
-To: Paul Geurts <paul.geurts@prodrive-technologies.com>
-Cc: mgreer@animalcreek.com, krzk@kernel.org, andrew+netdev@lunn.ch,
- davem@davemloft.net, edumazet@google.com, kuba@kernel.org, pabeni@redhat.com,
- robh@kernel.org, conor+dt@kernel.org, linux-wireless@vger.kernel.org,
- netdev@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, martijn.de.gouw@prodrive-technologies.com
+ <175106401649.2079310.16035106613106076029.git-patchwork-notify@kernel.org>
+Date: Fri, 27 Jun 2025 22:40:16 +0000
+References: <20250625-ks8995-dsa-bindings-v2-0-ce71dce9be0b@linaro.org>
+In-Reply-To: <20250625-ks8995-dsa-bindings-v2-0-ce71dce9be0b@linaro.org>
+To: Linus Walleij <linus.walleij@linaro.org>
+Cc: andrew@lunn.ch, olteanv@gmail.com, davem@davemloft.net,
+ edumazet@google.com, kuba@kernel.org, pabeni@redhat.com, robh@kernel.org,
+ krzk+dt@kernel.org, conor+dt@kernel.org, kaloz@openwrt.org,
+ frdrc66@gmail.com, juhosg@openwrt.org, p.zabel@pengutronix.de,
+ netdev@vger.kernel.org, devicetree@vger.kernel.org
 
 Hello:
 
 This series was applied to netdev/net-next.git (main)
 by Jakub Kicinski <kuba@kernel.org>:
 
-On Thu, 26 Jun 2025 16:12:40 +0200 you wrote:
-> The TRF7970a device is sensitive to RF disturbances, which can make it
-> hard to pass some EMC immunity tests. By reducing the RX antenna gain,
-> the device becomes less sensitive to EMC disturbances, as a trade-off
-> against antenna performance.
+On Wed, 25 Jun 2025 08:51:23 +0200 you wrote:
+> After looking at the datasheets for KS8995 I realized this is
+> a DSA switch and need to have DT bindings as such and be implemented
+> as such.
 > 
-> Signed-off-by: Paul Geurts <paul.geurts@prodrive-technologies.com>
+> This series just fixes up the bindings and the offending device tree.
+> 
+> The existing kernel driver which is in drivers/net/phy/spi_ks8995.c
+> does not implement DSA. It can be forgiven for this because it was
+> merged in 2011 and the DSA framework was not widely established
+> back then. It continues to probe fine but needs to be rewritten
+> to use the special DSA tag and moved to drivers/net/dsa as time
+> permits. (I hope I can do this.)
 > 
 > [...]
 
 Here is the summary with links:
-  - [v3,1/2] dt-bindings: net/nfc: ti,trf7970a: Add ti,rx-gain-reduction-db option
-    https://git.kernel.org/netdev/net-next/c/2bee162a28fb
-  - [v3,2/2] NFC: trf7970a: Create device-tree parameter for RX gain reduction
-    https://git.kernel.org/netdev/net-next/c/5d69351820ea
+  - [net-next,v2,1/2] dt-bindings: dsa: Rewrite Micrel KS8995 in schema
+    https://git.kernel.org/netdev/net-next/c/a0f29a07b654
+  - [net-next,v2,2/2] ARM: dts: Fix up wrv54g device tree
+    https://git.kernel.org/netdev/net-next/c/c9cc6b6a7d23
 
 You are awesome, thank you!
 -- 
