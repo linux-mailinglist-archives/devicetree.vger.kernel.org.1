@@ -1,170 +1,129 @@
-Return-Path: <devicetree+bounces-190316-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-190318-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 82AACAEB6F1
-	for <lists+devicetree@lfdr.de>; Fri, 27 Jun 2025 13:55:20 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 97618AEB6FE
+	for <lists+devicetree@lfdr.de>; Fri, 27 Jun 2025 13:58:26 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 2C6D517E813
-	for <lists+devicetree@lfdr.de>; Fri, 27 Jun 2025 11:55:20 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id EFD2F3B0D1C
+	for <lists+devicetree@lfdr.de>; Fri, 27 Jun 2025 11:57:59 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1A35C2C08C2;
-	Fri, 27 Jun 2025 11:53:15 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 362AB2BEFEB;
+	Fri, 27 Jun 2025 11:58:20 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=disroot.org header.i=@disroot.org header.b="HfwYnDCM"
+	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="QBBmjo9L"
 X-Original-To: devicetree@vger.kernel.org
-Received: from layka.disroot.org (layka.disroot.org [178.21.23.139])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from fllvem-ot03.ext.ti.com (fllvem-ot03.ext.ti.com [198.47.19.245])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7BF2A2BF012;
-	Fri, 27 Jun 2025 11:53:12 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=178.21.23.139
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 98C37299A96;
+	Fri, 27 Jun 2025 11:58:18 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.19.245
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1751025195; cv=none; b=cJZp1UIssBm1jtamJBG8TF2k9MJI+40EqBHa8g41xdRrlhICd8ZFJ+S8Q+Z+EQ/kOFS8xLDZlAZZ9th4RkbbL11/bybSIgcFR0mKcoHNQzt2aV9czoAzGwZD/q1ptxgCUxeDh+XbDeD3XoUtq3sKJPZyAAu7Oib7bfjqvsSoxhg=
+	t=1751025500; cv=none; b=cPStuW1Zj451T7iTRl+g2RmpstXeJxFCqoHq0+ZtkNSVb64VDS80lHxjMJ0NiYY1o3CXHZf5HTIlRjxr4o8Ou2GJiIdHvlSBT4XJDjb3Dy/Bj7wTWPPLk6YNI1BWSpr7OePZG9pYvY3jDz2kQaSPb06tEnUs6Zq90MQDWtU+QtI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1751025195; c=relaxed/simple;
-	bh=WDJRIiBgDgF7nDs2mDyrrymo6t/hxdkYyNXPPcQgJdQ=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=ScPrwqDDDz9rtKXGs4dgK6gK5Z0uRQIZctmDaevWn/ouImoteNe1OuF4KYZszZpg9fwMOGh9MkUDnZphPYft/Qyp2OMTZwiPiN1bNdvfL5GkzWvgr+kJB91OStV1kfV1dzIVaA7nfIBp4ZLv/WjKIautzI8F5IesnUvmUd0efh0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=disroot.org; spf=pass smtp.mailfrom=disroot.org; dkim=pass (2048-bit key) header.d=disroot.org header.i=@disroot.org header.b=HfwYnDCM; arc=none smtp.client-ip=178.21.23.139
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=disroot.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=disroot.org
-Received: from mail01.disroot.lan (localhost [127.0.0.1])
-	by disroot.org (Postfix) with ESMTP id 64AE920E95;
-	Fri, 27 Jun 2025 13:53:05 +0200 (CEST)
-X-Virus-Scanned: SPAM Filter at disroot.org
-Received: from layka.disroot.org ([127.0.0.1])
- by localhost (disroot.org [127.0.0.1]) (amavis, port 10024) with ESMTP
- id UBsMN3Dr0E-0; Fri, 27 Jun 2025 13:53:04 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=disroot.org; s=mail;
-	t=1751025184; bh=WDJRIiBgDgF7nDs2mDyrrymo6t/hxdkYyNXPPcQgJdQ=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To;
-	b=HfwYnDCM1zsRY9Rm5LKXfpBahJetXii9aCQ3SpmgsNOt52jkgYBgpW9KMr2a3Pl91
-	 Ft5M0wynRpI3oKb0kFohouxh6gsAf5MRN8Wh9aLaSGRcMSwtygLK5OkmWZbTCHiGyr
-	 Ndhxb0DK3mzSaAquh3+JPYbNeA0Ofhrst6C4Y8dpjf+Ns0NIR9OjHUUwYdtTAKaae2
-	 5BCe2y0DayXrjs7eeA/GdfzxNlyrk9Vsg4yjN6RxHcRHkSuWj4TaFAMP1yNO0NOgey
-	 JMHrPAkVZjLhdqbCZnBhELF6YNAJU1MUVAyk7/qd5R9OTrQpT75gt57FF0hInGF4UE
-	 LAGD4/R4lDHNA==
-Date: Fri, 27 Jun 2025 11:52:41 +0000
-From: Yao Zi <ziyao@disroot.org>
-To: Krzysztof Kozlowski <krzk@kernel.org>
-Cc: Yinbo Zhu <zhuyinbo@loongson.cn>,
-	Michael Turquette <mturquette@baylibre.com>,
-	Stephen Boyd <sboyd@kernel.org>, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Huacai Chen <chenhuacai@kernel.org>,
-	WANG Xuerui <kernel@xen0n.name>, linux-clk@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	loongarch@lists.linux.dev, Mingcong Bai <jeffbai@aosc.io>,
-	Kexy Biscuit <kexybiscuit@aosc.io>
-Subject: Re: [PATCH v2 1/8] dt-bindings: clock: loongson2: Add Loongson
- 2K0300 compatible
-Message-ID: <aF6FtaNB6XgkvUX7@pie>
-References: <20250617162426.12629-1-ziyao@disroot.org>
- <20250617162426.12629-2-ziyao@disroot.org>
- <20250627-gay-sepia-reindeer-2fde2a@krzk-bin>
+	s=arc-20240116; t=1751025500; c=relaxed/simple;
+	bh=bJoKfALriuJO9Lf49jizcJsBXpk+qdh0vI2kCtIkqhk=;
+	h=From:To:CC:Subject:Date:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=VhValuY+fLRUZ+zQyqM3f+svkGnF7k8KH3d+D1+1mhmtyd6G7+an5vn65EqUJAUXR35Ar2MC3sOKiTcIYdMHzr13z8siVO2TuDoUdN3STLmENxzL7WlVNOmeBehEPSv25mdxLmv15KOBK8SVkyUbvCOsWVXYHKkB4Zu8uHdTXsk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=QBBmjo9L; arc=none smtp.client-ip=198.47.19.245
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
+Received: from fllvem-sh04.itg.ti.com ([10.64.41.54])
+	by fllvem-ot03.ext.ti.com (8.15.2/8.15.2) with ESMTP id 55RBw4U42404192;
+	Fri, 27 Jun 2025 06:58:04 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+	s=ti-com-17Q1; t=1751025484;
+	bh=uEnf8eeIm+WChWJl5MHAtmjlkU1sdVlbIqPrOppFbIw=;
+	h=From:To:CC:Subject:Date:In-Reply-To:References;
+	b=QBBmjo9L6zcR9YGkbNM0MK/3YvHQ5CymcyiQlBADxRmYZi06eWxfFgfyAB51NjPbE
+	 DzHnpxK34PlCSS4Iwo77PnZFjIvqwQvD56k8NPX576uQWPJZeYTHV2K650qGZomBH8
+	 ExyL0hxDtwymuc4WP5j37rhMceO3Cmfj62aXXoh8=
+Received: from DLEE113.ent.ti.com (dlee113.ent.ti.com [157.170.170.24])
+	by fllvem-sh04.itg.ti.com (8.18.1/8.18.1) with ESMTPS id 55RBw4Dq3207988
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-SHA256 bits=128 verify=FAIL);
+	Fri, 27 Jun 2025 06:58:04 -0500
+Received: from DLEE103.ent.ti.com (157.170.170.33) by DLEE113.ent.ti.com
+ (157.170.170.24) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.55; Fri, 27
+ Jun 2025 06:58:04 -0500
+Received: from lelvem-mr06.itg.ti.com (10.180.75.8) by DLEE103.ent.ti.com
+ (157.170.170.33) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.55 via
+ Frontend Transport; Fri, 27 Jun 2025 06:58:04 -0500
+Received: from localhost (ula0502350.dhcp.ti.com [172.24.227.38])
+	by lelvem-mr06.itg.ti.com (8.18.1/8.18.1) with ESMTP id 55RBw3m32755098;
+	Fri, 27 Jun 2025 06:58:04 -0500
+From: Paresh Bhagat <p-bhagat@ti.com>
+To: <nm@ti.com>, <vigneshr@ti.com>, <praneeth@ti.com>
+CC: <kristo@kernel.org>, <robh@kernel.org>, <krzk+dt@kernel.org>,
+        <conor+dt@kernel.org>, <linux-arm-kernel@lists.infradead.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <khasim@ti.com>, <v-singh1@ti.com>, <afd@ti.com>, <bb@ti.com>,
+        <devarsht@ti.com>, <s-vadapalli@ti.com>, <andrew@lunn.ch>
+Subject: [PATCH v5 2/4] dt-bindings: arm: ti: Add AM62D2 SoC and Boards
+Date: Fri, 27 Jun 2025 17:27:51 +0530
+Message-ID: <20250627115753.2246881-3-p-bhagat@ti.com>
+X-Mailer: git-send-email 2.34.1
+In-Reply-To: <20250627115753.2246881-1-p-bhagat@ti.com>
+References: <20250627115753.2246881-1-p-bhagat@ti.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20250627-gay-sepia-reindeer-2fde2a@krzk-bin>
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-C2ProcessedOrg: 333ef613-75bf-4e12-a4b1-8e3623f5dcea
 
-On Fri, Jun 27, 2025 at 10:03:53AM +0200, Krzysztof Kozlowski wrote:
-> On Tue, Jun 17, 2025 at 04:24:19PM +0000, Yao Zi wrote:
-> > Document the clock controller shipped in Loongson 2K0300 SoC, which
-> > generates various clock signals for SoC peripherals.
-> > 
-> > Differing from previous generations of SoCs, 2K0300 requires a 120MHz
-> > external clock input, and a separate dt-binding header is used for
-> > cleanness.
-> > 
-> > Signed-off-by: Yao Zi <ziyao@disroot.org>
-> > ---
-> >  .../bindings/clock/loongson,ls2k-clk.yaml     | 26 ++++++---
-> >  MAINTAINERS                                   |  1 +
-> >  .../dt-bindings/clock/loongson,ls2k0300-clk.h | 54 +++++++++++++++++++
-> >  3 files changed, 75 insertions(+), 6 deletions(-)
-> >  create mode 100644 include/dt-bindings/clock/loongson,ls2k0300-clk.h
-> > 
-> > diff --git a/Documentation/devicetree/bindings/clock/loongson,ls2k-clk.yaml b/Documentation/devicetree/bindings/clock/loongson,ls2k-clk.yaml
-> > index 4f79cdb417ab..3e0a894cfb2f 100644
-> > --- a/Documentation/devicetree/bindings/clock/loongson,ls2k-clk.yaml
-> > +++ b/Documentation/devicetree/bindings/clock/loongson,ls2k-clk.yaml
-> > @@ -16,6 +16,7 @@ description: |
-> >  properties:
-> >    compatible:
-> >      enum:
-> > +      - loongson,ls2k0300-clk
-> >        - loongson,ls2k0500-clk
-> >        - loongson,ls2k-clk  # This is for Loongson-2K1000
-> >        - loongson,ls2k2000-clk
-> > @@ -24,19 +25,32 @@ properties:
-> >      maxItems: 1
-> >  
-> >    clocks:
-> > -    items:
-> > -      - description: 100m ref
-> > +    maxItems: 1
-> >  
-> > -  clock-names:
-> > -    items:
-> > -      - const: ref_100m
-> > +  clock-names: true
-> 
-> No. How does this implement my comment?
+The AM62D2 SoC, part of the K3 architecture, is built for high-performance
+DSP tasks in automotive audio, pro audio, radar, sonar, and medical
+imaging. It features up to four Cortex-A53 cores (1.4GHz), two Cortex-R5F
+cores, and a C7x DSP with 2 TOPS MMA. Key interfaces include multi-channel
+McASP audio, TSN-capable Gigabit Ethernet, and a range of peripherals
+(UART, SPI, I2C, CAN, USB, eMMC/SD, OSPI, CSI). It supports LPDDR4/DDR4,
+secure boot with hardware security, and low-power modes with
+CAN/GPIO/UART wakeup.
 
-I'm sorry that I forgot about the suggestion of dropping clock-names for
-the new compatible.
+This SoC is of part K3 AM62x family, which includes the AM62A and AM62P
+variants. A key distinction is that the AM62D does not include multimedia
+components such as the video encoder/decoder, MJPEG encoder, Vision
+Processing Accelerator (VPAC) for image signal processing, or the display
+subsystem. Additionally, the AM62D has a different pin configuration
+compared to the AM62A, which impacts embedded software development.
 
-Is it acceptable to remove the description of clocks property, keep
-clock-names property as-is, and use an allOf block to disallow
-clocks-names for the new 2K0300 compatible? Thanks for your explanation.
+This adds dt bindings for TI's AM62D2 family of devices.
 
-> It makes no sense, why 100m even appeared here. I already objected last
-> time!
-> 
-> 
-> >  
-> >    '#clock-cells':
-> >      const: 1
-> >      description:
-> >        The clock consumer should specify the desired clock by having the clock
-> >        ID in its "clocks" phandle cell. See include/dt-bindings/clock/loongson,ls2k-clk.h
-> > -      for the full list of Loongson-2 SoC clock IDs.
-> > +      and include/dt-bindings/clock/loongson,ls2k0300-clk.h for the full list of
-> > +      Loongson-2 SoC clock IDs.
-> > +
-> > +allOf:
-> > +  - if:
-> > +      properties:
-> > +        compatible:
-> > +          contains:
-> > +            const: loongson,ls2k0300-clk
-> > +    then:
-> > +      properties:
-> > +        clock-names:
-> > +          const: ref_120m
-> 
-> NAK, stop doing this pattern. You already got comment on this.
+More details about the SoCs can be found in the Technical Reference Manual:
+https://www.ti.com/lit/pdf/sprujd4
 
-Oops, I missed the comment about dropping the frequency (or the full
-clock-names property) from clock-names when writing v2, and I've decided
-to drop the clock-names property completely for the 2K0300 compatible.
+Signed-off-by: Paresh Bhagat <p-bhagat@ti.com>
+Acked-by: Conor Dooley <conor.dooley@microchip.com>
+---
+ Documentation/devicetree/bindings/arm/ti/k3.yaml | 6 ++++++
+ 1 file changed, 6 insertions(+)
 
-Sorry again for my mistake.
+diff --git a/Documentation/devicetree/bindings/arm/ti/k3.yaml b/Documentation/devicetree/bindings/arm/ti/k3.yaml
+index bf6003d8fb76..e80c653fa438 100644
+--- a/Documentation/devicetree/bindings/arm/ti/k3.yaml
++++ b/Documentation/devicetree/bindings/arm/ti/k3.yaml
+@@ -25,6 +25,12 @@ properties:
+               - ti,am62a7-sk
+           - const: ti,am62a7
+ 
++      - description: K3 AM62D2 SoC and Boards
++        items:
++          - enum:
++              - ti,am62d2-evm
++          - const: ti,am62d2
++
+       - description: K3 AM62A7 SoC PHYTEC phyBOARD-Lyra
+         items:
+           - const: phytec,am62a7-phyboard-lyra-rdk
+-- 
+2.34.1
 
-> Best regards,
-> Krzysztof
-> 
-> 
-
-Best regards,
-Yao Zi
 
