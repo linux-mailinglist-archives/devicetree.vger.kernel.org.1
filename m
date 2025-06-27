@@ -1,43 +1,43 @@
-Return-Path: <devicetree+bounces-190295-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-190296-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id C7AB2AEB583
-	for <lists+devicetree@lfdr.de>; Fri, 27 Jun 2025 12:54:33 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7E97CAEB584
+	for <lists+devicetree@lfdr.de>; Fri, 27 Jun 2025 12:54:41 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 14DAF16A8BD
-	for <lists+devicetree@lfdr.de>; Fri, 27 Jun 2025 10:54:34 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 477F63AD141
+	for <lists+devicetree@lfdr.de>; Fri, 27 Jun 2025 10:54:14 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9765629AB11;
-	Fri, 27 Jun 2025 10:54:24 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2BF4E29B78E;
+	Fri, 27 Jun 2025 10:54:26 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp-bc0b.mail.infomaniak.ch (smtp-bc0b.mail.infomaniak.ch [45.157.188.11])
+Received: from smtp-1909.mail.infomaniak.ch (smtp-1909.mail.infomaniak.ch [185.125.25.9])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 884572980A5
-	for <devicetree@vger.kernel.org>; Fri, 27 Jun 2025 10:54:21 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=45.157.188.11
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CD184298CA6
+	for <devicetree@vger.kernel.org>; Fri, 27 Jun 2025 10:54:23 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.125.25.9
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1751021664; cv=none; b=ZJg4An1iYtHx5mK8jpsTrNH7laWOzWzDCYqEgDRz0XrRUhK34l4CMd86+IgnHiiIvXaN2m6Oe0ERwcjq6i5HHnmkjQ54Qf+HtmHjwsgjjVx1X0GUqX0jt12KDlBNEDGVbqRfDrHN2MmpYcfZtMlYqOlGoahE4sm5oSuGzRVQWhg=
+	t=1751021666; cv=none; b=cqTeqcs/VkKHNSZaI80EwMtmoq+4oyStJ7Hlzmnn+Cibrb1VtXki9vq3x5XtFO5M2dZ0xXptpO801AWOhL7TWsRatezRGnuOtNoHA6Dp+3OWcQ0P3MwWPqK9CSKjgrdWUoKV6zRlGm6YYxvurkD7D38+F/ei+xaXPoAzl/CtwWE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1751021664; c=relaxed/simple;
-	bh=6IQyvKuNPWfXTg0M6rLgs9YlTBI3PR96YEbujeEt3os=;
+	s=arc-20240116; t=1751021666; c=relaxed/simple;
+	bh=LsaoDkpHaIvDprZXOBsbjGmnELRN0iRLh8XBRohcrgk=;
 	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=lIJhj2lj0Ny7qhO79yC+gNvcCGcUs9Ml1KtwCgZWr7MikTAGKTUYX9cC64cQSreYcxOvEvjEMsENnaanT+xiSv1K5AWGb3Om5x0i0BLkMkQk9nx6IdO3r49RLdvmffp5fVHu+KDsU6fvzbb2py2woNB4HfFT6wPXCPB7rqxQ184=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=0leil.net; spf=pass smtp.mailfrom=0leil.net; arc=none smtp.client-ip=45.157.188.11
+	 In-Reply-To:To:Cc; b=KML7HKDLFQTV2DOno8RlYGw6GBI8DMut9uzf5AG4tfZwyK1UkLw5vHsCjPEuJB7wM/SuQEHUk7DsHOv6KjvsMPJMqkBwd8CNAxKcFRFUcdz8K93QZuph7JH38GNFw0tSBCGTqe0zTIPNf1QxTewbzMqyaQ8F6GEjQomC2IqUn8s=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=0leil.net; spf=pass smtp.mailfrom=0leil.net; arc=none smtp.client-ip=185.125.25.9
 Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=0leil.net
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=0leil.net
-Received: from smtp-4-0001.mail.infomaniak.ch (unknown [IPv6:2001:1600:7:10::a6c])
-	by smtp-4-3000.mail.infomaniak.ch (Postfix) with ESMTPS id 4bTC9L4pN1zW0Y;
+Received: from smtp-4-0001.mail.infomaniak.ch (smtp-4-0001.mail.infomaniak.ch [10.7.10.108])
+	by smtp-4-3000.mail.infomaniak.ch (Postfix) with ESMTPS id 4bTC9N0HHJzZJB;
+	Fri, 27 Jun 2025 12:54:16 +0200 (CEST)
+Received: from unknown by smtp-4-0001.mail.infomaniak.ch (Postfix) with ESMTPA id 4bTC9L6XsKzvrY;
 	Fri, 27 Jun 2025 12:54:14 +0200 (CEST)
-Received: from unknown by smtp-4-0001.mail.infomaniak.ch (Postfix) with ESMTPA id 4bTC9K3SKyzx9C;
-	Fri, 27 Jun 2025 12:54:13 +0200 (CEST)
 From: Quentin Schulz <foss+kernel@0leil.net>
-Date: Fri, 27 Jun 2025 12:53:54 +0200
-Subject: [PATCH v4 2/5] mfd: rk8xx-core: allow to customize RK806 reset
- mode
+Date: Fri, 27 Jun 2025 12:53:55 +0200
+Subject: [PATCH v4 3/5] arm64: dts: rockchip: add header for RK8XX PMIC
+ constants
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -46,7 +46,7 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-Message-Id: <20250627-rk8xx-rst-fun-v4-2-ce05d041b45f@cherry.de>
+Message-Id: <20250627-rk8xx-rst-fun-v4-3-ce05d041b45f@cherry.de>
 References: <20250627-rk8xx-rst-fun-v4-0-ce05d041b45f@cherry.de>
 In-Reply-To: <20250627-rk8xx-rst-fun-v4-0-ce05d041b45f@cherry.de>
 To: Lee Jones <lee@kernel.org>, Rob Herring <robh@kernel.org>, 
@@ -64,86 +64,39 @@ X-Infomaniak-Routing: alpha
 
 From: Quentin Schulz <quentin.schulz@cherry.de>
 
-The RK806 PMIC has a bitfield for configuring the restart/reset behavior
-(which I assume Rockchip calls "function") whenever the PMIC is reset
-either programmatically (c.f. DEV_RST in the datasheet) or via PWRCTRL
-or RESETB pins.
-
-For RK806, the following values are possible for RST_FUN:
-
-0b00 means "Restart PMU"
-0b01 means "Reset all the power off reset registers, forcing
-	the state to switch to ACTIVE mode"
-0b10 means "Reset all the power off reset registers, forcing
-	the state to switch to ACTIVE mode, and simultaneously
-	pull down the RESETB PIN for 5mS before releasing"
-0b11 means the same as for 0b10 just above.
-
-This adds the appropriate logic in the driver to parse the new
-rockchip,reset-mode DT property to pass this information. It just
-happens that the values in the binding match the values to write in the
-bitfield so no mapping is necessary.
-
-If it is missing, the register is left untouched and relies either on
-the silicon default or on whatever was set earlier in the boot stages
-(e.g. the bootloader).
+To make it easier to read the device tree, let's add constants for the
+rockchip,reset-mode property values that are currently only applicable
+to RK806 PMIC.
 
 Signed-off-by: Quentin Schulz <quentin.schulz@cherry.de>
 ---
- drivers/mfd/rk8xx-core.c  | 12 ++++++++++++
- include/linux/mfd/rk808.h |  2 ++
- 2 files changed, 14 insertions(+)
+ arch/arm64/boot/dts/rockchip/rk8xx.h | 18 ++++++++++++++++++
+ 1 file changed, 18 insertions(+)
 
-diff --git a/drivers/mfd/rk8xx-core.c b/drivers/mfd/rk8xx-core.c
-index 71c2b80a4678d627e86cfbec8135f08e262559d3..def4587fdfb8b82e5548e70310d3e16e6d07d7af 100644
---- a/drivers/mfd/rk8xx-core.c
-+++ b/drivers/mfd/rk8xx-core.c
-@@ -10,6 +10,7 @@
-  * Author: Wadim Egorov <w.egorov@phytec.de>
-  */
- 
-+#include <linux/bitfield.h>
- #include <linux/interrupt.h>
- #include <linux/mfd/rk808.h>
- #include <linux/mfd/core.h>
-@@ -699,6 +700,7 @@ int rk8xx_probe(struct device *dev, int variant, unsigned int irq, struct regmap
- 	const struct mfd_cell *cells;
- 	int dual_support = 0;
- 	int nr_pre_init_regs;
-+	u32 rst_fun = 0;
- 	int nr_cells;
- 	int ret;
- 	int i;
-@@ -726,6 +728,16 @@ int rk8xx_probe(struct device *dev, int variant, unsigned int irq, struct regmap
- 		cells = rk806s;
- 		nr_cells = ARRAY_SIZE(rk806s);
- 		dual_support = IRQF_SHARED;
+diff --git a/arch/arm64/boot/dts/rockchip/rk8xx.h b/arch/arm64/boot/dts/rockchip/rk8xx.h
+new file mode 100644
+index 0000000000000000000000000000000000000000..a6fbef71c06493c35b0f3697476167aaafa24f30
+--- /dev/null
++++ b/arch/arm64/boot/dts/rockchip/rk8xx.h
+@@ -0,0 +1,18 @@
++/* SPDX-License-Identifier: (GPL-2.0-or-later OR MIT) */
++/*
++ * Device Tree defines for Rockchip RK8xx PMICs
++ *
++ * Copyright 2025 Cherry Embedded Solutions GmbH
++ *
++ * Author: Quentin Schulz <quentin.schulz@cherry.de>
++ */
 +
-+		ret = device_property_read_u32(dev, "rockchip,reset-mode", &rst_fun);
-+		if (ret)
-+			break;
++#ifndef _DT_MFD_ROCKCHIP_RK8XX_H
++#define _DT_MFD_ROCKCHIP_RK8XX_H
 +
-+		ret = regmap_update_bits(rk808->regmap, RK806_SYS_CFG3, RK806_RST_FUN_MSK,
-+					 FIELD_PREP(RK806_RST_FUN_MSK, rst_fun));
-+		if (ret)
-+			return dev_err_probe(dev, ret,
-+					     "Failed to configure requested restart/reset behavior\n");
- 		break;
- 	case RK808_ID:
- 		rk808->regmap_irq_chip = &rk808_irq_chip;
-diff --git a/include/linux/mfd/rk808.h b/include/linux/mfd/rk808.h
-index 69cbea78b430b562a23d995263369d475daa6287..28170ee08898ca59c76a741a1d42763a42b72380 100644
---- a/include/linux/mfd/rk808.h
-+++ b/include/linux/mfd/rk808.h
-@@ -812,6 +812,8 @@ enum rk806_pin_dr_sel {
- #define RK806_INT_POL_H			BIT(1)
- #define RK806_INT_POL_L			0
- 
-+/* SYS_CFG3 */
-+#define RK806_RST_FUN_MSK		GENMASK(7, 6)
- #define RK806_SLAVE_RESTART_FUN_MSK	BIT(1)
- #define RK806_SLAVE_RESTART_FUN_EN	BIT(1)
- #define RK806_SLAVE_RESTART_FUN_OFF	0
++/* For use with rockchip,reset-mode property */
++#define RK806_RESTART		0
++#define RK806_RESET		1
++#define RK806_RESET_NOTIFY	2
++
++#endif
 
 -- 
 2.50.0
