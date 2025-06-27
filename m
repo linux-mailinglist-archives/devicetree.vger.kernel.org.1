@@ -1,65 +1,61 @@
-Return-Path: <devicetree+bounces-190570-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-190571-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 318B6AEC1C8
-	for <lists+devicetree@lfdr.de>; Fri, 27 Jun 2025 23:17:30 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id DFECFAEC1CF
+	for <lists+devicetree@lfdr.de>; Fri, 27 Jun 2025 23:19:16 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id C9252643C79
-	for <lists+devicetree@lfdr.de>; Fri, 27 Jun 2025 21:17:03 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 2E67116586C
+	for <lists+devicetree@lfdr.de>; Fri, 27 Jun 2025 21:19:17 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 25AFB25D216;
-	Fri, 27 Jun 2025 21:17:23 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2A4D725E471;
+	Fri, 27 Jun 2025 21:19:11 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="hNaU10tM"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="gQD4SIMF"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E8E7525CC57;
-	Fri, 27 Jun 2025 21:17:22 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id ECC6425E452;
+	Fri, 27 Jun 2025 21:19:10 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1751059043; cv=none; b=SfEkNOGsf0d912pYAFhjL1A/JdWlNbzyQq1WyLDua1iCSXXviERuQ8gjdQKrF/HaDEv6EUHKZnATRVLgz14y5OEHbNxas3ySdVk/TbLKyz4++mP6QrOMXmt/TMbkTdIpWqHtaBLutnINzAcG1XBDnZwIpM7MJ4cqb4m4+xFtFO8=
+	t=1751059151; cv=none; b=o4/Qym9AVJOrdCI6KkfoGfsvtRCjuJFDZuATeQ9ZEYseWmdeDplma4bgbd+r1yCvhk7KeaI2GMBrbbsXFAGUhsRvVPQh8rN1Ak+d+BSrxgsYWcHaQj9mZ04FA8hoXF1GgCa4zRMn1xHpo0/Vuhv/hV8dRPdD9Q0HizjYzT5Khfw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1751059043; c=relaxed/simple;
-	bh=+EQCIEgsXVvxKsrT0WsXUC8n/w8gjOICwEyTeNeHuEk=;
+	s=arc-20240116; t=1751059151; c=relaxed/simple;
+	bh=DJo/Xw/Bqco4vBD6Mqkh+C8Ix5OPOEQ1fzty/x4dnyk=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=N6O8n/iYXTpX2qUYMJaXflwmVowZ538bkM6nvAMcUYOb457SiisWXmH+DnuOdx8RwLZQn5uWaoxN4q15/fANlWt4aigYbflE+XSI8zLg7v4PSptV99uY50FkEyFFWQ2NfvUvoWKyeqDVsjZBW8re05ZxALnDNO2wERqtUIZPshg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=hNaU10tM; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 51DC6C4CEE3;
-	Fri, 27 Jun 2025 21:17:22 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=tNM/ob9thseS/aOl+kOfQd7x132CdAq8ZMoKcq5WA3aMFM19f/UFDd7SLKlQJD4ImDArSoYMvk4wuQKiTZ2q+6Keeoyx7NaD6numWcDMV+Dla7FBg1tYt+PQnY+YCE15/YFOAcz7XVuM0h7dooOohhchRIFJxJbVvPliTbt13/E=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=gQD4SIMF; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 58D82C4CEE3;
+	Fri, 27 Jun 2025 21:19:10 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1751059042;
-	bh=+EQCIEgsXVvxKsrT0WsXUC8n/w8gjOICwEyTeNeHuEk=;
+	s=k20201202; t=1751059150;
+	bh=DJo/Xw/Bqco4vBD6Mqkh+C8Ix5OPOEQ1fzty/x4dnyk=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=hNaU10tMhAYo5UGed+PugNq2z2uaOfR4n1dTptlDOnYNO+dZPouJG4Yi7JMSza6/s
-	 5D2HmCiksnZI3k3NKS68X0f5iat0pazkWRJnz8gf1+Rcp7/UAm6I5KQTZOlSTS84xH
-	 OjVKx7cbnQkX6Pgb5ZUZ4iOIJHfR39ZGpkfpqHuRiUoNFcYcIQmZA9iXzolCFVimNF
-	 LGAuVl93HL2WhaFtdwepQfKOkkKVzCyrnCVBYlAlIaZfwwm0LHIpxcNaZHFw7iA0pG
-	 A3iY4sGQpWrYP1xzEFUo2NUEIOTmjxZNoa5tFG8DLBTiJCm+yipFuAXaxh4k2MRtrC
-	 iMob9UwH57Utg==
-Date: Fri, 27 Jun 2025 16:17:21 -0500
-From: Rob Herring <robh@kernel.org>
-To: Shradha Todi <shradha.t@samsung.com>
-Cc: linux-pci@vger.kernel.org, devicetree@vger.kernel.org,
+	b=gQD4SIMFHjE7kHEjfbyq8Bv9jRE3HgswR1vZshITIExP2INHjVXbvpQjvn/cMhU2k
+	 yTVaVahdRv/vWLPArfKV1XPJiIWWwt+HMY/k05nw4CuTX3XKYL5kepGomHutsXuOSF
+	 elS3CPQ9zaP+SnJZrxHBFwvojxvhvz1y4eZw9bthfI5YTUl0ib81mTB6fGG+1yfR2h
+	 6LSlcDATwYmPn5eJZItgVH3aUPfUqOSr9XCjhT2Z2QKNoE6gwEpcGSDm1cbKVpq5Aj
+	 +KWf5WXxSOW/Q5iPVmQU+dzLty/ZZGeXxaLryvfb9alyGhPZLGbeU69ho8KIbpozyc
+	 xsRljQdH2oBWg==
+Date: Fri, 27 Jun 2025 16:19:09 -0500
+From: "Rob Herring (Arm)" <robh@kernel.org>
+To: Frank Li <Frank.Li@nxp.com>
+Cc: Krzysztof Kozlowski <krzk+dt@kernel.org>,
 	linux-arm-kernel@lists.infradead.org,
-	linux-samsung-soc@vger.kernel.org, linux-kernel@vger.kernel.org,
-	linux-phy@lists.infradead.org, linux-fsd@tesla.com,
-	manivannan.sadhasivam@linaro.org, lpieralisi@kernel.org,
-	kw@linux.com, bhelgaas@google.com, jingoohan1@gmail.com,
-	krzk+dt@kernel.org, conor+dt@kernel.org, alim.akhtar@samsung.com,
-	vkoul@kernel.org, kishon@kernel.org, arnd@arndb.de,
-	m.szyprowski@samsung.com, jh80.chung@samsung.com,
-	pankaj.dubey@samsung.com
-Subject: Re: [PATCH v2 07/10] dt-bindings: phy: Add PHY bindings support for
- FSD SoC
-Message-ID: <20250627211721.GA153863-robh@kernel.org>
-References: <20250625165229.3458-1-shradha.t@samsung.com>
- <CGME20250625165319epcas5p3721c19f6e6b482438c62dd1ef784de03@epcas5p3.samsung.com>
- <20250625165229.3458-8-shradha.t@samsung.com>
+	Piotr Wojtaszczyk <piotr.wojtaszczyk@timesys.com>,
+	imx@lists.linux.dev, linux-kernel@vger.kernel.org,
+	Conor Dooley <conor+dt@kernel.org>, linux-usb@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+	Vladimir Zapolskiy <vz@mleia.com>
+Subject: Re: [PATCH v2 1/1] dt-bindings: usb: convert lpc32xx-udc.txt to yaml
+ format
+Message-ID: <175105914924.160757.6319015774337763114.robh@kernel.org>
+References: <20250625214357.2620682-1-Frank.Li@nxp.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -68,76 +64,29 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20250625165229.3458-8-shradha.t@samsung.com>
+In-Reply-To: <20250625214357.2620682-1-Frank.Li@nxp.com>
 
-On Wed, Jun 25, 2025 at 10:22:26PM +0530, Shradha Todi wrote:
-> Document PHY device tree bindings for Tesla FSD SoCs.
+
+On Wed, 25 Jun 2025 17:43:53 -0400, Frank Li wrote:
+> Convert lpc32xx-udc.txt to yaml format.
 > 
-> Signed-off-by: Shradha Todi <shradha.t@samsung.com>
+> Additional changes:
+> - add clocks and put it into required list to match existed lp32xx.dtsi.
+> - remove usb-transceiver@2c at examples.
+> 
+> Signed-off-by: Frank Li <Frank.Li@nxp.com>
 > ---
->  .../bindings/phy/samsung,exynos-pcie-phy.yaml | 25 +++++++++++++++++--
->  1 file changed, 23 insertions(+), 2 deletions(-)
+> changes in v2
+> - update commit message by add "additional changes"
+> - add clocks to required list
+> ---
+>  .../devicetree/bindings/usb/lpc32xx-udc.txt   | 28 ----------
+>  .../bindings/usb/nxp,lpc3220-udc.yaml         | 54 +++++++++++++++++++
+>  2 files changed, 54 insertions(+), 28 deletions(-)
+>  delete mode 100644 Documentation/devicetree/bindings/usb/lpc32xx-udc.txt
+>  create mode 100644 Documentation/devicetree/bindings/usb/nxp,lpc3220-udc.yaml
 > 
-> diff --git a/Documentation/devicetree/bindings/phy/samsung,exynos-pcie-phy.yaml b/Documentation/devicetree/bindings/phy/samsung,exynos-pcie-phy.yaml
-> index 41df8bb08ff7..4dc20156cdde 100644
-> --- a/Documentation/devicetree/bindings/phy/samsung,exynos-pcie-phy.yaml
-> +++ b/Documentation/devicetree/bindings/phy/samsung,exynos-pcie-phy.yaml
-> @@ -15,10 +15,13 @@ properties:
->      const: 0
->  
->    compatible:
-> -    const: samsung,exynos5433-pcie-phy
-> +    enum:
-> +      - samsung,exynos5433-pcie-phy
-> +      - tesla,fsd-pcie-phy
->  
->    reg:
-> -    maxItems: 1
-> +    minItems: 1
-> +    maxItems: 2
->  
->    samsung,pmu-syscon:
->      $ref: /schemas/types.yaml#/definitions/phandle
-> @@ -30,6 +33,24 @@ properties:
->      description: phandle for FSYS sysreg interface, used to control
->                   sysreg registers bits for PCIe PHY
->  
-> +allOf:
-> +  - if:
-> +      properties:
-> +        compatible:
-> +          contains:
-> +            enum:
-> +              - tesla,fsd-pcie-phy
-> +    then:
-> +      description:
-> +        The PHY controller nodes are represented in the aliases node
-> +        using the following format 'pciephy{n}'. Depending on whether
-> +        n is 0 or 1, the phy init sequence is chosen.
 
-What? Don't make up your own aliases.
+Reviewed-by: Rob Herring (Arm) <robh@kernel.org>
 
-If the PHY instances are different, then maybe you need a different 
-compatible. If this is just selecting the PHY mode, you can do that in 
-PHY cells as the mode depends on the consumer.
-
-
-> +      properties:
-> +        reg:
-> +          items:
-> +            - description: PHY
-> +            - description: PCS
-
-else:
-  properties:
-    reg:
-      maxItems: 1
-
-> +
->  required:
->    - "#phy-cells"
->    - compatible
-> -- 
-> 2.49.0
-> 
 
