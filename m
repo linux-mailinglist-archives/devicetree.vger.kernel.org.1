@@ -1,60 +1,43 @@
-Return-Path: <devicetree+bounces-190293-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-190298-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id A8CBAAEB57A
-	for <lists+devicetree@lfdr.de>; Fri, 27 Jun 2025 12:53:37 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6A3A7AEB59B
+	for <lists+devicetree@lfdr.de>; Fri, 27 Jun 2025 13:00:53 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 5B7841BC58DF
-	for <lists+devicetree@lfdr.de>; Fri, 27 Jun 2025 10:53:53 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 62D274A5766
+	for <lists+devicetree@lfdr.de>; Fri, 27 Jun 2025 11:00:53 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 96687298CAC;
-	Fri, 27 Jun 2025 10:53:32 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="kwzJ9fZi"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1076029B8F7;
+	Fri, 27 Jun 2025 11:00:35 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from smtp-42ad.mail.infomaniak.ch (smtp-42ad.mail.infomaniak.ch [84.16.66.173])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6BFB041A8F;
-	Fri, 27 Jun 2025 10:53:31 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 57A9825F985
+	for <devicetree@vger.kernel.org>; Fri, 27 Jun 2025 11:00:31 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=84.16.66.173
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1751021612; cv=none; b=kmzlFnUZC8xfGoH3PRiI+ieXFqGPpllxw3cWpEfTDrm6mf4EG6d2X2icEniA3V8BVuye/ECZPiD2aYmSE4b607Xy8XgWX7e0xh+xOt0DiS/ozZe+wwkDFdHFkUxsy8qq/S0y1T/Xa5bzkb2BuKkRH5l31ZMLqIabfscWAXnpKgw=
+	t=1751022035; cv=none; b=TAdfJYT1fAaPMQ0bTokVF+omzoyf2ehgeiS5wJtjeg0l+CV9t0d6k7Bv7KV2sAVd+fabcT/OvFyhmFcC49dCv0K6YT3tXE4OA97H9tD4xxEtXaK1aCHnw36L8IuxtRPnJc/Jjodc39O4PVRFOjbGPcbnqLh1O6OqQZUavb5zmWg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1751021612; c=relaxed/simple;
-	bh=VCjbvRdf6XSyodZZQyEnO3752BxeuOjhcMPqXymOMWU=;
-	h=From:To:Cc:In-Reply-To:References:Subject:Message-Id:Date:
-	 MIME-Version:Content-Type; b=iXXxUTEj+Fnbd83LOpiFzeXh1G4fNWQBAs8IxwAjs5OJgenMkziknZuK6+uaKEaG0C9Er6eloLavYs/WZlliCVwr07ezu+RIzb2bTkW4BsPtmbIJqSHDXMYqkzPGV1lQFqOB1B1OYoiCEmcu+mpj+OLdUyIs7x3BP82GTsIQ3GQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=kwzJ9fZi; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 36CC2C4CEE3;
-	Fri, 27 Jun 2025 10:53:27 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1751021611;
-	bh=VCjbvRdf6XSyodZZQyEnO3752BxeuOjhcMPqXymOMWU=;
-	h=From:To:Cc:In-Reply-To:References:Subject:Date:From;
-	b=kwzJ9fZiZW0Z7dWIRbocLMuMAmCxPeBuzff8/2znikaRc1brjLdOwsYYf2XesGt1d
-	 duvcWDO8WMkc4zpbViTfwO/sg3qDNiOdTBOn1GFuvls0iP8rAu1Mz0RkaFkXx0Vvb2
-	 ge/2qRgFkb66/3uv4nwbwV9pDqZl0lakEs8KP0lQsAJEww0LVJ+vSNSC09pg4O1VXT
-	 cE/0Z6NocHUxvdPi8s1MfCCau6V+qftv/mVkKVCekNLTzR3ypRxUJPqSbOZBmTAxSK
-	 zVIFkX6ZroP0LjIUo88wDbNQDZtNeOdfBcGR3K1kpUmXP6qWIdIZDT2mT98EDZ8eKe
-	 FQ7MnywY0WvcQ==
-From: Srinivas Kandagatla <srini@kernel.org>
-To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, Janne Grunau <j@jannau.net>, 
- Alyssa Rosenzweig <alyssa@rosenzweig.io>, Neal Gompa <neal@gompa.dev>, 
- Hector Martin <marcan@marcan.st>, Sven Peter <sven@kernel.org>
-Cc: devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
- Sasha Finkelstein <fnkl.kernel@gmail.com>, asahi@lists.linux.dev, 
- linux-arm-kernel@lists.infradead.org
-In-Reply-To: <20250610-nvmem-bit-pattern-v1-0-55ed5c1b369c@kernel.org>
-References: <20250610-nvmem-bit-pattern-v1-0-55ed5c1b369c@kernel.org>
-Subject: Re: (subset) [PATCH 0/2] Extend nvmem patternProperties and then
- fix W=1 warnings in Apple dts
-Message-Id: <175102160789.6398.6252477701848323795.b4-ty@kernel.org>
-Date: Fri, 27 Jun 2025 11:53:27 +0100
+	s=arc-20240116; t=1751022035; c=relaxed/simple;
+	bh=c2BRS8EGRW0lz16wd0YVRIyZ1Rmg4QlbyrrNMHMHbyU=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=shUbkbdNKCx3Q54myFfipXS7Dr4EFhnw451Xp4aiB157VuqRfJLhojb4y1sBvQNcOC/Vw/Dj1bXWamW8S1lbdtHHyirOhY6FU9z83CHn5W0+yD2ytM51nlrnAGEmPTHz5TRYGmazau5SgqrtDfQFAO2I3vkrnK96EoSMLcOpgAU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=0leil.net; spf=pass smtp.mailfrom=0leil.net; arc=none smtp.client-ip=84.16.66.173
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=0leil.net
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=0leil.net
+Received: from smtp-4-0001.mail.infomaniak.ch (smtp-4-0001.mail.infomaniak.ch [10.7.10.108])
+	by smtp-4-3000.mail.infomaniak.ch (Postfix) with ESMTPS id 4bTC9J1vZfzGvr;
+	Fri, 27 Jun 2025 12:54:12 +0200 (CEST)
+Received: from unknown by smtp-4-0001.mail.infomaniak.ch (Postfix) with ESMTPA id 4bTC9G5wQdzvtY;
+	Fri, 27 Jun 2025 12:54:10 +0200 (CEST)
+From: Quentin Schulz <foss+kernel@0leil.net>
+Subject: [PATCH v4 0/5] rockchip: rk8xx: allow to customize PMIC reset mode
+ on RK806
+Date: Fri, 27 Jun 2025 12:53:52 +0200
+Message-Id: <20250627-rk8xx-rst-fun-v4-0-ce05d041b45f@cherry.de>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -63,27 +46,97 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-X-Mailer: b4 0.13.0
+X-B4-Tracking: v=1; b=H4sIAEB4XmgC/3XMSw6CMBSF4a2Yjq25fVocuQ/jALm30piAaZFAC
+ Hu3MJGQODwn+f6JJYqBErscJhapDym0TR76eGBVXTZP4gHzZhKkASMtjy83DDymjvtPw720otL
+ wsAgVy+YdyYdh7d3uedchdW0c13wvlvdfqRccOJWu0Fjosya4VjXFOJ6Q2FLq5U9bMHstsxZao
+ SjAFBZxr9VGC7fXKmtwwoNEhUq7rZ7n+Qt2GSuIJgEAAA==
+X-Change-ID: 20250526-rk8xx-rst-fun-f261c40b6d0c
+To: Lee Jones <lee@kernel.org>, Rob Herring <robh@kernel.org>, 
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, Heiko Stuebner <heiko@sntech.de>, 
+ Sebastian Reichel <sebastian.reichel@collabora.com>
+Cc: Lukasz Czechowski <lukasz.czechowski@thaumatec.com>, 
+ Daniel Semkowicz <dse@thaumatec.com>, 
+ Nicolas Frattaroli <nicolas.frattaroli@collabora.com>, 
+ devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
+ linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org, 
+ Quentin Schulz <quentin.schulz@cherry.de>, 
+ Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+X-Mailer: b4 0.14.2
+X-Infomaniak-Routing: alpha
 
+This allows to customize the PMIC reset method (also called RST_FUN) on
+RK806 PMIC from Rockchip, mainly found on RK3588 devices but also on
+RK3576.
 
-On Tue, 10 Jun 2025 17:17:33 +0000, Sven Peter wrote:
-> This brief series fixes a W=1 warning recently introduced with the Apple
-> Silicon PMIC NVMEM nodes. We have cells that are the same bytes but a
-> different bit offset and these currently result in the same node name.
-> The legcy layout already allows to specify the bit offset in the name as
-> a suffix but this isn't possible in the new fixed-layout.
-> Thus first adjust the fixed-layout cell patternProperties to the same pattern
-> as the legacy one and then fix the node names in our device tree files.
-> 
-> [...]
+Finally, this is required on the two RK3588 devices from Theobroma as
+U-Boot changes the silicon-default (which is suitable for us) to
+something that breaks our companion microcontroller's reboot detection
+which breaks a bunch of assumptions in the MCU FW code.
 
-Applied, thanks!
+To validate this works on those devices do the following:
 
-[1/2] dt-bindings: nvmem: fixed-layout: Allow optional bit positions
-      commit: 6aa656ce94693c8712c004045375e2221b157659
+On Tiger:
+i2cset -y -f 6 0x6f 0x9 0x62
+On Jaguar:
+i2cset -y -f 0 0x6f 0x9 0x62
+
+You hear a nice (loud :) ) beep, then reboot and it should stop right
+before entering U-Boot TPL again.
+
+Signed-off-by: Quentin Schulz <quentin.schulz@cherry.de>
+---
+Changes in v4:
+- removed not-so-useful dev_dbg message about missing property,
+- unwrapped RK806_RST_FUN_MSK into the line above,
+- reworded regmap_update_bits error message according to Lee's
+  suggestion,
+- Link to v3: https://lore.kernel.org/r/20250618-rk8xx-rst-fun-v3-0-081f02d3d348@cherry.de
+
+Changes in v3:
+- (hopefully) fixed missing bitfield.h include in driver as reported by
+  Intel's kernel test robot,
+- removed dt-binding header file,
+- removed mentions to constants that used to be in dt-binding header
+  file since they aren't anymore,
+- added (patch 3) header file in arch/arm64/boot/dts/rockchip to make
+  the value of rockchip,reset-mode easier to understand when reading the
+  device tree,
+- Link to v2: https://lore.kernel.org/r/20250605-rk8xx-rst-fun-v2-0-143d190596dd@cherry.de
+
+Changes in v2:
+- moved rst_fun variable declaration out of the switch-case,
+- initialized rst_fun variable to make kernel test robot happy even
+  though the variable wouldn't be used uninitialized due to breaking
+  before using it,
+- renamed rockchip,rst-fun to rockchip,reset-mode
+- rewrote rockchip,reset-mode binding description to not mention the
+  relation to registers or register values,
+- added binding header file to make it easier to understand what the
+  mode is when reading a Device Tree without having to read the binding,
+- Link to v1: https://lore.kernel.org/r/20250526-rk8xx-rst-fun-v1-0-ea894d9474e0@cherry.de
+
+---
+Quentin Schulz (5):
+      dt-bindings: mfd: rk806: allow to customize PMIC reset mode
+      mfd: rk8xx-core: allow to customize RK806 reset mode
+      arm64: dts: rockchip: add header for RK8XX PMIC constants
+      arm64: dts: rockchip: force PMIC reset behavior to restart PMU on RK3588 Jaguar
+      arm64: dts: rockchip: force PMIC reset behavior to restart PMU on RK3588 Tiger
+
+ .../devicetree/bindings/mfd/rockchip,rk806.yaml     | 21 +++++++++++++++++++++
+ arch/arm64/boot/dts/rockchip/rk3588-jaguar.dts      |  2 ++
+ arch/arm64/boot/dts/rockchip/rk3588-tiger.dtsi      |  2 ++
+ arch/arm64/boot/dts/rockchip/rk8xx.h                | 18 ++++++++++++++++++
+ drivers/mfd/rk8xx-core.c                            | 12 ++++++++++++
+ include/linux/mfd/rk808.h                           |  2 ++
+ 6 files changed, 57 insertions(+)
+---
+base-commit: b004ef1a3e9210ef9b9092ed8812ab8cc65b10e9
+change-id: 20250526-rk8xx-rst-fun-f261c40b6d0c
 
 Best regards,
 -- 
-Srinivas Kandagatla <srini@kernel.org>
+Quentin Schulz <quentin.schulz@cherry.de>
 
 
