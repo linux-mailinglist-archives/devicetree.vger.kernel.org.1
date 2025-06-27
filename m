@@ -1,191 +1,334 @@
-Return-Path: <devicetree+bounces-190513-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-190514-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 631F7AEC005
-	for <lists+devicetree@lfdr.de>; Fri, 27 Jun 2025 21:35:06 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 496DFAEC010
+	for <lists+devicetree@lfdr.de>; Fri, 27 Jun 2025 21:37:57 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id A797A7A8540
-	for <lists+devicetree@lfdr.de>; Fri, 27 Jun 2025 19:32:47 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 410EB645AF9
+	for <lists+devicetree@lfdr.de>; Fri, 27 Jun 2025 19:37:31 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2509D20B1FC;
-	Fri, 27 Jun 2025 19:33:49 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 415CE1C5496;
+	Fri, 27 Jun 2025 19:37:53 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b="HcuGoMHO"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="Z3pRv7Io"
 X-Original-To: devicetree@vger.kernel.org
-Received: from DU2PR03CU002.outbound.protection.outlook.com (mail-northeuropeazon11011048.outbound.protection.outlook.com [52.101.65.48])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wr1-f44.google.com (mail-wr1-f44.google.com [209.85.221.44])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E788D1E9B3A;
-	Fri, 27 Jun 2025 19:33:46 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=52.101.65.48
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1751052829; cv=fail; b=KVo8ofQOoCFqHkXrJCsLgAFQqmBK0VxqujxZ8HzcHXViTI6XiUJ6nrQICTfw2orTDb3+tzOT47qRErJa/Su8k20gSsVEgaIZr6s3UEwQMg4DsnXjAk9ukUTaPxPFSeWRh2+w8OZy7HOJCcq3S3Xo11JG/YaY6M8spw31hoDS19o=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1751052829; c=relaxed/simple;
-	bh=gkh6NSMoQiT+Lh5xibHYCVc/dBDsjl3T+hBhc6sNrz0=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:Content-Type:
-	 Content-Disposition:In-Reply-To:MIME-Version; b=RF2/VhCH/IMs90xlKkrb0wgv2iiESleRmksbsKxyAxVHUcGoLScTSohpSgl4dASPnQQsGE9iVd3vWoyWVwc5BXqUqSM4BMPbq4EW8Yul05lCHc/BGQh9j+RaHb9f/1/U4woEriqkEa39B8W91HaxARcJd7WL+w7oBKaVoqx1J6E=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com; spf=pass smtp.mailfrom=nxp.com; dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b=HcuGoMHO; arc=fail smtp.client-ip=52.101.65.48
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=nxp.com
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=q877rsX+Ax5f+/hM1RBvRSCcdfvyJZpPlybvJ7ODnNTzruXSGBqLwa2Z55kK/vAqxZfD07ODdYTSiKfXuyoeorp+f9MFv5yfNZCtd9hK5YZd0SIsHy8eOL+Wi6AWi3+s/Q4aimW8NXz/bO934ETJe8FUFASHoMmj37uBhwScedc5A1Fj9S1pw4l8Rei8T9fgvukuQE8MAuyA1e40+lcvrZe8JtClaoc5GcSKhC6f+B/94Z3TEj9vxG4LvtabBJsGd9rzCx+9okmC5/Jb+phl7CVrUfCKFeo/3IG9aOJcQH+5/ZSXQ+lFnL9RXuh/cll+FuaYqKLLYb/cYrwmjo7dwQ==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=FhPwNoO5ZH28IzSArLRZRwUMuLEa962JWq17ET+F/JI=;
- b=uLOtQdR6suM77O4zGpMcFZdY57YvaPe11Gac6Pr4DPrxiFE9sEbCIH4uQEqp86B64daZYj9no9ktFNDPQd9FSUBFsImtesfugx5VtstR3wIvWdv1UU4V82/EMtoxsPDXVkrIlUPE1PXou2fr4WUn2rkIulqvkFXniVsKAnHhm26QYWoxfHv7/iEftBAAVxdtamW/uMsokuT6i2OVANoTYfEw1uRmQhE6IkhAG11HICUOgZ8yxlSCX/4hwr71P8zMMT4gEOZllalqpBsCDRCc7tRhOKcKvQ0hXTllD6vzp/OiZy0llpYuucaqIbkgLMECGBJGoWmwTuNEIj2jX05Akg==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
- header.d=nxp.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=FhPwNoO5ZH28IzSArLRZRwUMuLEa962JWq17ET+F/JI=;
- b=HcuGoMHOmRY85Uc2h6qrRVyoF8lgF+xcE7f45HvZlAVDemRcILSiOVzQ++FPX2OKU8fGbJ8LKi+bveMFwfqxsCtFuQJHTIOuX79+4rwMEibyehBnksFJ0ZG4Q9Xj3a+wxXhNH7QIlkliZGq1tAUi5q7rIJ7h0I0Q3AZBc+Sd6pv7sPwM+PD6npHSGkpvp4F0cnel+FbjcIeQYe5DRcLWU0LLUARsBstQuj6H40ddEhaXCbYT6jMYhmWP2LBaKX7SpUasTKZOUnIaSUUl7sWQF7ExJLhmEa43mpDUInPOZ9eebF9BNO4S0TAAvOm/Rr2xBdm65e4kC6jQ7MXbkIiS4A==
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=nxp.com;
-Received: from PAXPR04MB9642.eurprd04.prod.outlook.com (2603:10a6:102:240::14)
- by VI1PR04MB6991.eurprd04.prod.outlook.com (2603:10a6:803:12d::13) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8857.30; Fri, 27 Jun
- 2025 19:33:41 +0000
-Received: from PAXPR04MB9642.eurprd04.prod.outlook.com
- ([fe80::9126:a61e:341d:4b06]) by PAXPR04MB9642.eurprd04.prod.outlook.com
- ([fe80::9126:a61e:341d:4b06%7]) with mapi id 15.20.8880.015; Fri, 27 Jun 2025
- 19:33:41 +0000
-Date: Fri, 27 Jun 2025 15:33:35 -0400
-From: Frank Li <Frank.li@nxp.com>
-To: Laurentiu Mihalcea <laurentiumihalcea111@gmail.com>
-Cc: Shawn Guo <shawnguo@kernel.org>, Sascha Hauer <s.hauer@pengutronix.de>,
-	Fabio Estevam <festevam@gmail.com>, Rob Herring <robh@kernel.org>,
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3E384CA6F;
+	Fri, 27 Jun 2025 19:37:50 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.44
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1751053073; cv=none; b=i6HrO9X2mCWnyPKtiHM+KiQbsk0tC2LMh5Ny0loFV2i8+Ahu7C3CEKD9xTxtr3phfoQYOzd1q6109UYDugSWe6RnbnYiNPxqiKUnWgtBFWZOSlonRRAZ9Ln/xQ+YBwA7U+SWkr/c+Y4BzKy8vxicF0H2pSxZNM76WFBtjkuQXXA=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1751053073; c=relaxed/simple;
+	bh=QsKEoHiFVzOI3xTTMVDtFR632S9Ue4yTQnf9XjQPQbM=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=YFhU2z1pfdhV/2VBoyw/MxLqsACSu3dSsHroOJvJPYtBpndzI/o6ULNijLMGtvg1il/9skTLw/HMmsy44y1MA0fotG1rw62/H8NSx9L+JdjIO/SS7rQ/7FJSUVGfqofByJS6ppRkrZqobig1BmvSfnzLkhhdRp9ehDPq1h8P2F8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=Z3pRv7Io; arc=none smtp.client-ip=209.85.221.44
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-wr1-f44.google.com with SMTP id ffacd0b85a97d-3a365a6804eso1491347f8f.3;
+        Fri, 27 Jun 2025 12:37:50 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1751053069; x=1751657869; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=g6UATK77j2UR8lm3BqkGelAShsVphU+SHXJTi+vfoC0=;
+        b=Z3pRv7IoaFQ0biT/Nb444vxV2Dw+eXpp64TZKUDa+aJEUt170hdM8B43dYBP12JqDh
+         9TuUAizvzEoSqxPLu3EsFp8LgpGhCHDodtc6y0MLpkjdLtHJaWaBu5/jOyrOmnkILWeP
+         vQ29Xh3kbWNWYvGutdHw/slZDfHFrNxjUQ/rru0+8QHz0SPV+6s9H8yrbb1PsFTsgSc7
+         e905uJT5SLnQxR+m/ZidI5dO+vCeXf/LISSaXqLxp3nUDb0rbFna2v9TZ10veMMGD7pg
+         zxIBg2+9RSHWT9Hzy+QXcJkosJ8VTRALoFHjNUcM/ZPjJFq+DcLsHiDGjnW5I/PAe9lZ
+         Y80w==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1751053069; x=1751657869;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=g6UATK77j2UR8lm3BqkGelAShsVphU+SHXJTi+vfoC0=;
+        b=HRiTPNNgA309U/20pk7xn1yqUa5hlwYxx+1qT+zj0S+oNq/xNLEcTjsm8Zr0GEm/lL
+         gRponaTDAyIguAG/fJ4oie2FWJKGQ42Tc08VBr9QWEsWIwWD+9rBX4zM14DY51YhXvmb
+         zVBpo1mjnaS3livc1Of7nnHwvQpbmSb6VUqqBvsJ9wbx2u4KoG070iIhWVaUyU1lbgLi
+         Cr4Vud701sTYuUZq5P6CE3bUTkSz89bt44nKXzEeBkxy6KIjfr9svtNDNZJxeMlVk8Ni
+         8cwKTLK6SeE1rqmSASTQIrxwkO/YzEbJCdnWz9pedxUHpzVMx2eVnoQ16u92wfOpuC7a
+         NI+Q==
+X-Forwarded-Encrypted: i=1; AJvYcCVt93AwwHtmJKXfV0U2m8YU6BxlsqZiqMAqMLFx+UnkggdLDTlGaU5AW+2dyhfRa/cH6uGni+vUC2wL@vger.kernel.org, AJvYcCXq/jQrqtHWvL9h7L75y8yZ0CPuX9fcUGeXN/8x/EITsnvJfiL4Zmi81J6r3Tf9QBCjoQlJhUojS3wHDkJe@vger.kernel.org
+X-Gm-Message-State: AOJu0Ywr3rKKQntoKpjKqHuVIcjsJuuSF3Gsh9LSvYbc9X074EW7p/hQ
+	MGJlpeE5ueJqDXoeKBwCGbdJ1DGYOMs06NxPBcun/cOstnKdubje6twx
+X-Gm-Gg: ASbGncsMb5831v65f7JB4oYW0+Bg3Lx6SU9A76IR/VE3kDncpv4EkwiAOHr0nRUBlxI
+	7/aI9u3FKClkReVyhN/ZSI1drCwQynmc9PmrHgI3BK/Cvw31oHc4eczkNjSRIHQSmTKpumAJ+8G
+	orx7fDRaJZ5MZiwpx9kmr3y6PhscE8czmGKi8X/kdswyMUL7o7BeWptljkJ+1lYc3haQjGKMD4U
+	PsAZ0xulfGKjj0bal54oLCJW4v9ltPtBKkfM6mLksEf1p4a5wF5XC7uJ9PbCLffYDiAE7+1G16k
+	L0IyjtQTtlSrXTmV94XEZLHHTBlyhb4x+V9dqhSVTqKxOKKzxHvKn5pVCvyu0FqyG03OwApQhY1
+	eHyJRexzEFg==
+X-Google-Smtp-Source: AGHT+IGC0da65duViHnDfkfAebSVTHM6+4k8/8KXJio9pRCWNfhIsTIL1HsENW8P8+OcvZBGMksngw==
+X-Received: by 2002:a5d:584a:0:b0:3a4:e844:745d with SMTP id ffacd0b85a97d-3a90be8d151mr4389783f8f.56.1751053069135;
+        Fri, 27 Jun 2025 12:37:49 -0700 (PDT)
+Received: from iku.Home ([2a06:5906:61b:2d00:3b46:edb1:4d0:593b])
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-4538a3fe28dsm59655315e9.20.2025.06.27.12.37.48
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 27 Jun 2025 12:37:48 -0700 (PDT)
+From: Prabhakar <prabhakar.csengg@gmail.com>
+X-Google-Original-From: Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+To: Geert Uytterhoeven <geert+renesas@glider.be>,
+	Magnus Damm <magnus.damm@gmail.com>,
+	Rob Herring <robh@kernel.org>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Pengutronix Kernel Team <kernel@pengutronix.de>,
-	imx@lists.linux.dev, linux-arm-kernel@lists.infradead.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v2 1/2] dt-bindings: arm: fsl: add i.MX8ULP EVK9 board
-Message-ID: <aF7yD8hWDq8KF4gY@lizhi-Precision-Tower-5810>
-References: <20250627142645.134256-1-laurentiumihalcea111@gmail.com>
- <20250627142645.134256-2-laurentiumihalcea111@gmail.com>
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20250627142645.134256-2-laurentiumihalcea111@gmail.com>
-X-ClientProxiedBy: AS4P191CA0048.EURP191.PROD.OUTLOOK.COM
- (2603:10a6:20b:657::17) To PAXPR04MB9642.eurprd04.prod.outlook.com
- (2603:10a6:102:240::14)
+	Conor Dooley <conor+dt@kernel.org>
+Cc: linux-renesas-soc@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	Prabhakar <prabhakar.csengg@gmail.com>,
+	Biju Das <biju.das.jz@bp.renesas.com>,
+	Fabrizio Castro <fabrizio.castro.jz@renesas.com>,
+	Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+Subject: [PATCH v2] arm64: dts: renesas: Add CN15 eMMC and SD overlays for RZ/V2H and RZ/V2N EVKs
+Date: Fri, 27 Jun 2025 20:37:42 +0100
+Message-ID: <20250627193742.110818-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
+X-Mailer: git-send-email 2.49.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: PAXPR04MB9642:EE_|VI1PR04MB6991:EE_
-X-MS-Office365-Filtering-Correlation-Id: 43302980-5703-46d8-e0bf-08ddb5b18580
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam:
-	BCL:0;ARA:13230040|1800799024|366016|376014|52116014|7416014|38350700014;
-X-Microsoft-Antispam-Message-Info:
-	=?us-ascii?Q?akL0xxFd1Jxc+2sRDJz1ICODOPXLWEiVoLg2Ta83vS7RO3jtRQ7Ly7AAc6cD?=
- =?us-ascii?Q?/EyrIGziBPQjAFLPAe8UZRJqprVYGvIqjpPPF0R3qhEesfl8he7oWXXZaThK?=
- =?us-ascii?Q?i+IBIYMjCH75IIJky+tx7eVFqmd/euAK3xbBWAABgbIhIQE6CUitF4SbnXii?=
- =?us-ascii?Q?/iqRRU7olnnypCZs9wt7Mr6YPW1Sy0oKvvBaojPc22JEUew1EvYVsixO3auj?=
- =?us-ascii?Q?wG5vTcnNU1hoUy9CHOoaVHgIgN96zm6CfyU5WQPANmJHsEenAP5VhJQbljIV?=
- =?us-ascii?Q?/VWYFUefF5qc+cl4ufLDaO5bSpIkDOvFykXiOjCPZujqbrynHLhBDKz5KUZ5?=
- =?us-ascii?Q?0mA0XvGAAc7INvyESo/77MJlo2VtypyUaK8RhUccaqygDLCXKbhp0NSmTKTN?=
- =?us-ascii?Q?X0ALqtm3jP4Swr3OkVZTuNJMpPyA6oqgCa+MFwbpBWSDpOWaf1PhGJ/uuWyW?=
- =?us-ascii?Q?p7j/g0PhEq96IDu18t5tim7nTJXfOG+aTaC4AkaQh/vuOKxEEC8lgICh7B2H?=
- =?us-ascii?Q?UfUQFq55USxMxQyHNObvp/rcg5HUPPGhZ2bODcZ0gXiSZDjoCwXtAxlts8XX?=
- =?us-ascii?Q?zQLkl24gZhTwzRsqgTUznx69Zhh/WDJdf89Z4zWT8Ktw2OLmes3DfUG928oX?=
- =?us-ascii?Q?KpIzFVtoWkOcpVFGnLHYDrh7F2oazFk9+TZGO4k2CwKtG31USXxiN7nKrXRT?=
- =?us-ascii?Q?684jwTfudHz2G3GKCU5t/NHI1KPwEYYWajZgZceifkNupQ05Y0xqbkDdmwWD?=
- =?us-ascii?Q?aV7KnQGE5DsOhqTKaqb/igyrFR5pUypMZGggUldX1Y2j+/rgXeXdOTkBwXON?=
- =?us-ascii?Q?gZhzj5xJj1hmob6q0QsQQJgK0V7b84xytdZT5+vZmQPCFWlk42JZBiQWzCcl?=
- =?us-ascii?Q?b0tXOgTfBh5sXExKm3Vz2raIX2gd/ot3+wdVqfSCsM148DAEOMl04PCp/3UL?=
- =?us-ascii?Q?X33rc9TYklCI30yJs2gz9fdSmPJJBT74wCskSNI+/l7k8aGs4Iv9RC5YNc6F?=
- =?us-ascii?Q?CiEP1Ftq8ExnylL6CD4nB6nc0hcGwia4KPPhgwpANhexuQZ4SFJNxsAemhfM?=
- =?us-ascii?Q?u3lGgwHYU9KFhzyhi8BicKkUBNjmbztaEkXX2Bv5zNy/w3XT/7f4sFEes/K2?=
- =?us-ascii?Q?aE5W+BnqqLBE+Eo8AZAhsUvxIuDaiIX3DTbw8X4A8UyclNg8YUbFHGT/poFJ?=
- =?us-ascii?Q?CPXTb3eI5v7s17L/YiPidSDmbTDJwTbZMSIYCBRN2CnYG8zqVlGXYsf1v/jD?=
- =?us-ascii?Q?hSRXmv+RhQR+h3NB2ve4+2AJlXB1e5nuuVhB8I8qNnHnQrIbuWd3f/E8QDTY?=
- =?us-ascii?Q?IJTRvK3357ylz/vJv+Eoyb0ESkvL+0MXEvjr7nJMllrDWjwMOGhM3KkK0FjZ?=
- =?us-ascii?Q?s9dNvahF+phAJ+8yYglCtzuuLAwcNgViDaxr6CtK/2iiMEDdqRU87C2KFC4y?=
- =?us-ascii?Q?pijwVkHSsfSh/4KR9U1VQPCmzz+06S750sxlbDVT8Ei7zGW9Mir/+Q=3D=3D?=
-X-Forefront-Antispam-Report:
-	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:PAXPR04MB9642.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(1800799024)(366016)(376014)(52116014)(7416014)(38350700014);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0:
-	=?us-ascii?Q?3jpU5wsqSlY2w0FcPZ5FzatgTm61iVdNoR6DoJrT3JlXM9bTjCTcykchBW/A?=
- =?us-ascii?Q?ZDO8GP12N0z8H1M+ahw+MS+f7mQPlAogbrpd71qYeMrZ+B0PAt0jE+HU7YJw?=
- =?us-ascii?Q?XrzkKaZV7uIalvVn6fTosmPQuacDuZXeOe9GCjlKkrd15sJ+4BxJMvAJIe85?=
- =?us-ascii?Q?dl/LSWkUUpY0UADbDiGDM0BGKVO0f3zWbc77cBFEk7qwyAshnlgMOvnbrzMV?=
- =?us-ascii?Q?gBh5McmXWR2QExZilhLsaaMXygi6GOmCiZo2kunMX7V4PxGhP/1iiFaEfedK?=
- =?us-ascii?Q?Iz4jKe7O7D1J4v+J76/gQsB2Q3ThuDV9q/OH1K9t8UB7f1TzjPFgZihDqmgc?=
- =?us-ascii?Q?24C6mdj2XGCd+dGcqobd28I/iVKvXW6ePSeaMV8bwP6nYhCSgxHLKpBoXI7g?=
- =?us-ascii?Q?FbWTLMQVf1Vioh/JPTfu4fMNyesxFyFZ6Gh2JtuTSLjm4RPqYn9vMrYsthFi?=
- =?us-ascii?Q?De+GOZVhLTW39Ot/2WT1xOdC7j5IhOWRC18qZ5Pn05dXheiwYgk+J//jSqp8?=
- =?us-ascii?Q?julq+28a8wfPxNd/75aYAlcuv/M+bNfAyJ6nQmdC5BbLYJFek69U8vj60gvj?=
- =?us-ascii?Q?ux8irOXMe0WtoIhHgLX0JY83VmfS5aGA/FoRU99FJDFWbYlpBtfc3zew+i4+?=
- =?us-ascii?Q?QIEUQSt8UKQe3sa5z4nZBRciLws/HrK1U9oD16cQAPD17PaA4stbuxPWB/XJ?=
- =?us-ascii?Q?0XjzFVlQ4kMmlqBf2iu1RXBoizdodkN0+SmcjMZK4FpVIbcyN66oNJi0oEys?=
- =?us-ascii?Q?xcOReYLwPfQY4jGWhMOThQFvVGmeZ6XYeTHSMQvfnJBzICdaWLnEwQcCA+iy?=
- =?us-ascii?Q?CHXvENptzj2hlVG19+yX5rzqY+1W6RAVuO/v0ndI65TI8GjcSKZ7guMttlD7?=
- =?us-ascii?Q?OO8kJngHvBH/pJMWqSHvIk66BhfhpFh3zl4LOY5yZl8xY0Otg7bU0MTOGfxW?=
- =?us-ascii?Q?hcDArGM5P+2wI9b8utooNHq1dP/krcoPX70QbxXwxpvWmTuOq/CSZVGtXzit?=
- =?us-ascii?Q?wd68i2x76sR5tsYAiQESpdXjMa7jRy0G9qLsM7AcXUsxdKlP6veet6oti/jk?=
- =?us-ascii?Q?5WdpfQOKk+1xi2jQRuA82yh9qPxMd9kzYtLVSRh4i3NDwkMjPOwdPZ8UeLg3?=
- =?us-ascii?Q?r+NWjKtxTfqgxLqzA/9kKHT/zqrXGW9v/DY5vOUuNztJXZIhL1hcdo2AIYPn?=
- =?us-ascii?Q?FUJxxL9h9adzrrG1yvTV0jkVIUuTorXdqkEULik2M7/uMIXn/hfnne5ucvpq?=
- =?us-ascii?Q?7jNvniuFMF/f1Fxmrp4UbQoSwEOft5duT+CydQ/Zpgb/+oSvpoudMcmvBW1x?=
- =?us-ascii?Q?viK0knEmNqtLzJ7FpkjVt5lsjXNEiBp+Se9s95fniCJbA3GQQVhYIm809r9R?=
- =?us-ascii?Q?iUy3fGXtYHCGijwDha/bC017LcPmHHS5jm/DZ+8u9CIVuz56tzc2PWV4xWkT?=
- =?us-ascii?Q?J4uGpz/ifCCbP0dwcBoFbTYcBOZHeAckzLG2d7KrwdVUYyBurb+OitZu74mA?=
- =?us-ascii?Q?S6H8gY+rRKF7n4YgK/XicjQpO6Q4kamXvU8wf8qCQ9S4iQ3cpKq65lFcdTbZ?=
- =?us-ascii?Q?Jd2dE3nbOGkRplyJdZc=3D?=
-X-OriginatorOrg: nxp.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 43302980-5703-46d8-e0bf-08ddb5b18580
-X-MS-Exchange-CrossTenant-AuthSource: PAXPR04MB9642.eurprd04.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 27 Jun 2025 19:33:41.1425
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: +iymQ3KdKU0ay5jKlGBljlq3yhFq6vR6VX/LdX88JYiZF898uxaWSm4w1PBAcSg9WYGosn0z3TQ9fkKPkahO/A==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: VI1PR04MB6991
+Content-Transfer-Encoding: 8bit
 
-On Fri, Jun 27, 2025 at 10:26:44AM -0400, Laurentiu Mihalcea wrote:
-> From: Laurentiu Mihalcea <laurentiu.mihalcea@nxp.com>
->
-> Add DT compatible string for the i.MX8ULP EVK9 board.
->
-> Signed-off-by: Laurentiu Mihalcea <laurentiu.mihalcea@nxp.com>
-> ---
->  Documentation/devicetree/bindings/arm/fsl.yaml | 1 +
->  1 file changed, 1 insertion(+)
->
-> diff --git a/Documentation/devicetree/bindings/arm/fsl.yaml b/Documentation/devicetree/bindings/arm/fsl.yaml
-> index b23bc1e48866..0563e9522fb7 100644
-> --- a/Documentation/devicetree/bindings/arm/fsl.yaml
-> +++ b/Documentation/devicetree/bindings/arm/fsl.yaml
-> @@ -1373,6 +1373,7 @@ properties:
->          items:
->            - enum:
->                - fsl,imx8ulp-evk           # i.MX8ULP EVK Board
-> +              - fsl,imx8ulp-9x9-evk       # i.MX8ULP EVK9 Board
+From: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
 
-move fsl,imx8ulp-9x9-evk before fsl,imx8ulp-evk according ascii table
+Introduce device tree overlays for supporting the eMMC (RTK0EF0186B02000BJ)
+and microSD (RTK0EF0186B01000BJ) sub-boards connected via the CN15
+connector on the RZ/V2H and RZ/V2N evaluation kits.
 
-Frank
+These overlays enable SDHI0 with appropriate pin control settings, power
+regulators, and GPIO handling. Both sub-boards are supported using shared
+overlay files that can be applied to either EVK due to their identical
+connector layout and interface support.
 
->            - const: fsl,imx8ulp
->
->        - description: i.MX93 based Boards
-> --
-> 2.34.1
->
+To support this, new DT overlay files are added:
+- `rzv2-evk-cn15-emmc.dtso` for eMMC
+- `rzv2-evk-cn15-sd.dtso` for microSD
+
+Additionally, the base DTS files for both EVKs are updated to include a
+fixed 1.8V regulator (`reg_1p8v`) needed by the eMMC sub-board and
+potential future use cases such as HDMI output.
+
+Signed-off-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+---
+v1->v2:
+- Dropped patch 2/3 from previous series as that has been merged.
+- Dropped adding alias in base DTS instead added in overlay.
+- Switched to using single overlay files for both RZ/V2H and RZ/V2N EVKs
+  instead of separate overlays for each EVK.
+- Used RZG2L_GPIO and RZG2L_PORT_PINMUX to avoid using SoC specific
+  macros.
+---
+ arch/arm64/boot/dts/renesas/Makefile          |  8 +++
+ .../dts/renesas/r9a09g056n48-rzv2n-evk.dts    |  9 +++
+ .../dts/renesas/r9a09g057h44-rzv2h-evk.dts    |  9 +++
+ .../boot/dts/renesas/rzv2-evk-cn15-emmc.dtso  | 50 +++++++++++++
+ .../boot/dts/renesas/rzv2-evk-cn15-sd.dtso    | 70 +++++++++++++++++++
+ 5 files changed, 146 insertions(+)
+ create mode 100644 arch/arm64/boot/dts/renesas/rzv2-evk-cn15-emmc.dtso
+ create mode 100644 arch/arm64/boot/dts/renesas/rzv2-evk-cn15-sd.dtso
+
+diff --git a/arch/arm64/boot/dts/renesas/Makefile b/arch/arm64/boot/dts/renesas/Makefile
+index 677ba3aa8931..a1bd652b58d1 100644
+--- a/arch/arm64/boot/dts/renesas/Makefile
++++ b/arch/arm64/boot/dts/renesas/Makefile
+@@ -161,8 +161,16 @@ r9a09g047e57-smarc-cru-csi-ov5645-dtbs := r9a09g047e57-smarc.dtb r9a09g047e57-sm
+ dtb-$(CONFIG_ARCH_R9A09G047) += r9a09g047e57-smarc-cru-csi-ov5645.dtb
+ 
+ dtb-$(CONFIG_ARCH_R9A09G056) += r9a09g056n48-rzv2n-evk.dtb
++dtb-$(CONFIG_ARCH_R9A09G056) += rzv2-evk-cn15-emmc.dtbo
++r9a09g056n48-rzv2-evk-cn15-emmc.dts := r9a09g056n48-rzv2n-evk.dtb rzv2-evk-cn15-emmc.dtbo
++dtb-$(CONFIG_ARCH_R9A09G056) += rzv2-evk-cn15-sd.dtbo
++r9a09g056n48-rzv2-evk-cn15-sd.dts := r9a09g056n48-rzv2n-evk.dtb rzv2-evk-cn15-sd.dtbo
+ 
+ dtb-$(CONFIG_ARCH_R9A09G057) += r9a09g057h44-rzv2h-evk.dtb
++dtb-$(CONFIG_ARCH_R9A09G057) += rzv2-evk-cn15-emmc.dtbo
++r9a09g057h44-rzv2-evk-cn15-emmc.dts := r9a09g057h44-rzv2h-evk.dtb rzv2-evk-cn15-emmc.dtbo
++dtb-$(CONFIG_ARCH_R9A09G057) += rzv2-evk-cn15-sd.dtbo
++r9a09g057h44-rzv2-evk-cn15-sd.dts := r9a09g057h44-rzv2h-evk.dtb rzv2-evk-cn15-sd.dtbo
+ dtb-$(CONFIG_ARCH_R9A09G057) += r9a09g057h48-kakip.dtb
+ 
+ dtb-$(CONFIG_ARCH_RCAR_GEN3) += draak-ebisu-panel-aa104xd12.dtbo
+diff --git a/arch/arm64/boot/dts/renesas/r9a09g056n48-rzv2n-evk.dts b/arch/arm64/boot/dts/renesas/r9a09g056n48-rzv2n-evk.dts
+index 40014044bbc7..5829b9afaa95 100644
+--- a/arch/arm64/boot/dts/renesas/r9a09g056n48-rzv2n-evk.dts
++++ b/arch/arm64/boot/dts/renesas/r9a09g056n48-rzv2n-evk.dts
+@@ -48,6 +48,15 @@ reg_0p8v: regulator-0p8v {
+ 		regulator-always-on;
+ 	};
+ 
++	reg_1p8v: regulator-1p8v {
++		compatible = "regulator-fixed";
++		regulator-name = "fixed-1.8V";
++		regulator-min-microvolt = <1800000>;
++		regulator-max-microvolt = <1800000>;
++		regulator-boot-on;
++		regulator-always-on;
++	};
++
+ 	reg_3p3v: regulator-3p3v {
+ 		compatible = "regulator-fixed";
+ 		regulator-name = "fixed-3.3V";
+diff --git a/arch/arm64/boot/dts/renesas/r9a09g057h44-rzv2h-evk.dts b/arch/arm64/boot/dts/renesas/r9a09g057h44-rzv2h-evk.dts
+index ae021546d895..886ce31c1674 100644
+--- a/arch/arm64/boot/dts/renesas/r9a09g057h44-rzv2h-evk.dts
++++ b/arch/arm64/boot/dts/renesas/r9a09g057h44-rzv2h-evk.dts
+@@ -55,6 +55,15 @@ reg_0p8v: regulator-0p8v {
+ 		regulator-always-on;
+ 	};
+ 
++	reg_1p8v: regulator-1p8v {
++		compatible = "regulator-fixed";
++		regulator-name = "fixed-1.8V";
++		regulator-min-microvolt = <1800000>;
++		regulator-max-microvolt = <1800000>;
++		regulator-boot-on;
++		regulator-always-on;
++	};
++
+ 	reg_3p3v: regulator-3p3v {
+ 		compatible = "regulator-fixed";
+ 
+diff --git a/arch/arm64/boot/dts/renesas/rzv2-evk-cn15-emmc.dtso b/arch/arm64/boot/dts/renesas/rzv2-evk-cn15-emmc.dtso
+new file mode 100644
+index 000000000000..eda2b31f6d79
+--- /dev/null
++++ b/arch/arm64/boot/dts/renesas/rzv2-evk-cn15-emmc.dtso
+@@ -0,0 +1,50 @@
++// SPDX-License-Identifier: GPL-2.0
++/*
++ * Shared DT overlay for the eMMC Sub Board (RTK0EF0186B02000BJ), which
++ * is connected to the CN15 connector on the RZ/V2H and RZ/V2N EVKs.
++ *
++ * Copyright (C) 2025 Renesas Electronics Corp.
++ */
++
++/dts-v1/;
++/plugin/;
++
++#include <dt-bindings/gpio/gpio.h>
++#include <dt-bindings/pinctrl/rzg2l-pinctrl.h>
++
++&{/} {
++	aliases {
++		mmc0 = "/soc/mmc@15c00000";
++	};
++};
++
++&pinctrl {
++	sdhi0_emmc_pins: emmc-pins {
++		sd0-clk {
++			pins = "SD0CLK";
++			renesas,output-impedance = <3>;
++			slew-rate = <0>;
++		};
++
++		sd0-dat-cmd {
++			pins = "SD0DAT0", "SD0DAT1", "SD0DAT2", "SD0DAT3", "SD0DAT4",
++			       "SD0DAT5", "SD0DAT6", "SD0DAT7", "SD0CMD";
++			input-enable;
++			renesas,output-impedance = <3>;
++			slew-rate = <0>;
++		};
++	};
++};
++
++&sdhi0 {
++	pinctrl-0 = <&sdhi0_emmc_pins>;
++	pinctrl-1 = <&sdhi0_emmc_pins>;
++	pinctrl-names = "default", "state_uhs";
++	vmmc-supply = <&reg_3p3v>;
++	vqmmc-supply = <&reg_1p8v>;
++	bus-width = <8>;
++	mmc-hs200-1_8v;
++	non-removable;
++	fixed-emmc-driver-type = <1>;
++	status = "okay";
++};
+diff --git a/arch/arm64/boot/dts/renesas/rzv2-evk-cn15-sd.dtso b/arch/arm64/boot/dts/renesas/rzv2-evk-cn15-sd.dtso
+new file mode 100644
+index 000000000000..3e823b4093f5
+--- /dev/null
++++ b/arch/arm64/boot/dts/renesas/rzv2-evk-cn15-sd.dtso
+@@ -0,0 +1,70 @@
++// SPDX-License-Identifier: GPL-2.0
++/*
++ * Shared DT overlay for the microSD Sub Board (RTK0EF0186B01000BJ), which
++ * is connected to the CN15 connector on the RZ/V2H and RZ/V2N EVKs.
++ *
++ * Copyright (C) 2025 Renesas Electronics Corp.
++ */
++
++/dts-v1/;
++/plugin/;
++
++#include <dt-bindings/gpio/gpio.h>
++#include <dt-bindings/pinctrl/rzg2l-pinctrl.h>
++
++&{/} {
++	aliases {
++		mmc0 = "/soc/mmc@15c00000";
++	};
++
++	vqmmc_sdhi0: regulator-vqmmc-sdhi0 {
++		compatible = "regulator-gpio";
++		regulator-name = "SDHI0 VqmmC";
++		gpios = <&pinctrl RZG2L_GPIO(10, 0) GPIO_ACTIVE_HIGH>;
++		regulator-min-microvolt = <1800000>;
++		regulator-max-microvolt = <3300000>;
++		gpios-states = <0>;
++		states = <3300000 0>, <1800000 1>;
++	};
++};
++
++&pinctrl {
++	sdhi0-pwr-en-hog {
++		gpio-hog;
++		gpios = <RZG2L_GPIO(10, 1) GPIO_ACTIVE_HIGH>;
++		output-high;
++		line-name = "sd0_pwr_en";
++	};
++
++	sdhi0_pins: sd0 {
++		sd0-cd {
++			pinmux = <RZG2L_PORT_PINMUX(10, 5, 15)>; /* SD0_CD */
++		};
++
++		sd0-clk {
++			pins = "SD0CLK";
++			renesas,output-impedance = <3>;
++			slew-rate = <0>;
++		};
++
++		sd0-dat-cmd {
++			pins = "SD0DAT0", "SD0DAT1", "SD0DAT2", "SD0DAT3", "SD0CMD";
++			input-enable;
++			renesas,output-impedance = <3>;
++			slew-rate = <0>;
++		};
++	};
++};
++
++&sdhi0 {
++	pinctrl-0 = <&sdhi0_pins>;
++	pinctrl-1 = <&sdhi0_pins>;
++	pinctrl-names = "default", "state_uhs";
++	vmmc-supply = <&reg_3p3v>;
++	vqmmc-supply = <&vqmmc_sdhi0>;
++	bus-width = <4>;
++	sd-uhs-sdr50;
++	sd-uhs-sdr104;
++	status = "okay";
++};
++
+-- 
+2.49.0
+
 
