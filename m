@@ -1,146 +1,120 @@
-Return-Path: <devicetree+bounces-190171-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-190172-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 804FBAEAE8D
-	for <lists+devicetree@lfdr.de>; Fri, 27 Jun 2025 07:50:57 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 09FE4AEAE96
+	for <lists+devicetree@lfdr.de>; Fri, 27 Jun 2025 07:57:16 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id EAED04A52C6
-	for <lists+devicetree@lfdr.de>; Fri, 27 Jun 2025 05:50:57 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 6CFF87B095B
+	for <lists+devicetree@lfdr.de>; Fri, 27 Jun 2025 05:55:51 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1302F19CC3E;
-	Fri, 27 Jun 2025 05:50:53 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2E9F51E32CF;
+	Fri, 27 Jun 2025 05:57:06 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="opKHwvpa"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="XLdFIPOo"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wm1-f49.google.com (mail-wm1-f49.google.com [209.85.128.49])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DB8C04A21;
-	Fri, 27 Jun 2025 05:50:52 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9409C1E0DBA
+	for <devicetree@vger.kernel.org>; Fri, 27 Jun 2025 05:57:03 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.49
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1751003453; cv=none; b=MuD8hE+y6UWZ6eZ9xcLfJABwdvCpKpOiesM188jFtu7d/W44DmGYTRCpZkJTZXzNRPq6ditGIxq/ShZ9ahJgB2ORIcsNAfKVpSW1u69DROFDHRDs+EajiwCl9hOWpeitW4UNHN86NkKP+hF/ht85JnZJl2mabKNREsSycZ+oYlA=
+	t=1751003826; cv=none; b=eE/2cmFFSQ0hgvs9Z22pCdsRLEVaiY2JeVrygWn/rRttHzWLtx+0mi2SWrmXWb1rNxZRUsw/Ga7COFDo2uzfal/m5BvIqox+Fv9z//73njqVd29wXJfogDH4blgCYFqr6xQT+FOpkf3BxPA4bOtpAWQhkHalgJghGVJLPEacE/M=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1751003453; c=relaxed/simple;
-	bh=U+Swbi9IsD7gbt+s4JbBsN+9uN8M5VaxcB6JLCGWXB4=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=vDBWp76vj7KMLg++Yct+ZNwtFQdEqUm9sdB06NqNyuFyjiyT5u26YYJPPi5Vt6KPnm/cPKQrhUhqIH1gJIlFTslMdDoYWWLzfUn9vMesVNr6Z3HImIuCPTCHGlbSIZ0nd1OWOp/Iw9YqvORIwDHelPfLofdOmsHIFSdvAc62IFs=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=opKHwvpa; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 05C65C4CEE3;
-	Fri, 27 Jun 2025 05:50:46 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1751003452;
-	bh=U+Swbi9IsD7gbt+s4JbBsN+9uN8M5VaxcB6JLCGWXB4=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=opKHwvpaYFAQ57JQz/AVCSjjKXIhkZUZMeZxAFYDhnfTBexIpwop/BqAx7k6m9SiR
-	 9uky53qyjlqPlPGpNVe/O69iXuxzyy0GO1GLtdmdzkTuNjldYIbyZDcBeRKe6t8Nmy
-	 pd+qLwpyIjzA+ygoe3Q6NhVEfMDBOWAR/t3FovPw2/EjKyrmwKSXPQmwI3voI3NWZh
-	 5DY20GgDL2Te0UjI20qOZ0lNrbj/V7MWLGqwdGckWn7o3Aw2NkdQYwNOiE9JMH5HjN
-	 HfxpK37evVftNENgmZI5u+DRcIu4asM9dTiVAQ3qXupdKKpLqP93K/bw2l35yK1nbX
-	 zVAZs/clRQt/Q==
-Message-ID: <7a3867fa-d69f-4246-87d8-b95860830dcb@kernel.org>
-Date: Fri, 27 Jun 2025 07:50:44 +0200
+	s=arc-20240116; t=1751003826; c=relaxed/simple;
+	bh=+h6UbanBcEDSczpIUGbKBBHkAMzPJzRTwr8Ng2Y2WlE=;
+	h=From:To:Cc:In-Reply-To:References:Subject:Message-Id:Date:
+	 MIME-Version:Content-Type; b=bn/OdiFGNoas+vgkfMo2coo/8mou/voPnUrOBVRKFILRwsRZqDx6pxlryWy4jwOycj1I3nafCdWfZcOeGig3uLAxfFG645jq0+Fka8ZrzZlLABWihAafDTr+a//Wi2vUlrslkCSarxfAyxCQzk8zl+ZWVZvALkjmFDrIvLcuh7I=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=XLdFIPOo; arc=none smtp.client-ip=209.85.128.49
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-wm1-f49.google.com with SMTP id 5b1f17b1804b1-450ddb35583so2559855e9.1
+        for <devicetree@vger.kernel.org>; Thu, 26 Jun 2025 22:57:03 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1751003822; x=1751608622; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:date:message-id:subject
+         :references:in-reply-to:cc:to:from:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=ihA46zUWoj4y9yH4wv6zt6EYeKMN/ZkRKZwdyhiNCYA=;
+        b=XLdFIPOomeL0hFHy97Fq9g3eSKdQCxhBlCusbQ1HCPQ2P/6Xke9pPZuoNVaKBp3kwK
+         8M4ohqjuw6Bme/9FsiS0xP97drcDLvphzIbH1dVUx3NntQUxyLOMUEaFUEQfh4busfX/
+         eg7FLGi2BmSjQEDkFyO/dDumIqB3XY5pZ6mjYerULaLeAKV3G9Un6EOhimewpbUcg+Yh
+         biFk1IkpRvK+RVfKEes5ZAjWb8YGnHfITByiEQ+yAT2qykAlX21h7/ll2KnbyYPP/zuw
+         /M4IOVe1kntBTvZTVsEcHYXJpQLfXrAhuNctxJl7iFctAW0HZLoPs4n6BuipRhmKeI59
+         9rlw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1751003822; x=1751608622;
+        h=content-transfer-encoding:mime-version:date:message-id:subject
+         :references:in-reply-to:cc:to:from:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=ihA46zUWoj4y9yH4wv6zt6EYeKMN/ZkRKZwdyhiNCYA=;
+        b=cj1fkxlFGRS1EZm9GpzTyb2Ei6BUD1wFC+kzv0tXwtFuVXe85uz87O1Pvi1RGD2r9/
+         KQLGZcA9PbBSMhPycENMf3XxQ9HUIcdsHjMKCOsnVLZ5Sni8hitXix9FZfp8nnQqI8Sw
+         CjqStT2hN3yCpUAOPOiIYUi+G9HIft9cscSSVSM0OhMz119aVqOkK89sSNFy9YcIcsO6
+         nZZXVBL7FKxvwUb9QkyetkNOyZIuI7ANwttEmoTsY02UwxUYf/4r/FWt0jSV4fqvwlRV
+         ntsnq6B7trO+L3RH4tNfNJkB+UBwISRiPBIJfCAyldYXiuogKTLuYnk3CbMxAcEZ1zAM
+         y67g==
+X-Forwarded-Encrypted: i=1; AJvYcCVEFOQZXLh3P3LgYXYTyj8RLs1eihN7k885kTwhIy63oYRfgIl5dMEDcZB8a6WqLBs4qcbGYyB8OzBL@vger.kernel.org
+X-Gm-Message-State: AOJu0YwkjJzwAOp9LxURYYXBWS5yxiDr4dZhnderFbxb6LfRuooT+uz/
+	C9LH/hmJmrqghTUFshJtkXK0lNulyx1/f3U9dw8oVIABr1FYsVQKsp3g0Ik9rAbtT04=
+X-Gm-Gg: ASbGncv0r2r4PWaRbrjl64Gr4WA2cNc4v6BVoKihnX3L6OVLaMWGFOLj+FWPxHrXMKv
+	r19BleJDOhkrPybMLcp4HSitdoytpvrgXj3y037XUocnUq87Mm5bY7sFeOSD0JqSPd65JqLqf/S
+	DsLi7MOQ3Wf6rv+l/r5k5HaanqFTmFqsSrnWpvwaRybMNUEabHvLkWp/ywxGNZKQjlZCOLbg8rL
+	Jn+Sa6tl1TOtXNt3eFB/h8nEaGG/ll6c5HbnxowzH8MXGG7HdpwIrPjP0P+jWwO8Ame8dLDfouJ
+	SY8D4aA8x7ngfLxkS+oBzdw27iqnYVbhDgYsiLxC6tDH28/GT3cf3S9kEh4Wrdt9DbMKBs3AsrO
+	w
+X-Google-Smtp-Source: AGHT+IEO+Lc7qL8+vyNa1Fzk+jCY3AgG5vruLPblFHJDruNTVICQAyjisLLGwKbaVbHs/dAXjI2hxg==
+X-Received: by 2002:adf:b650:0:b0:3a5:77ea:2d36 with SMTP id ffacd0b85a97d-3a8ff8f56a0mr556159f8f.10.1751003821836;
+        Thu, 26 Jun 2025 22:57:01 -0700 (PDT)
+Received: from [127.0.1.1] ([178.197.222.89])
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-4538a390bf8sm40414175e9.4.2025.06.26.22.57.00
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 26 Jun 2025 22:57:00 -0700 (PDT)
+From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+To: linux-kernel@vger.kernel.org, 
+ Florian Fainelli <florian.fainelli@broadcom.com>
+Cc: Krzysztof Kozlowski <krzk@kernel.org>, Rob Herring <robh@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, 
+ Broadcom internal kernel review list <bcm-kernel-feedback-list@broadcom.com>, 
+ devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org
+In-Reply-To: <20250609212356.2264244-1-florian.fainelli@broadcom.com>
+References: <20250609212356.2264244-1-florian.fainelli@broadcom.com>
+Subject: Re: [PATCH v2 0/2] Simplify compatible matching for brcmstb_memc
+Message-Id: <175100382008.7419.10025995325292671372.b4-ty@linaro.org>
+Date: Fri, 27 Jun 2025 07:57:00 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3 2/4] dt-bindings: sound: bindings for tac5x1x family of
- codecs
-To: "Holalu Yogendra, Niranjan" <niranjan.hy@ti.com>,
- "Rob Herring (Arm)" <robh@kernel.org>
-Cc: "tiwai@suse.de" <tiwai@suse.de>,
- "alsa-devel@alsa-project.org" <alsa-devel@alsa-project.org>,
- "lgirdwood@gmail.com" <lgirdwood@gmail.com>,
- "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
- "krzk+dt@kernel.org" <krzk+dt@kernel.org>,
- "broonie@kernel.org" <broonie@kernel.org>,
- "liam.r.girdwood@intel.com" <liam.r.girdwood@intel.com>,
- "andriy.shevchenko@linux.intel.com" <andriy.shevchenko@linux.intel.com>,
- "Xu, Baojun" <baojun.xu@ti.com>, "Ding, Shenghao" <shenghao-ding@ti.com>,
- "linux-sound@vger.kernel.org" <linux-sound@vger.kernel.org>,
- "Hampiholi, Vallabha" <v-hampiholi@ti.com>,
- "conor+dt@kernel.org" <conor+dt@kernel.org>,
- "Navada Kanyana, Mukund" <navada@ti.com>
-References: <3c54f7d51e1941cbb8a15147c99d64ee@ti.com>
-From: Krzysztof Kozlowski <krzk@kernel.org>
-Content-Language: en-US
-Autocrypt: addr=krzk@kernel.org; keydata=
- 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 a/A=
-In-Reply-To: <3c54f7d51e1941cbb8a15147c99d64ee@ti.com>
-Content-Type: text/plain; charset=UTF-8
+Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
+X-Mailer: b4 0.14.2
 
-On 27/06/2025 06:57, Holalu Yogendra, Niranjan wrote:
-> Thanks for quick review.
->> From: Rob Herring (Arm) <robh@kernel.org>
->> Sent: Friday, June 27, 2025 1:09 AM
->> To: Holalu Yogendra, Niranjan <niranjan.hy@ti.com>
->> Subject: Re: [PATCH v3 2/4] dt-bindings: sound: bindings for
->> tac5x1x family of codecs
->> On Thu, 26 Jun 2025 23:43:31 +0530, Niranjan H Y wrote:
->>> Documentation/devicetree/bindings/sound/ti,tac5x1x.yaml
-> ...
->> yamllint warnings/errors:
->>
->> dtschema/dtc warnings/errors:
->> Warning: Duplicate compatible "ti,taa5412" found in schemas matching
->> Warning: Duplicate compatible "ti,taa5212" found in schemas matching
->> Warning: Duplicate compatible "ti,tad5212" found in schemas matching
-> The duplicate compatible are already removed as part of the patch series 
-> in patch [v3,4/4] dt-bindings: sound: device support list for pcm6240 .
-> https://patchwork.ozlabs.org/project/devicetree-bindings/patch/20250626181334.1200-5-niranjan.hy@ti.com/
-> Please let me know if still additional action is required. 
 
-It's impossible to understand what this email references... but I still
-think you need to fix your patchset. You have warnings here, don't you?
+On Mon, 09 Jun 2025 14:23:54 -0700, Florian Fainelli wrote:
+> Since the conversation died off in
+> https://lore.kernel.org/all/20241217194439.929040-2-florian.fainelli@broadcom.com/
+> here is a second attempt at addressing what I understood from the
+> conversation back then.
+> 
+> Changes in v2:
+> 
+> [...]
+
+Applied, thanks!
+
+[1/2] dt-bindings: memory-controller: Define fallback compatible
+      https://git.kernel.org/krzk/linux-mem-ctrl/c/501be7cecec9aaf9cd52e76d0820efd6d0b952e7
+[2/2] memory: brcmstb_memc: Simplify compatible matching
+      https://git.kernel.org/krzk/linux-mem-ctrl/c/0e3dd41a94b29d5d9973dac356ebd37f87bd8a37
 
 Best regards,
-Krzysztof
+-- 
+Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+
 
