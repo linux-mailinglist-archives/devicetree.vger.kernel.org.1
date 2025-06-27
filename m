@@ -1,153 +1,158 @@
-Return-Path: <devicetree+bounces-190411-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-190412-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2EB98AEBAD6
-	for <lists+devicetree@lfdr.de>; Fri, 27 Jun 2025 17:00:27 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0035DAEBAF7
+	for <lists+devicetree@lfdr.de>; Fri, 27 Jun 2025 17:03:38 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 699961C21E52
-	for <lists+devicetree@lfdr.de>; Fri, 27 Jun 2025 15:00:21 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 15490640C5E
+	for <lists+devicetree@lfdr.de>; Fri, 27 Jun 2025 15:02:59 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 856152E8886;
-	Fri, 27 Jun 2025 14:59:42 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 047F22E7F2D;
+	Fri, 27 Jun 2025 15:03:21 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="AZZxZg1s"
+	dkim=pass (2048-bit key) header.d=disroot.org header.i=@disroot.org header.b="UoRytafx"
 X-Original-To: devicetree@vger.kernel.org
-Received: from relay7-d.mail.gandi.net (relay7-d.mail.gandi.net [217.70.183.200])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from layka.disroot.org (layka.disroot.org [178.21.23.139])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6479C29DB6B;
-	Fri, 27 Jun 2025 14:59:38 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.70.183.200
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B009CF4ED;
+	Fri, 27 Jun 2025 15:03:17 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=178.21.23.139
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1751036382; cv=none; b=BtbMBsi2X0oQfPe3oTZ694CiizSVa+trKPxr4Y21BR++kbDeijB2C3UPF308joSsQiTz3BlRrgyLzBhB+ZEazzy42C18P2Pv0Zkrnx4FuvhRLpE+xDef1B9PUjyP5fy5ngAu40Dn2jU0/SBGbSSNhOY6VDuc1cTz1XefXEbq284=
+	t=1751036600; cv=none; b=ZCpW+qNUD8eON5U10mDfG6FRZgb0zOfNYfFA5z7uwuJeWVWAspI9EMzzKY5c2e3p2z/mcYLpVN21yXDOo47sJBLYAxzTjPpF24V0FZS/jcoGWLZfqHRLoFwk/DxynxA/CSgzlTUg3+8RCc/gg0Zzs/e7kFo+gFz7iACqMk/HS1s=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1751036382; c=relaxed/simple;
-	bh=Q624Qj2i25nnhuv7Bqn+nxJwHsYhIYSd8aBORWKkTDM=;
-	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=GUxZ3siR29RkQQ3hzSfsF44cAPFhjlhJ6OB2O3hSA4TH4oGbLanc5cOK52bK4uIWzSJk+A7IUTKYhUMkX5DhGcX5zjFA2sNGueFn266b/SfmpFXanXICW3iE52T9S5uAsM3KYyLCWvTKRZ//U1L+IIKjmxmT0GPEeSj248SfJYI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=AZZxZg1s; arc=none smtp.client-ip=217.70.183.200
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
-Received: by mail.gandi.net (Postfix) with ESMTPSA id B280243914;
-	Fri, 27 Jun 2025 14:59:31 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
-	t=1751036376;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=ThiterbTvL+mYGXh+idmEWQ5hcYVOVl2geFkwk5TYJc=;
-	b=AZZxZg1sYkT9vHUrIb2/97+6gfdNO4TtsAae3Q97XVRt49b0/Vi8ATyjffit62MZ37kfFL
-	ymp82e/YrnESaBvIOQpjbOf2NByT+aIPb77AUb4LL4j2gswmjCDrkd8q8JlI9EKD/dTAGv
-	ehdRnIQrsEL+gjpbp5/HZ3gDsDO5/1suKp3xnM2E14rmnSJF/7NfSxhMn203GJECVD9In9
-	m8CXZqLY8ct1ish67IsDUCaBumDTG5qcx7dEbGr9De+dkZwMfiwoTHf5QNh6Zrf48SviUx
-	IemOqFS+LYffkXWwV86Y/xGnsTH8VmnMH3qqowHZYUhXdCZGAKaDau1hHDHE3g==
-Date: Fri, 27 Jun 2025 16:59:30 +0200
-From: Herve Codina <herve.codina@bootlin.com>
-To: Saravana Kannan <saravanak@google.com>
-Cc: Andrew Lunn <andrew@lunn.ch>, Greg Kroah-Hartman
- <gregkh@linuxfoundation.org>, "Rafael J. Wysocki" <rafael@kernel.org>,
- Danilo Krummrich <dakr@kernel.org>, Shawn Guo <shawnguo@kernel.org>, Sascha
- Hauer <s.hauer@pengutronix.de>, Pengutronix Kernel Team
- <kernel@pengutronix.de>, Fabio Estevam <festevam@gmail.com>, Michael
- Turquette <mturquette@baylibre.com>, Stephen Boyd <sboyd@kernel.org>, Andi
- Shyti <andi.shyti@kernel.org>, Wolfram Sang
- <wsa+renesas@sang-engineering.com>, Peter Rosin <peda@axentia.se>, Derek
- Kiernan <derek.kiernan@amd.com>, Dragan Cvetic <dragan.cvetic@amd.com>,
- Arnd Bergmann <arnd@arndb.de>, Rob Herring <robh@kernel.org>, Bjorn Helgaas
- <bhelgaas@google.com>, Mark Brown <broonie@kernel.org>, Len Brown
- <lenb@kernel.org>, Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
- Daniel Scally <djrscally@gmail.com>, Heikki Krogerus
- <heikki.krogerus@linux.intel.com>, Sakari Ailus
- <sakari.ailus@linux.intel.com>, Wolfram Sang <wsa@kernel.org>, Geert
- Uytterhoeven <geert+renesas@glider.be>, Davidlohr Bueso
- <dave@stgolabs.net>, Dave Jiang <dave.jiang@intel.com>, Alison Schofield
- <alison.schofield@intel.com>, Vishal Verma <vishal.l.verma@intel.com>, Ira
- Weiny <ira.weiny@intel.com>, Dan Williams <dan.j.williams@intel.com>,
- linux-kernel@vger.kernel.org, imx@lists.linux.dev,
- linux-arm-kernel@lists.infradead.org, linux-clk@vger.kernel.org,
- linux-i2c@vger.kernel.org, devicetree@vger.kernel.org,
- linux-pci@vger.kernel.org, linux-spi@vger.kernel.org,
- linux-acpi@vger.kernel.org, linux-cxl@vger.kernel.org, Allan Nielsen
- <allan.nielsen@microchip.com>, Horatiu Vultur
- <horatiu.vultur@microchip.com>, Steen Hegelund
- <steen.hegelund@microchip.com>, Luca Ceresoli <luca.ceresoli@bootlin.com>,
- Thomas Petazzoni <thomas.petazzoni@bootlin.com>
-Subject: Re: [PATCH v3 06/28] driver core: fw_devlink: Introduce
- fw_devlink_set_device()
-Message-ID: <20250627165930.344b429c@bootlin.com>
-In-Reply-To: <20250616090406.32f62ca4@bootlin.com>
-References: <20250613134817.681832-1-herve.codina@bootlin.com>
-	<20250613134817.681832-7-herve.codina@bootlin.com>
-	<CAGETcx9u-7TJ6_J5HdmDT=7A6Z08P-rUC0n+qnBoBi+ejRc2SQ@mail.gmail.com>
-	<20250616090406.32f62ca4@bootlin.com>
-Organization: Bootlin
-X-Mailer: Claws Mail 4.3.1 (GTK 3.24.43; x86_64-redhat-linux-gnu)
+	s=arc-20240116; t=1751036600; c=relaxed/simple;
+	bh=vHgbqqxav7PLXVzwShebkckuGfsjD85hkjxnlgD60cs=;
+	h=MIME-Version:Date:From:To:Cc:Subject:In-Reply-To:References:
+	 Message-ID:Content-Type; b=khapfZB1ziqTmt7GXX+4uRvsdJdlmnn0WxbQTR+2X8o7ke/Jh6lIp7MwyWA152XTqlldqYeeEbpv/GcWOLVTsdljSQioSYuoZ9AB8GBBu17QsWABiS5ip2GrwlM40dYgI/C6Xb++tY20GQSGoUtm6J8Lo7uBDoOshXFN4XLUi90=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=disroot.org; spf=pass smtp.mailfrom=disroot.org; dkim=pass (2048-bit key) header.d=disroot.org header.i=@disroot.org header.b=UoRytafx; arc=none smtp.client-ip=178.21.23.139
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=disroot.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=disroot.org
+Received: from mail01.disroot.lan (localhost [127.0.0.1])
+	by disroot.org (Postfix) with ESMTP id 8D5D425B9B;
+	Fri, 27 Jun 2025 17:03:15 +0200 (CEST)
+X-Virus-Scanned: SPAM Filter at disroot.org
+Received: from layka.disroot.org ([127.0.0.1])
+ by localhost (disroot.org [127.0.0.1]) (amavis, port 10024) with ESMTP
+ id SKBRcaReXqhH; Fri, 27 Jun 2025 17:03:14 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=disroot.org; s=mail;
+	t=1751036594; bh=vHgbqqxav7PLXVzwShebkckuGfsjD85hkjxnlgD60cs=;
+	h=Date:From:To:Cc:Subject:In-Reply-To:References;
+	b=UoRytafxH9QzkSuEhGQ2HepLO3UAu131e4BI//9c+8132UHkDbOtLQKy22yrR3Eu+
+	 wm6rc9/QwYtwaGKRMf+5wUb0VpG8Bd73pNEuw6KB53JRdiTiNT3nrdu/ocqSBQ/tdG
+	 z3XTI9zd5bfUhbHVlIA5qZi/k8I5pYTVMNTcEvyipk1EaMxDglwSEhw+Z8RMdXSsd9
+	 qnCfb7/xxNzFYjH6QYZZEqli6Ue6/NLlWgMPN6NPbM63P/9eE0rgh9ucZMJZYLBqnR
+	 UrmYwITZxYabuYlJfhV9Twg+Ya3D8l5T8Rk1xedsz4xyRS7Rw2j61VvjNruw+On4XG
+	 fuUX2QVvFmKzA==
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
-X-GND-State: clean
-X-GND-Score: -100
-X-GND-Cause: gggruggvucftvghtrhhoucdtuddrgeeffedrtdefgdeffeeiucetufdoteggodetrfdotffvucfrrhhofhhilhgvmecuifetpfffkfdpucggtfgfnhhsuhgsshgtrhhisggvnecuuegrihhlohhuthemuceftddunecusecvtfgvtghiphhivghnthhsucdlqddutddtmdenucfjughrpeffhffvvefukfgjfhhoofggtgfgsehtkeertdertdejnecuhfhrohhmpefjvghrvhgvucevohguihhnrgcuoehhvghrvhgvrdgtohguihhnrgessghoohhtlhhinhdrtghomheqnecuggftrfgrthhtvghrnhepveeiffefgeeitdelleeigefhjeelueeuveekveetgeffheeltdekgeduiefggfdvnecukfhppeeltddrkeelrdduieefrdduvdejnecuvehluhhsthgvrhfuihiivgeptdenucfrrghrrghmpehinhgvthepledtrdekledrudeifedruddvjedphhgvlhhopehlohgtrghlhhhoshhtpdhmrghilhhfrhhomhephhgvrhhvvgdrtghoughinhgrsegsohhothhlihhnrdgtohhmpdhnsggprhgtphhtthhopeegkedprhgtphhtthhopehsrghrrghvrghnrghksehgohhoghhlvgdrtghomhdprhgtphhtthhopegrnhgurhgvfieslhhunhhnrdgthhdprhgtphhtthhopehgrhgvghhkhheslhhinhhugihfohhunhgurghtihhonhdrohhrghdprhgtphhtthhopehrrghfrggvlheskhgvrhhnvghlrdhorhhgpdhrtghpthhtohepuggrkhhrsehkvghrnhgvlhdrohhrghdprhgtphhtthhopehshhgrfihnghhuoheskhgvrhhnv
- ghlrdhorhhgpdhrtghpthhtohepshdrhhgruhgvrhesphgvnhhguhhtrhhonhhigidruggvpdhrtghpthhtohepkhgvrhhnvghlsehpvghnghhuthhrohhnihigrdguvg
-X-GND-Sasl: herve.codina@bootlin.com
+Date: Fri, 27 Jun 2025 15:03:14 +0000
+From: Kaustabh Chakraborty <kauschluss@disroot.org>
+To: Krzysztof Kozlowski <krzk@kernel.org>
+Cc: Inki Dae <inki.dae@samsung.com>, Seung-Woo Kim <sw0312.kim@samsung.com>,
+ Kyungmin Park <kyungmin.park@samsung.com>, David Airlie <airlied@gmail.com>,
+ Simona Vetter <simona@ffwll.ch>, Alim Akhtar <alim.akhtar@samsung.com>,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, Maxime Ripard
+ <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>, Rob Herring
+ <robh@kernel.org>, Conor Dooley <conor@kernel.org>, Ajay Kumar
+ <ajaykumar.rs@samsung.com>, Akshu Agrawal <akshua@gmail.com>, Krzysztof
+ Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>,
+ dri-devel@lists.freedesktop.org, linux-arm-kernel@lists.infradead.org,
+ linux-samsung-soc@vger.kernel.org, linux-kernel@vger.kernel.org,
+ devicetree@vger.kernel.org
+Subject: Re: [PATCH v3 1/3] dt-bindings: display: samsung,exynos7-decon: add
+ properties for iommus and ports
+In-Reply-To: <efa167d1-a5f3-47cd-855d-250f41a5e883@kernel.org>
+References: <20250627-exynosdrm-decon-v3-0-5b456f88cfea@disroot.org>
+ <20250627-exynosdrm-decon-v3-1-5b456f88cfea@disroot.org>
+ <20250627-literate-talented-panda-cbac89@krzk-bin>
+ <85c3658fdfa90636caac3b3fce295915@disroot.org>
+ <efa167d1-a5f3-47cd-855d-250f41a5e883@kernel.org>
+Message-ID: <ab1a39df178b68e2f1d61a537e0d567c@disroot.org>
+X-Sender: kauschluss@disroot.org
+Content-Type: text/plain; charset=US-ASCII;
+ format=flowed
+Content-Transfer-Encoding: 7bit
 
-Hi Saravana,
+On 2025-06-27 14:44, Krzysztof Kozlowski wrote:
+> On 27/06/2025 15:44, Kaustabh Chakraborty wrote:
+>>>> a/Documentation/devicetree/bindings/display/samsung/samsung,exynos7-decon.yaml
+>>>> +++
+>>>> b/Documentation/devicetree/bindings/display/samsung/samsung,exynos7-decon.yaml
+>>>> @@ -80,6 +80,14 @@ properties:
+>>>>        - const: vsync
+>>>>        - const: lcd_sys
+>>>> 
+>>>> +  iommus:
+>>>> +    maxItems: 1
+>>>> +
+>>>> +  ports:
+>>>> +    $ref: /schemas/graph.yaml#/properties/ports
+>>>> +    description:
+>>>> +      Contains a port which is connected to mic or dsim node.
+>>> 
+>>> You need to list and describe the ports.
+>> 
+>> -    description:
+>> -      Contains a port which is connected to mic or dsim node.
+>> +    properties:
+>> +      port@0:
+>> +        $ref: /schemas/graph.yaml#/properties/port
+>> +        description:
+>> +          Input port which is connected to either a Mobile Image
+>> +          Compressor (MIC) or a DSI Master device.
+> 
+> 
+> If this is only one port, then just 'port' property, but I have doubts
+> it should be one, because even you mentioned two - MIC could be the
+> input and MIPI DSIM would be the output.
 
-On Mon, 16 Jun 2025 09:04:06 +0200
-Herve Codina <herve.codina@bootlin.com> wrote:
+DECON is the first device in the pipeline. So it should only have
+output.
 
-> Hi Saravana,
-> 
-> On Fri, 13 Jun 2025 14:13:49 -0700
-> Saravana Kannan <saravanak@google.com> wrote:
-> 
-> > On Fri, Jun 13, 2025 at 6:49 AM Herve Codina <herve.codina@bootlin.com> wrote:  
-> > >
-> > > Setting fwnode->dev is specific to fw_devlink.
-> > >
-> > > In order to avoid having a direct 'fwnode->dev = dev;' in several
-> > > place in the kernel, introduce fw_devlink_set_device() helper to perform
-> > > this operation.
-> > >    
-> > 
-> > This should not be set anywhere outside the driver core files. I'll
-> > get to reviewing the series, but until then, NACK to this.
-> > 
-> > Is there a specific patch that explain why we need to set this outside
-> > driver core?  
-> 
-> We need to set it in case of creating device-tree node for PCI.
-> 
-> Usually, fwnode are created (based on DT or ACPI) and then, dev are
-> created.
-> 
-> In the PCI DT node creation case, device are already created and then, based
-> on information already computed by the kernel, DT node are created.
-> 
-> You can see that on patch 11 (dev setting was already upstream and it is
-> replace by a call to the helper for PCI host bridge) and on patch 13 (PCI
-> device).
-> 
-> Other patches (8, 9 and 10) replace the existing direct setting of the dev
-> member by a call to the helper.
-> 
+It's either:
+DECON -> DSIM -> panel
+or
+DECON -> MIC -> DSIM -> panel
 
-Have you got time to look at the series, patches I pointed out and the reply
-from Andy?
+Exynos7870 doesn't have MIC, but other SoCs may have one.
 
-Are modifications still nacked on your side?
-If so, what kind of modification would you like to see in order to move
-forward?
+> 
+> Maybe if the MIC is integral part, it would not have been an input, but
+> then only 'port'.
+> 
+>> 
+>> I assume you want something like this?
+>> Is the formatting correct? Should there be a space between
+>> ports:$ref and ports:properties?
+> 
+> Look at toshiba,tc358768.yaml or the simple-bridge (except you should
+> name the input and output ports).
 
-Best regards,
-Hervé
+Okay, thanks!
+
+Therefore this:
+
+-    description:
+-      Contains a port which is connected to mic or dsim node.
++
++    properties:
++      port:
++        $ref: /schemas/graph.yaml#/properties/port
++        description:
++          Output port which is connected to either a Mobile Image
++          Compressor (MIC) or a DSI Master device.
+
+> 
+> 
+> 
+> Best regards,
+> Krzysztof
 
