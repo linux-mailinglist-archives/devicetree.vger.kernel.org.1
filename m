@@ -1,48 +1,48 @@
-Return-Path: <devicetree+bounces-190404-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-190405-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id A8BC5AEBA55
-	for <lists+devicetree@lfdr.de>; Fri, 27 Jun 2025 16:50:05 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id D96B9AEBA5B
+	for <lists+devicetree@lfdr.de>; Fri, 27 Jun 2025 16:50:48 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id C80C018908A7
-	for <lists+devicetree@lfdr.de>; Fri, 27 Jun 2025 14:49:47 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 28C711C4302E
+	for <lists+devicetree@lfdr.de>; Fri, 27 Jun 2025 14:50:52 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 330A52E718E;
-	Fri, 27 Jun 2025 14:49:27 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C12A12E763E;
+	Fri, 27 Jun 2025 14:50:27 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="RPomRV2F"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="luh7io+v"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 09DAC27FB31;
-	Fri, 27 Jun 2025 14:49:26 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8EC1A2E7625;
+	Fri, 27 Jun 2025 14:50:27 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1751035767; cv=none; b=XdDE/qBiQEZC0OHKmhZEuL4MYtOe9LE8tw5uIvAtbKi9eBUDylsP7ppk+bmNzQNeuFgg92w1bXhEAxfwieCSYcWbvSV2euIn8DPfebvnSJtUbopiSSgCzeHUiAYwZ14bnIrui7RjKXjIhiaR2wmDUT48I55XdRQDCEuW635Wvno=
+	t=1751035827; cv=none; b=MF5Mbys5dsOUPFQVj+nMU6eCl/Rd3RPkuRyf+KIVWkZDbZWJ8x5/BoXpuzRm/g25ZSvnKsJtTi1523iTP6u6C19JdcuHkQuK6hK7H0psaMKSfOVs3zmmgIsC5deKUPxG3dgJaOa4W944k3jdoM02YKpTWJwCokrxfF1P4XZJjws=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1751035767; c=relaxed/simple;
-	bh=7w6aib36RD+Q4FxhteWwo/GmIX4Y6wvc3f/T7vDzvwk=;
+	s=arc-20240116; t=1751035827; c=relaxed/simple;
+	bh=aklOxKn5K1qbnDT1A0s34OV2xT/E3aOxdSRZaysAFI8=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=MkbKWzYZNwlZTZ2JzCBypGkmKsSa4GeMbuYNkZ/iN1OtPzGx0qQt0QdX/jqo9f1IFM2/pXuz6mLVxVUoCDOyHzqgiQuCwtcnKdQlM19QjiLWnj+cyoWlaAUHuS1UT/b7PUISBkdsTtySwMSKz0UDRfJJO932WLW6z0w/MznYUpI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=RPomRV2F; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id A77CDC4CEE3;
-	Fri, 27 Jun 2025 14:49:22 +0000 (UTC)
+	 In-Reply-To:Content-Type; b=Mey5StEIRvzIU3KwNwmf7FrgUCHnE8A8y8rLiMOxkCenaCASVY/yZebkw7MzI0YCykCcwClTiyjaJe+g8Sj5lpkKztzDJPJc/u3WQPdhbmJS/OrbRBtWOL2TFNFRgIrTzWfYeUtqKi/+VNZe65vRKnhGX+Kr7bjH2CCWYeupCxQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=luh7io+v; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 64DF9C4CEF1;
+	Fri, 27 Jun 2025 14:50:20 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1751035766;
-	bh=7w6aib36RD+Q4FxhteWwo/GmIX4Y6wvc3f/T7vDzvwk=;
+	s=k20201202; t=1751035827;
+	bh=aklOxKn5K1qbnDT1A0s34OV2xT/E3aOxdSRZaysAFI8=;
 	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=RPomRV2FqQp+leYnc9kJdzq/gYpnJjPNvCAEJOsYnQmVifbJ0CL+KBSCcJj5nPo/h
-	 0WPtLVOgx5SH5+zt7Bpx63rhN0tW26y/ePWbOSqkT3GtICA//RdkuC1sHID00zwVnH
-	 mh7MIExYeWhtnwKckT8dSKf1+bMYffaUSx/Qv1Nqzi44UJBKEKCq22nHAlLQEzpnmE
-	 b3sI+ZjhpVer1ZS/6fSDzagnXlxKSfinTvlrjQOLgUke4vzepNdKLyNQpQEcPtxsB2
-	 MV0EnPR6gm76elp1gKMgLtG9/4iIN8BsvTTFIvmrTmYyzj7NcyvAnKJgKoYWrvOXH2
-	 IwAy4hxvSedSQ==
-Message-ID: <41782ded-908b-46ef-8f75-4d2565476b7c@kernel.org>
-Date: Fri, 27 Jun 2025 16:49:19 +0200
+	b=luh7io+vB8HPILa9XHwV/e0UFC4RpcBJwS9l1F7vhbzNpKUyyDnzrC9rV6jlQNhnY
+	 zy+peYkcQcEk9ys/JGdIuiYlpB45HvdHwvbMQr7HkJGpW15tGCjjSybu/VDFPpysd1
+	 vieV8NUULFMWbIge4DeXH1oM0nO42B83Mf2+5d2pDQHGKSPInWpmDup79r0TeQkOw4
+	 EP1+Si7d/uk+IWrH6q5k5eMU+n8fO2aBqJz/AHr0rpXvsKtm4+TVfB9Ab3MuIgnnfz
+	 /1+Ms0hpyyYRGzyO6IWl9YofEV28jDExrj8L/2heEZBXoKeNa6UlRf1cSQPxHX8j9b
+	 qOn1iHpjhbsZQ==
+Message-ID: <627428b1-7381-44bf-9d66-f185f2e216f6@kernel.org>
+Date: Fri, 27 Jun 2025 16:50:17 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,18 +50,26 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v4 1/2] dt-bindings: i3c: Add adi-i3c-master
-To: Jorge Marques <gastmaier@gmail.com>
-Cc: Jorge Marques <jorge.marques@analog.com>,
- Alexandre Belloni <alexandre.belloni@bootlin.com>,
- Frank Li <Frank.Li@nxp.com>, Rob Herring <robh@kernel.org>,
+Subject: Re: [PATCH V3 1/4] dt-bindings: mmc: Add dll-hsr-list for HS400 and
+ HS200 modes
+To: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>,
+ Ram Prakash Gupta <quic_rampraka@quicinc.com>,
+ Sachin Gupta <quic_sachgupt@quicinc.com>,
+ Ulf Hansson <ulf.hansson@linaro.org>, Rob Herring <robh@kernel.org>,
  Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, linux-i3c@lists.infradead.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <20250626-adi-i3c-master-v4-0-3846a1f66d5e@analog.com>
- <20250626-adi-i3c-master-v4-1-3846a1f66d5e@analog.com>
- <20250627-steadfast-ferret-of-expertise-5c8ff2@krzk-bin>
- <tl5fckhrivaqfyzwyb2o2a7gykpigwend7z2nduqgbbej3hqbs@vxxtsadhtdmt>
+ <conor+dt@kernel.org>, Adrian Hunter <adrian.hunter@intel.com>,
+ Bhupesh Sharma <bhupesh.sharma@linaro.org>
+Cc: linux-mmc@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org,
+ quic_cang@quicinc.com, quic_nguyenb@quicinc.com, quic_bhaskarv@quicinc.com,
+ quic_mapa@quicinc.com, quic_narepall@quicinc.com, quic_nitirawa@quicinc.com,
+ quic_sartgarg@quicinc.com
+References: <20250122094707.24859-1-quic_sachgupt@quicinc.com>
+ <20250122094707.24859-2-quic_sachgupt@quicinc.com>
+ <72b02fd1-5195-4bb0-b01d-5481b49a5680@kernel.org>
+ <379e9199-4a9e-cd38-20cb-0fbd76fa33b3@quicinc.com>
+ <abdde4ff-eae2-44c4-8608-89c762790549@kernel.org>
+ <99b9e6aa-36b4-456c-ba46-6e1207cc1019@oss.qualcomm.com>
 From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
@@ -107,45 +115,60 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  jWt87ecuHlpL3uuQ0ZZNWqHgZoQLXoqC2ZV5KrtKWb/jyiFX/sxSrodALf0zf+tfHv0FZWT2
  zHjUqd0t4njD/UOsuIMOQn4Ig0SdivYPfZukb5cdasKJukG1NOpbW7yRNivaCnfZz6dTawXw
  XRIV/KDsHQiyVxKvN73bThKhONkcX2LWuD928tAR6XMM2G5ovxLe09vuOzzfTWQDsm++9UKF a/A=
-In-Reply-To: <tl5fckhrivaqfyzwyb2o2a7gykpigwend7z2nduqgbbej3hqbs@vxxtsadhtdmt>
+In-Reply-To: <99b9e6aa-36b4-456c-ba46-6e1207cc1019@oss.qualcomm.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 27/06/2025 16:38, Jorge Marques wrote:
-> On Fri, Jun 27, 2025 at 08:56:55AM +0200, Krzysztof Kozlowski wrote:
->> On Thu, Jun 26, 2025 at 12:07:36PM +0200, Jorge Marques wrote:
->>> Add bindings doc for ADI I3C Controller IP core, a FPGA synthesizable IP
->>> core that implements the MIPI I3C Basic controller specification.
+On 27/06/2025 15:57, Konrad Dybcio wrote:
+> On 6/26/25 7:42 PM, Krzysztof Kozlowski wrote:
+>> On 26/06/2025 16:16, Ram Prakash Gupta wrote:
+>>> On 1/22/2025 3:56 PM, Krzysztof Kozlowski wrote:
+>>>> On 22/01/2025 10:47, Sachin Gupta wrote:
+>>>>> Document the 'dll-hsr-list' property for MMC device tree bindings.
+>>>>> The 'dll-hsr-list' property defines the DLL configurations for HS400
+>>>>> and HS200 modes.
+>>>>>
+>>>>> Signed-off-by: Sachin Gupta <quic_sachgupt@quicinc.com>
+>>>>> ---
+>>>>>  Documentation/devicetree/bindings/mmc/sdhci-msm.yaml | 5 +++++
+>>>>>  1 file changed, 5 insertions(+)
+>>>>>
+>>>>> diff --git a/Documentation/devicetree/bindings/mmc/sdhci-msm.yaml b/Documentation/devicetree/bindings/mmc/sdhci-msm.yaml
+>>>>> index 8b393e26e025..65dc3053df75 100644
+>>>>> --- a/Documentation/devicetree/bindings/mmc/sdhci-msm.yaml
+>>>>> +++ b/Documentation/devicetree/bindings/mmc/sdhci-msm.yaml
+>>>>> @@ -133,6 +133,11 @@ properties:
+>>>>>      $ref: /schemas/types.yaml#/definitions/uint32
+>>>>>      description: platform specific settings for DLL_CONFIG reg.
+>>>>>  
+>>>>> +  qcom,dll-hsr-list:
+>>>>> +    maxItems: 10
+>>>>> +    $ref: /schemas/types.yaml#/definitions/uint32
+>>>> uint32 has only one item. Anyway, there is already DLL there, so don't
+>>>> duplicate or explain why this is different. Explain also why this is not
+>>>> deducible from the compatible.
+>>>
 >>
->> How did you resolve my last comment? I don't see any explanation -
->> neither here nor in the binding description. Binding description is
->> actually better place, I think now.
 >>
->> Best regards,
->> Krzysztof
+>> Timeline still amazes me. I will be grumpy on this thread.
 >>
+>>> I will change it to reflect array from uint32.
+>>> There is change with artanis DLL hw addition where it need total of 5 entries
+>>> (dll_config, dll_config_2, dll_config_3, dll_usr_ctl, ddr_config)
+>>> for each HS400 and HS200 modes, hence the new addition in dt. And these values
+>>> are not fixed and varies for every SoC, hence this needs to be passed through
+>>> dt like it was passed earlier for qcom,dll-config & qcom,ddr-config.
+>>
+>>
+>> Eh, no. That's not a valid reason. It's still SoC deducible. Don't bring
+>> your downstream practices here, but remove EVERYTHING from downstream
+>> and start doing things like upstream is doing.
 > 
-> Hi Krzysztof,
-> 
-> I forgot to condense out discussion on v4.
-> What about this binding description:
-> 
->   description: |
->     FPGA-based I3C controller designed to interface with I3C and I2C
->     peripherals, implementing a subset of the I3C-basic specification.
->     The IP core is tested on arm, microblaze, and arm64 architectures.
->     It takes one or two clocks, axi and i3c. If only axi is provided,
->     then there is no clock signal to the i3c input clock pin and axi
+> QC SoCs have between 0 and 4 SDHCI instances, each one potentially requiring
+> different tuning, let's keep this data in DT
 
-This is obvious from the schema, drop.
 
->     clock drives the whole IP. The compatible is suffixed by 1.00.a
->     foreseeing future controllers by Analog Devices Inc. and breaking
->     changes.
-
-I don't understand that. How are you breaking any changes? And how
-1.00.a predicts future? I don't think this reflects previous discussion.
-Why you were asked to go with v1.00.a?
+OK, this should be explained in commit msg.
 
 Best regards,
 Krzysztof
