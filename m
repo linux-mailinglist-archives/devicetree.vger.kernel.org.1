@@ -1,85 +1,81 @@
-Return-Path: <devicetree+bounces-190523-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-190524-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id D97AAAEC040
-	for <lists+devicetree@lfdr.de>; Fri, 27 Jun 2025 21:41:10 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0353AAEC044
+	for <lists+devicetree@lfdr.de>; Fri, 27 Jun 2025 21:42:41 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 396111891D84
-	for <lists+devicetree@lfdr.de>; Fri, 27 Jun 2025 19:41:20 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 783BD3BFC91
+	for <lists+devicetree@lfdr.de>; Fri, 27 Jun 2025 19:42:15 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5FDD0212B3D;
-	Fri, 27 Jun 2025 19:40:58 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 192AA20E334;
+	Fri, 27 Jun 2025 19:42:37 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="XGoRR75N"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="b+64KMUr"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2AA5F20B80B;
-	Fri, 27 Jun 2025 19:40:58 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E4DB01A2387;
+	Fri, 27 Jun 2025 19:42:36 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1751053258; cv=none; b=joquvW2L29WIllFYF2gR5FDpz2CzIqvCV9vPIfNitCFa/8M5f0lI3LaJ2+A8ARomRVQqjfi1N31+533ABB02r8dCskFCYlPpQQdxrEoAFBya+QM40r3fgThiEbxxdABfrHBhPj5GV82B7/bjctqSCRqz67rV4GEQkhN3Cm/5jq0=
+	t=1751053357; cv=none; b=ZX/aQ1KbG4xVa/gnrvis8D52+GlG3WiO2bSNtYHJdCSzRJjxQDH+0UGZGwiOfuK8VhZQ2aAnGWzs6G39AKvbS2hx8CCsbaNe0rLDLDKA9lJTzmj/ur9UQABiZyONuX/7BRjgIjW59jNu8bis1MjE4Go1KLvvjIuKw3679nKEcrQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1751053258; c=relaxed/simple;
-	bh=6MkKhuTr/kzO2bvG/B9XyStdoHcYnsGwWcEHmKxSoeU=;
+	s=arc-20240116; t=1751053357; c=relaxed/simple;
+	bh=lmTk9KXNTbNGFlFfciFYPMGN+3/wagDGMx1wv4xaYZk=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=sik7FRI/SzJ9R+TKOKhlfZDPt4YSO2cvdQ3kn2elZFGz7+Yi96E3gJycW7UUrbkPk1aiBCwWGY2Qf9YyXe1L1330npI8dvi59UySEYgHsW6a3sbiUh9mId7MJkyhnoOtVS0aKQ8sZug/FmBKOeXBYNbfl2Ma22j9tunEZX9hAN4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=XGoRR75N; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id DA796C4CEE3;
-	Fri, 27 Jun 2025 19:40:57 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=KZ5VKSzpaAquPoRVpPLecA5BT78gV9HviLQo10TBCLNK5PP0EMgwFlovd8QS7rtpU0Z8FMTYYDYkVLJzuayOjtCrdC2ygz6dhwO+xzjM0H0ImvZ+eWroTVa5xjcZxssl409kEsRv5nsItcKR2tt8F3WD6j+aZVU9zYbb76dwVAs=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=b+64KMUr; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id A8BEBC4CEE3;
+	Fri, 27 Jun 2025 19:42:36 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1751053258;
-	bh=6MkKhuTr/kzO2bvG/B9XyStdoHcYnsGwWcEHmKxSoeU=;
+	s=k20201202; t=1751053356;
+	bh=lmTk9KXNTbNGFlFfciFYPMGN+3/wagDGMx1wv4xaYZk=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=XGoRR75NS9RuP6hhgBtMryU4oxmAfnWwpHznQWDniDus/HDNxdTTU3mSUHzS2z+Wm
-	 1nfMONZLmeiC4AmA+2brm+MKcNacPxxslUvnBK22GLhrDC3vI2io22zSRog5JCvS22
-	 L2YWxhpUeuneypndf2P80Qfq7LSKgiUTlK1mbGGqg7GECu8aoVOMCSeGv8PSYdQu4N
-	 Yjf/LCLnUUdENrI6yog82SP22gTdCR+UvZSvq+b5HcUfDypUOzBJgfFGkMQyuL0JOm
-	 cMc90lZLVsNLyYj9w7XEbyxmK9yJyHILh1Bf6gkGpg8DJqHRrw2xyKqndSstsnYRIB
-	 u7nmTIpNaKqsA==
-Date: Fri, 27 Jun 2025 14:40:57 -0500
+	b=b+64KMUrj5eT0PK5ZtsI2L3cBh+b6lXt3c4ZQxc50a6FnqPo/fiba6uFj+ygV6dnQ
+	 7NnAKqMqLHY3KC6NCrID1BnWByL2TwLzAL5q2FGWAEzmue/tshfNcxbRPetUACoQr4
+	 o6/EJmawItPMXZ4vL37DPs0hKAFJPzoB1foV5nGPEA/TkqqZQPEIrZPQVQcsvR0Mwc
+	 SbSKtu0IyrEhhY0vR5eTUyJxgfwohnr23XnJDD86aWxpC8u3obL+oee2Jbpdw9TB9A
+	 kxpKGicPycO2nxCnznjZkCcA/rDxhVVFTkAtPBIntzaLvimWZjww6T3eu9toAZ89a8
+	 r5tOueakSoeWg==
+Date: Fri, 27 Jun 2025 14:42:35 -0500
 From: "Rob Herring (Arm)" <robh@kernel.org>
-To: Casey Connolly <casey.connolly@linaro.org>
-Cc: Kees Cook <kees@kernel.org>,
-	Sebastian Reichel <sebastian.reichel@collabora.com>,
-	linux-hardening@vger.kernel.org, Conor Dooley <conor+dt@kernel.org>,
-	linux-pm@vger.kernel.org, Sebastian Reichel <sre@kernel.org>,
-	"Gustavo A. R. Silva" <gustavoars@kernel.org>,
-	devicetree@vger.kernel.org, Konrad Dybcio <konradybcio@kernel.org>,
-	linux-kernel@vger.kernel.org,
-	Bjorn Andersson <andersson@kernel.org>,
+To: Uwe =?iso-8859-1?Q?Kleine-K=F6nig?= <u.kleine-koenig@baylibre.com>
+Cc: Jean Delvare <jdelvare@suse.com>, Conor Dooley <conor+dt@kernel.org>,
+	Guenter Roeck <linux@roeck-us.net>, devicetree@vger.kernel.org,
+	Chris Packham <Chris.Packham@alliedtelesis.co.nz>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	linux-arm-msm@vger.kernel.org
-Subject: Re: [PATCH 01/11] dt-bindings: power: supply: qcom,pmi89980-charger:
- add pm8150b and 7250b
-Message-ID: <175105325638.4057812.1772308849088053765.robh@kernel.org>
-References: <20250619-smb2-smb5-support-v1-0-ac5dec51b6e1@linaro.org>
- <20250619-smb2-smb5-support-v1-1-ac5dec51b6e1@linaro.org>
+	linux-hwmon@vger.kernel.org
+Subject: Re: [PATCH 2/2] dt-bindings: hwmon: adt7475: Allow and recommend
+ #pwm-cells = <3>
+Message-ID: <175105335463.4059732.7576772318723698918.robh@kernel.org>
+References: <cover.1750361514.git.u.kleine-koenig@baylibre.com>
+ <77895aec937b6217f513d3b12e7945f1707fd906.1750361514.git.u.kleine-koenig@baylibre.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: text/plain; charset=iso-8859-1
 Content-Disposition: inline
-In-Reply-To: <20250619-smb2-smb5-support-v1-1-ac5dec51b6e1@linaro.org>
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <77895aec937b6217f513d3b12e7945f1707fd906.1750361514.git.u.kleine-koenig@baylibre.com>
 
 
-On Thu, 19 Jun 2025 16:55:09 +0200, Casey Connolly wrote:
-> Add compatible strings for these two PMICs which use the SMB5 generation
-> of charger.
+On Thu, 19 Jun 2025 21:37:46 +0200, Uwe Kleine-König wrote:
+> To make this binding match what is usally used for PWMs, deprecate 4
+> cells and allow 3 instead.
 > 
-> Signed-off-by: Casey Connolly <casey.connolly@linaro.org>
+> Signed-off-by: Uwe Kleine-König <u.kleine-koenig@baylibre.com>
 > ---
->  .../devicetree/bindings/power/supply/qcom,pmi8998-charger.yaml          | 2 ++
->  1 file changed, 2 insertions(+)
+>  .../devicetree/bindings/hwmon/adt7475.yaml        | 15 +++++++++------
+>  1 file changed, 9 insertions(+), 6 deletions(-)
 > 
 
-Acked-by: Rob Herring (Arm) <robh@kernel.org>
+Reviewed-by: Rob Herring (Arm) <robh@kernel.org>
 
 
