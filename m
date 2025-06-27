@@ -1,58 +1,60 @@
-Return-Path: <devicetree+bounces-190154-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-190155-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7F6C6AEACE6
-	for <lists+devicetree@lfdr.de>; Fri, 27 Jun 2025 04:41:44 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id E3465AEACF2
+	for <lists+devicetree@lfdr.de>; Fri, 27 Jun 2025 04:46:39 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id EEC504A6937
-	for <lists+devicetree@lfdr.de>; Fri, 27 Jun 2025 02:41:44 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 3E3824A6C33
+	for <lists+devicetree@lfdr.de>; Fri, 27 Jun 2025 02:46:40 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 271A617A2FB;
-	Fri, 27 Jun 2025 02:41:39 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8FFCB1494D8;
+	Fri, 27 Jun 2025 02:46:34 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="bgDrLief"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="FUmEdZKy"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F36F33C01;
-	Fri, 27 Jun 2025 02:41:36 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6292F2F1FCB;
+	Fri, 27 Jun 2025 02:46:34 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1750992099; cv=none; b=e2eQE7Al8xw7MFiDG0Cdg++ImOHHzdB5PxqD1VEp6ky+lwFKi4u849VvqV85A/YASHiex7mgdZT8d/ilxaHnjBvR7sBKdpTlhtyhWXlFOqJmRvkl6vaa6qDQ263OGElkNRuUY7zdHkAlZLmX+eSn+LZI5OhpQLdTwtcLloJM+bM=
+	t=1750992394; cv=none; b=ruOBtuju1hAaqXrCf+rCOr11ljj6nV5tzg2jlC4BYVmzt+b/unTmEGp5s+a+tWvacvod5PQtWaOstCFwO/GO6YqNpjwZVT/fYfIhXEghppkRXx+Jw957kpOYtS2PNse9A7NxULfbAPwBSQjsL7a915ccy0x1a+2gfdCRlMmKlMc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1750992099; c=relaxed/simple;
-	bh=bjSC1GOvCkB3dcQCEkA48aQBF8HgMA07pqD3eC+Cjm4=;
+	s=arc-20240116; t=1750992394; c=relaxed/simple;
+	bh=LQms1tNsqpQ+nXQaH2KYlSJYLllazDGuxMMHkBk5CDs=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=WXuDVjDOqAKjO1KL9Azq1IKLwZW80iNelQolPjsb7ZchiAu8xE5BYz+TfgKDJER7pBV8ZAmX8DaVx+bXYn0eEdZzqpSbqs03uzYtYK2FdE+2uf3CqYoxNIJ7UXUj7kbQp/Nz3hf/FywGqdenwBIcPtIeRgxlctgYpy4X6Tmjy5k=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=bgDrLief; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 5433AC4CEEB;
-	Fri, 27 Jun 2025 02:41:36 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=XqVL5kHcAWinNgK/daDirLarsxyhIOMLwyAhTIQSkheHjH4BjDW3dwljZIY4P62K7u9fq5IuN9ZOVQSIfBv3m5IArEezi+6LHwRdH9z+4wKcKPlEGx0+XmaOG6bSnpALJ5qXKLmC0cZnuzSbQPeOBtlAlgPpM18UUpfRAMlkLV4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=FUmEdZKy; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 1BF0CC4CEEE;
+	Fri, 27 Jun 2025 02:46:34 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1750992096;
-	bh=bjSC1GOvCkB3dcQCEkA48aQBF8HgMA07pqD3eC+Cjm4=;
+	s=k20201202; t=1750992394;
+	bh=LQms1tNsqpQ+nXQaH2KYlSJYLllazDGuxMMHkBk5CDs=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=bgDrLiefS/HPpb+VmjhqWsF1t3ouj5zOZkjYUHLP+B8J2HUb/gBySwAzVAc42xaKw
-	 YyYUfVbsiQREy9qluLwAfs/5IbNOKQFCw9OiG/mRW3V6ixjSPvS+ARDiYfxUlHAxd5
-	 AyE5/GuwZ9VvD+2/OfNjWd8gezTvHMvNSDYlw+MK8WcCq7C8+VRI3qaIeH84gqX/pW
-	 /wTIa7k/khFtDOVEBoBxMaMRZ4FLtj6wIt+Er7yPQmvzx0MX9qYRsC8rdl0hlaPajX
-	 vh93FlroEXR6hjnJrR9Z12SRUzeRIWAS+1mr30IB99Ap1tdnpN0DQx2fbhfskjebJU
-	 nz/XvJyHxj2rA==
-Date: Thu, 26 Jun 2025 21:41:35 -0500
-From: "Rob Herring (Arm)" <robh@kernel.org>
-To: Amit Kumar Mahapatra <amit.kumar-mahapatra@amd.com>
-Cc: linux-kernel@vger.kernel.org, linux-mtd@lists.infradead.org,
-	git@amd.com, devicetree@vger.kernel.org, conor+dt@kernel.org,
-	miquel.raynal@bootlin.com, krzk+dt@kernel.org, richard@nod.at,
-	amitrkcian2002@gmail.com, vigneshr@ti.com
-Subject: Re: [PATCH v14 1/3] dt-bindings: mtd: Describe MTD partitions
- concatenation
-Message-ID: <175099209513.1650937.6817719319563715561.robh@kernel.org>
-References: <20250623105445.2394825-1-amit.kumar-mahapatra@amd.com>
- <20250623105445.2394825-2-amit.kumar-mahapatra@amd.com>
+	b=FUmEdZKy5Pt85iIZINjlu6Rlw+WTOVjloMjWfOUMo1LHk6H53Te0c1wsyd8N4vhTL
+	 53kUWt5yc9a3iKDuavEg64TN6Q43K99IAq3pPC9PcKgpI2GIS6qBzQuYO1on5nVrYR
+	 s/RG/HdAzJaAfI7nPRGHfihNXYmCSy6JFzq/V+1VKJVbAVezkkf5RpbZ9e37qV1vuL
+	 2x0VbbiTZXMQQOMyud6dJRU217TdKsz5QbnJHwoljbfbZAha6cxt4d2MdAbgZaAfB2
+	 vYXACkfMBqv7cZhM2n833mbduEvSFugpShoskJ6/RhxH1RGxrtHdftTa4CBFseiqjV
+	 XaffibLNkkX2A==
+Date: Thu, 26 Jun 2025 21:46:33 -0500
+From: Rob Herring <robh@kernel.org>
+To: Frank Li <Frank.Li@nxp.com>
+Cc: Christophe Leroy <christophe.leroy@csgroup.eu>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	"open list:FREESCALE SOC DRIVERS" <linuxppc-dev@lists.ozlabs.org>,
+	"moderated list:FREESCALE SOC DRIVERS" <linux-arm-kernel@lists.infradead.org>,
+	"open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" <devicetree@vger.kernel.org>,
+	open list <linux-kernel@vger.kernel.org>, imx@lists.linux.dev
+Subject: Re: [PATCH v2 1/1] dt-bindings: soc: add vf610 reboot syscon
+ controller
+Message-ID: <20250627024633.GA1656962-robh@kernel.org>
+References: <20250617155231.2023977-1-Frank.Li@nxp.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -61,45 +63,90 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20250623105445.2394825-2-amit.kumar-mahapatra@amd.com>
+In-Reply-To: <20250617155231.2023977-1-Frank.Li@nxp.com>
 
-
-On Mon, 23 Jun 2025 16:24:43 +0530, Amit Kumar Mahapatra wrote:
-> The AMD QSPI controller supports an advanced connection modes called
-> Stacked mode which allow the controller to treat two different flashes
-> as one storage.
+On Tue, Jun 17, 2025 at 11:52:30AM -0400, Frank Li wrote:
+> Add vf610 reboot controller, which used to reboot whole system. Fix below
+> CHECK_DTB warnings:
 > 
-> In Stacked connection mode flashes share the same SPI bus, but different CS
-> line, controller driver asserts the CS of the flash to which it needs to
-> communicate. Stacked mode is a software abstraction rather than a
-> controller feature or capability. At any given time, the controller
-> communicates with one of the two connected flash devices, as determined by
-> the requested address and data length. If an operation starts on one flash
-> and ends on the other, the mtd layer needs to split it into two separate
-> operations and adjust the data length accordingly. For more information on
-> the modes please feel free to go through the controller flash interface
-> below [1].
+> arch/arm/boot/dts/nxp/vf/vf610-bk4.dtb: /soc/bus@40000000/src@4006e000:
+>     failed to match any schema with compatible: ['fsl,vf610-src', 'syscon']
 > 
-> To support stacked mode, the existing MTD concat driver has been extended
-> to be more generic, enabling multiple sets of MTD partitions to be
-> virtually concatenated, with each set forming a distinct logical MTD
-> device.
+> IC reference manual call it as system reset controller(SRC), but it is not
+> module as linux reset controller, which used to reset individual device.
+> SRC work as reboot controller, which reboot whole system. It provides a
+> syscon interface to syscon-reboot.
 > 
-> A new Device Tree property is introduced to facilitate this, containing
-> phandles of the partitions to be concatenated with the one where the
-> property is defined. This approach supports multiple sets of concatenated
-> partitions.
-> 
-> [1] https://docs.amd.com/r/en-US/am011-versal-acap-trm/QSPI-Flash-Device-Interface
-> 
-> Suggested-by: Miquel Raynal <miquel.raynal@bootlin.com>
-> Suggested-by: Rob Herring <robh@kernel.org>
-> Signed-off-by: Amit Kumar Mahapatra <amit.kumar-mahapatra@amd.com>
+> Signed-off-by: Frank Li <Frank.Li@nxp.com>
 > ---
->  .../bindings/mtd/partitions/partition.yaml    | 20 +++++++++++++++++++
->  1 file changed, 20 insertions(+)
+> Change in v2
+> - change description to avoid confuse about reset controller.
+> - it is legacy device, more than 10 year. So try keep existed dts as it.
+> ---
+>  .../bindings/soc/fsl/fsl,vf610-src.yaml       | 47 +++++++++++++++++++
+>  1 file changed, 47 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/soc/fsl/fsl,vf610-src.yaml
 > 
+> diff --git a/Documentation/devicetree/bindings/soc/fsl/fsl,vf610-src.yaml b/Documentation/devicetree/bindings/soc/fsl/fsl,vf610-src.yaml
+> new file mode 100644
+> index 0000000000000..cb8aa510a21f7
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/soc/fsl/fsl,vf610-src.yaml
+> @@ -0,0 +1,47 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas//soc/fsl/fsl,vf610-src.yaml#
 
-Reviewed-by: Rob Herring (Arm) <robh@kernel.org>
+Double '/'
 
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Freescale vf610 System Reset Controller (SRC)
+> +
+> +maintainers:
+> +  - Frank Li <Frank.Li@nxp.com>
+> +
+> +description: |
+
+Don't need '|'
+
+> +  IC reference manual call it as SRC, but it is not module as linux reset
+> +  controller, which used to reset individual device. SRC work as reboot
+> +  controller, which reboot whole system. It provide a syscon interface to
+> +  syscon-reboot.
+> +
+> +properties:
+> +  compatible:
+> +    items:
+> +      - enum:
+> +          - fsl,vf610-src
+> +      - const: syscon
+> +
+> +  reg:
+> +    maxItems: 1
+> +
+> +  interrupts:
+> +    maxItems: 1
+> +
+> +required:
+> +  - compatible
+> +  - reg
+> +  - interrupts
+> +
+> +additionalProperties: false
+> +
+> +examples:
+> +  - |
+> +    #include <dt-bindings/interrupt-controller/irq.h>
+> +
+> +    syscon@4006e000 {
+> +        compatible = "fsl,vf610-src", "syscon";
+> +        reg = <0x4006e000 0x1000>;
+> +        interrupts = <96 IRQ_TYPE_LEVEL_HIGH>;
+> +    };
+> +
+> -- 
+> 2.34.1
+> 
 
