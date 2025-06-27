@@ -1,144 +1,147 @@
-Return-Path: <devicetree+bounces-190407-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-190408-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 65115AEBA65
-	for <lists+devicetree@lfdr.de>; Fri, 27 Jun 2025 16:51:33 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1C80DAEBA8C
+	for <lists+devicetree@lfdr.de>; Fri, 27 Jun 2025 16:53:40 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 2ED893A068F
-	for <lists+devicetree@lfdr.de>; Fri, 27 Jun 2025 14:50:58 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 3839A1767B2
+	for <lists+devicetree@lfdr.de>; Fri, 27 Jun 2025 14:53:26 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 448282E8896;
-	Fri, 27 Jun 2025 14:51:10 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C16232E7F33;
+	Fri, 27 Jun 2025 14:52:49 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=fairphone.com header.i=@fairphone.com header.b="qLrUkMA9"
+	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="OTPRR4yK"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ej1-f52.google.com (mail-ej1-f52.google.com [209.85.218.52])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from relay5-d.mail.gandi.net (relay5-d.mail.gandi.net [217.70.183.197])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8158827F00F
-	for <devicetree@vger.kernel.org>; Fri, 27 Jun 2025 14:51:08 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.52
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 992EA219300;
+	Fri, 27 Jun 2025 14:52:46 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.70.183.197
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1751035870; cv=none; b=pXL8ohkZDHUCvUI66hZdlcjyiJJA5BTgo6xsH8iaRc3cbl4cKKkSbA3Rnv3k5cY3gYmiRdZSmHyQUJSs3gI4+i0aI3RNIh9BlNxDHkUJEDT2jnEmckXwi6lYevREb/eRqcI84ERVI4citK4AkvL7ifgik2NsvnfG6sNMQX4eZFw=
+	t=1751035969; cv=none; b=b+M/aWOYwQdZkyEI04h/nhsDF95zhI6j4JrFQ86cUcS3cHrFHhO0pGwGmlKsUPyqdmkXHGtY6aVtfG0sDu6yM+QZLvo1mePsoSlw+579hLs5XqGMVUbZwYWIvw2GfcTth/Rb20S1A41z3m9cfCaYwgnHVaw1ChWAmg/N1eyML2g=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1751035870; c=relaxed/simple;
-	bh=UyBKwHH+NCfy2Fp8odnA/Wo1t4O71TtPU0o1rWMp+Dk=;
-	h=Mime-Version:Content-Type:Date:Message-Id:Subject:From:To:Cc:
-	 References:In-Reply-To; b=YCKeKMXEoAxPmGXb15q/GTRDiREzHzJEo6NIxnq7XDSq/z5ur+Lem2K1VmRkZw3K85OjqIggpvcwMeC1ILP6siG9F38aNY/w9o5iRXjsHDQ8gyBpz/aIlQ5Rb4FG2Fp8H1G40WfhgO6DJ9iB0gPn2lK95rtzis8OPcwiyqdEaRo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=fairphone.com; spf=pass smtp.mailfrom=fairphone.com; dkim=pass (2048-bit key) header.d=fairphone.com header.i=@fairphone.com header.b=qLrUkMA9; arc=none smtp.client-ip=209.85.218.52
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=fairphone.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=fairphone.com
-Received: by mail-ej1-f52.google.com with SMTP id a640c23a62f3a-ae0de1c378fso246564266b.3
-        for <devicetree@vger.kernel.org>; Fri, 27 Jun 2025 07:51:08 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=fairphone.com; s=fair; t=1751035867; x=1751640667; darn=vger.kernel.org;
-        h=in-reply-to:references:cc:to:from:subject:message-id:date
-         :content-transfer-encoding:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=pfsIeC1q9ILkZM7mTk4qTsHzqgjpNmZpZamVAmWOEoU=;
-        b=qLrUkMA9b/IsKV7EW0iX5EhQdsu6TvWvqUf/AiBPiG5MsX4HiwyZ1P2LqIcMBPw2VO
-         Jb0qVqBdaey19aCwlVD7/DyU+s+Gir+rHsvH+3Kms0+7c6w0u8EW4+9ak2uwNkFyv6kO
-         cr4IB/H6RYx1I9XQPu7yt4GlowRrLWEeMbb1tJ5a/KmmjXRhJkQ52HwP4RNxVAdNkgut
-         GEzD7LLJ2J+OJEkoCipTOabnyfqrPenXYdrYkVMr5t1E8Puw3p790Se9znPsYQvyADU1
-         k0q8SshVxa4+rXaDaTf8XqxxDhVYHavrB8chfie78lj8Y/6zZ0o2L6UlZpXctch/R6Av
-         SvHg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1751035867; x=1751640667;
-        h=in-reply-to:references:cc:to:from:subject:message-id:date
-         :content-transfer-encoding:mime-version:x-gm-message-state:from:to
-         :cc:subject:date:message-id:reply-to;
-        bh=pfsIeC1q9ILkZM7mTk4qTsHzqgjpNmZpZamVAmWOEoU=;
-        b=dpc9eOeWPEWXQO6rFYg0UCiOGRhzfo5bOPZZt4ktiJKpSksO7cZ0SiBCD02vGG9BKN
-         fvvNflZlLqGZQjNi/BX3HDmR2Kt1tl8/SYd5fMxM1VRTVyIwK85FshawJvEeEivleypl
-         5ppfjkoD9BHmpfJF5aqthj6o/ksRw1Y13c314K5OU8TCYGndIUOlTt0rCiAJvpr9Z/0G
-         CNOjgNPoBF1Ehxj9prQdVAAQzUjrUDbSKGm2OVhX48iKa4T9cufxco84R81SdOtnE/Qs
-         xXNdDJVxv2lbktV2139UB6nlOhudykZR+bc886uIhtFhvO+GilBLvBOemfSDEav9MeS4
-         /nIQ==
-X-Forwarded-Encrypted: i=1; AJvYcCVZoI9FlRLrBzGpT7W3oF+jTsDlLyi4TEVWfh102OmbgFaVMOvXPdka1sdR0g3RgOQb9rHcaiYiiMJP@vger.kernel.org
-X-Gm-Message-State: AOJu0YwteNuQWjrXRHTsv9v6xMCY1B9ZvRZQ3IqwhlqtETuZWg5Ue/ss
-	fEAKXzeA1AR3A9JQql6CFQPpjJ8hr8QWWiB+TfBKanYNbVh+8T1br/Ay4Hx6jj8zNdpBNXf3TTL
-	s/S6g
-X-Gm-Gg: ASbGncv7XZA6Opv3TlR/ekrl4xTZjLzT2LRQqNJAgK1lRek0q1tPq51zmH/jO7y3E87
-	IN1IAdEw1WogyBNXcJfO0x8fHyMhM+7Ncdww9ugAjGMxdfRcLN+JTa/sv5GGFMIHw9DY7S+iwkS
-	DiaQttJWxLhoN8ur14gYLE8G5lO9GtJGU/gUTo3YgJlxkJvYKXSJ9AhEJRBZ672EZjJo1MX7q9e
-	vzI2VnY/0CDZcwelr7MPuA4YFlukACZGS7obds9UW7e1gypVkjj456rD8M5qV2VVH/x3UX7sxCR
-	j+eCieYKzorWKINrKra4CakWzmMZ0Qn/HxPAUizRzzsjXgJnakE8NqmK/p3SFW9a5/VyCuNyBPs
-	L+L9ax5fm+FCHOcHFJZki5bZ6WBcS6Oo=
-X-Google-Smtp-Source: AGHT+IEAV8Vw8kRnlbsTGuoP/oTwShQDEtpR4bSBf4ykT0TKkhmZMTVPe2BEFKyGiSf57dSvw0Wy8A==
-X-Received: by 2002:a17:907:9407:b0:ada:abf7:d0e1 with SMTP id a640c23a62f3a-ae3500bf35dmr329595866b.37.1751035866592;
-        Fri, 27 Jun 2025 07:51:06 -0700 (PDT)
-Received: from localhost (144-178-202-138.static.ef-service.nl. [144.178.202.138])
-        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-ae353c0138bsm134123766b.85.2025.06.27.07.51.06
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 27 Jun 2025 07:51:06 -0700 (PDT)
+	s=arc-20240116; t=1751035969; c=relaxed/simple;
+	bh=Y9PSyNNXun1vslLOG1Em1fG3vkezxqyO8VcmI8EIDLE=;
+	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=llMag44pWA0tuJbjcLcgaph3FIbCudujUpxnSGe6AX4p2t1tn/oHDPon99IeMNK6nxL2Ojnz8oovOkLl/Ls4XcHoZLCZyuZ/cnk3+h1IxQ8vIylcYPijSYsuU099I9nxZo/0JQupeM1UeFJGsacv+JtQlezelkvdWoLGdQIcd3w=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=OTPRR4yK; arc=none smtp.client-ip=217.70.183.197
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
+Received: by mail.gandi.net (Postfix) with ESMTPSA id 8126544365;
+	Fri, 27 Jun 2025 14:52:33 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
+	t=1751035958;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references;
+	bh=Ga4DYhJ2FO3ImSWe5QoRj6QIF5B7qFE+8eHa0kIn7Ms=;
+	b=OTPRR4yKaNYHU2ov192tpqD6SRrTnToZ1hO2EKs+LgXa/u/n5Ff5+AFuSXuKxf48WQTFy9
+	tvP0bwTeZzQG3M2K/eR7hrlZMT6G/tr8dkcAMFgq0yZpFgxhn1qJYxP+/xp3VX8ODxcLB8
+	ToGFVrpah/FsapRai7V9/GgGbWagJ0lOA/O2Ak6rrtlB9gTfkrlbsfteBQLNa8Gr5HSv/Q
+	PIzpSkoHSZBa3wA1kJ2c4ku32k11PGXFGs00q8vloMEdslC0RUceJAXHB90+PIZ7ZJNG2F
+	uQ5mtoEX9RSsaMLDQqL3bNZ6pMWN0+C9YhJgIXQ/pnLFiGEeqvO4o7iTbCQu4Q==
+Date: Fri, 27 Jun 2025 16:52:32 +0200
+From: Herve Codina <herve.codina@bootlin.com>
+To: Rob Herring <robh@kernel.org>
+Cc: Andrew Lunn <andrew@lunn.ch>, Greg Kroah-Hartman
+ <gregkh@linuxfoundation.org>, "Rafael J. Wysocki" <rafael@kernel.org>,
+ Danilo Krummrich <dakr@kernel.org>, Shawn Guo <shawnguo@kernel.org>, Sascha
+ Hauer <s.hauer@pengutronix.de>, Pengutronix Kernel Team
+ <kernel@pengutronix.de>, Fabio Estevam <festevam@gmail.com>, Michael
+ Turquette <mturquette@baylibre.com>, Stephen Boyd <sboyd@kernel.org>, Andi
+ Shyti <andi.shyti@kernel.org>, Wolfram Sang
+ <wsa+renesas@sang-engineering.com>, Peter Rosin <peda@axentia.se>, Derek
+ Kiernan <derek.kiernan@amd.com>, Dragan Cvetic <dragan.cvetic@amd.com>,
+ Arnd Bergmann <arnd@arndb.de>, Saravana Kannan <saravanak@google.com>,
+ Bjorn Helgaas <bhelgaas@google.com>, Mark Brown <broonie@kernel.org>, Len
+ Brown <lenb@kernel.org>, Andy Shevchenko
+ <andriy.shevchenko@linux.intel.com>, Daniel Scally <djrscally@gmail.com>,
+ Heikki Krogerus <heikki.krogerus@linux.intel.com>, Sakari Ailus
+ <sakari.ailus@linux.intel.com>, Wolfram Sang <wsa@kernel.org>, Geert
+ Uytterhoeven <geert+renesas@glider.be>, Davidlohr Bueso
+ <dave@stgolabs.net>, Dave Jiang <dave.jiang@intel.com>, Alison Schofield
+ <alison.schofield@intel.com>, Vishal Verma <vishal.l.verma@intel.com>, Ira
+ Weiny <ira.weiny@intel.com>, Dan Williams <dan.j.williams@intel.com>,
+ linux-kernel@vger.kernel.org, imx@lists.linux.dev,
+ linux-arm-kernel@lists.infradead.org, linux-clk@vger.kernel.org,
+ linux-i2c@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-pci@vger.kernel.org, linux-spi@vger.kernel.org,
+ linux-acpi@vger.kernel.org, linux-cxl@vger.kernel.org, Allan Nielsen
+ <allan.nielsen@microchip.com>, Horatiu Vultur
+ <horatiu.vultur@microchip.com>, Steen Hegelund
+ <steen.hegelund@microchip.com>, Luca Ceresoli <luca.ceresoli@bootlin.com>,
+ Thomas Petazzoni <thomas.petazzoni@bootlin.com>
+Subject: Re: [PATCH v3 02/28] driver core: Rename get_dev_from_fwnode()
+ wrapper to get_device_from_fwnode()
+Message-ID: <20250627165232.0b3dc935@bootlin.com>
+In-Reply-To: <20250627141846.GA3234475-robh@kernel.org>
+References: <20250613134817.681832-1-herve.codina@bootlin.com>
+	<20250613134817.681832-3-herve.codina@bootlin.com>
+	<20250627141846.GA3234475-robh@kernel.org>
+Organization: Bootlin
+X-Mailer: Claws Mail 4.3.1 (GTK 3.24.43; x86_64-redhat-linux-gnu)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-Mime-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
+MIME-Version: 1.0
 Content-Type: text/plain; charset=UTF-8
-Date: Fri, 27 Jun 2025 16:51:05 +0200
-Message-Id: <DAXEERR0W25W.18J9UZ353AL09@fairphone.com>
-Subject: Re: [PATCH] arm64: dts: qcom: sc7280.dtsi: prevent garbage on
- serial port
-From: "Luca Weiss" <luca.weiss@fairphone.com>
-To: "Casey Connolly" <casey.connolly@linaro.org>, "Bjorn Andersson"
- <andersson@kernel.org>, "Conor Dooley" <conor+dt@kernel.org>, "Konrad
- Dybcio" <konradybcio@kernel.org>, "Krzysztof Kozlowski"
- <krzk+dt@kernel.org>, "Rob Herring" <robh@kernel.org>,
- <cros-qcom-dts-watchers@chromium.org>
-Cc: "Stephan Gerhold" <stephan.gerhold@linaro.org>,
- <devicetree@vger.kernel.org>, <linux-arm-msm@vger.kernel.org>
-X-Mailer: aerc 0.20.1-0-g2ecb8770224a-dirty
-References: <20250626132333.351351-1-casey.connolly@linaro.org>
-In-Reply-To: <20250626132333.351351-1-casey.connolly@linaro.org>
+Content-Transfer-Encoding: 8bit
+X-GND-State: clean
+X-GND-Score: -100
+X-GND-Cause: gggruggvucftvghtrhhoucdtuddrgeeffedrtdefgdeffeehucetufdoteggodetrfdotffvucfrrhhofhhilhgvmecuifetpfffkfdpucggtfgfnhhsuhgsshgtrhhisggvnecuuegrihhlohhuthemuceftddunecusecvtfgvtghiphhivghnthhsucdlqddutddtmdenucfjughrpeffhffvvefukfgjfhhoofggtgfgsehtkeertdertdejnecuhfhrohhmpefjvghrvhgvucevohguihhnrgcuoehhvghrvhgvrdgtohguihhnrgessghoohhtlhhinhdrtghomheqnecuggftrfgrthhtvghrnhepvdfhleejtdeftdejveffgedtuddtgefhtedtudfhuefhtddtffeiueeigfdvhfdvnecuffhomhgrihhnpehkvghrnhgvlhdrohhrghenucfkphepledtrdekledrudeifedruddvjeenucevlhhushhtvghrufhiiigvpedtnecurfgrrhgrmhepihhnvghtpeeltddrkeelrdduieefrdduvdejpdhhvghloheplhhotggrlhhhohhsthdpmhgrihhlfhhrohhmpehhvghrvhgvrdgtohguihhnrgessghoohhtlhhinhdrtghomhdpnhgspghrtghpthhtohepgeekpdhrtghpthhtoheprhhosghhsehkvghrnhgvlhdrohhrghdprhgtphhtthhopegrnhgurhgvfieslhhunhhnrdgthhdprhgtphhtthhopehgrhgvghhkhheslhhinhhugihfohhunhgurghtihhonhdrohhrghdprhgtphhtthhopehrrghfrggvlheskhgvrhhnvghlrdhorhhgpdhrtghpthhtohepuggrkhhrsehkvghrnhgvlhdrohhrghdprhgtphhtthhop
+ ehshhgrfihnghhuoheskhgvrhhnvghlrdhorhhgpdhrtghpthhtohepshdrhhgruhgvrhesphgvnhhguhhtrhhonhhigidruggvpdhrtghpthhtohepkhgvrhhnvghlsehpvghnghhuthhrohhnihigrdguvg
+X-GND-Sasl: herve.codina@bootlin.com
 
-Hi Casey,
+Hi Rob,
 
-On Thu Jun 26, 2025 at 3:23 PM CEST, Casey Connolly wrote:
-> During early boot phases there can be garbage characters on the serial
-> RX port unless it is configured as pull-up. Add the pull-up bias and
-> mark the rx/tx pinconfs as being necessary for all boot phases.
+On Fri, 27 Jun 2025 09:18:46 -0500
+Rob Herring <robh@kernel.org> wrote:
 
-Update the subject to remove ".dtsi"?
+> On Fri, Jun 13, 2025 at 03:47:42PM +0200, Herve Codina wrote:
+> > get_dev_from_fwnode() calls get_device() and so it acquires a reference
+> > on the device returned.
+> > 
+> > In order to be more obvious that this wrapper is a get_device() variant,
+> > rename it to get_device_from_fwnode().
+> > 
+> > Suggested-by: Mark Brown <broonie@kernel.org>
+> > Link: https://lore.kernel.org/lkml/CAGETcx97QjnjVR8Z5g0ndLHpK96hLd4aYSV=iEkKPNbNOccYmA@mail.gmail.com/
+> > Signed-off-by: Herve Codina <herve.codina@bootlin.com>
+> > Reviewed-by: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
+> > Reviewed-by: Saravana Kannan <saravanak@google.com>
+> > Reviewed-by: Luca Ceresoli <luca.ceresoli@bootlin.com>
+> > ---
+> >  drivers/base/core.c | 14 +++++++-------
+> >  1 file changed, 7 insertions(+), 7 deletions(-)
+> > 
+> > diff --git a/drivers/base/core.c b/drivers/base/core.c
+> > index cbc0099d8ef2..36ccee91ba9a 100644
+> > --- a/drivers/base/core.c
+> > +++ b/drivers/base/core.c
+> > @@ -1881,7 +1881,7 @@ static void fw_devlink_unblock_consumers(struct device *dev)
+> >  	device_links_write_unlock();
+> >  }
+> >  
+> > -#define get_dev_from_fwnode(fwnode)	get_device((fwnode)->dev)
+> > +#define get_device_from_fwnode(fwnode)	get_device((fwnode)->dev)  
+> 
+> In patch 3, you add the same define. Is there some reason to not move it 
+> to a header?
+> 
 
-arm64: dts: qcom: sc7280: prevent garbage on serial port
+In this patch (patch 2), I rename the define. In patch 3, I move the define in
+an other place in the same file (core.c) in order to have it available for the
+function added (also in patch 3).
 
-Regards
-Luca
+I don't think we need to move it to a header.
 
->
-> Signed-off-by: Casey Connolly <casey.connolly@linaro.org>
-> ---
->  arch/arm64/boot/dts/qcom/sc7280.dtsi | 3 +++
->  1 file changed, 3 insertions(+)
->
-> diff --git a/arch/arm64/boot/dts/qcom/sc7280.dtsi b/arch/arm64/boot/dts/q=
-com/sc7280.dtsi
-> index 64a2abd30100..60e4a311405a 100644
-> --- a/arch/arm64/boot/dts/qcom/sc7280.dtsi
-> +++ b/arch/arm64/boot/dts/qcom/sc7280.dtsi
-> @@ -5742,13 +5742,16 @@ qup_uart4_rx: qup-uart4-rx-state {
-> =20
->  			qup_uart5_tx: qup-uart5-tx-state {
->  				pins =3D "gpio22";
->  				function =3D "qup05";
-> +				bootph-all;
->  			};
-> =20
->  			qup_uart5_rx: qup-uart5-rx-state {
->  				pins =3D "gpio23";
->  				function =3D "qup05";
-> +				bootph-all;
-> +				bias-pull-up;
->  			};
-> =20
->  			qup_uart6_cts: qup-uart6-cts-state {
->  				pins =3D "gpio24";
-
+Best regards,
+Hervé
 
