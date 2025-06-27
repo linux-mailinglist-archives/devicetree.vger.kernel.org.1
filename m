@@ -1,145 +1,118 @@
-Return-Path: <devicetree+bounces-190591-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-190594-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id C1039AEC243
-	for <lists+devicetree@lfdr.de>; Fri, 27 Jun 2025 23:46:47 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 77DB0AEC24D
+	for <lists+devicetree@lfdr.de>; Fri, 27 Jun 2025 23:48:58 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 99DA01C46634
-	for <lists+devicetree@lfdr.de>; Fri, 27 Jun 2025 21:47:03 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 0F96A1885AF5
+	for <lists+devicetree@lfdr.de>; Fri, 27 Jun 2025 21:49:13 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9DF5C28A3EC;
-	Fri, 27 Jun 2025 21:46:08 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 056E228A3F7;
+	Fri, 27 Jun 2025 21:48:51 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="DRrBwM0Q"
+	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="AQfIPDnO"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from lelvem-ot02.ext.ti.com (lelvem-ot02.ext.ti.com [198.47.23.235])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7133D28A1E4;
-	Fri, 27 Jun 2025 21:46:08 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 495DA1FBCB5;
+	Fri, 27 Jun 2025 21:48:49 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.23.235
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1751060768; cv=none; b=Scc5CckLYvftw3azpLdbNKS4XrzjDN7+8KtQ5/EAAMFhQ2X70LAIRIQnDQaNtOsAo40aw5fRHap45OxKOFzALjKm4uKP52eoF3iGebi2ZbxiscfhjEbq0tmvyfct4Copu5V++pAXnFI+1yeu2hQaE2QF7LQEnx+/dsgi+mFiwrY=
+	t=1751060930; cv=none; b=N0VFn1NgllnuIOkL1I3iDw6PxEH7d7Sa33VYrddeQBQ/Vdsgak9Z+AKG4dJqXh5K7OfWcRLg2PlMyR82iDT5uFFyrlAUpN8kRpJM1gqxMeFvSkpkDOZLZKciezrAVI0oCD202mIUlCCbYDzgpSaVpBrPporH6N4Nn9OkktzifX4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1751060768; c=relaxed/simple;
-	bh=Wa4ecWizOT5Iqtise/QjGf4n6skn5SZMXAZ5hYrTYRM=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=NCtlKDi+4mTmnv8RmrYjTBjoRgQOdj0cOgohrsvRq6VDiEWnEx14rZ9kBq8NlEnwr9or80LBpaFKavkvWY1LOBQDfSpTCqH+1mVW78gKmKTDEEZUs7DSGbnothOx8ntkeT9ugjPGjzoUZgBUw/HmilskW2gFDjJZ7yWK2nKO1Lc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=DRrBwM0Q; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 25672C4CEE3;
-	Fri, 27 Jun 2025 21:46:08 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1751060768;
-	bh=Wa4ecWizOT5Iqtise/QjGf4n6skn5SZMXAZ5hYrTYRM=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=DRrBwM0QoCU5lHi0MAk1WbFBSz7918jSwXcUAsuuaA90vjTItz66KSqlfnTGIvm3s
-	 63f3KpVEH8MM0fZ1M7lrpffXGgXIi3T3nje13ZvJQ/8lLHnxt+5YfxOySB2pfE96RS
-	 0Y8rRTKoblzxauvdBHy6Ri/hiOEk15gRlI/hRt3KFeRJvGBNfGmfaT0zrHvOx3puD2
-	 vZdeYh0ZVEMQNhtSiY8gbL66yJh6j4ooCO+CsYxent72DRn2wNZ9CpYXeOdz4yW4qG
-	 Jt7tLQN3EyBIYrIaUY6MePBhDVSOfoxAiT7u/0mCb9Ln1eWkV9hkDZum7bONuz0Vd3
-	 MjnwtJlybu7gw==
-Date: Fri, 27 Jun 2025 16:46:07 -0500
-From: Rob Herring <robh@kernel.org>
-To: Christian Marangi <ansuelsmth@gmail.com>
-Cc: Lee Jones <lee@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Andrew Lunn <andrew+netdev@lunn.ch>,
-	"David S. Miller" <davem@davemloft.net>,
-	Eric Dumazet <edumazet@google.com>,
-	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
-	Vladimir Oltean <olteanv@gmail.com>,
-	Srinivas Kandagatla <srini@kernel.org>,
-	Heiner Kallweit <hkallweit1@gmail.com>,
-	Russell King <linux@armlinux.org.uk>,
-	"Chester A. Unal" <chester.a.unal@arinc9.com>,
-	Daniel Golle <daniel@makrotopia.org>,
-	DENG Qingfang <dqfext@gmail.com>,
-	Sean Wang <sean.wang@mediatek.com>, Simon Horman <horms@kernel.org>,
-	Matthias Brugger <matthias.bgg@gmail.com>,
-	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
-	linux-arm-kernel@lists.infradead.org,
-	linux-mediatek@lists.infradead.org, netdev@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [net-next PATCH v15 03/12] dt-bindings: net: dsa: Document
- support for Airoha AN8855 DSA Switch
-Message-ID: <20250627214607.GA193659-robh@kernel.org>
-References: <20250626212321.28114-1-ansuelsmth@gmail.com>
- <20250626212321.28114-4-ansuelsmth@gmail.com>
+	s=arc-20240116; t=1751060930; c=relaxed/simple;
+	bh=RB25scHzcHUecT2LoPbXGgFC+nSWwtL47Zd0BDvbfR4=;
+	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
+	 In-Reply-To:Content-Type; b=frMaPVOHWrmddObZvyNzpHRCgI+IMuvYXeK7gIVOFT6dYFpVhMdg11Ohqo1VNEZRUS1EVb6RItHHcT9UlwA6G0VIgU+r8zcFQrmaSnUnv+Kw9HTws1m3eI2Pxqbxi2udSQiRDBbvy4AZ8eGxypLgdf8Y2Gt+to6R9/OgN1MxLu0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=AQfIPDnO; arc=none smtp.client-ip=198.47.23.235
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
+Received: from lelvem-sh02.itg.ti.com ([10.180.78.226])
+	by lelvem-ot02.ext.ti.com (8.15.2/8.15.2) with ESMTP id 55RLmK8d2841413;
+	Fri, 27 Jun 2025 16:48:20 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+	s=ti-com-17Q1; t=1751060900;
+	bh=c48FdaYUBETORNVRHnKeGAi+dO5DvZl4pZvPld9S9xs=;
+	h=Date:Subject:To:CC:References:From:In-Reply-To;
+	b=AQfIPDnOuERmi0XwmMIvUYTCmUpBOeKEQY7wxkcO8M7+Yxbp0ibrKJco1fhXiU8pt
+	 HsPuS4sKbGLvDQ+XCNx3tS7nfSEuCL86z1TgYM/xpWrdhqAbB4oj+ISf+sPyNksGyn
+	 tdgFeG+JRjjY+knEm9QNv+/eBqIryYtZmUkdckCI=
+Received: from DLEE112.ent.ti.com (dlee112.ent.ti.com [157.170.170.23])
+	by lelvem-sh02.itg.ti.com (8.18.1/8.18.1) with ESMTPS id 55RLmKSP751364
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-SHA256 bits=128 verify=FAIL);
+	Fri, 27 Jun 2025 16:48:20 -0500
+Received: from DLEE100.ent.ti.com (157.170.170.30) by DLEE112.ent.ti.com
+ (157.170.170.23) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.55; Fri, 27
+ Jun 2025 16:48:19 -0500
+Received: from lelvem-mr05.itg.ti.com (10.180.75.9) by DLEE100.ent.ti.com
+ (157.170.170.30) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.55 via
+ Frontend Transport; Fri, 27 Jun 2025 16:48:19 -0500
+Received: from [128.247.81.105] (judy-hp.dhcp.ti.com [128.247.81.105])
+	by lelvem-mr05.itg.ti.com (8.18.1/8.18.1) with ESMTP id 55RLmJ7J3755700;
+	Fri, 27 Jun 2025 16:48:19 -0500
+Message-ID: <89457440-8b3f-4e21-8352-6ee05b269398@ti.com>
+Date: Fri, 27 Jun 2025 16:48:19 -0500
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20250626212321.28114-4-ansuelsmth@gmail.com>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v5 0/5] Add support for BeagleBone Green Eco board
+To: Kory Maincent <kory.maincent@bootlin.com>,
+        Tony Lindgren
+	<tony@atomide.com>, Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski
+	<krzk+dt@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Aaro Koskinen
+	<aaro.koskinen@iki.fi>,
+        Andreas Kemnade <andreas@kemnade.info>,
+        Kevin Hilman
+	<khilman@baylibre.com>,
+        Roger Quadros <rogerq@kernel.org>,
+        Russell King
+	<linux@armlinux.org.uk>,
+        Paul Barker <paul.barker@sancloud.com>,
+        Marc Murphy
+	<marc.murphy@sancloud.com>
+CC: Jason Kridner <jkridner@gmail.com>, Andrew Davis <afd@ti.com>,
+        Bajjuri
+ Praneeth <praneeth@ti.com>,
+        Liam Girdwood <lgirdwood@gmail.com>, Mark Brown
+	<broonie@kernel.org>,
+        Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
+        <linux-omap@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>, <linux-arm-kernel@lists.infradead.org>,
+        Thomas Bonnefille <thomas.bonnefille@bootlin.com>,
+        Romain Gantois
+	<romain.gantois@bootlin.com>,
+        Conor Dooley <conor.dooley@microchip.com>
+References: <20250620-bbg-v5-0-84f9b9a2e3a8@bootlin.com>
+Content-Language: en-US
+From: Judith Mendez <jm@ti.com>
+In-Reply-To: <20250620-bbg-v5-0-84f9b9a2e3a8@bootlin.com>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 7bit
+X-C2ProcessedOrg: 333ef613-75bf-4e12-a4b1-8e3623f5dcea
 
-On Thu, Jun 26, 2025 at 11:23:02PM +0200, Christian Marangi wrote:
-> Document support for Airoha AN8855 5-port Gigabit Switch.
+Hi Kory,
+
+On 6/20/25 3:15 AM, Kory Maincent wrote:
+> SeeedStudio BeagleBone Green Eco (BBGE) is a clone of the BeagleBone Green
+> (BBG). It has minor differences from the BBG, such as a different PMIC,
+> a different Ethernet PHY, and a larger eMMC.
 > 
-> It does expose the 5 Internal PHYs on the MDIO bus and each port
-> can access the Switch register space by configurting the PHY page.
-> 
-> Signed-off-by: Christian Marangi <ansuelsmth@gmail.com>
-> ---
->  .../net/dsa/airoha,an8855-switch.yaml         | 86 +++++++++++++++++++
->  1 file changed, 86 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/net/dsa/airoha,an8855-switch.yaml
-> 
-> diff --git a/Documentation/devicetree/bindings/net/dsa/airoha,an8855-switch.yaml b/Documentation/devicetree/bindings/net/dsa/airoha,an8855-switch.yaml
-> new file mode 100644
-> index 000000000000..fbb9219fadae
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/net/dsa/airoha,an8855-switch.yaml
-> @@ -0,0 +1,86 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/net/dsa/airoha,an8855-switch.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Airoha AN8855 Gigabit Switch
-> +
-> +maintainers:
-> +  - Christian Marangi <ansuelsmth@gmail.com>
-> +
-> +description: >
-> +  Airoha AN8855 is a 5-port Gigabit Switch.
-> +
-> +  It does expose the 5 Internal PHYs on the MDIO bus and each port
-> +  can access the Switch register space by configurting the PHY page.
-> +
-> +$ref: dsa.yaml#/$defs/ethernet-ports
-> +
-> +properties:
-> +  compatible:
-> +    const: airoha,an8855-switch
-> +
-> +required:
-> +  - compatible
-> +
-> +unevaluatedProperties: false
-> +
-> +examples:
-> +  - |
-> +    ethernet-switch {
-> +        compatible = "airoha,an8855-switch";
-> +
-> +        ports {
+> Signed-off-by: Kory Maincent <kory.maincent@bootlin.com>
 
-ethernet-ports is preferred.
+For the series,
+Tested-by: Judith Mendez <jm@ti.com>
 
-> +            #address-cells = <1>;
-> +            #size-cells = <0>;
-> +
-> +            port@0 {
-
-And ethernet-port@0
-
-
-Reviewed-by: Rob Herring (Arm) <robh@kernel.org>
 
