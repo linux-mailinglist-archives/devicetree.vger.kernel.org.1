@@ -1,153 +1,97 @@
-Return-Path: <devicetree+bounces-190265-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-190266-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 945C2AEB325
-	for <lists+devicetree@lfdr.de>; Fri, 27 Jun 2025 11:42:17 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 91AD6AEB32D
+	for <lists+devicetree@lfdr.de>; Fri, 27 Jun 2025 11:44:49 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 779961C207FA
-	for <lists+devicetree@lfdr.de>; Fri, 27 Jun 2025 09:42:33 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id BFDBE561E17
+	for <lists+devicetree@lfdr.de>; Fri, 27 Jun 2025 09:44:23 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9D1D7293C4C;
-	Fri, 27 Jun 2025 09:42:11 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 008A9293C59;
+	Fri, 27 Jun 2025 09:44:45 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="ANo4mvAp"
+	dkim=pass (1024-bit key) header.d=mediatek.com header.i=@mediatek.com header.b="U57TunGZ"
 X-Original-To: devicetree@vger.kernel.org
-Received: from relay3-d.mail.gandi.net (relay3-d.mail.gandi.net [217.70.183.195])
+Received: from mailgw01.mediatek.com (unknown [60.244.123.138])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B1C9E1DE2C9;
-	Fri, 27 Jun 2025 09:42:08 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.70.183.195
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5039425F78A;
+	Fri, 27 Jun 2025 09:44:41 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=60.244.123.138
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1751017331; cv=none; b=E1bD9qSwfVmg4DinhCQtpQXkGlRHk5o2KI4bRaP+KHZ9ihfqmDLgxMWGKxpGR+f1C96UGjCo01QcZMKrcTcxiuued3lSbFdGnj8ScYkB06tiXnHYmcPS37Es/yoUeHhjWIa+Ec35Prf3cYNmvo1MSqj0cSLtjmDS77+XEYBW/sk=
+	t=1751017484; cv=none; b=ni1pBn9dxCm4cp+I2JtKB3G6+RSM6IYJa5eSwtr6TjuM5Nttf/bkTWd+/YNImSiv78ZOKqUZQ48I7dZCa0e8Dv8wz1qNZzOKRfzmsatsHDCt0IyTvBfeKy2tYBr6OLP67pho2CZXLITkQRIUqf/MMMeCEYgaCUIa8YRflfcXg7A=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1751017331; c=relaxed/simple;
-	bh=ALB8scmnqBjrj7Lx7mrURXy49O4IYjmrSTfkDIal3lI=;
-	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=rTE+dD7fzvved3bS2x+XF7ebqHPmSzsN2x7WwT6krkVQmt6BTneXSyyotPs+rPqhEhDZ8p6FxltGFdKm/1/bQqT0mFy9bIDcTPo/PnVW6udMb0GX6VA3BDMoCT4t9N4b6SOdDM5wDOfq0Svwz2+PTmXDCmYj4o4kJA/AQgs0Kb4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=ANo4mvAp; arc=none smtp.client-ip=217.70.183.195
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
-Received: by mail.gandi.net (Postfix) with ESMTPSA id 081091FD35;
-	Fri, 27 Jun 2025 09:41:53 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
-	t=1751017321;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=ebkQpOy7jU/hd2ovSMuvbdUVcZ8KbjpAp3Ecuke29NM=;
-	b=ANo4mvApogHPe4fMWd2QFeBCg+mWgojUEV8XaXM/25ncURaUsz9M/kEC6Nn6IVH4maVX6j
-	gSeSCAUP/wlUINz90v32u/TeUsei8qUxIXQS6gDZRhsaB8zBNJmzkdZiaYtkNAavTknDsP
-	dRdh+FNdH2dlKN6La4DumIswSehs0FgFn89O4Iokd0AoNO4qnLq0SpsC6O1yrdqCLW9b2k
-	h9Upd+221NuY96MmaBC7ix86cApTM5GZSfo0ZV56K/KAoyKWrsuFyHBZ31W4LK69SU2LzV
-	acuBc9jpT4Ril5gE8uY2KWJvi1SV/M7Wfe4OOWc+QLioRAkbvmT+bkVgu9R1Iw==
-Date: Fri, 27 Jun 2025 11:41:51 +0200
-From: Maxime Chevallier <maxime.chevallier@bootlin.com>
-To: =?UTF-8?B?VGjDqW8=?= Lebrun <theo.lebrun@bootlin.com>
-Cc: Andrew Lunn <andrew+netdev@lunn.ch>, "David S. Miller"
- <davem@davemloft.net>, Eric Dumazet <edumazet@google.com>, Jakub Kicinski
- <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>, Rob Herring
- <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Nicolas Ferre <nicolas.ferre@microchip.com>, Claudiu
- Beznea <claudiu.beznea@tuxon.dev>, Paul Walmsley
- <paul.walmsley@sifive.com>, Palmer Dabbelt <palmer@dabbelt.com>, Albert Ou
- <aou@eecs.berkeley.edu>, Alexandre Ghiti <alex@ghiti.fr>, Samuel Holland
- <samuel.holland@sifive.com>, Richard Cochran <richardcochran@gmail.com>,
- Russell King <linux@armlinux.org.uk>, Thomas Bogendoerfer
- <tsbogend@alpha.franken.de>, Vladimir Kondratiev
- <vladimir.kondratiev@mobileye.com>, Gregory CLEMENT
- <gregory.clement@bootlin.com>, Cyrille Pitchen <cyrille.pitchen@atmel.com>,
- Harini Katakam <harini.katakam@xilinx.com>, Rafal Ozieblo
- <rafalo@cadence.com>, Haavard Skinnemoen <hskinnemoen@atmel.com>,
- netdev@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, linux-riscv@lists.infradead.org,
- linux-mips@vger.kernel.org, Thomas Petazzoni
- <thomas.petazzoni@bootlin.com>, Tawfik Bayouk <tawfik.bayouk@mobileye.com>,
- Andrew Lunn <andrew@lunn.ch>
-Subject: Re: [PATCH net-next v2 00/18] Support the Cadence MACB/GEM
- instances on Mobileye EyeQ5 SoCs
-Message-ID: <20250627112234.1cb54133@2a02-8440-d103-6715-ef68-2a2e-b947-8885.rev.sfr.net>
-In-Reply-To: <20250627-macb-v2-0-ff8207d0bb77@bootlin.com>
-References: <20250627-macb-v2-0-ff8207d0bb77@bootlin.com>
-Organization: Bootlin
-X-Mailer: Claws Mail 4.3.1 (GTK 3.24.43; x86_64-redhat-linux-gnu)
+	s=arc-20240116; t=1751017484; c=relaxed/simple;
+	bh=M9WdmJkU6298jjaKINzNf+tAkCNpglCxAoM6CXnDBXQ=;
+	h=From:To:CC:Subject:Date:Message-ID:MIME-Version:Content-Type; b=KaeluUQX8eV0ke+rWG3nK4Gh0mJlajXoHMMZ8d/gl62T4Sg82slucHdvZRyirfE/qkdEPj8DtNz5hk/vbqIcpI2fD5/d0/7HA3MF6xiGFpJrwK9nCUlrbqMWV65pMdVQKD6QSlr3KlRUD1ZgH4ziSO+x5YPyL19DqcZCTrN6SO4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=mediatek.com; spf=pass smtp.mailfrom=mediatek.com; dkim=pass (1024-bit key) header.d=mediatek.com header.i=@mediatek.com header.b=U57TunGZ; arc=none smtp.client-ip=60.244.123.138
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=mediatek.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=mediatek.com
+X-UUID: 55df660c533b11f0b1510d84776b8c0b-20250627
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=mediatek.com; s=dk;
+	h=Content-Type:Content-Transfer-Encoding:MIME-Version:Message-ID:Date:Subject:CC:To:From; bh=jreIx6PtT6w4BeFa0dDuav4vW2DugASqzYf5r6DK060=;
+	b=U57TunGZD5Y2k+AvAiTKcyNyrC/krbuxptVD+XTIEfT5iFEcIe7Z74u4kP7o8Fo9F2kD/KQF4QID5rIHJxDF/Tf/FMkP7O5q89iiLmYRw3sw08i0b9nuznB+T/L0pJgplDg8W4jC6zg7602ERUi8aQNqdZUhFAsacuFxtYN9mkk=;
+X-CID-P-RULE: Release_Ham
+X-CID-O-INFO: VERSION:1.3.2,REQID:0b1a884d-3726-476d-8e13-12f8eecb81ee,IP:0,UR
+	L:0,TC:0,Content:0,EDM:0,RT:0,SF:0,FILE:0,BULK:0,RULE:Release_Ham,ACTION:r
+	elease,TS:0
+X-CID-META: VersionHash:9eb4ff7,CLOUDID:9dda4482-cc21-4267-87cf-e75829fa6365,B
+	ulkID:nil,BulkQuantity:0,Recheck:0,SF:102,TC:nil,Content:0|50,EDM:-3,IP:ni
+	l,URL:0,File:nil,RT:nil,Bulk:nil,QS:nil,BEC:nil,COL:0,OSI:0,OSA:0,AV:0,LES
+	:1,SPR:NO,DKR:0,DKP:0,BRR:0,BRE:0,ARC:0
+X-CID-BVR: 0
+X-CID-BAS: 0,_,0,_
+X-CID-FACTOR: TF_CID_SPAM_SNR
+X-CID-RHF: D41D8CD98F00B204E9800998ECF8427E
+X-UUID: 55df660c533b11f0b1510d84776b8c0b-20250627
+Received: from mtkmbs10n1.mediatek.inc [(172.21.101.34)] by mailgw01.mediatek.com
+	(envelope-from <ot_zexin.wang@mediatek.com>)
+	(Generic MTA with TLSv1.2 ECDHE-RSA-AES256-GCM-SHA384 256/256)
+	with ESMTP id 199619063; Fri, 27 Jun 2025 17:44:35 +0800
+Received: from mtkmbs11n1.mediatek.inc (172.21.101.185) by
+ MTKMBS14N1.mediatek.inc (172.21.101.75) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.1258.39; Fri, 27 Jun 2025 17:44:32 +0800
+Received: from mhfsdcap04.gcn.mediatek.inc (10.17.3.154) by
+ mtkmbs11n1.mediatek.inc (172.21.101.73) with Microsoft SMTP Server id
+ 15.2.1258.39 via Frontend Transport; Fri, 27 Jun 2025 17:44:32 +0800
+From: Zexin Wang <ot_zexin.wang@mediatek.com>
+To: Wim Van Sebroeck <wim@linux-watchdog.org>, Guenter Roeck
+	<linux@roeck-us.net>, Rob Herring <robh@kernel.org>, Krzysztof Kozlowski
+	<krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, Matthias Brugger
+	<matthias.bgg@gmail.com>
+CC: <Project_Global_Chrome_Upstream_Group@mediatek.com>,
+	<linux-watchdog@vger.kernel.org>, <devicetree@vger.kernel.org>,
+	<linux-kernel@vger.kernel.org>, <linux-arm-kernel@lists.infradead.org>,
+	<linux-mediatek@lists.infradead.org>, Zexin Wang <ot_zexin.wang@mediatek.com>
+Subject: [PATCH 0/2] watchdog: mediatek: Add compatible for MT8189
+Date: Fri, 27 Jun 2025 17:44:18 +0800
+Message-ID: <20250627094431.11772-1-ot_zexin.wang@mediatek.com>
+X-Mailer: git-send-email 2.46.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
-X-GND-State: clean
-X-GND-Score: -100
-X-GND-Cause: gggruggvucftvghtrhhoucdtuddrgeeffedrtdefgddvjedvucetufdoteggodetrfdotffvucfrrhhofhhilhgvmecuifetpfffkfdpucggtfgfnhhsuhgsshgtrhhisggvnecuuegrihhlohhuthemuceftddunecusecvtfgvtghiphhivghnthhsucdlqddutddtmdenucfjughrpeffhffvvefukfgjfhhoofggtgfgsehtqhertdertdejnecuhfhrohhmpeforgigihhmvgcuvehhvghvrghllhhivghruceomhgrgihimhgvrdgthhgvvhgrlhhlihgvrhessghoohhtlhhinhdrtghomheqnecuggftrfgrthhtvghrnhepkeehgeeijeekteffhfelheetffeghfffhfeufeeifeffjeeftefhveduteduueeunecuffhomhgrihhnpehkvghrnhgvlhdrohhrghenucfkphepvdgrtddvmeekgeegtdemugdutdefmeeijeduheemvghfieekmedvrgdvvgemsgelgeejmeekkeekheenucevlhhushhtvghrufhiiigvpedtnecurfgrrhgrmhepihhnvghtpedvrgdtvdemkeeggedtmeguuddtfeemieejudehmegvfheikeemvdgrvdgvmegsleegjeemkeekkeehpdhhvghlohepvdgrtddvqdekgeegtddqugdutdefqdeijeduhedqvghfieekqddvrgdvvgdqsgelgeejqdekkeekhedrrhgvvhdrshhfrhdrnhgvthdpmhgrihhlfhhrohhmpehmrgigihhmvgdrtghhvghvrghllhhivghrsegsohhothhlihhnrdgtohhmpdhnsggprhgtphhtthhopeeffedprhgtphhtthhopehthhgvohdrlhgvsghruhhnsegsohhothhli
- hhnrdgtohhmpdhrtghpthhtoheprghnughrvgifodhnvghtuggvvheslhhunhhnrdgthhdprhgtphhtthhopegurghvvghmsegurghvvghmlhhofhhtrdhnvghtpdhrtghpthhtohepvgguuhhmrgiivghtsehgohhoghhlvgdrtghomhdprhgtphhtthhopehkuhgsrgeskhgvrhhnvghlrdhorhhgpdhrtghpthhtohepphgrsggvnhhisehrvgguhhgrthdrtghomhdprhgtphhtthhopehrohgshheskhgvrhhnvghlrdhorhhgpdhrtghpthhtohepkhhriihkodgutheskhgvrhhnvghlrdhorhhg
-X-GND-Sasl: maxime.chevallier@bootlin.com
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
 
-Hi Th=C3=A9o,
+This patch series introduces support for the MT8189 watchdog driver
+by add compatible.
 
-On Fri, 27 Jun 2025 11:08:46 +0200
-Th=C3=A9o Lebrun <theo.lebrun@bootlin.com> wrote:
+Zexin Wang (2):
+  watchdog: mediatek: Add compatible for MT8189
+  dt-bindings: watchdog: mediatek: Add support for MT8189
 
-> Mobileye EyeQ5 SoCs provides two GEM IP blocks. The end result of this
-> series is working 1G networking on the EyeQ5 eval board. It isn't just
-> a new macb_config & compatible, we also provide some cleanup & fixes
-> along the way.
->=20
-> dt-bindings:
->   [PATCH net-next v2 01/18] dt-bindings: net: cdns,macb: sort compatibles
->   [PATCH net-next v2 02/18] dt-bindings: net: cdns,macb: add Mobileye Eye=
-Q5 ethernet interface
->   [PATCH net-next v2 03/18] dt-bindings: net: cdns,macb: allow tsu_clk wi=
-thout tx_clk
->   [PATCH net-next v2 04/18] dt-bindings: net: cdns,macb: allow dma-cohere=
-nt
->=20
-> Cleanup:
->   [PATCH net-next v2 05/18] net: macb: use BIT() macro for capability def=
-initions
->   [PATCH net-next v2 06/18] net: macb: Remove local variables clk_init an=
-d init in macb_probe()
->   [PATCH net-next v2 07/18] net: macb: drop macb_config NULL checking
->   [PATCH net-next v2 08/18] net: macb: introduce DMA descriptor helpers (=
-is 64bit? is PTP?)
->   [PATCH net-next v2 09/18] net: macb: sort #includes
->=20
-> Fixes:
->   [PATCH net-next v2 10/18] net: macb: remove illusion about TBQPH/RBQPH =
-being per-queue
->   [PATCH net-next v2 11/18] net: macb: single dma_alloc_coherent() for DM=
-A descriptors
->   [PATCH net-next v2 12/18] net: macb: match skb_reserve(skb, NET_IP_ALIG=
-N) with HW alignment
->   [PATCH net-next v2 13/18] net: macb: avoid double endianness swap in ma=
-cb_set_hwaddr()
+ Documentation/devicetree/bindings/watchdog/mediatek,mtk-wdt.yaml | 1 +
+ drivers/watchdog/mtk_wdt.c                                       | 1 +
+ 2 files changed, 2 insertions(+)
 
-Fixes go through the net tree, and new features through net-next :
+-- 
+2.45.2
 
-https://docs.kernel.org/process/maintainer-netdev.html#netdev-faq
-
-As this series is quite big, it could be nice to send the cleanups and
-fixes in dedicated series, and then the eyeQ5 support in itself as a
-standalone series. This would make the review work easier.
-
-
-> EyeQ5 support:
->   [PATCH net-next v2 14/18] net: macb: add no LSO capability (MACB_CAPS_N=
-O_LSO)
->   [PATCH net-next v2 15/18] net: macb: Add "mobileye,eyeq5-gem" compatible
->=20
-> DTS:
->   [PATCH net-next v2 16/18] MIPS: mobileye: add EyeQ5 DMA IOCU support
->   [PATCH net-next v2 17/18] MIPS: mobileye: eyeq5: add two Cadence GEM Et=
-hernet controllers
->   [PATCH net-next v2 18/18] MIPS: mobileye: eyeq5-epm: add two Cadence GE=
-M Ethernet PHYs
-
-Maxime
 
