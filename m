@@ -1,184 +1,223 @@
-Return-Path: <devicetree+bounces-190562-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-190563-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id C37B5AEC144
-	for <lists+devicetree@lfdr.de>; Fri, 27 Jun 2025 22:43:59 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id C1223AEC15A
+	for <lists+devicetree@lfdr.de>; Fri, 27 Jun 2025 22:45:14 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 1EE703B089E
-	for <lists+devicetree@lfdr.de>; Fri, 27 Jun 2025 20:43:34 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id DF3F91C620B0
+	for <lists+devicetree@lfdr.de>; Fri, 27 Jun 2025 20:45:03 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2A28E2EE982;
-	Fri, 27 Jun 2025 20:42:54 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id EF5DB2EAB9E;
+	Fri, 27 Jun 2025 20:44:33 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="GF90QWAV"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="BS/w/NCq"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f47.google.com (mail-wm1-f47.google.com [209.85.128.47])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 524F72EE5EC;
-	Fri, 27 Jun 2025 20:42:52 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.47
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BE04022D9E6;
+	Fri, 27 Jun 2025 20:44:33 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1751056974; cv=none; b=EqJJMpBe9p4q6IQGLKZmUtbUuj/H8jHJJN6NrbR9ms0eyVJKXhx2RBDLUDVtDJZTfCRMSYBlUtO44xxxufe/kBJJsHD/V+IE1uRVsbijug0Ws0T/cigrpALdBm/YyX8JdkXorwjm49iA7nZz6QlKIg5iqb67DmW7M1Ki6aprGJY=
+	t=1751057073; cv=none; b=jz5vqTxRAs4XSJ6/onPNyXFd6NOgoz8wkYkDJ/pshJwsZpDseQCJC0YgTM/hlos0oZw28HH5jaZqR/Db5BF87h7ZkAkhUT5BOXqhSofPErLebshd0xUIWW+grQMbUheUSoxcL1/qCZRinRBrIYz+kVEreMrhPz3XcbY6vdqCU9E=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1751056974; c=relaxed/simple;
-	bh=8QkcunE7avjR4ETyOBJIS9ShZo4Feau4QzXVbObg1+k=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=j0vLy2lt76BXhaKrDJQ/4EocOwM00MhRIRC1gDXpasBfWJdmCBiOhs2BKqnARzjZviUt74YGgkB+sJXzl0RTEFmvSGkpZTe3y+LYU5iJErd8u7g51szG/mGma3omT4QDIt6/6znus3uNR1OzMFWKtIbv23IiUiNiy0vsrgqUXLQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=GF90QWAV; arc=none smtp.client-ip=209.85.128.47
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-wm1-f47.google.com with SMTP id 5b1f17b1804b1-451d3f72391so2755425e9.3;
-        Fri, 27 Jun 2025 13:42:52 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1751056971; x=1751661771; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=JFogUEFPDwoe5zvFZR9IXlLvXXTdFdqsNR9k44UIfj0=;
-        b=GF90QWAV51pa8Iw+otH4m3OzGDs63mSSnOI1zv7whIQlohRmidLtHXKbzabu0g+nPF
-         7mOgk0BW20leeT3C+jsGwjwH/OgY6nwo/7OVB8QzEL/7Rr/nnjL7khBIRBfeLutVBW1D
-         P+SZ5/Z4aDklQ0RTPshqyVTDJh16SPNeZPUGdXeh/3ktQcj2svRKMgZTZc8osXI15kRo
-         QoIU7HNkxpHH5HmpJr/vV7ZUNuJ9qh/bjSL0g4K2N3Gb7VWDg6zTOgvk0qxJxvfJhDBI
-         vkW82QE1M+Vb87hmdt5o6SzL9KepdQ0IkhBKpztn3QrV+yd9vsU1yL6SfGHCI6NnBrEV
-         /L3w==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1751056971; x=1751661771;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=JFogUEFPDwoe5zvFZR9IXlLvXXTdFdqsNR9k44UIfj0=;
-        b=JrqQLbNknp47g+RfIfhTOKT7Yn3ceeCRxOgYSyCvSZBdkG3vANJHOYNUecqEvyigTf
-         JeyZ3d6AZC7UWFjOuzqcldMCSePdqELQDdyq8qLOWlNGJ6z/Yl7wl5DMP0nX3BScOkjV
-         j6fnP0rBhZ0/zf4Lb50lef3M5tzgFIxd/rPaUTuNaXulDfBOXX0UsH1HhzD0WO/qT+cI
-         ekbGLW/xj4XBJ0ZL5EBAt0HVfvy8XEv0D1YWsVsR9BxBAiv9Ohu5ietaTtLSY3epJRzL
-         32A9YSrPdqeCQOuppfibFdr1DN5TINEyytaq33OPrkehXNhiTke3SvdfxzSjNlEvLnZH
-         lBRw==
-X-Forwarded-Encrypted: i=1; AJvYcCU/PkG/W34xQhdmEaGJ/rPBh9mb+FZuUDae26RCbgd977tjSqi/gsJpA5yP5Dhh7GmR/559hblVAG74@vger.kernel.org, AJvYcCUWxa1a0OjS1Ai0zX488H2oiolMFMGZw2a/1ZXx5VBHCRoVQ2XIl09cPb6Molm0T+lDVuCErV6ueUYc50Rp@vger.kernel.org, AJvYcCUbJeX+MAFiSxScAwl+1WZsvEvKwXcDzAe3M4B0C58ALtTOzCSSQWQO8gEzhX/l8cK5HTH8anC1J6+f@vger.kernel.org
-X-Gm-Message-State: AOJu0YwQgPGOPxx3ASUTD+ZxgLAXXtARkxfOvWXYe8tLM9zCQ/7TdAW/
-	BGciufrjRb7d5Wi3zMVNJm09c7JkGkjsZ4B/DWS2Eub9afItShs+vX+Z
-X-Gm-Gg: ASbGncsOk9hy1x8/8ffzVTu+KHTy9ag2ROSZS/JXMUkd6gGOEiMFw1qrWFC4J3JfdAW
-	YcSxze0xU2HE37HZfPyjtyIUMf1W/0rmbtnGap2+0yGPgqndLB9aL6xg395lFf9tUebN+Kh5YZo
-	YO9s8l5hY4GwCV8hi3FHhA45V9NDK018ALJtRfWjVD4J4sYjhPVYUH5bVg8c7BSgddmSbO/jl6m
-	OfyXXJk2XbvA8JfUgczSfxvPofY2b0m4r1AAvitEvn0Egt9b/odn+17+4f+hloggmKNy2Kyn6iZ
-	8hpkast/tOzijPniwUsh3ZECLySHG8vOeHj1LBK0KwPtkkYGdsy3SD/cVbX85h/bgEdkTMqgvhh
-	pSlWlYKgIAw==
-X-Google-Smtp-Source: AGHT+IHreqXziLECND4E146z9XCfLLQ7bEVfI+nB28X5sGu6INUIfUxfhFQlKoKmti/oMpVcdTkrXg==
-X-Received: by 2002:a05:6000:2082:b0:3a5:2875:f985 with SMTP id ffacd0b85a97d-3a90066afb5mr4907750f8f.59.1751056970518;
-        Fri, 27 Jun 2025 13:42:50 -0700 (PDT)
-Received: from iku.Home ([2a06:5906:61b:2d00:3b46:edb1:4d0:593b])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-3a88c7fab7asm3609322f8f.24.2025.06.27.13.42.49
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 27 Jun 2025 13:42:49 -0700 (PDT)
-From: Prabhakar <prabhakar.csengg@gmail.com>
-X-Google-Original-From: Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-To: Geert Uytterhoeven <geert+renesas@glider.be>,
-	Michael Turquette <mturquette@baylibre.com>,
-	Stephen Boyd <sboyd@kernel.org>,
-	Rob Herring <robh@kernel.org>,
+	s=arc-20240116; t=1751057073; c=relaxed/simple;
+	bh=5ybwmpFE7Qlupb6N5xt8amFVW1JpJnPiApvCG8fYQqg=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=t1klHhum042rdyemOdS0b11FNzJ/rbKyrjz8qAXxRsjFQoMbsGSbcwSgWNorbIzRCCFy5n16FruA1WrbLIxkJiHmEkQgDAYLIwwMV+FqgR6uroK8PPD9phyLU3Mu/RD7323ISa+sL974CK3wLlIxgYCc8q05YEiJNt9poyAGfSc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=BS/w/NCq; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 3247CC4CEE3;
+	Fri, 27 Jun 2025 20:44:33 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1751057073;
+	bh=5ybwmpFE7Qlupb6N5xt8amFVW1JpJnPiApvCG8fYQqg=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=BS/w/NCqjH3hHE5sHfhxr0jVJSeRPB9XqdSFBvjLlmc9a2FiaPdaNFyEhkxYdwMnK
+	 l1yCNocVHitRQveBmK6BQTW1wMjFet/sfy/EvuN6nt/0I8xPGzKaQdzUzJf7CJORVq
+	 geyrk4nD1hg1OP8lGwq/TFZiYeb1GVXLurk2p6HWnnAfgm9J37E0U2xbBQ2BxAFOyl
+	 V5/CcjvwVuh2ez5E9RPhrm93ekxmicI3fHAgSrxF7nv9Pm5c2o3u45euAEtGi2lUvP
+	 bU5LI5hh8rrjq+cZKebh+OeKfHMIg5peSs8XYq8F96TVfYFDVNwe4pun4DHXp11cPz
+	 lVdeasbNuAHNQ==
+Date: Fri, 27 Jun 2025 15:44:32 -0500
+From: Rob Herring <robh@kernel.org>
+To: Luca Weiss <luca.weiss@fairphone.com>
+Cc: Bjorn Andersson <andersson@kernel.org>,
+	Linus Walleij <linus.walleij@linaro.org>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
 	Conor Dooley <conor+dt@kernel.org>,
-	Magnus Damm <magnus.damm@gmail.com>
-Cc: linux-renesas-soc@vger.kernel.org,
-	linux-clk@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	Prabhakar <prabhakar.csengg@gmail.com>,
-	Biju Das <biju.das.jz@bp.renesas.com>,
-	Fabrizio Castro <fabrizio.castro.jz@renesas.com>,
-	Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-Subject: [PATCH v2 6/6] clk: renesas: r9a09g057: Add XSPI clock/reset
-Date: Fri, 27 Jun 2025 21:42:37 +0100
-Message-ID: <20250627204237.214635-7-prabhakar.mahadev-lad.rj@bp.renesas.com>
-X-Mailer: git-send-email 2.49.0
-In-Reply-To: <20250627204237.214635-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
-References: <20250627204237.214635-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
+	~postmarketos/upstreaming@lists.sr.ht, phone-devel@vger.kernel.org,
+	linux-arm-msm@vger.kernel.org, linux-gpio@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH 1/2] dt-bindings: pinctrl: document the SM7635 Top Level
+ Mode Multiplexer
+Message-ID: <20250627204432.GA45217-robh@kernel.org>
+References: <20250625-sm7635-pinctrl-v1-0-ebfa9e886594@fairphone.com>
+ <20250625-sm7635-pinctrl-v1-1-ebfa9e886594@fairphone.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20250625-sm7635-pinctrl-v1-1-ebfa9e886594@fairphone.com>
 
-From: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+On Wed, Jun 25, 2025 at 11:12:01AM +0200, Luca Weiss wrote:
+> Document the Top Level Mode Multiplexer on the SM7635 Platform.
+> 
+> Signed-off-by: Luca Weiss <luca.weiss@fairphone.com>
+> ---
+>  .../bindings/pinctrl/qcom,sm7635-tlmm.yaml         | 133 +++++++++++++++++++++
+>  1 file changed, 133 insertions(+)
+> 
+> diff --git a/Documentation/devicetree/bindings/pinctrl/qcom,sm7635-tlmm.yaml b/Documentation/devicetree/bindings/pinctrl/qcom,sm7635-tlmm.yaml
+> new file mode 100644
+> index 0000000000000000000000000000000000000000..3f49239efb6e866015b40e3477a8bd0edd21b1fc
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/pinctrl/qcom,sm7635-tlmm.yaml
+> @@ -0,0 +1,133 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/pinctrl/qcom,sm7635-tlmm.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Qualcomm Technologies, Inc. SM7635 TLMM block
+> +
+> +maintainers:
+> +  - Luca Weiss <luca.weiss@fairphone.com>
+> +
+> +description:
+> +  Top Level Mode Multiplexer pin controller in Qualcomm SM7635 SoC.
+> +
+> +allOf:
+> +  - $ref: /schemas/pinctrl/qcom,tlmm-common.yaml#
+> +
+> +properties:
+> +  compatible:
+> +    const: qcom,sm7635-tlmm
+> +
+> +  reg:
+> +    maxItems: 1
+> +
+> +  interrupts:
+> +    maxItems: 1
+> +
+> +  gpio-reserved-ranges:
+> +    minItems: 1
+> +    maxItems: 84
+> +
+> +  gpio-line-names:
+> +    maxItems: 167
+> +
+> +patternProperties:
+> +  "-state$":
+> +    oneOf:
+> +      - $ref: "#/$defs/qcom-sm7635-tlmm-state"
+> +      - patternProperties:
+> +          "-pins$":
+> +            $ref: "#/$defs/qcom-sm7635-tlmm-state"
+> +        additionalProperties: false
 
-Add clock and reset entries for the XSPI interface on the R9A09G057 SoC.
+Is there really value in continuing this complicated QCom pattern? Can 
+we just have 1 level or 2 levels only?
 
-While at it, rename CLK_PLLCM33_DIV4_PLLCM33 to CLK_PLLCM33_GEAR to align
-with the terminology used in the hardware manual.
+> +
+> +$defs:
+> +  qcom-sm7635-tlmm-state:
+> +    type: object
+> +    description:
+> +      Pinctrl node's client devices use subnodes for desired pin configuration.
+> +      Client device subnodes use below standard properties.
+> +    $ref: qcom,tlmm-common.yaml#/$defs/qcom-tlmm-state
+> +    unevaluatedProperties: false
+> +
+> +    properties:
+> +      pins:
+> +        description:
+> +          List of gpio pins affected by the properties specified in this
+> +          subnode.
+> +        items:
+> +          oneOf:
+> +            - pattern: "^gpio([0-9]|[1-9][0-9]|1[0-5][0-9]|16[0-7])$"
+> +            - enum: [ ufs_reset, sdc2_clk, sdc2_cmd, sdc2_data ]
+> +        minItems: 1
+> +        maxItems: 36
+> +
+> +      function:
+> +        description:
+> +          Specify the alternative function to be configured for the specified
+> +          pins.
+> +        enum: [ gpio, aoss_cti, atest_char, atest_usb, audio_ext_mclk0,
+> +                audio_ext_mclk1, audio_ref_clk, cam_mclk, cci_async_in0,
+> +                cci_i2c_scl, cci_i2c_sda, cci_timer, coex_uart1_rx,
+> +                coex_uart1_tx, dbg_out_clk, ddr_bist_complete, ddr_bist_fail,
+> +                ddr_bist_start, ddr_bist_stop, ddr_pxi0, ddr_pxi1, dp0_hot,
+> +                egpio, gcc_gp1, gcc_gp2, gcc_gp3, host2wlan_sol, i2s0_data0,
+> +                i2s0_data1, i2s0_sck, i2s0_ws, ibi_i3c, jitter_bist, mdp_vsync,
+> +                mdp_vsync0_out, mdp_vsync1_out, mdp_vsync2_out, mdp_vsync3_out,
+> +                mdp_vsync_e, nav_gpio0, nav_gpio1, nav_gpio2, pcie0_clk_req_n,
+> +                pcie1_clk_req_n, phase_flag, pll_bist_sync, pll_clk_aux,
+> +                prng_rosc0, prng_rosc1, prng_rosc2, prng_rosc3, qdss_cti,
+> +                qdss_gpio, qlink0_enable, qlink0_request, qlink0_wmss,
+> +                qlink1_enable, qlink1_request, qlink1_wmss, qspi0, qup0_se0,
+> +                qup0_se1, qup0_se2, qup0_se3, qup0_se4, qup0_se5, qup0_se6,
+> +                qup1_se0, qup1_se1, qup1_se2, qup1_se3, qup1_se4, qup1_se5,
+> +                qup1_se6, resout_gpio_n, sd_write_protect, sdc1_clk, sdc1_cmd,
+> +                sdc1_data, sdc1_rclk, sdc2_clk, sdc2_cmd, sdc2_data,
+> +                sdc2_fb_clk, tb_trig_sdc1, tb_trig_sdc2, tgu_ch0_trigout,
+> +                tgu_ch1_trigout, tmess_prng0, tmess_prng1, tmess_prng2,
+> +                tmess_prng3, tsense_pwm1, tsense_pwm2, uim0_clk, uim0_data,
+> +                uim0_present, uim0_reset, uim1_clk_mira, uim1_clk_mirb,
+> +                uim1_data_mira, uim1_data_mirb, uim1_present_mira,
+> +                uim1_present_mirb, uim1_reset_mira, uim1_reset_mirb, usb0_hs,
+> +                usb0_phy_ps, vfr_0, vfr_1, vsense_trigger_mirnat, wcn_sw,
+> +                wcn_sw_ctrl ]
+> +
+> +    required:
+> +      - pins
+> +
+> +required:
+> +  - compatible
+> +  - reg
+> +
+> +unevaluatedProperties: false
+> +
+> +examples:
+> +  - |
+> +    #include <dt-bindings/interrupt-controller/arm-gic.h>
+> +    tlmm: pinctrl@f100000 {
+> +        compatible = "qcom,sm7635-tlmm";
+> +        reg = <0x0f100000 0x300000>;
+> +
+> +        interrupts = <GIC_SPI 208 IRQ_TYPE_LEVEL_HIGH>;
+> +
+> +        gpio-controller;
+> +        #gpio-cells = <2>;
+> +
+> +        interrupt-controller;
+> +        #interrupt-cells = <2>;
+> +
+> +        gpio-ranges = <&tlmm 0 0 168>;
+> +
+> +        gpio-wo-state {
+> +            pins = "gpio1";
+> +            function = "gpio";
+> +        };
+> +
+> +        qup-uart5-default-state {
+> +            pins = "gpio25", "gpio26";
+> +            function = "qup0_se5";
+> +            drive-strength = <2>;
+> +            bias-disable;
+> +        };
 
-Signed-off-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
----
-v1-> v2:
-- No change.
----
- drivers/clk/renesas/r9a09g057-cpg.c | 16 +++++++++++++---
- 1 file changed, 13 insertions(+), 3 deletions(-)
+Please make the example more complete showing the multiple levels of 
+states and pins if you are going to keep that.
 
-diff --git a/drivers/clk/renesas/r9a09g057-cpg.c b/drivers/clk/renesas/r9a09g057-cpg.c
-index 39065d63df61..687c25f76852 100644
---- a/drivers/clk/renesas/r9a09g057-cpg.c
-+++ b/drivers/clk/renesas/r9a09g057-cpg.c
-@@ -36,8 +36,8 @@ enum clk_ids {
- 	CLK_PLLCM33_DIV3,
- 	CLK_PLLCM33_DIV4,
- 	CLK_PLLCM33_DIV5,
--	CLK_PLLCM33_DIV4_PLLCM33,
- 	CLK_PLLCM33_DIV16,
-+	CLK_PLLCM33_GEAR,
- 	CLK_SMUX2_XSPI_CLK0,
- 	CLK_SMUX2_XSPI_CLK1,
- 	CLK_PLLCM33_XSPI,
-@@ -134,7 +134,7 @@ static const struct cpg_core_clk r9a09g057_core_clks[] __initconst = {
- 	DEF_FIXED(".pllcm33_div3", CLK_PLLCM33_DIV3, CLK_PLLCM33, 1, 3),
- 	DEF_FIXED(".pllcm33_div4", CLK_PLLCM33_DIV4, CLK_PLLCM33, 1, 4),
- 	DEF_FIXED(".pllcm33_div5", CLK_PLLCM33_DIV5, CLK_PLLCM33, 1, 5),
--	DEF_DDIV(".pllcm33_div4_pllcm33", CLK_PLLCM33_DIV4_PLLCM33,
-+	DEF_DDIV(".pllcm33_gear", CLK_PLLCM33_GEAR,
- 		 CLK_PLLCM33_DIV4, CDDIV0_DIVCTL1, dtable_2_64),
- 	DEF_FIXED(".pllcm33_div16", CLK_PLLCM33_DIV16, CLK_PLLCM33, 1, 16),
- 	DEF_SMUX(".smux2_xspi_clk0", CLK_SMUX2_XSPI_CLK0, SSEL1_SELCTL2, smux2_xspi_clk0),
-@@ -189,10 +189,12 @@ static const struct cpg_core_clk r9a09g057_core_clks[] __initconst = {
- 		  CLK_PLLETH_DIV_125_FIX, 1, 1),
- 	DEF_FIXED("gbeth_1_clk_ptp_ref_i", R9A09G057_GBETH_1_CLK_PTP_REF_I,
- 		  CLK_PLLETH_DIV_125_FIX, 1, 1),
-+	DEF_FIXED_MOD_STATUS("spi_clk_spi", R9A09G057_SPI_CLK_SPI, CLK_PLLCM33_XSPI, 1, 2,
-+			     FIXED_MOD_CONF_XSPI),
- };
- 
- static const struct rzv2h_mod_clk r9a09g057_mod_clks[] __initconst = {
--	DEF_MOD("dmac_0_aclk",			CLK_PLLCM33_DIV4_PLLCM33, 0, 0, 0, 0,
-+	DEF_MOD("dmac_0_aclk",			CLK_PLLCM33_GEAR, 0, 0, 0, 0,
- 						BUS_MSTOP(5, BIT(9))),
- 	DEF_MOD("dmac_1_aclk",			CLK_PLLDTY_ACPU_DIV2, 0, 1, 0, 1,
- 						BUS_MSTOP(3, BIT(2))),
-@@ -258,6 +260,12 @@ static const struct rzv2h_mod_clk r9a09g057_mod_clks[] __initconst = {
- 						BUS_MSTOP(1, BIT(7))),
- 	DEF_MOD("riic_7_ckm",			CLK_PLLCLN_DIV16, 9, 11, 4, 27,
- 						BUS_MSTOP(1, BIT(8))),
-+	DEF_MOD("spi_hclk",			CLK_PLLCM33_GEAR, 9, 15, 4, 31,
-+						BUS_MSTOP(4, BIT(5))),
-+	DEF_MOD("spi_aclk",			CLK_PLLCM33_GEAR, 10, 0, 5, 0,
-+						BUS_MSTOP(4, BIT(5))),
-+	DEF_MOD("spi_clk_spix2",		CLK_PLLCM33_XSPI, 10, 1, 5, 2,
-+						BUS_MSTOP(4, BIT(5))),
- 	DEF_MOD("sdhi_0_imclk",			CLK_PLLCLN_DIV8, 10, 3, 5, 3,
- 						BUS_MSTOP(8, BIT(2))),
- 	DEF_MOD("sdhi_0_imclk2",		CLK_PLLCLN_DIV8, 10, 4, 5, 4,
-@@ -380,6 +388,8 @@ static const struct rzv2h_reset r9a09g057_resets[] __initconst = {
- 	DEF_RST(9, 14, 4, 15),		/* RIIC_6_MRST */
- 	DEF_RST(9, 15, 4, 16),		/* RIIC_7_MRST */
- 	DEF_RST(10, 0, 4, 17),		/* RIIC_8_MRST */
-+	DEF_RST(10, 3, 4, 20),		/* SPI_HRESETN */
-+	DEF_RST(10, 4, 4, 21),		/* SPI_ARESETN */
- 	DEF_RST(10, 7, 4, 24),		/* SDHI_0_IXRST */
- 	DEF_RST(10, 8, 4, 25),		/* SDHI_1_IXRST */
- 	DEF_RST(10, 9, 4, 26),		/* SDHI_2_IXRST */
--- 
-2.49.0
-
+Rob
 
