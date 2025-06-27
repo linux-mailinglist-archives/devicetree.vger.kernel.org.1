@@ -1,93 +1,84 @@
-Return-Path: <devicetree+bounces-190530-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-190531-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1C7D4AEC089
-	for <lists+devicetree@lfdr.de>; Fri, 27 Jun 2025 22:02:30 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 26081AEC08B
+	for <lists+devicetree@lfdr.de>; Fri, 27 Jun 2025 22:02:58 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 46B1D5641C7
-	for <lists+devicetree@lfdr.de>; Fri, 27 Jun 2025 20:02:30 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id F2FD01C45939
+	for <lists+devicetree@lfdr.de>; Fri, 27 Jun 2025 20:03:13 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id EE350209F45;
-	Fri, 27 Jun 2025 20:02:25 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 66CCA283FF1;
+	Fri, 27 Jun 2025 20:02:53 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="CDlCWlVc"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="n6YNk4To"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C306715E8B;
-	Fri, 27 Jun 2025 20:02:25 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3D3A615E8B;
+	Fri, 27 Jun 2025 20:02:53 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1751054545; cv=none; b=LRLLFMqZPSz5LzF6O5Lq8BZqqImJSqABxmo+asjxNUf4zpi0HsEtQTjfeFgw/sWa4hM5ZsxyR58Aar2LMHmHBgtBs/FNezY8VuYAj9CYMNIYr6BY/wld3uw2ftse1WMRoygpes/k2/l7Vj7GD9y5hWeJZLBFOLeZlhjWfzWaGJY=
+	t=1751054573; cv=none; b=N6EpRBakstSjyQNKPJyLzy1IoE7HAPJcW6a4nammLLGMS+AYBruMBkTC0Ma5cfI1oQHKGRlatys24bDeL5d7nPJ+1SYT++B8y7C474lfWMowBAqJNUztKQKIZ1C2ugPqdk1L8xQ4dzliAj3Mpep+bi7FFWZNbf01+vgy92zcjEQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1751054545; c=relaxed/simple;
-	bh=9J/SexegBYQTZd2KoTPTstXhcyF4Eldv2Z7ahO3a3OM=;
+	s=arc-20240116; t=1751054573; c=relaxed/simple;
+	bh=Kn4BCp5llI7tE01yR+uf2dvC6F/CoYnl1ShENveaHkU=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=QijICl7V8fn/PHNd/WAdA4Ip4kSUO60hCqFHOi1VsnjRJ4mCtbIsncCNd3gUrOWQlfCH9o72zZEmRr6eJKRRgWgalrne7c4WH7obRKPBEHaa2Z2ezSaVl44SFnvpkRG2EtMwmZhMVp9DsP4TtVlAcknvdtyb3zNFx0mbLWN1FyI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=CDlCWlVc; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 3D95CC4CEE3;
-	Fri, 27 Jun 2025 20:02:25 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=fFTV51eoxSMtWhVPWp8YZS7l2rK5eQ0by3ApziBVO6eSszvt3Pnqw/FO3qHw3JcmpMfp2xZeg8NdrD+OKOKFm5VDK5elIFm5XRdL7eZp/gwmJ5lcVnqSV8LLH/MFUDDthPaC2KSMfZd1hyVyUWDtnhe1b1PlfIGsmxRA8zxtO0w=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=n6YNk4To; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id BE363C4CEE3;
+	Fri, 27 Jun 2025 20:02:52 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1751054545;
-	bh=9J/SexegBYQTZd2KoTPTstXhcyF4Eldv2Z7ahO3a3OM=;
+	s=k20201202; t=1751054572;
+	bh=Kn4BCp5llI7tE01yR+uf2dvC6F/CoYnl1ShENveaHkU=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=CDlCWlVcepWCHva+Y5h93NEXXRFpMNVPEo4PoAhuMWsIuccu9CDLuqr2fgxZyg0Pi
-	 h/SNtldmZIcpkeVO38rAC8vwFKDaphO6uuawJ7VLmHoAQCabybApDkNk3H9NnESgUg
-	 zeY1BFg17NXzfLq0HMpYXt7erM87rOkuLsrw/pIFYKQrmGXjVaAUzPIiafGgkbqIvH
-	 7n0LLvi9rIuNELy3zWvfG03zd0Flj7ZNmL/GbrvZObMndxK6C/adGdveLQBpMloxtT
-	 GJKV4J/PBaUDZttMHH9tad/A14MAe6zu6d1lgu1lexzc/1aaeocG0WOm65IRd5z8u3
-	 kXHN/m2NEKFZg==
-Date: Fri, 27 Jun 2025 15:02:24 -0500
+	b=n6YNk4Toj6vFLfrkCoBKx0pN8kG0bH0UB8Tm8QdeRMVACHCkx4+ZHR5qy9TeCg0yy
+	 zhTe6rodmwoMHhYsQwjQQckfyPl/0cR3tbgFBrtjeuKjdgumMCInH7IJIu0qb5ykwi
+	 RF2Lw0/zCqATfV/5oH0/w207nE0kOl97tUkqot5fBXuJmv2eonFC2nE+wskhNggqu9
+	 200mkh2mT4R5P5ciwzYGitRZvI3zKgAqZgXMl+gKIjese/TX609bqMbpmKi9ZbN47p
+	 NJn/JNlxsRzGUD8+jNhtoInRFqloUwfQP/6R3Wc5YTYSsdO1R7opzeTlOb1IWbvC1p
+	 uSiUnsDiooL6Q==
+Date: Fri, 27 Jun 2025 15:02:52 -0500
 From: "Rob Herring (Arm)" <robh@kernel.org>
-To: Marek Vasut <marek.vasut+renesas@mailbox.org>
-Cc: linux-renesas-soc@vger.kernel.org, Conor Dooley <conor+dt@kernel.org>,
-	devicetree@vger.kernel.org,
-	Uwe =?iso-8859-1?Q?Kleine-K=F6nig?= <ukleinek@kernel.org>,
-	linux-pwm@vger.kernel.org, Krzysztof Kozlowski <krzk+dt@kernel.org>
-Subject: Re: [PATCH v4 2/3] dt-bindings: pwm: argon40,fan-hat: Document
- Argon40 Fan HAT
-Message-ID: <175105454403.4088109.10563926694624108240.robh@kernel.org>
-References: <20250621172056.160855-1-marek.vasut+renesas@mailbox.org>
- <20250621172056.160855-2-marek.vasut+renesas@mailbox.org>
+To: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+Cc: linux-iio@vger.kernel.org, linux-kernel@vger.kernel.org,
+	devicetree@vger.kernel.org, matthias.bgg@gmail.com,
+	dlechner@baylibre.com, kernel@collabora.com, krzk+dt@kernel.org,
+	jic23@kernel.org, linux-arm-kernel@lists.infradead.org,
+	linux-mediatek@lists.infradead.org, conor+dt@kernel.org,
+	andy@kernel.org, nuno.sa@analog.com
+Subject: Re: [PATCH v1 1/5] dt-bindings: iio: adc: mt6359: Add bindings for
+ MT6363 PMIC AuxADC
+Message-ID: <175105457149.4089682.1894322678019051751.robh@kernel.org>
+References: <20250623120028.108809-1-angelogioacchino.delregno@collabora.com>
+ <20250623120028.108809-2-angelogioacchino.delregno@collabora.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20250621172056.160855-2-marek.vasut+renesas@mailbox.org>
+In-Reply-To: <20250623120028.108809-2-angelogioacchino.delregno@collabora.com>
 
 
-On Sat, 21 Jun 2025 19:19:55 +0200, Marek Vasut wrote:
-> Document trivial PWM on Argon40 Fan HAT, which is a RaspberryPi
-> blower fan hat which can be controlled over I2C.
+On Mon, 23 Jun 2025 14:00:24 +0200, AngeloGioacchino Del Regno wrote:
+> Add a compatible and channel bindings for MediaTek's MT6363 PMIC,
+> featuring an Auxiliary ADC IP with 15 ADC channels used for both
+> internal temperatures and voltages and for external voltage inputs.
 > 
-> Signed-off-by: Marek Vasut <marek.vasut+renesas@mailbox.org>
+> Signed-off-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
 > ---
-> Cc: "Uwe Kleine-König" <ukleinek@kernel.org>
-> Cc: Conor Dooley <conor+dt@kernel.org>
-> Cc: Krzysztof Kozlowski <krzk+dt@kernel.org>
-> Cc: Rob Herring <robh@kernel.org>
-> Cc: devicetree@vger.kernel.org
-> Cc: linux-pwm@vger.kernel.org
-> Cc: linux-renesas-soc@vger.kernel.org
-> ---
-> V2: Implement dedicated binding document
-> V3: Update the description and pwm-cells
-> V4: Drop | from description and fix up pwm-cells = <2> in example
-> ---
->  .../bindings/pwm/argon40,fan-hat.yaml         | 48 +++++++++++++++++++
->  1 file changed, 48 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/pwm/argon40,fan-hat.yaml
+>  .../iio/adc/mediatek,mt6359-auxadc.yaml       |  1 +
+>  .../iio/adc/mediatek,mt6363-auxadc.h          | 24 +++++++++++++++++++
+>  2 files changed, 25 insertions(+)
+>  create mode 100644 include/dt-bindings/iio/adc/mediatek,mt6363-auxadc.h
 > 
 
-Reviewed-by: Rob Herring (Arm) <robh@kernel.org>
+Acked-by: Rob Herring (Arm) <robh@kernel.org>
 
 
