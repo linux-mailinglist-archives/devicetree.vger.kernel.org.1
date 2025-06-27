@@ -1,132 +1,90 @@
-Return-Path: <devicetree+bounces-190196-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-190197-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 17843AEB02B
-	for <lists+devicetree@lfdr.de>; Fri, 27 Jun 2025 09:36:36 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id B2984AEB042
+	for <lists+devicetree@lfdr.de>; Fri, 27 Jun 2025 09:39:59 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id A8E063A5C01
-	for <lists+devicetree@lfdr.de>; Fri, 27 Jun 2025 07:36:10 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 074C1177660
+	for <lists+devicetree@lfdr.de>; Fri, 27 Jun 2025 07:40:00 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B72BB21ABDC;
-	Fri, 27 Jun 2025 07:36:32 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1373B21C9E9;
+	Fri, 27 Jun 2025 07:39:51 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="SngtEmeg"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="qHT+f6H7"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.19])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2E224201004;
-	Fri, 27 Jun 2025 07:36:30 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.175.65.19
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D5AFA218E96;
+	Fri, 27 Jun 2025 07:39:50 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1751009792; cv=none; b=ADFOzjzk1EBW+mmXCbjlZToPUjaT7dfihtUnIWa+6Pn79EXmhnAWzCUd71vPbe9GWGipbsEJnhgcWqOno3K1TnQ4sv23U5bn2jzAzwi9AD22KGcyUSnaxJkFkg1mfj53g3oIBNzdKdWu/UBfIzBQjzhSbGb0/Avx4IqHhMSt4W8=
+	t=1751009991; cv=none; b=tjfxqDhNOzxPgFM3LOUq9h5i4VDvfgklpzE7oaFeipZ1CuXqO42NSwBLr3Cbtuv/in8euQmDVE8CuHkd7nooLmCrSSA3xya+nRRGTPaIfX8m1xbu5UlPKpvPHqUtQXwQ3MvtpbuMk6BvXlDj1O/2MzQqGTUe59ekRw4iRQkS93U=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1751009792; c=relaxed/simple;
-	bh=R7MFiZ9r/m2icBqFE8z942btjxdQ3uI5L9jjyYNHCUk=;
+	s=arc-20240116; t=1751009991; c=relaxed/simple;
+	bh=Vr3ciGbUBECVXTyaRD7kyJd4xFPIaK8NPuTFXbZGnZQ=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=sl4zZehs/iqXHb38p3tKV0S2TfiatNrkWdRSgPl502ec3/gqwGpqf3D2XazlBpaKAkoFXslotYosW16MNwba37XBt59hyWm51g84xMaDG/MCnY/lmXl1gPVqrgDVPXvqhZfKfKjouNjXEhFNqKHjNWCdEqX2wDob+QkgJE+f5cc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=SngtEmeg; arc=none smtp.client-ip=198.175.65.19
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1751009792; x=1782545792;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=R7MFiZ9r/m2icBqFE8z942btjxdQ3uI5L9jjyYNHCUk=;
-  b=SngtEmegXuBEkY4VT25y9JMPKFNUeFsyWKqyTTaR7xAQeL3MwEzl73Ex
-   /mRfA6D7TQM5LeOsW/bbRNyZXEVSeICxyh/HV0ZiO6I2A+V0wsBac8Efy
-   ojSbWS8NFIS80sYih0a5tizG4PoN26Gx7kgKosFrBmAgwx8okEzy+lelv
-   eCB6GwYS8dOnfkZ9u22ALzxfw0yv0sbJC98PPYRFjWnziyo4W/VrVofbm
-   mrF/RJAJ4jOzfCO2KqZ3JF0wLN1J6QwAoGrESVkxAzLJMoxAgJRorEQMG
-   UCfIaFGPiEwcHnzKmBEofJAlRFoYxS6d/d4s8ICU1RnHKQHoo/5OS3wlL
-   w==;
-X-CSE-ConnectionGUID: wJX46o5SRoO9nxLIynDtgg==
-X-CSE-MsgGUID: qHkfZyK4QNiqY22oiEJnfQ==
-X-IronPort-AV: E=McAfee;i="6800,10657,11476"; a="53190634"
-X-IronPort-AV: E=Sophos;i="6.16,269,1744095600"; 
-   d="scan'208";a="53190634"
-Received: from fmviesa008.fm.intel.com ([10.60.135.148])
-  by orvoesa111.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 27 Jun 2025 00:36:31 -0700
-X-CSE-ConnectionGUID: Kh5t6bgAQ1+j0Xkx9PE3SA==
-X-CSE-MsgGUID: j0Uw8pEZQUqEGpTzy5l4rg==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.16,269,1744095600"; 
-   d="scan'208";a="153256700"
-Received: from lkp-server01.sh.intel.com (HELO e8142ee1dce2) ([10.239.97.150])
-  by fmviesa008.fm.intel.com with ESMTP; 27 Jun 2025 00:36:26 -0700
-Received: from kbuild by e8142ee1dce2 with local (Exim 4.96)
-	(envelope-from <lkp@intel.com>)
-	id 1uV3dI-000VvV-0Y;
-	Fri, 27 Jun 2025 07:36:24 +0000
-Date: Fri, 27 Jun 2025 15:35:59 +0800
-From: kernel test robot <lkp@intel.com>
-To: Taniya Das <quic_tdas@quicinc.com>,
-	Bjorn Andersson <andersson@kernel.org>,
-	Michael Turquette <mturquette@baylibre.com>,
-	Stephen Boyd <sboyd@kernel.org>, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Konrad Dybcio <konradybcio@kernel.org>,
-	Catalin Marinas <catalin.marinas@arm.com>,
-	Will Deacon <will@kernel.org>
-Cc: oe-kbuild-all@lists.linux.dev, Ajit Pandey <quic_ajipan@quicinc.com>,
-	Imran Shaik <quic_imrashai@quicinc.com>,
-	Jagadeesh Kona <quic_jkona@quicinc.com>,
-	linux-arm-msm@vger.kernel.org, linux-clk@vger.kernel.org,
-	linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	Taniya Das <quic_tdas@quicinc.com>,
-	Dmitry Baryshkov <lumag@kernel.org>
-Subject: Re: [PATCH v10 07/10] clk: qcom: gpucc-qcs615: Add QCS615 graphics
- clock controller driver
-Message-ID: <202506271519.GYlfvTOB-lkp@intel.com>
-References: <20250625-qcs615-mm-v10-clock-controllers-v10-7-ec48255f90d8@quicinc.com>
+	 Content-Type:Content-Disposition:In-Reply-To; b=BXgkI0oarlPBbcDqpkBOuJIo0t8oQxDa5aoaB07oioHQlWqeWSxW+eQ417tHQe06cJr0Z/B3wrQVV23z5VpnGXWt76vXD8F5wtrK4lTyx/W9u2NcwJFElVKr4f60mSbObr8i5Xail6Wz93n6sSnhjWLIfejqWYFHLirlqCOdIQo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=qHT+f6H7; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 8B4D1C4CEE3;
+	Fri, 27 Jun 2025 07:39:49 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1751009990;
+	bh=Vr3ciGbUBECVXTyaRD7kyJd4xFPIaK8NPuTFXbZGnZQ=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=qHT+f6H7BOh5vJA8ftR/Qoz65ardOB+vyVzODm+a5FQqvBzQo1KrQpN9NU2sR5w4a
+	 Lyh02Y/UNxwtoUPgP4gmq16d8DTowNj1V0yPopOvInLFoT8f+GVi+3fcW4ywNFv2bl
+	 Xxt6H9apxCFO5I8y5lefaZaPpB+xz6KX6hJCQ6QgOzTL13yCYq3WT2DGMf7500jKPu
+	 ji2FygFEmmtx7JPP4VTYBN28cCemrehrALINZ7pqIpfCJq1pBi/i5fVKu7yGa8Bk2g
+	 jS1691C0ZREd3LDT0msPIQXLU34BrTHRZr6leDyrOtM01Lo2jTRylKsS/GlHIEFBxr
+	 7tozF8pNXt3wQ==
+Date: Fri, 27 Jun 2025 09:39:46 +0200
+From: Krzysztof Kozlowski <krzk@kernel.org>
+To: Paul Geurts <paul.geurts@prodrive-technologies.com>
+Cc: mgreer@animalcreek.com, andrew+netdev@lunn.ch, davem@davemloft.net, 
+	edumazet@google.com, kuba@kernel.org, pabeni@redhat.com, robh@kernel.org, 
+	conor+dt@kernel.org, linux-wireless@vger.kernel.org, netdev@vger.kernel.org, 
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+	martijn.de.gouw@prodrive-technologies.com
+Subject: Re: [PATCH v3 2/2] NFC: trf7970a: Create device-tree parameter for
+ RX gain reduction
+Message-ID: <20250627-truthful-versed-civet-375ea4@krzk-bin>
+References: <20250626141242.3749958-1-paul.geurts@prodrive-technologies.com>
+ <20250626141242.3749958-3-paul.geurts@prodrive-technologies.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <20250625-qcs615-mm-v10-clock-controllers-v10-7-ec48255f90d8@quicinc.com>
+In-Reply-To: <20250626141242.3749958-3-paul.geurts@prodrive-technologies.com>
 
-Hi Taniya,
+On Thu, Jun 26, 2025 at 04:12:42PM +0200, Paul Geurts wrote:
+> The TRF7970a device is sensitive to RF disturbances, which can make it
+> hard to pass some EMC immunity tests. By reducing the RX antenna gain,
+> the device becomes less sensitive to EMC disturbances, as a trade-off
+> against antenna performance.
+> 
+> Add a device tree option to select RX gain reduction to improve EMC
+> performance.
+> 
+> Selecting a communication standard in the ISO control register resets
+> the RX antenna gain settings. Therefore set the RX gain reduction
+> everytime the ISO control register changes, when the option is used.
+> 
+> Signed-off-by: Paul Geurts <paul.geurts@prodrive-technologies.com>
+> ---
+>  drivers/nfc/trf7970a.c | 91 +++++++++++++++++++++++++++++++++++++-----
+>  1 file changed, 80 insertions(+), 11 deletions(-)
 
-kernel test robot noticed the following build warnings:
+Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
-[auto build test WARNING on 2ae2aaafb21454f4781c30734959cf223ab486ef]
+Best regards,
+Krzysztof
 
-url:    https://github.com/intel-lab-lkp/linux/commits/Taniya-Das/clk-qcom-clk-alpha-pll-Add-support-for-dynamic-update-for-slewing-PLLs/20250625-184903
-base:   2ae2aaafb21454f4781c30734959cf223ab486ef
-patch link:    https://lore.kernel.org/r/20250625-qcs615-mm-v10-clock-controllers-v10-7-ec48255f90d8%40quicinc.com
-patch subject: [PATCH v10 07/10] clk: qcom: gpucc-qcs615: Add QCS615 graphics clock controller driver
-config: arc-randconfig-r121-20250627 (https://download.01.org/0day-ci/archive/20250627/202506271519.GYlfvTOB-lkp@intel.com/config)
-compiler: arc-linux-gcc (GCC) 13.3.0
-reproduce: (https://download.01.org/0day-ci/archive/20250627/202506271519.GYlfvTOB-lkp@intel.com/reproduce)
-
-If you fix the issue in a separate patch/commit (i.e. not just a new version of
-the same patch/commit), kindly add following tags
-| Reported-by: kernel test robot <lkp@intel.com>
-| Closes: https://lore.kernel.org/oe-kbuild-all/202506271519.GYlfvTOB-lkp@intel.com/
-
-sparse warnings: (new ones prefixed by >>)
->> drivers/clk/qcom/gpucc-qcs615.c:396:15: sparse: sparse: symbol 'gpu_cc_qcs615_hws' was not declared. Should it be static?
-
-vim +/gpu_cc_qcs615_hws +396 drivers/clk/qcom/gpucc-qcs615.c
-
-   395	
- > 396	struct clk_hw *gpu_cc_qcs615_hws[] = {
-   397		[CRC_DIV_PLL0] = &crc_div_pll0.hw,
-   398		[CRC_DIV_PLL1] = &crc_div_pll1.hw,
-   399	};
-   400	
-
--- 
-0-DAY CI Kernel Test Service
-https://github.com/intel/lkp-tests/wiki
 
