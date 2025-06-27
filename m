@@ -1,68 +1,64 @@
-Return-Path: <devicetree+bounces-190511-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-190512-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 828BEAEBFF8
-	for <lists+devicetree@lfdr.de>; Fri, 27 Jun 2025 21:33:23 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 7E674AEC001
+	for <lists+devicetree@lfdr.de>; Fri, 27 Jun 2025 21:34:24 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 9BAA3171137
-	for <lists+devicetree@lfdr.de>; Fri, 27 Jun 2025 19:33:10 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id DA58C4A4565
+	for <lists+devicetree@lfdr.de>; Fri, 27 Jun 2025 19:33:57 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A8BA920E003;
-	Fri, 27 Jun 2025 19:31:33 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 45BDC2EBBA3;
+	Fri, 27 Jun 2025 19:32:40 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="nN3ouILS"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="ZUkCoLLa"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7DE12190477;
-	Fri, 27 Jun 2025 19:31:33 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 13D9420C000;
+	Fri, 27 Jun 2025 19:32:39 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1751052693; cv=none; b=k7FwCV9HSR7D9I2r87tkXRBnOW7Y+CV9d9tgkMGuUfJEq12AY3ivIUarfSdIdOd+0R6LYfHAsXYUrm4D5wv0ZBJAq3+JyicEF0Ar1pMEKGELc9716C7L40ULeR6cHhaP1nNvZl94E7+IoF/ZWqu2CT/VTbO2KXVWhPiWQpIhtEQ=
+	t=1751052760; cv=none; b=FRkGFebyGXMWiEShsEmR+8h/qJziNsrH6Pon6X7MqpGrKH4eUa90MSZHVeL85s1W5mQzZ1rn8W0dJDFDZIZOHUhBAsP/MtpQil9IxNFi4HBuoPDDe2l9ptd/eAg9l/f1wS7waY4oyIKBwgGQhjjkl+aPXMmrx2gYHDpaUYp/Kms=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1751052693; c=relaxed/simple;
-	bh=h3H+2X3zy5G2DWyjGN7MD6PlrTT6aVPN39antbwjtXc=;
+	s=arc-20240116; t=1751052760; c=relaxed/simple;
+	bh=N2LlGZclOXCw7TE47Z4FmdVZl/MFbgtwae0FgUWZL2M=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=t1ok3fp3nMIqHLVHmtZhTNm0d7Lu2CCPeSKOmdnhTCNZTVYXXNGgKSedRXi3CwFoOXdOubJ4QJpBjeHcu6Gk/9rEK8bnAqyWrf21nA3DosAXSOSdy4V6Ddkx9QAQewRgi/ycSpIIEAKPfry26OW1mk2PJ5hH7ZgzMg1ZQZlmalg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=nN3ouILS; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id DCB42C4CEE3;
-	Fri, 27 Jun 2025 19:31:32 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=Ef3KTRa6N2QbBmvR/D3tDAdqU+aP5bPctMQLaOZ7lubsE9Tv4LJXxS1jpdNMCcMXdFYmCchuTNXMBgrAASmdCUleFa2/FhCXJKzFdss7j1BKpDh8OHZI138ZdLTt8Wb/1xOZl8norinuzpEDACqolP5kFgalS2EpY9jPop3nnv0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=ZUkCoLLa; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 612E6C4CEE3;
+	Fri, 27 Jun 2025 19:32:39 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1751052693;
-	bh=h3H+2X3zy5G2DWyjGN7MD6PlrTT6aVPN39antbwjtXc=;
+	s=k20201202; t=1751052759;
+	bh=N2LlGZclOXCw7TE47Z4FmdVZl/MFbgtwae0FgUWZL2M=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=nN3ouILSe4a9vGGNfo+5TMSucLczYwzFlj0Xw8+noUZYsSXS58hDkYj5wLr/AsJmv
-	 f2xckTe28ssA0LRbcPUSoPc9FCYDN7XWMSWf2J3D9AoXly+yf9XXKmFD4PJK/V1rnE
-	 EpkLsCywXZrZ+Rx7Sknjw/qxNtqSI/utppKZfPHGYHjlp7yfQE/0XiPkYq4BIN9QaN
-	 UYTqsAQ7RjrGEwTwq2VLOMnu+eyCrN7TQpUmrVr26HP/Le/rwivsO8ODXMcfQj7F16
-	 JUsws8azftM49yeQHO0uUDFHAt+a0VaQTWOODPxAq0HglJoQtI10BpHA8I003cQPMi
-	 fH2wjGwU3DJHw==
-Date: Fri, 27 Jun 2025 14:31:32 -0500
-From: Rob Herring <robh@kernel.org>
-To: Maxime Ripard <mripard@kernel.org>
-Cc: Saravana Kannan <saravanak@google.com>,
-	Sumit Semwal <sumit.semwal@linaro.org>,
-	Benjamin Gaignard <benjamin.gaignard@collabora.com>,
-	Brian Starkey <Brian.Starkey@arm.com>,
-	John Stultz <jstultz@google.com>,
-	"T.J. Mercier" <tjmercier@google.com>,
-	Christian =?iso-8859-1?Q?K=F6nig?= <christian.koenig@amd.com>,
+	b=ZUkCoLLaU+FTuL7hpCLEOfDH1TS1ct5XQxvZZ3ato8k61iiYYzo1jMiIU1mP4ENfi
+	 +xjZnNF9JCXUMZohhtLqd6jyEHtZ93jZKH1f0x/yCMB6+Nj1rATZJ/JLTgvsu0Fe02
+	 QkusVYMyS+y7Uj8BoZysWD9dafU68FeBu0oZhnRZRnP4GZ5nC0iduGWsaksCVzu7Vv
+	 2/KtYm/b66UTC4Km9MDhYKEsgsnZ5B2HNu6FSjr+jZF/5fKTlvVOePNEknLwZ9mVfu
+	 b5s+hHSZ4/fdpVSaNXHn/4Sjx9ei4R9iT6oxYthUPP1hz0qGGZe47XMQ+j9AeSv2CU
+	 V6AMNI0c75fXg==
+Date: Fri, 27 Jun 2025 14:32:38 -0500
+From: "Rob Herring (Arm)" <robh@kernel.org>
+To: Prabhakar <prabhakar.csengg@gmail.com>
+Cc: Conor Dooley <conor+dt@kernel.org>,
+	Fabrizio Castro <fabrizio.castro.jz@renesas.com>,
+	Wolfram Sang <wsa+renesas@sang-engineering.com>,
+	linux-renesas-soc@vger.kernel.org, devicetree@vger.kernel.org,
+	Ulf Hansson <ulf.hansson@linaro.org>,
+	Magnus Damm <magnus.damm@gmail.com>,
+	Biju Das <biju.das.jz@bp.renesas.com>, linux-kernel@vger.kernel.org,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, Andrew Davis <afd@ti.com>,
-	Jared Kangas <jkangas@redhat.com>,
-	Mattijs Korpershoek <mkorpershoek@kernel.org>,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	linux-media@vger.kernel.org, dri-devel@lists.freedesktop.org,
-	linaro-mm-sig@lists.linaro.org
-Subject: Re: [PATCH v5 1/2] dt-bindings: reserved-memory: Introduce
- carved-out memory region binding
-Message-ID: <20250627193132.GB4032621-robh@kernel.org>
-References: <20250617-dma-buf-ecc-heap-v5-0-0abdc5863a4f@kernel.org>
- <20250617-dma-buf-ecc-heap-v5-1-0abdc5863a4f@kernel.org>
+	Geert Uytterhoeven <geert+renesas@glider.be>,
+	linux-mmc@vger.kernel.org,
+	Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+Subject: Re: [PATCH v2] dt-bindings: mmc: renesas,sdhi: Document RZ/T2H and
+ RZ/N2H support
+Message-ID: <175105275812.4046920.1856778113483721034.robh@kernel.org>
+References: <20250617164914.158091-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -71,102 +67,30 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20250617-dma-buf-ecc-heap-v5-1-0abdc5863a4f@kernel.org>
+In-Reply-To: <20250617164914.158091-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
 
-On Tue, Jun 17, 2025 at 02:25:40PM +0200, Maxime Ripard wrote:
-> Some parts of the memory can be dedicated to specific purposes and
-> exposed as a dedicated memory allocator.
+
+On Tue, 17 Jun 2025 17:49:14 +0100, Prabhakar wrote:
+> From: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
 > 
-> This is especially useful if that particular region has a particular
-> properties the rest of the memory doesn't have. For example, some
-> platforms have their entire RAM covered by ECC but for a small area
-> meant to be used by applications that don't need ECC, and its associated
-> overhead.
+> Add SDHI bindings for the Renesas RZ/T2H (a.k.a R9A09G077) and RZ/N2H
+> (a.k.a R9A09G087) SoCs. Use `renesas,sdhi-r9a09g057` as a fallback since
+> the SD/MMC block on these SoCs is identical to the one on RZ/V2H(P),
+> allowing reuse of the existing driver without modifications.
 > 
-> Let's introduce a binding to describe such a region and allow the OS to
-> create a dedicated memory allocator for it.
+> Update the binding schema to reflect differences: unlike RZ/V2H(P),
+> RZ/T2H and RZ/N2H do not require the `resets` property and use only a
+> two clocks instead of four.
 > 
-> Signed-off-by: Maxime Ripard <mripard@kernel.org>
+> Signed-off-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
 > ---
->  .../bindings/reserved-memory/carved-out.yaml       | 49 ++++++++++++++++++++++
->  1 file changed, 49 insertions(+)
+> v1->v2:
+> - Added the high speed clock to the clocks list.
+> ---
+>  .../devicetree/bindings/mmc/renesas,sdhi.yaml | 85 ++++++++++++-------
+>  1 file changed, 53 insertions(+), 32 deletions(-)
 > 
-> diff --git a/Documentation/devicetree/bindings/reserved-memory/carved-out.yaml b/Documentation/devicetree/bindings/reserved-memory/carved-out.yaml
-> new file mode 100644
-> index 0000000000000000000000000000000000000000..9ab5d1ebd9ebd9111b7c064fabe1c45e752da83b
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/reserved-memory/carved-out.yaml
-> @@ -0,0 +1,49 @@
-> +# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/reserved-memory/carved-out.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Carved-out Memory Region
-> +
-> +description: |
 
-Don't need '|'.
+Reviewed-by: Rob Herring (Arm) <robh@kernel.org>
 
-> +  Specifies that the reserved memory region has been carved out of the
-> +  main memory allocator, and is intended to be used by the OS as a
-> +  dedicated memory allocator.
-
-Other than the commit msg, it is completely lost that this is for 
-ECC-less memory.
-
-This description applies to CMA area as well. So what's the difference?
-
-> +
-> +maintainers:
-> +  - Maxime Ripard <mripard@kernel.org>
-> +
-> +properties:
-> +  compatible:
-> +    const: carved-out
-
-Isn't everything in reserved-memory a carve out for some purpose. I'm 
-not sure if I'd add 'no ECC' or more along the lines of how this is 
-used. The latter might be useful on platforms which can't disable ECC or 
-don't have ECC at all.
-
-> +
-> +  reg:
-> +    description: region of memory that is carved out.
-
-Can be multiple regions? If not, need 'maxItems: 1'.
-
-
-> +
-> +allOf:
-> +  - $ref: reserved-memory.yaml
-> +  - not:
-> +      required:
-> +        - reusable
-> +  - not:
-> +      required:
-> +        - no-map
-> +
-> +required:
-> +  - compatible
-> +  - reg
-> +
-> +unevaluatedProperties: false
-> +
-> +examples:
-> +  - |
-> +    reserved-memory {
-> +        #address-cells = <1>;
-> +        #size-cells = <1>;
-> +
-> +        memory@12340000 {
-> +            compatible = "carved-out";
-> +            reg = <0x12340000 0x00800000>;
-> +        };
-> +    };
-> 
-> -- 
-> 2.49.0
-> 
 
