@@ -1,99 +1,133 @@
-Return-Path: <devicetree+bounces-190217-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-190218-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id CBD46AEB0F2
-	for <lists+devicetree@lfdr.de>; Fri, 27 Jun 2025 10:08:37 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 6CED2AEB108
+	for <lists+devicetree@lfdr.de>; Fri, 27 Jun 2025 10:14:39 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 678FB4A2A6E
-	for <lists+devicetree@lfdr.de>; Fri, 27 Jun 2025 08:08:33 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id B9C1E16E16B
+	for <lists+devicetree@lfdr.de>; Fri, 27 Jun 2025 08:14:39 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E43BF23505E;
-	Fri, 27 Jun 2025 08:08:29 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 08076235364;
+	Fri, 27 Jun 2025 08:14:35 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="M8DivVTB"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="sOKwoNkf"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B97A4233D7C;
-	Fri, 27 Jun 2025 08:08:29 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C53F83C01;
+	Fri, 27 Jun 2025 08:14:34 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1751011709; cv=none; b=Gi1o78oVPCjPhxnt0xiKw2WqfAKHd8Uz/dPymA0tcQNE4u+Ii2Kf41dun8u6WAMSAZihIy9/cyUELnh0CDMm3zM4Ph2/DC0OpVpGPZSGKTEiglRniOSPxvVIoc/9Pc7lwr0hwOnHXcB6+n69S0Ubq+Ii7z03OziukGivFjPrZRU=
+	t=1751012074; cv=none; b=avBFMTm7bArqH7BET4B8qbn8dQJFQOcW2pVR0VmG+e9hr7fPR5iP2uc1hSMGcUQCJgY3StFrQLtSfiTyU6vRNRyABa8OACRMerb9SG6DIipkvqVa7THPo91WDv2P5szQeTO8jy+fIRZck15vWGDRY+1PnQn//ZqOYhGFuMam/S0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1751011709; c=relaxed/simple;
-	bh=PYP9Imqu5GjDkVBHcvLr+ztBK6R3xQ+B5FYXugyhx3c=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=WxPLn+hrzQi83KmLa5yR6NbJDDEIp21DxL0lAHgUOjEYldubBgWNZsaJlutEIu2QPyH4Lne7WfJcujXTnrr3u7I2B687UZbZ09ZNinZ8MCuWgAXfQ5Ok33PiAO6HAhu3YOkWFyiXoJU4zvFBFsBPiNs9OEtkQF8NwuPIeMD693g=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=M8DivVTB; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id ADB9FC4CEED;
-	Fri, 27 Jun 2025 08:08:28 +0000 (UTC)
+	s=arc-20240116; t=1751012074; c=relaxed/simple;
+	bh=XAx0w0qIj6lxMzl756cOTRLfX5HxkURSvrdAy+8ZYYk=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=MyI+nlor7KYo/mwBck3LrdwRri/lkcKgGlbCnMgmnmCacljSK1ErvSlVpw8YI6690aUNVZACvGQSzA2G6XBGbg7mBMj0Ti4cQdk1mAQcRhDBWLLuZrAuHhJUzRrVEjOkv4j3mpdOHgvDRqt5wmZYberuGdlXDYzl1FFp77ceJ9g=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=sOKwoNkf; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 78EEBC4CEE3;
+	Fri, 27 Jun 2025 08:14:27 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1751011709;
-	bh=PYP9Imqu5GjDkVBHcvLr+ztBK6R3xQ+B5FYXugyhx3c=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=M8DivVTBC8AdBk4Fn/V/IyMSs5cc29CEAiWP0gy3wE+6Rbj6bjo7KK5GhYoiMBsaV
-	 /qrPrjmRHAtZjZHrpNC2OQOX1l7kpCRcva5Tuo3gCWhxUndg2auts/kO8ZjSEyyVqw
-	 RaffDG9g62XJVhm3nHAfd4p7He45PfaBv3a8IL7CqYdiu7m1oOYjOiTLzukEq08w9P
-	 8ncQO0Wy+GENY3BcPxhucS104Hgfmfd0NbpLtXcdY+35jcT8BGL7U1LF9LtZqpe2qI
-	 iiywZ0Zl07ZTDFxOAd5rrH7i/FPgfWl0V+oyoqD99s38d4cgPeb05K8qAL98lvHfjg
-	 mZ8JJDpyN7W3g==
-Date: Fri, 27 Jun 2025 10:08:25 +0200
-From: Krzysztof Kozlowski <krzk@kernel.org>
-To: Luca Weiss <luca.weiss@fairphone.com>
-Cc: Hans de Goede <hdegoede@redhat.com>, 
-	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, Maxime Ripard <mripard@kernel.org>, 
-	Thomas Zimmermann <tzimmermann@suse.de>, David Airlie <airlied@gmail.com>, 
-	Simona Vetter <simona@ffwll.ch>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Javier Martinez Canillas <javierm@redhat.com>, Helge Deller <deller@gmx.de>, linux-fbdev@vger.kernel.org, 
-	dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v2 1/5] dt-bindings: display: simple-framebuffer: Add
- interconnects property
-Message-ID: <20250627-mysterious-optimistic-bird-acaafb@krzk-bin>
-References: <20250623-simple-drm-fb-icc-v2-0-f69b86cd3d7d@fairphone.com>
- <20250623-simple-drm-fb-icc-v2-1-f69b86cd3d7d@fairphone.com>
+	s=k20201202; t=1751012074;
+	bh=XAx0w0qIj6lxMzl756cOTRLfX5HxkURSvrdAy+8ZYYk=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=sOKwoNkf0p1oYczXQDEbSoR5cCwXYcjKxj5uqiypqUeJgxFHoB9j+l9es2c1W07fi
+	 KrL/GGBR13cyDYTVc9rHmUs6Ih3x8rACYDf9Z7lkIjGGw5tHB50rwA9LKBj/1JNyEn
+	 Q1TxuB194jDejg3mlyQ4ptGn2V72G7F7rhH3Iu2u2euirICc8kW6XocaA9mP0u88mt
+	 s7YEYiKE6aeMReCsdu5Qxl2OCbbv/klStmQycUV9A61LbaRhaR9rl94VzxHLeLh76B
+	 tSGcF+HbuWxQe+1H+qeXMISyGc/wTClVJA+XoWLCrUjCcP42EtHaIGiUBpkKFowdbe
+	 WR5o/G2KWbJ9g==
+Message-ID: <e7c012c6-d5df-4247-b4c2-1b3e787d7576@kernel.org>
+Date: Fri, 27 Jun 2025 10:14:24 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-In-Reply-To: <20250623-simple-drm-fb-icc-v2-1-f69b86cd3d7d@fairphone.com>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 1/2] dt-bindings: leds: issi,is31fl319x: Drop 'db' suffix
+ duplicating dtschema
+To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+ Lee Jones <lee@kernel.org>, Pavel Machek <pavel@kernel.org>,
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>,
+ Vincent Knecht <vincent.knecht@mailoo.org>, Vinod Koul <vkoul@kernel.org>,
+ Kishon Vijay Abraham I <kishon@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
+ Sascha Hauer <s.hauer@pengutronix.de>,
+ Pengutronix Kernel Team <kernel@pengutronix.de>,
+ Fabio Estevam <festevam@gmail.com>, Li Jun <jun.li@nxp.com>
+Cc: linux-leds@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, linux-phy@lists.infradead.org,
+ imx@lists.linux.dev, linux-arm-kernel@lists.infradead.org
+References: <20250627-dt-bindings-db-v1-0-d5c7072acbee@linaro.org>
+ <20250627-dt-bindings-db-v1-1-d5c7072acbee@linaro.org>
+From: Krzysztof Kozlowski <krzk@kernel.org>
+Content-Language: en-US
+Autocrypt: addr=krzk@kernel.org; keydata=
+ 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 a/A=
+In-Reply-To: <20250627-dt-bindings-db-v1-1-d5c7072acbee@linaro.org>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-On Mon, Jun 23, 2025 at 08:44:45AM +0200, Luca Weiss wrote:
-> Document the interconnects property which is a list of interconnect
-> paths that is used by the framebuffer and therefore needs to be kept
-> alive when the framebuffer is being used.
+On 27/06/2025 10:01, Krzysztof Kozlowski wrote:
+> A common property unit suffix '-db' was added to dtschema, thus
+> in-kernel bindings should not reference the type.
 > 
-> Acked-by: Thomas Zimmermann <tzimmermann@suse.de>
-> Signed-off-by: Luca Weiss <luca.weiss@fairphone.com>
+> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+> 
 > ---
->  Documentation/devicetree/bindings/display/simple-framebuffer.yaml | 3 +++
->  1 file changed, 3 insertions(+)
 > 
-> diff --git a/Documentation/devicetree/bindings/display/simple-framebuffer.yaml b/Documentation/devicetree/bindings/display/simple-framebuffer.yaml
-> index 296500f9da05e296dbbeec50ba5186b6b30aaffc..f0fa0ef23d91043dfb2b220c654b80e2e80850cd 100644
-> --- a/Documentation/devicetree/bindings/display/simple-framebuffer.yaml
-> +++ b/Documentation/devicetree/bindings/display/simple-framebuffer.yaml
-> @@ -79,6 +79,9 @@ properties:
->    power-domains:
->      description: List of power domains used by the framebuffer.
->  
-> +  interconnects:
-> +    description: List of interconnect paths used by the framebuffer.
-> +
-
-maxItems: 1, or this is not a simple FB anymore. Anything which needs
-some sort of resources in unknown way is not simple anymore. You need
-device specific bindings.
+> RFC because this depends on dtschema changes and should be accepted
+> after new dtschema is released with this merged:
+> https://github.com/devicetree-org/dt-schema/pull/166
+... and I forgot `b4 prep --add-prefixes RFC`. Please treat as RFC.
 
 Best regards,
 Krzysztof
-
 
