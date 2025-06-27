@@ -1,480 +1,424 @@
-Return-Path: <devicetree+bounces-190177-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-190178-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3E4D4AEAF02
-	for <lists+devicetree@lfdr.de>; Fri, 27 Jun 2025 08:29:14 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id C87CFAEAF06
+	for <lists+devicetree@lfdr.de>; Fri, 27 Jun 2025 08:30:50 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 9FC1A3AD1AA
-	for <lists+devicetree@lfdr.de>; Fri, 27 Jun 2025 06:28:48 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id AA2F61BC7137
+	for <lists+devicetree@lfdr.de>; Fri, 27 Jun 2025 06:31:04 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2E22E1DB551;
-	Fri, 27 Jun 2025 06:29:10 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 68B32211A05;
+	Fri, 27 Jun 2025 06:30:41 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="lIPGj/kr"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="EdCI56KR"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-pl1-f178.google.com (mail-pl1-f178.google.com [209.85.214.178])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0A75B42AA6;
-	Fri, 27 Jun 2025 06:29:07 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8E81D2F3E;
+	Fri, 27 Jun 2025 06:30:39 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.178
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1751005750; cv=none; b=LXIQKIyA+P/NVN8DoEH/kD0bcoc5viHgVLtnxeO50yQdcNIfdwikcnuNIWgfNhvokjLi+JA0LAzrd6tJMOcU7OPL4x2G/9W/fHrcT56g65kiErr+HCUMVIqEoi8t+0dYgUN9xBH7PwWisoy9W99g64bIzP1HgDB0M7x1/SmaKnU=
+	t=1751005841; cv=none; b=dyJ0tswjsGh77VjNaESa6j49kbnYD7t0i7jeDw2yL20iHUA3hEAgAt9G91EkIteouHNVtPI2CpZb09rWqdWt0ZmFa4H4vj2udY+tIAdQ7E+ik8yEjWo4Qq87lcnXrrQXgTCuOvLZtFtWRz6ibd8U13BM7eq476gvIcMqZpOpJLE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1751005750; c=relaxed/simple;
-	bh=G2Uh7pRhbJX6tgZzXdpavUrERUb/fV2QNsAN0Itu+8Q=;
-	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
-	 In-Reply-To:Content-Type; b=LTuPlluC5HGpHzH7TWUMZjXqwTp0g4VEhK7hUY4+FK+ckqu0xFVmUupjVmsF54/LNVyzyokkZ24xT82JEk1G0BxZxkkNsnF4w2t00druWIwHr14CQV9DMAlAON5aguSDHF41RyWX91Lh0blPp+j97so9dvMNsQxDalqykp3sKZE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=lIPGj/kr; arc=none smtp.client-ip=205.220.168.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
-Received: from pps.filterd (m0279863.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 55R4DAWs014323;
-	Fri, 27 Jun 2025 06:28:55 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	6WF27joapwifXMGp6EvCTz8O6l4TdWUvEyF6W8M1+4M=; b=lIPGj/krJT2ai1XD
-	XRung/NJpJd5jurKiCnMWwuVEKGbLUDemBPTqzxy5P4ou++smD/KArh3ZMnoWVRG
-	QCXK0Q54wbCCmEY/wuFKr0HK1aAesrNCgRTPb2L7Ta4SYRCRwTAeRkmhq8iFskPV
-	a/aYHfM2pzF+Q3GujLx6SOjrVmW3ZWgkgvc8oS/A/+R+1exuseQrc23Ay0a4Ij4l
-	lx5iUYW3HxybvlyrHHUjIAiPBX98v7oBZkdc8PkVnuhH1M2sn6JPj9AZkumfSsow
-	onZkRDAPxJh+AGpSlnyU7eTi+u1UElqActLuJix0xZdr0C3Tsp0BfCb5AhwbqqdI
-	E9IZ7A==
-Received: from nasanppmta04.qualcomm.com (i-global254.qualcomm.com [199.106.103.254])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 47emcmye51-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Fri, 27 Jun 2025 06:28:55 +0000 (GMT)
-Received: from nasanex01b.na.qualcomm.com (nasanex01b.na.qualcomm.com [10.46.141.250])
-	by NASANPPMTA04.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 55R6SsEZ020768
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Fri, 27 Jun 2025 06:28:54 GMT
-Received: from [10.239.133.242] (10.80.80.8) by nasanex01b.na.qualcomm.com
- (10.46.141.250) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.9; Thu, 26 Jun
- 2025 23:28:51 -0700
-Message-ID: <f41fbf20-7e18-4d4c-aa4c-3a363c3cf56d@quicinc.com>
-Date: Fri, 27 Jun 2025 14:28:44 +0800
+	s=arc-20240116; t=1751005841; c=relaxed/simple;
+	bh=A8g893xtk1dK4cJaLgB0wst2X+UBVHooFVW6CTqVfTo=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=ESEjcINqF34qLpvKjOPaFirUGs6V8rcmptltr7ObjBK7XxNh+Tq3dwXPtU2n1wjNdu/KB2UUstJwxV5fnM6M41dBpnl4X3KjkQA4q+82t7Pclg8Vsv+AUzp+R8mp3/0UOfnQN39WGcfyQ+YyArcrsWH1Lr0ce+zdeUSllsKIUJQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=EdCI56KR; arc=none smtp.client-ip=209.85.214.178
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-pl1-f178.google.com with SMTP id d9443c01a7336-23633a6ac50so25789115ad.2;
+        Thu, 26 Jun 2025 23:30:39 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1751005839; x=1751610639; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=iS5tVSNWUllBELvROnskbRuvuRv6gr3FeSaDzg0SVcg=;
+        b=EdCI56KRkmjAUyUrH4RRUSrGWzDzv6HOvtj1bHaIXPx+8TdwJ9p0X0JApgQvQ830T/
+         hO+B66OoUDG9N9ihN3573yQQP51qC/1OVpOb2GnYnW/5OKMvgVM0w47LMPBC6nAGw9tD
+         6SKgXyH7UMx7/YZ7RT1Zt4O6jK2v1zN1oraaX9hCA94a0yrwe9Ybptp0E+8RXpdmtyAp
+         SPB+06+aip0VyNxVf/S7VXoWCYpKWGS7vY7iB//BGCXYu7JFMQIYDQiEjlCRCKOokBuD
+         A7HWpaq7RlI6bpIG4yN+fbQIhiVpepAofDovyE43FNIToVBJZx9O6a3ySr1bPLLwlY25
+         Gdpw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1751005839; x=1751610639;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=iS5tVSNWUllBELvROnskbRuvuRv6gr3FeSaDzg0SVcg=;
+        b=AI+pd0BmgcToIJHYX9Y3WFPY0wInV3zPgTnVX3oJHknHTaazHLoCWlaxVr910ezQFe
+         t0cfP0XEqJFF1otkoMh0ZY4f4+6i1D9qjF/imnupv5SMIOou4JABp7tTTSpKPz9DVxFe
+         x29ataI5AQPJxzmyAv38surh5qhpBID3rgYtdQ3aNGxcglrI0t2jVOCJYwblmm4aBhgY
+         GUfRkftRavOUBIMxLrnHiS3c00UI3RUjwYmnzbKaaXYVwqurEZfFus8bl0VBYcLEINfT
+         5q9Fs9sIWLSlSpvj/l6nT+ZA6P3m5pSKagFwrUyL7o7YCo24iV43EY/JHCQYS8M5WR4b
+         C29Q==
+X-Forwarded-Encrypted: i=1; AJvYcCXUBYwfTlyoPWewohajOfkIzOcD41K6nVhFKj0ACsFi1gOZ+KkQfAJKOHB+m+3LvXPi6+ljXXYmVLsFYbTR@vger.kernel.org, AJvYcCXgA05ZRWdtkESPFwG8qZrPsYpmcOOvEC4/4pjnA01YH+QvVucL5iTaVDVpyGU5FUUS+5wmSTZm2FTm@vger.kernel.org
+X-Gm-Message-State: AOJu0YwSXpgd2uFXZNdvajDDazdUIT/VILEdRmR21tKAqeljqZdpvO+x
+	eJ4s9yG49t7D8RX7aYqEBaklOSgm5Av02y2Uk1y0edQwYj7LxjJ7gf1s
+X-Gm-Gg: ASbGncuRYAMTap1yBpoKpF7RreukG58Tpi4S4RWvqXtShujnm84DDOFKEdmrq06fWvS
+	yEo6bv+RAJnfv2ntrDQIupHP6xGlhd5n5LE6p6NVtoTGR00hBKBaZWRAOqLDbxQg/M75rYFuFl5
+	4fZ6t8zSRyy09dMhb0MHPxuN9TLEguwnta17RXkAaxS71LeV8ZgUMoqbBytCC2yxGvSVTbCGmJQ
+	jf4wjz/VFKWPhz0h2ZyxZr4NOeHQQSxZyyv3ATfQLNcJ56ycFZoBHKiClkpAniSfx73TRTmv0V6
+	7F4XSM65I5HdqpLuBwULYKN+yUCTAcH5IJtg4+RFbveNFdkU/AMsPSG415RiXg==
+X-Google-Smtp-Source: AGHT+IE+7b9v9Zj2LkXyd2nC+NZQDpDyK3bypoGbpAIzajLvSyCeyoIKvei7PJggtI88oZ0VmbeCOg==
+X-Received: by 2002:a17:902:ea0e:b0:238:f2a:8893 with SMTP id d9443c01a7336-23ac4654004mr32944735ad.42.1751005838719;
+        Thu, 26 Jun 2025 23:30:38 -0700 (PDT)
+Received: from localhost ([2001:19f0:ac00:4eb8:5400:5ff:fe30:7df3])
+        by smtp.gmail.com with UTF8SMTPSA id d9443c01a7336-23acb2e219asm9090255ad.40.2025.06.26.23.30.37
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 26 Jun 2025 23:30:38 -0700 (PDT)
+Date: Fri, 27 Jun 2025 14:30:25 +0800
+From: Inochi Amaoto <inochiama@gmail.com>
+To: Vinod Koul <vkoul@kernel.org>, Inochi Amaoto <inochiama@gmail.com>
+Cc: Kishon Vijay Abraham I <kishon@kernel.org>, 
+	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+	Conor Dooley <conor+dt@kernel.org>, Chen Wang <unicorn_wang@outlook.com>, 
+	Paul Walmsley <paul.walmsley@sifive.com>, Palmer Dabbelt <palmer@dabbelt.com>, 
+	Albert Ou <aou@eecs.berkeley.edu>, Alexandre Ghiti <alex@ghiti.fr>, linux-phy@lists.infradead.org, 
+	devicetree@vger.kernel.org, sophgo@lists.linux.dev, linux-kernel@vger.kernel.org, 
+	linux-riscv@lists.infradead.org, Yixun Lan <dlan@gentoo.org>, Longbin Li <looong.bin@gmail.com>
+Subject: Re: [PATCH v4 2/2] phy: sophgo: Add USB 2.0 PHY driver for Sophgo
+ CV18XX/SG200X
+Message-ID: <kt3envdgn7kxjjvu6mm5hozb3ml64d4s54ssozljmr7qttvxij@hnuzfawjspoy>
+References: <20250611081804.1196397-1-inochiama@gmail.com>
+ <20250611081804.1196397-3-inochiama@gmail.com>
+ <aF3i3L4BF6YgUMcO@vaman>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v5 0/7] Provides support for Trigger Generation Unit
-To: Suzuki K Poulose <suzuki.poulose@arm.com>,
-        Mike Leach
-	<mike.leach@linaro.org>, James Clark <james.clark@arm.com>,
-        Alexander
- Shishkin <alexander.shishkin@linux.intel.com>,
-        Andy Gross
-	<agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Rob Herring
-	<robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley
-	<conor+dt@kernel.org>
-CC: <linux-kernel@vger.kernel.org>, <coresight@lists.linaro.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <linux-arm-msm@vger.kernel.org>, <devicetree@vger.kernel.org>
-References: <20250529081949.26493-1-quic_songchai@quicinc.com>
-Content-Language: en-US
-From: Songwei Chai <quic_songchai@quicinc.com>
-In-Reply-To: <20250529081949.26493-1-quic_songchai@quicinc.com>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 8bit
-X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
- nasanex01b.na.qualcomm.com (10.46.141.250)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-GUID: qpdQHggkrbMiqtTZy24MreTFdRz8zD8U
-X-Proofpoint-ORIG-GUID: qpdQHggkrbMiqtTZy24MreTFdRz8zD8U
-X-Authority-Analysis: v=2.4 cv=J+eq7BnS c=1 sm=1 tr=0 ts=685e3a27 cx=c_pps
- a=JYp8KDb2vCoCEuGobkYCKw==:117 a=JYp8KDb2vCoCEuGobkYCKw==:17
- a=GEpy-HfZoHoA:10 a=IkcTkHD0fZMA:10 a=6IFa9wvqVegA:10 a=VwQbUJbxAAAA:8
- a=COk6AnOGAAAA:8 a=6ly4gMjjRaOz-lKr_OYA:9 a=jWg8M_cAZNhw4cqM:21
- a=3ZKOabzyN94A:10 a=QEXdDO2ut3YA:10 a=TjNXssC_j7lpFel5tvFf:22
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwNjI3MDA1MCBTYWx0ZWRfXyTmS0f0RjeSQ
- XYXHvpDL25Rt+32amJjKBMdl1YerMlXtD1qLs3p7mKxZBpSLZ2DCEX42BDJSQYfHBi1S+jRs8dJ
- xFc6o4UVEZuzQ1iibSI0lFkqGp/8zwaRcudZJCLtgOps3S5jeQrzz+dsoPNYOMEToPXZkZ/HnTz
- tcM/Zv7UU40tCtOGvgyER9jdgEFoTHnQVHZzC0vkmptaEYGdeReLY9bG7EzApEew/2fhwbf3Qva
- Lc9+QY948lOk1pun9qGSx/0Cn5NGo0hlKLkgMhB9rkE2oz/Cn0kTQzn5bx9XF17pw4U0W6GTASv
- +4iet4cEEESoKmU2GF9ZAvpPiglGf/Rb2oZTJ5Qeuhd4XYIIlYEvaPP9PrdgKPvpWlK05P/zf6J
- kLVqGuJ8dlst6UY6sKFsnwsu94nj3b75+Hck4h/oGvclgMRkqe5b5TOHtl++h9biNEVW0BNO
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1099,Hydra:6.1.7,FMLib:17.12.80.40
- definitions=2025-06-27_02,2025-06-26_05,2025-03-28_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- bulkscore=0 mlxlogscore=999 adultscore=0 impostorscore=0 clxscore=1015
- spamscore=0 malwarescore=0 phishscore=0 priorityscore=1501 suspectscore=0
- mlxscore=0 lowpriorityscore=0 classifier=spam authscore=0 authtc=n/a authcc=
- route=outbound adjust=0 reason=mlx scancount=1 engine=8.19.0-2505280000
- definitions=main-2506270050
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <aF3i3L4BF6YgUMcO@vaman>
 
-Hope this message finds you well.
+On Thu, Jun 26, 2025 at 05:16:28PM -0700, Vinod Koul wrote:
+> On 11-06-25, 16:18, Inochi Amaoto wrote:
+> > Add USB 2.0 PHY driver for Sophgo CV18XX/SG200X. Currently
+> > this driver does not support OTG mode as lack of document.
+> > 
+> > Signed-off-by: Inochi Amaoto <inochiama@gmail.com>
+> > ---
+> >  drivers/phy/Kconfig                  |   1 +
+> >  drivers/phy/Makefile                 |   1 +
+> >  drivers/phy/sophgo/Kconfig           |  19 +++
+> >  drivers/phy/sophgo/Makefile          |   2 +
+> >  drivers/phy/sophgo/phy-cv1800-usb2.c | 222 +++++++++++++++++++++++++++
+> >  5 files changed, 245 insertions(+)
+> >  create mode 100644 drivers/phy/sophgo/Kconfig
+> >  create mode 100644 drivers/phy/sophgo/Makefile
+> >  create mode 100644 drivers/phy/sophgo/phy-cv1800-usb2.c
+> > 
+> > diff --git a/drivers/phy/Kconfig b/drivers/phy/Kconfig
+> > index 58c911e1b2d2..678dd0452f0a 100644
+> > --- a/drivers/phy/Kconfig
+> > +++ b/drivers/phy/Kconfig
+> > @@ -122,6 +122,7 @@ source "drivers/phy/renesas/Kconfig"
+> >  source "drivers/phy/rockchip/Kconfig"
+> >  source "drivers/phy/samsung/Kconfig"
+> >  source "drivers/phy/socionext/Kconfig"
+> > +source "drivers/phy/sophgo/Kconfig"
+> >  source "drivers/phy/st/Kconfig"
+> >  source "drivers/phy/starfive/Kconfig"
+> >  source "drivers/phy/sunplus/Kconfig"
+> > diff --git a/drivers/phy/Makefile b/drivers/phy/Makefile
+> > index c670a8dac468..bfb27fb5a494 100644
+> > --- a/drivers/phy/Makefile
+> > +++ b/drivers/phy/Makefile
+> > @@ -35,6 +35,7 @@ obj-y					+= allwinner/	\
+> >  					   rockchip/	\
+> >  					   samsung/	\
+> >  					   socionext/	\
+> > +					   sophgo/	\
+> >  					   st/		\
+> >  					   starfive/	\
+> >  					   sunplus/	\
+> > diff --git a/drivers/phy/sophgo/Kconfig b/drivers/phy/sophgo/Kconfig
+> > new file mode 100644
+> > index 000000000000..2c943bbe1f81
+> > --- /dev/null
+> > +++ b/drivers/phy/sophgo/Kconfig
+> > @@ -0,0 +1,19 @@
+> > +# SPDX-License-Identifier: GPL-2.0-only
+> > +#
+> > +# Phy drivers for Sophgo platforms
+> > +#
+> > +
+> > +if ARCH_SOPHGO || COMPILE_TEST
+> > +
+> > +config PHY_SOPHGO_CV1800_USB2
+> > +	tristate "Sophgo CV18XX/SG200X USB 2.0 PHY support"
+> > +	depends on MFD_SYSCON
+> > +	depends on USB_SUPPORT
+> > +	select GENERIC_PHY
+> > +	help
+> > +	  Enable this to support the USB 2.0 PHY used with
+> > +	  the DWC2 USB controller in Sophgo CV18XX/SG200X
+> > +	  series SoC.
+> > +	  If unsure, say N.
+> > +
+> > +endif # ARCH_SOPHGO || COMPILE_TEST
+> > diff --git a/drivers/phy/sophgo/Makefile b/drivers/phy/sophgo/Makefile
+> > new file mode 100644
+> > index 000000000000..318060661759
+> > --- /dev/null
+> > +++ b/drivers/phy/sophgo/Makefile
+> > @@ -0,0 +1,2 @@
+> > +# SPDX-License-Identifier: GPL-2.0
+> > +obj-$(CONFIG_PHY_SOPHGO_CV1800_USB2)	+= phy-cv1800-usb2.o
+> > diff --git a/drivers/phy/sophgo/phy-cv1800-usb2.c b/drivers/phy/sophgo/phy-cv1800-usb2.c
+> > new file mode 100644
+> > index 000000000000..1d21db7f875b
+> > --- /dev/null
+> > +++ b/drivers/phy/sophgo/phy-cv1800-usb2.c
+> > @@ -0,0 +1,222 @@
+> > +// SPDX-License-Identifier: GPL-2.0
+> > +/*
+> > + * Copyright (C) 2025 Inochi Amaoto <inochiama@outlook.com>
+> > + */
+> > +
+> > +#include <linux/clk.h>
+> > +#include <linux/bitfield.h>
+> > +#include <linux/debugfs.h>
+> > +#include <linux/kernel.h>
+> > +#include <linux/mfd/syscon.h>
+> > +#include <linux/module.h>
+> > +#include <linux/of.h>
+> > +#include <linux/of_address.h>
+> > +#include <linux/of_gpio.h>
+> > +#include <linux/platform_device.h>
+> > +#include <linux/phy/phy.h>
+> > +#include <linux/regmap.h>
+> > +#include <linux/spinlock.h>
+> > +
+> > +#define REG_USB_PHY_CTRL		0x048
+> > +
+> > +#define PHY_ID_OVERWRITE_EN		BIT(6)
+> > +#define PHY_ID_OVERWRITE_MODE		BIT(7)
+> > +#define PHY_ID_OVERWRITE_MODE_HOST	FIELD_PREP(BIT(7), 0)
+> > +#define PHY_ID_OVERWRITE_MODE_DEVICE	FIELD_PREP(BIT(7), 1)
+> > +
+> > +#define PHY_APP_CLK_RATE		125000000
+> > +#define PHY_LPM_CLK_RATE		12000000
+> > +#define PHY_STB_CLK_RATE		333334
+> > +
+> > +struct cv1800_usb_phy {
+> > +	struct phy	*phy;
+> > +	struct regmap	*syscon;
+> > +	spinlock_t	lock;
+> > +	struct clk	*usb_app_clk;
+> > +	struct clk	*usb_lpm_clk;
+> > +	struct clk	*usb_stb_clk;
+> > +	bool		support_otg;
+> > +};
+> > +
+> > +static int cv1800_usb_phy_set_mode(struct phy *_phy,
+> > +				   enum phy_mode mode, int submode)
+> > +{
+> > +	struct cv1800_usb_phy *phy = phy_get_drvdata(_phy);
+> > +	unsigned int regval = 0;
+> > +	int ret;
+> > +
+> > +	switch (mode) {
+> > +	case PHY_MODE_USB_DEVICE:
+> > +		regval = PHY_ID_OVERWRITE_EN | PHY_ID_OVERWRITE_MODE_DEVICE;
+> > +		break;
+> > +	case PHY_MODE_USB_HOST:
+> > +		regval = PHY_ID_OVERWRITE_EN | PHY_ID_OVERWRITE_MODE_HOST;
+> > +		break;
+> > +	case PHY_MODE_USB_OTG:
+> > +		if (!phy->support_otg)
+> > +			return 0;
+> > +
+> > +		ret = regmap_read(phy->syscon, REG_USB_PHY_CTRL, &regval);
+> > +		if (ret)
+> > +			return ret;
+> > +
+> > +		regval = FIELD_GET(PHY_ID_OVERWRITE_MODE, regval);
+> > +		break;
+> > +	default:
+> > +		return -EINVAL;
+> > +	}
+> > +
+> > +	return regmap_update_bits(phy->syscon, REG_USB_PHY_CTRL,
+> > +				  PHY_ID_OVERWRITE_EN | PHY_ID_OVERWRITE_MODE,
+> > +				  regval);
+> > +}
+> > +
+> > +static ssize_t dr_mode_write(struct file *file, const char __user *_buf,
+> > +			     size_t count, loff_t *ppos)
+> > +{
+> > +	struct seq_file *seq = file->private_data;
+> > +	struct cv1800_usb_phy *phy = seq->private;
+> > +	enum phy_mode mode;
+> > +	char buf[16];
+> > +
+> > +	if (copy_from_user(&buf, _buf, min_t(size_t, sizeof(buf) - 1, count)))
+> > +		return -EFAULT;
+> > +
+> > +	if (sysfs_streq(buf, "host"))
+> > +		mode = PHY_MODE_USB_DEVICE;
+> > +	else if (sysfs_streq(buf, "peripheral"))
+> > +		mode = PHY_MODE_USB_DEVICE;
+> > +	else if (sysfs_streq(buf, "otg"))
+> > +		mode = PHY_MODE_USB_OTG;
+> > +	else
+> > +		return -EINVAL;
+> > +
+> > +	return cv1800_usb_phy_set_mode(phy->phy, mode, 0);
+> > +}
+> > +
+> > +static int dr_mode_show(struct seq_file *seq, void *v)
+> > +{
+> > +	struct cv1800_usb_phy *phy = seq->private;
+> > +	unsigned long flags;
+> > +	unsigned int regval;
+> > +	bool is_host = true;
+> > +	int ret;
+> > +
+> > +	spin_lock_irqsave(&phy->lock, flags);
+> > +	ret = regmap_read(phy->syscon, REG_USB_PHY_CTRL, &regval);
+> > +	spin_unlock_irqrestore(&phy->lock, flags);
+> > +
+> > +	if (ret)
+> > +		return ret;
+> > +
+> > +	if (regval & PHY_ID_OVERWRITE_MODE)
+> > +		is_host = false;
+> > +
+> > +	if (!(regval & PHY_ID_OVERWRITE_EN))
+> > +		seq_puts(seq, "otg: ");
+> > +
+> > +	seq_puts(seq, is_host ? "host\n" : "peripheral\n");
+> > +
+> > +	return 0;
+> > +}
+> 
+> This should be done by host controller and not phy and then use apis to
+> set the mode for phy from controller, pls see other driver on how they
+> do this
+> 
 
-Just following up on my previous message - I'd greatly appreciate your 
-response when you have a moment.
+Cool, I will remove this thing and let the controller do this.
 
-Looking forward to hearing from you. :-)
+> > +
+> > +DEFINE_SHOW_STORE_ATTRIBUTE(dr_mode);
+> > +
+> > +static int cv1800_usb_phy_set_clock(struct cv1800_usb_phy *phy)
+> > +{
+> > +	int ret;
+> > +
+> > +	ret = clk_set_rate(phy->usb_app_clk, PHY_APP_CLK_RATE);
+> > +	if (ret)
+> > +		return ret;
+> > +
+> > +	ret = clk_set_rate(phy->usb_lpm_clk, PHY_LPM_CLK_RATE);
+> > +	if (ret)
+> > +		return ret;
+> > +
+> > +	ret = clk_set_rate(phy->usb_stb_clk, PHY_STB_CLK_RATE);
+> > +	if (ret)
+> > +		return ret;
+> > +
+> > +	return 0;
+> 
+> Should this not be return ret here? or just do return clk_set_rate()
+> here
+> 
 
-BRs,
-Songwei
+I think return ret is the same as return 0. And it is a good
+idea to just do return clk_set_rate.
 
-On 5/29/2025 4:19 PM, Songwei Chai wrote:
-> Provide support for the TGU (Trigger Generation Unit), which can be
-> utilized to sense a plurality of signals and create a trigger into
-> the CTI or generate interrupts to processors once the input signal
-> meets the conditions. We can treat the TGU’s workflow as a flowsheet,
-> it has some “steps” regions for customization. In each step region,
-> we can set the signals that we want with priority in priority_group, set
-> the conditions in each step via condition_decode, and set the resultant
-> action by condition_select. Meanwhile, some TGUs (not all) also provide
-> timer/counter functionality. Based on the characteristics described
-> above, we consider the TGU as a helper in the CoreSight subsystem.
-> Its master device is the TPDM, which can transmit signals from other
-> subsystems, and we reuse the existing ports mechanism to link the TPDM to
-> the connected TGU.
->
-> Here is a detailed example to explain how to use the TGU:
->
-> In this example, the TGU is configured to use 2 conditions, 2 steps, and
-> the timer. The goal is to look for one of two patterns which are generated
-> from TPDM, giving priority to one, and then generate a trigger once the
-> timer reaches a certain value. In other words, two conditions are used
-> for the first step to look for the two patterns, where the one with the
-> highest priority is used in the first condition. Then, in the second step,
-> the timer is enabled and set to be compared to the given value at each
-> clock cycle. These steps are better shown below.
->
->              |-----------------|
->              |                 |
->              |       TPDM      |
->              |                 |
->              |-----------------|
->                       |
->                       |
->    --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- ------
->    |                  |                                                 |
->    |                  |                          |--------------------| |
->    |    |---- --->    |                          |  Go to next steps  | |
->    |    |             |                |--- ---> |  Enable timer      | |
->    |    |             v                |         |                    | |
->    |    |    |-----------------|       |         |--------------------| |
->    |    |    |                 |  Yes  |                    |           |
->    |    |    |   inputs==0xB   | ----->|                    | <-------- |
->    |    |    |                 |       |                    |      No | |
->    | No |    |-----------------|       |                    v         | |
->    |    |             |                |          |-----------------| | |
->    |    |             |                |          |                 | | |
->    |    |             |                |          |      timer>=3   |-- |
->    |    |             v                |          |                 |   |
->    |    |    |-----------------|       |          |-----------------|   |
->    |    |    |                 |  Yes  |                    |           |
->    |    |--- |   inputs==0xA   | ----->|                    | Yes       |
->    |         |                 |                            |           |
->    |         |-----------------|                            v           |
->    |                                              |-----------------|   |
->    |                                              |                 |   |
->    |                                              |      Trigger    |   |
->    |                                              |                 |   |
->    |                                              |-----------------|   |
->    |  TGU                                                   |           |
->    |--- --- --- --- --- --- --- --- --- --- --- --- --- --- |--- --- -- |
->                                                             |
->                                                             v
->                                                    |-----------------|
->                                                    |The controllers  |
->                                                    |which will use   |
->                                                    |triggers further |
->                                                    |-----------------|
->
-> steps:
->         1. Reset TGU /*it will disable tgu and reset dataset*/
->         - echo 1 > /sys/bus/coresight/devices/<tgu-name>/reset_tgu
->
->         2. Set the pattern match for priority0 to 0xA = 0b1010 and for
->            priority 1 to 0xB = 0b1011.
->         - echo 0x11113232 > /sys/bus/coresight/devices/<tgu-name>/step0_priority0/reg0
->         - echo 0x11113233 > /sys/bus/coresight/devices/<tgu-name>/step0_priority1/reg0
->
->         Note:
->              Bit distribution diagram for each priority register
->      |-------------------------------------------------------------------|
->      |   Bits          |       Field Nam   |    Description              |
->      |-------------------------------------------------------------------|
->      |                 |                   | 00 = bypass for OR output   |
->      |     29:28       |   SEL_BIT7_TYPE2  | 01 = bypass for AND output  |
->      |                 |                   | 10 = sense input '0' is true|
->      |                 |                   | 11 = sense input '1' is true|
->      |-------------------------------------------------------------------|
->      |                 |                   | 00 = bypass for OR output   |
->      |     25:24       |   SEL_BIT6_TYPE2  | 01 = bypass for AND output  |
->      |                 |                   | 10 = sense input '0' is true|
->      |                 |                   | 11 = sense input '1' is true|
->      |-------------------------------------------------------------------|
->      |                 |                   | 00 = bypass for OR output   |
->      |     21:20       |   SEL_BIT5_TYPE2  | 01 = bypass for AND output  |
->      |                 |                   | 10 = sense input '0' is true|
->      |                 |                   | 11 = sense input '1' is true|
->      |-------------------------------------------------------------------|
->      |                 |                   | 00 = bypass for OR output   |
->      |     17:16       |   SEL_BIT4_TYPE2  | 01 = bypass for AND output  |
->      |                 |                   | 10 = sense input '0' is true|
->      |                 |                   | 11 = sense input '1' is true|
->      |-------------------------------------------------------------------|
->      |                 |                   | 00 = bypass for OR output   |
->      |     13:12       |   SEL_BIT3_TYPE2  | 01 = bypass for AND output  |
->      |                 |                   | 10 = sense input '0' is true|
->      |                 |                   | 11 = sense input '1' is true|
->      |-------------------------------------------------------------------|
->      |                 |                   | 00 = bypass for OR output   |
->      |      9:8        |   SEL_BIT2_TYPE2  | 01 = bypass for AND output  |
->      |                 |                   | 10 = sense input '0' is true|
->      |                 |                   | 11 = sense input '1' is true|
->      |-------------------------------------------------------------------|
->      |                 |                   | 00 = bypass for OR output   |
->      |      5:4        |  SEL_BIT1_TYPE2   | 01 = bypass for AND output  |
->      |                 |                   | 10 = sense input '0' is true|
->      |                 |                   | 11 = sense input '1' is true|
->      |-------------------------------------------------------------------|
->      |                 |                   | 00 = bypass for OR output   |
->      |      1:0        |  SEL_BIT0_TYPE2   | 01 = bypass for AND output  |
->      |                 |                   | 10 = sense input '0' is true|
->      |                 |                   | 11 = sense input '1' is true|
->      |-------------------------------------------------------------------|
->          These bits are used to identify the signals we want to sense, with
->          a maximum signal number of 140. For example, to sense the signal
->          0xA (binary 1010), we set the value of bits 0 to 13 to 3232, which
->          represents 1010. The remaining bits are set to 1, as we want to use
->          AND gate to summarize all the signals we want to sense here. For
->          rising or falling edge detection of any input to the priority, set
->          the remaining bits to 0 to use an OR gate.
->
->         3. look for the pattern for priority_i i=0,1.
->         - echo 0x3 > /sys/bus/coresight/devices/<tgu-name>/step0_condition_decode/reg0
->         - echo 0x30 > /sys/bus/coresight/devices/<tgu-name>/step0_condition_decode/reg1
->
->      |-------------------------------------------------------------------------------|
->      |   Bits          |    Field Nam        |            Description                |
->      |-------------------------------------------------------------------------------|
->      |                 |                     |For each decoded condition, this       |
->      |      24         |       NOT           |inverts the output. If the condition   |
->      |                 |                     |decodes to true, and the NOT field     |
->      |                 |                     |is '1', then the output is NOT true.   |
->      |-------------------------------------------------------------------------------|
->      |                 |                     |When '1' the output from the associated|
->      |      21         |  BC0_COMP_ACTIVE    |comparator will be actively included in|
->      |                 |                     |the decoding of this particular        |
->      |                 |                     |condition.                             |
->      |-------------------------------------------------------------------------------|
->      |                 |                     |When '1' the output from the associated|
->      |                 |                     |comparator will need to be 1 to affect |
->      |      20         |   BC0_COMP_HIGH     |the decoding of this condition.        |
->      |                 |                     |Conversely, a '0' here requires a '0'  |
->      |                 |                     |from the comparator                    |
->      |-------------------------------------------------------------------------------|
->      |                 |                     |When '1' the output from the associated|
->      |      17         |                     |comparator will be actively included in|
->      |                 |  TC0_COMP_ACTIVE    |the decoding of this particular        |
->      |                 |                     |condition.                             |
->      |-------------------------------------------------------------------------------|
->      |                 |                     |When '1' the output from the associated|
->      |                 |                     |comparator will need to be 1 to affect |
->      |      16         |  TC0_COMP_HIGH      |the decoding of this particular        |
->      |                 |                     |condition.Conversely, a 0 here         |
->      |                 |                     |requires a '0' from the comparator     |
->      |-------------------------------------------------------------------------------|
->      |                 |                     |When '1' the output from Priority_n    |
->      |                 |                     |OR logic will be actively              |
->      |     4n+3        | Priority_n_OR_ACTIVE|included in the decoding of            |
->      |                 |    (n=0,1,2,3)      |this particular condition.             |
->      |                 |                     |                                       |
->      |-------------------------------------------------------------------------------|
->      |                 |                     |When '1' the output from Priority_n    |
->      |                 |                     |will need to be '1' to affect the      |
->      |     4n+2        |  Priority_n_OR_HIGH |decoding of this particular            |
->      |                 |    (n=0,1,2,3)      |condition. Conversely, a '0' here      |
->      |                 |                     |requires a '0' from Priority_n OR logic|
->      |-------------------------------------------------------------------------------|
->      |                 |                     |When '1' the output from Priority_n    |
->      |                 |                     |AND logic will be actively             |
->      |     4n+1        |Priority_n_AND_ACTIVE|included in the decoding of this       |
->      |                 |  (n=0,1,2,3)        |particular condition.                  |
->      |                 |                     |                                       |
->      |-------------------------------------------------------------------------------|
->      |                 |                     |When '1' the output from Priority_n    |
->      |                 |                     |AND logic will need to be '1' to       |
->      |      4n         | Priority_n_AND_HIGH |affect the decoding of this            |
->      |                 |   (n=0,1,2,3)       |particular condition. Conversely,      |
->      |                 |                     |a '0' here requires a '0' from         |
->      |                 |                     |Priority_n AND logic.                  |
->      |-------------------------------------------------------------------------------|
->          Since we use `priority_0` and `priority_1` with an AND output in step 2, we set `0x3`
->          and `0x30` here to activate them.
->
->         4. Set NEXT_STEP = 1 and TC0_ENABLE = 1 so that when the conditions
->            are met then the next step will be step 1 and the timer will be enabled.
->         - echo 0x20008 > /sys/bus/coresight/devices/<tgu-name>/step0_condition_select/reg0
->         - echo 0x20008 > /sys/bus/coresight/devices/<tgu-name>/step0_condition_select/reg1
->
->          |-----------------------------------------------------------------------------|
->          |   Bits          |       Field Nam   |            Description                |
->          |-----------------------------------------------------------------------------|
->          |                 |                   |This field defines the next step the   |
->          |    18:17        |     NEXT_STEP     |TGU will 'goto' for the associated     |
->          |                 |                   |Condition and Step.                    |
->          |-----------------------------------------------------------------------------|
->          |                 |                   |For each possible output trigger       |
->          |    13           |     TRIGGER       |available, set a '1' if you want       |
->          |                 |                   |the trigger to go active for the       |
->          |                 |                   |associated condition and Step.         |
->          |-----------------------------------------------------------------------------|
->          |                 |                   |This will cause BC0 to increment if the|
->          |    9            |     BC0_INC       |associated Condition is decoded for    |
->          |                 |                   |this step.                             |
->          |-----------------------------------------------------------------------------|
->          |                 |                   |This will cause BC0 to decrement if the|
->          |    8            |     BC0_DEC       |associated Condition is decoded for    |
->          |                 |                   |this step.                             |
->          |-----------------------------------------------------------------------------|
->          |                 |                   |This will clear BC0 count value to 0 if|
->          |    7            |     BC0_CLEAR     |the associated Condition is decoded    |
->          |                 |                   |for this step.                         |
->          |-----------------------------------------------------------------------------|
->          |                 |                   |This will cause TC0 to increment until |
->          |    3            |     TC0_ENABLE    |paused or cleared if the associated    |
->          |                 |                   |Condition is decoded for this step.    |
->          |-----------------------------------------------------------------------------|
->          |                 |                   |This will cause TC0 to pause until     |
->          |    2            |     TC0_PAUSE     |enabled if the associated Condition    |
->          |                 |                   |is decoded for this step.              |
->          |-----------------------------------------------------------------------------|
->          |                 |                   |This will clear TC0 count value to 0   |
->          |    1            |     TC0_CLEAR     |if the associated Condition is         |
->          |                 |                   |decoded for this step.                 |
->          |-----------------------------------------------------------------------------|
->          |                 |                   |This will set the done signal to the   |
->          |    0            |     DONE          |TGU FSM if the associated Condition    |
->          |                 |                   |is decoded for this step.              |
->          |-----------------------------------------------------------------------------|
->          Based on the distribution diagram, we set `0x20008` for `priority0` and `priority1` to
->          achieve "jump to step 1 and enable TC0" once the signal is sensed.
->
->         5. activate the timer comparison for this step.
->         -  echo 0x30000  > /sys/bus/coresight/devices/<tgu-name>/step1_condition_decode/reg0
->
->          |-------------------------------------------------------------------------------|
->          |                 |                     |When '1' the output from the associated|
->          |      17         |                     |comparator will be actively included in|
->          |                 |  TC0_COMP_ACTIVE    |the decoding of this particular        |
->          |                 |                     |condition.                             |
->          |-------------------------------------------------------------------------------|
->          |                 |                     |When '1' the output from the associated|
->          |                 |                     |comparator will need to be 1 to affect |
->          |      16         |  TC0_COMP_HIGH      |the decoding of this particular        |
->          |                 |                     |condition.Conversely, a 0 here         |
->          |                 |                     |requires a '0' from the comparator     |
->          |-------------------------------------------------------------------------------|
->          Accroding to the decode distribution diagram , we give 0x30000 here to set 16th&17th bit
->          to enable timer comparison.
->
->         6. Set the NEXT_STEP = 0 and TC0_PAUSE = 1 and TC0_CLEAR = 1 once the timer
->            has reached the given value.
->         - echo 0x6 > /sys/bus/coresight/devices/<tgu-name>/step1_condition_select/reg0
->
->         7. Enable Trigger 0 for TGU when the condition 0 is met in step1,
->            i.e. when the timer reaches 3.
->         - echo 0x2000 > /sys/bus/coresight/devices/<tgu-name>/step1_condition_select/default
->
->          Note:
->              1. 'default' register allows for establishing the resultant action for
->              the default condition
->
->              2. Trigger:For each possible output trigger available from
->              the Design document, there are three triggers: interrupts, CTI,
->              and Cross-TGU mapping.All three triggers can occur, but
->              the choice of which trigger to use depends on the user's
->              needs.
->
->         8. Compare the timer to 3 in step 1.
->         - echo 0x3 > /sys/bus/coresight/devices/<tgu-name>/step1_timer/reg0
->
->         9. enale tgu
->         - echo 1 > /sys/bus/coresight/devices/<tgu-name>/enable_tgu
->
-> ---
-> Link to V4: https://patchwork.kernel.org/project/linux-arm-msm/cover/20250423101054.954066-1-quic_songchai@quicinc.com/
->
-> Changes in V5:
-> - Update publish date and kernel_version in "sysfs-bus-coresight-devices-tgu"
-> ---
-> Link to V3: https://lore.kernel.org/all/20250227092640.2666894-1-quic_songchai@quicinc.com/
->
-> Changes in V4:
-> - Add changlog in coverletter.
-> - Correct 'year' in Copyright in patch1.
-> - Correct port mechansim description in patch1.
-> - Remove 'tgu-steps','tgu-regs','tgu-conditions','tgu-timer-counters' from dt-binding
-> and set them through reading DEVID register as per Mike's suggestion.
-> - Modify tgu_disable func to make it have single return point in patch2 as per
-> Mike's suggestion.
-> - Use sysfs_emit in enable_tgu_show func in ptach2.
-> - Remove redundant judgement in enable_tgu_store in patch2.
-> - Correct typo in description in patch3.
-> - Set default ret as SYSFS_GROUP_INVISIBLE, and returnret at end in pacth3 as
-> per Mike's suggestion.
-> - Remove tgu_dataset_ro definition in patch3
-> - Use #define constants with explanations of what they are rather than
-> arbitrary magic numbers in patch3 and patch4.
-> - Check -EINVAL before using 'calculate_array_location()' in array in patch4.
-> - Add 'default' in 'tgu_dataset_show''s switch part in patch4.
-> - Document the value needed to initiate the reset in pacth7.
-> - Check "value" in 'reset_tgu_store' and bail out with an error code if 0 in patch7.
-> - Remove dev_dbg in 'reset_tgu_store' in patch7.
-> ---
-> Link to V2: https://lore.kernel.org/all/20241010073917.16023-1-quic_songchai@quicinc.com/
->
-> Changes in V3:
-> - Correct typo and format in dt-binding in patch1
-> - Rebase to the latest kernel version
-> ---
-> Link to V1: https://lore.kernel.org/all/20240830092311.14400-1-quic_songchai@quicinc.com/
->
-> Changes in V2:
->   - Use real name instead of login name,
->   - Correct typo and format in dt-binding and code.
->   - Bring order in tgu_prob(declarations with and without assignments) as per
-> Krzysztof's suggestion.
->   - Add module device table in patch2.
->   - Set const for tgu_common_grp and tgu_ids in patch2.
->   - Initialize 'data' in tgu_ids to fix the warning in pacth2.
-> ---
->
-> Songwei Chai (7):
->    dt-bindings: arm: Add support for Coresight TGU trace
->    coresight: Add coresight TGU driver
->    coresight-tgu: Add signal priority support
->    coresight-tgu: Add TGU decode support
->    coresight-tgu: add support to configure next action
->    coresight-tgu: add timer/counter functionality for TGU
->    coresight-tgu: add reset node to initialize
->
->   .../testing/sysfs-bus-coresight-devices-tgu   |  51 ++
->   .../bindings/arm/qcom,coresight-tgu.yaml      |  92 +++
->   drivers/hwtracing/coresight/Kconfig           |  11 +
->   drivers/hwtracing/coresight/Makefile          |   1 +
->   drivers/hwtracing/coresight/coresight-tgu.c   | 780 ++++++++++++++++++
->   drivers/hwtracing/coresight/coresight-tgu.h   | 255 ++++++
->   6 files changed, 1190 insertions(+)
->   create mode 100644 Documentation/ABI/testing/sysfs-bus-coresight-devices-tgu
->   create mode 100644 Documentation/devicetree/bindings/arm/qcom,coresight-tgu.yaml
->   create mode 100644 drivers/hwtracing/coresight/coresight-tgu.c
->   create mode 100644 drivers/hwtracing/coresight/coresight-tgu.h
->
+> 
+> > +}
+> > +
+> > +static const struct phy_ops cv1800_usb_phy_ops = {
+> > +	.set_mode	= cv1800_usb_phy_set_mode,
+> > +	.owner		= THIS_MODULE,
+> > +};
+> > +
+> > +static int cv1800_usb_phy_probe(struct platform_device *pdev)
+> > +{
+> > +	struct device *dev = &pdev->dev;
+> > +	struct device *parent = dev->parent;
+> > +	struct cv1800_usb_phy *phy;
+> > +	struct phy_provider *phy_provider;
+> > +	int ret;
+> > +
+> > +	if (!parent)
+> > +		return -ENODEV;
+> > +
+> > +	phy = devm_kmalloc(dev, sizeof(*phy), GFP_KERNEL);
+> > +	if (!phy)
+> > +		return -ENOMEM;
+> > +
+> > +	phy->syscon = syscon_node_to_regmap(parent->of_node);
+> > +	if (IS_ERR_OR_NULL(phy->syscon))
+> > +		return -ENODEV;
+> > +
+> > +	phy->support_otg = false;
+> > +
+> > +	spin_lock_init(&phy->lock);
+> > +
+> > +	phy->usb_app_clk = devm_clk_get_enabled(dev, "app");
+> > +	if (IS_ERR(phy->usb_app_clk))
+> > +		return dev_err_probe(dev, PTR_ERR(phy->usb_app_clk),
+> > +			"Failed to get app clock\n");
+> > +
+> > +	phy->usb_lpm_clk = devm_clk_get_enabled(dev, "lpm");
+> > +	if (IS_ERR(phy->usb_lpm_clk))
+> > +		return dev_err_probe(dev, PTR_ERR(phy->usb_lpm_clk),
+> > +			"Failed to get lpm clock\n");
+> > +
+> > +	phy->usb_stb_clk = devm_clk_get_enabled(dev, "stb");
+> > +	if (IS_ERR(phy->usb_stb_clk))
+> > +		return dev_err_probe(dev, PTR_ERR(phy->usb_stb_clk),
+> > +			"Failed to get stb clock\n");
+> > +
+> > +	phy->phy = devm_phy_create(dev, NULL, &cv1800_usb_phy_ops);
+> > +	if (IS_ERR(phy->phy))
+> > +		return dev_err_probe(dev, PTR_ERR(phy->phy),
+> > +			"Failed to create phy\n");
+> > +
+> > +	ret = cv1800_usb_phy_set_clock(phy);
+> > +	if (ret)
+> > +		return ret;
+> > +
+> > +	debugfs_create_file("dr_mode", 0644, phy->phy->debugfs,
+> > +			    phy, &dr_mode_fops);
+> > +
+> > +	phy_set_drvdata(phy->phy, phy);
+> > +	phy_provider = devm_of_phy_provider_register(dev, of_phy_simple_xlate);
+> > +
+> > +	return PTR_ERR_OR_ZERO(phy_provider);
+> > +}
+> > +
+> > +static const struct of_device_id cv1800_usb_phy_ids[] = {
+> > +	{ .compatible = "sophgo,cv1800b-usb2-phy" },
+> > +	{ },
+> > +};
+> > +MODULE_DEVICE_TABLE(of, cv1800_usb_phy_ids);
+> > +
+> > +static struct platform_driver cv1800_usb_phy_driver = {
+> > +	.probe = cv1800_usb_phy_probe,
+> > +	.driver = {
+> > +		.name = "cv1800-usb2-phy",
+> > +		.of_match_table = cv1800_usb_phy_ids,
+> > +	 },
+> > +};
+> > +module_platform_driver(cv1800_usb_phy_driver);
+> > +
+> > +MODULE_AUTHOR("Inochi Amaoto <inochiama@outlook.com>");
+> > +MODULE_DESCRIPTION("CV1800/SG2000 SoC USB 2.0 PHY driver");
+> > +MODULE_LICENSE("GPL");
+> > -- 
+> > 2.49.0
+> 
+> -- 
+> ~Vinod
 
