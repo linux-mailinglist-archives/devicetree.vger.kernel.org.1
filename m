@@ -1,192 +1,248 @@
-Return-Path: <devicetree+bounces-190413-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-190414-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 314C3AEBB06
-	for <lists+devicetree@lfdr.de>; Fri, 27 Jun 2025 17:07:31 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1D1CCAEBB0A
+	for <lists+devicetree@lfdr.de>; Fri, 27 Jun 2025 17:08:46 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 36B7C3AAF0A
-	for <lists+devicetree@lfdr.de>; Fri, 27 Jun 2025 15:07:05 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 22AF7640C74
+	for <lists+devicetree@lfdr.de>; Fri, 27 Jun 2025 15:08:20 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6F93F2E8DEC;
-	Fri, 27 Jun 2025 15:07:23 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7C1482E8DEC;
+	Fri, 27 Jun 2025 15:08:37 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=ventanamicro.com header.i=@ventanamicro.com header.b="W0I5aYKe"
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="AGxzK2vo"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pg1-f177.google.com (mail-pg1-f177.google.com [209.85.215.177])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D3B552E88A2
-	for <devicetree@vger.kernel.org>; Fri, 27 Jun 2025 15:07:21 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.215.177
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E2A3F2E88A2
+	for <devicetree@vger.kernel.org>; Fri, 27 Jun 2025 15:08:35 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1751036843; cv=none; b=UismDVmIRHjraHH8gmfL8HwUoILT0ppYPIHv6f/gI1D6SPMo2+d8qzObABmLlqgLQAx1yQBsPkF/4to56gU4w1FwAsAGNNwjAm7LKSVhi+gwtzJSxyH9IkXr4WIeMOM3WW8pdCwjaocxZXJAlctqOS5dD1X13EBoQSA8qSi/ORE=
+	t=1751036917; cv=none; b=WZOPxID4RxDd36gJzFMwwcS0UBZevtxa41CcebXxZYSewQsHmFGU8ZFeH/MI0jVIjZtJlUrJIwo7rBH2DLQzlrM/kPhKs4p4bNtM1ntPpbgMRQf9BK/SZdxR9OnGHBSqsP0QUXdMVDi87hSGB7lFQxom19mBHvYw9INGluJYpy0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1751036843; c=relaxed/simple;
-	bh=K1W/ACUkhEzsh3VhZeua9bbwljhzBiDcmta6M6ukqF0=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=D0pvWwFDzH/h4tf1Mztrn6WkRZt4qknUWM3TFMIxnn2ETFKxMs9vtG+QS05in9uaAHVnTsw0LXN7EOIEcreLCtDaR4KuaBuNNvYE5lKWsA433v1MBv9GH9NeoPgC9EPKt9UvHrk/MvR+u2u8igO1ZaV3W5kQVSduMGEHrnWYQSk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ventanamicro.com; spf=pass smtp.mailfrom=ventanamicro.com; dkim=pass (2048-bit key) header.d=ventanamicro.com header.i=@ventanamicro.com header.b=W0I5aYKe; arc=none smtp.client-ip=209.85.215.177
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ventanamicro.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ventanamicro.com
-Received: by mail-pg1-f177.google.com with SMTP id 41be03b00d2f7-879d2e419b9so1939723a12.2
-        for <devicetree@vger.kernel.org>; Fri, 27 Jun 2025 08:07:21 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=ventanamicro.com; s=google; t=1751036841; x=1751641641; darn=vger.kernel.org;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=kTVCLY7nH8LB+Zm3xLfrn9nxZr6jXIw9YXpYJef7Kgs=;
-        b=W0I5aYKe9TNZF3x3s8NbzSc0Rc+cyLW/VmOIG9YOhE3k4EwWdm5Zx0CKysc1Ca3410
-         naaxRhWVUGfuII4mQHBE0FmKQyKkcZuXqLZwouh3Ha1IK9+eMY+q4wne1rW+Ml3AMCCS
-         5+eiQFtHc/GLYdbozRd3n04xbYSRCCSbF3KJQ6MVycyrIk3E/OIEyaKeqyg2RhSV8cqK
-         HGIdPcyavhst+Wy8JFf03Gldr4MVu2oRm5oNBlfqmW1HpoWP2CgklDfaS/g+kb+tXOD3
-         4HSC8AF5i51/AjeNBSou4F1w1I3MN2FtuxAV3rR9MfbYgggvOC7zLT0cQXAc6UHwnBi9
-         A7xA==
+	s=arc-20240116; t=1751036917; c=relaxed/simple;
+	bh=kpMTMvA3cHKV1C25fHAt4ScwoPCkE8sx7InfnacHj44=;
+	h=From:Date:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=QWmam/wBEYuK5oNRasYXtUvcsl11Xqq9nTJ28B/FQ9DBOYaT/COghrhErPVnAeWV+PqDHNjQ+NdqL2oMzLe9+P94XHX12NaLYN1LgVleSi1JTOnUcBEx+bQFULg3ds0pD1N0rj3GDojzm4fuPEoXW0BgyOLYx25FWY9MYdMLwbE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=AGxzK2vo; arc=none smtp.client-ip=205.220.168.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
+Received: from pps.filterd (m0279864.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 55RBrZKm028697
+	for <devicetree@vger.kernel.org>; Fri, 27 Jun 2025 15:08:35 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+	cc:content-type:date:from:in-reply-to:message-id:mime-version
+	:references:subject:to; s=qcppdkim1; bh=P73tOWEQ2c6J/KzyC3iJome9
+	vnN0/Y1gdrBWWFMKlSQ=; b=AGxzK2voQZNGlKU+WUxJP1Nb0cKbZcDdS2Chg+GU
+	7pP3+fUgVtkKnm3ZqRX9X+jxiGpQ+BAjsdL19rmDYSR981J/5Kq0XK8LPx0NsD2k
+	YN0/yKY7XXHNC7S13iPT1qYCZjUVVPLDi50Pdx0rD+1kProcdMklcj66kzoYlxVs
+	iGjn5u7csMS00ngM+bzwM0kE3TR3N/7wdBD8aZHUGQaettxFCDFsoO42XHjuCVFY
+	pzcbNfd49lS073GBYzPWXRugEVy2a3mbwW9wI+EZ4JuMpepqoJAkBh4GJS7Q3jUk
+	YLRMPLJ9gfK2Y59QDmanmdTo+UYU4yCWq1s5OHXpOmGvZg==
+Received: from mail-qt1-f197.google.com (mail-qt1-f197.google.com [209.85.160.197])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 47esa50j1s-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
+	for <devicetree@vger.kernel.org>; Fri, 27 Jun 2025 15:08:34 +0000 (GMT)
+Received: by mail-qt1-f197.google.com with SMTP id d75a77b69052e-4a461632999so40980601cf.1
+        for <devicetree@vger.kernel.org>; Fri, 27 Jun 2025 08:08:34 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1751036841; x=1751641641;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=kTVCLY7nH8LB+Zm3xLfrn9nxZr6jXIw9YXpYJef7Kgs=;
-        b=IW3xjLUw/qRPOwtBrUdyjXMAo+Zh4x7ukdnGHEDOxoN2qByu6oO8Dj0HW7NaF4nxTx
-         B0116fG9mRkGZeody9cRlHa2J1Lwxcgv31qzkOq3/+Mz+NZ8pfUPaEIfVYl3VAO8TlBz
-         5WGU41QFvtVscXxmZJdQN4z7gnzletahiRi09OHXAlPufeW2ZuFqz5jS8tQBG2NuCKoN
-         C4l0Fhlg/6YqKRhlf0eE/NMo+kv5D7JCtHMiBBOtCc7/Hq7RiBhqLGf6q6mrHeAtHa3i
-         zX3VbcVnLF4li/ky7l+3/CbHzvYJY/BbuJBYqJVOAcGhf44rSyYFrY+Wd6EKKiUP/x+d
-         HI5Q==
-X-Forwarded-Encrypted: i=1; AJvYcCVUO9aDdebealZIvLJ837x5YfTyB1GQr5DazkC753vUXvxu+UZS6WFPgWoBcUD8vXpPbFstzMsP/sXZ@vger.kernel.org
-X-Gm-Message-State: AOJu0YzCnWkPrhnk0bBuqF8BirWp9A9uhFb3d6t4GhtEqRyubbWA3SSP
-	GJojNyWJjc2u//96lR8mSVtLasNOp8bWvFrHpo5Cw9iwul5Rm9Xn0H6T/y8tOBTU6qJvF0qcE+P
-	C9NbQCfY2biKgbCrreaXs0811jAwwKgT5TsAfGSZFWQ==
-X-Gm-Gg: ASbGncv5TrH9+1tdqPRLJVriH9r8lG2gZK6DJfoPrLEF9CzGAYJHLIzwSL0eQLsHlxH
-	oyZophy2ClwxWAXY8nM6QAgeYNTuyxDEhL3gzH27+0G3KYjFhSGs+SNSGm3lZJhuQb16wE8bav6
-	Vmzl3l5lqVeWdTEiKkhbKIRjf2u6jzYbc9GHXFFg6uDbmtbto/Ug6La2NcnXYiWN+RWAoovJItp
-	jqY
-X-Google-Smtp-Source: AGHT+IF4AdiLDVJzWcIgdL/8Bs2UVOqvh/d51X69lsgIeuxgoVvKvtiPfY/zv1dvVDdkVgnc/ZS5VJNJlB5QgtEcAew=
-X-Received: by 2002:a17:90b:528a:b0:311:d3a5:572a with SMTP id
- 98e67ed59e1d1-318c9225e52mr5337592a91.8.1751036839222; Fri, 27 Jun 2025
- 08:07:19 -0700 (PDT)
+        d=1e100.net; s=20230601; t=1751036913; x=1751641713;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:date:from:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=P73tOWEQ2c6J/KzyC3iJome9vnN0/Y1gdrBWWFMKlSQ=;
+        b=j1DsYLRyCut4HbJouGJ+QyjBrjcuNy466BSTVdgC8Yt+HDtHjByMd6FI6UQ0OmSzWK
+         RQ0wWWyX2KgCNCLo9AbmoFIUZ8JoUfFsZJ8ycrUaWxFqKEgImUnuXvr0B0P9z1zZmYOE
+         V0CUtS2FuCCNqqTeUxkz76Mxil+iT9IfttUS/O4pnDM0e2HM9R/7UuistDx2akV84RjO
+         dJn+Q2TKFjFEBlf9aydeymAGGTt95phUeoCw+36H5ZyvWUJzAgEwhiIfCTp302N0MzHP
+         jDOblTb/NMLANzztkO8xAUYOxnn45S1y257N6BbYvoiIUSn9MegOqeSz/IZHU/zbZcwj
+         TdVA==
+X-Forwarded-Encrypted: i=1; AJvYcCWh3UhK5s1FoLqnklh5gA5LCmIpi5yIg6XJppk1MT2kHYjZ22hkjKRyZWCJr02Ykr4NFZm95huAigwf@vger.kernel.org
+X-Gm-Message-State: AOJu0Yx9RBd5GNpKswsSsrihjss2Jj8GvQVVtf+Q3b5WZ3bXNavsOpDx
+	Gzqx+3V7xo+KfUaCkTHZwAA1GcM9aUl8aeDHpU0HXFjXSe6f1U66bboM/7wtpzPRX65TfF6DYfg
+	6L4MZJaM7hzUab4gt4hME418epNvmvw+IjMvAqBwlt22CGbpjC/j+UVX0hoLpHweS
+X-Gm-Gg: ASbGncvSi7NfqwJuLLg/IGCSCaW5TPGOFVZ/1ZvHKJ3O0D3P0j8oMuiajoN03M6GZGB
+	6CTFqbCUmU463KNUkpls3sNN6YlLNmvq1B8NHRLhOMIMCiFhTbCmmML/DlUwaTh3CY7msVVR0Sj
+	9i321GJkKH8ZxEDgjNdfThhf0CfkIL1F2DKvsDT0K5PQuJmPiyGxLi32+XbtKCZo4PRJiaGeQSZ
+	H8o4QfkGZzHMpYXt4iUPZ4PA1ccpvZ9n4iuNg56DD9QTdP262wD5zoe7toiyKMApKCzYK+j8Pc1
+	ZqmXpAwdf2krylyrTNT0tohwffy9VW4Wor29gjB9CyDrtfF/0KN/Pj9Q9Q==
+X-Received: by 2002:ac8:4f05:0:b0:476:ff0d:ed6c with SMTP id d75a77b69052e-4a8040706eemr14633281cf.40.1751036912916;
+        Fri, 27 Jun 2025 08:08:32 -0700 (PDT)
+X-Google-Smtp-Source: AGHT+IE9WiaEVlfLqLgMXPTA0t8gmR7V19G9517FcdHUO2A8QtsXrCGFlce45537kX8z4hnAg6p1xA==
+X-Received: by 2002:ac8:4f05:0:b0:476:ff0d:ed6c with SMTP id d75a77b69052e-4a8040706eemr14632841cf.40.1751036912270;
+        Fri, 27 Jun 2025 08:08:32 -0700 (PDT)
+Received: from trex (132.red-79-144-190.dynamicip.rima-tde.net. [79.144.190.132])
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-453814a6275sm57996535e9.1.2025.06.27.08.08.30
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 27 Jun 2025 08:08:31 -0700 (PDT)
+From: Jorge Ramirez <jorge.ramirez@oss.qualcomm.com>
+X-Google-Original-From: Jorge Ramirez <JorgeRamirez-Ortiz>
+Date: Fri, 27 Jun 2025 17:08:30 +0200
+To: Vikash Garodia <quic_vgarodia@quicinc.com>
+Cc: Jorge Ramirez <jorge.ramirez@oss.qualcomm.com>, krzk+dt@kernel.org,
+        bryan.odonoghue@linaro.org, quic_dikshita@quicinc.com,
+        mchehab@kernel.org, robh@kernel.org, conor+dt@kernel.org,
+        konradybcio@kernel.org, andersson@kernel.org,
+        linux-arm-msm@vger.kernel.org, linux-media@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v5 5/5] arm64: dts: qcom: qcm2290: Add venus video node
+Message-ID: <aF6z7iaicHyNXg6w@trex>
+References: <20250626135931.700937-1-jorge.ramirez@oss.qualcomm.com>
+ <20250626135931.700937-6-jorge.ramirez@oss.qualcomm.com>
+ <6e330e8f-5856-ef8e-5fe3-52bd61b59e02@quicinc.com>
+ <aF6PqCY/E6H0Mc2/@trex>
+ <2722e70a-1080-c9f3-eb56-4a6e79084bdc@quicinc.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20250618121358.503781-1-apatel@ventanamicro.com>
- <20250618121358.503781-10-apatel@ventanamicro.com> <aFkZJKnweqBi64b8@smile.fi.intel.com>
- <CA+Oz1=a65HvfXHWjeSq4Ubq=5kzHp9pkLJVr77hvTYAGFHv0Mg@mail.gmail.com> <aF1UWNzWhheLNTky@smile.fi.intel.com>
-In-Reply-To: <aF1UWNzWhheLNTky@smile.fi.intel.com>
-From: Rahul Pathak <rpathak@ventanamicro.com>
-Date: Fri, 27 Jun 2025 20:36:41 +0530
-X-Gm-Features: Ac12FXyg_1voP3_rSKmrZJ_A-E3gflVigZ0fA-ce5u-xgIj9wegRrIsa-1iLCcE
-Message-ID: <CA+Oz1=bAsykB=qAk3r8FV8K8cnPEVT4Ow7L4SWBvrc_3DsyaWw@mail.gmail.com>
-Subject: Re: [PATCH v6 09/23] clk: Add clock driver for the RISC-V RPMI clock
- service group
-To: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
-Cc: Anup Patel <apatel@ventanamicro.com>, Michael Turquette <mturquette@baylibre.com>, 
-	Stephen Boyd <sboyd@kernel.org>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Jassi Brar <jassisinghbrar@gmail.com>, Thomas Gleixner <tglx@linutronix.de>, 
-	"Rafael J . Wysocki" <rafael@kernel.org>, Mika Westerberg <mika.westerberg@linux.intel.com>, 
-	Linus Walleij <linus.walleij@linaro.org>, Bartosz Golaszewski <brgl@bgdev.pl>, 
-	=?UTF-8?Q?Uwe_Kleine=2DK=C3=B6nig?= <ukleinek@kernel.org>, 
-	Palmer Dabbelt <palmer@dabbelt.com>, Paul Walmsley <paul.walmsley@sifive.com>, 
-	Len Brown <lenb@kernel.org>, Sunil V L <sunilvl@ventanamicro.com>, 
-	Leyfoon Tan <leyfoon.tan@starfivetech.com>, Atish Patra <atish.patra@linux.dev>, 
-	Andrew Jones <ajones@ventanamicro.com>, Samuel Holland <samuel.holland@sifive.com>, 
-	Anup Patel <anup@brainfault.org>, linux-clk@vger.kernel.org, devicetree@vger.kernel.org, 
-	linux-riscv@lists.infradead.org, linux-kernel@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <2722e70a-1080-c9f3-eb56-4a6e79084bdc@quicinc.com>
+X-Authority-Analysis: v=2.4 cv=eLYTjGp1 c=1 sm=1 tr=0 ts=685eb3f2 cx=c_pps
+ a=EVbN6Ke/fEF3bsl7X48z0g==:117 a=wjE3nLva0YkvARyJ+Gfmxg==:17
+ a=kj9zAlcOel0A:10 a=6IFa9wvqVegA:10 a=EUspDBNiAAAA:8 a=4ycgIVn65cuQyXs68zAA:9
+ a=CjuIK1q_8ugA:10 a=a_PwQJl-kcHnX1M80qC6:22
+X-Proofpoint-GUID: eH1XHHQ-a8dnurdzvo1bsfscI2Nj3qua
+X-Proofpoint-ORIG-GUID: eH1XHHQ-a8dnurdzvo1bsfscI2Nj3qua
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwNjI3MDEyMyBTYWx0ZWRfX+JmiLMhPvuKO
+ m7PjufQnjZMnkHe4RcEhlFiI2Ovf/BmoukO+moPB1kOwENI9NHh5zycmLNJQFVbn5cSrJVPb40t
+ +fGBa27dJog80Ba2Xhy3EjllqsEArbCdaNRWwoOQcaZ83Dauvto48dpkQ3tb8xSCRVO+qWpFXNp
+ p4VGLdTyh4rygItpO/++6gAR1lIIhaIlxze56lgWPV6Wyb3hAx8FVLvjJgqrYL7XynCsVR/Qi8y
+ 9qAXTFEXBUSDJcBC8fRD9Acclt5Wigs7JqRuRUM1KDb3SWyvzW3/BNdRilIRH7DWVYoVUs0ti4I
+ DtEcJ6ERdEuVyalw1vI3sfvSUmXuzzVc6J03Mad8vQnN7Vosjbyj1VN62XXnZ36Pl60uHOpsDBA
+ v2x69Eeo03mSAbUfT25VP88b7tZJwRVZUJdNnL2lGu0j5lGt2wVNHfpZJ6qNkZ/8+Kzbij8z
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1099,Hydra:6.1.7,FMLib:17.12.80.40
+ definitions=2025-06-27_04,2025-06-26_05,2025-03-28_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ phishscore=0 priorityscore=1501 mlxscore=0 clxscore=1015 mlxlogscore=999
+ suspectscore=0 bulkscore=0 impostorscore=0 lowpriorityscore=0 malwarescore=0
+ adultscore=0 spamscore=0 classifier=spam authscore=0 authtc=n/a authcc=
+ route=outbound adjust=0 reason=mlx scancount=1 engine=8.19.0-2505280000
+ definitions=main-2506270123
 
-> > > > +union rpmi_clk_rates {
-> > > > +     u64 discrete[RPMI_CLK_DISCRETE_MAX_NUM_RATES];
-> > > > +     struct {
-> > > > +             u64 min;
-> > > > +             u64 max;
-> > > > +             u64 step;
-> > > > +     } linear;
-> > >
-> > > Have you looked at the linear_range.h? Why can it not be (re-)used here?
-> >
-> > I did the first time only when you commented. And i dont see any
-> > benefit in that.
-> > linear_range has slightly different way to access any value using `sel`.
-> > Here this union represents how RPMI protocol represents the rates and
-> > reusing linear_range will only introduce conversion to and fro.
->
-> Summarize this in the comment on top of the struct definition so one will not
-> attempt to convert the driver in the future.
->
+On 27/06/25 20:28:29, Vikash Garodia wrote:
+> 
+> On 6/27/2025 6:03 PM, Jorge Ramirez wrote:
+> > On 27/06/25 17:40:19, Vikash Garodia wrote:
+> >>
+> >> On 6/26/2025 7:29 PM, Jorge Ramirez-Ortiz wrote:
+> >>> Add DT entries for the qcm2290 venus encoder/decoder.
+> >>>
+> >>> Co-developed-by: Loic Poulain <loic.poulain@oss.qualcomm.com>
+> >>> Signed-off-by: Loic Poulain <loic.poulain@oss.qualcomm.com>
+> >>> Signed-off-by: Jorge Ramirez-Ortiz <jorge.ramirez@oss.qualcomm.com>
+> >>> ---
+> >>>  arch/arm64/boot/dts/qcom/qcm2290.dtsi | 57 +++++++++++++++++++++++++++
+> >>>  1 file changed, 57 insertions(+)
+> >>>
+> >>> diff --git a/arch/arm64/boot/dts/qcom/qcm2290.dtsi b/arch/arm64/boot/dts/qcom/qcm2290.dtsi
+> >>> index f49ac1c1f8a3..5326c91a0ff0 100644
+> >>> --- a/arch/arm64/boot/dts/qcom/qcm2290.dtsi
+> >>> +++ b/arch/arm64/boot/dts/qcom/qcm2290.dtsi
+> >>> @@ -1628,6 +1628,63 @@ adreno_smmu: iommu@59a0000 {
+> >>>  			#iommu-cells = <2>;
+> >>>  		};
+> >>>  
+> >>> +		venus: video-codec@5a00000 {
+> >>> +			compatible = "qcom,qcm2290-venus";
+> >>> +			reg = <0 0x5a00000 0 0xf0000>;
+> >>> +			interrupts = <GIC_SPI 225 IRQ_TYPE_LEVEL_HIGH>;
+> >>> +
+> >>> +			power-domains = <&gcc GCC_VENUS_GDSC>,
+> >>> +					<&gcc GCC_VCODEC0_GDSC>,
+> >>> +					<&rpmpd QCM2290_VDDCX>;
+> >>> +			power-domain-names = "venus",
+> >>> +					     "vcodec0",
+> >>> +					     "cx";
+> >>> +			operating-points-v2 = <&venus_opp_table>;
+> >>> +
+> >>> +			clocks = <&gcc GCC_VIDEO_VENUS_CTL_CLK>,
+> >>> +				 <&gcc GCC_VIDEO_AHB_CLK>,
+> >>> +				 <&gcc GCC_VENUS_CTL_AXI_CLK>,
+> >>> +				 <&gcc GCC_VIDEO_THROTTLE_CORE_CLK>,
+> >>> +				 <&gcc GCC_VIDEO_VCODEC0_SYS_CLK>,
+> >>> +				 <&gcc GCC_VCODEC0_AXI_CLK>;
+> >>> +			clock-names = "core",
+> >>> +				      "iface",
+> >>> +				      "bus",
+> >>> +				      "throttle",
+> >>> +				      "vcodec0_core",
+> >>> +				      "vcodec0_bus";
+> >>> +
+> >>> +			memory-region = <&pil_video_mem>;
+> >>> +			iommus = <&apps_smmu 0x860 0x0>,
+> >>> +				 <&apps_smmu 0x880 0x0>,
+> >>> +				 <&apps_smmu 0x861 0x04>,
+> >>> +				 <&apps_smmu 0x863 0x0>,
+> >>> +				 <&apps_smmu 0x804 0xe0>;
+> >> keep only the non secure ones.
+> > 
+> > ok
+> > 
+> >>> +
+> >>> +			interconnects = <&mmnrt_virt MASTER_VIDEO_P0 RPM_ALWAYS_TAG
+> >>> +					 &bimc SLAVE_EBI1 RPM_ALWAYS_TAG>,
+> >>> +					<&bimc MASTER_APPSS_PROC RPM_ACTIVE_TAG
+> >>> +					 &config_noc SLAVE_VENUS_CFG RPM_ACTIVE_TAG>;
+> >>> +			interconnect-names = "video-mem",
+> >>> +					     "cpu-cfg";
+> >>> +
+> >>> +			status = "okay";
+> >>> +
+> >>> +			venus_opp_table: opp-table {
+> >>> +				compatible = "operating-points-v2";
+> >>> +
+> >>> +				opp-133000000 {
+> >>> +					opp-hz = /bits/ 64 <133000000>;
+> >>> +					required-opps = <&rpmpd_opp_low_svs>;
+> >>> +				};
+> >> Fix the corner freq value
+> > 
+> > can you add some reference please?
+> > 
+> > I took this data from an internal document - not sure why the downstream
+> > driver supports different values or where those were taken from (AFAIK
+> > they are not supported)
+> Most likely you have referred incorrect downstream file. Refer scuba-vidc.dtsi.
 
-Sure, I will update.
+I took them from actual documents (which might or might not be obsolete,
+hard to say but they were the latest version and as such, they
+contradict the downstream dtsi).
 
-> >
-> > >
-> > > > +     if (ret || rx.status)
-> > > > +             return 0;
-> > >
-> > > Why rx.status can't be checked before calling to a sending message?
-> > > Sounds like the rpmi_mbox_init_send_with_response() links rx to msg somehow.
-> > > If this is the case, use msg here, otherwise move the check to be in the
-> > > correct place.
-> >
-> > Yes, the rpmi_mbox_init_send_with_response is a helper function which links
-> > the rx to msg. It's a very simple function which only performs assignments.
-> >
-> > Using msg instead of rx directly will require additional typecasting
-> > which will only clutter
-> > I can add a comment if that helps wherever the rpmi_mbox_init_send_with_response
-> > is used.
->
-> This is besides harder-to-read code is kinda of layering violation.
-> If you afraid of a casting, add a helper to check for the status error.
-> Comment won't help much as making code better to begin with.
+So I'd rather not use downstream - could you point me to the reference
+you used please - I wonder if the fix is required downstream instead of here? 
 
-Why using rx is the issue in the first place when it's the same layer
-which links the rx with msg using the helper function and then
-uses it directly?  Infact using rx directly avoids unnecessary code
-which is only increasing redundant code which ultimately results in
-same thing. Even if I add a helper function that will require additional
-pointer passing with NULL checking which all is currently avoided.
-And, we are not just talking about rx.status but a lot of other fields.
+> Again, good reference for such cases would IP catalogues and if not, gcc driver
+> in this case which have structures defining different corners for
+> video.
 
->
-> > > > +     struct rpmi_clk_context *context = rpmi_clk->context;
-> > > > +     struct rpmi_clk_rate_discrete *rate_discrete;
-> > > > +     struct rpmi_clk_rate_linear *rate_linear;
->
-> > > > +     struct rpmi_get_supp_rates_rx *rx __free(kfree) = NULL;
->
-> This should be assigned where it's used. NULL assignment is not encouraged.
+The PM document for this chip only confirms two values - the other 4 ones
+claim they are not supported on 50_LT
 
-Sure, I will update.
+but we can discuss offline.
 
->
-> > > > +     struct rpmi_get_supp_rates_tx tx;
-> > > > +     struct rpmi_mbox_message msg;
-> > >
-> > > > +     size_t clk_rate_idx = 0;
-> > >
-> > > This kind of assignments is hard to maintain and it's mistake prone in case
-> > > some additional code is injected in the future that might reuse it.
-> > >
-> > I dont understand what is the problem with this assignment. If any
-> > code added in the future reuse it then it has to make sure that
-> > clk_rate_idx has the correct initial value before any further references.
->
-> Yes, it will add an additional churn and require more brain activity to
-> maintain such a code. It's a general recommendation to assign when it's
-> actually needed (there are, of course, exceptions for some small functions,
-> but this one is not).
-
-Sure, I will update.
-
-
-
--- 
-
-Thanks
-Rahul Pathak
+> > 
+> > 
+> >>
+> >> Regards,
+> >> Vikash
+> >>> +
+> >>> +				opp-240000000 {
+> >>> +					opp-hz = /bits/ 64 <240000000>;
+> >>> +					required-opps = <&rpmpd_opp_svs>;
+> >>> +				};
+> >>> +			};
+> >>> +		};
+> >>> +
+> >>>  		mdss: display-subsystem@5e00000 {
+> >>>  			compatible = "qcom,qcm2290-mdss";
+> >>>  			reg = <0x0 0x05e00000 0x0 0x1000>;
 
