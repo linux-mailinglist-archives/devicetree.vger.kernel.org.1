@@ -1,151 +1,143 @@
-Return-Path: <devicetree+bounces-190503-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-190504-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2E950AEBF96
-	for <lists+devicetree@lfdr.de>; Fri, 27 Jun 2025 21:16:20 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 908D9AEBF9C
+	for <lists+devicetree@lfdr.de>; Fri, 27 Jun 2025 21:17:10 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 186BA1C4727E
-	for <lists+devicetree@lfdr.de>; Fri, 27 Jun 2025 19:16:26 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id C3D4C1C46453
+	for <lists+devicetree@lfdr.de>; Fri, 27 Jun 2025 19:17:02 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 278631F8747;
-	Fri, 27 Jun 2025 19:16:05 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E8C891F874C;
+	Fri, 27 Jun 2025 19:16:42 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="HeSdvolZ"
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="L4M1HOc9"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EAA891E1E0B;
-	Fri, 27 Jun 2025 19:16:04 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 507421E48A
+	for <devicetree@vger.kernel.org>; Fri, 27 Jun 2025 19:16:41 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1751051765; cv=none; b=D6oeB8ewJHHXhbj7c6b76ALVR3IyhuoqCfcHaVZIeYFh2J5N5cAHQZYKeLeq7xRgOQSEa3BxFg3O3UJdJOE7d5yLzm3OWFVMw3oWvx9QlfULwwssIFRlMU+VPJjYL+jeYI2R4pqC+Qv4WW4rKcFNyTz9ZTG+ry4uD2fiCJ55Xyc=
+	t=1751051802; cv=none; b=VMk52m3lMdf/VnGhV4PltW0ZsBvxVPxl5+enw7p8wF4W2lwx9LOGH9PfNCaXIXM2VyUZ2bri5Dpj68TFVYK3+9zB0JDHKU4uy/GK2k/klwQApkLUfQLYDZUlu7/tad/aqmlPuRW+4i6R9+qtkeNZkOfr/Zz0FYsFepJafl33UIw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1751051765; c=relaxed/simple;
-	bh=e3ItbkmjlCF+WHhbj2/fNpi4b7yR0M+6lB+y/2rBgh4=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=KyYe7JTxWRN7bvmsEQtL4igwUL89jr9J8w4PfhAOmbYt4nLyAAHpN5+mJE9MKpnGYoweTwBSGLlcZGOG9pBRYX+KJnF11RfhtPOL0BrAkykB5J1XsB9BR3BxiE/fN9/8cVT8F5ZoZkmOy8s42ye+abeNAXlrkPXu/TaHxsEcOt8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=HeSdvolZ; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id A7DD2C4CEE3;
-	Fri, 27 Jun 2025 19:15:57 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1751051764;
-	bh=e3ItbkmjlCF+WHhbj2/fNpi4b7yR0M+6lB+y/2rBgh4=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=HeSdvolZ1UWrXJ9VSVn0ZS0DXIqe2eIXrXITt8duLo+CfF5vTXac+ssoZApecraH1
-	 P6B34G+ZT4coa3ZcU6wxNroRRNJoZdFztXJD03a4AdF1WGj/t9kpNYDL/NfBJE4Wof
-	 KmdnpV4SLP6BzmvZek6j0+ATHYvGhFeAd1DG8mXmgIsOfucxt3OywgB99zLXehfevR
-	 mqU7rlqzqJtoNk10nnojKRiZNt0EB9GqJ5bK68DoJUsEIZlO21up/E/uvVTp+qY8Wt
-	 bHmHC42juwXKYjbB+5rAmVCmyt4SIW3YdBju8ygb3Yey69lLMJjOUfvZszDV8BjyJY
-	 3XsaCQMDAlyHw==
-Date: Fri, 27 Jun 2025 20:15:55 +0100
-From: Simon Horman <horms@kernel.org>
-To: =?utf-8?B?VGjDqW8=?= Lebrun <theo.lebrun@bootlin.com>
-Cc: Andrew Lunn <andrew+netdev@lunn.ch>,
-	"David S. Miller" <davem@davemloft.net>,
-	Eric Dumazet <edumazet@google.com>,
-	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Nicolas Ferre <nicolas.ferre@microchip.com>,
-	Claudiu Beznea <claudiu.beznea@tuxon.dev>,
-	Paul Walmsley <paul.walmsley@sifive.com>,
-	Palmer Dabbelt <palmer@dabbelt.com>,
-	Albert Ou <aou@eecs.berkeley.edu>, Alexandre Ghiti <alex@ghiti.fr>,
-	Samuel Holland <samuel.holland@sifive.com>,
-	Richard Cochran <richardcochran@gmail.com>,
-	Russell King <linux@armlinux.org.uk>,
-	Thomas Bogendoerfer <tsbogend@alpha.franken.de>,
-	Vladimir Kondratiev <vladimir.kondratiev@mobileye.com>,
-	Gregory CLEMENT <gregory.clement@bootlin.com>,
-	Cyrille Pitchen <cyrille.pitchen@atmel.com>,
-	Harini Katakam <harini.katakam@xilinx.com>,
-	Rafal Ozieblo <rafalo@cadence.com>,
-	Haavard Skinnemoen <hskinnemoen@atmel.com>,
-	Jeff Garzik <jeff@garzik.org>, netdev@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	linux-riscv@lists.infradead.org, linux-mips@vger.kernel.org,
-	Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
-	Tawfik Bayouk <tawfik.bayouk@mobileye.com>
-Subject: Re: [PATCH net-next v2 16/18] MIPS: mobileye: add EyeQ5 DMA IOCU
- support
-Message-ID: <20250627191555.GD1776@horms.kernel.org>
-References: <20250627-macb-v2-0-ff8207d0bb77@bootlin.com>
- <20250627-macb-v2-16-ff8207d0bb77@bootlin.com>
+	s=arc-20240116; t=1751051802; c=relaxed/simple;
+	bh=RlRJcwm9a8JTqN3y1j1t/IjOBE0hIdzvwB5bYp7QhCQ=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=KL5OSruzSQcAuggZFZIAhM9v3Zh6kp88IQqxBNGMLOje0I1hlt86RFVMIPrkxU3XJMFZQayWvRpAObzORGLvdXAnYqhubraOpCFdIofjhoKn0Lyv8V48HXMErASKxaDXRpctXks59Ijk6Rl3gRy/K6LR6r6NuOYeBvi+YA5AGcA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=L4M1HOc9; arc=none smtp.client-ip=205.220.180.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
+Received: from pps.filterd (m0279868.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 55RBu3Cv009871
+	for <devicetree@vger.kernel.org>; Fri, 27 Jun 2025 19:16:40 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	TXDux9ZnYbHSwb/EPmf9T5s+8Qzuw9drVvr9rBihY4A=; b=L4M1HOc9b/2x2L4a
+	+Kfmi8fcqJuqKOysuPdlyWxBmGHnO5xdsPuEgI+5ngGlA6amu0F/hr3BMoLXsPPa
+	MaQBjjh1LgoBZVuc+RGvFLuKdELgEKJ9nMFmqYPaVH5jiteICxBGOBLsSOtoZght
+	aPccjghvyoE19gx4OCZ+veFSJR14i6/gygqNezlux9w2exNnCasvpR47eUOHEPcU
+	OsY3L2fH48E4mSnFHSi300cfAZllZNxEI1X0xSxJQfbVgbSVPRm1+WXYAgXzzo0z
+	eC4SgiN6/850RsvhRglkcf6XjCbdD6vmI0qVtRTpao9EWL1qwWc9V/z4THAnEbkh
+	olaI3Q==
+Received: from mail-qk1-f198.google.com (mail-qk1-f198.google.com [209.85.222.198])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 47g88fhh6g-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
+	for <devicetree@vger.kernel.org>; Fri, 27 Jun 2025 19:16:39 +0000 (GMT)
+Received: by mail-qk1-f198.google.com with SMTP id af79cd13be357-7cfb7ee97c5so5688985a.1
+        for <devicetree@vger.kernel.org>; Fri, 27 Jun 2025 12:16:39 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1751051799; x=1751656599;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=TXDux9ZnYbHSwb/EPmf9T5s+8Qzuw9drVvr9rBihY4A=;
+        b=cWDb8gwwa2qsYMyMRXK1RCOReNhvCSK4CC2BpedUy11LasMJ4fqswnuDteqW0UZXtA
+         C0wKACHBlo/Za4DIARFktxamOkvu2Lz77QsPsaNBHB0xJbjFgU4k77X14a/Ttx80DyzA
+         W9C3czpc/glwJQZgpM1WuXbXxCU4OgiLN/O3X7LRYgaLqEq3RINMX32q6PGIIfw/qsJa
+         jRAwE0QeKUuSVMa2ESerC65BZeUTEzA1bwk1JmFF+oav0M4tc8yBbiAf1FTOXwkE/PCa
+         TYweExSlw2Gg8b2GT/CPDYamCkrxZaXme4TgRxOOmgbBRfSlUiF10r7GSXKKPFIJkMS3
+         DeYw==
+X-Forwarded-Encrypted: i=1; AJvYcCVyHInWrD0f/o3b4sKsOpVKDjC+DwvDwJhiF4FzXcnAfkNOuChbQ95vPjBtlQexXKR7WfCcR6HtAgUY@vger.kernel.org
+X-Gm-Message-State: AOJu0YzfmSEVj+0OaCSmEsyxnCZoLVO4owQEtMZRcQn3GdLXG6nvbSNb
+	CW+pVxiLgcvlzmVRlBED3Odvq6Vm5Aq+cyjuHJO0q34upWhTv3jJVMrceMfN9Fn7hQqKXymagBi
+	d1SrpUFIaOrdIhWR7KLkEInLAP+wbN+ZlkUAb0j/wpFLIJRdpGqhJAESEruV1PJGx
+X-Gm-Gg: ASbGncsR4529YysHKJrHU1JRYBeOU0r8Hq20/v3BA9ChC9jtZVpP2QDCdFIYpGSBcgJ
+	5F3fFgyfw2GAHyXTQ6qVwPUiWc3Kmiegp5TIKVrA7lpF8+KLWqfDBe54mbn6Zfjy/uI62nVbJFm
+	JUKbFi3o/vwGHlCkNs41UnFxCSM0bFMS9c8BbkOAO1Pzlbu7kV4aLHxx8alVLG1BqmIOBXKl8Tf
+	qMiZ3otTdOr23PVPuQ50xLUuoA/hrRJUnFJ881PdHRLbORhvSpl1kcaRt/ldL9yQSNdvy7cH62I
+	urtY8PkRYwXszpkpENRKfHaMJEA7mQjCimFQSGxbih/98yaZKxQdkRSSNQ3KOpluum79PnwU92Y
+	Q/C8=
+X-Received: by 2002:a05:620a:2804:b0:7d3:c69e:267 with SMTP id af79cd13be357-7d44c28cbefmr18541385a.12.1751051798996;
+        Fri, 27 Jun 2025 12:16:38 -0700 (PDT)
+X-Google-Smtp-Source: AGHT+IHAzgVSK1bhvsi8IxU2dP1+yUtNotEs7vFGntymL185tGwfB4paX0PSqMYbH7ZA9B7nCA880w==
+X-Received: by 2002:a05:620a:2804:b0:7d3:c69e:267 with SMTP id af79cd13be357-7d44c28cbefmr18539085a.12.1751051798284;
+        Fri, 27 Jun 2025 12:16:38 -0700 (PDT)
+Received: from [192.168.143.225] (078088045245.garwolin.vectranet.pl. [78.88.45.245])
+        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-ae35363b0e6sm174318166b.20.2025.06.27.12.16.35
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 27 Jun 2025 12:16:37 -0700 (PDT)
+Message-ID: <c718dcde-21d8-47a2-9453-d98f0dd96f88@oss.qualcomm.com>
+Date: Fri, 27 Jun 2025 21:16:33 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20250627-macb-v2-16-ff8207d0bb77@bootlin.com>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH] dt-bindings: media: qcom,x1e80100-camss: correct
+ description of vdd-csiphy-1p2-supply
+To: Vladimir Zapolskiy <vladimir.zapolskiy@linaro.org>,
+        Robert Foss <rfoss@kernel.org>, Todor Tomov <todor.too@gmail.com>,
+        Bryan O'Donoghue <bryan.odonoghue@linaro.org>
+Cc: Mauro Carvalho Chehab <mchehab@kernel.org>, Rob Herring
+ <robh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>, linux-arm-msm@vger.kernel.org,
+        linux-media@vger.kernel.org, devicetree@vger.kernel.org
+References: <20250627190021.139373-1-vladimir.zapolskiy@linaro.org>
+Content-Language: en-US
+From: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
+In-Reply-To: <20250627190021.139373-1-vladimir.zapolskiy@linaro.org>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwNjI3MDE1NSBTYWx0ZWRfX9C0H4rkyStmu
+ c5KXhJQzOyyxjlLU584ECcbNWOf/JuJDs+zhQ3lpgzzMyFfd9zBaeKz2sI3rgG0CBQIJxLJ86g1
+ dkD142E+4pxcWLa9/82fK9LoUG/dVKlViYJZyslWD3n6Bd4UWuCcBuztfUzhfN75l5ffBQd89I0
+ c2pdABD6NYwCMtZSQiqrLzPOYE0N7Bl/DWlu0y9uJ+drg/797ogRaqfWwaKOpt5vNIuv4p5UEMz
+ GbKw0RiLJDtFtt0wJtIn9ebdVjJ99EWRzYutjzpWibIDuOnSI4Lp9pUE/CSaBX8Xuai5+YGQo9y
+ ICbexNvUzyLSIlEaGqHyy3/4I+Ap0pW15v4N0+f59mnVmWxqh+UVs3VPbGik/hqaW37YuY7QbjX
+ KsVMHtSyMhP4T4FsyOCytRAZbK+uv0WTFNP5siH6nwl2O7DF11/Jhb+pm5idDqQJzuMlglCZ
+X-Proofpoint-ORIG-GUID: sfPRFtw6gwzWdpDjpZmni35jWx7rzm_C
+X-Proofpoint-GUID: sfPRFtw6gwzWdpDjpZmni35jWx7rzm_C
+X-Authority-Analysis: v=2.4 cv=LNNmQIW9 c=1 sm=1 tr=0 ts=685eee17 cx=c_pps
+ a=qKBjSQ1v91RyAK45QCPf5w==:117 a=FpWmc02/iXfjRdCD7H54yg==:17
+ a=IkcTkHD0fZMA:10 a=6IFa9wvqVegA:10 a=KKAkSRfTAAAA:8 a=EUspDBNiAAAA:8
+ a=GPXLWcMjtaZN7sqBiugA:9 a=QEXdDO2ut3YA:10 a=NXw8GaxpU7kA:10
+ a=NFOGd7dJGGMPyQGDc5-O:22 a=cvBusfyB2V15izCimMoJ:22
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1099,Hydra:6.1.7,FMLib:17.12.80.40
+ definitions=2025-06-27_05,2025-06-27_01,2025-03-28_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ malwarescore=0 suspectscore=0 spamscore=0 bulkscore=0 mlxlogscore=824
+ impostorscore=0 mlxscore=0 clxscore=1015 adultscore=0 priorityscore=1501
+ lowpriorityscore=0 phishscore=0 classifier=spam authscore=0 authtc=n/a
+ authcc= route=outbound adjust=0 reason=mlx scancount=1
+ engine=8.19.0-2505280000 definitions=main-2506270155
 
-On Fri, Jun 27, 2025 at 11:09:02AM +0200, Théo Lebrun wrote:
-> Both Cadence GEM Ethernet controllers on EyeQ5 are hardwired through CM3
-> IO Coherency Units (IOCU). For DMA coherent accesses, BIT(36) must be
-> set in DMA addresses.
+On 6/27/25 9:00 PM, Vladimir Zapolskiy wrote:
+> Correct the given description of vdd-csiphy-1p2-supply property,
+> it shall indicate a 1.2V supply.
 > 
-> Implement that in platform-specific dma_map_ops which get attached to
-> both instances of `cdns,eyeq5-gem` through a notifier block.
-> 
-> Signed-off-by: Théo Lebrun <theo.lebrun@bootlin.com>
+> Signed-off-by: Vladimir Zapolskiy <vladimir.zapolskiy@linaro.org>
+> ---
 
-...
+Reviewed-by: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
 
-> diff --git a/arch/mips/mobileye/eyeq5-iocu-dma.c b/arch/mips/mobileye/eyeq5-iocu-dma.c
-
-...
-
-> +const struct dma_map_ops eyeq5_iocu_ops = {
-> +	.alloc			= eyeq5_iocu_alloc,
-> +	.free			= eyeq5_iocu_free,
-> +	.alloc_pages_op		= dma_direct_alloc_pages,
-> +	.free_pages		= dma_direct_free_pages,
-> +	.mmap			= eyeq5_iocu_mmap,
-> +	.get_sgtable		= eyeq5_iocu_get_sgtable,
-> +	.map_page		= eyeq5_iocu_map_page,
-> +	.unmap_page		= eyeq5_iocu_unmap_page,
-> +	.map_sg			= eyeq5_iocu_map_sg,
-> +	.unmap_sg		= eyeq5_iocu_unmap_sg,
-> +	.get_required_mask	= dma_direct_get_required_mask,
-> +};
-> +EXPORT_SYMBOL(eyeq5_iocu_ops);
-
-Hi Théo,
-
-Does eyeq5_iocu_ops need to be exported?
-If so it should probably be declared in a header file somewhere.
-But I if not probably the EXPORT_SYMBOL line should be
-dropped, and the structure made static.
-
-Flagged by Sparse.
-
-> +
-> +static int eyeq5_iocu_notifier(struct notifier_block *nb,
-> +			       unsigned long event,
-> +			       void *data)
-> +{
-> +	struct device *dev = data;
-> +
-> +	/*
-> +	 * IOCU routing is hardwired; we must use our above custom
-> +	 * routines for cache-coherent DMA on ethernet interfaces.
-> +	 */
-> +	if (event == BUS_NOTIFY_ADD_DEVICE &&
-> +	    device_is_compatible(dev, "mobileye,eyeq5-gem")) {
-> +		set_dma_ops(dev, &eyeq5_iocu_ops);
-> +		return NOTIFY_OK;
-> +	}
-> +
-> +	return NOTIFY_DONE;
-> +}
-
-...
+Konrad
 
