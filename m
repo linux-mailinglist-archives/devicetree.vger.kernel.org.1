@@ -1,49 +1,49 @@
-Return-Path: <devicetree+bounces-190427-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-190429-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3214AAEBBA8
-	for <lists+devicetree@lfdr.de>; Fri, 27 Jun 2025 17:27:26 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 4DFC3AEBBAF
+	for <lists+devicetree@lfdr.de>; Fri, 27 Jun 2025 17:27:55 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 53F36645553
-	for <lists+devicetree@lfdr.de>; Fri, 27 Jun 2025 15:26:56 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 74DCA643938
+	for <lists+devicetree@lfdr.de>; Fri, 27 Jun 2025 15:27:20 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8A6142E92B6;
-	Fri, 27 Jun 2025 15:27:10 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D28E62E9EC2;
+	Fri, 27 Jun 2025 15:27:14 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=cknow.org header.i=@cknow.org header.b="J1zFNCVZ"
+	dkim=pass (2048-bit key) header.d=cknow.org header.i=@cknow.org header.b="AIoHMfXx"
 X-Original-To: devicetree@vger.kernel.org
-Received: from out-170.mta0.migadu.com (out-170.mta0.migadu.com [91.218.175.170])
+Received: from out-183.mta0.migadu.com (out-183.mta0.migadu.com [91.218.175.183])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 94D472E8E1F
-	for <devicetree@vger.kernel.org>; Fri, 27 Jun 2025 15:27:08 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=91.218.175.170
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 650EC2E9740
+	for <devicetree@vger.kernel.org>; Fri, 27 Jun 2025 15:27:11 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=91.218.175.183
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1751038030; cv=none; b=hnldQUYMhlyKxMq8ISItnGJt5Ga9ZUuqPRChpsZ3TEUz+laDsVMonRrMnD9JIezsklIgLwG12mAfCBAmeU29x2gw7O5fmcEqypHK9iXltT4vskc6T/75nOr+fIQrl9lHsfLdBRrSs6QsgCSehndolyVOSLR6GUpjLZDaMGLF45U=
+	t=1751038034; cv=none; b=H6dc+VMtnB3gSqqL7Ql2YxtkTPSetZ9VyAAzmj8BzqV4AYq6Sfx8QvemP/Wa1qYcDVTwODjkmirly1tL0jc0cjMPEnHDL/PEN3Uh722U6EIfovpgqD4ALYSsQW8lhmUS26s6HXmlF2fz5JszFzdSLY7xU4pCuqtF7aNgOSl3jbE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1751038030; c=relaxed/simple;
-	bh=otwMM5fWY0xgSp6WB5eVvdwJYcbIso6Z5/lU9k/++sI=;
+	s=arc-20240116; t=1751038034; c=relaxed/simple;
+	bh=K0JRTKvwPvkqpe00zFUs8iPdwgVDsWTrE+mT7gQdcGc=;
 	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=SP6LTungquO09ZcUC6FZ3gTppZAoB/WANsE+nTmXCCuA61KUZ7mIWR4OUgq86ELea7sA4RNLdBBPXrTDtUzznxXlLdXnyE0CpCv79Md4BzxzJSygDv+U3ukrZFG8JnVwzKQ9Z+TB2wK9Gvip+qRCj3vaBqFzlOg+VvzfODK17H4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=cknow.org; spf=pass smtp.mailfrom=cknow.org; dkim=pass (2048-bit key) header.d=cknow.org header.i=@cknow.org header.b=J1zFNCVZ; arc=none smtp.client-ip=91.218.175.170
+	 MIME-Version; b=fNBjMl0lj96Nw5jRilTOnkTVsYsHKurQDK4L0fmfyGzyXE9W/RHAh7myufzs0wxGFVJWP2rX6QRENMLDqYTTxhxOpg+k5cY3GrFzKFeQk2NZLQFQa/g8g7Zt44/2Ma3v6+WDTL5Qwj/HsaZ6VQjxQ0igJz6LAog4Iba5gAqy2kU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=cknow.org; spf=pass smtp.mailfrom=cknow.org; dkim=pass (2048-bit key) header.d=cknow.org header.i=@cknow.org header.b=AIoHMfXx; arc=none smtp.client-ip=91.218.175.183
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=cknow.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=cknow.org
 X-Report-Abuse: Please report any abuse attempt to abuse@migadu.com and include these headers.
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cknow.org; s=key1;
-	t=1751038024;
+	t=1751038029;
 	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
 	 to:to:cc:cc:mime-version:mime-version:
 	 content-transfer-encoding:content-transfer-encoding:
 	 in-reply-to:in-reply-to:references:references;
-	bh=+4GMyTXjbEjmIMha8tHAOUDGLgmtdd/71eUMqcDFjFE=;
-	b=J1zFNCVZ+DQhvJY+3WW4kvNr/Uk38c/t3zfr50qKgqSUFVDIz7YIcaFT5reJqyW/qOpwrz
-	l/k5eBAZ8J7FmYK86B2ZsOqfSc0fvCTiKlcmSsLrJWnCIjvN1K+pufU/4/GlRVZ/ZZCp5w
-	eYMiSvUQNhwxDeU802fyBkHG4dff5t3haPm20rxrLg85BWVUALrRKM5ycbiGtIkbkL9Pjg
-	PYMXRr5h2bB/ihIeXzEHr1VUWCVWhzMX4b5WfI/m9D59choaXV/5ZOnTQLVXgYcF7z03RI
-	YXvAxy2OlFecTGkg03vCe42m66rDQBmYAL38sm/9O7ET5rv+SYUf0ewLjV9dEw==
+	bh=IvcxkrvBiBUkVTTSTfgCGQwPzHmN5OZ3q178klwKd4g=;
+	b=AIoHMfXxYuQewBtQ1iiyF+ABi0Xj3b9khQOMIergAB2mRQZ/+1xwoBr8y5pemFTMgZR39Z
+	+JA+u4WUUS4/4S6n9Lo+1EjwWN5yQYHUJ20ds82aGtgZ2Te0G3bGFYW0z63svQ1T1axVFC
+	kOXtYGOMTbXsypYd/vY8bNePXOpDnyYeym4SMabwxbLD2H+4SUsAj+4Ld31ErEPl54QWBB
+	pWqk+hw+Sq/VSddKLaNMEzb8UByOtsY3pXuXd1gIf1yGP5OEU+aVgbuQRlTJjbvWIgYFS2
+	siUelEdBXyjSQLac4PKcUeL0KBZ7YIB6dfhVrLYp8eEUFksCXYSEHiJmmlycnA==
 From: Diederik de Haas <didi.debian@cknow.org>
 To: Rob Herring <robh@kernel.org>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
@@ -57,9 +57,9 @@ Cc: Dragan Simic <dsimic@manjaro.org>,
 	linux-rockchip@lists.infradead.org,
 	linux-kernel@vger.kernel.org,
 	Diederik de Haas <didi.debian@cknow.org>
-Subject: [PATCH 1/8] arm64: dts: rockchip: Refactor DSI nodes on px30 boards
-Date: Fri, 27 Jun 2025 17:16:20 +0200
-Message-ID: <20250627152645.740981-2-didi.debian@cknow.org>
+Subject: [PATCH 2/8] arm64: dts: rockchip: Refactor DSI nodes on rk3399 boards
+Date: Fri, 27 Jun 2025 17:16:21 +0200
+Message-ID: <20250627152645.740981-3-didi.debian@cknow.org>
 In-Reply-To: <20250627152645.740981-1-didi.debian@cknow.org>
 References: <20250627152645.740981-1-didi.debian@cknow.org>
 Precedence: bulk
@@ -72,9 +72,17 @@ Content-Transfer-Encoding: 8bit
 X-Migadu-Flow: FLOW_OUT
 
 The #address-cells and #size-cells properties are not useful on the DSI
-controller node; they are only useful/required on ports and panel(s).
+controller nodes; they are only useful/required on ports and panel(s).
 So remove them from the controller node and add them where actually
-needed on the various px30 based boards, which includes rk3326.
+needed on the various rk3399 based boards.
+
+Next to that, there were several (exact) redefinitions of nodes which
+are already present in rk3399-base.dtsi to add a mipi_out endpoint.
+Simplify that by referencing the mipi_out phandle and add the endpoint
+to that, which allows the removeal of the ports redefinition.
+
+And fix 1 instance where the mipi_out referenced node was not sorted
+correctly.
 
 This fixes the following DTB validation warnings:
 
@@ -83,116 +91,19 @@ This fixes the following DTB validation warnings:
 
 Signed-off-by: Diederik de Haas <didi.debian@cknow.org>
 ---
- arch/arm64/boot/dts/rockchip/px30-cobra-ltk050h3146w-a2.dts  | 2 ++
- arch/arm64/boot/dts/rockchip/px30-cobra-ltk050h3146w.dts     | 2 ++
- arch/arm64/boot/dts/rockchip/px30-cobra-ltk050h3148w.dts     | 2 ++
- arch/arm64/boot/dts/rockchip/px30-cobra-ltk500hd1829.dts     | 2 ++
- arch/arm64/boot/dts/rockchip/px30-evb.dts                    | 2 ++
- arch/arm64/boot/dts/rockchip/px30-pp1516-ltk050h3146w-a2.dts | 2 ++
- arch/arm64/boot/dts/rockchip/px30-pp1516-ltk050h3148w.dts    | 2 ++
- arch/arm64/boot/dts/rockchip/px30.dtsi                       | 2 --
- arch/arm64/boot/dts/rockchip/rk3326-anbernic-rg351m.dtsi     | 2 ++
- arch/arm64/boot/dts/rockchip/rk3326-gameforce-chi.dts        | 2 ++
- arch/arm64/boot/dts/rockchip/rk3326-odroid-go.dtsi           | 2 ++
- 11 files changed, 20 insertions(+), 2 deletions(-)
+ arch/arm64/boot/dts/rockchip/rk3399-base.dtsi |  4 ---
+ .../boot/dts/rockchip/rk3399-gru-scarlet.dtsi | 30 ++++++++-----------
+ .../dts/rockchip/rk3399-pinephone-pro.dts     |  2 ++
+ .../rk3399-puma-haikou-video-demo.dtso        | 12 ++++----
+ .../dts/rockchip/rk3399-rockpro64-screen.dtso | 21 ++++---------
+ 5 files changed, 26 insertions(+), 43 deletions(-)
 
-diff --git a/arch/arm64/boot/dts/rockchip/px30-cobra-ltk050h3146w-a2.dts b/arch/arm64/boot/dts/rockchip/px30-cobra-ltk050h3146w-a2.dts
-index 1d26164be7b8..a31c61c8f148 100644
---- a/arch/arm64/boot/dts/rockchip/px30-cobra-ltk050h3146w-a2.dts
-+++ b/arch/arm64/boot/dts/rockchip/px30-cobra-ltk050h3146w-a2.dts
-@@ -12,6 +12,8 @@ / {
- };
- 
- &dsi {
-+	#address-cells = <1>;
-+	#size-cells = <0>;
- 	status = "okay";
- 
- 	panel@0 {
-diff --git a/arch/arm64/boot/dts/rockchip/px30-cobra-ltk050h3146w.dts b/arch/arm64/boot/dts/rockchip/px30-cobra-ltk050h3146w.dts
-index 82c6acdb4fae..a3c6edfdb37c 100644
---- a/arch/arm64/boot/dts/rockchip/px30-cobra-ltk050h3146w.dts
-+++ b/arch/arm64/boot/dts/rockchip/px30-cobra-ltk050h3146w.dts
-@@ -12,6 +12,8 @@ / {
- };
- 
- &dsi {
-+	#address-cells = <1>;
-+	#size-cells = <0>;
- 	status = "okay";
- 
- 	panel@0 {
-diff --git a/arch/arm64/boot/dts/rockchip/px30-cobra-ltk050h3148w.dts b/arch/arm64/boot/dts/rockchip/px30-cobra-ltk050h3148w.dts
-index 94449132df38..9b5eff392dfa 100644
---- a/arch/arm64/boot/dts/rockchip/px30-cobra-ltk050h3148w.dts
-+++ b/arch/arm64/boot/dts/rockchip/px30-cobra-ltk050h3148w.dts
-@@ -12,6 +12,8 @@ / {
- };
- 
- &dsi {
-+	#address-cells = <1>;
-+	#size-cells = <0>;
- 	status = "okay";
- 
- 	panel@0 {
-diff --git a/arch/arm64/boot/dts/rockchip/px30-cobra-ltk500hd1829.dts b/arch/arm64/boot/dts/rockchip/px30-cobra-ltk500hd1829.dts
-index d7b639e7ccab..36b7cae49e31 100644
---- a/arch/arm64/boot/dts/rockchip/px30-cobra-ltk500hd1829.dts
-+++ b/arch/arm64/boot/dts/rockchip/px30-cobra-ltk500hd1829.dts
-@@ -16,6 +16,8 @@ aliases {
- };
- 
- &dsi {
-+	#address-cells = <1>;
-+	#size-cells = <0>;
- 	status = "okay";
- 
- 	panel@0 {
-diff --git a/arch/arm64/boot/dts/rockchip/px30-evb.dts b/arch/arm64/boot/dts/rockchip/px30-evb.dts
-index bfd724b73c9a..85d1642eb9be 100644
---- a/arch/arm64/boot/dts/rockchip/px30-evb.dts
-+++ b/arch/arm64/boot/dts/rockchip/px30-evb.dts
-@@ -124,6 +124,8 @@ &display_subsystem {
- };
- 
- &dsi {
-+	#address-cells = <1>;
-+	#size-cells = <0>;
- 	status = "okay";
- 
- 	ports {
-diff --git a/arch/arm64/boot/dts/rockchip/px30-pp1516-ltk050h3146w-a2.dts b/arch/arm64/boot/dts/rockchip/px30-pp1516-ltk050h3146w-a2.dts
-index b71929bcb33e..932721ffd470 100644
---- a/arch/arm64/boot/dts/rockchip/px30-pp1516-ltk050h3146w-a2.dts
-+++ b/arch/arm64/boot/dts/rockchip/px30-pp1516-ltk050h3146w-a2.dts
-@@ -12,6 +12,8 @@ / {
- };
- 
- &dsi {
-+	#address-cells = <1>;
-+	#size-cells = <0>;
- 	status = "okay";
- 
- 	panel@0 {
-diff --git a/arch/arm64/boot/dts/rockchip/px30-pp1516-ltk050h3148w.dts b/arch/arm64/boot/dts/rockchip/px30-pp1516-ltk050h3148w.dts
-index a9bd5936c701..70adf091371c 100644
---- a/arch/arm64/boot/dts/rockchip/px30-pp1516-ltk050h3148w.dts
-+++ b/arch/arm64/boot/dts/rockchip/px30-pp1516-ltk050h3148w.dts
-@@ -12,6 +12,8 @@ / {
- };
- 
- &dsi {
-+	#address-cells = <1>;
-+	#size-cells = <0>;
- 	status = "okay";
- 
- 	panel@0 {
-diff --git a/arch/arm64/boot/dts/rockchip/px30.dtsi b/arch/arm64/boot/dts/rockchip/px30.dtsi
-index 0cad83c5d5fe..5034ad8019a8 100644
---- a/arch/arm64/boot/dts/rockchip/px30.dtsi
-+++ b/arch/arm64/boot/dts/rockchip/px30.dtsi
-@@ -1137,8 +1137,6 @@ dsi: dsi@ff450000 {
- 		resets = <&cru SRST_MIPIDSI_HOST_P>;
+diff --git a/arch/arm64/boot/dts/rockchip/rk3399-base.dtsi b/arch/arm64/boot/dts/rockchip/rk3399-base.dtsi
+index 9d5f5b083e3c..4dcceb9136b7 100644
+--- a/arch/arm64/boot/dts/rockchip/rk3399-base.dtsi
++++ b/arch/arm64/boot/dts/rockchip/rk3399-base.dtsi
+@@ -2071,8 +2071,6 @@ mipi_dsi: dsi@ff960000 {
+ 		resets = <&cru SRST_P_MIPI_DSI0>;
  		reset-names = "apb";
  		rockchip,grf = <&grf>;
 -		#address-cells = <1>;
@@ -200,45 +111,152 @@ index 0cad83c5d5fe..5034ad8019a8 100644
  		status = "disabled";
  
  		ports {
-diff --git a/arch/arm64/boot/dts/rockchip/rk3326-anbernic-rg351m.dtsi b/arch/arm64/boot/dts/rockchip/rk3326-anbernic-rg351m.dtsi
-index 150fadcb0b3c..54395a40b087 100644
---- a/arch/arm64/boot/dts/rockchip/rk3326-anbernic-rg351m.dtsi
-+++ b/arch/arm64/boot/dts/rockchip/rk3326-anbernic-rg351m.dtsi
-@@ -118,6 +118,8 @@ &display_subsystem {
+@@ -2112,8 +2110,6 @@ mipi_dsi1: dsi@ff968000 {
+ 		resets = <&cru SRST_P_MIPI_DSI1>;
+ 		reset-names = "apb";
+ 		rockchip,grf = <&grf>;
+-		#address-cells = <1>;
+-		#size-cells = <0>;
+ 		#phy-cells = <0>;
+ 		status = "disabled";
+ 
+diff --git a/arch/arm64/boot/dts/rockchip/rk3399-gru-scarlet.dtsi b/arch/arm64/boot/dts/rockchip/rk3399-gru-scarlet.dtsi
+index 5e068377a0a2..100c22af7265 100644
+--- a/arch/arm64/boot/dts/rockchip/rk3399-gru-scarlet.dtsi
++++ b/arch/arm64/boot/dts/rockchip/rk3399-gru-scarlet.dtsi
+@@ -627,18 +627,10 @@ &mipi_dphy_rx0 {
  };
  
- &dsi {
+ &mipi_dsi {
+-	status = "okay";
+ 	clock-master;
+-
+-	ports {
+-		mipi_out: port@1 {
+-			reg = <1>;
+-
+-			mipi_out_panel: endpoint {
+-				remote-endpoint = <&mipi_in_panel>;
+-			};
+-		};
+-	};
++	#address-cells = <1>;
++	#size-cells = <0>;
++	status = "okay";
+ 
+ 	mipi_panel: panel@0 {
+ 		/* 2 different panels are used, compatibles are in dts files */
+@@ -673,15 +665,17 @@ mipi1_in_panel: endpoint {
+ 
+ &mipi_dsi1 {
+ 	status = "okay";
++};
+ 
+-	ports {
+-		mipi1_out: port@1 {
+-			reg = <1>;
++&mipi_out {
++	mipi_out_panel: endpoint {
++		remote-endpoint = <&mipi_in_panel>;
++	};
++};
+ 
+-			mipi1_out_panel: endpoint {
+-				remote-endpoint = <&mipi1_in_panel>;
+-			};
+-		};
++&mipi1_out {
++	mipi1_out_panel: endpoint {
++		remote-endpoint = <&mipi1_in_panel>;
+ 	};
+ };
+ 
+diff --git a/arch/arm64/boot/dts/rockchip/rk3399-pinephone-pro.dts b/arch/arm64/boot/dts/rockchip/rk3399-pinephone-pro.dts
+index 909ed14035f7..fe32937a2d16 100644
+--- a/arch/arm64/boot/dts/rockchip/rk3399-pinephone-pro.dts
++++ b/arch/arm64/boot/dts/rockchip/rk3399-pinephone-pro.dts
+@@ -464,6 +464,8 @@ &io_domains {
+ 
+ &mipi_dsi {
+ 	clock-master;
 +	#address-cells = <1>;
 +	#size-cells = <0>;
  	status = "okay";
  
- 	ports {
-diff --git a/arch/arm64/boot/dts/rockchip/rk3326-gameforce-chi.dts b/arch/arm64/boot/dts/rockchip/rk3326-gameforce-chi.dts
-index 10e6ab724ac4..4d306085646c 100644
---- a/arch/arm64/boot/dts/rockchip/rk3326-gameforce-chi.dts
-+++ b/arch/arm64/boot/dts/rockchip/rk3326-gameforce-chi.dts
-@@ -322,6 +322,8 @@ &display_subsystem {
+ 	panel@0 {
+diff --git a/arch/arm64/boot/dts/rockchip/rk3399-puma-haikou-video-demo.dtso b/arch/arm64/boot/dts/rockchip/rk3399-puma-haikou-video-demo.dtso
+index 0377ec860d35..d28880b8dd44 100644
+--- a/arch/arm64/boot/dts/rockchip/rk3399-puma-haikou-video-demo.dtso
++++ b/arch/arm64/boot/dts/rockchip/rk3399-puma-haikou-video-demo.dtso
+@@ -124,12 +124,6 @@ pca9670: gpio@27 {
+ 	};
  };
  
- &dsi {
-+	#address-cells = <1>;
-+	#size-cells = <0>;
- 	status = "okay";
- 
- 	internal_display: panel@0 {
-diff --git a/arch/arm64/boot/dts/rockchip/rk3326-odroid-go.dtsi b/arch/arm64/boot/dts/rockchip/rk3326-odroid-go.dtsi
-index 446a1a6c12e7..bf4554eff47d 100644
---- a/arch/arm64/boot/dts/rockchip/rk3326-odroid-go.dtsi
-+++ b/arch/arm64/boot/dts/rockchip/rk3326-odroid-go.dtsi
-@@ -220,6 +220,8 @@ &display_subsystem {
+-&mipi_out {
+-	mipi_out_panel: endpoint {
+-		remote-endpoint = <&mipi_in_panel>;
+-	};
+-};
+-
+ &mipi_dsi {
+ 	#address-cells = <1>;
+ 	#size-cells = <0>;
+@@ -151,6 +145,12 @@ mipi_in_panel: endpoint {
+ 	};
  };
  
- &dsi {
-+	#address-cells = <1>;
-+	#size-cells = <0>;
++&mipi_out {
++	mipi_out_panel: endpoint {
++		remote-endpoint = <&mipi_in_panel>;
++	};
++};
++
+ &pinctrl {
+ 	pca9670 {
+ 		pca9670_resetn: pca9670-resetn {
+diff --git a/arch/arm64/boot/dts/rockchip/rk3399-rockpro64-screen.dtso b/arch/arm64/boot/dts/rockchip/rk3399-rockpro64-screen.dtso
+index b1f4ab22b99c..3a68c5f7c5ff 100644
+--- a/arch/arm64/boot/dts/rockchip/rk3399-rockpro64-screen.dtso
++++ b/arch/arm64/boot/dts/rockchip/rk3399-rockpro64-screen.dtso
+@@ -47,25 +47,11 @@ touch: touchscreen@5d {
+ };
+ 
+ &mipi_dsi {
++	clock-master;
+ 	#address-cells = <1>;
+ 	#size-cells = <0>;
+-
+-	clock-master;
  	status = "okay";
  
- 	ports {
+-	ports {
+-		#address-cells = <1>;
+-		#size-cells = <0>;
+-
+-		mipi_out: port@1 {
+-			reg = <1>;
+-
+-			mipi_out_panel: endpoint {
+-				remote-endpoint = <&mipi_in_panel>;
+-			};
+-		};
+-	};
+-
+ 	mipi_panel: panel@0 {
+ 		compatible = "feiyang,fy07024di26a30d";
+ 		reg = <0>;
+@@ -81,6 +67,11 @@ mipi_in_panel: endpoint {
+ 	};
+ };
+ 
++&mipi_out {
++	mipi_out_panel: endpoint {
++		remote-endpoint = <&mipi_in_panel>;
++	};
++}
+ &pwm0 {
+ 	status = "okay";
+ };
 -- 
 2.50.0
 
