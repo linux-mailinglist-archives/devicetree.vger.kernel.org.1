@@ -1,128 +1,137 @@
-Return-Path: <devicetree+bounces-190258-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-190259-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3DBE5AEB2B5
-	for <lists+devicetree@lfdr.de>; Fri, 27 Jun 2025 11:22:54 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id D1F75AEB2D4
+	for <lists+devicetree@lfdr.de>; Fri, 27 Jun 2025 11:27:15 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id AB55F7A2ACB
-	for <lists+devicetree@lfdr.de>; Fri, 27 Jun 2025 09:21:29 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id E1673188546A
+	for <lists+devicetree@lfdr.de>; Fri, 27 Jun 2025 09:27:31 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 23092258CDA;
-	Fri, 27 Jun 2025 09:22:46 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 55937293C4E;
+	Fri, 27 Jun 2025 09:27:11 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="V0H369kt"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="bEQnAo8m"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EAAA319F10A;
-	Fri, 27 Jun 2025 09:22:45 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 21822271464;
+	Fri, 27 Jun 2025 09:27:09 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1751016166; cv=none; b=g/30Xij9xamdNco8mJUTFxYDxhTHWrpvRJKbpKItB2tWdLD25VSUoMbCBH36ra0IbCxcYxyhz2ASIuIGcfx/w6VsGHru+UAdS01BU/5e+FqWAt75zHvBworr8L+C1VT96QG1lri6QLiVe1eK2bCe5TMmqdUtZ7xltSY93vFZVpw=
+	t=1751016431; cv=none; b=cpkVUg9W/SKmhPu7bT1SAPb81yBhR8njfVyBDoRflX/bFB6R5FaV0w2iBBGOGl31NZOUmwfbvrm0eqYKEeaESWqp19ccnqYvpIMwmSCyepr59nulZ6lxTeiCpSRre3QCl0R8Bu+lXsXxNLRiZOL3G7mAGG2rxQLQpXoCcybeX+0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1751016166; c=relaxed/simple;
-	bh=GES7rDDWdQQ7TEcRm8p34DAy6bca6zIECTKvS1iKa7I=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=YPgxiQ9jqmUoix2+xxtvggMYQPrh2/ieI0At6d5eZt9ynZG8ZRleOkLU8mFzWuEgR6WSLG4j7gWdho7FvzXCKuaDufM2f4NMRjyxHh2vJVFOVwUT9L16uV8PV6sgqAriW8ibibCTSvitw7gPc5s6vTtRf3XWmsJBrB4UqgZEA+8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=V0H369kt; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id DC5A8C4CEE3;
-	Fri, 27 Jun 2025 09:22:41 +0000 (UTC)
+	s=arc-20240116; t=1751016431; c=relaxed/simple;
+	bh=9Ao2DPZ5WH1AH59KqUG8CMXG1VAzP6Js/sjGtfxOmd4=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=XQzn6VE2j2pNpDLYQjd/xM4EMhKqqSI/1GlE9kupdrb7jlBF3lUe8h3wvNSJuxNlVR/xDbeXwRjVKUzwuyvLPfCk/Zg6LzX7Mw+tzm7pgkZQ8sNdIwCXSkPxqH9jY6pMQXoibhA71FkvSRWqN2irwe/QO9KFiTx8EBsJJk8uMQA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=bEQnAo8m; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 77D9CC4CEE3;
+	Fri, 27 Jun 2025 09:27:09 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1751016165;
-	bh=GES7rDDWdQQ7TEcRm8p34DAy6bca6zIECTKvS1iKa7I=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=V0H369ktDX0vUDkrdT60m1ZyPZQuU4z8uo94aWH39i92cKiMuIIxRes+jPBqTzvNH
-	 FSK6eUfff9pQZtBcrhe0rc4XlJ/wnT/BwjscII1aZvmRdHXIwLsOpXzp4HjuwnaRb6
-	 15DJO71jD5Px2wj+7THPosJUgjErFgX8PoqdPhqoogpgofoFzT7/HFQ9DYaHY5Rkaj
-	 LYQaeIZc3XlLvQNWy2dbAvsA2Fu0rhQG9bI3GPlf9KaIGqiT4jVwO7BVZ9uubOGz4A
-	 0ojaNTsGHfsgK8/xSKylvofoY0Z5EslGcGjWxNal97S2sCy/WeVqu3RS/2nkp1XdRw
-	 R6RIaVVKAJsOg==
-Message-ID: <b35a4740-389a-4793-960b-e3fea0c8e864@kernel.org>
-Date: Fri, 27 Jun 2025 11:22:39 +0200
+	s=k20201202; t=1751016429;
+	bh=9Ao2DPZ5WH1AH59KqUG8CMXG1VAzP6Js/sjGtfxOmd4=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=bEQnAo8m0otz0/uF05lagMkPplo1RIXinU9bo4tRu9ozLnBLODPx7vvqdk5/1kGaH
+	 9+ucSrGzQq7iGQnzk3TN+bz11fA9bf7BZAOu7xXhKOV5kbid4aJ/F44DOXe5BrwYMw
+	 7EKt7oeVPFwbfWZ33WL7mNurS3D2Y/5liaoKkdGL8PqMAbctzDZgS3jzUX9gufikgj
+	 IM8jZsMe9fJQyUpHjpzmDQmld/iOFkUaTvIu5zEaZZZ83M373//1xo0AkDNu5iLcSX
+	 p4lVM3IbKVH91aedgRJUdeCquqNaBioSIqjprjpWUSmslbv/qxWAcVgcppG/fjxQEC
+	 C3Gq1HBQPaHXw==
+Received: from johan by xi.lan with local (Exim 4.97.1)
+	(envelope-from <johan@kernel.org>)
+	id 1uV5MT-000000000BF-2wGi;
+	Fri, 27 Jun 2025 11:27:09 +0200
+Date: Fri, 27 Jun 2025 11:27:09 +0200
+From: Johan Hovold <johan@kernel.org>
+To: Ziyue Zhang <quic_ziyuzhan@quicinc.com>
+Cc: andersson@kernel.org, konradybcio@kernel.org, robh@kernel.org,
+	krzk+dt@kernel.org, conor+dt@kernel.org, jingoohan1@gmail.com,
+	mani@kernel.org, lpieralisi@kernel.org, kwilczynski@kernel.org,
+	bhelgaas@google.com, johan+linaro@kernel.org, vkoul@kernel.org,
+	kishon@kernel.org, neil.armstrong@linaro.org, abel.vesa@linaro.org,
+	kw@linux.com, linux-arm-msm@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	linux-pci@vger.kernel.org, linux-phy@lists.infradead.org,
+	qiang.yu@oss.qualcomm.com, quic_krichai@quicinc.com,
+	quic_vbadigan@quicinc.com
+Subject: Re: [PATCH v3 1/4] dt-bindings: phy: qcom,sc8280xp-qmp-pcie-phy:
+ Update pcie phy bindings
+Message-ID: <aF5j7VqX5oU11cWe@hovoldconsulting.com>
+References: <20250625090048.624399-1-quic_ziyuzhan@quicinc.com>
+ <20250625090048.624399-2-quic_ziyuzhan@quicinc.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH] dt-bindings: mfd: samsung,s2mps11: add comment about
- interrupts properties
-To: =?UTF-8?Q?Andr=C3=A9_Draszik?= <andre.draszik@linaro.org>,
- Lee Jones <lee@kernel.org>, Rob Herring <robh@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>
-Cc: Peter Griffin <peter.griffin@linaro.org>,
- Tudor Ambarus <tudor.ambarus@linaro.org>,
- Will McVicker <willmcvicker@google.com>, kernel-team@android.com,
- linux-kernel@vger.kernel.org, linux-samsung-soc@vger.kernel.org,
- devicetree@vger.kernel.org
-References: <20250627-s2mpg10-binding-comment-v1-1-f37e5187f0fd@linaro.org>
-From: Krzysztof Kozlowski <krzk@kernel.org>
-Content-Language: en-US
-Autocrypt: addr=krzk@kernel.org; keydata=
- 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 a/A=
-In-Reply-To: <20250627-s2mpg10-binding-comment-v1-1-f37e5187f0fd@linaro.org>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20250625090048.624399-2-quic_ziyuzhan@quicinc.com>
 
-On 27/06/2025 11:15, André Draszik wrote:
-> Document why the binding uses oneOf when specifying just one of the
-> interrupt properties is supposed to be enough.
+On Wed, Jun 25, 2025 at 05:00:45PM +0800, Ziyue Zhang wrote:
+> The gcc_aux_clk is required by the PCIe controller but not by the PCIe
+> PHY. In PCIe PHY, the source of aux_clk used in low-power mode should
+> be gcc_phy_aux_clk. Hence, remove gcc_aux_clk and replace it with
+> gcc_phy_aux_clk.
 > 
-> dtschema's fixups.py has special treatment of the interrupts and
-> interrupts-extended properties, but that appears to work at the top
-> level only. Elsewhere, an explicit oneOf is required.
-> 
-> Signed-off-by: André Draszik <andre.draszik@linaro.org>
+> Removed the phy_aux clock from the PCIe PHY binding as it is no longer
+> used by any instance.
+
+Please add the Fixes tags I mentioned earlier which identifies the
+commits that added the bogus clock.
+
+> Signed-off-by: Ziyue Zhang <quic_ziyuzhan@quicinc.com>
 > ---
+>  .../bindings/phy/qcom,sc8280xp-qmp-pcie-phy.yaml           | 7 +++----
+>  1 file changed, 3 insertions(+), 4 deletions(-)
+> 
+> diff --git a/Documentation/devicetree/bindings/phy/qcom,sc8280xp-qmp-pcie-phy.yaml b/Documentation/devicetree/bindings/phy/qcom,sc8280xp-qmp-pcie-phy.yaml
+> index 2c6c9296e4c0..57b16444eb0e 100644
+> --- a/Documentation/devicetree/bindings/phy/qcom,sc8280xp-qmp-pcie-phy.yaml
+> +++ b/Documentation/devicetree/bindings/phy/qcom,sc8280xp-qmp-pcie-phy.yaml
+> @@ -54,7 +54,7 @@ properties:
+>  
+>    clocks:
+>      minItems: 5
+> -    maxItems: 7
+> +    maxItems: 6
 
-Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+You remove the last user of the bogus clock (qcs8300) in a separate
+series so you should keep it until then.
 
-Best regards,
-Krzysztof
+>    clock-names:
+>      minItems: 5
+> @@ -65,7 +65,6 @@ properties:
+>        - enum: [rchng, refgen]
+>        - const: pipe
+>        - const: pipediv2
+> -      - const: phy_aux
+>  
+>    power-domains:
+>      maxItems: 1
+> @@ -176,6 +175,8 @@ allOf:
+>            contains:
+>              enum:
+>                - qcom,qcs615-qmp-gen3x1-pcie-phy
+> +              - qcom,sa8775p-qmp-gen4x2-pcie-phy
+> +              - qcom,sa8775p-qmp-gen4x4-pcie-phy
+>                - qcom,sc8280xp-qmp-gen3x1-pcie-phy
+>                - qcom,sc8280xp-qmp-gen3x2-pcie-phy
+>                - qcom,sc8280xp-qmp-gen3x4-pcie-phy
+> @@ -197,8 +198,6 @@ allOf:
+>            contains:
+>              enum:
+>                - qcom,qcs8300-qmp-gen4x2-pcie-phy
+
+                   ^
+
+> -              - qcom,sa8775p-qmp-gen4x2-pcie-phy
+> -              - qcom,sa8775p-qmp-gen4x4-pcie-phy
+
+Johan
 
