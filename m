@@ -1,174 +1,218 @@
-Return-Path: <devicetree+bounces-190564-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-190565-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 19B48AEC16B
-	for <lists+devicetree@lfdr.de>; Fri, 27 Jun 2025 22:46:54 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 08B15AEC1A0
+	for <lists+devicetree@lfdr.de>; Fri, 27 Jun 2025 22:59:24 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id BF7183AA669
-	for <lists+devicetree@lfdr.de>; Fri, 27 Jun 2025 20:46:10 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 913A27A646D
+	for <lists+devicetree@lfdr.de>; Fri, 27 Jun 2025 20:57:58 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 671132ECEAE;
-	Fri, 27 Jun 2025 20:46:03 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0D5622ED17B;
+	Fri, 27 Jun 2025 20:59:11 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="d3ypjC2v"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="tfI1AITn"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-ot1-f50.google.com (mail-ot1-f50.google.com [209.85.210.50])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BD0C52ED16A
-	for <devicetree@vger.kernel.org>; Fri, 27 Jun 2025 20:46:01 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C60962ECD2B
+	for <devicetree@vger.kernel.org>; Fri, 27 Jun 2025 20:59:07 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.50
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1751057163; cv=none; b=E45lFLeAD+2tglMdkN7n+u5DtvsZKY3UyORqHMaVMLVKPk69g9lnKwDGNxdNPtvcALgvYdDUBd3+ZQeb7h1XAA0w3YzZlm+nhfjE5KNaoynloopU9NX2rbNBp8B+GL/O5UHb/rZbIcpE0mISQmQJOPV+ZuNoTIyr4gyG+GbiJz8=
+	t=1751057950; cv=none; b=rSwQx8DPOKOjqo1IS+t0uXml/J+ydwsa37XBCPKWgcO+G/REZKknf5xjRZc4zsZKS+v84PXnjY9Ch+vUFFpZm2uXmwhaRA9qrFYRXQ+Cx5SGI03cpJmB1/gIfnpb4OlKj/DlArq/qQHYhixuBxA3Z/ok7Sab+1rF5cAJ+pkx7es=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1751057163; c=relaxed/simple;
-	bh=B1amgNphjp1S7GFjFXPs/GcQYxye3YWoYVlI/qcxf/Y=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=C0vZQDW6Ugo2OXXXd9KTDNaKSqNOM68biGf0Zl8tknr2YYiy9SGgfsvof9Mt7WA3UDeQQoRrs3ybo7B8wnf+uFuXE7JqkrR9f0++Ai8LAVsrPh6CfstAZ7qfxP0xDxGH2XxaSqiDH7yhQki954g5cHDd1z5EDdenZV/3pDhyrHQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=d3ypjC2v; arc=none smtp.client-ip=205.220.180.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
-Received: from pps.filterd (m0279868.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 55RCkBib009894
-	for <devicetree@vger.kernel.org>; Fri, 27 Jun 2025 20:46:00 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	LvmCj0v1cjoY74eE/WOAeBAPKyTiGX4dCvytV+elP2k=; b=d3ypjC2vuoyx12oD
-	8k3PeRG+Wf6owcxXBFDsZJSjn/sCOXVMkGMYfpnZNv/uw0wnJk5vwiDJK7Zz+NlO
-	D0fSn2N33W3369LvFH/9K70cgB1S51+RGdDwQfhKNyZyxePjWky7Q/UZsohks4+u
-	5R2/64ueSt8eRw8qBP8g0w5ny5o12bPjU6CiCYqS0dRsFpvvelLwOFvg6chmnMGm
-	/03ZLxzOzEn/d/2+HVZ0geRg/S8PizRdbHykya5lhod0rSc3GkuQfEUuTsjEGZLs
-	qP80KJBWvLTUg55glWb1xy3M7ZBm9nr3gVS10df5BReP3pcoRYBLVjDLySjCxdck
-	9zb4nQ==
-Received: from mail-qk1-f198.google.com (mail-qk1-f198.google.com [209.85.222.198])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 47g88fhpbv-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Fri, 27 Jun 2025 20:46:00 +0000 (GMT)
-Received: by mail-qk1-f198.google.com with SMTP id af79cd13be357-7d09a3b806aso46708985a.0
-        for <devicetree@vger.kernel.org>; Fri, 27 Jun 2025 13:46:00 -0700 (PDT)
+	s=arc-20240116; t=1751057950; c=relaxed/simple;
+	bh=BJHMEo9leoyZcQsWcz07yan36ZR+YCCT0eJNiuD+11U=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=fX+dNhJgjdTCsdTRleDR7aoA77qGweratnk36/kgK3kUpCio/1tDHMy6Y7gV/i6wTzrMt8BUCi96prlys3trXWlZmplQ/Daqk4On+JabNi3inaOBuazpdVV89xmNZOG3gB69wf7Wdg6zApi/vIX5Db4Sx/ZZ6wTuXhzb9hKLZsc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=tfI1AITn; arc=none smtp.client-ip=209.85.210.50
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-ot1-f50.google.com with SMTP id 46e09a7af769-73ac5680bb0so679380a34.3
+        for <devicetree@vger.kernel.org>; Fri, 27 Jun 2025 13:59:07 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1751057947; x=1751662747; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=2wV6kmtjaXoJhYH43GcjyzCRIzSzOgOl5IbM4yLkCiQ=;
+        b=tfI1AITn00FRyP6eqYASVODFEgtCUkF1415ETEW6fimhbj2qq0vgYODkHy1NW2tkzI
+         t1OIXN8+L8/2Lz4TA5om/mbxjjRlg1DlZiqE+tReo5wlswRfJbYsMPR0yWdX7A9ibDOb
+         jun2jHygrgsm5R8uxOIFrDRniounyzqNSX9r/dX+6mkMODMqniItZQp26SJhZ9BcdAdl
+         P6prqWHzVppV9fisSCq2Dwvq028dTfQKw1eu7W6+WNDxjZJ81GpYq9GaDoFp3q8/kaKE
+         uZka3GY77nPCqnVOyS5VQUkNpzjZ2MHm3E7PtYaW++eZN/heyEytZx03eBYt4ZcvOuwq
+         hHpw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1751057159; x=1751661959;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=LvmCj0v1cjoY74eE/WOAeBAPKyTiGX4dCvytV+elP2k=;
-        b=BsxeaxvihPBcPmbDIFjLgSFKM8GeSHYwR+37vXh++cx2hA4MnLGqHP9aT5uwxY7CuL
-         PGEdIbCf2B3+GzbSVqu7NDnfaXLjw+4HthuS/m+9+Sbq2rYZugZRPZg2xsH/mh/uT/n6
-         849jSWJS/h+EPpeBg8kZoeNtkkrwe1Dw3Z4iJmtSfd/XZdAIlHTGBFHLJbcpAyf+Ez8b
-         DluRhxdad3D4mKjjzY82cDSWtev77dHfo9SIZmxi+lbszoF5MiQNjD6ngU2gZAyv+2kn
-         OtmJz10NtxpECHsRnoaaOMvQn9BdRW1rJMl2z0leF/Uut/EU1g58piWpSOqO0AVM6hH2
-         O6ew==
-X-Forwarded-Encrypted: i=1; AJvYcCXfgLvcSrc+UKWULW0YHIQJqI3WPellUdqS0yIiNC5tR9FV0XO7CzRxnB916dDXrxbOd1cEgeW92vUO@vger.kernel.org
-X-Gm-Message-State: AOJu0Yz0tYBNFzTz3UJj0LkA+MuGzWMMyVmyGEu+h0X87nMmoS/chVF2
-	e0JkAH+Uc1FVKoYpVbH4VnvrNdI91t0pTJwwWwW6dhiDZuO3pPZEZUt0uWhWrSExninEgvegOef
-	LwJOIXdlQdvKp90wEiOz1Sl/K0nrwfnRH+RZMEWhVkZ/7w7Q2fjBzH1VGHRMBKAo0hgFH77IL
-X-Gm-Gg: ASbGncsywPHwMSUnwMemdEMbXAn8x4L1dUZt3Zuiqw0Xn6IRE8qmqnZG9J6i65iIik8
-	G9PsgHtzkxMVbMsDE6r5q/8AYtXuOWhF9QYGx9+u9TXFrrCeH8UuZOsVI8t88c9df/DTn1XmJ9G
-	PS8YEldZP6fgyn2Lf6Tb6lZzM4cqbz8fRYrI//5BIkSS6EbNgJrvKktQPmZ8VylzXSOMMRnheSl
-	rDgQsJgpkSAl5AI4AEny0D/RfBoIZ+34q5fzklN+pklq0p4Nuq8OVA0pP7r/hpUNhKr54KlPYzJ
-	Kr91tPfV8Qdgkdc2MkV8A0QdFzPKQr7Vlx2oh491fS7qDcH6PJZdmUq3NtgBkVT/ZAvZydGb4ur
-	EcIE=
-X-Received: by 2002:a05:620a:2b9b:b0:7d0:993c:7163 with SMTP id af79cd13be357-7d44c2a78eamr30936985a.15.1751057159577;
-        Fri, 27 Jun 2025 13:45:59 -0700 (PDT)
-X-Google-Smtp-Source: AGHT+IHwFR1XY8aZISqHPCrWFyviC+3MqnKMSTMQkUGTWSkYl0QopZh6D1CRsu1zF3w72yFTsELv0Q==
-X-Received: by 2002:a05:620a:2b9b:b0:7d0:993c:7163 with SMTP id af79cd13be357-7d44c2a78eamr30935085a.15.1751057159165;
-        Fri, 27 Jun 2025 13:45:59 -0700 (PDT)
-Received: from [192.168.143.225] (078088045245.garwolin.vectranet.pl. [78.88.45.245])
-        by smtp.gmail.com with ESMTPSA id 4fb4d7f45d1cf-60c831cb724sm1976837a12.53.2025.06.27.13.45.57
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 27 Jun 2025 13:45:58 -0700 (PDT)
-Message-ID: <c309acd7-e306-48ad-81e1-cb5fdd02b2da@oss.qualcomm.com>
-Date: Fri, 27 Jun 2025 22:45:56 +0200
+        d=1e100.net; s=20230601; t=1751057947; x=1751662747;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=2wV6kmtjaXoJhYH43GcjyzCRIzSzOgOl5IbM4yLkCiQ=;
+        b=FTv+WH6O3lPEukKe38XNyJCS2sesFV72Ol77SP7VkfPD4oZ/qKlayuWn8N9xMGwCly
+         UZUnbp5ffjHVldJHFppwhmGNeMLhHkuORxp3Xl9pmoWie1Ie4tyhsIwLwuY7KAgVpSgX
+         Rtr4MVBewZNIgrQf20x3N/FRwi+3kFQZ/OqDAxAdJHVWC8YWqOlIojchxIxf9cjPgZ4R
+         d9fmJbD5iatHFe6QKasHa84YG+prrC+MSAgCrozi10iwWMTtO8dqax2tMPj9rn/SHf7k
+         BGHtOprfezl6bnAKZ/cIhSvEKQ2kd0THwyegN7NGSXdAEHULdmFmaTpAh06qZHo8lsuv
+         Vp8w==
+X-Forwarded-Encrypted: i=1; AJvYcCX9Nh7nquRsNxTFzYIGJR5xZHJa2Dn8iml2aCxtA4/lfX7Y60b9vQ+SNv6Bb+BDj8hqVjrVpzQoB74t@vger.kernel.org
+X-Gm-Message-State: AOJu0YyeQ51I+VFcHxiafI41Zn8FVm0gJW5HxoASLeWLbST+62GrnhEA
+	LXvlUvFeppEpjiorvG93a3srnIZhibqIOz31feBC1V6MN4Q+obI3M1lfdmeQYu+z7d0=
+X-Gm-Gg: ASbGncsTJaZ0IwnP1NcDIfTPLuTP0ErOoG0GjW5LcG2/P+aUPHHD+me+/4imv8aMpg/
+	YtUm0wqLtkVwWGvjPgXCJzulgcCZNAj5GypLtGQ756aZ0OWhzBKJrxJhcOZ06S9grElfesISmoH
+	GFmHqe5vJ5/gTDu6FGk3CmO47Li8HIpSy24zeGdejn9GxItc0iakIgE0M4qAawClFlycTBdiHXl
+	ILyDOcdwRDwr3gC7NgQrE4Gfu9hbXienSIyx6FTvzVoARVcd2c+vxy7tuEjyiIryoY9IXosISH1
+	COEpLtPALoa0qQ7ZfXdtudcxH57WZr/mH5jnQwnvxvODidpMWDz1RITeCl+pLoVkKzTANA==
+X-Google-Smtp-Source: AGHT+IFHR7FVCi4j2zuoxohq1OuOeC2nyMBtdZkWi9Jmi1XSgKOeA4M9F6VWgzqg+UxjB1URtdOZSQ==
+X-Received: by 2002:a05:6830:448c:b0:72c:3235:3b97 with SMTP id 46e09a7af769-73afc68a44cmr3352887a34.22.1751057946759;
+        Fri, 27 Jun 2025 13:59:06 -0700 (PDT)
+Received: from localhost ([2603:8080:b800:f700:e9c1:9891:4bfd:dadf])
+        by smtp.gmail.com with UTF8SMTPSA id 46e09a7af769-73afb0e3d75sm513992a34.39.2025.06.27.13.59.06
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 27 Jun 2025 13:59:06 -0700 (PDT)
+Date: Fri, 27 Jun 2025 15:59:04 -0500
+From: Dan Carpenter <dan.carpenter@linaro.org>
+To: Mohammad Rafi Shaik <quic_mohs@quicinc.com>
+Cc: Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
+	Liam Girdwood <lgirdwood@gmail.com>,
+	Mark Brown <broonie@kernel.org>, Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>, Vinod Koul <vkoul@kernel.org>,
+	Bard Liao <yung-chuan.liao@linux.intel.com>,
+	Jaroslav Kysela <perex@perex.cz>, Takashi Iwai <tiwai@suse.com>,
+	Pierre-Louis Bossart <pierre-louis.bossart@linux.dev>,
+	Sanyog Kale <sanyog.r.kale@intel.com>,
+	linux-arm-msm@vger.kernel.org, linux-sound@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	quic_pkumpatl@quicinc.com, kernel@oss.qualcomm.com
+Subject: Re: [PATCH v6 3/4] soundwire: qcom: Add set_channel_map api support
+Message-ID: <33fe8fe7-719a-405a-9ed2-d9f816ce1d57@sabinyo.mountain>
+References: <20250206112225.3270400-1-quic_mohs@quicinc.com>
+ <20250206112225.3270400-4-quic_mohs@quicinc.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 0/2] Add support for IQ-8275-evk board
-To: Rob Herring <robh@kernel.org>
-Cc: Umang Chheda <umang.chheda@oss.qualcomm.com>,
-        linux-arm-msm@vger.kernel.org,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>, linux-kernel@vger.kernel.org,
-        Konrad Dybcio <konradybcio@kernel.org>, kernel@oss.qualcomm.com,
-        Conor Dooley <conor+dt@kernel.org>, devicetree@vger.kernel.org,
-        Bjorn Andersson <andersson@kernel.org>
-References: <20250623130420.3981916-1-umang.chheda@oss.qualcomm.com>
- <175069348269.3797007.5540625905808833666.robh@kernel.org>
- <bcfbfaed-e857-44be-86bd-d4e977fd4d27@oss.qualcomm.com>
- <20250627202313.GA4189710-robh@kernel.org>
-Content-Language: en-US
-From: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
-In-Reply-To: <20250627202313.GA4189710-robh@kernel.org>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwNjI3MDE2OCBTYWx0ZWRfX+jyHGvay1fyu
- 5nKFPBez4UBl/ntR0cqsSZNq1cR/UqHfmTPpEIwiisv6+l97xhyEVBEzb+NdwPO1xKMQEoLE/Zh
- eHlTmkeLlh5FvSVOPE0SRXBBKhw7yC2iv0U/7Sl2lNydxazHRw3hpwfmey2ZeGb1D4M1aa/FHaO
- a+DBZidwzFwwBqX46Fdj9A5+yon9IvBB5TrBL+o6/7vumrgMb/mKxZgfkEW1A9GQPK+oZyZhptZ
- 5ixYiz0tYbNrf4Ob0UhMvmXB6Pih0ju5Iihxr+AXLE3/bYjhN+K+Tq80kjbO+9b/4OvnN2RwQUH
- 6E39cDj5jXNriMtVAYVwriLNJRZK8CWBdK/JrEK6tzc1GW6zbn/eAz+12W4SoXvBxtBiQUaGta0
- pu0f0h+xbmz35EVFt07pQ/ykBMi6tUtp7wbzbNCqwaF+k0ePBeJiFsAmuHEaCKntna3uuhh8
-X-Proofpoint-ORIG-GUID: tTI6-86XB15im1tb1wObHH0GANKtkPWD
-X-Proofpoint-GUID: tTI6-86XB15im1tb1wObHH0GANKtkPWD
-X-Authority-Analysis: v=2.4 cv=LNNmQIW9 c=1 sm=1 tr=0 ts=685f0308 cx=c_pps
- a=qKBjSQ1v91RyAK45QCPf5w==:117 a=FpWmc02/iXfjRdCD7H54yg==:17
- a=IkcTkHD0fZMA:10 a=6IFa9wvqVegA:10 a=gEfo2CItAAAA:8 a=EUspDBNiAAAA:8
- a=tTVXt7mVe-G5UhCDjR8A:9 a=QEXdDO2ut3YA:10 a=NFOGd7dJGGMPyQGDc5-O:22
- a=sptkURWiP4Gy88Gu7hUp:22
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1099,Hydra:6.1.7,FMLib:17.12.80.40
- definitions=2025-06-27_05,2025-06-27_01,2025-03-28_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- malwarescore=0 suspectscore=0 spamscore=0 bulkscore=0 mlxlogscore=976
- impostorscore=0 mlxscore=0 clxscore=1015 adultscore=0 priorityscore=1501
- lowpriorityscore=0 phishscore=0 classifier=spam authscore=0 authtc=n/a
- authcc= route=outbound adjust=0 reason=mlx scancount=1
- engine=8.19.0-2505280000 definitions=main-2506270168
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20250206112225.3270400-4-quic_mohs@quicinc.com>
 
-On 6/27/25 10:23 PM, Rob Herring wrote:
-> On Mon, Jun 23, 2025 at 05:50:11PM +0200, Konrad Dybcio wrote:
->> On 6/23/25 5:46 PM, 'Rob Herring (Arm)' via kernel wrote:
->>>
->>> On Mon, 23 Jun 2025 18:34:18 +0530, Umang Chheda wrote:
->>>> This series:
->>>>
->>>> Add support for Qualcomm's IQ-8275-evk board using QCS8275 SOC.
->>
->> [...]
->>
->>>>
->>>>  .../devicetree/bindings/arm/qcom.yaml         |   7 +
->>>>  arch/arm64/boot/dts/qcom/Makefile             |   1 +
->>>>  .../boot/dts/qcom/qcs8275-iq-8275-evk.dts     | 241 ++++++++++++++++++
->>>>  3 files changed, 249 insertions(+)
->>>>  create mode 100644 arch/arm64/boot/dts/qcom/qcs8275-iq-8275-evk.dts
->>>>
->>
->> [...]
->>
->>>
->>> New warnings running 'make CHECK_DTBS=y for arch/arm64/boot/dts/qcom/' for 20250623130420.3981916-1-umang.chheda@oss.qualcomm.com:
->>>
->>> arch/arm64/boot/dts/qcom/msm8916-samsung-gt58.dtb: panel@0 (samsung,lsl080al03): 'port' does not match any of the regexes: '^pinctrl-[0-9]+$'
->>> 	from schema $id: http://devicetree.org/schemas/display/panel/samsung,s6d7aa0.yaml#
->>
->> Seems like a fluke..
+On Thu, Feb 06, 2025 at 04:52:24PM +0530, Mohammad Rafi Shaik wrote:
+> Added qcom_swrm_set_channel_map api to set the master channel mask for
+> TX and RX paths based on the provided slots.
 > 
-> Yes, I failed to filter that out.
+> Added a new field ch_mask to the qcom_swrm_port_config structure.
+> This field is used to store the master channel mask, which allows more
+> flexible to configure channel mask in runtime for specific active
+> soundwire ports.
 > 
-> This is just a before and after run with filtering out everything in 
-> before. I suspect that sometimes warning lines get interleaved and these 
-> show up as new.
+> Modified the qcom_swrm_port_enable function to configure master
+> channel mask. If the ch_mask is set to SWR_INVALID_PARAM or is zero,
+> the function will use the default channel mask.
 > 
-> If QCom was warning free, then this would be less of an issue. :(
+> Signed-off-by: Mohammad Rafi Shaik <quic_mohs@quicinc.com>
+> Acked-by: Vinod Koul <vkoul@kernel.org>
+> ---
+>  drivers/soundwire/qcom.c | 26 ++++++++++++++++++++++++++
+>  1 file changed, 26 insertions(+)
+> 
+> diff --git a/drivers/soundwire/qcom.c b/drivers/soundwire/qcom.c
+> index 0f45e3404756..295a46dc2be7 100644
+> --- a/drivers/soundwire/qcom.c
+> +++ b/drivers/soundwire/qcom.c
+> @@ -156,6 +156,7 @@ struct qcom_swrm_port_config {
+>  	u8 word_length;
+>  	u8 blk_group_count;
+>  	u8 lane_control;
+> +	u8 ch_mask;
+>  };
+>  
+>  /*
+> @@ -1048,9 +1049,13 @@ static int qcom_swrm_port_enable(struct sdw_bus *bus,
+>  {
+>  	u32 reg = SWRM_DP_PORT_CTRL_BANK(enable_ch->port_num, bank);
+>  	struct qcom_swrm_ctrl *ctrl = to_qcom_sdw(bus);
+> +	struct qcom_swrm_port_config *pcfg;
+>  	u32 val;
+>  
+> +	pcfg = &ctrl->pconfig[enable_ch->port_num];
+>  	ctrl->reg_read(ctrl, reg, &val);
+> +	if (pcfg->ch_mask != SWR_INVALID_PARAM && pcfg->ch_mask != 0)
+> +		enable_ch->ch_mask = pcfg->ch_mask;
+>  
+>  	if (enable_ch->enable)
+>  		val |= (enable_ch->ch_mask << SWRM_DP_PORT_CTRL_EN_CHAN_SHFT);
+> @@ -1270,6 +1275,26 @@ static void *qcom_swrm_get_sdw_stream(struct snd_soc_dai *dai, int direction)
+>  	return ctrl->sruntime[dai->id];
+>  }
+>  
+> +static int qcom_swrm_set_channel_map(struct snd_soc_dai *dai,
+> +				     unsigned int tx_num, const unsigned int *tx_slot,
+> +				     unsigned int rx_num, const unsigned int *rx_slot)
+> +{
+> +	struct qcom_swrm_ctrl *ctrl = dev_get_drvdata(dai->dev);
+> +	int i;
+> +
+> +	if (tx_slot) {
+> +		for (i = 0; i < tx_num; i++)
+> +			ctrl->pconfig[i].ch_mask = tx_slot[i];
+> +	}
+> +
+> +	if (rx_slot) {
+> +		for (i = 0; i < rx_num; i++)
+> +			ctrl->pconfig[i].ch_mask = rx_slot[i];
+> +	}
+> +
+> +	return 0;
+> +}
+> +
 
-We're trying.. not always doing the best, but it's on the agenda!
+Could we fix or revert this patch?  It's called like this from
+sdm845_dai_init():
 
-Konrad
+sound/soc/qcom/sdm845.c
+   247          /*
+   248           * Codec SLIMBUS configuration
+   249           * RX1, RX2, RX3, RX4, RX5, RX6, RX7, RX8, RX9, RX10, RX11, RX12, RX13
+   250           * TX1, TX2, TX3, TX4, TX5, TX6, TX7, TX8, TX9, TX10, TX11, TX12, TX13
+   251           * TX14, TX15, TX16
+   252           */
+   253          unsigned int rx_ch[SLIM_MAX_RX_PORTS] = {144, 145, 146, 147, 148, 149,
+   254                                          150, 151, 152, 153, 154, 155, 156};
+   255          unsigned int tx_ch[SLIM_MAX_TX_PORTS] = {128, 129, 130, 131, 132, 133,
+   256                                              134, 135, 136, 137, 138, 139,
+   257                                              140, 141, 142, 143};
+
+[ snip ]
+
+   304                  for_each_rtd_codec_dais(rtd, i, codec_dai) {
+   305                          rval = snd_soc_dai_set_channel_map(codec_dai,
+   306                                                            ARRAY_SIZE(tx_ch),
+   307                                                            tx_ch,
+   308                                                            ARRAY_SIZE(rx_ch),
+   309                                                            rx_ch);
+   310                          if (rval != 0 && rval != -ENOTSUPP)
+   311                                  return rval;
+
+There are 3 bugs:
+
+Bug #1:
+The zeroeth element of ctrl->pconfig[] is supposed to be unused.  We
+start counting at 1.  However this code sets ctrl->pconfig[0].ch_mask = 128.
+
+Bug #2:
+There are SLIM_MAX_TX_PORTS (16) elements in tx_ch[] array but only
+QCOM_SDW_MAX_PORTS + 1 (15) in the ctrl->pconfig[] array so it corrupts
+memory like Yongqin Liu pointed out.
+
+Bug 3:
+Like Jie Gan pointed out, it erases all the tx information with the rx
+information.
+
+regards,
+dan carpenter
+
 
