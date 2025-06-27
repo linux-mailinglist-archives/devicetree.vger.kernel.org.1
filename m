@@ -1,167 +1,273 @@
-Return-Path: <devicetree+bounces-190399-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-190400-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7E66CAEBA2F
-	for <lists+devicetree@lfdr.de>; Fri, 27 Jun 2025 16:45:12 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id B0069AEBA36
+	for <lists+devicetree@lfdr.de>; Fri, 27 Jun 2025 16:45:39 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 21E3F56182A
-	for <lists+devicetree@lfdr.de>; Fri, 27 Jun 2025 14:45:01 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 3ADEA564708
+	for <lists+devicetree@lfdr.de>; Fri, 27 Jun 2025 14:45:22 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id CBAFB2E718F;
-	Fri, 27 Jun 2025 14:44:55 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id DB22D2E8DFA;
+	Fri, 27 Jun 2025 14:44:59 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="ZMgE3NEV"
+	dkim=pass (2048-bit key) header.d=fairphone.com header.i=@fairphone.com header.b="ZUBAtAut"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-ej1-f53.google.com (mail-ej1-f53.google.com [209.85.218.53])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9EE621632C8;
-	Fri, 27 Jun 2025 14:44:55 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6E4C72E8886
+	for <devicetree@vger.kernel.org>; Fri, 27 Jun 2025 14:44:57 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.53
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1751035495; cv=none; b=tRc+jC2dZnJKX2o2L6KYjfMv3Xjgn8Hg/wrvQ/FkPPPZYwd9RQl7gapFz5vafSQYoWIkBMj0BpPrkTbd3bVOb56+OGyr20wqrO5efrTEe0HBqdA0mUYHQ8YozpYBekTBiUc0URiZXr2Y1+/CIcSWHr7ioy7b7njv+HJBDRmAt+0=
+	t=1751035499; cv=none; b=LCQBRsfmyeyKZsokXXuimuJ6VUtkrolY7Ndhv5unS4ixJ7l3soySUY2oGATdVs9wqVEtE4G4fwq+n7M7vmjP0k9/RIfXEqA05UxJDelQDVjD94rJiyf1gF8ky9ZGikHBLzG+HD0RTjAbhj8KtJSZUQ0CvTaGYEwpVaSbpeDuM5k=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1751035495; c=relaxed/simple;
-	bh=BbRHpwFDS8oG4qb080zfed8GL0QZmzDg+bshXX1ksd0=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=Gb96nxx8zj73xvA3ofG6v8gD1ckF7e+ClSl5V+vevE4V+Yj62ZId4lxlUBxTS0pgP2xv894KNfgK0ldLKkGHSY/q4gbSWwBBIBwIkfidACxeP/jySzXRJMhMAA9gGweAfUlaajZIDo7ufhz2fCIGck03VE6TXj/JPkQBibvPa9A=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=ZMgE3NEV; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 0695FC4CEE3;
-	Fri, 27 Jun 2025 14:44:47 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1751035495;
-	bh=BbRHpwFDS8oG4qb080zfed8GL0QZmzDg+bshXX1ksd0=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=ZMgE3NEVYmuSOTFzuel/GH63fs9C0k/cIxyKvZvuBcrRW3B3x0nMJ5c/jMHzSPHeH
-	 pyBkYzlzXzkyU0TytQ76R0w4c5QXnmCTEbpBlhLnULtQ6tyJXnDXCgn2wmD3bYPHOU
-	 WXNpRQDbOrzSsG7YeixDwO+eBLfwKG4pIjZ37IF8JVwAMEP6s8l65uiH8R6jm0jXJH
-	 uoWl9X9p0ROjDy/BkV7XHU3kaic8cmfNKUX4B9jowURrG0JyKk/u5Ll31tl6dHJQ7H
-	 IkLvcLIH6UjUKWMCAP+1KsQDzD5BbzkoHFVE+38iMXdlFPGfPdE+Jo6EImb4908s7k
-	 5h5WFvUExrSog==
-Message-ID: <efa167d1-a5f3-47cd-855d-250f41a5e883@kernel.org>
-Date: Fri, 27 Jun 2025 16:44:45 +0200
+	s=arc-20240116; t=1751035499; c=relaxed/simple;
+	bh=NTyBybTY3lY2he6PEfFmBwj+NT8vhjacNbp9rj9qt38=;
+	h=Mime-Version:Content-Type:Date:Message-Id:Cc:Subject:From:To:
+	 References:In-Reply-To; b=DpQg+Q6X9g7M/3tCWPn5iqiWyGJJGPbhovtkDHNcePOQhUWoDimVrTUc5DE4qN3yKV0qFseZuoBziDhGH/fIihRTJNVP+s+a18sesNrM6yHYJPYCxNZKwxfjX5uOe/zj4rf6uaPBzr+wAls3UV827jCZ/G25S2P4iMIJm57ltc0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=fairphone.com; spf=pass smtp.mailfrom=fairphone.com; dkim=pass (2048-bit key) header.d=fairphone.com header.i=@fairphone.com header.b=ZUBAtAut; arc=none smtp.client-ip=209.85.218.53
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=fairphone.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=fairphone.com
+Received: by mail-ej1-f53.google.com with SMTP id a640c23a62f3a-ae0dad3a179so318118666b.1
+        for <devicetree@vger.kernel.org>; Fri, 27 Jun 2025 07:44:57 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=fairphone.com; s=fair; t=1751035496; x=1751640296; darn=vger.kernel.org;
+        h=in-reply-to:references:to:from:subject:cc:message-id:date
+         :content-transfer-encoding:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=dlrE0erJ+soHw5jj+VujnDEwpvOXS6zY03LMDq5ZPE4=;
+        b=ZUBAtAut7ZN3rT54nfNKJBXCWQlYD5A0DXRsze/J1j0k9cqeEXU4bqOPdu3nErY3wm
+         igjGPhsCqpEggr+PhboSwTa4wbrGXMTfDmz3M8lrmEOsT+YpmyR+wtsl4f85qvO+dOX8
+         8PX8lr0CQBmEhW9JeWlbk71oatZ/19LRjApxsJPzqVHJS9TSIVHIMPUqDQsLTKh/cggN
+         Iv6ddkULBT/VotnfeM4r+rfoxltG9Lflj1ZyY7msC7+IAAOtxh0pob5uzay8zB31/gCY
+         ErWR3/BJYEElDAzXP8q0UOMW4taS7FTymtR95O0gEiohaX+TPl20wW6Wx2E9jcysdVcH
+         3rvA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1751035496; x=1751640296;
+        h=in-reply-to:references:to:from:subject:cc:message-id:date
+         :content-transfer-encoding:mime-version:x-gm-message-state:from:to
+         :cc:subject:date:message-id:reply-to;
+        bh=dlrE0erJ+soHw5jj+VujnDEwpvOXS6zY03LMDq5ZPE4=;
+        b=LBZaALGDNY5F8HYUONCJGbh/Sun2/c5Ko4o2424KTXXOXyoVFumkD2yxOHyVyPckHK
+         9PKbbbhIH7mErDZ+w18HIxMCXaGk5JE7UAWzd16mNwHLU5KkubRqb09Jr4vOv4i/Clj0
+         oQEdxBsoVNcyGwcwIgDWdq4pCmxKPUlumtt/C3+8gifYYc9BqkgKuBweDi8C0wsslUX2
+         UMFwkDCZu36eA6d/5hkzBfGHSzCIk+o8wP541zzRpOr61jTw4XU2v1OAUj9rEEwjUtul
+         tpUa/Nzmes3LBx4bfIhjMZ3XUFLkAtyC2qz0MCiw0y8iYJaL40uJYxnfgY4+dImB4+4h
+         Fjmw==
+X-Forwarded-Encrypted: i=1; AJvYcCWvX1zeefw+hE9BRZwH5Njmwyufa9XcNreCr2vJPbc5eIREX3maLR/HUbc502NC2j9SGKCbBJQ13mH9@vger.kernel.org
+X-Gm-Message-State: AOJu0YwWCnhNGuunEohJIlpBNeUlI7ZiWTKYcRjZwshVVLUGwFrlpLdR
+	1WNhTAJBgj8/ecN186/mQRofmbPMGaUg4wwKkGKfw64Z673zMye4q+B1sBRGRA9YfXE=
+X-Gm-Gg: ASbGncvmy7gnhUYbmJm7EyngQP16KHM/T+In+hg/tcogyBNvedVmdrRnt+VRcIunQ1h
+	7Sz/vXLBuoatZivVMfYJRlGl/wDBKix1w9p0OzdbDXAb3EqbjgKg39EdgcJvwc5UiosisrbOD1N
+	9gGPGKJKOoZ2MmuCUFZjoKP3L6lPBI8gQOSQmVgR7glYeJboLof2pFCNd7b5y+1r/eEtudRT4Sl
+	bhIIKKeMPvPzwva1+0LRBVa3oqdaRtgZhc0pxO7HR4RCV0aD92xT5UZ+3GslSb7hl6337dthoXM
+	aytiMnXfRh60717btYgbl0Jd11819zlj4fzEUBC+jdxmbXkavYMIEFKH7LyNCkYlh3PWOLENp59
+	7oWKbhDdhnHonbRokdeBTJDcwgDlKqkk=
+X-Google-Smtp-Source: AGHT+IGA2mn71bXWbYFILa0TCGmj9njdVsOBKtFNFMdVa00gcI2whAz4/eBu0LzWjRNNEejwRdZugA==
+X-Received: by 2002:a17:907:8691:b0:ad8:9b5d:2c1c with SMTP id a640c23a62f3a-ae34fd8cb6cmr354056566b.19.1751035495488;
+        Fri, 27 Jun 2025 07:44:55 -0700 (PDT)
+Received: from localhost (144-178-202-138.static.ef-service.nl. [144.178.202.138])
+        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-ae35363b35dsm137152566b.13.2025.06.27.07.44.54
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 27 Jun 2025 07:44:55 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3 1/3] dt-bindings: display: samsung,exynos7-decon: add
- properties for iommus and ports
-To: Kaustabh Chakraborty <kauschluss@disroot.org>
-Cc: Inki Dae <inki.dae@samsung.com>, Seung-Woo Kim <sw0312.kim@samsung.com>,
- Kyungmin Park <kyungmin.park@samsung.com>, David Airlie <airlied@gmail.com>,
- Simona Vetter <simona@ffwll.ch>, Alim Akhtar <alim.akhtar@samsung.com>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>,
- Rob Herring <robh@kernel.org>, Conor Dooley <conor@kernel.org>,
- Ajay Kumar <ajaykumar.rs@samsung.com>, Akshu Agrawal <akshua@gmail.com>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, dri-devel@lists.freedesktop.org,
- linux-arm-kernel@lists.infradead.org, linux-samsung-soc@vger.kernel.org,
- linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
-References: <20250627-exynosdrm-decon-v3-0-5b456f88cfea@disroot.org>
- <20250627-exynosdrm-decon-v3-1-5b456f88cfea@disroot.org>
- <20250627-literate-talented-panda-cbac89@krzk-bin>
- <85c3658fdfa90636caac3b3fce295915@disroot.org>
-From: Krzysztof Kozlowski <krzk@kernel.org>
-Content-Language: en-US
-Autocrypt: addr=krzk@kernel.org; keydata=
- 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 a/A=
-In-Reply-To: <85c3658fdfa90636caac3b3fce295915@disroot.org>
+Mime-Version: 1.0
+Content-Transfer-Encoding: quoted-printable
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Date: Fri, 27 Jun 2025 16:44:54 +0200
+Message-Id: <DAXEA131KUXZ.WTO7PST1F3X6@fairphone.com>
+Cc: <~postmarketos/upstreaming@lists.sr.ht>, <phone-devel@vger.kernel.org>,
+ <linux-arm-kernel@lists.infradead.org>, <iommu@lists.linux.dev>,
+ <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+ <linux-pm@vger.kernel.org>, <linux-arm-msm@vger.kernel.org>,
+ <linux-crypto@vger.kernel.org>, <dmaengine@vger.kernel.org>,
+ <linux-mmc@vger.kernel.org>
+Subject: Re: [PATCH 14/14] arm64: dts: qcom: Add The Fairphone (Gen. 6)
+From: "Luca Weiss" <luca.weiss@fairphone.com>
+To: "Konrad Dybcio" <konrad.dybcio@oss.qualcomm.com>, "Will Deacon"
+ <will@kernel.org>, "Robin Murphy" <robin.murphy@arm.com>, "Joerg Roedel"
+ <joro@8bytes.org>, "Rob Herring" <robh@kernel.org>, "Krzysztof Kozlowski"
+ <krzk+dt@kernel.org>, "Conor Dooley" <conor+dt@kernel.org>, "Rafael J.
+ Wysocki" <rafael@kernel.org>, "Viresh Kumar" <viresh.kumar@linaro.org>,
+ "Manivannan Sadhasivam" <mani@kernel.org>, "Herbert Xu"
+ <herbert@gondor.apana.org.au>, "David S. Miller" <davem@davemloft.net>,
+ "Vinod Koul" <vkoul@kernel.org>, "Bjorn Andersson" <andersson@kernel.org>,
+ "Konrad Dybcio" <konradybcio@kernel.org>, "Robert Marko"
+ <robimarko@gmail.com>, "Das Srinagesh" <quic_gurus@quicinc.com>, "Thomas
+ Gleixner" <tglx@linutronix.de>, "Jassi Brar" <jassisinghbrar@gmail.com>,
+ "Amit Kucheria" <amitk@kernel.org>, "Thara Gopinath"
+ <thara.gopinath@gmail.com>, "Daniel Lezcano" <daniel.lezcano@linaro.org>,
+ "Zhang Rui" <rui.zhang@intel.com>, "Lukasz Luba" <lukasz.luba@arm.com>,
+ "Ulf Hansson" <ulf.hansson@linaro.org>
+X-Mailer: aerc 0.20.1-0-g2ecb8770224a-dirty
+References: <20250625-sm7635-fp6-initial-v1-0-d9cd322eac1b@fairphone.com>
+ <20250625-sm7635-fp6-initial-v1-14-d9cd322eac1b@fairphone.com>
+ <4200b3b8-5669-4d5a-a509-d23f921b0449@oss.qualcomm.com>
+ <DAXA7TKVM4GI.J6C7M3D1J1XF@fairphone.com>
+ <6d4e77b3-0f92-44dd-b9b0-3129a5f3785b@oss.qualcomm.com>
+In-Reply-To: <6d4e77b3-0f92-44dd-b9b0-3129a5f3785b@oss.qualcomm.com>
 
-On 27/06/2025 15:44, Kaustabh Chakraborty wrote:
->>> a/Documentation/devicetree/bindings/display/samsung/samsung,exynos7-decon.yaml
->>> +++ 
->>> b/Documentation/devicetree/bindings/display/samsung/samsung,exynos7-decon.yaml
->>> @@ -80,6 +80,14 @@ properties:
->>>        - const: vsync
->>>        - const: lcd_sys
+On Fri Jun 27, 2025 at 4:34 PM CEST, Konrad Dybcio wrote:
+> On 6/27/25 1:33 PM, Luca Weiss wrote:
+>> On Wed Jun 25, 2025 at 4:38 PM CEST, Konrad Dybcio wrote:
+>>> On 6/25/25 11:23 AM, Luca Weiss wrote:
+>>>> Add a devicetree for The Fairphone (Gen. 6) smartphone, which is based
+>>>> on the SM7635 SoC.
 >>>
->>> +  iommus:
->>> +    maxItems: 1
->>> +
->>> +  ports:
->>> +    $ref: /schemas/graph.yaml#/properties/ports
->>> +    description:
->>> +      Contains a port which is connected to mic or dsim node.
->>
->> You need to list and describe the ports.
-> 
-> -    description:
-> -      Contains a port which is connected to mic or dsim node.
-> +    properties:
-> +      port@0:
-> +        $ref: /schemas/graph.yaml#/properties/port
-> +        description:
-> +          Input port which is connected to either a Mobile Image
-> +          Compressor (MIC) or a DSI Master device.
+>>> [...]
+>>>
+>>>> +	/* Dummy panel for simple-framebuffer dimension info */
+>>>> +	panel: panel {
+>>>> +		compatible =3D "boe,bj631jhm-t71-d900";
+>>>> +		width-mm =3D <65>;
+>>>> +		height-mm =3D <146>;
+>>>> +	};
+>>>
+>>> I haven't ran through all the prerequisite-xx-id, but have
+>>> you submitted a binding for this?
+>>=20
+>> Actually not, kind of forgot about this. I believe I can create a
+>> (mostly?) complete binding for the panel, but this simple description
+>> for only width-mm & height-mm will differ from the final one, which will
+>> have the DSI port, pinctrl, reset-gpios and various supplies.
+>>=20
+>> I think I'll just drop it from v2 and keep it locally only, to get the
+>> simpledrm scaling right.
+>
+> Yeah I think that'd be best in general
 
+Ack
 
-If this is only one port, then just 'port' property, but I have doubts
-it should be one, because even you mentioned two - MIC could be the
-input and MIPI DSIM would be the output.
+>
+>>=20
+>>>
+>>> [...]
+>>>
+>>>> +	reserved-memory {
+>>>> +		/*
+>>>> +		 * ABL is powering down display and controller if this node is
+>>>> +		 * not named exactly "splash_region".
+>>>> +		 */
+>>>> +		splash_region@e3940000 {
+>>>> +			reg =3D <0x0 0xe3940000 0x0 0x2b00000>;
+>>>> +			no-map;
+>>>> +		};
+>>>> +	};
+>>>
+>>> :/ maybe we can convince ABL not to do it..
+>>=20
+>> Yes, we talked about that. I will look into getting "splash-region" and
+>> "splash" also into the ABL (edk2) build for the phone. Still won't
+>> resolve that for any other brand of devices.
+>
+> Gotta start small! Maybe framebuffer@ would be more """idiomatic"""
+> but potayto/potahto
 
-Maybe if the MIC is integral part, it would not have been an input, but
-then only 'port'.
+I'll try and work on the edk2 patch early next week, so if you tell me
+soon, I can add some other name. I don't want to include 500 different
+names though. :)
 
-> 
-> I assume you want something like this?
-> Is the formatting correct? Should there be a space between
-> ports:$ref and ports:properties?
+>
+>>=20
+>>>
+>>> [...]
+>>>
+>>>> +		vreg_l12b: ldo12 {
+>>>> +			regulator-name =3D "vreg_l12b";
+>>>> +			/*
+>>>> +			 * Skip voltage voting for UFS VCC.
+>>>> +			 */
+>>>
+>>> Why so?
+>>=20
+>> From downstream:
+>>=20
+>> 		/*
+>> 		 * This is for UFS Peripheral,which supports 2 variants
+>> 		 * UFS 3.1 ,and UFS 2.2 both require different voltages.
+>> 		 * Hence preventing voltage voting as per previous targets.
+>> 		 */
+>>=20
+>> I haven't (successfully) brought up UFS yet, so I haven't looked more
+>> into that.
+>>=20
+>> The storage on FP6 is UFS 3.1 though fwiw.
+>
+> Hm.. can you check what debugfs says about the voltage at runtime
+> (on downstream)? I'd assume you won't be shipping two kinds anyway
 
-Look at toshiba,tc358768.yaml or the simple-bridge (except you should
-name the input and output ports).
+This is very likely just from Qualcomm's baseline.
 
+>
+> [...]
+>
+>>>> +&pm8550vs_d {
+>>>> +	status =3D "disabled";
+>>>> +};
+>>>> +
+>>>> +&pm8550vs_e {
+>>>> +	status =3D "disabled";
+>>>> +};
+>>>> +
+>>>> +&pm8550vs_g {
+>>>> +	status =3D "disabled";
+>>>> +};
+>>>
+>>> Hm... perhaps we should disable these by deafult
+>>=20
+>> Do you want me to do this in this patchset, or we clean this up later at
+>> some point? I'd prefer not adding even more dependencies to my patch
+>> collection right now.
+>
+> I can totally hear that..
+>
+> Let's include it in this patchset, right before SoC addition
+> I don't think there's any pm8550vs users trying to get merged in
+> parallel so it should be OK
 
+Okay, can do. Disable all of them (_c, _d, _e, _g), and re-enable them
+in current users? I assume there might also be boards that only have
+e.g. _d and no _c.
 
-Best regards,
-Krzysztof
+>
+> [...]
+>
+>>>> +&usb_1 {
+>>>> +	dr_mode =3D "otg";
+>>>> +
+>>>> +	/* USB 2.0 only */
+>>>
+>>> Because there's no usb3phy description yet, or due to hw design?
+>>=20
+>> HW design. Funnily enough with clk_ignore_unused this property is not
+>> needed, and USB(2.0) works fine then. Just when (I assume) the USB3
+>> clock is turned off which the bootloader has enabled, USB stops working.
+>
+> The USB controller has two possible clock sources: the PIPE_CLK that
+> the QMPPHY outputs, or the UTMI clock (qcom,select-utmi-as-pipe-clk).
+
+So okay like this for you, for a USB2.0-only HW?
+
+>
+> Because you said there's no USB3, I'm assuming DP-over-Type-C won't
+> be a thing either? :(
+
+Yep. I'd have preferred USB3+DP as well since it's actually quite cool
+to have with proper Linux. On Android, at least on older versions it's
+barely usable imo. Can't even properly watch videos on the big screen
+with that SW stack.
+
+Regards
+Luca
+
+>
+> Konrad
+
 
