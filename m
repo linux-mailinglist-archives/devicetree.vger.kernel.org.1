@@ -1,195 +1,153 @@
-Return-Path: <devicetree+bounces-190264-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-190265-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 960CCAEB307
-	for <lists+devicetree@lfdr.de>; Fri, 27 Jun 2025 11:34:40 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 945C2AEB325
+	for <lists+devicetree@lfdr.de>; Fri, 27 Jun 2025 11:42:17 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 13B8F3A8506
-	for <lists+devicetree@lfdr.de>; Fri, 27 Jun 2025 09:34:15 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 779961C207FA
+	for <lists+devicetree@lfdr.de>; Fri, 27 Jun 2025 09:42:33 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 04344295533;
-	Fri, 27 Jun 2025 09:34:31 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9D1D7293C4C;
+	Fri, 27 Jun 2025 09:42:11 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="LoyZXSiE"
+	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="ANo4mvAp"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+Received: from relay3-d.mail.gandi.net (relay3-d.mail.gandi.net [217.70.183.195])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 14466293B5E;
-	Fri, 27 Jun 2025 09:34:28 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B1C9E1DE2C9;
+	Fri, 27 Jun 2025 09:42:08 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.70.183.195
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1751016870; cv=none; b=YsHLakakBFqqpHa3bBglQwyyKfI5YhO1JmcQLkDVqqhAjZSFuNLm5io/4yRqaCZEcMuf5MIX4bm/2mYX7xuHg3LzAvQg4xnpl2cdEwG9quTIRx2AM/yUneJvNiBS1gtsEaRKE7yY+wB809rvtZ3NUKAGYCqZdYSQAFyLZuCt8aM=
+	t=1751017331; cv=none; b=E1bD9qSwfVmg4DinhCQtpQXkGlRHk5o2KI4bRaP+KHZ9ihfqmDLgxMWGKxpGR+f1C96UGjCo01QcZMKrcTcxiuued3lSbFdGnj8ScYkB06tiXnHYmcPS37Es/yoUeHhjWIa+Ec35Prf3cYNmvo1MSqj0cSLtjmDS77+XEYBW/sk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1751016870; c=relaxed/simple;
-	bh=8Q8oTM1y51Iie1Mf1I4h1+UZwJPjQB92ik5bHmWnJUg=;
-	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
-	 In-Reply-To:Content-Type; b=ITuG2jKbpvrb3pFY4/Lrsp8AnvzVg1Op2gwLJFjJaktsEjZXWHvOfQQ1ahu/J+6g1Zi0l4XbjfxrG2Vw5QolPYaU30IiTV2JDaMK7JPK+uziTMIwbJnt/GTfkIpBfn4ekiuMMU/BbZn0+6j6jkB3ZIe/SS7PKmPNt5Z24QEKYbo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=LoyZXSiE; arc=none smtp.client-ip=205.220.180.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
-Received: from pps.filterd (m0279871.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 55R4DKaF007920;
-	Fri, 27 Jun 2025 09:34:24 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	t+uqEwVa29pUgdcj52vQ1NCxmrssiNcqyilQAL85Eu8=; b=LoyZXSiEc4+iYMOJ
-	2q717fEijK6ZacE2C4UqHLy8UkGcCG41Uej30OP1FUTf69JYuhp9Ex0Ed1q9NaVe
-	MlyYbgs1UEu8EVd5O3cp+WPcG4DlZmPQbbUc5+4QX41Kwav6Q92RA6hqhXJQut7U
-	NFbOHxYl02OQHhB9m4rC9eHjDn8Yi2ztlGU4buRiaUPpHL65wGlpoF6eHMxzwi5l
-	YlDmRX1kZq7PoFO+rzgyfguQvDmF5P1Iw2fjKiyLXAtqCyrW9dn+cW+J2PX2BqUn
-	+YoF2qCR3S9AY8WdrSoTOHp3aoFkhgLUh3nJaxaoCmP2xFT3T3Q7bdXOQ2YyHPqm
-	laWURQ==
-Received: from nalasppmta05.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 47fbhqvqwe-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Fri, 27 Jun 2025 09:34:24 +0000 (GMT)
-Received: from nalasex01c.na.qualcomm.com (nalasex01c.na.qualcomm.com [10.47.97.35])
-	by NALASPPMTA05.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 55R9YNfe005224
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Fri, 27 Jun 2025 09:34:23 GMT
-Received: from [10.253.72.250] (10.80.80.8) by nalasex01c.na.qualcomm.com
- (10.47.97.35) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1748.10; Fri, 27 Jun
- 2025 02:34:18 -0700
-Message-ID: <1c6d8e59-eb9b-4230-a7e5-f0ffc30b8877@quicinc.com>
-Date: Fri, 27 Jun 2025 17:34:15 +0800
+	s=arc-20240116; t=1751017331; c=relaxed/simple;
+	bh=ALB8scmnqBjrj7Lx7mrURXy49O4IYjmrSTfkDIal3lI=;
+	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=rTE+dD7fzvved3bS2x+XF7ebqHPmSzsN2x7WwT6krkVQmt6BTneXSyyotPs+rPqhEhDZ8p6FxltGFdKm/1/bQqT0mFy9bIDcTPo/PnVW6udMb0GX6VA3BDMoCT4t9N4b6SOdDM5wDOfq0Svwz2+PTmXDCmYj4o4kJA/AQgs0Kb4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=ANo4mvAp; arc=none smtp.client-ip=217.70.183.195
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
+Received: by mail.gandi.net (Postfix) with ESMTPSA id 081091FD35;
+	Fri, 27 Jun 2025 09:41:53 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
+	t=1751017321;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references;
+	bh=ebkQpOy7jU/hd2ovSMuvbdUVcZ8KbjpAp3Ecuke29NM=;
+	b=ANo4mvApogHPe4fMWd2QFeBCg+mWgojUEV8XaXM/25ncURaUsz9M/kEC6Nn6IVH4maVX6j
+	gSeSCAUP/wlUINz90v32u/TeUsei8qUxIXQS6gDZRhsaB8zBNJmzkdZiaYtkNAavTknDsP
+	dRdh+FNdH2dlKN6La4DumIswSehs0FgFn89O4Iokd0AoNO4qnLq0SpsC6O1yrdqCLW9b2k
+	h9Upd+221NuY96MmaBC7ix86cApTM5GZSfo0ZV56K/KAoyKWrsuFyHBZ31W4LK69SU2LzV
+	acuBc9jpT4Ril5gE8uY2KWJvi1SV/M7Wfe4OOWc+QLioRAkbvmT+bkVgu9R1Iw==
+Date: Fri, 27 Jun 2025 11:41:51 +0200
+From: Maxime Chevallier <maxime.chevallier@bootlin.com>
+To: =?UTF-8?B?VGjDqW8=?= Lebrun <theo.lebrun@bootlin.com>
+Cc: Andrew Lunn <andrew+netdev@lunn.ch>, "David S. Miller"
+ <davem@davemloft.net>, Eric Dumazet <edumazet@google.com>, Jakub Kicinski
+ <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>, Rob Herring
+ <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Nicolas Ferre <nicolas.ferre@microchip.com>, Claudiu
+ Beznea <claudiu.beznea@tuxon.dev>, Paul Walmsley
+ <paul.walmsley@sifive.com>, Palmer Dabbelt <palmer@dabbelt.com>, Albert Ou
+ <aou@eecs.berkeley.edu>, Alexandre Ghiti <alex@ghiti.fr>, Samuel Holland
+ <samuel.holland@sifive.com>, Richard Cochran <richardcochran@gmail.com>,
+ Russell King <linux@armlinux.org.uk>, Thomas Bogendoerfer
+ <tsbogend@alpha.franken.de>, Vladimir Kondratiev
+ <vladimir.kondratiev@mobileye.com>, Gregory CLEMENT
+ <gregory.clement@bootlin.com>, Cyrille Pitchen <cyrille.pitchen@atmel.com>,
+ Harini Katakam <harini.katakam@xilinx.com>, Rafal Ozieblo
+ <rafalo@cadence.com>, Haavard Skinnemoen <hskinnemoen@atmel.com>,
+ netdev@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, linux-riscv@lists.infradead.org,
+ linux-mips@vger.kernel.org, Thomas Petazzoni
+ <thomas.petazzoni@bootlin.com>, Tawfik Bayouk <tawfik.bayouk@mobileye.com>,
+ Andrew Lunn <andrew@lunn.ch>
+Subject: Re: [PATCH net-next v2 00/18] Support the Cadence MACB/GEM
+ instances on Mobileye EyeQ5 SoCs
+Message-ID: <20250627112234.1cb54133@2a02-8440-d103-6715-ef68-2a2e-b947-8885.rev.sfr.net>
+In-Reply-To: <20250627-macb-v2-0-ff8207d0bb77@bootlin.com>
+References: <20250627-macb-v2-0-ff8207d0bb77@bootlin.com>
+Organization: Bootlin
+X-Mailer: Claws Mail 4.3.1 (GTK 3.24.43; x86_64-redhat-linux-gnu)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [RFC PATCH 0/3] Add current load setting for qcom camss csiphy
-To: Bryan O'Donoghue <bryan.odonoghue@linaro.org>, <rfoss@kernel.org>,
-        <todor.too@gmail.com>, <mchehab@kernel.org>, <robh@kernel.org>,
-        <krzk+dt@kernel.org>, <conor+dt@kernel.org>, <andersson@kernel.org>,
-        <konradybcio@kernel.org>, <akapatra@quicinc.com>,
-        <hariramp@quicinc.com>
-CC: <linux-media@vger.kernel.org>, <linux-arm-msm@vger.kernel.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <quic_svankada@quicinc.com>, <quic_depengs@quicinc.com>,
-        <quic_vikramsa@quicinc.com>
-References: <20250620040736.3032667-1-quic_wenmliu@quicinc.com>
- <9deadaaf-7dc7-4616-a6e6-95a5f757779e@linaro.org>
-Content-Language: en-US
-From: Wenmeng Liu <quic_wenmliu@quicinc.com>
-In-Reply-To: <9deadaaf-7dc7-4616-a6e6-95a5f757779e@linaro.org>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 8bit
-X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
- nalasex01c.na.qualcomm.com (10.47.97.35)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-ORIG-GUID: 4xExga32zVGgEnbqW3uKJCbPkYK5p90z
-X-Authority-Analysis: v=2.4 cv=Id+HWXqa c=1 sm=1 tr=0 ts=685e65a0 cx=c_pps
- a=ouPCqIW2jiPt+lZRy3xVPw==:117 a=ouPCqIW2jiPt+lZRy3xVPw==:17
- a=GEpy-HfZoHoA:10 a=IkcTkHD0fZMA:10 a=6IFa9wvqVegA:10
- a=lQAp6sCOzUQraW--TEUA:9 a=3ZKOabzyN94A:10 a=QEXdDO2ut3YA:10
-X-Proofpoint-GUID: 4xExga32zVGgEnbqW3uKJCbPkYK5p90z
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwNjI3MDA3NyBTYWx0ZWRfX15WDCFKBG24m
- xrALDlIf1v/lMkhkJ9GsRneXETPJzqGpJEZFBge42nzIIHlmR0CznK2qEMKOspveCVr8RuPe2y6
- 33PudT3gJrkexYYpA2d5alCxj5mYHulQaBBfTf+g77wEbT9MZjgNk16bBMB16ZyuQigjhjRczNp
- 1Mfn3Ge+CrQMN5wpKByK+mAMrHR8j4SikTCEpJ3eNRolGajNvk9iV0chK0Q9nqlg9ePhwzoU/2z
- aztlKtXc0MCN0OZ2iG1AoOI8ZBGxTLyR5nPNCRVa0ipiUmWCORkWYKl8RlfnJbKKTdKDReyK11J
- h3xXU2qFuW4kE5ElDUQmYTK+qQu1RMs4IM/o1+bNGY33G4tNcXReHdz8XMhbSyckmeEdw+buieS
- DaGxiwZBXBC/lrwFszYRw9VDJ8QnaabSuywcOVJ4KFgvEe1lg193yznh2SN6GUhY0mLQ7YK7
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1099,Hydra:6.1.7,FMLib:17.12.80.40
- definitions=2025-06-27_03,2025-06-26_05,2025-03-28_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- spamscore=0 priorityscore=1501 mlxlogscore=999 phishscore=0 bulkscore=0
- clxscore=1015 impostorscore=0 mlxscore=0 lowpriorityscore=0 malwarescore=0
- suspectscore=0 adultscore=0 classifier=spam authscore=0 authtc=n/a authcc=
- route=outbound adjust=0 reason=mlx scancount=1 engine=8.19.0-2505280000
- definitions=main-2506270077
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+X-GND-State: clean
+X-GND-Score: -100
+X-GND-Cause: gggruggvucftvghtrhhoucdtuddrgeeffedrtdefgddvjedvucetufdoteggodetrfdotffvucfrrhhofhhilhgvmecuifetpfffkfdpucggtfgfnhhsuhgsshgtrhhisggvnecuuegrihhlohhuthemuceftddunecusecvtfgvtghiphhivghnthhsucdlqddutddtmdenucfjughrpeffhffvvefukfgjfhhoofggtgfgsehtqhertdertdejnecuhfhrohhmpeforgigihhmvgcuvehhvghvrghllhhivghruceomhgrgihimhgvrdgthhgvvhgrlhhlihgvrhessghoohhtlhhinhdrtghomheqnecuggftrfgrthhtvghrnhepkeehgeeijeekteffhfelheetffeghfffhfeufeeifeffjeeftefhveduteduueeunecuffhomhgrihhnpehkvghrnhgvlhdrohhrghenucfkphepvdgrtddvmeekgeegtdemugdutdefmeeijeduheemvghfieekmedvrgdvvgemsgelgeejmeekkeekheenucevlhhushhtvghrufhiiigvpedtnecurfgrrhgrmhepihhnvghtpedvrgdtvdemkeeggedtmeguuddtfeemieejudehmegvfheikeemvdgrvdgvmegsleegjeemkeekkeehpdhhvghlohepvdgrtddvqdekgeegtddqugdutdefqdeijeduhedqvghfieekqddvrgdvvgdqsgelgeejqdekkeekhedrrhgvvhdrshhfrhdrnhgvthdpmhgrihhlfhhrohhmpehmrgigihhmvgdrtghhvghvrghllhhivghrsegsohhothhlihhnrdgtohhmpdhnsggprhgtphhtthhopeeffedprhgtphhtthhopehthhgvohdrlhgvsghruhhnsegsohhothhli
+ hhnrdgtohhmpdhrtghpthhtoheprghnughrvgifodhnvghtuggvvheslhhunhhnrdgthhdprhgtphhtthhopegurghvvghmsegurghvvghmlhhofhhtrdhnvghtpdhrtghpthhtohepvgguuhhmrgiivghtsehgohhoghhlvgdrtghomhdprhgtphhtthhopehkuhgsrgeskhgvrhhnvghlrdhorhhgpdhrtghpthhtohepphgrsggvnhhisehrvgguhhgrthdrtghomhdprhgtphhtthhopehrohgshheskhgvrhhnvghlrdhorhhgpdhrtghpthhtohepkhhriihkodgutheskhgvrhhnvghlrdhorhhg
+X-GND-Sasl: maxime.chevallier@bootlin.com
+
+Hi Th=C3=A9o,
+
+On Fri, 27 Jun 2025 11:08:46 +0200
+Th=C3=A9o Lebrun <theo.lebrun@bootlin.com> wrote:
+
+> Mobileye EyeQ5 SoCs provides two GEM IP blocks. The end result of this
+> series is working 1G networking on the EyeQ5 eval board. It isn't just
+> a new macb_config & compatible, we also provide some cleanup & fixes
+> along the way.
+>=20
+> dt-bindings:
+>   [PATCH net-next v2 01/18] dt-bindings: net: cdns,macb: sort compatibles
+>   [PATCH net-next v2 02/18] dt-bindings: net: cdns,macb: add Mobileye Eye=
+Q5 ethernet interface
+>   [PATCH net-next v2 03/18] dt-bindings: net: cdns,macb: allow tsu_clk wi=
+thout tx_clk
+>   [PATCH net-next v2 04/18] dt-bindings: net: cdns,macb: allow dma-cohere=
+nt
+>=20
+> Cleanup:
+>   [PATCH net-next v2 05/18] net: macb: use BIT() macro for capability def=
+initions
+>   [PATCH net-next v2 06/18] net: macb: Remove local variables clk_init an=
+d init in macb_probe()
+>   [PATCH net-next v2 07/18] net: macb: drop macb_config NULL checking
+>   [PATCH net-next v2 08/18] net: macb: introduce DMA descriptor helpers (=
+is 64bit? is PTP?)
+>   [PATCH net-next v2 09/18] net: macb: sort #includes
+>=20
+> Fixes:
+>   [PATCH net-next v2 10/18] net: macb: remove illusion about TBQPH/RBQPH =
+being per-queue
+>   [PATCH net-next v2 11/18] net: macb: single dma_alloc_coherent() for DM=
+A descriptors
+>   [PATCH net-next v2 12/18] net: macb: match skb_reserve(skb, NET_IP_ALIG=
+N) with HW alignment
+>   [PATCH net-next v2 13/18] net: macb: avoid double endianness swap in ma=
+cb_set_hwaddr()
+
+Fixes go through the net tree, and new features through net-next :
+
+https://docs.kernel.org/process/maintainer-netdev.html#netdev-faq
+
+As this series is quite big, it could be nice to send the cleanups and
+fixes in dedicated series, and then the eyeQ5 support in itself as a
+standalone series. This would make the review work easier.
 
 
+> EyeQ5 support:
+>   [PATCH net-next v2 14/18] net: macb: add no LSO capability (MACB_CAPS_N=
+O_LSO)
+>   [PATCH net-next v2 15/18] net: macb: Add "mobileye,eyeq5-gem" compatible
+>=20
+> DTS:
+>   [PATCH net-next v2 16/18] MIPS: mobileye: add EyeQ5 DMA IOCU support
+>   [PATCH net-next v2 17/18] MIPS: mobileye: eyeq5: add two Cadence GEM Et=
+hernet controllers
+>   [PATCH net-next v2 18/18] MIPS: mobileye: eyeq5-epm: add two Cadence GE=
+M Ethernet PHYs
 
-On 2025/6/20 16:23, Bryan O'Donoghue wrote:
-> On 20/06/2025 05:07, Wenmeng Liu wrote:
->> Currently qcom camss csiphy drivers don’t set regulator’s currents
->> load properly using Linux regulator framework. This causes every
->> regulator’s initial mode set as HPM (high current mode),
->> which may have higher power consumption.
->> To address this issue, add current configuration for CSIPHY.
->>
->> Wenmeng Liu (3):
->>    media: dt-bindings: Add regulator current load
->>    media: qcom: camss: csiphy: Add regulator current load setting
->>    arm64: dts: qcom: qcs6490-rb3gen2: Add csiphy current support
->>
->>   .../bindings/media/qcom,sc7280-camss.yaml     |  6 ++++
->>   .../qcs6490-rb3gen2-vision-mezzanine.dtso     |  1 +
->>   .../media/platform/qcom/camss/camss-csiphy.c  | 29 +++++++++++++++++++
->>   .../media/platform/qcom/camss/camss-csiphy.h  |  1 +
->>   4 files changed, 37 insertions(+)
->>
-> 
-> How are these load-currents determined ?
-
-According to my discussion with hw colleague,current value is decided 
-based on post silicon calibration, this value is fixed for the 
-corresponding chip.
-
-> Looking at other instances of setting current for PHYs
-> 
->   grep -r regulator_set_load * | grep com
->             [git:camss-bugfix-6.17] ✖
-> drivers/phy/qualcomm/phy-qcom-edp.c:    ret = regulator_set_load(edp- 
->  >supplies[0].consumer, 21800); /* 1.2 V vdda-phy */
-> drivers/phy/qualcomm/phy-qcom-edp.c:    ret = regulator_set_load(edp- 
->  >supplies[1].consumer, 36000); /* 0.9 V vdda-pll */
-> drivers/phy/qualcomm/phy-qcom-usb-hs.c:    ret = 
-> regulator_set_load(uphy->v1p8, 50000);
-> drivers/phy/qualcomm/phy-qcom-usb-hs.c:    ret = 
-> regulator_set_load(uphy->v3p3, 50000);
-> drivers/phy/qualcomm/phy-qcom-usb-hs-28nm.c:    ret = 
-> regulator_set_load(priv->vregs[VDDA_1P8].consumer, 19000);
-> drivers/phy/qualcomm/phy-qcom-usb-hs-28nm.c:    ret = 
-> regulator_set_load(priv->vregs[VDDA_3P3].consumer, 16000);
-> drivers/phy/qualcomm/phy-qcom-usb-hs-28nm.c: regulator_set_load(priv- 
->  >vregs[VDDA_1P8].consumer, 0);
-> drivers/phy/qualcomm/phy-qcom-qmp-combo.c:        ret = 
-> regulator_set_load(qmp->vregs[i].consumer,
-> drivers/remoteproc/qcom_q6v5_pas.c:        regulator_set_load(adsp- 
->  >cx_supply, 100000);
-> drivers/remoteproc/qcom_wcnss.c:            
-> regulator_set_load(bulk[i].consumer, info[i].load_uA);
-> drivers/remoteproc/qcom_wcnss_iris.c: regulator_set_load(iris- 
->  >vregs[i].consumer,
-> drivers/remoteproc/qcom_q6v5_mss.c:            ret = 
-> regulator_set_load(regs[i].reg,
-> drivers/remoteproc/qcom_q6v5_mss.c:            
-> regulator_set_load(regs[i].reg, 0);
-> drivers/remoteproc/qcom_q6v5_mss.c:            
-> regulator_set_load(regs[i].reg, 0);
-> drivers/remoteproc/qcom_q6v5_wcss.c:    regulator_set_load(wcss- 
->  >cx_supply, 100000);
-> 
-> I think this is the type of thing we should bury in SoC resources not in 
-> DT.
-> 
-> I can think of how we might want to change the current depending on the 
-> pixel rate.. but then I think that is something we could calculate based 
-> on pixel rate with descriptions as a base in
-> 
-> driver/media/platfrom/qcom/camss/camss.c::static const struct 
-> camss_subdev_resources csiphy_res_SoCNumber[];
-> 
-> ---
-> bod
-> 
-
-Yes, it's more common to put the current value in the code.Will be 
-updated in v2.
-
-Thanks,
-Wenmeng
-
+Maxime
 
