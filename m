@@ -1,207 +1,217 @@
-Return-Path: <devicetree+bounces-190271-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-190272-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6F38FAEB36B
-	for <lists+devicetree@lfdr.de>; Fri, 27 Jun 2025 11:51:20 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id A104AAEB394
+	for <lists+devicetree@lfdr.de>; Fri, 27 Jun 2025 12:00:11 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 0CEF3189C30E
-	for <lists+devicetree@lfdr.de>; Fri, 27 Jun 2025 09:51:36 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id C71B91BC3CFA
+	for <lists+devicetree@lfdr.de>; Fri, 27 Jun 2025 10:00:26 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4C63E293C7E;
-	Fri, 27 Jun 2025 09:51:14 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C77C5298278;
+	Fri, 27 Jun 2025 10:00:02 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=fairphone.com header.i=@fairphone.com header.b="b+s3++zS"
+	dkim=pass (2048-bit key) header.d=aspeedtech.com header.i=@aspeedtech.com header.b="XksT31/F"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ej1-f46.google.com (mail-ej1-f46.google.com [209.85.218.46])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from TYPPR03CU001.outbound.protection.outlook.com (mail-japaneastazon11022101.outbound.protection.outlook.com [52.101.126.101])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 87EED295533
-	for <devicetree@vger.kernel.org>; Fri, 27 Jun 2025 09:51:12 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.46
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1751017874; cv=none; b=t0uDPFnK/XRYE7kZFL/eohfbrbcAz4xPd3tv9vuLPsjGsDpaZhhTHwzcEIo3Jg5KuUaoNGyerhofL3dEJ9d3cRgPyHxfF3eJboABCOfZavPf6+YtHo9imD+jfvppr8ExxC5F8nV8bagFqooCNC+PRngSRSaWfo+uwXokJ7jZp5M=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1751017874; c=relaxed/simple;
-	bh=aWKcXpIWktZltEWw9bV+4dTcFYdfkePr8vQGnsvS0L8=;
-	h=Mime-Version:Content-Type:Date:Message-Id:Cc:Subject:From:To:
-	 References:In-Reply-To; b=M3InwbwAywonh4/T2vs0JTSmTxnY6Mkw/lTCXfzosafo3baTlzklzLN7mV1zP2RaZk29hXamqL0YmL3DKfWZzGvX8dCg8m5BrGdd1Zg0OLx8IF05FSgUcynIe3dVcnTCdRvbrmEh2vCX1JgnvGc0LsG7NgHdNRkf8LCUUQKIfC8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=fairphone.com; spf=pass smtp.mailfrom=fairphone.com; dkim=pass (2048-bit key) header.d=fairphone.com header.i=@fairphone.com header.b=b+s3++zS; arc=none smtp.client-ip=209.85.218.46
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=fairphone.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=fairphone.com
-Received: by mail-ej1-f46.google.com with SMTP id a640c23a62f3a-ae0a0cd709bso604523166b.0
-        for <devicetree@vger.kernel.org>; Fri, 27 Jun 2025 02:51:12 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=fairphone.com; s=fair; t=1751017871; x=1751622671; darn=vger.kernel.org;
-        h=in-reply-to:references:to:from:subject:cc:message-id:date
-         :content-transfer-encoding:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=TAKHP6eBszL2hrHuqZ8PH7OxIF1g8NegvI8NrbNa5H4=;
-        b=b+s3++zSepQ4S4cYgIbhk7yjxvsm6zEP77GL9A0UtH191upGTtno6/LVyRd7nsOcGX
-         jcUx7PmJ752d5E59djEVPIAGTt6+JozAXSRKUqMYpFwTUVH3N7xkACYM481s5BDiWoSj
-         aROfGSbvsQOtth9mA/4+VxiAn9QF7oQ++ZFcNbPMeVqr0RIwXajdIAbQxgIYxf5FiEQX
-         JMRph+JlXaDwRm9+wWRCkGkMl1qXtXbAWRAUZR5josbCHvK43e1MeZcTBWuea5EmFfjt
-         WZB6+sBAJAKx7+qc0xXz/K2IY0Z3CDPz8YpoJh2A59Y+WpE2ugj64uli5JkzbafwO42J
-         eYQw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1751017871; x=1751622671;
-        h=in-reply-to:references:to:from:subject:cc:message-id:date
-         :content-transfer-encoding:mime-version:x-gm-message-state:from:to
-         :cc:subject:date:message-id:reply-to;
-        bh=TAKHP6eBszL2hrHuqZ8PH7OxIF1g8NegvI8NrbNa5H4=;
-        b=lH8too9u1gASzKC9cDMzmeb9xF+i3+8TQVvsRCzJUX6Mg46bKcOHb1YAFfzQZZhQSS
-         f07N7e4bblfm4JUsVnLo1Kls5wcxHEAebScFZ8K1b7LxgeOs+xUKT+JPHW7CAh8LvupO
-         WYnTFMhkiryDeORaFRcqu43jloJnT5RPsLJNncaVN1oFgOVwuFIbq0IIW+n8RdpeAtHp
-         CLIvZexmrZQoiJSHw754vikfJ/J8GaUlNCLfTSxHvVjiE/bJO5kumjN0WDSL4x7P+xJ0
-         nqDvVO2s+eoHF4L0lrAaTgoY5EVeBi4HkwYKpiwsf93l9x2/mTTWcyZX1q4FJ1Cnt6zD
-         lwWQ==
-X-Forwarded-Encrypted: i=1; AJvYcCWGa+oH08C+i5O3sOqT0RNVSp4Z3+WWuxL2v3yraRc5vxeA4McEgoCy2ZzcTOi6P/ObtAV61+U/1Pva@vger.kernel.org
-X-Gm-Message-State: AOJu0Yzvaar4UspXfdepl+yuMsWMy4Gks80PNpP79eIuIJ4gl2uAZYR2
-	fjV6T5DDLXZHretRwUnVv/mIsT/mP6Megq3SzxXyWwfu1O0fifAU8mgaQl1d1rTiIhE=
-X-Gm-Gg: ASbGncvrsPr1p90GC8kP70e99YQRD52lVQOyW5RAH11Cs3foEiu9Nj1Df5PbATO1nNF
-	Y3f9GJei7rILWjIaRVmgHI3Php3KfvXLgvxQGT2s8owf/ateBkyWvl+hY+N8I25YD/Xs568TMGE
-	uLaTIOXytxL4kOVUEckeZiymHknXgZZBCyfcgeZjs/xQ3obTXxDrPweQi2L2JAug/zTKtwwrjYN
-	iOTQuskHPvNsKfqm9t6QwuXuIqZzizBR8LQGhI9KjLa3bOyi1eR95WnrEYYi/WX3kgbCY3hydFw
-	4diE0GgyM9E/ao41bBIlRqJqJu404JtN94NQr3tTPdDq4MQmoVKci4tKuQqmZs8XSDRYTT5XiEr
-	QfNweKvOZQOyD8vR0cVgaP1rCjM8Rwmd/xVRYLBKkSA==
-X-Google-Smtp-Source: AGHT+IE99Ck1XKmW0mBEtookC0EaO8U9aF4JHALURpPgmU1+B2UobnemydphVmXY2CO9mnSZo3zaVg==
-X-Received: by 2002:a17:907:940d:b0:ae0:da61:71fc with SMTP id a640c23a62f3a-ae0da617483mr523043866b.10.1751017870669;
-        Fri, 27 Jun 2025 02:51:10 -0700 (PDT)
-Received: from localhost (144-178-202-138.static.ef-service.nl. [144.178.202.138])
-        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-ae35417b9d8sm91937666b.184.2025.06.27.02.51.09
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 27 Jun 2025 02:51:10 -0700 (PDT)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 07EAE293B4F;
+	Fri, 27 Jun 2025 09:59:59 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=52.101.126.101
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1751018402; cv=fail; b=ENAYrravY2+DOfV7sSXbz5uDc8Jo7sRZ0zVRAi8SZI1Z0vzJEiRIzhdrRtlLuuNTFgjv+YpmC89NxE8vqwmGaHyQo5lMi3evrwNHnLR6GLwhqh6Dm24+PHGaGw5BiAP469Thp8HACT/CLPO2ptHMvtw1CZHhtXxOhuEYYvSxvUw=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1751018402; c=relaxed/simple;
+	bh=np24p06CN2dGH6c8dHrozZ3e95oT9G9urCDX6gJ7Yro=;
+	h=From:To:CC:Subject:Date:Message-ID:References:In-Reply-To:
+	 Content-Type:MIME-Version; b=luxKkatX8jCX2Q/SF8X4iKELkZvXEOWIG3OUhoSfXqdgJW2J8ZvJrPtmRwFnuXHpxoYzhfB+UzZYJwTqTVnxGG8KMQI3wAFq8suUSMdU7X39qk8ce+x2nKoLZe2OJugBIKhTnHy035m9EkJcqcMrCUEaNS6KtMmaVP8WWpX3XPI=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=aspeedtech.com; spf=pass smtp.mailfrom=aspeedtech.com; dkim=pass (2048-bit key) header.d=aspeedtech.com header.i=@aspeedtech.com header.b=XksT31/F; arc=fail smtp.client-ip=52.101.126.101
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=aspeedtech.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=aspeedtech.com
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=UongaMcW7EEbNoW9w8EMNs/ftxpiJB8zi5OBFgL+aW/7myIiTjVbNMCnK6tvTelL4ORr+f22dvmBePtJ8p7VBbSsArfmDn8qpViMVBl1+GG8bQiQH+VOIpZXkw4SKXOP41eeOd6Wanj5oVowC/A3TsR9kRtkimnFW434xiYE5NRSB9O9nxPoiCBw4NRV0lYwfdAklONPudv7ZIEIbnTSJLogYMaugqqv+1ePqEbQYwhtlkJ1vtr+4cbXoE37LvYJJPtLDpQqneRQ2ePkKHYtar3OQPlifPhzDqmX1btuguNxwU03jYoDv8GCK8vg6gS9aw3otN+genHFYBWFAWYawg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=np24p06CN2dGH6c8dHrozZ3e95oT9G9urCDX6gJ7Yro=;
+ b=laMQ2LLJGuJpvcmmIQWu4w/iQajq8tPaVB2E7GnkJ1ZjDsiFA9bCMaerzpEaMYCWD5Yu7nhp6orNK+QT5MhsC7/vHdQt9GEX56qbPA3irH8M9WbZhwLFr4TEHEPLGImc/IUMlFkawENFGPyBBQKKVlHb3Hy+sRADVspNecxXR1YCFQWYaCXntcCXX6JWbumogeSOSbXKMTEScWxT2xkM2ckA6Pk//wYmOJhZJaG2erqRuRrve1hWeoaQn+Ck3uDWBfdjPOK4M1GBjcUmhuOsZTyRrq6xL/Viuj8cAWTI9OFdc42MLEdx2AR0Taj1jaaJs/L3dCj+L5yH3ws7Qt5GKA==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=aspeedtech.com; dmarc=pass action=none
+ header.from=aspeedtech.com; dkim=pass header.d=aspeedtech.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=aspeedtech.com;
+ s=selector2;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=np24p06CN2dGH6c8dHrozZ3e95oT9G9urCDX6gJ7Yro=;
+ b=XksT31/F3VDayLw2t6vZ6lwoi4ABL6OVNWVAYCoekCyveIEQO1lqbb+4VSf8bv0EW+aaYbPYarTlNZdquI6lupQzzMjjkT4r+mCVfj74YWzqfTJXE92/usTMM2bMdb7UfJ2odmm6NIQdXvli6QgB6d8SmWSItzlYPkj689IuAfY8APWV8XyOADmg9HxE9gFfKDHs7mMzvJ3GdDx/OWIv/vjTOD569HWyptq4IICcE3j4n0c4sNrNpoKmAu5jug2cgvmzTGNVgItuxDQBnE72QFYGURVawWa+Nk1fMzlfbFFCXlv+bzyx+bM9mMMBGtri3NwJ3YSVpTKN655LDVo+0w==
+Received: from SEYPR06MB5134.apcprd06.prod.outlook.com (2603:1096:101:5a::12)
+ by KL1PR06MB6760.apcprd06.prod.outlook.com (2603:1096:820:101::8) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8880.18; Fri, 27 Jun
+ 2025 09:59:55 +0000
+Received: from SEYPR06MB5134.apcprd06.prod.outlook.com
+ ([fe80::6b58:6014:be6e:2f28]) by SEYPR06MB5134.apcprd06.prod.outlook.com
+ ([fe80::6b58:6014:be6e:2f28%5]) with mapi id 15.20.8857.026; Fri, 27 Jun 2025
+ 09:59:55 +0000
+From: Jacky Chou <jacky_chou@aspeedtech.com>
+To: Rob Herring <robh@kernel.org>
+CC: "bhelgaas@google.com" <bhelgaas@google.com>, "lpieralisi@kernel.org"
+	<lpieralisi@kernel.org>, "kwilczynski@kernel.org" <kwilczynski@kernel.org>,
+	"mani@kernel.org" <mani@kernel.org>, "krzk+dt@kernel.org"
+	<krzk+dt@kernel.org>, "conor+dt@kernel.org" <conor+dt@kernel.org>,
+	"joel@jms.id.au" <joel@jms.id.au>, "andrew@codeconstruct.com.au"
+	<andrew@codeconstruct.com.au>, "vkoul@kernel.org" <vkoul@kernel.org>,
+	"kishon@kernel.org" <kishon@kernel.org>, "linus.walleij@linaro.org"
+	<linus.walleij@linaro.org>, "p.zabel@pengutronix.de"
+	<p.zabel@pengutronix.de>, "linux-aspeed@lists.ozlabs.org"
+	<linux-aspeed@lists.ozlabs.org>, "linux-pci@vger.kernel.org"
+	<linux-pci@vger.kernel.org>, "devicetree@vger.kernel.org"
+	<devicetree@vger.kernel.org>, "linux-arm-kernel@lists.infradead.org"
+	<linux-arm-kernel@lists.infradead.org>, "linux-kernel@vger.kernel.org"
+	<linux-kernel@vger.kernel.org>, "linux-phy@lists.infradead.org"
+	<linux-phy@lists.infradead.org>, "openbmc@lists.ozlabs.org"
+	<openbmc@lists.ozlabs.org>, "linux-gpio@vger.kernel.org"
+	<linux-gpio@vger.kernel.org>, "elbadrym@google.com" <elbadrym@google.com>,
+	"romlem@google.com" <romlem@google.com>, "anhphan@google.com"
+	<anhphan@google.com>, "wak@google.com" <wak@google.com>,
+	"yuxiaozhang@google.com" <yuxiaozhang@google.com>, BMC-SW
+	<BMC-SW@aspeedtech.com>
+Subject:
+ =?big5?B?pl7C0DogW1BBVENIIDMvN10gZHQtYmluZGluZ3M6IHBjaTogQWRkIGRvY3VtZW50?=
+ =?big5?Q?_for_ASPEED_PCIe_RC?=
+Thread-Topic: [PATCH 3/7] dt-bindings: pci: Add document for ASPEED PCIe RC
+Thread-Index: AQHb3BN5FUCyyspBIEeldRXN3BMx4bQUcXQAgAJpfYA=
+Date: Fri, 27 Jun 2025 09:59:55 +0000
+Message-ID:
+ <SEYPR06MB5134CA634C03D4BB0F73E4BD9D45A@SEYPR06MB5134.apcprd06.prod.outlook.com>
+References: <20250613033001.3153637-1-jacky_chou@aspeedtech.com>
+ <20250613033001.3153637-4-jacky_chou@aspeedtech.com>
+ <20250625210456.GA2177479-robh@kernel.org>
+In-Reply-To: <20250625210456.GA2177479-robh@kernel.org>
+Accept-Language: zh-TW, en-US
+Content-Language: zh-TW
+X-MS-Has-Attach:
+X-MS-TNEF-Correlator:
+authentication-results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=aspeedtech.com;
+x-ms-publictraffictype: Email
+x-ms-traffictypediagnostic: SEYPR06MB5134:EE_|KL1PR06MB6760:EE_
+x-ms-office365-filtering-correlation-id: 10c75ba6-c1b9-4d1c-c608-08ddb5615e69
+x-ms-exchange-senderadcheck: 1
+x-ms-exchange-antispam-relay: 0
+x-microsoft-antispam:
+ BCL:0;ARA:13230040|376014|7416014|1800799024|366016|38070700018;
+x-microsoft-antispam-message-info:
+ =?big5?B?Y3JpWmJud1F0K0RsaHJRaUdyTk9LOG9PTlFEeDJhTGRSZzFMTWhLTThCQi9QU2Q3?=
+ =?big5?B?bzkxVDNqdUJ4SzZ3em1Dbk5Sa1dFU0ZjMHo0UmpkNUNuY2VRMWl4R0hjeTVsdEFo?=
+ =?big5?B?SlNCUEJmZDA3WjVuSFlTY0wydnlTVU5tTjR5Yi8wbHhUQjU0R0NLaStrOEx2VDJu?=
+ =?big5?B?WlVmR2Vtbll2N1JzQkN0U2RvRm5OMTFCR3ZkNVg5bGhzcjdOYzVZcnVDcDBIRVF3?=
+ =?big5?B?bXZoKytML0lRQ3UwRmYydDFDcHN4WHlNN08vemxJNlZKWitrK3ZRMnFLS3FXWnda?=
+ =?big5?B?b2FmaXRrRC9WR08xMzZoQmFLOGRHT1U1dk0xV1RvMXA1bkpjR2RJUUluSGEzVW5j?=
+ =?big5?B?dTJoemt3dFo1eVpIQ21uNXorQXBNdWppaHp2RS9aVFQ0SGJtUDNIZkNtMmV6ZUFV?=
+ =?big5?B?WUZZb3p0TnRrUFR3RWJwYWQvazl6ZStFZ0o2OHdlQ3dDN2RKVU4vdWJucGo0am04?=
+ =?big5?B?eVpUNTNpZ0swZS9lSE9Va0pCMThhRzhyK0NsYmxCcFArT2M1QWZVVDRMTjJ4cUJy?=
+ =?big5?B?SmY2YmxINTNKMjJsd2YxaVowbUx0dEVtQnRRMmowUXhpeXlYMEUxZS9nTTlTZVlZ?=
+ =?big5?B?bk5IV1VJZUVSRU5RVEVFNTZ2VCtEM2ZhYzFFdDIyYmdsWXZMdTA4clBBTUllcEwx?=
+ =?big5?B?djQwRnB0Qys5WnFCSGxnbnNRVVh6Z3ZreU1mVFhiUWRLNVlrY0U2QUVGTlF3Mlk4?=
+ =?big5?B?TmpUMkJMalBOdWFpcENMOG43dExLR1BwNm54V2tRMGlsSXYyc29jMWxXUll0ZGdq?=
+ =?big5?B?enZuOHNYZmNVLysxbVAyT1Z6bWNNcWs0OXEveFhpSDY3a3dUOHNBVi9OU2xMVk9Z?=
+ =?big5?B?ZjN5N1hObWVkNG55WlN4SkZKLzA3RHdPM1dQbnRPWDd3YVhObXdDZDBnRCtEK1Vp?=
+ =?big5?B?Tm5kbzFEeE10NitqcXBpcXg5NnROQ2xCNjNCbGNOZ0ZHTnBKTDVkNURIY0ZIdUlj?=
+ =?big5?B?NGJEVlZvZTZlOTBzbWE0TDY4S0dwNHVPZGM5MmlWMk9hbDN2UEIzVlVmb0xoSWEv?=
+ =?big5?B?QVZUdldNUDhaSW9LSnNyWis3YVpVNDFIVklQUmk4RUtub0xGVTJYaWVqQVQrQVNT?=
+ =?big5?B?Q3NVcVRjSE1XV2RET05VZTF0eFFTbnk1TlVVS1A4aGdPbWsyZ1B1azlkbVhBZURy?=
+ =?big5?B?aWJUb0RTSmw3WVJoSHR1cnd0Wm1IbmgzeWplZVVDelBDZDlrdXJJU0Q1WVJNV2l2?=
+ =?big5?B?dDN6VmxKS2k5Q0Q3OU9Fb2ozdXFQWGxBVHR0ZXJGQ0dKWHZvcm5KeWxkdnZyWFJ0?=
+ =?big5?B?RkNOc0MzM1RoN1QreU9jQmU1M2xseGFkVEpCaER4ZjR4SlhkM1dyZG81OGZsN0dn?=
+ =?big5?B?QnRjK1JTQUk1alpRUDhXY1FCbUpxMElKc1VsSElCUmJQZjE1K3Z3WS9JeHhuU2hH?=
+ =?big5?B?czNGMXpIQzVFUWUwY3dFS0Q0R3ExQW0vUnF3N3JJVU50LzZQSHhuaEI2OUJvVks5?=
+ =?big5?B?Q0lLTXFHeFlBT2FpOVdvbXdqaU9ocjZLNDJNQlV6K1VVY2dzWnFyRUdDWnRUam1X?=
+ =?big5?B?SHF6RGtXb0Q2V2FScWgyRmpIdFQ3a2lZNFhFVWc1WXNyTUJ3Q3Ewd3J4MW43bk16?=
+ =?big5?B?K2k5K1RXeUZzUGlHalZNbHE5ajYxL25xSmtxTmZhOGQ5Qm9RSzlyaURxVXB2SllF?=
+ =?big5?B?QUUxTmZnNXdZM3plUnNDWmtUQXZ1UVJIVW94eUpxSW1LVVB6QS9hZVlTbFRNR0d4?=
+ =?big5?B?UlJUTjE1dnlOT1dwRHZOVU9ub29KN0VFYXJFV2JVYjVTOVJITzZUazVEY214Z2dS?=
+ =?big5?B?eVU4RWJyUUpIa203U0l0Z3ZNcWtodk5QVFhNL0dVTVBaZDl6SDlYMldBMi9HU3RE?=
+ =?big5?B?bnZ3SFZSS3BLNnFWWnRuQk1LbHlsSmgwbjRHNVo0S0VsT2pVa3pxajFGNjFMODhQ?=
+ =?big5?B?WmVRM0h3PT0=?=
+x-forefront-antispam-report:
+ CIP:255.255.255.255;CTRY:;LANG:zh-tw;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:SEYPR06MB5134.apcprd06.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(376014)(7416014)(1800799024)(366016)(38070700018);DIR:OUT;SFP:1102;
+x-ms-exchange-antispam-messagedata-chunkcount: 1
+x-ms-exchange-antispam-messagedata-0:
+ =?big5?B?TXNmNE52ajBYNGdXa1l3UzVKaUxpcHJQLzhXVEtFMCs4VWNSMGIwdkxmRW42Y2ZK?=
+ =?big5?B?V2tvTnYwNWU0eEt5TExnT0sya3ZBeUJQUi83ODlSejBKdTI4dG1HVjNyZTB3TDc0?=
+ =?big5?B?WklidzFUMWlnelRYNHc3NE9qNkxkVHltTmNIbWlWMlVtZDB0dlNpSlVXenJ0Rm02?=
+ =?big5?B?bWI1WWhRWmNsaEV0bHl1WWZHVjQyNWJtbnhIUWZCUVo2L3VKTVpJMGdYaXVIY0RH?=
+ =?big5?B?L2UxMDBIOWk0dGZRMThKVE9Kc3pnaTdaVWNPa2VhZUtYa3gxVkJQczFxVDdJRDR2?=
+ =?big5?B?VlhpVlVDZGRieVdESmUxRGI4azZYQ0w0UWNITWRQQnh1RGkvdEZ6RWFpU2RTK2tG?=
+ =?big5?B?WEJKVHlValNFMlVmU2UvRXlpaWYyam9VUXNtYmVkdTVPeTZmYTJja0hVWVdBUkk0?=
+ =?big5?B?V0s3SEJMdUl6V3ROSG4xL0EvWnVkNGdGd3l0Vlhvb3pGcXdsaXB3T1lmcW9WbjhK?=
+ =?big5?B?UXhKeVI3V0owejF1YVAzdEdlOC9lcHRnaG1keVZMVHF3LzEzVFNRL0RmUHcreFFi?=
+ =?big5?B?RStrc3MrWG1LUFJDT1FCa2NlL0x1ajIrckhiM1ZRQVRhODJLMGEyd0dtdWZ4NHNt?=
+ =?big5?B?Y3d2bjV4S3ZONEoza0JhQ0tISWhEeWhOMitndjMrL0xWV3BOZ2xzNWpreEk2Uklh?=
+ =?big5?B?cXlwRTVFaHBMNUNOQ0dtaTdQNS9XMEhPbGZFM2xxREJOS0tSYU5kR25wUUVOSTVN?=
+ =?big5?B?TGdweUdwMVZkY0dnQXhad0Zrdisvckd3MnBCS2s3NXRoQjNJWGNnREViYnJ3TzJt?=
+ =?big5?B?bDBzRC9KSmhIMWRMelIwWHNRS1htNVZKUjBqMENBbG4zOW1oVllscGRLYjBvc2lF?=
+ =?big5?B?WVlOaFNWenVzMVAvbVdkcU4wZlphUXN1NFREQTJCUWtyQWVTV0FrMlRXV2xnMldy?=
+ =?big5?B?Tmk2aThPK2g2Um1UWXFTdzdwWVNoQUFFYmdONnZuOVNiYzBJWE85NVNWaWZMQWdI?=
+ =?big5?B?ckdPMmNVdGVYcEQxdmRNeU9EVWFlazErd2lldE9YemdRcHRxRTVncTFSZWpGVkdS?=
+ =?big5?B?T0M4VVFTaDRmQlJmOXZNZE1EN3BEc21vZE9mMnd0eFljNW5hTFNCdUVlQU42NUU0?=
+ =?big5?B?UUtTV3BidE91TUZ2WXg5eFY2c2VaRnN2cnBVajlyNWNFajhOYU9FMXhSRnJ5cGdX?=
+ =?big5?B?NDhsb0NXM3BtWDlQVkd3dHJqRFc2QzhTVmtUU0tsZ3FURlgzaWVhWEV2bGYxS0kr?=
+ =?big5?B?WWFTUUdFSS8xcmE4YUpoMkorbmpFc3BBb2pISVdsdVpVa1ZVVUFOS3N2SkFyNHNw?=
+ =?big5?B?aS9MeVVRcHRHYnZCcG1yTGhKS3VhbFcvQi9maWtVWWI5cnJzaWR2SG5UaTZ5WERw?=
+ =?big5?B?U1VSRkZjMjl4QnAyRnhzM016dEJUMDB2TFA3anZ6UkZ5RHRPSUViWGczVnVyWHNk?=
+ =?big5?B?RzAwNmhWWDJMVFV3b1FsaVh3S0I5TjhQcG1SL1lQa1FoNzRlQUNGaUNnSjNhbHpN?=
+ =?big5?B?UDZsaEh4YUhTSVRZcW5mLzUzYWNBSXI4VHF3YVZSK3dnWStCcjF4TStsN0x4dmRl?=
+ =?big5?B?M1p0dHlmL2lzb1RsNy9JdDN1U21KeVVScjQzNjZhMVdMakQ1LzBxYVIrSGY5UkNK?=
+ =?big5?B?SGdJVnVMTzlKTWtrd1g1dTE0ejhXYkdlakdWSTZhMlUxYTNNRy9iSXdMYTFyTVFV?=
+ =?big5?B?ZVNEMkpNaXg4N3N0Njk0UloweHoxbUtyNHJObmxtUEZYWUQ2SCtDVjVjQTdrZ2Vm?=
+ =?big5?B?aFg1Z2tmYXdvQWE1RFd1V2gvby9EQzVPdW9FM2tXM3B3dENHVUN3RXJLUWM0dlky?=
+ =?big5?B?M2VzREJUcUJoRDBsZlp1MVR3MGpTTm91dWQ5dGtCUWMra3lXVVBsMDVkRENpbXVr?=
+ =?big5?B?cjQva3kzb3RKNjFKVTc2bHgwWUdnZm9wNjR4QStYN1V0L3dyNERFMk42UTFoTC9q?=
+ =?big5?B?eU1wbFRuRkdHQXNWMWZ3ZHhvdmFNMVVlYWMzbUVPMUVsMnN0TjRjOFRpVm0xeDNV?=
+ =?big5?B?VTBsWGw3TVg0Mk8xczVrWE9vTG5FbGQ5SGtGZElkODhrVGp1YUVCTU42RDVpVzZa?=
+ =?big5?Q?HFETJO6lbK6aB2U8?=
+Content-Type: text/plain; charset="big5"
+Content-Transfer-Encoding: base64
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-Mime-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-Content-Type: text/plain; charset=UTF-8
-Date: Fri, 27 Jun 2025 11:51:09 +0200
-Message-Id: <DAX814DZF6AT.31N8TZWL5LMDT@fairphone.com>
-Cc: <linux-fbdev@vger.kernel.org>, <dri-devel@lists.freedesktop.org>,
- <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>
-Subject: Re: [PATCH v2 5/5] fbdev/simplefb: Add support for interconnect
- paths
-From: "Luca Weiss" <luca.weiss@fairphone.com>
-To: "Javier Martinez Canillas" <javierm@redhat.com>, "Hans de Goede"
- <hdegoede@redhat.com>, "Maarten Lankhorst"
- <maarten.lankhorst@linux.intel.com>, "Maxime Ripard" <mripard@kernel.org>,
- "Thomas Zimmermann" <tzimmermann@suse.de>, "David Airlie"
- <airlied@gmail.com>, "Simona Vetter" <simona@ffwll.ch>, "Rob Herring"
- <robh@kernel.org>, "Krzysztof Kozlowski" <krzk+dt@kernel.org>, "Conor
- Dooley" <conor+dt@kernel.org>, "Helge Deller" <deller@gmx.de>
-X-Mailer: aerc 0.20.1-0-g2ecb8770224a-dirty
-References: <20250623-simple-drm-fb-icc-v2-0-f69b86cd3d7d@fairphone.com>
- <20250623-simple-drm-fb-icc-v2-5-f69b86cd3d7d@fairphone.com>
- <87ldpdd3dn.fsf@minerva.mail-host-address-is-not-set>
-In-Reply-To: <87ldpdd3dn.fsf@minerva.mail-host-address-is-not-set>
+MIME-Version: 1.0
+X-OriginatorOrg: aspeedtech.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-AuthSource: SEYPR06MB5134.apcprd06.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 10c75ba6-c1b9-4d1c-c608-08ddb5615e69
+X-MS-Exchange-CrossTenant-originalarrivaltime: 27 Jun 2025 09:59:55.6898
+ (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 43d4aa98-e35b-4575-8939-080e90d5a249
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: 4jRkGezq6cxi0nQa7ufpLqI/QjbdIskTs3lSXqq+0BavoD/zKN2UGN5JCkYBmiElXv1ziOfrunAfD7kEirTr5SAmEdRM26kAIhi5n/Nrn8A=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: KL1PR06MB6760
 
-On Fri Jun 27, 2025 at 9:56 AM CEST, Javier Martinez Canillas wrote:
-> Luca Weiss <luca.weiss@fairphone.com> writes:
->
->> Some devices might require keeping an interconnect path alive so that
->> the framebuffer continues working. Add support for that by setting the
->> bandwidth requirements appropriately for all provided interconnect
->> paths.
->>
->> Reviewed-by: Thomas Zimmermann <tzimmermann@suse.de>
->> Signed-off-by: Luca Weiss <luca.weiss@fairphone.com>
->> ---
->>  drivers/video/fbdev/simplefb.c | 83 +++++++++++++++++++++++++++++++++++=
-+++++++
->>  1 file changed, 83 insertions(+)
->>
->
-> [...]
->
->> +static void simplefb_detach_icc(void *res)
->> +{
->> +	struct simplefb_par *par =3D res;
->> +	int i;
->> +
->> +	for (i =3D par->icc_count - 1; i >=3D 0; i--) {
->> +		if (!IS_ERR_OR_NULL(par->icc_paths[i]))
->> +			icc_put(par->icc_paths[i]);
->> +	}
->> +}
->> +
->> +static int simplefb_attach_icc(struct simplefb_par *par,
->> +			       struct platform_device *pdev)
->> +{
->> +	struct device *dev =3D &pdev->dev;
->> +	int ret, count, i;
->> +
->> +	count =3D of_count_phandle_with_args(dev->of_node, "interconnects",
->> +							 "#interconnect-cells");
->> +	if (count < 0)
->> +		return 0;
->> +
->> +	/* An interconnect path consists of two elements */
->> +	if (count % 2) {
->> +		dev_err(dev, "invalid interconnects value\n");
->> +		return -EINVAL;
->> +	}
->> +	par->icc_count =3D count / 2;
->> +
->> +	par->icc_paths =3D devm_kcalloc(dev, par->icc_count,
->> +				      sizeof(*par->icc_paths),
->> +				      GFP_KERNEL);
->> +	if (!par->icc_paths)
->> +		return -ENOMEM;
->> +
->> +	for (i =3D 0; i < par->icc_count; i++) {
->> +		par->icc_paths[i] =3D of_icc_get_by_index(dev, i);
->> +		if (IS_ERR_OR_NULL(par->icc_paths[i])) {
->> +			ret =3D PTR_ERR(par->icc_paths[i]);
->> +			if (ret =3D=3D -EPROBE_DEFER)
->> +				goto err;
->> +			dev_err(dev, "failed to get interconnect path %u: %d\n", i, ret);
->> +			continue;
->> +		}
->> +
->> +		ret =3D icc_set_bw(par->icc_paths[i], 0, UINT_MAX);
->> +		if (ret) {
->> +			dev_err(dev, "failed to set interconnect bandwidth %u: %d\n", i, ret=
-);
->> +			continue;
->> +		}
->> +	}
->> +
->> +	return devm_add_action_or_reset(dev, simplefb_detach_icc, par);
->> +
->> +err:
->> +	while (i) {
->> +		--i;
->> +		if (!IS_ERR_OR_NULL(par->icc_paths[i]))
->> +			icc_put(par->icc_paths[i]);
->> +	}
->> +	return ret;
->> +}
->> +#else
->
-> These two functions contain the same logic that you are using in the
-> simpledrm driver. I wonder if could be made helpers so that the code
-> isn't duplicated in both drivers.
-
-I believe most resource handling code (clocks, regulators,
-power-domains, plus now interconnect) should be pretty generic between
-the two.
-
->
-> But in any case it could be a follow-up of your series I think.
-
-To be fair, I don't think I'll work on this, I've got plenty of Qualcomm
-SoC-specific bits to work on :)
-
-Regards
-Luca
-
->
-> Reviewed-by: Javier Martinez Canillas <javierm@redhat.com>
-
+PiA+ICsgIHJlc2V0LW5hbWVzOg0KPiA+ICsgICAgaXRlbXM6DQo+ID4gKyAgICAgIC0gY29uc3Q6
+IGgyeA0KPiA+ICsgICAgICAtIGNvbnN0OiBwZXJzdA0KPiA+ICsNCj4gPiArICBtc2ktcGFyZW50
+OiB0cnVlDQo+ID4gKw0KPiA+ICsgIG1zaV9hZGRyZXNzOg0KPiA+ICsgICAgJHJlZjogL3NjaGVt
+YXMvdHlwZXMueWFtbCMvZGVmaW5pdGlvbnMvdWludDMyDQo+ID4gKyAgICBkZXNjcmlwdGlvbjog
+TVNJIGFkZHJlc3MNCj4gDQo+IFdoYXQncyB0aGlzIGZvcj8NCj4gDQoNClRoaXMgaXMgdXNlZCBm
+b3IgdGhlIGtlcm5lbCBhc3NpZ25zIHRoZSBNU0kgYWRkcmVzcyB0byBQQ0llIGRldmljZS4NClRo
+ZSBhZGRyZXNzIGlzIGZpeGVkIGluIEhXLiBJIHRoaW5rIEkgd2lsbCByZW1vdmUgdGhpcyBhbmQg
+YWRkIGhhcmQNCmNvZGUgaW4gZHJpdmVyIGluIG5leHQgdmVyc2lvbi4NCg0KPiA+ICsNCj4gPiAr
+ICBhc3BlZWQsYWhiYzoNCj4gPiArICAgICRyZWY6IC9zY2hlbWFzL3R5cGVzLnlhbWwjL2RlZmlu
+aXRpb25zL3BoYW5kbGUNCj4gPiArICAgIGRlc2NyaXB0aW9uOiBQaGFuZGxlIHRvIEFTUEVFRCBB
+SEJDIHN5c2Nvbi4NCj4gPiArDQo+ID4gKyAgYXNwZWVkLHBjaWVjZmc6DQo+ID4gKyAgICAkcmVm
+OiAvc2NoZW1hcy90eXBlcy55YW1sIy9kZWZpbml0aW9ucy9waGFuZGxlDQo+ID4gKyAgICBkZXNj
+cmlwdGlvbjogUGhhbmRsZSB0byBBU1BFRUQgUENJZSBjb25maWd1cmF0aW9uIHN5c2Nvbi4NCj4g
+PiArDQo+ID4gKyAgYXNwZWVkLHBjaWVwaHk6DQo+ID4gKyAgICAkcmVmOiAvc2NoZW1hcy90eXBl
+cy55YW1sIy9kZWZpbml0aW9ucy9waGFuZGxlDQo+ID4gKyAgICBkZXNjcmlwdGlvbjogUGhhbmRs
+ZSB0byBBU1BFRUQgUENJZSBQSFkgc3lzY29uLg0KPiANCj4gVXNlIHRoZSBwaHkgYmluZGluZyBh
+bmQgbWFrZSB0aGUgcGh5IGNvbnRyb2wgYSBzZXBhcmF0ZSBkcml2ZXIuDQo+IA0KDQpEbyB5b3Ug
+bWVhbiB0byBjcmVhdGUgYSBQSFkgZHJpdmVyIHdpdGggZGV2bV9waHlfY3JlYXRlKCk/DQpUaGVu
+LCB0aGUgUENJZSBSQyBkcml2ZXIgdXNlcyB0aGUgQVBJIG9mIFBIWSB0byBjYWxsIHBoeV9vcHM/
+DQoNClRoYW5rcywNCkphY2t5DQoNCg==
 
