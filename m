@@ -1,97 +1,176 @@
-Return-Path: <devicetree+bounces-190461-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-190462-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9067EAEBC94
-	for <lists+devicetree@lfdr.de>; Fri, 27 Jun 2025 17:55:40 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7D710AEBCAB
+	for <lists+devicetree@lfdr.de>; Fri, 27 Jun 2025 17:58:23 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 44103188A26B
-	for <lists+devicetree@lfdr.de>; Fri, 27 Jun 2025 15:54:23 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id C9DF33BEBDE
+	for <lists+devicetree@lfdr.de>; Fri, 27 Jun 2025 15:57:57 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 590222E9EB8;
-	Fri, 27 Jun 2025 15:53:29 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2B3442E9720;
+	Fri, 27 Jun 2025 15:58:19 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="b2PIXGHE"
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="aua8oyWG"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.12])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2D3923208;
-	Fri, 27 Jun 2025 15:53:28 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9705819E990;
+	Fri, 27 Jun 2025 15:58:16 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.198.163.12
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1751039609; cv=none; b=sqsOTvSCkRx3rygkZfLjAVnrgoxoh5Dw7UzpGyIU3wNTu7yiZRIyg57qEOiDM9dvQTge5tbONCf17wPRaZHv3ZqVwaK+6h1a5uqz/xkmooQakH3Udups5/sMkPqetzqmC79vqvGlGp/z8NQTDJgwlbbkb7Wx6YdH4BM01WbZcAg=
+	t=1751039899; cv=none; b=ICsqLr+jakEUA57DF8FIv5lwxGMMCVxWL+MqB1cDOF3m/Q5D2jWPWiOccPx8KDvPgfW019wUjwmvP1n8olAymmIDHE6YZuI6TbLJcPB9pLvaRCEGpCnefsuAwxzHNkNCgtnwAgQCfoNUTsxGFG9BsCGHF3kzyGYRxbGTm+Cg+qc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1751039609; c=relaxed/simple;
-	bh=9jvEQ9I22Mhlsd+LxJZ4oHjg0gKuzAh0ToNhXaQgrpY=;
+	s=arc-20240116; t=1751039899; c=relaxed/simple;
+	bh=u+XL7v8/9OOtA8g6d2DdeYD79b4YpzBpJvua/vnySUU=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=bs8SMHqW1JfQedE9v25vzcupc9uqn5kDzOpTWx5+qpRXa1gzuudgDNqenR6yHC8lxMsAgK5ug+1x6ZM75vyhXqPB6F6qM4+P7UWQW7zvwZfiD7xmMmxu3mr4l2DTbWYU4Q6suYzHDxHSavQOh/0XXC/fgr0APjHjyhVr5hBO2pY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=b2PIXGHE; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 65CE1C4CEE3;
-	Fri, 27 Jun 2025 15:53:26 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1751039608;
-	bh=9jvEQ9I22Mhlsd+LxJZ4oHjg0gKuzAh0ToNhXaQgrpY=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=b2PIXGHE/PIjk2eDAc/MPl8v1olroLzQzQ5N7Art4TKnw7Y/JDV72yh7d0qcKcw68
-	 UgsFSysnsboCT9wr1010yB4dmIynxsWaFSikE8rw/5BA3TrdS65ZE7l0jl04EHuxJO
-	 2GOT0nxqJhDmMIfHSo1N85/YEBBp/65e0trzeq5sDbiHY9XdRsxb8luQ1FAheRPJ2a
-	 hoiN65nrtqvpEbPAKYVmeSQ+yTebSXYVUW7LUMnTvTb2/sHiVg211ij6N8SE36fNXI
-	 QeORosy2Y636/Sh0a/w8EKPuG1e4RJ7jDT/+Ba/yidThRoXlHNSDexIuKlZAuYJLEy
-	 RneUfat3/2WBQ==
-Date: Fri, 27 Jun 2025 16:53:24 +0100
-From: Conor Dooley <conor@kernel.org>
-To: Rodrigo Gobbi <rodrigo.gobbi.7@gmail.com>
-Cc: andy@kernel.org, conor+dt@kernel.org, devicetree@vger.kernel.org,
-	dlechner@baylibre.com, jic23@kernel.org, krzk+dt@kernel.org,
-	linux-iio@vger.kernel.org, linux-kernel@vger.kernel.org,
-	nuno.sa@analog.com, robh@kernel.org, ~lkcamp/patches@lists.sr.ht
-Subject: Re: [PATCH v3] dt-bindings: iio: adc: st,spear600-adc: txt to yaml
- format conversion.
-Message-ID: <20250627-rage-oat-14141026cf28@spud>
-References: <20250526-overtake-charger-6c5ffcc2bc09@spud>
- <20250626205733.6354-1-rodrigo.gobbi.7@gmail.com>
+	 Content-Type:Content-Disposition:In-Reply-To; b=t4MEEpYWWWaPXLT8Vu1Sw/cn5CfZ+Biouvc18raV3PMyT4DJy0TR/U/3h9nIo5ZmdvCO9m7MpGJ1UdFFrw0DrRsMo0clo1On8ytLOnuQ/VWpedV4BeGghUSO6JwiYMBnw/tKAKGS2JP2EUR8GFAdPl5+6vW4dW6pDSQxDEssco8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com; spf=none smtp.mailfrom=linux.intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=aua8oyWG; arc=none smtp.client-ip=192.198.163.12
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com
+Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=linux.intel.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1751039898; x=1782575898;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=u+XL7v8/9OOtA8g6d2DdeYD79b4YpzBpJvua/vnySUU=;
+  b=aua8oyWGZ+MBtqFh7wthv4dL7LYTn4BaXspsqPK5BHCywxv7QBZg0LXj
+   Jt4hAP/yRQN33rHfR0L4fU6mn/GehuGTUcA7+ddvYrp8gv7LstLgqV1Af
+   z4HfqDh+P6XWBVSpqEa3e+obDPFQxRaPNExEF+OUS2+DpkVJQA1z36CFD
+   1Yw0ZnzhKv6CPgzDhJhWM0FPJ8PUSHdmnGDIui/d0w2M5cqzPQbhrMDtV
+   R9oRz5a5Ea9loZEqC8lJizxH46c6ku7CqFXA9gq3n27Jfu3NOftBuaLHB
+   mxvM7qie1GJ8+OCJiKLKJLJiKsmW4QpP36lAAz44/K5BCzr2dtEY91xQW
+   g==;
+X-CSE-ConnectionGUID: MhW9j5FXSUiMS3VQ3XIgMg==
+X-CSE-MsgGUID: tWTUKrZ7R5CMaA4bFqiVnA==
+X-IronPort-AV: E=McAfee;i="6800,10657,11477"; a="57164080"
+X-IronPort-AV: E=Sophos;i="6.16,270,1744095600"; 
+   d="scan'208";a="57164080"
+Received: from fmviesa002.fm.intel.com ([10.60.135.142])
+  by fmvoesa106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 27 Jun 2025 08:58:16 -0700
+X-CSE-ConnectionGUID: KVJGX7g6S5KEfnZwEuHcqg==
+X-CSE-MsgGUID: yIZt5dr4Q5yFAGa7IG6/Mg==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.16,270,1744095600"; 
+   d="scan'208";a="176516514"
+Received: from smile.fi.intel.com ([10.237.72.52])
+  by fmviesa002.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 27 Jun 2025 08:58:10 -0700
+Received: from andy by smile.fi.intel.com with local (Exim 4.98.2)
+	(envelope-from <andriy.shevchenko@linux.intel.com>)
+	id 1uVBSo-0000000AWqQ-09Od;
+	Fri, 27 Jun 2025 18:58:06 +0300
+Date: Fri, 27 Jun 2025 18:58:05 +0300
+From: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
+To: Rahul Pathak <rpathak@ventanamicro.com>
+Cc: Anup Patel <apatel@ventanamicro.com>,
+	Michael Turquette <mturquette@baylibre.com>,
+	Stephen Boyd <sboyd@kernel.org>, Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Jassi Brar <jassisinghbrar@gmail.com>,
+	Thomas Gleixner <tglx@linutronix.de>,
+	"Rafael J . Wysocki" <rafael@kernel.org>,
+	Mika Westerberg <mika.westerberg@linux.intel.com>,
+	Linus Walleij <linus.walleij@linaro.org>,
+	Bartosz Golaszewski <brgl@bgdev.pl>,
+	Uwe =?iso-8859-1?Q?Kleine-K=F6nig?= <ukleinek@kernel.org>,
+	Palmer Dabbelt <palmer@dabbelt.com>,
+	Paul Walmsley <paul.walmsley@sifive.com>,
+	Len Brown <lenb@kernel.org>, Sunil V L <sunilvl@ventanamicro.com>,
+	Leyfoon Tan <leyfoon.tan@starfivetech.com>,
+	Atish Patra <atish.patra@linux.dev>,
+	Andrew Jones <ajones@ventanamicro.com>,
+	Samuel Holland <samuel.holland@sifive.com>,
+	Anup Patel <anup@brainfault.org>, linux-clk@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-riscv@lists.infradead.org,
+	linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v6 09/23] clk: Add clock driver for the RISC-V RPMI clock
+ service group
+Message-ID: <aF6_jVJYCXeKZfXo@smile.fi.intel.com>
+References: <20250618121358.503781-1-apatel@ventanamicro.com>
+ <20250618121358.503781-10-apatel@ventanamicro.com>
+ <aFkZJKnweqBi64b8@smile.fi.intel.com>
+ <CA+Oz1=a65HvfXHWjeSq4Ubq=5kzHp9pkLJVr77hvTYAGFHv0Mg@mail.gmail.com>
+ <aF1UWNzWhheLNTky@smile.fi.intel.com>
+ <CA+Oz1=bAsykB=qAk3r8FV8K8cnPEVT4Ow7L4SWBvrc_3DsyaWw@mail.gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="0y+6vaV681sTCfCv"
-Content-Disposition: inline
-In-Reply-To: <20250626205733.6354-1-rodrigo.gobbi.7@gmail.com>
-
-
---0y+6vaV681sTCfCv
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+In-Reply-To: <CA+Oz1=bAsykB=qAk3r8FV8K8cnPEVT4Ow7L4SWBvrc_3DsyaWw@mail.gmail.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park, 6
+ krs, Bertel Jungin Aukio 5, 02600 Espoo
 
-On Thu, Jun 26, 2025 at 05:54:01PM -0300, Rodrigo Gobbi wrote:
-> Hi, all,
->=20
-> Just a gentle ping here since it was already been reviewed.
-> If there is any other concerns, let me know.
-> Tks and regards.
+On Fri, Jun 27, 2025 at 08:36:41PM +0530, Rahul Pathak wrote:
 
-This is all I see here, a ping with no context is not very
-helpful. I have to go look it up on lore to see who reviewed it
-etc. In this case the reviewer in question is me, so you're looking for
-Jonathan to apply it.
+...
 
---0y+6vaV681sTCfCv
-Content-Type: application/pgp-signature; name="signature.asc"
+> > > > > +     if (ret || rx.status)
+> > > > > +             return 0;
+> > > >
+> > > > Why rx.status can't be checked before calling to a sending message?
+> > > > Sounds like the rpmi_mbox_init_send_with_response() links rx to msg somehow.
+> > > > If this is the case, use msg here, otherwise move the check to be in the
+> > > > correct place.
+> > >
+> > > Yes, the rpmi_mbox_init_send_with_response is a helper function which links
+> > > the rx to msg. It's a very simple function which only performs assignments.
+> > >
+> > > Using msg instead of rx directly will require additional typecasting
+> > > which will only clutter
+> > > I can add a comment if that helps wherever the rpmi_mbox_init_send_with_response
+> > > is used.
+> >
+> > This is besides harder-to-read code is kinda of layering violation.
+> > If you afraid of a casting, add a helper to check for the status error.
+> > Comment won't help much as making code better to begin with.
+> 
+> Why using rx is the issue in the first place when it's the same layer
+> which links the rx with msg using the helper function and then
+> uses it directly?  Infact using rx directly avoids unnecessary code
+> which is only increasing redundant code which ultimately results in
+> same thing. Even if I add a helper function that will require additional
+> pointer passing with NULL checking which all is currently avoided.
+> And, we are not just talking about rx.status but a lot of other fields.
 
------BEGIN PGP SIGNATURE-----
+Because it's simply bad code, look at the simplified model:
 
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCaF6+cwAKCRB4tDGHoIJi
-0sEuAP0XXkr/zdyXCCujaPGWlfN2pKqB7teOqvhq2sk+UHO9tQD+MpTvyNNFmJ8p
-o2nW19m3IMiJ8OyL3Yss+7hndGZA+AQ=
-=qBDa
------END PGP SIGNATURE-----
+	int foo, bar;
+	int ret;
 
---0y+6vaV681sTCfCv--
+	func_1(..., &foo, &bar);
+	ret = func_2(&foo);
+	if (ret || bar)
+		...do something...
+
+When one reads this code the immediate reaction will be like mine.
+This is also (without deeper understanding) tempting to someone
+who even thinks that the code can be simplified (w/o knowing that it
+may not) to change it as
+
+	func_1(..., &foo, &bar);
+	if (bar)
+		...do something...
+
+	ret = func_2(&foo);
+	if (ret)
+		...do something...
+
+Using msg is the right thing to do. In that way there is no questions asked
+and everything is clear. Also why layering violation? Because the conditional
+requires to know the guts of rx in the code which doesn't use rx that way
+(or rather using it as semi-opaque object).
+
+-- 
+With Best Regards,
+Andy Shevchenko
+
+
 
