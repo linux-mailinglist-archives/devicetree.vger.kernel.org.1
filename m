@@ -1,145 +1,209 @@
-Return-Path: <devicetree+bounces-190496-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-190497-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1F3FEAEBEFF
-	for <lists+devicetree@lfdr.de>; Fri, 27 Jun 2025 20:26:02 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id E3108AEBF0E
+	for <lists+devicetree@lfdr.de>; Fri, 27 Jun 2025 20:31:45 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 78D115605EF
-	for <lists+devicetree@lfdr.de>; Fri, 27 Jun 2025 18:25:41 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 5BC933AA6A9
+	for <lists+devicetree@lfdr.de>; Fri, 27 Jun 2025 18:31:20 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id AA18B2EAD19;
-	Fri, 27 Jun 2025 18:25:35 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C0BF42E8E0D;
+	Fri, 27 Jun 2025 18:31:39 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=sntech.de header.i=@sntech.de header.b="HcpRcSSz"
+	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="VtwgYHH6"
 X-Original-To: devicetree@vger.kernel.org
-Received: from gloria.sntech.de (gloria.sntech.de [185.11.138.130])
+Received: from lelvem-ot02.ext.ti.com (lelvem-ot02.ext.ti.com [198.47.23.235])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4AC3335957;
-	Fri, 27 Jun 2025 18:25:32 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.11.138.130
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C08291E0E00;
+	Fri, 27 Jun 2025 18:31:36 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.23.235
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1751048735; cv=none; b=uWsDUfxERaHe4A1gpV6Pj93tUOZLd7WjjpR5wr+eTYAO6s48DV+A27tdIqlWUOy8t5hlSQbEpmzpwAW7cC3z6i/oVO4rY5UEraDOrEYKR5rUEjFKBSL7sTYzriIUK72/YrtDmhSXEm6uS6MzqCsjMV7fxmffKHYlxcRtlRlSnBo=
+	t=1751049099; cv=none; b=RRN+TzRcBnTl8WlReWWO8u3JSMFpJ+Rh81PgYAex9YGqNJxCRea0H6d4v05eqiCyG80DPdrv1S/03OVeAOj9w1CtYnYSnZ1EI71LdTDZB+ju8ylAPAuKVR84xKSq+9EkaVCutlyW0XHuLwhgI0AhlD8LfWA9OlVog4sxIAonTzk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1751048735; c=relaxed/simple;
-	bh=PjJQt6R+2Pb0XGHkIwzKosDZ/u+lUxtx+ilk3A++byg=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=lcSuCBbFQLtdggWV/hm7Ph/NVXUr+xPcRxcApD5Y1QQm7pFB/Cpp1UU3euo0pMI3/ihw+hCV4Ok2P9BRfVQtICvCer8ff5rzHgz6EH6vkvAGAUIm4l3/julQ3t3dm5XLhNiYyHy5iHcTgFuEEjXrRdEEfLSsuRJI3PzhphDsl3I=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sntech.de; spf=pass smtp.mailfrom=sntech.de; dkim=pass (2048-bit key) header.d=sntech.de header.i=@sntech.de header.b=HcpRcSSz; arc=none smtp.client-ip=185.11.138.130
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sntech.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=sntech.de
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sntech.de;
-	s=gloria202408; h=Content-Type:Content-Transfer-Encoding:MIME-Version:
-	References:In-Reply-To:Message-ID:Date:Subject:Cc:To:From:Reply-To;
-	bh=AcyZ33LazzChsEAUzIIB359Y93Og/rELjwXfNDaBkEM=; b=HcpRcSSz1aCLDictpkpp3PuP8n
-	016GmdmvMyFTr8Fp3goWlzDWt6g+Qg1UQnq19KLPDu5XfrsfGy54AeysX+I7b5EKWhJNwc3G3aIJH
-	6MxIeD5TZRDXYXkEWWwhUorD+HAPmBCXbYiEQpcYsK/60fbQ0QiNT3BCc6XsT51j7ylorjGHgyvk4
-	LAjIG7D8xgOgYJRBYlD+t4WGvJJeL6GUaYKKgk3KDs7mBXsxLku1ItYfQivQjw4M44RFKl8xpAIZY
-	xWjreGFjjXbkK3L6Nl9gPdT6tXt2AXij+qt7dHgCcjrz+03Ba6odHEvAXf8WmjOJYwo7Z+2oqYMv+
-	LNt1qWzQ==;
-Received: from i53875b81.versanet.de ([83.135.91.129] helo=diego.localnet)
-	by gloria.sntech.de with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-	(Exim 4.94.2)
-	(envelope-from <heiko@sntech.de>)
-	id 1uVDl7-0006Qj-Ee; Fri, 27 Jun 2025 20:25:09 +0200
-From: Heiko =?UTF-8?B?U3TDvGJuZXI=?= <heiko@sntech.de>
-To: Quentin Schulz <quentin.schulz@cherry.de>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>,
- Diederik de Haas <didi.debian@cknow.org>
-Cc: Dragan Simic <dsimic@manjaro.org>, Johan Jonker <jbx6244@gmail.com>,
- devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org
-Subject:
- Re: [PATCH 2/8] arm64: dts: rockchip: Refactor DSI nodes on rk3399 boards
-Date: Fri, 27 Jun 2025 20:25:07 +0200
-Message-ID: <5121698.88bMQJbFj6@diego>
-In-Reply-To: <DAXGZG0DEKS2.7RLXKSDO0C9T@cknow.org>
-References:
- <20250627152645.740981-1-didi.debian@cknow.org>
- <b1c789bf-1369-42ec-8bb3-d7a45c92abf0@cherry.de>
- <DAXGZG0DEKS2.7RLXKSDO0C9T@cknow.org>
+	s=arc-20240116; t=1751049099; c=relaxed/simple;
+	bh=96qoqGEGVdnAX8QpuygeTA1TC0XltmIypgFTfajk9nY=;
+	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
+	 In-Reply-To:Content-Type; b=D41v5A2U2qdrJX9w8QArNfCyk3qtjuGZqNP7m6D4cHvudzmuQCJL9SQpGJ8VmCVLeICiV+0lMwtDDLmhUNQ9YJp1y5Gry9mrygJEK7zfWJBdOrZfae9MvRI2D6xvOCVWMjvZqqJwpxnO+vmEu92R7EHR59Wxmy3UNYofTNN58jU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=VtwgYHH6; arc=none smtp.client-ip=198.47.23.235
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
+Received: from lelvem-sh01.itg.ti.com ([10.180.77.71])
+	by lelvem-ot02.ext.ti.com (8.15.2/8.15.2) with ESMTP id 55RIV8u82813254;
+	Fri, 27 Jun 2025 13:31:08 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+	s=ti-com-17Q1; t=1751049068;
+	bh=JRbaxnkTkZMDCwScqng54pu0iNXDXjKP0blla/5kMUw=;
+	h=Date:Subject:To:CC:References:From:In-Reply-To;
+	b=VtwgYHH6Ua0w8FnfvQHjTy6h2vYlAFkdEjyx7ml0oxEckoBNc+TJvKsc/Al5XsKtU
+	 MHFKc6KUtvOGYel4PjVIS59uULMlT+BD73TCujxcaWOsHg41qvGGgBIuZLCK9hBYQ0
+	 JlBzscJ2PX3GOvZEA3ZC8NvZSICbElmu2LVuJ/V4=
+Received: from DLEE113.ent.ti.com (dlee113.ent.ti.com [157.170.170.24])
+	by lelvem-sh01.itg.ti.com (8.18.1/8.18.1) with ESMTPS id 55RIV8Vk696729
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-SHA256 bits=128 verify=FAIL);
+	Fri, 27 Jun 2025 13:31:08 -0500
+Received: from DLEE101.ent.ti.com (157.170.170.31) by DLEE113.ent.ti.com
+ (157.170.170.24) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.55; Fri, 27
+ Jun 2025 13:31:08 -0500
+Received: from lelvem-mr05.itg.ti.com (10.180.75.9) by DLEE101.ent.ti.com
+ (157.170.170.31) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.55 via
+ Frontend Transport; Fri, 27 Jun 2025 13:31:08 -0500
+Received: from [10.249.42.149] ([10.249.42.149])
+	by lelvem-mr05.itg.ti.com (8.18.1/8.18.1) with ESMTP id 55RIV7DN3525813;
+	Fri, 27 Jun 2025 13:31:07 -0500
+Message-ID: <8fbe03d0-ee45-4b1f-92ec-bebf6d7b9041@ti.com>
+Date: Fri, 27 Jun 2025 13:31:07 -0500
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-Content-Type: text/plain; charset="utf-8"
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2 2/2] watchdog: rti_wdt: Add reaction control
+To: Judith Mendez <jm@ti.com>, Wim Van Sebroeck <wim@linux-watchdog.org>,
+        Guenter Roeck <linux@roeck-us.net>, Rob Herring <robh@kernel.org>,
+        Krzysztof
+ Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>
+CC: Vignesh Raghavendra <vigneshr@ti.com>, Tero Kristo <kristo@kernel.org>,
+        <linux-watchdog@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>
+References: <20250625143338.2381726-1-jm@ti.com>
+ <20250625143338.2381726-3-jm@ti.com>
+Content-Language: en-US
+From: Andrew Davis <afd@ti.com>
+In-Reply-To: <20250625143338.2381726-3-jm@ti.com>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 7bit
+X-C2ProcessedOrg: 333ef613-75bf-4e12-a4b1-8e3623f5dcea
 
-Am Freitag, 27. Juni 2025, 18:52:08 Mitteleurop=C3=A4ische Sommerzeit schri=
-eb Diederik de Haas:
-> Hi Quentin,
->=20
-> Thanks for taking a look.
->=20
-> On Fri Jun 27, 2025 at 6:10 PM CEST, Quentin Schulz wrote:
-> > On 6/27/25 5:16 PM, Diederik de Haas wrote:
-> >> The #address-cells and #size-cells properties are not useful on the DSI
-> >> controller nodes; they are only useful/required on ports and panel(s).
-> >> So remove them from the controller node and add them where actually
-> >> needed on the various rk3399 based boards.
-> >>=20
-> >> Next to that, there were several (exact) redefinitions of nodes which
-> >> are already present in rk3399-base.dtsi to add a mipi_out endpoint.
-> >> Simplify that by referencing the mipi_out phandle and add the endpoint
-> >> to that, which allows the removeal of the ports redefinition.
-> >>=20
-> >> And fix 1 instance where the mipi_out referenced node was not sorted
-> >> correctly.
-> >>=20
-> >> This fixes the following DTB validation warnings:
-> >>=20
-> >>    unnecessary #address-cells/#size-cells without "ranges",
-> >>    "dma-ranges" or child "reg" property
-> >>=20
-> >
-> > Too many unrelated changes in this commit, please split into multiple=20
-> > commits.
-> >
-> > I could identify:
-> >
-> > - moving address-cells/size-cells from SoC.dtsi to board dts(i)s,
-> > - reordering properties to better match DT coding style=20
-> > https://www.kernel.org/doc/html/latest/devicetree/bindings/dts-coding-s=
-tyle.html#order-of-properties-in-device-node
-> > - use phandle to directly access ports,
-> > - reorder DT node to better match DT coding style=20
-> > https://www.kernel.org/doc/html/latest/devicetree/bindings/dts-coding-s=
-tyle.html#order-of-nodes
->=20
-> I initially had it as several commits, but that resulted in (f.e.) 1
-> issue being fixed, but 1 (or more) others would pop up.
-> Those were then fixed in follow-up commits, but I assumed I'd get Rob's
-> bot screaming at me for introducing new warnings (first).
->=20
-> And as they all relate(d) to fixing the dsi node, I then choose to
-> combine them (but still separated by SoC).
-> IMO there are several ways to organize the commits and each would have
-> their pros and cons, so I 'settled' for this arrangement.
->=20
-> So I prefer to wait for other people's opinion first before reorganizing
-> the commits again (if there's a different consensus).
+On 6/25/25 9:33 AM, Judith Mendez wrote:
+> This allows to configure reaction between NMI and reset for WWD.
+> 
+> On K3 SoC's other than AM62L SoC [0], watchdog reset output is routed
+> to the ESM module which can subsequently route the signal to safety
+> master or SoC reset. On AM62L, the watchdog reset output is routed
+> to the SoC HW reset block. So, add a new compatible for AM62l to add
+> SoC data and configure reaction to reset instead of NMI.
 
-personally, I can live with the current setup here, because as you said
-it's all DSI related, and also not a functional change ;-) .
+Should this be something we configure, not selected based on device,
+do we know if all user of AM62L want the device reset on WDT?
 
-I guess you _could_ move the clock-master + status moves into a separate
-patch, as that should not trigger any warnings.
+> 
+> [0] https://www.ti.com/product/AM62L
+> Signed-off-by: Judith Mendez <jm@ti.com>
+> ---
+> Changes since v1-resend:
+> - no change
+> ---
+>   drivers/watchdog/rti_wdt.c | 31 +++++++++++++++++++++++++++----
+>   1 file changed, 27 insertions(+), 4 deletions(-)
+> 
+> diff --git a/drivers/watchdog/rti_wdt.c b/drivers/watchdog/rti_wdt.c
+> index d1f9ce4100a8..d419884c86c4 100644
+> --- a/drivers/watchdog/rti_wdt.c
+> +++ b/drivers/watchdog/rti_wdt.c
+> @@ -35,7 +35,8 @@
+>   #define RTIWWDRXCTRL	0xa4
+>   #define RTIWWDSIZECTRL	0xa8
+>   
+> -#define RTIWWDRX_NMI	0xa
+> +#define RTIWWDRXN_RST	0x5
+> +#define RTIWWDRXN_NMI	0xa
+>   
+>   #define RTIWWDSIZE_50P		0x50
+>   #define RTIWWDSIZE_25P		0x500
+> @@ -63,22 +64,29 @@
+>   
+>   static int heartbeat;
+>   
+> +struct rti_wdt_data {
+> +	bool reset;
+> +};
+> +
+>   /*
+>    * struct to hold data for each WDT device
+>    * @base - base io address of WD device
+>    * @freq - source clock frequency of WDT
+>    * @wdd  - hold watchdog device as is in WDT core
+> + * @data - hold configuration data
+>    */
+>   struct rti_wdt_device {
+>   	void __iomem		*base;
+>   	unsigned long		freq;
+>   	struct watchdog_device	wdd;
+> +	const struct rti_wdt_data *data;
+>   };
+>   
+>   static int rti_wdt_start(struct watchdog_device *wdd)
+>   {
+>   	u32 timer_margin;
+>   	struct rti_wdt_device *wdt = watchdog_get_drvdata(wdd);
+> +	u8 reaction;
+>   	int ret;
+>   
+>   	ret = pm_runtime_resume_and_get(wdd->parent);
+> @@ -101,8 +109,12 @@ static int rti_wdt_start(struct watchdog_device *wdd)
+>   	 */
+>   	wdd->min_hw_heartbeat_ms = 520 * wdd->timeout + MAX_HW_ERROR;
+>   
+> -	/* Generate NMI when wdt expires */
+> -	writel_relaxed(RTIWWDRX_NMI, wdt->base + RTIWWDRXCTRL);
+> +	/* Generate reset or NMI when timer expires/serviced outside of window */
+> +	reaction = RTIWWDRXN_NMI;
+> +	if (wdt->data->reset)
+> +		reaction = RTIWWDRXN_RST;
+> +
 
+Suggest:
 
-> > The change for RK3399 Puma Haikou Video Demo DTSO is fine for me.
->=20
-> Thanks :)
->=20
-> Cheers,
->   Diederik
->=20
+/* Reset device if wdt serviced outside of window or generate NMI if available */
+if (wdt->data->reset)
+	reaction = RTIWWDRXN_RST;
+else
+	reaction = RTIWWDRXN_NMI;
 
+> +	writel_relaxed(reaction, wdt->base + RTIWWDRXCTRL);
+>   
+>   	/* Open window size 50%; this is the largest window size available */
+>   	writel_relaxed(RTIWWDSIZE_50P, wdt->base + RTIWWDSIZECTRL);
+> @@ -255,6 +267,8 @@ static int rti_wdt_probe(struct platform_device *pdev)
+>   	wdd->timeout = DEFAULT_HEARTBEAT;
+>   	wdd->parent = dev;
+>   
+> +	wdt->data = of_device_get_match_data(dev);
 
+You can use device_get_match_data() here.
 
+Andrew
 
+> +
+>   	watchdog_set_drvdata(wdd, wdt);
+>   	watchdog_set_nowayout(wdd, 1);
+>   	watchdog_set_restart_priority(wdd, 128);
+> @@ -369,8 +383,17 @@ static void rti_wdt_remove(struct platform_device *pdev)
+>   	pm_runtime_disable(&pdev->dev);
+>   }
+>   
+> +static struct rti_wdt_data j7_wdt = {
+> +	.reset = false,
+> +};
+> +
+> +static struct rti_wdt_data am62l_wdt = {
+> +	.reset = true,
+> +};
+> +
+>   static const struct of_device_id rti_wdt_of_match[] = {
+> -	{ .compatible = "ti,j7-rti-wdt", },
+> +	{ .compatible = "ti,j7-rti-wdt", .data = &j7_wdt },
+> +	{ .compatible = "ti,am62l-rti-wdt", .data = &am62l_wdt },
+>   	{},
+>   };
+>   MODULE_DEVICE_TABLE(of, rti_wdt_of_match);
 
