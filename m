@@ -1,275 +1,643 @@
-Return-Path: <devicetree+bounces-190313-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-190314-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1EB75AEB68F
-	for <lists+devicetree@lfdr.de>; Fri, 27 Jun 2025 13:36:27 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7AB4EAEB6BB
+	for <lists+devicetree@lfdr.de>; Fri, 27 Jun 2025 13:43:33 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 6976D562257
-	for <lists+devicetree@lfdr.de>; Fri, 27 Jun 2025 11:36:27 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id DFD39644A52
+	for <lists+devicetree@lfdr.de>; Fri, 27 Jun 2025 11:43:01 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 98B772BD025;
-	Fri, 27 Jun 2025 11:36:19 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=suse.de header.i=@suse.de header.b="AxAVE4Pi";
-	dkim=permerror (0-bit key) header.d=suse.de header.i=@suse.de header.b="FDP2bQxz";
-	dkim=pass (1024-bit key) header.d=suse.de header.i=@suse.de header.b="LF4mjw0J";
-	dkim=permerror (0-bit key) header.d=suse.de header.i=@suse.de header.b="3cNaFWgD"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A11BA2BEFFE;
+	Fri, 27 Jun 2025 11:43:15 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp-out1.suse.de (smtp-out1.suse.de [195.135.223.130])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
-	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C9D92294A1A
-	for <devicetree@vger.kernel.org>; Fri, 27 Jun 2025 11:36:17 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=195.135.223.130
+Received: from foss.arm.com (foss.arm.com [217.140.110.172])
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4D2622BEFEF;
+	Fri, 27 Jun 2025 11:43:13 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.140.110.172
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1751024179; cv=none; b=lBdzuLpViX5LxIP5G04SuZG78W4938CXb/hUPe0vk971PqzlkeDGblkm3YR/QMBQIa6AHNfA90fMrW/7uCRfwinRAmFglrP3RiXtvWA8+1a4kPPWpJHkhqQKzwRNX5mR+M+ge3i0sv2t00h2Ei4YMnDHahxL8wcJOiHimSJpmpw=
+	t=1751024595; cv=none; b=HFhZYgvywIdCzFRv8oTcy38v6XxYQK3UxCdu5vSSti47LVj0yNPwj0pwxnlpALXQrqwqjQYWZfw29L3sia1Tfk9Sv/IiD82LY3+gAUAmqaunXXW0GoxdLCrmIk/g7SHBpIB1fk4wYlyRorLS6vLwJl2VELAU9IeJcI0md5yW5qk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1751024179; c=relaxed/simple;
-	bh=T+RnV55Ns0OukqlE0mSplQ+wePPn0Sgv83kWWLGyJJg=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=eV1dfHeTpkHZmefjDZFgNXEbJT3JFt+gl5VnOueXJyv7czmvOuYD5RAHcejmHOmGQhcuBbA/bCgKLCBw1eMN3jqy+9dj19WUnLdtgvfkcburRi+Lp9NfmhXE6khkrHXv5T09DMAA23EDLf4Hzap23EkqvwyPrPzfgRd2IybSJlc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=suse.de; spf=pass smtp.mailfrom=suse.de; dkim=pass (1024-bit key) header.d=suse.de header.i=@suse.de header.b=AxAVE4Pi; dkim=permerror (0-bit key) header.d=suse.de header.i=@suse.de header.b=FDP2bQxz; dkim=pass (1024-bit key) header.d=suse.de header.i=@suse.de header.b=LF4mjw0J; dkim=permerror (0-bit key) header.d=suse.de header.i=@suse.de header.b=3cNaFWgD; arc=none smtp.client-ip=195.135.223.130
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=suse.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=suse.de
-Received: from imap1.dmz-prg2.suse.org (unknown [10.150.64.97])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
-	(No client certificate requested)
-	by smtp-out1.suse.de (Postfix) with ESMTPS id A724F21168;
-	Fri, 27 Jun 2025 11:36:08 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.de; s=susede2_rsa;
-	t=1751024169; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
-	 mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references:autocrypt:autocrypt;
-	bh=0AlFsNqL4V3TGcpyjHJNDkkPEW0oP8NBHquJ8G7mlNM=;
-	b=AxAVE4PijmKzTOshxXrRtObTf1ZSDah/5zvkf171z0oCE8QwQ8e2HymJNtIP1zM/1/Bc4F
-	zyaPlIBy/4d2O2CFs5jVmJ29A8iW6YhUd6k/lYes7BZwnY9aOI/ThY4zYVdyjWRQHNj034
-	ave+1ibdkb2CoZb3qz4E/p33trQSia0=
-DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=suse.de;
-	s=susede2_ed25519; t=1751024169;
-	h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
-	 mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references:autocrypt:autocrypt;
-	bh=0AlFsNqL4V3TGcpyjHJNDkkPEW0oP8NBHquJ8G7mlNM=;
-	b=FDP2bQxzNfeGTge555MjRRldFBLu3vSYYHICR01/t71URX7lIaSZlC5y93DhLrsbM3gy3B
-	JKl9K4BrYUPcFqBg==
-Authentication-Results: smtp-out1.suse.de;
-	none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.de; s=susede2_rsa;
-	t=1751024168; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
-	 mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references:autocrypt:autocrypt;
-	bh=0AlFsNqL4V3TGcpyjHJNDkkPEW0oP8NBHquJ8G7mlNM=;
-	b=LF4mjw0JaGUkjvau6jmklBM6G371b0uYK+OxbNrxPPoSUOE2+jphTEw7wpUZ7OxOeyU2lJ
-	EpHX2BsQS7S+JibxbJh20AMopisR8n9qpZJHw/Ef4+67N/2ZevagPMbZ+gsCGFGf553KXE
-	fvnMsB78mV3Dn+MsYW36p6RaLDeW6m8=
-DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=suse.de;
-	s=susede2_ed25519; t=1751024168;
-	h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
-	 mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references:autocrypt:autocrypt;
-	bh=0AlFsNqL4V3TGcpyjHJNDkkPEW0oP8NBHquJ8G7mlNM=;
-	b=3cNaFWgDUKFjAto26V44rYvq0mp5Bi+qsI4XQFHWHZeHAbkVV5TRoIb2t9pWQsKMCUFkNt
-	HDNpGGe/9W8ENFBQ==
-Received: from imap1.dmz-prg2.suse.org (localhost [127.0.0.1])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
-	(No client certificate requested)
-	by imap1.dmz-prg2.suse.org (Postfix) with ESMTPS id 4E8ED138A7;
-	Fri, 27 Jun 2025 11:36:08 +0000 (UTC)
-Received: from dovecot-director2.suse.de ([2a07:de40:b281:106:10:150:64:167])
-	by imap1.dmz-prg2.suse.org with ESMTPSA
-	id ieT+ESiCXmjQGQAAD6G6ig
-	(envelope-from <tzimmermann@suse.de>); Fri, 27 Jun 2025 11:36:08 +0000
-Message-ID: <f7c816a7-e93e-4146-80dc-8fec6113fcea@suse.de>
-Date: Fri, 27 Jun 2025 13:36:07 +0200
+	s=arc-20240116; t=1751024595; c=relaxed/simple;
+	bh=GfMzwJNsG2ty/WysaOh3191OVnUiARdIsH5JdLh6dhg=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=hirZJZ1VFWk0L+Ea+r1/3bLlf1/7BPrZA7850U4dOxbwixPhVHbTlMmbhT/2o3Ninv2v4ko54/O5KTI3WIOahjvTrCUKrNwkVWapDBU4COFHX9u6KWuht6TxWGlxh82BJX2TfOn/eDEnG9egok4Gga5Zptaeu5zlmc0j2q8Hp8I=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com; spf=pass smtp.mailfrom=arm.com; arc=none smtp.client-ip=217.140.110.172
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=arm.com
+Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
+	by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 6332D1A00;
+	Fri, 27 Jun 2025 04:42:55 -0700 (PDT)
+Received: from pluto (usa-sjc-mx-foss1.foss.arm.com [172.31.20.19])
+	by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 602573F66E;
+	Fri, 27 Jun 2025 04:43:10 -0700 (PDT)
+Date: Fri, 27 Jun 2025 12:43:07 +0100
+From: Cristian Marussi <cristian.marussi@arm.com>
+To: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+Cc: robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
+	matthias.bgg@gmail.com, sudeep.holla@arm.com,
+	cristian.marussi@arm.com, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+	linux-mediatek@lists.infradead.org, arm-scmi@vger.kernel.org,
+	kernel@collabora.com
+Subject: Re: [PATCH v1 2/2] firmware: arm_scmi: Add MediaTek TinySYS SCMI
+ Protocol support
+Message-ID: <aF6Dy_nmH64FWhW3@pluto>
+References: <20250623120136.109311-1-angelogioacchino.delregno@collabora.com>
+ <20250623120136.109311-3-angelogioacchino.delregno@collabora.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 5/5] fbdev/simplefb: Add support for interconnect paths
-To: Javier Martinez Canillas <javierm@redhat.com>,
- Luca Weiss <luca.weiss@fairphone.com>, Hans de Goede <hdegoede@redhat.com>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Maxime Ripard <mripard@kernel.org>, David Airlie <airlied@gmail.com>,
- Simona Vetter <simona@ffwll.ch>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Helge Deller <deller@gmx.de>
-Cc: linux-fbdev@vger.kernel.org, dri-devel@lists.freedesktop.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <20250623-simple-drm-fb-icc-v2-0-f69b86cd3d7d@fairphone.com>
- <20250623-simple-drm-fb-icc-v2-5-f69b86cd3d7d@fairphone.com>
- <87ldpdd3dn.fsf@minerva.mail-host-address-is-not-set>
-Content-Language: en-US
-From: Thomas Zimmermann <tzimmermann@suse.de>
-Autocrypt: addr=tzimmermann@suse.de; keydata=
- xsBNBFs50uABCADEHPidWt974CaxBVbrIBwqcq/WURinJ3+2WlIrKWspiP83vfZKaXhFYsdg
- XH47fDVbPPj+d6tQrw5lPQCyqjwrCPYnq3WlIBnGPJ4/jreTL6V+qfKRDlGLWFjZcsrPJGE0
- BeB5BbqP5erN1qylK9i3gPoQjXGhpBpQYwRrEyQyjuvk+Ev0K1Jc5tVDeJAuau3TGNgah4Yc
- hdHm3bkPjz9EErV85RwvImQ1dptvx6s7xzwXTgGAsaYZsL8WCwDaTuqFa1d1jjlaxg6+tZsB
- 9GluwvIhSezPgnEmimZDkGnZRRSFiGP8yjqTjjWuf0bSj5rUnTGiyLyRZRNGcXmu6hjlABEB
- AAHNJ1Rob21hcyBaaW1tZXJtYW5uIDx0emltbWVybWFubkBzdXNlLmRlPsLAjgQTAQgAOAIb
- AwULCQgHAgYVCgkICwIEFgIDAQIeAQIXgBYhBHIX+6yM6c9jRKFo5WgNwR1TC3ojBQJftODH
- AAoJEGgNwR1TC3ojx1wH/0hKGWugiqDgLNXLRD/4TfHBEKmxIrmfu9Z5t7vwUKfwhFL6hqvo
- lXPJJKQpQ2z8+X2vZm/slsLn7J1yjrOsoJhKABDi+3QWWSGkaGwRJAdPVVyJMfJRNNNIKwVb
- U6B1BkX2XDKDGffF4TxlOpSQzdtNI/9gleOoUA8+jy8knnDYzjBNOZqLG2FuTdicBXblz0Mf
- vg41gd9kCwYXDnD91rJU8tzylXv03E75NCaTxTM+FBXPmsAVYQ4GYhhgFt8S2UWMoaaABLDe
- 7l5FdnLdDEcbmd8uLU2CaG4W2cLrUaI4jz2XbkcPQkqTQ3EB67hYkjiEE6Zy3ggOitiQGcqp
- j//OwE0EWznS4AEIAMYmP4M/V+T5RY5at/g7rUdNsLhWv1APYrh9RQefODYHrNRHUE9eosYb
- T6XMryR9hT8XlGOYRwKWwiQBoWSDiTMo/Xi29jUnn4BXfI2px2DTXwc22LKtLAgTRjP+qbU6
- 3Y0xnQN29UGDbYgyyK51DW3H0If2a3JNsheAAK+Xc9baj0LGIc8T9uiEWHBnCH+RdhgATnWW
- GKdDegUR5BkDfDg5O/FISymJBHx2Dyoklv5g4BzkgqTqwmaYzsl8UxZKvbaxq0zbehDda8lv
- hFXodNFMAgTLJlLuDYOGLK2AwbrS3Sp0AEbkpdJBb44qVlGm5bApZouHeJ/+n+7r12+lqdsA
- EQEAAcLAdgQYAQgAIAIbDBYhBHIX+6yM6c9jRKFo5WgNwR1TC3ojBQJftOH6AAoJEGgNwR1T
- C3ojVSkIALpAPkIJPQoURPb1VWjh34l0HlglmYHvZszJWTXYwavHR8+k6Baa6H7ufXNQtThR
- yIxJrQLW6rV5lm7TjhffEhxVCn37+cg0zZ3j7zIsSS0rx/aMwi6VhFJA5hfn3T0TtrijKP4A
- SAQO9xD1Zk9/61JWk8OysuIh7MXkl0fxbRKWE93XeQBhIJHQfnc+YBLprdnxR446Sh8Wn/2D
- Ya8cavuWf2zrB6cZurs048xe0UbSW5AOSo4V9M0jzYI4nZqTmPxYyXbm30Kvmz0rYVRaitYJ
- 4kyYYMhuULvrJDMjZRvaNe52tkKAvMevcGdt38H4KSVXAylqyQOW5zvPc4/sq9c=
-In-Reply-To: <87ldpdd3dn.fsf@minerva.mail-host-address-is-not-set>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Spam-Flag: NO
-X-Spam-Score: -2.80
-X-Spamd-Result: default: False [-2.80 / 50.00];
-	BAYES_HAM(-3.00)[100.00%];
-	SUSPICIOUS_RECIPS(1.50)[];
-	NEURAL_HAM_LONG(-1.00)[-1.000];
-	NEURAL_HAM_SHORT(-0.20)[-1.000];
-	MIME_GOOD(-0.10)[text/plain];
-	TO_MATCH_ENVRCPT_ALL(0.00)[];
-	FUZZY_BLOCKED(0.00)[rspamd.com];
-	DKIM_SIGNED(0.00)[suse.de:s=susede2_rsa,suse.de:s=susede2_ed25519];
-	FREEMAIL_TO(0.00)[redhat.com,fairphone.com,linux.intel.com,kernel.org,gmail.com,ffwll.ch,gmx.de];
-	MIME_TRACE(0.00)[0:+];
-	ARC_NA(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[15];
-	FREEMAIL_ENVRCPT(0.00)[gmail.com,gmx.de];
-	RCVD_TLS_ALL(0.00)[];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	FROM_EQ_ENVFROM(0.00)[];
-	FROM_HAS_DN(0.00)[];
-	TO_DN_SOME(0.00)[];
-	RCVD_COUNT_TWO(0.00)[2];
-	TAGGED_RCPT(0.00)[dt];
-	MID_RHS_MATCH_FROM(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[suse.de:mid,suse.de:email,imap1.dmz-prg2.suse.org:helo,fairphone.com:email]
-X-Spam-Level: 
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20250623120136.109311-3-angelogioacchino.delregno@collabora.com>
 
-Hi
+On Mon, Jun 23, 2025 at 02:01:36PM +0200, AngeloGioacchino Del Regno wrote:
+> Add a driver for the SCMI protocol extensions for MediaTek TinySYS.
+> This is used to communicate with various remote processors in some
+> MediaTek SoCs, which mainly handle power management related tasks.
+> 
 
-Am 27.06.25 um 09:56 schrieb Javier Martinez Canillas:
-> Luca Weiss <luca.weiss@fairphone.com> writes:
->
->> Some devices might require keeping an interconnect path alive so that
->> the framebuffer continues working. Add support for that by setting the
->> bandwidth requirements appropriately for all provided interconnect
->> paths.
->>
->> Reviewed-by: Thomas Zimmermann <tzimmermann@suse.de>
->> Signed-off-by: Luca Weiss <luca.weiss@fairphone.com>
->> ---
->>   drivers/video/fbdev/simplefb.c | 83 ++++++++++++++++++++++++++++++++++++++++++
->>   1 file changed, 83 insertions(+)
->>
-> [...]
->
->> +static void simplefb_detach_icc(void *res)
->> +{
->> +	struct simplefb_par *par = res;
->> +	int i;
->> +
->> +	for (i = par->icc_count - 1; i >= 0; i--) {
->> +		if (!IS_ERR_OR_NULL(par->icc_paths[i]))
->> +			icc_put(par->icc_paths[i]);
->> +	}
->> +}
->> +
->> +static int simplefb_attach_icc(struct simplefb_par *par,
->> +			       struct platform_device *pdev)
->> +{
->> +	struct device *dev = &pdev->dev;
->> +	int ret, count, i;
->> +
->> +	count = of_count_phandle_with_args(dev->of_node, "interconnects",
->> +							 "#interconnect-cells");
->> +	if (count < 0)
->> +		return 0;
->> +
->> +	/* An interconnect path consists of two elements */
->> +	if (count % 2) {
->> +		dev_err(dev, "invalid interconnects value\n");
->> +		return -EINVAL;
->> +	}
->> +	par->icc_count = count / 2;
->> +
->> +	par->icc_paths = devm_kcalloc(dev, par->icc_count,
->> +				      sizeof(*par->icc_paths),
->> +				      GFP_KERNEL);
->> +	if (!par->icc_paths)
->> +		return -ENOMEM;
->> +
->> +	for (i = 0; i < par->icc_count; i++) {
->> +		par->icc_paths[i] = of_icc_get_by_index(dev, i);
->> +		if (IS_ERR_OR_NULL(par->icc_paths[i])) {
->> +			ret = PTR_ERR(par->icc_paths[i]);
->> +			if (ret == -EPROBE_DEFER)
->> +				goto err;
->> +			dev_err(dev, "failed to get interconnect path %u: %d\n", i, ret);
->> +			continue;
->> +		}
->> +
->> +		ret = icc_set_bw(par->icc_paths[i], 0, UINT_MAX);
->> +		if (ret) {
->> +			dev_err(dev, "failed to set interconnect bandwidth %u: %d\n", i, ret);
->> +			continue;
->> +		}
->> +	}
->> +
->> +	return devm_add_action_or_reset(dev, simplefb_detach_icc, par);
->> +
->> +err:
->> +	while (i) {
->> +		--i;
->> +		if (!IS_ERR_OR_NULL(par->icc_paths[i]))
->> +			icc_put(par->icc_paths[i]);
->> +	}
->> +	return ret;
->> +}
->> +#else
-> These two functions contain the same logic that you are using in the
-> simpledrm driver. I wonder if could be made helpers so that the code
-> isn't duplicated in both drivers.
+Hi,
 
-No please not!. Any work should rather be directed towards deleting 
-simplefb entirely.
+> Signed-off-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+> ---
+>  drivers/firmware/arm_scmi/Kconfig             |   1 +
+>  drivers/firmware/arm_scmi/Makefile            |   1 +
+>  .../arm_scmi/vendors/mediatek/Kconfig         |  16 +
+>  .../arm_scmi/vendors/mediatek/Makefile        |   2 +
+>  .../arm_scmi/vendors/mediatek/mtk-tinysys.c   | 344 ++++++++++++++++++
+>  include/linux/scmi_mtk_protocol.h             |  62 ++++
+>  6 files changed, 426 insertions(+)
+>  create mode 100644 drivers/firmware/arm_scmi/vendors/mediatek/Kconfig
+>  create mode 100644 drivers/firmware/arm_scmi/vendors/mediatek/Makefile
+>  create mode 100644 drivers/firmware/arm_scmi/vendors/mediatek/mtk-tinysys.c
+>  create mode 100644 include/linux/scmi_mtk_protocol.h
+> 
+> diff --git a/drivers/firmware/arm_scmi/Kconfig b/drivers/firmware/arm_scmi/Kconfig
+> index e3fb36825978..baadf4f7fef6 100644
+> --- a/drivers/firmware/arm_scmi/Kconfig
+> +++ b/drivers/firmware/arm_scmi/Kconfig
+> @@ -84,6 +84,7 @@ config ARM_SCMI_QUIRKS
+>  
+>  source "drivers/firmware/arm_scmi/transports/Kconfig"
+>  source "drivers/firmware/arm_scmi/vendors/imx/Kconfig"
+> +source "drivers/firmware/arm_scmi/vendors/mediatek/Kconfig"
+>  
+>  endif #ARM_SCMI_PROTOCOL
+>  
+> diff --git a/drivers/firmware/arm_scmi/Makefile b/drivers/firmware/arm_scmi/Makefile
+> index 780cd62b2f78..d1b4ec16b8bc 100644
+> --- a/drivers/firmware/arm_scmi/Makefile
+> +++ b/drivers/firmware/arm_scmi/Makefile
+> @@ -13,6 +13,7 @@ scmi-module-objs := $(scmi-driver-y) $(scmi-protocols-y) $(scmi-transport-y)
+>  
+>  obj-$(CONFIG_ARM_SCMI_PROTOCOL) += transports/
+>  obj-$(CONFIG_ARM_SCMI_PROTOCOL) += vendors/imx/
+> +obj-$(CONFIG_ARM_SCMI_PROTOCOL) += vendors/mediatek/
+>  
+>  obj-$(CONFIG_ARM_SCMI_PROTOCOL) += scmi-core.o
+>  obj-$(CONFIG_ARM_SCMI_PROTOCOL) += scmi-module.o
+> diff --git a/drivers/firmware/arm_scmi/vendors/mediatek/Kconfig b/drivers/firmware/arm_scmi/vendors/mediatek/Kconfig
+> new file mode 100644
+> index 000000000000..8facdcd3819f
+> --- /dev/null
+> +++ b/drivers/firmware/arm_scmi/vendors/mediatek/Kconfig
+> @@ -0,0 +1,16 @@
+> +# SPDX-License-Identifier: GPL-2.0-only
+> +menu "ARM SCMI MediaTek Vendor Protocols"
+> +
+> +config MTK_SCMI_TINYSYS
+> +	tristate "MediaTek SCMI TinySYS Extension"
+> +	depends on ARM_SCMI_PROTOCOL || (COMPILE_TEST && OF)
+> +	default y if ARCH_MEDIATEK
+> +	help
+> +	  This enables communication with the MediaTek TinySYS MCU
+> +	  to control the power status of various SoC sub-devices
+> +	  other than passing other messages for initialization.
+> +
+> +	  To compile this driver as a module, choose M here: the
+> +	  module will be called mtk-tinysys.
+> +
+> +endmenu
+> diff --git a/drivers/firmware/arm_scmi/vendors/mediatek/Makefile b/drivers/firmware/arm_scmi/vendors/mediatek/Makefile
+> new file mode 100644
+> index 000000000000..dc1ff63c3b69
+> --- /dev/null
+> +++ b/drivers/firmware/arm_scmi/vendors/mediatek/Makefile
+> @@ -0,0 +1,2 @@
+> +# SPDX-License-Identifier: GPL-2.0-only
+> +obj-$(CONFIG_MTK_SCMI_TINYSYS) += mtk-tinysys.o
+> diff --git a/drivers/firmware/arm_scmi/vendors/mediatek/mtk-tinysys.c b/drivers/firmware/arm_scmi/vendors/mediatek/mtk-tinysys.c
+> new file mode 100644
+> index 000000000000..baeb36493952
+> --- /dev/null
+> +++ b/drivers/firmware/arm_scmi/vendors/mediatek/mtk-tinysys.c
+> @@ -0,0 +1,344 @@
+> +// SPDX-License-Identifier: GPL-2.0
+> +/*
+> + * System Control and Management Interface (SCMI) MediaTek TinySYS Protocol
+> + *
+> + * Copyright (c) 2021 MediaTek Inc.
+> + * Copyright (c) 2025 Collabora Ltd
+> + *                    AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+> + */
+> +
+> +#define pr_fmt(fmt) "SCMI Notifications TinySYS - " fmt
+> +
+> +#include <linux/bits.h>
+> +#include <linux/io.h>
+> +#include <linux/module.h>
+> +#include <linux/of.h>
+> +#include <linux/platform_device.h>
+> +#include <linux/scmi_protocol.h>
+> +#include <linux/scmi_mtk_protocol.h>
+> +
+> +#include "../../protocols.h"
+> +#include "../../notify.h"
+> +
+> +#define SCMI_MTK_CMD_SSPM_QUERY_ALIVE		0xdead
+> +
+> +enum scmi_mtk_tinysys_protocol_cmd {
+> +	MTK_TINYSYS_COMMON_SET = 0x3,
+> +	MTK_TINYSYS_COMMON_GET = 0x4,
+> +	MTK_TINYSYS_POWER_STATE_NOTIFY = 0x5,
+> +	MTK_TINYSYS_SLBC_CTRL = 0x6,
+> +};
+> +
+> +struct scmi_mtk_tinysys_common_get_payld {
+> +	__le32 rsvd;
+> +	__le32 param[SCMI_MTK_MSG_COMMON_REPLY_BYTES];
+> +};
+> +
+> +struct scmi_mtk_tinysys_common_set_payld {
+> +	__le32 rsvd;
+> +	__le32 ctrl_id;
+> +	__le32 param[SCMI_MTK_MSG_COMMON_PARAM_BYTES];
+> +};
+> +
+> +struct scmi_mtk_tinysys_slbc_payld {
+> +	__le32 rsvd;
+> +	__le32 cmd;
+> +	__le32 arg[SCMI_MTK_MSG_SLBC_PARAM_BYTES];
+> +};
+> +
+> +struct scmi_mtk_tinysys_pwrst_notify {
+> +	__le32 rsvd;
+> +	__le32 fid;
+> +	__le32 enable;
+> +};
+> +
+> +struct scmi_mtk_tinysys_notify_payld {
+> +	__le32 fid;
+> +	__le32 param[SCMI_MTK_MSG_NOTIF_ST_BYTES];
+> +};
+> +
+> +struct scmi_mtk_tinysys_protocol_attributes {
+> +	__le32 attributes;
 
-Best regards
-Thomas
+...this is a clear example where would be benificial to have a
+doc describing the protocol fields (as mentioned already previously) so
+that you can at least know here what is the nature of attributes: is it
+completely made up of bitfield? has any subfield wider than one-bute
+that has to be interpreted as a quantity (so le32_to_cpu and friends...)
 
->
-> But in any case it could be a follow-up of your series I think.
->
-> Reviewed-by: Javier Martinez Canillas <javierm@redhat.com>
->
+..I see all of this is apparent by the code below but a bit of protocol
+description would be better...you get my point...
 
--- 
---
-Thomas Zimmermann
-Graphics Driver Developer
-SUSE Software Solutions Germany GmbH
-Frankenstrasse 146, 90461 Nuernberg, Germany
-GF: Ivo Totev, Andrew Myers, Andrew McDonald, Boudien Moerman
-HRB 36809 (AG Nuernberg)
+...anyway...you can avoid single field structures in message descriptors...
 
+> +};
+> +
+> +struct scmi_mtk_tinysys_info {
+> +	int num_domains;
+> +};
+> +
+> +static int scmi_mtk_tinysys_attributes_get(const struct scmi_protocol_handle *ph,
+> +					   struct scmi_mtk_tinysys_info *tinfo)
+> +{
+> +	struct scmi_mtk_tinysys_protocol_attributes *attr;
+> +	struct scmi_xfer *t;
+> +	int ret;
+> +
+> +	ret = ph->xops->xfer_get_init(ph, PROTOCOL_ATTRIBUTES, 0, sizeof(*attr), &t);
+> +	if (ret)
+> +		return ret;
+> +
+> +	attr = t->rx.buf;
+
+...especially if you are gonna use down below the get_unaligned_le32()
+directly on the buffer at the end....
+
+> +
+> +	ret = ph->xops->do_xfer(ph, t);
+> +	if (!ret) {
+> +		attr->attributes = get_unaligned_le32(t->rx.buf);
+
+..also I think this will make smatch/sparse static analyzers screams
+since yiu defined attr_attributes as __le32 BUT here you then assign to
+it the u32 which you get out of get_unaligned_le32()
+
+> +		tinfo->num_domains = attr->attributes;
+
+...so what about dropping attr struct definitions and declararion and just:
+
+		tinfo->num_domains = get_unaligned_le32(t->rx.buf);
+
+> +	}
+> +
+> +	ph->xops->xfer_put(ph, t);
+> +
+> +	return ret;
+> +}
+> +
+> +static int scmi_mtk_tinysys_get_num_sources(const struct scmi_protocol_handle *ph)
+> +{
+> +	struct scmi_mtk_tinysys_info *tinfo = ph->get_priv(ph);
+> +
+> +	if (!tinfo)
+> +		return -EINVAL;
+> +
+> +	return tinfo->num_domains;
+> +}
+> +
+> +static int scmi_mtk_tinysys_set_notify_enabled(const struct scmi_protocol_handle *ph,
+> +					       u8 evt_id, u32 src_id, bool enable)
+> +{
+> +	struct scmi_mtk_tinysys_pwrst_notify *pwrst_notify;
+> +	struct scmi_xfer *t;
+> +	int ret;
+> +
+> +	/* There's only one possible event for now */
+> +	if (evt_id != 0)
+
+As also Peng pointed out...
+
+	if (evt != SCMI_EVENT_MTK_TINYSYS_NOTIFIER)
+
+> +		return -EINVAL;
+> +
+> +	ret = ph->xops->xfer_get_init(ph, MTK_TINYSYS_POWER_STATE_NOTIFY,
+> +				      sizeof(*pwrst_notify), 0, &t);
+> +	if (ret)
+> +		return ret;
+> +
+> +	pwrst_notify = t->tx.buf;
+> +	pwrst_notify->fid = src_id;
+
+ 	... = cpu_to_le32(src_id)
+
+> +	pwrst_notify->enable = cpu_to_le32(enable);
+
+...I suppose (since no doc) that this is mant to simply set BIT_0 if
+enable....so maybe simply
+
+	pwrst_notify->enable = enable ? BIT(0) : 0;
+
+... endianityshould not matter and you risk to set the wrong bit by
+using  cpu_to_le32()
+
+> +
+> +	ret = ph->xops->do_xfer(ph, t);
+> +	ph->xops->xfer_put(ph, t);
+> +	return ret;
+> +}
+> +
+> +static void *scmi_mtk_tinysys_fill_custom_report(const struct scmi_protocol_handle *ph,
+> +						 u8 evt_id, ktime_t timestamp,
+> +						 const void *payld, size_t payld_sz,
+> +						 void *report, u32 *src_id)
+> +{
+> +	const struct scmi_mtk_tinysys_notify_payld *p = payld;
+> +	struct scmi_mtk_tinysys_notif_report *r = report;
+> +	int i;
+> +
+> +	if (sizeof(*p) != payld_sz)
+> +		return NULL;
+> +
+> +	if (evt_id == SCMI_EVENT_MTK_TINYSYS_NOTIFIER) {
+> +		r->timestamp = timestamp;
+> +		r->fid = le32_to_cpu(p->fid);
+> +		for (i = 0; i < SCMI_MTK_MSG_NOTIF_ST_BYTES; i++)
+> +			r->status[i] = le32_to_cpu(p->param[i]);
+> +		if (src_id)
+> +			*src_id = p->fid;
+
+			*src_id = le32_to_cpu(p->fid);
+
+			or better
+
+			*src_id = r->fid;
+
+> +	} else {
+> +		WARN_ON_ONCE(1);
+> +		return NULL;
+> +	}
+> +
+> +	return r;
+> +}
+> +
+> +static const struct scmi_event scmi_mtk_tinysys_events[] = {
+> +	{
+> +		.id = SCMI_EVENT_MTK_TINYSYS_NOTIFIER,
+> +		.max_payld_sz =	sizeof(struct scmi_mtk_tinysys_notify_payld),
+> +		.max_report_sz = sizeof(struct scmi_mtk_tinysys_notif_report),
+> +	},
+> +};
+> +
+> +static int scmi_mtk_tinysys_common_get(const struct scmi_protocol_handle *ph,
+> +				       u32 ctrl_id, u32 cmd,
+> +				       struct scmi_mtk_tinysys_status *retval)
+> +{
+> +	struct scmi_mtk_tinysys_common_get_payld *p;
+> +	struct scmi_xfer *t;
+> +	int ret;
+> +
+> +	ret = ph->xops->xfer_get_init(ph, MTK_TINYSYS_COMMON_GET,
+> +				      sizeof(*p), sizeof(*retval), &t);
+> +	if (ret)
+> +		return ret;
+> +
+> +	p = t->tx.buf;
+> +	p->param[0] = ctrl_id;
+
+	cpu_to_le32(ctrl_id);
+
+
+> +	p->param[1] = cmd;
+
+	cpu_to_le32(ctrl_id);
+
+...you should run smatch() or any other Kenel static analyzer ... it
+would have screamed a lot around endianity...trivial errors really but
+posshbly painful bugs if this ever get run on a BigEndian thing...
+
+> +
+> +	ret = ph->xops->do_xfer(ph, t);
+> +	if (!ret) {
+> +		if (t->rx.len == sizeof(*retval))
+> +			memcpy(retval, t->rx.buf, sizeof(*retval));
+
+mmmm...so you suddenly have stuff in a reply that is NON-littleEndian
+defined in the protocol message fields so that you can brutally memcpy
+to a u32 ?
+
+..this would go against basic SCMI (all message fields are LE) and could be
+painful since it is really NOT properly defined anywhere what is the expectation
+here from the payload received from the server...and again...no docs...
+
+....it would be clearer and safer to define a reply msg as _le32 fields and
+just loop and le32_to_cpu() the single __le32 words
+
+> +		else
+> +			ret = -EINVAL;
+> +	}
+> +
+> +	ph->xops->xfer_put(ph, t);
+> +	return ret;
+> +}
+> +
+> +static int scmi_mtk_tinysys_common_set(const struct scmi_protocol_handle *ph,
+> +				       u32 ctrl_id, const u32 *params,
+> +				       const u8 num_params)
+> +{
+> +	struct scmi_mtk_tinysys_common_set_payld *p;
+> +	struct scmi_xfer *t;
+> +	int i, ret;
+> +
+> +	if (!params || num_params > SCMI_MTK_MSG_COMMON_PARAM_BYTES)
+> +		return -EINVAL;
+> +
+> +	ret = ph->xops->xfer_get_init(ph, MTK_TINYSYS_COMMON_SET, sizeof(*p), 0, &t);
+> +	if (ret)
+> +		return ret;
+> +
+> +	p = t->tx.buf;
+> +	p->ctrl_id = cpu_to_le32(ctrl_id);
+> +	for (i = 0; i < num_params; i++)
+> +		p->param[i] = cpu_to_le32(params[i]);
+> +
+> +	ret = ph->xops->do_xfer(ph, t);
+> +
+> +	ph->xops->xfer_put(ph, t);
+> +	return ret;
+> +}
+> +
+> +static int scmi_mtk_tinysys_cm_mgr_set(const struct scmi_protocol_handle *ph,
+> +				       u32 ctrl_id, u32 cmd, u32 arg)
+> +{
+> +	const u32 params[2] = { cmd, arg };
+> +
+> +	return scmi_mtk_tinysys_common_set(ph, ctrl_id, params, 2);
+> +}
+> +
+> +static int scmi_mtk_tinysys_gpu_pwr_set(const struct scmi_protocol_handle *ph,
+> +				       u32 ctrl_id, u8 pwr_indication, bool enable)
+> +{
+> +	const u32 params[2] = { pwr_indication, enable };
+> +
+> +	return scmi_mtk_tinysys_common_set(ph, ctrl_id, params, 2);
+> +}
+> +
+> +static int scmi_mtk_tinysys_slbc_req(const struct scmi_protocol_handle *ph,
+> +				     const struct scmi_mtk_tinysys_slbc *req,
+> +				     struct scmi_mtk_tinysys_slbc *retval)
+> +{
+> +	struct scmi_mtk_tinysys_slbc_payld *p;
+> +	struct scmi_xfer *t;
+> +	int i, ret;
+> +
+> +	ret = ph->xops->xfer_get_init(ph, MTK_TINYSYS_SLBC_CTRL,
+> +				      sizeof(*p), sizeof(*p), &t);
+> +	if (ret)
+> +		return ret;
+> +
+> +	p = t->tx.buf;
+> +	p->cmd = cpu_to_le32(req->cmd);
+> +	for (i = 0; i < SCMI_MTK_MSG_SLBC_PARAM_BYTES; i++)
+
+	for (int i = 0;
+
+> +		p->arg[i] = cpu_to_le32(req->arg[i]);
+> +
+> +	ret = ph->xops->do_xfer(ph, t);
+> +	if (!ret && retval) {
+> +		if (t->rx.len == sizeof(*retval))
+> +			memcpy(retval, t->rx.buf, sizeof(*retval));
+
+...same as above on endianess of reply payload...did I miss somethinng ?
+
+> +		else
+> +			ret = -EINVAL;
+> +	}
+> +
+> +	ph->xops->xfer_put(ph, t);
+> +	return ret;
+> +}
+> +
+> +static int scmi_mtk_tinysys_sspm_mem_set(const struct scmi_protocol_handle *ph,
+> +					 u32 ctrl_id, u32 pa, u32 mem_sz)
+> +{
+> +	const u32 params[2] = { pa, mem_sz };
+> +
+> +	if (mem_sz < SZ_1M)
+> +		return -EINVAL;
+> +
+> +	return scmi_mtk_tinysys_common_set(ph, ctrl_id, params, 2);
+> +}
+> +
+> +static bool scmi_mtk_tinysys_sspm_is_alive(const struct scmi_protocol_handle *ph,
+> +					   u32 ctrl_id)
+> +{
+> +	const u32 param = SCMI_MTK_CMD_SSPM_QUERY_ALIVE;
+> +	int ret;
+> +
+> +	ret = scmi_mtk_tinysys_common_set(ph, ctrl_id, &param, 1);
+> +
+> +	return ret ? false : true;
+> +}
+> +
+> +static const struct scmi_mtk_tinysys_proto_ops mtk_tinysys_proto_ops = {
+> +	.common_get = scmi_mtk_tinysys_common_get,
+> +	.cm_mgr_set = scmi_mtk_tinysys_cm_mgr_set,
+> +	.gpu_pwr_set = scmi_mtk_tinysys_gpu_pwr_set,
+> +	.slbc_req = scmi_mtk_tinysys_slbc_req,
+> +	.sspm_is_alive = scmi_mtk_tinysys_sspm_is_alive,
+> +	.sspm_mem_set = scmi_mtk_tinysys_sspm_mem_set,
+> +};
+> +
+> +static const struct scmi_event_ops scmi_mtk_tinysys_event_ops = {
+> +	.get_num_sources = scmi_mtk_tinysys_get_num_sources,
+> +	.set_notify_enabled = scmi_mtk_tinysys_set_notify_enabled,
+> +	.fill_custom_report = scmi_mtk_tinysys_fill_custom_report,
+> +};
+
+I would keep this....
+
+> +
+> +static const struct scmi_protocol_events scmi_mtk_tinysys_protocol_events = {
+> +	.queue_sz = 4 * SCMI_PROTO_QUEUE_SZ,
+> +	.ops = &scmi_mtk_tinysys_event_ops,
+> +	.evts = scmi_mtk_tinysys_eventsSCMI_EVENT_MTK_TINYSYS_NOTIFIER,
+> +	.num_events = ARRAY_SIZE(scmi_mtk_tinysys_events),
+> +};
+> +
+
+..and all all of these events related stuff above... near where the
+protocol events and defs are defined...
+
+> +static int scmi_mtk_tinysys_protocol_init(const struct scmi_protocol_handle *ph)
+> +{
+> +	struct scmi_mtk_tinysys_info *tinfo;
+> +	u32 version;
+> +	int ret;
+> +
+> +	ret = ph->xops->version_get(ph, &version);
+> +	if (ret)
+> +		return ret;
+> +
+> +	dev_info(ph->dev, "MediaTek TinySYS Protocol Version %d.%d\n",
+> +		 PROTOCOL_REV_MAJOR(version), PROTOCOL_REV_MINOR(version));
+> +
+> +	tinfo = devm_kzalloc(ph->dev, sizeof(*tinfo), GFP_KERNEL);
+> +	if (!tinfo)
+> +		return -ENOMEM;
+> +
+> +	ret = scmi_mtk_tinysys_attributes_get(ph, tinfo);
+> +	if (ret)
+> +		return ret;
+> +
+> +	return ph->set_priv(ph, tinfo, version);
+> +}
+> +
+> +static const struct scmi_protocol scmi_mtk_tinysys = {
+> +	.id = SCMI_PROTOCOL_MTK_TINYSYS,
+> +	.owner = THIS_MODULE,
+> +	.instance_init = &scmi_mtk_tinysys_protocol_init,
+> +	.ops = &mtk_tinysys_proto_ops,
+> +	.events = &scmi_mtk_tinysys_protocol_events,
+> +	.vendor_id = SCMI_MTK_VENDOR,
+> +};
+> +module_scmi_protocol(scmi_mtk_tinysys);
+> +
+> +MODULE_AUTHOR("AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>");
+> +MODULE_ALIAS("scmi-protocol-" __stringify(SCMI_PROTOCOL_MTK_TINYSYS) "-" SCMI_MTK_VENDOR);
+> +MODULE_DESCRIPTION("MediaTek SCMI TinySYS driver");
+> +MODULE_LICENSE("GPL");
+> diff --git a/include/linux/scmi_mtk_protocol.h b/include/linux/scmi_mtk_protocol.h
+> new file mode 100644
+> index 000000000000..51ad0cb4b72d
+> --- /dev/null
+> +++ b/include/linux/scmi_mtk_protocol.h
+> @@ -0,0 +1,62 @@
+> +/* SPDX-License-Identifier: GPL-2.0-only */
+> +/*
+> + * SCMI Message Protocol driver MediaTek extension header
+> + *
+> + * Copyright (c) 2021 MediaTek Inc.
+> + * Copyright (c) 2025 Collabora Ltd
+> + *                    AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+> + */
+> +
+> +#ifndef _LINUX_SCMI_MTK_PROTOCOL_H
+> +#define _LINUX_SCMI_MTK_PROTOCOL_H
+> +
+> +#include <linux/bitfield.h>
+> +#include <linux/device.h>
+> +#include <linux/notifier.h>
+> +#include <linux/types.h>
+> +
+> +#define SCMI_PROTOCOL_MTK_TINYSYS	0x80
+> +#define SCMI_MTK_VENDOR			"MediaTek"
+> +
+> +#define SCMI_MTK_MSG_COMMON_PARAM_BYTES	5
+
+This definition can go into the protocol compilation unit, since it is
+NOT used by the SCMI drivers using the ops below, right ? ... I mean
+it's an internal define so no need to expose it here..
+
+> +#define SCMI_MTK_MSG_COMMON_REPLY_BYTES	2
+> +#define SCMI_MTK_MSG_NOTIF_ST_BYTES	4
+> +#define SCMI_MTK_MSG_SLBC_PARAM_BYTES	4
+> +
+> +struct scmi_mtk_tinysys_status {
+> +	u32 rsvd;
+> +	u32 reply[SCMI_MTK_MSG_COMMON_REPLY_BYTES];
+> +};
+> +
+> +struct scmi_mtk_tinysys_slbc {
+> +	u32 cmd;
+> +	u32 arg[SCMI_MTK_MSG_SLBC_PARAM_BYTES];
+> +};
+> +
+> +struct scmi_mtk_tinysys_proto_ops {
+> +	int (*common_get)(const struct scmi_protocol_handle *ph,
+> +			  u32 ctrl_id, u32 cmd,
+> +			  struct scmi_mtk_tinysys_status *retval);
+> +	int (*cm_mgr_set)(const struct scmi_protocol_handle *ph,
+> +			  u32 ctrl_id, u32 cmd, u32 arg);
+> +	int (*gpu_pwr_set)(const struct scmi_protocol_handle *ph,
+> +			   u32 ctrl_id, u8 pwr_indication, bool enable);
+> +	int (*slbc_req)(const struct scmi_protocol_handle *ph,
+> +			const struct scmi_mtk_tinysys_slbc *req,
+> +			struct scmi_mtk_tinysys_slbc *retval);
+> +	bool (*sspm_is_alive)(const struct scmi_protocol_handle *ph,
+> +			      u32 ctrl_id);
+> +	int (*sspm_mem_set)(const struct scmi_protocol_handle *ph,
+> +			    u32 ctrl_id, u32 pa, u32 mem_sz);
+> +};
+
+You could add some Doxy-style comments for these ops...NO strong
+opinion here, though, since other vendor protos do NOT have it...
+...much more important is to add the the protocol .rst docs detailing
+the message format (...you may have guessed at this point that I would
+have reiterated this :P)
+
+Thanks,
+Cristian
 
