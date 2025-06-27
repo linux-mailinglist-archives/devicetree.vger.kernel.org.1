@@ -1,176 +1,276 @@
-Return-Path: <devicetree+bounces-190457-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-190458-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id AC2B2AEBC63
-	for <lists+devicetree@lfdr.de>; Fri, 27 Jun 2025 17:50:35 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id AF928AEBC81
+	for <lists+devicetree@lfdr.de>; Fri, 27 Jun 2025 17:54:00 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 0FA057A6B06
-	for <lists+devicetree@lfdr.de>; Fri, 27 Jun 2025 15:49:10 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 0858B6A3B3C
+	for <lists+devicetree@lfdr.de>; Fri, 27 Jun 2025 15:52:29 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 05D9323B61F;
-	Fri, 27 Jun 2025 15:50:29 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 723282E9EB8;
+	Fri, 27 Jun 2025 15:51:59 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="nwqyTLeZ"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="Mfgw/3z0"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wm1-f53.google.com (mail-wm1-f53.google.com [209.85.128.53])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 883F8171C9;
-	Fri, 27 Jun 2025 15:50:27 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 81E023208;
+	Fri, 27 Jun 2025 15:51:57 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.53
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1751039428; cv=none; b=t7wSNlVIoX0+tELKGN5KvBcBpGZ/cI5vkH1vF1s7mI/pX+UGba9YqlWtJtIC0YfW/F6DDfzT8fYTD8dhyWDtGy4UXGyK1DJKlqC+m2f0+MNzKqRvDNoz2HPiP3blG0FJKktyH1AqN3KGmZuYrLrDvvH63BVr4BQkSyDDn+qDLUw=
+	t=1751039519; cv=none; b=tpC7weadFjETYtab6ISKMXUvnQcj+4FjJEhWkBzyaGhH4tlzhMqwmPiFFQyL7zwuSqcszH+Y3NqRF97jMWmR7S9BMJL6Q5e3lS7Ss5b0XUez2e7pGAGEafP9J4XQVyTEJjUmQ82/L3N2IjExEw810oXy/gteeFyZtRMIm+RMIEI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1751039428; c=relaxed/simple;
-	bh=zOgUx5OEaqBgHZlUvwCeBhgaMky7zPZKglHFTP2JPx0=;
-	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
-	 In-Reply-To:Content-Type; b=HGcCGwEdMuKXB2KNg3PifOIY5YYKyXW/4F4DBAi90Fco9IdzLeWjApRrI7OQm334zXkQfYfaOXAccHQwj/LwqyiuIY5wU3qjCH0T9P718MqWO89sUkVxtI4eDbPTHWFtm4ARfDsu1/NF59BdOyjqXSfnMqJID7aNQX0FAorWdVA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=nwqyTLeZ; arc=none smtp.client-ip=205.220.168.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
-Received: from pps.filterd (m0279862.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 55RC0Jvk009547;
-	Fri, 27 Jun 2025 15:50:22 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	bPoFI44PUq8vfbWlomYLlyS0jk0gTJf6CYrD709ui74=; b=nwqyTLeZZrT+V0nU
-	wlevjrrLPsddRhgNK8U8PQI6jxne/mR1ARfpFjgXQvWlrl3Ifz0LCIMvbkveLbW0
-	WOmtVy4Jv2BnzbRxwHvUtJJYaC4wxTTCwCgYPT6dXeHnXYhgtzIphHikIPX+Hfjb
-	+Ze56geTIeD/X3vdxdnw86/QhXcRb8/cWv4axcART+OxxhUoWOT1x4H1V+N5Qp5q
-	8gLAwxaLExODvsF9byp0tNsDlRwbts0f0tE/9mSAVYfWG2Z4k1nb0U8+cX4ADF1h
-	9ydF5XY8VA782Rq68+yjwH1i0TjxjjPwGZjQNRMtXztQV+nfDV/WnhUpYKlZ5Ux9
-	7SIA5g==
-Received: from nasanppmta03.qualcomm.com (i-global254.qualcomm.com [199.106.103.254])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 47f4b478u8-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Fri, 27 Jun 2025 15:50:21 +0000 (GMT)
-Received: from nasanex01a.na.qualcomm.com (nasanex01a.na.qualcomm.com [10.52.223.231])
-	by NASANPPMTA03.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 55RFnwH6008571
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Fri, 27 Jun 2025 15:49:58 GMT
-Received: from [10.50.11.187] (10.80.80.8) by nasanex01a.na.qualcomm.com
- (10.52.223.231) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.9; Fri, 27 Jun
- 2025 08:49:55 -0700
-Message-ID: <a8be1465-3a99-7ca8-7098-34c97bc1f890@quicinc.com>
-Date: Fri, 27 Jun 2025 21:19:52 +0530
+	s=arc-20240116; t=1751039519; c=relaxed/simple;
+	bh=bGfjl2sUihQ7mzvP4bjc2BtmGohmlSO93LcIHTk+1dM=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=X2/XUAJ8B3AGrUY3cJvZ3Ej9oteffkmx+6jFggWOp8GU0Ia4TP1rUuUosjybuJ/h4ySpwj1KIsHhh0wNIESCAhtqYdzLS4etOyMuJgTbJ6Og8twsAFGrO/skS6xUqvjES4wLSmc4l1/Am3bKAZ/DuSOle2V+rdHmK/FGBjH2LEY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=Mfgw/3z0; arc=none smtp.client-ip=209.85.128.53
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-wm1-f53.google.com with SMTP id 5b1f17b1804b1-451dbe494d6so311715e9.1;
+        Fri, 27 Jun 2025 08:51:57 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1751039516; x=1751644316; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=xErbCK7925kvFk/0rsz3sjYja8g59D1L7zl8Xa9niCg=;
+        b=Mfgw/3z0pEnQRyy4XNoxisYgXPeK96watLz1ZkHpxUbKsRQGDvn3/NJ55GP1iweKck
+         x9mGLG2HGym3AsJNmxy/Qnp4tps/TmF0hlE1qFE/WpfoYblsWlRaYWT26HNhpMRPbhM1
+         uFpGKm4mmBMRS+EZuoo7pM/8m5Q8rCtzcFylNnEzZext65A6WD28U2c1FJlKTK0d+HtI
+         GSE2xU2C+4VoWfWEEdmyDTedddTYzVHCYwzJj7NLw1hyi3rUskox4eHJ5FoCPRwDk2oJ
+         sWNR1lCbQeNZnZftXv7c6vm9QBQzUl7vXJ9Tg6mOp2wM/JUchauWgn5mxhKPD4gcqlaD
+         i5VA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1751039516; x=1751644316;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=xErbCK7925kvFk/0rsz3sjYja8g59D1L7zl8Xa9niCg=;
+        b=VBQAQ9OBh/0eTIyg8pm8HBSN9c2WaTSK+LuEzjdhDKYD9pOTCkxXVKQ5vFlwu4WkvL
+         zJpUeHgsa9Vro3qsEGTF8SaX4D9iOSWQnmAFxMPOBn5Y6mDjoTY/TO4YQ4Tfd73EFSY8
+         4vy+uKRmRSiSsvBUSQBB3qBzOLYdBxxrLxyQ8E4DiWRhrWMV+X/GfApQQJW/t10nRhS0
+         ZCrX25TmnPvjT6tuqdOEtVeLGPbgAtRnbYS6+0x1u8C7YDw68o/WDrEj0af8QoysYFxT
+         boH3LfSQt2NMErGvTsJ+aKm0d+KJ2lTzU5awv9qIibMvA2E97CltIYDcfjSaelceCX7z
+         CqXQ==
+X-Forwarded-Encrypted: i=1; AJvYcCUt8QDV1PGqWB2vVKLv5rC/SxfQW7H9Ot1aeb4ZOyrt7eVWkmoWmjg5xhj1rISq695Hm0XPap0Lekei@vger.kernel.org, AJvYcCX02Le5vvy4udoY/okf4+eFvTXDBC+xwCMqfpXNCEepw9b+wRwupnqmHxFYDjyRKkhOVYTpa5ZfBZ/kss+3M56Uvys=@vger.kernel.org, AJvYcCXPD/tDvGzL0QsO0pNCwOeT1KhsIEZ5wIuOVgtuOJmeFyfJeJgLTCnOJ+h6Z0fjg59VEW1B4mLSPgzQ0dGm@vger.kernel.org
+X-Gm-Message-State: AOJu0YxP1Y+GpQyQWONbSh+1C7ZcRC3dFYZyf7yim2a4GmaeY9NSbT30
+	s92vVWpoPYQkDy9y/TRiEBUcsosmR3G/6RN8nfLLTorRkvwtIYo+/bM2BQ2bAh5DM8he58C7kKK
+	JKB9whTc3HBSRM2vXeZ3lBTtCmHAShlHClTEvJYs=
+X-Gm-Gg: ASbGncuyoGamwrLTlnpJ2L0UL4xONHA3Ie2CFsjwccA3QsBGl2QQ3W4mjdjyNbHTAU2
+	YpPo/4I+flviydFDqYzH8g328af65FEBj6psv49XGW+vA+f8Ofqrmxx/+kIOpo8ecE+r6sLWbZR
+	xMvWtoBKiA4xW8ieH9S1zpa+yIMk+mVRpEL6QR6BGa4P5qMDaZpBqX4D8tB9BIxtD3pK4nAqsCN
+	sQ=
+X-Google-Smtp-Source: AGHT+IHoGOIuIcCHNU7ehWANyO0hybfEtrv1QBleE6G/veH3aPXy5pDsZb/da0AHyQkIGtPpxU2PdHgkT7ypskkygzQ=
+X-Received: by 2002:a05:600c:8b02:b0:453:6b3a:6c06 with SMTP id
+ 5b1f17b1804b1-4538ee84eeemr39416815e9.29.1751039515324; Fri, 27 Jun 2025
+ 08:51:55 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
- Thunderbird/102.15.1
-Subject: Re: [PATCH v2 0/5] Introduce "non-pixel" sub node within iris video
- node
-Content-Language: en-US
-To: Dikshita Agarwal <quic_dikshita@quicinc.com>,
-        Abhinav Kumar
-	<abhinav.kumar@linux.dev>,
-        Bryan O'Donoghue <bryan.odonoghue@linaro.org>,
-        Mauro Carvalho Chehab <mchehab@kernel.org>,
-        Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>
-CC: <linux-media@vger.kernel.org>, <linux-arm-msm@vger.kernel.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>
-References: <20250627-video_cb-v2-0-3931c3f49361@quicinc.com>
-From: Vikash Garodia <quic_vgarodia@quicinc.com>
-In-Reply-To: <20250627-video_cb-v2-0-3931c3f49361@quicinc.com>
+References: <20250620121045.56114-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
+ <20250620121045.56114-2-prabhakar.mahadev-lad.rj@bp.renesas.com> <CAMuHMdXP95AsuS2E=SWvzfo89y_VtyXPWoZUKT6mjj_xeLb=Eg@mail.gmail.com>
+In-Reply-To: <CAMuHMdXP95AsuS2E=SWvzfo89y_VtyXPWoZUKT6mjj_xeLb=Eg@mail.gmail.com>
+From: "Lad, Prabhakar" <prabhakar.csengg@gmail.com>
+Date: Fri, 27 Jun 2025 16:51:29 +0100
+X-Gm-Features: Ac12FXyquorNg5tQJSXyw5uJ1-zkqWxkCxxP3QulkZKFjkS6d1PH2dMUnpaiPB0
+Message-ID: <CA+V-a8skTzgWr3Eo1ZNH-BVyUAW8cvGMAxJEWTy9FFPoK=sWgA@mail.gmail.com>
+Subject: Re: [PATCH 1/3] arm64: dts: renesas: Add CN15 eMMC and SD overlays
+ for RZ/V2N EVK
+To: Geert Uytterhoeven <geert@linux-m68k.org>
+Cc: Magnus Damm <magnus.damm@gmail.com>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	linux-renesas-soc@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, Biju Das <biju.das.jz@bp.renesas.com>, 
+	Fabrizio Castro <fabrizio.castro.jz@renesas.com>, 
+	Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
 Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
- nasanex01a.na.qualcomm.com (10.52.223.231)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwNjI3MDEyOSBTYWx0ZWRfXzRgzhdS4IeaP
- JM7LSSekVwJ3YrnZ4xvcH7dca+QUuR4GwclbExXtoz6uthWJXK2gO1/CFJVehFSbakkBD9G+rNZ
- U5HPR1bWi8msISLboCZMXMHs7XONVwbMPj4Sgk5mIGUo1UDBgiNLupvqSwtCpv4LQA6CGRB0iij
- IAEsdGWJMNSpg0WVYaWsGUooWICcrycoZdt3YodOISXwblMf1mPbhEbduFD8k+LhLgybBiHnUhv
- J4Mj5wGb7ai76IV8Lv9I3UWp1972H7+JffB4RBcQuD9Hd1ZVyrc+JVLOHZomDUzEpxCl1acglFy
- 30JuqXV4J1FqWlmPs13aN8fHVqfjC9ueUX6JBWIW6c5CVNMNsq8FGQk7Q4GMSF9P5PLBUeQiatr
- /M2xbN+dPy8hGzSKF92QQ7wNZIcfXoSKjKQWudH3p053JbOVGv+P6ksUcRrgN41XgaaAINmH
-X-Proofpoint-ORIG-GUID: zYBoQGvx6AVZyVsuYfGqemm6R07emmWb
-X-Proofpoint-GUID: zYBoQGvx6AVZyVsuYfGqemm6R07emmWb
-X-Authority-Analysis: v=2.4 cv=A8BsP7WG c=1 sm=1 tr=0 ts=685ebdbd cx=c_pps
- a=JYp8KDb2vCoCEuGobkYCKw==:117 a=JYp8KDb2vCoCEuGobkYCKw==:17
- a=GEpy-HfZoHoA:10 a=IkcTkHD0fZMA:10 a=6IFa9wvqVegA:10 a=VwQbUJbxAAAA:8
- a=COk6AnOGAAAA:8 a=ZSu0RnUukzXJBaev4ewA:9 a=QEXdDO2ut3YA:10
- a=TjNXssC_j7lpFel5tvFf:22
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1099,Hydra:6.1.7,FMLib:17.12.80.40
- definitions=2025-06-27_05,2025-06-26_05,2025-03-28_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- lowpriorityscore=0 mlxlogscore=999 malwarescore=0 spamscore=0 bulkscore=0
- phishscore=0 adultscore=0 impostorscore=0 suspectscore=0 mlxscore=0
- clxscore=1015 priorityscore=1501 classifier=spam authscore=0 authtc=n/a
- authcc= route=outbound adjust=0 reason=mlx scancount=1
- engine=8.19.0-2505280000 definitions=main-2506270129
+Content-Transfer-Encoding: quoted-printable
 
+Hi Geert,
 
-On 6/27/2025 9:02 PM, Vikash Garodia wrote:
-> This series introduces a sub node "non-pixel" within iris video node.
-> Video driver registers this sub node as a platform device and configure 
-> it for DMA operations. All non pixel buffers, i.e bitstream, HFI queues 
-> and internal buffers related to bitstream processing, would be managed 
-> by this non_pixel device.
-> 
-> Purpose to add this sub-node:
-> Iris device limits the IOVA to an addressable range of 4GiB, and even 
-> within that range, some of the space is used by IO registers, thereby 
-> limiting the available IOVA to even lesser. For certain video usecase, 
-> this limited range in not sufficient enough, hence it brings the need to 
-> extend the possibility of higher IOVA range.
-> 
-> Video hardware is designed to emit different stream-ID for pixel and 
-> non-pixel buffers, thereby introduce a non-pixel sub node to handle 
-> non-pixel stream-ID into a separate platform device.
-> With this, both iris and non-pixel device can have IOVA range of 
-> approximately 0-4GiB individually for each device, thereby doubling the 
-> range of addressable IOVA.
-> 
-> Tested on SM8550 and SA8775p hardwares.
+Thank you for the review.
 
-Please ignore V2 revision as i missed to address a comment on V1. Posted V3 now
-with all comments addressed.
+On Thu, Jun 26, 2025 at 12:58=E2=80=AFPM Geert Uytterhoeven
+<geert@linux-m68k.org> wrote:
+>
+> Hi Prabhakar,
+>
+> On Fri, 20 Jun 2025 at 14:10, Prabhakar <prabhakar.csengg@gmail.com> wrot=
+e:
+> > From: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+> >
+> > Introduce device tree overlays to support the eMMC (RTK0EF0186B02000BJ)
+> > and microSD (RTK0EF0186B01000BJ) sub-boards via the CN15 connector on t=
+he
+> > RZ/V2N EVK. These overlays enable SDHI0 with appropriate pinctrl settin=
+gs,
+> > regulator configurations, and GPIO handling.
+> >
+> > Shared DTSI fragments (rzv2-evk-cn15-emmc-common.dtsi and
+> > rzv2-evk-cn15-sd-common.dtsi) provide reusable configurations for both
+> > RZ/V2N and RZ/V2H EVKs, as both support the same CN15 sub-boards.
+> >
+> > Additionally, the base board DTS is updated to define an `mmc0` alias
+> > pointing to `&sdhi0`, and to add a fixed 1.8V regulator node (`reg_1p8v=
+`)
+> > intended for use by the optional eMMC sub-board and, in the future, the
+> > ADV7535 HDMI encoder (not yet enabled in the DTS).
+> >
+> > Signed-off-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+>
+> Thanks for your patch!
+>
+> > --- /dev/null
+> > +++ b/arch/arm64/boot/dts/renesas/r9a09g056n48-rzv2n-evk-cn15-emmc.dtso
+> > @@ -0,0 +1,15 @@
+> > +// SPDX-License-Identifier: GPL-2.0
+> > +/*
+> > + * Device Tree overlay for the RZ/V2N EVK with the eMMC sub-board
+> > + * (RTK0EF0186802000BJ) connected to the CN15 connector.
+> > + *
+> > + * Copyright (C) 2025 Renesas Electronics Corp.
+> > + */
+> > +
+> > +/dts-v1/;
+> > +/plugin/;
+> > +
+> > +#define RZV2N_PA               10
+>
+> This is duplicated from r9a09g056.dtsi, but unused?
+>
+Ouch, I'll drop this and the below macro too.
 
-Apologies for the inconvenience.
+> > +#define EMMC_GPIO(port, pin)   RZG2L_GPIO(RZV2N_P##port, pin)
+>
+> Unused?
+>
+> > +
+> > +#include "rzv2-evk-cn15-emmc-common.dtsi"
+>
+> Hence you can just have a single rzv2-evk-cn15-emmc.dtso that works
+> on both RZ/V2H and RZ/V2N.
+>
+Agreed (I will squash patch 3/3 into the same patch).
 
-Regards,
-Vikash
+> > diff --git a/arch/arm64/boot/dts/renesas/r9a09g056n48-rzv2n-evk-cn15-sd=
+.dtso b/arch/arm64/boot/dts/renesas/r9a09g056n48-rzv2n-evk-cn15-sd.dtso
+> > new file mode 100644
+> > index 000000000000..6268dda138ab
+> > --- /dev/null
+> > +++ b/arch/arm64/boot/dts/renesas/r9a09g056n48-rzv2n-evk-cn15-sd.dtso
+> > @@ -0,0 +1,16 @@
+> > +// SPDX-License-Identifier: GPL-2.0
+> > +/*
+> > + * Device Tree overlay for the RZ/V2N EVK with the SD sub-board
+> > + * (RTK0EF0186B01000BJ) connected to the CN15 connector.
+> > + *
+> > + * Copyright (C) 2025 Renesas Electronics Corp.
+> > + */
+> > +
+> > +/dts-v1/;
+> > +/plugin/;
+> > +
+> > +#define RZV2N_PA               10
+>
+> This is duplicated from r9a09g056.dtsi. Can we avoid that?
+> If not, I think we found the justification for moving these definitions
+> to include/dt-bindings/pinctrl/renesas,r9a09g056-pinctrl.h...
+>
+> > +#define SD_GPIO(port, pin)     RZG2L_GPIO(RZV2N_P##port, pin)
+> > +#define SD_PORT_PINMUX(b, p, f)        RZG2L_PORT_PINMUX(RZV2N_P##b, p=
+, f)
+> > +
+> > +#include "rzv2-evk-cn15-sd-common.dtsi"
+> > diff --git a/arch/arm64/boot/dts/renesas/r9a09g056n48-rzv2n-evk.dts b/a=
+rch/arm64/boot/dts/renesas/r9a09g056n48-rzv2n-evk.dts
+> > index b63ee1ff18d5..795d9f6b9651 100644
+> > --- a/arch/arm64/boot/dts/renesas/r9a09g056n48-rzv2n-evk.dts
+> > +++ b/arch/arm64/boot/dts/renesas/r9a09g056n48-rzv2n-evk.dts
+> > @@ -24,6 +24,7 @@ aliases {
+> >                 i2c6 =3D &i2c6;
+> >                 i2c7 =3D &i2c7;
+> >                 i2c8 =3D &i2c8;
+> > +               mmc0 =3D &sdhi0;
+>
+> While (out-of-tree) dynamic DT overlays do not support updating aliases
+> yet, this logically belongs in the overlay, so please move it there.
+>
+Ok, I'll move it to the overlay as `mmc0 =3D "/soc/mmc@15c00000";`
 
-> 
-> Signed-off-by: Vikash Garodia <quic_vgarodia@quicinc.com>
-> ---
-> Changes in v2:
-> - Add ref to reserve-memory schema and drop it from redefining it in 
-> iris schema (Thanks Krzysztof)
-> - Drop underscores and add info about non pixel buffers (Thanks Dmitry)
-> - Link to v1: https://lore.kernel.org/r/20250620-video_cb-v1-0-9bcac1c8800c@quicinc.com
-> 
-> ---
-> Vikash Garodia (5):
->       media: dt-bindings: add non-pixel property in iris schema
->       media: iris: register and configure non-pixel node as platform device
->       media: iris: use np_dev as preferred DMA device in HFI queue management
->       media: iris: select appropriate DMA device for internal buffers
->       media: iris: configure DMA device for vb2 queue on OUTPUT plane
-> 
->  .../bindings/media/qcom,sm8550-iris.yaml           | 40 ++++++++++++++++-
->  drivers/media/platform/qcom/iris/iris_buffer.c     | 15 ++++++-
->  drivers/media/platform/qcom/iris/iris_core.h       |  2 +
->  drivers/media/platform/qcom/iris/iris_hfi_queue.c  | 20 ++++++---
->  drivers/media/platform/qcom/iris/iris_probe.c      | 50 +++++++++++++++++++++-
->  drivers/media/platform/qcom/iris/iris_vb2.c        |  4 ++
->  6 files changed, 119 insertions(+), 12 deletions(-)
-> ---
-> base-commit: 8d2b7fde56597ca912f5daaf3ab58915458ba1fc
-> change-id: 20250619-video_cb-ea872d6e6627
-> 
-> Best regards,
+> >                 mmc1 =3D &sdhi1;
+> >                 serial0 =3D &scif;
+> >         };
+> > --- /dev/null
+> > +++ b/arch/arm64/boot/dts/renesas/rzv2-evk-cn15-emmc-common.dtsi
+> > @@ -0,0 +1,46 @@
+> > +// SPDX-License-Identifier: GPL-2.0
+> > +/*
+> > + * Shared DT include for the eMMC Sub Board (RTK0EF0186B02000BJ), whic=
+h
+> > + * is connected to the CN15 connector on the RZ/V2H and RZ/V2N EVKs.
+> > + *
+> > + * Contains common pinctrl and SDHI0 definitions.
+> > + *
+> > + * Copyright (C) 2025 Renesas Electronics Corp.
+> > + */
+> > +
+> > +/dts-v1/;
+> > +/plugin/;
+>
+> These two directives belong in the .dtso files (and you already have
+> them there).
+>
+Agreed, I will drop them.
+
+> > --- /dev/null
+> > +++ b/arch/arm64/boot/dts/renesas/rzv2-evk-cn15-sd-common.dtsi
+> > @@ -0,0 +1,67 @@
+> > +// SPDX-License-Identifier: GPL-2.0
+> > +/*
+> > + * Shared DT include for the microSD Sub Board (RTK0EF0186B01000BJ), w=
+hich
+> > + * is connected to the CN15 connector on the RZ/V2H and RZ/V2N EVKs.
+> > + *
+> > + * Contains common pinctrl and SDHI0 definitions.
+> > + *
+> > + * Copyright (C) 2025 Renesas Electronics Corp.
+> > + */
+> > +
+> > +/dts-v1/;
+> > +/plugin/;
+>
+> Likewise.
+>
+> > +
+> > +#include <dt-bindings/gpio/gpio.h>
+> > +#include <dt-bindings/pinctrl/rzg2l-pinctrl.h>
+> > +
+> > +&{/} {
+> > +       vqmmc_sdhi0: regulator-vqmmc-sdhi0 {
+> > +               compatible =3D "regulator-gpio";
+> > +               regulator-name =3D "SDHI0 VqmmC";
+> > +               gpios =3D <&pinctrl SD_GPIO(A, 0) GPIO_ACTIVE_HIGH>;
+>
+> If you use a macro to abstract the GPIO number, please include the
+> bank and port number in the abstraction.
+>
+> Alternatively, as both RZ/V2H and RZ/V2N use PA0, you can use
+> RZG2L_GPIO(10, 10) directly.  That just leaves us with a desire to
+> express "A" instead of 10...
+>
+> Note that you end up with the exact same .dtbo for RZ/V2H and RZ/V2N
+> again...
+>
+Good point, I will switch to RZG2L_GPIO(10, x).
+
+Cheers,
+Prabhakar
 
