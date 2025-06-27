@@ -1,485 +1,147 @@
-Return-Path: <devicetree+bounces-190508-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-190509-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5D9A6AEBFAD
-	for <lists+devicetree@lfdr.de>; Fri, 27 Jun 2025 21:23:53 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id E93C0AEBFC3
+	for <lists+devicetree@lfdr.de>; Fri, 27 Jun 2025 21:27:15 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 181A118904B9
-	for <lists+devicetree@lfdr.de>; Fri, 27 Jun 2025 19:24:09 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id AF0681C47685
+	for <lists+devicetree@lfdr.de>; Fri, 27 Jun 2025 19:27:31 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0BF6B207A0C;
-	Fri, 27 Jun 2025 19:23:49 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id CCBD1212B3D;
+	Fri, 27 Jun 2025 19:26:54 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="klPutfXh"
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="fAvw9ewj"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D46BB1F0E25;
-	Fri, 27 Jun 2025 19:23:48 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A799E20A5EA
+	for <devicetree@vger.kernel.org>; Fri, 27 Jun 2025 19:26:52 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1751052228; cv=none; b=GcFkJE9CWbL8HgizXJfRhkI7n6M06p9jFjgSy+oYgGAr+QmXQjPNJzHLv04Y8RoME/JifJqUc2+FJqbXeGL5uLZdQ8n358hd2crtlYW8kIWT0D4cDvHe/Tx/HD5ZengU69VHE5wfdR4WwVip0+Ql0qUhBTx6wouXyqOnWyYeoV4=
+	t=1751052414; cv=none; b=DUvKr0XMZtXRR/9gGosn4vpc7PflBjSdYEqkC0vmaoktM6Y57h4vGTaZN4S2cPZrOf/0+HDqoXGGSLBH/XxePfRKigj+r2ZfWLRd1VIiQLHscwTJx0mgJ2NmRgYUp9KCkLUFJiPePbOkc5aurCWdI+f70KLjkfPEbyRgaAi/6bA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1751052228; c=relaxed/simple;
-	bh=FYOk1Aqz5XAdGGGaHlY1S5+z7gvxMQs/+r/4Jye3pkk=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=Pc1TWbIR6sXNuPH1qL058hDaALAUcnWU+fGBhasKNeKUQzoGCBGpQCKy6R2ZyHL34fuYgnvEtR5YNrgFbpEBXODRoXwUGLyyIXchbggq9T2svug+aXs7SO7632sPzSXSygqdBfkm3IIAtuysKipQ4CvOwkAH+yTrRWEs6MvG7Ls=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=klPutfXh; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 14E56C4CEE3;
-	Fri, 27 Jun 2025 19:23:47 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1751052228;
-	bh=FYOk1Aqz5XAdGGGaHlY1S5+z7gvxMQs/+r/4Jye3pkk=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=klPutfXhtrhb4bzY7e0Fo6xvshyY2C7pnBOJgfRDKdXZexONVYSfLaEdbXGzs7KZC
-	 d7UeCf9e4C6/BW31zjWhK94DgYXShk/P49dXgdwERXkwJ+p5WUf60kGNEyfxEjZ5X7
-	 rvXQbVgMzEeP4tiOrXYzkW298Js9uxbkti8IUCCNF3GBy6q0yylbq02HcUh4U6vj/c
-	 BJsik+AHNnEpcf3IqABWRzkh0cuwwD+kohnIcykeKGhx7Ylx0TbCzXGIs+YAH8JGKe
-	 tVTt5rLIsEI07D4h8tbPbakXKu9fm8Refev/zi/hBsnY6CQPQhlhjMawooplBWIS7f
-	 SHSZ8gEPE8DOA==
-Date: Fri, 27 Jun 2025 14:23:47 -0500
-From: Rob Herring <robh@kernel.org>
-To: Maxime Ripard <mripard@kernel.org>
-Cc: Saravana Kannan <saravanak@google.com>,
-	Sumit Semwal <sumit.semwal@linaro.org>,
-	Benjamin Gaignard <benjamin.gaignard@collabora.com>,
-	Brian Starkey <Brian.Starkey@arm.com>,
-	John Stultz <jstultz@google.com>,
-	"T.J. Mercier" <tjmercier@google.com>,
-	Christian =?iso-8859-1?Q?K=F6nig?= <christian.koenig@amd.com>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, Andrew Davis <afd@ti.com>,
-	Jared Kangas <jkangas@redhat.com>,
-	Mattijs Korpershoek <mkorpershoek@kernel.org>,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	linux-media@vger.kernel.org, dri-devel@lists.freedesktop.org,
-	linaro-mm-sig@lists.linaro.org
-Subject: Re: [PATCH v5 2/2] dma-buf: heaps: Introduce a new heap for reserved
- memory
-Message-ID: <20250627192347.GA4032621-robh@kernel.org>
-References: <20250617-dma-buf-ecc-heap-v5-0-0abdc5863a4f@kernel.org>
- <20250617-dma-buf-ecc-heap-v5-2-0abdc5863a4f@kernel.org>
+	s=arc-20240116; t=1751052414; c=relaxed/simple;
+	bh=PgKJBp53dR2Ai67YO4V4HA071loDKNdxLue3b8RIr58=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=apevyIwB4jxCz7I0L1/OgcQA84ZSFieWyTbwF+O9LNqWZczqhGyhVTnhHeUdXgusvrZDiX34zoqONyDJdhl8ZLxAQGugKpN3PIGOwpcOWyqyaLq9pd1fgmJKYPwDwR1CkTseAhaijhHN5ZTp6brBMkBr8l2fAUP8lrevxEQVyQ0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=fAvw9ewj; arc=none smtp.client-ip=205.220.168.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
+Received: from pps.filterd (m0279863.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 55RC8H3I014328
+	for <devicetree@vger.kernel.org>; Fri, 27 Jun 2025 19:26:52 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	C34ONTM+joY3ACRb//NUdUTbM2c8N4wd1fosaRZcrkY=; b=fAvw9ewj+WXk6hsR
+	H7EEKDhYakCtAsWIFBtBE704V+9MVIFwgkjPJ8+ByILnTPMBhoHyLjXHyaSwHHY+
+	IHkBisTMnVksCJqHulekIir75GZ2VaWmMqFx1EfJ2Ko5YHW/k85gItEJnRMT/HPX
+	Tn2S/HQdebfWS+YHYrbAu5AhqdraMR8jQLpfw1e5VvOpNveO6+rDXIwdWEtnJR5P
+	vHUoOfLgbSNXQCBZwaDfnqVcxDryD4X4olYv2DRN9DEbzpK4n3H+IRZPFF3JB26V
+	gisA2Amo4581exSBsuQnRAGtivDoI4MC14M95n8FMm1RaQ69rdCzFqmFYmw4pzR5
+	AJqAtg==
+Received: from mail-qk1-f200.google.com (mail-qk1-f200.google.com [209.85.222.200])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 47emcn1mgk-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
+	for <devicetree@vger.kernel.org>; Fri, 27 Jun 2025 19:26:51 +0000 (GMT)
+Received: by mail-qk1-f200.google.com with SMTP id af79cd13be357-7d440beeb17so22224785a.0
+        for <devicetree@vger.kernel.org>; Fri, 27 Jun 2025 12:26:51 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1751052410; x=1751657210;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=C34ONTM+joY3ACRb//NUdUTbM2c8N4wd1fosaRZcrkY=;
+        b=xRm6jwEpcTz8fOXO/jAaMhZIVni29SNlwbVPL35sjFfuL60aFGUsvITNCv/DDTM9q2
+         6kXtVu30ugYggcKgTwfV79sv8GgGIlcgoNYATp/xe8BplaCJwDqHmX1O9eIU09y3+VJZ
+         Lti+OzYzp64M4uJiMhwRq4pb77rYYEU+OKah8GBW4arJErpIgHbrJqpEGV0ezaCEm0D0
+         EkSEhNA0RKG4NazHkXBMOThMbK5ZieLo3TkwAHMEjC/cP1AraHNMGEw9Qiq1n1dFX3a6
+         1VMBGL/mB7HdQraiMV6AVYnUBHbuJyp1XkozErK3IilBatXJT0YIIuhGYMycaaGuDFRp
+         V+7g==
+X-Forwarded-Encrypted: i=1; AJvYcCXkgELml7rgg8FtJ18AifvUMBL4+/NYKijuBJIbW8tIWbbyvCU6GIhEMAcdHnNzgLgBwvoQj2x3dD88@vger.kernel.org
+X-Gm-Message-State: AOJu0YxkhWfw6QL8e5I55VRidqb92MImaJ2sdxsn9BSQLsLW28qH5DvD
+	Um3QYA1ylbIJ8Qg3jiy7QKhe6StlOasV4GdBjOY2NGzrgdTEOJxU7ZiKV1DUHWgBZ7GAbLt5ipj
+	bj5fsRiYhOnzdXrJQYms1yXkEamvbZfXO1aDuTlbM9K7DOhOInfa93eBroEsJ4IRv
+X-Gm-Gg: ASbGnctb4a66xlBrmakQRRJKmuFEQ2e5jUqpBgBDcNexRbxHXyIzETlzdJYPhmMLBpV
+	jqPpzxN3scPSVNBJP6dOcZKfGnHRjVgIO19qZibRim85330oD8zCY63e0nTCWYWr6mq/4t0Elo0
+	rYeqTBZ1hs3MYgRL0kgVZt5/4h/nqkAh/fuBbCVm5yRjdlgQVgQ5thdi4Crbq4CSbQBeBBEKb1k
+	srxZtvSvC+AbhkiGvb6EUqY7zcgpB3aMGSPvI4O2PoepDhhkSMapjBFUiBIKdtDJ0iTqNNT3vnX
+	1F3OlHh16jzwdWUkr2izQ4F8LLvUR1F3GBVew9DpCqsP8CGVk4s1xGpZMjXQ3EvBiyAQTsza3f9
+	FtPY=
+X-Received: by 2002:a05:620a:4384:b0:7c3:cccc:8790 with SMTP id af79cd13be357-7d44c21acefmr18328185a.5.1751052410507;
+        Fri, 27 Jun 2025 12:26:50 -0700 (PDT)
+X-Google-Smtp-Source: AGHT+IEHDPYkLsnmO2nGzNZ10OMjymrNY7J2wqTDz4VWNzNFIV4cSvpU0BqsujQtneyalnxm/ShhOA==
+X-Received: by 2002:a05:620a:4384:b0:7c3:cccc:8790 with SMTP id af79cd13be357-7d44c21acefmr18326485a.5.1751052410034;
+        Fri, 27 Jun 2025 12:26:50 -0700 (PDT)
+Received: from [192.168.143.225] (078088045245.garwolin.vectranet.pl. [78.88.45.245])
+        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-ae353c6bc2dsm181908766b.136.2025.06.27.12.26.47
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 27 Jun 2025 12:26:49 -0700 (PDT)
+Message-ID: <18dddd39-6118-4b46-ba07-8304d1830798@oss.qualcomm.com>
+Date: Fri, 27 Jun 2025 21:26:46 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20250617-dma-buf-ecc-heap-v5-2-0abdc5863a4f@kernel.org>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 2/4] clk: qcom: rpmh: Add support for RPMH clocks on
+ SM7635
+To: Luca Weiss <luca.weiss@fairphone.com>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Stephen Boyd
+ <sboyd@kernel.org>, Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley
+ <conor+dt@kernel.org>,
+        Taniya Das <quic_tdas@quicinc.com>
+Cc: ~postmarketos/upstreaming@lists.sr.ht, phone-devel@vger.kernel.org,
+        linux-arm-msm@vger.kernel.org, linux-clk@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+References: <20250625-sm7635-clocks-misc-v1-0-45fea645d39b@fairphone.com>
+ <20250625-sm7635-clocks-misc-v1-2-45fea645d39b@fairphone.com>
+Content-Language: en-US
+From: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
+In-Reply-To: <20250625-sm7635-clocks-misc-v1-2-45fea645d39b@fairphone.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Proofpoint-GUID: kxo6BrdUVLiV7MMHI19Dkr0sl0qv7pCD
+X-Proofpoint-ORIG-GUID: kxo6BrdUVLiV7MMHI19Dkr0sl0qv7pCD
+X-Authority-Analysis: v=2.4 cv=J+eq7BnS c=1 sm=1 tr=0 ts=685ef07c cx=c_pps
+ a=hnmNkyzTK/kJ09Xio7VxxA==:117 a=FpWmc02/iXfjRdCD7H54yg==:17
+ a=IkcTkHD0fZMA:10 a=6IFa9wvqVegA:10 a=6H0WHjuAAAAA:8 a=EUspDBNiAAAA:8
+ a=WWQFUNGd85j635JlVwcA:9 a=QEXdDO2ut3YA:10 a=AYr37p2UDEkA:10
+ a=PEH46H7Ffwr30OY-TuGO:22 a=Soq9LBFxuPC4vsCAQt-j:22
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwNjI3MDE1NyBTYWx0ZWRfX8xmGptVTOUNq
+ pt7uJ1ialzGEYawl2Lgr659Cu7zsuq1+tt88jqCKN/8Uq3fc26Cjyi/XPkPK6iThyITZ6osraV8
+ oxntePE9DiI/icDGnQVeNvK6kyDs0bk5fJ5b73Puph0cAcxtMHPzAOKuiAmA/jjqVJpW9VV8xl2
+ t54r30JnjLcI2kSWF5WqZw4BPghXYHXlPOJlzdgRonggfA1ND4pI96yKl5aUlo2sFyIapl9nk3g
+ 51C0ewjGW+RfQ5kQBW8bzUKzjhurWZBwHPKaax2Hwm9JhraNZBHGgIXsLj86LL0Ofk78r/HdnVb
+ o2+CAirbsb+/G4ehLZHXyDAQAK623uo+onzkhkRRGllArzL3gLzTny0iEORhVeSHcKv0CKcdYfS
+ b3egnE9LzI6QNwZNg0r3Hmc/Dd28pqxt18AyjonudXDb9c7Nhi/rvqXnXC7xn8Hs99Dlkhga
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1099,Hydra:6.1.7,FMLib:17.12.80.40
+ definitions=2025-06-27_05,2025-06-27_01,2025-03-28_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ bulkscore=0 mlxlogscore=858 adultscore=0 impostorscore=0 clxscore=1015
+ spamscore=0 malwarescore=0 phishscore=0 priorityscore=1501 suspectscore=0
+ mlxscore=0 lowpriorityscore=0 classifier=spam authscore=0 authtc=n/a authcc=
+ route=outbound adjust=0 reason=mlx scancount=1 engine=8.19.0-2505280000
+ definitions=main-2506270157
 
-On Tue, Jun 17, 2025 at 02:25:41PM +0200, Maxime Ripard wrote:
-> Some reserved memory regions might have particular memory setup or
-> attributes that make them good candidates for heaps.
+On 6/25/25 11:12 AM, Luca Weiss wrote:
+> Add support for RPMH clocks on SM7635 SoCs.
 > 
-> Let's provide a heap type that will create a new heap for each reserved
-> memory region flagged as such.
-> 
-> Signed-off-by: Maxime Ripard <mripard@kernel.org>
+> Signed-off-by: Luca Weiss <luca.weiss@fairphone.com>
 > ---
->  drivers/dma-buf/heaps/Kconfig         |   8 +
->  drivers/dma-buf/heaps/Makefile        |   1 +
->  drivers/dma-buf/heaps/carveout_heap.c | 362 ++++++++++++++++++++++++++++++++++
->  3 files changed, 371 insertions(+)
-> 
-> diff --git a/drivers/dma-buf/heaps/Kconfig b/drivers/dma-buf/heaps/Kconfig
-> index a5eef06c422644e8aadaf5aff2bd9a33c49c1ba3..1ce4f6828d8c06bfdd7bc2e5127707f1778586e6 100644
-> --- a/drivers/dma-buf/heaps/Kconfig
-> +++ b/drivers/dma-buf/heaps/Kconfig
-> @@ -1,5 +1,13 @@
-> +config DMABUF_HEAPS_CARVEOUT
-> +	bool "DMA-BUF Carveout Heaps"
-> +	depends on DMABUF_HEAPS
-> +	help
-> +	  Choose this option to enable the carveout dmabuf heap. The carveout
-> +	  heap is backed by pages from reserved memory regions flagged as
-> +	  exportable. If in doubt, say Y.
-> +
->  config DMABUF_HEAPS_SYSTEM
->  	bool "DMA-BUF System Heap"
->  	depends on DMABUF_HEAPS
->  	help
->  	  Choose this option to enable the system dmabuf heap. The system heap
-> diff --git a/drivers/dma-buf/heaps/Makefile b/drivers/dma-buf/heaps/Makefile
-> index 974467791032ffb8a7aba17b1407d9a19b3f3b44..b734647ad5c84f449106748160258e372f153df2 100644
-> --- a/drivers/dma-buf/heaps/Makefile
-> +++ b/drivers/dma-buf/heaps/Makefile
-> @@ -1,3 +1,4 @@
->  # SPDX-License-Identifier: GPL-2.0
-> +obj-$(CONFIG_DMABUF_HEAPS_CARVEOUT)	+= carveout_heap.o
->  obj-$(CONFIG_DMABUF_HEAPS_SYSTEM)	+= system_heap.o
->  obj-$(CONFIG_DMABUF_HEAPS_CMA)		+= cma_heap.o
-> diff --git a/drivers/dma-buf/heaps/carveout_heap.c b/drivers/dma-buf/heaps/carveout_heap.c
-> new file mode 100644
-> index 0000000000000000000000000000000000000000..c01abc72c09d4f2a373462fded2856d975a36c8f
-> --- /dev/null
-> +++ b/drivers/dma-buf/heaps/carveout_heap.c
-> @@ -0,0 +1,362 @@
-> +// SPDX-License-Identifier: GPL-2.0
-> +
-> +#include <linux/dma-buf.h>
-> +#include <linux/dma-heap.h>
-> +#include <linux/genalloc.h>
-> +#include <linux/highmem.h>
-> +#include <linux/of_reserved_mem.h>
-> +
-> +struct carveout_heap_priv {
-> +	struct dma_heap *heap;
-> +	struct gen_pool *pool;
-> +};
-> +
-> +struct carveout_heap_buffer_priv {
-> +	struct mutex lock;
-> +	struct list_head attachments;
-> +
-> +	unsigned long num_pages;
-> +	struct carveout_heap_priv *heap;
-> +	phys_addr_t paddr;
-> +	void *vaddr;
-> +	unsigned int vmap_cnt;
-> +};
-> +
-> +struct carveout_heap_attachment {
-> +	struct list_head head;
-> +	struct sg_table table;
-> +
-> +	struct device *dev;
-> +	bool mapped;
-> +};
-> +
-> +static int carveout_heap_attach(struct dma_buf *buf,
-> +				struct dma_buf_attachment *attachment)
-> +{
-> +	struct carveout_heap_buffer_priv *priv = buf->priv;
-> +	struct carveout_heap_attachment *a;
-> +	struct sg_table *sgt;
-> +	unsigned long len = priv->num_pages * PAGE_SIZE;
-> +	int ret;
-> +
-> +	a = kzalloc(sizeof(*a), GFP_KERNEL);
-> +	if (!a)
-> +		return -ENOMEM;
-> +	INIT_LIST_HEAD(&a->head);
-> +	a->dev = attachment->dev;
-> +	attachment->priv = a;
-> +
-> +	sgt = &a->table;
-> +	ret = sg_alloc_table(sgt, 1, GFP_KERNEL);
-> +	if (ret)
-> +		goto err_cleanup_attach;
-> +
-> +	sg_set_buf(sgt->sgl, priv->vaddr, len);
-> +
-> +	mutex_lock(&priv->lock);
-> +	list_add(&a->head, &priv->attachments);
-> +	mutex_unlock(&priv->lock);
-> +
-> +	return 0;
-> +
-> +err_cleanup_attach:
-> +	kfree(a);
-> +	return ret;
-> +}
-> +
-> +static void carveout_heap_detach(struct dma_buf *dmabuf,
-> +				 struct dma_buf_attachment *attachment)
-> +{
-> +	struct carveout_heap_buffer_priv *priv = dmabuf->priv;
-> +	struct carveout_heap_attachment *a = attachment->priv;
-> +
-> +	mutex_lock(&priv->lock);
-> +	list_del(&a->head);
-> +	mutex_unlock(&priv->lock);
-> +
-> +	sg_free_table(&a->table);
-> +	kfree(a);
-> +}
-> +
-> +static struct sg_table *
-> +carveout_heap_map_dma_buf(struct dma_buf_attachment *attachment,
-> +			  enum dma_data_direction direction)
-> +{
-> +	struct carveout_heap_attachment *a = attachment->priv;
-> +	struct sg_table *table = &a->table;
-> +	int ret;
-> +
-> +	ret = dma_map_sgtable(a->dev, table, direction, 0);
-> +	if (ret)
-> +		return ERR_PTR(ret);
-> +
-> +	a->mapped = true;
-> +
-> +	return table;
-> +}
-> +
-> +static void carveout_heap_unmap_dma_buf(struct dma_buf_attachment *attachment,
-> +					struct sg_table *table,
-> +					enum dma_data_direction direction)
-> +{
-> +	struct carveout_heap_attachment *a = attachment->priv;
-> +
-> +	a->mapped = false;
-> +	dma_unmap_sgtable(a->dev, table, direction, 0);
-> +}
-> +
-> +static int
-> +carveout_heap_dma_buf_begin_cpu_access(struct dma_buf *dmabuf,
-> +				       enum dma_data_direction direction)
-> +{
-> +	struct carveout_heap_buffer_priv *priv = dmabuf->priv;
-> +	struct carveout_heap_attachment *a;
-> +	unsigned long len = priv->num_pages * PAGE_SIZE;
-> +
-> +	mutex_lock(&priv->lock);
-> +
-> +	if (priv->vmap_cnt)
-> +		invalidate_kernel_vmap_range(priv->vaddr, len);
-> +
-> +	list_for_each_entry(a, &priv->attachments, head) {
-> +		if (!a->mapped)
-> +			continue;
-> +
-> +		dma_sync_sgtable_for_cpu(a->dev, &a->table, direction);
-> +	}
-> +
-> +	mutex_unlock(&priv->lock);
-> +
-> +	return 0;
-> +}
-> +
-> +static int
-> +carveout_heap_dma_buf_end_cpu_access(struct dma_buf *dmabuf,
-> +				     enum dma_data_direction direction)
-> +{
-> +	struct carveout_heap_buffer_priv *priv = dmabuf->priv;
-> +	struct carveout_heap_attachment *a;
-> +	unsigned long len = priv->num_pages * PAGE_SIZE;
-> +
-> +	mutex_lock(&priv->lock);
-> +
-> +	if (priv->vmap_cnt)
-> +		flush_kernel_vmap_range(priv->vaddr, len);
-> +
-> +	list_for_each_entry(a, &priv->attachments, head) {
-> +		if (!a->mapped)
-> +			continue;
-> +
-> +		dma_sync_sgtable_for_device(a->dev, &a->table, direction);
-> +	}
-> +
-> +	mutex_unlock(&priv->lock);
-> +
-> +	return 0;
-> +}
-> +
-> +static int carveout_heap_mmap(struct dma_buf *dmabuf,
-> +			      struct vm_area_struct *vma)
-> +{
-> +	struct carveout_heap_buffer_priv *priv = dmabuf->priv;
-> +	unsigned long len = priv->num_pages * PAGE_SIZE;
-> +
-> +	return vm_iomap_memory(vma, priv->paddr, len);
-> +}
-> +
-> +static int carveout_heap_vmap(struct dma_buf *dmabuf, struct iosys_map *map)
-> +{
-> +	struct carveout_heap_buffer_priv *priv = dmabuf->priv;
-> +	unsigned long len = priv->num_pages * PAGE_SIZE;
-> +
-> +	mutex_lock(&priv->lock);
-> +
-> +	if (!priv->vmap_cnt) {
-> +		void *vaddr = memremap(priv->paddr, len, MEMREMAP_WB);
-> +
-> +		if (!vaddr) {
-> +			mutex_unlock(&priv->lock);
-> +			return -ENOMEM;
-> +		}
-> +
-> +		priv->vaddr = vaddr;
-> +	}
-> +
-> +	WARN_ON(!priv->vaddr);
-> +	iosys_map_set_vaddr(map, priv->vaddr);
-> +	priv->vmap_cnt++;
-> +
-> +	mutex_unlock(&priv->lock);
-> +
-> +	return 0;
-> +}
-> +
-> +static void carveout_heap_vunmap(struct dma_buf *dmabuf, struct iosys_map *map)
-> +{
-> +	struct carveout_heap_buffer_priv *priv = dmabuf->priv;
-> +
-> +	mutex_lock(&priv->lock);
-> +
-> +	priv->vmap_cnt--;
-> +	if (!priv->vmap_cnt) {
-> +		memunmap(priv->vaddr);
-> +		priv->vaddr = NULL;
-> +	}
-> +
-> +	mutex_unlock(&priv->lock);
-> +
-> +	iosys_map_clear(map);
-> +}
-> +
-> +static void carveout_heap_dma_buf_release(struct dma_buf *buf)
-> +{
-> +	struct carveout_heap_buffer_priv *buffer_priv = buf->priv;
-> +	struct carveout_heap_priv *heap_priv = buffer_priv->heap;
-> +	unsigned long len = buffer_priv->num_pages * PAGE_SIZE;
-> +
-> +	gen_pool_free(heap_priv->pool, buffer_priv->paddr, len);
-> +	kfree(buffer_priv);
-> +}
-> +
-> +static const struct dma_buf_ops carveout_heap_buf_ops = {
-> +	.attach		= carveout_heap_attach,
-> +	.detach		= carveout_heap_detach,
-> +	.map_dma_buf	= carveout_heap_map_dma_buf,
-> +	.unmap_dma_buf	= carveout_heap_unmap_dma_buf,
-> +	.begin_cpu_access	= carveout_heap_dma_buf_begin_cpu_access,
-> +	.end_cpu_access	= carveout_heap_dma_buf_end_cpu_access,
-> +	.mmap		= carveout_heap_mmap,
-> +	.vmap		= carveout_heap_vmap,
-> +	.vunmap		= carveout_heap_vunmap,
-> +	.release	= carveout_heap_dma_buf_release,
-> +};
-> +
-> +static struct dma_buf *carveout_heap_allocate(struct dma_heap *heap,
-> +					      unsigned long len,
-> +					      u32 fd_flags,
-> +					      u64 heap_flags)
-> +{
-> +	struct carveout_heap_priv *heap_priv = dma_heap_get_drvdata(heap);
-> +	struct carveout_heap_buffer_priv *buffer_priv;
-> +	DEFINE_DMA_BUF_EXPORT_INFO(exp_info);
-> +	struct dma_buf *buf;
-> +	phys_addr_t paddr;
-> +	/* len is guaranteed to be page-aligned by the framework, so we can use it as is. */
-> +	size_t size = len;
-> +	int ret;
-> +
-> +	buffer_priv = kzalloc(sizeof(*buffer_priv), GFP_KERNEL);
-> +	if (!buffer_priv)
-> +		return ERR_PTR(-ENOMEM);
-> +
-> +	INIT_LIST_HEAD(&buffer_priv->attachments);
-> +	mutex_init(&buffer_priv->lock);
-> +
-> +	paddr = gen_pool_alloc(heap_priv->pool, size);
-> +	if (!paddr) {
-> +		ret = -ENOMEM;
-> +		goto err_free_buffer_priv;
-> +	}
-> +
-> +	buffer_priv->paddr = paddr;
-> +	buffer_priv->heap = heap_priv;
-> +	buffer_priv->num_pages = size >> PAGE_SHIFT;
-> +
-> +	/* create the dmabuf */
-> +	exp_info.exp_name = dma_heap_get_name(heap);
-> +	exp_info.ops = &carveout_heap_buf_ops;
-> +	exp_info.size = size;
-> +	exp_info.flags = fd_flags;
-> +	exp_info.priv = buffer_priv;
-> +
-> +	buf = dma_buf_export(&exp_info);
-> +	if (IS_ERR(buf)) {
-> +		ret = PTR_ERR(buf);
-> +		goto err_free_buffer;
-> +	}
-> +
-> +	return buf;
-> +
-> +err_free_buffer:
-> +	gen_pool_free(heap_priv->pool, paddr, len);
-> +err_free_buffer_priv:
-> +	kfree(buffer_priv);
-> +
-> +	return ERR_PTR(ret);
-> +}
-> +
-> +static const struct dma_heap_ops carveout_heap_ops = {
-> +	.allocate = carveout_heap_allocate,
-> +};
-> +
-> +static int __init carveout_heap_setup(struct device_node *node)
-> +{
-> +	struct dma_heap_export_info exp_info = {};
-> +	const struct reserved_mem *rmem;
-> +	struct carveout_heap_priv *priv;
-> +	struct dma_heap *heap;
-> +	struct gen_pool *pool;
-> +	int ret;
-> +
-> +	rmem = of_reserved_mem_lookup(node);
-> +	if (!rmem)
-> +		return -EINVAL;
-> +
-> +	priv = kzalloc(sizeof(*priv), GFP_KERNEL);
-> +	if (!priv)
-> +		return -ENOMEM;
-> +
-> +	pool = gen_pool_create(PAGE_SHIFT, NUMA_NO_NODE);
-> +	if (!pool) {
-> +		ret = -ENOMEM;
-> +		goto err_cleanup_heap;
-> +	}
-> +	priv->pool = pool;
-> +
-> +	ret = gen_pool_add(pool, rmem->base, rmem->size, NUMA_NO_NODE);
-> +	if (ret)
-> +		goto err_release_mem_region;
-> +
-> +	exp_info.name = node->full_name;
-> +	exp_info.ops = &carveout_heap_ops;
-> +	exp_info.priv = priv;
-> +
-> +	heap = dma_heap_add(&exp_info);
-> +	if (IS_ERR(heap)) {
-> +		ret = PTR_ERR(heap);
-> +		goto err_release_mem_region;
-> +	}
-> +	priv->heap = heap;
-> +
-> +	return 0;
-> +
-> +err_release_mem_region:
-> +	gen_pool_destroy(pool);
-> +err_cleanup_heap:
-> +	kfree(priv);
-> +	return ret;
-> +}
-> +
-> +static int __init carveout_heap_init(void)
-> +{
-> +	struct device_node *rmem_node;
-> +	struct device_node *node;
-> +	int ret;
-> +
-> +	rmem_node = of_find_node_by_path("/reserved-memory");
-> +	if (!rmem_node)
-> +		return 0;
-> +
-> +	for_each_child_of_node(rmem_node, node) {
-> +		if (!of_device_is_compatible(node, "carved-out"))
-> +			continue;
-> +
-> +		ret = carveout_heap_setup(node);
-> +		if (ret)
-> +			return ret;
-> +	}
 
-/reserved-memory nodes get a platform_device, so why not make this a 
-driver?
+Reviewed-by: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
 
-Rob
+Konrad
 
