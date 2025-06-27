@@ -1,160 +1,107 @@
-Return-Path: <devicetree+bounces-190479-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-190480-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2DD72AEBD9E
-	for <lists+devicetree@lfdr.de>; Fri, 27 Jun 2025 18:37:26 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 6F540AEBDC8
+	for <lists+devicetree@lfdr.de>; Fri, 27 Jun 2025 18:49:57 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 4541818854EE
-	for <lists+devicetree@lfdr.de>; Fri, 27 Jun 2025 16:34:23 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 666A8188E15E
+	for <lists+devicetree@lfdr.de>; Fri, 27 Jun 2025 16:50:13 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6415B2EA17A;
-	Fri, 27 Jun 2025 16:33:58 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 95FB02E973C;
+	Fri, 27 Jun 2025 16:49:53 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="Fs2Ad+ug"
+	dkim=pass (1024-bit key) header.d=linux.microsoft.com header.i=@linux.microsoft.com header.b="pfB+Hrac"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.20])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9A3D12E54D5;
-	Fri, 27 Jun 2025 16:33:56 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.175.65.20
+Received: from linux.microsoft.com (linux.microsoft.com [13.77.154.182])
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 27C7C136327;
+	Fri, 27 Jun 2025 16:49:52 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=13.77.154.182
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1751042038; cv=none; b=X6sSAq91vp5va2C6qBSrFMnhmZ4h/IXLXcfclbs3QFhFNZxYo2ftun0cXA8xv5xrEVzrH46o0O+l6Dga5ZnaJn8nykmrBEjVzBXrdeSeLqy9GvdGcYMW7srxLJq9D4rywev+ZYrQ01jEVcKoXbYXLCLvI2gSA+YX4XmTXdj8VbE=
+	t=1751042993; cv=none; b=C69XlEEzIUqrOYS6K8WEXRj8xb+QbjoaKCviKtDG3Hc7CLddrCLKUdp6DAmtrQfrIBzNY0CrZ55fp3oSJSTuSFOjgDIkbYFF2Yvj3vxNMAEHUXwOB3taiYIjAuCqV848zBDkUTYtlw8S4sed4rlGqMn/d8vn+k+RGO/BjBacQDU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1751042038; c=relaxed/simple;
-	bh=Y2MaEeceKNbv4yiFNLVL6EuLylExKPZ4w7oafZAoUjc=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=UIZC0YPj4qLUWOWmpjAGtffE3Cu588GxX+irDgvlQxOgRF7RcdYc3vQ9UYz1mhcnop/tQ1RRwAiprHlqDETcbFXzcXxJYS5BDbf9UmyG2yYJu3xf78wKgx67TZAypToBeAjiOsuzeJ3xwgyJHnCka6CQiigahlH2dg5kJKpITtM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com; spf=none smtp.mailfrom=linux.intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=Fs2Ad+ug; arc=none smtp.client-ip=198.175.65.20
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com
-Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=linux.intel.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1751042037; x=1782578037;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=Y2MaEeceKNbv4yiFNLVL6EuLylExKPZ4w7oafZAoUjc=;
-  b=Fs2Ad+ugEnW8qSsWArq7KVp/lsBNdKr6NrF7KParsLYBR7T+yEk/tJaU
-   dyJPDQmYz4KYZ6Su5/F793XJ0LVHZv5x4RKaroLfBoCkROG6Ygnjr7ygv
-   Rowen59uXo/Ceoz/Bx0T675mCWUlY85IT+yQh3gWEVpQ0S1Z+d9xWyIqR
-   DiG59v7XJ/QOfNdmCCIvyzGsZ1ai7wd1kJ3ECMn+h/Nh8c1CmbFdy2Hwh
-   YdW8uiMPCnRuGzYhQYU7ZMShL/imkbJm+EoSxZp9qWL1yzewGX/yKik6J
-   +dnhKUOCC6BxPOaMZjTaDXUe3BSz+TNDA7Spespo1jEHMrac/0b+ufLVT
-   Q==;
-X-CSE-ConnectionGUID: aDwHT5DZTHaKji7HqORHCQ==
-X-CSE-MsgGUID: 5gb/9b34S5CPJ/EWiYVXyQ==
-X-IronPort-AV: E=McAfee;i="6800,10657,11477"; a="53079635"
-X-IronPort-AV: E=Sophos;i="6.16,270,1744095600"; 
-   d="scan'208";a="53079635"
-Received: from orviesa004.jf.intel.com ([10.64.159.144])
-  by orvoesa112.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 27 Jun 2025 09:33:56 -0700
-X-CSE-ConnectionGUID: 1C2IXb2STTuL8X3DDhbOyQ==
-X-CSE-MsgGUID: danC++UFS6ObVuVtA6jiVw==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.16,270,1744095600"; 
-   d="scan'208";a="157388500"
-Received: from smile.fi.intel.com ([10.237.72.52])
-  by orviesa004.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 27 Jun 2025 09:33:45 -0700
-Received: from andy by smile.fi.intel.com with local (Exim 4.98.2)
-	(envelope-from <andriy.shevchenko@linux.intel.com>)
-	id 1uVC1D-0000000AXHz-2uXB;
-	Fri, 27 Jun 2025 19:33:39 +0300
-Date: Fri, 27 Jun 2025 19:33:39 +0300
-From: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
-To: Rob Herring <robh@kernel.org>
-Cc: Herve Codina <herve.codina@bootlin.com>, Andrew Lunn <andrew@lunn.ch>,
-	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-	"Rafael J. Wysocki" <rafael@kernel.org>,
-	Danilo Krummrich <dakr@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
-	Sascha Hauer <s.hauer@pengutronix.de>,
-	Pengutronix Kernel Team <kernel@pengutronix.de>,
-	Fabio Estevam <festevam@gmail.com>,
-	Michael Turquette <mturquette@baylibre.com>,
-	Stephen Boyd <sboyd@kernel.org>, Andi Shyti <andi.shyti@kernel.org>,
-	Wolfram Sang <wsa+renesas@sang-engineering.com>,
-	Peter Rosin <peda@axentia.se>,
-	Derek Kiernan <derek.kiernan@amd.com>,
-	Dragan Cvetic <dragan.cvetic@amd.com>,
-	Arnd Bergmann <arnd@arndb.de>,
-	Saravana Kannan <saravanak@google.com>,
-	Bjorn Helgaas <bhelgaas@google.com>,
-	Mark Brown <broonie@kernel.org>, Len Brown <lenb@kernel.org>,
-	Daniel Scally <djrscally@gmail.com>,
-	Heikki Krogerus <heikki.krogerus@linux.intel.com>,
-	Sakari Ailus <sakari.ailus@linux.intel.com>,
-	Wolfram Sang <wsa@kernel.org>,
-	Geert Uytterhoeven <geert+renesas@glider.be>,
-	Davidlohr Bueso <dave@stgolabs.net>,
-	Dave Jiang <dave.jiang@intel.com>,
-	Alison Schofield <alison.schofield@intel.com>,
-	Vishal Verma <vishal.l.verma@intel.com>,
-	Ira Weiny <ira.weiny@intel.com>,
-	Dan Williams <dan.j.williams@intel.com>,
-	linux-kernel@vger.kernel.org, imx@lists.linux.dev,
-	linux-arm-kernel@lists.infradead.org, linux-clk@vger.kernel.org,
-	linux-i2c@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-pci@vger.kernel.org, linux-spi@vger.kernel.org,
-	linux-acpi@vger.kernel.org, linux-cxl@vger.kernel.org,
-	Allan Nielsen <allan.nielsen@microchip.com>,
-	Horatiu Vultur <horatiu.vultur@microchip.com>,
-	Steen Hegelund <steen.hegelund@microchip.com>,
-	Luca Ceresoli <luca.ceresoli@bootlin.com>,
-	Thomas Petazzoni <thomas.petazzoni@bootlin.com>
-Subject: Re: [PATCH v3 18/28] of: property: Allow fw_devlink device-tree on
- x86 when PCI device-tree node creation is enabled
-Message-ID: <aF7H4-toeb7Ouz3d@smile.fi.intel.com>
-References: <20250613134817.681832-1-herve.codina@bootlin.com>
- <20250613134817.681832-19-herve.codina@bootlin.com>
- <20250627162245.GA3513535-robh@kernel.org>
+	s=arc-20240116; t=1751042993; c=relaxed/simple;
+	bh=Ut0hDs2xzJjclDoUXoEl19F/suL8ZmdlnTYiWKO8xI8=;
+	h=Message-ID:Date:MIME-Version:From:Subject:To:Cc:References:
+	 In-Reply-To:Content-Type; b=nK4i6DtYHJe6/1aSuNTClMZXU0y/CZnNgVMJNXkE76BvDk+AgfCShF68qHP05+RKTm7ESjEnjaMPa/VeKizdWcZX5ZEcVlz0zJ8u13oCFx7tZcbTsDy4HI3DNAlS1FBtHoB40V1YY+JkU10uBkPHC+qpacnI5C0KWbnrL0jSGD0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.microsoft.com; spf=pass smtp.mailfrom=linux.microsoft.com; dkim=pass (1024-bit key) header.d=linux.microsoft.com header.i=@linux.microsoft.com header.b=pfB+Hrac; arc=none smtp.client-ip=13.77.154.182
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.microsoft.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linux.microsoft.com
+Received: from [100.93.64.84] (unknown [40.86.181.13])
+	by linux.microsoft.com (Postfix) with ESMTPSA id F228E211868B;
+	Fri, 27 Jun 2025 09:49:50 -0700 (PDT)
+DKIM-Filter: OpenDKIM Filter v2.11.0 linux.microsoft.com F228E211868B
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linux.microsoft.com;
+	s=default; t=1751042991;
+	bh=rNdlKLnZPLYy6iWQ0vPS3Zwmc9YtKKUxvYxLseth3KU=;
+	h=Date:From:Subject:To:Cc:References:In-Reply-To:From;
+	b=pfB+Hrach67IKX2fa05SS07V9OFDcNFPWu82og4AVR6lO3I7RykWtdK7B0s7hdijI
+	 vFJ1jJFLQIYMnArTMgUACq7x5ikxp2bNgLVGlutaBNL93YIQc1RGPfMTn3Ep2/xBa3
+	 xbDSXtlKSLk3CVm0CYQ22QA2tasPKBmp4ZZXP+0I=
+Message-ID: <3f7e0d7c-cddb-47f7-9520-6740ccd81579@linux.microsoft.com>
+Date: Fri, 27 Jun 2025 09:49:50 -0700
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20250627162245.GA3513535-robh@kernel.org>
-Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park, 6
- krs, Bertel Jungin Aukio 5, 02600 Espoo
+User-Agent: Mozilla Thunderbird
+From: Vijay Balakrishna <vijayb@linux.microsoft.com>
+Subject: Re: [v11 PATCH 0/2] Add L1 and L2 error detection for A72
+To: Borislav Petkov <bp@alien8.de>
+Cc: Tony Luck <tony.luck@intel.com>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, James Morse <james.morse@arm.com>,
+ Mauro Carvalho Chehab <mchehab@kernel.org>, Robert Richter
+ <rric@kernel.org>, linux-edac@vger.kernel.org, linux-kernel@vger.kernel.org,
+ Tyler Hicks <code@tyhicks.com>, Marc Zyngier <maz@kernel.org>,
+ Sascha Hauer <s.hauer@pengutronix.de>,
+ Lorenzo Pieralisi <lpieralisi@kernel.org>, devicetree@vger.kernel.org
+References: <1748487628-30123-1-git-send-email-vijayb@linux.microsoft.com>
+ <20250529095547.GBaDgvI0mCLSXsM0dR@fat_crate.local>
+Content-Language: en-US
+In-Reply-To: <20250529095547.GBaDgvI0mCLSXsM0dR@fat_crate.local>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-On Fri, Jun 27, 2025 at 11:22:45AM -0500, Rob Herring wrote:
-> On Fri, Jun 13, 2025 at 03:47:58PM +0200, Herve Codina wrote:
-
-...
-
-> > -	if (IS_ENABLED(CONFIG_X86))
-> > +	if (IS_ENABLED(CONFIG_X86) && !IS_ENABLED(CONFIG_PCI_DYNAMIC_OF_NODES))
+On 5/29/25 02:55, Borislav Petkov wrote:
+> On Wed, May 28, 2025 at 08:00:26PM -0700, Vijay Balakrishna wrote:
+>> Changes since v10: 
+>> - edac_a72.c: copyright line add (Jonathan)
+>> - cpus.yaml: drop stale comment line (Krzysztof)
+>> - added "Reviewed-by" tags
 > 
-> I really want CONFIG_PCI_DYNAMIC_OF_NODES to go away at some point, not 
-> add more users. 
+> It seems you're new to kernel development:
 > 
-> I think this should instead check for specific platforms not with 
-> kconfig symbols but DT properties. For ce4100, you can just check the 
-> root compatible string. For OLPC, there isn't a root compatible (in the 
-> DT I have). You could check for /architecture == OLPC instead. There's 
-> some virtualization guests using DT now too. I would think their DT's 
-> are simple enough to avoid any fw_devlink issues. 
+> From: Documentation/process/submitting-patches.rst
+> 
+> "Don't get discouraged - or impatient
+> ------------------------------------
+> 
+> After you have submitted your change, be patient and wait.  Reviewers are
+> busy people and may not get to your patch right away.
+> 
+> Once upon a time, patches used to disappear into the void without comment,
+> but the development process works more smoothly than that now.  You should
+> receive comments within a week or so; if that does not happen, make sure
+> that you have sent your patches to the right place.  Wait for a minimum of
+> one week before resubmitting or pinging reviewers - possibly longer during
+> busy times like merge windows."
+> 
+> And we have a merge window right now.
+> 
 
-I don't think this is good approach. The above check is more reliable in my
-opinion.
+Hi Boris,
 
-> Alternatively, we could perhaps make x86 fw_devlink default off
+I apologize for sending v10 and v11 in quick succession during the merge
+window last month. Our goal was to provide you with the latest patch
+series, ensuring all comments were addressed and ready for your review
+at your convenience. Please share your feedback so I can address it
+accordingly. Thank you for your time.
 
-For my (little) knowledge I believe this is not feasible anymore.
-Some x86 code (drivers) relies on fw_devlink nowadays. But take
-this with grain of salt, I may be way mistaken.
-
-> and then enable it only when you create nodes. Maybe it has to be restricted
-> a sub tree of the DT to avoid any later interactions if devices are unbound
-> and rebound. Not a fully fleshed out idea...
-
--- 
-With Best Regards,
-Andy Shevchenko
-
+Vijay
 
 
