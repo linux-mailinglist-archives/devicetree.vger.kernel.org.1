@@ -1,140 +1,141 @@
-Return-Path: <devicetree+bounces-190493-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-190494-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 35906AEBE93
-	for <lists+devicetree@lfdr.de>; Fri, 27 Jun 2025 19:49:58 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 97900AEBEC2
+	for <lists+devicetree@lfdr.de>; Fri, 27 Jun 2025 19:58:37 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 9089A642FD4
-	for <lists+devicetree@lfdr.de>; Fri, 27 Jun 2025 17:49:32 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 2E77C566E27
+	for <lists+devicetree@lfdr.de>; Fri, 27 Jun 2025 17:58:21 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0D7C82EBB8C;
-	Fri, 27 Jun 2025 17:49:50 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7C7412EBDC5;
+	Fri, 27 Jun 2025 17:57:00 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="QDaBKqc7"
+	dkim=pass (2048-bit key) header.d=gateworks.com header.i=@gateworks.com header.b="TcGQxK0L"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-oo1-f46.google.com (mail-oo1-f46.google.com [209.85.161.46])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C38311F09A5;
-	Fri, 27 Jun 2025 17:49:49 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D82C62EAD0F
+	for <devicetree@vger.kernel.org>; Fri, 27 Jun 2025 17:56:58 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.161.46
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1751046589; cv=none; b=mrtoOWlqW8Dh8KD+cyxOX9Ujyaev9nbykkS7MyIp5FHp3Zgyg7ZIVoi15vwG9GEBBAPzhoFY13wHobAm9soatPvvFg3OGw0eu84ZE8JVj3cwwmCIEd8ZzjJTy+GTWQy8ruQ6AcxTW2R0t0shzNGaIl1RI/ZksXyv1owND1sSddg=
+	t=1751047020; cv=none; b=C9PrwMibJQLuC+4nRYGZv8cUnwzsLMAWRIVy13MVczYXg501HuKF6suvMN5UoC+ci2PevWSO9s67J/oAAFy2CDR3QfB/gSRPCDITWpqwt0P5dmdE2AoPR0CFHLJTSOGxmJNFfKaQS/Mdn8D+ntu+i7K+HHg1eHJetPwnpKmc32A=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1751046589; c=relaxed/simple;
-	bh=fENVGkGcV01nrx8rwyk5yc++tYlpmC/4in3yTWfI+BU=;
+	s=arc-20240116; t=1751047020; c=relaxed/simple;
+	bh=czkJe6P8edZl5EJS+azo4RH37Yqc0TlWj4Ti1g4vPok=;
 	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=bbMFCZQLINv8QjrLvBc/yfPykhqqF9Cjo00k07ZXilnMn4yDazQ7C/SvMyecXvCsF8WMGL9IFdw7fpWMb9tmE5phn7r/d/9EVwcsZ5TjFU2WKkPgW5Y7hJ9aXuPPnbhW/sEMY7UJVc5IfhyclqB6xT5VSfbNh8BXO7B8Z0lXDdo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=QDaBKqc7; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 66C83C4CEFB;
-	Fri, 27 Jun 2025 17:49:49 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1751046589;
-	bh=fENVGkGcV01nrx8rwyk5yc++tYlpmC/4in3yTWfI+BU=;
-	h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-	b=QDaBKqc73OAck/HvM0EVd5wtKUjUN7GPsOvpdjQ9yxQfT7gPphE3WJUX18LD5I3cV
-	 3I0DsaAXNiZrzbAjgH5RmUIHzuGV+il3/DAWKdEl1GqN7pgoGcBq/ue07wIRoUWsUt
-	 DTpXWcdsABzLOk1esyLFQ6+vPQhDQTQrIl2/oW859p+ENQfTmHeQIpUI/tNrE7f6Jx
-	 0HaPtNPil8h6RVpt0LhQKj8TbFYuz1YRJsqIZTzOr7g9NNuWwvAtNNz3sRmHxoyX4R
-	 hw1JP/ra1GDPoCgdErvqrQrL0xl6DZHuw+Uqxk597rbpThcBDon2oxslqivu081ygM
-	 1Gw7oJVnPaDng==
-Received: by mail-ej1-f54.google.com with SMTP id a640c23a62f3a-ade5a0442dfso452627066b.1;
-        Fri, 27 Jun 2025 10:49:49 -0700 (PDT)
-X-Forwarded-Encrypted: i=1; AJvYcCUFcL3o8K4XcNCCwr/1Hn0poOddvQhQrl+98rz+OBpFX0ptmAaBjOFw2icmYhyPxanLDzt3Bs9Dsyz0@vger.kernel.org, AJvYcCV85OlD2kqLMH+Ja/mtvbCkla+glBX8wqNUUJe/yG2gHde+uYriYhSDOkr7yXOZpsmD6xnF8lws+cCI9g==@vger.kernel.org, AJvYcCVR33dTuoHXsGzVCTB+FMM8EMK9TJJo7JifLED2McI1RRmgmyuqnfMG7VQFSvbYyiojIpq/mrIRLMOINlny@vger.kernel.org, AJvYcCWnhdWYwqlaZEF2RE2uYpmQ//qLwa151J0iS4Vc8EJLhuZIxCl4pwBgYqcb+LIfH5uwVLFzvbLiBax7@vger.kernel.org, AJvYcCWrHIQdkFKqtu3aTQe3Rth8wTXCPpm4S9x5flUxxc26wlhd32JcGCxnhS/5ODR1wgyqwBYj/osYKFVE@vger.kernel.org, AJvYcCWympIu3XRPp0mybc36H/IdWUAq6GKlRTipRzrnuDEVdVT8/2HOhpdqq3/Mv597Gfh22MM2szwKsm7D@vger.kernel.org, AJvYcCXj269BJATXYJKaiwemrLrVPs3JuriT1yFOyGMIRecNlIeyCDGPUqOuYgRCRfP/dpshlW+Q0PgCADAZ@vger.kernel.org, AJvYcCXzOxcNMxXblyIensO8v/yRIGHlv0jZgNvVzCw8BGJKBIKV5e3X3ZJb0mhP+ST5jENabLIVP50ZB1mF@vger.kernel.org
-X-Gm-Message-State: AOJu0YztsrCYPhCat9rSiG0ZJpXcwuYjAABZTfK3HEg+1YoO9IEcQB6U
-	6JMZVZ7qUx6Vj1mNIyivWMcUXoAXi2TaGRiXtHa0r8CM5UIQwJPg1t8nyXWRj+7v6n7rJr7Gv6w
-	agkHDNUDKa82cwRcNh3KZXbHHACzjlg==
-X-Google-Smtp-Source: AGHT+IHT5hz4lr0pRGvdH2rjBfGZM81PcOoFrAQguTcQw3WkJwjxgHpGim6dbfGwqFeg5PpW/uAYH3Ohif/f2EVITXw=
-X-Received: by 2002:a17:907:cb86:b0:ae3:55bd:7724 with SMTP id
- a640c23a62f3a-ae355bd77f6mr319698366b.37.1751046587752; Fri, 27 Jun 2025
- 10:49:47 -0700 (PDT)
+	 To:Cc:Content-Type; b=Y9VtGRo0i8QSr3/g87vkoB7fDOfwsfcHQYJ941hUWX4yvtx7O6AWe3NGIa/wNIId0WcAGYpPUFOfpmya3Weu/8mQo5Tm8xwYt7TPE5lLNcSFUbVqS+4gJx+ZDT8Nzv/ry7K1j/cWKT8FvnoAF8u6+ei9/Z6LEP0NrdcIumXUXlA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gateworks.com; spf=pass smtp.mailfrom=gateworks.com; dkim=pass (2048-bit key) header.d=gateworks.com header.i=@gateworks.com header.b=TcGQxK0L; arc=none smtp.client-ip=209.85.161.46
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gateworks.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gateworks.com
+Received: by mail-oo1-f46.google.com with SMTP id 006d021491bc7-6065251725bso98179eaf.1
+        for <devicetree@vger.kernel.org>; Fri, 27 Jun 2025 10:56:58 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gateworks.com; s=google; t=1751047018; x=1751651818; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=rbuYeB/znMRVmNnp22re7GbKA0GoKXipcQWP3fhXkwI=;
+        b=TcGQxK0LL1xmK+4WgMNJK2tg+QT96agnb/e7l3rrHyLhmsr3ZhC+vx3yHCJNIchnFB
+         PBR93wKQLUhXU92rIy0fSJlqdawjEz+7UIeTjD6S2Xb1N8AKkOZBqEht6KTzDiadTeoI
+         WIj4GVmOyDGr1T1xMBJAKIks1Rlo/XS6HhZf6f/yQOwHlhEV9id1iPq7CO4Fr43Unpu+
+         iUO58ayVWqHdw7pvIlNWvTsVbK9ja/vmYtdnNEJYQd0vdJn/eE0SA0YsS2alXIFT06Ly
+         lto4TTlYLpMXGoKJlxXXx1YUvevfPav/OhxqF1E47b00rkf03PxneRwvGTercQSAKuxI
+         51mA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1751047018; x=1751651818;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=rbuYeB/znMRVmNnp22re7GbKA0GoKXipcQWP3fhXkwI=;
+        b=IOP6OYK0fjM9r4OwXsSNgwuLz1G4CpS1xiFwrHVfhNHPCF3NEVFd5A1935Z5KCfmor
+         jqQLqSPIrbBLLB3Zr4XQ1i/1RloTmnri5oqxpXJvr3CPsMlA+xDykBazyfYefliNsFIz
+         Teqzu2PAYMU7p74MZzZP0jfgWO9lBFBQr3SYUt1Xgk3uHB4IsotEeCdu0xnBk7qS45Ll
+         BYrA9HT8nALHLMF4GzWAxvftry+eO3me6VfM98Ic2zzr2xIrHuN1mVBNSCFcOvg4RD0u
+         pgdvmG2n97Ths1Yi8qd739Zr4myfkARJSZOu0OuKjS8NWfvhLJmVxbS0T9VzkgdX8RL4
+         TGHg==
+X-Forwarded-Encrypted: i=1; AJvYcCWq25UozkJ+UrPpTuXT5AskE6KE0FpRZszF8tkwuJ59dA1tlJ3Q5JPcqGQ80JALmxKSurM7SnDCgQI+@vger.kernel.org
+X-Gm-Message-State: AOJu0YzHmhl7UErr3bQ9MrNTsiU8VTTXylR9ya1p/rSOTyHQw6HxGHe9
+	gMXuCLrMN1GicZaWt+yJzyMsLUj6+y6R0OTPFG3PgtCxLlcRayf/nnLrB/aWI+7BE8n0IIuSKJF
+	r5mB+2YJTZSibQVWM2LCCx30/A7N36skVf7uG4WjIoYDTEGra6olzB48Mbw==
+X-Gm-Gg: ASbGncvMgh7mW4u+H2L/nHhfdk3XceoVfUkeu2jLlFykDiVbcJSy5aXJ1RkorNxuGY2
+	qJ43+sdAtQT2HJmk9tyAbZJsLHoubE+bod4CeoranvQ7JKBm3joFkBmQ+LFPnZle2vGIECLnud7
+	If+QjutxIaVofRh3GN9xKTGZQW/mvug8CZiQntTXIVMBaf6BAJIFR7Uw==
+X-Google-Smtp-Source: AGHT+IHn/O+yw4sdAQD7guPzO4j4/3MQOR3FH8Nb/hBYMQX3XW0mdG4bsbuqDOKcybzRbPj3Ume9tDS47O4jmJlhfy8=
+X-Received: by 2002:a05:6820:994:b0:611:b561:258e with SMTP id
+ 006d021491bc7-611b90965aemr2849488eaf.3.1751047017799; Fri, 27 Jun 2025
+ 10:56:57 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20250613134817.681832-1-herve.codina@bootlin.com>
- <20250613134817.681832-19-herve.codina@bootlin.com> <20250627162245.GA3513535-robh@kernel.org>
- <aF7H4-toeb7Ouz3d@smile.fi.intel.com>
-In-Reply-To: <aF7H4-toeb7Ouz3d@smile.fi.intel.com>
-From: Rob Herring <robh@kernel.org>
-Date: Fri, 27 Jun 2025 12:49:36 -0500
-X-Gmail-Original-Message-ID: <CAL_JsqJCuevzu69bx3yWm3ZR9wZ+UsWuNXscig5KMm2WH4WxOw@mail.gmail.com>
-X-Gm-Features: Ac12FXz-QVHJXTEek87UkxSujkajQAR7GpuL-shCkOttrl-AQQGXN_bA70yoM5c
-Message-ID: <CAL_JsqJCuevzu69bx3yWm3ZR9wZ+UsWuNXscig5KMm2WH4WxOw@mail.gmail.com>
-Subject: Re: [PATCH v3 18/28] of: property: Allow fw_devlink device-tree on
- x86 when PCI device-tree node creation is enabled
-To: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
-Cc: Herve Codina <herve.codina@bootlin.com>, Andrew Lunn <andrew@lunn.ch>, 
-	Greg Kroah-Hartman <gregkh@linuxfoundation.org>, "Rafael J. Wysocki" <rafael@kernel.org>, 
-	Danilo Krummrich <dakr@kernel.org>, Shawn Guo <shawnguo@kernel.org>, 
-	Sascha Hauer <s.hauer@pengutronix.de>, Pengutronix Kernel Team <kernel@pengutronix.de>, 
-	Fabio Estevam <festevam@gmail.com>, Michael Turquette <mturquette@baylibre.com>, 
-	Stephen Boyd <sboyd@kernel.org>, Andi Shyti <andi.shyti@kernel.org>, 
-	Wolfram Sang <wsa+renesas@sang-engineering.com>, Peter Rosin <peda@axentia.se>, 
-	Derek Kiernan <derek.kiernan@amd.com>, Dragan Cvetic <dragan.cvetic@amd.com>, 
-	Arnd Bergmann <arnd@arndb.de>, Saravana Kannan <saravanak@google.com>, 
-	Bjorn Helgaas <bhelgaas@google.com>, Mark Brown <broonie@kernel.org>, Len Brown <lenb@kernel.org>, 
-	Daniel Scally <djrscally@gmail.com>, Heikki Krogerus <heikki.krogerus@linux.intel.com>, 
-	Sakari Ailus <sakari.ailus@linux.intel.com>, Wolfram Sang <wsa@kernel.org>, 
-	Geert Uytterhoeven <geert+renesas@glider.be>, Davidlohr Bueso <dave@stgolabs.net>, 
-	Dave Jiang <dave.jiang@intel.com>, Alison Schofield <alison.schofield@intel.com>, 
-	Vishal Verma <vishal.l.verma@intel.com>, Ira Weiny <ira.weiny@intel.com>, 
-	Dan Williams <dan.j.williams@intel.com>, linux-kernel@vger.kernel.org, 
-	imx@lists.linux.dev, linux-arm-kernel@lists.infradead.org, 
-	linux-clk@vger.kernel.org, linux-i2c@vger.kernel.org, 
-	devicetree@vger.kernel.org, linux-pci@vger.kernel.org, 
-	linux-spi@vger.kernel.org, linux-acpi@vger.kernel.org, 
-	linux-cxl@vger.kernel.org, Allan Nielsen <allan.nielsen@microchip.com>, 
-	Horatiu Vultur <horatiu.vultur@microchip.com>, 
-	Steen Hegelund <steen.hegelund@microchip.com>, Luca Ceresoli <luca.ceresoli@bootlin.com>, 
-	Thomas Petazzoni <thomas.petazzoni@bootlin.com>
+References: <20250620213447.56392-1-aford173@gmail.com>
+In-Reply-To: <20250620213447.56392-1-aford173@gmail.com>
+From: Tim Harvey <tharvey@gateworks.com>
+Date: Fri, 27 Jun 2025 10:56:46 -0700
+X-Gm-Features: Ac12FXwaCCVUyBeRU0CpBhDP3QxyDWYKIvfZAtJZ7SnZG3kcRW-1EnKbWFLlM-8
+Message-ID: <CAJ+vNU0caeeC6in5dO_jkkbYNAnTL7drBZcmNBsstbrPWqUkHw@mail.gmail.com>
+Subject: Re: [PATCH 1/2] arm64: dts: imx8mm-beacon: Fix HS400 USDHC clock speed
+To: Adam Ford <aford173@gmail.com>
+Cc: linux-arm-kernel@lists.infradead.org, aford@beaconembedded.com, 
+	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Shawn Guo <shawnguo@kernel.org>, Sascha Hauer <s.hauer@pengutronix.de>, 
+	Pengutronix Kernel Team <kernel@pengutronix.de>, Fabio Estevam <festevam@gmail.com>, devicetree@vger.kernel.org, 
+	imx@lists.linux.dev, linux-kernel@vger.kernel.org
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-On Fri, Jun 27, 2025 at 11:33=E2=80=AFAM Andy Shevchenko
-<andriy.shevchenko@linux.intel.com> wrote:
+On Fri, Jun 20, 2025 at 2:52=E2=80=AFPM Adam Ford <aford173@gmail.com> wrot=
+e:
 >
-> On Fri, Jun 27, 2025 at 11:22:45AM -0500, Rob Herring wrote:
-> > On Fri, Jun 13, 2025 at 03:47:58PM +0200, Herve Codina wrote:
+> The reference manual for the i.MX8MM states the clock rate in
+> MMC mode is 1/2 of the input clock, therefore to properly run
+> at HS400 rates, the input clock must be 400MHz to operate at
+> 200MHz.  Currently the clock is set to 200MHz which is half the
+> rate it should be, so the throughput is half of what it should be
+> for HS400 operation.
 >
-> ...
+> Fixes: 593816fa2f35 ("arm64: dts: imx: Add Beacon i.MX8m-Mini development=
+ kit")
+> Signed-off-by: Adam Ford <aford173@gmail.com>
 >
-> > > -   if (IS_ENABLED(CONFIG_X86))
-> > > +   if (IS_ENABLED(CONFIG_X86) && !IS_ENABLED(CONFIG_PCI_DYNAMIC_OF_N=
-ODES))
-> >
-> > I really want CONFIG_PCI_DYNAMIC_OF_NODES to go away at some point, not
-> > add more users.
-> >
-> > I think this should instead check for specific platforms not with
-> > kconfig symbols but DT properties. For ce4100, you can just check the
-> > root compatible string. For OLPC, there isn't a root compatible (in the
-> > DT I have). You could check for /architecture =3D=3D OLPC instead. Ther=
-e's
-> > some virtualization guests using DT now too. I would think their DT's
-> > are simple enough to avoid any fw_devlink issues.
+> diff --git a/arch/arm64/boot/dts/freescale/imx8mm-beacon-som.dtsi b/arch/=
+arm64/boot/dts/freescale/imx8mm-beacon-som.dtsi
+> index 21bcd82fd092..8287a7f66ed3 100644
+> --- a/arch/arm64/boot/dts/freescale/imx8mm-beacon-som.dtsi
+> +++ b/arch/arm64/boot/dts/freescale/imx8mm-beacon-som.dtsi
+> @@ -294,6 +294,8 @@ &usdhc3 {
+>         pinctrl-0 =3D <&pinctrl_usdhc3>;
+>         pinctrl-1 =3D <&pinctrl_usdhc3_100mhz>;
+>         pinctrl-2 =3D <&pinctrl_usdhc3_200mhz>;
+> +       assigned-clocks =3D <&clk IMX8MM_CLK_USDHC3>;
+> +       assigned-clock-rates =3D <400000000>;
+>         bus-width =3D <8>;
+>         non-removable;
+>         status =3D "okay";
+> --
+> 2.48.1
 >
-> I don't think this is good approach. The above check is more reliable in =
-my
-> opinion.
+>
 
-I'm fine with any solution that doesn't add a
-CONFIG_PCI_DYNAMIC_OF_NODES which we can't remove. Adding it was a
-kick the can down the road to merge the support worry the mixed
-usecase (on ACPI systems) later. It's now later.
+Hi Adam,
 
-> > Alternatively, we could perhaps make x86 fw_devlink default off
->
-> For my (little) knowledge I believe this is not feasible anymore.
-> Some x86 code (drivers) relies on fw_devlink nowadays. But take
-> this with grain of salt, I may be way mistaken.
+This caught my interest. Where in the IMX8MMRM do you see this and
+would it also apply to the IMX8MP? (You've patched your IMX8MM and
+IMX8MN boards).
 
-Doesn't the CONFIG_X86 check disable it?
+Have you encountered any issues when running eMMC at HS400 due to this
+or is it just something you noticed in the RM more recently like with
+my recent patch that lowers SPI clock due to an obscure RM note [1]
 
-Rob
+Best Regards,
+
+Tim
+[1] https://patchwork.kernel.org/project/linux-arm-kernel/list/?series=3D96=
+5976&archive=3Dboth
 
