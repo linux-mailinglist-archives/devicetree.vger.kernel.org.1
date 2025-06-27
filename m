@@ -1,176 +1,184 @@
-Return-Path: <devicetree+bounces-190345-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-190346-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 052BDAEB7AF
-	for <lists+devicetree@lfdr.de>; Fri, 27 Jun 2025 14:29:12 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 00C33AEB7C1
+	for <lists+devicetree@lfdr.de>; Fri, 27 Jun 2025 14:33:44 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 3C4544A69A1
-	for <lists+devicetree@lfdr.de>; Fri, 27 Jun 2025 12:29:12 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 566B656133D
+	for <lists+devicetree@lfdr.de>; Fri, 27 Jun 2025 12:33:19 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9D43B2C159C;
-	Fri, 27 Jun 2025 12:29:07 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 568232C3257;
+	Fri, 27 Jun 2025 12:33:39 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=disroot.org header.i=@disroot.org header.b="Iz5OfdKj"
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="YmzTnhGA"
 X-Original-To: devicetree@vger.kernel.org
-Received: from layka.disroot.org (layka.disroot.org [178.21.23.139])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9ADA617C21C;
-	Fri, 27 Jun 2025 12:29:05 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=178.21.23.139
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BCB2721129E
+	for <devicetree@vger.kernel.org>; Fri, 27 Jun 2025 12:33:37 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1751027347; cv=none; b=J2snNB0jdmcg6UPPaawR3C3IZG++ey8TXedW1f0tLatHmtO+yaTAe2gSbz8DBQM1L/vcfQS5abTqRQ0xnKaKoyAKt0JU7MFaypkwlMcgNW+M78N74UbRcyATL940nd6GoC/iyaE8FWbX11fVl2XLOE0mZiJu1ltga4Iwy3ob5xo=
+	t=1751027619; cv=none; b=XrcTmg1GBVh8ZaVkwl06PYiuenTxGb+/50rXEMRH9G8pxyNPA4GXYmLFijliv1p82jZ707jYbIOvGcVCvyuvarIP5UqGJg5/L4G0TejR+FU2DymFbh2kMdFhpbmQRVflivHBVoMhT8m0Qs+dL+kln/w2O1H9C+rHI2UXm6Jgplo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1751027347; c=relaxed/simple;
-	bh=EtshUSUcNz/EcdgguxC9OOdXGB2IBgMhJVAOJyuE9yY=;
-	h=MIME-Version:Date:From:To:Cc:Subject:In-Reply-To:References:
-	 Message-ID:Content-Type; b=gwIlCuGcKi6HSHUTo+xg1d9m3Jv+NTl50yJGOO6xBWnjoIRWUAwVYZB5RPqGN8KffbCUZ5s99ZQ5BkA4xHFbW3ote7mXlWNNPKRetzrUCd36ou3GSqN9PKQviOPoGrEf03iBbTsOHzAOQTFq4mUgR1HLiwoSaMRAOiD8A7RfC4Q=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=disroot.org; spf=pass smtp.mailfrom=disroot.org; dkim=pass (2048-bit key) header.d=disroot.org header.i=@disroot.org header.b=Iz5OfdKj; arc=none smtp.client-ip=178.21.23.139
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=disroot.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=disroot.org
-Received: from mail01.disroot.lan (localhost [127.0.0.1])
-	by disroot.org (Postfix) with ESMTP id BE00824CE2;
-	Fri, 27 Jun 2025 14:29:03 +0200 (CEST)
-X-Virus-Scanned: SPAM Filter at disroot.org
-Received: from layka.disroot.org ([127.0.0.1])
- by localhost (disroot.org [127.0.0.1]) (amavis, port 10024) with ESMTP
- id a-Vi0xHrL_L8; Fri, 27 Jun 2025 14:29:02 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=disroot.org; s=mail;
-	t=1751027342; bh=EtshUSUcNz/EcdgguxC9OOdXGB2IBgMhJVAOJyuE9yY=;
-	h=Date:From:To:Cc:Subject:In-Reply-To:References;
-	b=Iz5OfdKj6tJy1F91PBHFqCdCfHs+sxsFQcWGG3bBiYzpqR1aPcf7Lzxm6Ff+GuGXk
-	 1OXZThqT8gFO7exnrQIQVG84R/sQd5c+Hj/B+ceIWiFssn79jGI7jweBHA0FTFLs+7
-	 /pewIt+aa0AmzeDs6lnlC6PRlMp8auU3FBSOmbB3bpIQrEkMrJHRqPhHi1n49wNBTL
-	 J9RUeRH+h2LEbUd7ZMiRaa0AQyx9D6t/VT7w4GxW/8yBaC+eyGOyQ1SRlA7NF0a2N+
-	 G1rhJBnMJxswRIYj9mNn47hmhyNPC6+x2sk+3jRfy2EB+MRYfIAXU0QEO9ra53ZmPy
-	 8mPJdvLa2xdPA==
+	s=arc-20240116; t=1751027619; c=relaxed/simple;
+	bh=/z8OZm8i5By5aSp6kmEY29YnNMR2FD3gRy9aasC6SLc=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=dNkgyF0Ba6mq1Soryt2gt99RSPcWUiXi+9CdOCcIEfQ4zTdpObiwx7owoEEC1nmGIixBUBdKdOgdNhTQW9PkAlE76d9Q59qwqX7t8fceQmeXKkruntC7oG2KzAoau4fys9pBqmbhKl/kRxdqEssEkPdEyrKAC7dIwMNi32cSOvE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=YmzTnhGA; arc=none smtp.client-ip=205.220.180.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
+Received: from pps.filterd (m0279870.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 55RCGOOB015139
+	for <devicetree@vger.kernel.org>; Fri, 27 Jun 2025 12:33:36 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	BXdS20jwqob7hyB8EL/DVXzC/VS+NAh0WftNCte1qv4=; b=YmzTnhGA9Nd6hsbv
+	hly+kxubIDbOxUvViHunRMXDvLjmB3EXJSUpv51ZycWMcm6xYsn8ZIWCm2qfN3ZH
+	Y74gbEMi/vhf1ioOThPOK5Vszo0fOLxvWsoQd4lujICSMtiXhZ9ml+azKH9gu9Oy
+	82hkNumCxEM0G1QjiU9YGDZvX756dUrLp824mzBs70LCSmQFkO+GCiX8vPCRCdQe
+	UqzHOVFDLOiZr1NAebERl+vdFsG9JjbPXquanIaWlax1iYnXj1flnA4OLqqF5MAv
+	BZDDx4Vpp7Muxvajyg+mOPiO0i95h0BVmKPmmtQ24U5UCfUoXGABpjj5X91PQa9F
+	6RxW1Q==
+Received: from mail-qk1-f200.google.com (mail-qk1-f200.google.com [209.85.222.200])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 47fbm25dsb-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
+	for <devicetree@vger.kernel.org>; Fri, 27 Jun 2025 12:33:36 +0000 (GMT)
+Received: by mail-qk1-f200.google.com with SMTP id af79cd13be357-7d399070cecso356284685a.3
+        for <devicetree@vger.kernel.org>; Fri, 27 Jun 2025 05:33:36 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1751027616; x=1751632416;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=BXdS20jwqob7hyB8EL/DVXzC/VS+NAh0WftNCte1qv4=;
+        b=iaTEz+fhPPe2fwkDXBifuUfTyaqBpOLN2+CYLlYI0pR88uZmTlFsPAwijjnMBMC6Bd
+         wW9xoqraNOMSmsYo9rYWTMAC5dAV+DoKPxGR0BR08S9x3b4xW8TGEmKR+0yDC9e8P0kW
+         h+jEZ8CeaN/XJI6/+BsPueU/SM39RcwZiT7dB0Gm7CoCERMRYAj0YPA0AeM79P9OekAw
+         0OjmGq9wVbLcGIMPDrfrIWsV/KU28cmArmQGFCDc7enZUjeNaCIvNOAG97oh3K90NctT
+         q96a6/T+tUE8Iq3hKlc0Tb9jKBRvVpTtIno7HTO38ig5JwlMJ3GHpNLEvG5r22den8aE
+         +6jw==
+X-Forwarded-Encrypted: i=1; AJvYcCXNvWI022OC6E9+god1YtrWzNUtn7HbJQYG3ouqPIdREzTpYJdVFA6Gjh8n+Xp66kiWJNedGwR0l3XR@vger.kernel.org
+X-Gm-Message-State: AOJu0YyLZqV5oc9puBqPCZenyJTUWtQo/9O6oT0CHAqYcYoQhOuNitp0
+	OI7wJtx5CNpJ7LlMWVkEzt8/N6q4UyWZWji/dufVxAxhQzHCNvOsvqtYz1TASi+QlH0Z+hSpDE9
+	ki3/P86BZcBwsZuLdColSzGKh7Wp40hR6nKdnEvYFRnjdAniIpEQkKBrlN1h1v1es
+X-Gm-Gg: ASbGncuNkb59ZZqrmFYJ/Q57Lbsuz2coGadz/BEGoKi8nZbk0SmHxx27wWcPmP/3Noe
+	nVvskX2lqepHQej1IcIlsIMdDJUqHnQhA9EIs1z2eh27UNJM7P4u8DO1zvywTobR+6sYjcr/plO
+	q+SUVS9WKFIw/dAdWLVwW3OAZ3Drp8j2OFlylMcFjWvvVrj2MjI5Rz0PoR8HW8lPRqg9x2paaeh
+	wBWPncMNW7nSEDqkOzG+pR6RCxE6cEs11e8Ss+e1ByMA9TZUiZCs5avWj9Um4fT6ZkEX5sIaizi
+	vBq58aJlKOuIa50THNbzAow/4oepmiH7myi+/DYqr/guBzdbEa230DS7U7YDV3HHqazYI6Pa
+X-Received: by 2002:a05:620a:4891:b0:7d2:3db:a4c0 with SMTP id af79cd13be357-7d443973399mr407200785a.41.1751027615471;
+        Fri, 27 Jun 2025 05:33:35 -0700 (PDT)
+X-Google-Smtp-Source: AGHT+IFs16+j4Gol7ebRhR8zdcRYF6YNDJ3HXtdtuy6BCc73JijHBdyCsj4BxBxJzpUck0KcZdd8+A==
+X-Received: by 2002:a05:620a:4891:b0:7d2:3db:a4c0 with SMTP id af79cd13be357-7d443973399mr407196785a.41.1751027614925;
+        Fri, 27 Jun 2025 05:33:34 -0700 (PDT)
+Received: from [10.185.26.70] (37-33-181-83.bb.dnainternet.fi. [37.33.181.83])
+        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-5550b24d283sm441299e87.64.2025.06.27.05.33.32
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 27 Jun 2025 05:33:32 -0700 (PDT)
+Message-ID: <ab706b24-1dab-4fc0-9e37-fa1ecbd97fda@oss.qualcomm.com>
+Date: Fri, 27 Jun 2025 15:33:36 +0300
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Date: Fri, 27 Jun 2025 12:29:01 +0000
-From: Kaustabh Chakraborty <kauschluss@disroot.org>
-To: Inki Dae <daeinki@gmail.com>
-Cc: Jagan Teki <jagan@amarulasolutions.com>, Marek Szyprowski
- <m.szyprowski@samsung.com>, Andrzej Hajda <andrzej.hajda@intel.com>, Neil
- Armstrong <neil.armstrong@linaro.org>, Robert Foss <rfoss@kernel.org>,
- Laurent Pinchart <Laurent.pinchart@ideasonboard.com>, Jonas Karlman
- <jonas@kwiboo.se>, Jernej Skrabec <jernej.skrabec@gmail.com>, Maarten
- Lankhorst <maarten.lankhorst@linux.intel.com>, Maxime Ripard
- <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>, David Airlie
- <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>, Rob Herring
- <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Seung-Woo Kim <sw0312.kim@samsung.com>, Kyungmin Park
- <kyungmin.park@samsung.com>, Krzysztof Kozlowski <krzk@kernel.org>, Alim
- Akhtar <alim.akhtar@samsung.com>, dri-devel@lists.freedesktop.org,
- linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, linux-samsung-soc@vger.kernel.org
-Subject: Re: [PATCH v2 01/13] drm/bridge: samsung-dsim: separate LINK and DPHY
- status registers
-In-Reply-To: <CAAQKjZOHUGg8WEZxfhVxrUPS3O68BQJ6=cDnUSk6BomYjuY62Q@mail.gmail.com>
-References: <20250627-exynos7870-dsim-v2-0-1433b67378d3@disroot.org>
- <20250627-exynos7870-dsim-v2-1-1433b67378d3@disroot.org>
- <CAAQKjZOHUGg8WEZxfhVxrUPS3O68BQJ6=cDnUSk6BomYjuY62Q@mail.gmail.com>
-Message-ID: <922117777d718b77c86be3a43e86dd7f@disroot.org>
-X-Sender: kauschluss@disroot.org
-Content-Type: text/plain; charset=UTF-8;
- format=flowed
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2 1/3] arm64: dts: qcom: sc7280: Add memory region for
+ audiopd
+To: Srinivas Kandagatla <srinivas.kandagatla@oss.qualcomm.com>,
+        Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
+Cc: Ling Xu <quic_lxu5@quicinc.com>, cros-qcom-dts-watchers@chromium.org,
+        andersson@kernel.org, konradybcio@kernel.org, robh@kernel.org,
+        krzk+dt@kernel.org, conor+dt@kernel.org, linux-arm-msm@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        ekansh.gupta@oss.qualcomm.com
+References: <20250516110029.1637270-1-quic_lxu5@quicinc.com>
+ <20250516110029.1637270-2-quic_lxu5@quicinc.com>
+ <uzyxagnmxz5tsjy32mfro2alwdpcq5kybwzcbsysul7u6adgdf@x7katw7eme6u>
+ <b90ee18a-5e88-4c36-a623-ae9447c53a46@quicinc.com>
+ <2mu3bncxoq57rxi22dyd6ys2wa5n3wmtadfvixozshxgenutai@dlkbqgplzrrd>
+ <46caa88e-790b-4733-83bc-75ed6c7ca2d8@quicinc.com>
+ <CAO9ioeVoqQhDhBW_fVU8kkt=3trV9YhEDUO0izdf8cuCDqU4Tw@mail.gmail.com>
+ <76071cc9-b052-4628-9890-239b0acd260f@oss.qualcomm.com>
+ <fd2vic3g5jjk22y7yv24mtwr27ies2my5lih3zfj6yw4zd2obo@artndh3vepbb>
+ <c609cafa-5970-4694-9b6e-b5536df72eb7@oss.qualcomm.com>
+Content-Language: en-US
+From: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
+In-Reply-To: <c609cafa-5970-4694-9b6e-b5536df72eb7@oss.qualcomm.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 8bit
+X-Authority-Analysis: v=2.4 cv=YYu95xRf c=1 sm=1 tr=0 ts=685e8fa0 cx=c_pps
+ a=hnmNkyzTK/kJ09Xio7VxxA==:117 a=a09MB1VsJqAZHPW3esczKA==:17
+ a=IkcTkHD0fZMA:10 a=6IFa9wvqVegA:10 a=VwQbUJbxAAAA:8 a=EUspDBNiAAAA:8
+ a=COk6AnOGAAAA:8 a=R2xQUvtixtji6bILba0A:9 a=3ZKOabzyN94A:10 a=QEXdDO2ut3YA:10
+ a=PEH46H7Ffwr30OY-TuGO:22 a=TjNXssC_j7lpFel5tvFf:22
+X-Proofpoint-GUID: EUe_2tLZ9OmFzrl1Iu-U96lmm_gDqJ8O
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwNjI3MDEwNCBTYWx0ZWRfX7hy3eRXJilpd
+ fJrC5/nTce7LCCi2+WAQWjfRLUbVfTEaqjqrK/JCUBrnqEG0dhi9FpzbSm1ahX8VlqxkyUhxLlF
+ 0H7xBddpW2xLI1xPXpRzEWi+rHm3eX2nXe2IIQ1CuUKO3WQiHefdr4L8nlCIp6TtfQfOFjAN5zT
+ 0MV4jga9QJbQGUkn2zEocYngQ9rBkitRkkp1gGyFlAnIR6SKj7w2ymqH925Qt6dDs5km31e+VR2
+ p7V3ozIWIHo2nCMjh3+XzPpTnnqFKdJjtE/Fp1L+OIL6yTzFTFOnPO1QBph5hzqk4N1g1rIIloQ
+ jeplcDDa9vMjeH+0eX/QmWXE/CIu9hDS0WpILvZnxsDrSqRo1mRv1yvAYUgpfBBHNxx0mqthcOC
+ ij5iKGA9FTFhtpH0aIogdQIFyCGN3tcG3i8dxaXGCJANr6yLOcsPPiLra+c4+hMOeiAeNTNQ
+X-Proofpoint-ORIG-GUID: EUe_2tLZ9OmFzrl1Iu-U96lmm_gDqJ8O
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1099,Hydra:6.1.7,FMLib:17.12.80.40
+ definitions=2025-06-27_04,2025-06-26_05,2025-03-28_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ malwarescore=0 adultscore=0 spamscore=0 impostorscore=0 suspectscore=0
+ lowpriorityscore=0 priorityscore=1501 phishscore=0 mlxlogscore=635
+ clxscore=1015 mlxscore=0 bulkscore=0 classifier=spam authscore=0 authtc=n/a
+ authcc= route=outbound adjust=0 reason=mlx scancount=1
+ engine=8.19.0-2505280000 definitions=main-2506270104
 
-On 2025-06-27 10:07, Inki Dae wrote:
-> 2025년 6월 27일 (금) 오전 4:42, Kaustabh Chakraborty 
-> <kauschluss@disroot.org>님이 작성:
->> 
->> Exynos7870's DSIM has separate registers for LINK and DPHY status. 
->> This
->> is in contrast to other devices in the driver which use a single
->> register for both.
->> 
->> Add their respective entries in the register list. Devices having a
->> single status register have been assigned the same offset for both
->> entries.
->> 
->> Signed-off-by: Kaustabh Chakraborty <kauschluss@disroot.org>
->> ---
->>  drivers/gpu/drm/bridge/samsung-dsim.c | 15 +++++++++------
->>  1 file changed, 9 insertions(+), 6 deletions(-)
->> 
->> diff --git a/drivers/gpu/drm/bridge/samsung-dsim.c 
->> b/drivers/gpu/drm/bridge/samsung-dsim.c
->> index 
->> f2f666b27d2d5ec016d7a7f47c87fcdf1377d41a..7fd4c34cdc3170d363942f98feec048097da3c06 
->> 100644
->> --- a/drivers/gpu/drm/bridge/samsung-dsim.c
->> +++ b/drivers/gpu/drm/bridge/samsung-dsim.c
->> @@ -30,7 +30,7 @@
->>  /* returns true iff both arguments logically differs */
->>  #define NEQV(a, b) (!(a) ^ !(b))
->> 
->> -/* DSIM_STATUS */
->> +/* DSIM_DPHY_STATUS */
->>  #define DSIM_STOP_STATE_DAT(x)         (((x) & 0xf) << 0)
->>  #define DSIM_STOP_STATE_CLK            BIT(8)
->>  #define DSIM_TX_READY_HS_CLK           BIT(10)
->> @@ -239,7 +239,8 @@ enum samsung_dsim_transfer_type {
->>  };
->> 
->>  enum reg_idx {
->> -       DSIM_STATUS_REG,        /* Status register */
+On 27/06/2025 15:16, Srinivas Kandagatla wrote:
+> On 5/22/25 7:51 PM, Dmitry Baryshkov wrote:
+>> On Thu, May 22, 2025 at 08:27:40PM +0200, Konrad Dybcio wrote:
+>>> On 5/22/25 2:16 PM, Dmitry Baryshkov wrote:
+>>>> On Thu, 22 May 2025 at 13:44, Ling Xu <quic_lxu5@quicinc.com> wrote:
+>>>>>
+>>>>> 在 5/20/2025 9:53 PM, Dmitry Baryshkov 写道:
+>>>>>> On Tue, May 20, 2025 at 02:41:22PM +0800, Ling Xu wrote:
+>>>>>>> 在 5/17/2025 5:47 AM, Dmitry Baryshkov 写道:
+>>>>>>>> On Fri, May 16, 2025 at 04:30:27PM +0530, Ling Xu wrote:
+>>>>>>>>> Add reserved memory region and VMIDs for audio PD dynamic loading and
+>>>>>>>>> remote heap memory requirements.
+>>>>>>>>
+>>>>>>>> Why? Was it not working without this heap?
+>>>>>>>
+>>>>>>> yes, it will not working without this heap.
+>>>>>>> Memory region is required for audio PD for dynamic loading and remote heap memory
+>>>>>>> requirements. For more info, please refer below patches, it has provided a more
+>>>>>>> detailed explanation.
+>>>>>>> https://lore.kernel.org/all/bb68da04-ef52-4172-8b6e-f4027bcc2786@oss.qualcomm.com/
+>>>>>>> https://lore.kernel.org/all/effea02f-6ffb-42e9-87df-081caafab728@oss.qualcomm.com/
+>>>>>>
+>>>>>> This triggers a bunch of questions:
+>>>>>>
+>>>>>> - What is audio PD?
+>>>>>>
+>>>>> Audio PD is a protection domain which is running on DSP for audio
+>>>>> specific processing.
+>>>>>> - Is it a required component?
+>>>>> yes. it is needed wherever there is some audio use cases where
+>>>>> DSP audio PD dynamic loading is needed.
+>>>>
+>>>> Which use cases?
+>>>>
 > 
-> According to the datasheets I have, both Exynos5422 and Exynos7420 use
-> DSIM_STATUS, while Exynos8890 splits this into DSIM_LINK_STATUS and
-> DSIM_PHY_STATUS. It appears that Exynos7870 follows the same approach
-> as Exynos8890.
-> 
-> The current modification removes the legacy DSIM_STATUS_REG and adds
-> new DSIM_LINK_STATUS_REG and DSIM_DPHY_STATUS_REG. However, this
-> change causes the register names used for older SoC versions to differ
-> from those in the datasheets, so I think it is better to keep the
-> legacy name for backward compatibility.
-> 
-> How about modifying it as follows?
-> enum reg_idx {
->     DSIM_STATUS_REG,          /* Status register (legacy) */
->     DSIM_LINK_STATUS_REG,     /* Link status register (Exynos7870, ...) 
-> */
->     DSIM_PHY_STATUS_REG,      /* PHY status register (Exynos7870, ...) 
-> */
->     ...
-> };
-> 
-> static const unsigned int exynos7870_reg_ofs[] = {
->     [DSIM_STATUS_REG] = 0x00,        /* Legacy compatibility - use
-> LINK_STATUS */
->     [DSIM_LINK_STATUS_REG] = 0x04,   /* Link status register */
->     [DSIM_PHY_STATUS_REG] = 0x08,    /* PHY status register */
->     ...
-> };
-> 
-> Additionally, by configuring the hw_type field in the
-> samsung_dsim_plat_data structure like you did with the patch[1], you
-> can use the appropriate register name for each SoC as shown below:
-> if (dsi->plat_data->hw_type == DSIM_TYPE_EXYNOS7870)
+> Usecase is for audio compress offload, ex: when we play mp3 or any other
+> compress format, we need audio pd support.
 
-I've instead added a flag to the driver data indicating the
-availability of legacy status register. In my opinion, this
-approach quickly turns cumbersome as the number of variants
-increase.
+This needs to be in the commit message.
 
-Thanks for the suggestion.
 
->     reg = samsung_dsim_read(dsi, DSIM_LINK_STATUS_REG);
-> else
->     reg = samsung_dsim_read(dsi, DSIM_STATUS_REG);
-> 
-> 
-> [1] [PATCH v2 12/13] drm/bridge: samsung-dsim: add driver support for
-> exynos7870 DSIM bridge
-> 
-> Thanks,
-> Inki Dae
+-- 
+With best wishes
+Dmitry
 
