@@ -1,404 +1,220 @@
-Return-Path: <devicetree+bounces-190632-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-190633-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 32442AEC45B
-	for <lists+devicetree@lfdr.de>; Sat, 28 Jun 2025 05:03:32 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 21BB1AEC463
+	for <lists+devicetree@lfdr.de>; Sat, 28 Jun 2025 05:06:35 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id BC04D7AB784
-	for <lists+devicetree@lfdr.de>; Sat, 28 Jun 2025 03:02:07 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 97EBD7B4D6D
+	for <lists+devicetree@lfdr.de>; Sat, 28 Jun 2025 03:05:10 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0BDEA21D58C;
-	Sat, 28 Jun 2025 03:02:51 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0723A1E7C1C;
+	Sat, 28 Jun 2025 03:06:28 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="YIz48+P3"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="jsoz9RS1"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-oi1-f172.google.com (mail-oi1-f172.google.com [209.85.167.172])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6D2D421D3E4
-	for <devicetree@vger.kernel.org>; Sat, 28 Jun 2025 03:02:49 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6091371747
+	for <devicetree@vger.kernel.org>; Sat, 28 Jun 2025 03:06:25 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.172
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1751079770; cv=none; b=si4+sdehmbmm4ifJBMP2AjslNsiue7y+yrs3HOf95An36WvgtRScqopOyW0Z6etD/znv9cL7l1V0FcBi1DXn+TSAK6si3J5tnBbaI/TcELR3XtKMnHGUafNEx8ZXIwf1K8+eE021u/wVVrVbUhPA+j/yyueN2tIsEQ2TLVJ4DNQ=
+	t=1751079987; cv=none; b=YLhWb+SAWTYvw/mSnGM+sbSwrpKorZVElw9q7viIm31rnGadNTwgzkXge0BDr+HcQvLFGMheyh7x4tmJMX6bG1KplDUEOH9LGX+WM7X3yqTgYpQhjDXQGnvOGQLDwgt4ioAA0UgIsYSpznHF1sLSAD1iZQ2ZRriy7vufMBVG89o=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1751079770; c=relaxed/simple;
-	bh=on2BHgBcWkoYT/ewSpxz+0Nn83q7soVlm475P3sXIOM=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=PYkoJDDWRULBX9eyu1FndM+zJ3NmO9+XuFv4EW+N50drzT12Zzu3T+uvvxN5Sg4N+MN6bdsooJI4/kpnKq3nQE2r5WY7cNF9ReBxSIjGjkg8jQdZz66lVX1vhV8UQ7OcgxVknCiFCJFd8NwS0qvVYn2YGpUi4XBGpEyhXyVdnlY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=YIz48+P3; arc=none smtp.client-ip=205.220.168.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
-Received: from pps.filterd (m0279864.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 55S2LOTt024509
-	for <devicetree@vger.kernel.org>; Sat, 28 Jun 2025 03:02:48 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	5aR8fGjAivIsW8Z1WVaLdu7x69SPiAPyD3BZFTe1eAA=; b=YIz48+P3xsJXg6wd
-	1+L1uf4/U9lp4P+97DCeZK9z60HcfCWiCuAPDmFhVJWhd+rPk9W3cxtGm2jBrDKZ
-	9A6UlpxGZ7WXAW2i676ZQ61jT4m4dO5Vx7Ic99WwpvbjDnYWxnhtikius2Mw7Yq7
-	rw49iMfS9AK/0r0qaWsK4cFALEl/GuXRMfIDROukP9275u7QownKubnKesR+Z3Qs
-	tU1sCb9FsA7pG+VWGCvaekZ/p6b3YNJqyvIYhZuJBpMaSeF39bQgoF93v9tw5KP5
-	WtNA+NdSQcQaZw2U0kXIvhbFk3o6ewx8rHK7sAF7ULi15Ti/2WDi4UxfJNLXre1i
-	X133ng==
-Received: from mail-qk1-f198.google.com (mail-qk1-f198.google.com [209.85.222.198])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 47esa51rua-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Sat, 28 Jun 2025 03:02:48 +0000 (GMT)
-Received: by mail-qk1-f198.google.com with SMTP id af79cd13be357-7d4133a2081so395234685a.3
-        for <devicetree@vger.kernel.org>; Fri, 27 Jun 2025 20:02:48 -0700 (PDT)
+	s=arc-20240116; t=1751079987; c=relaxed/simple;
+	bh=m8m69wBxoa70iYG/AkNYrAydwapxurq3re3bN3EdVPo=;
+	h=Date:From:To:Cc:Subject:Message-ID:MIME-Version:Content-Type:
+	 Content-Disposition:In-Reply-To; b=noL+9abUtK7xK8rHNTlJ4xEZByZ0sQEYjn5NKX6b8SjjBNDlCagps1e5GVoe9+6fkSsyBVbzyZsyDU+aSj0SGe0sSlNrNQEaQ4PTdRuNDvllVe2wmMoRv0fBxHlJakUuZ3cUNSokY+Gh5flwAKwXTJk8zyBbx4UMjvdIFmQvlqo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=jsoz9RS1; arc=none smtp.client-ip=209.85.167.172
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-oi1-f172.google.com with SMTP id 5614622812f47-407a6c6a6d4so912941b6e.1
+        for <devicetree@vger.kernel.org>; Fri, 27 Jun 2025 20:06:25 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1751079984; x=1751684784; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:message-id:subject:cc
+         :to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=+DXADkH4z/dqRdq68mh0r6FXp5vcnYDgDeOvMHMlJB4=;
+        b=jsoz9RS18CJbXJTZPtfCZRxrOby0rMJjz6RRlfoll4rkoql0GQWxSiZSTgFeoCvWGe
+         gFI7ykzmUrgjXd8wCINgBb6wlo1C8T/QROMei3c1XdF/rS4uNj/r18QkFeSjN7wqWlwr
+         QmyKeGSn0FeNDY9izOPli74Zi2rcWYPTsrPCZWmsG3De9Oq/gpbpb9o82IiD8h7w7Y/G
+         I8Ovg/hXSkGYJDCzkGnMZA+b4IS95IhViVwDMrQczIDBac3/hhAXkp9y8MYNLJvTl+GS
+         /B1QBxlvDrP1g8WV4pMQ9cDkdFlcnB/+Ptzvs5MFYVQaZIF5+XOLmyPSiDqcJ1W2e5bJ
+         DTWw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1751079767; x=1751684567;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=5aR8fGjAivIsW8Z1WVaLdu7x69SPiAPyD3BZFTe1eAA=;
-        b=rrZsQJ79AoH51arKlw11AHDjxE21SHwm1KFbFzclu0ohvbOSVTU7yjJSLe2Yam1DgL
-         hqTmRS8DwbjLzs+pQ5oz4F9vrQF3UZv8RPEAi4VmObEZZTR19LijSTpWEMqk1usHQhGf
-         9kIYYE71RXrSCmhBcPwDcYPHtqPm1sHntcFObpPcuAIDKDo16BNi99mGnLxHNQhPJl8j
-         yQfz8OAHVGdN6LhZ6p9o/bAmbCdpqz+MN1wFhsov3fit1Vrk6rTDfMPgT4fbiwO5fyXm
-         1Uc9cdvDtO+KPhYMtTht3BMH7GglS6G/E9RmU/z/bQHlUNcc3rgC6B+d+1Xa/U1eQtyM
-         qpgg==
-X-Forwarded-Encrypted: i=1; AJvYcCVM6eQCgwjyAPbewDJOSj6cBShiUt43SfrbrNseT2EFg1jxCCSEiALpv4GBBFGkCstrJLCgxjh9f/E5@vger.kernel.org
-X-Gm-Message-State: AOJu0YxQ5R8SOfzvoRBX6gYYZ+juaNLzX/cQk3Y2BLsxyEyAFHXyRQoj
-	0Ceuhy/Z0OsGewZwp6YQ19EtitTmaMhb/GNhbpU51mkX3HRnS3Noy34U8h7sLpLvyb8SdVhlGWz
-	tngr8kOPoZRsb3rAVbrlxzT4lhgHS4GSh9hUeE04ZzLYwpK02aR+Q3BlGPPjwW5saA4Mw03JCoL
-	uuNg==
-X-Gm-Gg: ASbGnctceF/Mjnd9AVanD5wS7YEkoBwpG3xmBo34pft5Xcp8Q94EzYaqAGJTL1bmU2u
-	hZx3PtKjbvJV5lHtLXH7iLlrvAGJsdQ4YNH2Zibrf/EuKgBnfU0p5BOM/+gQt3zDi8nTNcYAvpk
-	eQjecbfTimkDlw6aV4hftelAeLXvExQwAIbu8PVdDcKpt+8RxYk97NZsPJ8cVIdoWmXemKttXOY
-	u0mRCl7/Ohd0BJVmH3+ivfjRBLxfkNf4dvpbUmUQEwiy5IwtKOkKnNvwf/gufbLCaD4AXjB0fzf
-	ksZe1k2mt6/CH/cFYliN7qyacpQox9uv5jM/E5wYS/8aHaVnOk5ksawUKQ32gM9Gv0zxymnlUWv
-	YJCTEkmdfJJ921u3i0MxfXq6GubhWfyI5e04=
-X-Received: by 2002:a05:620a:1727:b0:7d3:9e75:6953 with SMTP id af79cd13be357-7d44399cea1mr913295285a.52.1751079766765;
-        Fri, 27 Jun 2025 20:02:46 -0700 (PDT)
-X-Google-Smtp-Source: AGHT+IHeIaPbr6Eb6DCFi+U0O1m19Bb2BROvDh0XhxtlAu0XGoBDUeVMqWy1lJZwa8PIlZmHgxATKw==
-X-Received: by 2002:a05:620a:1727:b0:7d3:9e75:6953 with SMTP id af79cd13be357-7d44399cea1mr913293185a.52.1751079766356;
-        Fri, 27 Jun 2025 20:02:46 -0700 (PDT)
-Received: from umbar.lan (2001-14ba-a0c3-3a00-264b-feff-fe8b-be8a.rev.dnainternet.fi. [2001:14ba:a0c3:3a00:264b:feff:fe8b:be8a])
-        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-5550b2cec36sm652162e87.180.2025.06.27.20.02.42
+        d=1e100.net; s=20230601; t=1751079984; x=1751684784;
+        h=in-reply-to:content-disposition:mime-version:message-id:subject:cc
+         :to:from:date:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=+DXADkH4z/dqRdq68mh0r6FXp5vcnYDgDeOvMHMlJB4=;
+        b=VAFBIjaYe6v3Ddwx+cJmNLxsdsv+Xb9AREE1p74pMqq2KS6kBFKbZcSkJcFl6Fk7um
+         YLnOYzkgljJYXMnJB5x4VVBzdRt92gcukYtczs082A5TylxIrvMRoGuqyBTrYvvBsUqB
+         7jlaJW4sSAdvcf8IAerlbrMS7QtO01KRQFhIQkQYtqB+TphCliIU954l2uNB8LCFXHty
+         KUsNI2rWmRc2b1Dq1UToiiLjRMuSIGqkg/MT89qqmbqaowgxMnuy5jaX871eRUXTAV3N
+         N2SwlZTzXyviS21EnLSfSDHbKcwufHj9xAg6GmKi9otTPijZ64+8e8rutL2JxY+DeNCF
+         RVIw==
+X-Forwarded-Encrypted: i=1; AJvYcCXqp6JK+b9vjQyiBkI6vNbDXGh5uQYyyM4T7w/pRsdDYavNER3/Ssopt7trXPhnk9fdnWZet2/raQJS@vger.kernel.org
+X-Gm-Message-State: AOJu0YzYqVV7FWDD8s1DW09vt4jFrlP7YuaJBKzEzYIAnvH0KlU5Rd8C
+	QsABvU7wfrWsvC+Urbxs4FlPpU8FzaNJCsMdDZq9pVh1A2CN+zoNCiK8h6/Ik14W8GU=
+X-Gm-Gg: ASbGncvfr9vfzix8k7v5NpvUBNPWBozNO8pWqqcgkJQpW0GHL6txf0QA7PtQU3JL72A
+	i6l/wJAW9M2B9RDHqnt7/grs7jVGmb6MHSEMRVuxIF+ruGGpzr6Xc9L9CPvWKSTyBHSkvAAW0r5
+	9HRdRn2q1lXjJn2JOMMId4Sx5jxP3USnZm8vftTqbEx+BbR4HsTssYsiEsKpCerhz661O5VYwrc
+	r9mKlvyz32QjYvnbZXkdRggtNkxCvrL/QTXdB84OMFCcKrC6jhkbuBTQbHSiAXvfeNnRYqfDkgJ
+	AZcoC4dc4e6MFSY171jC6m1fd4aIUaRC4doQm4DpWfnT91nRu/W29yqB/JpRJqXKjgVZKg==
+X-Google-Smtp-Source: AGHT+IEJK35BgYnFuVJFF0JcThYpOULgF65Vp04oXBqm1k+Bh5TYhhKk0mrjvzQiO5c5WlsFNnYEiA==
+X-Received: by 2002:a05:6808:1688:b0:403:51ac:2400 with SMTP id 5614622812f47-40b33c6cd8amr4677760b6e.11.1751079984347;
+        Fri, 27 Jun 2025 20:06:24 -0700 (PDT)
+Received: from localhost ([2603:8080:b800:f700:f3a4:7b11:3bf4:5d7b])
+        by smtp.gmail.com with ESMTPSA id 5614622812f47-40b322c1e25sm645446b6e.20.2025.06.27.20.06.22
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 27 Jun 2025 20:02:44 -0700 (PDT)
-From: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
-Date: Sat, 28 Jun 2025 06:02:37 +0300
-Subject: [PATCH 3/3] dt-bindings: display/msm/gpu: describe clocks for each
- Adreno GPU type
+        Fri, 27 Jun 2025 20:06:23 -0700 (PDT)
+Date: Sat, 28 Jun 2025 06:06:21 +0300
+From: Dan Carpenter <dan.carpenter@linaro.org>
+To: oe-kbuild@lists.linux.dev,
+	Anjelique Melendez <anjelique.melendez@oss.qualcomm.com>,
+	andersson@kernel.org, konradybcio@kernel.org, robh@kernel.org,
+	krzk+dt@kernel.org, conor+dt@kernel.org
+Cc: lkp@intel.com, oe-kbuild-all@lists.linux.dev,
+	dmitry.baryshkov@oss.qualcomm.com, linux-arm-msm@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH 2/2] soc: qcom: pmic_glink: Add support for subsystem
+ restart (SSR)
+Message-ID: <92cbdf26-7205-40bb-8863-b35b6fabd32b@suswa.mountain>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20250628-rework-msm-gpu-schema-v1-3-89f818c51b6a@oss.qualcomm.com>
-References: <20250628-rework-msm-gpu-schema-v1-0-89f818c51b6a@oss.qualcomm.com>
-In-Reply-To: <20250628-rework-msm-gpu-schema-v1-0-89f818c51b6a@oss.qualcomm.com>
-To: Rob Clark <robin.clark@oss.qualcomm.com>, Sean Paul <sean@poorly.run>,
-        Konrad Dybcio <konradybcio@kernel.org>,
-        Dmitry Baryshkov <lumag@kernel.org>,
-        Abhinav Kumar <abhinav.kumar@linux.dev>,
-        Jessica Zhang <jessica.zhang@oss.qualcomm.com>,
-        Marijn Suijten <marijn.suijten@somainline.org>,
-        Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
-        Maxime Ripard <mripard@kernel.org>,
-        Thomas Zimmermann <tzimmermann@suse.de>,
-        David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
-        Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>
-Cc: linux-arm-msm@vger.kernel.org, dri-devel@lists.freedesktop.org,
-        freedreno@lists.freedesktop.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-X-Mailer: b4 0.14.2
-X-Developer-Signature: v=1; a=openpgp-sha256; l=8307;
- i=dmitry.baryshkov@oss.qualcomm.com; h=from:subject:message-id;
- bh=on2BHgBcWkoYT/ewSpxz+0Nn83q7soVlm475P3sXIOM=;
- b=owEBbQGS/pANAwAKAYs8ij4CKSjVAcsmYgBoX1tMJ5CQdX181Qavk2jRBSkDutKIttOYQLspI
- dO14GTIeq+JATMEAAEKAB0WIQRMcISVXLJjVvC4lX+LPIo+Aiko1QUCaF9bTAAKCRCLPIo+Aiko
- 1Xt3B/4s/QVV4Tn7GK5YrC9I1uckXq9WeLcot75I7GKrsJVje+7LzUciGGirOrkTpC4SFrZbNRp
- WQ1F9qSOUpWQxcoqdEiOPuDnMIR6/T5IRfkXgGEck+VR0rk5D6HK7ek68vU6XKZIgACVCsDzZ1x
- XdF/vHHOV+FviOcFLmqQMmzxQA27jMobKgqDAnnGX7Rvaa7XEXbNmVAmlU7bozTiutDP7ZBuRAB
- WnV9AIMFgLYLyRcMLNT31R7X4OTo/1YuV/BvJIH0zf/SAwkzujl7S8guuhCJPkgeIatQhoDYsyM
- ZlNo3fNNCDcslxx4+/tFv3Blco1ZYqbK6BkpzLxg7rFf36nF
-X-Developer-Key: i=dmitry.baryshkov@oss.qualcomm.com; a=openpgp;
- fpr=8F88381DD5C873E4AE487DA5199BF1243632046A
-X-Authority-Analysis: v=2.4 cv=eLYTjGp1 c=1 sm=1 tr=0 ts=685f5b58 cx=c_pps
- a=qKBjSQ1v91RyAK45QCPf5w==:117 a=xqWC_Br6kY4A:10 a=IkcTkHD0fZMA:10
- a=6IFa9wvqVegA:10 a=EUspDBNiAAAA:8 a=iX1fKmmLQLlQjSsTkigA:9 a=QEXdDO2ut3YA:10
- a=NFOGd7dJGGMPyQGDc5-O:22
-X-Proofpoint-GUID: RVPvo-6foptk35F6REVpcxWgxb7iP43c
-X-Proofpoint-ORIG-GUID: RVPvo-6foptk35F6REVpcxWgxb7iP43c
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwNjI4MDAyMyBTYWx0ZWRfX0omBJ0ZtHsT9
- U4mhQSHjINSWb8wedRI/Xw3uP2fK5NufONovG5EVWrMCuSBTHW6OrdG8KlHoXb3klzJpspe6SZt
- FG9TLpmXiZ34AvMAA7VEtbokYcJKAK1GuY2GFuhEz++sxLeo6LsoLMwcnqk3ena8M5nSdrrEVuo
- 7ywy0SNz7jzoKPVUDdVvBljvODWpNQhjpzaI3rD87q18jDUme19kf03ACkc51bJEzzs0Ag0rnJC
- 73QsMp2a5DkvHT9wSfVIl8VEFCmY02G4uM3Mr/akd/PNw/sykCevoxs6lQSNMvT9dYzg1F9espN
- lhsmCVe8uhWaqQv9q3PFfWxguhGZxa6hKey5GFN/0PtWuV2WQ3gDRBe/8QB+ZOr3iYVS+TI8SqO
- KxbIWuhwVCvGMEY39TBv2SyjrwPGK46HLMyBFWkGn9Tdxnu/MqNC+pUrnx71owcBcuVkkY1D
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1099,Hydra:6.1.7,FMLib:17.12.80.40
- definitions=2025-06-27_05,2025-06-27_01,2025-03-28_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- phishscore=0 priorityscore=1501 mlxscore=0 clxscore=1015 mlxlogscore=768
- suspectscore=0 bulkscore=0 impostorscore=0 lowpriorityscore=0 malwarescore=0
- adultscore=0 spamscore=0 classifier=spam authscore=0 authtc=n/a authcc=
- route=outbound adjust=0 reason=mlx scancount=1 engine=8.19.0-2505280000
- definitions=main-2506280023
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20250624225535.2013141-3-anjelique.melendez@oss.qualcomm.com>
 
-Rather than having a single list with all possible clocks for A3xx-A5xx
-define individual Adreno GPU types and corresponding clock lists.
+Hi Anjelique,
 
-Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
----
- .../devicetree/bindings/display/msm/gpu.yaml       | 220 ++++++++++++++++++---
- 1 file changed, 194 insertions(+), 26 deletions(-)
+kernel test robot noticed the following build warnings:
 
-diff --git a/Documentation/devicetree/bindings/display/msm/gpu.yaml b/Documentation/devicetree/bindings/display/msm/gpu.yaml
-index af43527188cefda0c127c4674d4667203972f583..7ef80f9fac8b2927b2a69100a7f6c729d9d188ab 100644
---- a/Documentation/devicetree/bindings/display/msm/gpu.yaml
-+++ b/Documentation/devicetree/bindings/display/msm/gpu.yaml
-@@ -146,41 +146,209 @@ allOf:
-       properties:
-         compatible:
-           contains:
--            pattern: '^qcom,adreno-[3-5][0-9][0-9]\.[0-9]+$'
-+            oneOf:
-+              - pattern: '^qcom,adreno-305\.[0-9]+$'
-+              - pattern: '^qcom,adreno-330\.[0-9]+$'
-+    then:
-+      properties:
-+        clocks:
-+          minItems: 3
-+          maxItems: 3
-+        clock-names:
-+          items:
-+            - const: core
-+              description: GPU Core clock
-+            - const: iface
-+              description: GPU Interface clock
-+            - const: mem_iface
-+              description: GPU Memory Interface clock
- 
-+  - if:
-+      properties:
-+        compatible:
-+          contains:
-+            pattern: '^qcom,adreno-306\.[0-9]+$'
-     then:
-       properties:
-         clocks:
--          minItems: 2
--          maxItems: 7
-+          minItems: 5
-+          maxItems: 6
-+        clock-names:
-+          oneOf:
-+            - items:
-+                - const: core
-+                  description: GPU Core clock
-+                - const: iface
-+                  description: GPU Interface clock
-+                - const: mem_iface
-+                  description: GPU Memory Interface clock
-+                - const: alt_mem_iface
-+                  description: GPU Alternative Memory Interface clock
-+                - const: gfx3d
-+                  description: GPU 3D engine clock
-+            - items:
-+                - const: core
-+                  description: GPU Core clock
-+                - const: iface
-+                  description: GPU Interface clock
-+                - const: mem
-+                  description: GPU Memory clock
-+                - const: mem_iface
-+                  description: GPU Memory Interface clock
-+                - const: alt_mem_iface
-+                  description: GPU Alternative Memory Interface clock
-+                - const: gfx3d
-+                  description: GPU 3D engine clock
- 
-+  - if:
-+      properties:
-+        compatible:
-+          contains:
-+            pattern: '^qcom,adreno-320\.[0-9]+$'
-+    then:
-+      properties:
-+        clocks:
-+          minItems: 4
-+          maxItems: 4
-         clock-names:
-           items:
--            anyOf:
--              - const: core
--                description: GPU Core clock
--              - const: iface
--                description: GPU Interface clock
--              - const: mem
--                description: GPU Memory clock
--              - const: mem_iface
--                description: GPU Memory Interface clock
--              - const: alt_mem_iface
--                description: GPU Alternative Memory Interface clock
--              - const: gfx3d
--                description: GPU 3D engine clock
--              - const: rbbmtimer
--                description: GPU RBBM Timer for Adreno 5xx series
--              - const: rbcpr
--                description: GPU RB Core Power Reduction clock
--              - const: alwayson
--                description: GPU AON clock
--          minItems: 2
-+            - const: core
-+              description: GPU Core clock
-+            - const: iface
-+              description: GPU Interface clock
-+            - const: mem
-+              description: GPU Memory clock
-+            - const: mem_iface
-+              description: GPU Memory Interface clock
-+
-+  - if:
-+      properties:
-+        compatible:
-+          contains:
-+            pattern: '^qcom,adreno-405\.[0-9]+$'
-+    then:
-+      properties:
-+        clocks:
-+          minItems: 7
-           maxItems: 7
-+        clock-names:
-+          items:
-+            - const: core
-+              description: GPU Core clock
-+            - const: iface
-+              description: GPU Interface clock
-+            - const: mem
-+              description: GPU Memory clock
-+            - const: mem_iface
-+              description: GPU Memory Interface clock
-+            - const: alt_mem_iface
-+              description: GPU Alternative Memory Interface clock
-+            - const: gfx3d
-+              description: GPU 3D engine clock
-+            - const: rbbmtimer
-+              description: GPU RBBM Timer for Adreno 5xx series
- 
--      required:
--        - clocks
--        - clock-names
-+  - if:
-+      properties:
-+        compatible:
-+          contains:
-+            pattern: '^qcom,adreno-506\.[0-9]+$'
-+    then:
-+      properties:
-+        clocks:
-+          minItems: 6
-+          maxItems: 6
-+        clock-names:
-+          items:
-+            - const: core
-+              description: GPU Core clock
-+            - const: iface
-+              description: GPU Interface clock
-+            - const: mem_iface
-+              description: GPU Memory Interface clock
-+            - const: alt_mem_iface
-+              description: GPU Alternative Memory Interface clock
-+            - const: rbbmtimer
-+              description: GPU RBBM Timer for Adreno 5xx series
-+            - const: alwayson
-+              description: GPU AON clock
-+
-+  - if:
-+      properties:
-+        compatible:
-+          contains:
-+            oneOf:
-+              - pattern: '^qcom,adreno-508\.[0-9]+$'
-+              - pattern: '^qcom,adreno-509\.[0-9]+$'
-+              - pattern: '^qcom,adreno-512\.[0-9]+$'
-+              - pattern: '^qcom,adreno-540\.[0-9]+$'
-+    then:
-+      properties:
-+        clocks:
-+          minItems: 6
-+          maxItems: 6
-+        clock-names:
-+          items:
-+            - const: iface
-+              description: GPU Interface clock
-+            - const: rbbmtimer
-+              description: GPU RBBM Timer for Adreno 5xx series
-+            - const: mem
-+              description: GPU Memory clock
-+            - const: mem_iface
-+              description: GPU Memory Interface clock
-+            - const: rbcpr
-+              description: GPU RB Core Power Reduction clock
-+            - const: core
-+              description: GPU Core clock
-+
-+  - if:
-+      properties:
-+        compatible:
-+          contains:
-+            pattern: '^qcom,adreno-510\.[0-9]+$'
-+    then:
-+      properties:
-+        clocks:
-+          minItems: 6
-+          maxItems: 6
-+        clock-names:
-+          items:
-+            - const: core
-+              description: GPU Core clock
-+            - const: iface
-+              description: GPU Interface clock
-+            - const: mem
-+              description: GPU Memory clock
-+            - const: mem_iface
-+              description: GPU Memory Interface clock
-+            - const: rbbmtimer
-+              description: GPU RBBM Timer for Adreno 5xx series
-+            - const: alwayson
-+              description: GPU AON clock
-+
-+  - if:
-+      properties:
-+        compatible:
-+          contains:
-+            pattern: '^qcom,adreno-530\.[0-9]+$'
-+    then:
-+      properties:
-+        clocks:
-+          minItems: 5
-+          maxItems: 5
-+        clock-names:
-+          items:
-+            - const: core
-+              description: GPU Core clock
-+            - const: iface
-+              description: GPU Interface clock
-+            - const: rbbmtimer
-+              description: GPU RBBM Timer for Adreno 5xx series
-+            - const: mem
-+              description: GPU Memory clock
-+            - const: mem_iface
-+              description: GPU Memory Interface clock
- 
-   - if:
-       properties:
+https://git-scm.com/docs/git-format-patch#_base_tree_information]
+
+url:    https://github.com/intel-lab-lkp/linux/commits/Anjelique-Melendez/dt-bindings-soc-qcom-qcom-pmic-glink-Add-qcom-subsys-name-property/20250625-070209
+base:   https://git.kernel.org/pub/scm/linux/kernel/git/robh/linux.git for-next
+patch link:    https://lore.kernel.org/r/20250624225535.2013141-3-anjelique.melendez%40oss.qualcomm.com
+patch subject: [PATCH 2/2] soc: qcom: pmic_glink: Add support for subsystem restart (SSR)
+config: x86_64-randconfig-161-20250627 (https://download.01.org/0day-ci/archive/20250628/202506280819.vRUvImej-lkp@intel.com/config)
+compiler: clang version 20.1.7 (https://github.com/llvm/llvm-project 6146a88f60492b520a36f8f8f3231e15f3cc6082)
+
+If you fix the issue in a separate patch/commit (i.e. not just a new version of
+the same patch/commit), kindly add following tags
+| Reported-by: kernel test robot <lkp@intel.com>
+| Reported-by: Dan Carpenter <dan.carpenter@linaro.org>
+| Closes: https://lore.kernel.org/r/202506280819.vRUvImej-lkp@intel.com/
+
+smatch warnings:
+drivers/soc/qcom/pmic_glink.c:360 pmic_glink_probe() warn: passing zero to 'PTR_ERR'
+
+vim +/PTR_ERR +360 drivers/soc/qcom/pmic_glink.c
+
+58ef4ece1e41ac Bjorn Andersson    2023-01-31  301  static int pmic_glink_probe(struct platform_device *pdev)
+58ef4ece1e41ac Bjorn Andersson    2023-01-31  302  {
+ff642773b6b5b8 Neil Armstrong     2023-03-21  303  	const unsigned long *match_data;
+56e992f9beb5f6 Anjelique Melendez 2025-06-24  304  	const char *subsys_name = NULL;
+58ef4ece1e41ac Bjorn Andersson    2023-01-31  305  	struct pdr_service *service;
+58ef4ece1e41ac Bjorn Andersson    2023-01-31  306  	struct pmic_glink *pg;
+58ef4ece1e41ac Bjorn Andersson    2023-01-31  307  	int ret;
+58ef4ece1e41ac Bjorn Andersson    2023-01-31  308  
+58ef4ece1e41ac Bjorn Andersson    2023-01-31  309  	pg = devm_kzalloc(&pdev->dev, sizeof(*pg), GFP_KERNEL);
+58ef4ece1e41ac Bjorn Andersson    2023-01-31  310  	if (!pg)
+58ef4ece1e41ac Bjorn Andersson    2023-01-31  311  		return -ENOMEM;
+58ef4ece1e41ac Bjorn Andersson    2023-01-31  312  
+58ef4ece1e41ac Bjorn Andersson    2023-01-31  313  	dev_set_drvdata(&pdev->dev, pg);
+58ef4ece1e41ac Bjorn Andersson    2023-01-31  314  
+58ef4ece1e41ac Bjorn Andersson    2023-01-31  315  	pg->dev = &pdev->dev;
+58ef4ece1e41ac Bjorn Andersson    2023-01-31  316  
+58ef4ece1e41ac Bjorn Andersson    2023-01-31  317  	INIT_LIST_HEAD(&pg->clients);
+9329933699b32d Bjorn Andersson    2024-04-30  318  	spin_lock_init(&pg->client_lock);
+58ef4ece1e41ac Bjorn Andersson    2023-01-31  319  	mutex_init(&pg->state_lock);
+58ef4ece1e41ac Bjorn Andersson    2023-01-31  320  
+ff642773b6b5b8 Neil Armstrong     2023-03-21  321  	match_data = (unsigned long *)of_device_get_match_data(&pdev->dev);
+4db09e7b967b90 Dmitry Baryshkov   2023-10-25  322  	if (!match_data)
+4db09e7b967b90 Dmitry Baryshkov   2023-10-25  323  		return -EINVAL;
+4db09e7b967b90 Dmitry Baryshkov   2023-10-25  324  
+ff642773b6b5b8 Neil Armstrong     2023-03-21  325  	pg->client_mask = *match_data;
+ff642773b6b5b8 Neil Armstrong     2023-03-21  326  
+f79ee78767ca60 Rob Clark          2024-02-17  327  	pg->pdr = pdr_handle_alloc(pmic_glink_pdr_callback, pg);
+f79ee78767ca60 Rob Clark          2024-02-17  328  	if (IS_ERR(pg->pdr)) {
+f79ee78767ca60 Rob Clark          2024-02-17  329  		ret = dev_err_probe(&pdev->dev, PTR_ERR(pg->pdr),
+f79ee78767ca60 Rob Clark          2024-02-17  330  				    "failed to initialize pdr\n");
+f79ee78767ca60 Rob Clark          2024-02-17  331  		return ret;
+f79ee78767ca60 Rob Clark          2024-02-17  332  	}
+f79ee78767ca60 Rob Clark          2024-02-17  333  
+ff642773b6b5b8 Neil Armstrong     2023-03-21  334  	if (pg->client_mask & BIT(PMIC_GLINK_CLIENT_UCSI)) {
+ff642773b6b5b8 Neil Armstrong     2023-03-21  335  		ret = pmic_glink_add_aux_device(pg, &pg->ucsi_aux, "ucsi");
+58ef4ece1e41ac Bjorn Andersson    2023-01-31  336  		if (ret)
+f79ee78767ca60 Rob Clark          2024-02-17  337  			goto out_release_pdr_handle;
+ff642773b6b5b8 Neil Armstrong     2023-03-21  338  	}
+ff642773b6b5b8 Neil Armstrong     2023-03-21  339  	if (pg->client_mask & BIT(PMIC_GLINK_CLIENT_ALTMODE)) {
+ff642773b6b5b8 Neil Armstrong     2023-03-21  340  		ret = pmic_glink_add_aux_device(pg, &pg->altmode_aux, "altmode");
+ff642773b6b5b8 Neil Armstrong     2023-03-21  341  		if (ret)
+ff642773b6b5b8 Neil Armstrong     2023-03-21  342  			goto out_release_ucsi_aux;
+ff642773b6b5b8 Neil Armstrong     2023-03-21  343  	}
+ff642773b6b5b8 Neil Armstrong     2023-03-21  344  	if (pg->client_mask & BIT(PMIC_GLINK_CLIENT_BATT)) {
+58ef4ece1e41ac Bjorn Andersson    2023-01-31  345  		ret = pmic_glink_add_aux_device(pg, &pg->ps_aux, "power-supply");
+58ef4ece1e41ac Bjorn Andersson    2023-01-31  346  		if (ret)
+58ef4ece1e41ac Bjorn Andersson    2023-01-31  347  			goto out_release_altmode_aux;
+ff642773b6b5b8 Neil Armstrong     2023-03-21  348  	}
+58ef4ece1e41ac Bjorn Andersson    2023-01-31  349  
+58ef4ece1e41ac Bjorn Andersson    2023-01-31  350  	service = pdr_add_lookup(pg->pdr, "tms/servreg", "msm/adsp/charger_pd");
+58ef4ece1e41ac Bjorn Andersson    2023-01-31  351  	if (IS_ERR(service)) {
+58ef4ece1e41ac Bjorn Andersson    2023-01-31  352  		ret = dev_err_probe(&pdev->dev, PTR_ERR(service),
+58ef4ece1e41ac Bjorn Andersson    2023-01-31  353  				    "failed adding pdr lookup for charger_pd\n");
+f79ee78767ca60 Rob Clark          2024-02-17  354  		goto out_release_aux_devices;
+58ef4ece1e41ac Bjorn Andersson    2023-01-31  355  	}
+58ef4ece1e41ac Bjorn Andersson    2023-01-31  356  
+56e992f9beb5f6 Anjelique Melendez 2025-06-24  357  	if (device_property_present(&pdev->dev, "qcom,subsys-name")) {
+56e992f9beb5f6 Anjelique Melendez 2025-06-24  358  		device_property_read_string(&pdev->dev, "qcom,subsys-name", &subsys_name);
+56e992f9beb5f6 Anjelique Melendez 2025-06-24  359  		if (!subsys_name) {
+56e992f9beb5f6 Anjelique Melendez 2025-06-24 @360  			ret = dev_err_probe(&pdev->dev, PTR_ERR(pg->ssr_handle),
+
+s/PTR_ERR(pg->ssr_handle)/-EINVAL/;
+
+56e992f9beb5f6 Anjelique Melendez 2025-06-24  361  					"failed to read subsys_name string from dt\n");
+56e992f9beb5f6 Anjelique Melendez 2025-06-24  362  			goto out_release_aux_devices;
+56e992f9beb5f6 Anjelique Melendez 2025-06-24  363  		}
+56e992f9beb5f6 Anjelique Melendez 2025-06-24  364  		pg->ssr_nb.notifier_call = pmic_glink_ssr_callback;
+56e992f9beb5f6 Anjelique Melendez 2025-06-24  365  		pg->ssr_handle = qcom_register_ssr_notifier(subsys_name, &pg->ssr_nb);
+56e992f9beb5f6 Anjelique Melendez 2025-06-24  366  		if (IS_ERR(pg->ssr_handle)) {
+56e992f9beb5f6 Anjelique Melendez 2025-06-24  367  			ret = dev_err_probe(&pdev->dev, PTR_ERR(pg->ssr_handle),
+56e992f9beb5f6 Anjelique Melendez 2025-06-24  368  					"failed adding ssr notifier\n");
+56e992f9beb5f6 Anjelique Melendez 2025-06-24  369  			goto out_release_aux_devices;
+56e992f9beb5f6 Anjelique Melendez 2025-06-24  370  		}
+56e992f9beb5f6 Anjelique Melendez 2025-06-24  371  	}
+56e992f9beb5f6 Anjelique Melendez 2025-06-24  372  
+58ef4ece1e41ac Bjorn Andersson    2023-01-31  373  	mutex_lock(&__pmic_glink_lock);
+58ef4ece1e41ac Bjorn Andersson    2023-01-31  374  	__pmic_glink = pg;
+58ef4ece1e41ac Bjorn Andersson    2023-01-31  375  	mutex_unlock(&__pmic_glink_lock);
+58ef4ece1e41ac Bjorn Andersson    2023-01-31  376  
+58ef4ece1e41ac Bjorn Andersson    2023-01-31  377  	return 0;
+58ef4ece1e41ac Bjorn Andersson    2023-01-31  378  
+58ef4ece1e41ac Bjorn Andersson    2023-01-31  379  out_release_aux_devices:
+ff642773b6b5b8 Neil Armstrong     2023-03-21  380  	if (pg->client_mask & BIT(PMIC_GLINK_CLIENT_BATT))
+58ef4ece1e41ac Bjorn Andersson    2023-01-31  381  		pmic_glink_del_aux_device(pg, &pg->ps_aux);
+58ef4ece1e41ac Bjorn Andersson    2023-01-31  382  out_release_altmode_aux:
+ff642773b6b5b8 Neil Armstrong     2023-03-21  383  	if (pg->client_mask & BIT(PMIC_GLINK_CLIENT_ALTMODE))
+58ef4ece1e41ac Bjorn Andersson    2023-01-31  384  		pmic_glink_del_aux_device(pg, &pg->altmode_aux);
+ff642773b6b5b8 Neil Armstrong     2023-03-21  385  out_release_ucsi_aux:
+ff642773b6b5b8 Neil Armstrong     2023-03-21  386  	if (pg->client_mask & BIT(PMIC_GLINK_CLIENT_UCSI))
+ff642773b6b5b8 Neil Armstrong     2023-03-21  387  		pmic_glink_del_aux_device(pg, &pg->ucsi_aux);
+f79ee78767ca60 Rob Clark          2024-02-17  388  out_release_pdr_handle:
+f79ee78767ca60 Rob Clark          2024-02-17  389  	pdr_handle_release(pg->pdr);
+58ef4ece1e41ac Bjorn Andersson    2023-01-31  390  
+58ef4ece1e41ac Bjorn Andersson    2023-01-31  391  	return ret;
+58ef4ece1e41ac Bjorn Andersson    2023-01-31  392  }
 
 -- 
-2.39.5
+0-DAY CI Kernel Test Service
+https://github.com/intel/lkp-tests/wiki
 
 
