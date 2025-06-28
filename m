@@ -1,174 +1,102 @@
-Return-Path: <devicetree+bounces-190728-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-190729-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id E4724AEC7ED
-	for <lists+devicetree@lfdr.de>; Sat, 28 Jun 2025 16:52:23 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1E370AEC7FA
+	for <lists+devicetree@lfdr.de>; Sat, 28 Jun 2025 16:55:35 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 310AB17D38F
-	for <lists+devicetree@lfdr.de>; Sat, 28 Jun 2025 14:52:20 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 8EA183A9B83
+	for <lists+devicetree@lfdr.de>; Sat, 28 Jun 2025 14:55:09 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A4CD0254846;
-	Sat, 28 Jun 2025 14:50:57 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3A1A4248F68;
+	Sat, 28 Jun 2025 14:55:29 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="lJLHSA01"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="VTFZO5Zo"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DD708253350
-	for <devicetree@vger.kernel.org>; Sat, 28 Jun 2025 14:50:55 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 065981FECB1;
+	Sat, 28 Jun 2025 14:55:28 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1751122257; cv=none; b=IYHbFFdXLS0Nkzp14s0+aVnBAvAneDRqNpgMZZCPXSyVzVDIs5r86UHVPH58uLCwwJsasZfFzwGQThfkjrn6D2EY5NtUT2uT2HAndHbgPLLEL7qYaKhAEiXBLVK59ckiZYbvBAb+sq9AUbHm4+bk4xTQW1svjBRS9LutYFI6dbk=
+	t=1751122529; cv=none; b=h07tzBl12aPKXSi0cRz0i5hd0PUYpJIsgN5UbFqYdCaFwN4vYWjiRL0buw+JAFdEYBrkMIZc5a5TqXpsLAAo4Mj6vombJhUJnhidxOvsIFTqaIHjvzKAaDj3fz14t1Ikd6Or3/IETZIIbD4+j4Wb3qx0vFAlLgvknF0sV+i+avw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1751122257; c=relaxed/simple;
-	bh=Xos9O20zb2Et6svoO+8sqQIklPD/u4XqcxNOP5O6gGA=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=T/Psq8IYE3PDIEOyempvqb1LkLZ1JdJ+xGjqZzrfy6iY2KKyrMs61GtdRF7iN83zpbdSQc0ZXKEA+BDt0P1vRz9Yewazge54mAd0Gcox6B1hXb57rtaBAvXlU8ztyvLEg6JPUfg8ca18LFLIyaQcEEP29coLoB1Ct0E5/n0azT4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=lJLHSA01; arc=none smtp.client-ip=205.220.180.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
-Received: from pps.filterd (m0279870.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 55S6PTBT023209
-	for <devicetree@vger.kernel.org>; Sat, 28 Jun 2025 14:50:54 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
-	cc:content-type:date:from:in-reply-to:message-id:mime-version
-	:references:subject:to; s=qcppdkim1; bh=4ZHuVoDQqcSiKZpcYlkHvG4d
-	z+Aqe3P5LxxO2P06acI=; b=lJLHSA01cAR49QjeCee0z0kJL1m3UPZmQMsyveL6
-	Nkgo/Mkmn8HAd3g2BZQazP/q4moY8TkltYKwgLRhGiSI/VdsxfPkfkSFGqyQqSy0
-	57No2BbyVDFuqQCI4N7dIdJaGzd/BJql/2I4Dj3OqqPEMkbjOdKCNzmNNwrl7vlJ
-	Ufjv5pTYV2Y1HrvNBdblobEkuWazQ0tXSUnQVuhjYIRZ/oztQrdI0zPOC+r6QOac
-	WjpEgnFXOxArY+fbxyNqe8PKMxy0RoCfOJqdiBjlJYPKywGyDEI68b5Lm1FlUjed
-	+T3PPQx1sG+A1nLCH2uYdCWy3Eae7I6lZrIBCCBG9ihvIw==
-Received: from mail-qk1-f200.google.com (mail-qk1-f200.google.com [209.85.222.200])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 47j8fx8s99-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Sat, 28 Jun 2025 14:50:54 +0000 (GMT)
-Received: by mail-qk1-f200.google.com with SMTP id af79cd13be357-7d22790afd2so111119685a.2
-        for <devicetree@vger.kernel.org>; Sat, 28 Jun 2025 07:50:54 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1751122254; x=1751727054;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=4ZHuVoDQqcSiKZpcYlkHvG4dz+Aqe3P5LxxO2P06acI=;
-        b=knTlMQWNoLafUMAWwV84A9K6sR8xr34EiCQy8SJeqeQ4UbHE0cBpw1wJLWCkwgWc1Z
-         9Fb7skjUT1cgqzQLCbp9l6mDs5hpc2+z/lvPnphGtaEx71xADSKTTcqIwkq8Tj7+/U8d
-         fdnb1LM7N0rPq7nD2KMYjj69h1VYa0ZwaiD5K6o8tgW9J/vSOGxYHcPU+2k28VozaMjc
-         StX83GDoMKb/UqDL7UHVNaxNaMGzjcXCgHrXcVN5lz7N1pGmnkBvf64UucbO07CCQdiL
-         BH/PgkPmzE6nO+a/+YtgyD2sF+f5eMEQdE1PloImGqKMatPbo87F0tIhsxuffc3saT+n
-         4WoQ==
-X-Forwarded-Encrypted: i=1; AJvYcCU/rj7pQf1SO83zsD9+A34LTwQ7oIIxWmmPcf5E7K9JFD0dgNCnWpB4StSoH/ekU1OXpJBqRgNPmn0T@vger.kernel.org
-X-Gm-Message-State: AOJu0Yx61AbHeihYxIowRn3W1+A9DWyOO/CJ77kPBbcikoYy1yJ+HvQo
-	wPRW7Hhaa5ngm5jvIQQqOr1nTcyNVDMsKMzlX7MFCUNHLe7aqqeXj/RfiD4W5PjI+UTPcqNc+2U
-	fv14lknbdBGZniI8hfnbHw/VvU+uVl2C6muqX1itToVtu7Mtln5N8T2sks0a1q1og
-X-Gm-Gg: ASbGncuo92Ph9kQIGDQ/PsVwzLGMvSvd/tCyuAIy65JIdvNq056uDquWuHSFHaQxnAH
-	UmiZtXgNQjtjkYxe5CuTN90BlyfLkwW38TCBFvnkWzK65UtZA6FE0U9UkD1FVGvmqYsAbFgz/DV
-	pm38ujVJXhryx+lUEd+lyPaLQvcwkmF0fjGtHJF57YEMqRpInVsEv6QwtabaDQ6oTXnrn3D68rw
-	YXFeYpbJBagAglPxIMSgVl/f9UdhDS3Pgl8leRLEhsO4/ltpvIVt3yyPUV85w6JCv/mz+eIZDG8
-	f4alVCXWJ/BQuGolF8h8MOnHqFSG0XTiJIxlV+bqkse9ZwG1WaaV8EQSFiBEzfMukhmkhOtV8LM
-	hbROw3ehdHUquYsqgfN8GMQKzIovcHqbTmMU=
-X-Received: by 2002:a05:620a:1a10:b0:7d4:4c7b:9701 with SMTP id af79cd13be357-7d44c7b971amr476430185a.35.1751122253700;
-        Sat, 28 Jun 2025 07:50:53 -0700 (PDT)
-X-Google-Smtp-Source: AGHT+IEVzNKJ3G+C5nuBNakv+tEHELya1wSjC0Lp4djr17ccnTEiCjJcAEFkK1IFL24QOiOW61XH2w==
-X-Received: by 2002:a05:620a:1a10:b0:7d4:4c7b:9701 with SMTP id af79cd13be357-7d44c7b971amr476426085a.35.1751122253252;
-        Sat, 28 Jun 2025 07:50:53 -0700 (PDT)
-Received: from umbar.lan (2001-14ba-a0c3-3a00-264b-feff-fe8b-be8a.rev.dnainternet.fi. [2001:14ba:a0c3:3a00:264b:feff:fe8b:be8a])
-        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-5550b2b93adsm828837e87.98.2025.06.28.07.50.51
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sat, 28 Jun 2025 07:50:52 -0700 (PDT)
-Date: Sat, 28 Jun 2025 17:50:49 +0300
-From: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
-To: Johan Hovold <johan@kernel.org>
-Cc: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Maximilian Luz <luzmaximilian@gmail.com>,
-        Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>, Ard Biesheuvel <ardb@kernel.org>,
-        Steev Klimaszewski <steev@kali.org>, linux-arm-msm@vger.kernel.org,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-efi@vger.kernel.org
-Subject: Re: [PATCH v4 5/8] firmware; qcom: scm: enable QSEECOM on SC8280XP
- CRD
-Message-ID: <hf66fa3pvm5jrw3qv57xoofmkoz74ds4g3nwzsdz7pip6e7nej@w3h7qn7qu457>
-References: <20250625-more-qseecom-v4-0-aacca9306cee@oss.qualcomm.com>
- <20250625-more-qseecom-v4-5-aacca9306cee@oss.qualcomm.com>
- <e5e3e8f1-4328-4929-825a-3d8e836cf072@oss.qualcomm.com>
- <95c46d39-5b4a-46dd-aa73-1b3b9bf81019@oss.qualcomm.com>
- <aF6NUeNLPrR5vqEf@hovoldconsulting.com>
- <f55a057d-2cdd-411e-97b9-5ede1300a4e9@oss.qualcomm.com>
- <aF6Tkh75LRym8MQY@hovoldconsulting.com>
+	s=arc-20240116; t=1751122529; c=relaxed/simple;
+	bh=Kfhu+oPsade3bpUuF2PAiWvJJ89BZQNz4OgJrDixL7A=;
+	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=WWOlltc364Wo57Ns+7ifUdnRzboDxApDJRI85AMMjr1DHB0TXHiCiN0EeD1oP0ypC0+Uh/57JXgPFJSsjVFno3HCULOUhqyrsiPlfE//tnKpCNTYV2u1dsbvGcBMh2fFdce3RkmnRbks7eYTcm7y6nidJ04EHSXHlwwmCo98Cvk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=VTFZO5Zo; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 36749C4CEEA;
+	Sat, 28 Jun 2025 14:55:25 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1751122528;
+	bh=Kfhu+oPsade3bpUuF2PAiWvJJ89BZQNz4OgJrDixL7A=;
+	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
+	b=VTFZO5ZoagUXKhxfPuxOX7lVGUnivXvVy5V73bTiVfEZAOtnafrOJPIr4/IPTYJAQ
+	 6s59npzlj9fQkZJdm0fDH8DlwrFSjf7f2u09q17yvnTX2IbW0FRu1Dj8Zwn1/fgwFy
+	 kAqTpZPrGZ5tiPafw8/NPa9/4S9+T3b2sKOiSNvQAq3xWFxwRlKJIBKonNV47z5nGY
+	 tIEzr7M2tbEssoXpKPaWpTarDngyrb4q2+/SGjdrnsEaUn9h99YN1Dgc3h3+eWOXTB
+	 l+xtjihtC50igud4tOA5M0i+1MyPsf0s5zM80Zxnsify5WfvrSEDy5rVstGkKWZCiU
+	 X90S8u59QASWw==
+Date: Sat, 28 Jun 2025 15:55:21 +0100
+From: Jonathan Cameron <jic23@kernel.org>
+To: David Lechner <dlechner@baylibre.com>
+Cc: Michael Hennerich <Michael.Hennerich@analog.com>, Nuno =?UTF-8?B?U8Oh?=
+ <nuno.sa@analog.com>, Andy Shevchenko <andy@kernel.org>, Rob Herring
+ <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Mark Brown <broonie@kernel.org>,
+ linux-iio@vger.kernel.org, linux-kernel@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-spi@vger.kernel.org
+Subject: Re: [PATCH v2 01/11] iio: adc: ad_sigma_delta: don't overallocate
+ scan buffer
+Message-ID: <20250628155521.056b3394@jic23-huawei>
+In-Reply-To: <20250627-iio-adc-ad7173-add-spi-offload-support-v2-1-f49c55599113@baylibre.com>
+References: <20250627-iio-adc-ad7173-add-spi-offload-support-v2-0-f49c55599113@baylibre.com>
+	<20250627-iio-adc-ad7173-add-spi-offload-support-v2-1-f49c55599113@baylibre.com>
+X-Mailer: Claws Mail 4.3.0 (GTK 3.24.48; x86_64-pc-linux-gnu)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <aF6Tkh75LRym8MQY@hovoldconsulting.com>
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwNjI4MDEyNCBTYWx0ZWRfX0cwXTV5YHfrM
- xHkAdMnRcGtucQbkHCuRH9HNDD+OTuLDT5JNiPNzEaVmzhNQV8MoeVxHQKo/ahHU+CCurPY4yqu
- SBE7BK8EvE00/QeBJ8qrKmHrwurP0Ga4dEl9dKNLZNMQDek7HhmS+/5fyXLD3awMAaP8fV6WAik
- 3r9oyMhvFAgKUpMmcTMMlgg+FZQuE5KcxXdeS/txrLkfXLDSqLYt/O73pFv3KJ2oiFNHnmHVUnH
- xJjNmo36Mw1Z1bP1ilMDDZ0EE9nPZ4VwxD0TB7S7P8n1Askgt2IBEmNKC0S+Gjt0Q0jwC+fO8SR
- LTcqJw3cGxbBgO/wvASxvmjKx5dxJNudaoeb3f5FeeLpArgKq9LImNlKh+jG0c1NI511hgiumHV
- rpRIGZXYnqpXsMcAZPy4SMLRdHbfSzqWguLBV50GR2IqNJr0xpmCkMTgv1M5l7t739eclMzm
-X-Proofpoint-GUID: FvrrgCyhRNhNFE8sjjQbjvnSqb3aNB8p
-X-Proofpoint-ORIG-GUID: FvrrgCyhRNhNFE8sjjQbjvnSqb3aNB8p
-X-Authority-Analysis: v=2.4 cv=TqPmhCXh c=1 sm=1 tr=0 ts=6860014e cx=c_pps
- a=hnmNkyzTK/kJ09Xio7VxxA==:117 a=xqWC_Br6kY4A:10 a=kj9zAlcOel0A:10
- a=6IFa9wvqVegA:10 a=38JWWdoTCtlzABMLL24A:9 a=CjuIK1q_8ugA:10
- a=PEH46H7Ffwr30OY-TuGO:22
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1099,Hydra:6.1.7,FMLib:17.12.80.40
- definitions=2025-06-27_05,2025-06-27_01,2025-03-28_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- priorityscore=1501 bulkscore=0 mlxlogscore=999 suspectscore=0 adultscore=0
- phishscore=0 malwarescore=0 clxscore=1015 lowpriorityscore=0 mlxscore=0
- impostorscore=0 spamscore=0 classifier=spam authscore=0 authtc=n/a authcc=
- route=outbound adjust=0 reason=mlx scancount=1 engine=8.19.0-2505280000
- definitions=main-2506280124
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: 7bit
 
-On Fri, Jun 27, 2025 at 02:50:26PM +0200, Johan Hovold wrote:
-> On Fri, Jun 27, 2025 at 02:26:41PM +0200, Konrad Dybcio wrote:
-> > On 6/27/25 2:23 PM, Johan Hovold wrote:
-> > > On Fri, Jun 27, 2025 at 01:54:37AM +0200, Konrad Dybcio wrote:
-> > >> On 6/27/25 1:34 AM, Konrad Dybcio wrote:
-> > >>> On 6/25/25 12:53 AM, Dmitry Baryshkov wrote:
-> 
-> > >>>> As reported by Johan, this platform also doesn't currently support
-> > >>>> updating of the UEFI variables. In preparation to reworking match list
-> > >>>> for QSEECOM mark this platform as supporting QSEECOM with R/O UEFI
-> > >>>> variables.
-> 
-> > >>>> +	{ .compatible = "qcom,sc8280xp-crd", .data = &qcom_qseecom_ro_uefi, },
-> > >>>
-> > >>> R/W works for me (tm).. the META version may be (inconclusive) 2605
-> > >>
-> > >> Looked at the wrong SoC META table.. the build date is 05/25/2023
-> > > 
-> > > Could be that my machine was not provisioned properly. Do you boot from
-> > > UFS or NVMe?
-> > > 
-> > > My fw is also older: 01/10/2022.
-> > 
-> > The machine has UFS, NVME and SPINOR, however the boot log definitely says:
-> > 
-> > S - Boot Interface: SPI
-> 
-> Mine says:
-> 
-> S - Boot Interface: UFS
+On Fri, 27 Jun 2025 18:39:57 -0500
+David Lechner <dlechner@baylibre.com> wrote:
 
-Is this META even supported? I think it's recommended to update
-firmware to the latest releases.
+> Fix overallocating the size of the scan buffer by converting bits to
+> bytes. The size is meant to be in bytes, so scanbits needs to be
+> divided by 8.
+> 
+> Signed-off-by: David Lechner <dlechner@baylibre.com>
+> ---
+>  drivers/iio/adc/ad_sigma_delta.c | 2 +-
+>  1 file changed, 1 insertion(+), 1 deletion(-)
+> 
+> diff --git a/drivers/iio/adc/ad_sigma_delta.c b/drivers/iio/adc/ad_sigma_delta.c
+> index 4c5f8d29a559fea7226b84141bcb148fb801f62c..6b3ef7ef403e00804abeb81025ed293b188e492b 100644
+> --- a/drivers/iio/adc/ad_sigma_delta.c
+> +++ b/drivers/iio/adc/ad_sigma_delta.c
+> @@ -489,7 +489,7 @@ static int ad_sd_buffer_postenable(struct iio_dev *indio_dev)
+>  			return ret;
+>  	}
+>  
+> -	samples_buf_size = ALIGN(slot * indio_dev->channels[0].scan_type.storagebits, 8);
+> +	samples_buf_size = ALIGN(slot * indio_dev->channels[0].scan_type.storagebits / 8, 8);
 
--- 
-With best wishes
-Dmitry
+Seems like a good place for BITS_TO_BYTES() from bitops.h.  Given we have another 8
+kicking around in the same code line it might be a tiny bit confusing as / 8
+
+If everything else is good I'll tweak this whilst applying (and add the include if needed).
+
+>  	samples_buf_size += sizeof(int64_t);
+>  	samples_buf = devm_krealloc(&sigma_delta->spi->dev, sigma_delta->samples_buf,
+>  				    samples_buf_size, GFP_KERNEL);
+> 
+
 
