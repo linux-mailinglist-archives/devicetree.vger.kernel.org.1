@@ -1,68 +1,57 @@
-Return-Path: <devicetree+bounces-190782-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-190780-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id D0F7FAECA03
-	for <lists+devicetree@lfdr.de>; Sat, 28 Jun 2025 21:24:12 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id AF4E5AEC9AC
+	for <lists+devicetree@lfdr.de>; Sat, 28 Jun 2025 20:15:23 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 949E9188FF73
-	for <lists+devicetree@lfdr.de>; Sat, 28 Jun 2025 19:24:28 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 098901699E3
+	for <lists+devicetree@lfdr.de>; Sat, 28 Jun 2025 18:15:23 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 52AEF25BEF8;
-	Sat, 28 Jun 2025 19:24:07 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 881A62877C5;
+	Sat, 28 Jun 2025 18:15:07 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="JA8kP2O+"
+	dkim=pass (1024-bit key) header.d=samsung.com header.i=@samsung.com header.b="ZQB2CRQb"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.10])
+Received: from mailout2.w1.samsung.com (mailout2.w1.samsung.com [210.118.77.12])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 40AA71D5147;
-	Sat, 28 Jun 2025 19:24:04 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.198.163.10
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C2E21274FD0
+	for <devicetree@vger.kernel.org>; Sat, 28 Jun 2025 18:15:03 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=210.118.77.12
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1751138647; cv=none; b=J1auYYvqZGXWmaZlfK6v9+x+1ZN+A/CvMb1QwC5mqoHeyGyo7sa+OfH+TkhD6WWerU1OTJ5d0ciMckrZYwecu4iI3ySjPnffElLhhvegZCkx65qeEKOxL4aVvYU4ulvjxi6Ni1+ekq3NM6uwza/cv8X6o5muVmjJ1qQpu6/4gQg=
+	t=1751134507; cv=none; b=K95q4RuBZsNrLGeNdnZAe+Np3Tdt/zWXPk59Ien8cJu2vO30Vc7lKvNXhPysJrHQbflWXiaEbJ4dbRZq0MOYNseI+r/EUr+TLixqiNQPtfeFbenWrxG3dCDGFFpq6n6my5tca6epNWQbO0Gn7JDqJnghyerVg5wVzjgY682htm4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1751138647; c=relaxed/simple;
-	bh=Ro0FlmLrWinNnokFyHfNdQ0lgtJM4CNJNMoTbYRCWyU=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=H8DlyLcrNxqeKjF1TbeeshP2NSBw+ECO+MO6j8i70RXA+4DlU7+L2J2D2LXUyTGPz/CeI1J0rHA/0wzk/EwPoYIN7Xk5XAclgxs+Iecj8hEWJMDCW7dBu3OquRH8YqNNzX0DrIuBNuMMk5TpTzQ09KAPIDFf2XzCBIU3oVMhLYc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com; spf=none smtp.mailfrom=linux.intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=JA8kP2O+; arc=none smtp.client-ip=192.198.163.10
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com
-Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=linux.intel.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1751138645; x=1782674645;
-  h=message-id:date:mime-version:subject:to:cc:references:
-   from:in-reply-to:content-transfer-encoding;
-  bh=Ro0FlmLrWinNnokFyHfNdQ0lgtJM4CNJNMoTbYRCWyU=;
-  b=JA8kP2O+zLivpfqdTYgZwqhRxTVoOYK2kPrbiySQr2m6D++dfEtjJbtI
-   v44ieVRAuul4m3t3X54gj0un3CzUvJwNOw6dqRC787nBtwQqW75os3+XQ
-   P7+gV2k7mhmp6paMeMNuYOZlzE1tIdfVv3fKZdXexA0ZHsHd3N+AGmXxX
-   B6EuAmIImtno5y/HL/110hYR/XTiS4Ty3aV4j7AA4T21H3sSdU0VknVkY
-   9AlJZx8vgpJ4v367ifhQnP74adZKDUq6M1FCgx9dcndhGLw+1Ak7SYbMW
-   QGiQVP/r2i2G0wpi3vKz6oqMO+eT20/oTb8b4xoXe+cUQGM2q4oEuRDZd
-   A==;
-X-CSE-ConnectionGUID: EJyQ+K42ThixT0Fq0RJ6NA==
-X-CSE-MsgGUID: b6cSQiA9SzyJiXepkllyXQ==
-X-IronPort-AV: E=McAfee;i="6800,10657,11478"; a="64769805"
-X-IronPort-AV: E=Sophos;i="6.16,273,1744095600"; 
-   d="scan'208";a="64769805"
-Received: from fmviesa010.fm.intel.com ([10.60.135.150])
-  by fmvoesa104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 28 Jun 2025 12:24:04 -0700
-X-CSE-ConnectionGUID: jXePO38bT0CHGprmdchIyw==
-X-CSE-MsgGUID: JQD1j8FrRjiEqykhhgA7CQ==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.16,273,1744095600"; 
-   d="scan'208";a="153792123"
-Received: from kniemiec-mobl1.ger.corp.intel.com (HELO svinhufvud.fi.intel.com) ([10.245.245.225])
-  by fmviesa010-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 28 Jun 2025 12:24:00 -0700
-Received: from [127.0.0.1] (localhost [127.0.0.1])
-	by svinhufvud.fi.intel.com (Postfix) with ESMTP id 9683E4435F;
-	Sat, 28 Jun 2025 22:23:57 +0300 (EEST)
-Message-ID: <66fd382c-6c6f-4d45-ad36-6308cea3e47f@linux.intel.com>
-Date: Sat, 28 Jun 2025 21:10:47 +0300
+	s=arc-20240116; t=1751134507; c=relaxed/simple;
+	bh=DqAaSx9Iu74jTCRCpoqiW6+h8SmPhlzSLhjEqvo182I=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:From:In-Reply-To:
+	 Content-Type:References; b=n3x1ruXv0uiO14iAhBB7ES0dL3X2nUIXDAMqU1xGBx16Jb4Vx5fDKFvwiJx00voMNYRCYRxzwKv7WPPRmUR+C7KCWjE0dYOl8ffKiQWsqmrVE9HV9KNJH+M2EWenUbOU1wmNrMPevHybCJXwqZh6xN6vSSNdZPOKQ8kSzqO7N3A=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=samsung.com; spf=pass smtp.mailfrom=samsung.com; dkim=pass (1024-bit key) header.d=samsung.com header.i=@samsung.com header.b=ZQB2CRQb; arc=none smtp.client-ip=210.118.77.12
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=samsung.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=samsung.com
+Received: from eucas1p2.samsung.com (unknown [182.198.249.207])
+	by mailout2.w1.samsung.com (KnoxPortal) with ESMTP id 20250628181502euoutp02904a84fa2341ec6eb6be703451237da0~NR41EkOmI2384323843euoutp02k
+	for <devicetree@vger.kernel.org>; Sat, 28 Jun 2025 18:15:02 +0000 (GMT)
+DKIM-Filter: OpenDKIM Filter v2.11.0 mailout2.w1.samsung.com 20250628181502euoutp02904a84fa2341ec6eb6be703451237da0~NR41EkOmI2384323843euoutp02k
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=samsung.com;
+	s=mail20170921; t=1751134502;
+	bh=2JA1x1+wxIMxbTcb05JnAkXnXDTnRK4eUQH/s2vY+XY=;
+	h=Date:Subject:To:Cc:From:In-Reply-To:References:From;
+	b=ZQB2CRQbRmZs3pRIe8Bl9Duy3N7ceVBVs/91VdN/4mbECUPi6EzlJ48XsWeg092xp
+	 T/13PpGMsFIvSVHYuD6lco/5ijepbwH0pKvopRfqTnWJkuTKOiLtzNsUEv5qC5fb4H
+	 FL65xO/uyQNSMV+tXu3JbfcuutEaNhOE2V8DId/Q=
+Received: from eusmtip1.samsung.com (unknown [203.254.199.221]) by
+	eucas1p1.samsung.com (KnoxPortal) with ESMTPA id
+	20250628181501eucas1p1fa95a0e5ce8ee9081b9b7cd0bd3fc7db~NR4z_sDU71200312003eucas1p15;
+	Sat, 28 Jun 2025 18:15:01 +0000 (GMT)
+Received: from [192.168.1.44] (unknown [106.210.136.40]) by
+	eusmtip1.samsung.com (KnoxPortal) with ESMTPA id
+	20250628181459eusmtip1664c47fbf09b84ffb0d6e5a1c32c784b~NR4ywaDGi1908019080eusmtip1a;
+	Sat, 28 Jun 2025 18:14:59 +0000 (GMT)
+Message-ID: <21504282-18d1-4165-a1bc-ec4cbbb19c2b@samsung.com>
+Date: Sat, 28 Jun 2025 20:14:59 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -70,329 +59,359 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v4 15/19] media: i2c: add Maxim GMSL2/3 serializer and
- deserializer drivers
+Subject: Re: [PATCH v5 4/9] pwm: Add Rust driver for T-HEAD TH1520 SoC
+To: =?UTF-8?Q?Uwe_Kleine-K=C3=B6nig?= <ukleinek@kernel.org>
+Cc: Miguel Ojeda <ojeda@kernel.org>, Alex Gaynor <alex.gaynor@gmail.com>,
+	Boqun Feng <boqun.feng@gmail.com>, Gary Guo <gary@garyguo.net>,
+	=?UTF-8?Q?Bj=C3=B6rn_Roy_Baron?= <bjorn3_gh@protonmail.com>, Andreas
+	Hindborg <a.hindborg@kernel.org>, Alice Ryhl <aliceryhl@google.com>, Trevor
+	Gross <tmgross@umich.edu>, Danilo Krummrich <dakr@kernel.org>, Drew Fustini
+	<drew@pdp7.com>, Guo Ren <guoren@kernel.org>, Fu Wei <wefu@redhat.com>, Rob
+	Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor
+	Dooley <conor+dt@kernel.org>, Paul Walmsley <paul.walmsley@sifive.com>,
+	Palmer Dabbelt <palmer@dabbelt.com>, Albert Ou <aou@eecs.berkeley.edu>,
+	Alexandre Ghiti <alex@ghiti.fr>, Marek Szyprowski
+	<m.szyprowski@samsung.com>, Benno Lossin <lossin@kernel.org>, Michael
+	Turquette <mturquette@baylibre.com>, Stephen Boyd <sboyd@kernel.org>,
+	linux-kernel@vger.kernel.org, linux-pwm@vger.kernel.org,
+	rust-for-linux@vger.kernel.org, linux-riscv@lists.infradead.org,
+	devicetree@vger.kernel.org, linux-clk@vger.kernel.org
 Content-Language: en-US
-To: Cosmin Tanislav <demonsingur@gmail.com>
-Cc: Tomi Valkeinen <tomi.valkeinen+renesas@ideasonboard.com>,
- Mauro Carvalho Chehab <mchehab@kernel.org>, Rob Herring <robh@kernel.org>,
- =?UTF-8?Q?Niklas_S=C3=B6derlund?= <niklas.soderlund@ragnatech.se>,
- Julien Massot <julien.massot@collabora.com>,
- Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
- Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
- Linus Walleij <linus.walleij@linaro.org>,
- "open list:MAXIM GMSL2 SERIALIZERS AND DESERIALIZERS"
- <linux-media@vger.kernel.org>,
- "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS"
- <devicetree@vger.kernel.org>, open list <linux-kernel@vger.kernel.org>,
- "moderated list:ARM64 PORT (AARCH64 ARCHITECTURE)"
- <linux-arm-kernel@lists.infradead.org>,
- "open list:STAGING SUBSYSTEM" <linux-staging@lists.linux.dev>,
- open "list:GPIO"
- "SUBSYSTEM:Keyword:(devm_)?gpio_(request|free|direction|get|set)"
- <linux-gpio@vger.kernel.org>, Cosmin Tanislav <cosmin.tanislav@analog.com>
-References: <20250618095858.2145209-1-demonsingur@gmail.com>
- <20250618095858.2145209-16-demonsingur@gmail.com>
- <aFpnU8EHGt14UMHC@kekkonen.localdomain>
- <42fdeee8-a23e-4499-83c6-77d50418cff2@gmail.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park, 6 krs, Bertel Jungin Aukio 5, 02600 Espoo
-From: Sakari Ailus <sakari.ailus@linux.intel.com>
-In-Reply-To: <42fdeee8-a23e-4499-83c6-77d50418cff2@gmail.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
+From: Michal Wilczynski <m.wilczynski@samsung.com>
+In-Reply-To: <aot4ow37qsrehgce6vpc5m7ha5w6h4jvj7k7bokn4eo63sjk5x@iyp5ir234kx5>
 Content-Transfer-Encoding: 8bit
+X-CMS-MailID: 20250628181501eucas1p1fa95a0e5ce8ee9081b9b7cd0bd3fc7db
+X-Msg-Generator: CA
+Content-Type: text/plain; charset="utf-8"
+X-RootMTR: 20250623180902eucas1p2960477c0a44f05e991747312b0ae0ff0
+X-EPHeader: CA
+X-CMS-RootMailID: 20250623180902eucas1p2960477c0a44f05e991747312b0ae0ff0
+References: <20250623-rust-next-pwm-working-fan-for-sending-v5-0-0ca23747c23e@samsung.com>
+	<CGME20250623180902eucas1p2960477c0a44f05e991747312b0ae0ff0@eucas1p2.samsung.com>
+	<20250623-rust-next-pwm-working-fan-for-sending-v5-4-0ca23747c23e@samsung.com>
+	<aot4ow37qsrehgce6vpc5m7ha5w6h4jvj7k7bokn4eo63sjk5x@iyp5ir234kx5>
 
-Hi Cosmin,
 
-On 6/24/25 18:34, Cosmin Tanislav wrote:
-> On 6/24/25 11:52 AM, Sakari Ailus wrote:
->  >> +struct max9296a_chip_info {
->  >> +    unsigned int max_register;
->  >> +    unsigned int versions;
->  >> +    unsigned int modes;
->  >> +    unsigned int num_pipes;
->  >> +    unsigned int pipe_hw_ids[MAX9296A_PIPES_NUM];
->  >> +    unsigned int phy_hw_ids[MAX9296A_PHYS_NUM];
->  >> +    unsigned int num_phys;
->  >> +    unsigned int num_links;
->  >> +    struct max_phys_configs phys_configs;
->  >> +    bool use_atr;
->  >> +    bool has_per_link_reset;
->  >> +    bool phy0_lanes_0_1_on_second_phy;
->  >> +    bool polarity_on_physical_lanes;
->  >> +    bool needs_single_link_version;
->  >> +    bool needs_unique_stream_id;
->  >> +    bool supports_cphy;
->  >> +    bool supports_phy_log;
->  >> +    bool adjust_rlms;
->  >> +    bool fix_tx_ids;
->  >> +
->  >> +    enum max_gmsl_mode tpg_mode;
->  >> +
->  >> +    int (*set_pipe_stream_id)(struct max_des *des, struct 
-> max_des_pipe *pipe,
->  >> +                  unsigned int stream_id);
->  >> +    int (*set_pipe_enable)(struct max_des *des, struct max_des_pipe 
-> *pipe,
->  >> +                   bool enable);
->  >> +    int (*set_pipe_link)(struct max_des *des, struct max_des_pipe 
-> *pipe,
->  >> +                 struct max_des_link *link);
->  >> +    int (*set_pipe_tunnel_phy)(struct max_des *des, struct 
-> max_des_pipe *pipe,
->  >> +                   struct max_des_phy *phy);
->  >> +    int (*set_pipe_tunnel_enable)(struct max_des *des, struct 
-> max_des_pipe *pipe,
->  >> +                      bool enable);
->  >
->  > Given this many callbacks, having an operations struct for them seems
->  > appropriate.
->  >
+
+On 6/27/25 17:28, Uwe Kleine-König wrote:
+> On Mon, Jun 23, 2025 at 08:08:52PM +0200, Michal Wilczynski wrote:
+>> Introduce a PWM driver for the T-HEAD TH1520 SoC, written in Rust and
+>> utilizing the safe PWM abstractions from the preceding commit.
+>>
+>> The driver implements the pwm::PwmOps trait using the modern waveform
+>> API (round_waveform_tohw, write_waveform, etc.) to support configuration
+>> of period, duty cycle, and polarity for the TH1520's PWM channels.
+>>
+>> Resource management is handled using idiomatic Rust patterns. The PWM
+>> chip object is allocated via pwm::Chip::new and its registration with
+>> the PWM core is managed by the pwm::Registration RAII guard. This
+>> ensures pwmchip_remove is always called when the driver unbinds,
+>> preventing resource leaks. Device managed resources are used for the
+>> MMIO region, and the clock lifecycle is correctly managed in the
+>> driver's private data Drop implementation.
+>>
+>> The driver's core logic is written entirely in safe Rust, with no unsafe
+>> blocks.
+>>
+>> Signed-off-by: Michal Wilczynski <m.wilczynski@samsung.com>
+>> ---
+>>  MAINTAINERS               |   1 +
+>>  drivers/pwm/Kconfig       |  10 ++
+>>  drivers/pwm/Makefile      |   1 +
+>>  drivers/pwm/pwm_th1520.rs | 318 ++++++++++++++++++++++++++++++++++++++++++++++
+>>  4 files changed, 330 insertions(+)
+>>
+>> diff --git a/MAINTAINERS b/MAINTAINERS
+>> index a575622454a2ef57ce055c8a8c4765fa4fddc490..879870471e86dcec4a0e8f5c45d2cc3409411fdd 100644
+>> --- a/MAINTAINERS
+>> +++ b/MAINTAINERS
+>> @@ -21402,6 +21402,7 @@ F:	drivers/mailbox/mailbox-th1520.c
+>>  F:	drivers/net/ethernet/stmicro/stmmac/dwmac-thead.c
+>>  F:	drivers/pinctrl/pinctrl-th1520.c
+>>  F:	drivers/pmdomain/thead/
+>> +F:	drivers/pwm/pwm_th1520.rs
+>>  F:	drivers/reset/reset-th1520.c
+>>  F:	include/dt-bindings/clock/thead,th1520-clk-ap.h
+>>  F:	include/dt-bindings/power/thead,th1520-power.h
+>> diff --git a/drivers/pwm/Kconfig b/drivers/pwm/Kconfig
+>> index cfddeae0eab3523f04f361fb41ccd1345c0c937b..a675b3bd68392d1b05a47a2a1390c5606647ca15 100644
+>> --- a/drivers/pwm/Kconfig
+>> +++ b/drivers/pwm/Kconfig
+>> @@ -719,6 +719,16 @@ config PWM_TEGRA
+>>  	  To compile this driver as a module, choose M here: the module
+>>  	  will be called pwm-tegra.
+>>  
+>> +config PWM_TH1520
+>> +	tristate "TH1520 PWM support"
+>> +	depends on RUST_PWM_ABSTRACTIONS
 > 
-> Are you proposing adding another struct just to put these ops inside?
-> 
-> What I could do is use the existing struct max_des_ops and assign the
-> appropriate members in it, and then put whatever is left that's not
-> needed for the common framework in struct max9296a_chip_info, and add
-> a pointer to the struct max_des_ops instance it struct
-> max9296a_chip_info.
+> RUST_PWM_ABSTRACTIONS is user selectable. Is that sensible. From a
+> user's POV it shouldn't matter if the driver is written in Rust or not.
 
-Ah, I missed this wasn't specific to a device. Please ignore the comment.
+You make an excellent point about user experience. My initial thought
+was to follow the depends on pattern that I saw in other Rust drivers.
 
-...
+I can see how using select would be cleaner for the end user. My only
+hesitation was that it differs from the current convention for Rust
+drivers, and I wanted to be careful about changing an established
+pattern.
 
->  >> +static int max9296a_log_phy_status(struct max_des *des,
->  >> +                   struct max_des_phy *phy, const char *name)
->  >> +{
->  >> +    struct max9296a_priv *priv = des_to_priv(des);
->  >> +    unsigned int index = phy->index;
->  >> +    unsigned int val;
->  >> +    int ret;
->  >> +
->  >> +    if (!priv->info->supports_phy_log)
->  >> +        return 0;
->  >> +
->  >> +    ret = regmap_read(priv->regmap, MAX9296A_MIPI_PHY18, &val);
->  >> +    if (ret)
->  >> +        return ret;
->  >> +
->  >> +    pr_info("%s: \tcsi2_pkt_cnt: %lu\n", name,
->  >> +        field_get(MAX9296A_MIPI_PHY18_CSI2_TX_PKT_CNT(index), val));
->  >> +
->  >> +    ret = regmap_read(priv->regmap, MAX9296A_MIPI_PHY20(index), &val);
->  >> +    if (ret)
->  >> +        return ret;
->  >> +
->  >> +    pr_info("%s: \tphy_pkt_cnt: %u\n", name, val);
->  >
->  > dev_info()?
->  >
-> 
-> I initially used pr_info() with the subdev name passed from core
-> framwork to be consistent with the rest of the prints which use
-> v4l2_info().
-> 
-> I'll see how using dev_info() looks like, it would be nice if it would
-> match the v4l2_info() format, even though v4l2-ctl --log-status doesn't
-> care since all it looks for is `START STATUS`.
-
-Ok. Up to you.
-
-...
-
->  >> +static int max9296a_init_phy(struct max_des *des, struct 
-> max_des_phy *phy)
->  >> +{
->  >> +    struct max9296a_priv *priv = des_to_priv(des);
->  >> +    bool is_cphy = phy->bus_type == V4L2_MBUS_CSI2_CPHY;
->  >> +    unsigned int num_data_lanes = phy->mipi.num_data_lanes;
->  >> +    unsigned int dpll_freq = phy->link_frequency * 2;
->  >> +    unsigned int num_hw_data_lanes;
->  >> +    unsigned int hw_index = max9296a_phy_id(priv, phy);
->  >> +    unsigned int index = phy->index;
->  >> +    unsigned int used_data_lanes = 0;
->  >> +    unsigned int val;
->  >
->  > For register values, please use a type that explicitly specifies the 
-> number
->  > of bits, e.g. u32.
->  >
-> 
-> I used the type of the argument received by the regmap methods.
-
-Ack.
+If you are comfortable with setting this direction for the PWM
+subsystem, I am happy to make the change to use select
+RUST_PWM_ABSTRACTIONS (gated by depends on RUST). Please let me know.
 
 > 
-> ...
+>> +	help
+>> +	  This option enables the driver for the PWM controller found on the
+>> +	  T-HEAD TH1520 SoC.
+>> +
+>> +	  To compile this driver as a module, choose M here; the module
+>> +	  will be called pwm-th1520. If you are unsure, say N.
+>> +
+>>  config PWM_TIECAP
+>>  	tristate "ECAP PWM support"
+>>  	depends on ARCH_OMAP2PLUS || ARCH_DAVINCI_DA8XX || ARCH_KEYSTONE || ARCH_K3 || COMPILE_TEST
+>> diff --git a/drivers/pwm/Makefile b/drivers/pwm/Makefile
+>> index 96160f4257fcb0e0951581af0090615c0edf5260..a410747095327a315a6bcd24ae343ce7857fe323 100644
+>> --- a/drivers/pwm/Makefile
+>> +++ b/drivers/pwm/Makefile
+>> @@ -66,6 +66,7 @@ obj-$(CONFIG_PWM_STMPE)		+= pwm-stmpe.o
+>>  obj-$(CONFIG_PWM_SUN4I)		+= pwm-sun4i.o
+>>  obj-$(CONFIG_PWM_SUNPLUS)	+= pwm-sunplus.o
+>>  obj-$(CONFIG_PWM_TEGRA)		+= pwm-tegra.o
+>> +obj-$(CONFIG_PWM_TH1520)	+= pwm_th1520.o
+>>  obj-$(CONFIG_PWM_TIECAP)	+= pwm-tiecap.o
+>>  obj-$(CONFIG_PWM_TIEHRPWM)	+= pwm-tiehrpwm.o
+>>  obj-$(CONFIG_PWM_TWL)		+= pwm-twl.o
+>> diff --git a/drivers/pwm/pwm_th1520.rs b/drivers/pwm/pwm_th1520.rs
+>> new file mode 100644
+>> index 0000000000000000000000000000000000000000..a77c45cef9cf8f02a25db9d42c45cd0df565b0ec
+>> --- /dev/null
+>> +++ b/drivers/pwm/pwm_th1520.rs
+>> @@ -0,0 +1,318 @@
+>> +// SPDX-License-Identifier: GPL-2.0
+>> +// Copyright (c) 2025 Samsung Electronics Co., Ltd.
+>> +// Author: Michal Wilczynski <m.wilczynski@samsung.com>
+>> +
+>> +//! Rust T-HEAD TH1520 PWM driver
+>> +//!
+>> +//! Limitations:
+>> +//! - The period and duty cycle are controlled by 32-bit hardware registers,
+>> +//!   limiting the maximum resolution.
+>> +//! - The driver supports continuous output mode only; one-shot mode is not
+>> +//!   implemented.
+>> +//! - The controller hardware provides up to 6 PWM channels.
 > 
->  >> +static int max9296a_reset_link(struct max9296a_priv *priv, unsigned 
-> int index)
->  >> +{
->  >> +    unsigned int reg, mask;
->  >> +
->  >> +    if (index == 0) {
->  >> +        reg = MAX9296A_CTRL0;
->  >> +        mask = MAX9296A_CTRL0_RESET_ONESHOT;
->  >> +    } else {
->  >> +        reg = MAX9296A_CTRL2;
->  >> +        mask = MAX9296A_CTRL2_RESET_ONESHOT_B;
->  >> +    }
->  >
->  > I might use an array for this.
->  >
->  > Is index guaranteed to be 0 or 1?
->  >
+> Important questions to answer here are:
 > 
-> Should be, yes, but using an array for just two indices would cause a
-> bit of indirection when looking at the code. If it was more I would have
-> used one.
+>  - How does the hardware behave on disable? (Does it stop immediately
+>    (or at all)? Does it emit a constant output? Which?) 
+>  - How does the hardware behave on reconfiguration? (Does it switch
+>    immidiately or does it complete the current period? Can there be
+>    glitches?
 
-Ack.
-
-> 
->  >> +
->  >> +    return regmap_set_bits(priv->regmap, reg, mask);
->  >> +}
->  >> +
->  >> +static int max9296a_init_link_rlms(struct max9296a_priv *priv,
->  >> +                   struct max_des_link *link)
->  >> +{
->  >> +    unsigned int index = link->index;
->  >> +    int ret;
->  >> +
->  >> +    /*
->  >> +     * These settings are described as required on datasheet page 53
->  >> +     * for MAX96714.
->  >> +     */
->  >> +
->  >> +    ret = regmap_write(priv->regmap, MAX9296A_RLMS3E(index), 0xfd);
->  >> +    if (ret)
->  >> +        return ret;
->  >
->  > You could also do:
->  >
->  >     if (!ret)
->  >         ret = ...;
->  >
->  > And return ret at the end. It's one line less per call. Up to you.
->  >
->  >> +
->  >> +    ret = regmap_write(priv->regmap, MAX9296A_RLMS3F(index), 0x3d);
->  >
->  > What are these magic numbers? Could we have human-readable names for 
-> them?
->  >
->  > The register names seem pretty opaque, too. Some explanation here would
->  > seem reasonable.
->  >
-> 
-> They're extracted from the datasheet of MAX96714, the values are
-> undocumented, but they're necessary to "optimize performance" of the
-> GMSL link. I'll add a comment stating the datasheet page and section.
-
-Ack, sounds good.
+Sure, I have investigated and will add comments explaining that
+reconfiguration is glitch free and disabling is done by setting the duty
+cycle to zero
 
 > 
-> ...
+>> +//!
+>> +
+>> +use core::ops::Deref;
+>> +use kernel::{
+>> +    c_str,
+>> +    clk::Clk,
+>> +    device::{Bound, Core, Device},
+>> +    devres,
+>> +    io::mem::IoMem,
+>> +    of, platform,
+>> +    prelude::*,
+>> +    pwm, time,
+>> +};
+>> +
+>> +const MAX_PWM_NUM: u32 = 6;
+>> +
+>> +// Register offsets
+>> +const fn th1520_pwm_chn_base(n: u32) -> usize {
+>> +    (n * 0x20) as usize
+>> +}
+>> +
+>> +const fn th1520_pwm_ctrl(n: u32) -> usize {
+>> +    th1520_pwm_chn_base(n)
+>> +}
+>> +
+>> +const fn th1520_pwm_per(n: u32) -> usize {
+>> +    th1520_pwm_chn_base(n) + 0x08
+>> +}
+>> +
+>> +const fn th1520_pwm_fp(n: u32) -> usize {
+>> +    th1520_pwm_chn_base(n) + 0x0c
+>> +}
+>> +
+>> +// Control register bits
+>> +const PWM_START: u32 = 1 << 0;
+>> +const PWM_CFG_UPDATE: u32 = 1 << 2;
+>> +const PWM_CONTINUOUS_MODE: u32 = 1 << 5;
+>> +const PWM_FPOUT: u32 = 1 << 8;
 > 
->  >> diff --git a/drivers/media/i2c/maxim-serdes/max_des.c b/drivers/ 
-> media/i2c/maxim-serdes/max_des.c
->  >> new file mode 100644
->  >> index 000000000000..6a45f42fe033
->  >> --- /dev/null
->  >> +++ b/drivers/media/i2c/maxim-serdes/max_des.c
->  >> @@ -0,0 +1,3108 @@
->  >> +// SPDX-License-Identifier: GPL-2.0
->  >> +/*
->  >> + * Maxim GMSL2 Deserializer Driver
->  >
->  > How about naming the file maxim-deserialiser? I'd use e.g. "maxim_des"
->  > prefix for the functions. Just "max" is quite generic.
->  >
-> 
-> max_des seems explicit enough. The max naming comes from the common
-> prefix in the name of the chips, eg: MAX96724, MAX96717, not from Maxim.
+> Can you please add a driver specific prefix to these?
 
-Yeah, the prefix Maxim uses for their chips is a bit unfortunate in 
-naming context. I guess it's ok as it's not part of the UAPI.
+OK
 
 > 
-> If I intended it to come from maxim, I would have obviously used maxim_,
-> since that's what vendor-prefixes.yaml specifies.
+>> +const TH1520_PWM_REG_SIZE: usize = 0xB0;
+>> +
+>> +fn ns_to_cycles(ns: u64, rate_hz: u64) -> u64 {
+>> +    const NSEC_PER_SEC_U64: u64 = time::NSEC_PER_SEC as u64;
+>> +
+>> +    match ns.checked_mul(rate_hz) {
+>> +        Some(product) => product / NSEC_PER_SEC_U64,
+>> +        None => u64::MAX,
+>> +    }
 > 
-> Although they were initially made by Maxim, Analog Devices bought Maxim,
-> so using maxim_ would make as much sense as using adi_.
+> The semantic here is: If ns * rate_hz overflows, return U64_MAX, else ns
+> * rate_hz / NSEC_PER_SEC, right?
 > 
-> Switching to maxim_ would only lengthen the name of the functions,
-> types, symbols, macros, etc, and at least register/masks macros are
-> already extremely long.
+> If you cannot easily reproduce what mul_u64_u64_div_u64() does, I think
+> it would be more prudent do make this:
 > 
-> ...
-> 
->  >> +static int max_des_parse_src_dt_endpoint(struct max_des_priv *priv,
->  >> +                     struct max_des_phy *phy,
->  >> +                     struct fwnode_handle *fwnode)
->  >> +{
->  >> +    struct max_des *des = priv->des;
->  >> +    u32 pad = max_des_phy_to_pad(des, phy);
->  >> +    struct v4l2_fwnode_endpoint v4l2_ep = { .bus_type = 
-> V4L2_MBUS_UNKNOWN };
->  >> +    struct v4l2_mbus_config_mipi_csi2 *mipi = &v4l2_ep.bus.mipi_csi2;
->  >> +    enum v4l2_mbus_type bus_type;
->  >> +    struct fwnode_handle *ep;
->  >> +    u64 link_frequency;
->  >> +    unsigned int i;
->  >> +    int ret;
->  >> +
->  >> +    ep = fwnode_graph_get_endpoint_by_id(fwnode, pad, 0, 0);
->  >> +    if (!ep)
->  >> +        return 0;
->  >> +
->  >> +    ret = v4l2_fwnode_endpoint_alloc_parse(ep, &v4l2_ep);
->  >> +    fwnode_handle_put(ep);
->  >> +    if (ret) {
->  >> +        dev_err(priv->dev, "Could not parse endpoint on port %u\n", 
-> pad);
->  >> +        return ret;
->  >> +    }
->  >> +
->  >> +    bus_type = v4l2_ep.bus_type;
->  >> +    if (bus_type != V4L2_MBUS_CSI2_DPHY &&
->  >> +        bus_type != V4L2_MBUS_CSI2_CPHY) {
->  >> +        v4l2_fwnode_endpoint_free(&v4l2_ep);
->  >> +        dev_err(priv->dev, "Unsupported bus-type %u on port %u\n",
->  >> +            pad, bus_type);
->  >> +        return -EINVAL;
->  >> +    }
->  >> +
->  >> +    ret = 0;
->  >
->  > ret is already 0 here.
->  >
->  >> +    if (v4l2_ep.nr_of_link_frequencies == 0)
->  >> +        link_frequency = MAX_DES_LINK_FREQUENCY_DEFAULT;
->  >
->  > Isn't this required in DT?
->  >
-> 
-> Required from a schema standpoint or a code standpoint?
-> 
-> Code:
-> 
-> rval = fwnode_property_count_u64(fwnode, "link-frequencies");
-> if (rval > 0) {
-> }
-> 
-> No rval <= 0 case.
-> 
-> And I don't think I made it required in the schema.
+> 	match ns.checked_mul(rate_hz) {
+> 	    Some(product) => product,
+> 	    None => u64::MAX,
+> 	} / NSEC_PER_SEC_U64
 
-I'd do that. The device requires this configuration to operate anyway. 
-Also the concern of EMI may be lesser in environments serdes devices are 
-used but I wouldn't say it's not there.
+Thank you for the feedback on the calculation. I analyzed the two
+approaches and found that on overflow, my version saturates to u64::MAX,
+while the suggested version would result in u64::MAX / NSEC_PER_SEC. I
+believe my original implementation's saturation behavior is more
+predictable. With this in mind, would you be comfortable with me
+retaining the original implementation?
 
+> 
+>> +}
+>> +
+>> [...]
+>> +impl pwm::PwmOps for Th1520PwmDriverData {
+>> +    type WfHw = Th1520WfHw;
+>> +
+>> +    fn round_waveform_tohw(
+>> +        chip: &pwm::Chip,
+>> +        _pwm: &pwm::Device,
+>> +        wf: &pwm::Waveform,
+>> +    ) -> Result<(c_int, Self::WfHw)> {
+>> +        let data: &Self = chip.drvdata();
+>> +
+>> +        if wf.period_length_ns == 0 {
+>> +            return Ok((
+>> +                0,
+>> +                Th1520WfHw {
+>> +                    enabled: false,
+>> +                    ..Default::default()
+>> +                },
+>> +            ));
+>> +        }
+>> +
+>> +        let rate_hz = data.clk.rate().as_hz() as u64;
+>> +
+>> +        let period_cycles = ns_to_cycles(wf.period_length_ns, rate_hz).min(u32::MAX as u64);
+>> +        let mut duty_cycles = ns_to_cycles(wf.duty_length_ns, rate_hz).min(u32::MAX as u64);
+>> +
+>> +        let mut ctrl_val = PWM_CONTINUOUS_MODE;
+>> +
+>> +        if wf.duty_offset_ns == 0 {
+>> +            ctrl_val |= PWM_FPOUT;
+>> +        } else {
+>> +            duty_cycles = period_cycles - duty_cycles;
+> 
+> Huh, this looks wrong. Your hardware only supports the two polarities,
+> right? Then configure inversed polarity if
+> 
+> 	wf->duty_length_ns && wf->duty_offset_ns && wf->duty_length_ns + wf->duty_offset_ns >= wf->period_length_ns
+> 
+> (i.e. how the pwm-stm32 driver does it).
+
+OK, will fix
+
+> 
+>> +        }
+>> +
+>> +        let wfhw = Th1520WfHw {
+>> +            period_cycles: period_cycles as u32,
+>> +            duty_cycles: duty_cycles as u32,
+>> +            ctrl_val,
+>> +            enabled: true,
+>> +        };
+>> +
+>> +        dev_dbg!(
+>> +            chip.device(),
+>> +            "Requested: period {}ns, duty {}ns, offset {}ns -> HW: period {} cyc, duty {} cyc, ctrl 0x{:x}\n",
+> 
+> Would it be helpful to also emit the clkrate here?
+
+OK will update
+
+> 
+>> +            wf.period_length_ns,
+>> +            wf.duty_length_ns,
+>> +            wf.duty_offset_ns,
+>> +            wfhw.period_cycles,
+>> +            wfhw.duty_cycles,
+>> +            wfhw.ctrl_val
+>> +        );
+>> +
+>> +        Ok((0, wfhw))
+>> +    }
+>> +
+>> +    fn round_waveform_fromhw(
+>> +        chip: &pwm::Chip,
+>> +        _pwm: &pwm::Device,
+>> +        wfhw: &Self::WfHw,
+>> +        wf: &mut pwm::Waveform,
+>> +    ) -> Result<c_int> {
+>> +        let data: &Self = chip.drvdata();
+>> +        let rate_hz = data.clk.rate().as_hz() as u64;
+>> +
+>> +        wf.period_length_ns = cycles_to_ns(wfhw.period_cycles as u64, rate_hz);
+>> +
+>> +        let duty_cycles = wfhw.duty_cycles as u64;
+>> +
+>> +        if (wfhw.ctrl_val & PWM_FPOUT) != 0 {
+>> +            wf.duty_length_ns = cycles_to_ns(duty_cycles, rate_hz);
+>> +            wf.duty_offset_ns = 0;
+>> +        } else {
+>> +            let period_cycles = wfhw.period_cycles as u64;
+>> +            let original_duty_cycles = period_cycles.saturating_sub(duty_cycles);
+>> +
+>> +            wf.duty_length_ns = cycles_to_ns(original_duty_cycles, rate_hz);
+>> +            // We can't recover the original non-zero offset, so we just set it
+>> +            // to a representative non-zero value.
+>> +            wf.duty_offset_ns = 1;
+> 
+> For an inversed polarity signal the duty_offset is polarity - duty_cycle.
+
+I believe there was a typo in your suggestion and you meant period
+instead of polarity. Based on that, my understanding is that for an
+inverted signal, the generic pwm_waveform struct expects duty_offset_ns
+to represent the duration of the initial low time, while duty_length_ns
+represents the high time.
+
+so the code would look like this:
+// For an inverted signal, `duty_length_ns` is the high time (period - low_time).
+wf.duty_length_ns = cycles_to_ns(original_duty_cycles, rate_hz);
+// The offset is the initial low time, which is what the hardware register provides.
+wf.duty_offset_ns = cycles_to_ns(duty_cycles, rate_hz);
+
+
+> 
+>> +        }
+>> +
+>> +        Ok(0)
+>> +    }
+> 
+> Best regards
+> Uwe
+
+Best regards,
 -- 
-Regards,
-
-Sakari Ailus
-
+Michal Wilczynski <m.wilczynski@samsung.com>
 
