@@ -1,49 +1,49 @@
-Return-Path: <devicetree+bounces-190721-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-190722-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id AF073AEC7DB
-	for <lists+devicetree@lfdr.de>; Sat, 28 Jun 2025 16:50:18 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 30810AEC7E1
+	for <lists+devicetree@lfdr.de>; Sat, 28 Jun 2025 16:51:09 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 19C9617CD47
-	for <lists+devicetree@lfdr.de>; Sat, 28 Jun 2025 14:50:18 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id CD4F8189F82F
+	for <lists+devicetree@lfdr.de>; Sat, 28 Jun 2025 14:50:48 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6FE39257427;
-	Sat, 28 Jun 2025 14:49:34 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4DB272586EE;
+	Sat, 28 Jun 2025 14:49:35 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=cknow.org header.i=@cknow.org header.b="lM4DZ4Kn"
+	dkim=pass (2048-bit key) header.d=cknow.org header.i=@cknow.org header.b="OPH9awXX"
 X-Original-To: devicetree@vger.kernel.org
-Received: from out-188.mta0.migadu.com (out-188.mta0.migadu.com [91.218.175.188])
+Received: from out-184.mta0.migadu.com (out-184.mta0.migadu.com [91.218.175.184])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 51C03250BF2
-	for <devicetree@vger.kernel.org>; Sat, 28 Jun 2025 14:49:32 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=91.218.175.188
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7BE82254853
+	for <devicetree@vger.kernel.org>; Sat, 28 Jun 2025 14:49:33 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=91.218.175.184
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1751122174; cv=none; b=RmBp7ccvSaTmkZvrO+HTo3Ejh85MNwi74AsTbFWymwvzaXgNLbv8FlORkz5mdidvUXgkuZviDO+gz3YagnUzcxzjnb9pdAQ2LiFxtou2tK+Q+EuSQeU25HZAzd995AU8CXMEsTaawpqnQGYBeZYlP3zjME492oOy0rvd/y7EJFY=
+	t=1751122175; cv=none; b=FRcYOatWUovUaB/QH/hnA8CV0GuqRUlUeN2yyjZ1EN5KD+027Peoi1AS0hUwS+soBqSbXzXKJq8NdHhRrnRw3vpihYBeE8mDLy1djdUqvXSVRi4TB/s+4P8SzrWw8QvjRGfJdAYQ/awR6I0qPJDBIB5AZUvAT3Pz+7+cN5rkQ8A=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1751122174; c=relaxed/simple;
-	bh=++WUmsmG42FBtz0N90d+3dm2z4DuzAvjfBgwxUM5j6Q=;
+	s=arc-20240116; t=1751122175; c=relaxed/simple;
+	bh=X9IwqQTo2UR2KxHZADqXVn1GLFGt+g0mnh2zbr2lFgQ=;
 	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=JGh1V9Y5UqjWeF4WumyOdvooP1xl88VgdufTDAX1PJ9uOwiOr+PmFPkQDTfCDh88mzmrZtQzYwatU+hl6hGVdXElUV0z/MGndjtafbNf9dtmqVlvLEPgiqK4m8shDCV4JMl/XthaQ7vr+eETaKchLcKMnmonxuszQ90Dt9RphIM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=cknow.org; spf=pass smtp.mailfrom=cknow.org; dkim=pass (2048-bit key) header.d=cknow.org header.i=@cknow.org header.b=lM4DZ4Kn; arc=none smtp.client-ip=91.218.175.188
+	 MIME-Version; b=M1Tc8WDaE7rn4ju1vL85of5IJKJDnIeNzpjPvZt845FGI+loQwFhrBMpSNiEad9TN+JFM+86PLLYf/Tb2qImw/gLzQghkKHhPQzV+9M3wH5+js1WXUns/hC1QAXnqhdYwuNVulLNCXzPKPYtIJK0vUdmYbowTsw1BGJog4laXfA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=cknow.org; spf=pass smtp.mailfrom=cknow.org; dkim=pass (2048-bit key) header.d=cknow.org header.i=@cknow.org header.b=OPH9awXX; arc=none smtp.client-ip=91.218.175.184
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=cknow.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=cknow.org
 X-Report-Abuse: Please report any abuse attempt to abuse@migadu.com and include these headers.
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cknow.org; s=key1;
-	t=1751122170;
+	t=1751122171;
 	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
 	 to:to:cc:cc:mime-version:mime-version:
 	 content-transfer-encoding:content-transfer-encoding:
 	 in-reply-to:in-reply-to:references:references;
-	bh=JXGz2WRYkb5YR3U/LDov8OvZiUYlL4TD2HwVbGHyw/0=;
-	b=lM4DZ4KnoLlPPUaEu6usoxkV86zoUCnUScVx4Ekwfvf6GaaywSlu+IaZCE5OQvzkLhdz+T
-	u25AI1cJxl6MhWgITj+BYHK5S8uJOkI2m/e75+YSKD4aY+Dxluj6tOusqg53Iy17drQD5y
-	2HVXfhBHPwmOn2QmUOt1+tgh3urKoyJOuYvuDvSWgwjCppUP8YvvwNyP7DTAxU1QJoAu1Q
-	Q7f7IfThfVXlFMn23s2WvcbUKLuu5uexiB4ejWJcbwZIs/j8+HgEHQVbosXkj1XeGmtogK
-	4EP7oat5zIIDj41oHqKLcQBfw1PKHKM/Y990e8Vzuerr8WVgVtFONp855gIo/Q==
+	bh=TpHunI4Q5945yEc9hYc94Izz4fWB9Fia9hDC3kt/MFA=;
+	b=OPH9awXXHy0qHBPky613yy557pwSFvvRjvIeVVoQ077ijb6IzrOAtqGUuV3P3Oo4SzZuJH
+	24FJlLvBY06I57jnFa5hBHGAkm4Bt0UX3c00PqGNzR+tm7Hw6/KHV8IBq97mQSNDI3PJ+y
+	4wGm1PdWhfnvfr+imV9e2gMdIKPAOOZm8+oPK0g74U/NyaHfBP/gstr7gNYn2nqZ2y0rhy
+	LhhIyaqE8fRAbXcJqCgP+/JaOnff7vQKE1zv6TCN6m2oMqAHF2XLemjDdI6WuICEG8fYcx
+	wMxP90BlPrjRwS/Ec879dRb9/edF9RHDnm3hP2PWr6auf0pwT8Uz0PnVu0AtjA==
 From: Diederik de Haas <didi.debian@cknow.org>
 To: Rob Herring <robh@kernel.org>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
@@ -57,9 +57,9 @@ Cc: Dragan Simic <dsimic@manjaro.org>,
 	linux-rockchip@lists.infradead.org,
 	linux-kernel@vger.kernel.org,
 	Diederik de Haas <didi.debian@cknow.org>
-Subject: [PATCH v2 05/10] arm64: dts: rockchip: Simplify edp endpoints on several rk3399 boards
-Date: Sat, 28 Jun 2025 16:32:39 +0200
-Message-ID: <20250628144915.839338-6-didi.debian@cknow.org>
+Subject: [PATCH v2 06/10] arm64: dts: rockchip: Simplify mipi_out endpoint on rk3399 RP64 dtso
+Date: Sat, 28 Jun 2025 16:32:40 +0200
+Message-ID: <20250628144915.839338-7-didi.debian@cknow.org>
 In-Reply-To: <20250628144915.839338-1-didi.debian@cknow.org>
 References: <20250628144915.839338-1-didi.debian@cknow.org>
 Precedence: bulk
@@ -71,106 +71,52 @@ MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-Migadu-Flow: FLOW_OUT
 
-The only thing actually added here is a single endpoint on edp_out,
+The only thing actually added here is a single endpoint on mipi_out,
 which is already defined in rk3399-base.dtsi, so it's simpler to just
 reference that phandle, which allows the removal of several properties.
 
-This fixes the following DTB validation warnings:
-
-  graph node has single child node 'endpoint@0',
-  #address-cells/#size-cells are not necessary
-
 Signed-off-by: Diederik de Haas <didi.debian@cknow.org>
 ---
- .../boot/dts/rockchip/rk3399-gru-chromebook.dtsi | 15 ++++-----------
- .../boot/dts/rockchip/rk3399-pinebook-pro.dts    | 15 ++++-----------
- .../dts/rockchip/rk3399-sapphire-excavator.dts   | 16 ++++------------
- 3 files changed, 12 insertions(+), 34 deletions(-)
+ .../dts/rockchip/rk3399-rockpro64-screen.dtso | 19 ++++++-------------
+ 1 file changed, 6 insertions(+), 13 deletions(-)
 
-diff --git a/arch/arm64/boot/dts/rockchip/rk3399-gru-chromebook.dtsi b/arch/arm64/boot/dts/rockchip/rk3399-gru-chromebook.dtsi
-index a9ea4b0daa04..9d07353df52c 100644
---- a/arch/arm64/boot/dts/rockchip/rk3399-gru-chromebook.dtsi
-+++ b/arch/arm64/boot/dts/rockchip/rk3399-gru-chromebook.dtsi
-@@ -250,18 +250,11 @@ &edp {
- 	 */
- 	assigned-clocks = <&cru PCLK_EDP>;
- 	assigned-clock-rates = <24000000>;
-+};
- 
--	ports {
--		edp_out: port@1 {
--			reg = <1>;
--			#address-cells = <1>;
--			#size-cells = <0>;
--
--			edp_out_panel: endpoint@0 {
--				reg = <0>;
--				remote-endpoint = <&panel_in_edp>;
--			};
--		};
-+&edp_out {
-+	edp_out_panel: endpoint {
-+		remote-endpoint = <&panel_in_edp>;
- 	};
- };
- 
-diff --git a/arch/arm64/boot/dts/rockchip/rk3399-pinebook-pro.dts b/arch/arm64/boot/dts/rockchip/rk3399-pinebook-pro.dts
-index 5473070823cb..5a8551d9ffe4 100644
---- a/arch/arm64/boot/dts/rockchip/rk3399-pinebook-pro.dts
-+++ b/arch/arm64/boot/dts/rockchip/rk3399-pinebook-pro.dts
-@@ -404,18 +404,11 @@ &edp {
- 	pinctrl-names = "default";
- 	pinctrl-0 = <&edp_hpd>;
+diff --git a/arch/arm64/boot/dts/rockchip/rk3399-rockpro64-screen.dtso b/arch/arm64/boot/dts/rockchip/rk3399-rockpro64-screen.dtso
+index a26c8e05c13b..77973ae870b6 100644
+--- a/arch/arm64/boot/dts/rockchip/rk3399-rockpro64-screen.dtso
++++ b/arch/arm64/boot/dts/rockchip/rk3399-rockpro64-screen.dtso
+@@ -52,19 +52,6 @@ &mipi_dsi {
+ 	#size-cells = <0>;
  	status = "okay";
-+};
  
 -	ports {
--		edp_out: port@1 {
--			reg = <1>;
--			#address-cells = <1>;
--			#size-cells = <0>;
+-		#address-cells = <1>;
+-		#size-cells = <0>;
 -
--			edp_out_panel: endpoint@0 {
--				reg = <0>;
--				remote-endpoint = <&panel_in_edp>;
+-		mipi_out: port@1 {
+-			reg = <1>;
+-
+-			mipi_out_panel: endpoint {
+-				remote-endpoint = <&mipi_in_panel>;
 -			};
 -		};
-+&edp_out {
-+	edp_out_panel: endpoint {
-+		remote-endpoint = <&panel_in_edp>;
+-	};
+-
+ 	mipi_panel: panel@0 {
+ 		compatible = "feiyang,fy07024di26a30d";
+ 		reg = <0>;
+@@ -80,6 +67,12 @@ mipi_in_panel: endpoint {
  	};
  };
  
-diff --git a/arch/arm64/boot/dts/rockchip/rk3399-sapphire-excavator.dts b/arch/arm64/boot/dts/rockchip/rk3399-sapphire-excavator.dts
-index fdaa8472b7a7..a4ceafe6dd7a 100644
---- a/arch/arm64/boot/dts/rockchip/rk3399-sapphire-excavator.dts
-+++ b/arch/arm64/boot/dts/rockchip/rk3399-sapphire-excavator.dts
-@@ -142,21 +142,13 @@ sdio_pwrseq: sdio-pwrseq {
- 
- &edp {
++&mipi_out {
++	mipi_out_panel: endpoint {
++		remote-endpoint = <&mipi_in_panel>;
++	};
++}
++
+ &pwm0 {
  	status = "okay";
-+};
- 
--	ports {
--		edp_out: port@1 {
--			reg = <1>;
--			#address-cells = <1>;
--			#size-cells = <0>;
--
--			edp_out_panel: endpoint@0 {
--				reg = <0>;
--				remote-endpoint = <&panel_in_edp>;
--			};
--		};
-+&edp_out {
-+	edp_out_panel: endpoint {
-+		remote-endpoint = <&panel_in_edp>;
- 	};
  };
--
- &i2c1 {
- 	i2c-scl-rising-time-ns = <300>;
- 	i2c-scl-falling-time-ns = <15>;
 -- 
 2.50.0
 
