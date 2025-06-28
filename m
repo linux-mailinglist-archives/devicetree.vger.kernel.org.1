@@ -1,107 +1,122 @@
-Return-Path: <devicetree+bounces-190646-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-190648-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id B5654AEC4E8
-	for <lists+devicetree@lfdr.de>; Sat, 28 Jun 2025 06:39:40 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 6A2EEAEC53C
+	for <lists+devicetree@lfdr.de>; Sat, 28 Jun 2025 07:45:02 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 1184556117C
-	for <lists+devicetree@lfdr.de>; Sat, 28 Jun 2025 04:39:41 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 1C5114A6A68
+	for <lists+devicetree@lfdr.de>; Sat, 28 Jun 2025 05:45:00 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 76E251F4190;
-	Sat, 28 Jun 2025 04:39:36 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 89F3921FF36;
+	Sat, 28 Jun 2025 05:44:47 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="OKgaL/Df"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lf1-f50.google.com (mail-lf1-f50.google.com [209.85.167.50])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CECAD2BCFB;
-	Sat, 28 Jun 2025 04:39:33 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.50
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5ACBB21E087;
+	Sat, 28 Jun 2025 05:44:47 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1751085576; cv=none; b=GGUxyAVFc5+Z1v0I5cMG5xvm6tGcW+xA8YIdw2GniIOMS8QoGsnZ3ErlNTrfmycszWdsbtFFTmFWr5PDTetaTbefTDKLhEhH0jjhCirtyS9J4ojLs/c4tFYY8ieX35SiZiBCjltwMSUZjA9CcBzeQ5Rtap88YCZ7C8QtQL5MNcs=
+	t=1751089487; cv=none; b=p3+m0pSN+qdJIqFZ90KROPLam2GrQsOcSAJLT4hV7qpBa9OMDPz2rxBSrWsf0U6ryhEDxumIY65420lIP5FkWmwXoK/m6H7HDRfgxp0DG/elcFfqZgQuTgtRHufmB7QV0i4DoTKzRteTNVvcc3tmOVEz/LmgfiZe8EbIgi7HGZY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1751085576; c=relaxed/simple;
-	bh=XjehE0byLT6LFQc5LPjjr+h2YCj0kTxyUsbUd1G/6bU=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=tZ9VVxIN8LrCs9FvwxJbnTW+rHpA3pFmleof18qBc1ES2V4h5wjJtcozELsMrtfoZp5nze/wajSnWLE0CqLGg3XqjJq0ptm4DZlhRm6SSOJF7smSe4RvVtaGoc6JgqPFAjVK8HtJgHgQAm03OrX7aF8TsMNHLdaIdK1kZWN60Bg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=csie.org; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.167.50
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=csie.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-lf1-f50.google.com with SMTP id 2adb3069b0e04-553b60de463so467871e87.3;
-        Fri, 27 Jun 2025 21:39:33 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1751085571; x=1751690371;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :reply-to:in-reply-to:references:mime-version:x-gm-message-state
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=XjehE0byLT6LFQc5LPjjr+h2YCj0kTxyUsbUd1G/6bU=;
-        b=p/Zer3j8XrqONRsrWxsJ+QDpVP+W4gYdRNE+0MeZR3RKbQn3jVYgfCIQ0FVnzGM45P
-         XfGZcCcn5+4nWtgGao7syBA7K0Sc212o+5BC/TLLQ2CAxKBJNHJ7efV8km+ZAlxDJ27h
-         MpsepZCuYySCpN6btpKK6dGZifFdX+8iaWZdFk0Tfwc6NZAbb9xmAPaP3+hI6BgtZJrn
-         5c1ezTjUkLMcU8FTcf8kVf4x5qmebyVi+B5UR/gvOKbnA5K3NV/gYQ5GyUpE9oQMp4Ii
-         t9D6qmK//0adBuVtXfw9wmtHKirAt7Z5Kzk2MXAQRQt842kC0bu7oynhkIEW7P91xCQU
-         GLxg==
-X-Forwarded-Encrypted: i=1; AJvYcCUgGjh1GtlCPaEpBB8RObw4V+/4+TEvw8PgHhZdA/neCfmRoNRhsepx/W9XmEHzBXa6ogjooaV5oJ8feg==@vger.kernel.org, AJvYcCWHjFPnlpup/lIOnDpgKA5BRzBDJRSeOycQZcRSq2inGnOiu+Bg2h7/ncwXpC1OMcuXm/gkc4DMQ3VJ0Bga@vger.kernel.org, AJvYcCXqjDtLH51BVUGqiRtrPTxRIz3T2Gh10AZNCcrDCrhSzWYsFuNJktJqX8yDHkoyvGxMRn6bvcY1FmDe@vger.kernel.org
-X-Gm-Message-State: AOJu0YzOx6ZapciUVjSFtGjqnBAcRFMspUkKE2PmLlfb43nWqkFPeM2n
-	Xdk7Hkl5tu2cHGQTw+Y3V/7oWKJ/GZXnJ2KV5mPYeAlMj+MiWBRi5dRb7DRQ87Fa
-X-Gm-Gg: ASbGnctoSko77ZN4yh570o5eg0Gq+FPL4Cyd3o733IXns+MlT4MtDrUY81P4jmNx/zR
-	G8QanuzSv5wuQch/zZH9HSwPFRQc9vX5tzZ+c60xqE3aWk16pnNG7R8TwIawAa2qOSiqUtfvPCc
-	3recUpL17UE+c11kmk8qpfuBZAZvffbHrZyq+MAIs8fpx24jglRTlF5P4ZfnTylwhmpBQAw7nO7
-	IJ0J1FrpU+GTMY9UO4/0TgIWeuLsoSbYNb8boPBiIGRYRPZxuKf4Aa5M41epJ8oo6yHsmPMOWms
-	5TYSv/sdA+V+MXNDwrhNgZK3fPeGMJafSvuZUMjkfa9mFpN4BOzhbvOCDtEpang6fc81Zrq0jCo
-	+9AKmI18BV9+Gaekd7dLqKtlB4oYY9A==
-X-Google-Smtp-Source: AGHT+IFAAFdqx0e30R4m2bLiTy55BpIjGpeKnNOchkj6cDxL04RM+oDcY0i0orscnrqx9ykTtykybw==
-X-Received: by 2002:a05:6512:3ca4:b0:553:5e35:b250 with SMTP id 2adb3069b0e04-5550b8d27demr2212542e87.32.1751085571245;
-        Fri, 27 Jun 2025 21:39:31 -0700 (PDT)
-Received: from mail-lj1-f180.google.com (mail-lj1-f180.google.com. [209.85.208.180])
-        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-5550b2d7c35sm663358e87.205.2025.06.27.21.39.30
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 27 Jun 2025 21:39:30 -0700 (PDT)
-Received: by mail-lj1-f180.google.com with SMTP id 38308e7fff4ca-32b31afa781so3794311fa.3;
-        Fri, 27 Jun 2025 21:39:30 -0700 (PDT)
-X-Forwarded-Encrypted: i=1; AJvYcCVhTowp86Owi+yOBdFTcXSX1Y1R6D4xZjHSWrET2l5nmaCxS5JRAPlUVUcs+40UrslmUuKR//bnqM1ko52N@vger.kernel.org, AJvYcCVl8BU9hOmJEfWRCmn1Kp2fJXgZRA+ULgmdWKhOvVf+RHIpoVWcjurwNea5vpHrnlPTsdIRKgr3zXBhug==@vger.kernel.org, AJvYcCXd31eaOjHL3evfBUEu3sn7lnd4Fc25WdrXzekGxVMB4qjbB0Y6U/hfOxp3OE6khvQFXGLs/TpbE03A@vger.kernel.org
-X-Received: by 2002:a05:651c:304f:b0:32a:6c63:935 with SMTP id
- 38308e7fff4ca-32cdc4480afmr15261101fa.4.1751085570044; Fri, 27 Jun 2025
- 21:39:30 -0700 (PDT)
+	s=arc-20240116; t=1751089487; c=relaxed/simple;
+	bh=dpDcT0JGPHxnE3OT+sUCmMdAicGM1TQ8WJOYe+HFJCc=;
+	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=qtGjYO2ADPaW8kHaIriTAXlAjVhQUMx35BSV1ZkVgKUPQ5Xtr2Y3qePKhLdGQoppmn0CNCjQ8Uv5/3AATYi3d6QEsh0m3oz/pGU5L7u7QpnZqs2e2UvMs8TQeBycPIlA7hdo2f+jCvPbTMF2l0LmWlTCsHH77p2nlPGiyJy1TyE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=OKgaL/Df; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id A5137C4CEEE;
+	Sat, 28 Jun 2025 05:44:46 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1751089486;
+	bh=dpDcT0JGPHxnE3OT+sUCmMdAicGM1TQ8WJOYe+HFJCc=;
+	h=From:To:Cc:Subject:Date:From;
+	b=OKgaL/DfcCOo9Mdys6/xM4PvMcJg5uNhsLK8Em3NX9BYIVrO50PVaVUq4nSkpNmgf
+	 IbN8VfS2zqxDMebYiCUoeyC4kwWLCKx3MAIBL/trHaVOZh72ZIFfy324Hu2Bb0yCWV
+	 D6BGpNsUUQiElqG8Q8LGtAOei8ESIMeenJ9dgMzdaWAy2R76QnSLyc/0kLRMPf4L9J
+	 Hzh5puij23jq4SY4HwwhxsPVZhQEb7ak71eLoyO7AQeVtMePa7ClDw54FC1fGWmutL
+	 jj+vfpXAuvDErjEgWXGPtvmyiRSCcYG6McR7AgSMYxlllQ1QP0Tr6ZqkKiZgH1Yu9y
+	 aWiz36OusLR4A==
+Received: by wens.tw (Postfix, from userid 1000)
+	id 4048C5FD53; Sat, 28 Jun 2025 13:44:44 +0800 (CST)
+From: Chen-Yu Tsai <wens@kernel.org>
+To: Andrew Lunn <andrew+netdev@lunn.ch>,
+	"David S. Miller" <davem@davemloft.net>,
+	Eric Dumazet <edumazet@google.com>,
+	Jakub Kicinski <kuba@kernel.org>,
+	Paolo Abeni <pabeni@redhat.com>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Andre Przywara <andre.przywara@arm.com>,
+	Chen-Yu Tsai <wens@csie.org>,
+	Jernej Skrabec <jernej@kernel.org>,
+	Samuel Holland <samuel@sholland.org>
+Cc: netdev@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	linux-sunxi@lists.linux.dev
+Subject: [PATCH net 0/2] allwinner: a523: Rename emac0 to gmac0
+Date: Sat, 28 Jun 2025 13:44:36 +0800
+Message-Id: <20250628054438.2864220-1-wens@kernel.org>
+X-Mailer: git-send-email 2.39.5
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20250626080923.632789-1-paulk@sys-base.io> <20250626080923.632789-2-paulk@sys-base.io>
-In-Reply-To: <20250626080923.632789-2-paulk@sys-base.io>
-Reply-To: wens@csie.org
+Content-Transfer-Encoding: 8bit
+
 From: Chen-Yu Tsai <wens@csie.org>
-Date: Sat, 28 Jun 2025 12:39:17 +0800
-X-Gmail-Original-Message-ID: <CAGb2v67VVc4ckvzy+w++wcEUPSvV9Uxju2H4qTRNhjwAgYpzXg@mail.gmail.com>
-X-Gm-Features: Ac12FXwd7he7qKrnxN9KLQmU6bishZKuh8vNiwYMugN6VxIMRflq-7o7dltAy1M
-Message-ID: <CAGb2v67VVc4ckvzy+w++wcEUPSvV9Uxju2H4qTRNhjwAgYpzXg@mail.gmail.com>
-Subject: Re: [PATCH 1/5] pinctrl: sunxi: Fix a100 emac pin function name
-To: Paul Kocialkowski <paulk@sys-base.io>
-Cc: netdev@vger.kernel.org, devicetree@vger.kernel.org, 
-	linux-arm-kernel@lists.infradead.org, linux-sunxi@lists.linux.dev, 
-	linux-kernel@vger.kernel.org, linux-gpio@vger.kernel.org, 
-	Andrew Lunn <andrew+netdev@lunn.ch>, "David S . Miller" <davem@davemloft.net>, 
-	Eric Dumazet <edumazet@google.com>, Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>, 
-	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Jernej Skrabec <jernej.skrabec@gmail.com>, Samuel Holland <samuel@sholland.org>, 
-	Linus Walleij <linus.walleij@linaro.org>, Andre Przywara <andre.przywara@arm.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
 
-On Thu, Jun 26, 2025 at 4:10=E2=80=AFPM Paul Kocialkowski <paulk@sys-base.i=
-o> wrote:
->
-> The Allwinner A100/A133 only has a single emac instance, which is
-> referred to as "emac" everywhere. Fix the pin names to drop the
-> trailing "0" that has no reason to be.
->
-> Fixes: 473436e7647d ("pinctrl: sunxi: add support for the Allwinner A100 =
-pin controller")
-> Signed-off-by: Paul Kocialkowski <paulk@sys-base.io>
+Hi folks,
 
-Acked-by: Chen-Yu Tsai <wens@csie.org>
+This small series aims to align the name of the first ethernet
+controller found on the Allwinner A523 SoC family with the name
+found in the datasheets. It renames the compatible string and
+any other references from "emac0" to "gmac0".
+
+When support of the hardware was introduced, the name chosen was
+"EMAC", which followed previous generations. However the datasheets
+use the name "GMAC" instead, likely because there is another "GMAC"
+based on a newer DWMAC IP.
+
+The first patch fixes the compatible string entry in the device tree
+binding.
+
+The second patch fixes all references in the existing device trees.
+
+Since this was introduced in v6.16-rc1, I hope to land this for v6.16
+as well.
+
+There's a small conflict in patch one around the patch context with 
+
+    dt-bindings: net: sun8i-emac: Add A100 EMAC compatible
+
+that just landed in net-next today. I will leave this patch to the net
+mainainers to merge to avoid making a bigger mess. Once that is landed
+I will merge the second patch through the sunxi tree.
+
+
+Thanks
+ChenYu
+
+
+Chen-Yu Tsai (2):
+  dt-bindings: net: sun8i-emac: Rename A523 EMAC0 to GMAC0
+  arm64: dts: allwinner: a523: Rename emac0 to gmac0
+
+ .../devicetree/bindings/net/allwinner,sun8i-a83t-emac.yaml  | 2 +-
+ arch/arm64/boot/dts/allwinner/sun55i-a523.dtsi              | 6 +++---
+ arch/arm64/boot/dts/allwinner/sun55i-a527-cubie-a5e.dts     | 4 ++--
+ arch/arm64/boot/dts/allwinner/sun55i-t527-avaota-a1.dts     | 4 ++--
+ 4 files changed, 8 insertions(+), 8 deletions(-)
+
+-- 
+2.39.5
+
 
