@@ -1,128 +1,356 @@
-Return-Path: <devicetree+bounces-190760-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-190761-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 46F23AEC8C6
-	for <lists+devicetree@lfdr.de>; Sat, 28 Jun 2025 18:31:33 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id CE680AEC8D2
+	for <lists+devicetree@lfdr.de>; Sat, 28 Jun 2025 18:41:43 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id B0E181BC0E5C
-	for <lists+devicetree@lfdr.de>; Sat, 28 Jun 2025 16:31:48 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 049487ABFEC
+	for <lists+devicetree@lfdr.de>; Sat, 28 Jun 2025 16:40:19 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 46AF5246781;
-	Sat, 28 Jun 2025 16:31:30 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 65927247284;
+	Sat, 28 Jun 2025 16:41:36 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="tQLRPRhw"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="TlmZpMde"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wm1-f51.google.com (mail-wm1-f51.google.com [209.85.128.51])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0EAFE1FBC91;
-	Sat, 28 Jun 2025 16:31:29 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 56C221E2823
+	for <devicetree@vger.kernel.org>; Sat, 28 Jun 2025 16:41:34 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.51
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1751128290; cv=none; b=pr01PVPTSHTCBt2jf6lX0J65fsenBWujCNNue20F0PmOZICJfXkFFg9knj92X6zDAafrMSOf3XoKM2PDazOih37dRdPr7ZC4sPgRM+mU7X5SSK914i+y4B1ds7+gONDaGemG1d54naVry+MrIg9NzkC2pRa9X7PCtMPauGpuaJM=
+	t=1751128896; cv=none; b=T84QRhO/A6+0aWIBTUCtAmodSQ3uqvZpv+wmKBKbLl0QBSzYdL9vrYpLKGxOW7xyNPyGMNkM7+iKHOZKZw4PWjrWlgBoQ1kGtipy+cGhqE28MC/ciwjdqJ2PYL8qq0ozcNkNE55sOVjzSW1MNkp/DBspg4Wb4xDQdpc7mdeHdRY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1751128290; c=relaxed/simple;
-	bh=ysZnhmJGpruuPPRq6A2SjBxDODaSwvv2FXxAy1Z+NAw=;
-	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=JOA7oGGwB2aC+X81oeXVdQfFUc3s7Z0mB1RRtEbv1HqtQ8VK3pgKHcLz1fHKDRPegMi/EtpQ5irUiIYqhalOQaRqFsGQCDtu8B7XHv0Fh/WwhfX5H/spCuw8XxGp1QxAqF891Y53T+HM5zHxbXQv2dQ2jkXVOl+SNqx9kvW1URk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=tQLRPRhw; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 3B22FC4CEEA;
-	Sat, 28 Jun 2025 16:31:18 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1751128289;
-	bh=ysZnhmJGpruuPPRq6A2SjBxDODaSwvv2FXxAy1Z+NAw=;
-	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
-	b=tQLRPRhw66r3jlKJvSsokpA4kp2y7IfYSnOzLuHFlNANWAlwbsQKroxvqexfBCtBT
-	 ibCgevepYqNNLNmW+b2sHYFpjTzJrmi1/EE6mHmgURM78btgzKj0RPx/P7SiXFQGoP
-	 8r79mIpKkjRINMdE9p8XvawckltNbQwre6ka0DlFEJA6nm5yQdRpcZfDdLHkI01hC3
-	 zB37K3GcFxk/xjQYjuiRVn6U7nnJwraiWyV2ZlqKucdanxoovTqdr7W5DokKX0VB4Q
-	 Vqb22IaqoYwQttdDphBj9SOG+Fk11E4AV3YYnxtJWiZU3OFioexl9vp6reRWFlRSpm
-	 TEOPM9ofze1AA==
-Date: Sat, 28 Jun 2025 17:31:12 +0100
-From: Jonathan Cameron <jic23@kernel.org>
-To: Jishnu Prakash <jishnu.prakash@oss.qualcomm.com>
-Cc: robh@kernel.org, krzysztof.kozlowski@linaro.org, krzk+dt@kernel.org,
- conor+dt@kernel.org, agross@kernel.org, andersson@kernel.org,
- lumag@kernel.org, dmitry.baryshkov@oss.qualcomm.com,
- konradybcio@kernel.org, daniel.lezcano@linaro.org, sboyd@kernel.org,
- amitk@kernel.org, thara.gopinath@gmail.com, lee@kernel.org,
- rafael@kernel.org, subbaraman.narayanamurthy@oss.qualcomm.com,
- david.collins@oss.qualcomm.com, anjelique.melendez@oss.qualcomm.com,
- quic_kamalw@quicinc.com, rui.zhang@intel.com, lukasz.luba@arm.com,
- devicetree@vger.kernel.org, linux-arm-msm@vger.kernel.org,
- linux-iio@vger.kernel.org, linux-kernel@vger.kernel.org,
- linux-pm@vger.kernel.org, cros-qcom-dts-watchers@chromium.org,
- quic_skakitap@quicinc.com, neil.armstrong@linaro.org,
- stephan.gerhold@linaro.org
-Subject: Re: [PATCH V6 4/5] iio: adc: Add support for QCOM PMIC5 Gen3 ADC
-Message-ID: <20250628173112.63d9334e@jic23-huawei>
-In-Reply-To: <ff19780e-5bbd-4074-9db3-b4f27922a093@oss.qualcomm.com>
-References: <20250509110959.3384306-1-jishnu.prakash@oss.qualcomm.com>
-	<20250509110959.3384306-5-jishnu.prakash@oss.qualcomm.com>
-	<20250511140418.33171ca3@jic23-huawei>
-	<ff19780e-5bbd-4074-9db3-b4f27922a093@oss.qualcomm.com>
-X-Mailer: Claws Mail 4.3.0 (GTK 3.24.48; x86_64-pc-linux-gnu)
+	s=arc-20240116; t=1751128896; c=relaxed/simple;
+	bh=hMKkO5vEgICL6xpPIdKOu3yTFCaz5qJgJPJrZslfaz4=;
+	h=Mime-Version:Content-Type:Date:Message-Id:Cc:Subject:From:To:
+	 References:In-Reply-To; b=Fwh7fqf/7TQoJVUcKuq7ZMDadPowwpy2thavZBA0WgOfftJZHxb+rQD17kj+aaaNyE1pi8IvWH0DA9+rR80qlRIiZjiUmMPvaR5wn2BMdzL8bOSFkdwMVnmxL4DO7vAbtmL6dANPfQPw5YZDWIbmkz+cOKd32eXZ4I50kijm3vc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=TlmZpMde; arc=none smtp.client-ip=209.85.128.51
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-wm1-f51.google.com with SMTP id 5b1f17b1804b1-450cfb790f7so24888385e9.0
+        for <devicetree@vger.kernel.org>; Sat, 28 Jun 2025 09:41:34 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1751128893; x=1751733693; darn=vger.kernel.org;
+        h=in-reply-to:references:to:from:subject:cc:message-id:date
+         :content-transfer-encoding:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=UBHKswADexFSg9SZEN9SPPg12lVleXq9YO8e2RnWik4=;
+        b=TlmZpMdePhjqL3C9NrIeRvkRH1QxGKR84j33MOy5luTOFXNR6Er20CyBLkVOrBSNt9
+         q3wMvwCpWpe2JE3NQbGIKOzJpL2crAoMQYJYMlw965T6gnEmalZgE1CohX8c0+Juppa6
+         MOtAA2lhzgH9Zz3Td1wsuWI6694cWNqpnPr/bsMPFybtkCxcPA3PfEvpIjqlmmM65Bzf
+         oQ/dHYkMLYZitqzcLMGx7H3zFOUyAw2TtRZQpFm95ZwkzRv4cNn9kGmReGJ5Jqv+tPav
+         GLIJFwJ94gLJeQwsAd+PzXk+24uxsbtM9fYrq9GaEFMtLX2z5vK+600ido1/z2J/d/G9
+         PVOQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1751128893; x=1751733693;
+        h=in-reply-to:references:to:from:subject:cc:message-id:date
+         :content-transfer-encoding:mime-version:x-gm-message-state:from:to
+         :cc:subject:date:message-id:reply-to;
+        bh=UBHKswADexFSg9SZEN9SPPg12lVleXq9YO8e2RnWik4=;
+        b=MyUdDVTq7Bt7uaSJME19mPPPBKv1xUyvQHBKU5dD8iszUaNmw/rinVZkII1yO11374
+         4q8TGdLNUt+VT2ShN6HYT6kEsKgEW1wSABW3fD7PQtchp5U7ztgW8NPEX58bfZfFuT9m
+         26mueLUiTEX/FQn+B1bytli57sc6Pd4SrbMrSh1CjgKlppdG4HG+vg/SGDw97vY6pbMt
+         DRU9BYlkgRBng0NKtG+Bf8hHVcdKautkPZW1nlJaAIUNnvy9DYwFYP4i2oZLaWXQ/Suq
+         NlDjV1RwraOTqagLZ9im88COlcjBh3wYhYZIGn0Wtip0Vi36fBrydDVYkn1Rqh+GjLKy
+         5Q1w==
+X-Forwarded-Encrypted: i=1; AJvYcCWK5GU8OC1H9Bva61ZWkZVfk5w9fiMrU8UvvfQc8GDnaGnBg1htGJtaqf45djUMXJyIPsHa1ZPOfNYK@vger.kernel.org
+X-Gm-Message-State: AOJu0YzsOnED2G/Vz3RwPMD4vrOQEXBNS6A+/UBSfSUr4OD08IEOvFsL
+	NwN+HiYoJS9YDL9zB5EEibvmB944pP80r/JGffO1PDkJXdHaljTN5UerrPLoI+GYGHM=
+X-Gm-Gg: ASbGncthz80OBKqV5FrA2H1LcmawUy0Il0KIe4cYw0tFBV5pjvDS0iC/L8PmQJz7tmz
+	MpWs7pzW/PNJuG3sDjdVzUXIkhvY5tHSUgWwjPcMSBXckYuJVaQMl/tLXizaiNmRxg9wzM/ZOY2
+	SSuruHjSnv62u6f0iZlAak2e1HooFKjdD1js+qhTl/T217iqUD5gR6LN5IJZFgARqZZwmLpFTCd
+	Cj2amKSVsXpWdaNFBQz2uMZ94/4ItPE60si5ReQK5VwU7bb8F+epxwnyOh4fBwwrxiVlRBKoJnn
+	DfensjRFvcd+UpW3RM9dbp5NG4BaO6GzvyVMstnkabRAIoscmxXHWB9+L+VDwaTjVHHa
+X-Google-Smtp-Source: AGHT+IGPspfbFRIXYwnlGbxO5bANIYVbkEVbx/P2+MhSPTAeDo5nPhfFjin6tT9OiL1cKpIB3cJmig==
+X-Received: by 2002:a05:600c:138d:b0:442:f97f:8174 with SMTP id 5b1f17b1804b1-45394de29aamr40825505e9.18.1751128892575;
+        Sat, 28 Jun 2025 09:41:32 -0700 (PDT)
+Received: from localhost ([2a02:c7c:7213:c700:e33b:a0ed:df4b:222c])
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-453823c3a96sm113401565e9.35.2025.06.28.09.41.31
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Sat, 28 Jun 2025 09:41:32 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: 7bit
+Mime-Version: 1.0
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=UTF-8
+Date: Sat, 28 Jun 2025 17:41:31 +0100
+Message-Id: <DAYBDV1I7HH0.1GG9U3LI5NQ97@linaro.org>
+Cc: "Srinivas Kandagatla" <srini@kernel.org>, "Liam Girdwood"
+ <lgirdwood@gmail.com>, "Mark Brown" <broonie@kernel.org>, "Rob Herring"
+ <robh@kernel.org>, "Krzysztof Kozlowski" <krzk+dt@kernel.org>, "Conor
+ Dooley" <conor+dt@kernel.org>, "Stephen Boyd" <sboyd@kernel.org>, "Lee
+ Jones" <lee@kernel.org>, "Jaroslav Kysela" <perex@perex.cz>, "Takashi Iwai"
+ <tiwai@suse.com>, <linux-arm-msm@vger.kernel.org>,
+ <linux-sound@vger.kernel.org>, <devicetree@vger.kernel.org>,
+ <linux-kernel@vger.kernel.org>, "Dmitry Baryshkov"
+ <dmitry.baryshkov@oss.qualcomm.com>, "Srinivas Kandagatla"
+ <srinivas.kandagatla@oss.qualcomm.com>
+Subject: Re: [PATCH 1/3] dt-bindings: sound: add bindings for pm4125 audio
+ codec
+From: "Alexey Klimov" <alexey.klimov@linaro.org>
+To: "Krzysztof Kozlowski" <krzk@kernel.org>
+X-Mailer: aerc 0.20.0
+References: <20250626-pm4125_audio_codec_v1-v1-0-e52933c429a0@linaro.org>
+ <20250626-pm4125_audio_codec_v1-v1-1-e52933c429a0@linaro.org>
+ <wcmalvywoginosy5pp7wskgdzjbwbydividmk4dtwguoltiobf@muw5lzkvgu5c>
+In-Reply-To: <wcmalvywoginosy5pp7wskgdzjbwbydividmk4dtwguoltiobf@muw5lzkvgu5c>
 
+On Thu Jun 26, 2025 at 7:13 AM BST, Krzysztof Kozlowski wrote:
+> On Thu, Jun 26, 2025 at 12:50:29AM +0100, Alexey Klimov wrote:
+>> The audio codec IC is found on Qualcomm PM4125/PM2250 PMIC.
+>> It has TX and RX soundwire slave devices hence two files
+>> are added.
+>>=20
+>> Signed-off-by: Alexey Klimov <alexey.klimov@linaro.org>
+>> ---
+>>  .../bindings/sound/qcom,pm4125-codec.yaml          | 147 ++++++++++++++=
++++++++
+>>  .../devicetree/bindings/sound/qcom,pm4125-sdw.yaml |  86 ++++++++++++
+>>  2 files changed, 233 insertions(+)
+>>=20
+>> diff --git a/Documentation/devicetree/bindings/sound/qcom,pm4125-codec.y=
+aml b/Documentation/devicetree/bindings/sound/qcom,pm4125-codec.yaml
+>> new file mode 100644
+>> index 0000000000000000000000000000000000000000..1b6ce8d4397b4c1c048899bd=
+2cc4d02318cc46c9
+>> --- /dev/null
+>> +++ b/Documentation/devicetree/bindings/sound/qcom,pm4125-codec.yaml
 
+[..]
 
-> >> +	.hw_settle_1 = (unsigned int [VADC_HW_SETTLE_SAMPLES_MAX])
-> >> +				{ 15, 100, 200, 300, 400, 500, 600, 700,
-> >> +				  1000, 2000, 4000, 8000, 16000, 32000,
-> >> +				  64000, 128000 },  
-> > Andy often points this out, but I'll do it this time. Fixed numbers (typically power of 2)
-> > elements per line make it much easier to see which element is which in these arrays.
-> > Reduce the indent a little to allow that here.  
-> 
-> Does this look fine?
-> 
-> 	.hw_settle_1 = (unsigned int [VADC_HW_SETTLE_SAMPLES_MAX])
-> 			  { 15, 100, 200, 300, 
-> 			    400, 500, 600, 700,
-> 			    1000, 2000, 4000, 8000,
-> 			    16000, 32000, 64000, 128000 },
-Look good.
+>> +  '#sound-dai-cells':
+>> +    const: 1
+>> +
+>> +required:
+>> +  - compatible
+>> +  - reg
+>> +  - vdd-io-supply
+>> +  - vdd-cp-supply
+>> +  - vdd-mic-bias-supply
+>> +  - vdd-pa-vpos-supply
+>> +  - qcom,tx-device
+>> +  - qcom,rx-device
+>> +  - qcom,micbias1-microvolt
+>> +  - qcom,micbias2-microvolt
+>> +  - qcom,micbias3-microvolt
+>> +  - "#sound-dai-cells"
+>
+> Keep consistent quotes, either ' or "
+>
+>> +
+>> +additionalProperties: false
+>
+> This has to unevaluatedProperties
 
-> >> +static int adc5_gen3_probe(struct platform_device *pdev)
-> >> +{  
-> >   
-> >> +
-> >> +	platform_set_drvdata(pdev, indio_dev);
-> >> +	init_completion(&adc->complete);
-> >> +	mutex_init(&adc->lock);  
-> > If spinning again for other reasons, in new code I have slight preference for
-> > 	ret = devm_mutex_init(&adc->lock);
-> > 	if (ret)
-> > 		return ret;
-> > 
-> > It was never worth bothering with release until we had devm managed form but
-> > now we do the code complexity cost is low enough to make it reasonable.
-> >   
-> >> +	indio_dev->name = pdev->name;  
-> > 
-> > Just to check.  Does that end up as a part number or similar?  
-> 
-> I printed this name and it appeared like this:
-> 
-> indio_dev->name: c426000.spmi:pmic@0:adc@9000
-> 
-> It only gets the DT node names, which are generic, there are 
-> no part numbers in this name.
-I thought it might be something along those lines.
+Ok for both points, I'll change it.
 
-indio_dev->name should be the part number so hard code it rather than
-getting it from the pdev->name
+>> +
+>> +examples:
+>> +  - |
+>> +    #include <dt-bindings/spmi/spmi.h>
+>> +
+>> +    spmi {
+>> +        #address-cells =3D <2>;
+>> +        #size-cells =3D <0>;
+>> +
+>> +        pmic@0 {
+>
+> pmic {
+>
+>> +            compatible =3D "qcom,pm8916", "qcom,spmi-pmic";
+>
+> Drop, you have warnings here.
+>
+>> +            reg =3D <0x0 SPMI_USID>;
+>
+> Drop
 
+Ok to points above, I'll remove it.
 
-Jonathan
+>> +            #address-cells =3D <1>;
+>> +            #size-cells =3D <0>;
+>> +
+>> +            audio-codec@f000 {
+>> +                compatible =3D "qcom,pm4125-codec";
+>> +                reg =3D <0xf000>;
+>> +                vdd-io-supply =3D <&pm4125_l15>;
+>> +                vdd-cp-supply =3D <&pm4125_s4>;
+>> +                vdd-pa-vpos-supply =3D <&pm4125_s4>;
+>> +                vdd-mic-bias-supply =3D <&pm4125_l22>;
+>> +                qcom,micbias1-microvolt =3D <1800000>;
+>> +                qcom,micbias2-microvolt =3D <1800000>;
+>> +                qcom,micbias3-microvolt =3D <1800000>;
+>> +                qcom,rx-device =3D <&pm4125_rx>;
+>> +                qcom,tx-device =3D <&pm4125_tx>;
+>> +                #sound-dai-cells =3D <1>;
+>> +            };
+>> +        };
+>> +    };
+>> +
+>> +    /* ... */
+>> +
+>> +    soundwire@a610000 {
+>
+> Drop this and next one.
+
+The audio-codec node supposed to have qcom,{rx,tx}-device properties.
+If I'll drop it then the example doesn't compile well unless I am missing
+something?
+
+For example when I removed soundwire tx node completely and dropped
+qcom,tx-device then:
+
+Documentation/devicetree/bindings/sound/qcom,pm4125-codec.example.dtb: audi=
+o-codec@f000 (qcom,pm4125-codec): 'qcom,tx-device' is a required property
+	from schema $id: http://devicetree.org/schemas/sound/qcom,pm4125-codec.yam=
+l#
+
+Or should it be qcom,tx-device =3D <&null_placeholder_something> ?
+I can't find any examples.
+
+I guess I can drop example from the other file.
+
+>> +        reg =3D <0x0a610000 0x2000>;
+>> +        #address-cells =3D <2>;
+>> +        #size-cells =3D <0>;
+>> +        pm4125_rx: audio-codec@0,4 {
+>> +            compatible =3D "sdw20217010c00";
+>> +            reg =3D <0 4>;
+>> +            qcom,rx-port-mapping =3D <1 3>;
+>> +        };
+>> +    };
+>> +
+>> +    soundwire@a740000 {
+>> +        reg =3D <0x0a740000 0x2000>;
+>> +        #address-cells =3D <2>;
+>> +        #size-cells =3D <0>;
+>> +        pm4125_tx: audio-codec@0,3 {
+>> +            compatible =3D "sdw20217010c00";
+>> +            reg =3D <0 3>;
+>> +            qcom,tx-port-mapping =3D <1 1>;
+>> +        };
+>> +    };
+>> +...
+>> diff --git a/Documentation/devicetree/bindings/sound/qcom,pm4125-sdw.yam=
+l b/Documentation/devicetree/bindings/sound/qcom,pm4125-sdw.yaml
+>> new file mode 100644
+>> index 0000000000000000000000000000000000000000..7241d2ab5dcf4a0d5f25a75a=
+cb33a335f93d3b5e
+>> --- /dev/null
+>> +++ b/Documentation/devicetree/bindings/sound/qcom,pm4125-sdw.yaml
+>> @@ -0,0 +1,86 @@
+>> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+>> +%YAML 1.2
+>> +---
+>> +$id: http://devicetree.org/schemas/sound/qcom,pm4125-sdw.yaml#
+>> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+>> +
+>> +title: Qualcomm SoundWire Slave devices on PM4125/PM2250 PMIC audio cod=
+ec.
+>> +
+>> +maintainers:
+>> +  - Alexey Klimov <alexey.klimov@linaro.org>
+>> +
+>> +description: |
+>
+> Drop |
+
+Ack.
+
+>> +  The audio codec IC found on Qualcomm PM4125/PM2250 PMICs.
+>> +  It has RX and TX Soundwire slave devices. This bindings is for the
+>> +  slave devices.
+>
+> Last sentence is redundant and makes no sense. Codec has only slave
+> devices, so how this can be anything else than for slave devices?
+
+This came from other similar files that describe bindings for child codec n=
+odes
+of soundwire nodes. For example from qcom,wcd937x-sdw.yaml.
+Should this be rephrased to "This bindings is for the soundwire slave devic=
+es." ?
+
+>> +
+>> +properties:
+>> +  compatible:
+>> +    const: sdw20217010c00
+>> +
+>> +  reg:
+>> +    maxItems: 1
+>> +
+>> +  qcom,tx-port-mapping:
+>> +    description: |
+>> +      Specifies static port mapping between device and host tx ports.
+>> +      In the order of the device port index which are adc1_port, adc23_=
+port,
+>> +      dmic03_mbhc_port, dmic46_port.
+>> +      Supports maximum 2 tx soundwire ports.
+>> +
+>> +      PM4125 TX Port 1 (ADC1,2 & DMIC0 & MBHC)    <=3D> SWR0 Port 1
+>> +      PM4125 TX Port 2 (ADC1 & DMIC0,1,2 & MBHC)  <=3D> SWR0 Port 2
+>> +
+>> +    $ref: /schemas/types.yaml#/definitions/uint32-array
+>> +    minItems: 2
+>> +    maxItems: 2
+>> +    items:
+>> +      enum: [1, 2, 3, 4]
+>> +
+>> +  qcom,rx-port-mapping:
+>> +    description: |
+>> +      Specifies static port mapping between device and host rx ports.
+>> +      In the order of device port index which are hph_port, clsh_port,
+>> +      comp_port, lo_port, dsd port.
+>> +      Supports maximum 2 rx soundwire ports.
+>> +
+>> +      PM4125 RX Port 1 (HPH_L/R)       <=3D=3D>    SWR1 Port 1 (HPH_L/R=
+)
+>> +      PM4125 RX Port 2 (COMP_L/R)      <=3D=3D>    SWR1 Port 3 (COMP_L/=
+R)
+>> +
+>> +    $ref: /schemas/types.yaml#/definitions/uint32-array
+>> +    minItems: 2
+>> +    maxItems: 2
+>> +    items:
+>> +      enum: [1, 2, 3, 4, 5]
+>> +
+>> +required:
+>> +  - compatible
+>> +  - reg
+>
+> rx and tx are excluding, so this should be here encoded.
+
+Ok, I think I found a way to change it.
+
+>> +
+>> +additionalProperties: false
+>> +
+>> +examples:
+>> +  - |
+>> +    soundwire@a610000 {
+>> +        reg =3D <0x0a610000 0x2000>;
+>> +        #address-cells =3D <2>;
+>> +        #size-cells =3D <0>;
+>> +        pm4125_rx: codec@0,1 {
+>> +            compatible =3D "sdw20217010c00";
+>> +            reg =3D <0 1>;
+>> +            qcom,rx-port-mapping =3D <1 3>;
+>> +        };
+>> +    };
+>> +
+>> +    soundwire@a740000 {
+>> +        reg =3D <0x0a740000 0x2000>;
+>
+> One example is enough, they are the same.
+
+Ok, I'll drop it (see my comment above as well).
+
+Thanks,
+Alexey
 
