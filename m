@@ -1,120 +1,218 @@
-Return-Path: <devicetree+bounces-190762-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-190766-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 65CC1AEC8D6
-	for <lists+devicetree@lfdr.de>; Sat, 28 Jun 2025 18:43:01 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 77BBCAEC8FF
+	for <lists+devicetree@lfdr.de>; Sat, 28 Jun 2025 18:56:01 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id A368216078D
-	for <lists+devicetree@lfdr.de>; Sat, 28 Jun 2025 16:43:01 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 5C8E6189B49A
+	for <lists+devicetree@lfdr.de>; Sat, 28 Jun 2025 16:55:52 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4A406248F5B;
-	Sat, 28 Jun 2025 16:42:57 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8B9FD2586DA;
+	Sat, 28 Jun 2025 16:55:08 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="IXrLLTSi"
+	dkim=pass (1024-bit key) header.d=mailerdienst.de header.i=@mailerdienst.de header.b="VTwmEDav"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wr1-f51.google.com (mail-wr1-f51.google.com [209.85.221.51])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mxout3.routing.net (mxout3.routing.net [134.0.28.8])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 88C0F224AE6
-	for <devicetree@vger.kernel.org>; Sat, 28 Jun 2025 16:42:55 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.51
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C56165661;
+	Sat, 28 Jun 2025 16:55:04 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=134.0.28.8
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1751128977; cv=none; b=XZm0egIkZX/r84PaGtLct5RCzbvo2Dbn3SWVMSJmkKTCcETzKc+8gSAZPpyfXmKg3OvZQW/vRFx4X6MN5TddNanzloES7xzb3HUFOXapbEQ9v4/ZUjkHZxEIU3XWh3eyFvGffHAQw6YurFvptSx+blq9GinbSp1Iryymcp3iKrE=
+	t=1751129708; cv=none; b=Fp3WEsneYWhWrHqqsyJ3xESW+MjRwGCOrW4PFgKzIkBJIGExWOcc6/8R3y1HZeZEORoxtAh5Xz1ei88KDEsC7FkbQuAGHCJX0gDfqOTXGz/cm2MpsEnK7vNqTV1Md0YSn4++FZw9nfz5fXiH7KBTqenlIC7vEuvyHB0OVICGN+Q=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1751128977; c=relaxed/simple;
-	bh=8+0Um3IyKyjV1O1yQIgBid/7yX2tEmqks0sJwHrXkHU=;
-	h=Mime-Version:Content-Type:Date:Message-Id:Subject:From:To:Cc:
-	 References:In-Reply-To; b=RL1arV5FEpgjnBSv0Ko9wbkuIlWnq4+rdDsjB+qhFYLqpZBp1W8/PwOJPffCyf+Kz8gXIjAMbMHKManS0rRZam6if0hRkjpJK4peIVx4FWzTdEgQQo7d+HEbI+0fviDil5HXgAY/cEeF+duByI5kD7TpIiNR003VlaY/8zSi/Ic=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=IXrLLTSi; arc=none smtp.client-ip=209.85.221.51
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-wr1-f51.google.com with SMTP id ffacd0b85a97d-3a582e09144so523166f8f.1
-        for <devicetree@vger.kernel.org>; Sat, 28 Jun 2025 09:42:55 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1751128974; x=1751733774; darn=vger.kernel.org;
-        h=in-reply-to:references:cc:to:from:subject:message-id:date
-         :content-transfer-encoding:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=8+0Um3IyKyjV1O1yQIgBid/7yX2tEmqks0sJwHrXkHU=;
-        b=IXrLLTSiDQ7PCOgZvs8/ngQy/O5SAjTF7srjEcwqjngnGHZ/VFA/rcJUEFl01dg8WG
-         pqnO1WWYC0myEY2V1941MXEUzrbhvkPY7MR0bDHPvHdhlXJZmKjGhpszcD3Q53x9efaX
-         wdHXQhteGQxWLZ4w14kSeLioSuap68yRB50Wk35qdWT0Ol/qYRqtPvp7LeoiePNdrQvr
-         tZQSy57SqsFscCDtKvJoT7R7b1OkGVjYDM2Z0GZvVHFDCK9OsyS+UlsIa10WcNI1yhTb
-         t9T+r7k7gpyLJWZxDWH0GiZgljfyaXdWvYbPkKKWp7j0yyE/S7RgqKSNmT9ZxPvgCJOu
-         XGjQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1751128974; x=1751733774;
-        h=in-reply-to:references:cc:to:from:subject:message-id:date
-         :content-transfer-encoding:mime-version:x-gm-message-state:from:to
-         :cc:subject:date:message-id:reply-to;
-        bh=8+0Um3IyKyjV1O1yQIgBid/7yX2tEmqks0sJwHrXkHU=;
-        b=ZuiTRH1K02TENeuVOHXqAaPkknHpr7fQ/80K4e7sRe97ZOKizKLWjsbLM7jqc9FfRS
-         YPAgiBtvkHP8ofDhuoM09x9/+UqiRSvZISzn9ni6Zbu6XjB1Luk0Hxg8896mAa+Cxfcl
-         NiSNr56NGuobOaCbEQ2QvZPoTHdN8VyLQWpDIAO0C+cVv3sTG5URIfkYGKJDHq1dEaQv
-         d4MjEn9KYMUxUBRPI3BbXInsq9xwTDXGclVERbouv9vm0sL/6lwC7N6OcTsHKnymVXNb
-         fh7QMXNSj/yEtijrtGSCrFBMija0kWNNm7RE4z0UyOno53l+GdWTM7v+lrxcm5KuUENc
-         9T9g==
-X-Forwarded-Encrypted: i=1; AJvYcCXaRunW2KIwU8ycRGdzFVg0AmJqjZFePzmwI5qF6liSU6+6QLnIlstHjDnzcil/Gk+G0xBQIa9u75iU@vger.kernel.org
-X-Gm-Message-State: AOJu0YwFLNkPI0qeE7bH/rk30tClTR1UrCpWRiY3HKUrVfzQGOMZi/np
-	Ly+zzTAF1iENShobbVwZDPk2sHyVqv0wquPO0ILoqD7zSSeod/F70N39Z/y+ztFRpLQ=
-X-Gm-Gg: ASbGncv/4plHlNcgfxLAPvwn/v7YVTihYroVTL+b7pHpfn0zPWPKN9fiHQnkCXolL9q
-	p2J0vpPdkfS9hjEj1gpZyujSkDtjdMe2Bih7Z/qG1YMNYFC3hZ+bPqECpl6avnZ03O6TuNE60nZ
-	fozrN6/GRdz3WgQAyTjzmOOLIayi645xCwNkpBVu4P9kdMMM1kKXARPNU0pyyeRHNKJDhj5VwHE
-	I2am1aN9JJAQJFC6ywQEwdA0n2ZwEI73sSZgAEM1WKzc58M4m2WlAEcjHFhxpI+eNBpeT+LOeqY
-	092RcWuLcG6x0f9Rq604HUqlsFsV0TPqErvaRHDiI97MNAXd2nHB6E/+6+GDG3n8sd5S
-X-Google-Smtp-Source: AGHT+IGFXbwNYTSyjPQd7nh+H6Es9NPSjiD5mA2m1ub+Q2Abl5oNI0WlfEOljgb4IM3zbq46WDBVfw==
-X-Received: by 2002:a05:6000:4404:b0:3a4:f66a:9d31 with SMTP id ffacd0b85a97d-3a8fdb2a034mr4733769f8f.16.1751128973831;
-        Sat, 28 Jun 2025 09:42:53 -0700 (PDT)
-Received: from localhost ([2a02:c7c:7213:c700:e33b:a0ed:df4b:222c])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-3a892e52c99sm5609102f8f.49.2025.06.28.09.42.53
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sat, 28 Jun 2025 09:42:53 -0700 (PDT)
+	s=arc-20240116; t=1751129708; c=relaxed/simple;
+	bh=+Bnq4ByzUtw5CZul8KBL9nZt9T3kwUuHKUXuwTUZpYc=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=OozowCMAHNtVI7KfVvQWq07dvIpT1kJNplcGCOs1EgNt50Il3qiYCqE9UFMWAB5x7Sa1b2zTTNnswSb7Qo+FOHZjHmzFMrOqB+7w3mR8sPBvw3y0uoN7FMzNPZuFBB0VF3I/RXIuL3wXvhuxef0Y47zFhrR6kVfD6pnfoMCEBqQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=fw-web.de; spf=pass smtp.mailfrom=fw-web.de; dkim=pass (1024-bit key) header.d=mailerdienst.de header.i=@mailerdienst.de header.b=VTwmEDav; arc=none smtp.client-ip=134.0.28.8
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=fw-web.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=fw-web.de
+Received: from mxbulk.masterlogin.de (unknown [192.168.10.85])
+	by mxout3.routing.net (Postfix) with ESMTP id 65F156055B;
+	Sat, 28 Jun 2025 16:55:02 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=mailerdienst.de;
+	s=20200217; t=1751129702;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:
+	 content-transfer-encoding:content-transfer-encoding;
+	bh=/qrs4NU45TpHYc/lAE+m7bMHY18sn9BLTRzdjskFMKI=;
+	b=VTwmEDavMhrkAycqFkfP4y4EVjDu36QcN3H51k2QeK1soVY3xADbtoZMPPFIttD6IzUqw3
+	7Gidid2Z201xQvaIYox/VurrARkJOAmOREl0Fu3Gz1tuPtncHm/+vpcf/6UJw07MN3vd2m
+	kGA42buLzGypAT+vDcF3q4DpNpZKqSI=
+Received: from frank-u24.. (fttx-pool-217.61.150.139.bambit.de [217.61.150.139])
+	by mxbulk.masterlogin.de (Postfix) with ESMTPSA id 015011226EC;
+	Sat, 28 Jun 2025 16:55:01 +0000 (UTC)
+From: Frank Wunderlich <linux@fw-web.de>
+To: MyungJoo Ham <myungjoo.ham@samsung.com>,
+	Kyungmin Park <kyungmin.park@samsung.com>,
+	Chanwoo Choi <cw00.choi@samsung.com>,
+	Georgi Djakov <djakov@kernel.org>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Andrew Lunn <andrew@lunn.ch>,
+	Vladimir Oltean <olteanv@gmail.com>,
+	"David S. Miller" <davem@davemloft.net>,
+	Eric Dumazet <edumazet@google.com>,
+	Jakub Kicinski <kuba@kernel.org>,
+	Paolo Abeni <pabeni@redhat.com>,
+	Matthias Brugger <matthias.bgg@gmail.com>,
+	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+Cc: Frank Wunderlich <frank-w@public-files.de>,
+	Johnson Wang <johnson.wang@mediatek.com>,
+	=?UTF-8?q?Ar=C4=B1n=C3=A7=20=C3=9CNAL?= <arinc.unal@arinc9.com>,
+	Landen Chao <Landen.Chao@mediatek.com>,
+	DENG Qingfang <dqfext@gmail.com>,
+	Sean Wang <sean.wang@mediatek.com>,
+	Daniel Golle <daniel@makrotopia.org>,
+	Lorenzo Bianconi <lorenzo@kernel.org>,
+	Felix Fietkau <nbd@nbd.name>,
+	linux-pm@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	netdev@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	linux-mediatek@lists.infradead.org
+Subject: [PATCH v7 00/14] further mt7988 devicetree work
+Date: Sat, 28 Jun 2025 18:54:35 +0200
+Message-ID: <20250628165451.85884-1-linux@fw-web.de>
+X-Mailer: git-send-email 2.43.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-Mime-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-Content-Type: text/plain; charset=UTF-8
-Date: Sat, 28 Jun 2025 17:42:52 +0100
-Message-Id: <DAYBEWESVDJY.1ZDYI58M9OEWX@linaro.org>
-Subject: Re: [PATCH 2/3] dt-bindings: mfd: qcom,spmi-pmic: add pm4125 audio
- codec
-From: "Alexey Klimov" <alexey.klimov@linaro.org>
-To: "Krzysztof Kozlowski" <krzk@kernel.org>, "Srinivas Kandagatla"
- <srini@kernel.org>, "Liam Girdwood" <lgirdwood@gmail.com>, "Mark Brown"
- <broonie@kernel.org>, "Rob Herring" <robh@kernel.org>, "Krzysztof
- Kozlowski" <krzk+dt@kernel.org>, "Conor Dooley" <conor+dt@kernel.org>,
- "Stephen Boyd" <sboyd@kernel.org>
-Cc: "Lee Jones" <lee@kernel.org>, "Jaroslav Kysela" <perex@perex.cz>,
- "Takashi Iwai" <tiwai@suse.com>, <linux-arm-msm@vger.kernel.org>,
- <linux-sound@vger.kernel.org>, <devicetree@vger.kernel.org>,
- <linux-kernel@vger.kernel.org>, "Dmitry Baryshkov"
- <dmitry.baryshkov@oss.qualcomm.com>, "Srinivas Kandagatla"
- <srinivas.kandagatla@oss.qualcomm.com>
-X-Mailer: aerc 0.20.0
-References: <20250626-pm4125_audio_codec_v1-v1-0-e52933c429a0@linaro.org>
- <20250626-pm4125_audio_codec_v1-v1-2-e52933c429a0@linaro.org>
- <eb5cdcb6-7e40-4ed2-9cc6-6eff43da353d@kernel.org>
-In-Reply-To: <eb5cdcb6-7e40-4ed2-9cc6-6eff43da353d@kernel.org>
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
 
-On Thu Jun 26, 2025 at 9:48 AM BST, Krzysztof Kozlowski wrote:
-> On 26/06/2025 01:50, Alexey Klimov wrote:
->> PM4125 has audio codec hardware block. Add pattern for respecive node
->> so the devicetree for those blocks can be validated properly.
->>=20
->> Signed-off-by: Alexey Klimov <alexey.klimov@linaro.org>
->
-> Remember to ALWAYS explain the dependencies between patches (merging
-> strategy), because this now creates impression is independent patch. It
-> is not and should be squashed into previous.
+From: Frank Wunderlich <frank-w@public-files.de>
 
-What's the proper way to describe such dependency?
+Sorry messed up the rebase in v6 somehow.
 
-Best regards,
-Alexey
+This series continues mt7988 devicetree work
+
+- Extend cpu frequency scaling with CCI
+- GPIO leds
+- Basic network-support (ethernet controller + builtin switch + SFP Cages)
+
+depencies (i hope this list is complete and latest patches/series linked):
+
+support interrupt-names is optional again as i re-added the reserved IRQs
+(they are not unusable as i thought and can allow features in future)
+https://patchwork.kernel.org/project/netdevbpf/patch/20250619132125.78368-2-linux@fw-web.de/
+
+needs change in mtk ethernet driver for the sram to be read from separate node:
+https://patchwork.kernel.org/project/netdevbpf/patch/566ca90fc59ad0d3aff8bc8dc22ebaf0544bce47.1751072868.git.daniel@makrotopia.org/
+
+for SFP-Function (macs currently disabled):
+
+PCS clearance which is a 1.5 year discussion currently ongoing
+
+Daniel asked netdev for a way 2 go:
+https://lore.kernel.org/netdev/aEwfME3dYisQtdCj@pidgin.makrotopia.org/
+
+e.g. something like this (one of):
+* https://patchwork.kernel.org/project/netdevbpf/patch/20250610233134.3588011-4-sean.anderson@linux.dev/ (v6)
+* https://patchwork.kernel.org/project/netdevbpf/patch/20250511201250.3789083-4-ansuelsmth@gmail.com/ (v4)
+* https://patchwork.kernel.org/project/netdevbpf/patch/ba4e359584a6b3bc4b3470822c42186d5b0856f9.1721910728.git.daniel@makrotopia.org/
+
+full usxgmii driver:
+https://patchwork.kernel.org/project/netdevbpf/patch/07845ec900ba41ff992875dce12c622277592c32.1702352117.git.daniel@makrotopia.org/
+
+first PCS-discussion is here:
+https://patchwork.kernel.org/project/netdevbpf/patch/8aa905080bdb6760875d62cb3b2b41258837f80e.1702352117.git.daniel@makrotopia.org/
+some more here:
+https://lore.kernel.org/netdev/20250511201250.3789083-4-ansuelsmth@gmail.com/
+
+and then dts nodes for sgmiisys+usxgmii+2g5 firmware
+
+when above depencies are solved the mac1/2 can be enabled and 2.5G phy/SFP slots will work.
+
+changes:
+v7:
+- squashed first 2 v6 patches as they should to have interrupt-names and mt7988
+  parts separated
+
+v6:
+binding:
+- split out the interrupt-names into separate patch
+- update irq(name) min count to 4
+- move interrupt-names up
+- add sram-property
+- drop second reg entry and minitems as there is only 1 item left
+
+dts:
+- fix whitespace-errors for pdma irqs (spaces vs. tabs)
+- move sram from eth reg to own sram node (needs CONFIG_SRAM)
+
+v5:
+- add reserved irqs and change names
+- update binding for 8 irqs with different names (rx,tx => fe1+fe2, rx-ringX => pdmaX)
+(dropped Robs RB due to this change again, sorry)
+
+v4:
+net-binding:
+- allow interrupt names and increase max interrupts to 6 because of RSS/LRO interrupts
+  (dropped Robs RB due to this change)
+
+dts-patches:
+- add interrupts for RSS/LRO and interrupt-names for ethernet node
+- eth-reg and clock whitespace-fix
+- comment for fixed-link on gmac0
+- drop phy-mode properties as suggested by andrew
+- drop phy-connection-type on 2g5 board
+- reorder some properties
+- update 2g5 phy node
+- unit-name dec instead of hex to match reg property
+- move compatible before reg
+- drop phy-mode
+
+v3:
+- dropped patches already applied (SPI+thermal)
+- added soc specific cci compatible (new binding patch + changed dts)
+- enable 2g5 phy because driver is now merged
+- add patch for cleaning up unnecessary pins
+- add patch for gpio-leds
+- add patch for adding ethernet aliases
+
+v2:
+- change reg to list of items in eth binding
+- changed mt7530 binding:
+- unevaluatedProperties=false
+- mediatek,pio subproperty
+- from patternProperty to property
+- board specific properties like led function and labels moved to bpi-r4 dtsi
+
+Frank Wunderlich (14):
+  dt-bindings: net: mediatek,net: allow irq names
+  dt-bindings: net: mediatek,net: update for mt7988
+  dt-bindings: net: dsa: mediatek,mt7530: add dsa-port definition for
+    mt7988
+  dt-bindings: net: dsa: mediatek,mt7530: add internal mdio bus
+  dt-bindings: interconnect: add mt7988-cci compatible
+  arm64: dts: mediatek: mt7988: add cci node
+  arm64: dts: mediatek: mt7988: add basic ethernet-nodes
+  arm64: dts: mediatek: mt7988: add switch node
+  arm64: dts: mediatek: mt7988a-bpi-r4: add proc-supply for cci
+  arm64: dts: mediatek: mt7988a-bpi-r4: drop unused pins
+  arm64: dts: mediatek: mt7988a-bpi-r4: add gpio leds
+  arm64: dts: mediatek: mt7988a-bpi-r4: add aliases for ethernet
+  arm64: dts: mediatek: mt7988a-bpi-r4: add sfp cages and link to gmac
+  arm64: dts: mediatek: mt7988a-bpi-r4: configure switch phys and leds
+
+ .../bindings/interconnect/mediatek,cci.yaml   |  11 +-
+ .../bindings/net/dsa/mediatek,mt7530.yaml     |  24 +-
+ .../devicetree/bindings/net/mediatek,net.yaml |  47 ++-
+ .../mediatek/mt7988a-bananapi-bpi-r4-2g5.dts  |  11 +
+ .../dts/mediatek/mt7988a-bananapi-bpi-r4.dts  |  19 ++
+ .../dts/mediatek/mt7988a-bananapi-bpi-r4.dtsi | 198 ++++++-----
+ arch/arm64/boot/dts/mediatek/mt7988a.dtsi     | 318 +++++++++++++++++-
+ 7 files changed, 529 insertions(+), 99 deletions(-)
+
+-- 
+2.43.0
+
 
