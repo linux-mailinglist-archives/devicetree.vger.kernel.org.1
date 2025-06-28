@@ -1,96 +1,145 @@
-Return-Path: <devicetree+bounces-190740-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-190741-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id A7B6FAEC852
-	for <lists+devicetree@lfdr.de>; Sat, 28 Jun 2025 17:33:33 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7A9DBAEC85C
+	for <lists+devicetree@lfdr.de>; Sat, 28 Jun 2025 17:41:42 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 02DDC1BC1B85
-	for <lists+devicetree@lfdr.de>; Sat, 28 Jun 2025 15:33:49 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id BD10B3AF9D9
+	for <lists+devicetree@lfdr.de>; Sat, 28 Jun 2025 15:41:16 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0F9AD221F01;
-	Sat, 28 Jun 2025 15:33:23 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id CDC0F2192F2;
+	Sat, 28 Jun 2025 15:41:37 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="b7Q0s7Bm"
+	dkim=pass (1024-bit key) header.d=163.com header.i=@163.com header.b="YT5nx9sE"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D594D21ABD5;
-	Sat, 28 Jun 2025 15:33:22 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+Received: from m16.mail.163.com (m16.mail.163.com [117.135.210.5])
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C25DB2046B3;
+	Sat, 28 Jun 2025 15:41:33 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=117.135.210.5
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1751124803; cv=none; b=lnIIR9NLd+Mykx/I6IAjps0JTj4s0/dzQD+3kHu6tlM9ukRlpF02kS7pGHhl19mpu3UUydTwL6ZQEZ8uj+wM6+mmdlq123TD/XPxtdgwdys3U90ngZM1BppOcpx1jnE2rwuC4pKpacf/O4d6qh5WqiNHUs/9CVNNacgE1qVVxGc=
+	t=1751125297; cv=none; b=jsdGFkVc0bDRqGw6j2T/oehqX+LItrb/9IxHDVoIJvzW1NN4/dWj6v0UDBE2aBZTpfEIWkDJxUbD5HpbYBQAqoguq2Zp/7ADpj2eSkBCybhvHvIZicytKXbXC4EsZ2N3bvjS4fTT9Cqe6qhO3HY4fE1739vIjf/5nkgOgmSWyB4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1751124803; c=relaxed/simple;
-	bh=5mm/kX2Qk5opcXrPAOn6/s4gypLt8GyVRnR3TC53A+Q=;
-	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=YQQiRHPS3sirfkaK/MN15hlsoU6dDowykpkNhluAif4x5rqLeB3gwnpAccbDplNkeHZ/yrUvILIz1RvGC8nAC7jK8oQL5wBJODCBr4ZWdcF1DaA42oWPB8+AuHBxCsbrGMkGeWshwXEI6KPLcx/sytJCHSRvnBcd31qDm5uZ3KU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=b7Q0s7Bm; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id CF3DAC4CEEA;
-	Sat, 28 Jun 2025 15:33:18 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1751124802;
-	bh=5mm/kX2Qk5opcXrPAOn6/s4gypLt8GyVRnR3TC53A+Q=;
-	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
-	b=b7Q0s7Bm0mjkS68t1CIbyBzdvoLx/QYDMgS1DIABPtbitMwL1yb0ZITeiJNpqF0BJ
-	 SWxgu9N/Gj+SFPai/QpObpGPU5XMQQ4sNwa63gm6t/gq1pjYP3klBHvv71iaipvqXZ
-	 0m4pwbq7H1wAqMjfEIA4PFkzz2Hd3/D3xq4BMsgZ5fTRt3YwAgakcS3K6XhA7GnRFL
-	 18aTtHrvMzCAaMEsyZkGiu4Xw+u0sUlbhJLt8FW9ZkE0MAHIJeIyZoJwk/cj5xm0Qt
-	 ORCkbao/0FsQA8U2veqHrpzAIwUOzLtJySCP9gwq6N5OREyhbmO259YyqoICx9lW4c
-	 1AuxFMos01iiA==
-Date: Sat, 28 Jun 2025 16:33:13 +0100
-From: Jonathan Cameron <jic23@kernel.org>
-To: "Rob Herring (Arm)" <robh@kernel.org>
-Cc: Frank Li <Frank.Li@nxp.com>, devicetree@vger.kernel.org,
- imx@lists.linux.dev, Nuno =?UTF-8?B?U8Oh?= <nuno.sa@analog.com>,
- linux-iio@vger.kernel.org, Andy Shevchenko <andy@kernel.org>, Gregory
- Clement <gregory.clement@bootlin.com>, linux-kernel@vger.kernel.org,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, David Lechner
- <dlechner@baylibre.com>, Conor Dooley <conor+dt@kernel.org>
-Subject: Re: [PATCH 1/1] dt-bindings: iio: adc: nxp,lpc3220-adc: allow
- clocks property
-Message-ID: <20250628163313.187d4a3e@jic23-huawei>
-In-Reply-To: <175105627901.33520.13967663171471942396.robh@kernel.org>
-References: <20250624201302.2515391-1-Frank.Li@nxp.com>
-	<175105627901.33520.13967663171471942396.robh@kernel.org>
-X-Mailer: Claws Mail 4.3.0 (GTK 3.24.48; x86_64-pc-linux-gnu)
+	s=arc-20240116; t=1751125297; c=relaxed/simple;
+	bh=udMastp57gciJQEzvVcYCwTuRaTZ5pT71cUP8mFGTWs=;
+	h=Message-ID:Date:MIME-Version:Subject:From:To:Cc:References:
+	 In-Reply-To:Content-Type; b=NukJA3kCHmOSLPTYpntldsMKeubWX4MNdiMCsldhlBcSFLEDEFAjXJlFGXZ4SaAD9iu5m9iSItdyRAS2KXJKU5U8gRVnxvWAcVlyWjC0ZAhEQLxQT9jMZUgyiV3DUXlzpHT7V+4gFScHSEkkK8hE4I13dIZ3CxG3XWTvZd2u/hQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=163.com; spf=pass smtp.mailfrom=163.com; dkim=pass (1024-bit key) header.d=163.com header.i=@163.com header.b=YT5nx9sE; arc=none smtp.client-ip=117.135.210.5
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=163.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=163.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=163.com;
+	s=s110527; h=Message-ID:Date:MIME-Version:Subject:From:To:
+	Content-Type; bh=n/l1HyF04aNgdp5rJ9CksqiHtOcAKrApwE2nQgpLbbY=;
+	b=YT5nx9sEkKwKs7RpT6eNAiAb+Phs320VaD4DRklT2FrcDSS0IXdJriyC1EJ1Sn
+	5fMSyHXZ4RoCjgEX6fF7y9Ii3HLzRd2co9spLrJv5buGXfeZ15tGVqqPxSjIgM6q
+	freUZQHIlWDvtu/cc220mhjLNqpW304zCXJU/9GxPQcDE=
+Received: from [IPV6:240e:b8f:919b:3100:5951:e2f3:d3e5:8d13] (unknown [])
+	by gzga-smtp-mtada-g1-4 (Coremail) with SMTP id _____wB3B_YGDWBoZ6vbBA--.25517S2;
+	Sat, 28 Jun 2025 23:40:55 +0800 (CST)
+Message-ID: <21c6164e-fa2e-4207-910f-1db3ac3df545@163.com>
+Date: Sat, 28 Jun 2025 23:40:55 +0800
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: 7bit
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2 1/3] dt-bindings: PCI: Extend max-link-speed to support
+ PCIe Gen5/Gen6
+From: Hans Zhang <18255117159@163.com>
+To: Manivannan Sadhasivam <mani@kernel.org>, Rob Herring <robh@kernel.org>
+Cc: bhelgaas@google.com, lpieralisi@kernel.org, kw@linux.com,
+ krzk+dt@kernel.org, manivannan.sadhasivam@linaro.org, conor+dt@kernel.org,
+ linux-pci@vger.kernel.org, linux-kernel@vger.kernel.org,
+ devicetree@vger.kernel.org
+References: <20250529021026.475861-1-18255117159@163.com>
+ <20250529021026.475861-2-18255117159@163.com>
+ <q5ltnilbdhfxwh6ucjnm3wichrmu5wyjsx6eheiazqypveu3sm@euuvpjwu77h4>
+ <9203cf6e-ca59-416a-9c98-a2d6a5c6ce6f@163.com>
+Content-Language: en-US
+In-Reply-To: <9203cf6e-ca59-416a-9c98-a2d6a5c6ce6f@163.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
+X-CM-TRANSID:_____wB3B_YGDWBoZ6vbBA--.25517S2
+X-Coremail-Antispam: 1Uf129KBjvJXoW7ZrWDAFWrXF1xtr1DKr43Awb_yoW8ur1Dpa
+	y3Ja1FkFWrZFySqrs7Wr1Fgr45Aanrt3y0yr45Gry7Aas3uFyrJFWSga1Ygr1jqrZ5ZFyx
+	ZF1jv3s3Ga1UAFJanT9S1TB71UUUUU7qnTZGkaVYY2UrUUUUjbIjqfuFe4nvWSU5nxnvy2
+	9KBjDUYxBIdaVFxhVjvjDU0xZFpf9x0zRwL0rUUUUU=
+X-CM-SenderInfo: rpryjkyvrrlimvzbiqqrwthudrp/1tbiOgx6o2hgBsV5LwAAsy
 
-On Fri, 27 Jun 2025 15:31:19 -0500
-"Rob Herring (Arm)" <robh@kernel.org> wrote:
 
-> On Tue, 24 Jun 2025 16:13:02 -0400, Frank Li wrote:
-> > Allow clocks property to fix below CHECK_DTB warning:
-> >   arch/arm/boot/dts/nxp/lpc/lpc3250-ea3250.dtb: adc@40048000 (nxp,lpc3220-adc): 'clocks' does not match any of the regexes: 'pinctrl-[0-9]+'
-> > 
-> > Signed-off-by: Frank Li <Frank.Li@nxp.com>
-> > ---
-> >  Documentation/devicetree/bindings/iio/adc/nxp,lpc3220-adc.yaml | 3 +++
-> >  1 file changed, 3 insertions(+)
-> >   
+
+On 2025/6/18 22:22, Hans Zhang wrote:
 > 
-> Acked-by: Rob Herring (Arm) <robh@kernel.org>
+> 
+> On 2025/6/18 00:45, Manivannan Sadhasivam wrote:
+>> On Thu, May 29, 2025 at 10:10:24AM +0800, Hans Zhang wrote:
+>>> Update the device tree binding documentation for PCI to include
+>>> PCIe Gen5 and Gen6 support in the `max-link-speed` property.
+>>> The original documentation limited the value to 1~4 (Gen1~Gen4),
+>>> but the kernel now supports up to Gen6. This change ensures the
+>>> documentation aligns with the actual code implementation.
+>>>
+>>> Signed-off-by: Hans Zhang <18255117159@163.com>
+>>> ---
+>>>   dtschema/schemas/pci/pci-bus-common.yaml | 2 +-
+>>
+>> As Rob commented in v1, this file lives in dtschema project. So update 
+>> it there:
+>> https://github.com/devicetree-org/dt-schema/blob/main/dtschema/schemas/pci/pci-bus-common.yaml
+>>
+> 
+> Dear Mani,
+> 
+> I made the patch based on the latest dtschema code pulled from github.
+> 
+> Also, I saw similar submissions as follows:
+> https://lore.kernel.org/linux-pci/advhonmqnxm4s6r3cl7ll5y3jfc566fcjvetvlzvy7bztzetev@t75xmo5fktde/
+> 
+> I don't know if Rob obtained this patch from here and then applied it to 
+> the dtschema project? Is there still a special process to submit this 
+> patch?
+> 
+> 
+> Dear Rob,
+> 
+> Can you apply this patch directly to the dtschema project?
 > 
 
-I was in two minds on this one wrt to whether to pick it up as a fix.
-It's clearly been broken a long time though so I'm not going to rush it in.
-Let me know if you think I should!
+Dear Rob,
 
-Applied to the togreg branch of iio.git and pushed out as testing because
-other stuff I queued today will benefit from a 0-day pass before I expose
-it to linux-next.
+Gentle ping.
 
-Thanks,
+Best regards,
+Hans
 
-Jonathan
+> Best regards,
+> Hans
+> 
+>> - Mani
+>>
+>>>   1 file changed, 1 insertion(+), 1 deletion(-)
+>>>
+>>> diff --git a/dtschema/schemas/pci/pci-bus-common.yaml 
+>>> b/dtschema/schemas/pci/pci-bus-common.yaml
+>>> index ca97a00..413ef05 100644
+>>> --- a/dtschema/schemas/pci/pci-bus-common.yaml
+>>> +++ b/dtschema/schemas/pci/pci-bus-common.yaml
+>>> @@ -121,7 +121,7 @@ properties:
+>>>         unnecessary operation for unsupported link speed, for 
+>>> instance, trying to
+>>>         do training for unsupported link speed, etc.
+>>>       $ref: /schemas/types.yaml#/definitions/uint32
+>>> -    enum: [ 1, 2, 3, 4 ]
+>>> +    enum: [ 1, 2, 3, 4, 5, 6 ]
+>>>     num-lanes:
+>>>       description: The number of PCIe lanes
+>>> -- 
+>>> 2.25.1
+>>>
+>>
+
 
