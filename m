@@ -1,62 +1,62 @@
-Return-Path: <devicetree+bounces-190700-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-190701-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 043DFAEC6F4
-	for <lists+devicetree@lfdr.de>; Sat, 28 Jun 2025 14:04:02 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id C3C4EAEC6F9
+	for <lists+devicetree@lfdr.de>; Sat, 28 Jun 2025 14:05:42 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 2C624172FC5
-	for <lists+devicetree@lfdr.de>; Sat, 28 Jun 2025 12:04:02 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 10AAA4A39EF
+	for <lists+devicetree@lfdr.de>; Sat, 28 Jun 2025 12:05:17 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C7576245028;
-	Sat, 28 Jun 2025 12:03:57 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7951223E344;
+	Sat, 28 Jun 2025 12:05:38 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="cBMoTRFA"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="jlBSfVn4"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 97F1924467E;
-	Sat, 28 Jun 2025 12:03:57 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3FDF51799F;
+	Sat, 28 Jun 2025 12:05:35 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1751112237; cv=none; b=YTnm6PHBekKXcRUiOYqc7wI0D48KVs31RnPrajELJ50+TS/vHZw+YQIiXhyV5hLy7u/VTHyZOclD+EBUW1tjpwSnwOpPmhDVkmdn9r9pSf12Whn9I4KKWJ20EmrY55cZyDi7uAcGEk0rkGa7nDQb6TV5+KVeEs38tFTU1Zmh55w=
+	t=1751112338; cv=none; b=aTuTSMSd6MjmmjyLWQBzU9QacMTGUHU8eR21fOLEr7Nd+eocVZjBuNx322WGAoAEcM0/izNKrna4DQfi/z5uZmkOTPNv6Kv2GkJzoDLKWnKNa2LmSvrlTIChAwLcMmY0JzyN0TTGG9wThgzr9IYpV8AeFZTWqtZjj+XOdeciBnU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1751112237; c=relaxed/simple;
-	bh=fnTY0f4SyP2i7YILQaJH30PaDnbGJFQ6OxX01r/0/MU=;
+	s=arc-20240116; t=1751112338; c=relaxed/simple;
+	bh=DttSR+loL/+XwutcRtElHNrAyAfQKYpKcvL9oh1brpk=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=L2qneCgNVrM4uuZE963ZLuF7N8fW9Erqy5pjQvtcJORXtMllbj7b5xRMPxO4C8sLiLICpCBQWUMoyYYkIxGuwYmDNpQkD5yGLgsRkF1wulPsgiHJRNOro9BlyqyLfFUed4ds0fy9xTpkCepHf9zynpMBiSXNrr6rAAz4gBMf2oQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=cBMoTRFA; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 10B26C4CEEA;
-	Sat, 28 Jun 2025 12:03:55 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=UjYuzLq66IMxzxsVV2Ppcgemc99VojYg8A0c4ZUoowFxHDB4ur1oS/3wTFEBBpZQ4tKSfKXLPBFOUL7m60gPuC3kd2f8ciWdBMIkvApR/g6cMUzZge+uWNJO3anfnUnN01b6csex9elTYBMZnv02rPDqGl2qYjBW8yVcsL7D27A=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=jlBSfVn4; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id D23FCC4CEEA;
+	Sat, 28 Jun 2025 12:05:34 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1751112236;
-	bh=fnTY0f4SyP2i7YILQaJH30PaDnbGJFQ6OxX01r/0/MU=;
+	s=k20201202; t=1751112335;
+	bh=DttSR+loL/+XwutcRtElHNrAyAfQKYpKcvL9oh1brpk=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=cBMoTRFA6pPl0c6hPCTLjoXP2bT4O/iPyM656V2DrsOTIBoHcAYggBn2E/sMUgQB9
-	 xyEaZNWd1Lp2Oj/FmFUHPXSezukDjrKXZglA6jHvs8Ty9V35USUje0VIAlDRFkz4r8
-	 EoRMokoHYx+S/vEv12Ke58DQiNRFKqYLYKpT+f5tvWFfVXTKPQaw90z/Gb/cB8eGhE
-	 SReqzme1145OXv9x4MU4IxqjyvcKvSq/A2A51HkOid09SlOKvsPUW/G0a9GeGVtHX5
-	 4gJJIYScN0Ku9y7E7Oc1x+5DxhahGwJT7m3VosOOgLVf9+hX6VvY6CmlcwpSraAe1c
-	 2aJBbZU1OyoOg==
-Date: Sat, 28 Jun 2025 14:03:53 +0200
+	b=jlBSfVn4ePgI4Y+1FPzDgHJ46C9P1SILP9iSnzYGnpProm9sYoW/Yfz0dZEYBNbLG
+	 7xgr7rsmMVS1iP7E41jLMCefzSJ3nU5xYHvsMiVAIDmXlJ6IB9hwW22YNfTPHErpDP
+	 a32lkyHkTYoUfFxN8z8ahdTMvan7bAzFaCBh/CKxLsRX2kMdzQc22oBpkWFauji0SX
+	 Pk33L/NS4Euj4O3DueYOGBFQrudskK+xJEIFuu31f0F0J1pLc3x+o1KNtlEySNB2FN
+	 xyc6ouX96CcQfC+WsPLz3B4jZTht0jN6ZaEoZ0TLzlJkJ2T00KQGK+JNVPEgUUlfdt
+	 AJ/oKPUIY/nug==
+Date: Sat, 28 Jun 2025 14:05:31 +0200
 From: Krzysztof Kozlowski <krzk@kernel.org>
-To: Zhangchao Zhang <ot_zhangchao.zhang@mediatek.com>
-Cc: Marcel Holtmann <marcel@holtmann.org>, 
-	Matthias Brugger <matthias.bgg@gmail.com>, Luiz Von Dentz <luiz.dentz@gmail.com>, 
-	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>, Rob Herring <robh@kernel.org>, 
-	Conor Dooley <conor+dt@kernel.org>, Sean Wang <sean.wang@mediatek.com>, 
-	Jiande Lu <jiande.lu@mediatek.com>, Deren Wu <deren.Wu@mediatek.com>, 
-	Chris Lu <chris.lu@mediatek.com>, Hao Qin <Hao.qin@mediatek.com>, 
-	linux-bluetooth <linux-bluetooth@vger.kernel.org>, linux-kernel <linux-kernel@vger.kernel.org>, 
-	linux-arm-kernel <linux-arm-kernel@lists.infradead.org>, linux-mediatek <linux-mediatek@lists.infradead.org>, 
-	devicetree <devicetree@vger.kernel.org>
-Subject: Re: [PATCH v5 2/2] dt-bindings: net: mediatek,mt7925-bluetooth.yaml
-Message-ID: <25t3jzrqcdko5z5udbbcctaqldcrbycryazumw6mfj2c4qihmr@jcubfbuhikvp>
-References: <20250627055924.7716-1-ot_zhangchao.zhang@mediatek.com>
- <20250627055924.7716-3-ot_zhangchao.zhang@mediatek.com>
+To: Leo Wang <leo.jt.wang@gmail.com>
+Cc: Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Joel Stanley <joel@jms.id.au>, Andrew Jeffery <andrew@codeconstruct.com.au>, 
+	Kees Cook <kees@kernel.org>, Tony Luck <tony.luck@intel.com>, 
+	"Guilherme G. Piccoli" <gpiccoli@igalia.com>, Geert Uytterhoeven <geert+renesas@glider.be>, 
+	Magnus Damm <magnus.damm@gmail.com>, devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
+	linux-aspeed@lists.ozlabs.org, linux-kernel@vger.kernel.org, linux-hardening@vger.kernel.org, 
+	linux-renesas-soc@vger.kernel.org, bruce.jy.hung@fii-foxconn.com, george.kw.lee@fii-foxconn.com, 
+	Leo Wang <leo.jt.wang@fii-foxconn.com>
+Subject: Re: [PATCH v4 1/2] dt-bindings: arm: aspeed: add Meta Clemente board
+Message-ID: <ojyrhi2stm7q6kcd7yl3je36cccbzypsepmc4fvl7venynyu5g@52rs6bntmnwl>
+References: <20250627-add-support-for-meta-clemente-bmc-v4-0-ce7ff23460c4@fii-foxconn.com>
+ <20250627-add-support-for-meta-clemente-bmc-v4-1-ce7ff23460c4@fii-foxconn.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -65,141 +65,16 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <20250627055924.7716-3-ot_zhangchao.zhang@mediatek.com>
+In-Reply-To: <20250627-add-support-for-meta-clemente-bmc-v4-1-ce7ff23460c4@fii-foxconn.com>
 
-
-How did you manage to make mistake in my email is beyond my understand.
-Tools should generate address list, not humans.
-
-Where is the changelog?
-
-On Fri, Jun 27, 2025 at 01:59:24PM +0800, Zhangchao Zhang wrote:
-> Add hardware pins and compatible strings.
-
-I don't see any pins here.
-
- 
-> As a binding file for the MTK Bluetooth driver code,
-> it provides a set of compatible fields and hardware
-> pins for the driver to use.
-
-All this is not relevant. Describe the hardware here.
-
+On Fri, Jun 27, 2025 at 10:59:02AM +0800, Leo Wang wrote:
+> From: Leo Wang <leo.jt.wang@gmail.com>
 > 
-> Signed-off-by: Zhangchao Zhang <ot_zhangchao.zhang@mediatek.com>
-> ---
-
-
->  .../bluetooth/mediatek,mt7925-bluetooth.yaml  | 57 +++++++++++++++++++
->  MAINTAINERS                                   |  1 +
->  2 files changed, 58 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/net/bluetooth/mediatek,mt7925-bluetooth.yaml
+> Document the new compatibles used on Meta Clemente.
 > 
-> diff --git a/Documentation/devicetree/bindings/net/bluetooth/mediatek,mt7925-bluetooth.yaml b/Documentation/devicetree/bindings/net/bluetooth/mediatek,mt7925-bluetooth.yaml
-> new file mode 100644
-> index 000000000000..230c24ada3b4
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/net/bluetooth/mediatek,mt7925-bluetooth.yaml
-> @@ -0,0 +1,57 @@
-> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/net/bluetooth/mediatek,mt7925-bluetooth.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Bluetooth mediatek add gpio pin to reset bt
+> Signed-off-by: Leo Wang <leo.jt.wang@fii-foxconn.com>
 
-Not relevant. This is the title describing this specific hardware.
-
-> +
-> +maintainers:
-> +  - Sean Wang <sean.wang@mediatek.com>
-> +
-> +description:
-> +  7925 uses the USB bus to communicate with the host.
-
-Waht is 7925?
-
-> +  Two methods are used to reset Bluetooth.
-> +  Provide hardware pin, when an exception occurs,
-> +  resetting Bluetooth by hardware pin is more stable
-> +  than resetting Bluetooth by software.
-> +  If the corresponding pin is not found in dts,
-> +  bluetooth can also be reset successfully.
-
-Wrap this properly. The same commit msg.
-
-> +
-> +allOf:
-> +  - $ref: bluetooth-controller.yaml#
-> +
-> +properties:
-> +  compatible:
-> +    enum:
-> +      - mediatek,usb-bluetooth
-
-NAK, you cannot have such compatible. I already said at v1 or v2 that it
-will be rejected!
-
-Why are you pushing this all the time, without reading the feedback?
-
-You need SoC and device specific compatibles. There is no such hardware
-as "usb-bluetooth". If there is, point me to datasheet for it.
-
-
-> +
-> +  gpio-controller:
-> +    description:
-> +      Marks the device node as s GPIO controller.
-
-Irrelevant. Drop. See other schemas.
-
-> +
-> +  "#gpio-cells":
-> +    const: 2
-> +
-> +  reset-gpios:
-> +    maxItems: 1
-> +
-
-Drop blank line. Look how other files are doing this.
-
-
-> +    description:
-> +      An active-high reset pin for the Bluetooth core; on typical M.2
-
-active-high? Really? I have doubts.
-
-> +      key E modules this is the W_DISABLE2# pin.
-> +
-> +required:
-> +  - compatible
-> +  - "#gpio-cells"
-> +  - reset-gpios
-> +
-> +unevaluatedProperties: false
-
-This is random style. Why doing something completely different than
-every other file? Missing blank line.
-
-> +examples:
-> +  - |
-> +    #include <dt-bindings/gpio/gpio.h>
-> +
-> +      bluetooth {
-
-Messed indentation.
-
-To summarize:
-Except writing something entirely different than every other binding
-(why?), this does not represent hardware. Your commit msg explains ZERO
-about the hardware. Binding description says nothing and is actually not
-correct.
-
-So again, if you send the same it will be rejected.
-
-I expect answers UNDER EACH OF MY COMMENTS, because you keep ignoring
-entire feedback given to you.
+Checkpatch warnings.
 
 Best regards,
 Krzysztof
