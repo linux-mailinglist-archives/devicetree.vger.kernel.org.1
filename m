@@ -1,62 +1,62 @@
-Return-Path: <devicetree+bounces-190701-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-190702-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id C3C4EAEC6F9
-	for <lists+devicetree@lfdr.de>; Sat, 28 Jun 2025 14:05:42 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8C2D8AEC71F
+	for <lists+devicetree@lfdr.de>; Sat, 28 Jun 2025 14:34:21 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 10AAA4A39EF
-	for <lists+devicetree@lfdr.de>; Sat, 28 Jun 2025 12:05:17 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id D6BA03A3938
+	for <lists+devicetree@lfdr.de>; Sat, 28 Jun 2025 12:33:55 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7951223E344;
-	Sat, 28 Jun 2025 12:05:38 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 39AB7221D93;
+	Sat, 28 Jun 2025 12:34:17 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="jlBSfVn4"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="twO55Ffo"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3FDF51799F;
-	Sat, 28 Jun 2025 12:05:35 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0A1162F1FF1;
+	Sat, 28 Jun 2025 12:34:16 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1751112338; cv=none; b=aTuTSMSd6MjmmjyLWQBzU9QacMTGUHU8eR21fOLEr7Nd+eocVZjBuNx322WGAoAEcM0/izNKrna4DQfi/z5uZmkOTPNv6Kv2GkJzoDLKWnKNa2LmSvrlTIChAwLcMmY0JzyN0TTGG9wThgzr9IYpV8AeFZTWqtZjj+XOdeciBnU=
+	t=1751114057; cv=none; b=f2XyIP3KwJ1w+qgr4rcWjAg5Tf7xUMJYNHpu5u6tmtuQYPs9sy1jFgfjMOz6HHouBX/x1X781n4uP7wESXbf1ttNGIavBPfN1BSt3S9fbHWjOJjt7gtzPNumXZf+owZNEZ0UNYeuR+eGAOhdWI8fRwZwsiSSqNoinxgQl+Zf6n4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1751112338; c=relaxed/simple;
-	bh=DttSR+loL/+XwutcRtElHNrAyAfQKYpKcvL9oh1brpk=;
+	s=arc-20240116; t=1751114057; c=relaxed/simple;
+	bh=Gv8OZAS59VuowhMNvxr1kBxJNYmz6S/ffMO8w95ApdI=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=UjYuzLq66IMxzxsVV2Ppcgemc99VojYg8A0c4ZUoowFxHDB4ur1oS/3wTFEBBpZQ4tKSfKXLPBFOUL7m60gPuC3kd2f8ciWdBMIkvApR/g6cMUzZge+uWNJO3anfnUnN01b6csex9elTYBMZnv02rPDqGl2qYjBW8yVcsL7D27A=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=jlBSfVn4; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id D23FCC4CEEA;
-	Sat, 28 Jun 2025 12:05:34 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=kCc5KU2h2/fVLHB3yac/gdwQgDWg53XYDeYIGXGxx9LBjUvPsGDqu3bOXvlPApCgd686VzFqxXGg2yZegegn+XBWsQtouH7AWtE579lcseACK2AOav+xgsESwaD2kQW/E91mk5ucBBrzhJrtdmBsS48sbzcxqoR4FKOOPkQu890=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=twO55Ffo; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 8237EC4CEEA;
+	Sat, 28 Jun 2025 12:34:15 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1751112335;
-	bh=DttSR+loL/+XwutcRtElHNrAyAfQKYpKcvL9oh1brpk=;
+	s=k20201202; t=1751114056;
+	bh=Gv8OZAS59VuowhMNvxr1kBxJNYmz6S/ffMO8w95ApdI=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=jlBSfVn4ePgI4Y+1FPzDgHJ46C9P1SILP9iSnzYGnpProm9sYoW/Yfz0dZEYBNbLG
-	 7xgr7rsmMVS1iP7E41jLMCefzSJ3nU5xYHvsMiVAIDmXlJ6IB9hwW22YNfTPHErpDP
-	 a32lkyHkTYoUfFxN8z8ahdTMvan7bAzFaCBh/CKxLsRX2kMdzQc22oBpkWFauji0SX
-	 Pk33L/NS4Euj4O3DueYOGBFQrudskK+xJEIFuu31f0F0J1pLc3x+o1KNtlEySNB2FN
-	 xyc6ouX96CcQfC+WsPLz3B4jZTht0jN6ZaEoZ0TLzlJkJ2T00KQGK+JNVPEgUUlfdt
-	 AJ/oKPUIY/nug==
-Date: Sat, 28 Jun 2025 14:05:31 +0200
+	b=twO55Ffo5tiT0qncLDcjcnipq7VcjU8Nm4Y9P5oTopNqmVT8EmBWZqJwkVAx0gmt6
+	 sePfRtnNb/GBnM2VBj8vrmWQ8Qm08zQ+ZIv/X1Bl5ASJEZPEESajBqhX1zJzThex+s
+	 oLmAgFK+4fIvX308YNdwKC63WEV1TyInmmKCst38scYijOyyOcZZiGK0fTihwqeHSh
+	 AiJQ6ZtEB/9wLHRRmMzyLWtPEMBjlyJUE0yr/xxRfJwsOruDQMYV9IZkMQM3Kk1pf+
+	 QMeFbaQeTnUY/obXXj6gH2GPFysCCZ0bXLTCfAjs73AeDZiMD3mCkWtz5AaJS3s/Kw
+	 cI6DI31LSqVPA==
+Date: Sat, 28 Jun 2025 14:34:12 +0200
 From: Krzysztof Kozlowski <krzk@kernel.org>
-To: Leo Wang <leo.jt.wang@gmail.com>
-Cc: Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Joel Stanley <joel@jms.id.au>, Andrew Jeffery <andrew@codeconstruct.com.au>, 
-	Kees Cook <kees@kernel.org>, Tony Luck <tony.luck@intel.com>, 
-	"Guilherme G. Piccoli" <gpiccoli@igalia.com>, Geert Uytterhoeven <geert+renesas@glider.be>, 
-	Magnus Damm <magnus.damm@gmail.com>, devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
-	linux-aspeed@lists.ozlabs.org, linux-kernel@vger.kernel.org, linux-hardening@vger.kernel.org, 
-	linux-renesas-soc@vger.kernel.org, bruce.jy.hung@fii-foxconn.com, george.kw.lee@fii-foxconn.com, 
-	Leo Wang <leo.jt.wang@fii-foxconn.com>
-Subject: Re: [PATCH v4 1/2] dt-bindings: arm: aspeed: add Meta Clemente board
-Message-ID: <ojyrhi2stm7q6kcd7yl3je36cccbzypsepmc4fvl7venynyu5g@52rs6bntmnwl>
-References: <20250627-add-support-for-meta-clemente-bmc-v4-0-ce7ff23460c4@fii-foxconn.com>
- <20250627-add-support-for-meta-clemente-bmc-v4-1-ce7ff23460c4@fii-foxconn.com>
+To: Frank Li <Frank.li@nxp.com>
+Cc: Richard Zhu <hongxing.zhu@nxp.com>, l.stach@pengutronix.de, 
+	lpieralisi@kernel.org, kwilczynski@kernel.org, mani@kernel.org, robh@kernel.org, 
+	krzk+dt@kernel.org, conor+dt@kernel.org, bhelgaas@google.com, shawnguo@kernel.org, 
+	s.hauer@pengutronix.de, kernel@pengutronix.de, festevam@gmail.com, 
+	linux-pci@vger.kernel.org, linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org, 
+	imx@lists.linux.dev, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v4 1/3] dt-bindings: PCI: dwc: Add one more reference
+ clock
+Message-ID: <20250628-vigorous-benevolent-crayfish-bcbae5@krzk-bin>
+References: <20250626073804.3113757-1-hongxing.zhu@nxp.com>
+ <20250626073804.3113757-2-hongxing.zhu@nxp.com>
+ <20250627-sensible-pigeon-of-reading-b021a3@krzk-bin>
+ <aF76jeV+8us82APv@lizhi-Precision-Tower-5810>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -65,16 +65,70 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <20250627-add-support-for-meta-clemente-bmc-v4-1-ce7ff23460c4@fii-foxconn.com>
+In-Reply-To: <aF76jeV+8us82APv@lizhi-Precision-Tower-5810>
 
-On Fri, Jun 27, 2025 at 10:59:02AM +0800, Leo Wang wrote:
-> From: Leo Wang <leo.jt.wang@gmail.com>
+On Fri, Jun 27, 2025 at 04:09:49PM -0400, Frank Li wrote:
+> On Fri, Jun 27, 2025 at 08:54:46AM +0200, Krzysztof Kozlowski wrote:
+> > On Thu, Jun 26, 2025 at 03:38:02PM +0800, Richard Zhu wrote:
+> > > Add one more reference clock "extref" to be onhalf the reference clock
+> > > that comes from external crystal oscillator.
+> > >
+> > > Signed-off-by: Richard Zhu <hongxing.zhu@nxp.com>
+> > > ---
+> > >  .../devicetree/bindings/pci/snps,dw-pcie-common.yaml        | 6 ++++++
+> > >  1 file changed, 6 insertions(+)
+> > >
+> > > diff --git a/Documentation/devicetree/bindings/pci/snps,dw-pcie-common.yaml b/Documentation/devicetree/bindings/pci/snps,dw-pcie-common.yaml
+> > > index 34594972d8db..ee09e0d3bbab 100644
+> > > --- a/Documentation/devicetree/bindings/pci/snps,dw-pcie-common.yaml
+> > > +++ b/Documentation/devicetree/bindings/pci/snps,dw-pcie-common.yaml
+> > > @@ -105,6 +105,12 @@ properties:
+> > >              define it with this name (for instance pipe, core and aux can
+> > >              be connected to a single source of the periodic signal).
+> > >            const: ref
+> > > +        - description:
+> > > +            Some dwc wrappers (like i.MX95 PCIes) have two reference clock
+> > > +            inputs, one from internal PLL, the other from off chip crystal
+> > > +            oscillator. Use extref clock name to be onhalf of the reference
+> > > +            clock comes form external crystal oscillator.
+> >
+> > How internal PLL can be represented as 'ref' clock? Internal means it is
+> > not outside, so impossible to represent.
 > 
-> Document the new compatibles used on Meta Clemente.
-> 
-> Signed-off-by: Leo Wang <leo.jt.wang@fii-foxconn.com>
+> Internal means in side SoC, but outside PCIe controller.
 
-Checkpatch warnings.
+So external... It does not matter for PCIe controller whether clock is
+coming from SoC or from some crystal.  It is still input pin. Same input
+pin.
+
+> 
+> >
+> > Where is the DTS so we can look at big picture?
+> 
+> imx94 pci's upstream is still on going, which quite similar with imx95.
+> Just board design choose external crystal.
+> 
+> pcie_ref_clk: clock-pcie-ref {
+>                 compatible = "gpio-gate-clock";
+>                 clocks = <&xtal25m>;
+>                 #clock-cells = <0>;
+>                 enable-gpios = <&pca9670_i2c3 7 GPIO_ACTIVE_LOW>;
+> };
+> 
+> &pcie0 {
+>         pinctrl-0 = <&pinctrl_pcie0>;
+>         pinctrl-names = "default";
+>         clocks = <&scmi_clk IMX94_CLK_HSIO>,
+>                  <&scmi_clk IMX94_CLK_HSIOPLL>,
+>                  <&scmi_clk IMX94_CLK_HSIOPLL_VCO>,
+>                  <&scmi_clk IMX94_CLK_HSIOPCIEAUX>,
+>                  <&pcie_ref_clk>;
+>         clock-names = "pcie", "pcie_bus", "pcie_phy", "pcie_aux", "ext-ref";
+
+So this is totally faked hardware property.
+
+No, it is the same clock signal, not different. You write bindings from
+this device point of view, not for your board.
 
 Best regards,
 Krzysztof
