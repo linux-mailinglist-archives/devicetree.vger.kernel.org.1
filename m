@@ -1,130 +1,128 @@
-Return-Path: <devicetree+bounces-190759-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-190760-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 62033AEC8B9
-	for <lists+devicetree@lfdr.de>; Sat, 28 Jun 2025 18:20:39 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 46F23AEC8C6
+	for <lists+devicetree@lfdr.de>; Sat, 28 Jun 2025 18:31:33 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 0BFB33BEF01
-	for <lists+devicetree@lfdr.de>; Sat, 28 Jun 2025 16:19:51 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id B0E181BC0E5C
+	for <lists+devicetree@lfdr.de>; Sat, 28 Jun 2025 16:31:48 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C6A2825B31C;
-	Sat, 28 Jun 2025 16:19:10 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 46AF5246781;
+	Sat, 28 Jun 2025 16:31:30 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="gGTwh4Pr"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="tQLRPRhw"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-qk1-f170.google.com (mail-qk1-f170.google.com [209.85.222.170])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3928C25B2E1;
-	Sat, 28 Jun 2025 16:19:09 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.222.170
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0EAFE1FBC91;
+	Sat, 28 Jun 2025 16:31:29 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1751127550; cv=none; b=oy1NotCDflbQ8HZctqfTvOgKp5hOajSVuGD+ePgeUEIadqmtoOlEuhixht0vlkLWTm8rgRNb0tTo2+TFinqSPCF40DMBuPhOwjJFJzRtRRME43hNYRuq6KgmSQaIh62VBsOg6sX5XNoJ9cOfZIP8zLehJWIy/ec0lxWbN1I8sWU=
+	t=1751128290; cv=none; b=pr01PVPTSHTCBt2jf6lX0J65fsenBWujCNNue20F0PmOZICJfXkFFg9knj92X6zDAafrMSOf3XoKM2PDazOih37dRdPr7ZC4sPgRM+mU7X5SSK914i+y4B1ds7+gONDaGemG1d54naVry+MrIg9NzkC2pRa9X7PCtMPauGpuaJM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1751127550; c=relaxed/simple;
-	bh=qaOX8z5zfg86eK/PQiHHkZK83GpNfHTkKPNUbbYq5lQ=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=LhBM9RSd/2prKGyOz5G+l4ylpJxOT3ElnKLIRVPq7UpCL/ulJwIl8OWT5kE3h022YNZQUeQA15uYkuXQU2P6X8u7rKCCXbQJm9I2DEdsD+YAI4u+HlQqeJb8802P4kVKIo/+/U2QpVpb64MLOntMEmmYh7H1BZSEbAnUI5BikLw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=gGTwh4Pr; arc=none smtp.client-ip=209.85.222.170
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-qk1-f170.google.com with SMTP id af79cd13be357-7d20451c016so44603385a.1;
-        Sat, 28 Jun 2025 09:19:09 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1751127548; x=1751732348; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=98CANN2mac+LxQivogTs8pZMoDn+iJwC4xTPGj/jBfs=;
-        b=gGTwh4PrhYgnB3HG5Ewx69jz7XV5Optt63W6VK0e75PDJxlfycwLx6VqKMVOyV73Tz
-         VJynBcp5efKQ67r/7J1TG4sOEKwj3vGGBrDdTGwzdU6tvazI5g45XU5gJTbtBFVw8+6P
-         wLrISsMyqmsvygVJTpSqfE9cxy2eVgOj2W/c+RaRSP0NooamC4uRECFTmkohRNPCl08v
-         t1hA7DIgnV5+zAdFh7YC0OjoRmEn/ecXdPiln3oiVonyBTZddVYTi95pGNL7ybZx+S3Y
-         3hwISYnUZ3PEFeYBWhdbwOCNzD0mL6NYfSdjRhv7QIfKv1PwrBZNlQ+LWzxdvy3N/ZCO
-         rtMg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1751127548; x=1751732348;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=98CANN2mac+LxQivogTs8pZMoDn+iJwC4xTPGj/jBfs=;
-        b=i+AObVFYsGrOdksiDzcVd5W6NbtOiTJasa1V24NXF4x67NkFftTxSHQiyuYfgazi+F
-         qBGXhTmq73vkKx7RmHI37TXTPDRriFygGsc6eETWw062LNARKOhljNlMYCQvNzpGLtvj
-         0sZFwCXK0T1Wahp6gC55x6nttromhqTzAYxLB8Z+BIdVBM4GBu9ZAEHZE7lYdlalwiLR
-         6xDCBlaFdP5xiRB/q2f5urt1soiCEu8TXj1ST3FUDNI572ZpOJRWoS0Qp+ahIAssB5U7
-         mEMsLbx2eLAAA1s1HMJi8PztLL1ac6a8qxobJN2KqI69LuN1rIS6uImeIZJEEA7r3cMj
-         lXqQ==
-X-Forwarded-Encrypted: i=1; AJvYcCUCzZfaVJVZlqn+ifPRmPkBObRu+8+M8SKxpRVIOGXFW2YWoqKcMo7IXtweATkeLVfRAfSk9EJgCLFQ@vger.kernel.org, AJvYcCVaOjvChqJUXMqKm7VcgoZTSsxfSR/LvSy7y4omHhinydjgZwBIK3k90lbKJT/ovjggxDjfT3MPwzuMCw==@vger.kernel.org, AJvYcCWtzZosOYgSspB/qnwABcu7aEHHaRmh6oz0shznjWjju6G9fLvjKmllKI9t2tckeLf0QJ6fllwohLsAQ1Ns@vger.kernel.org
-X-Gm-Message-State: AOJu0Ywf0eEVTL7jwuhGMDZfTGdhSG4lS8Y/tHl7xrPJwnk1YSzIdHIf
-	j0bQ1gZOj3KV9XSk64TTtphNb+wXxIyjLNXrcYGW7C49jJ0YkkP6xG2c
-X-Gm-Gg: ASbGncuM/f6mH/1YFQZAiPoGVrZYkkzmfv7qQBRXnx95zS2B8Xob53w1+U/Fm+u8ePa
-	tK1/a7uUYCZE0gaZRzbfw2hgG0uQi4qMxhDe8/p6No0ZZWSPiHEXufrrCFIRQ93bx9k6xVw6mrc
-	YTaO4Y0Jtd0uRidBfd+wj9qN2fHePzxV1RoS6opuVhcKXWl3lwKPZU80SAIF6u454cFoZ42++kC
-	5p8fX7KM2rwHgGwMk9RsXI2WDekUmwDImS0oJOunQp8hty/eG1G8YUrCd8e4BEa6ROLXXp1+/PZ
-	ofIEXDlseNyVMLStxnfUjTek52Zp8S+/hz/J0D9YVr8Pf41+cVlT4OUF5mINw7MTOE/iSLY729W
-	ZnnijHNanAQICB3b8vU9m97vNJ3qhV2Ms
-X-Google-Smtp-Source: AGHT+IFoFGemIQDODCcxPjL3icl5s+PMS9LVncKIT79PgFSST82p+yBw5aiPdoHzPF733Q40giqM6w==
-X-Received: by 2002:a05:620a:4484:b0:7d3:cf5d:58b4 with SMTP id af79cd13be357-7d4439e27aamr952177585a.33.1751127548193;
-        Sat, 28 Jun 2025 09:19:08 -0700 (PDT)
-Received: from localhost (modemcable197.17-162-184.mc.videotron.ca. [184.162.17.197])
-        by smtp.gmail.com with ESMTPSA id af79cd13be357-7d44321fea0sm308592485a.83.2025.06.28.09.19.07
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sat, 28 Jun 2025 09:19:07 -0700 (PDT)
-From: =?UTF-8?q?Jean-Fran=C3=A7ois=20Lessard?= <jefflessard3@gmail.com>
-To: Andy Shevchenko <andy@kernel.org>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>
-Cc: Geert Uytterhoeven <geert@linux-m68k.org>,
-	devicetree@vger.kernel.org,
-	linux-leds@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	=?UTF-8?q?Andreas=20F=C3=A4rber?= <afaerber@suse.de>,
-	Boris Gjenero <boris.gjenero@gmail.com>,
-	Christian Hewitt <christianshewitt@gmail.com>,
-	Heiner Kallweit <hkallweit1@gmail.com>,
-	Paolo Sabatino <paolo.sabatino@gmail.com>
-Subject: [PATCH 8/8] MAINTAINERS: Add entry for TM16xx driver
-Date: Sat, 28 Jun 2025 12:18:45 -0400
-Message-ID: <20250628161850.38865-9-jefflessard3@gmail.com>
-X-Mailer: git-send-email 2.43.0
-In-Reply-To: <20250628161850.38865-1-jefflessard3@gmail.com>
-References: <20250628161850.38865-1-jefflessard3@gmail.com>
+	s=arc-20240116; t=1751128290; c=relaxed/simple;
+	bh=ysZnhmJGpruuPPRq6A2SjBxDODaSwvv2FXxAy1Z+NAw=;
+	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=JOA7oGGwB2aC+X81oeXVdQfFUc3s7Z0mB1RRtEbv1HqtQ8VK3pgKHcLz1fHKDRPegMi/EtpQ5irUiIYqhalOQaRqFsGQCDtu8B7XHv0Fh/WwhfX5H/spCuw8XxGp1QxAqF891Y53T+HM5zHxbXQv2dQ2jkXVOl+SNqx9kvW1URk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=tQLRPRhw; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 3B22FC4CEEA;
+	Sat, 28 Jun 2025 16:31:18 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1751128289;
+	bh=ysZnhmJGpruuPPRq6A2SjBxDODaSwvv2FXxAy1Z+NAw=;
+	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
+	b=tQLRPRhw66r3jlKJvSsokpA4kp2y7IfYSnOzLuHFlNANWAlwbsQKroxvqexfBCtBT
+	 ibCgevepYqNNLNmW+b2sHYFpjTzJrmi1/EE6mHmgURM78btgzKj0RPx/P7SiXFQGoP
+	 8r79mIpKkjRINMdE9p8XvawckltNbQwre6ka0DlFEJA6nm5yQdRpcZfDdLHkI01hC3
+	 zB37K3GcFxk/xjQYjuiRVn6U7nnJwraiWyV2ZlqKucdanxoovTqdr7W5DokKX0VB4Q
+	 Vqb22IaqoYwQttdDphBj9SOG+Fk11E4AV3YYnxtJWiZU3OFioexl9vp6reRWFlRSpm
+	 TEOPM9ofze1AA==
+Date: Sat, 28 Jun 2025 17:31:12 +0100
+From: Jonathan Cameron <jic23@kernel.org>
+To: Jishnu Prakash <jishnu.prakash@oss.qualcomm.com>
+Cc: robh@kernel.org, krzysztof.kozlowski@linaro.org, krzk+dt@kernel.org,
+ conor+dt@kernel.org, agross@kernel.org, andersson@kernel.org,
+ lumag@kernel.org, dmitry.baryshkov@oss.qualcomm.com,
+ konradybcio@kernel.org, daniel.lezcano@linaro.org, sboyd@kernel.org,
+ amitk@kernel.org, thara.gopinath@gmail.com, lee@kernel.org,
+ rafael@kernel.org, subbaraman.narayanamurthy@oss.qualcomm.com,
+ david.collins@oss.qualcomm.com, anjelique.melendez@oss.qualcomm.com,
+ quic_kamalw@quicinc.com, rui.zhang@intel.com, lukasz.luba@arm.com,
+ devicetree@vger.kernel.org, linux-arm-msm@vger.kernel.org,
+ linux-iio@vger.kernel.org, linux-kernel@vger.kernel.org,
+ linux-pm@vger.kernel.org, cros-qcom-dts-watchers@chromium.org,
+ quic_skakitap@quicinc.com, neil.armstrong@linaro.org,
+ stephan.gerhold@linaro.org
+Subject: Re: [PATCH V6 4/5] iio: adc: Add support for QCOM PMIC5 Gen3 ADC
+Message-ID: <20250628173112.63d9334e@jic23-huawei>
+In-Reply-To: <ff19780e-5bbd-4074-9db3-b4f27922a093@oss.qualcomm.com>
+References: <20250509110959.3384306-1-jishnu.prakash@oss.qualcomm.com>
+	<20250509110959.3384306-5-jishnu.prakash@oss.qualcomm.com>
+	<20250511140418.33171ca3@jic23-huawei>
+	<ff19780e-5bbd-4074-9db3-b4f27922a093@oss.qualcomm.com>
+X-Mailer: Claws Mail 4.3.0 (GTK 3.24.48; x86_64-pc-linux-gnu)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: 7bit
 
-Signed-off-by: Jean-François Lessard <jefflessard3@gmail.com>
----
- MAINTAINERS | 6 ++++++
- 1 file changed, 6 insertions(+)
 
-diff --git a/MAINTAINERS b/MAINTAINERS
-index efb51ee926..eee24ad0a8 100644
---- a/MAINTAINERS
-+++ b/MAINTAINERS
-@@ -25047,6 +25047,12 @@ F:	mm/memfd.c
- F:	mm/shmem.c
- F:	mm/shmem_quota.c
- 
-+TM16XX-COMPATIBLE LED CONTROLLERS DISPLAY DRIVER
-+M:  Jean-François Lessard <jefflessard3@gmail.com>
-+S:  Maintained
-+F:  drivers/auxdisplay/tm16xx.c
-+F:  Documentation/devicetree/bindings/auxdisplay/tm16xx.yaml
-+
- TOMOYO SECURITY MODULE
- M:	Kentaro Takeda <takedakn@nttdata.co.jp>
- M:	Tetsuo Handa <penguin-kernel@I-love.SAKURA.ne.jp>
--- 
-2.43.0
 
+> >> +	.hw_settle_1 = (unsigned int [VADC_HW_SETTLE_SAMPLES_MAX])
+> >> +				{ 15, 100, 200, 300, 400, 500, 600, 700,
+> >> +				  1000, 2000, 4000, 8000, 16000, 32000,
+> >> +				  64000, 128000 },  
+> > Andy often points this out, but I'll do it this time. Fixed numbers (typically power of 2)
+> > elements per line make it much easier to see which element is which in these arrays.
+> > Reduce the indent a little to allow that here.  
+> 
+> Does this look fine?
+> 
+> 	.hw_settle_1 = (unsigned int [VADC_HW_SETTLE_SAMPLES_MAX])
+> 			  { 15, 100, 200, 300, 
+> 			    400, 500, 600, 700,
+> 			    1000, 2000, 4000, 8000,
+> 			    16000, 32000, 64000, 128000 },
+Look good.
+
+> >> +static int adc5_gen3_probe(struct platform_device *pdev)
+> >> +{  
+> >   
+> >> +
+> >> +	platform_set_drvdata(pdev, indio_dev);
+> >> +	init_completion(&adc->complete);
+> >> +	mutex_init(&adc->lock);  
+> > If spinning again for other reasons, in new code I have slight preference for
+> > 	ret = devm_mutex_init(&adc->lock);
+> > 	if (ret)
+> > 		return ret;
+> > 
+> > It was never worth bothering with release until we had devm managed form but
+> > now we do the code complexity cost is low enough to make it reasonable.
+> >   
+> >> +	indio_dev->name = pdev->name;  
+> > 
+> > Just to check.  Does that end up as a part number or similar?  
+> 
+> I printed this name and it appeared like this:
+> 
+> indio_dev->name: c426000.spmi:pmic@0:adc@9000
+> 
+> It only gets the DT node names, which are generic, there are 
+> no part numbers in this name.
+I thought it might be something along those lines.
+
+indio_dev->name should be the part number so hard code it rather than
+getting it from the pdev->name
+
+
+Jonathan
 
