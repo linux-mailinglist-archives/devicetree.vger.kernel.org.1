@@ -1,219 +1,170 @@
-Return-Path: <devicetree+bounces-190665-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-190666-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id EA48BAEC5DF
-	for <lists+devicetree@lfdr.de>; Sat, 28 Jun 2025 10:43:47 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 66483AEC5F4
+	for <lists+devicetree@lfdr.de>; Sat, 28 Jun 2025 10:58:15 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 1B52D17BAD1
-	for <lists+devicetree@lfdr.de>; Sat, 28 Jun 2025 08:43:48 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 97B416E0E4D
+	for <lists+devicetree@lfdr.de>; Sat, 28 Jun 2025 08:57:49 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E12E4221FA1;
-	Sat, 28 Jun 2025 08:43:43 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 33B08221FBD;
+	Sat, 28 Jun 2025 08:58:05 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="L/79V9FJ"
+	dkim=pass (2048-bit key) header.d=cknow.org header.i=@cknow.org header.b="ROENJZTI"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pg1-f172.google.com (mail-pg1-f172.google.com [209.85.215.172])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from out-189.mta1.migadu.com (out-189.mta1.migadu.com [95.215.58.189])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 61E7E23DE;
-	Sat, 28 Jun 2025 08:43:42 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.215.172
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E082F1372
+	for <devicetree@vger.kernel.org>; Sat, 28 Jun 2025 08:58:02 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=95.215.58.189
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1751100223; cv=none; b=YAJNoLt/HrsGhycD+y40bLwLukZna6nY3H0PTGbLRbsXM+2YyYFmBM/+82JaWCBpZ2gdDKDBulWOSQ6GdOiBJoJ86FGVzA88KQmQUts5Ld8IfzWRz3ZgcwzGd8wzVYtB1J2Q5e6+SPLsCN99fuCZ+/HoZj3Ttt05/p6Vy0aF0V4=
+	t=1751101085; cv=none; b=UDea6DDY19hijVf/CtDLZuu6YSSNnFZ04Jj7ZatW0g6C3UrRRQ7QJYpL98BMtkp3ArJsdgw7PLZi8yKK1Jo2vcnVian7/wdu9cc+XNwuTSqwLQRYyWbgmapE3744DPtYrIK7DUAAX3Tc+0WEYkGunyn54VT5foAadd7/xz+eSQY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1751100223; c=relaxed/simple;
-	bh=2Yhg2EDAhv8zXnryNZ8+WmoQhMBpv71AIS9tGm4BeX8=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=K/R93k9YWrqcHSwJ3j1pvcxybv8IbUOXemSak1oSQUS/0qmZwmvRHRQ4KeKaLjChkawyY/nTIt6Nn3kV15gAz1WC+UuG8hv/nq958Z7xyDxNcn9ERKkacLl3ioQF0klYeb66PVplJ/TT3weFlPNVoZkBkneoYiA6fX9GOKWABsQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=L/79V9FJ; arc=none smtp.client-ip=209.85.215.172
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-pg1-f172.google.com with SMTP id 41be03b00d2f7-af6a315b491so712552a12.1;
-        Sat, 28 Jun 2025 01:43:42 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1751100222; x=1751705022; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=jy7TEL91BqkyjG4VnW5FClmC8uUXfEkPzrAe3TbCioI=;
-        b=L/79V9FJts0XZErMa1yMD1vStzlkTF7VuZPNd1rPVwTJVLZVFOdS5H5ebTN82Bf+Zf
-         IngOLasx5dE3DMbx+j2SL8IeVXCDsB/J+ujzQREe+Y+lVP4I251ZAKhhUf7wQ90Dq6oH
-         CVw1PgUSUg9EiREhhKZnKp7OloDhH11qY30YjvwnfhR9223AAu6aGX1mvJzYQIu6zJol
-         RGTcR+krcn0KTJkuQsDle5hkaszye/jAsl3HrBiZNCNa03CUNHRSfgxBknVAWmbYsq68
-         g6aG5oc/H4dSDIlOQzF1NNh1Wig76ziko4Exs7IIxXZHaGwrDSC4NaaiRPu9iX/UcIdA
-         ofog==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1751100222; x=1751705022;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=jy7TEL91BqkyjG4VnW5FClmC8uUXfEkPzrAe3TbCioI=;
-        b=t4CVHUKXs+tpOpBmNa2Cd+RyfEIGX0YqgbbRT/VdWjffGzqVVkqOJxmkmU+ej7uDYY
-         oxiLnXVM5AR5oNB/0n8tVHR++l7ah6zxrvIqTslVfIh0n0C/8Q0leW6yT8Fwz75/vycg
-         qjU1Ckx4jmjK+1rPKx/3WGrsans0FRsNBAKADghzSt9t1BoRuDf8oWa4aTlY8Dhyjdvz
-         0SDxSt1gmgoe8RwxRPDemKVfTvkJKKhVqdEyrJoe18UyQMau+Ix27S/SEC4HBN4Wr/xr
-         SlT6Ux5DpJq4CrXT/2rWEkuiK9zOsMeMmjiklDNQVa6rNoNXZDNr9kIEBQTjweTf9qNU
-         JRbw==
-X-Forwarded-Encrypted: i=1; AJvYcCULdDk5ti+Pr21sUHK2KZX+Nl4dG5hXlFRTJDLjyiQaOuS3kRRyNoMcjemjG1e+R7ccs7fOe6u6GSz4oGI=@vger.kernel.org, AJvYcCUf99Sr3QBkfrvnNGrMUNOaq8ZMAilaGdo2IoKvzWn22DAISAP0ynH1HzPT9SeRI2xi99xjimBdBTbVti6N@vger.kernel.org, AJvYcCWxvfcEOUp5Acg2UcOWzlqmWAM6Dc3j3BQGQmDFpaOKywB9Oap3d6oXffq3rW/6flX6w6RvcfY2HKDX@vger.kernel.org, AJvYcCXyOmjUQiZge299eDrrohR/P/LBR1jo9cEJfABH4/GiFdcEXBVL7D2H24EFwWQsp7vYL93y0qJwWbmd@vger.kernel.org
-X-Gm-Message-State: AOJu0YxW40n99q1VbFAR29r3dp0GeKfKOS8EbJkUMaoY8gkoTjhSzms8
-	iQ52duFJzlUdI+ovVdjEcqZop9Wu7q0AYKTRMaqt2pI6nsIGtRaP/XwP4sFzm1zbGwkSDNcewmK
-	4kx2VN12g7c+2tv5x+UR28a3AGgN1rXk=
-X-Gm-Gg: ASbGncucVS4CEZ5exTApVA/6ukRQ0o8lWadTNoL5/i7PQYBY7A0hnz035ZHlfeBkp4R
-	Oo2fGfqDC8q8xD0YBPyN1KmsFFHlH5sSI/ILJjLJqULIJodlRgpTKBb3S6bdKRUAnxFdHRHyjgP
-	A3GoLE06z0FmaLw2zO6qf35pSo/q60Z1UBPdX1ud2JS48mNnO2hqgRWEFz0nqvBIRjR+f0odUcZ
-	aHPNDIQmZ7/TYsZ
-X-Google-Smtp-Source: AGHT+IFKlwm6XGn++8Zmma+OVlEv79qu+lYvKQsC5hXOU2GGxy5e73OgJCj8yl2gSF2zX4UMeZOGTHopwxX5mwfyyAo=
-X-Received: by 2002:a17:90b:224c:b0:311:f99e:7f4a with SMTP id
- 98e67ed59e1d1-318c926451dmr7337383a91.26.1751100221531; Sat, 28 Jun 2025
- 01:43:41 -0700 (PDT)
+	s=arc-20240116; t=1751101085; c=relaxed/simple;
+	bh=pLzUu12WEaIgtCdO2e0vn7AW2eyYnzZNKQi/VqabhiM=;
+	h=Mime-Version:Content-Type:Date:Message-Id:Cc:Subject:From:To:
+	 References:In-Reply-To; b=f82jPSNu1fzaFot3lSmWSqX9fTdbiNs+wuGVcxnspC9NoawM70lDx7bIy/qDnFTs8iRq7oqnJKJNS35ppN4AT22QSoKFE/IvS6HXVUJiSwCnmfvkPMKnWdv/skHGgXKdLb19qve819DDAi1Hpvnj+4Kmf0MSrA61SxJyYxtNTXs=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=cknow.org; spf=pass smtp.mailfrom=cknow.org; dkim=pass (2048-bit key) header.d=cknow.org header.i=@cknow.org header.b=ROENJZTI; arc=none smtp.client-ip=95.215.58.189
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=cknow.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=cknow.org
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-MIME-Version: 1.0
-References: <20250626113351.52873-1-noltari@gmail.com> <20250626113351.52873-3-noltari@gmail.com>
- <20250627213454.GA179652-robh@kernel.org>
-In-Reply-To: <20250627213454.GA179652-robh@kernel.org>
-From: =?UTF-8?B?w4FsdmFybyBGZXJuw6FuZGV6IFJvamFz?= <noltari@gmail.com>
-Date: Sat, 28 Jun 2025 10:43:05 +0200
-X-Gm-Features: Ac12FXyB5spcQT9l77Ao7kgk6V-2QwXerVK2aE6vHymxZPfo25cAnEbofL-HkQQ
-Message-ID: <CAKR-sGf01xtOF9dY9yb2i67PV5FHHe3GGKk7ingjTOOfqWA5FA@mail.gmail.com>
-Subject: Re: [PATCH 2/3] dt-bindings: hwmon: Add Microchip EMC2101 support
-To: Rob Herring <robh@kernel.org>
-Cc: jdelvare@suse.com, linux@roeck-us.net, krzk+dt@kernel.org, 
-	conor+dt@kernel.org, corbet@lwn.net, linux-hwmon@vger.kernel.org, 
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	linux-doc@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
+Mime-Version: 1.0
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cknow.org; s=key1;
+	t=1751101070;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 in-reply-to:in-reply-to:references:references;
+	bh=ybqsyqEQtaTyGQvk+BFdCF7y271RgdQMonWszxYB88c=;
+	b=ROENJZTIjZyoCI9g2NPJUEtCzQMHCjP4pthou6YG3P6yiZ2a1ek19Xv1QSzBHZzkaWgQAm
+	3xmFVpxPyobZosVJygZtNI5iEPcIz/nFt5Mi1Gc0t8WkooJHZ4VZCjxfnlm2XBe0aAKk6J
+	4umnJnAB61UfIauxFGLuU7SsDfGL6YYM6ROHv/9Ge7Gvz1h2GptoLGsLO7TiXmULdPMdsC
+	d9ksbrHAIcJaOT53g1FN6EWXLzMCU+ziHi9IXhoOw7M1fBsJ33315yDrQI5J8nUc+uOQI0
+	2HVtYevIo0/JXHjMDXN9et/v3aON1lm6QZ90GzwsA4oYmvanj77wP183v7Bpkw==
+Content-Type: multipart/signed;
+ boundary=45ff3aaff99b43270ac8aa38352e1e585a3b95bead335ff4d3af9d1accaf;
+ micalg=pgp-sha512; protocol="application/pgp-signature"
+Date: Sat, 28 Jun 2025 10:57:29 +0200
+Message-Id: <DAY1IKPD6TB6.1JICGYYQTWEDR@cknow.org>
+Cc: "Dragan Simic" <dsimic@manjaro.org>, "Johan Jonker" <jbx6244@gmail.com>,
+ <devicetree@vger.kernel.org>, <linux-arm-kernel@lists.infradead.org>,
+ <linux-rockchip@lists.infradead.org>, <linux-kernel@vger.kernel.org>
+Subject: Re: [PATCH 2/8] arm64: dts: rockchip: Refactor DSI nodes on rk3399
+ boards
+X-Report-Abuse: Please report any abuse attempt to abuse@migadu.com and include these headers.
+From: "Diederik de Haas" <didi.debian@cknow.org>
+To: =?utf-8?q?Heiko_St=C3=BCbner?= <heiko@sntech.de>, "Quentin Schulz"
+ <quentin.schulz@cherry.de>, "Rob Herring" <robh@kernel.org>, "Krzysztof
+ Kozlowski" <krzk+dt@kernel.org>, "Conor Dooley" <conor+dt@kernel.org>
+References: <20250627152645.740981-1-didi.debian@cknow.org>
+ <b1c789bf-1369-42ec-8bb3-d7a45c92abf0@cherry.de>
+ <DAXGZG0DEKS2.7RLXKSDO0C9T@cknow.org> <5121698.88bMQJbFj6@diego>
+In-Reply-To: <5121698.88bMQJbFj6@diego>
+X-Migadu-Flow: FLOW_OUT
+
+--45ff3aaff99b43270ac8aa38352e1e585a3b95bead335ff4d3af9d1accaf
 Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=UTF-8
 
-Hi Rob,
+Hi Heiko & Quentin,
 
-El vie, 27 jun 2025 a las 23:34, Rob Herring (<robh@kernel.org>) escribi=C3=
-=B3:
+On Fri Jun 27, 2025 at 8:25 PM CEST, Heiko St=C3=BCbner wrote:
+> Am Freitag, 27. Juni 2025, 18:52:08 Mitteleurop=C3=A4ische Sommerzeit sch=
+rieb Diederik de Haas:
+>> On Fri Jun 27, 2025 at 6:10 PM CEST, Quentin Schulz wrote:
+>> > On 6/27/25 5:16 PM, Diederik de Haas wrote:
+>> >> The #address-cells and #size-cells properties are not useful on the D=
+SI
+>> >> controller nodes; they are only useful/required on ports and panel(s)=
+.
+>> >> So remove them from the controller node and add them where actually
+>> >> needed on the various rk3399 based boards.
+>> >>=20
+>> >> Next to that, there were several (exact) redefinitions of nodes which
+>> >> are already present in rk3399-base.dtsi to add a mipi_out endpoint.
+>> >> Simplify that by referencing the mipi_out phandle and add the endpoin=
+t
+>> >> to that, which allows the removeal of the ports redefinition.
+>> >>=20
+>> >> And fix 1 instance where the mipi_out referenced node was not sorted
+>> >> correctly.
+>> >>=20
+>> >> This fixes the following DTB validation warnings:
+>> >>=20
+>> >>    unnecessary #address-cells/#size-cells without "ranges",
+>> >>    "dma-ranges" or child "reg" property
+>> >>=20
+>> >
+>> > Too many unrelated changes in this commit, please split into multiple=
+=20
+>> > commits.
+>> >
+>> > I could identify:
+>> >
+>> > - moving address-cells/size-cells from SoC.dtsi to board dts(i)s,
+>> > - reordering properties to better match DT coding style=20
+>> > https://www.kernel.org/doc/html/latest/devicetree/bindings/dts-coding-=
+style.html#order-of-properties-in-device-node
+>> > - use phandle to directly access ports,
+>> > - reorder DT node to better match DT coding style=20
+>> > https://www.kernel.org/doc/html/latest/devicetree/bindings/dts-coding-=
+style.html#order-of-nodes
+>>=20
+>> I initially had it as several commits, but that resulted in (f.e.) 1
+>> issue being fixed, but 1 (or more) others would pop up.
+>> Those were then fixed in follow-up commits, but I assumed I'd get Rob's
+>> bot screaming at me for introducing new warnings (first).
+>>=20
+>> And as they all relate(d) to fixing the dsi node, I then choose to
+>> combine them (but still separated by SoC).
+>> IMO there are several ways to organize the commits and each would have
+>> their pros and cons, so I 'settled' for this arrangement.
+>>=20
+>> So I prefer to wait for other people's opinion first before reorganizing
+>> the commits again (if there's a different consensus).
 >
-> On Thu, Jun 26, 2025 at 01:33:50PM +0200, =C3=81lvaro Fern=C3=A1ndez Roja=
-s wrote:
-> > Introduce yaml schema for Microchip emc2101 pwm fan controller with
-> > temperature monitoring.
-> >
-> > Signed-off-by: =C3=81lvaro Fern=C3=A1ndez Rojas <noltari@gmail.com>
-> > ---
-> >  .../bindings/hwmon/microchip,emc2101.yaml     | 52 +++++++++++++++++++
-> >  1 file changed, 52 insertions(+)
-> >  create mode 100644 Documentation/devicetree/bindings/hwmon/microchip,e=
-mc2101.yaml
-> >
-> > diff --git a/Documentation/devicetree/bindings/hwmon/microchip,emc2101.=
-yaml b/Documentation/devicetree/bindings/hwmon/microchip,emc2101.yaml
-> > new file mode 100644
-> > index 000000000000..e73f1f9d43f4
-> > --- /dev/null
-> > +++ b/Documentation/devicetree/bindings/hwmon/microchip,emc2101.yaml
-> > @@ -0,0 +1,52 @@
-> > +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> > +%YAML 1.2
-> > +---
-> > +$id: http://devicetree.org/schemas/hwmon/microchip,emc2101.yaml#
-> > +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> > +
-> > +title: Microchip EMC2101 SMBus compliant PWM fan controller
-> > +
-> > +maintainers:
-> > +  - =C3=81lvaro Fern=C3=A1ndez Rojas <noltari@gmail.com>
-> > +
-> > +description:
-> > +  Microchip EMC2101 pwm controller which supports up to 1 fan, 1 inter=
-nal
-> > +  temperature sensor, 1 external temperature sensor and an 8 entry loo=
-k
-> > +  up table to create a programmable temperature response.
-> > +
-> > +properties:
-> > +  compatible:
-> > +    enum:
-> > +      - microchip,emc2101
-> > +      - microchip,emc2101-r
-> > +
-> > +  reg:
-> > +    maxItems: 1
-> > +
+> personally, I can live with the current setup here, because as you said
+> it's all DSI related, and also not a functional change ;-) .
 >
-> > +  '#address-cells':
-> > +    const: 1
-> > +
-> > +  '#size-cells':
-> > +    const: 0
->
-> What are these for? You don't have any child nodes.
+> I guess you _could_ move the clock-master + status moves into a separate
+> patch, as that should not trigger any warnings.
 
-EMC2101 can control a single fan, so I guess I should add the following her=
-e:
+After having thought a bit more about it, I actually agree that the
+moving of address/size-cells from SoC to board dts[i] should be separate
+from extracting the ports/endpoints into a node with a phandle
+reference. This patch set is actually from 2 branches:
+- dtb-fixes-dsi
+- dtb-fixes-ports-endpoints (although I now use 'dtb-fixes-fruit')
 
-  '#pwm-cells':
-    const: 2
-    description: |
-      Number of cells in a PWM specifier.
-      - cell 0: The PWM frequency
-      - cell 1: The PWM polarity: 0 or PWM_POLARITY_INVERTED
+ports-endpoints is on top of dsi and came forth as it made sense to do
+the ports/endpoints extraction in more places.
+I'll then also put the DT node movement in a separate patch.
 
-patternProperties:
-  '^fan@0$':
-    $ref: fan-common.yaml#
-    unevaluatedProperties: false
-    properties:
-      reg:
-        description:
-          The fan number used to determine the associated PWM channel.
-        maxItems: 1
+I'm not a fan of putting clock-master + status property move into a
+separate patch as then the address/size patch would look weird (to me)
+as you'd see how those properties were inconsistently sorted ... just so
+that can be fixed in a separate patch.
 
-    required:
-      - reg
+Cheers,
+  Diederik
 
->
-> > +
-> > +required:
-> > +  - compatible
-> > +  - reg
-> > +
-> > +additionalProperties: false
-> > +
-> > +examples:
-> > +  - |
-> > +    i2c {
-> > +        #address-cells =3D <1>;
-> > +        #size-cells =3D <0>;
-> > +
-> > +        fan_controller: fan-controller@4c {
-> > +            compatible =3D "microchip,emc2101";
-> > +            reg =3D <0x4c>;
-> > +
-> > +            #address-cells =3D <1>;
-> > +            #size-cells =3D <0>;
+--45ff3aaff99b43270ac8aa38352e1e585a3b95bead335ff4d3af9d1accaf
+Content-Type: application/pgp-signature; name="signature.asc"
 
-And the following here:
+-----BEGIN PGP SIGNATURE-----
 
-            #pwm-cells =3D <2>;
+iHUEABYKAB0WIQT1sUPBYsyGmi4usy/XblvOeH7bbgUCaF+ufwAKCRDXblvOeH7b
+biZgAQCME6QUUiJaphH6VGnwcT9ww6WdV692xu7Owyds/SRnrQD/dSITCnYbGopt
+SHRh40ahmolnhZl8p4Azfb0upjxs9gs=
+=rbBp
+-----END PGP SIGNATURE-----
 
-            fan@0 {
-                reg =3D <0x0>;
-                pwms =3D <&fan_controller 5806 0>;
-                #cooling-cells =3D <2>;
-            };
-
-Would that fix the issue?
-
-> > +        };
-> > +    };
-> > +...
-> > --
-> > 2.39.5
-> >
-
-Best regards,
-=C3=81lvaro.
+--45ff3aaff99b43270ac8aa38352e1e585a3b95bead335ff4d3af9d1accaf--
 
