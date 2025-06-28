@@ -1,193 +1,143 @@
-Return-Path: <devicetree+bounces-190678-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-190689-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id DFE02AEC623
-	for <lists+devicetree@lfdr.de>; Sat, 28 Jun 2025 11:11:42 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 60E63AEC664
+	for <lists+devicetree@lfdr.de>; Sat, 28 Jun 2025 11:33:28 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 8DE124A0637
-	for <lists+devicetree@lfdr.de>; Sat, 28 Jun 2025 09:11:38 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 9AC153AAFDE
+	for <lists+devicetree@lfdr.de>; Sat, 28 Jun 2025 09:33:02 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6970522D7A1;
-	Sat, 28 Jun 2025 09:11:04 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B56242222D1;
+	Sat, 28 Jun 2025 09:33:23 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=mailerdienst.de header.i=@mailerdienst.de header.b="r/s3poRq"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="B3ji4tzu"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mxout1.routing.net (mxout1.routing.net [134.0.28.11])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A5A452253A0;
-	Sat, 28 Jun 2025 09:11:02 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=134.0.28.11
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8614F15A856;
+	Sat, 28 Jun 2025 09:33:23 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1751101864; cv=none; b=XhIaWT7qycSSebmwQUKMtChnW8wbB4+3NKsJOP+uaOChBXKBsPP9ls5ZLXr0xNV8+1s3B+EpALIKEER7OX+MAhneTko7FQQ8yITf/FL8EjxONhKBdjeEaQFSgVihJaIa/HYJGLuTGpk72dBXv6V+lWoeYfDhuMVndFzQo9pzSj8=
+	t=1751103203; cv=none; b=g00GLT7zqMRYRew7yenllybSbcSQk6bvMH9Tc0/TLa0c9h6mAgxreQp9ZDEiZDYrb2Abaffq8mq2I4jp8KYdmBXbxaHY68aQpu0YB/MjGb54rPtD4idjbXEjemCv9kEoPqJHrOjvTkHbDsXt/bPJK3ttXtJrpUel0tA+elikKTs=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1751101864; c=relaxed/simple;
-	bh=owery2Y9xho1bAvAYoxF0F6uDfB7KsKdTzyV/Nr07xM=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=odQqimo6clDhICdUEiuUvXNrzI9pYuF5sVu9dS3KUij4qS59He4BIdPLMaS/K6a3yTWOmeeeYZr4Pp6GYZxsuoHgrOwoKpRP0Uq+aYNb1FBQhE4tJbqVZoqCFr7XRRJF8DWtJTZxxgeQaiupIRlGN7oA9xw8bhsOIUYVEFF+gT4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=fw-web.de; spf=pass smtp.mailfrom=fw-web.de; dkim=pass (1024-bit key) header.d=mailerdienst.de header.i=@mailerdienst.de header.b=r/s3poRq; arc=none smtp.client-ip=134.0.28.11
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=fw-web.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=fw-web.de
-Received: from mxbulk.masterlogin.de (unknown [192.168.10.85])
-	by mxout1.routing.net (Postfix) with ESMTP id 6597441B9A;
-	Sat, 28 Jun 2025 09:10:56 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=mailerdienst.de;
-	s=20200217; t=1751101856;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=Mw75z6h4HeFha6AF7YI1R1VXg23z1dS7Y1C1o8vw7rQ=;
-	b=r/s3poRqq/VChsGtyFgPlDXqq72CLYUbSfojrYIpQDxm+axAk4IYVdvqL65kjsb/WoIQRt
-	ZFIo6bZfqpyao7+yjmEacYygPp80IJuKzIWRvKSHKjcta8uI3rUCW0bRZUwo9OkjOy9Q8V
-	1NcshjhY4uxuASOq5MabTXLHPmLZN/s=
-Received: from frank-u24.. (fttx-pool-217.61.150.139.bambit.de [217.61.150.139])
-	by mxbulk.masterlogin.de (Postfix) with ESMTPSA id 0AAB512272D;
-	Sat, 28 Jun 2025 09:10:56 +0000 (UTC)
-From: Frank Wunderlich <linux@fw-web.de>
-To: MyungJoo Ham <myungjoo.ham@samsung.com>,
-	Kyungmin Park <kyungmin.park@samsung.com>,
-	Chanwoo Choi <cw00.choi@samsung.com>,
-	Georgi Djakov <djakov@kernel.org>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Andrew Lunn <andrew@lunn.ch>,
-	Vladimir Oltean <olteanv@gmail.com>,
-	"David S. Miller" <davem@davemloft.net>,
-	Eric Dumazet <edumazet@google.com>,
-	Jakub Kicinski <kuba@kernel.org>,
-	Paolo Abeni <pabeni@redhat.com>,
-	Matthias Brugger <matthias.bgg@gmail.com>,
-	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
-Cc: Frank Wunderlich <frank-w@public-files.de>,
-	Johnson Wang <johnson.wang@mediatek.com>,
-	=?UTF-8?q?Ar=C4=B1n=C3=A7=20=C3=9CNAL?= <arinc.unal@arinc9.com>,
-	Landen Chao <Landen.Chao@mediatek.com>,
-	DENG Qingfang <dqfext@gmail.com>,
-	Sean Wang <sean.wang@mediatek.com>,
-	Daniel Golle <daniel@makrotopia.org>,
-	Lorenzo Bianconi <lorenzo@kernel.org>,
-	Felix Fietkau <nbd@nbd.name>,
-	linux-pm@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	netdev@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	linux-mediatek@lists.infradead.org
-Subject: [PATCH v6 15/15] arm64: dts: mediatek: mt7988a-bpi-r4: configure switch phys and leds
-Date: Sat, 28 Jun 2025 11:10:39 +0200
-Message-ID: <20250628091043.57645-16-linux@fw-web.de>
-X-Mailer: git-send-email 2.43.0
-In-Reply-To: <20250628091043.57645-1-linux@fw-web.de>
-References: <20250628091043.57645-1-linux@fw-web.de>
+	s=arc-20240116; t=1751103203; c=relaxed/simple;
+	bh=jclJuipHjDvfVIGGpyisxpakmoZzRKjyjxUFqC51V9c=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=FHQ0S0o8A5yUpUP3s8xGM1mlBpHLsu5Ku83JP9JMZs3+8nvxTmbNHPC1A9rwLHQ69iO0Dy8L0v6hXdHfSWughZpj8ZgGLSk/PNkz4c0YeignKH1aqDmfyF1quP/2UTLVg+xmmUVx0hkeGKFKbQKWzwdh4ROrnVavQnYUM4crYH0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=B3ji4tzu; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 20F15C4CEEA;
+	Sat, 28 Jun 2025 09:33:11 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1751103203;
+	bh=jclJuipHjDvfVIGGpyisxpakmoZzRKjyjxUFqC51V9c=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=B3ji4tzuRc2bvSAg5VhrExCAJfxd5lrCpxsXsPBgh6viZuMpUFNyzApFgam9C6MK5
+	 c3lCXQb0ft7W2u7zHgiXtvsfv65zQZciGI4OC+SO0RG0aOuD2PgDmjUwjiV+mKkagg
+	 820exUrQLRrNEKH/qHTrCrf0S0BPmJrqL4RlZ6WeuANfKXKPSv40p7eQro9Sh4ETNl
+	 B7eFm3cGA1ldcNnfzkgSzB5rGoCGATrBu1Ki6X74rV3nxl0hgGquDg6EIR822GiiX6
+	 ntJuEnF8PE6p6FC/P5cmuTZrgoEhuq/E5gK8OMvgSkKJTTy+RLRpGMOwB/lVC4yH3d
+	 u+dpoP2DDh8ew==
+Message-ID: <bfe59771-f35d-48b7-aed3-7b6f3ef1f1dd@kernel.org>
+Date: Sat, 28 Jun 2025 11:33:05 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2 2/6] dt-bindings: soc: samsung: exynos-pmu: allow
+ mipi-phy subnode
+To: Kaustabh Chakraborty <kauschluss@disroot.org>,
+ Rob Herring <robh@kernel.org>
+Cc: Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, Alim Akhtar <alim.akhtar@samsung.com>,
+ devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ linux-samsung-soc@vger.kernel.org, linux-kernel@vger.kernel.org
+References: <20250627-exynos7870-drm-dts-v2-0-d4a59207390d@disroot.org>
+ <20250627-exynos7870-drm-dts-v2-2-d4a59207390d@disroot.org>
+ <20250627214258.GA189284-robh@kernel.org>
+ <6151f833d5a06369cd3dce5d2b2aca9f@disroot.org>
+From: Krzysztof Kozlowski <krzk@kernel.org>
+Content-Language: en-US
+Autocrypt: addr=krzk@kernel.org; keydata=
+ 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 a/A=
+In-Reply-To: <6151f833d5a06369cd3dce5d2b2aca9f@disroot.org>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-From: Frank Wunderlich <frank-w@public-files.de>
+On 28/06/2025 09:19, Kaustabh Chakraborty wrote:
+>>> diff --git 
+>>> a/Documentation/devicetree/bindings/soc/samsung/exynos-pmu.yaml 
+>>> b/Documentation/devicetree/bindings/soc/samsung/exynos-pmu.yaml
+>>> index 
+>>> f0fb24156da9b8980dcfd5339ae75f12a71cf6d6..45acd6a03d761a833cec435302e5190fb50f7a23 
+>>> 100644
+>>> --- a/Documentation/devicetree/bindings/soc/samsung/exynos-pmu.yaml
+>>> +++ b/Documentation/devicetree/bindings/soc/samsung/exynos-pmu.yaml
+>>> @@ -172,6 +172,7 @@ allOf:
+>>>                - samsung,exynos5250-pmu
+>>>                - samsung,exynos5420-pmu
+>>>                - samsung,exynos5433-pmu
+>>> +              - samsung,exynos7870-pmu
+>>
+>> Don't you need to add this to 'compatible' and under 'select'?
+> 
+> compatible: [1]
+> 
+> samsung,exynos7-pmu is under select. 7870 has a fallback on 7.
+> Do you think samsung,exynos7-pmu should've been added in this patch
+> instead?
+> 
+If this uses exynos7-pmu as fallback then it is fine. This should be in
+commit msg - that's the point of commit msg - explain the hardware and
+things not easily visible, instead of repeating what is visible in the diff.
 
-Assign pinctrl to switch phys and leds.
-
-Signed-off-by: Daniel Golle <daniel@makrotopia.org>
-Signed-off-by: Frank Wunderlich <frank-w@public-files.de>
-Reviewed-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
----
-v4:
-- reorder switch phy(-led) properties
-v2:
-- add labels and led-function and include after dropping from soc dtsi
----
- .../dts/mediatek/mt7988a-bananapi-bpi-r4.dtsi | 61 +++++++++++++++++++
- 1 file changed, 61 insertions(+)
-
-diff --git a/arch/arm64/boot/dts/mediatek/mt7988a-bananapi-bpi-r4.dtsi b/arch/arm64/boot/dts/mediatek/mt7988a-bananapi-bpi-r4.dtsi
-index 4d709ee527df..7c9df606f60d 100644
---- a/arch/arm64/boot/dts/mediatek/mt7988a-bananapi-bpi-r4.dtsi
-+++ b/arch/arm64/boot/dts/mediatek/mt7988a-bananapi-bpi-r4.dtsi
-@@ -4,6 +4,7 @@
- 
- #include <dt-bindings/gpio/gpio.h>
- #include <dt-bindings/regulator/richtek,rt5190a-regulator.h>
-+#include <dt-bindings/leds/common.h>
- 
- #include "mt7988a.dtsi"
- 
-@@ -152,6 +153,66 @@ &gmac2 {
- 	sfp = <&sfp1>;
- };
- 
-+&gsw_phy0 {
-+	pinctrl-0 = <&gbe0_led0_pins>;
-+	pinctrl-names = "gbe-led";
-+};
-+
-+&gsw_phy0_led0 {
-+	function = LED_FUNCTION_WAN;
-+	color = <LED_COLOR_ID_GREEN>;
-+	status = "okay";
-+};
-+
-+&gsw_port0 {
-+	label = "wan";
-+};
-+
-+&gsw_phy1 {
-+	pinctrl-0 = <&gbe1_led0_pins>;
-+	pinctrl-names = "gbe-led";
-+};
-+
-+&gsw_phy1_led0 {
-+	function = LED_FUNCTION_LAN;
-+	color = <LED_COLOR_ID_GREEN>;
-+	status = "okay";
-+};
-+
-+&gsw_port1 {
-+	label = "lan1";
-+};
-+
-+&gsw_phy2 {
-+	pinctrl-0 = <&gbe2_led0_pins>;
-+	pinctrl-names = "gbe-led";
-+};
-+
-+&gsw_phy2_led0 {
-+	function = LED_FUNCTION_LAN;
-+	color = <LED_COLOR_ID_GREEN>;
-+	status = "okay";
-+};
-+
-+&gsw_port2 {
-+	label = "lan2";
-+};
-+
-+&gsw_phy3 {
-+	pinctrl-0 = <&gbe3_led0_pins>;
-+	pinctrl-names = "gbe-led";
-+};
-+
-+&gsw_phy3_led0 {
-+	function = LED_FUNCTION_LAN;
-+	color = <LED_COLOR_ID_GREEN>;
-+	status = "okay";
-+};
-+
-+&gsw_port3 {
-+	label = "lan3";
-+};
-+
- &i2c0 {
- 	pinctrl-names = "default";
- 	pinctrl-0 = <&i2c0_pins>;
--- 
-2.43.0
-
+Best regards,
+Krzysztof
 
