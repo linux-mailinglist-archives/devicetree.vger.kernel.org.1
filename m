@@ -1,417 +1,274 @@
-Return-Path: <devicetree+bounces-190780-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-190781-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id AF4E5AEC9AC
-	for <lists+devicetree@lfdr.de>; Sat, 28 Jun 2025 20:15:23 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7EBB2AEC9BB
+	for <lists+devicetree@lfdr.de>; Sat, 28 Jun 2025 20:27:31 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 098901699E3
-	for <lists+devicetree@lfdr.de>; Sat, 28 Jun 2025 18:15:23 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 97CE41BC06DC
+	for <lists+devicetree@lfdr.de>; Sat, 28 Jun 2025 18:27:47 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 881A62877C5;
-	Sat, 28 Jun 2025 18:15:07 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9425F2522B6;
+	Sat, 28 Jun 2025 18:27:26 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=samsung.com header.i=@samsung.com header.b="ZQB2CRQb"
+	dkim=pass (1024-bit key) header.d=iki.fi header.i=@iki.fi header.b="QLmVyJNM"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mailout2.w1.samsung.com (mailout2.w1.samsung.com [210.118.77.12])
+Received: from meesny.iki.fi (meesny.iki.fi [195.140.195.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C2E21274FD0
-	for <devicetree@vger.kernel.org>; Sat, 28 Jun 2025 18:15:03 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=210.118.77.12
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1751134507; cv=none; b=K95q4RuBZsNrLGeNdnZAe+Np3Tdt/zWXPk59Ien8cJu2vO30Vc7lKvNXhPysJrHQbflWXiaEbJ4dbRZq0MOYNseI+r/EUr+TLixqiNQPtfeFbenWrxG3dCDGFFpq6n6my5tca6epNWQbO0Gn7JDqJnghyerVg5wVzjgY682htm4=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1751134507; c=relaxed/simple;
-	bh=DqAaSx9Iu74jTCRCpoqiW6+h8SmPhlzSLhjEqvo182I=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:From:In-Reply-To:
-	 Content-Type:References; b=n3x1ruXv0uiO14iAhBB7ES0dL3X2nUIXDAMqU1xGBx16Jb4Vx5fDKFvwiJx00voMNYRCYRxzwKv7WPPRmUR+C7KCWjE0dYOl8ffKiQWsqmrVE9HV9KNJH+M2EWenUbOU1wmNrMPevHybCJXwqZh6xN6vSSNdZPOKQ8kSzqO7N3A=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=samsung.com; spf=pass smtp.mailfrom=samsung.com; dkim=pass (1024-bit key) header.d=samsung.com header.i=@samsung.com header.b=ZQB2CRQb; arc=none smtp.client-ip=210.118.77.12
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=samsung.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=samsung.com
-Received: from eucas1p2.samsung.com (unknown [182.198.249.207])
-	by mailout2.w1.samsung.com (KnoxPortal) with ESMTP id 20250628181502euoutp02904a84fa2341ec6eb6be703451237da0~NR41EkOmI2384323843euoutp02k
-	for <devicetree@vger.kernel.org>; Sat, 28 Jun 2025 18:15:02 +0000 (GMT)
-DKIM-Filter: OpenDKIM Filter v2.11.0 mailout2.w1.samsung.com 20250628181502euoutp02904a84fa2341ec6eb6be703451237da0~NR41EkOmI2384323843euoutp02k
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=samsung.com;
-	s=mail20170921; t=1751134502;
-	bh=2JA1x1+wxIMxbTcb05JnAkXnXDTnRK4eUQH/s2vY+XY=;
-	h=Date:Subject:To:Cc:From:In-Reply-To:References:From;
-	b=ZQB2CRQbRmZs3pRIe8Bl9Duy3N7ceVBVs/91VdN/4mbECUPi6EzlJ48XsWeg092xp
-	 T/13PpGMsFIvSVHYuD6lco/5ijepbwH0pKvopRfqTnWJkuTKOiLtzNsUEv5qC5fb4H
-	 FL65xO/uyQNSMV+tXu3JbfcuutEaNhOE2V8DId/Q=
-Received: from eusmtip1.samsung.com (unknown [203.254.199.221]) by
-	eucas1p1.samsung.com (KnoxPortal) with ESMTPA id
-	20250628181501eucas1p1fa95a0e5ce8ee9081b9b7cd0bd3fc7db~NR4z_sDU71200312003eucas1p15;
-	Sat, 28 Jun 2025 18:15:01 +0000 (GMT)
-Received: from [192.168.1.44] (unknown [106.210.136.40]) by
-	eusmtip1.samsung.com (KnoxPortal) with ESMTPA id
-	20250628181459eusmtip1664c47fbf09b84ffb0d6e5a1c32c784b~NR4ywaDGi1908019080eusmtip1a;
-	Sat, 28 Jun 2025 18:14:59 +0000 (GMT)
-Message-ID: <21504282-18d1-4165-a1bc-ec4cbbb19c2b@samsung.com>
-Date: Sat, 28 Jun 2025 20:14:59 +0200
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6B3B0219302;
+	Sat, 28 Jun 2025 18:27:19 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=pass smtp.client-ip=195.140.195.201
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1751135246; cv=pass; b=jPDO5o10f3eHgwc5hA0FJcYq+MzDHANGUXk/kfcb+OZfSn3kaFKOqf4u57ptkgSSkmUzmlsW34iY7dhja8svasmuilzUsSHfH/iYyXoVoihsnxyeCrm6zYAyCtUDuL7+KEThk+5TcAcEctK2zNWyIYBrMZe6Tn2IhVQ0lCg0u88=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1751135246; c=relaxed/simple;
+	bh=E4wVzdmWrKSdbCHEX3fuS6RQ4A6N3MxxO7f/PNjRrdw=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=nlp9QKKJFFyuhV45fZuYnpkD+rt45ZW3WM0BDixLa35jOX76IIU1pxC8pRCkjRWU/2J3jS9l6xLUdkyOBmCoYVN+K/sSsmegsVBStsvAq/AzFw3R43vlsQU1cy5g3pN0LaXz+v46ojVIyw2QR6Cg0glk8dzvtuLPew+KraE+Tzs=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=iki.fi; spf=pass smtp.mailfrom=iki.fi; dkim=pass (1024-bit key) header.d=iki.fi header.i=@iki.fi header.b=QLmVyJNM; arc=pass smtp.client-ip=195.140.195.201
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=iki.fi
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=iki.fi
+Received: from hillosipuli.retiisi.eu (2a00-1190-d1dd-0-127c-61ff-fee2-b97e.v6.cust.suomicom.net [IPv6:2a00:1190:d1dd:0:127c:61ff:fee2:b97e])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
+	(No client certificate requested)
+	(Authenticated sender: sailus)
+	by meesny.iki.fi (Postfix) with ESMTPSA id 4bV19S63SFzyR7;
+	Sat, 28 Jun 2025 21:27:08 +0300 (EEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=iki.fi; s=meesny;
+	t=1751135230;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 in-reply-to:in-reply-to:references:references;
+	bh=AJ+fyHtmJgkbOU1+JyFtXH3gaU+q/29nr2pOPL97MlE=;
+	b=QLmVyJNMvqxwfO0CArLdeO6wOs1//3c4tn4KDUZMTr5X802pz27ofknwz+YxdcB22rnJlQ
+	zpM+OSPevLjEbVpxqKCjaC9/R8l2HDRV+rTN6O8zz3UY0IdBGaMreahAjQ3oL4EfsNi3nY
+	3YligLK/XR2yj1meIXyygqIOJT6fzWI=
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=iki.fi;
+	s=meesny; t=1751135230;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 in-reply-to:in-reply-to:references:references;
+	bh=AJ+fyHtmJgkbOU1+JyFtXH3gaU+q/29nr2pOPL97MlE=;
+	b=AtTGil98qxH/ITrG4U16BCZcrRV+4Q0yfntxEI7XheX4cwPrrH/03deT+a71Z4qUmIxmjN
+	CgrDhYeO26PyhxVDNCCJCxVfYkCNnQ07gci4t6flA2JqMbdchdXistk3tyG0LI89/NOlKe
+	+zlEaMKOoHXuDLpBiLQd8zyiuU1HtyQ=
+ARC-Authentication-Results: i=1;
+	ORIGINATING;
+	auth=pass smtp.auth=sailus smtp.mailfrom=sakari.ailus@iki.fi
+ARC-Seal: i=1; s=meesny; d=iki.fi; t=1751135230; a=rsa-sha256; cv=none;
+	b=EVxqihENwKj6379ITkl30lwgNmbxDaEhEoPu398eDx7f3Oy405bLTjL5HPg15IL+hnJJ44
+	rhDGXmKRwdEQ041aAK9HS66V0ZNxzr3SP0lQf2YKvGzh2pTRRPKDO5H6EaPxdMsaLIW+aY
+	FAigjoot/Y0GkPXR4gwRCq4yG4gvytU=
+Received: from valkosipuli.retiisi.eu (valkosipuli.local [192.168.4.2])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange ECDHE (prime256v1) server-signature RSA-PSS (4096 bits) server-digest SHA256)
+	(No client certificate requested)
+	by hillosipuli.retiisi.eu (Postfix) with ESMTPS id 0AF47634C93;
+	Sat, 28 Jun 2025 21:27:05 +0300 (EEST)
+Date: Sat, 28 Jun 2025 18:27:05 +0000
+From: Sakari Ailus <sakari.ailus@iki.fi>
+To: Mirela Rabulea <mirela.rabulea@nxp.com>
+Cc: mchehab@kernel.org, sakari.ailus@linux.intel.com,
+	hverkuil-cisco@xs4all.nl, laurent.pinchart+renesas@ideasonboard.com,
+	robh@kernel.org, krzk+dt@kernel.org, bryan.odonoghue@linaro.org,
+	laurentiu.palcu@nxp.com, robert.chiras@nxp.com,
+	linux-media@vger.kernel.org, linux-kernel@vger.kernel.org,
+	LnxRevLi@nxp.com, kieran.bingham@ideasonboard.com,
+	hdegoede@redhat.com, dave.stevenson@raspberrypi.com,
+	mike.rudenko@gmail.com, alain.volmat@foss.st.com,
+	devicetree@vger.kernel.org, conor+dt@kernel.org,
+	alexander.stein@ew.tq-group.com, umang.jain@ideasonboard.com,
+	zhi.mao@mediatek.com, festevam@denx.de, julien.vuillaumier@nxp.com
+Subject: Re: [PATCH v4 1/4] dt-bindings: media: i2c: Add OX05B1S sensor
+Message-ID: <aGAz-TA7fjI-m76N@valkosipuli.retiisi.eu>
+References: <20250305094359.299895-1-mirela.rabulea@nxp.com>
+ <20250305094359.299895-2-mirela.rabulea@nxp.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v5 4/9] pwm: Add Rust driver for T-HEAD TH1520 SoC
-To: =?UTF-8?Q?Uwe_Kleine-K=C3=B6nig?= <ukleinek@kernel.org>
-Cc: Miguel Ojeda <ojeda@kernel.org>, Alex Gaynor <alex.gaynor@gmail.com>,
-	Boqun Feng <boqun.feng@gmail.com>, Gary Guo <gary@garyguo.net>,
-	=?UTF-8?Q?Bj=C3=B6rn_Roy_Baron?= <bjorn3_gh@protonmail.com>, Andreas
-	Hindborg <a.hindborg@kernel.org>, Alice Ryhl <aliceryhl@google.com>, Trevor
-	Gross <tmgross@umich.edu>, Danilo Krummrich <dakr@kernel.org>, Drew Fustini
-	<drew@pdp7.com>, Guo Ren <guoren@kernel.org>, Fu Wei <wefu@redhat.com>, Rob
-	Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor
-	Dooley <conor+dt@kernel.org>, Paul Walmsley <paul.walmsley@sifive.com>,
-	Palmer Dabbelt <palmer@dabbelt.com>, Albert Ou <aou@eecs.berkeley.edu>,
-	Alexandre Ghiti <alex@ghiti.fr>, Marek Szyprowski
-	<m.szyprowski@samsung.com>, Benno Lossin <lossin@kernel.org>, Michael
-	Turquette <mturquette@baylibre.com>, Stephen Boyd <sboyd@kernel.org>,
-	linux-kernel@vger.kernel.org, linux-pwm@vger.kernel.org,
-	rust-for-linux@vger.kernel.org, linux-riscv@lists.infradead.org,
-	devicetree@vger.kernel.org, linux-clk@vger.kernel.org
-Content-Language: en-US
-From: Michal Wilczynski <m.wilczynski@samsung.com>
-In-Reply-To: <aot4ow37qsrehgce6vpc5m7ha5w6h4jvj7k7bokn4eo63sjk5x@iyp5ir234kx5>
-Content-Transfer-Encoding: 8bit
-X-CMS-MailID: 20250628181501eucas1p1fa95a0e5ce8ee9081b9b7cd0bd3fc7db
-X-Msg-Generator: CA
-Content-Type: text/plain; charset="utf-8"
-X-RootMTR: 20250623180902eucas1p2960477c0a44f05e991747312b0ae0ff0
-X-EPHeader: CA
-X-CMS-RootMailID: 20250623180902eucas1p2960477c0a44f05e991747312b0ae0ff0
-References: <20250623-rust-next-pwm-working-fan-for-sending-v5-0-0ca23747c23e@samsung.com>
-	<CGME20250623180902eucas1p2960477c0a44f05e991747312b0ae0ff0@eucas1p2.samsung.com>
-	<20250623-rust-next-pwm-working-fan-for-sending-v5-4-0ca23747c23e@samsung.com>
-	<aot4ow37qsrehgce6vpc5m7ha5w6h4jvj7k7bokn4eo63sjk5x@iyp5ir234kx5>
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20250305094359.299895-2-mirela.rabulea@nxp.com>
 
+Hi Mirela,
 
-
-On 6/27/25 17:28, Uwe Kleine-König wrote:
-> On Mon, Jun 23, 2025 at 08:08:52PM +0200, Michal Wilczynski wrote:
->> Introduce a PWM driver for the T-HEAD TH1520 SoC, written in Rust and
->> utilizing the safe PWM abstractions from the preceding commit.
->>
->> The driver implements the pwm::PwmOps trait using the modern waveform
->> API (round_waveform_tohw, write_waveform, etc.) to support configuration
->> of period, duty cycle, and polarity for the TH1520's PWM channels.
->>
->> Resource management is handled using idiomatic Rust patterns. The PWM
->> chip object is allocated via pwm::Chip::new and its registration with
->> the PWM core is managed by the pwm::Registration RAII guard. This
->> ensures pwmchip_remove is always called when the driver unbinds,
->> preventing resource leaks. Device managed resources are used for the
->> MMIO region, and the clock lifecycle is correctly managed in the
->> driver's private data Drop implementation.
->>
->> The driver's core logic is written entirely in safe Rust, with no unsafe
->> blocks.
->>
->> Signed-off-by: Michal Wilczynski <m.wilczynski@samsung.com>
->> ---
->>  MAINTAINERS               |   1 +
->>  drivers/pwm/Kconfig       |  10 ++
->>  drivers/pwm/Makefile      |   1 +
->>  drivers/pwm/pwm_th1520.rs | 318 ++++++++++++++++++++++++++++++++++++++++++++++
->>  4 files changed, 330 insertions(+)
->>
->> diff --git a/MAINTAINERS b/MAINTAINERS
->> index a575622454a2ef57ce055c8a8c4765fa4fddc490..879870471e86dcec4a0e8f5c45d2cc3409411fdd 100644
->> --- a/MAINTAINERS
->> +++ b/MAINTAINERS
->> @@ -21402,6 +21402,7 @@ F:	drivers/mailbox/mailbox-th1520.c
->>  F:	drivers/net/ethernet/stmicro/stmmac/dwmac-thead.c
->>  F:	drivers/pinctrl/pinctrl-th1520.c
->>  F:	drivers/pmdomain/thead/
->> +F:	drivers/pwm/pwm_th1520.rs
->>  F:	drivers/reset/reset-th1520.c
->>  F:	include/dt-bindings/clock/thead,th1520-clk-ap.h
->>  F:	include/dt-bindings/power/thead,th1520-power.h
->> diff --git a/drivers/pwm/Kconfig b/drivers/pwm/Kconfig
->> index cfddeae0eab3523f04f361fb41ccd1345c0c937b..a675b3bd68392d1b05a47a2a1390c5606647ca15 100644
->> --- a/drivers/pwm/Kconfig
->> +++ b/drivers/pwm/Kconfig
->> @@ -719,6 +719,16 @@ config PWM_TEGRA
->>  	  To compile this driver as a module, choose M here: the module
->>  	  will be called pwm-tegra.
->>  
->> +config PWM_TH1520
->> +	tristate "TH1520 PWM support"
->> +	depends on RUST_PWM_ABSTRACTIONS
+On Wed, Mar 05, 2025 at 11:43:56AM +0200, Mirela Rabulea wrote:
+> Add bindings for Omnivision OX05B1S sensor.
+> Also add compatible for Omnivision OS08A20 sensor.
 > 
-> RUST_PWM_ABSTRACTIONS is user selectable. Is that sensible. From a
-> user's POV it shouldn't matter if the driver is written in Rust or not.
-
-You make an excellent point about user experience. My initial thought
-was to follow the depends on pattern that I saw in other Rust drivers.
-
-I can see how using select would be cleaner for the end user. My only
-hesitation was that it differs from the current convention for Rust
-drivers, and I wanted to be careful about changing an established
-pattern.
-
-If you are comfortable with setting this direction for the PWM
-subsystem, I am happy to make the change to use select
-RUST_PWM_ABSTRACTIONS (gated by depends on RUST). Please let me know.
-
+> Signed-off-by: Mirela Rabulea <mirela.rabulea@nxp.com>
+> Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+> ---
 > 
->> +	help
->> +	  This option enables the driver for the PWM controller found on the
->> +	  T-HEAD TH1520 SoC.
->> +
->> +	  To compile this driver as a module, choose M here; the module
->> +	  will be called pwm-th1520. If you are unsure, say N.
->> +
->>  config PWM_TIECAP
->>  	tristate "ECAP PWM support"
->>  	depends on ARCH_OMAP2PLUS || ARCH_DAVINCI_DA8XX || ARCH_KEYSTONE || ARCH_K3 || COMPILE_TEST
->> diff --git a/drivers/pwm/Makefile b/drivers/pwm/Makefile
->> index 96160f4257fcb0e0951581af0090615c0edf5260..a410747095327a315a6bcd24ae343ce7857fe323 100644
->> --- a/drivers/pwm/Makefile
->> +++ b/drivers/pwm/Makefile
->> @@ -66,6 +66,7 @@ obj-$(CONFIG_PWM_STMPE)		+= pwm-stmpe.o
->>  obj-$(CONFIG_PWM_SUN4I)		+= pwm-sun4i.o
->>  obj-$(CONFIG_PWM_SUNPLUS)	+= pwm-sunplus.o
->>  obj-$(CONFIG_PWM_TEGRA)		+= pwm-tegra.o
->> +obj-$(CONFIG_PWM_TH1520)	+= pwm_th1520.o
->>  obj-$(CONFIG_PWM_TIECAP)	+= pwm-tiecap.o
->>  obj-$(CONFIG_PWM_TIEHRPWM)	+= pwm-tiehrpwm.o
->>  obj-$(CONFIG_PWM_TWL)		+= pwm-twl.o
->> diff --git a/drivers/pwm/pwm_th1520.rs b/drivers/pwm/pwm_th1520.rs
->> new file mode 100644
->> index 0000000000000000000000000000000000000000..a77c45cef9cf8f02a25db9d42c45cd0df565b0ec
->> --- /dev/null
->> +++ b/drivers/pwm/pwm_th1520.rs
->> @@ -0,0 +1,318 @@
->> +// SPDX-License-Identifier: GPL-2.0
->> +// Copyright (c) 2025 Samsung Electronics Co., Ltd.
->> +// Author: Michal Wilczynski <m.wilczynski@samsung.com>
->> +
->> +//! Rust T-HEAD TH1520 PWM driver
->> +//!
->> +//! Limitations:
->> +//! - The period and duty cycle are controlled by 32-bit hardware registers,
->> +//!   limiting the maximum resolution.
->> +//! - The driver supports continuous output mode only; one-shot mode is not
->> +//!   implemented.
->> +//! - The controller hardware provides up to 6 PWM channels.
+> Changes in v4:
+> 	Collect Reviewed-by
 > 
-> Important questions to answer here are:
+> Changes in v3:
+> 	Use unevaluatedProperties: false and drop orientation/rotation
+> 	Drop items and keep alphabetical order in compatible property
+> 	Shorten the description for reset_gpio
+> 	Make the supplies required.
+> 	Use generic node name (camera instead of ox05b1s)
 > 
->  - How does the hardware behave on disable? (Does it stop immediately
->    (or at all)? Does it emit a constant output? Which?) 
->  - How does the hardware behave on reconfiguration? (Does it switch
->    immidiately or does it complete the current period? Can there be
->    glitches?
+> Changes in v2:
+> 	Small updates on description
+> 	Update subject, drop "bindings" and "driver"
+> 	Just one binding patch (squash os08a20 bindings)
+> 	Re-flow to 80 columns.
+> 	Drop clock name (not needed in case of single clock)
+> 	Make the clock required property, strictly from sensor module point of view, it is mandatory (will use a fixed clock for nxp board)
+> 	Add regulators: avdd, dvdd, dovdd
+> 	Add $ref: /schemas/media/video-interface-devices.yaml
+> 	Drop assigned-clock* properties (defined in clocks.yaml)
+> 	Keep "additionalProperties : false" and orientation/rotation (unevaluatedProperties: false was suggested, but only orientation/rotation are needed from video-interface-devices.yaml)
+> 	Include assigned-clock* in the example, for completeness sake (although it was also suggested to omit them)
+> 
+>  .../bindings/media/i2c/ovti,ox05b1s.yaml      | 119 ++++++++++++++++++
+>  1 file changed, 119 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/media/i2c/ovti,ox05b1s.yaml
+> 
+> diff --git a/Documentation/devicetree/bindings/media/i2c/ovti,ox05b1s.yaml b/Documentation/devicetree/bindings/media/i2c/ovti,ox05b1s.yaml
+> new file mode 100644
+> index 000000000000..9f35b4e67bea
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/media/i2c/ovti,ox05b1s.yaml
+> @@ -0,0 +1,119 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +# Copyright (C) 2024 NXP
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/media/i2c/ovti,ox05b1s.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Omnivision OX05B1S Image Sensor
+> +
+> +maintainers:
+> +  - Mirela Rabulea <mirela.rabulea@nxp.com>
+> +
+> +description:
+> +  The Omnivision OX05B1S is a 1/2.5-Inch CMOS image sensor with an active
+> +  array size of 2592 x 1944. It is programmable through I2C interface.
+> +  Image data is available via MIPI CSI-2 serial data output.
+> +
+> +allOf:
+> +  - $ref: /schemas/media/video-interface-devices.yaml#
+> +
+> +properties:
+> +  compatible:
+> +    enum:
+> +      - ovti,os08a20
+> +      - ovti,ox05b1s
 
-Sure, I have investigated and will add comments explaining that
-reconfiguration is glitch free and disabling is done by setting the duty
-cycle to zero
+The bindings only describe ox05b1s. How are the two different?
 
-> 
->> +//!
->> +
->> +use core::ops::Deref;
->> +use kernel::{
->> +    c_str,
->> +    clk::Clk,
->> +    device::{Bound, Core, Device},
->> +    devres,
->> +    io::mem::IoMem,
->> +    of, platform,
->> +    prelude::*,
->> +    pwm, time,
->> +};
->> +
->> +const MAX_PWM_NUM: u32 = 6;
->> +
->> +// Register offsets
->> +const fn th1520_pwm_chn_base(n: u32) -> usize {
->> +    (n * 0x20) as usize
->> +}
->> +
->> +const fn th1520_pwm_ctrl(n: u32) -> usize {
->> +    th1520_pwm_chn_base(n)
->> +}
->> +
->> +const fn th1520_pwm_per(n: u32) -> usize {
->> +    th1520_pwm_chn_base(n) + 0x08
->> +}
->> +
->> +const fn th1520_pwm_fp(n: u32) -> usize {
->> +    th1520_pwm_chn_base(n) + 0x0c
->> +}
->> +
->> +// Control register bits
->> +const PWM_START: u32 = 1 << 0;
->> +const PWM_CFG_UPDATE: u32 = 1 << 2;
->> +const PWM_CONTINUOUS_MODE: u32 = 1 << 5;
->> +const PWM_FPOUT: u32 = 1 << 8;
-> 
-> Can you please add a driver specific prefix to these?
+> +
+> +  reg:
+> +    maxItems: 1
+> +
+> +  clocks:
+> +    description: Input clock (24 MHz)
+> +    maxItems: 1
 
-OK
+Is this really a hardware limitation, or what the driver is currently
+limited to? In the former case, I'd include the range.
 
-> 
->> +const TH1520_PWM_REG_SIZE: usize = 0xB0;
->> +
->> +fn ns_to_cycles(ns: u64, rate_hz: u64) -> u64 {
->> +    const NSEC_PER_SEC_U64: u64 = time::NSEC_PER_SEC as u64;
->> +
->> +    match ns.checked_mul(rate_hz) {
->> +        Some(product) => product / NSEC_PER_SEC_U64,
->> +        None => u64::MAX,
->> +    }
-> 
-> The semantic here is: If ns * rate_hz overflows, return U64_MAX, else ns
-> * rate_hz / NSEC_PER_SEC, right?
-> 
-> If you cannot easily reproduce what mul_u64_u64_div_u64() does, I think
-> it would be more prudent do make this:
-> 
-> 	match ns.checked_mul(rate_hz) {
-> 	    Some(product) => product,
-> 	    None => u64::MAX,
-> 	} / NSEC_PER_SEC_U64
+> +
+> +  reset-gpios:
+> +    description: Active low XSHUTDOWN pin
+> +    maxItems: 1
+> +
+> +  avdd-supply:
+> +    description: Power for analog circuit (2.8V)
+> +
+> +  dovdd-supply:
+> +    description: Power for I/O circuit (1.8V)
+> +
+> +  dvdd-supply:
+> +    description: Power for digital circuit (1.2V)
+> +
+> +  port:
+> +    $ref: /schemas/graph.yaml#/$defs/port-base
+> +    additionalProperties: false
+> +    description: MIPI CSI-2 transmitter port
+> +
+> +    properties:
+> +      endpoint:
+> +        $ref: /schemas/media/video-interfaces.yaml#
+> +        unevaluatedProperties: false
+> +
+> +        properties:
+> +          data-lanes:
+> +            anyOf:
+> +              - items:
+> +                  - const: 1
+> +                  - const: 2
+> +              - items:
+> +                  - const: 1
+> +                  - const: 2
+> +                  - const: 3
+> +                  - const: 4
+> +        required:
+> +          - data-lanes
+> +
+> +    required:
+> +      - endpoint
+> +
+> +required:
+> +  - compatible
+> +  - reg
+> +  - clocks
+> +  - port
+> +  - avdd-supply
+> +  - dovdd-supply
+> +  - dvdd-supply
+> +
+> +unevaluatedProperties: false
+> +
+> +examples:
+> +  - |
+> +    #include <dt-bindings/gpio/gpio.h>
+> +
+> +    i2c {
+> +        #address-cells = <1>;
+> +        #size-cells = <0>;
+> +
+> +        camera@36 {
+> +            compatible = "ovti,ox05b1s";
+> +            reg = <0x36>;
+> +            clocks = <&ox05b1s_clk>;
+> +
+> +            assigned-clocks = <&ox05b1s_clk>;
+> +            assigned-clock-parents = <&ox05b1s_clk_parent>;
+> +            assigned-clock-rates = <24000000>;
+> +
+> +            reset-gpios = <&gpio1 6 GPIO_ACTIVE_LOW>;
+> +
+> +            avdd-supply = <&camera_avdd_2v8>;
+> +            dovdd-supply = <&camera_dovdd_1v8>;
+> +            dvdd-supply = <&camera_dvdd_1v2>;
+> +
+> +            orientation = <2>;
+> +            rotation = <0>;
+> +
+> +            port {
+> +                ox05b1s_mipi_0_ep: endpoint {
+> +                    remote-endpoint = <&mipi_csi0_ep>;
+> +                    data-lanes = <1 2 3 4>;
+> +                };
+> +            };
+> +        };
+> +    };
+> +...
 
-Thank you for the feedback on the calculation. I analyzed the two
-approaches and found that on overflow, my version saturates to u64::MAX,
-while the suggested version would result in u64::MAX / NSEC_PER_SEC. I
-believe my original implementation's saturation behavior is more
-predictable. With this in mind, would you be comfortable with me
-retaining the original implementation?
-
-> 
->> +}
->> +
->> [...]
->> +impl pwm::PwmOps for Th1520PwmDriverData {
->> +    type WfHw = Th1520WfHw;
->> +
->> +    fn round_waveform_tohw(
->> +        chip: &pwm::Chip,
->> +        _pwm: &pwm::Device,
->> +        wf: &pwm::Waveform,
->> +    ) -> Result<(c_int, Self::WfHw)> {
->> +        let data: &Self = chip.drvdata();
->> +
->> +        if wf.period_length_ns == 0 {
->> +            return Ok((
->> +                0,
->> +                Th1520WfHw {
->> +                    enabled: false,
->> +                    ..Default::default()
->> +                },
->> +            ));
->> +        }
->> +
->> +        let rate_hz = data.clk.rate().as_hz() as u64;
->> +
->> +        let period_cycles = ns_to_cycles(wf.period_length_ns, rate_hz).min(u32::MAX as u64);
->> +        let mut duty_cycles = ns_to_cycles(wf.duty_length_ns, rate_hz).min(u32::MAX as u64);
->> +
->> +        let mut ctrl_val = PWM_CONTINUOUS_MODE;
->> +
->> +        if wf.duty_offset_ns == 0 {
->> +            ctrl_val |= PWM_FPOUT;
->> +        } else {
->> +            duty_cycles = period_cycles - duty_cycles;
-> 
-> Huh, this looks wrong. Your hardware only supports the two polarities,
-> right? Then configure inversed polarity if
-> 
-> 	wf->duty_length_ns && wf->duty_offset_ns && wf->duty_length_ns + wf->duty_offset_ns >= wf->period_length_ns
-> 
-> (i.e. how the pwm-stm32 driver does it).
-
-OK, will fix
-
-> 
->> +        }
->> +
->> +        let wfhw = Th1520WfHw {
->> +            period_cycles: period_cycles as u32,
->> +            duty_cycles: duty_cycles as u32,
->> +            ctrl_val,
->> +            enabled: true,
->> +        };
->> +
->> +        dev_dbg!(
->> +            chip.device(),
->> +            "Requested: period {}ns, duty {}ns, offset {}ns -> HW: period {} cyc, duty {} cyc, ctrl 0x{:x}\n",
-> 
-> Would it be helpful to also emit the clkrate here?
-
-OK will update
-
-> 
->> +            wf.period_length_ns,
->> +            wf.duty_length_ns,
->> +            wf.duty_offset_ns,
->> +            wfhw.period_cycles,
->> +            wfhw.duty_cycles,
->> +            wfhw.ctrl_val
->> +        );
->> +
->> +        Ok((0, wfhw))
->> +    }
->> +
->> +    fn round_waveform_fromhw(
->> +        chip: &pwm::Chip,
->> +        _pwm: &pwm::Device,
->> +        wfhw: &Self::WfHw,
->> +        wf: &mut pwm::Waveform,
->> +    ) -> Result<c_int> {
->> +        let data: &Self = chip.drvdata();
->> +        let rate_hz = data.clk.rate().as_hz() as u64;
->> +
->> +        wf.period_length_ns = cycles_to_ns(wfhw.period_cycles as u64, rate_hz);
->> +
->> +        let duty_cycles = wfhw.duty_cycles as u64;
->> +
->> +        if (wfhw.ctrl_val & PWM_FPOUT) != 0 {
->> +            wf.duty_length_ns = cycles_to_ns(duty_cycles, rate_hz);
->> +            wf.duty_offset_ns = 0;
->> +        } else {
->> +            let period_cycles = wfhw.period_cycles as u64;
->> +            let original_duty_cycles = period_cycles.saturating_sub(duty_cycles);
->> +
->> +            wf.duty_length_ns = cycles_to_ns(original_duty_cycles, rate_hz);
->> +            // We can't recover the original non-zero offset, so we just set it
->> +            // to a representative non-zero value.
->> +            wf.duty_offset_ns = 1;
-> 
-> For an inversed polarity signal the duty_offset is polarity - duty_cycle.
-
-I believe there was a typo in your suggestion and you meant period
-instead of polarity. Based on that, my understanding is that for an
-inverted signal, the generic pwm_waveform struct expects duty_offset_ns
-to represent the duration of the initial low time, while duty_length_ns
-represents the high time.
-
-so the code would look like this:
-// For an inverted signal, `duty_length_ns` is the high time (period - low_time).
-wf.duty_length_ns = cycles_to_ns(original_duty_cycles, rate_hz);
-// The offset is the initial low time, which is what the hardware register provides.
-wf.duty_offset_ns = cycles_to_ns(duty_cycles, rate_hz);
-
-
-> 
->> +        }
->> +
->> +        Ok(0)
->> +    }
-> 
-> Best regards
-> Uwe
-
-Best regards,
 -- 
-Michal Wilczynski <m.wilczynski@samsung.com>
+Kind regards,
+
+Sakari Ailus
 
