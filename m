@@ -1,291 +1,260 @@
-Return-Path: <devicetree+bounces-190785-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-190786-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id C544DAECA33
-	for <lists+devicetree@lfdr.de>; Sat, 28 Jun 2025 22:02:08 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id CC7ACAECA38
+	for <lists+devicetree@lfdr.de>; Sat, 28 Jun 2025 22:08:56 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 447BF3AC68C
-	for <lists+devicetree@lfdr.de>; Sat, 28 Jun 2025 20:01:39 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 9B4057A2CC5
+	for <lists+devicetree@lfdr.de>; Sat, 28 Jun 2025 20:07:31 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 56B1A21FF5C;
-	Sat, 28 Jun 2025 20:02:00 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5D54A22540A;
+	Sat, 28 Jun 2025 20:08:49 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b="w+vkzI6t"
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="k7lV6etH"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pl1-f174.google.com (mail-pl1-f174.google.com [209.85.214.174])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.16])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7B49A288A8
-	for <devicetree@vger.kernel.org>; Sat, 28 Jun 2025 20:01:57 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.174
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 57C751C7009;
+	Sat, 28 Jun 2025 20:08:47 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.175.65.16
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1751140920; cv=none; b=DoOuzRwgf4M8XvvL9wLuvF2y8aVgT20dm/6AsRsxnpzQT5Db/5KEXtMDlwbzt72kyr3iNzS6iUxkHUUZHG4aiFhssDs57YZKAb0nDEONSn04Sr2JHk/cADC1cgtsa9fntf1S/a8v5xFCzLrMmlYDbsDDs/pCSzXkUlD8d2Gd7CQ=
+	t=1751141329; cv=none; b=CrRSc3KfJPgn6o2o0FcaPGfLn7wRtMs2YFtjF/61P1Lu+PLvpW4HvAljI3RJFrU+owLEPKv/4lSqFJKX98FqZQqu0/1ZMslWotI/ma7i/VpDpHGnYfNsARmrKyLDUn620DaJV6BqPP6n6A6alA+DO+0xXBNkbPdtaS9DMgFqC04=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1751140920; c=relaxed/simple;
-	bh=C25dUvtj5jbXCc2sJQq1wwn+HEsXVicpVUN74cxm2Tc=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=Za69kGHEV1YeJ/QgOEtRElCExJbwQIRit6AkH96dj9zUUBFE87Eu4RVJ6P1uM451dPMkTcEavaM+EJmlRW4nbhyoddq8flkrXx3MsLOCVvK6nxWMAcYPzPFMrqWodDeM0N+O1K+wRKaS3zExS7Pu77yiXq4w4e3O5biM+efyfS8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com; spf=pass smtp.mailfrom=baylibre.com; dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b=w+vkzI6t; arc=none smtp.client-ip=209.85.214.174
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=baylibre.com
-Received: by mail-pl1-f174.google.com with SMTP id d9443c01a7336-237e6963f63so3408175ad.2
-        for <devicetree@vger.kernel.org>; Sat, 28 Jun 2025 13:01:57 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1751140917; x=1751745717; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=rCb37RSYZzDO3GN3ihbvCvxF6ZjiXzcFRXh0BRgUocI=;
-        b=w+vkzI6tnkiqBACLmMkydF3fCy6gh+QLh8x1bo+8qV7oPp8oEXipe7uOWInSiLD3mp
-         TxeWT/C5PJtS+oyZhn/yLw9ogBA5I2dCyuGLtejRbcuUj0rX8B+pBx1CBsZTNFN0pZJy
-         nfZR3p5zt8cZclh6AvprKORcjsNXFjOhVp+qYDPO71bud+Qd9Gpswb9ZAp5NbfRo8MpS
-         9K5BCg3p9VKxgZ/aZk/m5RD7J0djP2H7hkUemuPwsYz8OWsUYCZi6lIA4dez+bFhbNP/
-         lR3lIInAYmoCggTUKPdptLvTnKmyal9dKt73Zt819fc643YmOjokOlhcCuBjHFNCT9RU
-         ipig==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1751140917; x=1751745717;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=rCb37RSYZzDO3GN3ihbvCvxF6ZjiXzcFRXh0BRgUocI=;
-        b=ShU9/JE/1lfqHkYA3G+8BbqBTwfrtQQbq9zSviPeF3a8F7fVYUygd5n83+Oh1mi3Rx
-         2cmZva8OFuI7hdSz+CPDf3Fgzo65GrmzYAskVmXtM/cG/Wy8xuPrM+m1AHOYDeP0Xknr
-         acdtN6UXudJ+PH5wl1do7BO87nCgeq6oqWwO4oHnXnMpA9zXM1A5vqBbCwYvULV0b/4E
-         7Wvai6FinuzTJUUO3GVtW/X7OfxLaGfAv4OgOWtwVmTEmyZgkU/tadtv07tyVLKo8w/H
-         QMamzfvCzAFpnOmUywabFG5f6cHEIk/thbN3ZXDrj8qDRUWB4FOGPpaEEknC10gOkKG4
-         fsvg==
-X-Forwarded-Encrypted: i=1; AJvYcCXbDJl8Ptq220o3Qz+8N+WEhWt9Qa7GDkqnSfc3oWCtEaLMt/WxlZs1uWuatyjji69rwl1AZYPuD95c@vger.kernel.org
-X-Gm-Message-State: AOJu0YyI2ZYq1x2nWXsoQrsa+mcdLVyunL7GygjtlbEVKbh81D368tUf
-	w1FioHVwiSFCo3KrCCBsH/GIy/xaj7NcZa8msFPuSwAI2umG2jTZn4F8A+H/r8XEkno=
-X-Gm-Gg: ASbGnctaZkKaXJeMC0C1+pZa1KmVLG6qXflKhaXkERQnYeaY/eDuT4CWVUNTdWzwuf7
-	hM4Twz1QSukdlexXLrci8a21upI1wGGBNsAnbdLD1JhIGqXyqKtNRlT/c9GlX31iw+BRGLvmi29
-	64crwLeYp6vbqNeQhfNVMjbY5RD/sqpr3fDmbezxUou8HmcudSOB0hIbdKvx8wxXThxa1qLZQzv
-	klN8Yg3vXJW8AUPe5CvS2te5XAYdgs/IfYY6gox25nQ/kbDdHC0oKAc8G9uqau3O+doKsp56KUI
-	Ci3dIa/tLBhmpE4xCqBCCHc5YofAKM4LMpJfxVUE98mmubypSD0wvBanFbenFGidvcC3yQ1P0oD
-	uH04cALpvcZnAlOb6rLgtVA==
-X-Google-Smtp-Source: AGHT+IFJDLrx7ywjg4S4bUF/qUoRM9GFUNFWqz+Q59e4xQXUhehdQBrs0a8xNAd+1AuhXOTd7j4eRg==
-X-Received: by 2002:a17:903:2ecd:b0:236:9d66:ff24 with SMTP id d9443c01a7336-23ac3dec4a2mr106216265ad.8.1751140916690;
-        Sat, 28 Jun 2025 13:01:56 -0700 (PDT)
-Received: from dev-linux (syn-076-088-115-008.res.spectrum.com. [76.88.115.8])
-        by smtp.gmail.com with ESMTPSA id d9443c01a7336-23acb2f17f5sm46210995ad.62.2025.06.28.13.01.55
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sat, 28 Jun 2025 13:01:56 -0700 (PDT)
-Date: Sat, 28 Jun 2025 13:01:53 -0700
-From: Sukrut Bellary <sbellary@baylibre.com>
-To: Jonathan Cameron <jic23@kernel.org>
-Cc: David Lechner <dlechner@baylibre.com>, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Matti Vaittinen <mazziesaccount@gmail.com>,
-	Nuno =?utf-8?B?U8Oh?= <nuno.sa@analog.com>,
-	Andy Shevchenko <andy@kernel.org>,
-	Angelo Compagnucci <angelo.compagnucci@gmail.com>,
-	Nishanth Menon <nm@ti.com>, linux-iio@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v4 2/5] iio: adc: ti-adc128s052: Use shift and realbits
-Message-ID: <aGBKMcZGYOcXmKdB@dev-linux>
-References: <20250614091504.575685-1-sbellary@baylibre.com>
- <20250614091504.575685-3-sbellary@baylibre.com>
- <20250614142743.23ee2203@jic23-huawei>
+	s=arc-20240116; t=1751141329; c=relaxed/simple;
+	bh=ZfgZmaAiWzFv3GNt+MGVb2OWQPwmzkXNENWhECrKFRE=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=JnMYxY2/0yZsWcOkj5BoUF+0wZrWZkRJcqQ13FoTu0Go6t0tZlx/U2VBOjPW/VmFNVsE/TBo/Jeoj5m/umrpMx0DHInmZzVMRxkrFIPXufiDxCnDyxqdh8nEnxj0rUH7KSmO+iV/OcT/GLUCmcMzPD+3TNf/NUjxUPMhE/LBvYI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com; spf=none smtp.mailfrom=linux.intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=k7lV6etH; arc=none smtp.client-ip=198.175.65.16
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com
+Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=linux.intel.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1751141328; x=1782677328;
+  h=message-id:date:mime-version:subject:to:cc:references:
+   from:in-reply-to:content-transfer-encoding;
+  bh=ZfgZmaAiWzFv3GNt+MGVb2OWQPwmzkXNENWhECrKFRE=;
+  b=k7lV6etHq1nI+39WAlTQiS7WcxSUR3NOEBoBI7uHyPORrYOPzP5U3H3M
+   0FpDvGOtcO0vxgP4l388cz7z17FyGbyNTb5scoW5EIEN9PwFjcz9D7F85
+   gNQdeFVZi9H0ShExs+otz0PpMdGUZU5nxQlCzvPpCUzBMd1zYBWSydwKK
+   uKmI1qN5YbGEm9hVSHVrMt64cmPI9sKvB5bngXObaedZlBpYHIkALbiGx
+   fgC9E12q4hQR48pD2H9KXvIlOWnGy/l9AE1V9QysGYRLiLJK/rcVwm00r
+   1dD6tu+kLjj5cEFBpdm9JuhEGKaNR3ldtjtxilMyCH9yNQKEGDKatVPvK
+   Q==;
+X-CSE-ConnectionGUID: Bj1OwsSqSYeNbmhkMsuoCA==
+X-CSE-MsgGUID: hWcOIXBJSg2SBBOYMVM1vA==
+X-IronPort-AV: E=McAfee;i="6800,10657,11478"; a="53517497"
+X-IronPort-AV: E=Sophos;i="6.16,273,1744095600"; 
+   d="scan'208";a="53517497"
+Received: from fmviesa006.fm.intel.com ([10.60.135.146])
+  by orvoesa108.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 28 Jun 2025 13:08:47 -0700
+X-CSE-ConnectionGUID: NK4Puo7zQNCz9I9xl7ix7A==
+X-CSE-MsgGUID: hH+vhDI5QjCAuvb9OlWEzg==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.16,273,1744095600"; 
+   d="scan'208";a="153184418"
+Received: from kniemiec-mobl1.ger.corp.intel.com (HELO svinhufvud.fi.intel.com) ([10.245.245.225])
+  by fmviesa006-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 28 Jun 2025 13:08:42 -0700
+Received: from [127.0.0.1] (localhost [127.0.0.1])
+	by svinhufvud.fi.intel.com (Postfix) with ESMTP id B4BF44435F;
+	Sat, 28 Jun 2025 23:08:39 +0300 (EEST)
+Message-ID: <79e89e5a-c588-4e61-9400-80ac2fe707da@linux.intel.com>
+Date: Sat, 28 Jun 2025 22:29:56 +0300
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20250614142743.23ee2203@jic23-huawei>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v10 06/17] media: uapi: Add controls for Mali-C55 ISP
+Content-Language: en-US
+To: Daniel Scally <dan.scally@ideasonboard.com>, linux-media@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org
+Cc: Anthony.McGivern@arm.com, jacopo.mondi@ideasonboard.com,
+ nayden.kanchev@arm.com, robh+dt@kernel.org, mchehab@kernel.org,
+ krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
+ jerome.forissier@linaro.org, kieran.bingham@ideasonboard.com,
+ laurent.pinchart@ideasonboard.com
+References: <20250624-c55-v10-0-54f3d4196990@ideasonboard.com>
+ <20250624-c55-v10-6-54f3d4196990@ideasonboard.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park, 6 krs, Bertel Jungin Aukio 5, 02600 Espoo
+From: Sakari Ailus <sakari.ailus@linux.intel.com>
+In-Reply-To: <20250624-c55-v10-6-54f3d4196990@ideasonboard.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 
-On Sat, Jun 14, 2025 at 02:27:43PM +0100, Jonathan Cameron wrote:
-> On Sat, 14 Jun 2025 02:15:01 -0700
-> Sukrut Bellary <sbellary@baylibre.com> wrote:
-> 
-> > This adcxx communicates with a host processor via an SPI/Microwire Bus
-> > interface. The device family responds with 12-bit data, of which the LSB bits
-> > are transmitted by the lower resolution devices as 0. The unavailable bits are
-> > 0 in LSB. Shift is calculated per resolution and used in scaling and raw data
-> > read.
-> > 
-> > Create a separate structure for each device type instead of an array.
-> > These changes help to reuse the driver to support the family of devices with
-> > name ADC<bb><c>S<sss>, where
-> > * bb is the resolution in number of bits (8, 10, 12)
-> > * c is the number of channels (1, 2, 4, 8)
-> > * sss is the maximum conversion speed (021 for 200 kSPS, 051 for 500 kSPS
-> > and 101 for 1 MSPS)
-> > 
-> > Complete datasheets are available at TI's website here:
-> > https://www.ti.com/lit/ds/symlink/adc<bb><c>s<sss>.pdf
-> > 
-> > Co-developed-by: Nishanth Menon <nm@ti.com>
-> > Signed-off-by: Nishanth Menon <nm@ti.com>
-> > Signed-off-by: Sukrut Bellary <sbellary@baylibre.com>
-> > ---
-> >  drivers/iio/adc/ti-adc128s052.c | 115 ++++++++++++++++++--------------
-> >  1 file changed, 66 insertions(+), 49 deletions(-)
-> > 
-> > diff --git a/drivers/iio/adc/ti-adc128s052.c b/drivers/iio/adc/ti-adc128s052.c
-> > index 1b46a8155803..2b206745e53d 100644
-> > --- a/drivers/iio/adc/ti-adc128s052.c
-> > +++ b/drivers/iio/adc/ti-adc128s052.c
-> > @@ -41,13 +41,14 @@ struct adc128 {
-> >  	} __aligned(IIO_DMA_MINALIGN);
-> >  };
-> >  
-> > -static int adc128_adc_conversion(struct adc128 *adc, u8 channel)
-> > +static int adc128_adc_conversion(struct adc128 *adc,
-> > +				 struct iio_chan_spec const *channel)
-> >  {
-> >  	int ret;
-> >  
-> >  	guard(mutex)(&adc->lock);
-> >  
-> > -	adc->buffer[0] = channel << 3;
-> > +	adc->buffer[0] = channel->channel << 3;
-> >  	adc->buffer[1] = 0;
-> >  
-> >  	ret = spi_write(adc->spi, &adc->buffer, sizeof(adc->buffer));
-> > @@ -58,7 +59,10 @@ static int adc128_adc_conversion(struct adc128 *adc, u8 channel)
-> >  	if (ret < 0)
-> >  		return ret;
-> >  
-> > -	return be16_to_cpu(adc->buffer16) & 0xFFF;
-> > +	ret = (be16_to_cpu(adc->buffer16) >> channel->scan_type.shift) &
-> > +	       GENMASK(channel->scan_type.realbits - 1, 0);
-> > +
-> Even though it is a bit long I'd go with
-> 
-> 	return (be16_to_cpu(adc->buffer16) >> channel->scan_type.shift) &
-> 		GENMASK();
->
-Thanks for the review.
-I will fix this in v5.
+Hi Daniel,
 
-> > +	return ret;
-> >  }
-> >  
-> >  static int adc128_read_raw(struct iio_dev *indio_dev,
-> > @@ -71,7 +75,7 @@ static int adc128_read_raw(struct iio_dev *indio_dev,
-> >  	switch (mask) {
-> >  	case IIO_CHAN_INFO_RAW:
-> >  
-> > -		ret = adc128_adc_conversion(adc, channel->channel);
-> > +		ret = adc128_adc_conversion(adc, channel);
-> >  		if (ret < 0)
-> >  			return ret;
-> >  
-> > @@ -81,7 +85,7 @@ static int adc128_read_raw(struct iio_dev *indio_dev,
-> >  	case IIO_CHAN_INFO_SCALE:
-> >  
-> >  		*val = adc->vref_mv;
-> > -		*val2 = 12;
-> > +		*val2 = channel->scan_type.realbits;
-> >  		return IIO_VAL_FRACTIONAL_LOG2;
-> >  
-> >  	default:
-> > @@ -90,15 +94,24 @@ static int adc128_read_raw(struct iio_dev *indio_dev,
-> >  
-> >  }
-> >  
-> > -#define ADC128_VOLTAGE_CHANNEL(num)	\
-> > -	{ \
-> > -		.type = IIO_VOLTAGE, \
-> > -		.indexed = 1, \
-> > -		.channel = (num), \
-> > -		.info_mask_separate = BIT(IIO_CHAN_INFO_RAW), \
-> > -		.info_mask_shared_by_type = BIT(IIO_CHAN_INFO_SCALE) \
-> > +#define _ADC128_VOLTAGE_CHANNEL(num, real_bits)				\
-> > +	{								\
-> 
-> I would minimise the churn and stick to existing style of one space then \
-> I don't think we have any specific style guidance around this.
->
-I will fix this in v5.
+Thanks for the update.
 
-> > +		.type = IIO_VOLTAGE,					\
-> > +		.indexed = 1,						\
-> > +		.channel = (num),					\
-> > +		.info_mask_separate = BIT(IIO_CHAN_INFO_RAW),		\
-> > +		.info_mask_shared_by_type = BIT(IIO_CHAN_INFO_SCALE),	\
-> > +		.scan_index = (num),					\
-> > +		.scan_type = {						\
-> > +			.sign = 'u',					\
-> > +			.realbits = (real_bits),			\
-> > +			.storagebits = 16,				\
-> > +			.shift = (12 - real_bits),			\
-> > +		},							\
-> >  	}
-> >  
-> > +#define ADC128_VOLTAGE_CHANNEL(num) _ADC128_VOLTAGE_CHANNEL(num, 12)
+On 6/24/25 13:21, Daniel Scally wrote:
+> Add definitions and documentation for the custom control that will
+> be needed by the Mali-C55 ISP driver. This will be a read only
+> bitmask of the driver's capabilities, informing userspace of which
+> blocks are fitted and which are absent.
 > 
-> I wonder if it would be clearer to just have the 12 explicit in each entry
-> and skip this two levels of macro thing?
->
-Do you mean to pass realbits to
-ADC128_VOLTAGE_CHANNEL/_ADC128_VOLTAGE_CHANNEL as e.g.,
+> Signed-off-by: Daniel Scally <dan.scally@ideasonboard.com>
+> ---
+> Changes in v10:
+> 
+> 	- None
+> 
+> Changes in v9:
+> 
+> 	- New patch
+> ---
+>   .../userspace-api/media/drivers/index.rst          |  1 +
+>   .../userspace-api/media/drivers/mali-c55.rst       | 55 ++++++++++++++++++++++
+>   include/uapi/linux/media/arm/mali-c55-config.h     | 26 ++++++++++
+>   include/uapi/linux/v4l2-controls.h                 |  6 +++
+>   4 files changed, 88 insertions(+)
+> 
+> diff --git a/Documentation/userspace-api/media/drivers/index.rst b/Documentation/userspace-api/media/drivers/index.rst
+> index d706cb47b1122b6e145a02ab826eb3ecc7997c2b..02967c9b18d6e90f414ccc1329c09bffee895e68 100644
+> --- a/Documentation/userspace-api/media/drivers/index.rst
+> +++ b/Documentation/userspace-api/media/drivers/index.rst
+> @@ -32,6 +32,7 @@ For more details see the file COPYING in the source distribution of Linux.
+>   	cx2341x-uapi
+>   	dw100
+>   	imx-uapi
+> +	mali-c55
+>   	max2175
+>   	npcm-video
+>   	omap3isp-uapi
+> diff --git a/Documentation/userspace-api/media/drivers/mali-c55.rst b/Documentation/userspace-api/media/drivers/mali-c55.rst
+> new file mode 100644
+> index 0000000000000000000000000000000000000000..e8519da77d737b91a931bbe47920af707eebf110
+> --- /dev/null
+> +++ b/Documentation/userspace-api/media/drivers/mali-c55.rst
+> @@ -0,0 +1,55 @@
+> +.. SPDX-License-Identifier: GPL-2.0-only
+> +
+> +Arm Mali-C55 ISP driver
+> +=======================
+> +
+> +The Arm Mali-C55 ISP driver implements a single driver-specific control:
+> +
+> +``V4L2_CID_MALI_C55_CAPABILITIES``
 
-static const struct iio_chan_spec adc122s021_channels[] = {
-        ADC128_VOLTAGE_CHANNEL(0, 12),
-        ADC128_VOLTAGE_CHANNEL(1, 12),
-};
+Add: (integer)
 
-I think we added 2nd level macros as ADC082_VOLTAGE_CHANNEL,
-ADC102_VOLTAGE_CHANNEL, etc., to have a visual distinction for a different
-part nos.
-But I am ok if you prefer ADC128_VOLTAGE_CHANNEL with a second parameter
-as real_bits.
+?
 
-> > +
-> >  static const struct iio_chan_spec adc128s052_channels[] = {
-> >  	ADC128_VOLTAGE_CHANNEL(0),
-> >  	ADC128_VOLTAGE_CHANNEL(1),
-> > @@ -124,26 +137,30 @@ static const struct iio_chan_spec adc124s021_channels[] = {
-> >  
-> >  static const char * const bd79104_regulators[] = { "iovdd" };
-> >  
-> > -static const struct adc128_configuration adc128_config[] = {
-> > -	{
-> > -		.channels = adc128s052_channels,
-> > -		.num_channels = ARRAY_SIZE(adc128s052_channels),
-> > -		.refname = "vref",
-> > -	}, {
-> > -		.channels = adc122s021_channels,
-> > -		.num_channels = ARRAY_SIZE(adc122s021_channels),
-> > -		.refname = "vref",
-> > -	}, {
-> > -		.channels = adc124s021_channels,
-> > -		.num_channels = ARRAY_SIZE(adc124s021_channels),
-> > -		.refname = "vref",
-> > -	}, {
-> > -		.channels = adc128s052_channels,
-> > -		.num_channels = ARRAY_SIZE(adc128s052_channels),
-> > -		.refname = "vdd",
-> > -		.other_regulators = &bd79104_regulators,
-> > -		.num_other_regulators = 1,
-> > -	},
-> > +static const struct adc128_configuration adc122s021_config = {
-> > +	.channels = adc122s021_channels,
-> > +	.num_channels = ARRAY_SIZE(adc122s021_channels),
-> > +	.refname = "vref",
-> > +};
-> 
-> Ideal would be to have this as a precursor patch rather than adding complexity
-> to this one which is focused on the bits related stuff.
-> 
-> It's a good change to have but does make it harder to spot the main
-> content in here.
-> 
->
-I will split this in v5.
+> +    Detail the capabilities of the ISP by giving detail about the fitted blocks.
+> +
+> +    .. flat-table:: Bitmask meaning definitions
+> +	:header-rows: 1
+> +	:widths: 2 4 8
+> +
+> +	* - Bit
+> +	  - Macro
+> +	  - Meaning
+> +        * - 0
+> +          - MALI_C55_GPS_PONG_FITTED
 
-> > +
-> > +static const struct adc128_configuration adc124s021_config = {
-> > +	.channels = adc124s021_channels,
-> > +	.num_channels = ARRAY_SIZE(adc124s021_channels),
-> > +	.refname = "vref",
-> > +};
+How about a V4L2 prefix for these? Generally the controls have been 
+V4L2_CID_something and the macros for the possible values have been 
+named V4L2_something.
+
+> +          - Pong configuration space is fitted in the ISP
+> +        * - 1
+> +          - MALI_C55_GPS_WDR_FITTED
+> +          - WDR Framestitch, offset and gain is fitted in the ISP
+> +        * - 2
+> +          - MALI_C55_GPS_COMPRESSION_FITTED
+> +          - Temper compression is fitted in the ISP
+> +        * - 3
+> +          - MALI_C55_GPS_TEMPER_FITTED
+> +          - Temper is fitted in the ISP
+> +        * - 4
+> +          - MALI_C55_GPS_SINTER_LITE_FITTED
+> +          - Sinter Lite is fitted in the ISP instead of the full Sinter version
+> +        * - 5
+> +          - MALI_C55_GPS_SINTER_FITTED
+> +          - Sinter is fitted in the ISP
+> +        * - 6
+> +          - MALI_C55_GPS_IRIDIX_LTM_FITTED
+> +          - Iridix local tone mappine is fitted in the ISP
+> +        * - 7
+> +          - MALI_C55_GPS_IRIDIX_GTM_FITTED
+> +          - Iridix global tone mapping is fitted in the ISP
+> +        * - 8
+> +          - MALI_C55_GPS_CNR_FITTED
+> +          - Colour noise reduction is fitted in the ISP
+> +        * - 9
+> +          - MALI_C55_GPS_FRSCALER_FITTED
+> +          - The full resolution pipe scaler is fitted in the ISP
+> +        * - 10
+> +          - MALI_C55_GPS_DS_PIPE_FITTED
+> +          - The downscale pipe is fitted in the ISP
+> +
+> +    The Mali-C55 ISP can be configured in a number of ways to include or exclude
+> +    blocks which may not be necessary. This control provides a way for the
+> +    driver to communicate to userspace which of the blocks are fitted in the
+> +    design.
+> \ No newline at end of file
+
+Oops.
+
+> diff --git a/include/uapi/linux/media/arm/mali-c55-config.h b/include/uapi/linux/media/arm/mali-c55-config.h
+> new file mode 100644
+> index 0000000000000000000000000000000000000000..2bd60a0d78786be368c2e51b1a0a63fd2a5f690b
+> --- /dev/null
+> +++ b/include/uapi/linux/media/arm/mali-c55-config.h
+> @@ -0,0 +1,26 @@
+> +/* SPDX-License-Identifier: GPL-2.0 WITH Linux-syscall-note */
+> +/*
+> + * ARM Mali-C55 ISP Driver - Userspace API
+> + *
+> + * Copyright (C) 2023 Ideas on Board Oy
+> + */
+> +
+> +#ifndef __UAPI_MALI_C55_CONFIG_H
+> +#define __UAPI_MALI_C55_CONFIG_H
+> +
+> +#include <linux/v4l2-controls.h>
+> +
+> +#define V4L2_CID_MALI_C55_CAPABILITIES		(V4L2_CID_USER_MALI_C55_BASE + 0x0)
+> +#define MALI_C55_GPS_PONG_FITTED		BIT(0)
+
+Since when has been BIT() defined for UAPI? (1U << x)?
+
+> +#define MALI_C55_GPS_WDR_FITTED			BIT(1)
+> +#define MALI_C55_GPS_COMPRESSION_FITTED		BIT(2)
+> +#define MALI_C55_GPS_TEMPER_FITTED		BIT(3)
+> +#define MALI_C55_GPS_SINTER_LITE_FITTED		BIT(4)
+> +#define MALI_C55_GPS_SINTER_FITTED		BIT(5)
+> +#define MALI_C55_GPS_IRIDIX_LTM_FITTED		BIT(6)
+> +#define MALI_C55_GPS_IRIDIX_GTM_FITTED		BIT(7)
+> +#define MALI_C55_GPS_CNR_FITTED			BIT(8)
+> +#define MALI_C55_GPS_FRSCALER_FITTED		BIT(9)
+> +#define MALI_C55_GPS_DS_PIPE_FITTED		BIT(10)
+> +
+> +#endif /* __UAPI_MALI_C55_CONFIG_H */
+> diff --git a/include/uapi/linux/v4l2-controls.h b/include/uapi/linux/v4l2-controls.h
+> index 72e32814ea83dee5f1202c1249eac7cf3b85a22a..a31105115410bd041a3ac492ce86becd93a62d87 100644
+> --- a/include/uapi/linux/v4l2-controls.h
+> +++ b/include/uapi/linux/v4l2-controls.h
+> @@ -222,6 +222,12 @@ enum v4l2_colorfx {
+>    */
+>   #define V4L2_CID_USER_UVC_BASE			(V4L2_CID_USER_BASE + 0x11e0)
+>   
+> +/*
+> + * The base for the Arm Mali-C55 ISP driver controls.
+> + * We reserve 8 controls for this driver
+> + */
+> +#define V4L2_CID_USER_MALI_C55_BASE		(V4L2_CID_USER_BASE + 0x1220)
+> +
+>   /* MPEG-class control IDs */
+>   /* The MPEG controls are applicable to all codec controls
+>    * and the 'MPEG' part of the define is historical */
 > 
+
+
+-- 
+Sakari Ailus
 
