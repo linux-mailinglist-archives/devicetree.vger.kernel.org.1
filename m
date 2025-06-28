@@ -1,260 +1,139 @@
-Return-Path: <devicetree+bounces-190620-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-190621-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id DCA9EAEC387
-	for <lists+devicetree@lfdr.de>; Sat, 28 Jun 2025 02:36:23 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id E3B1BAEC3AA
+	for <lists+devicetree@lfdr.de>; Sat, 28 Jun 2025 02:57:59 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 972931BC5024
-	for <lists+devicetree@lfdr.de>; Sat, 28 Jun 2025 00:36:39 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 7586A4A49FF
+	for <lists+devicetree@lfdr.de>; Sat, 28 Jun 2025 00:57:34 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1D9BA3595B;
-	Sat, 28 Jun 2025 00:36:19 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D470A192B7D;
+	Sat, 28 Jun 2025 00:57:55 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="IxyBtsGK"
+	dkim=pass (2048-bit key) header.d=mleia.com header.i=@mleia.com header.b="sqyXtFpN";
+	dkim=pass (2048-bit key) header.d=mleia.com header.i=@mleia.com header.b="sqyXtFpN"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f49.google.com (mail-wm1-f49.google.com [209.85.128.49])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mail.mleia.com (mleia.com [178.79.152.223])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3982910E4;
-	Sat, 28 Jun 2025 00:36:17 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.49
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9911C189905;
+	Sat, 28 Jun 2025 00:57:53 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=178.79.152.223
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1751070979; cv=none; b=qyb89VN2xmcFxU5E5rzWECL+vNtzc76r0VCMWOe8xCIour3jpEJzCi2V42gEvh2QePblfaGQSu3KB3Lf7st7Wesg2caNNohTDvpt8BSHIYgCre0/U0jHkjbV+Qh8e+3qNribEYDAsiJAFz5iFVo3IShEseiddd8lRnoTEAzRmc4=
+	t=1751072275; cv=none; b=obVy0Qe4tORvx5cjRoAIvTz6OjVP6LCtoM7gHGfC9ds3ftMvz//bGjh5aEoQ6ZNdcXhCIJ6rFxQDKUuGr3p0d9/LIPeR88vtKSIuucJsZ242gd20Ro1iUO1Bhgkg3KT8DtxwKlK/dxzA0gQhsd1es19epJWkWka0U2aSsdmZLHM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1751070979; c=relaxed/simple;
-	bh=UhXb7GonPtn0N2wqrLAjlkAH8FL6Uk163SDuufsqqdc=;
-	h=Message-ID:Date:From:To:Cc:Subject:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=IXP/0ImsDW3gVUDJVzkwlBsyne9P42U8Q6m3VRuGr34mbPyNky+vDZ3taTVTzxMWd43qXkCRDf12bqZv996lzlZQHDXr0mViwM9n0F2ITlp6cq1hiUiKGy/jHuMygQ/5VDlxkMj2Ap2jXFDmvyAobxRaekILv4Q44ew9qyDH/Ck=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=IxyBtsGK; arc=none smtp.client-ip=209.85.128.49
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-wm1-f49.google.com with SMTP id 5b1f17b1804b1-45348bff79fso3888975e9.2;
-        Fri, 27 Jun 2025 17:36:16 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1751070975; x=1751675775; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:subject:cc
-         :to:from:date:message-id:from:to:cc:subject:date:message-id:reply-to;
-        bh=2IjCx//d1qx+mqfIPU3sajy9SJfXmPgvsGkk3PQ/Qvo=;
-        b=IxyBtsGKgXWIGDrnQ10JIYDZ4EwelPQPXW4KODn+cpmV6nLEgdsZKDmYkJ74yVgOsb
-         4MKfAf5ahfmJWiVSUne4S4CpGttLkGQMmlKx9GTXkCy+3VNDahnQC0bzg/NUjf1R1VwM
-         SaYeG9tPlllWSwKszFevBReMzAR6LCZgzYzaJTr3eeHpoCW36eEL9UNXEzldjgz6op0u
-         YzDsu0HfOpo0uiihOUWsm2CnANfsPU7nR05EeWpl6iiNL0sSfxKWKn9uyyaUAvCYtVcC
-         JQyT0tfQUZndpHhlEPFVm4u3VkvCJOHFwl1C7Wqh5ea8+7ahz3BrNlroHCBx/zd1w2tw
-         UflA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1751070975; x=1751675775;
-        h=in-reply-to:content-disposition:mime-version:references:subject:cc
-         :to:from:date:message-id:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=2IjCx//d1qx+mqfIPU3sajy9SJfXmPgvsGkk3PQ/Qvo=;
-        b=diAnBnz5z7H3iMH9SYFDd3IIw2pU5cn0oQouL+8N7ctlINowvTw1btdz7XlND+sj5I
-         WJOPCHvVKXtslZ+P9vL3C2ATiR+2hqjROlvKrnx2iiF8fi+z1yjyOm8njtnjg0VjbkJq
-         koRv7Gas9PPIjx6pWAky4UnBjs3Pme08hIJKgDOzMLumrYNEPtmJgdTPCy5FZqfZ0V73
-         q9vHN+nuWLpB7XnSqTaV4oTae0EbdaO4odPXiJ2P+oohw+eazY3af9bXG0r5kXyqRmNO
-         zwHOCyl3I/+uwmWHB5l5/WOL4nUSDUK03WZ5Q6plwFvCln0uldQWXojBUoL7c4n3+FtZ
-         PNxg==
-X-Forwarded-Encrypted: i=1; AJvYcCVD7Up5F+GWNoG4/jroVdJv7OHa7zx27M3o2kcnVWpnPwEaJ8TfOtfx3m5g+8Q6bQwWVihFMDVhteuc@vger.kernel.org, AJvYcCVTZx3ifB6kpmAtTRUVmyJNJJVRI4b5aeZxz+dPYPgyycCD7/cNO6m7VKGwnJQ+FXgJkIc6y66H5ouV+ICT@vger.kernel.org, AJvYcCWCCa/n/0doUIwF0Ob+AdLChEXWRgi7X0mLecIM58VwcuJhFFklrj1J0wNMbYWY4XPLQ2M0QaBI@vger.kernel.org
-X-Gm-Message-State: AOJu0YxSxlUeXCSCdd4buWBLBz/lziLqw8elY/rdNthjTqLgYQATeUpC
-	lZLL+AgK5j5xJ1YI38eIt69DeU+k6DMDPI5P8V2TDYwCNncePnj90AWV
-X-Gm-Gg: ASbGnct3vbs8nj5goITq0zsQKGtZRwLS90gpXqxocox6DAK62tcTgWAhcNM28krtzGs
-	7DYGU9dssow/nGgyNhKawl5zBtrVUldbLn7wb7acbnRSOfC+RBVM5z0wF51sVRQxmO44FTIZm4n
-	kPvx/d1y43OCmtvxBoQf2ue19ZXpaAlBdHEYNHkPiba4bWh0is14Z1lbaciMyXd+dnSsllkfPko
-	jxgQmVj86DPsbrCWkZG8mcOoOLnoQ9bxxDB5fczCR1Z/VHz/6OwXsVrYTOGq5X/D74btrviGKiZ
-	+uVJZCX2UzwgVqYQETavoTRm0P+LayxSv5NvA+dj48YANMhbcnYvaHDUS6nQVzXyBh0WZTYzsLI
-	JdUOjL0JjXbST6V6Vew==
-X-Google-Smtp-Source: AGHT+IEHtgdm3EqO3yYOzPZBoBm9oQn2yfor9srRlvtz2pBRLHW+QMm335DExTwAQ8ukAdcvDpliTw==
-X-Received: by 2002:a05:600c:1e0d:b0:439:643a:c8d5 with SMTP id 5b1f17b1804b1-4538edf0902mr66989185e9.0.1751070975337;
-        Fri, 27 Jun 2025 17:36:15 -0700 (PDT)
-Received: from Ansuel-XPS. (93-34-88-225.ip49.fastwebnet.it. [93.34.88.225])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-453823c57d7sm99310995e9.40.2025.06.27.17.36.13
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 27 Jun 2025 17:36:14 -0700 (PDT)
-Message-ID: <685f38fe.050a0220.90fe0.c75c@mx.google.com>
-X-Google-Original-Message-ID: <aF84-zuyPkn07ui4@Ansuel-XPS.>
-Date: Sat, 28 Jun 2025 02:36:11 +0200
-From: Christian Marangi <ansuelsmth@gmail.com>
-To: Rob Herring <robh@kernel.org>
-Cc: Lee Jones <lee@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Andrew Lunn <andrew+netdev@lunn.ch>,
-	"David S. Miller" <davem@davemloft.net>,
-	Eric Dumazet <edumazet@google.com>,
-	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
-	Vladimir Oltean <olteanv@gmail.com>,
-	Srinivas Kandagatla <srini@kernel.org>,
-	Heiner Kallweit <hkallweit1@gmail.com>,
-	Russell King <linux@armlinux.org.uk>,
-	"Chester A. Unal" <chester.a.unal@arinc9.com>,
-	Daniel Golle <daniel@makrotopia.org>,
-	DENG Qingfang <dqfext@gmail.com>,
-	Sean Wang <sean.wang@mediatek.com>, Simon Horman <horms@kernel.org>,
-	Matthias Brugger <matthias.bgg@gmail.com>,
-	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
-	linux-arm-kernel@lists.infradead.org,
-	linux-mediatek@lists.infradead.org, netdev@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [net-next PATCH v15 05/12] dt-bindings: mfd: Document support
- for Airoha AN8855 Switch SoC
-References: <20250626212321.28114-1-ansuelsmth@gmail.com>
- <20250626212321.28114-6-ansuelsmth@gmail.com>
- <20250627214821.GA195510-robh@kernel.org>
+	s=arc-20240116; t=1751072275; c=relaxed/simple;
+	bh=57q1XTo9fskI3i3LRIZIGt9aWzBFNP8fj6KqbV6kdO8=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=ZeCya2HxmCuB0gnZstZy7MQtGTcmleGev6b3iclTij7z+mjr3LA1MD4UjZQiVZxTzifj44thebRmqEPIX+p05Dt4ijbr5NCGL5i3xoo88W6tVDXegS4O3/mOu7N7dneSmTuI84bkx+9KschxfsXp3aDZ6LljpyUCRDJADwJ5wiY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=mleia.com; spf=none smtp.mailfrom=mleia.com; dkim=pass (2048-bit key) header.d=mleia.com header.i=@mleia.com header.b=sqyXtFpN; dkim=pass (2048-bit key) header.d=mleia.com header.i=@mleia.com header.b=sqyXtFpN; arc=none smtp.client-ip=178.79.152.223
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=mleia.com
+Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=mleia.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=mleia.com; s=mail;
+	t=1751072266; bh=57q1XTo9fskI3i3LRIZIGt9aWzBFNP8fj6KqbV6kdO8=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=sqyXtFpN3eSkRFEtmv8vnpqiOcADUPU4b8VCu8pnT2OcrR32qudi+k6PyqJAlIyab
+	 OGQz64BWpA1KV8zA9b6Ws9icCYe6HstLmKcn9Vgxh2WnFssl8GpJ+BQxQDt0AmHv+k
+	 ytloKFip09LlPwvrYWD7MBk4AQTQGsXCA/H2a/yUJRmbyDRma/QHjmq0kf0mv9H8S/
+	 AKmsJqLInIp7supSMr/BAc+FmugXyo3lyu1s2GqqA3RPG4eUw2aeJmdbKnFtptfRdg
+	 zwlIjwtXfhnnjFvyNXp17qhOVy6VW/GuUKPLFPXHSWsJ5j2eDKJ3N9TibNWyh9Yn22
+	 H69Y5TUW/U3PA==
+Received: from mail.mleia.com (localhost [127.0.0.1])
+	by mail.mleia.com (Postfix) with ESMTP id 5BA6A3C4FE4;
+	Sat, 28 Jun 2025 00:57:46 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=mleia.com; s=mail;
+	t=1751072266; bh=57q1XTo9fskI3i3LRIZIGt9aWzBFNP8fj6KqbV6kdO8=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=sqyXtFpN3eSkRFEtmv8vnpqiOcADUPU4b8VCu8pnT2OcrR32qudi+k6PyqJAlIyab
+	 OGQz64BWpA1KV8zA9b6Ws9icCYe6HstLmKcn9Vgxh2WnFssl8GpJ+BQxQDt0AmHv+k
+	 ytloKFip09LlPwvrYWD7MBk4AQTQGsXCA/H2a/yUJRmbyDRma/QHjmq0kf0mv9H8S/
+	 AKmsJqLInIp7supSMr/BAc+FmugXyo3lyu1s2GqqA3RPG4eUw2aeJmdbKnFtptfRdg
+	 zwlIjwtXfhnnjFvyNXp17qhOVy6VW/GuUKPLFPXHSWsJ5j2eDKJ3N9TibNWyh9Yn22
+	 H69Y5TUW/U3PA==
+Message-ID: <a15cbc55-f0ba-4c15-af27-44b05285bc16@mleia.com>
+Date: Sat, 28 Jun 2025 03:57:44 +0300
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20250627214821.GA195510-robh@kernel.org>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2 1/1] dt-bindings: usb: convert lpc32xx-udc.txt to yaml
+ format
+To: Frank Li <Frank.Li@nxp.com>,
+ Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>,
+ Piotr Wojtaszczyk <piotr.wojtaszczyk@timesys.com>,
+ "open list:USB SUBSYSTEM" <linux-usb@vger.kernel.org>,
+ "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS"
+ <devicetree@vger.kernel.org>,
+ "moderated list:ARM/LPC32XX SOC SUPPORT"
+ <linux-arm-kernel@lists.infradead.org>,
+ open list <linux-kernel@vger.kernel.org>
+Cc: imx@lists.linux.dev
+References: <20250625214357.2620682-1-Frank.Li@nxp.com>
+From: Vladimir Zapolskiy <vz@mleia.com>
+In-Reply-To: <20250625214357.2620682-1-Frank.Li@nxp.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-49551924 
+X-CRM114-CacheID: sfid-20250628_005746_395375_387E3A1C 
+X-CRM114-Status: UNSURE (   9.27  )
+X-CRM114-Notice: Please train this message. 
 
-On Fri, Jun 27, 2025 at 04:48:21PM -0500, Rob Herring wrote:
-> On Thu, Jun 26, 2025 at 11:23:04PM +0200, Christian Marangi wrote:
-> > Document support for Airoha AN8855 Switch SoC. This SoC expose various
-> > peripherals like an Ethernet Switch, a NVMEM provider and Ethernet PHYs.
-> > 
-> > It does also support i2c and timers but those are not currently
-> > supported/used.
-> > 
-> > Signed-off-by: Christian Marangi <ansuelsmth@gmail.com>
-> > ---
-> >  .../bindings/mfd/airoha,an8855.yaml           | 175 ++++++++++++++++++
-> >  1 file changed, 175 insertions(+)
-> >  create mode 100644 Documentation/devicetree/bindings/mfd/airoha,an8855.yaml
-> > 
-> > diff --git a/Documentation/devicetree/bindings/mfd/airoha,an8855.yaml b/Documentation/devicetree/bindings/mfd/airoha,an8855.yaml
-> > new file mode 100644
-> > index 000000000000..a683db4f41d1
-> > --- /dev/null
-> > +++ b/Documentation/devicetree/bindings/mfd/airoha,an8855.yaml
-> > @@ -0,0 +1,175 @@
-> > +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> > +%YAML 1.2
-> > +---
-> > +$id: http://devicetree.org/schemas/mfd/airoha,an8855.yaml#
-> > +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> > +
-> > +title: Airoha AN8855 Switch SoC
-> > +
-> > +maintainers:
-> > +  - Christian Marangi <ansuelsmth@gmail.com>
-> > +
-> > +description: >
-> > +  Airoha AN8855 Switch is a SoC that expose various peripherals like an
-> > +  Ethernet Switch, a NVMEM provider and Ethernet PHYs.
-> > +
-> > +  It does also support i2c and timers but those are not currently
-> > +  supported/used.
-> > +
-> > +properties:
-> > +  compatible:
-> > +    const: airoha,an8855
-> > +
-> > +  reg:
-> > +    maxItems: 1
-> > +
-> > +  reset-gpios: true
-> > +
-> > +  efuse:
-> > +    type: object
-> > +    $ref: /schemas/nvmem/airoha,an8855-efuse.yaml
-> > +    description: EFUSE exposed by the Airoha AN8855 SoC
-> > +
-> > +  ethernet-switch:
-> > +    type: object
-> > +    $ref: /schemas/net/dsa/airoha,an8855-switch.yaml
-> > +    description: Switch exposed by the Airoha AN8855 SoC
-> > +
-> > +  mdio:
-> > +    type: object
-> > +    $ref: /schemas/net/airoha,an8855-mdio.yaml
-> > +    description: MDIO exposed by the Airoha AN8855 SoC
-> > +
-> > +required:
-> > +  - compatible
-> > +  - reg
-> > +  - mdio
-> > +  - ethernet-switch
-> > +
-> > +additionalProperties: false
-> > +
-> > +examples:
-> > +  - |
-> > +    #include <dt-bindings/gpio/gpio.h>
-> > +
-> > +    mdio {
-> > +        #address-cells = <1>;
-> > +        #size-cells = <0>;
-> > +
-> > +        soc@1 {
-> > +            compatible = "airoha,an8855";
-> > +            reg = <1>;
-> > +
-> > +            reset-gpios = <&pio 39 0>;
-> > +
-> > +            efuse {
-> > +                compatible = "airoha,an8855-efuse";
-> > +
-> > +                #nvmem-cell-cells = <0>;
-> > +
-> > +                nvmem-layout {
-> > +                    compatible = "fixed-layout";
-> > +                    #address-cells = <1>;
-> > +                    #size-cells = <1>;
-> > +
-> > +                    shift_sel_port0_tx_a: shift-sel-port0-tx-a@c {
-> > +                       reg = <0xc 0x4>;
-> > +                    };
-> > +
-> > +                    shift_sel_port0_tx_b: shift-sel-port0-tx-b@10 {
-> > +                        reg = <0x10 0x4>;
-> > +                    };
-> > +
-> > +                    shift_sel_port0_tx_c: shift-sel-port0-tx-c@14 {
-> > +                        reg = <0x14 0x4>;
-> > +                    };
-> > +
-> > +                    shift_sel_port0_tx_d: shift-sel-port0-tx-d@18 {
-> > +                       reg = <0x18 0x4>;
-> > +                    };
-> > +
-> > +                    shift_sel_port1_tx_a: shift-sel-port1-tx-a@1c {
-> > +                        reg = <0x1c 0x4>;
-> > +                    };
-> > +
-> > +                    shift_sel_port1_tx_b: shift-sel-port1-tx-b@20 {
-> > +                        reg = <0x20 0x4>;
-> > +                    };
-> > +
-> > +                    shift_sel_port1_tx_c: shift-sel-port1-tx-c@24 {
-> > +                       reg = <0x24 0x4>;
-> > +                    };
-> > +
-> > +                    shift_sel_port1_tx_d: shift-sel-port1-tx-d@28 {
-> > +                        reg = <0x28 0x4>;
-> > +                    };
-> > +                };
-> > +            };
-> > +
-> > +            ethernet-switch {
-> > +                compatible = "airoha,an8855-switch";
-> > +
-> > +                ports {
+Hi Frank.
+
+On 6/26/25 00:43, Frank Li wrote:
+> Convert lpc32xx-udc.txt to yaml format.
 > 
-> Same comment here.
+> Additional changes:
+> - add clocks and put it into required list to match existed lp32xx.dtsi.
+> - remove usb-transceiver@2c at examples.
 > 
-> Why do we need 2 examples of the same thing? Isn't this 1 complete 
-> example here enough?
->
+> Signed-off-by: Frank Li <Frank.Li@nxp.com>
 
-Do you prefer if I drop example from every other schema and keep only
-this?
+Thank you a lot for doing this massive conversion work of NXP LPC
+device tree bindings, I would appreciate, if you put me to CC for
+all such changes.
 
-And with this change is it ok to keep the review tag?
+While you do one-to-one conversion, you do bring a lot of errors,
+because the .txt descriptions are broken.
+
+Please always reference to arch/arm/boot/dts/nxp/lpc/lpc32xx.dtsi
+and arch/arm/boot/dts/nxp/lpc/lpc18xx.dtsi, that's the correct
+version of NXP LPC DT bindings, otherwise something important
+can be missed by occasion.
+
+<snip>
+
+> +
+> +examples:
+> +  - |
+> +    #include <dt-bindings/clock/lpc32xx-clock.h>
+> +
+> +    usbd@31020000 {
+> +        compatible = "nxp,lpc3220-udc";
+> +        reg = <0x31020000 0x300>;
+> +        interrupt-parent = <&mic>;
+
+interrupt-parent = <sic1>;
+
+> +        interrupts = <0x3d 0>, <0x3e 0>, <0x3c 0>, <0x3a 0>;
+
+Should subscribe 32 and correct the type:
+
+interrupts = <29 4>, <30 4>, <28 4>, <26 8>;
+
+> +        clocks = <&usbclk LPC32XX_USB_CLK_DEVICE>;
+> +        transceiver = <&isp1301>;
+> +    };
 
 -- 
-	Ansuel
+Best wishes,
+Vladimir
 
