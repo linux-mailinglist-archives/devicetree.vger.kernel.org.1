@@ -1,120 +1,127 @@
-Return-Path: <devicetree+bounces-190663-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-190664-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 30B04AEC588
-	for <lists+devicetree@lfdr.de>; Sat, 28 Jun 2025 09:19:47 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 504D7AEC5D4
+	for <lists+devicetree@lfdr.de>; Sat, 28 Jun 2025 10:33:57 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 2382E7A69EE
-	for <lists+devicetree@lfdr.de>; Sat, 28 Jun 2025 07:18:22 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id C554F7A2569
+	for <lists+devicetree@lfdr.de>; Sat, 28 Jun 2025 08:32:32 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id AF5F521B192;
-	Sat, 28 Jun 2025 07:19:39 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6AC99221FA1;
+	Sat, 28 Jun 2025 08:33:49 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=disroot.org header.i=@disroot.org header.b="AHra/kG8"
+	dkim=pass (1024-bit key) header.d=weissschuh.net header.i=@weissschuh.net header.b="qa0Ud+B+"
 X-Original-To: devicetree@vger.kernel.org
-Received: from layka.disroot.org (layka.disroot.org [178.21.23.139])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from todd.t-8ch.de (todd.t-8ch.de [159.69.126.157])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EA23F13633F;
-	Sat, 28 Jun 2025 07:19:35 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=178.21.23.139
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 736271A727D;
+	Sat, 28 Jun 2025 08:33:47 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=159.69.126.157
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1751095179; cv=none; b=XNTvncS+aJJHE8Dvgc+vazF8+DDaQp9QR62SkskuGloudGo492w24zBj3HlgXKdocY2S6IeDHLPKDQ8I7U0JCsrD4l245p7mJ9kkdDoIhN7VzCQTzttdGpuo0yAoE3Zfm3XgCpKb2SyqamviBdhynUoa6fZMhuRoSvjbYpoyaPM=
+	t=1751099629; cv=none; b=kernBs1PNDOKcAI6JPOU/2HVKjISUWWSWHLSwkFNsxlqRar7l3hEQf2AdR696HO4bEcDF3pJknTuFf9u1b+4oeugKVQlfCKuHjCCgafklwagJrE2+oey5x5VfcEkAtEWKvvvahRtsqj1SB0BeCohAcQO0UYa9ywubJnrWOu9muk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1751095179; c=relaxed/simple;
-	bh=pKfvDVcRcDhp3Z+v2Y4AKpYYPrwP+zM1RXX1clGD2PA=;
-	h=MIME-Version:Date:From:To:Cc:Subject:In-Reply-To:References:
-	 Message-ID:Content-Type; b=nTRE/BXNsj92A2ENCEi4NzUSJBfqDGTROwPJCbqJZ1hvJ6BTb2tgZY49Cbo+ABxYyq7K8QQOxxe3DV5vMSYO6NTFQi+IyAguKsXRmyj5wyHj5Ikv9sr4/wa3zObzKI25lghnDq37jaqWAL3KMi4FN6VJJVSlzUUgH3gFOKX/TvI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=disroot.org; spf=pass smtp.mailfrom=disroot.org; dkim=pass (2048-bit key) header.d=disroot.org header.i=@disroot.org header.b=AHra/kG8; arc=none smtp.client-ip=178.21.23.139
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=disroot.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=disroot.org
-Received: from mail01.disroot.lan (localhost [127.0.0.1])
-	by disroot.org (Postfix) with ESMTP id A586022FBD;
-	Sat, 28 Jun 2025 09:19:33 +0200 (CEST)
-X-Virus-Scanned: SPAM Filter at disroot.org
-Received: from layka.disroot.org ([127.0.0.1])
- by localhost (disroot.org [127.0.0.1]) (amavis, port 10024) with ESMTP
- id 2MsP83fmh9-E; Sat, 28 Jun 2025 09:19:32 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=disroot.org; s=mail;
-	t=1751095172; bh=pKfvDVcRcDhp3Z+v2Y4AKpYYPrwP+zM1RXX1clGD2PA=;
-	h=Date:From:To:Cc:Subject:In-Reply-To:References;
-	b=AHra/kG8lut6uMn824OiAVCfnpcGcfiwN1zUENBkuttxyKLbi17bOjzAFlRGysU/f
-	 GrdMxS4Wu80qL8PMjDpUYie6Ywj/GIL4cJ35JzMQRPPOJC3uphQdv9SROGbPYUIuvb
-	 TCaZalOFImycAldXu4ObbHJR4Lqrw5XzTiiPqHytVYfjEDQkgUuUNoJbk8JWgMjtYX
-	 wcQ4Zxv2FQ60w/5GNyp9sXm53vK1u1t+BSg05+0uXZv/ZoxUwa3Y6rPL/MSW8HVNEq
-	 yAV74Ar8TucIuJ4ouuTNi0VU7u0MyAzr8St595cFuzfax309WRIr0pvk80g695kZTQ
-	 nQHr+5NfHceqg==
+	s=arc-20240116; t=1751099629; c=relaxed/simple;
+	bh=b7u6Bwt2ZNSo2618uyhqFbiGYaGohf8fOBCJfzXeq9U=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=NWognonHVUNBYFCpCDZfRWIhqdt69j7N/timmXiE4k029jzuwZxbXtE+b8hXv1SWM4W13w/eNsJ3KtLlxh4npD/nqdojGmM4UroNeXGWy6LmSTAAGyfgh+V3J4IJ7umIIg19zpuPcLqLScZcThyfQolMnqae0psJwZti8WVDO0U=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=weissschuh.net; spf=pass smtp.mailfrom=weissschuh.net; dkim=pass (1024-bit key) header.d=weissschuh.net header.i=@weissschuh.net header.b=qa0Ud+B+; arc=none smtp.client-ip=159.69.126.157
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=weissschuh.net
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=weissschuh.net
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=weissschuh.net;
+	s=mail; t=1751099625;
+	bh=b7u6Bwt2ZNSo2618uyhqFbiGYaGohf8fOBCJfzXeq9U=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=qa0Ud+B+6b9dNWaEi9O95+hKP+rTkjJNpVCcAMW9KiKHVw2XrN7E5ApXmAFc7Tiya
+	 qTSkyFNOLsK3HL9jCiH5ZDkh23GpMXuH0BuxHRLNSXAQ/neriRsm1CNKXlOEwYLDLu
+	 ACKUuPkED8q09senM2ahGCO4A8ZRzYI1HQ8P2Rlo=
+Date: Sat, 28 Jun 2025 10:33:44 +0200
+From: Thomas =?utf-8?Q?Wei=C3=9Fschuh?= <linux@weissschuh.net>
+To: Christian Marangi <ansuelsmth@gmail.com>
+Cc: Lee Jones <lee@kernel.org>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Andrew Lunn <andrew+netdev@lunn.ch>, "David S. Miller" <davem@davemloft.net>, 
+	Eric Dumazet <edumazet@google.com>, Jakub Kicinski <kuba@kernel.org>, 
+	Paolo Abeni <pabeni@redhat.com>, Vladimir Oltean <olteanv@gmail.com>, 
+	Srinivas Kandagatla <srini@kernel.org>, Heiner Kallweit <hkallweit1@gmail.com>, 
+	Russell King <linux@armlinux.org.uk>, "Chester A. Unal" <chester.a.unal@arinc9.com>, 
+	Daniel Golle <daniel@makrotopia.org>, DENG Qingfang <dqfext@gmail.com>, 
+	Sean Wang <sean.wang@mediatek.com>, Simon Horman <horms@kernel.org>, 
+	Matthias Brugger <matthias.bgg@gmail.com>, 
+	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>, linux-arm-kernel@lists.infradead.org, 
+	linux-mediatek@lists.infradead.org, netdev@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org
+Subject: Re: [net-next PATCH v15 08/12] net: dsa: Add Airoha AN8855 5-Port
+ Gigabit DSA Switch driver
+Message-ID: <9f60809e-ad8c-4f97-961a-d13fa5031981@t-8ch.de>
+References: <20250626212321.28114-1-ansuelsmth@gmail.com>
+ <20250626212321.28114-9-ansuelsmth@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Date: Sat, 28 Jun 2025 07:19:32 +0000
-From: Kaustabh Chakraborty <kauschluss@disroot.org>
-To: Rob Herring <robh@kernel.org>
-Cc: Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Alim Akhtar <alim.akhtar@samsung.com>, Krzysztof
- Kozlowski <krzk@kernel.org>, devicetree@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, linux-samsung-soc@vger.kernel.org,
- linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v2 2/6] dt-bindings: soc: samsung: exynos-pmu: allow
- mipi-phy subnode
-In-Reply-To: <20250627214258.GA189284-robh@kernel.org>
-References: <20250627-exynos7870-drm-dts-v2-0-d4a59207390d@disroot.org>
- <20250627-exynos7870-drm-dts-v2-2-d4a59207390d@disroot.org>
- <20250627214258.GA189284-robh@kernel.org>
-Message-ID: <6151f833d5a06369cd3dce5d2b2aca9f@disroot.org>
-X-Sender: kauschluss@disroot.org
-Content-Type: text/plain; charset=US-ASCII;
- format=flowed
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20250626212321.28114-9-ansuelsmth@gmail.com>
 
-On 2025-06-27 21:42, Rob Herring wrote:
-> On Fri, Jun 27, 2025 at 01:43:25AM +0530, Kaustabh Chakraborty wrote:
->> Add Exynos7870's PMU compatible to the list of nodes which allow a 
->> MIPI
->> PHY driver.
->> 
->> Signed-off-by: Kaustabh Chakraborty <kauschluss@disroot.org>
->> ---
->>  Documentation/devicetree/bindings/soc/samsung/exynos-pmu.yaml | 1 +
->>  1 file changed, 1 insertion(+)
->> 
->> diff --git 
->> a/Documentation/devicetree/bindings/soc/samsung/exynos-pmu.yaml 
->> b/Documentation/devicetree/bindings/soc/samsung/exynos-pmu.yaml
->> index 
->> f0fb24156da9b8980dcfd5339ae75f12a71cf6d6..45acd6a03d761a833cec435302e5190fb50f7a23 
->> 100644
->> --- a/Documentation/devicetree/bindings/soc/samsung/exynos-pmu.yaml
->> +++ b/Documentation/devicetree/bindings/soc/samsung/exynos-pmu.yaml
->> @@ -172,6 +172,7 @@ allOf:
->>                - samsung,exynos5250-pmu
->>                - samsung,exynos5420-pmu
->>                - samsung,exynos5433-pmu
->> +              - samsung,exynos7870-pmu
+On 2025-06-26 23:23:07+0200, Christian Marangi wrote:
+> Add Airoha AN8855 5-Port Gigabit DSA switch. Switch can support
+> 10M, 100M, 1Gb, 2.5G and 5G Ethernet Speed but 5G is currently error out
+> as it's not currently supported as requires additional configuration for
+> the PCS.
 > 
-> Don't you need to add this to 'compatible' and under 'select'?
+> Signed-off-by: Christian Marangi <ansuelsmth@gmail.com>
+> ---
+>  drivers/net/dsa/Kconfig  |    9 +
+>  drivers/net/dsa/Makefile |    1 +
+>  drivers/net/dsa/an8855.c | 2386 ++++++++++++++++++++++++++++++++++++++
+>  drivers/net/dsa/an8855.h |  773 ++++++++++++
+>  4 files changed, 3169 insertions(+)
+>  create mode 100644 drivers/net/dsa/an8855.c
+>  create mode 100644 drivers/net/dsa/an8855.h
 
-compatible: [1]
+<snip>
 
-samsung,exynos7-pmu is under select. 7870 has a fallback on 7.
-Do you think samsung,exynos7-pmu should've been added in this patch
-instead?
+> +static int an8855_switch_probe(struct platform_device *pdev)
+> +{
+> +	struct an8855_priv *priv;
+> +
+> +	priv = devm_kzalloc(&pdev->dev, sizeof(*priv), GFP_KERNEL);
+> +	if (!priv)
+> +		return -ENOMEM;
+> +
+> +	/* Get regmap from MFD */
+> +	priv->regmap = dev_get_regmap(pdev->dev.parent, NULL);
+> +	if (!priv->regmap)
+> +		return -ENOENT;
+> +
+> +	priv->ds = devm_kzalloc(&pdev->dev, sizeof(*priv->ds), GFP_KERNEL);
+> +	if (!priv->ds)
+> +		return -ENOMEM;
+> +
+> +	priv->ds->dev = &pdev->dev;
+> +	priv->ds->num_ports = AN8855_NUM_PORTS;
+> +	priv->ds->priv = priv;
+> +	priv->ds->ops = &an8855_switch_ops;
+> +	devm_mutex_init(&pdev->dev, &priv->reg_mutex);
 
-[1] 
-https://elixir.bootlin.com/linux/v6.16-rc3/source/Documentation/devicetree/bindings/soc/samsung/exynos-pmu.yaml#L56
+Check the return value of devm_mutex_init().
+This will become a compile error soon.
 
-> 
->>      then:
->>        properties:
->>          mipi-phy: true
->> 
->> --
->> 2.49.0
->> 
+> +	priv->ds->phylink_mac_ops = &an8855_phylink_mac_ops;
+> +
+> +	priv->pcs.ops = &an8855_pcs_ops;
+> +	priv->pcs.poll = true;
+> +
+> +	dev_set_drvdata(&pdev->dev, priv);
+> +
+> +	return dsa_register_switch(priv->ds);
+> +}
+
+<snip>
 
