@@ -1,48 +1,48 @@
-Return-Path: <devicetree+bounces-190691-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-190692-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id AB3B7AEC6CA
-	for <lists+devicetree@lfdr.de>; Sat, 28 Jun 2025 13:50:53 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1CBC2AEC6CD
+	for <lists+devicetree@lfdr.de>; Sat, 28 Jun 2025 13:52:04 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id CF10C4A26B6
-	for <lists+devicetree@lfdr.de>; Sat, 28 Jun 2025 11:50:27 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 413CF4A30AA
+	for <lists+devicetree@lfdr.de>; Sat, 28 Jun 2025 11:52:04 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6253024167C;
-	Sat, 28 Jun 2025 11:50:49 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 79E82222565;
+	Sat, 28 Jun 2025 11:52:00 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="bwFrBJ0u"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="TzlnL6t8"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 35C9222370D;
-	Sat, 28 Jun 2025 11:50:48 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4FA241799F;
+	Sat, 28 Jun 2025 11:51:59 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1751111449; cv=none; b=szPT58LkrK59TKOebflqjkig9PDvpdT3zCU1beAZeOXXne0AjcNWMkWFAbrUGaICVHIhz7wc7wvfOBa4Xlqffh9lILcpmyNyaqmduJKAiTz2DnyEXQwzfx4hE4C450v6RSiR3I3I9rqJI8vH67J3Fi3pNFoFvLnAP5EwE2N0U1I=
+	t=1751111520; cv=none; b=BrRhSwngXOJcfBnsAWtloNifkZWxYk6lee2UTB2SK0PzoeAQkgxSXdIcgnpyprY3qZgQZ6twshbhKLEPd5Gtb49SPN+QUOP95a9nIm2UIV1WvmrnXE8NHSKA4mAo0EySlAh6LUleNuFnlU9wVaUskNPz4techub3qVCXWB08h9E=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1751111449; c=relaxed/simple;
-	bh=pSV6l3T7JmbSCdl9fP3e9xqmfil0Of6rRvqXh+ApX/s=;
+	s=arc-20240116; t=1751111520; c=relaxed/simple;
+	bh=qJ4yTtKFc6OmN0GJi8MrWhLiiEQ+5JYxr9YdrZrqgeQ=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=lOooZNIoj9mG/r7Fv/avQO/52AOiWCg6QKa2gXpMgrQSc/NFxmITrju4IKQpLOFJ62GJ/ppRdWSZ/J4zLLY+U2NDTTNeLGqJfsPGWVmvDQN0p8aAJVAygJ/269TiZS+djNpKQPuacqP56BSgI0yTwY6MqS1i0W5+M/Nb+7fvslA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=bwFrBJ0u; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 40600C4CEEA;
-	Sat, 28 Jun 2025 11:50:42 +0000 (UTC)
+	 In-Reply-To:Content-Type; b=LTB73wtPOq+zgK0AY8Q2O7zVczcTdxNcRaVmWge2tNu1DEGhtK3LjveQh29HRk0+AOIQBoWz27GO73oR24maaF1W/9wwI59gU+OGfKnMxyHs4MF32sXf9N88mVaPNtzflth+953zW3/rTE/t8k+j8OuTcn4Mby/z9Sgto4IDWQU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=TzlnL6t8; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id BC72AC4CEEA;
+	Sat, 28 Jun 2025 11:51:53 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1751111448;
-	bh=pSV6l3T7JmbSCdl9fP3e9xqmfil0Of6rRvqXh+ApX/s=;
+	s=k20201202; t=1751111518;
+	bh=qJ4yTtKFc6OmN0GJi8MrWhLiiEQ+5JYxr9YdrZrqgeQ=;
 	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=bwFrBJ0uiRaZwBWweZ1XvO+QkqB2Q3cQ9ZIwpIuYH04iOvL5y+Mh9OMJYqEGqt/e4
-	 0XZ6VZxtasWfRRFt+q72dzoD9ihhGqkneLsdSQJm/7Ijc21wLEojyfNzbaOVOvu6QV
-	 3XezHpc0a8tK7zYvtohyfbWUisKqSPlco2TZdo5ttUUFUPnF+wOkWcfNA3/+0JcQgF
-	 jTmjwYyD0lJcAxftp3mgKYl+8rgdgAlpKnkG8czV1OY3PNy3Z3CqqVFJzB97JaMZRz
-	 EbJFQetmLkU9zsGhSEpxYtQTlPvAUe05AX8cE7mP1V0dcRv+mD2wK9uPo30V8enNZH
-	 BUKz8wWbtv04Q==
-Message-ID: <b94b752c-d7f7-41d6-ac79-d21427f20964@kernel.org>
-Date: Sat, 28 Jun 2025 13:50:40 +0200
+	b=TzlnL6t8eSCxTpU4r0hDqIaeTbmV7fEkaLUaU7WUSsUDwF8wXDR1s38lWoBAWwX1f
+	 Tg5Yd89A3LboNmLIejkxwHvslOheF7vfrqTRcB8euHMrrdYEhx6RafeqLUqgHY/Blj
+	 APOfC4yzzG9mZ/DGrz77E+3JnX5z8tlngaJc87fvzsbFy63Xo2BnwcKXtIzEAIoBZF
+	 iV5dr4hdxSUGHVFfwRT9jD2rcBUEzgSm1fDT/pLhw0NMOaoKSxfxS/EXnYu33YhXqX
+	 UPS2WGOzEl7/sNZS8g8LMB0bIUr6QKPaf0VmR8hCUAxO4dSw9u7P1EsPQA2FZX3hYU
+	 s3FCGYcs2KkVg==
+Message-ID: <175f26a6-d450-4397-8460-87d9162b563b@kernel.org>
+Date: Sat, 28 Jun 2025 13:51:50 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,23 +50,19 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 1/5] dt-bindings: display: simple-framebuffer: Add
- interconnects property
-To: Thomas Zimmermann <tzimmermann@suse.de>,
- Luca Weiss <luca.weiss@fairphone.com>
-Cc: Hans de Goede <hdegoede@redhat.com>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Maxime Ripard <mripard@kernel.org>, David Airlie <airlied@gmail.com>,
- Simona Vetter <simona@ffwll.ch>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Javier Martinez Canillas <javierm@redhat.com>,
- Helge Deller <deller@gmx.de>, linux-fbdev@vger.kernel.org,
- dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org
-References: <20250623-simple-drm-fb-icc-v2-0-f69b86cd3d7d@fairphone.com>
- <20250623-simple-drm-fb-icc-v2-1-f69b86cd3d7d@fairphone.com>
- <20250627-mysterious-optimistic-bird-acaafb@krzk-bin>
- <d8d85415-efc4-4a11-842e-23272cae29f7@suse.de>
+Subject: Re: [PATCH v3 4/4] dt-bindings: sound: device support list for
+ pcm6240
+To: Mark Brown <broonie@kernel.org>
+Cc: Niranjan H Y <niranjan.hy@ti.com>, krzk+dt@kernel.org,
+ conor+dt@kernel.org, andriy.shevchenko@linux.intel.com, tiwai@suse.de,
+ alsa-devel@alsa-project.org, baojun.xu@ti.com, shenghao-ding@ti.com,
+ liam.r.girdwood@intel.com, lgirdwood@gmail.com, robh@kernel.org,
+ linux-sound@vger.kernel.org, devicetree@vger.kernel.org, navada@ti.com,
+ v-hampiholi@ti.com
+References: <20250626181334.1200-1-niranjan.hy@ti.com>
+ <20250626181334.1200-5-niranjan.hy@ti.com>
+ <20250627-lean-pumpkin-giraffe-6fad55@krzk-bin>
+ <aF57GqVuSqmF9W6H@finisterre.sirena.org.uk>
 From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
@@ -112,56 +108,26 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  jWt87ecuHlpL3uuQ0ZZNWqHgZoQLXoqC2ZV5KrtKWb/jyiFX/sxSrodALf0zf+tfHv0FZWT2
  zHjUqd0t4njD/UOsuIMOQn4Ig0SdivYPfZukb5cdasKJukG1NOpbW7yRNivaCnfZz6dTawXw
  XRIV/KDsHQiyVxKvN73bThKhONkcX2LWuD928tAR6XMM2G5ovxLe09vuOzzfTWQDsm++9UKF a/A=
-In-Reply-To: <d8d85415-efc4-4a11-842e-23272cae29f7@suse.de>
+In-Reply-To: <aF57GqVuSqmF9W6H@finisterre.sirena.org.uk>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 27/06/2025 13:34, Thomas Zimmermann wrote:
-> Hi
+On 27/06/2025 13:06, Mark Brown wrote:
+> On Fri, Jun 27, 2025 at 09:43:54AM +0200, Krzysztof Kozlowski wrote:
+>> On Thu, Jun 26, 2025 at 11:43:33PM +0530, Niranjan H Y wrote:
 > 
-> Am 27.06.25 um 10:08 schrieb Krzysztof Kozlowski:
->> On Mon, Jun 23, 2025 at 08:44:45AM +0200, Luca Weiss wrote:
->>> Document the interconnects property which is a list of interconnect
->>> paths that is used by the framebuffer and therefore needs to be kept
->>> alive when the framebuffer is being used.
->>>
->>> Acked-by: Thomas Zimmermann <tzimmermann@suse.de>
->>> Signed-off-by: Luca Weiss <luca.weiss@fairphone.com>
->>> ---
->>>   Documentation/devicetree/bindings/display/simple-framebuffer.yaml | 3 +++
->>>   1 file changed, 3 insertions(+)
->>>
->>> diff --git a/Documentation/devicetree/bindings/display/simple-framebuffer.yaml b/Documentation/devicetree/bindings/display/simple-framebuffer.yaml
->>> index 296500f9da05e296dbbeec50ba5186b6b30aaffc..f0fa0ef23d91043dfb2b220c654b80e2e80850cd 100644
->>> --- a/Documentation/devicetree/bindings/display/simple-framebuffer.yaml
->>> +++ b/Documentation/devicetree/bindings/display/simple-framebuffer.yaml
->>> @@ -79,6 +79,9 @@ properties:
->>>     power-domains:
->>>       description: List of power domains used by the framebuffer.
->>>   
->>> +  interconnects:
->>> +    description: List of interconnect paths used by the framebuffer.
->>> +
->> maxItems: 1, or this is not a simple FB anymore. Anything which needs
->> some sort of resources in unknown way is not simple anymore. You need
->> device specific bindings.
+>>> Removed taa* and tad* device from the support list
+>>> as these devices are supported by tac5x1x codec driver
 > 
-> In this context, 'simple' means that this device cannot change display 
-> modes or do graphics acceleration. The hardware itself is not 
-> necessarily simple. As Javier pointed out, it's initialized by firmware 
+>> No, why? Hardware does not change.
+> 
+> So long as the bindings are compatible it's not a problem, this does
+> happen sometimes when people realise that a device needs more specific
+> support and it's more managable to split out from a common binding.  The
+> commit log should have the analysis of this though.
 
-If hardware is not simple, then it needs specific bindings.
-
-> on the actual hardware. Think of 'VGA-for-ARM'. We need these resources 
-> to keep the display working.
-
-I don't claim you do not need these resources. I claim device is not
-simple thus does not suit rules for generic bindings. Generic bindings
-are in general not allowed and we have them only for very, very simple
-devices.
-
-You say this is not simple device, so there you go - specific binding
-for this complex (not-simple) device.
+Yeah and then it should be one commit moving - not removing -
+compatibles to a new binding, with that analysis or explanation.
 
 Best regards,
 Krzysztof
