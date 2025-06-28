@@ -1,48 +1,48 @@
-Return-Path: <devicetree+bounces-190689-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-190690-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 60E63AEC664
-	for <lists+devicetree@lfdr.de>; Sat, 28 Jun 2025 11:33:28 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id A34E4AEC6C2
+	for <lists+devicetree@lfdr.de>; Sat, 28 Jun 2025 13:49:29 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 9AC153AAFDE
-	for <lists+devicetree@lfdr.de>; Sat, 28 Jun 2025 09:33:02 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 9CF5F4A30C5
+	for <lists+devicetree@lfdr.de>; Sat, 28 Jun 2025 11:49:28 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B56242222D1;
-	Sat, 28 Jun 2025 09:33:23 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7F62E221282;
+	Sat, 28 Jun 2025 11:49:24 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="B3ji4tzu"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="XltbDsSm"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8614F15A856;
-	Sat, 28 Jun 2025 09:33:23 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4DFCF1A5BAF;
+	Sat, 28 Jun 2025 11:49:23 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1751103203; cv=none; b=g00GLT7zqMRYRew7yenllybSbcSQk6bvMH9Tc0/TLa0c9h6mAgxreQp9ZDEiZDYrb2Abaffq8mq2I4jp8KYdmBXbxaHY68aQpu0YB/MjGb54rPtD4idjbXEjemCv9kEoPqJHrOjvTkHbDsXt/bPJK3ttXtJrpUel0tA+elikKTs=
+	t=1751111364; cv=none; b=ee5/COg7YotZtkhAQKII/SP5BIQJCoB2FQoJj4sUaqm3hMEqpdwC045DURPxV/xDSvR9PnppMiwKghB7Y/6C9/3G7qXJM17FzCw/SfE1NOUPH6KOhhgAZrNsMmLpc0riN7dNeCx0Cw22DMdvuoxv5D1WQRvR4I/osPjucgAVPCs=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1751103203; c=relaxed/simple;
-	bh=jclJuipHjDvfVIGGpyisxpakmoZzRKjyjxUFqC51V9c=;
+	s=arc-20240116; t=1751111364; c=relaxed/simple;
+	bh=7wm0KwICN7Mak9Wk8U1M1bgcudhZF8Rka+KJoP0pgh0=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=FHQ0S0o8A5yUpUP3s8xGM1mlBpHLsu5Ku83JP9JMZs3+8nvxTmbNHPC1A9rwLHQ69iO0Dy8L0v6hXdHfSWughZpj8ZgGLSk/PNkz4c0YeignKH1aqDmfyF1quP/2UTLVg+xmmUVx0hkeGKFKbQKWzwdh4ROrnVavQnYUM4crYH0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=B3ji4tzu; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 20F15C4CEEA;
-	Sat, 28 Jun 2025 09:33:11 +0000 (UTC)
+	 In-Reply-To:Content-Type; b=p9iyCc9gPprrKM/I+FJMxUU678fXaqZeTLCuYTv+1b6tblo3rSxfxqdukXe/QGWVdpj3BggLmmM9kkyBeGdF6RVhWet+gFBqB2Kbc5vPBvXRE+uHP2wuu54Ln8AN6PHBJBABoC0Udf1n7kdbfscaVK75NzlWIKwtSn5DEEEcmHc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=XltbDsSm; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 329EAC4CEEA;
+	Sat, 28 Jun 2025 11:49:18 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1751103203;
-	bh=jclJuipHjDvfVIGGpyisxpakmoZzRKjyjxUFqC51V9c=;
+	s=k20201202; t=1751111363;
+	bh=7wm0KwICN7Mak9Wk8U1M1bgcudhZF8Rka+KJoP0pgh0=;
 	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=B3ji4tzuRc2bvSAg5VhrExCAJfxd5lrCpxsXsPBgh6viZuMpUFNyzApFgam9C6MK5
-	 c3lCXQb0ft7W2u7zHgiXtvsfv65zQZciGI4OC+SO0RG0aOuD2PgDmjUwjiV+mKkagg
-	 820exUrQLRrNEKH/qHTrCrf0S0BPmJrqL4RlZ6WeuANfKXKPSv40p7eQro9Sh4ETNl
-	 B7eFm3cGA1ldcNnfzkgSzB5rGoCGATrBu1Ki6X74rV3nxl0hgGquDg6EIR822GiiX6
-	 ntJuEnF8PE6p6FC/P5cmuTZrgoEhuq/E5gK8OMvgSkKJTTy+RLRpGMOwB/lVC4yH3d
-	 u+dpoP2DDh8ew==
-Message-ID: <bfe59771-f35d-48b7-aed3-7b6f3ef1f1dd@kernel.org>
-Date: Sat, 28 Jun 2025 11:33:05 +0200
+	b=XltbDsSm6pnbWAwyWwTvy5uSIVkeIoRQ2pHHeNb1hfNBzABMG/JI7g8GRy6T5dhg2
+	 ploeFFmCNI2dTA2ORgOHCg3kIxHFJzVcsfqN/rUvv/D7/5GSqAgedpAOtMkbQQouFk
+	 bUibwOOz89VV/2++PIr3G0K4pUdZy/sDLBJqj1HwfwRDPa8OBSiWDhmBxiocEVU/hO
+	 qeTJ0Q7ehnOp5QV3ZEDqO/MBtMAUl1jXN1VBabkIEZ8Zs4/0aw2BliK83oLPN7yYj0
+	 5Au/0XaRySwcZ71bYgsBDVtXmx0mU7TqB2EbZGYsXQzDwl2LnBjYZtZrw0B3o2Maaz
+	 gu/FyfjKRpSuA==
+Message-ID: <1129bc60-f9cb-40be-9869-8ffa3b3c9748@kernel.org>
+Date: Sat, 28 Jun 2025 13:49:16 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,18 +50,22 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 2/6] dt-bindings: soc: samsung: exynos-pmu: allow
- mipi-phy subnode
-To: Kaustabh Chakraborty <kauschluss@disroot.org>,
- Rob Herring <robh@kernel.org>
-Cc: Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, Alim Akhtar <alim.akhtar@samsung.com>,
- devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- linux-samsung-soc@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <20250627-exynos7870-drm-dts-v2-0-d4a59207390d@disroot.org>
- <20250627-exynos7870-drm-dts-v2-2-d4a59207390d@disroot.org>
- <20250627214258.GA189284-robh@kernel.org>
- <6151f833d5a06369cd3dce5d2b2aca9f@disroot.org>
+Subject: Re: [PATCH v2 1/5] dt-bindings: display: simple-framebuffer: Add
+ interconnects property
+To: Luca Weiss <luca.weiss@fairphone.com>
+Cc: Hans de Goede <hdegoede@redhat.com>,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>,
+ David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>,
+ Javier Martinez Canillas <javierm@redhat.com>, Helge Deller <deller@gmx.de>,
+ linux-fbdev@vger.kernel.org, dri-devel@lists.freedesktop.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+References: <20250623-simple-drm-fb-icc-v2-0-f69b86cd3d7d@fairphone.com>
+ <20250623-simple-drm-fb-icc-v2-1-f69b86cd3d7d@fairphone.com>
+ <20250627-mysterious-optimistic-bird-acaafb@krzk-bin>
+ <DAX7ZB27SBPV.2Y0I09TVSF3TT@fairphone.com>
 From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
@@ -107,36 +111,52 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  jWt87ecuHlpL3uuQ0ZZNWqHgZoQLXoqC2ZV5KrtKWb/jyiFX/sxSrodALf0zf+tfHv0FZWT2
  zHjUqd0t4njD/UOsuIMOQn4Ig0SdivYPfZukb5cdasKJukG1NOpbW7yRNivaCnfZz6dTawXw
  XRIV/KDsHQiyVxKvN73bThKhONkcX2LWuD928tAR6XMM2G5ovxLe09vuOzzfTWQDsm++9UKF a/A=
-In-Reply-To: <6151f833d5a06369cd3dce5d2b2aca9f@disroot.org>
+In-Reply-To: <DAX7ZB27SBPV.2Y0I09TVSF3TT@fairphone.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 28/06/2025 09:19, Kaustabh Chakraborty wrote:
->>> diff --git 
->>> a/Documentation/devicetree/bindings/soc/samsung/exynos-pmu.yaml 
->>> b/Documentation/devicetree/bindings/soc/samsung/exynos-pmu.yaml
->>> index 
->>> f0fb24156da9b8980dcfd5339ae75f12a71cf6d6..45acd6a03d761a833cec435302e5190fb50f7a23 
->>> 100644
->>> --- a/Documentation/devicetree/bindings/soc/samsung/exynos-pmu.yaml
->>> +++ b/Documentation/devicetree/bindings/soc/samsung/exynos-pmu.yaml
->>> @@ -172,6 +172,7 @@ allOf:
->>>                - samsung,exynos5250-pmu
->>>                - samsung,exynos5420-pmu
->>>                - samsung,exynos5433-pmu
->>> +              - samsung,exynos7870-pmu
+On 27/06/2025 11:48, Luca Weiss wrote:
+> Hi Krzysztof,
+> 
+> On Fri Jun 27, 2025 at 10:08 AM CEST, Krzysztof Kozlowski wrote:
+>> On Mon, Jun 23, 2025 at 08:44:45AM +0200, Luca Weiss wrote:
+>>> Document the interconnects property which is a list of interconnect
+>>> paths that is used by the framebuffer and therefore needs to be kept
+>>> alive when the framebuffer is being used.
+>>>
+>>> Acked-by: Thomas Zimmermann <tzimmermann@suse.de>
+>>> Signed-off-by: Luca Weiss <luca.weiss@fairphone.com>
+>>> ---
+>>>  Documentation/devicetree/bindings/display/simple-framebuffer.yaml | 3 +++
+>>>  1 file changed, 3 insertions(+)
+>>>
+>>> diff --git a/Documentation/devicetree/bindings/display/simple-framebuffer.yaml b/Documentation/devicetree/bindings/display/simple-framebuffer.yaml
+>>> index 296500f9da05e296dbbeec50ba5186b6b30aaffc..f0fa0ef23d91043dfb2b220c654b80e2e80850cd 100644
+>>> --- a/Documentation/devicetree/bindings/display/simple-framebuffer.yaml
+>>> +++ b/Documentation/devicetree/bindings/display/simple-framebuffer.yaml
+>>> @@ -79,6 +79,9 @@ properties:
+>>>    power-domains:
+>>>      description: List of power domains used by the framebuffer.
+>>>  
+>>> +  interconnects:
+>>> +    description: List of interconnect paths used by the framebuffer.
+>>> +
 >>
->> Don't you need to add this to 'compatible' and under 'select'?
+>> maxItems: 1, or this is not a simple FB anymore. Anything which needs
+>> some sort of resources in unknown way is not simple anymore. You need
+>> device specific bindings.
 > 
-> compatible: [1]
+> The bindings support an arbitrary number of clocks, regulators,
+> power-domains. Why should I artificially limit the interconnects to only
+> one?
+
+And IMO they should not. Bindings are not supposed to be generic.
+
 > 
-> samsung,exynos7-pmu is under select. 7870 has a fallback on 7.
-> Do you think samsung,exynos7-pmu should've been added in this patch
-> instead?
-> 
-If this uses exynos7-pmu as fallback then it is fine. This should be in
-commit msg - that's the point of commit msg - explain the hardware and
-things not easily visible, instead of repeating what is visible in the diff.
+> The driver code also has that support added in this series.
+
+That's not the problem here.
+
 
 Best regards,
 Krzysztof
