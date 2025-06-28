@@ -1,495 +1,291 @@
-Return-Path: <devicetree+bounces-190784-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-190785-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4605AAECA1A
-	for <lists+devicetree@lfdr.de>; Sat, 28 Jun 2025 21:47:33 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id C544DAECA33
+	for <lists+devicetree@lfdr.de>; Sat, 28 Jun 2025 22:02:08 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id ECB2B17B318
-	for <lists+devicetree@lfdr.de>; Sat, 28 Jun 2025 19:47:30 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 447BF3AC68C
+	for <lists+devicetree@lfdr.de>; Sat, 28 Jun 2025 20:01:39 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 983C822127E;
-	Sat, 28 Jun 2025 19:47:26 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 56B1A21FF5C;
+	Sat, 28 Jun 2025 20:02:00 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=samsung.com header.i=@samsung.com header.b="IEGdUC5o"
+	dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b="w+vkzI6t"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mailout1.w1.samsung.com (mailout1.w1.samsung.com [210.118.77.11])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-pl1-f174.google.com (mail-pl1-f174.google.com [209.85.214.174])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1CDEF219A8E
-	for <devicetree@vger.kernel.org>; Sat, 28 Jun 2025 19:47:24 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=210.118.77.11
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7B49A288A8
+	for <devicetree@vger.kernel.org>; Sat, 28 Jun 2025 20:01:57 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.174
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1751140046; cv=none; b=hazta4ZnZLq+ab/sWNmK3HOxAIdhOPC8zAYjC5F2BY8RfoyvZ+V/+ad1HCawUzA3hOOtsdVj9b1kC2+xZkOfEyP+q9ulT0t5QQoaXBGEM9KrjeImshcmahxCz4XWdFqNSsDVj5i2LONH9XzZsRv95ggebPzvxl2IKqTZI8yMVh0=
+	t=1751140920; cv=none; b=DoOuzRwgf4M8XvvL9wLuvF2y8aVgT20dm/6AsRsxnpzQT5Db/5KEXtMDlwbzt72kyr3iNzS6iUxkHUUZHG4aiFhssDs57YZKAb0nDEONSn04Sr2JHk/cADC1cgtsa9fntf1S/a8v5xFCzLrMmlYDbsDDs/pCSzXkUlD8d2Gd7CQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1751140046; c=relaxed/simple;
-	bh=llOLxU6qCnLWBXw7+VEoR/hUbOyYP7z3m1x1yRUJHFQ=;
-	h=Message-ID:Date:MIME-Version:Subject:From:To:Cc:In-Reply-To:
-	 Content-Type:References; b=NERwdPsP/0W3viYN29bxy/PO8FULyEx+3Q8KLdSr5Q1G0zx7ZfCsB+gb/8Kn2XS2EmsL3RclAs68+JFed8rUyUxxxxFBaVQqIugFWCPqURi3oPNy+OtuuuYE75uwlfUrQ9jJpryNyy2cQ+X9jO8dy84h6sosdbl9nCB1W+eJWAU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=samsung.com; spf=pass smtp.mailfrom=samsung.com; dkim=pass (1024-bit key) header.d=samsung.com header.i=@samsung.com header.b=IEGdUC5o; arc=none smtp.client-ip=210.118.77.11
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=samsung.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=samsung.com
-Received: from eucas1p1.samsung.com (unknown [182.198.249.206])
-	by mailout1.w1.samsung.com (KnoxPortal) with ESMTP id 20250628194722euoutp01d33efd798b9d6738484f173e1f526e10~NTJckcdB70348503485euoutp01B
-	for <devicetree@vger.kernel.org>; Sat, 28 Jun 2025 19:47:22 +0000 (GMT)
-DKIM-Filter: OpenDKIM Filter v2.11.0 mailout1.w1.samsung.com 20250628194722euoutp01d33efd798b9d6738484f173e1f526e10~NTJckcdB70348503485euoutp01B
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=samsung.com;
-	s=mail20170921; t=1751140042;
-	bh=axJnmCBw8vcB+1/v69aDzi/3JfSqL27uLNkLJTcOH2I=;
-	h=Date:Subject:From:To:Cc:In-Reply-To:References:From;
-	b=IEGdUC5oW3uNnQwl94w+DPWdmD/r1J55qZDK/kwi2rfNkdRRM4L1VBYWf7ta741wX
-	 SNUbwGFeyVdkGVmaw84dGcFNWr3AF2UapIXHlXCKJrQk9jJi3TFuQaJLUZ/rzMUNGR
-	 FGLX0sBwxRJ2bNl5IlfpS5lZiN+vGh6y3ys1mpIU=
-Received: from eusmtip2.samsung.com (unknown [203.254.199.222]) by
-	eucas1p1.samsung.com (KnoxPortal) with ESMTPA id
-	20250628194720eucas1p14af2771ea2617fb8e46730caff1f8707~NTJbX0KSR0958209582eucas1p1r;
-	Sat, 28 Jun 2025 19:47:20 +0000 (GMT)
-Received: from [192.168.1.44] (unknown [106.210.136.40]) by
-	eusmtip2.samsung.com (KnoxPortal) with ESMTPA id
-	20250628194719eusmtip24171c173724a0ec56c18072a8014ddcb~NTJaLA4Jg2188521885eusmtip2f;
-	Sat, 28 Jun 2025 19:47:19 +0000 (GMT)
-Message-ID: <1450a457-4bd3-4e9c-a74f-3be15c9ec84f@samsung.com>
-Date: Sat, 28 Jun 2025 21:47:19 +0200
+	s=arc-20240116; t=1751140920; c=relaxed/simple;
+	bh=C25dUvtj5jbXCc2sJQq1wwn+HEsXVicpVUN74cxm2Tc=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=Za69kGHEV1YeJ/QgOEtRElCExJbwQIRit6AkH96dj9zUUBFE87Eu4RVJ6P1uM451dPMkTcEavaM+EJmlRW4nbhyoddq8flkrXx3MsLOCVvK6nxWMAcYPzPFMrqWodDeM0N+O1K+wRKaS3zExS7Pu77yiXq4w4e3O5biM+efyfS8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com; spf=pass smtp.mailfrom=baylibre.com; dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b=w+vkzI6t; arc=none smtp.client-ip=209.85.214.174
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=baylibre.com
+Received: by mail-pl1-f174.google.com with SMTP id d9443c01a7336-237e6963f63so3408175ad.2
+        for <devicetree@vger.kernel.org>; Sat, 28 Jun 2025 13:01:57 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1751140917; x=1751745717; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=rCb37RSYZzDO3GN3ihbvCvxF6ZjiXzcFRXh0BRgUocI=;
+        b=w+vkzI6tnkiqBACLmMkydF3fCy6gh+QLh8x1bo+8qV7oPp8oEXipe7uOWInSiLD3mp
+         TxeWT/C5PJtS+oyZhn/yLw9ogBA5I2dCyuGLtejRbcuUj0rX8B+pBx1CBsZTNFN0pZJy
+         nfZR3p5zt8cZclh6AvprKORcjsNXFjOhVp+qYDPO71bud+Qd9Gpswb9ZAp5NbfRo8MpS
+         9K5BCg3p9VKxgZ/aZk/m5RD7J0djP2H7hkUemuPwsYz8OWsUYCZi6lIA4dez+bFhbNP/
+         lR3lIInAYmoCggTUKPdptLvTnKmyal9dKt73Zt819fc643YmOjokOlhcCuBjHFNCT9RU
+         ipig==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1751140917; x=1751745717;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=rCb37RSYZzDO3GN3ihbvCvxF6ZjiXzcFRXh0BRgUocI=;
+        b=ShU9/JE/1lfqHkYA3G+8BbqBTwfrtQQbq9zSviPeF3a8F7fVYUygd5n83+Oh1mi3Rx
+         2cmZva8OFuI7hdSz+CPDf3Fgzo65GrmzYAskVmXtM/cG/Wy8xuPrM+m1AHOYDeP0Xknr
+         acdtN6UXudJ+PH5wl1do7BO87nCgeq6oqWwO4oHnXnMpA9zXM1A5vqBbCwYvULV0b/4E
+         7Wvai6FinuzTJUUO3GVtW/X7OfxLaGfAv4OgOWtwVmTEmyZgkU/tadtv07tyVLKo8w/H
+         QMamzfvCzAFpnOmUywabFG5f6cHEIk/thbN3ZXDrj8qDRUWB4FOGPpaEEknC10gOkKG4
+         fsvg==
+X-Forwarded-Encrypted: i=1; AJvYcCXbDJl8Ptq220o3Qz+8N+WEhWt9Qa7GDkqnSfc3oWCtEaLMt/WxlZs1uWuatyjji69rwl1AZYPuD95c@vger.kernel.org
+X-Gm-Message-State: AOJu0YyI2ZYq1x2nWXsoQrsa+mcdLVyunL7GygjtlbEVKbh81D368tUf
+	w1FioHVwiSFCo3KrCCBsH/GIy/xaj7NcZa8msFPuSwAI2umG2jTZn4F8A+H/r8XEkno=
+X-Gm-Gg: ASbGnctaZkKaXJeMC0C1+pZa1KmVLG6qXflKhaXkERQnYeaY/eDuT4CWVUNTdWzwuf7
+	hM4Twz1QSukdlexXLrci8a21upI1wGGBNsAnbdLD1JhIGqXyqKtNRlT/c9GlX31iw+BRGLvmi29
+	64crwLeYp6vbqNeQhfNVMjbY5RD/sqpr3fDmbezxUou8HmcudSOB0hIbdKvx8wxXThxa1qLZQzv
+	klN8Yg3vXJW8AUPe5CvS2te5XAYdgs/IfYY6gox25nQ/kbDdHC0oKAc8G9uqau3O+doKsp56KUI
+	Ci3dIa/tLBhmpE4xCqBCCHc5YofAKM4LMpJfxVUE98mmubypSD0wvBanFbenFGidvcC3yQ1P0oD
+	uH04cALpvcZnAlOb6rLgtVA==
+X-Google-Smtp-Source: AGHT+IFJDLrx7ywjg4S4bUF/qUoRM9GFUNFWqz+Q59e4xQXUhehdQBrs0a8xNAd+1AuhXOTd7j4eRg==
+X-Received: by 2002:a17:903:2ecd:b0:236:9d66:ff24 with SMTP id d9443c01a7336-23ac3dec4a2mr106216265ad.8.1751140916690;
+        Sat, 28 Jun 2025 13:01:56 -0700 (PDT)
+Received: from dev-linux (syn-076-088-115-008.res.spectrum.com. [76.88.115.8])
+        by smtp.gmail.com with ESMTPSA id d9443c01a7336-23acb2f17f5sm46210995ad.62.2025.06.28.13.01.55
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Sat, 28 Jun 2025 13:01:56 -0700 (PDT)
+Date: Sat, 28 Jun 2025 13:01:53 -0700
+From: Sukrut Bellary <sbellary@baylibre.com>
+To: Jonathan Cameron <jic23@kernel.org>
+Cc: David Lechner <dlechner@baylibre.com>, Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Matti Vaittinen <mazziesaccount@gmail.com>,
+	Nuno =?utf-8?B?U8Oh?= <nuno.sa@analog.com>,
+	Andy Shevchenko <andy@kernel.org>,
+	Angelo Compagnucci <angelo.compagnucci@gmail.com>,
+	Nishanth Menon <nm@ti.com>, linux-iio@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v4 2/5] iio: adc: ti-adc128s052: Use shift and realbits
+Message-ID: <aGBKMcZGYOcXmKdB@dev-linux>
+References: <20250614091504.575685-1-sbellary@baylibre.com>
+ <20250614091504.575685-3-sbellary@baylibre.com>
+ <20250614142743.23ee2203@jic23-huawei>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v5 1/9] rust: pwm: Add Kconfig and basic data structures
-From: Michal Wilczynski <m.wilczynski@samsung.com>
-To: =?UTF-8?Q?Uwe_Kleine-K=C3=B6nig?= <ukleinek@kernel.org>
-Cc: Miguel Ojeda <ojeda@kernel.org>, Alex Gaynor <alex.gaynor@gmail.com>,
-	Boqun Feng <boqun.feng@gmail.com>, Gary Guo <gary@garyguo.net>,
-	=?UTF-8?Q?Bj=C3=B6rn_Roy_Baron?= <bjorn3_gh@protonmail.com>, Andreas
-	Hindborg <a.hindborg@kernel.org>, Alice Ryhl <aliceryhl@google.com>, Trevor
-	Gross <tmgross@umich.edu>, Danilo Krummrich <dakr@kernel.org>, Drew Fustini
-	<drew@pdp7.com>, Guo Ren <guoren@kernel.org>, Fu Wei <wefu@redhat.com>, Rob
-	Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor
-	Dooley <conor+dt@kernel.org>, Paul Walmsley <paul.walmsley@sifive.com>,
-	Palmer Dabbelt <palmer@dabbelt.com>, Albert Ou <aou@eecs.berkeley.edu>,
-	Alexandre Ghiti <alex@ghiti.fr>, Marek Szyprowski
-	<m.szyprowski@samsung.com>, Benno Lossin <lossin@kernel.org>, Michael
-	Turquette <mturquette@baylibre.com>, Stephen Boyd <sboyd@kernel.org>,
-	linux-kernel@vger.kernel.org, linux-pwm@vger.kernel.org,
-	rust-for-linux@vger.kernel.org, linux-riscv@lists.infradead.org,
-	devicetree@vger.kernel.org, linux-clk@vger.kernel.org
-Content-Language: en-US
-In-Reply-To: <c127e368-8c1f-4299-b222-a105940ac34e@samsung.com>
-Content-Transfer-Encoding: 8bit
-X-CMS-MailID: 20250628194720eucas1p14af2771ea2617fb8e46730caff1f8707
-X-Msg-Generator: CA
-Content-Type: text/plain; charset="utf-8"
-X-RootMTR: 20250623180858eucas1p1815f6d6815b1c715baad94810cefacd5
-X-EPHeader: CA
-X-CMS-RootMailID: 20250623180858eucas1p1815f6d6815b1c715baad94810cefacd5
-References: <20250623-rust-next-pwm-working-fan-for-sending-v5-0-0ca23747c23e@samsung.com>
-	<CGME20250623180858eucas1p1815f6d6815b1c715baad94810cefacd5@eucas1p1.samsung.com>
-	<20250623-rust-next-pwm-working-fan-for-sending-v5-1-0ca23747c23e@samsung.com>
-	<q7sz7uci5vnyc24laqzs56vgt4i2jamb3ifyxkqom6qcml5kkv@642prvwxjkxc>
-	<c127e368-8c1f-4299-b222-a105940ac34e@samsung.com>
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20250614142743.23ee2203@jic23-huawei>
 
+On Sat, Jun 14, 2025 at 02:27:43PM +0100, Jonathan Cameron wrote:
+> On Sat, 14 Jun 2025 02:15:01 -0700
+> Sukrut Bellary <sbellary@baylibre.com> wrote:
+> 
+> > This adcxx communicates with a host processor via an SPI/Microwire Bus
+> > interface. The device family responds with 12-bit data, of which the LSB bits
+> > are transmitted by the lower resolution devices as 0. The unavailable bits are
+> > 0 in LSB. Shift is calculated per resolution and used in scaling and raw data
+> > read.
+> > 
+> > Create a separate structure for each device type instead of an array.
+> > These changes help to reuse the driver to support the family of devices with
+> > name ADC<bb><c>S<sss>, where
+> > * bb is the resolution in number of bits (8, 10, 12)
+> > * c is the number of channels (1, 2, 4, 8)
+> > * sss is the maximum conversion speed (021 for 200 kSPS, 051 for 500 kSPS
+> > and 101 for 1 MSPS)
+> > 
+> > Complete datasheets are available at TI's website here:
+> > https://www.ti.com/lit/ds/symlink/adc<bb><c>s<sss>.pdf
+> > 
+> > Co-developed-by: Nishanth Menon <nm@ti.com>
+> > Signed-off-by: Nishanth Menon <nm@ti.com>
+> > Signed-off-by: Sukrut Bellary <sbellary@baylibre.com>
+> > ---
+> >  drivers/iio/adc/ti-adc128s052.c | 115 ++++++++++++++++++--------------
+> >  1 file changed, 66 insertions(+), 49 deletions(-)
+> > 
+> > diff --git a/drivers/iio/adc/ti-adc128s052.c b/drivers/iio/adc/ti-adc128s052.c
+> > index 1b46a8155803..2b206745e53d 100644
+> > --- a/drivers/iio/adc/ti-adc128s052.c
+> > +++ b/drivers/iio/adc/ti-adc128s052.c
+> > @@ -41,13 +41,14 @@ struct adc128 {
+> >  	} __aligned(IIO_DMA_MINALIGN);
+> >  };
+> >  
+> > -static int adc128_adc_conversion(struct adc128 *adc, u8 channel)
+> > +static int adc128_adc_conversion(struct adc128 *adc,
+> > +				 struct iio_chan_spec const *channel)
+> >  {
+> >  	int ret;
+> >  
+> >  	guard(mutex)(&adc->lock);
+> >  
+> > -	adc->buffer[0] = channel << 3;
+> > +	adc->buffer[0] = channel->channel << 3;
+> >  	adc->buffer[1] = 0;
+> >  
+> >  	ret = spi_write(adc->spi, &adc->buffer, sizeof(adc->buffer));
+> > @@ -58,7 +59,10 @@ static int adc128_adc_conversion(struct adc128 *adc, u8 channel)
+> >  	if (ret < 0)
+> >  		return ret;
+> >  
+> > -	return be16_to_cpu(adc->buffer16) & 0xFFF;
+> > +	ret = (be16_to_cpu(adc->buffer16) >> channel->scan_type.shift) &
+> > +	       GENMASK(channel->scan_type.realbits - 1, 0);
+> > +
+> Even though it is a bit long I'd go with
+> 
+> 	return (be16_to_cpu(adc->buffer16) >> channel->scan_type.shift) &
+> 		GENMASK();
+>
+Thanks for the review.
+I will fix this in v5.
 
+> > +	return ret;
+> >  }
+> >  
+> >  static int adc128_read_raw(struct iio_dev *indio_dev,
+> > @@ -71,7 +75,7 @@ static int adc128_read_raw(struct iio_dev *indio_dev,
+> >  	switch (mask) {
+> >  	case IIO_CHAN_INFO_RAW:
+> >  
+> > -		ret = adc128_adc_conversion(adc, channel->channel);
+> > +		ret = adc128_adc_conversion(adc, channel);
+> >  		if (ret < 0)
+> >  			return ret;
+> >  
+> > @@ -81,7 +85,7 @@ static int adc128_read_raw(struct iio_dev *indio_dev,
+> >  	case IIO_CHAN_INFO_SCALE:
+> >  
+> >  		*val = adc->vref_mv;
+> > -		*val2 = 12;
+> > +		*val2 = channel->scan_type.realbits;
+> >  		return IIO_VAL_FRACTIONAL_LOG2;
+> >  
+> >  	default:
+> > @@ -90,15 +94,24 @@ static int adc128_read_raw(struct iio_dev *indio_dev,
+> >  
+> >  }
+> >  
+> > -#define ADC128_VOLTAGE_CHANNEL(num)	\
+> > -	{ \
+> > -		.type = IIO_VOLTAGE, \
+> > -		.indexed = 1, \
+> > -		.channel = (num), \
+> > -		.info_mask_separate = BIT(IIO_CHAN_INFO_RAW), \
+> > -		.info_mask_shared_by_type = BIT(IIO_CHAN_INFO_SCALE) \
+> > +#define _ADC128_VOLTAGE_CHANNEL(num, real_bits)				\
+> > +	{								\
+> 
+> I would minimise the churn and stick to existing style of one space then \
+> I don't think we have any specific style guidance around this.
+>
+I will fix this in v5.
 
-On 6/28/25 16:38, Michal Wilczynski wrote:
+> > +		.type = IIO_VOLTAGE,					\
+> > +		.indexed = 1,						\
+> > +		.channel = (num),					\
+> > +		.info_mask_separate = BIT(IIO_CHAN_INFO_RAW),		\
+> > +		.info_mask_shared_by_type = BIT(IIO_CHAN_INFO_SCALE),	\
+> > +		.scan_index = (num),					\
+> > +		.scan_type = {						\
+> > +			.sign = 'u',					\
+> > +			.realbits = (real_bits),			\
+> > +			.storagebits = 16,				\
+> > +			.shift = (12 - real_bits),			\
+> > +		},							\
+> >  	}
+> >  
+> > +#define ADC128_VOLTAGE_CHANNEL(num) _ADC128_VOLTAGE_CHANNEL(num, 12)
 > 
-> 
-> On 6/27/25 17:10, Uwe Kleine-König wrote:
->> On Mon, Jun 23, 2025 at 08:08:49PM +0200, Michal Wilczynski wrote:
->>> Introduce the foundational support for PWM abstractions in Rust.
->>>
->>> This commit adds the `RUST_PWM_ABSTRACTIONS` Kconfig option to enable
->>> the feature, along with the necessary build-system support and C
->>> helpers.
->>>
->>> It also introduces the first set of safe wrappers for the PWM
->>> subsystem, covering the basic data carrying C structs and enums:
->>> - `Polarity`: A safe wrapper for `enum pwm_polarity`.
->>> - `Waveform`: A wrapper for `struct pwm_waveform`.
->>> - `Args`: A wrapper for `struct pwm_args`.
->>> - `State`: A wrapper for `struct pwm_state`.
->>>
->>> These types provide memory safe, idiomatic Rust representations of the
->>> core PWM data structures and form the building blocks for the
->>> abstractions that will follow.
->>>
->>> Signed-off-by: Michal Wilczynski <m.wilczynski@samsung.com>
->>> ---
->>>  MAINTAINERS                     |   6 ++
->>>  drivers/pwm/Kconfig             |  13 +++
->>>  rust/bindings/bindings_helper.h |   1 +
->>>  rust/helpers/helpers.c          |   1 +
->>>  rust/helpers/pwm.c              |  20 ++++
->>>  rust/kernel/lib.rs              |   2 +
->>>  rust/kernel/pwm.rs              | 198 ++++++++++++++++++++++++++++++++++++++++
->>>  7 files changed, 241 insertions(+)
->>>
->>> diff --git a/MAINTAINERS b/MAINTAINERS
->>> index 0c1d245bf7b84f8a78b811e0c9c5a3edc09edc22..a575622454a2ef57ce055c8a8c4765fa4fddc490 100644
->>> --- a/MAINTAINERS
->>> +++ b/MAINTAINERS
->>> @@ -20073,6 +20073,12 @@ F:	include/linux/pwm.h
->>>  F:	include/linux/pwm_backlight.h
->>>  K:	pwm_(config|apply_might_sleep|apply_atomic|ops)
->>>  
->>> +PWM SUBSYSTEM BINDINGS [RUST]
->>> +M:	Michal Wilczynski <m.wilczynski@samsung.com>
->>> +S:	Maintained
->>> +F:	rust/helpers/pwm.c
->>> +F:	rust/kernel/pwm.rs
->>> +
->>>  PXA GPIO DRIVER
->>>  M:	Robert Jarzmik <robert.jarzmik@free.fr>
->>>  L:	linux-gpio@vger.kernel.org
->>> diff --git a/drivers/pwm/Kconfig b/drivers/pwm/Kconfig
->>> index d9bcd1e8413eaed1602d6686873e263767c58f5f..cfddeae0eab3523f04f361fb41ccd1345c0c937b 100644
->>> --- a/drivers/pwm/Kconfig
->>> +++ b/drivers/pwm/Kconfig
->>> @@ -790,4 +790,17 @@ config PWM_XILINX
->>>  	  To compile this driver as a module, choose M here: the module
->>>  	  will be called pwm-xilinx.
->>>  
->>> + config RUST_PWM_ABSTRACTIONS
->>> +	bool "Rust PWM abstractions support"
->>> +	depends on RUST
->>> +	depends on PWM=y
->>
->> Currently CONFIG_PWM is a bool, so it cannot be =m. But I considered
->> making PWM a tristate variable. How would that interfere with Rust
->> support?
->>
->>> +	help
->>> +	  This option enables the safe Rust abstraction layer for the PWM
->>> +	  subsystem. It provides idiomatic wrappers and traits necessary for
->>> +	  writing PWM controller drivers in Rust.
->>> +
->>> +	  The abstractions handle resource management (like memory and reference
->>> +	  counting) and provide safe interfaces to the underlying C core,
->>> +	  allowing driver logic to be written in safe Rust.
->>> +
->>>  endif
->>> diff --git a/rust/bindings/bindings_helper.h b/rust/bindings/bindings_helper.h
->>> index 693cdd01f9290fa01375cf78cac0e5a90df74c6c..6fe7dd529577952bf7adb4fe0526b0d5fbd6f3bd 100644
->>> --- a/rust/bindings/bindings_helper.h
->>> +++ b/rust/bindings/bindings_helper.h
->>> @@ -64,6 +64,7 @@
->>>  #include <linux/pm_opp.h>
->>>  #include <linux/poll.h>
->>>  #include <linux/property.h>
->>> +#include <linux/pwm.h>
->>>  #include <linux/refcount.h>
->>>  #include <linux/sched.h>
->>>  #include <linux/security.h>
->>> diff --git a/rust/helpers/helpers.c b/rust/helpers/helpers.c
->>> index 16fa9bca5949b85e8d4cdcfe8e6886124f72d8d8..60879e6d794ce0f87e39caafc5495bf5e8acf8f0 100644
->>> --- a/rust/helpers/helpers.c
->>> +++ b/rust/helpers/helpers.c
->>> @@ -31,6 +31,7 @@
->>>  #include "platform.c"
->>>  #include "pci.c"
->>>  #include "pid_namespace.c"
->>> +#include "pwm.c"
->>>  #include "rbtree.c"
->>>  #include "rcu.c"
->>>  #include "refcount.c"
->>> diff --git a/rust/helpers/pwm.c b/rust/helpers/pwm.c
->>> new file mode 100644
->>> index 0000000000000000000000000000000000000000..d75c588863685d3990b525bb1b84aa4bc35ac397
->>> --- /dev/null
->>> +++ b/rust/helpers/pwm.c
->>> @@ -0,0 +1,20 @@
->>> +// SPDX-License-Identifier: GPL-2.0
->>> +// Copyright (c) 2025 Samsung Electronics Co., Ltd.
->>> +// Author: Michal Wilczynski <m.wilczynski@samsung.com>
->>> +
->>> +#include <linux/pwm.h>
->>> +
->>> +struct device *rust_helper_pwmchip_parent(const struct pwm_chip *chip)
->>> +{
->>> +	return pwmchip_parent(chip);
->>> +}
->>> +
->>> +void *rust_helper_pwmchip_get_drvdata(struct pwm_chip *chip)
->>> +{
->>> +	return pwmchip_get_drvdata(chip);
->>> +}
->>> +
->>> +void rust_helper_pwmchip_set_drvdata(struct pwm_chip *chip, void *data)
->>> +{
->>> +	pwmchip_set_drvdata(chip, data);
->>> +}
->>> diff --git a/rust/kernel/lib.rs b/rust/kernel/lib.rs
->>> index 6b4774b2b1c37f4da1866e993be6230bc6715841..ce1d08b14e456905dbe7b625bbb8ca8b08deae2a 100644
->>> --- a/rust/kernel/lib.rs
->>> +++ b/rust/kernel/lib.rs
->>> @@ -105,6 +105,8 @@
->>>  pub mod seq_file;
->>>  pub mod sizes;
->>>  mod static_assert;
->>> +#[cfg(CONFIG_RUST_PWM_ABSTRACTIONS)]
->>> +pub mod pwm;
->>>  #[doc(hidden)]
->>>  pub mod std_vendor;
->>>  pub mod str;
->>> diff --git a/rust/kernel/pwm.rs b/rust/kernel/pwm.rs
->>> new file mode 100644
->>> index 0000000000000000000000000000000000000000..ed681b228c414e7ae8bf80ca649ad497c9dc4ec3
->>> --- /dev/null
->>> +++ b/rust/kernel/pwm.rs
->>> @@ -0,0 +1,198 @@
->>> +// SPDX-License-Identifier: GPL-2.0
->>> +// Copyright (c) 2025 Samsung Electronics Co., Ltd.
->>> +// Author: Michal Wilczynski <m.wilczynski@samsung.com>
->>> +
->>> +//! PWM subsystem abstractions.
->>> +//!
->>> +//! C header: [`include/linux/pwm.h`](srctree/include/linux/pwm.h).
->>> +
->>> +use crate::{
->>> +    bindings,
->>> +    prelude::*,
->>> +    types::Opaque,
->>> +};
->>> +use core::convert::TryFrom;
->>> +
->>> +/// Maximum size for the hardware-specific waveform representation buffer.
->>> +///
->>> +/// From C: `#define WFHWSIZE 20`
->>> +pub const WFHW_MAX_SIZE: usize = 20;
->>
->> Can we somehow enforce that this doesn't diverge if the C define is
->> increased?
-> 
-> You are absolutely right. The hardcoded value is a maintenance risk. The
-> #define is in core.c, so bindgen cannot see it.
-> 
-> I can address this by submitting a patch to move the #define WFHWSIZE to
-> include/linux/pwm.h. This will make it part of the public API, allow
-> bindgen to generate a binding for it, and ensure the Rust code can never
-> diverge. Is this fine ?
-> 
->>
->>> +/// PWM polarity. Mirrors [`enum pwm_polarity`](srctree/include/linux/pwm.h).
->>> +#[derive(Copy, Clone, Debug, PartialEq, Eq)]
->>> +pub enum Polarity {
->>> +    /// Normal polarity (duty cycle defines the high period of the signal).
->>> +    Normal,
->>> +
->>> +    /// Inversed polarity (duty cycle defines the low period of the signal).
->>> +    Inversed,
->>> +}
->>> +
->>> +impl TryFrom<bindings::pwm_polarity> for Polarity {
->>> +    type Error = Error;
->>> +
->>> +    fn try_from(polarity: bindings::pwm_polarity) -> Result<Self, Error> {
->>> +        match polarity {
->>> +            bindings::pwm_polarity_PWM_POLARITY_NORMAL => Ok(Polarity::Normal),
->>> +            bindings::pwm_polarity_PWM_POLARITY_INVERSED => Ok(Polarity::Inversed),
->>> +            _ => Err(EINVAL),
->>> +        }
->>> +    }
->>> +}
->>> +
->>> +impl From<Polarity> for bindings::pwm_polarity {
->>> +    fn from(polarity: Polarity) -> Self {
->>> +        match polarity {
->>> +            Polarity::Normal => bindings::pwm_polarity_PWM_POLARITY_NORMAL,
->>> +            Polarity::Inversed => bindings::pwm_polarity_PWM_POLARITY_INVERSED,
->>> +        }
->>> +    }
->>> +}
->>> +
->>> +/// Represents a PWM waveform configuration.
->>> +/// Mirrors struct [`struct pwm_waveform`](srctree/include/linux/pwm.h).
->>> +#[derive(Copy, Clone, Debug, Default, PartialEq, Eq)]
->>> +pub struct Waveform {
->>> +    /// Total duration of one complete PWM cycle, in nanoseconds.
->>> +    pub period_length_ns: u64,
->>> +
->>> +    /// Duty-cycle active time, in nanoseconds.
->>> +    ///
->>> +    /// For a typical normal polarity configuration (active-high) this is the
->>> +    /// high time of the signal.
->>> +    pub duty_length_ns: u64,
->>> +
->>> +    /// Duty-cycle start offset, in nanoseconds.
->>> +    ///
->>> +    /// Delay from the beginning of the period to the first active edge.
->>> +    /// In most simple PWM setups this is `0`, so the duty cycle starts
->>> +    /// immediately at each period’s start.
->>> +    pub duty_offset_ns: u64,
->>> +}
->>> +
->>> +impl From<bindings::pwm_waveform> for Waveform {
->>> +    fn from(wf: bindings::pwm_waveform) -> Self {
->>> +        Waveform {
->>> +            period_length_ns: wf.period_length_ns,
->>> +            duty_length_ns: wf.duty_length_ns,
->>> +            duty_offset_ns: wf.duty_offset_ns,
->>> +        }
->>> +    }
->>> +}
->>> +
->>> +impl From<Waveform> for bindings::pwm_waveform {
->>> +    fn from(wf: Waveform) -> Self {
->>> +        bindings::pwm_waveform {
->>> +            period_length_ns: wf.period_length_ns,
->>> +            duty_length_ns: wf.duty_length_ns,
->>> +            duty_offset_ns: wf.duty_offset_ns,
->>> +        }
->>> +    }
->>> +}
->>> +
->>> +/// Wrapper for board-dependent PWM arguments [`struct pwm_args`](srctree/include/linux/pwm.h).
->>> +#[repr(transparent)]
->>> +pub struct Args(Opaque<bindings::pwm_args>);
->>> +
->>> +impl Args {
->>> +    /// Creates an `Args` wrapper from a C struct pointer.
->>> +    ///
->>> +    /// # Safety
->>> +    ///
->>> +    /// The caller must ensure that `c_args_ptr` is a valid, non-null pointer
->>> +    /// to `bindings::pwm_args` and that the pointed-to data is valid
->>> +    /// for the duration of this function call (as data is copied).
->>> +    unsafe fn from_c_ptr(c_args_ptr: *const bindings::pwm_args) -> Self {
->>> +        // SAFETY: Caller guarantees `c_args_ptr` is valid. We dereference it to copy.
->>> +        Args(Opaque::new(unsafe { *c_args_ptr }))
->>> +    }
->>> +
->>> +    /// Returns the period of the PWM signal in nanoseconds.
->>> +    pub fn period(&self) -> u64 {
->>> +        // SAFETY: `self.0.get()` returns a pointer to the `bindings::pwm_args`
->>> +        // managed by the `Opaque` wrapper. This pointer is guaranteed to be
->>> +        // valid and aligned for the lifetime of `self` because `Opaque` owns a copy.
->>> +        unsafe { (*self.0.get()).period }
->>> +    }
->>> +
->>> +    /// Returns the polarity of the PWM signal.
->>> +    pub fn polarity(&self) -> Result<Polarity, Error> {
->>> +        // SAFETY: `self.0.get()` returns a pointer to the `bindings::pwm_args`
->>> +        // managed by the `Opaque` wrapper. This pointer is guaranteed to be
->>> +        // valid and aligned for the lifetime of `self`.
->>> +        let raw_polarity = unsafe { (*self.0.get()).polarity };
->>> +        Polarity::try_from(raw_polarity)
->>> +    }
->>> +}
->>> +
->>> +/// Wrapper for PWM state [`struct pwm_state`](srctree/include/linux/pwm.h).
->>> +#[repr(transparent)]
->>> +pub struct State(bindings::pwm_state);
->>> +
->>> +impl Default for State {
->>> +    fn default() -> Self {
->>> +        Self::new()
->>> +    }
->>> +}
->>> +
->>> +impl State {
->>> +    /// Creates a new zeroed `State`.
->>> +    pub fn new() -> Self {
->>> +        State(bindings::pwm_state::default())
->>> +    }
->>> +
->>> +    /// Creates a `State` wrapper by taking ownership of a C `pwm_state` value.
->>> +    pub(crate) fn from_c(c_state: bindings::pwm_state) -> Self {
->>> +        State(c_state)
->>> +    }
->>> +
->>> +    /// Gets the period of the PWM signal in nanoseconds.
->>> +    pub fn period(&self) -> u64 {
->>> +        self.0.period
->>> +    }
->>> +
->>> +    /// Sets the period of the PWM signal in nanoseconds.
->>> +    pub fn set_period(&mut self, period_ns: u64) {
->>> +        self.0.period = period_ns;
->>> +    }
->>> +
->>> +    /// Gets the duty cycle of the PWM signal in nanoseconds.
->>> +    pub fn duty_cycle(&self) -> u64 {
->>> +        self.0.duty_cycle
->>> +    }
->>> +
->>> +    /// Sets the duty cycle of the PWM signal in nanoseconds.
->>> +    pub fn set_duty_cycle(&mut self, duty_ns: u64) {
->>> +        self.0.duty_cycle = duty_ns;
->>> +    }
->>> +
->>> +    /// Returns `true` if the PWM signal is enabled.
->>> +    pub fn enabled(&self) -> bool {
->>> +        self.0.enabled
->>> +    }
->>> +
->>> +    /// Sets the enabled state of the PWM signal.
->>> +    pub fn set_enabled(&mut self, enabled: bool) {
->>> +        self.0.enabled = enabled;
->>> +    }
->>> +
->>> +    /// Gets the polarity of the PWM signal.
->>> +    pub fn polarity(&self) -> Result<Polarity, Error> {
->>> +        Polarity::try_from(self.0.polarity)
->>> +    }
->>> +
->>> +    /// Sets the polarity of the PWM signal.
->>> +    pub fn set_polarity(&mut self, polarity: Polarity) {
->>> +        self.0.polarity = polarity.into();
->>> +    }
->>
->> Please don't expose these non-atomic callbacks. pwm_disable() would be
->> fine.
+> I wonder if it would be clearer to just have the 12 explicit in each entry
+> and skip this two levels of macro thing?
+>
+Do you mean to pass realbits to
+ADC128_VOLTAGE_CHANNEL/_ADC128_VOLTAGE_CHANNEL as e.g.,
 
-Hmm, I've just realized that without those setters it would most likely
-impossible to correctly implement the get_state callback. Shall I keep
-them ? The meaning of those setters is to update the State struct, not
-change polarity of the running PWM channel
+static const struct iio_chan_spec adc122s021_channels[] = {
+        ADC128_VOLTAGE_CHANNEL(0, 12),
+        ADC128_VOLTAGE_CHANNEL(1, 12),
+};
 
->>
->> Otherwise I'd prefer if pwm_set_waveform_might_sleep() is the API
->> exposed to/by Rust.
-> 
-> 
-> OK, I'll remove all the setters from the State, while will keep the
-> getters, as they would be useful in apply callbacks. Will implement
-> additional functions for Device i.e set_waveform, round_waveform and
-> get_waveform, and the new enum to expose the result of the
-> round_waveform more idiomatically.
-> 
-> /// Describes the outcome of a `round_waveform` operation.
-> #[derive(Debug, Clone, Copy, PartialEq, Eq)]
-> pub enum RoundingOutcome {
->     /// The requested waveform was achievable exactly or by rounding values down.
->     ExactOrRoundedDown,
-> 
->     /// The requested waveform could only be achieved by rounding up.
->     RoundedUp,
-> }
-> 
->>
->>> +    /// Returns `true` if the PWM signal is configured for power usage hint.
->>> +    pub fn usage_power(&self) -> bool {
->>> +        self.0.usage_power
->>> +    }
->>> +
->>> +    /// Sets the power usage hint for the PWM signal.
->>> +    pub fn set_usage_power(&mut self, usage_power: bool) {
->>> +        self.0.usage_power = usage_power;
->>> +    }
->>
->> I would prefer to not expose usage_power, too.
->>
->>> +}
->>
->> Best regards
->> Uwe
-> 
-> Best regards,
+I think we added 2nd level macros as ADC082_VOLTAGE_CHANNEL,
+ADC102_VOLTAGE_CHANNEL, etc., to have a visual distinction for a different
+part nos.
+But I am ok if you prefer ADC128_VOLTAGE_CHANNEL with a second parameter
+as real_bits.
 
-Best regards,
--- 
-Michal Wilczynski <m.wilczynski@samsung.com>
+> > +
+> >  static const struct iio_chan_spec adc128s052_channels[] = {
+> >  	ADC128_VOLTAGE_CHANNEL(0),
+> >  	ADC128_VOLTAGE_CHANNEL(1),
+> > @@ -124,26 +137,30 @@ static const struct iio_chan_spec adc124s021_channels[] = {
+> >  
+> >  static const char * const bd79104_regulators[] = { "iovdd" };
+> >  
+> > -static const struct adc128_configuration adc128_config[] = {
+> > -	{
+> > -		.channels = adc128s052_channels,
+> > -		.num_channels = ARRAY_SIZE(adc128s052_channels),
+> > -		.refname = "vref",
+> > -	}, {
+> > -		.channels = adc122s021_channels,
+> > -		.num_channels = ARRAY_SIZE(adc122s021_channels),
+> > -		.refname = "vref",
+> > -	}, {
+> > -		.channels = adc124s021_channels,
+> > -		.num_channels = ARRAY_SIZE(adc124s021_channels),
+> > -		.refname = "vref",
+> > -	}, {
+> > -		.channels = adc128s052_channels,
+> > -		.num_channels = ARRAY_SIZE(adc128s052_channels),
+> > -		.refname = "vdd",
+> > -		.other_regulators = &bd79104_regulators,
+> > -		.num_other_regulators = 1,
+> > -	},
+> > +static const struct adc128_configuration adc122s021_config = {
+> > +	.channels = adc122s021_channels,
+> > +	.num_channels = ARRAY_SIZE(adc122s021_channels),
+> > +	.refname = "vref",
+> > +};
+> 
+> Ideal would be to have this as a precursor patch rather than adding complexity
+> to this one which is focused on the bits related stuff.
+> 
+> It's a good change to have but does make it harder to spot the main
+> content in here.
+> 
+>
+I will split this in v5.
+
+> > +
+> > +static const struct adc128_configuration adc124s021_config = {
+> > +	.channels = adc124s021_channels,
+> > +	.num_channels = ARRAY_SIZE(adc124s021_channels),
+> > +	.refname = "vref",
+> > +};
+> 
 
