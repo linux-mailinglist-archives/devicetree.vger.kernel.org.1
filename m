@@ -1,140 +1,124 @@
-Return-Path: <devicetree+bounces-190802-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-190803-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 86FDCAECAC3
-	for <lists+devicetree@lfdr.de>; Sun, 29 Jun 2025 01:30:41 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6745EAECAD5
+	for <lists+devicetree@lfdr.de>; Sun, 29 Jun 2025 02:33:35 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 24316189B311
-	for <lists+devicetree@lfdr.de>; Sat, 28 Jun 2025 23:30:55 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 0D857189A5B8
+	for <lists+devicetree@lfdr.de>; Sun, 29 Jun 2025 00:33:51 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7611B230BF6;
-	Sat, 28 Jun 2025 23:30:34 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 869F84A0C;
+	Sun, 29 Jun 2025 00:33:30 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b="eJMIj9kG"
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="nM06v3hO"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-oa1-f47.google.com (mail-oa1-f47.google.com [209.85.160.47])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.21])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 82E4B126C1E
-	for <devicetree@vger.kernel.org>; Sat, 28 Jun 2025 23:30:32 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.160.47
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A53E5625;
+	Sun, 29 Jun 2025 00:33:28 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.175.65.21
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1751153434; cv=none; b=hGlchdp8aT8Z43EpbHELomLo2DouBPyYzFouUSpIXzHX53vOBd4pXwFdXROj699tloJriDevYCrGTxVt3QFva+fuVZS0K1OmRi16chpK33oWjp08A9+sCEZjMbcI0fiZXOGPGumKFSAtbYgUWpt1GE5hHdYE/sIGTUXVqazQOkE=
+	t=1751157210; cv=none; b=FmjoU6cemjXbbVIwBmIHDQdAlUC5nb6xN+4SwHFDISCJxXUN14iUX7I+yuEYOYy+rmZthAMOBJZlKqPQ1b/0krVUt2nFhZ8U62A/qM/yKNleGD34KkKRrzmqcXoxf653xD++Qw4Mq7jOYVFzMcryZfTKIvAHwhQOOqUJyC3GcXs=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1751153434; c=relaxed/simple;
-	bh=0L3TcnOnAT37xurn4zHF7Uelnh1A1OIPxvlh7Hv5QGQ=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=eg0WNXg+Fu/FipeXk5GvknYsQGRJtrvVihMVVtQFfeVJoxcSOUaIGNAyJ9drXu4CFrfcUFbKsEjrP9P1qPF1BZHzB5vftCFy8K+ad1fF38gasE4/9Ba8pka/U222l6E4GdKF74tr+HPsGA8L6snHJU6enhydTkewQ/+akHFE4ok=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com; spf=pass smtp.mailfrom=baylibre.com; dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b=eJMIj9kG; arc=none smtp.client-ip=209.85.160.47
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=baylibre.com
-Received: by mail-oa1-f47.google.com with SMTP id 586e51a60fabf-2ebb468cbb4so929470fac.2
-        for <devicetree@vger.kernel.org>; Sat, 28 Jun 2025 16:30:32 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1751153431; x=1751758231; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=3LV2whTVcFBv8HGVSk50MOoWwYm/BUMUzIcy7LK/5Gk=;
-        b=eJMIj9kGY+TCzlzUxoZ9vT58J5vLtzhtCwnoVWwn+6IKmnb/QVg08tLzfh9y/rp1/2
-         Kwivh55qtslzt3hnv2QKN7Dx66w89ZV9FKjMQ3EFL0IpVAAzL3qht7hSpuuPZRh7hWco
-         BwUwulm/iZijHB61og4RFmUxP0M3SmJ3OFy24UM2LZS/fLXh3s/JAoojTAoGXZf3SC/X
-         YdfzUdEZa+Nb5bnKW/Ea4NdtjufBok7ESgfYpYel/CNQBDxh0yxKchin48Dk8YWQslTc
-         mROnDP+8iCOBggSrRghyoTr/eSAKebCBLExQWrZCB7VatLAUm8YP8I4aq4k0ckiAsneS
-         iXqQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1751153431; x=1751758231;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=3LV2whTVcFBv8HGVSk50MOoWwYm/BUMUzIcy7LK/5Gk=;
-        b=tt4hh4mD8YRLlqcVEDdoFuDLWlcKCL8sXdew1CevPZETG7totA4EIkMaaFK1SMI66c
-         z6S80bWaLhs6uurq4tmK2robBx8F3FVNNO/w9eZFQ4K2HIocbUjh5DDS39jZMDVkZ3hZ
-         94jChEzRQwe+lDX8ko5xB2MYV0uShSSnjX05PCvxj17kBQGcCKrAXHkarUic+z3yqr8i
-         a2uTnL+0JFsQsx6xwWmOZGpnUf7lSUIdt3kaATJp+UhrjRmEJEk6hCyWpe6vAXCfNMgJ
-         n1bZDBsG7tdo30FFZLSw/l5sga110lYEJVLs2nSbccwkzO4fuaIkHS3Wpjm68i7ECOBX
-         14mQ==
-X-Forwarded-Encrypted: i=1; AJvYcCWJABeGNygQJm/UTgZsICP/MppNffERr5eJUMOJM6ZR+t+bY2MOILKDs3980CVEMWUdeWtTf8iKII6o@vger.kernel.org
-X-Gm-Message-State: AOJu0YyMkedobgXqmOlbxrlE/Fln3Tde4hztM1+X7dhvMax9CJH88vlV
-	lOBh6EfexJxnrIlxnQvkAiIxR4GlAiqIhmZrf+HNEmvVl3OjG+mnZCgSUBfRl3pZWRs=
-X-Gm-Gg: ASbGncsul/TpNhZ+IHUmMJGpZ1RbYLFM2xv+hWg1ouvvR4qHOsaORLAJNJUX8KprjtJ
-	F6kfqL5Yb2oHPJOte7/DlGG2X7DXnyW5MRuGWOdTIub7N5HgCmABkqZrJBOmVDMwtbtJ/h40ddv
-	hq3qk8dUqhxs3XET1T4Z5VY3tkKG1D7uTOK738A7IgOcD/3oOAvI9OtB8fCnbW+4RNY3uqJr6JD
-	M0mDX9ha9dOz3DJYIZsUjNwBKWFGjJqGVy7X0mkpZU8njXbICAjhBOtQhBni3ia68Ysqx9AreJi
-	kzC/3vZVucchBuTxXaH5rvHDVAhL2ZtAqZlJ6vQ078hrVYuU6pkWcrhuCEie8giJwUDK6HYBMJj
-	tVN9VwoR0FUL1qxA+NsUVFfe1j/qLaKz36QvQBxE=
-X-Google-Smtp-Source: AGHT+IFPRb5c72fGGjzcl2TWNpxe5UqjFvHdpbDERh59UE43Z4EhY5vjoD630Wsnz6iYSlvBePYWyg==
-X-Received: by 2002:a05:6870:cd89:b0:2ea:7101:7dc1 with SMTP id 586e51a60fabf-2efed73119bmr5062597fac.33.1751153431549;
-        Sat, 28 Jun 2025 16:30:31 -0700 (PDT)
-Received: from ?IPV6:2600:8803:e7e4:1d00:3092:a48c:b0c6:cbf4? ([2600:8803:e7e4:1d00:3092:a48c:b0c6:cbf4])
-        by smtp.gmail.com with ESMTPSA id 586e51a60fabf-2efd50fa38asm1750229fac.40.2025.06.28.16.30.28
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sat, 28 Jun 2025 16:30:30 -0700 (PDT)
-Message-ID: <bd72b92e-bf8d-4fc2-84ae-4f9fd8b40c37@baylibre.com>
-Date: Sat, 28 Jun 2025 18:30:28 -0500
+	s=arc-20240116; t=1751157210; c=relaxed/simple;
+	bh=AolaRGjJTaifs7f9V7/iIwPTII8Eu6lCuQv6L5dV754=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=ZoML1cUfm72ni7qO09WQ8ghDg6gWs5a4v4qg65UOPbOKxycfNOkv245/SMo0UgelnTqKGh0X68xNpjg868vXDy8qnNjPc1sorcOl4QGcYl+iMyO6IWnCrljGDltyrtSwobr1dSEa0VnnGpiSJPG+hLnanQ/MMJP29/LZazbk6Ic=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=nM06v3hO; arc=none smtp.client-ip=198.175.65.21
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1751157209; x=1782693209;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=AolaRGjJTaifs7f9V7/iIwPTII8Eu6lCuQv6L5dV754=;
+  b=nM06v3hOqnJFk2/N2cSyPH1bA+dAGAZNA+yOXsyvRKDjiFIBS4XBhhZq
+   R9GNGlREilgpBiV9E17lOXmjUBJULD6ft9G7WAJSupS45GCoduBuKEmqp
+   PNCgwPHIgu1zJXVx9vqq4UIuLY8eKeaasTh2RySxplBFmhGf+YOeF/j4r
+   CO16dwz+jKzWxm9xhP1NrN1Pu/yI+U1lUl5EOpBgNaDaN69mpNlvD/tvC
+   zcffnzGypT9iHFh+BgK7whhm7eiXAkAj4D7oX7ixvNUs6lkbEJY83ZbeE
+   ghZMPm8XDqqn0romCiXDK1tEaFc7T0QUkw41/DbK//cjGei3ZTn4PoX1g
+   Q==;
+X-CSE-ConnectionGUID: C8WyjYqVSqaobJlASn6VxQ==
+X-CSE-MsgGUID: LAU1jmPJSKmuCNsUkqx0wA==
+X-IronPort-AV: E=McAfee;i="6800,10657,11478"; a="53286975"
+X-IronPort-AV: E=Sophos;i="6.16,274,1744095600"; 
+   d="scan'208";a="53286975"
+Received: from orviesa008.jf.intel.com ([10.64.159.148])
+  by orvoesa113.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 28 Jun 2025 17:33:28 -0700
+X-CSE-ConnectionGUID: XZi4Py13R+Ok+7qSxSkg8Q==
+X-CSE-MsgGUID: SiYl6Y9lSYOAL5Mz/TgZkA==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.16,274,1744095600"; 
+   d="scan'208";a="153598075"
+Received: from lkp-server01.sh.intel.com (HELO e8142ee1dce2) ([10.239.97.150])
+  by orviesa008.jf.intel.com with ESMTP; 28 Jun 2025 17:33:25 -0700
+Received: from kbuild by e8142ee1dce2 with local (Exim 4.96)
+	(envelope-from <lkp@intel.com>)
+	id 1uVfz0-000XXK-2l;
+	Sun, 29 Jun 2025 00:33:22 +0000
+Date: Sun, 29 Jun 2025 08:32:40 +0800
+From: kernel test robot <lkp@intel.com>
+To: Diederik de Haas <didi.debian@cknow.org>, Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Heiko Stuebner <heiko@sntech.de>
+Cc: llvm@lists.linux.dev, oe-kbuild-all@lists.linux.dev,
+	Dragan Simic <dsimic@manjaro.org>,
+	Quentin Schulz <quentin.schulz@cherry.de>,
+	Johan Jonker <jbx6244@gmail.com>, devicetree@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org,
+	Diederik de Haas <didi.debian@cknow.org>
+Subject: Re: [PATCH 2/8] arm64: dts: rockchip: Refactor DSI nodes on rk3399
+ boards
+Message-ID: <202506290852.bWro2lBe-lkp@intel.com>
+References: <20250627152645.740981-3-didi.debian@cknow.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v4 4/5] iio: adc: ti-adc128s052: Add lower resolution
- devices support
-To: Sukrut Bellary <sbellary@baylibre.com>,
- Andy Shevchenko <andy.shevchenko@gmail.com>
-Cc: Jonathan Cameron <jic23@kernel.org>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Matti Vaittinen <mazziesaccount@gmail.com>,
- =?UTF-8?Q?Nuno_S=C3=A1?= <nuno.sa@analog.com>,
- Andy Shevchenko <andy@kernel.org>,
- Angelo Compagnucci <angelo.compagnucci@gmail.com>, Nishanth Menon
- <nm@ti.com>, linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org
-References: <20250614091504.575685-1-sbellary@baylibre.com>
- <20250614091504.575685-5-sbellary@baylibre.com>
- <CAHp75Vf=zQ+pdo5V1fAq2qWEpdUfNfWdO+_iW0wETWSniXisyA@mail.gmail.com>
- <aGB2Fnv797Wrenza@dev-linux>
-Content-Language: en-US
-From: David Lechner <dlechner@baylibre.com>
-In-Reply-To: <aGB2Fnv797Wrenza@dev-linux>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20250627152645.740981-3-didi.debian@cknow.org>
 
-On 6/28/25 6:09 PM, Sukrut Bellary wrote:
-> On Sat, Jun 14, 2025 at 09:45:43PM +0300, Andy Shevchenko wrote:
->> On Sat, Jun 14, 2025 at 12:15 PM Sukrut Bellary <sbellary@baylibre.com> wrote:
->>>
->>> The adcxx communicates with a host processor via an SPI/Microwire Bus
->>> interface. The device family responds with 12-bit data, of which the LSB bits
->>> are transmitted by the lower resolution devices as 0.
->>> The unavailable bits are 0 in LSB.
->>> Shift is calculated per resolution and used in scaling and raw data read.
->>>
->>> Lets reuse the driver to support the family of devices with name
->>> ADC<bb><c>S<sss>, where
->>
->> I believe it's incorrect, i.e. it's something like ...S<ss><?>, where
->> <?> is something you need to clarify, and <ss> is definitely a speed
->> in kSPS.
->>
-> Thank you for the review.
-> I am not sure about the last s in <sss>.
-> It could be TI's silicon spins versioning.
-> I couldn't find any information about it in any of the datasheets.
-> I can drop the last s or mark it as <ssx> and specify the first two <ss> as
-> maximum speed.
-> 
-I have a hunch that the last digit has to do with pinout/number of
-power supplies. adc128s052 has two supplies V_A and V_D while the
-others only have V_A.
+Hi Diederik,
 
-If this sounds vaguely familiar, it is because it was discussed
-today in this thread [1] that Jonathan CC'ed you in. :-)
+kernel test robot noticed the following build errors:
 
-[1]: https://lore.kernel.org/linux-iio/20250628162910.1256b220@jic23-huawei/
+[auto build test ERROR on rockchip/for-next]
+[also build test ERROR on next-20250627]
+[cannot apply to robh/for-next krzk/for-next krzk-dt/for-next linus/master v6.16-rc3]
+[If your patch is applied to the wrong git tree, kindly drop us a note.
+And when submitting patch, we suggest to use '--base' as documented in
+https://git-scm.com/docs/git-format-patch#_base_tree_information]
 
+url:    https://github.com/intel-lab-lkp/linux/commits/Diederik-de-Haas/arm64-dts-rockchip-Refactor-DSI-nodes-on-px30-boards/20250627-233300
+base:   https://git.kernel.org/pub/scm/linux/kernel/git/mmind/linux-rockchip.git for-next
+patch link:    https://lore.kernel.org/r/20250627152645.740981-3-didi.debian%40cknow.org
+patch subject: [PATCH 2/8] arm64: dts: rockchip: Refactor DSI nodes on rk3399 boards
+config: arm64-randconfig-002-20250629 (https://download.01.org/0day-ci/archive/20250629/202506290852.bWro2lBe-lkp@intel.com/config)
+compiler: clang version 19.1.7 (https://github.com/llvm/llvm-project cd708029e0b2869e80abe31ddb175f7c35361f90)
+reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20250629/202506290852.bWro2lBe-lkp@intel.com/reproduce)
+
+If you fix the issue in a separate patch/commit (i.e. not just a new version of
+the same patch/commit), kindly add following tags
+| Reported-by: kernel test robot <lkp@intel.com>
+| Closes: https://lore.kernel.org/oe-kbuild-all/202506290852.bWro2lBe-lkp@intel.com/
+
+All errors (new ones prefixed by >>):
+
+>> Error: arch/arm64/boot/dts/rockchip/rk3399-rockpro64-screen.dtso:75.1-6 syntax error
+   FATAL ERROR: Unable to parse input tree
+
+-- 
+0-DAY CI Kernel Test Service
+https://github.com/intel/lkp-tests/wiki
 
