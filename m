@@ -1,120 +1,183 @@
-Return-Path: <devicetree+bounces-190847-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-190848-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 30F4BAECCF4
-	for <lists+devicetree@lfdr.de>; Sun, 29 Jun 2025 15:41:10 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id EF255AECE0A
+	for <lists+devicetree@lfdr.de>; Sun, 29 Jun 2025 16:47:19 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 44D1C3A803C
-	for <lists+devicetree@lfdr.de>; Sun, 29 Jun 2025 13:40:44 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id C5B471896B84
+	for <lists+devicetree@lfdr.de>; Sun, 29 Jun 2025 14:47:35 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D3B35221D98;
-	Sun, 29 Jun 2025 13:41:05 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=mailbox.org header.i=@mailbox.org header.b="GMDMXBJc";
-	dkim=pass (2048-bit key) header.d=mailbox.org header.i=@mailbox.org header.b="OOsSovNB"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0586922256C;
+	Sun, 29 Jun 2025 14:47:15 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mout-p-103.mailbox.org (mout-p-103.mailbox.org [80.241.56.161])
+Received: from pidgin.makrotopia.org (pidgin.makrotopia.org [185.142.180.65])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AA0601E412A;
-	Sun, 29 Jun 2025 13:41:03 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=80.241.56.161
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 206694437A;
+	Sun, 29 Jun 2025 14:47:12 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.142.180.65
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1751204465; cv=none; b=bw0kclK9601wosKde0vdtXhRXoVcyaMH9XtGpKeAjLqjDmVuvM71u9Id7pS4nMnfAkd+WJOWmAavSLQ6XcpW4lcXD7Ewdl77WswBmJrboL6C3wURYaLMs9tTta+yC/zTNQXdRHMYZGXWsYQaseQKfPbX18z1uZNK7M/lH/tz+aI=
+	t=1751208434; cv=none; b=RFeH/9IlAJA0Ccgu07xZxWVxUogjo2XLM/pvgX04U1wSMaM7jr1nKQfUFtAIV5WltM3WdIGll9j6BnF6Gifjcp88OH4lmKmMgcuq88dc5XdDfqsoWAZmIV4CKjCCn2SvD/LksZ8QpY+lRz+4x1G2CxQ2DB4NDn2KDwKMXyj89V8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1751204465; c=relaxed/simple;
-	bh=ofylXM0bNhc+0Hn0xsheBNV5v7fT13QC41IvHArub2U=;
-	h=Message-ID:Date:MIME-Version:Subject:To:References:From:
-	 In-Reply-To:Content-Type; b=fS4sfBpZsudRe2pbIVtfYz4cOzjRWlP2Tyy0GanqWPQu6rk6OpayjaOBcAmWJQLTo5pg5ubxXYW70v2h0pKLluXJsSNgNYCwDGg8iRzjOgbM8WcW3kwcWaT3OgoW9A9uWe/aFr0wdg20u3kjIfE0Y2fsiXCKNqboLfZCsHaBc/8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=mailbox.org; spf=pass smtp.mailfrom=mailbox.org; dkim=pass (2048-bit key) header.d=mailbox.org header.i=@mailbox.org header.b=GMDMXBJc; dkim=pass (2048-bit key) header.d=mailbox.org header.i=@mailbox.org header.b=OOsSovNB; arc=none smtp.client-ip=80.241.56.161
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=mailbox.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=mailbox.org
-Received: from smtp2.mailbox.org (smtp2.mailbox.org [10.196.197.2])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
-	(No client certificate requested)
-	by mout-p-103.mailbox.org (Postfix) with ESMTPS id 4bVVmm3fKHz9ssQ;
-	Sun, 29 Jun 2025 15:40:56 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=mailbox.org; s=mail20150812;
-	t=1751204456;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=cLaYRknvNSB2sQwEoSd6wEhEpGLT7/N8YCWa8FD45fU=;
-	b=GMDMXBJcxiLTbTv1/l69bTd2kUro3G4F7VjfiMnln3T2O5uXmNEFgOvIU1yph+1848uTvD
-	TYOZUaDHGgnqtGQ2qSbjeh/NInOUg2kLdGLAp6n86AR8rpdQz3lOxwQKaMd+LWDs7sXmt8
-	PUqeQG6GNDzykkWVHt9+jIIWSrhVO91A11VmFnRAF3VPOEw43yteq1o6aaOlk1sF9e9zSP
-	qKBKzUTiaaDc+q+uqbmkX9JVnUOTgwqG2mkfh3ZqD95UixqsxyYKA2I5cm224QoXMLfi2E
-	ZbbJJQ/ASdnTgF8efy46sDNoTOvdRbzkqUMdvgLz4sJMLEHQ6rbu7Y8vBWmPag==
-Message-ID: <917fedbb-06f3-49a7-8d80-bf6834de055a@mailbox.org>
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=mailbox.org; s=mail20150812;
-	t=1751204454;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=cLaYRknvNSB2sQwEoSd6wEhEpGLT7/N8YCWa8FD45fU=;
-	b=OOsSovNBiOVDZIXOC2LbKpQZYCY7J5yGHDmyBkHFyCaYUzXegwCgl6kghOhobIAYq8niq4
-	18IoD/JjRWJTmBaNqHhnDMpzgpFDt/pvQktxi//heHqOqTUxYTw7HZY+9sOkBL9cncK6l4
-	rIJRqhEL/tUK9zSOWRS8gjPlLwQrkfP/oIwoi/MGLffjpGHKlbtyo6Vs70ixyT+50gXzTD
-	utUvj0yL4PYkYQvAwgwvHx8ZYb55GsU5DAhZKERJ29GbSlcs9fJ7FDDgTN9CEjciHodE0t
-	YELQyxtvIOtPdF/bE0OF4gTVeKSjdd3g1m455PSSgJ3HcwdNAJHkk+4CFthO8Q==
-Date: Sun, 29 Jun 2025 15:40:52 +0200
+	s=arc-20240116; t=1751208434; c=relaxed/simple;
+	bh=KClsNYwfxeyKw0Nv6uUMfVDKlblzETmDZmLERrHHVgE=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=OB2ioMZBvbXpuOBi+zzWKXs+P4MZc/LTjYKyl8b6oueQJSMrdzpCaU5/mkLql/2mrPUggDeRK9EqcemtS2fGEi3xCgu35xkgQTcR2LJ82LHPS0hQK5j0Aes/ftWsUFJiBiQqlNOjk7hgzX06o7LcIJRj6GgmiQO8/xy7iy4w8jQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=makrotopia.org; spf=pass smtp.mailfrom=makrotopia.org; arc=none smtp.client-ip=185.142.180.65
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=makrotopia.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=makrotopia.org
+Received: from local
+	by pidgin.makrotopia.org with esmtpsa (TLS1.3:TLS_AES_256_GCM_SHA384:256)
+	 (Exim 4.98.2)
+	(envelope-from <daniel@makrotopia.org>)
+	id 1uVtJ6-000000001Bw-12Mh;
+	Sun, 29 Jun 2025 14:47:00 +0000
+Date: Sun, 29 Jun 2025 15:46:56 +0100
+From: Daniel Golle <daniel@makrotopia.org>
+To: Frank Wunderlich <linux@fw-web.de>
+Cc: MyungJoo Ham <myungjoo.ham@samsung.com>,
+	Kyungmin Park <kyungmin.park@samsung.com>,
+	Chanwoo Choi <cw00.choi@samsung.com>,
+	Georgi Djakov <djakov@kernel.org>, Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>, Andrew Lunn <andrew@lunn.ch>,
+	Vladimir Oltean <olteanv@gmail.com>,
+	"David S. Miller" <davem@davemloft.net>,
+	Eric Dumazet <edumazet@google.com>,
+	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
+	Matthias Brugger <matthias.bgg@gmail.com>,
+	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
+	Frank Wunderlich <frank-w@public-files.de>,
+	Johnson Wang <johnson.wang@mediatek.com>,
+	=?utf-8?B?QXLEsW7DpyDDnE5BTA==?= <arinc.unal@arinc9.com>,
+	Landen Chao <Landen.Chao@mediatek.com>,
+	DENG Qingfang <dqfext@gmail.com>,
+	Sean Wang <sean.wang@mediatek.com>,
+	Lorenzo Bianconi <lorenzo@kernel.org>, Felix Fietkau <nbd@nbd.name>,
+	linux-pm@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org, netdev@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	linux-mediatek@lists.infradead.org
+Subject: Re: [PATCH v7 07/14] arm64: dts: mediatek: mt7988: add basic
+ ethernet-nodes
+Message-ID: <aGFR4PJv0pdKdD94@makrotopia.org>
+References: <20250628165451.85884-1-linux@fw-web.de>
+ <20250628165451.85884-8-linux@fw-web.de>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Subject: Re: [PATCH 2/5] arm64: dts: renesas: sparrow-hawk: Add overlay for
- IMX219 on J1
-To: =?UTF-8?Q?Niklas_S=C3=B6derlund?=
- <niklas.soderlund+renesas@ragnatech.se>,
- Geert Uytterhoeven <geert+renesas@glider.be>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Marek Vasut <marek.vasut+renesas@mailbox.org>,
- linux-renesas-soc@vger.kernel.org, devicetree@vger.kernel.org
-References: <20250628215337.1688969-1-niklas.soderlund+renesas@ragnatech.se>
- <20250628215337.1688969-3-niklas.soderlund+renesas@ragnatech.se>
-Content-Language: en-US
-From: Marek Vasut <marek.vasut@mailbox.org>
-In-Reply-To: <20250628215337.1688969-3-niklas.soderlund+renesas@ragnatech.se>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
-X-MBO-RS-ID: 581c28c6208c7a9478e
-X-MBO-RS-META: ftq54k1q7pezt3h8kkumprpox95d3qh7
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20250628165451.85884-8-linux@fw-web.de>
 
-On 6/28/25 11:53 PM, Niklas Söderlund wrote:
-
-Hello Niklas,
-
-> +&{/} {
-> +	clk_cam_j1: clk_cam_j1 {
-> +		compatible = "fixed-clock";
-> +		#clock-cells = <0>;
-> +		clock-frequency = <24000000>;
-> +		status = "okay";
-> +	};
+On Sat, Jun 28, 2025 at 06:54:42PM +0200, Frank Wunderlich wrote:
+> From: Frank Wunderlich <frank-w@public-files.de>
+> 
+> Add basic ethernet related nodes.
+> 
+> Mac1+2 needs pcs (sgmii+usxgmii) to work correctly which will be linked
+> later when driver is merged.
+> 
+> Signed-off-by: Daniel Golle <daniel@makrotopia.org>
+> Signed-off-by: Frank Wunderlich <frank-w@public-files.de>
+> ---
+> v6:
+> - fix whitespace-errors for pdma irqs (spaces vs. tabs)
+> - move sram from eth reg to own sram node (needs CONFIG_SRAM)
+> 
+> v5:
+> - add reserved irqs and change names to fe0..fe3
+> - change rx-ringX to pdmaX to be closer to documentation
+> 
+> v4:
+> - comment for fixed-link on gmac0
+> - update 2g5 phy node
+>   - unit-name dec instead of hex to match reg property
+>   - move compatible before reg
+>   - drop phy-mode
+> - add interrupts for RSS
+> - add interrupt-names and drop reserved irqs for ethernet
+> - some reordering
+> - eth-reg and clock whitespace-fix based on angelos review
+> ---
+>  arch/arm64/boot/dts/mediatek/mt7988a.dtsi | 137 +++++++++++++++++++++-
+>  1 file changed, 134 insertions(+), 3 deletions(-)
+> 
+> diff --git a/arch/arm64/boot/dts/mediatek/mt7988a.dtsi b/arch/arm64/boot/dts/mediatek/mt7988a.dtsi
+> index 560ec86dbec0..cf765a6b1fa8 100644
+> --- a/arch/arm64/boot/dts/mediatek/mt7988a.dtsi
+> +++ b/arch/arm64/boot/dts/mediatek/mt7988a.dtsi
+> @@ -680,7 +680,28 @@ xphyu3port0: usb-phy@11e13000 {
+>  			};
+>  		};
+>  
+> -		clock-controller@11f40000 {
+> +		xfi_tphy0: phy@11f20000 {
+> +			compatible = "mediatek,mt7988-xfi-tphy";
+> +			reg = <0 0x11f20000 0 0x10000>;
+> +			clocks = <&xfi_pll CLK_XFIPLL_PLL_EN>,
+> +				 <&topckgen CLK_TOP_XFI_PHY_0_XTAL_SEL>;
+> +			clock-names = "xfipll", "topxtal";
+> +			resets = <&watchdog 14>;
+> +			mediatek,usxgmii-performance-errata;
+> +			#phy-cells = <0>;
+> +		};
 > +
-> +	/* Page 29 / CSI_IF_CN / J1 */
-> +	reg_cam_j1: reg_cam_j1 {
-> +		compatible = "regulator-fixed";
-> +		regulator-name = "reg_cam_j1";
-> +		enable-active-high;
-> +		status = "okay";
-> +		gpios = <&gpio0 1 GPIO_ACTIVE_HIGH>;
-> +	};
+> +		xfi_tphy1: phy@11f30000 {
+> +			compatible = "mediatek,mt7988-xfi-tphy";
+> +			reg = <0 0x11f30000 0 0x10000>;
+> +			clocks = <&xfi_pll CLK_XFIPLL_PLL_EN>,
+> +				 <&topckgen CLK_TOP_XFI_PHY_1_XTAL_SEL>;
+> +			clock-names = "xfipll", "topxtal";
+> +			resets = <&watchdog 15>;
+> +			#phy-cells = <0>;
+> +		};
 > +
-> +	reg_cam_j1_dummy: reg_cam_j1_dummy {
-> +		compatible = "regulator-fixed";
-> +		regulator-name = "reg_cam_j1_dummy";
-> +		status = "okay";
+> +		xfi_pll: clock-controller@11f40000 {
+>  			compatible = "mediatek,mt7988-xfi-pll";
+>  			reg = <0 0x11f40000 0 0x1000>;
+>  			resets = <&watchdog 16>;
+> @@ -714,19 +735,129 @@ phy_calibration_p3: calib@97c {
+>  			};
+>  		};
+>  
+> -		clock-controller@15000000 {
+> +		ethsys: clock-controller@15000000 {
+>  			compatible = "mediatek,mt7988-ethsys", "syscon";
+>  			reg = <0 0x15000000 0 0x1000>;
+>  			#clock-cells = <1>;
+>  			#reset-cells = <1>;
+>  		};
+>  
+> -		clock-controller@15031000 {
+> +		ethwarp: clock-controller@15031000 {
+>  			compatible = "mediatek,mt7988-ethwarp";
+>  			reg = <0 0x15031000 0 0x1000>;
+>  			#clock-cells = <1>;
+>  			#reset-cells = <1>;
+>  		};
+> +
+> +		eth: ethernet@15100000 {
+> +			compatible = "mediatek,mt7988-eth";
+> +			reg = <0 0x15100000 0 0x80000>;
 
-Is the 'status = "okay"' property needed for these regulators ? I think 
-'status = "okay"' is the default behavior if "status" property is not 
-present , so 'status = "okay"' is superfluous here.
+I think this should be
+
+reg = <0 0x15100000 0 0x40000>;
+
+as the range from 15140000 ~ 1517ffff is used as SRAM on MT7981/MT7986 and
+doesn't seem to be used at all on MT7988.
+
+root@OpenWrt:~# devmem 0x15140000 32
+0xDEADBEEF
+...
+root@OpenWrt:~# devmem 0x1517fffc 32
+0xDEADBEEF
+(with 0xDEADBEEF all that range)
 
