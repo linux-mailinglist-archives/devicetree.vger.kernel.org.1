@@ -1,111 +1,153 @@
-Return-Path: <devicetree+bounces-190820-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-190821-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 36344AECBF3
-	for <lists+devicetree@lfdr.de>; Sun, 29 Jun 2025 11:29:30 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9B43CAECC1A
+	for <lists+devicetree@lfdr.de>; Sun, 29 Jun 2025 12:10:28 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 6E9053B4CED
-	for <lists+devicetree@lfdr.de>; Sun, 29 Jun 2025 09:29:04 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 7CCEE17591E
+	for <lists+devicetree@lfdr.de>; Sun, 29 Jun 2025 10:10:25 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8BCF02116E0;
-	Sun, 29 Jun 2025 09:29:24 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A403721A443;
+	Sun, 29 Jun 2025 10:10:18 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="YwTv7Wua"
+	dkim=pass (2048-bit key) header.d=cknow.org header.i=@cknow.org header.b="jbLTkcMk"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from out-185.mta0.migadu.com (out-185.mta0.migadu.com [91.218.175.185])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 57BA117A30F;
-	Sun, 29 Jun 2025 09:29:24 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 66AC521D3F1
+	for <devicetree@vger.kernel.org>; Sun, 29 Jun 2025 10:10:15 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=91.218.175.185
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1751189364; cv=none; b=TFTi+ampD1+fGRcGy3OuOWLBAQT2u8JPbK/Hi8bbAaVZe99uJB25Xeh/bfZgQF8WCsvVBkZO/Crgfy5322e8s8kTJm9XWXcc86Z18c29MaWPCXQRTcZueysKxqHGCyywZsUAIQx4l291EiPzC8xPYJ9par8RYLW9rl8daPVt1hc=
+	t=1751191818; cv=none; b=r2LwU+EAskvCMpsHiZJaTVReC0FBHprLu/3VmMShrUo5HRTT8oOJ5TRbyXkXJV4/RkEIPrwUfSYFZzjSys6BpC7aMrSb1QcrsiEHSje7XwxhKaJGCZ6DD6/dHLRfPtWMmdQAKNejaDYhp07c+0hVmYznOFy/EHGmEBq/0WlQjaQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1751189364; c=relaxed/simple;
-	bh=hW2QT0dkXHNl3tJf1s4Ivv7cRC7FzorVHdUtVP/XD58=;
-	h=Date:Content-Type:MIME-Version:From:Cc:To:In-Reply-To:References:
-	 Message-Id:Subject; b=FgzN1irwTn2rNTP0OCO6fQCS9A1tea4wK0S2pIKzztlDrazf94crPubsGRsSVZ3TnF7ptF3CELv4XIp3xXedjvFU3+TRpYzIYqbaRz5c4r2unsxg46aqsSZ6UjYRZk6oK0CmQFPDPGHEajMqF3GCRT3iJZYsSdS6mePmZtZYedo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=YwTv7Wua; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 0DBA4C4CEEB;
-	Sun, 29 Jun 2025 09:29:24 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1751189364;
-	bh=hW2QT0dkXHNl3tJf1s4Ivv7cRC7FzorVHdUtVP/XD58=;
-	h=Date:From:Cc:To:In-Reply-To:References:Subject:From;
-	b=YwTv7WuafqwCkunNtrXOesosznuhC5eF/imeYJpm3lQKQAQCm4JkUwc8hwxLOwqFJ
-	 71sGELzn7Rc4cdspQS1ORwB7xmXWw8P7uc9Wje+2MT5w7xmZ3u4aYVleNEruEhrCmL
-	 Myzf0Nn2NRjtZw8U2Z8SJ42AZpJab8ruxFtHeI1l4QPeYApGu6bd/EwKFoG+xP0Vgn
-	 6cvcmRIJBJKS8arBIBlxpun1+nrcewqr1AMjGGdy1NDMPL6+8lfMFzzJPlnPG+lE5i
-	 9GaLf/WEXftPRNO9l31RBM0tu9L0JQWWPgGeW4zpDSIhIF/C5FWXYYldlt0N50cudA
-	 aUXXIufEacNsw==
-Date: Sun, 29 Jun 2025 04:29:23 -0500
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
+	s=arc-20240116; t=1751191818; c=relaxed/simple;
+	bh=R6uSRM1xEjbR8Uh/ppwy7XPm0tCcOs8UMbZXeqNBPkY=;
+	h=Mime-Version:Content-Type:Date:Message-Id:From:To:Cc:Subject:
+	 References:In-Reply-To; b=SQTWdxRar840Ht0136yC2j7oBcnp9Y/VY9qDLWnvpWnIk8Fzssa0IQRMchcjMwWc7iguxeqy6gqzI/drO3L5EmktOzf5wdevRBDV14Vk8JYQAQ6GiB0E+5BSRLhWn5uHAR9gNj3/o+Mym+JvetYv/ms1/cvpsy304rG9NjfutKQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=cknow.org; spf=pass smtp.mailfrom=cknow.org; dkim=pass (2048-bit key) header.d=cknow.org header.i=@cknow.org header.b=jbLTkcMk; arc=none smtp.client-ip=91.218.175.185
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=cknow.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=cknow.org
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-MIME-Version: 1.0
-From: "Rob Herring (Arm)" <robh@kernel.org>
-Cc: Paul Walmsley <paul.walmsley@sifive.com>, 
- Tudor Ambarus <tudor.ambarus@linaro.org>, 
- Krzysztof Kozlowski <krzk+dt@kernel.org>, sophgo@lists.linux.dev, 
- Palmer Dabbelt <palmer@dabbelt.com>, Mark Brown <broonie@kernel.org>, 
- Chen Wang <unicorn_wang@outlook.com>, linux-mtd@lists.infradead.org, 
- Miquel Raynal <miquel.raynal@bootlin.com>, linux-riscv@lists.infradead.org, 
- Conor Dooley <conor+dt@kernel.org>, Pratyush Yadav <pratyush@kernel.org>, 
- linux-spi@vger.kernel.org, devicetree@vger.kernel.org, 
- Michael Walle <mwalle@kernel.org>, Richard Weinberger <richard@nod.at>, 
- Albert Ou <aou@eecs.berkeley.edu>, Inochi Amaoto <inochiama@gmail.com>, 
- Alexandre Ghiti <alex@ghiti.fr>, Longbin Li <looong.bin@gmail.com>, 
- Vignesh Raghavendra <vigneshr@ti.com>, linux-kernel@vger.kernel.org
-To: Zixian Zeng <sycamoremoon376@gmail.com>
-In-Reply-To: <20250629-sfg-spifmc-v3-1-28db1f27e999@gmail.com>
-References: <20250629-sfg-spifmc-v3-0-28db1f27e999@gmail.com>
- <20250629-sfg-spifmc-v3-1-28db1f27e999@gmail.com>
-Message-Id: <175118936320.3838715.11903647701453583408.robh@kernel.org>
-Subject: Re: [PATCH v3 1/4] spi: dt-bindings: spi-sg2044-nor: Change SOPHGO
- SG2042
+Mime-Version: 1.0
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cknow.org; s=key1;
+	t=1751191803;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 in-reply-to:in-reply-to:references:references;
+	bh=H6Wlp3JgvEp0ycS0t6Z7WKduaZTKhf5gEm0eW6oKUXk=;
+	b=jbLTkcMkzlOS4+CCECrHk6uIoEiUlZ8gi1AojI4kxi/eKj82hZVBUd0JkXPnB663LhL/Ek
+	gVqtKR4nI0DDAfDOLpK/pQysjigMfgN3b1oiUOlRymhs+BHhUm9Z2CIhjA6/dxDofMziof
+	bnZIC1eACNKyzLAaEjVmvFIWqNG5ubaMMU3Bswi2HkrK89/j4dBSJJ+/1Zwh7tZHRPMd7F
+	h8lCIjiqZr5zNjUESE1775Fn9QF8oEovSIHTMpvWLnkHDCJkdQKwj0qhGDK74YgzHqetQ1
+	lUR6lfFU1Fa45OZRahJUi6V6lS9ljIdgWs2JFN09YMxLkfMYs6Tf+IRgJb//Zg==
+Content-Type: multipart/signed;
+ boundary=43508436bcd3ad84eb98e0bb756b39ac53921fae364149a231ac9f8d2b94;
+ micalg=pgp-sha512; protocol="application/pgp-signature"
+Date: Sun, 29 Jun 2025 12:09:49 +0200
+Message-Id: <DAYXOI4WITJW.1G5DBWEQDDY1Z@cknow.org>
+X-Report-Abuse: Please report any abuse attempt to abuse@migadu.com and include these headers.
+From: "Diederik de Haas" <didi.debian@cknow.org>
+To: "kernel test robot" <lkp@intel.com>, "Rob Herring" <robh@kernel.org>,
+ "Krzysztof Kozlowski" <krzk@kernel.org>, "Conor Dooley"
+ <conor+dt@kernel.org>, "Heiko Stuebner" <heiko@sntech.de>
+Cc: <llvm@lists.linux.dev>, <oe-kbuild-all@lists.linux.dev>, "Dragan Simic"
+ <dsimic@manjaro.org>, "Quentin Schulz" <quentin.schulz@cherry.de>, "Johan
+ Jonker" <jbx6244@gmail.com>, <devicetree@vger.kernel.org>,
+ <linux-arm-kernel@lists.infradead.org>,
+ <linux-rockchip@lists.infradead.org>, <linux-kernel@vger.kernel.org>
+Subject: Re: [PATCH 2/8] arm64: dts: rockchip: Refactor DSI nodes on rk3399
+ boards
+References: <20250627152645.740981-3-didi.debian@cknow.org>
+ <202506290852.bWro2lBe-lkp@intel.com>
+In-Reply-To: <202506290852.bWro2lBe-lkp@intel.com>
+X-Migadu-Flow: FLOW_OUT
 
+--43508436bcd3ad84eb98e0bb756b39ac53921fae364149a231ac9f8d2b94
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=UTF-8
 
-On Sun, 29 Jun 2025 16:23:10 +0800, Zixian Zeng wrote:
-> SG2042 is not fully compatiable with SG2044,
-> So it is necessary to become independent const
-> 
-> Signed-off-by: Zixian Zeng <sycamoremoon376@gmail.com>
-> ---
->  Documentation/devicetree/bindings/spi/spi-sg2044-nor.yaml | 5 +----
->  1 file changed, 1 insertion(+), 4 deletions(-)
-> 
+Hi,
 
-My bot found errors running 'make dt_binding_check' on your patch:
+On Sun Jun 29, 2025 at 2:32 AM CEST, kernel test robot wrote:
+> kernel test robot noticed the following build errors:
+>
+> [auto build test ERROR on rockchip/for-next]
+> [also build test ERROR on next-20250627]
+> [cannot apply to robh/for-next krzk/for-next krzk-dt/for-next linus/maste=
+r v6.16-rc3]
+> [If your patch is applied to the wrong git tree, kindly drop us a note.
+> And when submitting patch, we suggest to use '--base' as documented in
+> https://git-scm.com/docs/git-format-patch#_base_tree_information]
+>
+> url:    https://github.com/intel-lab-lkp/linux/commits/Diederik-de-Haas/a=
+rm64-dts-rockchip-Refactor-DSI-nodes-on-px30-boards/20250627-233300
+> base:   https://git.kernel.org/pub/scm/linux/kernel/git/mmind/linux-rockc=
+hip.git for-next
+> patch link:    https://lore.kernel.org/r/20250627152645.740981-3-didi.deb=
+ian%40cknow.org
+> patch subject: [PATCH 2/8] arm64: dts: rockchip: Refactor DSI nodes on rk=
+3399 boards
+> config: arm64-randconfig-002-20250629 (https://download.01.org/0day-ci/ar=
+chive/20250629/202506290852.bWro2lBe-lkp@intel.com/config)
+> compiler: clang version 19.1.7 (https://github.com/llvm/llvm-project cd70=
+8029e0b2869e80abe31ddb175f7c35361f90)
+> reproduce (this is a W=3D1 build): (https://download.01.org/0day-ci/archi=
+ve/20250629/202506290852.bWro2lBe-lkp@intel.com/reproduce)
+>
+> If you fix the issue in a separate patch/commit (i.e. not just a new vers=
+ion of
+> the same patch/commit), kindly add following tags
+> | Reported-by: kernel test robot <lkp@intel.com>
+> | Closes: https://lore.kernel.org/oe-kbuild-all/202506290852.bWro2lBe-lkp=
+@intel.com/
+>
+> All errors (new ones prefixed by >>):
+>
+>>> Error: arch/arm64/boot/dts/rockchip/rk3399-rockpro64-screen.dtso:75.1-6=
+ syntax error
+>    FATAL ERROR: Unable to parse input tree
 
-yamllint warnings/errors:
+The kernel test robot is right as the ``&mipi_out`` node is missing a
+closing ``;``, so thanks for that :-)
+The problem is also present in v2, so I'll send a v3 shortly.
 
-dtschema/dtc warnings/errors:
-/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/spi/spi-sg2044-nor.yaml: properties:compatible:oneOf: [{'const': 'sophgo,sg2044-spifmc-nor'}, {'const': 'sophgo,sg2042-spifmc-nor'}] should not be valid under {'items': {'propertyNames': {'const': 'const'}, 'required': ['const']}}
-	hint: Use 'enum' rather than 'oneOf' + 'const' entries
-	from schema $id: http://devicetree.org/meta-schemas/keywords.yaml#
+Luckily I've now found why my build script didn't catch it.
+```sh
+export PATH=3D~/dev/kernel.org/dt-schema-venv/bin/:$PATH CROSS_COMPILE=3Daa=
+rch64-linux-gnu- ARCH=3Darm64
+make distclean
+make debarm64_defconfig
+make CHECK_DTBS=3Dy W=3D1 rockchip/px30-cobra-ltk050h3146w-a2.dtb
+<quite-a-long-list-of-all-boards-at-least-I-thought-so>
+```
 
-doc reference errors (make refcheckdocs):
+(debarm64_defconfig is my own defconfig based on Debian's kernel config)
 
-See https://patchwork.ozlabs.org/project/devicetree-bindings/patch/20250629-sfg-spifmc-v3-1-28db1f27e999@gmail.com
+That long list didn't have ``rockchip/rk3399-rockpro64-screen.dtbo``.
+Is there a better/simpler way to validate all rockchip boards without
+having to explicitly list each and every one of them?
 
-The base for the series is generally the latest rc1. A different dependency
-should be noted in *this* patch.
+Cheers,
+  Diederik
 
-If you already ran 'make dt_binding_check' and didn't see the above
-error(s), then make sure 'yamllint' is installed and dt-schema is up to
-date:
+--43508436bcd3ad84eb98e0bb756b39ac53921fae364149a231ac9f8d2b94
+Content-Type: application/pgp-signature; name="signature.asc"
 
-pip3 install dtschema --upgrade
+-----BEGIN PGP SIGNATURE-----
 
-Please check and re-submit after running the above command yourself. Note
-that DT_SCHEMA_FILES can be set to your schema file to speed up checking
-your schema. However, it must be unset to test all examples with your schema.
+iHUEABYKAB0WIQT1sUPBYsyGmi4usy/XblvOeH7bbgUCaGEQ8wAKCRDXblvOeH7b
+bkmOAP9oM6RsgNp49/g+vN6x7caM8SHQCK0m03vWy5v9AUMPCAD9Gu0vIsw3p1fn
+Jw3UxbRGaW+2LtlZ/raAKpP6oBKDRA4=
+=vkok
+-----END PGP SIGNATURE-----
 
+--43508436bcd3ad84eb98e0bb756b39ac53921fae364149a231ac9f8d2b94--
 
