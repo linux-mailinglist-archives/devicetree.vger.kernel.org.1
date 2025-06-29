@@ -1,217 +1,217 @@
-Return-Path: <devicetree+bounces-190805-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-190810-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 30CC8AECB27
-	for <lists+devicetree@lfdr.de>; Sun, 29 Jun 2025 05:19:55 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3695DAECB60
+	for <lists+devicetree@lfdr.de>; Sun, 29 Jun 2025 07:12:24 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id ACDFD17182C
-	for <lists+devicetree@lfdr.de>; Sun, 29 Jun 2025 03:19:54 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 7F0331766C0
+	for <lists+devicetree@lfdr.de>; Sun, 29 Jun 2025 05:12:24 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E32812AF07;
-	Sun, 29 Jun 2025 03:19:50 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 72B211AE877;
+	Sun, 29 Jun 2025 05:12:19 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=pigmoral.tech header.i=junhui.liu@pigmoral.tech header.b="TdOoCWJv"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="i54As7BC"
 X-Original-To: devicetree@vger.kernel.org
-Received: from sender4-op-o12.zoho.com (sender4-op-o12.zoho.com [136.143.188.12])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-pl1-f178.google.com (mail-pl1-f178.google.com [209.85.214.178])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 65FFC1F92A;
-	Sun, 29 Jun 2025 03:19:47 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=pass smtp.client-ip=136.143.188.12
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1751167190; cv=pass; b=sHOERtssWghjAO/F3UUeU3epe6vX5nUn/t++zIAHxw70Tjdsrxm32PqnVuaQAkmH6BeolZyBypBmoo0uHrqWrK+PYjzT+8zfJXRMjQ2Im+8rZNqk8pP52NU7rMX0Rz5lg5+25DEA/VFJidDMZHEaA27PSJbNlsl7ihZvA4BBhPM=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1751167190; c=relaxed/simple;
-	bh=IXzCyj1WhE1qAkg+a+KMkiT95cDVLugJv1Bi8PBIbXc=;
-	h=MIME-Version:From:To:In-Reply-To:Cc:Subject:Message-ID:Date:
-	 Content-Type; b=aKR6ZXyVVzt7ZCYkrjdJruySXC3o8VM6cB9eTZEZh9tMf8sgWrrstgNGGdSD5Mfi7/3rkr79NDzwU4TT+xsQCVFlNWG0MU/exkZ7UAuBDRh4fdotZcR7aY1mlUP4pv3CRIqMwBmdHZiF/VspVdbffpHE4KppGgt8r+ul4HXzOuo=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pigmoral.tech; spf=pass smtp.mailfrom=pigmoral.tech; dkim=pass (1024-bit key) header.d=pigmoral.tech header.i=junhui.liu@pigmoral.tech header.b=TdOoCWJv; arc=pass smtp.client-ip=136.143.188.12
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pigmoral.tech
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=pigmoral.tech
-ARC-Seal: i=1; a=rsa-sha256; t=1751167152; cv=none; 
-	d=zohomail.com; s=zohoarc; 
-	b=c4yg0VkzAxe6/1DNdK0m7HWg28vbCWKpN7647AxuXUIs4+J+5rDNErGq8UbeMNljwV/xVuI/0sxAnPN7hOYsdsuGCr9ok4v3rFqsU8ut8THmnixP2qtIcYIwownOETkyZK21I659cvXMH0P54yFoVCjV/2+3vPt16j8omvc7sOc=
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=zohomail.com; s=zohoarc; 
-	t=1751167152; h=Content-Type:Content-Transfer-Encoding:Cc:Cc:Date:Date:From:From:In-Reply-To:MIME-Version:Message-ID:Subject:Subject:To:To:Message-Id:Reply-To; 
-	bh=5sZgel47h61IZI/xBdVfE3mfXZ87n6o+GU/uHbeZ/ug=; 
-	b=bRmxTnwIvSybezz3VhAoC9vuoZms4A9yUx0TMg/I9rDiESy6Skst7f1kaMkuWY7N/rlEgzYr7J2QRJ1IxoMXE9URKuFbd+/Wt/knayGd18AwcGmKjo/wbYnUSNz2rmC13BLp5aQKdxVUph3g5lY3l5q3hvmkV0dK86OvfFhI8so=
-ARC-Authentication-Results: i=1; mx.zohomail.com;
-	dkim=pass  header.i=pigmoral.tech;
-	spf=pass  smtp.mailfrom=junhui.liu@pigmoral.tech;
-	dmarc=pass header.from=<junhui.liu@pigmoral.tech>
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; t=1751167152;
-	s=zmail; d=pigmoral.tech; i=junhui.liu@pigmoral.tech;
-	h=MIME-Version:From:From:To:To:In-Reply-To:Cc:Cc:Subject:Subject:Message-ID:Date:Date:Content-Type:Content-Transfer-Encoding:Message-Id:Reply-To;
-	bh=5sZgel47h61IZI/xBdVfE3mfXZ87n6o+GU/uHbeZ/ug=;
-	b=TdOoCWJvcKB2dULI/kgdt/2VVSmAs1dfEHjGWJVNfGP+9cviyJ7RvFhpNbPy2bHl
-	eooGQ/vp9QZr9rK1RAdOJczhfeWcZLyO27ADykvZBtpUGvZnZr68wbWu1HxriJwwTUR
-	W1OtdfKk4iwVBA3zNf1u8vybSyaNxCmsHGTOA3SM=
-Received: by mx.zohomail.com with SMTPS id 1751167149312644.3787975589289;
-	Sat, 28 Jun 2025 20:19:09 -0700 (PDT)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CFE5A8828;
+	Sun, 29 Jun 2025 05:12:16 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.178
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1751173939; cv=none; b=LFw95y+EYcBQcjU0E4/iGbo05EWOx1fBKp+noYVODmelBM3An1/YtvuGx19TAHVaqCUyTxIrPNn0r0g0/DJF1stT2s9uPE8l08oZZ3sd+0z4CeaFQagHjuG++pnkiOVE9CV03xga+sFHhAoh+1Ueeh654OvZWDZdUlqNsuLolSg=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1751173939; c=relaxed/simple;
+	bh=XtKm9MzaMMKCQCHVB6NS44kaGUuKeXWYQRj/kIGuCtM=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=uzkUtABzpcN7492Xrl1TZopoq1E0fyH75WG1HbN5V7xjchAPI38Wq9RFIw0/nC+8h/ReeWjnlCovXcWW0AhUdwU2UtN1E5xdcMORGe+sXLIEACBqs2eUPiIEu1taImNkln8k0cOIB5f8+ZzVoRDXUHvnBfv3rkL12o34XzHF8KA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=i54As7BC; arc=none smtp.client-ip=209.85.214.178
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-pl1-f178.google.com with SMTP id d9443c01a7336-23602481460so33255855ad.0;
+        Sat, 28 Jun 2025 22:12:16 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1751173936; x=1751778736; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=7F3Pv2rCP7Rpo2SyClKZWeBeyiOZmEIiG65XSCku3Co=;
+        b=i54As7BCCEHDL7bpW5YaB+HBRBJyTHbjnOb7J4/2nH3qQz5dQViKEs+yFHdlt2HZrU
+         8T4IsLrxB8QrWomUipLPkfjx+AFP3b/g5veZ67Xc6JJai3PYeBG91vcWLBkJJUtPhrVh
+         yqmP1bbNoo/crCaSoSl616l03DGX9ZJHhkFQF/SQNCOaGKe7t4ZIIeWeNcbeL2PDlWrf
+         adCXGWkT17+nHMqDX/8fADAChG7329Y+c+BpWTymVLMqFCJVSlAx+Mha/ijtGWo9q4gG
+         jWWO9QdRLDKFwgMEyAkdN44Gw5D8gWGWL0LiTbHmz/TA2qeyJ2johot9R51iQ75Z4lbO
+         Mx+w==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1751173936; x=1751778736;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=7F3Pv2rCP7Rpo2SyClKZWeBeyiOZmEIiG65XSCku3Co=;
+        b=NSv10PGDuDDaf/fF9mWqvu5Cz393OJ34RZ8pigCSgSAVDFoLjM/ZFoPQ/DNycRFr9m
+         gSTRlAKmf94lkc752gM8rucUh457XPehvT8DeRQr5u13jgbw5UROGOCkR9Hy+AUEOcAz
+         0+xGJGrvqUmA/KRrii8CyFZ8hMyMfy3KptgU1fOp7UaZ2nsZty2JNCjrLeh7lKyKqeWU
+         z/bgA6DaHedi8uSw54juIsM1g2h17hqv1nTbFbrtleroPYiQWqw3hgwQDh5Dr/cEPzhB
+         BdTbqZ5EjT3s2qffu9XVoeXixFqteb6xeJitVwnv/iC1Sr9Of37pT6XfepJVepBAEq12
+         8C8A==
+X-Forwarded-Encrypted: i=1; AJvYcCW5i7cvADtrPPoHsZ2NWl7papDV6/OcxRI3St7i/OkocQdaMHCZDpEeDnzJ0jXNVD2KoA/5m/NwJzR4QyE=@vger.kernel.org, AJvYcCWhR+Lw3OQe8gM5jYJKN8BYOM/chQmaGJbVB/11iFXsR5jBavCfwUaBSwEgDK5Tdi4DLUAZHWsMgKYa@vger.kernel.org, AJvYcCXNWHVjuTnWlcqQdbcSLn0FIi1sphGDOiJcrc7wQH+Bfa+HwrmZg1+bvvZSM29DNI+kRlSuYrdTkrfYp+Mh@vger.kernel.org
+X-Gm-Message-State: AOJu0Yx7yxRB0g5V/NAFI6F4vOnlYR8JFkIz8EY0PxdJFwW5QinTA2bi
+	LAU3LH6mpyxBdixnCpd0Nb8nKyOhC9khRek1+4c9cPjcVJ9W0hyQ0mrF4HoocA==
+X-Gm-Gg: ASbGncvpYT40DQ+kN7eQn3i5NsF1dhtc951x9JK+vRNQK/W2kf7+sjNqni8e27CVpFQ
+	8dtjZXAwYto1qa3+iQpQrey9DcYG7pelbj+7qYCb8tXacR+dSbKV++IH43uaVU0may5EgDglgOJ
+	oR0QLw0dF6JPnhIXatliKGasFGRsl+MpJfEPaheC1BqOd0xcxiztN1jSAPDs8pxVMDyOaD43ILE
+	IodCNizgJmYrdX1fazuzjV50xgHMpLU8ZUqIIBweAQXThedBB90gmvEvDmGPYz0SfDc/pBFTxL2
+	5a/58iVpFpZl+9s1G2iyVs7l49mFcUUi+6bzcR2lRThm8Dx9OeQ095K1Q9TiSIg=
+X-Google-Smtp-Source: AGHT+IHn4CsXslZ+uLe2cnLYWIMYSvRYpTKVs33Xm+02bohD0toNcwhmjnrHFANTn6fks+FtiuvhkA==
+X-Received: by 2002:a17:903:3c50:b0:234:914b:3841 with SMTP id d9443c01a7336-23ac460837dmr123310865ad.39.1751173935915;
+        Sat, 28 Jun 2025 22:12:15 -0700 (PDT)
+Received: from google.com ([2620:15c:9d:2:d8da:e3e0:2b93:2315])
+        by smtp.gmail.com with ESMTPSA id d9443c01a7336-23acb3bc406sm50031315ad.195.2025.06.28.22.12.14
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Sat, 28 Jun 2025 22:12:15 -0700 (PDT)
+Date: Sat, 28 Jun 2025 22:12:12 -0700
+From: Dmitry Torokhov <dmitry.torokhov@gmail.com>
+To: Kaustabh Chakraborty <kauschluss@disroot.org>
+Cc: Sangwon Jee <jeesw@melfas.com>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Henrik Rydberg <rydberg@bitmath.org>, linux-input@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org
+Subject: Re: [PATCH RFC v2 3/5] Input: melfas-mip4 - add support for touchkey
+ input events
+Message-ID: <ugwy3adqmxodsyhohpdv337lvbxpdzhgtojpbtrykkuyf2eivl@sl36qsvcju6v>
+References: <20250613-mip4-touchkey-v2-0-9bbbe14c016d@disroot.org>
+ <20250613-mip4-touchkey-v2-3-9bbbe14c016d@disroot.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-From: "Junhui Liu" <junhui.liu@pigmoral.tech>
-To: "Rob Herring" <robh@kernel.org>
-In-Reply-To: <20250625191613.GA2059062-robh@kernel.org>
-Cc: "Bjorn Andersson" <andersson@kernel.org>, 
-	"Mathieu Poirier" <mathieu.poirier@linaro.org>, 
-	"Krzysztof Kozlowski" <krzk+dt@kernel.org>, 
-	"Conor Dooley" <conor+dt@kernel.org>, 
-	"Chen Wang" <unicorn_wang@outlook.com>, 
-	"Inochi Amaoto" <inochiama@gmail.com>, 
-	"Philipp Zabel" <p.zabel@pengutronix.de>, 
-	"Paul Walmsley" <paul.walmsley@sifive.com>, 
-	"Palmer Dabbelt" <palmer@dabbelt.com>, "Albert Ou" <aou@eecs.berkeley.edu>, 
-	"Alexandre Ghiti" <alex@ghiti.fr>, <linux-remoteproc@vger.kernel.org>, 
-	<devicetree@vger.kernel.org>, <sophgo@lists.linux.dev>, 
-	<linux-kernel@vger.kernel.org>, <linux-riscv@lists.infradead.org>
-Subject: Re: [PATCH 1/2] dt-bindings: remoteproc: Add C906L rproc for Sophgo
-	 CV1800B SoC
-Message-ID: <184d653d449ed7b0.6a3574329a6ead7.ebc417e4db758a3b@Mac>
-Date: Sun, 29 Jun 2025 03:19:03 +0000
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: quoted-printable
-X-ZohoMailClient: External
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20250613-mip4-touchkey-v2-3-9bbbe14c016d@disroot.org>
 
-Hi Rob,
-Thanks for your review.
+Hi Kaustabh,
 
-On 25/06/2025 14:16, Rob Herring wrote:
-> On Sun, Jun 08, 2025 at 10:37:39AM +0800, Junhui Liu wrote:
->> Add C906L remote processor for CV1800B SoC, which is an asymmetric
->> processor typically running RTOS.
->>=20
->> Signed-off-by: Junhui Liu <junhui.liu@pigmoral.tech>
->> ---
->>  .../bindings/remoteproc/sophgo,cv1800b-c906l.yaml  | 68 ++++++++++++++++=
-++++++
->>  1 file changed, 68 insertions(+)
->>=20
->> diff --git a/Documentation/devicetree/bindings/remoteproc/sophgo,cv1800b-=
-c906l.yaml b/Documentation/devicetree/bindings/remoteproc/sophgo,cv1800b-c90=
-6l.yaml
->> new file mode 100644
->> index 0000000000000000000000000000000000000000..455e957dec01c16424c49ebe5=
-ef451883b0c3d4a
->> --- /dev/null
->> +++ b/Documentation/devicetree/bindings/remoteproc/sophgo,cv1800b-c906l.y=
-aml
->> @@ -0,0 +1,68 @@
->> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
->> +%YAML 1.2
->> +---
->> +$id: http://devicetree.org/schemas/remoteproc/sophgo,cv1800b-c906l.yaml#
->> +$schema: http://devicetree.org/meta-schemas/core.yaml#
->> +
->> +title: Sophgo C906L remote processor controller for CV1800B SoC
->> +
->> +maintainers:
->> +  - Junhui Liu <junhui.liu@pigmoral.tech>
->> +
->> +description:
->> +  Document the bindings for the C906L remoteproc component that loads an=
-d boots
->> +  firmwares on the CV1800B SoC.
->> +
->> +properties:
->> +  compatible:
->> +    const: sophgo,cv1800b-c906l
->> +
->> +  firmware-name:
->> +    $ref: /schemas/types.yaml#/definitions/string
->=20
-> Already has a type. You just need 'maxItems: 1'.
+On Fri, Jun 13, 2025 at 01:11:35AM +0530, Kaustabh Chakraborty wrote:
+> The MIP4 protocol are supposed to support touchscreens, touchkeys, and
+> combo-devices. The driver handles touchscreen events, but touchkey
+> events are unimplemented.
 
-Will do.
+I am confused, because I clearly see the driver parsing and forwarding
+key events. It appears that this patch adds the ability to set the
+keymap via device tree instead of relying on userspace to load it.
 
->=20
->> +    description:
->> +      The name of the firmware file to load for this remote processor, r=
-elative
->> +      to the firmware search path (typically /lib/firmware/).
->=20
-> That's the same for every 'firmware-name' instance. So drop.
->=20
-> Is there a default name?
+Please adjust the patch description.
 
-The firmware name would be specified in the board device tree, and
-there is no default value. For reference, an example value is provided
-in the example DT.
+> 
+> Implement them. If compiled with devicetree support, the driver attempts
+> to retrieve keycodes from a property named "linux,keycodes".
+> 
+> Signed-off-by: Kaustabh Chakraborty <kauschluss@disroot.org>
+> ---
+>  drivers/input/touchscreen/melfas_mip4.c | 32 ++++++++++++++++++++++++++++++--
+>  1 file changed, 30 insertions(+), 2 deletions(-)
+> 
+> diff --git a/drivers/input/touchscreen/melfas_mip4.c b/drivers/input/touchscreen/melfas_mip4.c
+> index a6946e3d8376d7e9b4c26f4194409e0ba78bb075..061ac353bc7a2e28f17581411af81f35c89733a1 100644
+> --- a/drivers/input/touchscreen/melfas_mip4.c
+> +++ b/drivers/input/touchscreen/melfas_mip4.c
+> @@ -169,7 +169,7 @@ struct mip4_ts {
+>  	unsigned int event_format;
+>  
+>  	unsigned int key_num;
+> -	unsigned short key_code[MIP4_MAX_KEYS];
+> +	unsigned int key_code[MIP4_MAX_KEYS];
+>  
+>  	bool wake_irq_enabled;
+>  
+> @@ -337,8 +337,13 @@ static int mip4_query_device(struct mip4_ts *ts)
+>  			ts->ppm_x, ts->ppm_y);
+>  
+>  		/* Key ts */
+> -		if (ts->node_key > 0)
+> +		if (ts->node_key > MIP4_MAX_KEYS) {
+> +			dev_warn(&ts->client->dev,
+> +				"Too many keys (%u) found\n", ts->node_key);
+> +			ts->key_num = MIP4_MAX_KEYS;
+> +		} else {
+>  			ts->key_num = ts->node_key;
+> +		}
 
->=20
->> +
->> +  memory-region:
->=20
->        maxItems: 1
+I believe this is a bugfix. Please extract it into a separate patch.
 
-I plan to add a description for the rpmsg-related regions in the next
-version. Since the number of these regions may be flexible, I think I
-will only add a minItems property to ensure the execution memory
-region is specified.
+>  	}
+>  
+>  	/* Protocol */
+> @@ -1080,6 +1085,7 @@ static int mip4_flash_fw(struct mip4_ts *ts,
+>  			 const u8 *fw_data, u32 fw_size, u32 fw_offset)
+>  {
+>  	struct i2c_client *client = ts->client;
+> +	unsigned int i;
+>  	int offset;
+>  	u16 buf_addr;
+>  	int error, error2;
+> @@ -1149,6 +1155,11 @@ static int mip4_flash_fw(struct mip4_ts *ts,
+>  	input_abs_set_res(ts->input, ABS_X, ts->ppm_x);
+>  	input_abs_set_res(ts->input, ABS_Y, ts->ppm_y);
+>  
+> +	for (i = 0; i < ts->key_num; i++) {
+> +		if (ts->key_code[i])
+> +			input_set_capability(ts->input, EV_KEY, ts->key_code[i]);
+> +	}
+> +
+>  	return error ? error : 0;
+>  }
+>  
+> @@ -1425,6 +1436,7 @@ static int mip4_probe(struct i2c_client *client)
+>  {
+>  	struct mip4_ts *ts;
+>  	struct input_dev *input;
+> +	unsigned int i;
+>  	int error;
+>  
+>  	if (!i2c_check_functionality(client->adapter, I2C_FUNC_I2C)) {
+> @@ -1471,6 +1483,17 @@ static int mip4_probe(struct i2c_client *client)
+>  
+>  	input_set_drvdata(input, ts);
+>  
+> +#ifdef CONFIG_OF
+> +	error = of_property_read_u32_array(client->dev.of_node, "linux,keycodes",
+> +					   ts->key_code, ts->key_num);
+> +	if (error && ts->key_num) {
+> +		dev_warn(&client->dev,
+> +			 "Failed to get codes for %u supported keys", ts->key_num);
+> +		/* Disable touchkey support */
+> +		ts->key_num = 0;
+> +	}
 
->=20
->> +    description:
->> +      Phandle to a reserved memory region that is used to load the firmw=
-are for
->> +      this remote processor. The remote processor will use this memory r=
-egion
->> +      as its execution memory.
->> +
->> +  resets:
->> +    maxItems: 1
->> +
->> +  sophgo,syscon:
->> +    $ref: /schemas/types.yaml#/definitions/phandle
->> +    description:
->> +      A phandle to the SEC_SYS region, used for configuration of the rem=
-ote processor.
->> +
->> +required:
->> +  - compatible
->> +  - firmware-name
->> +  - memory-region
->> +  - resets
->> +  - sophgo,syscon
->> +
->> +additionalProperties: false
->> +
->> +examples:
->> +  - |
->> +    reserved-memory {
->> +        #address-cells =3D <1>;
->> +        #size-cells =3D <1>;
->> +        ranges;
->> +
->> +        c906l_mem: region@83f40000 {
->> +            reg =3D <0x83f40000 0xc0000>;
->> +            no-map;
->> +        };
->> +    };
->=20
-> Drop. No need to show how /reserved-memory works here.
+Please use generic device properties (device_property_read_u32_array())
+and drop the dependency on OF.
 
-Will do.
+> +#endif
+> +
+>  	input->keycode = ts->key_code;
+>  	input->keycodesize = sizeof(*ts->key_code);
+>  	input->keycodemax = ts->key_num;
+> @@ -1491,6 +1514,11 @@ static int mip4_probe(struct i2c_client *client)
+>  	if (error)
+>  		return error;
+>  
+> +	for (i = 0; i < ts->key_num; i++) {
+> +		if (ts->key_code[i])
+> +			input_set_capability(input, EV_KEY, ts->key_code[i]);
+> +	}
+> +
+>  	i2c_set_clientdata(client, ts);
+>  
+>  	error = devm_request_threaded_irq(&client->dev, client->irq,
+> 
 
->=20
->> +
->> +    c906l-rproc {
->> +        compatible =3D "sophgo,cv1800b-c906l";
->> +        firmware-name =3D "c906l-firmware.elf";
->> +        memory-region =3D <&c906l_mem>;
->> +        resets =3D <&rst 294>;
->> +        sophgo,syscon =3D <&sec_sys>;
->> +    };
->>=20
->>
+Thanks.
 
---=20
-Best regards,
-Junhui Liu
+-- 
+Dmitry
 
