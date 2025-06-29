@@ -1,135 +1,129 @@
-Return-Path: <devicetree+bounces-190891-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-190892-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 75128AED127
-	for <lists+devicetree@lfdr.de>; Sun, 29 Jun 2025 22:57:41 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 778B2AED189
+	for <lists+devicetree@lfdr.de>; Mon, 30 Jun 2025 00:03:35 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 8AE351892E6D
-	for <lists+devicetree@lfdr.de>; Sun, 29 Jun 2025 20:57:57 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 7E04916FD3E
+	for <lists+devicetree@lfdr.de>; Sun, 29 Jun 2025 22:03:34 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1266723E25B;
-	Sun, 29 Jun 2025 20:57:37 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D6EA71F37D3;
+	Sun, 29 Jun 2025 22:03:30 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="TKlRP+3f"
+	dkim=pass (2048-bit key) header.d=mailbox.org header.i=@mailbox.org header.b="YLo2sGII";
+	dkim=pass (2048-bit key) header.d=mailbox.org header.i=@mailbox.org header.b="bHU2jcaY"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.9])
+Received: from mout-p-102.mailbox.org (mout-p-102.mailbox.org [80.241.56.152])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 985053D6F;
-	Sun, 29 Jun 2025 20:57:34 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.175.65.9
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 11D762BB04;
+	Sun, 29 Jun 2025 22:03:28 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=80.241.56.152
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1751230657; cv=none; b=V/Wq7Fn4GaxHD95iJXzc/hYIjul5TGNPbUmx1nDuMGwHo0R+Hh/zU+SOCr4BYQ7zLQ2DHoo0Lzts1t4oX9XgwvJAgIPPv4MSGsUrWyEVwllr3lYcY/ufHgPjPGcGGtuty1K4jUN3phBuvlTRbADTL9sdPkw5I61Khfi5I+qfbHc=
+	t=1751234610; cv=none; b=Fj3gupk879zAKYw7yTZ8o4WX7umNj4uUsgvKxjPyueqdmgYd9zHbGssjLP/hSSqtXHsOoyekj6oR26v5uVGQRXvI2BGdauPo/VvdwiceGunwE4wetpETUdfkjy4k7ktvOL9axtyrp38uezKgJCwNGMVE1Z2H0lRMyi47OZoQhvw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1751230657; c=relaxed/simple;
-	bh=4sGclJ7JPmOXEyw1qCkUxmj9+SxiJpgXHWGQ3kI7L8E=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=gpLUhIkM7DgVcFhW8EL/C/OUIy6WUZ+IfRght3y11y2WarwWwPCgjnR8fSqHXW4rA0GjPVlUXlWgww2U0tPU02BDS+YJMXsotctbEgv+DX3I92jTFhrrJuIwoq+IsMpG33cb/ztNBhrZuADGWOT2yqeh7lDqCdDdDOTEOP6BXSw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=TKlRP+3f; arc=none smtp.client-ip=198.175.65.9
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1751230654; x=1782766654;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=4sGclJ7JPmOXEyw1qCkUxmj9+SxiJpgXHWGQ3kI7L8E=;
-  b=TKlRP+3f/6xa/BsqWWJ1rOHbxPuKQxI4UoAPkOLKgX/24YK4S0W6CBr2
-   mLPR1nT5/bW4GCFEzV87wIlEZZTVo2cHsL/Io2xUX33AXqMUItAvvUk8W
-   9WqWBlXmOIbT0zR7n5FNnqx5iO2Scc+dXCQRUtGTtL6hkAm6bT4XA5ZN5
-   dv7KBef4kk2nC0XhV2699kGEOcy0HG1jHzZ4AeMlm9WPBTj9IG+663CZ1
-   Pj+fUkEP3t5l940/2+jDusWx7FcnGku0Boqu/5jn9IB7k/6oV7h8hdY17
-   eK08987vV6w5dwdnS9y6gzs9fEJWqsrutlm0s/XcNOy2f0Jem8BdKuO3R
-   Q==;
-X-CSE-ConnectionGUID: MHTvA/O7RTqGdnq6qHH77Q==
-X-CSE-MsgGUID: +TVy+MTFTkm36HzPfcv4yw==
-X-IronPort-AV: E=McAfee;i="6800,10657,11479"; a="76006842"
-X-IronPort-AV: E=Sophos;i="6.16,276,1744095600"; 
-   d="scan'208";a="76006842"
-Received: from orviesa006.jf.intel.com ([10.64.159.146])
-  by orvoesa101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 29 Jun 2025 13:57:34 -0700
-X-CSE-ConnectionGUID: yqedKzWcThKyEa84V8mKAQ==
-X-CSE-MsgGUID: 2xMj3oDGTH6CIdlGLr8kEA==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.16,276,1744095600"; 
-   d="scan'208";a="152780971"
-Received: from lkp-server01.sh.intel.com (HELO e8142ee1dce2) ([10.239.97.150])
-  by orviesa006.jf.intel.com with ESMTP; 29 Jun 2025 13:57:29 -0700
-Received: from kbuild by e8142ee1dce2 with local (Exim 4.96)
-	(envelope-from <lkp@intel.com>)
-	id 1uVz5b-000YE2-1w;
-	Sun, 29 Jun 2025 20:57:27 +0000
-Date: Mon, 30 Jun 2025 04:56:37 +0800
-From: kernel test robot <lkp@intel.com>
-To: Laura Nao <laura.nao@collabora.com>, mturquette@baylibre.com,
-	sboyd@kernel.org, robh@kernel.org, krzk+dt@kernel.org,
-	conor+dt@kernel.org, matthias.bgg@gmail.com,
-	angelogioacchino.delregno@collabora.com, p.zabel@pengutronix.de,
-	richardcochran@gmail.com
-Cc: oe-kbuild-all@lists.linux.dev, guangjie.song@mediatek.com,
-	wenst@chromium.org, linux-clk@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	linux-mediatek@lists.infradead.org, netdev@vger.kernel.org,
-	kernel@collabora.com, Laura Nao <laura.nao@collabora.com>
-Subject: Re: [PATCH v2 22/29] clk: mediatek: Add MT8196 mfg clock support
-Message-ID: <202506300416.dbAiyBcI-lkp@intel.com>
-References: <20250624143220.244549-23-laura.nao@collabora.com>
+	s=arc-20240116; t=1751234610; c=relaxed/simple;
+	bh=VYrxT2BNQHjU0MJz0OdEn520vMRwoVhW+g1xOW1znyo=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=r3aDFjdUY6xK594GXBZaE27KlRQzfhjQq8daI2XGun32JPuAfJO/mwWN97JwjNLmgp2dYmm8yrWGC0WzNh1Jgx6NISvuX6GgR0LT1gbXll8JV5EvblLv/qdvVWWsKPwFkORhPuLKDan2mcjlLp16uksT/vuYoIcqJMAlJLHipCI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=mailbox.org; spf=pass smtp.mailfrom=mailbox.org; dkim=pass (2048-bit key) header.d=mailbox.org header.i=@mailbox.org header.b=YLo2sGII; dkim=pass (2048-bit key) header.d=mailbox.org header.i=@mailbox.org header.b=bHU2jcaY; arc=none smtp.client-ip=80.241.56.152
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=mailbox.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=mailbox.org
+Received: from smtp1.mailbox.org (smtp1.mailbox.org [IPv6:2001:67c:2050:b231:465::1])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+	(No client certificate requested)
+	by mout-p-102.mailbox.org (Postfix) with ESMTPS id 4bVjwS5RNRz9tSK;
+	Mon, 30 Jun 2025 00:03:20 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=mailbox.org; s=mail20150812;
+	t=1751234600;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:
+	 content-transfer-encoding:content-transfer-encoding;
+	bh=tLOBASu67jMssiQT5SFkON0glgTsFRDPfajmiWxxwog=;
+	b=YLo2sGIIyIG9Al/YEyGCgmObSwoTXAq+0GnKu2t8O89WF6Q7Zzeq03/5twmZKR93LjZdmT
+	UnksZyK7whTbO6m6NH8OKUBSA3Hm2WEa36hQHL9fAxypgzITdvq7WukK0Mt+ItvYfhG5Df
+	V8KECzDBKDKedJmuAYD/i73/i58qLD9XChT56vHrqe4+4xyLGGR9GW/AhXXQVRVTTgPvYh
+	VCVI6j9KbHTS37cUhGy3NuZd+J6akDVRrOycY/VTAVt6imytrEEw+HR/mE0Oygs5EdWDnx
+	MDioJONaUy2d8DZXhbDvXHGKNUx5tfofTUbS4dPsPHOW89Q8gituhxYswAF+xw==
+From: Marek Vasut <marek.vasut+renesas@mailbox.org>
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=mailbox.org; s=mail20150812;
+	t=1751234598;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:
+	 content-transfer-encoding:content-transfer-encoding;
+	bh=tLOBASu67jMssiQT5SFkON0glgTsFRDPfajmiWxxwog=;
+	b=bHU2jcaYCIJ3si37hgS9IhNk3jzcwDR6e1mp49Oe98Cfs0Swg632JLEgwzixQXH9BDm8JN
+	HB0dluEoG6BRVakMvHS83c2gCpxWIXy71pb9fWXuPuHmwYirvYJsa9zTFlzcnifJl5VkhK
+	T75N6ZX5BQNa5vJdQOx/UwC7MHd+I+j980RTzWPHxGhVy7z9obYAwi7RrokacGt+6dvllE
+	xqQTIE8z4KTtbg1RNaZmX/KmdAkmlN/dT34B2mRFV1rSXvv9Vxc0yXiKnGsII+J1V+NXaQ
+	EVbCg01bvIK3zduFghawK72s2xQTeEjI/2Ti6pUx5YcTLSsO9ylw+782WcGWkw==
+To: linux-hwmon@vger.kernel.org
+Cc: Marek Vasut <marek.vasut+renesas@mailbox.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Guenter Roeck <linux@roeck-us.net>,
+	Jean Delvare <jdelvare@suse.com>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Rob Herring <robh@kernel.org>,
+	devicetree@vger.kernel.org,
+	linux-renesas-soc@vger.kernel.org
+Subject: [PATCH 1/2] dt-bindings: hwmon: pwm-fan: Document after shutdown fan settings
+Date: Mon, 30 Jun 2025 00:02:08 +0200
+Message-ID: <20250629220301.935515-1-marek.vasut+renesas@mailbox.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20250624143220.244549-23-laura.nao@collabora.com>
+Content-Transfer-Encoding: 8bit
+X-MBO-RS-META: oehwbwereg8x7fbrojyx4srs96aq8pks
+X-MBO-RS-ID: 663836b5dffa5e279f4
+X-Rspamd-Queue-Id: 4bVjwS5RNRz9tSK
 
-Hi Laura,
+Document fan-shutdown-percent property, used to describe fan RPM in percent
+set during shutdown. This is used to keep the fan running at fixed RPM after
+the kernel shut down, which is useful on hardware that does keep heating
+itself even after the kernel did shut down, for example from some sort of
+management core.
 
-kernel test robot noticed the following build warnings:
+Signed-off-by: Marek Vasut <marek.vasut+renesas@mailbox.org>
+---
+Cc: Conor Dooley <conor+dt@kernel.org>
+Cc: Guenter Roeck <linux@roeck-us.net>
+Cc: Jean Delvare <jdelvare@suse.com>
+Cc: Krzysztof Kozlowski <krzk+dt@kernel.org>
+Cc: Rob Herring <robh@kernel.org>
+Cc: devicetree@vger.kernel.org
+Cc: linux-hwmon@vger.kernel.org
+Cc: linux-renesas-soc@vger.kernel.org
+---
+ Documentation/devicetree/bindings/hwmon/pwm-fan.yaml | 9 +++++++++
+ 1 file changed, 9 insertions(+)
 
-[auto build test WARNING on clk/clk-next]
-[also build test WARNING on linus/master v6.16-rc3 next-20250627]
-[If your patch is applied to the wrong git tree, kindly drop us a note.
-And when submitting patch, we suggest to use '--base' as documented in
-https://git-scm.com/docs/git-format-patch#_base_tree_information]
-
-url:    https://github.com/intel-lab-lkp/linux/commits/Laura-Nao/clk-mediatek-clk-pll-Add-set-clr-regs-for-shared-PLL-enable-control/20250624-225217
-base:   https://git.kernel.org/pub/scm/linux/kernel/git/clk/linux.git clk-next
-patch link:    https://lore.kernel.org/r/20250624143220.244549-23-laura.nao%40collabora.com
-patch subject: [PATCH v2 22/29] clk: mediatek: Add MT8196 mfg clock support
-config: arm64-randconfig-r053-20250629 (https://download.01.org/0day-ci/archive/20250630/202506300416.dbAiyBcI-lkp@intel.com/config)
-compiler: clang version 21.0.0git (https://github.com/llvm/llvm-project e04c938cc08a90ae60440ce22d072ebc69d67ee8)
-rustc: rustc 1.78.0 (9b00956e5 2024-04-29)
-
-If you fix the issue in a separate patch/commit (i.e. not just a new version of
-the same patch/commit), kindly add following tags
-| Reported-by: kernel test robot <lkp@intel.com>
-| Closes: https://lore.kernel.org/oe-kbuild-all/202506300416.dbAiyBcI-lkp@intel.com/
-
-cocci warnings: (new ones prefixed by >>)
->> drivers/clk/mediatek/clk-mt8196-mfg.c:143:3-8: No need to set .owner here. The core will do it.
-
-vim +143 drivers/clk/mediatek/clk-mt8196-mfg.c
-
-   137	
-   138	static struct platform_driver clk_mt8196_mfg_drv = {
-   139		.probe = clk_mt8196_mfg_probe,
-   140		.remove = clk_mt8196_mfg_remove,
-   141		.driver = {
-   142			.name = "clk-mt8196-mfg",
- > 143			.owner = THIS_MODULE,
-   144			.of_match_table = of_match_clk_mt8196_mfg,
-   145		},
-   146	};
-   147	module_platform_driver(clk_mt8196_mfg_drv);
-   148	
-
+diff --git a/Documentation/devicetree/bindings/hwmon/pwm-fan.yaml b/Documentation/devicetree/bindings/hwmon/pwm-fan.yaml
+index 8b4ed5ee962f..a84cc3a4cfdc 100644
+--- a/Documentation/devicetree/bindings/hwmon/pwm-fan.yaml
++++ b/Documentation/devicetree/bindings/hwmon/pwm-fan.yaml
+@@ -31,6 +31,15 @@ properties:
+       it must be self resetting edge interrupts.
+     maxItems: 1
+ 
++  fan-shutdown-percent:
++    description:
++      Fan RPM in percent set during shutdown. This is used to keep the fan
++      running at fixed RPM after the kernel shut down, which is useful on
++      hardware that does keep heating itself even after the kernel did shut
++      down, for example from some sort of management core.
++    minimum: 0
++    maximum: 100
++
+   fan-stop-to-start-percent:
+     description:
+       Minimum fan RPM in percent to start when stopped.
 -- 
-0-DAY CI Kernel Test Service
-https://github.com/intel/lkp-tests/wiki
+2.47.2
+
 
