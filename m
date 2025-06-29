@@ -1,161 +1,135 @@
-Return-Path: <devicetree+bounces-190890-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-190891-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 21D02AED01B
-	for <lists+devicetree@lfdr.de>; Sun, 29 Jun 2025 21:25:01 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 75128AED127
+	for <lists+devicetree@lfdr.de>; Sun, 29 Jun 2025 22:57:41 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id D38BB7A6895
-	for <lists+devicetree@lfdr.de>; Sun, 29 Jun 2025 19:23:35 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 8AE351892E6D
+	for <lists+devicetree@lfdr.de>; Sun, 29 Jun 2025 20:57:57 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 326411D54F7;
-	Sun, 29 Jun 2025 19:24:54 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1266723E25B;
+	Sun, 29 Jun 2025 20:57:37 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=ragnatech.se header.i=@ragnatech.se header.b="Pf+FVp10";
-	dkim=pass (2048-bit key) header.d=messagingengine.com header.i=@messagingengine.com header.b="f0tcz0Ze"
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="TKlRP+3f"
 X-Original-To: devicetree@vger.kernel.org
-Received: from fout-a6-smtp.messagingengine.com (fout-a6-smtp.messagingengine.com [103.168.172.149])
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.9])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 519CB4437A;
-	Sun, 29 Jun 2025 19:24:50 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=103.168.172.149
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 985053D6F;
+	Sun, 29 Jun 2025 20:57:34 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.175.65.9
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1751225094; cv=none; b=uufoE/Bb9j/3Z70MDBSBmPZjkkY6a3st/OLdi4XmJEl2xNyFdopTYqqcH8p4EAFjUbq94nPaLkEolFL197BU2/2NJwlAtvE+yZKKmUoswxk9WR0ivNyX6kly2fKiPybHGjQJY1MUNEN9KdEnKaJJU3jkE4LoJ4V66w7J2tQNguM=
+	t=1751230657; cv=none; b=V/Wq7Fn4GaxHD95iJXzc/hYIjul5TGNPbUmx1nDuMGwHo0R+Hh/zU+SOCr4BYQ7zLQ2DHoo0Lzts1t4oX9XgwvJAgIPPv4MSGsUrWyEVwllr3lYcY/ufHgPjPGcGGtuty1K4jUN3phBuvlTRbADTL9sdPkw5I61Khfi5I+qfbHc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1751225094; c=relaxed/simple;
-	bh=M3uo0JaklQwzTmPKcY5rP9w46RWGzNqMtz9albwADUI=;
+	s=arc-20240116; t=1751230657; c=relaxed/simple;
+	bh=4sGclJ7JPmOXEyw1qCkUxmj9+SxiJpgXHWGQ3kI7L8E=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=ghwVDkXeQ8EfIe9u38I2cu9D0TYwLaJoKSUfKmEgGsXqrBVFhKuo/zfCMCw0/RYMy0l5UsxqVMq4ysJfmCUEfeVFEUpqEL+xYsutnGLmbbiLQs/+R0r/4gJayRoSIF7StoJnj+FNAzKwLkbk/um/zUBV7OaOUEOt1cFxMBVS6DU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ragnatech.se; spf=pass smtp.mailfrom=ragnatech.se; dkim=pass (2048-bit key) header.d=ragnatech.se header.i=@ragnatech.se header.b=Pf+FVp10; dkim=pass (2048-bit key) header.d=messagingengine.com header.i=@messagingengine.com header.b=f0tcz0Ze; arc=none smtp.client-ip=103.168.172.149
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ragnatech.se
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ragnatech.se
-Received: from phl-compute-06.internal (phl-compute-06.phl.internal [10.202.2.46])
-	by mailfout.phl.internal (Postfix) with ESMTP id 29025EC00AF;
-	Sun, 29 Jun 2025 15:24:50 -0400 (EDT)
-Received: from phl-mailfrontend-02 ([10.202.2.163])
-  by phl-compute-06.internal (MEProxy); Sun, 29 Jun 2025 15:24:50 -0400
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ragnatech.se; h=
-	cc:cc:content-transfer-encoding:content-type:content-type:date
-	:date:from:from:in-reply-to:in-reply-to:message-id:mime-version
-	:references:reply-to:subject:subject:to:to; s=fm1; t=1751225090;
-	 x=1751311490; bh=Rqm2hB4A2U11seNCayX+3FB5uqXCs04/E7vyODgKADk=; b=
-	Pf+FVp10PiNM80x6rUzZLiEz7QqIHgMX3vRYuHJceLzGt5akboqC8n0X2AYgFGZa
-	1odkb5r60ftjo2m3OPbZApMTVj/U3wAUYEPlOB/c7y54oE+hyvEDzGRrnkJdx+K6
-	KYG58Y3AyKXRsK2usj77rXR9ur37lF+fEqKHUf7iN9sJe+6e8fyJZMLIK1mEy7A/
-	PR3n1jaANBj0XFXnDy8gv/c5NPFzVBV5kzPMfl363f/lhJrIl9oYYJxqw1Yeuie2
-	cHYRg2c19bGSPJJzZTGMIpIfLgGrRkxn2Em8rPrcKcIP605CpbPzXXoyCEIh/tf0
-	BABKMQSb/dSYmkLQJiiNgg==
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
-	messagingengine.com; h=cc:cc:content-transfer-encoding
-	:content-type:content-type:date:date:feedback-id:feedback-id
-	:from:from:in-reply-to:in-reply-to:message-id:mime-version
-	:references:reply-to:subject:subject:to:to:x-me-proxy
-	:x-me-sender:x-me-sender:x-sasl-enc; s=fm2; t=1751225090; x=
-	1751311490; bh=Rqm2hB4A2U11seNCayX+3FB5uqXCs04/E7vyODgKADk=; b=f
-	0tcz0ZeE/jFTOxGk1qRKle1N0e0TS0enaHFj+j47s2AP0C2Pi3viD7eAwEuJMq3m
-	ZQLNbnWyHr8q/mW/89wAkZk84stJgFnRTucQXVkIyr8imUNOlA36b15GIkDLTLTR
-	jd6xfsym0gtEmxoHLTMcGymOOnCsmrX9tiCLJSHJoOJ9D07IXueqF45shbYxOotw
-	RrDZOOZcdZuJdWlG+UWE/VNib62oHFf5Hq3hHl6DDkqBr19swG3z8Vj0P2MUc7la
-	1zixzDO9Wt9Ffrcl6xDok5V/jROBv39zt3xQaDejSqTsTtMJQrJtPv15bJ1ndki+
-	7PjkfenGCuyWs3Wg0cC8A==
-X-ME-Sender: <xms:AZNhaD9Mxu4qG2_E5RFt_NAJd-cMbmdmARZWgkmRpXoZYy0GyhBObA>
-    <xme:AZNhaPss-Qas1aF3KwIJ4yR9bt98yF0whCyJxzponNnRkwUDyNlxkgUQAfX53arel
-    Ea_hJn9NmqvHzW28Ks>
-X-ME-Received: <xmr:AZNhaBABRu_MDc7rrENMDyYnHwtc4yGrmCSVQVRixxc52MCPWa1dGWWEYj54VAdAYKN-hgGi2BO6D8WMn-C-pEVj7qNvClVxFg>
-X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgeeffedrtdefgdelieeiucetufdoteggodetrfdotf
-    fvucfrrhhofhhilhgvmecuhfgrshhtofgrihhlpdfurfetoffkrfgpnffqhgenuceurghi
-    lhhouhhtmecufedttdenucesvcftvggtihhpihgvnhhtshculddquddttddmnecujfgurh
-    epfffhvfevuffkfhggtggugfgjsehtkeertddttdejnecuhfhrohhmpefpihhklhgrshcu
-    ufpnuggvrhhluhhnugcuoehnihhklhgrshdrshhouggvrhhluhhnugdorhgvnhgvshgrsh
-    esrhgrghhnrghtvggthhdrshgvqeenucggtffrrghtthgvrhhnpeefhfellefhffejgfef
-    udfggeejlefhveehieekhfeulefgtdefueehffdtvdelieenucevlhhushhtvghrufhiii
-    gvpedtnecurfgrrhgrmhepmhgrihhlfhhrohhmpehnihhklhgrshdrshhouggvrhhluhhn
-    ugdorhgvnhgvshgrshesrhgrghhnrghtvggthhdrshgvpdhnsggprhgtphhtthhopeekpd
-    hmohguvgepshhmthhpohhuthdprhgtphhtthhopehmrghrvghkrdhvrghsuhhtsehmrghi
-    lhgsohigrdhorhhgpdhrtghpthhtohepghgvvghrthdorhgvnhgvshgrshesghhlihguvg
-    hrrdgsvgdprhgtphhtthhopehrohgshheskhgvrhhnvghlrdhorhhgpdhrtghpthhtohep
-    khhriihkodgutheskhgvrhhnvghlrdhorhhgpdhrtghpthhtoheptghonhhorhdoughtse
-    hkvghrnhgvlhdrohhrghdprhgtphhtthhopehmrghrvghkrdhvrghsuhhtodhrvghnvghs
-    rghssehmrghilhgsohigrdhorhhgpdhrtghpthhtoheplhhinhhugidqrhgvnhgvshgrsh
-    dqshhotgesvhhgvghrrdhkvghrnhgvlhdrohhrghdprhgtphhtthhopeguvghvihgtvght
-    rhgvvgesvhhgvghrrdhkvghrnhgvlhdrohhrgh
-X-ME-Proxy: <xmx:AZNhaPc_ZuWG982-Wajviw7IUa6otmiCTLZF56ZaNETmPVQQbNYI9g>
-    <xmx:AZNhaIPq-O-OgfOOqdzclFIvPpRX9hlJOnP589pTpLGrgCGIMjs14A>
-    <xmx:AZNhaBkoWBsP1A8edwReGSPfSFtqwAVJmNxFvuVqyS4r0gLidA10_w>
-    <xmx:AZNhaCsaOfDoRhmVZKpr-833_S9SgB5CbqBYI9b1EY7oCQrEnfn1OQ>
-    <xmx:ApNhaAa3mcNyyzzYJRx7VfgS0EcodQuf9yYg8f-Se8RHcqvtlRX2Py8e>
-Feedback-ID: i80c9496c:Fastmail
-Received: by mail.messagingengine.com (Postfix) with ESMTPA; Sun,
- 29 Jun 2025 15:24:49 -0400 (EDT)
-Date: Sun, 29 Jun 2025 21:24:46 +0200
-From: Niklas =?utf-8?Q?S=C3=B6derlund?= <niklas.soderlund+renesas@ragnatech.se>
-To: Marek Vasut <marek.vasut@mailbox.org>
-Cc: Geert Uytterhoeven <geert+renesas@glider.be>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Marek Vasut <marek.vasut+renesas@mailbox.org>,
-	linux-renesas-soc@vger.kernel.org, devicetree@vger.kernel.org
-Subject: Re: [PATCH 2/5] arm64: dts: renesas: sparrow-hawk: Add overlay for
- IMX219 on J1
-Message-ID: <20250629192446.GA2837343@ragnatech.se>
-References: <20250628215337.1688969-1-niklas.soderlund+renesas@ragnatech.se>
- <20250628215337.1688969-3-niklas.soderlund+renesas@ragnatech.se>
- <917fedbb-06f3-49a7-8d80-bf6834de055a@mailbox.org>
+	 Content-Type:Content-Disposition:In-Reply-To; b=gpLUhIkM7DgVcFhW8EL/C/OUIy6WUZ+IfRght3y11y2WarwWwPCgjnR8fSqHXW4rA0GjPVlUXlWgww2U0tPU02BDS+YJMXsotctbEgv+DX3I92jTFhrrJuIwoq+IsMpG33cb/ztNBhrZuADGWOT2yqeh7lDqCdDdDOTEOP6BXSw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=TKlRP+3f; arc=none smtp.client-ip=198.175.65.9
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1751230654; x=1782766654;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=4sGclJ7JPmOXEyw1qCkUxmj9+SxiJpgXHWGQ3kI7L8E=;
+  b=TKlRP+3f/6xa/BsqWWJ1rOHbxPuKQxI4UoAPkOLKgX/24YK4S0W6CBr2
+   mLPR1nT5/bW4GCFEzV87wIlEZZTVo2cHsL/Io2xUX33AXqMUItAvvUk8W
+   9WqWBlXmOIbT0zR7n5FNnqx5iO2Scc+dXCQRUtGTtL6hkAm6bT4XA5ZN5
+   dv7KBef4kk2nC0XhV2699kGEOcy0HG1jHzZ4AeMlm9WPBTj9IG+663CZ1
+   Pj+fUkEP3t5l940/2+jDusWx7FcnGku0Boqu/5jn9IB7k/6oV7h8hdY17
+   eK08987vV6w5dwdnS9y6gzs9fEJWqsrutlm0s/XcNOy2f0Jem8BdKuO3R
+   Q==;
+X-CSE-ConnectionGUID: MHTvA/O7RTqGdnq6qHH77Q==
+X-CSE-MsgGUID: +TVy+MTFTkm36HzPfcv4yw==
+X-IronPort-AV: E=McAfee;i="6800,10657,11479"; a="76006842"
+X-IronPort-AV: E=Sophos;i="6.16,276,1744095600"; 
+   d="scan'208";a="76006842"
+Received: from orviesa006.jf.intel.com ([10.64.159.146])
+  by orvoesa101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 29 Jun 2025 13:57:34 -0700
+X-CSE-ConnectionGUID: yqedKzWcThKyEa84V8mKAQ==
+X-CSE-MsgGUID: 2xMj3oDGTH6CIdlGLr8kEA==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.16,276,1744095600"; 
+   d="scan'208";a="152780971"
+Received: from lkp-server01.sh.intel.com (HELO e8142ee1dce2) ([10.239.97.150])
+  by orviesa006.jf.intel.com with ESMTP; 29 Jun 2025 13:57:29 -0700
+Received: from kbuild by e8142ee1dce2 with local (Exim 4.96)
+	(envelope-from <lkp@intel.com>)
+	id 1uVz5b-000YE2-1w;
+	Sun, 29 Jun 2025 20:57:27 +0000
+Date: Mon, 30 Jun 2025 04:56:37 +0800
+From: kernel test robot <lkp@intel.com>
+To: Laura Nao <laura.nao@collabora.com>, mturquette@baylibre.com,
+	sboyd@kernel.org, robh@kernel.org, krzk+dt@kernel.org,
+	conor+dt@kernel.org, matthias.bgg@gmail.com,
+	angelogioacchino.delregno@collabora.com, p.zabel@pengutronix.de,
+	richardcochran@gmail.com
+Cc: oe-kbuild-all@lists.linux.dev, guangjie.song@mediatek.com,
+	wenst@chromium.org, linux-clk@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	linux-mediatek@lists.infradead.org, netdev@vger.kernel.org,
+	kernel@collabora.com, Laura Nao <laura.nao@collabora.com>
+Subject: Re: [PATCH v2 22/29] clk: mediatek: Add MT8196 mfg clock support
+Message-ID: <202506300416.dbAiyBcI-lkp@intel.com>
+References: <20250624143220.244549-23-laura.nao@collabora.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <917fedbb-06f3-49a7-8d80-bf6834de055a@mailbox.org>
+In-Reply-To: <20250624143220.244549-23-laura.nao@collabora.com>
 
-Hi Marek,
+Hi Laura,
 
-Thanks for your feedback.
+kernel test robot noticed the following build warnings:
 
-On 2025-06-29 15:40:52 +0200, Marek Vasut wrote:
-> On 6/28/25 11:53 PM, Niklas Söderlund wrote:
-> 
-> Hello Niklas,
-> 
-> > +&{/} {
-> > +	clk_cam_j1: clk_cam_j1 {
-> > +		compatible = "fixed-clock";
-> > +		#clock-cells = <0>;
-> > +		clock-frequency = <24000000>;
-> > +		status = "okay";
-> > +	};
-> > +
-> > +	/* Page 29 / CSI_IF_CN / J1 */
-> > +	reg_cam_j1: reg_cam_j1 {
-> > +		compatible = "regulator-fixed";
-> > +		regulator-name = "reg_cam_j1";
-> > +		enable-active-high;
-> > +		status = "okay";
-> > +		gpios = <&gpio0 1 GPIO_ACTIVE_HIGH>;
-> > +	};
-> > +
-> > +	reg_cam_j1_dummy: reg_cam_j1_dummy {
-> > +		compatible = "regulator-fixed";
-> > +		regulator-name = "reg_cam_j1_dummy";
-> > +		status = "okay";
-> 
-> Is the 'status = "okay"' property needed for these regulators ? I think
-> 'status = "okay"' is the default behavior if "status" property is not
-> present , so 'status = "okay"' is superfluous here.
+[auto build test WARNING on clk/clk-next]
+[also build test WARNING on linus/master v6.16-rc3 next-20250627]
+[If your patch is applied to the wrong git tree, kindly drop us a note.
+And when submitting patch, we suggest to use '--base' as documented in
+https://git-scm.com/docs/git-format-patch#_base_tree_information]
 
-Indeed you are correct, the status property for the fixed regulators are 
-superfluous. Will drop in next version, thanks for teaching me something 
-new.
+url:    https://github.com/intel-lab-lkp/linux/commits/Laura-Nao/clk-mediatek-clk-pll-Add-set-clr-regs-for-shared-PLL-enable-control/20250624-225217
+base:   https://git.kernel.org/pub/scm/linux/kernel/git/clk/linux.git clk-next
+patch link:    https://lore.kernel.org/r/20250624143220.244549-23-laura.nao%40collabora.com
+patch subject: [PATCH v2 22/29] clk: mediatek: Add MT8196 mfg clock support
+config: arm64-randconfig-r053-20250629 (https://download.01.org/0day-ci/archive/20250630/202506300416.dbAiyBcI-lkp@intel.com/config)
+compiler: clang version 21.0.0git (https://github.com/llvm/llvm-project e04c938cc08a90ae60440ce22d072ebc69d67ee8)
+rustc: rustc 1.78.0 (9b00956e5 2024-04-29)
+
+If you fix the issue in a separate patch/commit (i.e. not just a new version of
+the same patch/commit), kindly add following tags
+| Reported-by: kernel test robot <lkp@intel.com>
+| Closes: https://lore.kernel.org/oe-kbuild-all/202506300416.dbAiyBcI-lkp@intel.com/
+
+cocci warnings: (new ones prefixed by >>)
+>> drivers/clk/mediatek/clk-mt8196-mfg.c:143:3-8: No need to set .owner here. The core will do it.
+
+vim +143 drivers/clk/mediatek/clk-mt8196-mfg.c
+
+   137	
+   138	static struct platform_driver clk_mt8196_mfg_drv = {
+   139		.probe = clk_mt8196_mfg_probe,
+   140		.remove = clk_mt8196_mfg_remove,
+   141		.driver = {
+   142			.name = "clk-mt8196-mfg",
+ > 143			.owner = THIS_MODULE,
+   144			.of_match_table = of_match_clk_mt8196_mfg,
+   145		},
+   146	};
+   147	module_platform_driver(clk_mt8196_mfg_drv);
+   148	
 
 -- 
-Kind Regards,
-Niklas Söderlund
+0-DAY CI Kernel Test Service
+https://github.com/intel/lkp-tests/wiki
 
