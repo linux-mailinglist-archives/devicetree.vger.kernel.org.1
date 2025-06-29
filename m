@@ -1,63 +1,63 @@
-Return-Path: <devicetree+bounces-190855-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-190856-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 005C8AECEA8
-	for <lists+devicetree@lfdr.de>; Sun, 29 Jun 2025 18:27:10 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id DE6F3AECEAE
+	for <lists+devicetree@lfdr.de>; Sun, 29 Jun 2025 18:33:18 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 3F0B37A24DE
-	for <lists+devicetree@lfdr.de>; Sun, 29 Jun 2025 16:25:46 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 66E4E189298F
+	for <lists+devicetree@lfdr.de>; Sun, 29 Jun 2025 16:33:34 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D3B1222F74A;
-	Sun, 29 Jun 2025 16:27:04 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 349831E8837;
+	Sun, 29 Jun 2025 16:33:13 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="AZv9RRP5"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="U3403vbl"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A4F482185AA;
-	Sun, 29 Jun 2025 16:27:04 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 019C71C36;
+	Sun, 29 Jun 2025 16:33:12 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1751214424; cv=none; b=H+QDZoMfi/RESJu/KUnye3lrrpmHNKBYMUPgPJXra5lXfB1RJTsv9HOTd++Z3jhpPL/agLrNTBx9cjaehUkmbtIYJrQ8eFQPXKEwGjcVckvLwP7ckHmc2d9U8B5oewFBmX/qKUkpIFBxDT8Q6Ulos+r9XB3w3yzC1L/r9YC1mxk=
+	t=1751214793; cv=none; b=J0/yFDp6fFXG0snoJqoeMd/207QbtJtypUAYxiyd3hnXbwkNxwQ4MdgIrA6bIvmnX7ILsQZo6cnyrHsTysW0UiJJeVAZd7zhus5w7/uHCJ5MlFjNlxu7BPPOq/sIuK4PVPFODwNLXV/4DJMkiTO4VFO8vqqQuYu2Wp9236RoI+0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1751214424; c=relaxed/simple;
-	bh=pNONqr+ynlSLv5Sw/Zqqmn1DfkLBbN7gWTRlWjnaQqY=;
+	s=arc-20240116; t=1751214793; c=relaxed/simple;
+	bh=ef6rQZIC/ziH2BA7dycq513/pksDVMKdMUwcu1DRESk=;
 	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=UTSHErFGYzP66yrw39sCrVDEaz93q6/P/3CYkONXCANOM+u52f8VzaGM5Hi4InKaDnE15j48KrkpEYsBzCB7P7D6h+gJklcMyQdyI/qLyUwEwqvBuoruR1NxSBR/Rq52H777zUrXfVjTN3yGXbQ+hAEVlHM4EZGqHSImCcu7a4g=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=AZv9RRP5; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 5431CC4CEEB;
-	Sun, 29 Jun 2025 16:26:59 +0000 (UTC)
+	 MIME-Version:Content-Type; b=Vnd9JZZ1p/ndyViYNBAw6TxPjxx1e/QlBaaWeeOe5d/E8jQbaOuaXG/dZJCojEVkVHM2qbgjZGSsTcNdcwe5tW0sfS4A5V7ZMLN69LO5EPTtysl+dMABLw4fsfYhFM+lGyp9MBKQGMqjVaEyzIqqb8VdnMfX2FxCX+BQo2PoMDg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=U3403vbl; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id EF621C4CEEB;
+	Sun, 29 Jun 2025 16:33:06 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1751214424;
-	bh=pNONqr+ynlSLv5Sw/Zqqmn1DfkLBbN7gWTRlWjnaQqY=;
+	s=k20201202; t=1751214792;
+	bh=ef6rQZIC/ziH2BA7dycq513/pksDVMKdMUwcu1DRESk=;
 	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
-	b=AZv9RRP5w4oGi+ymZKzZVOLrti6mg0AbAg9KBTe+hk0o1BAPeHrNZHVeQYj49otAN
-	 jvoMqvB5eqQT0Xk0pzRTyin2LFaTZWITGv0hceGv0dYhF038jQQAZbDhjYoOgma9/j
-	 bU1yNdpyl3H0eDhgR0ONwr4+gYUwETxNXpUNZt3XpuBNtTgrkTlriEJT6ytzQnqYbD
-	 cxQNyHa1ePy3KVfXCUM+8KX/HmZeX974XyMX0umSXqiu/tNENBAtpb+A73MGPWHd9T
-	 4B8D046Cpt9YmKHaduT/uoGhOJ1omDfueZJgXBpezb9tC9oDQlz8YWQlhAc9XwQMgZ
-	 JqUiFkgasuXEQ==
-Date: Sun, 29 Jun 2025 17:26:55 +0100
+	b=U3403vbl5suB3BrPuAl8KFrQvJDwX3oceR5hJkBeRfCQTkr2VPdRgfrIy6osO9NaM
+	 5iFhBP+D/40TQiUYWJ6359Q7YctQi90tChVaGzd/piy31o1J7zGtQ60leZlTI56YEQ
+	 HXGVpSxU15mXzACinvG8PiaVVr9xoKaSxX6+tSwFlihR1rtZQ9GcbOj/0oWL+jZPEM
+	 /4rfI+Miu1+9+I1gs4fVgLf3WFVwUf/eAEBjAfUY/1WkDKwyfBpEaGseUd4hndXfqX
+	 cSamFty1PIZTQ1ZvfmQQDTxr5Q2do3HK4pvp5GVbzPUYm/FU7XkqC8Bg2UpqfBtmIM
+	 UwLaJxoPnDipg==
+Date: Sun, 29 Jun 2025 17:33:02 +0100
 From: Jonathan Cameron <jic23@kernel.org>
-To: Sukrut Bellary <sbellary@baylibre.com>
-Cc: David Lechner <dlechner@baylibre.com>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Matti Vaittinen <mazziesaccount@gmail.com>, Nuno
- =?UTF-8?B?U8Oh?= <nuno.sa@analog.com>, Andy Shevchenko <andy@kernel.org>,
- Angelo Compagnucci <angelo.compagnucci@gmail.com>, Nishanth Menon
- <nm@ti.com>, linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v4 2/5] iio: adc: ti-adc128s052: Use shift and realbits
-Message-ID: <20250629172655.209e2bd2@jic23-huawei>
-In-Reply-To: <aGBKMcZGYOcXmKdB@dev-linux>
-References: <20250614091504.575685-1-sbellary@baylibre.com>
-	<20250614091504.575685-3-sbellary@baylibre.com>
-	<20250614142743.23ee2203@jic23-huawei>
-	<aGBKMcZGYOcXmKdB@dev-linux>
+To: Aleksander Jan Bajkowski <olek2@wp.pl>
+Cc: rafael@kernel.org, daniel.lezcano@linaro.org, rui.zhang@intel.com,
+ lukasz.luba@arm.com, dlechner@baylibre.com, nuno.sa@analog.com,
+ andy@kernel.org, robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
+ matthias.bgg@gmail.com, angelogioacchino.delregno@collabora.com,
+ zhiyong.tao@mediatek.com, linux-pm@vger.kernel.org,
+ linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ linux-mediatek@lists.infradead.org
+Subject: Re: [PATCH 2/3] thermal/drivers/mediatek: Add support for MT7981
+ SoC
+Message-ID: <20250629173302.265b67ec@jic23-huawei>
+In-Reply-To: <20250628223837.848244-3-olek2@wp.pl>
+References: <20250628223837.848244-1-olek2@wp.pl>
+	<20250628223837.848244-3-olek2@wp.pl>
 X-Mailer: Claws Mail 4.3.0 (GTK 3.24.48; x86_64-pc-linux-gnu)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
@@ -68,47 +68,40 @@ MIME-Version: 1.0
 Content-Type: text/plain; charset=US-ASCII
 Content-Transfer-Encoding: 7bit
 
-On Sat, 28 Jun 2025 13:01:53 -0700
+On Sun, 29 Jun 2025 00:38:36 +0200
+Aleksander Jan Bajkowski <olek2@wp.pl> wrote:
 
-> > > +		.type = IIO_VOLTAGE,					\
-> > > +		.indexed = 1,						\
-> > > +		.channel = (num),					\
-> > > +		.info_mask_separate = BIT(IIO_CHAN_INFO_RAW),		\
-> > > +		.info_mask_shared_by_type = BIT(IIO_CHAN_INFO_SCALE),	\
-> > > +		.scan_index = (num),					\
-> > > +		.scan_type = {						\
-> > > +			.sign = 'u',					\
-> > > +			.realbits = (real_bits),			\
-> > > +			.storagebits = 16,				\
-> > > +			.shift = (12 - real_bits),			\
-> > > +		},							\
-> > >  	}
-> > >  
-> > > +#define ADC128_VOLTAGE_CHANNEL(num) _ADC128_VOLTAGE_CHANNEL(num, 12)  
-> > 
-> > I wonder if it would be clearer to just have the 12 explicit in each entry
-> > and skip this two levels of macro thing?
-> >  
-> Do you mean to pass realbits to
-> ADC128_VOLTAGE_CHANNEL/_ADC128_VOLTAGE_CHANNEL as e.g.,
+> The temperature sensor support on the MT7981 is exactly the same
+> as on the MT7986.
 > 
-> static const struct iio_chan_spec adc122s021_channels[] = {
->         ADC128_VOLTAGE_CHANNEL(0, 12),
->         ADC128_VOLTAGE_CHANNEL(1, 12),
-> };
+> Signed-off-by: Aleksander Jan Bajkowski <olek2@wp.pl>
+> ---
+>  drivers/thermal/mediatek/auxadc_thermal.c | 4 ++++
+>  1 file changed, 4 insertions(+)
 > 
-> I think we added 2nd level macros as ADC082_VOLTAGE_CHANNEL,
-> ADC102_VOLTAGE_CHANNEL, etc., to have a visual distinction for a different
-> part nos.
+> diff --git a/drivers/thermal/mediatek/auxadc_thermal.c b/drivers/thermal/mediatek/auxadc_thermal.c
+> index 9ee2e7283435..020324901505 100644
+> --- a/drivers/thermal/mediatek/auxadc_thermal.c
+> +++ b/drivers/thermal/mediatek/auxadc_thermal.c
+> @@ -1149,6 +1149,10 @@ static const struct of_device_id mtk_thermal_of_match[] = {
+>  		.compatible = "mediatek,mt7622-thermal",
+>  		.data = (void *)&mt7622_thermal_data,
+>  	},
+> +	{
+> +		.compatible = "mediatek,mt7981-thermal",
+> +		.data = (void *)&mt7986_thermal_data,
 
-I think as we can have lots of parts with each resolution that will
-end up confusing.
+Random drive by question.  Why the (void *) casts?
 
-> But I am ok if you prefer ADC128_VOLTAGE_CHANNEL with a second parameter
-> as real_bits.
+static const struct mtk_thermal_data mt7986_thermal_data;
+is the definition and data is a const void * so
+you should be able to assign directly without a cast and not
+have the casting away of const only to assign it to a
+const void *
 
-I think that's going to be easier to follow.
-
-Jonathan
+> +	},
+>  	{
+>  		.compatible = "mediatek,mt7986-thermal",
+>  		.data = (void *)&mt7986_thermal_data,
 
 
