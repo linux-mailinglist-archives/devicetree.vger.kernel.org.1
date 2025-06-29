@@ -1,129 +1,116 @@
-Return-Path: <devicetree+bounces-190863-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-190864-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 66AD8AECF2D
-	for <lists+devicetree@lfdr.de>; Sun, 29 Jun 2025 19:27:51 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id E814AAECF40
+	for <lists+devicetree@lfdr.de>; Sun, 29 Jun 2025 19:40:30 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 97EB5174615
-	for <lists+devicetree@lfdr.de>; Sun, 29 Jun 2025 17:27:51 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 16972165474
+	for <lists+devicetree@lfdr.de>; Sun, 29 Jun 2025 17:40:31 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8A934239E80;
-	Sun, 29 Jun 2025 17:26:32 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id BDF60226D0A;
+	Sun, 29 Jun 2025 17:40:25 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b="isFwwZLd"
+	dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b="RTlHbRL/"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-oi1-f178.google.com (mail-oi1-f178.google.com [209.85.167.178])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [213.167.242.64])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AD880239E74
-	for <devicetree@vger.kernel.org>; Sun, 29 Jun 2025 17:26:30 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.178
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0F1AA1C36;
+	Sun, 29 Jun 2025 17:40:23 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=213.167.242.64
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1751217992; cv=none; b=Bk3BknRTwVCLltJYzQLC5bGtp1NrM2DgdlezsVjecSRZcRcG+RvEFGICUWuqKFghqyxNK8MyeKZ0Ll1HcIGS3EOjPVkPtbI7NA0WgynDrTmB2k5lzZYZLKhIO7K+gN8AJaLYEy63IdsOAn9AkX66AfdOfqgNtjQ7xoAhjd3HKfg=
+	t=1751218825; cv=none; b=TxoI7CzYvQ1+Sogw9rjaL0mZoJ44vdjlrLwBb3dt4ux5olf2xS5I60jCA3NzHtk1rwbuwCCSvj9yLwjp05eXqHkVgkEMIy8veXCvERLV/9TTdwQj3XD2xQKNq+TwwCPGbyY2ztfskdlfiNTY4sFOE/GL008sLc81WP6cenrQ++M=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1751217992; c=relaxed/simple;
-	bh=UcDLRIK4nSfwsBUkh4/O9ySj32H/fgYNG9bmFhJ1eH8=;
-	h=Message-ID:Date:MIME-Version:Subject:To:References:From:
-	 In-Reply-To:Content-Type; b=k1rqEqjYyMU7gqKGI5t1e3xEhXyhoiiDKGYtqD3wcpFnLapLCvdbzEy2kR6b/dZTP59eHAt/YWSOm6P/sBCBywRxR+mkjxO7NO/4WbSIjNqf512oy01EGIdbCrifJfHF8pdI8QM3AnFaTy2Q+xLT7SoO50gHOUdYiLbSNAhh+hA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com; spf=pass smtp.mailfrom=baylibre.com; dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b=isFwwZLd; arc=none smtp.client-ip=209.85.167.178
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=baylibre.com
-Received: by mail-oi1-f178.google.com with SMTP id 5614622812f47-40af40aef06so2703727b6e.3
-        for <devicetree@vger.kernel.org>; Sun, 29 Jun 2025 10:26:30 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1751217990; x=1751822790; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:to:subject:user-agent:mime-version:date:message-id:from
-         :to:cc:subject:date:message-id:reply-to;
-        bh=x0J44e2xJxiOSnYAQHHbyr1iri4R8DxZunjcmJed2aE=;
-        b=isFwwZLdtu5EizqvCa04xQCqe9bvR/q3t8o0rFOFMPooO0XcPlZ+ZCwYZmSvepau63
-         LRZtPklD7PocyJ4F1UJPI7IS3WS9rI8tb8Ca77h+XJtNW8sbciQc997QGH/3D3bzAM97
-         rqI3TeaXiv/Ut4Mh1yKKubQLOmSOT/oYzVya8nkBBsop79IdKFcnlCSPkCebKM9lajjH
-         6NS4sdpEMp0UmtcQyw8xMv9L2uuwv5VO5CdBcY7tWP9Gp4wJPJBe/++VuLOggWsQiFsO
-         JPKc2dPKMbIt0K2Ez9LoD8uzMYIOP2aRn9DnsEEW6g7LnjLjJ9DvONDO8aTLlmoCrpId
-         Xq+Q==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1751217990; x=1751822790;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=x0J44e2xJxiOSnYAQHHbyr1iri4R8DxZunjcmJed2aE=;
-        b=C0oLadcmPiwNsvMTjAWbD9FHMmzDw8z731JLSQ1bbs3USJalZINk2p6DXjTRFXBIkU
-         t7IMszjnXfw2re/QghCQIFspZO19Npefcty0RU58v5T6+hha0PI1+sOWNt2hIIR2oW+G
-         Mu/diFcP7e017IRmmOzVJJrqzqm5Fmk4WoKuKQaOvzBik60lciPmgGGLZZbBEKKmlFVZ
-         AoMOP0jiTZrqXIcLEwrrnEN0ihhCL87FxLYnJJJcPqWpTVC9x/O3G7nuiKIjHqIkIVP7
-         0sKjp8bRVs5OU62hJd0f6GmFh5i19ZIMZnzSjosIOuvV4mNyq961zQWWbrIPqUMDQuNB
-         KAiQ==
-X-Forwarded-Encrypted: i=1; AJvYcCUZrFTuxPj0BGOoEBdjq0Cq9mrg4o7NfMF7KFRnPTVHVDtXPanDL5t1I+2r8iuaI79Lt0Q36qipGDvx@vger.kernel.org
-X-Gm-Message-State: AOJu0YyJgGvhpZY+xJDINRK/4Q9opdZfMyPxdijR93l0FrgpjZHiqckP
-	pH/ABLjqvOXbu68sAl8/pgiHsSlK6O9JawLAnbVDjkHQwV4eBrsZXs8bX0bW0t4sQ4k=
-X-Gm-Gg: ASbGncvT7D2FDLxjqOfzGhae9UwmTQLrKzfLaBG8l/9PgobZebJCCCp/34prIP0/4pp
-	WSktiR9R5HarhiFeqotfMaUQVQSAw1wqg/uwgc8Hl8SOjr8hlZMVDrb1J7kBmvk8+xyo58PK7nK
-	Ro2TeNUhyXSb5BHnB6T2vRjmfkDjhU2PcYuvV2WNidKTUXzOkzfmzMpnV71KOBfwZAKuPOdDJqp
-	AhGhIFsui2bpOe4h6M4ob65W/zjnzovqK1OukIo+rAtC40Fjnj2jfaMj7NISaa/30ZREmeKIXSc
-	8805IqH8WFhXXxrS/9SfhKK1ANnBmIz/90V+Y2SIdgpf3QdJOaMkGsuow8J75aS1BEVtWln8Q7m
-	VYLvGyiwS2GQv03i/eBt4EBt3DPCmZQFPQVWg2waVhLldwlgTjg==
-X-Google-Smtp-Source: AGHT+IGXPL0lhOwDFehBinrdpXCNAl48Ot/qIiS16yHakjjWRm/8p1TRnd0kC3+2s69JZhSqjEXZhg==
-X-Received: by 2002:a05:6808:f02:b0:409:f8e:726f with SMTP id 5614622812f47-40b33e34ba4mr6866779b6e.25.1751217989649;
-        Sun, 29 Jun 2025 10:26:29 -0700 (PDT)
-Received: from ?IPV6:2600:8803:e7e4:1d00:4876:5a0d:2fea:6208? ([2600:8803:e7e4:1d00:4876:5a0d:2fea:6208])
-        by smtp.gmail.com with ESMTPSA id 5614622812f47-40b487940bbsm940788b6e.3.2025.06.29.10.26.27
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sun, 29 Jun 2025 10:26:29 -0700 (PDT)
-Message-ID: <97d34412-31ca-41a4-a3fe-30635a79d52c@baylibre.com>
-Date: Sun, 29 Jun 2025 12:26:27 -0500
+	s=arc-20240116; t=1751218825; c=relaxed/simple;
+	bh=kNTnA/HEHbrY20Y20zsb2ywwOhUAzW+t5QxcQgfHaLc=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=WyL3sSOKO2kJiDapBF58K5yHXIGTuV84vmwSdfdbyrloiT1F7O3gIkQcve3kiBwxrzpLoHrQTp/0EMCKUyKsPK6uXeqEvQaWMIUvHcPjURZaRs0XEZHqCHpbxwNTsRDpZkW/MKnreB1DLemhHyDrp3jxIycSXmKk+DtQm+wuS9c=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ideasonboard.com; spf=pass smtp.mailfrom=ideasonboard.com; dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b=RTlHbRL/; arc=none smtp.client-ip=213.167.242.64
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ideasonboard.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ideasonboard.com
+Received: from pendragon.ideasonboard.com (81-175-209-231.bb.dnainternet.fi [81.175.209.231])
+	by perceval.ideasonboard.com (Postfix) with UTF8SMTPSA id CB96E16D7;
+	Sun, 29 Jun 2025 19:40:00 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
+	s=mail; t=1751218801;
+	bh=kNTnA/HEHbrY20Y20zsb2ywwOhUAzW+t5QxcQgfHaLc=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=RTlHbRL/r/r1gaRrFFI0Pgsd6sC5iZnTaGjpvzCh8yDmQqqJ36UICUp5SPUJBsuDD
+	 lZupLJwM96TKcMkxICNw74LmgHCLEZVmqe83P4sC7/4cE6SKjVlIJ8yuY96uTjnV/T
+	 y1JjJHo8g7Kwt1wTgFXX8fSGsp17BL0Ujaa6rc8k=
+Date: Sun, 29 Jun 2025 20:39:58 +0300
+From: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+To: Ricardo Ribalda <ribalda@chromium.org>
+Cc: Hans de Goede <hdegoede@redhat.com>,
+	Mauro Carvalho Chehab <mchehab@kernel.org>,
+	Hans Verkuil <hverkuil@xs4all.nl>,
+	Sakari Ailus <sakari.ailus@linux.intel.com>,
+	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Linus Walleij <linus.walleij@linaro.org>,
+	Bartosz Golaszewski <brgl@bgdev.pl>,
+	"Rafael J. Wysocki" <rafael@kernel.org>,
+	Len Brown <lenb@kernel.org>, linux-media@vger.kernel.org,
+	linux-kernel@vger.kernel.org, linux-usb@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-gpio@vger.kernel.org,
+	linux-acpi@vger.kernel.org
+Subject: Re: [PATCH v2 01/12] media: uvcvideo: Always set default_value
+Message-ID: <20250629173958.GA6260@pendragon.ideasonboard.com>
+References: <20250605-uvc-orientation-v2-0-5710f9d030aa@chromium.org>
+ <20250605-uvc-orientation-v2-1-5710f9d030aa@chromium.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 3/3] dt-bindings: iio: adc: Add support for MT7981
-To: Aleksander Jan Bajkowski <olek2@wp.pl>, rafael@kernel.org,
- daniel.lezcano@linaro.org, rui.zhang@intel.com, lukasz.luba@arm.com,
- jic23@kernel.org, nuno.sa@analog.com, andy@kernel.org, robh@kernel.org,
- krzk+dt@kernel.org, conor+dt@kernel.org, matthias.bgg@gmail.com,
- angelogioacchino.delregno@collabora.com, zhiyong.tao@mediatek.com,
- linux-pm@vger.kernel.org, linux-iio@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, linux-mediatek@lists.infradead.org
-References: <20250628223837.848244-1-olek2@wp.pl>
- <20250628223837.848244-4-olek2@wp.pl>
-Content-Language: en-US
-From: David Lechner <dlechner@baylibre.com>
-In-Reply-To: <20250628223837.848244-4-olek2@wp.pl>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+In-Reply-To: <20250605-uvc-orientation-v2-1-5710f9d030aa@chromium.org>
 
-On 6/28/25 5:38 PM, Aleksander Jan Bajkowski wrote:
-> The temperature sensor in the MT7981 is same as in the MT7986.
-> Add compatible string for mt7981.
+Hi Ricardo,
+
+Thank you for the patch.
+
+On Thu, Jun 05, 2025 at 05:52:54PM +0000, Ricardo Ribalda wrote:
+> If the control does not support GET_DEF, the field default_value will be
+> left uninitialized during queryctrl.
 > 
+> Fixes: c0efd232929c ("V4L/DVB (8145a): USB Video Class driver")
 
-If they are exactly the same, then we would want to include fallback to
-the existing identical compatible string rather than adding a new standalone
-compatible.
+Media CI rules require a Cc: stable.
 
-> Signed-off-by: Aleksander Jan Bajkowski <olek2@wp.pl>
+> Signed-off-by: Ricardo Ribalda <ribalda@chromium.org>
 > ---
->  .../devicetree/bindings/iio/adc/mediatek,mt2701-auxadc.yaml      | 1 +
->  1 file changed, 1 insertion(+)
+>  drivers/media/usb/uvc/uvc_ctrl.c | 2 ++
+>  1 file changed, 2 insertions(+)
 > 
-> diff --git a/Documentation/devicetree/bindings/iio/adc/mediatek,mt2701-auxadc.yaml b/Documentation/devicetree/bindings/iio/adc/mediatek,mt2701-auxadc.yaml
-> index b489c984c1bb..ceb914dde15b 100644
-> --- a/Documentation/devicetree/bindings/iio/adc/mediatek,mt2701-auxadc.yaml
-> +++ b/Documentation/devicetree/bindings/iio/adc/mediatek,mt2701-auxadc.yaml
-> @@ -26,6 +26,7 @@ properties:
->            - mediatek,mt2712-auxadc
->            - mediatek,mt6765-auxadc
->            - mediatek,mt7622-auxadc
-> +          - mediatek,mt7981-auxadc
->            - mediatek,mt7986-auxadc
->            - mediatek,mt8173-auxadc
->        - items:
+> diff --git a/drivers/media/usb/uvc/uvc_ctrl.c b/drivers/media/usb/uvc/uvc_ctrl.c
+> index 44b6513c526421943bb9841fb53dc5f8e9f93f02..47e8ccc39234d1769384b55539a21df07f3d57c7 100644
+> --- a/drivers/media/usb/uvc/uvc_ctrl.c
+> +++ b/drivers/media/usb/uvc/uvc_ctrl.c
+> @@ -1497,6 +1497,8 @@ static int __uvc_queryctrl_boundaries(struct uvc_video_chain *chain,
+>  	if (ctrl->info.flags & UVC_CTRL_FLAG_GET_DEF) {
+>  		v4l2_ctrl->default_value = uvc_mapping_get_s32(mapping,
+>  				UVC_GET_DEF, uvc_ctrl_data(ctrl, UVC_CTRL_DATA_DEF));
+> +	} else {
+> +		v4l2_ctrl->default_value = 0;
+>  	}
 
+While at it we can drop the curly braces.
+
+Reviewed-by: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+
+>  
+>  	switch (mapping->v4l2_type) {
+
+-- 
+Regards,
+
+Laurent Pinchart
 
