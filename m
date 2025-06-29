@@ -1,71 +1,106 @@
-Return-Path: <devicetree+bounces-190848-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-190849-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id EF255AECE0A
-	for <lists+devicetree@lfdr.de>; Sun, 29 Jun 2025 16:47:19 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 06C7CAECE34
+	for <lists+devicetree@lfdr.de>; Sun, 29 Jun 2025 17:00:07 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id C5B471896B84
-	for <lists+devicetree@lfdr.de>; Sun, 29 Jun 2025 14:47:35 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id B075A16EF84
+	for <lists+devicetree@lfdr.de>; Sun, 29 Jun 2025 15:00:06 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0586922256C;
-	Sun, 29 Jun 2025 14:47:15 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C1D4423183B;
+	Sun, 29 Jun 2025 14:59:58 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="g26bBxIT"
 X-Original-To: devicetree@vger.kernel.org
-Received: from pidgin.makrotopia.org (pidgin.makrotopia.org [185.142.180.65])
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 206694437A;
-	Sun, 29 Jun 2025 14:47:12 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.142.180.65
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 581AE2248B4
+	for <devicetree@vger.kernel.org>; Sun, 29 Jun 2025 14:59:57 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1751208434; cv=none; b=RFeH/9IlAJA0Ccgu07xZxWVxUogjo2XLM/pvgX04U1wSMaM7jr1nKQfUFtAIV5WltM3WdIGll9j6BnF6Gifjcp88OH4lmKmMgcuq88dc5XdDfqsoWAZmIV4CKjCCn2SvD/LksZ8QpY+lRz+4x1G2CxQ2DB4NDn2KDwKMXyj89V8=
+	t=1751209198; cv=none; b=mIrKMxkWFVSyDjbNnmog02k9ZGPm79w485XK2iNjTq0DSCphO6qIuvctMMShSha9G3V1q+eLRn0rkxPFeUmFEQfEAAqOhIcltS/jZMSYNBK5l7Sw8OuURPQ7qmLMI9ZQyPAc7CD2Pxe1IvOuNawTndudCpYwSjAWXTd9j7d1+dI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1751208434; c=relaxed/simple;
-	bh=KClsNYwfxeyKw0Nv6uUMfVDKlblzETmDZmLERrHHVgE=;
+	s=arc-20240116; t=1751209198; c=relaxed/simple;
+	bh=WktKykkWoV7ZuNQX5dd6BTNbB/RnWlKAl/D4+G37SHM=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=OB2ioMZBvbXpuOBi+zzWKXs+P4MZc/LTjYKyl8b6oueQJSMrdzpCaU5/mkLql/2mrPUggDeRK9EqcemtS2fGEi3xCgu35xkgQTcR2LJ82LHPS0hQK5j0Aes/ftWsUFJiBiQqlNOjk7hgzX06o7LcIJRj6GgmiQO8/xy7iy4w8jQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=makrotopia.org; spf=pass smtp.mailfrom=makrotopia.org; arc=none smtp.client-ip=185.142.180.65
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=makrotopia.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=makrotopia.org
-Received: from local
-	by pidgin.makrotopia.org with esmtpsa (TLS1.3:TLS_AES_256_GCM_SHA384:256)
-	 (Exim 4.98.2)
-	(envelope-from <daniel@makrotopia.org>)
-	id 1uVtJ6-000000001Bw-12Mh;
-	Sun, 29 Jun 2025 14:47:00 +0000
-Date: Sun, 29 Jun 2025 15:46:56 +0100
-From: Daniel Golle <daniel@makrotopia.org>
-To: Frank Wunderlich <linux@fw-web.de>
-Cc: MyungJoo Ham <myungjoo.ham@samsung.com>,
-	Kyungmin Park <kyungmin.park@samsung.com>,
-	Chanwoo Choi <cw00.choi@samsung.com>,
-	Georgi Djakov <djakov@kernel.org>, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, Andrew Lunn <andrew@lunn.ch>,
-	Vladimir Oltean <olteanv@gmail.com>,
-	"David S. Miller" <davem@davemloft.net>,
-	Eric Dumazet <edumazet@google.com>,
-	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
-	Matthias Brugger <matthias.bgg@gmail.com>,
-	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
-	Frank Wunderlich <frank-w@public-files.de>,
-	Johnson Wang <johnson.wang@mediatek.com>,
-	=?utf-8?B?QXLEsW7DpyDDnE5BTA==?= <arinc.unal@arinc9.com>,
-	Landen Chao <Landen.Chao@mediatek.com>,
-	DENG Qingfang <dqfext@gmail.com>,
-	Sean Wang <sean.wang@mediatek.com>,
-	Lorenzo Bianconi <lorenzo@kernel.org>, Felix Fietkau <nbd@nbd.name>,
-	linux-pm@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org, netdev@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	linux-mediatek@lists.infradead.org
-Subject: Re: [PATCH v7 07/14] arm64: dts: mediatek: mt7988: add basic
- ethernet-nodes
-Message-ID: <aGFR4PJv0pdKdD94@makrotopia.org>
-References: <20250628165451.85884-1-linux@fw-web.de>
- <20250628165451.85884-8-linux@fw-web.de>
+	 Content-Type:Content-Disposition:In-Reply-To; b=a3DaZsVUJoT3mBNuZeWAugMUvMsQJHlhRu70lmY1T72l3FbS8OIXon8RvkqBmI24oIcJd4DpRYfiJkT5FV3AAAnfiGi9yqCD6XtBmFGmizP6OZY1p4FBfDhQisLUj91eQ1HVDCDUV94B4N1zRPON4WpSfAEB2ZVKaujE8f4J8XE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=g26bBxIT; arc=none smtp.client-ip=205.220.168.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
+Received: from pps.filterd (m0279863.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 55T6gZ57005200
+	for <devicetree@vger.kernel.org>; Sun, 29 Jun 2025 14:59:56 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+	cc:content-type:date:from:in-reply-to:message-id:mime-version
+	:references:subject:to; s=qcppdkim1; bh=N1juvr8EOI9+BY9a0hzHHhwy
+	NzeM2f/6fhJAfb0S6+Y=; b=g26bBxIT/uydvSAmRIAOlqeS1ZdYN1d7K6Ck7dNU
+	MMcpyIVprMrat5oGu7eMVCJM1zmOSU4aCtAo/qZiWbKeMGtw4FSrxf1gcZspc4ak
+	V74+5GAw8mVEzQsKHysFQsW6QIL3ysN2+Roc0R1IPZayOn0zoMhj0IsbolQOZPa2
+	D/BS+6rxJfDvaMDdRMXoDxF5E6Q2a0nru05j30F/ezYWfliqZsMDvYpvK4Nq3imB
+	5AbOEk3OcMekzkfpz9UHidJBCv2jmkOtvoDWBdYJaEYLHt93iu8qLJpJ/loLOQ5O
+	/Rh2sUC/WCj8RjyiY/fI/vGiEBWX5KM1Us2nvWkF9zkx2Q==
+Received: from mail-qk1-f198.google.com (mail-qk1-f198.google.com [209.85.222.198])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 47j8m629pp-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
+	for <devicetree@vger.kernel.org>; Sun, 29 Jun 2025 14:59:56 +0000 (GMT)
+Received: by mail-qk1-f198.google.com with SMTP id af79cd13be357-7d3d3f6471cso200456085a.3
+        for <devicetree@vger.kernel.org>; Sun, 29 Jun 2025 07:59:56 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1751209195; x=1751813995;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=N1juvr8EOI9+BY9a0hzHHhwyNzeM2f/6fhJAfb0S6+Y=;
+        b=Laoo67tPI3KCnKLNwsSUY1cWZhadd/1Jz4gCIQ3PUgLUrW3juDuR+k6flC//uUBmO6
+         ozz0iHpAGpdDpgb8IhoZ+GNdcvdp9wHlPRyB/HB1GpIuMzR6tJe29QVQpcGXVUbRJzQd
+         790Gz/rXJCBfy8w4cMoC34SfbwflB6FinYqtUhFgy5kHIvfuhZjBse3tuhW2FtHRo4+W
+         dEzFh94LekVf6ivnFPT+HOM1+TlgQxsQpBUTfOnhJj82GNGDW9c0z3wca7G7k7LDpqtw
+         U7DH0adcMCcioDUNtubgOtU7thLxFuMzTryUqNLGvc7qXo3rt9beOCCxBdyi0yhK62/i
+         Zgrg==
+X-Forwarded-Encrypted: i=1; AJvYcCVqnEMs95g/z/h8b+NXh2MRztfm39YQ3DAEh48W5ftwaTANi6Kr6ddnO/4+bvPnkzlJvYw6PnWrKJsB@vger.kernel.org
+X-Gm-Message-State: AOJu0YxlrWtdJuIlSXhrrdOTSa4l21DoJ9uhiQZYfe9u2e0ELOk0T2nk
+	eFeSAcHCsRLwqeweiKIu6NgBudj6PtpMgPUbCWJz+jjRZ0IAcRFu61WujGB4fIVlcWzZW3E8cRR
+	GP1THSH9Gz7CXgqnoVWuOY8197TxQof1TFlI4M79/h+UAkDTIkVfg0sCpWI1eX68r
+X-Gm-Gg: ASbGnctGTc/LFQEelIpsMcgMLoBcSrcdDvaqAbrNcDVVA8jNlULzNfz0hGY8Zxm47li
+	aTYUiOLOfUdvlxG2fthbDhGjwV6YmCXl36bhraPzpHDETs/pXLyoUuoWbo+zTH6Rs2Ey47YGGxA
+	+nq+5CpLXVOLOqwS6JDaBFcaV1Y4Hnimf7Z1RiSe1KAAgL2j2Wb2f3YfTjVngcraaAbtM0jPkdG
+	RMY161MLNBxIBXfR4MM3j0oe6HJaSgf1U0tMu315q+H3PsSelgx9J9t2PTiVDUE2k2E97rw+G/s
+	DE92ncGs3bo4Xs4zyS2ip4kT4Rrtfm7V3iOyLMRUAq3ZgdWkYigMK8kCbsT797cKGSDZqxzvGyz
+	T5oGkDGs1z+9YKQQQoP2PVPuYWMvplZpSm9Q=
+X-Received: by 2002:a05:620a:31f7:b0:7d3:c5b7:2511 with SMTP id af79cd13be357-7d443994f1fmr1441531385a.36.1751209194850;
+        Sun, 29 Jun 2025 07:59:54 -0700 (PDT)
+X-Google-Smtp-Source: AGHT+IHvXkkZ1GazwsYeATtB5CDCpnI+uME8eO1KfqiZ/FLtfPB2cvggTFZ6ZVNgWe/R/E/fTo0QDg==
+X-Received: by 2002:a05:620a:31f7:b0:7d3:c5b7:2511 with SMTP id af79cd13be357-7d443994f1fmr1441528885a.36.1751209194433;
+        Sun, 29 Jun 2025 07:59:54 -0700 (PDT)
+Received: from umbar.lan (2001-14ba-a0c3-3a00-264b-feff-fe8b-be8a.rev.dnainternet.fi. [2001:14ba:a0c3:3a00:264b:feff:fe8b:be8a])
+        by smtp.gmail.com with ESMTPSA id 38308e7fff4ca-32cd2e0ca66sm10946561fa.31.2025.06.29.07.59.53
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Sun, 29 Jun 2025 07:59:53 -0700 (PDT)
+Date: Sun, 29 Jun 2025 17:59:51 +0300
+From: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
+To: Alexey Klimov <alexey.klimov@linaro.org>
+Cc: Krzysztof Kozlowski <krzk@kernel.org>,
+        Srinivas Kandagatla <srini@kernel.org>,
+        Liam Girdwood <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>,
+        Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>, Stephen Boyd <sboyd@kernel.org>,
+        Lee Jones <lee@kernel.org>, Jaroslav Kysela <perex@perex.cz>,
+        Takashi Iwai <tiwai@suse.com>, linux-arm-msm@vger.kernel.org,
+        linux-sound@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org,
+        Srinivas Kandagatla <srinivas.kandagatla@oss.qualcomm.com>
+Subject: Re: [PATCH 1/3] dt-bindings: sound: add bindings for pm4125 audio
+ codec
+Message-ID: <buyn3nvjprum4uxtmktci3eho3o24452zseioxq7ykzdfkuwvz@ezqwadopbqps>
+References: <20250626-pm4125_audio_codec_v1-v1-0-e52933c429a0@linaro.org>
+ <20250626-pm4125_audio_codec_v1-v1-1-e52933c429a0@linaro.org>
+ <wcmalvywoginosy5pp7wskgdzjbwbydividmk4dtwguoltiobf@muw5lzkvgu5c>
+ <DAYBDV1I7HH0.1GG9U3LI5NQ97@linaro.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -74,110 +109,64 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20250628165451.85884-8-linux@fw-web.de>
+In-Reply-To: <DAYBDV1I7HH0.1GG9U3LI5NQ97@linaro.org>
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwNjI5MDEyNiBTYWx0ZWRfXw/08LAULu7QY
+ sCYHz3SE2vXCRMwhuo2iprkg9OEHqsFjCfiEgECNNF+hh9GQEp15yWAUa+TVVDnIBa1FrIMIulc
+ CipgYjVCsfTMA2GCwG/nIT4GCEPhLow8o2ToUA5eDnsGiQwh+SmmLVs9H0SrMuEakTu0Z6n4tsF
+ Pzc2+JPpUtHM8XIh5gEyY3a1TLdF9A27YXlTUnteHxblgE+BhCsqvPdLEZtAp4hT9BJUX8W6SQF
+ OexLyWHQJ7ksgIUMvZZhaP7/pUTCB6SN2ty9fbLoGjbLIQuea58OfSnDptifKwPw9kYSqKzDHW4
+ zOpr+GDt2vcstjs9iqTbrFH7Q7ZBpjMSwv72v1j5zjlCAzjLJxS+HmFZ0LvoOsaL6qQBmz5JXdb
+ jC92sw+LJFgC8vMzBy0YNIku1k2p9l9V0tzZfaVMaFSOip0b0XaF2ZQpnR2WLV9utXwbS1kZ
+X-Authority-Analysis: v=2.4 cv=Fq0F/3rq c=1 sm=1 tr=0 ts=686154ec cx=c_pps
+ a=qKBjSQ1v91RyAK45QCPf5w==:117 a=xqWC_Br6kY4A:10 a=kj9zAlcOel0A:10
+ a=6IFa9wvqVegA:10 a=KKAkSRfTAAAA:8 a=5MYOtFo4LUEscCCMUxIA:9 a=CjuIK1q_8ugA:10
+ a=NFOGd7dJGGMPyQGDc5-O:22 a=cvBusfyB2V15izCimMoJ:22
+X-Proofpoint-GUID: OShf2fV1hpvsev_J-Ogbtsqoe7gk0N6v
+X-Proofpoint-ORIG-GUID: OShf2fV1hpvsev_J-Ogbtsqoe7gk0N6v
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1099,Hydra:6.1.7,FMLib:17.12.80.40
+ definitions=2025-06-27_05,2025-06-27_01,2025-03-28_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ phishscore=0 mlxscore=0 suspectscore=0 adultscore=0 clxscore=1015
+ mlxlogscore=911 impostorscore=0 bulkscore=0 malwarescore=0 spamscore=0
+ priorityscore=1501 lowpriorityscore=0 classifier=spam authscore=0 authtc=n/a
+ authcc= route=outbound adjust=0 reason=mlx scancount=1
+ engine=8.19.0-2505280000 definitions=main-2506290126
 
-On Sat, Jun 28, 2025 at 06:54:42PM +0200, Frank Wunderlich wrote:
-> From: Frank Wunderlich <frank-w@public-files.de>
+On Sat, Jun 28, 2025 at 05:41:31PM +0100, Alexey Klimov wrote:
+> On Thu Jun 26, 2025 at 7:13 AM BST, Krzysztof Kozlowski wrote:
+> > On Thu, Jun 26, 2025 at 12:50:29AM +0100, Alexey Klimov wrote:
+> >> The audio codec IC is found on Qualcomm PM4125/PM2250 PMIC.
+> >> It has TX and RX soundwire slave devices hence two files
+> >> are added.
+> >> 
+> >> Signed-off-by: Alexey Klimov <alexey.klimov@linaro.org>
+> >> ---
+> >>  .../bindings/sound/qcom,pm4125-codec.yaml          | 147 +++++++++++++++++++++
+> >>  .../devicetree/bindings/sound/qcom,pm4125-sdw.yaml |  86 ++++++++++++
+> >>  2 files changed, 233 insertions(+)
+> >> 
+> >> diff --git a/Documentation/devicetree/bindings/sound/qcom,pm4125-codec.yaml b/Documentation/devicetree/bindings/sound/qcom,pm4125-codec.yaml
+> >> new file mode 100644
+> >> index 0000000000000000000000000000000000000000..1b6ce8d4397b4c1c048899bd2cc4d02318cc46c9
+> >> --- /dev/null
+> >> +++ b/Documentation/devicetree/bindings/sound/qcom,pm4125-codec.yaml
+> >> +
+> >> +    /* ... */
+> >> +
+> >> +    soundwire@a610000 {
+> >
+> > Drop this and next one.
 > 
-> Add basic ethernet related nodes.
-> 
-> Mac1+2 needs pcs (sgmii+usxgmii) to work correctly which will be linked
-> later when driver is merged.
-> 
-> Signed-off-by: Daniel Golle <daniel@makrotopia.org>
-> Signed-off-by: Frank Wunderlich <frank-w@public-files.de>
-> ---
-> v6:
-> - fix whitespace-errors for pdma irqs (spaces vs. tabs)
-> - move sram from eth reg to own sram node (needs CONFIG_SRAM)
-> 
-> v5:
-> - add reserved irqs and change names to fe0..fe3
-> - change rx-ringX to pdmaX to be closer to documentation
-> 
-> v4:
-> - comment for fixed-link on gmac0
-> - update 2g5 phy node
->   - unit-name dec instead of hex to match reg property
->   - move compatible before reg
->   - drop phy-mode
-> - add interrupts for RSS
-> - add interrupt-names and drop reserved irqs for ethernet
-> - some reordering
-> - eth-reg and clock whitespace-fix based on angelos review
-> ---
->  arch/arm64/boot/dts/mediatek/mt7988a.dtsi | 137 +++++++++++++++++++++-
->  1 file changed, 134 insertions(+), 3 deletions(-)
-> 
-> diff --git a/arch/arm64/boot/dts/mediatek/mt7988a.dtsi b/arch/arm64/boot/dts/mediatek/mt7988a.dtsi
-> index 560ec86dbec0..cf765a6b1fa8 100644
-> --- a/arch/arm64/boot/dts/mediatek/mt7988a.dtsi
-> +++ b/arch/arm64/boot/dts/mediatek/mt7988a.dtsi
-> @@ -680,7 +680,28 @@ xphyu3port0: usb-phy@11e13000 {
->  			};
->  		};
->  
-> -		clock-controller@11f40000 {
-> +		xfi_tphy0: phy@11f20000 {
-> +			compatible = "mediatek,mt7988-xfi-tphy";
-> +			reg = <0 0x11f20000 0 0x10000>;
-> +			clocks = <&xfi_pll CLK_XFIPLL_PLL_EN>,
-> +				 <&topckgen CLK_TOP_XFI_PHY_0_XTAL_SEL>;
-> +			clock-names = "xfipll", "topxtal";
-> +			resets = <&watchdog 14>;
-> +			mediatek,usxgmii-performance-errata;
-> +			#phy-cells = <0>;
-> +		};
-> +
-> +		xfi_tphy1: phy@11f30000 {
-> +			compatible = "mediatek,mt7988-xfi-tphy";
-> +			reg = <0 0x11f30000 0 0x10000>;
-> +			clocks = <&xfi_pll CLK_XFIPLL_PLL_EN>,
-> +				 <&topckgen CLK_TOP_XFI_PHY_1_XTAL_SEL>;
-> +			clock-names = "xfipll", "topxtal";
-> +			resets = <&watchdog 15>;
-> +			#phy-cells = <0>;
-> +		};
-> +
-> +		xfi_pll: clock-controller@11f40000 {
->  			compatible = "mediatek,mt7988-xfi-pll";
->  			reg = <0 0x11f40000 0 0x1000>;
->  			resets = <&watchdog 16>;
-> @@ -714,19 +735,129 @@ phy_calibration_p3: calib@97c {
->  			};
->  		};
->  
-> -		clock-controller@15000000 {
-> +		ethsys: clock-controller@15000000 {
->  			compatible = "mediatek,mt7988-ethsys", "syscon";
->  			reg = <0 0x15000000 0 0x1000>;
->  			#clock-cells = <1>;
->  			#reset-cells = <1>;
->  		};
->  
-> -		clock-controller@15031000 {
-> +		ethwarp: clock-controller@15031000 {
->  			compatible = "mediatek,mt7988-ethwarp";
->  			reg = <0 0x15031000 0 0x1000>;
->  			#clock-cells = <1>;
->  			#reset-cells = <1>;
->  		};
-> +
-> +		eth: ethernet@15100000 {
-> +			compatible = "mediatek,mt7988-eth";
-> +			reg = <0 0x15100000 0 0x80000>;
+> The audio-codec node supposed to have qcom,{rx,tx}-device properties.
+> If I'll drop it then the example doesn't compile well unless I am missing
+> something?
 
-I think this should be
+Examples are compiled as plugins, so you can reference non-existing
+handles. Keep the property in the codec and drop the soundwire devices.
 
-reg = <0 0x15100000 0 0x40000>;
 
-as the range from 15140000 ~ 1517ffff is used as SRAM on MT7981/MT7986 and
-doesn't seem to be used at all on MT7988.
-
-root@OpenWrt:~# devmem 0x15140000 32
-0xDEADBEEF
-...
-root@OpenWrt:~# devmem 0x1517fffc 32
-0xDEADBEEF
-(with 0xDEADBEEF all that range)
+-- 
+With best wishes
+Dmitry
 
