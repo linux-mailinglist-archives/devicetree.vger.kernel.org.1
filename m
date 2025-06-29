@@ -1,301 +1,282 @@
-Return-Path: <devicetree+bounces-190871-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-190872-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1D527AECF97
-	for <lists+devicetree@lfdr.de>; Sun, 29 Jun 2025 20:36:22 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4E150AECFC0
+	for <lists+devicetree@lfdr.de>; Sun, 29 Jun 2025 21:00:19 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id B67783B5048
-	for <lists+devicetree@lfdr.de>; Sun, 29 Jun 2025 18:35:55 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id A287B3B4215
+	for <lists+devicetree@lfdr.de>; Sun, 29 Jun 2025 18:59:51 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 23F702367D1;
-	Sun, 29 Jun 2025 18:36:16 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D0CF2239085;
+	Sun, 29 Jun 2025 19:00:13 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b="d2MEmpHN"
+	dkim=pass (1024-bit key) header.d=redhat.com header.i=@redhat.com header.b="cj2UWam9"
 X-Original-To: devicetree@vger.kernel.org
-Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [213.167.242.64])
+Received: from us-smtp-delivery-124.mimecast.com (us-smtp-delivery-124.mimecast.com [170.10.133.124])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4BC8F2BB04;
-	Sun, 29 Jun 2025 18:36:14 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=213.167.242.64
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DB6E51DED53
+	for <devicetree@vger.kernel.org>; Sun, 29 Jun 2025 19:00:11 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=170.10.133.124
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1751222176; cv=none; b=EMc8Wzyf3XCRXzO4yg5ZENO3ZvotcWvGIXRnKaRwg5X6Jxuuqc3Nh7paEVBWOfglyoHLAcgpe/HoQ7uYLU5ujxK2WpdBCJyZg+88mB547MyRDrRuQWa7q4L3u+iyPIuNR+Y+7/3PFO+2tnca4gfrNd0i9IYxyIUPo5CiLa2hQH8=
+	t=1751223613; cv=none; b=dxKYvgZ9uQ1tvSnrEL5IYM+6GkYRa/v1XlHKbwcIXrNX1+FiL484cNgPJn54JLwcK+wtOpM3g9Vtd+J6WDulOMikxETtOPioWg0V9j9uJRTmz8uNKI48ML0kgDvjsBRgMlZa/m0CNZnrq+2p0j69JC6nU6GMqROZWAJR5UP7bNE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1751222176; c=relaxed/simple;
-	bh=32FpsSVva6Ct7+vcUYGDjM+Rgiv3IafWs2+hUtbwmcg=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=lOOuxJI34KBV3d0gcQY1CL2W8pO017Qzi3PMREFRHme4cQklHpqyEr+/mE++FOqudNKhjO8WcIWRyAWFa+TciK7W3gfIyo7RZx0MDBhyWrlvGc36JozWnWKcLwdW/780/p8Nl41y6BykONdi32MBHIY4jLmwjODkJu+E7cnZrx8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ideasonboard.com; spf=pass smtp.mailfrom=ideasonboard.com; dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b=d2MEmpHN; arc=none smtp.client-ip=213.167.242.64
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ideasonboard.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ideasonboard.com
-Received: from pendragon.ideasonboard.com (81-175-209-231.bb.dnainternet.fi [81.175.209.231])
-	by perceval.ideasonboard.com (Postfix) with UTF8SMTPSA id AB512C67;
-	Sun, 29 Jun 2025 20:35:50 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
-	s=mail; t=1751222150;
-	bh=32FpsSVva6Ct7+vcUYGDjM+Rgiv3IafWs2+hUtbwmcg=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=d2MEmpHN8YxUWCxQbDTGSt+w3rnYrXGfBXRKCzo9xRL7SipYrY2Eg3ewM/deWR4C8
-	 BK7zW4E3qE0NIaUWYpT6VBrPisVcSFWT7BUSNv/UHViEAcc20D1zCf0NF+fHwnWrKf
-	 oG2cJYDX5fiW2Rk2+yAxw+OHv/qMCiFQzTLkLXrY=
-Date: Sun, 29 Jun 2025 21:35:47 +0300
-From: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-To: Sakari Ailus <sakari.ailus@linux.intel.com>
-Cc: Daniel Scally <dan.scally@ideasonboard.com>,
-	linux-media@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org, Anthony.McGivern@arm.com,
-	jacopo.mondi@ideasonboard.com, nayden.kanchev@arm.com,
-	robh+dt@kernel.org, mchehab@kernel.org,
-	krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
-	jerome.forissier@linaro.org, kieran.bingham@ideasonboard.com
-Subject: Re: [PATCH v10 07/17] media: mali-c55: Add Mali-C55 ISP driver
-Message-ID: <20250629183547.GF6260@pendragon.ideasonboard.com>
-References: <20250624-c55-v10-0-54f3d4196990@ideasonboard.com>
- <20250624-c55-v10-7-54f3d4196990@ideasonboard.com>
- <cee962ce-3719-4ae7-9849-548a95d98e99@linux.intel.com>
+	s=arc-20240116; t=1751223613; c=relaxed/simple;
+	bh=UoNTc52qX02+DxAnewqTZUhjup5tIf+FN3oS2Td4aRI=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=mRjdn5MxB1SEDYJ/e0/U1ZVOH6CBgQ1xSo7aQZT8JGmPZsVXrlpoYqxJZG9SSdCKc93jijmMS9kpOE2bsKe18Pc8js4RUkIhzlpvGmWBdj3bI7uZuw9sC1wc5+07OzZwxKYk/Q2HaIrZJfUGCR1STXFfHawipFdUG6izezLGNkY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=redhat.com; spf=pass smtp.mailfrom=redhat.com; dkim=pass (1024-bit key) header.d=redhat.com header.i=@redhat.com header.b=cj2UWam9; arc=none smtp.client-ip=170.10.133.124
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=redhat.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=redhat.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
+	s=mimecast20190719; t=1751223610;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references;
+	bh=M6dd0BdxPQckL0K4ug6lCXCJOc94fLHhkrXB/JxBoxQ=;
+	b=cj2UWam9J24v25oGOGqaVkO0xxWxtJLHhcVXvSwkd/NUa58bgUipCjlweq55GIcWhnjyM5
+	GLf43h7/+MrGe5iCai7RGw+KpOEGQfGf9S1wkHfAK3P3Zj9FjEU7CIqol0hNcq+jkAmjBr
+	mtyUiy3wod56t9+y63ZtMb9jY8VZuiI=
+Received: from mx-prod-mc-08.mail-002.prod.us-west-2.aws.redhat.com
+ (ec2-35-165-154-97.us-west-2.compute.amazonaws.com [35.165.154.97]) by
+ relay.mimecast.com with ESMTP with STARTTLS (version=TLSv1.3,
+ cipher=TLS_AES_256_GCM_SHA384) id us-mta-634-BffGb6S9MYiiFFt3Q90fSQ-1; Sun,
+ 29 Jun 2025 15:00:07 -0400
+X-MC-Unique: BffGb6S9MYiiFFt3Q90fSQ-1
+X-Mimecast-MFC-AGG-ID: BffGb6S9MYiiFFt3Q90fSQ_1751223604
+Received: from mx-prod-int-05.mail-002.prod.us-west-2.aws.redhat.com (mx-prod-int-05.mail-002.prod.us-west-2.aws.redhat.com [10.30.177.17])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
+	(No client certificate requested)
+	by mx-prod-mc-08.mail-002.prod.us-west-2.aws.redhat.com (Postfix) with ESMTPS id AB8FB18089B4;
+	Sun, 29 Jun 2025 19:00:03 +0000 (UTC)
+Received: from [10.45.224.33] (unknown [10.45.224.33])
+	by mx-prod-int-05.mail-002.prod.us-west-2.aws.redhat.com (Postfix) with ESMTP id 73ADC1956095;
+	Sun, 29 Jun 2025 18:59:56 +0000 (UTC)
+Message-ID: <1f1e5566-a9a0-4d72-80be-81eddfe95fa3@redhat.com>
+Date: Sun, 29 Jun 2025 20:59:54 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-In-Reply-To: <cee962ce-3719-4ae7-9849-548a95d98e99@linux.intel.com>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH net-next v11 03/14] dpll: Add basic Microchip ZL3073x
+ support
+To: Jonathan Cameron <Jonathan.Cameron@huawei.com>
+Cc: netdev@vger.kernel.org, Vadim Fedorenko <vadim.fedorenko@linux.dev>,
+ Arkadiusz Kubalewski <arkadiusz.kubalewski@intel.com>,
+ Jiri Pirko <jiri@resnulli.us>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Prathosh Satish <Prathosh.Satish@microchip.com>,
+ "David S. Miller" <davem@davemloft.net>, Eric Dumazet <edumazet@google.com>,
+ Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
+ Simon Horman <horms@kernel.org>, Jonathan Corbet <corbet@lwn.net>,
+ Jason Gunthorpe <jgg@ziepe.ca>, Shannon Nelson <shannon.nelson@amd.com>,
+ Dave Jiang <dave.jiang@intel.com>, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, linux-doc@vger.kernel.org,
+ Michal Schmidt <mschmidt@redhat.com>, Petr Oros <poros@redhat.com>
+References: <20250616201404.1412341-1-ivecera@redhat.com>
+ <20250616201404.1412341-4-ivecera@redhat.com>
+ <20250618095646.00004595@huawei.com>
+Content-Language: en-US
+From: Ivan Vecera <ivecera@redhat.com>
+In-Reply-To: <20250618095646.00004595@huawei.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Scanned-By: MIMEDefang 3.0 on 10.30.177.17
 
-On Sat, Jun 28, 2025 at 11:06:54PM +0300, Sakari Ailus wrote:
-> On 6/24/25 13:21, Daniel Scally wrote:
 
-[snip]
 
-> > diff --git a/drivers/media/platform/arm/mali-c55/mali-c55-isp.c b/drivers/media/platform/arm/mali-c55/mali-c55-isp.c
-> > new file mode 100644
-> > index 0000000000000000000000000000000000000000..20d4d16c75fbf0d5519ecadb5ed1d080bdae05de
-> > --- /dev/null
-> > +++ b/drivers/media/platform/arm/mali-c55/mali-c55-isp.c
-> > @@ -0,0 +1,656 @@
-> > +// SPDX-License-Identifier: GPL-2.0
-> > +/*
-> > + * ARM Mali-C55 ISP Driver - Image signal processor
-> > + *
-> > + * Copyright (C) 2024 Ideas on Board Oy
+On 18. 06. 25 10:56 dop., Jonathan Cameron wrote:
+> On Mon, 16 Jun 2025 22:13:53 +0200
+> Ivan Vecera <ivecera@redhat.com> wrote:
 > 
-> It's 2025 already.
+>> Microchip Azurite ZL3073x represents chip family providing DPLL
+>> and optionally PHC (PTP) functionality. The chips can be connected
+>> be connected over I2C or SPI bus.
+>>
+>> They have the following characteristics:
+>> * up to 5 separate DPLL units (channels)
+>> * 5 synthesizers
+>> * 10 input pins (references)
+>> * 10 outputs
+>> * 20 output pins (output pin pair shares one output)
+>> * Each reference and output can operate in either differential or
+>>    single-ended mode (differential mode uses 2 pins)
+>> * Each output is connected to one of the synthesizers
+>> * Each synthesizer is driven by one of the DPLL unit
+>>
+>> The device uses 7-bit addresses and 8-bits values. It exposes 8-, 16-,
+>> 32- and 48-bits registers in address range <0x000,0x77F>. Due to 7bit
+>> addressing, the range is organized into pages of 128 bytes, with each
+>> page containing a page selector register at address 0x7F.
+>> For reading/writing multi-byte registers, the device supports bulk
+>> transfers.
+>>
+>> Add basic functionality to access device registers and probe
+>> functionality for both I2C and SPI cases.
+>>
+>> Signed-off-by: Ivan Vecera <ivecera@redhat.com>
+> A few trivial drive by comments.
 > 
-> > + */
-> > +
-> > +#include <linux/delay.h>
-> > +#include <linux/iopoll.h>
-> > +#include <linux/property.h>
-> > +#include <linux/string.h>
-> > +
-> > +#include <linux/media/arm/mali-c55-config.h>
+>> diff --git a/drivers/dpll/zl3073x/i2c.c b/drivers/dpll/zl3073x/i2c.c
+>> new file mode 100644
+>> index 0000000000000..bca1cd729895c
+>> --- /dev/null
+>> +++ b/drivers/dpll/zl3073x/i2c.c
+>> @@ -0,0 +1,93 @@
+>> +// SPDX-License-Identifier: GPL-2.0-only
+>> +
+>> +#include <linux/dev_printk.h>
+>> +#include <linux/err.h>
+>> +#include <linux/i2c.h>
+>> +#include <linux/module.h>
+>> +#include <linux/regmap.h>
+>> +
+>> +#include "core.h"
+>> +
+>> +static int zl3073x_i2c_probe(struct i2c_client *client)
+>> +{
+>> +	struct device *dev = &client->dev;
+>> +	struct zl3073x_dev *zldev;
+>> +
+>> +	zldev = zl3073x_devm_alloc(dev);
+>> +	if (IS_ERR(zldev))
+>> +		return PTR_ERR(zldev);
+>> +
+>> +	zldev->regmap = devm_regmap_init_i2c(client, &zl3073x_regmap_config);
+>> +	if (IS_ERR(zldev->regmap)) {
+>> +		dev_err_probe(dev, PTR_ERR(zldev->regmap),
+>> +			      "Failed to initialize regmap\n");
+>> +		return PTR_ERR(zldev->regmap);
+> As below.
 > 
-> If this is a UAPI header, please include uapi in the path, too.
+>> +	}
 > 
-> Earlier such headers have been under include/uapi/linux, I don't object 
-> putting new ones elsewhere in principle though. Just check with Hans and 
-> Laurent, too... I don't have an opinion yet really.
+>> diff --git a/drivers/dpll/zl3073x/spi.c b/drivers/dpll/zl3073x/spi.c
+>> new file mode 100644
+>> index 0000000000000..219676da71b78
+>> --- /dev/null
+>> +++ b/drivers/dpll/zl3073x/spi.c
+>> @@ -0,0 +1,93 @@
+>> +// SPDX-License-Identifier: GPL-2.0-only
+>> +
+>> +#include <linux/dev_printk.h>
+>> +#include <linux/err.h>
+>> +#include <linux/module.h>
+>> +#include <linux/regmap.h>
+>> +#include <linux/spi/spi.h>
+>> +
+>> +#include "core.h"
+>> +
+>> +static int zl3073x_spi_probe(struct spi_device *spi)
+>> +{
+>> +	struct device *dev = &spi->dev;
+>> +	struct zl3073x_dev *zldev;
+>> +
+>> +	zldev = zl3073x_devm_alloc(dev);
+>> +	if (IS_ERR(zldev))
+>> +		return PTR_ERR(zldev);
+>> +
+>> +	zldev->regmap = devm_regmap_init_spi(spi, &zl3073x_regmap_config);
+>> +	if (IS_ERR(zldev->regmap)) {
+>> +		dev_err_probe(dev, PTR_ERR(zldev->regmap),
+>> +			      "Failed to initialize regmap\n");
+>> +		return PTR_ERR(zldev->regmap);
+> 
+> return dev_err_probe();
+> One of it's biggest advantages is that dev_err_probe() returns the
+> ret value passed in avoiding duplication like this and saving
+> a few lines of code each time.
 
-With each new media header we add to include/uapi/linux/, I wish
-stronger and stronger that we had created include/uapi/linux/media/. We
-don't have to do it now, my regret will just grow stronger :-)
+Will fix.
 
-> > +/* NOT const because the default needs to be filled in at runtime */
-> > +static struct v4l2_ctrl_config mali_c55_isp_v4l2_custom_ctrls[] = {
-> > +	{
-> > +		.ops = &mali_c55_isp_ctrl_ops,
-> > +		.id = V4L2_CID_MALI_C55_CAPABILITIES,
-> > +		.name = "Mali-C55 ISP Capabilities",
-> > +		.type = V4L2_CTRL_TYPE_BITMASK,
-> > +		.min = 0,
-> > +		.max = MALI_C55_GPS_PONG_FITTED |
-> > +		       MALI_C55_GPS_WDR_FITTED |
-> > +		       MALI_C55_GPS_COMPRESSION_FITTED |
-> > +		       MALI_C55_GPS_TEMPER_FITTED |
-> > +		       MALI_C55_GPS_SINTER_LITE_FITTED |
-> > +		       MALI_C55_GPS_SINTER_FITTED |
-> > +		       MALI_C55_GPS_IRIDIX_LTM_FITTED |
-> > +		       MALI_C55_GPS_IRIDIX_GTM_FITTED |
-> > +		       MALI_C55_GPS_CNR_FITTED |
-> > +		       MALI_C55_GPS_FRSCALER_FITTED |
-> > +		       MALI_C55_GPS_DS_PIPE_FITTED,
-> > +		.def = 0,
-> > +	},
-> > +};
-> > +
-> > +static int mali_c55_isp_init_controls(struct mali_c55 *mali_c55)
-> > +{
-> > +	struct v4l2_ctrl_handler *handler = &mali_c55->isp.handler;
-> > +	struct v4l2_ctrl *capabilities;
-> > +	int ret;
-> > +
-> > +	ret = v4l2_ctrl_handler_init(handler, 1);
-> > +	if (ret)
-> > +		return ret;
-> > +
-> > +	mali_c55_isp_v4l2_custom_ctrls[0].def = mali_c55->capabilities;
+>> +	}
+>> +
+>> +	return zl3073x_dev_probe(zldev, spi_get_device_match_data(spi));
+>> +}
+>> +
+>> +static const struct spi_device_id zl3073x_spi_id[] = {
+>> +	{
+>> +		.name = "zl30731",
+>> +		.driver_data = (kernel_ulong_t)&zl3073x_chip_info[ZL30731],
 > 
-> The capabilities here are still specific to a device, not global, in 
-> principle at least. Can you move it here, as a local variable?
-> 
-> > +
-> > +	capabilities = v4l2_ctrl_new_custom(handler,
-> > +					    &mali_c55_isp_v4l2_custom_ctrls[0],
-> > +					    NULL);
-> > +	if (capabilities)
-> > +		capabilities->flags |= V4L2_CTRL_FLAG_READ_ONLY;
-> > +
-> > +	if (handler->error) {
-> > +		dev_err(mali_c55->dev, "failed to register capabilities control\n");
-> > +		v4l2_ctrl_handler_free(handler);
-> > +		return handler->error;
-> 
-> v4l2_ctrl_handler_free() will return the error soon, presumably sooner 
-> than the above code makes it to upstream. Before that, this pattern 
-> won't work as v4l2_ctrl_handler_free() also resets the handler's error 
-> field. :-)
-> 
-> > diff --git a/drivers/media/platform/arm/mali-c55/mali-c55-registers.h b/drivers/media/platform/arm/mali-c55/mali-c55-registers.h
-> > new file mode 100644
-> > index 0000000000000000000000000000000000000000..36a81be0191a15da91809dd2da5d279716f6d725
-> > --- /dev/null
-> > +++ b/drivers/media/platform/arm/mali-c55/mali-c55-registers.h
-> > @@ -0,0 +1,318 @@
-> > +/* SPDX-License-Identifier: GPL-2.0 */
-> > +/*
-> > + * ARM Mali-C55 ISP Driver - Register definitions
-> > + *
-> > + * Copyright (C) 2024 Ideas on Board Oy
-> > + */
-> > +
-> > +#ifndef _MALI_C55_REGISTERS_H
-> > +#define _MALI_C55_REGISTERS_H
-> > +
-> > +#include <linux/bits.h>
-> > +
-> > +/* ISP Common 0x00000 - 0x000ff */
-> > +
-> > +#define MALI_C55_REG_API				0x00000
-> > +#define MALI_C55_REG_PRODUCT				0x00004
-> > +#define MALI_C55_REG_VERSION				0x00008
-> > +#define MALI_C55_REG_REVISION				0x0000c
-> > +#define MALI_C55_REG_PULSE_MODE				0x0003c
-> > +#define MALI_C55_REG_INPUT_MODE_REQUEST			0x0009c
-> > +#define MALI_C55_INPUT_SAFE_STOP			0x00
-> > +#define MALI_C55_INPUT_SAFE_START			0x01
-> > +#define MALI_C55_REG_MODE_STATUS			0x000a0
-> > +#define MALI_C55_REG_INTERRUPT_MASK_VECTOR		0x00030
-> > +#define MALI_C55_INTERRUPT_MASK_ALL			GENMASK(31, 0)
-> > +
-> > +#define MALI_C55_REG_GLOBAL_MONITOR			0x00050
-> > +
-> > +#define MALI_C55_REG_GEN_VIDEO				0x00080
-> > +#define MALI_C55_REG_GEN_VIDEO_ON_MASK			BIT(0)
-> > +#define MALI_C55_REG_GEN_VIDEO_MULTI_MASK		BIT(1)
-> > +#define MALI_C55_REG_GEN_PREFETCH_MASK			GENMASK(31, 16)
-> > +
-> > +#define MALI_C55_REG_MCU_CONFIG				0x00020
-> > +#define MALI_C55_REG_MCU_CONFIG_OVERRIDE_MASK		BIT(0)
-> > +#define MALI_C55_REG_MCU_CONFIG_WRITE_MASK		BIT(1)
-> > +#define MALI_C55_MCU_CONFIG_WRITE(x)			((x) << 1)
-> 
-> Is x unsigned?
+> Not my subsystem so up to you, but in general over time we've found that
+> an enum + array tends to bring few benefits over appropriately named
+> zl30731_chip_info separate structures.
 
-Does it matter ? The reason why the BIT() macro uses (UL(1) << (nr))
-instead of (1 << (nr)) is (if I'm not mistaken) to avoid incorrect
-handling of bit 31. As long as x doesn't take negative values and
-doesn't extend to bit 31, it should be fine.
+Will update according this.
 
-> > +#define MALI_C55_REG_MCU_CONFIG_WRITE_PING		BIT(1)
-> > +#define MALI_C55_REG_MCU_CONFIG_WRITE_PONG		0x00
-> > +#define MALI_C55_REG_MULTI_CONTEXT_MODE_MASK		BIT(8)
-> > +#define MALI_C55_REG_PING_PONG_READ			0x00024
-> > +#define MALI_C55_REG_PING_PONG_READ_MASK		BIT(2)
-> > +#define MALI_C55_INTERRUPT_BIT(x)			BIT(x)
-> > +
-> > +#define MALI_C55_REG_GLOBAL_PARAMETER_STATUS		0x00068
-> > +#define MALI_C55_GPS_PONG_FITTED			BIT(0)
-> > +#define MALI_C55_GPS_WDR_FITTED				BIT(1)
-> > +#define MALI_C55_GPS_COMPRESSION_FITTED			BIT(2)
-> > +#define MALI_C55_GPS_TEMPER_FITTED			BIT(3)
-> > +#define MALI_C55_GPS_SINTER_LITE_FITTED			BIT(4)
-> > +#define MALI_C55_GPS_SINTER_FITTED			BIT(5)
-> > +#define MALI_C55_GPS_IRIDIX_LTM_FITTED			BIT(6)
-> > +#define MALI_C55_GPS_IRIDIX_GTM_FITTED			BIT(7)
-> > +#define MALI_C55_GPS_CNR_FITTED				BIT(8)
-> > +#define MALI_C55_GPS_FRSCALER_FITTED			BIT(9)
-> > +#define MALI_C55_GPS_DS_PIPE_FITTED			BIT(10)
-> > +
-> > +#define MALI_C55_REG_BLANKING				0x00084
-> > +#define MALI_C55_REG_HBLANK_MASK			GENMASK(15, 0)
-> > +#define MALI_C55_REG_VBLANK_MASK			GENMASK(31, 16)
-> > +#define MALI_C55_VBLANK(x)				((x) << 16)
+>> +	},
+>> +	{
+>> +		.name = "zl30732",
+>> +		.driver_data = (kernel_ulong_t)&zl3073x_chip_info[ZL30732],
+>> +	},
+>> +	{
+>> +		.name = "zl30733",
+>> +		.driver_data = (kernel_ulong_t)&zl3073x_chip_info[ZL30733],
+>> +	},
+>> +	{
+>> +		.name = "zl30734",
+>> +		.driver_data = (kernel_ulong_t)&zl3073x_chip_info[ZL30734],
+>> +	},
+>> +	{
+>> +		.name = "zl30735",
+>> +		.driver_data = (kernel_ulong_t)&zl3073x_chip_info[ZL30735]
+>> +	},
+>> +	{ /* sentinel */ }
+>> +};
+>> +MODULE_DEVICE_TABLE(spi, zl3073x_spi_id);
+>> +
+>> +static const struct of_device_id zl3073x_spi_of_match[] = {
+>> +	{
+>> +		.compatible = "microchip,zl30731",
+>> +		.data = &zl3073x_chip_info[ZL30731]
+>> +	},
+>> +	{
+>> +		.compatible = "microchip,zl30732",
+>> +		.data = &zl3073x_chip_info[ZL30732]
+>> +	},
+>> +	{
+>> +		.compatible = "microchip,zl30733",
+>> +		.data = &zl3073x_chip_info[ZL30733]
+>> +	},
+>> +	{
+>> +		.compatible = "microchip,zl30734",
+>> +		.data = &zl3073x_chip_info[ZL30734]
+>> +	},
+>> +	{
+>> +		.compatible = "microchip,zl30735",
+>> +		.data = &zl3073x_chip_info[ZL30735]
+>> +	},
+>> +	{ /* sentinel */ }
+>> +};
+>> +MODULE_DEVICE_TABLE(of, zl3073x_spi_of_match);
+>> +
+>> +static struct spi_driver zl3073x_spi_driver = {
+>> +	.driver = {
+>> +		.name = "zl3073x-spi",
+>> +		.of_match_table = zl3073x_spi_of_match,
+>> +	},
+>> +	.probe = zl3073x_spi_probe,
+>> +	.id_table = zl3073x_spi_id,
+>> +};
+>> +module_spi_driver(zl3073x_spi_driver);
+>> +
+>> +MODULE_AUTHOR("Ivan Vecera <ivecera@redhat.com>");
+>> +MODULE_DESCRIPTION("Microchip ZL3073x SPI driver");
+>> +MODULE_IMPORT_NS("ZL3073X");
+>> +MODULE_LICENSE("GPL");
 > 
-> Same question for the bit shifts left elsewhere in the header.
-> 
-> > +
-> > +#define MALI_C55_REG_HC_START				0x00088
-> > +#define MALI_C55_HC_START(h)				(((h) & 0xffff) << 16)
-> > +#define MALI_C55_REG_HC_SIZE				0x0008c
-> > +#define MALI_C55_HC_SIZE(h)				((h) & 0xffff)
-> > +#define MALI_C55_REG_VC_START_SIZE			0x00094
-> > +#define MALI_C55_VC_START(v)				((v) & 0xffff)
-> > +#define MALI_C55_VC_SIZE(v)				(((v) & 0xffff) << 16)
-> > +
-> > +/* Ping/Pong Configuration Space */
-> > +#define MALI_C55_REG_BASE_ADDR				0x18e88
-> > +#define MALI_C55_REG_BYPASS_0				0x18eac
-> > +#define MALI_C55_REG_BYPASS_0_VIDEO_TEST		BIT(0)
-> > +#define MALI_C55_REG_BYPASS_0_INPUT_FMT			BIT(1)
-> > +#define MALI_C55_REG_BYPASS_0_DECOMPANDER		BIT(2)
-> > +#define MALI_C55_REG_BYPASS_0_SENSOR_OFFSET_WDR		BIT(3)
-> > +#define MALI_C55_REG_BYPASS_0_GAIN_WDR			BIT(4)
-> > +#define MALI_C55_REG_BYPASS_0_FRAME_STITCH		BIT(5)
-> > +#define MALI_C55_REG_BYPASS_1				0x18eb0
-> > +#define MALI_C55_REG_BYPASS_1_DIGI_GAIN			BIT(0)
-> > +#define MALI_C55_REG_BYPASS_1_FE_SENSOR_OFFS		BIT(1)
-> > +#define MALI_C55_REG_BYPASS_1_FE_SQRT			BIT(2)
-> > +#define MALI_C55_REG_BYPASS_1_RAW_FE			BIT(3)
-> > +#define MALI_C55_REG_BYPASS_2				0x18eb8
-> > +#define MALI_C55_REG_BYPASS_2_SINTER			BIT(0)
-> > +#define MALI_C55_REG_BYPASS_2_TEMPER			BIT(1)
-> > +#define MALI_C55_REG_BYPASS_3				0x18ebc
-> > +#define MALI_C55_REG_BYPASS_3_SQUARE_BE			BIT(0)
-> > +#define MALI_C55_REG_BYPASS_3_SENSOR_OFFSET_PRE_SH	BIT(1)
-> > +#define MALI_C55_REG_BYPASS_3_MESH_SHADING		BIT(3)
-> > +#define MALI_C55_REG_BYPASS_3_WHITE_BALANCE		BIT(4)
-> > +#define MALI_C55_REG_BYPASS_3_IRIDIX			BIT(5)
-> > +#define MALI_C55_REG_BYPASS_3_IRIDIX_GAIN		BIT(6)
-> > +#define MALI_C55_REG_BYPASS_4				0x18ec0
-> > +#define MALI_C55_REG_BYPASS_4_DEMOSAIC_RGB		BIT(1)
-> > +#define MALI_C55_REG_BYPASS_4_PF_CORRECTION		BIT(3)
-> > +#define MALI_C55_REG_BYPASS_4_CCM			BIT(4)
-> > +#define MALI_C55_REG_BYPASS_4_CNR			BIT(5)
-> > +#define MALI_C55_REG_FR_BYPASS				0x18ec4
-> > +#define MALI_C55_REG_DS_BYPASS				0x18ec8
-> > +#define MALI_C55_BYPASS_CROP				BIT(0)
-> > +#define MALI_C55_BYPASS_SCALER				BIT(1)
-> > +#define MALI_C55_BYPASS_GAMMA_RGB			BIT(2)
-> > +#define MALI_C55_BYPASS_SHARPEN				BIT(3)
-> > +#define MALI_C55_BYPASS_CS_CONV				BIT(4)
-> > +#define MALI_C55_REG_ISP_RAW_BYPASS			0x18ecc
-> > +#define MALI_C55_ISP_RAW_BYPASS_BYPASS_MASK		BIT(0)
-> > +#define MALI_C55_ISP_RAW_BYPASS_FR_BYPASS_MASK		GENMASK(9, 8)
-> > +#define MALI_C55_ISP_RAW_BYPASS_RAW_FR_BYPASS		(2 << 8)
-> > +#define MALI_C55_ISP_RAW_BYPASS_RGB_FR_BYPASS		(1 << 8)
-> 
-> BIT() or make these unsigned.
 
-It's a 2 bits field, BIT() isn't appropriate.
+Thanks for advice.
 
-[snip]
+Ivan
 
--- 
-Regards,
-
-Laurent Pinchart
 
