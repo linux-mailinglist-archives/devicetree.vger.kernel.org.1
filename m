@@ -1,154 +1,169 @@
-Return-Path: <devicetree+bounces-191066-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-191067-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id B3861AEDB18
-	for <lists+devicetree@lfdr.de>; Mon, 30 Jun 2025 13:33:20 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 34E14AEDB29
+	for <lists+devicetree@lfdr.de>; Mon, 30 Jun 2025 13:34:58 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id BD14C16F0F2
-	for <lists+devicetree@lfdr.de>; Mon, 30 Jun 2025 11:33:12 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 4888D172009
+	for <lists+devicetree@lfdr.de>; Mon, 30 Jun 2025 11:34:57 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D9A4825D53B;
-	Mon, 30 Jun 2025 11:33:09 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3B9AA25DCF2;
+	Mon, 30 Jun 2025 11:34:53 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="fg0JUpCb"
+	dkim=pass (2048-bit key) header.d=denx.de header.i=@denx.de header.b="AQKIf/Ud"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mx.denx.de (mx.denx.de [89.58.32.78])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A8B401DC988;
-	Mon, 30 Jun 2025 11:33:09 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 689BD242D83;
+	Mon, 30 Jun 2025 11:34:51 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=89.58.32.78
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1751283189; cv=none; b=a7x//4E3RUf46hxPdGrxkMSR4KGnCofAUzYyj6mJuRqwOVYVtkp1bOSd72RtVEjRzW6OTR1aeyVhPbVp559FwtovPOlEEPjPhEVFFlUX5mwWk/5GeKr//am1qeqAXBuL2GLSUqY1HfIP0T3GAN90VjywVCRRA6ovBYQZObIOydg=
+	t=1751283293; cv=none; b=NJiE6OxQUi49rfplt0uUWtx/aihZRc2HD/GK9F01gH0cWS2xfup8s6+SJurEfHebIRMiPbuYasGHSnEgSzHNcLlNRjEXx0O2lgzFccrV7TjiEVQxNMEXVSXx/RfVnepkRj2FwrJj4qOhjzJ3v3r+WyNbaIu+DhjBwdXpAJ49DHo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1751283189; c=relaxed/simple;
-	bh=IPMjnLBknZLh6qHuUlnriRP1h0VMQJ8k1ulWCLOWsR8=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=Ru6GkL5juzyJw198ncl6ZkzymfT9toEMvMqbvWCsTCH5lM7Sq5zlP83YZNoF8EecxVRHc/HHi7HGQyGo7W/n0TEPkM1FJWAyYD+mDGdV2423T58v8yFZqQRH3IqPeRJloZKQzBvMV0g2rhZY+Eagr+9rosaEPWRcpX2dmkU0W8w=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=fg0JUpCb; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 4448CC4CEE3;
-	Mon, 30 Jun 2025 11:33:01 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1751283189;
-	bh=IPMjnLBknZLh6qHuUlnriRP1h0VMQJ8k1ulWCLOWsR8=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=fg0JUpCbHIqOpclzBvOvtwLBzfPd/Qn3PaZj1HQ6JdZLf38C+kLWXzUgZo3ES5T/w
-	 sFYvUlCmilGHhmUALi+PWqXKRCuQXYngwYpUpTfcUztR10jufXhXbEz/u2IUeMM+S5
-	 i9hLY9yvgACXDK3Dvl9KeUryJ3rEFYz9rS67h/dcc0PZoMVkjRxNJDxCGi/cVGhvdJ
-	 OOwLBi2MKgfdRXh0MZjnuiRBMZOI5EyZ/99N8MgEIwdHomNhNg92TOsXXDU/Uw+bGI
-	 eJ+JFtnb/4XECJKBx41exqgcdVtswjhnDIY0Lp4aMPVqhaxuLvpQZ5XT+yZa3LFlbd
-	 U974yi+y+lKzA==
-Message-ID: <3f983134-5726-4a42-b534-132f51a8154f@kernel.org>
-Date: Mon, 30 Jun 2025 13:32:59 +0200
+	s=arc-20240116; t=1751283293; c=relaxed/simple;
+	bh=iw/9MNGT+/hEj/TbjYC3Nc/+P3EMi/fr0CrtpPGl+MA=;
+	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=eLFvhJi7txdGadCneGhm/W8BHiUddrLcfB9+jepn8qwYT0Vc+7HVhHFzMyrYZYmR7E+MFA0NZMqVy/m8JjRXbBiXUsj2IEdKHqi8EY6feim4cbTmdmVp9hVYE3tfW0DpH/3ABflPszEWS/cd+2FVhzb7jNNgfls94bg2G0yYs4k=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=denx.de; spf=pass smtp.mailfrom=denx.de; dkim=pass (2048-bit key) header.d=denx.de header.i=@denx.de header.b=AQKIf/Ud; arc=none smtp.client-ip=89.58.32.78
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=denx.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=denx.de
+Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id 8878A10380104;
+	Mon, 30 Jun 2025 13:34:38 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=denx.de; s=mx-20241105;
+	t=1751283283; h=from:subject:date:message-id:to:cc:mime-version:content-type:
+	 in-reply-to:references; bh=obn1fFptpDWsfOTGxxja0aYNB+v0Pa/lgexMoMKfewU=;
+	b=AQKIf/Udw+b5eHV6+NEZhbR5iX7W6bnm9XB4i+kaxnIFF7ccKGLFWIWC5uMO3mJ8qit8Ip
+	syY2HMQgXz/9DhT8zh6n3gqlEnCwMxdalNKZL19Gt5E11nFXihxyA9tVQ1ln9KP7QE6Aid
+	swuQKBUviYdIb5tD18Ii2WK8aE1RDLUjJz6jKzA4KZNNfcKsqkRf39KQKht9qDteCaiYkk
+	1lMb68+r+Yd8p9pXy44vqdcBKerwNy6x7dyMARVmvWFTWu921/6iGCr9nFM/LXTunUVRKp
+	jF18ykoSo/sMQUVo7s8rX8Azv5fFl096GpeWJulsTb5gJ1QmdssrG9NCTqk8vw==
+Date: Mon, 30 Jun 2025 13:34:36 +0200
+From: Lukasz Majewski <lukma@denx.de>
+To: Paolo Abeni <pabeni@redhat.com>
+Cc: Andrew Lunn <andrew+netdev@lunn.ch>, davem@davemloft.net, Eric Dumazet
+ <edumazet@google.com>, Jakub Kicinski <kuba@kernel.org>, Rob Herring
+ <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>, Sascha Hauer
+ <s.hauer@pengutronix.de>, Pengutronix Kernel Team <kernel@pengutronix.de>,
+ Fabio Estevam <festevam@gmail.com>, Richard Cochran
+ <richardcochran@gmail.com>, netdev@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ imx@lists.linux.dev, linux-arm-kernel@lists.infradead.org, Stefan Wahren
+ <wahrenst@gmx.net>, Simon Horman <horms@kernel.org>, =?UTF-8?B?xYF1a2Fz?=
+ =?UTF-8?B?eg==?= Majewski <lukasz.majewski@mailbox.org>
+Subject: Re: [net-next v13 06/11] net: mtip: Add mtip_switch_{rx|tx}
+ functions to the L2 switch driver
+Message-ID: <20250630133436.71238a65@wsk>
+In-Reply-To: <0de412ee-c9ce-463b-92ef-58a33fd132d1@redhat.com>
+References: <20250622093756.2895000-1-lukma@denx.de>
+	<20250622093756.2895000-7-lukma@denx.de>
+	<0de412ee-c9ce-463b-92ef-58a33fd132d1@redhat.com>
+Organization: denx.de
+X-Mailer: Claws Mail 3.19.0 (GTK+ 2.24.33; x86_64-pc-linux-gnu)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v6 7/8] serial: qcom-geni: Enable PM runtime for serial
- driver
-To: Praveen Talari <quic_ptalari@quicinc.com>,
- Bjorn Andersson <andersson@kernel.org>
-Cc: Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
- Jiri Slaby <jirislaby@kernel.org>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Konrad Dybcio <konradybcio@kernel.org>,
- linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org,
- linux-serial@vger.kernel.org, devicetree@vger.kernel.org,
- psodagud@quicinc.com, djaggi@quicinc.com, quic_msavaliy@quicinc.com,
- quic_vtanuku@quicinc.com, quic_arandive@quicinc.com,
- quic_mnaresh@quicinc.com, quic_shazhuss@quicinc.com
-References: <20250606172114.6618-1-quic_ptalari@quicinc.com>
- <20250606172114.6618-8-quic_ptalari@quicinc.com>
- <d6cr4elhrbh27lmlcv5xzuel75uvsgi7klxjkevm7vg4jcbawe@5ojgetrxkag5>
- <f87807c9-5249-4d97-ab89-898b7d8d260d@quicinc.com>
-From: Krzysztof Kozlowski <krzk@kernel.org>
-Content-Language: en-US
-Autocrypt: addr=krzk@kernel.org; keydata=
- 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 a/A=
-In-Reply-To: <f87807c9-5249-4d97-ab89-898b7d8d260d@quicinc.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Type: multipart/signed; boundary="Sig_/ft7tAwYwUt/T1YMHVHAewjX";
+ protocol="application/pgp-signature"; micalg=pgp-sha512
+X-Last-TLS-Session-Version: TLSv1.3
 
-On 30/06/2025 07:10, Praveen Talari wrote:
-> Hi Bjorn,
-> 
-> Thank you for review.
-> 
-> On 6/17/2025 9:23 PM, Bjorn Andersson wrote:
->> On Fri, Jun 06, 2025 at 10:51:13PM +0530, Praveen Talari wrote:
->>> Add Power Management (PM) runtime support to Qualcomm GENI
->>> serial driver.
->>>
->>
->> Doesn't this have impact on the behavior outside of your
->> project? Or is the transition from qcom_geni_serial_pm() to explicit
->> RPM merely moving code around?
->>
->> Seems like this deserves to not be hidden in a middle of a patch series.
->>
->>> Introduce necessary callbacks and updates to ensure seamless
->>> transitions between power states, enhancing overall power
->>> efficiency.
->>>
->>
->> This commit message fails to state why we need runtime PM support in the
->> driver.
-> 
-> Introduce PM runtime support to the Qualcomm GENI serial driver to enable
-> better power efficiency and modularity across diverse resource control
-> mechanisms, including Linux and firmware-managed systems.
+--Sig_/ft7tAwYwUt/T1YMHVHAewjX
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: quoted-printable
+
+Hi Paolo,
+
+> >  static void mtip_switch_tx(struct net_device *dev)
+> >  {
+> > +	struct mtip_ndev_priv *priv =3D netdev_priv(dev);
+> > +	struct switch_enet_private *fep =3D priv->fep;
+> > +	unsigned short status;
+> > +	struct sk_buff *skb;
+> > +	unsigned long flags;
+> > +	struct cbd_t *bdp;
+> > +
+> > +	spin_lock_irqsave(&fep->hw_lock, flags); =20
+>=20
+> This is called from napi (bh) context, and every other caller
+> is/should be BH, too. You should use
+>=20
+> 	spin_lock_bh()
+
+I've double check the spin locking in the driver - I've also consult
+the fec_main.c.
+
+It looks like the mtip_switch_rx() and fec_enet_rx() are not using
+explicit locks and rely on NAPI locking.
+
+On the other hand - the fec_enet_tx (and corresponding MTIP variant)
+use spin_lock(), not the _bh() variant.
+
+>=20
+> Also please test your patches with CONFIG_LOCKDEP and
+> CONFIG_DEBUG_SPINLOCK enabled, thet will help finding this king of
+> issues.
+
+This was enabled by default. By changing all locks to _bh() there were
+deadlocks observed.
+
+On the MTIP driver (due to this HW IP block) there are some locks which
+must disable interrupts:
+
+1. One is when mtip_adjust_link() is called - as it is the same for
+both switch ports. Moreover, at some use cases it is required that the
+switch IP block is reset.
+
+2. The mtip_atable_dynamicms_learn_migration() - it changes the content
+of dynamic switching table. IRQ from switch shall not be possible at
+this time as it can be called from mtip_switch_rx() (from NAPI) and
+from timer/kthread (at specified period).
 
 
-No, not better, that's some marketing blob without saying how this power
-efficiency is visible/observable.
+To sum up:
+
+I'm going to prepare the v14 with changes around the timer / kthread
+running mtip_atable_dynamicms_learn_migration() and use time stamps
+extracted from jiffies.
+
+Locks will be optimized and following paradigm used with fec_main.c
+driver.
+
+>=20
+> /P
+
 
 Best regards,
-Krzysztof
+
+Lukasz Majewski
+
+--
+
+DENX Software Engineering GmbH,      Managing Director: Erika Unter
+HRB 165235 Munich, Office: Kirchenstr.5, D-82194 Groebenzell, Germany
+Phone: (+49)-8142-66989-59 Fax: (+49)-8142-66989-80 Email: lukma@denx.de
+
+--Sig_/ft7tAwYwUt/T1YMHVHAewjX
+Content-Type: application/pgp-signature
+Content-Description: OpenPGP digital signature
+
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAEBCgAdFiEEgAyFJ+N6uu6+XupJAR8vZIA0zr0FAmhidkwACgkQAR8vZIA0
+zr1gIwgA5RFaOOf/zToxgLklld0AgiA7amktt6Vm7D+yrAK4VbOKEnAMTahAU7iE
+Z/aSDSy3TmQ6p+k7SOMCK/W7UyAGi4nIffvLFo5N4PGTYmBqVhq+qlpjSm7bnFAU
+mUKTz6s/N3KoneKHrKRf6ogC4PubkGH4RqQ4gVbr0YZgwd4XsA6uEFVoPYeUQ25U
+EVRkOV9W2ouDS/MpoHsQoFN35ottbyK0i2kVUqywK/QGPuQtLXOEfswnnqQ6B692
+nRkf9dcbOPJqCiabDst66cODEgmDJ5brs7f6SZ7nPIB1ASnGmjDaVgIzuT9CuA4G
+LfMIlP/XANgIKp/dLSJtVT7sdEdmDA==
+=eCtd
+-----END PGP SIGNATURE-----
+
+--Sig_/ft7tAwYwUt/T1YMHVHAewjX--
 
