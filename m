@@ -1,48 +1,48 @@
-Return-Path: <devicetree+bounces-190995-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-190996-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8E096AED719
-	for <lists+devicetree@lfdr.de>; Mon, 30 Jun 2025 10:24:37 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0D630AED73B
+	for <lists+devicetree@lfdr.de>; Mon, 30 Jun 2025 10:25:59 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 8E4137A386E
-	for <lists+devicetree@lfdr.de>; Mon, 30 Jun 2025 08:22:59 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id E7D6A188B9F5
+	for <lists+devicetree@lfdr.de>; Mon, 30 Jun 2025 08:26:14 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A39D4238C0A;
-	Mon, 30 Jun 2025 08:24:16 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4B35B239E82;
+	Mon, 30 Jun 2025 08:25:55 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="r+Bb7Inn"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="H6DWQF+T"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 73E74221286;
-	Mon, 30 Jun 2025 08:24:15 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 17ED31E2858;
+	Mon, 30 Jun 2025 08:25:54 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1751271856; cv=none; b=BjsIFR+84f8WnAVNTpIqZ/GFUeInLoa6x1tHEIz865NES5BQu/hY2/eoFrBJU9+FBWrmxooyY6Uym3NhgdBZiuUH6cfaW2pjVCW32s9HTxX+GUXRSlBqG6oQolMuf5kLEgWSi2fZjMSlA0/9Wc5cd0b6o462akNTZicF4wKEEAk=
+	t=1751271955; cv=none; b=j4qSwkOcRt9pvCXSKA3aRgMIxhAheghegth9OJqyP7nf1P22/WKqxEYZVHaS8K/40B2KfQYA9T9hw5RPNU2f30AuQmJjVMjGqr0AX0IafI+Wpi1Wyx2uSCKWdVt+mVNOrBvki2yH6Q1HxM7qxauEYHuj1X/v2V+SkFUQUuz8/XY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1751271856; c=relaxed/simple;
-	bh=KnqdYmSo9s5NiZ0efI74+ehXh+hBILnC72jZRK1fvLM=;
+	s=arc-20240116; t=1751271955; c=relaxed/simple;
+	bh=z0myKlXPfbFRymUmSLOvc/7wdeydzOpDX+kckyTt+DU=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=e7IOZi1n6c/LL+cx5AaZ6ghpjsBZJ9+PT2rRgAHALY7H/y8RTRXeoFaOqie9I30CAJ31xAGEucr2njp1qvNewhqWEfEDxYOWO/3HLwWS6eOrxQFNssIeXb9g77y0jI9cAVfadc7kOQppcCKlPipM7uUD6TNfEd9NSaiNKUYeyXs=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=r+Bb7Inn; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 2659CC4CEE3;
-	Mon, 30 Jun 2025 08:24:08 +0000 (UTC)
+	 In-Reply-To:Content-Type; b=TtrfumqPj62HV9tA6fv/Iss7BCuHyLYA3EBVKu30i9rqf+xbQfixa6jMxwCpV6sCWW8Uf6USHXUyAwx45JEDEowjxVbRLgzZg8LyROLraxuZxb9ff6vRRfKTuFVrQ/IPrrQjqDr8IflpgPXXy6XudQbnhWr7D/akLDaNsNSmTd4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=H6DWQF+T; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 6CA29C4CEE3;
+	Mon, 30 Jun 2025 08:25:46 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1751271854;
-	bh=KnqdYmSo9s5NiZ0efI74+ehXh+hBILnC72jZRK1fvLM=;
+	s=k20201202; t=1751271954;
+	bh=z0myKlXPfbFRymUmSLOvc/7wdeydzOpDX+kckyTt+DU=;
 	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=r+Bb7Inn8Vy22KXD38198pUWEe8FBp2sBCqQ/yUmybovKrqN9wygoCuEuRVC5SMm2
-	 gm5xd3AkSqygRW7xfmyOBN6Csv2e8N44KurbNvRX+ALrOeI1elU4d5Q+a1lIXLnoR6
-	 0Q3rUcmlKktOzdHPRgv7FLNFvu4prXlIcGskbjkE7UphuvtsJJP65JhMGMUOYs5Cqi
-	 2LYK52Rve1YoVwrRXIw1UUyWvAzX7AioHPSu2chfAnP9EYo4++db3BEsed0ItGEzzL
-	 7znY+g/b6ynYiqNdOLnrUTGNdZARlYsWenJDUc21bFeLYj3jl7jOyCVQVTET9p3kDe
-	 lKhTxR/iCX6iw==
-Message-ID: <85521ded-734d-48e8-8f76-c57739102ded@kernel.org>
-Date: Mon, 30 Jun 2025 10:24:06 +0200
+	b=H6DWQF+TK/2PdqRJ0ssZolMe6dG9ZvpfffQngfJfx8Gf1b62TytLTPAzXSyYRVAFV
+	 4jGSfJ158J/K35wRR3J2J//j0zU8G7H0zxVPMA2iZ6qk/++nm6hHhEh7LsaWLg3To4
+	 Di9y5uLOdsQ3JEfP2M9bFSc4yBUjmKvWhvX1oKg+S/iQtU1lS/Y9eEEi2Y/3Lky9/w
+	 KfiFIPry17J35amVx4bj/G2ym5EGLN5eRH+5/2Sq2DtW7pqkjpPRm7Vnu0UeHUXTwj
+	 CyX0Yr8tCzvjRPEDaL8NJaCm5io3d1PIGNE14Gl2C+tspLHvglRlS6PW9Ho1mOGooz
+	 5ZHp6OzQnzaJg==
+Message-ID: <98b00dd1-3b83-4beb-ad06-f3e0442df8c7@kernel.org>
+Date: Mon, 30 Jun 2025 10:25:43 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,23 +50,22 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 1/5] dt-bindings: display: simple-framebuffer: Add
- interconnects property
-To: Hans de Goede <hdegoede@redhat.com>, Luca Weiss <luca.weiss@fairphone.com>
-Cc: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>,
- David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>,
- Javier Martinez Canillas <javierm@redhat.com>, Helge Deller <deller@gmx.de>,
- linux-fbdev@vger.kernel.org, dri-devel@lists.freedesktop.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <20250623-simple-drm-fb-icc-v2-0-f69b86cd3d7d@fairphone.com>
- <20250623-simple-drm-fb-icc-v2-1-f69b86cd3d7d@fairphone.com>
- <20250627-mysterious-optimistic-bird-acaafb@krzk-bin>
- <DAX7ZB27SBPV.2Y0I09TVSF3TT@fairphone.com>
- <1129bc60-f9cb-40be-9869-8ffa3b3c9748@kernel.org>
- <8a3ad930-bfb1-4531-9d34-fdf7d437f352@redhat.com>
+Subject: Re: [PATCH v4 1/3] dt-bindings: PCI: dwc: Add one more reference
+ clock
+To: Frank Li <Frank.li@nxp.com>
+Cc: Richard Zhu <hongxing.zhu@nxp.com>, l.stach@pengutronix.de,
+ lpieralisi@kernel.org, kwilczynski@kernel.org, mani@kernel.org,
+ robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
+ bhelgaas@google.com, shawnguo@kernel.org, s.hauer@pengutronix.de,
+ kernel@pengutronix.de, festevam@gmail.com, linux-pci@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+ imx@lists.linux.dev, linux-kernel@vger.kernel.org
+References: <20250626073804.3113757-1-hongxing.zhu@nxp.com>
+ <20250626073804.3113757-2-hongxing.zhu@nxp.com>
+ <20250627-sensible-pigeon-of-reading-b021a3@krzk-bin>
+ <aF76jeV+8us82APv@lizhi-Precision-Tower-5810>
+ <20250628-vigorous-benevolent-crayfish-bcbae5@krzk-bin>
+ <aGALNS0yyBR27tz4@lizhi-Precision-Tower-5810>
 From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
@@ -112,88 +111,101 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  jWt87ecuHlpL3uuQ0ZZNWqHgZoQLXoqC2ZV5KrtKWb/jyiFX/sxSrodALf0zf+tfHv0FZWT2
  zHjUqd0t4njD/UOsuIMOQn4Ig0SdivYPfZukb5cdasKJukG1NOpbW7yRNivaCnfZz6dTawXw
  XRIV/KDsHQiyVxKvN73bThKhONkcX2LWuD928tAR6XMM2G5ovxLe09vuOzzfTWQDsm++9UKF a/A=
-In-Reply-To: <8a3ad930-bfb1-4531-9d34-fdf7d437f352@redhat.com>
+In-Reply-To: <aGALNS0yyBR27tz4@lizhi-Precision-Tower-5810>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 29/06/2025 14:07, Hans de Goede wrote:
-> Hi Krzysztof,
-> 
-> On 28-Jun-25 1:49 PM, Krzysztof Kozlowski wrote:
->> On 27/06/2025 11:48, Luca Weiss wrote:
->>> Hi Krzysztof,
->>>
->>> On Fri Jun 27, 2025 at 10:08 AM CEST, Krzysztof Kozlowski wrote:
->>>> On Mon, Jun 23, 2025 at 08:44:45AM +0200, Luca Weiss wrote:
->>>>> Document the interconnects property which is a list of interconnect
->>>>> paths that is used by the framebuffer and therefore needs to be kept
->>>>> alive when the framebuffer is being used.
+On 28/06/2025 17:33, Frank Li wrote:
+> On Sat, Jun 28, 2025 at 02:34:12PM +0200, Krzysztof Kozlowski wrote:
+>> On Fri, Jun 27, 2025 at 04:09:49PM -0400, Frank Li wrote:
+>>> On Fri, Jun 27, 2025 at 08:54:46AM +0200, Krzysztof Kozlowski wrote:
+>>>> On Thu, Jun 26, 2025 at 03:38:02PM +0800, Richard Zhu wrote:
+>>>>> Add one more reference clock "extref" to be onhalf the reference clock
+>>>>> that comes from external crystal oscillator.
 >>>>>
->>>>> Acked-by: Thomas Zimmermann <tzimmermann@suse.de>
->>>>> Signed-off-by: Luca Weiss <luca.weiss@fairphone.com>
+>>>>> Signed-off-by: Richard Zhu <hongxing.zhu@nxp.com>
 >>>>> ---
->>>>>  Documentation/devicetree/bindings/display/simple-framebuffer.yaml | 3 +++
->>>>>  1 file changed, 3 insertions(+)
+>>>>>  .../devicetree/bindings/pci/snps,dw-pcie-common.yaml        | 6 ++++++
+>>>>>  1 file changed, 6 insertions(+)
 >>>>>
->>>>> diff --git a/Documentation/devicetree/bindings/display/simple-framebuffer.yaml b/Documentation/devicetree/bindings/display/simple-framebuffer.yaml
->>>>> index 296500f9da05e296dbbeec50ba5186b6b30aaffc..f0fa0ef23d91043dfb2b220c654b80e2e80850cd 100644
->>>>> --- a/Documentation/devicetree/bindings/display/simple-framebuffer.yaml
->>>>> +++ b/Documentation/devicetree/bindings/display/simple-framebuffer.yaml
->>>>> @@ -79,6 +79,9 @@ properties:
->>>>>    power-domains:
->>>>>      description: List of power domains used by the framebuffer.
->>>>>  
->>>>> +  interconnects:
->>>>> +    description: List of interconnect paths used by the framebuffer.
->>>>> +
+>>>>> diff --git a/Documentation/devicetree/bindings/pci/snps,dw-pcie-common.yaml b/Documentation/devicetree/bindings/pci/snps,dw-pcie-common.yaml
+>>>>> index 34594972d8db..ee09e0d3bbab 100644
+>>>>> --- a/Documentation/devicetree/bindings/pci/snps,dw-pcie-common.yaml
+>>>>> +++ b/Documentation/devicetree/bindings/pci/snps,dw-pcie-common.yaml
+>>>>> @@ -105,6 +105,12 @@ properties:
+>>>>>              define it with this name (for instance pipe, core and aux can
+>>>>>              be connected to a single source of the periodic signal).
+>>>>>            const: ref
+>>>>> +        - description:
+>>>>> +            Some dwc wrappers (like i.MX95 PCIes) have two reference clock
+>>>>> +            inputs, one from internal PLL, the other from off chip crystal
+>>>>> +            oscillator. Use extref clock name to be onhalf of the reference
+>>>>> +            clock comes form external crystal oscillator.
 >>>>
->>>> maxItems: 1, or this is not a simple FB anymore. Anything which needs
->>>> some sort of resources in unknown way is not simple anymore. You need
->>>> device specific bindings.
+>>>> How internal PLL can be represented as 'ref' clock? Internal means it is
+>>>> not outside, so impossible to represent.
 >>>
->>> The bindings support an arbitrary number of clocks, regulators,
->>> power-domains. Why should I artificially limit the interconnects to only
->>> one?
+>>> Internal means in side SoC, but outside PCIe controller.
 >>
->> And IMO they should not. Bindings are not supposed to be generic.
+>> So external... It does not matter for PCIe controller whether clock is
+>> coming from SoC or from some crystal.  It is still input pin. Same input
+>> pin.
 > 
-> The simplefb binding is a binding to allow keeping the firmware, e.g.
-> uboot setup framebuffer alive to e.g. show a boot splash until
-> the native display-engine drive loads. Needing display-engine
-> specific bindings totally contradicts the whole goal of 
+> It is NOT the same pin. It is TWO pins, there are mux inside in PCI
+> controller.
+> 
+> There are similar cases in s32 rtc, there are 4 input source[0,1,2,3]
+> https://lore.kernel.org/imx/20241127144322.GA3454134-robh@kernel.org/
+> Only one provide.
+> 
+>>
+>>>
+>>>>
+>>>> Where is the DTS so we can look at big picture?
+>>>
+>>> imx94 pci's upstream is still on going, which quite similar with imx95.
+>>> Just board design choose external crystal.
+>>>
+>>> pcie_ref_clk: clock-pcie-ref {
+>>>                 compatible = "gpio-gate-clock";
+>>>                 clocks = <&xtal25m>;
+>>>                 #clock-cells = <0>;
+>>>                 enable-gpios = <&pca9670_i2c3 7 GPIO_ACTIVE_LOW>;
+>>> };
+>>>
+>>> &pcie0 {
+>>>         pinctrl-0 = <&pinctrl_pcie0>;
+>>>         pinctrl-names = "default";
+>>>         clocks = <&scmi_clk IMX94_CLK_HSIO>,
+>>>                  <&scmi_clk IMX94_CLK_HSIOPLL>,
+>>>                  <&scmi_clk IMX94_CLK_HSIOPLL_VCO>,
+>>>                  <&scmi_clk IMX94_CLK_HSIOPCIEAUX>,
+>>>                  <&pcie_ref_clk>;
+>>>         clock-names = "pcie", "pcie_bus", "pcie_phy", "pcie_aux", "ext-ref";
+>>
+>> So this is totally faked hardware property.
+>>
+>> No, it is the same clock signal, not different. You write bindings from
+>> this device point of view, not for your board.
+> 
+> No the same clock signal. There are two sources, "ext-ref" or "ref".
+> PCI controller need know which one provide clocks.
 
-No, it does not. DT is well designed for that through expressing
-compatibility. I did not say you cannot have generic fallback for simple
-use case.
-
-But this (and previous patchset) grows this into generic binding ONLY
-and that is not correct.
-
+OK, this should be clearly expressed not some vague play of the words
+what is internal and external...
 
 > 
-> It is generic by nature and I really do not see how clocks and
-> regulators are any different then interconnects here.
-
-Yeah, they are also wrong. I already commented on this.
-
+> There are mux inside PCI controller, DT need provide information which on
+> provide.
 > 
-> Note that we had a huge discussion about adding clock
-> and regulators to simplefb many years ago with pretty
-> much the same arguments against doing so. In the end it was
-> decided to add regulator and clocks support to the simplefb
-> bindings and non of the feared problems with e.g. ordening
-> of turning things on happened.
+> Maybe my example dts miss-lead you. Altherate descript is
+>   clock-names = "pcie", "pcie_bus", "pcie_phy", "pcie_aux", "ref", "ext-ref";
 > 
-> A big part of this is that the claiming of clks / regulators /
-> interconnects by the simplefb driver is there to keep things on,
-> so it happens before the kernel starts tuning off unused resources
-> IOW everything is already up and running and this really is about
-> avoiding turning things off.
+>   But we thinks if ext-ref provide, "ref" is not neccesary need be turn on.
+>   So remove it from the list.
 
-No one asks to drop them from the driver. I only want specific front
-compatible which will list and constrain the properties. It is not
-contradictory to your statements, U-boot support, driver support. I
-really do not see ANY argument why this cannot follow standard DT rules.
+If the ref clock is actually wired it should be there. You describe here
+hardware, not what is necessary.
 
 Best regards,
 Krzysztof
