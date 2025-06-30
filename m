@@ -1,75 +1,101 @@
-Return-Path: <devicetree+bounces-191112-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-191113-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5F4F2AEDEFB
-	for <lists+devicetree@lfdr.de>; Mon, 30 Jun 2025 15:27:11 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id DB925AEDF15
+	for <lists+devicetree@lfdr.de>; Mon, 30 Jun 2025 15:30:34 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id A4529188A723
-	for <lists+devicetree@lfdr.de>; Mon, 30 Jun 2025 13:27:25 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 9383F188E7DC
+	for <lists+devicetree@lfdr.de>; Mon, 30 Jun 2025 13:30:10 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8C7DF286D52;
-	Mon, 30 Jun 2025 13:27:05 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5720128A1D0;
+	Mon, 30 Jun 2025 13:29:44 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=infradead.org header.i=@infradead.org header.b="fylkOZ5k"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="L6pCgFnN"
 X-Original-To: devicetree@vger.kernel.org
-Received: from casper.infradead.org (casper.infradead.org [90.155.50.34])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-pf1-f181.google.com (mail-pf1-f181.google.com [209.85.210.181])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BF07C1DFCB;
-	Mon, 30 Jun 2025 13:27:03 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=90.155.50.34
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 98355213E6D;
+	Mon, 30 Jun 2025 13:29:42 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.181
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1751290025; cv=none; b=FejkROEYGwUYFTMcJdEk9xv8++39w+AdZB0kQ2u4ktXxZeUqz/Kmm1FgXstdoj4PweOO980GWglpcoySePLKJBPENZHDHmNO37I4DQnGtvieSx56gCjmM6PKOTm/U2GYuaO+kIK8k0rPRGswtBJLMtltWpNPsEgi315715aMBrY=
+	t=1751290184; cv=none; b=Xc/afp6zIEExI+vf62ZgeRnVfLBVWbPMp5IJjobilR2lHZE1vfss0Jqkk8Tl0mrrOlJ+HZDR8WGVaIe6sJ7uo+2BGoSOqvx49aB2gqeVRwxO5pXIxR6PQ2cv+ycmpzu3ZYaGeHtA1eIBa+JcpOUeqtU2MUX8ilqJzj9BNZBNeLc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1751290025; c=relaxed/simple;
-	bh=WB0nc/JVBgjX+0w5qWA+TY03gWgQdNO+7U5DPyzBrc0=;
+	s=arc-20240116; t=1751290184; c=relaxed/simple;
+	bh=tMGRzd3bK/I95D1NqkLcHSqiaWOSRKYJS++gRdKmVhE=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=IvjKn5ba3ktf6dfJ6g95TfJiki5HphJtp/nXQ+CXCff4aFwaPNk9DAvOx3cN8jHI7cQ3WvjIo0FaKpnN2+nta8fcasVv1jlwF+Yp3acMwoA/qb5s4Kh0azY570fyJE0NyY/z1K+pY4Cod+OKQ8LOhANJ0l0HMNWkJcNpGWDBVvk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=infradead.org; spf=none smtp.mailfrom=infradead.org; dkim=pass (2048-bit key) header.d=infradead.org header.i=@infradead.org header.b=fylkOZ5k; arc=none smtp.client-ip=90.155.50.34
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=infradead.org
-Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=infradead.org
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=infradead.org; s=casper.20170209; h=In-Reply-To:Content-Type:MIME-Version:
-	References:Message-ID:Subject:Cc:To:From:Date:Sender:Reply-To:
-	Content-Transfer-Encoding:Content-ID:Content-Description;
-	bh=YYG13o2W8Ak2/TreizFs+5Zc+1d5uQAAtxrsG6NxhF8=; b=fylkOZ5k7E1+e+XbEZHOeRgIUT
-	eBG2zbCQb23kdh8/0XTcUnWMcpr52XqGYKK4TqDZRjI2dhPGgOzHJHvP0t4W4FZ8bXdtbATp0lNsl
-	2JM/6omQYE1nyAde5P61f560L4PKXNef0rwzKiRJup8jUjme4AwOHiTk8TEO32VKKMpJcCYq4EWUT
-	hCieesBkq3ZN35mTtq1cnxACfvLKXXMJ9uhKPhNdm9AQjFpjZyW0YI8Gtn4Hb0UVW4e4RARkiIJmA
-	OuctUxOFamGi0JSTIU+IUrjz1k1wR8grATon+2IvlzadZijCahOLRE9kk+lVHVruNqjq7Szd0VJU7
-	hUblIiCQ==;
-Received: from 77-249-17-252.cable.dynamic.v4.ziggo.nl ([77.249.17.252] helo=noisy.programming.kicks-ass.net)
-	by casper.infradead.org with esmtpsa (Exim 4.98.2 #2 (Red Hat Linux))
-	id 1uWEX9-00000003tYR-2Sg3;
-	Mon, 30 Jun 2025 13:26:55 +0000
-Received: by noisy.programming.kicks-ass.net (Postfix, from userid 1000)
-	id ACDC0300158; Mon, 30 Jun 2025 15:26:54 +0200 (CEST)
-Date: Mon, 30 Jun 2025 15:26:54 +0200
-From: Peter Zijlstra <peterz@infradead.org>
-To: "Kirill A. Shutemov" <kirill.shutemov@linux.intel.com>
-Cc: Ricardo Neri <ricardo.neri-calderon@linux.intel.com>, x86@kernel.org,
+	 Content-Type:Content-Disposition:In-Reply-To; b=CpXoJ4RVs1+05BHs2KZEFccIVMmke/Xcy9yxCSHZi9HPwqmo7Zb33sHID9Aa2Wo6057hA8Vhi0muoCpQT0Ku/EWC+z2/MY1IALh+CqJkR3M5LDOKCf/6T1AnTZshDl+eVvqKbAHDUGAHP36gGwBdvZK/arpbNulzYM/LI1QMypo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=roeck-us.net; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=L6pCgFnN; arc=none smtp.client-ip=209.85.210.181
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=roeck-us.net
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-pf1-f181.google.com with SMTP id d2e1a72fcca58-74264d1832eso2686273b3a.0;
+        Mon, 30 Jun 2025 06:29:42 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1751290182; x=1751894982; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:sender:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=7LzTcO/m9tkAD8Gqe/zjzIYRZPiIiP4NraWiu1v8c0Q=;
+        b=L6pCgFnN6/ZZ9DN8oEn4zfHTpIslk25cnbdWNmnxDvgm2c7KLsnhQwSo0S71YTcuzH
+         GgUgcCsNBgLaZQ6YgmhA4nGyePFS8IL3sKy3edFVV97/fxFUBVsj3ZMR2UrXuuhYGDmm
+         DQkdfBOZYJoP27DyETqL8n4/14fH4zLHKou/8JJ5J+JPIsXzGHeuTfmbkEiX/DeGXbvg
+         btK2wpiCuQ0l+xNtjL4xOs2H31AS9cjvT3VoVnwHKutBvlXzZ0y3pbUnvZIGUFrr0ALQ
+         hiDB5UXwqH4AUANJYUsLnXzjqu+PaKS3IBnhF2i71AUMmUc7l8KZr0Tg/mun4lK39WMk
+         ZwYA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1751290182; x=1751894982;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:sender:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=7LzTcO/m9tkAD8Gqe/zjzIYRZPiIiP4NraWiu1v8c0Q=;
+        b=Vqeoh9WhVWYcU9UcY4qtEWhSAjRU2CmiIMIPyUN3NTcjpGiwa1AwwSgNKp6tT6SL3W
+         1L3zeerWdlK2NZ3F0eKkJjPqbGWkixJhhj2AA6eaGEgydK3/7FaP6mGYtl6IH1RUX2p4
+         CI6L5qNl+k4vsk8dd28oYl2IbykJbjZZQ65DlhT0Ri9DIaqwLKpS5fAHLwOrFQFJ9cyf
+         nEmeIEBWGKXzzShNLB0D166q2RuU5ATyGrevOh2J6Qn9K9QU+gEbx4HGvpkWBY7TsES2
+         vSpHOd1LAibNaY7FtPiQH17UUGxvsH8BK6lPlvVAIeCjU3FoCpR1bc8eHA0V+YC/M9Gx
+         VejA==
+X-Forwarded-Encrypted: i=1; AJvYcCU6hch0MYMkBjH9zQsT5fEzXLUZeXyo48O9jpDEAuj8gWa7lp36OH2oz2cVpD/0go1KJPuHvk0w3Wzh@vger.kernel.org, AJvYcCUNDEmJneA315Uf3TlriBkTwnb4AR/UyQ1zqusVHBuDiNkmLjc52m0zCZa33o18UMlHh/Eyj+ElH+RivAWb@vger.kernel.org, AJvYcCVxnXhuGOXn0tk0YiQzY9GciobMv6iG7rLKNhDCkmNO0Yja8ze/gfYmzV+VPPuaNPYY5wwydLCd6tJ3uFOESvU=@vger.kernel.org, AJvYcCXiRFspMQB/XXpCCvdLEGetI35+gT2zWDtB08xI/XgJ64Iie6dtpbGM6/X/4qQSagQtnLTYZy9hB1AaMx34@vger.kernel.org
+X-Gm-Message-State: AOJu0YzcxQkyPcdp9kZJ9pFMKpO6iJqcN9BLHkgN43Q2JBUJW2s/NXY9
+	+ku34oPF76WdS2ysUPsxJl3Hpi2R2nFCWp4YQf5+mxaMc2Sy57wppdl4
+X-Gm-Gg: ASbGncu5obdHDvXg8/KiqXeeMAsByE7psuDX7LF5evA5qib12VQ8T8V7B2NqORm9jyW
+	u0FzfhpMIBZYXfBvo5MeFsvWe002qW8UV50Nrnme6ciopPZMj4xVj1JB3/KbvduI4K4iIlRo0do
+	1JbX0wvoAABswMIQVc4mYOMUdJwQf4T7Buq2DIMJSZq0xCMTSPwor8hmVDEPFmDngm+B8+hemfE
+	lqtg6KlyAbeF3MQryErLS3JeR/tDURDVSlfcnHGb6lFZpXCVItKguXsRbYhexSZKToqzLwxcHpn
+	2E1DqbAEiJP6zuAeVX+CldiJvA1m23naDlMatN2llj/3T/cZFL3nyK3IJKGx6pqf8vVTS+tyZho
+	=
+X-Google-Smtp-Source: AGHT+IGvSGnok+XQLrJYo+ik4oz3Ag1fPM5VlkYA503/kIRfskW4gdLdiEAL+3hl/iMdowvVnXbgzw==
+X-Received: by 2002:a05:6a00:997:b0:730:95a6:3761 with SMTP id d2e1a72fcca58-74af6e3f46amr20055931b3a.3.1751290181725;
+        Mon, 30 Jun 2025 06:29:41 -0700 (PDT)
+Received: from server.roeck-us.net ([2600:1700:e321:62f0:da43:aeff:fecc:bfd5])
+        by smtp.gmail.com with ESMTPSA id d2e1a72fcca58-74af541e655sm9110887b3a.65.2025.06.30.06.29.40
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 30 Jun 2025 06:29:40 -0700 (PDT)
+Sender: Guenter Roeck <groeck7@gmail.com>
+Date: Mon, 30 Jun 2025 06:29:39 -0700
+From: Guenter Roeck <linux@roeck-us.net>
+To: wctrl@proton.me
+Cc: Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+	Jiri Slaby <jirislaby@kernel.org>, Rob Herring <robh@kernel.org>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, Rob Herring <robh@kernel.org>,
-	"K. Y. Srinivasan" <kys@microsoft.com>,
-	Haiyang Zhang <haiyangz@microsoft.com>,
-	Wei Liu <wei.liu@kernel.org>, Dexuan Cui <decui@microsoft.com>,
-	Michael Kelley <mhklinux@outlook.com>,
-	"Rafael J. Wysocki" <rafael@kernel.org>,
-	Saurabh Sengar <ssengar@linux.microsoft.com>,
-	Chris Oo <cho@microsoft.com>, linux-hyperv@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-acpi@vger.kernel.org,
-	linux-kernel@vger.kernel.org, Ricardo Neri <ricardo.neri@intel.com>,
-	Yunhong Jiang <yunhong.jiang@linux.intel.com>
-Subject: Re: [PATCH v5 02/10] x86/acpi: Move acpi_wakeup_cpu() and helpers to
- smpwakeup.c
-Message-ID: <20250630132654.GN1613376@noisy.programming.kicks-ass.net>
-References: <20250627-rneri-wakeup-mailbox-v5-0-df547b1d196e@linux.intel.com>
- <20250627-rneri-wakeup-mailbox-v5-2-df547b1d196e@linux.intel.com>
- <20250630110316.GJ1613376@noisy.programming.kicks-ass.net>
- <sh3fz5qlmy2smu74ezibbptxgmlpedzui3c4q6x22jc5w5ik4q@qms3osoxh74t>
+	Conor Dooley <conor+dt@kernel.org>,
+	Matthias Brugger <matthias.bgg@gmail.com>,
+	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
+	Thomas Gleixner <tglx@linutronix.de>,
+	Daniel Lezcano <daniel.lezcano@linaro.org>,
+	Wim Van Sebroeck <wim@linux-watchdog.org>,
+	Sean Wang <sean.wang@mediatek.com>,
+	Russell King <linux@armlinux.org.uk>, linux-kernel@vger.kernel.org,
+	linux-serial@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	linux-mediatek@lists.infradead.org, linux-watchdog@vger.kernel.org
+Subject: Re: [PATCH v2 04/11] dt-bindings: watchdog: mediatek,mtk-wdt: add
+ MT6572
+Message-ID: <f56c2213-e7ef-4b91-b843-e54d8821e044@roeck-us.net>
+References: <20250626-mt6572-v2-0-f7f842196986@proton.me>
+ <20250626-mt6572-v2-4-f7f842196986@proton.me>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -78,51 +104,37 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <sh3fz5qlmy2smu74ezibbptxgmlpedzui3c4q6x22jc5w5ik4q@qms3osoxh74t>
+In-Reply-To: <20250626-mt6572-v2-4-f7f842196986@proton.me>
 
-On Mon, Jun 30, 2025 at 03:07:08PM +0300, Kirill A. Shutemov wrote:
-> On Mon, Jun 30, 2025 at 01:03:16PM +0200, Peter Zijlstra wrote:
-> > On Fri, Jun 27, 2025 at 08:35:08PM -0700, Ricardo Neri wrote:
-> > 
-> > > -	/*
-> > > -	 * Wait for the CPU to wake up.
-> > > -	 *
-> > > -	 * The CPU being woken up is essentially in a spin loop waiting to be
-> > > -	 * woken up. It should not take long for it wake up and acknowledge by
-> > > -	 * zeroing out ->command.
-> > > -	 *
-> > > -	 * ACPI specification doesn't provide any guidance on how long kernel
-> > > -	 * has to wait for a wake up acknowledgment. It also doesn't provide
-> > > -	 * a way to cancel a wake up request if it takes too long.
-> > > -	 *
-> > > -	 * In TDX environment, the VMM has control over how long it takes to
-> > > -	 * wake up secondary. It can postpone scheduling secondary vCPU
-> > > -	 * indefinitely. Giving up on wake up request and reporting error opens
-> > > -	 * possible attack vector for VMM: it can wake up a secondary CPU when
-> > > -	 * kernel doesn't expect it. Wait until positive result of the wake up
-> > > -	 * request.
-> > > -	 */
-> > > -	while (READ_ONCE(acpi_mp_wake_mailbox->command))
-> > > -		cpu_relax();
-> > > -
-> > > -	return 0;
-> > > -}
-> > 
-> > > +	while (READ_ONCE(acpi_mp_wake_mailbox->command))
-> > > +		cpu_relax();
-> > > +
-> > > +	return 0;
-> > > +}
-> > 
-> > So I realize this is just code movement at this point, but this will
-> > hard lockup the machine if the AP doesn't come up, right?
+On Thu, Jun 26, 2025 at 11:53:57AM +0300, Max Shevchenko via B4 Relay wrote:
+> From: Max Shevchenko <wctrl@proton.me>
 > 
-> Correct.
+> Add a compatible string for watchdog on the MT6572 SoC.
 > 
-> > IIRC we have some timeout in the regular SIPI bringup if the AP doesn't
-> > respond.
-> 
-> See the comment.
+> Reviewed-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+> Signed-off-by: Max Shevchenko <wctrl@proton.me>
 
-Doh, reading hard ;-) Thanks!
+Reviewed-by: Guenter Roeck <linux@roeck-us.net>
+
+> ---
+>  Documentation/devicetree/bindings/watchdog/mediatek,mtk-wdt.yaml | 1 +
+>  1 file changed, 1 insertion(+)
+> 
+> diff --git a/Documentation/devicetree/bindings/watchdog/mediatek,mtk-wdt.yaml b/Documentation/devicetree/bindings/watchdog/mediatek,mtk-wdt.yaml
+> index 8d2520241e37f0e8a7526cbc99d5aa0d4edc9a55..ba0bfd73ab62a86befead007d4b7d2a870b81a0c 100644
+> --- a/Documentation/devicetree/bindings/watchdog/mediatek,mtk-wdt.yaml
+> +++ b/Documentation/devicetree/bindings/watchdog/mediatek,mtk-wdt.yaml
+> @@ -34,6 +34,7 @@ properties:
+>        - items:
+>            - enum:
+>                - mediatek,mt2701-wdt
+> +              - mediatek,mt6572-wdt
+>                - mediatek,mt6582-wdt
+>                - mediatek,mt6797-wdt
+>                - mediatek,mt7622-wdt
+> 
+> -- 
+> 2.50.0
+> 
+> 
 
