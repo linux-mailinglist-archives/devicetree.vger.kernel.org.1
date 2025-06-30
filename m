@@ -1,175 +1,177 @@
-Return-Path: <devicetree+bounces-191184-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-191185-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id F408FAEE4C0
-	for <lists+devicetree@lfdr.de>; Mon, 30 Jun 2025 18:37:26 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 165C2AEE4CD
+	for <lists+devicetree@lfdr.de>; Mon, 30 Jun 2025 18:41:48 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id AEF0017EABA
-	for <lists+devicetree@lfdr.de>; Mon, 30 Jun 2025 16:36:20 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id B7E3F18934A8
+	for <lists+devicetree@lfdr.de>; Mon, 30 Jun 2025 16:42:03 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E91E7292B2F;
-	Mon, 30 Jun 2025 16:34:35 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4450D28DEEE;
+	Mon, 30 Jun 2025 16:41:41 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (4096-bit key) header.d=alien8.de header.i=@alien8.de header.b="BMZUCUzV"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="XWA673Ws"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail.alien8.de (mail.alien8.de [65.109.113.108])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7C5A628FAA5;
-	Mon, 30 Jun 2025 16:34:32 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=65.109.113.108
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1629078F2E;
+	Mon, 30 Jun 2025 16:41:40 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1751301275; cv=none; b=IRzizjVJKj+sWSlax4pOCxZzwn9EyjPF4RTnL4mt6sHabdPPjEysj6sxNs69slFNUrvlGQh6YFMlpaoZD63DSuMg4IpBxh6Xbfn4M1x3dBPk1WtEXwtp99+wm3DLBHTTTa4N1ZeVt39A58WdLZScpmrRJmEK+5WtiMoPpg7rO4Q=
+	t=1751301701; cv=none; b=eJfghxkWlGV4fLXSVA3nS8oPLOPDIgfaNMJPKyRzk8xNUOoz+as1aXf2sX4ZVpWgo0uTGDdMns3yFH4RffHx8bHfR62Hfz1Zz8D+dRPxRCjuAmjN+s9qJjlZIXu1/alQSN3VD6l4MZPa3+JNm5GbPN+dTsHsTNmzwH4RKvaDbl4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1751301275; c=relaxed/simple;
-	bh=mEHgqV03o6VTz0DapeBgcIdYMe2Zhh2E6lJ6zYMRoDE=;
+	s=arc-20240116; t=1751301701; c=relaxed/simple;
+	bh=+fzJq5ixdgdDsnkL9zpCdV4dSmtyoicJ975neBoN5dc=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=JRTqNap/QUvixKvhvfvq2KUA7/nFNSnj2EdDAxyAQUSWCs96luOpwIUJSzQzBZGYYe0dOvDo9yqm9cFzMfm4oLay2U2vr/t2dRir0A9JD3/GL2nrPxNY61e83a231j77i4iBslNjrDpEH6XbUNwvkzphjIFCbEmUqolGLQ16mZE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=alien8.de; spf=pass smtp.mailfrom=alien8.de; dkim=pass (4096-bit key) header.d=alien8.de header.i=@alien8.de header.b=BMZUCUzV; arc=none smtp.client-ip=65.109.113.108
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=alien8.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=alien8.de
-Received: from localhost (localhost.localdomain [127.0.0.1])
-	by mail.alien8.de (SuperMail on ZX Spectrum 128k) with ESMTP id D075740E0198;
-	Mon, 30 Jun 2025 16:34:24 +0000 (UTC)
-X-Virus-Scanned: Debian amavisd-new at mail.alien8.de
-Authentication-Results: mail.alien8.de (amavisd-new); dkim=pass (4096-bit key)
-	header.d=alien8.de
-Received: from mail.alien8.de ([127.0.0.1])
-	by localhost (mail.alien8.de [127.0.0.1]) (amavisd-new, port 10026)
-	with ESMTP id wScW8kbuQCJS; Mon, 30 Jun 2025 16:34:21 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=alien8.de; s=alien8;
-	t=1751301259; bh=EnhzZidqHbMAwNFsHGf6+uqGMdAMCcl5F1jBVz6QWgE=;
+	 Content-Type:Content-Disposition:In-Reply-To; b=bAbbIbw+xvGVHT6oxT7XliR9qryv0SzqRxF+qbSP+eBLUKFpLr2pNz7+IE66vYkegckiBGrTBWdibDS0cgbYkju5kMklUfqyhycaj+myWYnurta18JEq+UqSf0ErUP0HxWufwJQkwJ5j9JO4hSIcmFQcMtjkfL0gdN5GsdQX2Qo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=XWA673Ws; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 49E12C4CEE3;
+	Mon, 30 Jun 2025 16:41:40 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1751301700;
+	bh=+fzJq5ixdgdDsnkL9zpCdV4dSmtyoicJ975neBoN5dc=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=BMZUCUzVVCYUN+c75XBck4//dLcc6OVn8555COXfzRHQN2jufiCIy47cd4CfOGk7+
-	 ymghOobXcEjp8GqUiwbPrImcJTX2MXN/GULqM0cgHpPqO+ELRjaWmY/F79fcDHZVsB
-	 d9dDNy+6I00tN3J+ZUbz6WWY7F35eMRd3QgNVTGanFTuIXfE1OjJ7+hDfatmeWCQ14
-	 x+97/wisPlpc6U2lVsIvjXGVweLd8bumwzVebVAKiG62we3YVGiWwjuWKZdHiNFmaB
-	 SZn5L30tUkgPDir4fv8KgEZBc/h+e8HCCjhpSAUIWoX5i/albOH0cR2D+Jj35UKhL8
-	 JZakHzgWoK3NhLd/Ofr5dObcCqkKtrhWokWRGWQP5+uZ1sU2M/gQnaHjQ5sKVoc6n5
-	 zjgfx5kw585maa7oHuoig3YnxkGn9h/c8WbExP8tqav6P9jgBdaKvtomzXRHJfs+mK
-	 c8A0CWiXZ+eV+wdUydjOZKBGEpj1mcCGmqITaYjVfEQoM+coCqOh/QmygdSRu9TBct
-	 U43jaqMRc3ZC+cLk763DM09RudZidK9jMp4RU1p5ZE0hDIrClArLsmgFxdOCbOBxse
-	 rMu+gkoqxnTs4Z7KSp9zfFCmxOOqfl9lSoFgeE/StRhz95n94La0pdh3XHsVw/IUJF
-	 oTm8SUbvrG6IYuCuEo5MZ7Bs=
-Received: from zn.tnic (p57969c58.dip0.t-ipconnect.de [87.150.156.88])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange ECDHE (P-256) server-signature ECDSA (P-256) server-digest SHA256)
-	(No client certificate requested)
-	by mail.alien8.de (SuperMail on ZX Spectrum 128k) with ESMTPSA id 7244C40E00DD;
-	Mon, 30 Jun 2025 16:34:04 +0000 (UTC)
-Date: Mon, 30 Jun 2025 18:33:57 +0200
-From: Borislav Petkov <bp@alien8.de>
-To: Vijay Balakrishna <vijayb@linux.microsoft.com>
-Cc: Tony Luck <tony.luck@intel.com>, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	James Morse <james.morse@arm.com>,
-	Mauro Carvalho Chehab <mchehab@kernel.org>,
-	Robert Richter <rric@kernel.org>, linux-edac@vger.kernel.org,
-	linux-kernel@vger.kernel.org, Tyler Hicks <code@tyhicks.com>,
-	Marc Zyngier <maz@kernel.org>,
-	Sascha Hauer <s.hauer@pengutronix.de>,
-	Lorenzo Pieralisi <lpieralisi@kernel.org>,
-	devicetree@vger.kernel.org
-Subject: Re: [v11 PATCH 1/2] EDAC: Add EDAC driver for ARM Cortex A72 cores
-Message-ID: <20250630163357.GGaGK8dbT4fp68PplM@fat_crate.local>
-References: <1748487628-30123-1-git-send-email-vijayb@linux.microsoft.com>
- <1748487628-30123-2-git-send-email-vijayb@linux.microsoft.com>
+	b=XWA673WsZi/9juIWGGOo2N0P7u/VnXFY70GIwq4ILqSo0txSgrnfrhwvMbi5EuxIg
+	 HjEW2c/DnrBbLWdxkAOamPc82T8aeofo/G7Ne4oVWi4yLOFWVb2WkxwXmwVfrqGk8K
+	 6i5rj1Vi8eNFPPn5u3ilSoIxOdZUluLG4AU/WmrLd63syv+OsN4nQifQuav+99BfZ1
+	 3+66aCbMtVWr2QiS8fpTGd/FujkAd01dgEg8gZ8vbMP5hkYcBwFDzfd4h7U5CO2KFF
+	 yKI925sbdHiKwYMV+VnQVcDc/CvZuPufZ9qilMn2d+7oGQCpA9tgFJ15Jt5oW4LvUv
+	 InjlAXiwpavfA==
+Date: Mon, 30 Jun 2025 18:41:38 +0200
+From: Maxime Ripard <mripard@kernel.org>
+To: Rob Herring <robh@kernel.org>
+Cc: Saravana Kannan <saravanak@google.com>, 
+	Sumit Semwal <sumit.semwal@linaro.org>, Benjamin Gaignard <benjamin.gaignard@collabora.com>, 
+	Brian Starkey <Brian.Starkey@arm.com>, John Stultz <jstultz@google.com>, 
+	"T.J. Mercier" <tjmercier@google.com>, Christian =?utf-8?B?S8O2bmln?= <christian.koenig@amd.com>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, Andrew Davis <afd@ti.com>, 
+	Jared Kangas <jkangas@redhat.com>, Mattijs Korpershoek <mkorpershoek@kernel.org>, 
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, linux-media@vger.kernel.org, 
+	dri-devel@lists.freedesktop.org, linaro-mm-sig@lists.linaro.org
+Subject: Re: [PATCH v5 1/2] dt-bindings: reserved-memory: Introduce
+ carved-out memory region binding
+Message-ID: <20250630-attentive-fortunate-turaco-2e36d2@houat>
+References: <20250617-dma-buf-ecc-heap-v5-0-0abdc5863a4f@kernel.org>
+ <20250617-dma-buf-ecc-heap-v5-1-0abdc5863a4f@kernel.org>
+ <20250627193132.GB4032621-robh@kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
+Content-Type: multipart/signed; micalg=pgp-sha384;
+	protocol="application/pgp-signature"; boundary="jeexq3trpqyreenu"
 Content-Disposition: inline
-In-Reply-To: <1748487628-30123-2-git-send-email-vijayb@linux.microsoft.com>
+In-Reply-To: <20250627193132.GB4032621-robh@kernel.org>
 
-On Wed, May 28, 2025 at 08:00:27PM -0700, Vijay Balakrishna wrote:
-> diff --git a/drivers/edac/Makefile b/drivers/edac/Makefile
-> index a8f2d8f6c894..136416f43b44 100644
-> --- a/drivers/edac/Makefile
-> +++ b/drivers/edac/Makefile
-> @@ -88,3 +88,4 @@ obj-$(CONFIG_EDAC_NPCM)			+= npcm_edac.o
->  obj-$(CONFIG_EDAC_ZYNQMP)		+= zynqmp_edac.o
->  obj-$(CONFIG_EDAC_VERSAL)		+= versal_edac.o
->  obj-$(CONFIG_EDAC_LOONGSON)		+= loongson_edac.o
-> +obj-$(CONFIG_EDAC_CORTEX_A72)		+= edac_a72.o
 
-The drivers filename format is
+--jeexq3trpqyreenu
+Content-Type: text/plain; protected-headers=v1; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
+Subject: Re: [PATCH v5 1/2] dt-bindings: reserved-memory: Introduce
+ carved-out memory region binding
+MIME-Version: 1.0
 
-	edac_<something>.c
+Hi Rob,
 
-So a72_edac.c
+On Fri, Jun 27, 2025 at 02:31:32PM -0500, Rob Herring wrote:
+> On Tue, Jun 17, 2025 at 02:25:40PM +0200, Maxime Ripard wrote:
+> > Some parts of the memory can be dedicated to specific purposes and
+> > exposed as a dedicated memory allocator.
+> >=20
+> > This is especially useful if that particular region has a particular
+> > properties the rest of the memory doesn't have. For example, some
+> > platforms have their entire RAM covered by ECC but for a small area
+> > meant to be used by applications that don't need ECC, and its associated
+> > overhead.
+> >=20
+> > Let's introduce a binding to describe such a region and allow the OS to
+> > create a dedicated memory allocator for it.
+> >=20
+> > Signed-off-by: Maxime Ripard <mripard@kernel.org>
+> > ---
+> >  .../bindings/reserved-memory/carved-out.yaml       | 49 ++++++++++++++=
+++++++++
+> >  1 file changed, 49 insertions(+)
+> >=20
+> > diff --git a/Documentation/devicetree/bindings/reserved-memory/carved-o=
+ut.yaml b/Documentation/devicetree/bindings/reserved-memory/carved-out.yaml
+> > new file mode 100644
+> > index 0000000000000000000000000000000000000000..9ab5d1ebd9ebd9111b7c064=
+fabe1c45e752da83b
+> > --- /dev/null
+> > +++ b/Documentation/devicetree/bindings/reserved-memory/carved-out.yaml
+> > @@ -0,0 +1,49 @@
+> > +# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
+> > +%YAML 1.2
+> > +---
+> > +$id: http://devicetree.org/schemas/reserved-memory/carved-out.yaml#
+> > +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> > +
+> > +title: Carved-out Memory Region
+> > +
+> > +description: |
+>=20
+> Don't need '|'.
+>=20
+> > +  Specifies that the reserved memory region has been carved out of the
+> > +  main memory allocator, and is intended to be used by the OS as a
+> > +  dedicated memory allocator.
+>=20
+> Other than the commit msg, it is completely lost that this is for=20
+> ECC-less memory.
 
-> diff --git a/drivers/edac/edac_a72.c b/drivers/edac/edac_a72.c
-> new file mode 100644
-> index 000000000000..4f40616d40a0
-> --- /dev/null
-> +++ b/drivers/edac/edac_a72.c
-> @@ -0,0 +1,230 @@
-> +// SPDX-License-Identifier: GPL-2.0
-> +/*
-> + * Cortex A72 EDAC L1 and L2 cache error detection
-> + *
-> + * Copyright (c) 2020 Pengutronix, Sascha Hauer <s.hauer@pengutronix.de>
-> + * Copyright (c) 2025 Microsoft Corporation, <vijayb@linux.microsoft.com>
-> + *
-> + * Based on Code from:
-> + * Copyright (c) 2018, NXP Semiconductor
-> + * Author: York Sun <york.sun@nxp.com>
-> + */
-> +
-> +#include <linux/module.h>
-> +#include <linux/of.h>
-> +#include <linux/bitfield.h>
-> +#include <asm/smp_plat.h>
-> +
-> +#include "edac_module.h"
-> +
-> +#define DRVNAME		"edac-a72"
-> +
-> +#define SYS_CPUMERRSR_EL1	sys_reg(3, 1, 15, 2, 2)
-> +#define SYS_L2MERRSR_EL1	sys_reg(3, 1, 15, 2, 3)
-> +
-> +#define CPUMERRSR_EL1_RAMID		GENMASK(30, 24)
-> +#define L2MERRSR_EL1_CPUID_WAY	GENMASK(21, 18)
-> +
-> +#define CPUMERRSR_EL1_VALID		BIT(31)
-> +#define CPUMERRSR_EL1_FATAL		BIT(63)
-> +#define L2MERRSR_EL1_VALID		BIT(31)
-> +#define L2MERRSR_EL1_FATAL		BIT(63)
-> +
-> +#define L1_I_TAG_RAM	0x00
-> +#define L1_I_DATA_RAM	0x01
-> +#define L1_D_TAG_RAM	0x08
-> +#define L1_D_DATA_RAM	0x09
-> +#define TLB_RAM			0x18
-> +
-> +#define MESSAGE_SIZE	64
+Because it's not. One of the first feedback I got was that the way to
+identify what a heap provides was the heap name.
 
-I had written
+So, as far as the binding go, a heap just exposes a chunk of memory the
+memory allocator wouldn't use. The actual semantics of that chunk of
+memory don't matter.
 
-"Please group all defines together, align them vertically and then put other
-definitions below. Look at other drivers for inspiration."
+> This description applies to CMA area as well. So what's the difference?
 
-in my previous review
+Yeah, I kind of agree, which is why I initially started with a property,
+and you then asked for a compatible.
 
-Message-ID: <20250519085130.GFaCrxEnZvaoETKrao@fat_crate.local>
+CMA (assuming you mean the allocator, not the CMA heap) is still more
+though: it only covers some shared-dma-pool memory regions.
 
-but seems like this got ignored.
+> > +
+> > +maintainers:
+> > +  - Maxime Ripard <mripard@kernel.org>
+> > +
+> > +properties:
+> > +  compatible:
+> > +    const: carved-out
+>=20
+> Isn't everything in reserved-memory a carve out for some purpose. I'm=20
+> not sure if I'd add 'no ECC' or more along the lines of how this is=20
+> used. The latter might be useful on platforms which can't disable ECC or=
+=20
+> don't have ECC at all.
 
-Oh well, I'll ignore your submission too until you address *all* my review
-feedback.
+I don't think we need any discriminant for ECC vs non-ECC. It's just a
+carved-out memory region at some offset, and the system won't use it.
 
-Thx.
+Maxime
 
--- 
-Regards/Gruss,
-    Boris.
+--jeexq3trpqyreenu
+Content-Type: application/pgp-signature; name="signature.asc"
 
-https://people.kernel.org/tglx/notes-about-netiquette
+-----BEGIN PGP SIGNATURE-----
+
+iJUEABMJAB0WIQTkHFbLp4ejekA/qfgnX84Zoj2+dgUCaGK+PQAKCRAnX84Zoj2+
+dq2AAYC/J24SOTg9EyGxv1tRVE/FGgngduiiWSIJWT4SdOTb4teAfc/lr4p6puTF
+EHX68lcBgJBy43wXgAeh2TO5BWA3Jm3akW90xbdFedZD8i8vgdHvFYsiZ1npib1E
+ysoB3LOWSA==
+=JcqH
+-----END PGP SIGNATURE-----
+
+--jeexq3trpqyreenu--
 
