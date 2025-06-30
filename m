@@ -1,267 +1,158 @@
-Return-Path: <devicetree+bounces-190929-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-190930-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id A1CBDAED3B5
-	for <lists+devicetree@lfdr.de>; Mon, 30 Jun 2025 07:10:45 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id EB8C5AED3BA
+	for <lists+devicetree@lfdr.de>; Mon, 30 Jun 2025 07:17:49 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id B4FDC18948E5
-	for <lists+devicetree@lfdr.de>; Mon, 30 Jun 2025 05:11:01 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 0BB461726B5
+	for <lists+devicetree@lfdr.de>; Mon, 30 Jun 2025 05:17:50 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 897171C1F02;
-	Mon, 30 Jun 2025 05:10:39 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4343178F24;
+	Mon, 30 Jun 2025 05:17:45 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="Q+DX3LUq"
+	dkim=pass (2048-bit key) header.d=ventanamicro.com header.i=@ventanamicro.com header.b="mqxqIjYr"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-pf1-f180.google.com (mail-pf1-f180.google.com [209.85.210.180])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CE0271A2381;
-	Mon, 30 Jun 2025 05:10:37 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BAD3D522A
+	for <devicetree@vger.kernel.org>; Mon, 30 Jun 2025 05:17:43 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.180
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1751260239; cv=none; b=Pcpzj8XvXCMSaQbOH80C162e4i0BCPC/YWfaeLs9gO+o1oeU0Z6otcy2JIf/r0wIgq755K9kiaKiR323jWvPogyPjfZqNgvpcsuOoJE0gBUW88UmoxHbCTUUukpNkcPewoshy7rjD6YNmGYsAbgYduvj48KqsNtc7sFVfW+OUhY=
+	t=1751260665; cv=none; b=Am88I6byXOgRwKiwaYUTqe9yj4YWx2CuqEk6zZFxbc72Da9IcKP5IymimN4YISYH/n5QBZHJFLIkAvUX1DUwu1HMDH/2X70otqjJGYXs78dhGlzW4Q5ILP9A1dwwlaokhaD/mRp4IF5K8BomMJ0cMI8o7zdVtHdbepB3Ldq5y2g=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1751260239; c=relaxed/simple;
-	bh=03LVU3iRDlp/h8aF9oh0N61vheEeVZHmrnRq56uMW4M=;
-	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
-	 In-Reply-To:Content-Type; b=TEdSAXEvuzbt7O4MZqkOfwKNEPzw5mUE2V9MiwEHw2/qtHI3qTLOZGn1vLbRO8gNPRFKdwbjWYxxY6LyVPcNTIcRiwvofotV84wwSvvC5jD752roRj8ingo0ETStILZAlRSSAAnBNM+EKZiHtohYwnldfm8UBFipPx10ZJNuv6k=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=Q+DX3LUq; arc=none smtp.client-ip=205.220.168.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
-Received: from pps.filterd (m0279862.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 55TI14Nb015787;
-	Mon, 30 Jun 2025 05:10:34 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	e9W9FZaX37j7VDoPKwabQJxIJyn/jc+/pk01y7hNdLM=; b=Q+DX3LUqsaAoPLts
-	PaUPTbg2y/Gr63H5prFUvlPVzSc8hxGG7WFi2chkw5W6IlO6H8boV2q8ENeDwqNC
-	VO/dmlbowrYERAdBQaiHX4bj9qKhL05cTJtGEcbSeQGjC07S2gDBUH5nVyPu+ZFG
-	xq/xI44Gqy32j8afGetG+Yoh6cS9YVkhuSxtVnoQRpWeraJwPMSAMfl/5JV3XCY6
-	PVtRGdDsCl5CFEZca+RsIHRcOY3B874M+JgCFIfo1SR+PPOm3Ol78+X1ahR2/fX9
-	TlO3fB61zvxHgVRdqd+NQ3TNJbuVAjnL+pr2XPe+Ri4CGTkBR2pS85qwQc30eYsT
-	e36HEQ==
-Received: from nasanppmta01.qualcomm.com (i-global254.qualcomm.com [199.106.103.254])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 47j95huc4v-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Mon, 30 Jun 2025 05:10:34 +0000 (GMT)
-Received: from nasanex01c.na.qualcomm.com (nasanex01c.na.qualcomm.com [10.45.79.139])
-	by NASANPPMTA01.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 55U5AXYS004650
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Mon, 30 Jun 2025 05:10:33 GMT
-Received: from [10.218.32.171] (10.80.80.8) by nasanex01c.na.qualcomm.com
- (10.45.79.139) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1748.10; Sun, 29 Jun
- 2025 22:10:28 -0700
-Message-ID: <f87807c9-5249-4d97-ab89-898b7d8d260d@quicinc.com>
-Date: Mon, 30 Jun 2025 10:40:25 +0530
+	s=arc-20240116; t=1751260665; c=relaxed/simple;
+	bh=j0+utyg3WdFVd9h3Luv7yRhQ04bPtA+ySwD2/SbLX/w=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=l26D/bXqHJDt+S11COVLQnFUn38FajxzBftVwcIUPh28DgoQSf9OWUvpknr5R4EB67wcQhuzOy+GHxrTGXsLeaqgITv1n1TW9xkBzhu8Ryt5lip4wHjkrGOJzJerImwk3zYktb+tClhrhW7W0icHCE10vYvWCEg2HM0UTGtYkDY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ventanamicro.com; spf=pass smtp.mailfrom=ventanamicro.com; dkim=pass (2048-bit key) header.d=ventanamicro.com header.i=@ventanamicro.com header.b=mqxqIjYr; arc=none smtp.client-ip=209.85.210.180
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ventanamicro.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ventanamicro.com
+Received: by mail-pf1-f180.google.com with SMTP id d2e1a72fcca58-7490cb9a892so2892062b3a.0
+        for <devicetree@vger.kernel.org>; Sun, 29 Jun 2025 22:17:43 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=ventanamicro.com; s=google; t=1751260663; x=1751865463; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=CHPtwkORxYza8f0AQe4trY9Wlzmo7dC+e4hGrz5TZ/8=;
+        b=mqxqIjYryhA+0zr9tTzyIr/Gcpvgpp/1zYKFkeUD0l7Kb8GxhEsslHPUnrHDeAdm16
+         w4DtFymjm8fm1ZQBYlRRujx4qLkDKc+krNVHFywEuyfpPgZeij5EhNdpUIqIXqgkd3cB
+         c7hazZBdvI5w2fRLfZUYnDKVd3D1XsvRz/rBz1fbvaLu7zfhysD5Nmuqs1bZ1oEUY8hg
+         LBMc6Q6NDL6VrvwpcOgqpHKj793qgZhTRCppZb22hVI79j8peejBGCgcYJNmqrB5iUo4
+         +yezLi9pCJXdX2d2aK5F9ducCt94lR1J5r2g9BQ7DPGIXZQhh2UVH+8fiklLepIjC+Lp
+         d8vw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1751260663; x=1751865463;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=CHPtwkORxYza8f0AQe4trY9Wlzmo7dC+e4hGrz5TZ/8=;
+        b=bEtYjG6Wh0FTRPooV0jV6hg2qv7vsXV08uoPlEmygxvTNsqR/p4uXdtmXZoRqq59PD
+         73BdZH+Yb8vmBp3tHGNApd/pkF16F+cPWKVDH0wvMxmynQZlKVmYizhjwecq8jZ5cxb0
+         ObX8zMRrHFs2j8Rep0+Cc15ZnZ2pOrcL9CkqCxuXO0HIKs/Ux0cU7xVXM0ynokz7Px4C
+         hpAWZuEIIDBbWjrm5lsmD30kPczBuNjSUbF4cE+YGv0uMTJssUYyA1NETa1TFokfayxl
+         zZMK7lJRifaUJDOkt9BcoDe/h7Dxme+HnlZFRZWub6K/Tz9BQ++WDPeIMcU5bHQoIZ6y
+         EGrw==
+X-Forwarded-Encrypted: i=1; AJvYcCXYVQ8EGCU1+ZSQFPBaVwC3cXpZYgpQ2YNw+pkt6i8hUfglF6pd5kfQO6r5stvo7076IE05tECqVn8t@vger.kernel.org
+X-Gm-Message-State: AOJu0Yy7qhk45rkreZP5k2acVv+xufP9JBReORdq5QCPS0Q0dLBa3vM+
+	AGz/Hiz8ZqCuXcrbpjc9njlln4Bh1qR5wF7BePJ5gSC+j+kadtyAfPUGYKws3DF0YG4=
+X-Gm-Gg: ASbGnctWXuOE1J3jAwamYXTYCjltfQRcKHO+K7//k3EuXX3MEstCNP15+/bnYDZakc1
+	Boon/52qIii1gLHyds+OWezmdqo2wjqE24y88kHGQqTijPfO9ufbvfdT9zmcHyt2fWkZczkX9pb
+	+8PbFt+17ZmTYOaaQ9KiipdTpQjAY327nqy/ei2QeMFQlplQMOPTFqfC/OoSICvbHZ1MzWfSV1A
+	XqOZt3bEgYE4CGy59D3uvnds8ZkK5APmKBo29veLWE9SCilHNqkHc2JKkKaDpg/Gx9Jv50XYCqN
+	mtpQ0OV5oPvH/TiUhHREiPldCW7fjv0tj9tlXuJfC7Z3RBsGbwv9yqwP4eBp4js7Ds8jkPIGOOm
+	HNpwN
+X-Google-Smtp-Source: AGHT+IEHPxZf5K+6rB6h+G22ROpgqRBCwgyhaeWghhTRXeAPT0VUHYSFlG21O4cgJMdUdvOxbVQ28Q==
+X-Received: by 2002:a05:6a00:3e17:b0:748:33f3:8da3 with SMTP id d2e1a72fcca58-74af6f2f9d7mr18261164b3a.19.1751260663025;
+        Sun, 29 Jun 2025 22:17:43 -0700 (PDT)
+Received: from sunil-laptop ([103.97.166.196])
+        by smtp.gmail.com with ESMTPSA id d2e1a72fcca58-74af56e3ac1sm8021982b3a.145.2025.06.29.22.17.33
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Sun, 29 Jun 2025 22:17:42 -0700 (PDT)
+Date: Mon, 30 Jun 2025 10:47:28 +0530
+From: Sunil V L <sunilvl@ventanamicro.com>
+To: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
+Cc: Anup Patel <apatel@ventanamicro.com>,
+	Michael Turquette <mturquette@baylibre.com>,
+	Stephen Boyd <sboyd@kernel.org>, Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Jassi Brar <jassisinghbrar@gmail.com>,
+	Thomas Gleixner <tglx@linutronix.de>,
+	"Rafael J . Wysocki" <rafael@kernel.org>,
+	Mika Westerberg <mika.westerberg@linux.intel.com>,
+	Linus Walleij <linus.walleij@linaro.org>,
+	Bartosz Golaszewski <brgl@bgdev.pl>,
+	Uwe =?utf-8?Q?Kleine-K=C3=B6nig?= <ukleinek@kernel.org>,
+	Palmer Dabbelt <palmer@dabbelt.com>,
+	Paul Walmsley <paul.walmsley@sifive.com>,
+	Len Brown <lenb@kernel.org>,
+	Rahul Pathak <rpathak@ventanamicro.com>,
+	Leyfoon Tan <leyfoon.tan@starfivetech.com>,
+	Atish Patra <atish.patra@linux.dev>,
+	Andrew Jones <ajones@ventanamicro.com>,
+	Samuel Holland <samuel.holland@sifive.com>,
+	Anup Patel <anup@brainfault.org>, linux-clk@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-riscv@lists.infradead.org,
+	linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v6 14/23] ACPI: property: Add support for cells property
+Message-ID: <aGId6M_0D0qERUu_@sunil-laptop>
+References: <20250618121358.503781-1-apatel@ventanamicro.com>
+ <20250618121358.503781-15-apatel@ventanamicro.com>
+ <aFka3y1494LIzyUA@smile.fi.intel.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v6 7/8] serial: qcom-geni: Enable PM runtime for serial
- driver
-To: Bjorn Andersson <andersson@kernel.org>
-CC: Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Jiri Slaby
-	<jirislaby@kernel.org>, Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski
-	<krzk+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Konrad Dybcio
-	<konradybcio@kernel.org>,
-        <linux-arm-msm@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <linux-serial@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <psodagud@quicinc.com>, <djaggi@quicinc.com>,
-        <quic_msavaliy@quicinc.com>, <quic_vtanuku@quicinc.com>,
-        <quic_arandive@quicinc.com>, <quic_mnaresh@quicinc.com>,
-        <quic_shazhuss@quicinc.com>
-References: <20250606172114.6618-1-quic_ptalari@quicinc.com>
- <20250606172114.6618-8-quic_ptalari@quicinc.com>
- <d6cr4elhrbh27lmlcv5xzuel75uvsgi7klxjkevm7vg4jcbawe@5ojgetrxkag5>
-Content-Language: en-US
-From: Praveen Talari <quic_ptalari@quicinc.com>
-In-Reply-To: <d6cr4elhrbh27lmlcv5xzuel75uvsgi7klxjkevm7vg4jcbawe@5ojgetrxkag5>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
- nasanex01c.na.qualcomm.com (10.45.79.139)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwNjMwMDA0MSBTYWx0ZWRfXxxIA8rsy7otH
- kzKgj/CPCwTuP3lQh1Z1tAb4CrKWtmkQe/8O+HqbdC8GjCaROwL3wry1Qe/TXYVx/8hlrhm2U0V
- 4rpuo+AaHrqMH8GfiDZup9cEQ+J2EialY/mC66jEnmZVVoH//L8iYYSGzFaPDU+LSR6e1U171u3
- kYkIYjP9AcSS9u36/TMTc+K0knfH5IwCnuKNZCQJstJ7/fO75FEtb3gwRuc6LIbQCmhZCK5fhJQ
- /FyUVoaIv/1Fqkyra2HNs4OQFbxYWBb7JvGJZ63/IPB40HC90jkpImBVpSVOnRABVZZtPOgmQv5
- ZmhLs71uq2NKq4S2Pwy2NeieL16R4P8lTxsQfZJAxjx66K3ImvWovQF2j7F4djJnC6vKM9CvLb1
- VqOQ6qWuAXv+Qh4IRuWdEhj8E65vOdEaWzxD0tSPZqxHIlDLQhZKHzMBSKpd0sAtoKhwpmuR
-X-Proofpoint-ORIG-GUID: GyBbvbLe020N8BPk8eLxPLBojEvqZL4W
-X-Authority-Analysis: v=2.4 cv=EuHSrTcA c=1 sm=1 tr=0 ts=68621c4a cx=c_pps
- a=JYp8KDb2vCoCEuGobkYCKw==:117 a=JYp8KDb2vCoCEuGobkYCKw==:17
- a=GEpy-HfZoHoA:10 a=IkcTkHD0fZMA:10 a=6IFa9wvqVegA:10 a=VwQbUJbxAAAA:8
- a=KKAkSRfTAAAA:8 a=COk6AnOGAAAA:8 a=qX-yKedHe2mDKLH7AMEA:9 a=QEXdDO2ut3YA:10
- a=-_B0kFfA75AA:10 a=cvBusfyB2V15izCimMoJ:22 a=TjNXssC_j7lpFel5tvFf:22
-X-Proofpoint-GUID: GyBbvbLe020N8BPk8eLxPLBojEvqZL4W
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1099,Hydra:6.1.7,FMLib:17.12.80.40
- definitions=2025-06-27_05,2025-06-27_01,2025-03-28_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- clxscore=1015 mlxlogscore=999 malwarescore=0 mlxscore=0 phishscore=0
- spamscore=0 adultscore=0 suspectscore=0 lowpriorityscore=0 priorityscore=1501
- impostorscore=0 bulkscore=0 classifier=spam authscore=0 authtc=n/a authcc=
- route=outbound adjust=0 reason=mlx scancount=1 engine=8.19.0-2505280000
- definitions=main-2506300041
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <aFka3y1494LIzyUA@smile.fi.intel.com>
 
-Hi Bjorn,
+On Mon, Jun 23, 2025 at 12:14:07PM +0300, Andy Shevchenko wrote:
+> On Wed, Jun 18, 2025 at 05:43:49PM +0530, Anup Patel wrote:
+> > From: Sunil V L <sunilvl@ventanamicro.com>
+> > 
+> > Currently, ACPI doesn't support cells property when
+> > fwnode_property_get_reference_args() is called. ACPI always expects
+> > the number of arguments to be passed. However, the above mentioned
+> > call being a common interface for OF and ACPI, it is better to have
+> > single calling convention which works for both. Hence, add support
+> > for cells property on the reference device to get the number of
+> > arguments dynamically.
+> 
+> ...
+> 
+> > +static unsigned int acpi_fwnode_get_args_count(const struct acpi_device *device,
+> > +					       const char *nargs_prop)
+> > +{
+> > +	const union acpi_object *obj;
+> 
+> > +	if (!nargs_prop)
+> > +		return 0;
+> 
+> This check is implied by the call. No need to duplicate.
+> 
+> > +	if (acpi_dev_get_property(device, nargs_prop, ACPI_TYPE_INTEGER, &obj))
+> > +		return 0;
+> > +
+> > +	return obj->integer.value;
+> > +}
+> 
+> ...
+> 
+> > +			if (nargs_prop)
+> 
+> Again, if you don't won't to reassign the existing value, it's better to have
+> this data be collected in the temporary variable of the same semantics. Then
+> you will choose one when it's needed, no need to have this dup check (again!).
+> 
+Okay. Let me update in the next version.
 
-Thank you for review.
-
-On 6/17/2025 9:23 PM, Bjorn Andersson wrote:
-> On Fri, Jun 06, 2025 at 10:51:13PM +0530, Praveen Talari wrote:
->> Add Power Management (PM) runtime support to Qualcomm GENI
->> serial driver.
->>
-> 
-> Doesn't this have impact on the behavior outside of your
-> project? Or is the transition from qcom_geni_serial_pm() to explicit
-> RPM merely moving code around?
-> 
-> Seems like this deserves to not be hidden in a middle of a patch series.
-> 
->> Introduce necessary callbacks and updates to ensure seamless
->> transitions between power states, enhancing overall power
->> efficiency.
->>
-> 
-> This commit message fails to state why we need runtime PM support in the
-> driver.
-
-Introduce PM runtime support to the Qualcomm GENI serial driver to enable
-better power efficiency and modularity across diverse resource control
-mechanisms, including Linux and firmware-managed systems.
-
-As part of this enhancement, the existing qcom_geni_serial_pm() logic to
-use standard PM runtime APIs such as pm_runtime_resume_and_get() and
-pm_runtime_put_sync(). Power state transitions are now handled through
-the geni_serial_resources_on() and geni_serial_resources_off() functions.
-
-Is it fine?
-Please guide me/correct me if needed
-
-Thanks,
-Praveen Talari
-> 
-> Also, start your commit message with a problem description, per
-> https://docs.kernel.org/process/submitting-patches.html#describe-your-changes
-> 
->> Reviewed-by: Bryan O'Donoghue <bryan.odonoghue@linaro.org>
->> Signed-off-by: Praveen Talari <quic_ptalari@quicinc.com>
->> ---
->> v5 -> v6
->> - added reviewed-by tag in commit
->> - added __maybe_unused to PM callback functions to avoid
->>    warnings of defined but not used
->> ---
->>   drivers/tty/serial/qcom_geni_serial.c | 33 +++++++++++++++++++++++----
->>   1 file changed, 29 insertions(+), 4 deletions(-)
->>
->> diff --git a/drivers/tty/serial/qcom_geni_serial.c b/drivers/tty/serial/qcom_geni_serial.c
->> index b6fa7dc9b1fb..3691340ce7e8 100644
->> --- a/drivers/tty/serial/qcom_geni_serial.c
->> +++ b/drivers/tty/serial/qcom_geni_serial.c
->> @@ -1686,10 +1686,10 @@ static void qcom_geni_serial_pm(struct uart_port *uport,
->>   		old_state = UART_PM_STATE_OFF;
->>   
->>   	if (new_state == UART_PM_STATE_ON && old_state == UART_PM_STATE_OFF)
->> -		geni_serial_resources_on(uport);
->> +		pm_runtime_resume_and_get(uport->dev);
->>   	else if (new_state == UART_PM_STATE_OFF &&
->>   		 old_state == UART_PM_STATE_ON)
->> -		geni_serial_resources_off(uport);
->> +		pm_runtime_put_sync(uport->dev);
->>   
->>   }
->>   
->> @@ -1827,9 +1827,11 @@ static int qcom_geni_serial_probe(struct platform_device *pdev)
->>   		return ret;
->>   	}
->>   
->> +	pm_runtime_enable(port->se.dev);
-> 
-> Any reason not to use devm_pm_runtime_enable() and avoid the
-> two pm_runtime_disable() below?
-> 
-> Regards,
-> Bjorn
-> 
->> +
->>   	ret = uart_add_one_port(drv, uport);
->>   	if (ret)
->> -		return ret;
->> +		goto error;
->>   
->>   	if (port->wakeup_irq > 0) {
->>   		device_init_wakeup(&pdev->dev, true);
->> @@ -1839,11 +1841,15 @@ static int qcom_geni_serial_probe(struct platform_device *pdev)
->>   			device_init_wakeup(&pdev->dev, false);
->>   			ida_free(&port_ida, uport->line);
->>   			uart_remove_one_port(drv, uport);
->> -			return ret;
->> +			goto error;
->>   		}
->>   	}
->>   
->>   	return 0;
->> +
->> +error:
->> +	pm_runtime_disable(port->se.dev);
->> +	return ret;
->>   }
->>   
->>   static void qcom_geni_serial_remove(struct platform_device *pdev)
->> @@ -1855,9 +1861,26 @@ static void qcom_geni_serial_remove(struct platform_device *pdev)
->>   	dev_pm_clear_wake_irq(&pdev->dev);
->>   	device_init_wakeup(&pdev->dev, false);
->>   	ida_free(&port_ida, uport->line);
->> +	pm_runtime_disable(port->se.dev);
->>   	uart_remove_one_port(drv, &port->uport);
->>   }
->>   
->> +static int __maybe_unused qcom_geni_serial_runtime_suspend(struct device *dev)
->> +{
->> +	struct qcom_geni_serial_port *port = dev_get_drvdata(dev);
->> +	struct uart_port *uport = &port->uport;
->> +
->> +	return geni_serial_resources_off(uport);
->> +}
->> +
->> +static int __maybe_unused qcom_geni_serial_runtime_resume(struct device *dev)
->> +{
->> +	struct qcom_geni_serial_port *port = dev_get_drvdata(dev);
->> +	struct uart_port *uport = &port->uport;
->> +
->> +	return geni_serial_resources_on(uport);
->> +}
->> +
->>   static int qcom_geni_serial_suspend(struct device *dev)
->>   {
->>   	struct qcom_geni_serial_port *port = dev_get_drvdata(dev);
->> @@ -1901,6 +1924,8 @@ static const struct qcom_geni_device_data qcom_geni_uart_data = {
->>   };
->>   
->>   static const struct dev_pm_ops qcom_geni_serial_pm_ops = {
->> +	SET_RUNTIME_PM_OPS(qcom_geni_serial_runtime_suspend,
->> +			   qcom_geni_serial_runtime_resume, NULL)
->>   	SYSTEM_SLEEP_PM_OPS(qcom_geni_serial_suspend, qcom_geni_serial_resume)
->>   };
->>   
->> -- 
->> 2.17.1
->>
+Thanks!
+Sunil
 
