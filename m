@@ -1,48 +1,88 @@
-Return-Path: <devicetree+bounces-190996-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-190997-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0D630AED73B
-	for <lists+devicetree@lfdr.de>; Mon, 30 Jun 2025 10:25:59 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9734DAED746
+	for <lists+devicetree@lfdr.de>; Mon, 30 Jun 2025 10:28:37 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id E7D6A188B9F5
-	for <lists+devicetree@lfdr.de>; Mon, 30 Jun 2025 08:26:14 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id AF5ED3B40AB
+	for <lists+devicetree@lfdr.de>; Mon, 30 Jun 2025 08:28:11 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4B35B239E82;
-	Mon, 30 Jun 2025 08:25:55 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C5FFA2405E1;
+	Mon, 30 Jun 2025 08:28:25 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="H6DWQF+T"
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="Np6/mk64"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 17ED31E2858;
-	Mon, 30 Jun 2025 08:25:54 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5BF951E2858
+	for <devicetree@vger.kernel.org>; Mon, 30 Jun 2025 08:28:23 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1751271955; cv=none; b=j4qSwkOcRt9pvCXSKA3aRgMIxhAheghegth9OJqyP7nf1P22/WKqxEYZVHaS8K/40B2KfQYA9T9hw5RPNU2f30AuQmJjVMjGqr0AX0IafI+Wpi1Wyx2uSCKWdVt+mVNOrBvki2yH6Q1HxM7qxauEYHuj1X/v2V+SkFUQUuz8/XY=
+	t=1751272105; cv=none; b=JE9tsEUZoip8NvoRqV7A5VNXWj7Z04ToTkwU9CPw1IHzpVAdlYHPRpT045x1T6k2f7TNMkBdov8oxnXSpAo2ZRQY1xYKS7dbz/r0ajA207qjUdHwS/OsL1yn33RAUGi7TYNyMIOKp863WCqwno85D8dbnTAjDVxNNpXyTawol4g=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1751271955; c=relaxed/simple;
-	bh=z0myKlXPfbFRymUmSLOvc/7wdeydzOpDX+kckyTt+DU=;
+	s=arc-20240116; t=1751272105; c=relaxed/simple;
+	bh=opuEB7LyWEqgR61ttBKTDpTpAkIB9+/UeaBrxZSbziY=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=TtrfumqPj62HV9tA6fv/Iss7BCuHyLYA3EBVKu30i9rqf+xbQfixa6jMxwCpV6sCWW8Uf6USHXUyAwx45JEDEowjxVbRLgzZg8LyROLraxuZxb9ff6vRRfKTuFVrQ/IPrrQjqDr8IflpgPXXy6XudQbnhWr7D/akLDaNsNSmTd4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=H6DWQF+T; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 6CA29C4CEE3;
-	Mon, 30 Jun 2025 08:25:46 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1751271954;
-	bh=z0myKlXPfbFRymUmSLOvc/7wdeydzOpDX+kckyTt+DU=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=H6DWQF+TK/2PdqRJ0ssZolMe6dG9ZvpfffQngfJfx8Gf1b62TytLTPAzXSyYRVAFV
-	 4jGSfJ158J/K35wRR3J2J//j0zU8G7H0zxVPMA2iZ6qk/++nm6hHhEh7LsaWLg3To4
-	 Di9y5uLOdsQ3JEfP2M9bFSc4yBUjmKvWhvX1oKg+S/iQtU1lS/Y9eEEi2Y/3Lky9/w
-	 KfiFIPry17J35amVx4bj/G2ym5EGLN5eRH+5/2Sq2DtW7pqkjpPRm7Vnu0UeHUXTwj
-	 CyX0Yr8tCzvjRPEDaL8NJaCm5io3d1PIGNE14Gl2C+tspLHvglRlS6PW9Ho1mOGooz
-	 5ZHp6OzQnzaJg==
-Message-ID: <98b00dd1-3b83-4beb-ad06-f3e0442df8c7@kernel.org>
-Date: Mon, 30 Jun 2025 10:25:43 +0200
+	 In-Reply-To:Content-Type; b=rf/1V6VUMVFQMwPnn3EcKYDBLC+Z7ewAwtjbhwVUQRxvZStTTBM5gEqZV8lK4nV3DoTbEd93Z5JvNQalUrpQvaK+KbYfrtnUFtufZyrQZius1dKdpbER5u3zDGrVWrj5y/Cm27OKlYJF2VHjAom7xP8cvX0dTuIplW7G4kVJFyk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=Np6/mk64; arc=none smtp.client-ip=205.220.180.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
+Received: from pps.filterd (m0279869.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 55U8DOim025936
+	for <devicetree@vger.kernel.org>; Mon, 30 Jun 2025 08:28:22 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	vKpr6yzIcJB1d9WyXdee0CZFQ4Hog1591SCG7KI65o0=; b=Np6/mk64Wnssv3Zz
+	qL236c9QdxAfqMiESBMSJ7eZ2BUw7Nfv3R6sDMyzXYZwdbZ9VpejQLHsN0czm9U1
+	WKtvbvp/o80RDjV9fzdRFfyk/Db9r2jGWSJ04AyuYMq3Jra2WvIONRUEVYb8eE/N
+	+ANgnuqGT4wBKeA+D4HJFKIdtKTUIQIZxtzjthPKhOUihLxF7b00uFsvNB6Yqgdl
+	ZUvqhA+8yP5mzUuozDwxxasRXbjbadZGW5Egai9oin2jzU/fKCMEA/AaYDdQGtkk
+	FouYeoUk+V2J4mExMLQQuF2YNgejMLbOUwMkZpF2+CJtKAz+WVU/xzrlMT2A9UAJ
+	a9NuYQ==
+Received: from mail-pl1-f200.google.com (mail-pl1-f200.google.com [209.85.214.200])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 47kd64h76e-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
+	for <devicetree@vger.kernel.org>; Mon, 30 Jun 2025 08:28:22 +0000 (GMT)
+Received: by mail-pl1-f200.google.com with SMTP id d9443c01a7336-235e1d66fa6so39718515ad.0
+        for <devicetree@vger.kernel.org>; Mon, 30 Jun 2025 01:28:21 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1751272101; x=1751876901;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=vKpr6yzIcJB1d9WyXdee0CZFQ4Hog1591SCG7KI65o0=;
+        b=XgGRH3et+Z7HWFTFAs6+3uZRIMFaur+SKMGXdOP5oRKoxcWebIh6wtTTGtSu67HzEi
+         xdoPfAdobnIHmdpYKc6JsedJBt9FNSfCCGxr4nLasrt3H2PHJQggtmSLMRt6nUXNgK3o
+         qDj1pI7obh2mrL4UQzyhBu52h5TdV/f/Kxv6SRTIxHqT2j65n9G2I98sCBsCCWEjNikT
+         En1oS5fHfymMzMKgJHyMgicBr+lQNOCZsRcGGfOxmGKkPC2uPWCeFRdpb+3GiyPMqfAd
+         6ogLiJd8motUHNzxnn2Scqgxx1+dON4HPNz1G0u7qGK1DwF1e8o5Z4MJADmC05v545r5
+         Q12w==
+X-Forwarded-Encrypted: i=1; AJvYcCXaSivfz1qIUuPWnNYPJZsqkaF855BNqK3nXvlKR+1/iBrDCVRb3d0Hs+E4AlVbDQdOH42tZCBtC+Nc@vger.kernel.org
+X-Gm-Message-State: AOJu0YznjgvQp+S5w0b1vfI9gTxGOz17ByoBc6ZyzJ1N1A9ozEaSIilq
+	P96IxW9b9OB485T5jzhMu8ENUkG9tE+KofgBE0B87zCVaez0J18RXTPmb+6ZYb/WsW9lDAy6aDt
+	ke4HlQHq8E0TYKfqOZ40epS1M/7fUSSd4nsRn4MOaSCBXfkRG1slwZ0MGUwM0z7Gx
+X-Gm-Gg: ASbGncubPihraYfmSk6qGSfyjwb290QPkGCE4T+L0dm5Jw+Z9aGryzHC37njNRwhJmZ
+	TqKSmJtr1MDBkSbiM/bmR3p2jL85xYBxUSVi6R/WBR6WE3SQatLGo7efk8m+R911g/INhoqwjyv
+	ob1vUHoPDJiDVpT4rwsDqSPLlnsfKz89XneKWTO1MtEzP2/4tXiic3pmkMGlG3J6gXwPIquigra
+	BETEUFAYEoC9KAvKz1xUB1l3UnYAVeWbub+wkEhB1rsZuiSdcmeat5F/wslEMvT6w8qGjUSajxV
+	VAezXqzfxeTKoYSedG5QiahxxZG/rnfaNc02lLnKv4bf3+2rZIQqUCXbY8v3Cmz86Z/grA3zL0Z
+	4NfyrniSXBJg=
+X-Received: by 2002:a17:903:46cd:b0:233:f3df:513d with SMTP id d9443c01a7336-23ac4607b79mr203783815ad.35.1751272100781;
+        Mon, 30 Jun 2025 01:28:20 -0700 (PDT)
+X-Google-Smtp-Source: AGHT+IFFpoJe/E22crPOG7XWE9BLjLycCr22wMPAkT8qjvh8z5NDNDo/Aolfr358a5ZWAnCeRRw7gg==
+X-Received: by 2002:a17:903:46cd:b0:233:f3df:513d with SMTP id d9443c01a7336-23ac4607b79mr203783485ad.35.1751272100359;
+        Mon, 30 Jun 2025 01:28:20 -0700 (PDT)
+Received: from [10.133.33.109] (tpe-colo-wan-fw-bordernet.qualcomm.com. [103.229.16.4])
+        by smtp.gmail.com with ESMTPSA id d9443c01a7336-23acb2e1b54sm75066315ad.15.2025.06.30.01.28.16
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 30 Jun 2025 01:28:19 -0700 (PDT)
+Message-ID: <e9160bb8-2b5c-4c30-b60f-520decde851e@oss.qualcomm.com>
+Date: Mon, 30 Jun 2025 16:28:14 +0800
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,163 +90,133 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v4 1/3] dt-bindings: PCI: dwc: Add one more reference
- clock
-To: Frank Li <Frank.li@nxp.com>
-Cc: Richard Zhu <hongxing.zhu@nxp.com>, l.stach@pengutronix.de,
- lpieralisi@kernel.org, kwilczynski@kernel.org, mani@kernel.org,
- robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
- bhelgaas@google.com, shawnguo@kernel.org, s.hauer@pengutronix.de,
- kernel@pengutronix.de, festevam@gmail.com, linux-pci@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
- imx@lists.linux.dev, linux-kernel@vger.kernel.org
-References: <20250626073804.3113757-1-hongxing.zhu@nxp.com>
- <20250626073804.3113757-2-hongxing.zhu@nxp.com>
- <20250627-sensible-pigeon-of-reading-b021a3@krzk-bin>
- <aF76jeV+8us82APv@lizhi-Precision-Tower-5810>
- <20250628-vigorous-benevolent-crayfish-bcbae5@krzk-bin>
- <aGALNS0yyBR27tz4@lizhi-Precision-Tower-5810>
-From: Krzysztof Kozlowski <krzk@kernel.org>
+Subject: Re: [PATCH v2 1/8] power: supply: core: Add resistance power supply
+ property
+To: Sebastian Reichel <sebastian.reichel@collabora.com>
+Cc: Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley
+ <conor+dt@kernel.org>,
+        Heikki Krogerus <heikki.krogerus@linux.intel.com>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Subbaraman Narayanamurthy <subbaraman.narayanamurthy@oss.qualcomm.com>,
+        David Collins <david.collins@oss.qualcomm.com>,
+        linux-pm@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-arm-msm@vger.kernel.org, kernel@oss.qualcomm.com,
+        devicetree@vger.kernel.org, linux-usb@vger.kernel.org
+References: <20250530-qcom_battmgr_update-v2-0-9e377193a656@oss.qualcomm.com>
+ <20250530-qcom_battmgr_update-v2-1-9e377193a656@oss.qualcomm.com>
+ <b7m55sjc2rtvtelvez6sxnjvdostvxmfjhhsr4uxhyhh4bxrcd@xmioz2bsgis2>
 Content-Language: en-US
-Autocrypt: addr=krzk@kernel.org; keydata=
- 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 a/A=
-In-Reply-To: <aGALNS0yyBR27tz4@lizhi-Precision-Tower-5810>
-Content-Type: text/plain; charset=UTF-8
+From: Fenglin Wu <fenglin.wu@oss.qualcomm.com>
+In-Reply-To: <b7m55sjc2rtvtelvez6sxnjvdostvxmfjhhsr4uxhyhh4bxrcd@xmioz2bsgis2>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
+X-Authority-Analysis: v=2.4 cv=Z+PsHGRA c=1 sm=1 tr=0 ts=68624aa6 cx=c_pps
+ a=IZJwPbhc+fLeJZngyXXI0A==:117 a=nuhDOHQX5FNHPW3J6Bj6AA==:17
+ a=IkcTkHD0fZMA:10 a=6IFa9wvqVegA:10 a=EUspDBNiAAAA:8 a=VwQbUJbxAAAA:8
+ a=N6g_Jt28wG8IcqWndf0A:9 a=QEXdDO2ut3YA:10 a=uG9DUKGECoFWVXl0Dc02:22
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwNjMwMDA2OSBTYWx0ZWRfX5Ji6LkaPr+Ar
+ qqdHOl0TIYLbRhR1nmZUAOi3A+XyKdAhlZHggtFVdtkdWPGzQy1OMW66N3qiJ5HGo6EB66koZY8
+ qW+Mm0zsAOljfGGerbRhonLhgAj6ht3kmp21wlan7k2jPSTN38SwXvDIDH11HwsJOlm/V0Jjxn0
+ j6xuO9OuUWy0ZBuKelcFzIEVKku1+vlx1BMBOEjVlG1cIzf2ABCeVD4eEnoDvU5tG0eEi5KJJg5
+ AfC3k81I90PNlq6dz1Fger7wneq2B26JCu8dPUk7Epbx/RcFwDeGny85fCRXYwFLWg4S9ios9jh
+ F9C90WPMO6lBskRARDx0rlpZZAbslO0bGbStriJ2UWMdQGPRvupLpX331juw5nQi9piPVnyxLLV
+ EJX4A8jo4N+ScYJMXtOwVmnXgunPPpj93DOVs7ooljFat9SjHZaoMPwTEc/g1JOs13GOohY1
+X-Proofpoint-GUID: 0j441z8t2quY6vSSxSEA5_lDG4zcb3Mj
+X-Proofpoint-ORIG-GUID: 0j441z8t2quY6vSSxSEA5_lDG4zcb3Mj
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1099,Hydra:6.1.7,FMLib:17.12.80.40
+ definitions=2025-06-30_01,2025-06-27_01,2025-03-28_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ phishscore=0 lowpriorityscore=0 clxscore=1015 malwarescore=0 mlxlogscore=999
+ spamscore=0 adultscore=0 mlxscore=0 priorityscore=1501 bulkscore=0
+ impostorscore=0 suspectscore=0 classifier=spam authscore=0 authtc=n/a authcc=
+ route=outbound adjust=0 reason=mlx scancount=1 engine=8.19.0-2505280000
+ definitions=main-2506300069
 
-On 28/06/2025 17:33, Frank Li wrote:
-> On Sat, Jun 28, 2025 at 02:34:12PM +0200, Krzysztof Kozlowski wrote:
->> On Fri, Jun 27, 2025 at 04:09:49PM -0400, Frank Li wrote:
->>> On Fri, Jun 27, 2025 at 08:54:46AM +0200, Krzysztof Kozlowski wrote:
->>>> On Thu, Jun 26, 2025 at 03:38:02PM +0800, Richard Zhu wrote:
->>>>> Add one more reference clock "extref" to be onhalf the reference clock
->>>>> that comes from external crystal oscillator.
->>>>>
->>>>> Signed-off-by: Richard Zhu <hongxing.zhu@nxp.com>
->>>>> ---
->>>>>  .../devicetree/bindings/pci/snps,dw-pcie-common.yaml        | 6 ++++++
->>>>>  1 file changed, 6 insertions(+)
->>>>>
->>>>> diff --git a/Documentation/devicetree/bindings/pci/snps,dw-pcie-common.yaml b/Documentation/devicetree/bindings/pci/snps,dw-pcie-common.yaml
->>>>> index 34594972d8db..ee09e0d3bbab 100644
->>>>> --- a/Documentation/devicetree/bindings/pci/snps,dw-pcie-common.yaml
->>>>> +++ b/Documentation/devicetree/bindings/pci/snps,dw-pcie-common.yaml
->>>>> @@ -105,6 +105,12 @@ properties:
->>>>>              define it with this name (for instance pipe, core and aux can
->>>>>              be connected to a single source of the periodic signal).
->>>>>            const: ref
->>>>> +        - description:
->>>>> +            Some dwc wrappers (like i.MX95 PCIes) have two reference clock
->>>>> +            inputs, one from internal PLL, the other from off chip crystal
->>>>> +            oscillator. Use extref clock name to be onhalf of the reference
->>>>> +            clock comes form external crystal oscillator.
->>>>
->>>> How internal PLL can be represented as 'ref' clock? Internal means it is
->>>> not outside, so impossible to represent.
->>>
->>> Internal means in side SoC, but outside PCIe controller.
+
+On 6/22/2025 9:26 AM, Sebastian Reichel wrote:
+> Hi,
+>
+> On Fri, May 30, 2025 at 03:35:06PM +0800, Fenglin Wu via B4 Relay wrote:
+>> From: Fenglin Wu <fenglin.wu@oss.qualcomm.com>
 >>
->> So external... It does not matter for PCIe controller whether clock is
->> coming from SoC or from some crystal.  It is still input pin. Same input
->> pin.
-> 
-> It is NOT the same pin. It is TWO pins, there are mux inside in PCI
-> controller.
-> 
-> There are similar cases in s32 rtc, there are 4 input source[0,1,2,3]
-> https://lore.kernel.org/imx/20241127144322.GA3454134-robh@kernel.org/
-> Only one provide.
-> 
+>> Some battery drivers provide the ability to export resistance as a
+>> parameter. Add resistance power supply property for that purpose.
+> This is missing some information and the naming is bad.
+>
+> Which resistance (I suppose battery internal resistance)?
+>
+> That is heavily dependent on the battery temperature. So this needs
+> to document if this is for the current temperature or for some
+> specific one.
+>
+> -- Sebastian
+
+This is battery internal resistance calculated by battery management 
+system, using the real-time temperature measured by the thermistor 
+inside the battery pack.
+
+I can update the name to something like "rt_internal_resistance" and 
+update the description accordingly.
+
+>> Signed-off-by: Fenglin Wu <fenglin.wu@oss.qualcomm.com>
+>> ---
+>>   Documentation/ABI/testing/sysfs-class-power | 10 ++++++++++
+>>   drivers/power/supply/power_supply_sysfs.c   |  1 +
+>>   include/linux/power_supply.h                |  1 +
+>>   3 files changed, 12 insertions(+)
 >>
->>>
->>>>
->>>> Where is the DTS so we can look at big picture?
->>>
->>> imx94 pci's upstream is still on going, which quite similar with imx95.
->>> Just board design choose external crystal.
->>>
->>> pcie_ref_clk: clock-pcie-ref {
->>>                 compatible = "gpio-gate-clock";
->>>                 clocks = <&xtal25m>;
->>>                 #clock-cells = <0>;
->>>                 enable-gpios = <&pca9670_i2c3 7 GPIO_ACTIVE_LOW>;
->>> };
->>>
->>> &pcie0 {
->>>         pinctrl-0 = <&pinctrl_pcie0>;
->>>         pinctrl-names = "default";
->>>         clocks = <&scmi_clk IMX94_CLK_HSIO>,
->>>                  <&scmi_clk IMX94_CLK_HSIOPLL>,
->>>                  <&scmi_clk IMX94_CLK_HSIOPLL_VCO>,
->>>                  <&scmi_clk IMX94_CLK_HSIOPCIEAUX>,
->>>                  <&pcie_ref_clk>;
->>>         clock-names = "pcie", "pcie_bus", "pcie_phy", "pcie_aux", "ext-ref";
+>> diff --git a/Documentation/ABI/testing/sysfs-class-power b/Documentation/ABI/testing/sysfs-class-power
+>> index 560124cc31770cde03bcdbbba0d85a5bd78b15a0..22a565a6a1c509461b8c483e12975295765121d6 100644
+>> --- a/Documentation/ABI/testing/sysfs-class-power
+>> +++ b/Documentation/ABI/testing/sysfs-class-power
+>> @@ -552,6 +552,16 @@ Description:
+>>   			Integer > 0: representing full cycles
+>>   			Integer = 0: cycle_count info is not available
+>>   
+>> +What:		/sys/class/power_supply/<supply_name>/resistance
+>> +Date:		May 2025
+>> +Contact:	linux-arm-msm@vger.kernel.org
+>> +Description:
+>> +		Reports the resistance of the battery power supply.
+>> +
+>> +		Access: Read
+>> +
+>> +		Valid values: Represented in microohms
+>> +
+>>   **USB Properties**
+>>   
+>>   What:		/sys/class/power_supply/<supply_name>/input_current_limit
+>> diff --git a/drivers/power/supply/power_supply_sysfs.c b/drivers/power/supply/power_supply_sysfs.c
+>> index a438f7983d4f6a832e9d479184c7c35453e1757c..dd829148eb6fda5dcd7eab53fc70f99081763714 100644
+>> --- a/drivers/power/supply/power_supply_sysfs.c
+>> +++ b/drivers/power/supply/power_supply_sysfs.c
+>> @@ -220,6 +220,7 @@ static struct power_supply_attr power_supply_attrs[] __ro_after_init = {
+>>   	POWER_SUPPLY_ATTR(MANUFACTURE_YEAR),
+>>   	POWER_SUPPLY_ATTR(MANUFACTURE_MONTH),
+>>   	POWER_SUPPLY_ATTR(MANUFACTURE_DAY),
+>> +	POWER_SUPPLY_ATTR(RESISTANCE),
+>>   	/* Properties of type `const char *' */
+>>   	POWER_SUPPLY_ATTR(MODEL_NAME),
+>>   	POWER_SUPPLY_ATTR(MANUFACTURER),
+>> diff --git a/include/linux/power_supply.h b/include/linux/power_supply.h
+>> index c4cb854971f53a244ba7742a15ce7a5515da6199..de3e88810e322546470b21258913abc7707c86a7 100644
+>> --- a/include/linux/power_supply.h
+>> +++ b/include/linux/power_supply.h
+>> @@ -174,6 +174,7 @@ enum power_supply_property {
+>>   	POWER_SUPPLY_PROP_MANUFACTURE_YEAR,
+>>   	POWER_SUPPLY_PROP_MANUFACTURE_MONTH,
+>>   	POWER_SUPPLY_PROP_MANUFACTURE_DAY,
+>> +	POWER_SUPPLY_PROP_RESISTANCE,
+>>   	/* Properties of type `const char *' */
+>>   	POWER_SUPPLY_PROP_MODEL_NAME,
+>>   	POWER_SUPPLY_PROP_MANUFACTURER,
 >>
->> So this is totally faked hardware property.
+>> -- 
+>> 2.34.1
 >>
->> No, it is the same clock signal, not different. You write bindings from
->> this device point of view, not for your board.
-> 
-> No the same clock signal. There are two sources, "ext-ref" or "ref".
-> PCI controller need know which one provide clocks.
-
-OK, this should be clearly expressed not some vague play of the words
-what is internal and external...
-
-> 
-> There are mux inside PCI controller, DT need provide information which on
-> provide.
-> 
-> Maybe my example dts miss-lead you. Altherate descript is
->   clock-names = "pcie", "pcie_bus", "pcie_phy", "pcie_aux", "ref", "ext-ref";
-> 
->   But we thinks if ext-ref provide, "ref" is not neccesary need be turn on.
->   So remove it from the list.
-
-If the ref clock is actually wired it should be there. You describe here
-hardware, not what is necessary.
-
-Best regards,
-Krzysztof
+>>
 
