@@ -1,161 +1,125 @@
-Return-Path: <devicetree+bounces-191196-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-191197-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id C7A04AEE559
-	for <lists+devicetree@lfdr.de>; Mon, 30 Jun 2025 19:08:52 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 51F03AEE573
+	for <lists+devicetree@lfdr.de>; Mon, 30 Jun 2025 19:17:10 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 6ADA116090C
-	for <lists+devicetree@lfdr.de>; Mon, 30 Jun 2025 17:08:02 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 573DA17A400
+	for <lists+devicetree@lfdr.de>; Mon, 30 Jun 2025 17:17:10 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 31CBC292B5E;
-	Mon, 30 Jun 2025 17:07:35 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 85F8B292B34;
+	Mon, 30 Jun 2025 17:17:06 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=broadcom.com header.i=@broadcom.com header.b="eo+foPCy"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="gK7PLjxP"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pl1-f171.google.com (mail-pl1-f171.google.com [209.85.214.171])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id ADEC8292B58
-	for <devicetree@vger.kernel.org>; Mon, 30 Jun 2025 17:07:33 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.171
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 586202900BA;
+	Mon, 30 Jun 2025 17:17:06 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1751303255; cv=none; b=NY05tqhZA0L0RYwbwCRX7uIs+NtSRoz0RZriON/y4gAMEy0zBDm5sssBihWTsQGLlQzT2uyjCNFsnij/nG501LvWYPKWYkaZHQRX/Xczt/YUNkp3f7ojbV+R1REmTyS18w0xmkKcwa3cmUoxOy2tXtG3DnF6xL77Cy4dKAD+xjc=
+	t=1751303826; cv=none; b=upU0zfj+diI8gnzkFmMQV0oKssaI62hKlPfIXXxH9NpK8JlbZkusp1aW+6v1hphFVjrSUFqWDahI945CBye8iFP+/OSh7TsE6fSeh2RxgxAe12zuXQHb/fgtjzSgo7r7b4tURNRJE9QODGIiL/ZZ0Of7rsZzyHHIsrJ4bZtf89E=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1751303255; c=relaxed/simple;
-	bh=EQzHi69b2lLh0u+AI0JI2+wnlxj880khaj9fC3dZq5o=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=OiKQpXzdX3AW3gF3cRmvxRaIoP0cQUmJDsBBkvHj1ejmuwYhS4GPtZYfH/SmWkwx6s3PAW9aED3xOKoDOCHrGkIFIXxHNyK8BS2seenD5iSM7iOzeTrVLP5R+iAxvD3lvU+hWveKElAVGg2TyttSddoSMsIYwZ7RCXlApBgT4QM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=broadcom.com; spf=fail smtp.mailfrom=broadcom.com; dkim=pass (1024-bit key) header.d=broadcom.com header.i=@broadcom.com header.b=eo+foPCy; arc=none smtp.client-ip=209.85.214.171
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=broadcom.com
-Authentication-Results: smtp.subspace.kernel.org; spf=fail smtp.mailfrom=broadcom.com
-Received: by mail-pl1-f171.google.com with SMTP id d9443c01a7336-235d6de331fso28411545ad.3
-        for <devicetree@vger.kernel.org>; Mon, 30 Jun 2025 10:07:33 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=broadcom.com; s=google; t=1751303253; x=1751908053; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from
-         :content-language:references:cc:to:subject:user-agent:mime-version
-         :date:message-id:from:to:cc:subject:date:message-id:reply-to;
-        bh=wAcmLnC+SlYmzdJniGYMoDtk6+CNb2vXkfTlA9nOHX4=;
-        b=eo+foPCyzX1HpEiK6imPFAFypAzTtVLG5PXOt0dSdb+y6Kq/AKm9E+w9OESE1fdrgP
-         wDY6yOdm3+cvcOY/G3k8xReyKLWM/Z4GYSqlCdU+TEM3Xf4li4e7ni5rhLYQsBpZLSRv
-         HZ1HtXYwJLVvIIuzVcZjGQoRg4gXKCTjSxt7E=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1751303253; x=1751908053;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from
-         :content-language:references:cc:to:subject:user-agent:mime-version
-         :date:message-id:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=wAcmLnC+SlYmzdJniGYMoDtk6+CNb2vXkfTlA9nOHX4=;
-        b=aws5+789AZI1OMctJ5XPbLT27iUiAmpjp+xE18be4ThoVU7hIbduqcSseyfOUZmJa1
-         5qUMh7lvUk2kyHKTM4jCmZ14YHnIywaYLj2PA2Jr+gaOseBemarE+DrDOO30DNkVelgo
-         EMS/8sa8Z+3z/K2eUtPsTj74ltzlhPVMYC53ExuLPsXgAh8PEKBEvq4QkkgADJgeWrJ0
-         kfdJJ9RXplsBAIRGypMLaDxEA/POOZeiWoAMVPR8lBYlkUp63qlACJzqMq1vB577+6Ty
-         r4YY8G4C0xOyfQnBxf30Gv2miJJfR//604QvSt6U6nTZ94gvMi2px0vTRYyme2Xw/srd
-         LsUA==
-X-Forwarded-Encrypted: i=1; AJvYcCUjBEULzNql46KoDphTYZjYJm+zFQaK3R+6RQlVR1QgYI1s0mNJ8VYnrnQw4sQrSN+JFDAfOIb+hyYf@vger.kernel.org
-X-Gm-Message-State: AOJu0Yxyx7gNiNYsKIsOuR67e2aZYPD0sspUUrpa/GOOb860706toebE
-	YzYsyeCTCQkBhXA2CTczsnIpYClURJ4I3ByHSk9n4TCryH/JOHKZhTc7HbM/QQESsQ==
-X-Gm-Gg: ASbGnctnEUV3YE5xUA1+4YY6G02eFrRsmSe7gmrHMFyPqzUcwGsWEPcRVAHQeTfmdvW
-	NKDdQ1eifDb4gGPuo2jhFvh56e38SfmyAP3pQpvwFhSe+3dus4dSTNdqaxcXnjZki7rhnqE5nb6
-	+P9TCkozj4wZBhoQ8UCkcdG3EadaXRPjGyelgbAT2E7PWjRNhy316eQIkJQwu6yXQgBI9o/c2eh
-	XrXMdKWYQbN1ixVe6wZBh/JdXVpMj9SsM0UrGW5hnqHPLn8sqjOCJE+dNxXQafpMykpAz7a1CK5
-	x+Z9zclQarwZE9kSriLFZtyvmbkaCdWPnUo/T8Wy1EKxz62H6WYmEUaMdllvKSavfprb4zq1nbB
-	5UxVktl2RAK8PgSa5ma0lsiiwKQ==
-X-Google-Smtp-Source: AGHT+IEHQIvFV33hIpotqGHngoBjhpfcFYLCx7TeQ6MRrDfAH7zV0wB6VIjgP1iEFc9BJNFGUEMBzg==
-X-Received: by 2002:a17:903:3a88:b0:22e:5d9b:2ec3 with SMTP id d9443c01a7336-23ac4606776mr167927585ad.30.1751303252999;
-        Mon, 30 Jun 2025 10:07:32 -0700 (PDT)
-Received: from [10.67.48.245] ([192.19.223.252])
-        by smtp.gmail.com with ESMTPSA id d9443c01a7336-23acb2e3c27sm90068935ad.51.2025.06.30.10.07.30
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 30 Jun 2025 10:07:32 -0700 (PDT)
-Message-ID: <5c011ec0-67e1-4c9b-8ea6-e098b16f0f45@broadcom.com>
-Date: Mon, 30 Jun 2025 10:07:30 -0700
+	s=arc-20240116; t=1751303826; c=relaxed/simple;
+	bh=RxENiAIxryG/e9PnDRmuJ2qoeNevxHN+jSL1+CqMpqw=;
+	h=Date:Message-ID:From:To:Cc:Subject:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=fHDN7ifSfRRY6Brj/5st0MCjspk5TK8OKf6ScFYYxaS/iMb7IoUrLblkKfCXEVPXHblIZwiCUT5ZwuH110+sHhpzuZyU/VjSv9dtNaZ4MqZ3SK+6BjPvYjvXp7pUZ3ckJiKKfnvZC/kqp1sCPA+DmsgvQdgTpTQ9zgMQbJC1PDM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=gK7PLjxP; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id DE5D1C4CEE3;
+	Mon, 30 Jun 2025 17:17:05 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1751303825;
+	bh=RxENiAIxryG/e9PnDRmuJ2qoeNevxHN+jSL1+CqMpqw=;
+	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
+	b=gK7PLjxPWHRqv8leFMCxzAZgWK02KxZqRotqN8kQWL4Io69FgUlJ0Fo2ZgCYWBJlY
+	 CeCre45jA8BT+VMmEktD6EtSMdfkCjYyWxky07IUb4TgRoihvNGYCfGgHwN/OYSeif
+	 9W7RDwjwepqgEJxMt/owvKqHaszwHtqfAaYrVyn+HOQrPRB1YiVjl2As0HL0IQExd1
+	 Jv7zwgafCJbW98b7kjfQCCT4wE/cjPlopOmSyPb1pDVQLsBcTB0Kaekf+LAHdHsgfa
+	 vT0o7Yat4+natNFdPbKo49LdEHjQFKvQK+qt0Mx+usj4BSXqBwbItRTTQvMvp2YPRG
+	 Qh4Clax4BIHiA==
+Received: from sofa.misterjones.org ([185.219.108.64] helo=goblin-girl.misterjones.org)
+	by disco-boy.misterjones.org with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+	(Exim 4.95)
+	(envelope-from <maz@kernel.org>)
+	id 1uWI7r-00BJye-1d;
+	Mon, 30 Jun 2025 18:17:03 +0100
+Date: Mon, 30 Jun 2025 18:17:02 +0100
+Message-ID: <86jz4tb14h.wl-maz@kernel.org>
+From: Marc Zyngier <maz@kernel.org>
+To: Lorenzo Pieralisi <lpieralisi@kernel.org>
+Cc: Thomas Gleixner <tglx@linutronix.de>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Catalin Marinas <catalin.marinas@arm.com>,
+	Will Deacon <will@kernel.org>,
+	Arnd Bergmann <arnd@arndb.de>,
+	Sascha Bischoff <sascha.bischoff@arm.com>,
+	Jonathan Cameron <Jonathan.Cameron@huawei.com>,
+	Timothy Hayes <timothy.hayes@arm.com>,
+	Bjorn Helgaas <bhelgaas@google.com>,
+	"Liam R. Howlett" <Liam.Howlett@oracle.com>,
+	Peter Maydell <peter.maydell@linaro.org>,
+	Mark Rutland <mark.rutland@arm.com>,
+	Jiri Slaby <jirislaby@kernel.org>,
+	linux-arm-kernel@lists.infradead.org,
+	linux-kernel@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	linux-pci@vger.kernel.org
+Subject: Re: [PATCH v6 00/31] Arm GICv5: Host driver implementation
+In-Reply-To: <20250626-gicv5-host-v6-0-48e046af4642@kernel.org>
+References: <20250626-gicv5-host-v6-0-48e046af4642@kernel.org>
+User-Agent: Wanderlust/2.15.9 (Almost Unreal) SEMI-EPG/1.14.7 (Harue)
+ FLIM-LB/1.14.9 (=?UTF-8?B?R29qxY0=?=) APEL-LB/10.8 EasyPG/1.0.0 Emacs/30.1
+ (aarch64-unknown-linux-gnu) MULE/6.0 (HANACHIRUSATO)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH net v4 4/4] net: phy: bcm54811: Fix the PHY initialization
-To: =?UTF-8?Q?Kamil_Hor=C3=A1k_-_2N?= <kamilh@axis.com>,
- bcm-kernel-feedback-list@broadcom.com, andrew@lunn.ch, hkallweit1@gmail.com,
- linux@armlinux.org.uk, davem@davemloft.net, edumazet@google.com,
- kuba@kernel.org, pabeni@redhat.com, krzk+dt@kernel.org, conor+dt@kernel.org
-Cc: netdev@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, f.fainelli@gmail.com, robh@kernel.org,
- andrew+netdev@lunn.ch
-References: <20250630135837.1173063-1-kamilh@axis.com>
- <20250630135837.1173063-5-kamilh@axis.com>
-Content-Language: en-US
-From: Florian Fainelli <florian.fainelli@broadcom.com>
-Autocrypt: addr=florian.fainelli@broadcom.com; keydata=
- xsBNBFPAG8ABCAC3EO02urEwipgbUNJ1r6oI2Vr/+uE389lSEShN2PmL3MVnzhViSAtrYxeT
- M0Txqn1tOWoIc4QUl6Ggqf5KP6FoRkCrgMMTnUAINsINYXK+3OLe7HjP10h2jDRX4Ajs4Ghs
- JrZOBru6rH0YrgAhr6O5gG7NE1jhly+EsOa2MpwOiXO4DE/YKZGuVe6Bh87WqmILs9KvnNrQ
- PcycQnYKTVpqE95d4M824M5cuRB6D1GrYovCsjA9uxo22kPdOoQRAu5gBBn3AdtALFyQj9DQ
- KQuc39/i/Kt6XLZ/RsBc6qLs+p+JnEuPJngTSfWvzGjpx0nkwCMi4yBb+xk7Hki4kEslABEB
- AAHNMEZsb3JpYW4gRmFpbmVsbGkgPGZsb3JpYW4uZmFpbmVsbGlAYnJvYWRjb20uY29tPsLB
- IQQQAQgAywUCZWl41AUJI+Jo+hcKAAG/SMv+fS3xUQWa0NryPuoRGjsA3SAUAAAAAAAWAAFr
- ZXktdXNhZ2UtbWFza0BwZ3AuY29tjDAUgAAAAAAgAAdwcmVmZXJyZWQtZW1haWwtZW5jb2Rp
- bmdAcGdwLmNvbXBncG1pbWUICwkIBwMCAQoFF4AAAAAZGGxkYXA6Ly9rZXlzLmJyb2FkY29t
- Lm5ldAUbAwAAAAMWAgEFHgEAAAAEFQgJChYhBNXZKpfnkVze1+R8aIExtcQpvGagAAoJEIEx
- tcQpvGagWPEH/2l0DNr9QkTwJUxOoP9wgHfmVhqc0ZlDsBFv91I3BbhGKI5UATbipKNqG13Z
- TsBrJHcrnCqnTRS+8n9/myOF0ng2A4YT0EJnayzHugXm+hrkO5O9UEPJ8a+0553VqyoFhHqA
- zjxj8fUu1px5cbb4R9G4UAySqyeLLeqnYLCKb4+GklGSBGsLMYvLmIDNYlkhMdnnzsSUAS61
- WJYW6jjnzMwuKJ0ZHv7xZvSHyhIsFRiYiEs44kiYjbUUMcXor/uLEuTIazGrE3MahuGdjpT2
- IOjoMiTsbMc0yfhHp6G/2E769oDXMVxCCbMVpA+LUtVIQEA+8Zr6mX0Yk4nDS7OiBlvOwE0E
- U8AbwQEIAKxr71oqe+0+MYCc7WafWEcpQHFUwvYLcdBoOnmJPxDwDRpvU5LhqSPvk/yJdh9k
- 4xUDQu3rm1qIW2I9Puk5n/Jz/lZsqGw8T13DKyu8eMcvaA/irm9lX9El27DPHy/0qsxmxVmU
- pu9y9S+BmaMb2CM9IuyxMWEl9ruWFS2jAWh/R8CrdnL6+zLk60R7XGzmSJqF09vYNlJ6Bdbs
- MWDXkYWWP5Ub1ZJGNJQ4qT7g8IN0qXxzLQsmz6tbgLMEHYBGx80bBF8AkdThd6SLhreCN7Uh
- IR/5NXGqotAZao2xlDpJLuOMQtoH9WVNuuxQQZHVd8if+yp6yRJ5DAmIUt5CCPcAEQEAAcLB
- gQQYAQIBKwUCU8AbwgUbDAAAAMBdIAQZAQgABgUCU8AbwQAKCRCTYAaomC8PVQ0VCACWk3n+
- obFABEp5Rg6Qvspi9kWXcwCcfZV41OIYWhXMoc57ssjCand5noZi8bKg0bxw4qsg+9cNgZ3P
- N/DFWcNKcAT3Z2/4fTnJqdJS//YcEhlr8uGs+ZWFcqAPbteFCM4dGDRruo69IrHfyyQGx16s
- CcFlrN8vD066RKevFepb/ml7eYEdN5SRALyEdQMKeCSf3mectdoECEqdF/MWpfWIYQ1hEfdm
- C2Kztm+h3Nkt9ZQLqc3wsPJZmbD9T0c9Rphfypgw/SfTf2/CHoYVkKqwUIzI59itl5Lze+R5
- wDByhWHx2Ud2R7SudmT9XK1e0x7W7a5z11Q6vrzuED5nQvkhAAoJEIExtcQpvGagugcIAJd5
- EYe6KM6Y6RvI6TvHp+QgbU5dxvjqSiSvam0Ms3QrLidCtantcGT2Wz/2PlbZqkoJxMQc40rb
- fXa4xQSvJYj0GWpadrDJUvUu3LEsunDCxdWrmbmwGRKqZraV2oG7YEddmDqOe0Xm/NxeSobc
- MIlnaE6V0U8f5zNHB7Y46yJjjYT/Ds1TJo3pvwevDWPvv6rdBeV07D9s43frUS6xYd1uFxHC
- 7dZYWJjZmyUf5evr1W1gCgwLXG0PEi9n3qmz1lelQ8lSocmvxBKtMbX/OKhAfuP/iIwnTsww
- 95A2SaPiQZA51NywV8OFgsN0ITl2PlZ4Tp9hHERDe6nQCsNI/Us=
-In-Reply-To: <20250630135837.1173063-5-kamilh@axis.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
+MIME-Version: 1.0 (generated by SEMI-EPG 1.14.7 - "Harue")
+Content-Type: text/plain; charset=US-ASCII
+X-SA-Exim-Connect-IP: 185.219.108.64
+X-SA-Exim-Rcpt-To: lpieralisi@kernel.org, tglx@linutronix.de, robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org, catalin.marinas@arm.com, will@kernel.org, arnd@arndb.de, sascha.bischoff@arm.com, Jonathan.Cameron@huawei.com, timothy.hayes@arm.com, bhelgaas@google.com, Liam.Howlett@oracle.com, peter.maydell@linaro.org, mark.rutland@arm.com, jirislaby@kernel.org, linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org, devicetree@vger.kernel.org, linux-pci@vger.kernel.org
+X-SA-Exim-Mail-From: maz@kernel.org
+X-SA-Exim-Scanned: No (on disco-boy.misterjones.org); SAEximRunCond expanded to false
 
-On 6/30/25 06:58, Kamil Horák - 2N wrote:
-> Reset the bit 12 in PHY's LRE Control register upon initialization.
-> According to the datasheet, this bit must be written to zero after
-> every device reset.
+On Thu, 26 Jun 2025 11:25:51 +0100,
+Lorenzo Pieralisi <lpieralisi@kernel.org> wrote:
 > 
-> Fixes: 03ab6c244bb0 ("net: phy: bcm-phy-lib: Implement BroadR-Reach link modes")
-> Signed-off-by: Kamil Horák - 2N <kamilh@axis.com>
-> ---
+> Implement the irqchip kernel driver for the Arm GICv5 architecture,
+> as described in the GICv5 beta0 specification, available at:
+> 
+> https://developer.arm.com/documentation/aes0070
+> 
+> The GICv5 architecture is composed of multiple components:
+> 
+> - one or more IRS (Interrupt Routing Service)
+> - zero or more ITS (Interrupt Translation Service)
+> - zero or more IWB (Interrupt Wire Bridge)
 
-[snip]
+[...]
 
-> diff --git a/include/linux/brcmphy.h b/include/linux/brcmphy.h
-> index 15c35655f482..115a964f3006 100644
-> --- a/include/linux/brcmphy.h
-> +++ b/include/linux/brcmphy.h
-> @@ -137,6 +137,7 @@
->   
->   #define MII_BCM54XX_AUXCTL_SHDWSEL_MISC			0x07
->   #define MII_BCM54XX_AUXCTL_SHDWSEL_MISC_WIRESPEED_EN	0x0010
-> +#define MII_BCM54XX_AUXCTL_SHDWSEL_MISC_RSVD		0x0060
->   #define MII_BCM54XX_AUXCTL_SHDWSEL_MISC_RGMII_EN	0x0080
->   #define MII_BCM54XX_AUXCTL_SHDWSEL_MISC_RGMII_SKEW_EN	0x0100
->   #define MII_BCM54XX_AUXCTL_MISC_FORCE_AMDIX		0x0200
+I think what is here is pretty solid, and definitely in a better shape
+than the equivalent GICv3 support patches at a similar point in the
+lifetime of the architecture.
 
-This register is not used in this patch or previous ones, please drop 
-it, with that:
+For patches in this series except patch 18:
 
-Reviewed-by: Florian Fainelli <florian.fainelli@broadcom.com>
+Reviewed-by: Marc Zyngier <maz@kernel.org>
+
+If this goes into 6.17 (which I hope), it'd be good to have this
+series on a stable branch so that we can take the corresponding KVM
+patches[1] independently if they are deemed in a good enough state.
+
+	M.
+
+[1] https://lore.kernel.org/r/20250627100847.1022515-1-sascha.bischoff@arm.com
+
 -- 
-Florian
+Without deviation from the norm, progress is not possible.
 
