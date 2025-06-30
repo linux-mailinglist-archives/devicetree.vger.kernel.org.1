@@ -1,536 +1,282 @@
-Return-Path: <devicetree+bounces-191241-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-191242-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4B2BEAEE982
-	for <lists+devicetree@lfdr.de>; Mon, 30 Jun 2025 23:38:16 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id BFF5CAEE9D9
+	for <lists+devicetree@lfdr.de>; Tue,  1 Jul 2025 00:00:06 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id AD42B1707D8
-	for <lists+devicetree@lfdr.de>; Mon, 30 Jun 2025 21:38:16 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 3FFBB17E2EE
+	for <lists+devicetree@lfdr.de>; Mon, 30 Jun 2025 22:00:05 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 96F5723ABA6;
-	Mon, 30 Jun 2025 21:38:10 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 260BF242D8C;
+	Mon, 30 Jun 2025 21:59:59 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=altera.com header.i=@altera.com header.b="Ba8grLwy"
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="et1/w5/J"
 X-Original-To: devicetree@vger.kernel.org
-Received: from NAM11-DM6-obe.outbound.protection.outlook.com (mail-dm6nam11on2042.outbound.protection.outlook.com [40.107.223.42])
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 53CAB2264BB;
-	Mon, 30 Jun 2025 21:38:07 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.223.42
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1751319490; cv=fail; b=LMNbE2vlv7yBls0Sn2E3WjD2wtT5UYDL5xOWgjlJmQSbjITSZFMHb131p3IziXktvCeqjHzJRpFb3D5HfvHJLK6JKWIP+Al6e/80H/RD1MD3EYUGkLcm3b4+cT8hztHt8w3BIA9UJvepwbN1VexKMBD21TND6K/QGHFz7RdohI4=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1751319490; c=relaxed/simple;
-	bh=8cQtd66C0jtBDe9JUsphXVedQ1aP0/1MkJzRPyKMljM=;
-	h=From:To:Cc:Subject:Date:Message-ID:Content-Type:MIME-Version; b=jSCvKjX8U7ojjgesCKV8VMhorTDEmO5QbdanSqCA020CL6lq1JyIPqduLfFbkKqyxdPbNBvE6cRygtBzoO55XTpEaHuGXrIMvu3NuJmrn2q2KX01dVhDvq9vjNwksI7ngCWORarzcO4c7mbFrGckTA+Ba7K8n/xcfKG/X+XDg3c=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=altera.com; spf=pass smtp.mailfrom=altera.com; dkim=pass (2048-bit key) header.d=altera.com header.i=@altera.com header.b=Ba8grLwy; arc=fail smtp.client-ip=40.107.223.42
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=altera.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=altera.com
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=b/RkG8cwJtyoICZZOBx33Wz3pNywbstFvrYAy9oPoy+8aU93m+hkTHBPwMD2Bwhspn0bI0pfrvCq0lRMgcLeYrT+8aV05SZvNmnG9JbQR8VTWucV0QkY1p5DevxGQwP2JqNH8suF/dEf9ye3FNkGYdGiFsJFBM1/PSlluL2xciyGZQiNF9dRIWz/404okkQ4zoRMkAEB4OR8lhH0gU4X71wZwNeInEBZi9rpyw9rz+GI/WmftqF7GhoYkezPZ2HwfpZOKxSbiMJn11SnvANrmnxY5h4x9IUBiyyViymKj60gN93B9rL1b+Gir7YIaF8j2CFSkZfdgP0XVdWmL556xQ==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=7/066QfUFMX38A8Is0vEMKspJKbl4z3H978XM+wR8KA=;
- b=kUQdPP489HdD4bo3BRMH1nks5VtyZxBMKA02DpO3ttQyzrf0lg08NRrqEYP0T0YgkAiYb/kWdgMSgtfx+eFBaVB1+BH18oVu2OU34+nIYw42f1jqGVy4C1Z/GcQCyaRvNqzd2twiioDYKj8SZ/IBWr2N4JRXy+9O0BzHPNvpQFP5XREAcy2GDBZPzKlY06gGXKAGlmjfUHp7B5J51t4Gr69YVTZkOYTPF2ntKmlwYJ/owgoPfWQgvJwCu/jfFQvpf5IXzkE9j3/IElG07aDfRQ+2+mDaxuIs10jOcw1MR2IpxRhv9BC/FtFnf+h9R1aMMMHo60BxZzmyMB/ELTwBUQ==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=altera.com; dmarc=pass action=none header.from=altera.com;
- dkim=pass header.d=altera.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=altera.com;
- s=selector2;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=7/066QfUFMX38A8Is0vEMKspJKbl4z3H978XM+wR8KA=;
- b=Ba8grLwyhNzZ9Hh43XME5BJv6gcASsgwKoSQIHe4xlY//RVmNzMPXgZWLqZuS1E8Coe3lJMIxXfkhunmWiQD9Guuc+KG245XzOMDFxsVZLljByTMcAzgtXu/eLnVVwosvG3EayjxTmMREBeiEY4HCUJgDMkCQxYsN2dx+5nJ8vAfd/B78K1XRwzRfyeIH8gzOB1e+H1WJpmly7qLb7O1YbwuWtNbHruATC3JtXIlnfSRgpPOa8FeuOXKCCY8RnWmNnlabp6Ta4YV1CZYdezQTt7UQNdt6cPwBnz4x3dTfvKLdWxu/l49v72a6IS2bM/Y/K0h5E3i1hwKZVJXN9Gc6g==
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=altera.com;
-Received: from BYAPR03MB3461.namprd03.prod.outlook.com (2603:10b6:a02:b4::23)
- by SA3PR03MB7234.namprd03.prod.outlook.com (2603:10b6:806:2f6::16) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8880.29; Mon, 30 Jun
- 2025 21:38:06 +0000
-Received: from BYAPR03MB3461.namprd03.prod.outlook.com
- ([fe80::706b:dd15:bc81:313c]) by BYAPR03MB3461.namprd03.prod.outlook.com
- ([fe80::706b:dd15:bc81:313c%6]) with mapi id 15.20.8880.026; Mon, 30 Jun 2025
- 21:38:06 +0000
-From: Matthew Gerlach <matthew.gerlach@altera.com>
-To: dinguyen@kernel.org,
-	andrew+netdev@lunn.ch,
-	davem@davemloft.net,
-	edumazet@google.com,
-	kuba@kernel.org,
-	pabeni@redhat.com,
-	robh@kernel.org,
-	krzk+dt@kernel.org,
-	conor+dt@kernel.org,
-	maxime.chevallier@bootlin.com,
-	mcoquelin.stm32@gmail.com,
-	alexandre.torgue@foss.st.com,
-	richardcochran@gmail.com,
-	netdev@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	linux-stm32@st-md-mailman.stormreply.com,
-	linux-arm-kernel@lists.infradead.org
-Cc: Matthew Gerlach <matthew.gerlach@altera.com>,
-	Mun Yew Tham <mun.yew.tham@altera.com>
-Subject: [PATCH v7] dt-bindings: net: Convert socfpga-dwmac bindings to yaml
-Date: Mon, 30 Jun 2025 14:37:48 -0700
-Message-ID: <20250630213748.71919-1-matthew.gerlach@altera.com>
-X-Mailer: git-send-email 2.49.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-ClientProxiedBy: BYAPR11CA0098.namprd11.prod.outlook.com
- (2603:10b6:a03:f4::39) To BYAPR03MB3461.namprd03.prod.outlook.com
- (2603:10b6:a02:b4::23)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 418A123F41D
+	for <devicetree@vger.kernel.org>; Mon, 30 Jun 2025 21:59:57 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1751320799; cv=none; b=ANTKvhEFPHDLcyzYSJosjnewhJTOp5D4NMDJE62mtGEABvvEQPI8x/J8knOCxnnD0F8EoWWRbFyl1J57dPUFu02jLxwFDjmzzB5pKVniZUKhxuOsLC+cSlwOvOpIB7if71txjQ33+2Wz5rO0d05KwdsBQZ+QROhQFtN03MAk0Mc=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1751320799; c=relaxed/simple;
+	bh=zuloaCZER//BFJaKOvxnCQbs1oE1h9o1l00traZvW+k=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=WD3aaNng9PvBrhOV93tUsi15edY/7vBe0owgXZvGzw22US5QJ+yg3HhspjC3+xyG2KuGKPqgb6ehLcta8KQGZwheNZHvcgeFTVYv/ly4KGGHdMN8lTbI//jOPergS5BLK/GPiJ6Wg7hTJy6zaKG3TIKzTaGiQg2ENvy6tDLXCvk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=et1/w5/J; arc=none smtp.client-ip=205.220.180.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
+Received: from pps.filterd (m0279869.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 55UFUuW5025164
+	for <devicetree@vger.kernel.org>; Mon, 30 Jun 2025 21:59:56 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+	cc:content-type:date:from:in-reply-to:message-id:mime-version
+	:references:subject:to; s=qcppdkim1; bh=j5Bn6WtEbimwKYIt4/ZjgnbS
+	pY9GsCsqCOMb7LdunEU=; b=et1/w5/JkJ7dXjXHYCkG8PGJ0gnTKCmfuMUAHgEo
+	HMusIxEdMGHLVJMBvRXcHeFJ0IU8yHu338YA+kKlJ8zoqUKay/z8lRaXyYA5xXQe
+	TvnFe7sGzVvRjLokMOAw9kZDHFwXOY0Y0VWk5XtDY5ivwcpJOldPKRyo0jsu82W1
+	67+g32o0eWSyLsW7C+lEHxRGzbCq8ncj10DBJcBvDfY5E/VHglRmsaJDBguRp+s7
+	tcQINy6lXufuwmV5jYBFBFKJHeiXSGnUQYng1bF6DrIdzL7T+BseAAMVuz0GKOTu
+	wwQiYhV6I7cl5nv7Eb2HThnTgr28MTwHHOVMFmYjdqxN8g==
+Received: from mail-pg1-f198.google.com (mail-pg1-f198.google.com [209.85.215.198])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 47kd64kh5q-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
+	for <devicetree@vger.kernel.org>; Mon, 30 Jun 2025 21:59:55 +0000 (GMT)
+Received: by mail-pg1-f198.google.com with SMTP id 41be03b00d2f7-b34ca003f1cso1932947a12.2
+        for <devicetree@vger.kernel.org>; Mon, 30 Jun 2025 14:59:55 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1751320794; x=1751925594;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=j5Bn6WtEbimwKYIt4/ZjgnbSpY9GsCsqCOMb7LdunEU=;
+        b=o4jFZloWuFu8zxJqcQvIeMj0afYOWopR8ad7eMfguEvnMHAhnP1ajgmoGUcqmw+K3e
+         rS7k3IM7KbheW6SY3es8ITE6fJWLe99agVnAUA70QOGeVt9vKhtOJUQk1O0ItpypFLCd
+         2fBA8Wfxw/OoSddqMFQ0qQTOBDRRXKAedpGTociRxlyGE3VH6OnbnaCEJHPRd6ScpTFE
+         qSMBd0u6eG5CPo+0VZyt3dFZygeLb31wUAuVhLPMne7pTvKJfI8f08njPaLNjvbH1Fy8
+         BNPikbl/PAntAg4j1ng/12WatEGexsWwgtCZ6yECESFxkrbSPnuNKKewecrh2gzEdHzB
+         yfSg==
+X-Forwarded-Encrypted: i=1; AJvYcCWhr1BZ+R+NvIhpbPXyDhUBJDX6+VyVMEAk7FG1i0hjh8gVYPBMt7P5juD2Gs6q2kzsn7g1o5DFmsyw@vger.kernel.org
+X-Gm-Message-State: AOJu0YyjjFra0zL3wWvGWiT/lWkIplNssyMTJSsHW8YYBzhTmJqoT6kT
+	vUqdPs1EfLujgdaZEt5souVwkYcZrNzCyLFC5y/qPsyCHEYpltjAYF7TKbJCB0Lpe3NjgnA20nu
+	lYpF2zri/3mp9J4+vsL3BtYetGKMkus+/FZuzjDmqzbfrXz5bVmxEehlCI8NYnmzvxJKSlFnn
+X-Gm-Gg: ASbGncs69DXHLrnCgu+EQKAfWY/tiQiKkjFfSUEdylMWX5BOzWBANootGl5ygkRbGqC
+	8Amad8LtuXa5zTihIzJe2i2/XzJ22qGGcEN5PjY0hL+gP77m3RvVNjWIuNhPbNa8+gxQqQz1cxX
+	NFPLwAGP9Yqz4CIT/kCtJ6pGKZUpQxe7gdIjFwQng3+wytYNkiXjDDA7aW0vwuuPGvocJjnWGVG
+	qcAvG9U+VMYVla2BlLP3bLQDF+KOzlrMuMjqeQI/8WiXs91gMNNuyxw7XwKBCqVzimkNwpPJCdx
+	UwldL/3+QsJ1pDiewaHv6ZfbGHhEAqMq6kkOHGViaYXUE6QlCKEZTROjQx/yCqXRSkvaBKiSNTR
+	CxKZLOw==
+X-Received: by 2002:a17:90b:268d:b0:312:e91c:e340 with SMTP id 98e67ed59e1d1-318c9283adfmr21494838a91.35.1751320793805;
+        Mon, 30 Jun 2025 14:59:53 -0700 (PDT)
+X-Google-Smtp-Source: AGHT+IGb3EC+ajrtLWff/5gPWkKDnqD5kFdfXbHl7+2iA8bxSslPgNcBKF5TWjxSHHYgk8wAF+S2XQ==
+X-Received: by 2002:a17:90b:268d:b0:312:e91c:e340 with SMTP id 98e67ed59e1d1-318c9283adfmr21494807a91.35.1751320793324;
+        Mon, 30 Jun 2025 14:59:53 -0700 (PDT)
+Received: from hu-bjorande-lv.qualcomm.com (Global_NAT1.qualcomm.com. [129.46.96.20])
+        by smtp.gmail.com with ESMTPSA id 98e67ed59e1d1-315f542661asm14131485a91.26.2025.06.30.14.59.51
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 30 Jun 2025 14:59:52 -0700 (PDT)
+Date: Mon, 30 Jun 2025 14:59:49 -0700
+From: Bjorn Andersson <bjorn.andersson@oss.qualcomm.com>
+To: Luca Weiss <luca.weiss@fairphone.com>
+Cc: Will Deacon <will@kernel.org>, Robin Murphy <robin.murphy@arm.com>,
+        Joerg Roedel <joro@8bytes.org>, Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        "Rafael J. Wysocki" <rafael@kernel.org>,
+        Viresh Kumar <viresh.kumar@linaro.org>,
+        Manivannan Sadhasivam <mani@kernel.org>,
+        Herbert Xu <herbert@gondor.apana.org.au>,
+        "David S. Miller" <davem@davemloft.net>, Vinod Koul <vkoul@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konradybcio@kernel.org>,
+        Robert Marko <robimarko@gmail.com>,
+        Das Srinagesh <quic_gurus@quicinc.com>,
+        Thomas Gleixner <tglx@linutronix.de>,
+        Jassi Brar <jassisinghbrar@gmail.com>,
+        Amit Kucheria <amitk@kernel.org>,
+        Thara Gopinath <thara.gopinath@gmail.com>,
+        Daniel Lezcano <daniel.lezcano@linaro.org>,
+        Zhang Rui <rui.zhang@intel.com>, Lukasz Luba <lukasz.luba@arm.com>,
+        Ulf Hansson <ulf.hansson@linaro.org>,
+        ~postmarketos/upstreaming@lists.sr.ht, phone-devel@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, iommu@lists.linux.dev,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-pm@vger.kernel.org, linux-arm-msm@vger.kernel.org,
+        linux-crypto@vger.kernel.org, dmaengine@vger.kernel.org,
+        linux-mmc@vger.kernel.org
+Subject: Re: [PATCH 00/14] Various dt-bindings for SM7635 and The Fairphone
+ (Gen. 6) addition
+Message-ID: <aGMI1Zv6D+K+vWZL@hu-bjorande-lv.qualcomm.com>
+References: <20250625-sm7635-fp6-initial-v1-0-d9cd322eac1b@fairphone.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: BYAPR03MB3461:EE_|SA3PR03MB7234:EE_
-X-MS-Office365-Filtering-Correlation-Id: 894e51ad-c989-4c87-ca52-08ddb81e662b
-X-MS-Exchange-AtpMessageProperties: SA
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam:
-	BCL:0;ARA:13230040|366016|1800799024|7416014|376014|10070799003|921020|13003099007;
-X-Microsoft-Antispam-Message-Info:
-	=?us-ascii?Q?XKDnwhT/wDBc7Ss9ebIwXUU4sdhLplRwIXLQoUriHeaZh6mLRGFuR3f+D1Ml?=
- =?us-ascii?Q?O9mffj0N3aMaabg5y5nJE17S+vHRkDeSO3nnDPsCB/o1gBCPV3/yGkmUndTH?=
- =?us-ascii?Q?lbER6mhWRwN32AVT6FwYdcKN5jXNE5GEGQ3S6ho2RrkHTAlDhW7kNJvkFi7f?=
- =?us-ascii?Q?xgmurxnmJSJi/jvq4dC30zTFY4fT2iw1L0/ZHiUsR0lgU7or+1UvUwWXRYJK?=
- =?us-ascii?Q?+qqI7sqM8jm2mqnui8H6HyfpZQWoblBmHA7miMGAW9nO+G3ZLTANgV2yTgi2?=
- =?us-ascii?Q?8qhsRsYjvZAsbAsPVpRU5wRHJ2l815+48kZQQmPkJRWzPYKgzRPkDnI0bnU+?=
- =?us-ascii?Q?yPvYMyQMcsvnjU6gQlDIdzyDilpxx44V1Fak78zhyN0ZjZxD8/18EKla8YFQ?=
- =?us-ascii?Q?HVZn1DgxcB34Tj92adslTAOqyugWta9Dp1tz8PzcqNTED4FPWk0yyaDf1J3h?=
- =?us-ascii?Q?Pm/g7MJeQTCAU8YQDe+fzHP7bpUYysyBVAtCR/I7QaSnXttQfISNreOOlC7i?=
- =?us-ascii?Q?d5AejwWJ/NFU8AcXVMY34YbXjVTSRrbp5BuyXuThswdP9WSqG/8E9DVd/Fvh?=
- =?us-ascii?Q?xKkkA7PCdJMtXPnU/c6y0MNlwkwWz91uU92P5WzqZ/IhNWdH5Q2y/h7onwIA?=
- =?us-ascii?Q?etE2qwhHEadEVASAbOBpfeB6NQM8ipKLmIcgq3kSExnKDCcpwxrYBakym3cz?=
- =?us-ascii?Q?lrwPSKqcQL7KVju1rBHnRznS8gAJTklkwI076qq89FfWgE/UapyMDWmwojQ8?=
- =?us-ascii?Q?Xtftbzk42v2vF4lFwnue+k9hHOVVRi/E/zIFBZXp/czk3yBee+7zPKBJl94N?=
- =?us-ascii?Q?ZKYEEPXxY7HOVkfPqZjYHHW8ifNB1x3lsXDxLLjHuPmW4qvC72l5T6AVRBjr?=
- =?us-ascii?Q?sZ79A6BVjpW5daGFPLAip0OYYclZkSmllyPrSKCtb36UyyXzX0XcwVGfFoxF?=
- =?us-ascii?Q?zWltZK83n5bQEN29/Zz2G5yZTyUMPGexvKhDmECRXoVL6BQwqeNFBFlQ7DK2?=
- =?us-ascii?Q?SZX29wXPASBLGLlCO6WFYJjK1CQIxTXp9yQZK4qQGChod9dSfgaf3wBDQurm?=
- =?us-ascii?Q?w98eoWqOe4Do/9KQFpljcURj2mxayX+uWy25N/oeZoKxYTejffu6ZEgf5Uwq?=
- =?us-ascii?Q?4EkfEcLAZAheqN/WTsUVXvSH2R/eB6I8RzXTbtCtCjelSZHAOdszX1GGgnqs?=
- =?us-ascii?Q?pLAjnGZdUf60bE3jZbDRNddZoLflusJHsoRBow+aE41C7+Ag9oZYq4n4U3V5?=
- =?us-ascii?Q?0hzUCIipPBXNQP32e8uzC5KsxYOJkhu49gTucVkLTA7Z0bEaCATs0HHAvv2Z?=
- =?us-ascii?Q?hooDG3lVay33J4KQ3/iUE3b5QMEm/WhXatWiRdjJ3GkC1RYHI49adEOpeo+2?=
- =?us-ascii?Q?frbhtzzDzaXEwX0Re0ufyaSGVns2/bT5kg8mcT3Rti0cXARHOg=3D=3D?=
-X-Forefront-Antispam-Report:
-	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:BYAPR03MB3461.namprd03.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(366016)(1800799024)(7416014)(376014)(10070799003)(921020)(13003099007);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0:
-	=?us-ascii?Q?KxPn4Db47tOEBOthuCEzbtMJJke7V5Yg9TOG7J5NGQaQoA3rocByaKOZ0Co3?=
- =?us-ascii?Q?jvEyUe6+dv7tk3xsKWvsLvESaUiBVdx/8WMhu+H414fdETgAoas6rDizUify?=
- =?us-ascii?Q?19YvgID/ABlkIEw3XH4iBLqCymvIfOhNWjjaAwpfbe/wed2sylNdy+RuAwBN?=
- =?us-ascii?Q?nI3aEkGZUyQQlUpY6l+s4vIMYy0sei8iVw+R2a/xOeXRlO2AwxyfspyHMr+l?=
- =?us-ascii?Q?JNgoSaJqThMGmEQ+2euIeEy2h9FEkzqdFDqPKFo8ckEKZ0rFqnNQ0X1x0qt7?=
- =?us-ascii?Q?CU87LNbGRDMEdegbCYEDgkJ1w6D+S3IkfZPvwWyWvq8nYnTMUNYKPMjghfYX?=
- =?us-ascii?Q?5J1Im3sQ7Xpu5B27corviD8+5FMAVYTkZgtZVOXi4pbzEXMKW4jVKV8b5tTJ?=
- =?us-ascii?Q?/JLFvZU1FWkv0Nv9Sp90vFs7n2+UXGmZt11gH2uyRNwRPUvuCpyS+LXjxpvW?=
- =?us-ascii?Q?pURjXkOXfJS6LWnzo18WSGrv/601CGXrj1g/3U6MNET7MsgCuUwK2oVUBxyT?=
- =?us-ascii?Q?rtogkva0Z8bCRlfhX1ujzULp3Rn2Ve050xEedfiA1i1FQmQLEbtd8h5MHXCZ?=
- =?us-ascii?Q?E2ppLG/Abgp2cNEodtTrPv2Qm5uQkMY7RDnc6w9RmeBz29aOWKmNJ0w7H3DT?=
- =?us-ascii?Q?fQT/wPqseDPPVbbOwwsKcqKJPUOVN+OG9guXikZZ6J+lgHSeE8oTtLtxLEdI?=
- =?us-ascii?Q?oI1OWeXmopEgxrNcIVeMKU7Cpsn99SjQFG2fakZOOFnfQpi55x2quPOLYzu/?=
- =?us-ascii?Q?3ol2kuFeiwciEqMMn0BZNrrHkX8cd2MqSQNECvSEzkHovdivvCKqDvFr2a5Q?=
- =?us-ascii?Q?SqkBjKdexaqVY1ShJEgTtIKnY3Y9KTQ/Mt6K23MjFi74fDgz0J89RGZS8DhO?=
- =?us-ascii?Q?BVkeqfID1s4VcvdNT6QSM8r1smPIJ8hdB+aR8q3z7eb3OAhRoKf1BXVlU+Jd?=
- =?us-ascii?Q?FZHozER5PoidwhsdkZBM/Onxuc3cqswvm+K2Wk83ys9oOKNZvvxfK617qxEu?=
- =?us-ascii?Q?yd+9LKgIxCQmETiOAx5rVIVpihMqj+K8Oe4CTTIvWi3HcrcUtVVimxaAD93C?=
- =?us-ascii?Q?PyJLGmXeVYSKbYzW3jSSfHXKokI0l5mOdQUcLODZ5JhLXyENHsZI20KyGuJI?=
- =?us-ascii?Q?RneOenQRMT9neZG5190NlzDb78qevZO7zxKuQ1JgzouMRHECSgFLiFepOELQ?=
- =?us-ascii?Q?U+H1g401xaNVGjEe5/FwO30dE4V/Ir5DY5ZigTd4PqJgE2dltnqWNrUVdNAZ?=
- =?us-ascii?Q?L3JaCnUqNNr5ijYXGlsePxWFKHI5rY1RCrsAhjq+9/rnsl2d9f3fTgalVEqr?=
- =?us-ascii?Q?xALlAYwxsjolMhFwUmde6tAh3M1EvkUPNPPI1HVYfOamiYZ5etDs7Ylo0otv?=
- =?us-ascii?Q?PSRPVs/MANrDl9iG+6yQKGcVeOZEOapyCXUVL2VGS+I75Wn85Z+9q4mslvr6?=
- =?us-ascii?Q?/PP115w+7COFnFDJvMgDn7TuKUbjUphL1WAYbs+84B6u/Yt7FdT4VBS/rfbc?=
- =?us-ascii?Q?ZPEWRKTFYh2zBQaiY0yw4CoE4/IkcbsnhRnfDhD1fgb4SHgqMDdbesF16oz+?=
- =?us-ascii?Q?bXCWltqMhPueHdh9b+EnIbtX123aj1Cv7GM3KxHhc90s/9LTJtcqaM/WByTZ?=
- =?us-ascii?Q?XOaK4xPxmrMVXXYQC3MHqbk=3D?=
-X-OriginatorOrg: altera.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 894e51ad-c989-4c87-ca52-08ddb81e662b
-X-MS-Exchange-CrossTenant-AuthSource: BYAPR03MB3461.namprd03.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 30 Jun 2025 21:38:06.1231
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: fbd72e03-d4a5-4110-adce-614d51f2077a
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: 1eedBvS5Z5Zv0m1i4K7dnksEfT/f673ipYywIwGNNk9DAp3hTBhDn4Fhu+qb5WbDtHjygU15LpgYq9M2C9qK/CDkcelby2a0qvAfcu+QaBE=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: SA3PR03MB7234
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20250625-sm7635-fp6-initial-v1-0-d9cd322eac1b@fairphone.com>
+X-Authority-Analysis: v=2.4 cv=Z+PsHGRA c=1 sm=1 tr=0 ts=686308db cx=c_pps
+ a=Qgeoaf8Lrialg5Z894R3/Q==:117 a=ouPCqIW2jiPt+lZRy3xVPw==:17
+ a=kj9zAlcOel0A:10 a=6IFa9wvqVegA:10 a=6H0WHjuAAAAA:8 a=ykmX_Yx8RuNhN3dvDKMA:9
+ a=CjuIK1q_8ugA:10 a=x9snwWr2DeNwDh03kgHS:22 a=Soq9LBFxuPC4vsCAQt-j:22
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwNjMwMDE4MCBTYWx0ZWRfXyDL5XZ28hr10
+ pbia9nw0EXg9Gy6Z+7+dFZYRyH97vJMIotc8HsNtZKQyhZS73n7nUC27VAwwnGckmcjxmdEzQgP
+ 2dgMWIHU17GWSnt8PoMDwvyQYok7B+Lst3AlG4LcUPgzSp9bgb0MD7Jcbsm4XdrMTjFN6P2390r
+ 0EHM3lK2Ptys2Sj3CgECwBTRWV36REyeAjaafxXjzwmLIkG1ZuR2wavMljf4y1q/RNGwmHk1NB4
+ uwwGLfmq8RvFw1jLXADaPVNYhi+FuVt275P0fyhqqMNCvJUK2dMduHvOBeWXZSBYFFqxqeAE2pj
+ ZEZyvBNy19A8Fn4kSnIgDNEaQ+gi2cWVXydmRR4I/KOWIBDklDuPtOK9nII+N249MEHJLC+w12y
+ Fn0hW8zFbrO8M5zXplhDoRPbM4TGHmZr0BYoh3HzghcbRmGDmSc8uSNNlrjBkt5JsuTywP9T
+X-Proofpoint-GUID: tiae5zstk9ZQ59neLQnDgxA-EhndKIjR
+X-Proofpoint-ORIG-GUID: tiae5zstk9ZQ59neLQnDgxA-EhndKIjR
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1099,Hydra:6.1.7,FMLib:17.12.80.40
+ definitions=2025-06-30_05,2025-06-27_01,2025-03-28_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ phishscore=0 lowpriorityscore=0 clxscore=1015 malwarescore=0 mlxlogscore=999
+ spamscore=0 adultscore=0 mlxscore=0 priorityscore=1501 bulkscore=0
+ impostorscore=0 suspectscore=0 classifier=spam authscore=0 authtc=n/a authcc=
+ route=outbound adjust=0 reason=mlx scancount=1 engine=8.19.0-2505280000
+ definitions=main-2506300180
 
-Convert the bindings for socfpga-dwmac to yaml. Since the original
-text contained descriptions for two separate nodes, two separate
-yaml files were created.
+On Wed, Jun 25, 2025 at 11:22:55AM +0200, Luca Weiss wrote:
+> Document various bits of the SM7635 SoC in the dt-bindings, which don't
+> really need any other changes.
+> 
+> Then we can add the dtsi for the SM7635 SoC and finally add a dts for
+> the newly announced The Fairphone (Gen. 6) smartphone.
+> 
+> Dependencies:
+> * The dt-bindings should not have any dependencies on any other patches.
+> * The qcom dts bits depend on most other SM7635 patchsets I have sent in
+>   conjuction with this one. The exact ones are specified in the b4 deps.
+> 
 
-Signed-off-by: Mun Yew Tham <mun.yew.tham@altera.com>
-Signed-off-by: Matthew Gerlach <matthew.gerlach@altera.com>
-Reviewed-by: Maxime Chevallier <maxime.chevallier@bootlin.com>
----
-v7:
- - Add compatible definition for Arria10.
- - Update iommus to maxItems: 2.
+Very nice to see the various patches for this platform on LKML!
 
-v6:
- - Fix reference to altr,gmii-to-sgmii-2.0.yaml in MAINTAINERS.
- - Add Reviewed-by:
 
-v5:
- - Fix dt_binding_check error: comptabile.
- - Rename altr,gmii-to-sgmii.yaml to altr,gmii-to-sgmii-2.0.yaml
+Can you please use the name "milos" in compatibles and filenames instead
+of sm7635.
 
-v4:
- - Change filename from socfpga,dwmac.yaml to altr,socfpga-stmmac.yaml.
- - Updated compatible in select properties and main properties.
- - Fixed clocks so stmmaceth clock is required.
- - Added binding for altr,gmii-to-sgmii.
- - Update MAINTAINERS.
+Regards,
+Bjorn
 
-v3:
- - Add missing supported phy-modes.
-
-v2:
- - Add compatible to required.
- - Add descriptions for clocks.
- - Add clock-names.
- - Clean up items: in altr,sysmgr-syscon.
- - Change "additionalProperties: true" to "unevaluatedProperties: false".
- - Add properties needed for "unevaluatedProperties: false".
- - Fix indentation in examples.
- - Drop gmac0: label in examples.
- - Exclude support for Arria10 that is not validating.
----
- .../bindings/net/altr,gmii-to-sgmii-2.0.yaml  |  49 ++++++
- .../bindings/net/altr,socfpga-stmmac.yaml     | 166 ++++++++++++++++++
- .../devicetree/bindings/net/socfpga-dwmac.txt |  57 ------
- MAINTAINERS                                   |   7 +-
- 4 files changed, 221 insertions(+), 58 deletions(-)
- create mode 100644 Documentation/devicetree/bindings/net/altr,gmii-to-sgmii-2.0.yaml
- create mode 100644 Documentation/devicetree/bindings/net/altr,socfpga-stmmac.yaml
- delete mode 100644 Documentation/devicetree/bindings/net/socfpga-dwmac.txt
-
-diff --git a/Documentation/devicetree/bindings/net/altr,gmii-to-sgmii-2.0.yaml b/Documentation/devicetree/bindings/net/altr,gmii-to-sgmii-2.0.yaml
-new file mode 100644
-index 000000000000..aafb6447b6c2
---- /dev/null
-+++ b/Documentation/devicetree/bindings/net/altr,gmii-to-sgmii-2.0.yaml
-@@ -0,0 +1,49 @@
-+# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
-+# Copyright (C) 2025 Altera Corporation
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/net/altr,gmii-to-sgmii-2.0.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: Altera GMII to SGMII Converter
-+
-+maintainers:
-+  - Matthew Gerlach <matthew.gerlach@altera.com>
-+
-+description:
-+  This binding describes the Altera GMII to SGMII converter.
-+
-+properties:
-+  compatible:
-+    const: altr,gmii-to-sgmii-2.0
-+
-+  reg:
-+    items:
-+      - description: Registers for the emac splitter IP
-+      - description: Registers for the GMII to SGMII converter.
-+      - description: Registers for TSE control.
-+
-+  reg-names:
-+    items:
-+      - const: hps_emac_interface_splitter_avalon_slave
-+      - const: gmii_to_sgmii_adapter_avalon_slave
-+      - const: eth_tse_control_port
-+
-+required:
-+  - compatible
-+  - reg
-+  - reg-names
-+
-+unevaluatedProperties: false
-+
-+examples:
-+  - |
-+    phy@ff000240 {
-+        compatible = "altr,gmii-to-sgmii-2.0";
-+        reg = <0xff000240 0x00000008>,
-+              <0xff000200 0x00000040>,
-+              <0xff000250 0x00000008>;
-+        reg-names = "hps_emac_interface_splitter_avalon_slave",
-+                    "gmii_to_sgmii_adapter_avalon_slave",
-+                    "eth_tse_control_port";
-+    };
-diff --git a/Documentation/devicetree/bindings/net/altr,socfpga-stmmac.yaml b/Documentation/devicetree/bindings/net/altr,socfpga-stmmac.yaml
-new file mode 100644
-index 000000000000..c5d8dfe5b801
---- /dev/null
-+++ b/Documentation/devicetree/bindings/net/altr,socfpga-stmmac.yaml
-@@ -0,0 +1,166 @@
-+# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/net/altr,socfpga-stmmac.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: Altera SOCFPGA SoC DWMAC controller
-+
-+maintainers:
-+  - Matthew Gerlach <matthew.gerlach@altera.com>
-+
-+description:
-+  This binding describes the Altera SOCFPGA SoC implementation of the
-+  Synopsys DWMAC for the Cyclone5, Arria5, Stratix10, and Agilex7 families
-+  of chips.
-+  # TODO: Determine how to handle the Arria10 reset-name, stmmaceth-ocp, that
-+  # does not validate against net/snps,dwmac.yaml.
-+
-+select:
-+  properties:
-+    compatible:
-+      contains:
-+        enum:
-+          - altr,socfpga-stmmac
-+          - altr,socfpga-stmmac-a10-s10
-+
-+  required:
-+    - compatible
-+
-+properties:
-+  compatible:
-+    oneOf:
-+      - items:
-+          - const: altr,socfpga-stmmac
-+          - const: snps,dwmac-3.70a
-+          - const: snps,dwmac
-+      - items:
-+          - const: altr,socfpga-stmmac-a10-s10
-+          - const: snps,dwmac-3.72a
-+          - const: snps,dwmac
-+      - items:
-+          - const: altr,socfpga-stmmac-a10-s10
-+          - const: snps,dwmac-3.74a
-+          - const: snps,dwmac
-+
-+  clocks:
-+    minItems: 1
-+    items:
-+      - description: GMAC main clock
-+      - description:
-+          PTP reference clock. This clock is used for programming the
-+          Timestamp Addend Register. If not passed then the system
-+          clock will be used and this is fine on some platforms.
-+
-+  clock-names:
-+    minItems: 1
-+    items:
-+      - const: stmmaceth
-+      - const: ptp_ref
-+
-+  iommus:
-+    maxItems: 2
-+
-+  phy-mode:
-+    enum:
-+      - gmii
-+      - mii
-+      - rgmii
-+      - rgmii-id
-+      - rgmii-rxid
-+      - rgmii-txid
-+      - sgmii
-+      - 1000base-x
-+
-+  rxc-skew-ps:
-+    description: Skew control of RXC pad
-+
-+  rxd0-skew-ps:
-+    description: Skew control of RX data 0 pad
-+
-+  rxd1-skew-ps:
-+    description: Skew control of RX data 1 pad
-+
-+  rxd2-skew-ps:
-+    description: Skew control of RX data 2 pad
-+
-+  rxd3-skew-ps:
-+    description: Skew control of RX data 3 pad
-+
-+  rxdv-skew-ps:
-+    description: Skew control of RX CTL pad
-+
-+  txc-skew-ps:
-+    description: Skew control of TXC pad
-+
-+  txen-skew-ps:
-+    description: Skew control of TXC pad
-+
-+  altr,emac-splitter:
-+    $ref: /schemas/types.yaml#/definitions/phandle
-+    description:
-+      Should be the phandle to the emac splitter soft IP node if DWMAC
-+      controller is connected an emac splitter.
-+
-+  altr,f2h_ptp_ref_clk:
-+    $ref: /schemas/types.yaml#/definitions/phandle
-+    description:
-+      Phandle to Precision Time Protocol reference clock. This clock is
-+      common to gmac instances and defaults to osc1.
-+
-+  altr,gmii-to-sgmii-converter:
-+    $ref: /schemas/types.yaml#/definitions/phandle
-+    description:
-+      Should be the phandle to the gmii to sgmii converter soft IP.
-+
-+  altr,sysmgr-syscon:
-+    $ref: /schemas/types.yaml#/definitions/phandle-array
-+    description:
-+      Should be the phandle to the system manager node that encompass
-+      the glue register, the register offset, and the register shift.
-+      On Cyclone5/Arria5, the register shift represents the PHY mode
-+      bits, while on the Arria10/Stratix10/Agilex platforms, the
-+      register shift represents bit for each emac to enable/disable
-+      signals from the FPGA fabric to the EMAC modules.
-+    items:
-+      - items:
-+          - description: phandle to the system manager node
-+          - description: offset of the control register
-+          - description: shift within the control register
-+
-+patternProperties:
-+  "^mdio[0-9]$":
-+    type: object
-+
-+required:
-+  - compatible
-+  - clocks
-+  - clock-names
-+  - altr,sysmgr-syscon
-+
-+allOf:
-+  - $ref: snps,dwmac.yaml#
-+
-+unevaluatedProperties: false
-+
-+examples:
-+
-+  - |
-+    #include <dt-bindings/interrupt-controller/arm-gic.h>
-+    #include <dt-bindings/interrupt-controller/irq.h>
-+    soc {
-+        #address-cells = <1>;
-+        #size-cells = <1>;
-+        ethernet@ff700000 {
-+            compatible = "altr,socfpga-stmmac", "snps,dwmac-3.70a",
-+            "snps,dwmac";
-+            altr,sysmgr-syscon = <&sysmgr 0x60 0>;
-+            reg = <0xff700000 0x2000>;
-+            interrupts = <GIC_SPI 116 IRQ_TYPE_LEVEL_HIGH>;
-+            interrupt-names = "macirq";
-+            mac-address = [00 00 00 00 00 00]; /* Filled in by U-Boot */
-+            clocks = <&emac_0_clk>;
-+            clock-names = "stmmaceth";
-+            phy-mode = "sgmii";
-+        };
-+    };
-diff --git a/Documentation/devicetree/bindings/net/socfpga-dwmac.txt b/Documentation/devicetree/bindings/net/socfpga-dwmac.txt
-deleted file mode 100644
-index 612a8e8abc88..000000000000
---- a/Documentation/devicetree/bindings/net/socfpga-dwmac.txt
-+++ /dev/null
-@@ -1,57 +0,0 @@
--Altera SOCFPGA SoC DWMAC controller
--
--This is a variant of the dwmac/stmmac driver an inherits all descriptions
--present in Documentation/devicetree/bindings/net/stmmac.txt.
--
--The device node has additional properties:
--
--Required properties:
-- - compatible	: For Cyclone5/Arria5 SoCs it should contain
--		  "altr,socfpga-stmmac". For Arria10/Agilex/Stratix10 SoCs
--		  "altr,socfpga-stmmac-a10-s10".
--		  Along with "snps,dwmac" and any applicable more detailed
--		  designware version numbers documented in stmmac.txt
-- - altr,sysmgr-syscon : Should be the phandle to the system manager node that
--   encompasses the glue register, the register offset, and the register shift.
--   On Cyclone5/Arria5, the register shift represents the PHY mode bits, while
--   on the Arria10/Stratix10/Agilex platforms, the register shift represents
--   bit for each emac to enable/disable signals from the FPGA fabric to the
--   EMAC modules.
-- - altr,f2h_ptp_ref_clk use f2h_ptp_ref_clk instead of default eosc1 clock
--   for ptp ref clk. This affects all emacs as the clock is common.
--
--Optional properties:
--altr,emac-splitter: Should be the phandle to the emac splitter soft IP node if
--		DWMAC controller is connected emac splitter.
--phy-mode: The phy mode the ethernet operates in
--altr,sgmii-to-sgmii-converter: phandle to the TSE SGMII converter
--
--This device node has additional phandle dependency, the sgmii converter:
--
--Required properties:
-- - compatible	: Should be altr,gmii-to-sgmii-2.0
-- - reg-names	: Should be "eth_tse_control_port"
--
--Example:
--
--gmii_to_sgmii_converter: phy@100000240 {
--	compatible = "altr,gmii-to-sgmii-2.0";
--	reg = <0x00000001 0x00000240 0x00000008>,
--		<0x00000001 0x00000200 0x00000040>;
--	reg-names = "eth_tse_control_port";
--	clocks = <&sgmii_1_clk_0 &emac1 1 &sgmii_clk_125 &sgmii_clk_125>;
--	clock-names = "tse_pcs_ref_clk_clock_connection", "tse_rx_cdr_refclk";
--};
--
--gmac0: ethernet@ff700000 {
--	compatible = "altr,socfpga-stmmac", "snps,dwmac-3.70a", "snps,dwmac";
--	altr,sysmgr-syscon = <&sysmgr 0x60 0>;
--	reg = <0xff700000 0x2000>;
--	interrupts = <0 115 4>;
--	interrupt-names = "macirq";
--	mac-address = [00 00 00 00 00 00];/* Filled in by U-Boot */
--	clocks = <&emac_0_clk>;
--	clock-names = "stmmaceth";
--	phy-mode = "sgmii";
--	altr,gmii-to-sgmii-converter = <&gmii_to_sgmii_converter>;
--};
-diff --git a/MAINTAINERS b/MAINTAINERS
-index 8a928ae141de..bd64ee852d76 100644
---- a/MAINTAINERS
-+++ b/MAINTAINERS
-@@ -3271,10 +3271,15 @@ M:	Dinh Nguyen <dinguyen@kernel.org>
- S:	Maintained
- F:	drivers/clk/socfpga/
- 
-+ARM/SOCFPGA DWMAC GLUE LAYER BINDINGS
-+M:	Matthew Gerlach <matthew.gerlach@altera.com>
-+S:	Maintained
-+F:	Documentation/devicetree/bindings/net/altr,gmii-to-sgmii-2.0.yaml
-+F:	Documentation/devicetree/bindings/net/altr,socfpga-stmmac.yaml
-+
- ARM/SOCFPGA DWMAC GLUE LAYER
- M:	Maxime Chevallier <maxime.chevallier@bootlin.com>
- S:	Maintained
--F:	Documentation/devicetree/bindings/net/socfpga-dwmac.txt
- F:	drivers/net/ethernet/stmicro/stmmac/dwmac-socfpga.c
- 
- ARM/SOCFPGA EDAC BINDINGS
--- 
-2.35.3
-
+> Signed-off-by: Luca Weiss <luca.weiss@fairphone.com>
+> ---
+> Luca Weiss (14):
+>       dt-bindings: arm-smmu: document the support on SM7635
+>       dt-bindings: cpufreq: qcom-hw: document SM7635 CPUFREQ Hardware
+>       dt-bindings: crypto: qcom,prng: document SM7635
+>       dt-bindings: firmware: qcom,scm: document SM7635 SCM Firmware Interface
+>       dt-bindings: qcom,pdc: document the SM7635 Power Domain Controller
+>       dt-bindings: mailbox: qcom-ipcc: document the SM7635 Inter-Processor Communication Controller
+>       dt-bindings: soc: qcom,aoss-qmp: document the SM7635 Always-On Subsystem side channel
+>       dt-bindings: thermal: qcom-tsens: document the SM7635 Temperature Sensor
+>       dt-bindings: dma: qcom,gpi: document the SM7635 GPI DMA Engine
+>       dt-bindings: mmc: sdhci-msm: document the SM7635 SDHCI Controller
+>       dt-bindings: soc: qcom: qcom,pmic-glink: document SM7635 compatible
+>       dt-bindings: arm: qcom: Add SM7635 and The Fairphone (Gen. 6)
+>       arm64: dts: qcom: Add initial SM7635 dtsi
+>       arm64: dts: qcom: Add The Fairphone (Gen. 6)
+> 
+>  Documentation/devicetree/bindings/arm/qcom.yaml    |    6 +
+>  .../bindings/cpufreq/cpufreq-qcom-hw.yaml          |    2 +
+>  .../devicetree/bindings/crypto/qcom,prng.yaml      |    1 +
+>  .../devicetree/bindings/dma/qcom,gpi.yaml          |    1 +
+>  .../devicetree/bindings/firmware/qcom,scm.yaml     |    2 +
+>  .../bindings/interrupt-controller/qcom,pdc.yaml    |    1 +
+>  .../devicetree/bindings/iommu/arm,smmu.yaml        |    3 +
+>  .../devicetree/bindings/mailbox/qcom-ipcc.yaml     |    1 +
+>  .../devicetree/bindings/mmc/sdhci-msm.yaml         |    1 +
+>  .../bindings/soc/qcom/qcom,aoss-qmp.yaml           |    1 +
+>  .../bindings/soc/qcom/qcom,pmic-glink.yaml         |    1 +
+>  .../devicetree/bindings/thermal/qcom-tsens.yaml    |    1 +
+>  arch/arm64/boot/dts/qcom/Makefile                  |    1 +
+>  arch/arm64/boot/dts/qcom/sm7635-fairphone-fp6.dts  |  837 ++++++
+>  arch/arm64/boot/dts/qcom/sm7635.dtsi               | 2806 ++++++++++++++++++++
+>  15 files changed, 3665 insertions(+)
+> ---
+> base-commit: d9946fe286439c2aeaa7953b8c316efe5b83d515
+> change-id: 20250623-sm7635-fp6-initial-15e40fef53cd
+> prerequisite-change-id: 20250616-eusb2-repeater-tuning-f56331c6b1fa:v2
+> prerequisite-patch-id: 5c504d171a4d1acd9ec376e01e0dd0fddbad92b8
+> prerequisite-patch-id: 0c97dcf5472fbed8ef4cffbd482f3169fe1e972d
+> prerequisite-change-id: 20250617-simple-drm-fb-icc-89461c559913:v2
+> prerequisite-patch-id: 1ce32150adbe39ad43d9a702623b55937d92a17c
+> prerequisite-patch-id: 3562d9a85381bee745402619a7acba9b951f145c
+> prerequisite-patch-id: f8447266657b779a546ecbbbc2e38bd61c422f08
+> prerequisite-patch-id: cb9d07c82e73ab3691e0ace9604bfa69cdd6bb64
+> prerequisite-patch-id: 18ab6ca6a024e5b8ea8138111064db593d72da35
+> prerequisite-change-id: 20250620-sm7635-socinfo-8c6ee8d82c9d:v1 # optional
+> prerequisite-patch-id: f1b2e11df96c271c9e3d010084809f361ee4249c
+> prerequisite-patch-id: 1471abf17230db340c67a84b5a9009f1f2ea6e0e
+> prerequisite-patch-id: 57bff00c4fedce1b78615375f12517b955dd1d16
+> prerequisite-change-id: 20250620-sm7635-pinctrl-9fe3d869346b:v1
+> prerequisite-patch-id: 43b88c44c6fc5b72a490cd3acc5d2585206e81f2
+> prerequisite-patch-id: b3b6ebd4a288bd4abf227c939a1a92eafb2cf2c8
+> prerequisite-change-id: 20250620-sm7635-clocks-7699d338dc37:v1
+> prerequisite-patch-id: 48485e0e7e8a992695af1690f8cd2c09c227a4bf
+> prerequisite-patch-id: 4685ceba3f900ad6d1d2ae35116d37f64a171d5d
+> prerequisite-patch-id: 80f71dad0c0a77da98e5e66b592f38db6d81b4b1
+> prerequisite-patch-id: 49a2fa1a14931d9143da232969e7487061466930
+> prerequisite-patch-id: f5d1794f61488235644f78ffc28e3dacdab215d1
+> prerequisite-patch-id: ab257573067ff09c94270e1fa6ad4de1480c06b9
+> prerequisite-patch-id: 6608bd3f2e198a0780736aebcea3b47ee03df9ef
+> prerequisite-patch-id: c463d0d2d84c8786ed9a09016f43b4657cbc231e
+> prerequisite-patch-id: e113e76af37f01befaf4059ee3063cb45b27fd6b
+> prerequisite-patch-id: 40f8b8acd07a9ff7da8683b1be6a58872250e849
+> prerequisite-change-id: 20250620-sm7635-clocks-misc-0f359ad830ea:v1
+> prerequisite-patch-id: 127f332296fced39a2fd2f9a1f446ba30ec28ceb
+> prerequisite-patch-id: d21a0c8ceb06523c9f3f4ce569d28714878b3f84
+> prerequisite-patch-id: 87029a8844ef174ab3e0f953a1d16957fe6c13cc
+> prerequisite-patch-id: 095c767d7b7aa67d47026589c926636e57349ca6
+> prerequisite-change-id: 20250620-sm7635-rpmhpd-dcb5dc066ce2:v1
+> prerequisite-patch-id: d71fe15334032610c05cb55aeb28bfaa44e3530c
+> prerequisite-patch-id: 729544e856b8046f7a311b719d9495f8b33c1e1f
+> prerequisite-change-id: 20250620-sm7635-icc-e495e0e66109:v1
+> prerequisite-patch-id: b387217215d6f83cbd50c380171b159a2f1406d8
+> prerequisite-patch-id: bffd82274c35f6d520f524aa2a9c1c4bef7e047e
+> prerequisite-change-id: 20250620-sm7635-eusb-phy-d3bab648cdf1:v1
+> prerequisite-patch-id: c242c9b099d738214def29d2e464b64be5f14e62
+> prerequisite-patch-id: 8c1eb426c08bc1ec9462e77139b3b64d5e1453e9
+> prerequisite-patch-id: cdbc469ab33002c6bf697c033755b598dd1a621e
+> prerequisite-patch-id: 6bb2900bb530880091622ef47d141fe1f5756a52
+> prerequisite-change-id: 20250620-sm7635-eusb-repeater-0d78f557290f:v1
+> prerequisite-patch-id: 5c504d171a4d1acd9ec376e01e0dd0fddbad92b8
+> prerequisite-patch-id: 0c97dcf5472fbed8ef4cffbd482f3169fe1e972d
+> prerequisite-patch-id: a618abb349c3de5b49f79b4b0f86d9ab502ad500
+> prerequisite-patch-id: 09f91ff3a25c16a0375bdfec80604a64eab0b4fb
+> prerequisite-patch-id: 8fca8b09d70409c5c78f9f1b77d0a4c75bce38cf
+> prerequisite-patch-id: f5c2c24d2baefcd7ff91718529ab2f2c264ab99f
+> prerequisite-change-id: 20250620-sm7635-remoteprocs-149da64084b8:v1
+> prerequisite-patch-id: 3c95a20dd456dfee100f2833de4e9931a2073c7d
+> prerequisite-patch-id: 5292d77663ea9c44346b8da86bda36e0cce3fe56
+> prerequisite-patch-id: 015edcb2a69b5e837dc7edfbc7adc22145ba611b
+> prerequisite-change-id: 20250620-sm7635-pmiv0104-34a679937d9d:v1
+> prerequisite-patch-id: 8fca8b09d70409c5c78f9f1b77d0a4c75bce38cf
+> prerequisite-patch-id: f5c2c24d2baefcd7ff91718529ab2f2c264ab99f
+> prerequisite-patch-id: d7a06ece910e7844c60b910fe8eed30ad2458f34
+> prerequisite-patch-id: e91b741c9cfc80aa149bfd8e43cae90ca58e17f2
+> prerequisite-patch-id: 5ba4a49c3792cb208ee064a6ba13545e40cb70ac
+> prerequisite-patch-id: 5bdfcbdd226f7223c04a65c1a3cdcc3ecad38858
+> prerequisite-change-id: 20250620-sm7635-pmxr2230-ee55a86a8c2b:v1
+> prerequisite-patch-id: f0bd6e083324f954b988647bb42d4e2be179fbda
+> prerequisite-patch-id: 8fe1c0fc544e8bcb35522c5eba0b36e83bfd0c19
+> prerequisite-patch-id: 525c9eb0087025024bb0aaec1ed1d7d2c0bc8f03
+> prerequisite-change-id: 20250623-pm7550-pmr735b-rpmh-regs-06087e5b3a99:v1
+> prerequisite-patch-id: 7360606a06f8fba3ea9a8f84b4ecfb8209e91ab0
+> prerequisite-patch-id: 7a06a346abdb7f7386912b92f2b84af87e7439a9
+> prerequisite-patch-id: 1e1a6eb9c5421812c07421f9fa7e3f16b26a42da
+> prerequisite-patch-id: 224df3e4068bee3a17bde32e16cd9366c55b5faf
+> 
+> Best regards,
+> -- 
+> Luca Weiss <luca.weiss@fairphone.com>
+> 
 
