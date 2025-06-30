@@ -1,48 +1,55 @@
-Return-Path: <devicetree+bounces-191024-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-191025-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3EA91AED8AC
-	for <lists+devicetree@lfdr.de>; Mon, 30 Jun 2025 11:27:36 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id C29F8AED8BD
+	for <lists+devicetree@lfdr.de>; Mon, 30 Jun 2025 11:32:54 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 5C8A718995E1
-	for <lists+devicetree@lfdr.de>; Mon, 30 Jun 2025 09:27:52 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id BC3C93B3772
+	for <lists+devicetree@lfdr.de>; Mon, 30 Jun 2025 09:32:28 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B412A23F27B;
-	Mon, 30 Jun 2025 09:27:29 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id BE605243399;
+	Mon, 30 Jun 2025 09:32:50 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="GN5vjU4y"
+	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="oKHMoiWE"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from bali.collaboradmins.com (bali.collaboradmins.com [148.251.105.195])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 89653204C0C;
-	Mon, 30 Jun 2025 09:27:29 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 72A8821420F;
+	Mon, 30 Jun 2025 09:32:48 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=148.251.105.195
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1751275649; cv=none; b=Jm9HN3QVtPt0SgmGhMs2UsJH543kmx9YkPif2dzCm19xXrWH4sRRu0QzxLq7eb85e1nk/Bs+JPi0vXFFCJLi/eqhhjUgqwe74FKdoEUnAcYZfQGRw97XLlDK5vrLsIgtYdHYoj0yiR0+32oTGvPw7K9zJABV23TzkisA3YGyn/w=
+	t=1751275970; cv=none; b=VuV0Cw9LqacTHunwibNUgm/Hvjof0xGhRCyGXbtqZRKLmn/7NxYVhXCAfN4Ec5JX2+oOgjHzIM8r0gq3cYvXgOupPtQDOq6V5Kvi4FQlfy47xHTxkRykScz/hpPcf5jIT9TMCUUkDWRkwqCMqoKZIrVxCRD3ATxfB8Iymu/2aXQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1751275649; c=relaxed/simple;
-	bh=zm7sSwbBU3KTdyOU6aWVyesge/OMlN/HYnC/SZo9Bd4=;
+	s=arc-20240116; t=1751275970; c=relaxed/simple;
+	bh=QWD/CZiB02p5Y9rO/SrSW4JBcHFnpOwu/VqcsLoMJnI=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=ZDIvqGcx7J8LsEeQWqalbhvjwyDL5FnEFSo55Gchf24+aKbefvNZVwUYkV1SEFhQpIsAjMf5y1fvOECKR1vJlqtUiyNVTJcnM9ub0PhZ/KsyhEduypSV+nbwoQgI0Wg6fCgByP/6/poi5VUhDnuXKX3/8lHMpuIvFZq64JybF7M=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=GN5vjU4y; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id E1DE7C4CEE3;
-	Mon, 30 Jun 2025 09:27:23 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1751275649;
-	bh=zm7sSwbBU3KTdyOU6aWVyesge/OMlN/HYnC/SZo9Bd4=;
+	 In-Reply-To:Content-Type; b=OFO72G/SViNGC//stCU5YkWrZZZOgwiOdEix58rGhH7aAJ9YW4ePIf5M6g+jqFE84GTw7a8UePXyNHo2DswGtbTO2NTksC9XK2zX3LICDE5Vd9Yhwqf7kfqLRzEZus1K+hsZu4DHVwp8jEGFFG3lNKwUScdyo35K28vQFV4XTfg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b=oKHMoiWE; arc=none smtp.client-ip=148.251.105.195
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+	s=mail; t=1751275966;
+	bh=QWD/CZiB02p5Y9rO/SrSW4JBcHFnpOwu/VqcsLoMJnI=;
 	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=GN5vjU4ysAIOSu7LO3VoejhyDUyXelI1owizjJY9ZMKYIq5WLlTzhfije5jOGPnNy
-	 V/Knp/owc/fT9Q3quvE/iKWW0hP8lblYa03SCv1IVdawBwZcL1jUDD95Io20U0JN2T
-	 LCLpXSBtPVlJWm4W1p0qJAGLpg2enNorqyycUrh9/J9RV7lBMKXoFPlAd9WoSgCgmC
-	 2ZqjpeBMebbe+3BNtbGyTY+Qe20Kc7B5RHiBVK4Kjcjy7BzL9FU/31wXK7pRKFA3zA
-	 xVeI7CN9xXF0KFmC0qT6/X+kGvSqmt5IhBG7xTA2RrgutHLoPEQDKGeaE6YU03OKn2
-	 0hWDfgyc5stvQ==
-Message-ID: <57f0289a-7d82-4294-a1dc-c6986da0c5ce@kernel.org>
-Date: Mon, 30 Jun 2025 11:27:21 +0200
+	b=oKHMoiWElN1piNx6lnOGBBN3mlX0nfB2KP6BBJZTI1844D6x9kqssN/NSARTunD/O
+	 Ssvf7n3hq2l1a/tXIkqNMBYw2mouhknv+SULB3ZWJAIDdT2XQ1Bbc6osdiJ11jhWmg
+	 LXAcogkiNNgFrY579znmNLB4/eadkA8SAb6Tw7Ymy5+A+2NP9Ut3gaF/pHqX1aJT2S
+	 5le/dPJ9sVRkcqg2TQ/vj7mUik7b+MrPeKbirQkcFpgkXxzm1d0Ud0ABULYtLzQddv
+	 UsX+Y5OI0dq9iV14BmXHfQEqAfRjiTT1WD0D+GXUMqdNPRp3iWqXn4AhXjiPuToH/Y
+	 fDVbEv3hrOwIw==
+Received: from [192.168.1.100] (2-237-20-237.ip236.fastwebnet.it [2.237.20.237])
+	(using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
+	 key-exchange X25519 server-signature RSA-PSS (4096 bits))
+	(No client certificate requested)
+	(Authenticated sender: kholk11)
+	by bali.collaboradmins.com (Postfix) with ESMTPSA id 9985B17E0B0D;
+	Mon, 30 Jun 2025 11:32:45 +0200 (CEST)
+Message-ID: <e958afe7-b338-47dc-905e-f3223b4f3cdb@collabora.com>
+Date: Mon, 30 Jun 2025 11:32:45 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,98 +57,178 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 7/8] auxdisplay: Add Titanmec TM16xx 7-segment display
- controllers driver
-To: Andy Shevchenko <andriy.shevchenko@intel.com>
-Cc: =?UTF-8?Q?Jean-Fran=C3=A7ois_Lessard?= <jefflessard3@gmail.com>,
- Andy Shevchenko <andy@kernel.org>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Geert Uytterhoeven <geert@linux-m68k.org>,
- devicetree@vger.kernel.org, linux-leds@vger.kernel.org,
- linux-kernel@vger.kernel.org, =?UTF-8?Q?Andreas_F=C3=A4rber?=
- <afaerber@suse.de>, Boris Gjenero <boris.gjenero@gmail.com>,
- Christian Hewitt <christianshewitt@gmail.com>,
- Heiner Kallweit <hkallweit1@gmail.com>,
- Paolo Sabatino <paolo.sabatino@gmail.com>
-References: <20250629130002.49842-1-jefflessard3@gmail.com>
- <20250629131830.50034-1-jefflessard3@gmail.com>
- <47d24e31-1c6f-4299-aeaf-669c474c4459@kernel.org>
- <aGI8a4iaOpN5HMQe@smile.fi.intel.com>
-From: Krzysztof Kozlowski <krzk@kernel.org>
+Subject: Re: [PATCH v1 02/13] pmdomain: mediatek: Refactor bus protection
+ regmaps retrieval
+To: Fei Shao <fshao@chromium.org>
+Cc: linux-mediatek@lists.infradead.org, robh@kernel.org, krzk+dt@kernel.org,
+ conor+dt@kernel.org, matthias.bgg@gmail.com, ulf.hansson@linaro.org,
+ y.oudjana@protonmail.com, wenst@chromium.org, lihongbo22@huawei.com,
+ mandyjh.liu@mediatek.com, mbrugger@suse.com, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ linux-pm@vger.kernel.org, kernel@collabora.com
+References: <20250623120154.109429-1-angelogioacchino.delregno@collabora.com>
+ <20250623120154.109429-3-angelogioacchino.delregno@collabora.com>
+ <CAC=S1njT6ygGuZDPU5KDW94Nu-TbM21DM-6HdR7Pio=WTD_eQA@mail.gmail.com>
+From: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
 Content-Language: en-US
-Autocrypt: addr=krzk@kernel.org; keydata=
- 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 a/A=
-In-Reply-To: <aGI8a4iaOpN5HMQe@smile.fi.intel.com>
-Content-Type: text/plain; charset=UTF-8
+In-Reply-To: <CAC=S1njT6ygGuZDPU5KDW94Nu-TbM21DM-6HdR7Pio=WTD_eQA@mail.gmail.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 8bit
 
-On 30/06/2025 09:27, Andy Shevchenko wrote:
-> On Mon, Jun 30, 2025 at 08:12:16AM +0200, Krzysztof Kozlowski wrote:
->> On 29/06/2025 15:18, Jean-François Lessard wrote:
-> 
-> ...
-> 
->>> +	display->leds =
->>> +		devm_kcalloc(dev, display->num_leds, sizeof(*display->leds), GFP_KERNEL);
+Il 27/06/25 14:12, Fei Shao ha scritto:
+> On Mon, Jun 23, 2025 at 8:02 PM AngeloGioacchino Del Regno
+> <angelogioacchino.delregno@collabora.com> wrote:
 >>
->> Wrong wrapping. Use kernel style, not clang style.
+>> In preparation to add support for new generation SoCs like MT8196,
+>> MT6991 and other variants, which require to set bus protection on
+>> different busses than the ones found on legacy chips, and to also
+>> simplify and reduce memory footprint of this driver, refactor the
+>> mechanism to retrieve and use the bus protection regmaps.
 >>
+>> This is done by removing the three pointers to struct regmap from
+>> struct scpsys_domain (allocated for each power domain) and moving
+>> them to the main struct scpsys (allocated per driver instance) as
+>> an array of pointers to regmap named **bus_prot.
 >>
->>> +	if (!display->leds)
->>> +		return -ENOMEM;
+>> That deprecates the old devicetree properties to grab phandles to
+>> the three predefined busses (infracfg, infracfg-nao and smi) and
+>> replaces it with a new property "mediatek,bus-protection" that is
+>> meant to be an array of phandles holding the same busses where
+>> required (for now - for legacy SoCs).
+>>
+>> The new bus protection phandles are indexed by the bus_prot_index
+>> member of struct scpsys, used to map "bus type" (ex.: infra, smi,
+>> etc) to the specific *bus_prot[x] element.
+>>
+>> While the old per-power-domain regmap pointers were removed, the
+>> support for old devicetree was retained by still checking if the
+>> new property (in DT) and new-style declaration (in SoC specific
+>> platform data) are both present at probe time.
+>>
+>> If those are not present, a lookup for the old properties will be
+>> done in all of the children of the power controller, and pointers
+>> to regmaps will be retrieved with the old properties, but then
+>> will be internally remapped to follow the new style regmap anyway
+>> as to let this driver benefit of the memory footprint reduction.
+>>
+>> Finally, it was necessary to change macros in mtk-pm-domains.h and
+>> in mt8365-pm-domains.h to make use of the new style bus protection
+>> declaration, as the actual HW block is now recognized not by flags
+>> but by its own scpsys_bus_prot_block enumeration.
+>>
+>> The BUS_PROT_(STA)_COMPONENT_{INFRA,INFRA_NAO,SMI} flags were also
+>> removed since they are now unused, and because that enumeration was
+>> initially meant to vary the logic of bus protection and not the bus
+>> where work is performed, anyway!
+>>
+>> Signed-off-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+>> ---
 > 
-> Just wondering how .clang-format is official? Note some of the maintainers even
-
-First time I hear above clang style is preferred. Where is it expected?
-I assume clang-format is half-working and should not be used blindly,
-but fixed to match actual kernel coding style.
-
-> prefer (ugly in some cases in my opinion) style because it's generated by the
-> clang-format.
+> <snip>
+> 
+>>
+>> +static int scpsys_get_bus_protection_legacy(struct device *dev, struct scpsys *scpsys)
+>> +{
+>> +       const u8 bp_blocks[3] = {
+>> +               BUS_PROT_BLOCK_INFRA, BUS_PROT_BLOCK_SMI, BUS_PROT_BLOCK_INFRA_NAO
+>> +       };
+>> +       struct device_node *np = dev->of_node;
+>> +       struct device_node *node, *smi_np;
+>> +       int num_regmaps = 0, i, j;
+>> +       struct regmap *regmap[3];
+>> +
+>> +       /*
+>> +        * Legacy code retrieves a maximum of three bus protection handles:
+>> +        * some may be optional, or may not be, so the array of bp blocks
+>> +        * that is normally passed in as platform data must be dynamically
+>> +        * built in this case.
+>> +        *
+>> +        * Here, try to retrieve all of the regmaps that the legacy code
+>> +        * supported and then count the number of the ones that are present,
+>> +        * this makes it then possible to allocate the array of bus_prot
+>> +        * regmaps and convert all to the new style handling.
+>> +        */
+>> +       node = of_find_node_with_property(np, "mediatek,infracfg");
+>> +       if (node) {
+>> +               regmap[0] = syscon_regmap_lookup_by_phandle(node, "mediatek,infracfg");
+>> +               of_node_put(node);
+>> +               num_regmaps++;
+>> +               if (IS_ERR(regmap[0]))
+>> +                       return dev_err_probe(dev, PTR_ERR(regmap[0]),
+>> +                                            "%pOF: failed to get infracfg regmap\n",
+>> +                                            node);
+>> +       } else {
+>> +               regmap[0] = NULL;
+>> +       }
+>> +
+>> +       node = of_find_node_with_property(np, "mediatek,smi");
+>> +       if (node) {
+>> +               smi_np = of_parse_phandle(node, "mediatek,smi", 0);
+>> +               of_node_put(node);
+>> +               if (!smi_np)
+>> +                       return -ENODEV;
+>> +
+>> +               regmap[1] = device_node_to_regmap(smi_np);
+>> +               num_regmaps++;
+>> +               of_node_put(smi_np);
+>> +               if (IS_ERR(regmap[1]))
+>> +                       return dev_err_probe(dev, PTR_ERR(regmap[1]),
+>> +                                            "%pOF: failed to get SMI regmap\n",
+>> +                                            node);
+>> +       } else {
+>> +               regmap[1] = NULL;
+>> +       }
+>> +
+>> +       node = of_find_node_with_property(np, "mediatek,infracfg-nao");
+>> +       if (node) {
+>> +               regmap[2] = syscon_regmap_lookup_by_phandle(node, "mediatek,infracfg-nao");
+>> +               num_regmaps++;
+>> +               of_node_put(node);
+>> +               if (IS_ERR(regmap[2]))
+>> +                       return dev_err_probe(dev, PTR_ERR(regmap[2]),
+>> +                                            "%pOF: failed to get infracfg regmap\n",
+>> +                                            node);
+>> +       } else {
+>> +               regmap[2] = NULL;
+>> +       }
+>> +
+>> +       scpsys->bus_prot = devm_kmalloc_array(dev, num_regmaps,
+>> +                                             sizeof(*scpsys->bus_prot), GFP_KERNEL);
+>> +       if (!scpsys->bus_prot)
+>> +               return -ENOMEM;
+>> +
+>> +       for (i = 0, j = 0; i < num_regmaps; i++) {
+> 
+> Did you mean BUS_PROT_BLOCK_COUNT?
+> Consider a case where only regmap[2] is configured.
 > 
 
+Yep. None of the many platforms that we have tested hit this issue, but it's as
+bad as it sounds! :')
 
-Best regards,
-Krzysztof
+Thanks for spotting this one!
+
+Cheers,
+Angelo
+
+> Regards,
+> Fei
+> 
+>> +               enum scpsys_bus_prot_block bp_type;
+>> +
+>> +               if (!regmap[i])
+>> +                       continue;
+>> +
+>> +               bp_type = bp_blocks[i];
+>> +               scpsys->bus_prot_index[bp_type] = j;
+>> +               scpsys->bus_prot[j] = regmap[i];
+>> +
+>> +               j++;
+>> +       }
+>> +
+>> +       return 0;
+>> +}
+>> +
+> 
+> <snip>
 
