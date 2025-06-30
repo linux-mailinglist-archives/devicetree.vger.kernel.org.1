@@ -1,139 +1,86 @@
-Return-Path: <devicetree+bounces-190955-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-190957-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id E92DEAED541
-	for <lists+devicetree@lfdr.de>; Mon, 30 Jun 2025 09:10:08 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6A259AED561
+	for <lists+devicetree@lfdr.de>; Mon, 30 Jun 2025 09:17:17 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id A502D1897EAE
-	for <lists+devicetree@lfdr.de>; Mon, 30 Jun 2025 07:10:19 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id C1873168009
+	for <lists+devicetree@lfdr.de>; Mon, 30 Jun 2025 07:17:17 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A7601217704;
-	Mon, 30 Jun 2025 07:09:41 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 387D9202F8F;
+	Mon, 30 Jun 2025 07:17:13 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="BO/UiaG5"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Wz0GRQRd"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wr1-f45.google.com (mail-wr1-f45.google.com [209.85.221.45])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BB76721421D
-	for <devicetree@vger.kernel.org>; Mon, 30 Jun 2025 07:09:39 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.45
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 077511A2643;
+	Mon, 30 Jun 2025 07:17:12 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1751267381; cv=none; b=ixXLZG4qYA7eKVzkwluqiIyM6K86X4eKayMdQ61CjztAg4ElHTN+EVcgsaTbTmwI79Fxf01hzb+oO6eragHIJLvXXyTi0ymS+wYMNylpVtu9CyDuRl290Gape5XxCjW0ak1S47wIw95vj2EnhMoFSIJ5CAI8+7b9nH++TDeLW9I=
+	t=1751267833; cv=none; b=ECQq29qZG8c8Ezs/FsrMui1bO36univCHIJsvr+VZfOnlCXzFY+jZS4L3Qld12fnX0kjhPFLU0AoLM2je9OksbNeuqEu+SUyCMMo2M4MpzlQOtqNuNK30aQ7A8W18RXcN7384Ms9CwwvgB8fnTKTrAYJ3Nw3JW1i6F3mTkt2khg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1751267381; c=relaxed/simple;
-	bh=ddiuvGxz83jlR9YKFCde8sWN22f7FfscTfyjv9iN2aU=;
+	s=arc-20240116; t=1751267833; c=relaxed/simple;
+	bh=8LwWcL/hfZA2j32lefUf/CPEs9K2wl3Sf8cyvU/E/lg=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=LKJVun2KOxq12XY7AE0ApI3z6/GvGDh4NcvrSWmahJNmJe2MNcrqy3qENMj3WLUyIkkXTRieOfGP3v/TPqNIWHz7lzdYDYiN26yC3ZoRn+mdZs2heKE7GbTxpw9VMjjCiflqwVQ/UP8AY7jxF8I7dlIV+7y2atMdOgFnsZOw1Q4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=BO/UiaG5; arc=none smtp.client-ip=209.85.221.45
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-wr1-f45.google.com with SMTP id ffacd0b85a97d-3a6d77b43c9so1540743f8f.3
-        for <devicetree@vger.kernel.org>; Mon, 30 Jun 2025 00:09:39 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1751267378; x=1751872178; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=rL7MI4aiTt6sLWVA1573aHsEQCSTNCPjbPzbUM2vINQ=;
-        b=BO/UiaG5MrdIT98UwEzy1UBaDJMj3rC9J1FSJglYBmBMmxYNsKhqHiPuoyvJG2oF5l
-         djfNlnLo5lWaC0Sl8jPcgQPt2lumT5J1Qo+pcUpwmAZXRcQ5ndUpb8qZpD/2bvyOMRkP
-         3CpkHCZB4Xu2qxtohitW11EXUUyysaXd+pNcSuHe8mpXjUszUGODQCp6rMzj1aqG43l/
-         Xs+LDh+3BsbHP8LFwHdRVWm8eYfcEekH8Ysho0Gpjd6yyV8QN38RAYRhGhN5fD8DZJUO
-         U4mFCYdZeRVRfd+ummGblsG9dovdo1Gs56M4WX19wqxaYaxl1MO1gjntIgi7IDeOMHOv
-         YMeA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1751267378; x=1751872178;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=rL7MI4aiTt6sLWVA1573aHsEQCSTNCPjbPzbUM2vINQ=;
-        b=Kq3aCbIf8IoiA+dmAyVqPpeILUZ4fNDU5nhHxaQzmc7Twc6wEcfs8EGcqcYh9llAFB
-         8gYX0givkF93A4UJCBcIRiYAiPUU8iokQFVdxTCXcsGw+cPfTTSbEk9gtGf/QotXbwTl
-         5AxIbK27Ywcf/3heD7M+Iv7bz8SWM0SwTillT8dgqqxpw//7aD9UJRET320Z4ncUo4ny
-         RA2fR+N0tfTCnmPbOSFrHpiNUFc2YTOEHIm2cVSfitsmv5DCmgFtCv/azKewWRYtCSl9
-         14dQF6U8fmrXToTEvUjU1P/VX2rmJEbmSNWEm7TyRbVdo2m9wv0kP/LxVJb35rGBfMga
-         OO4w==
-X-Forwarded-Encrypted: i=1; AJvYcCXJjQu1aot4cLsUtARkF6o6zwgCWjXEuk/C2Ekc74J3550RD1zT4QXzTlFGsmcMbhttSyVs188gLDWm@vger.kernel.org
-X-Gm-Message-State: AOJu0Yygd5HYqhMxnX9wdNcsviiQzJAj5vHnz+exb9RgdJoPcOCGdfSO
-	6lUJCW/PqKImRTD5VGShF6mvnrt5hEv9j/FZl/qeMNevtEwL5S63HhCH6MAGcgRyemo=
-X-Gm-Gg: ASbGncvW4pFCTW8i4Ud5BYcHtBSp+ZqeQJtr2Za+V1j+yZtSsAaH5PE7/iOo5nBvOxc
-	7/tlgfkBNt4+dWu7SLcRuWNtagbJpUgzFcqqjm5MgYkJupdAVD7tBP3sre9VFkJ3VPPtl4PMQhk
-	EZjo6aTwZrbcIvsoQ8lqyCHV/Nk4X+41o+6pHB1kkSxqwcaq+7Ha17vKxk7slmqIMBJUtkOHW59
-	rrNp+JNhoACFFYD7djTYouGR1uuvwnjPj2ZJMJlr+11dsJrOnIXYENvhJ6Mb143QVtS6BJYOxWc
-	Yn3zDozdDTpYHSLXKFiWqU1VQu9ql3r3hblEFNUscBcMi3B0gSWgtFPev8v5x+W59rJKtv0wMae
-	EBDNYRV6p
-X-Google-Smtp-Source: AGHT+IGG2/mG1Wh2790HlDLNzSCGs1iMdSzJdT+7KKDDoR78pqdJxJTRqgq2iXVeOJWxsyzsHUkPZg==
-X-Received: by 2002:adf:b649:0:b0:3a4:cf40:ff37 with SMTP id ffacd0b85a97d-3a8f45494cdmr8755726f8f.6.1751267377946;
-        Mon, 30 Jun 2025 00:09:37 -0700 (PDT)
-Received: from linaro.org ([2a02:2454:ff21:ef30:5b42:ea56:7d4e:16d2])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-453a1914d10sm16366245e9.4.2025.06.30.00.09.37
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 30 Jun 2025 00:09:37 -0700 (PDT)
-Date: Mon, 30 Jun 2025 09:09:33 +0200
-From: Stephan Gerhold <stephan.gerhold@linaro.org>
-To: Casey Connolly <casey.connolly@linaro.org>
-Cc: Bjorn Andersson <andersson@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Konrad Dybcio <konradybcio@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Rob Herring <robh@kernel.org>, cros-qcom-dts-watchers@chromium.org,
-	devicetree@vger.kernel.org, linux-arm-msm@vger.kernel.org
-Subject: Re: [PATCH] arm64: dts: qcom: sc7280.dtsi: prevent garbage on serial
- port
-Message-ID: <aGI4LTPmiKxtrStQ@linaro.org>
-References: <20250626132333.351351-1-casey.connolly@linaro.org>
+	 Content-Type:Content-Disposition:In-Reply-To; b=L57txmmhQ0LahZffQLMAeO/D4lKiu4+u0Bwz7gbbr5pv9jIjJGEebYYuyYf0V1hhb+BbFhnI0ZIG1/CjyHhMBWJYScvMh1XfeihFE/IizpQR92i87r5trfeQcfMohmwX2gb/u0uXa+FIIbtFxbztRLbVd7/8wAdHr0AODTgzVFA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Wz0GRQRd; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id D8E90C4CEE3;
+	Mon, 30 Jun 2025 07:17:11 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1751267832;
+	bh=8LwWcL/hfZA2j32lefUf/CPEs9K2wl3Sf8cyvU/E/lg=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=Wz0GRQRdQNz5Yif1YOcTtRFUXi1c6JVSR0V2aLYHWbLenFhxyNnL2akbcAoHXNjqe
+	 QyKC8Anw39HPGPdy1RteDRZZS9FdiWHwn1L/iV3wO7SoaCFksdmKkpQXsWY/XZuqRs
+	 g+OwUb6xvSKSzVKb9PpPFd7rkEzN7S5VHEK4tEHvJm2b4Sel5X19rLn/VyZeE03gOB
+	 BwmDIyTwptn00LersUVi4kBO/CqhtCw621lr5HMT4z2ZxXgCCNhN8gopaAY4t8r1W2
+	 l+5WAsKZQ4ZVhimRZzsyyzJ3wmh9/OebkB/uxpxj9odU3esMhC3Re0hQ2P7xoYm9Xr
+	 wTuOB0cC1LfTg==
+Date: Mon, 30 Jun 2025 09:17:09 +0200
+From: Krzysztof Kozlowski <krzk@kernel.org>
+To: Zixian Zeng <sycamoremoon376@gmail.com>
+Cc: Tudor Ambarus <tudor.ambarus@linaro.org>, 
+	Pratyush Yadav <pratyush@kernel.org>, Michael Walle <mwalle@kernel.org>, 
+	Miquel Raynal <miquel.raynal@bootlin.com>, Richard Weinberger <richard@nod.at>, 
+	Vignesh Raghavendra <vigneshr@ti.com>, Chen Wang <unicorn_wang@outlook.com>, 
+	Inochi Amaoto <inochiama@gmail.com>, Mark Brown <broonie@kernel.org>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Paul Walmsley <paul.walmsley@sifive.com>, Palmer Dabbelt <palmer@dabbelt.com>, 
+	Albert Ou <aou@eecs.berkeley.edu>, Alexandre Ghiti <alex@ghiti.fr>, 
+	Longbin Li <looong.bin@gmail.com>, linux-mtd@lists.infradead.org, linux-kernel@vger.kernel.org, 
+	sophgo@lists.linux.dev, linux-spi@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-riscv@lists.infradead.org
+Subject: Re: [PATCH v3 1/4] spi: dt-bindings: spi-sg2044-nor: Change SOPHGO
+ SG2042
+Message-ID: <20250630-ancient-quail-of-joy-effd60@krzk-bin>
+References: <20250629-sfg-spifmc-v3-0-28db1f27e999@gmail.com>
+ <20250629-sfg-spifmc-v3-1-28db1f27e999@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <20250626132333.351351-1-casey.connolly@linaro.org>
+In-Reply-To: <20250629-sfg-spifmc-v3-1-28db1f27e999@gmail.com>
 
-On Thu, Jun 26, 2025 at 03:23:30PM +0200, Casey Connolly wrote:
-> During early boot phases there can be garbage characters on the serial
-> RX port unless it is configured as pull-up. Add the pull-up bias and
-> mark the rx/tx pinconfs as being necessary for all boot phases.
-> 
-> Signed-off-by: Casey Connolly <casey.connolly@linaro.org>
-> ---
->  arch/arm64/boot/dts/qcom/sc7280.dtsi | 3 +++
->  1 file changed, 3 insertions(+)
-> 
-> diff --git a/arch/arm64/boot/dts/qcom/sc7280.dtsi b/arch/arm64/boot/dts/qcom/sc7280.dtsi
-> index 64a2abd30100..60e4a311405a 100644
-> --- a/arch/arm64/boot/dts/qcom/sc7280.dtsi
-> +++ b/arch/arm64/boot/dts/qcom/sc7280.dtsi
-> @@ -5742,13 +5742,16 @@ qup_uart4_rx: qup-uart4-rx-state {
->  
->  			qup_uart5_tx: qup-uart5-tx-state {
->  				pins = "gpio22";
->  				function = "qup05";
-> +				bootph-all;
+On Sun, Jun 29, 2025 at 04:23:10PM +0800, Zixian Zeng wrote:
+> SG2042 is not fully compatiable with SG2044,
 
-I'd add bias-disable here to have consistent state applied to both pins
-and not just the RX one.
+Typo, run spellcheck.
 
-Thanks,
-Stephan
+> So it is necessary to become independent const
 
->  			};
->  
->  			qup_uart5_rx: qup-uart5-rx-state {
->  				pins = "gpio23";
->  				function = "qup05";
-> +				bootph-all;
-> +				bias-pull-up;
->  			};
->  
->  			qup_uart6_cts: qup-uart6-cts-state {
->  				pins = "gpio24";
-> -- 
-> 2.50.0
-> 
+No capital letters after ,. Anyway, explain why it is not fully
+compatible.
+
+Best regards,
+Krzysztof
+
 
