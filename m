@@ -1,202 +1,165 @@
-Return-Path: <devicetree+bounces-191139-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-191140-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2E874AEE012
-	for <lists+devicetree@lfdr.de>; Mon, 30 Jun 2025 16:06:06 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 93642AEE064
+	for <lists+devicetree@lfdr.de>; Mon, 30 Jun 2025 16:18:00 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 2BC441BC079C
-	for <lists+devicetree@lfdr.de>; Mon, 30 Jun 2025 14:04:14 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id DC9A317B2C9
+	for <lists+devicetree@lfdr.de>; Mon, 30 Jun 2025 14:18:00 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2B9CF28C5C1;
-	Mon, 30 Jun 2025 14:02:41 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E733528BABA;
+	Mon, 30 Jun 2025 14:17:43 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=analog.com header.i=@analog.com header.b="uPGkZxM8"
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="KdTxPY9I"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-00128a01.pphosted.com (mx0a-00128a01.pphosted.com [148.163.135.77])
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.12])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C89F3286D5D;
-	Mon, 30 Jun 2025 14:02:38 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=148.163.135.77
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F322128C2BE;
+	Mon, 30 Jun 2025 14:17:41 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.175.65.12
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1751292161; cv=none; b=RfgecU1BppQtY3taFneEwt7pUxYZMNg2e9rhuNjRRhHJOT/5MiHiPDmidUfm11W4ApDfdDTBCjmRaMbnr2NLgRGBJEom2s/47FQfyEfZizkPvwBY6Bnrv7ncf4QgGjrbIdbBXP4BomqaNLj3g1Xtt2iYtIUNlyl+Y1CQDQNkdyM=
+	t=1751293063; cv=none; b=VIZ35AFhSfFvcJ6b80wTf9P00aDEV5WI95bYkj5ecFztzYtWYYHw9UVFlQ45IqEyWLEyORQ4Q3YrKBOa3Z9nDHv3WOSiE3aP1PjdyB3efYT2gGz6uTW6W5leneWMElMLTO7WB8UswXPD2wCeCxY04pbxO5Ptj2UyDvvR9V9Hg5A=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1751292161; c=relaxed/simple;
-	bh=CERrMN1d3ZFqHU7gFszcxxxmVWa30PuxIIVY7qj37W8=;
-	h=From:To:CC:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=IjiUWJQxTXedUEoYgq9HolaqddgcmDiXcTHzHk5bqZ4ifqOum6FD6kD1nrkMzFxUulU66JkH8xK9GjJZwnMfYNZXygUqz1eycCLvUGCDqZ+8T55ss3UrZYRbuYamkP3VS1fr1U9Na8q6kijB+EP3+WVJS7mxMbHK5eQ4oQDRAqw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=analog.com; spf=pass smtp.mailfrom=analog.com; dkim=pass (2048-bit key) header.d=analog.com header.i=@analog.com header.b=uPGkZxM8; arc=none smtp.client-ip=148.163.135.77
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=analog.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=analog.com
-Received: from pps.filterd (m0375855.ppops.net [127.0.0.1])
-	by mx0b-00128a01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 55UDc97d026449;
-	Mon, 30 Jun 2025 10:02:16 -0400
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=analog.com; h=cc
-	:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=DKIM; bh=gpIyt
-	FLSmYcHOo7QvRrFC4g1sC0UPrKUJCM+Rfjt4P0=; b=uPGkZxM8V5UyoN9mYPKGZ
-	jkKp+dwyKwE3PjuEomG9H76RC+Co5EH+4x1eUqZVNLAMoOuL2nO6X0ULciWLG6UW
-	rSml48qt82bi79hpE1JOknGR6LMoHe9AO/SkO04PiSRUu3lndVSfQurFTaM7o75/
-	d0SYfLUvzYgcj7IRJPmF/Jp5PP8qNbYkv8TobgIEI+D/ClYldUQSIWZKsR8lyvEe
-	Y3M7nlT7hrnrYcXAFJM29B3hZLVbciyDPvoFk2aaqDtJHIXutCKojZ1zLoCslkc0
-	b1zhcqYtmdfD7ysBRwov4uFwY4f/UsCdBOOSir8I+AYYMoFqyVJ/jwo7XzgnV2vR
-	A==
-Received: from nwd2mta4.analog.com ([137.71.173.58])
-	by mx0b-00128a01.pphosted.com (PPS) with ESMTPS id 47krqa110y-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Mon, 30 Jun 2025 10:02:14 -0400 (EDT)
-Received: from ASHBMBX9.ad.analog.com (ASHBMBX9.ad.analog.com [10.64.17.10])
-	by nwd2mta4.analog.com (8.14.7/8.14.7) with ESMTP id 55UE2Dbv054752
-	(version=TLSv1/SSLv3 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=FAIL);
-	Mon, 30 Jun 2025 10:02:13 -0400
-Received: from ASHBCASHYB4.ad.analog.com (10.64.17.132) by
- ASHBMBX9.ad.analog.com (10.64.17.10) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1748.10; Mon, 30 Jun 2025 10:02:13 -0400
-Received: from ASHBMBX8.ad.analog.com (10.64.17.5) by
- ASHBCASHYB4.ad.analog.com (10.64.17.132) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1748.10; Mon, 30 Jun 2025 10:02:13 -0400
-Received: from zeus.spd.analog.com (10.66.68.11) by ashbmbx8.ad.analog.com
- (10.64.17.5) with Microsoft SMTP Server id 15.2.1748.10 via Frontend
- Transport; Mon, 30 Jun 2025 10:02:13 -0400
-Received: from work.ad.analog.com (HYB-hERzalRezfV.ad.analog.com [10.65.205.9])
-	by zeus.spd.analog.com (8.15.1/8.15.1) with ESMTP id 55UE1uIV009320;
-	Mon, 30 Jun 2025 10:01:59 -0400
-From: Marcelo Schmitt <marcelo.schmitt@analog.com>
-To: <linux-iio@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-gpio@vger.kernel.org>, <linux-kernel@vger.kernel.org>
-CC: <jic23@kernel.org>, <lars@metafoo.de>, <Michael.Hennerich@analog.com>,
-        <dlechner@baylibre.com>, <nuno.sa@analog.com>, <andy@kernel.org>,
-        <robh@kernel.org>, <krzk+dt@kernel.org>, <conor+dt@kernel.org>,
-        <linus.walleij@linaro.org>, <brgl@bgdev.pl>, <broonie@kernel.org>,
-        <lgirdwood@gmail.com>, <marcelo.schmitt1@gmail.com>
-Subject: [PATCH v7 12/12] iio: adc: ad4170-4: Add timestamp channel
-Date: Mon, 30 Jun 2025 11:01:55 -0300
-Message-ID: <b7789604240f964ddeb756f9d17002371435f936.1751289747.git.marcelo.schmitt@analog.com>
-X-Mailer: git-send-email 2.39.2
-In-Reply-To: <cover.1751289747.git.marcelo.schmitt@analog.com>
-References: <cover.1751289747.git.marcelo.schmitt@analog.com>
+	s=arc-20240116; t=1751293063; c=relaxed/simple;
+	bh=TcnOsckU+VCULT+tXZk1ehzCEL4gv6Oqua1OqSumGdA=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=gTOiY3MzJAhwdJTRueMZIsMX2ZOaaIoqRGUHhtsnARsf8dII0uAJbM6GvKCVDgNjXe5bgMPeX74Ps01sGOe3y3PZ4duX6DxNeP1jZnVozKCRPYNjBk8WV8UvehHtlsDH9dx9SVlQGkvlvVjsVhLUyqWHFxess+St1hTZhpso0T4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=KdTxPY9I; arc=none smtp.client-ip=198.175.65.12
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1751293063; x=1782829063;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:content-transfer-encoding:in-reply-to;
+  bh=TcnOsckU+VCULT+tXZk1ehzCEL4gv6Oqua1OqSumGdA=;
+  b=KdTxPY9IabGrHfMzIOHeJpfVOWezYijI3lxpdLuI0iABNUX278L1BuNz
+   fAntk9bLnDZBKo38iUHCucR0lom6v+agMUgFida+/RR3FrcY5Sr/QC+/+
+   U2pTK6gBFSORs4+K7BNLa7wDGtB5aTGURblxGk4J00vTYlIn+4dYG9SWc
+   Er/nNjg/hi67boII5h4gx27pdUG+L25srsxf2LqtS7ib5VtD3RBvp+LhA
+   JrhlO/69TsLsd+GamxkCDQneER7xg2I9qwCr/EqfhESltGrYuJxDwqRCL
+   tZfazAxJXH4o7B/0NoTGxKy1dXrgUaTIsAcAbkFVUGVr1Tqcr1xCk5WKz
+   g==;
+X-CSE-ConnectionGUID: KIhMV7dWR96w6H4S79K4yQ==
+X-CSE-MsgGUID: Ui0Y9ls0RKm2zkneDF5M7g==
+X-IronPort-AV: E=McAfee;i="6800,10657,11480"; a="64968072"
+X-IronPort-AV: E=Sophos;i="6.16,277,1744095600"; 
+   d="scan'208";a="64968072"
+Received: from fmviesa004.fm.intel.com ([10.60.135.144])
+  by orvoesa104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 30 Jun 2025 07:17:42 -0700
+X-CSE-ConnectionGUID: sLL111bLR9qxA0VUn9e10g==
+X-CSE-MsgGUID: Zar/m6DpS8C0MBbsbCRe7Q==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.16,277,1744095600"; 
+   d="scan'208";a="158979840"
+Received: from smile.fi.intel.com ([10.237.72.52])
+  by fmviesa004.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 30 Jun 2025 07:17:37 -0700
+Received: from andy by smile.fi.intel.com with local (Exim 4.98.2)
+	(envelope-from <andriy.shevchenko@intel.com>)
+	id 1uWFKA-0000000BKTd-3dz6;
+	Mon, 30 Jun 2025 17:17:34 +0300
+Date: Mon, 30 Jun 2025 17:17:34 +0300
+From: Andy Shevchenko <andriy.shevchenko@intel.com>
+To: Krzysztof Kozlowski <krzk@kernel.org>
+Cc: ojeda@kernel.org,
+	=?iso-8859-1?Q?Jean-Fran=E7ois?= Lessard <jefflessard3@gmail.com>,
+	Andy Shevchenko <andy@kernel.org>, Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Geert Uytterhoeven <geert@linux-m68k.org>,
+	devicetree@vger.kernel.org, linux-leds@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	Andreas =?iso-8859-1?Q?F=E4rber?= <afaerber@suse.de>,
+	Boris Gjenero <boris.gjenero@gmail.com>,
+	Christian Hewitt <christianshewitt@gmail.com>,
+	Heiner Kallweit <hkallweit1@gmail.com>,
+	Paolo Sabatino <paolo.sabatino@gmail.com>
+Subject: Re: [PATCH v2 7/8] auxdisplay: Add Titanmec TM16xx 7-segment display
+ controllers driver
+Message-ID: <aGKcfuQdNtQjmVC8@smile.fi.intel.com>
+References: <20250629130002.49842-1-jefflessard3@gmail.com>
+ <20250629131830.50034-1-jefflessard3@gmail.com>
+ <47d24e31-1c6f-4299-aeaf-669c474c4459@kernel.org>
+ <aGI8a4iaOpN5HMQe@smile.fi.intel.com>
+ <57f0289a-7d82-4294-a1dc-c6986da0c5ce@kernel.org>
+ <aGJe2krBnrPXQiU6@smile.fi.intel.com>
+ <532c88b8-d938-4633-ac09-12bb3080a023@kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-ADIRuleOP-NewSCL: Rule Triggered
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwNjMwMDExNSBTYWx0ZWRfX5LkCLmfzYSu9
- 6QqUcjpluRlbMdGrsT4yRsBhbqnj7I0Bzy3wG2/XV3u9BaaOKjMMHK+v/qs142PW3vR3sOS/jGJ
- 7wvrwRIcil93y8cRTWDru+oBc8fX4BZznUiMcQcU+tUAmw12PnOlQLonn7OdJ/5MZd4AANrYVOW
- Iby3vcFNuP6098HWwWCll0BaFEWnAePKDu3IePZoAmM9kMYj/RffRy5Lu8o6HRkCyBhmiju+74n
- iKgUoL0W/oWZHHUkw+X55mQT9XWEUHhl2tOd8i67S9uG/uuUQpzFR+KpgM6RsxitkujLtu90wQh
- 3ZV/QGo8feuCCKEPybFwXNZ5b4y2hdzUfWmcV/pq2MQhK86e1n1mjjYq3TAvphiB6nfZ9sIUceY
- k1NdmBji80c3WPLphMn6Y5y2fajj01Gw9Ft3JZjKslkeXChIoHCyNQbpZYusUDMOslWk/+Vs
-X-Proofpoint-GUID: NdKChKeZMOnQNOqpp-26XfVk4kX_RgS5
-X-Proofpoint-ORIG-GUID: NdKChKeZMOnQNOqpp-26XfVk4kX_RgS5
-X-Authority-Analysis: v=2.4 cv=U8+SDfru c=1 sm=1 tr=0 ts=686298e6 cx=c_pps
- a=3WNzaoukacrqR9RwcOSAdA==:117 a=3WNzaoukacrqR9RwcOSAdA==:17
- a=6IFa9wvqVegA:10 a=gAnH3GRIAAAA:8 a=ooJTjvKFDTQpXrV7GjsA:9
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1099,Hydra:6.1.7,FMLib:17.12.80.40
- definitions=2025-06-30_03,2025-06-27_01,2025-03-28_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- priorityscore=1501 phishscore=0 impostorscore=0 spamscore=0 mlxlogscore=999
- lowpriorityscore=0 malwarescore=0 mlxscore=0 bulkscore=0 suspectscore=0
- adultscore=0 clxscore=1015 classifier=spam authscore=0 authtc=n/a authcc=
- route=outbound adjust=0 reason=mlx scancount=1 engine=8.19.0-2505280000
- definitions=main-2506300115
+In-Reply-To: <532c88b8-d938-4633-ac09-12bb3080a023@kernel.org>
+Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park, 6
+ krs, Bertel Jungin Aukio 5, 02600 Espoo
 
-Add timestamp channel allowing to record the moment at which ADC samples
-are captured in buffered read mode.
+On Mon, Jun 30, 2025 at 01:39:25PM +0200, Krzysztof Kozlowski wrote:
+> On 30/06/2025 11:54, Andy Shevchenko wrote:
+> > On Mon, Jun 30, 2025 at 11:27:21AM +0200, Krzysztof Kozlowski wrote:
+> >> On 30/06/2025 09:27, Andy Shevchenko wrote:
+> >>> On Mon, Jun 30, 2025 at 08:12:16AM +0200, Krzysztof Kozlowski wrote:
+> >>>> On 29/06/2025 15:18, Jean-François Lessard wrote:
 
-Signed-off-by: Marcelo Schmitt <marcelo.schmitt@analog.com>
----
-No changes since v5.
+...
 
- drivers/iio/adc/ad4170-4.c | 21 +++++++++++++++++----
- 1 file changed, 17 insertions(+), 4 deletions(-)
+> >>>>> +	display->leds =
+> >>>>> +		devm_kcalloc(dev, display->num_leds, sizeof(*display->leds), GFP_KERNEL);
+> >>>>
+> >>>> Wrong wrapping. Use kernel style, not clang style.
+> >>>>
+> >>>>
+> >>>>> +	if (!display->leds)
+> >>>>> +		return -ENOMEM;
+> >>>
+> >>> Just wondering how .clang-format is official? Note some of the maintainers even
+> >>
+> >> First time I hear above clang style is preferred. Where is it expected?
+> > 
+> > Documented here:
+> > https://www.kernel.org/doc/html/latest/process/coding-style.html#you-ve-made-a-mess-of-it
+> 
+> I mean, which maintainers prefer such style of wrapping. Above I know,
+> but it does not solve the discussion we have here - above line wrapping
+> preferred by clang and opposite to most of the kernel code.
 
-diff --git a/drivers/iio/adc/ad4170-4.c b/drivers/iio/adc/ad4170-4.c
-index 05730e36deea..b1476479b950 100644
---- a/drivers/iio/adc/ad4170-4.c
-+++ b/drivers/iio/adc/ad4170-4.c
-@@ -187,6 +187,7 @@
- #define AD4170_NUM_ANALOG_PINS				9
- #define AD4170_NUM_GPIO_PINS				4
- #define AD4170_MAX_CHANNELS				16
-+#define AD4170_MAX_IIO_CHANNELS				(AD4170_MAX_CHANNELS + 1)
- #define AD4170_MAX_ANALOG_PINS				8
- #define AD4170_MAX_SETUPS				8
- #define AD4170_INVALID_SETUP				9
-@@ -439,7 +440,7 @@ struct ad4170_state {
- 	int vrefs_uv[AD4170_MAX_SUP];
- 	u32 mclk_hz;
- 	struct ad4170_setup_info setup_infos[AD4170_MAX_SETUPS];
--	struct iio_chan_spec chans[AD4170_MAX_CHANNELS];
-+	struct iio_chan_spec chans[AD4170_MAX_IIO_CHANNELS];
- 	struct ad4170_chan_info chan_infos[AD4170_MAX_CHANNELS];
- 	struct spi_device *spi;
- 	struct regmap *regmap;
-@@ -456,6 +457,7 @@ struct ad4170_state {
- 	unsigned int clock_ctrl;
- 	int gpio_fn[AD4170_NUM_GPIO_PINS];
- 	unsigned int cur_src_pins[AD4170_NUM_CURRENT_SRC];
-+	unsigned int num_adc_chans;
- 	/*
- 	 * DMA (thus cache coherency maintenance) requires the transfer buffers
- 	 * to live in their own cache lines.
-@@ -2395,7 +2397,16 @@ static int ad4170_parse_channels(struct iio_dev *indio_dev)
- 			return dev_err_probe(dev, ret, "Invalid input config\n");
- 
- 		st->chan_infos[chan_num].input_range_uv = ret;
-+		chan_num++;
- 	}
-+	st->num_adc_chans = chan_num;
-+
-+	/* Add timestamp channel */
-+	struct iio_chan_spec ts_chan = IIO_CHAN_SOFT_TIMESTAMP(chan_num);
-+
-+	st->chans[chan_num] = ts_chan;
-+	num_channels = num_channels + 1;
-+
- 	indio_dev->num_channels = num_channels;
- 	indio_dev->channels = st->chans;
- 
-@@ -2608,7 +2619,7 @@ static int ad4170_initial_config(struct iio_dev *indio_dev)
- 		return dev_err_probe(dev, ret,
- 				     "Failed to set ADC mode to idle\n");
- 
--	for (i = 0; i < indio_dev->num_channels; i++) {
-+	for (i = 0; i < st->num_adc_chans; i++) {
- 		struct ad4170_chan_info *chan_info;
- 		struct iio_chan_spec const *chan;
- 		struct ad4170_setup *setup;
-@@ -2733,7 +2744,7 @@ static int ad4170_buffer_predisable(struct iio_dev *indio_dev)
- 	 * is done after buffer disable. Disable all channels so only requested
- 	 * channels will be read.
- 	 */
--	for (i = 0; i < indio_dev->num_channels; i++) {
-+	for (i = 0; i < st->num_adc_chans; i++) {
- 		ret = ad4170_set_channel_enable(st, i, false);
- 		if (ret)
- 			return ret;
-@@ -2785,7 +2796,9 @@ static irqreturn_t ad4170_trigger_handler(int irq, void *p)
- 		memcpy(&st->bounce_buffer[i++], st->rx_buf, ARRAY_SIZE(st->rx_buf));
- 	}
- 
--	iio_push_to_buffers(indio_dev, st->bounce_buffer);
-+	iio_push_to_buffers_with_ts(indio_dev, st->bounce_buffer,
-+				    sizeof(st->bounce_buffer),
-+				    iio_get_time_ns(indio_dev));
- err_out:
- 	iio_trigger_notify_done(indio_dev->trig);
- 	return IRQ_HANDLED;
+IIRC Dan Williams (as you might have deduced already from the links).
+
+> > For example, discussed here
+> > https://lore.kernel.org/lkml/CAPcyv4ij3s+9uO0f9aLHGj3=ACG7hAjZ0Rf=tyFmpt3+uQyymw@mail.gmail.com/
+> 
+> Heh, I read it and two emails earlier and still could not get they
+> prefer to wrap at assignment instead of standard checkpatch-preferred
+> wrapping at arguments.
+> 
+> > or here
+> > https://lore.kernel.org/lkml/64dbeffcf243a_47b5729487@dwillia2-mobl3.amr.corp.intel.com.notmuch/
+> 
+> This is line length, so not the problem discussed here.
+
+Ah, okay.
+
+> > or
+> > ...
+> > 
+> >> I assume clang-format is half-working and should not be used blindly,
+> >> but fixed to match actual kernel coding style.
+> > 
+> > That sounds like the case, at least in accordance with Miguel.
+> > 
+> >>> prefer (ugly in some cases in my opinion) style because it's generated by the
+> >>> clang-format.
+
 -- 
-2.47.2
+With Best Regards,
+Andy Shevchenko
+
 
 
