@@ -1,124 +1,403 @@
-Return-Path: <devicetree+bounces-191115-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-191116-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id C2FF7AEDF31
-	for <lists+devicetree@lfdr.de>; Mon, 30 Jun 2025 15:34:30 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 30DA0AEDF3C
+	for <lists+devicetree@lfdr.de>; Mon, 30 Jun 2025 15:36:27 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 6303316F6C2
-	for <lists+devicetree@lfdr.de>; Mon, 30 Jun 2025 13:34:21 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 7BA5D16F3B1
+	for <lists+devicetree@lfdr.de>; Mon, 30 Jun 2025 13:36:27 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6865428B3F6;
-	Mon, 30 Jun 2025 13:34:04 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0EFAB28B41D;
+	Mon, 30 Jun 2025 13:36:23 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b="v8diNR3H"
+	dkim=pass (2048-bit key) header.d=flygoat.com header.i=@flygoat.com header.b="1Ck77Bxu";
+	dkim=pass (2048-bit key) header.d=messagingengine.com header.i=@messagingengine.com header.b="OAgRftnr"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-oi1-f177.google.com (mail-oi1-f177.google.com [209.85.167.177])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from fhigh-b5-smtp.messagingengine.com (fhigh-b5-smtp.messagingengine.com [202.12.124.156])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8BA26286D70
-	for <devicetree@vger.kernel.org>; Mon, 30 Jun 2025 13:34:02 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.177
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 802AA2CCC9;
+	Mon, 30 Jun 2025 13:36:20 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=202.12.124.156
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1751290444; cv=none; b=U1yJjZFgEbhAcTajSh+h20suUjL+kazA/NDIgQyRKL3DhAKeYgUxdKNK+hdEWzF6/DO/UbL/VspYUgX61xEc9otvsmDFMHh2tvqNx2r9g0xEZQY36ZRLz9+Sz+00l7LgUjH14ExDfaYkQITojTXQaFONxfOMAsmfmd+33rJk63Y=
+	t=1751290582; cv=none; b=oFr9C99ldm3VmZ1pQRZ/Alu2w0DnflcWOPkT8cLLE9TQSYW33/v2bq8PNzLZWlB4NkbbUH600qnTEpUiOWU+chGY9s1UQquGKe5LXY3o92J3XAhUyKggGlu3MunPWFOarlbgwv4wphi1tYflldqeFfUUaLlnFWErSvkzEk5SQVo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1751290444; c=relaxed/simple;
-	bh=+OYEUNuuqfT76DUEXC9cb8th/BNnZVNtFEhDcL9FgBU=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=bpM/zy0cI7qLPBDSVAR6mJr2804YRFcuNgYwXOnbu/03lArw6HPIFsYtuG2vhd3M3txyYLYssufcXijPpDvTZGG9zUuuZhqQ0DBuM1HB3YV+ryaVrK1gvkAeRji2aqGpUmCOszgqWViGQG+P3FUQ9rUoyHQ0jOLlfENjLlns8js=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com; spf=pass smtp.mailfrom=baylibre.com; dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b=v8diNR3H; arc=none smtp.client-ip=209.85.167.177
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=baylibre.com
-Received: by mail-oi1-f177.google.com with SMTP id 5614622812f47-40b1f402deaso2655884b6e.3
-        for <devicetree@vger.kernel.org>; Mon, 30 Jun 2025 06:34:02 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1751290442; x=1751895242; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=0BiiBnavNW6W4WxDDv13yLMK/TA99VJbY73iccUOu8o=;
-        b=v8diNR3HsU3PDvWM/sNs4zmM8sIO1GHPl+Ku3+XOFYDi8aWK/kcRyCACuKux2Splt/
-         bm0uq4yaKt5qeSApXvNk/KJgsZxS+pfLZ7lE1TGp6tE9h54VYaM9x1tbPfi++3X5u5Xk
-         kml4V/8LJG1vWB01KONJQkbluOkF7X7IlwI/w9Z5zey+QgdDnxNwLxeesGecs32FVOZ1
-         WAzI0BZPJlSQStnAbYoSduibF1GWOQhUh7qPOKfdydr2Y3unto86xIXRvas7P+y0aOKu
-         zvAQmlNwNKBYEuXHtmR5b5NdVTldXG+Fl7T9/5B1s/GYvulieNz+IGpR6BDbHi4M05WC
-         y8Cg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1751290442; x=1751895242;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=0BiiBnavNW6W4WxDDv13yLMK/TA99VJbY73iccUOu8o=;
-        b=ar77uAmqrWj2iSd+aXbldJvYZWjDkrJlGkUt8ILsuUjDyNM+aTosJUi//vGoS9sD8j
-         4f0njXPV0q7/B3K52Wmic8Uclkrl1JcfFDwf2zHiDXcwHYqMwXeytNTZuiixNqeJozop
-         yHBLsRE3xHraUVmlMcgwVOm/HBYEho+ySsDurKNXCQpVC7KeM/MOhasqmgSzvmaKXAba
-         LlIJtXSCsyrrsXtR09FC/ZmCtv435+MMxZH6lq86Pq1GacvjvUGIzfernPgy8c6bK5d0
-         XW/KVU9AusBvPjhl+1iqkjM03eBhNvHR5HoG5mou0GugXf5aOxC+YrIZDvAskYngK+7z
-         RI/Q==
-X-Forwarded-Encrypted: i=1; AJvYcCUJCpk/FU168ZqMxdIvUEtFi1AgLIkoi/dbw3zh42uic+oJOUZ/7yCW7mWsplg/ET1l9IapTdlI2T0g@vger.kernel.org
-X-Gm-Message-State: AOJu0YyELbJYvhljEcaG+HoKO+Jm9zKIbFmIpdUpsBS/9X/PRrjgeh2c
-	fhRdhYW4iSpJPzP3dHDDplpk2hZCVAdQ5uCDCSdVrIrUBGNYjBPt5/Ar0l3YWN5cnfI=
-X-Gm-Gg: ASbGncu5BZkIpoOulRvO94BdgfEM2im5dpN80/plij5XY4n9uCH143qS4CJMS/NyYkj
-	RtgJI8L4lMmLTbpah4RI+0DGzeQn22y3mgBcLl5TEBvtzVS9omZPssJhDUdZdHN845Oenia8Gp+
-	c2X9ECQYhD7haK+2St51lPqOCSRWQFr91q4EUZOLXHCe4Iff8Yt4X+Qe+zts4pvBf9fubL37aC4
-	Q9HBY9i2zrjEcuskyYajNcCAWRlPuEy2H1HHG5hV8JIDwCHNSeO6UYCVhr52gTfKysMPJp1Ac3X
-	uBmd6RJMtKveH1LTQJ8s3IAAZdjORB1YKf/4aHNupT5obOgyeebD1g+n2DgdlE+tbjAktVCZ0q4
-	mUpEJCAb92OkvOJCMxHLs+c4bt579qLgO9vxn0aI=
-X-Google-Smtp-Source: AGHT+IHwwHp/hPBSXiWOFPICfvksDPCGUtg2Iq6Zl8mO+cjrCNlALoXBQc3229XEU/HYM2O/8w7obg==
-X-Received: by 2002:a05:6808:80c9:b0:3fe:af08:65b5 with SMTP id 5614622812f47-40b33ea62f0mr11211317b6e.37.1751290441614;
-        Mon, 30 Jun 2025 06:34:01 -0700 (PDT)
-Received: from ?IPV6:2600:8803:e7e4:1d00:4876:5a0d:2fea:6208? ([2600:8803:e7e4:1d00:4876:5a0d:2fea:6208])
-        by smtp.gmail.com with ESMTPSA id 006d021491bc7-611b8474dadsm1077151eaf.5.2025.06.30.06.33.59
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 30 Jun 2025 06:34:01 -0700 (PDT)
-Message-ID: <e4c7296d-6afe-4edb-b26f-44218e660a80@baylibre.com>
-Date: Mon, 30 Jun 2025 08:33:59 -0500
+	s=arc-20240116; t=1751290582; c=relaxed/simple;
+	bh=Pb4IoNggSqEdmedEpRIpUE25EINncePR4G0HuxwQTSA=;
+	h=MIME-Version:Date:From:To:Cc:Message-Id:In-Reply-To:References:
+	 Subject:Content-Type; b=PrSY4vAUjVe+B9Bqlws3wJzQ0gpJscVbpOUMlr/FskLLbN6/MNdfCVfJUu5UDDUxrhdiMBWmKAYOyTVzyUgAZjf6xn/hoiavAHrB5ccVW/TBjCITLGW1dQpzZpbMbNloTG6MSnh/NXjY/w22Rv09RLkxolJp7QkldzLtg7wc2jE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=flygoat.com; spf=pass smtp.mailfrom=flygoat.com; dkim=pass (2048-bit key) header.d=flygoat.com header.i=@flygoat.com header.b=1Ck77Bxu; dkim=pass (2048-bit key) header.d=messagingengine.com header.i=@messagingengine.com header.b=OAgRftnr; arc=none smtp.client-ip=202.12.124.156
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=flygoat.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=flygoat.com
+Received: from phl-compute-06.internal (phl-compute-06.phl.internal [10.202.2.46])
+	by mailfhigh.stl.internal (Postfix) with ESMTP id AB4B17A028A;
+	Mon, 30 Jun 2025 09:36:18 -0400 (EDT)
+Received: from phl-imap-08 ([10.202.2.84])
+  by phl-compute-06.internal (MEProxy); Mon, 30 Jun 2025 09:36:19 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=flygoat.com; h=
+	cc:cc:content-transfer-encoding:content-type:content-type:date
+	:date:from:from:in-reply-to:in-reply-to:message-id:mime-version
+	:references:reply-to:subject:subject:to:to; s=fm3; t=1751290578;
+	 x=1751376978; bh=sEJ54Vv0MKysQVh8ZZThGPEIYeoAzfDcUt3/WS4I3aY=; b=
+	1Ck77Bxu+qRsqjIc1GeGMqiDluXPHlmc+u3HsUpCc+yE/m+C059TvHvzdeDfTZCg
+	DjiqvmmRwA0iu2Z6E3vMmDpRxggdAYq9a3cQGdL1IAniwdVTeXXU9DCAP0tEF3ZG
+	7vP4LQ+5TXAcaa6YJyx+XPcqaqutHaoxZU1QGv4A2RUcdWEKiwYL3C2buhuAJeY9
+	53Rtrtb4gokLy7alPCtC5KzHJC/xyDO3o8wEtdWf/Iad7rLzfg6AjlQLSyoKzn+O
+	o13WYWe/ibIwpZH7BMeC9qav3wED/iUmkwbVvpZkaUt/N7LadKdF/YLpr4DSofCh
+	frtgWjzOvovE6apgC7Kt7A==
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
+	messagingengine.com; h=cc:cc:content-transfer-encoding
+	:content-type:content-type:date:date:feedback-id:feedback-id
+	:from:from:in-reply-to:in-reply-to:message-id:mime-version
+	:references:reply-to:subject:subject:to:to:x-me-proxy
+	:x-me-sender:x-me-sender:x-sasl-enc; s=fm2; t=1751290578; x=
+	1751376978; bh=sEJ54Vv0MKysQVh8ZZThGPEIYeoAzfDcUt3/WS4I3aY=; b=O
+	AgRftnrSCElHAYl69PJH2WAxdW0C+xo13S2wIHkPj75qtg+c8mmcEwkvCFToqJ7O
+	EH6AL51wdbAeiP94nXWQtZAWm72XlxFLvuVKEooVBkZlBvwHJZAXoCg72QHA2ndj
+	XVfwgAOSHEYGCbwp4A5KStMEWhKFYTCJrSHXJ1A5IDhMDxCh6x1+/OkP+hrHadLR
+	JldCChL0jabESvngrlVjP7VrA3QjKOMn48mLvi3nuxV1qvw9tvW/pWleiup6hqfU
+	zY+ouVL6BtKrVRSq6fyXLt4gVvCLR2z7JflbsYm6HS5S715o6oiPIHfdpHqUxj9F
+	o9Pla5umPveFZtTMKHcpw==
+X-ME-Sender: <xms:ypJiaAGUKc9juD2ygJc6gAQDRDDb69IhFLXjikqdogHKGGbG6WVrOA>
+    <xme:ypJiaJUGjybum50JJYy259ashIWukFEOdIFn0F88VPQAomV-jQSC25ZCq-UrYqQnX
+    nYwIowVR-TBvEpVQOI>
+X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgeeffedrtdefgdduudekfecutefuodetggdotefrod
+    ftvfcurfhrohhfihhlvgemucfhrghsthforghilhdpuffrtefokffrpgfnqfghnecuuegr
+    ihhlohhuthemuceftddtnecusecvtfgvtghiphhivghnthhsucdlqddutddtmdenucfjug
+    hrpefoggffhffvvefkjghfufgtgfesthhqredtredtjeenucfhrhhomhepfdflihgrgihu
+    nhcujggrnhhgfdcuoehjihgrgihunhdrhigrnhhgsehflhihghhorghtrdgtohhmqeenuc
+    ggtffrrghtthgvrhhnpeejheefuddvtdfggfdvffekteehhfelgfdvvedvkeeuffefkeeh
+    heegvefhveetjeenucevlhhushhtvghrufhiiigvpedtnecurfgrrhgrmhepmhgrihhlfh
+    hrohhmpehjihgrgihunhdrhigrnhhgsehflhihghhorghtrdgtohhmpdhnsggprhgtphht
+    thhopeeffedpmhhouggvpehsmhhtphhouhhtpdhrtghpthhtohepthhssghoghgvnhguse
+    grlhhphhgrrdhfrhgrnhhkvghnrdguvgdprhgtphhtthhopehlihhnuhigsegrrhhmlhhi
+    nhhugidrohhrghdruhhkpdhrtghpthhtoheptgihrhhilhhlvgdrphhithgthhgvnhesrg
+    htmhgvlhdrtghomhdprhgtphhtthhopehhshhkihhnnhgvmhhovghnsegrthhmvghlrdgt
+    ohhmpdhrtghpthhtohepghhrvghgohhrhidrtghlvghmvghnthessghoohhtlhhinhdrtg
+    homhdprhgtphhtthhopehthhgvohdrlhgvsghruhhnsegsohhothhlihhnrdgtohhmpdhr
+    tghpthhtohepthhhohhmrghsrdhpvghtrgiiiihonhhisegsohhothhlihhnrdgtohhmpd
+    hrtghpthhtoheprhgrfhgrlhhosegtrgguvghntggvrdgtohhmpdhrtghpthhtohepphgr
+    lhhmvghrsegurggssggvlhhtrdgtohhm
+X-ME-Proxy: <xmx:ypJiaKIDjCkyusFfkgBNhMk7LFXNmT2o5Ag8yvPSvsmTvlLeZDbKjw>
+    <xmx:ypJiaCGEHJZPw4N69DXz1l8BumTrqz_MAivU6Za3Vemr2WQqzvdbNA>
+    <xmx:ypJiaGWsiTEyymJTuPjZLZFpQUpXPG1ze56EMEjdaeMBqRKh8oOHOQ>
+    <xmx:ypJiaFPBg8zesaEEF8vBWRkELBv3dpBarBlIvB2si3vDbZEJgwwVug>
+    <xmx:0pJiaPk5vhhp_Whm7tXgy9jrXCmp5NUUyrActcYcLCuoup2TS2gBQij_>
+Feedback-ID: ifd894703:Fastmail
+Received: by mailuser.phl.internal (Postfix, from userid 501)
+	id C28682CE0071; Mon, 30 Jun 2025 09:36:10 -0400 (EDT)
+X-Mailer: MessagingEngine.com Webmail Interface
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 04/11] iio: adc: ad_sigma_delta: use BITS_TO_BYTES()
- macro
-To: Andy Shevchenko <andriy.shevchenko@intel.com>,
- Jonathan Cameron <jic23@kernel.org>
-Cc: Michael Hennerich <Michael.Hennerich@analog.com>,
- =?UTF-8?Q?Nuno_S=C3=A1?= <nuno.sa@analog.com>,
- Andy Shevchenko <andy@kernel.org>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Mark Brown <broonie@kernel.org>,
- linux-iio@vger.kernel.org, linux-kernel@vger.kernel.org,
- devicetree@vger.kernel.org, linux-spi@vger.kernel.org
-References: <20250627-iio-adc-ad7173-add-spi-offload-support-v2-0-f49c55599113@baylibre.com>
- <20250627-iio-adc-ad7173-add-spi-offload-support-v2-4-f49c55599113@baylibre.com>
- <20250628155643.7c18e023@jic23-huawei> <aGJR_YyW5tCMjxUD@smile.fi.intel.com>
-Content-Language: en-US
-From: David Lechner <dlechner@baylibre.com>
-In-Reply-To: <aGJR_YyW5tCMjxUD@smile.fi.intel.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+X-ThreadId: T1801f58283c6cf22
+Date: Mon, 30 Jun 2025 14:35:50 +0100
+From: "Jiaxun Yang" <jiaxun.yang@flygoat.com>
+To: =?UTF-8?Q?Th=C3=A9o_Lebrun?= <theo.lebrun@bootlin.com>,
+ "Andrew Lunn" <andrew+netdev@lunn.ch>,
+ "David S . Miller" <davem@davemloft.net>,
+ "Eric Dumazet" <edumazet@google.com>, "Jakub Kicinski" <kuba@kernel.org>,
+ "Paolo Abeni" <pabeni@redhat.com>, "Rob Herring" <robh@kernel.org>,
+ "Krzysztof Kozlowski" <krzk+dt@kernel.org>,
+ "Conor Dooley" <conor+dt@kernel.org>,
+ "Nicolas Ferre" <nicolas.ferre@microchip.com>,
+ "Claudiu Beznea" <claudiu.beznea@tuxon.dev>,
+ "Paul Walmsley" <paul.walmsley@sifive.com>,
+ "Palmer Dabbelt" <palmer@dabbelt.com>,
+ "Albert Ou" <aou@eecs.berkeley.edu>, "Alexandre Ghiti" <alex@ghiti.fr>,
+ "Samuel Holland" <samuel.holland@sifive.com>,
+ "Richard Cochran" <richardcochran@gmail.com>,
+ "Russell King" <linux@armlinux.org.uk>,
+ "Thomas Bogendoerfer" <tsbogend@alpha.franken.de>,
+ "Vladimir Kondratiev" <vladimir.kondratiev@mobileye.com>,
+ "Gregory CLEMENT" <gregory.clement@bootlin.com>,
+ "Cyrille Pitchen" <cyrille.pitchen@atmel.com>,
+ "Harini Katakam" <harini.katakam@xilinx.com>,
+ "Rafal Ozieblo" <rafalo@cadence.com>,
+ "Haavard Skinnemoen" <hskinnemoen@atmel.com>,
+ "Jeff Garzik" <jeff@garzik.org>
+Cc: netdev@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, linux-riscv@lists.infradead.org,
+ "linux-mips@vger.kernel.org" <linux-mips@vger.kernel.org>,
+ "Thomas Petazzoni" <thomas.petazzoni@bootlin.com>,
+ "Tawfik Bayouk" <tawfik.bayouk@mobileye.com>
+Message-Id: <984c1bea-7020-4121-9fea-7d657a5e8da1@app.fastmail.com>
+In-Reply-To: <20250627-macb-v2-16-ff8207d0bb77@bootlin.com>
+References: <20250627-macb-v2-0-ff8207d0bb77@bootlin.com>
+ <20250627-macb-v2-16-ff8207d0bb77@bootlin.com>
+Subject: Re: [PATCH net-next v2 16/18] MIPS: mobileye: add EyeQ5 DMA IOCU support
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
 
-On 6/30/25 3:59 AM, Andy Shevchenko wrote:
-> On Sat, Jun 28, 2025 at 03:56:43PM +0100, Jonathan Cameron wrote:
->> On Fri, 27 Jun 2025 18:40:00 -0500
->> David Lechner <dlechner@baylibre.com> wrote:
-> 
-> ...
-> 
->>> -	samples_buf_size = ALIGN(slot * indio_dev->channels[0].scan_type.storagebits / 8, 8);
->>> +	samples_buf_size = ALIGN(slot * BITS_TO_BYTES(scan_type->storagebits), 8);
->>
->> Ah. You do it here. Fair enough and no problem wrt to patch 1 then.
-> 
-> Hmm... Should the second 8 be something like sizeof(unsigned long lone) for
-> semantic distinguishing with 8-bit bytes?
-> 
 
-Yeah, I considered to use sizeof(s64) to match the next line, but it
-it seems like a separate change, so in the end I decided against doing
-it in this patch and it seems too small of a thing for a separate patch.
+
+=E5=9C=A82025=E5=B9=B46=E6=9C=8827=E6=97=A5=E5=91=A8=E4=BA=94 =E4=B8=8A=E5=
+=8D=8810:09=EF=BC=8CTh=C3=A9o Lebrun=E5=86=99=E9=81=93=EF=BC=9A
+> Both Cadence GEM Ethernet controllers on EyeQ5 are hardwired through C=
+M3
+> IO Coherency Units (IOCU). For DMA coherent accesses, BIT(36) must be
+> set in DMA addresses.
+
+Hi Th=C3=A9o,
+
+Just quick question, it seems like this special driver is only applying a
+fixed offset (1 << 36) to the DMA physical address, can we achieve that =
+with dma-ranges
+property in DeviceTree?
+
+I belive:
+```
+dma-coherent;
+             # Bus addr       # Phys  # Size
+dma-ranges =3D <0x10 0x00000000 0x0 0x0 0x10 0>;
+```
+
+Will do the job.
+
+Thanks
+Jiaxun
+>
+> Implement that in platform-specific dma_map_ops which get attached to
+> both instances of `cdns,eyeq5-gem` through a notifier block.
+>
+> Signed-off-by: Th=C3=A9o Lebrun <theo.lebrun@bootlin.com>
+> ---
+>  MAINTAINERS                         |   2 +-
+>  arch/mips/mobileye/Kconfig          |   1 +
+>  arch/mips/mobileye/Makefile         |   2 +
+>  arch/mips/mobileye/eyeq5-iocu-dma.c | 160 +++++++++++++++++++++++++++=
++++++++++
+>  4 files changed, 164 insertions(+), 1 deletion(-)
+>
+> diff --git a/MAINTAINERS b/MAINTAINERS
+> index=20
+> bb9df569a3fff41ab40d7da5843f1e8564b47bf2..7ee68d7f8e8d0632846f59579412=
+458e301bd8fb=20
+> 100644
+> --- a/MAINTAINERS
+> +++ b/MAINTAINERS
+> @@ -16789,7 +16789,7 @@=20
+> F:	Documentation/devicetree/bindings/mips/mobileye.yaml
+>  F:	Documentation/devicetree/bindings/soc/mobileye/
+>  F:	arch/mips/boot/dts/mobileye/
+>  F:	arch/mips/configs/eyeq5_defconfig
+> -F:	arch/mips/mobileye/board-epm5.its.S
+> +F:	arch/mips/mobileye/
+>  F:	drivers/clk/clk-eyeq.c
+>  F:	drivers/pinctrl/pinctrl-eyeq5.c
+>  F:	drivers/reset/reset-eyeq.c
+> diff --git a/arch/mips/mobileye/Kconfig b/arch/mips/mobileye/Kconfig
+> index=20
+> f9abb2d6e1787dbc5a173db48606ed5a02088e41..b9040f3a9b3ddc7f5addcd8e5f11=
+0cb9c775b6b1=20
+> 100644
+> --- a/arch/mips/mobileye/Kconfig
+> +++ b/arch/mips/mobileye/Kconfig
+> @@ -9,6 +9,7 @@ choice
+>=20
+>  	config MACH_EYEQ5
+>  		bool "Mobileye EyeQ5 SoC"
+> +		select ARCH_HAS_DMA_OPS
+>=20
+>  	config MACH_EYEQ6H
+>  		bool "Mobileye EyeQ6H SoC"
+> diff --git a/arch/mips/mobileye/Makefile b/arch/mips/mobileye/Makefile
+> index=20
+> 315c06b689cfbb83f9f205d1140ecf5058e2aa02..50fc7d0ae167c3fb3dc8585bcd45=
+583c6cc3f2d2=20
+> 100644
+> --- a/arch/mips/mobileye/Makefile
+> +++ b/arch/mips/mobileye/Makefile
+> @@ -1 +1,3 @@
+>  # SPDX-License-Identifier: GPL-2.0-or-later
+> +
+> +obj-$(CONFIG_MACH_EYEQ5)               +=3D eyeq5-iocu-dma.o
+> diff --git a/arch/mips/mobileye/eyeq5-iocu-dma.c=20
+> b/arch/mips/mobileye/eyeq5-iocu-dma.c
+> new file mode 100644
+> index=20
+> 0000000000000000000000000000000000000000..71d1c35f911636db141c4467dccc=
+405af69835ec
+> --- /dev/null
+> +++ b/arch/mips/mobileye/eyeq5-iocu-dma.c
+> @@ -0,0 +1,160 @@
+> +// SPDX-License-Identifier: GPL-2.0
+> +
+> +#include <linux/bits.h>
+> +#include <linux/device.h>
+> +#include <linux/device/bus.h>
+> +#include <linux/dma-direct.h>
+> +#include <linux/dma-direction.h>
+> +#include <linux/dma-map-ops.h>
+> +#include <linux/dma-mapping.h>
+> +#include <linux/errno.h>
+> +#include <linux/export.h>
+> +#include <linux/gfp_types.h>
+> +#include <linux/init.h>
+> +#include <linux/mm.h>
+> +#include <linux/mm_types.h>
+> +#include <linux/notifier.h>
+> +#include <linux/pfn.h>
+> +#include <linux/platform_device.h>
+> +#include <linux/property.h>
+> +#include <linux/scatterlist.h>
+> +#include <linux/types.h>
+> +
+> +static void *eyeq5_iocu_alloc(struct device *dev, size_t size,
+> +			      dma_addr_t *dma_handle, gfp_t gfp,
+> +			      unsigned long attrs)
+> +{
+> +	void *p =3D dma_direct_alloc(dev, size, dma_handle, gfp, attrs);
+> +
+> +	*dma_handle |=3D BIT_ULL(36);
+> +	return p;
+> +}
+> +
+> +static void eyeq5_iocu_free(struct device *dev, size_t size,
+> +			    void *vaddr, dma_addr_t dma_handle,
+> +			    unsigned long attrs)
+> +{
+> +	dma_handle &=3D ~BIT_ULL(36);
+> +	dma_direct_free(dev, size, vaddr, dma_handle, attrs);
+> +}
+> +
+> +static int eyeq5_iocu_mmap(struct device *dev, struct vm_area_struct=20
+> *vma,
+> +			   void *cpu_addr, dma_addr_t dma_addr, size_t size,
+> +			   unsigned long attrs)
+> +{
+> +	unsigned long pfn =3D PHYS_PFN(dma_to_phys(dev, dma_addr));
+> +	unsigned long count =3D PAGE_ALIGN(size) >> PAGE_SHIFT;
+> +	unsigned long user_count =3D vma_pages(vma);
+> +	int ret;
+> +
+> +	vma->vm_page_prot =3D dma_pgprot(dev, vma->vm_page_prot, attrs);
+> +
+> +	if (dma_mmap_from_dev_coherent(dev, vma, cpu_addr, size, &ret))
+> +		return ret;
+> +
+> +	if (vma->vm_pgoff >=3D count || user_count > count - vma->vm_pgoff)
+> +		return -ENXIO;
+> +
+> +	return remap_pfn_range(vma, vma->vm_start, pfn + vma->vm_pgoff,
+> +			       user_count << PAGE_SHIFT, vma->vm_page_prot);
+> +}
+> +
+> +static int eyeq5_iocu_get_sgtable(struct device *dev, struct sg_table=20
+> *sgt,
+> +				  void *cpu_addr, dma_addr_t dma_addr, size_t size,
+> +				  unsigned long attrs)
+> +{
+> +	struct page *page =3D virt_to_page(cpu_addr);
+> +	int ret;
+> +
+> +	ret =3D sg_alloc_table(sgt, 1, GFP_KERNEL);
+> +	if (!ret)
+> +		sg_set_page(sgt->sgl, page, PAGE_ALIGN(size), 0);
+> +	return ret;
+> +}
+> +
+> +static dma_addr_t eyeq5_iocu_map_page(struct device *dev, struct page=20
+> *page,
+> +				      unsigned long offset, size_t size,
+> +				      enum dma_data_direction dir,
+> +				      unsigned long attrs)
+> +{
+> +	phys_addr_t phys =3D page_to_phys(page) + offset;
+> +
+> +	/* BIT(36) toggles routing through IOCU for DMA operations. */
+> +	return phys_to_dma(dev, phys) | BIT_ULL(36);
+> +}
+> +
+> +static void eyeq5_iocu_unmap_page(struct device *dev, dma_addr_t=20
+> dma_handle,
+> +				  size_t size, enum dma_data_direction dir,
+> +		unsigned long attrs)
+> +{
+> +}
+> +
+> +static int eyeq5_iocu_map_sg(struct device *dev, struct scatterlist=20
+> *sgl,
+> +			     int nents, enum dma_data_direction dir,
+> +			     unsigned long attrs)
+> +{
+> +	struct scatterlist *sg;
+> +	int i;
+> +
+> +	for_each_sg(sgl, sg, nents, i) {
+> +		sg->dma_address =3D eyeq5_iocu_map_page(dev, sg_page(sg),
+> +						      sg->offset, sg->length,
+> +						      dir, attrs);
+> +		if (sg->dma_address =3D=3D DMA_MAPPING_ERROR)
+> +			return 0; /* No cleanup because ->unmap_page() is a no-op. */
+> +		sg_dma_len(sg) =3D sg->length;
+> +	}
+> +
+> +	return nents;
+> +}
+> +
+> +static void eyeq5_iocu_unmap_sg(struct device *dev, struct scatterlis=
+t=20
+> *sgl,
+> +				int nents, enum dma_data_direction dir,
+> +				unsigned long attrs)
+> +{
+> +	/* We know page ->unmap_page() is a no-op. */
+> +}
+> +
+> +const struct dma_map_ops eyeq5_iocu_ops =3D {
+> +	.alloc			=3D eyeq5_iocu_alloc,
+> +	.free			=3D eyeq5_iocu_free,
+> +	.alloc_pages_op		=3D dma_direct_alloc_pages,
+> +	.free_pages		=3D dma_direct_free_pages,
+> +	.mmap			=3D eyeq5_iocu_mmap,
+> +	.get_sgtable		=3D eyeq5_iocu_get_sgtable,
+> +	.map_page		=3D eyeq5_iocu_map_page,
+> +	.unmap_page		=3D eyeq5_iocu_unmap_page,
+> +	.map_sg			=3D eyeq5_iocu_map_sg,
+> +	.unmap_sg		=3D eyeq5_iocu_unmap_sg,
+> +	.get_required_mask	=3D dma_direct_get_required_mask,
+> +};
+> +EXPORT_SYMBOL(eyeq5_iocu_ops);
+> +
+> +static int eyeq5_iocu_notifier(struct notifier_block *nb,
+> +			       unsigned long event,
+> +			       void *data)
+> +{
+> +	struct device *dev =3D data;
+> +
+> +	/*
+> +	 * IOCU routing is hardwired; we must use our above custom
+> +	 * routines for cache-coherent DMA on ethernet interfaces.
+> +	 */
+> +	if (event =3D=3D BUS_NOTIFY_ADD_DEVICE &&
+> +	    device_is_compatible(dev, "mobileye,eyeq5-gem")) {
+> +		set_dma_ops(dev, &eyeq5_iocu_ops);
+> +		return NOTIFY_OK;
+> +	}
+> +
+> +	return NOTIFY_DONE;
+> +}
+> +
+> +static struct notifier_block eyeq5_iocu_nb =3D {
+> +	.notifier_call =3D eyeq5_iocu_notifier,
+> +};
+> +
+> +static int __init eyeq5_iocu_init(void)
+> +{
+> +	return bus_register_notifier(&platform_bus_type, &eyeq5_iocu_nb);
+> +}
+> +postcore_initcall(eyeq5_iocu_init);
+>
+> --=20
+> 2.50.0
+
+--=20
+- Jiaxun
 
