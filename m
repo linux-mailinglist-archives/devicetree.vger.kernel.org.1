@@ -1,243 +1,160 @@
-Return-Path: <devicetree+bounces-190990-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-190991-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5184AAED6D1
-	for <lists+devicetree@lfdr.de>; Mon, 30 Jun 2025 10:13:42 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6FFB0AED6D8
+	for <lists+devicetree@lfdr.de>; Mon, 30 Jun 2025 10:15:10 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 47DF81719A8
-	for <lists+devicetree@lfdr.de>; Mon, 30 Jun 2025 08:13:38 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 54F3716CFD2
+	for <lists+devicetree@lfdr.de>; Mon, 30 Jun 2025 08:15:10 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id BF268239E82;
-	Mon, 30 Jun 2025 08:13:33 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 52F8523AB96;
+	Mon, 30 Jun 2025 08:15:06 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=ragnatech.se header.i=@ragnatech.se header.b="OSl6IrPc";
-	dkim=pass (2048-bit key) header.d=messagingengine.com header.i=@messagingengine.com header.b="nqQArAVl"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="vLAxVXwJ"
 X-Original-To: devicetree@vger.kernel.org
-Received: from fhigh-b2-smtp.messagingengine.com (fhigh-b2-smtp.messagingengine.com [202.12.124.153])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 61BB117C220;
-	Mon, 30 Jun 2025 08:13:30 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=202.12.124.153
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 205BA222585;
+	Mon, 30 Jun 2025 08:15:05 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1751271213; cv=none; b=FOe1SeGowuz+gouAhyqYdPiapqGDd3doSX8a74KU+6eJGURr4RuwOZM1s/FrMgUb4Hvp+govuH3TS77GkR/GCwgmesN2qY9MWuM1mx8yZxoZ7HvI2bGSUJ7hrQ4aFVoptHokHV9zGUNp5c15jcl/92OktPwET/QkZt49ScC/GCM=
+	t=1751271306; cv=none; b=Vxg/8UIzethbpAUvnRfiwUueUuViRttiKsdXze7CaGrYrajf3Pb9lqQ6T6yffvOpQ7dS6Th8ImhiCG9+tA0izF++ahQ3PlLJgv4tkvSwzc0zMf1foKA0XSEKpkpbHv2LUHJn/F/ZCAmiBmXTFwOiB7hRu6c9kMFlqybycSBtBbU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1751271213; c=relaxed/simple;
-	bh=G80l/NpfLbJVcIN/LA2KlmUhr4Pb56IUBD6Ecd8vCJ4=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=USfUvmegPHmEd5Sze4qgxNJz4D3F3NWgppiUlrkNVJ83Wv0O1M1CYulCzv6Kdxd6IMQar1bvk4JKy9FzjH8zgv4KqypdAgHn5iXpOg7jduqk4Dl2DQP0ekMhnVHgZ+6BuqZeq3yYzAXgtWYUBYYylbvWXI/3H2UXClxDsIP6LII=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ragnatech.se; spf=pass smtp.mailfrom=ragnatech.se; dkim=pass (2048-bit key) header.d=ragnatech.se header.i=@ragnatech.se header.b=OSl6IrPc; dkim=pass (2048-bit key) header.d=messagingengine.com header.i=@messagingengine.com header.b=nqQArAVl; arc=none smtp.client-ip=202.12.124.153
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ragnatech.se
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ragnatech.se
-Received: from phl-compute-11.internal (phl-compute-11.phl.internal [10.202.2.51])
-	by mailfhigh.stl.internal (Postfix) with ESMTP id 0F3E67A017F;
-	Mon, 30 Jun 2025 04:13:30 -0400 (EDT)
-Received: from phl-mailfrontend-02 ([10.202.2.163])
-  by phl-compute-11.internal (MEProxy); Mon, 30 Jun 2025 04:13:30 -0400
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ragnatech.se; h=
-	cc:cc:content-transfer-encoding:content-type:content-type:date
-	:date:from:from:in-reply-to:in-reply-to:message-id:mime-version
-	:references:reply-to:subject:subject:to:to; s=fm1; t=1751271209;
-	 x=1751357609; bh=ISC1jHbfiqurHfFKZgFEQDld2FTVesd2AslHB3FcMZQ=; b=
-	OSl6IrPcYA0w8eyp05Istu06l8SNgs1aQOsGVZeUkOgVOqJ9EYM3OBKZSFNpD1ob
-	YCIiY1Vj/sm0epsf3MwPy+zTXWrpHlH2HYMOVK2Fc1sjd84HcmIPM3OUPHpFa9pH
-	N2MjY1TCOk9DzqFb2BqCKNkVdx4NKhlssT6bs/ORWFuYPlVkW/zBYYTtbeqP+HBD
-	qPz6nvLVtShiuPsSmm/sfLvaOP1ZuV5HGfaaGI+ezbGR94ek3qlWEj9a/hzqZnHc
-	/RZ0opCqv0PcZO9brPHFD84MfYyFmCP5Qyum1poGR/8V/9vSyPdNWkkKYpjvuYvU
-	yjOD69w/R7iKdVyPRl7/Rg==
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
-	messagingengine.com; h=cc:cc:content-transfer-encoding
-	:content-type:content-type:date:date:feedback-id:feedback-id
-	:from:from:in-reply-to:in-reply-to:message-id:mime-version
-	:references:reply-to:subject:subject:to:to:x-me-proxy
-	:x-me-sender:x-me-sender:x-sasl-enc; s=fm2; t=1751271209; x=
-	1751357609; bh=ISC1jHbfiqurHfFKZgFEQDld2FTVesd2AslHB3FcMZQ=; b=n
-	qQArAVlXef8VZ2XVViFWJXUjkrmDbe2uLKlzA3sULjpiV+0k4LZxuV9jKvtAQQcU
-	NH2izK8YsnB/kdkLTfj06HbQPL//DkSj7hdr94Id9q/XIdeM2TyCbkB9n5zVbzDk
-	zUkr0uN85KYGGF+q5qKSdPS5yXK5JLUfmv62KN1MR0muHN62gg/PSwfY/2QJtVEG
-	U6s6ZTVS3hhBfQ73dK6VwLDLsemFduUjfmKhaUX94nriKmQLKxP2wF46xZfDFF02
-	hsjw6abg8UsFZQPtgvwEDF+EUEI1AYdVTNg75hpFx0BDa+dRjgWwNcAeD79T5n3J
-	h6AnpUSXlJcXOQleBwdow==
-X-ME-Sender: <xms:KUdiaL6pr2Zesc4sfCg_jp2pBdt3HlM4K28BuZL8eMJzpEMNLmqiBw>
-    <xme:KUdiaA4WahKURnpWF_DFQpeu7PPlvPhhv55oXQUeZ7A3oOIyR8OH7tkYc3agL9-o7
-    L3FxZiit8bdYwMNCyc>
-X-ME-Received: <xmr:KUdiaCdQRJcpW2ooaAV-RLw0I3tkZQldwkXbmtVKg9eYBjmBuyVpDLdJa3-FvWK18KKeJxHDzvlkYoM1gaZrI19W6XuxSCDsqA>
-X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgeeffedrtdefgdduuddulecutefuodetggdotefrod
-    ftvfcurfhrohhfihhlvgemucfhrghsthforghilhdpuffrtefokffrpgfnqfghnecuuegr
-    ihhlohhuthemuceftddtnecusecvtfgvtghiphhivghnthhsucdlqddutddtmdenucfjug
-    hrpeffhffvvefukfhfgggtugfgjgesthekredttddtjeenucfhrhhomheppfhikhhlrghs
-    ucfunpguvghrlhhunhguuceonhhikhhlrghsrdhsohguvghrlhhunhgusehrrghgnhgrth
-    gvtghhrdhsvgeqnecuggftrfgrthhtvghrnhepveetgedtvddvhfdtkeeghfeffeehteeh
-    keekgeefjeduieduueelgedtheekkeetnecuvehluhhsthgvrhfuihiivgeptdenucfrrg
-    hrrghmpehmrghilhhfrhhomhepnhhikhhlrghsrdhsohguvghrlhhunhgusehrrghgnhgr
-    thgvtghhrdhsvgdpnhgspghrtghpthhtohepuddtpdhmohguvgepshhmthhpohhuthdprh
-    gtphhtthhopehmrghrvghkrdhvrghsuhhtsehmrghilhgsohigrdhorhhgpdhrtghpthht
-    ohepmhgrrhgvkhdrvhgrshhuthdorhgvnhgvshgrshesmhgrihhlsghogidrohhrghdprh
-    gtphhtthhopehlihhnuhigqdgrrhhmqdhkvghrnhgvlheslhhishhtshdrihhnfhhrrggu
-    vggrugdrohhrghdprhgtphhtthhopegtohhnohhrodgutheskhgvrhhnvghlrdhorhhgpd
-    hrtghpthhtohepghgvvghrthdorhgvnhgvshgrshesghhlihguvghrrdgsvgdprhgtphht
-    thhopehkrhiikhdoughtsehkvghrnhgvlhdrohhrghdprhgtphhtthhopehmrghgnhhush
-    druggrmhhmsehgmhgrihhlrdgtohhmpdhrtghpthhtoheprhhosghhsehkvghrnhgvlhdr
-    ohhrghdprhgtphhtthhopeguvghvihgtvghtrhgvvgesvhhgvghrrdhkvghrnhgvlhdroh
-    hrgh
-X-ME-Proxy: <xmx:KUdiaMKW8MI6Osjoq8CWKUAcG-I22IDqT__kkvOyfijzcowagpelHA>
-    <xmx:KUdiaPJA_pqO_0OwhD0J6F9jCc4zffGlkCizb2hKgz2Uan6t0qvyUw>
-    <xmx:KUdiaFyvmagPxv63wrZAB1K8NPwlufXf4EVMyDnKq1JRVuETL-Zy_A>
-    <xmx:KUdiaLLjacCyICS0bMzey6SLOzdtvdXAAap--zgjgtbbeA_Srl4O_Q>
-    <xmx:KUdiaN7zTOf65V6lb8DgBB9ngE1yNDjpOv8r0alDxlH-d_6X-4mhkkaF>
-Feedback-ID: i80c9496c:Fastmail
-Received: by mail.messagingengine.com (Postfix) with ESMTPA; Mon,
- 30 Jun 2025 04:13:29 -0400 (EDT)
-Date: Mon, 30 Jun 2025 10:13:28 +0200
-From: Niklas =?utf-8?Q?S=C3=B6derlund?= <niklas.soderlund@ragnatech.se>
-To: Marek Vasut <marek.vasut@mailbox.org>
-Cc: Marek Vasut <marek.vasut+renesas@mailbox.org>,
-	linux-arm-kernel@lists.infradead.org,
-	Conor Dooley <conor+dt@kernel.org>,
-	Geert Uytterhoeven <geert+renesas@glider.be>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Magnus Damm <magnus.damm@gmail.com>, Rob Herring <robh@kernel.org>,
-	devicetree@vger.kernel.org, linux-renesas-soc@vger.kernel.org
-Subject: Re: [PATCH] arm64: dts: renesas: r8a779g3: Update thermal trip
- points on V4H Sparrow Hawk
-Message-ID: <20250630081328.GC2837343@ragnatech.se>
-References: <20250625100330.7629-1-marek.vasut+renesas@mailbox.org>
- <20250626214152.GA1817595@ragnatech.se>
- <c0ec7600-158f-431e-8f99-a462d68b808e@mailbox.org>
+	s=arc-20240116; t=1751271306; c=relaxed/simple;
+	bh=X3ULHZP9Ifi3uWAtVHgrsXNCYTcZg6f//hKcmKin4Rs=;
+	h=Message-ID:Date:MIME-Version:Subject:From:To:Cc:References:
+	 In-Reply-To:Content-Type; b=HbxX3sq1G3m1s84JE4jFq6FSdfhwNaW3/7CSDGiEbOiylC7yw92OvwtzwlXgCdjtTMYh5aNlX3ge3yufpNvlRI3sgyeYNb4oj0IvWkBxO1ARaLHFJb9J8Bw3ueajR8vm8/v+XLakqc4sR9g0nE6f7cR6ZhvjDshAjbaCUYoZZCM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=vLAxVXwJ; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 47085C4CEE3;
+	Mon, 30 Jun 2025 08:14:59 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1751271305;
+	bh=X3ULHZP9Ifi3uWAtVHgrsXNCYTcZg6f//hKcmKin4Rs=;
+	h=Date:Subject:From:To:Cc:References:In-Reply-To:From;
+	b=vLAxVXwJ706t6BpBJlQW7P8HBs2Nn9FFV9TP+Bq8k2Vu7zqhPLeITMVCtTiWZpwLu
+	 0NTZ4A0T3q4Eby6EGPJpJdVNLhYta2ozqqzH6BDQRjYuzMjycs2vrsg1KciWFyIRFf
+	 SeeCHbJfyO8xxdOYSbp7VzdL/lP+3Bil2+zQMHW366XGXYJ/kEflRbtURvU8GsfXjx
+	 ImEnzwiQQBkrjx36xE7pIMnqZuburhQgnRTufqmHKcRVMQbRgcgQLBeFf6yui5ChPF
+	 LolzJhzivz4V+htP5ITxYhLOG8RAKNcUPj5wfNUFwog+3bQnoC/mR5P5dD38o1Q0tF
+	 DsLIf9NhZbTzA==
+Message-ID: <20a1e8cb-17d1-4d69-a859-7d18746d6b64@kernel.org>
+Date: Mon, 30 Jun 2025 10:14:57 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <c0ec7600-158f-431e-8f99-a462d68b808e@mailbox.org>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v3 1/2] dt-bindings: net/nfc: ti,trf7970a: Add
+ ti,rx-gain-reduction-db option
+From: Krzysztof Kozlowski <krzk@kernel.org>
+To: Paul Geurts <paul.geurts@prodrive-technologies.com>
+Cc: mgreer@animalcreek.com, andrew+netdev@lunn.ch, davem@davemloft.net,
+ edumazet@google.com, kuba@kernel.org, pabeni@redhat.com, robh@kernel.org,
+ conor+dt@kernel.org, linux-wireless@vger.kernel.org, netdev@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ martijn.de.gouw@prodrive-technologies.com
+References: <20250626141242.3749958-1-paul.geurts@prodrive-technologies.com>
+ <20250626141242.3749958-2-paul.geurts@prodrive-technologies.com>
+ <20250627-helpful-venomous-tanuki-3bca5f@krzk-bin>
+Content-Language: en-US
+Autocrypt: addr=krzk@kernel.org; keydata=
+ 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 a/A=
+In-Reply-To: <20250627-helpful-venomous-tanuki-3bca5f@krzk-bin>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-Hello Marek,
+On 27/06/2025 09:10, Krzysztof Kozlowski wrote:
+> On Thu, Jun 26, 2025 at 04:12:41PM +0200, Paul Geurts wrote:
+>> Add option to reduce the RX antenna gain to be able to reduce the
+>> sensitivity.
+>>
+>> Signed-off-by: Paul Geurts <paul.geurts@prodrive-technologies.com>
+>> ---
+>>  Documentation/devicetree/bindings/net/nfc/ti,trf7970a.yaml | 7 +++++++
+>>  1 file changed, 7 insertions(+)
+>>
+>> diff --git a/Documentation/devicetree/bindings/net/nfc/ti,trf7970a.yaml b/Documentation/devicetree/bindings/net/nfc/ti,trf7970a.yaml
+>> index d0332eb76ad2..5f49bd9ac5e6 100644
+>> --- a/Documentation/devicetree/bindings/net/nfc/ti,trf7970a.yaml
+>> +++ b/Documentation/devicetree/bindings/net/nfc/ti,trf7970a.yaml
+>> @@ -55,6 +55,12 @@ properties:
+>>      description: |
+>>        Regulator for supply voltage to VIN pin
+>>  
+>> +  ti,rx-gain-reduction-db:
+> 
+> I'll add db unit to the dtschema.
+> 
+> Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
-On 2025-06-30 00:32:54 +0200, Marek Vasut wrote:
-> On 6/26/25 11:41 PM, Niklas Söderlund wrote:
-> 
-> Hello Niklas,
-> 
-> > > +&a76_3 {
-> > > +	a76_3_thermal_idle: thermal-idle {
-> > > +		#cooling-cells = <2>;
-> > > +		duration-us = <10000>;
-> > > +		exit-latency-us = <500>;
-> > > +	};
-> > > +};
-> > 
-> > I did not know you could do this and use it as a cooling device, thanks
-> > for teaching me something new!
-> 
-> You could, although the cooling effect may vary. Some cores enter e.g. clock
-> stop during idle and then they really cool down, some do not.
-> 
-> > > +/* THS sensors in SoC, critical temperature trip point is 100C */
-> > > +&sensor1_crit {
-> > > +	temperature = <100000>;
-> > > +};
-> > > +
-> > > +&sensor2_crit {
-> > > +	temperature = <100000>;
-> > > +};
-> > > +
-> > > +&sensor3_crit {
-> > > +	temperature = <100000>;
-> > > +};
-> > > +
-> > > +&sensor4_crit {
-> > > +	temperature = <100000>;
-> > > +};
-> > > +
-> > > +&sensor_thermal_cr52 {
-> > > +	critical-action = "shutdown";
-> > > +};
-> > > +
-> > > +&sensor_thermal_cnn {
-> > > +	critical-action = "shutdown";
-> > > +};
-> > 
-> > Is this not the default action for critical trip points? In my testing
-> > in the past R-Car systems have always shutdown when the critical trip is
-> > reached.
-> 
-> It isn't quite that clear cut.
-> 
-> drivers/thermal/thermal_of.c thermal_of_zone_register() contains this piece
-> of code:
-> 
-> "
-> 407         ret = of_property_read_string(np, "critical-action", &action);
-> 408         if (!ret && !of_ops.critical) {
-> 409                 if (!strcasecmp(action, "reboot"))
-> 410                         of_ops.critical =
-> thermal_zone_device_critical_reboot;
-> 411                 else if (!strcasecmp(action, "shutdown"))
-> 412                         of_ops.critical =
-> thermal_zone_device_critical_shutdown;
-> 413         }
-> "
-> 
-> If "critical-action" DT property is not set, then of_ops.critical are not
-> modified.
-> 
-> drivers/thermal/thermal_core.c thermal_zone_device_register_with_trips()
-> contains this piece of code:
-> 
-> 1571         if (!tz->ops.critical)
-> 1572                 tz->ops.critical = thermal_zone_device_critical;
-> 
-> If (in case of OF) of_ops.critical is not set, use
-> thermal_zone_device_critical() handler.
-> 
-> There is a slight difference:
-> - If critical-action = "shutdown" is set in DT, then handler
->   thermal_zone_device_critical_shutdown() is called, which is a wrapper
->   around thermal_zone_device_halt(tz, HWPROT_ACT_SHUTDOWN);
-> - If critical-action = "shutdown" is NOT set in DT, then handler
->   thermal_zone_device_critical() is called, which is a wrapper
->   around thermal_zone_device_halt(tz, HWPROT_ACT_DEFAULT);
-> 
-> thermal_zone_device_halt() itself is a wrapper around
-> __hw_protection_trigger(msg, poweroff_delay_ms, action); , where action is
-> either HWPROT_ACT_SHUTDOWN or HWPROT_ACT_DEFAULT , which is handled in
-> kernel/reboot.c __hw_protection_trigger() implementation :
-> 
-> 1028 void __hw_protection_trigger(const char *reason, int ms_until_forced,
-> 1029                              enum hw_protection_action action)
-> 1030 {
-> 1031         static atomic_t allow_proceed = ATOMIC_INIT(1);
-> 1032
-> 1033         if (action == HWPROT_ACT_DEFAULT)
-> 1034                 action = hw_protection_action;
-> 
-> In case of HWPROT_ACT_DEFAULT , the 'hw_protection_action' which is assigned
-> into 'action' can be overridden, either via sysfs write, or hw_protection_
-> kernel command line parameter . In case of HWPROT_ACT_SHUTDOWN , the action
-> cannot be overridden .
-> 
-> In case this hardware starts to melt, we surely want HWPROT_ACT_SHUTDOWN
-> with no override options ...
-> 
-> > If it's not I think we should move these to r8a779g0.dtsi. And
-> > likely add them for all other SoCs too?
-> 
-> ... the other hardware has non-optional heatsink, where override-able
-> HWPROT_ACT_DEFAULT is the right option I think .
+BTW, I found your patchset only via patchwork, because Gmail flagged
+your entire v3 and others as spam. You might need to check your SMTP
+setup. I see DMARC failure from google in the headers:
 
-Wow, thanks for the detailed rundown. With that I agree with you, we 
-should only force the shutdown on this particular platform. Nice work.
+Authentication-Results: mx.google.com;
+       spf=pass (google.com: domain of
+srs0=m3n1=zj=prodrive-technologies.com=paul.geurts@kernel.org designates
+147........ as permitted sender)
+smtp.mailfrom="SRS0=m3n1=ZJ=prodrive-technologies.com=paul.geurts@kernel.org";
+       dmarc=fail (p=REJECT sp=REJECT dis=QUARANTINE)
+header.from=prodrive-technologies.com
 
-Reviewed-by: Niklas Söderlund <niklas.soderlund+renesas@ragnatech.se>
 
--- 
-Kind Regards,
-Niklas Söderlund
+Maybe you sent via kernel.org something with different address? Actually
+this looks like that - your From does not match kernel.org at all.
+Rules are quite strict recently and for example you cannot use
+non-kernel.org SMTP server for kernel.org accounts (see kernel users wiki).
+
+Anyway, likely any other future patches or such patches to other people
+to end up in spam as well.
+
+Best regards,
+Krzysztof
 
