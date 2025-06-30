@@ -1,48 +1,96 @@
-Return-Path: <devicetree+bounces-190943-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-190944-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 57D71AED4AB
-	for <lists+devicetree@lfdr.de>; Mon, 30 Jun 2025 08:34:00 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 1638EAED4AF
+	for <lists+devicetree@lfdr.de>; Mon, 30 Jun 2025 08:34:38 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 508771895577
-	for <lists+devicetree@lfdr.de>; Mon, 30 Jun 2025 06:34:16 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id B5FF4188F01E
+	for <lists+devicetree@lfdr.de>; Mon, 30 Jun 2025 06:34:53 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 70A1C202976;
-	Mon, 30 Jun 2025 06:33:43 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5EC8E1E32D6;
+	Mon, 30 Jun 2025 06:34:31 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="oD2Rr5Ge"
+	dkim=pass (1024-bit key) header.d=suse.de header.i=@suse.de header.b="FQa4Mp/l";
+	dkim=permerror (0-bit key) header.d=suse.de header.i=@suse.de header.b="o27tnlgF";
+	dkim=pass (1024-bit key) header.d=suse.de header.i=@suse.de header.b="Ln25oTgd";
+	dkim=permerror (0-bit key) header.d=suse.de header.i=@suse.de header.b="YwRAp/0X"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from smtp-out1.suse.de (smtp-out1.suse.de [195.135.223.130])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 44D361C862C;
-	Mon, 30 Jun 2025 06:33:42 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 80F7D1C4609
+	for <devicetree@vger.kernel.org>; Mon, 30 Jun 2025 06:34:29 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=195.135.223.130
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1751265223; cv=none; b=sMDH4h9lpeFIE4gqPTKERVyZobKyEAC0WYgNrb2EWf7jTdyKYPngLR0nL1YN0gZPCPGKChugA/0/uwV5FttDjJUraBOLrB5evbmCSQehEDCVkZVe2TPpaUrO1WIzAAMWu/kySyhrJt5ptQjor+dZG6AVMFR8D5GzX1xkoIdAsFI=
+	t=1751265271; cv=none; b=iT7kQ1SYckUH0KDUnKBZeGaejv16zNnhUp85lYVkxEMAJHsgywt+n8JauHXo3dk9H329sYvYWecE6g9TlbderIsVAf6hV/0w4hn/IVMmKULH+ABamxwW67f8PnoKv+hnZgBGbRfEo3eyTleeT7L716XJxhNJyG+DcKGpXiYINTY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1751265223; c=relaxed/simple;
-	bh=K6tpL+n+5qcjNzrP2/VpzXL4TQCVWVSKQU/Z1dntQm8=;
+	s=arc-20240116; t=1751265271; c=relaxed/simple;
+	bh=EAxrJ4M7rB1F9w9+N97l5Y6PnXzVO8It+iDsyFfuTh4=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=kfGGLdrOtic5il4hMdwAEt7+hU5DuQFSKTfjJgpnASbi8k+Pflzbs1WIbSS0qt2vBJR9+gMT1G8QzAKW9eimh1/TuoQHzT2qpzlvrjCzyAAGpRvJgm0MGPzbXlslVEgSHrlHBGVkGD+D5Sp5nY6PuxHLIYe4xtX/knymNogYUN8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=oD2Rr5Ge; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 875B6C4CEEB;
-	Mon, 30 Jun 2025 06:33:36 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1751265222;
-	bh=K6tpL+n+5qcjNzrP2/VpzXL4TQCVWVSKQU/Z1dntQm8=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=oD2Rr5Ged+JYGngN58e5ftOdNFdT6oJhTfaPtr9WFBL2O1zKK+W0U7Ck+7W86kgft
-	 1L1ucC8XI2DCgy9nFvFJqMR5GVpxr2vE4N5K00Kmgpq9epBlCDK05Ms9YXs4d2kN2j
-	 sdxtMs8ZZ9rrHhPYAHs4n5jwht7S657hbxd/troXMmquH0o+JkvGEi7HozBtPbkqQb
-	 Mk5mqXTypSVrMzQBpHsoULnIGFDeMizy6zX7zijGKZ2DVQXCwJPb0dPf9w97XhFHYf
-	 pXHCjJvvXfpRc7kruYeyv1O8abfgWZPDnYODL4PuwBu1z5il0hntN8AIRPTikpqNry
-	 hCYVWhlYbZhiA==
-Message-ID: <a14cb1e8-a0c3-4451-8c75-07e175f4620d@kernel.org>
-Date: Mon, 30 Jun 2025 08:33:33 +0200
+	 In-Reply-To:Content-Type; b=BIAQBavKU3IZSUXZCVPo9DKrc15qsDrtSitqagGECGlwaSpQFwMProDVd8rPOdPzw2z6TXu1XCXhYt/UCUOUnnjIlj79BCBHUSeLi0rETF3kvnldOFsN5k35rXDoU+WK7MoOP4VdWeKdn25ofQcX0tnhlVHk4TsENzVFluTk1hM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=suse.de; spf=pass smtp.mailfrom=suse.de; dkim=pass (1024-bit key) header.d=suse.de header.i=@suse.de header.b=FQa4Mp/l; dkim=permerror (0-bit key) header.d=suse.de header.i=@suse.de header.b=o27tnlgF; dkim=pass (1024-bit key) header.d=suse.de header.i=@suse.de header.b=Ln25oTgd; dkim=permerror (0-bit key) header.d=suse.de header.i=@suse.de header.b=YwRAp/0X; arc=none smtp.client-ip=195.135.223.130
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=suse.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=suse.de
+Received: from imap1.dmz-prg2.suse.org (imap1.dmz-prg2.suse.org [IPv6:2a07:de40:b281:104:10:150:64:97])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+	(No client certificate requested)
+	by smtp-out1.suse.de (Postfix) with ESMTPS id 79DFD21162;
+	Mon, 30 Jun 2025 06:34:26 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.de; s=susede2_rsa;
+	t=1751265267; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
+	 mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references:autocrypt:autocrypt;
+	bh=5IqDc3sZrgnoQG6EKUHkbFAo9DO4sY2rRWM2t0/Bl6A=;
+	b=FQa4Mp/l+Dg1Hi8//BBoNR6sP0cyUVLjPFwmahEIwdQjU/umVZSFOdODXG4DbBVg0b0xMK
+	0pJa9zDCpZmRBQ0xiaOnxQpCPXy5JMb0QZr5mAinn6aRpoU/jegoy2eDJpEl0z/iIBY1JL
+	XPA5Vs2mH9jvN8JTmziNg39Pfaw0C7o=
+DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=suse.de;
+	s=susede2_ed25519; t=1751265267;
+	h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
+	 mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references:autocrypt:autocrypt;
+	bh=5IqDc3sZrgnoQG6EKUHkbFAo9DO4sY2rRWM2t0/Bl6A=;
+	b=o27tnlgFx65AGqvVjyZAT7rRkc71izMa2QSXSKwTdnfI8BaI+5pY+T1pywsvBZmkfCsVaT
+	5DGxbDcQnpl8uWCQ==
+Authentication-Results: smtp-out1.suse.de;
+	dkim=pass header.d=suse.de header.s=susede2_rsa header.b=Ln25oTgd;
+	dkim=pass header.d=suse.de header.s=susede2_ed25519 header.b="YwRAp/0X"
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.de; s=susede2_rsa;
+	t=1751265266; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
+	 mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references:autocrypt:autocrypt;
+	bh=5IqDc3sZrgnoQG6EKUHkbFAo9DO4sY2rRWM2t0/Bl6A=;
+	b=Ln25oTgdPtqx3XQzjYnlGWsUe8p6wGEPJcMLlkT7SoE0L31l7lpk8IUJYVwZGcHgKCdZLT
+	CKDYt/vP8zoxu3tpMvWrTWbsoNASKbkHTHW+Ue6T6ZWta7cpJAO5cmL1PtKpuiCcbS7Q5X
+	crawVCE65VqaBot7H0LMAeA8IGG21kE=
+DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=suse.de;
+	s=susede2_ed25519; t=1751265266;
+	h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
+	 mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references:autocrypt:autocrypt;
+	bh=5IqDc3sZrgnoQG6EKUHkbFAo9DO4sY2rRWM2t0/Bl6A=;
+	b=YwRAp/0X24gGbDEndNKR0txUPrOWLLrX+Yxb6qaVVqFWbPvaJd/fmlxW8O/K11duXnPB6o
+	zMzXnVIMyFuKiOAg==
+Received: from imap1.dmz-prg2.suse.org (localhost [127.0.0.1])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+	(No client certificate requested)
+	by imap1.dmz-prg2.suse.org (Postfix) with ESMTPS id 0FD2413AEB;
+	Mon, 30 Jun 2025 06:34:26 +0000 (UTC)
+Received: from dovecot-director2.suse.de ([2a07:de40:b281:106:10:150:64:167])
+	by imap1.dmz-prg2.suse.org with ESMTPSA
+	id E21vAvIvYmhjWQAAD6G6ig
+	(envelope-from <tzimmermann@suse.de>); Mon, 30 Jun 2025 06:34:26 +0000
+Message-ID: <f15a775d-d82f-4ac9-9d88-159ffcf7e81c@suse.de>
+Date: Mon, 30 Jun 2025 08:34:25 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,212 +98,157 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v8 1/2] dt-bindings: input: touchscreen: add hynitron
- cst816x
-To: Oleh Kuzhylnyi <kuzhylol@gmail.com>,
- Dmitry Torokhov <dmitry.torokhov@gmail.com>
-Cc: Rob Herring <robh@kernel.org>, Conor Dooley <conor+dt@kernel.org>,
- Sasha Finkelstein <fnkl.kernel@gmail.com>,
- Javier Carrasco <javier.carrasco.cruz@gmail.com>,
- Linus Walleij <linus.walleij@linaro.org>,
- Javier Martinez Canillas <javierm@redhat.com>, Janne Grunau <j@jannau.net>,
- Igor Opaniuk <igor.opaniuk@gmail.com>, Neal Gompa <neal@gompa.dev>,
- Jeff LaBundy <jeff@labundy.com>, Neil Armstrong <neil.armstrong@linaro.org>,
- linux-input@vger.kernel.org, devicetree@vger.kernel.org,
+Subject: Re: [PATCH v2 1/5] dt-bindings: display: simple-framebuffer: Add
+ interconnects property
+To: Krzysztof Kozlowski <krzk@kernel.org>,
+ Luca Weiss <luca.weiss@fairphone.com>
+Cc: Hans de Goede <hdegoede@redhat.com>,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Maxime Ripard <mripard@kernel.org>, David Airlie <airlied@gmail.com>,
+ Simona Vetter <simona@ffwll.ch>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Javier Martinez Canillas <javierm@redhat.com>,
+ Helge Deller <deller@gmx.de>, linux-fbdev@vger.kernel.org,
+ dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
  linux-kernel@vger.kernel.org
-References: <20250629162523.291887-1-kuzhylol@gmail.com>
-From: Krzysztof Kozlowski <krzk@kernel.org>
+References: <20250623-simple-drm-fb-icc-v2-0-f69b86cd3d7d@fairphone.com>
+ <20250623-simple-drm-fb-icc-v2-1-f69b86cd3d7d@fairphone.com>
+ <20250627-mysterious-optimistic-bird-acaafb@krzk-bin>
+ <d8d85415-efc4-4a11-842e-23272cae29f7@suse.de>
+ <b94b752c-d7f7-41d6-ac79-d21427f20964@kernel.org>
 Content-Language: en-US
-Autocrypt: addr=krzk@kernel.org; keydata=
- xsFNBFVDQq4BEAC6KeLOfFsAvFMBsrCrJ2bCalhPv5+KQF2PS2+iwZI8BpRZoV+Bd5kWvN79
- cFgcqTTuNHjAvxtUG8pQgGTHAObYs6xeYJtjUH0ZX6ndJ33FJYf5V3yXqqjcZ30FgHzJCFUu
- JMp7PSyMPzpUXfU12yfcRYVEMQrmplNZssmYhiTeVicuOOypWugZKVLGNm0IweVCaZ/DJDIH
- gNbpvVwjcKYrx85m9cBVEBUGaQP6AT7qlVCkrf50v8bofSIyVa2xmubbAwwFA1oxoOusjPIE
- J3iadrwpFvsZjF5uHAKS+7wHLoW9hVzOnLbX6ajk5Hf8Pb1m+VH/E8bPBNNYKkfTtypTDUCj
- NYcd27tjnXfG+SDs/EXNUAIRefCyvaRG7oRYF3Ec+2RgQDRnmmjCjoQNbFrJvJkFHlPeHaeS
- BosGY+XWKydnmsfY7SSnjAzLUGAFhLd/XDVpb1Een2XucPpKvt9ORF+48gy12FA5GduRLhQU
- vK4tU7ojoem/G23PcowM1CwPurC8sAVsQb9KmwTGh7rVz3ks3w/zfGBy3+WmLg++C2Wct6nM
- Pd8/6CBVjEWqD06/RjI2AnjIq5fSEH/BIfXXfC68nMp9BZoy3So4ZsbOlBmtAPvMYX6U8VwD
- TNeBxJu5Ex0Izf1NV9CzC3nNaFUYOY8KfN01X5SExAoVTr09ewARAQABzSVLcnp5c3p0b2Yg
- S296bG93c2tpIDxrcnprQGtlcm5lbC5vcmc+wsGVBBMBCgA/AhsDBgsJCAcDAgYVCAIJCgsE
- FgIDAQIeAQIXgBYhBJvQfg4MUfjVlne3VBuTQ307QWKbBQJoF1BKBQkWlnSaAAoJEBuTQ307
- QWKbHukP/3t4tRp/bvDnxJfmNdNVn0gv9ep3L39IntPalBFwRKytqeQkzAju0whYWg+R/rwp
- +r2I1Fzwt7+PTjsnMFlh1AZxGDmP5MFkzVsMnfX1lGiXhYSOMP97XL6R1QSXxaWOpGNCDaUl
- ajorB0lJDcC0q3xAdwzRConxYVhlgmTrRiD8oLlSCD5baEAt5Zw17UTNDnDGmZQKR0fqLpWy
- 786Lm5OScb7DjEgcA2PRm17st4UQ1kF0rQHokVaotxRM74PPDB8bCsunlghJl1DRK9s1aSuN
- hL1Pv9VD8b4dFNvCo7b4hfAANPU67W40AaaGZ3UAfmw+1MYyo4QuAZGKzaP2ukbdCD/DYnqi
- tJy88XqWtyb4UQWKNoQqGKzlYXdKsldYqrLHGoMvj1UN9XcRtXHST/IaLn72o7j7/h/Ac5EL
- 8lSUVIG4TYn59NyxxAXa07Wi6zjVL1U11fTnFmE29ALYQEXKBI3KUO1A3p4sQWzU7uRmbuxn
- naUmm8RbpMcOfa9JjlXCLmQ5IP7Rr5tYZUCkZz08LIfF8UMXwH7OOEX87Y++EkAB+pzKZNNd
- hwoXulTAgjSy+OiaLtuCys9VdXLZ3Zy314azaCU3BoWgaMV0eAW/+gprWMXQM1lrlzvwlD/k
- whyy9wGf0AEPpLssLVt9VVxNjo6BIkt6d1pMg6mHsUEVzsFNBFVDXDQBEADNkrQYSREUL4D3
- Gws46JEoZ9HEQOKtkrwjrzlw/tCmqVzERRPvz2Xg8n7+HRCrgqnodIYoUh5WsU84N03KlLue
- MNsWLJBvBaubYN4JuJIdRr4dS4oyF1/fQAQPHh8Thpiz0SAZFx6iWKB7Qrz3OrGCjTPcW6ei
- OMheesVS5hxietSmlin+SilmIAPZHx7n242u6kdHOh+/SyLImKn/dh9RzatVpUKbv34eP1wA
- GldWsRxbf3WP9pFNObSzI/Bo3kA89Xx2rO2roC+Gq4LeHvo7ptzcLcrqaHUAcZ3CgFG88CnA
- 6z6lBZn0WyewEcPOPdcUB2Q7D/NiUY+HDiV99rAYPJztjeTrBSTnHeSBPb+qn5ZZGQwIdUW9
- YegxWKvXXHTwB5eMzo/RB6vffwqcnHDoe0q7VgzRRZJwpi6aMIXLfeWZ5Wrwaw2zldFuO4Dt
- 91pFzBSOIpeMtfgb/Pfe/a1WJ/GgaIRIBE+NUqckM+3zJHGmVPqJP/h2Iwv6nw8U+7Yyl6gU
- BLHFTg2hYnLFJI4Xjg+AX1hHFVKmvl3VBHIsBv0oDcsQWXqY+NaFahT0lRPjYtrTa1v3tem/
- JoFzZ4B0p27K+qQCF2R96hVvuEyjzBmdq2esyE6zIqftdo4MOJho8uctOiWbwNNq2U9pPWmu
- 4vXVFBYIGmpyNPYzRm0QPwARAQABwsF8BBgBCgAmAhsMFiEEm9B+DgxR+NWWd7dUG5NDfTtB
- YpsFAmgXUF8FCRaWWyoACgkQG5NDfTtBYptO0w//dlXJs5/42hAXKsk+PDg3wyEFb4NpyA1v
- qmx7SfAzk9Hf6lWwU1O6AbqNMbh6PjEwadKUk1m04S7EjdQLsj/MBSgoQtCT3MDmWUUtHZd5
- RYIPnPq3WVB47GtuO6/u375tsxhtf7vt95QSYJwCB+ZUgo4T+FV4hquZ4AsRkbgavtIzQisg
- Dgv76tnEv3YHV8Jn9mi/Bu0FURF+5kpdMfgo1sq6RXNQ//TVf8yFgRtTUdXxW/qHjlYURrm2
- H4kutobVEIxiyu6m05q3e9eZB/TaMMNVORx+1kM3j7f0rwtEYUFzY1ygQfpcMDPl7pRYoJjB
- dSsm0ZuzDaCwaxg2t8hqQJBzJCezTOIkjHUsWAK+tEbU4Z4SnNpCyM3fBqsgYdJxjyC/tWVT
- AQ18NRLtPw7tK1rdcwCl0GFQHwSwk5pDpz1NH40e6lU+NcXSeiqkDDRkHlftKPV/dV+lQXiu
- jWt87ecuHlpL3uuQ0ZZNWqHgZoQLXoqC2ZV5KrtKWb/jyiFX/sxSrodALf0zf+tfHv0FZWT2
- zHjUqd0t4njD/UOsuIMOQn4Ig0SdivYPfZukb5cdasKJukG1NOpbW7yRNivaCnfZz6dTawXw
- XRIV/KDsHQiyVxKvN73bThKhONkcX2LWuD928tAR6XMM2G5ovxLe09vuOzzfTWQDsm++9UKF a/A=
-In-Reply-To: <20250629162523.291887-1-kuzhylol@gmail.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+From: Thomas Zimmermann <tzimmermann@suse.de>
+Autocrypt: addr=tzimmermann@suse.de; keydata=
+ xsBNBFs50uABCADEHPidWt974CaxBVbrIBwqcq/WURinJ3+2WlIrKWspiP83vfZKaXhFYsdg
+ XH47fDVbPPj+d6tQrw5lPQCyqjwrCPYnq3WlIBnGPJ4/jreTL6V+qfKRDlGLWFjZcsrPJGE0
+ BeB5BbqP5erN1qylK9i3gPoQjXGhpBpQYwRrEyQyjuvk+Ev0K1Jc5tVDeJAuau3TGNgah4Yc
+ hdHm3bkPjz9EErV85RwvImQ1dptvx6s7xzwXTgGAsaYZsL8WCwDaTuqFa1d1jjlaxg6+tZsB
+ 9GluwvIhSezPgnEmimZDkGnZRRSFiGP8yjqTjjWuf0bSj5rUnTGiyLyRZRNGcXmu6hjlABEB
+ AAHNJ1Rob21hcyBaaW1tZXJtYW5uIDx0emltbWVybWFubkBzdXNlLmRlPsLAjgQTAQgAOAIb
+ AwULCQgHAgYVCgkICwIEFgIDAQIeAQIXgBYhBHIX+6yM6c9jRKFo5WgNwR1TC3ojBQJftODH
+ AAoJEGgNwR1TC3ojx1wH/0hKGWugiqDgLNXLRD/4TfHBEKmxIrmfu9Z5t7vwUKfwhFL6hqvo
+ lXPJJKQpQ2z8+X2vZm/slsLn7J1yjrOsoJhKABDi+3QWWSGkaGwRJAdPVVyJMfJRNNNIKwVb
+ U6B1BkX2XDKDGffF4TxlOpSQzdtNI/9gleOoUA8+jy8knnDYzjBNOZqLG2FuTdicBXblz0Mf
+ vg41gd9kCwYXDnD91rJU8tzylXv03E75NCaTxTM+FBXPmsAVYQ4GYhhgFt8S2UWMoaaABLDe
+ 7l5FdnLdDEcbmd8uLU2CaG4W2cLrUaI4jz2XbkcPQkqTQ3EB67hYkjiEE6Zy3ggOitiQGcqp
+ j//OwE0EWznS4AEIAMYmP4M/V+T5RY5at/g7rUdNsLhWv1APYrh9RQefODYHrNRHUE9eosYb
+ T6XMryR9hT8XlGOYRwKWwiQBoWSDiTMo/Xi29jUnn4BXfI2px2DTXwc22LKtLAgTRjP+qbU6
+ 3Y0xnQN29UGDbYgyyK51DW3H0If2a3JNsheAAK+Xc9baj0LGIc8T9uiEWHBnCH+RdhgATnWW
+ GKdDegUR5BkDfDg5O/FISymJBHx2Dyoklv5g4BzkgqTqwmaYzsl8UxZKvbaxq0zbehDda8lv
+ hFXodNFMAgTLJlLuDYOGLK2AwbrS3Sp0AEbkpdJBb44qVlGm5bApZouHeJ/+n+7r12+lqdsA
+ EQEAAcLAdgQYAQgAIAIbDBYhBHIX+6yM6c9jRKFo5WgNwR1TC3ojBQJftOH6AAoJEGgNwR1T
+ C3ojVSkIALpAPkIJPQoURPb1VWjh34l0HlglmYHvZszJWTXYwavHR8+k6Baa6H7ufXNQtThR
+ yIxJrQLW6rV5lm7TjhffEhxVCn37+cg0zZ3j7zIsSS0rx/aMwi6VhFJA5hfn3T0TtrijKP4A
+ SAQO9xD1Zk9/61JWk8OysuIh7MXkl0fxbRKWE93XeQBhIJHQfnc+YBLprdnxR446Sh8Wn/2D
+ Ya8cavuWf2zrB6cZurs048xe0UbSW5AOSo4V9M0jzYI4nZqTmPxYyXbm30Kvmz0rYVRaitYJ
+ 4kyYYMhuULvrJDMjZRvaNe52tkKAvMevcGdt38H4KSVXAylqyQOW5zvPc4/sq9c=
+In-Reply-To: <b94b752c-d7f7-41d6-ac79-d21427f20964@kernel.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
+X-Rspamd-Server: rspamd2.dmz-prg2.suse.org
+X-Rspamd-Queue-Id: 79DFD21162
+X-Rspamd-Action: no action
+X-Spam-Flag: NO
+X-Spamd-Result: default: False [-3.01 / 50.00];
+	BAYES_HAM(-3.00)[100.00%];
+	SUSPICIOUS_RECIPS(1.50)[];
+	NEURAL_HAM_LONG(-1.00)[-1.000];
+	R_DKIM_ALLOW(-0.20)[suse.de:s=susede2_rsa,suse.de:s=susede2_ed25519];
+	NEURAL_HAM_SHORT(-0.20)[-1.000];
+	MIME_GOOD(-0.10)[text/plain];
+	MX_GOOD(-0.01)[];
+	DKIM_SIGNED(0.00)[suse.de:s=susede2_rsa,suse.de:s=susede2_ed25519];
+	FREEMAIL_ENVRCPT(0.00)[gmail.com,gmx.de];
+	ARC_NA(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[16];
+	FUZZY_BLOCKED(0.00)[rspamd.com];
+	MIME_TRACE(0.00)[0:+];
+	SPAMHAUS_XBL(0.00)[2a07:de40:b281:104:10:150:64:97:from];
+	FREEMAIL_CC(0.00)[redhat.com,linux.intel.com,kernel.org,gmail.com,ffwll.ch,gmx.de,vger.kernel.org,lists.freedesktop.org];
+	RCVD_TLS_ALL(0.00)[];
+	DKIM_TRACE(0.00)[suse.de:+];
+	RCVD_COUNT_TWO(0.00)[2];
+	FROM_EQ_ENVFROM(0.00)[];
+	FROM_HAS_DN(0.00)[];
+	TO_DN_SOME(0.00)[];
+	TO_MATCH_ENVRCPT_SOME(0.00)[];
+	MID_RHS_MATCH_FROM(0.00)[];
+	DNSWL_BLOCKED(0.00)[2a07:de40:b281:104:10:150:64:97:from,2a07:de40:b281:106:10:150:64:167:received];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	TAGGED_RCPT(0.00)[dt];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[suse.de:mid,suse.de:dkim,suse.de:email,imap1.dmz-prg2.suse.org:rdns,imap1.dmz-prg2.suse.org:helo,fairphone.com:email]
+X-Spam-Score: -3.01
+X-Spam-Level: 
 
-On 29/06/2025 18:25, Oleh Kuzhylnyi wrote:
-> Add documentation for Hynitron CST816x series touchscreen bindings.
-> 
-> Signed-off-by: Oleh Kuzhylnyi <kuzhylol@gmail.com>
-> ---
-> Changes in v8:
->  - Use linux,keycodes to map touch gestures to key events
->  - Refactore binding properties based on feedback from Jeff LaBundy
->    and Krzysztof Kozlowski to align with official documentation
+Hi
 
-This is vague. Anything can be "refactor". What changed specifically?
+Am 28.06.25 um 13:50 schrieb Krzysztof Kozlowski:
+> On 27/06/2025 13:34, Thomas Zimmermann wrote:
+>> Hi
+>>
+>> Am 27.06.25 um 10:08 schrieb Krzysztof Kozlowski:
+>>> On Mon, Jun 23, 2025 at 08:44:45AM +0200, Luca Weiss wrote:
+>>>> Document the interconnects property which is a list of interconnect
+>>>> paths that is used by the framebuffer and therefore needs to be kept
+>>>> alive when the framebuffer is being used.
+>>>>
+>>>> Acked-by: Thomas Zimmermann <tzimmermann@suse.de>
+>>>> Signed-off-by: Luca Weiss <luca.weiss@fairphone.com>
+>>>> ---
+>>>>    Documentation/devicetree/bindings/display/simple-framebuffer.yaml | 3 +++
+>>>>    1 file changed, 3 insertions(+)
+>>>>
+>>>> diff --git a/Documentation/devicetree/bindings/display/simple-framebuffer.yaml b/Documentation/devicetree/bindings/display/simple-framebuffer.yaml
+>>>> index 296500f9da05e296dbbeec50ba5186b6b30aaffc..f0fa0ef23d91043dfb2b220c654b80e2e80850cd 100644
+>>>> --- a/Documentation/devicetree/bindings/display/simple-framebuffer.yaml
+>>>> +++ b/Documentation/devicetree/bindings/display/simple-framebuffer.yaml
+>>>> @@ -79,6 +79,9 @@ properties:
+>>>>      power-domains:
+>>>>        description: List of power domains used by the framebuffer.
+>>>>    
+>>>> +  interconnects:
+>>>> +    description: List of interconnect paths used by the framebuffer.
+>>>> +
+>>> maxItems: 1, or this is not a simple FB anymore. Anything which needs
+>>> some sort of resources in unknown way is not simple anymore. You need
+>>> device specific bindings.
+>> In this context, 'simple' means that this device cannot change display
+>> modes or do graphics acceleration. The hardware itself is not
+>> necessarily simple. As Javier pointed out, it's initialized by firmware
+> If hardware is not simple, then it needs specific bindings.
+>
+>> on the actual hardware. Think of 'VGA-for-ARM'. We need these resources
+>> to keep the display working.
+> I don't claim you do not need these resources. I claim device is not
+> simple thus does not suit rules for generic bindings. Generic bindings
+> are in general not allowed and we have them only for very, very simple
+> devices.
+>
+> You say this is not simple device, so there you go - specific binding
+> for this complex (not-simple) device.
 
-b4 diff shows no changes.
+No, I didn't. I said that the device is simple. I did not say that the 
+device's hardware is simple. Sounds nonsensical, but makes sense here. 
+The simple-framebuffer is just the range of display memory that the 
+firmware configured for printing boot-up messages. We use it for the 
+kernel's output as well.  Being generic and simple is the exact raison 
+d'etre for simple-framebuffer.  (The display property points to the 
+actual hardware, but we don't need it.)
 
+Best regards
+Thomas
 
-> 
-> Changes in v7:
->  - Introduce the gestures field along with its sub-fields
->  - Make reset-gpio property optional
->  - Extend main description
->  - Remove "touchscreen" reference
-> 
-> Changes in v6:
->  - Fix minor tweak adviced by Krzysztof:
->  - Move additionalProperties field after required
-> 
-> Changes in v5:
->  - No code changes
-> 
-> Changes in v4:
->  - Add Conor's Dooley "Reviewed-by" tag
-> 
-> Changes in v3:
->  - Rename filename to hynitron,cst816s.yaml
->  - Update description with display details
-> 
-> Changes in v2:
->  - Apply pin definitions and DT headers
->  - Use generic name for DT node
->  - Drop status field
-> 
->  .../input/touchscreen/hynitron,cst816x.yaml   | 82 +++++++++++++++++++
->  1 file changed, 82 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/input/touchscreen/hynitron,cst816x.yaml
-> 
-> diff --git a/Documentation/devicetree/bindings/input/touchscreen/hynitron,cst816x.yaml b/Documentation/devicetree/bindings/input/touchscreen/hynitron,cst816x.yaml
-> new file mode 100644
-> index 000000000000..0d358463d7f8
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/input/touchscreen/hynitron,cst816x.yaml
-> @@ -0,0 +1,82 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/input/touchscreen/hynitron,cst816x.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Hynitron CST816x Series Capacitive Touch controller
-> +
-> +maintainers:
-> +  - Oleh Kuzhylnyi <kuzhylol@gmail.com>
-> +
-> +description: |
-> +  Bindings for CST816x high performance self-capacitance touch chip series
-> +  with single point gesture and real two-point operation.
-> +
-> +properties:
-> +  compatible:
-> +    enum:
-> +      - hynitron,cst816s
-> +
-> +  reg:
-> +    maxItems: 1
-> +
-> +  interrupts:
-> +    maxItems: 1
-> +
-> +  reset-gpios:
-> +    maxItems: 1
-> +
-> +  linux,keycodes:
-> +    minItems: 1
-> +    maxItems: 16
-> +    description: |
-> +      Specifies the numeric keycodes associated with each available gesture in
-> +      the following order (enter 0 for unused and reserved gestures):
-> +      0: Touch
-> +      1: Swipe up
-> +      2: Swipe down
-> +      3: Swipe left
-> +      4: Swipe right
-> +      5-11: Reserved
-> +      12: Long press
-> +      13-15: Reserved
+>
+> Best regards,
+> Krzysztof
 
-Fields like "reserved" makes no sense. If this is reserved, why would it
-be put into the DTS?
+-- 
+--
+Thomas Zimmermann
+Graphics Driver Developer
+SUSE Software Solutions Germany GmbH
+Frankenstrasse 146, 90461 Nuernberg, Germany
+GF: Ivo Totev, Andrew Myers, Andrew McDonald, Boudien Moerman
+HRB 36809 (AG Nuernberg)
 
-No, just list the items with description:
-minItems: 1
-items:
-  - description: Touch gesture (although what is a touch gesture? This
-is just a touch....)
-  - description: ...
-
-
-> +
-> +required:
-> +  - compatible
-> +  - reg
-> +  - interrupts
-
-
-Where is (or why there is no) the ref to touchscreen.yaml?
-
-> +
-> +additionalProperties: false
-
-And this not unevaluatedProperties then?
-
-> +
-> +examples:
-> +  - |
-> +    #include <dt-bindings/gpio/gpio.h>
-> +    #include <dt-bindings/input/linux-event-codes.h>
-> +    #include <dt-bindings/interrupt-controller/irq.h>
-> +    i2c {
-> +          #address-cells = <1>;
-> +          #size-cells = <0>;
-
-Messed indentation.
-
-> +          touchscreen@15 {
-> +              compatible = "hynitron,cst816s";
-> +              reg = <0x15>;
-> +              interrupt-parent = <&gpio0>;
-> +              interrupts = <4 IRQ_TYPE_EDGE_RISING>;
-> +              reset-gpios = <&gpio 17 GPIO_ACTIVE_LOW>;
-> +              linux,keycodes = <BTN_TOUCH>,
-
-
-
-
-Best regards,
-Krzysztof
 
