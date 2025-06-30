@@ -1,125 +1,203 @@
-Return-Path: <devicetree+bounces-190976-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-190978-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1C09BAED61B
-	for <lists+devicetree@lfdr.de>; Mon, 30 Jun 2025 09:49:09 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 66052AED62D
+	for <lists+devicetree@lfdr.de>; Mon, 30 Jun 2025 09:53:19 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 210D63A58FD
-	for <lists+devicetree@lfdr.de>; Mon, 30 Jun 2025 07:48:43 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 3303717595E
+	for <lists+devicetree@lfdr.de>; Mon, 30 Jun 2025 07:53:18 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 291E8221F0C;
-	Mon, 30 Jun 2025 07:49:04 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9797523A9AA;
+	Mon, 30 Jun 2025 07:52:58 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=arndb.de header.i=@arndb.de header.b="SNxOXlQZ";
-	dkim=pass (2048-bit key) header.d=messagingengine.com header.i=@messagingengine.com header.b="a/d4+f4m"
+	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="X1qzCi4a"
 X-Original-To: devicetree@vger.kernel.org
-Received: from fout-b4-smtp.messagingengine.com (fout-b4-smtp.messagingengine.com [202.12.124.147])
+Received: from bali.collaboradmins.com (bali.collaboradmins.com [148.251.105.195])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B197E1E7C10;
-	Mon, 30 Jun 2025 07:49:01 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=202.12.124.147
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 731E1239E78;
+	Mon, 30 Jun 2025 07:52:56 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=148.251.105.195
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1751269744; cv=none; b=dsHV8HSBfUI50s/24T4M1fxQ71ELGivvqj/GJdtEBJzH5yYPPqX9PtOWd7s0+MhpGSQ6jYEnBsYV66ZFJfhvviJYSCnwACgvhOadQ42UbrqnhftSCaVKEnfx15y4SNwLWzk2UL45ueaDyP51jHCFW7J980dpEXhAdqaPlDWKX4U=
+	t=1751269978; cv=none; b=bInw2NfxOHKSEhY0Ciwwe1AFaZ/o+rEoVfyHdZ/YueVAcE3r3MOMOKUI2IoZah0gZo+wLvzUuRStoPmpqXbD4W5o+1tMaNuFzllorHxo/F2BFAg9Fs2ZqNwgpPHXQW5JgQEGRzVXdOeHvjNW/GmTpjSvZi+jwDoxZBzUE69SzT8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1751269744; c=relaxed/simple;
-	bh=2ZqCOQCDU4e20dlPkgw2JsI4HO3iLuuInFCI+rMWS6s=;
-	h=MIME-Version:Date:From:To:Cc:Message-Id:In-Reply-To:References:
-	 Subject:Content-Type; b=S7b1cKhpBaXGNSFiNJ20lU9IHVomQCkcjhKb+a0Hr8PmIHUIcK9w3RZMtWSgESZjM2dqbDDMImbwbOykKluvFiELkgIc8lwVXwDDxdzQmcVwlok+cqBAWQUcI40z7BVyvrgk4uFz9KI0TnRc7Jte1VPjpOhW9lNPaQ2VI0h86lM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arndb.de; spf=pass smtp.mailfrom=arndb.de; dkim=pass (2048-bit key) header.d=arndb.de header.i=@arndb.de header.b=SNxOXlQZ; dkim=pass (2048-bit key) header.d=messagingengine.com header.i=@messagingengine.com header.b=a/d4+f4m; arc=none smtp.client-ip=202.12.124.147
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arndb.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=arndb.de
-Received: from phl-compute-05.internal (phl-compute-05.phl.internal [10.202.2.45])
-	by mailfout.stl.internal (Postfix) with ESMTP id 6D01E1D00161;
-	Mon, 30 Jun 2025 03:49:00 -0400 (EDT)
-Received: from phl-imap-02 ([10.202.2.81])
-  by phl-compute-05.internal (MEProxy); Mon, 30 Jun 2025 03:49:00 -0400
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=arndb.de; h=cc
-	:cc:content-transfer-encoding:content-type:content-type:date
-	:date:from:from:in-reply-to:in-reply-to:message-id:mime-version
-	:references:reply-to:subject:subject:to:to; s=fm1; t=1751269740;
-	 x=1751356140; bh=2ZqCOQCDU4e20dlPkgw2JsI4HO3iLuuInFCI+rMWS6s=; b=
-	SNxOXlQZyL9Oq2I4GRpokV8scZvw8Z38mDYuhwKSD99bLH7i0Pueqw86g8BW410b
-	YIeN59Aa6Op9VWU9QbiRMEpTl/Rbz7svK7a0DqS4eJgl8xVSEj60lh+daJEVo19i
-	+d5DFxiCxVn98MWLneFfWiUaoN0mIyk8A7bVSY2a01e7IuftxljMX49qWMvNpZUk
-	oeLtWASOC4q17oNfrzUoAEkSaZgO0aGu9dQuUxzL4tssLyvaxeGIP+TY2CAx7fIa
-	JQjac1mKzK8Qh7IUdTXiCn/AEIaSC/ekHxEXcuxxsn6/TCRN/xJbDmazBMcDI5T2
-	YKCt9oeri3Bx+OCfkGQQAA==
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
-	messagingengine.com; h=cc:cc:content-transfer-encoding
-	:content-type:content-type:date:date:feedback-id:feedback-id
-	:from:from:in-reply-to:in-reply-to:message-id:mime-version
-	:references:reply-to:subject:subject:to:to:x-me-proxy
-	:x-me-sender:x-me-sender:x-sasl-enc; s=fm2; t=1751269740; x=
-	1751356140; bh=2ZqCOQCDU4e20dlPkgw2JsI4HO3iLuuInFCI+rMWS6s=; b=a
-	/d4+f4mnM79Y5T+pzVKY9v7swzfASLL1RhmWw/fmy99YfsLOdqecBMd2StFIfbr2
-	fkmAqFDMZyi3bA6B9a4C+J7B7kNGRH6BvpRjoLFYCrr53VNjqDkVp2Bsb5KaClsp
-	eyr/jPYmXchvIjU5USKUws6lFizcsnUp1ruC94dVyM5VBCMcY3QDjDAgnBrV7+D0
-	Fhri/sbpMIOdT/kCoQctNStsJ+An9ahL56aAg5V3D2/f5T6ka0sXkoxTIpTzW0Vb
-	Tbl84RB6qhy/3F1r8WempqEXkmlwTmTfpeg2NxubtU/HmPh6YWiWuznoSsCuXUp3
-	9/Sa8ZPhomPBKtEGUjKIg==
-X-ME-Sender: <xms:a0FiaGTNjN3ACZ9D22CF-KPIfVnbRFg0yOTF158rjy905thge8t70g>
-    <xme:a0FiaLxnoS1FK-x8eTLoWBlkXNXr7U0ZwOLjjvCvZIIAY__MvfEjcWhIOnVBM-dvD
-    KxD2Bs7a8h08-4nyHE>
-X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgeeffedrtdefgdduuddugecutefuodetggdotefrod
-    ftvfcurfhrohhfihhlvgemucfhrghsthforghilhdpuffrtefokffrpgfnqfghnecuuegr
-    ihhlohhuthemuceftddtnecusecvtfgvtghiphhivghnthhsucdlqddutddtmdenucfjug
-    hrpefoggffhffvvefkjghfufgtgfesthejredtredttdenucfhrhhomhepfdetrhhnugcu
-    uegvrhhgmhgrnhhnfdcuoegrrhhnugesrghrnhgusgdruggvqeenucggtffrrghtthgvrh
-    hnpefhtdfhvddtfeehudekteeggffghfejgeegteefgffgvedugeduveelvdekhfdvieen
-    ucevlhhushhtvghrufhiiigvpedtnecurfgrrhgrmhepmhgrihhlfhhrohhmpegrrhhnug
-    esrghrnhgusgdruggvpdhnsggprhgtphhtthhopedufedpmhhouggvpehsmhhtphhouhht
-    pdhrtghpthhtohepjhhprghnihhssegsrgihlhhisghrvgdrtghomhdprhgtphhtthhope
-    hlghhirhgufihoohgusehgmhgrihhlrdgtohhmpdhrtghpthhtohepsghrohhonhhivges
-    khgvrhhnvghlrdhorhhgpdhrtghpthhtoheptghonhhorhdoughtsehkvghrnhgvlhdroh
-    hrghdprhgtphhtthhopehkrhiikhdoughtsehkvghrnhgvlhdrohhrghdprhgtphhtthho
-    pehlvggvsehkvghrnhgvlhdrohhrghdprhgtphhtthhopehmfigrlhhlvgeskhgvrhhnvg
-    hlrdhorhhgpdhrtghpthhtoheprhhosghhsehkvghrnhgvlhdrohhrghdprhgtphhtthho
-    pehlihhnuhhsrdifrghllhgvihhjsehlihhnrghrohdrohhrgh
-X-ME-Proxy: <xmx:a0FiaD1rnBFWt5xL9tPWpOAN7t2DBqECvzHvLM_dmWOU02HPAeaWBg>
-    <xmx:a0FiaCDjEQ_mpBPR5EYgnc4qf72UqASCVQhcio_pLTBs3LLgIx2Kuw>
-    <xmx:a0FiaPg4cNpmsoDZO7RGwQ6CcT7Xf7pyP_yNHFsdJmQ06AdtgBTIUQ>
-    <xmx:a0FiaOqtfepci8NWB5LSgfmMmys_s6N4UVyKH-tVMMWnTqbkw6eP5g>
-    <xmx:bEFiaAei7bwcu6KxSqfZASuYasaVExh6rkRioyW2b6qStGYue-yvhl7B>
-Feedback-ID: i56a14606:Fastmail
-Received: by mailuser.phl.internal (Postfix, from userid 501)
-	id D3B23700068; Mon, 30 Jun 2025 03:48:59 -0400 (EDT)
-X-Mailer: MessagingEngine.com Webmail Interface
+	s=arc-20240116; t=1751269978; c=relaxed/simple;
+	bh=F4dN++TbVjarRlIMkNwmoUP9mUy+taXHwWY073gkpLI=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=jyCuk3hTPCc7I+U7wPXChKyZQasmdb1627OA9YjSEreDxHRwMxk6WbXqTWAF3dnMrWHu2i3e90sHdsxTkeLe/A3W6P2zf4IZrD4y/n8WItVQ7hwP5J1906HkDGVAAkJYY+1Air49eB+5NNVCz8w7ORNyDkOrrczDXEE7Hp9y3xY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b=X1qzCi4a; arc=none smtp.client-ip=148.251.105.195
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+	s=mail; t=1751269974;
+	bh=F4dN++TbVjarRlIMkNwmoUP9mUy+taXHwWY073gkpLI=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=X1qzCi4a6sZ+fy5WJ4JZADlnr9O/1cCWEIIRDCBxrBLYUPVapMum6TTLTwo1WRkiU
+	 pnjTWkvKzeRRIu2W+JiUeYhXCGo+ZgLjnRgehgEmndKhlNzKjV1597Ry9ERBOHFqcn
+	 WvRoSTsqEvNu3XpwBAii7E+jOzPedFPBpdjBfty339KiF/WdSMXERm22akYtEGRQUG
+	 hAvNRcxR547RCyEiRzsW7oQ3pwz7eeXt4nNjnnF3MaEqonMiIW94J089z2KePOHvCx
+	 qOFZW67huLbUxkwKlR0fZXoHCDRU6vVfQ6mMC1f+z+BVo2hVcgdCi/yTAhSncWeUhV
+	 dkOE94Xq2N87g==
+Received: from [192.168.1.100] (2-237-20-237.ip236.fastwebnet.it [2.237.20.237])
+	(using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
+	 key-exchange X25519 server-signature RSA-PSS (4096 bits))
+	(No client certificate requested)
+	(Authenticated sender: kholk11)
+	by bali.collaboradmins.com (Postfix) with ESMTPSA id DD1CD17E0B0D;
+	Mon, 30 Jun 2025 09:52:53 +0200 (CEST)
+Message-ID: <c5dffc8c-2abe-4fd3-a062-6d1adb417d27@collabora.com>
+Date: Mon, 30 Jun 2025 09:52:53 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-ThreadId: T53991f9249d0193f
-Date: Mon, 30 Jun 2025 09:48:05 +0200
-From: "Arnd Bergmann" <arnd@arndb.de>
-To: "Michael Walle" <mwalle@kernel.org>, "Lee Jones" <lee@kernel.org>,
- "Rob Herring" <robh@kernel.org>, "Krzysztof Kozlowski" <krzk+dt@kernel.org>,
- "Conor Dooley" <conor+dt@kernel.org>,
- "Greg Kroah-Hartman" <gregkh@linuxfoundation.org>,
- "Linus Walleij" <linus.walleij@linaro.org>,
- "Liam Girdwood" <lgirdwood@gmail.com>, "Mark Brown" <broonie@kernel.org>,
- "Julien Panis" <jpanis@baylibre.com>
-Cc: devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- "open list:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>
-Message-Id: <c07229ed-d4b8-4e5f-a518-ea9d703fa617@app.fastmail.com>
-In-Reply-To: <20250613114518.1772109-3-mwalle@kernel.org>
-References: <20250613114518.1772109-1-mwalle@kernel.org>
- <20250613114518.1772109-3-mwalle@kernel.org>
-Subject: Re: [PATCH v2 2/7] misc: tps6594-pfsm: Add TI TPS652G1 PMIC PFSM
-Content-Type: text/plain
-Content-Transfer-Encoding: 7bit
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2 3/6] dt-bindings: regulator: Document MediaTek MT6363
+ PMIC Regulators
+To: Chen-Yu Tsai <wenst@chromium.org>, Krzysztof Kozlowski <krzk@kernel.org>
+Cc: broonie@kernel.org, lgirdwood@gmail.com, robh@kernel.org,
+ krzk+dt@kernel.org, conor+dt@kernel.org, matthias.bgg@gmail.com,
+ linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, linux-mediatek@lists.infradead.org,
+ kernel@collabora.com
+References: <20250624073548.29732-1-angelogioacchino.delregno@collabora.com>
+ <20250624073548.29732-4-angelogioacchino.delregno@collabora.com>
+ <20250627-neon-hidden-sheep-ed8dae@krzk-bin>
+ <CAGXv+5GLJ7cfAQW_kbTqqe_QO+RfU7KL57n77qenpDiRS5BybA@mail.gmail.com>
+From: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+Content-Language: en-US
+In-Reply-To: <CAGXv+5GLJ7cfAQW_kbTqqe_QO+RfU7KL57n77qenpDiRS5BybA@mail.gmail.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
 
-On Fri, Jun 13, 2025, at 13:45, Michael Walle wrote:
-> The TPS652G1 is a stripped down TPS65224, but the PFSM is the same.
-> Thus, handle it the same way as the TPS65224 in the driver.
->
-> Signed-off-by: Michael Walle <mwalle@kernel.org>
-> ---
+Il 30/06/25 05:25, Chen-Yu Tsai ha scritto:
+> On Fri, Jun 27, 2025 at 4:24 PM Krzysztof Kozlowski <krzk@kernel.org> wrote:
+>>
+>> On Tue, Jun 24, 2025 at 09:35:45AM +0200, AngeloGioacchino Del Regno wrote:
+>>> Add bindings for the regulators found in the MediaTek MT6363 PMIC,
+>>> usually found in board designs using the MT6991 Dimensity 9400 and
+>>> on MT8196 Kompanio SoC for Chromebooks, along with the MT6316 and
+>>> MT6373 PMICs.
+>>>
+>>> Signed-off-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+>>> ---
+>>>   .../regulator/mediatek,mt6363-regulator.yaml  | 123 ++++++++++++++++++
+>>>   1 file changed, 123 insertions(+)
+>>>   create mode 100644 Documentation/devicetree/bindings/regulator/mediatek,mt6363-regulator.yaml
+>>>
+>>> diff --git a/Documentation/devicetree/bindings/regulator/mediatek,mt6363-regulator.yaml b/Documentation/devicetree/bindings/regulator/mediatek,mt6363-regulator.yaml
+>>> new file mode 100644
+>>> index 000000000000..f866c89c56f7
+>>> --- /dev/null
+>>> +++ b/Documentation/devicetree/bindings/regulator/mediatek,mt6363-regulator.yaml
+>>> @@ -0,0 +1,123 @@
+>>> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
+>>> +%YAML 1.2
+>>> +---
+>>> +$id: http://devicetree.org/schemas/regulator/mediatek,mt6363-regulator.yaml#
+>>> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+>>> +
+>>> +title: MediaTek MT6363 PMIC Regulators
+>>> +
+>>> +maintainers:
+>>> +  - AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+>>> +
+>>> +description:
+>>> +  The MT6363 SPMI PMIC provides 10 BUCK and 26 LDO (Low Dropout) regulators
+>>> +  and can optionally provide overcurrent warnings with one ocp interrupt
+>>> +  for each voltage regulator.
+>>> +
+>>> +properties:
+>>> +  compatible:
+>>> +    const: mediatek,mt6363-regulator
+>>> +
+>>> +  interrupts:
+>>> +    description: Overcurrent warning interrupts
+>>
+>> Are you sure interrupts are physically not connected?
 
-Acked-by: Arnd Bergmann <arnd@arndb.de> # drivers/misc/
+Yes, I'm sure, they are not.
+
+> 
+> Side note:
+> 
+> I wonder if we really need to describe _all_ the interrupts here.
+> 
+> Looking at the PMIC as a whole, the interrupt tree is something like
+> 
+> SoC <- SPMI inband IRQ - PMIC top level IRQ block <- sub-function IRQ blocks:
+> 
+>      - BUCK (buck regulator over current)
+>      - LDO (LDO regulator over current)
+>      - PSC (key press / system low voltage)
+>      - MISC (protected registers accessed / SPMI stuff)
+> 
+> And some other blocks that may apply to other MediaTek PMICs:
+> 
+>      - HK (some threshold triggered interrupt)
+>      - BM (battery management related)
+> 
+> The thing I'm trying to get to is that all these interrupt vectors are
+> internal to the whole PMIC. Do we really need to spell them out in the
+> device tree? The top level compatible should already imply how all the
+> internals are wired up.
+> 
+
+Chen-Yu:
+
+Yes, we do: not all boards need overcurrent protection on all of the rails, but
+especially, in the past I have seen (multiple times) board designs (not MediaTek,
+but that doesn't mean anything) that will trigger the overcurrent protection due
+to a high inrush upon rail enablement - in these cases, the ocp would have to be
+either ignored completely or reset and read after a while.
+
+Not only that: since not all rails are actually used, due to EMI (and other issues
+which usually mean suboptimally built boards) some of those may randomly trigger
+OCP, and that's another case in which that should be ignored.
+
+So... yes, we want to define the overcurrent interrupts in the devicetree.
+
+> 
+> ChenYu
+> 
+>>> +    minItems: 1
+>>> +    maxItems: 36
+>>> +
+>>> +  interrupt-names:
+>>> +    description:
+>>> +      Names for the overcurrent interrupts are the same as the name
+>>> +      of a regulator (hence the same as each regulator's node name).
+>>> +      For example, the interrupt name for regulator vs2 will be "vs2".
+>>
+>> You need to define the items or pattern if this is really flexible in
+>> the hardware (not drivers).
+
+krzk:
+
+It's flexible in the hardware... but how do I define a pattern here?
+I avoided to define the items because you can miss some; I mean....
+
+You may have, on one board:
+"vs1", "vsram", "someother", "another"
+
+on another: "vsram", "another"
+
+...and another: "vs1", "another"
+
+(etc etc)
+
+Is there any way to allow missing items in between?
+Because then there's 36 possible items, so there are more than 100 possible
+combinations (keeping the order, but missing something in between..!).
+
+Cheers,
+Angelo
+
+
+
 
