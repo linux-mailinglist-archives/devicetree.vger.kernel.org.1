@@ -1,163 +1,274 @@
-Return-Path: <devicetree+bounces-190999-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-191000-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4C4A9AED757
-	for <lists+devicetree@lfdr.de>; Mon, 30 Jun 2025 10:32:02 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id DD3CAAED769
+	for <lists+devicetree@lfdr.de>; Mon, 30 Jun 2025 10:35:01 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 47F9B7AAB2E
-	for <lists+devicetree@lfdr.de>; Mon, 30 Jun 2025 08:30:37 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 91E2C7A201D
+	for <lists+devicetree@lfdr.de>; Mon, 30 Jun 2025 08:33:36 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6D10323F40A;
-	Mon, 30 Jun 2025 08:31:46 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 84AE423E32D;
+	Mon, 30 Jun 2025 08:34:51 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="T+9/qABn"
+	dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.b="XV3wH+6T"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lf1-f45.google.com (mail-lf1-f45.google.com [209.85.167.45])
+Received: from mail-lf1-f48.google.com (mail-lf1-f48.google.com [209.85.167.48])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 436871F1317;
-	Mon, 30 Jun 2025 08:31:44 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.45
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6D46F21ABB1
+	for <devicetree@vger.kernel.org>; Mon, 30 Jun 2025 08:34:48 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.48
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1751272306; cv=none; b=dfIaS3yFhDexa+MU8YZMs8a8ddjbLolRS6BOJHELCnwmIXW0UY/ncxo/+LmKDYXP9TUNBwvsufvvvKJ6Qtu70301NybayjqC79a/qFI52/pJ7AFeEPKFmqabznEsuJQHfXhJrOOVNhpysZyqJFSUaxIEBVO/5M9N6RptvEWHWfA=
+	t=1751272491; cv=none; b=HtLGxyGkZKJNNCpCDfGtN320vzf1gyK4iCkSg/O4ju9pprAC924Ei6oMN0gmD9tObar63xoi9EcKrToqKcaD+5to6hBW1rnKurYKY0WFtd+xdnmaefFdc0sEgwB+JNl0vUf/Tao6ntwJn8ETc6sFhgWSs+q93vo8bPuet9fHRrU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1751272306; c=relaxed/simple;
-	bh=gxiKTUjIPpJX72jE2FhnPJpJfMICc6tLKV+XgUhybpA=;
-	h=Content-Type:Mime-Version:Subject:From:In-Reply-To:Date:Cc:
-	 Message-Id:References:To; b=pvnZ5jTZHWKbvGW5Mxhu1Ws7Uler/qceTuJMGuryex0v7TD6JfDvr+rCFWt32Se/m/PH+Q7R5cX7yZfbe9Pzg/sbyz8pF59mDFKgw/CGYRlYk2+mLJvs4ctsYQXNww/ireiKld42k+H9iPGK7WI49LwGEViBB4Kb2Mi8gvTGP7M=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=T+9/qABn; arc=none smtp.client-ip=209.85.167.45
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-lf1-f45.google.com with SMTP id 2adb3069b0e04-5551a770828so913444e87.1;
-        Mon, 30 Jun 2025 01:31:44 -0700 (PDT)
+	s=arc-20240116; t=1751272491; c=relaxed/simple;
+	bh=nC/C82fwTATbV/O/92DhgZV8ZDN71sYDFJj1hk7lRAA=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=O2C8KF48kgMBf5YsjCL7xDKMv7HiDBO07w7/Sfz2eL5+LEF1TsMtwaiIUcpGwDeMCtTm09OEqp+g5khx/C/bhEM01AljA425AzAYkJ70zRdGHyJDtfUgL7BGMvlm1StHrJukwnXXfvfiyepf7Ebz1oBpUFcRaCTdTC+a2qCXtAY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=chromium.org; spf=pass smtp.mailfrom=chromium.org; dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.b=XV3wH+6T; arc=none smtp.client-ip=209.85.167.48
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=chromium.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=chromium.org
+Received: by mail-lf1-f48.google.com with SMTP id 2adb3069b0e04-5551a770828so915934e87.1
+        for <devicetree@vger.kernel.org>; Mon, 30 Jun 2025 01:34:48 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1751272302; x=1751877102; darn=vger.kernel.org;
-        h=to:references:message-id:content-transfer-encoding:cc:date
-         :in-reply-to:from:subject:mime-version:from:to:cc:subject:date
+        d=chromium.org; s=google; t=1751272486; x=1751877286; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=OshmcBnwF2TfDnNpqHQYtOEtTGgXhczTcUFCfy0wLaI=;
-        b=T+9/qABnXcpCer09XCdC/pB3uQdcZieZ7J3dl/dKJMKH2cxwHuKM4yU8tcV+crpMs6
-         ixwW38Un1d5uKAHB3D04z0v2y8ePPWFS7VJ9uDzzarZ7KF6pBLe9CIig39JVLPZHKAtb
-         M8xE31xo1qYEqSL1cZJNrNRUmFHBuf2JBVaMOT1DlBypeB2de4t1NuNct74XAap7DGhz
-         jDE2WZ63mZ5YXYEhTO8YxSMaVKuPUeOQrkH/aDw7tqjSudDQOjySXjL4it1e9nIbhkTe
-         /DaNknv7pq4DQ5RB8bFzSk7s1P95VdRvIcYE9HhCPx0Fmq/C46WRa/NIepl/pvEJC/Cq
-         CBMg==
+        bh=kVgaB3k9Sbz8/PUf8gTuXUEgwfS3TrY+vZ/LVCHdKio=;
+        b=XV3wH+6TVKdQ+5AembbreyTvHcLB1aUWYLgjVKnyFTD3Zc1zcJVPYMF7xD9YtiX0Ej
+         Y+0QwxTcXiWvCn0aYfsYlGCfzVadwu/afi2iaFmx2SxQNEJ78S1KIdqwi7t1czQBeXxK
+         gnLlWzTws6+rRqHbRhXFYcYsdUoCe7XcTRROc=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1751272302; x=1751877102;
-        h=to:references:message-id:content-transfer-encoding:cc:date
-         :in-reply-to:from:subject:mime-version:x-gm-message-state:from:to:cc
+        d=1e100.net; s=20230601; t=1751272486; x=1751877286;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=OshmcBnwF2TfDnNpqHQYtOEtTGgXhczTcUFCfy0wLaI=;
-        b=KxwvvdBcVy9YIgYHP1rzDsUI8Ex7haQvOJl7pS9uCOdvZZxs+JQp3WzA8NEJoq3h/r
-         Zb20T2PC9ZgJWDj0pxaSKv0DMuhJKdC0VcM9jgXkX1wjrhnqpOXtEa7x/2Wa/rZrLUfE
-         K7JDQR+TlrofLmfKH6R/emYVr8PAn534Wv4MyufJrP0h/NeU7UEWRTbIL6KL37xmKYQZ
-         geeW+heFRjjtjrQ/zl7uFR9XFexhRzNSwlfDDDrDeTkE7uCSTfGI64vJvYIt5UtzuwZD
-         piyqDzdGYU3TLWdoCm0TXw3QopXct3ze4fZ9eRoA0T2D1MSrZ1cX+C1KSf5UYDsmASah
-         VUmQ==
-X-Forwarded-Encrypted: i=1; AJvYcCUxp36VbFh/eXrHKWBkkeEQLvoTSoA3KXbi/7e1JEzRH1FS1ZMnaL7dVeo+/2NyFs9pXZDFM1phM933LeaN@vger.kernel.org, AJvYcCWFyVf2j+vMHSj546Sm4Tz5wNHdFjzl7E+eNmjsgvOjaPBiXkRrE2aPRXtwzGRtMFViI7b0X0kV9Ql4yQ==@vger.kernel.org, AJvYcCX+ekFuL00mTCX9WV8rZtRHtue9ZnXYSKpktvPTQbML716/hqyUJUgX3/6685Mhk+5X0Gz13/7j4ya/@vger.kernel.org
-X-Gm-Message-State: AOJu0YyqIRHgPDNQv7wWnO/OooocZUAMaPqaIqy5nxMqFs/FMYT18UVa
-	TwU7mYhEk6ycbnTiWUF7FQ5zKzrDqKtxcEjgA6xVr9qWOBLYusMM1bSZ
-X-Gm-Gg: ASbGncvlS17JbfQMBsDHWUEYo6z3l1LSaOsRSRT3re9igXqFggt5UcVMn2O5kS6Q1H5
-	J4D2IJ0uPgMzaMwXpvoMejv7qifX6VGLxeXDYH3M0mGcnVVggYWi91EWct1UXR+9MmjMe0GX/7O
-	sc0KjMTpMZeixodxTh7X0xf6ke3fvE1uJ8bbY38MvC6+g0lxNmQ51cf220bMvIZfv0qHjL/4G5s
-	NgnFKMZr23KR2L28L0A2G8EunauH6iv2ZQxQA6Bkk+EMM8CKkF/Sd278LIBFJpfLFbqOSWzPfWO
-	ZbrWn3WwKjIoNK60DWCzbZn4L5AV49LcBjWSoF80Ym8gzpbGjtJvHqurFaRgGzkIMc7539j5daX
-	pMkssgQlYAq0=
-X-Google-Smtp-Source: AGHT+IE1QKZLyq6F5mfdpgGw6f0P5pBCenGMP/iG5NwW8Wsk6jpYmi2D3mR7EEF083TGVlyz3Be0rw==
-X-Received: by 2002:a05:6512:3b9a:b0:553:a77f:9c45 with SMTP id 2adb3069b0e04-5550ba16fe9mr3405972e87.39.1751272301913;
-        Mon, 30 Jun 2025 01:31:41 -0700 (PDT)
-Received: from smtpclient.apple ([87.200.95.144])
-        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-5550b2f3271sm1320723e87.258.2025.06.30.01.31.38
-        (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
-        Mon, 30 Jun 2025 01:31:41 -0700 (PDT)
-Content-Type: text/plain;
-	charset=utf-8
+        bh=kVgaB3k9Sbz8/PUf8gTuXUEgwfS3TrY+vZ/LVCHdKio=;
+        b=SDhfnpXNqM+MuIGeo0SRNbPObkkQb2KOKtUje3AlPwYAoZfFiYFTPbkHAVkUQgg/Ef
+         r+ZXX7QwLGM3lwFvnSpYEy6ubmj2zbqOyrdg/5UBtD/pqaCMVAsb5jS5f0ZBzv/NihLM
+         2Nu/rkjZwsqu++zNRr0A5vsnF+EaDk6HxDOMnyU2xtFp/wERUCE93Jgr9IbN34UApEqc
+         G92cdKowQfdsN2C0SkWD6P3IRE6RnPjIEoy8mACZvMi0g4c4214fQNp06Q9oMTadLmfC
+         NXZ+eoZjnC5uDcsQFpTiPKR9DbCS8kDFm2RrQKpCdgfd7NmVQ4Il/3iroszXr3FUaKQC
+         NhHA==
+X-Forwarded-Encrypted: i=1; AJvYcCWf5NjzH+0MuPQ0aSxRCJkbFvHVTYr/sjkVDd/eptrCsO6ZvFMbYkcZAA5hPo41vWPNknryyCnBWwKl@vger.kernel.org
+X-Gm-Message-State: AOJu0Yw0wZLGW1DsM60+4wlU1hbUNTlnveYgyjcBLBegTjt+dWEPYanq
+	IE3hNpRiENY66sph3zPasYxg2s8J2lh8Ux/LQbIFNCLgEk0+Z2lQuLI15WTkjdCg9xsJdyNA0dC
+	WdIFwBYAiEh0EUH5Nw7hzW/dIsNHJDiT6GpYg2Ewv47M6KgJXLlbCsw==
+X-Gm-Gg: ASbGncttwp+QaBU6aHtoY3jKt5ZTMhkJiPzUTereBUa1F6+8eP71Pi1xlX3X0nHfoCv
+	BIG4LrrsVn7dNHEenR5otUedMDeyawIr+6RIs1xVQe0Ot1oIg2K7lxLIVzl/MsGsVq9x3PN5q7p
+	Uyb3qdSClmYuBDxgdiWpgTGRvQa66Z0I7agn5SjiS1Tebw7fjuTin53AsDzFxlqp8/8H7Bfuc=
+X-Google-Smtp-Source: AGHT+IHlFcd7ds08VjRkhAd4B5pJTIKQJ0FaK20eZC09ottQSiiIyrXWfmbyhysoyNz0SfAaoXhAnX9I8zWuiDZ9khk=
+X-Received: by 2002:a05:6512:b12:b0:554:f79d:ce59 with SMTP id
+ 2adb3069b0e04-5550b9ee228mr3819454e87.27.1751272486439; Mon, 30 Jun 2025
+ 01:34:46 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-Mime-Version: 1.0 (Mac OS X Mail 16.0 \(3826.600.51.1.1\))
-Subject: Re: [PATCH v2 5/8] dt-bindings: vendor-prefixes: Add Wuxi i-Core
- Electronics
-From: Christian Hewitt <christianshewitt@gmail.com>
-In-Reply-To: <CAMuHMdW+vGr-KyvPr84qr_k1sJV88SFn+oF_oi8_MKJkbyHXbg@mail.gmail.com>
-Date: Mon, 30 Jun 2025 12:31:26 +0400
-Cc: =?utf-8?Q?Jean-Fran=C3=A7ois_Lessard?= <jefflessard3@gmail.com>,
- Andy Shevchenko <andy@kernel.org>,
- Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>,
- devicetree@vger.kernel.org,
- linux-leds@vger.kernel.org,
- linux-kernel@vger.kernel.org,
- =?utf-8?Q?Andreas_F=C3=A4rber?= <afaerber@suse.de>,
- Boris Gjenero <boris.gjenero@gmail.com>,
- Heiner Kallweit <hkallweit1@gmail.com>,
- Paolo Sabatino <paolo.sabatino@gmail.com>
+MIME-Version: 1.0
+References: <20250624073548.29732-1-angelogioacchino.delregno@collabora.com>
+ <20250624073548.29732-4-angelogioacchino.delregno@collabora.com>
+ <20250627-neon-hidden-sheep-ed8dae@krzk-bin> <CAGXv+5GLJ7cfAQW_kbTqqe_QO+RfU7KL57n77qenpDiRS5BybA@mail.gmail.com>
+ <c5dffc8c-2abe-4fd3-a062-6d1adb417d27@collabora.com>
+In-Reply-To: <c5dffc8c-2abe-4fd3-a062-6d1adb417d27@collabora.com>
+From: Chen-Yu Tsai <wenst@chromium.org>
+Date: Mon, 30 Jun 2025 16:34:35 +0800
+X-Gm-Features: Ac12FXy9Bg8iczKYCRzfVVALHWEDTg9agbPGYTVqjyGmcI5uPshlMdfvswpTnDg
+Message-ID: <CAGXv+5EwLDue4y6fVuyNd-z1mytqXJJhQuohhe3htT-XiNcGHw@mail.gmail.com>
+Subject: Re: [PATCH v2 3/6] dt-bindings: regulator: Document MediaTek MT6363
+ PMIC Regulators
+To: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+Cc: Krzysztof Kozlowski <krzk@kernel.org>, broonie@kernel.org, lgirdwood@gmail.com, 
+	robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org, 
+	matthias.bgg@gmail.com, linux-kernel@vger.kernel.org, 
+	devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
+	linux-mediatek@lists.infradead.org, kernel@collabora.com
+Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
-Message-Id: <760A6F11-6783-4B24-9A99-E043297CF039@gmail.com>
-References: <20250629130002.49842-1-jefflessard3@gmail.com>
- <20250629130002.49842-7-jefflessard3@gmail.com>
- <CAMuHMdW+vGr-KyvPr84qr_k1sJV88SFn+oF_oi8_MKJkbyHXbg@mail.gmail.com>
-To: Geert Uytterhoeven <geert@linux-m68k.org>
-X-Mailer: Apple Mail (2.3826.600.51.1.1)
 
-> On 30 Jun 2025, at 12:19=E2=80=AFpm, Geert Uytterhoeven =
-<geert@linux-m68k.org> wrote:
->=20
-> Hi Jean-Fran=C3=A7ois,
->=20
-> On Sun, 29 Jun 2025 at 15:00, Jean-Fran=C3=A7ois Lessard
-> <jefflessard3@gmail.com> wrote:
->> Assign vendor prefix "icore", based on their domain name.
->>=20
->> Signed-off-by: Jean-Fran=C3=A7ois Lessard <jefflessard3@gmail.com>
->=20
-> Thanks for your patch!
->=20
->> --- a/Documentation/devicetree/bindings/vendor-prefixes.yaml
->> +++ b/Documentation/devicetree/bindings/vendor-prefixes.yaml
->> @@ -694,6 +694,8 @@ patternProperties:
->>     description: International Business Machines (IBM)
->>   "^ibm,.*":
->>     description: International Business Machines (IBM)
->> +  "^icore,.*":
->> +    description: Wuxi i-Core Electronics Co., Ltd.
->=20
-> This sounds a bit too generic to me.  What is the domain name?
+Hi,
 
-Their domain/website is http://www.i-core.cn/en/ and i-Core is used
-as the watermark in their datasheets [0]. We=E2=80=99ve thought to drop =
-the
-hyphen and use plain =E2=80=98icore=E2=80=99 to avoid future typos.
+On Mon, Jun 30, 2025 at 3:52=E2=80=AFPM AngeloGioacchino Del Regno
+<angelogioacchino.delregno@collabora.com> wrote:
+>
+> Il 30/06/25 05:25, Chen-Yu Tsai ha scritto:
+> > On Fri, Jun 27, 2025 at 4:24=E2=80=AFPM Krzysztof Kozlowski <krzk@kerne=
+l.org> wrote:
+> >>
+> >> On Tue, Jun 24, 2025 at 09:35:45AM +0200, AngeloGioacchino Del Regno w=
+rote:
+> >>> Add bindings for the regulators found in the MediaTek MT6363 PMIC,
+> >>> usually found in board designs using the MT6991 Dimensity 9400 and
+> >>> on MT8196 Kompanio SoC for Chromebooks, along with the MT6316 and
+> >>> MT6373 PMICs.
+> >>>
+> >>> Signed-off-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@=
+collabora.com>
+> >>> ---
+> >>>   .../regulator/mediatek,mt6363-regulator.yaml  | 123 +++++++++++++++=
++++
+> >>>   1 file changed, 123 insertions(+)
+> >>>   create mode 100644 Documentation/devicetree/bindings/regulator/medi=
+atek,mt6363-regulator.yaml
+> >>>
+> >>> diff --git a/Documentation/devicetree/bindings/regulator/mediatek,mt6=
+363-regulator.yaml b/Documentation/devicetree/bindings/regulator/mediatek,m=
+t6363-regulator.yaml
+> >>> new file mode 100644
+> >>> index 000000000000..f866c89c56f7
+> >>> --- /dev/null
+> >>> +++ b/Documentation/devicetree/bindings/regulator/mediatek,mt6363-reg=
+ulator.yaml
+> >>> @@ -0,0 +1,123 @@
+> >>> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
+> >>> +%YAML 1.2
+> >>> +---
+> >>> +$id: http://devicetree.org/schemas/regulator/mediatek,mt6363-regulat=
+or.yaml#
+> >>> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> >>> +
+> >>> +title: MediaTek MT6363 PMIC Regulators
+> >>> +
+> >>> +maintainers:
+> >>> +  - AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.=
+com>
+> >>> +
+> >>> +description:
+> >>> +  The MT6363 SPMI PMIC provides 10 BUCK and 26 LDO (Low Dropout) reg=
+ulators
+> >>> +  and can optionally provide overcurrent warnings with one ocp inter=
+rupt
+> >>> +  for each voltage regulator.
+> >>> +
+> >>> +properties:
+> >>> +  compatible:
+> >>> +    const: mediatek,mt6363-regulator
+> >>> +
+> >>> +  interrupts:
+> >>> +    description: Overcurrent warning interrupts
+> >>
+> >> Are you sure interrupts are physically not connected?
+>
+> Yes, I'm sure, they are not.
+>
+> >
+> > Side note:
+> >
+> > I wonder if we really need to describe _all_ the interrupts here.
+> >
+> > Looking at the PMIC as a whole, the interrupt tree is something like
+> >
+> > SoC <- SPMI inband IRQ - PMIC top level IRQ block <- sub-function IRQ b=
+locks:
+> >
+> >      - BUCK (buck regulator over current)
+> >      - LDO (LDO regulator over current)
+> >      - PSC (key press / system low voltage)
+> >      - MISC (protected registers accessed / SPMI stuff)
+> >
+> > And some other blocks that may apply to other MediaTek PMICs:
+> >
+> >      - HK (some threshold triggered interrupt)
+> >      - BM (battery management related)
+> >
+> > The thing I'm trying to get to is that all these interrupt vectors are
+> > internal to the whole PMIC. Do we really need to spell them out in the
+> > device tree? The top level compatible should already imply how all the
+> > internals are wired up.
+> >
+>
+> Chen-Yu:
+>
+> Yes, we do: not all boards need overcurrent protection on all of the rail=
+s, but
+> especially, in the past I have seen (multiple times) board designs (not M=
+ediaTek,
+> but that doesn't mean anything) that will trigger the overcurrent protect=
+ion due
+> to a high inrush upon rail enablement - in these cases, the ocp would hav=
+e to be
+> either ignored completely or reset and read after a while.
+>
+> Not only that: since not all rails are actually used, due to EMI (and oth=
+er issues
+> which usually mean suboptimally built boards) some of those may randomly =
+trigger
+> OCP, and that's another case in which that should be ignored.
+>
+> So... yes, we want to define the overcurrent interrupts in the devicetree=
+.
 
-[0] =
-https://github.com/jefflessard/tm16xx-display/blob/main/datasheets/AiP1628=
-.pdf
+I understand the use case, but I think that's kind of giving the interrupts
+property a second meaning.
 
-CH.
+Instead, if you look at the common regulator bindings, there is a
+"regulator-over-current-protection" which signals that over current
+protection should be enabled for a given regulator. Perhaps you could
+use that? I think this common property also implies that over current
+protection has to be explicitly enabled.
 
->>   "^icplus,.*":
->>     description: IC Plus Corp.
->>   "^idt,.*":
->> --
->=20
-> Gr{oetje,eeting}s,
->=20
->                        Geert
->=20
-> --=20
-> Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- =
-geert@linux-m68k.org
->=20
-> In personal conversations with technical people, I call myself a =
-hacker. But
-> when I'm talking to journalists I just say "programmer" or something =
-like that.
->                                -- Linus Torvalds
+> >
+> > ChenYu
+> >
+> >>> +    minItems: 1
+> >>> +    maxItems: 36
+> >>> +
+> >>> +  interrupt-names:
+> >>> +    description:
+> >>> +      Names for the overcurrent interrupts are the same as the name
+> >>> +      of a regulator (hence the same as each regulator's node name).
+> >>> +      For example, the interrupt name for regulator vs2 will be "vs2=
+".
+> >>
+> >> You need to define the items or pattern if this is really flexible in
+> >> the hardware (not drivers).
+>
+> krzk:
+>
+> It's flexible in the hardware... but how do I define a pattern here?
+> I avoided to define the items because you can miss some; I mean....
+>
+> You may have, on one board:
+> "vs1", "vsram", "someother", "another"
+>
+> on another: "vsram", "another"
+>
+> ...and another: "vs1", "another"
+>
+> (etc etc)
+>
+> Is there any way to allow missing items in between?
+> Because then there's 36 possible items, so there are more than 100 possib=
+le
+> combinations (keeping the order, but missing something in between..!).
 
+I recently saw in the net/snps,dwmac.yaml binding the following:
+
+  clock-names:
+    minItems: 1
+    maxItems: 10
+    additionalItems: true
+    contains:
+      enum:
+        - stmmaceth
+        - pclk
+        - ptp_ref
+
+I suppose you could adapt this pattern, list all the possibilities, and
+set additionalItems to false. I don't think it can pick out duplicates
+though.
+
+
+ChenYu
+
+> Cheers,
+> Angelo
+>
+>
+>
 
