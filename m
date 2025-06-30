@@ -1,125 +1,194 @@
-Return-Path: <devicetree+bounces-191197-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-191198-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 51F03AEE573
-	for <lists+devicetree@lfdr.de>; Mon, 30 Jun 2025 19:17:10 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id DF0E6AEE594
+	for <lists+devicetree@lfdr.de>; Mon, 30 Jun 2025 19:20:27 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 573DA17A400
-	for <lists+devicetree@lfdr.de>; Mon, 30 Jun 2025 17:17:10 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 6CABD441268
+	for <lists+devicetree@lfdr.de>; Mon, 30 Jun 2025 17:18:56 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 85F8B292B34;
-	Mon, 30 Jun 2025 17:17:06 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D322F295D92;
+	Mon, 30 Jun 2025 17:18:34 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="gK7PLjxP"
+	dkim=pass (2048-bit key) header.d=disroot.org header.i=@disroot.org header.b="RCGZNPi9"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from layka.disroot.org (layka.disroot.org [178.21.23.139])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 586202900BA;
-	Mon, 30 Jun 2025 17:17:06 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DA7CF28F94E;
+	Mon, 30 Jun 2025 17:18:31 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=178.21.23.139
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1751303826; cv=none; b=upU0zfj+diI8gnzkFmMQV0oKssaI62hKlPfIXXxH9NpK8JlbZkusp1aW+6v1hphFVjrSUFqWDahI945CBye8iFP+/OSh7TsE6fSeh2RxgxAe12zuXQHb/fgtjzSgo7r7b4tURNRJE9QODGIiL/ZZ0Of7rsZzyHHIsrJ4bZtf89E=
+	t=1751303914; cv=none; b=iXK67Ju+Uv8LXmRljXjK2vB84gN9yWyBYgqtIHmqKqvKmdgYJCKYMM7vIgttZqQ3OyM97KuRLBYDCFYk6F0mUn+A8yjNZtfkxnLcG2SMN4mbz7d7lm57ibsdjwbZNQyNGyzpI0MvdWH/LdWfNT58arMaQ0LwvPY0SidIH8JXWRI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1751303826; c=relaxed/simple;
-	bh=RxENiAIxryG/e9PnDRmuJ2qoeNevxHN+jSL1+CqMpqw=;
-	h=Date:Message-ID:From:To:Cc:Subject:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=fHDN7ifSfRRY6Brj/5st0MCjspk5TK8OKf6ScFYYxaS/iMb7IoUrLblkKfCXEVPXHblIZwiCUT5ZwuH110+sHhpzuZyU/VjSv9dtNaZ4MqZ3SK+6BjPvYjvXp7pUZ3ckJiKKfnvZC/kqp1sCPA+DmsgvQdgTpTQ9zgMQbJC1PDM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=gK7PLjxP; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id DE5D1C4CEE3;
-	Mon, 30 Jun 2025 17:17:05 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1751303825;
-	bh=RxENiAIxryG/e9PnDRmuJ2qoeNevxHN+jSL1+CqMpqw=;
-	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
-	b=gK7PLjxPWHRqv8leFMCxzAZgWK02KxZqRotqN8kQWL4Io69FgUlJ0Fo2ZgCYWBJlY
-	 CeCre45jA8BT+VMmEktD6EtSMdfkCjYyWxky07IUb4TgRoihvNGYCfGgHwN/OYSeif
-	 9W7RDwjwepqgEJxMt/owvKqHaszwHtqfAaYrVyn+HOQrPRB1YiVjl2As0HL0IQExd1
-	 Jv7zwgafCJbW98b7kjfQCCT4wE/cjPlopOmSyPb1pDVQLsBcTB0Kaekf+LAHdHsgfa
-	 vT0o7Yat4+natNFdPbKo49LdEHjQFKvQK+qt0Mx+usj4BSXqBwbItRTTQvMvp2YPRG
-	 Qh4Clax4BIHiA==
-Received: from sofa.misterjones.org ([185.219.108.64] helo=goblin-girl.misterjones.org)
-	by disco-boy.misterjones.org with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-	(Exim 4.95)
-	(envelope-from <maz@kernel.org>)
-	id 1uWI7r-00BJye-1d;
-	Mon, 30 Jun 2025 18:17:03 +0100
-Date: Mon, 30 Jun 2025 18:17:02 +0100
-Message-ID: <86jz4tb14h.wl-maz@kernel.org>
-From: Marc Zyngier <maz@kernel.org>
-To: Lorenzo Pieralisi <lpieralisi@kernel.org>
-Cc: Thomas Gleixner <tglx@linutronix.de>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Catalin Marinas <catalin.marinas@arm.com>,
-	Will Deacon <will@kernel.org>,
-	Arnd Bergmann <arnd@arndb.de>,
-	Sascha Bischoff <sascha.bischoff@arm.com>,
-	Jonathan Cameron <Jonathan.Cameron@huawei.com>,
-	Timothy Hayes <timothy.hayes@arm.com>,
-	Bjorn Helgaas <bhelgaas@google.com>,
-	"Liam R. Howlett" <Liam.Howlett@oracle.com>,
-	Peter Maydell <peter.maydell@linaro.org>,
-	Mark Rutland <mark.rutland@arm.com>,
-	Jiri Slaby <jirislaby@kernel.org>,
-	linux-arm-kernel@lists.infradead.org,
-	linux-kernel@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	linux-pci@vger.kernel.org
-Subject: Re: [PATCH v6 00/31] Arm GICv5: Host driver implementation
-In-Reply-To: <20250626-gicv5-host-v6-0-48e046af4642@kernel.org>
-References: <20250626-gicv5-host-v6-0-48e046af4642@kernel.org>
-User-Agent: Wanderlust/2.15.9 (Almost Unreal) SEMI-EPG/1.14.7 (Harue)
- FLIM-LB/1.14.9 (=?UTF-8?B?R29qxY0=?=) APEL-LB/10.8 EasyPG/1.0.0 Emacs/30.1
- (aarch64-unknown-linux-gnu) MULE/6.0 (HANACHIRUSATO)
+	s=arc-20240116; t=1751303914; c=relaxed/simple;
+	bh=mxYeHt3z88AgCGudK+INGVx9B4a5/myQ8Rf/7nEuHZ0=;
+	h=MIME-Version:Date:From:To:Cc:Subject:In-Reply-To:References:
+	 Message-ID:Content-Type; b=TgTcGI2Imb6QHkjH/WTKdlTbC1Pu9DWaOw/wXfuDIJTylg5Kfm1iRNiP6SZudhOPrBgPkna/LeAljGCCOmSNxw0TvB6zotNRtgqIqj4RP+SLU+c3yu12ZTc9eBm5S6S5v564M/f+1hucHAgpJquQgzZsHiaAUcGiPpP/8jsD0N4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=disroot.org; spf=pass smtp.mailfrom=disroot.org; dkim=pass (2048-bit key) header.d=disroot.org header.i=@disroot.org header.b=RCGZNPi9; arc=none smtp.client-ip=178.21.23.139
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=disroot.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=disroot.org
+Received: from mail01.disroot.lan (localhost [127.0.0.1])
+	by disroot.org (Postfix) with ESMTP id E1D8D25D5F;
+	Mon, 30 Jun 2025 19:18:23 +0200 (CEST)
+X-Virus-Scanned: SPAM Filter at disroot.org
+Received: from layka.disroot.org ([127.0.0.1])
+ by localhost (disroot.org [127.0.0.1]) (amavis, port 10024) with ESMTP
+ id gncVtwY-5rfM; Mon, 30 Jun 2025 19:18:22 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=disroot.org; s=mail;
+	t=1751303902; bh=mxYeHt3z88AgCGudK+INGVx9B4a5/myQ8Rf/7nEuHZ0=;
+	h=Date:From:To:Cc:Subject:In-Reply-To:References;
+	b=RCGZNPi9UixpOry4GnMbNnJlUiGyXPRr1zMTtiRKWNggma3UiKcmkpHY0cDI17jGC
+	 ET3e86sOvmVGOUDlIELumexcK6pIKC/vr/GqJ2Wy5p8rN+YtlBeFRkJXuL64rsgjrk
+	 rfg5Gy6YEI4lV0BEfTS8SWLcp6yvjJG2oZaQVNriU5SpLAr2xef90z2/JFfz8ylDeI
+	 qAF1lQq7SqaIpbpxU3f+ISharf/1xorxFN9Vg/xba+Lrik8H3xzaEFRN6J9QCxndSN
+	 HbjMyTEatTqsDoXzr+xX7qbAc1Wav35i4eF1xNfddWs7mnic3gtp2P2dMtXCh6S87G
+	 36HBVqzPDKTOw==
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-MIME-Version: 1.0 (generated by SEMI-EPG 1.14.7 - "Harue")
-Content-Type: text/plain; charset=US-ASCII
-X-SA-Exim-Connect-IP: 185.219.108.64
-X-SA-Exim-Rcpt-To: lpieralisi@kernel.org, tglx@linutronix.de, robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org, catalin.marinas@arm.com, will@kernel.org, arnd@arndb.de, sascha.bischoff@arm.com, Jonathan.Cameron@huawei.com, timothy.hayes@arm.com, bhelgaas@google.com, Liam.Howlett@oracle.com, peter.maydell@linaro.org, mark.rutland@arm.com, jirislaby@kernel.org, linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org, devicetree@vger.kernel.org, linux-pci@vger.kernel.org
-X-SA-Exim-Mail-From: maz@kernel.org
-X-SA-Exim-Scanned: No (on disco-boy.misterjones.org); SAEximRunCond expanded to false
+MIME-Version: 1.0
+Date: Mon, 30 Jun 2025 17:18:22 +0000
+From: Kaustabh Chakraborty <kauschluss@disroot.org>
+To: Neil Armstrong <neil.armstrong@linaro.org>
+Cc: Jessica Zhang <quic_jesszhan@quicinc.com>, David Airlie
+ <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>, Maarten Lankhorst
+ <maarten.lankhorst@linux.intel.com>, Maxime Ripard <mripard@kernel.org>,
+ Thomas Zimmermann <tzimmermann@suse.de>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Jessica Zhang <jessica.zhang@oss.qualcomm.com>,
+ dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, Conor Dooley <conor.dooley@microchip.com>
+Subject: Re: [PATCH v3 1/2] dt-bindings: display: panel: document Samsung
+ S6E8AA5X01 panel driver
+In-Reply-To: <80055981-3624-4165-af0c-3b60c345e8f8@linaro.org>
+References: <20250625-panel-samsung-s6e8aa5x01-v3-0-9a1494fe6c50@disroot.org>
+ <20250625-panel-samsung-s6e8aa5x01-v3-1-9a1494fe6c50@disroot.org>
+ <80055981-3624-4165-af0c-3b60c345e8f8@linaro.org>
+Message-ID: <4b9e44b14395ff4c64eba1bd71e63150@disroot.org>
+X-Sender: kauschluss@disroot.org
+Content-Type: text/plain; charset=US-ASCII;
+ format=flowed
+Content-Transfer-Encoding: 7bit
 
-On Thu, 26 Jun 2025 11:25:51 +0100,
-Lorenzo Pieralisi <lpieralisi@kernel.org> wrote:
+On 2025-06-30 15:29, Neil Armstrong wrote:
+> On 25/06/2025 14:41, Kaustabh Chakraborty wrote:
+>> Samsung S6E8AA5X01 is an AMOLED MIPI DSI panel controller. Document 
+>> the
+>> compatible and devicetree properties of this panel driver. Timings are
+>> provided through the devicetree node as panels are available in
+>> different sizes.
 > 
-> Implement the irqchip kernel driver for the Arm GICv5 architecture,
-> as described in the GICv5 beta0 specification, available at:
+> Wait, why ? Why not multiple compatibles ?
+
+The panel dimensions is the only thing which differs. The model name,
+controller, registers, and functionality are supposedly all similar, so
+I believe this is fine...
+
 > 
-> https://developer.arm.com/documentation/aes0070
+> Neil
 > 
-> The GICv5 architecture is composed of multiple components:
-> 
-> - one or more IRS (Interrupt Routing Service)
-> - zero or more ITS (Interrupt Translation Service)
-> - zero or more IWB (Interrupt Wire Bridge)
-
-[...]
-
-I think what is here is pretty solid, and definitely in a better shape
-than the equivalent GICv3 support patches at a similar point in the
-lifetime of the architecture.
-
-For patches in this series except patch 18:
-
-Reviewed-by: Marc Zyngier <maz@kernel.org>
-
-If this goes into 6.17 (which I hope), it'd be good to have this
-series on a stable branch so that we can take the corresponding KVM
-patches[1] independently if they are deemed in a good enough state.
-
-	M.
-
-[1] https://lore.kernel.org/r/20250627100847.1022515-1-sascha.bischoff@arm.com
-
--- 
-Without deviation from the norm, progress is not possible.
+>> 
+>> Acked-by: Conor Dooley <conor.dooley@microchip.com>
+>> Signed-off-by: Kaustabh Chakraborty <kauschluss@disroot.org>
+>> ---
+>>   .../bindings/display/panel/samsung,s6e8aa5x01.yaml | 78 
+>> ++++++++++++++++++++++
+>>   1 file changed, 78 insertions(+)
+>> 
+>> diff --git 
+>> a/Documentation/devicetree/bindings/display/panel/samsung,s6e8aa5x01.yaml 
+>> b/Documentation/devicetree/bindings/display/panel/samsung,s6e8aa5x01.yaml
+>> new file mode 100644
+>> index 
+>> 0000000000000000000000000000000000000000..23dae6e961ae01c99de93bf4b4a067f2953f8edf
+>> --- /dev/null
+>> +++ 
+>> b/Documentation/devicetree/bindings/display/panel/samsung,s6e8aa5x01.yaml
+>> @@ -0,0 +1,78 @@
+>> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+>> +%YAML 1.2
+>> +---
+>> +$id: 
+>> http://devicetree.org/schemas/display/panel/samsung,s6e8aa5x01.yaml#
+>> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+>> +
+>> +title: Samsung S6E8AA5X01 display panel controller
+>> +
+>> +maintainers:
+>> +  - Kaustabh Chakraborty <kauschluss@disroot.org>
+>> +
+>> +allOf:
+>> +  - $ref: panel-common.yaml#
+>> +
+>> +properties:
+>> +  compatible:
+>> +    const: samsung,s6e8aa5x01
+>> +
+>> +  reg:
+>> +    maxItems: 1
+>> +
+>> +  vdd-supply:
+>> +    description: core voltage supply
+>> +
+>> +  vci-supply:
+>> +    description: voltage supply for analog circuits
+>> +
+>> +  reset-gpios: true
+>> +  width-mm: true
+>> +  height-mm: true
+>> +  panel-timing: true
+>> +
+>> +required:
+>> +  - compatible
+>> +  - reg
+>> +  - width-mm
+>> +  - height-mm
+>> +  - panel-timing
+>> +
+>> +additionalProperties: false
+>> +
+>> +examples:
+>> +  - |
+>> +    #include <dt-bindings/gpio/gpio.h>
+>> +
+>> +    dsi {
+>> +        #address-cells = <1>;
+>> +        #size-cells = <0>;
+>> +
+>> +        panel@0 {
+>> +            compatible = "samsung,s6e8aa5x01";
+>> +            reg = <0>;
+>> +
+>> +            vdd-supply = <&panel_vdd_reg>;
+>> +            vci-supply = <&panel_vci_reg>;
+>> +
+>> +            reset-gpios = <&gpd3 4 GPIO_ACTIVE_HIGH>;
+>> +
+>> +            width-mm = <62>;
+>> +            height-mm = <128>;
+>> +
+>> +            panel-timing {
+>> +                clock-frequency = <73094400>;
+>> +
+>> +                hactive = <720>;
+>> +                hsync-len = <2>;
+>> +                hfront-porch = <62>;
+>> +                hback-porch = <26>;
+>> +
+>> +                vactive = <1480>;
+>> +                vsync-len = <2>;
+>> +                vfront-porch = <12>;
+>> +                vback-porch = <10>;
+>> +            };
+>> +        };
+>> +    };
+>> +
+>> +...
+>> 
 
