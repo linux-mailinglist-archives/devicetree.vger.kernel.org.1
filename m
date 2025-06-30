@@ -1,274 +1,319 @@
-Return-Path: <devicetree+bounces-191000-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-191001-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id DD3CAAED769
-	for <lists+devicetree@lfdr.de>; Mon, 30 Jun 2025 10:35:01 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1638DAED770
+	for <lists+devicetree@lfdr.de>; Mon, 30 Jun 2025 10:35:55 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 91E2C7A201D
-	for <lists+devicetree@lfdr.de>; Mon, 30 Jun 2025 08:33:36 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 0625C18979AA
+	for <lists+devicetree@lfdr.de>; Mon, 30 Jun 2025 08:36:11 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 84AE423E32D;
-	Mon, 30 Jun 2025 08:34:51 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C443C23B637;
+	Mon, 30 Jun 2025 08:35:48 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.b="XV3wH+6T"
+	dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b="JKcCOSo+"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lf1-f48.google.com (mail-lf1-f48.google.com [209.85.167.48])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [213.167.242.64])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6D46F21ABB1
-	for <devicetree@vger.kernel.org>; Mon, 30 Jun 2025 08:34:48 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.48
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E2643226165;
+	Mon, 30 Jun 2025 08:35:46 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=213.167.242.64
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1751272491; cv=none; b=HtLGxyGkZKJNNCpCDfGtN320vzf1gyK4iCkSg/O4ju9pprAC924Ei6oMN0gmD9tObar63xoi9EcKrToqKcaD+5to6hBW1rnKurYKY0WFtd+xdnmaefFdc0sEgwB+JNl0vUf/Tao6ntwJn8ETc6sFhgWSs+q93vo8bPuet9fHRrU=
+	t=1751272548; cv=none; b=VnKHnleQOBj7ZiqIuWDzbXvAwHtHDakc/9PUJ9AIu0HB8weX+i6tuzC9ly43U/hdcKz0ozGmARLtHx1rBOA+prjpqLdiWyavmPrSo9M8vBGTlHXLjFcdMCyMq7qMSI59+8/9udb2djZ+ficvEfMltsYIxW18V/oHvQwc5AX1d+I=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1751272491; c=relaxed/simple;
-	bh=nC/C82fwTATbV/O/92DhgZV8ZDN71sYDFJj1hk7lRAA=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=O2C8KF48kgMBf5YsjCL7xDKMv7HiDBO07w7/Sfz2eL5+LEF1TsMtwaiIUcpGwDeMCtTm09OEqp+g5khx/C/bhEM01AljA425AzAYkJ70zRdGHyJDtfUgL7BGMvlm1StHrJukwnXXfvfiyepf7Ebz1oBpUFcRaCTdTC+a2qCXtAY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=chromium.org; spf=pass smtp.mailfrom=chromium.org; dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.b=XV3wH+6T; arc=none smtp.client-ip=209.85.167.48
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=chromium.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=chromium.org
-Received: by mail-lf1-f48.google.com with SMTP id 2adb3069b0e04-5551a770828so915934e87.1
-        for <devicetree@vger.kernel.org>; Mon, 30 Jun 2025 01:34:48 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google; t=1751272486; x=1751877286; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=kVgaB3k9Sbz8/PUf8gTuXUEgwfS3TrY+vZ/LVCHdKio=;
-        b=XV3wH+6TVKdQ+5AembbreyTvHcLB1aUWYLgjVKnyFTD3Zc1zcJVPYMF7xD9YtiX0Ej
-         Y+0QwxTcXiWvCn0aYfsYlGCfzVadwu/afi2iaFmx2SxQNEJ78S1KIdqwi7t1czQBeXxK
-         gnLlWzTws6+rRqHbRhXFYcYsdUoCe7XcTRROc=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1751272486; x=1751877286;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=kVgaB3k9Sbz8/PUf8gTuXUEgwfS3TrY+vZ/LVCHdKio=;
-        b=SDhfnpXNqM+MuIGeo0SRNbPObkkQb2KOKtUje3AlPwYAoZfFiYFTPbkHAVkUQgg/Ef
-         r+ZXX7QwLGM3lwFvnSpYEy6ubmj2zbqOyrdg/5UBtD/pqaCMVAsb5jS5f0ZBzv/NihLM
-         2Nu/rkjZwsqu++zNRr0A5vsnF+EaDk6HxDOMnyU2xtFp/wERUCE93Jgr9IbN34UApEqc
-         G92cdKowQfdsN2C0SkWD6P3IRE6RnPjIEoy8mACZvMi0g4c4214fQNp06Q9oMTadLmfC
-         NXZ+eoZjnC5uDcsQFpTiPKR9DbCS8kDFm2RrQKpCdgfd7NmVQ4Il/3iroszXr3FUaKQC
-         NhHA==
-X-Forwarded-Encrypted: i=1; AJvYcCWf5NjzH+0MuPQ0aSxRCJkbFvHVTYr/sjkVDd/eptrCsO6ZvFMbYkcZAA5hPo41vWPNknryyCnBWwKl@vger.kernel.org
-X-Gm-Message-State: AOJu0Yw0wZLGW1DsM60+4wlU1hbUNTlnveYgyjcBLBegTjt+dWEPYanq
-	IE3hNpRiENY66sph3zPasYxg2s8J2lh8Ux/LQbIFNCLgEk0+Z2lQuLI15WTkjdCg9xsJdyNA0dC
-	WdIFwBYAiEh0EUH5Nw7hzW/dIsNHJDiT6GpYg2Ewv47M6KgJXLlbCsw==
-X-Gm-Gg: ASbGncttwp+QaBU6aHtoY3jKt5ZTMhkJiPzUTereBUa1F6+8eP71Pi1xlX3X0nHfoCv
-	BIG4LrrsVn7dNHEenR5otUedMDeyawIr+6RIs1xVQe0Ot1oIg2K7lxLIVzl/MsGsVq9x3PN5q7p
-	Uyb3qdSClmYuBDxgdiWpgTGRvQa66Z0I7agn5SjiS1Tebw7fjuTin53AsDzFxlqp8/8H7Bfuc=
-X-Google-Smtp-Source: AGHT+IHlFcd7ds08VjRkhAd4B5pJTIKQJ0FaK20eZC09ottQSiiIyrXWfmbyhysoyNz0SfAaoXhAnX9I8zWuiDZ9khk=
-X-Received: by 2002:a05:6512:b12:b0:554:f79d:ce59 with SMTP id
- 2adb3069b0e04-5550b9ee228mr3819454e87.27.1751272486439; Mon, 30 Jun 2025
- 01:34:46 -0700 (PDT)
+	s=arc-20240116; t=1751272548; c=relaxed/simple;
+	bh=Pb8HJ471aqOcZe2ewCJBa4HubsqOuoiKPklFjxSLp/U=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=OwhTpOAPVTRw9FC/HK0OAlpzhagqliJ7/lrbDyMpF309OgvFLJOzFYnmNU1qaMOdDLa18N6M+EC1G4Igk7s3Q11qeFVxGoeL7Z5rubWbck458X/a+cVENk49AW8q4OmFIlOguheP0pSkOOCs3P7u/MoS1q7Pd2lFDBzHViA8vmE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ideasonboard.com; spf=pass smtp.mailfrom=ideasonboard.com; dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b=JKcCOSo+; arc=none smtp.client-ip=213.167.242.64
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ideasonboard.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ideasonboard.com
+Received: from pendragon.ideasonboard.com (81-175-209-231.bb.dnainternet.fi [81.175.209.231])
+	by perceval.ideasonboard.com (Postfix) with UTF8SMTPSA id D8AAF6BE;
+	Mon, 30 Jun 2025 10:35:22 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
+	s=mail; t=1751272523;
+	bh=Pb8HJ471aqOcZe2ewCJBa4HubsqOuoiKPklFjxSLp/U=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=JKcCOSo+cwUx9poxNlqs4DGrbNCXBZaz2O219ud9nTwTvXH/eute7KRzNKn3JAaZo
+	 4N471DvD7OdYOC3Ex1b9MXymlYKvrP7la99f3LF19kUN96JevmnbLyFW9vSbw2ct2y
+	 eJRyGlYNKWezQnh3So3ujeextefNec1ww5ED0Aag=
+Date: Mon, 30 Jun 2025 11:35:19 +0300
+From: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+To: Sakari Ailus <sakari.ailus@linux.intel.com>
+Cc: Daniel Scally <dan.scally@ideasonboard.com>,
+	linux-media@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org, Anthony.McGivern@arm.com,
+	jacopo.mondi@ideasonboard.com, nayden.kanchev@arm.com,
+	robh+dt@kernel.org, mchehab@kernel.org,
+	krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
+	jerome.forissier@linaro.org, kieran.bingham@ideasonboard.com
+Subject: Re: [PATCH v10 07/17] media: mali-c55: Add Mali-C55 ISP driver
+Message-ID: <20250630083519.GC24861@pendragon.ideasonboard.com>
+References: <20250624-c55-v10-0-54f3d4196990@ideasonboard.com>
+ <20250624-c55-v10-7-54f3d4196990@ideasonboard.com>
+ <cee962ce-3719-4ae7-9849-548a95d98e99@linux.intel.com>
+ <20250629183547.GF6260@pendragon.ideasonboard.com>
+ <aGI+y4sOlPAQMzWI@svinhufvud>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20250624073548.29732-1-angelogioacchino.delregno@collabora.com>
- <20250624073548.29732-4-angelogioacchino.delregno@collabora.com>
- <20250627-neon-hidden-sheep-ed8dae@krzk-bin> <CAGXv+5GLJ7cfAQW_kbTqqe_QO+RfU7KL57n77qenpDiRS5BybA@mail.gmail.com>
- <c5dffc8c-2abe-4fd3-a062-6d1adb417d27@collabora.com>
-In-Reply-To: <c5dffc8c-2abe-4fd3-a062-6d1adb417d27@collabora.com>
-From: Chen-Yu Tsai <wenst@chromium.org>
-Date: Mon, 30 Jun 2025 16:34:35 +0800
-X-Gm-Features: Ac12FXy9Bg8iczKYCRzfVVALHWEDTg9agbPGYTVqjyGmcI5uPshlMdfvswpTnDg
-Message-ID: <CAGXv+5EwLDue4y6fVuyNd-z1mytqXJJhQuohhe3htT-XiNcGHw@mail.gmail.com>
-Subject: Re: [PATCH v2 3/6] dt-bindings: regulator: Document MediaTek MT6363
- PMIC Regulators
-To: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
-Cc: Krzysztof Kozlowski <krzk@kernel.org>, broonie@kernel.org, lgirdwood@gmail.com, 
-	robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org, 
-	matthias.bgg@gmail.com, linux-kernel@vger.kernel.org, 
-	devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
-	linux-mediatek@lists.infradead.org, kernel@collabora.com
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+In-Reply-To: <aGI+y4sOlPAQMzWI@svinhufvud>
 
-Hi,
+On Mon, Jun 30, 2025 at 10:37:47AM +0300, Sakari Ailus wrote:
+> On Sun, Jun 29, 2025 at 09:35:47PM +0300, Laurent Pinchart wrote:
+> > On Sat, Jun 28, 2025 at 11:06:54PM +0300, Sakari Ailus wrote:
+> > > On 6/24/25 13:21, Daniel Scally wrote:
+> > 
+> > [snip]
+> > 
+> > > > diff --git a/drivers/media/platform/arm/mali-c55/mali-c55-isp.c b/drivers/media/platform/arm/mali-c55/mali-c55-isp.c
+> > > > new file mode 100644
+> > > > index 0000000000000000000000000000000000000000..20d4d16c75fbf0d5519ecadb5ed1d080bdae05de
+> > > > --- /dev/null
+> > > > +++ b/drivers/media/platform/arm/mali-c55/mali-c55-isp.c
+> > > > @@ -0,0 +1,656 @@
+> > > > +// SPDX-License-Identifier: GPL-2.0
+> > > > +/*
+> > > > + * ARM Mali-C55 ISP Driver - Image signal processor
+> > > > + *
+> > > > + * Copyright (C) 2024 Ideas on Board Oy
+> > > 
+> > > It's 2025 already.
+> > > 
+> > > > + */
+> > > > +
+> > > > +#include <linux/delay.h>
+> > > > +#include <linux/iopoll.h>
+> > > > +#include <linux/property.h>
+> > > > +#include <linux/string.h>
+> > > > +
+> > > > +#include <linux/media/arm/mali-c55-config.h>
+> > > 
+> > > If this is a UAPI header, please include uapi in the path, too.
+> > > 
+> > > Earlier such headers have been under include/uapi/linux, I don't object 
+> > > putting new ones elsewhere in principle though. Just check with Hans and 
+> > > Laurent, too... I don't have an opinion yet really.
+> > 
+> > With each new media header we add to include/uapi/linux/, I wish
+> > stronger and stronger that we had created include/uapi/linux/media/. We
+> > don't have to do it now, my regret will just grow stronger :-)
+> 
+> I'm fine with using include/uapi/linux/media/.
+> 
+> > > > +/* NOT const because the default needs to be filled in at runtime */
+> > > > +static struct v4l2_ctrl_config mali_c55_isp_v4l2_custom_ctrls[] = {
+> > > > +	{
+> > > > +		.ops = &mali_c55_isp_ctrl_ops,
+> > > > +		.id = V4L2_CID_MALI_C55_CAPABILITIES,
+> > > > +		.name = "Mali-C55 ISP Capabilities",
+> > > > +		.type = V4L2_CTRL_TYPE_BITMASK,
+> > > > +		.min = 0,
+> > > > +		.max = MALI_C55_GPS_PONG_FITTED |
+> > > > +		       MALI_C55_GPS_WDR_FITTED |
+> > > > +		       MALI_C55_GPS_COMPRESSION_FITTED |
+> > > > +		       MALI_C55_GPS_TEMPER_FITTED |
+> > > > +		       MALI_C55_GPS_SINTER_LITE_FITTED |
+> > > > +		       MALI_C55_GPS_SINTER_FITTED |
+> > > > +		       MALI_C55_GPS_IRIDIX_LTM_FITTED |
+> > > > +		       MALI_C55_GPS_IRIDIX_GTM_FITTED |
+> > > > +		       MALI_C55_GPS_CNR_FITTED |
+> > > > +		       MALI_C55_GPS_FRSCALER_FITTED |
+> > > > +		       MALI_C55_GPS_DS_PIPE_FITTED,
+> > > > +		.def = 0,
+> > > > +	},
+> > > > +};
+> > > > +
+> > > > +static int mali_c55_isp_init_controls(struct mali_c55 *mali_c55)
+> > > > +{
+> > > > +	struct v4l2_ctrl_handler *handler = &mali_c55->isp.handler;
+> > > > +	struct v4l2_ctrl *capabilities;
+> > > > +	int ret;
+> > > > +
+> > > > +	ret = v4l2_ctrl_handler_init(handler, 1);
+> > > > +	if (ret)
+> > > > +		return ret;
+> > > > +
+> > > > +	mali_c55_isp_v4l2_custom_ctrls[0].def = mali_c55->capabilities;
+> > > 
+> > > The capabilities here are still specific to a device, not global, in 
+> > > principle at least. Can you move it here, as a local variable?
+> > > 
+> > > > +
+> > > > +	capabilities = v4l2_ctrl_new_custom(handler,
+> > > > +					    &mali_c55_isp_v4l2_custom_ctrls[0],
+> > > > +					    NULL);
+> > > > +	if (capabilities)
+> > > > +		capabilities->flags |= V4L2_CTRL_FLAG_READ_ONLY;
+> > > > +
+> > > > +	if (handler->error) {
+> > > > +		dev_err(mali_c55->dev, "failed to register capabilities control\n");
+> > > > +		v4l2_ctrl_handler_free(handler);
+> > > > +		return handler->error;
+> > > 
+> > > v4l2_ctrl_handler_free() will return the error soon, presumably sooner 
+> > > than the above code makes it to upstream. Before that, this pattern 
+> > > won't work as v4l2_ctrl_handler_free() also resets the handler's error 
+> > > field. :-)
+> > > 
+> > > > diff --git a/drivers/media/platform/arm/mali-c55/mali-c55-registers.h b/drivers/media/platform/arm/mali-c55/mali-c55-registers.h
+> > > > new file mode 100644
+> > > > index 0000000000000000000000000000000000000000..36a81be0191a15da91809dd2da5d279716f6d725
+> > > > --- /dev/null
+> > > > +++ b/drivers/media/platform/arm/mali-c55/mali-c55-registers.h
+> > > > @@ -0,0 +1,318 @@
+> > > > +/* SPDX-License-Identifier: GPL-2.0 */
+> > > > +/*
+> > > > + * ARM Mali-C55 ISP Driver - Register definitions
+> > > > + *
+> > > > + * Copyright (C) 2024 Ideas on Board Oy
+> > > > + */
+> > > > +
+> > > > +#ifndef _MALI_C55_REGISTERS_H
+> > > > +#define _MALI_C55_REGISTERS_H
+> > > > +
+> > > > +#include <linux/bits.h>
+> > > > +
+> > > > +/* ISP Common 0x00000 - 0x000ff */
+> > > > +
+> > > > +#define MALI_C55_REG_API				0x00000
+> > > > +#define MALI_C55_REG_PRODUCT				0x00004
+> > > > +#define MALI_C55_REG_VERSION				0x00008
+> > > > +#define MALI_C55_REG_REVISION				0x0000c
+> > > > +#define MALI_C55_REG_PULSE_MODE				0x0003c
+> > > > +#define MALI_C55_REG_INPUT_MODE_REQUEST			0x0009c
+> > > > +#define MALI_C55_INPUT_SAFE_STOP			0x00
+> > > > +#define MALI_C55_INPUT_SAFE_START			0x01
+> > > > +#define MALI_C55_REG_MODE_STATUS			0x000a0
+> > > > +#define MALI_C55_REG_INTERRUPT_MASK_VECTOR		0x00030
+> > > > +#define MALI_C55_INTERRUPT_MASK_ALL			GENMASK(31, 0)
+> > > > +
+> > > > +#define MALI_C55_REG_GLOBAL_MONITOR			0x00050
+> > > > +
+> > > > +#define MALI_C55_REG_GEN_VIDEO				0x00080
+> > > > +#define MALI_C55_REG_GEN_VIDEO_ON_MASK			BIT(0)
+> > > > +#define MALI_C55_REG_GEN_VIDEO_MULTI_MASK		BIT(1)
+> > > > +#define MALI_C55_REG_GEN_PREFETCH_MASK			GENMASK(31, 16)
+> > > > +
+> > > > +#define MALI_C55_REG_MCU_CONFIG				0x00020
+> > > > +#define MALI_C55_REG_MCU_CONFIG_OVERRIDE_MASK		BIT(0)
+> > > > +#define MALI_C55_REG_MCU_CONFIG_WRITE_MASK		BIT(1)
+> > > > +#define MALI_C55_MCU_CONFIG_WRITE(x)			((x) << 1)
+> > > 
+> > > Is x unsigned?
+> > 
+> > Does it matter ? The reason why the BIT() macro uses (UL(1) << (nr))
+> > instead of (1 << (nr)) is (if I'm not mistaken) to avoid incorrect
+> > handling of bit 31. As long as x doesn't take negative values and
+> > doesn't extend to bit 31, it should be fine.
+> 
+> For that reason exactly. If you're unsure, maybe at least cast it as
+> unsigned?
 
-On Mon, Jun 30, 2025 at 3:52=E2=80=AFPM AngeloGioacchino Del Regno
-<angelogioacchino.delregno@collabora.com> wrote:
->
-> Il 30/06/25 05:25, Chen-Yu Tsai ha scritto:
-> > On Fri, Jun 27, 2025 at 4:24=E2=80=AFPM Krzysztof Kozlowski <krzk@kerne=
-l.org> wrote:
-> >>
-> >> On Tue, Jun 24, 2025 at 09:35:45AM +0200, AngeloGioacchino Del Regno w=
-rote:
-> >>> Add bindings for the regulators found in the MediaTek MT6363 PMIC,
-> >>> usually found in board designs using the MT6991 Dimensity 9400 and
-> >>> on MT8196 Kompanio SoC for Chromebooks, along with the MT6316 and
-> >>> MT6373 PMICs.
-> >>>
-> >>> Signed-off-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@=
-collabora.com>
-> >>> ---
-> >>>   .../regulator/mediatek,mt6363-regulator.yaml  | 123 +++++++++++++++=
-+++
-> >>>   1 file changed, 123 insertions(+)
-> >>>   create mode 100644 Documentation/devicetree/bindings/regulator/medi=
-atek,mt6363-regulator.yaml
-> >>>
-> >>> diff --git a/Documentation/devicetree/bindings/regulator/mediatek,mt6=
-363-regulator.yaml b/Documentation/devicetree/bindings/regulator/mediatek,m=
-t6363-regulator.yaml
-> >>> new file mode 100644
-> >>> index 000000000000..f866c89c56f7
-> >>> --- /dev/null
-> >>> +++ b/Documentation/devicetree/bindings/regulator/mediatek,mt6363-reg=
-ulator.yaml
-> >>> @@ -0,0 +1,123 @@
-> >>> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
-> >>> +%YAML 1.2
-> >>> +---
-> >>> +$id: http://devicetree.org/schemas/regulator/mediatek,mt6363-regulat=
-or.yaml#
-> >>> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> >>> +
-> >>> +title: MediaTek MT6363 PMIC Regulators
-> >>> +
-> >>> +maintainers:
-> >>> +  - AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.=
-com>
-> >>> +
-> >>> +description:
-> >>> +  The MT6363 SPMI PMIC provides 10 BUCK and 26 LDO (Low Dropout) reg=
-ulators
-> >>> +  and can optionally provide overcurrent warnings with one ocp inter=
-rupt
-> >>> +  for each voltage regulator.
-> >>> +
-> >>> +properties:
-> >>> +  compatible:
-> >>> +    const: mediatek,mt6363-regulator
-> >>> +
-> >>> +  interrupts:
-> >>> +    description: Overcurrent warning interrupts
-> >>
-> >> Are you sure interrupts are physically not connected?
->
-> Yes, I'm sure, they are not.
->
-> >
-> > Side note:
-> >
-> > I wonder if we really need to describe _all_ the interrupts here.
-> >
-> > Looking at the PMIC as a whole, the interrupt tree is something like
-> >
-> > SoC <- SPMI inband IRQ - PMIC top level IRQ block <- sub-function IRQ b=
-locks:
-> >
-> >      - BUCK (buck regulator over current)
-> >      - LDO (LDO regulator over current)
-> >      - PSC (key press / system low voltage)
-> >      - MISC (protected registers accessed / SPMI stuff)
-> >
-> > And some other blocks that may apply to other MediaTek PMICs:
-> >
-> >      - HK (some threshold triggered interrupt)
-> >      - BM (battery management related)
-> >
-> > The thing I'm trying to get to is that all these interrupt vectors are
-> > internal to the whole PMIC. Do we really need to spell them out in the
-> > device tree? The top level compatible should already imply how all the
-> > internals are wired up.
-> >
->
-> Chen-Yu:
->
-> Yes, we do: not all boards need overcurrent protection on all of the rail=
-s, but
-> especially, in the past I have seen (multiple times) board designs (not M=
-ediaTek,
-> but that doesn't mean anything) that will trigger the overcurrent protect=
-ion due
-> to a high inrush upon rail enablement - in these cases, the ocp would hav=
-e to be
-> either ignored completely or reset and read after a while.
->
-> Not only that: since not all rails are actually used, due to EMI (and oth=
-er issues
-> which usually mean suboptimally built boards) some of those may randomly =
-trigger
-> OCP, and that's another case in which that should be ignored.
->
-> So... yes, we want to define the overcurrent interrupts in the devicetree=
-.
+The MCU_CONFIG_WRITE field is on bit long, so there's no practical
+issue. I also don't expect the driver to pass a negative value. We could
+still add an unsigned cast if there's a general rule that all register
+fields must be cast to unsigned. This isn't done in the vast majority of
+drivers though.
 
-I understand the use case, but I think that's kind of giving the interrupts
-property a second meaning.
+> > > > +#define MALI_C55_REG_MCU_CONFIG_WRITE_PING		BIT(1)
+> > > > +#define MALI_C55_REG_MCU_CONFIG_WRITE_PONG		0x00
+> > > > +#define MALI_C55_REG_MULTI_CONTEXT_MODE_MASK		BIT(8)
+> > > > +#define MALI_C55_REG_PING_PONG_READ			0x00024
+> > > > +#define MALI_C55_REG_PING_PONG_READ_MASK		BIT(2)
+> > > > +#define MALI_C55_INTERRUPT_BIT(x)			BIT(x)
+> > > > +
+> > > > +#define MALI_C55_REG_GLOBAL_PARAMETER_STATUS		0x00068
+> > > > +#define MALI_C55_GPS_PONG_FITTED			BIT(0)
+> > > > +#define MALI_C55_GPS_WDR_FITTED				BIT(1)
+> > > > +#define MALI_C55_GPS_COMPRESSION_FITTED			BIT(2)
+> > > > +#define MALI_C55_GPS_TEMPER_FITTED			BIT(3)
+> > > > +#define MALI_C55_GPS_SINTER_LITE_FITTED			BIT(4)
+> > > > +#define MALI_C55_GPS_SINTER_FITTED			BIT(5)
+> > > > +#define MALI_C55_GPS_IRIDIX_LTM_FITTED			BIT(6)
+> > > > +#define MALI_C55_GPS_IRIDIX_GTM_FITTED			BIT(7)
+> > > > +#define MALI_C55_GPS_CNR_FITTED				BIT(8)
+> > > > +#define MALI_C55_GPS_FRSCALER_FITTED			BIT(9)
+> > > > +#define MALI_C55_GPS_DS_PIPE_FITTED			BIT(10)
+> > > > +
+> > > > +#define MALI_C55_REG_BLANKING				0x00084
+> > > > +#define MALI_C55_REG_HBLANK_MASK			GENMASK(15, 0)
+> > > > +#define MALI_C55_REG_VBLANK_MASK			GENMASK(31, 16)
+> > > > +#define MALI_C55_VBLANK(x)				((x) << 16)
+> > > 
+> > > Same question for the bit shifts left elsewhere in the header.
+> > > 
+> > > > +
+> > > > +#define MALI_C55_REG_HC_START				0x00088
+> > > > +#define MALI_C55_HC_START(h)				(((h) & 0xffff) << 16)
+> > > > +#define MALI_C55_REG_HC_SIZE				0x0008c
+> > > > +#define MALI_C55_HC_SIZE(h)				((h) & 0xffff)
+> > > > +#define MALI_C55_REG_VC_START_SIZE			0x00094
+> > > > +#define MALI_C55_VC_START(v)				((v) & 0xffff)
+> > > > +#define MALI_C55_VC_SIZE(v)				(((v) & 0xffff) << 16)
+> > > > +
+> > > > +/* Ping/Pong Configuration Space */
+> > > > +#define MALI_C55_REG_BASE_ADDR				0x18e88
+> > > > +#define MALI_C55_REG_BYPASS_0				0x18eac
+> > > > +#define MALI_C55_REG_BYPASS_0_VIDEO_TEST		BIT(0)
+> > > > +#define MALI_C55_REG_BYPASS_0_INPUT_FMT			BIT(1)
+> > > > +#define MALI_C55_REG_BYPASS_0_DECOMPANDER		BIT(2)
+> > > > +#define MALI_C55_REG_BYPASS_0_SENSOR_OFFSET_WDR		BIT(3)
+> > > > +#define MALI_C55_REG_BYPASS_0_GAIN_WDR			BIT(4)
+> > > > +#define MALI_C55_REG_BYPASS_0_FRAME_STITCH		BIT(5)
+> > > > +#define MALI_C55_REG_BYPASS_1				0x18eb0
+> > > > +#define MALI_C55_REG_BYPASS_1_DIGI_GAIN			BIT(0)
+> > > > +#define MALI_C55_REG_BYPASS_1_FE_SENSOR_OFFS		BIT(1)
+> > > > +#define MALI_C55_REG_BYPASS_1_FE_SQRT			BIT(2)
+> > > > +#define MALI_C55_REG_BYPASS_1_RAW_FE			BIT(3)
+> > > > +#define MALI_C55_REG_BYPASS_2				0x18eb8
+> > > > +#define MALI_C55_REG_BYPASS_2_SINTER			BIT(0)
+> > > > +#define MALI_C55_REG_BYPASS_2_TEMPER			BIT(1)
+> > > > +#define MALI_C55_REG_BYPASS_3				0x18ebc
+> > > > +#define MALI_C55_REG_BYPASS_3_SQUARE_BE			BIT(0)
+> > > > +#define MALI_C55_REG_BYPASS_3_SENSOR_OFFSET_PRE_SH	BIT(1)
+> > > > +#define MALI_C55_REG_BYPASS_3_MESH_SHADING		BIT(3)
+> > > > +#define MALI_C55_REG_BYPASS_3_WHITE_BALANCE		BIT(4)
+> > > > +#define MALI_C55_REG_BYPASS_3_IRIDIX			BIT(5)
+> > > > +#define MALI_C55_REG_BYPASS_3_IRIDIX_GAIN		BIT(6)
+> > > > +#define MALI_C55_REG_BYPASS_4				0x18ec0
+> > > > +#define MALI_C55_REG_BYPASS_4_DEMOSAIC_RGB		BIT(1)
+> > > > +#define MALI_C55_REG_BYPASS_4_PF_CORRECTION		BIT(3)
+> > > > +#define MALI_C55_REG_BYPASS_4_CCM			BIT(4)
+> > > > +#define MALI_C55_REG_BYPASS_4_CNR			BIT(5)
+> > > > +#define MALI_C55_REG_FR_BYPASS				0x18ec4
+> > > > +#define MALI_C55_REG_DS_BYPASS				0x18ec8
+> > > > +#define MALI_C55_BYPASS_CROP				BIT(0)
+> > > > +#define MALI_C55_BYPASS_SCALER				BIT(1)
+> > > > +#define MALI_C55_BYPASS_GAMMA_RGB			BIT(2)
+> > > > +#define MALI_C55_BYPASS_SHARPEN				BIT(3)
+> > > > +#define MALI_C55_BYPASS_CS_CONV				BIT(4)
+> > > > +#define MALI_C55_REG_ISP_RAW_BYPASS			0x18ecc
+> > > > +#define MALI_C55_ISP_RAW_BYPASS_BYPASS_MASK		BIT(0)
+> > > > +#define MALI_C55_ISP_RAW_BYPASS_FR_BYPASS_MASK		GENMASK(9, 8)
+> > > > +#define MALI_C55_ISP_RAW_BYPASS_RAW_FR_BYPASS		(2 << 8)
+> > > > +#define MALI_C55_ISP_RAW_BYPASS_RGB_FR_BYPASS		(1 << 8)
+> > > 
+> > > BIT() or make these unsigned.
+> > 
+> > It's a 2 bits field, BIT() isn't appropriate.
+> 
+> That leaves us with the other alternative, doesn't it?
 
-Instead, if you look at the common regulator bindings, there is a
-"regulator-over-current-protection" which signals that over current
-protection should be enabled for a given regulator. Perhaps you could
-use that? I think this common property also implies that over current
-protection has to be explicitly enabled.
+Absolutely, although unsigned is unnecessary in this case as we're not
+approaching bit 31.
 
-> >
-> > ChenYu
-> >
-> >>> +    minItems: 1
-> >>> +    maxItems: 36
-> >>> +
-> >>> +  interrupt-names:
-> >>> +    description:
-> >>> +      Names for the overcurrent interrupts are the same as the name
-> >>> +      of a regulator (hence the same as each regulator's node name).
-> >>> +      For example, the interrupt name for regulator vs2 will be "vs2=
-".
-> >>
-> >> You need to define the items or pattern if this is really flexible in
-> >> the hardware (not drivers).
->
-> krzk:
->
-> It's flexible in the hardware... but how do I define a pattern here?
-> I avoided to define the items because you can miss some; I mean....
->
-> You may have, on one board:
-> "vs1", "vsram", "someother", "another"
->
-> on another: "vsram", "another"
->
-> ...and another: "vs1", "another"
->
-> (etc etc)
->
-> Is there any way to allow missing items in between?
-> Because then there's 36 possible items, so there are more than 100 possib=
-le
-> combinations (keeping the order, but missing something in between..!).
+-- 
+Regards,
 
-I recently saw in the net/snps,dwmac.yaml binding the following:
-
-  clock-names:
-    minItems: 1
-    maxItems: 10
-    additionalItems: true
-    contains:
-      enum:
-        - stmmaceth
-        - pclk
-        - ptp_ref
-
-I suppose you could adapt this pattern, list all the possibilities, and
-set additionalItems to false. I don't think it can pick out duplicates
-though.
-
-
-ChenYu
-
-> Cheers,
-> Angelo
->
->
->
+Laurent Pinchart
 
