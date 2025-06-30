@@ -1,141 +1,147 @@
-Return-Path: <devicetree+bounces-191091-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-191093-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 77CF9AEDBF0
-	for <lists+devicetree@lfdr.de>; Mon, 30 Jun 2025 13:53:45 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 0EC4CAEDC11
+	for <lists+devicetree@lfdr.de>; Mon, 30 Jun 2025 13:56:18 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 0B1C0189AA29
-	for <lists+devicetree@lfdr.de>; Mon, 30 Jun 2025 11:54:01 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 1C78918974C3
+	for <lists+devicetree@lfdr.de>; Mon, 30 Jun 2025 11:56:34 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id F2D56285CAA;
-	Mon, 30 Jun 2025 11:52:46 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id EEC22280A5F;
+	Mon, 30 Jun 2025 11:56:12 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="FL3lqLzC"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="AMMNBvgX"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 97C6E285412;
-	Mon, 30 Jun 2025 11:52:46 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C1A9054918;
+	Mon, 30 Jun 2025 11:56:12 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1751284366; cv=none; b=XwEdC1yK64HQ4p5ZX8/p9vFfGfYz4aoXNwpd3udfs5wYFO6/i/25yNwIQF8SbLslfS9y0NJvp0elAShsswmhC43895RGVtyZVRO7b2ddLDBLxwUpUGfOUFac7CTua6lzx0I1hkSyIKvh/TutPGO78t09Q9pyC+1gRmQPyWkgaBE=
+	t=1751284572; cv=none; b=EezMttxbo3R9UZIBer/0WQzksn1HD0AHrk71/kZ0ChmkagG+tCaxh9/PFdTOozYv0Tn/Mq161gq7PvItVojWj0LMs0WWb1izLc8rXk/tq3FpXC7B71z5bRb2pDFeMtcONbjORGC6TTVqgZWXwq8vPtCub9hN83JqLnU6p8ZTt3k=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1751284366; c=relaxed/simple;
-	bh=nFZOQexnNjnUMXtGPF7ep9n0MIVjVa8TN2/NZxxIAd8=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=RGDlIPt6shkOWOE7Ggu0FbaZYVIyqTMCRXKG5+WoRRYjCwfDjgC7GFxndfEe6n6LfSq2mq7AfjLArMICRCXHyVnuzbKP6RrB+/OriZ+sM160TvrYLs9EgvMGD2E4hPJWbiVk+Z4zJEwA2i2gEh0gPdbXR7HKUY+gbzsXSecGBwc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=FL3lqLzC; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPS id 6B471C4CEF6;
-	Mon, 30 Jun 2025 11:52:46 +0000 (UTC)
+	s=arc-20240116; t=1751284572; c=relaxed/simple;
+	bh=sclAsDEm8xDN6DjUFp+H20U+HhA//PfPCJZTCVvURFI=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=t0ZSIFkkWQvt5Bd6kRECty28McFIL61f6T3gWDIABGj22ouC7ChcqRNs14BIlNi5hq7as2fyYQEbSl7Vo4kFCF/CrEKcqAs7s4tJeX00qhT8/tr+VK7zFXlwmDBAXR+SwGo3f10Ap5h23sd02iLfCC3DfGHMBaFbvP3p0TM3ap8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=AMMNBvgX; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 0575AC4CEF0;
+	Mon, 30 Jun 2025 11:56:01 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1751284366;
-	bh=nFZOQexnNjnUMXtGPF7ep9n0MIVjVa8TN2/NZxxIAd8=;
-	h=From:Date:Subject:References:In-Reply-To:To:Cc:Reply-To:From;
-	b=FL3lqLzC+MQ+WZK7Bc05sS7xo7u03E0blBiQHHwAYBxezh9VS4Zaal2cNEtdib+mW
-	 XQOvsTVQQqP4xcF239IIARn74S24b5Wr8Xc3pGxbV20GHU1FxobOV+mwmCePwYYlas
-	 PG62ywEtoOoj781MmuhT+MGr1hU6NUNtVPNYbCRg6jjqdi71CvIHtOLzwZhOEfHAav
-	 UuDrLZJ2KnV/7s3HBvT7z+5PECYZlor+7XO4KrG0L4JZzIzQphhT3Ju35utDM6MuDJ
-	 NOkjJV55jRrBc9bxVeTU+yO9sq0OnLT637S1Dxm29fDbnKv5ZnOGYGuTqBSJ3bZAcv
-	 VOGETAShamufg==
-Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 62B8EC8302F;
-	Mon, 30 Jun 2025 11:52:46 +0000 (UTC)
-From: =?utf-8?q?Nuno_S=C3=A1_via_B4_Relay?= <devnull+nuno.sa.analog.com@kernel.org>
-Date: Mon, 30 Jun 2025 12:53:11 +0100
-Subject: [PATCH v6 20/20] mfd: adp5585: Add support for a reset pin
+	s=k20201202; t=1751284572;
+	bh=sclAsDEm8xDN6DjUFp+H20U+HhA//PfPCJZTCVvURFI=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=AMMNBvgXVwKu3qzOPQGxZSzXtXiH7K2/8XLKaWs9ED2g2c4zagkiWtP/DpStXCMe8
+	 etvAOXgUfniGKTkYRXgT2i6G0dVq0uKkd7qWAqXkWXcSyTIG3Kd6fOXycBDkZCtu/K
+	 vpf1GA+gCHo87o0VfVc0l2SjnupZrrWOZPWYiMDgnnZ6tKMgyoYdVVodSwIf4lZhth
+	 gFUxNAaQlQ21uonA2brxv6FkbJyVph9vc//elarQ3ZTCYtO8E1BxQsVW8Q+vD9bjS/
+	 J0qrCj1jw39B0HP5YJSSH0A7jg7/1cW86xT7LKS3tKrQIJLHQA/KvTIvBYYgFt7mFO
+	 Ku+UnrXqjR5OQ==
+Message-ID: <4afcef9e-db98-4679-b9c1-40ffcf4861c6@kernel.org>
+Date: Mon, 30 Jun 2025 13:55:58 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
-Message-Id: <20250630-dev-adp5589-fw-v6-20-a0f392a0ba91@analog.com>
-References: <20250630-dev-adp5589-fw-v6-0-a0f392a0ba91@analog.com>
-In-Reply-To: <20250630-dev-adp5589-fw-v6-0-a0f392a0ba91@analog.com>
-To: linux-gpio@vger.kernel.org, linux-pwm@vger.kernel.org, 
- devicetree@vger.kernel.org, linux-input@vger.kernel.org
-Cc: Lee Jones <lee@kernel.org>, Rob Herring <robh@kernel.org>, 
- Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, 
- =?utf-8?q?Uwe_Kleine-K=C3=B6nig?= <ukleinek@kernel.org>, 
- Linus Walleij <linus.walleij@linaro.org>, 
- Bartosz Golaszewski <brgl@bgdev.pl>, 
- Dmitry Torokhov <dmitry.torokhov@gmail.com>, 
- Laurent Pinchart <laurent.pinchart@ideasonboard.com>, 
- Liu Ying <victor.liu@nxp.com>
-X-Mailer: b4 0.14.2
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1751284374; l=1501;
- i=nuno.sa@analog.com; s=20231116; h=from:subject:message-id;
- bh=mo45c0YcZpaHsHxCU2xPefftxnua9GwC2/0PBDuFfIU=;
- b=w9qqEVYe1DCLUB/Au+QawoAJxdOWuNowpU1r5yG6miF1ipXK2pLicpAjOhPlVi5UpCDr0AhjG
- dKtsaWqOr1kAiU8f7eoUpCqyurBU4WqNAD4ZMT/sVS2fIzc1fPzl2tw
-X-Developer-Key: i=nuno.sa@analog.com; a=ed25519;
- pk=3NQwYA013OUYZsmDFBf8rmyyr5iQlxV/9H4/Df83o1E=
-X-Endpoint-Received: by B4 Relay for nuno.sa@analog.com/20231116 with
- auth_id=100
-X-Original-From: =?utf-8?q?Nuno_S=C3=A1?= <nuno.sa@analog.com>
-Reply-To: nuno.sa@analog.com
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v3 1/4] spi: dt-bindings: spi-sg2044-nor: Change SOPHGO
+ SG2042
+To: Zixian Zeng <sycamoremoon376@gmail.com>
+Cc: Tudor Ambarus <tudor.ambarus@linaro.org>,
+ Pratyush Yadav <pratyush@kernel.org>, Michael Walle <mwalle@kernel.org>,
+ Miquel Raynal <miquel.raynal@bootlin.com>,
+ Richard Weinberger <richard@nod.at>, Vignesh Raghavendra <vigneshr@ti.com>,
+ Chen Wang <unicorn_wang@outlook.com>, Inochi Amaoto <inochiama@gmail.com>,
+ Mark Brown <broonie@kernel.org>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Paul Walmsley <paul.walmsley@sifive.com>,
+ Palmer Dabbelt <palmer@dabbelt.com>, Albert Ou <aou@eecs.berkeley.edu>,
+ Alexandre Ghiti <alex@ghiti.fr>, Longbin Li <looong.bin@gmail.com>,
+ linux-mtd@lists.infradead.org, linux-kernel@vger.kernel.org,
+ sophgo@lists.linux.dev, linux-spi@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-riscv@lists.infradead.org
+References: <20250629-sfg-spifmc-v3-0-28db1f27e999@gmail.com>
+ <20250629-sfg-spifmc-v3-1-28db1f27e999@gmail.com>
+ <20250630-ancient-quail-of-joy-effd60@krzk-bin> <aGJ5XAYZ1nmQyBQT@calculate>
+From: Krzysztof Kozlowski <krzk@kernel.org>
+Content-Language: en-US
+Autocrypt: addr=krzk@kernel.org; keydata=
+ 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 a/A=
+In-Reply-To: <aGJ5XAYZ1nmQyBQT@calculate>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-From: Nuno Sá <nuno.sa@analog.com>
+On 30/06/2025 13:47, Zixian Zeng wrote:
+> On Mon, Jun 30, 2025 at 09:17:09AM +0200, Krzysztof Kozlowski wrote:
+>> On Sun, Jun 29, 2025 at 04:23:10PM +0800, Zixian Zeng wrote:
+>>> SG2042 is not fully compatiable with SG2044,
+>>
+>> Typo, run spellcheck.
+>>
+> Thanks for spotting that! I will add spellcheck to my patch checking script next.
+> 
+>>> So it is necessary to become independent const
+>>
+>> No capital letters after ,.
+>>
+> Ok, thanks
+> 
+>> Anyway, explain why it is not fully compatible.
+>>
+> I have asked the technical staff of SOPHGO, the SG2044 and SG2042 are indeed incompatible with each other in some places because of the hardware details, regarding the configuration of the OPT register and FFTrgLvl(fifo trigger level) bit setting.
 
-Make sure to perform an Hardware reset during probe  if the pin is given
-in FW.
+So when driver binds with sg2044, the device does not work? Or what
+exactly does not work?
 
-Signed-off-by: Nuno Sá <nuno.sa@analog.com>
----
- drivers/mfd/adp5585.c | 16 ++++++++++++++++
- 1 file changed, 16 insertions(+)
+All this is supposed to be explained in the commit msg.
 
-diff --git a/drivers/mfd/adp5585.c b/drivers/mfd/adp5585.c
-index 11a26f668653439378f9eb31d053c45772a940d0..58f7cebe2ea4f2c68f64370449f5fbce8a2f14ed 100644
---- a/drivers/mfd/adp5585.c
-+++ b/drivers/mfd/adp5585.c
-@@ -12,6 +12,7 @@
- #include <linux/device.h>
- #include <linux/err.h>
- #include <linux/i2c.h>
-+#include <linux/gpio/consumer.h>
- #include <linux/mfd/adp5585.h>
- #include <linux/mfd/core.h>
- #include <linux/mod_devicetable.h>
-@@ -690,6 +691,7 @@ static int adp5585_i2c_probe(struct i2c_client *i2c)
- {
- 	struct regmap_config *regmap_config;
- 	struct adp5585_dev *adp5585;
-+	struct gpio_desc *gpio;
- 	unsigned int id;
- 	int ret;
- 
-@@ -714,6 +716,20 @@ static int adp5585_i2c_probe(struct i2c_client *i2c)
- 	if (ret)
- 		return ret;
- 
-+	gpio = devm_gpiod_get_optional(&i2c->dev, "reset", GPIOD_OUT_HIGH);
-+	if (IS_ERR(gpio))
-+		return PTR_ERR(gpio);
-+
-+	/*
-+	 * Note the timings are not documented anywhere in the datasheet. They are just
-+	 * reasonable values that work.
-+	 */
-+	if (gpio) {
-+		fsleep(30);
-+		gpiod_set_value_cansleep(gpio, 0);
-+		fsleep(60);
-+	}
-+
- 	adp5585->regmap = devm_regmap_init_i2c(i2c, regmap_config);
- 	if (IS_ERR(adp5585->regmap))
- 		return dev_err_probe(&i2c->dev, PTR_ERR(adp5585->regmap),
-
--- 
-2.50.0
-
-
+Best regards,
+Krzysztof
 
