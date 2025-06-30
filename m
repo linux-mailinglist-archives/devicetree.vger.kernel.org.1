@@ -1,147 +1,217 @@
-Return-Path: <devicetree+bounces-191207-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-191208-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id D18CAAEE6F9
-	for <lists+devicetree@lfdr.de>; Mon, 30 Jun 2025 20:48:51 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 95A9BAEE704
+	for <lists+devicetree@lfdr.de>; Mon, 30 Jun 2025 20:55:50 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 720921BC2415
-	for <lists+devicetree@lfdr.de>; Mon, 30 Jun 2025 18:49:07 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 1CF72189B169
+	for <lists+devicetree@lfdr.de>; Mon, 30 Jun 2025 18:56:06 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 31DB828C2C7;
-	Mon, 30 Jun 2025 18:48:45 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5D7A32E54AC;
+	Mon, 30 Jun 2025 18:55:38 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="MddXT27O"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="DdhGKmzR"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lj1-f179.google.com (mail-lj1-f179.google.com [209.85.208.179])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 67838EADC;
-	Mon, 30 Jun 2025 18:48:43 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.179
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 28B6479D2;
+	Mon, 30 Jun 2025 18:55:37 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1751309325; cv=none; b=LScV4a3z82EWpHNOfTdy2izfHjnGJEDmsKivREjXTADqlA3FH+ntlCFbqAkaFtyUeiOK6g6ABzUwZM5POKFTZwvg8uLx25JgncMb9dAngrabv+TeYCJnL02chAAjfRtsWvUaoPvFYlZkKic+l+sF86hx7OHqbcqJPB+e7AWx1Rw=
+	t=1751309738; cv=none; b=axO2ut0FV6g7AZlhxPAEd8m7UECYsRHFULVazYiliH6vJGStUM/XUomC/hhVMIO/ZRMaz0besWBfisznDq8h0N4OFhrnHsxBDUwULNbRrPcLBrqqSSA+DgtGeXdOAuPkbAioy1EQhu2thejgzZrFcF7azJBTxkp/LredW2dSDSM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1751309325; c=relaxed/simple;
-	bh=ToP/U84M4tPmiRzistciKSynhFiA4hrBw/o/degwK7g=;
+	s=arc-20240116; t=1751309738; c=relaxed/simple;
+	bh=p7WnF9DWkiE2Gdzjr0y3QZ/hVpLdgQL++uU/dzCSfFQ=;
 	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=nFAYccJFSy42t5dyvmUmsA9ioyFAvsEsaTpa1usFa1OW7E2/HIEYYnVaKHG4IJ5t14lT4RfroUi6AKnjQQpcO/TMhNO01Za4hmmtbg91y+7Iu+x56eIitkyYAi6+k4r1U/7MWLFsZBQRR6iH+OFOK6JUpM95p4ylou5DvqRHg6g=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=MddXT27O; arc=none smtp.client-ip=209.85.208.179
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-lj1-f179.google.com with SMTP id 38308e7fff4ca-32b435ef653so38842021fa.2;
-        Mon, 30 Jun 2025 11:48:43 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1751309321; x=1751914121; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=ToP/U84M4tPmiRzistciKSynhFiA4hrBw/o/degwK7g=;
-        b=MddXT27OmOnOx3DzTeZ9km8XvVELU7NjXfcFMnYyQ0ZqgHwJPLOobohPd94QJH/Oqs
-         S2lUrpHL9up/QSTN8DkTbhdq0h4TRRuLpdvbYrT7ZldV1mdX7KLRu7cjjvw0tzpy9PSf
-         aM7ZZ3mxvsD/pvvdx8y53blMKbIhIJziVB2i7ScxPILJSnvbFE/the66OYY+5pSKWydj
-         TMSt2X7CggwdDOvC0DZcWgkgnR3dNCqOpHcHeLNoAlBRZILHFF8mUuzIks57+qJdTu2T
-         yoAO/P1O8D97BHAX9qMEnHCYEdptO0drpBoynhwsdIpbq5YdiaSZ22CLrM3lo7elg0BY
-         diLQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1751309321; x=1751914121;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=ToP/U84M4tPmiRzistciKSynhFiA4hrBw/o/degwK7g=;
-        b=jYaX6AirjhfQaOvX6J7rWAUXnPnWq+KIpH9DL3+tgV5YkCc/O7YmsSHtd/ToIBK+CE
-         1zfokxjF1LEmkkp5yQvINZbJGjkWjemYNM+dqp97doPiFt9WgBgKxA29kPhPEOw+/A2u
-         nC3iMf25ugB+f8TqgR53n4Icl78qxHn3iQ4+YdW09fwP5G6Sn2fOk1O8oGMDRE8KAU/V
-         BLe8MOAis3m7XgUYYS/vwSVbBov90l4FpKW0iHijQDWlu0i96kpo3LxvPAuiEQchPSWc
-         ycJ9v5gYGKQYRd+DV5Fu3CJTMvVwOjDuIA5OWEcnowx9RvTYpqGRHI7qsE+qH2oYAf8h
-         JUZg==
-X-Forwarded-Encrypted: i=1; AJvYcCV/jKK35EhkcgBc906e3dsOcC1TjyV+/lQgAMUxHVAI5U4ykmLBllA95FJt7Ek65RAsO/IBqhSK9R9H@vger.kernel.org, AJvYcCV7IzGYgxw5zi03Vvy125oo6YhVfzkcHVgW4aHVrQLaQOb9dyNIdIK5TA/O7iJ/tiET0TOeFaHmgA25sqM=@vger.kernel.org, AJvYcCVUD/EIrwZ1zBk4VDlljVOBC6MrpFfDGiuNpI09TgTiuvjKItW+gNeZv7TDDxaJD7WHICezA83P5J1nZ6sQ@vger.kernel.org, AJvYcCXA0K06nZKOuRl9gq//v9bW4dy2A3RiWxDyS3a4FCLIoprbsxt305tAdUk/hUL7mSQcCEtxdVD6wK8X83BVnvzB@vger.kernel.org
-X-Gm-Message-State: AOJu0YxzXMRiOoeK0BKHVEc5deBRcq2FdE9/Q1V78mzst++aVJTLslem
-	jfi07wAQDGJlo/RJBSOE2ZZ25H9CZ14qLlAIFIt5RnniXoR2yRuewpefwu37fQy7C9HC3LaXsuC
-	FzfViG5YkucLxH2zOdJqz+ZWerUxfNdU=
-X-Gm-Gg: ASbGncupUsR4Lzqi/o3rB/Nh/PaCUN732rDDWx7E+s7uzU+sxGiQFf26S7/tgGM1oeY
-	cD7XOcuHcETJ3YLPextgH+d9FAuRmszB316+Sinv0kucR/yeoC+ge++Onx6KfydYbIatN3RL5SU
-	93DsduCfdexFykYVdpNSVKCAQEA752Yy6RMOtvkrs8b2s=
-X-Google-Smtp-Source: AGHT+IGeczsPvpUHNYJkahdVQPDCiIYak081g4bCvssLiGVVTSMkiKZQZaiM5vZREuWyJm8R1otb6xq3m1Et/b/nWD0=
-X-Received: by 2002:a05:6512:696:b0:553:acf9:c430 with SMTP id
- 2adb3069b0e04-5550b80f9e4mr5130309e87.17.1751309321208; Mon, 30 Jun 2025
- 11:48:41 -0700 (PDT)
+	 To:Cc:Content-Type; b=HOkenrwqxQHM5CawltVQTYPRAKQabqghsW1K6iTJmZlwsrIHRNmbCzwq4dOTIyk0jf2aHniS0MoMOg1YZjpX+wn9GeKNp00XjrPvsVs3mr9KGNXjIzj/F0eATwC92Taaufu7l6w36a6PtbloKkqd+i5Qtvj1/0eL6HCFHrrkCdk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=DdhGKmzR; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id B855AC4CEF1;
+	Mon, 30 Jun 2025 18:55:37 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1751309737;
+	bh=p7WnF9DWkiE2Gdzjr0y3QZ/hVpLdgQL++uU/dzCSfFQ=;
+	h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+	b=DdhGKmzRL19+3kQBx3yMJKSK8lxEnyv+onbYxR8wot8l6poEsYSR3bQfJ7BUAdVlL
+	 8Tx6Nho9Q8axXkSGHc748vrKzrJ7aS4x8ZMpdDEfQhMV6bi3q2R/J15h8gTdpV16rZ
+	 SUGXRs5yDkjbiXfGNWYunhp+hPcbf9HrpffAE189Bj2P3JsbDtRmNjZleqFezGvOAg
+	 rdyUbE8wuujIiFsbOLydHimuaLkU5fhoD1P99S7bsZmGRK4Qg27cTinOCc63FvuAll
+	 gVEDgzalDO9mi3Vm8FAdvgw+25mapTche0a2GbeH3JUJ7vp5qGNAZwyEaxsZYkXpbR
+	 TfiwQ8drVNUpQ==
+Received: by mail-ot1-f45.google.com with SMTP id 46e09a7af769-735b9d558f9so1071526a34.2;
+        Mon, 30 Jun 2025 11:55:37 -0700 (PDT)
+X-Forwarded-Encrypted: i=1; AJvYcCV9E/uV2WV4bWV/wnv2P79UPJ3yYGq6Z1s3qW0h1nY28vb279O1sOLAa8OkE01gRWfPOJ2xptRM+4jPMHSd@vger.kernel.org, AJvYcCVN0pDnAHRbjy/x5GaN6eFvntY+v6Vic088RASn5avb1jtBhUN+WRzC4BPDpuyqZ1CnxRoKPY+Zjz9q@vger.kernel.org, AJvYcCWj0pK53S82Z1De6E0OGDOqubY/aO61fAU37nExLaMfQg8AAeFIngyg6SFIcLa56zBvJ9CYv84iHkSrBg+q@vger.kernel.org, AJvYcCXiQl2fJiRsK1WMdQQ9pK4Op73OIlwOYH1f0Jr2R/xo5skJv431Zi+ujRIBu0poSV+N3cq+xst8Cynn2w==@vger.kernel.org
+X-Gm-Message-State: AOJu0YwnHAwRxHMBanv2YlBgVrPg4njIP+6YxM4f1N3mNV46QnsYQzZO
+	Kbx6YDtT4+R7zmRVOno/kaEM8TmsTT4vWwG10i4xeu4oYuoi0nY96S5uJl+uJHeBOIkxGWGrOaC
+	nLwT6MABW1pm1zNkH3RtYXxFO467iPxA=
+X-Google-Smtp-Source: AGHT+IHVLwd4OxwkvCyDp30OFrkyLqV3hiaG0N2GiR3mAT+Kfajnad7UwexjbjLRZFMzoLdL5pTxDqLLSFRMc73q24U=
+X-Received: by 2002:a05:6808:1646:b0:40a:f48f:2c10 with SMTP id
+ 5614622812f47-40b33c464e2mr11382918b6e.10.1751309737019; Mon, 30 Jun 2025
+ 11:55:37 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20250406-tegra-pstore-v1-1-bf5b57f12293@gmail.com>
- <6920a557-9181-4c9c-98f4-a9be4e796a13@kernel.org> <CALHNRZ--to8B3zhg6zV90siL0x78BAjhS04DgfLwmnXEiOMe3g@mail.gmail.com>
- <83d17d6e-41c2-4729-94e6-5ccf480c766d@kernel.org> <CALHNRZ8+vnXrx7xw=qjpB34MX32hW_m7k+=CdePJpErBPPzv-g@mail.gmail.com>
- <53c943dc-5ea6-456b-a289-08212fc01d5d@kernel.org> <CALHNRZ8+X61YzQ_gYRkuAZrz2XFiZK36GDgk=801+384y2KnOQ@mail.gmail.com>
- <CALHNRZ-YZg3cKzRBMGaxRpejFMLSpOOz-FPQEaQVXFpFao40WA@mail.gmail.com>
- <CALHNRZ-jxC5PXqiG4tNShybaU9gZjTz4YT+VXgfQFNQ-Ox7crg@mail.gmail.com>
- <yczvbwanjadyfife3hnp2khxkgs77pokypqkxotlldjskshskt@xckrkfucg6xx>
- <CALHNRZ--ZUxqrXHEnizXC8ddHC5LFA10oH+CgQmOcTt+cJ1CWw@mail.gmail.com> <6abdc70c-0def-4cf1-b1f4-ea9bdde4fcb5@kernel.org>
-In-Reply-To: <6abdc70c-0def-4cf1-b1f4-ea9bdde4fcb5@kernel.org>
-From: Aaron Kling <webgeek1234@gmail.com>
-Date: Mon, 30 Jun 2025 13:48:28 -0500
-X-Gm-Features: Ac12FXz9GaCxpRqa1IGTzU_rAgEzeMuIknqtBHmq_kTFz8jp4l8ltGiUCm8-kSo
-Message-ID: <CALHNRZ8=ikQe4L6h9VHpTGm+OFU0iZA_OV6LUP6jDUySBv4+Lg@mail.gmail.com>
-Subject: Re: [PATCH] arm64: tegra: Enable ramoops on Tegra210 and newer
-To: Krzysztof Kozlowski <krzk@kernel.org>
-Cc: Thierry Reding <thierry.reding@gmail.com>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Jonathan Hunter <jonathanh@nvidia.com>, Kees Cook <kees@kernel.org>, Tony Luck <tony.luck@intel.com>, 
-	"Guilherme G. Piccoli" <gpiccoli@igalia.com>, devicetree@vger.kernel.org, 
-	linux-tegra@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	linux-hardening@vger.kernel.org
+References: <20250627-rneri-wakeup-mailbox-v5-0-df547b1d196e@linux.intel.com> <20250627-rneri-wakeup-mailbox-v5-1-df547b1d196e@linux.intel.com>
+In-Reply-To: <20250627-rneri-wakeup-mailbox-v5-1-df547b1d196e@linux.intel.com>
+From: "Rafael J. Wysocki" <rafael@kernel.org>
+Date: Mon, 30 Jun 2025 20:55:25 +0200
+X-Gmail-Original-Message-ID: <CAJZ5v0i+EOthnNexMs7hm1iX+PY0rCNCHjRgB5r5pJ3tz2aw+w@mail.gmail.com>
+X-Gm-Features: Ac12FXxLJjcnuW3nUc_r1s6Rsa0T03g4e7iaJ1R43QcOYsgg7pHNf2V9xIGOH0g
+Message-ID: <CAJZ5v0i+EOthnNexMs7hm1iX+PY0rCNCHjRgB5r5pJ3tz2aw+w@mail.gmail.com>
+Subject: Re: [PATCH v5 01/10] x86/acpi: Add a helper functions to setup and
+ access the wakeup mailbox
+To: Ricardo Neri <ricardo.neri-calderon@linux.intel.com>
+Cc: x86@kernel.org, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Rob Herring <robh@kernel.org>, "K. Y. Srinivasan" <kys@microsoft.com>, 
+	Haiyang Zhang <haiyangz@microsoft.com>, Wei Liu <wei.liu@kernel.org>, 
+	Dexuan Cui <decui@microsoft.com>, Michael Kelley <mhklinux@outlook.com>, 
+	"Rafael J. Wysocki" <rafael@kernel.org>, Saurabh Sengar <ssengar@linux.microsoft.com>, 
+	Chris Oo <cho@microsoft.com>, "Kirill A. Shutemov" <kirill.shutemov@linux.intel.com>, 
+	linux-hyperv@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-acpi@vger.kernel.org, linux-kernel@vger.kernel.org, 
+	Ricardo Neri <ricardo.neri@intel.com>
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-On Thu, May 29, 2025 at 3:53=E2=80=AFAM Krzysztof Kozlowski <krzk@kernel.or=
-g> wrote:
->
-> On 28/05/2025 19:35, Aaron Kling wrote:
-> >>>>
-> >>>> Friendly reminder to the Tegra maintainers about this question.
-> >>>>
-> >>> In lieu of a response from the Tegra subsystem maintainers, I can onl=
-y
-> >>> hazard an assumption, Krzysztof. I presume the pstore carveout is
-> >>> bootloader controlled because various stages of the boot stack can
-> >>> dynamically allocate memory, and this became bootloader controlled to
-> >>> prevent any of those from overwriting pstore. I worry about hardcodin=
-g
-> >>> an address in the kernel dt, then finding out later that there's an
-> >>> in-use configuration that overwrites or corrupts that section of ram
-> >>> during boot. What are your thoughts on this? And is there any way for
-> >>> this patch to proceed?
-> >>
-> >> I haven't been able to find anything out about this yet. Generally it'=
-s
-> >> difficult to get the bootloaders updated for these devices. Tegra194 a=
-nd
-> >> Tegra234 may be new enough to make an update eventually go into a
-> >> release, but for Tegra186 and older, I honestly wouldn't hold my
-> >> breath.
-> >>
-> >> Thierry
-> >
-> > Krzysztof, based on this response, is there any way or form that the
-> > Tegra186 part of this could be submitted? I can drop the newer
-> > platforms from this patch if Thierry can get a response to his other
-> > reply about how the bootloader could conform.
-> >
-> I don't NAK it. Eventually it is up to platform maintainer if they
-> accept known DTC warnings.
->
-> Best regards,
-> Krzysztof
+s/a helper/helper/ in the subject.
 
-If the decision is up the the tegra maintainers, then Thierry, what's
-your thoughts now? What is in this patch should be compatible with
-existing l4t and android bootloaders. But it does add a few new dtb
-check lines.
+On Sat, Jun 28, 2025 at 5:35=E2=80=AFAM Ricardo Neri
+<ricardo.neri-calderon@linux.intel.com> wrote:
+>
+> In preparation to move the functionality to wake secondary CPUs up out of
+> the ACPI code, add two helper functions.
+>
+> The function acpi_setup_mp_wakeup_mailbox() stores the physical address o=
+f
+> the mailbox and updates the wakeup_secondary_cpu_64() APIC callback.
+>
+> There is a slight change in behavior: now the APIC callback is updated
+> before configuring CPU hotplug offline behavior. This is fine as the APIC
+> callback continues to be updated unconditionally, regardless of the
+> restriction on CPU offlining.
+>
+> The function acpi_madt_multiproc_wakeup_mailbox() returns a pointer to th=
+e
+> mailbox. Use this helper function only in the portions of the code for
+> which the variable acpi_mp_wake_mailbox will be out of scope once it is
+> relocated out of the ACPI directory.
+>
+> The wakeup mailbox is only supported for CONFIG_X86_64 and needed only wi=
+th
+> CONFIG_SMP=3Dy.
+>
+> Signed-off-by: Ricardo Neri <ricardo.neri-calderon@linux.intel.com>
 
-Aaron
+With the above nit addressed
+
+Acked-by: Rafael J. Wysocki <rafael.j.wysocki@intel.com>
+
+> ---
+> Changes since v4:
+>  - None
+>
+> Changes since v3:
+>  - Squashed the two first patches of the series into one, both introduce
+>    helper functions. (Rafael)
+>  - Renamed setup_mp_wakeup_mailbox() as acpi_setup_mp_wakeup_mailbox().
+>    (Rafael)
+>  - Dropped the function prototype for !CONFIG_X86_64. (Rafael)
+>
+> Changes since v2:
+>  - Introduced this patch.
+>
+> Changes since v1:
+>  - N/A
+> ---
+>  arch/x86/include/asm/smp.h         |  3 +++
+>  arch/x86/kernel/acpi/madt_wakeup.c | 20 +++++++++++++++-----
+>  2 files changed, 18 insertions(+), 5 deletions(-)
+>
+> diff --git a/arch/x86/include/asm/smp.h b/arch/x86/include/asm/smp.h
+> index 0c1c68039d6f..77dce560a70a 100644
+> --- a/arch/x86/include/asm/smp.h
+> +++ b/arch/x86/include/asm/smp.h
+> @@ -146,6 +146,9 @@ static inline struct cpumask *cpu_l2c_shared_mask(int=
+ cpu)
+>         return per_cpu(cpu_l2c_shared_map, cpu);
+>  }
+>
+> +void acpi_setup_mp_wakeup_mailbox(u64 addr);
+> +struct acpi_madt_multiproc_wakeup_mailbox *acpi_get_mp_wakeup_mailbox(vo=
+id);
+> +
+>  #else /* !CONFIG_SMP */
+>  #define wbinvd_on_cpu(cpu)     wbinvd()
+>  static inline int wbinvd_on_all_cpus(void)
+> diff --git a/arch/x86/kernel/acpi/madt_wakeup.c b/arch/x86/kernel/acpi/ma=
+dt_wakeup.c
+> index 6d7603511f52..c3ac5ecf3e7d 100644
+> --- a/arch/x86/kernel/acpi/madt_wakeup.c
+> +++ b/arch/x86/kernel/acpi/madt_wakeup.c
+> @@ -37,6 +37,7 @@ static void acpi_mp_play_dead(void)
+>
+>  static void acpi_mp_cpu_die(unsigned int cpu)
+>  {
+> +       struct acpi_madt_multiproc_wakeup_mailbox *mailbox =3D acpi_get_m=
+p_wakeup_mailbox();
+>         u32 apicid =3D per_cpu(x86_cpu_to_apicid, cpu);
+>         unsigned long timeout;
+>
+> @@ -46,13 +47,13 @@ static void acpi_mp_cpu_die(unsigned int cpu)
+>          *
+>          * BIOS has to clear 'command' field of the mailbox.
+>          */
+> -       acpi_mp_wake_mailbox->apic_id =3D apicid;
+> -       smp_store_release(&acpi_mp_wake_mailbox->command,
+> +       mailbox->apic_id =3D apicid;
+> +       smp_store_release(&mailbox->command,
+>                           ACPI_MP_WAKE_COMMAND_TEST);
+>
+>         /* Don't wait longer than a second. */
+>         timeout =3D USEC_PER_SEC;
+> -       while (READ_ONCE(acpi_mp_wake_mailbox->command) && --timeout)
+> +       while (READ_ONCE(mailbox->command) && --timeout)
+>                 udelay(1);
+>
+>         if (!timeout)
+> @@ -227,7 +228,7 @@ int __init acpi_parse_mp_wake(union acpi_subtable_hea=
+ders *header,
+>
+>         acpi_table_print_madt_entry(&header->common);
+>
+> -       acpi_mp_wake_mailbox_paddr =3D mp_wake->mailbox_address;
+> +       acpi_setup_mp_wakeup_mailbox(mp_wake->mailbox_address);
+>
+>         if (mp_wake->version >=3D ACPI_MADT_MP_WAKEUP_VERSION_V1 &&
+>             mp_wake->header.length >=3D ACPI_MADT_MP_WAKEUP_SIZE_V1) {
+> @@ -243,7 +244,16 @@ int __init acpi_parse_mp_wake(union acpi_subtable_he=
+aders *header,
+>                 acpi_mp_disable_offlining(mp_wake);
+>         }
+>
+> +       return 0;
+> +}
+> +
+> +void __init acpi_setup_mp_wakeup_mailbox(u64 mailbox_paddr)
+> +{
+> +       acpi_mp_wake_mailbox_paddr =3D mailbox_paddr;
+>         apic_update_callback(wakeup_secondary_cpu_64, acpi_wakeup_cpu);
+> +}
+>
+> -       return 0;
+> +struct acpi_madt_multiproc_wakeup_mailbox *acpi_get_mp_wakeup_mailbox(vo=
+id)
+> +{
+> +       return acpi_mp_wake_mailbox;
+>  }
+>
+> --
+> 2.43.0
+>
 
