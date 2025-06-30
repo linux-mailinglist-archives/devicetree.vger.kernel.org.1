@@ -1,88 +1,48 @@
-Return-Path: <devicetree+bounces-191005-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-191006-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7B792AED791
-	for <lists+devicetree@lfdr.de>; Mon, 30 Jun 2025 10:41:01 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id C0FC6AED798
+	for <lists+devicetree@lfdr.de>; Mon, 30 Jun 2025 10:41:30 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 381AF3B7650
-	for <lists+devicetree@lfdr.de>; Mon, 30 Jun 2025 08:40:35 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id A08D618921AD
+	for <lists+devicetree@lfdr.de>; Mon, 30 Jun 2025 08:41:46 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E91B2238D42;
-	Mon, 30 Jun 2025 08:40:54 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E6F8D242D6C;
+	Mon, 30 Jun 2025 08:41:19 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=redhat.com header.i=@redhat.com header.b="bEdOZ2Qb"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="jlu1Vz/H"
 X-Original-To: devicetree@vger.kernel.org
-Received: from us-smtp-delivery-124.mimecast.com (us-smtp-delivery-124.mimecast.com [170.10.133.124])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EE8D923F40A
-	for <devicetree@vger.kernel.org>; Mon, 30 Jun 2025 08:40:52 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=170.10.133.124
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BA398226165;
+	Mon, 30 Jun 2025 08:41:19 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1751272854; cv=none; b=SbX6lDmuuwNpqJeABY7Fll9M03UregkuwOMHTLG/Loj+Ud+nUBkpVyahSHIxTIB72pb5OmWZacVyflwnzP+id4QtNncH0w1V8mXdDhTw0NPCdv+D+DYQVdKdiWAp74WIlx50vRjSSknn6/PxEMNjWYGivpTTRJ5WhVpbIrqLT50=
+	t=1751272879; cv=none; b=CNTOxivnYU3vQl89Hoatr7IHCC+y7Hue3HEr57FmK+MLqeXSeod+f+hZBsndI2lnFFTnXgAEMcEwsGcU5zlWkw+keQELF4gmOix/OLBckBwncUGAM6XKdkMCYWwOfQkN3mkXDsR8U5xGgUn8E02deVYZkqNIwFrSMRrHq64YbJw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1751272854; c=relaxed/simple;
-	bh=TtvZmKcu5ULV30hDwJa7QtVvX83gJrgmBcIfmoYQekA=;
+	s=arc-20240116; t=1751272879; c=relaxed/simple;
+	bh=vuDhO1E+0JgQZ3joYKllj+kVu+rr8nXDgvSoVbKxaBE=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=mg5Zhy8BncG0PS17l39O+BYP9ALvFr46pogns9WzebP7QqLKO0iAJlNoPTBPgiBXDFBQyLUFMymbdQjhWdgzbP3y5es1+TwP8ZMinycOR/Gs3BlakuERUal9V6yH6OwyslFBAPx9BrdTtJZ/Qtb+LRnaxP+bj9pHOhJpWsxG1io=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=redhat.com; spf=pass smtp.mailfrom=redhat.com; dkim=pass (1024-bit key) header.d=redhat.com header.i=@redhat.com header.b=bEdOZ2Qb; arc=none smtp.client-ip=170.10.133.124
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=redhat.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=redhat.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
-	s=mimecast20190719; t=1751272851;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=GbzS3/7wOLVYMQM7fq09DAq/NtYuBLxSJ0uQz6yllZw=;
-	b=bEdOZ2QbURuCrL0henTaYx9k0jVwKM/+YJB/lPFgGN0LpbG3GDA6r3JJaD52cHOuneYS1j
-	zqXHf7CmZlxRnpBqy5JAZPqwtfE0rX6hwmRV/KYa7X8tIlOJL8zvqtIcZ+pMANQnEEcMDN
-	8pPic97UcCtiMwnJRa83XF5E9Z3dxKg=
-Received: from mail-ej1-f71.google.com (mail-ej1-f71.google.com
- [209.85.218.71]) by relay.mimecast.com with ESMTP with STARTTLS
- (version=TLSv1.3, cipher=TLS_AES_256_GCM_SHA384) id
- us-mta-306-gDmnHxZHMhK6L_Ei6w_bWA-1; Mon, 30 Jun 2025 04:40:50 -0400
-X-MC-Unique: gDmnHxZHMhK6L_Ei6w_bWA-1
-X-Mimecast-MFC-AGG-ID: gDmnHxZHMhK6L_Ei6w_bWA_1751272849
-Received: by mail-ej1-f71.google.com with SMTP id a640c23a62f3a-adf58589c90so458645266b.0
-        for <devicetree@vger.kernel.org>; Mon, 30 Jun 2025 01:40:50 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1751272849; x=1751877649;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=GbzS3/7wOLVYMQM7fq09DAq/NtYuBLxSJ0uQz6yllZw=;
-        b=LCUn2w9KxK0ERXnLQvRP6k22D8Y1gGna4bra+1h5mNV8pFYHVZs+O8gAzdSkV8UIwt
-         omyCg4FrwdsOB1//fV9gCd7Eg8u2JGvR2dip4iRShRbFM3Qy12avm95UFu27yaeILtwm
-         h/kkEdDWOuq64GakDeXfs/trgn473jW5d3v8FtAaXcbbsi+c+MWMe3GEyozgrD+oiHFs
-         4+hpJpNf7+Bfv8yHTC2EJACU7pkZc4VPleUCDwFEIJQqfCnOwq/RqbaZZZZx2hWDu2xz
-         7UVP+YU2m2y5DcfJjST89PUlthegjrLH4pahkX6KIl1Xox7saghyzFZ0Nht0m7ck+1+k
-         Ezkg==
-X-Forwarded-Encrypted: i=1; AJvYcCXxHEpb2Qgcnv3Y3ngNSQL2vwWTj+NRW/fG2NLQ8wjHYSR+ykYpa6Sxwv5JBv+3233S5laiFl3blol/@vger.kernel.org
-X-Gm-Message-State: AOJu0Yw+I2dZqznUK6/QT6gIthjTn+H8/knau4Tw+PJCVXoWdseY3EPg
-	EE3iVzvfTiAkBJq3OlWvEioh1WChLhGnby//wePDHzZikQzop/Kn1ZBql45PMDedblAZf6n3bRb
-	QfKqSMTogSgS0XdX4BoPQPBpIInYXcFizZsIxOyQsfzRClt9TqXyoa2YBEKidBTA=
-X-Gm-Gg: ASbGncuDRRl2OCtX4h5CQETOtg1d4/zsdx74zbLGAs69fW6IefYHaHBXroBVAhFQqXE
-	k/Q8blNOVg1FeRvdV7etjrVYXlOe3DA4F93wzEObZL/d13U99RlWivShmDPujjFhnL9o5de6KtW
-	WIkrvDJLgjZhEtUTG9Y15xo32zxTZWEhJVtI1UVTW0EJoT3o3Q8ITDFB5AcLeAPFDk0+urnknCZ
-	42EKDdm+1aFBCaputeuJu4j7hfYc2P1jVTlZBtys4BQ1SyzFzyYz6QsD/UpUXXdTIouqCEsQi4o
-	VcudlgelLECAK5xCKTjoUpm7XQtckVIKKTnzAL80pGGsGLnD7+FY0YLEqljyYispjvsApAFzTxP
-	WBQZ12GXD2BW0XxabxgIpBGXInQAvU5mMYMeX4+DoPmTQTLWIK2iYxhChT+mtEbgVCen9ONI3aA
-	==
-X-Received: by 2002:a17:907:3c91:b0:ae3:61ea:31b1 with SMTP id a640c23a62f3a-ae361ea3303mr1065073066b.12.1751272848986;
-        Mon, 30 Jun 2025 01:40:48 -0700 (PDT)
-X-Google-Smtp-Source: AGHT+IF/y7vOHMHZ5AF4xuBNceBfPbSy8M7ATw5UKXH09WWku0rRQgHald4Jy38PCYx58QuWLBfH7g==
-X-Received: by 2002:a17:907:3c91:b0:ae3:61ea:31b1 with SMTP id a640c23a62f3a-ae361ea3303mr1065069566b.12.1751272848439;
-        Mon, 30 Jun 2025 01:40:48 -0700 (PDT)
-Received: from ?IPV6:2001:1c00:c32:7800:5bfa:a036:83f0:f9ec? (2001-1c00-0c32-7800-5bfa-a036-83f0-f9ec.cable.dynamic.v6.ziggo.nl. [2001:1c00:c32:7800:5bfa:a036:83f0:f9ec])
-        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-ae362cbf19asm547457166b.128.2025.06.30.01.40.47
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 30 Jun 2025 01:40:47 -0700 (PDT)
-Message-ID: <e534d496-6ce0-46c8-835d-94b3346446a7@redhat.com>
-Date: Mon, 30 Jun 2025 10:40:46 +0200
+	 In-Reply-To:Content-Type; b=NgFI5r1RbeohJRBa3T3yDRB4avckVQ7sM/dAGwgruDYihCjxWh/6N7qBYkegGtoe2qNd4nVxsi2vWU6oaRSQ/CxsSm7Hc3Vd97PKWl4uX9BZk4Sv+8+ZvtMNaItP5cMIlyQs5M58C7vRE8FZCHalCBiFULKyCWlO2p50XkfbUro=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=jlu1Vz/H; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 0FF9AC4CEEF;
+	Mon, 30 Jun 2025 08:41:12 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1751272879;
+	bh=vuDhO1E+0JgQZ3joYKllj+kVu+rr8nXDgvSoVbKxaBE=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=jlu1Vz/HrWG80dDRxlPa37djs6aNVlmQvzSr6FDrQ30XOuQD/27RRG9jS3qMdUGzV
+	 4hVjP46gWF94QkGSYfPKJh6W7th4GRRLocflylERDHkF5drmccFTANWPDGOKL6H04D
+	 B2H+p4PZOwemAPrHpYSygL/SbIK1we38NCxChutLyrPSy7J0Ggl93/OucpdQwIWuhe
+	 EtdJkjrIExhwEk008DXVO7oJZYQcWo4CLMtkCY1jOjXzaGqgeq/dxKmzeOWs/Cl1vX
+	 iAuR73CA6CnTa1uzkorqbKm0SkCPcWhw0XvMSYZDhEdfVzcT9M7HQhN5V8F/oWVJxe
+	 Ua+Y02VcPJ2aA==
+Message-ID: <c2ca0751-e600-4278-85bd-4e6e6b4aa6d2@kernel.org>
+Date: Mon, 30 Jun 2025 10:41:10 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -90,145 +50,151 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 1/5] dt-bindings: display: simple-framebuffer: Add
- interconnects property
-To: Krzysztof Kozlowski <krzk@kernel.org>,
- Luca Weiss <luca.weiss@fairphone.com>
-Cc: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+Subject: Re: [PATCH v3 1/3] dt-bindings: display: samsung,exynos7-decon: add
+ properties for iommus and ports
+To: Kaustabh Chakraborty <kauschluss@disroot.org>
+Cc: Inki Dae <inki.dae@samsung.com>, Seung-Woo Kim <sw0312.kim@samsung.com>,
+ Kyungmin Park <kyungmin.park@samsung.com>, David Airlie <airlied@gmail.com>,
+ Simona Vetter <simona@ffwll.ch>, Alim Akhtar <alim.akhtar@samsung.com>,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
  Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>,
- David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>,
- Javier Martinez Canillas <javierm@redhat.com>, Helge Deller <deller@gmx.de>,
- linux-fbdev@vger.kernel.org, dri-devel@lists.freedesktop.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <20250623-simple-drm-fb-icc-v2-0-f69b86cd3d7d@fairphone.com>
- <20250623-simple-drm-fb-icc-v2-1-f69b86cd3d7d@fairphone.com>
- <20250627-mysterious-optimistic-bird-acaafb@krzk-bin>
- <DAX7ZB27SBPV.2Y0I09TVSF3TT@fairphone.com>
- <1129bc60-f9cb-40be-9869-8ffa3b3c9748@kernel.org>
- <8a3ad930-bfb1-4531-9d34-fdf7d437f352@redhat.com>
- <85521ded-734d-48e8-8f76-c57739102ded@kernel.org>
-Content-Language: en-US, nl
-From: Hans de Goede <hdegoede@redhat.com>
-In-Reply-To: <85521ded-734d-48e8-8f76-c57739102ded@kernel.org>
+ Rob Herring <robh@kernel.org>, Conor Dooley <conor@kernel.org>,
+ Ajay Kumar <ajaykumar.rs@samsung.com>, Akshu Agrawal <akshua@gmail.com>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, dri-devel@lists.freedesktop.org,
+ linux-arm-kernel@lists.infradead.org, linux-samsung-soc@vger.kernel.org,
+ linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
+References: <20250627-exynosdrm-decon-v3-0-5b456f88cfea@disroot.org>
+ <20250627-exynosdrm-decon-v3-1-5b456f88cfea@disroot.org>
+ <20250627-literate-talented-panda-cbac89@krzk-bin>
+ <85c3658fdfa90636caac3b3fce295915@disroot.org>
+ <efa167d1-a5f3-47cd-855d-250f41a5e883@kernel.org>
+ <ab1a39df178b68e2f1d61a537e0d567c@disroot.org>
+From: Krzysztof Kozlowski <krzk@kernel.org>
+Content-Language: en-US
+Autocrypt: addr=krzk@kernel.org; keydata=
+ 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 a/A=
+In-Reply-To: <ab1a39df178b68e2f1d61a537e0d567c@disroot.org>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-Hi,
-
-On 30-Jun-25 10:24 AM, Krzysztof Kozlowski wrote:
-> On 29/06/2025 14:07, Hans de Goede wrote:
->> Hi Krzysztof,
->>
->> On 28-Jun-25 1:49 PM, Krzysztof Kozlowski wrote:
->>> On 27/06/2025 11:48, Luca Weiss wrote:
->>>> Hi Krzysztof,
->>>>
->>>> On Fri Jun 27, 2025 at 10:08 AM CEST, Krzysztof Kozlowski wrote:
->>>>> On Mon, Jun 23, 2025 at 08:44:45AM +0200, Luca Weiss wrote:
->>>>>> Document the interconnects property which is a list of interconnect
->>>>>> paths that is used by the framebuffer and therefore needs to be kept
->>>>>> alive when the framebuffer is being used.
->>>>>>
->>>>>> Acked-by: Thomas Zimmermann <tzimmermann@suse.de>
->>>>>> Signed-off-by: Luca Weiss <luca.weiss@fairphone.com>
->>>>>> ---
->>>>>>  Documentation/devicetree/bindings/display/simple-framebuffer.yaml | 3 +++
->>>>>>  1 file changed, 3 insertions(+)
->>>>>>
->>>>>> diff --git a/Documentation/devicetree/bindings/display/simple-framebuffer.yaml b/Documentation/devicetree/bindings/display/simple-framebuffer.yaml
->>>>>> index 296500f9da05e296dbbeec50ba5186b6b30aaffc..f0fa0ef23d91043dfb2b220c654b80e2e80850cd 100644
->>>>>> --- a/Documentation/devicetree/bindings/display/simple-framebuffer.yaml
->>>>>> +++ b/Documentation/devicetree/bindings/display/simple-framebuffer.yaml
->>>>>> @@ -79,6 +79,9 @@ properties:
->>>>>>    power-domains:
->>>>>>      description: List of power domains used by the framebuffer.
->>>>>>  
->>>>>> +  interconnects:
->>>>>> +    description: List of interconnect paths used by the framebuffer.
->>>>>> +
+On 27/06/2025 17:03, Kaustabh Chakraborty wrote:
+> On 2025-06-27 14:44, Krzysztof Kozlowski wrote:
+>> On 27/06/2025 15:44, Kaustabh Chakraborty wrote:
+>>>>> a/Documentation/devicetree/bindings/display/samsung/samsung,exynos7-decon.yaml
+>>>>> +++
+>>>>> b/Documentation/devicetree/bindings/display/samsung/samsung,exynos7-decon.yaml
+>>>>> @@ -80,6 +80,14 @@ properties:
+>>>>>        - const: vsync
+>>>>>        - const: lcd_sys
 >>>>>
->>>>> maxItems: 1, or this is not a simple FB anymore. Anything which needs
->>>>> some sort of resources in unknown way is not simple anymore. You need
->>>>> device specific bindings.
+>>>>> +  iommus:
+>>>>> +    maxItems: 1
+>>>>> +
+>>>>> +  ports:
+>>>>> +    $ref: /schemas/graph.yaml#/properties/ports
+>>>>> +    description:
+>>>>> +      Contains a port which is connected to mic or dsim node.
 >>>>
->>>> The bindings support an arbitrary number of clocks, regulators,
->>>> power-domains. Why should I artificially limit the interconnects to only
->>>> one?
+>>>> You need to list and describe the ports.
 >>>
->>> And IMO they should not. Bindings are not supposed to be generic.
+>>> -    description:
+>>> -      Contains a port which is connected to mic or dsim node.
+>>> +    properties:
+>>> +      port@0:
+>>> +        $ref: /schemas/graph.yaml#/properties/port
+>>> +        description:
+>>> +          Input port which is connected to either a Mobile Image
+>>> +          Compressor (MIC) or a DSI Master device.
 >>
->> The simplefb binding is a binding to allow keeping the firmware, e.g.
->> uboot setup framebuffer alive to e.g. show a boot splash until
->> the native display-engine drive loads. Needing display-engine
->> specific bindings totally contradicts the whole goal of 
+>>
+>> If this is only one port, then just 'port' property, but I have doubts
+>> it should be one, because even you mentioned two - MIC could be the
+>> input and MIPI DSIM would be the output.
 > 
-> No, it does not. DT is well designed for that through expressing
-> compatibility. I did not say you cannot have generic fallback for simple
-> use case.
+> DECON is the first device in the pipeline. So it should only have
+> output.
 > 
-> But this (and previous patchset) grows this into generic binding ONLY
-> and that is not correct.
-
-I think that it is important here to notice that this is not
-a generic fallback binding, this is not and will never be
-intended to replace have a proper binding for
-the display-engine.
-
-This is just a way to give the kernel access to the firmware
-setup framebuffer to e.g. show a bootsplash but also fatal
-kernel errors until the real display-engine driver loads.
-
-Note sometimes the whole framebuffer memory is not touched
-at all and the sole reason for having a driver attach to
-the simplefb node early on is just to keep the resources
-needed to keep the panel lit up around (on) until the real
-display-engine driver comes along to claim those resources.
-
-This avoids the display going black if the display-engine
-driver only binds after the kernel starts turning off
-unused resources, this typically happens when the display-engine
-driver is a module.
-
->> It is generic by nature and I really do not see how clocks and
->> regulators are any different then interconnects here.
+> It's either:
+> DECON -> DSIM -> panel
+> or
+> DECON -> MIC -> DSIM -> panel
 > 
-> Yeah, they are also wrong. I already commented on this.
+> Exynos7870 doesn't have MIC, but other SoCs may have one.
+
+Could be without ports entirely, but it is also fine to list port under.
+
 > 
 >>
->> Note that we had a huge discussion about adding clock
->> and regulators to simplefb many years ago with pretty
->> much the same arguments against doing so. In the end it was
->> decided to add regulator and clocks support to the simplefb
->> bindings and non of the feared problems with e.g. ordening
->> of turning things on happened.
+>> Maybe if the MIC is integral part, it would not have been an input, but
+>> then only 'port'.
 >>
->> A big part of this is that the claiming of clks / regulators /
->> interconnects by the simplefb driver is there to keep things on,
->> so it happens before the kernel starts tuning off unused resources
->> IOW everything is already up and running and this really is about
->> avoiding turning things off.
+>>>
+>>> I assume you want something like this?
+>>> Is the formatting correct? Should there be a space between
+>>> ports:$ref and ports:properties?
+>>
+>> Look at toshiba,tc358768.yaml or the simple-bridge (except you should
+>> name the input and output ports).
 > 
-> No one asks to drop them from the driver. I only want specific front
-> compatible which will list and constrain the properties. It is not
-> contradictory to your statements, U-boot support, driver support. I
-> really do not see ANY argument why this cannot follow standard DT rules.
+> Okay, thanks!
+> 
+> Therefore this:
+> 
+> -    description:
+> -      Contains a port which is connected to mic or dsim node.
+> +
+> +    properties:
+> +      port:
+> +        $ref: /schemas/graph.yaml#/properties/port
+> +        description:
+> +          Output port which is connected to either a Mobile Image
+> +          Compressor (MIC) or a DSI Master device.
 
-So what you are saying is that you want something like:
-
-framebuffer0: framebuffer@1d385000 {
-	compatible = "qcom.simple-framebuffer-sm8650-mdss", "simple-framebuffer";
-}
-
-and that the binding for qcom.simple-framebuffer-sm8650-mdss
-can then list interconnects ?
-
-Regards,
-
-Hans
+and additionalProperties: false in ports level.
 
 
-
-
+Best regards,
+Krzysztof
 
