@@ -1,126 +1,114 @@
-Return-Path: <devicetree+bounces-191222-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-191223-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 14415AEE7A1
-	for <lists+devicetree@lfdr.de>; Mon, 30 Jun 2025 21:37:39 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id BF3E0AEE7B6
+	for <lists+devicetree@lfdr.de>; Mon, 30 Jun 2025 21:43:52 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 260183BBF3E
-	for <lists+devicetree@lfdr.de>; Mon, 30 Jun 2025 19:37:13 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id C87133A9E3A
+	for <lists+devicetree@lfdr.de>; Mon, 30 Jun 2025 19:43:26 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1E8C0285CBA;
-	Mon, 30 Jun 2025 19:37:37 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A339D2E8DE0;
+	Mon, 30 Jun 2025 19:43:23 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="PwYHtPPb"
+	dkim=pass (2048-bit key) header.d=sang-engineering.com header.i=@sang-engineering.com header.b="bK1k/aTn"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lf1-f52.google.com (mail-lf1-f52.google.com [209.85.167.52])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mail.zeus03.de (zeus03.de [194.117.254.33])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5C59A1B412A;
-	Mon, 30 Jun 2025 19:37:35 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.52
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9986E2E6D1D
+	for <devicetree@vger.kernel.org>; Mon, 30 Jun 2025 19:43:21 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=194.117.254.33
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1751312257; cv=none; b=lj3PwCzThYW/kANvAncMuN0tJ9VgERwSrdceDySBHN3lDGnwvObeArIQfzyIFwF5M0NOGuxs6e0PAE7NWi3dlAvPWPpCIg2Cx8s4sQ8cbQt4H7ZBlscBNVaSm4vJh1m/poOXy7BrOKJCz6u4JNVOEq3w5Rx0nmUoyEqMgmb6Gns=
+	t=1751312603; cv=none; b=dEgJupArIVZ1L/4/rARtwrFUtsdIaQzv07axOuvq1JJIwPoENMsNwAxyU+rpWxMt+k9OEdhxWrS4cjLv3at9zrj+6BgK46S4p5+EzLhlPk+xg4fRtr6O4O4FCpl19TWVe6gybdzBA1bNn7i8TWGbGODn62Lt3zRJG5BIOuZOYEk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1751312257; c=relaxed/simple;
-	bh=gfdqgjl0iB5joHg1i2gcIR6fqg6/sWQjvGEHoJAF0Fw=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=uEjn4NPCApl/Q7knA0QYTjmrPVB6h6xKyI0ZPyMwnC8zAfaeszbMFIdaH4hOwSgfTuKOkNORLOolfI4CbWatg1PH6lJx1yvkyOQigxu0aI8K/c0vsdfP95O04zf7FPsW6v8uaxceM+nw9ytqDbplJLybnK8oGAo9diPYqPSw2Us=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=PwYHtPPb; arc=none smtp.client-ip=209.85.167.52
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-lf1-f52.google.com with SMTP id 2adb3069b0e04-553b60de463so2937829e87.3;
-        Mon, 30 Jun 2025 12:37:35 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1751312253; x=1751917053; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=io1IRL9x7R219XfORTg5XLg0wb8gKj5Er5Jhdw3UXD0=;
-        b=PwYHtPPb/Hhcp5eepUiAYaJGArQ3Tfni2cEtqsYrBna9yW3fFl71epVxeKsxfP/3Hp
-         2HvcGPGvFor8mFx1NwuotglU7xau+X4sL1etMeLt/d7ju0QdM7iaVWiwjkeK1U1f1GCH
-         COxgWj6gJJdtufTWqtOM+WW/f+tTakqxoRI0NFfvMptjd5nmE5EkptYI0ud045LCOmlx
-         +ypl7IDuJPvdT3uS2JBLWX98a5wrvNPj5CEkwvFPnahOP8PSqTAcBVUYTDkgCdY8K+pa
-         SIulnKS512pKPHhh4J2bEhn544al+eSpAyu4IbVt/KY6YUXE0N1OdxCQffcweSX8/AB7
-         WD4A==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1751312253; x=1751917053;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=io1IRL9x7R219XfORTg5XLg0wb8gKj5Er5Jhdw3UXD0=;
-        b=UcH+sBGBkQpGxnq28n1VFXoohbicEvT75x+W5B2hMa5+kDcrLpSx3QSmGCvl/87eTh
-         QHEn0jpzjWdfgw1NdCOSMo9SerF2/lsAUGgWWbu0rksQiLnuVsvUPFuhYLbRut53K8c8
-         2HOm0n/8fypcjjhM5P4uEVmIqbpUisxmDOnU+cGi50TqZzS3+phHNJZfQYu1e5pa3DOI
-         BCwiSmObXmgIoPaKm5DpdKe2rn4IjDPa7XVg3D+ZelhEwR6F1W4LLZ+B4v3/LEdQXGhP
-         gznFi1lW3tAK8t2tGewUuxOuoxdYy3YZHE7cMmLMqZPHiE4IM/Tj73QqY1oi1CAufDYz
-         eVyw==
-X-Forwarded-Encrypted: i=1; AJvYcCU9jTYBN/95PuvtLWB8lcXBy1VQhBXeytn+8x7tsL92sdzhXDp8Bnu6uXb3cTXTh8puJwsU+oc4s0npqtc=@vger.kernel.org, AJvYcCVACDjhe99ez7Ekm9oQmn3Vr0IdPaDyLvnx09W7gf9ePUo//uZ2JnidDdzjwW8SnrtIdfxtwfxAXbGaRT+t@vger.kernel.org, AJvYcCVYbyFNqXT1DtYJijBt9c7vv+uXgsAgJeSEfoWEql+M2d1kC5HohmNcVoafpGtNYjDS4PY0hzGL5dWe@vger.kernel.org
-X-Gm-Message-State: AOJu0YyVbmgjFPh68plgS9xOx1UmFwC08irP2W6Q49z25IH1EztbTSnc
-	PgnMTBvESKi7R3UEf1bcNLhngooFh5d4TsqkrDwPB8r24rzddKJ6iAbelhTo+p7VodVfSB3/aUl
-	K+T6i06acPH3/6Fo7ykrQrMfQidsA/Ow1j6AW5V4=
-X-Gm-Gg: ASbGncssDag8YSPdTbO+WW49hAXho1Oio9I9Q2QfcxVbpTgBj6ZBC5dh1kIXr5VM8hP
-	wMGOkY8KrcNTxppmmkTaTD8khsq/pLNb6M65rb0Rzjo14KNDXICcqbFaeR519Q4GCTFwEVX/lT9
-	GG07gXvylEBeVNQ9lB7WHPNsSTlLNfvrXJ2LEOca5Q230=
-X-Google-Smtp-Source: AGHT+IFHAl6Wmn5tKfgNiiRAImA891AM/TwlgsDYZD9CYlNCw/EsEqAbvFca3Im8a1pS66orO3qEU3Z7VXTHT60dPxI=
-X-Received: by 2002:a05:6512:132a:b0:553:2c65:f1ca with SMTP id
- 2adb3069b0e04-5550b868609mr4111137e87.19.1751312253256; Mon, 30 Jun 2025
- 12:37:33 -0700 (PDT)
+	s=arc-20240116; t=1751312603; c=relaxed/simple;
+	bh=v3OJFDB7Np/tDUVlLKjpAPv5q3Y7Izm7m2m8utImue4=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=nSdN8A8zFoZtRARRizVI0vBt7UIFTdNwYb+ID29k3veOOvzOIDreAEp1PjmIGVMRD/jJaGZ20gpqJ6oIGuUcxhgEKUUzxnSzL/0SgpEW6oHNk/CSNg6cWtIBfPlEmIxQ5kqVe5CH8uRGa0kZNLGKyv8OJ0dAu6Il0tIBdvl7MP4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=sang-engineering.com; spf=pass smtp.mailfrom=sang-engineering.com; dkim=pass (2048-bit key) header.d=sang-engineering.com header.i=@sang-engineering.com header.b=bK1k/aTn; arc=none smtp.client-ip=194.117.254.33
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=sang-engineering.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=sang-engineering.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
+	sang-engineering.com; h=date:from:to:cc:subject:message-id
+	:references:mime-version:content-type:in-reply-to; s=k1; bh=IJoM
+	IVa5E7Hv4lTIbN8oe9WV112gVPK/DBDuckoPA8I=; b=bK1k/aTnRAnoUYMIsbJ/
+	mF45GKFrR9eHehYS1mqtiHqyzfRNq9cNsw4+IfUNj4WVcKKB7lvP/HJLw6SzJJoF
+	8E10p10UeMq6thC2qCvOCxT7qF/fiInbNUh2gWyBibITABwtyc6FeAEsoTvZxbgx
+	LadI7dk2OGvoY0ohkOWEVqp5IzoijRY/xovZyGhVND2eTvbe1dCcmFKupbHN2QDH
+	Q2Zm/T9k5txjCRMHS54AYOm8nyUN/Sk9qbPGX7tulcBY7hMlSJf0h8G9/DXXcYQi
+	Syh0OpydatoUpgN9jKaNeQH+P8fYm+dZoYSLPh5Rs77hVyKmbYaa2uv+qOJzQkLd
+	Cw==
+Received: (qmail 2683149 invoked from network); 30 Jun 2025 21:43:19 +0200
+Received: by mail.zeus03.de with UTF8SMTPSA (TLS_AES_256_GCM_SHA384 encrypted, authenticated); 30 Jun 2025 21:43:19 +0200
+X-UD-Smtp-Session: l3s3148p1@sIxbPc84RqAgAwDPXyUmAP5FmBXRrw7R
+Date: Mon, 30 Jun 2025 21:43:18 +0200
+From: Wolfram Sang <wsa+renesas@sang-engineering.com>
+To: Rob Herring <robh@kernel.org>
+Cc: linux-renesas-soc@vger.kernel.org,
+	Tommaso Merciai <tommaso.merciai.xr@bp.renesas.com>,
+	Alexandre Belloni <alexandre.belloni@bootlin.com>,
+	Frank Li <Frank.Li@nxp.com>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Geert Uytterhoeven <geert+renesas@glider.be>,
+	Magnus Damm <magnus.damm@gmail.com>, linux-i3c@lists.infradead.org,
+	devicetree@vger.kernel.org
+Subject: Re: [PATCH RFC 3/7] dt-bindings: i3c: renesas,i3c: Add binding for
+ Renesas I3C controller
+Message-ID: <aGLo1mlrHT_IZHQv@shikoro>
+References: <20250611093934.4208-1-wsa+renesas@sang-engineering.com>
+ <20250611093934.4208-4-wsa+renesas@sang-engineering.com>
+ <20250625200709.GA2125481-robh@kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20250611-p3452-v2-0-fd2679706c63@gmail.com>
-In-Reply-To: <20250611-p3452-v2-0-fd2679706c63@gmail.com>
-From: Aaron Kling <webgeek1234@gmail.com>
-Date: Mon, 30 Jun 2025 14:37:22 -0500
-X-Gm-Features: Ac12FXw_9IoS7hqCMFNVMr53CaFw3dwiUXobN26FZrCcytJ6Lw7isswzQUpst14
-Message-ID: <CALHNRZ9tjJo3LRmpaGsEsf2=Him0O2J-ZaJf4UZ8bcbz1119BQ@mail.gmail.com>
-Subject: Re: [PATCH v2 0/2] arm64: tegra: Add NVIDIA Jetson Nano 2GB Developer
- Kit support
-To: webgeek1234@gmail.com
-Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
-	Conor Dooley <conor+dt@kernel.org>, Thierry Reding <thierry.reding@gmail.com>, 
-	Jonathan Hunter <jonathanh@nvidia.com>, devicetree@vger.kernel.org, 
-	linux-tegra@vger.kernel.org, linux-kernel@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20250625200709.GA2125481-robh@kernel.org>
 
-On Wed, Jun 11, 2025 at 1:53=E2=80=AFPM Aaron Kling via B4 Relay
-<devnull+webgeek1234.gmail.com@kernel.org> wrote:
->
-> Signed-off-by: Aaron Kling <webgeek1234@gmail.com>
-> ---
-> Changes in v2:
-> - Fix usb power supply to align with downstream power tree
-> - Control vdd_hdmi with gpio pa6 and delete unused vdd_hub_3v3 to avoid
->   conflicts
-> - Link to v1: https://lore.kernel.org/r/20250608-p3452-v1-0-4c2c1d7e4310@=
-gmail.com
->
-> ---
-> Aaron Kling (2):
->       dt-bindings: arm: tegra: Document Jetson Nano Devkits
->       arm64: tegra: Add NVIDIA Jetson Nano 2GB Developer Kit support
->
->  Documentation/devicetree/bindings/arm/tegra.yaml   |  5 ++
->  arch/arm64/boot/dts/nvidia/Makefile                |  2 +
->  arch/arm64/boot/dts/nvidia/tegra210-p3541-0000.dts | 59 ++++++++++++++++=
-++++++
->  3 files changed, 66 insertions(+)
-> ---
-> base-commit: 19272b37aa4f83ca52bdf9c16d5d81bdd1354494
-> change-id: 20250513-p3452-059708ca9993
->
-> Best regards,
-> --
-> Aaron Kling <webgeek1234@gmail.com>
 
-Friendly reminder about this series.
+> > +  interrupt-names:
+> > +    items:
+> > +      - const: ierr
+> > +      - const: terr
+> > +      - const: abort
+> > +      - const: resp
+> > +      - const: cmd
+> > +      - const: ibi
+> > +      - const: rx
+> > +      - const: tx
+> > +      - const: rcv
+> > +      - const: st
+> > +      - const: sp
+> > +      - const: tend
+> > +      - const: nack
+> > +      - const: al
+> > +      - const: tmo
+> > +      - const: wu
+> > +      - const: exit
+> > +    minItems: 16
+> > +
+> > +  clocks:
+> > +    oneOf:
+> > +      - items:
+> > +          - description: APB bus clock
+> > +          - description: transfer clock
+> > +      - items:
+> > +          - description: APB bus clock
+> > +          - description: SFRs clock
+> > +          - description: transfer clock
+> 
+> It's a new binding, why don't you put SFRs clock last and simplify the 
+> schema?
 
-Aaron
+Similar how we handle interrupts? 16 for the one SoC, 17 for the other?
+Putting the optional entry to the end of the array? Tommaso, can you
+integrate this change, please?
+
 
