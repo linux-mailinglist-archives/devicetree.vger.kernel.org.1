@@ -1,48 +1,87 @@
-Return-Path: <devicetree+bounces-191101-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-191102-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id CC273AEDCB1
-	for <lists+devicetree@lfdr.de>; Mon, 30 Jun 2025 14:25:46 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 34E63AEDCC6
+	for <lists+devicetree@lfdr.de>; Mon, 30 Jun 2025 14:30:28 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 32553177541
-	for <lists+devicetree@lfdr.de>; Mon, 30 Jun 2025 12:25:47 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 6C15116CC20
+	for <lists+devicetree@lfdr.de>; Mon, 30 Jun 2025 12:30:28 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id DA997289825;
-	Mon, 30 Jun 2025 12:25:38 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 21F9C241CB6;
+	Mon, 30 Jun 2025 12:30:24 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="fIk8Kes9"
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="BNrukPs/"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id ADCEF289815;
-	Mon, 30 Jun 2025 12:25:38 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 75A3F2F1FE6
+	for <devicetree@vger.kernel.org>; Mon, 30 Jun 2025 12:30:22 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1751286338; cv=none; b=XUQQKv86n6c8TXeGvf+6DRugxPlzv0wPYKcrj8Lo4CFMwRkrYXMzTn2w1EX4UWX8/ORDWEXcUimN/gME0WuI1R1yM/bQ8M7FnbVGQkB0Khjo1M3wi4+20lgcm3P0wt8/u1HHRstEDjoZDDrMHQ/0hFXNmbAWXajR6rZMsNLe9Vw=
+	t=1751286624; cv=none; b=jQaCqHtCYfrNm1K2S17wGZdzUr4+HNunnMpvdQqerMRCcPOmVXuNpS7UiDlGJM4V+MQw30qLiF1eMaVKpHGgRRCh5gv8Be7jXWMgxrc9rWWvyZ6VNo0yc/820RSmgGEf/lQYKmHM2u7/RNRaGt9i+Br17/RvnnII1OTYSEPac8s=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1751286338; c=relaxed/simple;
-	bh=u1qBZwPUJKB7PfrNZdflnFo0zj1UNVC0uSjMLkAdAPo=;
+	s=arc-20240116; t=1751286624; c=relaxed/simple;
+	bh=3f1Py/orZHfiSTe0C6MP8gxhoceXINqIBaCHjb7/zSk=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=Bb+x6rq05svQCPcrjq+7hSxQ37lIWJwH0jdKSCx1IzocbDU7IT9ogeJjqI/ybbqgimNob9GOnafC4249X45wMV0UfoB6IYRZEzk4lfTiB82BUlodZNL41RR7vXbk+0cRVyJ/hEHgYBoaVsB18d5nBVifPHq/PpKJIx5LZ3AQn7w=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=fIk8Kes9; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 08878C4CEE3;
-	Mon, 30 Jun 2025 12:25:34 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1751286338;
-	bh=u1qBZwPUJKB7PfrNZdflnFo0zj1UNVC0uSjMLkAdAPo=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=fIk8Kes91+J5sLWLMCKFmaITz74B6CaSNphZoSoyVakmD6IdTQ7tgkPKZraWvL3gl
-	 qaoLgss3ePJM3BUISimfjJxCDH8Zsq6VhG2IVyECodCydlRsfEerHN2eRHS4k0rZ0f
-	 U+zWG2lY0vUU+ZBWkGHxI2EwF4JDYmjXIM5+fcXnaNLA/yl16N81jlQNm1+1wT44AK
-	 u1G7YzKs3Wodk1st3QS3TLN6oihDvY3yxQgTqdRjRrYrd5JH/j53wBrrn4KwQQ3wCq
-	 pJTTEGIttpsD8xwyJj1AughFB1BQxQtzNfyHPfRdYIlx3d+KK5MsO6nCwa7MEdv0YX
-	 QmJ0GKF0L1AyQ==
-Message-ID: <c6d0d856-0c49-4ad7-bc6f-1a228dcb2d9d@kernel.org>
-Date: Mon, 30 Jun 2025 14:25:33 +0200
+	 In-Reply-To:Content-Type; b=byrk9T1KBisn8AuhSVp5wvhafn9jymVYk7CDtXj6gEHA0KFdKbdmWjlSMmUdfrKvJm67yreZGwRZgfNo+hqsCs44MVnAlaitjmDMErGCLj5dQo5l13b20ZacROUbEKNq7YyAiPvXLfmp718lZkPUPRz3imE2KjNDiTbZ7aqxuxo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=BNrukPs/; arc=none smtp.client-ip=205.220.168.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
+Received: from pps.filterd (m0279866.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 55U8DDnd002153
+	for <devicetree@vger.kernel.org>; Mon, 30 Jun 2025 12:30:21 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	2dWxWYq2K7GOUCuWuG1yENQqxzaE0+54jEHV+QMm2Os=; b=BNrukPs/nNJ0qaHS
+	LWTu6LjgvbZFBSLNC+oAhIPnl4Us9Elul9jdAnKMZFFftOO8B1obXtZVxfvO7MWt
+	shjEpSEADQTPkOSUhhPFsDln/dstCoJv+fn/SCyOWkk+mqZRZPfUxaduo6El6Onp
+	PujuZ5mZtOb3wgl6JOnwoMg3F20KBzIzIvOKEU31qhTzUpXpkuXnn0mo+JSk3uo2
+	+optlSS+dEXRhNKnoLnzfmU/XAMOkGRgk4JKMcyIbBRMPUzxegd7TNDi0wRzIbWM
+	Cu73+s1G02hJSxfvTxdoaPFITrFBdp3D2lN8HLg+N/zSQ2yfYWbQIlJ8EQMwnv1Z
+	LouDFQ==
+Received: from mail-pf1-f199.google.com (mail-pf1-f199.google.com [209.85.210.199])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 47j9pcmnuy-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
+	for <devicetree@vger.kernel.org>; Mon, 30 Jun 2025 12:30:21 +0000 (GMT)
+Received: by mail-pf1-f199.google.com with SMTP id d2e1a72fcca58-74943a7cd9aso3547245b3a.3
+        for <devicetree@vger.kernel.org>; Mon, 30 Jun 2025 05:30:21 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1751286621; x=1751891421;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=2dWxWYq2K7GOUCuWuG1yENQqxzaE0+54jEHV+QMm2Os=;
+        b=GH6npGv2PqLE8HUZPjTlbJICtVs2YJhkZaS1uq3rLJMOMr5JR7oldGA7du2kjYsGo/
+         kY0jZcrzlj9F+GW3SQbbNfFJaspTBXVdvjeThuorZd52Sh+9gQ0D6SgOvKKVkNIXL0tl
+         +/ZvesYX6tvXoOn5bb2ozapTjOzpRURrxHtFraVVIXNB0/vXZSg+LA915Ihz3Ui2umgk
+         rFcptbeLJyDII3hjzLQ+Oqp6zTCef/FZXm9kJM3L16+5hAk2snarA3vIyDHR/BArOfLs
+         sHXCJ+wbRVF9eQFNQkn4xNvUlwKRXk1qociUS0bBZtYAS1U9GPZt9mWbrjVSdhklIEcN
+         s1OQ==
+X-Forwarded-Encrypted: i=1; AJvYcCWuzOOrWjLxJv/63PWhWx+JYuUCFVy1JH9ro5Y0Gk+rONjApxtangrw5jt8eTuXfZonWTuDuZqaUrCC@vger.kernel.org
+X-Gm-Message-State: AOJu0Ywy9iBziQIRElOdzWCZ2yk13Hi/Gf3RNOTtmuCah3crsHgamv7p
+	oXC3I/Ypeb6Gi/oGlyH6wlqhm/AX51r1y8qedUkzDuocb0FqGyMipXM5FrKAD6bZrpM4Qvg1Vk+
+	Ut7Ak10O8p2is4s1tEXfzhBx1DTHwH762b32JK+L3e3boRjeUMWiTGT/5Gr/KtHm+
+X-Gm-Gg: ASbGnct5M5GbKlIitPCUevSgmqORg0AV1WwHyhSRaKaSil5UtXbqZn/s0IygATRRGnG
+	UDncK9/s9H1w9y4WoBBihP3v9o098fImFxFgxofIBIgNoTNz1GHqsdY8v6HbEpaRXsiVhnSIk7B
+	shPgMWeB13WkhFtL4NCLlqXjKDra9nxKzd5ARZ81IyV4ZPRjWSBtsGzIMhMYFIMfgajvYj0+49n
+	FOR8+rQbFVvXz+iGBRgzk2KJjVHIG8Sn0Yp4QOmQ61BYXWprbzd+EOlysSB9lM4F1jJo+v0z5x7
+	zg1qARK4zk2DQ1TOAtn/w+xXhBQZ+yLsMQ0XE4dq0dmY/RLYlNkC
+X-Received: by 2002:a05:6a00:1988:b0:748:f365:bedd with SMTP id d2e1a72fcca58-74af6f4d4bcmr17197276b3a.17.1751286620551;
+        Mon, 30 Jun 2025 05:30:20 -0700 (PDT)
+X-Google-Smtp-Source: AGHT+IGkaFNPxqWvP2slDuEpYtj3r5EnhD15Tr2DIQp6ChiI+aHrargB99nmYkj5G7fm4yQY9LxhLg==
+X-Received: by 2002:a05:6a00:1988:b0:748:f365:bedd with SMTP id d2e1a72fcca58-74af6f4d4bcmr17197201b3a.17.1751286619834;
+        Mon, 30 Jun 2025 05:30:19 -0700 (PDT)
+Received: from [10.92.200.128] ([202.46.23.19])
+        by smtp.gmail.com with ESMTPSA id d2e1a72fcca58-74af55c6a3asm8487704b3a.118.2025.06.30.05.30.15
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 30 Jun 2025 05:30:19 -0700 (PDT)
+Message-ID: <4bae822e-e7bd-461f-99cc-866771c0b954@oss.qualcomm.com>
+Date: Mon, 30 Jun 2025 18:00:12 +0530
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,90 +89,137 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 4/8] dt-bindings: vendor-prefixes: Add Winrise
- Technology
-To: =?UTF-8?Q?Jean-Fran=C3=A7ois_Lessard?= <jefflessard3@gmail.com>,
- Andy Shevchenko <andy@kernel.org>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>
-Cc: Geert Uytterhoeven <geert@linux-m68k.org>, devicetree@vger.kernel.org,
- linux-leds@vger.kernel.org, linux-kernel@vger.kernel.org,
- =?UTF-8?Q?Andreas_F=C3=A4rber?= <afaerber@suse.de>,
- Boris Gjenero <boris.gjenero@gmail.com>,
- Christian Hewitt <christianshewitt@gmail.com>,
- Heiner Kallweit <hkallweit1@gmail.com>,
- Paolo Sabatino <paolo.sabatino@gmail.com>
-References: <20250629130002.49842-1-jefflessard3@gmail.com>
- <20250629130002.49842-6-jefflessard3@gmail.com>
-From: Krzysztof Kozlowski <krzk@kernel.org>
+Subject: Re: [PATCH v4 0/2] PCI: qcom: Move PERST# GPIO & phy retrieval from
+ controller to PCIe bridge node
+To: Manivannan Sadhasivam <mani@kernel.org>
+Cc: Lorenzo Pieralisi <lpieralisi@kernel.org>, Rob Herring <robh@kernel.org>,
+        Bjorn Helgaas <bhelgaas@google.com>,
+        Krzysztof Kozlowski
+ <krzk+dt@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konradybcio@kernel.org>,
+        cros-qcom-dts-watchers@chromium.org,
+        =?UTF-8?Q?Krzysztof_Wilczy=C5=84ski?= <kwilczynski@kernel.org>,
+        linux-arm-msm@vger.kernel.org, linux-pci@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        quic_vbadigan@quicinc.com, quic_mrana@quicinc.com
+References: <20250605-perst-v4-0-efe8a0905c27@oss.qualcomm.com>
+ <y3umoz5yuofaoloseapugjbebcgkefanqzggdjd5svq5dkchnb@rkbjfpiiveng>
 Content-Language: en-US
-Autocrypt: addr=krzk@kernel.org; keydata=
- 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 a/A=
-In-Reply-To: <20250629130002.49842-6-jefflessard3@gmail.com>
-Content-Type: text/plain; charset=UTF-8
+From: Krishna Chaitanya Chundru <krishna.chundru@oss.qualcomm.com>
+In-Reply-To: <y3umoz5yuofaoloseapugjbebcgkefanqzggdjd5svq5dkchnb@rkbjfpiiveng>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 8bit
+X-Proofpoint-GUID: z7OaNAyns6ErW4TI2xZ4E2fKBN1-xcST
+X-Proofpoint-ORIG-GUID: z7OaNAyns6ErW4TI2xZ4E2fKBN1-xcST
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwNjMwMDEwMiBTYWx0ZWRfX5UKpGtT6JvNY
+ 5RtcaJYYf3mMYTMbwCIghXztAFoBQccmbfibeyZ8L9WSAcGhMGSrrXiAdlS/XnWwCbRzleOOCta
+ c3AdfVcPdqGZ0b/dxaxgr3WDv5LYdce7Mro1kZGRyGpbXS+sLui1qtQLlj9elAfa7UwISds8IAn
+ c6w11DYIpZIqPLlzq8XLexoR55pZQIsAhWD0F528IklFNtun9cKdt6FELPZpnAaUTrdP6kNKKWj
+ Vw9uUu/VfKiL7lMmMxkRBc+dONZ/NqjDY10jk2CDAlr8HJwCW/XQZZoplkK1vblMSRAioUUK4if
+ 0J2rbmFhXjZJV0/R6wpsI9jAN2Tw3yvDFYAJ+zmlwi78Wkoc5TyJbao3wBbcwGPvY9snH+WYPc8
+ jBxYtY1V5Tri1urHdhlGF/z19MkVVQU3bLdzTFmJyBlTtycTgjoT2OtIgX5OTG3gnc1wDt64
+X-Authority-Analysis: v=2.4 cv=QMFoRhLL c=1 sm=1 tr=0 ts=6862835d cx=c_pps
+ a=WW5sKcV1LcKqjgzy2JUPuA==:117 a=j4ogTh8yFefVWWEFDRgCtg==:17
+ a=IkcTkHD0fZMA:10 a=6IFa9wvqVegA:10 a=VwQbUJbxAAAA:8 a=EUspDBNiAAAA:8
+ a=qGq9QQooCmLM_m6diiQA:9 a=3ZKOabzyN94A:10 a=QEXdDO2ut3YA:10
+ a=OpyuDcXvxspvyRM73sMx:22
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1099,Hydra:6.1.7,FMLib:17.12.80.40
+ definitions=2025-06-30_03,2025-06-27_01,2025-03-28_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ malwarescore=0 priorityscore=1501 bulkscore=0 spamscore=0 adultscore=0
+ mlxlogscore=999 mlxscore=0 lowpriorityscore=0 suspectscore=0 impostorscore=0
+ clxscore=1015 phishscore=0 classifier=spam authscore=0 authtc=n/a authcc=
+ route=outbound adjust=0 reason=mlx scancount=1 engine=8.19.0-2505280000
+ definitions=main-2506300102
 
-On 29/06/2025 14:59, Jean-François Lessard wrote:
-> Assign vendor prefix "winrise", matching their domain name.
-> 
-> Signed-off-by: Jean-François Lessard <jefflessard3@gmail.com>
-> ---
->  Documentation/devicetree/bindings/vendor-prefixes.yaml | 2 ++
->  1 file changed, 2 insertions(+)
-> 
-> diff --git a/Documentation/devicetree/bindings/vendor-prefixes.yaml b/Documentation/devicetree/bindings/vendor-prefixes.yaml
-> index f03ab02afe..a3bf93e5dc 100644
-> --- a/Documentation/devicetree/bindings/vendor-prefixes.yaml
-> +++ b/Documentation/devicetree/bindings/vendor-prefixes.yaml
-> @@ -1711,6 +1711,8 @@ patternProperties:
->      description: Wingtech Technology Co., Ltd.
->    "^winlink,.*":
->      description: WinLink Co., Ltd
-> +  "^winrise,.*":
-> +    description: Shenzhen Winrise Technology Co., Ltd.
-Hm? https://winrise.com/ redirects to https://amdaluminum.com/ for
-fences and other alu products.
 
-Best regards,
-Krzysztof
+
+On 6/23/2025 4:37 PM, Manivannan Sadhasivam wrote:
+> On Thu, Jun 05, 2025 at 02:00:36PM +0530, Krishna Chaitanya Chundru wrote:
+>> The main intention of this series is to move wake# to the root port node.
+>> After this series we will come up with a patch which registers for wake IRQ
+>> from the pcieport driver. The wake IRQ is needed for the endpoint to wakeup
+>> the host from D3cold. The driver change for wake IRQ is posted here[1].
+>>
+>> There are many places we agreed to move the wake and perst gpio's
+>> and phy etc to the pcie root port node instead of bridge node[2] as the
+>> these properties are root port specific and does not belongs to
+>> bridge node.
+>>
+>> So move the phy, phy-names, wake-gpio's in the root port.
+>> There is already reset-gpio defined for PERST# in pci-bus-common.yaml,
+>> start using that property instead of perst-gpio.
+>>
+>> For backward compatibility, don't remove any existing properties in the
+>> bridge node.
+>>
+>> There are some other properties like num-lanes, max-link-speed which
+>> needs to be moved to the root port nodes, but in this series we are
+>> excluding them for now as this requires more changes in dwc layer and
+>> can complicate the things.
+>>
+>> Once this series gets merged all other platforms also will be updated
+>> to use this new way.
+>>
+>> Note:- The driver change needs to be merged first before dts changes.
+>> Krzysztof Wilczyński or Mani can you provide the immutable branch with
+>> these PCIe changes.
+>>
+> 
+> You've dropped the DTS changes in this revision. So the above comment is stale.
+> 
+>> [1] https://lore.kernel.org/all/20250401-wake_irq_support-v1-0-d2e22f4a0efd@oss.qualcomm.com/
+>> [2] https://lore.kernel.org/linux-pci/20241211192014.GA3302752@bhelgaas/
+>>
+> 
+> I don't have a device to test this series right now. So could you please test
+> this series with the legacy binding and make sure it is not breaking?
+> 
+> Once you confirm, I'll merge this series.
+> 
+I have verified with legacy binding with this change and it is working fine.
+
+- Krishna Chaitanya.
+> - Mani
+> 
+>> Signed-off-by: Krishna Chaitanya Chundru <krishna.chundru@oss.qualcomm.com>
+>> ---
+>> Changes in v4:
+>> - Removed dts patch as Mani suggested to merge driver and dt-binding
+>>    patch in this release and have dts changes in the next release.
+>> - Remove wake property from as this will be addressed in
+>>    pci-bus-common.yaml (Mani)
+>> - Did couple of nits in the comments, function names code etc (Mani).
+>> - Link to v3: https://lore.kernel.org/r/20250419-perst-v3-0-1afec3c4ea62@oss.qualcomm.com
+>>
+>> Changes in v3:
+>> - Make old properties as deprecated, update commit message (Dmitry)
+>> - Add helper functions wherever both multiport and legacy methods are used. (Mani)
+>> - Link to v2: https://lore.kernel.org/r/20250414-perst-v2-0-89247746d755@oss.qualcomm.com
+>>
+>> Changes in v2:
+>> - Remove phy-names property and change the driver, dtsi accordingly (Rob)
+>> - Link to v1: https://lore.kernel.org/r/20250322-perst-v1-0-e5e4da74a204@oss.qualcomm.com
+>>
+>> ---
+>> Krishna Chaitanya Chundru (2):
+>>        dt-bindings: PCI: qcom: Move phy & reset gpio's to root port
+>>        PCI: qcom: Add support for multi-root port
+>>
+>>   .../devicetree/bindings/pci/qcom,pcie-common.yaml  |  32 +++-
+>>   .../devicetree/bindings/pci/qcom,pcie-sc7280.yaml  |  16 +-
+>>   drivers/pci/controller/dwc/pcie-qcom.c             | 177 +++++++++++++++++----
+>>   3 files changed, 192 insertions(+), 33 deletions(-)
+>> ---
+>> base-commit: ec7714e4947909190ffb3041a03311a975350fe0
+>> change-id: 20250101-perst-cb885b5a6129
+>>
+>> Best regards,
+>> -- 
+>> krishnachaitanya-linux <krishna.chundru@oss.qualcomm.com>
+>>
+> 
 
