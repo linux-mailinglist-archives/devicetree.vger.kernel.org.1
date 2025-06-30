@@ -1,225 +1,178 @@
-Return-Path: <devicetree+bounces-191102-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-191104-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 34E63AEDCC6
-	for <lists+devicetree@lfdr.de>; Mon, 30 Jun 2025 14:30:28 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id D9B33AEDCEB
+	for <lists+devicetree@lfdr.de>; Mon, 30 Jun 2025 14:35:25 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 6C15116CC20
-	for <lists+devicetree@lfdr.de>; Mon, 30 Jun 2025 12:30:28 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 727E618925FA
+	for <lists+devicetree@lfdr.de>; Mon, 30 Jun 2025 12:35:37 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 21F9C241CB6;
-	Mon, 30 Jun 2025 12:30:24 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D645D289836;
+	Mon, 30 Jun 2025 12:35:09 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="BNrukPs/"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="dkZ8+HM3"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 75A3F2F1FE6
-	for <devicetree@vger.kernel.org>; Mon, 30 Jun 2025 12:30:22 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A87C5285419;
+	Mon, 30 Jun 2025 12:35:09 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1751286624; cv=none; b=jQaCqHtCYfrNm1K2S17wGZdzUr4+HNunnMpvdQqerMRCcPOmVXuNpS7UiDlGJM4V+MQw30qLiF1eMaVKpHGgRRCh5gv8Be7jXWMgxrc9rWWvyZ6VNo0yc/820RSmgGEf/lQYKmHM2u7/RNRaGt9i+Br17/RvnnII1OTYSEPac8s=
+	t=1751286909; cv=none; b=rIgAe9xFWq7sEFF3YMN9Yr8S3ysdy6LYGz6g/P69tde/uT0PJ8RUVPR81lQmJB02rYOM5uGO4zlw/ju7k48nQ0i5VTbGjaK85OQxRjPLLEoNdp/XNpz+l1T+l6QZxZY+PuwnzrqYQC6xQhiBvHiQYDjbIiM86+vXzL0ZbeC55xY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1751286624; c=relaxed/simple;
-	bh=3f1Py/orZHfiSTe0C6MP8gxhoceXINqIBaCHjb7/zSk=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=byrk9T1KBisn8AuhSVp5wvhafn9jymVYk7CDtXj6gEHA0KFdKbdmWjlSMmUdfrKvJm67yreZGwRZgfNo+hqsCs44MVnAlaitjmDMErGCLj5dQo5l13b20ZacROUbEKNq7YyAiPvXLfmp718lZkPUPRz3imE2KjNDiTbZ7aqxuxo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=BNrukPs/; arc=none smtp.client-ip=205.220.168.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
-Received: from pps.filterd (m0279866.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 55U8DDnd002153
-	for <devicetree@vger.kernel.org>; Mon, 30 Jun 2025 12:30:21 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	2dWxWYq2K7GOUCuWuG1yENQqxzaE0+54jEHV+QMm2Os=; b=BNrukPs/nNJ0qaHS
-	LWTu6LjgvbZFBSLNC+oAhIPnl4Us9Elul9jdAnKMZFFftOO8B1obXtZVxfvO7MWt
-	shjEpSEADQTPkOSUhhPFsDln/dstCoJv+fn/SCyOWkk+mqZRZPfUxaduo6El6Onp
-	PujuZ5mZtOb3wgl6JOnwoMg3F20KBzIzIvOKEU31qhTzUpXpkuXnn0mo+JSk3uo2
-	+optlSS+dEXRhNKnoLnzfmU/XAMOkGRgk4JKMcyIbBRMPUzxegd7TNDi0wRzIbWM
-	Cu73+s1G02hJSxfvTxdoaPFITrFBdp3D2lN8HLg+N/zSQ2yfYWbQIlJ8EQMwnv1Z
-	LouDFQ==
-Received: from mail-pf1-f199.google.com (mail-pf1-f199.google.com [209.85.210.199])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 47j9pcmnuy-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Mon, 30 Jun 2025 12:30:21 +0000 (GMT)
-Received: by mail-pf1-f199.google.com with SMTP id d2e1a72fcca58-74943a7cd9aso3547245b3a.3
-        for <devicetree@vger.kernel.org>; Mon, 30 Jun 2025 05:30:21 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1751286621; x=1751891421;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=2dWxWYq2K7GOUCuWuG1yENQqxzaE0+54jEHV+QMm2Os=;
-        b=GH6npGv2PqLE8HUZPjTlbJICtVs2YJhkZaS1uq3rLJMOMr5JR7oldGA7du2kjYsGo/
-         kY0jZcrzlj9F+GW3SQbbNfFJaspTBXVdvjeThuorZd52Sh+9gQ0D6SgOvKKVkNIXL0tl
-         +/ZvesYX6tvXoOn5bb2ozapTjOzpRURrxHtFraVVIXNB0/vXZSg+LA915Ihz3Ui2umgk
-         rFcptbeLJyDII3hjzLQ+Oqp6zTCef/FZXm9kJM3L16+5hAk2snarA3vIyDHR/BArOfLs
-         sHXCJ+wbRVF9eQFNQkn4xNvUlwKRXk1qociUS0bBZtYAS1U9GPZt9mWbrjVSdhklIEcN
-         s1OQ==
-X-Forwarded-Encrypted: i=1; AJvYcCWuzOOrWjLxJv/63PWhWx+JYuUCFVy1JH9ro5Y0Gk+rONjApxtangrw5jt8eTuXfZonWTuDuZqaUrCC@vger.kernel.org
-X-Gm-Message-State: AOJu0Ywy9iBziQIRElOdzWCZ2yk13Hi/Gf3RNOTtmuCah3crsHgamv7p
-	oXC3I/Ypeb6Gi/oGlyH6wlqhm/AX51r1y8qedUkzDuocb0FqGyMipXM5FrKAD6bZrpM4Qvg1Vk+
-	Ut7Ak10O8p2is4s1tEXfzhBx1DTHwH762b32JK+L3e3boRjeUMWiTGT/5Gr/KtHm+
-X-Gm-Gg: ASbGnct5M5GbKlIitPCUevSgmqORg0AV1WwHyhSRaKaSil5UtXbqZn/s0IygATRRGnG
-	UDncK9/s9H1w9y4WoBBihP3v9o098fImFxFgxofIBIgNoTNz1GHqsdY8v6HbEpaRXsiVhnSIk7B
-	shPgMWeB13WkhFtL4NCLlqXjKDra9nxKzd5ARZ81IyV4ZPRjWSBtsGzIMhMYFIMfgajvYj0+49n
-	FOR8+rQbFVvXz+iGBRgzk2KJjVHIG8Sn0Yp4QOmQ61BYXWprbzd+EOlysSB9lM4F1jJo+v0z5x7
-	zg1qARK4zk2DQ1TOAtn/w+xXhBQZ+yLsMQ0XE4dq0dmY/RLYlNkC
-X-Received: by 2002:a05:6a00:1988:b0:748:f365:bedd with SMTP id d2e1a72fcca58-74af6f4d4bcmr17197276b3a.17.1751286620551;
-        Mon, 30 Jun 2025 05:30:20 -0700 (PDT)
-X-Google-Smtp-Source: AGHT+IGkaFNPxqWvP2slDuEpYtj3r5EnhD15Tr2DIQp6ChiI+aHrargB99nmYkj5G7fm4yQY9LxhLg==
-X-Received: by 2002:a05:6a00:1988:b0:748:f365:bedd with SMTP id d2e1a72fcca58-74af6f4d4bcmr17197201b3a.17.1751286619834;
-        Mon, 30 Jun 2025 05:30:19 -0700 (PDT)
-Received: from [10.92.200.128] ([202.46.23.19])
-        by smtp.gmail.com with ESMTPSA id d2e1a72fcca58-74af55c6a3asm8487704b3a.118.2025.06.30.05.30.15
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 30 Jun 2025 05:30:19 -0700 (PDT)
-Message-ID: <4bae822e-e7bd-461f-99cc-866771c0b954@oss.qualcomm.com>
-Date: Mon, 30 Jun 2025 18:00:12 +0530
+	s=arc-20240116; t=1751286909; c=relaxed/simple;
+	bh=6rSwfj0OgqcpS0whNGrBhLm2Rs5oxE6X+ajo/xI0UWA=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=EWFQ/WY4t+MTgcLOgKnFbZhmqedqbswnQfKHWvZrn60w9Meh0tldnicsPjU/K3OAoguTQXrFU7LymbuuPpm1I9ATVSchlPwu9tkm1pBWYSZjpjWVuxKd+p0mqmAV5T2GLSXpPoG8rP17MfTGza9EQ3HU0ojunmR48Y0xFOOlYbg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=dkZ8+HM3; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPS id 26A44C4CEE3;
+	Mon, 30 Jun 2025 12:35:09 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1751286909;
+	bh=6rSwfj0OgqcpS0whNGrBhLm2Rs5oxE6X+ajo/xI0UWA=;
+	h=From:Subject:Date:To:Cc:Reply-To:From;
+	b=dkZ8+HM3yA9QIAJ94UkDi01PhTrCPGrdDPd+IvSAcVVO83QjQuUq2shSZcdU18p2u
+	 NA4QH1G1g2jepZFRwJ1qN5VDWvSZQQNKA2N+HuZLove+rZBK8Dz1l0Q1t0/gAvuF0Z
+	 WZLI0oCiJsdmoMSb1co22PqiikJGBxOlcz7s6TeUKsdANuABE2p8GK2rJ3lEe7cQCb
+	 DaN7DM62JmnVwr8r1Fd9SJFrNsXIxxHfrncmz8KzDRNgM6EYM3IyMoS4j5F3DOAmeV
+	 qk4KfNJrDQrB9VieUuKxbuVNvaJd6v6WDXJd+pZklBjVaEgv926eKPY9hbhHmwdQVU
+	 K06VGuq1s/0sQ==
+Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 17880C8302D;
+	Mon, 30 Jun 2025 12:35:09 +0000 (UTC)
+From: George Moussalem via B4 Relay <devnull+george.moussalem.outlook.com@kernel.org>
+Subject: [PATCH v6 0/3] Add support for the IPQ5018 Internal GE PHY
+Date: Mon, 30 Jun 2025 16:34:59 +0400
+Message-Id: <20250630-ipq5018-ge-phy-v6-0-01be06378c15@outlook.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v4 0/2] PCI: qcom: Move PERST# GPIO & phy retrieval from
- controller to PCIe bridge node
-To: Manivannan Sadhasivam <mani@kernel.org>
-Cc: Lorenzo Pieralisi <lpieralisi@kernel.org>, Rob Herring <robh@kernel.org>,
-        Bjorn Helgaas <bhelgaas@google.com>,
-        Krzysztof Kozlowski
- <krzk+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konradybcio@kernel.org>,
-        cros-qcom-dts-watchers@chromium.org,
-        =?UTF-8?Q?Krzysztof_Wilczy=C5=84ski?= <kwilczynski@kernel.org>,
-        linux-arm-msm@vger.kernel.org, linux-pci@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        quic_vbadigan@quicinc.com, quic_mrana@quicinc.com
-References: <20250605-perst-v4-0-efe8a0905c27@oss.qualcomm.com>
- <y3umoz5yuofaoloseapugjbebcgkefanqzggdjd5svq5dkchnb@rkbjfpiiveng>
-Content-Language: en-US
-From: Krishna Chaitanya Chundru <krishna.chundru@oss.qualcomm.com>
-In-Reply-To: <y3umoz5yuofaoloseapugjbebcgkefanqzggdjd5svq5dkchnb@rkbjfpiiveng>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
-X-Proofpoint-GUID: z7OaNAyns6ErW4TI2xZ4E2fKBN1-xcST
-X-Proofpoint-ORIG-GUID: z7OaNAyns6ErW4TI2xZ4E2fKBN1-xcST
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwNjMwMDEwMiBTYWx0ZWRfX5UKpGtT6JvNY
- 5RtcaJYYf3mMYTMbwCIghXztAFoBQccmbfibeyZ8L9WSAcGhMGSrrXiAdlS/XnWwCbRzleOOCta
- c3AdfVcPdqGZ0b/dxaxgr3WDv5LYdce7Mro1kZGRyGpbXS+sLui1qtQLlj9elAfa7UwISds8IAn
- c6w11DYIpZIqPLlzq8XLexoR55pZQIsAhWD0F528IklFNtun9cKdt6FELPZpnAaUTrdP6kNKKWj
- Vw9uUu/VfKiL7lMmMxkRBc+dONZ/NqjDY10jk2CDAlr8HJwCW/XQZZoplkK1vblMSRAioUUK4if
- 0J2rbmFhXjZJV0/R6wpsI9jAN2Tw3yvDFYAJ+zmlwi78Wkoc5TyJbao3wBbcwGPvY9snH+WYPc8
- jBxYtY1V5Tri1urHdhlGF/z19MkVVQU3bLdzTFmJyBlTtycTgjoT2OtIgX5OTG3gnc1wDt64
-X-Authority-Analysis: v=2.4 cv=QMFoRhLL c=1 sm=1 tr=0 ts=6862835d cx=c_pps
- a=WW5sKcV1LcKqjgzy2JUPuA==:117 a=j4ogTh8yFefVWWEFDRgCtg==:17
- a=IkcTkHD0fZMA:10 a=6IFa9wvqVegA:10 a=VwQbUJbxAAAA:8 a=EUspDBNiAAAA:8
- a=qGq9QQooCmLM_m6diiQA:9 a=3ZKOabzyN94A:10 a=QEXdDO2ut3YA:10
- a=OpyuDcXvxspvyRM73sMx:22
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1099,Hydra:6.1.7,FMLib:17.12.80.40
- definitions=2025-06-30_03,2025-06-27_01,2025-03-28_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- malwarescore=0 priorityscore=1501 bulkscore=0 spamscore=0 adultscore=0
- mlxlogscore=999 mlxscore=0 lowpriorityscore=0 suspectscore=0 impostorscore=0
- clxscore=1015 phishscore=0 classifier=spam authscore=0 authtc=n/a authcc=
- route=outbound adjust=0 reason=mlx scancount=1 engine=8.19.0-2505280000
- definitions=main-2506300102
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIAHOEYmgC/23QzU7DMAwH8FeZciYoduK03WnvgTjka2sELF07I
+ qap705aDhSy49+Wf7J9Z1MYY5jYfndnY8hxiulcgn7aMdeb8ynw6EtmKJCEkoLH4UICWl46Q3/
+ j3mpS5miUC56VoWEMx/i1gi+vJfdxuqbxtvoZluoPRUj/qQxccO+NbVtSAUke0uf1PaW3Z5c+2
+ IJl3AJtBeAKCC11o1wDrgbkL6AFVoAsgEKQsjFCgsUaUFugqwBVAPDSAJb90D04gTYAVO/MtJx
+ gTKc7Zb318BeY5/kbpdzPD7IBAAA=
+X-Change-ID: 20250430-ipq5018-ge-phy-db654afa4ced
+To: Bjorn Andersson <andersson@kernel.org>, 
+ Michael Turquette <mturquette@baylibre.com>, 
+ Stephen Boyd <sboyd@kernel.org>, Konrad Dybcio <konradybcio@kernel.org>, 
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>
+Cc: linux-arm-msm@vger.kernel.org, linux-clk@vger.kernel.org, 
+ linux-kernel@vger.kernel.org, devicetree@vger.kernel.org, 
+ George Moussalem <george.moussalem@outlook.com>, 
+ Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
+X-Mailer: b4 0.14.2
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1751286906; l=4361;
+ i=george.moussalem@outlook.com; s=20250321; h=from:subject:message-id;
+ bh=6rSwfj0OgqcpS0whNGrBhLm2Rs5oxE6X+ajo/xI0UWA=;
+ b=Kvrm1AJSq5+XPEMqSTSBbz73Svierh5rH5IkmJtZWSQFxnpA9c5t37ljwFISOR59szpETEMy+
+ 9xJp5hJx82hAYhJ8VAVUvAFhRywRflhC6XAAhbjjz2fGsxgp57aQMnF
+X-Developer-Key: i=george.moussalem@outlook.com; a=ed25519;
+ pk=/PuRTSI9iYiHwcc6Nrde8qF4ZDhJBlUgpHdhsIjnqIk=
+X-Endpoint-Received: by B4 Relay for george.moussalem@outlook.com/20250321
+ with auth_id=364
+X-Original-From: George Moussalem <george.moussalem@outlook.com>
+Reply-To: george.moussalem@outlook.com
+
+The IPQ5018 SoC contains an internal Gigabit Ethernet PHY with its
+output pins that provide an MDI interface to either an external switch
+in a PHY to PHY link architecture or directly to an attached RJ45
+connector.
+
+The PHY supports 10BASE-T/100BASE-TX/1000BASE-T link modes in SGMII
+interface mode, CDT, auto-negotiation and 802.3az EEE.
+
+The LDO controller found in the IPQ5018 SoC needs to be enabled to drive
+power to the CMN Ethernet Block (CMN BLK) which the GE PHY depends on.
+The LDO must be enabled in TCSR by writing to a specific register.
+
+In a phy to phy architecture, DAC values need to be set to accommodate
+for the short cable length.
+
+Signed-off-by: George Moussalem <george.moussalem@outlook.com>
+---
+Changes in v6:
+- Rebased on top of linux-next which includes the bindings (patch 2 in
+  v5) and driver (patch 3 in v5) picked up from and merged by net-next,
+  no changes otherwise.
+- Link to v5: https://lore.kernel.org/r/20250610-ipq5018-ge-phy-v5-0-daa9694bdbd1@outlook.com
+
+Changes in v5:
+- Removed unused macro definition (IPQ5018_TCSR_ETH_LDO_READY)
+- Reverted sorting of header files for which a separate patch can be
+  submitted
+- Added a comment to explain why the FIFO buffer needs to be reset
+- Do not initialize local variable as caught by Russell
+- Updated macro definition names to more accurately describe the PHY
+  registers and their functions
+- Include SGMII as supported interface mode in driver commit message
+- Changed error handling of acquirement of PHY reset to use IR_ERR
+  instead of IS_ERR_OR_NULL
+- Link to v4: https://lore.kernel.org/r/20250609-ipq5018-ge-phy-v4-0-1d3a125282c3@outlook.com
+
+Changes in v4:
+- Updated description of qcom,dac-preset-short-cable property in
+  accordance with Andrew's recommendation to indicate that if the
+  property is not set, no DAC values will be modified.
+- Added newlines between properties
+- Added PHY ID as compatible in DT bindings for conditional check to
+  evaluate correctly. Did a 'git grep' on all other PHY IDs defined in
+  the driver but none are explicitly referenced so I haven't added them
+- Link to v3: https://lore.kernel.org/r/20250602-ipq5018-ge-phy-v3-0-421337a031b2@outlook.com
+
+Changes in v3:
+- Replace bitmask of GEPHY_MISC_ARES with GENMASK as suggested by Konrad
+- Removed references to RX and TX clocks as the driver need not
+  explicitly enable them. The GCC gatecontrols and routes the PHY's
+  output clocks, registered in the DT as fixed clocks, back to the PHY.
+  The bindings file has been updated accordingly.
+- Removed acquisition and enablement of RX and TX clocks from the driver
+- Link to v2: https://lore.kernel.org/r/20250528-ipq5018-ge-phy-v2-0-dd063674c71c@outlook.com
+
+Changes in v2:
+- Moved values for MDAC and EDAC into the driver and converted DT
+  property qca,dac to a new boolean: qcom,dac-preset-short-cable as per
+  discussion.
+- Added compatible string along with a condition with a description of
+  properties including clocks, resets, and qcom,dac-preset-short-cable
+  in the bindings to address bindings issues reported by Rob and to
+  bypass restrictions on nr of clocks and resets in ethernet-phy.yaml
+- Added example to bindings file
+- Renamed all instances of IPQ5018_PHY_MMD3* macros to IPQ5018_PHY_PCS*
+- Removed qca,eth-ldo-ready property and moved the TCSR register to the
+  mdio bus the phy is on as there's already support for setting this reg
+  property in the mdio-ipq4019 driver as per commit:
+  23a890d493e3ec1e957bc925fabb120962ae90a7
+- Explicitly probe on PHY ID as otherwise the PHY wouldn't come up and
+  initialize as found during further testing when the kernel is flashed
+  to NAND
+- Link to v1: https://lore.kernel.org/r/20250525-ipq5018-ge-phy-v1-0-ddab8854e253@outlook.com
+
+---
+George Moussalem (3):
+      clk: qcom: gcc-ipq5018: fix GE PHY reset
+      arm64: dts: qcom: ipq5018: Add MDIO buses
+      arm64: dts: qcom: ipq5018: Add GE PHY to internal mdio bus
+
+ arch/arm64/boot/dts/qcom/ipq5018.dtsi | 48 +++++++++++++++++++++++++++++++++--
+ drivers/clk/qcom/gcc-ipq5018.c        |  2 +-
+ 2 files changed, 47 insertions(+), 3 deletions(-)
+---
+base-commit: bc4672f3c5df8a47a3e5b4c31dead2b01103e70f
+change-id: 20250430-ipq5018-ge-phy-db654afa4ced
+
+Best regards,
+-- 
+George Moussalem <george.moussalem@outlook.com>
 
 
-
-On 6/23/2025 4:37 PM, Manivannan Sadhasivam wrote:
-> On Thu, Jun 05, 2025 at 02:00:36PM +0530, Krishna Chaitanya Chundru wrote:
->> The main intention of this series is to move wake# to the root port node.
->> After this series we will come up with a patch which registers for wake IRQ
->> from the pcieport driver. The wake IRQ is needed for the endpoint to wakeup
->> the host from D3cold. The driver change for wake IRQ is posted here[1].
->>
->> There are many places we agreed to move the wake and perst gpio's
->> and phy etc to the pcie root port node instead of bridge node[2] as the
->> these properties are root port specific and does not belongs to
->> bridge node.
->>
->> So move the phy, phy-names, wake-gpio's in the root port.
->> There is already reset-gpio defined for PERST# in pci-bus-common.yaml,
->> start using that property instead of perst-gpio.
->>
->> For backward compatibility, don't remove any existing properties in the
->> bridge node.
->>
->> There are some other properties like num-lanes, max-link-speed which
->> needs to be moved to the root port nodes, but in this series we are
->> excluding them for now as this requires more changes in dwc layer and
->> can complicate the things.
->>
->> Once this series gets merged all other platforms also will be updated
->> to use this new way.
->>
->> Note:- The driver change needs to be merged first before dts changes.
->> Krzysztof Wilczyński or Mani can you provide the immutable branch with
->> these PCIe changes.
->>
-> 
-> You've dropped the DTS changes in this revision. So the above comment is stale.
-> 
->> [1] https://lore.kernel.org/all/20250401-wake_irq_support-v1-0-d2e22f4a0efd@oss.qualcomm.com/
->> [2] https://lore.kernel.org/linux-pci/20241211192014.GA3302752@bhelgaas/
->>
-> 
-> I don't have a device to test this series right now. So could you please test
-> this series with the legacy binding and make sure it is not breaking?
-> 
-> Once you confirm, I'll merge this series.
-> 
-I have verified with legacy binding with this change and it is working fine.
-
-- Krishna Chaitanya.
-> - Mani
-> 
->> Signed-off-by: Krishna Chaitanya Chundru <krishna.chundru@oss.qualcomm.com>
->> ---
->> Changes in v4:
->> - Removed dts patch as Mani suggested to merge driver and dt-binding
->>    patch in this release and have dts changes in the next release.
->> - Remove wake property from as this will be addressed in
->>    pci-bus-common.yaml (Mani)
->> - Did couple of nits in the comments, function names code etc (Mani).
->> - Link to v3: https://lore.kernel.org/r/20250419-perst-v3-0-1afec3c4ea62@oss.qualcomm.com
->>
->> Changes in v3:
->> - Make old properties as deprecated, update commit message (Dmitry)
->> - Add helper functions wherever both multiport and legacy methods are used. (Mani)
->> - Link to v2: https://lore.kernel.org/r/20250414-perst-v2-0-89247746d755@oss.qualcomm.com
->>
->> Changes in v2:
->> - Remove phy-names property and change the driver, dtsi accordingly (Rob)
->> - Link to v1: https://lore.kernel.org/r/20250322-perst-v1-0-e5e4da74a204@oss.qualcomm.com
->>
->> ---
->> Krishna Chaitanya Chundru (2):
->>        dt-bindings: PCI: qcom: Move phy & reset gpio's to root port
->>        PCI: qcom: Add support for multi-root port
->>
->>   .../devicetree/bindings/pci/qcom,pcie-common.yaml  |  32 +++-
->>   .../devicetree/bindings/pci/qcom,pcie-sc7280.yaml  |  16 +-
->>   drivers/pci/controller/dwc/pcie-qcom.c             | 177 +++++++++++++++++----
->>   3 files changed, 192 insertions(+), 33 deletions(-)
->> ---
->> base-commit: ec7714e4947909190ffb3041a03311a975350fe0
->> change-id: 20250101-perst-cb885b5a6129
->>
->> Best regards,
->> -- 
->> krishnachaitanya-linux <krishna.chundru@oss.qualcomm.com>
->>
-> 
 
