@@ -1,197 +1,170 @@
-Return-Path: <devicetree+bounces-191203-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-191204-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id F215FAEE6A3
-	for <lists+devicetree@lfdr.de>; Mon, 30 Jun 2025 20:17:32 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4BE59AEE6BF
+	for <lists+devicetree@lfdr.de>; Mon, 30 Jun 2025 20:31:15 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 888A61BC0C4E
-	for <lists+devicetree@lfdr.de>; Mon, 30 Jun 2025 18:17:48 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 7DE3617E987
+	for <lists+devicetree@lfdr.de>; Mon, 30 Jun 2025 18:31:15 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 041E91F0E39;
-	Mon, 30 Jun 2025 18:17:17 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A34B81E0E08;
+	Mon, 30 Jun 2025 18:31:10 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b="k9siFlH6"
+	dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b="BrH00oPl"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pf1-f174.google.com (mail-pf1-f174.google.com [209.85.210.174])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [213.167.242.64])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A205319ADBA
-	for <devicetree@vger.kernel.org>; Mon, 30 Jun 2025 18:17:14 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.174
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B9D4178F4E
+	for <devicetree@vger.kernel.org>; Mon, 30 Jun 2025 18:31:08 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=213.167.242.64
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1751307436; cv=none; b=TUolGdQ4rGuQs9D5L9d27iJ6igmkXAtH23Mo5hI+pcExjXcwpVK3Gz5RnYrOjGTlldSsJ9bQ4nauTmtssMjc5op1iyf/gqmiUvq7tcC/dv9xy0QgbZcU+yRzRns/RnEqdDG1d3mPGXvYM0LjK1d2+UsjVW+51kQ1+U/VFAegcc4=
+	t=1751308270; cv=none; b=ByU0/8CvUpD34MRMG0TTUcuCJcZCi29FczdxLI7aByWx2Ch9FuM8+AoTGZDe4N/6v/GXDRnl8VyUiIaPbrS2BzbBgtIek7qNY+n40sfZH+ugS7/961pTf1oVcGPgJSycntTPgAU0MbSXHdWOUfc+Sr1Hs0VRIgLPWX/rDbwP+tw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1751307436; c=relaxed/simple;
-	bh=XzYE0ggpzi/xWgQAv+8GzWJs6sZVm5N0XHvtxn3e7g8=;
-	h=From:To:Cc:Subject:In-Reply-To:References:Date:Message-ID:
-	 MIME-Version:Content-Type; b=h+tjpEp6iYnxFirvIEs+dnpXxg9WXEaSkgV/auIAR84b7JgY62ZSoLk4wyfp4lOCPLOLYSOIgSZZDWx6sDhh8uYX9SEgFSbw4dKUUP6Jb4UFvT07sBf62PrfgYU0tSh/G/4TxZ9B7wgkag4S5vLyWYtP7AkBKCs53zrQcdJRJDo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com; spf=pass smtp.mailfrom=baylibre.com; dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b=k9siFlH6; arc=none smtp.client-ip=209.85.210.174
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=baylibre.com
-Received: by mail-pf1-f174.google.com with SMTP id d2e1a72fcca58-747fba9f962so4500582b3a.0
-        for <devicetree@vger.kernel.org>; Mon, 30 Jun 2025 11:17:14 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1751307434; x=1751912234; darn=vger.kernel.org;
-        h=mime-version:message-id:date:references:in-reply-to:subject:cc:to
-         :from:from:to:cc:subject:date:message-id:reply-to;
-        bh=yBjVRv/LWhtEYGg3uh+SYefd6WbGxbfazNc3AwALFSQ=;
-        b=k9siFlH6wyfr9RLxXvJHUnczNqaw+Kd5aILCUq3H3ZXypPZU0A/GZ0dVlJ5kj8IVnw
-         DfMxBy2OUV4RrSnP9z3zEeYERanHVn2WVDLltw3LauUDA7glCi8x2FS8D8WSoTQI1g5t
-         D09iE/fUN4v6d28dKQ+nP4doQdUDvnqLrukp1FD8AFVsAAJO5emaETgv+2yidruhOZRM
-         AtZl0qrd9h+/Sy6xs8G1gI9KCdZLsCIZtO4tTY9XrinkCT3yLcQNF1YmGhzeKns0ajUR
-         6zG9KaxgLopsgwi4TxSJPxyTNkP99kM6PClzGcRQwwYb4sp8l6+38WDrsSd9e937ihcY
-         /YMQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1751307434; x=1751912234;
-        h=mime-version:message-id:date:references:in-reply-to:subject:cc:to
-         :from:x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=yBjVRv/LWhtEYGg3uh+SYefd6WbGxbfazNc3AwALFSQ=;
-        b=tjN7/Zxc5b2QejQxNDANYGktPGEPuF6sryM0fGzPH1jdUkdAhiWwR4kO51bANtrFPj
-         lLZmGpgzSlZkExv4ENInlvHr+v/f9Jj3whDwga3n048mz4rM/OpkGynHxtEd/FLICmF/
-         0w2qp90ujMq+yPa4b2C9aTXkP8gpdJmEsdYr8ZZqmdU1NnOqVgLn4uyTE7MBK5SyhEhA
-         DfdeCS1iTYUB/w6x2fvi4dqsDn+YHDlSZoJSA1nhI6ocF0YSC/hS6U4zSFfsN5WA6lve
-         bZZBvSzCkZy7r4SqfbrBK1hAhMtV4od8TZU2EIngRviGms8FvF8zIJ0u38IGIdLe5qVc
-         b7bA==
-X-Forwarded-Encrypted: i=1; AJvYcCVwf9nAXjxxnptKmhbFaUPfncqHkUzw1bn/yHouuiYEwYStyOL+B7gEHoGRXj9ek3PHLK3OyZzkhNkt@vger.kernel.org
-X-Gm-Message-State: AOJu0Yx0AsFni0fBP0p/PY8aa09NsVgNveAXIrb/0jtRgx/6Dxhruid1
-	3U+yStkoURnWNqTuzia+Ona4A9zf0+mAvNaHq8PRWQoyM+GgnPz/xkTKKjpG377MiH4=
-X-Gm-Gg: ASbGncvUJtcYpmnpSDpXUX1dOlvlo4o5xDo4qTlfTnYFNKqmJhviNiirqQ56rBY3grS
-	YwjuC4J1qO4il18mGozZFwD5nNoBFjCkmv4WHZ9pJogqDAiJ13jAGFci0JwSRV8dL+zKCXdf/oT
-	VTRYfgt880cfBf9YbUGs9isxwENBjDCF3xhUpInqkW3qaSz9NLJe//Mlm554EHxe6F/svgqSeoA
-	F360AzLyK90dQkGoadz46ZDLateY1WhOf9fMy/Qo0QpA74TixXzwICbWdvysoJg5HBiOQRXQRD/
-	NjprX7o6Wpv/pLWq6J5Yobgwf0ogAul9OMb1y4xAFeFQQ6DJIMHqcros3Q0JF/FWJqQUSbM=
-X-Google-Smtp-Source: AGHT+IGQOXcusfsnRzzu9tTsp4bqdnB978cAzt96coGY3e06638Az0cSdJ5vM52cbySItmU05CF2DQ==
-X-Received: by 2002:a05:6a00:4b11:b0:748:a0b9:f873 with SMTP id d2e1a72fcca58-74b3bc8da15mr742566b3a.9.1751307433908;
-        Mon, 30 Jun 2025 11:17:13 -0700 (PDT)
-Received: from localhost ([97.126.182.119])
-        by smtp.gmail.com with ESMTPSA id d2e1a72fcca58-74af540ae4csm9398150b3a.34.2025.06.30.11.17.13
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 30 Jun 2025 11:17:13 -0700 (PDT)
-From: Kevin Hilman <khilman@baylibre.com>
-To: Ulf Hansson <ulf.hansson@linaro.org>
-Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- devicetree@vger.kernel.org, linux-pm@vger.kernel.org,
- arm-scmi@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH RFC v3 2/2] pmdomain: core: add support for subdomains
- using power-domain-map
-In-Reply-To: <CAPDyKFpTgAmLBq2ZExPoxWM0wL756zH96vW7M6wHSA1MTTG1wA@mail.gmail.com>
-References: <20250613-pmdomain-hierarchy-onecell-v3-0-5c770676fce7@baylibre.com>
- <20250613-pmdomain-hierarchy-onecell-v3-2-5c770676fce7@baylibre.com>
- <CAPDyKFrO9rb0eDb2qO+EGaVjOFG=7emgca8511XACDhWY=dt5g@mail.gmail.com>
- <7hsejzp4xg.fsf@baylibre.com>
- <CAPDyKFo-iPBPgkM43q+5cGR2sptkLk4E6TAERCQbCu24o1RfFQ@mail.gmail.com>
- <7hcyb1os9y.fsf@baylibre.com>
- <CAPDyKFpTgAmLBq2ZExPoxWM0wL756zH96vW7M6wHSA1MTTG1wA@mail.gmail.com>
-Date: Mon, 30 Jun 2025 11:17:13 -0700
-Message-ID: <7hjz4tnlg6.fsf@baylibre.com>
+	s=arc-20240116; t=1751308270; c=relaxed/simple;
+	bh=QWChR3Bdm/NXwz4NQqvvVjxKeDXNgvFduFPy7gDqv0A=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=m57ezZfdhgvn9LSaoZxWQQaeMfCLCTQvGUVlIWN7g7PuDleR+fMrwKwldEgkc/izMJja6VTbqw1O7CnmS7iez5VUPNRJj1jmXGWSfBToo6/57TPAHT3JJJv+cUeQez26Ci9WLiZy1lMZgXX97fJAnNav07QmQzrCXYtRSTxg47s=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ideasonboard.com; spf=pass smtp.mailfrom=ideasonboard.com; dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b=BrH00oPl; arc=none smtp.client-ip=213.167.242.64
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ideasonboard.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ideasonboard.com
+Received: from pendragon.ideasonboard.com (81-175-209-231.bb.dnainternet.fi [81.175.209.231])
+	by perceval.ideasonboard.com (Postfix) with UTF8SMTPSA id 30718928;
+	Mon, 30 Jun 2025 20:30:45 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
+	s=mail; t=1751308245;
+	bh=QWChR3Bdm/NXwz4NQqvvVjxKeDXNgvFduFPy7gDqv0A=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=BrH00oPlwj6XiobcNQkW8Ica64b5bjxL/g9umDE6MW4K5MEUAdYX14icC4sd4Y/g9
+	 Xa3SigFlepqpIAoOUtewZEdBcX2IKpNKtAKrvIErT8CGY4edlvXKPzDkcP2TUmvxrL
+	 LlaNzl569ykom8IxBWW1sHJyNhC0MbraPsevTwmQ=
+Date: Mon, 30 Jun 2025 21:30:41 +0300
+From: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+To: Frank Li <Frank.li@nxp.com>
+Cc: robh@kernel.org, devicetree@vger.kernel.org, inux-media@vger.kernel.org,
+	imx@lists.linux.dev
+Subject: Re: Compatible vs onnn,model at ap1302 binding
+Message-ID: <20250630183041.GA17697@pendragon.ideasonboard.com>
+References: <aGLRbiqT8qVdG40z@lizhi-Precision-Tower-5810>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+In-Reply-To: <aGLRbiqT8qVdG40z@lizhi-Precision-Tower-5810>
 
-Ulf Hansson <ulf.hansson@linaro.org> writes:
+Hi Frank,
 
-> [...]
->
->> I've done an implementation with struct device_node *.  This works
->> better (IMO) than struct of_phandle_args * because the caller (in my
->> case scmi_pm_domain.c) already has device nodes, but not phandle args.
->>
->> The result will be that the pmdomain helper will call
->> pm_genpd_add_subdomain() instead of of_genpd_add_subdomain().
->>
->> Below[1] is the current working version, which includes adding the
->> helper to the PM domain core and showing the usage by the SCMI provider.
->>
->> How does this look?
->
-> It's a lot better in my opinion. Although, I have a few comments below.
->
->>
->> Note that doing this at provider creation time instead of
->> <genpd>->attach_dev() time will require some changes to
->> of_parse_phandle_with_args_map() because that function expects to be
->> called for a device that has a `power-domains = <provider>` property,
->> not for the provider itself.  But I have it working with some local
->> changes to make that helper work if called for the provider directly.
->> If you're OK with the PM domains approach, I'll post another rev of this
->> series which includes the OF changes for review by DT maintainers.
->>
->> Kevin
->>
->> [1]
->> ---
->>  drivers/pmdomain/arm/scmi_pm_domain.c | 12 ++++++++--
->>  drivers/pmdomain/core.c               | 34 +++++++++++++++++++++++++++
->>  include/linux/pm_domain.h             | 11 ++++++++-
->>  3 files changed, 54 insertions(+), 3 deletions(-)
->>
->> diff --git a/drivers/pmdomain/arm/scmi_pm_domain.c b/drivers/pmdomain/arm/scmi_pm_domain.c
->> index a7784a8bb5db..8197447e9d17 100644
->> --- a/drivers/pmdomain/arm/scmi_pm_domain.c
->> +++ b/drivers/pmdomain/arm/scmi_pm_domain.c
->> @@ -54,7 +54,7 @@ static int scmi_pd_power_off(struct generic_pm_domain *domain)
->>
->>  static int scmi_pm_domain_probe(struct scmi_device *sdev)
->>  {
->> -       int num_domains, i;
->> +       int num_domains, i, ret;
->>         struct device *dev = &sdev->dev;
->>         struct device_node *np = dev->of_node;
->>         struct scmi_pm_domain *scmi_pd;
->> @@ -115,7 +115,15 @@ static int scmi_pm_domain_probe(struct scmi_device *sdev)
->>
->>         dev_set_drvdata(dev, scmi_pd_data);
->>
->> -       return of_genpd_add_provider_onecell(np, scmi_pd_data);
->> +       ret = of_genpd_add_provider_onecell(np, scmi_pd_data);
->> +       if (ret)
->> +               return ret;
->> +
->> +       /* check for (optional) subdomain mapping with power-domain-map */
->> +       for (i = 0; i < num_domains; i++, scmi_pd++)
->> +               of_genpd_add_subdomain_map(np, domains[i], i);
->> +
->> +       return ret;
->>  }
->>
->>  static void scmi_pm_domain_remove(struct scmi_device *sdev)
->> diff --git a/drivers/pmdomain/core.c b/drivers/pmdomain/core.c
->> index 88819659df83..3ede4baa4bee 100644
->> --- a/drivers/pmdomain/core.c
->> +++ b/drivers/pmdomain/core.c
->> @@ -3220,6 +3220,40 @@ int of_genpd_parse_idle_states(struct device_node *dn,
->>  }
->>  EXPORT_SYMBOL_GPL(of_genpd_parse_idle_states);
->>
->> +int of_genpd_add_subdomain_map(struct device_node *np,
->> +                              struct generic_pm_domain *domain,
->> +                              int index)
->
-> Providing the struct generic_pm_domain *domain as an in-parameter for
-> the child-domain seems unnecessary and limiting to me.
->
-> Instead I think we should parse the power-domain-map DT property at
-> 'index', to find the corresponding child-domain's specifier/index and
-> its corresponding parent-domain.
->
-> In other words, we don't need the struct generic_pm_domain *domain as
-> an in-parameter, right?
+On Mon, Jun 30, 2025 at 02:04:21PM -0400, Frank Li wrote:
+> Hi Rob:
+> 
+> There are long discussion about AP1302 support.
+> 
+> https://lore.kernel.org/imx/20250623-ap1302-v3-0-c9ca5b791494@nxp.com/T/#m9ecad9fcbfd1ac1c59b3aa5737e3860a64db2eb4
+> previous thread
+> https://lore.kernel.org/linux-media/1631091372-16191-1-git-send-email-anil.mamidala@xilinx.com/
+> 
+> Let me summary the key points.
 
-I'm not sure I follow.  The `struct generic pm_domain *domain` is the
-SCMI child domain.  From the map, we use the index to find the parent
-domain.  And then we add the child as a subdomain of the parent.
+Thanks for the summary.
 
-Are you suggesting that I (re)parse the DT for to find the child domain
-also? 
+> AP1302 is I2C ISP processor, which can connect to some RAW sensors. such as
+> AR0144. AR0144 can work alone, a RFC upstreaming at
+> https://lore.kernel.org/linux-devicetree/20240630141802.15830-2-laurent.pinchart@ideasonboard.com/
+> 
+> When AR0144 connect to AP1302, it is not 100% transparents for software,
+> It needs power supplies for it.
+> 
+> The basically there are two methods now.
+> 
+> Method 1 ( Laurent Pinchart purposed ):
+> 
+> use a vendor's specific property like model
+> 
+> camera@3c {
+>         compatible = "onnn,ap1302";
+>         ...
+>         sensors {
+>                 onnn,model = "onnn,ar0144";
+>                 ^^^^
+>                 sensor@0 {
+>                         reg = <0>;
+>                         vdd-supply = <&mt6358_vcamd_reg>;
+>                         vaa-supply = <&mt6358_vcama1_reg>;
+>                         vddio-supply = <&reg_1p8v_ext>;
+>         ....
+> 
+> 
+> Method 2 ( suggested by Rob at 2021 ):
+> 
+> use compatible string:
+> 
+> camera@3c {
+>         compatible = "onnn,ap1302";
+>         ...
+>         ports {
+>                 port@0 {
+>                         compatible = "onnn,ar0144";
+>                         ^^^^
+>                         reg = <0>;
+>                         vaa-supply = <&vaa_regulator>;
+> 
+>         ...
+> 
+> 
+>                Method 2                              Mathod 1
+> The same hardware should use the         There are not driver to match onnn,ar0144.
+> same binding regardless connect to       AR0144 is not visilable from host point.
+> which bus/devices
+> 
+>                                          compatible means software comaptible, but
+>                                          there are not driver for it at this case.
+> 
+> reg in difference spi/i2c also have      reg is i2c's address, but here is port or
+> difference means.                        sensor index.
+> 
+> Similar case for spi and i2c devices.    There are difference set of mandatory properties
+>                                          when connect to ISP or SoC.
+> 
+> 
+> Rob and Laurent Pinchart:
+> 
+>         Need a direction to move forwards!
 
-Thanks for the review & guidance,
+There are two things to consider here. One is the DT property we want to
+use to identify the sensor model. It can be argued that the "compatible"
+property is widely used for this purpose. This is true, but the
+"compatible" property is meant to indicate compatibility from an
+operating system software point of view (regardless of which operating
+system is used). As a result, it serves as the central piece around
+which drivers are bound to devices, and therefore is also used to match
+DT schemas for the device.
 
-Kevin
+What we need here is to identify the sensor model, first and foremost to
+load the corresponding AP1302 firmware, and to know which power supplies
+the AP1302 driver needs to control for the sensor. Note that it would be
+entirely feasible for the sensor power supplies to be connected to GPIOs
+of the AP1302 and entirely controlled by the AP1302 firmware, but on
+some designs those power supplies are connected to GPIOs of the main
+SoC, and therefore need to be controlled by the AP1302 driver.
+
+While I think a custom property is better, I could live with
+"compatible" *iif* it does not imply at the corresponding DT schema for
+the sensor is pulled in. The DT binding for the sensor when controlled
+from the main SoC describe the properties of the sensor that are
+required for that use case, and those only overlap slightly with the
+properties of the sensor needed by the AP1302. Using "compatible" in
+such a case would in my opinion be misleading as it would imply
+compatibility with the sensor DT binding.
+
+-- 
+Regards,
+
+Laurent Pinchart
 
