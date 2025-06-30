@@ -1,199 +1,152 @@
-Return-Path: <devicetree+bounces-191055-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-191056-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 98411AEDA93
-	for <lists+devicetree@lfdr.de>; Mon, 30 Jun 2025 13:14:45 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 08938AEDAB3
+	for <lists+devicetree@lfdr.de>; Mon, 30 Jun 2025 13:21:31 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id C8D98177AC3
-	for <lists+devicetree@lfdr.de>; Mon, 30 Jun 2025 11:14:45 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 4EADB177F2A
+	for <lists+devicetree@lfdr.de>; Mon, 30 Jun 2025 11:21:31 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B25DE25B31D;
-	Mon, 30 Jun 2025 11:14:41 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id CAC64241670;
+	Mon, 30 Jun 2025 11:21:25 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="YzDivf+l"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="kwSnG3I+"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-pj1-f42.google.com (mail-pj1-f42.google.com [209.85.216.42])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8617D25B305;
-	Mon, 30 Jun 2025 11:14:41 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 55B66239085;
+	Mon, 30 Jun 2025 11:21:24 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.216.42
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1751282081; cv=none; b=t6tPn/PrPKioGjL7ShOJD8lTrqXNjk9Ek4sNViaSIyP3cbsomF3KxtlaJ9dhyTGfs7TvEPMvlr1XLbz7c79+nqfK4BOFilcFmG08c1btL7o9BCnHw0vFEHDfZDjPvE2kdCRpKs0DC9G9EHz8KpSTfJtZmb5O6dNiiajt0RbMV88=
+	t=1751282485; cv=none; b=l07TjLo5qM5ZP/glS1+ypw50w+OD4Lo7zoqAoGB16nvQeL87dpfgpZSxOiReGUq1flxzfhV/yPhoul3fXhyKbb2vuNtTw5K+lEPNBhpnbJ3/6t7uIrJ6RbNtdKapIlxWDkrprbbW6z/ShQOYmWlDXtnczTvRv2crn5HNIrNTMH4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1751282081; c=relaxed/simple;
-	bh=d8d+PHnXNs9aUA37p1cQ/7Z1umzh2vITcAo3PMP077s=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=b330WxNDvbwuTPxgMiPm853CR3JWhVFPme1sevWeDyMUOv5Lmn4Z0AbOIWJYfKTlgCyx04cr/zXNJSxzbhceMLqPaofL5PIL45gT210M9i/fpPxWYuROYPEZT4KFfiCW+VsrGlo8UNzPPFW4EJkn5I6ItlNabBgLB/oxJNnTMzU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=YzDivf+l; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 6BDFBC4CEEB;
-	Mon, 30 Jun 2025 11:14:31 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1751282081;
-	bh=d8d+PHnXNs9aUA37p1cQ/7Z1umzh2vITcAo3PMP077s=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=YzDivf+lbYw5SY5Z/giScv3Nlf1PDdfIkGkK/DTmfKG3/BpJa9YjuFTP2IbJBMkbD
-	 kyoQ1aMxqKb1jFOvFByYz05ymPmE3LOQsSy+QLLg9NQiP0qgztA3DifXs182cnbcqM
-	 tuor9j/lrLxdU0n8zOb1Z3DBv6wyvoDrb4+FEnutJxo4dtVMzQGD3EsuYg/WJRgV3T
-	 E964Jp5dY5V+cNATRr7UKg167mOJDI3kPYDkCZZKUO3T2EIs7Vhp6SXeiJUnjW4r0x
-	 hAP86VApZNAPKZTfaoUiSUoSVQsib/KjMD8ZBYEePJS5ARrEcGB+oixfBOAzNeWo3s
-	 MtU9wwlxwtBuQ==
-Message-ID: <5b182268-d64c-424c-9ada-0c3f120d2817@kernel.org>
-Date: Mon, 30 Jun 2025 13:14:27 +0200
+	s=arc-20240116; t=1751282485; c=relaxed/simple;
+	bh=kdffZayYqFKsYlrDbShiswllwemSxZXAowgkCZdDwSw=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=pkn7HhXHwlnGYc0RD9qwtuFzyDDfDhHZpVsi5j58egqjo1KoLzGMfi7oSqrDllHTAD9w9Kim8cSKgyal4+cZ8VbTxfmz3gNnWnfxy/ruuaEgF54cQcNJEIkwrzatntTKEFPczaVSffWj1Dakax5h2uKy1jEAwdWYREHJUYmLsOM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=kwSnG3I+; arc=none smtp.client-ip=209.85.216.42
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-pj1-f42.google.com with SMTP id 98e67ed59e1d1-3135f3511bcso1452565a91.0;
+        Mon, 30 Jun 2025 04:21:24 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1751282483; x=1751887283; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=/sCbwxspVKRy6vW2yV0dQypAUzvcx9awITgSiWZ2zks=;
+        b=kwSnG3I+bvmM0RaUmCW/i10+wsBDtmqbwFMJJ5mm4EDfLc43j0txiiPG3v0jPZD7KK
+         zVwj3Q/O3KWEbFAiB2tVxLSGAhDg28G1OmYwL9SKMJxw8IRiuiSWyKi5X7BDcvqRtjC/
+         4Go/9H39BK4xoScm7CV/wWz+Ar14Y0TiJiA9pzIJNWIBDOSaJ8qEsISbIhhodY9I32tM
+         we0hd71ivA81a/4NVrq0b6ESaDeuBKbJourPeRzStgHbDntUL1VmZddZ5Vm3tLcOQasr
+         diXiBwzxWJbP1vCmShCfrjuur9odo+VfuMAgazO8Q19Gcw4MUfjvsUqml0kcjuy5QcEU
+         BxxQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1751282483; x=1751887283;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=/sCbwxspVKRy6vW2yV0dQypAUzvcx9awITgSiWZ2zks=;
+        b=xKJr68ZzduIukXS2eG2+lc5B9eBXhvRN18pqTXTe+mvtF/MJmMZ409KYvswRAj4ATM
+         lhnsyc5SD536X7Hj20qeKS30JXl43cq0NMH6dBk5Q4eAKFYk4meRtBFJreyaapO64MQ9
+         VelbwPGAJR2hKUxqEHaQWKVznifVpYZ75pEGDiD0dt0sqaUFSVoXn1uNVtvcTNeqhrwu
+         +bPyf6/dSuCwX/rHLe2dr7o60/miXFsOHjFFB8smKZZKFVp/3XKSPP6Z4KIexPQvW1bI
+         p9OQFKnrEyJB+ZZXpzlbSsVBDaBQxOQzz4/mld398G7dn5jRhNUq7iBzj0dOobkyPsmz
+         FJDQ==
+X-Forwarded-Encrypted: i=1; AJvYcCUjTQWKCRHncPZp//BpnRTe44bKZtzEKRVgSq2sPNQq7vjgJSL+sS0CO1yjtzMOPMmKtVzdlD+K16jBi5c=@vger.kernel.org, AJvYcCX0okx8ROKZoE/UidIcJUmS4P1bZ4ZUrZGx4rcXXPlfoblsnDNQEAZ5aTGU/an5afJce+3sSQHjhaF+@vger.kernel.org, AJvYcCXJDqe29DWorUjQ1eqfQWZeSV6crXOsNHbPiCp3Umw8ujjyDRBRu7ZeFTgFUNN4I6KJK6uGyayf6Ex8qQmP@vger.kernel.org, AJvYcCXaMi/lcS28vKpYESpVLYz1nHWqmASuXWY1GsCDdIA9q4E0Ky9dTvVMEKOAhaeWuCQL7zVKOutWZ44Y@vger.kernel.org
+X-Gm-Message-State: AOJu0YzwmQQTd79v6x9muxaSB/IEDxieCT1JiBJ/Z2p1MuaOWE/iT+rD
+	1j4kJfcU+H8PQGavw1pdOXNfB8MrozED8QTcQWkIRCk7fF71GOVHn0tJo9njeK9T
+X-Gm-Gg: ASbGnct47exgBQUbYq9RkH6q/0XfHzk6gt3pkKrfAmJycsV5ef42Rnvm117cNDjO/Nd
+	Wn9gTTJGKnafzdS3X8pc2tSXyMyDAOhpzrAAjdmuQb7bhtu+3Kf2SS03kHiz8OkiVUNp29gn76J
+	nIwpOzyCuPw/6YQBklb9dH5Grfs9opkSzxf2qU02DMrmTwvhRx5rsy+hIyMjzeR/JR5odcC3AJk
+	c40ShrmA8EpGL77LzBGb2tc8RcjNAB0kQP9KNPh314OcqpXBRY3NIICRyMr9ONTlV44OrgJ1H7v
+	GVdkz5C4hfS30ALKzT2go11mF9IFvqnZicTvdlFFGSrhoVZhzEB8QveL5vY24jn2cznYrZk487P
+	+CWUSE/yDesglSriEl+vO
+X-Google-Smtp-Source: AGHT+IG8BfcZilt8h79yYyIlvyAUuCS7gEv9t319bokbhoDzSOnLTv8jEE3z2sBoBJi0roKge/ueNA==
+X-Received: by 2002:a17:90b:2688:b0:311:d28a:73ef with SMTP id 98e67ed59e1d1-318c8eeaf48mr19633272a91.10.1751282483423;
+        Mon, 30 Jun 2025 04:21:23 -0700 (PDT)
+Received: from localhost (61-220-246-151.hinet-ip.hinet.net. [61.220.246.151])
+        by smtp.gmail.com with ESMTPSA id 98e67ed59e1d1-315f53879bbsm13888676a91.9.2025.06.30.04.21.22
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 30 Jun 2025 04:21:22 -0700 (PDT)
+From: tzuhao.wtmh@gmail.com
+X-Google-Original-From: Henry_Wu@quantatw.com
+To: Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Jean Delvare <jdelvare@suse.com>,
+	Guenter Roeck <linux@roeck-us.net>,
+	Jonathan Corbet <corbet@lwn.net>,
+	Jonathan Cameron <Jonathan.Cameron@huawei.com>,
+	Fabio Estevam <festevam@gmail.com>,
+	Naresh Solanki <naresh.solanki@9elements.com>,
+	Rodrigo Gobbi <rodrigo.gobbi.7@gmail.com>,
+	Michal Simek <michal.simek@amd.com>,
+	Henry Wu <Henry_Wu@quantatw.com>,
+	Grant Peltier <grantpeltier93@gmail.com>,
+	Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
+	Cedric Encarnacion <cedricjustine.encarnacion@analog.com>,
+	John Erasmus Mari Geronimo <johnerasmusmari.geronimo@analog.com>,
+	Jerome Brunet <jbrunet@baylibre.com>,
+	Ninad Palsule <ninad@linux.ibm.com>,
+	Leo Yang <leo.yang.sy0@gmail.com>,
+	Kim Seer Paller <kimseer.paller@analog.com>,
+	Mariel Tinaco <Mariel.Tinaco@analog.com>,
+	Nuno Sa <nuno.sa@analog.com>,
+	=?UTF-8?q?Thomas=20Wei=C3=9Fschuh?= <linux@weissschuh.net>,
+	Alex Vdovydchenko <xzeol@yahoo.com>,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	linux-hwmon@vger.kernel.org,
+	linux-doc@vger.kernel.org
+Cc: peteryin.openbmc@gmail.com
+Subject: [PATCH v2 0/2] hwmon: (pmbus) Add support for MPS mp2869a/mp29612a controllers
+Date: Mon, 30 Jun 2025 19:20:49 +0800
+Message-ID: <20250630112120.588246-1-Henry_Wu@quantatw.com>
+X-Mailer: git-send-email 2.43.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v5 10/14] dt-bindings: PCI: Add CIX Sky1 PCIe Root Complex
- bindings
-To: Hans Zhang <hans.zhang@cixtech.com>
-Cc: bhelgaas@google.com, lpieralisi@kernel.org, kw@linux.com,
- mani@kernel.org, robh@kernel.org, kwilczynski@kernel.org,
- krzk+dt@kernel.org, conor+dt@kernel.org, mpillai@cadence.com,
- fugang.duan@cixtech.com, guoyin.chen@cixtech.com, peter.chen@cixtech.com,
- cix-kernel-upstream@cixtech.com, linux-pci@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <20250630041601.399921-1-hans.zhang@cixtech.com>
- <20250630041601.399921-11-hans.zhang@cixtech.com>
- <20250630-graceful-horse-of-science-eecc53@krzk-bin>
- <bb4889ca-ec99-4677-9ddc-28905b6fcc14@cixtech.com>
-From: Krzysztof Kozlowski <krzk@kernel.org>
-Content-Language: en-US
-Autocrypt: addr=krzk@kernel.org; keydata=
- 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 a/A=
-In-Reply-To: <bb4889ca-ec99-4677-9ddc-28905b6fcc14@cixtech.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
 
-On 30/06/2025 10:29, Hans Zhang wrote:
->>> +
->>> +  num-lanes:
->>> +    maximum: 8
->>> +
->>> +  ranges:
->>> +    maxItems: 3
->>> +
->>> +  msi-map:
->>> +    maxItems: 1
->>> +
->>> +  vendor-id:
->>> +    const: 0x1f6c
->>
->> Why? This is implied by compatible.
-> 
-> Because when we designed the SOC RTL, it was not set to the vendor id 
-> and device id of our company. We are members of PCI-SIG. So we need to 
-> set the vendor id and device id in the Root Port driver. Otherwise, the 
-> output of lspci will be displayed incorrectly.
+From: Henry Wu <Henry_Wu@quantatw.com>
 
-Please read carefully. Previous discussions were also pointlessly
-ping-ponging on irrelevant arguments. Did I suggest you do not have to
-set it in root port driver? No. If this is const here, this is implied
-by compatible and completely redundant, because your driver knows this
-value already. It already has all the information to deduce this value
-from the compatible.
+Add support for the mp2869a and mp29612a controllers from Monolithic Power
+Systems, Inc. (MPS). These are dual-loop, digital, multi-phase modulation
+controllers.
 
+---
 
+Changes in v2:
+- Fix coding style issues.
+- Using the pointer to replace the memcpy.
+- Fix wrong device tree entries.
 
+Link to v1: https://lore.kernel.org/lkml/20250624074156.291176-1-Henry_Wu@quantatw.tw/
 
-> 
->>
->>> +
->>> +  device-id:
->>> +    enum:
->>> +      - 0x0001
->>
->> Why? This is implied by compatible.
-> 
-> The reason is the same as above.
-> 
->>
->>> +
->>> +  cdns,no-inbound-bar:
->>
->> That's not a cdns binding, so wrong prefix.
-> 
-> It will be added to Cadence's Doc. I will add a separate patch. What do 
-> you think?
-> 
->>
->>> +    description: |
->>
->> Do not need '|' unless you need to preserve formatting.
-> 
-> Will delete '|'.
-> 
->>
->>> +      Indicates the PCIe controller does not require an inbound BAR region.
->>
->> And anyway this is implied by compatible, drop.
->>
-> 
-> Because Cadence core driver has this judgment, the latest code of the 
-> current linux master all has this process. As follows:
-> int cdns_pcie_host_init(struct cdns_pcie_rc *rc)
->      cdns_pcie_host_init_address_translation(rc);
-> 	cdns_pcie_host_map_dma_ranges(rc);
-> 	   cdns_pcie_host_bar_ib_config
+---
 
-And you cannot fix or change drivers? How does it matter for discussion
-here?
+Henry Wu (2):
+  hwmon: (pmbus) Add support for MPS multi-phase mp2869a/mp29612a
+    controllers
+  dt-bindings: trivial-devices: Add mp2869a/mp29612a device entry
 
-> 
-> So this attribute has been added here, or is there a better way?
+ .../devicetree/bindings/trivial-devices.yaml  |   4 +
+ Documentation/hwmon/index.rst                 |   1 +
+ Documentation/hwmon/mp2869a.rst               |  86 +++++
+ drivers/hwmon/pmbus/Kconfig                   |  10 +
+ drivers/hwmon/pmbus/Makefile                  |   1 +
+ drivers/hwmon/pmbus/mp2869a.c                 | 299 ++++++++++++++++++
+ 6 files changed, 401 insertions(+)
+ create mode 100644 Documentation/hwmon/mp2869a.rst
+ create mode 100644 drivers/hwmon/pmbus/mp2869a.c
 
-Of course, like every other driver in Linux kernel. This is FIXED for
-your platform, so set it in your CIX driver.
+-- 
+2.43.0
 
-
-
-Best regards,
-Krzysztof
 
