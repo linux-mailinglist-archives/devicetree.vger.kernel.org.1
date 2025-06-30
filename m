@@ -1,138 +1,169 @@
-Return-Path: <devicetree+bounces-190925-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-190927-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4E7D2AED375
-	for <lists+devicetree@lfdr.de>; Mon, 30 Jun 2025 06:32:58 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id C69C6AED385
+	for <lists+devicetree@lfdr.de>; Mon, 30 Jun 2025 06:46:37 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 72907171822
-	for <lists+devicetree@lfdr.de>; Mon, 30 Jun 2025 04:32:58 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id D6DB23A7CDF
+	for <lists+devicetree@lfdr.de>; Mon, 30 Jun 2025 04:46:11 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 40E41190072;
-	Mon, 30 Jun 2025 04:32:54 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3C8BA199947;
+	Mon, 30 Jun 2025 04:46:33 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=karo-electronics.de header.i=@karo-electronics.de header.b="U+LnXVeo"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lj1-f174.google.com (mail-lj1-f174.google.com [209.85.208.174])
+Received: from dd54918.kasserver.com (dd54918.kasserver.com [85.13.167.58])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A81B979D2;
-	Mon, 30 Jun 2025 04:32:51 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.174
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 091C543164;
+	Mon, 30 Jun 2025 04:46:29 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=85.13.167.58
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1751257974; cv=none; b=cmdGzJXfxT3xrLEjmKNl1oPB0zRd5Vb9RUTMIMD9im0Q7pkcQI3fu7UIBZE4T/ExMMxkttOq6dnsaRnX6kEx1Y3MVcbJ/qniFu4sf51s5Qiqhp3B/xJ/hzITVz9ePCiM67h6YUIVn2hFgC3V5YoOxKYRxRZKQt4UDcW44TCGPRs=
+	t=1751258793; cv=none; b=Fl+pN4oMa0hX710B1u8Lr+TACimAxmFwGFkidcRiykaFndy7Soqn09QT4BvxvrQxzqJrQP5Wp7dYn+9piAuBr+o2a8gd+QDQFknxOZl5894tLsCh+oM/ZaFL3yGNINJAQ95qoccSC4hCBWJOcvJpPu5Q8VhmPLYVO1IJPp8q/wM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1751257974; c=relaxed/simple;
-	bh=R7zcCovUjtiZyN7Xl7zbfCp3HhGk37QNCfMdhJI4qQs=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=OV+mY8GedZfAKrwTjFMRBeOPqRHLEsGOaTH1A6WqRNDwn/6O827lX07sFLffQAodm2M+FYXEL1yWgHtOPqzSqSy5yHyadKVcoppU7nsjd22W6Olai425HvtokStPTu3t17G8Lec8sUooXXfbbkmM0OqsPHo0zDbVOWLj7U49XkI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=csie.org; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.208.174
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=csie.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-lj1-f174.google.com with SMTP id 38308e7fff4ca-32b3a3a8201so14738541fa.0;
-        Sun, 29 Jun 2025 21:32:51 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1751257967; x=1751862767;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :reply-to:in-reply-to:references:mime-version:x-gm-message-state
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=JbVuaR12V0J6Xt+/G9MNTrnfxERz+sAIcOpg6dKC95Y=;
-        b=g7lYg6hEQlzmpjzLwyTFmK5b3Ept/6Shb6y8yNBvP/qoYV4LFkIr+9KfQN7OobyZUG
-         /ipj2sy2fyOhajpoASKi5v59K/xXXaqNcm5tBEBqAURBue1cu3vwp6fQgTLueMQoT2ho
-         /vqlycc2zMlbxdSXnqqhabivTNKyFH9BP7RHglXx4lCHiOSUunMMdUhcZ1zAhcrbosqO
-         H7gqZvHqLh94MvTd/kj1ry7fpcgtVHhI+5f0/XvM8X6/Sdxsh8SiM6HyISeUIYBlfTAT
-         2o/gNugfDQFBhLZDEq8s5MqtrZhoZD7hgkdvPyTLl4F/tIQFrfRXXiGDwa5hwuVzZR0a
-         F07w==
-X-Forwarded-Encrypted: i=1; AJvYcCVLBtio+K2tWGARYXFzZokIlGVDVdDbA59lIQGavccU+F0eTrOhLDMG1eDLLq9yzROzoOl6uHnzBUHj@vger.kernel.org, AJvYcCVTAJ/EJTTPBMvoWpHjuxxzghNbGUVmRNIRAxrYtM4YkB/X5X6i1GSyvhhZZc2wxxLw94F7JuuO3to=@vger.kernel.org, AJvYcCVec/tIvmXz8paN+1fIX8CPNp4REjtZdb7SA17p9cp0IWqdlBQQ3BbNwsbN8b7DP1Vd9hcFCf2IcJQPQhI5@vger.kernel.org
-X-Gm-Message-State: AOJu0YzpsRyEp3BiR/Spou8vel96MnvCXdIiitiX85dYBAdm96w7Cx/u
-	q1D9sWtQtAlH7zuPBRVlpEnou1etWsDQCdYSHNC7/JxdJBwPTAxQYEaymn+ZDiDs
-X-Gm-Gg: ASbGncuYaGAkaYfwu6YhYWYfyEA76hepsFHJfmeFt8VJXXIC83iagH5wgerd+XOqNqh
-	PJmRDUj6/4TD/Wc79Ib9lNGtkL+1bCs4a6J2SmM0/R48QGmqLqZaGzoGMVpc9Z8V4vPwzsrbuiw
-	OyrNddJTviOipdGJtpUqqnzT5lIAONLr6RtBlDidcfRt1ZYxiqZo5IjaEGFZQeiXr9t7ue6bTYa
-	4dOQapcGb1vWoUuz0lz83pi0Rjq0cC+r+3/e3t0KxdbF9k4kKT7MRKb4SN2NapjzM0z05XZsGsE
-	ALIoXa40UWjjFwAvdO5a3n+0Feg3Vtc23mDkQ0PbmGAfleUTzDKkyIwaLpUsMZ/i8SG2pC5eBdj
-	8h+SniLoNzCrJ7YORLQ4=
-X-Google-Smtp-Source: AGHT+IHka60/fjRwCxsDIPnM9RNanmC9+SlPaHmhUHvYwouRWRyMWrT5ocMruSmQjcoM6MLq0ZhSUg==
-X-Received: by 2002:a05:6512:b87:b0:553:30fc:ceda with SMTP id 2adb3069b0e04-5550b7e6e32mr3341855e87.7.1751257967114;
-        Sun, 29 Jun 2025 21:32:47 -0700 (PDT)
-Received: from mail-lj1-f180.google.com (mail-lj1-f180.google.com. [209.85.208.180])
-        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-5550b2f327dsm1284388e87.257.2025.06.29.21.32.45
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sun, 29 Jun 2025 21:32:45 -0700 (PDT)
-Received: by mail-lj1-f180.google.com with SMTP id 38308e7fff4ca-32add56e9ddso15704801fa.2;
-        Sun, 29 Jun 2025 21:32:45 -0700 (PDT)
-X-Forwarded-Encrypted: i=1; AJvYcCUHYVQseElP3rXd7AySTgeFqHcdbukMhKhyZx3wGgBZi4AjtGgh2A7HbllxIjJjjNEiOzLcZASy9lc=@vger.kernel.org, AJvYcCUbOmA9R+rcBYTALi9JJYTB1yIMrPdTZ4TRSFKAYQI/LP+Jp+lwczjU2GYwE4W2wFwcEJrEDWcLM9oo@vger.kernel.org, AJvYcCVbMxTbsWQORJUESXUicEwA4MsmUoXnm4vQG9fn9HIK+4feolGRnOIZhNhlv+elhFQBCtYMkcAlvqZLbAo6@vger.kernel.org
-X-Received: by 2002:a05:651c:20c5:b0:30b:edfc:5d8a with SMTP id
- 38308e7fff4ca-32cdc329543mr23944531fa.0.1751257965460; Sun, 29 Jun 2025
- 21:32:45 -0700 (PDT)
+	s=arc-20240116; t=1751258793; c=relaxed/simple;
+	bh=uQYEMJIAMxFt54p5C9odTtA27keWxi+3jFSwhp78F88=;
+	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=exGSPJPdpuiurN6atWMYeggU8ChOyTGley94l/Or/5htM2OF/0+gx1JNCry9VP01MrBMdUqNYMK9khConON1A0qqQFSm/DVs81JGoHLajVl3N9+LGxewsahbJbRlF4n7qGJ8F2HMpx4hzqw+gD8i05JSKK1nK/DmdkAyjAWLbsA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=KARO-electronics.de; spf=pass smtp.mailfrom=KARO-electronics.de; dkim=pass (2048-bit key) header.d=karo-electronics.de header.i=@karo-electronics.de header.b=U+LnXVeo; arc=none smtp.client-ip=85.13.167.58
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=KARO-electronics.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=KARO-electronics.de
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=karo-electronics.de;
+	s=kas202503070814; t=1751258378;
+	bh=MQEiCA64jRoe+4Q4HAhc5uROjPs+W2LELE2uGvHuU0I=;
+	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
+	b=U+LnXVeo1J1pNgGk1RubYeAP/r0grfqxsUxdTPu4+n5feKZ48KCwQ11nnymPFNDii
+	 cCPRAKBwFhqiKCHpBQsdPXX5vlzmu6x9sp1fyUSLiD4HgK39bjlvv8Z0hoKxeeMEwG
+	 1icWV6et5DMSWtkEktkPdwUahsLhvroUdS7VT+i/JephS9g5d77bOQypugc2Tja4dz
+	 IkK8CXZvE2W4db1vAqSK7JfL2eFfkdELJJTblFquIg5QT5EKDs093g/2RkJshx65mO
+	 HJ6zIA9Jeb2+AdzOVUE7xqjqiEHfFVimvYQ+OGysiOhGpGpR80psvAwCM9DmGdxgWk
+	 CfLB55C+tsAnA==
+Received: from karo-electronics.de (unknown [89.1.81.74])
+	by dd54918.kasserver.com (Postfix) with ESMTPSA id F3EA7772144E;
+	Mon, 30 Jun 2025 06:39:37 +0200 (CEST)
+Date: Mon, 30 Jun 2025 06:39:37 +0200
+From: Lothar =?UTF-8?B?V2HDn21hbm4=?= <LW@KARO-electronics.de>
+To: Bence =?UTF-8?B?Q3PDs2vDoXM=?= <csokas.bence@prolan.hu>
+Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
+ "Sascha Hauer" <s.hauer@pengutronix.de>, Pengutronix Kernel Team
+ <kernel@pengutronix.de>, Fabio Estevam <festevam@gmail.com>,
+ <devicetree@vger.kernel.org>, <imx@lists.linux.dev>,
+ <linux-arm-kernel@lists.infradead.org>, <linux-kernel@vger.kernel.org>
+Subject: Re: [PATCH] arm: DT: imx6: Replace license text comment with SPDX
+ identifier
+Message-ID: <20250630063937.589bc18d@karo-electronics.de>
+In-Reply-To: <20250626-karo-dts-lic-v1-1-315f43121aaa@prolan.hu>
+References: <20250626-karo-dts-lic-v1-1-315f43121aaa@prolan.hu>
+Organization: Ka-Ro electronics GmbH
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20250411003827.782544-1-iuncuim@gmail.com> <20250411003827.782544-5-iuncuim@gmail.com>
-In-Reply-To: <20250411003827.782544-5-iuncuim@gmail.com>
-Reply-To: wens@csie.org
-From: Chen-Yu Tsai <wens@csie.org>
-Date: Mon, 30 Jun 2025 12:32:33 +0800
-X-Gmail-Original-Message-ID: <CAGb2v659nQit-cOsr6q+ACO2MJ+c6RyfBWVg7iP_u1DO4fXBHQ@mail.gmail.com>
-X-Gm-Features: Ac12FXycZ4eBZnw1-9h5Z5_HZw9HoRSOqmeNCAZOYMw7KeNLsUjQ12gZN6IqRgQ
-Message-ID: <CAGb2v659nQit-cOsr6q+ACO2MJ+c6RyfBWVg7iP_u1DO4fXBHQ@mail.gmail.com>
-Subject: Re: [PATCH 4/6] arm64: dts: allwinner: A523: Add SID controller node
-To: iuncuim <iuncuim@gmail.com>
-Cc: Vasily Khoruzhick <anarsoul@gmail.com>, Yangtao Li <tiny.windzz@gmail.com>, 
-	Jernej Skrabec <jernej.skrabec@gmail.com>, Samuel Holland <samuel@sholland.org>, 
-	Andre Przywara <andre.przywara@arm.com>, "Rafael J . Wysocki" <rafael@kernel.org>, 
-	Daniel Lezcano <daniel.lezcano@linaro.org>, Zhang Rui <rui.zhang@intel.com>, 
-	Lukasz Luba <lukasz.luba@arm.com>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Philipp Zabel <p.zabel@pengutronix.de>, linux-pm@vger.kernel.org, 
-	devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
-	linux-sunxi@lists.linux.dev, linux-kernel@vger.kernel.org, 
-	Piotr Oniszczuk <piotr.oniszczuk@gmail.com>
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: quoted-printable
+X-Spamd-Bar: +
 
-On Fri, Apr 11, 2025 at 8:40=E2=80=AFAM iuncuim <iuncuim@gmail.com> wrote:
->
-> From: Mikhail Kalashnikov <iuncuim@gmail.com>
->
-> The SID controller should be compatible with A64 and others SoC with 0x20=
-0
-> offset.
->
-> Signed-off-by: Mikhail Kalashnikov <iuncuim@gmail.com>
+Hi,
 
-Reviewed-by: Chen-Yu Tsai <wens@csie.org>
-
-But this also needs a matching update to the binding.
-
+On Thu, 26 Jun 2025 11:19:56 +0200 Bence Cs=C3=B3k=C3=A1s wrote:
+> Replace verbatim license text with a SPDX-License-Identifier:
+>=20
+> The comment heades mis-attributes this license to be "X11", but the
+> license text does not include the last line "Except as contained in this
+> notice, the name of the X Consortium shall not be used in advertising or
+> otherwise to promote the sale, use or other dealings in this Software
+> without prior written authorization from the X Consortium.". Therefore,
+> this license is actually equivalent to the SPDX "MIT" license (confirmed
+> by text diffing).
+>=20
+> Cc: Lothar Wa=C3=9Fmann <LW@KARO-electronics.de>
+> Signed-off-by: Bence Cs=C3=B3k=C3=A1s <csokas.bence@prolan.hu>
 > ---
->  arch/arm64/boot/dts/allwinner/sun55i-a523.dtsi | 7 +++++++
->  1 file changed, 7 insertions(+)
->
-> diff --git a/arch/arm64/boot/dts/allwinner/sun55i-a523.dtsi b/arch/arm64/=
-boot/dts/allwinner/sun55i-a523.dtsi
-> index ee485899b..d626612bb 100644
-> --- a/arch/arm64/boot/dts/allwinner/sun55i-a523.dtsi
-> +++ b/arch/arm64/boot/dts/allwinner/sun55i-a523.dtsi
-> @@ -171,6 +171,13 @@ ccu: clock-controller@2001000 {
->                         #reset-cells =3D <1>;
->                 };
->
-> +               sid: efuse@3006000 {
-> +                       compatible =3D "allwinner,sun50i-a523-sid", "allw=
-inner,sun50i-a64-sid";
-> +                       reg =3D <0x03006000 0x1000>;
-> +                       #address-cells =3D <1>;
-> +                       #size-cells =3D <1>;
-> +               };
-> +
->                 mmc0: mmc@4020000 {
->                         compatible =3D "allwinner,sun55i-a523-mmc",
->                                      "allwinner,sun20i-d1-mmc";
-> --
-> 2.49.0
->
+>  arch/arm/boot/dts/nxp/imx/imx53-tx53-x03x.dts      | 38 +---------------=
+---
+>  arch/arm/boot/dts/nxp/imx/imx53-tx53-x13x.dts      | 44 +---------------=
+------
+>  arch/arm/boot/dts/nxp/imx/imx53-tx53.dtsi          | 38 +---------------=
+---
+>  arch/arm/boot/dts/nxp/imx/imx6dl-tx6dl-comtft.dts  | 38 +---------------=
+---
+>  arch/arm/boot/dts/nxp/imx/imx6dl-tx6s-8034-mb7.dts | 38 +---------------=
+---
+>  arch/arm/boot/dts/nxp/imx/imx6dl-tx6s-8034.dts     | 38 +---------------=
+---
+>  arch/arm/boot/dts/nxp/imx/imx6dl-tx6s-8035-mb7.dts | 38 +---------------=
+---
+>  arch/arm/boot/dts/nxp/imx/imx6dl-tx6s-8035.dts     | 38 +---------------=
+---
+>  arch/arm/boot/dts/nxp/imx/imx6dl-tx6u-801x.dts     | 38 +---------------=
+---
+>  arch/arm/boot/dts/nxp/imx/imx6dl-tx6u-8033-mb7.dts | 38 +---------------=
+---
+>  arch/arm/boot/dts/nxp/imx/imx6dl-tx6u-8033.dts     | 38 +---------------=
+---
+>  arch/arm/boot/dts/nxp/imx/imx6dl-tx6u-80xx-mb7.dts | 38 +---------------=
+---
+>  arch/arm/boot/dts/nxp/imx/imx6dl-tx6u-811x.dts     | 38 +---------------=
+---
+>  arch/arm/boot/dts/nxp/imx/imx6dl-tx6u-81xx-mb7.dts | 38 +---------------=
+---
+>  .../boot/dts/nxp/imx/imx6q-tx6q-1010-comtft.dts    | 38 +---------------=
+---
+>  arch/arm/boot/dts/nxp/imx/imx6q-tx6q-1010.dts      | 38 +---------------=
+---
+>  .../boot/dts/nxp/imx/imx6q-tx6q-1020-comtft.dts    | 38 +---------------=
+---
+>  arch/arm/boot/dts/nxp/imx/imx6q-tx6q-1020.dts      | 38 +---------------=
+---
+>  arch/arm/boot/dts/nxp/imx/imx6q-tx6q-1036-mb7.dts  | 38 +---------------=
+---
+>  arch/arm/boot/dts/nxp/imx/imx6q-tx6q-1036.dts      | 38 +---------------=
+---
+>  arch/arm/boot/dts/nxp/imx/imx6q-tx6q-10x0-mb7.dts  | 38 +---------------=
+---
+>  arch/arm/boot/dts/nxp/imx/imx6q-tx6q-1110.dts      | 38 +---------------=
+---
+>  arch/arm/boot/dts/nxp/imx/imx6q-tx6q-11x0-mb7.dts  | 38 +---------------=
+---
+>  arch/arm/boot/dts/nxp/imx/imx6qdl-tx6-lcd.dtsi     | 38 +---------------=
+---
+>  arch/arm/boot/dts/nxp/imx/imx6qdl-tx6-lvds.dtsi    | 38 +---------------=
+---
+>  arch/arm/boot/dts/nxp/imx/imx6qdl-tx6-mb7.dtsi     | 38 +---------------=
+---
+>  arch/arm/boot/dts/nxp/imx/imx6qdl-tx6.dtsi         | 38 +---------------=
+---
+>  .../arm/boot/dts/nxp/imx/imx6qp-tx6qp-8037-mb7.dts | 38 +---------------=
+---
+>  arch/arm/boot/dts/nxp/imx/imx6qp-tx6qp-8037.dts    | 38 +---------------=
+---
+>  .../arm/boot/dts/nxp/imx/imx6qp-tx6qp-8137-mb7.dts | 38 +---------------=
+---
+>  arch/arm/boot/dts/nxp/imx/imx6qp-tx6qp-8137.dts    | 38 +---------------=
+---
+>  arch/arm/boot/dts/nxp/imx/imx6ul-tx6ul-0010.dts    | 38 +---------------=
+---
+>  arch/arm/boot/dts/nxp/imx/imx6ul-tx6ul-0011.dts    | 38 +---------------=
+---
+>  .../boot/dts/nxp/imx/imx6ul-tx6ul-mainboard.dts    | 38 +---------------=
+---
+>  arch/arm/boot/dts/nxp/imx/imx6ul-tx6ul.dtsi        | 38 +---------------=
+---
+>  35 files changed, 35 insertions(+), 1301 deletions(-)
+>=20
+[...]
+> ---
+> base-commit: 86731a2a651e58953fc949573895f2fa6d456841
+> change-id: 20250624-karo-dts-lic-2f7366e6feb4
+>=20
+Acked-By: Lothar Wa=C3=9Fmann <LW@KARO-electronics.de>
+
+
+Lothar Wa=C3=9Fmann
 
