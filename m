@@ -1,188 +1,138 @@
-Return-Path: <devicetree+bounces-190918-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-190925-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 62D20AED357
-	for <lists+devicetree@lfdr.de>; Mon, 30 Jun 2025 06:17:09 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4E7D2AED375
+	for <lists+devicetree@lfdr.de>; Mon, 30 Jun 2025 06:32:58 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id B27273B5058
-	for <lists+devicetree@lfdr.de>; Mon, 30 Jun 2025 04:16:37 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 72907171822
+	for <lists+devicetree@lfdr.de>; Mon, 30 Jun 2025 04:32:58 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8461D1ABED9;
-	Mon, 30 Jun 2025 04:16:18 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 40E41190072;
+	Mon, 30 Jun 2025 04:32:54 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from TYPPR03CU001.outbound.protection.outlook.com (mail-japaneastazon11022074.outbound.protection.outlook.com [52.101.126.74])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-lj1-f174.google.com (mail-lj1-f174.google.com [209.85.208.174])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DC1861C1F02;
-	Mon, 30 Jun 2025 04:16:14 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=52.101.126.74
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1751256978; cv=fail; b=lo09ej0ZgDrS+xfOtTW8Yo4lb0Yw4gi43G8UQED2meXLc6UdY+GA19hHJsxO6oR4PBDt0axXRL7gjDM71OCSx69x5soolS+kHisgNX4liu/EmcDJJwUoek0IGi0L3pNfRgn5QEzkZPDTYP0CL1Nuda91i++RDdIeLKZ2QuPFmP8=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1751256978; c=relaxed/simple;
-	bh=jL8QWrhFZcG0TeTNJuXky7/gx7CUKK2+HViwn7SWhiA=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=bIJgjtzf3YzMrjMcIBGvKXLeDmEdqow7mak0nKDH2wG0hpOfpsReNfXoG9F0B9HjTzTivLiMr4TQMOOgI7bWWvR0D09/uaPUaCI3itmHkgQRE5uTU5JBj5HbqVJt+qSumxar9lD5H2LTaqgCedYQxuRBJs3Ba1lpbch/FzWi6mE=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=cixtech.com; spf=pass smtp.mailfrom=cixtech.com; arc=fail smtp.client-ip=52.101.126.74
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=cixtech.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=cixtech.com
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=sTfq8yMvAsM5gant9lptJzjYLeSdfyPpA81ojDqA97g9u1MITiyu1C7XZAxHLu6sgFDn+QEt7zDB7g3sfq1EYUV7l4o+YK2aawOO/0jrAoCq6BolzxJs865HN8mWAXRMulF8DUmdtC3juBdBytPxQeP8zfhtTgJ9Z+EYGmWhwKTIQ6PsgNPTLOHb/OquEXAXRLEVB4c4qF5ynxhuHpbNx5NkUWS8fOrvl3gq5SDSF5WuxkdvUo9Fkph3X9U2FEEHQNSNO2XdEC7PTQuIyZU4onZKs72KqH9VEEAG5xwSHjikNE8sq6uZFijhks2yY44aEEgPMpaDcWZ5r2ZI/NFtWw==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=wlXtX51Rye0T7exI75JJh+af3xpLl1aUApTsZWsiYLg=;
- b=NvhD2AUbAd/B54CUGKQg8ar6JexBOPh+c7UpdoNI0BbW6wNXQ23EYaRn0CE3s9ZbQuUlKDSXSRZzTFIfsVhg061V4QKstBsGXErO39ZRTvjpKpPRWXedCIH+rQbOFgJKbcibdsem4zpmuXz5fEFcXqn+6WS0O8qzHZWOw7W2NnxAUwumeB9h5WGceKbsfq+EbFWkkPAXT/fl//8N9gLMmKsrBSd9SRejITKarsyigUXw2m896X6ppMR2dHRweWEFxVRMsqaEbiHyM9pEY9qcxYxetU6DLmHpXvBNvwQVBBP5pd2sgioHhR/Lwds4GoGDQrMWSmng/H5tmXUXikSxuQ==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
- 222.71.101.198) smtp.rcpttodomain=cadence.com smtp.mailfrom=cixtech.com;
- dmarc=bestguesspass action=none header.from=cixtech.com; dkim=none (message
- not signed); arc=none (0)
-Received: from SI2P153CA0015.APCP153.PROD.OUTLOOK.COM (2603:1096:4:140::21) by
- TYZPR06MB6281.apcprd06.prod.outlook.com (2603:1096:400:425::5) with Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.8880.30; Mon, 30 Jun 2025 04:16:11 +0000
-Received: from SG2PEPF000B66CE.apcprd03.prod.outlook.com
- (2603:1096:4:140:cafe::3f) by SI2P153CA0015.outlook.office365.com
- (2603:1096:4:140::21) with Microsoft SMTP Server (version=TLS1_3,
- cipher=TLS_AES_256_GCM_SHA384) id 15.20.8901.6 via Frontend Transport; Mon,
- 30 Jun 2025 04:16:11 +0000
-X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 222.71.101.198)
- smtp.mailfrom=cixtech.com; dkim=none (message not signed)
- header.d=none;dmarc=bestguesspass action=none header.from=cixtech.com;
-Received-SPF: Pass (protection.outlook.com: domain of cixtech.com designates
- 222.71.101.198 as permitted sender) receiver=protection.outlook.com;
- client-ip=222.71.101.198; helo=smtprelay.cixcomputing.com; pr=C
-Received: from smtprelay.cixcomputing.com (222.71.101.198) by
- SG2PEPF000B66CE.mail.protection.outlook.com (10.167.240.21) with Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.8901.15 via Frontend Transport; Mon, 30 Jun 2025 04:16:10 +0000
-Received: from hans.. (unknown [172.16.64.208])
-	by smtprelay.cixcomputing.com (Postfix) with ESMTPSA id 0B4704160505;
-	Mon, 30 Jun 2025 12:16:07 +0800 (CST)
-From: hans.zhang@cixtech.com
-To: bhelgaas@google.com,
-	lpieralisi@kernel.org,
-	kw@linux.com,
-	mani@kernel.org,
-	robh@kernel.org,
-	kwilczynski@kernel.org,
-	krzk+dt@kernel.org,
-	conor+dt@kernel.org
-Cc: mpillai@cadence.com,
-	fugang.duan@cixtech.com,
-	guoyin.chen@cixtech.com,
-	peter.chen@cixtech.com,
-	cix-kernel-upstream@cixtech.com,
-	linux-pci@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	Hans Zhang <hans.zhang@cixtech.com>
-Subject: [PATCH v5 14/14] arm64: dts: cix: Enable PCIe on the Orion O6 board
-Date: Mon, 30 Jun 2025 12:16:01 +0800
-Message-ID: <20250630041601.399921-15-hans.zhang@cixtech.com>
-X-Mailer: git-send-email 2.49.0
-In-Reply-To: <20250630041601.399921-1-hans.zhang@cixtech.com>
-References: <20250630041601.399921-1-hans.zhang@cixtech.com>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A81B979D2;
+	Mon, 30 Jun 2025 04:32:51 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.174
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1751257974; cv=none; b=cmdGzJXfxT3xrLEjmKNl1oPB0zRd5Vb9RUTMIMD9im0Q7pkcQI3fu7UIBZE4T/ExMMxkttOq6dnsaRnX6kEx1Y3MVcbJ/qniFu4sf51s5Qiqhp3B/xJ/hzITVz9ePCiM67h6YUIVn2hFgC3V5YoOxKYRxRZKQt4UDcW44TCGPRs=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1751257974; c=relaxed/simple;
+	bh=R7zcCovUjtiZyN7Xl7zbfCp3HhGk37QNCfMdhJI4qQs=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=OV+mY8GedZfAKrwTjFMRBeOPqRHLEsGOaTH1A6WqRNDwn/6O827lX07sFLffQAodm2M+FYXEL1yWgHtOPqzSqSy5yHyadKVcoppU7nsjd22W6Olai425HvtokStPTu3t17G8Lec8sUooXXfbbkmM0OqsPHo0zDbVOWLj7U49XkI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=csie.org; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.208.174
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=csie.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-lj1-f174.google.com with SMTP id 38308e7fff4ca-32b3a3a8201so14738541fa.0;
+        Sun, 29 Jun 2025 21:32:51 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1751257967; x=1751862767;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :reply-to:in-reply-to:references:mime-version:x-gm-message-state
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=JbVuaR12V0J6Xt+/G9MNTrnfxERz+sAIcOpg6dKC95Y=;
+        b=g7lYg6hEQlzmpjzLwyTFmK5b3Ept/6Shb6y8yNBvP/qoYV4LFkIr+9KfQN7OobyZUG
+         /ipj2sy2fyOhajpoASKi5v59K/xXXaqNcm5tBEBqAURBue1cu3vwp6fQgTLueMQoT2ho
+         /vqlycc2zMlbxdSXnqqhabivTNKyFH9BP7RHglXx4lCHiOSUunMMdUhcZ1zAhcrbosqO
+         H7gqZvHqLh94MvTd/kj1ry7fpcgtVHhI+5f0/XvM8X6/Sdxsh8SiM6HyISeUIYBlfTAT
+         2o/gNugfDQFBhLZDEq8s5MqtrZhoZD7hgkdvPyTLl4F/tIQFrfRXXiGDwa5hwuVzZR0a
+         F07w==
+X-Forwarded-Encrypted: i=1; AJvYcCVLBtio+K2tWGARYXFzZokIlGVDVdDbA59lIQGavccU+F0eTrOhLDMG1eDLLq9yzROzoOl6uHnzBUHj@vger.kernel.org, AJvYcCVTAJ/EJTTPBMvoWpHjuxxzghNbGUVmRNIRAxrYtM4YkB/X5X6i1GSyvhhZZc2wxxLw94F7JuuO3to=@vger.kernel.org, AJvYcCVec/tIvmXz8paN+1fIX8CPNp4REjtZdb7SA17p9cp0IWqdlBQQ3BbNwsbN8b7DP1Vd9hcFCf2IcJQPQhI5@vger.kernel.org
+X-Gm-Message-State: AOJu0YzpsRyEp3BiR/Spou8vel96MnvCXdIiitiX85dYBAdm96w7Cx/u
+	q1D9sWtQtAlH7zuPBRVlpEnou1etWsDQCdYSHNC7/JxdJBwPTAxQYEaymn+ZDiDs
+X-Gm-Gg: ASbGncuYaGAkaYfwu6YhYWYfyEA76hepsFHJfmeFt8VJXXIC83iagH5wgerd+XOqNqh
+	PJmRDUj6/4TD/Wc79Ib9lNGtkL+1bCs4a6J2SmM0/R48QGmqLqZaGzoGMVpc9Z8V4vPwzsrbuiw
+	OyrNddJTviOipdGJtpUqqnzT5lIAONLr6RtBlDidcfRt1ZYxiqZo5IjaEGFZQeiXr9t7ue6bTYa
+	4dOQapcGb1vWoUuz0lz83pi0Rjq0cC+r+3/e3t0KxdbF9k4kKT7MRKb4SN2NapjzM0z05XZsGsE
+	ALIoXa40UWjjFwAvdO5a3n+0Feg3Vtc23mDkQ0PbmGAfleUTzDKkyIwaLpUsMZ/i8SG2pC5eBdj
+	8h+SniLoNzCrJ7YORLQ4=
+X-Google-Smtp-Source: AGHT+IHka60/fjRwCxsDIPnM9RNanmC9+SlPaHmhUHvYwouRWRyMWrT5ocMruSmQjcoM6MLq0ZhSUg==
+X-Received: by 2002:a05:6512:b87:b0:553:30fc:ceda with SMTP id 2adb3069b0e04-5550b7e6e32mr3341855e87.7.1751257967114;
+        Sun, 29 Jun 2025 21:32:47 -0700 (PDT)
+Received: from mail-lj1-f180.google.com (mail-lj1-f180.google.com. [209.85.208.180])
+        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-5550b2f327dsm1284388e87.257.2025.06.29.21.32.45
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Sun, 29 Jun 2025 21:32:45 -0700 (PDT)
+Received: by mail-lj1-f180.google.com with SMTP id 38308e7fff4ca-32add56e9ddso15704801fa.2;
+        Sun, 29 Jun 2025 21:32:45 -0700 (PDT)
+X-Forwarded-Encrypted: i=1; AJvYcCUHYVQseElP3rXd7AySTgeFqHcdbukMhKhyZx3wGgBZi4AjtGgh2A7HbllxIjJjjNEiOzLcZASy9lc=@vger.kernel.org, AJvYcCUbOmA9R+rcBYTALi9JJYTB1yIMrPdTZ4TRSFKAYQI/LP+Jp+lwczjU2GYwE4W2wFwcEJrEDWcLM9oo@vger.kernel.org, AJvYcCVbMxTbsWQORJUESXUicEwA4MsmUoXnm4vQG9fn9HIK+4feolGRnOIZhNhlv+elhFQBCtYMkcAlvqZLbAo6@vger.kernel.org
+X-Received: by 2002:a05:651c:20c5:b0:30b:edfc:5d8a with SMTP id
+ 38308e7fff4ca-32cdc329543mr23944531fa.0.1751257965460; Sun, 29 Jun 2025
+ 21:32:45 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-EOPAttributedMessage: 0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: SG2PEPF000B66CE:EE_|TYZPR06MB6281:EE_
-Content-Type: text/plain
-X-MS-Office365-Filtering-Correlation-Id: 51ee8e88-a233-464f-8fef-08ddb78cd811
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam:
-	BCL:0;ARA:13230040|36860700013|82310400026|1800799024|376014|7416014|7053199007;
-X-Microsoft-Antispam-Message-Info:
-	=?us-ascii?Q?tWUWhYLUXyr93gSt4SxdtXb7tI/iuMiLw2M0akmVOhkCawHjC8/i0VIIpv7C?=
- =?us-ascii?Q?eq/MucoijMJdW/5EitAVsOuRYxliVv0vxOfeYEVdBEcH9Fzw3FFm8l3E/S+o?=
- =?us-ascii?Q?iOICDlKVNZbp8BmIA5PGiyPVJOCPUw1jiT496VXhtFc0bLHDhSZql7Y4+g0R?=
- =?us-ascii?Q?SaloGPZuAzK+RPfARnQu4uSENdrW78heIzmMz0n/3BVX7oSTdv9tShwcP8l5?=
- =?us-ascii?Q?sbcH7Orxn9qErpm/8uGSj8yIScLzWdZ5JBIAIVZIo85lBZovym9qrvOUYyOu?=
- =?us-ascii?Q?YP1Zl1fC8SNMLZXbMHluESidAp1zaLYP/CEN7ajvtTBio9L7T+MiqrypcvOu?=
- =?us-ascii?Q?BlfCxWvr6P0v6lBj6IlO3LyDxjQB1SZF/FW9gmYNfZMG9Yxvpa9ygUvMUooq?=
- =?us-ascii?Q?guivrLK4gAOEzmbqRxp/IJJFY2vcvb4GDK/7I2InxZi7eJhiY/yeOLn+51jj?=
- =?us-ascii?Q?ciPt0h90EI6SLW1jXlKd+XgD5U1+xM43+/W+3v78j+C18Xrf7oDkSikUmN/3?=
- =?us-ascii?Q?p6AqZ64OKZ6leXuXjo2b8S4KETYAglDxJfmOuYXDF0xgaKdrD7s/ksKwZ0+C?=
- =?us-ascii?Q?dd5KnLmHdnwTC9KIEs6vgFPHUNtz1Pt9hR+Cw0jazwX2NmMGO6dPyY7dOW57?=
- =?us-ascii?Q?Tb9CHtSnU6tJzVB57CvGrjvO6EhBqhWnnE9AhgF/ia8wjIao/NNFXM2MET69?=
- =?us-ascii?Q?sr0Rjr7BTeLzaC25EjU7L2MV3mXeZn3lsFkL96LGNEEXn+9sVZoDLiih8NEj?=
- =?us-ascii?Q?rDmgPuG+wnM5i98SQ88zqEAVB3xf9j8Jp/u3CzROVIBMBAz7T4bxpkwSB9Gs?=
- =?us-ascii?Q?AsZhbB3OVWAG/IcpS4jBMoQaKRwHCP+QLBZp+k6+9Hq4b6MBXXOdb56yi8kG?=
- =?us-ascii?Q?gTf4tU3hzYSemap8l7/+Htk1TXIOP5IHFU3wVfBde4zFUfHfPUO1RdP1Nip+?=
- =?us-ascii?Q?+8qXYtxRkHTbmOL0GIOdUeeqKGVNVAGdDmUBUJfoT9baibmR6Gf5XlaDhAUx?=
- =?us-ascii?Q?Yn5z3RD5BuN/u+WgTeQ3PTjMfSpGvn7MxEJ6ePgvFPXzcVaClf/sNwHfSksR?=
- =?us-ascii?Q?62vF0KNwCll38ld711yJUjGyYpWPGZZmloX75URjbew5CpSYOFFa77ETvlTk?=
- =?us-ascii?Q?k1jZnU0mGJYPaecvG2ntPOr7DSEt+81Nt+51eGPZUqqBCh962a/S3r3bWOLr?=
- =?us-ascii?Q?saRJxJWPoaBAZpULiQ8MWb7O2c+0y4TiCJBJvXAzD6147a2P1b/LMN/zu/P7?=
- =?us-ascii?Q?3HVc8UwhHCmhfZGNH3yfOpDw1SzhRZpHRTbD0Bg1p9NFScAINuSRmokyOdEx?=
- =?us-ascii?Q?Hca9KS5AfJZT3GiMq32r14MB2EK9qLSgZ5ktsThDgTefvXcs6cHJSuQFXiyZ?=
- =?us-ascii?Q?hMCgK3QfNoefaV/gNeltc0qDIYh3ah4Lqy5FwpcEkYk3orWj/mNv3gfi9csY?=
- =?us-ascii?Q?EN0Gj3lzwP4gmUrJxb4ca8/I8yitTQGnm+VZXR4elIgIVLinJtFy8xw+rRiC?=
- =?us-ascii?Q?dHMvNsYPBHJQ3czp3LjOILHvQ3WzSULGy3I7?=
-X-Forefront-Antispam-Report:
-	CIP:222.71.101.198;CTRY:CN;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:smtprelay.cixcomputing.com;PTR:InfoDomainNonexistent;CAT:NONE;SFS:(13230040)(36860700013)(82310400026)(1800799024)(376014)(7416014)(7053199007);DIR:OUT;SFP:1102;
-X-OriginatorOrg: cixtech.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 30 Jun 2025 04:16:10.3148
- (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: 51ee8e88-a233-464f-8fef-08ddb78cd811
-X-MS-Exchange-CrossTenant-Id: 0409f77a-e53d-4d23-943e-ccade7cb4811
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=0409f77a-e53d-4d23-943e-ccade7cb4811;Ip=[222.71.101.198];Helo=[smtprelay.cixcomputing.com]
-X-MS-Exchange-CrossTenant-AuthSource:
-	SG2PEPF000B66CE.apcprd03.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Anonymous
-X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: TYZPR06MB6281
+References: <20250411003827.782544-1-iuncuim@gmail.com> <20250411003827.782544-5-iuncuim@gmail.com>
+In-Reply-To: <20250411003827.782544-5-iuncuim@gmail.com>
+Reply-To: wens@csie.org
+From: Chen-Yu Tsai <wens@csie.org>
+Date: Mon, 30 Jun 2025 12:32:33 +0800
+X-Gmail-Original-Message-ID: <CAGb2v659nQit-cOsr6q+ACO2MJ+c6RyfBWVg7iP_u1DO4fXBHQ@mail.gmail.com>
+X-Gm-Features: Ac12FXycZ4eBZnw1-9h5Z5_HZw9HoRSOqmeNCAZOYMw7KeNLsUjQ12gZN6IqRgQ
+Message-ID: <CAGb2v659nQit-cOsr6q+ACO2MJ+c6RyfBWVg7iP_u1DO4fXBHQ@mail.gmail.com>
+Subject: Re: [PATCH 4/6] arm64: dts: allwinner: A523: Add SID controller node
+To: iuncuim <iuncuim@gmail.com>
+Cc: Vasily Khoruzhick <anarsoul@gmail.com>, Yangtao Li <tiny.windzz@gmail.com>, 
+	Jernej Skrabec <jernej.skrabec@gmail.com>, Samuel Holland <samuel@sholland.org>, 
+	Andre Przywara <andre.przywara@arm.com>, "Rafael J . Wysocki" <rafael@kernel.org>, 
+	Daniel Lezcano <daniel.lezcano@linaro.org>, Zhang Rui <rui.zhang@intel.com>, 
+	Lukasz Luba <lukasz.luba@arm.com>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Philipp Zabel <p.zabel@pengutronix.de>, linux-pm@vger.kernel.org, 
+	devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
+	linux-sunxi@lists.linux.dev, linux-kernel@vger.kernel.org, 
+	Piotr Oniszczuk <piotr.oniszczuk@gmail.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-From: Hans Zhang <hans.zhang@cixtech.com>
+On Fri, Apr 11, 2025 at 8:40=E2=80=AFAM iuncuim <iuncuim@gmail.com> wrote:
+>
+> From: Mikhail Kalashnikov <iuncuim@gmail.com>
+>
+> The SID controller should be compatible with A64 and others SoC with 0x20=
+0
+> offset.
+>
+> Signed-off-by: Mikhail Kalashnikov <iuncuim@gmail.com>
 
-Add PCIe RC support on Orion O6 board.
+Reviewed-by: Chen-Yu Tsai <wens@csie.org>
 
-Signed-off-by: Hans Zhang <hans.zhang@cixtech.com>
-Reviewed-by: Peter Chen <peter.chen@cixtech.com>
-Reviewed-by: Manikandan K Pillai <mpillai@cadence.com>
----
- arch/arm64/boot/dts/cix/sky1-orion-o6.dts | 20 ++++++++++++++++++++
- 1 file changed, 20 insertions(+)
+But this also needs a matching update to the binding.
 
-diff --git a/arch/arm64/boot/dts/cix/sky1-orion-o6.dts b/arch/arm64/boot/dts/cix/sky1-orion-o6.dts
-index d74964d53c3b..44710d54ddad 100644
---- a/arch/arm64/boot/dts/cix/sky1-orion-o6.dts
-+++ b/arch/arm64/boot/dts/cix/sky1-orion-o6.dts
-@@ -37,3 +37,23 @@ linux,cma {
- &uart2 {
- 	status = "okay";
- };
-+
-+&pcie_x8_rc {
-+	status = "okay";
-+};
-+
-+&pcie_x4_rc {
-+	status = "okay";
-+};
-+
-+&pcie_x2_rc {
-+	status = "okay";
-+};
-+
-+&pcie_x1_0_rc {
-+	status = "okay";
-+};
-+
-+&pcie_x1_1_rc {
-+	status = "okay";
-+};
--- 
-2.49.0
-
+> ---
+>  arch/arm64/boot/dts/allwinner/sun55i-a523.dtsi | 7 +++++++
+>  1 file changed, 7 insertions(+)
+>
+> diff --git a/arch/arm64/boot/dts/allwinner/sun55i-a523.dtsi b/arch/arm64/=
+boot/dts/allwinner/sun55i-a523.dtsi
+> index ee485899b..d626612bb 100644
+> --- a/arch/arm64/boot/dts/allwinner/sun55i-a523.dtsi
+> +++ b/arch/arm64/boot/dts/allwinner/sun55i-a523.dtsi
+> @@ -171,6 +171,13 @@ ccu: clock-controller@2001000 {
+>                         #reset-cells =3D <1>;
+>                 };
+>
+> +               sid: efuse@3006000 {
+> +                       compatible =3D "allwinner,sun50i-a523-sid", "allw=
+inner,sun50i-a64-sid";
+> +                       reg =3D <0x03006000 0x1000>;
+> +                       #address-cells =3D <1>;
+> +                       #size-cells =3D <1>;
+> +               };
+> +
+>                 mmc0: mmc@4020000 {
+>                         compatible =3D "allwinner,sun55i-a523-mmc",
+>                                      "allwinner,sun20i-d1-mmc";
+> --
+> 2.49.0
+>
 
