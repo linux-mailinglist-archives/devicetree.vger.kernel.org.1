@@ -1,222 +1,147 @@
-Return-Path: <devicetree+bounces-191206-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-191207-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7B27FAEE6F2
-	for <lists+devicetree@lfdr.de>; Mon, 30 Jun 2025 20:44:45 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id D18CAAEE6F9
+	for <lists+devicetree@lfdr.de>; Mon, 30 Jun 2025 20:48:51 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 9352317D244
-	for <lists+devicetree@lfdr.de>; Mon, 30 Jun 2025 18:44:45 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 720921BC2415
+	for <lists+devicetree@lfdr.de>; Mon, 30 Jun 2025 18:49:07 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 92EFC293B53;
-	Mon, 30 Jun 2025 18:44:42 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 31DB828C2C7;
+	Mon, 30 Jun 2025 18:48:45 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=disroot.org header.i=@disroot.org header.b="LW6K0Q+e"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="MddXT27O"
 X-Original-To: devicetree@vger.kernel.org
-Received: from layka.disroot.org (layka.disroot.org [178.21.23.139])
+Received: from mail-lj1-f179.google.com (mail-lj1-f179.google.com [209.85.208.179])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 008982620F5;
-	Mon, 30 Jun 2025 18:44:38 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=178.21.23.139
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 67838EADC;
+	Mon, 30 Jun 2025 18:48:43 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.179
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1751309082; cv=none; b=gG0w62q3+Bx3MSBW1oyRVwS+u3KYIFmRC0qtrGK6XVbh5DN0xGSzntgWDsbrDCUApP57AtG5oCkTo7ca3ECUXwxf0aCfHXrzxvgn97ouMuczeVsUhTble7vWgy+s3xxbaI4J6iP+UEX6DJS31jGmNt8wMznLGgmRb2FTzBKiEJ0=
+	t=1751309325; cv=none; b=LScV4a3z82EWpHNOfTdy2izfHjnGJEDmsKivREjXTADqlA3FH+ntlCFbqAkaFtyUeiOK6g6ABzUwZM5POKFTZwvg8uLx25JgncMb9dAngrabv+TeYCJnL02chAAjfRtsWvUaoPvFYlZkKic+l+sF86hx7OHqbcqJPB+e7AWx1Rw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1751309082; c=relaxed/simple;
-	bh=BNFWjlM83+wcoO+zJSYBmQXLGTNTc67RpeUwcFQhdU4=;
-	h=MIME-Version:Date:From:To:Cc:Subject:In-Reply-To:References:
-	 Message-ID:Content-Type; b=K+kt+U6shL+NfpOh5aEKVYPwBqBSl2LIh1Kt1RIL04PYTaUkG1a2KDB5NO7VJBw38JbFFNC6qBuW86/RUCbiAMEXrD1Gx55LIcvrownF0XJjQDIuMbRct7rGcrHzML/xJ+IMvHE1FSvUrE3QKgdanhFEPWkn9z9JRS2Lqy33eG4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=disroot.org; spf=pass smtp.mailfrom=disroot.org; dkim=pass (2048-bit key) header.d=disroot.org header.i=@disroot.org header.b=LW6K0Q+e; arc=none smtp.client-ip=178.21.23.139
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=disroot.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=disroot.org
-Received: from mail01.disroot.lan (localhost [127.0.0.1])
-	by disroot.org (Postfix) with ESMTP id 04F592061D;
-	Mon, 30 Jun 2025 20:44:36 +0200 (CEST)
-X-Virus-Scanned: SPAM Filter at disroot.org
-Received: from layka.disroot.org ([127.0.0.1])
- by localhost (disroot.org [127.0.0.1]) (amavis, port 10024) with ESMTP
- id OZkhyB3FWL8e; Mon, 30 Jun 2025 20:44:34 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=disroot.org; s=mail;
-	t=1751309074; bh=BNFWjlM83+wcoO+zJSYBmQXLGTNTc67RpeUwcFQhdU4=;
-	h=Date:From:To:Cc:Subject:In-Reply-To:References;
-	b=LW6K0Q+eEJWWZqtuX2/Ong2KAgSekLogAKyAINQBmoE+pEqt+fEi+Hkb5aWe5XYli
-	 tqjjenxUsGb81afnJR6Kl1sxS8rFu+tExL0IBosOWz6c1nlVnsGpu8/hi2DRGbcjUH
-	 rrVs5IhvgrAAVuhr5tcOjqVlezmcKJQvN8gndQ3UdGhqo/+OVs7Vr4NzwzC8tGybGw
-	 +hG1WvOFdkJzPvysSCZ+8cWcuGafHMEVJPPRXFGQoXfi5SN3wQGzTVfKuHK6QOSot+
-	 +aFviXNBzZEc+npZQHOu/Dt4VE8fGTBBgnVG2SRD43BTjLC1ycR+gtZpRdJFzyRVt+
-	 AqBBvZ9R4OTsg==
+	s=arc-20240116; t=1751309325; c=relaxed/simple;
+	bh=ToP/U84M4tPmiRzistciKSynhFiA4hrBw/o/degwK7g=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=nFAYccJFSy42t5dyvmUmsA9ioyFAvsEsaTpa1usFa1OW7E2/HIEYYnVaKHG4IJ5t14lT4RfroUi6AKnjQQpcO/TMhNO01Za4hmmtbg91y+7Iu+x56eIitkyYAi6+k4r1U/7MWLFsZBQRR6iH+OFOK6JUpM95p4ylou5DvqRHg6g=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=MddXT27O; arc=none smtp.client-ip=209.85.208.179
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-lj1-f179.google.com with SMTP id 38308e7fff4ca-32b435ef653so38842021fa.2;
+        Mon, 30 Jun 2025 11:48:43 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1751309321; x=1751914121; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=ToP/U84M4tPmiRzistciKSynhFiA4hrBw/o/degwK7g=;
+        b=MddXT27OmOnOx3DzTeZ9km8XvVELU7NjXfcFMnYyQ0ZqgHwJPLOobohPd94QJH/Oqs
+         S2lUrpHL9up/QSTN8DkTbhdq0h4TRRuLpdvbYrT7ZldV1mdX7KLRu7cjjvw0tzpy9PSf
+         aM7ZZ3mxvsD/pvvdx8y53blMKbIhIJziVB2i7ScxPILJSnvbFE/the66OYY+5pSKWydj
+         TMSt2X7CggwdDOvC0DZcWgkgnR3dNCqOpHcHeLNoAlBRZILHFF8mUuzIks57+qJdTu2T
+         yoAO/P1O8D97BHAX9qMEnHCYEdptO0drpBoynhwsdIpbq5YdiaSZ22CLrM3lo7elg0BY
+         diLQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1751309321; x=1751914121;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=ToP/U84M4tPmiRzistciKSynhFiA4hrBw/o/degwK7g=;
+        b=jYaX6AirjhfQaOvX6J7rWAUXnPnWq+KIpH9DL3+tgV5YkCc/O7YmsSHtd/ToIBK+CE
+         1zfokxjF1LEmkkp5yQvINZbJGjkWjemYNM+dqp97doPiFt9WgBgKxA29kPhPEOw+/A2u
+         nC3iMf25ugB+f8TqgR53n4Icl78qxHn3iQ4+YdW09fwP5G6Sn2fOk1O8oGMDRE8KAU/V
+         BLe8MOAis3m7XgUYYS/vwSVbBov90l4FpKW0iHijQDWlu0i96kpo3LxvPAuiEQchPSWc
+         ycJ9v5gYGKQYRd+DV5Fu3CJTMvVwOjDuIA5OWEcnowx9RvTYpqGRHI7qsE+qH2oYAf8h
+         JUZg==
+X-Forwarded-Encrypted: i=1; AJvYcCV/jKK35EhkcgBc906e3dsOcC1TjyV+/lQgAMUxHVAI5U4ykmLBllA95FJt7Ek65RAsO/IBqhSK9R9H@vger.kernel.org, AJvYcCV7IzGYgxw5zi03Vvy125oo6YhVfzkcHVgW4aHVrQLaQOb9dyNIdIK5TA/O7iJ/tiET0TOeFaHmgA25sqM=@vger.kernel.org, AJvYcCVUD/EIrwZ1zBk4VDlljVOBC6MrpFfDGiuNpI09TgTiuvjKItW+gNeZv7TDDxaJD7WHICezA83P5J1nZ6sQ@vger.kernel.org, AJvYcCXA0K06nZKOuRl9gq//v9bW4dy2A3RiWxDyS3a4FCLIoprbsxt305tAdUk/hUL7mSQcCEtxdVD6wK8X83BVnvzB@vger.kernel.org
+X-Gm-Message-State: AOJu0YxzXMRiOoeK0BKHVEc5deBRcq2FdE9/Q1V78mzst++aVJTLslem
+	jfi07wAQDGJlo/RJBSOE2ZZ25H9CZ14qLlAIFIt5RnniXoR2yRuewpefwu37fQy7C9HC3LaXsuC
+	FzfViG5YkucLxH2zOdJqz+ZWerUxfNdU=
+X-Gm-Gg: ASbGncupUsR4Lzqi/o3rB/Nh/PaCUN732rDDWx7E+s7uzU+sxGiQFf26S7/tgGM1oeY
+	cD7XOcuHcETJ3YLPextgH+d9FAuRmszB316+Sinv0kucR/yeoC+ge++Onx6KfydYbIatN3RL5SU
+	93DsduCfdexFykYVdpNSVKCAQEA752Yy6RMOtvkrs8b2s=
+X-Google-Smtp-Source: AGHT+IGeczsPvpUHNYJkahdVQPDCiIYak081g4bCvssLiGVVTSMkiKZQZaiM5vZREuWyJm8R1otb6xq3m1Et/b/nWD0=
+X-Received: by 2002:a05:6512:696:b0:553:acf9:c430 with SMTP id
+ 2adb3069b0e04-5550b80f9e4mr5130309e87.17.1751309321208; Mon, 30 Jun 2025
+ 11:48:41 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Date: Mon, 30 Jun 2025 18:44:34 +0000
-From: Kaustabh Chakraborty <kauschluss@disroot.org>
-To: Dmitry Torokhov <dmitry.torokhov@gmail.com>
-Cc: Sangwon Jee <jeesw@melfas.com>, Rob Herring <robh@kernel.org>, Krzysztof
- Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, Henrik
- Rydberg <rydberg@bitmath.org>, linux-input@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH RFC v2 3/5] Input: melfas-mip4 - add support for touchkey
- input events
-In-Reply-To: <ugwy3adqmxodsyhohpdv337lvbxpdzhgtojpbtrykkuyf2eivl@sl36qsvcju6v>
-References: <20250613-mip4-touchkey-v2-0-9bbbe14c016d@disroot.org>
- <20250613-mip4-touchkey-v2-3-9bbbe14c016d@disroot.org>
- <ugwy3adqmxodsyhohpdv337lvbxpdzhgtojpbtrykkuyf2eivl@sl36qsvcju6v>
-Message-ID: <e480fbc14bae5e2e24f2fec3d7be308c@disroot.org>
-X-Sender: kauschluss@disroot.org
-Content-Type: text/plain; charset=US-ASCII;
- format=flowed
-Content-Transfer-Encoding: 7bit
+References: <20250406-tegra-pstore-v1-1-bf5b57f12293@gmail.com>
+ <6920a557-9181-4c9c-98f4-a9be4e796a13@kernel.org> <CALHNRZ--to8B3zhg6zV90siL0x78BAjhS04DgfLwmnXEiOMe3g@mail.gmail.com>
+ <83d17d6e-41c2-4729-94e6-5ccf480c766d@kernel.org> <CALHNRZ8+vnXrx7xw=qjpB34MX32hW_m7k+=CdePJpErBPPzv-g@mail.gmail.com>
+ <53c943dc-5ea6-456b-a289-08212fc01d5d@kernel.org> <CALHNRZ8+X61YzQ_gYRkuAZrz2XFiZK36GDgk=801+384y2KnOQ@mail.gmail.com>
+ <CALHNRZ-YZg3cKzRBMGaxRpejFMLSpOOz-FPQEaQVXFpFao40WA@mail.gmail.com>
+ <CALHNRZ-jxC5PXqiG4tNShybaU9gZjTz4YT+VXgfQFNQ-Ox7crg@mail.gmail.com>
+ <yczvbwanjadyfife3hnp2khxkgs77pokypqkxotlldjskshskt@xckrkfucg6xx>
+ <CALHNRZ--ZUxqrXHEnizXC8ddHC5LFA10oH+CgQmOcTt+cJ1CWw@mail.gmail.com> <6abdc70c-0def-4cf1-b1f4-ea9bdde4fcb5@kernel.org>
+In-Reply-To: <6abdc70c-0def-4cf1-b1f4-ea9bdde4fcb5@kernel.org>
+From: Aaron Kling <webgeek1234@gmail.com>
+Date: Mon, 30 Jun 2025 13:48:28 -0500
+X-Gm-Features: Ac12FXz9GaCxpRqa1IGTzU_rAgEzeMuIknqtBHmq_kTFz8jp4l8ltGiUCm8-kSo
+Message-ID: <CALHNRZ8=ikQe4L6h9VHpTGm+OFU0iZA_OV6LUP6jDUySBv4+Lg@mail.gmail.com>
+Subject: Re: [PATCH] arm64: tegra: Enable ramoops on Tegra210 and newer
+To: Krzysztof Kozlowski <krzk@kernel.org>
+Cc: Thierry Reding <thierry.reding@gmail.com>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Jonathan Hunter <jonathanh@nvidia.com>, Kees Cook <kees@kernel.org>, Tony Luck <tony.luck@intel.com>, 
+	"Guilherme G. Piccoli" <gpiccoli@igalia.com>, devicetree@vger.kernel.org, 
+	linux-tegra@vger.kernel.org, linux-kernel@vger.kernel.org, 
+	linux-hardening@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-On 2025-06-29 05:12, Dmitry Torokhov wrote:
-> Hi Kaustabh,
-> 
-> On Fri, Jun 13, 2025 at 01:11:35AM +0530, Kaustabh Chakraborty wrote:
->> The MIP4 protocol are supposed to support touchscreens, touchkeys, and
->> combo-devices. The driver handles touchscreen events, but touchkey
->> events are unimplemented.
-> 
-> I am confused, because I clearly see the driver parsing and forwarding
-> key events. It appears that this patch adds the ability to set the
-> keymap via device tree instead of relying on userspace to load it.
+On Thu, May 29, 2025 at 3:53=E2=80=AFAM Krzysztof Kozlowski <krzk@kernel.or=
+g> wrote:
+>
+> On 28/05/2025 19:35, Aaron Kling wrote:
+> >>>>
+> >>>> Friendly reminder to the Tegra maintainers about this question.
+> >>>>
+> >>> In lieu of a response from the Tegra subsystem maintainers, I can onl=
+y
+> >>> hazard an assumption, Krzysztof. I presume the pstore carveout is
+> >>> bootloader controlled because various stages of the boot stack can
+> >>> dynamically allocate memory, and this became bootloader controlled to
+> >>> prevent any of those from overwriting pstore. I worry about hardcodin=
+g
+> >>> an address in the kernel dt, then finding out later that there's an
+> >>> in-use configuration that overwrites or corrupts that section of ram
+> >>> during boot. What are your thoughts on this? And is there any way for
+> >>> this patch to proceed?
+> >>
+> >> I haven't been able to find anything out about this yet. Generally it'=
+s
+> >> difficult to get the bootloaders updated for these devices. Tegra194 a=
+nd
+> >> Tegra234 may be new enough to make an update eventually go into a
+> >> release, but for Tegra186 and older, I honestly wouldn't hold my
+> >> breath.
+> >>
+> >> Thierry
+> >
+> > Krzysztof, based on this response, is there any way or form that the
+> > Tegra186 part of this could be submitted? I can drop the newer
+> > platforms from this patch if Thierry can get a response to his other
+> > reply about how the bootloader could conform.
+> >
+> I don't NAK it. Eventually it is up to platform maintainer if they
+> accept known DTC warnings.
+>
+> Best regards,
+> Krzysztof
 
-Yeah, you're correct. Though I'm not sure this is the correct way to do
-what I'm trying to do. What I want is a driver which will drive both
-touchscreen and pure-touchkey devices.
+If the decision is up the the tegra maintainers, then Thierry, what's
+your thoughts now? What is in this patch should be compatible with
+existing l4t and android bootloaders. But it does add a few new dtb
+check lines.
 
-I feel like a separate driver is how it should be done, although the
-protocol is same and it can be done here...
-
-I had tried to get some input (hence the RFC) about this but I couldn't.
-Either my wording wasn't clear or I haven't been able to communicate it
-properly.
-
-Sorry for bringing this out of the blue in a thread.
-
-> 
-> Please adjust the patch description.
-> 
->> 
->> Implement them. If compiled with devicetree support, the driver 
->> attempts
->> to retrieve keycodes from a property named "linux,keycodes".
->> 
->> Signed-off-by: Kaustabh Chakraborty <kauschluss@disroot.org>
->> ---
->>  drivers/input/touchscreen/melfas_mip4.c | 32 
->> ++++++++++++++++++++++++++++++--
->>  1 file changed, 30 insertions(+), 2 deletions(-)
->> 
->> diff --git a/drivers/input/touchscreen/melfas_mip4.c 
->> b/drivers/input/touchscreen/melfas_mip4.c
->> index 
->> a6946e3d8376d7e9b4c26f4194409e0ba78bb075..061ac353bc7a2e28f17581411af81f35c89733a1 
->> 100644
->> --- a/drivers/input/touchscreen/melfas_mip4.c
->> +++ b/drivers/input/touchscreen/melfas_mip4.c
->> @@ -169,7 +169,7 @@ struct mip4_ts {
->>  	unsigned int event_format;
->> 
->>  	unsigned int key_num;
->> -	unsigned short key_code[MIP4_MAX_KEYS];
->> +	unsigned int key_code[MIP4_MAX_KEYS];
->> 
->>  	bool wake_irq_enabled;
->> 
->> @@ -337,8 +337,13 @@ static int mip4_query_device(struct mip4_ts *ts)
->>  			ts->ppm_x, ts->ppm_y);
->> 
->>  		/* Key ts */
->> -		if (ts->node_key > 0)
->> +		if (ts->node_key > MIP4_MAX_KEYS) {
->> +			dev_warn(&ts->client->dev,
->> +				"Too many keys (%u) found\n", ts->node_key);
->> +			ts->key_num = MIP4_MAX_KEYS;
->> +		} else {
->>  			ts->key_num = ts->node_key;
->> +		}
-> 
-> I believe this is a bugfix. Please extract it into a separate patch.
-
-Agree, will do so.
-
-> 
->>  	}
->> 
->>  	/* Protocol */
->> @@ -1080,6 +1085,7 @@ static int mip4_flash_fw(struct mip4_ts *ts,
->>  			 const u8 *fw_data, u32 fw_size, u32 fw_offset)
->>  {
->>  	struct i2c_client *client = ts->client;
->> +	unsigned int i;
->>  	int offset;
->>  	u16 buf_addr;
->>  	int error, error2;
->> @@ -1149,6 +1155,11 @@ static int mip4_flash_fw(struct mip4_ts *ts,
->>  	input_abs_set_res(ts->input, ABS_X, ts->ppm_x);
->>  	input_abs_set_res(ts->input, ABS_Y, ts->ppm_y);
->> 
->> +	for (i = 0; i < ts->key_num; i++) {
->> +		if (ts->key_code[i])
->> +			input_set_capability(ts->input, EV_KEY, ts->key_code[i]);
->> +	}
->> +
->>  	return error ? error : 0;
->>  }
->> 
->> @@ -1425,6 +1436,7 @@ static int mip4_probe(struct i2c_client *client)
->>  {
->>  	struct mip4_ts *ts;
->>  	struct input_dev *input;
->> +	unsigned int i;
->>  	int error;
->> 
->>  	if (!i2c_check_functionality(client->adapter, I2C_FUNC_I2C)) {
->> @@ -1471,6 +1483,17 @@ static int mip4_probe(struct i2c_client 
->> *client)
->> 
->>  	input_set_drvdata(input, ts);
->> 
->> +#ifdef CONFIG_OF
->> +	error = of_property_read_u32_array(client->dev.of_node, 
->> "linux,keycodes",
->> +					   ts->key_code, ts->key_num);
->> +	if (error && ts->key_num) {
->> +		dev_warn(&client->dev,
->> +			 "Failed to get codes for %u supported keys", ts->key_num);
->> +		/* Disable touchkey support */
->> +		ts->key_num = 0;
->> +	}
-> 
-> Please use generic device properties (device_property_read_u32_array())
-> and drop the dependency on OF.
-> 
->> +#endif
->> +
->>  	input->keycode = ts->key_code;
->>  	input->keycodesize = sizeof(*ts->key_code);
->>  	input->keycodemax = ts->key_num;
->> @@ -1491,6 +1514,11 @@ static int mip4_probe(struct i2c_client 
->> *client)
->>  	if (error)
->>  		return error;
->> 
->> +	for (i = 0; i < ts->key_num; i++) {
->> +		if (ts->key_code[i])
->> +			input_set_capability(input, EV_KEY, ts->key_code[i]);
->> +	}
->> +
->>  	i2c_set_clientdata(client, ts);
->> 
->>  	error = devm_request_threaded_irq(&client->dev, client->irq,
->> 
-> 
-> Thanks.
-> 
-> --
-> Dmitry
+Aaron
 
