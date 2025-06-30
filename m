@@ -1,48 +1,56 @@
-Return-Path: <devicetree+bounces-190936-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-190956-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3A087AED43A
-	for <lists+devicetree@lfdr.de>; Mon, 30 Jun 2025 08:08:02 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id B357BAED559
+	for <lists+devicetree@lfdr.de>; Mon, 30 Jun 2025 09:13:13 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id A8DD516F8EF
-	for <lists+devicetree@lfdr.de>; Mon, 30 Jun 2025 06:07:57 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id E8FC8166F26
+	for <lists+devicetree@lfdr.de>; Mon, 30 Jun 2025 07:13:13 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id DCC036BFC0;
-	Mon, 30 Jun 2025 06:07:51 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9F12B211706;
+	Mon, 30 Jun 2025 07:13:08 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="ge5RcT+7"
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=kapsi.fi header.i=@kapsi.fi header.b="NFaZ1cW4"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mail.kapsi.fi (mail-auth.kapsi.fi [91.232.154.24])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AEAEF1FDD;
-	Mon, 30 Jun 2025 06:07:51 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7284478F24;
+	Mon, 30 Jun 2025 07:13:03 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=91.232.154.24
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1751263671; cv=none; b=HCcgYOq+DachLMTLbf/VY8YkXr79rEDznUZtF4v72JNsWnF9h64VdZcPzvElzGeEJC2cwI6e4e+Ys9wuaLGGoMWnpy5noLRKn6j7VkfAsNUz2xy11Tk18SEIOGjkj+8nH5ycMCpeJIZvOieJTi8fFtdxIeVQA7/9c3aI0xULZ5A=
+	t=1751267588; cv=none; b=IMUUa9EZHgLFF/fKzJnHj0LOzmmEHJwKc/6zOfsZjUUxWIqzn+xnI1CGfIWdZLG25VYU4nbYggm8sJZLvD8yrgKLw3V0qz9HnyNKnHNCo9aNQQWu2n6FVmlTDX47/hxxdd4Qf9xAjwCztr7uB0IpLY+5O+51GzAR260tQNu1xdo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1751263671; c=relaxed/simple;
-	bh=aEv5jxMcMMPvF2344nlFJr5X8UncA9lQIaofkJ840+o=;
+	s=arc-20240116; t=1751267588; c=relaxed/simple;
+	bh=a0mOBBVvKHJ/p2pgWeUj2C0zQvdkOKWWtMUYv9nVwY4=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=dHoYWDCZbLGZhawPPXc4TuLtun+zX2N1zSPSSmph63h860JQ/n8PPb1A07T2NKeo9sPHGn+A5th3LBYRv+pghSEZOJ8X5YkeNKF/jda5vWLmFMCvYMr0kR9mIx1RBDllnD5zvHGQLh+wkPv75yExLZQifghUDe2q+r7XE5/wfbg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=ge5RcT+7; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 65C98C4CEEB;
-	Mon, 30 Jun 2025 06:07:46 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1751263671;
-	bh=aEv5jxMcMMPvF2344nlFJr5X8UncA9lQIaofkJ840+o=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=ge5RcT+7LVEV+w+YASQpYZBAInTQ+hjo8EHvQNwzcHJ80NsZbF7W79pZSj4PcL4sI
-	 KIgAydVShhf7BkvwUNz4cWMiuGkNSG+OxwM6xgGi2BO0OXqZDDH+8JQ3Dgox6dSESD
-	 U+5pjf5ymOJ4hDyiOVdLp5maB6TmYAmGvoaBQNTuLHc5Q5Nu///lgIH8EurzoHQv42
-	 vS4i5tTgDtD9Lwulb/fKn5RrW3eO1Eq7tx+nXTrlZjUpS9AitxKFXM1PHxl6+LWs77
-	 ZnYZ5RjkiLbiQwR5nf7zDxZAC84/VcS1poG+FsTO73nVZF9COtLPl4T3S1lIb8DLc4
-	 mGWZEe/P2VdvA==
-Message-ID: <491ec8dd-8ca5-45bb-b5f4-dfd08a10e8de@kernel.org>
-Date: Mon, 30 Jun 2025 08:07:43 +0200
+	 In-Reply-To:Content-Type; b=h1XylhgwfYHlyqv+LQ1QvQAVh9sgm2IaKKHe83ZYX3oPA3rVdrUpW48Jx103UnNMce7iItsykKCZtiDRmtKJx9vlHVctpf0So4yxqkHmhEZuSBSxpdMdM8wuOA97xGIE87iRlDiX5/HogeVvlpGdJfg6dwqAsk2IMQ4fEKBxy/Q=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=kapsi.fi; spf=pass smtp.mailfrom=kapsi.fi; dkim=pass (2048-bit key) header.d=kapsi.fi header.i=@kapsi.fi header.b=NFaZ1cW4; arc=none smtp.client-ip=91.232.154.24
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=kapsi.fi
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=kapsi.fi
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=kapsi.fi;
+	s=20161220; h=Content-Transfer-Encoding:Content-Type:In-Reply-To:From:
+	References:Cc:To:Subject:MIME-Version:Date:Message-ID:Sender:Reply-To:
+	Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
+	Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
+	List-Subscribe:List-Post:List-Owner:List-Archive;
+	bh=hdpPcH72q71eFKMVk37M5XbLZ4kKadKnisDL++Ydm+w=; b=NFaZ1cW4W6ByCiKmTde1ZePKCJ
+	43LK9PnLdTN7kpwb4rGLfvELiphWVDL65ANp8TCqExFHc7WCEd1957r/VbyI8OZ3WgYq/RU+YNqte
+	i7uQnJAFDQP3LlicQDfrWk3wyTlCqrYtpsQJqd8HDS+8aXmHjzvcbz1WJuPis4H0DYaOZvJ61d04g
+	eA3mrIOQ+N1QhP00S8JaISLfkBa+u1QqZ9nw0YqSStp5g50tHZhWQNdC6MYCpg6zB0Yy6UmoHNnRJ
+	lmEehZBIc/JPQle0y7hZ4qVMPXAgdX+7DxYDQM0lwZQDyhiN1Nd1Q1AjsrJnCzJebhwJWwF0ExYxk
+	1GwrpFoQ==;
+Received: from [2404:7a80:b960:1a00:5eaa:b33c:a197:a90f]
+	by mail.kapsi.fi with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256
+	(Exim 4.96)
+	(envelope-from <cyndis@kapsi.fi>)
+	id 1uW7lC-00A4zL-2n;
+	Mon, 30 Jun 2025 09:12:59 +0300
+Message-ID: <0bed2152-8bf7-4091-8c2d-126f1ec3be5b@kapsi.fi>
+Date: Mon, 30 Jun 2025 15:11:34 +0900
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,77 +58,64 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 5/8] dt-bindings: vendor-prefixes: Add Wuxi i-Core
- Electronics
-To: =?UTF-8?Q?Jean-Fran=C3=A7ois_Lessard?= <jefflessard3@gmail.com>,
- Andy Shevchenko <andy@kernel.org>, Rob Herring <robh@kernel.org>,
+Subject: Re: [PATCH v2 1/3] drm/tegra: Add NVJPG driver
+To: Diogo Ivo <diogo.ivo@tecnico.ulisboa.pt>,
+ Thierry Reding <thierry.reding@gmail.com>,
+ Mikko Perttunen <mperttunen@nvidia.com>, David Airlie <airlied@gmail.com>,
+ Simona Vetter <simona@ffwll.ch>, Jonathan Hunter <jonathanh@nvidia.com>,
+ Philipp Zabel <p.zabel@pengutronix.de>, Rob Herring <robh@kernel.org>,
  Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>
-Cc: Geert Uytterhoeven <geert@linux-m68k.org>, devicetree@vger.kernel.org,
- linux-leds@vger.kernel.org, linux-kernel@vger.kernel.org,
- =?UTF-8?Q?Andreas_F=C3=A4rber?= <afaerber@suse.de>,
- Boris Gjenero <boris.gjenero@gmail.com>,
- Christian Hewitt <christianshewitt@gmail.com>,
- Heiner Kallweit <hkallweit1@gmail.com>,
- Paolo Sabatino <paolo.sabatino@gmail.com>
-References: <20250629130002.49842-1-jefflessard3@gmail.com>
- <20250629130002.49842-7-jefflessard3@gmail.com>
-From: Krzysztof Kozlowski <krzk@kernel.org>
+Cc: linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org,
+ linux-tegra@vger.kernel.org, devicetree@vger.kernel.org
+References: <20250611-diogo-nvjpg-v2-0-01f8c76ea90f@tecnico.ulisboa.pt>
+ <20250611-diogo-nvjpg-v2-1-01f8c76ea90f@tecnico.ulisboa.pt>
 Content-Language: en-US
-Autocrypt: addr=krzk@kernel.org; keydata=
- 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 a/A=
-In-Reply-To: <20250629130002.49842-7-jefflessard3@gmail.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+From: Mikko Perttunen <cyndis@kapsi.fi>
+In-Reply-To: <20250611-diogo-nvjpg-v2-1-01f8c76ea90f@tecnico.ulisboa.pt>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-SA-Exim-Connect-IP: 2404:7a80:b960:1a00:5eaa:b33c:a197:a90f
+X-SA-Exim-Mail-From: cyndis@kapsi.fi
+X-SA-Exim-Scanned: No (on mail.kapsi.fi); SAEximRunCond expanded to false
 
-On 29/06/2025 14:59, Jean-François Lessard wrote:
-> Assign vendor prefix "icore", based on their domain name.
-> 
-> Signed-off-by: Jean-François Lessard <jefflessard3@gmail.com>
-> ---
+On 6/11/25 9:18 PM, Diogo Ivo wrote:
+> ...
+> +static int nvjpg_load_falcon_firmware(struct nvjpg *nvjpg)
+> +{
+> +	struct host1x_client *client = &nvjpg->client.base;
+> +	struct tegra_drm *tegra = nvjpg->client.drm;
+> +	dma_addr_t iova;
+> +	size_t size;
+> +	void *virt;
+> +	int err;
+> +
+> +	if (nvjpg->falcon.firmware.virt)
+> +		return 0;
+> +
+> +	err = falcon_read_firmware(&nvjpg->falcon, nvjpg->config->firmware);
+> +	if (err < 0)
+> +		return err;
+> +
+> +	size = nvjpg->falcon.firmware.size;
+> +
+> +	if (!client->group) {
+> +		virt = dma_alloc_coherent(nvjpg->dev, size, &iova, GFP_KERNEL);
+> +
+> +		err = dma_mapping_error(nvjpg->dev, iova);
+> +		if (err < 0)
+> +			return err;
 
-These 4 vendor prefix changes are one patch.
+This needs to check the return value of dma_alloc_coherent. Looks like 
+this was fixed in vic.c by Robin 
+(5566174cb10a5167d59b0793871cab7990b149b8) but the issue persisted into 
+nvdec.c in parallel, so it needs to be fixed there as well. I can send 
+out the fix for nvdec.c.
 
-Best regards,
-Krzysztof
+With that fixed,
+
+Acked-by: Mikko Perttunen <mperttunen@nvidia.com>
+
+Thanks!
+Mikko
+
 
