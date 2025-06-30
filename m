@@ -1,177 +1,143 @@
-Return-Path: <devicetree+bounces-191185-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-191186-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 165C2AEE4CD
-	for <lists+devicetree@lfdr.de>; Mon, 30 Jun 2025 18:41:48 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 620DEAEE4E3
+	for <lists+devicetree@lfdr.de>; Mon, 30 Jun 2025 18:44:53 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id B7E3F18934A8
-	for <lists+devicetree@lfdr.de>; Mon, 30 Jun 2025 16:42:03 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 3B76D7A8559
+	for <lists+devicetree@lfdr.de>; Mon, 30 Jun 2025 16:43:28 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4450D28DEEE;
-	Mon, 30 Jun 2025 16:41:41 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A04C92900AA;
+	Mon, 30 Jun 2025 16:44:45 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="XWA673Ws"
+	dkim=pass (1024-bit key) header.d=collabora.com header.i=benjamin.gaignard@collabora.com header.b="GrnR8y0h"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from sender4-pp-f112.zoho.com (sender4-pp-f112.zoho.com [136.143.188.112])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1629078F2E;
-	Mon, 30 Jun 2025 16:41:40 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1751301701; cv=none; b=eJfghxkWlGV4fLXSVA3nS8oPLOPDIgfaNMJPKyRzk8xNUOoz+as1aXf2sX4ZVpWgo0uTGDdMns3yFH4RffHx8bHfR62Hfz1Zz8D+dRPxRCjuAmjN+s9qJjlZIXu1/alQSN3VD6l4MZPa3+JNm5GbPN+dTsHsTNmzwH4RKvaDbl4=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1751301701; c=relaxed/simple;
-	bh=+fzJq5ixdgdDsnkL9zpCdV4dSmtyoicJ975neBoN5dc=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=bAbbIbw+xvGVHT6oxT7XliR9qryv0SzqRxF+qbSP+eBLUKFpLr2pNz7+IE66vYkegckiBGrTBWdibDS0cgbYkju5kMklUfqyhycaj+myWYnurta18JEq+UqSf0ErUP0HxWufwJQkwJ5j9JO4hSIcmFQcMtjkfL0gdN5GsdQX2Qo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=XWA673Ws; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 49E12C4CEE3;
-	Mon, 30 Jun 2025 16:41:40 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1751301700;
-	bh=+fzJq5ixdgdDsnkL9zpCdV4dSmtyoicJ975neBoN5dc=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=XWA673WsZi/9juIWGGOo2N0P7u/VnXFY70GIwq4ILqSo0txSgrnfrhwvMbi5EuxIg
-	 HjEW2c/DnrBbLWdxkAOamPc82T8aeofo/G7Ne4oVWi4yLOFWVb2WkxwXmwVfrqGk8K
-	 6i5rj1Vi8eNFPPn5u3ilSoIxOdZUluLG4AU/WmrLd63syv+OsN4nQifQuav+99BfZ1
-	 3+66aCbMtVWr2QiS8fpTGd/FujkAd01dgEg8gZ8vbMP5hkYcBwFDzfd4h7U5CO2KFF
-	 yKI925sbdHiKwYMV+VnQVcDc/CvZuPufZ9qilMn2d+7oGQCpA9tgFJ15Jt5oW4LvUv
-	 InjlAXiwpavfA==
-Date: Mon, 30 Jun 2025 18:41:38 +0200
-From: Maxime Ripard <mripard@kernel.org>
-To: Rob Herring <robh@kernel.org>
-Cc: Saravana Kannan <saravanak@google.com>, 
-	Sumit Semwal <sumit.semwal@linaro.org>, Benjamin Gaignard <benjamin.gaignard@collabora.com>, 
-	Brian Starkey <Brian.Starkey@arm.com>, John Stultz <jstultz@google.com>, 
-	"T.J. Mercier" <tjmercier@google.com>, Christian =?utf-8?B?S8O2bmln?= <christian.koenig@amd.com>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, Andrew Davis <afd@ti.com>, 
-	Jared Kangas <jkangas@redhat.com>, Mattijs Korpershoek <mkorpershoek@kernel.org>, 
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, linux-media@vger.kernel.org, 
-	dri-devel@lists.freedesktop.org, linaro-mm-sig@lists.linaro.org
-Subject: Re: [PATCH v5 1/2] dt-bindings: reserved-memory: Introduce
- carved-out memory region binding
-Message-ID: <20250630-attentive-fortunate-turaco-2e36d2@houat>
-References: <20250617-dma-buf-ecc-heap-v5-0-0abdc5863a4f@kernel.org>
- <20250617-dma-buf-ecc-heap-v5-1-0abdc5863a4f@kernel.org>
- <20250627193132.GB4032621-robh@kernel.org>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BECD328F94E;
+	Mon, 30 Jun 2025 16:44:43 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=pass smtp.client-ip=136.143.188.112
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1751301885; cv=pass; b=mziRTddd1DvKNGeak5JOpt187ZGxnR691WXUxt0qYM6FgzyqMkZjfJ0YudLo+/AyYil2qeAWFqyXX/EK2eIKIcB3d2nYY46AY+mBPMTZcp2s6/VvhFqrCSysoBl8i3+E8oPZYXTXfJ3Jplk/NhrgeXen4GzItqaaG84vP1pxwJs=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1751301885; c=relaxed/simple;
+	bh=X+WMHR6KsltwxPV+rL43bY8Z2+VB1DMqHWRlFcMifQA=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=uJ4prU0DtOTuV5+Ir7sEijQxOfwK0WNDAHTeNtNl5iSJVGhnBlNZ9+7F4vRu+zhdaCgUlyx16ZdWc+c3BKisFpF9ilNLk+dQWWgIDMMx5F/bNIlkvPdmMbqKCdSdnYcGVVBiukVx3uSRs2ZXG0uBQqkgi52DOGWfRjK+m8aynGc=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (1024-bit key) header.d=collabora.com header.i=benjamin.gaignard@collabora.com header.b=GrnR8y0h; arc=pass smtp.client-ip=136.143.188.112
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
+ARC-Seal: i=1; a=rsa-sha256; t=1751301858; cv=none; 
+	d=zohomail.com; s=zohoarc; 
+	b=ZKG1pUuIE3SbInx6lum+enVMNuGIW0ZN6xW94yLOaTmRBa72DDWfve2rMRITUUjXPs1k+A9aTnMOS4pLz8C2/feqkshU55AShExQXiZDCq1WxS2CSTyxKWqaN3CeMFAt5uPNtr5uMNi3cu8MM8CgYAZlVZSCIb3iHobJPCGSM24=
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=zohomail.com; s=zohoarc; 
+	t=1751301858; h=Content-Type:Content-Transfer-Encoding:Cc:Cc:Date:Date:From:From:In-Reply-To:MIME-Version:Message-ID:References:Subject:Subject:To:To:Message-Id:Reply-To; 
+	bh=PzDU9nqyjpEDS4lSPx+RFrm4zapOV2CV9JDtSEwn19Y=; 
+	b=bvCepyT3rZsZlQALMYOAUCFNg4Hx8XFD+GNdKB17X09K6zFoi9thSvnKiwOg6xfczIPB4X8aD8Jd9M1j/ZOch89bir+uvvOjyi20jkhDZ2YdAlznC9qIQOSxSFAhPPbesavDrr0wDYnaVafsfuSMYw4NirgqzGaKL+xT02zaNWI=
+ARC-Authentication-Results: i=1; mx.zohomail.com;
+	dkim=pass  header.i=collabora.com;
+	spf=pass  smtp.mailfrom=benjamin.gaignard@collabora.com;
+	dmarc=pass header.from=<benjamin.gaignard@collabora.com>
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; t=1751301858;
+	s=zohomail; d=collabora.com; i=benjamin.gaignard@collabora.com;
+	h=Message-ID:Date:Date:MIME-Version:Subject:Subject:To:To:Cc:Cc:References:From:From:In-Reply-To:Content-Type:Content-Transfer-Encoding:Message-Id:Reply-To;
+	bh=PzDU9nqyjpEDS4lSPx+RFrm4zapOV2CV9JDtSEwn19Y=;
+	b=GrnR8y0hL1DqLSOlikB5obbZISVLcVPNmo97EfbOwJBhnPyKxiV6sWXTqSWjma1E
+	mSIGx/s3Xmlj2KciJ3Vjyt115le/iQm06OBpCUz7JDRVymU/X/MqAj6LHYJvggpbOaM
+	M0CsArhsYoIvqdEmwflkPHuI3opxO+gvj3Sd6p9Y=
+Received: by mx.zohomail.com with SMTPS id 1751301856714404.94728450710375;
+	Mon, 30 Jun 2025 09:44:16 -0700 (PDT)
+Message-ID: <05a7c67f-d1fa-4ad4-a794-cc081cd04abc@collabora.com>
+Date: Mon, 30 Jun 2025 18:44:12 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha384;
-	protocol="application/pgp-signature"; boundary="jeexq3trpqyreenu"
-Content-Disposition: inline
-In-Reply-To: <20250627193132.GB4032621-robh@kernel.org>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v4 3/5] iommu: Add verisilicon IOMMU driver
+To: Dan Carpenter <dan.carpenter@linaro.org>, oe-kbuild@lists.linux.dev,
+ joro@8bytes.org, will@kernel.org, robin.murphy@arm.com, robh@kernel.org,
+ krzk+dt@kernel.org, conor+dt@kernel.org, heiko@sntech.de,
+ nicolas.dufresne@collabora.com, jgg@ziepe.ca
+Cc: lkp@intel.com, oe-kbuild-all@lists.linux.dev, iommu@lists.linux.dev,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, linux-rockchip@lists.infradead.org,
+ kernel@collabora.com
+References: <9d247bec-d206-495e-b8d6-23a7c3cc0882@suswa.mountain>
+Content-Language: en-US
+From: Benjamin Gaignard <benjamin.gaignard@collabora.com>
+In-Reply-To: <9d247bec-d206-495e-b8d6-23a7c3cc0882@suswa.mountain>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
 
 
---jeexq3trpqyreenu
-Content-Type: text/plain; protected-headers=v1; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
-Subject: Re: [PATCH v5 1/2] dt-bindings: reserved-memory: Introduce
- carved-out memory region binding
-MIME-Version: 1.0
+Le 30/06/2025 à 18:13, Dan Carpenter a écrit :
+> Hi Benjamin,
+>
+> kernel test robot noticed the following build warnings:
+>
+> https://git-scm.com/docs/git-format-patch#_base_tree_information]
+>
+> url:    https://github.com/intel-lab-lkp/linux/commits/Benjamin-Gaignard/dt-bindings-vendor-prefixes-Add-Verisilicon/20250623-234734
+> base:   https://git.kernel.org/pub/scm/linux/kernel/git/robh/linux.git for-next
+> patch link:    https://lore.kernel.org/r/20250623153931.158765-4-benjamin.gaignard%40collabora.com
+> patch subject: [PATCH v4 3/5] iommu: Add verisilicon IOMMU driver
+> config: alpha-randconfig-r073-20250627 (https://download.01.org/0day-ci/archive/20250629/202506290711.T0HOr5wS-lkp@intel.com/config)
+> compiler: alpha-linux-gcc (GCC) 8.5.0
+>
+> If you fix the issue in a separate patch/commit (i.e. not just a new version of
+> the same patch/commit), kindly add following tags
+> | Reported-by: kernel test robot <lkp@intel.com>
+> | Reported-by: Dan Carpenter <dan.carpenter@linaro.org>
+> | Closes: https://lore.kernel.org/r/202506290711.T0HOr5wS-lkp@intel.com/
+>
+> smatch warnings:
+> drivers/iommu/vsi-iommu.c:657 vsi_iommu_probe() error: uninitialized symbol 'err'.
+>
+> vim +/err +657 drivers/iommu/vsi-iommu.c
+>
+> 15ea72d5401fb7 Benjamin Gaignard 2025-06-23  639  static int vsi_iommu_probe(struct platform_device *pdev)
+> 15ea72d5401fb7 Benjamin Gaignard 2025-06-23  640  {
+> 15ea72d5401fb7 Benjamin Gaignard 2025-06-23  641  	struct device *dev = &pdev->dev;
+> 15ea72d5401fb7 Benjamin Gaignard 2025-06-23  642  	struct vsi_iommu *iommu;
+> 15ea72d5401fb7 Benjamin Gaignard 2025-06-23  643  	int err;
+> 15ea72d5401fb7 Benjamin Gaignard 2025-06-23  644
+> 15ea72d5401fb7 Benjamin Gaignard 2025-06-23  645  	iommu = devm_kzalloc(dev, sizeof(*iommu), GFP_KERNEL);
+> 15ea72d5401fb7 Benjamin Gaignard 2025-06-23  646  	if (!iommu)
+> 15ea72d5401fb7 Benjamin Gaignard 2025-06-23  647  		return -ENOMEM;
+> 15ea72d5401fb7 Benjamin Gaignard 2025-06-23  648
+> 15ea72d5401fb7 Benjamin Gaignard 2025-06-23  649  	iommu->dev = dev;
+> 15ea72d5401fb7 Benjamin Gaignard 2025-06-23  650
+> 15ea72d5401fb7 Benjamin Gaignard 2025-06-23  651  	iommu->regs = devm_platform_ioremap_resource(pdev, 0);
+> 15ea72d5401fb7 Benjamin Gaignard 2025-06-23  652  	if (IS_ERR(iommu->regs))
+> 15ea72d5401fb7 Benjamin Gaignard 2025-06-23  653  		return -ENOMEM;
+> 15ea72d5401fb7 Benjamin Gaignard 2025-06-23  654
+> 15ea72d5401fb7 Benjamin Gaignard 2025-06-23  655  	iommu->num_clocks = devm_clk_bulk_get_all(dev, &iommu->clocks);
+> 15ea72d5401fb7 Benjamin Gaignard 2025-06-23  656  	if  (iommu->num_clocks < 0)
+> 15ea72d5401fb7 Benjamin Gaignard 2025-06-23 @657  		return err;
+>
+> s/err/iommu->num_clocks/
 
-Hi Rob,
+I will fix that in next version but I will wait for more
+comments/review before send it.
 
-On Fri, Jun 27, 2025 at 02:31:32PM -0500, Rob Herring wrote:
-> On Tue, Jun 17, 2025 at 02:25:40PM +0200, Maxime Ripard wrote:
-> > Some parts of the memory can be dedicated to specific purposes and
-> > exposed as a dedicated memory allocator.
-> >=20
-> > This is especially useful if that particular region has a particular
-> > properties the rest of the memory doesn't have. For example, some
-> > platforms have their entire RAM covered by ECC but for a small area
-> > meant to be used by applications that don't need ECC, and its associated
-> > overhead.
-> >=20
-> > Let's introduce a binding to describe such a region and allow the OS to
-> > create a dedicated memory allocator for it.
-> >=20
-> > Signed-off-by: Maxime Ripard <mripard@kernel.org>
-> > ---
-> >  .../bindings/reserved-memory/carved-out.yaml       | 49 ++++++++++++++=
-++++++++
-> >  1 file changed, 49 insertions(+)
-> >=20
-> > diff --git a/Documentation/devicetree/bindings/reserved-memory/carved-o=
-ut.yaml b/Documentation/devicetree/bindings/reserved-memory/carved-out.yaml
-> > new file mode 100644
-> > index 0000000000000000000000000000000000000000..9ab5d1ebd9ebd9111b7c064=
-fabe1c45e752da83b
-> > --- /dev/null
-> > +++ b/Documentation/devicetree/bindings/reserved-memory/carved-out.yaml
-> > @@ -0,0 +1,49 @@
-> > +# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
-> > +%YAML 1.2
-> > +---
-> > +$id: http://devicetree.org/schemas/reserved-memory/carved-out.yaml#
-> > +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> > +
-> > +title: Carved-out Memory Region
-> > +
-> > +description: |
->=20
-> Don't need '|'.
->=20
-> > +  Specifies that the reserved memory region has been carved out of the
-> > +  main memory allocator, and is intended to be used by the OS as a
-> > +  dedicated memory allocator.
->=20
-> Other than the commit msg, it is completely lost that this is for=20
-> ECC-less memory.
+Regards,
+Benjamin
 
-Because it's not. One of the first feedback I got was that the way to
-identify what a heap provides was the heap name.
-
-So, as far as the binding go, a heap just exposes a chunk of memory the
-memory allocator wouldn't use. The actual semantics of that chunk of
-memory don't matter.
-
-> This description applies to CMA area as well. So what's the difference?
-
-Yeah, I kind of agree, which is why I initially started with a property,
-and you then asked for a compatible.
-
-CMA (assuming you mean the allocator, not the CMA heap) is still more
-though: it only covers some shared-dma-pool memory regions.
-
-> > +
-> > +maintainers:
-> > +  - Maxime Ripard <mripard@kernel.org>
-> > +
-> > +properties:
-> > +  compatible:
-> > +    const: carved-out
->=20
-> Isn't everything in reserved-memory a carve out for some purpose. I'm=20
-> not sure if I'd add 'no ECC' or more along the lines of how this is=20
-> used. The latter might be useful on platforms which can't disable ECC or=
-=20
-> don't have ECC at all.
-
-I don't think we need any discriminant for ECC vs non-ECC. It's just a
-carved-out memory region at some offset, and the system won't use it.
-
-Maxime
-
---jeexq3trpqyreenu
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iJUEABMJAB0WIQTkHFbLp4ejekA/qfgnX84Zoj2+dgUCaGK+PQAKCRAnX84Zoj2+
-dq2AAYC/J24SOTg9EyGxv1tRVE/FGgngduiiWSIJWT4SdOTb4teAfc/lr4p6puTF
-EHX68lcBgJBy43wXgAeh2TO5BWA3Jm3akW90xbdFedZD8i8vgdHvFYsiZ1npib1E
-ysoB3LOWSA==
-=JcqH
------END PGP SIGNATURE-----
-
---jeexq3trpqyreenu--
+>
+> 15ea72d5401fb7 Benjamin Gaignard 2025-06-23  658
+> 15ea72d5401fb7 Benjamin Gaignard 2025-06-23  659  	err = clk_bulk_prepare(iommu->num_clocks, iommu->clocks);
+> 15ea72d5401fb7 Benjamin Gaignard 2025-06-23  660  	if (err)
+> 15ea72d5401fb7 Benjamin Gaignard 2025-06-23  661  		return err;
+> 15ea72d5401fb7 Benjamin Gaignard 2025-06-23  662
+> 15ea72d5401fb7 Benjamin Gaignard 2025-06-23  663  	iommu->irq = platform_get_irq(pdev, 0);
+> 15ea72d5401fb7 Benjamin Gaignard 2025-06-23  664  	if (iommu->irq < 0)
+> 15ea72d5401fb7 Benjamin Gaignard 2025-06-23  665  		return iommu->irq;
+>
 
