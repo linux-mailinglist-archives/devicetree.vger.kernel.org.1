@@ -1,157 +1,197 @@
-Return-Path: <devicetree+bounces-191202-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-191203-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7B634AEE690
-	for <lists+devicetree@lfdr.de>; Mon, 30 Jun 2025 20:12:53 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id F215FAEE6A3
+	for <lists+devicetree@lfdr.de>; Mon, 30 Jun 2025 20:17:32 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id B17F717691A
-	for <lists+devicetree@lfdr.de>; Mon, 30 Jun 2025 18:12:53 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 888A61BC0C4E
+	for <lists+devicetree@lfdr.de>; Mon, 30 Jun 2025 18:17:48 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7A4072E3AF7;
-	Mon, 30 Jun 2025 18:12:49 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 041E91F0E39;
+	Mon, 30 Jun 2025 18:17:17 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=cknow.org header.i=@cknow.org header.b="ZtKTsCfQ"
+	dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b="k9siFlH6"
 X-Original-To: devicetree@vger.kernel.org
-Received: from out-183.mta0.migadu.com (out-183.mta0.migadu.com [91.218.175.183])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-pf1-f174.google.com (mail-pf1-f174.google.com [209.85.210.174])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 38CC42D320B
-	for <devicetree@vger.kernel.org>; Mon, 30 Jun 2025 18:12:45 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=91.218.175.183
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A205319ADBA
+	for <devicetree@vger.kernel.org>; Mon, 30 Jun 2025 18:17:14 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.174
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1751307169; cv=none; b=XKMN35rRs86O6qqFKPR2/YKJIsYFST3rQXGO6S7+1dTA4Anz/Wetsq+eFB/3fxKYPeNRY47L4Kuq+H/EKaPEUJMxAnM1c95BjY/5lD5TpO5ESeRzMETkakTcoWNHCDzTsjKdYWyFHqmUgqOGZMG2Te3OgmEDg1gQoHp/v/85nF0=
+	t=1751307436; cv=none; b=TUolGdQ4rGuQs9D5L9d27iJ6igmkXAtH23Mo5hI+pcExjXcwpVK3Gz5RnYrOjGTlldSsJ9bQ4nauTmtssMjc5op1iyf/gqmiUvq7tcC/dv9xy0QgbZcU+yRzRns/RnEqdDG1d3mPGXvYM0LjK1d2+UsjVW+51kQ1+U/VFAegcc4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1751307169; c=relaxed/simple;
-	bh=t/qvwnnz9XhUx5/I4IdgKadNokB3nNqhUH5EX0pJTLE=;
-	h=Mime-Version:Content-Type:Date:Message-Id:Cc:Subject:From:To:
-	 References:In-Reply-To; b=VnkBI3OF8eWJhWhG1dIDgFGvkilQGF2V0op8daQxh08OTad7QXmHgo7RdgHxuWx459nvYyBOO9X1mhZGUwqE1Dr57p6SPQ3+wPswE8YVo/5a//I6Qf4Rkv/5+6Y9ljbO02IyX4Nstd3cn0MZXQO7WbI25YfJjf9EnzpJnOz5uTg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=cknow.org; spf=pass smtp.mailfrom=cknow.org; dkim=pass (2048-bit key) header.d=cknow.org header.i=@cknow.org header.b=ZtKTsCfQ; arc=none smtp.client-ip=91.218.175.183
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=cknow.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=cknow.org
+	s=arc-20240116; t=1751307436; c=relaxed/simple;
+	bh=XzYE0ggpzi/xWgQAv+8GzWJs6sZVm5N0XHvtxn3e7g8=;
+	h=From:To:Cc:Subject:In-Reply-To:References:Date:Message-ID:
+	 MIME-Version:Content-Type; b=h+tjpEp6iYnxFirvIEs+dnpXxg9WXEaSkgV/auIAR84b7JgY62ZSoLk4wyfp4lOCPLOLYSOIgSZZDWx6sDhh8uYX9SEgFSbw4dKUUP6Jb4UFvT07sBf62PrfgYU0tSh/G/4TxZ9B7wgkag4S5vLyWYtP7AkBKCs53zrQcdJRJDo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com; spf=pass smtp.mailfrom=baylibre.com; dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b=k9siFlH6; arc=none smtp.client-ip=209.85.210.174
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=baylibre.com
+Received: by mail-pf1-f174.google.com with SMTP id d2e1a72fcca58-747fba9f962so4500582b3a.0
+        for <devicetree@vger.kernel.org>; Mon, 30 Jun 2025 11:17:14 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1751307434; x=1751912234; darn=vger.kernel.org;
+        h=mime-version:message-id:date:references:in-reply-to:subject:cc:to
+         :from:from:to:cc:subject:date:message-id:reply-to;
+        bh=yBjVRv/LWhtEYGg3uh+SYefd6WbGxbfazNc3AwALFSQ=;
+        b=k9siFlH6wyfr9RLxXvJHUnczNqaw+Kd5aILCUq3H3ZXypPZU0A/GZ0dVlJ5kj8IVnw
+         DfMxBy2OUV4RrSnP9z3zEeYERanHVn2WVDLltw3LauUDA7glCi8x2FS8D8WSoTQI1g5t
+         D09iE/fUN4v6d28dKQ+nP4doQdUDvnqLrukp1FD8AFVsAAJO5emaETgv+2yidruhOZRM
+         AtZl0qrd9h+/Sy6xs8G1gI9KCdZLsCIZtO4tTY9XrinkCT3yLcQNF1YmGhzeKns0ajUR
+         6zG9KaxgLopsgwi4TxSJPxyTNkP99kM6PClzGcRQwwYb4sp8l6+38WDrsSd9e937ihcY
+         /YMQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1751307434; x=1751912234;
+        h=mime-version:message-id:date:references:in-reply-to:subject:cc:to
+         :from:x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=yBjVRv/LWhtEYGg3uh+SYefd6WbGxbfazNc3AwALFSQ=;
+        b=tjN7/Zxc5b2QejQxNDANYGktPGEPuF6sryM0fGzPH1jdUkdAhiWwR4kO51bANtrFPj
+         lLZmGpgzSlZkExv4ENInlvHr+v/f9Jj3whDwga3n048mz4rM/OpkGynHxtEd/FLICmF/
+         0w2qp90ujMq+yPa4b2C9aTXkP8gpdJmEsdYr8ZZqmdU1NnOqVgLn4uyTE7MBK5SyhEhA
+         DfdeCS1iTYUB/w6x2fvi4dqsDn+YHDlSZoJSA1nhI6ocF0YSC/hS6U4zSFfsN5WA6lve
+         bZZBvSzCkZy7r4SqfbrBK1hAhMtV4od8TZU2EIngRviGms8FvF8zIJ0u38IGIdLe5qVc
+         b7bA==
+X-Forwarded-Encrypted: i=1; AJvYcCVwf9nAXjxxnptKmhbFaUPfncqHkUzw1bn/yHouuiYEwYStyOL+B7gEHoGRXj9ek3PHLK3OyZzkhNkt@vger.kernel.org
+X-Gm-Message-State: AOJu0Yx0AsFni0fBP0p/PY8aa09NsVgNveAXIrb/0jtRgx/6Dxhruid1
+	3U+yStkoURnWNqTuzia+Ona4A9zf0+mAvNaHq8PRWQoyM+GgnPz/xkTKKjpG377MiH4=
+X-Gm-Gg: ASbGncvUJtcYpmnpSDpXUX1dOlvlo4o5xDo4qTlfTnYFNKqmJhviNiirqQ56rBY3grS
+	YwjuC4J1qO4il18mGozZFwD5nNoBFjCkmv4WHZ9pJogqDAiJ13jAGFci0JwSRV8dL+zKCXdf/oT
+	VTRYfgt880cfBf9YbUGs9isxwENBjDCF3xhUpInqkW3qaSz9NLJe//Mlm554EHxe6F/svgqSeoA
+	F360AzLyK90dQkGoadz46ZDLateY1WhOf9fMy/Qo0QpA74TixXzwICbWdvysoJg5HBiOQRXQRD/
+	NjprX7o6Wpv/pLWq6J5Yobgwf0ogAul9OMb1y4xAFeFQQ6DJIMHqcros3Q0JF/FWJqQUSbM=
+X-Google-Smtp-Source: AGHT+IGQOXcusfsnRzzu9tTsp4bqdnB978cAzt96coGY3e06638Az0cSdJ5vM52cbySItmU05CF2DQ==
+X-Received: by 2002:a05:6a00:4b11:b0:748:a0b9:f873 with SMTP id d2e1a72fcca58-74b3bc8da15mr742566b3a.9.1751307433908;
+        Mon, 30 Jun 2025 11:17:13 -0700 (PDT)
+Received: from localhost ([97.126.182.119])
+        by smtp.gmail.com with ESMTPSA id d2e1a72fcca58-74af540ae4csm9398150b3a.34.2025.06.30.11.17.13
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 30 Jun 2025 11:17:13 -0700 (PDT)
+From: Kevin Hilman <khilman@baylibre.com>
+To: Ulf Hansson <ulf.hansson@linaro.org>
+Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ devicetree@vger.kernel.org, linux-pm@vger.kernel.org,
+ arm-scmi@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH RFC v3 2/2] pmdomain: core: add support for subdomains
+ using power-domain-map
+In-Reply-To: <CAPDyKFpTgAmLBq2ZExPoxWM0wL756zH96vW7M6wHSA1MTTG1wA@mail.gmail.com>
+References: <20250613-pmdomain-hierarchy-onecell-v3-0-5c770676fce7@baylibre.com>
+ <20250613-pmdomain-hierarchy-onecell-v3-2-5c770676fce7@baylibre.com>
+ <CAPDyKFrO9rb0eDb2qO+EGaVjOFG=7emgca8511XACDhWY=dt5g@mail.gmail.com>
+ <7hsejzp4xg.fsf@baylibre.com>
+ <CAPDyKFo-iPBPgkM43q+5cGR2sptkLk4E6TAERCQbCu24o1RfFQ@mail.gmail.com>
+ <7hcyb1os9y.fsf@baylibre.com>
+ <CAPDyKFpTgAmLBq2ZExPoxWM0wL756zH96vW7M6wHSA1MTTG1wA@mail.gmail.com>
+Date: Mon, 30 Jun 2025 11:17:13 -0700
+Message-ID: <7hjz4tnlg6.fsf@baylibre.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-Mime-Version: 1.0
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cknow.org; s=key1;
-	t=1751307163;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 in-reply-to:in-reply-to:references:references;
-	bh=1IjTfiI6YOU4Q4l0EImUrTasIaT8l6VP8YEW14aV+kQ=;
-	b=ZtKTsCfQFJLmOjxOwr/ja+NklV6ewZ7jV+roC/0MrZDNbu2wLBa05nl3CFFZncVXTSxGcq
-	bRMm47JkB8u8BPwcTx0ypTfRpSu71rCC1kOs5NnFMGi/rvenX0P27Md80CxJSASApC9mTP
-	QE0/1IWlGVfiXOXwi9NL8cYKH4p24lgjiGndKCJYXCM6oKgx2shIOcEILuRaM2zwnFE3O2
-	1hWE9ekxB6gMkeiHXe2RO+5gDV27Is/BjQ9wSaPQZQzgdihVIFzkm6qVerfl0oZq5LhGt8
-	vZuGJmFBu+16mxNt+rWtkZdsKZlWk6KMdq4RRDylbN8RPikqSKGINsh4tVJ6Cg==
-Content-Type: multipart/signed;
- boundary=15e5725fc5b5f4c0c9d367992ee8abf67013301df5a41c1f57230398550e;
- micalg=pgp-sha512; protocol="application/pgp-signature"
-Date: Mon, 30 Jun 2025 20:12:27 +0200
-Message-Id: <DB02KKR1VK9H.1Q1Y5A98FKGLK@cknow.org>
-Cc: <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
- <linux-rockchip@lists.infradead.org>, <kernel@collabora.com>,
- <linux-arm-kernel@lists.infradead.org>
-Subject: Re: [PATCH 1/3] arm64: dts: rockchip: adjust dcin regulator on ROCK
- 4D
-X-Report-Abuse: Please report any abuse attempt to abuse@migadu.com and include these headers.
-From: "Diederik de Haas" <didi.debian@cknow.org>
-To: "Nicolas Frattaroli" <nicolas.frattaroli@collabora.com>, "Rob Herring"
- <robh@kernel.org>, "Krzysztof Kozlowski" <krzk+dt@kernel.org>, "Conor
- Dooley" <conor+dt@kernel.org>, "Heiko Stuebner" <heiko@sntech.de>
-References: <20250630-rock4d-reg-usb-wifi-v1-0-1057f412d98c@collabora.com>
- <20250630-rock4d-reg-usb-wifi-v1-1-1057f412d98c@collabora.com>
-In-Reply-To: <20250630-rock4d-reg-usb-wifi-v1-1-1057f412d98c@collabora.com>
-X-Migadu-Flow: FLOW_OUT
+MIME-Version: 1.0
+Content-Type: text/plain
 
---15e5725fc5b5f4c0c9d367992ee8abf67013301df5a41c1f57230398550e
-Content-Transfer-Encoding: quoted-printable
-Content-Type: text/plain; charset=UTF-8
+Ulf Hansson <ulf.hansson@linaro.org> writes:
 
-Hi Nicolas,
-
-On Mon Jun 30, 2025 at 5:36 PM CEST, Nicolas Frattaroli wrote:
-> The ROCK 4D's actual DC input is 5V, and the schematic names it as being
-> 5V as well.
+> [...]
 >
-> Rename the regulator, and change the voltage it claims to be at.
-
-Shouldn't it have a fixes tag then? Providing 12V where 5V is expected
-sounds problematic ;-)
-
-> Furthermore, fix vcc_1v1_nldo_s3's vin-supply as coming from
-> vcc_5v0_sys, and not the DCIN, as per the schematic. This makes no
-> functional change; both regulators are always on, and one feeds into the
-> other.
+>> I've done an implementation with struct device_node *.  This works
+>> better (IMO) than struct of_phandle_args * because the caller (in my
+>> case scmi_pm_domain.c) already has device nodes, but not phandle args.
+>>
+>> The result will be that the pmdomain helper will call
+>> pm_genpd_add_subdomain() instead of of_genpd_add_subdomain().
+>>
+>> Below[1] is the current working version, which includes adding the
+>> helper to the PM domain core and showing the usage by the SCMI provider.
+>>
+>> How does this look?
 >
-> Signed-off-by: Nicolas Frattaroli <nicolas.frattaroli@collabora.com>
-> ---
->  arch/arm64/boot/dts/rockchip/rk3576-rock-4d.dts | 12 ++++++------
->  1 file changed, 6 insertions(+), 6 deletions(-)
+> It's a lot better in my opinion. Although, I have a few comments below.
 >
-> diff --git a/arch/arm64/boot/dts/rockchip/rk3576-rock-4d.dts b/arch/arm64=
-/boot/dts/rockchip/rk3576-rock-4d.dts
-> index 6756403111e704cad42f6674d5ab55eb0306f1e3..352e3df165688219bfedc1973=
-4d9eb32c547ec44 100644
-> --- a/arch/arm64/boot/dts/rockchip/rk3576-rock-4d.dts
-> +++ b/arch/arm64/boot/dts/rockchip/rk3576-rock-4d.dts
-> @@ -57,13 +57,13 @@ user-led {
->  		};
->  	};
-> =20
-> -	vcc_12v0_dcin: regulator-vcc-12v0-dcin {
-> +	vcc_5v0_dcin: regulator-vcc-5v0-dcin {
->  		compatible =3D "regulator-fixed";
->  		regulator-always-on;
->  		regulator-boot-on;
-> -		regulator-min-microvolt =3D <12000000>;
-> -		regulator-max-microvolt =3D <12000000>;
-> -		regulator-name =3D "vcc_12v0_dcin";
-> +		regulator-min-microvolt =3D <5000000>;
-> +		regulator-max-microvolt =3D <5000000>;
-> +		regulator-name =3D "vcc_5v0_dcin";
->  	};
+>>
+>> Note that doing this at provider creation time instead of
+>> <genpd>->attach_dev() time will require some changes to
+>> of_parse_phandle_with_args_map() because that function expects to be
+>> called for a device that has a `power-domains = <provider>` property,
+>> not for the provider itself.  But I have it working with some local
+>> changes to make that helper work if called for the provider directly.
+>> If you're OK with the PM domains approach, I'll post another rev of this
+>> series which includes the OF changes for review by DT maintainers.
+>>
+>> Kevin
+>>
+>> [1]
+>> ---
+>>  drivers/pmdomain/arm/scmi_pm_domain.c | 12 ++++++++--
+>>  drivers/pmdomain/core.c               | 34 +++++++++++++++++++++++++++
+>>  include/linux/pm_domain.h             | 11 ++++++++-
+>>  3 files changed, 54 insertions(+), 3 deletions(-)
+>>
+>> diff --git a/drivers/pmdomain/arm/scmi_pm_domain.c b/drivers/pmdomain/arm/scmi_pm_domain.c
+>> index a7784a8bb5db..8197447e9d17 100644
+>> --- a/drivers/pmdomain/arm/scmi_pm_domain.c
+>> +++ b/drivers/pmdomain/arm/scmi_pm_domain.c
+>> @@ -54,7 +54,7 @@ static int scmi_pd_power_off(struct generic_pm_domain *domain)
+>>
+>>  static int scmi_pm_domain_probe(struct scmi_device *sdev)
+>>  {
+>> -       int num_domains, i;
+>> +       int num_domains, i, ret;
+>>         struct device *dev = &sdev->dev;
+>>         struct device_node *np = dev->of_node;
+>>         struct scmi_pm_domain *scmi_pd;
+>> @@ -115,7 +115,15 @@ static int scmi_pm_domain_probe(struct scmi_device *sdev)
+>>
+>>         dev_set_drvdata(dev, scmi_pd_data);
+>>
+>> -       return of_genpd_add_provider_onecell(np, scmi_pd_data);
+>> +       ret = of_genpd_add_provider_onecell(np, scmi_pd_data);
+>> +       if (ret)
+>> +               return ret;
+>> +
+>> +       /* check for (optional) subdomain mapping with power-domain-map */
+>> +       for (i = 0; i < num_domains; i++, scmi_pd++)
+>> +               of_genpd_add_subdomain_map(np, domains[i], i);
+>> +
+>> +       return ret;
+>>  }
+>>
+>>  static void scmi_pm_domain_remove(struct scmi_device *sdev)
+>> diff --git a/drivers/pmdomain/core.c b/drivers/pmdomain/core.c
+>> index 88819659df83..3ede4baa4bee 100644
+>> --- a/drivers/pmdomain/core.c
+>> +++ b/drivers/pmdomain/core.c
+>> @@ -3220,6 +3220,40 @@ int of_genpd_parse_idle_states(struct device_node *dn,
+>>  }
+>>  EXPORT_SYMBOL_GPL(of_genpd_parse_idle_states);
+>>
+>> +int of_genpd_add_subdomain_map(struct device_node *np,
+>> +                              struct generic_pm_domain *domain,
+>> +                              int index)
+>
+> Providing the struct generic_pm_domain *domain as an in-parameter for
+> the child-domain seems unnecessary and limiting to me.
+>
+> Instead I think we should parse the power-domain-map DT property at
+> 'index', to find the corresponding child-domain's specifier/index and
+> its corresponding parent-domain.
+>
+> In other words, we don't need the struct generic_pm_domain *domain as
+> an in-parameter, right?
 
-With the name change, this block needs to be moved down.
+I'm not sure I follow.  The `struct generic pm_domain *domain` is the
+SCMI child domain.  From the map, we use the index to find the parent
+domain.  And then we add the child as a subdomain of the parent.
 
-Cheers,
-  Diederik
-> =20
->  	vcc_1v1_nldo_s3: regulator-vcc-1v1-nldo-s3 {
-> @@ -166,7 +166,7 @@ vcc_5v0_device: regulator-vcc-5v0-device {
->  		regulator-min-microvolt =3D <5000000>;
->  		regulator-max-microvolt =3D <5000000>;
->  		regulator-name =3D "vcc_5v0_device";
-> -		vin-supply =3D <&vcc_12v0_dcin>;
-> +		vin-supply =3D <&vcc_5v0_sys>;
->  	};
-> =20
->  	vcc_5v0_host: regulator-vcc-5v0-host {
-> @@ -190,7 +190,7 @@ vcc_5v0_sys: regulator-vcc-5v0-sys {
->  		regulator-min-microvolt =3D <5000000>;
->  		regulator-max-microvolt =3D <5000000>;
->  		regulator-name =3D "vcc_5v0_sys";
-> -		vin-supply =3D <&vcc_12v0_dcin>;
-> +		vin-supply =3D <&vcc_5v0_dcin>;
->  	};
->  };
-> =20
+Are you suggesting that I (re)parse the DT for to find the child domain
+also? 
 
+Thanks for the review & guidance,
 
---15e5725fc5b5f4c0c9d367992ee8abf67013301df5a41c1f57230398550e
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iHUEABYKAB0WIQT1sUPBYsyGmi4usy/XblvOeH7bbgUCaGLTjgAKCRDXblvOeH7b
-bpjeAQCzYAOFotMkkx+55BY9EWiLa3hdCx0OlYAGWZPUrLcXoQEAzb20FcRS6uLg
-HcRGqO8KyFJR5wJ4qKDf06imkRHUpgM=
-=TFga
------END PGP SIGNATURE-----
-
---15e5725fc5b5f4c0c9d367992ee8abf67013301df5a41c1f57230398550e--
+Kevin
 
