@@ -1,48 +1,48 @@
-Return-Path: <devicetree+bounces-190991-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-190992-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6FFB0AED6D8
-	for <lists+devicetree@lfdr.de>; Mon, 30 Jun 2025 10:15:10 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id C28C2AED6F0
+	for <lists+devicetree@lfdr.de>; Mon, 30 Jun 2025 10:18:35 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 54F3716CFD2
-	for <lists+devicetree@lfdr.de>; Mon, 30 Jun 2025 08:15:10 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id E57473A8344
+	for <lists+devicetree@lfdr.de>; Mon, 30 Jun 2025 08:18:09 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 52F8523AB96;
-	Mon, 30 Jun 2025 08:15:06 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A171A238D49;
+	Mon, 30 Jun 2025 08:18:24 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="vLAxVXwJ"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="S/8jL3wD"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 205BA222585;
-	Mon, 30 Jun 2025 08:15:05 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6E1BF23372C;
+	Mon, 30 Jun 2025 08:18:24 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1751271306; cv=none; b=Vxg/8UIzethbpAUvnRfiwUueUuViRttiKsdXze7CaGrYrajf3Pb9lqQ6T6yffvOpQ7dS6Th8ImhiCG9+tA0izF++ahQ3PlLJgv4tkvSwzc0zMf1foKA0XSEKpkpbHv2LUHJn/F/ZCAmiBmXTFwOiB7hRu6c9kMFlqybycSBtBbU=
+	t=1751271504; cv=none; b=pavmEmlcv7Ny4kMXBRrMxjwW+VEFyFwmDli15RXue0a7lnGXr3FuHNnaT55cakXIwA2bF0ZLvJ+4HGvoD81xPsi2ZmsoHje09JemKbNKQiYt4G1K2s6DdI0nVBCjQSCjDFXRCewI7bzGrCedzJJYFjevRYTavpJsn+eI8TdassU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1751271306; c=relaxed/simple;
-	bh=X3ULHZP9Ifi3uWAtVHgrsXNCYTcZg6f//hKcmKin4Rs=;
-	h=Message-ID:Date:MIME-Version:Subject:From:To:Cc:References:
-	 In-Reply-To:Content-Type; b=HbxX3sq1G3m1s84JE4jFq6FSdfhwNaW3/7CSDGiEbOiylC7yw92OvwtzwlXgCdjtTMYh5aNlX3ge3yufpNvlRI3sgyeYNb4oj0IvWkBxO1ARaLHFJb9J8Bw3ueajR8vm8/v+XLakqc4sR9g0nE6f7cR6ZhvjDshAjbaCUYoZZCM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=vLAxVXwJ; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 47085C4CEE3;
-	Mon, 30 Jun 2025 08:14:59 +0000 (UTC)
+	s=arc-20240116; t=1751271504; c=relaxed/simple;
+	bh=j7ltbIfwbHD2RuvgWN9X+OZ+WyXQcCJZJc5uSe3nBho=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=AWJOeeme8yrrtg50FuWvHiigRtSL/jxxjC48o4SGxjVHAvnuIJOZ+0ERUmw0OurhkXmVmFjqRc7KNE0pfbwKy1+MC92v/kzX0jQJ6U9dMyxfEF6uUu4egZzU6/9u10UHWagRklB61LTSoGuYe/FPRohBL1lhoPQ2hXY5DRsqDPg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=S/8jL3wD; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 1FD66C4CEE3;
+	Mon, 30 Jun 2025 08:18:17 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1751271305;
-	bh=X3ULHZP9Ifi3uWAtVHgrsXNCYTcZg6f//hKcmKin4Rs=;
-	h=Date:Subject:From:To:Cc:References:In-Reply-To:From;
-	b=vLAxVXwJ706t6BpBJlQW7P8HBs2Nn9FFV9TP+Bq8k2Vu7zqhPLeITMVCtTiWZpwLu
-	 0NTZ4A0T3q4Eby6EGPJpJdVNLhYta2ozqqzH6BDQRjYuzMjycs2vrsg1KciWFyIRFf
-	 SeeCHbJfyO8xxdOYSbp7VzdL/lP+3Bil2+zQMHW366XGXYJ/kEflRbtURvU8GsfXjx
-	 ImEnzwiQQBkrjx36xE7pIMnqZuburhQgnRTufqmHKcRVMQbRgcgQLBeFf6yui5ChPF
-	 LolzJhzivz4V+htP5ITxYhLOG8RAKNcUPj5wfNUFwog+3bQnoC/mR5P5dD38o1Q0tF
-	 DsLIf9NhZbTzA==
-Message-ID: <20a1e8cb-17d1-4d69-a859-7d18746d6b64@kernel.org>
-Date: Mon, 30 Jun 2025 10:14:57 +0200
+	s=k20201202; t=1751271504;
+	bh=j7ltbIfwbHD2RuvgWN9X+OZ+WyXQcCJZJc5uSe3nBho=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=S/8jL3wDYJYfVsp33OVdCFo9wk1xmOrpMG100qYWGSu2b6IAabTOVSwrdKavhghzH
+	 S7ul9K4UpAy8NRStYelyjsisJaLcSNEK2UHE91bcFXaWESyaAHYv65DyMyL1zUDeDJ
+	 1FGtHUx4OtdzODQA7DxnpEA9As+rX+Dsy6O34gn7Z6FH/Vtb9XMpnKLQdNmOP4kxsB
+	 5kvhIvhtNnP8gC2ioRmY1lBsEmgbSySwbbZTX87QKJkkBhLHPukS9WswFINUJzP6Qa
+	 p3SUV6M2qIdcuviGsHXSGVxWe6YPys0xcacQ4ognuNrLEmB74txi+kLqXUfwrowj7M
+	 FfBirpar/LdQw==
+Message-ID: <0ece18f0-2160-4cb3-a4a1-d566179f908f@kernel.org>
+Date: Mon, 30 Jun 2025 10:18:15 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,18 +50,24 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3 1/2] dt-bindings: net/nfc: ti,trf7970a: Add
- ti,rx-gain-reduction-db option
+Subject: Re: [PATCH 2/3] dt-bindings: mfd: qcom,spmi-pmic: add pm4125 audio
+ codec
+To: Alexey Klimov <alexey.klimov@linaro.org>,
+ Srinivas Kandagatla <srini@kernel.org>, Liam Girdwood <lgirdwood@gmail.com>,
+ Mark Brown <broonie@kernel.org>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Stephen Boyd <sboyd@kernel.org>
+Cc: Lee Jones <lee@kernel.org>, Jaroslav Kysela <perex@perex.cz>,
+ Takashi Iwai <tiwai@suse.com>, linux-arm-msm@vger.kernel.org,
+ linux-sound@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org,
+ Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>,
+ Srinivas Kandagatla <srinivas.kandagatla@oss.qualcomm.com>
+References: <20250626-pm4125_audio_codec_v1-v1-0-e52933c429a0@linaro.org>
+ <20250626-pm4125_audio_codec_v1-v1-2-e52933c429a0@linaro.org>
+ <eb5cdcb6-7e40-4ed2-9cc6-6eff43da353d@kernel.org>
+ <DAYBEWESVDJY.1ZDYI58M9OEWX@linaro.org>
 From: Krzysztof Kozlowski <krzk@kernel.org>
-To: Paul Geurts <paul.geurts@prodrive-technologies.com>
-Cc: mgreer@animalcreek.com, andrew+netdev@lunn.ch, davem@davemloft.net,
- edumazet@google.com, kuba@kernel.org, pabeni@redhat.com, robh@kernel.org,
- conor+dt@kernel.org, linux-wireless@vger.kernel.org, netdev@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- martijn.de.gouw@prodrive-technologies.com
-References: <20250626141242.3749958-1-paul.geurts@prodrive-technologies.com>
- <20250626141242.3749958-2-paul.geurts@prodrive-technologies.com>
- <20250627-helpful-venomous-tanuki-3bca5f@krzk-bin>
 Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
  xsFNBFVDQq4BEAC6KeLOfFsAvFMBsrCrJ2bCalhPv5+KQF2PS2+iwZI8BpRZoV+Bd5kWvN79
@@ -106,54 +112,26 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  jWt87ecuHlpL3uuQ0ZZNWqHgZoQLXoqC2ZV5KrtKWb/jyiFX/sxSrodALf0zf+tfHv0FZWT2
  zHjUqd0t4njD/UOsuIMOQn4Ig0SdivYPfZukb5cdasKJukG1NOpbW7yRNivaCnfZz6dTawXw
  XRIV/KDsHQiyVxKvN73bThKhONkcX2LWuD928tAR6XMM2G5ovxLe09vuOzzfTWQDsm++9UKF a/A=
-In-Reply-To: <20250627-helpful-venomous-tanuki-3bca5f@krzk-bin>
+In-Reply-To: <DAYBEWESVDJY.1ZDYI58M9OEWX@linaro.org>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 27/06/2025 09:10, Krzysztof Kozlowski wrote:
-> On Thu, Jun 26, 2025 at 04:12:41PM +0200, Paul Geurts wrote:
->> Add option to reduce the RX antenna gain to be able to reduce the
->> sensitivity.
+On 28/06/2025 18:42, Alexey Klimov wrote:
+> On Thu Jun 26, 2025 at 9:48 AM BST, Krzysztof Kozlowski wrote:
+>> On 26/06/2025 01:50, Alexey Klimov wrote:
+>>> PM4125 has audio codec hardware block. Add pattern for respecive node
+>>> so the devicetree for those blocks can be validated properly.
+>>>
+>>> Signed-off-by: Alexey Klimov <alexey.klimov@linaro.org>
 >>
->> Signed-off-by: Paul Geurts <paul.geurts@prodrive-technologies.com>
->> ---
->>  Documentation/devicetree/bindings/net/nfc/ti,trf7970a.yaml | 7 +++++++
->>  1 file changed, 7 insertions(+)
->>
->> diff --git a/Documentation/devicetree/bindings/net/nfc/ti,trf7970a.yaml b/Documentation/devicetree/bindings/net/nfc/ti,trf7970a.yaml
->> index d0332eb76ad2..5f49bd9ac5e6 100644
->> --- a/Documentation/devicetree/bindings/net/nfc/ti,trf7970a.yaml
->> +++ b/Documentation/devicetree/bindings/net/nfc/ti,trf7970a.yaml
->> @@ -55,6 +55,12 @@ properties:
->>      description: |
->>        Regulator for supply voltage to VIN pin
->>  
->> +  ti,rx-gain-reduction-db:
+>> Remember to ALWAYS explain the dependencies between patches (merging
+>> strategy), because this now creates impression is independent patch. It
+>> is not and should be squashed into previous.
 > 
-> I'll add db unit to the dtschema.
-> 
-> Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+> What's the proper way to describe such dependency?
 
-BTW, I found your patchset only via patchwork, because Gmail flagged
-your entire v3 and others as spam. You might need to check your SMTP
-setup. I see DMARC failure from google in the headers:
-
-Authentication-Results: mx.google.com;
-       spf=pass (google.com: domain of
-srs0=m3n1=zj=prodrive-technologies.com=paul.geurts@kernel.org designates
-147........ as permitted sender)
-smtp.mailfrom="SRS0=m3n1=ZJ=prodrive-technologies.com=paul.geurts@kernel.org";
-       dmarc=fail (p=REJECT sp=REJECT dis=QUARANTINE)
-header.from=prodrive-technologies.com
-
-
-Maybe you sent via kernel.org something with different address? Actually
-this looks like that - your From does not match kernel.org at all.
-Rules are quite strict recently and for example you cannot use
-non-kernel.org SMTP server for kernel.org accounts (see kernel users wiki).
-
-Anyway, likely any other future patches or such patches to other people
-to end up in spam as well.
+The best changelog. Acceptable is also cover letter, although some
+people skip cover letters.
 
 Best regards,
 Krzysztof
