@@ -1,97 +1,129 @@
-Return-Path: <devicetree+bounces-191110-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-191111-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id BDF6DAEDEC0
-	for <lists+devicetree@lfdr.de>; Mon, 30 Jun 2025 15:19:19 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5FAFBAEDEBC
+	for <lists+devicetree@lfdr.de>; Mon, 30 Jun 2025 15:19:01 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 230AF400552
-	for <lists+devicetree@lfdr.de>; Mon, 30 Jun 2025 13:14:12 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 69D15188E4FB
+	for <lists+devicetree@lfdr.de>; Mon, 30 Jun 2025 13:16:03 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4F47528BA9D;
-	Mon, 30 Jun 2025 13:12:18 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A808328D82F;
+	Mon, 30 Jun 2025 13:13:18 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="klaXRKJv"
+	dkim=pass (2048-bit key) header.d=cknow.org header.i=@cknow.org header.b="Qt/xf8jv"
 X-Original-To: devicetree@vger.kernel.org
-Received: from relay16.mail.gandi.net (relay16.mail.gandi.net [217.70.178.236])
+Received: from out-172.mta0.migadu.com (out-172.mta0.migadu.com [91.218.175.172])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C13AE285C90;
-	Mon, 30 Jun 2025 13:12:15 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.70.178.236
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DF87928D82A
+	for <devicetree@vger.kernel.org>; Mon, 30 Jun 2025 13:13:16 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=91.218.175.172
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1751289138; cv=none; b=BohmC43QP+YigtbYAkF7J1iY1LXpfpRJt1GOl3kKuhPWCxvYFFOofj3olFV+B9yFaK+8H/JW9B+C02AFuN7zdvapyKFDUgAFqLIGKoKG23mgn40FfPMUikdXriPcvWPHSClZQZJhavUUCckKprpbwIfghak78H9y7zHx6OUPGF4=
+	t=1751289198; cv=none; b=YWob21CXOKS/nt1GfrI3aV/PaMjHP3E0qXzW774bTdqp95FX99Oh9Tco+x/kwY/slIB5mXxPfUO+38mqd4ygk6iKj+Gf2FH7lcMTAe3tiJLqZdsk8VCV81/SduWyt1Y5R7pWf3O846V+tqYIH82cBh4N8QvZhbNgk59Wr/l7cEw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1751289138; c=relaxed/simple;
-	bh=OHs81F/cs/WkB74kHSVhH4Jo4r1yqQvEoe3MyDgZJC8=;
-	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=LXEWmwnH5s5Z/7fh/g8WzEAcVBVk9izfbcmJy5i+5g4bellM2lOaNFHBCvLmNu2oTuxPWUYxoXRW/FbDiA0xmJbWHuQ98mvvjXdQR/MPokHEfqnq0yuY2hxbO7HkleRzc5GTttZnq+mhAi7B6drjVp7aMwCq7nrseqqrWpxTN84=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=klaXRKJv; arc=none smtp.client-ip=217.70.178.236
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
-Received: by mail.gandi.net (Postfix) with ESMTPSA id C63D34495E;
-	Mon, 30 Jun 2025 13:12:06 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
-	t=1751289128;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=OHs81F/cs/WkB74kHSVhH4Jo4r1yqQvEoe3MyDgZJC8=;
-	b=klaXRKJvmR7JDzCHXQtgLY/5uIDTXi6wnZXpinbV3pZeTjSpLgwrkCUf+GJYTFJ7eijZUC
-	kRWKAd6QlBpZL0bGP33no8HfqyPpxgbW5R8UQMKen+sySy2Ni9ga9hq/r8alSwPn2yioNt
-	0cJggjfxgUVRRhaCj5X1Kp5SrpmFOIlRymS5qk8XSE+SMy4H+atiMGzxkioXn9K10KK6tf
-	fA2tJg5vPyono3UAdc1Ywvxs3KPXuCiveqZik3wMPAZTxf4ULLxZ3scFpbsm3NOziFH/73
-	WMajfBOjtaiLS9lTcivGp5piPXW1fh025ev3xcmF+JDf9CaPwpQQoi/VfhsiEw==
-Date: Mon, 30 Jun 2025 15:12:06 +0200
-From: Maxime Chevallier <maxime.chevallier@bootlin.com>
-To: Kamil =?UTF-8?B?SG9yw6Fr?= - 2N <kamilh@axis.com>
-Cc: <florian.fainelli@broadcom.com>,
- <bcm-kernel-feedback-list@broadcom.com>, <andrew@lunn.ch>,
- <hkallweit1@gmail.com>, <linux@armlinux.org.uk>, <davem@davemloft.net>,
- <edumazet@google.com>, <kuba@kernel.org>, <pabeni@redhat.com>,
- <krzk+dt@kernel.org>, <conor+dt@kernel.org>, <netdev@vger.kernel.org>,
- <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
- <f.fainelli@gmail.com>, <robh@kernel.org>, <andrew+netdev@lunn.ch>
-Subject: Re: [PATCH net v3 2/4] dt-bindings: ethernet-phy: add MII-Lite phy
- interface type
-Message-ID: <20250630151206.5ac6865c@fedora.home>
-In-Reply-To: <20250630113033.978455-3-kamilh@axis.com>
-References: <20250630113033.978455-1-kamilh@axis.com>
-	<20250630113033.978455-3-kamilh@axis.com>
-Organization: Bootlin
-X-Mailer: Claws Mail 4.3.1 (GTK 3.24.43; x86_64-redhat-linux-gnu)
+	s=arc-20240116; t=1751289198; c=relaxed/simple;
+	bh=sBgkn0f8/4VXlX8UWPXjVuNBjjXBIZJ/mKg68iRvsJ4=;
+	h=Mime-Version:Content-Type:Date:Message-Id:Cc:Subject:From:To:
+	 References:In-Reply-To; b=uQNA3pMlTvelXmqznl7nb29q7buxW6LXfQ6VVWAx+gk4F/Jw9Ory5Te4Y1nN+WI6QoQQc7KffjYwmY0hIkko6MN2oR4X4wGwHOGpDSovvstZ+iDWiWeJxGVO+gHj94x7LseaVXUjKQkC+Xnd5RP2I8q/EujRZdSfQnpDYjqRHB8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=cknow.org; spf=pass smtp.mailfrom=cknow.org; dkim=pass (2048-bit key) header.d=cknow.org header.i=@cknow.org header.b=Qt/xf8jv; arc=none smtp.client-ip=91.218.175.172
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=cknow.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=cknow.org
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
+Mime-Version: 1.0
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cknow.org; s=key1;
+	t=1751289184;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 in-reply-to:in-reply-to:references:references;
+	bh=TpapsnvN2qo9hhPhQHWIegeAB6bx1Q9QSQ1S7RYoiB8=;
+	b=Qt/xf8jvowFgC12MA52xjmF0ThLOYdQaLftpgkvXJadJkSgMfDayzMLNa8IjYygLdcFLhg
+	z/WC7CnjE3bpRYZ4rwLuQI1pdSLIE7CU75h+QkuZ2Y09OPbcbCc5GtizQAnuqrkjZM2hEr
+	9g+wkuXxX/kxtOJz+KRFIv+SAmTBAq9wmztrlyEapOsPglHrN1D9qrrrspbcDhnGk9nC1h
+	cuMV2maGNu/Zfo+CcABkJBAczKh13xrTz88Jfk3CvOLAU81kP1lutYYfAXHTeCV33uvS54
+	ezpbVrnGiUMKbvOfrw6k+E9+IW3i1ABrBldKqDlaXHZKXE3J7lOqibP/spxoTA==
+Content-Type: multipart/signed;
+ boundary=cabcb7cd44803ee80fe883dca4e1018394457acca069f00ba0876c0d4cf7;
+ micalg=pgp-sha512; protocol="application/pgp-signature"
+Date: Mon, 30 Jun 2025 15:12:56 +0200
+Message-Id: <DAZW78SRQQ0Y.2R1T9V72Q7AZH@cknow.org>
+Cc: <llvm@lists.linux.dev>, <oe-kbuild-all@lists.linux.dev>, "Dragan Simic"
+ <dsimic@manjaro.org>, "Quentin Schulz" <quentin.schulz@cherry.de>, "Johan
+ Jonker" <jbx6244@gmail.com>, <devicetree@vger.kernel.org>,
+ <linux-arm-kernel@lists.infradead.org>,
+ <linux-rockchip@lists.infradead.org>, <linux-kernel@vger.kernel.org>
+Subject: Re: [PATCH 2/8] arm64: dts: rockchip: Refactor DSI nodes on rk3399
+ boards
+X-Report-Abuse: Please report any abuse attempt to abuse@migadu.com and include these headers.
+From: "Diederik de Haas" <didi.debian@cknow.org>
+To: "Krzysztof Kozlowski" <krzk@kernel.org>, "kernel test robot"
+ <lkp@intel.com>, "Rob Herring" <robh@kernel.org>, "Conor Dooley"
+ <conor+dt@kernel.org>, "Heiko Stuebner" <heiko@sntech.de>
+References: <20250627152645.740981-3-didi.debian@cknow.org>
+ <202506290852.bWro2lBe-lkp@intel.com>
+ <DAYXOI4WITJW.1G5DBWEQDDY1Z@cknow.org>
+ <9f1ac97a-6109-40d1-bf85-f2a8e25138f0@kernel.org>
+In-Reply-To: <9f1ac97a-6109-40d1-bf85-f2a8e25138f0@kernel.org>
+X-Migadu-Flow: FLOW_OUT
+
+--cabcb7cd44803ee80fe883dca4e1018394457acca069f00ba0876c0d4cf7
 Content-Transfer-Encoding: quoted-printable
-X-GND-State: clean
-X-GND-Score: -100
-X-GND-Cause: gggruggvucftvghtrhhoucdtuddrgeeffedrtdefgdduudejlecutefuodetggdotefrodftvfcurfhrohhfihhlvgemucfitefpfffkpdcuggftfghnshhusghstghrihgsvgenuceurghilhhouhhtmecufedtudenucesvcftvggtihhpihgvnhhtshculddquddttddmnecujfgurhepfffhvfevuffkjghfohfogggtgfesthhqredtredtjeenucfhrhhomhepofgrgihimhgvucevhhgvvhgrlhhlihgvrhcuoehmrgigihhmvgdrtghhvghvrghllhhivghrsegsohhothhlihhnrdgtohhmqeenucggtffrrghtthgvrhhnpeeuhfefgffgtdfhgffhvdfhhffhteeutdektefghfetveehheejjefgudeiudehudenucfkphepvdgrtddumegtsgduleemkegugeehmeegledttdemieehieekmedvlegsudemlegvfhehmegvkegtjeenucevlhhushhtvghrufhiiigvpedtnecurfgrrhgrmhepihhnvghtpedvrgdtudemtggsudelmeekugegheemgeeltddtmeeiheeikeemvdelsgdumeelvghfheemvgektgejpdhhvghlohepfhgvughorhgrrdhhohhmvgdpmhgrihhlfhhrohhmpehmrgigihhmvgdrtghhvghvrghllhhivghrsegsohhothhlihhnrdgtohhmpdhnsggprhgtphhtthhopedukedprhgtphhtthhopehkrghmihhlhhesrgigihhsrdgtohhmpdhrtghpthhtohepfhhlohhrihgrnhdrfhgrihhnvghllhhisegsrhhorggutghomhdrtghomhdprhgtphhtthhopegstghmqdhkvghrnhgvlhdqfhgvvggus
- ggrtghkqdhlihhsthessghrohgruggtohhmrdgtohhmpdhrtghpthhtoheprghnughrvgifsehluhhnnhdrtghhpdhrtghpthhtohephhhkrghllhifvghithdusehgmhgrihhlrdgtohhmpdhrtghpthhtoheplhhinhhugiesrghrmhhlihhnuhigrdhorhhgrdhukhdprhgtphhtthhopegurghvvghmsegurghvvghmlhhofhhtrdhnvghtpdhrtghpthhtohepvgguuhhmrgiivghtsehgohhoghhlvgdrtghomh
+Content-Type: text/plain; charset=UTF-8
 
-On Mon, 30 Jun 2025 13:30:31 +0200
-Kamil Hor=C3=A1k - 2N <kamilh@axis.com> wrote:
+On Mon Jun 30, 2025 at 7:57 AM CEST, Krzysztof Kozlowski wrote:
+> On 29/06/2025 12:09, Diederik de Haas wrote:
+>>=20
+>> Luckily I've now found why my build script didn't catch it.
+>> ```sh
+>> export PATH=3D~/dev/kernel.org/dt-schema-venv/bin/:$PATH CROSS_COMPILE=
+=3Daarch64-linux-gnu- ARCH=3Darm64
+>> make distclean
+>> make debarm64_defconfig
+>> make CHECK_DTBS=3Dy W=3D1 rockchip/px30-cobra-ltk050h3146w-a2.dtb
+>> <quite-a-long-list-of-all-boards-at-least-I-thought-so>
+>> ```
+>>=20
+>> (debarm64_defconfig is my own defconfig based on Debian's kernel config)
+>>=20
+>> That long list didn't have ``rockchip/rk3399-rockpro64-screen.dtbo``.
+>> Is there a better/simpler way to validate all rockchip boards without
+>> having to explicitly list each and every one of them?
+> make defconfig && make
+>
+> or make dtbs
 
-> Some Broadcom PHYs are capable to operate in simplified MII mode,
-> without TXER, RXER, CRS and COL signals as defined for the MII.
-> The MII-Lite mode can be used on most Ethernet controllers with full
-> MII interface by just leaving the input signals (RXER, CRS, COL)
-> inactive. The absence of COL signal makes half-duplex link modes
-> impossible but does not interfere with BroadR-Reach link modes on
-> Broadcom PHYs, because they are all full-duplex only.
->=20
-> Add new interface type "mii-lite" to phy-connection-type enum.
->=20
-> Signed-off-by: Kamil Hor=C3=A1k - 2N <kamilh@axis.com>
+``make dtbs`` is faster then I recalled, but I do like the detail with
+``make CHECK_DTBS=3Dy W=3D1 rockchip/<board1>.dtb rockchip/<board2>.dtb``.
 
-Reviewed-by: Maxime Chevallier <maxime.chevallier@bootlin.com>
+If I don't specify a list of boards, then it will build them all
+including freescale/qcom/renesas/etc, while I only want the rockchip
+ones. And as my script takes 20-30 minutes, that will probably be
+several hours. Per run. And I ran it after each patch.
 
-Maxime
+Giving ``rockchip/*.dtb[o]`` as parameter is basically what I want, but
+I'm not aware of that being possible.
+OTOH it's (already) a script, so I will probably just do a ``find`` to
+dynamically generate the board list.
+
+Cheers,
+  Diederik
+
+--cabcb7cd44803ee80fe883dca4e1018394457acca069f00ba0876c0d4cf7
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYKAB0WIQT1sUPBYsyGmi4usy/XblvOeH7bbgUCaGKNWgAKCRDXblvOeH7b
+brfvAQCxEpSIjkdmRZ7MkQ5i4THNqBXbUOtLpJCTsHAh8TEeqwD7Btya8sIXw2rg
+yTjCXv4ijLgp0OdfAo5k5i8MXuWUyQI=
+=isL+
+-----END PGP SIGNATURE-----
+
+--cabcb7cd44803ee80fe883dca4e1018394457acca069f00ba0876c0d4cf7--
 
