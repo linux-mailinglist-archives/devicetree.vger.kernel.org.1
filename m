@@ -1,145 +1,210 @@
-Return-Path: <devicetree+bounces-191120-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-191121-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8F529AEDFAA
-	for <lists+devicetree@lfdr.de>; Mon, 30 Jun 2025 15:54:28 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 92712AEDFC1
+	for <lists+devicetree@lfdr.de>; Mon, 30 Jun 2025 15:58:28 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id A5AC83AC061
-	for <lists+devicetree@lfdr.de>; Mon, 30 Jun 2025 13:53:57 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id CDC7516AB20
+	for <lists+devicetree@lfdr.de>; Mon, 30 Jun 2025 13:58:28 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7DB6E286D70;
-	Mon, 30 Jun 2025 13:54:18 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 15CFA28B516;
+	Mon, 30 Jun 2025 13:58:24 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="LBpBtzjt"
+	dkim=pass (2048-bit key) header.d=analog.com header.i=@analog.com header.b="TaU3rLyx"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lf1-f46.google.com (mail-lf1-f46.google.com [209.85.167.46])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mx0a-00128a01.pphosted.com (mx0a-00128a01.pphosted.com [148.163.135.77])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6909724501B;
-	Mon, 30 Jun 2025 13:54:16 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.46
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3916325BEE8;
+	Mon, 30 Jun 2025 13:58:21 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=148.163.135.77
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1751291658; cv=none; b=OGbQtxWAFFT+yqsbXkY5+s6Jk99ubBKG528UnqQT7rE5BC3eHhtajBdqIZFjckl6QKVvQqi7brIM++0mZYmoYr9h+0P+wiCGbDNBQxLfOfgrn1Rthy3A4cyT/S6bYug65GYF7nGgBe+DoteUhiSaC8rYwghjmPgntdghgPQzPRQ=
+	t=1751291904; cv=none; b=diYsQVbaTogwrI86IcUBm26tLcvdWRf5NzOQvfaVmFKga9sFa8LpzcyGI/8Ht17X3DM+C/dks2RyzIdQZaoRB61OX4lPSQNFPjvG5cbnhlT4uUa1Cci05sTQNxmCzOcBi1RwLeAG0QZbK2/w4SNjOOddfvP/DsPJesDtJ5HR4Us=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1751291658; c=relaxed/simple;
-	bh=dxI/ZkRM43EsL7xoK+Mw5w89VIq3Ip60hsYWHHvxh7Y=;
-	h=Content-Type:Mime-Version:Subject:From:In-Reply-To:Date:Cc:
-	 Message-Id:References:To; b=lAkCI8VQkUotyVGsldldhtSIatdOd7PFDRL8dzYvk2X6gCrtizw5NnukgixMemGkMW2wuz/2peDu7sRgtv4nKGnr7eCCdByGjud5FXNkil9JG0nBzlnd3XsHzP3wy+AkCr1obJ8OvVPQl3341br7wbQg2ojy4grpZit677OfXYY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=LBpBtzjt; arc=none smtp.client-ip=209.85.167.46
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-lf1-f46.google.com with SMTP id 2adb3069b0e04-5561ab55c4dso709556e87.2;
-        Mon, 30 Jun 2025 06:54:16 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1751291655; x=1751896455; darn=vger.kernel.org;
-        h=to:references:message-id:content-transfer-encoding:cc:date
-         :in-reply-to:from:subject:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=SfxKlKhqqc3sn6oQJ91bWsKwO4RMrtLJYTGaBDYAwXs=;
-        b=LBpBtzjtwWQLQAoL4dJ0fcn4z2cCl5FEuI94bDxP++UsKbrTaXHjlFMbi7D4/3qV3P
-         2XklGQgBMfdczWAqKY9FwUaFKwcwLsBvp/vtTpzpLiUCfFeCf6Vv1enYgp6TtLbHHOl8
-         VV8CEsZ8fIj1M/aDPq7KsYvGrhpVeYxJmLojUXesgD6hogpvRzRt9Bb9v9SBxiN9acPW
-         ly3Nw2ZKbNkXVKSE2kcDPFj6pd99H5X4dXWk/zD+smIxEf8S7UoctUIKIgN4m/AO7iKb
-         2YnT2gv37eD3phwReh1eU2YoGGHA2Msluj1VinEoIG6YopvAtDUKvoFHPosaS9J/IsGs
-         vo2w==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1751291655; x=1751896455;
-        h=to:references:message-id:content-transfer-encoding:cc:date
-         :in-reply-to:from:subject:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=SfxKlKhqqc3sn6oQJ91bWsKwO4RMrtLJYTGaBDYAwXs=;
-        b=fDtRm7zUspit7swImLwQYHa+S86+DpH5w1ukDF2196kahCELiNbYoZHzDPjyqeJVfG
-         U69RiYtJ9dciUapwut+uoNEePapdJBcETJP4TSGlLqvY1CA+WGttmVbAwTSzZTrTOZEj
-         BaBEXz5PMvsFRbZP8Z5rmHlBG7sqFpQCGd3yG4m1CK3jdl43RySv7K8v5BYm2P6bvLZm
-         Td4Ea67Us8jQ9AYMYp3pcRmCU6BXY7c5eZHi90OiwtOjkQfAsIPNoy1W8K08DLUhM4L8
-         jnGG0Jr0hwv1FogjN8Av3aKyGcUEsM21QfGo8Ccl7DNW58lEIhH3wI8Feg8n+5crpfty
-         lBrw==
-X-Forwarded-Encrypted: i=1; AJvYcCVeXVs12rZm+1Fl5MBP8QmR9ZrhsYoNr/GVYCy1f3wi/StftIpo5zERzFn7HEkF3bs0JQElWRMjfW/c@vger.kernel.org, AJvYcCWjksT5M2b1lJsll4FRLRWARLavHLVFkFwzB5+OqF6JJX5XXK9T2rsz2hBhH39mE4+/32SOO6AzJZLjC5DB@vger.kernel.org, AJvYcCXRz6EqWQ4X1PGyMSuMLowt2p0ltvDGeWvltrzOP/aO10u+gl9grF22vDaszc4IXpMr2Zu3jJQvYQblxA==@vger.kernel.org
-X-Gm-Message-State: AOJu0YzbMfUWRP8pdiSJgi3GR3f5Vgby2Ajmb1l+yJZ8ZCZk8AbeoRRP
-	KDFVaVxR0gC97OVCpX3elPSnd0w7YcipnaktU9EuE0kYX+DGNPDCDW0TEmmzVLO+
-X-Gm-Gg: ASbGncv4sz/gANiKOW9M1eGx5aq81AmSfcGIWn1qqbC2EDn/vo2NP0cGF+8KPhhMeL4
-	BS7tY1ETv50ZffJZGtf8UgDV3/tlJWzKBnt+tpe2Uf9a+TewH2OQVLco8fW+d+mh0QZm2TRYpgX
-	qz5/tetnkmDEmRrYZ9+WDU1wIOwDtJPhketemUQnKmWNpUiy2odJycR2ifnQnwx/wET4A7mRFai
-	Ar82ShgC9/kG6hVqsk0tDw8jxSN2AwRZ2653BJvaRy3Z1L0XA09OvCvf1sLFb0z9Ek7IUurGCSj
-	e1iKH7AaDTWP5L2XstkuAx5S26GJjF4APya6Z6dMu919E5vXzdwvg8EZVo6scLWWp66QeaI7XUz
-	O3xy1ek+ezI8=
-X-Google-Smtp-Source: AGHT+IEFfbreu10LLCTj7YTb4EDfAbv0b02bWlYyqbRfnaepG6UskV4t7Qf+MfrhQMwTBc9VIQUpEA==
-X-Received: by 2002:ac2:4e0a:0:b0:553:30fc:cee4 with SMTP id 2adb3069b0e04-5550b9e8f15mr3752361e87.49.1751291654151;
-        Mon, 30 Jun 2025 06:54:14 -0700 (PDT)
-Received: from smtpclient.apple ([87.200.95.144])
-        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-5550b2cdf62sm1440212e87.163.2025.06.30.06.54.11
-        (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
-        Mon, 30 Jun 2025 06:54:13 -0700 (PDT)
-Content-Type: text/plain;
-	charset=utf-8
+	s=arc-20240116; t=1751291904; c=relaxed/simple;
+	bh=+mUOGNyvnmJqJTQr8FKPFy4+r/6M3Ks91jztxb1kRSY=;
+	h=From:To:CC:Subject:Date:Message-ID:MIME-Version:Content-Type; b=ScxUjGyCpjs+qg/mIB54E3WxCzC1+M3XZy3pIFqs9gza9ODggEv/McTmlxe/sTAaCEJjTI4FO/rFz/nDn0X5KPiQZMY5NZN3yetbNVsI9N5L9pjCdS0FnaP2oaHGUQdKrrTa4cgaevkE9kEf5dmIRt4IXFkL1Es1xd3panr0Uk0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=analog.com; spf=pass smtp.mailfrom=analog.com; dkim=pass (2048-bit key) header.d=analog.com header.i=@analog.com header.b=TaU3rLyx; arc=none smtp.client-ip=148.163.135.77
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=analog.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=analog.com
+Received: from pps.filterd (m0167088.ppops.net [127.0.0.1])
+	by mx0a-00128a01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 55UCqOiH011063;
+	Mon, 30 Jun 2025 09:57:57 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=analog.com; h=cc
+	:content-transfer-encoding:content-type:date:from:message-id
+	:mime-version:subject:to; s=DKIM; bh=eJ6VzebltKwMMRwRYWzN7TXWK5U
+	Z5cQmU354S1mH8EU=; b=TaU3rLyxAVT0UQdktrhai3dx5xmsbfigV3OS3C6mNKm
+	OGFZaXJ/jYwUb/jm5xA3P+je4jmwPChkuIsfV6lffss2teKZBKnesCL5EggEWZ/0
+	v1yVQ+Fu0K2lt2pRdc1dEo7VdtaNn0dRXgxtE/lWhpwbZUw27/DvHapOJXTua7ZM
+	tjnpaY7nxHIatjnlYwAFPrGRrYH/QA1eQldQ68UUfSW52LMOIA3y7x8AKwSUlxYH
+	s059N9DjzquQjzGgd1oKDcUSxnjxIXrmSryKHN6SmhaB2CJw77ms0CrCjq2R6kEq
+	xnYPwAyutRwA50nla8A1inyJxp82s2SIRb7aRIY6ydQ==
+Received: from nwd2mta3.analog.com ([137.71.173.56])
+	by mx0a-00128a01.pphosted.com (PPS) with ESMTPS id 47kqwj18dr-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Mon, 30 Jun 2025 09:57:57 -0400 (EDT)
+Received: from ASHBMBX8.ad.analog.com (ASHBMBX8.ad.analog.com [10.64.17.5])
+	by nwd2mta3.analog.com (8.14.7/8.14.7) with ESMTP id 55UDvuwu039144
+	(version=TLSv1/SSLv3 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=FAIL);
+	Mon, 30 Jun 2025 09:57:56 -0400
+Received: from ASHBCASHYB4.ad.analog.com (10.64.17.132) by
+ ASHBMBX8.ad.analog.com (10.64.17.5) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.1748.10; Mon, 30 Jun 2025 09:57:56 -0400
+Received: from ASHBMBX8.ad.analog.com (10.64.17.5) by
+ ASHBCASHYB4.ad.analog.com (10.64.17.132) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.1748.10; Mon, 30 Jun 2025 09:57:56 -0400
+Received: from zeus.spd.analog.com (10.66.68.11) by ashbmbx8.ad.analog.com
+ (10.64.17.5) with Microsoft SMTP Server id 15.2.1748.10 via Frontend
+ Transport; Mon, 30 Jun 2025 09:57:56 -0400
+Received: from work.ad.analog.com (HYB-hERzalRezfV.ad.analog.com [10.65.205.9])
+	by zeus.spd.analog.com (8.15.1/8.15.1) with ESMTP id 55UDvbsS008238;
+	Mon, 30 Jun 2025 09:57:40 -0400
+From: Marcelo Schmitt <marcelo.schmitt@analog.com>
+To: <linux-iio@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-gpio@vger.kernel.org>, <linux-kernel@vger.kernel.org>
+CC: <jic23@kernel.org>, <lars@metafoo.de>, <Michael.Hennerich@analog.com>,
+        <dlechner@baylibre.com>, <nuno.sa@analog.com>, <andy@kernel.org>,
+        <robh@kernel.org>, <krzk+dt@kernel.org>, <conor+dt@kernel.org>,
+        <linus.walleij@linaro.org>, <brgl@bgdev.pl>, <broonie@kernel.org>,
+        <lgirdwood@gmail.com>, <marcelo.schmitt1@gmail.com>
+Subject: [PATCH v7 00/12] iio: adc: Add support for AD4170 series of ADCs
+Date: Mon, 30 Jun 2025 10:57:32 -0300
+Message-ID: <cover.1751289747.git.marcelo.schmitt@analog.com>
+X-Mailer: git-send-email 2.39.2
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-Mime-Version: 1.0 (Mac OS X Mail 16.0 \(3826.600.51.1.1\))
-Subject: Re: [PATCH v2 5/8] dt-bindings: vendor-prefixes: Add Wuxi i-Core
- Electronics
-From: Christian Hewitt <christianshewitt@gmail.com>
-In-Reply-To: <779ee1b0-d624-4189-8452-6e27dfcf2684@kernel.org>
-Date: Mon, 30 Jun 2025 17:53:59 +0400
-Cc: Geert Uytterhoeven <geert@linux-m68k.org>,
- =?utf-8?Q?Jean-Fran=C3=A7ois_Lessard?= <jefflessard3@gmail.com>,
- Andy Shevchenko <andy@kernel.org>,
- Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>,
- devicetree@vger.kernel.org,
- linux-leds@vger.kernel.org,
- linux-kernel@vger.kernel.org,
- =?utf-8?Q?Andreas_F=C3=A4rber?= <afaerber@suse.de>,
- Boris Gjenero <boris.gjenero@gmail.com>,
- Heiner Kallweit <hkallweit1@gmail.com>,
- Paolo Sabatino <paolo.sabatino@gmail.com>
-Content-Transfer-Encoding: quoted-printable
-Message-Id: <64C9BD77-1AFB-4B7B-BBD1-CE06F0F4642A@gmail.com>
-References: <20250629130002.49842-1-jefflessard3@gmail.com>
- <20250629130002.49842-7-jefflessard3@gmail.com>
- <CAMuHMdW+vGr-KyvPr84qr_k1sJV88SFn+oF_oi8_MKJkbyHXbg@mail.gmail.com>
- <779ee1b0-d624-4189-8452-6e27dfcf2684@kernel.org>
-To: Krzysztof Kozlowski <krzk@kernel.org>
-X-Mailer: Apple Mail (2.3826.600.51.1.1)
+MIME-Version: 1.0
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 8bit
+X-ADIRuleOP-NewSCL: Rule Triggered
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwNjMwMDExNSBTYWx0ZWRfX8jlwswqfCyl4
+ riFyBSUxZIogvhukSIspJL8enLT6f300MCmmbwGqcEG8AOODJKw8F9FB13A8WwwlzqZn91X1bks
+ 1WVlbFdAmg8+7OGNnSYnu/CSdrczoKAO17muGY3BP7Ylrv0t84zu3BIWJJNxqZdIPVpyBNgMBUx
+ uNIPxuoApumwB1HUHWYxw5FwbvwmOQHjuaxwLEelZuGK649T5AzWyjbJlu680bukswxfxDt8EoP
+ OUYt0WLI+OXdVTY/Lg6hsUhC2EllAW+KzCxKgsfvc9h1HG9rwxD6KDaNp2K0zzSGh3NHGnc8Db5
+ 4MvtpCkyYITV8KFCnGGrZhqxxUxyVwYD53qWFdcRd82zBxXi4lYEk11CCYWTwM862uuj2W2mmDY
+ nAG44cwRmpLFbq5w9uKBzCzOF/NrZOhLZABpzLkAgZ0YintfHKhQQY1hqSVAAbgz1/aZSuwf
+X-Proofpoint-GUID: cOe44bxx6jGrjCumxvuKV48xn-nBFiIG
+X-Proofpoint-ORIG-GUID: cOe44bxx6jGrjCumxvuKV48xn-nBFiIG
+X-Authority-Analysis: v=2.4 cv=SsiQ6OO0 c=1 sm=1 tr=0 ts=686297e5 cx=c_pps
+ a=PpDZqlmH/M8setHirZLBMw==:117 a=PpDZqlmH/M8setHirZLBMw==:17
+ a=IkcTkHD0fZMA:10 a=6IFa9wvqVegA:10 a=VwQbUJbxAAAA:8 a=gAnH3GRIAAAA:8
+ a=d2l83gEL7BD-IQ41SLYA:9 a=QEXdDO2ut3YA:10
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1099,Hydra:6.1.7,FMLib:17.12.80.40
+ definitions=2025-06-30_03,2025-06-27_01,2025-03-28_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ mlxscore=0 priorityscore=1501 malwarescore=0 clxscore=1015 mlxlogscore=999
+ spamscore=0 impostorscore=0 adultscore=0 lowpriorityscore=0 suspectscore=0
+ bulkscore=0 phishscore=0 classifier=spam authscore=0 authtc=n/a authcc=
+ route=outbound adjust=0 reason=mlx scancount=1 engine=8.19.0-2505280000
+ definitions=main-2506300115
 
-> On 30 Jun 2025, at 4:24=E2=80=AFpm, Krzysztof Kozlowski =
-<krzk@kernel.org> wrote:
->=20
-> On 30/06/2025 10:19, Geert Uytterhoeven wrote:
->> Hi Jean-Fran=C3=A7ois,
->>=20
->> On Sun, 29 Jun 2025 at 15:00, Jean-Fran=C3=A7ois Lessard
->> <jefflessard3@gmail.com> wrote:
->>> Assign vendor prefix "icore", based on their domain name.
->>>=20
->>> Signed-off-by: Jean-Fran=C3=A7ois Lessard <jefflessard3@gmail.com>
->>=20
->> Thanks for your patch!
->>=20
->>> --- a/Documentation/devicetree/bindings/vendor-prefixes.yaml
->>> +++ b/Documentation/devicetree/bindings/vendor-prefixes.yaml
->>> @@ -694,6 +694,8 @@ patternProperties:
->>>     description: International Business Machines (IBM)
->>>   "^ibm,.*":
->>>     description: International Business Machines (IBM)
->>> +  "^icore,.*":
->>> +    description: Wuxi i-Core Electronics Co., Ltd.
->>=20
->> This sounds a bit too generic to me.  What is the domain name?
->=20
-> Good point. icore.com should be but obviously it points somewhere =
-else,
-> so this does not follow ticker / domain name style.
+Hello,
 
-As per the response to Geert earlier, the domain is i-core.cn (not .com)
+AD4170 support v7 comes after testing the driver with even more variations of
+channel setups. Signal offset and amplification can be tricky to grasp at times.
 
-See: http://www.i-core.cn/en/
+Thank you to all reviewers of previous versions. This intends to comply with all
+comments and suggestions to v6.
 
-CH.=
+Same amount of patches than v6.
+
+Patch 1 adds device tree documentation for the parts.
+Patch 2 adds basic device support.
+Patch 3 adds support for calibration scale.
+Patch 4 adds support for calibration bias.
+Patch 5 adds sinc5+avg to filter_type_available IIO ABI documentation.
+Patch 6 adds support for sample frequency along with filter type configuration.
+Patch 7 adds support for buffered ADC reading.
+Patch 8 adds clock provider support
+Patch 9 adds GPIO controller support.
+Patch 10 adds internal temperature sensor support.
+Patch 11 adds support for external RTD and bridge circuit sensors.
+Patch 12 adds timestamp channel
+
+Change log v6 -> v7
+
+[Generic changes]
+- Renamed dt-doc and driver from ad4170 to ad4170-4. This will hopefully be more 
+  future proof since there is precedent of different devices with names ending
+  with and without -N (e.g. AD7091R and AD7091R-5, AD7768 and AD7768-1).
+
+[Device tree changes]
+- Dropped leftover/unneeded list of valid reference-buffer values.
+- Set vbias at AIN8 in example. The vbias is expected to be set on the IN- pin.
+
+[Basic driver patch]
+- Refactored ad4170_parse_adc_channel_type() to use fwnode_property_present()
+  so to return errors early if required properties are not present.
+- Use spi_write_then_read() to skip dealing with DMA safe buffers in slow data paths.
+- Minor tweaks to comments such as 'handle options ...' -> 'handle PGA options ...'.
+
+[sinc5+avg ABI patch]
+- Fixed IIO ABI documentation by specifying the correct filter enabled with sinc5+avg.
+
+[Digital filter and sample frequency config patch]
+- Now reading SPS table within filter type switch to ensure in bounds array access.
+- Squeezed info_mask_separate additions to reduce change diff.
+
+[Buffer support patch]
+- Dropped extra assignment of st->trig->dev.parent.
+
+[GPIO controller patch]
+- Used local device pointer (replaced &st->spi->dev with dev) in ad4170_parse_firmware().
+
+[External sensor patch]
+- adi,vbias was previously set per channel in ad4170 dt-binding but it is set
+  per device in adi,ad4130.yaml. Fixed ad4170 parsing of adi,vbias. The
+  dt-binding had been updated to the established use of adi,vbias in v4.
+
+Link to v6: https://lore.kernel.org/linux-iio/cover.1750258776.git.marcelo.schmitt@analog.com/
+Link to v5: https://lore.kernel.org/linux-iio/cover.1749582679.git.marcelo.schmitt@analog.com/ 
+Link to v4: https://lore.kernel.org/linux-iio/cover.1748829860.git.marcelo.schmitt@analog.com/
+Link to v3: https://lore.kernel.org/linux-iio/cover.1747083143.git.marcelo.schmitt@analog.com/
+Link to v2: https://lore.kernel.org/linux-iio/cover.1745841276.git.marcelo.schmitt@analog.com/
+Link to v1: https://lore.kernel.org/linux-iio/cover.1744200264.git.marcelo.schmitt@analog.com/
+
+
+Ana-Maria Cusco (1):
+  iio: adc: Add basic support for AD4170-4
+
+Marcelo Schmitt (11):
+  dt-bindings: iio: adc: Add AD4170
+  iio: adc: ad4170-4: Add support for calibration gain
+  iio: adc: ad4170-4: Add support for calibration bias
+  Documentation: ABI: IIO: Add sinc5+avg to the filter_type_available
+    list
+  iio: adc: ad4170-4: Add digital filter and sample frequency config
+    support
+  iio: adc: ad4170-4: Add support for buffered data capture
+  iio: adc: ad4170-4: Add clock provider support
+  iio: adc: ad4170-4: Add GPIO controller support
+  iio: adc: ad4170-4: Add support for internal temperature sensor
+  iio: adc: ad4170-4: Add support for weigh scale and RTD sensors
+  iio: adc: ad4170-4: Add timestamp channel
+
+ Documentation/ABI/testing/sysfs-bus-iio       |    1 +
+ .../bindings/iio/adc/adi,ad4170-4.yaml        |  555 +++
+ MAINTAINERS                                   |    8 +
+ drivers/iio/adc/Kconfig                       |   16 +
+ drivers/iio/adc/Makefile                      |    1 +
+ drivers/iio/adc/ad4170-4.c                    | 3020 +++++++++++++++++
+ 6 files changed, 3601 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/iio/adc/adi,ad4170-4.yaml
+ create mode 100644 drivers/iio/adc/ad4170-4.c
+
+
+base-commit: 42498420746a4db923f03d048a0ebc9bd2371f56
+-- 
+2.47.2
+
 
