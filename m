@@ -1,140 +1,137 @@
-Return-Path: <devicetree+bounces-191253-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-191254-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 929B5AEEA8B
-	for <lists+devicetree@lfdr.de>; Tue,  1 Jul 2025 00:42:14 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 49D4CAEEA8F
+	for <lists+devicetree@lfdr.de>; Tue,  1 Jul 2025 00:44:00 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id B03A31BC1595
-	for <lists+devicetree@lfdr.de>; Mon, 30 Jun 2025 22:42:30 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 0EE967A26C2
+	for <lists+devicetree@lfdr.de>; Mon, 30 Jun 2025 22:42:35 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9CA9E2356BA;
-	Mon, 30 Jun 2025 22:42:10 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 074DE245012;
+	Mon, 30 Jun 2025 22:43:53 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="aGjqN5Gf"
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="YuxvQJxX"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-qv1-f54.google.com (mail-qv1-f54.google.com [209.85.219.54])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.17])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1462E20C494;
-	Mon, 30 Jun 2025 22:42:08 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.219.54
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5205D125B2;
+	Mon, 30 Jun 2025 22:43:51 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.175.65.17
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1751323330; cv=none; b=j2EriDpfIE4ARvW47scnl6DSo4xV4cYmwW71rEOwrpJEThn2dxBbNmsJOrIF4Wv2CkBF1yyd0nJcslT4mTxSc9tApjwra7F6YUyCZi8163UEyvwBkFM6iYScFReb5JPkmGMAfiuogTdmj0+dJzjfnZggiimDTZTNfCT1Lgzl8jk=
+	t=1751323432; cv=none; b=UVcJbj91rwefdxyp9WmM+FxdISIXQ1pKgouB1N+Kl0sA7jKKB47+xAJFpeAH7z5iSojfaJutEcDJZ1Zt6QZPa/qlGI10RGtWuZnDH3n1ILS6a+gublIj63bO1fDE6g2qD7LJkaasew9KcUEJ4GoG4kEa/4bngWj/RVV4PeerwQQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1751323330; c=relaxed/simple;
-	bh=ZACAeLHypgZbA+k+mIDgOUZv844BSsXVuBGPJnkjwjc=;
-	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=fgew5BI1QdIjnsJnB6F5YyjjbLLAigYNTG1PpfNjMBJd9rapsLwwEeU/mQZLBDSKvDNVDI4eQi8Xs3+A8g7OcCAOzkkUYErt1qpxrrsPt5zplbyRv5F1k43iQt8PBGgucWec6+6mGODbKnkOMGfvWR4pTHvnXOm2BFey834QWIw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=aGjqN5Gf; arc=none smtp.client-ip=209.85.219.54
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-qv1-f54.google.com with SMTP id 6a1803df08f44-6facba680a1so32380576d6.3;
-        Mon, 30 Jun 2025 15:42:08 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1751323328; x=1751928128; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=Befo3Hd0rTYAAPA3eF8LE+sYNdk5todNlRuDXpPF3eE=;
-        b=aGjqN5Gf9oHCFJwoG4miISmqdMuP3Z+8oCvUn6KwxRaMuxFO9qXnku8TAfrBHTWiCt
-         KmtpFKF9tEfw9R1Mlc4zVk7eN2TjqdOnlHfWCH4EB7vA3VyeRjEAfuE4dTAEUU/WCRyg
-         LT9AFxogJZBFYZd6kFyFXoOHUuyYYR2l17Ua4hbxmqf8VzM6xc6SgRMuX+GxP7HwZNj/
-         SfZjOwAGCgYi3YvVxSoSphTt932npAcF+dnmP1OwO1NwdUCyFnvbu8dXev3AIlWVn4RU
-         HoT8OTgcyvTw/QUt+1ty1oFji/KQbuCvt5EOfe/RtSM9NXxncUppNoVmdVgqJZa8tY0I
-         CwRQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1751323328; x=1751928128;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=Befo3Hd0rTYAAPA3eF8LE+sYNdk5todNlRuDXpPF3eE=;
-        b=ZZKlgIG2Vd9jsMqgYzRR4TyLMNYFdjpYtLLZHzwVMNw3tg+d/4z6YF87vUuz53yNis
-         5vZvPntztY2rCPmNXryXhpeA/uGCz6N0qjJus2/nvxWbgUirxZnEPhgMPO1riOj24f6/
-         NZcDYpJs4fCC07gUm/AJJKEc2NsgwywOjlK1AaHy8/LFfl9xUVOv3jfuorZ/ie5hTIbn
-         LKKBuS/AnVVB/2E26xLtBwO3nCqZ35bPkz7oU4reI0QPm5uZyQ1K69GCwPhvnIE/HtqR
-         rEZbDCXN0BSbiIEWK7fH6u0XVhbhVjhf3Pk6bcQsNa9GMsWrIUp27kf35A/MTgi1xxE3
-         IHqw==
-X-Forwarded-Encrypted: i=1; AJvYcCUjk8sQZ4R3ShsBVRmNAje0ez66v/6H7xHsYLD9azyVCD5tQlJq8PDES0k6/9zLPH3Jj6lzM9Sgq5mD@vger.kernel.org, AJvYcCWPN/TiNkC7i9q/0knX4ybkJxp6MjTx1EnztBm+3OQ9MwMOpuMB38qQoSRNPyMuyMH+T5uo1Uu4qWPkmosuWA==@vger.kernel.org
-X-Gm-Message-State: AOJu0Yw2MV5a1lCwQ6YBYaUVZg5xdOZxEi3B3Giv1cXrST/Tzy0B6K9I
-	pwnftvNCT2ybclWBJc3/i/p0xQVyUsZj28m8E7nb0XckaazXu37MzPr3
-X-Gm-Gg: ASbGncvb1aiajRQclsQm1TjNecitspbuLqh9QfpuzJvNQDUkQGqc+bOwasdy8P1hmKU
-	63XD7PF4XmPEbObzNaZovWy1ZPBbtOFgFdhWHlxvdII+pXoz7pPoXa4fYl/o2YH7YkcauBxxfK0
-	y5OIYdULsxs3sdcWL9xJKGAa2IyBgFX85bbascHE4tUaFEPbLv0V/IkKMggmtTbHCFZ8TBNuKt4
-	Qb505Fn6btLx5uX49qvkzeaUZklJXXgGOXBk+sdrojHbvK7+7TPJYNyeTrHpeb4uONdw2/EA6YE
-	O6ckdybqcx0xGWYXT2snl/WoMGfwKGrfJU9eQiKCOsiJLW8NaQ==
-X-Google-Smtp-Source: AGHT+IGhQnbKJwumZdlEwdhNaZ9o2G1IcqW1DCXdsstk9RxnPBm+AqOxKwRV5SciljUKnFz1Pj2HJg==
-X-Received: by 2002:a05:6214:4a02:b0:6fb:96:36b0 with SMTP id 6a1803df08f44-70013d52afcmr296873976d6.31.1751323327711;
-        Mon, 30 Jun 2025 15:42:07 -0700 (PDT)
-Received: from localhost ([2607:fea8:3140:6800::10ce])
-        by smtp.gmail.com with UTF8SMTPSA id 6a1803df08f44-6fd77313b17sm74853496d6.118.2025.06.30.15.42.06
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 30 Jun 2025 15:42:07 -0700 (PDT)
-From: Richard Acayan <mailingradian@gmail.com>
-To: Bjorn Andersson <andersson@kernel.org>,
-	Konrad Dybcio <konradybcio@kernel.org>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	linux-arm-msm@vger.kernel.org,
-	devicetree@vger.kernel.org
-Cc: Richard Acayan <mailingradian@gmail.com>
-Subject: [PATCH] arm64: dts: qcom: sdm670-google-sargo: enable charger
-Date: Mon, 30 Jun 2025 18:41:59 -0400
-Message-ID: <20250630224158.249726-2-mailingradian@gmail.com>
-X-Mailer: git-send-email 2.50.0
+	s=arc-20240116; t=1751323432; c=relaxed/simple;
+	bh=ffb/hTRPmY5KeK6OrulyF3uIh0DRkKHhLxkEtemA18k=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=r79WHAn+7Zqh8CCJ6qr1XD2jLzfS86lg9gRMpNTebYVdDbXLhjqQCZxuV0H6+gXwD2iB1ptZZUsRSMglmpr2k/7IH00hWPsDqUab8L5839uusN3/QHBLrFKYWjS2wZmITe/uzMXV6BCLro0uqRzh3gunAQjbdGwxxS3tcxG0XDs=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com; spf=none smtp.mailfrom=linux.intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=YuxvQJxX; arc=none smtp.client-ip=198.175.65.17
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com
+Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=linux.intel.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1751323431; x=1782859431;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:content-transfer-encoding:in-reply-to;
+  bh=ffb/hTRPmY5KeK6OrulyF3uIh0DRkKHhLxkEtemA18k=;
+  b=YuxvQJxX04qiPvwXTetOAwkyUiT6A1TqDO5ZPhTBMPF8IFMIJeZUyJoa
+   rj73HJo+xFpsmxqN+GB9rb4bhDrF6cK0b8xFg5UpHIt90fZBycScNiZOf
+   8NmPt31vmAf3XjTAxyw29kVllboR2wMBNvunZBtF7pHsYiHOqFbRG9q3Y
+   6mLxsGd7TMq6Pv/kgcotjXkfp0d2NyqXLXfE3J/ASEHjtEOPsh6P0RZwA
+   n4FN5gXUxiCIFJUEuvjvb4IFX5FO9ZB99By1QOB+Acyc9+94Ssy5d7cIu
+   aLv6lp9v9K4esQUXjSQxmjsbJtCJBrVqndqVKz/6LrkHppWndNF1UCCtr
+   g==;
+X-CSE-ConnectionGUID: 16DktrHjR5eXmqRUY6rIjQ==
+X-CSE-MsgGUID: CVfy4fu0QAG6tjR+97r34A==
+X-IronPort-AV: E=McAfee;i="6800,10657,11480"; a="53526456"
+X-IronPort-AV: E=Sophos;i="6.16,278,1744095600"; 
+   d="scan'208";a="53526456"
+Received: from fmviesa002.fm.intel.com ([10.60.135.142])
+  by orvoesa109.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 30 Jun 2025 15:43:50 -0700
+X-CSE-ConnectionGUID: fiAwSQv8QKmrmHZGKskUGw==
+X-CSE-MsgGUID: +1nCDvr8SWaVJgaf3d6gvw==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.16,278,1744095600"; 
+   d="scan'208";a="177246336"
+Received: from ranerica-svr.sc.intel.com ([172.25.110.23])
+  by fmviesa002.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 30 Jun 2025 15:43:48 -0700
+Date: Mon, 30 Jun 2025 15:49:47 -0700
+From: Ricardo Neri <ricardo.neri-calderon@linux.intel.com>
+To: "Rafael J. Wysocki" <rafael@kernel.org>
+Cc: x86@kernel.org, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>, Rob Herring <robh@kernel.org>,
+	"K. Y. Srinivasan" <kys@microsoft.com>,
+	Haiyang Zhang <haiyangz@microsoft.com>,
+	Wei Liu <wei.liu@kernel.org>, Dexuan Cui <decui@microsoft.com>,
+	Michael Kelley <mhklinux@outlook.com>,
+	Saurabh Sengar <ssengar@linux.microsoft.com>,
+	Chris Oo <cho@microsoft.com>,
+	"Kirill A. Shutemov" <kirill.shutemov@linux.intel.com>,
+	linux-hyperv@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-acpi@vger.kernel.org, linux-kernel@vger.kernel.org,
+	Ricardo Neri <ricardo.neri@intel.com>,
+	Yunhong Jiang <yunhong.jiang@linux.intel.com>
+Subject: Re: [PATCH v5 03/10] dt-bindings: reserved-memory: Wakeup Mailbox
+ for Intel processors
+Message-ID: <20250630224947.GA3072@ranerica-svr.sc.intel.com>
+References: <20250627-rneri-wakeup-mailbox-v5-0-df547b1d196e@linux.intel.com>
+ <20250627-rneri-wakeup-mailbox-v5-3-df547b1d196e@linux.intel.com>
+ <CAJZ5v0h_oifyhJq4WiOzS0fcexrjeChJhVyAthfQCX=6v_GumA@mail.gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
+In-Reply-To: <CAJZ5v0h_oifyhJq4WiOzS0fcexrjeChJhVyAthfQCX=6v_GumA@mail.gmail.com>
+User-Agent: Mutt/1.9.4 (2018-02-28)
 
-The Pixel 3a has a rechargeable 3000 mAh battery. Describe it and enable
-its charging controller in PM660.
+On Mon, Jun 30, 2025 at 09:02:00PM +0200, Rafael J. Wysocki wrote:
+> On Sat, Jun 28, 2025 at 5:35 AM Ricardo Neri
+> <ricardo.neri-calderon@linux.intel.com> wrote:
+> >
+> > Add DeviceTree bindings to enumerate the wakeup mailbox used in platform
+> > firmware for Intel processors.
+> >
+> > x86 platforms commonly boot secondary CPUs using an INIT assert, de-assert
+> > followed by Start-Up IPI messages. The wakeup mailbox can be used when this
+> > mechanism is unavailable.
+> >
+> > The wakeup mailbox offers more control to the operating system to boot
+> > secondary CPUs than a spin-table. It allows the reuse of same wakeup vector
+> > for all CPUs while maintaining control over which CPUs to boot and when.
+> > While it is possible to achieve the same level of control using a spin-
+> > table, it would require to specify a separate `cpu-release-addr` for each
+> > secondary CPU.
+> >
+> > The operation and structure of the mailbox is described in the
+> > Multiprocessor Wakeup Structure defined in the ACPI specification. Note
+> > that this structure does not specify how to publish the mailbox to the
+> > operating system (ACPI-based platform firmware uses a separate table). No
+> > ACPI table is needed in DeviceTree-based firmware to enumerate the mailbox.
+> >
+> > Add a `compatible` property that the operating system can use to discover
+> > the mailbox. Nodes wanting to refer to the reserved memory usually define a
+> > `memory-region` property. /cpus/cpu* nodes would want to refer to the
+> > mailbox, but they do not have such property defined in the DeviceTree
+> > specification. Moreover, it would imply that there is a memory region per
+> > CPU.
+> >
+> > Co-developed-by: Yunhong Jiang <yunhong.jiang@linux.intel.com>
+> > Signed-off-by: Yunhong Jiang <yunhong.jiang@linux.intel.com>
+> > Signed-off-by: Ricardo Neri <ricardo.neri-calderon@linux.intel.com>
+> 
+> LGTM from the ACPI specification cross-referencing perspective, so
+> 
+> Acked-by: Rafael J. Wysocki <rafael.j.wysocki@intel.com>
 
-Signed-off-by: Richard Acayan <mailingradian@gmail.com>
----
- .../arm64/boot/dts/qcom/sdm670-google-sargo.dts | 17 +++++++++++++++++
- 1 file changed, 17 insertions(+)
+Thank you Rafael!
 
-diff --git a/arch/arm64/boot/dts/qcom/sdm670-google-sargo.dts b/arch/arm64/boot/dts/qcom/sdm670-google-sargo.dts
-index 74b5d9c68eb6..d01422844fbf 100644
---- a/arch/arm64/boot/dts/qcom/sdm670-google-sargo.dts
-+++ b/arch/arm64/boot/dts/qcom/sdm670-google-sargo.dts
-@@ -33,6 +33,14 @@ / {
- 
- 	aliases { };
- 
-+	battery: battery {
-+		compatible = "simple-battery";
-+
-+		voltage-min-design-microvolt = <3312000>;
-+		voltage-max-design-microvolt = <4400000>;
-+		charge-full-design-microamp-hours = <3000000>;
-+	};
-+
- 	chosen {
- 		stdout-path = "serial0:115200n8";
- 
-@@ -478,6 +486,15 @@ &mdss_mdp {
- 	status = "okay";
- };
- 
-+&pm660_charger {
-+	monitored-battery = <&battery>;
-+	status = "okay";
-+};
-+
-+&pm660_rradc {
-+	status = "okay";
-+};
-+
- &pm660l_flash {
- 	status = "okay";
- 
--- 
-2.50.0
-
+I hope this looks good to Krzysztof and Rob too.
 
