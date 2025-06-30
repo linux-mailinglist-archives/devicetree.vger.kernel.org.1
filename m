@@ -1,265 +1,101 @@
-Return-Path: <devicetree+bounces-191167-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-191168-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 30D63AEE27A
-	for <lists+devicetree@lfdr.de>; Mon, 30 Jun 2025 17:31:16 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 49232AEE2B9
+	for <lists+devicetree@lfdr.de>; Mon, 30 Jun 2025 17:37:05 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 6DC8516DA2F
-	for <lists+devicetree@lfdr.de>; Mon, 30 Jun 2025 15:31:16 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 8DE501757B2
+	for <lists+devicetree@lfdr.de>; Mon, 30 Jun 2025 15:37:05 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 955E74F5E0;
-	Mon, 30 Jun 2025 15:31:11 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9812A28ECE5;
+	Mon, 30 Jun 2025 15:37:03 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (1024-bit key) header.d=collabora.com header.i=nicolas.frattaroli@collabora.com header.b="BPFW+RRT"
 X-Original-To: devicetree@vger.kernel.org
-Received: from TYDPR03CU002.outbound.protection.outlook.com (mail-japaneastazon11023087.outbound.protection.outlook.com [52.101.127.87])
+Received: from sender4-pp-f112.zoho.com (sender4-pp-f112.zoho.com [136.143.188.112])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0B0E6289833;
-	Mon, 30 Jun 2025 15:31:07 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=52.101.127.87
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E3A5A28C03D;
+	Mon, 30 Jun 2025 15:37:01 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=pass smtp.client-ip=136.143.188.112
 ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1751297471; cv=fail; b=TG/CIHimhx/bzy1qY2Tsh5yveZk4SYZYKAmuxOOJ4tEhioGq7LFOceGRMWSpuepxdxC2Ut43QdNSryG4DZr/Q7encKHAo+iVe4kXzYs2wWr726V/mlk0J+W5eLlvwE96GfXD5sVnWDGFTQxx+m5arAfVfVhYayQ2ab9er1d2piU=
+	t=1751297823; cv=pass; b=CTpz4K5y2o4pV6cG+ynDoYsRbpIWx4K37jgnXom38ubhPNX27WBLHQ6d/IDPb1TOQjRLc5pFH9Vf4u11IWXxjUVKyrusbfiWEX6VcRk7rEnz5tG+0pWVhyzXWuf/fYKYIyaIXK1LDTS0DE/j0trsP+cmX1zRGWc67uYgUAVKbbk=
 ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1751297471; c=relaxed/simple;
-	bh=yX8x003vyIsNbCO6RlCObrlKI+RcF4FV0ym9gI/o1PU=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=ScPPRLVQeBtsQpau3dBM9wc7eRVmCx9yYnXylMX3D+nvo4x6Fz9F/kg6vMhvfHdSFkUkV385Sgk65CxhVmtmVqwX2DARPzggplxgRhfy/MbXyffby1mj+4FNyLxMPTyNWtmtSfSJCL+UAIKfFYNci2YivmYzHp+3y/oIfsYR17s=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=cixtech.com; spf=pass smtp.mailfrom=cixtech.com; arc=fail smtp.client-ip=52.101.127.87
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=cixtech.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=cixtech.com
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=hL+s2OohcJ/u8TUMfh3vVTf5+gS3ucHH4xHOkoutZuvjc/2Zq+MRyTgNuqXGN/tjds0FRLkWYnSkbvMWVWa6z6Hn4R6Tq71+56z9MBKW+yAi46vYBIKxUH8YFN1IftmumobXQG0GX56XXXzQ8XJAx5zMdzCH/ANmnnJom+pu7LnT11PH0iabwYa9r+is5umbqeL3ZdJ2xkBtGA9mgB3HJc4DXDaiDdcUy7ArHKOG4mHc1iwE58O4MzH034uNX14WiD06Zs7FsH+PqAJ6DdVqGtsEQHJoZ80Xk/zj7odDnlUfhzvzKaJTwsD5rf/bp1RUxHlwjqElEEUA2hKIxmA3nA==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=poJ7pVu9ML5fjnDj9uQOulq3KTWzwJ1V/gML+eu9qM4=;
- b=tBz1CIY14GRIJVUS8fEes6L0+35n1FcA40dZM+Z6Q8k0QYmtGyPJ1Cj6DSQdLpwsnhMbeCLl53+s+BNa9983yzxIgo1m4gEE/3dNKJrHhH0dTtVodHw3vUbvawRmdFNueX8IKWUZOT81+4Le1JPHMiOyPtMAl9/evCfAe5maG1Nqk6vBxv9byGPTwIEAGuWg9MQSUT1t6hD9DaAwyd40GmT+G/hvVAD+PXPPzG8K+8BrOEfy0MnDRju53wMnjvPM9eG0cd0H7+UpZglpE8Rc1JyJqZwCmSN001pjtqIy5UOHVOxZneeIJJjl4aLrKMPkSCetKyiXKMjI41YOGbSD4w==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
- 222.71.101.198) smtp.rcpttodomain=cadence.com smtp.mailfrom=cixtech.com;
- dmarc=bestguesspass action=none header.from=cixtech.com; dkim=none (message
- not signed); arc=none (0)
-Received: from PS2PR03CA0024.apcprd03.prod.outlook.com (2603:1096:300:5b::36)
- by KL1PR06MB7009.apcprd06.prod.outlook.com (2603:1096:820:11a::10) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8880.27; Mon, 30 Jun
- 2025 15:31:02 +0000
-Received: from OSA0EPF000000C7.apcprd02.prod.outlook.com
- (2603:1096:300:5b:cafe::8d) by PS2PR03CA0024.outlook.office365.com
- (2603:1096:300:5b::36) with Microsoft SMTP Server (version=TLS1_3,
- cipher=TLS_AES_256_GCM_SHA384) id 15.20.8901.17 via Frontend Transport; Mon,
- 30 Jun 2025 15:31:01 +0000
-X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 222.71.101.198)
- smtp.mailfrom=cixtech.com; dkim=none (message not signed)
- header.d=none;dmarc=bestguesspass action=none header.from=cixtech.com;
-Received-SPF: Pass (protection.outlook.com: domain of cixtech.com designates
- 222.71.101.198 as permitted sender) receiver=protection.outlook.com;
- client-ip=222.71.101.198; helo=smtprelay.cixcomputing.com; pr=C
-Received: from smtprelay.cixcomputing.com (222.71.101.198) by
- OSA0EPF000000C7.mail.protection.outlook.com (10.167.240.53) with Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.8901.15 via Frontend Transport; Mon, 30 Jun 2025 15:31:00 +0000
-Received: from [172.16.64.208] (unknown [172.16.64.208])
-	by smtprelay.cixcomputing.com (Postfix) with ESMTPSA id 92DD144C3CAA;
-	Mon, 30 Jun 2025 23:30:59 +0800 (CST)
-Message-ID: <2b608302-c4a6-404d-9cc5-d1ab9a6712bd@cixtech.com>
-Date: Mon, 30 Jun 2025 23:30:54 +0800
+	s=arc-20240116; t=1751297823; c=relaxed/simple;
+	bh=SPJ0Ppx5B73YSoF4KCwpTgjq+rbaUKCQVXitWb5nNSs=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=ZsfqpLw7infj0qNKzOargRI2fVcGf2nOJZpa9+uZdPjEDspTzYw4eJE76N0bRNApjDGvIepbfC/qnWhFuDPLKOcNiP2nGnK7iSysOXwTxlQ6q5TG7oaJi5RHe0XpdW1euaqc4/wDOgoJrhNg0DTMGyixq0c0Q5kQueDY/KtAOmk=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (1024-bit key) header.d=collabora.com header.i=nicolas.frattaroli@collabora.com header.b=BPFW+RRT; arc=pass smtp.client-ip=136.143.188.112
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
+ARC-Seal: i=1; a=rsa-sha256; t=1751297803; cv=none; 
+	d=zohomail.com; s=zohoarc; 
+	b=RpN4bPtZ/jvsadHm2DKR3O92hYxkU+pZGr4rL83hBf+iD9+QAa8btMKs1hoNQFAepghj/6nIT0r9DGuBnDGmYhc/Z8rhY+n/qXdgikB13Et2nWz53YxBw4fVkzSBb+USnpJSCuKx/sDsAm1T3bIR2BL5GWTkW8j+hUGNuZnDppw=
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=zohomail.com; s=zohoarc; 
+	t=1751297803; h=Content-Type:Content-Transfer-Encoding:Cc:Cc:Date:Date:From:From:MIME-Version:Message-ID:Subject:Subject:To:To:Message-Id:Reply-To; 
+	bh=oEjLrRG0kfXtUXwN04MYTgoasYE6yNyZK3tKgOletsA=; 
+	b=Sq0vdmUvI8ggfRtRuc51NIcpYBdvItCxeRr/IZvDCsCe5+UIzHkiD6mBnnTVKtpHWVsIPWYkRxxkInN3T1paUsvg7M5CVeqyZOjTekhWys3lyjFYxEbMNF2iwbU1ikIOXhj+nWGr64HciexHGZIpIxbPgGwIMmQcdAoSC2DGSko=
+ARC-Authentication-Results: i=1; mx.zohomail.com;
+	dkim=pass  header.i=collabora.com;
+	spf=pass  smtp.mailfrom=nicolas.frattaroli@collabora.com;
+	dmarc=pass header.from=<nicolas.frattaroli@collabora.com>
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; t=1751297803;
+	s=zohomail; d=collabora.com; i=nicolas.frattaroli@collabora.com;
+	h=From:From:Subject:Subject:Date:Date:Message-Id:Message-Id:MIME-Version:Content-Type:Content-Transfer-Encoding:To:To:Cc:Cc:Reply-To;
+	bh=oEjLrRG0kfXtUXwN04MYTgoasYE6yNyZK3tKgOletsA=;
+	b=BPFW+RRTOEgl/Bc4viTeOL0Fb2yzea9PwpJpvydHK0if3G0chFgdyAYbmC7z5Rv8
+	+4JBJgmDO/2NrlW6U0QOxB1bx1Wr2hkVfu5mUCsWoT8z6c7C9FDI8+M2BY8vc4UwkPk
+	86EM7+fWT+KmlFIa8B3hro9QPL33p4lsoLobotaI=
+Received: by mx.zohomail.com with SMTPS id 1751297801452461.69521897601544;
+	Mon, 30 Jun 2025 08:36:41 -0700 (PDT)
+From: Nicolas Frattaroli <nicolas.frattaroli@collabora.com>
+Subject: [PATCH 0/3] ROCK 4D DT additions: regulators, usb, rfkill
+Date: Mon, 30 Jun 2025 17:36:32 +0200
+Message-Id: <20250630-rock4d-reg-usb-wifi-v1-0-1057f412d98c@collabora.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v5 10/14] dt-bindings: PCI: Add CIX Sky1 PCIe Root Complex
- bindings
-To: Krzysztof Kozlowski <krzk@kernel.org>
-Cc: bhelgaas@google.com, lpieralisi@kernel.org, kw@linux.com,
- mani@kernel.org, robh@kernel.org, kwilczynski@kernel.org,
- krzk+dt@kernel.org, conor+dt@kernel.org, mpillai@cadence.com,
- fugang.duan@cixtech.com, guoyin.chen@cixtech.com, peter.chen@cixtech.com,
- cix-kernel-upstream@cixtech.com, linux-pci@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <20250630041601.399921-1-hans.zhang@cixtech.com>
- <20250630041601.399921-11-hans.zhang@cixtech.com>
- <20250630-graceful-horse-of-science-eecc53@krzk-bin>
- <bb4889ca-ec99-4677-9ddc-28905b6fcc14@cixtech.com>
- <5b182268-d64c-424c-9ada-0c3f120d2817@kernel.org>
-Content-Language: en-US
-From: Hans Zhang <hans.zhang@cixtech.com>
-In-Reply-To: <5b182268-d64c-424c-9ada-0c3f120d2817@kernel.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-X-EOPAttributedMessage: 0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: OSA0EPF000000C7:EE_|KL1PR06MB7009:EE_
-X-MS-Office365-Filtering-Correlation-Id: d46002c7-f4fb-4e64-8979-08ddb7eb1e32
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam:
-	BCL:0;ARA:13230040|82310400026|1800799024|36860700013|7416014|376014;
-X-Microsoft-Antispam-Message-Info:
-	=?utf-8?B?VlFQbzlQTGwrYms0OHAzOXgxcU95L2dvcmUvb3J0QnNHbC90Z1J6VTA5M0Js?=
- =?utf-8?B?RDFFQ3Z0SkJyZ1hxZ3hua3ZydFIwOFgzcjQxZi9iQTBIODVlbTVra3NINmZZ?=
- =?utf-8?B?cXNJY1l1KzdncENkR2dOalZ3T1BrSEpPZmxvd0RvbHQ1YWJaeFZTT2w5ZFRw?=
- =?utf-8?B?QVE2K29haUFhaCsvL2EvV2tWNW9LVUl2Yk5JbnRyd3IwZk1NZFYzNWorUFlW?=
- =?utf-8?B?WkRXMnNyVjZOUUlPU3dSYnhTdGc0WHRlK2ZFdUdMY2JOVDRibnpGNlYvZE5l?=
- =?utf-8?B?amY1Rko4MDgwS3gwRnhkVHZtUHMxY29adWR3UVphT1gvYyswSDgwT1FlVFFL?=
- =?utf-8?B?MzMzSkVHYzBiZHBVUTFXOUhVOFJ6T3VIVFhYaG5qSktkbk1TbG9Hb2xCUjI2?=
- =?utf-8?B?YlF6dmpVZ1ZvTmI1WGYyck5HdkJCVDBKQ1duZ3UxR25mcHZnYlBOTGM4VExM?=
- =?utf-8?B?TFZQak5QWGxtQW80aEoyc1k1QkN3NUJHaTNhR0ZmMUI3WjhHTXN2TFQ4azRL?=
- =?utf-8?B?TzVWdHZ1dHNCWWxuSTFHQ1I4eGxDdjhoU1FGZEd3aVlmTC9yWDZGVGxhTWc3?=
- =?utf-8?B?SHQwbGVVRENGTGVUYW54YnFRUkdSdW1EVGFBU0Fsem04c1NEVzdSWmExdDM4?=
- =?utf-8?B?OHdjVzRVZEQrdTNMVGVQcFdMZUp2QTYzd2lvbGl5ZmhXUmtBK3pBcEdBOTNh?=
- =?utf-8?B?bko4TTlQS2xSL0FkcG9XNmV2VExEL3FieXhtbkFmWndVRHdmcy9FNmg0SlhR?=
- =?utf-8?B?NlRUQ2doaTB2MmpvUDVhZXRYdS9lSm1Paml3bkdDaWdFblpQY2FkN3d4WStI?=
- =?utf-8?B?Y09Lb2h2U1YybnJWZ0loTCtnT2N2YnR5Vy8xcFlMRzRMYVFwMnhhTW1tK1M2?=
- =?utf-8?B?NEtqTml3N29jcVBPbnNLZTEvcU5Td0JFUTV6MDEyUGVXdHV6dmUxK01zd3l1?=
- =?utf-8?B?ekN3dzBYTUFUUHhEa3gzL3JBeUhsRnRGYUVZL2ttYlhQQ3VvR1JId21pTDRZ?=
- =?utf-8?B?VDA5R21MbFg1cEtLVkdBczdJcEdxMElPelJYMEEzYk5pOGdQUlh4Q0xQcXdo?=
- =?utf-8?B?d2lPL3hVdEF4bDNKUWxKRkhhUUhzODZJY1N3bVNvalBVdS9pTi9DSGI5ay8y?=
- =?utf-8?B?ZEE3SC9HVE5nYmtnY2krZ0tZS0l6UGdVMXgreEpGRW41K1V6ZFNyOTJLN0RL?=
- =?utf-8?B?NFQ2dy9VUFNUckl6NEVOMS9VVXFZczJwdVp1SVh4VHg2WEJ5NDRtZzJWYmRj?=
- =?utf-8?B?S2pVeHpDeDhhclorNksyQzZRcW1QNlRqa2Q0cjBGV2Z6alBXbHY0cWFFVjcy?=
- =?utf-8?B?UmdYTlhtWUlwVkdhZ29yNW1aLzdkNDY3UlVOb056WDlkcUM0aDFBczBiaGp1?=
- =?utf-8?B?aE1XbXVtcjYrOW5HbVZmSXVOMTZVdmJDbjVwRi9PL0dKQ2JGUm9na0FyQzdv?=
- =?utf-8?B?TVlVdlk1cWE1UmtXZnlSQ3VFeDZ3YmVmQ1dVTEZ6MytoLytzTzVTeGsxendY?=
- =?utf-8?B?cGtTM01oR2NnS3EyUTJyakxtNTZvMzV0VDcxUDc0cUIvSGlkVU80QTg3S2pT?=
- =?utf-8?B?VEN3NjVNaFZ5dml5TEVjL2tpaDZXdnBVQUVoNGlUeHFTaWJoSVZGRUdMemtL?=
- =?utf-8?B?T3VjeFZOTW93dWw5aStSWnhGOEtjVVd2OVh4ckQ1Wi8zaTVhVW1QV1VTS051?=
- =?utf-8?B?U0VKWFBKdnZjZzMrTDJCSldDYnV4U0xsKytQS2QwNWljQ1h6d21QdnJXWStN?=
- =?utf-8?B?S3paMUNlZzAzU242OXNaRnJ0Ym42bkphVTBWZWJGTndwRVI0NVc2bm93LzVI?=
- =?utf-8?B?bDNDczNSSlEvUnc4dFZlRi96eFdqdFdSaksycUY1SG1Xc1JUWlNjQW91S000?=
- =?utf-8?B?a2JDWjcxbVVnRys1YTVkcmpyNzhZZWdKK0ZTWnoyV2hnUUplRjdGT1JKdE83?=
- =?utf-8?B?RDVuWFNiSGVidWJlWnlGSUJrS3VMTDFaRGlJSDhOOUFqZTMySnJyaW1ZT204?=
- =?utf-8?B?RWw3TC9iUjBYeERtUkFUQldlTlBSUDNKYWFrMk14Y2lPOUNqS3NhVVNneUpa?=
- =?utf-8?Q?FXSMLc?=
-X-Forefront-Antispam-Report:
-	CIP:222.71.101.198;CTRY:CN;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:smtprelay.cixcomputing.com;PTR:InfoDomainNonexistent;CAT:NONE;SFS:(13230040)(82310400026)(1800799024)(36860700013)(7416014)(376014);DIR:OUT;SFP:1102;
-X-OriginatorOrg: cixtech.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 30 Jun 2025 15:31:00.5865
- (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: d46002c7-f4fb-4e64-8979-08ddb7eb1e32
-X-MS-Exchange-CrossTenant-Id: 0409f77a-e53d-4d23-943e-ccade7cb4811
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=0409f77a-e53d-4d23-943e-ccade7cb4811;Ip=[222.71.101.198];Helo=[smtprelay.cixcomputing.com]
-X-MS-Exchange-CrossTenant-AuthSource:
-	OSA0EPF000000C7.apcprd02.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Anonymous
-X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: KL1PR06MB7009
+X-B4-Tracking: v=1; b=H4sIAAGvYmgC/zWNQQqDMBBFrxJm3YEk2hK9SnFh4miHYtIm0Qri3
+ RsqXb4H//0dEkWmBK3YIdLKiYMvoC4C3KP3EyEPhUFLfZW3SmIM7lkPGGnCJVn88MiolKkaoxt
+ pagtl+Yo08var3ruTI72XEs+nBNsnQhfmmXMrPG0Z/wfQHccXh/DjQpYAAAA=
+X-Change-ID: 20250630-rock4d-reg-usb-wifi-11839829084b
+To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, Heiko Stuebner <heiko@sntech.de>
+Cc: kernel@collabora.com, devicetree@vger.kernel.org, 
+ linux-arm-kernel@lists.infradead.org, linux-rockchip@lists.infradead.org, 
+ linux-kernel@vger.kernel.org, 
+ Nicolas Frattaroli <nicolas.frattaroli@collabora.com>
+X-Mailer: b4 0.14.2
 
+Turns out the ROCK 4D DT in mainline right now is neither accurate nor
+complete.
 
+These changes should quell the fires a little, since at least we now get
+two additional working USB ports, plus the Wi-Fi chip shows up (even if
+it doesn't have a driver right now).
 
-On 2025/6/30 19:14, Krzysztof Kozlowski wrote:
-> EXTERNAL EMAIL
-> 
-> On 30/06/2025 10:29, Hans Zhang wrote:
->>>> +
->>>> +  num-lanes:
->>>> +    maximum: 8
->>>> +
->>>> +  ranges:
->>>> +    maxItems: 3
->>>> +
->>>> +  msi-map:
->>>> +    maxItems: 1
->>>> +
->>>> +  vendor-id:
->>>> +    const: 0x1f6c
->>>
->>> Why? This is implied by compatible.
->>
->> Because when we designed the SOC RTL, it was not set to the vendor id
->> and device id of our company. We are members of PCI-SIG. So we need to
->> set the vendor id and device id in the Root Port driver. Otherwise, the
->> output of lspci will be displayed incorrectly.
-> 
-> Please read carefully. Previous discussions were also pointlessly
-> ping-ponging on irrelevant arguments. Did I suggest you do not have to
-> set it in root port driver? No. If this is const here, this is implied
-> by compatible and completely redundant, because your driver knows this
-> value already. It already has all the information to deduce this value
-> from the compatible.
-> 
-> 
-Dear Krzysztof,
+Signed-off-by: Nicolas Frattaroli <nicolas.frattaroli@collabora.com>
+---
+Nicolas Frattaroli (3):
+      arm64: dts: rockchip: adjust dcin regulator on ROCK 4D
+      arm64: dts: rockchip: complete USB nodes on ROCK 4D
+      arm64: dts: rockchip: theoretically enable Wi-Fi on ROCK 4D
 
-Thank you very much for your reply.
-
-These two attributes are also in the following document. Is this place 
-out of date?
-Documentation/devicetree/bindings/pci/ti,j721e-pci-host.yaml
-
-
-We initially used the logic of Cadence common driver as follows:
-drivers/pci/controller/cadence/pcie-cadence-host.c
-of_property_read_u32(np, "vendor-id", &rc->vendor_id);
-
-of_property_read_u32(np, "device-id", &rc->device_id);
-
-So, can the code in Cadence be deleted?
-
-
-I see. It will be removed in the next version. The vendor id and device 
-id are directly assigned by the Root Port driver based on compatible.
+ arch/arm64/boot/dts/rockchip/rk3576-rock-4d.dts | 83 ++++++++++++++++++++++---
+ 1 file changed, 75 insertions(+), 8 deletions(-)
+---
+base-commit: c6a68d8f7b81a6ce8962885408cc2d0c1f8b9470
+change-id: 20250630-rock4d-reg-usb-wifi-11839829084b
 
 Best regards,
-Hans
+-- 
+Nicolas Frattaroli <nicolas.frattaroli@collabora.com>
 
-> 
-> 
->>
->>>
->>>> +
->>>> +  device-id:
->>>> +    enum:
->>>> +      - 0x0001
->>>
->>> Why? This is implied by compatible.
->>
->> The reason is the same as above.
->>
->>>
->>>> +
->>>> +  cdns,no-inbound-bar:
->>>
->>> That's not a cdns binding, so wrong prefix.
->>
->> It will be added to Cadence's Doc. I will add a separate patch. What do
->> you think?
->>
->>>
->>>> +    description: |
->>>
->>> Do not need '|' unless you need to preserve formatting.
->>
->> Will delete '|'.
->>
->>>
->>>> +      Indicates the PCIe controller does not require an inbound BAR region.
->>>
->>> And anyway this is implied by compatible, drop.
->>>
->>
->> Because Cadence core driver has this judgment, the latest code of the
->> current linux master all has this process. As follows:
->> int cdns_pcie_host_init(struct cdns_pcie_rc *rc)
->>       cdns_pcie_host_init_address_translation(rc);
->>        cdns_pcie_host_map_dma_ranges(rc);
->>           cdns_pcie_host_bar_ib_config
-> 
-> And you cannot fix or change drivers? How does it matter for discussion
-> here?
-> 
->>
->> So this attribute has been added here, or is there a better way?
-> 
-> Of course, like every other driver in Linux kernel. This is FIXED for
-> your platform, so set it in your CIX driver.
-> 
-> 
-> 
-> Best regards,
-> Krzysztof
 
