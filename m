@@ -1,177 +1,193 @@
-Return-Path: <devicetree+bounces-190905-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-190906-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 27960AED27E
-	for <lists+devicetree@lfdr.de>; Mon, 30 Jun 2025 04:44:58 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id C6C52AED2E5
+	for <lists+devicetree@lfdr.de>; Mon, 30 Jun 2025 05:25:21 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 433F216F2BD
-	for <lists+devicetree@lfdr.de>; Mon, 30 Jun 2025 02:44:58 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id D37097A83FC
+	for <lists+devicetree@lfdr.de>; Mon, 30 Jun 2025 03:23:56 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 979651865FA;
-	Mon, 30 Jun 2025 02:44:54 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id DBE82154BF5;
+	Mon, 30 Jun 2025 03:25:14 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=altera.com header.i=@altera.com header.b="Papv4VM2"
+	dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.b="K+9/Xx58"
 X-Original-To: devicetree@vger.kernel.org
-Received: from NAM12-BN8-obe.outbound.protection.outlook.com (mail-bn8nam12on2051.outbound.protection.outlook.com [40.107.237.51])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-lf1-f49.google.com (mail-lf1-f49.google.com [209.85.167.49])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EDB982905;
-	Mon, 30 Jun 2025 02:44:52 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.237.51
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1751251494; cv=fail; b=bQYKveyIPRcGXDQIhrvK28EpYUpQoBqMlYZ6GzFxpJTY2P0Qijr1MS67MRNAA4Ax6NxkakVjQppFUX7aKnfI6dyLXgdIe5u0kfew5y8xIjRHu9/Lyix4glTPyQZF2vK2KCRQP1MjHV3LoyzyhJlSp+KDKmjOLVbC7hZtJXqhsRM=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1751251494; c=relaxed/simple;
-	bh=bUaFjoEmaBjYcPbcKqaLUNP8GaM6CrGYfZ9DTLwZ6vs=;
-	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
-	 Content-Type:MIME-Version; b=JvlpLUBedtZ8BmRIrN9YsMB7SKD/1fvUxSq9qJq+mIbLlV1ucrjd99ww4umZutpvx9XraS10Ic6we4GzVtAw+bJuTt0MtZJhqtf/8UkRbEjP5jIi4v+iulCDBKJx7bT7FoWcb/bygyDZh1HXt3c75kbN3vIxvaggDtLvxwf7/BY=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=altera.com; spf=pass smtp.mailfrom=altera.com; dkim=pass (2048-bit key) header.d=altera.com header.i=@altera.com header.b=Papv4VM2; arc=fail smtp.client-ip=40.107.237.51
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=altera.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=altera.com
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=pIdqG88Gdo4xrsHnowb4eTtQM21c/5P5h0pYvcg1FZuMgiioQ8KXToTdTCaJONDs0+lplkZc7GRqaMYOat7OQaGFBmlyicMYCILp1UT1mnnalERc5cPICoqH/hPZQhcUfnPKZrTHgIsCvZmJhG5f5dWqxEjIN1+cxIeN+zam8ZKnbGPPuiSZUO2pdF+hEWI030WCakik0H0JLAPJBAVSKs0CVc4NcQDZ9WTtHfqus2cdK0MO1QaZ5AR8y15tj+UPTmPnFFElYePoimFPeulKrIJg13m0sCKhE0lKU5dIoOJW3ISkVulfR7msjy7ngLpd8bNiG0QO5r2VDUjQiL8V0Q==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=PRH3q/37hdrtk5Uj4bT67uEKkcrRhjWtGsPMJCjNmrw=;
- b=HA5mzVK2CoUf5TD1DCULy4UYJXsyNe3dOv1Z59HyrOzIjSYYE1Ryvde15ZLFBaSCmnRmb5uGGIJB8vJkAoB/VwtVtkTsu8W2GkeWetNZAaK0IwHhwlbJ93bif/oUrzkkoS73F/nnTZyocd3Ftx9J4EGSEhVcfzXR82+Xj15hIJ+eSsyGjamZfStz3KRxdqgV78MzXgpcbrd+r0lTXRgXxcjPDySbWeFeJbHVfDF8y5JGUD6tE68mHGN2sITatBgL2Roi0TEPsC3AR2l/wwSofvPNMquhSDRcb2Dqm9NPtvMel2WHjPmrDWX7vMbwGrRxOS5C2WHSYXNMa5uqBQP/Pg==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=altera.com; dmarc=pass action=none header.from=altera.com;
- dkim=pass header.d=altera.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=altera.com;
- s=selector2;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=PRH3q/37hdrtk5Uj4bT67uEKkcrRhjWtGsPMJCjNmrw=;
- b=Papv4VM2evstKgo+MVPtxN3saWpl6AJB6ruP0h14IDRyzBRpF6wqOOb6VcC/PAlMOKOIh1DoXUPAKmmWvQANsIIzZyTgmIN/rMVfN+TAc+PwjV7cpI9uFB37xwF/2qBTQSOGHXcMSF20n7VGkWRg+pEkQ3f4hiRGmfQhtjDN0ao6KTjRRvIifdrwEabxrvQLXUlNITrqR94SEWXrZTKbFlqkw7FP7r5NX0aMHb3Bzrc47JLfuisKX5FTP0b60XzAVJ722YzkJORVAsQqyR0NLI2EIUIREnLhMgVXL7L0CP/dhq0hiux3Tp8POf9gjB8iW2R+PYq/G5mBi5QWRjxFuw==
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=altera.com;
-Received: from BL1PR03MB6088.namprd03.prod.outlook.com (2603:10b6:208:311::22)
- by SJ2PR03MB7476.namprd03.prod.outlook.com (2603:10b6:a03:55d::11) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8880.23; Mon, 30 Jun
- 2025 02:44:50 +0000
-Received: from BL1PR03MB6088.namprd03.prod.outlook.com
- ([fe80::21c8:ce4a:b199:fc9d]) by BL1PR03MB6088.namprd03.prod.outlook.com
- ([fe80::21c8:ce4a:b199:fc9d%4]) with mapi id 15.20.8880.027; Mon, 30 Jun 2025
- 02:44:50 +0000
-From: yankei.fong@altera.com
-To: dinguyen@kernel.org
-Cc: conor+dt@kernel.org,
-	devicetree@vger.kernel.org,
-	krzk+dt@kernel.org,
-	linux-kernel@vger.kernel.org,
-	matthew.gerlach@altera.com,
-	robh@kernel.org,
-	yankei.fong@altera.com
-Subject: [PATCH 0/4] Add 4-bit SPI bus width on target devices
-Date: Mon, 30 Jun 2025 10:44:44 +0800
-Message-Id: <20250630024444.3071-1-yankei.fong@altera.com>
-X-Mailer: git-send-email 2.26.2
-In-Reply-To: <70e3a367-8d9d-477b-9858-9f2a7b97bbca@kernel.org>
-References: <70e3a367-8d9d-477b-9858-9f2a7b97bbca@kernel.org>
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-ClientProxiedBy: SJ0PR13CA0232.namprd13.prod.outlook.com
- (2603:10b6:a03:2c1::27) To BL1PR03MB6088.namprd03.prod.outlook.com
- (2603:10b6:208:311::22)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0EF0029CE6
+	for <devicetree@vger.kernel.org>; Mon, 30 Jun 2025 03:25:12 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.49
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1751253914; cv=none; b=QCTcVVh2lIyUaDJRnwHJoTJ8QplERa7smE+Cu6U4vap4HQaj+GSsa1Ed33+1jnwIJdnA8Tzl+XDoS7nAzLuY0suoVZbr1XElXwVhBk8xK/fxd4Jb+rfkHtQoEQExRztZnAGMQLCTRHEaNMNIfVbF+5f47SqaHxgQeK+UJR/cdUw=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1751253914; c=relaxed/simple;
+	bh=HqxsES9BjFxb1DzfPVlIXMOHtqBQW4SMuesB6hb3kh8=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=ql79OEMn43A07ATnfUk7OFrRdlu82HrUqbgpxiwsq1iWxbYmCbSqA6p6R+XLUmLkvJr352XJw5XDj/BnHRJxRmahFwJtcnzKOfNv1HxldOq9gI9wRL4XAxKC7qaCWpB7Gtt5vvJbkLM8/z3NzASgoAxsJ28ZeONRTT4MDmkCVBA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=chromium.org; spf=pass smtp.mailfrom=chromium.org; dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.b=K+9/Xx58; arc=none smtp.client-ip=209.85.167.49
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=chromium.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=chromium.org
+Received: by mail-lf1-f49.google.com with SMTP id 2adb3069b0e04-553cf020383so4411026e87.2
+        for <devicetree@vger.kernel.org>; Sun, 29 Jun 2025 20:25:12 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=chromium.org; s=google; t=1751253911; x=1751858711; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=Arx/vh/1p7726lfU61ekP8LCF9/XaIuNl/Y+OL2yoTY=;
+        b=K+9/Xx58RnS3aCXRivTcl5I3kJhfRFnXSKxxHVOJELVz7f52aTb7YrSzHkg33zujZL
+         EPp3dZjxhMBOB+52IItIf4KAhCJVw008U8Ld/G0hhUT/Pk3juNHcPJz+irtHId3Q8HLW
+         j5BJfrHPIMlc7eIs+3KkSOabnnr350F2tLzc0=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1751253911; x=1751858711;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=Arx/vh/1p7726lfU61ekP8LCF9/XaIuNl/Y+OL2yoTY=;
+        b=u6xf58PfPeayLMj9bz+5NhkKuIrg30+duVHS4cmIxaIFkvnX7WXsKAljCootlHLjOg
+         2BBBwc7e8UilaiZPXoX0ndr+lrPS1Bnis0KREYVueMlqTV5vLZNKBfExJhZ6XJM7khFt
+         a5njcobx2NdtHOxCp6BoOVL/PTkgBBMjqbvkiqRapm+cb7g9o3op8v1/Fly7lNWpfXPK
+         1+b2hZtRqNf5iWDpge6T3VX6X/Rd5XjLRzR38z2av4m1L02TPlStJfVQ+QZGee8bshVE
+         rCkCI8iD1uOflRvCkHRpheRMiOf5k3i9P407rBbWVPEa6+LpXMYQrNs315sX6Ywtw6xy
+         WFVA==
+X-Forwarded-Encrypted: i=1; AJvYcCVj8MrGuls0dVD44rSB9Nnv+bVpA4G8TkIrmOgRWVRDFGj1mZqAOnF2wVig+chWB4Au6OG86KbOR+UN@vger.kernel.org
+X-Gm-Message-State: AOJu0YzlDzGHZ2lmpOXSeKq06ZGFUV5bNcXuW0Uh5u1mEz87NrCjwrxe
+	YzsJt/7yHVnfCprgUPrLEyw5sbXAkXthaA7uPDYjRXa9NPUT+XKMo6h5kALiBzY6k1Dz0uK1Sjd
+	FAc+swjMamqtAlrpPgdKMhwhUN15FDKeaYmHToEGA
+X-Gm-Gg: ASbGncvOLyzl40HAiZg568VnT0d3nTwEB1vCzXVYXdWny8U/r/E0uNGBTjKp4i9YpJ8
+	2pjwW1vRtlwVz4ozo/woNYfREAt3X8jkVVps/bvHAjP/uKALYG8Tqj+xbHxRM2hxcfLp0t0d7fh
+	HfTU7gxKKcV/Sn5bIp6iY1x4rjAcJ/ZmnXub/BYYfIdcY0wn/mnr293jFOCZzD3NlbmX3458no4
+	8pynEU=
+X-Google-Smtp-Source: AGHT+IG9cnl6ModTYi6p2CiPzEyX+jlxQEfwAMhFMxkNl7fS/RoRC0YYR5H1zSIeP2ag3GvJxVUZnK/m4syzOJSkQKo=
+X-Received: by 2002:a05:6512:3041:b0:553:addb:ef51 with SMTP id
+ 2adb3069b0e04-5550b886294mr3126600e87.18.1751253911120; Sun, 29 Jun 2025
+ 20:25:11 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: BL1PR03MB6088:EE_|SJ2PR03MB7476:EE_
-X-MS-Office365-Filtering-Correlation-Id: 05469dc2-3ed6-47bb-401b-08ddb780158e
-X-MS-Exchange-AtpMessageProperties: SA
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;ARA:13230040|366016|376014|1800799024;
-X-Microsoft-Antispam-Message-Info:
-	=?us-ascii?Q?JLRYz2nzBI3TojsLd2QXkM/FdiELIfor4Sr+LKYRJ7miIZkf7ZtRRHwwLAod?=
- =?us-ascii?Q?S9IQQw6yiANPjlrKmAixvExa+KIpLJKoO2Je01jMdaNuISllSNtVATmIxOrR?=
- =?us-ascii?Q?tp78AHksNDysF/Q19eoCaCtVeRRz0xHunYTYbWnyK9nvpglTNP51G98UswiJ?=
- =?us-ascii?Q?Z0zGeLDFWgjWBeTmKt+mY0kKDAGPpr5wuYLQv3Wmi944uaITYmJBJB4pHE6N?=
- =?us-ascii?Q?CNvZPT8N1pDIFlTfWC4NGZ6qu4OXhochDUGIegn/YU/xOjeMSTn7IuZ06i0O?=
- =?us-ascii?Q?XK5oqKQvlA7u25nJUidPHF/6ly7tsnPW0mXfCs9pQDh1vvCCZA4JbXQO+ZJD?=
- =?us-ascii?Q?oMlVjI8mudxkKW2f1UtTkIhsW4LanPcmFe4jTuHCXoN1Sx06SAkUzfOU8obY?=
- =?us-ascii?Q?pbf4rtC4TKn5DBZVU1ZFRzhfRPE8+f8tGL0XeyDLOQtXLM2QSO+d9R7yQdV6?=
- =?us-ascii?Q?ymGAxQZh8oHUXEI3sehiwjQk67HURWl2oxiRlNN7ZFOcdMShDvfVExQNso3v?=
- =?us-ascii?Q?XRY6m8G1+RbeO0DLuguLItmBdooayZbWtgQ4JRzDr+AutCHcSm45KFoHGUEc?=
- =?us-ascii?Q?eQDSq5Avt8AziX1rCGblAaMwp4GbyGxJdD5h4Ejlaogs1zLiLsTOBIEAQPu3?=
- =?us-ascii?Q?ud8k+VzWw730bdTDxlZbq4K+lslhECuS0P0Q6Z3ognTWLT6dWFsObV/ZQTyB?=
- =?us-ascii?Q?pvkLc2xNea++XqaF8Q0usxxG1hbMpV4GrwjRJ2wEsTj/69GE6MH0ipqg4r7g?=
- =?us-ascii?Q?kw7SwZ3bwiKn0CykaDZynMxL3iUiYl1f6j7ZYd0MIAkO/6CpKFB6uUL56TAm?=
- =?us-ascii?Q?coGB9P187WUIahDZeEX3kVtnUrNptqZWWPJvw8mFx0tX62krt7HmpRg6Z7g2?=
- =?us-ascii?Q?YS+BmNxKs8z5GYsJnUm0NdgQg8041JPhreWqgKbs0y+TgCYF5qr7gpXGKNLo?=
- =?us-ascii?Q?pGJ4nBS55Qil5fhoQhsdIZUBue6Atg3hpRlsTKzNAlI7LnWkSGgmAhxl/mRG?=
- =?us-ascii?Q?84eJqwwFjnr29CalT7VUVcA31tk9xs2rahxq/ZyxW3smbd6vamktaMS00FPP?=
- =?us-ascii?Q?dXq9+6goA63WOJCHd3iBozeRLoChlkGvGSU5rGNJFor3B9Jh5en3/wigvFY2?=
- =?us-ascii?Q?Ml1SqNDHhe1/PE4EIb4HSdWuoYSV9MCu4rNiBZ5Bu7wcQ33qakxAlZ5V2Usv?=
- =?us-ascii?Q?DruNhEC8+TwdbnywjJVHnxB4MzDcFFRZS8D3KgCZ1/I9m7FNrkHf1ChUq/9G?=
- =?us-ascii?Q?sH5URcHkElKy4gaUMRpYX5fGj6/n2rVFxH5FnuzHWOrK0iTslXFLzUyj868d?=
- =?us-ascii?Q?G9jmxY5UGzu4HuYcWqiKOAwPcYtEjwqtMH2+L6z6mpvGCARLgXD7FWWXXowN?=
- =?us-ascii?Q?4ALiG6SxH3K/19+GE4oEOX2OjyRTxH+c+DvLHMx5TcNiEqVzYeP9E4Np165h?=
- =?us-ascii?Q?/y/tWiiRAto=3D?=
-X-Forefront-Antispam-Report:
-	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:BL1PR03MB6088.namprd03.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(366016)(376014)(1800799024);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0:
-	=?us-ascii?Q?MXbTXAZLRehF1CkmJPUHABWnvy6DHIXrSsiSUy5A+7yQiA36F6I01PnxuN1T?=
- =?us-ascii?Q?UKlR+xGCPmTTabOr/m7NtsRItzF52SYgq4jSAJ4PzKRJINUIRd7tgdJgXmhH?=
- =?us-ascii?Q?ukHI/2JeSlIJNvJi3E/sjGj5sk23vm1uYr37MRFpq1aOIKRel/VChmvKLRKr?=
- =?us-ascii?Q?NclEtSPiatT6fsOhx767+mRkMjtMRxop0ue0Ocunj49wqM/Oc4Y6C20lxZ61?=
- =?us-ascii?Q?Si8/OAoE5arAQKphadftNfIEgTdQjUcZ0O4MYMAsCs7wFArsYCMO4c8+B/Ke?=
- =?us-ascii?Q?GcvbyQ8VBoZgX0VSQz2BP180lRrvAwXC4hkyo8slQnOb6gnTSxIugTZSFpWz?=
- =?us-ascii?Q?AWiBvHNb2BBcaTSx+lxtfQ4PozibAwCS9i/T6yui0FF+cYEpD2A7OCLUGOc3?=
- =?us-ascii?Q?Kq6wHX3rydzNZAla6P4iq6BE//Tsnmnl2ft40av8lK+Bmm7oN0Cs4E3ncW3f?=
- =?us-ascii?Q?UQbkNXoBcl1o3kFLAIhTt/sP6sDl9W/Il7BCswj1D76NLOdtFIzY2WmwlpQl?=
- =?us-ascii?Q?0f3lFyeb+sZPEhCSCmv2W8OR4qJqDfGFpB5i07Kyv1wWBVjtE1GOF4mJoVTt?=
- =?us-ascii?Q?koq1utyOLz097abFDrFEY2zuR7k1cJ3KqJLzqnzTQPbDubHMD4KbJmupaS64?=
- =?us-ascii?Q?RgX+VGRHZEI3xmL/DNevR/uHHazda+p04eIKoj+6ohipl+ig37MN2cVCrjRE?=
- =?us-ascii?Q?FqjUFStf6XjLrYm8DiwB5XVDtKu7TSxV4b6jNJ7Gibbt8p8NlIhTEqXsA9SH?=
- =?us-ascii?Q?AttZNtzovj5mwiknAPBsZRF0NIv4Tk2yBUu1Fr+MWPbdKDYFQ47E2W5pDoTS?=
- =?us-ascii?Q?akzY/I/fJRb1BpHb7CmBoAlHbJzzQ5AOZ3paL2mf3GnIUCspEoyTmnJvXOJ8?=
- =?us-ascii?Q?kyS4fT8hxLuYiBUqdSQPi2nxK/twyObPD9rdSUwgfJoe/F0ZRpx6qd/ltBLp?=
- =?us-ascii?Q?PYv7rd5kq5lCo1WuNitcdvBoXf7lnGWSSI0KAr1KWmFn+P7P0hEHnT4zfaHZ?=
- =?us-ascii?Q?JTghefV6T1e2/A+Kaf9EgEgm5ACteHfg7agXDw516oRBakYcyez3nkhHQJJl?=
- =?us-ascii?Q?idHMEMnUbuMZXD73Cs1auxiyK7ast2o6ZkRujKgSj37oj/iPWDOgK5IPHvLa?=
- =?us-ascii?Q?ScsD3VhNN0pibRhXLPeZNMXo3/Lmwq44J4uuEnM422FVHI0XrFQhk8KpPpUS?=
- =?us-ascii?Q?3x3Nh3UOSxDgRtChprEhSHh2oqjXGDSWUd+Ut6AO6K67isEhnZPYMlo6U8ZW?=
- =?us-ascii?Q?a0JTyU83jIMV4OxFxDb1MJfLLAxmUnwC/2K2el4e1c0d98hcIZPstIV3EinL?=
- =?us-ascii?Q?IMD9LongiZULAG+nG5/YF8Os0Uwu/+L5fHW0SF4mEgVikzF5fI5MBrzrPEgq?=
- =?us-ascii?Q?qgo5PD3f4pGJDaqK2rolW+iZt4M7PZaLskM+lGfR0K+3h5UV7dy3fjKFk09h?=
- =?us-ascii?Q?dJwf8B073eyQX9BBl2AWkNQEDOL+EO0D2Fc2pE57cH/ICRYFlUWOnFJ98obh?=
- =?us-ascii?Q?+6o92VlrYb6B1oF+TKkAMAU/wM5AMyCKZwH/Xq6aXDM/bjxs1UzeqaRESWSr?=
- =?us-ascii?Q?flMALboyjLrEVtAWZQh0h/bPyo+FqYHvgQ4z0DF3?=
-X-OriginatorOrg: altera.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 05469dc2-3ed6-47bb-401b-08ddb780158e
-X-MS-Exchange-CrossTenant-AuthSource: BL1PR03MB6088.namprd03.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 30 Jun 2025 02:44:50.5013
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: fbd72e03-d4a5-4110-adce-614d51f2077a
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: tSyj7tXj8VxCiEpr77gQlvpVtryDOqQKY0VusQTdbx7EmTGDyFS4ZlRPSkzUGVeanSskrZWujQx6XVbolnlvzg==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: SJ2PR03MB7476
+References: <20250624073548.29732-1-angelogioacchino.delregno@collabora.com>
+ <20250624073548.29732-4-angelogioacchino.delregno@collabora.com> <20250627-neon-hidden-sheep-ed8dae@krzk-bin>
+In-Reply-To: <20250627-neon-hidden-sheep-ed8dae@krzk-bin>
+From: Chen-Yu Tsai <wenst@chromium.org>
+Date: Mon, 30 Jun 2025 11:25:00 +0800
+X-Gm-Features: Ac12FXzEzclUPx2ytH0n81YEF7rV0XFgxUmmA57Z4fo3T5oQBKH_wjXRPSro-S0
+Message-ID: <CAGXv+5GLJ7cfAQW_kbTqqe_QO+RfU7KL57n77qenpDiRS5BybA@mail.gmail.com>
+Subject: Re: [PATCH v2 3/6] dt-bindings: regulator: Document MediaTek MT6363
+ PMIC Regulators
+To: Krzysztof Kozlowski <krzk@kernel.org>, 
+	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+Cc: broonie@kernel.org, lgirdwood@gmail.com, robh@kernel.org, 
+	krzk+dt@kernel.org, conor+dt@kernel.org, matthias.bgg@gmail.com, 
+	linux-kernel@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-arm-kernel@lists.infradead.org, linux-mediatek@lists.infradead.org, 
+	kernel@collabora.com
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-From: Fong, Yan Kei <yan.kei.fong@altera.com>
+On Fri, Jun 27, 2025 at 4:24=E2=80=AFPM Krzysztof Kozlowski <krzk@kernel.or=
+g> wrote:
+>
+> On Tue, Jun 24, 2025 at 09:35:45AM +0200, AngeloGioacchino Del Regno wrot=
+e:
+> > Add bindings for the regulators found in the MediaTek MT6363 PMIC,
+> > usually found in board designs using the MT6991 Dimensity 9400 and
+> > on MT8196 Kompanio SoC for Chromebooks, along with the MT6316 and
+> > MT6373 PMICs.
+> >
+> > Signed-off-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@co=
+llabora.com>
+> > ---
+> >  .../regulator/mediatek,mt6363-regulator.yaml  | 123 ++++++++++++++++++
+> >  1 file changed, 123 insertions(+)
+> >  create mode 100644 Documentation/devicetree/bindings/regulator/mediate=
+k,mt6363-regulator.yaml
+> >
+> > diff --git a/Documentation/devicetree/bindings/regulator/mediatek,mt636=
+3-regulator.yaml b/Documentation/devicetree/bindings/regulator/mediatek,mt6=
+363-regulator.yaml
+> > new file mode 100644
+> > index 000000000000..f866c89c56f7
+> > --- /dev/null
+> > +++ b/Documentation/devicetree/bindings/regulator/mediatek,mt6363-regul=
+ator.yaml
+> > @@ -0,0 +1,123 @@
+> > +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
+> > +%YAML 1.2
+> > +---
+> > +$id: http://devicetree.org/schemas/regulator/mediatek,mt6363-regulator=
+.yaml#
+> > +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> > +
+> > +title: MediaTek MT6363 PMIC Regulators
+> > +
+> > +maintainers:
+> > +  - AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.co=
+m>
+> > +
+> > +description:
+> > +  The MT6363 SPMI PMIC provides 10 BUCK and 26 LDO (Low Dropout) regul=
+ators
+> > +  and can optionally provide overcurrent warnings with one ocp interru=
+pt
+> > +  for each voltage regulator.
+> > +
+> > +properties:
+> > +  compatible:
+> > +    const: mediatek,mt6363-regulator
+> > +
+> > +  interrupts:
+> > +    description: Overcurrent warning interrupts
+>
+> Are you sure interrupts are physically not connected?
 
-The changes required for the QSPI subsystem. With this implementation, the
-read performance will be greater compare to single bus width when trying
-to read the QSPI flash chips. Below is the test results:
+Side note:
 
-$cat /sys/kernel/debug/spi-nor/spi0.0/params
-...
-...
-opcodes
-read 0x6c  -> from micron QSPI spec, 6c indicates quad output fast read
-...
-...
-protocols
-read 1S-1S-4S
+I wonder if we really need to describe _all_ the interrupts here.
+
+Looking at the PMIC as a whole, the interrupt tree is something like
+
+SoC <- SPMI inband IRQ - PMIC top level IRQ block <- sub-function IRQ block=
+s:
+
+    - BUCK (buck regulator over current)
+    - LDO (LDO regulator over current)
+    - PSC (key press / system low voltage)
+    - MISC (protected registers accessed / SPMI stuff)
+
+And some other blocks that may apply to other MediaTek PMICs:
+
+    - HK (some threshold triggered interrupt)
+    - BM (battery management related)
+
+The thing I'm trying to get to is that all these interrupt vectors are
+internal to the whole PMIC. Do we really need to spell them out in the
+device tree? The top level compatible should already imply how all the
+internals are wired up.
+
+
+ChenYu
+
+> > +    minItems: 1
+> > +    maxItems: 36
+> > +
+> > +  interrupt-names:
+> > +    description:
+> > +      Names for the overcurrent interrupts are the same as the name
+> > +      of a regulator (hence the same as each regulator's node name).
+> > +      For example, the interrupt name for regulator vs2 will be "vs2".
+>
+> You need to define the items or pattern if this is really flexible in
+> the hardware (not drivers).
+>
+> Best regards,
+> Krzysztof
+>
+>
 
