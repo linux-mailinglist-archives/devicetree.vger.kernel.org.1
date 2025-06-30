@@ -1,86 +1,86 @@
-Return-Path: <devicetree+bounces-191219-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-191220-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id D9796AEE77C
-	for <lists+devicetree@lfdr.de>; Mon, 30 Jun 2025 21:27:52 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 2F3C3AEE78C
+	for <lists+devicetree@lfdr.de>; Mon, 30 Jun 2025 21:35:23 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 033281BC26E2
-	for <lists+devicetree@lfdr.de>; Mon, 30 Jun 2025 19:28:09 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id D2E43189F78C
+	for <lists+devicetree@lfdr.de>; Mon, 30 Jun 2025 19:35:35 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 18FAB2E3B0E;
-	Mon, 30 Jun 2025 19:27:48 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A4AE221B8F8;
+	Mon, 30 Jun 2025 19:35:13 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="koxDoWj1"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="Felx1SCr"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lj1-f175.google.com (mail-lj1-f175.google.com [209.85.208.175])
+Received: from mail-lf1-f41.google.com (mail-lf1-f41.google.com [209.85.167.41])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 71D761DED49;
-	Mon, 30 Jun 2025 19:27:46 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.175
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DB6111A23A5;
+	Mon, 30 Jun 2025 19:35:11 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.41
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1751311668; cv=none; b=a+GiTFSHPAfSlFcvPLnx9MujBTs5ulUjHSYMur5cDN0KqoBSZTseBuL6RsTgNEXibjhOtogZa04K6FK+b1KO/Q5YW2INRroZ669IOJYQgayIbwHPxiqtHNulo/g3/gv189slpzDMwDA5IIlt8fmkjOjyOj0j/B7EWd+OW+fjYSg=
+	t=1751312113; cv=none; b=f7bfZex9PypdGhJl7eCKvV4Z3Yy4eoiFbYyexmi6lZEU8eC762FR5tvBUQ6WJmK8n3LxqIlKeNwttx3EoLR6W5fMqryjO6NmZJ4HIRPE/neEQm0RkUJG4oIUcETJIO6LP2QAfBJgMilHfYz28YO+9xFo6VwiiimkO1J8CrkZ0Zo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1751311668; c=relaxed/simple;
-	bh=DfDX/O7xP1nZjrC1FK+4ob51GVWC+vd6Yf1nZMDZ5Ok=;
+	s=arc-20240116; t=1751312113; c=relaxed/simple;
+	bh=pCe0UWQj5p0UjomBq3BotCN6hd9SYCM6I5RJj7dfTfM=;
 	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=l2h/A1Y8/EraIDur0FR+7cEHBW3gIGgkRj7WiK1tgxqFN+kA95szhnE/fjYoVD4RXpgrzB4ZvQBQeg5U3wJyk0DJPC7Py2OK3fSvlSsYsYs4YjpKIP9V0+gkY+3Dg96bceIi7/CXYKVaPCFNO+6qrtXWXFp/Krl94SUX4bLI8hY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=koxDoWj1; arc=none smtp.client-ip=209.85.208.175
+	 To:Cc:Content-Type; b=HTS1RmfdicdIf3YxdjYSIRac2U+z2CUEoEu41oxskrJR6Wz56kIjmWBS4whk+xK4nXkXTkVfRGegdmEpQAG1OydFPG4ZcZ9f1GYHV4qzA9MW/Eem9jGKY4eTzIy59iJ3Z4zWNJCni0VMpau9CB0sUe3GqPJteX7U1pguGAKJ374=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=Felx1SCr; arc=none smtp.client-ip=209.85.167.41
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-lj1-f175.google.com with SMTP id 38308e7fff4ca-32b7cf56cacso46975931fa.1;
-        Mon, 30 Jun 2025 12:27:46 -0700 (PDT)
+Received: by mail-lf1-f41.google.com with SMTP id 2adb3069b0e04-5551a770828so1685474e87.1;
+        Mon, 30 Jun 2025 12:35:11 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1751311665; x=1751916465; darn=vger.kernel.org;
+        d=gmail.com; s=20230601; t=1751312110; x=1751916910; darn=vger.kernel.org;
         h=content-transfer-encoding:cc:to:subject:message-id:date:from
          :in-reply-to:references:mime-version:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=SKxhp32ZYS91rGBb5JyVKJ/KNyC65qKnN6o9z2cXJKI=;
-        b=koxDoWj1nzVw8nveFGMpYfFiy7i010mVtgyuJX1+e9iCuPEWyl8mmABNsbPd/EEQkd
-         vzxyOQ8/kyFd6i1xTvgDMxqPXWJmHH6q2hlNULl2078k9BvULefIO9SRzI2s4I0AVhRk
-         0WrlzuVcWiIDNY6bvu4WbdJ+Qepie8i1ASwN1TsjQXX7V9B/W9ze1NyfOSwKT//BJd1P
-         mzwMXktBrMbftYvtupxpMQ+Qx6npMx3+3NGizayZNdfTbRljgCX3NFkQDETy8ewBCReF
-         4lx5wexuLHUrm5629qs+jeHyWMtTCSBZ3TCCJxhQJ2ZGAG7rohDWGcrNdTOU7GAZndHc
-         DNeg==
+        bh=OglMbGQ+Y/qJHraGlD7x6aapMaYudTkxwNEgY4J4Ewg=;
+        b=Felx1SCr9CvKhvfX2rE9u3JjYF4qO5v4qL4P3T5RE5STeXES7plX7jshAHtGkvljH6
+         +XjeiqrPyqz8zehSUQqQGQDIvkt6AuB+xTuOxftWClCn/kYbazTTaw0rjYCbBmnGC/yf
+         NWNSoSXVCLoN/VKZBQl4cdw9JCF23bJVHFdNTI8BnMdR8a6VKyUfDL2bKrRot0se2VPv
+         IsvLqs1Su4C0jbongiuzS/wJHjUSxJRvGHz9ODGM2YDKVtmSzc8Jo1cQsBqKp70JqYvV
+         5FkdfxZ6sEE6m1gFmTMsp3uowczMeCXD/4PgY9UgvaJb0p2ZS3+CQCljUro+rOaaeKLW
+         lIQg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1751311665; x=1751916465;
+        d=1e100.net; s=20230601; t=1751312110; x=1751916910;
         h=content-transfer-encoding:cc:to:subject:message-id:date:from
          :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=SKxhp32ZYS91rGBb5JyVKJ/KNyC65qKnN6o9z2cXJKI=;
-        b=eydY9h400kP13vwIduCE0pI08xB40irRBG5c/3Yg9gZ+fPvCsMvycWddoN67Xm/+yI
-         jKPBK0DYOfzU0r6SC5gcvkLiGROa2Avp6SKxdrGarU7OfKlwCWBXeMIL1Jrc2+qKWd2w
-         cCosVJTUDR1YHADJP+rdxrfwNsTiLMVapLD3s8K6n3IqfqqrMq6ytWc9O78yijYAWqpu
-         Rc17QAXpUzwHjcvxTBMrNWLrR5yqsYF1XoM0l31K8u1DrB2nqApa/bIK2Ml1rXZfES9b
-         9em4p7rw1uNSl87peGtxxuscT+vLwkA91B8djAsV/CuW6ADvQWwDgqNarB/Qq5e3571H
-         9E9g==
-X-Forwarded-Encrypted: i=1; AJvYcCUsX9Hl5i/J/YA2bP47qI3Y1S76rrLbdM2ZdCS+iPdLRf2wBd939bZJyW38JqrbK7RuXoh7KRp4uZXb@vger.kernel.org, AJvYcCXRl59qKeFTTbO5FsBqZt9Fr4NQ+jdcHyEmQP0d0sY7z+M/r1bX6Jd7gxLySObun634n+O5/wW0x9BiEyY=@vger.kernel.org, AJvYcCXj5BV7Df3aOxdWN0wl+ItqCjMqbWnGcRo8qWQ0iPCACePhWfnFKtrQTYUkuzJ6FLB3Z3KQ3X7zcJM0S0qP@vger.kernel.org
-X-Gm-Message-State: AOJu0YzkCh8OHrN+p9hEq09ehphJ03DiE0ZorZKIsnxeCmzYUEusypQu
-	wfDu97eUTYYgrZx1naAVICQIaPaqNru5Jv2vgkXhD2Cv8eKW7DiQg0YNfWf7ir31CUcBe92wUQr
-	qIx5ezdD2xn7j86dTgfDElbCI7jN8Oj8=
-X-Gm-Gg: ASbGncuqOVtthN7lLaTJ1m2zS9769TR4p9yk3QoBTzTUME3cZnXeyWQmpQbSatj+X5/
-	msCSNf7CKudf5ha7lu3M5j6I/gEhk6rD7rbww/08SdwxYw8F7fzzHo45kMBxMpez4jf76heZLX8
-	D0bg50v/tBdAZljubK/6WpMiaFCKYC8Yst6DGbnRYQg8I=
-X-Google-Smtp-Source: AGHT+IEa0bNLNvvrJxIYMARb2nqo4t1aBB768pKUvFh6Ri7+8kEYthBndyHqVBBh2Z3GuscfGkAJNF19gpF1An4OS1I=
-X-Received: by 2002:a05:6512:3d9f:b0:553:5135:69fb with SMTP id
- 2adb3069b0e04-5550b869ff8mr3999969e87.10.1751311664459; Mon, 30 Jun 2025
- 12:27:44 -0700 (PDT)
+        bh=OglMbGQ+Y/qJHraGlD7x6aapMaYudTkxwNEgY4J4Ewg=;
+        b=jmFiBDVFdrPXo6ECKqjurvvNooVvK/zHlwkEOK3tTQYrTvp5a7/8yXP2onK3Brdu8t
+         yOKoHBqD2P42VmlnP1pO37MMYcVEnh83Gphk+fXNaQrWgSxLbhNk0QB0VdJHDW5KlZs2
+         vTdpgEgfTJO4TCLfpSUNqndcoB6oFnoo6vh1jzhDykfbIv81qWZku23wFVnXes2KVEu/
+         kkfYcVIPZpsHsgj9oL9DyuUzLbSSmgnhhqnXiZ8dDyvzgSYtx/IRB7OH/Z+jJuZraNNp
+         7O7H9vUKJzOoJSavne79L+cI0fu40InweqptyP0trrhXaUOUMlZudCHNqu5D4ATZzehW
+         q3bw==
+X-Forwarded-Encrypted: i=1; AJvYcCUdWaAZqpE2mOWes12kzuqd+s9iKZYGKEePDRhHhldMGIxZdIH/qwA6Foi5mnoQyY+FFJYE/cuRKD/V@vger.kernel.org, AJvYcCUppjSKUxgqOU3epRClpaf1g5mv0JPLkZfPiSfAESyaypTj/qMi3VCZHT9PpdlyzplwbY7qupsOFZDu7EUW@vger.kernel.org, AJvYcCXi4Svo+XmF4MaoUjCQz6srpK8aCvKFMOkZNlqCEkHxgU5nlcpVrP0XGczqJLnJqClfLREUwxBn+kla31A=@vger.kernel.org
+X-Gm-Message-State: AOJu0YwEmWofLVr5szGyXJKKHoSfXFEUgjD17LIzsph0WXP4J2jgUPG+
+	ClsbhRyvHb7pADInTf5AAagCDiwiAZFUvG1X5NLMnWmrzIicpZblN7OC0pqKEYbtwHYUwYQq+nu
+	z14R3tTrrl4lTshDUNorfluyMUUvXYI/Bv/QcrPY=
+X-Gm-Gg: ASbGncv+jAPzA7rIBquNvhjna4fs3sHqaRROouZx08J4MM5rd8s4xhrQpY3Cy3F1lUh
+	q3Zv9hoNXQitW60ieK4Gq/gyTjVsJ4qlq4b52xJV1fmB/pwq+ENEL0am9JfsZGpz66n5nWsAm+i
+	yrByVFx3IWHoUqhrnHtasvdVaqFJ/Zl/QPkpjyUVNUH88=
+X-Google-Smtp-Source: AGHT+IFthP3fIFTbr1jHVDjh5GjZDjDXJV+6FmRWZhCwU9Tk0eHFm8Y8SYay9LxMwKPSLoRHVpx8oAKlgfQjJWWV7y0=
+X-Received: by 2002:a05:6512:3f1d:b0:553:aadd:1987 with SMTP id
+ 2adb3069b0e04-5550b9ee8a2mr4745009e87.30.1751312109880; Mon, 30 Jun 2025
+ 12:35:09 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20250513-tx2nx-role-switch-v1-1-d92ea1870ea5@gmail.com> <CALHNRZ8H66g98ThQKZJAT2UohVNtt6OS=rKd5wtcT1YwBLURqA@mail.gmail.com>
-In-Reply-To: <CALHNRZ8H66g98ThQKZJAT2UohVNtt6OS=rKd5wtcT1YwBLURqA@mail.gmail.com>
+References: <20250526-p3450-mts-bug-v1-1-78500613f02c@gmail.com> <CALHNRZ_7wChDsvpUnQHnOTT9VzT1Lgg8JYgg13AFV8Jg_3itwQ@mail.gmail.com>
+In-Reply-To: <CALHNRZ_7wChDsvpUnQHnOTT9VzT1Lgg8JYgg13AFV8Jg_3itwQ@mail.gmail.com>
 From: Aaron Kling <webgeek1234@gmail.com>
-Date: Mon, 30 Jun 2025 14:27:31 -0500
-X-Gm-Features: Ac12FXwgcp1mOdSq1DPjTVmz-A4VQy9yAvt_bxE2ebJGEwUsbFsdGO2-Es8pcY8
-Message-ID: <CALHNRZ84+KGwioU=7ZOL=O39cR_VSRJBaV42MsA4fymXNJC6+g@mail.gmail.com>
-Subject: Re: [PATCH] arm64: tegra: Remove otg id gpio from Jetson TX2 NX
+Date: Mon, 30 Jun 2025 14:34:57 -0500
+X-Gm-Features: Ac12FXwRTWfAZBRnWky7vBCy_porlzvhHwzuTdc1h8-WwX9HAH84biN0zTIrW2M
+Message-ID: <CALHNRZ_+wU3saUR025HynpiRps_3ace6769NcKfQDOAS2owPHw@mail.gmail.com>
+Subject: Re: [PATCH RFC] arm64: tegra: Add reserved-memory node for P3450
 To: webgeek1234@gmail.com
 Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
 	Conor Dooley <conor+dt@kernel.org>, Thierry Reding <thierry.reding@gmail.com>, 
@@ -89,53 +89,76 @@ Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-On Wed, May 28, 2025 at 12:42=E2=80=AFPM Aaron Kling <webgeek1234@gmail.com=
-> wrote:
+On Mon, May 26, 2025 at 2:07=E2=80=AFPM Aaron Kling <webgeek1234@gmail.com>=
+ wrote:
 >
-> On Tue, May 13, 2025 at 4:10=E2=80=AFPM Aaron Kling via B4 Relay
+> On Mon, May 26, 2025 at 2:06=E2=80=AFPM Aaron Kling via B4 Relay
 > <devnull+webgeek1234.gmail.com@kernel.org> wrote:
 > >
 > > From: Aaron Kling <webgeek1234@gmail.com>
 > >
-> > The p3509 carrier board does not connect the id gpio. Prior to this, th=
-e
-> > gpio role switch driver could not detect the mode of the otg port.
+> > The Tegra210 L4T bootloader ram training will corrupt the in-ram kernel
+> > dt if no reserved-memory node exists. This prevents said bootloader fro=
+m
+> > being able to boot a kernel without this node, unless a chainloaded
+> > bootloader loads the dt. Add the node to eliminate the requirement for
+> > extra boot stages.
 > >
 > > Signed-off-by: Aaron Kling <webgeek1234@gmail.com>
 > > ---
-> >  arch/arm64/boot/dts/nvidia/tegra186-p3509-0000+p3636-0001.dts | 1 -
-> >  1 file changed, 1 deletion(-)
+> >  arch/arm64/boot/dts/nvidia/tegra210-p3450-0000.dts | 6 ++++++
+> >  1 file changed, 6 insertions(+)
 > >
-> > diff --git a/arch/arm64/boot/dts/nvidia/tegra186-p3509-0000+p3636-0001.=
-dts b/arch/arm64/boot/dts/nvidia/tegra186-p3509-0000+p3636-0001.dts
-> > index 26f71651933d1d8ef32bbd1645cac1820bd2e104..81f204e456409df355bbcb6=
-91ef99b0d0c9d504e 100644
-> > --- a/arch/arm64/boot/dts/nvidia/tegra186-p3509-0000+p3636-0001.dts
-> > +++ b/arch/arm64/boot/dts/nvidia/tegra186-p3509-0000+p3636-0001.dts
-> > @@ -669,7 +669,6 @@ connector {
-> >                                         vbus-gpios =3D <&gpio
-> >                                                       TEGRA186_MAIN_GPI=
-O(L, 4)
-> >                                                       GPIO_ACTIVE_LOW>;
-> > -                                       id-gpios =3D <&pmic 0 GPIO_ACTI=
-VE_HIGH>;
-> >                                 };
-> >                         };
+> > diff --git a/arch/arm64/boot/dts/nvidia/tegra210-p3450-0000.dts b/arch/=
+arm64/boot/dts/nvidia/tegra210-p3450-0000.dts
+> > index 0ecdd7243b2eb1abba9adbe9a404b226c29b85ef..8fc995e71696f2ef5e662a2=
+1feb96ea771c7a53f 100644
+> > --- a/arch/arm64/boot/dts/nvidia/tegra210-p3450-0000.dts
+> > +++ b/arch/arm64/boot/dts/nvidia/tegra210-p3450-0000.dts
+> > @@ -22,6 +22,12 @@ chosen {
+> >                 stdout-path =3D "serial0:115200n8";
+> >         };
 > >
+> > +       reserved-memory {
+> > +               #address-cells =3D <2>;
+> > +               #size-cells =3D <2>;
+> > +               ranges;
+> > +       };
+> > +
+> >         memory@80000000 {
+> >                 device_type =3D "memory";
+> >                 reg =3D <0x0 0x80000000 0x1 0x0>;
 > >
 > > ---
-> > base-commit: 405e6c37c89ef0df2bfc7a988820a3df22dacb1b
-> > change-id: 20250513-tx2nx-role-switch-37ec55d25189
+> > base-commit: 0ff41df1cb268fc69e703a08a57ee14ae967d0ca
+> > change-id: 20250526-p3450-mts-bug-02394af31f0a
 > >
 > > Best regards,
 > > --
 > > Aaron Kling <webgeek1234@gmail.com>
-> >
-> >
 >
-> Friendly reminder about this patch.
+> This was sent as an RFC to see if there are any better solutions to
+> this problem. Mts in l4t r32 for t210 tries to copy the training data
+> to the reserved ram location provided by the kernel dt. But if that
+> node doesn't exist, it somehow corrupts that dt, causing later stage
+> boot stages and the kernel itself to fail. Since software support for
+> this hardware is EOL, no fix for the bug can be expected. The normal
+> Linux boot flow on this hardware involves placing the downstream dt in
+> both the bootloader-dtb and kernel-dtb slots, allowing mts to work,
+> then u-boot loading whatever dt the kernel expects. However, my use
+> for Android does not need u-boot, as nvidia's cboot can load a
+> standard android boot image without the extra complexity of additional
+> boot stages. And I would prefer to keep complexity to a minimum. It
+> should be noted that this affects p2371-2180 using the L4T bootloader
+> as well, but since I am using the Android bootloader there, I sidestep
+> the issue.
+>
+> Are there any thoughts on how to handle this problem? I know that it
+> is typically undesirable to add broken bootloader workarounds to the
+> kernel dt. But it would be preferable to have a fix upstream, instead
+> of having to carry various workarounds in downstream forks.
 
-Re-reminder about this patch.
+Friendly reminder about this question.
 
 Aaron
 
