@@ -1,133 +1,132 @@
-Return-Path: <devicetree+bounces-191710-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-191711-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4DA67AF02C0
-	for <lists+devicetree@lfdr.de>; Tue,  1 Jul 2025 20:21:59 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2E90EAF02DF
+	for <lists+devicetree@lfdr.de>; Tue,  1 Jul 2025 20:37:10 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 1BD617A9748
-	for <lists+devicetree@lfdr.de>; Tue,  1 Jul 2025 18:20:34 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 31AA51C0439F
+	for <lists+devicetree@lfdr.de>; Tue,  1 Jul 2025 18:36:55 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 957E2280337;
-	Tue,  1 Jul 2025 18:21:51 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0898327E071;
+	Tue,  1 Jul 2025 18:36:33 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=google.com header.i=@google.com header.b="mE9+G5p1"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="TnvNdqRd"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pf1-f173.google.com (mail-pf1-f173.google.com [209.85.210.173])
+Received: from mail-ed1-f49.google.com (mail-ed1-f49.google.com [209.85.208.49])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2920127D77D
-	for <devicetree@vger.kernel.org>; Tue,  1 Jul 2025 18:21:49 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.173
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4D0E927055A;
+	Tue,  1 Jul 2025 18:36:31 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.49
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1751394111; cv=none; b=r01T6ZQP8024DaWVuUaKLboNdhQMBUt0V3auu2Hx4FAI9qZxLRAkAeU80/yLwORXyKwCB7baq2RS5n34BuVBDyya5MHL9rMmHJVIDyhA0GHBKNhBm1QXIqrtiPqm58s7BlY5G4DrpXSq64Ge64REycuG1X6oTu3M66BbQjkil3g=
+	t=1751394992; cv=none; b=HEyIDKvY3c+v1Y9rGw/Y9BmSf7bAqr/kFc/UKBfb7BpeDGcSjwhunR4ruHa9CzzgQ0K8puWu52+q0rxOxmIyjJezleD+khAIy19K/0RFclaLBkd5Tu9m1HIZyggItJJqcdIigFNXudpnPkjv7DDZUdlgZJt0I8vTXHhNuf6yLH8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1751394111; c=relaxed/simple;
-	bh=/0iJBVR02jp37VuAafJ7AuWu4zYV4ay0z9SBj/41vLo=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=MTsL9A4dOLkiy55QBduJlN1xLPt+iuIZVrGPfqQSEoGiA0gevnEEeSdkScsqItsyr+zkF3vRaMK6azUab49zRwiAguJatkI0nXcgyUdKAOso9OxfISYL8lOBRGjRfI3VE/JSO/IC9d4QkNTBUNxYztHC6HO4mrh4OaJRbZ8xRUo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=google.com; spf=pass smtp.mailfrom=google.com; dkim=pass (2048-bit key) header.d=google.com header.i=@google.com header.b=mE9+G5p1; arc=none smtp.client-ip=209.85.210.173
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=google.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=google.com
-Received: by mail-pf1-f173.google.com with SMTP id d2e1a72fcca58-7426c44e014so6183693b3a.3
-        for <devicetree@vger.kernel.org>; Tue, 01 Jul 2025 11:21:49 -0700 (PDT)
+	s=arc-20240116; t=1751394992; c=relaxed/simple;
+	bh=rAEt5vFd+EjR1VmpHF/Wwv+b92ME941faDWjLfPG4DE=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=Te+KgobK2eWojlCKJpUV7Sn5fjY/ARS4eDTNn3EaJ8SMo/sOh14efrFb6n20YP+mEjZVdfJRCFmmXI5E3K25iUaWJPsrO8zmiNbS0SPrY1BofAwWwPeCyi8SGsjrugg77VUrFEvuLyBP62gRjXVpwVKQ4IS3rt2XIhlVCZ2Iuag=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=TnvNdqRd; arc=none smtp.client-ip=209.85.208.49
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-ed1-f49.google.com with SMTP id 4fb4d7f45d1cf-6088d856c6eso11187258a12.0;
+        Tue, 01 Jul 2025 11:36:30 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=google.com; s=20230601; t=1751394109; x=1751998909; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=5QHb5QMnCyf1ixMGPEq1YYVlFE4mdK/TuEdnUZ7pL8k=;
-        b=mE9+G5p1V3qKpkKKo/MkHwQmLdwW5CbUu0EwpgarGgURXhTUBGiQ7QTNW4a6AkfFdl
-         /zsaLq+aG1182QuFEAVOCVgpVKfq1g/yDce2HlfZ+CQT/0CxGtvEh+HbPTSxxWFY2vyy
-         OO8hWkOUxKBp0pfsKYn0IQF6ZKFLcHHSGPx8XkC2qgFT95Ty4ZgkLEnyj1tOAliCIJDm
-         yGWa7PHiLnD4jT1zohGoIuvCFs6SbwPR5k+YYfAeo8yetwxG4Zy59JoZkadLteOT1bO8
-         NiToHN77IVQu+P2wz/MQCVCdB6I41lN3CPTniQbZuZ4nvay42Ml5HseMb77R4ZyoatkB
-         AZAQ==
+        d=gmail.com; s=20230601; t=1751394989; x=1751999789; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=bHiTb9TKSr/WtTlrIgFsHou+98o/3jDHpKPxJzADj64=;
+        b=TnvNdqRd+cyL0iNEfQ+f4cY60MTsr3lfKBnvbCdRQg8uWWRU5C/hmmVkNCAN4MIf/E
+         t2D4K8GSsBjKXKlQ7Xp7ZgGD1a22AGPiONVpruPSKhnYH1Z3t/tViZKbxp+5dwf582T+
+         ia26i5FOmkokkeHVikNcU9nvBxH1uDBhFbspFUl7StI2JfvdFXmOhcUbznwUCyOZqnXd
+         V3Q5Wwjwhc6QopTv8/EsNBHPOPClkc8K7WuQy2uulRN1tlQ2//jP3JutxN8hFKUFuyd5
+         2aw7HHXaleTA3JNADxnbpyED1/HAa4QnC8PG4aMJsEhCPbc8GpqfgppWv6jlpuJ/T57z
+         f0tg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1751394109; x=1751998909;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=5QHb5QMnCyf1ixMGPEq1YYVlFE4mdK/TuEdnUZ7pL8k=;
-        b=lGDZ7zRxNvVB2luFUfOP6KWXlzVnxDd27wFisxKUBfyuXId8ARxomsWvwYnqeyoLkb
-         JzEZcvP4dws0YBOb3VA3z1PYzGleE4khV6iYp8OGh3bajDdchE8WEx2tej2IAgZIGEKv
-         DY4Q7Y2bNvtawOAwOO892kwyLi62Als2JHO6ATtUBQtKdD9vBdqI0DoHNx5xB2fAcOao
-         3JAbj8oWf98Rni/RYLZq94JH62/hm3jVHI4ike/e/KIGFmRO8GvkHr5YZYjbHH+Trggb
-         xN0nvf7sDUsTwyvgNra/uWgoYJPqDA3EH6msTWastLwRx+Gxg+4CjpqT6LdX+CjDjxtO
-         0bIA==
-X-Forwarded-Encrypted: i=1; AJvYcCV+gEkr2RqD9SUoquVp/K8ONtRHmcDIgwTHiB5pbA0QqwQSwSyzHD4BQ7LdvmrwMQplTSLYkXOcSGIO@vger.kernel.org
-X-Gm-Message-State: AOJu0YzYfTxm7QFBGfygHxdkdx2ExvGcdQccjJNAtOaa8aoI95Ax5Fto
-	0+dgyHbGy6B5zKWjd8AoJt+V5Y1ldlrYmentMn/YknAQTBmZpUeiSukqEpx0rOhRbA==
-X-Gm-Gg: ASbGncvodTBT9bw+CgX9bgCO9pq8u9FBDktcTYOI08CE7cpzcjnZ0cBK4Do4DuSFg6e
-	/mbHkyCOo/sZCMYfULm2X38pGD4lztB2y5Aa1EPQ0Rq4WLyGj02GAlOKMdkBVE7oV0aYx2xIiF8
-	EBhoIwpas15OCJlolefvmqjvCQocfilcNxKiRca4Q6oR0BEgAGbmK/d+WEJjXq5jTkKo5dtlScm
-	Sj1JAbAxwTlrIy87buJNKWXr3j514TYuxLa84nmuobAu7mTXhpA+Jog0fvqhPLlX9JrhdrLCfVp
-	OGKkyqGRYq6ae7EWcrYfSDlyJbOq6yuYLCRlaOGUQYcvw5fWiZ3zLX5dOCquXgw/LmOsRxVXwCK
-	6UYNwurKsV0ppzF89k0nIw6btxQI=
-X-Google-Smtp-Source: AGHT+IFT0hH3Zk3DfXjOeWqqGBpHUpAxwE5lOf7WjFh0UeT7y+ZsuOyfA7fRcSglkCBF0+s+7klyww==
-X-Received: by 2002:a05:6a00:464f:b0:740:b394:3ebd with SMTP id d2e1a72fcca58-74af6e791dfmr26589635b3a.7.1751394108946;
-        Tue, 01 Jul 2025 11:21:48 -0700 (PDT)
-Received: from google.com (96.41.145.34.bc.googleusercontent.com. [34.145.41.96])
-        by smtp.gmail.com with ESMTPSA id d2e1a72fcca58-74af557460fsm13133161b3a.93.2025.07.01.11.21.48
+        d=1e100.net; s=20230601; t=1751394989; x=1751999789;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=bHiTb9TKSr/WtTlrIgFsHou+98o/3jDHpKPxJzADj64=;
+        b=EZTa3IIj9RXCZfMmtgkCAPPTWveqp4/xOJHuMJZnC5yG1LzC/mVZWpKOS0EYHUMqhj
+         t1XitHl0T2Ijsa0uF9C6dki/uJb+dNHN59ayhWjQRRHhuOf82q36l5pLBgIFGn/cBL16
+         0MbCnoRlVQDEHbG8/w/ExxgkCPOjmaucLfr3mqKVBNU8dZ+FYW5QSkgCcfWnuP1h8/gJ
+         vPvjVPXBCgGByq3G8GsY9fDmsegLm20a9hrkcPD8jCoTLHZn/Ql13Y1QIiUPwB3zwUj7
+         4dHVws8k+oxcAoHLPQPljR/ZOgbZOp7QQ8UlwlpwMDOw9FTiKx3o9Z7ZCjqDaAHZKJTM
+         7+3g==
+X-Forwarded-Encrypted: i=1; AJvYcCUNgMCRBtTyFD0ve4qqxfiduwAL8oKX8t9sRb2NVGKGkhR47k7NUsUtuXOR4XedL+9/fI56oTxBL7xrBkK2@vger.kernel.org, AJvYcCVc/Xpea1pqbZ4PtQ3/jftPWgbbgOPNVkG/X0Xen3hOk9JyvkfIpDPfr4Tzx+kDHiEhaAx28V9GqA+t@vger.kernel.org, AJvYcCWOfhxnumieTAMCSo9KVJkIhn2cQDVOTpVCA09hdjx9FeECcIU/M0N/iZ8e6EvAWqh9H8Lm+p4hWVVkff/s7g==@vger.kernel.org
+X-Gm-Message-State: AOJu0YxKwaOe3kDNviigPcmho6iy8sO33JIQafuyp6ZUpzKjK7Ybbz+i
+	RrMb8fXu6RCmB347Zv/fA9W0ZK2KHtGm9tc6g7RVDDLdsfTGmQZvtpX7V0npR+mUmQ==
+X-Gm-Gg: ASbGncspEZKyq1h101HIuWMWIHqMlmTKa84BMwn0YWsILTABhN8Hcfka+krR/2mKm9a
+	uQuft7E4pWuugQBuUU7gXQ96Xyrs2lqdQJYSslVsT+c/Eq8cVa6JQQtDwVy33hbF9r7T+2zre7W
+	vketyRvw33VyyeMZI4AOtpjyK15U1LFt/X5QEZhy12Wj24Ko+wJXXj4KyJ2huAQHJCzBHkh15TT
+	IXvIJaIxUdzHOail0wa1TFzmvL/kmcRM68Zyt1ZZjlQlNjdwZz6b9rEDWg7JIIO2XjbXpGaPkym
+	vvk+xaRdFTZ+DPEbO4CPl8GKtkzGG3Swz7L5EJM+Ofhwh6dUyPrp29sxRAXTqs9UutpYFjxcBC7
+	WWI6p
+X-Google-Smtp-Source: AGHT+IHNcZRRTjjPHh0pd6KWMceNNNtj9SNAdIazBabeSOSFHGcZirzJ1t/FQS4NeKoMcfCoMPH93Q==
+X-Received: by 2002:a17:907:2daa:b0:ae0:c690:1bed with SMTP id a640c23a62f3a-ae35019cf4bmr1748571766b.51.1751394989032;
+        Tue, 01 Jul 2025 11:36:29 -0700 (PDT)
+Received: from alex-x1e.localdomain ([84.226.118.249])
+        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-ae353c013b7sm915374566b.80.2025.07.01.11.36.28
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 01 Jul 2025 11:21:48 -0700 (PDT)
-Date: Tue, 1 Jul 2025 11:21:44 -0700
-From: William McVicker <willmcvicker@google.com>
-To: Arnd Bergmann <arnd@arndb.de>
-Cc: Daniel Lezcano <daniel.lezcano@linaro.org>,
-	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-	linux-kernel@vger.kernel.org,
-	Lorenzo Pieralisi <lorenzo.pieralisi@linaro.org>,
-	Hans de Goede <hansg@kernel.org>,
-	Ilpo =?iso-8859-1?Q?J=E4rvinen?= <ilpo.jarvinen@linux.intel.com>,
-	Bryan O'Donoghue <bryan.odonoghue@linaro.org>,
-	Rob Herring <robh@kernel.org>, Thomas Gleixner <tglx@linutronix.de>,
-	John Stultz <jstultz@google.com>, Stephen Boyd <sboyd@kernel.org>,
-	Saravana Kannan <saravanak@google.com>,
-	Linux-Arch <linux-arch@vger.kernel.org>,
-	"open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE" <devicetree@vger.kernel.org>
-Subject: Re: [PATCH RFC] timer: of: Create a platform_device before the
- framework is initialized
-Message-ID: <aGQnOMDyBckks78k@google.com>
-References: <20250625085715.889837-1-daniel.lezcano@linaro.org>
- <aGMjfxIvbCkyR5rw@google.com>
- <27644998-b089-44ae-ae5f-95f4d7cbe756@app.fastmail.com>
+        Tue, 01 Jul 2025 11:36:28 -0700 (PDT)
+From: Aleksandrs Vinarskis <alex.vinarskis@gmail.com>
+To: Bjorn Andersson <andersson@kernel.org>,
+	Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>,
+	linux-arm-msm@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org
+Cc: Konrad Dybcio <konradybcio@kernel.org>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	laurentiu.tudor1@dell.com,
+	abel.vesa@linaro.org,
+	bryan.odonoghue@linaro.org,
+	jens.glathe@oldschoolsolutions.biz,
+	Aleksandrs Vinarskis <alex.vinarskis@gmail.com>
+Subject: [PATCH v2 0/1] arm64: dts: qcom: x1e80100-pmics: Disable pm8010 by default
+Date: Tue,  1 Jul 2025 20:35:52 +0200
+Message-ID: <20250701183625.1968246-1-alex.vinarskis@gmail.com>
+X-Mailer: git-send-email 2.48.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <27644998-b089-44ae-ae5f-95f4d7cbe756@app.fastmail.com>
+Content-Transfer-Encoding: 8bit
 
-On 07/01/2025, Arnd Bergmann wrote:
-> On Tue, Jul 1, 2025, at 01:53, William McVicker wrote:
-> >> @@ -1550,6 +1553,8 @@ typedef void (*of_init_fn_1)(struct device_node *);
-> >>  		_OF_DECLARE(table, name, compat, fn, of_init_fn_1_ret)
-> >>  #define OF_DECLARE_2(table, name, compat, fn) \
-> >>  		_OF_DECLARE(table, name, compat, fn, of_init_fn_2)
-> >> +#define OF_DECLARE_PDEV(table, name, compat, fn) \
-> >> +		_OF_DECLARE(table, name, compat, fn, of_init_fn_pdev)
-> >
-> > To support auto-module loading you'll need to also define the
-> > MODULE_DEVICE_TABLE() as part of TIMER_OF_DECLARE_PDEV().
-> >
-> > I haven't tested the patch yet, but aside from my comment above it LGTM.
-> 
-> The patch doesn't actually have a module_platform_driver_probe()
-> yet either, so loading the module wouldn't actually do anything.
+Follow up to previous discussion [1].
 
-Probing with TIMER_OF_DECLARE() just consists of running the match table's data
-function pointer. So that is covered by Daniel's patch AFAICT. However, it's
-not clear if this implementation allows you to load the kernel module after the
-device boots? For example, will the Exynos MCT timer probe if I load the
-exynos_mct driver after the device boots? My guess is you'd need to register
-the device as a platform device with a dedicated probe function to handle that.
+Disable camera specific PMIC pm8010 by default, as some X1E/X1 devices
+do not have one. Platform that utilize it should enable it.
 
---Will
+Affected upstream devices:
+- none
+Affected devices submitted upstream (did not land yet):
+- CRD, as part of CAMSS series by Bryan [2]
 
-<snip>
+Change in v2:
+- Drop reference to power button issue on Dell XPS. The correlation
+  between pm8010 erroring-out and power button not working cannot be
+  reproduced anymore on kernel 6.14/6.16, Ubuntu 24.10/25.04, BIOS
+  2.2.0/2.8.0. Perhaps was intermediate regression that was since
+  resolved. Either way, appears to be irrelevant to this change now.
+Link to v1: https://lore.kernel.org/all/20250624225056.1056974-1-alex.vinarskis@gmail.com/
+
+
+[1] https://lore.kernel.org/linux-arm-msm/519f9e21-466f-4e8b-9bd0-dfe0448920bb@oss.qualcomm.com/
+[2] https://lore.kernel.org/all/20250417-b4-linux-next-25-03-13-dtsi-x1e80100-camss-v7-5-3fd4124cf35a@linaro.org/
+
+Aleksandrs Vinarskis (1):
+  arm64: dts: qcom: x1e80100-pmics: Disable pm8010 by default
+
+ arch/arm64/boot/dts/qcom/x1e80100-pmics.dtsi | 2 ++
+ 1 file changed, 2 insertions(+)
+
+-- 
+2.48.1
+
 
