@@ -1,142 +1,145 @@
-Return-Path: <devicetree+bounces-191396-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-191398-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8F52CAEF224
-	for <lists+devicetree@lfdr.de>; Tue,  1 Jul 2025 11:00:30 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2CAB1AEF25D
+	for <lists+devicetree@lfdr.de>; Tue,  1 Jul 2025 11:05:14 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 7BD6A3B32B7
-	for <lists+devicetree@lfdr.de>; Tue,  1 Jul 2025 08:59:17 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 935CE4458F3
+	for <lists+devicetree@lfdr.de>; Tue,  1 Jul 2025 09:02:47 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B341926CE09;
-	Tue,  1 Jul 2025 08:58:10 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id DA62F26D4C1;
+	Tue,  1 Jul 2025 09:01:39 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="nw3YCgYb"
+	dkim=pass (2048-bit key) header.d=bgdev-pl.20230601.gappssmtp.com header.i=@bgdev-pl.20230601.gappssmtp.com header.b="np7EHz3R"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wr1-f45.google.com (mail-wr1-f45.google.com [209.85.221.45])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 82D1926C3A9;
-	Tue,  1 Jul 2025 08:58:10 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 03CA326C3A7
+	for <devicetree@vger.kernel.org>; Tue,  1 Jul 2025 09:01:36 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.45
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1751360290; cv=none; b=j9dw01N4SwCdtEDLwUt4iLSbBVL78GXNwDA5Z2hDPPzLDGz5akbQBNMxWdMCdylzJo/cD4RwljztaWU5esppH5HwYctUqdFEOuWmCsGx/sZ2a2vUSQ2b4VuNblg8P6sBBZqpmWPqr034WvEUNtOIQlrKIHI3+/t5baz7QNAiFdM=
+	t=1751360499; cv=none; b=RV25Xy4rohsMpwtXgqO9TKAlJjV7aHKqlyjkHeqch1t7T21vjRGBvMalYbqMVZ7CzECHEIZkN95HfkDqeMvRandiZ1/F6aaP5p4g51SFLGm/uDm8/eHlaC2F202ne6YhIU5R6FC2novfkGjn1d6cDBfEQKUWyaq4YOIxUp2VFiw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1751360290; c=relaxed/simple;
-	bh=GxXVoLFLRD1VKtIrbklplB25upwnw5BQOwzExBjwY4M=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=l8jfWoq4iWsmf9mkFQ49bBgWKqx8EKOt+iFjz/sxwvBUqCWJPNAbaUM2rb+7HSB7vaL72TsZDpar7+mDoWYU8VJ457b4nD1s5ge2Y6UIbVvu++P0KLltNvE79cv/Io2e2AfRcs9wWU+oPO3Co0PPfFa0Tanu4avPaY8QBgMA9C0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=nw3YCgYb; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id E1B01C4CEEE;
-	Tue,  1 Jul 2025 08:58:04 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1751360289;
-	bh=GxXVoLFLRD1VKtIrbklplB25upwnw5BQOwzExBjwY4M=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=nw3YCgYbwjsSpNZ9HIXCEA2g/Bmt8OVA8Om0Xh5iXIKU1JqDYUv1ZInfxaMSQd7fQ
-	 i4xby4rkR6t8Qz8V4YRAGJthi6HxqR7csgCrESWffUXeW9xX1uvfwqAV3hQXBurQna
-	 dObctXHHPIIJafNkzAWTGvZKXSkgwI2dD3MD6lstZVU59u9DJAb7fugVNmug5yeFBp
-	 BbOmE8GkjOqzb5DlGCWM3nG1GiKYrmghFvD8pBD0pnWK1RJ0hI6YUDkb7C5eQf8mHJ
-	 WUIWVZJ/+8EmMIKUgiCEKZCh9FW3NFGm1YzUCc+8t5phDf7r/hArr3+ZxnBmHT5qWg
-	 I2jkqkd0s2tRw==
-Message-ID: <ef9a18f8-4e71-4ed4-87d5-d5f175b60a25@kernel.org>
-Date: Tue, 1 Jul 2025 10:58:02 +0200
+	s=arc-20240116; t=1751360499; c=relaxed/simple;
+	bh=UM/a95nU6vNLC8ZVtNDfSoDoqDmVKHLoqiuDZiPQOFY=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=Fqp57Xe91DFt7QCLTCQK2GBpZM+S6/ykklxBllVT3RjhTRWRvBllF5RP4gom7QFbQU9k5xLzLaJyzYw4/txm7x4azrpkpeFvY2qHC9ps1ng1Qz0nbdl/egFutJRpJhTHzwFBUCfbRDrXvZVyoyhmYPkkZc6/O6CzdV9/nFhw2SQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=bgdev.pl; spf=none smtp.mailfrom=bgdev.pl; dkim=pass (2048-bit key) header.d=bgdev-pl.20230601.gappssmtp.com header.i=@bgdev-pl.20230601.gappssmtp.com header.b=np7EHz3R; arc=none smtp.client-ip=209.85.221.45
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=bgdev.pl
+Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=bgdev.pl
+Received: by mail-wr1-f45.google.com with SMTP id ffacd0b85a97d-3a5257748e1so1919406f8f.2
+        for <devicetree@vger.kernel.org>; Tue, 01 Jul 2025 02:01:36 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=bgdev-pl.20230601.gappssmtp.com; s=20230601; t=1751360495; x=1751965295; darn=vger.kernel.org;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=WP8VKsIDrL+Rlg/Gxr50hjhldFCuzpVHMlIsVNdgSK0=;
+        b=np7EHz3R+tpby4q8v+07EcNGGZjaP9cYWJWWz8VrfmjRl58RnpufLNdjmdmv7/2O8m
+         8R9ldZJrqQO98aY81OdOJaDNqZN5087oKjEDzmKGH/yY39U5Q+2HzlDqJ4fWfUto1n2A
+         w5WiiivN26Ll7hEerlpfMVJ1t/oD4PlN42cO/pKCAvvPKPIHhJZa5o404Je7iCflIUfE
+         0B4e6T4AIJ2cuP2p0KTk15mOcQUdIIkVCxcD698mubR3yeYmyL4m9PfOXi49fXgEZ5k0
+         id1xl9AmEQwzi8a4kA4I7FWASm5/FjSbeGfuWHMPEdGKrreOz/sv0jNFf8Cnyn1qcKdp
+         4KRA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1751360495; x=1751965295;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=WP8VKsIDrL+Rlg/Gxr50hjhldFCuzpVHMlIsVNdgSK0=;
+        b=LJ+1UoDWRYDuErw6tnizjsa7ZPzrEjSV++lyLTS+6h0kXW3XoNYDaKSNdHk8aG9uz+
+         WPDPep/TTgml/JhjgyqnPCUh94Nj+vrgIxNwBLWwdFgHIpsUboUdnw3OXz+hlGkSAXAs
+         avj5cvK+Uf7yvpsQDIiSALMw4E0H0MnRt6ALBkN6/nV2p7JOR67S0YjWtB1EPNykNqcu
+         vcYtCaMcaZhlvxoEU22u8u0+1uxgzTUvNgOwBmTKwlIQDgU0meSdwiccc2ea6ZmKyKWE
+         pyu3Ajv9ypm5au261V5rV41zSzLZSpZARoq/QJs+TatFTFkLPU4NmthAEVlLOwOu5aeh
+         6U2w==
+X-Forwarded-Encrypted: i=1; AJvYcCX2k7asVCl8MvB/gVktcaCVRWbLRR95GcNfoiSdyMWtj19/PHHVIgw7LLQz/ovL3DfUSeTH4K07dC/o@vger.kernel.org
+X-Gm-Message-State: AOJu0YxhkiJbmLnmdcXGRkUqW0/ZJOwIWf4iqPUiTToLZL/2190tqIHr
+	AE4ygzv4Hg2ADVDcNLA8AfgE7RoSfrmv+U8B7WB5HwL2hdw58uQ+NNGdz3PKmuKPbpE=
+X-Gm-Gg: ASbGncvrh9fynUNxwcJnm0zHjLkQnmSfZusTY38JZEFIQB9QxXFe27tZtWZ0VqpGSoL
+	F/uVRtQgPxPHnW1y7PciwFT7LTYq9ohsxo8FvUs9s5AH0VohU1ID+6Eww5O/m5VqLrmjt3dGDYc
+	A/ExLEPNQAQ/LqOzT5+WqZvPE56aR1Mdb87J6Kvd98u8IdlY7p58AnkuO6vbTmWLOFMO/ItB87f
+	Zl7y9ibk1fJgRS6N9+1K5HPZpAm940U+jVF/gz4ymfAOtBXhSLlPtXBzEmE614cnR5nTutpf1xU
+	yJfHq04zpvSH/Memk8Vp8lvXUAproBRrk81IAjk1ZJv3+HtghcSHgZI=
+X-Google-Smtp-Source: AGHT+IHaVKK5/KLi+D7h/i2dCCKCKD/8hgl9hcBgDka+2suPtO7Ix58QUwQem6y4dI/BfL73PW5K7A==
+X-Received: by 2002:a05:6000:270f:b0:3a4:d994:be7d with SMTP id ffacd0b85a97d-3a8fdc1f5a9mr9410263f8f.23.1751360495002;
+        Tue, 01 Jul 2025 02:01:35 -0700 (PDT)
+Received: from [127.0.1.1] ([2a01:cb1d:dc:7e00:a387:7a32:8457:f9b])
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-3ac6ee0d0b9sm6949707f8f.18.2025.07.01.02.01.34
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 01 Jul 2025 02:01:34 -0700 (PDT)
+From: Bartosz Golaszewski <brgl@bgdev.pl>
+Subject: [PATCH 0/3] arm64: dts: qcom: fix GPIO lookup flags for i2c-gpio
+ SDA and SCL pins
+Date: Tue, 01 Jul 2025 11:01:28 +0200
+Message-Id: <20250701-qcom-gpio-lookup-open-drain-v1-0-9678c4352f11@linaro.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v6 1/3] dt-bindings: i3c: Add support for Qualcomm I3C
- controller
-To: Mukesh Kumar Savaliya <mukesh.savaliya@oss.qualcomm.com>,
- alexandre.belloni@bootlin.com, robh@kernel.org, krzk+dt@kernel.org,
- conor+dt@kernel.org, jarkko.nikula@linux.intel.com,
- linux-i3c@lists.infradead.org, linux-arm-msm@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, Frank.Li@nxp.com,
- wsa+renesas@sang-engineering.com, alok.a.tiwari@oracle.com
-Cc: andersson@kernel.org, konradybcio@kernel.org
-References: <20250701071852.2107800-1-mukesh.savaliya@oss.qualcomm.com>
- <20250701071852.2107800-2-mukesh.savaliya@oss.qualcomm.com>
-From: Krzysztof Kozlowski <krzk@kernel.org>
-Content-Language: en-US
-Autocrypt: addr=krzk@kernel.org; keydata=
- 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 a/A=
-In-Reply-To: <20250701071852.2107800-2-mukesh.savaliya@oss.qualcomm.com>
-Content-Type: text/plain; charset=UTF-8
+Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIAOijY2gC/x3MQQqAIBAAwK/EnltQM4K+Eh2ktloq15QiiP6ed
+ JzLPJAoMiVoiwciXZxYfIYuCxgW52dCHrPBKFOrRmk8BtlxDiy4iaxnQAnkcYyOPVJlbaV1Tc5
+ YyEOINPH9713/vh+OY8wBbQAAAA==
+X-Change-ID: 20250701-qcom-gpio-lookup-open-drain-e3443115ea24
+To: Bjorn Andersson <andersson@kernel.org>, 
+ Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>, 
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>
+Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org, 
+ linux-kernel@vger.kernel.org, 
+ Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
+X-Mailer: b4 0.14.2
+X-Developer-Signature: v=1; a=openpgp-sha256; l=1316;
+ i=bartosz.golaszewski@linaro.org; h=from:subject:message-id;
+ bh=UM/a95nU6vNLC8ZVtNDfSoDoqDmVKHLoqiuDZiPQOFY=;
+ b=owEBbQKS/ZANAwAKARGnLqAUcddyAcsmYgBoY6Ptvgi5B1OXpXy5Qc5dnFDSASskBDGBNT7tD
+ OMK42Jx9kmJAjMEAAEKAB0WIQQWnetsC8PEYBPSx58Rpy6gFHHXcgUCaGOj7QAKCRARpy6gFHHX
+ coV/D/kBLaSkzFODESNxhQquue3V2OATAFhq1h95NGrcmcbTr2WP1XSY35uU5H0aSGmg3Y2PREF
+ lli5mQrrTjqGPUIuiKSC9/Wny8Xh/eJmZYIH+C71NuAOMklmKmPiR+sRapU2cVz4/w3ed+bXUjy
+ VPf6Dsy4NyIxSopChXiWApRhxy4xNK85rqhDY0d33/tHhXlys55KjThYN4eymQkj0wXN1x4Skm7
+ 2jCtEYXk8YLOU17Go4prTHZfLUcTvqVR7/70oHsvHLi49tLjoz617+h7FqkrQIiRnTXNk5Yilex
+ x4WRK9ejG7PeDo16zCXL2RaJSbOG17OE4Iesx9NN7+JoDywaZ/eBLXcUDwyN02mZqmX1tY+VxH8
+ aTFucL7UmodT160gh4GBK6+/E/OCWy5CbLPXOcPE7/JylXuX5gRpQunrygiHoSXksXQYdSixh1x
+ 7DbRQO3QhGk5hVf4wAHr/46xkk8LZ7xkvj9jXk4Goxp8gAgmNDPvYgr5THBYArBxlh/MsZsC8sa
+ yDcMKjYRBwvjaERWmgfY0nRy6AAqhzC3PwlZ3keyGB/yWGk5KvltgENDb3bBm7u/u/PoCBJ3Utj
+ 1fMARwmZKGWaqrewAZ7hOIEbA5L+Y/WN+schcjzlC3CGHWtoBYPC75eF1mxH+ahaM7kN/A7jL5g
+ wVxVvMWO6Naff+w==
+X-Developer-Key: i=bartosz.golaszewski@linaro.org; a=openpgp;
+ fpr=169DEB6C0BC3C46013D2C79F11A72EA01471D772
 
-On 01/07/2025 09:18, Mukesh Kumar Savaliya wrote:
-> Add device tree bindings for the Qualcomm I3C controller. This includes
-> the necessary documentation and properties required to describe the
-> hardware in the device tree.
+There are three platforms in the QCom DTS tree that are missing the
+open-drain lookup flag in their DT nodes associated with the i2c-gpio
+device whose driver enforces open-drain outputs. This causes the GPIO
+core to emit warnings such as:
 
+[    5.153550] gpio-528 (sda): enforced open drain please flag it properly in DT/ACPI DSDT/board file
+[    5.166373] gpio-529 (scl): enforced open drain please flag it properly in DT/ACPI DSDT/board file
 
-Last sentence is completely redundant. How would you add bindings
-without necessary documentation? Does it make any sense to add bindings
-without neccesary documentation and properties? No, it does not. Say
-something useful or keep it simple. And I reject patches created to meet
-KPIs/goals like amount of lines of patches (second pattern: other patch
-was for IPQ5424 where I asked to shorten and qualcomm kept it two lines...).
+Silence the warnings by adding appriopriate flags.
 
-> +maintainers:
-> +  - Mukesh Kumar Savaliya <mukesh.savaliya@oss.qualcomm.com>
-> +
-> +description:
-> +  I3C in master mode supports up to 12.5MHz, SDR mode data transfer in mixed
-> +  bus mode (I2C and I3C target devices on same i3c bus). It also supports
-> +  hotjoin, IBI mechanism.
-> +
-> +  I3C Controller nodes must be child of GENI based Qualcomm Universal
-> +  Peripharal. Please refer GENI based QUP wrapper controller node bindings
-> +  described in Documentation/devicetree/bindings/soc/qcom/qcom,geni-se.yaml.
-Your cover letter - or this changelog - should explain what is your plan
-in updating that one.
+Signed-off-by: Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
+---
+Bartosz Golaszewski (3):
+      arm64: dts: qcom: qrb2210-rb1: fix GPIO lookup flags for i2c SDA and SCL
+      arm64: dts: qcom: qrb4210-rb2: fix GPIO lookup flags for i2c SDA and SCL
+      arm64: dts: qcom: sdm845-samsung-starqltechn: fix GPIO lookup flags for i2c SDA and SCL
+
+ arch/arm64/boot/dts/qcom/qrb2210-rb1.dts                | 5 +++--
+ arch/arm64/boot/dts/qcom/qrb4210-rb2.dts                | 5 +++--
+ arch/arm64/boot/dts/qcom/sdm845-samsung-starqltechn.dts | 4 ++--
+ 3 files changed, 8 insertions(+), 6 deletions(-)
+---
+base-commit: 1343433ed38923a21425c602e92120a1f1db5f7a
+change-id: 20250701-qcom-gpio-lookup-open-drain-e3443115ea24
 
 Best regards,
-Krzysztof
+-- 
+Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
+
 
