@@ -1,141 +1,115 @@
-Return-Path: <devicetree+bounces-191712-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-191713-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1D538AF02DB
-	for <lists+devicetree@lfdr.de>; Tue,  1 Jul 2025 20:36:45 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id DFDF5AF0303
+	for <lists+devicetree@lfdr.de>; Tue,  1 Jul 2025 20:45:21 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id F2EB83B9A2F
-	for <lists+devicetree@lfdr.de>; Tue,  1 Jul 2025 18:36:18 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 18900169C5B
+	for <lists+devicetree@lfdr.de>; Tue,  1 Jul 2025 18:45:22 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id CF47728030C;
-	Tue,  1 Jul 2025 18:36:33 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 06BF223AB87;
+	Tue,  1 Jul 2025 18:45:17 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="Gei8FHcJ"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="SDEXL8+y"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ej1-f51.google.com (mail-ej1-f51.google.com [209.85.218.51])
+Received: from mail-pf1-f169.google.com (mail-pf1-f169.google.com [209.85.210.169])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 125D7271442;
-	Tue,  1 Jul 2025 18:36:31 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.51
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5E874244667;
+	Tue,  1 Jul 2025 18:45:15 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.169
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1751394993; cv=none; b=HD44DlLFBQbWbOV65iCA/ecMvUCUTGYSNkQzmk1eH1pY+gU08FXFv330k2AZ6VIvnYJKTBPmGPy2eTDI4YXBNjZnbbsWgqxvly0kVc3OKaXWaTAjhTv3+YUNNBh7sVW15qPhhUnOHIVH6RxShbUZfH7AorRyNySObYDpxe6qbnw=
+	t=1751395516; cv=none; b=f1K98z2QLHWBuBjmhwQ3iO+EgHEGfuDmIwkZZOIqi9VkPkhQiFhKYhJhx4//soZGtZOJD8X9pDRROPANmqApLy1IFRBq9PFq8JOm4q6hTIx4FnyqkJ5iCB12qiwScvz9TyvzRDBw0e8eIUvkJpEnyQG+cbYC4iAh1EkqlmR+EZs=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1751394993; c=relaxed/simple;
-	bh=yRjplaKXpH/VFpaOavRCRnqrcAYZmLRtHLxP0FlmjEs=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=ZQCoLM5R8wYUTybCCq8ayV9XPR2ge+idIugAUxT+zPn1cNR7QbaleQvyMvmT0Q7wUg7jNNNZOpRfpLQCKXRhLPvny18aVeBH3P8/aEQuMSJ8V5QW6LsaH72L8Y32YJ0iprAlhmdiwJopiUfnk6ohI5OIWt/lbFl7HWfazH+J34Q=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=Gei8FHcJ; arc=none smtp.client-ip=209.85.218.51
+	s=arc-20240116; t=1751395516; c=relaxed/simple;
+	bh=yotvt+VubhlQzqgAXZ/7b4/jA+phf336AoyYvG5yUCM=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=miJlg/OdpSo06gcefx+6JnVLddqF9X8awpl//Opay9SI7R29TeRG6WkbBSneYxFjlwohD+ZcPdxuXQD2tb+KvzKfxOUJuOGrCHffRjDSdgo1sa6RUgT62Vt9e+97xFOz2mjOf4heChs2FOGkyNAl423PT8iRN38xDfFpV/a0z+I=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=SDEXL8+y; arc=none smtp.client-ip=209.85.210.169
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-ej1-f51.google.com with SMTP id a640c23a62f3a-ae0e0271d82so1058684566b.3;
-        Tue, 01 Jul 2025 11:36:31 -0700 (PDT)
+Received: by mail-pf1-f169.google.com with SMTP id d2e1a72fcca58-74264d1832eso4496079b3a.0;
+        Tue, 01 Jul 2025 11:45:15 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1751394990; x=1751999790; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=EvZSAsGgT4y6tCjof4rP96wWIXxPBf7t0erZSib3VB4=;
-        b=Gei8FHcJDZXbSnyP4PE+fIXvWRm45zmJWxp1kwP9uSwDZoAKCgMjwaCiCN8vYtwQ4t
-         TcZGX+XuomNCMwOrjYcluCysaFKs4Pkz8nCdM44ETa03LFzLMGRFvWDDJI62+tNR3iE0
-         Jxzfs2oJfqJJCHtgQ8iL66XXcOY45rjmBcxk20WincucQzCXBSuLqTVpWgDRypuy7r13
-         qw4E2MN4Sykcu7QXEIZT62K01vboCQN7JnzRpi//2kb0YPnBvkMqm31abrFE0pYli4H7
-         sfA3SOY/3z63hnXtBNFpNNSDbSn+nm0kncRnRYf72uK3bEfyqFDbikIQnweqAk0Cv1Rd
-         0oSg==
+        d=gmail.com; s=20230601; t=1751395515; x=1752000315; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=Tnia59gg+T70FOFbTyMycg8nemN4LO0JGdZNZ7zRv+c=;
+        b=SDEXL8+yqPVFmEoGpcHnrPGD1fpWc9Skv+nChmsKW8/hHkgI4JvZRYXjC8Vm95QGyx
+         iwxItvIXroiiGztKjOexYoJgj6t5m/fofWfk6IDRV7nhauxXvf1fMT3krbJMSmii7Wvc
+         8sLbmWzWxjMl8uy8NqAhXM0736aPRFWBgbJoUmFznb7GZAyzncXIJW6L8vI2UYYGQwZE
+         +EH0KBJUI2gO77j68Z/HE2UMGuVLou6Rzrvf00eQtDREEhXpJWdiAuDxaiQBiKsLwDfo
+         t8aCvoS3ooQr/ONWPqRjisOSlcvllID44ocqy2l7P/zK7WFTHgD+S2jPbiED/NTz1o7h
+         6uNw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1751394990; x=1751999790;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=EvZSAsGgT4y6tCjof4rP96wWIXxPBf7t0erZSib3VB4=;
-        b=Z87AKytHIKstUbrLjY1Gn6vlrE1YsVq+liR1o8A3W3ahLkmEEu1Oe+ER/GWGAkHQpa
-         jkpHPQhm9VpTox71dG/I9DscH1T3xVybcoxSdvr3HHhp7l0xkPztWqHq+DOfWDlqTcYN
-         44aBhmETLOxduNMlZZNBUnZkXZdIYHlP9heZCQNRpbiYE0Um38AkVCEZbop9Gv/a8NLe
-         /0LfE2TiqM9Xfud5e75J37ZKG3Yv4P+tvxb/eXxy8SB/mwNKUuh2fj4NUxNiB7x0nfxr
-         8kdFyZVOJ59gnR2RQ4dbeS2e6MllxRGcfgtxuK+b0JGlUFe4orMM2IvJjM5ttq5VRF0Y
-         C1uw==
-X-Forwarded-Encrypted: i=1; AJvYcCUBzicsYU2EyZIU4DMzTSfoBLVha9wRRFzIWrl7ghQkf2UJPNBRgpomrI2/k3x+OlS1vz72mxtXeBkkQT86QQ==@vger.kernel.org, AJvYcCVzjYyU5waoxZsxV9cmAxA+MCZRSMwBzxpZDLS63YGMmoe7Xjoyl1kDWr+tT8R99YotMeuRoNu9l36ATYMr@vger.kernel.org, AJvYcCW2Mmnu9NN5dX/ZWtwzO/UYpYhus3sjndFYVE/A6L/8DVityDwqWDDsFHfmiE9s62SjsTBUzQDT@vger.kernel.org, AJvYcCW3cA9PlCrSPcBvMzs5jHeLZMQEA+Y/Vlhezvhz69AJk49Ygc/mnqk5Y0NJ4Igs/j7JfIFusS0tWuIK@vger.kernel.org
-X-Gm-Message-State: AOJu0Yx6Jd8kIMcgxasXrju62jec0lpN1OUujf0q25rLfC2GGMtxh979
-	FNYTarJEtL7W5kUIcvfC5jC9vAWmECxHxF6HFCabIkZe6NNvOJfCjpBszOnMLrVzyw==
-X-Gm-Gg: ASbGncu5WdkXnvjGJs58HsUCIOg8Xn25h+C0hPPweL8cOo7Own/AFaeoDHGISB0uZ01
-	n3CS6PjtCmt5C3ZIyd/2jv/e358+rmQK1w1Z/cK3aERJVMet1wcqW98I704CH8Ecb789sGGmIrI
-	BuMyL7DZBFUI/f78I5NSZDgza941nIlEEdml2xx0hiQHBBfmDT97JBeRa7pQdhLzSi0LG/mo6PC
-	0yJCXkTChoYp6yqTbExzsdY9eDp/f1SGcUksOeuwM0GLHXqYHv1UkeERpaGAfVNaTVPLgUAhZT+
-	amUNipvnHbg38pKCrO8Bzzh3Utvl9kn8zPzaHP5FXGM7PXAAaGjNGAVoZJ+ndl/TSTvG6APm/5x
-	lmMuYabxqLclHjQw=
-X-Google-Smtp-Source: AGHT+IGxDgDRfcO4OsA6oSf98ANF2jZNp1bEJWf7WwHC3hoaBCRtjYBncfle2chgYxw2mC3t34wNJQ==
-X-Received: by 2002:a17:907:3d8c:b0:ae0:1fdf:ea65 with SMTP id a640c23a62f3a-ae34fd8821fmr1755494466b.17.1751394990039;
-        Tue, 01 Jul 2025 11:36:30 -0700 (PDT)
-Received: from alex-x1e.localdomain ([84.226.118.249])
-        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-ae353c013b7sm915374566b.80.2025.07.01.11.36.29
+        d=1e100.net; s=20230601; t=1751395515; x=1752000315;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=Tnia59gg+T70FOFbTyMycg8nemN4LO0JGdZNZ7zRv+c=;
+        b=D7eAfXu5q6Z1Xt2xrrKTtSSrgFwrlOnDeKJ/24v3vgqOwCZUpDKHpTIta3S4jSWJfT
+         neWzaZgCI7IDWnZdUxzn7L+6Rsr21Tw/z0Vml3F56ZqcY86sbhsW4SPErHVvXsCgzIO/
+         ndx0D8tAgiW3wvCq8KPlPQ1uEBaoTrghx/a25c8tUXCE+bNjVx+tXKUjOR5sRbdIXSXQ
+         hKjw6JCQKFylOVh7pda1B+iGD4SRkQQWvh6ktJv0EHIGeu0LamSTo4bLJt6R4O85pBzL
+         rNbOiv7B1tDwvz2QswHAj4bZNiAtXyvA3l0feZvmEKlA1IhQ6QqchyKVaYc/WvQF89ab
+         4EPQ==
+X-Forwarded-Encrypted: i=1; AJvYcCVX3nXe2gKvaOFpug/FKBLvN1CrQsZ6hv0I5UeJx5tHY0EuXtfIK2G/hPvw53ZxtuA5KhAtp4iNCfBQq2VN@vger.kernel.org, AJvYcCVXJE+EwqCASgNEj/ra/hyaW+qoWw8rCTMchxsAz9t6JTzTxaIjVWMhXr6SmZsyhiyVUnydCJHJDveaoKA=@vger.kernel.org, AJvYcCX2xn96WbSZex4KxPlm0iNPZ4wdeHo1IYThr2CJXDyQjmy4jwQnbuBkDgiHudj+FWggfNqi6WJNtOm7@vger.kernel.org, AJvYcCXj/z+93g6W0jFwjGhfY8yZsvcyslBWMJPDTxuqHFLGyuzFo6tl8IGbgxHRLh6jTCF1HFxlNSAAwgzGXJE=@vger.kernel.org
+X-Gm-Message-State: AOJu0Yx/c5UQ5yl09ZiVB3ets6YVsrEbYRpESKQrAL4JO8Wt992fhp76
+	uByWNieCZKvQcneUlOVduvu2amW7iA/JMUyIsN2bG8oy/oGiL9iIo63U
+X-Gm-Gg: ASbGncsuJ+1m/aRWvSQSCkzxEmTz/M9GZXK9UDbSgjzvnYqBfDtQAoRPGLF4OlPynM6
+	LBPrWKE8wqKMfdaeQk87b6wgz2qjnUHaClE2f1rBjKQ6h4o4EsdVsqBKzfnyMEiaVsTDkttIuX7
+	zodDX7ohznZshdU1AAr/Rut6RkGYKmt6SXdb1NuBNbs9y2DhUoY78e92NLZJXF2qeXBzrAATllR
+	Xq+2i/7EsfKaC70veygO2ybxcRJBWiYcnAvvDZv21HQrJIGXpVv3VK33w1fryR/zrW79ZaR9qwh
+	45kDspBo/XEZZV6N5LWjSBRsdNf6lNBUQZxFTosn/MMpQ2aCTzMot4f6lzI2Qi8=
+X-Google-Smtp-Source: AGHT+IGKUG44G2rksdxfziQ+CeEH+a5tb04A0pht0E6IWn/xT8NXyFNARVMhyyLdtFiys43l33hw2w==
+X-Received: by 2002:a05:6a00:929f:b0:748:f750:14c6 with SMTP id d2e1a72fcca58-74af6f26d05mr26751724b3a.14.1751395514656;
+        Tue, 01 Jul 2025 11:45:14 -0700 (PDT)
+Received: from google.com ([2620:15c:9d:2:7bb0:b5bc:35bb:1cb4])
+        by smtp.gmail.com with ESMTPSA id d2e1a72fcca58-74af541cc81sm12258320b3a.58.2025.07.01.11.45.13
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 01 Jul 2025 11:36:29 -0700 (PDT)
-From: Aleksandrs Vinarskis <alex.vinarskis@gmail.com>
-To: Bjorn Andersson <andersson@kernel.org>,
-	Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>,
-	linux-arm-msm@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org
-Cc: Konrad Dybcio <konradybcio@kernel.org>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	laurentiu.tudor1@dell.com,
-	abel.vesa@linaro.org,
-	bryan.odonoghue@linaro.org,
-	jens.glathe@oldschoolsolutions.biz,
-	Aleksandrs Vinarskis <alex.vinarskis@gmail.com>,
-	stable@vger.kernel.org,
-	Johan Hovold <johan+linaro@kernel.org>
-Subject: [PATCH v2 1/1] arm64: dts: qcom: x1e80100-pmics: Disable pm8010 by default
-Date: Tue,  1 Jul 2025 20:35:53 +0200
-Message-ID: <20250701183625.1968246-2-alex.vinarskis@gmail.com>
-X-Mailer: git-send-email 2.48.1
-In-Reply-To: <20250701183625.1968246-1-alex.vinarskis@gmail.com>
-References: <20250701183625.1968246-1-alex.vinarskis@gmail.com>
+        Tue, 01 Jul 2025 11:45:14 -0700 (PDT)
+Date: Tue, 1 Jul 2025 11:45:11 -0700
+From: Dmitry Torokhov <dmitry.torokhov@gmail.com>
+To: Jens Reidel <adrian@mainlining.org>
+Cc: Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Joel Selvaraj <joelselvaraj.oss@gmail.com>, Oliver Graute <oliver.graute@kococonnector.com>, 
+	Felix Kaechele <felix@kaechele.ca>, Andreas Kemnade <andreas@kemnade.info>, 
+	Fabio Estevam <festevam@denx.de>, Al Viro <viro@zeniv.linux.org.uk>, 
+	Yu Jiaoliang <yujiaoliang@vivo.com>, linux-input@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, phone-devel@vger.kernel.org, linux@mainlining.org, 
+	~postmarketos/upstreaming@lists.sr.ht
+Subject: Re: [PATCH 0/2] Add FT8716 support
+Message-ID: <ymxplfejkkyups4w6wgrjwwju57sx3psbulvs444jghpvtvim7@nnf7ir2iwd4w>
+References: <20250313202017.19621-1-adrian@mainlining.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20250313202017.19621-1-adrian@mainlining.org>
 
-pm8010 is a camera specific PMIC, and may not be present on some
-devices. These may instead use a dedicated vreg for this purpose (Dell
-XPS 9345, Dell Inspiron..) or use USB webcam instead of a MIPI one
-alltogether (Lenovo Thinbook 16, Lenovo Yoga..).
+On Thu, Mar 13, 2025 at 09:20:15PM +0100, Jens Reidel wrote:
+> This series adds support for the FocalTech FT8716 touchscreen to the
+> edt-ft5x06 driver. It was tested on the BQ Aquaris X (bq-bardock) and BQ
+> Aquaris X Pro (bq-bardockpro).
+> 
+> Jens Reidel (2):
+>   dt-bindings: input: touchscreen: edt-ft5x06: Document FT8716 support
+>   Input: edt-ft5x06 - add support for FocalTech FT8716
+> 
+>  .../devicetree/bindings/input/touchscreen/edt-ft5x06.yaml   | 1 +
+>  drivers/input/touchscreen/edt-ft5x06.c                      | 6 ++++++
+>  2 files changed, 7 insertions(+)
 
-Disable pm8010 by default, let platforms that actually have one onboard
-enable it instead.
+Applied the lot, thank you.
 
-Cc: <stable@vger.kernel.org>
-Fixes: 2559e61e7ef4 ("arm64: dts: qcom: x1e80100-pmics: Add the missing PMICs")
-Reviewed-by: Bryan O'Donoghue <bryan.odonoghue@linaro.org>
-Reviewed-by: Johan Hovold <johan+linaro@kernel.org>
-Reviewed-by: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
-Signed-off-by: Aleksandrs Vinarskis <alex.vinarskis@gmail.com>
----
- arch/arm64/boot/dts/qcom/x1e80100-pmics.dtsi | 2 ++
- 1 file changed, 2 insertions(+)
-
-diff --git a/arch/arm64/boot/dts/qcom/x1e80100-pmics.dtsi b/arch/arm64/boot/dts/qcom/x1e80100-pmics.dtsi
-index e3888bc143a0..621890ada153 100644
---- a/arch/arm64/boot/dts/qcom/x1e80100-pmics.dtsi
-+++ b/arch/arm64/boot/dts/qcom/x1e80100-pmics.dtsi
-@@ -475,6 +475,8 @@ pm8010: pmic@c {
- 		#address-cells = <1>;
- 		#size-cells = <0>;
- 
-+		status = "disabled";
-+
- 		pm8010_temp_alarm: temp-alarm@2400 {
- 			compatible = "qcom,spmi-temp-alarm";
- 			reg = <0x2400>;
 -- 
-2.48.1
-
+Dmitry
 
