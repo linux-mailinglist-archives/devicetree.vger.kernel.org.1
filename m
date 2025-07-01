@@ -1,270 +1,422 @@
-Return-Path: <devicetree+bounces-191643-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-191644-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 46E97AEFF2D
-	for <lists+devicetree@lfdr.de>; Tue,  1 Jul 2025 18:12:46 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id AB894AEFF62
+	for <lists+devicetree@lfdr.de>; Tue,  1 Jul 2025 18:18:07 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id C5E781C0328A
-	for <lists+devicetree@lfdr.de>; Tue,  1 Jul 2025 16:11:55 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id D66633B9079
+	for <lists+devicetree@lfdr.de>; Tue,  1 Jul 2025 16:16:23 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A5F1C27AC57;
-	Tue,  1 Jul 2025 16:11:34 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D398B279DC3;
+	Tue,  1 Jul 2025 16:16:11 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="QpK5NmcV"
+	dkim=pass (2048-bit key) header.d=seco.com header.i=@seco.com header.b="L76V835o";
+	dkim=pass (2048-bit key) header.d=seco.com header.i=@seco.com header.b="L76V835o"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+Received: from AS8PR03CU001.outbound.protection.outlook.com (mail-westeuropeazon11022137.outbound.protection.outlook.com [52.101.71.137])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B7744275AFF;
-	Tue,  1 Jul 2025 16:11:32 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1751386294; cv=none; b=R6aaUnNFttOpdH8+VV2TD4siuGZJJV167VKZSto0ZTMXfU29X/4SyJq80BFYoi/7zAjKw1As+0TNN9QYek0oG32XgeiOHIdddu+BF5AV093CWpgsho4LY4SfCCGKtbUGd3o3RLTsWq1VzDQ9UOrFrKS4NIdd5TGkVDLjIIc/klQ=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1751386294; c=relaxed/simple;
-	bh=Hywc03h+hIdorAmPrJ9fmU7eLVyWgGqiBZO2Wi4piPM=;
-	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
-	 In-Reply-To:Content-Type; b=ajN0/wpsNKP1F93nFhpoC8bei/ZlVIWFfETRFRtNbGVKQOy1hrRZV5EpOlf/Y85VOPRei9O8hF7M/6qGifOxyhusCa/n+rQQkJ4gT3apqyqO0inv20u6e7J4vT1Fj06H60qdiAtOTTE7zDKWnIshldOWf/fVPXLbybYNpSTSKM8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=QpK5NmcV; arc=none smtp.client-ip=205.220.168.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
-Received: from pps.filterd (m0279862.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 561A1Pon029335;
-	Tue, 1 Jul 2025 16:11:19 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	ecLfu3Ayg6Kny6LfFNotM8xkub6X/s4aA0yzi56hotM=; b=QpK5NmcVM2KLU3xF
-	+oRy5mHRnSf4mS0STcRn1oYHj9mOsgp8v6naLnmmxo/VmuVPgPbKax8O3jTzOH4h
-	kDfGzy6+TaC20YvskwDhNlgAqW9fTvbgVbH1lBePGsyouhUXMNV/Am2pEw/0M/Re
-	cIw0gBWJHcGfLjLd8/VNZ3w6yecq4lbdqsDR7+8ARcVUMq1OiHXO/x3aEY7P8dix
-	YmYRJun6loJDF93tnxDRsMpvZbC+deW4uPIzruPT7+W6+4/k4OXS2F2AQdghbLYR
-	i53D4nv86BOJm1M8hUDaOi4UL4sTE9RIMAP2zTlcAfbSsEZ6YV6RkANJlR/uLb/M
-	7c2ZWw==
-Received: from nasanppmta04.qualcomm.com (i-global254.qualcomm.com [199.106.103.254])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 47j95j1b6p-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Tue, 01 Jul 2025 16:11:19 +0000 (GMT)
-Received: from nasanex01a.na.qualcomm.com (nasanex01a.na.qualcomm.com [10.52.223.231])
-	by NASANPPMTA04.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 561GBIOD003320
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Tue, 1 Jul 2025 16:11:18 GMT
-Received: from [10.50.58.161] (10.80.80.8) by nasanex01a.na.qualcomm.com
- (10.52.223.231) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.9; Tue, 1 Jul 2025
- 09:11:14 -0700
-Message-ID: <ceeaf6ee-2ff7-5f60-2a59-9b5484f3ac5d@quicinc.com>
-Date: Tue, 1 Jul 2025 21:41:11 +0530
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D28EF19FA8D;
+	Tue,  1 Jul 2025 16:16:08 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=52.101.71.137
+ARC-Seal:i=3; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1751386571; cv=fail; b=tvLiH13LJ2ZT5O2vkAwjt1EYZY9g15Y6ibP/xOrPm5l+mRPsRxTax7UblLrXKCdSC1MC2khD8ISkWm4G7biMk1zXXDq7WrFXJgEQBRHjM7IAFCuxK/K+ZZaKdzaViFj2zKVlI7ofc0Mo1DfKamfL8BRRtGFdK97p1PdXJCY8Kw0=
+ARC-Message-Signature:i=3; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1751386571; c=relaxed/simple;
+	bh=wvGOG91MatwYsBxYVp2gtJtH9NcmIavAed1YfonG868=;
+	h=Message-ID:Date:Subject:To:Cc:References:From:In-Reply-To:
+	 Content-Type:MIME-Version; b=ll0EzZ5IY29pyXycrH00kJqhfYk9G0pNuRO8vDtWOeMPcZ0ioFxeV5OnAFz6rJV9rRQKPNO9TYpjBIVvJ6vJ0W79998564+ctSek3rjdms9U+Uwk5zUdyw55dSocNN8X8U3S9uMBdpz8hiYT1AgF5ARED++C6CQHWMpSRSiG6lc=
+ARC-Authentication-Results:i=3; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=seco.com; spf=pass smtp.mailfrom=seco.com; dkim=pass (2048-bit key) header.d=seco.com header.i=@seco.com header.b=L76V835o; dkim=pass (2048-bit key) header.d=seco.com header.i=@seco.com header.b=L76V835o; arc=fail smtp.client-ip=52.101.71.137
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=seco.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=seco.com
+ARC-Seal: i=2; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=pass;
+ b=HiwG//WiRRAxc54F89CCsCdk52KIKUSoKpDR3hMF0DK5h1/ykluYsGVDfqNVShDjwtwpE2q3SuTLPw4YEesi5ZMb0zy6VWgeD4WVzjnKQP/xtuHpcWD8TF07a0JLDsSEtnEpsB9K9uNsARuULQbZl/7P06QNb/vlFs5KuqSnfHB2J+lbvipGwEbts2e33a5LYF+mZnp0XG5qEBcTPqV+cuV2R1d0yLTezNbILaC6Mdpt0vlMjii4cNarRwZKw+0xXW2+mEN8Ivps1QzpShGg44eSb3uVYUxpxv0R2g0dkz7bdiRFoBIqDaGfKH8LTk7KhY+YXCEE4q7j4sRL1g6OFQ==
+ARC-Message-Signature: i=2; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=x+jTIleucttIfsityKQJpSJDkaWAhANOPKvSi4mMRPM=;
+ b=Dp5qdhm/9+0cjtbhljcfVuUY2QFrVK9x994QOdMDVZ6gnr8PqepPZgHB1wR91xUUHdnCMyhjzoyGGTL5PeUQ57Q+tiSj3eoeL1GI92aIuvcClgqS/BkJPPGaC51v0P1qfqFEfUyyVlErX3MXRANdCYE9XpuPhK9qEsKgmiWsW44o9hIx/AUZzhIzXdGJhbALGI2OaLgVoy3nBuNE6ozgqFsPBeYz96LOojU7JNRg0joyVfsEj5g40hIV/B8u3+adG7cdpcXYcjPkzA1+Mxh/FTRf0SAa5CWaRL34JC7gPzQOo7OmD3L601g/a6Nmok8VH0sUiJdcQHWrSpkg4LXDWQ==
+ARC-Authentication-Results: i=2; mx.microsoft.com 1; spf=pass (sender ip is
+ 20.160.56.83) smtp.rcpttodomain=alpha.franken.de smtp.mailfrom=seco.com;
+ dmarc=pass (p=reject sp=reject pct=100) action=none header.from=seco.com;
+ dkim=pass (signature was verified) header.d=seco.com; arc=pass (0 oda=1
+ ltdi=1 spf=[1,1,smtp.mailfrom=seco.com] dkim=[1,1,header.d=seco.com]
+ dmarc=[1,1,header.from=seco.com])
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=seco.com; s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=x+jTIleucttIfsityKQJpSJDkaWAhANOPKvSi4mMRPM=;
+ b=L76V835oea6Z6xZcYU+n119v4oGOOHtYRz4zkEPiSaGE533WtocXvcNbImk+xPYqsSXcbYb1m31ivLOpvX35dsJQ5llqbaZ7WnrVCIO9KDNLlBrtZzdi82PRCM2undnAl3UmEri+DtdRYEfEFD2LCTQJbL+vGyi3AaaElFgIN3peNTKI1lkZkW1NVem2RZgmlwzK4atRTRYDoSJDQ5FFUsGvcMQWWcM/AvNIabRx2sz6fisuVU2iIyi7WByc3NwIMW4YWfCRZFlTvVBJZso9bNILWCOM1M8WPvyp4Z5tlSB6VRxjxCSZutY7QCk8Rd4lTClXUW9flarmPJ9JHjUmOA==
+Received: from AM9P195CA0018.EURP195.PROD.OUTLOOK.COM (2603:10a6:20b:21f::23)
+ by DBAPR03MB6535.eurprd03.prod.outlook.com (2603:10a6:10:17c::15) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8880.32; Tue, 1 Jul
+ 2025 16:16:05 +0000
+Received: from AMS0EPF000001AF.eurprd05.prod.outlook.com
+ (2603:10a6:20b:21f:cafe::d0) by AM9P195CA0018.outlook.office365.com
+ (2603:10a6:20b:21f::23) with Microsoft SMTP Server (version=TLS1_3,
+ cipher=TLS_AES_256_GCM_SHA384) id 15.20.8880.30 via Frontend Transport; Tue,
+ 1 Jul 2025 16:16:05 +0000
+X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 20.160.56.83)
+ smtp.mailfrom=seco.com; dkim=pass (signature was verified)
+ header.d=seco.com;dmarc=pass action=none header.from=seco.com;
+Received-SPF: Pass (protection.outlook.com: domain of seco.com designates
+ 20.160.56.83 as permitted sender) receiver=protection.outlook.com;
+ client-ip=20.160.56.83; helo=repost-eu.tmcas.trendmicro.com; pr=C
+Received: from repost-eu.tmcas.trendmicro.com (20.160.56.83) by
+ AMS0EPF000001AF.mail.protection.outlook.com (10.167.16.155) with Microsoft
+ SMTP Server (version=TLS1_3, cipher=TLS_AES_256_GCM_SHA384) id 15.20.8901.15
+ via Frontend Transport; Tue, 1 Jul 2025 16:16:04 +0000
+Received: from outmta (unknown [192.168.82.134])
+	by repost-eu.tmcas.trendmicro.com (Trend Micro CAS) with ESMTP id D42FA20083983;
+	Tue,  1 Jul 2025 16:16:03 +0000 (UTC)
+Received: from DU2PR03CU002.outbound.protection.outlook.com (unknown [52.101.65.80])
+	by repre.tmcas.trendmicro.com (Trend Micro CAS) with ESMTPS id 7037C20080076;
+	Tue,  1 Jul 2025 16:16:02 +0000 (UTC)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=v0RXommwIfJ1eU9vt1pgFcYy+xrp0R7IFerD31iRHjeikyrEsZFwZk1Je0tbMn7pQwRXE9HRJCjbEsmed69a5yCgRjlcZIeQG+Z2d4NXblFKc5Xe+62yAzQesstKqc6AxB0Weshlxe2mT2sG9tKBuDGppR6VduFqbDK76l1LTOIllKfybOzAJDfwPQdlFme5kaQLAZv7RfehprBTc5Tkucja8uJWjC1IHbyAH50XgzhSS0MK0wfOsUXRbXYV7epgh5jMG7YRg+aM1KUgnHwKLydDdx9i2K1vSpRhMMxrzYQkfsiPRXYcptD73AGj5asv8T0TUGuoxVoszrCJ69cTxg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=x+jTIleucttIfsityKQJpSJDkaWAhANOPKvSi4mMRPM=;
+ b=wASw0IXGt9bHoDxCRRHX3F4WTYRjnrbZG/HDbLKFoWgPncraPDqS7usnuxKeQL4Gz0bxFhcS6zvPWnXjKTy4PqyKG2CYLCb5aKoLMkQHHSmyd3YtDcKVdSa1LMz/UpGl51Fhh1DIpeUXYGVQRgmm3FxGZLRVRuqyjlj0HErdsyB9D+N8lEXJaAs9Dn+76gxdY1wq0RylW2dnhdYlRoho0KV/cwIPIKcoFgD1s8GuZRzI8/f9GqUC4w8Fpptpm62Uvfg6loHcEeJ5ybf3QlMQA/T92xkxsnK4GyBg3l0JtqIcYcwxLLhuW7PLADbtJHutcnKxvZjYdbQygKOweWJZeQ==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=seco.com; dmarc=pass action=none header.from=seco.com;
+ dkim=pass header.d=seco.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=seco.com; s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=x+jTIleucttIfsityKQJpSJDkaWAhANOPKvSi4mMRPM=;
+ b=L76V835oea6Z6xZcYU+n119v4oGOOHtYRz4zkEPiSaGE533WtocXvcNbImk+xPYqsSXcbYb1m31ivLOpvX35dsJQ5llqbaZ7WnrVCIO9KDNLlBrtZzdi82PRCM2undnAl3UmEri+DtdRYEfEFD2LCTQJbL+vGyi3AaaElFgIN3peNTKI1lkZkW1NVem2RZgmlwzK4atRTRYDoSJDQ5FFUsGvcMQWWcM/AvNIabRx2sz6fisuVU2iIyi7WByc3NwIMW4YWfCRZFlTvVBJZso9bNILWCOM1M8WPvyp4Z5tlSB6VRxjxCSZutY7QCk8Rd4lTClXUW9flarmPJ9JHjUmOA==
+Authentication-Results-Original: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=seco.com;
+Received: from PAVPR03MB9020.eurprd03.prod.outlook.com (2603:10a6:102:329::6)
+ by PAWPR03MB9858.eurprd03.prod.outlook.com (2603:10a6:102:2e3::22) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8857.27; Tue, 1 Jul
+ 2025 16:15:59 +0000
+Received: from PAVPR03MB9020.eurprd03.prod.outlook.com
+ ([fe80::2174:a61d:5493:2ce]) by PAVPR03MB9020.eurprd03.prod.outlook.com
+ ([fe80::2174:a61d:5493:2ce%4]) with mapi id 15.20.8880.021; Tue, 1 Jul 2025
+ 16:15:59 +0000
+Message-ID: <c0037d24-5e24-4682-bc51-889a854d409e@seco.com>
+Date: Tue, 1 Jul 2025 12:15:53 -0400
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH net-next v2 10/18] net: macb: remove illusion about
+ TBQPH/RBQPH being per-queue
+To: =?UTF-8?Q?Th=C3=A9o_Lebrun?= <theo.lebrun@bootlin.com>,
+ Andrew Lunn <andrew+netdev@lunn.ch>, "David S. Miller"
+ <davem@davemloft.net>, Eric Dumazet <edumazet@google.com>,
+ Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>,
+ Nicolas Ferre <nicolas.ferre@microchip.com>,
+ Claudiu Beznea <claudiu.beznea@tuxon.dev>,
+ Paul Walmsley <paul.walmsley@sifive.com>, Palmer Dabbelt
+ <palmer@dabbelt.com>, Albert Ou <aou@eecs.berkeley.edu>,
+ Alexandre Ghiti <alex@ghiti.fr>, Samuel Holland <samuel.holland@sifive.com>,
+ Richard Cochran <richardcochran@gmail.com>,
+ Russell King <linux@armlinux.org.uk>,
+ Thomas Bogendoerfer <tsbogend@alpha.franken.de>,
+ Vladimir Kondratiev <vladimir.kondratiev@mobileye.com>,
+ Gregory CLEMENT <gregory.clement@bootlin.com>,
+ Cyrille Pitchen <cyrille.pitchen@atmel.com>,
+ Harini Katakam <harini.katakam@xilinx.com>,
+ Rafal Ozieblo <rafalo@cadence.com>,
+ Haavard Skinnemoen <hskinnemoen@atmel.com>, Jeff Garzik <jeff@garzik.org>
+Cc: netdev@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, linux-riscv@lists.infradead.org,
+ linux-mips@vger.kernel.org, Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
+ Tawfik Bayouk <tawfik.bayouk@mobileye.com>
+References: <20250627-macb-v2-0-ff8207d0bb77@bootlin.com>
+ <20250627-macb-v2-10-ff8207d0bb77@bootlin.com>
+Content-Language: en-US
+From: Sean Anderson <sean.anderson@seco.com>
+In-Reply-To: <20250627-macb-v2-10-ff8207d0bb77@bootlin.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+X-ClientProxiedBy: BL0PR02CA0034.namprd02.prod.outlook.com
+ (2603:10b6:207:3c::47) To PAVPR03MB9020.eurprd03.prod.outlook.com
+ (2603:10a6:102:329::6)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
- Thunderbird/102.15.1
-Subject: Re: [PATCH v3 0/5] Introduce "non-pixel" sub node within iris video
- node
-Content-Language: en-US
-To: Neil Armstrong <neil.armstrong@linaro.org>,
-        Dikshita Agarwal
-	<quic_dikshita@quicinc.com>,
-        Abhinav Kumar <abhinav.kumar@linux.dev>,
-        "Bryan
- O'Donoghue" <bryan.odonoghue@linaro.org>,
-        Mauro Carvalho Chehab
-	<mchehab@kernel.org>,
-        Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski
-	<krzk+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>
-CC: <linux-media@vger.kernel.org>, <linux-arm-msm@vger.kernel.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>
-References: <20250627-video_cb-v3-0-51e18c0ffbce@quicinc.com>
- <6c5d9ff2-fa59-4151-99fe-3bddae46b507@linaro.org>
- <79342b8f-4cef-fc48-c40f-5636f868af2e@quicinc.com>
- <cf53e9c1-7d38-4458-8708-a74852cd594c@linaro.org>
-From: Vikash Garodia <quic_vgarodia@quicinc.com>
-In-Reply-To: <cf53e9c1-7d38-4458-8708-a74852cd594c@linaro.org>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 8bit
-X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
- nasanex01a.na.qualcomm.com (10.52.223.231)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwNzAxMDEwOCBTYWx0ZWRfXwLtzP3w41Dcb
- aaFu5rFjKn7DgoF31wZVLeOBDffkhxqDcQ/Q3fID5M51WdpHgWdPUMzSNzR6zst6m1+QDPhIvid
- 3GnlJSbRGkjnCyJUjcUu4ucnMy1IKFFglYZ8O/7wET1KjQGjxXiP7IbbzlueQ3BURiWVPtWRWDF
- +h4p5EHzkAfYZBdJYorOi8kTZwy6+NFBmXYzDiCza6fazTWCvbfuTl22eFWUurgxshIUuSwkIyh
- liZEdVCQJkxN5rV33Jmv8CgKF7WEtHkkeWMdNIwy+11bDBMeIf2ncbKfgsD4CHO9XTcBinYycG5
- slhaVB1RuA+l69o3eBV14qMD059hleUXjhsuQ0h9zwqYkFtUZaAiooM+0Sx+wuXyp/Ml6wb7Gk1
- HLxAdY9lqbM6v3Mx4nkOl8SdmvHWI1JnU9T0A06sOox9EKf2lFGx1oyvlF8cT6Kb/ICCeH0l
-X-Proofpoint-ORIG-GUID: QWjxbh5UFegZixVCLexNIAXbOkwK-nwL
-X-Authority-Analysis: v=2.4 cv=EuHSrTcA c=1 sm=1 tr=0 ts=686408a7 cx=c_pps
- a=JYp8KDb2vCoCEuGobkYCKw==:117 a=JYp8KDb2vCoCEuGobkYCKw==:17
- a=GEpy-HfZoHoA:10 a=IkcTkHD0fZMA:10 a=Wb1JkmetP80A:10 a=VwQbUJbxAAAA:8
- a=COk6AnOGAAAA:8 a=qC_FGOx9AAAA:8 a=KKAkSRfTAAAA:8 a=w-7cus77DbmKhDpQkB0A:9
- a=3ZKOabzyN94A:10 a=QEXdDO2ut3YA:10 a=TjNXssC_j7lpFel5tvFf:22
- a=fsdK_YakeE02zTmptMdW:22 a=cvBusfyB2V15izCimMoJ:22
-X-Proofpoint-GUID: QWjxbh5UFegZixVCLexNIAXbOkwK-nwL
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1099,Hydra:6.1.7,FMLib:17.12.80.40
- definitions=2025-07-01_02,2025-06-27_01,2025-03-28_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- clxscore=1015 mlxlogscore=999 malwarescore=0 mlxscore=0 phishscore=0
- spamscore=0 adultscore=0 suspectscore=0 lowpriorityscore=0 priorityscore=1501
- impostorscore=0 bulkscore=0 classifier=spam authscore=0 authtc=n/a authcc=
- route=outbound adjust=0 reason=mlx scancount=1 engine=8.19.0-2505280000
- definitions=main-2507010108
+X-MS-TrafficTypeDiagnostic:
+	PAVPR03MB9020:EE_|PAWPR03MB9858:EE_|AMS0EPF000001AF:EE_|DBAPR03MB6535:EE_
+X-MS-Office365-Filtering-Correlation-Id: a2205764-b992-43dd-5d60-08ddb8ba93e5
+X-TrendMicro-CAS-OUT-LOOP-IDENTIFIER: 656f966764b7fb185830381c646b41a1
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam-Untrusted:
+ BCL:0;ARA:13230040|376014|366016|1800799024|7416014|7053199007|921020;
+X-Microsoft-Antispam-Message-Info-Original:
+ =?utf-8?B?VDcrem9kUDJtRTdtVHpXT0tRbm50WE15K1VJKzJ2UnhwZElidVljc21MMjRl?=
+ =?utf-8?B?VGRmMGdCbitGMjNva0NuSTFpU1A0NCtOdUJLYmdXa0ozclp2ck5hMlhtTnE0?=
+ =?utf-8?B?akpETmgyY1ZNTjBDbThWYXg2SkdBV0VlM0NaMUdNOVpaRXp6WWpmYXFNRjFQ?=
+ =?utf-8?B?bWxueHBJRGlMMk5oSnBEK205YU5Cck82ck53U2I1R2pCdXlhK2NHY2NtYlVT?=
+ =?utf-8?B?UUYyMy9ibTIvemJtZmltM05zUUFMc281Nk1TRU45NVNCQnpCVHVXTDhrSDlW?=
+ =?utf-8?B?bWNyZlhWTEkvcks1Tnl1TzJHeXJENll2aU5zaWtaNy91dUhNWkFrMmtqaUJN?=
+ =?utf-8?B?VEtlaEJrL2hIbEZQUU9LWXUyYXhYQUFjZHV6enhJeUcvVFYxeTBDQnhwemQ0?=
+ =?utf-8?B?SEJOMnR4SlNneTRIMmkwR0JoNzVyc0o3RXMycWNWMStCN1BxbGVKUzZYWVZ4?=
+ =?utf-8?B?eDRyWFZSR1Fmd2lHL1RhakZiWVBPK0o4bnQ5YXo4NEptdXU3UzkyUmVQZUFQ?=
+ =?utf-8?B?dnBMM0tCVW1ySFFWeVhKb0NSd1laaS9zVGNRblRnaVJwOVhiMTRXRlBuejBO?=
+ =?utf-8?B?SXNZV1liSElScnpXQnF3UmJkd1ZUL2RxRWVNZDZQZG9OK2NzdEh0NWxkeTY5?=
+ =?utf-8?B?ajNZNTU2allqeU5rRFVsUUs4OUJnVFI1K0k4ck5WcXB0bWttMTBIMldEVUJv?=
+ =?utf-8?B?dC9mVkpHQmNENnN4L0p3RENIdlVqUGlwN3BHNG52RFh3bytxZ1AzRDVvRmJa?=
+ =?utf-8?B?L0kreUFucHBTaloxVEVwakg0aVArZHBSd1FlWkozQ1R6eGlnYXJtd3hBRUtV?=
+ =?utf-8?B?OHd4ZE1MbCswVTM5bHNZM0RSWHY0ZG54RmxPK3piZzVuNlNRcEJVZ2ltS1lF?=
+ =?utf-8?B?d054aVpCemZ3TWJ4TEZHUFYvRmxsL0FHaEYwV3BDZ3dJV3JoaG4zOXBJR1p6?=
+ =?utf-8?B?bUkxR2MzVzUrR3BKc3dZaDRkWFRDUkp6YWdmbE1OcnJFZjlEaWRaaDVrK1hF?=
+ =?utf-8?B?elVON1BvbUZNbkpCV0lqSUFrREdJb1cvZ2RXRGIwTk96NUtFQ0htdjhWenZ0?=
+ =?utf-8?B?NFhpVUZGZWtDZmIvMGlhbTcwTjA4elBLYVdlNkx6cjlnc3RiZ2k5TkNPME4w?=
+ =?utf-8?B?VjM1YjlZbUNoZnpEYnllTDQySXhrSGJocmt1cWk1UHNWRXR6cFlLU1ZPekFu?=
+ =?utf-8?B?VFlLd1JLa1h6UkMzYmxHWFA4K2E3bHhpdE4vUzE5Ny9jOHhkZDV3R2NQSFV2?=
+ =?utf-8?B?MWhGS3FrbTEvb0FiWjI1Wi9UMlUrQ1VwNkRuSCszVjQxOWJzVUk1UzRJbzJT?=
+ =?utf-8?B?V2lYRHZZeDBEK0pEdGo3OCtzLzM0NlRVUTVVUXQwNkZoWjg5VlpMZENxZi8z?=
+ =?utf-8?B?TWdsWHV6KzRhaVM4VzB1NUtRNTU2b2RTRzZjKzNIMTFXWTF2T2hWN1Rkblpi?=
+ =?utf-8?B?dTAyZjQrWXRnOE00Zm9YdlhzeWswNlo4dWIrbTZ2VUhyc2pDblJ2d3llQUU2?=
+ =?utf-8?B?Y01zeVZSOFBYZWs4MlpXa1EraUN6ekpuUURPcGZqa0E2VlRmakRDcE1uWldv?=
+ =?utf-8?B?clBEZ0FZdUZQQnpFYnpTQ3ZVaytIMTg3QjFveTVMcjhDVVVPQlk4TmUvWkJs?=
+ =?utf-8?B?dW9QdlVzVC9jam9XZHFQZDE2K2kxQm84THNYZ1N2b2d1UEgvaGNOYjBRdnJz?=
+ =?utf-8?B?YXoyTW0rSGI4VC80alBwd3JyR1pPN3VZdnF2Y1JhZFFNQ1dRcHp6alVwVVRs?=
+ =?utf-8?B?UDhpWU9OTGEwYm1Pdnh1Slk0VnNJSExpcXNHTEhvOWlvYVh3TW83TmFaVGlH?=
+ =?utf-8?B?aEJuT1Nwbi9mUmxPMEFFekVvdW5iZDJqZHNJdFdGWU5YV3VQd0pNRjkrR1Jk?=
+ =?utf-8?B?N29SM0JtWVRaMFZvRWlkV1N0cW1UN2lPaDliOFZVaUpYL2FiTmJEWDlsMXNC?=
+ =?utf-8?B?SmdUZ1pXN3FJUFFnYUNyWHlIUXNvSDh4M0dsWGR2NTM0cWJkOGg1dk8ySGpQ?=
+ =?utf-8?B?eU1zaE1oNkNBPT0=?=
+X-Forefront-Antispam-Report-Untrusted:
+ CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:PAVPR03MB9020.eurprd03.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(376014)(366016)(1800799024)(7416014)(7053199007)(921020);DIR:OUT;SFP:1102;
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: PAWPR03MB9858
+X-EOPAttributedMessage: 0
+X-MS-Exchange-Transport-CrossTenantHeadersStripped:
+ AMS0EPF000001AF.eurprd05.prod.outlook.com
+X-MS-PublicTrafficType: Email
+X-MS-Office365-Filtering-Correlation-Id-Prvs:
+	989aa8ce-a947-452c-b560-08ddb8ba9109
+X-Microsoft-Antispam:
+	BCL:0;ARA:13230040|14060799003|82310400026|1800799024|376014|7416014|36860700013|35042699022|921020;
+X-Microsoft-Antispam-Message-Info:
+	=?utf-8?B?RDF0NEtwbXFFTHk4eHZXWXNxTG0rdXV4a29lTjRHeUdmRkdHNnZYOGtndmNy?=
+ =?utf-8?B?VVBsbXVVbFpnUXMzWWxFY0VvdzdGcDBXanZtci9XaEN4aUNXOExyWlI0Vk5M?=
+ =?utf-8?B?S3llWFlWY3UxV1M3clNIVHB3RGNYWXZOMHRBdmc1VXh4Ky9OdjNxWmo5c0lW?=
+ =?utf-8?B?LzhDZUpORGxjMEZSVlY5ejRzWkZJQlowTG56ZW92ZmhPaWgwRGI3bnB3ZlRu?=
+ =?utf-8?B?dHgwcGo5V2VPMU5ERUFFUmIremxpemIrVk1LcWxZa21sWkMwdXpWZ2RZczZx?=
+ =?utf-8?B?aElxdmlDSS9Rc2RySDFHUlA3aHc1aHFLbStONmZiUjR3SkIxcGhmL1BZL0Zo?=
+ =?utf-8?B?YktOSDVXNXRtSGU3eTdFaC91Zy9qSlVVcmhjU1B3T0pIb1dCY3gxNnUrZmRR?=
+ =?utf-8?B?QnRRd0puaXZzT2lSbjljbVY4SzhMbGdRT1dycmNsZFNnVXdJVS9hQVI2TE93?=
+ =?utf-8?B?VjM0NDMyL0Y0QUt5cTNETHVoWHNDbk91OHY3b1hub3dpQndGakpvK2l1bC9Q?=
+ =?utf-8?B?UnBvdytLaWVubzA3UkVmampOVmdGb0x2d0NGSXhsYy8rOTVDeTl5TmVWb3pU?=
+ =?utf-8?B?alRoSGdMYWxyMEFweUZKQndJNk80UzRTTDNLYmRIUFRmR25Ec1pSRXNpMUdL?=
+ =?utf-8?B?YzdkQ0tUZVFJWHpPSnBaV3drVmpqcW1hWURKU1lUemVOZE1MQmpyWnRleSta?=
+ =?utf-8?B?dXhGMlh1cVNMRlFqYTZaWGJsUE5TV0RESFNwWjVLTExGKzZHTWxVamJLYWxU?=
+ =?utf-8?B?VXI1WlFCZXZyTmIwMlU3V3pEQk9xbmlMeHhMemg4TUtLSnVmY0dOSXk5ZUlS?=
+ =?utf-8?B?bWVRaEhwN0RvNE1leFNReTZpa3lPdlY4bUROMWVrN2trYWZ2bUZVWnZyOTd1?=
+ =?utf-8?B?ZmphdG9JUkV5cEtmUzZBOUttQ2JuN2RGRXJKVndoV0MwUy9zaEJYMVVoWFFC?=
+ =?utf-8?B?cXNhc1k1RFVvRkxwTnA4b09DQTNLbnRidEJsL2NGaUhnT1ppaURrbWpjZTNY?=
+ =?utf-8?B?ZUpGeFZUMmZxNWtwWjNWM0dFeStZdWxjKzU4U3pOMmoxQzNyaWIwQ0pIbFhP?=
+ =?utf-8?B?ZFFTTUZVMFRIaXp6aHVMdjI3RWxPVUNVS3JQbGk0WmpTUkgwZnVYSkdqZmFu?=
+ =?utf-8?B?dzYwUHFlakk5YVpSRldQNEk5S0U3dGpMSitibDY4WXFTOGh5alRNckJQYnJP?=
+ =?utf-8?B?aHFNOCtzcmx1MEpLdkRRSk4vN09JaGd3ek5lb1BGWURKVXc4Tmw4TVAyMTds?=
+ =?utf-8?B?TldqWExhQThoRTdtRWxCOFlqb0ZXSVB4NE5SdmtUdW5tN2RkTmxKRkVMWG9Y?=
+ =?utf-8?B?MU1OeWQ5Nlpwc0tUVmc1eE9rVCt2OERvN1dPMGxCN2t4Nk42eFByN1p5QkRF?=
+ =?utf-8?B?cm81ckp6Q0dtYXk3Z2k3V3BieS9vUU5VT0NheXFiZU1UWDlnUG5UaWhwcnVn?=
+ =?utf-8?B?dzFFbkVLSms0ZUtoRHhjcUVmZWR4cVV3akRJbFhWRm1OeGRkQmRCSjdGOHUx?=
+ =?utf-8?B?SkdWRWxvWTR5bCtpOWo4dHdvZE5PRW45LzFjSkF1K3ozWnkzMDB6dGFCTzl0?=
+ =?utf-8?B?dVlOaXNZa2sxVmp0Nm1BRWZuUmIzYXh4R2F0YzVBb2YvTFRxYVB3Ri9zWjRo?=
+ =?utf-8?B?QnlhNjZRNGVzWVNHcFM5MmZLNi9QOEZadXkyQmVIeVpkenRadWdZVjJEeVlh?=
+ =?utf-8?B?TmRCeDNIaVlvWVkyYzFZQmV6SVBoMmkyTk5pZnM3WG82NTZKd0VaeDFHeUhQ?=
+ =?utf-8?B?VGF5MmJISk9UQmRtRkQ2Qll5bWIzMnVHeXNtcmM5M2JmY3htMzlXN2tRNkc0?=
+ =?utf-8?B?bXExa1JPOS9XOUxJekxoQVcxYkhFb3VHTlZHb3huN3BOeE9XMWNmK2FySURV?=
+ =?utf-8?B?L0dUWXBKUWlQZU8zVjlLV2RyZXhZVk51RlJSQ0J6MHdnMTFNcC83NGx6Z2p3?=
+ =?utf-8?B?bThPSUZYTVFla012RWJoWmNWMjdoc0FBZXNXeTJJbERQRlZWbFJwK3VDU1Zu?=
+ =?utf-8?B?ZXdzSjJlVmRmVzhDQVZvYkg0aWJjWXF3OUZkNVJZbm1RRzVVVURFR0hxVWtG?=
+ =?utf-8?B?bU8yaTljVnpKLzAyZE4vZldUcG0xRzd1L2dhUT09?=
+X-Forefront-Antispam-Report:
+	CIP:20.160.56.83;CTRY:NL;LANG:en;SCL:1;SRV:;IPV:CAL;SFV:NSPM;H:repost-eu.tmcas.trendmicro.com;PTR:repost-eu.tmcas.trendmicro.com;CAT:NONE;SFS:(13230040)(14060799003)(82310400026)(1800799024)(376014)(7416014)(36860700013)(35042699022)(921020);DIR:OUT;SFP:1102;
+X-OriginatorOrg: seco.com
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 01 Jul 2025 16:16:04.0957
+ (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: a2205764-b992-43dd-5d60-08ddb8ba93e5
+X-MS-Exchange-CrossTenant-Id: bebe97c3-6438-442e-ade3-ff17aa50e733
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=bebe97c3-6438-442e-ade3-ff17aa50e733;Ip=[20.160.56.83];Helo=[repost-eu.tmcas.trendmicro.com]
+X-MS-Exchange-CrossTenant-AuthSource:
+	AMS0EPF000001AF.eurprd05.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Anonymous
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DBAPR03MB6535
 
+On 6/27/25 05:08, Théo Lebrun wrote:
+> The MACB driver acts as if TBQPH/RBQPH are configurable on a per queue
+> basis; this is a lie. A single register configures the upper 32 bits of
+> each DMA descriptor buffers for all queues.
+> 
+> Concrete actions:
+> 
+>  - Drop GEM_TBQPH/GEM_RBQPH macros which have a queue index argument.
+>    Only use MACB_TBQPH/MACB_RBQPH constants.
+> 
+>  - Drop struct macb_queue->TBQPH/RBQPH fields.
+> 
+>  - In macb_init_buffers(): do a single write to TBQPH and RBQPH for all
+>    queues instead of a write per queue.
+> 
+>  - In macb_tx_error_task(): drop the write to TBQPH.
+> 
+>  - In macb_alloc_consistent(): if allocations give different upper
+>    32-bits, fail. Previously, it would have lead to silent memory
+>    corruption as queues would have used the upper 32 bits of the alloc
+>    from queue 0 and their own low 32 bits.
 
-On 7/1/2025 6:49 PM, Neil Armstrong wrote:
-> Hi,
+While better than silent memory corruption, this is not a good solution
+since bringing the netdev up will now randomly fail. Can we allocate the
+rings in one contiguous chunk instead?
+
+>  - In macb_suspend(): if we use the tie off descriptor for suspend, do
+>    the write once for all queues instead of once per queue.
 > 
-> On 01/07/2025 12:23, Vikash Garodia wrote:
->>
->> On 6/30/2025 11:34 PM, neil.armstrong@linaro.org wrote:
->>> On 27/06/2025 17:48, Vikash Garodia wrote:
->>>> This series introduces a sub node "non-pixel" within iris video node.
->>>> Video driver registers this sub node as a platform device and configure
->>>> it for DMA operations. All non pixel buffers, i.e bitstream, HFI queues
->>>> and internal buffers related to bitstream processing, would be managed
->>>> by this non_pixel device.
->>>>
->>>> Purpose to add this sub-node:
->>>> Iris device limits the IOVA to an addressable range of 4GiB, and even
->>>> within that range, some of the space is used by IO registers, thereby
->>>> limiting the available IOVA to even lesser. For certain video usecase,
->>>> this limited range in not sufficient enough, hence it brings the need to
->>>> extend the possibility of higher IOVA range.
->>>>
->>>> Video hardware is designed to emit different stream-ID for pixel and
->>>> non-pixel buffers, thereby introduce a non-pixel sub node to handle
->>>> non-pixel stream-ID into a separate platform device.
->>>> With this, both iris and non-pixel device can have IOVA range of
->>>> approximately 0-4GiB individually for each device, thereby doubling the
->>>> range of addressable IOVA.
->>>>
->>>> Tested on SM8550 and SA8775p hardwares.
->>>>
->>>> Signed-off-by: Vikash Garodia <quic_vgarodia@quicinc.com>
->>>> ---
->>>> Changes in v3:
->>>> - Add info about change in iommus binding (Thanks Krzysztof)
->>>> - Link to v2:
->>>> https://lore.kernel.org/r/20250627-video_cb-v2-0-3931c3f49361@quicinc.com
->>>>
->>>> Changes in v2:
->>>> - Add ref to reserve-memory schema and drop it from redefining it in
->>>> iris schema (Thanks Krzysztof)
->>>> - Drop underscores and add info about non pixel buffers (Thanks Dmitry)
->>>> - Link to v1:
->>>> https://lore.kernel.org/r/20250620-video_cb-v1-0-9bcac1c8800c@quicinc.com
->>>>
->>>> ---
->>>> Vikash Garodia (5):
->>>>         media: dt-bindings: add non-pixel property in iris schema
->>>>         media: iris: register and configure non-pixel node as platform device
->>>>         media: iris: use np_dev as preferred DMA device in HFI queue management
->>>>         media: iris: select appropriate DMA device for internal buffers
->>>>         media: iris: configure DMA device for vb2 queue on OUTPUT plane
->>>>
->>>>    .../bindings/media/qcom,sm8550-iris.yaml           | 40 ++++++++++++++++-
->>>>    drivers/media/platform/qcom/iris/iris_buffer.c     | 15 ++++++-
->>>>    drivers/media/platform/qcom/iris/iris_core.h       |  2 +
->>>>    drivers/media/platform/qcom/iris/iris_hfi_queue.c  | 20 ++++++---
->>>>    drivers/media/platform/qcom/iris/iris_probe.c      | 50
->>>> +++++++++++++++++++++-
->>>>    drivers/media/platform/qcom/iris/iris_vb2.c        |  4 ++
->>>>    6 files changed, 119 insertions(+), 12 deletions(-)
->>>> ---
->>>> base-commit: 8d2b7fde56597ca912f5daaf3ab58915458ba1fc
->>>> change-id: 20250619-video_cb-ea872d6e6627
->>>>
->>>> Best regards,
->>>
->>> I tried the patchset on SM8550 QRD and SM8650 QRD/HDK and the system just
->>> reboots
->>> a few millisecond after probing iris, no error messages nor reboot to sahara
->>> mode.
->>>
->>> The DT changeset for reference:
->>> https://git.codelinaro.org/neil.armstrong/linux/-/commit/e1b3628469c038559a60d310386f006f353e3d59
->>
->> I was able to repro this case, the issue was due to a incorrect node name in
->> driver. Fixing the name as per binding, fixes the issue for me. I have made the
->> comment in your code branch [1], which should fix it for you as well. Please
->> share your observations.
+> Fixes: fff8019a08b6 ("net: macb: Add 64 bit addressing support for GEM")
+> Fixes: ae1f2a56d273 ("net: macb: Added support for many RX queues")
+> Signed-off-by: Théo Lebrun <theo.lebrun@bootlin.com>
+
+As this is a bugfix, can you move it before your cleanup patches? This
+will make it easier to backport to stable kernels.
+
+> ---
+>  drivers/net/ethernet/cadence/macb.h      |  4 ----
+>  drivers/net/ethernet/cadence/macb_main.c | 36 +++++++++++++-------------------
+>  2 files changed, 14 insertions(+), 26 deletions(-)
 > 
-> Indeed, with:
-> ============><========================================
-> diff --git a/arch/arm64/boot/dts/qcom/sm8550.dtsi
-> b/arch/arm64/boot/dts/qcom/sm8550.dtsi
-> index 8da2b780395d..06657b42da49 100644
-> --- a/arch/arm64/boot/dts/qcom/sm8550.dtsi
-> +++ b/arch/arm64/boot/dts/qcom/sm8550.dtsi
-> @@ -3264,6 +3264,9 @@ &config_noc SLAVE_VENUS_CFG QCOM_ICC_TAG_ACTIVE_ONLY>,
->                         iommus = <&apps_smmu 0x1947 0>;
->                         dma-coherent;
-> 
-> +                       #address-cells = <2>;
-> +                       #size-cells = <2>;
+> diff --git a/drivers/net/ethernet/cadence/macb.h b/drivers/net/ethernet/cadence/macb.h
+> index 707b3286a6b8408a3bc4bbbcb1335ae8c3cd95ad..adc70b6efd52b0b11e436c2c95bb5108c40f3490 100644
+> --- a/drivers/net/ethernet/cadence/macb.h
+> +++ b/drivers/net/ethernet/cadence/macb.h
+> @@ -209,10 +209,8 @@
+>  
+>  #define GEM_ISR(hw_q)		(0x0400 + ((hw_q) << 2))
+>  #define GEM_TBQP(hw_q)		(0x0440 + ((hw_q) << 2))
+> -#define GEM_TBQPH(hw_q)		(0x04C8)
+>  #define GEM_RBQP(hw_q)		(0x0480 + ((hw_q) << 2))
+>  #define GEM_RBQS(hw_q)		(0x04A0 + ((hw_q) << 2))
+> -#define GEM_RBQPH(hw_q)		(0x04D4)
+>  #define GEM_IER(hw_q)		(0x0600 + ((hw_q) << 2))
+>  #define GEM_IDR(hw_q)		(0x0620 + ((hw_q) << 2))
+>  #define GEM_IMR(hw_q)		(0x0640 + ((hw_q) << 2))
+> @@ -1208,10 +1206,8 @@ struct macb_queue {
+>  	unsigned int		IDR;
+>  	unsigned int		IMR;
+>  	unsigned int		TBQP;
+> -	unsigned int		TBQPH;
+>  	unsigned int		RBQS;
+>  	unsigned int		RBQP;
+> -	unsigned int		RBQPH;
+>  
+>  	/* Lock to protect tx_head and tx_tail */
+>  	spinlock_t		tx_ptr_lock;
+> diff --git a/drivers/net/ethernet/cadence/macb_main.c b/drivers/net/ethernet/cadence/macb_main.c
+> index a6633e076644089c796453f856a766299bae2ec6..d3b3635998cad095246edf8a75faebbcf7115355 100644
+> --- a/drivers/net/ethernet/cadence/macb_main.c
+> +++ b/drivers/net/ethernet/cadence/macb_main.c
+> @@ -482,15 +482,15 @@ static void macb_init_buffers(struct macb *bp)
+>  	struct macb_queue *queue;
+>  	unsigned int q;
+>  
+> +	if (macb_dma_is_64b(bp)) {
+> +		/* Single register for all queues' high 32 bits. */
+> +		macb_writel(bp, RBQPH, upper_32_bits(bp->queues->rx_ring_dma));
+> +		macb_writel(bp, TBQPH, upper_32_bits(bp->queues->tx_ring_dma));
+> +	}
 > +
->                         /*
->                          * IRIS firmware is signed by vendors, only
->                          * enable in boards where the proper signed firmware
-> diff --git a/arch/arm64/boot/dts/qcom/sm8650.dtsi
-> b/arch/arm64/boot/dts/qcom/sm8650.dtsi
-> index b53a9aa5adbf..7ada62ee411e 100644
-> --- a/arch/arm64/boot/dts/qcom/sm8650.dtsi
-> +++ b/arch/arm64/boot/dts/qcom/sm8650.dtsi
-> @@ -5011,6 +5011,9 @@ &config_noc SLAVE_VENUS_CFG QCOM_ICC_TAG_ACTIVE_ONLY>,
-> 
->                         dma-coherent;
-> 
-> +                       #address-cells = <2>;
-> +                       #size-cells = <2>;
-> +
->                         /*
->                          * IRIS firmware is signed by vendors, only
->                          * enable in boards where the proper signed firmware
-> diff --git a/drivers/media/platform/qcom/iris/iris_probe.c
-> b/drivers/media/platform/qcom/iris/iris_probe.c
-> index 8fe87e30bd40..c57645a60bc4 100644
-> --- a/drivers/media/platform/qcom/iris/iris_probe.c
-> +++ b/drivers/media/platform/qcom/iris/iris_probe.c
-> @@ -136,7 +136,7 @@ static int iris_init_non_pixel_node(struct iris_core *core)
->         struct device_node *np_node;
->         int ret;
-> 
-> -       np_node = of_get_child_by_name(core->dev->of_node, "non_pixel");
-> +       np_node = of_get_child_by_name(core->dev->of_node, "non-pixel");
->         if (!np_node)
->                 return 0;
-> 
-> ============><========================================
-> 
-> It boots again and I can run some decodes on 8550 and 8650.
-Nice. Thank you for your efforts in trying out the patches. Would that be ok
-with you if i can put the tested-by tags in next revision with the amendments ?
+>  	for (q = 0, queue = bp->queues; q < bp->num_queues; ++q, ++queue) {
+>  		queue_writel(queue, RBQP, lower_32_bits(queue->rx_ring_dma));
+> -		if (macb_dma_is_64b(bp))
+> -			queue_writel(queue, RBQPH,
+> -				     upper_32_bits(queue->rx_ring_dma));
+>  		queue_writel(queue, TBQP, lower_32_bits(queue->tx_ring_dma));
+> -		if (macb_dma_is_64b(bp))
+> -			queue_writel(queue, TBQPH,
+> -				     upper_32_bits(queue->tx_ring_dma));
+>  	}
+>  }
+>  
+> @@ -1145,8 +1145,6 @@ static void macb_tx_error_task(struct work_struct *work)
+>  
+>  	/* Reinitialize the TX desc queue */
+>  	queue_writel(queue, TBQP, lower_32_bits(queue->tx_ring_dma));
+> -	if (macb_dma_is_64b(bp))
+> -		queue_writel(queue, TBQPH, upper_32_bits(queue->tx_ring_dma));
+>  	/* Make TX ring reflect state of hardware */
+>  	queue->tx_head = 0;
+>  	queue->tx_tail = 0;
+> @@ -2524,7 +2522,8 @@ static int macb_alloc_consistent(struct macb *bp)
+>  		queue->tx_ring = dma_alloc_coherent(&bp->pdev->dev, size,
+>  						    &queue->tx_ring_dma,
+>  						    GFP_KERNEL);
+> -		if (!queue->tx_ring)
+> +		if (!queue->tx_ring ||
+> +		    upper_32_bits(queue->tx_ring_dma) != upper_32_bits(bp->queues->tx_ring_dma))
+>  			goto out_err;
+>  		netdev_dbg(bp->dev,
+>  			   "Allocated TX ring for queue %u of %d bytes at %08lx (mapped %p)\n",
+> @@ -2539,7 +2538,8 @@ static int macb_alloc_consistent(struct macb *bp)
+>  		size = RX_RING_BYTES(bp) + bp->rx_bd_rd_prefetch;
+>  		queue->rx_ring = dma_alloc_coherent(&bp->pdev->dev, size,
+>  						 &queue->rx_ring_dma, GFP_KERNEL);
+> -		if (!queue->rx_ring)
+> +		if (!queue->rx_ring ||
+> +		    upper_32_bits(queue->rx_ring_dma) != upper_32_bits(bp->queues->rx_ring_dma))
 
-Regards,
-Vikash
-> 
-> Thanks,
-> Neil
-> 
->>
->> Regards,
->> Vikash
->>
->> [1]
->> https://git.codelinaro.org/neil.armstrong/linux/-/commit/e1b3628469c038559a60d310386f006f353e3d59#note_23930047
->>
->>>
->>> Neil
+Can you write this as bp->queues[0].rx_ring_dma for clarity?
+
+>  			goto out_err;
+>  		netdev_dbg(bp->dev,
+>  			   "Allocated RX ring of %d bytes at %08lx (mapped %p)\n",
+> @@ -4269,10 +4269,6 @@ static int macb_init(struct platform_device *pdev)
+>  			queue->TBQP = GEM_TBQP(hw_q - 1);
+>  			queue->RBQP = GEM_RBQP(hw_q - 1);
+>  			queue->RBQS = GEM_RBQS(hw_q - 1);
+> -			if (macb_dma_is_64b(bp)) {
+> -				queue->TBQPH = GEM_TBQPH(hw_q - 1);
+> -				queue->RBQPH = GEM_RBQPH(hw_q - 1);
+> -			}
+>  		} else {
+>  			/* queue0 uses legacy registers */
+>  			queue->ISR  = MACB_ISR;
+> @@ -4281,10 +4277,6 @@ static int macb_init(struct platform_device *pdev)
+>  			queue->IMR  = MACB_IMR;
+>  			queue->TBQP = MACB_TBQP;
+>  			queue->RBQP = MACB_RBQP;
+> -			if (macb_dma_is_64b(bp)) {
+> -				queue->TBQPH = MACB_TBQPH;
+> -				queue->RBQPH = MACB_RBQPH;
+> -			}
+>  		}
+>  
+>  		/* get irq: here we use the linux queue index, not the hardware
+> @@ -5401,6 +5393,10 @@ static int __maybe_unused macb_suspend(struct device *dev)
+>  		 */
+>  		tmp = macb_readl(bp, NCR);
+>  		macb_writel(bp, NCR, tmp & ~(MACB_BIT(TE) | MACB_BIT(RE)));
+> +#ifdef CONFIG_ARCH_DMA_ADDR_T_64BIT
+> +		if (!(bp->caps & MACB_CAPS_QUEUE_DISABLE))
+> +			macb_writel(bp, RBQPH, upper_32_bits(bp->rx_ring_tieoff_dma));
+> +#endif
+>  		for (q = 0, queue = bp->queues; q < bp->num_queues;
+>  		     ++q, ++queue) {
+>  			/* Disable RX queues */
+> @@ -5410,10 +5406,6 @@ static int __maybe_unused macb_suspend(struct device *dev)
+>  				/* Tie off RX queues */
+>  				queue_writel(queue, RBQP,
+>  					     lower_32_bits(bp->rx_ring_tieoff_dma));
+> -#ifdef CONFIG_ARCH_DMA_ADDR_T_64BIT
+> -				queue_writel(queue, RBQPH,
+> -					     upper_32_bits(bp->rx_ring_tieoff_dma));
+> -#endif
+>  			}
+>  			/* Disable all interrupts */
+>  			queue_writel(queue, IDR, -1);
 > 
 
