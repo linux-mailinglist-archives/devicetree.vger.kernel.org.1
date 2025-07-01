@@ -1,134 +1,165 @@
-Return-Path: <devicetree+bounces-191378-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-191379-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1A303AEF138
-	for <lists+devicetree@lfdr.de>; Tue,  1 Jul 2025 10:33:53 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id B8522AEF145
+	for <lists+devicetree@lfdr.de>; Tue,  1 Jul 2025 10:35:29 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id DE24217D4BC
-	for <lists+devicetree@lfdr.de>; Tue,  1 Jul 2025 08:33:30 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id BEA6B1BC6594
+	for <lists+devicetree@lfdr.de>; Tue,  1 Jul 2025 08:35:39 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 40939264FA0;
-	Tue,  1 Jul 2025 08:33:28 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="WETNdBWg"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4A46326A08E;
+	Tue,  1 Jul 2025 08:35:02 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from metis.whiteo.stw.pengutronix.de (metis.whiteo.stw.pengutronix.de [185.203.201.7])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 11CDD209F2E;
-	Tue,  1 Jul 2025 08:33:27 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 291CB264FA0
+	for <devicetree@vger.kernel.org>; Tue,  1 Jul 2025 08:34:58 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.203.201.7
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1751358808; cv=none; b=FHVO3CXfB1Vfb0WnSYaoMz13psv4zaLV9xiXpQN7BL+PNZ02p+TGar/v1Z4SVpzzAJqUe5urxhjne4V8OCLa8P1z3p/Nk35nwmwUadxMjl5LaTr0vnbAwBV39L9mV00q8DVObMH1/QgFMPrdA5ZhDSPxVLvuo1CZVHULa196jLQ=
+	t=1751358902; cv=none; b=HXmtv1/hDS8g/R1nw2obyHGoS1C9bZ6ZtC3xR0xVIEAxDQgyVcQB0qVe5o8tCCpG4JLn7jSWSe1vxw0JdjDik66RHqBy/yZ268N4O7bvhUMnnO/DWbB9CsIyEuGUvqzBDMhEI9rIRwMlGSELOnYKCYqm55KfGJdORPB3/Dq2l/U=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1751358808; c=relaxed/simple;
-	bh=p+7U2XjHILtKEpkyEx7gdu8jsq+2qpdmfAyg3OdlsKI=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=kG2GnUUaUW8ISJKUFPztTsEdLGy1TST3pA0EO8P3iJ5YmPlNsyjBhRYfGvlpU1CX8F7fbagwQmPk//f0lWy47sEeJ1eQzUYBAjyG8cFxWERBPVOj0MQSiF6YYgSQ2vmJtKNNGtYN/sC8UXH/8SGoA1oG58FJFLBtKjMzVNT4gU0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=WETNdBWg; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 6D052C4CEEB;
-	Tue,  1 Jul 2025 08:33:23 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1751358807;
-	bh=p+7U2XjHILtKEpkyEx7gdu8jsq+2qpdmfAyg3OdlsKI=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=WETNdBWg2lUJNGP3bvrNM1wMx7uZsoaP9RwyDCrtSWeQsWoVXIJpdy46SIe3+MuVl
-	 YT8pyZyDr489WxEudPqyqciKWjyBFK9wl9hUm0pd7exNzWDhkoAsGE7rV2cBu05TCL
-	 VY6woqJY4+xW1J6RIXmX8AWg3KB5WKhgSoxwKTL4sLZvx1sFwS6BMDoqUF5d+X05gQ
-	 Gpa6SZdYYJD+saY0hD9uXUclEvjmihcbTPgpByhNyrK1DiGUvLdwGqKfLDiJ7NUUHh
-	 ipaKfFw0MK62ae7cbsH7s9VhWkb8HRcgJQjLdE+Gpjs6HPzLGLn1uPy4IjGTzHLVq1
-	 GeEoZt3U+ehsw==
-Message-ID: <0f77f41d-589f-48da-a013-48f48f1dbbff@kernel.org>
-Date: Tue, 1 Jul 2025 10:33:21 +0200
+	s=arc-20240116; t=1751358902; c=relaxed/simple;
+	bh=0xe8FGfrXDzC5wjnPnQaezc6X0eO0KIJ+XiANWs49w4=;
+	h=Message-ID:Subject:From:To:Cc:Date:In-Reply-To:References:
+	 Content-Type:MIME-Version; b=DwCbwDRUSqDobQoezrqsQehchpqlEis8fS7HEvQQ91Jb/Bl/89tYpQUDIAen71u+NikIJJHeCOVza94kJGcVclC6G7/XjPinwspFuSYhCSzbEDaJ3iw1IoH1u5MU0oJRau2l7m3SfA+68KNKVDQ1jRVC4HK2ji3bTVHZ+s/hOPU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de; spf=pass smtp.mailfrom=pengutronix.de; arc=none smtp.client-ip=185.203.201.7
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=pengutronix.de
+Received: from drehscheibe.grey.stw.pengutronix.de ([2a0a:edc0:0:c01:1d::a2])
+	by metis.whiteo.stw.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
+	(Exim 4.92)
+	(envelope-from <p.zabel@pengutronix.de>)
+	id 1uWWS2-0000f8-Nt; Tue, 01 Jul 2025 10:34:50 +0200
+Received: from lupine.office.stw.pengutronix.de ([2a0a:edc0:0:900:1d::4e] helo=lupine)
+	by drehscheibe.grey.stw.pengutronix.de with esmtps  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+	(Exim 4.96)
+	(envelope-from <p.zabel@pengutronix.de>)
+	id 1uWWS0-006F1A-37;
+	Tue, 01 Jul 2025 10:34:48 +0200
+Received: from pza by lupine with local (Exim 4.96)
+	(envelope-from <p.zabel@pengutronix.de>)
+	id 1uWWS0-0003VY-2v;
+	Tue, 01 Jul 2025 10:34:48 +0200
+Message-ID: <8301d2862546507303e2dba1dd61906b848552c2.camel@pengutronix.de>
+Subject: Re: [PATCH v2 2/3] media: platform: Add Renesas Input Video Control
+ block driver
+From: Philipp Zabel <p.zabel@pengutronix.de>
+To: Daniel Scally <dan.scally@ideasonboard.com>,
+ linux-media@vger.kernel.org,  devicetree@vger.kernel.org,
+ linux-renesas-soc@vger.kernel.org
+Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+  Conor Dooley <conor+dt@kernel.org>, Geert Uytterhoeven
+ <geert+renesas@glider.be>, Magnus Damm <magnus.damm@gmail.com>,
+ jacopo.mondi@ideasonboard.com,  biju.das.jz@bp.renesas.com
+Date: Tue, 01 Jul 2025 10:34:48 +0200
+In-Reply-To: <20250624-ivc-v2-2-e4ecdddb0a96@ideasonboard.com>
+References: <20250624-ivc-v2-0-e4ecdddb0a96@ideasonboard.com>
+	 <20250624-ivc-v2-2-e4ecdddb0a96@ideasonboard.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+User-Agent: Evolution 3.46.4-2 
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v6 1/3] dt-bindings: i3c: Add support for Qualcomm I3C
- controller
-To: Mukesh Kumar Savaliya <mukesh.savaliya@oss.qualcomm.com>,
- alexandre.belloni@bootlin.com, robh@kernel.org, krzk+dt@kernel.org,
- conor+dt@kernel.org, jarkko.nikula@linux.intel.com,
- linux-i3c@lists.infradead.org, linux-arm-msm@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, Frank.Li@nxp.com,
- wsa+renesas@sang-engineering.com, alok.a.tiwari@oracle.com
-Cc: andersson@kernel.org, konradybcio@kernel.org
-References: <20250701071852.2107800-1-mukesh.savaliya@oss.qualcomm.com>
- <20250701071852.2107800-2-mukesh.savaliya@oss.qualcomm.com>
-From: Krzysztof Kozlowski <krzk@kernel.org>
-Content-Language: en-US
-Autocrypt: addr=krzk@kernel.org; keydata=
- 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 a/A=
-In-Reply-To: <20250701071852.2107800-2-mukesh.savaliya@oss.qualcomm.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+X-SA-Exim-Connect-IP: 2a0a:edc0:0:c01:1d::a2
+X-SA-Exim-Mail-From: p.zabel@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.whiteo.stw.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: devicetree@vger.kernel.org
 
-On 01/07/2025 09:18, Mukesh Kumar Savaliya wrote:
-> Add device tree bindings for the Qualcomm I3C controller. This includes
-> the necessary documentation and properties required to describe the
-> hardware in the device tree.
-> 
-> Signed-off-by: Mukesh Kumar Savaliya <mukesh.savaliya@oss.qualcomm.com>
-> Reviewed-by: Rob Herring (Arm) <robh@kernel.org>
+On Di, 2025-06-24 at 13:35 +0100, Daniel Scally wrote:
+> Add a driver for the Input Video Control block in an RZ/V2H SoC which
+> feeds data into the Arm Mali-C55 ISP.
+>=20
+> Signed-off-by: Daniel Scally <dan.scally@ideasonboard.com>
 > ---
->  .../bindings/i3c/qcom,geni-i3c.yaml           | 59 +++++++++++++++++++
->  1 file changed, 59 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/i3c/qcom,geni-i3c.yaml
-> 
+> Changes in v2:
+>=20
+> 	- Added selects and depends statements to Kconfig entry
+> 	- Fixed copyright year
+> 	- Stopped including in .c files headers already included in .h
+> 	- Fixed uninitialized variable in iterator
+> 	- Only check vvalid member in interrupt function and wait
+> 	  unconditionally elsewhere
+> 	- __maybe_unused for the PM ops
+> 	- Initialise the subdevice after setting up PM
+> 	- Fixed the remove function for the driver to actually do
+> 	  something.
+> 	- Some minor formatting changes
+> 	- Fixed the quantization member for the format
+> 	- Changes accounting for the v2 of the media jobs framework
+> 	- Change min_queued_buffers to 0
+> ---
+>  drivers/media/platform/renesas/Kconfig             |   2 +
+>  drivers/media/platform/renesas/Makefile            |   1 +
+>  drivers/media/platform/renesas/rzv2h-ivc/Kconfig   |  15 +
+>  drivers/media/platform/renesas/rzv2h-ivc/Makefile  |   5 +
+>  .../platform/renesas/rzv2h-ivc/rzv2h-ivc-dev.c     | 237 +++++++
+>  .../platform/renesas/rzv2h-ivc/rzv2h-ivc-subdev.c  | 379 ++++++++++++
+>  .../platform/renesas/rzv2h-ivc/rzv2h-ivc-video.c   | 678 +++++++++++++++=
+++++++
+>  .../media/platform/renesas/rzv2h-ivc/rzv2h-ivc.h   | 133 ++++
+>  8 files changed, 1450 insertions(+)
+>=20
+> diff --git a/drivers/media/platform/renesas/Kconfig b/drivers/media/platf=
+orm/renesas/Kconfig
+> index 27a54fa7908384f2e8200f0f7283a82b0ae8435c..5462e524c3708be87a50dd80d=
+4b4017a2466aa99 100644
+> --- a/drivers/media/platform/renesas/Kconfig
+> +++ b/drivers/media/platform/renesas/Kconfig
+> @@ -42,6 +42,8 @@ config VIDEO_SH_VOU
+>  source "drivers/media/platform/renesas/rcar-isp/Kconfig"
+>  source "drivers/media/platform/renesas/rcar-vin/Kconfig"
+>  source "drivers/media/platform/renesas/rzg2l-cru/Kconfig"
+> +source "drivers/media/platform/renesas/rzv2h-ivc/Kconfig"
+> +
+> =20
+>  # Mem2mem drivers
+> =20
+> diff --git a/drivers/media/platform/renesas/Makefile b/drivers/media/plat=
+form/renesas/Makefile
+> index 1127259c09d6a51b70803e76c495918e06777f67..b6b4abf01db246aaf8269b802=
+7efee9b0b32083a 100644
+> --- a/drivers/media/platform/renesas/Makefile
+> +++ b/drivers/media/platform/renesas/Makefile
+> @@ -6,6 +6,7 @@
+>  obj-y +=3D rcar-isp/
+>  obj-y +=3D rcar-vin/
+>  obj-y +=3D rzg2l-cru/
+> +obj-y +=3D rzv2h-ivc/
+>  obj-y +=3D vsp1/
+> =20
+>  obj-$(CONFIG_VIDEO_RCAR_CSI2) +=3D rcar-csi2.o
+> diff --git a/drivers/media/platform/renesas/rzv2h-ivc/Kconfig b/drivers/m=
+edia/platform/renesas/rzv2h-ivc/Kconfig
+> new file mode 100644
+> index 0000000000000000000000000000000000000000..3df8ff585c36fe7c74e1eb040=
+8b344cbc2b4d898
+> --- /dev/null
+> +++ b/drivers/media/platform/renesas/rzv2h-ivc/Kconfig
+> @@ -0,0 +1,15 @@
+> +# SPDX-License-Identifier: GPL-2.0-only
+> +
+> +config VIDEO_RZV2H_IVC
+> +	tristate "Renesas RZ/V2H Input Video Control block driver"
+> +	depends on V4L_PLATFORM_DRIVERS
+> +	depends on VIDEO_DEV
+> +	depends on ARCH_RENESAS || COMPILE_TEST
+> +	depends on OF
+> +	select VIDEOBUF2_DMA_CONTIG
+> +	select MEDIA_CONTROLLER
+> +	select VIDEO_V4L2_SUBDEV_API
+> +	select RESET_CONTROLLER
 
-It's v6, you really should have started testing your changes by that
-time. :/
+There is no need to select RESET_CONTROLLER, the API has stubs to allow
+compiling without it.
 
-Nothing in the changelog explains the change made here, so you just
-sneaked something which did not work.
-
-Best regards,
-Krzysztof
+regards
+Philipp
 
