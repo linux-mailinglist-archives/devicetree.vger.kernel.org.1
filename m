@@ -1,122 +1,135 @@
-Return-Path: <devicetree+bounces-191703-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-191704-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 77F0DAF024D
-	for <lists+devicetree@lfdr.de>; Tue,  1 Jul 2025 19:57:21 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 51BCDAF0294
+	for <lists+devicetree@lfdr.de>; Tue,  1 Jul 2025 20:12:38 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id E5DDC1C07860
-	for <lists+devicetree@lfdr.de>; Tue,  1 Jul 2025 17:57:23 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 8FF964E4B76
+	for <lists+devicetree@lfdr.de>; Tue,  1 Jul 2025 18:12:38 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 55BF927FB25;
-	Tue,  1 Jul 2025 17:56:22 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8480527FB0E;
+	Tue,  1 Jul 2025 18:12:34 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=broadcom.com header.i=@broadcom.com header.b="YhpuyuoU"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="Ktt9TMQj"
 X-Original-To: devicetree@vger.kernel.org
-Received: from relay.smtp-ext.broadcom.com (relay.smtp-ext.broadcom.com [192.19.144.207])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wr1-f43.google.com (mail-wr1-f43.google.com [209.85.221.43])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AEF5E27F4D5;
-	Tue,  1 Jul 2025 17:56:20 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.19.144.207
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C839C1B95B;
+	Tue,  1 Jul 2025 18:12:32 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.43
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1751392582; cv=none; b=UKt7y76Z5UElwRSmnN6yJUz3hB40n3KcBciy8mczEdm12kXJgierP1ffC6AsJZFhbGGMM0opeBppC1iSVF6cxnUio/omFFF4ZUE1OZZnGG2c6cOWUpIgJ4mJTppDV1VxCjMdFBBVt54b1rA1PWD7RoVYpygdPdcrXAXE4MYhtHc=
+	t=1751393554; cv=none; b=eI37P7wd/q3da9qAWf444PcUhX//sgmnGQRuggLX+VhtOzwwqiHTmkE9GsHsrr7E9Jmqt/e3q/PZizfjZXVwAwoqkO2hMmXg5wgG4jc2PMvgfdnK4Ie7/gKAT30wAllVR8WTLtMcIr/yzABHaIK3YgddhsM0Mfz0hdxFiOd3ExE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1751392582; c=relaxed/simple;
-	bh=wLXAaiC0Gi5y0soIy8yfo2U59MIViibgMdGokCZf+80=;
-	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=Qp1Kb5DAK6/nRVFGGhdutQHsDkP1dEkMs1L5aoq5Y1htFSRqqphYXnnL2nlctUMfclf4S3tubmuQ8dz8E2jMkmvueMejk85rhaFAtle4LagS6jf87veeHcHQF7Yz8zfyJl+TQQjsMWIxCKDsATF96R54bdvKSACX4H+IXW4d2Hs=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=broadcom.com; spf=fail smtp.mailfrom=broadcom.com; dkim=pass (1024-bit key) header.d=broadcom.com header.i=@broadcom.com header.b=YhpuyuoU; arc=none smtp.client-ip=192.19.144.207
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=broadcom.com
-Authentication-Results: smtp.subspace.kernel.org; spf=fail smtp.mailfrom=broadcom.com
-Received: from mail-lvn-it-01.broadcom.com (mail-lvn-it-01.lvn.broadcom.net [10.36.132.253])
-	by relay.smtp-ext.broadcom.com (Postfix) with ESMTP id 4D2D6C002100;
-	Tue,  1 Jul 2025 10:56:14 -0700 (PDT)
-DKIM-Filter: OpenDKIM Filter v2.11.0 relay.smtp-ext.broadcom.com 4D2D6C002100
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=broadcom.com;
-	s=dkimrelay; t=1751392574;
-	bh=wLXAaiC0Gi5y0soIy8yfo2U59MIViibgMdGokCZf+80=;
-	h=From:To:Cc:Subject:Date:From;
-	b=YhpuyuoUPUU184FbdvQ56Wj9cnVDY3rZ3s7kFv6nUV+LBvtEzFBsQ74CQCrsAWZFv
-	 XXrlmoSUP+FYqaw9f+LKZWhxd+2RVoR04s4kRNRs2fY1Y/X9WdIhZybjVS3oyCJKNL
-	 eiPR+5mc3kZp5U3U8UaQTcPWkzAoFdP3lkJpcqkI=
-Received: from fainelli-desktop.igp.broadcom.net (fainelli-desktop.dhcp.broadcom.net [10.67.48.245])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
-	(No client certificate requested)
-	by mail-lvn-it-01.broadcom.com (Postfix) with ESMTPSA id D653D1800051E;
-	Tue,  1 Jul 2025 10:55:43 -0700 (PDT)
-From: Florian Fainelli <florian.fainelli@broadcom.com>
-To: linux-arm-kernel@lists.infradead.org
-Cc: Florian Fainelli <florian.fainelli@broadcom.com>,
-	kernel test robot <lkp@intel.com>,
-	Broadcom internal kernel review list <bcm-kernel-feedback-list@broadcom.com>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	devicetree@vger.kernel.org (open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS),
-	linux-kernel@vger.kernel.org (open list)
-Subject: [PATCH] ARM: dts: broadcom: Fix bcm7445 memory controller compatible
-Date: Tue,  1 Jul 2025 10:55:38 -0700
-Message-ID: <20250701175538.1633435-1-florian.fainelli@broadcom.com>
-X-Mailer: git-send-email 2.43.0
+	s=arc-20240116; t=1751393554; c=relaxed/simple;
+	bh=vPdDw4+jfgMBRX4Zg3ldNNAMXh3qYFeQt9oHABh4FpY=;
+	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version:Content-Type; b=Nd0zzeuJ4OktLhg/4mug/EW3RiBUw8HwTTWxZS34Sckz+XK5kzX9EbxeSnf6QMIM43tqi3y9MpsHNlDgYBZtIPcruOAimFpdHCKV7Qtbtb8mZugEN6mlzNCKJ9yAxRTFi61u/s8srqQz112Ohv5IJyYWZj3beyePRhXtCixgef0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=Ktt9TMQj; arc=none smtp.client-ip=209.85.221.43
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-wr1-f43.google.com with SMTP id ffacd0b85a97d-3a4fd1ba177so3928941f8f.0;
+        Tue, 01 Jul 2025 11:12:32 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1751393551; x=1751998351; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=zQB5x2vN7q8tn4LouU0pkBvnGCkqaf3TIFn5zEbprfs=;
+        b=Ktt9TMQjE5maEcIMQXXZhWo/Pn4/yhYyPOjNnMLcD+yMzUJgReqpuh153TP0Yhjcn3
+         JUBuKfp51Aisnvi3IBpJTJ0gTz8vQmHRLsQU0rJBUWT24CAS++jJOAVCdOIbvOKMkWIf
+         2XsaQUPwJkqjglrT3sscp262qBaP+cclot6b3APi5ptfchK+ihAaj4Ctb0SrGgKIimsA
+         8W7ZbTYkb6yn/eTfRVJLbZNWQMyO3kG7vl32w0Gf1+9LfQC+WwMCrrxXwU0/4aae6iVe
+         kLRGunfF5+nMjZUPa7qAZZJNiXgvcMFmKTUxWwiTnvBD/fgQBjwoZJArXTRJNid4I46V
+         orxQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1751393551; x=1751998351;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=zQB5x2vN7q8tn4LouU0pkBvnGCkqaf3TIFn5zEbprfs=;
+        b=p6LhWA0f9saOS31RjNkFKcUtVwdxMXntdUzCeIFBiA/s3DLxkzzihmXiVAxnr7vDkp
+         h5jC9Evpg16uSAFCOYhzWYOzJWHWbWOjwWXcCqZTejjjanb0PUGzZjdPvuZ7xuElEYgC
+         SRuROcGkgObFUGOS9AVLSrBkToJd4QBLRiR1qlQ4QvPJscN6BsM/NjPg8Ze7RHQkwpbT
+         TK3JEYhU4h7X46awSS7iti8POlWdAr2RGS6WMGBcvhEyqI4b/4RbzDxncWyyNAtCXq3k
+         8B2p118ONDXUqpxDmrGKrG+ej6SodB343tQNC0R1NntAETbdgqo2rRr9S33jgGrbX3t9
+         cLew==
+X-Forwarded-Encrypted: i=1; AJvYcCVrLJyld9XZlgUcGKt71rBeAn6C6ecZoHXCzjzjeEyxriWmmw6yF5b4pttJ7Zj5Doc5wlSXMUETQFTiJ6DZ@vger.kernel.org, AJvYcCW1ZCG9xdljdsUptHrjEYK7Mh4c+4qHsI4bxLHBxJxrWWecqIigeaIIk9hsjjXYSGDWC1g2O/+yNwcP@vger.kernel.org, AJvYcCWBCcp3S+SBW53D557isq05fiYpdLfL9AfKc9R53oSgV5jD73uTLObOkSkKj14n+jS5A47ENwJGpd6Z@vger.kernel.org, AJvYcCXJFIGyx+eOj0VHB7rUt+awgTh5JoEOfcnltjN/lxBdHv/coXe+6ceXyMYlEvp5m53EZbopkqB7Finklh8=@vger.kernel.org
+X-Gm-Message-State: AOJu0YyHIt2OZ+OmDadmz6TAG0IA8XO7hWdunNbbHeZR5hxJkXuvJJ+v
+	OSrN0DokbkX075ClbDdw2x+FNOH560oxlgk+Eu8eNbki6HdqVbFkqwgf
+X-Gm-Gg: ASbGncvGQp+1TYW6Az6kKJF1okvFys5fq+cb19JUVEqyRzMe4lNLFpplfdAyCB3yjYC
+	V5yUf+sFifEYFwoOdBWe3gY7ypNhRmvusGDkGCoF+rluWADoemBBCt0XjXYCPYMX6T1KqPm0k7Q
+	R1fcgrVjshePEFDFsjvnePM8YpA0kig1b+OqrkGLfwJ8SdKL0rPBbYs7PoJOlIEmgBMLkInN+8V
+	Ud2bqBhl4fNyw747Rp7XlxIJ5MMWO6Y0+3G0OBYnr1hjvtW+gkLszgOBjJ7gK8bBnJEKj5f0xc9
+	Qbr96ZqJzEF0+lcWpKTwWTeyMqsssn+DjMqBJdSASvs0mIqPKEwy6fOPGWwpCO6IvB1F/2OmRu4
+	G8BgxsbM69sXJ4E7SJImbkGIZ1X7H3F6IX58nYMjVINFd0Pfjxo9sEbJsaC/JkHA=
+X-Google-Smtp-Source: AGHT+IGdCIENlA91xI3nrqHzY3rilDywr5Ff5lEAua+x0O1AbOS2pGWoTXe6GaIPdBPyuIQ8Cgaeug==
+X-Received: by 2002:a05:6000:40cd:b0:3a4:f70e:bc25 with SMTP id ffacd0b85a97d-3b1cff1caaemr73316f8f.27.1751393550826;
+        Tue, 01 Jul 2025 11:12:30 -0700 (PDT)
+Received: from skynet.lan (2a02-9142-4580-2e00-0000-0000-0000-0008.red-2a02-914.customerbaf.ipv6.rima-tde.net. [2a02:9142:4580:2e00::8])
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-3a88c7fa54dsm13707437f8f.23.2025.07.01.11.12.29
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 01 Jul 2025 11:12:30 -0700 (PDT)
+From: =?UTF-8?q?=C3=81lvaro=20Fern=C3=A1ndez=20Rojas?= <noltari@gmail.com>
+To: jdelvare@suse.com,
+	linux@roeck-us.net,
+	robh@kernel.org,
+	krzk+dt@kernel.org,
+	conor+dt@kernel.org,
+	corbet@lwn.net,
+	linux-hwmon@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	linux-doc@vger.kernel.org
+Cc: =?UTF-8?q?=C3=81lvaro=20Fern=C3=A1ndez=20Rojas?= <noltari@gmail.com>
+Subject: [PATCH v2 0/3] hwmon: add Microchip EMC2101 driver
+Date: Tue,  1 Jul 2025 20:12:25 +0200
+Message-Id: <20250701181228.1196102-1-noltari@gmail.com>
+X-Mailer: git-send-email 2.39.5
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 
-The memory controller node compatible string was incompletely specified
-and used the fallback compatible. After commit 501be7cecec9
-("dt-bindings: memory-controller: Define fallback compatible") however,
-we need to fully specify the compatible string.
+The Microchip EMC2101 is a SMBus 2.0 fan controller with temperature
+monitoring.
 
-Fixes: 501be7cecec9 ("dt-bindings: memory-controller: Define fallback compatible")
-Reported-by: kernel test robot <lkp@intel.com>
-Closes: https://lore.kernel.org/oe-kbuild-all/202507011302.ZqNlBKWX-lkp@intel.com/
-Signed-off-by: Florian Fainelli <florian.fainelli@broadcom.com>
----
- arch/arm/boot/dts/broadcom/bcm7445.dtsi | 9 ++++++---
- 1 file changed, 6 insertions(+), 3 deletions(-)
+It supports up to 1 fan, 1 internal temperature sensor, 1 external
+temperature sensor and an 8 entry look up table to create a
+programmable temperature response.
 
-diff --git a/arch/arm/boot/dts/broadcom/bcm7445.dtsi b/arch/arm/boot/dts/broadcom/bcm7445.dtsi
-index 5ac2042515b8..c6307c7437e3 100644
---- a/arch/arm/boot/dts/broadcom/bcm7445.dtsi
-+++ b/arch/arm/boot/dts/broadcom/bcm7445.dtsi
-@@ -237,7 +237,8 @@ memc@0 {
- 			ranges = <0x0 0x0 0x80000>;
- 
- 			memc-ddr@2000 {
--				compatible = "brcm,brcmstb-memc-ddr";
-+				compatible = "brcm,brcmstb-memc-ddr-rev-b.1.x",
-+					     "brcm,brcmstb-memc-ddr";
- 				reg = <0x2000 0x800>;
- 			};
- 
-@@ -259,7 +260,8 @@ memc@80000 {
- 			ranges = <0x0 0x80000 0x80000>;
- 
- 			memc-ddr@2000 {
--				compatible = "brcm,brcmstb-memc-ddr";
-+				compatible = "brcm,brcmstb-memc-ddr-rev-b.1.x",
-+					     "brcm,brcmstb-memc-ddr";
- 				reg = <0x2000 0x800>;
- 			};
- 
-@@ -281,7 +283,8 @@ memc@100000 {
- 			ranges = <0x0 0x100000 0x80000>;
- 
- 			memc-ddr@2000 {
--				compatible = "brcm,brcmstb-memc-ddr";
-+				compatible = "brcm,brcmstb-memc-ddr-rev-b.1.x",
-+					     "brcm,brcmstb-memc-ddr";
- 				reg = <0x2000 0x800>;
- 			};
- 
+v2: multiple improvements:
+ - add emc2101.rst to index.rst.
+ - add missing documentation properties.
+  - Remove FAN_RPM_MIN definition.
+  - Rename FAN_FALSE_READ to FAN_MIN_READ.
+  - pwm_auto_point_temp_hyst_store(): simplify function.
+  - emc2101_fan_min_read(): add missing FAN_MIN_READ condition.
+  - emc2101_fan_min_write(): fix tach_count calculation.
+  - emc2101_init(): fix REG_TACH_MIN value.
+
+Álvaro Fernández Rojas (3):
+  docs: hwmon: add emc2101.rst to docs
+  dt-bindings: hwmon: Add Microchip EMC2101 support
+  drivers: hwmon: add EMC2101 driver
+
+ .../bindings/hwmon/microchip,emc2101.yaml     |   79 +
+ Documentation/hwmon/emc2101.rst               |   61 +
+ Documentation/hwmon/index.rst                 |    1 +
+ drivers/hwmon/Kconfig                         |   10 +
+ drivers/hwmon/Makefile                        |    1 +
+ drivers/hwmon/emc2101.c                       | 2175 +++++++++++++++++
+ 6 files changed, 2327 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/hwmon/microchip,emc2101.yaml
+ create mode 100644 Documentation/hwmon/emc2101.rst
+ create mode 100644 drivers/hwmon/emc2101.c
+
 -- 
-2.43.0
+2.39.5
 
 
