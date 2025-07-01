@@ -1,151 +1,88 @@
-Return-Path: <devicetree+bounces-191571-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-191575-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1E247AEFBD0
-	for <lists+devicetree@lfdr.de>; Tue,  1 Jul 2025 16:15:38 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 62094AEFBF3
+	for <lists+devicetree@lfdr.de>; Tue,  1 Jul 2025 16:19:40 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 48D253AA4FE
-	for <lists+devicetree@lfdr.de>; Tue,  1 Jul 2025 14:12:51 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id DB1083B0E4B
+	for <lists+devicetree@lfdr.de>; Tue,  1 Jul 2025 14:15:44 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7B455275B11;
-	Tue,  1 Jul 2025 14:13:07 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 21DE627979F;
+	Tue,  1 Jul 2025 14:14:37 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="QMPeiDZw"
+	dkim=pass (1024-bit key) header.d=yeah.net header.i=@yeah.net header.b="gFuevKNR"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ed1-f49.google.com (mail-ed1-f49.google.com [209.85.208.49])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mail-m16.yeah.net (mail-m16.yeah.net [1.95.21.16])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B64FB275872;
-	Tue,  1 Jul 2025 14:13:05 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.49
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 410B8277CBB;
+	Tue,  1 Jul 2025 14:14:32 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=1.95.21.16
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1751379187; cv=none; b=cqLLuE9+KiasWQT5UsHCM7Ea+mGIpT68Pkdv1vVE44IuAPHvp0HYtGr0xZRBcQebtrgrUUw8xf6vdHbB14qj3fJN0soq3uo+7in85pfUqET0Sjr5jhk2B9zp0fTsQZXIDMk7mAiw+MLpmy17s44Yllnu20w97wa/EeDSP7Z1Dqo=
+	t=1751379277; cv=none; b=hRMNx2Ysgp59nWQuk0IRgeOdlKxXdvzgkbBorTbUqJ7LbISUIWIu6Saw+cLBfmSwMbhbvcKK0mx7gywfce0CE1xe7lMtg8/tmi4becKiexaY4Uakkulv3LP4TULQobyjcndDfAyiiIFBys7vh8e5WY/BoY3nXPjdUJBnEtZn2Yw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1751379187; c=relaxed/simple;
-	bh=9M0xpRMMUDO10GmTj8Q2uDokp5+yvybmx8wNOiGURkY=;
-	h=Message-ID:Subject:From:To:Cc:Date:In-Reply-To:References:
-	 Content-Type:MIME-Version; b=i7UfuijIAwEK2pbF5hsRT3XXO6mrndiD/iGustRYS9FPPv0XMC7ABCpQC2gRsAHnY0rymlXoXD+/q0iNFPQj85FEQbOd2ChDVKfRfIOJQNs8HPBiFKoKzNcW/Ra4OKhJR9IpTnaAPEuDZj6V+z4SrRhWRGQBjgu+zptfVE/RSBY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=QMPeiDZw; arc=none smtp.client-ip=209.85.208.49
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-ed1-f49.google.com with SMTP id 4fb4d7f45d1cf-60c79bedc19so5434432a12.3;
-        Tue, 01 Jul 2025 07:13:05 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1751379184; x=1751983984; darn=vger.kernel.org;
-        h=mime-version:user-agent:content-transfer-encoding:references
-         :in-reply-to:date:cc:to:from:subject:message-id:from:to:cc:subject
-         :date:message-id:reply-to;
-        bh=9M0xpRMMUDO10GmTj8Q2uDokp5+yvybmx8wNOiGURkY=;
-        b=QMPeiDZwDKmtIQdgB+Aet4U8hEQA+kuW+KhZMSdl1EA4gtwNTAxKCnpRgV/lPfQUra
-         uytkUf+E3PtBixWbs1Xyba767uxfY6zlU2ZV7LSr/VGE9DpZlaER4XDA6S0e82UqMDkB
-         P/KWns5gllgLhINZXVLjfQUqcF6zmc2lKP7z8X32WLzuQ+tMwuTBdmx4Z/Ajc+rEyL/H
-         zkysdKjK55LkYTATHQjg6uNcGDaj60/q9Bi2WaTFe2bb0JtWM2yA9tiWHd4+Rb6Tw6wz
-         tlFnqGR9MxhIDbG9tAAST22o1UJXb9LLMvjyEqkNNbNmBqT+tXiOKAiWNNVFecanbIzy
-         VLHA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1751379184; x=1751983984;
-        h=mime-version:user-agent:content-transfer-encoding:references
-         :in-reply-to:date:cc:to:from:subject:message-id:x-gm-message-state
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=9M0xpRMMUDO10GmTj8Q2uDokp5+yvybmx8wNOiGURkY=;
-        b=qJNtttZGYblDPZFcim4eqE3043UuT46/Te5MPc24m6kfh57Jg+b9rCYrlmaiyr7cpm
-         SoxjCnx9FhLUyplyFJokw3m9oVw96RdydYoV+r32KI5Ro9/hy1jo1nmm3HJQQdhdAZRt
-         5GSktyrAPltFnv8EH03hSoK8VbFjq39VwKxbCJo5pdWc+G5vIfnVsrkwsFvDph2Ayudw
-         BXmJpPB9HSVKnCADbgxKzEAzwpDOEkOjqVZ97nITUFC6Zv77NNIkJu3mKWma4CiPCvrF
-         sLVog0mnGyaVn0UWZ0idNhf6DHoAAStsBGwNr294HGugkj/63hb0T2Nnkvx01U6gKLBO
-         fhDg==
-X-Forwarded-Encrypted: i=1; AJvYcCVCvyNYYKdsUv6vK6uxuc17PQaejdpQkKrgnXBofIUQUPfAzTxLvhWxNV4laW9RF5vd4NeA4Usy14q7qfZU@vger.kernel.org, AJvYcCWnlqc8HUkukeyMgErvAvoG/9+2Wa0qzBKX/hmCQKf7VUrC5WI+gzjb7DLYSu6WwqYxVTTapF8SeINd@vger.kernel.org, AJvYcCXfGaQv0uy3fwv9mBZTqc6LMEkv9jfGA+HWCpVdyFjddsgOjhWL0cGdRghI8uJ5iJIoXoFUimMN@vger.kernel.org
-X-Gm-Message-State: AOJu0Yw0hNba4LbS0bcq0SLg6EmW7Jxi1kYDXClU4FcnTABgphDGqB60
-	3TK6XG1vM9hYDTezax7+Nrjf2h2tBdV3R6GXa3mylZsV4ylMq+4TN22e
-X-Gm-Gg: ASbGncvEfBbGdBwWjWwMBou5kPYuHG5OH/jbQzFBBOTVoD8REBlnRUnLC2OzwrgBF6s
-	7I16f3kXGD7rWYjygsUnjGng7Hmgh73x8rFNJIRLSA83R/yQ6Hc1dxy5+IzmdxFWSAY//W+2RpB
-	xjPClL0E1LJq7HUqlWyvaqHGMllxSOEpDJwSy62Zl9aR9gBW8K9RcYmuFdlI2/0ucLBpn+DvBkF
-	28VM995J/JqiDKsP2tDNMBHEW50OHGfOp3GLtqFuwdx1a0pkBkYMj9B5wRa4CZlVBQvgt7LlJ3n
-	WCvZ4re3V2VR/hnwXfIPAfgQRQ5FveW7RSsM5rSL3W8yE19pSp5p6gJKA+uI+EIsmOMirISkqC8
-	4V/9Mcw==
-X-Google-Smtp-Source: AGHT+IF1tB069kz6JY0KWxXptDNGH10wBVEBZiS6dvHv1zIbhdSfAx48xUxQ0wRn7sog+hmz8X53ww==
-X-Received: by 2002:a17:906:6a1a:b0:adb:2a66:85bc with SMTP id a640c23a62f3a-ae3500b8e5amr1624415066b.34.1751379183619;
-        Tue, 01 Jul 2025 07:13:03 -0700 (PDT)
-Received: from giga-mm-8.home ([2a02:1210:8608:9200:82ee:73ff:feb8:99e3])
-        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-ae35363b369sm879228866b.3.2025.07.01.07.13.02
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 01 Jul 2025 07:13:03 -0700 (PDT)
-Message-ID: <b986b184f2a29bb549daeff5c84547d64341f796.camel@gmail.com>
-Subject: Re: [PATCH net] dt-bindings: net: sophgo,sg2044-dwmac: Drop status
- from the example
-From: Alexander Sverdlin <alexander.sverdlin@gmail.com>
-To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>, Andrew Lunn	
- <andrew+netdev@lunn.ch>, "David S. Miller" <davem@davemloft.net>, Eric
- Dumazet	 <edumazet@google.com>, Jakub Kicinski <kuba@kernel.org>, Paolo
- Abeni	 <pabeni@redhat.com>, Rob Herring <robh@kernel.org>, Krzysztof
- Kozlowski	 <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, Chen
- Wang	 <unicorn_wang@outlook.com>, Inochi Amaoto <inochiama@gmail.com>, 
-	netdev@vger.kernel.org, devicetree@vger.kernel.org, sophgo@lists.linux.dev,
- 	linux-kernel@vger.kernel.org
-Cc: stable@vger.kernel.org
-Date: Tue, 01 Jul 2025 16:13:06 +0200
-In-Reply-To: <20250701063621.23808-2-krzysztof.kozlowski@linaro.org>
-References: <20250701063621.23808-2-krzysztof.kozlowski@linaro.org>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-User-Agent: Evolution 3.56.1 
+	s=arc-20240116; t=1751379277; c=relaxed/simple;
+	bh=INugTqBVM7fToZCIvxlUMkZxsPpLlqW6VEdnb21T200=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=F3lYn5ck32XB0N2q/qVP7s3mf+DcQvIwIAExbLGdoqmbmlv/qWvjsDEJtr2vZq0Kv4buUGLf2WJu6tNKznWqm1gQIvC3ZWyj2/iK9Q2oNajrm1MZexAC3R6fS0s0p4vF8DZ3sHe92hoPI/rLBaYHZk9whZW/on4tyPj/ag6Avbg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=yeah.net; spf=pass smtp.mailfrom=yeah.net; dkim=pass (1024-bit key) header.d=yeah.net header.i=@yeah.net header.b=gFuevKNR; arc=none smtp.client-ip=1.95.21.16
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=yeah.net
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=yeah.net
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=yeah.net;
+	s=s110527; h=Date:From:To:Subject:Message-ID:MIME-Version:
+	Content-Type; bh=UgVcaTMaZwQKG0vFQL59Zz76XRt+0Z5vWGwWG9Mrcpw=;
+	b=gFuevKNRJo4o54DWHlJLiUMQBuWMzoWzwImK/JXY8XYu7CrEvAqhSaeQ8LYDTX
+	50TbYpj26O6tdp9RbFri9qZ+zKFzLkXuEySPe85cbSIB2mxygYXOX9Uh2T4jnZb7
+	ZbtHQDkaQPu+H898TFGKZAj/2iOFtPypm+GE5pdUFUuxA=
+Received: from dragon (unknown [])
+	by gzsmtp3 (Coremail) with SMTP id M88vCgD3l9r37GNoUbwBAA--.4338S3;
+	Tue, 01 Jul 2025 22:13:13 +0800 (CST)
+Date: Tue, 1 Jul 2025 22:13:11 +0800
+From: Shawn Guo <shawnguo2@yeah.net>
+To: Thomas Richard <thomas.richard@bootlin.com>
+Cc: Wim Van Sebroeck <wim@linux-watchdog.org>,
+	Guenter Roeck <linux@roeck-us.net>, Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Dong Aisheng <aisheng.dong@nxp.com>,
+	Shawn Guo <shawnguo@kernel.org>,
+	Sascha Hauer <s.hauer@pengutronix.de>,
+	Pengutronix Kernel Team <kernel@pengutronix.de>,
+	Fabio Estevam <festevam@gmail.com>,
+	Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
+	linux-watchdog@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org, imx@lists.linux.dev,
+	linux-arm-kernel@lists.infradead.org,
+	Oliver Graute <oliver.graute@kococonnector.com>,
+	Frank Li <Frank.Li@nxp.com>
+Subject: Re: [PATCH v3] arm64: dts: imx8qm: add system controller watchdog
+ support
+Message-ID: <aGPs9wGBLKGiTdVq@dragon>
+References: <20250609-imx8qm-watchdog-v3-1-5c22618606c8@bootlin.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20250609-imx8qm-watchdog-v3-1-5c22618606c8@bootlin.com>
+X-CM-TRANSID:M88vCgD3l9r37GNoUbwBAA--.4338S3
+X-Coremail-Antispam: 1Uf129KBjDUn29KB7ZKAUJUUUUU529EdanIXcx71UUUUU7v73
+	VFW2AGmfu7bjvjm3AaLaJ3UbIYCTnIWIevJa73UjIFyTuYvjxUw-eOUUUUU
+X-CM-SenderInfo: pvkd40hjxrjqh1hdxhhqhw/1tbiIRls0Whj7Pkt0wAA3l
 
-On Tue, 2025-07-01 at 08:36 +0200, Krzysztof Kozlowski wrote:
-> Examples should be complete and should not have a 'status' property,
-> especially a disabled one because this disables the dt_binding_check of
-> the example against the schema.=C2=A0 Dropping 'status' property shows
-> missing other properties - phy-mode and phy-handle.
->=20
-> Fixes: 114508a89ddc ("dt-bindings: net: Add support for Sophgo SG2044 dwm=
-ac")
-> Cc: <stable@vger.kernel.org>
-> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+On Mon, Jun 09, 2025 at 02:02:34PM +0200, Thomas Richard wrote:
+> Add system controller watchdog support for i.MX8QM.
+> 
+> Acked-by: Oliver Graute <oliver.graute@kococonnector.com>
+> Reviewed-by: Frank Li <Frank.Li@nxp.com>
+> Signed-off-by: Thomas Richard <thomas.richard@bootlin.com>
 
-Reviewed-by: Alexander Sverdlin <alexander.sverdlin@gmail.com>
+Applied, thanks!
 
-> ---
-> =C2=A0Documentation/devicetree/bindings/net/sophgo,sg2044-dwmac.yaml | 3 =
-++-
-> =C2=A01 file changed, 2 insertions(+), 1 deletion(-)
->=20
-> diff --git a/Documentation/devicetree/bindings/net/sophgo,sg2044-dwmac.ya=
-ml b/Documentation/devicetree/bindings/net/sophgo,sg2044-dwmac.yaml
-> index 4dd2dc9c678b..8afbd9ebd73f 100644
-> --- a/Documentation/devicetree/bindings/net/sophgo,sg2044-dwmac.yaml
-> +++ b/Documentation/devicetree/bindings/net/sophgo,sg2044-dwmac.yaml
-> @@ -80,6 +80,8 @@ examples:
-> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 interrupt-parent =3D <&intc>;
-> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 interrupts =3D <296 IRQ_TYPE_LEVEL_H=
-IGH>;
-> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 interrupt-names =3D "macirq";
-> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 phy-handle =3D <&phy0>;
-> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 phy-mode =3D "rgmii-id";
-> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 resets =3D <&rst 30>;
-> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 reset-names =3D "stmmaceth";
-> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 snps,multicast-filter-bins =3D <0>;
-> @@ -91,7 +93,6 @@ examples:
-> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 snps,mtl-rx-config =3D <&gmac0_mtl_r=
-x_setup>;
-> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 snps,mtl-tx-config =3D <&gmac0_mtl_t=
-x_setup>;
-> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 snps,axi-config =3D <&gmac0_stmmac_a=
-xi_setup>;
-> -=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 status =3D "disabled";
-> =C2=A0
-> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 gmac0_mtl_rx_setup: rx-queues-config=
- {
-> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 snps,rx-queues-to-use =
-=3D <8>;
-
---=20
-Alexander Sverdlin.
 
