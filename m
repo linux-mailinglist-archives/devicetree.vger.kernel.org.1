@@ -1,168 +1,281 @@
-Return-Path: <devicetree+bounces-191416-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-191417-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9298FAEF36A
-	for <lists+devicetree@lfdr.de>; Tue,  1 Jul 2025 11:31:31 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9062CAEF3EC
+	for <lists+devicetree@lfdr.de>; Tue,  1 Jul 2025 11:52:28 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id B53154A0426
-	for <lists+devicetree@lfdr.de>; Tue,  1 Jul 2025 09:31:31 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 93C671BC6425
+	for <lists+devicetree@lfdr.de>; Tue,  1 Jul 2025 09:52:44 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5F4A526CE1C;
-	Tue,  1 Jul 2025 09:31:04 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8A92C26E6E4;
+	Tue,  1 Jul 2025 09:52:22 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="ZkCn6cGQ"
+	dkim=pass (2048-bit key) header.d=riscstar-com.20230601.gappssmtp.com header.i=@riscstar-com.20230601.gappssmtp.com header.b="PGJo+ngT"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-yb1-f179.google.com (mail-yb1-f179.google.com [209.85.219.179])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2BC34267B6D;
-	Tue,  1 Jul 2025 09:31:03 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3D10A221F12
+	for <devicetree@vger.kernel.org>; Tue,  1 Jul 2025 09:52:19 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.219.179
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1751362264; cv=none; b=Bl8Hm1v5YLRCXtYzARm6aTiLgiYc08COBsZ2jyrvlyjVNwcDYnGJgrGV+cZOMugPQy81yytYdpa358P4+riU6pPfgYQjGVKOqdg0eWpKccIH50gRKH1Aw0hw78yeEeFdfwKLO48mYJSggROAMgFEM1G6YCwbJIAbaX5i0P3/0Cw=
+	t=1751363542; cv=none; b=VJYFNPXZtI3Yj0+c/ghbimCwLhiwyiL7YNiQot4BTi2mX49iC9zSQnDiyG7Wz3Y64L5W8EXK8l76RHabS9qGPCbrfkgaJNgyUkXMONN/uDTKztQS6Bvl3/ANmAx7j4xS+iwDP6/gmEW5BJo9zge4oU859no5ftoGefDF/Di+DLA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1751362264; c=relaxed/simple;
-	bh=ou1WGpY1B6KhDjtHPcrYf0u8zfiX7PXTX8+wLqltyZo=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=l02+3wgqchw15PgLvYqU4oSZhgXa465RWRD1lB8tnnk8aBNwGNJFfaxu7G1W/6NTQpCj4oOuxMPi6QENH8AMx2u5jbJfrpKImZptjI09w8JhvnzrZEA0F9XbL0gqETDfjoNXd6HRP008FJmXL9PFbt2bLeZngeoj+QZs4v5sTKY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=ZkCn6cGQ; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id F230CC4CEEB;
-	Tue,  1 Jul 2025 09:30:56 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1751362263;
-	bh=ou1WGpY1B6KhDjtHPcrYf0u8zfiX7PXTX8+wLqltyZo=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=ZkCn6cGQ+UG8FpUa2F/+hEfGTKsRCB7Kc5gGqSFd09vvCmP32SbyiUljPX7CegrrL
-	 1Z5T5uW+YSvvbUNCkRwvnKPhVjyrXADRSJW2SwfC0Lk/R8iRjB6eBe1oIIVEkSIgKH
-	 rP2IYyAZQ8jC34htfOcR2sc0SOjDYe1UYAytJuFIk+U2ZwxMJuFwBlZS6k7DS2+tav
-	 piyZn0UD6Xs3qwbGAjEcDoYbacKfr1ATjOeNLHZNPDlbXJNwsn/fyplHKjT7Qdls6a
-	 1FC+Z/AFQPVD7ghnuY/GePbSZwKzyqx5eYNnthZWS90l+ouDLGKYid3RmNi6/GZYvm
-	 Fq2emaLk0qV5g==
-Message-ID: <83f88dd5-8c74-4c2f-b94e-6c16dcbd44f1@kernel.org>
-Date: Tue, 1 Jul 2025 11:30:53 +0200
+	s=arc-20240116; t=1751363542; c=relaxed/simple;
+	bh=Od6JdPcnkvsl/bR/hf7XDyqJsEJSHXYwNg4QbKnbiNM=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=PudhTkGO0JTAUZ/8BakhTGmP4R51ur9ln0NoBswUaWo/JhesFmoF96buaOq3/ReF9xxIcykzfxgFcw/xVrWuXTO8tV9lYwvT2lVPLcA8jH6nlAFuM25fKTK97HE8bEgy1oVg0GWpJT71rcCNSlx1M1IkFNdr1aGaRUGMW+BfvAI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=riscstar.com; spf=pass smtp.mailfrom=riscstar.com; dkim=pass (2048-bit key) header.d=riscstar-com.20230601.gappssmtp.com header.i=@riscstar-com.20230601.gappssmtp.com header.b=PGJo+ngT; arc=none smtp.client-ip=209.85.219.179
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=riscstar.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=riscstar.com
+Received: by mail-yb1-f179.google.com with SMTP id 3f1490d57ef6-e81ec95d944so5651015276.1
+        for <devicetree@vger.kernel.org>; Tue, 01 Jul 2025 02:52:19 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=riscstar-com.20230601.gappssmtp.com; s=20230601; t=1751363538; x=1751968338; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=IKA6FwPF97E3KxijHqFbWyBNdWNWu66wkqfXYan6V+A=;
+        b=PGJo+ngT3mA+Bk6kTf1DWDLGCk5eKaa9IG+FF/3ikN2V9SE/WxpLLFQRmp3o8sRV0v
+         efmDIaEtIw7xCfZkCg84kVlLsKkQQywfz/du1cQm2M9pZQtKYNb5vKaw0ZkYjaKjVtZ5
+         HxA+O3ruYU2K4Oi3IdreSNeIEHjBvGowZoRmQbjDBRIrr/NAy4KkF5YbTd3Nw5C4E5DX
+         ibd7cmEOwn45zf96Hg0dF/akk7UZBj3PW+hH5/9/Pfm9ka6dkyI/0gyJALZ2+gKpoyBb
+         kf1HLEI1TVcmk9fjHc4jdeVcIwDcxOGHZRcPP13yyCGx8fT49uNjIIgKqp/jBz7I4bZS
+         TUYg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1751363538; x=1751968338;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=IKA6FwPF97E3KxijHqFbWyBNdWNWu66wkqfXYan6V+A=;
+        b=ihfHwkiHvddCUI7bO7hekXyaAmgrmOGkVSnoIyx/5+GQwaZQnBJ/DT2m4A9/wOrgG+
+         ZHCSs03neJXAFxdQlqSlgFaT6XZkA8hmW3bvzbcnOeaRLcBf/M99Sqd0JqrCOYWC0wSa
+         nvoG6anOaOXyUsyRmiUUHAu6woZEyb56mqHhwIKmGlwp/Lpk8H1wD3ZBxb3wTueH/5op
+         dK2s4Gf598SW2D3oL+D3O3oGx0ztAsN0NzXQJopUIEaJaJD94kvTAC8MePQrvQSiHEpw
+         H85kdqnUo6GPLhjiocCDjcOWe2dn9uMtjq5mlpMbxHFCwLP2IXa5pL3LmR1p23h/+1tl
+         v4LQ==
+X-Forwarded-Encrypted: i=1; AJvYcCVifhmwqkGUPNokeX/7MWmzpIdJr2neIbUJq1j12+60U+4gy0/bEVHakB5v3IfLMpaFyQAxJVaxAkSA@vger.kernel.org
+X-Gm-Message-State: AOJu0YwEyhmE6YceLZY/1kuZeE8OFlfAX/ILajnyirtPxcAT5AEPGKaP
+	oKSEgPmmL04fwlVlre73uVPDfj0i0qGun+PnG0fh7yQ8EkQnasdGzQsrGQ2QUBussdpLz+1Mibq
+	GP/9gFpoW8xjb3lXysSwBLYi+8T4KvMSZNySZEhTLWA==
+X-Gm-Gg: ASbGnctKknP37Ww74Zl+RS58I5rzctDXo0FcHHB/2S77aVhgn+YPSmpWm+w7Nv3hxqS
+	himI0uZKNGslDIxSvjWE3H1ubPHQCFO5PSOrKRqK6W0jtjJFRSl62YaNYzJFeLXKe/IObtrpxdV
+	FSuDiMA3flhDC/zz6lsVphcewduwSVr7c7QUxGR0sJJ4Z4U/XpLwUUb/NYQ0Y=
+X-Google-Smtp-Source: AGHT+IGzHyECCHeiUYQOgvHa6UJ9WkRPSzDk6WELLYNag9ls2mHas7vRAKuqf10+XgRIe5X8BpYEYpQLbmrpRpbXWcM=
+X-Received: by 2002:a05:690c:6102:b0:711:6ea1:8d12 with SMTP id
+ 00721157ae682-7163ee4d03dmr40769417b3.1.1751363538182; Tue, 01 Jul 2025
+ 02:52:18 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH V3 2/4] dt-bindings: mmc: controller: Add
- max-sd-hs-frequency property
-To: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>,
- Sarthak Garg <quic_sartgarg@quicinc.com>,
- Ulf Hansson <ulf.hansson@linaro.org>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Bjorn Andersson <andersson@kernel.org>,
- Konrad Dybcio <konradybcio@kernel.org>,
- Adrian Hunter <adrian.hunter@intel.com>
-Cc: linux-mmc@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org,
- quic_cang@quicinc.com, quic_nguyenb@quicinc.com, quic_rampraka@quicinc.com,
- quic_pragalla@quicinc.com, quic_sayalil@quicinc.com,
- quic_nitirawa@quicinc.com, quic_bhaskarv@quicinc.com, kernel@oss.qualcomm.com
-References: <20250618072818.1667097-1-quic_sartgarg@quicinc.com>
- <20250618072818.1667097-3-quic_sartgarg@quicinc.com>
- <6040afd9-a2a8-49f0-85e9-95257b938156@kernel.org>
- <9627ed6f-2bb8-40b0-b647-5f659d87f2f9@oss.qualcomm.com>
- <bba062a3-f96c-456b-8e9e-fdeb0dc2d28d@kernel.org>
- <5bdae07b-a7b1-49be-b843-1704981bc63b@oss.qualcomm.com>
- <ffc62906-c3bb-4968-8f7c-fa7ae5028ad5@kernel.org>
- <fd73a142-3b22-407f-8e6d-00f4e1e1c8eb@oss.qualcomm.com>
- <e0e66895-e68a-4420-a61b-98a689798ce4@kernel.org>
- <a6117473-fa38-48db-94a1-892b76abc10f@oss.qualcomm.com>
-From: Krzysztof Kozlowski <krzk@kernel.org>
-Content-Language: en-US
-Autocrypt: addr=krzk@kernel.org; keydata=
- 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 a/A=
-In-Reply-To: <a6117473-fa38-48db-94a1-892b76abc10f@oss.qualcomm.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+References: <20250701-working_dma_0701_v2-v2-0-ab6ee9171d26@riscstar.com>
+ <20250701-working_dma_0701_v2-v2-1-ab6ee9171d26@riscstar.com> <de965773-bab1-4c50-b111-19896465e53e@kernel.org>
+In-Reply-To: <de965773-bab1-4c50-b111-19896465e53e@kernel.org>
+From: Guodong Xu <guodong@riscstar.com>
+Date: Tue, 1 Jul 2025 17:52:07 +0800
+X-Gm-Features: Ac12FXxrwUxphoCfQfkTD7volCQBmLx90I-g-CSXGPV4ZQwkJtWnCbMfwgC8RlU
+Message-ID: <CAH1PCMbKGeXL9Te6M28ZdX8VBvaToKcK7f+JmN6JsCfttG_Mtg@mail.gmail.com>
+Subject: Re: [PATCH v2 1/8] dt-bindings: dma: marvell,mmp-dma: Add SpacemiT K1
+ PDMA support
+To: Krzysztof Kozlowski <krzk@kernel.org>
+Cc: Vinod Koul <vkoul@kernel.org>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, Yixun Lan <dlan@gentoo.org>, 
+	=?UTF-8?Q?Duje_Mihanovi=C4=87?= <duje.mihanovic@skole.hr>, 
+	Philipp Zabel <p.zabel@pengutronix.de>, Paul Walmsley <paul.walmsley@sifive.com>, 
+	Palmer Dabbelt <palmer@dabbelt.com>, Albert Ou <aou@eecs.berkeley.edu>, 
+	Alexandre Ghiti <alex@ghiti.fr>, Alex Elder <elder@riscstar.com>, 
+	Vivian Wang <wangruikang@iscas.ac.cn>, dmaengine@vger.kernel.org, 
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+	linux-riscv@lists.infradead.org, spacemit@lists.linux.dev
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-On 01/07/2025 11:04, Konrad Dybcio wrote:
->>>>>
->>>>> Looking at the docs, a number of platforms have various limitations
->>>>> with regards to frequency at specific speed-modes, some of which seem
->>>>> to be handled implicitly by rounding in the clock framework's
->>>>> round/set_rate().
->>>>>
->>>>> I can very easily imagine there are either boards or platforms in the
->>>>> wild, where the speed must be limited for various reasons, maybe some
->>>>> of them currently don't advertise it (like sm8550 on next/master) to
->>>>> hide that
->>>>
->>>> But there are no such now. The only argument (fact) provided in this
->>>> patchset is: this is issue specific to SM8550 SoC, not the board. See
->>>> last patch. Therefore this is compatible-deducible and this makes
->>>> property without any upstream user.
->>>
->>> When one appears, we will have to carry code to repeat what the property
->>> does, based on a specific compatible.. And all OS implementations will
->>> have to do the same, instead of parsing the explicit information
->>
->> Adding new property in such case will be trivial and simple, unlike
->> having to maintain unused ABI.
->>
->> And it will be unused, because last patch DTS should be rejected on that
->> basis: adding redundant properties which are already defined by the
->> compatible.
-> 
-> Got some more fresh information.. This apparently *does* vary across
-> boards, as there is a recommended hardware workaround to this rate
-> limitation (requiring an external clock source, which is up to the
-> OEM to implement or not)
+Hi, Krzysztof
+
+On Tue, Jul 1, 2025 at 3:35=E2=80=AFPM Krzysztof Kozlowski <krzk@kernel.org=
+> wrote:
+>
+> On 01/07/2025 07:36, Guodong Xu wrote:
+> > Add "spacemit,k1-pdma" compatible string to support SpacemiT K1 PDMA
+> > controller. This variant requires:
+>
+> Why is this marvell? This should be explained here, it's really unexpecte=
+d.
+>
+
+SpacemiT K1 SoC uses the same DMA controller as Marvell MMP. They share mos=
+t
+of the registers (and address offsets) and only enhanced in addressing spac=
+e
+capability (from 32bit to 64bit).
+
+Also, spacemit,k1-pdma and marvell,pdma-1.0 use the same driver (mmp_pdma.c=
+),
+that's the reason why I chose keeping them in the same binding file.
 
 
-This should be clearly explained in commit msg and the DTS patch
-re-written because it seems it is not a property of the SoC.
+> > - clocks: Clock controller for the DMA
+> > - resets: Reset controller for the DMA
+> >
+> > Also add explicit #dma-cells property definition with proper constraint=
+s:
+> > - 2 cells for marvell,pdma-1.0 and spacemit,k1-pdma
+> >     - (request number + unused)
+> > - 1 cell for other variants
+> >     - (request number only)
+> >
+> > This fixes "make dtbs_check W=3D3" warnings about unevaluated propertie=
+s.
+>
+> How can I reproduce these warnings? Looks like this is not relevant
+> here. Each patch is applied one after another and commit msg must be
+> correct at this point.
+>
 
-I mean, really, that last patch here makes entire discussion pointless,
-because till it is in the patchset is a proof this is a SoC level property.
+You're absolutely right about the commit message needing to be accurate
+at this point. The dtbs_check warnings only occur when compiling board DTS
+files that contain nodes with marvell,pdma-1.0 or spacemit,k1-pdma
+compatible strings - specifically when PATCH 7 of this series.
 
-Best regards,
-Krzysztof
+I'll revise the commit message to better reflect that this patch enhances
+things, rather than claiming it "fixes" warnings at this stage.
+
+>
+> >
+> > Signed-off-by: Guodong Xu <guodong@riscstar.com>
+> > ---
+> > v2:
+> > - Used more specific compatible string "spacemit,k1-pdma"
+> > - Enhanced DT bindings with conditional constraints:
+> >   - clocks/resets properties only required for SpacemiT K1
+> >   - #dma-cells set to 2 for marvell,pdma-1.0 and spacemit,k1-pdma
+> >   - #dma-cells set to 1 for other variants, ie.
+> >       marvell,adma-1.0 and  marvell,pxa910-squ
+> > ---
+> >  .../devicetree/bindings/dma/marvell,mmp-dma.yaml   | 49 ++++++++++++++=
+++++++++
+> >  1 file changed, 49 insertions(+)
+> >
+> > diff --git a/Documentation/devicetree/bindings/dma/marvell,mmp-dma.yaml=
+ b/Documentation/devicetree/bindings/dma/marvell,mmp-dma.yaml
+> > index d447d5207be0436bc7fb648dffe31f8b780b491d..7b5f7ccfc9dbb69bfef2501=
+46cba5434548f3702 100644
+> > --- a/Documentation/devicetree/bindings/dma/marvell,mmp-dma.yaml
+> > +++ b/Documentation/devicetree/bindings/dma/marvell,mmp-dma.yaml
+> > @@ -18,6 +18,7 @@ properties:
+> >        - marvell,pdma-1.0
+> >        - marvell,adma-1.0
+> >        - marvell,pxa910-squ
+> > +      - spacemit,k1-pdma
+> >
+> >    reg:
+> >      maxItems: 1
+> > @@ -32,6 +33,19 @@ properties:
+> >        A phandle to the SRAM pool
+> >      $ref: /schemas/types.yaml#/definitions/phandle
+> >
+> > +  clocks:
+> > +    description: Clock for the controller
+> > +    maxItems: 1
+> > +
+> > +  resets:
+> > +    description: Reset controller for the DMA controller
+> > +    maxItems: 1
+> > +
+> > +  '#dma-cells':
+> > +    description:
+> > +      DMA specifier, consisting of a phandle to DMA controller plus th=
+e
+> > +      following integer cells
+>
+> Why do you need it here? Isn't this coming from dma common schemas?
+
+Thanks for pointing out this. It should be removed.
+I will fix it.
+
+> > +
+> >    '#dma-channels':
+> >      deprecated: true
+> >
+> > @@ -52,12 +66,47 @@ allOf:
+> >            contains:
+> >              enum:
+> >                - marvell,pdma-1.0
+> > +              - spacemit,k1-pdma
+> >      then:
+> >        properties:
+> >          asram: false
+> >      else:
+> >        required:
+> >          - asram
+> > +  - if:
+> > +      properties:
+> > +        compatible:
+> > +          contains:
+> > +            const: spacemit,k1-pdma
+> > +    then:
+> > +      required:
+> > +        - clocks
+> > +        - resets
+> > +    else:
+> > +      properties:
+> > +        clocks: false
+> > +        resets: false
+> > +  - if:
+> > +      properties:
+> > +        compatible:
+> > +          contains:
+> > +            enum:
+> > +              - marvell,pdma-1.0
+> > +              - spacemit,k1-pdma
+> > +    then:
+> > +      properties:
+> > +        '#dma-cells':
+> > +          const: 2
+> > +          description:
+> > +            The first cell contains the DMA request number for the per=
+ipheral
+> > +            device. The second cell is currently unused but must be pr=
+esent for
+> > +            backward compatibility.
+> > +    else:
+> > +      properties:
+> > +        '#dma-cells':
+> > +          const: 1
+> > +          description:
+> > +            The cell contains the DMA request number for the periphera=
+l device.
+>
+>
+> It's getting complicated. I suggest to make your own schema. Then you
+> would also switch to preferred 'sram' property instead of that legacy
+> 'asram'.
+>
+> Really, ancient schemas should not be grown for new, completely
+
+The reason that they share the same device driver may not be strong enough
+compared to what you said here.
+
+> different platforms.
+>
+
+Complexity wise, I agree with you. I should admit that I haven't dug into
+the history enough. Anyway, unless other people have strong opinion, I will
+create a new schema namely spacemit,k1-pdma.yaml
+
+Thanks Krzysztof.
+
+BR,
+Guodong
+
+
+>
+> Best regards,
+> Krzysztof
 
