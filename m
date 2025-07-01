@@ -1,165 +1,101 @@
-Return-Path: <devicetree+bounces-191379-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-191380-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id B8522AEF145
-	for <lists+devicetree@lfdr.de>; Tue,  1 Jul 2025 10:35:29 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id D9651AEF151
+	for <lists+devicetree@lfdr.de>; Tue,  1 Jul 2025 10:37:56 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id BEA6B1BC6594
-	for <lists+devicetree@lfdr.de>; Tue,  1 Jul 2025 08:35:39 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 658B61BC664C
+	for <lists+devicetree@lfdr.de>; Tue,  1 Jul 2025 08:38:07 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4A46326A08E;
-	Tue,  1 Jul 2025 08:35:02 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7841C265298;
+	Tue,  1 Jul 2025 08:37:47 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="B0N1EdDj"
 X-Original-To: devicetree@vger.kernel.org
-Received: from metis.whiteo.stw.pengutronix.de (metis.whiteo.stw.pengutronix.de [185.203.201.7])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 291CB264FA0
-	for <devicetree@vger.kernel.org>; Tue,  1 Jul 2025 08:34:58 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.203.201.7
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4476E1FDD;
+	Tue,  1 Jul 2025 08:37:46 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1751358902; cv=none; b=HXmtv1/hDS8g/R1nw2obyHGoS1C9bZ6ZtC3xR0xVIEAxDQgyVcQB0qVe5o8tCCpG4JLn7jSWSe1vxw0JdjDik66RHqBy/yZ268N4O7bvhUMnnO/DWbB9CsIyEuGUvqzBDMhEI9rIRwMlGSELOnYKCYqm55KfGJdORPB3/Dq2l/U=
+	t=1751359067; cv=none; b=aaWU1rpviqDQQ3iROgpxL03d0lrFWpXJuZ/+Jc+h5uaS6JP+VKbIA8XPm3Fcjl/+9Jwdi3lXHnIJQ77F5VL7A5B2+8CvkdEVWxQkr4MdNovrdd+9jEwBNZoo6X4+RtW1DC0i3eETUQNtFwFkpLZKhyuuoze2a/Yo67MmZ2XPUFo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1751358902; c=relaxed/simple;
-	bh=0xe8FGfrXDzC5wjnPnQaezc6X0eO0KIJ+XiANWs49w4=;
-	h=Message-ID:Subject:From:To:Cc:Date:In-Reply-To:References:
-	 Content-Type:MIME-Version; b=DwCbwDRUSqDobQoezrqsQehchpqlEis8fS7HEvQQ91Jb/Bl/89tYpQUDIAen71u+NikIJJHeCOVza94kJGcVclC6G7/XjPinwspFuSYhCSzbEDaJ3iw1IoH1u5MU0oJRau2l7m3SfA+68KNKVDQ1jRVC4HK2ji3bTVHZ+s/hOPU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de; spf=pass smtp.mailfrom=pengutronix.de; arc=none smtp.client-ip=185.203.201.7
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=pengutronix.de
-Received: from drehscheibe.grey.stw.pengutronix.de ([2a0a:edc0:0:c01:1d::a2])
-	by metis.whiteo.stw.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
-	(Exim 4.92)
-	(envelope-from <p.zabel@pengutronix.de>)
-	id 1uWWS2-0000f8-Nt; Tue, 01 Jul 2025 10:34:50 +0200
-Received: from lupine.office.stw.pengutronix.de ([2a0a:edc0:0:900:1d::4e] helo=lupine)
-	by drehscheibe.grey.stw.pengutronix.de with esmtps  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-	(Exim 4.96)
-	(envelope-from <p.zabel@pengutronix.de>)
-	id 1uWWS0-006F1A-37;
-	Tue, 01 Jul 2025 10:34:48 +0200
-Received: from pza by lupine with local (Exim 4.96)
-	(envelope-from <p.zabel@pengutronix.de>)
-	id 1uWWS0-0003VY-2v;
-	Tue, 01 Jul 2025 10:34:48 +0200
-Message-ID: <8301d2862546507303e2dba1dd61906b848552c2.camel@pengutronix.de>
-Subject: Re: [PATCH v2 2/3] media: platform: Add Renesas Input Video Control
- block driver
-From: Philipp Zabel <p.zabel@pengutronix.de>
-To: Daniel Scally <dan.scally@ideasonboard.com>,
- linux-media@vger.kernel.org,  devicetree@vger.kernel.org,
- linux-renesas-soc@vger.kernel.org
-Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
-  Conor Dooley <conor+dt@kernel.org>, Geert Uytterhoeven
- <geert+renesas@glider.be>, Magnus Damm <magnus.damm@gmail.com>,
- jacopo.mondi@ideasonboard.com,  biju.das.jz@bp.renesas.com
-Date: Tue, 01 Jul 2025 10:34:48 +0200
-In-Reply-To: <20250624-ivc-v2-2-e4ecdddb0a96@ideasonboard.com>
-References: <20250624-ivc-v2-0-e4ecdddb0a96@ideasonboard.com>
-	 <20250624-ivc-v2-2-e4ecdddb0a96@ideasonboard.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-User-Agent: Evolution 3.46.4-2 
+	s=arc-20240116; t=1751359067; c=relaxed/simple;
+	bh=Fol+Onr6AX+6q8X/RzSabA3gh8+jqlmEX4hzJihL3W4=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=EeohPDJol5fj2YZDZ/eC16HnHxUfxjGV9QmZAUfZQRL4j9MVq870s8VO5cZOPtHNUTdzwhq8OAubPImOdcuqhEfUYA747rAiFAUpLxcoHo4wYXDkoonf/zhX2fGKyB555P8gllqVXxAd0gEEjPEb9RwGfozUmbfV9ODfSZR2oTs=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=B0N1EdDj; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 2A007C4CEEB;
+	Tue,  1 Jul 2025 08:37:45 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1751359066;
+	bh=Fol+Onr6AX+6q8X/RzSabA3gh8+jqlmEX4hzJihL3W4=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=B0N1EdDjz3lDGF5Gs+i05Q7cHJGLbYBse1LJAKuoPY68lYjUhRkFMKeIokrrRaqbW
+	 YpZHyz4CJ8uKzjm+2eOJWZV4GjZrHER/KyGmZ1ddDOEPthNiVkSTDDWePD+kvfF3zZ
+	 dcAz5StHgYQV3mxUKya2f52hEQG4LEwyY7Iv7yfdy5MCJ86Qfxk4aREE+tVoI9KylW
+	 8YjunFF3aMDlaecPF5WPe3SZdANK5see5NUxsTrzYdxp85NecrWgBiJXg/QI98HF2Y
+	 hVMQMJafOR5Rha547v7p5FeqHgKRIpad22dfjALzxtIIULQYnDk6rZMVW5hkeYKfty
+	 Kr1odQXmh76Zw==
+Date: Tue, 1 Jul 2025 10:37:43 +0200
+From: Uwe =?utf-8?Q?Kleine-K=C3=B6nig?= <ukleinek@kernel.org>
+To: nuno.sa@analog.com
+Cc: linux-gpio@vger.kernel.org, linux-pwm@vger.kernel.org, 
+	devicetree@vger.kernel.org, linux-input@vger.kernel.org, Lee Jones <lee@kernel.org>, 
+	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+	Conor Dooley <conor+dt@kernel.org>, Linus Walleij <linus.walleij@linaro.org>, 
+	Bartosz Golaszewski <brgl@bgdev.pl>, Dmitry Torokhov <dmitry.torokhov@gmail.com>, 
+	Laurent Pinchart <laurent.pinchart@ideasonboard.com>, Liu Ying <victor.liu@nxp.com>
+Subject: Re: [PATCH v6 03/20] mfd: adp5585: Enable oscilator during probe
+Message-ID: <7lgjenjwbkf55ycxogibxvckcmqseq7auoaurvb7sih4nplyuw@xgh3v4qgwghe>
+References: <20250630-dev-adp5589-fw-v6-0-a0f392a0ba91@analog.com>
+ <20250630-dev-adp5589-fw-v6-3-a0f392a0ba91@analog.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-SA-Exim-Connect-IP: 2a0a:edc0:0:c01:1d::a2
-X-SA-Exim-Mail-From: p.zabel@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.whiteo.stw.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: devicetree@vger.kernel.org
+Content-Type: multipart/signed; micalg=pgp-sha512;
+	protocol="application/pgp-signature"; boundary="ibhfvmpogrcuyehc"
+Content-Disposition: inline
+In-Reply-To: <20250630-dev-adp5589-fw-v6-3-a0f392a0ba91@analog.com>
 
-On Di, 2025-06-24 at 13:35 +0100, Daniel Scally wrote:
-> Add a driver for the Input Video Control block in an RZ/V2H SoC which
-> feeds data into the Arm Mali-C55 ISP.
->=20
-> Signed-off-by: Daniel Scally <dan.scally@ideasonboard.com>
-> ---
-> Changes in v2:
->=20
-> 	- Added selects and depends statements to Kconfig entry
-> 	- Fixed copyright year
-> 	- Stopped including in .c files headers already included in .h
-> 	- Fixed uninitialized variable in iterator
-> 	- Only check vvalid member in interrupt function and wait
-> 	  unconditionally elsewhere
-> 	- __maybe_unused for the PM ops
-> 	- Initialise the subdevice after setting up PM
-> 	- Fixed the remove function for the driver to actually do
-> 	  something.
-> 	- Some minor formatting changes
-> 	- Fixed the quantization member for the format
-> 	- Changes accounting for the v2 of the media jobs framework
-> 	- Change min_queued_buffers to 0
-> ---
->  drivers/media/platform/renesas/Kconfig             |   2 +
->  drivers/media/platform/renesas/Makefile            |   1 +
->  drivers/media/platform/renesas/rzv2h-ivc/Kconfig   |  15 +
->  drivers/media/platform/renesas/rzv2h-ivc/Makefile  |   5 +
->  .../platform/renesas/rzv2h-ivc/rzv2h-ivc-dev.c     | 237 +++++++
->  .../platform/renesas/rzv2h-ivc/rzv2h-ivc-subdev.c  | 379 ++++++++++++
->  .../platform/renesas/rzv2h-ivc/rzv2h-ivc-video.c   | 678 +++++++++++++++=
-++++++
->  .../media/platform/renesas/rzv2h-ivc/rzv2h-ivc.h   | 133 ++++
->  8 files changed, 1450 insertions(+)
->=20
-> diff --git a/drivers/media/platform/renesas/Kconfig b/drivers/media/platf=
-orm/renesas/Kconfig
-> index 27a54fa7908384f2e8200f0f7283a82b0ae8435c..5462e524c3708be87a50dd80d=
-4b4017a2466aa99 100644
-> --- a/drivers/media/platform/renesas/Kconfig
-> +++ b/drivers/media/platform/renesas/Kconfig
-> @@ -42,6 +42,8 @@ config VIDEO_SH_VOU
->  source "drivers/media/platform/renesas/rcar-isp/Kconfig"
->  source "drivers/media/platform/renesas/rcar-vin/Kconfig"
->  source "drivers/media/platform/renesas/rzg2l-cru/Kconfig"
-> +source "drivers/media/platform/renesas/rzv2h-ivc/Kconfig"
-> +
-> =20
->  # Mem2mem drivers
-> =20
-> diff --git a/drivers/media/platform/renesas/Makefile b/drivers/media/plat=
-form/renesas/Makefile
-> index 1127259c09d6a51b70803e76c495918e06777f67..b6b4abf01db246aaf8269b802=
-7efee9b0b32083a 100644
-> --- a/drivers/media/platform/renesas/Makefile
-> +++ b/drivers/media/platform/renesas/Makefile
-> @@ -6,6 +6,7 @@
->  obj-y +=3D rcar-isp/
->  obj-y +=3D rcar-vin/
->  obj-y +=3D rzg2l-cru/
-> +obj-y +=3D rzv2h-ivc/
->  obj-y +=3D vsp1/
-> =20
->  obj-$(CONFIG_VIDEO_RCAR_CSI2) +=3D rcar-csi2.o
-> diff --git a/drivers/media/platform/renesas/rzv2h-ivc/Kconfig b/drivers/m=
-edia/platform/renesas/rzv2h-ivc/Kconfig
-> new file mode 100644
-> index 0000000000000000000000000000000000000000..3df8ff585c36fe7c74e1eb040=
-8b344cbc2b4d898
-> --- /dev/null
-> +++ b/drivers/media/platform/renesas/rzv2h-ivc/Kconfig
-> @@ -0,0 +1,15 @@
-> +# SPDX-License-Identifier: GPL-2.0-only
-> +
-> +config VIDEO_RZV2H_IVC
-> +	tristate "Renesas RZ/V2H Input Video Control block driver"
-> +	depends on V4L_PLATFORM_DRIVERS
-> +	depends on VIDEO_DEV
-> +	depends on ARCH_RENESAS || COMPILE_TEST
-> +	depends on OF
-> +	select VIDEOBUF2_DMA_CONTIG
-> +	select MEDIA_CONTROLLER
-> +	select VIDEO_V4L2_SUBDEV_API
-> +	select RESET_CONTROLLER
 
-There is no need to select RESET_CONTROLLER, the API has stubs to allow
-compiling without it.
+--ibhfvmpogrcuyehc
+Content-Type: text/plain; protected-headers=v1; charset=us-ascii
+Content-Disposition: inline
+Subject: Re: [PATCH v6 03/20] mfd: adp5585: Enable oscilator during probe
+MIME-Version: 1.0
 
-regards
-Philipp
+Hello,
+
+just one comment that I saw while skimming over this series in my
+mailbox:
+
+$Subject ~= s/oscilator/oscillator/
+
+Best regards
+Uwe
+
+--ibhfvmpogrcuyehc
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAABCgAdFiEEP4GsaTp6HlmJrf7Tj4D7WH0S/k4FAmhjnlUACgkQj4D7WH0S
+/k6rugf/fAQpHtJXXJ+9liGajvF59VUtUco5aeDGq/SlLPu2XqMsQeYnNn62EsnQ
+KEaVvnxpasvpOuLby1Ormf8dD+OkMb8FAF0syjtLeXGFm+YPdgMmnh8GPOr1x39Q
++gLCxVKqo/BfU9jYY+XfPyUYcHlh1US/A/2QCupYEARsVFRzFABXpguWL0+52LOi
+5jSlu9pQA7k/4mjdTptImYEn3ZDaRtNjD7MgeL0Q+i7w1YonX1Os0e0OcjlwDVOF
+vcdwlLr9LFnHxeZuXA8xOzS0GYYPQ7yxPWlqpcmSCcOk41CJHYQVMRr5rRPx4nbF
+k5dBc4bjHjD43eUfoofFmrzPwP0llQ==
+=2BbF
+-----END PGP SIGNATURE-----
+
+--ibhfvmpogrcuyehc--
 
