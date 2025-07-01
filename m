@@ -1,282 +1,198 @@
-Return-Path: <devicetree+bounces-191456-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-191459-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4B69CAEF632
-	for <lists+devicetree@lfdr.de>; Tue,  1 Jul 2025 13:12:19 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 20CBBAEF640
+	for <lists+devicetree@lfdr.de>; Tue,  1 Jul 2025 13:13:35 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 704A93B2DCE
-	for <lists+devicetree@lfdr.de>; Tue,  1 Jul 2025 11:11:52 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 476EE4A41DC
+	for <lists+devicetree@lfdr.de>; Tue,  1 Jul 2025 11:13:35 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8350D2727EE;
-	Tue,  1 Jul 2025 11:12:14 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4F93C2727FD;
+	Tue,  1 Jul 2025 11:13:29 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="FcXtpURC"
+	dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.b="JddWcaDL"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-lf1-f44.google.com (mail-lf1-f44.google.com [209.85.167.44])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D5EFF270EDD
-	for <devicetree@vger.kernel.org>; Tue,  1 Jul 2025 11:12:12 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6CC74270EDD
+	for <devicetree@vger.kernel.org>; Tue,  1 Jul 2025 11:13:27 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.44
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1751368334; cv=none; b=mSLOd8bekEbKHiwn7S0R14S3Gbr36g3ObG93X1bnIsBHkQrHH5uUoy69rpCuSOJwTtRAft7XSTtoPrxXZFQtocS9iJcxcOJ56I1lSPKtSRJSe89v0z3X1In7lbxGTEvZMlLXtHH7Hl2+pEu/LUXkaHfr9bP/OfSJVSpWRoutcX0=
+	t=1751368409; cv=none; b=b7U19RcJi8feiGGWylm7Ew4C/GHV3+PLfPp5KIxZZ1Tri0J1r9rDjS5P0ySkxr4CjBcJtN18zejxdENfVwGHcFUYPSckGYDD6Fe76JwIp05vd033I4RvnpJrI+t1dst8rZRLnPeIjyZiBJFDF/bH1Yhn5vTwH+aXGzVxX/cP18Y=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1751368334; c=relaxed/simple;
-	bh=QEZ21qlcwB44HosYYOE2/QtOlPopnVPyTlzTQNsGFuU=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=fvi5rzPaqZ8wtc5I5DAy3nW1QJU/gRIR9WLwv2dkYVaWbKBvstghnbKfAIuCGDJjr/5w+328sFmYw7QqDIuEuKWaFcNvFTcfRKHNkD/DyGvpEtqQiTWalDL9jigtOGghUcRG4RoRieHmHofPoz5TOiqeIItPv7+RSkptWD0JQyU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=FcXtpURC; arc=none smtp.client-ip=205.220.180.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
-Received: from pps.filterd (m0279869.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 561A1mIk025201
-	for <devicetree@vger.kernel.org>; Tue, 1 Jul 2025 11:12:12 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
-	cc:content-type:date:from:in-reply-to:message-id:mime-version
-	:references:subject:to; s=qcppdkim1; bh=Wn8dIacluJa4oe1kQscHimYh
-	2WUFSc+TGJ60KVihadk=; b=FcXtpURCA3rqRaj2db5Nz7QWjZH3PELmVJ1qUYG5
-	G2tJp1PIWDe91UC7tCzakD+6FB1WFzT6vF9tONX13TeHQbxfIlRoZkRqeg9lMIq3
-	z+/RmOkVBunY+Q+d+Ux+CcGuXj4TzTpOPDlmUVFDay/unbz2SvAUjrlmGl+ot31c
-	+9TOFltv71Y1AlBKMepawxccGLO/R+FGF2nSmP7IRqXcISTixBxEbOlP+g3TZfKX
-	eEiLHrpd3AW3hAfG0JzHia1V0HCeQdlOk0TDOTbQT8AanPOVBOAJUJXa0YXhbj6C
-	g/eR1pNq1CQ2SfZ+/DjRfJy0NoF1Vmx8m0Q/KMHLJdqHfg==
-Received: from mail-qk1-f199.google.com (mail-qk1-f199.google.com [209.85.222.199])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 47kd64nv88-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Tue, 01 Jul 2025 11:12:11 +0000 (GMT)
-Received: by mail-qk1-f199.google.com with SMTP id af79cd13be357-7caee990721so737347985a.1
-        for <devicetree@vger.kernel.org>; Tue, 01 Jul 2025 04:12:11 -0700 (PDT)
+	s=arc-20240116; t=1751368409; c=relaxed/simple;
+	bh=FeqVp2yCUZ3ij1peE3WeZz1cWGh+QgySUCT2N/2Xbjo=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=dxRpD7vmCpkuiEVoXoxcP/bIuPIZ8018AG5rUVDBZxnhlzgdFPHS7INdkWSgy7X5mvACZKkmhcoKSJtKA4eFP/mBfckm+EZCAW+BSTTUYbsspZYx9VT3nHDSyxIW7U1yzOdobVcL6u2TfbmU4ydo0DAZn9TudQrBEYYorGWTKuk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=chromium.org; spf=pass smtp.mailfrom=chromium.org; dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.b=JddWcaDL; arc=none smtp.client-ip=209.85.167.44
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=chromium.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=chromium.org
+Received: by mail-lf1-f44.google.com with SMTP id 2adb3069b0e04-54b10594812so3694186e87.1
+        for <devicetree@vger.kernel.org>; Tue, 01 Jul 2025 04:13:27 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=chromium.org; s=google; t=1751368405; x=1751973205; darn=vger.kernel.org;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=bGjQ61S1++mVkf3/jYVKvuXkIa1IOFszhbgMmRDC9tQ=;
+        b=JddWcaDLnK2wDhdA4L+9ZyeeWDb9HoAUziWpGpePC9PwYv+i572RcoiNLzdmmuRPrq
+         hyFm49ZvbBGLY7oW5pQvlX7J2KbpdCj1Cgad9IPrgV8WPKjOaR6XgPJ8deF/LeSzRncr
+         3aZ3CMCmoWamDAXoUBFcbk5UuJIh8uaHyh9D4=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1751368331; x=1751973131;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=Wn8dIacluJa4oe1kQscHimYh2WUFSc+TGJ60KVihadk=;
-        b=IM+xIPEv3HIl9/8x98zgJ98wrTx35RledcB+XdoleNaY2Qee3DvA0ClJdJv6OQvw6n
-         YsNL4VTJDBV8XEnUnho9HTZlfdPEPhasO0daZXAxqNDwzfXz4ewzdCWxT4Mm1GKvKAAU
-         RMAW2c/aV1PI4BiihdDPpylZKG7QOrWlZ+09AzR+HiR5TakncotnOq7jz4wbsoVpNoGq
-         yCzKWwSF3AjZNJ9Mz3u47YvTU/xKVIFg+An6jhRLHy+9wuOP7/crQEdvIqtEp/HepgKg
-         4J7Ihz/YkJEHW1M/NkwmU7XwCr/dnP/EFVnXnvR84nTU30j7+ZP7ALlUKMbp/pstbiYf
-         fFGw==
-X-Forwarded-Encrypted: i=1; AJvYcCUbmH6lR0U0piuCKtH28vmL2zmsUKxMT8LkEieWoF4pcCDtmEcPpID1xuWGmxYkx+4dExGWYOAcYOK7@vger.kernel.org
-X-Gm-Message-State: AOJu0Yw2zW2ggmFrutOVz1NErnLdHKhZIWIRu7f/JjgGnVZ+Mz79Ca8l
-	5nETkue300aJwEArJoAP+CE2sqs/kQbvZBX4k/+E7Tf77xMkfIIOhS01bRyZA6qg6FdN/AjuMBP
-	sm5yu1Dxg36Uv+WRDnhf/JXTc8tRRkRNoBMe8TIQjccC5aggHRamLX4OAYJxQfcCI
-X-Gm-Gg: ASbGncuWu/i1LtkyUXeoU/F6rwTkrWvHjpIS+2Kvc6NWFKl5CV5Eh0N+gWxpWlqjfl9
-	IEOeivsG+uKnEEiWAI7alysLHgFCMgK4gEIb1R+zI42dYtGfSeMuzyYI3glCyN9Bi10uNnPX36a
-	4MwdUulLPVPWpkykOqnqJJGWkNC+R7ADskYYfwi4RR6CyeMVw+12Pu1Tyyrju2NnB6Z5IVgy5Am
-	afNSU1MBCasjUTZ6CKZvpAhxInF2P6d19cENfkJfNKgZfIP8mUrocSD6VaEYZFDJ/ghbMxzLNNT
-	Im0blDLtJpAiARa0erT5cmOiAX54jXr6IG6y7/Xd6vJwVOp3cWFG4FxeL7ysFdVk0tISMtPwLez
-	MsVP3K2jKe3//jMc1SF6bUDe4dLdrbxfwOvc=
-X-Received: by 2002:a05:620a:6504:b0:7d4:57b7:bbf8 with SMTP id af79cd13be357-7d457b7beb5mr1100026285a.49.1751368330754;
-        Tue, 01 Jul 2025 04:12:10 -0700 (PDT)
-X-Google-Smtp-Source: AGHT+IFF9diEhxnvxYx9K6OFtUy5pjQeD6hdLrsmwhYyKkExk8FnCoGf4cY0maUEtbdzawGa3/IPCA==
-X-Received: by 2002:a05:620a:6504:b0:7d4:57b7:bbf8 with SMTP id af79cd13be357-7d457b7beb5mr1100021485a.49.1751368330318;
-        Tue, 01 Jul 2025 04:12:10 -0700 (PDT)
-Received: from umbar.lan (2001-14ba-a0c3-3a00-264b-feff-fe8b-be8a.rev.dnainternet.fi. [2001:14ba:a0c3:3a00:264b:feff:fe8b:be8a])
-        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-5550b24038bsm1797002e87.25.2025.07.01.04.12.08
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 01 Jul 2025 04:12:09 -0700 (PDT)
-Date: Tue, 1 Jul 2025 14:12:07 +0300
-From: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
-To: Praveen Talari <quic_ptalari@quicinc.com>
-Cc: Bjorn Andersson <andersson@kernel.org>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Jiri Slaby <jirislaby@kernel.org>, Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Konrad Dybcio <konradybcio@kernel.org>, linux-arm-msm@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-serial@vger.kernel.org,
-        devicetree@vger.kernel.org, psodagud@quicinc.com, djaggi@quicinc.com,
-        quic_msavaliy@quicinc.com, quic_vtanuku@quicinc.com,
-        quic_arandive@quicinc.com, quic_mnaresh@quicinc.com,
-        quic_shazhuss@quicinc.com
-Subject: Re: [PATCH v6 7/8] serial: qcom-geni: Enable PM runtime for serial
- driver
-Message-ID: <tt2crsexdnhlotlo3z5uxyta6jrnnvom7aqwsjvopwueazbuih@2l4h6xjpwlar>
-References: <20250606172114.6618-1-quic_ptalari@quicinc.com>
- <20250606172114.6618-8-quic_ptalari@quicinc.com>
- <d6cr4elhrbh27lmlcv5xzuel75uvsgi7klxjkevm7vg4jcbawe@5ojgetrxkag5>
- <f87807c9-5249-4d97-ab89-898b7d8d260d@quicinc.com>
+        d=1e100.net; s=20230601; t=1751368405; x=1751973205;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=bGjQ61S1++mVkf3/jYVKvuXkIa1IOFszhbgMmRDC9tQ=;
+        b=CpxZdIcSCVWS8oA3RKFGtpxt+G1EVmdOouUz2PnVv6DqCNCF/2JkxhU1GrJKNI2wdd
+         dzAZQQcXQMS8MZubNTounRC4YpB43wFom8lk4l7MXG1JMviREpNQYapwG12g2RcLKvLn
+         iXzFL/iM8IqWr274RkBtd24/LLlEysB/zOlvoDeEZlkRhq0M/YMwXTebs2NtgR/nrvJp
+         HOthbVIvvYGHcA9Lp5JrN79xAnw9RUiIy6qgYR9WF5670yMCqe781AFZiL7xgP1GxeGX
+         3P4M/rL6gA9oVqmSZ8KfxT7EL3YclsbHlkjDFIXYMkSMY5fKkI+j45itqOU12ezJoBvb
+         kFtw==
+X-Forwarded-Encrypted: i=1; AJvYcCWtoZCgnYzDX8I86hV+fQIYc9GoJQPU2FF+QRCNTeiovSD68Id6NW1CJwIfOsf7Wlxz+iItBTpZko52@vger.kernel.org
+X-Gm-Message-State: AOJu0YziwsRDEQjHufsvgBjDX2jiSCNsNszLgXck3kiP4BNTw7Kfoa9u
+	6r4Pe9D5jO7bceYSCHT6OcpkBsZUXBqqfdXNZAFeVA1ja3w9AeggYa0atna3JoyqwdBmwWeKh/Y
+	eBTJYww==
+X-Gm-Gg: ASbGnctPCoLZ34qj6bgyVg1B+vfnIyALOTFvbWmJnFNrK1i4HfUjtcFUCYpyCky0tqt
+	WhyBzIzDn5t/Ik4gC6e/woiJ7Jz36EqF5VjF47nqVClycBn2lF/19w786ypA+5jbJN3FIPdUbqj
+	md3JxjCTnd/uFZVBEdnAB1q3ZbvD6wypMjE5txEe5vuuYQwWpBy39WXxHge5cwa4dTZRO7j3cyv
+	XV/ugpIpeUok8cBm3AQ9/gEO+X5PXfbV9P2K8/Zpc+fCl86dkKacunGWXt5SMzfACVCNhErWw0P
+	YwxtYZUNpwxo2vi0tY5nrtnRHtlLVRD/xOtb7r/7gVTz0Dchn/SYE3NXtzOFJs089QQX3ncFvti
+	6CJj+ZsiJaO1quVF9R4QhkUsBiqOpy5UXWno=
+X-Google-Smtp-Source: AGHT+IGqbG0ZVuBlA/3N6vF0PtQekQS8JO92M8V38F8hxc0QIiO8HFsASfX4hcdkpvGmAUXWRwSf4A==
+X-Received: by 2002:a05:6512:2315:b0:553:252f:aded with SMTP id 2adb3069b0e04-5550b861677mr5886108e87.6.1751368405273;
+        Tue, 01 Jul 2025 04:13:25 -0700 (PDT)
+Received: from mail-lf1-f53.google.com (mail-lf1-f53.google.com. [209.85.167.53])
+        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-5550b240461sm1777533e87.1.2025.07.01.04.13.23
+        for <devicetree@vger.kernel.org>
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 01 Jul 2025 04:13:24 -0700 (PDT)
+Received: by mail-lf1-f53.google.com with SMTP id 2adb3069b0e04-555024588a8so3287406e87.0
+        for <devicetree@vger.kernel.org>; Tue, 01 Jul 2025 04:13:23 -0700 (PDT)
+X-Forwarded-Encrypted: i=1; AJvYcCXk2qX2QnOA1W/jskYs1bvqvpP51Y1K99XhksLrlcXsWbQmjvQbD/K8DWbNBkoZJFgIvr63kW2+gvsS@vger.kernel.org
+X-Received: by 2002:a05:6512:224b:b0:553:cf38:5ea1 with SMTP id
+ 2adb3069b0e04-5550b87b62cmr5806214e87.15.1751368403239; Tue, 01 Jul 2025
+ 04:13:23 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <f87807c9-5249-4d97-ab89-898b7d8d260d@quicinc.com>
-X-Authority-Analysis: v=2.4 cv=Z+PsHGRA c=1 sm=1 tr=0 ts=6863c28b cx=c_pps
- a=HLyN3IcIa5EE8TELMZ618Q==:117 a=xqWC_Br6kY4A:10 a=kj9zAlcOel0A:10
- a=Wb1JkmetP80A:10 a=VwQbUJbxAAAA:8 a=KKAkSRfTAAAA:8 a=COk6AnOGAAAA:8
- a=Jl-IZ22V7OrDAWU4FEoA:9 a=CjuIK1q_8ugA:10 a=-_B0kFfA75AA:10
- a=bTQJ7kPSJx9SKPbeHEYW:22 a=cvBusfyB2V15izCimMoJ:22 a=TjNXssC_j7lpFel5tvFf:22
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwNzAxMDA2OCBTYWx0ZWRfX0pVCc6AhrQOl
- p2AsflmSH7MY67UCO/EHp/4ctRLVPd2e7+y/pWBvcMvRU66iE26lN80qjv3eQR1SVkw1Sk3RGdp
- 5QhXAI5LOh3B2DdFMaTDd/au9rGA//NQOVUrC4ZovzKLQeuwjuur3FQnXRGAQd0EIeF+4Uy3x1p
- LAlqDTbzJHRgmIx01YvCF0iLNe7wLqtCJkmb7JDdXXecze6Jj9mXspkyF8mlgQvwEF1tIW9ycaq
- Ubm77I1mA/8F0wRZhUeHRhSkJQC56GgVo35xCgGvH1C/tp9aqbkZq7ZAUjKPCHnKJlDLLxLsV6w
- N1tdtWOA8VsFL3WJZzFGgmtsE0AvEXrkDhDRZqTtEZ9uKZL298Kt+O0rVWLR7IqQCEwBVwQOHhE
- QFgOly6RrAAprISXFJxVg8Wc0Oh1VlOpAhCgVb49Rflc1nXmec55EDn2DizaLgHkisJN8UG+
-X-Proofpoint-GUID: YWiWGmpqJWCefUO5GSPdFg0C-mMnM3ix
-X-Proofpoint-ORIG-GUID: YWiWGmpqJWCefUO5GSPdFg0C-mMnM3ix
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1099,Hydra:6.1.7,FMLib:17.12.80.40
- definitions=2025-07-01_02,2025-06-27_01,2025-03-28_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- phishscore=0 lowpriorityscore=0 clxscore=1015 malwarescore=0 mlxlogscore=999
- spamscore=0 adultscore=0 mlxscore=0 priorityscore=1501 bulkscore=0
- impostorscore=0 suspectscore=0 classifier=spam authscore=0 authtc=n/a authcc=
- route=outbound adjust=0 reason=mlx scancount=1 engine=8.19.0-2505280000
- definitions=main-2507010068
+References: <20250605-uvc-orientation-v2-0-5710f9d030aa@chromium.org>
+ <20250605-uvc-orientation-v2-10-5710f9d030aa@chromium.org> <20250629181246.GE6260@pendragon.ideasonboard.com>
+In-Reply-To: <20250629181246.GE6260@pendragon.ideasonboard.com>
+From: Ricardo Ribalda <ribalda@chromium.org>
+Date: Tue, 1 Jul 2025 13:13:10 +0200
+X-Gmail-Original-Message-ID: <CANiDSCsu0RT4dcGyBJRutP=9HTe+niUoohxTZE=qJ8O_9ez=+A@mail.gmail.com>
+X-Gm-Features: Ac12FXyUB7J2CzeHXupatytT-Rncr6S6tZS3kWRK4b67_iOG9R3ef-6_Er_0YxQ
+Message-ID: <CANiDSCsu0RT4dcGyBJRutP=9HTe+niUoohxTZE=qJ8O_9ez=+A@mail.gmail.com>
+Subject: Re: [PATCH v2 10/12] media: uvcvideo: Add get_* functions to uvc_entity
+To: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+Cc: Hans de Goede <hdegoede@redhat.com>, Mauro Carvalho Chehab <mchehab@kernel.org>, 
+	Hans Verkuil <hverkuil@xs4all.nl>, Sakari Ailus <sakari.ailus@linux.intel.com>, 
+	Greg Kroah-Hartman <gregkh@linuxfoundation.org>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Linus Walleij <linus.walleij@linaro.org>, Bartosz Golaszewski <brgl@bgdev.pl>, 
+	"Rafael J. Wysocki" <rafael@kernel.org>, Len Brown <lenb@kernel.org>, linux-media@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, linux-usb@vger.kernel.org, 
+	devicetree@vger.kernel.org, linux-gpio@vger.kernel.org, 
+	linux-acpi@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
 
-On Mon, Jun 30, 2025 at 10:40:25AM +0530, Praveen Talari wrote:
-> Hi Bjorn,
-> 
-> Thank you for review.
-> 
-> On 6/17/2025 9:23 PM, Bjorn Andersson wrote:
-> > On Fri, Jun 06, 2025 at 10:51:13PM +0530, Praveen Talari wrote:
-> > > Add Power Management (PM) runtime support to Qualcomm GENI
-> > > serial driver.
-> > > 
-> > 
-> > Doesn't this have impact on the behavior outside of your
-> > project? Or is the transition from qcom_geni_serial_pm() to explicit
-> > RPM merely moving code around?
-> > 
-> > Seems like this deserves to not be hidden in a middle of a patch series.
-> > 
-> > > Introduce necessary callbacks and updates to ensure seamless
-> > > transitions between power states, enhancing overall power
-> > > efficiency.
-> > > 
-> > 
-> > This commit message fails to state why we need runtime PM support in the
-> > driver.
-> 
-> Introduce PM runtime support to the Qualcomm GENI serial driver to enable
-> better power efficiency and modularity across diverse resource control
-> mechanisms, including Linux and firmware-managed systems.
-> 
-> As part of this enhancement, the existing qcom_geni_serial_pm() logic to
-> use standard PM runtime APIs such as pm_runtime_resume_and_get() and
-> pm_runtime_put_sync(). Power state transitions are now handled through
-> the geni_serial_resources_on() and geni_serial_resources_off() functions.
-> 
-> Is it fine?
-> Please guide me/correct me if needed
+Hi Laurent
 
-Please start by stating out the problem that you are trying to solve.
-There is no actual issue description in your patch.
+On Sun, 29 Jun 2025 at 20:13, Laurent Pinchart
+<laurent.pinchart@ideasonboard.com> wrote:
+>
+> Hi Ricardo,
+>
+> Thank you for the patch.
+>
+> On Thu, Jun 05, 2025 at 05:53:03PM +0000, Ricardo Ribalda wrote:
+> > Virtual entities need to provide more values than get_cur and get_cur
+>
+> I think you meant "get_info and get_cur".
+>
+> > for their controls. Add support for get_def, get_min, get_max and
+> > get_res.
+>
+> Do they ? The UVC specification defines controls that don't list
+> GET_DEF, GET_MIN, GET_MAX and GET_RES as mandatory requests. Can't we do
+> the same for the software controls ? This patch is meant to support the
+> UVC_SWENTITY_ORIENTATION and UVC_SWENTITY_ROTATION control in the next
+> patch, and those are read-only controls. Aren't GET_INFO and GET_CUR
+> enough ?
 
-> 
-> Thanks,
-> Praveen Talari
-> > 
-> > Also, start your commit message with a problem description, per
-> > https://docs.kernel.org/process/submitting-patches.html#describe-your-changes
-> > 
-> > > Reviewed-by: Bryan O'Donoghue <bryan.odonoghue@linaro.org>
-> > > Signed-off-by: Praveen Talari <quic_ptalari@quicinc.com>
-> > > ---
-> > > v5 -> v6
-> > > - added reviewed-by tag in commit
-> > > - added __maybe_unused to PM callback functions to avoid
-> > >    warnings of defined but not used
-> > > ---
-> > >   drivers/tty/serial/qcom_geni_serial.c | 33 +++++++++++++++++++++++----
-> > >   1 file changed, 29 insertions(+), 4 deletions(-)
-> > > 
-> > > diff --git a/drivers/tty/serial/qcom_geni_serial.c b/drivers/tty/serial/qcom_geni_serial.c
-> > > index b6fa7dc9b1fb..3691340ce7e8 100644
-> > > --- a/drivers/tty/serial/qcom_geni_serial.c
-> > > +++ b/drivers/tty/serial/qcom_geni_serial.c
-> > > @@ -1686,10 +1686,10 @@ static void qcom_geni_serial_pm(struct uart_port *uport,
-> > >   		old_state = UART_PM_STATE_OFF;
-> > >   	if (new_state == UART_PM_STATE_ON && old_state == UART_PM_STATE_OFF)
-> > > -		geni_serial_resources_on(uport);
-> > > +		pm_runtime_resume_and_get(uport->dev);
-> > >   	else if (new_state == UART_PM_STATE_OFF &&
-> > >   		 old_state == UART_PM_STATE_ON)
-> > > -		geni_serial_resources_off(uport);
-> > > +		pm_runtime_put_sync(uport->dev);
-> > >   }
-> > > @@ -1827,9 +1827,11 @@ static int qcom_geni_serial_probe(struct platform_device *pdev)
-> > >   		return ret;
-> > >   	}
-> > > +	pm_runtime_enable(port->se.dev);
-> > 
-> > Any reason not to use devm_pm_runtime_enable() and avoid the
-> > two pm_runtime_disable() below?
-> > 
-> > Regards,
-> > Bjorn
-> > 
-> > > +
-> > >   	ret = uart_add_one_port(drv, uport);
-> > >   	if (ret)
-> > > -		return ret;
-> > > +		goto error;
-> > >   	if (port->wakeup_irq > 0) {
-> > >   		device_init_wakeup(&pdev->dev, true);
-> > > @@ -1839,11 +1841,15 @@ static int qcom_geni_serial_probe(struct platform_device *pdev)
-> > >   			device_init_wakeup(&pdev->dev, false);
-> > >   			ida_free(&port_ida, uport->line);
-> > >   			uart_remove_one_port(drv, uport);
-> > > -			return ret;
-> > > +			goto error;
-> > >   		}
-> > >   	}
-> > >   	return 0;
-> > > +
-> > > +error:
-> > > +	pm_runtime_disable(port->se.dev);
-> > > +	return ret;
-> > >   }
-> > >   static void qcom_geni_serial_remove(struct platform_device *pdev)
-> > > @@ -1855,9 +1861,26 @@ static void qcom_geni_serial_remove(struct platform_device *pdev)
-> > >   	dev_pm_clear_wake_irq(&pdev->dev);
-> > >   	device_init_wakeup(&pdev->dev, false);
-> > >   	ida_free(&port_ida, uport->line);
-> > > +	pm_runtime_disable(port->se.dev);
-> > >   	uart_remove_one_port(drv, &port->uport);
-> > >   }
-> > > +static int __maybe_unused qcom_geni_serial_runtime_suspend(struct device *dev)
-> > > +{
-> > > +	struct qcom_geni_serial_port *port = dev_get_drvdata(dev);
-> > > +	struct uart_port *uport = &port->uport;
-> > > +
-> > > +	return geni_serial_resources_off(uport);
-> > > +}
-> > > +
-> > > +static int __maybe_unused qcom_geni_serial_runtime_resume(struct device *dev)
-> > > +{
-> > > +	struct qcom_geni_serial_port *port = dev_get_drvdata(dev);
-> > > +	struct uart_port *uport = &port->uport;
-> > > +
-> > > +	return geni_serial_resources_on(uport);
-> > > +}
-> > > +
-> > >   static int qcom_geni_serial_suspend(struct device *dev)
-> > >   {
-> > >   	struct qcom_geni_serial_port *port = dev_get_drvdata(dev);
-> > > @@ -1901,6 +1924,8 @@ static const struct qcom_geni_device_data qcom_geni_uart_data = {
-> > >   };
-> > >   static const struct dev_pm_ops qcom_geni_serial_pm_ops = {
-> > > +	SET_RUNTIME_PM_OPS(qcom_geni_serial_runtime_suspend,
-> > > +			   qcom_geni_serial_runtime_resume, NULL)
-> > >   	SYSTEM_SLEEP_PM_OPS(qcom_geni_serial_suspend, qcom_geni_serial_resume)
-> > >   };
-> > > -- 
-> > > 2.17.1
-> > > 
+V4L2_CID_CAMERA_ROTATION has the type UVC_CTRL_DATA_TYPE_UNSIGNED,
+that time requires get_min and get_max.
+We can create a new type UVC_CTRL_DATA_TYPE_UNSIGNED_READ_ONLY that
+fakes min, max and res, but I think that it is cleaner this approach.
+
+>
+> >
+> > This is a preparation patch.
+> >
+> > Signed-off-by: Ricardo Ribalda <ribalda@chromium.org>
+> > ---
+> >  drivers/media/usb/uvc/uvc_ctrl.c | 12 ++++++++++++
+> >  drivers/media/usb/uvc/uvcvideo.h |  8 ++++++++
+> >  2 files changed, 20 insertions(+)
+> >
+> > diff --git a/drivers/media/usb/uvc/uvc_ctrl.c b/drivers/media/usb/uvc/uvc_ctrl.c
+> > index 21ec7b978bc7aca21db7cb8fd5d135d876f3330c..59be62ae24a4219fa9d7aacf2ae7382c95362178 100644
+> > --- a/drivers/media/usb/uvc/uvc_ctrl.c
+> > +++ b/drivers/media/usb/uvc/uvc_ctrl.c
+> > @@ -596,6 +596,18 @@ static int uvc_ctrl_query_entity(struct uvc_device *dev,
+> >       if (query == UVC_GET_CUR && ctrl->entity->get_cur)
+> >               return ctrl->entity->get_cur(dev, ctrl->entity,
+> >                                            ctrl->info.selector, data, len);
+> > +     if (query == UVC_GET_DEF && ctrl->entity->get_def)
+> > +             return ctrl->entity->get_def(dev, ctrl->entity,
+> > +                                          ctrl->info.selector, data, len);
+> > +     if (query == UVC_GET_MIN && ctrl->entity->get_min)
+> > +             return ctrl->entity->get_min(dev, ctrl->entity,
+> > +                                          ctrl->info.selector, data, len);
+> > +     if (query == UVC_GET_MAX && ctrl->entity->get_max)
+> > +             return ctrl->entity->get_max(dev, ctrl->entity,
+> > +                                          ctrl->info.selector, data, len);
+> > +     if (query == UVC_GET_RES && ctrl->entity->get_res)
+> > +             return ctrl->entity->get_res(dev, ctrl->entity,
+> > +                                          ctrl->info.selector, data, len);
+> >       if (query == UVC_GET_INFO && ctrl->entity->get_info)
+> >               return ctrl->entity->get_info(dev, ctrl->entity,
+> >                                             ctrl->info.selector, data);
+> > diff --git a/drivers/media/usb/uvc/uvcvideo.h b/drivers/media/usb/uvc/uvcvideo.h
+> > index a931750bdea25b9062dcc7644bf5f2ed89c1cb4c..d6da8ed3ad4cf3377df49923e051fe04d83d2e38 100644
+> > --- a/drivers/media/usb/uvc/uvcvideo.h
+> > +++ b/drivers/media/usb/uvc/uvcvideo.h
+> > @@ -261,6 +261,14 @@ struct uvc_entity {
+> >                       u8 cs, u8 *caps);
+> >       int (*get_cur)(struct uvc_device *dev, struct uvc_entity *entity,
+> >                      u8 cs, void *data, u16 size);
+> > +     int (*get_def)(struct uvc_device *dev, struct uvc_entity *entity,
+> > +                    u8 cs, void *data, u16 size);
+> > +     int (*get_min)(struct uvc_device *dev, struct uvc_entity *entity,
+> > +                    u8 cs, void *data, u16 size);
+> > +     int (*get_max)(struct uvc_device *dev, struct uvc_entity *entity,
+> > +                    u8 cs, void *data, u16 size);
+> > +     int (*get_res)(struct uvc_device *dev, struct uvc_entity *entity,
+> > +                    u8 cs, void *data, u16 size);
+> >
+> >       unsigned int ncontrols;
+> >       struct uvc_control *controls;
+>
+> --
+> Regards,
+>
+> Laurent Pinchart
+
+
 
 -- 
-With best wishes
-Dmitry
+Ricardo Ribalda
 
