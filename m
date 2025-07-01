@@ -1,213 +1,202 @@
-Return-Path: <devicetree+bounces-191289-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-191290-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0BFFBAEED59
-	for <lists+devicetree@lfdr.de>; Tue,  1 Jul 2025 06:52:48 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 00326AEEDBF
+	for <lists+devicetree@lfdr.de>; Tue,  1 Jul 2025 07:38:09 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 162BF17D403
-	for <lists+devicetree@lfdr.de>; Tue,  1 Jul 2025 04:52:48 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 43C091BC2F8D
+	for <lists+devicetree@lfdr.de>; Tue,  1 Jul 2025 05:38:23 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 07AAC1F2BB5;
-	Tue,  1 Jul 2025 04:52:44 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C07EB1F4634;
+	Tue,  1 Jul 2025 05:37:40 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="fTq1R9XW"
+	dkim=pass (2048-bit key) header.d=riscstar-com.20230601.gappssmtp.com header.i=@riscstar-com.20230601.gappssmtp.com header.b="iRpS8l+m"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.20])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-pg1-f169.google.com (mail-pg1-f169.google.com [209.85.215.169])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B75A319D8A7;
-	Tue,  1 Jul 2025 04:52:40 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.175.65.20
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B233A20E71C
+	for <devicetree@vger.kernel.org>; Tue,  1 Jul 2025 05:37:38 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.215.169
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1751345563; cv=none; b=gRTG+xnMQgsG3545MosfCtynat8Dnpf/ESBUAzWzSuqbfJAY3AYGFHMj/OnV/RNVEi5cHiIEcc1hHzKnzntZ422E64zctxkd4zf7y/7yxan5FxJAFv+JaIU/+T0wBHYSRZSwWGnHFLhSrCNH8i6wGvxHAlRcJRfLKBFSOpIJb5w=
+	t=1751348260; cv=none; b=jwk6pUxJJlcc8oTiiYn4rqJ5rI2FCtJ0WdFQe3QLzibe6oNPZZNt7jcdx8bA934rKzehtYQIdYLWuqalBgUP+w5OtHhxJBXj0JX3ljCCsS7/wGgzG274Cf0+69j9dbfyUa/8ZquHJc0/LL8n2Ozfq/690C72bsF4TTe9eUJYaPQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1751345563; c=relaxed/simple;
-	bh=qLpGZhMZb9Z8g5y1Iw0lGZyivCoTKa8j9TbnnMY3JnA=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=M5GX6VlHE3L1IKq3RsM4NvwfgH9hPuydWWBr+VBH+rNtgghcUvCnJdaAe05CAIlIew4Dg5kFgfLQdrtoAW/5tL2EZWDGY1rtxiVOejEpTsyIKTcEDlMG1yjHE4is+MndXNeA/jbWjnyZ/DUrjLDnqbAw5bb5j/WMfqeCpA0h9oE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=fTq1R9XW; arc=none smtp.client-ip=198.175.65.20
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1751345560; x=1782881560;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=qLpGZhMZb9Z8g5y1Iw0lGZyivCoTKa8j9TbnnMY3JnA=;
-  b=fTq1R9XW/euhEmGHkLwYJEsLofBkkdF3Zwqwr5UmoO4WxviKyz/LGjwR
-   drVNa82J25zfiFGZI7Kv6eHTJUNSXIkoji7yqLbleBHT+HOIJCCjbnwmS
-   izCdtXLFt1vsPJ+vIkd3Qh/TT4uFJEAH5kXTJG7AVe9C+ERdgfbKFboJu
-   GlpHUkfpb+csNH7lKAKZL2/xpSlt/ZG394TLRu5Fzkabem6O/ga5cN+1T
-   KHM351ue87zrk/QE0tQpOCLmhEqnss1m+v9K5wXg6x4PHu8cxdZBOPQqE
-   E72voGNm0VnlXGxqSwqAZDtlv7MVj8uIS3/96NnxIlrMtBtOlaXK28iwn
-   g==;
-X-CSE-ConnectionGUID: 6R/2/Og3S/eSBBnWMNxp5w==
-X-CSE-MsgGUID: gkiU17o7S9q56bPTKEnG7Q==
-X-IronPort-AV: E=McAfee;i="6800,10657,11480"; a="53312929"
-X-IronPort-AV: E=Sophos;i="6.16,279,1744095600"; 
-   d="scan'208";a="53312929"
-Received: from orviesa003.jf.intel.com ([10.64.159.143])
-  by orvoesa112.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 30 Jun 2025 21:52:40 -0700
-X-CSE-ConnectionGUID: lgY+P2arS0uHkQ3gVdLwdA==
-X-CSE-MsgGUID: zA6h7u5hQn62QceML/UGEA==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.16,279,1744095600"; 
-   d="scan'208";a="158050296"
-Received: from lkp-server01.sh.intel.com (HELO e8142ee1dce2) ([10.239.97.150])
-  by orviesa003.jf.intel.com with ESMTP; 30 Jun 2025 21:52:36 -0700
-Received: from kbuild by e8142ee1dce2 with local (Exim 4.96)
-	(envelope-from <lkp@intel.com>)
-	id 1uWSyv-000ZjC-2J;
-	Tue, 01 Jul 2025 04:52:33 +0000
-Date: Tue, 1 Jul 2025 12:52:02 +0800
-From: kernel test robot <lkp@intel.com>
-To: Oleh Kuzhylnyi <kuzhylol@gmail.com>,
-	Dmitry Torokhov <dmitry.torokhov@gmail.com>
-Cc: oe-kbuild-all@lists.linux.dev, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Sasha Finkelstein <fnkl.kernel@gmail.com>,
-	Javier Carrasco <javier.carrasco.cruz@gmail.com>,
-	Linus Walleij <linus.walleij@linaro.org>,
-	Javier Martinez Canillas <javierm@redhat.com>,
-	Janne Grunau <j@jannau.net>, Igor Opaniuk <igor.opaniuk@gmail.com>,
-	Neal Gompa <neal@gompa.dev>, Jeff LaBundy <jeff@labundy.com>,
-	Neil Armstrong <neil.armstrong@linaro.org>,
-	Oleh Kuzhylnyi <kuzhylol@gmail.com>, linux-input@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v8 2/2] input: add hynitron cst816x series touchscreen
-Message-ID: <202507011209.R4JNwHSj-lkp@intel.com>
-References: <20250629162523.291887-2-kuzhylol@gmail.com>
+	s=arc-20240116; t=1751348260; c=relaxed/simple;
+	bh=rNXhKprF9+ev69e0bQtMWsAKJz8Oyc4P7Auc+A4an9U=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=ud9mYzpTL+3SPQHpnQOlx8Vq6shErRZ4ZMDRugJrqu7JM0RUd39kpwqHCjJT2hPv58DB+cc7dFKkAoV1Tdkg5oOQkJW9xyjacIywuiMidEQymj7ybq9gYj8kNqZ8Ha8j+sxLE4Ld2k6v3J2dwYuHLdJ+v3GUo0LW23bBwwkRQtc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=riscstar.com; spf=pass smtp.mailfrom=riscstar.com; dkim=pass (2048-bit key) header.d=riscstar-com.20230601.gappssmtp.com header.i=@riscstar-com.20230601.gappssmtp.com header.b=iRpS8l+m; arc=none smtp.client-ip=209.85.215.169
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=riscstar.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=riscstar.com
+Received: by mail-pg1-f169.google.com with SMTP id 41be03b00d2f7-b31c978688dso3208325a12.1
+        for <devicetree@vger.kernel.org>; Mon, 30 Jun 2025 22:37:38 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=riscstar-com.20230601.gappssmtp.com; s=20230601; t=1751348258; x=1751953058; darn=vger.kernel.org;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=3OkurqPOKVLu65iMMmlRK8LRX8T/SvzGfPgIac7M7N4=;
+        b=iRpS8l+mPMQnexjXtf9A5rVqIbyWr+cexrtsZ1tVnicnSBS3yVHtTAtNRoPVUOT7z5
+         B8c6VAcTj7sODhiXlCIjCrkruBQ3sQsmNvbiQpwr2maB/2SvdSIr7WvCEV5edRx1kCAq
+         /YKlCvSIJLcu2C6MgBYkBtDbQ2iNOh+lBT+GezjukMpJag5EuBQIRqwzWMdY5ERrMGmH
+         XeSklvv+LKt3+xiIeK9Qku3y53if5G6w0gdQpMPdupQAQVutJarFPSUs+wgqIvbQRocr
+         T2hHj4Fg/BjOu0Xtgu9LZuhP26giPLXKBuVmeXndPlCns/MmkzecMi2z5xxmMteEN0eW
+         2SPg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1751348258; x=1751953058;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=3OkurqPOKVLu65iMMmlRK8LRX8T/SvzGfPgIac7M7N4=;
+        b=OYJfGTRrqVQ5s3SClNTeAYHCZZv49W1/V2QCkfp2HAdgUEneK2fW7p5uWLFpFQSuQl
+         y5i66kZCyZBD/JyZ3KXZmGO7D6u2DtBuiKCP7rRg94q0/Gi7hj9HePK+VXdcdoL9m/bF
+         AJVKNVb7bayKiDnnK55mzXcutLWFTGRxKBLV5WY1JeMgw5plDlaQMFhZBca38c5C1IVf
+         CBieC3y3Ujp3xIcH6RNkaq0unMha1mwexWy+GqVU7YlQRoEpvjCxbnbeblnif+KRVrto
+         1IdXRVTB8PyObwTi4MkFZ7TcoZlMH1PDvO3NX0RQ/PSr5g0PCmj2pbYSwRXdMDdbkQkV
+         Fy+Q==
+X-Forwarded-Encrypted: i=1; AJvYcCXwId2rNW8icXN+fcAXlusZveRnp1VUQsT2aALwHwNS5WYisgh8feBlUJYwwMseLlePGRjn/YfC3sYm@vger.kernel.org
+X-Gm-Message-State: AOJu0YyZHvIzP1A4x1Zdu5DCjGq42pkJX6tUWUMfu79+BPkdMWl0g57R
+	nbBmvLXdoEbMBqEuzc+TzmZdks3ha53exRRKvHK/BRlFhssvsW6lNu9X9TO/l40KqOo=
+X-Gm-Gg: ASbGnctkwtZ0b7T8c8eccVhnpGSu23eVH8yJPIkT1UMQBouwRG4mb+KnVVp0chEwt04
+	VelS8pJohu8zsjBq7BPqc+9QVhLyBOHjcgt1rnB5Z6GwXxexaXsw4ZgP4Z70HZ/DTeb7YcVfrWU
+	BaBjLLHi8Nk64WL0fVBf/5gqrTsoPQZNYZyHUuiFaCL02+Z4PidK2mMnYydLCvMFA0Im1Cuv47l
+	gax4cwj8Yq1CYZjJlcnvVGc3EJUi2KF+YjNg2xr1lFww/lJjzUW0K/v68NGBLs+9723wsCILjFN
+	mBpAvrbhlCfZ4ONhf9aBnSVNxWBnxpiSjL4YR8s=
+X-Google-Smtp-Source: AGHT+IGUAu2BOtg2ZvlOoErwNcYS0F/WULHswWmUQuGgbrebTfzSSTeVLb4j/vMfvu8YXkL6LJmixA==
+X-Received: by 2002:a17:90b:5386:b0:2fe:85f0:e115 with SMTP id 98e67ed59e1d1-318c925242bmr19994442a91.26.1751348257949;
+        Mon, 30 Jun 2025 22:37:37 -0700 (PDT)
+Received: from [127.0.1.1] ([2403:2c80:6::3092])
+        by smtp.gmail.com with ESMTPSA id d9443c01a7336-23acb39bf5fsm101729865ad.115.2025.06.30.22.37.31
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 30 Jun 2025 22:37:37 -0700 (PDT)
+From: Guodong Xu <guodong@riscstar.com>
+Subject: [PATCH v2 0/8] dmaengine: mmp_pdma: Add SpacemiT K1 SoC support
+ with 64-bit addressing
+Date: Tue, 01 Jul 2025 13:36:54 +0800
+Message-Id: <20250701-working_dma_0701_v2-v2-0-ab6ee9171d26@riscstar.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20250629162523.291887-2-kuzhylol@gmail.com>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIAPZzY2gC/3WS22pbMRBFf8Wc58poRndTSv4jBCONRrZIfemRc
+ xII+feO4zzUpQWBNGL2XnuE3qfBc+cxbVbv08xLH/10lAK/rSba5+OOVa9ST6jR6aBBvZ7m537
+ cbeshb68X2wVVqEjNaZ9zDZMozzO3/vbp+vh0q2f+9SLml9vlVPJgRafDoV82q8WvwauZzPQnV
+ UJcmR5ACXbugxZVudHp2PpOhZZ0C6ZiNHWzwFV54DHyl/T7lxYRbXTiD9oltAoU/6w8P1ztxiX
+ Pa8nw419Yh6hkPYMadU9dJUfBpRyDL+7/PDRXhTyNKi+Dh5obqdd+VovMoEiDtTqixGoPws9jn
+ WlNx0/+OV9of8NTMORN4Wa81ewNWlMrNUM6FNCxWtd8BH+v0i2XHFwtxlDy2cXIAZFsw2KilwO
+ VmjnzvUr6o5fWFj3IRjoBiH3mxGALIgBVLJHuVawbR2skgwmVYow1CTIkzgFCa5qNtVAq/DVXI
+ 80NSPaaE+YajdW6Zie/JjdItnGQpGF6+vj4DbuEOQuXAgAA
+X-Change-ID: 20250701-working_dma_0701_v2-7d2cf506aad7
+To: Vinod Koul <vkoul@kernel.org>, Rob Herring <robh@kernel.org>, 
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, Yixun Lan <dlan@gentoo.org>, 
+ =?utf-8?q?Duje_Mihanovi=C4=87?= <duje.mihanovic@skole.hr>, 
+ Philipp Zabel <p.zabel@pengutronix.de>, 
+ Paul Walmsley <paul.walmsley@sifive.com>, 
+ Palmer Dabbelt <palmer@dabbelt.com>, Albert Ou <aou@eecs.berkeley.edu>, 
+ Alexandre Ghiti <alex@ghiti.fr>
+Cc: Alex Elder <elder@riscstar.com>, Vivian Wang <wangruikang@iscas.ac.cn>, 
+ dmaengine@vger.kernel.org, devicetree@vger.kernel.org, 
+ linux-kernel@vger.kernel.org, linux-riscv@lists.infradead.org, 
+ spacemit@lists.linux.dev, Guodong Xu <guodong@riscstar.com>
+X-Mailer: b4 0.14.2
 
-Hi Oleh,
+This patchset adds support for SpacemiT K1 PDMA controller to the existing
+mmp_pdma driver. The K1 PDMA controller is compatible with Marvell MMP PDMA
+but extends it with 64-bit addressing capabilities through LPAE (Long
+Physical Address Extension) bit and higher 32-bit address registers (DDADRH,
+DSADRH and DTADRH).
 
-kernel test robot noticed the following build warnings:
+In v2, the major update is, per Vinod's feedback, splitting mmp_pdma driver
+changes into two parts:
+  - First patch adds _ops abstraction layer and implements 32-bit support
+  - Second patch adds K1-specific 64-bit support
 
-[auto build test WARNING on dtor-input/next]
-[also build test WARNING on dtor-input/for-linus robh/for-next krzk-dt/for-next linus/master v6.16-rc4 next-20250630]
-[If your patch is applied to the wrong git tree, kindly drop us a note.
-And when submitting patch, we suggest to use '--base' as documented in
-https://git-scm.com/docs/git-format-patch#_base_tree_information]
+The patchset has been tested on BananaPi F3 board.
 
-url:    https://github.com/intel-lab-lkp/linux/commits/Oleh-Kuzhylnyi/input-add-hynitron-cst816x-series-touchscreen/20250630-002723
-base:   https://git.kernel.org/pub/scm/linux/kernel/git/dtor/input.git next
-patch link:    https://lore.kernel.org/r/20250629162523.291887-2-kuzhylol%40gmail.com
-patch subject: [PATCH v8 2/2] input: add hynitron cst816x series touchscreen
-config: microblaze-randconfig-r131-20250701 (https://download.01.org/0day-ci/archive/20250701/202507011209.R4JNwHSj-lkp@intel.com/config)
-compiler: microblaze-linux-gcc (GCC) 15.1.0
-reproduce: (https://download.01.org/0day-ci/archive/20250701/202507011209.R4JNwHSj-lkp@intel.com/reproduce)
+Patch 1, 2, 3, 4 and 5 belong to dmaengine, and has no extra dependencies.
 
-If you fix the issue in a separate patch/commit (i.e. not just a new version of
-the same patch/commit), kindly add following tags
-| Reported-by: kernel test robot <lkp@intel.com>
-| Closes: https://lore.kernel.org/oe-kbuild-all/202507011209.R4JNwHSj-lkp@intel.com/
+Patch 6, 7 and 8 change SpacemiT K1 device tree and RISC-V defconfig. They
+have the following dependencies:
+1. riscv: defconfig: run savedefconfig to reorder it
+    It has been merged into riscv/linux.git (for-next)
+    Link: https://git.kernel.org/riscv/c/d958097bdf88
+2. riscv: dts: spacemit: Add DMA translation buses for K1
+    It is currently under review.
+    Link: https://lore.kernel.org/all/20250623-k1-dma-buses-rfc-wip-v1-0-c0144082061f@iscas.ac.cn/
 
-sparse warnings: (new ones prefixed by >>)
->> drivers/input/touchscreen/hynitron-cst816x.c:97:21: sparse: sparse: incorrect type in assignment (different base types) @@     expected restricted __be16 [usertype] abs_x @@     got unsigned long @@
-   drivers/input/touchscreen/hynitron-cst816x.c:97:21: sparse:     expected restricted __be16 [usertype] abs_x
-   drivers/input/touchscreen/hynitron-cst816x.c:97:21: sparse:     got unsigned long
->> drivers/input/touchscreen/hynitron-cst816x.c:98:21: sparse: sparse: incorrect type in assignment (different base types) @@     expected restricted __be16 [usertype] abs_y @@     got unsigned long @@
-   drivers/input/touchscreen/hynitron-cst816x.c:98:21: sparse:     expected restricted __be16 [usertype] abs_y
-   drivers/input/touchscreen/hynitron-cst816x.c:98:21: sparse:     got unsigned long
->> drivers/input/touchscreen/hynitron-cst816x.c:148:58: sparse: sparse: incorrect type in argument 3 (different base types) @@     expected int value @@     got restricted __be16 [addressable] [usertype] abs_x @@
-   drivers/input/touchscreen/hynitron-cst816x.c:148:58: sparse:     expected int value
-   drivers/input/touchscreen/hynitron-cst816x.c:148:58: sparse:     got restricted __be16 [addressable] [usertype] abs_x
->> drivers/input/touchscreen/hynitron-cst816x.c:149:58: sparse: sparse: incorrect type in argument 3 (different base types) @@     expected int value @@     got restricted __be16 [addressable] [usertype] abs_y @@
-   drivers/input/touchscreen/hynitron-cst816x.c:149:58: sparse:     expected int value
-   drivers/input/touchscreen/hynitron-cst816x.c:149:58: sparse:     got restricted __be16 [addressable] [usertype] abs_y
+To verify the PDMA functionality on SpacemiT K1, it is required to apply
+the following patchsets in order:
+1. [PATCH v3] clk: spacemit: mark K1 pll1_d8 as critical
+    Link: https://lore.kernel.org/all/20250612224856.1105924-1-elder@riscstar.com/
+2. [PATCH v11 0/6] reset: spacemit: add K1 reset support
+    Link: https://lore.kernel.org/all/20250613011139.1201702-1-elder@riscstar.com/
 
-vim +97 drivers/input/touchscreen/hynitron-cst816x.c
+All of these patches are available here:
+https://github.com/docularxu/linux/tree/working_dma_0701_v2
 
-    90	
-    91	static bool cst816x_process_touch(struct cst816x_priv *priv,
-    92					  struct cst816x_touch_desc *desc)
-    93	{
-    94		if (cst816x_i2c_read_register(priv, CST816X_RD_REG, desc, sizeof(*desc)))
-    95			return false;
-    96	
-  > 97		desc->abs_x = get_unaligned_be16(&desc->abs_x) & GENMASK(11, 0);
-  > 98		desc->abs_y = get_unaligned_be16(&desc->abs_y) & GENMASK(11, 0);
-    99	
-   100		dev_dbg(&priv->client->dev, "x: %u, y: %u, t: %u, g: 0x%x\n",
-   101			desc->abs_x, desc->abs_y, desc->touch, desc->gesture);
-   102	
-   103		return true;
-   104	}
-   105	
-   106	static int cst816x_register_input(struct cst816x_priv *priv)
-   107	{
-   108		priv->input = devm_input_allocate_device(&priv->client->dev);
-   109		if (!priv->input)
-   110			return -ENOMEM;
-   111	
-   112		priv->input->name = "Hynitron CST816x Series Touchscreen";
-   113		priv->input->phys = "input/ts";
-   114		priv->input->id.bustype = BUS_I2C;
-   115		input_set_drvdata(priv->input, priv);
-   116	
-   117		input_set_abs_params(priv->input, ABS_X, 0, 240, 0, 0);
-   118		input_set_abs_params(priv->input, ABS_Y, 0, 240, 0, 0);
-   119	
-   120		for (int i = 0; i < priv->keycodemax; i++) {
-   121			if (priv->keycode[i] == KEY_RESERVED)
-   122				continue;
-   123	
-   124			input_set_capability(priv->input, EV_KEY, priv->keycode[i]);
-   125		}
-   126	
-   127		return input_register_device(priv->input);
-   128	}
-   129	
-   130	static void cst816x_reset(struct cst816x_priv *priv)
-   131	{
-   132		gpiod_set_value_cansleep(priv->reset, 1);
-   133		msleep(50);
-   134		gpiod_set_value_cansleep(priv->reset, 0);
-   135		msleep(100);
-   136	}
-   137	
-   138	static irqreturn_t cst816x_irq_cb(int irq, void *cookie)
-   139	{
-   140		struct cst816x_priv *priv = cookie;
-   141		struct cst816x_touch_desc desc;
-   142	
-   143		if (!cst816x_process_touch(priv, &desc))
-   144			return IRQ_HANDLED;
-   145	
-   146		if (desc.touch) {
-   147			input_report_key(priv->input, priv->keycode[CST816X_TOUCH], 1);
- > 148			input_report_abs(priv->input, ABS_X, desc.abs_x);
- > 149			input_report_abs(priv->input, ABS_Y, desc.abs_y);
-   150		}
-   151	
-   152		if (desc.gesture) {
-   153			input_report_key(priv->input, priv->keycode[desc.gesture & 0x0F],
-   154					 desc.touch);
-   155	
-   156			if (!desc.touch)
-   157				input_report_key(priv->input,
-   158						 priv->keycode[CST816X_TOUCH], 0);
-   159		}
-   160	
-   161		input_sync(priv->input);
-   162	
-   163		return IRQ_HANDLED;
-   164	}
-   165	
+Changes in v2:
+- Tag the series as "damengine".
+- Used more specific compatible string "spacemit,k1-pdma"
+- Enhanced DT bindings with conditional constraints:
+   - clocks/resets properties only required for SpacemiT K1
+   - #dma-cells set to 2 for marvell,pdma-1.0 and spacemit,k1-pdma
+   - #dma-cells set to 1 for other variants
+- Split mmp_pdma driver changes per maintainer feedback:
+   - First patch (4/8) adds ops abstraction layer and 32-bit support
+   - Second patch (5/8) adds K1-specific 64-bit support
+- Merged Kconfig changes into the dmaengine: mmp_pdma driver patch (5/8)
+- Enabled pdma0 on both BPI-F3 and Milk-V Jupiter
 
+Link to v1:
+https://lore.kernel.org/all/20250611125723.181711-1-guodong@riscstar.com/
+
+Signed-off-by: Guodong Xu <guodong@riscstar.com>
+---
+Guodong Xu (8):
+      dt-bindings: dma: marvell,mmp-dma: Add SpacemiT K1 PDMA support
+      dmaengine: mmp_pdma: Add optional clock support
+      dmaengine: mmp_pdma: Add optional reset controller support
+      dmaengine: mmp_pdma: Add operations structure for controller abstraction
+      dmaengine: mmp_pdma: Add SpacemiT K1 PDMA support with 64-bit addressing
+      riscv: dts: spacemit: Add PDMA0 node for K1 SoC
+      riscv: dts: spacemit: Enable PDMA0 on Banana Pi F3 and Milkv Jupiter
+      riscv: defconfig: Enable MMP_PDMA support for SpacemiT K1 SoC
+
+ .../devicetree/bindings/dma/marvell,mmp-dma.yaml   |  49 ++++
+ arch/riscv/boot/dts/spacemit/k1-bananapi-f3.dts    |   4 +
+ arch/riscv/boot/dts/spacemit/k1-milkv-jupiter.dts  |   4 +
+ arch/riscv/boot/dts/spacemit/k1.dtsi               |  11 +
+ arch/riscv/configs/defconfig                       |   1 +
+ drivers/dma/Kconfig                                |   2 +-
+ drivers/dma/mmp_pdma.c                             | 281 ++++++++++++++++++---
+ 7 files changed, 320 insertions(+), 32 deletions(-)
+---
+base-commit: 7204503c922cfdb4fcfce4a4ab61f4558a01a73b
+change-id: 20250701-working_dma_0701_v2-7d2cf506aad7
+prerequisite-change-id: 20250611-01-riscv-defconfig-7f90f73d283d:v1
+prerequisite-patch-id: 53bda77e089023a09152a7d5403e1a738355c5d3
+prerequisite-message-id: <20250612224856.1105924-1-elder@riscstar.com>
+prerequisite-patch-id: 0c2a226feb2b3e7a2f090a4f10325ff9f709f6e2
+prerequisite-change-id: 20250522-22-k1-sdhci-95c759a876b5:v1
+prerequisite-patch-id: 53fc23b06e26ab0ebb2c52ee09f4b2cffab889e2
+prerequisite-message-id: <20250623-k1-dma-buses-rfc-wip-v1-0-c0144082061f@iscas.ac.cn>
+prerequisite-patch-id: 7f04dcf6f82a9a9fa3a8a78ae4992571f85eb6ca
+prerequisite-patch-id: 291c9bcd2ce688e08a8ab57c6d274a57cac6b33c
+prerequisite-patch-id: 957d7285e8d2a7698beb0c25cb0f6ea733246af0
+prerequisite-patch-id: 2c73c63bef3640e63243ddcf3c07b108d45f6816
+prerequisite-patch-id: 0faba75db33c96a588e722c4f2b3862c4cbdaeae
+prerequisite-patch-id: 5db8688ef86188ec091145fae9e14b2211cd2b8c
+prerequisite-patch-id: e0fe84381637dc888d996a79ea717ff0e3441bd1
+prerequisite-patch-id: 2fc0ef1c2fcda92ad83400da5aadaf194fe78627
+
+Best regards,
 -- 
-0-DAY CI Kernel Test Service
-https://github.com/intel/lkp-tests/wiki
+Guodong Xu <guodong@riscstar.com>
+
 
