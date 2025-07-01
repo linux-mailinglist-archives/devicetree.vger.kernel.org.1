@@ -1,159 +1,89 @@
-Return-Path: <devicetree+bounces-191375-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-191376-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 18452AEF0FE
-	for <lists+devicetree@lfdr.de>; Tue,  1 Jul 2025 10:25:12 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5FB51AEF105
+	for <lists+devicetree@lfdr.de>; Tue,  1 Jul 2025 10:26:52 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 2BB4A16E9DF
-	for <lists+devicetree@lfdr.de>; Tue,  1 Jul 2025 08:25:12 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 44BC63AC1A4
+	for <lists+devicetree@lfdr.de>; Tue,  1 Jul 2025 08:26:26 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8CDE726A1CD;
-	Tue,  1 Jul 2025 08:25:06 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B655026A09F;
+	Tue,  1 Jul 2025 08:26:47 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=samsung.com header.i=@samsung.com header.b="PwQsOHJX"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Mo53mM/7"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mailout2.w1.samsung.com (mailout2.w1.samsung.com [210.118.77.12])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9DB704A0C
-	for <devicetree@vger.kernel.org>; Tue,  1 Jul 2025 08:25:04 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=210.118.77.12
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 89C9F4A0C;
+	Tue,  1 Jul 2025 08:26:47 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1751358306; cv=none; b=NlXlQfEAd1XySx3pxV+lpx/Whu32b9KhORVVy8wCx8hlTW9cTbY07CxFlxioc7AkS3Oiuqi/lKaLc4iVXSzRxYROXoA9upHGaaVC7cZEf4s3UWbYS2c/MHAxsg+pZioI8TrhSXVlvMON4RYq3hVBz9k4UCyH654XGuFDrAQx870=
+	t=1751358407; cv=none; b=a4GWAw+ttzx86IhKEh/E6npvbt54Ffc6bvJeDmDVekYrcrcytElf06FfAn04L2inY28nrKmP0ZPMct9rwMZnQm7WkkQSpGq747mj2uTH3qYOfuE1N6xs7sZC4/6E8HJUn2pYbHj1HZJ8MVli1guqxjjdtidhPiJFALu+BleIFD4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1751358306; c=relaxed/simple;
-	bh=4NBRo7asrbE4jcsC4N5i3/e2ZCZPMxakKBYsVImNKI0=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:From:In-Reply-To:
-	 Content-Type:References; b=sKeFIJN0uVlJ5mKJRKv02MX/RUMOBljvwNY0i+vCIKYGnbToqRgnV6tuzRR2zLiQsNzVfTJZYVLggpHb/e4E2/QF5wuwkm7k8MdWSUkABrTnIXr2gretiPi6fi8DUq5/V6CG5bvNFjT/7nDkhBgTpbUcvpasGpmiJMAa35YzWzs=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=samsung.com; spf=pass smtp.mailfrom=samsung.com; dkim=pass (1024-bit key) header.d=samsung.com header.i=@samsung.com header.b=PwQsOHJX; arc=none smtp.client-ip=210.118.77.12
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=samsung.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=samsung.com
-Received: from eucas1p1.samsung.com (unknown [182.198.249.206])
-	by mailout2.w1.samsung.com (KnoxPortal) with ESMTP id 20250701082456euoutp020b3e8c925e2a29406fe94a46b693e013~OExd5xWch2299322993euoutp02R
-	for <devicetree@vger.kernel.org>; Tue,  1 Jul 2025 08:24:56 +0000 (GMT)
-DKIM-Filter: OpenDKIM Filter v2.11.0 mailout2.w1.samsung.com 20250701082456euoutp020b3e8c925e2a29406fe94a46b693e013~OExd5xWch2299322993euoutp02R
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=samsung.com;
-	s=mail20170921; t=1751358296;
-	bh=KfdpUFAVhAyxGqE9eLEIBkkqrEYX2W0imprAxbQivkU=;
-	h=Date:Subject:To:Cc:From:In-Reply-To:References:From;
-	b=PwQsOHJXGkU9mixvHQse3EYengfFoqHmA30yZ29Nwz9nTmg5Vjvv3Mjnkdj2yQTO+
-	 HA7ti9PjBheHdgVw6q3trtWTW6m0QWrOBK8uQ0cUBq4yTUAK1j2qGYkWFUG+eAtdKk
-	 Zd1cwp+uPNs5SfmyqgTwNswNIlSbQiMFzoMmeoPY=
-Received: from eusmtip1.samsung.com (unknown [203.254.199.221]) by
-	eucas1p2.samsung.com (KnoxPortal) with ESMTPA id
-	20250701082456eucas1p27ac527ab6df65b4ad24af9f1936ee772~OExdUXUK-0564305643eucas1p2z;
-	Tue,  1 Jul 2025 08:24:56 +0000 (GMT)
-Received: from [192.168.1.44] (unknown [106.210.136.40]) by
-	eusmtip1.samsung.com (KnoxPortal) with ESMTPA id
-	20250701082454eusmtip179c87208d9c76abee9ff0a1bd9cb19a6~OExcL0hDa2415924159eusmtip1p;
-	Tue,  1 Jul 2025 08:24:54 +0000 (GMT)
-Message-ID: <ca58f110-7f9a-427d-b018-e514cf34adaf@samsung.com>
-Date: Tue, 1 Jul 2025 10:24:54 +0200
+	s=arc-20240116; t=1751358407; c=relaxed/simple;
+	bh=BpTnvreAURoJuahxZzU8t6mXzFNDTA0qmPDYrQKie7U=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=tXFTNpV1R2sfufi2For985UmWsMKeX9Qrm7cHP4iVK8Dkaep46VjfZ2iNhfZ4Uq27eQFqps0jdGjDVn/BZmRIT2jkVNTL051kIZXPFcfhcMJWfxvYdOf41ZxSkiecZxbVAB39dT0I/T9dYwOOhfy+iE6KnRA759Qx/aaubUv5Mo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Mo53mM/7; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 4DD5CC4CEEB;
+	Tue,  1 Jul 2025 08:26:45 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1751358407;
+	bh=BpTnvreAURoJuahxZzU8t6mXzFNDTA0qmPDYrQKie7U=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=Mo53mM/7Hj3X5zZUPoExDOcH3jNRu/Ij6vTUNYaFw7HDnXytECqpx+yvysuI9+9EW
+	 ZWaU+K7YyJhrQGIHRfy6xZI4KjIwBvyDnLR+JUemvcmVn4+ySKuQfAdYcN5uQ27tAz
+	 Sm4C7NVI/iV/K0rGaQr4kSuSQLIU29ZuIDbDVlranb4kxfGz2evVhy82gae7euDJ9R
+	 ujXq/Ec3/ZSZWNttVKj2XgZ+bjIEUKmOBvYXiap1RjNYOnc5QZb52YjODEuSzYN8ZR
+	 YJui3Nt/aWh3O2oTtjfRe+MReapPNvyR4id7pngKXqGwUgzWy+KMTvGSEhpW9uDrh4
+	 4WR/PwmmD0opQ==
+Date: Tue, 1 Jul 2025 10:26:43 +0200
+From: Krzysztof Kozlowski <krzk@kernel.org>
+To: "Rob Herring (Arm)" <robh@kernel.org>
+Cc: Vinod Koul <vkoul@kernel.org>, 
+	Kishon Vijay Abraham I <kishon@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+	Conor Dooley <conor+dt@kernel.org>, David Lechner <david@lechnology.com>, 
+	linux-phy@lists.infradead.org, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v2] dt-bindings: phy: Convert ti,da830-usb-phy to DT
+ schema
+Message-ID: <20250701-swinging-honored-harrier-6e972c@krzk-bin>
+References: <20250627220107.214162-1-robh@kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v5 1/9] rust: pwm: Add Kconfig and basic data structures
-To: =?UTF-8?Q?Uwe_Kleine-K=C3=B6nig?= <ukleinek@kernel.org>
-Cc: Miguel Ojeda <ojeda@kernel.org>, Alex Gaynor <alex.gaynor@gmail.com>,
-	Boqun Feng <boqun.feng@gmail.com>, Gary Guo <gary@garyguo.net>,
-	=?UTF-8?Q?Bj=C3=B6rn_Roy_Baron?= <bjorn3_gh@protonmail.com>, Andreas
-	Hindborg <a.hindborg@kernel.org>, Alice Ryhl <aliceryhl@google.com>, Trevor
-	Gross <tmgross@umich.edu>, Danilo Krummrich <dakr@kernel.org>, Drew Fustini
-	<drew@pdp7.com>, Guo Ren <guoren@kernel.org>, Fu Wei <wefu@redhat.com>, Rob
-	Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor
-	Dooley <conor+dt@kernel.org>, Paul Walmsley <paul.walmsley@sifive.com>,
-	Palmer Dabbelt <palmer@dabbelt.com>, Albert Ou <aou@eecs.berkeley.edu>,
-	Alexandre Ghiti <alex@ghiti.fr>, Marek Szyprowski
-	<m.szyprowski@samsung.com>, Benno Lossin <lossin@kernel.org>, Michael
-	Turquette <mturquette@baylibre.com>, Stephen Boyd <sboyd@kernel.org>,
-	linux-kernel@vger.kernel.org, linux-pwm@vger.kernel.org,
-	rust-for-linux@vger.kernel.org, linux-riscv@lists.infradead.org,
-	devicetree@vger.kernel.org, linux-clk@vger.kernel.org
-Content-Language: en-US
-From: Michal Wilczynski <m.wilczynski@samsung.com>
-In-Reply-To: <n5zfbzu3hn7kqdf3xc7orpeovvdprc2xlf7w3f62uoohkxdk5c@cc24urt5xf36>
-Content-Transfer-Encoding: 8bit
-X-CMS-MailID: 20250701082456eucas1p27ac527ab6df65b4ad24af9f1936ee772
-X-Msg-Generator: CA
-Content-Type: text/plain; charset="utf-8"
-X-RootMTR: 20250623180858eucas1p1815f6d6815b1c715baad94810cefacd5
-X-EPHeader: CA
-X-CMS-RootMailID: 20250623180858eucas1p1815f6d6815b1c715baad94810cefacd5
-References: <20250623-rust-next-pwm-working-fan-for-sending-v5-0-0ca23747c23e@samsung.com>
-	<CGME20250623180858eucas1p1815f6d6815b1c715baad94810cefacd5@eucas1p1.samsung.com>
-	<20250623-rust-next-pwm-working-fan-for-sending-v5-1-0ca23747c23e@samsung.com>
-	<q7sz7uci5vnyc24laqzs56vgt4i2jamb3ifyxkqom6qcml5kkv@642prvwxjkxc>
-	<c127e368-8c1f-4299-b222-a105940ac34e@samsung.com>
-	<1450a457-4bd3-4e9c-a74f-3be15c9ec84f@samsung.com>
-	<n5zfbzu3hn7kqdf3xc7orpeovvdprc2xlf7w3f62uoohkxdk5c@cc24urt5xf36>
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+In-Reply-To: <20250627220107.214162-1-robh@kernel.org>
+
+On Fri, Jun 27, 2025 at 05:01:06PM -0500, Rob Herring (Arm) wrote:
+> +$id: http://devicetree.org/schemas/phy/ti,da830-usb-phy.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: TI DA8xx/OMAP-L1xx/AM18xx USB PHY
+> +
+> +maintainers:
+> +  - David Lechner <david@lechnology.com>
+> +
+> +description: >
+> +  This device controls the PHY for both the USB 1.1 OHCI and USB 2.0 OTG
+> +  controllers on DA8xx SoCs.
+> +  
+
+Trailing white-space here.
+
+Rest looks fine, so with above:
 
 
-
-On 6/29/25 12:29, Uwe Kleine-König wrote:
-> On Sat, Jun 28, 2025 at 09:47:19PM +0200, Michal Wilczynski wrote:
-
->>>>> +    /// Sets the polarity of the PWM signal.
->>>>> +    pub fn set_polarity(&mut self, polarity: Polarity) {
->>>>> +        self.0.polarity = polarity.into();
->>>>> +    }
->>>>
->>>> Please don't expose these non-atomic callbacks. pwm_disable() would be
->>>> fine.
->>
->> Hmm, I've just realized that without those setters it would most likely
->> impossible to correctly implement the get_state callback.
-> 
-> You shouldn't implement the get_state callback for a waveform driver.
-
-You're right that a new driver using the waveform API shouldn't
-implement .get_state.
-
-My goal for the abstraction layer, however, is to be flexible enough to
-support writing both modern waveform drivers and legacy style drivers
-that use the .apply and .get_state callbacks.
-
-To implement the .get_state callback, a driver needs the ability to
-construct a State struct and populate its fields from hardware values
-before returning it to the PWM core. Without this ability there is no
-way to implement get_state callback.
-
-I think the cleaner way, without the setters would be to update the
-`new` like so:
-    pub fn new(
-        period: u64,
-        duty_cycle: u64,
-        polarity: Polarity,
-        enabled: bool,
-        usage_power: bool,
-    ) -> Self {
-        let raw_c_state = bindings::pwm_state {
-            period,
-            duty_cycle,
-            polarity: polarity.into(),
-            enabled,
-            usage_power,
-        };
-
-        State(raw_c_state)
-    }
-
-This way the get_state callback would be responsible for creating new
-state and initializing it, instead of passing the mutable State to
-get_state.
-
-
-> 
-> Best regards
-> Uwe
+Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
 Best regards,
--- 
-Michal Wilczynski <m.wilczynski@samsung.com>
+Krzysztof
+
 
