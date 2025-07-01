@@ -1,138 +1,244 @@
-Return-Path: <devicetree+bounces-191437-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-191439-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id C809EAEF517
-	for <lists+devicetree@lfdr.de>; Tue,  1 Jul 2025 12:29:56 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2E95CAEF539
+	for <lists+devicetree@lfdr.de>; Tue,  1 Jul 2025 12:35:15 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id C3B73169AF3
-	for <lists+devicetree@lfdr.de>; Tue,  1 Jul 2025 10:29:56 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 8CAFA1BC781D
+	for <lists+devicetree@lfdr.de>; Tue,  1 Jul 2025 10:35:22 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9453A2701D0;
-	Tue,  1 Jul 2025 10:29:49 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 95500271472;
+	Tue,  1 Jul 2025 10:34:44 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="O/7Q/b9F"
+	dkim=pass (2048-bit key) header.d=public-files.de header.i=frank-w@public-files.de header.b="EAg/CecV"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+Received: from mout.gmx.net (mout.gmx.net [212.227.17.21])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 300EE1F239B;
-	Tue,  1 Jul 2025 10:29:47 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C83DC2701BD;
+	Tue,  1 Jul 2025 10:34:41 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=212.227.17.21
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1751365789; cv=none; b=hq8X7ttoSaCUIFajywO6oIiip9cBnXViWShqRHrFSHvqpve6Wj7K0rF2AXzBoNjrP+c8UAqAHpsnTpj7UmFN5LRiWQADfrDbxEmwA8G+62UQhsk2FH/Hu/Y9Fc5XLKRF1KvihN7hQZAFSysnTaIznrz+YaPH0z8Z8ucxVMhoSvY=
+	t=1751366084; cv=none; b=CB+aXH4rv/9pjjWVNT4vY/b5X56Sm7RkIUXRHyETa2LZih7T2BU9fbvtqD07RhwsMqypBso21mHoTLjJod5mPZUnjwwOLJZaAYM7yo3Llk5UmR4LSwYe4B682bsgvq4EQG6/MWvJxnz6M4MBwM39kaPdPzfnFr28fRauBiZdm5s=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1751365789; c=relaxed/simple;
-	bh=2mJk9Eum5t4pNGi6Q9QGdatWv/sDlgLSsfFdSWAZ4gg=;
-	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
-	 MIME-Version; b=HNKAFsFzDvSwAtjC56xc5DGBc/tTdrupFUo1dJLG//QU73qsnTSVM1AVPlT9pZgdqenCKNp3CnLzZXbLtVq+Gb/Kuv1Qp52Ed5vPDkJQ82bimCccoZwNGGyN9I7NtSwzRgeA/EkYMh727eRW1hFBvecRj8fAK4bJqRhgslmgVMs=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=qualcomm.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=O/7Q/b9F; arc=none smtp.client-ip=205.220.168.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=qualcomm.com
-Received: from pps.filterd (m0279867.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 5619tDXR032111;
-	Tue, 1 Jul 2025 10:29:37 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	cc:content-transfer-encoding:date:from:in-reply-to:message-id
-	:mime-version:references:subject:to; s=qcppdkim1; bh=xGjULuwgYbi
-	U7HMpALt3KEVMuc/dt4WL9tlJT8Fcukk=; b=O/7Q/b9F4DiyWECrdABJXrLpkVI
-	mpVOD5gLPB9V0+YPH4uRJgoYuMK4fh6CbIv33hIT/5UGJBOzHqO7MWzGmcG3Xu0X
-	O9b/9ShSKfMQ8oZ+OO5Rg0w2BhiFRvj8zZXehYVGdPt1wYLfbfKrAtU1AFrZDU34
-	mDCXOIzDSDDqXx8teKtzF4Eucsb5WtESfvkZ+zJxicXRP9LPgdyzEykHaXAzvEb9
-	dcDBiJQxkVnX1+OXMne2B6QOVKotyN4paDxcPR0PZBriG0BfFc9UtRLzzpbV89MG
-	qAdT/dpzf/7XBx7zYqHjVJxh2zltqxHrm8CEc4+AIR1JVxPsu43LAfr51qA==
-Received: from apblrppmta02.qualcomm.com (blr-bdr-fw-01_GlobalNAT_AllZones-Outside.qualcomm.com [103.229.18.19])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 47j63k8hyy-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Tue, 01 Jul 2025 10:29:37 +0000 (GMT)
-Received: from pps.filterd (APBLRPPMTA02.qualcomm.com [127.0.0.1])
-	by APBLRPPMTA02.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTP id 561ATWW8030926;
-	Tue, 1 Jul 2025 10:29:32 GMT
-Received: from pps.reinject (localhost [127.0.0.1])
-	by APBLRPPMTA02.qualcomm.com (PPS) with ESMTPS id 47m1bxafd3-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Tue, 01 Jul 2025 10:29:32 +0000
-Received: from APBLRPPMTA02.qualcomm.com (APBLRPPMTA02.qualcomm.com [127.0.0.1])
-	by pps.reinject (8.17.1.5/8.17.1.5) with ESMTP id 561ATWYq030910;
-	Tue, 1 Jul 2025 10:29:32 GMT
-Received: from hu-devc-hyd-u22-c.qualcomm.com (hu-pkumpatl-hyd.qualcomm.com [10.147.245.204])
-	by APBLRPPMTA02.qualcomm.com (PPS) with ESMTPS id 561ATWcL030906
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Tue, 01 Jul 2025 10:29:32 +0000
-Received: by hu-devc-hyd-u22-c.qualcomm.com (Postfix, from userid 3914174)
-	id 47ADB5C9; Tue,  1 Jul 2025 15:59:31 +0530 (+0530)
-From: Prasad Kumpatla <quic_pkumpatl@quicinc.com>
-To: Srinivas Kandagatla <srini@kernel.org>,
-        Liam Girdwood <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>,
-        Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>, Jaroslav Kysela <perex@perex.cz>,
-        Takashi Iwai <tiwai@suse.com>
-Cc: linux-sound@vger.kernel.org, linux-arm-msm@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        quic_pkumpatl@quicinc.com, kernel@oss.qualcomm.com
-Subject: [PATCH v1 2/2] ASoC: qcom: sc8280xp: Add support for QCS8275
-Date: Tue,  1 Jul 2025 15:59:15 +0530
-Message-Id: <20250701102915.4016108-3-quic_pkumpatl@quicinc.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20250701102915.4016108-1-quic_pkumpatl@quicinc.com>
-References: <20250701102915.4016108-1-quic_pkumpatl@quicinc.com>
+	s=arc-20240116; t=1751366084; c=relaxed/simple;
+	bh=TkVIGYYM7/EOwc2bZ1M2+JXNYNENU0A7JZgE6gJIHk0=;
+	h=Date:From:To:CC:Subject:In-Reply-To:References:Message-ID:
+	 MIME-Version:Content-Type; b=dMrsC/+CW0RQQCximddobTwmdkwPbN7sf9htLfbF1wPqUWgUKeKDjqIeqyz8fCuaziDtQ54S4PMz5lcZQZvC4+uGb2hLt7s2C5UdylbUsM2gmSUP7htHIgZI9lgYimSFv6ebX8ajXBnbdNCZ+eSld1FMzzBPFWzl+9SDWoQw6Uc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=public-files.de; spf=pass smtp.mailfrom=public-files.de; dkim=pass (2048-bit key) header.d=public-files.de header.i=frank-w@public-files.de header.b=EAg/CecV; arc=none smtp.client-ip=212.227.17.21
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=public-files.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=public-files.de
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=public-files.de;
+	s=s31663417; t=1751366038; x=1751970838; i=frank-w@public-files.de;
+	bh=cqCL16doApCg2zZ7bwDUqitLshWF7HWzSvNM7J3qWcY=;
+	h=X-UI-Sender-Class:Date:From:To:CC:Subject:Reply-to:In-Reply-To:
+	 References:Message-ID:MIME-Version:Content-Type:
+	 Content-Transfer-Encoding:cc:content-transfer-encoding:
+	 content-type:date:from:message-id:mime-version:reply-to:subject:
+	 to;
+	b=EAg/CecV4gJ+9UbG5OzBX9GVtapTeT2fSy2xKbkGHz5txreMdpc9NaYpb3y8n6RD
+	 olBi+pcGoJ7iTCIsemQoK9MESh9B8iVI9li+TnVRkqVluDcy4nwcNGYAfWfbwOKgq
+	 FscEnoxqRAlXgCf23SxkHvQlvfXUEY4fXUaba/CTNYKeO4skznFNuMrrt6kdha5zW
+	 eJKno3jMlxvt3Qxbibx4i0c0HYMJ1m5FXqK1OAlVgZiXPPP6nsVeg6AUcS3UlWdKI
+	 Pv7EHNbyn8Hi7vlxJb/hSfuG1Cj+jD0wIGVYOUKWklDIxMXQjitvA1ovYm5e5yqTN
+	 zmk0wJJ6dk1W4m7uHw==
+X-UI-Sender-Class: 724b4f7f-cbec-4199-ad4e-598c01a50d3a
+Received: from [IPv6:::1] ([80.187.118.70]) by mail.gmx.net (mrgmx105
+ [212.227.17.168]) with ESMTPSA (Nemesis) id 1MNbkp-1uKlx71myR-00V8CJ; Tue, 01
+ Jul 2025 12:33:58 +0200
+Date: Tue, 01 Jul 2025 12:33:46 +0200
+From: Frank Wunderlich <frank-w@public-files.de>
+To: Krzysztof Kozlowski <krzk@kernel.org>, Frank Wunderlich <linux@fw-web.de>
+CC: MyungJoo Ham <myungjoo.ham@samsung.com>,
+ Kyungmin Park <kyungmin.park@samsung.com>,
+ Chanwoo Choi <cw00.choi@samsung.com>, Georgi Djakov <djakov@kernel.org>,
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, Andrew Lunn <andrew@lunn.ch>,
+ Vladimir Oltean <olteanv@gmail.com>, "David S. Miller" <davem@davemloft.net>,
+ Eric Dumazet <edumazet@google.com>, Jakub Kicinski <kuba@kernel.org>,
+ Paolo Abeni <pabeni@redhat.com>, Matthias Brugger <matthias.bgg@gmail.com>,
+ AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
+ Johnson Wang <johnson.wang@mediatek.com>,
+ =?UTF-8?B?QXLEsW7DpyDDnE5BTA==?= <arinc.unal@arinc9.com>,
+ Landen Chao <Landen.Chao@mediatek.com>, DENG Qingfang <dqfext@gmail.com>,
+ Sean Wang <sean.wang@mediatek.com>, Daniel Golle <daniel@makrotopia.org>,
+ Lorenzo Bianconi <lorenzo@kernel.org>, Felix Fietkau <nbd@nbd.name>,
+ linux-pm@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, netdev@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, linux-mediatek@lists.infradead.org
+Subject: =?US-ASCII?Q?Re=3A_=5BPATCH_v7_02/14=5D_dt-bindings=3A_n?=
+ =?US-ASCII?Q?et=3A_mediatek=2Cnet=3A_update_for_mt7988?=
+User-Agent: K-9 Mail for Android
+Reply-to: frank-w@public-files.de
+In-Reply-To: <20250701-rebel-mellow-parrot-fda216@krzk-bin>
+References: <20250628165451.85884-1-linux@fw-web.de> <20250628165451.85884-3-linux@fw-web.de> <20250701-rebel-mellow-parrot-fda216@krzk-bin>
+Message-ID: <8C311FDD-094A-4F1C-AE26-7E3ABB337C14@public-files.de>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-QCInternal: smtphost
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Authority-Analysis: v=2.4 cv=ZKfXmW7b c=1 sm=1 tr=0 ts=6863b891 cx=c_pps
- a=Ou0eQOY4+eZoSc0qltEV5Q==:117 a=Ou0eQOY4+eZoSc0qltEV5Q==:17
- a=Wb1JkmetP80A:10 a=COk6AnOGAAAA:8 a=ZYxQib0Qg78sUwspPo0A:9 a=zgiPjhLxNE0A:10
- a=TjNXssC_j7lpFel5tvFf:22
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwNzAxMDA2MyBTYWx0ZWRfX5cU3EceRnvYd
- kw13BoQ/U3S1itmPViUvGur8V1MdTfD3wtNx1/Tmv44z+L3yLdbMZOxIPpi92fUHoyF6Sn72+Uz
- aJoDrKKcpWNhkxSMnM4/wlyg1cs42qFjhX5d69uD20M+Jn6wyjGbKC3lcvMCQlGEiMn2eY/8vaQ
- Wtwse7DKj9jGTaj5zYfdtzjsE1W8ZR/sH+Mn8Lp03gSkYgaj0w7RkqCsM1H9Z+t8l+vtt0TVj3R
- hTEe6WbTxFGQgHjtGKxQ8hiaYZLhukKZAYRBqsI/Q2Z7p6PIj+13AhmFlKKcM0iOP8DpteEqQ/5
- fG/97FZRKo9TVB8RFUsq1tzSpJ2BCd8ZAd500VQqm2rnGZK3M7qF/3igJDbX6ZoPig1bMH3I15v
- Qo9iC1gk+Soi6XpGvbmIa/D5Mg5HYKDXpWkoLhzoVjG/kOo+hleEAsnA89Saq5F/CQpfO7tt
-X-Proofpoint-ORIG-GUID: j9hdgsrQQFV0PXNzSXGMAGv8WTs2l1-j
-X-Proofpoint-GUID: j9hdgsrQQFV0PXNzSXGMAGv8WTs2l1-j
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1099,Hydra:6.1.7,FMLib:17.12.80.40
- definitions=2025-07-01_02,2025-06-27_01,2025-03-28_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- adultscore=0 mlxscore=0 mlxlogscore=999 spamscore=0 suspectscore=0
- bulkscore=0 priorityscore=1501 lowpriorityscore=0 phishscore=0
- impostorscore=0 malwarescore=0 clxscore=1011 classifier=spam authscore=0
- authtc=n/a authcc= route=outbound adjust=0 reason=mlx scancount=1
- engine=8.19.0-2505280000 definitions=main-2507010063
+Content-Type: text/plain;
+ charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+X-Provags-ID: V03:K1:iDZ1HFnWblMRrSKckbE7RIe6FOjqP9jVceGRYihPuH0T9KW/xO4
+ VwQWhlNKHAwO7w4FA/k1dAHrSE7gSECcacV1yG+FR8WeXYaQMbhRK8zKiPmHZxmtk0se36m
+ XR3vDuQUsLb89KxskuGksrzMrEeBM5gHPkrT1Bsmh/f/EqszFblF1ijG1uYExmPRao1PHxR
+ epZk/OGyNc7chl+Dn18KQ==
+X-Spam-Flag: NO
+UI-OutboundReport: notjunk:1;M01:P0:ykrTOmJyAiw=;o2diJZbdNd3QRu6F/nKuXR6oxcJ
+ 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
 
-Add compatible for sound card on Qualcomm QCS8275 boards.
+Am 1=2E Juli 2025 08:41:42 MESZ schrieb Krzysztof Kozlowski <krzk@kernel=2E=
+org>:
+>On Sat, Jun 28, 2025 at 06:54:37PM +0200, Frank Wunderlich wrote:
+>> From: Frank Wunderlich <frank-w@public-files=2Ede>
+>>=20
+>> Update binding for mt7988 which has 3 gmac and a sram for dma
+>> operations=2E
+>
+>I asked why you are updating=2E You claim you update because it has 3
+>GMAC=2E=2E=2E but that's irrelevant, because it is easy to answer with: i=
+t did
+>not have 3 GMAC before?
+>
+>So same question: Provide real reason why you are making updates=2E That'=
+s
+>why you have commit msg=2E
 
-Signed-off-by: Prasad Kumpatla <quic_pkumpatl@quicinc.com>
----
- sound/soc/qcom/sc8280xp.c | 1 +
- 1 file changed, 1 insertion(+)
+MT7988 had always 3 gmac,but no dts with ethernet
+node till now=2E
+As i try to upstream the dts,i fell over this=2E
 
-diff --git a/sound/soc/qcom/sc8280xp.c b/sound/soc/qcom/sc8280xp.c
-index 99fd34728e38..73f9f82c4e25 100644
---- a/sound/soc/qcom/sc8280xp.c
-+++ b/sound/soc/qcom/sc8280xp.c
-@@ -186,6 +186,7 @@ static int sc8280xp_platform_probe(struct platform_device *pdev)
- static const struct of_device_id snd_sc8280xp_dt_match[] = {
- 	{.compatible = "qcom,qcm6490-idp-sndcard", "qcm6490"},
- 	{.compatible = "qcom,qcs6490-rb3gen2-sndcard", "qcs6490"},
-+	{.compatible = "qcom,qcs8275-sndcard", "qcs8275"},
- 	{.compatible = "qcom,qcs9075-sndcard", "qcs9075"},
- 	{.compatible = "qcom,qcs9100-sndcard", "qcs9100"},
- 	{.compatible = "qcom,sc8280xp-sndcard", "sc8280xp"},
--- 
-2.34.1
+Imho changing the regex for the mac subnodes was
+simply forgotten to be updated on initial mt7988
+support patch=2E
 
+I try to rephrase it like this:
+
+Binding was not aware for 3 MAC subnodes because
+previous mediatek SoC had only 2=2E Change this to allow
+3 GMAC in mt7988 devicetree=2E
+>
+>>=20
+>> MT7988 has 4 FE IRQs (currently only 2 are used) and 4 IRQs for use
+>
+>mt7988 or MT7988? gmac or GMAC? SRAM or SRAM? and so on=2E=2E=2E it is no=
+t
+>easy to read and understand your commit msgs=2E
+
+Ok,i always write those names in uppercase=2E
+
+>> with RSS/LRO later=2E
+>>=20
+>> Signed-off-by: Frank Wunderlich <frank-w@public-files=2Ede>
+>> ---
+>> v6:
+>> - split out the interrupt-names into separate patch
+>> - update irq(name) min count to 4
+>> - add sram-property
+>> - drop second reg entry and minitems as there is only 1 item left again
+>>=20
+>> v5:
+>> - fix v4 logmessage and change description a bit describing how i get
+>>   the irq count=2E
+>> - update binding for 8 irqs with different names (rx,tx =3D> fe0=2E=2Ef=
+e3)
+>>   including the 2 reserved irqs which can be used later
+>> - change rx-ringX to pdmaX to be closer to hardware documentation
+>>=20
+>> v4:
+>> - increase max interrupts to 6 because of adding RSS/LRO interrupts (4)
+>>   and dropping 2 reserved irqs (0+3) around rx+tx
+>> - dropped Robs RB due to this change
+>> - allow interrupt names
+>> - add interrupt-names without reserved IRQs on mt7988
+>>   this requires mtk driver patch:
+>>   https://patchwork=2Ekernel=2Eorg/project/netdevbpf/patch/202506160807=
+38=2E117993-2-linux@fw-web=2Ede/
+>>=20
+>> v2:
+>> - change reg to list of items
+>> ---
+>>  Documentation/devicetree/bindings/net/mediatek,net=2Eyaml | 9 +++++++-=
+-
+>>  1 file changed, 7 insertions(+), 2 deletions(-)
+>>=20
+>> diff --git a/Documentation/devicetree/bindings/net/mediatek,net=2Eyaml =
+b/Documentation/devicetree/bindings/net/mediatek,net=2Eyaml
+>> index 6672db206b38=2E=2E74a139000f60 100644
+>> --- a/Documentation/devicetree/bindings/net/mediatek,net=2Eyaml
+>> +++ b/Documentation/devicetree/bindings/net/mediatek,net=2Eyaml
+>> @@ -28,7 +28,8 @@ properties:
+>>        - ralink,rt5350-eth
+>> =20
+>>    reg:
+>> -    maxItems: 1
+>> +    items:
+>> +      - description: Register for accessing the MACs=2E
+>
+>Why making this change? It's redundant and nothing in commit msg
+>explains that=2E
+
+I was instructed (where we had 2 regs in previous
+Version) to name the regs=2E=2E=2Ebut as we have one reg
+again,i can drop this change=2E Thought a description=20
+is better than a count=2E
+
+>Best regards,
+>Krzysztof
+>
+
+
+regards Frank
 
