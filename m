@@ -1,60 +1,63 @@
-Return-Path: <devicetree+bounces-191578-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-191579-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 62316AEFC2E
-	for <lists+devicetree@lfdr.de>; Tue,  1 Jul 2025 16:26:49 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 1D6E7AEFC4C
+	for <lists+devicetree@lfdr.de>; Tue,  1 Jul 2025 16:30:09 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id B68804A2159
-	for <lists+devicetree@lfdr.de>; Tue,  1 Jul 2025 14:19:49 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id E5B8D3BE604
+	for <lists+devicetree@lfdr.de>; Tue,  1 Jul 2025 14:25:31 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id DF919277CAA;
-	Tue,  1 Jul 2025 14:17:52 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id AB58D275110;
+	Tue,  1 Jul 2025 14:25:52 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=yeah.net header.i=@yeah.net header.b="TbhgpTn6"
+	dkim=pass (1024-bit key) header.d=yeah.net header.i=@yeah.net header.b="WHijCkm8"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-m16.yeah.net (mail-m16.yeah.net [1.95.21.16])
+Received: from mail-m16.yeah.net (mail-m16.yeah.net [220.197.32.17])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C5DE7271A7C;
-	Tue,  1 Jul 2025 14:17:49 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=1.95.21.16
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 83D272741DA;
+	Tue,  1 Jul 2025 14:25:49 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=220.197.32.17
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1751379472; cv=none; b=fZJSA7HI/3iCyUbRIR73B1b2dbN2rl1TV54uAReYDEj4m4ycY6LVdM9b4qkMtx9/0b8nFNQ64HZs7l5SUEOS/hqqwlyVM0znvE3jQ2dQzD1Ssm9YwiKEElToItQhxx61MXhpziNRHOSVQVmo6Frpn2cF+eu9rD9sY4kJrVSwT6o=
+	t=1751379952; cv=none; b=AREH4bu5PQAbJJSj2rNH8ydEm062/agD9CvAHYmXplQnUp+oK42h2z6qkgEjjL9nHyGHei6SOGQi/+buvBRfZ+sTmVIp+yZwtcCjg/hjfsnBnKPVJidOLBQ5qvLzA7fp4DfNXRlD2WWp5mfEViDfx5cycHhIpUX9kDV1DBBxZRE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1751379472; c=relaxed/simple;
-	bh=H+d8K1h3HHkTY/7w00DJUJUkTQbVdJUWWJhS4HtXAzo=;
+	s=arc-20240116; t=1751379952; c=relaxed/simple;
+	bh=fF2bUOzQpSBOFHuNq6Eq1S5hjtfwAl2FI5HwXhvyjlc=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=aMV1LBaFjrjzFJ6gJ0vx7Lv/KVMPj0e9qyDryKNpghhOXA75cpa1qIxRFB2nC29Di+oKj8cXdSULZISz1X66rEYMfev3uy3OZG+Ap83WLHaeJnRXzewFkltiNFVHh53icfVyHeZ53zTvfcS2IKPmkXpHwrpK0KGxjbV/8Xp8Fhw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=yeah.net; spf=pass smtp.mailfrom=yeah.net; dkim=pass (1024-bit key) header.d=yeah.net header.i=@yeah.net header.b=TbhgpTn6; arc=none smtp.client-ip=1.95.21.16
+	 Content-Type:Content-Disposition:In-Reply-To; b=ZTfYfZNlQ6uu4fKj4dXCEMm1IujIQdyicf9/q8TcTEbUzUYhGT4kC76EXicF6zgBabGE19Bk5hMiv9s1z6du+8FHM/LpdiwFYuClWOubLSyflv0IemWy+y+EwLPJ+EZBRE0T511ZyYyzuqDtadQa/U3VOen4RSPA+3cQlwzbwck=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=yeah.net; spf=pass smtp.mailfrom=yeah.net; dkim=pass (1024-bit key) header.d=yeah.net header.i=@yeah.net header.b=WHijCkm8; arc=none smtp.client-ip=220.197.32.17
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=yeah.net
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=yeah.net
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=yeah.net;
 	s=s110527; h=Date:From:To:Subject:Message-ID:MIME-Version:
-	Content-Type; bh=p26k3iNBH6NEFpUE2GR2mYl5kAA+PXFhcjSGL4mCfPA=;
-	b=TbhgpTn6hdC1rodjsefbUOg8xgpuZ6gyHHbF7NXNUo92APh/KWd1H2pZp/svIw
-	i5RIjX67k8zYHGgNq6g2uzycNnJ0tTxfOqD7E6CMJcm8J1Cmur0DoBbuwYy39JGY
-	hn5bUFQ3+sJ9nzD51RTrnOUiMvqZ4v1+HGOmS+xama+/M=
+	Content-Type; bh=kwmVPhn9mAUb/E0fy/YUOcKm0G2pKmKkb3h1UWnAPoY=;
+	b=WHijCkm8X4zEyATUdjLnTIncBkFZDH6Y7W6eZQ0HQA133zLDcNxiMRqcKXZft8
+	fK3Rc89t7WyZZioVYcCqfZyk19N0o+y7PP3aZKH3ZhpF1NJfZqYbDr0hteJzP9H5
+	z+RbOs/Nj+8/j6hnTmb+DPOFF8u+xkcY8AYtMANALs/0M=
 Received: from dragon (unknown [])
-	by gzsmtp3 (Coremail) with SMTP id M88vCgD3V+bs7WNozMcBAA--.4462S3;
-	Tue, 01 Jul 2025 22:17:18 +0800 (CST)
-Date: Tue, 1 Jul 2025 22:17:16 +0800
+	by gzsmtp1 (Coremail) with SMTP id Mc8vCgDnx6S_72No6tsBAA--.4315S3;
+	Tue, 01 Jul 2025 22:25:05 +0800 (CST)
+Date: Tue, 1 Jul 2025 22:25:03 +0800
 From: Shawn Guo <shawnguo2@yeah.net>
-To: Frank Li <Frank.Li@nxp.com>
+To: Laurentiu Mihalcea <laurentiumihalcea111@gmail.com>
 Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
 	Conor Dooley <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
 	Sascha Hauer <s.hauer@pengutronix.de>,
-	Pengutronix Kernel Team <kernel@pengutronix.de>,
 	Fabio Estevam <festevam@gmail.com>,
-	"open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" <devicetree@vger.kernel.org>,
-	"open list:ARM/FREESCALE IMX / MXC ARM ARCHITECTURE" <imx@lists.linux.dev>,
-	"moderated list:ARM/FREESCALE IMX / MXC ARM ARCHITECTURE" <linux-arm-kernel@lists.infradead.org>,
-	open list <linux-kernel@vger.kernel.org>
-Subject: Re: [PATCH v2 1/6] arm64: dts: imx93-9x9-qsb: add IMU sensor support
-Message-ID: <aGPt7Cs2jrGDAZ/m@dragon>
-References: <20250609165237.1617560-1-Frank.Li@nxp.com>
+	Daniel Baluta <daniel.baluta@nxp.com>,
+	Shengjiu Wang <shengjiu.wang@nxp.com>, Frank Li <Frank.Li@nxp.com>,
+	Marco Felsch <m.felsch@pengutronix.de>,
+	Marc Kleine-Budde <mkl@pengutronix.de>,
+	Alexander Stein <alexander.stein@ew.tq-group.com>,
+	Pengutronix Kernel Team <kernel@pengutronix.de>,
+	devicetree@vger.kernel.org, imx@lists.linux.dev,
+	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v7 0/6] imx8mp: add support for the IMX AIPSTZ bridge
+Message-ID: <aGPvv+PNpm6xwsmC@dragon>
+References: <20250610160152.1113930-1-laurentiumihalcea111@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -63,22 +66,20 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20250609165237.1617560-1-Frank.Li@nxp.com>
-X-CM-TRANSID:M88vCgD3V+bs7WNozMcBAA--.4462S3
+In-Reply-To: <20250610160152.1113930-1-laurentiumihalcea111@gmail.com>
+X-CM-TRANSID:Mc8vCgDnx6S_72No6tsBAA--.4315S3
 X-Coremail-Antispam: 1Uf129KBjDUn29KB7ZKAUJUUUUU529EdanIXcx71UUUUU7v73
-	VFW2AGmfu7bjvjm3AaLaJ3UbIYCTnIWIevJa73UjIFyTuYvjxUoYLvDUUUU
-X-CM-SenderInfo: pvkd40hjxrjqh1hdxhhqhw/1tbiNA6pD2hj7e6qGAAA3m
+	VFW2AGmfu7bjvjm3AaLaJ3UbIYCTnIWIevJa73UjIFyTuYvjxUrcTmDUUUU
+X-CM-SenderInfo: pvkd40hjxrjqh1hdxhhqhw/1tbiAQR9ZWhj6tENkwAAsz
 
-On Mon, Jun 09, 2025 at 12:52:32PM -0400, Frank Li wrote:
-> From: Haibo Chen <haibo.chen@nxp.com>
-> 
-> The i.MX93 9x9 qsb has a ST LSM6DSO connected to I2C, which a is 6-axis
-> IMU (inertial measurement unit = accelerometer & gyroscope). So add the
-> missing parts to the DTS file.
-> 
-> Reviewed-by: Peng Fan <peng.fan@nxp.com>
-> Signed-off-by: Haibo Chen <haibo.chen@nxp.com>
-> Signed-off-by: Frank Li <Frank.Li@nxp.com>
+On Tue, Jun 10, 2025 at 12:01:46PM -0400, Laurentiu Mihalcea wrote:
+> Laurentiu Mihalcea (6):
+>   dt-bindings: bus: document the IMX AIPSTZ bridge
+>   dt-bindings: dsp: fsl,dsp: document 'access-controllers' property
+>   bus: add driver for IMX AIPSTZ bridge
+>   arm64: dts: imx8mp: convert 'aips5' to 'aipstz5'
+>   arm64: dts: imx8mp: add aipstz-related definitions
+>   arm64: dts: imx8mp: make 'dsp' node depend on 'aips5'
 
 Applied all, thanks!
 
