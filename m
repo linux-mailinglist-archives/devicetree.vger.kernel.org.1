@@ -1,171 +1,205 @@
-Return-Path: <devicetree+bounces-191770-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-191771-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id A8CEDAF05D6
-	for <lists+devicetree@lfdr.de>; Tue,  1 Jul 2025 23:42:17 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 76DBCAF05EF
+	for <lists+devicetree@lfdr.de>; Tue,  1 Jul 2025 23:48:43 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id BAE201C07CC0
-	for <lists+devicetree@lfdr.de>; Tue,  1 Jul 2025 21:42:33 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 8473F1C20A8E
+	for <lists+devicetree@lfdr.de>; Tue,  1 Jul 2025 21:48:59 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E6D03309DCA;
-	Tue,  1 Jul 2025 21:39:46 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5CB1526B0A7;
+	Tue,  1 Jul 2025 21:48:35 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b="uzFV2QfR"
+	dkim=pass (2048-bit key) header.d=packett.cool header.i=@packett.cool header.b="pp9qTw7E"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-oi1-f171.google.com (mail-oi1-f171.google.com [209.85.167.171])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from out-179.mta0.migadu.com (out-179.mta0.migadu.com [91.218.175.179])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9F16F3093DE
-	for <devicetree@vger.kernel.org>; Tue,  1 Jul 2025 21:39:44 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.171
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C12AC26A0EB
+	for <devicetree@vger.kernel.org>; Tue,  1 Jul 2025 21:48:31 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=91.218.175.179
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1751405986; cv=none; b=FLTvtB3SVDlIjgZ4f30rmhLUm74VPQk+Gb6m55rNhbNLP9pGgVEv9m54PXKPF02so/HssZfV0mY6+fUO3rqlewDj9RP3F+6WQcqSYo1WxZLQFi/LDp87R8PAhQrsDsUZgMzaT/+wmXAP5/+U3E4TuIuA1osiR8+YDr2yDegKCuI=
+	t=1751406515; cv=none; b=tPRoI1QU0zD6fQZB2OV4n9LaUgU6cXVbZcAqJvDbHQI4LtyzSSdfTDpjOmcgSJVVEsGyMTfW1340zL/PdUqbNGHfQRWUVFAiUOseg7ZyQ6Ha7lgIMb0jH//o6f3yS+5lTPC075RVZbEwoluHUFL0hufpxVpjag5hgP2DrwzynGY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1751405986; c=relaxed/simple;
-	bh=x4deODr2J/B/ZfZk3+/1/BV8bYxvy5G2y6ggy6cAeUc=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=rlVDVgipzn5uM3nst3c39FTdTo8hswFx4vqSEEyred06wwI3V/3/6EiAeU/IVMGw4Eq8oT/NaqvJUqamAGD/Rzkn7gV3Zkhslcqc7nH8uFS6kxQZsQZw3Zbdr4gbUjdMkJEJrc53KloLxP6+oNQyLlv7Wuqj/37qJl4DdO7k8y8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com; spf=pass smtp.mailfrom=baylibre.com; dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b=uzFV2QfR; arc=none smtp.client-ip=209.85.167.171
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=baylibre.com
-Received: by mail-oi1-f171.google.com with SMTP id 5614622812f47-40abe6f8f08so2847292b6e.0
-        for <devicetree@vger.kernel.org>; Tue, 01 Jul 2025 14:39:44 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1751405983; x=1752010783; darn=vger.kernel.org;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=suln3ZPyOtbgf+467Jl0jyyrQzWY3/ACSgQiyK4V5QE=;
-        b=uzFV2QfR/9O4bbbkOJxLfJ4apFXo+I2UDKekRLkUk2CR62s4ds7TvNdaFJaNr15UV9
-         as/jpcwB9qphSeaOpw+0nyZirN0iBZ/+21NSkzFTlY9vKyriqkDIsTTGUn76ST45j+PL
-         U4F8fyclyDjm/uQeJ5aOMvZB1eegv4aE+CaF3hSJPBypZkguCgesL/zAd027ZMb+LYij
-         qUb/Fdbts06kGmSjvYCwBQeIbF+HLGlCkkYpU2RInFkQcZCCL/lPEjk7ZViE3OA+FeMH
-         dGFz25q0NMAiRxEp4JxBUjleM5GP32g4p/+s5aLh7lnHZQFOd6lR4A8oFEkWLs7Gl8d3
-         QWfw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1751405983; x=1752010783;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=suln3ZPyOtbgf+467Jl0jyyrQzWY3/ACSgQiyK4V5QE=;
-        b=Y+1YktSUlVGDAaTMaV6vui3SRR4Y2v7ZrpC+8XqewveKaHqYeWDXhqXGF8xziANPK6
-         uXXeqL+QIkNFx8osAEbil+5u7qdEGfjMKC+oOzk2UVeffIB+s3ExxjhsF+PM8RzIVfJA
-         fcx7885JnskPFg6FcvE3CZFyXDJxHZfJjKrS4c/Vv/lLBexGV1uk9BesQXrwBZ4uhAbK
-         nwakDK5zko/q5g2kn49nxjoYsg7yWBzimSVqcZm/QTE7uL3UrhYxXnBCp/R/NM9ZV76b
-         Xmp0o9zwtfyeNt3TZrQvuRKuXazUrO7lcYTG5DPRL2An0sJy/EYbIEmFx0J/xl2m6TC9
-         Sn8g==
-X-Forwarded-Encrypted: i=1; AJvYcCXYhEDz5c+yvzSyE8NlXC9SscTqZ9ufh9lcqnQilN6nlP2jEcZsIVECtXIWnnmL0GRAX3c/+zD2NVch@vger.kernel.org
-X-Gm-Message-State: AOJu0Yw2OgEVM3TnMEG1PbrFfMRVIPh5eIsDNd19TGTeeU0kmRPc9cZx
-	fieEeQWrvUh4P9VAcRjyS4l8iZNcd1RjZyDHdJpcRXYnKBI1mkrxSlDgiTqkWptO2FM=
-X-Gm-Gg: ASbGncu8SxQi6XkFbU9XeUp3MvumR0ABwvW/XmtlftwmpFqhJCBVme2p5XQexPoPh2X
-	5D9ZaiEWM5DrJU/6t9zgbdSbDKBQm3el7jOk2vORnWDIFEPNB5JtKCZ+9zrmKig0xRfJkoF8Sry
-	+cZnABAV3BWwaOOdDXMpCl8Kc25UKh0po3fIkfGu2UOmJjZcFIfOQuxo7FTqcBVPqO1HapzVCdC
-	S8L2f1SGREyLDlwv43vyPqqQG426UEcNR4b/nqgg72YIih3iOUmVh6WcZnJIhuYnjHTM9A++JpG
-	JZo14DiRGaS3lmorxC01VJGgy1ChrE1FN56s4Q0+pE3R2vnTciQGtnomOI66rHTiPqHT
-X-Google-Smtp-Source: AGHT+IF6kRQojTr3O2i9DG8mL7DMuXbV8rMwlD9TonhoHxqzG4+HoL+1QVcxeETXqNSATHlBkNqfyw==
-X-Received: by 2002:a05:6808:1a0e:b0:409:f8e:7274 with SMTP id 5614622812f47-40b88e07cbamr163963b6e.18.1751405983560;
-        Tue, 01 Jul 2025 14:39:43 -0700 (PDT)
-Received: from [127.0.1.1] ([2600:8803:e7e4:1d00:70a7:ca49:a250:f1d5])
-        by smtp.gmail.com with ESMTPSA id 5614622812f47-40b3243deeesm2288335b6e.48.2025.07.01.14.39.42
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 01 Jul 2025 14:39:43 -0700 (PDT)
-From: David Lechner <dlechner@baylibre.com>
-Date: Tue, 01 Jul 2025 16:38:00 -0500
-Subject: [PATCH v3 12/12] iio: adc: ad7173: add SPI offload support
+	s=arc-20240116; t=1751406515; c=relaxed/simple;
+	bh=CNQeL0AVKKXXQObalktsPXjZ3U3vEt/CVME5p+04xrs=;
+	h=Message-ID:Subject:From:To:Cc:Date:In-Reply-To:References:
+	 Content-Type:MIME-Version; b=XeKCl0vIUBHsWrmlDVGIAYdk1T/DMQOvHTlg9v6pStaPbA71QIV/zH6ib6StodPnZh5c2T4r1XjiJ4MWZDOH5TcI6v4fciiiJYea+tni6moOd4hfojahrGaHhcPSicLOTT+xctcoT7cq/EKDb+FN60jnHyYlOX55KSfEhVhRY7U=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=packett.cool; spf=pass smtp.mailfrom=packett.cool; dkim=pass (2048-bit key) header.d=packett.cool header.i=@packett.cool header.b=pp9qTw7E; arc=none smtp.client-ip=91.218.175.179
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=packett.cool
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=packett.cool
+Message-ID: <266fdeb50ba3926a3edbda71201ffa021afecd62.camel@packett.cool>
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=packett.cool;
+	s=key1; t=1751406499;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references;
+	bh=CNQeL0AVKKXXQObalktsPXjZ3U3vEt/CVME5p+04xrs=;
+	b=pp9qTw7ESFqxrGZMSW/YWxUvgzUZ9Z9V2uY85UnxjMqygmm2ZQmGzjGY2PaAJdehfKIQXy
+	Susdp+6wxB/qvC4Ddv0hqzQ3XPa70Pyr2kyyMahnfRHMIWUPgxVs6kOixR7QkLiYaa8Nvk
+	nr/+NFaPBdylhzdWHp2Co3ggaE86H3R5SRN1jrYGNSkyv8CGlXOuDosIk/iWYVjQ0Eu/Jt
+	/fUFPBn2HCBQBRY+XW7NQC3joi9lVBas7SxaRZ4rLmIBaWlPvuzTvbvpPG/+Rx/sCUOHqx
+	L/Jh2NQ/3qcyAvtYU4QyUsunaEZl89zN7FCj7Da0N7f9gkUo/lvoD3AWLljGCQ==
+Subject: Re: [PATCH 0/3] Add x1e Dell Inpsiron 14p
+X-Report-Abuse: Please report any abuse attempt to abuse@migadu.com and include these headers.
+From: Val Packett <val@packett.cool>
+To: Aleksandrs Vinarskis <alex.vinarskis@gmail.com>, Bryan O'Donoghue	
+ <bryan.odonoghue@linaro.org>, Bjorn Andersson <andersson@kernel.org>,
+ Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski	 <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>
+Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org
+Date: Tue, 01 Jul 2025 18:48:07 -0300
+In-Reply-To: <86116ada-51e6-4eef-bff1-f8b10a5edacc@gmail.com>
+References: 
+	<20250424-qcom-linux-arm64-for-6-16-dell-inspiron14p-v1-0-ace76b31d024@linaro.org>
+	 <86116ada-51e6-4eef-bff1-f8b10a5edacc@gmail.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20250701-iio-adc-ad7173-add-spi-offload-support-v3-12-42abb83e3dac@baylibre.com>
-References: <20250701-iio-adc-ad7173-add-spi-offload-support-v3-0-42abb83e3dac@baylibre.com>
-In-Reply-To: <20250701-iio-adc-ad7173-add-spi-offload-support-v3-0-42abb83e3dac@baylibre.com>
-To: Michael Hennerich <Michael.Hennerich@analog.com>, 
- Jonathan Cameron <jic23@kernel.org>, 
- =?utf-8?q?Nuno_S=C3=A1?= <nuno.sa@analog.com>, 
- Andy Shevchenko <andy@kernel.org>, Rob Herring <robh@kernel.org>, 
- Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, Mark Brown <broonie@kernel.org>
-Cc: linux-iio@vger.kernel.org, linux-kernel@vger.kernel.org, 
- devicetree@vger.kernel.org, linux-spi@vger.kernel.org, 
- David Lechner <dlechner@baylibre.com>
-X-Mailer: b4 0.14.2
-X-Developer-Signature: v=1; a=openpgp-sha256; l=2110; i=dlechner@baylibre.com;
- h=from:subject:message-id; bh=x4deODr2J/B/ZfZk3+/1/BV8bYxvy5G2y6ggy6cAeUc=;
- b=owEBbQGS/pANAwAKAcLMIAH/AY/AAcsmYgBoZFWKFauMI32n+rVJ4X53stwAqiiUvPd+u9cFp
- uvVIaRAIL+JATMEAAEKAB0WIQTsGNmeYg6D1pzYaJjCzCAB/wGPwAUCaGRVigAKCRDCzCAB/wGP
- wE4UCACbCLWfN9b147eeF/3FnSESrviOzb6Fu37NJlnlvMpDCeG1q6ArK8xrmF+fw25/vektB7i
- h24Bm6GTgyEVq+Q0MOPABO9fDJL2uSWaRuVrRrqVr/I9AbRWr5dIfxqQJGtMT/VYQwGAMcVp3h3
- BKUeRv4tRjoETflevaU6psSJMOPzxt3XW7qTSYHuoYAZgWKFvqj9OJqtXTPaBmFuhtx83Jf7WCm
- sjQKKjGVOsn+yZ7Rzlpy34BGCYtFC/SsI1QHMxSe2idYDvGQZlJE5f7SFF9BNCb0VPGmd9A3Rah
- SAjh5D/znRiJRVMB4W6hFq60UKW28JwAD9k7EOd0B3ZEBd/b
-X-Developer-Key: i=dlechner@baylibre.com; a=openpgp;
- fpr=8A73D82A6A1F509907F373881F8AF88C82F77C03
+X-Migadu-Flow: FLOW_OUT
 
-Enable SPI offload support for the AD7173 ADC driver.
+On Tue, 2025-07-01 at 22:43 +0200, Aleksandrs Vinarskis wrote:
+>=20
+> On 4/24/25 01:53, Bryan O'Donoghue wrote:
+> > Add in a dtsi for the Dell Inspiron 14p.
+> >=20
+> > I'm currently using this as a daily driver including sending this
+> > series
+> > from. Its reasonably stable on 6.15-rcX.
+> >=20
+> > The first two patches can be applied without dependency, the final
+> > patch
+> > relies on patches staged for -next in the media tree to be applied,
+> > presently.
+> >=20
+> > https://gitlab.freedesktop.org/linux-media/media-committers/-/commit/2a=
+b7f87a7f4bf392e3836a2600f115a1baa1415c
+> > https://lore.kernel.org/linux-media/20250407-b4-media-comitters-next-25=
+-03-13-ov02e10-v4-0-211e3e6fae90@linaro.org/
+> >=20
+> > Working for me included in this series:
+> >=20
+> > - USB
+> > =C2=A0=C2=A0 Both Type-C USB ports
+> > =C2=A0=C2=A0 Type-A port
+> > =C2=A0=C2=A0 Fingerprint reader
+> > - WiFi
+> > - Bluetooth
+> > - RGB Camera
+> > - Toucpad, keyboard
+> > - Display
+> >=20
+> > Working for me but not included:
+> > - Audio jack
+> > - Iris
+> >=20
+> > Not working:
+> > - Speaker output
+> > =C2=A0=C2=A0 Still WiP haven't touched this in a while
+> >=20
+> > - Battery
+> > =C2=A0=C2=A0 Dell has its own Embedded Controller likely from the x86
+> > platform reused
+> > =C2=A0=C2=A0 on Qcom which we need to reverse engineer or get some
+> > information on to
+> > =C2=A0=C2=A0 make faster progress on.
+> >=20
+> > - cDSP
+> > =C2=A0=C2=A0 Haven't tried to bring this up.
+> >=20
+> > - EVA
+> > =C2=A0=C2=A0 No driver haven't tried it.
+> >=20
+> > - Bugs
+> > =C2=A0=C2=A0 Occasionally when resuming I get a fencing error with hype=
+rlock
+> > and
+> > =C2=A0=C2=A0 freedreno, TBH it looks like something in the GPU or SMMU
+> > according to
+> > =C2=A0=C2=A0 Rob Clark: https://pastebin.com/AWjCyaap
+> >=20
+> > =C2=A0=C2=A0 Ath12k has been splatting for me up to 6.14 when removing =
+a
+> > SSID.
+> > =C2=A0=C2=A0 I switched on ath12k debug when going to 6.15 and predicta=
+bly
+> > couldn't
+> > =C2=A0=C2=A0 reproduce the bug, either because the timings have changed=
+ as a
+> > result
+> > =C2=A0=C2=A0 of Heisenbugging or because a fix has been slipped into at=
+h12k.
+> >=20
+> > =C2=A0=C2=A0 Other than those two I'm pretty happy with this system.
+> >=20
+> > =C2=A0=C2=A0 The DTS is based on Aleksandrs Vinarskis XPS, Lenovo T14s =
+and
+> > Qcom CRD.
+> > =C2=A0=20
+> >=20
+> > Signed-off-by: Bryan O'Donoghue <bryan.odonoghue@linaro.org>
+>=20
+> Hi,
+>=20
+> Just noticed that the device name is misspelled in a few occasions,
+> need=20
+> to s/inspirion/inspiron/. DT filename is wrong, model name in DT is=20
+> wrong, one of commit messages is wrong. Firmware paths and compatible
+> in=20
+> DT are correct.
 
-The scan_type used for SPI offload is assuming that we are using the
-ad411x_ad717x HDL project [1] which always stores data words in 32-bits.
+(BTW, in this submission in particular, firmware paths are not
+consistent with existing models: the XPS uses lowercase 'dell')
 
-Link: https://analogdevicesinc.github.io/hdl/projects/ad411x_ad717x/index.html [1]
-Signed-off-by: David Lechner <dlechner@baylibre.com>
----
- drivers/iio/adc/ad7173.c | 13 +++++++++++++
- 1 file changed, 13 insertions(+)
+> Otherwise, is the plan to wait for CAMSS to land, and then land this=20
+> one, or perhaps the rest of it can go in already? There is also
+> Latitude=20
+> that was recently submitted which is very similar, perhaps those
+> should=20
+> be unified (CC: Val), probably easier to do if Inspiron lands first.
+>=20
 
-diff --git a/drivers/iio/adc/ad7173.c b/drivers/iio/adc/ad7173.c
-index 010339c2b7044da4b36dc894a38a145c2fcccd6a..580d4bf3366b193fa0f13d0a28886d390e1295b8 100644
---- a/drivers/iio/adc/ad7173.c
-+++ b/drivers/iio/adc/ad7173.c
-@@ -748,6 +748,7 @@ static const struct ad_sigma_delta_info ad7173_sigma_delta_info_4_slots = {
- 	.set_mode = ad7173_set_mode,
- 	.has_registers = true,
- 	.has_named_irqs = true,
-+	.supports_spi_offload = true,
- 	.addr_shift = 0,
- 	.read_mask = BIT(6),
- 	.status_ch_mask = GENMASK(3, 0),
-@@ -764,6 +765,7 @@ static const struct ad_sigma_delta_info ad7173_sigma_delta_info_8_slots = {
- 	.set_mode = ad7173_set_mode,
- 	.has_registers = true,
- 	.has_named_irqs = true,
-+	.supports_spi_offload = true,
- 	.addr_shift = 0,
- 	.read_mask = BIT(6),
- 	.status_ch_mask = GENMASK(3, 0),
-@@ -1585,6 +1587,11 @@ static int ad7173_fw_parse_channel_config(struct iio_dev *indio_dev)
- 		if (st->info->data_reg_only_16bit)
- 			chan_arr[chan_index].scan_type = ad4113_scan_type;
- 
-+		if (ad_sigma_delta_has_spi_offload(&st->sd)) {
-+			chan_arr[chan_index].scan_type.storagebits = 32;
-+			chan_arr[chan_index].scan_type.endianness = IIO_CPU;
-+		}
-+
- 		chan_index++;
- 	}
- 
-@@ -1675,6 +1682,12 @@ static int ad7173_fw_parse_channel_config(struct iio_dev *indio_dev)
- 		if (st->info->data_reg_only_16bit)
- 			chan_arr[chan_index].scan_type = ad4113_scan_type;
- 
-+		/* Assuming SPI offload is ad411x_ad717x HDL project. */
-+		if (ad_sigma_delta_has_spi_offload(&st->sd)) {
-+			chan_arr[chan_index].scan_type.storagebits = 32;
-+			chan_arr[chan_index].scan_type.endianness = IIO_CPU;
-+		}
-+
- 		chan_index++;
- 	}
- 	return 0;
+I have a unified patchset pretty much ready to go since yesterday.
+With the way I have it, landing any one of the non-unified
+submissions would only increase churn. I'll submit it now.
 
--- 
-2.43.0
-
+> Regards,
+> Alex
+>=20
+> > ---
+> > Bryan O'Donoghue (3):
+> > =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 dt-bindings: arm: qcom: Add Dell I=
+nspiron 14 Plus 7441
+> > =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 arm64: dts: qcom: Add support for =
+X1E80100 Dell Inspirion 14
+> > Plus 7441
+> > =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 arm64: dts: qcom: x1e80100-dell-in=
+spiron14-7441: Switch on
+> > CAMSS RGB sensor
+> >=20
+> > =C2=A0 Documentation/devicetree/bindings/arm/qcom.yaml=C2=A0=C2=A0=C2=
+=A0 |=C2=A0=C2=A0=C2=A0 1 +
+> > =C2=A0 arch/arm64/boot/dts/qcom/Makefile=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 |=
+=C2=A0=C2=A0=C2=A0 1 +
+> > =C2=A0 .../qcom/x1e80100-dell-inspirion-14-plus-7441.dts=C2=A0 | 1490
+> > ++++++++++++++++++++
+> > =C2=A0 3 files changed, 1492 insertions(+)
+> > ---
+> > base-commit: f7570505263aff2b63142f0d68fa607cd60eb060
+> > change-id: 20250417-qcom-linux-arm64-for-6-16-dell-inspiron14p-
+> > ed68cd65ebad
+> >=20
+> > Best regards,
 
