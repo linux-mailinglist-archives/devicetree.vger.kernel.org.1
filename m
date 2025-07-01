@@ -1,129 +1,220 @@
-Return-Path: <devicetree+bounces-191783-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-191785-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id C177DAF0697
-	for <lists+devicetree@lfdr.de>; Wed,  2 Jul 2025 00:32:57 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id C1515AF069D
+	for <lists+devicetree@lfdr.de>; Wed,  2 Jul 2025 00:34:50 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 0E7381BC79CB
-	for <lists+devicetree@lfdr.de>; Tue,  1 Jul 2025 22:33:14 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id BE9BF18987B9
+	for <lists+devicetree@lfdr.de>; Tue,  1 Jul 2025 22:35:06 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 56AA41D5CDE;
-	Tue,  1 Jul 2025 22:32:54 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C033D25DCE5;
+	Tue,  1 Jul 2025 22:34:45 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="lyfG+f/D"
+	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="ICYQPpVd"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-qt1-f177.google.com (mail-qt1-f177.google.com [209.85.160.177])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from fllvem-ot04.ext.ti.com (fllvem-ot04.ext.ti.com [198.47.19.246])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B5CD91A0BE0;
-	Tue,  1 Jul 2025 22:32:52 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.160.177
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 560641A0BE0;
+	Tue,  1 Jul 2025 22:34:43 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.19.246
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1751409174; cv=none; b=RzsVwuJEwDKNteDhxEHXwHpIqL8TQUfpqZDW60vuxMrh7qBk50FFOQk3OLqAmwiLettuU+YEaNd5/CXQoxcvqzWivTEXDttE05y8+g6uYYzDgYXuMFdO0VZDFLPwSpK8/CcwHX4o440WWK7t4CwAF/7vUfa8DY/QChh7NlJ7NFM=
+	t=1751409285; cv=none; b=BfKSKpalZ4wTi3dcH2RljigdELDzIsq377eXCQKadEMw8iPDFbkvhLDnJc2yujHtlLFYD0nFlLAoss3Oj0cmeSlnrZ5z1J6QxVnkw9clgYp1GJ8jeA5ef6dy9G6a13oORbeSD84P/3RYeT/i5zW6Zu/FPhPCKjfmIlmFiqkadv4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1751409174; c=relaxed/simple;
-	bh=eOpjsXIujiWCh/1VyzJyspu8eJOUHHgxcTY+na6+odw=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=a+9DMsKjKg0dxsoRVmnLCp+Da8T+xCMZGuf3GG5Wd1MOc5o9V528gbKxIjWliWdMqrETRTP0e4+Y9Iw2qejxOx7B9SdPlWY/nRxI4cU+Jib25GEusJTvfDHWdsHr/3hVqS5pKkDhJGscTzMBnpWji/HML2vLHTsNvM7VqaRlZXc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=lyfG+f/D; arc=none smtp.client-ip=209.85.160.177
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-qt1-f177.google.com with SMTP id d75a77b69052e-4a9741b513eso9546951cf.1;
-        Tue, 01 Jul 2025 15:32:52 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1751409171; x=1752013971; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=tdYhgZZCEXbJGpnYrPmW0z48GoHhWoQONygxFgNasxg=;
-        b=lyfG+f/DS7U7eD7fpJ+MMvTILXrxokt0LK0iH1PHn3yGTEKF9lG/kBF+7wHsdaCyIm
-         ExB4P9mB1yCydH0129OHbvkDcgFPCQZgINOylf6aqM0PW6LCPLYUKSRInuT05yi37wEw
-         T7Z9nTrXbPOa8VH9lhBF9og1pUcd02oUZuhdMIAHwvdKWBI8aksdGu6WSgFXedUgXXjr
-         58rgy0ZIPR0mvSbo9LTLZp909YAbvMeD+fNCyLAZ0eQNeD0CoGsi0cXKly34lBdbpeC1
-         /5YcLhX2DIOkve7F8FtxXGkeBWEF54O3QMKLzrUA4vMtgLP2Fm91Ft2FXsdF6HSYVe0p
-         /Ocw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1751409171; x=1752013971;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=tdYhgZZCEXbJGpnYrPmW0z48GoHhWoQONygxFgNasxg=;
-        b=nMqd4XLSxHKOl89QnxI8NQbk3AoceH4fjdKMQvklCikUHoMoqPUwU4hWxw1S3kEAYn
-         H0AOZf6jpbgSbXiOsMl87NsC0Mw4wkm07BdU/0oOar+QoCyZDE1d8R6B6Yh3wyxPfyN8
-         V4rUDtkCyLLup8q3RjuTyhZw97SGKD3MK9WpNgTysjXbXi6QUkg4Xw2pXNlNC3f/QwIH
-         ZWUIQWkOIW3JfK+4wBUJEiBzV7IVJqGVc8/UU+DXWWXQGN97/B0C/Mvp2vxwW0ht5FrP
-         r7/q51uAaK8wJX2D9aZngEIC09SsWHyJZd4PqFUTjTp/19EI6hZGP5ihIq0cSAGPrCZy
-         2suQ==
-X-Forwarded-Encrypted: i=1; AJvYcCX7//AfkNtywF3kXODpUtmew316fS1q+REZ6VOrJ4A+OwJQXOIx7XJh/sTjdATcYq4hfMN/QTj1xDmomK52QA==@vger.kernel.org, AJvYcCXDY8WSKv8IvenhYRW9gJUVigTjCHL6p7JY5OCH1tjZQkx3jb2iVVzO4VvFQein1yJzWHAXaXMHIUak@vger.kernel.org
-X-Gm-Message-State: AOJu0YxUuxJGTSDFTRIz63hQ0oUk9Z1UqDa0HESe/jxC7UDiU8kVlz5E
-	2znwisxq0AX242DX4HGo7Ewae2jQk9yqOsRvq1zfzNSseLFQSyEQag9f
-X-Gm-Gg: ASbGncs8flt/wtamoyYt7DsCnT0OdcLe61pI0MiQwgCRo/DL8ItkzIMi4wwAE3ngKy6
-	N+ibPEKJY3lrkZVVSLjQ8wOVIWowNfdDF7d+aOuHwf+Ph3ktvjkwubwTNm0zhSYeI8w53K73SXp
-	CyVw0ekuNqtW1YMKN3zZ0B5kXraF/PJBketOUaSq/PsMhwUv5xSgnCRfpSpKyjjcEs499U1PYru
-	vtL+FCiNN5EywTtd7Sr90jY2AAW3s+NQHgifNbm8uLPdC42HAJvM2SBoeun4PY28oupbZp2WKiC
-	GezXrdGdaJr6w0BbRUln2YWTTr8pPFJjndWpgUrWB64WyzWWFw==
-X-Google-Smtp-Source: AGHT+IEtwfsZWwZbAPRSv2MAu0spgXNaGCGHNcfwitMEjFEbDWIAHNxKAIPEfbe4AtoxXTldN+F/Nw==
-X-Received: by 2002:a05:622a:304:b0:4a9:5220:7fc3 with SMTP id d75a77b69052e-4a97691056cmr14087461cf.18.1751409171485;
-        Tue, 01 Jul 2025 15:32:51 -0700 (PDT)
-Received: from localhost ([2607:fea8:3140:6800::9bde])
-        by smtp.gmail.com with UTF8SMTPSA id d75a77b69052e-4a7fc106202sm82155241cf.9.2025.07.01.15.32.50
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 01 Jul 2025 15:32:51 -0700 (PDT)
-Date: Tue, 1 Jul 2025 18:32:49 -0400
-From: Richard Acayan <mailingradian@gmail.com>
-To: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
-Cc: Bjorn Andersson <andersson@kernel.org>,
-	Konrad Dybcio <konradybcio@kernel.org>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, linux-arm-msm@vger.kernel.org,
-	devicetree@vger.kernel.org
-Subject: Re: [PATCH] arm64: dts: qcom: sdm670-google-sargo: enable charger
-Message-ID: <aGRiEdXs6pwRH5CH@radian>
-References: <20250630224158.249726-2-mailingradian@gmail.com>
- <f931e284-6ae6-4177-83bf-c6eb1ce583f9@oss.qualcomm.com>
+	s=arc-20240116; t=1751409285; c=relaxed/simple;
+	bh=TVVP1jC7HYclxJ4Xp3i7dsoPGyAXo6p6cPeNiF/hUn4=;
+	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
+	 In-Reply-To:Content-Type; b=eYTV/zqDdGvbx3kOGHGx8wmUXh3Sboi194PHlIbF9TFjnl0MN6tONrH+K4n4mJuoU9nl95U7PFzL/KBJ6soyOjmR0O4Bv5X7KwyB1UgM3jtJFEKV2qXLQCbhTH8nYWtA5ffzYv99QAyqKkNeSL3WhOgdGioMVHOo/jfdm4dnOXU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=ICYQPpVd; arc=none smtp.client-ip=198.47.19.246
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
+Received: from fllvem-sh04.itg.ti.com ([10.64.41.54])
+	by fllvem-ot04.ext.ti.com (8.15.2/8.15.2) with ESMTP id 561MYOes3751726;
+	Tue, 1 Jul 2025 17:34:24 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+	s=ti-com-17Q1; t=1751409264;
+	bh=Qbv/ZtN1eFo6mhf92agyySSZLmzADkxZD1QmubJ60lw=;
+	h=Date:Subject:To:CC:References:From:In-Reply-To;
+	b=ICYQPpVdYw0OiiI7ITnZ19yIL7Mjd/OV4/w/i3+jaX5Sf/ezYPf3Ui6OZ30//rgRb
+	 ddOvpf8r7sNq6Q0FIa33TeouDtShyXmKJ+esAqlVqkHZBFusaNJz5HCIY++w12+VDL
+	 du+hpg+/d5oYDl49sXYrAMnTy5bUK7kQ4ffbRZJE=
+Received: from DFLE114.ent.ti.com (dfle114.ent.ti.com [10.64.6.35])
+	by fllvem-sh04.itg.ti.com (8.18.1/8.18.1) with ESMTPS id 561MYOq93322304
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-SHA256 bits=128 verify=FAIL);
+	Tue, 1 Jul 2025 17:34:24 -0500
+Received: from DFLE103.ent.ti.com (10.64.6.24) by DFLE114.ent.ti.com
+ (10.64.6.35) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.55; Tue, 1
+ Jul 2025 17:34:24 -0500
+Received: from lelvem-mr06.itg.ti.com (10.180.75.8) by DFLE103.ent.ti.com
+ (10.64.6.24) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.55 via
+ Frontend Transport; Tue, 1 Jul 2025 17:34:24 -0500
+Received: from [128.247.81.105] (judy-hp.dhcp.ti.com [128.247.81.105])
+	by lelvem-mr06.itg.ti.com (8.18.1/8.18.1) with ESMTP id 561MYOHs2057928;
+	Tue, 1 Jul 2025 17:34:24 -0500
+Message-ID: <76622b57-1f37-417c-9d70-7064cc21d2cb@ti.com>
+Date: Tue, 1 Jul 2025 17:34:24 -0500
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <f931e284-6ae6-4177-83bf-c6eb1ce583f9@oss.qualcomm.com>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2 2/2] watchdog: rti_wdt: Add reaction control
+To: Andrew Davis <afd@ti.com>, Wim Van Sebroeck <wim@linux-watchdog.org>,
+        Guenter Roeck <linux@roeck-us.net>, Rob Herring <robh@kernel.org>,
+        Krzysztof
+ Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>
+CC: Vignesh Raghavendra <vigneshr@ti.com>, Tero Kristo <kristo@kernel.org>,
+        <linux-watchdog@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>
+References: <20250625143338.2381726-1-jm@ti.com>
+ <20250625143338.2381726-3-jm@ti.com>
+ <8fbe03d0-ee45-4b1f-92ec-bebf6d7b9041@ti.com>
+Content-Language: en-US
+From: Judith Mendez <jm@ti.com>
+In-Reply-To: <8fbe03d0-ee45-4b1f-92ec-bebf6d7b9041@ti.com>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 8bit
+X-C2ProcessedOrg: 333ef613-75bf-4e12-a4b1-8e3623f5dcea
 
-On Tue, Jul 01, 2025 at 12:55:14PM +0200, Konrad Dybcio wrote:
+On 6/27/25 1:31 PM, Andrew Davis wrote:
+> On 6/25/25 9:33 AM, Judith Mendez wrote:
+>> This allows to configure reaction between NMI and reset for WWD.
+>>
+>> On K3 SoC's other than AM62L SoC [0], watchdog reset output is routed
+>> to the ESM module which can subsequently route the signal to safety
+>> master or SoC reset. On AM62L, the watchdog reset output is routed
+>> to the SoC HW reset block. So, add a new compatible for AM62l to add
+>> SoC data and configure reaction to reset instead of NMI.
 > 
-> 
-> On 01-Jul-25 00:41, Richard Acayan wrote:
-> > The Pixel 3a has a rechargeable 3000 mAh battery. Describe it and enable
-> > its charging controller in PM660.
-> > 
-> > Signed-off-by: Richard Acayan <mailingradian@gmail.com>
-> > ---
-> >  .../arm64/boot/dts/qcom/sdm670-google-sargo.dts | 17 +++++++++++++++++
-> >  1 file changed, 17 insertions(+)
-> > 
-> > diff --git a/arch/arm64/boot/dts/qcom/sdm670-google-sargo.dts b/arch/arm64/boot/dts/qcom/sdm670-google-sargo.dts
-> > index 74b5d9c68eb6..d01422844fbf 100644
-> > --- a/arch/arm64/boot/dts/qcom/sdm670-google-sargo.dts
-> > +++ b/arch/arm64/boot/dts/qcom/sdm670-google-sargo.dts
-> > @@ -33,6 +33,14 @@ / {
-> >  
-> >  	aliases { };
-> >  
-> > +	battery: battery {
-> > +		compatible = "simple-battery";
-> > +
-> > +		voltage-min-design-microvolt = <3312000>;
-> > +		voltage-max-design-microvolt = <4400000>;
-> 
-> Does this match what downstream sets into the hw?
+> Should this be something we configure, not selected based on device,
+> do we know if all user of AM62L want the device reset on WDT?
 
-Actually, downstream sets the "empty" voltage to 2.6 V. This minimum is
-closer to the "cutoff" voltage at 3.3 V.
+I will assume that end user will want watchdog to actually reset
+the system if watchdog is enabled.
 
-The maximum voltage is consistent with downstream.
+If they don't use watchdog, they wont care. I believe it should be per
+device/SoC.
+
+> 
+>>
+>> [0] https://www.ti.com/product/AM62L
+>> Signed-off-by: Judith Mendez <jm@ti.com>
+>> ---
+>> Changes since v1-resend:
+>> - no change
+>> ---
+>>   drivers/watchdog/rti_wdt.c | 31 +++++++++++++++++++++++++++----
+>>   1 file changed, 27 insertions(+), 4 deletions(-)
+>>
+>> diff --git a/drivers/watchdog/rti_wdt.c b/drivers/watchdog/rti_wdt.c
+>> index d1f9ce4100a8..d419884c86c4 100644
+>> --- a/drivers/watchdog/rti_wdt.c
+>> +++ b/drivers/watchdog/rti_wdt.c
+>> @@ -35,7 +35,8 @@
+>>   #define RTIWWDRXCTRL    0xa4
+>>   #define RTIWWDSIZECTRL    0xa8
+>> -#define RTIWWDRX_NMI    0xa
+>> +#define RTIWWDRXN_RST    0x5
+>> +#define RTIWWDRXN_NMI    0xa
+>>   #define RTIWWDSIZE_50P        0x50
+>>   #define RTIWWDSIZE_25P        0x500
+>> @@ -63,22 +64,29 @@
+>>   static int heartbeat;
+>> +struct rti_wdt_data {
+>> +    bool reset;
+>> +};
+>> +
+>>   /*
+>>    * struct to hold data for each WDT device
+>>    * @base - base io address of WD device
+>>    * @freq - source clock frequency of WDT
+>>    * @wdd  - hold watchdog device as is in WDT core
+>> + * @data - hold configuration data
+>>    */
+>>   struct rti_wdt_device {
+>>       void __iomem        *base;
+>>       unsigned long        freq;
+>>       struct watchdog_device    wdd;
+>> +    const struct rti_wdt_data *data;
+>>   };
+>>   static int rti_wdt_start(struct watchdog_device *wdd)
+>>   {
+>>       u32 timer_margin;
+>>       struct rti_wdt_device *wdt = watchdog_get_drvdata(wdd);
+>> +    u8 reaction;
+>>       int ret;
+>>       ret = pm_runtime_resume_and_get(wdd->parent);
+>> @@ -101,8 +109,12 @@ static int rti_wdt_start(struct watchdog_device 
+>> *wdd)
+>>        */
+>>       wdd->min_hw_heartbeat_ms = 520 * wdd->timeout + MAX_HW_ERROR;
+>> -    /* Generate NMI when wdt expires */
+>> -    writel_relaxed(RTIWWDRX_NMI, wdt->base + RTIWWDRXCTRL);
+>> +    /* Generate reset or NMI when timer expires/serviced outside of 
+>> window */
+>> +    reaction = RTIWWDRXN_NMI;
+>> +    if (wdt->data->reset)
+>> +        reaction = RTIWWDRXN_RST;
+>> +
+> 
+> Suggest:
+> 
+> /* Reset device if wdt serviced outside of window or generate NMI if 
+> available */
+> if (wdt->data->reset)
+>      reaction = RTIWWDRXN_RST;
+> else
+>      reaction = RTIWWDRXN_NMI;
+
+Sure, will fix for v3
+
+> 
+>> +    writel_relaxed(reaction, wdt->base + RTIWWDRXCTRL);
+>>       /* Open window size 50%; this is the largest window size 
+>> available */
+>>       writel_relaxed(RTIWWDSIZE_50P, wdt->base + RTIWWDSIZECTRL);
+>> @@ -255,6 +267,8 @@ static int rti_wdt_probe(struct platform_device 
+>> *pdev)
+>>       wdd->timeout = DEFAULT_HEARTBEAT;
+>>       wdd->parent = dev;
+>> +    wdt->data = of_device_get_match_data(dev);
+> 
+> You can use device_get_match_data() here.
+> 
+Sure, will fix for v3
+
+> Andrew
+> 
+>> +
+>>       watchdog_set_drvdata(wdd, wdt);
+>>       watchdog_set_nowayout(wdd, 1);
+>>       watchdog_set_restart_priority(wdd, 128);
+>> @@ -369,8 +383,17 @@ static void rti_wdt_remove(struct platform_device 
+>> *pdev)
+>>       pm_runtime_disable(&pdev->dev);
+>>   }
+>> +static struct rti_wdt_data j7_wdt = {
+>> +    .reset = false,
+>> +};
+>> +
+>> +static struct rti_wdt_data am62l_wdt = {
+>> +    .reset = true,
+>> +};
+>> +
+>>   static const struct of_device_id rti_wdt_of_match[] = {
+>> -    { .compatible = "ti,j7-rti-wdt", },
+>> +    { .compatible = "ti,j7-rti-wdt", .data = &j7_wdt },
+>> +    { .compatible = "ti,am62l-rti-wdt", .data = &am62l_wdt },
+>>       {},
+>>   };
+>>   MODULE_DEVICE_TABLE(of, rti_wdt_of_match);
+
 
