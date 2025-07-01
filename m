@@ -1,88 +1,231 @@
-Return-Path: <devicetree+bounces-191533-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-191531-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1BE5EAEF9C2
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id D964CAEF9C3
 	for <lists+devicetree@lfdr.de>; Tue,  1 Jul 2025 15:08:26 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 6F56F446F46
-	for <lists+devicetree@lfdr.de>; Tue,  1 Jul 2025 13:06:47 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 7BD041BC37A3
+	for <lists+devicetree@lfdr.de>; Tue,  1 Jul 2025 13:06:46 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4A6B1264A73;
-	Tue,  1 Jul 2025 13:06:55 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0F1B62741C0;
+	Tue,  1 Jul 2025 13:06:24 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=yeah.net header.i=@yeah.net header.b="eZ07VeVY"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="psgLbnYe"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-m16.yeah.net (mail-m16.yeah.net [1.95.21.16])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 892DA14A60C;
-	Tue,  1 Jul 2025 13:06:51 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=1.95.21.16
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D699C14A60C;
+	Tue,  1 Jul 2025 13:06:23 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1751375215; cv=none; b=iU3HHLop3DtLst70IL9hvNm2sJRWtlUSgS//S0K7fRlviDuye/mrM2A2TMvWUkAK6qGJ7XzPmzPM1xqLPK9Z5KcSmOeo+tqwGrIn6jLF7KpW7X2fbdi7oQBXoQNHKE7u4stVIbhhEutJjZHT4ChZoMpgjTbTrps0TdywLg797Zc=
+	t=1751375183; cv=none; b=stm678YIG8oM5KTKB7qf6ggJ0q7WwpIOoLedcnQ8BoHO36dq+F35plQVTEy5VU9njm8oV799/aQklnSNieHWKXCoVufXA79wHvrMsd8BCHrtkL1ANE9TeEWWSPuRNrqVUWXsqOLYlYV/F2YjwZ3DPFifUBa3iolK8YkpfJMYlpY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1751375215; c=relaxed/simple;
-	bh=fuT/LDLh5OxFNOcsCU4pYYDRvoCcLPF3BEgrFESR5YU=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=JtEbAUUKyA/VJQzHme6DV6UevfDWh9FIV6tYXkX6XyUc0EV8kHh9qRisFbKOFftrUd0MlnNDK2AQQQ3vOKfONnFEo4FqWuKNxeRft5IdlQToBkJRSCnbrY5ysBmo1wQjfj4HHoowNQ/aP/clqqpRsdAYedy43/His/7Mo6NZYro=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=yeah.net; spf=pass smtp.mailfrom=yeah.net; dkim=pass (1024-bit key) header.d=yeah.net header.i=@yeah.net header.b=eZ07VeVY; arc=none smtp.client-ip=1.95.21.16
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=yeah.net
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=yeah.net
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=yeah.net;
-	s=s110527; h=Date:From:To:Subject:Message-ID:MIME-Version:
-	Content-Type; bh=sEnrDDcCW0+uNi7Li/7EBjKT/lB/N/YIH1Gam18Rgys=;
-	b=eZ07VeVYykK8lNUX1eBXrC/u3PXr/45h/URm8aa1PhSrcmLsoJDRgGWmGWoMHb
-	jXDL4U0F0EwXNHekUBnBFb0gg/1c8+rAeBpWQUO+z3bL3KJoZVKeJOUskb8xlFx/
-	Re94eKkN+NRJNicXXsWimzKC+EEcA+enODCIvQJ/y0tSM=
-Received: from dragon (unknown [])
-	by gzsmtp2 (Coremail) with SMTP id Ms8vCgDHVuQ43WNo87YbAA--.10731S3;
-	Tue, 01 Jul 2025 21:06:01 +0800 (CST)
-Date: Tue, 1 Jul 2025 21:05:59 +0800
-From: Shawn Guo <shawnguo2@yeah.net>
-To: Primoz Fiser <primoz.fiser@norik.com>
-Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
-	Sascha Hauer <s.hauer@pengutronix.de>,
-	Pengutronix Kernel Team <kernel@pengutronix.de>,
-	Fabio Estevam <festevam@gmail.com>, devicetree@vger.kernel.org,
-	imx@lists.linux.dev, linux-arm-kernel@lists.infradead.org,
-	linux-kernel@vger.kernel.org, upstream@lists.phytec.de
-Subject: Re: [PATCH] arm64: dts: freescale: imx93-phyboard-nash: Move ADC
- vref to SoM
-Message-ID: <aGPdNy8Bn37XiOpy@dragon>
-References: <20250602125207.2265222-1-primoz.fiser@norik.com>
+	s=arc-20240116; t=1751375183; c=relaxed/simple;
+	bh=YpbwD0/vOmV5263x9ZGWApwe5zKhUaOtc0dU/kpHjWQ=;
+	h=Message-ID:Date:MIME-Version:Subject:To:References:From:
+	 In-Reply-To:Content-Type; b=BhobAePl/OqjVrle8kQsj+evfL1KRZLoRsBS6yeg7dvzLU1ms0G21qElb035H4iSQA+IZfAc53UYT7Ve8/Idg+Nh56BWm9BKZPisktTtXJmQ34e/AniDcYDBc8BgMfQuDeU4VFgcTpTeC33DgWb1RGIyeMFBYkZN5NlqfrLUqjE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=psgLbnYe; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 45D1CC4CEEB;
+	Tue,  1 Jul 2025 13:06:17 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1751375183;
+	bh=YpbwD0/vOmV5263x9ZGWApwe5zKhUaOtc0dU/kpHjWQ=;
+	h=Date:Subject:To:References:From:In-Reply-To:From;
+	b=psgLbnYeH76pUuGtUOCIucT4UalZH7vYl6ydFParxfNOxtQe59gQPNW7wMlOLNEO9
+	 28WclTFfl6joMJwaXkNL769IufrJnfhscP0zeB9HeV24l66hso2iONLgiXvRSgl+GA
+	 BTeN8sstM1P1OIGWzhKon1OKfSCbvFPGYg8Z/odtCa8wshxJeu6efaqkP3qeGGXDdk
+	 h0a/7z/hNTlsJ7B8YeCierft9pBjwban3lisLw/YknDcEo82XAlDyJzHJDx76IqJyX
+	 XMcUdQgSkm1CO5XzATz5E9B9V1hhYQdUUU8KqWmQZHfPvlJn0FwNPf/WN1zqtB4Xhz
+	 Dj20gg11ycFtA==
+Message-ID: <a138b67c-5529-4d51-bdc4-cc483c384c6c@kernel.org>
+Date: Tue, 1 Jul 2025 15:06:15 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20250602125207.2265222-1-primoz.fiser@norik.com>
-X-CM-TRANSID:Ms8vCgDHVuQ43WNo87YbAA--.10731S3
-X-Coremail-Antispam: 1Uf129KBjvdXoW7Xr15WF17tw47WryruF4xCrg_yoWxKFc_ua
-	48WFWvyr1UJF4xua13GF12v3s3G3WUJrWxZr4fGrn3tr92yayxG3sYy345Jw47Xw4DArsI
-	vF1rAa1rur1Y9jkaLaAFLSUrUUUUjb8apTn2vfkv8UJUUUU8Yxn0WfASr-VFAUDa7-sFnT
-	9fnUUvcSsGvfC2KfnxnUUI43ZEXa7IUj7DGUUUUUU==
-X-CM-SenderInfo: pvkd40hjxrjqh1hdxhhqhw/1tbiIBp43Whj3TqWqAAA3N
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 1/5] dt-bindings: media: i2c: Add Sony IMX355
+To: Richard Acayan <mailingradian@gmail.com>,
+ Mauro Carvalho Chehab <mchehab@kernel.org>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Bjorn Andersson <andersson@kernel.org>,
+ Konrad Dybcio <konradybcio@kernel.org>,
+ Sakari Ailus <sakari.ailus@linux.intel.com>,
+ Tianshu Qiu <tian.shu.qiu@intel.com>, linux-media@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-arm-msm@vger.kernel.org
+References: <20250630225944.320755-7-mailingradian@gmail.com>
+ <20250630225944.320755-8-mailingradian@gmail.com>
+From: Krzysztof Kozlowski <krzk@kernel.org>
+Content-Language: en-US
+Autocrypt: addr=krzk@kernel.org; keydata=
+ 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 a/A=
+In-Reply-To: <20250630225944.320755-8-mailingradian@gmail.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-On Mon, Jun 02, 2025 at 02:52:07PM +0200, Primoz Fiser wrote:
-> Move configuration for ADC voltage reference from board DTS to a SoM
-> include file. The SoC ADC reference voltage is connected to a "VDDA_1V8"
-> voltage node and supplied by the PMIC's BUCK5 regulator. The reference
-> voltage is thus defined by the SoM and cannot be changed by the carrier
-> board design and as such belongs into the SoM include file.
-> 
-> Moreover, with this in place, customers designing own carrier boards can
-> simply include imx93-phycore-som.dtsi and enable adc1 in their own DTS
-> without the need to define dummy ADC vref regulator themselves anymore.
-> 
-> Signed-off-by: Primoz Fiser <primoz.fiser@norik.com>
+On 01/07/2025 00:59, Richard Acayan wrote:
+> +
+> +  reg:
+> +    maxItems: 1
+> +
+> +  assigned-clocks: true
 
-Applied, thanks!
+Drop
 
+> +  assigned-clock-rates: true
+
+Drop, that's some old binding pattern
+
+> +
+> +  clocks:
+> +    maxItems: 1
+> +
+> +  clock-names:
+> +    items:
+> +      - const: mclk
+> +
+> +  clock-frequency:
+
+Drop, it is a legacy and not needed. Clock gives you the frequency.
+
+
+> +    $ref: /schemas/types.yaml#/definitions/uint32
+> +    description: External clock frequency.
+> +
+> +  vana-supply:
+> +    description: Analog power supply.
+> +
+> +  vdig-supply:
+> +    description: Digital power supply.
+> +
+> +  vio-supply:
+> +    description: Interface power supply.
+> +
+> +  reset-gpios:
+> +    maxItems: 1
+> +
+> +  port:
+> +    $ref: /schemas/graph.yaml#/$defs/port-base
+> +    description:
+> +      CSI output port.
+> +
+> +    properties:
+> +      endpoint:
+> +        $ref: /schemas/media/video-interfaces.yaml
+> +        description:
+> +          CSI endpoint for the sensor output.
+
+Drop description, redundant.
+
+> +
+> +        unevaluatedProperties: false
+
+This goes after ref
+
+What binding did you take as reference?
+
+> +
+> +        required:
+> +          - link-frequencies
+> +
+> +    unevaluatedProperties: false
+
+This goes up, look at imx415 or 335 (which has very similar number to yours)
+
+> +
+> +    required:
+> +      - endpoint
+> +
+> +unevaluatedProperties: false
+
+Wrongly placed, look at other bindings
+
+> +
+> +required:
+> +  - compatible
+> +  - reg
+> +  - clock-frequency
+
+No, drop, cannot be required.
+
+But clocks, port and supplies are required. Please look at other recent
+binding.
+port
+
+> +
+> +examples:
+> +  - |
+> +    #include <dt-bindings/clock/qcom,camcc-sdm845.h>
+> +    #include <dt-bindings/gpio/gpio.h>
+> +
+> +    i2c {
+> +        #address-cells = <1>;
+> +        #size-cells = <0>;
+> +
+> +        camera@1a {
+> +            compatible = "sony,imx355";
+> +            reg = <0x1a>;
+> +
+> +            clocks = <&camcc CAM_CC_MCLK2_CLK>;
+> +            clock-names = "mclk";
+> +
+> +            clock-frequency = <19200000>;
+> +
+> +            assigned-clocks = <&camcc CAM_CC_MCLK2_CLK>;
+> +            assigned-clock-rates = <24000000>;
+> +
+> +            reset-gpios = <&tlmm 9 GPIO_ACTIVE_HIGH>;
+
+Really? Really high? Let me check your driver...
+
+
+Best regards,
+Krzysztof
 
