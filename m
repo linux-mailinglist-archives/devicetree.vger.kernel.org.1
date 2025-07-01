@@ -1,215 +1,174 @@
-Return-Path: <devicetree+bounces-191503-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-191500-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id E0C34AEF7D1
-	for <lists+devicetree@lfdr.de>; Tue,  1 Jul 2025 14:07:58 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id CD8B0AEF7BD
+	for <lists+devicetree@lfdr.de>; Tue,  1 Jul 2025 14:05:20 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id D5E143AD080
-	for <lists+devicetree@lfdr.de>; Tue,  1 Jul 2025 12:06:53 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id AAEB74A1D17
+	for <lists+devicetree@lfdr.de>; Tue,  1 Jul 2025 12:04:47 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 75C7E2737F2;
-	Tue,  1 Jul 2025 12:07:12 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6BE2825A35E;
+	Tue,  1 Jul 2025 12:04:43 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="ju65JOmy"
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="fsstwGVy"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3928626B97F;
-	Tue,  1 Jul 2025 12:07:12 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B712B1D540
+	for <devicetree@vger.kernel.org>; Tue,  1 Jul 2025 12:04:41 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1751371632; cv=none; b=MwsqFLrkUyaO8b+4fMLB9nddGPvWaeBNPrl6OwhFdDy+XN+7DPSH4wfQ6iAgsozDeGGw8+JhJm6ud2iRC+AU06hmtCnJ3P7k0XSnLGt7oZM2UGstU852K2YLOLbHr0PlJzKGIXqanxCvTkdAyz2xqyb6z0QEj1ZOrwhjBe/qrIo=
+	t=1751371483; cv=none; b=kWMhbqedtajBLVDipeNU9v5v5/6B9aCL3qXOUTJixYANvBu8GVV556Y5XX937RZrbUUidTZOTA9X8DXgLh9MQJOASoelx30IG33RLUi8DTnL8fqsOBErzDQ+NWBTC4ANGS55DlftKxX4f8+K5TBEEvmfxrRiVO/QctTb7h1g4MY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1751371632; c=relaxed/simple;
-	bh=zdQNmqbysWdxXUYiaVVlHOhxVRge3N7XydcHJPPQNu4=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=fHQei9E10MGGUeC5Z8ZVVu5eQlL6aTJcbYJQk7xsUDIKy9s2GJaXlraiOx3IdF1yj2NQdOZwiQ7AecjV35yqWRvqFPkQgT5rzIMitUXigz+DPa4j6RvskvbITA5+FCh+45BTl5CXxO0+3x/UvXVCJ0G4fccPz48/5WLziBIxtZY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=ju65JOmy; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPS id D5222C4CEF1;
-	Tue,  1 Jul 2025 12:07:11 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1751371631;
-	bh=zdQNmqbysWdxXUYiaVVlHOhxVRge3N7XydcHJPPQNu4=;
-	h=From:Date:Subject:References:In-Reply-To:To:Cc:Reply-To:From;
-	b=ju65JOmy9oCkN1QPH9pvJ14VODmGp+h0gKYTzdrsBHKcubtbU31s5XzcCI3PzmK5X
-	 bpaOMU79xBKlPk/Pk4dpKRpCuxXeareE3r5eYdZ7RCO0YAYkGGy61w6idIkvyraqsp
-	 KSPq4p5MNK82yDe6An4BioRZLi0GNJYmNVyWEvnnvEARIcOTW1pdZHGpAyMoIINarF
-	 dAHhsFu/Av+c7PmCC/iy4YXPtvOcrsnCillv1kdNA4JN9t6AU7CSkr4LsMLRaX5vo+
-	 cN1zXFhwOYqflprfph5qltj6dKqpiK/cskN0XWvHtjmC1yARDCaq2NPv8YdQuaMlDn
-	 R0QmpamrS9OUw==
-Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id C7917C8303A;
-	Tue,  1 Jul 2025 12:07:11 +0000 (UTC)
-From: Jack Cheng via B4 Relay <devnull+Cheng.JackHY.inventec.com@kernel.org>
-Date: Tue, 01 Jul 2025 12:03:46 +0000
-Subject: [PATCH 2/2] hwmon: (pmbus/q54sj108a2) Add support for q50sn12072
- and q54sn120a1
+	s=arc-20240116; t=1751371483; c=relaxed/simple;
+	bh=1lbvkwmcN9+XPKXalOgA9l2vSu8vLVpKPb/SY3OyzR4=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=UXg8oMrxRjedMzkrqEbRDRG0uZlcjDTJOdZb1RpAQOMkc21/fUUdU1rzoIZRZQDvu57p0Rr9ASiWOv0hfY944wSnIFFfxaEHD5GhP8ZvSuhE1aBL9xSYb1EeC5zjLfgYy/XLGi6GtPyxlbGY+ZHSfsm6oKpm9d8TVpq+oJIo31o=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=fsstwGVy; arc=none smtp.client-ip=205.220.180.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
+Received: from pps.filterd (m0279869.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 5619Rjo5025165
+	for <devicetree@vger.kernel.org>; Tue, 1 Jul 2025 12:04:40 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	8NHaWBJg+Ds90gbf6gIrNnGLkbKxLD7AC/sDGjFqo0Y=; b=fsstwGVyEgtyq39g
+	I3qt8UYvjp80hCeAeu2Dmo+eU4zHnDDMIaTGO0RKueua50jsSOoWrL/Yme3lz3RS
+	G3/D0BCyRUqcOA86qi4KkDHUz7iTU9YvY4bOP3DDsCvus6+n8CMGvKMjfqu50lWf
+	WDlUkH2fluJltkZlpl+mSZR7jpG4mmiyaoyXyulDTcQfPgI1KwNSvqlDtKR3SaIX
+	E+sfMhD/KSxl8SntvfYVUlXcPGw5iu3qHcOe1yydYwsSsTpxaQzg+j4n+9srw5do
+	FpBOO/JjPs3/IOQF/wMByIsSonVwFMttvux/fboUlqBiJFRlH1UxMxoKRXPgyR0i
+	UbKMlA==
+Received: from mail-qv1-f71.google.com (mail-qv1-f71.google.com [209.85.219.71])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 47kd64p1t9-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
+	for <devicetree@vger.kernel.org>; Tue, 01 Jul 2025 12:04:40 +0000 (GMT)
+Received: by mail-qv1-f71.google.com with SMTP id 6a1803df08f44-6fae04a3769so13723056d6.1
+        for <devicetree@vger.kernel.org>; Tue, 01 Jul 2025 05:04:40 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1751371480; x=1751976280;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=8NHaWBJg+Ds90gbf6gIrNnGLkbKxLD7AC/sDGjFqo0Y=;
+        b=aVqRjncEA7uM1dZi0+8ivY4bU6U3fc+A073YravxDcip7SKz4WEJzNyZl6thkmlujE
+         NxoeIhKh6MgKh1YH82YDERKTmC/fR8jAGzOy/0DR/As1rdvcpJmbYUnypctiI1mainzv
+         v3A2DDJ8CGnOnfM38VSwWEMH5PHSOzANvOfN/07RdKKBzafABBGL3I5KghwS0mW9zZDe
+         GSun4X7SwDZQh3DpPps94oTDpRgXTflvbrlRbh+ibhRh8htVzrXG/LkRIg6A8i5u/PGN
+         G5yc5xB/7SOhEH69XnjxL19ABJx/iRXX2ovFO1J+DMGuI7TKxJTw6GQqhCBkgVWdBbqK
+         fAhg==
+X-Forwarded-Encrypted: i=1; AJvYcCUoMwPSbQlhNWydaPz6pKaenjIRqHHZHLZ33mVDViwVD74zFw2wnvZWzNLAdjEuPDAcWJqPPcb6E8xh@vger.kernel.org
+X-Gm-Message-State: AOJu0YwRS8Pg3IgAgBnTuh82Z+Jht5uWJt/CNx7n4BkGeeF48N6R/Dr0
+	6pcfb21ZO9BYd9Zx6ZFchVwEpV4hGgwDAxKrwM0PwQRwQbFHHOglxFF4D615umJSa9l3om9RYrY
+	TKb0pi3GG3W3bUugqf+LFr4cKajwlhotGk/nX3GVFO781YAZKF0QoORT5OnbC/pR/
+X-Gm-Gg: ASbGnctttPff+HXUCHB3cTGVvznnDoWXdPoBOoosdYSL7eudaNZoB6JtB0r3nRjki1V
+	OikSiuZtLYHAwCnGtpeNARjmwCtGpMqlRKKoa3snt+wftW+QyNzpQi2zPS6gAEmKqmQtB+kcIvG
+	G/TIT6Cb1c1+SgPRpeAGfVwO5LWZhAEc7SvxI6di6WeV067tCyHilsrW4BgYdIBZxoN2sozltRX
+	DdDnmNftbFzxWfn43U3gVf0IIgqSH6WtVTs746fk4otUH1HGEh8k8cIVeGsGhkqF9KjFD4FrGrA
+	FJv9Dv6vYxDe4wH8Gil9kZlJlTP3D+2/QqIuik9zLoWUbTQ204VrUuw4CXgwBlb8X+xFVOekPvw
+	/gsD80kTb
+X-Received: by 2002:a05:620a:294a:b0:7c3:d798:e8ae with SMTP id af79cd13be357-7d4688a26d0mr124885885a.2.1751371479565;
+        Tue, 01 Jul 2025 05:04:39 -0700 (PDT)
+X-Google-Smtp-Source: AGHT+IH8XZoEPSj7bokOOVZKz/UcTzyquGklqsan9ThQP9FrWzaAytiLBv4obM8TRklGr/BZUMuQwA==
+X-Received: by 2002:a05:620a:294a:b0:7c3:d798:e8ae with SMTP id af79cd13be357-7d4688a26d0mr124876985a.2.1751371477590;
+        Tue, 01 Jul 2025 05:04:37 -0700 (PDT)
+Received: from [192.168.1.114] (83.9.29.190.neoplus.adsl.tpnet.pl. [83.9.29.190])
+        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-ae353ca20a0sm866875566b.177.2025.07.01.05.04.35
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 01 Jul 2025 05:04:36 -0700 (PDT)
+Message-ID: <84861a4d-3016-4d67-b606-ef698ea10e7d@oss.qualcomm.com>
+Date: Tue, 1 Jul 2025 14:04:34 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20250701-add-support-for-q50sn12072-and-q54sn120a1-v1-2-c387baf928cb@inventec.com>
-References: <20250701-add-support-for-q50sn12072-and-q54sn120a1-v1-0-c387baf928cb@inventec.com>
-In-Reply-To: <20250701-add-support-for-q50sn12072-and-q54sn120a1-v1-0-c387baf928cb@inventec.com>
-To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, Jean Delvare <jdelvare@suse.com>, 
- Guenter Roeck <linux@roeck-us.net>
-Cc: devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
- linux-hwmon@vger.kernel.org, Jack Cheng <Cheng.JackHY@inventec.com>, 
- Jack Cheng <cheng.jackhy@inventec.com>
-X-Mailer: b4 0.13.0
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1751371491; l=4040;
- i=Cheng.JackHY@inventec.com; s=20250701; h=from:subject:message-id;
- bh=zA/Fyy6uru6kWhlC/CVZ1MMPpQZdr70m76wF9y8wM0E=;
- b=QlcIod5aR81TXWHqlkwVyvOkCRY/AtaejFlk3i22kPJkuiboUBmK/08hqeqhxGwLTA0PRDLNe
- 5p8ab4oEfHcDWbfGUziBEVK5/oK3VtBAkhHAxKR7QkHymIkHyaKILOT
-X-Developer-Key: i=Cheng.JackHY@inventec.com; a=ed25519;
- pk=L+GNI15NJXj7JAu9YqFXp9hL3rwZWbBbjlEeDjPvm68=
-X-Endpoint-Received: by B4 Relay for Cheng.JackHY@inventec.com/20250701
- with auth_id=449
-X-Original-From: Jack Cheng <Cheng.JackHY@inventec.com>
-Reply-To: Cheng.JackHY@inventec.com
-
-From: Jack Cheng <cheng.jackhy@inventec.com>
-
-The Q54SN12072 and Q54SN120A1 are high-efficiency, high-density DC-DC power
-module from Delta Power Modules.
-
-The Q54SN12072, quarter brick, single output 12V. This product provides up
-to 1200 watts of output power at 38~60V. The Q54SN12072 offers peak
-efficiency up to 98.3%@54Vin.
-
-The Q54SN120A1, quarter brick, single output 12V. This product provides up
-to 1300 watts of output power at 40~60V. The Q54SN120A1 offers peak
-efficiency up to 98.1%@54Vin.
-
-Add support for them to q54sj108a2 driver.
-
-Signed-off-by: Jack Cheng <cheng.jackhy@inventec.com>
----
- drivers/hwmon/pmbus/q54sj108a2.c | 51 ++++++++++++++++++++++++++++++++++++++--
- 1 file changed, 49 insertions(+), 2 deletions(-)
-
-diff --git a/drivers/hwmon/pmbus/q54sj108a2.c b/drivers/hwmon/pmbus/q54sj108a2.c
-index 4d7086d83aa3..34233d955c48 100644
---- a/drivers/hwmon/pmbus/q54sj108a2.c
-+++ b/drivers/hwmon/pmbus/q54sj108a2.c
-@@ -21,11 +21,14 @@
- #define PMBUS_FLASH_KEY_WRITE		0xEC
- 
- enum chips {
--	q54sj108a2
-+	q50sn12072,
-+	q54sj108a2,
-+	q54sn120a1
- };
- 
- enum {
--	Q54SJ108A2_DEBUGFS_OPERATION = 0,
-+	Q50SN12072_DEBUGFS_VOUT_COMMAND = 0,
-+	Q54SJ108A2_DEBUGFS_OPERATION,
- 	Q54SJ108A2_DEBUGFS_CLEARFAULT,
- 	Q54SJ108A2_DEBUGFS_WRITEPROTECT,
- 	Q54SJ108A2_DEBUGFS_STOREDEFAULT,
-@@ -54,6 +57,20 @@ struct q54sj108a2_data {
- #define to_psu(x, y) container_of((x), struct q54sj108a2_data, debugfs_entries[(y)])
- 
- static struct pmbus_driver_info q54sj108a2_info[] = {
-+	[q50sn12072] = {
-+		.pages = 1,
-+
-+		/* Source : Delta Q50SN12072 */
-+		.format[PSC_TEMPERATURE] = linear,
-+		.format[PSC_VOLTAGE_IN] = linear,
-+		.format[PSC_CURRENT_OUT] = linear,
-+
-+		.func[0] = PMBUS_HAVE_VIN | PMBUS_HAVE_IIN | PMBUS_HAVE_PIN |
-+		PMBUS_HAVE_VOUT | PMBUS_HAVE_STATUS_VOUT |
-+		PMBUS_HAVE_IOUT | PMBUS_HAVE_STATUS_IOUT |
-+		PMBUS_HAVE_TEMP | PMBUS_HAVE_STATUS_TEMP |
-+		PMBUS_HAVE_STATUS_INPUT | PMBUS_HAVE_POUT,
-+	},
- 	[q54sj108a2] = {
- 		.pages = 1,
- 
-@@ -68,6 +85,20 @@ static struct pmbus_driver_info q54sj108a2_info[] = {
- 		PMBUS_HAVE_TEMP | PMBUS_HAVE_STATUS_TEMP |
- 		PMBUS_HAVE_STATUS_INPUT,
- 	},
-+	[q54sn120a1] = {
-+		.pages = 1,
-+
-+		/* Source : Delta Q54SN120A1 */
-+		.format[PSC_TEMPERATURE] = linear,
-+		.format[PSC_VOLTAGE_IN] = linear,
-+		.format[PSC_CURRENT_OUT] = linear,
-+
-+		.func[0] = PMBUS_HAVE_VIN | PMBUS_HAVE_IIN | PMBUS_HAVE_PIN |
-+		PMBUS_HAVE_VOUT | PMBUS_HAVE_STATUS_VOUT |
-+		PMBUS_HAVE_IOUT | PMBUS_HAVE_STATUS_IOUT |
-+		PMBUS_HAVE_TEMP | PMBUS_HAVE_STATUS_TEMP |
-+		PMBUS_HAVE_STATUS_INPUT | PMBUS_HAVE_POUT,
-+	},
- };
- 
- static ssize_t q54sj108a2_debugfs_read(struct file *file, char __user *buf,
-@@ -177,6 +208,7 @@ static ssize_t q54sj108a2_debugfs_write(struct file *file, const char __user *bu
- {
- 	u8 flash_key[4];
- 	u8 dst_data;
-+	u16 val;
- 	ssize_t rc;
- 	int *idxp = file->private_data;
- 	int idx = *idxp;
-@@ -187,6 +219,17 @@ static ssize_t q54sj108a2_debugfs_write(struct file *file, const char __user *bu
- 		return rc;
- 
- 	switch (idx) {
-+	case Q50SN12072_DEBUGFS_VOUT_COMMAND:
-+		rc = kstrtou16_from_user(buf, count, 0, &val);
-+		if (rc < 0)
-+			return rc;
-+
-+		rc = pmbus_write_word_data(psu->client, 0x00,
-+					   PMBUS_VOUT_COMMAND, (const u16)val);
-+		if (rc < 0)
-+			return rc;
-+
-+		break;
- 	case Q54SJ108A2_DEBUGFS_OPERATION:
- 		rc = kstrtou8_from_user(buf, count, 0, &dst_data);
- 		if (rc < 0)
-@@ -268,7 +311,9 @@ static const struct file_operations q54sj108a2_fops = {
- };
- 
- static const struct i2c_device_id q54sj108a2_id[] = {
-+	{ "q50sn12072", q50sn12072 },
- 	{ "q54sj108a2", q54sj108a2 },
-+	{ "q54sn120a1", q54sn120a1 },
- 	{ },
- };
- 
-@@ -401,7 +446,9 @@ static int q54sj108a2_probe(struct i2c_client *client)
- }
- 
- static const struct of_device_id q54sj108a2_of_match[] = {
-+	{ .compatible = "delta,q50sn12072", .data = (void *)q50sn12072 },
- 	{ .compatible = "delta,q54sj108a2", .data = (void *)q54sj108a2 },
-+	{ .compatible = "delta,q54sn120a1", .data = (void *)q54sn120a1 },
- 	{ },
- };
- 
-
--- 
-2.43.0
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v3 5/5] media: iris: configure DMA device for vb2 queue on
+ OUTPUT plane
+To: Bryan O'Donoghue <bryan.odonoghue@linaro.org>,
+        Vikash Garodia <quic_vgarodia@quicinc.com>,
+        Dikshita Agarwal <quic_dikshita@quicinc.com>,
+        Abhinav Kumar <abhinav.kumar@linux.dev>,
+        Mauro Carvalho Chehab <mchehab@kernel.org>,
+        Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>
+Cc: linux-media@vger.kernel.org, linux-arm-msm@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+References: <20250627-video_cb-v3-0-51e18c0ffbce@quicinc.com>
+ <20250627-video_cb-v3-5-51e18c0ffbce@quicinc.com>
+ <d8a1fdd4-0056-480f-ade1-318a34d27204@linaro.org>
+Content-Language: en-US
+From: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
+In-Reply-To: <d8a1fdd4-0056-480f-ade1-318a34d27204@linaro.org>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+X-Authority-Analysis: v=2.4 cv=Z+PsHGRA c=1 sm=1 tr=0 ts=6863ced8 cx=c_pps
+ a=UgVkIMxJMSkC9lv97toC5g==:117 a=fKQzr7EGRj+VoE0XNsDNvQ==:17
+ a=IkcTkHD0fZMA:10 a=Wb1JkmetP80A:10 a=COk6AnOGAAAA:8 a=QmyDNCatlCRWdA39UCgA:9
+ a=3ZKOabzyN94A:10 a=QEXdDO2ut3YA:10 a=1HOtulTD9v-eNWfpl4qZ:22
+ a=TjNXssC_j7lpFel5tvFf:22
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwNzAxMDA3NSBTYWx0ZWRfX5eUZKTvS/6AK
+ FIt8DXW6aMsPlcVmGtOkJNL3PwDxrraOXA5JKABzRDhhbrSIWKz7yaXXuTaD1fhNsh3Ub8Y3+M4
+ cuiG2e/pqol0Odl9QUeTg7J/Hy9ygLfJlkQOb6LpxyB2MAATId66nbYgnDLLx/01egX2pjjOQ4G
+ rg07sQ45XIy13HDiDVpKvsiXV/yXC8UAvxDj2kIs/sDpkoaobqyrjt5LJS+lm32/fBKypTML2WK
+ nOvgZjzMbQ+UWqeYLF+Mdg0RddVvF9E0Fqp7YHbq5NLdOPXTPmfA862y3IbfbbzzHh6r7Aaim2A
+ A+UMYLCr6XRcmFVnCXl2omon+H8aVJ0VakzROT3uqNbm+dsbN223dWGfvtAKYG5iCGEDgkAP7my
+ jsY/CAmTwJcjpnUwRTcPoFWn9gfZRwvbKVBjN3sZoo5cq9/cIHp5YdzX/m63Br+diG9wLpYV
+X-Proofpoint-GUID: 6J79yydExcsHu61lvEWhrtVGrqjAqNkQ
+X-Proofpoint-ORIG-GUID: 6J79yydExcsHu61lvEWhrtVGrqjAqNkQ
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1099,Hydra:6.1.7,FMLib:17.12.80.40
+ definitions=2025-07-01_02,2025-06-27_01,2025-03-28_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ phishscore=0 lowpriorityscore=0 clxscore=1015 malwarescore=0 mlxlogscore=999
+ spamscore=0 adultscore=0 mlxscore=0 priorityscore=1501 bulkscore=0
+ impostorscore=0 suspectscore=0 classifier=spam authscore=0 authtc=n/a authcc=
+ route=outbound adjust=0 reason=mlx scancount=1 engine=8.19.0-2505280000
+ definitions=main-2507010075
 
 
+
+On 27-Jun-25 19:08, Bryan O'Donoghue wrote:
+> On 27/06/2025 16:48, Vikash Garodia wrote:
+>> While setting up the vb2 queues, assign "non_pixel" device to manage
+>> OUTPUT plane buffers i.e bitstream buffers incase of decoder. It prefers
+>> the non_pixel device(np_dev) when available, falling back to core->dev
+>> otherwise.
+>>
+>> Signed-off-by: Vikash Garodia <quic_vgarodia@quicinc.com>
+>> ---
+>>   drivers/media/platform/qcom/iris/iris_vb2.c | 4 ++++
+>>   1 file changed, 4 insertions(+)
+>>
+>> diff --git a/drivers/media/platform/qcom/iris/iris_vb2.c b/drivers/media/platform/qcom/iris/iris_vb2.c
+>> index cdf11feb590b5cb7804db3fcde7282fb1f9f1a1e..01cc337970400d48063c558c1ac039539dbcbaba 100644
+>> --- a/drivers/media/platform/qcom/iris/iris_vb2.c
+>> +++ b/drivers/media/platform/qcom/iris/iris_vb2.c
+>> @@ -159,6 +159,10 @@ int iris_vb2_queue_setup(struct vb2_queue *q,
+>>       *num_planes = 1;
+>>       sizes[0] = f->fmt.pix_mp.plane_fmt[0].sizeimage;
+>>   +    if (q->type == V4L2_BUF_TYPE_VIDEO_OUTPUT ||
+>> +        q->type == V4L2_BUF_TYPE_VIDEO_OUTPUT_MPLANE)
+>> +        q->dev = core->np_dev ? core->np_dev : core->dev;
+>> +
+>>   unlock:
+>>       mutex_unlock(&inst->lock);
+>>  
+> 
+> q->dev = core->dev;
+> 
+> if (thing || thing_else)
+>     q->dev = core->np_dev;
+
+q->dev = core->np_dev ?: core->dev;
+
+Konrad
 
