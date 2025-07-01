@@ -1,80 +1,63 @@
-Return-Path: <devicetree+bounces-191513-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-191514-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9FF54AEF861
-	for <lists+devicetree@lfdr.de>; Tue,  1 Jul 2025 14:27:44 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 96E56AEF874
+	for <lists+devicetree@lfdr.de>; Tue,  1 Jul 2025 14:29:20 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 34ADF1C03AEE
-	for <lists+devicetree@lfdr.de>; Tue,  1 Jul 2025 12:27:52 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 300145203D3
+	for <lists+devicetree@lfdr.de>; Tue,  1 Jul 2025 12:28:45 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2AE09278753;
-	Tue,  1 Jul 2025 12:23:50 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id EC992274FE0;
+	Tue,  1 Jul 2025 12:25:15 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="AA5kOqEB"
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="Q0nmBEXC"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f54.google.com (mail-wm1-f54.google.com [209.85.128.54])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 29BFD27817C
-	for <devicetree@vger.kernel.org>; Tue,  1 Jul 2025 12:23:47 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.54
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B35AE2749C9;
+	Tue,  1 Jul 2025 12:25:13 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1751372630; cv=none; b=RSjxA+TVpe/z6e9fIqPlUTrjh69JGsUcg3GUL3hYMEeC3+p98R6psvCjS5rC1WNmaw3VaJirJQfq1y0yPcj7N9b03VOtIvfiALi2KJC+QUpoG8thZ5037ZMgAUnT14H2ba3IV0jl9PSci4NnatSSjoYCXAEL555t8zdYwQdEg40=
+	t=1751372715; cv=none; b=F6c3ptdrfmRcB8YOqlSmbP+A4759bBcUDbQsIZr/Aoxa5YMbDORzxve8PH294w4WOmeknHadtBbHWmmLR1FWQOCb5bd+Ag1zgyr0zfP93t5OUDdX6JdgJ3Mz1fiGuMQdHgWqDtK/mXy03B8/R81vemwiWk5SKeNsX5pNGdyeN8E=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1751372630; c=relaxed/simple;
-	bh=NJ124Dp79Lr/97fmwOSr//WxXPtWTp675G0RTga2t9M=;
-	h=Message-ID:Date:MIME-Version:Subject:To:References:From:
-	 In-Reply-To:Content-Type; b=OfSY7V6XNYHRtUq2qvuTYy9UeZB44SlGjsVodbf0iBOy6RPJK6QtU8OCQubXXKCrfjoMwl0HrOFtiwA43ulssY9MENiYOaBBtlItmiAPvF8oHrs8APt8mVQL2hy9vCgUMuJB81X2OfbJ+jFGMsKogHoqKCc8iF/JoaNWZabUQwg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=AA5kOqEB; arc=none smtp.client-ip=209.85.128.54
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-wm1-f54.google.com with SMTP id 5b1f17b1804b1-4538bc52a8dso36587675e9.2
-        for <devicetree@vger.kernel.org>; Tue, 01 Jul 2025 05:23:47 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1751372626; x=1751977426; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:content-language:from
-         :references:to:subject:user-agent:mime-version:date:message-id:from
-         :to:cc:subject:date:message-id:reply-to;
-        bh=fP9MBwzFb18vSW3lc2L/Hc8pl9m7MaNHnOhRmIvCcfk=;
-        b=AA5kOqEB4lYVNPXUaCRx7pSNm4iM/jvh0yJqKr/ps3Jp6NVhiFI/oc7uXgr+0rqlZU
-         tiMwgFtitmG1DJMI07e57jqDRAMjczIRLDfk7AN8ZTDqUUxCs4OTGqdg9vrsaKQXuOdl
-         llr/cFAZdvTuWrC4LmSio1SwgkzijmOggMr0KCzUG3tAg4ZBqykTt9Y9tWGvHrL/dYxM
-         Nx1BEzvyhqHL6IfpUJFdNTxFsIQXpjCc4G3OiDUbkkpEVRR5n9y/ely6LCyW4yh1L2rd
-         yPLpjwbwmCKsYz1II1TbkHtz85vDR0n5MgF8kZNFv7C73YYF1vEBO7U3fbV2GKhtPxvC
-         KLMg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1751372626; x=1751977426;
-        h=content-transfer-encoding:in-reply-to:content-language:from
-         :references:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=fP9MBwzFb18vSW3lc2L/Hc8pl9m7MaNHnOhRmIvCcfk=;
-        b=ShmoMtEpmxP2u+1c+2ifhF25avxF3Inye0D6/UMKrHEuf0TOo0SyEx+u3EFEAtz+0g
-         L1I9SuaEBgzoNGGR6Ou5D5ILS99bVv5rEAH7MdbdMkiffs9g4bMrtDbIe4+oeLtZrhfu
-         2UPJpWLI2bOD8srzjO6DF7zVeCmz8qGmc4/MRFLS9AofHmKX9VzS/T2+tAm2uCam+X39
-         2jcyDL6SQyH5OWhaowFDrROnK2nWSHEZfTRBKwayXMiwbFZr6cKb4sC0NpMRvybMLgmf
-         MsfOrkCa5CrQbQzu8+LyNWIY8/ZFXUDSSxGdY5IPXflakeRfJljo+YVTwxn0kPWvfes1
-         H5gw==
-X-Forwarded-Encrypted: i=1; AJvYcCWAAXMzpKfUi5JIWdj5nTnTq1AuOg+g1UbDxliBzhtJY2kUN0YxP5CQEcbe9/vVpaMP1AonlaAKqbdG@vger.kernel.org
-X-Gm-Message-State: AOJu0Yyw0mde7Fd+bywAFPZkvbL2NJx6fdeAadlm1/B+9wDtD0aSHpm7
-	aqhdJqdVbg/0vXnDymZoWiS0l4xTQO42rhL9IMxW1uJa0ebhgjyrOzcq/gmVCh9zp30=
-X-Gm-Gg: ASbGncsjGFn0i//KBdGnk+xfKUVhdybzPoQ6BpbkkR9bDYjjG/nbRS4gAsYJ+6p2tth
-	Q7kVbP/imi5xPU8Bb3ZnWqhPfc5viwCDuIFwnlaN8wM9snPB+v203EyJlLfuKqY/B9brV3kLU0h
-	7m044awrvAW6S9BZlpDHahS1HlCnB65w5eThFroNpixJQLpr+5Q7OFs+KisNqJ7soCvhmnNBNsK
-	lEIsQcZ4+l/WcCoT/fx2MoHOkbUtRd+0Pp+cmRERPZdzHbR2oyD+P8E2lGHJER/veRy1TpKaoh3
-	blxJhLknJerfhQVZajj9CSbkkCdoOijomnsc1gB8RtC6Oet3t16VaiYkgQCdjNHhHqd+AIsv1DW
-	bFY0kLXeumC5AxjmG5w42SOPw843NRfPPfrWmlQ==
-X-Google-Smtp-Source: AGHT+IF2T/ew6ItA1dECwcwzpkVi16Ul9/UBVeAKXTtxDNk7WlS01HZkQ9dvJOSWDY34euUgABO/8A==
-X-Received: by 2002:a05:600c:358d:b0:450:d367:c385 with SMTP id 5b1f17b1804b1-4538ee5d5f8mr200886185e9.16.1751372626384;
-        Tue, 01 Jul 2025 05:23:46 -0700 (PDT)
-Received: from [192.168.0.35] (188-141-3-146.dynamic.upc.ie. [188.141.3.146])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-4538233c05csm194901555e9.5.2025.07.01.05.23.44
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 01 Jul 2025 05:23:45 -0700 (PDT)
-Message-ID: <488281f6-5e5d-4864-8220-63e2a0b2d7f2@linaro.org>
-Date: Tue, 1 Jul 2025 13:23:44 +0100
+	s=arc-20240116; t=1751372715; c=relaxed/simple;
+	bh=ZfLRBlA2GXkaE/VO2K/FwkaVy6TzTJYLHSCfKwRcEYc=;
+	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
+	 In-Reply-To:Content-Type; b=aMgGbKzaXYL7E//RE9UFPMlaOm3VknlI+8MeS/WfB9yMLnf80VIFgQz3+i0AqnFDLMvLaP//Rvik6rpsZ8U9B9x1oKwDGMv1WQCDSu1fwasRhc0Ct6lsrYFcsIq7iGqmHKyOJoPayclTYnEp+beaim/CN5qtCNfNEXJ99+gz8fo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=Q0nmBEXC; arc=none smtp.client-ip=205.220.180.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
+Received: from pps.filterd (m0279869.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 561AS4cV025180;
+	Tue, 1 Jul 2025 12:25:00 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	VLfCL1rkHHgT9uUOPYI/+4UoWa4a8cDmu5VDzDonpos=; b=Q0nmBEXC8OyJe4Q6
+	6wy8de192wCOGtxsw4UcXZAXrrrVaB4j/tDvANBkuYMdgm7nKdstguZJ6b7JyPKq
+	+/AA6Nalt4YupTM8Jlri3CRJpZB68U0twE4ucq35IQCD2w3bYKeMEz+UMmFXLakw
+	AaFutyH2qh+hbxqqfFQUQvbW3eb1+eh1qlClzQIF9pR2K5Ww1IlrIE0B4TgWPLhm
+	8GKKrCoDxCSiWCl+Bfy8jeVTYZMExZ98USLD/jvFBf/wjuBEP3YWR7N32yV9nHw0
+	mxCtIXD/rL/UNYbNS0bQ8xgSj7LaHAY5/aXLNHxmkCToR5anjodQwvesNm+grpsR
+	lVU0ZA==
+Received: from nasanppmta01.qualcomm.com (i-global254.qualcomm.com [199.106.103.254])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 47kd64p3na-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Tue, 01 Jul 2025 12:24:59 +0000 (GMT)
+Received: from nasanex01b.na.qualcomm.com (nasanex01b.na.qualcomm.com [10.46.141.250])
+	by NASANPPMTA01.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 561COwqI015223
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Tue, 1 Jul 2025 12:24:58 GMT
+Received: from [10.235.9.75] (10.80.80.8) by nasanex01b.na.qualcomm.com
+ (10.46.141.250) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1748.10; Tue, 1 Jul
+ 2025 05:24:52 -0700
+Message-ID: <e768d295-843c-431d-b439-e2ed07de638e@quicinc.com>
+Date: Tue, 1 Jul 2025 20:24:49 +0800
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -82,152 +65,117 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 4/5] arm64: dts: qcom: sdm670-google-sargo: add imx355
- front camera
-To: Richard Acayan <mailingradian@gmail.com>,
- Mauro Carvalho Chehab <mchehab@kernel.org>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Bjorn Andersson <andersson@kernel.org>,
- Konrad Dybcio <konradybcio@kernel.org>,
- Sakari Ailus <sakari.ailus@linux.intel.com>,
- Tianshu Qiu <tian.shu.qiu@intel.com>, linux-media@vger.kernel.org,
- devicetree@vger.kernel.org, linux-arm-msm@vger.kernel.org
-References: <20250630225944.320755-7-mailingradian@gmail.com>
- <3qGugliBdtpdHGZzR9xh_974TfJigMYERGVAfqmpCqe1R7O0CLU8FzXVcIESzTIc-SKzpk42ZAx5-38eDX00Eg==@protonmail.internalid>
- <20250630225944.320755-11-mailingradian@gmail.com>
-From: Bryan O'Donoghue <bryan.odonoghue@linaro.org>
+Subject: Re: [PATCH net-next v5 03/14] net: ethernet: qualcomm: Add PPE driver
+ for IPQ9574 SoC
+To: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>,
+        Andrew Lunn
+	<andrew+netdev@lunn.ch>,
+        "David S. Miller" <davem@davemloft.net>,
+        "Eric
+ Dumazet" <edumazet@google.com>,
+        Jakub Kicinski <kuba@kernel.org>, Paolo Abeni
+	<pabeni@redhat.com>,
+        Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski
+	<krzk+dt@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>, Lei Wei
+	<quic_leiwei@quicinc.com>,
+        Suruchi Agarwal <quic_suruchia@quicinc.com>,
+        Pavithra R <quic_pavir@quicinc.com>, Simon Horman <horms@kernel.org>,
+        Jonathan Corbet <corbet@lwn.net>, Kees Cook <kees@kernel.org>,
+        "Gustavo A. R.
+ Silva" <gustavoars@kernel.org>,
+        Philipp Zabel <p.zabel@pengutronix.de>
+CC: <linux-arm-msm@vger.kernel.org>, <netdev@vger.kernel.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <linux-doc@vger.kernel.org>, <linux-hardening@vger.kernel.org>,
+        <quic_kkumarcs@quicinc.com>, <quic_linchen@quicinc.com>
+References: <20250626-qcom_ipq_ppe-v5-0-95bdc6b8f6ff@quicinc.com>
+ <20250626-qcom_ipq_ppe-v5-3-95bdc6b8f6ff@quicinc.com>
+ <4556893f-982b-435d-aed1-d661ee31f862@oss.qualcomm.com>
 Content-Language: en-US
-In-Reply-To: <20250630225944.320755-11-mailingradian@gmail.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
+From: Luo Jie <quic_luoj@quicinc.com>
+In-Reply-To: <4556893f-982b-435d-aed1-d661ee31f862@oss.qualcomm.com>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
 Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
+ nasanex01b.na.qualcomm.com (10.46.141.250)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Authority-Analysis: v=2.4 cv=Z+PsHGRA c=1 sm=1 tr=0 ts=6863d39c cx=c_pps
+ a=JYp8KDb2vCoCEuGobkYCKw==:117 a=JYp8KDb2vCoCEuGobkYCKw==:17
+ a=GEpy-HfZoHoA:10 a=IkcTkHD0fZMA:10 a=Wb1JkmetP80A:10 a=COk6AnOGAAAA:8
+ a=7dPGx68Ngd3I7BFEivgA:9 a=QEXdDO2ut3YA:10 a=TjNXssC_j7lpFel5tvFf:22
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwNzAxMDA3NyBTYWx0ZWRfX4IEn9JSUGS2L
+ aNJr6xWle08pZAmNdDBPdZeCIkNMtnn39GhzKsq4J544L1f1vXbWDKR4Z7NZ+uozrW7hnfRUfpR
+ rZ606b4PDQmGV4mV/ExgeN50BQQRSgc5KzY3y4PEXzOiSQqhYbhkH/ZvSpyxIcL+9CnqQdFWtWE
+ L52ZwCs30nD/OB9eg5gdwRr+C+wFj1djfQvrdbSx15EuWfiCYQqCJmj8ZzcVuTTIsz0UG8Ctlq8
+ TRF8wnyaUYn8EACuNmX/H46wdjsJHF89v82lfRhMp+PdLADCE++Tf4v32uGAB/JQHtdpNOZXU3e
+ RfG+I8K2Rrcs+H3P4WJFuo6TEQMucpVEpOqAwHLqqlcGV06p31cugGK0QVA4I81UAZoOPV8fe+P
+ VtYi288h4UcS9258SzF8EjyRndTdf+ZsMhSJ3P5K87gJf7nFjNC3Tvf48pJXQa9jW9Fg264i
+X-Proofpoint-GUID: lEGc_dr8qa8_dsrASY2Y2WkGC8eRWqHq
+X-Proofpoint-ORIG-GUID: lEGc_dr8qa8_dsrASY2Y2WkGC8eRWqHq
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1099,Hydra:6.1.7,FMLib:17.12.80.40
+ definitions=2025-07-01_02,2025-06-27_01,2025-03-28_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ phishscore=0 lowpriorityscore=0 clxscore=1015 malwarescore=0 mlxlogscore=886
+ spamscore=0 adultscore=0 mlxscore=0 priorityscore=1501 bulkscore=0
+ impostorscore=0 suspectscore=0 classifier=spam authscore=0 authtc=n/a authcc=
+ route=outbound adjust=0 reason=mlx scancount=1 engine=8.19.0-2505280000
+ definitions=main-2507010077
 
-On 30/06/2025 23:59, Richard Acayan wrote:
-> The Sony IMX355 is the front camera on the Pixel 3a. It is connected to
-> CSIPHY1 and CCI I2C1, and uses MCLK2. Add support for it.
+
+
+On 6/28/2025 12:21 AM, Konrad Dybcio wrote:
+> On 6/26/25 4:31 PM, Luo Jie wrote:
+>> The PPE (Packet Process Engine) hardware block is available on Qualcomm
+>> IPQ SoC that support PPE architecture, such as IPQ9574.
+>>
+>> The PPE in IPQ9574 includes six integrated ethernet MAC for 6 PPE ports,
+>> buffer management, queue management and scheduler functions. The MACs
+>> can connect with the external PHY or switch devices using the UNIPHY PCS
+>> block available in the SoC.
+>>
+>> The PPE also includes various packet processing offload capabilities
+>> such as L3 routing and L2 bridging, VLAN and tunnel processing offload.
+>> It also includes Ethernet DMA function for transferring packets between
+>> ARM cores and PPE ethernet ports.
+>>
+>> This patch adds the base source files and Makefiles for the PPE driver
+>> such as platform driver registration, clock initialization, and PPE
+>> reset routines.
+>>
+>> Signed-off-by: Luo Jie <quic_luoj@quicinc.com>
+>> ---
 > 
-> Signed-off-by: Richard Acayan <mailingradian@gmail.com>
-> ---
->   .../boot/dts/qcom/sdm670-google-sargo.dts     | 112 ++++++++++++++++++
->   1 file changed, 112 insertions(+)
+> [...]
 > 
-> diff --git a/arch/arm64/boot/dts/qcom/sdm670-google-sargo.dts b/arch/arm64/boot/dts/qcom/sdm670-google-sargo.dts
-> index d01422844fbf..0af6a440ecbc 100644
-> --- a/arch/arm64/boot/dts/qcom/sdm670-google-sargo.dts
-> +++ b/arch/arm64/boot/dts/qcom/sdm670-google-sargo.dts
-> @@ -172,6 +172,34 @@ vreg_s2b_1p05: vreg-s2b-regulator {
->   		regulator-min-microvolt = <1050000>;
->   		regulator-max-microvolt = <1050000>;
->   	};
-> +
-> +	cam_front_ldo: cam-front-ldo-regulator {
-> +		compatible = "regulator-fixed";
-> +		regulator-name = "cam_front_ldo";
-> +		regulator-min-microvolt = <1352000>;
-> +		regulator-max-microvolt = <1352000>;
-> +		regulator-enable-ramp-delay = <135>;
-> +
-> +		gpios = <&pm660l_gpios 4 GPIO_ACTIVE_HIGH>;
-> +		enable-active-high;
-> +
-> +		pinctrl-names = "default";
-> +		pinctrl-0 = <&cam_front_ldo_pin>;
-> +	};
-> +
-> +	cam_vio_ldo: cam-vio-ldo-regulator {
-> +		compatible = "regulator-fixed";
-> +		regulator-name = "cam_vio_ldo";
-> +		regulator-min-microvolt = <1800000>;
-> +		regulator-max-microvolt = <1800000>;
-> +		regulator-enable-ramp-delay = <233>;
-> +
-> +		gpios = <&pm660_gpios 13 GPIO_ACTIVE_HIGH>;
-> +		enable-active-high;
-> +
-> +		pinctrl-names = "default";
-> +		pinctrl-0 = <&cam_vio_pin>;
-> +	};
->   };
+>> +static int ppe_clock_init_and_reset(struct ppe_device *ppe_dev)
+>> +{
+>> +	unsigned long ppe_rate = ppe_dev->clk_rate;
+>> +	struct device *dev = ppe_dev->dev;
+>> +	struct reset_control *rstc;
+>> +	struct clk_bulk_data *clks;
+>> +	struct clk *clk;
+>> +	int ret, i;
+>> +
+>> +	for (i = 0; i < ppe_dev->num_icc_paths; i++) {
+>> +		ppe_dev->icc_paths[i].name = ppe_icc_data[i].name;
+>> +		ppe_dev->icc_paths[i].avg_bw = ppe_icc_data[i].avg_bw ? :
+>> +					       Bps_to_icc(ppe_rate);
+>> +		ppe_dev->icc_paths[i].peak_bw = ppe_icc_data[i].peak_bw ? :
+>> +						Bps_to_icc(ppe_rate);
+>> +	}
 > 
->   &apps_rsc {
-> @@ -392,6 +420,58 @@ vreg_bob: bob {
->   	};
->   };
+> Can you not just set ppe_dev->icc_paths to ppe_icc_data?
 > 
-> +&camss {
-> +	vdda-phy-supply = <&vreg_l1a_1p225>;
+> Konrad
 
-You've got your 1p2 but looks like you are missing your 0p8 supply
-
-> +	status = "okay";
-> +};
-> +
-> +&camss_endpoint1 {
-> +	clock-lanes = <7>;
-> +	data-lanes = <0 1 2 3>;
-> +	remote-endpoint = <&cam_front_endpoint>;
-> +	status = "okay";
-> +};
-
-This looks not like how the other dts are upstream. Does this work and 
-pass the dt checker ?
-
-Right now upstream wants something like this
-
-&camss {
-         vdda-phy-supply = <&vreg_l5a_0p88>;
-         vdda-pll-supply = <&vreg_l9a_1p2>;
-         status = "okay";
-
-         ports {
-                 /* The port index denotes CSIPHY id i.e. csiphy2 */
-                 port@2 {
-                         csiphy2_ep: endpoint {
-                                 clock-lanes = <7>;
-                                 data-lanes = <0 1 2 3>;
-                                 remote-endpoint = <&imx577_ep>;
-                         };
-                 };
-         };
-};
-
-Can the upstream driver actually consume the dt as you specified above ?
-
-> +
-> +&cci {
-> +	pinctrl-names = "default", "sleep";
-> +	pinctrl-0 = <&cci1_default &cam_mclk_default>;
-> +	pinctrl-1 = <&cci1_sleep>;
-> +
-> +	status = "okay";
-> +};
-> +
-> +&cci_i2c1 {
-> +	camera@1a {
-> +		compatible = "sony,imx355";
-> +		reg = <0x1a>;
-> +
-> +		clocks = <&camcc CAM_CC_MCLK2_CLK>;
-> +		clock-names = "mclk";
-> +
-> +		clock-frequency = <19200000>;
-> +
-> +		assigned-clocks = <&camcc CAM_CC_MCLK2_CLK>;
-> +		assigned-clock-rates = <24000000>;
-> +
-> +		reset-gpios = <&tlmm 9 GPIO_ACTIVE_HIGH>;
-> +
-> +		vana-supply = <&cam_front_ldo>;
-> +		vdig-supply = <&cam_front_ldo>;
-> +		vio-supply = <&cam_vio_ldo>;
-
-These are the downstream names, taking imx512/477 as a reference point
-
-                 dovdd-supply = <&vreg_l7f_1p8>;
-                 avdd-supply = <&vdc_5v>;
-                 dvdd-supply = <&vdc_5v>;
-
-I'd guess the data sheet probably has better names like that.
-
----
-bod
+The `avg_bw` and `peak_bw` for two of the PPE ICC clocks ('ppe' and
+'ppe_cfg') vary across different SoCs and they need to be read from
+platform data. They are not pre-defined in `ppe_icc_data` array.
+Therefore, we use this format to assign `icc_paths`, allowing us to
+accommodate cases where `avg_bw` and `peak_bw` are not predefined.
+Hope this is fine. Thanks.
 
