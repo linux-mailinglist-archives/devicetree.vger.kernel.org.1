@@ -1,119 +1,129 @@
-Return-Path: <devicetree+bounces-191784-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-191783-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 67E63AF069A
-	for <lists+devicetree@lfdr.de>; Wed,  2 Jul 2025 00:33:56 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id C177DAF0697
+	for <lists+devicetree@lfdr.de>; Wed,  2 Jul 2025 00:32:57 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 5CAFF7A346A
-	for <lists+devicetree@lfdr.de>; Tue,  1 Jul 2025 22:32:31 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 0E7381BC79CB
+	for <lists+devicetree@lfdr.de>; Tue,  1 Jul 2025 22:33:14 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4311025DCE5;
-	Tue,  1 Jul 2025 22:33:50 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 56AA41D5CDE;
+	Tue,  1 Jul 2025 22:32:54 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="eRX/VJyq"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="lyfG+f/D"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-qt1-f178.google.com (mail-qt1-f178.google.com [209.85.160.178])
+Received: from mail-qt1-f177.google.com (mail-qt1-f177.google.com [209.85.160.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AC8FE1A0BE0;
-	Tue,  1 Jul 2025 22:33:48 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.160.178
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B5CD91A0BE0;
+	Tue,  1 Jul 2025 22:32:52 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.160.177
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1751409230; cv=none; b=Cr+WaqZEHTZxGaEDqGb5W1hdLnBu9scZlbruBWypD7y1WngACjF0Qz7KbKMgUvcvzIFNZC+zpdPeumdzfrwLtNVxPEFVgsMBCJ+SxN11DOq+BuMZFZi96t/irqev1B9dfoui5+7YxEuXkS4cW5tB5TzAWZ+n9sqQVfcWr3wboms=
+	t=1751409174; cv=none; b=RzsVwuJEwDKNteDhxEHXwHpIqL8TQUfpqZDW60vuxMrh7qBk50FFOQk3OLqAmwiLettuU+YEaNd5/CXQoxcvqzWivTEXDttE05y8+g6uYYzDgYXuMFdO0VZDFLPwSpK8/CcwHX4o440WWK7t4CwAF/7vUfa8DY/QChh7NlJ7NFM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1751409230; c=relaxed/simple;
-	bh=Ur6wdFFznd5ybB3HoNgkMigzcqlEJVhwelZY7J5qVGM=;
-	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=QaoZ79HhP0X2W2FQ3URLYa7ylTIAsGTCkzx1cIBLQg37ZbrVT6TpdpS2UafY065SDc2NWvu9TehuUMyzmZXguS8fmvXczBzLlH9zOvR/q5XTrc/qXOYVE6xSEvV70Wpg9xaLPbyks7oQiWd2TMtJ+ZRhBS/wdinCk2w69SyOrNM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=eRX/VJyq; arc=none smtp.client-ip=209.85.160.178
+	s=arc-20240116; t=1751409174; c=relaxed/simple;
+	bh=eOpjsXIujiWCh/1VyzJyspu8eJOUHHgxcTY+na6+odw=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=a+9DMsKjKg0dxsoRVmnLCp+Da8T+xCMZGuf3GG5Wd1MOc5o9V528gbKxIjWliWdMqrETRTP0e4+Y9Iw2qejxOx7B9SdPlWY/nRxI4cU+Jib25GEusJTvfDHWdsHr/3hVqS5pKkDhJGscTzMBnpWji/HML2vLHTsNvM7VqaRlZXc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=lyfG+f/D; arc=none smtp.client-ip=209.85.160.177
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-qt1-f178.google.com with SMTP id d75a77b69052e-4a7a8c2b7b9so58728991cf.1;
-        Tue, 01 Jul 2025 15:33:48 -0700 (PDT)
+Received: by mail-qt1-f177.google.com with SMTP id d75a77b69052e-4a9741b513eso9546951cf.1;
+        Tue, 01 Jul 2025 15:32:52 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1751409227; x=1752014027; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=1kyOSdbD4Kz3s79/+GLCVgDXW+uzhkik8u0Q1mi1pVE=;
-        b=eRX/VJyqaqOWAAIGuGgp1hmptpCCzq4Wfy7X69jk8ZypXOvFTBlJIMMSTRz1KxtBBh
-         M5SxTmlDIt6cZEnGcss+Ourw/uB4QwMcoj3e4XpmmC/QRMqEztQzmgb+VYE2sLEhZZ1F
-         GtmSc8vn7JRjZb7GRpKobvEOG8sFjcI6pmQRL8yW164tiwKEPdgOsGIMNmHan9T0NY9B
-         X1tyv0ruC8tQQ1uWDvKfOJFupoHV7hRZLgPwGh8ubBtt6ev4u/+IZyKs6klF0weiNWMb
-         nrX/0WxtoxsxM+UN5qI1GvPoEz58i6AIKuQkEMStD8uSFsgQb2oO6KTeJ/GML+94eIeo
-         PqAQ==
+        d=gmail.com; s=20230601; t=1751409171; x=1752013971; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=tdYhgZZCEXbJGpnYrPmW0z48GoHhWoQONygxFgNasxg=;
+        b=lyfG+f/DS7U7eD7fpJ+MMvTILXrxokt0LK0iH1PHn3yGTEKF9lG/kBF+7wHsdaCyIm
+         ExB4P9mB1yCydH0129OHbvkDcgFPCQZgINOylf6aqM0PW6LCPLYUKSRInuT05yi37wEw
+         T7Z9nTrXbPOa8VH9lhBF9og1pUcd02oUZuhdMIAHwvdKWBI8aksdGu6WSgFXedUgXXjr
+         58rgy0ZIPR0mvSbo9LTLZp909YAbvMeD+fNCyLAZ0eQNeD0CoGsi0cXKly34lBdbpeC1
+         /5YcLhX2DIOkve7F8FtxXGkeBWEF54O3QMKLzrUA4vMtgLP2Fm91Ft2FXsdF6HSYVe0p
+         /Ocw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1751409227; x=1752014027;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=1kyOSdbD4Kz3s79/+GLCVgDXW+uzhkik8u0Q1mi1pVE=;
-        b=uBPOMEKumL/hrltopTO8JczfMn0dvYGazvFbSLSVUYhR7nI4UvMeLJI2gmyqFexDO9
-         IWbvHSTlBiGgGHMWgzCmLVTRrMgTAE7TxI6zqkHDBUU/Yn996tfxW6iORU0gifRaDO0A
-         vZr0RUUP56vKRwVBvgF4R32G5mmw3QBI6TSB0uQtvWV44amL73P0KJ8lovzzjnHQtmvJ
-         4WDgzrrCtyYyQR/B6tg0VetWpgoqNei81/9ulDpIlsgGewRtgrRbylrRKtNRzeHgK+3x
-         nnMcH6VPkIg1CMpJRoLBNAytSLgaGUj93QOs6O0Iak7GhoRYs5BgC0qjYjWFx7RFquDz
-         AvWQ==
-X-Forwarded-Encrypted: i=1; AJvYcCVTSmNh6OgZcXEzuCcyNPrG2ueD+Fbo3Y0pSVt6ZEEcj4F4NIPOjgZHqld5BEPsQp5M7NEgqkHn31zq@vger.kernel.org, AJvYcCXH0zRC4uO1ocN6OVA1Sqp8aNJtfJeRJp6GtQhUY/mIFec01ZamT+4eCNAMSfDaJvc5gAjOS9apn4b8g8kY@vger.kernel.org, AJvYcCXu+CnfSP8jR5Pm2KZbCdDRuIl0XPbET6vlcR8RQLajg3PSuQ5erXVzVqeGRv7Ql6WSHN0kM3cQr0bd@vger.kernel.org
-X-Gm-Message-State: AOJu0YzdQ20zco9a8owa3PGJ7H/kHJaHjr7OyjSYWNpTLuSd8XWnFDvQ
-	VgLvDT1HaziT3Ky1XuFlODQ1OFaa28I21Ia+pm0RxnVv/VxCK0vLbNon
-X-Gm-Gg: ASbGnctPQbvbeu4/GPve6odFgvyS0JQpF/xN9Bmi94Z1kId8n28z5fnbzQrdUSjCXdE
-	Qsnmz+I/T5B7rwAdzn5zLSITZDCQyUiT+8tNmxsss7zuBitGKyOpjpZxI9Km9a6yCCNJf1RK+nt
-	aAjBxLmnSmoOOCW9Q2ni7TmKR0/d83x6KvoEJ86nXqPJOmT6dj+jyJj/Bg0L1hddlUwt2N8QlMk
-	G83WV6k4t/wLnEji5v9qQWcTfeNx8vGMcNnlfNANbGfYj4xmzuaBNnUNFjAoEoCWpr2JDkfTs32
-	pJYCYOinJmzODFk/qGBgX7/bC0XLSMMwTrydXCpg/dlGkL3xhI8kXNTthHryPR3o77NoH//67+P
-	v4KH7mQfHPw2ACrRfUspz
-X-Google-Smtp-Source: AGHT+IEhD03hyOOVoL7g1f+KmGinRUs2uSWAf4HhY0BvOqWE0uArMxFWLux4/CDVgyejOy6hnHzlUw==
-X-Received: by 2002:a05:622a:188f:b0:4a6:f81a:4443 with SMTP id d75a77b69052e-4a9768a162amr14776931cf.5.1751409227401;
-        Tue, 01 Jul 2025 15:33:47 -0700 (PDT)
-Received: from localhost.localdomain ([2804:14d:4c64:81ec:632c:d5cb:2b3d:e72b])
-        by smtp.gmail.com with ESMTPSA id d75a77b69052e-4a7fc55cc6fsm80726231cf.39.2025.07.01.15.33.44
+        d=1e100.net; s=20230601; t=1751409171; x=1752013971;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=tdYhgZZCEXbJGpnYrPmW0z48GoHhWoQONygxFgNasxg=;
+        b=nMqd4XLSxHKOl89QnxI8NQbk3AoceH4fjdKMQvklCikUHoMoqPUwU4hWxw1S3kEAYn
+         H0AOZf6jpbgSbXiOsMl87NsC0Mw4wkm07BdU/0oOar+QoCyZDE1d8R6B6Yh3wyxPfyN8
+         V4rUDtkCyLLup8q3RjuTyhZw97SGKD3MK9WpNgTysjXbXi6QUkg4Xw2pXNlNC3f/QwIH
+         ZWUIQWkOIW3JfK+4wBUJEiBzV7IVJqGVc8/UU+DXWWXQGN97/B0C/Mvp2vxwW0ht5FrP
+         r7/q51uAaK8wJX2D9aZngEIC09SsWHyJZd4PqFUTjTp/19EI6hZGP5ihIq0cSAGPrCZy
+         2suQ==
+X-Forwarded-Encrypted: i=1; AJvYcCX7//AfkNtywF3kXODpUtmew316fS1q+REZ6VOrJ4A+OwJQXOIx7XJh/sTjdATcYq4hfMN/QTj1xDmomK52QA==@vger.kernel.org, AJvYcCXDY8WSKv8IvenhYRW9gJUVigTjCHL6p7JY5OCH1tjZQkx3jb2iVVzO4VvFQein1yJzWHAXaXMHIUak@vger.kernel.org
+X-Gm-Message-State: AOJu0YxUuxJGTSDFTRIz63hQ0oUk9Z1UqDa0HESe/jxC7UDiU8kVlz5E
+	2znwisxq0AX242DX4HGo7Ewae2jQk9yqOsRvq1zfzNSseLFQSyEQag9f
+X-Gm-Gg: ASbGncs8flt/wtamoyYt7DsCnT0OdcLe61pI0MiQwgCRo/DL8ItkzIMi4wwAE3ngKy6
+	N+ibPEKJY3lrkZVVSLjQ8wOVIWowNfdDF7d+aOuHwf+Ph3ktvjkwubwTNm0zhSYeI8w53K73SXp
+	CyVw0ekuNqtW1YMKN3zZ0B5kXraF/PJBketOUaSq/PsMhwUv5xSgnCRfpSpKyjjcEs499U1PYru
+	vtL+FCiNN5EywTtd7Sr90jY2AAW3s+NQHgifNbm8uLPdC42HAJvM2SBoeun4PY28oupbZp2WKiC
+	GezXrdGdaJr6w0BbRUln2YWTTr8pPFJjndWpgUrWB64WyzWWFw==
+X-Google-Smtp-Source: AGHT+IEtwfsZWwZbAPRSv2MAu0spgXNaGCGHNcfwitMEjFEbDWIAHNxKAIPEfbe4AtoxXTldN+F/Nw==
+X-Received: by 2002:a05:622a:304:b0:4a9:5220:7fc3 with SMTP id d75a77b69052e-4a97691056cmr14087461cf.18.1751409171485;
+        Tue, 01 Jul 2025 15:32:51 -0700 (PDT)
+Received: from localhost ([2607:fea8:3140:6800::9bde])
+        by smtp.gmail.com with UTF8SMTPSA id d75a77b69052e-4a7fc106202sm82155241cf.9.2025.07.01.15.32.50
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 01 Jul 2025 15:33:47 -0700 (PDT)
-From: Rodrigo Gobbi <rodrigo.gobbi.7@gmail.com>
-To: robh@kernel.org,
-	krzk+dt@kernel.org,
-	conor+dt@kernel.org
-Cc: ~lkcamp/patches@lists.sr.ht,
-	linux-iio@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org
-Subject: [PATCH] dt-bindings: trivial-devices: Add Garmin lidar-lite-v3
-Date: Tue,  1 Jul 2025 19:30:41 -0300
-Message-ID: <20250701223341.36835-1-rodrigo.gobbi.7@gmail.com>
-X-Mailer: git-send-email 2.48.1
+        Tue, 01 Jul 2025 15:32:51 -0700 (PDT)
+Date: Tue, 1 Jul 2025 18:32:49 -0400
+From: Richard Acayan <mailingradian@gmail.com>
+To: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
+Cc: Bjorn Andersson <andersson@kernel.org>,
+	Konrad Dybcio <konradybcio@kernel.org>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>, linux-arm-msm@vger.kernel.org,
+	devicetree@vger.kernel.org
+Subject: Re: [PATCH] arm64: dts: qcom: sdm670-google-sargo: enable charger
+Message-ID: <aGRiEdXs6pwRH5CH@radian>
+References: <20250630224158.249726-2-mailingradian@gmail.com>
+ <f931e284-6ae6-4177-83bf-c6eb1ce583f9@oss.qualcomm.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <f931e284-6ae6-4177-83bf-c6eb1ce583f9@oss.qualcomm.com>
 
-The compatible grmn,lidar-lite-v3 is managed by the same
-driver of pulsedlight,lidar-lite-v2, which is a trivial device.
+On Tue, Jul 01, 2025 at 12:55:14PM +0200, Konrad Dybcio wrote:
+> 
+> 
+> On 01-Jul-25 00:41, Richard Acayan wrote:
+> > The Pixel 3a has a rechargeable 3000 mAh battery. Describe it and enable
+> > its charging controller in PM660.
+> > 
+> > Signed-off-by: Richard Acayan <mailingradian@gmail.com>
+> > ---
+> >  .../arm64/boot/dts/qcom/sdm670-google-sargo.dts | 17 +++++++++++++++++
+> >  1 file changed, 17 insertions(+)
+> > 
+> > diff --git a/arch/arm64/boot/dts/qcom/sdm670-google-sargo.dts b/arch/arm64/boot/dts/qcom/sdm670-google-sargo.dts
+> > index 74b5d9c68eb6..d01422844fbf 100644
+> > --- a/arch/arm64/boot/dts/qcom/sdm670-google-sargo.dts
+> > +++ b/arch/arm64/boot/dts/qcom/sdm670-google-sargo.dts
+> > @@ -33,6 +33,14 @@ / {
+> >  
+> >  	aliases { };
+> >  
+> > +	battery: battery {
+> > +		compatible = "simple-battery";
+> > +
+> > +		voltage-min-design-microvolt = <3312000>;
+> > +		voltage-max-design-microvolt = <4400000>;
+> 
+> Does this match what downstream sets into the hw?
 
-Signed-off-by: Rodrigo Gobbi <rodrigo.gobbi.7@gmail.com>
-Fixes: b257c1a45e99 ("iio: pulsedlight-lidar-lite-v2: add lidar-lite-v3 property")
----
- Documentation/devicetree/bindings/trivial-devices.yaml | 2 ++
- 1 file changed, 2 insertions(+)
+Actually, downstream sets the "empty" voltage to 2.6 V. This minimum is
+closer to the "cutoff" voltage at 3.3 V.
 
-diff --git a/Documentation/devicetree/bindings/trivial-devices.yaml b/Documentation/devicetree/bindings/trivial-devices.yaml
-index 8da408107e55..cd9d7d5eec51 100644
---- a/Documentation/devicetree/bindings/trivial-devices.yaml
-+++ b/Documentation/devicetree/bindings/trivial-devices.yaml
-@@ -107,6 +107,8 @@ properties:
-           - fsl,mpl3115
-             # MPR121: Proximity Capacitive Touch Sensor Controller
-           - fsl,mpr121
-+            # Optical Distance Measurement Sensor
-+          - grmn,lidar-lite-v3
-             # Honeywell Humidicon HIH-6130 humidity/temperature sensor
-           - honeywell,hi6130
-             # IBM Common Form Factor Power Supply Versions (all versions)
--- 
-2.48.1
-
+The maximum voltage is consistent with downstream.
 
