@@ -1,187 +1,129 @@
-Return-Path: <devicetree+bounces-191350-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-191351-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id F404AAEEFEF
-	for <lists+devicetree@lfdr.de>; Tue,  1 Jul 2025 09:44:03 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7A64EAEF002
+	for <lists+devicetree@lfdr.de>; Tue,  1 Jul 2025 09:46:51 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 46690170B12
-	for <lists+devicetree@lfdr.de>; Tue,  1 Jul 2025 07:44:04 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id CDBEC17E275
+	for <lists+devicetree@lfdr.de>; Tue,  1 Jul 2025 07:46:51 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0824325D8E8;
-	Tue,  1 Jul 2025 07:43:59 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 09F8425E827;
+	Tue,  1 Jul 2025 07:46:46 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="DQqyL2jc"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="gaZL+nXz"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-ed1-f51.google.com (mail-ed1-f51.google.com [209.85.208.51])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 567714A0C;
-	Tue,  1 Jul 2025 07:43:56 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4F2931F428F;
+	Tue,  1 Jul 2025 07:46:43 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.51
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1751355838; cv=none; b=I20RmTLYn3XF0KBNrJpxg8sYau3H60D4kyZVHJK7y8USOOHfZnxvxzot8HWUG3ael0ljcSLp+ycTjtpcQiJ5zUK53WCsqFJYndj2wC9LeIQ1NDNLxIGQBGiAMZRrOSP3ZhRsrhPzJboDmwYNMl8hZRuuShsRIUmq82CUQNIs7ls=
+	t=1751356005; cv=none; b=kUwdb7UEnV+HON7khcL7GCYrUw5yF6VieQY/5nIP2KxtbldFqSjEHQWvGVifi5DUxCc+cphy5+kX1diezV7i2EMRM61oKye+zeFgR4irD34tpTYDFRQzSlu/bpOpCN4MyWFInPtvYIEMxmabnCMN5oEP/HvB7Ieawd9y+nERqHY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1751355838; c=relaxed/simple;
-	bh=yaxlHDl9w0t4PA2D/GvPYwB62GkGoklDetJPWB0Uc/w=;
-	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=R8fVTJSyKMb23ZR2JnNWiVkYCdKU5HcvBkhXNFduA1Akcjy0XH0D/4Ni59trQnAjUsrFpA4JWWzOvc7bTytmmCBZkr9FKHLtBLd1blh6jLIyvuPMVBOfBeZlQ9EdzeAv0wiXHrQHh5F6ZktbxhFZhdO7z8Jz/iVHqXC4gdoO5E8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=qualcomm.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=DQqyL2jc; arc=none smtp.client-ip=205.220.180.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=qualcomm.com
-Received: from pps.filterd (m0279872.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 5612vACE024827;
-	Tue, 1 Jul 2025 07:43:53 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	cc:content-transfer-encoding:date:from:message-id:mime-version
-	:subject:to; s=qcppdkim1; bh=OxVs0RvgVnSeGVKbjAm9LqUGwZ2gkiBSa66
-	AH7cqy20=; b=DQqyL2jcNiHsRqWKNgBevrlch7af4ngvkZt5Cx9fnAKdE1Yzdph
-	dSPJwymHfXDZPgizvKKJgKKsIrKOptF7afapmQcGwU4cZY5bUrpMKqvzYtuGdcb+
-	sIyOp1eQkmUwm7k/eYynivGglCDFYVkxKUzfN0QbHVl4MOZfMHe49jsC/4IscuTg
-	kr/EiLT8jpg6UyUzPBeFx5bccpRiM9J5/86gqNY3Csns0OX/b26A47nQZNMVRqXV
-	fv3dfRJ6z+DnI+t+tk5LgNRlIlXQZyNOJZyjjIZsi0DNa3c4dO5oruFRc4d1T4bg
-	SSvVXjecus21QTz+OXgj9mSF9dPX4McfwMA==
-Received: from apblrppmta01.qualcomm.com (blr-bdr-fw-01_GlobalNAT_AllZones-Outside.qualcomm.com [103.229.18.19])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 47j8s9fkrp-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Tue, 01 Jul 2025 07:43:53 +0000 (GMT)
-Received: from pps.filterd (APBLRPPMTA01.qualcomm.com [127.0.0.1])
-	by APBLRPPMTA01.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTP id 5617hoO6024296;
-	Tue, 1 Jul 2025 07:43:50 GMT
-Received: from pps.reinject (localhost [127.0.0.1])
-	by APBLRPPMTA01.qualcomm.com (PPS) with ESMTPS id 47j9fktyv1-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Tue, 01 Jul 2025 07:43:50 +0000
-Received: from APBLRPPMTA01.qualcomm.com (APBLRPPMTA01.qualcomm.com [127.0.0.1])
-	by pps.reinject (8.17.1.5/8.17.1.5) with ESMTP id 5617ho86024288;
-	Tue, 1 Jul 2025 07:43:50 GMT
-Received: from hu-devc-hyd-u22-c.qualcomm.com (hu-pussin-hyd.qualcomm.com [10.147.247.182])
-	by APBLRPPMTA01.qualcomm.com (PPS) with ESMTPS id 5617hndT024286
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Tue, 01 Jul 2025 07:43:50 +0000
-Received: by hu-devc-hyd-u22-c.qualcomm.com (Postfix, from userid 4706513)
-	id CF06D571; Tue,  1 Jul 2025 13:13:48 +0530 (+0530)
-From: Pushpendra Singh <quic_pussin@quicinc.com>
-To: cros-qcom-dts-watchers@chromium.org, andersson@kernel.org,
-        konradybcio@kernel.org, robh@kernel.org, krzk+dt@kernel.org,
-        conor+dt@kernel.org, linux-arm-msm@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Cc: Pushpendra Singh <quic_pussin@quicinc.com>, kernel@quicinc.com
-Subject: [PATCH] arm64: dts: qcom: sc7280: Add support for two additional DDR frequencies
-Date: Tue,  1 Jul 2025 13:13:34 +0530
-Message-Id: <20250701074334.1782967-1-quic_pussin@quicinc.com>
-X-Mailer: git-send-email 2.34.1
+	s=arc-20240116; t=1751356005; c=relaxed/simple;
+	bh=dyCX5o4Dg6QY3l8HSrTsQtDR0kFtbE32Z2wolTki55w=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=dhY0DHDP5AXQWZxjWtAmTs9zsLx161mRmopiljkDvZquuYn9F+6pc5mQ58xxHmsRPpR4SIIyGDyGIb8Ba7pSe2K3IMAEXsDWMiS7EeFVRiwCAlzGWHTkFu1ufXZa9RC7atevst0GbxNy0kGb2T/SqwpxPmu0KzBvYDMeDdXBWrM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=gaZL+nXz; arc=none smtp.client-ip=209.85.208.51
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-ed1-f51.google.com with SMTP id 4fb4d7f45d1cf-60c5b8ee2d9so11740375a12.2;
+        Tue, 01 Jul 2025 00:46:43 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1751356002; x=1751960802; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=dyCX5o4Dg6QY3l8HSrTsQtDR0kFtbE32Z2wolTki55w=;
+        b=gaZL+nXz9orByOpBzl761kI4sTjRWwSUQSx+x9u3VNMTB6Ek7nLFED3MwvoaN4f5+t
+         lONE7fyDv5iP0pof5+CFjPze5u+xSvizN8omhMTUDoy/GwNfZTuj8LacGEYg2+5LQYO6
+         QuCNagBcEKLM1iVRAjD6vf4jmqQubifOrz+ubG0DVP+6ZXm1eQBMrHQn1fnPvEKrRtZR
+         2N4N+nh/tFKJfWWHvw1FJaLwQGR5Ri2tzroDmBhN6GuIgkMYqgme4SOerGMeDxZ0LRJX
+         W0Ov3yS3KIPtX43HxHKXaZra7ToND8ufiw5zOcl5wVj4AUqnnLTWwInIB8Pw7Ll2YE78
+         KS1w==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1751356002; x=1751960802;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=dyCX5o4Dg6QY3l8HSrTsQtDR0kFtbE32Z2wolTki55w=;
+        b=PSDR6o0XAzCCLS3WytRZLbZogoykCLW4XGGxMSi8Pwu7Z+LZ168+Rv3FdPVpNKziDD
+         WuarND+ib39WVOmcaqQ0SCM3HQ+26WJ5x9+CX38U/I8BQ8pqzjZbNXymd2I1yDxtwbjM
+         i6aNHVMebzfVVge9+XwCDRf24KLjjNV+L08kDsr9J/1XJTkv8tNWQoKqVTCbAA3VO6Sg
+         8hJu30K6Ow3QARUthAXPKW8rUxqXrm6UQHDPrY8kzBr8LDZHzEvYVocMPGEhhsLbJi+P
+         1layEtBPvudkPZPwmMKo+9ARwPLEdC/guk3r/nNUQcKMsh4qRIO1oiNEG83jshPoLJn8
+         OvIA==
+X-Forwarded-Encrypted: i=1; AJvYcCU8kDOi78hzIKgSECLYp/yd3cexvUOoAQRmNOfLr3CRHlHbCBaSsd2xd/NbhG6L75eeHox/cMnBfrQ1VSEs@vger.kernel.org, AJvYcCUa78MfiN+sdhe5eJsORyXTm60+l73qVZGF0Fp9dSbW0yu3q3JlEd9zyM7SQjRVXzNLN5NaF281biKv@vger.kernel.org, AJvYcCV1CV2ii0QHI7884Jp5Zw5HMyECKWoEo+8rIhOttve+0uESpmr5zmgZYkDBPzPPquOY7vN5mH47Wh4c@vger.kernel.org, AJvYcCVRx+kigcWgO49tHCYauvhIa29rgPp7gDw3lu6CMvYnV8ZkSf0e3NNOaFM3nAqW3q7qK/7h14RE2o4a6ag=@vger.kernel.org
+X-Gm-Message-State: AOJu0Yx+SL5ESFruaHgvfYWvEyFZcKbgaT3TI1IOdDpvVVXQjXJ9e0D+
+	ufeoZvY2hkjW62UoXEljecp4AyfF7i/knpEjRIXh2zl4dYEpcD3ySHIRS839zjDvnZIEP52Vxy4
+	VpIzUGn0ifKRKSR85fszPfLkTgNtpT2M=
+X-Gm-Gg: ASbGncvtbkCzEGs/VaRh4uq2aiz5zoh3BrSSdNzKOli+r0fmuLuWkJfkXF5OEvpNhDd
+	FSjhb0xn+Ad3AvixJRH/qwW9NmWelwnDpJF7fYyaiAbu90DFmP/dTpyOqKmrL29BcFujMArDAyY
+	45aaJsp/0osQwIYipuuMpR7ieK9gctozHQAYanNq+LSDQR
+X-Google-Smtp-Source: AGHT+IFdn8VEEQHDC8OasRXI0qgEnkqyj5lzRx6CSU9/4hWwZLvVN9kESBAm67CBFRdOqfMNoceln8a+BhI8D9pIt1o=
+X-Received: by 2002:a17:907:7ea2:b0:ade:198c:4b6f with SMTP id
+ a640c23a62f3a-ae34fd30a97mr1469575766b.1.1751356001813; Tue, 01 Jul 2025
+ 00:46:41 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-QCInternal: smtphost
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Authority-Analysis: v=2.4 cv=H/Pbw/Yi c=1 sm=1 tr=0 ts=686391b9 cx=c_pps
- a=Ou0eQOY4+eZoSc0qltEV5Q==:117 a=Ou0eQOY4+eZoSc0qltEV5Q==:17
- a=Wb1JkmetP80A:10 a=COk6AnOGAAAA:8 a=EUspDBNiAAAA:8 a=dDp98MX-VD6hcrkFVBUA:9
- a=TjNXssC_j7lpFel5tvFf:22
-X-Proofpoint-ORIG-GUID: tLB2TNKh-qLqNyTFMnL7qEt7JZ28V8Am
-X-Proofpoint-GUID: tLB2TNKh-qLqNyTFMnL7qEt7JZ28V8Am
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwNzAxMDA0MyBTYWx0ZWRfXwgklkA9oVjQ2
- fSpxrfneP5MZ2p/FzbjvSE2c4f53EpXAx5sxVj4V4oyAd+YcrPfTdyG4jloOdQUP4wHcTWDCLvN
- l2rWResb02LaM3Ss3E0bnxqE+yZwLwBmp7m4IhaoKtLTWBIttHwdoVDL5I/UiZ6E05nT+n+5hvW
- g+IWNnVDdxzoPYrqy9Uk2UWT1pJB1uVdGtHYvJkg9XsXLlWGF9Jg65F2V4CyAprFz5Qt0MdGHUJ
- j25mAh1jYq7gYAxe1zzedCiKAHlCl3ASy10klGS9UMwiEabunczcoEzGgvjOyicQzluGqExGVlW
- C4cYAnqvhLYllTyvwvxATKmSbyz0yzI9M2c6pwtbcqy6avJMpYl3tqQMA6M/3zN32xTKlncBaoQ
- 0CAVMTLdbUFVJQlsHXP+30qbuYQFNrhumlUCrSyxeOlbeGj9r9XCPCxUQsPX1mOzAFS3u14u
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1099,Hydra:6.1.7,FMLib:17.12.80.40
- definitions=2025-07-01_01,2025-06-27_01,2025-03-28_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- impostorscore=0 malwarescore=0 suspectscore=0 mlxlogscore=973
- priorityscore=1501 clxscore=1011 mlxscore=0 lowpriorityscore=0 spamscore=0
- adultscore=0 bulkscore=0 phishscore=0 classifier=spam authscore=0 authtc=n/a
- authcc= route=outbound adjust=0 reason=mlx scancount=1
- engine=8.19.0-2505280000 definitions=main-2507010043
+References: <20250630112120.588246-1-Henry_Wu@quantatw.com>
+ <20250630112120.588246-3-Henry_Wu@quantatw.com> <a2c8e8ea-4cd1-43ca-8973-ac7210f821c2@kernel.org>
+In-Reply-To: <a2c8e8ea-4cd1-43ca-8973-ac7210f821c2@kernel.org>
+From: Henry Wu <tzuhao.wtmh@gmail.com>
+Date: Tue, 1 Jul 2025 15:46:30 +0800
+X-Gm-Features: Ac12FXwsUlVyBrckRHAx_VI3BD8drXikFezbwgMsDj67FjJjWVGhfyaL4w7fzVs
+Message-ID: <CAL3H=v17_h5b-7bFbnubJwAPOpS1xz7k-c7Mx3Ss9YXa8U+0Xw@mail.gmail.com>
+Subject: Re: [PATCH v2 2/2] dt-bindings: trivial-devices: Add mp2869a/mp29612a
+ device entry
+To: Krzysztof Kozlowski <krzk@kernel.org>
+Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+	Conor Dooley <conor+dt@kernel.org>, Jean Delvare <jdelvare@suse.com>, 
+	Guenter Roeck <linux@roeck-us.net>, Jonathan Corbet <corbet@lwn.net>, 
+	Jonathan Cameron <Jonathan.Cameron@huawei.com>, Rodrigo Gobbi <rodrigo.gobbi.7@gmail.com>, 
+	Michal Simek <michal.simek@amd.com>, Fabio Estevam <festevam@gmail.com>, 
+	Naresh Solanki <naresh.solanki@9elements.com>, Henry Wu <Henry_Wu@quantatw.com>, 
+	Grant Peltier <grantpeltier93@gmail.com>, 
+	Laurent Pinchart <laurent.pinchart@ideasonboard.com>, 
+	Cedric Encarnacion <cedricjustine.encarnacion@analog.com>, 
+	Mariel Tinaco <Mariel.Tinaco@analog.com>, Alex Vdovydchenko <xzeol@yahoo.com>, 
+	John Erasmus Mari Geronimo <johnerasmusmari.geronimo@analog.com>, Leo Yang <leo.yang.sy0@gmail.com>, 
+	Ninad Palsule <ninad@linux.ibm.com>, Jerome Brunet <jbrunet@baylibre.com>, 
+	Kim Seer Paller <kimseer.paller@analog.com>, Nuno Sa <nuno.sa@analog.com>, 
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+	linux-hwmon@vger.kernel.org, linux-doc@vger.kernel.org, 
+	peteryin.openbmc@gmail.com
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-Cc: kernel@quicinc.com, kernel@oss.qualcomm.com
-
-The SC7280 SoC now supports two additional frequencies. This patch
-add those frequencies to the BWMON OPP table and updates the frequency
-mapping table accordingly.
-
-These changes do not impact existing platforms, as the updated mapping
-only affects the highest OPP. On any given platform, this will continue
-to vote for the maximum available OPP.
-
-Change-Id: Id3a91e065c49848d9af18e5c3edee0836cb693e5
-Signed-off-by: Pushpendra Singh <quic_pussin@quicinc.com>
----
- arch/arm64/boot/dts/qcom/sc7280.dtsi | 18 ++++++++++++------
- 1 file changed, 12 insertions(+), 6 deletions(-)
-
-diff --git a/arch/arm64/boot/dts/qcom/sc7280.dtsi b/arch/arm64/boot/dts/qcom/sc7280.dtsi
-index 64a2abd30100..cb945abf0475 100644
---- a/arch/arm64/boot/dts/qcom/sc7280.dtsi
-+++ b/arch/arm64/boot/dts/qcom/sc7280.dtsi
-@@ -620,12 +620,12 @@ cpu4_opp_2208mhz: opp-2208000000 {
- 
- 		cpu4_opp_2400mhz: opp-2400000000 {
- 			opp-hz = /bits/ 64 <2400000000>;
--			opp-peak-kBps = <8532000 48537600>;
-+			opp-peak-kBps = <12787200 48537600>;
- 		};
- 
- 		cpu4_opp_2611mhz: opp-2611200000 {
- 			opp-hz = /bits/ 64 <2611200000>;
--			opp-peak-kBps = <8532000 48537600>;
-+			opp-peak-kBps = <12787200 48537600>;
- 		};
- 	};
- 
-@@ -685,22 +685,22 @@ cpu7_opp_2381mhz: opp-2380800000 {
- 
- 		cpu7_opp_2400mhz: opp-2400000000 {
- 			opp-hz = /bits/ 64 <2400000000>;
--			opp-peak-kBps = <8532000 48537600>;
-+			opp-peak-kBps = <12787200 48537600>;
- 		};
- 
- 		cpu7_opp_2515mhz: opp-2515200000 {
- 			opp-hz = /bits/ 64 <2515200000>;
--			opp-peak-kBps = <8532000 48537600>;
-+			opp-peak-kBps = <12787200 48537600>;
- 		};
- 
- 		cpu7_opp_2707mhz: opp-2707200000 {
- 			opp-hz = /bits/ 64 <2707200000>;
--			opp-peak-kBps = <8532000 48537600>;
-+			opp-peak-kBps = <12787200 48537600>;
- 		};
- 
- 		cpu7_opp_3014mhz: opp-3014400000 {
- 			opp-hz = /bits/ 64 <3014400000>;
--			opp-peak-kBps = <8532000 48537600>;
-+			opp-peak-kBps = <12787200 48537600>;
- 		};
- 	};
- 
-@@ -4013,6 +4013,12 @@ opp-6 {
- 				opp-7 {
- 					opp-peak-kBps = <8532000>;
- 				};
-+				opp-8 {
-+					opp-peak-kBps = <10944000>;
-+				};
-+				opp-9 {
-+					opp-peak-kBps = <12787200>;
-+				};
- 			};
- 		};
- 
--- 
-2.34.1
-
+Krzysztof Kozlowski <krzk@kernel.org> =E6=96=BC 2025=E5=B9=B46=E6=9C=8830=
+=E6=97=A5 =E9=80=B1=E4=B8=80 =E4=B8=8B=E5=8D=887:28=E5=AF=AB=E9=81=93=EF=BC=
+=9A
+>
+> On 30/06/2025 13:20, tzuhao.wtmh@gmail.com wrote:
+> > From: Henry Wu <Henry_Wu@quantatw.com>
+> >
+> > Add trivial-devices binding for mp2869a/mp29612a to enable automatic ma=
+tching
+> > in device tree.
+>
+> Nothing improved. You did not respond to my comments and just sent the sa=
+me.
+>
+> No, implement and respond to comments.
+>
+I=E2=80=99m sorry, that was my mistake. I will update the description to:
+Add trivial-devices bindings for MP2869A/MP29612A voltage regulator control=
+lers.
+>
+>
+> Best regards,
+> Krzysztof
 
