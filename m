@@ -1,113 +1,188 @@
-Return-Path: <devicetree+bounces-191658-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-191660-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 64CB6AEFFE9
-	for <lists+devicetree@lfdr.de>; Tue,  1 Jul 2025 18:33:02 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id AC3E9AF0059
+	for <lists+devicetree@lfdr.de>; Tue,  1 Jul 2025 18:45:22 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 87404160CF5
-	for <lists+devicetree@lfdr.de>; Tue,  1 Jul 2025 16:33:02 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id AAC49482BAA
+	for <lists+devicetree@lfdr.de>; Tue,  1 Jul 2025 16:43:18 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id EB3F3276058;
-	Tue,  1 Jul 2025 16:32:57 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 10A9D27CCF3;
+	Tue,  1 Jul 2025 16:40:31 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="KzHvv04W"
+	dkim=pass (1024-bit key) header.d=linux.dev header.i=@linux.dev header.b="RLgFCTGL"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from out-188.mta1.migadu.com (out-188.mta1.migadu.com [95.215.58.188])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C12D323506D;
-	Tue,  1 Jul 2025 16:32:57 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7D47A27CCC4
+	for <devicetree@vger.kernel.org>; Tue,  1 Jul 2025 16:40:28 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=95.215.58.188
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1751387577; cv=none; b=c5jej20Q1UbasyI8d78vBbezA+Y5hmAw8l8q8qNcgDvJu5EpUyvMHgILHoS18gTqya6lYAXFBgyXO1DbzzOBdsLlqHUnft6A66K/uQN2WQRONxJcNw0o4lfqV/0NrbmXQEdfeq/ybl+9/qg2tbld3t4Uq+og0WGAhr8I7I/WGSI=
+	t=1751388031; cv=none; b=gYFOuaGpDoWkoWJnC/WrfPaPnV0asCGDB0L5m3F/vAOdHD8C81bKkvTeiI54nwfbaNJulTCUuo2t+rOK6flhxUKb8nOL39CauCOQoakT/VLyzJi64TRbCGXIEn5fPvXUwntQyfeMxFgWr/C8cB5QtV2mR2agADbEMq/xwZxyatg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1751387577; c=relaxed/simple;
-	bh=DKU+hY2Pi8zMDGgIyWh0V+54nxG1K37l+J7KI53nCWY=;
-	h=Date:Content-Type:MIME-Version:From:Cc:To:In-Reply-To:References:
-	 Message-Id:Subject; b=sp67S1MUY8Tyz3W7sTmABOtr2Zf9mTLvv0Kdw1JgylVKaJZk03fkLfZzq74/PF/80nHsnm3lXTr78JVoPLWarFZxwZhEiwc4yNvVZWSzVKwnZ9WSoX0G2CR0FpMfR1EhndUeIxqySScuf3nkf6WdrKEnGUc5Df68ZjeAS2G8eO4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=KzHvv04W; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 759A9C4CEEB;
-	Tue,  1 Jul 2025 16:32:57 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1751387577;
-	bh=DKU+hY2Pi8zMDGgIyWh0V+54nxG1K37l+J7KI53nCWY=;
-	h=Date:From:Cc:To:In-Reply-To:References:Subject:From;
-	b=KzHvv04Wn0A1brDCcoyn5UjpHQJF6OUINA3RUK+fdO2OVhy5EEjoxUwYnOhjS4pCB
-	 JmDT0tmx21+fzo/fop3OHhS/5PmQgErX6Q2Tq48UZfWV6fCwu+g7jK76F46It89A2L
-	 fKuxxQ0WFN9L2jM/ds8giXe0TACzG3+3ds/nqB+c0Nidvitj5T8HHzGcLCy86HBsaV
-	 JAWXBWeF8Ny/roZYO9D6TNlkIIYzXt3moX4mow5JBy9uv1r5NNUvUB1CsvE0y2/dw9
-	 CMCMSGx8av8q3tFegW0J/5XRPdsFqNTkeu4OYHyJRWw5/2t0GaY7hnKXcd3faSOZCz
-	 oMEJ4KNxXXHzQ==
-Date: Tue, 01 Jul 2025 11:32:56 -0500
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
+	s=arc-20240116; t=1751388031; c=relaxed/simple;
+	bh=hk/shajpqhbI5aSCnWtJ+BEGb1jgnvRLCCAWvwffxH8=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=Ln7nsRsyaj+6xQLIV8jxeXWKsZpxikSvLm6Jlzkvt1bLkb1dd8mI88MfqrlMm1CZuJoHWIzMlSKeUHQRhg+zjSKfaNcRQ0XOBq1WKiKeKnMIXNGmaiDD1+kGwHuwpkbrdtrhRBDqdL3johvq1RFFxYJ8015J/4FUYbDgl0aPi6Q=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.dev; spf=pass smtp.mailfrom=linux.dev; dkim=pass (1024-bit key) header.d=linux.dev header.i=@linux.dev header.b=RLgFCTGL; arc=none smtp.client-ip=95.215.58.188
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.dev
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linux.dev
+Message-ID: <1a4fe95a-f029-43b2-aed1-594365254b6a@linux.dev>
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linux.dev; s=key1;
+	t=1751388026;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references;
+	bh=b4v8Xkp+c9mceTr0Q8v7/zrK1IVjBYCeckNhf49+7xs=;
+	b=RLgFCTGLYZGv7GE+j3tCpdemaHKjOPsy83ZDnu3AOOXA8PZ6TwJihlUBHoT7RsdgGvY6rs
+	iSal0Uk/kJUOk03z5i/GAeuQMbCS3TEj1la5NEJxKz28cXHvOKvXg3HkEhsMlGBvKe6R30
+	aQ6wK1DMkfzkt1bFhcGJmZpmKTI4P2o=
+Date: Tue, 1 Jul 2025 12:40:17 -0400
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-From: "Rob Herring (Arm)" <robh@kernel.org>
-Cc: laura.nao@collabora.com, matthias.bgg@gmail.com, 
- quic_hyiwei@quicinc.com, devicetree@vger.kernel.org, kabel@kernel.org, 
- kernel@collabora.com, arnd@arndb.de, ulf.hansson@linaro.org, 
- linux-kernel@vger.kernel.org, conor+dt@kernel.org, khilman@baylibre.com, 
- pjp@fedoraproject.org, u.kleine-koenig@baylibre.com, 
- linux-mediatek@lists.infradead.org, nm@ti.com, tudor.ambarus@linaro.org, 
- m.wilczynski@samsung.com, drew@pdp7.com, krzk@kernel.org, 
- linux-arm-kernel@lists.infradead.org, gregkh@linuxfoundation.org
-To: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
-In-Reply-To: <20250701151149.136365-3-angelogioacchino.delregno@collabora.com>
-References: <20250701151149.136365-1-angelogioacchino.delregno@collabora.com>
- <20250701151149.136365-3-angelogioacchino.delregno@collabora.com>
-Message-Id: <175138757651.1874576.12579481478499163218.robh@kernel.org>
-Subject: Re: [RFC PATCH 2/3] dt-bindings: firmware: Document the MediaTek
- Hardware Voter (HWV)
+Subject: Re: [PATCH net-next v2 12/18] net: macb: match skb_reserve(skb,
+ NET_IP_ALIGN) with HW alignment
+To: =?UTF-8?Q?Th=C3=A9o_Lebrun?= <theo.lebrun@bootlin.com>,
+ Andrew Lunn <andrew+netdev@lunn.ch>, "David S. Miller"
+ <davem@davemloft.net>, Eric Dumazet <edumazet@google.com>,
+ Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>,
+ Nicolas Ferre <nicolas.ferre@microchip.com>,
+ Claudiu Beznea <claudiu.beznea@tuxon.dev>,
+ Paul Walmsley <paul.walmsley@sifive.com>, Palmer Dabbelt
+ <palmer@dabbelt.com>, Albert Ou <aou@eecs.berkeley.edu>,
+ Alexandre Ghiti <alex@ghiti.fr>, Samuel Holland <samuel.holland@sifive.com>,
+ Richard Cochran <richardcochran@gmail.com>,
+ Russell King <linux@armlinux.org.uk>,
+ Thomas Bogendoerfer <tsbogend@alpha.franken.de>,
+ Vladimir Kondratiev <vladimir.kondratiev@mobileye.com>,
+ Gregory CLEMENT <gregory.clement@bootlin.com>,
+ Cyrille Pitchen <cyrille.pitchen@atmel.com>,
+ Harini Katakam <harini.katakam@xilinx.com>,
+ Rafal Ozieblo <rafalo@cadence.com>,
+ Haavard Skinnemoen <hskinnemoen@atmel.com>, Jeff Garzik <jeff@garzik.org>
+Cc: netdev@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, linux-riscv@lists.infradead.org,
+ linux-mips@vger.kernel.org, Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
+ Tawfik Bayouk <tawfik.bayouk@mobileye.com>
+References: <20250627-macb-v2-0-ff8207d0bb77@bootlin.com>
+ <20250627-macb-v2-12-ff8207d0bb77@bootlin.com>
+Content-Language: en-US
+X-Report-Abuse: Please report any abuse attempt to abuse@migadu.com and include these headers.
+From: Sean Anderson <sean.anderson@linux.dev>
+In-Reply-To: <20250627-macb-v2-12-ff8207d0bb77@bootlin.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+X-Migadu-Flow: FLOW_OUT
 
+On 6/27/25 05:08, Théo Lebrun wrote:
+> If HW is RSC capable, it cannot add dummy bytes at the start of IP
 
-On Tue, 01 Jul 2025 17:11:48 +0200, AngeloGioacchino Del Regno wrote:
-> Add documentation for the new MediaTek Hardware Voter, found in
-> MediaTek SoCs like the MT8196 Kompanio Ultra for Chromebooks and
-> the MT6991 Dimensity 9400 for Smartphones.
+Receive-side coalescing? Can you add a brief description of this
+feature to your commit message?
+
+> packets. Alignment (ie number of dummy bytes) is configured using the
+> RBOF field inside the NCFGR register.
 > 
-> Signed-off-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+> On the software side, the skb_reserve(skb, NET_IP_ALIGN) call must only
+> be done if those dummy bytes are added by the hardware; notice the
+> skb_reserve() is done AFTER writing the address to the device.
+> 
+> We cannot do the skb_reserve() call BEFORE writing the address because
+> the address field ignores the low 2/3 bits. Conclusion: in some cases,
+> we risk not being able to respect the NET_IP_ALIGN value (which is
+> picked based on unaligned CPU access performance).
+> 
+> Fixes: 4df95131ea80 ("net/macb: change RX path for GEM")
+
+Do any existing MACBs support RSC? Is this a fix? 
+
+> Signed-off-by: Théo Lebrun <theo.lebrun@bootlin.com>
 > ---
->  .../mediatek,mt6991-hardware-voter.yaml       | 70 +++++++++++++++++++
->  1 file changed, 70 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/firmware/mediatek,mt6991-hardware-voter.yaml
+>  drivers/net/ethernet/cadence/macb.h      |  3 +++
+>  drivers/net/ethernet/cadence/macb_main.c | 21 ++++++++++++++++++---
+>  2 files changed, 21 insertions(+), 3 deletions(-)
 > 
+> diff --git a/drivers/net/ethernet/cadence/macb.h b/drivers/net/ethernet/cadence/macb.h
+> index adc70b6efd52b0b11e436c2c95bb5108c40f3490..d42c81cf441ce435cad38e2dfd779b0e6a141bf3 100644
+> --- a/drivers/net/ethernet/cadence/macb.h
+> +++ b/drivers/net/ethernet/cadence/macb.h
+> @@ -523,6 +523,8 @@
+>  /* Bitfields in DCFG6. */
+>  #define GEM_PBUF_LSO_OFFSET			27
+>  #define GEM_PBUF_LSO_SIZE			1
+> +#define GEM_PBUF_RSC_OFFSET			26
+> +#define GEM_PBUF_RSC_SIZE			1
+>  #define GEM_PBUF_CUTTHRU_OFFSET			25
+>  #define GEM_PBUF_CUTTHRU_SIZE			1
+>  #define GEM_DAW64_OFFSET			23
+> @@ -733,6 +735,7 @@
+>  #define MACB_CAPS_MIIONRGMII			BIT(9)
+>  #define MACB_CAPS_NEED_TSUCLK			BIT(10)
+>  #define MACB_CAPS_QUEUE_DISABLE			BIT(11)
+> +#define MACB_CAPS_RSC_CAPABLE			BIT(12)
 
-My bot found errors running 'make dt_binding_check' on your patch:
+No need to be _CAPABLE, we're already _CAPS_
 
-yamllint warnings/errors:
-./Documentation/devicetree/bindings/firmware/mediatek,mt6991-hardware-voter.yaml:44:2: [warning] wrong indentation: expected 2 but found 1 (indentation)
-
-dtschema/dtc warnings/errors:
-Documentation/devicetree/bindings/firmware/mediatek,mt6991-hardware-voter.example.dts:39.35-43.11: Warning (unit_address_vs_reg): /example-0/clock-controller@16640000: node has a unit name, but no reg or ranges property
-/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/firmware/mediatek,mt6991-hardware-voter.example.dtb: system-controller@14500000 (mediatek,mt6991-hardware-voter): power-controller:compatible:0: 'mediatek,mt8196-hwv-scp-power-controller' is not one of ['mediatek,mt6735-power-controller', 'mediatek,mt6795-power-controller', 'mediatek,mt6893-power-controller', 'mediatek,mt8167-power-controller', 'mediatek,mt8173-power-controller', 'mediatek,mt8183-power-controller', 'mediatek,mt8186-power-controller', 'mediatek,mt8188-power-controller', 'mediatek,mt8192-power-controller', 'mediatek,mt8195-power-controller', 'mediatek,mt8365-power-controller']
-	from schema $id: http://devicetree.org/schemas/firmware/mediatek,mt6991-hardware-voter.yaml#
-/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/firmware/mediatek,mt6991-hardware-voter.example.dtb: system-controller@14500000 (mediatek,mt6991-hardware-voter): reg: [[0, 340787200], [0, 12288]] is too long
-	from schema $id: http://devicetree.org/schemas/firmware/mediatek,mt6991-hardware-voter.yaml#
-Documentation/devicetree/bindings/firmware/mediatek,mt6991-hardware-voter.example.dtb: /example-0/system-controller@14500000/power-controller: failed to match any schema with compatible: ['mediatek,mt8196-hwv-scp-power-controller']
-
-doc reference errors (make refcheckdocs):
-
-See https://patchwork.ozlabs.org/project/devicetree-bindings/patch/20250701151149.136365-3-angelogioacchino.delregno@collabora.com
-
-The base for the series is generally the latest rc1. A different dependency
-should be noted in *this* patch.
-
-If you already ran 'make dt_binding_check' and didn't see the above
-error(s), then make sure 'yamllint' is installed and dt-schema is up to
-date:
-
-pip3 install dtschema --upgrade
-
-Please check and re-submit after running the above command yourself. Note
-that DT_SCHEMA_FILES can be set to your schema file to speed up checking
-your schema. However, it must be unset to test all examples with your schema.
+>  #define MACB_CAPS_PCS				BIT(24)
+>  #define MACB_CAPS_HIGH_SPEED			BIT(25)
+>  #define MACB_CAPS_CLK_HW_CHG			BIT(26)
+> diff --git a/drivers/net/ethernet/cadence/macb_main.c b/drivers/net/ethernet/cadence/macb_main.c
+> index 48b75d95861317b9925b366446c7572c7e186628..578e72c7727d4f578478ff2b3d0a6316327271b1 100644
+> --- a/drivers/net/ethernet/cadence/macb_main.c
+> +++ b/drivers/net/ethernet/cadence/macb_main.c
+> @@ -1317,8 +1317,19 @@ static void gem_rx_refill(struct macb_queue *queue)
+>  			dma_wmb();
+>  			macb_set_addr(bp, desc, paddr);
+>  
+> -			/* properly align Ethernet header */
+> -			skb_reserve(skb, NET_IP_ALIGN);
+> +			/* Properly align Ethernet header.
+> +			 *
+> +			 * Hardware can add dummy bytes if asked using the RBOF
+> +			 * field inside the NCFGR register. That feature isn't
+> +			 * available if hardware is RSC capable.
+> +			 *
+> +			 * We cannot fallback to doing the 2-byte shift before
+> +			 * DMA mapping because the address field does not allow
+> +			 * setting the low 2/3 bits.
+> +			 * It is 3 bits if HW_DMA_CAP_PTP, else 2 bits.
+> +			 */
+> +			if (!(bp->caps & MACB_CAPS_RSC_CAPABLE))
+> +				skb_reserve(skb, NET_IP_ALIGN);
+>  		} else {
+>  			desc->ctrl = 0;
+>  			dma_wmb();
+> @@ -2787,7 +2798,9 @@ static void macb_init_hw(struct macb *bp)
+>  	macb_set_hwaddr(bp);
+>  
+>  	config = macb_mdc_clk_div(bp);
+> -	config |= MACB_BF(RBOF, NET_IP_ALIGN);	/* Make eth data aligned */
+> +	/* Make eth data aligned. If RSC capable, that offset is ignored by HW. */
+> +	if (!(bp->caps & MACB_CAPS_RSC_CAPABLE))
+> +		config |= MACB_BF(RBOF, NET_IP_ALIGN);
+>  	config |= MACB_BIT(DRFCS);		/* Discard Rx FCS */
+>  	if (bp->caps & MACB_CAPS_JUMBO)
+>  		config |= MACB_BIT(JFRAME);	/* Enable jumbo frames */
+> @@ -4108,6 +4121,8 @@ static void macb_configure_caps(struct macb *bp,
+>  		dcfg = gem_readl(bp, DCFG2);
+>  		if ((dcfg & (GEM_BIT(RX_PKT_BUFF) | GEM_BIT(TX_PKT_BUFF))) == 0)
+>  			bp->caps |= MACB_CAPS_FIFO_MODE;
+> +		if (GEM_BFEXT(PBUF_RSC, gem_readl(bp, DCFG6)))
+> +			bp->caps |= MACB_CAPS_RSC_CAPABLE;
+>  		if (gem_has_ptp(bp)) {
+>  			if (!GEM_BFEXT(TSU, gem_readl(bp, DCFG5)))
+>  				dev_err(&bp->pdev->dev,
+> 
 
 
