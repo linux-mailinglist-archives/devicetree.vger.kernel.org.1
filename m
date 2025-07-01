@@ -1,91 +1,95 @@
-Return-Path: <devicetree+bounces-191366-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-191367-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 48C48AEF0AB
-	for <lists+devicetree@lfdr.de>; Tue,  1 Jul 2025 10:16:27 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1849FAEF0B3
+	for <lists+devicetree@lfdr.de>; Tue,  1 Jul 2025 10:17:10 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 29F761BC4FAD
-	for <lists+devicetree@lfdr.de>; Tue,  1 Jul 2025 08:16:42 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 6FDF54A013A
+	for <lists+devicetree@lfdr.de>; Tue,  1 Jul 2025 08:17:10 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7455025FA29;
-	Tue,  1 Jul 2025 08:16:20 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4D818264625;
+	Tue,  1 Jul 2025 08:17:05 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="HhASyXBS"
+	dkim=pass (2048-bit key) header.d=dolcini.it header.i=@dolcini.it header.b="BWm8ZG3m"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail11.truemail.it (mail11.truemail.it [217.194.8.81])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 417B442AA9;
-	Tue,  1 Jul 2025 08:16:18 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4900925FA29;
+	Tue,  1 Jul 2025 08:17:00 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.194.8.81
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1751357780; cv=none; b=K49e0Yl3CriMLNcQsxO7ltPeh+jodTfi+Q8Os7gskZl0o0NmMbxoaYQdqdptUkEQm0AekJ9Sec0VcJy0DQbIcqBu4yLYKQeiOiFQsjoCpOfecrZczmsUufNfn1YB4hkJP5pRvDkrLxc7M3p1Cm3UA002J9m1eOng1FdZThx1a6Y=
+	t=1751357825; cv=none; b=gYm/e3WbtANCLCRo4V8Zd6aCSGrwp9dtOsw3d9IoYEk2Q57+Xrss2DN3KyYkvmA4TPWn7HDYYOZOcP+pB/Eh8h+QQp6Hz+IxuidpYfZyX3qwdYjfPLL2G4Lkp7bgoFuS614n2RX++r64+nQIyJ4478Qk4QVH1S46brpPEQRkpS8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1751357780; c=relaxed/simple;
-	bh=lkyQWlDYZofRSdo3cjmJVwtr+h8AbrUJVHwsg1OHwAw=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=XPhvJhalDD93lc8Xs4djyqejIiVo6xV3mc1j3mQXjZWHZl+Py8LKtL618rKasKcENYxy0ejc5+AmOe9tIIvTMZgQKA/UJtYNmYyfV+D9mIAF/9aS5YP9VWoht0CsaUDEzRgZ6wHci7lTi5VoPFMWfXtmJAxjmJENYJoa1cJlJsg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=HhASyXBS; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 10349C4CEEB;
-	Tue,  1 Jul 2025 08:16:18 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1751357778;
-	bh=lkyQWlDYZofRSdo3cjmJVwtr+h8AbrUJVHwsg1OHwAw=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=HhASyXBSp1TfbTVVt9FzAonfgB5IzVQg25SEFAEiWqtr24f8TCOMdbHdPDore/c+c
-	 BSlhDV0j1Y+DuRr7e2rDUhv7NRmdZd4awvExo6UVAZyZkEQuLQCPdRfdSqaRbM/cnB
-	 MeE/FK/cZvXYRUM9m4u3qZ/lxDySrM3wdS97caPomlAmmWg+kotBptY9W7OTj4h6bQ
-	 m1wTjrml48N/8bJh++SLxzDCsKrJ9V+9aVTs8LLJEe3iQa6Ejb8M0x3i1GHuDr8bLq
-	 Y/gOPtkpaC49ptHNe9wriifPqwopfTYVKozbsI6M6c3CjOca7exr0plX8bzyCasItT
-	 6cRwoOS8EvGHQ==
-Date: Tue, 1 Jul 2025 10:16:15 +0200
-From: Krzysztof Kozlowski <krzk@kernel.org>
-To: =?utf-8?B?VGjDqW8=?= Lebrun <theo.lebrun@bootlin.com>
-Cc: Andrew Lunn <andrew+netdev@lunn.ch>, 
-	"David S. Miller" <davem@davemloft.net>, Eric Dumazet <edumazet@google.com>, 
-	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Nicolas Ferre <nicolas.ferre@microchip.com>, Claudiu Beznea <claudiu.beznea@tuxon.dev>, 
-	Paul Walmsley <paul.walmsley@sifive.com>, Palmer Dabbelt <palmer@dabbelt.com>, 
-	Albert Ou <aou@eecs.berkeley.edu>, Alexandre Ghiti <alex@ghiti.fr>, 
-	Samuel Holland <samuel.holland@sifive.com>, Richard Cochran <richardcochran@gmail.com>, 
-	Russell King <linux@armlinux.org.uk>, Thomas Bogendoerfer <tsbogend@alpha.franken.de>, 
-	Vladimir Kondratiev <vladimir.kondratiev@mobileye.com>, Gregory CLEMENT <gregory.clement@bootlin.com>, 
-	Cyrille Pitchen <cyrille.pitchen@atmel.com>, Harini Katakam <harini.katakam@xilinx.com>, 
-	Rafal Ozieblo <rafalo@cadence.com>, Haavard Skinnemoen <hskinnemoen@atmel.com>, 
-	Jeff Garzik <jeff@garzik.org>, netdev@vger.kernel.org, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, linux-riscv@lists.infradead.org, linux-mips@vger.kernel.org, 
-	Thomas Petazzoni <thomas.petazzoni@bootlin.com>, Tawfik Bayouk <tawfik.bayouk@mobileye.com>
-Subject: Re: [PATCH net-next v2 01/18] dt-bindings: net: cdns,macb: sort
- compatibles
-Message-ID: <20250701-archetypal-teal-of-virtuosity-9a9e9b@krzk-bin>
-References: <20250627-macb-v2-0-ff8207d0bb77@bootlin.com>
- <20250627-macb-v2-1-ff8207d0bb77@bootlin.com>
+	s=arc-20240116; t=1751357825; c=relaxed/simple;
+	bh=TOL2X9im/y9spEcMCpYD89jPvVrX4Y7g4or3AMsmH0c=;
+	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=j+djC9r5vzlNp4SI7Mb7B3KrYdQJygRdfTjT0Oq1TsOtDDW9bf49xwDUp07LxubbTZtybMMVPY9MnePBYnEqf5B7dOnC9hrt7QEaiySrQb/JmKWu5Qy905El0UE2IuRtT6q8vvvH7J0A82wpLd0bjZR/tr/hOCYhGCDvAwH7UnU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=dolcini.it; spf=pass smtp.mailfrom=dolcini.it; dkim=pass (2048-bit key) header.d=dolcini.it header.i=@dolcini.it header.b=BWm8ZG3m; arc=none smtp.client-ip=217.194.8.81
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=dolcini.it
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=dolcini.it
+Received: from francesco-nb.corp.toradex.com (248.201.173.83.static.wline.lns.sme.cust.swisscom.ch [83.173.201.248])
+	by mail11.truemail.it (Postfix) with ESMTPA id AA5611F8F7;
+	Tue,  1 Jul 2025 10:16:52 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=dolcini.it;
+	s=default; t=1751357813;
+	bh=egH8dl43nAY1tV9JJ+xwdkgzAbvvOZ1BwKT3m3Erp24=; h=From:To:Subject;
+	b=BWm8ZG3mr2YJaTJ3Nwd0dnFoF2mHEWu/QtTzMKuQFza0MOPWwbc4win3l9EMORyac
+	 vpwp2QbsteZnQrRn/AnvjUKKJvElaceyMiZNpG9YjmKp7xcLyiPJlYINhNfUM8mofg
+	 BrQZ6h+tI9YeBFe45ivpzxzRxev6YzmqZKqsvnV4+rKjMhJRmFXXBpzdCnk7hrOPlt
+	 ZdobBw1pYng4KC3/PzjpDqCSUgRPj9cQ3eKVQDY/Gyz0IS2VwwoiJZeutMZZcAtFku
+	 QLs6jforESiRk00UiHyk+wwuztc6W0w6o+lAm2qwU/zazx9Hgbtc0istIe/UwsS2IL
+	 /0f9R/czBT3fw==
+From: Francesco Dolcini <francesco@dolcini.it>
+To: Nishanth Menon <nm@ti.com>,
+	Vignesh Raghavendra <vigneshr@ti.com>,
+	Tero Kristo <kristo@kernel.org>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>
+Cc: Francesco Dolcini <francesco.dolcini@toradex.com>,
+	linux-arm-kernel@lists.infradead.org,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org
+Subject: [PATCH v1] arm64: dts: ti: k3-am62p-verdin: add SD_1 CD pull-up
+Date: Tue,  1 Jul 2025 10:16:43 +0200
+Message-Id: <20250701081643.71406-1-francesco@dolcini.it>
+X-Mailer: git-send-email 2.39.5
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
-In-Reply-To: <20250627-macb-v2-1-ff8207d0bb77@bootlin.com>
+Content-Transfer-Encoding: 8bit
 
-On Fri, Jun 27, 2025 at 11:08:47AM +0200, Th=C3=A9o Lebrun wrote:
-> Compatibles inside this enum are sorted-ish. Make it sorted.
->=20
-> Signed-off-by: Th=C3=A9o Lebrun <theo.lebrun@bootlin.com>
-> ---
->  Documentation/devicetree/bindings/net/cdns,macb.yaml | 8 ++++----
->  1 file changed, 4 insertions(+), 4 deletions(-)
+From: Francesco Dolcini <francesco.dolcini@toradex.com>
 
-Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Add internal pull-up to the SD_1 card detect signal, without this the CD
+signal is floating and spurious detects events can happen.
 
-Best regards,
-Krzysztof
+Fixes: 87f95ea316ac ("arm64: dts: ti: Add Toradex Verdin AM62P")
+Signed-off-by: Francesco Dolcini <francesco.dolcini@toradex.com>
+---
+ arch/arm64/boot/dts/ti/k3-am62p-verdin.dtsi | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/arch/arm64/boot/dts/ti/k3-am62p-verdin.dtsi b/arch/arm64/boot/dts/ti/k3-am62p-verdin.dtsi
+index d90d13287076..85c001aef7e3 100644
+--- a/arch/arm64/boot/dts/ti/k3-am62p-verdin.dtsi
++++ b/arch/arm64/boot/dts/ti/k3-am62p-verdin.dtsi
+@@ -433,7 +433,7 @@ AM62PX_IOPAD(0x01b8, PIN_OUTPUT, 7) /* (E20) SPI0_CS1.GPIO1_16 */ /* SODIMM 19 *
+ 	/* Verdin SD_1_CD# */
+ 	pinctrl_sd1_cd: main-gpio1-48-default-pins {
+ 		pinctrl-single,pins = <
+-			AM62PX_IOPAD(0x0240, PIN_INPUT, 7) /* (D23) MMC1_SDCD.GPIO1_48 */ /* SODIMM 84 */
++			AM62PX_IOPAD(0x0240, PIN_INPUT_PULLUP, 7) /* (D23) MMC1_SDCD.GPIO1_48 */ /* SODIMM 84 */
+ 		>;
+ 	};
+ 
+-- 
+2.39.5
 
 
