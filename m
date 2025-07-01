@@ -1,188 +1,141 @@
-Return-Path: <devicetree+bounces-191638-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-191640-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 36883AEFEFA
-	for <lists+devicetree@lfdr.de>; Tue,  1 Jul 2025 18:05:33 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id AF6FAAEFF1C
+	for <lists+devicetree@lfdr.de>; Tue,  1 Jul 2025 18:10:45 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id CDB9F481F55
-	for <lists+devicetree@lfdr.de>; Tue,  1 Jul 2025 16:03:41 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id AAFAB3A84EF
+	for <lists+devicetree@lfdr.de>; Tue,  1 Jul 2025 16:08:19 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7F633281370;
-	Tue,  1 Jul 2025 16:02:14 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2FC9F27703A;
+	Tue,  1 Jul 2025 16:08:42 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=samsung.com header.i=@samsung.com header.b="E4CZAKog"
+	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="YvqxZK1R"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mailout1.w1.samsung.com (mailout1.w1.samsung.com [210.118.77.11])
+Received: from fllvem-ot04.ext.ti.com (fllvem-ot04.ext.ti.com [198.47.19.246])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4C0F827FB09
-	for <devicetree@vger.kernel.org>; Tue,  1 Jul 2025 16:02:11 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=210.118.77.11
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2DE95278E7C;
+	Tue,  1 Jul 2025 16:08:39 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.19.246
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1751385734; cv=none; b=Qqr02SyipM3WtXJLsdofSzHa7vD5XLYjjn1/tvIzuxSE02mkK2+Rjx/NcSEwkMfKBrFta5rKri3Y8BGrQ3ku/wn3VU1ga+fQs0Ls15JRpybm5U4Jq+TJBmYSLEThEWouNEDMqeVhnVm0W+Ykboj2EaD1EfNYNTfVT6VrFhlniKA=
+	t=1751386122; cv=none; b=b0UL7j0zz510cMGgsuPZqMxkLHHigK8xIeiRxIjS93iXU7ZKqf6LxdD2rA7JllRyzNSk6jkdrENuiqVM+pM8dCb4LcCc4wx8MI5NW5izoGTGvYBfbjk0QO3irr+8XL4cQtCbw6akim4LMUrox9wfYmIpe2Sle5wOiF5rHkJhlcg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1751385734; c=relaxed/simple;
-	bh=pQpdhYmfxqh3Yfxmei5sPv11PaCzGkgZVRufLVaDNj8=;
-	h=From:Date:Subject:MIME-Version:Message-Id:In-Reply-To:To:Cc:
-	 Content-Type:References; b=MtTbyWQZPdV83LTVa76zzfKW4xnmwdxQbnoeN+8AXmRAQre4SX1z9ZpnGEv+7cW9RENskM9s9w3OMzcHyl/MVvPMN5Xv3jLeeL/HXqHpnnxiA2Zp53kBt+Hmy+uqo24eu/OJVqehFNhvdfsiacRV6kCoVf9kQn7w+XXHc/VzJyM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=samsung.com; spf=pass smtp.mailfrom=samsung.com; dkim=pass (1024-bit key) header.d=samsung.com header.i=@samsung.com header.b=E4CZAKog; arc=none smtp.client-ip=210.118.77.11
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=samsung.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=samsung.com
-Received: from eucas1p1.samsung.com (unknown [182.198.249.206])
-	by mailout1.w1.samsung.com (KnoxPortal) with ESMTP id 20250701160208euoutp0185a4542b1d11c193681eda7ba9c59b1b~OLAp7Pjqr1086710867euoutp01Q
-	for <devicetree@vger.kernel.org>; Tue,  1 Jul 2025 16:02:08 +0000 (GMT)
-DKIM-Filter: OpenDKIM Filter v2.11.0 mailout1.w1.samsung.com 20250701160208euoutp0185a4542b1d11c193681eda7ba9c59b1b~OLAp7Pjqr1086710867euoutp01Q
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=samsung.com;
-	s=mail20170921; t=1751385728;
-	bh=Thc/4MnT4r5I8ag38cbivyQhpbuX345C1nEB0lzCSSU=;
-	h=From:Date:Subject:In-Reply-To:To:Cc:References:From;
-	b=E4CZAKogyAvZo+4zp4YdTXwhS6UT3701qpYlrBkDWHg7t+enBnejRciSq8V2WvOqI
-	 LVIWNffSp+f6RsG7Ydj0ZxFSY+cmVPUMR1Tq3K6JdNYBk3FeRzWPdkV6CmUgru2TCu
-	 XQ6KQyxk8FijjwV7q4bJZV2EGWx6kRDPr5xIw+XM=
-Received: from eusmtip1.samsung.com (unknown [203.254.199.221]) by
-	eucas1p2.samsung.com (KnoxPortal) with ESMTPA id
-	20250701160208eucas1p2633ce5cd0b9ef013999b3d596be74cdd~OLApiaZG32521625216eucas1p2G;
-	Tue,  1 Jul 2025 16:02:08 +0000 (GMT)
-Received: from AMDC4942.eu.corp.samsungelectronics.net (unknown
-	[106.210.136.40]) by eusmtip1.samsung.com (KnoxPortal) with ESMTPA id
-	20250701160206eusmtip192999017bfbc2de977e7580df56a36a7~OLAoZ52AM3260032600eusmtip1D;
-	Tue,  1 Jul 2025 16:02:06 +0000 (GMT)
-From: Michal Wilczynski <m.wilczynski@samsung.com>
-Date: Tue, 01 Jul 2025 18:01:45 +0200
-Subject: [PATCH v6 8/8] riscv: dts: thead: Add PWM fan and thermal control
+	s=arc-20240116; t=1751386122; c=relaxed/simple;
+	bh=g/GS7iYo0DvmCAHdTRbNmxu7tE6/RBT/m+tGVE65GYc=;
+	h=Date:From:To:CC:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=OJJ6NsTOz8LYaJILAHjDu+oxeFAB06Qg7hUAKPphvAs/qQmDLFb6vnqMsNN3197gcBjJW0ZpZnj/Eu/+FokaVjnY1SwjWq/z06vMQybl5eGRWaj8JGAbxkrdr3qx/5GkaIzcFuK/DC1qidSZU5Ts3BBC6BqPBsvLSBLVJmGn+Oo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=YvqxZK1R; arc=none smtp.client-ip=198.47.19.246
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
+Received: from lelvem-sh02.itg.ti.com ([10.180.78.226])
+	by fllvem-ot04.ext.ti.com (8.15.2/8.15.2) with ESMTP id 561G8Tq43682752;
+	Tue, 1 Jul 2025 11:08:29 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+	s=ti-com-17Q1; t=1751386109;
+	bh=u2QdfPMZKjTriOw/UTDyBbsrhrWHxRSetfZIlOQ8wps=;
+	h=Date:From:To:CC:Subject:References:In-Reply-To;
+	b=YvqxZK1RLT+rgLhoas2X7ZELky8RTCy3U1gssPxAE5Gyz88Vm+V4OZ9r5KVepH4Og
+	 OCznBMhMkUrlQpy/3ebg1/vl3ooC5O3CgVKPhhUdBmZW4UOG2WL/k/4BqBu5tQxWWH
+	 eOoINwCYQageT6yoPUcfz45x56NmuC/yoj/DXrSE=
+Received: from DLEE101.ent.ti.com (dlee101.ent.ti.com [157.170.170.31])
+	by lelvem-sh02.itg.ti.com (8.18.1/8.18.1) with ESMTPS id 561G8TgT028847
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-SHA256 bits=128 verify=FAIL);
+	Tue, 1 Jul 2025 11:08:29 -0500
+Received: from DLEE107.ent.ti.com (157.170.170.37) by DLEE101.ent.ti.com
+ (157.170.170.31) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.55; Tue, 1
+ Jul 2025 11:08:28 -0500
+Received: from lelvem-mr05.itg.ti.com (10.180.75.9) by DLEE107.ent.ti.com
+ (157.170.170.37) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.55 via
+ Frontend Transport; Tue, 1 Jul 2025 11:08:28 -0500
+Received: from localhost (bb.dhcp.ti.com [128.247.81.12])
+	by lelvem-mr05.itg.ti.com (8.18.1/8.18.1) with ESMTP id 561G8SmU1852701;
+	Tue, 1 Jul 2025 11:08:28 -0500
+Date: Tue, 1 Jul 2025 11:08:28 -0500
+From: Bryan Brattlof <bb@ti.com>
+To: Paresh Bhagat <p-bhagat@ti.com>
+CC: <nm@ti.com>, <vigneshr@ti.com>, <praneeth@ti.com>, <kristo@kernel.org>,
+        <robh@kernel.org>, <krzk+dt@kernel.org>, <conor+dt@kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>, <khasim@ti.com>, <v-singh1@ti.com>,
+        <afd@ti.com>, <devarsht@ti.com>, <s-vadapalli@ti.com>,
+        <andrew@lunn.ch>
+Subject: Re: [PATCH v5 1/4] arm64: dts: ti: Add bootph property to nodes at
+ source for am62a
+Message-ID: <20250701160828.lmmfgfrmfcqiwpzz@bryanbrattlof.com>
+X-PGP-Fingerprint: D3D1 77E4 0A38 DF4D 1853 FEEF 41B9 0D5D 71D5 6CE0
+References: <20250627115753.2246881-1-p-bhagat@ti.com>
+ <20250627115753.2246881-2-p-bhagat@ti.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Message-Id: <20250701-rust-next-pwm-working-fan-for-sending-v6-8-2710932f6f6b@samsung.com>
-In-Reply-To: <20250701-rust-next-pwm-working-fan-for-sending-v6-0-2710932f6f6b@samsung.com>
-To: =?utf-8?q?Uwe_Kleine-K=C3=B6nig?= <ukleinek@kernel.org>,  Miguel Ojeda
-	<ojeda@kernel.org>, Alex Gaynor <alex.gaynor@gmail.com>,  Boqun Feng
-	<boqun.feng@gmail.com>, Gary Guo <gary@garyguo.net>, 
-	=?utf-8?q?Bj=C3=B6rn_Roy_Baron?= <bjorn3_gh@protonmail.com>,  Andreas
-	Hindborg <a.hindborg@kernel.org>, Alice Ryhl <aliceryhl@google.com>,  Trevor
-	Gross <tmgross@umich.edu>, Danilo Krummrich <dakr@kernel.org>,  Michal
-	Wilczynski <m.wilczynski@samsung.com>, Guo Ren <guoren@kernel.org>,  Fu Wei
-	<wefu@redhat.com>, Rob Herring <robh@kernel.org>,  Krzysztof Kozlowski
-	<krzk+dt@kernel.org>,  Conor Dooley <conor+dt@kernel.org>,  Paul Walmsley
-	<paul.walmsley@sifive.com>,  Palmer Dabbelt <palmer@dabbelt.com>, Albert Ou
-	<aou@eecs.berkeley.edu>,  Alexandre Ghiti <alex@ghiti.fr>,  Marek Szyprowski
-	<m.szyprowski@samsung.com>,  Benno Lossin <lossin@kernel.org>,  Michael
-	Turquette <mturquette@baylibre.com>,  Stephen Boyd <sboyd@kernel.org>, Benno
-	Lossin <lossin@kernel.org>,  Drew Fustini <fustini@kernel.org>
-Cc: linux-kernel@vger.kernel.org, linux-pwm@vger.kernel.org,
-	rust-for-linux@vger.kernel.org, linux-riscv@lists.infradead.org, 
-	devicetree@vger.kernel.org, linux-clk@vger.kernel.org
-X-Mailer: b4 0.15-dev
-X-CMS-MailID: 20250701160208eucas1p2633ce5cd0b9ef013999b3d596be74cdd
-X-Msg-Generator: CA
 Content-Type: text/plain; charset="utf-8"
-X-RootMTR: 20250701160208eucas1p2633ce5cd0b9ef013999b3d596be74cdd
-X-EPHeader: CA
-X-CMS-RootMailID: 20250701160208eucas1p2633ce5cd0b9ef013999b3d596be74cdd
-References: <20250701-rust-next-pwm-working-fan-for-sending-v6-0-2710932f6f6b@samsung.com>
-	<CGME20250701160208eucas1p2633ce5cd0b9ef013999b3d596be74cdd@eucas1p2.samsung.com>
+Content-Disposition: inline
+In-Reply-To: <20250627115753.2246881-2-p-bhagat@ti.com>
+X-C2ProcessedOrg: 333ef613-75bf-4e12-a4b1-8e3623f5dcea
 
-Add Device Tree nodes to enable a PWM controlled fan and it's associated
-thermal management for the Lichee Pi 4A board.
+On June 27, 2025 thus sayeth Paresh Bhagat:
+> Add bootph property directly into the original definitions of relevant
+> nodes (e.g., power domains, USB controllers, and other peripherals)
+> within their respective DTSI files (ex. main, mcu, and wakeup) for
+> am62a.
+> 
+> By defining bootph in the nodes source definitions instead of appending
+> it later in final DTS files, this change ensures that the property is
+> inherently present wherever the nodes are reused across derived device
+> trees.
+> 
+> Signed-off-by: Paresh Bhagat <p-bhagat@ti.com>
+> ---
+>  arch/arm64/boot/dts/ti/k3-am62a-main.dtsi   | 14 ++++++++++++++
+>  arch/arm64/boot/dts/ti/k3-am62a-mcu.dtsi    |  1 +
+>  arch/arm64/boot/dts/ti/k3-am62a-wakeup.dtsi |  2 ++
+>  3 files changed, 17 insertions(+)
+> 
+> diff --git a/arch/arm64/boot/dts/ti/k3-am62a-main.dtsi b/arch/arm64/boot/dts/ti/k3-am62a-main.dtsi
+> index 63e097ddf988..770f1258b0aa 100644
+> --- a/arch/arm64/boot/dts/ti/k3-am62a-main.dtsi
+> +++ b/arch/arm64/boot/dts/ti/k3-am62a-main.dtsi
+>  
 
-This enables temperature-controlled active cooling for the Lichee Pi 4A
-board based on SoC temperature.
+...
 
-Signed-off-by: Michal Wilczynski <m.wilczynski@samsung.com>
----
- arch/riscv/boot/dts/thead/th1520-lichee-pi-4a.dts | 67 +++++++++++++++++++++++
- 1 file changed, 67 insertions(+)
+>  	main_pmx0: pinctrl@f4000 {
+> @@ -262,6 +271,7 @@ main_pmx0: pinctrl@f4000 {
+>  		#pinctrl-cells = <1>;
+>  		pinctrl-single,register-width = <32>;
+>  		pinctrl-single,function-mask = <0xffffffff>;
+> +		bootph-all;
+>  	};
 
-diff --git a/arch/riscv/boot/dts/thead/th1520-lichee-pi-4a.dts b/arch/riscv/boot/dts/thead/th1520-lichee-pi-4a.dts
-index 4020c727f09e8e2286fdc7fecd79dbd8eba69556..c58c2085ca92a3234f1350500cedae4157f0c35f 100644
---- a/arch/riscv/boot/dts/thead/th1520-lichee-pi-4a.dts
-+++ b/arch/riscv/boot/dts/thead/th1520-lichee-pi-4a.dts
-@@ -28,9 +28,76 @@ aliases {
- 	chosen {
- 		stdout-path = "serial0:115200n8";
- 	};
-+
-+	thermal-zones {
-+		cpu-thermal {
-+			polling-delay = <1000>;
-+			polling-delay-passive = <1000>;
-+			thermal-sensors = <&pvt 0>;
-+
-+			trips {
-+				fan_config0: fan-trip0 {
-+					temperature = <39000>;
-+					hysteresis = <5000>;
-+					type = "active";
-+				};
-+
-+				fan_config1: fan-trip1 {
-+					temperature = <50000>;
-+					hysteresis = <5000>;
-+					type = "active";
-+				};
-+
-+				fan_config2: fan-trip2 {
-+					temperature = <60000>;
-+					hysteresis = <5000>;
-+					type = "active";
-+				};
-+			};
-+
-+			cooling-maps {
-+				map-active-0 {
-+					cooling-device = <&fan 1 1>;
-+					trip = <&fan_config0>;
-+				};
-+
-+				map-active-1 {
-+					cooling-device = <&fan 2 2>;
-+					trip = <&fan_config1>;
-+				};
-+
-+				map-active-2 {
-+					cooling-device = <&fan 3 3>;
-+					trip = <&fan_config2>;
-+				};
-+			};
-+		};
-+	};
-+
-+	fan: pwm-fan {
-+		pinctrl-names = "default";
-+		pinctrl-0 = <&fan_pins>;
-+		compatible = "pwm-fan";
-+		#cooling-cells = <2>;
-+		pwms = <&pwm 1 10000000 0>;
-+		cooling-levels = <0 66 196 255>;
-+	};
-+
- };
- 
- &padctrl0_apsys {
-+	fan_pins: fan-0 {
-+		pwm1-pins {
-+			pins = "GPIO3_3"; /* PWM1 */
-+			function = "pwm";
-+			bias-disable;
-+			drive-strength = <25>;
-+			input-disable;
-+			input-schmitt-disable;
-+			slew-rate = <0>;
-+		};
-+	};
-+
- 	uart0_pins: uart0-0 {
- 		tx-pins {
- 			pins = "UART0_TXD";
+I don't think the boot phase flags for the pinmux nodes need to be here. 
+The child nodes for the MMC, UART and Ethernet pins should take care of 
+this.
 
--- 
-2.34.1
+...
 
+> diff --git a/arch/arm64/boot/dts/ti/k3-am62a-mcu.dtsi 
+> b/arch/arm64/boot/dts/ti/k3-am62a-mcu.dtsi
+> index ee961ced7208..df4aa131097f 100644
+> --- a/arch/arm64/boot/dts/ti/k3-am62a-mcu.dtsi
+> +++ b/arch/arm64/boot/dts/ti/k3-am62a-mcu.dtsi
+> @@ -12,6 +12,7 @@ mcu_pmx0: pinctrl@4084000 {
+>  		#pinctrl-cells = <1>;
+>  		pinctrl-single,register-width = <32>;
+>  		pinctrl-single,function-mask = <0xffffffff>;
+> +		bootph-all;
+>  	};
+
+Same here. If we need any pins from the MCU domain during bootup those 
+nodes can take care of adding the boot phase flag.
+
+~Bryan
 
