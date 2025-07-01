@@ -1,405 +1,154 @@
-Return-Path: <devicetree+bounces-191458-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-191455-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2EAC1AEF63D
-	for <lists+devicetree@lfdr.de>; Tue,  1 Jul 2025 13:13:02 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7EFE7AEF62F
+	for <lists+devicetree@lfdr.de>; Tue,  1 Jul 2025 13:11:41 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 256A41C017E7
-	for <lists+devicetree@lfdr.de>; Tue,  1 Jul 2025 11:13:18 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 4F3F33A8E96
+	for <lists+devicetree@lfdr.de>; Tue,  1 Jul 2025 11:11:15 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 743F3272806;
-	Tue,  1 Jul 2025 11:12:27 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0CCFC271A9A;
+	Tue,  1 Jul 2025 11:11:37 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=samsung.com header.i=@samsung.com header.b="eGZUWY1F"
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="TkDKsZ5G"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mailout2.samsung.com (mailout2.samsung.com [203.254.224.25])
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 51DA12737FE
-	for <devicetree@vger.kernel.org>; Tue,  1 Jul 2025 11:12:25 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=203.254.224.25
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 95CFD270EB2
+	for <devicetree@vger.kernel.org>; Tue,  1 Jul 2025 11:11:35 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1751368347; cv=none; b=KriIS/FZXDJcnQguop0CUlcNLxmZxma4NTDEIDchbrofSf+Fjs9wE72VBKStp3EHtyqt/Hna6ta/mJFG3FSqLVQxhO60Z1NHYV1wNd7+Dn8Bcw5LyW971ruqI/GMt6KKngJjdOB50VEt7YqxUpy6aB/+G9eVsFrXuxmTxY/rJng=
+	t=1751368296; cv=none; b=erb08kQeaez082D6Yfoepw62Koti9IDiMirAOXtNt14W0gBzyxvIFtNZzcjB3kq0C+ckd43pIrgnkqQCmG3AaJ1KulHpJ9QD+NMmBu3gM7vt5KRh4Bn70Nh4PyeMVHg/WLrtg64ZimyXcOS1OKJvHHdWTl7/XSMJKw4fOT0YLzo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1751368347; c=relaxed/simple;
-	bh=ZFoqmRko2SSCUSy3qOHGmg6pxl9wBXG2wcGKwxLpJuo=;
-	h=From:To:Cc:In-Reply-To:Subject:Date:Message-ID:MIME-Version:
-	 Content-Type:References; b=YnDtCfb/1phqIM3v3pQ0u+egT2Ba1kN0Pka3s33KhV0neW/yAo+EqdVRTCZEW6tZr4E+oDTeSOE/yWghX+cPAEEP55j0w0+tGi4EqjSOoU9166gJoFnanGZ/FAIo1NumSgu3lAUUeG1PYt6WnN2whVQ3AkhWpWDBOFlGk8rvU8E=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=samsung.com; spf=pass smtp.mailfrom=samsung.com; dkim=pass (1024-bit key) header.d=samsung.com header.i=@samsung.com header.b=eGZUWY1F; arc=none smtp.client-ip=203.254.224.25
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=samsung.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=samsung.com
-Received: from epcas5p3.samsung.com (unknown [182.195.41.41])
-	by mailout2.samsung.com (KnoxPortal) with ESMTP id 20250701111217epoutp02a63002b4cf9bcb8d374b0c393d74b020~OHDle5MsV0452504525epoutp02z
-	for <devicetree@vger.kernel.org>; Tue,  1 Jul 2025 11:12:17 +0000 (GMT)
-DKIM-Filter: OpenDKIM Filter v2.11.0 mailout2.samsung.com 20250701111217epoutp02a63002b4cf9bcb8d374b0c393d74b020~OHDle5MsV0452504525epoutp02z
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=samsung.com;
-	s=mail20170921; t=1751368337;
-	bh=Qc61XCsNX7jtimwS9YLE7scWnHViXc1VdS+/vuEdXPw=;
-	h=From:To:Cc:In-Reply-To:Subject:Date:References:From;
-	b=eGZUWY1FH10LHOKEaHWnA2ArhG8hxMqRxS3t2Rl0pmkRmzWR9Fl/DHvJUwunnVMhh
-	 /O+CiKNV5TSOz8Hs5vPVKxjOYH5/s9ZldynzSQzHS2Nynp+qu7L3753yBJaobVBJCb
-	 Cm2WR34A6u2zt5ybvtUQ7lL3iDb9WSU1dcX0F6dk=
-Received: from epsnrtp03.localdomain (unknown [182.195.42.155]) by
-	epcas5p4.samsung.com (KnoxPortal) with ESMTPS id
-	20250701111216epcas5p44af4c4950cc453b245daaed1a704e14a~OHDknjMtz1299912999epcas5p4L;
-	Tue,  1 Jul 2025 11:12:16 +0000 (GMT)
-Received: from epcas5p1.samsung.com (unknown [182.195.38.179]) by
-	epsnrtp03.localdomain (Postfix) with ESMTP id 4bWgNG6YX0z3hhTD; Tue,  1 Jul
-	2025 11:12:14 +0000 (GMT)
-Received: from epsmtip1.samsung.com (unknown [182.195.34.30]) by
-	epcas5p2.samsung.com (KnoxPortal) with ESMTPA id
-	20250701111110epcas5p2938ed510e75510ab0ca7da2c350ba777~OHCm3_haD2693926939epcas5p2p;
-	Tue,  1 Jul 2025 11:11:10 +0000 (GMT)
-Received: from FDSFTE462 (unknown [107.122.81.248]) by epsmtip1.samsung.com
-	(KnoxPortal) with ESMTPA id
-	20250701111107epsmtip15232f3d8aeb2f97b46647ad34d93693e~OHCkOEa5k1910819108epsmtip1K;
-	Tue,  1 Jul 2025 11:11:07 +0000 (GMT)
-From: "Shradha Todi" <shradha.t@samsung.com>
-To: "'Rob Herring'" <robh@kernel.org>
-Cc: <linux-pci@vger.kernel.org>, <devicetree@vger.kernel.org>,
-	<linux-arm-kernel@lists.infradead.org>, <linux-samsung-soc@vger.kernel.org>,
-	<linux-kernel@vger.kernel.org>, <linux-phy@lists.infradead.org>,
-	<linux-fsd@tesla.com>, <mani@kernel.org>, <lpieralisi@kernel.org>,
-	<kw@linux.com>, <bhelgaas@google.com>, <jingoohan1@gmail.com>,
-	<krzk+dt@kernel.org>, <conor+dt@kernel.org>, <alim.akhtar@samsung.com>,
-	<vkoul@kernel.org>, <kishon@kernel.org>, <arnd@arndb.de>,
-	<m.szyprowski@samsung.com>, <jh80.chung@samsung.com>,
-	<pankaj.dubey@samsung.com>
-In-Reply-To: <20250627211236.GA147018-robh@kernel.org>
-Subject: RE: [PATCH v2 06/10] dt-bindings: PCI: Add bindings support for
- Tesla FSD SoC
-Date: Tue, 1 Jul 2025 16:41:06 +0530
-Message-ID: <02b001dbea78$d991d5b0$8cb58110$@samsung.com>
+	s=arc-20240116; t=1751368296; c=relaxed/simple;
+	bh=9WDZ1BqFOD3xKFamAF7RAiKGsLzFKTCGgUcxfHNHCNg=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=gwu/zHAjUX9S87+i/VVQV/FNAlUHd8ozNZt81+3Nk9O0+8VHVLnJGinXWD+qo+m49WelGjiNCiJWuw247dJtQLXJsLWBHnpWyVYZUgv+rfSNY7S5LD110GsY8/f9KgSVTlPvC+ou+G8KN1aaBih7HCDEIjX8mMfiaajiDu9lc0I=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=TkDKsZ5G; arc=none smtp.client-ip=205.220.168.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
+Received: from pps.filterd (m0279866.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 5619xin5002603
+	for <devicetree@vger.kernel.org>; Tue, 1 Jul 2025 11:11:35 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	TrlZZdJIO7yzkVy8vnZqCokz+DnJKjhGP7uK8AgE5nA=; b=TkDKsZ5GUyt1B7T5
+	OkxgZeG+x5ohTlr9KIpnlY91Rn8FNGsduMA1IxqbdHGMhHWGRrADlo/AlluuILv+
+	al/tPZi9aJo1Y10Ci7aHm6CurQwwhc9+FF7veETzgWDW7dBO33gtpJBrXIscUq7A
+	0QgcW3C2CmffluQ1XI/1Rw2m/GIMn0nWgOnZia/IWpa/Oydj/BKHZLGY9St/79lu
+	9fmpEAb50Yo10hKlpX+6vQMp/mLMOJ3m2PGxX8fhneMQzQ41vV223/o6UDcETKpi
+	HAAKpptQC21BlXlEyfUocHhzlX0hnXgujVIqSKaTXjqkoNC88cCmdj0pKfXdmqx4
+	QGNm2A==
+Received: from mail-qk1-f200.google.com (mail-qk1-f200.google.com [209.85.222.200])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 47j9pcrgde-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
+	for <devicetree@vger.kernel.org>; Tue, 01 Jul 2025 11:11:34 +0000 (GMT)
+Received: by mail-qk1-f200.google.com with SMTP id af79cd13be357-7d097083cc3so145662885a.3
+        for <devicetree@vger.kernel.org>; Tue, 01 Jul 2025 04:11:34 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1751368293; x=1751973093;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=TrlZZdJIO7yzkVy8vnZqCokz+DnJKjhGP7uK8AgE5nA=;
+        b=tPwT5rZXlgsPlEgyKsMztvXOtGRz/GhJxlTwffglXpAtUz7cV69krTUz+pZhJ5HtDz
+         ZYonLz7MGIGFiD2DQBjfy5dUR+V2h3ZVZleLjnDQCEFcdhsC3eRdq7mOMMvQnHsVuH9I
+         dqVq+RZyfh46gUl39OOB+P24Y/44K7pT7COs5fUdebre08wfsj5gx9nyjC3iaCfMm++F
+         //V5oz8JwERQuQhu3QaRL06S8ZF09d3/L9uufECt3/2yYiwFX2KP6Z2ctpXOyleu7Yl7
+         mfVDxvmaiqEr4+r6haJjsUyaJDCEUBrkNQVkqmLTasOG79JpXjj1rLtXjsLfhpbv1VzR
+         fGMw==
+X-Forwarded-Encrypted: i=1; AJvYcCXu0W/XywMu1GfkRcJSmxeemXFXD8+TVAQsuKbEJ8vE0Wv58f8nK/sd5eIa6vwpUBdSmlZR1ZeiNSuT@vger.kernel.org
+X-Gm-Message-State: AOJu0Yz043C2Ftnjf5pPaES2mi1et0g4vbldQkK4AaNn5BPy3p+2Eznb
+	Yd+jONys8cRQEdlNCtCnj4CF+HPGkdEVZN3/8TNThz45uSzdy43MQhxT+M4CrltUQudlj5zqTOt
+	2CHm3exANuXMvhalu2QPWfzb8j0DQ1hYFmDUsxA6RY5A9SLHj03ZskBDbd9fLOmC5
+X-Gm-Gg: ASbGncvFEkSzBo+lI3r9XsDOpQpMSrA+wGbXTiSLhnK2EOIFwIUMxO7d2E5O3Z2vghX
+	gGIuM25MKpqHuAztsfvxan7avRB/dYifIVNnPFABg8JStTolNeLHoWfQN5P6uc7B8FTyERa+Nz2
+	HVuppPgQ09TUa8SfYVkcJjUopN3CP116zg9SOEAXd8MFhxUHW/1QlxqKD/7s4iQxR5hd+8cCLFo
+	OII951SD7o8jPFyFYWRphIsMgX2B+hsb8jEmB9XTwHqOAJmphQ9eE+zjwCOoI8HaXPO1i9EyJ6k
+	giHbPtFns6k32OTZ1VSbMNxp56bmNkfmFcAVW2IzuMEvfNE5BarcD+yWEtl3LeGb21Gytrulpec
+	nCBY9nmdk
+X-Received: by 2002:a05:620a:29cf:b0:7d4:4a59:6e8f with SMTP id af79cd13be357-7d4677a1ef6mr127722885a.15.1751368293300;
+        Tue, 01 Jul 2025 04:11:33 -0700 (PDT)
+X-Google-Smtp-Source: AGHT+IF0enYbn2hSOvbfPZgODz/DO0dsSgkRNbwZ7zhkY+8pN41BaLMoLizJRBjD4L/DazCQBLleTg==
+X-Received: by 2002:a05:620a:29cf:b0:7d4:4a59:6e8f with SMTP id af79cd13be357-7d4677a1ef6mr127720585a.15.1751368292723;
+        Tue, 01 Jul 2025 04:11:32 -0700 (PDT)
+Received: from [192.168.1.114] (83.9.29.190.neoplus.adsl.tpnet.pl. [83.9.29.190])
+        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-ae36327ce4asm772552166b.163.2025.07.01.04.11.31
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 01 Jul 2025 04:11:32 -0700 (PDT)
+Message-ID: <242d353e-99a1-4ce8-9435-8b2addcf1276@oss.qualcomm.com>
+Date: Tue, 1 Jul 2025 13:11:30 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 0/3] arm64: dts: qcom: fix GPIO lookup flags for i2c-gpio
+ SDA and SCL pins
+To: Bartosz Golaszewski <brgl@bgdev.pl>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>
+Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org,
+        Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
+References: <20250701-qcom-gpio-lookup-open-drain-v1-0-9678c4352f11@linaro.org>
+Content-Language: en-US
+From: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
+In-Reply-To: <20250701-qcom-gpio-lookup-open-drain-v1-0-9678c4352f11@linaro.org>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
-X-Mailer: Microsoft Outlook 16.0
-Thread-Index: AQFUClgbainc6hQuKSBO0V8ttZVgkwK41mGpAfhwG8gB/KC3xLT3bJYA
-Content-Language: en-in
-X-CMS-MailID: 20250701111110epcas5p2938ed510e75510ab0ca7da2c350ba777
-X-Msg-Generator: CA
-Content-Type: text/plain; charset="utf-8"
-X-Sendblock-Type: REQ_APPROVE
-CMS-TYPE: 105P
-cpgsPolicy: CPGSC10-541,Y
-X-CFilter-Loop: Reflected
-X-CMS-RootMailID: 20250625165315epcas5p19f081c8a0e2e7dc87698577cc2d460ca
-References: <20250625165229.3458-1-shradha.t@samsung.com>
-	<CGME20250625165315epcas5p19f081c8a0e2e7dc87698577cc2d460ca@epcas5p1.samsung.com>
-	<20250625165229.3458-7-shradha.t@samsung.com>
-	<20250627211236.GA147018-robh@kernel.org>
+X-Proofpoint-GUID: rKcnHGASDfLrOuiCJwhPur8Zasyj0XkA
+X-Proofpoint-ORIG-GUID: rKcnHGASDfLrOuiCJwhPur8Zasyj0XkA
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwNzAxMDA2OCBTYWx0ZWRfX9tsbSge+s6VC
+ iLdIX32jedLmZEcm1MNQ4YInAvyPzEwXkB1qPkz+rkrI0/YoZ42yDbpqAdYjTlKYdwolYjSaK+f
+ MwIms6SShQT4aUu+8vzca5D4i0lBcAhQrZGIlIfu/NPHbV5KffRjutDdYNlaM+1h/aJ7p5W6o4K
+ /wFKfH+dynw82Q3RsYvIZRDe0v4D7MrXqNpTdEdQgTJmxHcqucusa7Bv1SZtdVcP1ichEB3qIGi
+ lmKQrf5q/W+vrGxqj8lWJr3bRPtcLYu5AGrtfCjHVryJITlA71N9ILnBDZ5CTRnrL06H4LVP4nH
+ GTUMgk37bv/PohtfjUptlKYsr78iMOkcZfQB71nK2US3QKfnhE2aJ2YflWN3tLtpi86hjb5tSLc
+ cz5i5Nb9Y9yvVN8U1fZAEyk4xxEmEo8BYhJsf7lAdQWfQkYVeyVxXN8+kZUZ0Pk75Ihqb921
+X-Authority-Analysis: v=2.4 cv=QMFoRhLL c=1 sm=1 tr=0 ts=6863c266 cx=c_pps
+ a=hnmNkyzTK/kJ09Xio7VxxA==:117 a=fKQzr7EGRj+VoE0XNsDNvQ==:17
+ a=IkcTkHD0fZMA:10 a=Wb1JkmetP80A:10 a=KKAkSRfTAAAA:8 a=EUspDBNiAAAA:8
+ a=OvpKPoiE28FR6mlLKbkA:9 a=QEXdDO2ut3YA:10 a=PEH46H7Ffwr30OY-TuGO:22
+ a=cvBusfyB2V15izCimMoJ:22
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1099,Hydra:6.1.7,FMLib:17.12.80.40
+ definitions=2025-07-01_02,2025-06-27_01,2025-03-28_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ malwarescore=0 priorityscore=1501 bulkscore=0 spamscore=0 adultscore=0
+ mlxlogscore=599 mlxscore=0 lowpriorityscore=0 suspectscore=0 impostorscore=0
+ clxscore=1015 phishscore=0 classifier=spam authscore=0 authtc=n/a authcc=
+ route=outbound adjust=0 reason=mlx scancount=1 engine=8.19.0-2505280000
+ definitions=main-2507010068
 
 
 
-> -----Original Message-----
-> From: Rob Herring <robh@kernel.org>
-> Sent: 28 June 2025 02:43
-> To: Shradha Todi <shradha.t@samsung.com>
-> Cc: linux-pci@vger.kernel.org; devicetree@vger.kernel.org; linux-arm-kernel@lists.infradead.org;
-linux-
-> samsung-soc@vger.kernel.org; linux-kernel@vger.kernel.org; linux-phy@lists.infradead.org; linux-
-> fsd@tesla.com; manivannan.sadhasivam@linaro.org; lpieralisi@kernel.org; kw@linux.com;
-> bhelgaas@google.com; jingoohan1@gmail.com; krzk+dt@kernel.org; conor+dt@kernel.org;
-> alim.akhtar@samsung.com; vkoul@kernel.org; kishon@kernel.org; arnd@arndb.de;
-> m.szyprowski@samsung.com; jh80.chung@samsung.com; pankaj.dubey@samsung.com
-> Subject: Re: [PATCH v2 06/10] dt-bindings: PCI: Add bindings support for Tesla FSD SoC
+On 01-Jul-25 11:01, Bartosz Golaszewski wrote:
+> There are three platforms in the QCom DTS tree that are missing the
+> open-drain lookup flag in their DT nodes associated with the i2c-gpio
+> device whose driver enforces open-drain outputs. This causes the GPIO
+> core to emit warnings such as:
 > 
-> On Wed, Jun 25, 2025 at 10:22:25PM +0530, Shradha Todi wrote:
-> > Document the PCIe controller device tree bindings for Tesla FSD
-> > SoC for both RC and EP.
+> [    5.153550] gpio-528 (sda): enforced open drain please flag it properly in DT/ACPI DSDT/board file
+> [    5.166373] gpio-529 (scl): enforced open drain please flag it properly in DT/ACPI DSDT/board file
 > 
-> Drop 'bindings support for ' in the subject.
+> Silence the warnings by adding appriopriate flags.
 > 
-> >
-> > Signed-off-by: Shradha Todi <shradha.t@samsung.com>
-> > ---
-> >  .../bindings/pci/samsung,exynos-pcie.yaml     | 121 ++++++++++++------
-> 
-> I think this should be its own schema file. There's not much shared.
-> 
+> Signed-off-by: Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
+> ---
 
-Will make 2 new bindings - samsung,exynos-pcie-common.yaml and
-tesla,fsd-pcie.yaml
-Does that sound okay?
+For the series:
 
-> >  .../bindings/pci/tesla,fsd-pcie-ep.yaml       |  91 +++++++++++++
-> >  2 files changed, 176 insertions(+), 36 deletions(-)
-> >  create mode 100644 Documentation/devicetree/bindings/pci/tesla,fsd-pcie-ep.yaml
-> >
-> > diff --git a/Documentation/devicetree/bindings/pci/samsung,exynos-pcie.yaml
-> b/Documentation/devicetree/bindings/pci/samsung,exynos-pcie.yaml
-> > index f20ed7e709f7..595156759b06 100644
-> > --- a/Documentation/devicetree/bindings/pci/samsung,exynos-pcie.yaml
-> > +++ b/Documentation/devicetree/bindings/pci/samsung,exynos-pcie.yaml
-> > @@ -11,16 +11,15 @@ maintainers:
-> >    - Jaehoon Chung <jh80.chung@samsung.com>
-> >
-> >  description: |+
-> > -  Exynos5433 SoC PCIe host controller is based on the Synopsys DesignWare
-> > +  Samsung SoCs PCIe host controller is based on the Synopsys DesignWare
-> >    PCIe IP and thus inherits all the common properties defined in
-> >    snps,dw-pcie.yaml.
-> >
-> > -allOf:
-> > -  - $ref: /schemas/pci/snps,dw-pcie.yaml#
-> > -
-> >  properties:
-> >    compatible:
-> > -    const: samsung,exynos5433-pcie
-> > +    enum:
-> > +      - samsung,exynos5433-pcie
-> > +      - tesla,fsd-pcie
-> >
-> >    reg:
-> >      items:
-> > @@ -37,52 +36,102 @@ properties:
-> >    interrupts:
-> >      maxItems: 1
-> >
-> > -  clocks:
-> > -    items:
-> > -      - description: PCIe bridge clock
-> > -      - description: PCIe bus clock
-> > -
-> > -  clock-names:
-> > -    items:
-> > -      - const: pcie
-> > -      - const: pcie_bus
-> > -
-> >    phys:
-> >      maxItems: 1
-> >
-> > -  vdd10-supply:
-> > -    description:
-> > -      Phandle to a regulator that provides 1.0V power to the PCIe block.
-> > -
-> > -  vdd18-supply:
-> > -    description:
-> > -      Phandle to a regulator that provides 1.8V power to the PCIe block.
-> > -
-> > -  num-lanes:
-> > -    const: 1
-> > -
-> > -  num-viewport:
-> > -    const: 3
-> > -
-> >  required:
-> >    - reg
-> >    - reg-names
-> >    - interrupts
-> >    - "#address-cells"
-> >    - "#size-cells"
-> > -  - "#interrupt-cells"
-> > -  - interrupt-map
-> > -  - interrupt-map-mask
-> >    - ranges
-> > -  - bus-range
-> >    - device_type
-> >    - num-lanes
-> > -  - num-viewport
-> >    - clocks
-> >    - clock-names
-> >    - phys
-> > -  - vdd10-supply
-> > -  - vdd18-supply
-> > +
-> > +allOf:
-> > +  - $ref: /schemas/pci/snps,dw-pcie.yaml#
-> > +  - if:
-> > +      properties:
-> > +        compatible:
-> > +          contains:
-> > +            enum:
-> > +              - tesla,fsd-pcie
-> > +    then:
-> > +      properties:
-> > +        clocks:
-> > +          maxItems: 4
-> > +
-> > +        clock-names:
-> > +          items:
-> > +            - const: aux
-> > +            - const: dbi
-> > +            - const: mstr
-> > +            - const: slv
-> > +
-> > +        samsung,syscon-pcie:
-> > +          $ref: /schemas/types.yaml#/definitions/phandle-array
-> > +          description: phandle for system control registers, used to
-> > +                       control signals at system level
-> > +
-> > +        num-lanes:
-> > +          maximum: 4
-> > +
-> > +      required:
-> > +        - samsung,syscon-pcie
-> > +
-> > +  - if:
-> > +      properties:
-> > +        compatible:
-> > +          contains:
-> > +            enum:
-> > +              - samsung,exynos5433-pcie
-> > +    then:
-> > +      properties:
-> > +        clocks:
-> > +          items:
-> > +            - description: pcie bridge clock
-> > +            - description: pcie bus clock
-> > +
-> > +        clock-names:
-> > +          items:
-> > +            - const: pcie
-> > +            - const: pcie_bus
-> > +
-> > +        vdd10-supply:
-> > +          description:
-> > +            phandle to a regulator that provides 1.0v power to the pcie block.
-> > +
-> > +        vdd18-supply:
-> > +          description:
-> > +            phandle to a regulator that provides 1.8v power to the pcie block.
-> > +
-> > +        num-lanes:
-> > +          const: 1
-> > +
-> > +        num-viewport:
-> > +          const: 3
-> > +
-> > +        assigned-clocks:
-> > +          maxItems: 2
-> > +
-> > +        assigned-clock-parents:
-> > +          maxItems: 2
-> > +
-> > +        assigned-clock-rates:
-> > +          maxItems: 2
-> > +
-> > +      required:
-> > +        - "#interrupt-cells"
-> > +        - interrupt-map
-> > +        - interrupt-map-mask
-> > +        - bus-range
-> > +        - num-viewport
-> > +        - vdd10-supply
-> > +        - vdd18-supply
-> >
-> >  unevaluatedProperties: false
-> >
-> > diff --git a/Documentation/devicetree/bindings/pci/tesla,fsd-pcie-ep.yaml
-> b/Documentation/devicetree/bindings/pci/tesla,fsd-pcie-ep.yaml
-> > new file mode 100644
-> > index 000000000000..f85615a0225d
-> > --- /dev/null
-> > +++ b/Documentation/devicetree/bindings/pci/tesla,fsd-pcie-ep.yaml
-> > @@ -0,0 +1,91 @@
-> > +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> > +%YAML 1.2
-> > +---
-> > +$id: https://protect2.fireeye.com/v1/url?k=48166268-299d775e-4817e927-74fe485fffe0-
-> 300a108993374478&q=1&e=3e3a0fc6-8338-4fe3-b352-
-> 2e510a3c6aaa&u=http%3A%2F%2Fdevicetree.org%2Fschemas%2Fpci%2Ftesla%2Cfsd-pcie-ep.yaml%23
-> > +$schema: https://protect2.fireeye.com/v1/url?k=60c79c47-014c8971-60c61708-74fe485fffe0-
-> 2608e7d54b39a025&q=1&e=3e3a0fc6-8338-4fe3-b352-
-> 2e510a3c6aaa&u=http%3A%2F%2Fdevicetree.org%2Fmeta-schemas%2Fcore.yaml%23
-> > +
-> > +title: Samsung SoC series PCIe Endpoint Controller
-> > +
-> > +maintainers:
-> > +  - Shradha Todi <shradha.t@samsung.com>
-> > +
-> > +description: |+
-> 
-> Don't need '|+'
-> 
-> > +  Samsung SoCs PCIe endpoint controller is based on the Synopsys DesignWare
-> > +  PCIe IP and thus inherits all the common properties defined in
-> > +  snps,dw-pcie-ep.yaml.
-> > +
-> > +allOf:
-> > +  - $ref: /schemas/pci/snps,dw-pcie-ep.yaml#
-> > +
-> > +properties:
-> > +  compatible:
-> > +    const: tesla,fsd-pcie-ep
-> > +
-> > +  reg:
-> > +    maxItems: 4
-> > +
-> > +  reg-names:
-> > +    items:
-> > +      - const: elbi
-> > +      - const: dbi
-> > +      - const: dbi2
-> > +      - const: addr_space
-> > +
-> > +  clocks:
-> > +    maxItems: 4
-> > +
-> > +  clock-names:
-> > +    items:
-> > +      - const: aux
-> > +      - const: dbi
-> > +      - const: mstr
-> > +      - const: slv
-> > +
-> > +  num-lanes:
-> > +    maximum: 4
-> > +
-> > +  samsung,syscon-pcie:
-> > +    $ref: /schemas/types.yaml#/definitions/phandle-array
-> > +    description: phandle for system control registers, used to
-> > +                 control signals at system level
-> > +
-> > +  phys:
-> > +    maxItems: 1
-> > +
-> > +required:
-> > +  - compatible
-> > +  - reg
-> > +  - reg-names
-> > +  - clocks
-> > +  - clock-names
-> > +  - num-lanes
-> > +  - samsung,syscon-pcie
-> > +  - phys
-> > +
-> > +unevaluatedProperties: false
-> > +
-> > +examples:
-> > +  - |
-> > +    #include <dt-bindings/clock/fsd-clk.h>
-> > +    #include <dt-bindings/interrupt-controller/arm-gic.h>
-> > +    bus {
-> > +        #address-cells = <2>;
-> > +        #size-cells = <2>;
-> > +        pcieep0: pcie-ep@16a00000 {
-> > +            compatible = "tesla,fsd-pcie-ep";
-> > +            reg = <0x0 0x168b0000 0x0 0x1000>,
-> > +                  <0x0 0x16a00000 0x0 0x2000>,
-> > +                  <0x0 0x16a01000 0x0 0x80>,
-> > +                  <0x0 0x17000000 0x0 0xff0000>;
-> > +            reg-names = "elbi", "dbi", "dbi2", "addr_space";
-> > +            clocks = <&clock_fsys1 PCIE_LINK0_IPCLKPORT_AUX_ACLK>,
-> > +                     <&clock_fsys1 PCIE_LINK0_IPCLKPORT_DBI_ACLK>,
-> > +                     <&clock_fsys1 PCIE_LINK0_IPCLKPORT_MSTR_ACLK>,
-> > +                     <&clock_fsys1 PCIE_LINK0_IPCLKPORT_SLV_ACLK>;
-> > +            clock-names = "aux", "dbi", "mstr", "slv";
-> > +            num-lanes = <4>;
-> > +            samsung,syscon-pcie = <&sysreg_fsys1 0x50c>;
-> > +            phys = <&pciephy1>;
-> > +        };
-> > +    };
-> > +...
-> > --
-> > 2.49.0
-> >
+Reviewed-by: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
 
+Konrad
 
