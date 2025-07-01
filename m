@@ -1,48 +1,88 @@
-Return-Path: <devicetree+bounces-191386-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-191387-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 619B6AEF192
-	for <lists+devicetree@lfdr.de>; Tue,  1 Jul 2025 10:44:36 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id DB8A3AEF198
+	for <lists+devicetree@lfdr.de>; Tue,  1 Jul 2025 10:45:20 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 95E1A163485
-	for <lists+devicetree@lfdr.de>; Tue,  1 Jul 2025 08:43:53 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 39E23164F8D
+	for <lists+devicetree@lfdr.de>; Tue,  1 Jul 2025 08:44:32 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id CD4B526A0DF;
-	Tue,  1 Jul 2025 08:43:49 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 087B126B0B2;
+	Tue,  1 Jul 2025 08:44:26 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Bv3tfL4d"
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="LTmc355r"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9E73425C6EC;
-	Tue,  1 Jul 2025 08:43:49 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 720B0267B65
+	for <devicetree@vger.kernel.org>; Tue,  1 Jul 2025 08:44:24 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1751359429; cv=none; b=W8MOx5qSvBEDofTkppCUDIqg+BCiaNJX/s67CpnnNBXyA9f20jXX+s/boZ3YhZkkiNEFU5pULUvHt0B4drM4/A6n/+QPLcFIYL6ZJaK7ObbMS/zABGqj2Yvf1IQtRoSsA2JGY7GHrfrtw6dfaeMSA+7/9TsrGTAYSWx28GSkE7Y=
+	t=1751359465; cv=none; b=iYQdiSkC4gH8XmnR/8u2hFdpvCTFag0CK22+E+ftJfSJBpFE3d3kQBQo0vcAHBlJVMVfpZYKY0z65emoVzVv3uHpv6GIC4Mjmui3ZBULwSBKkwmgThoMujZS3gq3Pbil5XQjqotcbJqoWmKZAkx9qUiP8he2mhxBt3L2P/k8Mdc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1751359429; c=relaxed/simple;
-	bh=WKKFVHyIx5FGyF/mzkbcJtuBZwMQR088gYLS51RgvbQ=;
+	s=arc-20240116; t=1751359465; c=relaxed/simple;
+	bh=ETahjvfhObWfhp3wH4KH1j1xcBmeV7kvedrPys7wXik=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=lKh2LQPZC7ciFpxuovT1spimHuk0vN3bAtOCOeaOfgS59kZvFraoyQxExzbCTZCK4g9hEU5id7cxyzwQ5PZUn7LVfy92zkbKXjonuAsUAvNul+S5KoxhJM9RwvQEKsbwVM5iuc5mD0sHEIf/1jR0tAiWks5wS9mvZR/b0qMDZ5g=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Bv3tfL4d; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 9AF88C4CEEB;
-	Tue,  1 Jul 2025 08:43:43 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1751359429;
-	bh=WKKFVHyIx5FGyF/mzkbcJtuBZwMQR088gYLS51RgvbQ=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=Bv3tfL4d4+FCKNqLUUUwnm2WarDGmMoqMZaFdtwFu++KDbu892XV7WXfE7Mf6cFIt
-	 KJ96JQHtIUtusx6KhbOzXgWf6CxFCL2tnAa/EQDujA0JDROaXTKbao1UZUR6K19RQT
-	 dOEjKif5YH37jGnKu9CsO4EVADFIdcA4cPGfXRptBLZjJBN5l1xpMeHHX1zeuVJRh/
-	 fZzOs25FCrCwwBSZhOW48JkuEDQXOMS80k+LrXXprqDeojaoF8vAu4sd61KHchOTsw
-	 mcTriD4URbGgSzI5XreCOHeo7AcMXt/MS+/x4HB6DU5AQUxjc9jhodlMSY2L3+bH2M
-	 tjo+G/PTTQjsw==
-Message-ID: <010c05cf-66dc-4288-ba3f-81f8f4634525@kernel.org>
-Date: Tue, 1 Jul 2025 10:43:41 +0200
+	 In-Reply-To:Content-Type; b=t4esaMEzUQtu+/fwB6uZVPTZ5PLHkUhptLCtBZkDBEah7LSLBApfl22P8kknQDloh2p072W0FIspLw3FPL+0F+A7eRK0K/twzZ9+aQqiGHVQOPPdw/n8vJ8nwyMb3++4CXJgcWeLTllmHTfTtELkO4sEey2ExnJ1c6+rUnkEEn0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=LTmc355r; arc=none smtp.client-ip=205.220.180.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
+Received: from pps.filterd (m0279871.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 5614DfRO024875
+	for <devicetree@vger.kernel.org>; Tue, 1 Jul 2025 08:44:23 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	yf8OXMx4FGnWdIQA3MUAkQiLT+ux14ax47Cw7Z9XIeQ=; b=LTmc355rIX1vCd4V
+	QbKXgSVG2hnzEhL4Ak+j0xi2wCu0JbWCm/5pLIIYILdPLgozQFThyEIW5eblLMM5
+	L9Lf36yFB7Od6FdA+S29o2nLp6hv5+7sJ0PKmBqujBxy1rqHP00Lp14ZUgNp3+D1
+	cFQ/Xsh9ZpUviWrYhSBOocEraKWvZGxc1sIiHXClNJ0rzX12DM5vOc8xUb25Diyx
+	3e1dgAaRk4rWMOgbJry92RksReabhtN/hz1aw4ODmsNDP+TAIXq8ZkQC4IJ631zr
+	D4wZ6ecxNW0z2IVmCj/7ZCFQ8r8Sw/s5CIITLXi4My0GnMcpxG9sBW2qqLCJhDsL
+	aRa03w==
+Received: from mail-qt1-f199.google.com (mail-qt1-f199.google.com [209.85.160.199])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 47j801ysvm-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
+	for <devicetree@vger.kernel.org>; Tue, 01 Jul 2025 08:44:23 +0000 (GMT)
+Received: by mail-qt1-f199.google.com with SMTP id d75a77b69052e-4a5a9791fa9so12528751cf.1
+        for <devicetree@vger.kernel.org>; Tue, 01 Jul 2025 01:44:23 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1751359462; x=1751964262;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=yf8OXMx4FGnWdIQA3MUAkQiLT+ux14ax47Cw7Z9XIeQ=;
+        b=DV71n3CLi3gTlYP/ZHr4PXs4h+zCXkwy7xsx1gKIh7ZloFdnDfWspTqQPDiWxgapnZ
+         CKEMpHyWtqA8AZUp/EQ/XrSzCGT4+l3J7gcMos6qOj8ZQs8Pmuna2GEK8ON7ARcFdYbu
+         r5+EnF96y/FtYFcefsCGXQeiDegonvy/SgcmX5dhUusokuBCiWsUxhsFh198a90At6va
+         zH7zqbkTKC0NrvlsjgQv7qe/oX8T/rv9hGrw4ZAphAm8Bz1tOoYnIia7ic4HRFoDBe8F
+         kJ2A5YiWRjaKMHfYjzeeM1WNyMeM5caaYjpEhGX+uIFQFbfycb9LBNS35RRQZNi1OnZb
+         93bA==
+X-Forwarded-Encrypted: i=1; AJvYcCUbdTnTe97R1ZsJJiWmH56TXtuSi26pbFDezvnGrOvfWVX6s+4b0pDTD0BJKqrgfra6TC/HzxtSb1lP@vger.kernel.org
+X-Gm-Message-State: AOJu0Yxx39eGewP6DzUvy69r5HDKgaE1vkxC3VGR/1jKeVzRpfLB9mw2
+	cFmyg5fLAAPrGV2aOXmWvicuzk4aPHMrwtlsD/VIsd4m3i/hlB6mgABRI06AoVgVV1QinHKPSBu
+	pP2FdIeoiOGfWXhVxsFOZPCcasZLDUe/hbyjrB1zn3zFRn/+Vzy2Mz+7eDo+NbD8H
+X-Gm-Gg: ASbGncvE1SlIRmbMu3vBV4CmOSlI4bB9W3eEP7CWRjNeZqf15GDz+1P5ggy0bbOfFBg
+	nvB8pGXUF1psE2UOqOGCXc9fHhvnq40N3nHDTuCgbVq9VSJI69jNpzkM9GYcLYBYKBVUaHBJJMR
+	pi1RCx/XEfk1RZF1T74xLMqfq1gTU0mDZXNN3Mpi/+hcuH8wAK/CrU5zUqPFFtqaVnv5jC5v7dP
+	HBQwkZWnld2z2a93BNG5uCSwHXHSJmasQI5SYMT4HFOA6I19uj5jDSeZXdjw3xBAdhq50roat5c
+	1U293gYlkEtqoAxgoLOhI8S8FvOzhSWzw6gmIRmutNS+XP0x4pcnmTPMx6ZEpSsOcMiOudV3+9j
+	UKBtImaXH
+X-Received: by 2002:ac8:5a81:0:b0:471:f437:2973 with SMTP id d75a77b69052e-4a833959521mr9863431cf.14.1751359462357;
+        Tue, 01 Jul 2025 01:44:22 -0700 (PDT)
+X-Google-Smtp-Source: AGHT+IE/sA0oirRY7BnsvlJ60EVwuLrYw1JMcOwklbuCHYYyVTAZbHQKxT6zpexqZo4Yazepm+DXNA==
+X-Received: by 2002:ac8:5a81:0:b0:471:f437:2973 with SMTP id d75a77b69052e-4a833959521mr9863291cf.14.1751359461842;
+        Tue, 01 Jul 2025 01:44:21 -0700 (PDT)
+Received: from [192.168.1.114] (83.9.29.190.neoplus.adsl.tpnet.pl. [83.9.29.190])
+        by smtp.gmail.com with ESMTPSA id 4fb4d7f45d1cf-60c8319aef5sm7312708a12.48.2025.07.01.01.44.20
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 01 Jul 2025 01:44:21 -0700 (PDT)
+Message-ID: <850260dc-7e67-4ae4-82a5-5b8f5197633d@oss.qualcomm.com>
+Date: Tue, 1 Jul 2025 10:44:19 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,421 +90,66 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v6 2/3] i3c: master: Add Qualcomm I3C controller driver
-To: Mukesh Kumar Savaliya <mukesh.savaliya@oss.qualcomm.com>,
- alexandre.belloni@bootlin.com, robh@kernel.org, krzk+dt@kernel.org,
- conor+dt@kernel.org, jarkko.nikula@linux.intel.com,
- linux-i3c@lists.infradead.org, linux-arm-msm@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, Frank.Li@nxp.com,
- wsa+renesas@sang-engineering.com, alok.a.tiwari@oracle.com
-Cc: andersson@kernel.org, konradybcio@kernel.org
-References: <20250701071852.2107800-1-mukesh.savaliya@oss.qualcomm.com>
- <20250701071852.2107800-3-mukesh.savaliya@oss.qualcomm.com>
-From: Krzysztof Kozlowski <krzk@kernel.org>
+Subject: Re: [PATCH] dt-bindings: clock: Convert qcom,krait-cc to DT schema
+To: "Rob Herring (Arm)" <robh@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Stephen Boyd
+ <sboyd@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>
+Cc: Stephen Boyd <sboyd@codeaurora.org>, linux-arm-msm@vger.kernel.org,
+        linux-clk@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+References: <20250630232617.3699954-1-robh@kernel.org>
 Content-Language: en-US
-Autocrypt: addr=krzk@kernel.org; keydata=
- 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 a/A=
-In-Reply-To: <20250701071852.2107800-3-mukesh.savaliya@oss.qualcomm.com>
+From: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
+In-Reply-To: <20250630232617.3699954-1-robh@kernel.org>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
-
-On 01/07/2025 09:18, Mukesh Kumar Savaliya wrote:
-> +#include <linux/bits.h>
-> +#include <linux/clk.h>
-> +#include <linux/err.h>
-> +#include <linux/i3c/master.h>
-> +#include <linux/interrupt.h>
-> +#include <linux/io.h>
-
-where do you use it?
-
-
-> +#include <linux/kernel.h>
-> +#include <linux/module.h>
-> +#include <linux/of.h>
-
-where do you use it?
-
-
-> +#include <linux/of_platform.h>
-
-where do you use it?
-
-> +#include <linux/platform_device.h>
-> +#include <linux/pm_runtime.h>
-> +#include <linux/slab.h>
-> +#include <linux/soc/qcom/geni-se.h>
-> +#include <linux/units.h>
-
-where do you use it?
-
-> +
-> +#define SE_I3C_SCL_HIGH                 0x268
-> +#define SE_I3C_TX_TRANS_LEN             0x26c
-> +#define SE_I3C_RX_TRANS_LEN             0x270
-> +#define SE_I3C_DELAY_COUNTER            0x274
-> +#define SE_I2C_SCL_COUNTERS             0x278
-> +#define SE_I3C_SCL_CYCLE                0x27c
-> +#define SE_GENI_HW_IRQ_EN               0x920
-> +#define SE_GENI_HW_IRQ_IGNORE_ON_ACTIVE 0x924
-> +#define SE_GENI_HW_IRQ_CMD_PARAM_0      0x930
-> +
-> +/* HW I3C IBI interrupt enable */
-> +#define M_IBI_IRQ_EN			BIT(0)
-> +
-> +/* M_IBI_IRQ_IGNORE */
-> +#define M_IBI_IRQ_IGNORE		BIT(0)
-> +
-> +/* SE_GENI_M_CLK_CFG field shifts */
-> +#define	CLK_DIV_VALUE_MASK		GENMASK(23, 4)
-> +#define SER_CLK_EN			BIT(0)
-> +
-> +/* SE_GENI_HW_IRQ_CMD_PARAM_0 field bits */
-> +#define M_IBI_IRQ_PARAM_7E		BIT(0)
-> +#define M_IBI_IRQ_PARAM_STOP_STALL	BIT(1)
-> +
-> +/* SE_I2C_SCL_COUNTERS field shifts */
-> +#define I2C_SCL_HIGH_COUNTER_MASK	GENMASK(29, 20)
-> +#define I2C_SCL_LOW_COUNTER_MASK	GENMASK(19, 10)
-> +#define I2C_SCL_CYCLE_COUNTER_MASK	GENMASK(9, 0)
-> +
-> +#define SE_I3C_ERR  (M_CMD_OVERRUN_EN | M_ILLEGAL_CMD_EN | M_CMD_FAILURE_EN |\
-> +	M_CMD_ABORT_EN | M_GP_IRQ_0_EN | M_GP_IRQ_1_EN | M_GP_IRQ_2_EN | \
-> +	M_GP_IRQ_3_EN | M_GP_IRQ_4_EN)
-> +
-> +/* M_CMD OP codes for I2C/I3C */
-> +#define I3C_READ_IBI_HW          0
-> +#define I2C_WRITE                1
-> +#define I2C_READ                 2
-> +#define I2C_WRITE_READ           3
-> +#define I2C_ADDR_ONLY            4
-> +#define I3C_INBAND_RESET         5
-> +#define I2C_BUS_CLEAR            6
-> +#define I2C_STOP_ON_BUS          7
-> +#define I3C_HDR_DDR_EXIT         8
-> +#define I3C_PRIVATE_WRITE        9
-> +#define I3C_PRIVATE_READ         10
-> +#define I3C_HDR_DDR_WRITE        11
-> +#define I3C_HDR_DDR_READ         12
-> +#define I3C_DIRECT_CCC_ADDR_ONLY 13
-> +#define I3C_BCAST_CCC_ADDR_ONLY  14
-> +#define I3C_READ_IBI             15
-> +#define I3C_BCAST_CCC_WRITE      16
-> +#define I3C_DIRECT_CCC_WRITE     17
-> +#define I3C_DIRECT_CCC_READ      18
-> +
-> +/* M_CMD params for I3C */
-> +#define PRE_CMD_DELAY		BIT(0)
-> +#define TIMESTAMP_BEFORE	BIT(1)
-> +#define STOP_STRETCH		BIT(2)
-> +#define TIMESTAMP_AFTER		BIT(3)
-> +#define POST_COMMAND_DELAY	BIT(4)
-> +#define IGNORE_ADD_NACK		BIT(6)
-> +#define READ_FINISHED_WITH_ACK	BIT(7)
-> +#define CONTINUOUS_MODE_DAA	BIT(8)
-> +
-> +#define SLAVE_ADDR_MASK		GENMASK(15, 9)
-> +
-> +#define CCC_HDR_CMD_MSK		GENMASK(23, 16)
-> +#define IBI_NACK_TBL_CTRL	BIT(24)
-> +#define USE_7E			BIT(25)
-> +#define BYPASS_ADDR_PHASE	BIT(26)
-> +
-> +/* GSI callback error fields - DMA_TX_IRQ_STAT */
-> +#define GP_IRQ0			BIT(5)
-> +#define GP_IRQ1			BIT(6)
-> +#define GP_IRQ2			BIT(7)
-> +#define GP_IRQ3			BIT(8)
-> +#define GP_IRQ4			BIT(9)
-> +#define GP_IRQ5			BIT(10)
-> +#define DM_I3C_CB_ERR		GENMASK(10, 5)
-> +
-> +#define I3C_AUTO_SUSPEND_DELAY	250
-> +#define PACKING_BYTES_PER_WORD	4
-> +#define XFER_TIMEOUT		250
-> +#define DFS_INDEX_MAX		7
-> +
-> +#define I3C_ADDR_MASK		I2C_MAX_ADDR
-> +
-> +enum geni_i3c_err_code {
-> +	RD_TERM,
-> +	NACK,
-> +	CRC_ERR,
-> +	BUS_PROTO,
-> +	NACK_7E,
-> +	NACK_IBI,
-> +	GENI_OVERRUN,
-> +	GENI_ILLEGAL_CMD,
-> +	GENI_ABORT_DONE,
-> +	GENI_TIMEOUT,
-> +};
-> +
-> +enum i3c_bus_phase {
-> +	OPEN_DRAIN_MODE  = 0,
-> +	PUSH_PULL_MODE   = 1
-> +};
-> +
-> +struct geni_i3c_dev {
-> +	struct geni_se se;
-> +	unsigned int tx_wm;
-> +	int irq;
-> +	int err;
-> +	struct i3c_master_controller ctrlr;
-> +	struct completion done;
-> +	/* Protects per device CCC command or transfer from get_mutex_lock()/unlock() wrapper */
-> +	struct mutex lock;
-> +	/* Per device protection between process and IRQ context */
-> +	spinlock_t irq_lock;
-> +	u32 clk_src_freq;
-> +	u8 *cur_buf;
-> +	bool cur_is_write;
-> +	int cur_len;
-> +	int cur_idx;
-> +	DECLARE_BITMAP(newaddrslots, 64);
-> +
-> +	const struct geni_i3c_clk_settings *clk_cfg;
-> +	const struct geni_i3c_clk_settings *clk_od_cfg;
-> +};
-> +
-> +struct geni_i3c_i2c_dev_data {
-> +	u32 ibi_keeping;  /* Plan to save IBI information, keep as dummy for now */
-> +};
-> +
-> +struct geni_i3c_xfer_params {
-> +	enum geni_se_xfer_mode mode;
-> +	u32 m_cmd;
-> +	u32 m_param;
-> +};
-> +
-> +static inline struct geni_i3c_dev *to_geni_i3c_master(struct i3c_master_controller
-> +							*master)
-> +{
-> +	return container_of(master, struct geni_i3c_dev, ctrlr);
-> +}
-> +
-> +struct geni_i3c_clk_settings {
-> +	u32 clk_freq_out;
-> +	u32 clk_src_freq;
-> +	u8  clk_div;
-> +	u8  i2c_t_high_cnt;
-> +	u8  i2c_t_low_cnt;
-> +	u8  i3c_t_high_cnt;
-> +	u8  i3c_t_cycle_cnt;
-> +	u8  i2c_t_cycle_cnt;
-> +};
-> +
-> +/*
-> + * The hardware uses the following formulas to calculate the time periods
-> + * of the SCL clock cycle. The firmware adds a few extra cycles that are not
-> + * included in the formulas below. It has been verified that the resulting
-> + * timings remain within the I2C/I3C specification limits.
-> + *
-> + * I2C SCL high period:
-> + *     i2c_t_high = (i2c_t_high_cnt * clk_div) / source_clock
-> + *
-> + * I2C SCL low period:
-> + *     i2c_t_low = (i2c_t_low_cnt * clk_div) / source_clock
-> + *
-> + * I2C SCL full cycle:
-> + *     i2c_t_cycle = (i2c_t_cycle_cnt * clk_div) / source_clock
-> + *
-> + * I3C SCL high period:
-> + *     i3c_t_high = (i3c_t_high_cnt * clk_div) / source_clock
-> + *
-> + * I3C SCL full cycle:
-> + *     i3c_t_cycle = (i3c_t_cycle_cnt * clk_div) / source_clock
-> + *
-> + * Output clock frequency:
-> + *     clk_freq_out = t / t_cycle
-> + */
-> +static const struct geni_i3c_clk_settings geni_i3c_clk_map[] = {
-> +	{
-> +		.clk_freq_out = 100 * HZ_PER_KHZ,
-> +		.clk_src_freq = 19200 * HZ_PER_KHZ,
-> +		.clk_div = 1,
-> +		.i2c_t_high_cnt = 76,
-> +		.i2c_t_low_cnt = 90,
-> +		.i3c_t_high_cnt = 7,
-> +		.i3c_t_cycle_cnt = 8,
-> +		.i2c_t_cycle_cnt = 192,
-> +	},
-> +	{
-> +		.clk_freq_out = 400 * HZ_PER_KHZ,
-> +		.clk_src_freq = 19200 * HZ_PER_KHZ,
-> +		.clk_div = 1,
-> +		.i2c_t_high_cnt = 12,
-> +		.i2c_t_low_cnt = 24,
-> +		.i3c_t_high_cnt = 7,
-> +		.i3c_t_cycle_cnt = 8,
-> +		.i2c_t_cycle_cnt = 48
-> +	},
-> +	{
-> +		.clk_freq_out = 1000 * HZ_PER_KHZ,
-> +		.clk_src_freq = 19200 * HZ_PER_KHZ,
-> +		.clk_div = 1,
-> +		.i2c_t_high_cnt = 4,
-> +		.i2c_t_low_cnt = 9,
-> +		.i3c_t_high_cnt = 7,
-> +		.i3c_t_cycle_cnt = 0,
-> +		.i2c_t_cycle_cnt = 19
-> +	},
-> +	{
-> +		.clk_freq_out = 12500 * HZ_PER_KHZ,
-> +		.clk_src_freq = 100000 * HZ_PER_KHZ,
-> +		.clk_div = 1,
-> +		.i2c_t_high_cnt = 45,
-> +		.i2c_t_low_cnt = 63,
-> +		.i3c_t_high_cnt = 6,
-> +		.i3c_t_cycle_cnt = 7,
-> +		.i2c_t_cycle_cnt = 110
-> +	}
-> +};
-> +
-> +static int geni_i3c_clk_map_idx(struct geni_i3c_dev *gi3c)
-> +{
-> +	const struct geni_i3c_clk_settings *clk_idx = geni_i3c_clk_map;
-> +	struct i3c_master_controller *m = &gi3c->ctrlr;
-> +	struct i3c_bus *bus = i3c_master_get_bus(m);
-> +	int i;
-> +
-> +	for (i = 0; i < ARRAY_SIZE(geni_i3c_clk_map); i++, clk_idx++) {
-> +		if (clk_idx->clk_freq_out == bus->scl_rate.i3c &&
-> +		    clk_idx->clk_src_freq == gi3c->clk_src_freq)
-> +			gi3c->clk_cfg = clk_idx;
-> +
-> +		if (clk_idx->clk_freq_out == bus->scl_rate.i2c)
-> +			gi3c->clk_od_cfg = clk_idx;
-> +	}
-> +
-> +	if (!gi3c->clk_cfg || !gi3c->clk_od_cfg)
-> +		return -EINVAL;
-> +
-> +	return 0;
-> +}
-> +
-> +static inline void set_new_addr_slot(unsigned long *addrslot, u8 addr)
-
-Why do you mark functions inline? Drop, it's not recommended style.
-
-> +{
-> +	if (addr > I3C_ADDR_MASK)
-> +		return;
-
-This seems redundant. Why are you checking it every time here, but not
-once in the loop where this is executed?
-
-This is confusing - you got incorrect address in the place where this is
-called ("if (new_device) {") but you do not handle incorrect address,
-don't fail, don't unwind, don't handle the error. Instead this part
-silently skips the issue but rest of code will work with that incorrect
-address.
+X-Proofpoint-GUID: 3zZ3gHM1MK39acYZFsEzEQ7i3lxr-6W9
+X-Authority-Analysis: v=2.4 cv=YPWfyQGx c=1 sm=1 tr=0 ts=68639fe7 cx=c_pps
+ a=WeENfcodrlLV9YRTxbY/uA==:117 a=fKQzr7EGRj+VoE0XNsDNvQ==:17
+ a=IkcTkHD0fZMA:10 a=Wb1JkmetP80A:10 a=VwQbUJbxAAAA:8 a=LpQP-O61AAAA:8
+ a=i-1VaULvG7sLBx-uF14A:9 a=QEXdDO2ut3YA:10 a=kacYvNCVWA4VmyqE58fU:22
+ a=pioyyrs4ZptJ924tMmac:22
+X-Proofpoint-ORIG-GUID: 3zZ3gHM1MK39acYZFsEzEQ7i3lxr-6W9
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwNzAxMDA1MCBTYWx0ZWRfXzHhux1Pg30Lp
+ XrRUg0Ez8J5Zckm3TKqao9wlebNK3+6fIaNB6RSIURlkbqFyoefhlHv3EQ0phDvnWdzZAT1L04M
+ xmcYlAVA0qhsDuYP5PeEbfDp/04IdvwkD9Hxt83B62dJUUOAN8hZVH6r6rrcg8t2DutPE4UXuUI
+ kndAiKpmn59Wi/gIFg0Bs58vkzP5KdfuJJwp9V2b59oxYHJF3fNyT13hOz+yi/yQ5Kf7mKk4Mrc
+ uWoCd05xRBiH+RnFsiOJbDzdhQ5qH07HlQuC1IHCmCqGvmBXNP3DvrS0I9krnXAVOPMg8Jn7PhW
+ Kenf1WAs827/RP+6qw9He3ZRaIfeX9b0lN5veJboItNgxz8GLS6qBbNUAP7FdRmtnlb0nXZ0zRC
+ yDXp9ITWJNX72QBkKIqqJunvoqOcs+5SybJFUxioUko7Y0kvPK4jEvI2pKYq/HFAjgwo/Jxk
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1099,Hydra:6.1.7,FMLib:17.12.80.40
+ definitions=2025-07-01_01,2025-06-27_01,2025-03-28_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ spamscore=0 mlxlogscore=987 mlxscore=0 malwarescore=0 suspectscore=0
+ lowpriorityscore=0 clxscore=1015 impostorscore=0 adultscore=0
+ priorityscore=1501 bulkscore=0 phishscore=0 classifier=spam authscore=0
+ authtc=n/a authcc= route=outbound adjust=0 reason=mlx scancount=1
+ engine=8.19.0-2505280000 definitions=main-2507010050
 
 
 
+On 01-Jul-25 01:26, Rob Herring (Arm) wrote:
+> Signed-off-by: Rob Herring (Arm) <robh@kernel.org>
+> ---
+>  .../bindings/clock/qcom,krait-cc.txt          | 34 ---------------
+>  .../bindings/clock/qcom,krait-cc.yaml         | 43 +++++++++++++++++++
+>  2 files changed, 43 insertions(+), 34 deletions(-)
+>  delete mode 100644 Documentation/devicetree/bindings/clock/qcom,krait-cc.txt
+>  create mode 100644 Documentation/devicetree/bindings/clock/qcom,krait-cc.yaml
+
+[...]
+
+> +title: Krait Clock Controller
 > +
-> +	set_bit(addr, addrslot);> +}
-> +
-> +static inline void clear_new_addr_slot(unsigned long *addrslot, u8 addr)
-> +{
-> +	if (addr > I3C_ADDR_MASK)
-> +		return;
+> +maintainers:
+> +  - Stephen Boyd <sboyd@codeaurora.org>
 
-And is_new_addr_slot_set() does not have the test? And how is this even
-possible, aren't you looping till I3C_ADDR_MASK?
+FYI codeaurora has been dead for years
 
-I understand why you wanted some abstractions, but this caused hiding
-actual issues because you do not see big picture.
-> +
-> +	clear_bit(addr, addrslot);
-> +}
-
-
-
-...
-
-
-> +
-> +static const struct i3c_master_controller_ops geni_i3c_master_ops = {
-> +	.bus_init = geni_i3c_master_bus_init,
-> +	.bus_cleanup = NULL,
-> +	.do_daa = geni_i3c_master_do_daa,
-> +	.attach_i3c_dev = geni_i3c_master_attach_i3c_dev,
-> +	.reattach_i3c_dev = NULL,
-> +	.detach_i3c_dev = geni_i3c_master_detach_i3c_dev,
-> +	.attach_i2c_dev = geni_i3c_master_attach_i2c_dev,
-> +	.detach_i2c_dev = geni_i3c_master_detach_i2c_dev,
-> +	.supports_ccc_cmd = geni_i3c_master_supports_ccc_cmd,
-> +	.send_ccc_cmd = geni_i3c_master_send_ccc_cmd,
-> +	.priv_xfers = geni_i3c_master_priv_xfers,
-> +	.i2c_xfers = geni_i3c_master_i2c_xfers,
-> +	.enable_ibi = NULL,
-> +	.disable_ibi = NULL,
-> +	.request_ibi = NULL,
-> +	.free_ibi = NULL,
-> +	.recycle_ibi_slot = NULL,
-> +};
-> +
-> +static int i3c_geni_resources_init(struct geni_i3c_dev *gi3c, struct platform_device *pdev)
-> +{
-> +	int ret;
-> +
-> +	gi3c->se.base = devm_platform_ioremap_resource(pdev, 0);
-> +	if (IS_ERR(gi3c->se.base))
-> +		return PTR_ERR(gi3c->se.base);
-> +
-> +	gi3c->se.clk = devm_clk_get(&pdev->dev, NULL);
-> +	if (IS_ERR(gi3c->se.clk))
-> +		return dev_err_probe(&pdev->dev, PTR_ERR(gi3c->se.clk),
-> +							"Unable to get serial engine core clock: %pe\n",
-
-Messed alignment.
-
-> +							gi3c->se.clk);
-> +	ret = geni_icc_get(&gi3c->se, NULL);
-> +	if (ret)
-> +		return ret;
-> +
-Best regards,
-Krzysztof
+Konrad
 
