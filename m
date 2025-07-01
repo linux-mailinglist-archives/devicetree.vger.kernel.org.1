@@ -1,135 +1,142 @@
-Return-Path: <devicetree+bounces-191394-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-191396-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2FE09AEF1EF
-	for <lists+devicetree@lfdr.de>; Tue,  1 Jul 2025 10:56:05 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8F52CAEF224
+	for <lists+devicetree@lfdr.de>; Tue,  1 Jul 2025 11:00:30 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id E45CC7A9D6A
-	for <lists+devicetree@lfdr.de>; Tue,  1 Jul 2025 08:54:39 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 7BD6A3B32B7
+	for <lists+devicetree@lfdr.de>; Tue,  1 Jul 2025 08:59:17 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 585A4223327;
-	Tue,  1 Jul 2025 08:55:58 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B341926CE09;
+	Tue,  1 Jul 2025 08:58:10 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=collabora.com header.i=nicolas.frattaroli@collabora.com header.b="JZ2VrbNa"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="nw3YCgYb"
 X-Original-To: devicetree@vger.kernel.org
-Received: from sender4-pp-f112.zoho.com (sender4-pp-f112.zoho.com [136.143.188.112])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8B9EC22488B;
-	Tue,  1 Jul 2025 08:55:56 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=pass smtp.client-ip=136.143.188.112
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1751360158; cv=pass; b=ZQr9SPS0/O+VhEOWuj7nk4sqYvmo37oXaW2ob1zdoJ18oEW9Zh7UWlTeRk289XoDpEXG1rm61REHVtJGBBIp2SwmjgPB2qRXIKZo1K2d6jPuvCxQZLHzWV6IoGBkS0ZcDRjtsjCPRNvzVcK1/7WP0vC6UcEFs1dZGJUd+pFytRY=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1751360158; c=relaxed/simple;
-	bh=k10PVkQT/9l2bcOjXOjH+r6VpHPgv0j15HJsYBK9uFI=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=S64rUPkRIzqcONslPKV85c7M2VAH8ysZldJcVB4WmYXaoO2mygQrEd8opg3yBu8w992MsR+fg2r6L6RMBRcss+miB4aE2P8CdC/LVVcVG86r79sMgyb3mPZlWiZZAMPvnnJ/zT2T7RVvR4BlMkZnLSPMw0h/03sWXlGCZVGR278=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (1024-bit key) header.d=collabora.com header.i=nicolas.frattaroli@collabora.com header.b=JZ2VrbNa; arc=pass smtp.client-ip=136.143.188.112
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
-ARC-Seal: i=1; a=rsa-sha256; t=1751360128; cv=none; 
-	d=zohomail.com; s=zohoarc; 
-	b=iXVLzTc0MYcUhCmNc0zoT8nYZniOsIwfRSdBoWAfmk8a3Ib7qya7A78A7WGWbO3ipKncfG9dW5CEW158AUEqcbE2qsA9COJ0UwsALbsbWmjN5K/hJwvRaZwAe9RHqOUmBm/M2TZvKyNdxNF8BA9YFBMxXyWxcYJR8pgaIzTuR5s=
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=zohomail.com; s=zohoarc; 
-	t=1751360128; h=Content-Type:Content-Transfer-Encoding:Cc:Cc:Date:Date:From:From:In-Reply-To:MIME-Version:Message-ID:References:Subject:Subject:To:To:Message-Id:Reply-To; 
-	bh=LBaHHeBZtreqORo2ZrKJra35Hs9YmlKhQvZuFYmqjYM=; 
-	b=gQw3TB5guJkE4ZVQQGU1sFnYxUQzpsv//xEYk08I//G0VWcODeMs+5dBnIC42r4LcrygQA8jvPNGvqMVSA79gw+Qw3Q8pQVaTbbasRLaKkoHEXsFZDSHMnUpeMa4Q1le++i5RAp3JaOq5Uxr3VXChZTz86XfUaFBLmLNQ4GrIM4=
-ARC-Authentication-Results: i=1; mx.zohomail.com;
-	dkim=pass  header.i=collabora.com;
-	spf=pass  smtp.mailfrom=nicolas.frattaroli@collabora.com;
-	dmarc=pass header.from=<nicolas.frattaroli@collabora.com>
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; t=1751360128;
-	s=zohomail; d=collabora.com; i=nicolas.frattaroli@collabora.com;
-	h=From:From:To:To:Cc:Cc:Subject:Subject:Date:Date:Message-ID:In-Reply-To:References:MIME-Version:Content-Transfer-Encoding:Content-Type:Message-Id:Reply-To;
-	bh=LBaHHeBZtreqORo2ZrKJra35Hs9YmlKhQvZuFYmqjYM=;
-	b=JZ2VrbNaTm3OpMX0YVnCl55PmHvPYXyQnlT1ukmO0ND2/Ypap1INngGBZHGOIy+Z
-	Y7Yqzpa2LmBdNATgtWoIQ6LdDI3X9HPN3BmCRqLdW/SHABuJ0QJ81S+TfdVGdNsit4H
-	eJUEAJ0TIOr4/zbT5ChIQNTsWrhaHaEEdecBdfSY=
-Received: by mx.zohomail.com with SMTPS id 1751360126517482.5342375792277;
-	Tue, 1 Jul 2025 01:55:26 -0700 (PDT)
-From: Nicolas Frattaroli <nicolas.frattaroli@collabora.com>
-To: Sebastian Reichel <sebastian.reichel@collabora.com>,
- Diederik de Haas <didi.debian@cknow.org>
-Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, Heiko Stuebner <heiko@sntech.de>,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- linux-rockchip@lists.infradead.org, kernel@collabora.com,
- linux-arm-kernel@lists.infradead.org
-Subject:
- Re: [PATCH 1/3] arm64: dts: rockchip: adjust dcin regulator on ROCK 4D
-Date: Tue, 01 Jul 2025 10:55:21 +0200
-Message-ID: <5039013.31r3eYUQgx@workhorse>
-In-Reply-To: <DB0KL629S4E4.3ENNM27XN3IYM@cknow.org>
-References:
- <20250630-rock4d-reg-usb-wifi-v1-0-1057f412d98c@collabora.com>
- <5acizoywvjolaffojiawqlzixiclrqzohuhq55lbsjm6yhhlwi@w2amqugl3ee2>
- <DB0KL629S4E4.3ENNM27XN3IYM@cknow.org>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 82D1926C3A9;
+	Tue,  1 Jul 2025 08:58:10 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1751360290; cv=none; b=j9dw01N4SwCdtEDLwUt4iLSbBVL78GXNwDA5Z2hDPPzLDGz5akbQBNMxWdMCdylzJo/cD4RwljztaWU5esppH5HwYctUqdFEOuWmCsGx/sZ2a2vUSQ2b4VuNblg8P6sBBZqpmWPqr034WvEUNtOIQlrKIHI3+/t5baz7QNAiFdM=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1751360290; c=relaxed/simple;
+	bh=GxXVoLFLRD1VKtIrbklplB25upwnw5BQOwzExBjwY4M=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=l8jfWoq4iWsmf9mkFQ49bBgWKqx8EKOt+iFjz/sxwvBUqCWJPNAbaUM2rb+7HSB7vaL72TsZDpar7+mDoWYU8VJ457b4nD1s5ge2Y6UIbVvu++P0KLltNvE79cv/Io2e2AfRcs9wWU+oPO3Co0PPfFa0Tanu4avPaY8QBgMA9C0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=nw3YCgYb; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id E1B01C4CEEE;
+	Tue,  1 Jul 2025 08:58:04 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1751360289;
+	bh=GxXVoLFLRD1VKtIrbklplB25upwnw5BQOwzExBjwY4M=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=nw3YCgYbwjsSpNZ9HIXCEA2g/Bmt8OVA8Om0Xh5iXIKU1JqDYUv1ZInfxaMSQd7fQ
+	 i4xby4rkR6t8Qz8V4YRAGJthi6HxqR7csgCrESWffUXeW9xX1uvfwqAV3hQXBurQna
+	 dObctXHHPIIJafNkzAWTGvZKXSkgwI2dD3MD6lstZVU59u9DJAb7fugVNmug5yeFBp
+	 BbOmE8GkjOqzb5DlGCWM3nG1GiKYrmghFvD8pBD0pnWK1RJ0hI6YUDkb7C5eQf8mHJ
+	 WUIWVZJ/+8EmMIKUgiCEKZCh9FW3NFGm1YzUCc+8t5phDf7r/hArr3+ZxnBmHT5qWg
+	 I2jkqkd0s2tRw==
+Message-ID: <ef9a18f8-4e71-4ed4-87d5-d5f175b60a25@kernel.org>
+Date: Tue, 1 Jul 2025 10:58:02 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7Bit
-Content-Type: text/plain; charset="utf-8"
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v6 1/3] dt-bindings: i3c: Add support for Qualcomm I3C
+ controller
+To: Mukesh Kumar Savaliya <mukesh.savaliya@oss.qualcomm.com>,
+ alexandre.belloni@bootlin.com, robh@kernel.org, krzk+dt@kernel.org,
+ conor+dt@kernel.org, jarkko.nikula@linux.intel.com,
+ linux-i3c@lists.infradead.org, linux-arm-msm@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, Frank.Li@nxp.com,
+ wsa+renesas@sang-engineering.com, alok.a.tiwari@oracle.com
+Cc: andersson@kernel.org, konradybcio@kernel.org
+References: <20250701071852.2107800-1-mukesh.savaliya@oss.qualcomm.com>
+ <20250701071852.2107800-2-mukesh.savaliya@oss.qualcomm.com>
+From: Krzysztof Kozlowski <krzk@kernel.org>
+Content-Language: en-US
+Autocrypt: addr=krzk@kernel.org; keydata=
+ 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 a/A=
+In-Reply-To: <20250701071852.2107800-2-mukesh.savaliya@oss.qualcomm.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-Hello,
-
-On Tuesday, 1 July 2025 10:19:33 Central European Summer Time Diederik de Haas wrote:
-> Hi,
-> 
-> On Tue Jul 1, 2025 at 1:10 AM CEST, Sebastian Reichel wrote:
-> > On Mon, Jun 30, 2025 at 08:12:27PM +0200, Diederik de Haas wrote:
-> >> On Mon Jun 30, 2025 at 5:36 PM CEST, Nicolas Frattaroli wrote:
-> >> > The ROCK 4D's actual DC input is 5V, and the schematic names it as being
-> >> > 5V as well.
-> >> >
-> >> > Rename the regulator, and change the voltage it claims to be at.
-> >> 
-> >> Shouldn't it have a fixes tag then? Providing 12V where 5V is expected
-> >> sounds problematic ;-)
-> >
-> > This is basically "just" documentation, as the DT just describes
-> > a fixed regulator (i.e. nothing software controllable). This just
-> > changes a number in sysfs :)
-> >
-> > Note, that the 5V DCIN is a USB-C port, which does not do any PD
-> > negotiation, but has the 5K1 resistors on the CC lines to "request"
-> > 5V. If for whatever reason a higher voltage is applied (which does
-> > not happen as long as the power is provided by anything remotely
-> > following the USB specifications) there also is an over-voltage
-> > protection chip. So it's not problematic :)
-> 
-> I was worried about and wondered why I/we did NOT receive reports about
-> boards being fried. Good to know, thanks!
-> 
-> > OTOH adding a Fixes tag does not hurt ;)
-> 
-> Cheers,
->   Diederik
-> 
-
-to add to what Sebastian already said: I purposefully didn't include the
-Fixes: tag because there is no functional change here. I don't think
-cosmetic fixes are worth pulling into stable kernels unless they're a
-dependency of a follow-up functional fix patch, which isn't the case
-right now. If such a functional fix patch does emerge, it can explicitly
-declare its dependence on this patch, or even have our robot overlords
-figure it out itself.
-
-In that sense, I do think a Fixes tag hurts, because it needlessly
-adds to the patch queue of the stable kernel people, and it's worth
-pointing out that while I claim this patch has no functional change,
-that's always predicated on the understanding that it does not
-unintentionally break anything. In this case the chance is essentially
-zero though, but I won't bother re-rolling this for that tag alone.
-
-Regards,
-Nicolas Frattaroli
+On 01/07/2025 09:18, Mukesh Kumar Savaliya wrote:
+> Add device tree bindings for the Qualcomm I3C controller. This includes
+> the necessary documentation and properties required to describe the
+> hardware in the device tree.
 
 
+Last sentence is completely redundant. How would you add bindings
+without necessary documentation? Does it make any sense to add bindings
+without neccesary documentation and properties? No, it does not. Say
+something useful or keep it simple. And I reject patches created to meet
+KPIs/goals like amount of lines of patches (second pattern: other patch
+was for IPQ5424 where I asked to shorten and qualcomm kept it two lines...).
+
+> +maintainers:
+> +  - Mukesh Kumar Savaliya <mukesh.savaliya@oss.qualcomm.com>
+> +
+> +description:
+> +  I3C in master mode supports up to 12.5MHz, SDR mode data transfer in mixed
+> +  bus mode (I2C and I3C target devices on same i3c bus). It also supports
+> +  hotjoin, IBI mechanism.
+> +
+> +  I3C Controller nodes must be child of GENI based Qualcomm Universal
+> +  Peripharal. Please refer GENI based QUP wrapper controller node bindings
+> +  described in Documentation/devicetree/bindings/soc/qcom/qcom,geni-se.yaml.
+Your cover letter - or this changelog - should explain what is your plan
+in updating that one.
+
+Best regards,
+Krzysztof
 
