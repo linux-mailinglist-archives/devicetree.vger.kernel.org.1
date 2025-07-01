@@ -1,230 +1,216 @@
-Return-Path: <devicetree+bounces-191636-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-191627-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 94092AEFEF0
-	for <lists+devicetree@lfdr.de>; Tue,  1 Jul 2025 18:04:31 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 31638AEFED5
+	for <lists+devicetree@lfdr.de>; Tue,  1 Jul 2025 18:03:02 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 55C043AABE8
-	for <lists+devicetree@lfdr.de>; Tue,  1 Jul 2025 16:02:56 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id D5CE13ADB37
+	for <lists+devicetree@lfdr.de>; Tue,  1 Jul 2025 16:01:57 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E27BF27FD59;
-	Tue,  1 Jul 2025 16:02:12 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A404B27CB16;
+	Tue,  1 Jul 2025 16:02:03 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=raspberrypi.com header.i=@raspberrypi.com header.b="eoFkIUE8"
+	dkim=pass (1024-bit key) header.d=samsung.com header.i=@samsung.com header.b="ZQAt6TtC"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f50.google.com (mail-wm1-f50.google.com [209.85.128.50])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mailout2.w1.samsung.com (mailout2.w1.samsung.com [210.118.77.12])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 23C1F27E061
-	for <devicetree@vger.kernel.org>; Tue,  1 Jul 2025 16:02:05 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.50
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 11CBC27AC36
+	for <devicetree@vger.kernel.org>; Tue,  1 Jul 2025 16:02:00 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=210.118.77.12
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1751385732; cv=none; b=fcO3yIxP5FVQ312XWqs80KUitb7BKMKVfP/d5ONvGj6FyuGOwYTiIdpkE9pLgQpKtLa5rxKmjx3fJTiKsDaMP/P/ezi9gK9gcb/Dj4GIr3i51WNfzK5C36lOyGupmITM16iQy35mj2maa5BUTrYR2YA8+ZyrZ7eOzD8gp8Kjn7w=
+	t=1751385723; cv=none; b=an8FjsDp1o99Hcsb9aMZIgAy7Nq/uneLIwjBpvt57Hw/3xELSJsRlcOfhtssd8jYUimdlB3j8IeysWGALYab/UHDenJkGE9Dr/ASrGWQZ9/KXVTQkUUP3gd3lPfK1Oid1rvKLN3sPlUj7vQip3Jh3kAKJLxs4H91XApvQdfaQvI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1751385732; c=relaxed/simple;
-	bh=oz5Q11pGlj4vDWckwpFb8BzvCiIWkmrxe+FdgamNqc0=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=mIhYCVbM9Hqjw/ptZ4qv2xx5aC0ynZz0aZ1SUzMeSilvQRhX9xuDKOovlgmKSl0Fn8hJvj6g6Rcj3VdLF/kM4U9EyS04x9PDd/8U9Y8MEk6QMffo2uw7jox5P/FMhcp0u6tDnypk6beU2Rxkvuk3fPjppH/Vm/HhejvwBw6MIFo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=raspberrypi.com; spf=pass smtp.mailfrom=raspberrypi.com; dkim=pass (2048-bit key) header.d=raspberrypi.com header.i=@raspberrypi.com header.b=eoFkIUE8; arc=none smtp.client-ip=209.85.128.50
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=raspberrypi.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=raspberrypi.com
-Received: by mail-wm1-f50.google.com with SMTP id 5b1f17b1804b1-450cb2ddd46so34613415e9.2
-        for <devicetree@vger.kernel.org>; Tue, 01 Jul 2025 09:02:05 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=raspberrypi.com; s=google; t=1751385724; x=1751990524; darn=vger.kernel.org;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=3iLA9QEKpGtzeHbOjLTVI4kROQlKVNQ7ikP4TAnx9ok=;
-        b=eoFkIUE8fxMfYY5VLg4eKPfVMdninL3IgBhjVjVpNouiN62RuXeqfBV9YPtNjqhPvB
-         hTUtO2sXKnZfwIy+c8TOHnN89zTZaeR4RyX444JgtbJwe5cLwZ3vx7atRhpfjFw7/3aV
-         sdK1r5/CR1dVW9+etpEc7qB9Ndbulz1noR9ewxyC0D6XxEMz3IKCHOceO0i2w7Qzwhur
-         0c1IL+LNuR1zxSREB95jgQ098iHJubkat7hHRIE2sFPRTHC0kNpDP4eX8KxrN6xaweyT
-         cu8mjQYM3X+WHn2jVdxVy+jTKEW/I0E2AbBKyudBGoBXLv4yMmMR/bsJdUh0ffbomJFN
-         SndA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1751385724; x=1751990524;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=3iLA9QEKpGtzeHbOjLTVI4kROQlKVNQ7ikP4TAnx9ok=;
-        b=RbhPjH5xSwOKgGWFZoXQAAj6tD9Uz3j0cmcI42ZR74dUPwFOUhzbYYBSHdLzpmlc70
-         iPAfIBRNfdToxCzrn37FEdl8GAmrEM+TN/5yf9/dDmVg0phBKsyk/CnBqb0zUJqsACoH
-         17w1ndn2wds83dg9rteoBjL1by29UwyM3P/C2QHQrJzuo8gBTbMuajn2X/5lRSJ1JZK6
-         +OXwhCU2aEq8zTiEEOTLyUTlaEnvcVpGIal6denV5FKFzOty9OPS/OVxJ+Sb24pxuaTb
-         cQXrO0bHnrNSAc1HfiTRcJCVwOh8XtRBjxmWMMIX71H5Lo7CA+69H09UzKW1SZMFrEri
-         NOzw==
-X-Forwarded-Encrypted: i=1; AJvYcCVBt4NvCycCB17yNrE558IvGV6TemoddL7VZliaxk3jc9sYHiZjTcqoQDl0dCEBgZRJ4AN01hQyur9k@vger.kernel.org
-X-Gm-Message-State: AOJu0Ywx+zhU4uBm41d28inJDwl+/Xw1kKwA7fkTpb6LFthPOhScqrtN
-	v2mlrVGxX/mZg+giUxeS+/5gKsmEqFRgKHMZjJsxWme5DKUtXWvrTMcfuNizHVWYe3Y=
-X-Gm-Gg: ASbGnctFa8JbZc8vJQGV8thTcXxAb1JSlXuBLXG+xFghuS+0vNAbSUML5alLnUKft0Z
-	iBVpacj2z7gop6YSlmrkkx4s8Q0vMIbcEz99uVQJztbk2r40/yVY7swzPhUQ6myDdfq9Lkp2Afb
-	J2ilvghNDq5EmtliwaLowv65MMq7d6TgP9Gd44yp+ZHu6UxIVuyIjIsF7Jk8N8a+TfIb+Oa3EZu
-	AXDy+eO2jPYtyz8Zd5V7wpzAx97ZKTfOhAkLMxGVDxFKbP08zZbIuCiuutILa3vTIeuAZSZmDC4
-	wMrZ2wnN+2HKc0W1WBuAy91WL6gv7u4pkjmGSl7s5w4V5mWPcjaNb90Qy+JLUWju
-X-Google-Smtp-Source: AGHT+IGsO1Tqy1W8cXCWGy9JXBxthxXBveIor0Nz8eJbbhghY3Ud/EpiGA9Z8pt7et5bm6LvqUs4bg==
-X-Received: by 2002:a05:600c:529b:b0:453:8042:ba9a with SMTP id 5b1f17b1804b1-4538ee8590bmr157396235e9.28.1751385723610;
-        Tue, 01 Jul 2025 09:02:03 -0700 (PDT)
-Received: from [127.0.1.1] ([2a00:1098:3142:e::8])
-        by smtp.googlemail.com with ESMTPSA id 5b1f17b1804b1-45388888533sm182500995e9.21.2025.07.01.09.02.02
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 01 Jul 2025 09:02:03 -0700 (PDT)
-From: Dave Stevenson <dave.stevenson@raspberrypi.com>
-Date: Tue, 01 Jul 2025 17:01:38 +0100
-Subject: [PATCH v4 3/5] dt-bindings: media: Add the Raspberry Pi HEVC
- decoder
+	s=arc-20240116; t=1751385723; c=relaxed/simple;
+	bh=yNpjB9RCPYu8yuSQ1YGzgp3ZJQQOJydTGLTUmWj3om8=;
+	h=From:Date:Subject:MIME-Version:Message-Id:In-Reply-To:To:Cc:
+	 Content-Type:References; b=ZB+J38EynxGjqYD3ZczHzLuTRakshNrsnj6HmBOeWe9el/AISWBET/ifowiQKLEtGqyEWizQTtOoib01kKZwmXhUIE7qw5QAiak3rF4QbBZSdve5PSfLR2kDu3kZ9oblUvkHVWnR4adzA3onK2UzCqSfXtcfF+SrQXPSF3KTYIs=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=samsung.com; spf=pass smtp.mailfrom=samsung.com; dkim=pass (1024-bit key) header.d=samsung.com header.i=@samsung.com header.b=ZQAt6TtC; arc=none smtp.client-ip=210.118.77.12
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=samsung.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=samsung.com
+Received: from eucas1p2.samsung.com (unknown [182.198.249.207])
+	by mailout2.w1.samsung.com (KnoxPortal) with ESMTP id 20250701160159euoutp020296b735c3cb58df6632edf9394aad25~OLAhfvJ0Q3149631496euoutp02P
+	for <devicetree@vger.kernel.org>; Tue,  1 Jul 2025 16:01:59 +0000 (GMT)
+DKIM-Filter: OpenDKIM Filter v2.11.0 mailout2.w1.samsung.com 20250701160159euoutp020296b735c3cb58df6632edf9394aad25~OLAhfvJ0Q3149631496euoutp02P
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=samsung.com;
+	s=mail20170921; t=1751385719;
+	bh=9Vo2d35sEyLP44uYKj+D2S0nhQkzl0XSExM9Iiwegts=;
+	h=From:Date:Subject:In-Reply-To:To:Cc:References:From;
+	b=ZQAt6TtCcCcETmRmK1KxRG1jJwEG0EuQyjwiykWb8sSRXP8GBB/b/mACARZxLX/R6
+	 uv6xPXBY459Kz6XnfS/iNABH7koUEGgbMkT/g4Awrrsh3onJ7sKxylhXPUOp9l6ouQ
+	 XPYCxGNi1zvRCx4TTRiadjtHSq1Tonk57CQ+m5Os=
+Received: from eusmtip1.samsung.com (unknown [203.254.199.221]) by
+	eucas1p1.samsung.com (KnoxPortal) with ESMTPA id
+	20250701160158eucas1p1402f4cb2ed2b4d0d672d47f5d3beb3d1~OLAgxb6Yb2273322733eucas1p14;
+	Tue,  1 Jul 2025 16:01:58 +0000 (GMT)
+Received: from AMDC4942.eu.corp.samsungelectronics.net (unknown
+	[106.210.136.40]) by eusmtip1.samsung.com (KnoxPortal) with ESMTPA id
+	20250701160157eusmtip1c29a1b313849ae8a233003c533485342~OLAflrnya0876208762eusmtip1e;
+	Tue,  1 Jul 2025 16:01:57 +0000 (GMT)
+From: Michal Wilczynski <m.wilczynski@samsung.com>
+Date: Tue, 01 Jul 2025 18:01:38 +0200
+Subject: [PATCH v6 1/8] pwm: Expose PWM_WFHWSIZE in public header
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-Message-Id: <20250701-media-rpi-hevc-dec-v4-3-057cfa541177@raspberrypi.com>
-References: <20250701-media-rpi-hevc-dec-v4-0-057cfa541177@raspberrypi.com>
-In-Reply-To: <20250701-media-rpi-hevc-dec-v4-0-057cfa541177@raspberrypi.com>
-To: Sakari Ailus <sakari.ailus@linux.intel.com>, 
- Laurent Pinchart <laurent.pinchart@ideasonboard.com>, 
- Mauro Carvalho Chehab <mchehab@kernel.org>, Rob Herring <robh@kernel.org>, 
- Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, 
- Florian Fainelli <florian.fainelli@broadcom.com>, 
- Broadcom internal kernel review list <bcm-kernel-feedback-list@broadcom.com>, 
- John Cox <john.cox@raspberrypi.com>, Dom Cobley <dom@raspberrypi.com>, 
- review list <kernel-list@raspberrypi.com>, 
- Ezequiel Garcia <ezequiel@vanguardiasur.com.ar>
-Cc: John Cox <jc@kynesim.co.uk>, Stefan Wahren <wahrenst@gmx.net>, 
- linux-media@vger.kernel.org, linux-kernel@vger.kernel.org, 
- devicetree@vger.kernel.org, linux-rpi-kernel@lists.infradead.org, 
- linux-arm-kernel@lists.infradead.org, 
- Dave Stevenson <dave.stevenson@raspberrypi.com>
-X-Mailer: b4 0.14.1
+Message-Id: <20250701-rust-next-pwm-working-fan-for-sending-v6-1-2710932f6f6b@samsung.com>
+In-Reply-To: <20250701-rust-next-pwm-working-fan-for-sending-v6-0-2710932f6f6b@samsung.com>
+To: =?utf-8?q?Uwe_Kleine-K=C3=B6nig?= <ukleinek@kernel.org>,  Miguel Ojeda
+	<ojeda@kernel.org>, Alex Gaynor <alex.gaynor@gmail.com>,  Boqun Feng
+	<boqun.feng@gmail.com>, Gary Guo <gary@garyguo.net>, 
+	=?utf-8?q?Bj=C3=B6rn_Roy_Baron?= <bjorn3_gh@protonmail.com>,  Andreas
+	Hindborg <a.hindborg@kernel.org>, Alice Ryhl <aliceryhl@google.com>,  Trevor
+	Gross <tmgross@umich.edu>, Danilo Krummrich <dakr@kernel.org>,  Michal
+	Wilczynski <m.wilczynski@samsung.com>, Guo Ren <guoren@kernel.org>,  Fu Wei
+	<wefu@redhat.com>, Rob Herring <robh@kernel.org>,  Krzysztof Kozlowski
+	<krzk+dt@kernel.org>,  Conor Dooley <conor+dt@kernel.org>,  Paul Walmsley
+	<paul.walmsley@sifive.com>,  Palmer Dabbelt <palmer@dabbelt.com>, Albert Ou
+	<aou@eecs.berkeley.edu>,  Alexandre Ghiti <alex@ghiti.fr>,  Marek Szyprowski
+	<m.szyprowski@samsung.com>,  Benno Lossin <lossin@kernel.org>,  Michael
+	Turquette <mturquette@baylibre.com>,  Stephen Boyd <sboyd@kernel.org>, Benno
+	Lossin <lossin@kernel.org>,  Drew Fustini <fustini@kernel.org>
+Cc: linux-kernel@vger.kernel.org, linux-pwm@vger.kernel.org,
+	rust-for-linux@vger.kernel.org, linux-riscv@lists.infradead.org, 
+	devicetree@vger.kernel.org, linux-clk@vger.kernel.org
+X-Mailer: b4 0.15-dev
+X-CMS-MailID: 20250701160158eucas1p1402f4cb2ed2b4d0d672d47f5d3beb3d1
+X-Msg-Generator: CA
+Content-Type: text/plain; charset="utf-8"
+X-RootMTR: 20250701160158eucas1p1402f4cb2ed2b4d0d672d47f5d3beb3d1
+X-EPHeader: CA
+X-CMS-RootMailID: 20250701160158eucas1p1402f4cb2ed2b4d0d672d47f5d3beb3d1
+References: <20250701-rust-next-pwm-working-fan-for-sending-v6-0-2710932f6f6b@samsung.com>
+	<CGME20250701160158eucas1p1402f4cb2ed2b4d0d672d47f5d3beb3d1@eucas1p1.samsung.com>
 
-Adds a binding for the HEVC decoder IP owned by Raspberry Pi.
+The WFHWSIZE constant defines the maximum size for the hardware-specific
+waveform representation buffer. It is currently local to
+drivers/pwm/core.c, which makes it inaccessible to external tools like
+bindgen.
 
-Instantiations of the decoder IP can currently be found in
-the Broadcom BCM2711 and BCM2712 SoCs.
+Move the constant to include/linux/pwm.h to make it part of the public
+API. As part of this change, rename it to PWM_WFHWSIZE to follow
+standard kernel conventions for namespacing macros in public headers.
 
-Signed-off-by: Dave Stevenson <dave.stevenson@raspberrypi.com>
+This allows bindgen to automatically generate a corresponding constant
+for the Rust PWM abstractions, ensuring the value remains synchronized
+between the C core and Rust code and preventing future maintenance
+issues.
 
+Signed-off-by: Michal Wilczynski <m.wilczynski@samsung.com>
 ---
+ drivers/pwm/core.c  | 26 ++++++++++++--------------
+ include/linux/pwm.h |  2 ++
+ 2 files changed, 14 insertions(+), 14 deletions(-)
 
-Updated based on the thread in v3 [1] with Krzystof to drop to only SoC
-specific compatible strings.
-
-This still feels wrong to me as this is NOT Broadcom IP - it is solely
-owned by Raspberry Pi.
-
-It is the same situation as for the Raspberry Pi ISP Backend where
-it was proposed to have
-  compatible = "brcm,pispbe-bcm2712", "raspberrypi,pispbe";
-in [2]. That proposal was viewed as acceptable by both Rob[3] and Conor[4],
-and the binding given a Reviewed-by by Rob[5].
-
-Yes it is found as a block inside an SoC, but the same could be said
-for a Synopsys I2C controller ("snps,designware-i2c"), Cadence ethernet
-MAC ("cdns,macb"), ARM CPU (eg "arm,cortex-a53"), or any number of other
-examples. They are all 3rd party IP blocks found in SoCs, have an SoC specific
-compatible defined, but acknowledge the IP owner and use a common fallback
-compatible where possible.
-
-Please could we have confirmation that this really is what is required
-by device tree?
-
-Thanks
-  Dave
-
-[1] https://lore.kernel.org/linux-media/20250423-media-rpi-hevc-dec-v3-3-8fd3fad1d6fb@raspberrypi.com/
-[2] https://lore.kernel.org/linux-media/20240213104405.GB5012@pendragon.ideasonboard.com/
-[3] https://lore.kernel.org/linux-media/20240215140058.GA4147262-robh@kernel.org/
-[4] https://lore.kernel.org/linux-media/20240213-landlady-backstab-6e7da824c99a@spud/
-[5] https://lore.kernel.org/linux-media/170932821578.3062059.18150159256247255021.robh@kernel.org/
----
- .../bindings/media/raspberrypi,hevc-dec.yaml       | 72 ++++++++++++++++++++++
- 1 file changed, 72 insertions(+)
-
-diff --git a/Documentation/devicetree/bindings/media/raspberrypi,hevc-dec.yaml b/Documentation/devicetree/bindings/media/raspberrypi,hevc-dec.yaml
-new file mode 100644
-index 000000000000..fe3361bddd1f
---- /dev/null
-+++ b/Documentation/devicetree/bindings/media/raspberrypi,hevc-dec.yaml
-@@ -0,0 +1,72 @@
-+# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/media/raspberrypi,hevc-dec.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
+diff --git a/drivers/pwm/core.c b/drivers/pwm/core.c
+index b86f06ab2a324ac98115845f72d9386966a0a3b8..c1e8ab1a0945889d92dada003060b8b109f2a138 100644
+--- a/drivers/pwm/core.c
++++ b/drivers/pwm/core.c
+@@ -210,8 +210,6 @@ static int __pwm_write_waveform(struct pwm_chip *chip, struct pwm_device *pwm, c
+ 	return ret;
+ }
+ 
+-#define WFHWSIZE 20
+-
+ /**
+  * pwm_round_waveform_might_sleep - Query hardware capabilities
+  * Cannot be used in atomic context.
+@@ -248,10 +246,10 @@ int pwm_round_waveform_might_sleep(struct pwm_device *pwm, struct pwm_waveform *
+ 	struct pwm_chip *chip = pwm->chip;
+ 	const struct pwm_ops *ops = chip->ops;
+ 	struct pwm_waveform wf_req = *wf;
+-	char wfhw[WFHWSIZE];
++	char wfhw[PWM_WFHWSIZE];
+ 	int ret_tohw, ret_fromhw;
+ 
+-	BUG_ON(WFHWSIZE < ops->sizeof_wfhw);
++	BUG_ON(PWM_WFHWSIZE < ops->sizeof_wfhw);
+ 
+ 	if (!pwmchip_supports_waveform(chip))
+ 		return -EOPNOTSUPP;
+@@ -306,10 +304,10 @@ int pwm_get_waveform_might_sleep(struct pwm_device *pwm, struct pwm_waveform *wf
+ {
+ 	struct pwm_chip *chip = pwm->chip;
+ 	const struct pwm_ops *ops = chip->ops;
+-	char wfhw[WFHWSIZE];
++	char wfhw[PWM_WFHWSIZE];
+ 	int err;
+ 
+-	BUG_ON(WFHWSIZE < ops->sizeof_wfhw);
++	BUG_ON(PWM_WFHWSIZE < ops->sizeof_wfhw);
+ 
+ 	if (!pwmchip_supports_waveform(chip) || !ops->read_waveform)
+ 		return -EOPNOTSUPP;
+@@ -334,11 +332,11 @@ static int __pwm_set_waveform(struct pwm_device *pwm,
+ {
+ 	struct pwm_chip *chip = pwm->chip;
+ 	const struct pwm_ops *ops = chip->ops;
+-	char wfhw[WFHWSIZE];
++	char wfhw[PWM_WFHWSIZE];
+ 	struct pwm_waveform wf_rounded;
+ 	int err, ret_tohw;
+ 
+-	BUG_ON(WFHWSIZE < ops->sizeof_wfhw);
++	BUG_ON(PWM_WFHWSIZE < ops->sizeof_wfhw);
+ 
+ 	if (!pwmchip_supports_waveform(chip))
+ 		return -EOPNOTSUPP;
+@@ -650,9 +648,9 @@ static int __pwm_apply(struct pwm_device *pwm, const struct pwm_state *state)
+ 
+ 	if (pwmchip_supports_waveform(chip)) {
+ 		struct pwm_waveform wf;
+-		char wfhw[WFHWSIZE];
++		char wfhw[PWM_WFHWSIZE];
+ 
+-		BUG_ON(WFHWSIZE < ops->sizeof_wfhw);
++		BUG_ON(PWM_WFHWSIZE < ops->sizeof_wfhw);
+ 
+ 		pwm_state2wf(state, &wf);
+ 
+@@ -809,10 +807,10 @@ int pwm_get_state_hw(struct pwm_device *pwm, struct pwm_state *state)
+ 		return -ENODEV;
+ 
+ 	if (pwmchip_supports_waveform(chip) && ops->read_waveform) {
+-		char wfhw[WFHWSIZE];
++		char wfhw[PWM_WFHWSIZE];
+ 		struct pwm_waveform wf;
+ 
+-		BUG_ON(WFHWSIZE < ops->sizeof_wfhw);
++		BUG_ON(PWM_WFHWSIZE < ops->sizeof_wfhw);
+ 
+ 		ret = __pwm_read_waveform(chip, pwm, &wfhw);
+ 		if (ret)
+@@ -1696,8 +1694,8 @@ static bool pwm_ops_check(const struct pwm_chip *chip)
+ 		    !ops->write_waveform)
+ 			return false;
+ 
+-		if (WFHWSIZE < ops->sizeof_wfhw) {
+-			dev_warn(pwmchip_parent(chip), "WFHWSIZE < %zu\n", ops->sizeof_wfhw);
++		if (PWM_WFHWSIZE < ops->sizeof_wfhw) {
++			dev_warn(pwmchip_parent(chip), "PWM_WFHWSIZE < %zu\n", ops->sizeof_wfhw);
+ 			return false;
+ 		}
+ 	} else {
+diff --git a/include/linux/pwm.h b/include/linux/pwm.h
+index 2492c91452f9641881e9923e5a97e0705047da59..8cafc483db53addf95591d1ac74287532c0fa0ee 100644
+--- a/include/linux/pwm.h
++++ b/include/linux/pwm.h
+@@ -274,6 +274,8 @@ struct pwm_capture {
+ 	unsigned int duty_cycle;
+ };
+ 
++#define PWM_WFHWSIZE 20
 +
-+title: Raspberry Pi HEVC Decoder
-+
-+maintainers:
-+  - John Cox <john.cox@raspberrypi.com>
-+  - Dom Cobley <dom@raspberrypi.com>
-+  - Dave Stevenson <dave.stevenson@raspberrypi.com>
-+
-+description:
-+  The Raspberry Pi HEVC decoder is a hardware video decode accelerator IP block
-+  developed and owned by Raspberry Pi.
-+
-+  Currently it can be found in the Broadcom BCM2711 and BCM2712 processors used
-+  on Raspberry Pi 4 and 5 boards respectively.
-+
-+properties:
-+  compatible:
-+    oneOf:
-+      - const: brcm,bcm2711-hevc-dec
-+      - items:
-+          - enum:
-+              - brcm,bcm2712-hevc-dec
-+          - const: brcm,bcm2711-hevc-dec
-+
-+  reg:
-+    items:
-+      - description: The HEVC main register region
-+      - description: The Interrupt control register region
-+
-+  reg-names:
-+    items:
-+      - const: hevc
-+      - const: intc
-+
-+  interrupts:
-+    maxItems: 1
-+
-+  clocks:
-+    items:
-+      - description: The HEVC block clock
-+
-+required:
-+  - compatible
-+  - reg
-+  - reg-names
-+  - interrupts
-+  - clocks
-+
-+additionalProperties: false
-+
-+examples:
-+  - |
-+    #include <dt-bindings/interrupt-controller/arm-gic.h>
-+
-+    video-codec@7eb10000 {
-+        compatible = "brcm,bcm2711-hevc-dec";
-+        reg = <0x7eb00000 0x10000>, /* HEVC */
-+              <0x7eb10000 0x1000>;  /* INTC */
-+        reg-names = "hevc",
-+                    "intc";
-+
-+        interrupts = <GIC_SPI 98 IRQ_TYPE_LEVEL_HIGH>;
-+
-+        clocks = <&clk 0>;
-+    };
-+
-+...
+ /**
+  * struct pwm_ops - PWM controller operations
+  * @request: optional hook for requesting a PWM
 
 -- 
 2.34.1
