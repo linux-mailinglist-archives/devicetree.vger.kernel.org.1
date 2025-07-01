@@ -1,132 +1,107 @@
-Return-Path: <devicetree+bounces-191671-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-191672-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id CBF04AF00E6
-	for <lists+devicetree@lfdr.de>; Tue,  1 Jul 2025 18:57:58 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 8483AAF00EB
+	for <lists+devicetree@lfdr.de>; Tue,  1 Jul 2025 18:58:20 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 9740816DAAE
-	for <lists+devicetree@lfdr.de>; Tue,  1 Jul 2025 16:55:02 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 02533170CDA
+	for <lists+devicetree@lfdr.de>; Tue,  1 Jul 2025 16:55:20 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 159E6280A5B;
-	Tue,  1 Jul 2025 16:51:45 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3AD7627E071;
+	Tue,  1 Jul 2025 16:53:00 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=linux.dev header.i=@linux.dev header.b="GZ81VnWH"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="bQQYq7Ah"
 X-Original-To: devicetree@vger.kernel.org
-Received: from out-186.mta0.migadu.com (out-186.mta0.migadu.com [91.218.175.186])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 15BE427F747;
-	Tue,  1 Jul 2025 16:51:42 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=91.218.175.186
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0DF4827E052;
+	Tue,  1 Jul 2025 16:52:59 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1751388705; cv=none; b=a/oNkf56ZAj/Ae2wyo5ONZffJ3O2PnQnfqdf+M81ytUqu6yPzQWy+Qn2OJIlz2Sh7XJ5ipDN06FScmg5cxeK+REDbleISPq86a8lzU52uFlk9iDL/gMepHy3dLL9oDuq4KRE3dTaShSDE6Vtgt7/ZougbcPq65HBliDtA5Sw0H8=
+	t=1751388780; cv=none; b=Fm90SyVV07YhQT54r53ud51cx7NOYMUJ5O/Z2eVLhzasfEUuC3Fwq54PxNqOHVCL793uj6RfxrvhfOKgZ4PgbPJDLMj2JpcnRLf+ANGXMAOQCfaXl5JfXAmAVe6G+6veEQOxH+j2jtNTp1tcUNxIMQJ9oQchq/c6XQO+qTuzjkI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1751388705; c=relaxed/simple;
-	bh=ScYmrBs35c67NS+18BBbVeUIJoDQx7NJUj3YkrlQwRk=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=bca3DB0wLsCUhmWZfMYjnLqxUmZEgwYdMgtNYZqT8WtRnuesymJBu/rgsttZNUJUAetDRI5fDP7KkjwJ9VUqHelkLF/gYs5wk5Uj95xasmG80B+CuJGwwDFYNWPWrq9r1NzFmsGwuHFHthWraLYnSHjSuY9WxWHtZ7dTa78YkS4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.dev; spf=pass smtp.mailfrom=linux.dev; dkim=pass (1024-bit key) header.d=linux.dev header.i=@linux.dev header.b=GZ81VnWH; arc=none smtp.client-ip=91.218.175.186
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.dev
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linux.dev
-Message-ID: <31c2154b-0dc2-4d5d-a10b-803e459755e8@linux.dev>
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linux.dev; s=key1;
-	t=1751388700;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=yMEWrmV13hU5wNv9/YPiVk6dF9W0HhiA72VWSabwD9E=;
-	b=GZ81VnWHz5lUEtQrFYxLovydqUcBu+AYV2Hez8GFoftT8ekfk4TH59Gr2ZydlK0N8eR+MR
-	PIkDHF/pJHfNm0h7hHiNLgd5aX9NtjxIC/FxNj6YULbvsWxgLQnlSlTYVVAEKeVu+nDdnT
-	6YnYd8Br6FUm4YpTDAz8XbJZ5sHGnw8=
-Date: Tue, 1 Jul 2025 12:51:34 -0400
+	s=arc-20240116; t=1751388780; c=relaxed/simple;
+	bh=rPXpL0fXlhDi6bCw2uhaVToXc3jyQpgytRJQynaVkWQ=;
+	h=Date:From:To:Cc:Subject:Message-ID:MIME-Version:Content-Type:
+	 Content-Disposition:In-Reply-To; b=cAlD6s6AXFq3QnhP6EA8+vI8PKKGWAseuMLmaTBFIfcF+jzWnrWGoXdlYnU5+zlTO5SYUbXej8bg6TgAzXjwu89DzcWycq5/Iu3D7R4OflGEKlUSU25PYutv98yEaN6h+eXaVDxKp0mIxRokDwvsLpO/YJChlqZpHST0lxyM8Zc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=bQQYq7Ah; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 5B616C4CEEB;
+	Tue,  1 Jul 2025 16:52:59 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1751388779;
+	bh=rPXpL0fXlhDi6bCw2uhaVToXc3jyQpgytRJQynaVkWQ=;
+	h=Date:From:To:Cc:Subject:In-Reply-To:From;
+	b=bQQYq7AhslDBoztI6jabho5UCBG4e+dk9G6T01dkAKcu8GmWJDFBqRbWTOjaOnh+j
+	 0UT1uVTCe9bkDBfTWDN4U2uASJ5ccA5hthNHUhYxFmNd9JeziT5t0FDl1B4kWs/4fD
+	 0Yqwq5g/U9Lvcn/mTZ/GFATCDQKiFkw9k4VE2CBwDtdDKrZD7Bq1ZTG2rfM2NrQA1t
+	 gMhGa0nV31fGCY+k3U2KQUSoBOA8roQyRHxSOfKvt5Hojyeni7DzepSq+JuryVQS0x
+	 Rb81butnTAD/gDcu1ZfHe58y4kQs3DaCdipgUq8UZmBMQC//KdmyR8PWx04RyJi440
+	 hhW16oQbItIug==
+Date: Tue, 1 Jul 2025 11:52:57 -0500
+From: Bjorn Helgaas <helgaas@kernel.org>
+To: Mayank Rana <mayank.rana@oss.qualcomm.com>
+Cc: linux-pci@vger.kernel.org, will@kernel.org, lpieralisi@kernel.org,
+	kw@linux.com, robh@kernel.org, bhelgaas@google.com,
+	andersson@kernel.org, mani@kernel.org,
+	krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
+	devicetree@vger.kernel.org, linux-arm-msm@vger.kernel.org,
+	quic_ramkri@quicinc.com, quic_shazhuss@quicinc.com,
+	quic_msarkar@quicinc.com, quic_nitegupt@quicinc.com
+Subject: Re: [PATCH v5 3/4] dt-bindings: PCI: qcom,pcie-sa8255p: Document
+ ECAM compliant PCIe root complex
+Message-ID: <20250701165257.GA1839070@bhelgaas>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Subject: Re: [PATCH net-next v2 14/18] net: macb: add no LSO capability
- (MACB_CAPS_NO_LSO)
-To: =?UTF-8?Q?Th=C3=A9o_Lebrun?= <theo.lebrun@bootlin.com>,
- Andrew Lunn <andrew+netdev@lunn.ch>, "David S. Miller"
- <davem@davemloft.net>, Eric Dumazet <edumazet@google.com>,
- Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>,
- Nicolas Ferre <nicolas.ferre@microchip.com>,
- Claudiu Beznea <claudiu.beznea@tuxon.dev>,
- Paul Walmsley <paul.walmsley@sifive.com>, Palmer Dabbelt
- <palmer@dabbelt.com>, Albert Ou <aou@eecs.berkeley.edu>,
- Alexandre Ghiti <alex@ghiti.fr>, Samuel Holland <samuel.holland@sifive.com>,
- Richard Cochran <richardcochran@gmail.com>,
- Russell King <linux@armlinux.org.uk>,
- Thomas Bogendoerfer <tsbogend@alpha.franken.de>,
- Vladimir Kondratiev <vladimir.kondratiev@mobileye.com>,
- Gregory CLEMENT <gregory.clement@bootlin.com>,
- Cyrille Pitchen <cyrille.pitchen@atmel.com>,
- Harini Katakam <harini.katakam@xilinx.com>,
- Rafal Ozieblo <rafalo@cadence.com>,
- Haavard Skinnemoen <hskinnemoen@atmel.com>, Jeff Garzik <jeff@garzik.org>
-Cc: netdev@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, linux-riscv@lists.infradead.org,
- linux-mips@vger.kernel.org, Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
- Tawfik Bayouk <tawfik.bayouk@mobileye.com>, Andrew Lunn <andrew@lunn.ch>
-References: <20250627-macb-v2-0-ff8207d0bb77@bootlin.com>
- <20250627-macb-v2-14-ff8207d0bb77@bootlin.com>
-Content-Language: en-US
-X-Report-Abuse: Please report any abuse attempt to abuse@migadu.com and include these headers.
-From: Sean Anderson <sean.anderson@linux.dev>
-In-Reply-To: <20250627-macb-v2-14-ff8207d0bb77@bootlin.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
-X-Migadu-Flow: FLOW_OUT
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20250616224259.3549811-4-mayank.rana@oss.qualcomm.com>
 
-On 6/27/25 05:09, Théo Lebrun wrote:
-> LSO is runtime-detected using the PBUF_LSO field inside register
-> designcfg_debug6/GEM_DCFG6. Allow disabling that feature if it is
-> broken by using struct macb_config->caps.
-> 
-> Reviewed-by: Andrew Lunn <andrew@lunn.ch>
-> Signed-off-by: Théo Lebrun <theo.lebrun@bootlin.com>
-> ---
->  drivers/net/ethernet/cadence/macb.h      | 1 +
->  drivers/net/ethernet/cadence/macb_main.c | 6 ++++--
->  2 files changed, 5 insertions(+), 2 deletions(-)
-> 
-> diff --git a/drivers/net/ethernet/cadence/macb.h b/drivers/net/ethernet/cadence/macb.h
-> index d42c81cf441ce435cad38e2dfd779b0e6a141bf3..e5de6549861965e2823044d81b6abc20d2b27ceb 100644
-> --- a/drivers/net/ethernet/cadence/macb.h
-> +++ b/drivers/net/ethernet/cadence/macb.h
-> @@ -736,6 +736,7 @@
->  #define MACB_CAPS_NEED_TSUCLK			BIT(10)
->  #define MACB_CAPS_QUEUE_DISABLE			BIT(11)
->  #define MACB_CAPS_RSC_CAPABLE			BIT(12)
-> +#define MACB_CAPS_NO_LSO			BIT(13)
->  #define MACB_CAPS_PCS				BIT(24)
->  #define MACB_CAPS_HIGH_SPEED			BIT(25)
->  #define MACB_CAPS_CLK_HW_CHG			BIT(26)
-> diff --git a/drivers/net/ethernet/cadence/macb_main.c b/drivers/net/ethernet/cadence/macb_main.c
-> index 34223dad2d01ae4bcefc0823c868a67f59435638..f9a3a5caebcafe3d9197a3bc7681b64734d7ac93 100644
-> --- a/drivers/net/ethernet/cadence/macb_main.c
-> +++ b/drivers/net/ethernet/cadence/macb_main.c
-> @@ -4346,8 +4346,10 @@ static int macb_init(struct platform_device *pdev)
->  	/* Set features */
->  	dev->hw_features = NETIF_F_SG;
->  
-> -	/* Check LSO capability */
-> -	if (GEM_BFEXT(PBUF_LSO, gem_readl(bp, DCFG6)))
-> +	/* Check LSO capability; runtime detection can be overridden by a cap
-> +	 * flag if the hardware is known to be buggy */
-> +	if (!(bp->caps & MACB_CAPS_NO_LSO) &&
-> +	    GEM_BFEXT(PBUF_LSO, gem_readl(bp, DCFG6)))
->  		dev->hw_features |= MACB_NETIF_LSO;
->  
->  	/* Checksum offload is only available on gem with packet buffer */
-> 
+On Mon, Jun 16, 2025 at 03:42:58PM -0700, Mayank Rana wrote:
+> Document the required configuration to enable the PCIe root complex on
+> SA8255p, which is managed by firmware using power-domain based handling
+> and configured as ECAM compliant.
 
-Reviewed-by: Sean Anderson <sean.anderson@linux.dev>
+> +    soc {
+> +        #address-cells = <2>;
+> +        #size-cells = <2>;
+> +
+> +        pci@1c00000 {
+> +           compatible = "qcom,pcie-sa8255p";
+> +           reg = <0x4 0x00000000 0 0x10000000>;
+> +           device_type = "pci";
+> +           #address-cells = <3>;
+> +           #size-cells = <2>;
+> +           ranges = <0x02000000 0x0 0x40100000 0x0 0x40100000 0x0 0x1ff00000>,
+> +                    <0x43000000 0x4 0x10100000 0x4 0x10100000 0x0 0x40000000>;
+> +           bus-range = <0x00 0xff>;
+> +           dma-coherent;
+> +           linux,pci-domain = <0>;
+> ...
+
+> +           pcie@0 {
+> +                   device_type = "pci";
+> +                   reg = <0x0 0x0 0x0 0x0 0x0>;
+> +                   bus-range = <0x01 0xff>;
+
+This is a Root Port, right?  Why do we need bus-range here?  I assume
+that even without this, the PCI core can detect and manage the bus
+range using PCI_SECONDARY_BUS and PCI_SUBORDINATE_BUS.
+
+> +                   #address-cells = <3>;
+> +                   #size-cells = <2>;
+> +                   ranges;
+> +            };
+> +        };
+> +    };
+> -- 
+> 2.25.1
+> 
 
