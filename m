@@ -1,202 +1,183 @@
-Return-Path: <devicetree+bounces-191787-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-191792-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0F75FAF06D1
-	for <lists+devicetree@lfdr.de>; Wed,  2 Jul 2025 01:15:36 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 6253DAF06F7
+	for <lists+devicetree@lfdr.de>; Wed,  2 Jul 2025 01:30:34 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 4BF3C18973EB
-	for <lists+devicetree@lfdr.de>; Tue,  1 Jul 2025 23:15:52 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 256191C04D03
+	for <lists+devicetree@lfdr.de>; Tue,  1 Jul 2025 23:30:45 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id F303F2EE5F7;
-	Tue,  1 Jul 2025 23:15:30 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8D64227054A;
+	Tue,  1 Jul 2025 23:30:17 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="Bovg+wL+"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="L6LB1v0F"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-qv1-f49.google.com (mail-qv1-f49.google.com [209.85.219.49])
+Received: from mail-wm1-f52.google.com (mail-wm1-f52.google.com [209.85.128.52])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5790D28136B;
-	Tue,  1 Jul 2025 23:15:29 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.219.49
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 821BB26E146
+	for <devicetree@vger.kernel.org>; Tue,  1 Jul 2025 23:30:15 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.52
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1751411730; cv=none; b=LGeWTBBtYZvkjVTW2saSvFkXelvzSg8Lyex2hzpsE9SDSvI4IJbU4FcnVLz3sNo29rYpzKdnKbnwbvG0wZBZIBB9wWD1OvP0WKUqEwRDlZHAzYPvHUTbSPu2+gokFM34mWSEOMdkpFNrFNWG/EvuG3TqQme3pAhoijmZm8Iii1M=
+	t=1751412617; cv=none; b=VXq/GI6G3gNh4IZ5qpA6t9TZN8yKONbR+X0UDzT/RN8uq7fh+MdmABGkn+a/mHWGONvf3wmGZYZvcnXNJtWwufs3yntwY6kmWXpZKcONVn+Sph0kK+0IgK9Pi3ds2+QqyraU0mqyfWwdoprPtKCmhHssrqH6478WTroE58oKgX0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1751411730; c=relaxed/simple;
-	bh=+ZXx/8koRnOlNn/Z+Je1dbG6/mUersg2F6UG9LA621g=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=b4S+8Ak3ce8yW00BmOFjUVu4Pxzp+Xm4NCyZwjBDpooaVidPkVEFFZ2RdfdIUEQbIW6tmkqpuqXUlnbLpWQcvFb2dcvqPiWbRYYjvcGQmwGCmUHW6QTAqvIyEZUaZlXxhSFx7jQw/FXzAe1OgSlfyVU4sORJxughpaGwjoyCuo4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=Bovg+wL+; arc=none smtp.client-ip=209.85.219.49
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-qv1-f49.google.com with SMTP id 6a1803df08f44-6fb1be9ba89so39181276d6.2;
-        Tue, 01 Jul 2025 16:15:29 -0700 (PDT)
+	s=arc-20240116; t=1751412617; c=relaxed/simple;
+	bh=zRVKdNBo3oYtirxhyyChLEgwk1WbbXOs6Ro55DSo9TU=;
+	h=Mime-Version:Content-Type:Date:Message-Id:Subject:From:To:Cc:
+	 References:In-Reply-To; b=aDQrGOoSXs6LqaKHH0EXK8WEmi30uCsx0s6N3qcdE6xxBcKElJd5gRVTJUgIZWPXZ8Yn46TrUSe9g8xvwtlkwerq5lXrmBuVHPjlgMHHV8F1rF8OhhUvHIcau53mxo/VoXO15rtkwLt1fH5sHEwbl1MXTLsCEd16VXDGxOWMsV4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=L6LB1v0F; arc=none smtp.client-ip=209.85.128.52
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-wm1-f52.google.com with SMTP id 5b1f17b1804b1-453647147c6so66657895e9.2
+        for <devicetree@vger.kernel.org>; Tue, 01 Jul 2025 16:30:15 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1751411728; x=1752016528; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=0PMznrJ6yy2pDCCyz/WETZ/iq5H1e5CY2r1aWuHOiOA=;
-        b=Bovg+wL+pdHAh2XbGCZr3nTxLQrgK82yAL9OI8sTcuPO7UsEPHUul3fvb4hV+S9b+y
-         +RQsQ7Uwibzu+Vd2SFhuavbZWKaujEQ7Oz0HehOHmCi40y3ifb/TpnL3c6KvCsamjnf5
-         rZWg1+Hnqt/TXA9RpTqigVDrpCupwZb+8l+cMPgD2/Pwu4sp0cdCWJnBmsf67tfRIXdp
-         7qoxDrDlXZesnHG6gFbVFdtjSA1/T8td6vd3VksMmqnUZn9c9rur7HrpeafOYydfT3Mm
-         VvrjJSEutZFId6RDjSakZZVqCXEIGJhJvl9vzSSMFZ9kzBeGrOfQqyXxZLMYeMb8Y6Hk
-         xcnA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1751411728; x=1752016528;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+        d=linaro.org; s=google; t=1751412614; x=1752017414; darn=vger.kernel.org;
+        h=in-reply-to:references:cc:to:from:subject:message-id:date
+         :content-transfer-encoding:mime-version:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=0PMznrJ6yy2pDCCyz/WETZ/iq5H1e5CY2r1aWuHOiOA=;
-        b=l3NY52KNI95jDNkus2vMRn+HBiR2ypH+R1AocCMFAADK3HaEDDl4bas/GGdyxSOfwY
-         iimU3WhP0VQ/wVR89xQvymYbep/mdfKeBVKOyHo7UDXEChCOcvnP4pUsgEIGugBjP6Eg
-         8eCJhSlw/H9fs/+NE4IV1Pgmh3xfiDR0U6gXmpEPtxFQuKcFJaWU22tGaWfsanww4XPj
-         bKZfI+iPcn5qBRupZEDqeioHGHmWgTlDqs109kjHW2I/rMyGw5Gfa3noDGw6+cPKtzVW
-         DH9k5v3wAdwdNru+p7XHTNOh02FXHo3L2Qv70TQV3CB7Y2K6Hvv4kYNWqLQI+xWIcFPl
-         ly4A==
-X-Forwarded-Encrypted: i=1; AJvYcCU6+RtODFAf5jqnthJ1LCv6mZ/7wgDzS1EWPd37w4tg7I7xoXDY1im0uDNGUbPhN1+zvi6CsCrUXQZ1@vger.kernel.org, AJvYcCUNbAsGROBgFs/O5NrWq4Q374WtCG2fUl2P5Y/CGSJa9xQhPsXyglwYPQgS2VHc2vL0JZAH/SSo9ceNbPw=@vger.kernel.org, AJvYcCXUDvUwVCuRqZMnBdAxoZ29x3PkY/lnW3fKqQtq5otaSabp4G8SEph0jcXA+eaFKbD9bREhHgYijNCexGXNmQ==@vger.kernel.org
-X-Gm-Message-State: AOJu0Yww1EP5V5xbQdY65dUdHvOy9/n/uShJ7PTmqOga1E05qVtTly0t
-	uR21M30VxY4GZO4KWh3+ZvkElP6P/bCJ6tmQk7H2clofAQT1/+gvAfdZ
-X-Gm-Gg: ASbGncs2oy/VJ08PL3/ZhF6glt3Mi5pAuTPYNTlimC827ngJXEJ1z5G0Yj/1jbZZYKH
-	Okbd/Lal6tFzWokvert4K51vjzQztlr9ifNtQk0xh9guz9wfANbsXk6R03D9hbc50aky06R3gQE
-	tAOzpNk9vxvveUL26JgXOttv3AK+6z1YiISmaIve/QeiBcMlZSNZmPSX3y27GujkcBUcDvddS6I
-	K2pn16Co4JbuLvpaUW9qvbug1dYuHLPffcrbwSmyfDT3YNHO/GEy6I1ivssOpxEjK+Zv+SfWvM3
-	3EeNMtM1V7HMzgoWBixP2Bt0WGRb+hQcK4/5mEd0F+JweY4WDg==
-X-Google-Smtp-Source: AGHT+IE3chY+Ty+YzMEEQbVtUm0Flg9bcjPrqwQ1GO/uoDdWmtmDVdh6aYgbp3pGGUm6JW86fot7Fw==
-X-Received: by 2002:a05:6214:1c85:b0:6f8:b73e:8ea5 with SMTP id 6a1803df08f44-702b1bab444mr5887066d6.26.1751411727977;
-        Tue, 01 Jul 2025 16:15:27 -0700 (PDT)
-Received: from localhost ([2607:fea8:3140:6800::9bde])
-        by smtp.gmail.com with UTF8SMTPSA id af79cd13be357-7d443139b31sm852417985a.7.2025.07.01.16.15.27
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 01 Jul 2025 16:15:27 -0700 (PDT)
-Date: Tue, 1 Jul 2025 19:15:25 -0400
-From: Richard Acayan <mailingradian@gmail.com>
-To: Bryan O'Donoghue <bryan.odonoghue@linaro.org>
-Cc: Mauro Carvalho Chehab <mchehab@kernel.org>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Bjorn Andersson <andersson@kernel.org>,
-	Konrad Dybcio <konradybcio@kernel.org>,
-	Sakari Ailus <sakari.ailus@linux.intel.com>,
-	Tianshu Qiu <tian.shu.qiu@intel.com>, linux-media@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-arm-msm@vger.kernel.org
-Subject: Re: [PATCH 4/5] arm64: dts: qcom: sdm670-google-sargo: add imx355
- front camera
-Message-ID: <aGRsDRnV5tc5IG3J@radian>
-References: <20250630225944.320755-7-mailingradian@gmail.com>
- <3qGugliBdtpdHGZzR9xh_974TfJigMYERGVAfqmpCqe1R7O0CLU8FzXVcIESzTIc-SKzpk42ZAx5-38eDX00Eg==@protonmail.internalid>
- <20250630225944.320755-11-mailingradian@gmail.com>
- <488281f6-5e5d-4864-8220-63e2a0b2d7f2@linaro.org>
+        bh=oxkUs9RFusjv08S72yLrh5Wg1MHFO9VcHZyNeP7ykBI=;
+        b=L6LB1v0Fyc0x7c52HaIjxJtK5WyOscysreC0zqmWS2UbMBM7yEPzy5MZDSGRtos00F
+         JekQ3y42bvNfK2GZOgYSz0nwd1oiY6MqrIfuENZP/Q27J49GTXZ20r/fB0fYtKpVwps6
+         7khnldEXzfeBrw1cHW8I1ACewuVCLLACagqTRUBPgATbzIgJjw15iaeeEHyNftoq1+0S
+         nfIO75fZYAryeoXAfSnFrBGzht6XZsWGvWZNVGWy813+FSCbD8trYVq5/pEt59NIYnmf
+         TTy39mSGbbDawZmc3/QLHcW6E24kMlLeeQCUCWEY6bmUzd+VR8gEu0fpMWtI8rAF7OKO
+         WuGw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1751412614; x=1752017414;
+        h=in-reply-to:references:cc:to:from:subject:message-id:date
+         :content-transfer-encoding:mime-version:x-gm-message-state:from:to
+         :cc:subject:date:message-id:reply-to;
+        bh=oxkUs9RFusjv08S72yLrh5Wg1MHFO9VcHZyNeP7ykBI=;
+        b=wMBnrzolb1s225Fic6KSAEMpsHhU2lDlFM/1pUAWsTVfu1X4+EB8XBdj0YuXDSfeiu
+         GG3Try0TwkTBdeYxsHYUfnqsVK+iLhlMv9EAyGyNCBDi3CCy9h8HSaOiyrPvPRo3R94H
+         fJmedlR5dktU7Q7HpMsvI/BT2y+A0jIoxxBxHBSZbJge8OGUezJNWYXjVXLq3XYyhEEX
+         0cPqY8leyYFuljgirWU7LyansAFc40BnYz7O6trfHjMfkoE5cn1CFybhvn/5XdSZsngH
+         CCHp20chnAHcCJb16ugzlBMUIyZTPAwNUdGhvCf9DrB7I37OGtG24IO6ufb485UlehnK
+         TfBQ==
+X-Forwarded-Encrypted: i=1; AJvYcCUM8y7CVoKOZOTgiDvG1AbpRW/i2+9Ryys/6VngBiqf248DcGmuhN8Fb3gW3CjT3USpsMcnaf6K+qMP@vger.kernel.org
+X-Gm-Message-State: AOJu0YztkuCDR4szKLtCVjMLpEBTC26wS9FLjP4pNp1keNlPSEuWaNFp
+	CMalomxr5NqOTZ3HTwKo4GP32Lln+xu0AyBLkEFpGmhovoszwAouwlljYJHhf+LRdy0=
+X-Gm-Gg: ASbGncsibY/kbG7H3yjqLfPTRQiiYF6uRmPd0SKI03nOBuiPKMuebC/Ub27V5cYt70D
+	Lx3kn7m8otKs9oNWvqKhQpHW2v0kcS/A5cMBvYdXvN8EDx5v0LplFjiugNO5wp7vvRSxhpyH2QR
+	oE0yiL/XsOYaPKCmvnLKBz07yVadDYEbWBOFl5A343PYecj6SVn4UY9TCueJN6omBRauGOpYfYJ
+	H2b5uAEKcfS9uOmcH2w+GfUt/QNxttF0srYm3LQZ/KpIgB1EoK7UVDfIvJhBonHwb1drV+mjL2x
+	O+LmtslWY8xwnNVHNKoHCw7v0XrXbLtFPiZXPC5UWERJE5uWtYhbwKsugrEQxQ2O1RzR
+X-Google-Smtp-Source: AGHT+IGWh47dzU/qedhk5q4wmllU/1FOhqD8rZdFeCpoKzh5IjU9RGIxJ/oggHk3EfGT1VRySLysbQ==
+X-Received: by 2002:a05:600c:6205:b0:43c:fc04:6d35 with SMTP id 5b1f17b1804b1-454a36deea0mr9755065e9.4.1751412613725;
+        Tue, 01 Jul 2025 16:30:13 -0700 (PDT)
+Received: from localhost ([2a02:c7c:7213:c700:4dad:b69a:9c81:2e57])
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-453b35349f0sm25469415e9.1.2025.07.01.16.30.12
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 01 Jul 2025 16:30:13 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <488281f6-5e5d-4864-8220-63e2a0b2d7f2@linaro.org>
+Mime-Version: 1.0
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=UTF-8
+Date: Wed, 02 Jul 2025 00:30:12 +0100
+Message-Id: <DB13YER95DCW.1IBRJ65LED5GX@linaro.org>
+Subject: Re: [PATCH 1/3] dt-bindings: sound: add bindings for pm4125 audio
+ codec
+From: "Alexey Klimov" <alexey.klimov@linaro.org>
+To: "Krzysztof Kozlowski" <krzk@kernel.org>
+Cc: "Srinivas Kandagatla" <srini@kernel.org>, "Liam Girdwood"
+ <lgirdwood@gmail.com>, "Mark Brown" <broonie@kernel.org>, "Rob Herring"
+ <robh@kernel.org>, "Krzysztof Kozlowski" <krzk+dt@kernel.org>, "Conor
+ Dooley" <conor+dt@kernel.org>, "Stephen Boyd" <sboyd@kernel.org>, "Lee
+ Jones" <lee@kernel.org>, "Jaroslav Kysela" <perex@perex.cz>, "Takashi Iwai"
+ <tiwai@suse.com>, <linux-arm-msm@vger.kernel.org>,
+ <linux-sound@vger.kernel.org>, <devicetree@vger.kernel.org>,
+ <linux-kernel@vger.kernel.org>, "Dmitry Baryshkov"
+ <dmitry.baryshkov@oss.qualcomm.com>, "Srinivas Kandagatla"
+ <srinivas.kandagatla@oss.qualcomm.com>
+X-Mailer: aerc 0.20.0
+References: <20250626-pm4125_audio_codec_v1-v1-0-e52933c429a0@linaro.org>
+ <20250626-pm4125_audio_codec_v1-v1-1-e52933c429a0@linaro.org>
+ <wcmalvywoginosy5pp7wskgdzjbwbydividmk4dtwguoltiobf@muw5lzkvgu5c>
+ <DAYBDV1I7HH0.1GG9U3LI5NQ97@linaro.org>
+ <d24b2a88-fda7-4a8a-bb5b-73d8a928ff89@kernel.org>
+In-Reply-To: <d24b2a88-fda7-4a8a-bb5b-73d8a928ff89@kernel.org>
 
-On Tue, Jul 01, 2025 at 01:23:44PM +0100, Bryan O'Donoghue wrote:
-> On 30/06/2025 23:59, Richard Acayan wrote:
-> > The Sony IMX355 is the front camera on the Pixel 3a. It is connected to
-> > CSIPHY1 and CCI I2C1, and uses MCLK2. Add support for it.
-> > 
-> > Signed-off-by: Richard Acayan <mailingradian@gmail.com>
-> > ---
-> >   .../boot/dts/qcom/sdm670-google-sargo.dts     | 112 ++++++++++++++++++
-> >   1 file changed, 112 insertions(+)
-> > 
-> > diff --git a/arch/arm64/boot/dts/qcom/sdm670-google-sargo.dts b/arch/arm64/boot/dts/qcom/sdm670-google-sargo.dts
-> > index d01422844fbf..0af6a440ecbc 100644
-> > --- a/arch/arm64/boot/dts/qcom/sdm670-google-sargo.dts
-> > +++ b/arch/arm64/boot/dts/qcom/sdm670-google-sargo.dts
-> > @@ -172,6 +172,34 @@ vreg_s2b_1p05: vreg-s2b-regulator {
-> >   		regulator-min-microvolt = <1050000>;
-> >   		regulator-max-microvolt = <1050000>;
-> >   	};
-> > +
-> > +	cam_front_ldo: cam-front-ldo-regulator {
-> > +		compatible = "regulator-fixed";
-> > +		regulator-name = "cam_front_ldo";
-> > +		regulator-min-microvolt = <1352000>;
-> > +		regulator-max-microvolt = <1352000>;
-> > +		regulator-enable-ramp-delay = <135>;
-> > +
-> > +		gpios = <&pm660l_gpios 4 GPIO_ACTIVE_HIGH>;
-> > +		enable-active-high;
-> > +
-> > +		pinctrl-names = "default";
-> > +		pinctrl-0 = <&cam_front_ldo_pin>;
-> > +	};
-> > +
-> > +	cam_vio_ldo: cam-vio-ldo-regulator {
-> > +		compatible = "regulator-fixed";
-> > +		regulator-name = "cam_vio_ldo";
-> > +		regulator-min-microvolt = <1800000>;
-> > +		regulator-max-microvolt = <1800000>;
-> > +		regulator-enable-ramp-delay = <233>;
-> > +
-> > +		gpios = <&pm660_gpios 13 GPIO_ACTIVE_HIGH>;
-> > +		enable-active-high;
-> > +
-> > +		pinctrl-names = "default";
-> > +		pinctrl-0 = <&cam_vio_pin>;
-> > +	};
-> >   };
-> > 
-> >   &apps_rsc {
-> > @@ -392,6 +420,58 @@ vreg_bob: bob {
-> >   	};
-> >   };
-> > 
-> > +&camss {
-> > +	vdda-phy-supply = <&vreg_l1a_1p225>;
-> 
-> You've got your 1p2 but looks like you are missing your 0p8 supply
+On Mon Jun 30, 2025 at 9:21 AM BST, Krzysztof Kozlowski wrote:
+> On 28/06/2025 18:41, Alexey Klimov wrote:
+>>=20
+>>>> +            #address-cells =3D <1>;
+>>>> +            #size-cells =3D <0>;
+>>>> +
+>>>> +            audio-codec@f000 {
+>>>> +                compatible =3D "qcom,pm4125-codec";
+>>>> +                reg =3D <0xf000>;
+>>>> +                vdd-io-supply =3D <&pm4125_l15>;
+>>>> +                vdd-cp-supply =3D <&pm4125_s4>;
+>>>> +                vdd-pa-vpos-supply =3D <&pm4125_s4>;
+>>>> +                vdd-mic-bias-supply =3D <&pm4125_l22>;
+>>>> +                qcom,micbias1-microvolt =3D <1800000>;
+>>>> +                qcom,micbias2-microvolt =3D <1800000>;
+>>>> +                qcom,micbias3-microvolt =3D <1800000>;
+>>>> +                qcom,rx-device =3D <&pm4125_rx>;
+>>>> +                qcom,tx-device =3D <&pm4125_tx>;
+>>>> +                #sound-dai-cells =3D <1>;
+>>>> +            };
+>>>> +        };
+>>>> +    };
+>>>> +
+>>>> +    /* ... */
+>>>> +
+>>>> +    soundwire@a610000 {
+>>>
+>>> Drop this and next one.
+>>=20
+>> The audio-codec node supposed to have qcom,{rx,tx}-device properties.
+>> If I'll drop it then the example doesn't compile well unless I am missin=
+g
+>> something?
+>
+> What did you drop and what did I ask to drop?
+>
+>>=20
+>> For example when I removed soundwire tx node completely and dropped
+>> qcom,tx-device then:
+>
+> I did not ask to drop qcom,tx-device.
 
-This is probably vreg_s6a_0p87 which supplies vreg_l1a_1p225.
+Dmitry already explained. Ok.
 
-> > +	status = "okay";
-> > +};
-> > +
-> > +&camss_endpoint1 {
-> > +	clock-lanes = <7>;
-> > +	data-lanes = <0 1 2 3>;
-> > +	remote-endpoint = <&cam_front_endpoint>;
-> > +	status = "okay";
-> > +};
-> 
-> This looks not like how the other dts are upstream. Does this work and pass
-> the dt checker ?
-> 
-> Right now upstream wants something like this
-> 
-> &camss {
->         vdda-phy-supply = <&vreg_l5a_0p88>;
->         vdda-pll-supply = <&vreg_l9a_1p2>;
->         status = "okay";
-> 
->         ports {
->                 /* The port index denotes CSIPHY id i.e. csiphy2 */
->                 port@2 {
->                         csiphy2_ep: endpoint {
->                                 clock-lanes = <7>;
->                                 data-lanes = <0 1 2 3>;
->                                 remote-endpoint = <&imx577_ep>;
->                         };
->                 };
->         };
-> };
+> ...
+>
+>>=20
+>>>> +  The audio codec IC found on Qualcomm PM4125/PM2250 PMICs.
+>>>> +  It has RX and TX Soundwire slave devices. This bindings is for the
+>>>> +  slave devices.
+>>>
+>>> Last sentence is redundant and makes no sense. Codec has only slave
+>>> devices, so how this can be anything else than for slave devices?
+>>=20
+>> This came from other similar files that describe bindings for child code=
+c nodes
+>> of soundwire nodes. For example from qcom,wcd937x-sdw.yaml.
+>> Should this be rephrased to "This bindings is for the soundwire slave de=
+vices." ?
+>
+> You just pasted the same, so I don't get how you want to rephrase into
+> the same sentence.
 
-I misunderstood a review comment from an earlier series. We can do the
-same thing here instead of pushing a different style.
+Not really.
+Original sentence: "This bindings is for the slave devices."
+Sentence from my email: "This bindings is for the soundwire slave devices."
 
-> Can the upstream driver actually consume the dt as you specified above ?
+The difference is 1 word.
+If it doesn't work, then maybe any suggestions?
 
-If you're curious, it does understand and let you go as far as using the
-camera.
+Maybe "This bindings is for audio codec node that must be a child node of t=
+he
+associated soundwire master node."?
+
+Best regards,
+Alexey
 
