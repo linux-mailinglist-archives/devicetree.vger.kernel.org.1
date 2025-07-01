@@ -1,118 +1,131 @@
-Return-Path: <devicetree+bounces-191483-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-191484-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id CBEC3AEF6DD
-	for <lists+devicetree@lfdr.de>; Tue,  1 Jul 2025 13:42:19 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 6A26CAEF6E9
+	for <lists+devicetree@lfdr.de>; Tue,  1 Jul 2025 13:44:20 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id EBAF84A5360
-	for <lists+devicetree@lfdr.de>; Tue,  1 Jul 2025 11:42:19 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 967881690C7
+	for <lists+devicetree@lfdr.de>; Tue,  1 Jul 2025 11:44:20 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C58BF273D7A;
-	Tue,  1 Jul 2025 11:40:59 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9AC862727E5;
+	Tue,  1 Jul 2025 11:44:15 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="UAoNNpUO"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-vs1-f44.google.com (mail-vs1-f44.google.com [209.85.217.44])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4CF0521FF54;
-	Tue,  1 Jul 2025 11:40:57 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.217.44
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6A5BD1A29A;
+	Tue,  1 Jul 2025 11:44:14 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1751370059; cv=none; b=IrotC+wYsa5BIQ1P3vDGCmR14AxKDDqAJyXg+J0fdj/QA9Yl77MeGTgCq4uxxD/9PdD4D4fNRtCfIyeVh0Pn9W4LaRDMhMT41+SmYhNuZs81DfWnL1kmwFR7t4BS1Ph6yoX5Stl0azi4ypAA5iG+MLwWJJK/hjwxHlB88DvM30c=
+	t=1751370255; cv=none; b=aIRg1/NafgxPqBB8l7JvYG7VtWo+hkRtuUNKDWkkMkzvsRHYCF6f+dNl78Pp8Acyx+byNQLUzWX3E9BpzmKQ/0XLcf3Gt6QYlD4YFmZipwh9YCNAjtYxj8b3jIUPvGuMBaewtkWiOrwtkqBvnYMupzMeb/IaO9H8IN3ojpEEdjo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1751370059; c=relaxed/simple;
-	bh=qIJIH4YEhbCS95kpqgXnKstq4YnYq3JUHTlRdSwEEEE=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=U59r1s/1sC05+NEK/5lUXrl6GtjiucC4+d69+UW7wEc1qj8qBiF4JtCqOlOBm8R8mFLeAiywNWRnUnUlTclmintFk/zCYNJnJr1rBidxT4IpxJBwCJdGKmHC7BacK4zTGl8aQBcgijOw1hR8yTcQatrbDw5LTwAaKTkyYoAH5Fw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.217.44
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-vs1-f44.google.com with SMTP id ada2fe7eead31-4efbfe9c7a5so1503856137.0;
-        Tue, 01 Jul 2025 04:40:57 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1751370055; x=1751974855;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=AOcRi6B5B+dvEeJlg+Zfz3o6xVyLAxTKeohAHCWC9j0=;
-        b=Iu1j8hbztnlo2KBrmnsfFEgd1Z0TACgctv5pmbQ7AHT/qQmkBMXGu5HrNtzOERduSQ
-         epQG6qFPEgPDkd4VZXv7ISUiMQXQekQRlOZM37k24m2Dcrtl4Xdw5niVIbF6bVioS63f
-         GStNAmK4py2gW5z6HlVKfqKAK+z2ACP6ZEq8BasqYDfsuXbGa+rKzfITM+x8dChS5bVC
-         Io3QuksR1pcjTEbZd8oPCc7CMYeKYOLFhrnLASBa94lwUK1qrb8XyruxkUGU/3+jrNp1
-         HV7+1FEyqCu5OiG2ABpAXIDcZ6DFJvjpn34QwMlVdyVCKM+/yntMvJ9O9OO68xSuhzBx
-         coRQ==
-X-Forwarded-Encrypted: i=1; AJvYcCUFiEw30gAzFSMFtpx7p0JRwo8NvYZ/XicoBqad4aFXMAbtXeGNri8DQfiWjd8q97LEV/LJYwQZu2U6aQbE@vger.kernel.org, AJvYcCUejM+o20o/GHj6VXcv6r9/vi10O8FKLvPgkEwBKWZeUEcoOWmKSL0pwtHLe55IWRNqNyoJek3Sn5q1CRmVPJ/RgaA=@vger.kernel.org, AJvYcCVJSt5ZARXyM5PKx/ll1/mspITh/tqfWdWhuuatGD/9IstIW02UPlQSN2/mmwzh3/Jk74/BA2EoWlQb@vger.kernel.org
-X-Gm-Message-State: AOJu0YwZAMbSm23cK6uX2RSaUxUKwIz+eceWJl45Xp1lXpJdL84cEOc+
-	/6gSfIGN5w9wf3ut9Qc70qwMnRIgruy0k4GJtZE89Kw54O1FZCnmP10z2RMN+aVe
-X-Gm-Gg: ASbGncslS2QsIsPY5ADPXJYsTnKcqtxhyw8QLqmv8qmxOfDgL6qmxPkt2QtfI51mdeZ
-	L4J4BfPz3tfi8cJT3DS5DaqSXlCvzLTzxGQmMxNFhNuNA3yJ8PJhJLHSFOv+2krpfyy5/mNoqHF
-	4aW18clqpT0p4TTzy5TcAQlCQA+/hXBiU+cQEQALaeMZUERuz7Roq8HxK0EHcUbcUd3i7EWOR57
-	hxuzw8mDLs3UsBDtw2mesNW6qCFCOs7ajaOKuI0Jz68qDV6vurMDty0AGZvKOjyx3s+cJvD6eRE
-	7h26EasXfi0u+kb1RKaH9LupQtzmWSywuzN7pifzyImcIcfsRR53TmjmOW4YgbMqJdOQFRYOkq8
-	ESMMOZrK0KyHXvk2a6LMSTpOP
-X-Google-Smtp-Source: AGHT+IGxWU3FxFZMtqSI7OX4ETJDg0vlzmtRADulKJ0ub2J+pxF6f7Y1AZsPElZjEfzosh0+IUjAWw==
-X-Received: by 2002:a05:6102:41a1:b0:4e5:5c14:5937 with SMTP id ada2fe7eead31-4f143abc1e1mr1927600137.1.1751370055228;
-        Tue, 01 Jul 2025 04:40:55 -0700 (PDT)
-Received: from mail-vs1-f52.google.com (mail-vs1-f52.google.com. [209.85.217.52])
-        by smtp.gmail.com with ESMTPSA id ada2fe7eead31-4ee4c79e97fsm1550536137.6.2025.07.01.04.40.55
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 01 Jul 2025 04:40:55 -0700 (PDT)
-Received: by mail-vs1-f52.google.com with SMTP id ada2fe7eead31-4efbfe9c7a5so1503842137.0;
-        Tue, 01 Jul 2025 04:40:55 -0700 (PDT)
-X-Forwarded-Encrypted: i=1; AJvYcCUawgtQOi6bwcVShmmIhFU9YxDDg6n8N/kI4Y/v5WSqiitk1oh5CnEqIkqxCLdLHdpOFH8Nt27bJfPux1KXarnn42U=@vger.kernel.org, AJvYcCUcd6i6K52jlcdzXGUQlF7y1jPwebjZbDyoG2QNF91ihcqs0Fo4ggesVwssDvcTwXL/Ju5he+T1MYYijmLr@vger.kernel.org, AJvYcCUw5xRqBpp8B5yQHLYxFQH8grGLIVPX5sCdRW2PLCNhECX+bc+SitZtm+NAl3fuNT5atfp49KmmAozB@vger.kernel.org
-X-Received: by 2002:a05:6102:161e:b0:4e9:963a:a42b with SMTP id
- ada2fe7eead31-4f143c3175bmr1810651137.8.1751370054766; Tue, 01 Jul 2025
- 04:40:54 -0700 (PDT)
+	s=arc-20240116; t=1751370255; c=relaxed/simple;
+	bh=3W3vz6KPse/FZf4/O+7bTK70CyiE8f9Poxe2UbwtLRM=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=bjPMWVJek5pcEl1yPC0YEd/uXuYeAZAZfiMDV38YhTETSwMoJWp0I5YrKPb5DyRvSP9Bd5+Ojyd7dyqJj0CFvhSsRF+p5xM7Vr6sV5OGiDyrDN+KRaqgYK/y80d2yjkA5/7/X3SB2pwYJ8ev6PF5jmDSWFg6APeD6gIQgPee6+s=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=UAoNNpUO; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id DEBA1C4CEEB;
+	Tue,  1 Jul 2025 11:44:07 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1751370254;
+	bh=3W3vz6KPse/FZf4/O+7bTK70CyiE8f9Poxe2UbwtLRM=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=UAoNNpUOWmcTYsGKU6I7lRTt3C569aeV0uxR50NAAOTSLhbFWEHoyQxc6ZjlKomu1
+	 /+3nbOn+yzUDV7+WFeFm4mUlH9IGBLC3GGOou6TtxoftasUQNGhDK5FQOtA6PI9aWF
+	 /yFSwbwb6EaWOkgU8WAoQFdDOAy0flmnR8v3GcU3/uivUflZ6bFmBqFSqJ0d+taXGg
+	 a7ye7SSqWAb1sppD+1Po+GMUsX+uWD3Zg1yo0Cak5ew7PwaTy3mVkFdlW/Opnd2vo1
+	 P8OWQhRRHF/a1hch5IOkTNWx3av5Y/ew0eQCWINNGevwTIv79tOZVsunDz2GMGka2l
+	 qBjG8EFsVAW5Q==
+Message-ID: <587072c7-6614-4b4e-96f5-c3defe56c73b@kernel.org>
+Date: Tue, 1 Jul 2025 13:44:05 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20250624171605.469724-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
-In-Reply-To: <20250624171605.469724-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
-From: Geert Uytterhoeven <geert@linux-m68k.org>
-Date: Tue, 1 Jul 2025 13:40:43 +0200
-X-Gmail-Original-Message-ID: <CAMuHMdWAsbN+oXS8jUPSLs2hebyi7WwQ0ZarO=gVT9vO4pM5nw@mail.gmail.com>
-X-Gm-Features: Ac12FXwnT1ii07TJ8Qwnos5t26OYrAnHgWO9yirgVE6UX7f6jYpLQJf2pbez6pQ
-Message-ID: <CAMuHMdWAsbN+oXS8jUPSLs2hebyi7WwQ0ZarO=gVT9vO4pM5nw@mail.gmail.com>
-Subject: Re: [PATCH] dt-bindings: memory: renesas,rzg3e-xspi: Document
- RZ/V2H(P) and RZ/V2N support
-To: Prabhakar <prabhakar.csengg@gmail.com>
-Cc: Krzysztof Kozlowski <krzk@kernel.org>, Rob Herring <robh@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Geert Uytterhoeven <geert+renesas@glider.be>, Magnus Damm <magnus.damm@gmail.com>, 
-	Biju Das <biju.das.jz@bp.renesas.com>, linux-kernel@vger.kernel.org, 
-	devicetree@vger.kernel.org, linux-renesas-soc@vger.kernel.org, 
-	Fabrizio Castro <fabrizio.castro.jz@renesas.com>, 
-	Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-Content-Type: text/plain; charset="UTF-8"
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2 1/2] dt-bindings: clock: qcom,videocc: Add sc8180x
+ compatible
+To: Satya Priya Kakitapalli <quic_skakitap@quicinc.com>,
+ Bjorn Andersson <andersson@kernel.org>,
+ Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Michael Turquette <mturquette@baylibre.com>,
+ Stephen Boyd <sboyd@kernel.org>
+Cc: Ajit Pandey <quic_ajipan@quicinc.com>,
+ Imran Shaik <quic_imrashai@quicinc.com>, Taniya Das <quic_tdas@quicinc.com>,
+ Jagadeesh Kona <quic_jkona@quicinc.com>, linux-arm-msm@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ linux-clk@vger.kernel.org
+References: <20250701-sc8180x-videocc-dt-v2-0-b05db66cc1f6@quicinc.com>
+ <20250701-sc8180x-videocc-dt-v2-1-b05db66cc1f6@quicinc.com>
+From: Krzysztof Kozlowski <krzk@kernel.org>
+Content-Language: en-US
+Autocrypt: addr=krzk@kernel.org; keydata=
+ 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 a/A=
+In-Reply-To: <20250701-sc8180x-videocc-dt-v2-1-b05db66cc1f6@quicinc.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-On Tue, 24 Jun 2025 at 19:16, Prabhakar <prabhakar.csengg@gmail.com> wrote:
-> From: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
->
-> Document support for the Expanded Serial Peripheral Interface (xSPI)
-> controller found on the Renesas RZ/V2H(P) (R9A09G057) and RZ/V2N
-> (R9A09G056) SoCs.
->
-> The xSPI hardware block on these SoCs is functionally identical to the
-> one on the RZ/G3E (R9A09G047) SoC. Therefore, the existing driver can be
-> reused without modification by using `renesas,r9a09g047-xspi` as a
-> fallback compatible.
->
-> Signed-off-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+On 01/07/2025 13:40, Satya Priya Kakitapalli wrote:
+> The sc8180x video clock controller block is identical to that
+> of sm8150. Add a new compatible string for sc8180x videocc and
+> use sm8150 as fallback.
+> 
+> Signed-off-by: Satya Priya Kakitapalli <quic_skakitap@quicinc.com>
+> ---
+>  .../devicetree/bindings/clock/qcom,videocc.yaml       | 19 ++++++++++++-------
+>  1 file changed, 12 insertions(+), 7 deletions(-)
 
-Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
+Never tested. Please don't send untested patches.
 
-Gr{oetje,eeting}s,
-
-                        Geert
-
--- 
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
-
-In personal conversations with technical people, I call myself a hacker. But
-when I'm talking to journalists I just say "programmer" or something like that.
-                                -- Linus Torvalds
+Best regards,
+Krzysztof
 
