@@ -1,79 +1,81 @@
-Return-Path: <devicetree+bounces-191625-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-191629-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id F357DAEFECC
-	for <lists+devicetree@lfdr.de>; Tue,  1 Jul 2025 18:02:27 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 4DDB7AEFED7
+	for <lists+devicetree@lfdr.de>; Tue,  1 Jul 2025 18:03:20 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 793823AA0AF
-	for <lists+devicetree@lfdr.de>; Tue,  1 Jul 2025 16:01:37 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 24F7F3AABC0
+	for <lists+devicetree@lfdr.de>; Tue,  1 Jul 2025 16:02:09 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 50AAE27935A;
-	Tue,  1 Jul 2025 16:01:59 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B4F1227E056;
+	Tue,  1 Jul 2025 16:02:05 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=raspberrypi.com header.i=@raspberrypi.com header.b="LMilzz2Z"
+	dkim=pass (2048-bit key) header.d=raspberrypi.com header.i=@raspberrypi.com header.b="tBw/LCHz"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f53.google.com (mail-wm1-f53.google.com [209.85.128.53])
+Received: from mail-wr1-f42.google.com (mail-wr1-f42.google.com [209.85.221.42])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E92D8273818
-	for <devicetree@vger.kernel.org>; Tue,  1 Jul 2025 16:01:56 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.53
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3586927C175
+	for <devicetree@vger.kernel.org>; Tue,  1 Jul 2025 16:02:02 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.42
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1751385719; cv=none; b=gglVwKYbNuOE02RqP+jOafeBbBKmPiFQgwwb/jxi6x/xjrDpPZC9FSCRW05CvsComtiMHzCmeABqPdS1Y0Npj1Lv9+DQ9V0bz5Y0RqGOIESLmd+80N1zbiLS5kWstW0z5QgUaC17SyGsIrFz4A2Igq5PUiQsOXYSpqX8xw6w4h0=
+	t=1751385725; cv=none; b=STkR8ULMsS5CvXFONJdzjWigGAXXIsuzrwtChR4G33up/TDIp3yoOodecGQ9DlYUnOyJSwMHIOeP11+akWh4rECwDjaXkCRv2ZTrKw7MfPyenkZOlw2WeQg6JGU2Aa4ow6LeBgMv3fB6zp6ezo7ZbSsntp4GKfqWYambl9seE/4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1751385719; c=relaxed/simple;
-	bh=VaU9KtiEsZd2EVUAjLlTgYQ2bd05wAjb2rXv02gqKkQ=;
-	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=P6k0mhgOD+PehwXBB+0OZVQjl+hymRcXLZSGev6Ou1F2BB+e0d8CnyFZHdCPUfzz7s/fGHFtzmHIOPeZyei0rtwn5csMu3sMeNJ6yIGEJqzopyLTGCLz2Lfx0GT9RhnkpqhxOIyoWaI04HM2ujMP2rXM94gDwNVAHzfv2vXnTmU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=raspberrypi.com; spf=pass smtp.mailfrom=raspberrypi.com; dkim=pass (2048-bit key) header.d=raspberrypi.com header.i=@raspberrypi.com header.b=LMilzz2Z; arc=none smtp.client-ip=209.85.128.53
+	s=arc-20240116; t=1751385725; c=relaxed/simple;
+	bh=Eb8wuovSBuSoIotj4pnFiy2j63/jKfYOw2hKqjPwOoI=;
+	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
+	 In-Reply-To:To:Cc; b=ZfLI3DYpszzB326n5tQlXsI4H7nzv2hcuQv5mNV1k87k5EKlM+pwZCLt+ZlIfib/yAr4jAy2qY0ZjLooy7w7qMNqyaNtEB6eEKNQhFrJm6QQ/gKRT5yRJb9KoeYJrByGpW6ux0mR6GM/RPQ1JCRcaRhWQ2Oe0cL99BaMq/PRfO4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=raspberrypi.com; spf=pass smtp.mailfrom=raspberrypi.com; dkim=pass (2048-bit key) header.d=raspberrypi.com header.i=@raspberrypi.com header.b=tBw/LCHz; arc=none smtp.client-ip=209.85.221.42
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=raspberrypi.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=raspberrypi.com
-Received: by mail-wm1-f53.google.com with SMTP id 5b1f17b1804b1-451ebd3d149so18202525e9.2
-        for <devicetree@vger.kernel.org>; Tue, 01 Jul 2025 09:01:56 -0700 (PDT)
+Received: by mail-wr1-f42.google.com with SMTP id ffacd0b85a97d-3a528243636so3698055f8f.3
+        for <devicetree@vger.kernel.org>; Tue, 01 Jul 2025 09:02:02 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=raspberrypi.com; s=google; t=1751385715; x=1751990515; darn=vger.kernel.org;
-        h=cc:to:content-transfer-encoding:mime-version:message-id:date
-         :subject:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=Fs3JAozsYsD/2WW79a82RkP4PH1iMiVPVWhyq+47Szo=;
-        b=LMilzz2ZxfkX9vcplcK6Ig38tDOuz5HVOLkN11AdcnesdIGX+SOjDW0p/1mJHdznXE
-         UIx+BMA1cjTrKqXPfWvJvCYjq81ALZJUkmk6GIq9RAfA7OJ+TS4PZCqOHLVGmW/xAaoI
-         nzeYf+iAGwBZh+MJ1oKrJmmhB57ab/nKW1MfVdeIofHvOvqwuBUnVhfYVvRJPuV1s564
-         ZAyUaUdj/nUMTATeYFnP7vsam3zXMALaYz82CH1jLHYhD7BKuF1HQFh44FvxrS/KkAeo
-         N7R1SotFZAVh3bw7MhpTGo/pEI8XtLfC7meBtr//3FjCYqDU1/yVfB2cyTHmuPqcyhMz
-         JJYg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1751385715; x=1751990515;
-        h=cc:to:content-transfer-encoding:mime-version:message-id:date
-         :subject:from:x-gm-message-state:from:to:cc:subject:date:message-id
+        d=raspberrypi.com; s=google; t=1751385721; x=1751990521; darn=vger.kernel.org;
+        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
+         :mime-version:subject:date:from:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=Fs3JAozsYsD/2WW79a82RkP4PH1iMiVPVWhyq+47Szo=;
-        b=iXMwSZsd5dPkbdvYqUEPZoK1D4SqKUdd+DcDFReFr1qAHLdXxqcTG/Q/5kUYYahOcP
-         SlQ1Xc7xYiTlUHEq4ScSosj6a/AHFJsfM2X4Rv7TXQLbAf+nSwW7xMqxSjyNesdPRlzl
-         yQdkhf9HfDNTXpPyjatuygh/LYagNcPXR+cbpDcJKBJ+pPwhHoKmkVv2dhMNNOLLYD9i
-         LqQRszqMkc0wF9Gy8C+ayrsb1ZDhqvuIROtFeUYsXyzHigHnsqPo2hllmWNLHNwAlSfk
-         6GWcHOFbQgsxzAiL610FTamGTcu9B4rZxHcQisskdXIxphGKItBn5N+jk83YiCzjwGB8
-         CmHQ==
-X-Forwarded-Encrypted: i=1; AJvYcCVEstNC8bBBMePLJbPVRUQxP87LkRgjgeKDi/XPrEtiMuzrs7J8IAKK4jP+lyxUGWODXqzL0Xrjfjff@vger.kernel.org
-X-Gm-Message-State: AOJu0YwvA7ALqeD8wpGtwEW4DVBnQwbH7/pqPwJqNvx2pEQuSAXUx/NP
-	67HaMR/J/Nf955bwSw1Y3yLHabHWTaj3OglTc79e/1GqlRm2C0pqJyqpNFCyD+WAxMw=
-X-Gm-Gg: ASbGnctdrrQGI4H8bbydKQqYnzFhiNKGVa6cY1+Sp1dGqWvGimmErmVJdE6KKeFJWm4
-	R4axbpoVmI5YAI5BGV1V7pm8zZRYgXaC/7mCFSKKGLMRmp00S1kfF/ZLKTQlCLq7vQq0T688ZUE
-	UtyGPtUYAVQ7JT7N7Gc3KkoDGpM39okiLTrJFD9nO8bkTuLtibOegatxawwLD24qnUyfvCFIYJC
-	Viwzncrb/kxVEyjHwYbe48PtZ9zhuHjyrai2P6XoshDQiTfEDpflB/C2/PmZ84YvBGnY56fq3xc
-	A6JbHa/SmNMdjEnlEq5ohppyBd6znynmBZ5Jw3qFQtvitq62wPTHIg==
-X-Google-Smtp-Source: AGHT+IGMMAfyKj8jFqWLmzk8Rj2j7dBknlV19cnUCzUeiREguJOJeqK8EAyxRItVH48lXpZUOSz4ig==
-X-Received: by 2002:a05:600c:1d1a:b0:43e:afca:808f with SMTP id 5b1f17b1804b1-4538ee790admr211077095e9.31.1751385714401;
-        Tue, 01 Jul 2025 09:01:54 -0700 (PDT)
+        bh=EOZP3BcptZSYROqm0ele75c0kFNzuWVKa5tBqUZYrLc=;
+        b=tBw/LCHzRk4aNynL2Ar+OPkH99+QZdBE6O46mepYpVUqbD2F7f5p2IZNhlT7KZt+aH
+         ksE7O7X7Seqwc0VpTaS3wmusUJMGd3Ywc3HNrIX9tYPXL3IvM2ndIPX47zNUKRGfxv82
+         dD75toq+UpSWhKY5ZQKV0dyEEGrL+Q1A0lQuCcrU5ybGoJuloNRtRhFvCw2fi38rxrS1
+         QTwucPUD9+EDMJAgCKe+4PA9gnXJwf9KoQwi2ivs1BbfE67zMBQ57Q/Uy4eh+YW2HTOl
+         RwkWoyfLQpM4IT+a++VPz8DQUsJ3FCsatzVqlNFDA1sniRpQnKUb+NetqbLchgUbGLmD
+         iF0A==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1751385721; x=1751990521;
+        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
+         :mime-version:subject:date:from:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=EOZP3BcptZSYROqm0ele75c0kFNzuWVKa5tBqUZYrLc=;
+        b=fyuHBN1TlJGq1HbFCnnNo0aR5ErEkiO9PMXsEb5w9GAfaeWbg1Uo9MYksiU+pIe/EJ
+         OIujYp3GLi5Jel5IyjWWfm+HnWAquQd2kjFYRcq9Tzwm0nOIngLJVq19XJ/qTWYQjV7R
+         yweQQm9l1EuyBALTkDpOei0/TR26Pz/q40FOt2hIj1hULVkS1B6c5e4ND0P2h/uwL4rP
+         xXcBPh1AWpGMVNfpFVjAQFMQbhPZCDAdyOf6JyQAEa/fjRkQx/aljtQ5LBaejwsjxaYj
+         qRmoKQytrmpm5c+1r3po4dwhM5OrvJAHJyJzs3JzvQSDJgVFAWiYMR2I+c/hoj8P3/8G
+         iCSQ==
+X-Forwarded-Encrypted: i=1; AJvYcCUw8jE33Jlb3xO5KevM0u9Mdjz7Xe91nLfFkkZw6hKFM5mG0UDBkkSsBJ09YNEEaFwxQ63qOBay+JFB@vger.kernel.org
+X-Gm-Message-State: AOJu0YyXBQ33zVKHh3g1onSQnKoN8LsO4Wu+9lmpwqkny0wBZM+zuku1
+	ZePf7bLKRMrorix74LEi+bV68rJtz33KxUeZG1SrDQNywFK0FsaAM5zsD0oBVjI4uMo=
+X-Gm-Gg: ASbGncu4pkiyvrgaiOA0B/rQKsodvOhshrzmR88nxIWLo8hIdWi3hdcrTC39RzetwGK
+	Ku1W15tPlhgVoNgQnoJlsDCSb6cFtbYlMljbZKMtreC24ns0WgOuU5XDOakbkn98STXpMI4HKge
+	MN10uH2zlUnzKw2qHJzHso8DkHMsdDdRezrh6kF1TWxYdHwmVgX6ojaVXE5htRmlIksEGeMgAeo
+	BDcisnFNlHWg3hb0LTKb+f0sBgADI7ian/9DnO3X7PlI4Vq5UKgEqFhgaGGtKPjR5kqv56lpdmm
+	ouZxLerH2WMzxEqmAoU11LrFrXjK3kFbg3KXmuzNqoHlUdOfw7qy9yydb6432MeZ
+X-Google-Smtp-Source: AGHT+IGrDuGREIKIk2nqkFoR8uzIUjeElqTk8BPXwPJayvJvDoPAeAcRb+gzpufKi2d4K71fEGSFzw==
+X-Received: by 2002:a5d:530d:0:b0:3a5:27ba:47ba with SMTP id ffacd0b85a97d-3a900296715mr14744114f8f.44.1751385715670;
+        Tue, 01 Jul 2025 09:01:55 -0700 (PDT)
 Received: from [127.0.1.1] ([2a00:1098:3142:e::8])
-        by smtp.googlemail.com with ESMTPSA id 5b1f17b1804b1-45388888533sm182500995e9.21.2025.07.01.09.01.53
+        by smtp.googlemail.com with ESMTPSA id 5b1f17b1804b1-45388888533sm182500995e9.21.2025.07.01.09.01.54
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 01 Jul 2025 09:01:53 -0700 (PDT)
+        Tue, 01 Jul 2025 09:01:54 -0700 (PDT)
 From: Dave Stevenson <dave.stevenson@raspberrypi.com>
-Subject: [PATCH v4 0/5] Raspberry Pi HEVC decoder driver
-Date: Tue, 01 Jul 2025 17:01:35 +0100
-Message-Id: <20250701-media-rpi-hevc-dec-v4-0-057cfa541177@raspberrypi.com>
+Date: Tue, 01 Jul 2025 17:01:36 +0100
+Subject: [PATCH v4 1/5] docs: uapi: media: Document Raspberry Pi NV12
+ column format
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -82,10 +84,9 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-X-B4-Tracking: v=1; b=H4sIAGAGZGgC/23NQQ7CIBCF4as0rMXADK3VlfcwLgoMdhbaBgyxM
- b272Ghc2OX/kvnmKRJFpiQO1VNEypx4uJUwm0q4vrtdSLIvLUCB0aBBXslzJ+PIsqfspCcn0da
- WdrgPaL0oh2OkwI8FPZ1L95zuQ5yWH1m/1w8Hao3LWiqpyDqnDHkDdIxdGi3FOI28dcNVvNEMX
- 6hWoJpVCArU7LFG17aqtrAO4Q8ygKsQFqgNHkPntW+C/YfmeX4B4Q5RtkwBAAA=
+Message-Id: <20250701-media-rpi-hevc-dec-v4-1-057cfa541177@raspberrypi.com>
+References: <20250701-media-rpi-hevc-dec-v4-0-057cfa541177@raspberrypi.com>
+In-Reply-To: <20250701-media-rpi-hevc-dec-v4-0-057cfa541177@raspberrypi.com>
 To: Sakari Ailus <sakari.ailus@linux.intel.com>, 
  Laurent Pinchart <laurent.pinchart@ideasonboard.com>, 
  Mauro Carvalho Chehab <mchehab@kernel.org>, Rob Herring <robh@kernel.org>, 
@@ -103,236 +104,70 @@ Cc: John Cox <jc@kynesim.co.uk>, Stefan Wahren <wahrenst@gmx.net>,
  Dave Stevenson <dave.stevenson@raspberrypi.com>
 X-Mailer: b4 0.14.1
 
-Hi All
-
-This has been in the pipeline for a while, but I've finally cleaned
-up our HEVC decoder driver to be in a shape to at least get a first
-review.
-John Cox has done almost all of the work under contract to Raspberry
-Pi, and I'm largely just doing the process of patch curation and
-sending.
-
-This series has been updated to use the manual request completion
-framework from Hans and Nicolas as a dependency
-https://lore.kernel.org/linux-media/20250604-sebastianfricke-vcodec_manual_request_completion_with_state_machine-v3-0-603db4749d90@collabora.com/
-
-Thanks
-  Dave
-
-v4l2-compliance output:
-v4l-utils $ ./build/utils/v4l2-compliance/v4l2-compliance 
-v4l2-compliance 1.31.0-5374, 64 bits, 64-bit time_t
-v4l2-compliance SHA: b8c26bb16d75 2025-06-10 21:30:38
-
-Compliance test for rpi-hevc-dec device /dev/video0:
-
-Driver Info:
-	Driver name      : rpi-hevc-dec
-	Card type        : rpi-hevc-dec
-	Bus info         : platform:rpi-hevc-dec
-	Driver version   : 6.16.0
-	Capabilities     : 0x84204000
-		Video Memory-to-Memory Multiplanar
-		Streaming
-		Extended Pix Format
-		Device Capabilities
-	Device Caps      : 0x04204000
-		Video Memory-to-Memory Multiplanar
-		Streaming
-		Extended Pix Format
-	Detected Stateless Decoder
-Media Driver Info:
-	Driver name      : rpi-hevc-dec
-	Model            : rpi-hevc-dec
-	Serial           : 
-	Bus info         : platform:rpi-hevc-dec
-	Media version    : 6.16.0
-	Hardware revision: 0x00000000 (0)
-	Driver version   : 6.16.0
-Interface Info:
-	ID               : 0x0300000c
-	Type             : V4L Video
-Entity Info:
-	ID               : 0x00000001 (1)
-	Name             : rpi-hevc-dec-source
-	Function         : V4L2 I/O
-	Pad 0x01000002   : 0: Source
-	  Link 0x02000008: to remote pad 0x1000004 of entity 'rpi-hevc-dec-proc' (Video Decoder): Data, Enabled, Immutable
-
-Required ioctls:
-	test MC information (see 'Media Driver Info' above): OK
-	test VIDIOC_QUERYCAP: OK
-	test invalid ioctls: OK
-
-Allow for multiple opens:
-	test second /dev/video0 open: OK
-	test VIDIOC_QUERYCAP: OK
-	test VIDIOC_G/S_PRIORITY: OK
-	test for unlimited opens: OK
-
-Debug ioctls:
-	test VIDIOC_DBG_G/S_REGISTER: OK (Not Supported)
-	test VIDIOC_LOG_STATUS: OK (Not Supported)
-
-Input ioctls:
-	test VIDIOC_G/S_TUNER/ENUM_FREQ_BANDS: OK (Not Supported)
-	test VIDIOC_G/S_FREQUENCY: OK (Not Supported)
-	test VIDIOC_S_HW_FREQ_SEEK: OK (Not Supported)
-	test VIDIOC_ENUMAUDIO: OK (Not Supported)
-	test VIDIOC_G/S/ENUMINPUT: OK (Not Supported)
-	test VIDIOC_G/S_AUDIO: OK (Not Supported)
-	Inputs: 0 Audio Inputs: 0 Tuners: 0
-
-Output ioctls:
-	test VIDIOC_G/S_MODULATOR: OK (Not Supported)
-	test VIDIOC_G/S_FREQUENCY: OK (Not Supported)
-	test VIDIOC_ENUMAUDOUT: OK (Not Supported)
-	test VIDIOC_G/S/ENUMOUTPUT: OK (Not Supported)
-	test VIDIOC_G/S_AUDOUT: OK (Not Supported)
-	Outputs: 0 Audio Outputs: 0 Modulators: 0
-
-Input/Output configuration ioctls:
-	test VIDIOC_ENUM/G/S/QUERY_STD: OK (Not Supported)
-	test VIDIOC_ENUM/G/S/QUERY_DV_TIMINGS: OK (Not Supported)
-	test VIDIOC_DV_TIMINGS_CAP: OK (Not Supported)
-	test VIDIOC_G/S_EDID: OK (Not Supported)
-
-Control ioctls:
-	test VIDIOC_QUERY_EXT_CTRL/QUERYMENU: OK
-	test VIDIOC_QUERYCTRL: OK
-	test VIDIOC_G/S_CTRL: OK
-		fail: v4l2-test-controls.cpp(939): try_ext_ctrls returned an error (22)
-	test VIDIOC_G/S/TRY_EXT_CTRLS: FAIL
-	test VIDIOC_(UN)SUBSCRIBE_EVENT/DQEVENT: OK
-	test VIDIOC_G/S_JPEGCOMP: OK (Not Supported)
-	Standard Controls: 3 Private Controls: 0
-	Standard Compound Controls: 5 Private Compound Controls: 0
-
-Format ioctls:
-	test VIDIOC_ENUM_FMT/FRAMESIZES/FRAMEINTERVALS: OK
-	test VIDIOC_G/S_PARM: OK (Not Supported)
-	test VIDIOC_G_FBUF: OK (Not Supported)
-	test VIDIOC_G_FMT: OK
-	test VIDIOC_TRY_FMT: OK
-	test VIDIOC_S_FMT: OK
-	test VIDIOC_G_SLICED_VBI_CAP: OK (Not Supported)
-	test Cropping: OK (Not Supported)
-	test Composing: OK (Not Supported)
-	test Scaling: OK (Not Supported)
-
-Codec ioctls:
-	test VIDIOC_(TRY_)ENCODER_CMD: OK (Not Supported)
-	test VIDIOC_G_ENC_INDEX: OK (Not Supported)
-	test VIDIOC_(TRY_)DECODER_CMD: OK
-
-Buffer ioctls:
-	test VIDIOC_REQBUFS/CREATE_BUFS/QUERYBUF: OK
-	test CREATE_BUFS maximum buffers: OK
-	test VIDIOC_REMOVE_BUFS: OK
-	test VIDIOC_EXPBUF: OK
-	test Requests: OK
-	test blocking wait: OK
-
-Total for rpi-hevc-dec device /dev/video0: 49, Succeeded: 48, Failed: 1, Warnings: 0
-
-Testing is mainly with a downstream patchset to FFmpeg. I'm told FFmpeg
-currently has no stateless decode support, but we will be reviewing
-works that have been in progress and our downstream patches to see
-whether that can be pushed onwards.
-Downstream tree is at
-https://github.com/jc-kynesim/rpi-ffmpeg/tree/dev/5.1.6/sandm_1
-
-https://gitlab.freedesktop.org/gstreamer/gstreamer/-/merge_requests/9247
-adds support for the new formats to GStreamer, and allows Fluster to run.
-Using the JCT-VC-HEVC_V1 test suite we get 142 passes out of 147 tests.
-PICSIZE_[ABCD]_Bossen_1 all fail due to the image sizes being greater than
-the 4096x4096 limit of this driver.
-TSUNEQBD_A_MAIN10_Technicolor_2 fails as the hardware doesn't support
-having a different bit depth for luma and chroma.
+The Raspberry Pi HEVC decoder uses a tiled format based on
+columns for 8 and 10 bit YUV images, so document them as
+NV12MT_COL128 and NV12MT_10_COL128.
 
 Signed-off-by: Dave Stevenson <dave.stevenson@raspberrypi.com>
 ---
-Changes in v4:
-- dt-bindings: Drop to just SoC compatibles and updated description (Krzysztof).
-- dts: Corrected address in node name.
-- NV12MT_COL128 format description added vertical alignment to a
-  multiple of 8 (Nicolas)
-- driver: Merged in driver updates based on Nicolas' review.
-- driver: Added debug module parameter to avoid log spam due to some bitstreams.
-- cover-letter: Added Fluster results.
-- rebased and based on the updated version of 
-  https://lore.kernel.org/linux-media/20250604-sebastianfricke-vcodec_manual_request_completion_with_state_machine-v3-0-603db4749d90@collabora.com/
-- update v4l2-compliance output
-- Link to v3: https://lore.kernel.org/r/20250423-media-rpi-hevc-dec-v3-0-8fd3fad1d6fb@raspberrypi.com
+ .../userspace-api/media/v4l/pixfmt-yuv-planar.rst  | 42 ++++++++++++++++++++++
+ 1 file changed, 42 insertions(+)
 
-Changes in v3:
-- Updated the dtbinding with SoC specific compatible strings (Rob).
-- Reordered hevc_dec and v3d in bcm2711.dtsi to keep them in ascending
-  register order (Stefan).
-- Reordered hevc_dec in bcm2711-rpi.dtsi to keep them in alphabetical
-  order (Stefan).
-- Tested on top of Nicolas' revised version of Hans' patch set for
-  manual request completion.
-  https://lore.kernel.org/all/20250410-sebastianfricke-vcodec_manual_request_completion_with_state_machine-v2-0-5b99ec0450e6@collabora.com/
-- Link to v2: https://lore.kernel.org/r/20250206-media-rpi-hevc-dec-v2-0-69353c8805b2@raspberrypi.com
+diff --git a/Documentation/userspace-api/media/v4l/pixfmt-yuv-planar.rst b/Documentation/userspace-api/media/v4l/pixfmt-yuv-planar.rst
+index 6e4f399f1f88..84ec1dbcf41b 100644
+--- a/Documentation/userspace-api/media/v4l/pixfmt-yuv-planar.rst
++++ b/Documentation/userspace-api/media/v4l/pixfmt-yuv-planar.rst
+@@ -955,6 +955,48 @@ Data in the 12 high bits, zeros in the 4 low bits, arranged in little endian ord
+       - Cb\ :sub:`11`
+       - Cr\ :sub:`11`
+ 
++V4L2_PIX_FMT_NV12MT_COL128 and V4L2_PIX_FMT_NV12MT_10_COL128
++------------------------------------------------------------
++
++``V4L2_PIX_FMT_NV12MT_COL128`` is a tiled version of
++``V4L2_PIX_FMT_NV12M`` where the two planes are split into 128 byte wide columns
++of Y or interleaved CbCr. The height is always aligned to a multiple of 8 lines.
++
++V4L2_PIX_FMT_NV12MT_10_COL128 expands that as a 10 bit format where 3 10 bit
++values are packed into a 32bit word. A 128 byte wide column therefore holds 96
++samples (either Y or interleaved CrCb). That effectively makes it 6 values in a
++64 bit word for the CbCr plane, as the values always go in pairs.
++
++Bit-packed representation.
++
++.. tabularcolumns:: |p{1.2cm}||p{1.2cm}||p{1.2cm}||p{1.2cm}|p{3.2cm}|p{3.2cm}|
++
++.. flat-table::
++    :header-rows:  0
++    :stub-columns: 0
++    :widths: 8 8 8 8
++
++    * - Y'\ :sub:`00[7:0]`
++      - Y'\ :sub:`01[5:0] (bits 7--2)` Y'\ :sub:`00[9:8]`\ (bits 1--0)
++      - Y'\ :sub:`02[3:0] (bits 7--4)` Y'\ :sub:`01[9:6]`\ (bits 3--0)
++      - unused (bits 7--6)` Y'\ :sub:`02[9:4]`\ (bits 5--0)
++
++.. tabularcolumns:: |p{1.2cm}||p{1.2cm}||p{1.2cm}||p{1.2cm}|p{3.2cm}|p{3.2cm}|
++
++.. flat-table::
++    :header-rows:  0
++    :stub-columns: 0
++    :widths: 12 12 12 12 12 12 12 12
++
++    * - Cb\ :sub:`00[7:0]`
++      - Cr\ :sub:`00[5:0]`\ (bits 7--2) Cb\ :sub:`00[9:8]`\ (bits 1--0)
++      - Cb\ :sub:`01[3:0]`\ (bits 7--4) Cr\ :sub:`00[9:6]`\ (bits 3--0)
++      - unused (bits 7--6) Cb\ :sub:`02[9:4]`\ (bits 5--0)
++      - Cr\ :sub:`01[7:0]`
++      - Cb\ :sub:`02[5:0]`\ (bits 7--2) Cr\ :sub:`01[9:8]`\ (bits 1--0)
++      - Cr\ :sub:`02[3:0]`\ (bits 7--4) Cb\ :sub:`02[9:6]`\ (bits 3--0)
++      - unused (bits 7--6) Cr\ :sub:`02[9:4]`\ (bits 5--0)
++
+ 
+ Fully Planar YUV Formats
+ ========================
 
-Changes in v2:
-- Rebased to use Hans' manual request completion scheme.
-  https://lore.kernel.org/linux-media/cover.1724928939.git.hverkuil-cisco@xs4all.nl/
-- Require all slices for a frame to be submitted in one request.
-- Added the missing header file.
-- Used the full macro name for pix format docs (Sakari)
-- Dropped unneeded |- from dtbinding (Rob)
-- Made reg and reg-names match in order (Rob)
-- Removed clock-names from dtbinding (Rob)
-- Driver changed to not request the clock by name
-- Dropped clock-names from DTS file
-- Minor fixes for compliance failures
-  fail: v4l2-test-formats.cpp(958): fmt_cap.g_colorspace() != col
-  fail: v4l2-test-buffers.cpp(901): q.create_bufs(node, 1, &fmt) != EINVAL
-- v4l2-compliance output added to cover letter (Nicholas)
-  I believe the "fail: v4l2-test-controls.cpp(939): try_ext_ctrls
-  returned an error (22)" is expected as it is validating the SPS.
-  Hantro and Cedrus certainly both appear to return errors in the same place
-- Link to v1: https://lore.kernel.org/r/20241220-media-rpi-hevc-dec-v1-0-0ebcc04ed42e@raspberrypi.com
-
----
-Dave Stevenson (4):
-      docs: uapi: media: Document Raspberry Pi NV12 column format
-      media: ioctl: Add pixel formats NV12MT_COL128 and NV12MT_10_COL128
-      dt-bindings: media: Add the Raspberry Pi HEVC decoder
-      arm: dts: bcm2711-rpi: Add HEVC decoder node
-
-John Cox (1):
-      media: platform: Add Raspberry Pi HEVC decoder driver
-
- .../bindings/media/raspberrypi,hevc-dec.yaml       |   72 +
- .../media/v4l/ext-ctrls-codec-stateless.rst        |    6 +-
- .../userspace-api/media/v4l/pixfmt-yuv-planar.rst  |   42 +
- MAINTAINERS                                        |   10 +
- arch/arm/boot/dts/broadcom/bcm2711-rpi.dtsi        |    4 +
- arch/arm/boot/dts/broadcom/bcm2711.dtsi            |    9 +
- drivers/media/platform/raspberrypi/Kconfig         |    1 +
- drivers/media/platform/raspberrypi/Makefile        |    1 +
- .../media/platform/raspberrypi/hevc_dec/Kconfig    |   17 +
- .../media/platform/raspberrypi/hevc_dec/Makefile   |    5 +
- .../media/platform/raspberrypi/hevc_dec/hevc_d.c   |  369 +++
- .../media/platform/raspberrypi/hevc_dec/hevc_d.h   |  192 ++
- .../platform/raspberrypi/hevc_dec/hevc_d_h265.c    | 2554 ++++++++++++++++++++
- .../platform/raspberrypi/hevc_dec/hevc_d_h265.h    |   23 +
- .../platform/raspberrypi/hevc_dec/hevc_d_hw.c      |  376 +++
- .../platform/raspberrypi/hevc_dec/hevc_d_hw.h      |  314 +++
- .../platform/raspberrypi/hevc_dec/hevc_d_video.c   |  674 ++++++
- .../platform/raspberrypi/hevc_dec/hevc_d_video.h   |   38 +
- drivers/media/v4l2-core/v4l2-ioctl.c               |    2 +
- include/uapi/linux/videodev2.h                     |    4 +
- 20 files changed, 4711 insertions(+), 2 deletions(-)
----
-base-commit: 6669fd53a3c2be6dc632a87d9105016139088144
-change-id: 20241212-media-rpi-hevc-dec-3b5be739f3bd
-
-Best regards,
 -- 
-Dave Stevenson <dave.stevenson@raspberrypi.com>
+2.34.1
 
 
