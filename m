@@ -1,166 +1,195 @@
-Return-Path: <devicetree+bounces-191313-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-191314-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id D6BBEAEEE7E
-	for <lists+devicetree@lfdr.de>; Tue,  1 Jul 2025 08:19:42 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id AF824AEEE83
+	for <lists+devicetree@lfdr.de>; Tue,  1 Jul 2025 08:22:27 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id E0CA7189F220
-	for <lists+devicetree@lfdr.de>; Tue,  1 Jul 2025 06:19:58 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id F3871178174
+	for <lists+devicetree@lfdr.de>; Tue,  1 Jul 2025 06:22:27 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 67D4423BD1D;
-	Tue,  1 Jul 2025 06:19:36 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9B3EC23BD1D;
+	Tue,  1 Jul 2025 06:22:22 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="T8AxJ4+t"
+	dkim=pass (2048-bit key) header.d=tq-group.com header.i=@tq-group.com header.b="haD+6Se7";
+	dkim=fail reason="key not found in DNS" (0-bit key) header.d=ew.tq-group.com header.i=@ew.tq-group.com header.b="WQU/G5rj"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+Received: from mx1.tq-group.com (mx1.tq-group.com [93.104.207.81])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B0D4472601;
-	Tue,  1 Jul 2025 06:19:34 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2135372601;
+	Tue,  1 Jul 2025 06:22:18 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=93.104.207.81
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1751350776; cv=none; b=AHqW15HmXVqBqnKKmFkNeLWHB2hKLX24JgJOnmDTrBnlat8uqynSDhVKXhztbxzpUgsJUPUzU4eHQ3/QPFztzFeeGNZxP0WvHZlcAJOqa4ATwAtzk0EFFt6jhhj1tJ4P3vY4Tiy00nc+dF893FJhO5JHVi/aVKXSsI1MDWh2fOk=
+	t=1751350942; cv=none; b=REWU6EYjCMcqeUTXRy/c9zoamuOa1iir332MJp9jCZ+qrflfwgbNUo9wa0i+rkY1tsC2noDdSToOM3oV3fNj8GvtkWUf72i+11jlK2FQa8nbtMbCXaBjYqSAKSxpJp6SgGhe9Az5ccwt198RvO8BEy0HOVZDWfc8GO/Fe7+vnzE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1751350776; c=relaxed/simple;
-	bh=6ztUB8DVz6lMSBchbLvs5c9lOdO5QWCHLLlM1LbTyXo=;
-	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
-	 In-Reply-To:Content-Type; b=EYZ8akmG4Mqf+DKJww0V6OOxglsFrArlEjBiyEDtMPv/cBtDKsPsp97AQ2dHH/nYhwYEnNQflvcvBrshruPSsffsySk5cuUUAwXjx064c4W6YC6MIic+xzOldC03ThZBSqq+YFAc4qWoRYoMeMjb9oSvfUMmDsYTfMBWyeVjX8U=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=T8AxJ4+t; arc=none smtp.client-ip=205.220.180.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
-Received: from pps.filterd (m0279872.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 5614FN9Y024794;
-	Tue, 1 Jul 2025 06:19:25 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	ti6mrnRniD673CTX+hG/sAAcg1JSfYL2S8V/LJ7Gu3s=; b=T8AxJ4+tGPPpFge+
-	keNFammgzYs35F0QyZZiqLkDaFo08PaDUUe8nhZhlqqekTWWnVTe36wGWTfcE+Mn
-	/qiXIa7t3t5euP0BfvuJrjm6KSwLeJJMOslgH+oW7BoXcCUpSlCSglGd4eCQrjQN
-	VbFQASm9lJ5gct3XIHQMDTEBwM7XcnH6XB0rxlaFPnh0ipK7B6igd5PvHRB/T0wa
-	9bAknWq01GDa1PP79nPSGOETjZBbuFfSCv3lpkeiYEVH+kZVhUL5Pr7+HZxOtERO
-	g8NkFykq0TRvUKZsSJpE/MD4dfqH6XdWWpEpPuybKDoyhbmcgi1X442QIGDLPh2d
-	v+s2hQ==
-Received: from nasanppmta04.qualcomm.com (i-global254.qualcomm.com [199.106.103.254])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 47j8s9f901-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Tue, 01 Jul 2025 06:19:25 +0000 (GMT)
-Received: from nasanex01a.na.qualcomm.com (nasanex01a.na.qualcomm.com [10.52.223.231])
-	by NASANPPMTA04.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 5616JO5x020508
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Tue, 1 Jul 2025 06:19:24 GMT
-Received: from [10.217.217.109] (10.80.80.8) by nasanex01a.na.qualcomm.com
- (10.52.223.231) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.9; Mon, 30 Jun
- 2025 23:19:19 -0700
-Message-ID: <744da3c1-04c6-4347-bafc-233471d07853@quicinc.com>
-Date: Tue, 1 Jul 2025 11:49:13 +0530
+	s=arc-20240116; t=1751350942; c=relaxed/simple;
+	bh=DgD4QQS+mG+zLpzFPCLStAWQKq1H0HzqNOx5ljMAres=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=fw6GlIoZfnDqoectakm14+VticHoSePoZ0HVcKhF4pgJVTEvpEXRaFL5juGcyGOKuzU6STeSi7wJvFG/t50EdnAnw9UA4J09sf7o7LC0J7LqWaZ5tQ8m4erx/VBloHL5IjVoeXD6t7mSMFoISxVlrXf2+GFGGH90BuTxxfG6YjY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ew.tq-group.com; spf=pass smtp.mailfrom=ew.tq-group.com; dkim=pass (2048-bit key) header.d=tq-group.com header.i=@tq-group.com header.b=haD+6Se7; dkim=fail (0-bit key) header.d=ew.tq-group.com header.i=@ew.tq-group.com header.b=WQU/G5rj reason="key not found in DNS"; arc=none smtp.client-ip=93.104.207.81
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ew.tq-group.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ew.tq-group.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+  d=tq-group.com; i=@tq-group.com; q=dns/txt; s=key1;
+  t=1751350939; x=1782886939;
+  h=from:to:cc:subject:date:message-id:mime-version:
+   content-transfer-encoding;
+  bh=MjSMNcZZ2ete1GWczfUi5IrEuGAKczh4J5IOTIEWugw=;
+  b=haD+6Se7tGcb4MNdK46pD72c6uSDkOCQYTkyioVOzVhkbO+8qicpsUkc
+   Aae0L/KOhiDYTKln+a1t3vMCOGJ69/vN4z9ZWEDB0vh+VJpTPVYHvcMk8
+   6jFUT77MFEtC1faDgiC8d0Jqne7IY+n+p9/st8OhHv0qTh4fHJ9ZVwfH6
+   F8NG5P0hAZZy854e0nNCDVfAUevHtDNGcLFbS0gazm0bZfEwfhEkYKOpR
+   4XysIasp6AkahxrTOGMsfvV+9c5rIkPAZRVWZqUuR5k2zbkonMHNzTE1Q
+   Rog1yqm5un1lekgsGoVEnRKfv5RzkEhYIjevxhsorfUv6/Ooya6SAfs9f
+   Q==;
+X-CSE-ConnectionGUID: dHZb3B1ySyuege6VeV3y6A==
+X-CSE-MsgGUID: zxMUaGSqTsy5KQbFdKQa9g==
+X-IronPort-AV: E=Sophos;i="6.16,279,1744063200"; 
+   d="scan'208";a="44943273"
+Received: from vmailcow01.tq-net.de ([10.150.86.48])
+  by mx1.tq-group.com with ESMTP; 01 Jul 2025 08:22:09 +0200
+X-CheckPoint: {68637E91-12-468F1319-EAD2FB43}
+X-MAIL-CPID: 234CE97BDF3128C75316C14566837CCC_0
+X-Control-Analysis: str=0001.0A006374.68637E9D.0022,ss=1,re=0.000,recu=0.000,reip=0.000,cl=1,cld=1,fgs=0
+Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id 9D2501613A2;
+	Tue,  1 Jul 2025 08:22:04 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ew.tq-group.com;
+	s=dkim; t=1751350924;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:
+	 content-transfer-encoding:content-transfer-encoding;
+	bh=MjSMNcZZ2ete1GWczfUi5IrEuGAKczh4J5IOTIEWugw=;
+	b=WQU/G5rjLQgX08HWWPHfri3RGMKs2e0YRbSH0K18xOjkA4C/8/oPgEsYtvlWEBy+uGdtl/
+	Ty8aij/nVbp5gcSHABoq6SPVDYbEenh1z0ofR9/aH5PoqRylKabn4C9GqPzGF8QmYLhbLY
+	nsBKKtN7xuBbWG4ICCbtPTbtO+e037kqRnfsQKPAoSiGLRFz5LoQ6I6eRiiVZnOmnIsLZt
+	PL1OoDBsmYs5r1oEQndYo3DehHsMrZaDrAP1na7KNpYenSQMbT4oupL7bRU4oupM+oIWuj
+	saT8vP82zQ8InxK6ieaXGsMj4d6PUUyoUyBbMAsfSETqYL95/1LT2FPGAX0qbA==
+From: Alexander Stein <alexander.stein@ew.tq-group.com>
+To: Shawn Guo <shawnguo@kernel.org>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>
+Cc: Alexander Stein <alexander.stein@ew.tq-group.com>,
+	linux-arm-kernel@lists.infradead.org,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org
+Subject: [PATCH 1/2] arm64: dts: fsl-ls1043a: Add missing DMA entries for I2C & LPUART
+Date: Tue,  1 Jul 2025 08:21:54 +0200
+Message-ID: <20250701062157.514969-1-alexander.stein@ew.tq-group.com>
+X-Mailer: git-send-email 2.43.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v9 01/10] clk: qcom: clk-alpha-pll: Add support for
- dynamic update for slewing PLLs
-To: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>,
-        Bjorn Andersson
-	<andersson@kernel.org>,
-        Michael Turquette <mturquette@baylibre.com>,
-        "Stephen
- Boyd" <sboyd@kernel.org>, Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski
-	<krzk+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Konrad Dybcio
-	<konradybcio@kernel.org>, Will Deacon <will@kernel.org>,
-        Catalin Marinas
-	<catalin.marinas@arm.com>
-CC: Ajit Pandey <quic_ajipan@quicinc.com>,
-        Imran Shaik
-	<quic_imrashai@quicinc.com>,
-        Jagadeesh Kona <quic_jkona@quicinc.com>,
-        <linux-arm-msm@vger.kernel.org>, <linux-clk@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>
-References: <20250612-qcs615-mm-v9-clock-controllers-v9-0-b34dc78d6e1b@quicinc.com>
- <20250612-qcs615-mm-v9-clock-controllers-v9-1-b34dc78d6e1b@quicinc.com>
- <f0483597-45b9-49f8-b316-a9cde7b98d81@oss.qualcomm.com>
- <9a9d84e3-49de-4fbd-9c0d-180e3e498125@quicinc.com>
- <c37349c0-8ec0-4654-bc82-15190509ddeb@oss.qualcomm.com>
-Content-Language: en-US
-From: Taniya Das <quic_tdas@quicinc.com>
-In-Reply-To: <c37349c0-8ec0-4654-bc82-15190509ddeb@oss.qualcomm.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
- nasanex01a.na.qualcomm.com (10.52.223.231)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Authority-Analysis: v=2.4 cv=H/Pbw/Yi c=1 sm=1 tr=0 ts=68637ded cx=c_pps
- a=JYp8KDb2vCoCEuGobkYCKw==:117 a=JYp8KDb2vCoCEuGobkYCKw==:17
- a=GEpy-HfZoHoA:10 a=IkcTkHD0fZMA:10 a=Wb1JkmetP80A:10 a=COk6AnOGAAAA:8
- a=bVv2Rnes1pukqZk3WigA:9 a=QEXdDO2ut3YA:10 a=TjNXssC_j7lpFel5tvFf:22
-X-Proofpoint-ORIG-GUID: Upw_c5UZz3oM712a0vmt5Vdbt_qqNuEU
-X-Proofpoint-GUID: Upw_c5UZz3oM712a0vmt5Vdbt_qqNuEU
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwNzAxMDAzMyBTYWx0ZWRfX75XITVUDZ34y
- cgJmLR8w3Ag6yIcddTImDpihy/XbAgvTDLRVkfeviD+ERvx4Goaw73ULMoiragNxlBeqViLox1E
- ibNPqnO1BlCTbiX6XrxFr4jxL+0sanYAklR8pP/DEFLZ/OYiiLftzd23eYXI5CXBKvhzvIY1ecW
- OPQQBeeQrBFu3iXLLRBPTkxCMKAcoyd1rTrVeqKDHSxW1x7cYGcU/8ktJx+iMwiOV3OzWTOsuNM
- 42m326X2I3+lHAaRzmNzdViVCXG80xxb74j3ROnJ+r5qKANWNqNWfqfzYwg//Qbqa2cwI1eLRxr
- lItDnTk+XZRPQY2O5rr4yr1ZCzs4iZW8kikHdZ0xStBFDH46r2vVGn6mUlaU5miWj9BaUwvR+SY
- xn7EgIl3ujSfe3nC5IKSEPxBIdWKt580HxcIBDGKonNlsBhtho1+c1gvwQ48JQrcqxXFtbvy
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1099,Hydra:6.1.7,FMLib:17.12.80.40
- definitions=2025-07-01_01,2025-06-27_01,2025-03-28_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- impostorscore=0 malwarescore=0 suspectscore=0 mlxlogscore=999
- priorityscore=1501 clxscore=1015 mlxscore=0 lowpriorityscore=0 spamscore=0
- adultscore=0 bulkscore=0 phishscore=0 classifier=spam authscore=0 authtc=n/a
- authcc= route=outbound adjust=0 reason=mlx scancount=1
- engine=8.19.0-2505280000 definitions=main-2507010033
+Content-Transfer-Encoding: 8bit
+X-Last-TLS-Session-Version: TLSv1.3
 
+Only i2c0 had it's DMA channels configured. Add the missing one.
 
+Signed-off-by: Alexander Stein <alexander.stein@ew.tq-group.com>
+---
+ .../arm64/boot/dts/freescale/fsl-ls1043a.dtsi | 27 +++++++++++++++++++
+ 1 file changed, 27 insertions(+)
 
-On 6/27/2025 8:39 PM, Konrad Dybcio wrote:
-> On 6/25/25 12:31 PM, Taniya Das wrote:
->>
->>
->> On 6/15/2025 12:20 AM, Konrad Dybcio wrote:
->>> On 6/12/25 11:55 AM, Taniya Das wrote:
->>>> The alpha PLLs which slew to a new frequency at runtime would require
->>>> the PLL to calibrate at the mid point of the VCO. Add the new PLL ops
->>>> which can support the slewing of the PLL to a new frequency.
->>>>
->>>> Reviewed-by: Imran Shaik <quic_imrashai@quicinc.com>
->>>> Signed-off-by: Taniya Das <quic_tdas@quicinc.com>
->>>> ---
-> 
-> [...]
-> 
->>>> +	regmap_write(pll->clkr.regmap, PLL_L_VAL(pll), l);
->>>> +	regmap_write(pll->clkr.regmap, PLL_ALPHA_VAL(pll), lower_32_bits(a));
->>>> +	regmap_write(pll->clkr.regmap, PLL_ALPHA_VAL_U(pll), upper_32_bits(a));
->>>> +
->>>> +	/* Ensure that the write above goes before slewing the PLL */
->>>> +	mb();
->>>
->>> Here however, the write may not arrive at the clock controller before you
->>> proceed to slew_update()
->>>
->>
->> Yes, it is required here and will keep it.
-> 
-> You should change it to a readback instead
-> 
-
-Okay, I can introduce a readback, but as per the PLL code we have been
-using mb() at most places. But I am okay to update it.
-
-> Konrad
+diff --git a/arch/arm64/boot/dts/freescale/fsl-ls1043a.dtsi b/arch/arm64/boot/dts/freescale/fsl-ls1043a.dtsi
+index c0e3e8fa1e794..26bea88cb967c 100644
+--- a/arch/arm64/boot/dts/freescale/fsl-ls1043a.dtsi
++++ b/arch/arm64/boot/dts/freescale/fsl-ls1043a.dtsi
+@@ -550,6 +550,9 @@ i2c1: i2c@2190000 {
+ 			clocks = <&clockgen QORIQ_CLK_PLATFORM_PLL
+ 					    QORIQ_CLK_PLL_DIV(1)>;
+ 			scl-gpios = <&gpio4 2 (GPIO_ACTIVE_HIGH | GPIO_OPEN_DRAIN)>;
++			dmas = <&edma0 1 36>,
++			       <&edma0 1 37>;
++			dma-names = "rx", "tx";
+ 			status = "disabled";
+ 		};
+ 
+@@ -563,6 +566,9 @@ i2c2: i2c@21a0000 {
+ 			clocks = <&clockgen QORIQ_CLK_PLATFORM_PLL
+ 					    QORIQ_CLK_PLL_DIV(1)>;
+ 			scl-gpios = <&gpio4 10 (GPIO_ACTIVE_HIGH | GPIO_OPEN_DRAIN)>;
++			dmas = <&edma0 1 34>,
++			       <&edma0 1 35>;
++			dma-names = "rx", "tx";
+ 			status = "disabled";
+ 		};
+ 
+@@ -576,6 +582,9 @@ i2c3: i2c@21b0000 {
+ 			clocks = <&clockgen QORIQ_CLK_PLATFORM_PLL
+ 					    QORIQ_CLK_PLL_DIV(1)>;
+ 			scl-gpios = <&gpio4 12 (GPIO_ACTIVE_HIGH | GPIO_OPEN_DRAIN)>;
++			dmas = <&edma0 1 40>,
++			       <&edma0 1 41>;
++			dma-names = "rx", "tx";
+ 			status = "disabled";
+ 		};
+ 
+@@ -717,6 +726,9 @@ lpuart0: serial@2950000 {
+ 			interrupts = <GIC_SPI 48 IRQ_TYPE_LEVEL_HIGH>;
+ 			clocks = <&clockgen QORIQ_CLK_SYSCLK 0>;
+ 			clock-names = "ipg";
++			dmas = <&edma0 1 32>,
++			       <&edma0 1 33>;
++			dma-names = "rx", "tx";
+ 			status = "disabled";
+ 		};
+ 
+@@ -727,6 +739,9 @@ lpuart1: serial@2960000 {
+ 			clocks = <&clockgen QORIQ_CLK_PLATFORM_PLL
+ 					    QORIQ_CLK_PLL_DIV(1)>;
+ 			clock-names = "ipg";
++			dmas = <&edma0 1 30>,
++			       <&edma0 1 31>;
++			dma-names = "rx", "tx";
+ 			status = "disabled";
+ 		};
+ 
+@@ -737,6 +752,9 @@ lpuart2: serial@2970000 {
+ 			clocks = <&clockgen QORIQ_CLK_PLATFORM_PLL
+ 					    QORIQ_CLK_PLL_DIV(1)>;
+ 			clock-names = "ipg";
++			dmas = <&edma0 1 28>,
++			       <&edma0 1 29>;
++			dma-names = "rx", "tx";
+ 			status = "disabled";
+ 		};
+ 
+@@ -747,6 +765,9 @@ lpuart3: serial@2980000 {
+ 			clocks = <&clockgen QORIQ_CLK_PLATFORM_PLL
+ 					    QORIQ_CLK_PLL_DIV(1)>;
+ 			clock-names = "ipg";
++			dmas = <&edma0 1 26>,
++			       <&edma0 1 27>;
++			dma-names = "rx", "tx";
+ 			status = "disabled";
+ 		};
+ 
+@@ -757,6 +778,9 @@ lpuart4: serial@2990000 {
+ 			clocks = <&clockgen QORIQ_CLK_PLATFORM_PLL
+ 					    QORIQ_CLK_PLL_DIV(1)>;
+ 			clock-names = "ipg";
++			dmas = <&edma0 1 24>,
++			       <&edma0 1 25>;
++			dma-names = "rx", "tx";
+ 			status = "disabled";
+ 		};
+ 
+@@ -767,6 +791,9 @@ lpuart5: serial@29a0000 {
+ 			clocks = <&clockgen QORIQ_CLK_PLATFORM_PLL
+ 					    QORIQ_CLK_PLL_DIV(1)>;
+ 			clock-names = "ipg";
++			dmas = <&edma0 1 22>,
++			       <&edma0 1 23>;
++			dma-names = "rx", "tx";
+ 			status = "disabled";
+ 		};
+ 
+-- 
+2.43.0
 
 
