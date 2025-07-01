@@ -1,165 +1,110 @@
-Return-Path: <devicetree+bounces-191549-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-191551-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id EA657AEFAB3
-	for <lists+devicetree@lfdr.de>; Tue,  1 Jul 2025 15:34:09 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5F637AEFAC2
+	for <lists+devicetree@lfdr.de>; Tue,  1 Jul 2025 15:35:48 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 871F5188BE05
-	for <lists+devicetree@lfdr.de>; Tue,  1 Jul 2025 13:30:33 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 4D054189D4CF
+	for <lists+devicetree@lfdr.de>; Tue,  1 Jul 2025 13:31:55 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E992C2750EF;
-	Tue,  1 Jul 2025 13:27:48 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="XzpaqkIO"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E1DC227781D;
+	Tue,  1 Jul 2025 13:29:51 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-vk1-f170.google.com (mail-vk1-f170.google.com [209.85.221.170])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AFB0B27990C;
-	Tue,  1 Jul 2025 13:27:48 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 34986277027;
+	Tue,  1 Jul 2025 13:29:50 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.170
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1751376468; cv=none; b=VfCsacs46A6kjVQ9AZbxTDZpRRFTI2ezS/y5XQKeoCpgoSQfo6f0bWp82IMXa2XPbTe+NyhtN3fC+0JJslkJaKqHUWpmcD2hYs1NaMN4SWD2nHlFdNpwWilAdJD7RVg/bVeiODMcWsw7wxOOKBfRZo3BrQbS+AxJF/PtSxxyS+0=
+	t=1751376591; cv=none; b=X9hobdVrDyJ3X5NyvajAVKp0mrchoFNNZ1mh2UzgpibXXC59W/wmeO821/KdX2O6+sD8g9fDvI04ZgmFMj+Dw8v9nR+CJd755jxyJz5cntXhtkNdoP527YPDaBUsmRvWUWzuYQF2SFGoqyFpsYnRUiQLXWePddCSTer3N9Waz78=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1751376468; c=relaxed/simple;
-	bh=sLAarvdqD0dhDZ0Cif8r8RA7rmugbDbr+OQ/xE74q1Y=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=CSAyWVuq76vGKn2gjWjqDv0+QdISnZnKAQUpYEs2oNso9l5V4XdeNjTQ4y32uPCpRwKBGDkl4Q4iv5rIA1dgTSrKDyohwgNtUH9cJKFmRWdXaiUP43XCY44QlY9fe+7cbEz2ahGyNhKzykjnT9aBTE0rrWYFz7jroZqlaIq2Mn4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=XzpaqkIO; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 2E925C4CEED;
-	Tue,  1 Jul 2025 13:27:39 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1751376468;
-	bh=sLAarvdqD0dhDZ0Cif8r8RA7rmugbDbr+OQ/xE74q1Y=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=XzpaqkIO5qERnBn9kCU6DiOk0e/a8JycfsiUCzCTHKAy3pgmcCh4daZsrU5yJQU9d
-	 i4Q6dhOboLVl6FhGnCulDNJIKbvmi+LP9y6VdRPBvCScRRz7mFGUYS2afzLystYGbI
-	 9zNgFmj8PzAw1CJjZuh47syZYxho9jV6SzbyKzGT+SSHiPeAjVf/zJ0fas5xiR9xkN
-	 vq0wlcXV+8u3RUUZhOVKFXNwZGFu2rrQfBdUzlhcYRrkWnEpMSLVlDWNUfmUlsT3kP
-	 porZrMQkKxUP339DzFh2c8MIb8RnE6IejEWtjTMK6w0g8ViAGH9uwA49hvCJvwNhJn
-	 r6lrQmLJlC/uA==
-Message-ID: <0323b9eb-9a3d-4d17-bad8-f9052fb30b57@kernel.org>
-Date: Tue, 1 Jul 2025 15:27:37 +0200
+	s=arc-20240116; t=1751376591; c=relaxed/simple;
+	bh=r85JIcQVfKAvP2MU3yy8LAWPTHXqk/NQen18K5AkxnE=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=gpWNvlZvDT6V76ucDzUw3Qw2Zrs3P0hQc8HsSsWGJhiJNuqq+Y7dw64z0iLI6keAzQwwj0ZNr6NYd4vi4UayyiXSMVpkZYnl4zNnrDGUreJn9Aw2HrQNaS0aAf8zlewQEeoge2owDVx5LNPQq0Bt3WYIRFVO9tl88f3JTrEpFCA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.221.170
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-vk1-f170.google.com with SMTP id 71dfb90a1353d-5315acf37b6so1086983e0c.2;
+        Tue, 01 Jul 2025 06:29:50 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1751376589; x=1751981389;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=wvQWg/KAXE+W1cqr+mQzG6Y06+2exxkzRfAyEp6GekI=;
+        b=mfXBATksMrpi6Tnc2QHh5pQVyg/zmgsCINT5rgzsNmsWsqYK1Nk4BbOEOmAGd6/4Z8
+         yKG16lkumbPfG70oqjm8XGUovU7EdLWKxG2DYNzUJafrlAzEiOFJMKcg4s7GCinxY0jp
+         9L3hii91aqCXrKsVjgjisSYMeZcx80sMr9ndN1Zak1LI8JpoqCM/5F/CHB26pzxvhen7
+         ncZaTiowHR4kd+sRIBPBQA0D4i+nkNUgy27I5qzrQOlh/TU5mwkqqd4XGUexak3rmbp7
+         B9+5RTiyoNG5ZSz2tYyWxNUV/dJGkKI/gt4FPWV0BP/q8Ikskdn6YAeStDZBcc3RLIbr
+         RDAA==
+X-Forwarded-Encrypted: i=1; AJvYcCUaCtAnY/coVxA7Z02jobO6HV8p+nOUpoxxsBX/FLtG+QAVzO6G7sZCu6kmY8YOpcexQ+X+bK92XHsTRcPBcZnFbvM=@vger.kernel.org, AJvYcCVO8xeNt/Su9DUzxZohPsNZg3Fy9M2ptKT6+JW5Tjs/kbhDuShzbhcYyRpKRuJ+kDyhxZLdvIrezgvy+M9k@vger.kernel.org, AJvYcCVm6yJ1Rqz3tIvgZHc4r1B7m+zyeq37RbwHOnx0FEfIF+jAjaIQrQ6Fl3Tr701OXynqqYASuppW7sEL@vger.kernel.org, AJvYcCVrmrTJrViL5A8ZAgkiUQtUWrGAx+5NnzYyoaHo3ap21VpBDLrO681CJp+119FJebj37FwhxcdebArW@vger.kernel.org
+X-Gm-Message-State: AOJu0YxWPK2XITfMMnvUDGh9zuQk3ZpPfeRnOMt/Zi3i17nRS5CP6BeK
+	Anzwh+BpBcGJVCX0Sl6IVLRAkNKzZINylS4I3v/ZEytwOw6XpPhhHCbSTy8L5z1K
+X-Gm-Gg: ASbGncvjuWZW9cIVY40Ev+Ecl9oXv0OBWPMHAUQ79lfDZBdu0qyozkT+VZGJ9jzy4bv
+	MeXpkNelPNYmZ9Xs4xE0cKMaJzvRE+i10n4uLCPnLcR8MWIPc0WSdKBPCZNOzN7cgBj1SgwR+8/
+	xtEZwATT+WBAmbRx8dDKgziCdtrxBStdgSeFGm74IgZBiHRpYa6QV7dRdIS1CcmvtMZfA0JQHVy
+	FJ9z+hLd0GewTQJNsMaRVrMxAGclhDRQTGGB+++g4XlJx50mNo5Hq7mJjvea7Cz13l77sob5Pfh
+	soFgX9L7n274Tx2jurRMPR7FrxdE/YUDrs9XqqLkQxGyAmt/eWjN2GPlBxhkAzeZRmCdcp4dH9R
+	7K7tAk5KvDsqVgc9+5gOhqf61
+X-Google-Smtp-Source: AGHT+IGofVFj5BCufNooPWH1kTgnE466noi7EZylppcdbfVi6EeCp3Yp2n33S+sBU+/27zJlgpgyiw==
+X-Received: by 2002:a05:6122:2398:b0:531:2906:7519 with SMTP id 71dfb90a1353d-5330be9f389mr10622295e0c.5.1751376588832;
+        Tue, 01 Jul 2025 06:29:48 -0700 (PDT)
+Received: from mail-vs1-f42.google.com (mail-vs1-f42.google.com. [209.85.217.42])
+        by smtp.gmail.com with ESMTPSA id 71dfb90a1353d-533090ba456sm1730033e0c.17.2025.07.01.06.29.48
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 01 Jul 2025 06:29:48 -0700 (PDT)
+Received: by mail-vs1-f42.google.com with SMTP id ada2fe7eead31-4e79dde8511so643967137.0;
+        Tue, 01 Jul 2025 06:29:48 -0700 (PDT)
+X-Forwarded-Encrypted: i=1; AJvYcCUW8epSqmBi4l+V6X9sgytzz29vhPI6h/FJGupEZOm/LYRa78Kz3F+E/oLQKwzG3Fkl4dfmHJ5xnn+Wp8cK@vger.kernel.org, AJvYcCWovOJ//7d1ASQWG1XqljDQELKfhsspv7qxkjw7sM4ZYA/15r2FJUqmwM9FVfuOYWtlQgp58nHfzIOKuYMgTzt0xKQ=@vger.kernel.org, AJvYcCWvBp2aLiPShfEkIJX0eHHr0KFYnpiotsMsQGv0qFEb6biDOfqEcH8VVrGv0DXxndRFoaKOZ8oJ2thq@vger.kernel.org, AJvYcCXVF3pvHHIb8wbWyOXMd4wQ4yLbm2PE/flwgKZlNdLeBHaJxEzOQ2mDPzFsDs/yn7u7kTTP1CjRwFjb@vger.kernel.org
+X-Received: by 2002:a05:6102:3581:b0:4e9:9281:85ba with SMTP id
+ ada2fe7eead31-4ee4f71e304mr10080851137.13.1751376587959; Tue, 01 Jul 2025
+ 06:29:47 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 1/2] dt-bindings: clock: qcom,videocc: Add sc8180x
- compatible
-To: Satya Priya Kakitapalli <quic_skakitap@quicinc.com>,
- Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>,
- Bjorn Andersson <andersson@kernel.org>,
- Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Michael Turquette <mturquette@baylibre.com>,
- Stephen Boyd <sboyd@kernel.org>
-Cc: Ajit Pandey <quic_ajipan@quicinc.com>,
- Imran Shaik <quic_imrashai@quicinc.com>, Taniya Das <quic_tdas@quicinc.com>,
- Jagadeesh Kona <quic_jkona@quicinc.com>, linux-arm-msm@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- linux-clk@vger.kernel.org
-References: <20250701-sc8180x-videocc-dt-v2-0-b05db66cc1f6@quicinc.com>
- <20250701-sc8180x-videocc-dt-v2-1-b05db66cc1f6@quicinc.com>
- <9b6de81e-54d4-4448-87f0-5ca83086fc27@oss.qualcomm.com>
- <6d44e289-a20d-4dcd-871f-20b1854cbbf0@quicinc.com>
-From: Krzysztof Kozlowski <krzk@kernel.org>
-Content-Language: en-US
-Autocrypt: addr=krzk@kernel.org; keydata=
- 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 a/A=
-In-Reply-To: <6d44e289-a20d-4dcd-871f-20b1854cbbf0@quicinc.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+References: <20250624192304.338979-1-fabrizio.castro.jz@renesas.com> <20250624192304.338979-3-fabrizio.castro.jz@renesas.com>
+In-Reply-To: <20250624192304.338979-3-fabrizio.castro.jz@renesas.com>
+From: Geert Uytterhoeven <geert@linux-m68k.org>
+Date: Tue, 1 Jul 2025 15:29:36 +0200
+X-Gmail-Original-Message-ID: <CAMuHMdXBgW74FFHSceMN2VmbB5cxhcr+Mgj8V9ftm92GT2Bhrg@mail.gmail.com>
+X-Gm-Features: Ac12FXxXwXEv1OIWuqxs24AQl3A2GwHdZmuX_cxVZ6ujj3pPp_oEqMNjfa2euUM
+Message-ID: <CAMuHMdXBgW74FFHSceMN2VmbB5cxhcr+Mgj8V9ftm92GT2Bhrg@mail.gmail.com>
+Subject: Re: [PATCH 2/6] spi: dt-bindings: Document the RZ/V2H(P) RSPI
+To: Fabrizio Castro <fabrizio.castro.jz@renesas.com>
+Cc: Mark Brown <broonie@kernel.org>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Magnus Damm <magnus.damm@gmail.com>, linux-spi@vger.kernel.org, 
+	linux-renesas-soc@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, Biju Das <biju.das.jz@bp.renesas.com>, 
+	Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+Content-Type: text/plain; charset="UTF-8"
 
-On 01/07/2025 14:09, Satya Priya Kakitapalli wrote:
-> 
-> On 7/1/2025 5:23 PM, Konrad Dybcio wrote:
->>
->> On 01-Jul-25 13:40, Satya Priya Kakitapalli wrote:
->>> The sc8180x video clock controller block is identical to that
->>> of sm8150. Add a new compatible string for sc8180x videocc and
->>> use sm8150 as fallback.
->>>
->>> Signed-off-by: Satya Priya Kakitapalli <quic_skakitap@quicinc.com>
->>> ---
->> The yaml checker throws a warning:
->>
->> make ARCH=arm64 LLVM=1 -j$(nproc) dt_binding_check DT_SCHEMA_FILES="Documentation/devicetree/bindings/clock/qcom,videocc.yaml"
->>
->>    CHKDT   ./Documentation/devicetree/bindings
->>    LINT    ./Documentation/devicetree/bindings
->> ./Documentation/devicetree/bindings/clock/qcom,videocc.yaml:28:9: [warning] wrong indentation: expected 10 but found 8 (indentation)
->> ./Documentation/devicetree/bindings/clock/qcom,videocc.yaml:35:9: [warning] wrong indentation: expected 10 but found 8 (indentation)
->>    DTEX    Documentation/devicetree/bindings/clock/qcom,videocc.example.dts
->>    DTC [C] Documentation/devicetree/bindings/clock/qcom,videocc.example.dtb
-> 
-> 
-> I somehow didn't get these warning when I ran the DT checker.
-> 
-> I am able to reproduce these warnings by running the yamllint tool 
-> directly, will fix them and resend, thanks.
-> 
-> 
-> $ yamllint Documentation/devicetree/bindings/clock/qcom,videocc.yaml
->          Documentation/devicetree/bindings/clock/qcom,videocc.yaml
->                28:9      error    wrong indentation: expected 10 but 
-> found 8  (indentation)
->                35:9      error    wrong indentation: expected 10 but 
-> found 8  (indentation)
-> 
+On Tue, 24 Jun 2025 at 21:23, Fabrizio Castro
+<fabrizio.castro.jz@renesas.com> wrote:
+> Add dt-bindings for the RSPI IP found inside the Renesas RZ/V2H(P)
+> SoC.
+>
+> Signed-off-by: Fabrizio Castro <fabrizio.castro.jz@renesas.com>
 
-Qualcomm needs to stop using Ubuntu 18.04 or 20.04 or whatever ancient
-is there for development... These errors are part of standard check but
-broken or crazy old system would explain why it does not work.
+Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
 
-Plus you get huge speed up on new Python.
+Gr{oetje,eeting}s,
 
-Best regards,
-Krzysztof
+                        Geert
+
+-- 
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
+
+In personal conversations with technical people, I call myself a hacker. But
+when I'm talking to journalists I just say "programmer" or something like that.
+                                -- Linus Torvalds
 
