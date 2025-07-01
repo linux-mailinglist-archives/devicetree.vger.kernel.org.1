@@ -1,168 +1,223 @@
-Return-Path: <devicetree+bounces-191362-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-191363-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 815C7AEF075
-	for <lists+devicetree@lfdr.de>; Tue,  1 Jul 2025 10:06:11 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7E38FAEF08C
+	for <lists+devicetree@lfdr.de>; Tue,  1 Jul 2025 10:10:53 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 03EB6189B868
-	for <lists+devicetree@lfdr.de>; Tue,  1 Jul 2025 08:06:27 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 5BB9E7A41D2
+	for <lists+devicetree@lfdr.de>; Tue,  1 Jul 2025 08:09:28 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id F08A2268683;
-	Tue,  1 Jul 2025 08:06:05 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 75BB926A1DD;
+	Tue,  1 Jul 2025 08:10:34 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (1024-bit key) header.d=collabora.com header.i=sjoerd@collabora.com header.b="CEwRl1S/"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-vk1-f180.google.com (mail-vk1-f180.google.com [209.85.221.180])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from sender4-pp-f112.zoho.com (sender4-pp-f112.zoho.com [136.143.188.112])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E1C364A0C;
-	Tue,  1 Jul 2025 08:06:03 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.180
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1751357165; cv=none; b=P3mYTMa72HYCQcixB60kSD1pIklUpfA3wSfIxSNLgxsLtSBDR0gNP68ExRml9S4APiaaS50kQgX+M12XnGsZ8okVPn3SLNah/6Tb+w++TOVbvNtuXbq1x8J9eJ4fu5l/+RM+donH9V2NIEE4eUv+ASWD9p/ZpUMQlQ9p+2p2EkA=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1751357165; c=relaxed/simple;
-	bh=Fg9/wOKd839gSjrSSUAyOaaW+du1KFVWOz1piLBNugA=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=QwNLawQ2DuwDt25WmjFgpS9Tk0UdwTxkIaPbJ7OWNjbAlMoN/cSc+KDTljTgkk42AKlL2FYMCHh9leJ4Ch8KFKa70W+apd3YUsuc4JyFfFC7kxY28Xt952yt1R75Zdq5xZs/LsrsZrLB4yCfsvymdQkc4fPGsC+6nDeGXzX+J1I=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.221.180
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-vk1-f180.google.com with SMTP id 71dfb90a1353d-528ce9730cfso1006118e0c.3;
-        Tue, 01 Jul 2025 01:06:03 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1751357162; x=1751961962;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=nOPgQPiH0cyH4gfLvX6iKuYNofmLskPWLW/+70n9+4I=;
-        b=A1bLhELszWCLWq4fP8U3KC5sY5oHzI46tvwpUBbvCH1dsQw94S/2p1gHA8RsfMGqxU
-         cwMcJztV6s8EJycKR5plNkFM4+oS/5Ckbs1aVKE8fGycf/Adhu7QX4s1WaUlD5OZw1bj
-         OW/5Fcz4EiCinV0A69tsPTAzjup53FLK+tRDvIf6c/fuahoDQ35Ilmox3xkbvQdnPMTe
-         WmcyPFuDnYUTyorPFnZkNoIAvt+xYJ6HvdSXfVZyUvHzyX+/ny+JntB6PyW8TmaMuJw8
-         oYOaYa5AxDJ758DQYxbT0sm4iN7/ZIxReD0d0s/k0qW/LOJXJ2SkLttiNitBEgYHVkC7
-         7WYg==
-X-Forwarded-Encrypted: i=1; AJvYcCUfQeqdqSUzyibsrrTo7MXnKBPI+zPUPzzqWjUeQ2W+Vu2XrLuQEe7VOkCX+oYv7MSs21Hoc252@vger.kernel.org, AJvYcCWDBBsVU3wXofxHi0z3NGgcO1moPFy43OxR8LC7gvH9cCfyz4TgPNLrppGxVgCwbBUAHgEktl7HUl+ajA86@vger.kernel.org, AJvYcCWcjasgFByOheWQlDmmWWF4KwgAL9OqzVe47qZUs5AvZwMxVB2S5KgsnQnQWMOWX+nE0ZovNxNG3XTqUSK9UAlXrlY=@vger.kernel.org, AJvYcCXoKAEETIpCX48twwM2TkW0u5Xb35AGLzqpdnCYjoly7B2pHOPcfuALToaH0wPq02T9/a0gl356qNCI@vger.kernel.org
-X-Gm-Message-State: AOJu0Yybgto1sxdts96/KATfoH4v1xnuAsGIUigD02+2Q+nW0gd1q8cw
-	pGBci+ndycLfUQfmzgYTMUpbXGDLwJDkdv68IPB1oFoQiN64cvszx5OCj0gHmGly
-X-Gm-Gg: ASbGnctIARKSt08uTL7mYJGOkXHpqqJk04mxEb7poeiQzPYD8eFOGrHyyy1ofJ8eOpp
-	JojYJUAazxFiKluFs577l63DiPVKLbOy61abFUY7GCWDxVc27GMaG5Bq4hXUHonNk9RAGFjazTU
-	Z6Jk7P//kMFgcsst6Q7Ot2Dvnp2Kds0GX3Oyu/88FIJ3XPaOwJvVXWng/AZLc2e0LFTrjIDgKpU
-	ko0/NuZEh5+FM2yG/ssqwGj/anZ3/V015/83OLNVyZEOIZVaILt7YJJ2+h4acv8EbG88/aPcs+p
-	e1i4THlIKH8SC173AarAkZ3s9sO4mijdjXtWsksQ/2yeohNa+SPS0WTsfOReHvvThamQWS7RNdh
-	jzf1Xjhtd2dgqdVG6h/Yh0Jl8
-X-Google-Smtp-Source: AGHT+IFkB0H2eiscp0BdbL2ydvtM4ljlUHOIXGfR2eF5qkFcb1G1KMuM+wT599vFU9gKaGdSzEO52A==
-X-Received: by 2002:a05:6122:370e:b0:531:2afc:461b with SMTP id 71dfb90a1353d-5330be677a3mr11513303e0c.4.1751357161534;
-        Tue, 01 Jul 2025 01:06:01 -0700 (PDT)
-Received: from mail-ua1-f42.google.com (mail-ua1-f42.google.com. [209.85.222.42])
-        by smtp.gmail.com with ESMTPSA id 71dfb90a1353d-53323b0f091sm1017153e0c.0.2025.07.01.01.06.01
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 01 Jul 2025 01:06:01 -0700 (PDT)
-Received: by mail-ua1-f42.google.com with SMTP id a1e0cc1a2514c-87f2170921dso635112241.0;
-        Tue, 01 Jul 2025 01:06:01 -0700 (PDT)
-X-Forwarded-Encrypted: i=1; AJvYcCUZgmvX7WL7FpiNjQKW4B28tg4kyIdoIsenjcbHkQEH32IFUyvwM4HjShQaYbcPDZIfY+5EnHQu@vger.kernel.org, AJvYcCUm0bXwH8/6RWCsN8ZDWsgwV5D4c2Mb7r149TP+H2hcR/zfzMzzHx6swkdkXhOzhWw/ZsbNdEqQfBysKOwv@vger.kernel.org, AJvYcCUy3WJDYSbCZfzB1CxWWdsIPpURi1joXouN7UdV/ATw6PI9VWY8t2c0KMOohSeL1DCJSkCZgGF2XnPk9ycO+zZZzD0=@vger.kernel.org, AJvYcCXxoQ9EhyHGwAVrOYlkMEUPtcVfIn+blN027k5OSvM33schn/Kz25ivjOZDqN8z3uoBz/Xra9QZdfzI@vger.kernel.org
-X-Received: by 2002:a05:6102:5717:b0:4e9:c773:dca1 with SMTP id
- ada2fe7eead31-4ee4f6d96fbmr11242699137.11.1751357161130; Tue, 01 Jul 2025
- 01:06:01 -0700 (PDT)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7F5AA26A1C4;
+	Tue,  1 Jul 2025 08:10:32 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=pass smtp.client-ip=136.143.188.112
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1751357434; cv=pass; b=jBeh4Vxm8c+dVn7A2ebBjr5euAhU9Ub6eBpQq4Hpywuq6d9QbKGLXEGCOPQTWSWWc5ENM2Y6gpawVJ2XHJN1KZlFkgutD698iyeq8jZAefWfj7uMA8N0JhkgnNoJrUCAsbROVldqTlYWRhxqdNZtf59xNSun1lpfGl5aZwfOrVM=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1751357434; c=relaxed/simple;
+	bh=FmbvPSfq2h3/miVw2Ia9z7emMBNvSwQsnVph+ENro/I=;
+	h=Message-ID:Subject:From:To:Cc:Date:In-Reply-To:References:
+	 Content-Type:MIME-Version; b=NQyExS6EQD2K7a3PLaokXgO9VIWZH7DD6W3QSvM+JmEadu9zvKUrkJBNbJAYiEte8FMN9bNhmJQp70KA1HkEZxcAi8h4v3KRVak5i0yDvfmMxBkW0MNChMqu+N290cPkRQwE0SaxlcC1RnNMejfE01lxZ3jYAYrnAaFBSjGQz6c=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (1024-bit key) header.d=collabora.com header.i=sjoerd@collabora.com header.b=CEwRl1S/; arc=pass smtp.client-ip=136.143.188.112
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
+ARC-Seal: i=1; a=rsa-sha256; t=1751357386; cv=none; 
+	d=zohomail.com; s=zohoarc; 
+	b=NsNPod/rgbsI8etHvV0H9s0eMrCC/J2cbSS4S8fF/5nsovJflukEmqAYheJfelsIP9BWe5gr+C1i/2q2Vc7FS6PXryS49tcV+n9GwB/pg0aQ9WFQyS+/5Fis+dqlE9Nj5PIwvd/5pX9WXjt+CgZ8Q0bqGfbNvGPHf4vg/Ea6408=
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=zohomail.com; s=zohoarc; 
+	t=1751357386; h=Content-Type:Content-Transfer-Encoding:Cc:Cc:Date:Date:From:From:In-Reply-To:MIME-Version:Message-ID:References:Subject:Subject:To:To:Message-Id:Reply-To; 
+	bh=K4dZn3NVcIpGzrcKLP4sLnB7bPgQrfNojFnFyr8sESg=; 
+	b=KckBD0XaJ0B4O1uPqqsKmddpOoqY/s6X6uETq3rEfcNhXQTf3VlkZCnQKIlklePwuLPC4izIjcF2nFAYFfDfLOmEjGdkIt4rAhdYOwS6x9gGqreRTI1kzxYPvO4xoacgvZ920TQQ2AxHnrnWQpsqwYOWhNmzcX/Wle5+EgUDydM=
+ARC-Authentication-Results: i=1; mx.zohomail.com;
+	dkim=pass  header.i=collabora.com;
+	spf=pass  smtp.mailfrom=sjoerd@collabora.com;
+	dmarc=pass header.from=<sjoerd@collabora.com>
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; t=1751357386;
+	s=zohomail; d=collabora.com; i=sjoerd@collabora.com;
+	h=Message-ID:Subject:Subject:From:From:To:To:Cc:Cc:Date:Date:In-Reply-To:References:Content-Type:Content-Transfer-Encoding:MIME-Version:Message-Id:Reply-To;
+	bh=K4dZn3NVcIpGzrcKLP4sLnB7bPgQrfNojFnFyr8sESg=;
+	b=CEwRl1S/yF6Q0GCS6KBd50fV9lOKsJp3NnCBRbtaTD2N/6St+xsbXXSGFIXDNn23
+	o+feq0345bK7zuHJI1MR8KmKxRzyYcDqLhlKSi3q+toQbgdXV7GUoGZY4xBmHmDqAfJ
+	Xq3vh6RN9qTQVru33omY7yilCp2q8eUoF8bZ0nuw=
+Received: by mx.zohomail.com with SMTPS id 1751357383778894.2496083182277;
+	Tue, 1 Jul 2025 01:09:43 -0700 (PDT)
+Message-ID: <ab421c6f9fc804a6f03833d824d5776c7272e6bb.camel@collabora.com>
+Subject: Re: [PATCH v4 11/12] media: ti: j721e-csi2rx: Submit all available
+ buffers
+From: Sjoerd Simons <sjoerd@collabora.com>
+To: Rishikesh Donadkar <r-donadkar@ti.com>, jai.luthra@linux.dev, 
+	laurent.pinchart@ideasonboard.com, mripard@kernel.org, Julien Massot
+	 <jmassot@collabora.com>
+Cc: y-abhilashchandra@ti.com, devarsht@ti.com, vaishnav.a@ti.com,
+ s-jain1@ti.com, 	vigneshr@ti.com, mchehab@kernel.org, robh@kernel.org,
+ krzk+dt@kernel.org, 	conor+dt@kernel.org, sakari.ailus@linux.intel.com,
+ hverkuil-cisco@xs4all.nl, 	tomi.valkeinen@ideasonboard.com,
+ jai.luthra@ideasonboard.com, 	changhuang.liang@starfivetech.com,
+ jack.zhu@starfivetech.com, 	linux-kernel@vger.kernel.org,
+ linux-media@vger.kernel.org, 	devicetree@vger.kernel.org, "Liu (EP), Bin"
+ <b-liu@ti.com>
+Date: Tue, 01 Jul 2025 10:09:38 +0200
+In-Reply-To: <20250514112527.1983068-12-r-donadkar@ti.com>
+References: <20250514112527.1983068-1-r-donadkar@ti.com>
+	 <20250514112527.1983068-12-r-donadkar@ti.com>
+Organization: Collabora
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+User-Agent: Evolution 3.56.1-1 
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20250611061609.15527-1-john.madieu.xa@bp.renesas.com>
- <20250611061609.15527-2-john.madieu.xa@bp.renesas.com> <CAMuHMdXE-C4FAXOfzQv8xfgFytwpqkARDORGLkosZtCsjK8nmg@mail.gmail.com>
- <OSCPR01MB14647EFA0DA38119F00DF1D50FF72A@OSCPR01MB14647.jpnprd01.prod.outlook.com>
- <CAMuHMdWnz3VUeFaJBEgLc0F_gGkdm679H4YqFFuRAEVFKZd8OA@mail.gmail.com>
- <OSCPR01MB1464715327B4DDE8622B9B510FF7DA@OSCPR01MB14647.jpnprd01.prod.outlook.com>
- <CA+V-a8sF2wmLEAp7uhxhKaNx_u9xTf9SR_y8rafyvYYaUgxYDw@mail.gmail.com>
- <CAMuHMdXdhYJ7ZKVa_f15PMBv7t1_xsDUuwR+uv+bOaHMxtr8Lg@mail.gmail.com> <OSCPR01MB14647AB8B2901DE1EBEB32145FF46A@OSCPR01MB14647.jpnprd01.prod.outlook.com>
-In-Reply-To: <OSCPR01MB14647AB8B2901DE1EBEB32145FF46A@OSCPR01MB14647.jpnprd01.prod.outlook.com>
-From: Geert Uytterhoeven <geert@linux-m68k.org>
-Date: Tue, 1 Jul 2025 10:05:49 +0200
-X-Gmail-Original-Message-ID: <CAMuHMdXMLv6mfKsNfKDgMKqOSf7Nf+FTJcy7M84EN_oeHbzbTA@mail.gmail.com>
-X-Gm-Features: Ac12FXyTtjI4YTwpovffxojy8Q1Ejihuqc3wkPKs28S37LOjQ2ir27DL4UhK71w
-Message-ID: <CAMuHMdXMLv6mfKsNfKDgMKqOSf7Nf+FTJcy7M84EN_oeHbzbTA@mail.gmail.com>
-Subject: Re: [PATCH v2 1/3] clk: renesas: r9a09g047: Add clock and reset
- signals for the GBETH IPs
-To: John Madieu <john.madieu.xa@bp.renesas.com>
-Cc: "andrew+netdev@lunn.ch" <andrew+netdev@lunn.ch>, "conor+dt@kernel.org" <conor+dt@kernel.org>, 
-	"davem@davemloft.net" <davem@davemloft.net>, "edumazet@google.com" <edumazet@google.com>, 
-	"krzk+dt@kernel.org" <krzk+dt@kernel.org>, "kuba@kernel.org" <kuba@kernel.org>, 
-	"pabeni@redhat.com" <pabeni@redhat.com>, 
-	Prabhakar Mahadev Lad <prabhakar.mahadev-lad.rj@bp.renesas.com>, 
-	"robh@kernel.org" <robh@kernel.org>, Biju Das <biju.das.jz@bp.renesas.com>, 
-	"Lad, Prabhakar" <prabhakar.csengg@gmail.com>, 
-	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>, 
-	"john.madieu@gmail.com" <john.madieu@gmail.com>, 
-	"linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>, 
-	"linux-renesas-soc@vger.kernel.org" <linux-renesas-soc@vger.kernel.org>, 
-	"magnus.damm@gmail.com" <magnus.damm@gmail.com>, "netdev@vger.kernel.org" <netdev@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+X-ZohoMailClient: External
 
-Hi John,
+Hey,
 
-On Mon, 30 Jun 2025 at 18:23, John Madieu <john.madieu.xa@bp.renesas.com> w=
-rote:
-> > From: Geert Uytterhoeven <geert@linux-m68k.org>
-> > On Thu, 19 Jun 2025 at 10:22, Lad, Prabhakar <prabhakar.csengg@gmail.co=
-m>
-> > wrote:
-> > > On Thu, Jun 19, 2025 at 5:34=E2=80=AFAM John Madieu
-> > > <john.madieu.xa@bp.renesas.com> wrote:
-> > > > > From: Geert Uytterhoeven <geert@linux-m68k.org> On Wed, 18 Jun
-> > > > > 2025 at 12:04, John Madieu <john.madieu.xa@bp.renesas.com>
-> > > > > wrote:
-> > > > > > > From: Geert Uytterhoeven <geert@linux-m68k.org> On Wed, 11 Ju=
-n
-> > > > > > > 2025 at 11:02, John Madieu <john.madieu.xa@bp.renesas.com>
-> > > > > > > wrote:
-> > > > > > > > Add clock and reset entries for the Gigabit Ethernet
-> > > > > > > > Interfaces (GBETH
-> > > > > > > > 0-1) IPs found on the RZ/G3E SoC. This includes various
-> > > > > > > > PLLs, dividers, and mux clocks needed by these two GBETH IP=
-s.
-> > > > > > > >
-> > > > > > > > Reviewed-by: Biju Das <biju.das.jz@bp.renesas.com>
-> > > > > > > > Tested-by: Biju Das <biju.das.jz@bp.renesas.com>
-> > > > > > > > Signed-off-by: John Madieu <john.madieu.xa@bp.renesas.com>
-> > > > > > >
-> > > > > > > Thanks for your patch!
-> > > > > > >
-> > > > > > > > --- a/drivers/clk/renesas/r9a09g047-cpg.c
-> > > > > > > > +++ b/drivers/clk/renesas/r9a09g047-cpg.c
-> > >
-> > > "The clock gating cells require source clocks to operate correctly. I=
-f
-> > > the source clocks are stopped, these registers cannot be used."
-> >
-> > Has this been sorted out yet? I see no change or mention of it in v3.
->
-> Yes, it has been sorted out. I mean they operated properly after
-> all the tests, even after S2R/wakeup test.
->
-> While at it, even with OEN patches applied, I could not reproduce
-> the issue known to V2H. That's why I've asked if you'd prefer
-> DEF_MOD_EXTERNAL instead of DEF_MOD (which does not work on V2H)
-> for consistency with RZ/V2H, I can do that as well.
+On Wed, 2025-05-14 at 16:55 +0530, Rishikesh Donadkar wrote:
+> From: Jai Luthra <j-luthra@ti.com>
+>=20
+> We already make sure to submit all available buffers to DMA in each DMA
+> completion callback.
+>=20
+> Move that logic in a separate function, and use it during stream start
+> as well, as most application queue all their buffers before stream on.
+>=20
+> Signed-off-by: Jai Luthra <j-luthra@ti.com>
+> Reviewed-by: Tomi Valkeinen <tomi.valkeinen@ideasonboard.com>
+> Signed-off-by: Rishikesh Donadkar <r-donadkar@ti.com>
+> ---
+> =C2=A0.../platform/ti/j721e-csi2rx/j721e-csi2rx.c=C2=A0=C2=A0 | 43 ++++++=
++++++--------
+> =C2=A01 file changed, 24 insertions(+), 19 deletions(-)
+>=20
+> diff --git a/drivers/media/platform/ti/j721e-csi2rx/j721e-csi2rx.c
+> b/drivers/media/platform/ti/j721e-csi2rx/j721e-csi2rx.c
+> index 7986f96c5e11b..ba2a30bfed37d 100644
+> --- a/drivers/media/platform/ti/j721e-csi2rx/j721e-csi2rx.c
+> +++ b/drivers/media/platform/ti/j721e-csi2rx/j721e-csi2rx.c
+> @@ -651,6 +651,27 @@ static int ti_csi2rx_drain_dma(struct ti_csi2rx_ctx =
+*ctx)
+> =C2=A0	return ret;
+> =C2=A0}
+> =C2=A0
+> +static int ti_csi2rx_dma_submit_pending(struct ti_csi2rx_ctx *ctx)
+> +{
+> +	struct ti_csi2rx_dma *dma =3D &ctx->dma;
+> +	struct ti_csi2rx_buffer *buf;
+> +	int ret =3D 0;
+> +
+> +	/* If there are more buffers to process then start their transfer. */
+> +	while (!list_empty(&dma->queue)) {
+> +		buf =3D list_entry(dma->queue.next, struct ti_csi2rx_buffer,
+> list);
+> +		ret =3D ti_csi2rx_start_dma(ctx, buf);
+> +		if (ret) {
+> +			dev_err(ctx->csi->dev,
+> +				"Failed to queue the next buffer for DMA\n");
+> +			vb2_buffer_done(&buf->vb.vb2_buf,
+> VB2_BUF_STATE_ERROR);
+> +			break;
 
-As DEF_MOD_MUX_EXTERNAL() better matches the undelying
-hardware, I prefer that.
-Thanks!
+The break here seems wrong and does change the previous logic; It means onc=
+e *a*
+buffer fails to start DMA, you'll no longer try to submit the other (queued=
+)
+buffers. If this was called from the DMA callback of the last submitted buf=
+fer
+and userspace doesn't re-queue the error buffer, then capturing will stop, =
+even
+if there were still queued up buffers from a userspace pov.
 
-Gr{oetje,eeting}s,
 
-                        Geert
+For a potential next iteration you probably also want to wrap in the change=
+s
+from to fix list_del corruption:
+https://lore.kernel.org/all/20250630-j721e-dma-fixup-v1-1-591e378ab3a8@coll=
+abora.com/
 
---=20
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k=
-.org
 
-In personal conversations with technical people, I call myself a hacker. Bu=
-t
-when I'm talking to journalists I just say "programmer" or something like t=
-hat.
-                                -- Linus Torvalds
+
+> +		}
+> +		list_move_tail(&buf->list, &dma->submitted);
+> +	}
+> +	return ret;
+> +}
+> +
+> =C2=A0static void ti_csi2rx_dma_callback(void *param)
+> =C2=A0{
+> =C2=A0	struct ti_csi2rx_buffer *buf =3D param;
+> @@ -671,18 +692,7 @@ static void ti_csi2rx_dma_callback(void *param)
+> =C2=A0	vb2_buffer_done(&buf->vb.vb2_buf, VB2_BUF_STATE_DONE);
+> =C2=A0	list_del(&buf->list);
+> =C2=A0
+> -	/* If there are more buffers to process then start their transfer. */
+> -	while (!list_empty(&dma->queue)) {
+> -		buf =3D list_entry(dma->queue.next, struct ti_csi2rx_buffer,
+> list);
+> -
+> -		if (ti_csi2rx_start_dma(ctx, buf)) {
+> -			dev_err(ctx->csi->dev,
+> -				"Failed to queue the next buffer for DMA\n");
+> -			vb2_buffer_done(&buf->vb.vb2_buf,
+> VB2_BUF_STATE_ERROR);
+> -		} else {
+> -			list_move_tail(&buf->list, &dma->submitted);
+> -		}
+> -	}
+> +	ti_csi2rx_dma_submit_pending(ctx);
+> =C2=A0
+> =C2=A0	if (list_empty(&dma->submitted))
+> =C2=A0		dma->state =3D TI_CSI2RX_DMA_IDLE;
+> @@ -941,7 +951,6 @@ static int ti_csi2rx_start_streaming(struct vb2_queue=
+ *vq,
+> unsigned int count)
+> =C2=A0	struct ti_csi2rx_ctx *ctx =3D vb2_get_drv_priv(vq);
+> =C2=A0	struct ti_csi2rx_dev *csi =3D ctx->csi;
+> =C2=A0	struct ti_csi2rx_dma *dma =3D &ctx->dma;
+> -	struct ti_csi2rx_buffer *buf;
+> =C2=A0	unsigned long flags;
+> =C2=A0	int ret =3D 0;
+> =C2=A0
+> @@ -980,16 +989,13 @@ static int ti_csi2rx_start_streaming(struct vb2_que=
+ue
+> *vq, unsigned int count)
+> =C2=A0	ctx->sequence =3D 0;
+> =C2=A0
+> =C2=A0	spin_lock_irqsave(&dma->lock, flags);
+> -	buf =3D list_entry(dma->queue.next, struct ti_csi2rx_buffer, list);
+> =C2=A0
+> -	ret =3D ti_csi2rx_start_dma(ctx, buf);
+> +	ret =3D ti_csi2rx_dma_submit_pending(ctx);
+> =C2=A0	if (ret) {
+> -		dev_err(csi->dev, "Failed to start DMA: %d\n", ret);
+> =C2=A0		spin_unlock_irqrestore(&dma->lock, flags);
+> -		goto err_pipeline;
+> +		goto err_dma;
+> =C2=A0	}
+> =C2=A0
+> -	list_move_tail(&buf->list, &dma->submitted);
+> =C2=A0	dma->state =3D TI_CSI2RX_DMA_ACTIVE;
+> =C2=A0	spin_unlock_irqrestore(&dma->lock, flags);
+> =C2=A0
+> @@ -1004,7 +1010,6 @@ static int ti_csi2rx_start_streaming(struct vb2_que=
+ue
+> *vq, unsigned int count)
+> =C2=A0
+> =C2=A0err_dma:
+> =C2=A0	ti_csi2rx_stop_dma(ctx);
+> -err_pipeline:
+> =C2=A0	video_device_pipeline_stop(&ctx->vdev);
+> =C2=A0	writel(0, csi->shim + SHIM_CNTL);
+> =C2=A0	writel(0, csi->shim + SHIM_DMACNTX(ctx->idx));
 
