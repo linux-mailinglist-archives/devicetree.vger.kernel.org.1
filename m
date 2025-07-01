@@ -1,155 +1,125 @@
-Return-Path: <devicetree+bounces-191388-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-191389-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 000B0AEF1B5
-	for <lists+devicetree@lfdr.de>; Tue,  1 Jul 2025 10:48:59 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id A6944AEF1C0
+	for <lists+devicetree@lfdr.de>; Tue,  1 Jul 2025 10:49:47 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 31594162E8C
-	for <lists+devicetree@lfdr.de>; Tue,  1 Jul 2025 08:49:00 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id D42703B12F4
+	for <lists+devicetree@lfdr.de>; Tue,  1 Jul 2025 08:49:15 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id F21872367D1;
-	Tue,  1 Jul 2025 08:48:54 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 35B67258CCB;
+	Tue,  1 Jul 2025 08:49:33 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=riscstar-com.20230601.gappssmtp.com header.i=@riscstar-com.20230601.gappssmtp.com header.b="EvZITTKY"
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="FRRzH9SP"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-yw1-f172.google.com (mail-yw1-f172.google.com [209.85.128.172])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0E16522488B
-	for <devicetree@vger.kernel.org>; Tue,  1 Jul 2025 08:48:52 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.172
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 80B11223327;
+	Tue,  1 Jul 2025 08:49:31 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1751359734; cv=none; b=TxrmOuASC9RG3ixHttRVq/z4YOev010nwFI4yi3lVbPyedWbYQx4+yq1w9oBT4tzCMJQMLqKV0ju9MQGVtBZwRchlJRqRwpqtFCbySJI9DPKMOwUCxsJY0dBnOtvz/pLGBTzkAAxzcsySHZgVOMoEUNLg7rCtssrXV2eTz5YDQM=
+	t=1751359773; cv=none; b=MVUj+i/3pTpGKA6CIfgnzerW+jKchUBu4lH6JV5lrSII3hnE4l4oRfa4ZqzBRQPCi4u4R9DcLgF07qS6NrWIgBRFNfrO+3M00XoB8ZuSy1GZTntJRyYXeaW/I1F81QLwTw2ds8goZL5hsetFYafHIparSUaZI3YmBGcfu5dQOwA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1751359734; c=relaxed/simple;
-	bh=DGBHFGIQFj3DI57v/KergKc6+HMEaz+DP4HpyZ/MxtE=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=CW5+AqVb5dfqsh8cejjAJSHZzxWd6YYGjWcokO3U7TUaRTvJrwq5wQUNR3P+H+KGdJqFddfDbiPVM9Qa7O2X5O9RQEjimDHU1hyrfH+JKsBjcZ3F9fscX2AnlHa5Jbt+SeVyANC6GnPwa2b5QiqHOL2fApikvJscySObZZPlOqQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=riscstar.com; spf=pass smtp.mailfrom=riscstar.com; dkim=pass (2048-bit key) header.d=riscstar-com.20230601.gappssmtp.com header.i=@riscstar-com.20230601.gappssmtp.com header.b=EvZITTKY; arc=none smtp.client-ip=209.85.128.172
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=riscstar.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=riscstar.com
-Received: by mail-yw1-f172.google.com with SMTP id 00721157ae682-71173646662so31287087b3.2
-        for <devicetree@vger.kernel.org>; Tue, 01 Jul 2025 01:48:52 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=riscstar-com.20230601.gappssmtp.com; s=20230601; t=1751359732; x=1751964532; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=Ham4MleQtpYSqIWPo8fq/MuoFtt+t8Ya59SZXOm39+s=;
-        b=EvZITTKYDl5uL1ve1wLJnipv0bkLmS0L6fx3chyv8BvSs70JiIxRsLqL1cVwFUWFZm
-         ebyxm0YSMkZtuTns9B0jtC757l7bd1gJM8CIOVMI3gO2+pg9X4Z5yAKrn4g9UXc+9IyC
-         CT4t/PFh87odls6yrrlbaGp6E3rr73GVlhSdbbWtkSIGnrpi2DsQ8BIGzfJmialYSVNd
-         1gYU4eKxe7vPsnBZ894SqyXviLAZH8SvsByGStG4vued3wd6wH8DiNcWWKWf1RMt02rv
-         rKZa3L/9r6Ikb76GXd4f6tnKn5/YlGWXqCVEAbmm8bYvPzF3A4ewfOtj5O/MXM2QMhAC
-         mAXA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1751359732; x=1751964532;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=Ham4MleQtpYSqIWPo8fq/MuoFtt+t8Ya59SZXOm39+s=;
-        b=JJbr7eRcvSY4EGzSOQElUy5swbW/g79HIvxhY0mxWy0H1xJj0QTJTvDA2T7/MsEWw9
-         oe1sZJvm9JFOoC8g8sM7r1xcHjDwUupHrKo6XCiR8/yfhatGTJfIqDuxT3obEpfC1nq8
-         6Q2NHYgsM3IoXiP+zOQ1HhpVHsLufOQ6cJLMajnN8CGr8FDhDNiL14OhnsNwvJ8Wk5SL
-         /q/SWd2BuFkrCve5EenhpWx6wGFmO+4a6qAhAlJOwnrlM8uuCzu4XMXl6CaJ9BJzP1N/
-         CDHsWCDzDS6XomMK50vOIRGKyU9euwR1q4hFfnJBJDs5VHqVOfCw+RnLWCsfD6UJcOGT
-         4lRQ==
-X-Forwarded-Encrypted: i=1; AJvYcCUCTfoLdq61lmUBe5khCnWJ1U6wmVVxSAHCvZi7vGD9XPH2K1lxzUMBczUFBIa/Wtyxq2nVeNDrJR4E@vger.kernel.org
-X-Gm-Message-State: AOJu0Yz4HKUAnUOJhU7WRsv+5cANmjC4zP7sMDAmwQ/O1krMRMkYRmQC
-	W19m+E/I4nnRe3JmacraQ1GTp8CVZI34muVmW+n1vBs0Ps1ncR9ueJDptbaQ/dH/xh9rsK5P+DT
-	W/wuG96XOKM1Bh7T23cDVqvS+nxAJz8hf3j42FQ4F3w==
-X-Gm-Gg: ASbGncsF2vjFdDMri2j8ut1FGx3WyuUADgTA5UxeQ266eaAKMeCudOko9P1KbJweWL4
-	DYYyTwYszeq33dRY8oBaSBsarmZgMu8qluG5LqARTUINNrB9VuDL7QUNWX+jeJs8072PFB2Qlw1
-	le6PixtAAaFU5xoUMFvpzc4lV/05eTg5njzjGq0eaOQ0IXIcIL
-X-Google-Smtp-Source: AGHT+IExwbxuXz67r7i2U0Hj9e39nnEuFRzklLDURAXbWXk0DV903xSBiVjsaBHg1u3FdNeBklfefUYYXWQaY3P289M=
-X-Received: by 2002:a05:690c:45ca:b0:70e:29af:844a with SMTP id
- 00721157ae682-71517196047mr247551697b3.18.1751359731954; Tue, 01 Jul 2025
- 01:48:51 -0700 (PDT)
+	s=arc-20240116; t=1751359773; c=relaxed/simple;
+	bh=gRTf4kcPVb09tcRj8ksQ2dvnka5DMq0Gpkh+Sy8Ta1E=;
+	h=From:To:CC:Subject:Date:Message-ID:MIME-Version:Content-Type; b=GPssJQQm/I3fSbGESxHFeZZWWvCKmatHKXCxCmqzOw9tIrr7yjw4PixMZ23RWOBlN/qZ9PFu7FEZTfPaG7/dPNsZOusyY07HbN/U34AHveLbM01wH1qet73VC6qo8LKnr2EmuR6BEJUFASOA0aVrpXBcwTS+buUKpVXUSu2+5vs=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=FRRzH9SP; arc=none smtp.client-ip=205.220.180.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
+Received: from pps.filterd (m0279873.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 5613TGXM008152;
+	Tue, 1 Jul 2025 08:49:28 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
+	cc:content-transfer-encoding:content-type:date:from:message-id
+	:mime-version:subject:to; s=qcppdkim1; bh=4BSfFFApLLZWn/uZP6d+ak
+	Ui8u6uMgYxZzUMig4Dn18=; b=FRRzH9SPJmRhA98wx8Sj8FToagwZrh/4V5jVuh
+	UdMo1eI71OJIrFZedUFfftJtttfVhLdN4Zc4OxLnS6kB4NCftxc0KcvcqrtUUbe5
+	l1QcsqZez6O2YJw9L3M0srlNkD7CFnsA3cBpW4uL8JSXZE7Yhtut4tpYGOJnKEni
+	TarMYIQrH5gZjP6ZjiqzGRX6rz5z6lVUQ2jBPGkW/dffENm7PVNQXUCXT7eUpGve
+	vrwYw4RGUd6gxWEEPRbU/7phOOQnXM+/aDoqWWc8V7egvXxLKfo0gBMp3q87QZmw
+	BWZzX6kKU7H+xRsC3rlVq4/PBFewIq1PtxeHgXhKPCnoUC6g==
+Received: from nasanppmta03.qualcomm.com (i-global254.qualcomm.com [199.106.103.254])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 47kkfmvk8p-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Tue, 01 Jul 2025 08:49:27 +0000 (GMT)
+Received: from nasanex01c.na.qualcomm.com (nasanex01c.na.qualcomm.com [10.45.79.139])
+	by NASANPPMTA03.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 5618nQS5029733
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Tue, 1 Jul 2025 08:49:26 GMT
+Received: from hu-lxu5-sha.qualcomm.com (10.80.80.8) by
+ nasanex01c.na.qualcomm.com (10.45.79.139) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.1748.10; Tue, 1 Jul 2025 01:49:23 -0700
+From: Ling Xu <quic_lxu5@quicinc.com>
+To: <cros-qcom-dts-watchers@chromium.org>, <andersson@kernel.org>,
+        <konradybcio@kernel.org>, <robh@kernel.org>, <krzk+dt@kernel.org>,
+        <conor+dt@kernel.org>
+CC: <quic_kuiw@quicinc.com>, <ekansh.gupta@oss.qualcomm.com>,
+        <devicetree@vger.kernel.org>, <linux-arm-msm@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>, Ling Xu <quic_lxu5@quicinc.com>
+Subject: [PATCH v4 0/2] arm64: dts: qcom: sc7280: Add property for sc7280
+Date: Tue, 1 Jul 2025 14:19:03 +0530
+Message-ID: <20250701084905.872519-1-quic_lxu5@quicinc.com>
+X-Mailer: git-send-email 2.34.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20250701-working_dma_0701_v2-v2-0-ab6ee9171d26@riscstar.com>
- <20250701-working_dma_0701_v2-v2-7-ab6ee9171d26@riscstar.com> <ebc16dbe-2405-4956-91a0-bcce9f199326@kernel.org>
-In-Reply-To: <ebc16dbe-2405-4956-91a0-bcce9f199326@kernel.org>
-From: Guodong Xu <guodong@riscstar.com>
-Date: Tue, 1 Jul 2025 16:48:41 +0800
-X-Gm-Features: Ac12FXzG_24euqC2ksqQUMdli-9vCkce_uhDVNzQHQHTjfNnkSCnW6ua-Xfs0vo
-Message-ID: <CAH1PCMa2dB1fefzGgo-kKfgAdou_KaDSvTDsvYPjsGKODHETCA@mail.gmail.com>
-Subject: Re: [PATCH v2 7/8] riscv: dts: spacemit: Enable PDMA0 on Banana Pi F3
- and Milkv Jupiter
-To: Krzysztof Kozlowski <krzk@kernel.org>
-Cc: Vinod Koul <vkoul@kernel.org>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, Yixun Lan <dlan@gentoo.org>, 
-	=?UTF-8?Q?Duje_Mihanovi=C4=87?= <duje.mihanovic@skole.hr>, 
-	Philipp Zabel <p.zabel@pengutronix.de>, Paul Walmsley <paul.walmsley@sifive.com>, 
-	Palmer Dabbelt <palmer@dabbelt.com>, Albert Ou <aou@eecs.berkeley.edu>, 
-	Alexandre Ghiti <alex@ghiti.fr>, Alex Elder <elder@riscstar.com>, 
-	Vivian Wang <wangruikang@iscas.ac.cn>, dmaengine@vger.kernel.org, 
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	linux-riscv@lists.infradead.org, spacemit@lists.linux.dev
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
+ nasanex01c.na.qualcomm.com (10.45.79.139)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-ORIG-GUID: pfOzB5QwiUhaam9mqERqJipOQUXB7XVm
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwNzAxMDA1MSBTYWx0ZWRfXwJxnSA3R+aHf
+ Wpct3N2blS/tUquekWsWg6F+84LHAuskkmPAYgPJt+RqiI5d45vHC0HGv+HsvIXkl3jATaLReB3
+ u3vH0VwKZETpVx5hjY49oi+T44PbO6+jF//swqNkWZJ9+ZaMnqd9e2MY/lY8vTB2lnNTAZzN5rY
+ FF3T5UyobgJJskzMjgx710MszD2pILyQUeyh5g697ZHZzDEEIqRK3yctbcrXQywq8mDFavoAEt1
+ ZZ4iyOGYdentSDyuoozskX1KQr4crMK9QemamJLutCnDTcCvNr51tiUr3MGjwAbX2mCb/kwqkc4
+ 8Qoss78kW5TsGT+UBxCE0WYautAzeKufQOUqL7jLkA3+yF2Yma9wwCBxAoaxCwBRoU9BRYTPTu+
+ ndydZfHftPy9bdfUBCJ3QWiE72+lpYHNNCBTm5vBYh5KmRaa22JnRUkwfbAEw8c6GHOXUXAL
+X-Authority-Analysis: v=2.4 cv=L9sdQ/T8 c=1 sm=1 tr=0 ts=6863a117 cx=c_pps
+ a=JYp8KDb2vCoCEuGobkYCKw==:117 a=JYp8KDb2vCoCEuGobkYCKw==:17
+ a=GEpy-HfZoHoA:10 a=Wb1JkmetP80A:10 a=VwQbUJbxAAAA:8 a=COk6AnOGAAAA:8
+ a=nP9DjPefQNtmf87SolwA:9 a=TjNXssC_j7lpFel5tvFf:22
+X-Proofpoint-GUID: pfOzB5QwiUhaam9mqERqJipOQUXB7XVm
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1099,Hydra:6.1.7,FMLib:17.12.80.40
+ definitions=2025-07-01_01,2025-06-27_01,2025-03-28_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ clxscore=1015 spamscore=0 phishscore=0 impostorscore=0 priorityscore=1501
+ malwarescore=0 lowpriorityscore=0 adultscore=0 suspectscore=0 mlxlogscore=364
+ bulkscore=0 mlxscore=0 classifier=spam authscore=0 authtc=n/a authcc=
+ route=outbound adjust=0 reason=mlx scancount=1 engine=8.19.0-2505280000
+ definitions=main-2507010051
 
-On Tue, Jul 1, 2025 at 3:36=E2=80=AFPM Krzysztof Kozlowski <krzk@kernel.org=
-> wrote:
->
-> On 01/07/2025 07:37, Guodong Xu wrote:
-> > Enable the PDMA0 on the SpacemiT K1-based Banana Pi F3 and Milkv Jupite=
-r
-> > boards by setting its status to "okay".
-> >
-> > Signed-off-by: Guodong Xu <guodong@riscstar.com>
-> > ---
-> > v2: added pdma0 enablement on Milkv Jupiter
-> > ---
-> >  arch/riscv/boot/dts/spacemit/k1-bananapi-f3.dts   | 4 ++++
-> >  arch/riscv/boot/dts/spacemit/k1-milkv-jupiter.dts | 4 ++++
-> >  2 files changed, 8 insertions(+)
-> >
-> > diff --git a/arch/riscv/boot/dts/spacemit/k1-bananapi-f3.dts b/arch/ris=
-cv/boot/dts/spacemit/k1-bananapi-f3.dts
-> > index fe22c747c5012fe56d42ac8a7efdbbdb694f31b6..39133450e07f2cb9cb2247d=
-c0284851f8c55031b 100644
-> > --- a/arch/riscv/boot/dts/spacemit/k1-bananapi-f3.dts
-> > +++ b/arch/riscv/boot/dts/spacemit/k1-bananapi-f3.dts
-> > @@ -45,3 +45,7 @@ &uart0 {
-> >       pinctrl-0 =3D <&uart0_2_cfg>;
-> >       status =3D "okay";
-> >  };
-> > +
-> > +&pdma0 {
->
->
-> Does not look like placed according to DTS coding style. What sort of
-> ordering Spacemit follows?
->
+This patch series add memory region, nsessions and dma-coherent property
+for sc7280.
+Patch [v3]: https://lore.kernel.org/linux-arm-msm/20250626092952.847393-1-quic_lxu5@quicinc.com/
 
-Agreed. We should establish a consistent ordering rule for SpacemiT board
-DTS files. According to the coding style documentation, there are two
-acceptable approaches for ordering node references in board DTS files:
+Changes in v4:
+  - update commit message.
+Changes in v3:
+  - Dropped dma-coherent change.
+  - Modified indentation.
+Changes in v2:
+  - Added compatible.
 
-"When extending nodes in the board DTS via &label, the entries shall be
-ordered either alpha-numerically or by keeping the order from DTSI, where
-the choice depends on the subarchitecture."
+Ling Xu (2):
+  arm64: dts: qcom: sc7280: Add memory region for audiopd
+  arm64: dts: qcom: sc7280: Add nsessions property for adsp
 
-Refer to Documentation/devicetree/bindings/dts-coding-style.rst
+ arch/arm64/boot/dts/qcom/sc7280.dtsi | 12 ++++++++++++
+ 1 file changed, 12 insertions(+)
 
-My preference would be alphabetical ordering for easy maintainability. Howe=
-ver,
-I'd like to hear Yixun's perspective on this before we standardize the
-approach across both board DTS files, BPI-F3 and MilkV Juptier.
+-- 
+2.34.1
 
-Thanks.
-Guodong
-
->
->
-> Best regards,
-> Krzysztof
 
