@@ -1,81 +1,80 @@
-Return-Path: <devicetree+bounces-191760-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-191759-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 56A51AF05AF
-	for <lists+devicetree@lfdr.de>; Tue,  1 Jul 2025 23:40:01 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 558AEAF05AC
+	for <lists+devicetree@lfdr.de>; Tue,  1 Jul 2025 23:39:54 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 571361C074FC
-	for <lists+devicetree@lfdr.de>; Tue,  1 Jul 2025 21:40:17 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 831AA16EF0D
+	for <lists+devicetree@lfdr.de>; Tue,  1 Jul 2025 21:39:54 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C9A92302CAD;
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6FEF2302CA0;
 	Tue,  1 Jul 2025 21:39:35 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b="bmIESoKj"
+	dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b="Jz0LiL07"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-oi1-f170.google.com (mail-oi1-f170.google.com [209.85.167.170])
+Received: from mail-oi1-f169.google.com (mail-oi1-f169.google.com [209.85.167.169])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7226A26AAA9
-	for <devicetree@vger.kernel.org>; Tue,  1 Jul 2025 21:39:32 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.170
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4805E2FEE30
+	for <devicetree@vger.kernel.org>; Tue,  1 Jul 2025 21:39:33 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.169
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1751405975; cv=none; b=LvoQ5Tsq2BwR5eHpswIuqG8hlx8KZMymZk1j6Px9vKYXS5yMPfS/Q6ccbWUfqEtJeFpwj3QIWQxTqPNdysa4LxFH9pEdB+QNMZmtuSIDVLxaHEokr8MZe79f5MEfXSXHJstlSbh7Xas94jWnDkBzWw2ROZaoxJeRZU8+y4HBRss=
+	t=1751405975; cv=none; b=QwmtkOjBY1lF7HgAEXJbDfIG6tZ9q+FkMmvEtiCK3W1rXBectcsVkGuf7O/IgqRQZgjq454Q0ETGCOsDnIRZK6XJw6UdXRmoKkZXAOpE5vJFJgQbauRMc3LS1QUsOPhwCqQK+GrFgjT699SNk4wcgEo9xU14MZN/t75bpBtvR5I=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
 	s=arc-20240116; t=1751405975; c=relaxed/simple;
-	bh=0yYId7CmKo/+nPN29+4m0T9CC1yhegBE9FCPgm6tkyc=;
+	bh=1qU2uE7FMPflcU+JZ/SdmPS+Hm6dJMEmmE25dOPvZxs=;
 	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=eO14YsqiOczBykFeLQlEjb3bIJTdmcKkm5gB8ctvfLFyRZmMQWr4VWQl/b1JNkPYGnzUD8lHaJS6Wc3nIHBcz40/P3AvxTfQlb3ST9L15qjYFV0efM9ozMpNqQtVJ17Y5+ssaE6fVzGlW/iF0rwTlrGahQyw3Oz04olBp2zsj7M=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com; spf=pass smtp.mailfrom=baylibre.com; dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b=bmIESoKj; arc=none smtp.client-ip=209.85.167.170
+	 In-Reply-To:To:Cc; b=CWvlNFV3XQhv6Z3MnzDP+QT90xE3n6730UtUpPT0UOIyOjqgvX4x/Pun+otZZDDevIm9tMA3moALRvBYf/PpfiC3ywgtPnxgJGruhca3pKvBDvHVBurehjO+0Dkix/IcM4EXBKlDQguoNhVa8Pkaoe5YZbi/LjBPsSlwx1txOmU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com; spf=pass smtp.mailfrom=baylibre.com; dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b=Jz0LiL07; arc=none smtp.client-ip=209.85.167.169
 Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=baylibre.com
-Received: by mail-oi1-f170.google.com with SMTP id 5614622812f47-40b859461easo363612b6e.1
-        for <devicetree@vger.kernel.org>; Tue, 01 Jul 2025 14:39:32 -0700 (PDT)
+Received: by mail-oi1-f169.google.com with SMTP id 5614622812f47-4080548891fso2153546b6e.3
+        for <devicetree@vger.kernel.org>; Tue, 01 Jul 2025 14:39:33 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1751405971; x=1752010771; darn=vger.kernel.org;
+        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1751405972; x=1752010772; darn=vger.kernel.org;
         h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
          :mime-version:subject:date:from:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=xaL2xzco1uO7UeMG0BpmNABPZ9hJVHgxxIybCcO0RO8=;
-        b=bmIESoKjaM6+/GQDPWsc5plFMhIZu6XHFqo12Xivuelc1PWg9nj0RHqRN/VVB8LFEm
-         Hcm4AAs4FZGF5vdks0t0p0w8/6pJBlEWXxYwVkHh5vpdh0CqdabITs+8fSj2bu8/vUKs
-         8VI8h18bLlQUXnKoJyrS4cawRM6LHsvWX8sBixB4QcGLLS5kkOl5BrmnidLoGrtW/0Dv
-         AhG+tax3II0nXEcAN19uz5ETvOoVjFE+bhGE/GKOPbe8SnhHBL5AMxqcduhgP/1DLxSc
-         KhAQK2DU1dlGIfmlLNK4jB0+MAm1zgr9otpc7hR6nCZujNUS2xPVWN6f+jljGqPBq02R
-         3CDw==
+        bh=1w9rUjmeh/tPGSpT8Xheslz7aDCsq9V40QAkh/yUzZo=;
+        b=Jz0LiL07Iv/DuE4ipjOIC8ZQz2FZpc7wXLwTw7L+JwrX3Nzj8kl+xlUyk5bOdiA6Fc
+         RB+ShDt121kcxfw41Y6GOiBfc1TtADI2DJNdd0wlF7gwYSOEftGBjzj/7xjRNpIvRKEA
+         zHr0mqMiGo7n0o5Y3Hi0PiLj9MGijbU63EguxsamByykZuk0V2aLYJU0SmpGA2qkvGK1
+         zYGjv7OvqLAGLdys5kYWhosI/jSVDEItQiwEeZammmqO6X0SAQn8K1TNysYoMkU60hge
+         GmFTGfFmHXMZe/LXCdJPjxw0UPtbS5gj5Z5DtWfxZ2/cj3vfyvFV33c399XhqYMtzoDj
+         3/TQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1751405971; x=1752010771;
+        d=1e100.net; s=20230601; t=1751405972; x=1752010772;
         h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
          :mime-version:subject:date:from:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=xaL2xzco1uO7UeMG0BpmNABPZ9hJVHgxxIybCcO0RO8=;
-        b=VE0nrz3Pl6+RaFEqSeGdTLW2djKk9GZyrJBoI1HGt06UK6ae5Lnr6Eks2TUCW8tEB6
-         0Xxx45BaR6qXXMQX1o3UnAi7GN67/7peQRuzpRnU5yziM1fg8Qw1MRmLX62rKs4rkX1I
-         TigSalrKvzlUYquUNFmJdcJXeE4BwhbOrG9MGYBuK6HrUtXvz7/HWNdhV2x8ic4hxrHX
-         O787F9ivnDh2aBnWO4D78WIagmOmYPn6BsY6oM0OS5ksI91XYi5E6DoirWr2rvf6/l+c
-         0dlhTf0ZEFR3ra9XERAzI/voa+Dimq7n777P01x1LgdEDWu8678dYnG7li5fqPvVqtLJ
-         YTdw==
-X-Forwarded-Encrypted: i=1; AJvYcCX0Z6zuq1evCB/XjcuKp46TTq4OOLyuIRFZwmcgDvt2P5kZo5z7XGmmuUL3Zeb6j9BoB8zut6oNA9Tn@vger.kernel.org
-X-Gm-Message-State: AOJu0Yz5MmpaOrWaaYuga7QGsILUGHcmff9TMaeuAfWLUe4l7CNoPSZd
-	w8Bu0BElgMquMhIxHikDN28P9VtgsDZ11XZsZ1doAzCqx5L1q8gS7MgFNReqUiB4MvY=
-X-Gm-Gg: ASbGncs+VHRmcuYhtbgcW05WHhsWuDrvkTbzbwpX0pNKljbdbbSPa/gyGPWDp4FpBAv
-	iQWkEilG9bEc9+mf8pxY37vJ3kAK1xXAPM+XgBfjxfHCTlBym4tlGA4wXx+snWt/6KNItps691k
-	9cKAU+1fXaJHhfbR5ViK3mXlFV3e0gPxq/4jDUu+OwNx8Mx4zQ4JxiggVB/sGijvqaXr3o0jQGG
-	evuMoMjYpoooQQCEr7WcwYwMT45qsrQmVrIPntpNEboA7hujOt7U4vcchtOsKE1jg5/8XIIxk/1
-	LEu0SQzjItt/sarQXwNt9F24GEBm86rDg6fb0YSr1zkaZweul0n1PCtR8IQOD6HPCjJj
-X-Google-Smtp-Source: AGHT+IH7i8yqxhjyYN/KbQhInEcAJaa6cWJ3EyftErBCubqr/OVp0eFazoz27vBEtzCjxnUCgjYlbA==
-X-Received: by 2002:a05:6808:1307:b0:40a:ab2f:61a with SMTP id 5614622812f47-40b887d9c24mr273589b6e.23.1751405971489;
-        Tue, 01 Jul 2025 14:39:31 -0700 (PDT)
+        bh=1w9rUjmeh/tPGSpT8Xheslz7aDCsq9V40QAkh/yUzZo=;
+        b=NgfeABJ+XKXimjMsBokZTcgdnmHzGYiQMj3qV0OtMWw7H1Bvd1AA6Fa/KDgk5b/JTB
+         oqhVmT61C2xbi0qVYHgEqwZUiwLGMPyEHCz+mq2RMvhp0NBKaimWhaQeahKcSafKfk/Y
+         kKVlq7EwgQpVRHsGk13kP+Q1ip6GAdgJq0RUUa9qkAwteqXcm+HuhWC9p5/i+G9EuBAf
+         H09IMrxOrJfotlXCARqhz+ycCoryyFBYxDO787Cx+InrzwQzkfLt6ItDYSemRLX6BYsQ
+         lwHVKm/C9bi8Yf1UKz4kL7UJhSX9rEggqnb4LIWw3vm+FwswkWuhcGLMrwT3Ee3mdIq5
+         pThg==
+X-Forwarded-Encrypted: i=1; AJvYcCUCKBE+7zwc9w/WFbPv/NjBwpup1App3Pvm7TvYbDnLCWK38v4czUYRygb64TsZyJnjP+OiAPLwWxhe@vger.kernel.org
+X-Gm-Message-State: AOJu0YzHxOXbtYSpVXGEcv5CuaJx9+aPBF1zRAqK1O3HT+Ofu8webc9A
+	eg8b57hyOYZvGlz+ZeX2Yp9fUqcUf+ZtNph91EoX4qmoH87uGw0T6HB7j7jfXJtJyvo=
+X-Gm-Gg: ASbGncvlwcdTObWcWipf05ZMNdnR97+qJrlHody9hZEhOu0KZY03AvWhGt/dz+hVixs
+	dVWqScvaDFJotIvKYpqMeR5Pf6wYfRoOnhoQB+fm6mvrqD2vmDZqR7vBaY2geHg+wM49WRnR7MC
+	93SkhNm0ZbYIVomzxktD+oEM0AfkfiY354qN5jPqlHJL5LeLpFB8Rx2dU0jSYf19kGYQk0Xlyeb
+	6kZjFpM9IS4jT57NJMtHgbHQvx5kBP7t2c9XyXwiBr7BZK05spZEDi2zXLte7oWaTvBKj3j1e81
+	Djnyb07XOstba2A8vHXs2Eohk8/dddI0uv2sUG8Td5e3WUroeRFrJoWSQ6MFDClbLh4O
+X-Google-Smtp-Source: AGHT+IEVj+OQx1ExM6bdvzBEpZB3mbKahHnEvuYiD60xCtIPqVZTq6a66aw113ivnak/wvuX0kwIig==
+X-Received: by 2002:a05:6808:130f:b0:401:e933:5dd9 with SMTP id 5614622812f47-40b88818292mr219493b6e.20.1751405972280;
+        Tue, 01 Jul 2025 14:39:32 -0700 (PDT)
 Received: from [127.0.1.1] ([2600:8803:e7e4:1d00:70a7:ca49:a250:f1d5])
-        by smtp.gmail.com with ESMTPSA id 5614622812f47-40b3243deeesm2288335b6e.48.2025.07.01.14.39.30
+        by smtp.gmail.com with ESMTPSA id 5614622812f47-40b3243deeesm2288335b6e.48.2025.07.01.14.39.31
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
         Tue, 01 Jul 2025 14:39:31 -0700 (PDT)
 From: David Lechner <dlechner@baylibre.com>
-Date: Tue, 01 Jul 2025 16:37:49 -0500
-Subject: [PATCH v3 01/12] iio: adc: ad_sigma_delta: don't overallocate scan
- buffer
+Date: Tue, 01 Jul 2025 16:37:50 -0500
+Subject: [PATCH v3 02/12] iio: adc: ad_sigma_delta: sort includes
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -84,7 +83,7 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-Message-Id: <20250701-iio-adc-ad7173-add-spi-offload-support-v3-1-42abb83e3dac@baylibre.com>
+Message-Id: <20250701-iio-adc-ad7173-add-spi-offload-support-v3-2-42abb83e3dac@baylibre.com>
 References: <20250701-iio-adc-ad7173-add-spi-offload-support-v3-0-42abb83e3dac@baylibre.com>
 In-Reply-To: <20250701-iio-adc-ad7173-add-spi-offload-support-v3-0-42abb83e3dac@baylibre.com>
 To: Michael Hennerich <Michael.Hennerich@analog.com>, 
@@ -97,40 +96,61 @@ Cc: linux-iio@vger.kernel.org, linux-kernel@vger.kernel.org,
  devicetree@vger.kernel.org, linux-spi@vger.kernel.org, 
  David Lechner <dlechner@baylibre.com>
 X-Mailer: b4 0.14.2
-X-Developer-Signature: v=1; a=openpgp-sha256; l=1022; i=dlechner@baylibre.com;
- h=from:subject:message-id; bh=0yYId7CmKo/+nPN29+4m0T9CC1yhegBE9FCPgm6tkyc=;
- b=kA0DAAoBwswgAf8Bj8AByyZiAGhkVTuiqNL7i1o/SZKUCWwt3GuZlstGKg6M20S11KcCEKhVQ
- 4kBMwQAAQoAHRYhBOwY2Z5iDoPWnNhomMLMIAH/AY/ABQJoZFU7AAoJEMLMIAH/AY/AhA0H/3CO
- fopSOjlWHCAtDnc4dQtzMVK1WnXmMthC/eXuPJrwo6ws3pD8i32duohWnCcFRPHLkKDCToZ2989
- K64ia8HI+IRjzR6GADENFKWAO3pbtYxf9ENV6jOtVbJP9U4IW1V3urzaF98v7CMOvI66jT+RbnD
- inubvVxHzwAPS33hJqmptqXma5p3vRLOPfWptbYSuCSedkUq5HocXai8PQUK8JBq3Aygh9sLqSA
- Tf9lyJ6UGQzkZrEQjrAHEEMVmGZ4H1/gKX+XWLs/ZqLDnV79Be2OYnkwWxCBz7DAbfsT76g/7Oq
- cy94BHcTuQOxWHHy5Dl9mmtTxuYN+f2QCI0gFoU=
+X-Developer-Signature: v=1; a=openpgp-sha256; l=1326; i=dlechner@baylibre.com;
+ h=from:subject:message-id; bh=1qU2uE7FMPflcU+JZ/SdmPS+Hm6dJMEmmE25dOPvZxs=;
+ b=owEBbQGS/pANAwAKAcLMIAH/AY/AAcsmYgBoZFVC+1/TsWxjv/MzSa6lzkWpzn21t4FgGShZ9
+ ysIlXNGMfyJATMEAAEKAB0WIQTsGNmeYg6D1pzYaJjCzCAB/wGPwAUCaGRVQgAKCRDCzCAB/wGP
+ wD9PB/9nTBwTyiDomYAZvoIEQmN1g1VBPdOOGeN9ul8WNmQrd1yFi8z32Q6Oj9AkVyyp+dF/KaH
+ 3gVlsJof5RxnEUgtgKX4o+ikufQdLfYBJbkaz2Pv5QTWj12+/4TwiHpZr6GLJ4I7v6Nf3jnckWg
+ hlKPthQm7S/Ehe9IL7PBNU8c6LIOwO1KhIaH7wQEtwNCVSHUBK3eQ8rtYbu1pANxD0yrFmvHzZV
+ GdkuBqVlce7vJMNJhC3bR27n65Kh+U3Pe/I3RccsK3oU/ahh88PAAMFijIgX6vpQAcjaxRWYrUV
+ PGCCD8F2afbIdrf6V1n1ndfER60gVI/pZPvEA5axfL0zMGew
 X-Developer-Key: i=dlechner@baylibre.com; a=openpgp;
  fpr=8A73D82A6A1F509907F373881F8AF88C82F77C03
 
-Fix overallocating the size of the scan buffer by converting bits to
-bytes. The size is meant to be in bytes, so scanbits needs to be
-divided by 8.
+Sort includes in alphabetical order and fix grouping before we add more.
 
 Signed-off-by: David Lechner <dlechner@baylibre.com>
 ---
- drivers/iio/adc/ad_sigma_delta.c | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+ drivers/iio/adc/ad_sigma_delta.c | 16 +++++++---------
+ 1 file changed, 7 insertions(+), 9 deletions(-)
 
 diff --git a/drivers/iio/adc/ad_sigma_delta.c b/drivers/iio/adc/ad_sigma_delta.c
-index 4c5f8d29a559fea7226b84141bcb148fb801f62c..6b3ef7ef403e00804abeb81025ed293b188e492b 100644
+index 6b3ef7ef403e00804abeb81025ed293b188e492b..5cdd73160c6d6d4d9308eaa3a5aec14529475676 100644
 --- a/drivers/iio/adc/ad_sigma_delta.c
 +++ b/drivers/iio/adc/ad_sigma_delta.c
-@@ -489,7 +489,7 @@ static int ad_sd_buffer_postenable(struct iio_dev *indio_dev)
- 			return ret;
- 	}
+@@ -7,24 +7,22 @@
+  */
  
--	samples_buf_size = ALIGN(slot * indio_dev->channels[0].scan_type.storagebits, 8);
-+	samples_buf_size = ALIGN(slot * indio_dev->channels[0].scan_type.storagebits / 8, 8);
- 	samples_buf_size += sizeof(int64_t);
- 	samples_buf = devm_krealloc(&sigma_delta->spi->dev, sigma_delta->samples_buf,
- 				    samples_buf_size, GFP_KERNEL);
+ #include <linux/align.h>
+-#include <linux/interrupt.h>
+ #include <linux/device.h>
++#include <linux/err.h>
++#include <linux/interrupt.h>
+ #include <linux/kernel.h>
++#include <linux/module.h>
+ #include <linux/slab.h>
+ #include <linux/spi/spi.h>
+-#include <linux/err.h>
+-#include <linux/module.h>
++#include <linux/unaligned.h>
+ 
++#include <linux/iio/adc/ad_sigma_delta.h>
++#include <linux/iio/buffer.h>
+ #include <linux/iio/iio.h>
+ #include <linux/iio/sysfs.h>
+-#include <linux/iio/buffer.h>
+-#include <linux/iio/trigger.h>
+ #include <linux/iio/trigger_consumer.h>
++#include <linux/iio/trigger.h>
+ #include <linux/iio/triggered_buffer.h>
+-#include <linux/iio/adc/ad_sigma_delta.h>
+-
+-#include <linux/unaligned.h>
+-
+ 
+ #define AD_SD_COMM_CHAN_MASK	0x3
+ 
 
 -- 
 2.43.0
