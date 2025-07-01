@@ -1,338 +1,308 @@
-Return-Path: <devicetree+bounces-191441-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-191442-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 968C3AEF56A
-	for <lists+devicetree@lfdr.de>; Tue,  1 Jul 2025 12:45:05 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 32314AEF599
+	for <lists+devicetree@lfdr.de>; Tue,  1 Jul 2025 12:52:25 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id B111317B7CF
-	for <lists+devicetree@lfdr.de>; Tue,  1 Jul 2025 10:45:05 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id EAD3F3BBD11
+	for <lists+devicetree@lfdr.de>; Tue,  1 Jul 2025 10:51:58 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9238926F445;
-	Tue,  1 Jul 2025 10:45:00 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 51A62270EA3;
+	Tue,  1 Jul 2025 10:52:20 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=mysnt.onmicrosoft.com header.i=@mysnt.onmicrosoft.com header.b="Yf9Iyz0T"
+	dkim=pass (2048-bit key) header.d=public-files.de header.i=frank-w@public-files.de header.b="q6ygmPaT"
 X-Original-To: devicetree@vger.kernel.org
-Received: from AS8PR03CU001.outbound.protection.outlook.com (mail-westeuropeazon11022129.outbound.protection.outlook.com [52.101.71.129])
+Received: from mout.gmx.net (mout.gmx.net [212.227.15.15])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7BE8326A0FC;
-	Tue,  1 Jul 2025 10:44:57 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=52.101.71.129
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1751366700; cv=fail; b=Z89WdNShP3nt1p3qP1mNkWloNiki59cpIkBku1KlHg4TzimaS5TflolbxOVF30mCXOmU3uTl4m/1Yn0+1qK1SVO8BsECByjyNQkXH0Qa4IXf2SXG6e+7OoMFOcQm4vnFPUVFjhJQrVTRIbgYQuSRa+C2X4CFB0ndJFPhBRPtyRQ=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1751366700; c=relaxed/simple;
-	bh=0oCafaiZRC9zEDrZwGRt5g46P+ujTKt9r5vAmFu+9s0=;
-	h=Message-ID:Date:Subject:To:Cc:References:From:In-Reply-To:
-	 Content-Type:MIME-Version; b=MjF4Fd9tRjZnTEDdfU/MmkqulxCK1WiuirYFXio3JqruhcyRmueJnwgBFdcjbYsAQGERDRJLRK65RcoozoR8Yw2ng3xnAfBcIJnmSQVXvw+jbJ5BKievLZe4LdFRC7w8/YoDlysJnw9DHjz7ujouMHqi7XJON/FZjgXRk4VlW/U=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=kontron.de; spf=pass smtp.mailfrom=kontron.de; dkim=pass (1024-bit key) header.d=mysnt.onmicrosoft.com header.i=@mysnt.onmicrosoft.com header.b=Yf9Iyz0T; arc=fail smtp.client-ip=52.101.71.129
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=kontron.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=kontron.de
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=lElLxL6CB0LE1DILjWjm7BzalPjUuyPTVAPF6/y2DVAaP46AC1v5h9ylxbZJW5zTFJNSaop1yGSyAlcv7IGi9IebEmksJmzm9hHOB2Wq43OSlnVARxrZAcYTrYKb2/7Oy5vfPIpjsDsKl/0FwP8rNtL4K9yIK8Oqu42nipprknqE2xppj6gNOpAsCsBitByQIPCTYHjQLX6NaXs9Q4TqRfxasVmHkbOPw5emTBIH+YARTlST7S+get5dQZmfW9V+vnROAWAuI67r4wWaxmfQP4ngx/HcJiT/RXanPJnilXvDaluzS7EadDdQhn+lfj1j+5wAFN0k3MyPHDzZCDEsgA==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=zULYfYbB+bq+u74ZxxzSDcQyy8ZPQ037DVLvjCflkVY=;
- b=LtHez5LlA8s0udgA2DN713dIhz7r+y1oqzgHig467WefMn06RLFR7MyPq6PBCMSeKtoxfB9xZQKGiTHt+cJ/rJ3Rl1YtibfuRt/c5omSdS899bemX6GU8fASAvAKZ/lnQJkhVYcQqP2Zj8HdHxnInX4bmEMW2jY13Te44vXWFaAv1fini46YmPHqwsZ78SKKsUx6O1tE8jq2wz68akRAXDdI6ceiFWTZE9ai8JgIS9oFLZTZr0gN4n3PUCF6P59eq0HEwe2PCF0XGv47e2pFYzlJkI+fXNwWXolGMCyf7NPIGsDti27l8MIkYF7BXj9VGMcmFXXmgXH4vKc2d5pPjQ==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=kontron.de; dmarc=pass action=none header.from=kontron.de;
- dkim=pass header.d=kontron.de; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=mysnt.onmicrosoft.com;
- s=selector2-mysnt-onmicrosoft-com;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=zULYfYbB+bq+u74ZxxzSDcQyy8ZPQ037DVLvjCflkVY=;
- b=Yf9Iyz0TJre7D1cXGG3kmCti4/HzIpRrTZNTrinc9C1AKgtHiKM0d1+TsARito5NRJZ3fLARk6KAxt6OuBKMyIYLxjBxBRG0zEoQT43HUrfzqFWQFW9Tn33s7tHAQPP3VHmXBce8Z9qp7Z1mHD13nRT0b16EDiKGEq0iQ+dVp+Y=
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=kontron.de;
-Received: from PA4PR10MB5681.EURPRD10.PROD.OUTLOOK.COM (2603:10a6:102:263::10)
- by AS8PR10MB6433.EURPRD10.PROD.OUTLOOK.COM (2603:10a6:20b:56c::20) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8880.23; Tue, 1 Jul
- 2025 10:44:53 +0000
-Received: from PA4PR10MB5681.EURPRD10.PROD.OUTLOOK.COM
- ([fe80::b854:7611:1533:2a19]) by PA4PR10MB5681.EURPRD10.PROD.OUTLOOK.COM
- ([fe80::b854:7611:1533:2a19%7]) with mapi id 15.20.8880.027; Tue, 1 Jul 2025
- 10:44:53 +0000
-Message-ID: <087b8689-7443-4720-a94c-160edd31a5da@kontron.de>
-Date: Tue, 1 Jul 2025 12:44:52 +0200
-User-Agent: Mozilla Thunderbird
-Subject: Re: [EXT] Re: [PATCH v18 3/7] firmware: imx: add driver for NXP
- EdgeLock Enclave
-To: Marco Felsch <m.felsch@pengutronix.de>
-Cc: Pankaj Gupta <pankaj.gupta@nxp.com>, Jonathan Corbet <corbet@lwn.net>,
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B642C26E71A;
+	Tue,  1 Jul 2025 10:52:17 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=212.227.15.15
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1751367140; cv=none; b=gFXg+kxzP4vmr54xUGMudTtR2Zq75+IPquJxw2c12251fgNRFL4nlXoEXjEAZgasCWgxRJumDn0mBdtZ/OKI3+JoBcM08AKOe561KgyYwdlDzo40bgJ7gKzQmFNHhUCLwm9g3uMEzhtnDlMOZDMPRE4KFlADaYFbz9KGEg5bfl4=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1751367140; c=relaxed/simple;
+	bh=PK2PDcN3SNcc+Zwtx/+Ecvz8LoJJ09xOiNWonKP7GK8=;
+	h=Date:From:To:CC:Subject:In-Reply-To:References:Message-ID:
+	 MIME-Version:Content-Type; b=U0u8W2MJ0iStjGw5eMrKkyM7NwCcMtzn9Os2PnI5cUG53XFuIUNGLm1SPK8Xvsj1jPfUfzPVXJKTebwTQBnLXl/WDBc1bEOOvGCRO+9clTxqxZ9DBFg+bqOFk8PPSw8hPDIujGxzhjT+FkXb3Ms2dpmIJrRkVknHsyoYH8deg+c=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=public-files.de; spf=pass smtp.mailfrom=public-files.de; dkim=pass (2048-bit key) header.d=public-files.de header.i=frank-w@public-files.de header.b=q6ygmPaT; arc=none smtp.client-ip=212.227.15.15
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=public-files.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=public-files.de
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=public-files.de;
+	s=s31663417; t=1751367099; x=1751971899; i=frank-w@public-files.de;
+	bh=fzinALOKJSg5BHqUrqm0HfAIrQmnYOWWzYnc9uuZeLo=;
+	h=X-UI-Sender-Class:Date:From:To:CC:Subject:Reply-to:In-Reply-To:
+	 References:Message-ID:MIME-Version:Content-Type:
+	 Content-Transfer-Encoding:cc:content-transfer-encoding:
+	 content-type:date:from:message-id:mime-version:reply-to:subject:
+	 to;
+	b=q6ygmPaTuDGvJa475IHhXhS1mWBLh7P5g1oIVBeGG+/bd5MGYcn0rhnD7WerUTNn
+	 +sxj0GO2hzp7TBRPTTizuisLpIwy7dSAJkAR4Ufcpj2qNdiXZxzic0ELDMRKI6zz9
+	 PT8yfkxKvKlMVbM0Tg50OL1q/b0nSifKzYhz8dUiV+yCoxv2NbnNpqdKAb2a+Reki
+	 Q7zgqccbq69ixST29bjf6fhnmqpDemcJ3XHjgxBNJER5I7Ek3jUmnml3hrxiPWtHt
+	 BOsN723eBEciXhelCoNKjLGQQ+9uoNRcVjvfTeuhCDJsoBjy3T04PoY1PNZ9r0210
+	 mQoAC3nZ1PbsNnbPpg==
+X-UI-Sender-Class: 724b4f7f-cbec-4199-ad4e-598c01a50d3a
+Received: from [IPv6:::1] ([80.187.118.70]) by mail.gmx.net (mrgmx005
+ [212.227.17.190]) with ESMTPSA (Nemesis) id 1MZkpR-1uAqar2qiF-00YN80; Tue, 01
+ Jul 2025 12:51:39 +0200
+Date: Tue, 01 Jul 2025 12:51:31 +0200
+From: Frank Wunderlich <frank-w@public-files.de>
+To: Krzysztof Kozlowski <krzk@kernel.org>, Frank Wunderlich <linux@fw-web.de>
+CC: MyungJoo Ham <myungjoo.ham@samsung.com>,
+ Kyungmin Park <kyungmin.park@samsung.com>,
+ Chanwoo Choi <cw00.choi@samsung.com>, Georgi Djakov <djakov@kernel.org>,
  Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
- Sascha Hauer <s.hauer@pengutronix.de>,
- Pengutronix Kernel Team <kernel@pengutronix.de>,
- Fabio Estevam <festevam@gmail.com>,
- "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
- "imx@lists.linux.dev" <imx@lists.linux.dev>,
- "linux-doc@vger.kernel.org" <linux-doc@vger.kernel.org>,
- Frank Li <frank.li@nxp.com>,
- "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
- "linux-arm-kernel@lists.infradead.org" <linux-arm-kernel@lists.infradead.org>
-References: <20250619-imx-se-if-v18-0-c98391ba446d@nxp.com>
- <20250619-imx-se-if-v18-3-c98391ba446d@nxp.com>
- <20250625105546.pxuatcnfpe7mssgs@pengutronix.de>
- <AM9PR04MB8604611B8D91B5526C9704E69545A@AM9PR04MB8604.eurprd04.prod.outlook.com>
- <20250627084653.6vgwnm3llf3zknlp@pengutronix.de>
- <b02055bb-0995-4fd8-99f3-4ca5146eedd4@kontron.de>
- <20250630121722.wviidlggt7hguyt7@pengutronix.de>
-Content-Language: en-US, de-DE
-From: Frieder Schrempf <frieder.schrempf@kontron.de>
-In-Reply-To: <20250630121722.wviidlggt7hguyt7@pengutronix.de>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: FR2P281CA0159.DEUP281.PROD.OUTLOOK.COM
- (2603:10a6:d10:99::8) To PA4PR10MB5681.EURPRD10.PROD.OUTLOOK.COM
- (2603:10a6:102:263::10)
+ Conor Dooley <conor+dt@kernel.org>, Andrew Lunn <andrew@lunn.ch>,
+ Vladimir Oltean <olteanv@gmail.com>, "David S. Miller" <davem@davemloft.net>,
+ Eric Dumazet <edumazet@google.com>, Jakub Kicinski <kuba@kernel.org>,
+ Paolo Abeni <pabeni@redhat.com>, Matthias Brugger <matthias.bgg@gmail.com>,
+ AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
+ Johnson Wang <johnson.wang@mediatek.com>,
+ =?UTF-8?B?QXLEsW7DpyDDnE5BTA==?= <arinc.unal@arinc9.com>,
+ Landen Chao <Landen.Chao@mediatek.com>, DENG Qingfang <dqfext@gmail.com>,
+ Sean Wang <sean.wang@mediatek.com>, Daniel Golle <daniel@makrotopia.org>,
+ Lorenzo Bianconi <lorenzo@kernel.org>, Felix Fietkau <nbd@nbd.name>,
+ linux-pm@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, netdev@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, linux-mediatek@lists.infradead.org
+Subject: Re: [PATCH v7 01/14] dt-bindings: net: mediatek,net: allow irq names
+User-Agent: K-9 Mail for Android
+Reply-to: frank-w@public-files.de
+In-Reply-To: <20250701-wisteria-walrus-of-perfection-bdfbec@krzk-bin>
+References: <20250628165451.85884-1-linux@fw-web.de> <20250628165451.85884-2-linux@fw-web.de> <20250701-wisteria-walrus-of-perfection-bdfbec@krzk-bin>
+Message-ID: <9AF787EF-A184-4492-A6F1-50B069D780E7@public-files.de>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: PA4PR10MB5681:EE_|AS8PR10MB6433:EE_
-X-MS-Office365-Filtering-Correlation-Id: 86f3da64-080a-4ee3-4bfc-08ddb88c4fd1
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;ARA:13230040|376014|7416014|366016|1800799024;
-X-Microsoft-Antispam-Message-Info:
-	=?utf-8?B?Q0NtYkIweXdULzBGL1BMZllZYkVpS3ZmbE5MNS93QXhkZCtKM01zY2tVVjZp?=
- =?utf-8?B?ejEvNEFjdHlrYVhqREVoN1liaGRWdDBoNUM5RjR6NTE5c3l1ZHVFT050bFZ6?=
- =?utf-8?B?TlR4b0w0T3BLOEE3T0FFYVdFYVB2a1crd0txd3UzK0tZcVl4ZU5JRE5jZlZt?=
- =?utf-8?B?d1ZGTVNNdnJBRzc0cFV1RDlZVndPWVlhYW13ekF3ZWRVYWlSelFOMVFJS2Fn?=
- =?utf-8?B?cUZCcVlGUkFoTnBNRzU5S0tWUi82Y0FNVnU5c1hmOTNickRBVk1pUnpScEpK?=
- =?utf-8?B?ckI5MkJEcFZ4akZhTkFFa1ZaRlhIbWUrUlBQdHg0dXlIQWZkK0dhOUR2WWcy?=
- =?utf-8?B?eFBVeGtWWDBTby9TeDNlKy8wZkRGUHdsUE4vWG1qTjlreFEvOUMxZExwcjVS?=
- =?utf-8?B?eTJ3QlhMcXFXNzlwWVF2TlVJSk1pWDhFYmU1TjZKbmwvTHZhbksrdjJoelI2?=
- =?utf-8?B?RUV6bWd4VUdiNDN6WkNEbVptcFN3dkVHeUsySG53VlQ3SUwyRlhnemc3eGQ2?=
- =?utf-8?B?TGRYSkhKSEJoQzJuczlOcHlDTFQxNCtCTHRINW5JR1RuYlZtak9WY2J3ekpH?=
- =?utf-8?B?TS9BNU5CalJPVVVneFFJQmk5dDVucHhITnI2eDVQdzhxYjNLcVpScS8vMHJx?=
- =?utf-8?B?ZjczOU1BRG5hcktQN1pIMlkvVm1heER6cnVjN2toSXBVdlV4ZjZqbFlROEdK?=
- =?utf-8?B?Q0h2dDBCNWpLdzBBdTB0dUJhckJhLzFNd1ZuTG4vUDd4OVMvV1dRdHhjTURS?=
- =?utf-8?B?Q1BHaXZWNFp6cUtLQ1luNkpVQ3k4MHpnTkZ3aGpQUWhFOGUzam5DYUxtQk1B?=
- =?utf-8?B?aFhKUkdYcmwwcXZ5L2JzTFZxOGNsNUYwaEwwdHM5V0MrZU9ISEtKTWN2QnBs?=
- =?utf-8?B?YS9LNkFtRmZ1UnhpcnMxYTVRYmF1Y0lDTzFSeDRFdFdOQ1ArYk5aUXpBNEpm?=
- =?utf-8?B?Uk0wSlRTZTZVZVR3eE1QWE5jNHlBSCtraXpETEs5RlRtVFFGWFJOTGdibXhE?=
- =?utf-8?B?T1JSRkxOOWdDY00rbm8wYXg1UVJKbDM0L0Y5enAzVTdGdS9PeFIzL0s0Nmlx?=
- =?utf-8?B?b2RLemdaNDAzOHk4VGhOZHZLOWtZSlo1VFYya2JOZ0tMTHJCc3hxSmF6VHVX?=
- =?utf-8?B?UVpjVmMyVk9tTHNuWnZSYnI3TkwweXF4TTdQMWpnTDNtNVlweDJJdEVTZXZr?=
- =?utf-8?B?VmthaFVlS0RVeTFxRWpEVlZkanRYL0c2SzJvTFZSK2VwbjFBdDBEdjdPS1NX?=
- =?utf-8?B?UlE0N3pVUm1HeHA2SjAzWEZvbEkveVBDTHowUWZiaCtTOUJ2NFp0Y0tPc21u?=
- =?utf-8?B?enRLMHZQS2dLcXBaOFZtdTN6MlZxZ0lxQ0diM3gxM040TlJqS1MwWkcrUVl4?=
- =?utf-8?B?MDhTQnNvVlhCVmQ4Nis4R3ppZnZPamVORnVpVWwraE8yTVVkUHV3QmpJck80?=
- =?utf-8?B?dy8vSWNuWWJqZlMyNyt3MkgraDU1VW00ektLMlpIS05aLzZ1TEpPU0VUcUVY?=
- =?utf-8?B?R21yR0tYUjYxdllOaWhiaTNqeGIxQzRhOHF6QUJ6Nm10aFhrem4wWDlka2hZ?=
- =?utf-8?B?L2ZLZU85LzBUSHJmSSt4bzdaSDMweGNHTmpnSjJ2MUNEMzFHOTNmQzEzOVlP?=
- =?utf-8?B?ZHlTWEdMQ3U4OTJEbCttaXpaZzVjdWpIREY1bFBzRjQ1b0M5K1M4TmowS2J0?=
- =?utf-8?B?UzBJcmxsY20wbmNDUlFWeWhGZkE1b3RHNTJWVFdoa1ROL0s4VE5lZ1RMMTQz?=
- =?utf-8?B?ZTQ5cmpidThYdDBLRTBSOXNSdlI3VHNadDlVVUFBVWVsblFyaFhMVFBKbldQ?=
- =?utf-8?B?bHNGdXFTeXRyK2VTM1ZrbnNRZ2Rqc0YzZmc1ZlV5cWNmcHZXdG00dkxLc1Fr?=
- =?utf-8?B?ZFhNOTVpc2xZU3MxQlFkUHFDeklRRE5sVlVEdzFDcTNTSWRMRlVEc0dMdExm?=
- =?utf-8?Q?oilG3AHun0M=3D?=
-X-Forefront-Antispam-Report:
-	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:PA4PR10MB5681.EURPRD10.PROD.OUTLOOK.COM;PTR:;CAT:NONE;SFS:(13230040)(376014)(7416014)(366016)(1800799024);DIR:OUT;SFP:1102;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0:
-	=?utf-8?B?RllVRjAxd3FmUWxSUkhFeUlXRDRDNXN3ank1azZLRmJ6cGJYWVFKSVlUdm9N?=
- =?utf-8?B?bmhBQzBHbEM2WmZHUDNtN1RRTHRoN2NGSmFOdWZMbE9HMkFROFMzSEdOT1Zq?=
- =?utf-8?B?ZGI3T0hSNm4vQldPdmRQcFRheEttcVMreHUrL3c1TXNRUytoRmxkVFZrOVNQ?=
- =?utf-8?B?MTBQcmd3WjV0UmF1TDdYazZ4ZXZnSy8rNUUwZVUrajVlQWI0MENHRlJ3eW5r?=
- =?utf-8?B?UXlwV1llOUdyYUNPMnEvTnpxK2Zaa1BFM0wwb2djRGtvYTIvS2tyRjFLQXlV?=
- =?utf-8?B?bkF4MjgvVDcrQzRkRG1nZVd2VDcySU9rWlB2S3gwNFdaRjAxWjFYREZ3MTJJ?=
- =?utf-8?B?ZDlJRTI4OWQ3RWp5dWxEb1ZmenlZczY2OWNDeHVMR2JPQldEYURQUnZnK3lK?=
- =?utf-8?B?bjF2ZUZid2tWeWt0WTFtZldaeXRkZk8vaUlIWExIKzEycCtvWUw5ZXVDRzBn?=
- =?utf-8?B?L0VTcDlDcjd0SHpZb3BmQkZHZlZkbUtYS3FyQlNRNkRDcEhzL1ZFelIraHIy?=
- =?utf-8?B?SXptTlNoQVZuNDl3ZmdIb0ppbFduazhKM3ROcWFuMHFmd1dYaElrS0ZMaERm?=
- =?utf-8?B?TU5FRkdENkNzcjNHUVBsZmg3amkwbVhwQWlMWVlzZlR4dkJRWEk5UXZhOU9K?=
- =?utf-8?B?QWVWWStEWXNrbnRrUHhkU09qSXhWbXdydlEra2hNdzdZQ3gwQnVFQ1lVek41?=
- =?utf-8?B?bzNCNXFBUXdCZDVoOHY4cXM4aHBrcm5JYi9uTkpLdnc0VnpJMVRnV2tZTGVR?=
- =?utf-8?B?MmFKclE5bk9MSkxCdXRjN2N0d2szYTJaSE5iQmhWSnAwSThwYkJ3ZzcrSE5r?=
- =?utf-8?B?RXNXd09zdnA0OStscnRpSitsUkJ5ekZpOWlVbnBaaW00RitqandKQjBLb29s?=
- =?utf-8?B?VGJWY2VjSUs3QWlHZ2x2L1FleCtNa055aGRNYWZpMmwrbnc2M05yVTlsS0VS?=
- =?utf-8?B?Q254TEE1dTVWRllFVlpHOE5XTkYvcWFHb3FqV28ySEpoWGg0bk9rSS9LRHRI?=
- =?utf-8?B?QWUxZWRRSUc3aG5SWWJDNUg1K09hck5QK1FUcWNFcWpzdDFGdVJ0WWNMSUhm?=
- =?utf-8?B?cUwvb2kyNlZHV3QwYlZMTVgrVkhXOEtFWjZPeSs3cDJINFVCM1AwZkdIYXRu?=
- =?utf-8?B?WHZUckMyaDd1SENrUFAzSnhmaUNjNS9lY2V3QmoxcnJLRUJReGpyNXhYejhp?=
- =?utf-8?B?NEZ1anIxY09maDBKdlg5bFI5NEl1ay9Gc0JJNzNvc0dvdUl4c2JVdGNnNUxY?=
- =?utf-8?B?bjhWa1pWaXV2RENFK2NIdUc1VVdJVmpyb0VQN21zNkM0WnhERTd5blp3SWRu?=
- =?utf-8?B?T0s1dWNvQU92Vk91bVVPVXFiWWNyWEpyVG80RzVDOHZoZE5WejdOcnd6cWpi?=
- =?utf-8?B?QzJvaEdrZjVSZ0xQeUo3NWswT0krd1VDekZsQlh4L3laWTdKVjBBMUlpL1cy?=
- =?utf-8?B?R1l6QStPdWFUT0ZKdkR1UDBzeksvU0MrS2RWdUR4dFdIVGxITUZ6cEZRcHEz?=
- =?utf-8?B?a3lTTlZJMVNLOUlZbDdnVlBZUlYrZUprMWdJSENjVVdyaU5UM2FLTEgrMFVs?=
- =?utf-8?B?R0x6WmFQYk5Fb091aEJMdHpVWmZrcHNVMUZYZzRRNlA3TG00dThIZ2xQWkM5?=
- =?utf-8?B?clFYWExWVStjM3Vzd3NINElKR2p2cGVzZFlaTHNVWE44aUZZaXo3cDByV3VG?=
- =?utf-8?B?bEtYY1FjN0YrbmsxMVF5RnhETEhxWEVTd2wvUEJtYXNzbk52cHRDVDZIQmtI?=
- =?utf-8?B?Y2ZZKzdXN2RwQnB4NnhGNVhKMGZINzB1SlVUY0FLSkVIeHVMdG5DUVl0U2p5?=
- =?utf-8?B?OVZnaUlDRUU3SS9mQmdsZldhUmN1aTlVeU5icTE4dXZ4VmFvcER6NFhCOWo5?=
- =?utf-8?B?ZVE5TVhLcDMycEJmdVpid2k2M0xQSUZ0ekJ2NEVveXI4V3U3NU5ZWlJXblgw?=
- =?utf-8?B?OHVsYyt6dkFueDlxT0pZSmsrcHp0blU0R3lrVk1QOFh2cGw1NGxpOVNQb1BU?=
- =?utf-8?B?bFhJYW00V2VSRHNFN1ZZMlhWdjVIcUc4MGRLY3pOd0pxN29sa0dpVFBKZnZ6?=
- =?utf-8?B?UmF3dzdqWGpHdy9iOVlkOFo3Z0lqT0c5NWhHNTN0SnZ3cDFOckVNcEpRNEkx?=
- =?utf-8?B?YnNIZDgrM2NyRmdmRFRmQldHbkNjWXZwWUZGUmU0aVliUlNkdlcveXZhbE1q?=
- =?utf-8?B?WEE9PQ==?=
-X-OriginatorOrg: kontron.de
-X-MS-Exchange-CrossTenant-Network-Message-Id: 86f3da64-080a-4ee3-4bfc-08ddb88c4fd1
-X-MS-Exchange-CrossTenant-AuthSource: PA4PR10MB5681.EURPRD10.PROD.OUTLOOK.COM
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 01 Jul 2025 10:44:53.2308
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 8c9d3c97-3fd9-41c8-a2b1-646f3942daf1
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: STzLnt7ZtFnnMR16/2pw0JLe6DhOofSUoq0T+oOhQUFBK93L8vodBNqIp0RF4K9rfLQQngFaj6irB8ISami4Ljdka5e7c6v4Cc5+oxtnfGA=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: AS8PR10MB6433
+Content-Type: text/plain;
+ charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+X-Provags-ID: V03:K1:/x13cGSdXeC8a3AZxM86LjNC4QW9IjV/yKhknGpUw58qFVsmBUk
+ ManrKwGyZL++1Rgi13uVdYel61STP231jKRojunlUxXrrplSqVsRsRTgN0qu03NSKmzdPP+
+ gpXAspXnmqtd6y9LjyPcWQnM67Ya0vTSbd1yf8x+GGeBQvb4wKdZnQSto2cV3wE9BwRdIe7
+ 75RVRsjc4O7gF9RO63S6w==
+X-Spam-Flag: NO
+UI-OutboundReport: notjunk:1;M01:P0:IwHMtIvjAYg=;YDRSDgoITeSH1NIvelvbRaSGEis
+ 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
+ QrcpWXy1JQV2vISFETlQ==
 
-Am 30.06.25 um 14:17 schrieb Marco Felsch:
-> Hi Frieder,
-> 
-> On 25-06-30, Frieder Schrempf wrote:
->> Hi Marco,
->>
->> Am 27.06.25 um 10:46 schrieb Marco Felsch:
->>> Hi,
->>>
->>> your e-mail configuration mixed my e-mail with your answer, which makes
->>> it hard to read. Can you please check the quoting next time :)
->>>
->>> On 25-06-27, Pankaj Gupta wrote:
->>>>>> Add driver for enabling MU based communication interface to
->>>> secure-enclave.
->>>>>>
->>>>>> NXP hardware IP(s) for secure-enclaves like Edgelock Enclave(ELE), are 
->>>>>> embedded in the SoC to support the features like HSM, SHE & V2X, using 
->>>>>> message based communication interface.
->>>>>>
->>>>>> The secure enclave FW communicates with Linux over single or multiple 
->>>>>> dedicated messaging unit(MU) based interface(s).
->>>>>> Exists on i.MX SoC(s) like i.MX8ULP, i.MX93, i.MX95 etc.
->>>>
->>>>> You write single or multiple MUs are possible. I'm aware that the i.MX93
->>>>> has two MUs one for the secure and one for the non-secure world. But I'm
->>>>> really concerned about the fact that both MUs can't be used at the same time
->>>>> from both world:
->>>>
->>>> Yes, you are correct.
->>>>
->>>> Fix is still work in progress.
->>>
->>> So after ~6 months no fix is available :(
->>>
->>>>> Also how is the secure and non-secure world talking to the ELE if there is
->>>>> only one MU as you have written?
->>>>
->>>> Till the fix is WIP, either Linux or OPTEE can use the ELE, at one point in
->>>> time.
->>>
->>> That has nothing to do with the fix. The fix is for platforms/SoCs which
->>> do have 2-MUs, but you also have written that there are platforms with
->>> only 1-MU.
->>>
->>> This MU can't be shared between secure and non-secure world.
->>>
->>>>> IMHO it makes much more sense to put the complete ELE communication into
->>>>> (OP-)TEE and let the secure OS taking care of it. All non-secure world
->>>>> requests are passed via (OP-)TEE to the ELE. This involves:
->>>>> - eFuse access (done via OP-TEE i.MX specific PTA)
->>>>> - ELE 23h59m ping (kernel SMC WDG driver, requires OP-TEE watchdog driver)
->>>>> - HW-RNG (kernel OP-TEE HWRNG driver + OP-TEE HWRNG PTA)
->>>>
->>>> There is a dedicated MU "trusted-MU" for OPTEE-OS. The idea to converge to a
->>>
->>> Yes for systems with 2-MUs there is a "trusted-MU" and a
->>> "non-trusted-MU". As of now, there is no fix available for using both
->>> MUs at the same time. Furhtermore there are platforms/SoCs with only
->>> 1-MU, as you have written in your commit message. This 1-MU system can
->>> have the MU either trusted or non-trusted.
->>>
->>>> single path via OPTEE-OS, is good. But it will impact the performance of the
->>>> features at Linux side.
->>>
->>> Performance? We are talking about a ping every 23h59m (I still don't
->>> know if this is a feature or bug), eFuse write/read, and the HW-RNG
->>> which can seed the Linux PRNG.
->>>
->>>> Since the fix is still WIP. Let's wait till then.
->>>
->>> The fix is for the 2-MUs SoCs but not the 1-MU case.
->>>
->>> I would like to have a system design which doesn't differ too much
->>> between SoCs which are equipped with the ELE engine.
->>
->> Do we really want to depend on OP-TEE to be available for having things
->> like OTP fuse access and HWRNG? Personally I'd like to be able to build
->> systems with OTP access and HWRNG but without OP-TEE. Requiring OP-TEE
->> only to make the ELE available to the kernel in cases where the secure
->> world isn't used for anything else seems to be unnecessarily complex.
-> 
-> I understand your point. I don't like pulling in more FW neither but we
-> need to the face the following facts:
-> 
->  - OTP eFuse R/W access after doing the LOCK_DOWN fuse is no longer
->    possible without OP-TEE. This involves general purpose (GP) eFuses
->    too. We faced this limitation in a current project.
+Am 1=2E Juli 2025 08:44:02 MESZ schrieb Krzysztof Kozlowski <krzk@kernel=2E=
+org>:
+>On Sat, Jun 28, 2025 at 06:54:36PM +0200, Frank Wunderlich wrote:
+>> From: Frank Wunderlich <frank-w@public-files=2Ede>
+>>=20
+>> In preparation for MT7988 and RSS/LRO allow the interrupt-names
+>
+>Why? What preparation, what is the purpose of adding the names, what do
+>they solve?
 
-Ok, interesting. Where do find information about the LOCK_DOWN fuse? I
-don't see it mentioned in the (Security) Reference Manual of the i.MX93.
+Devicetree handled by the mtk_eth_soc driver have
+a wild mix of shared and non-shared irq definitions
+accessed by index (shared use index 0,
+non-shared
+using 1+2)=2E Some soc have only 3 FE irqs (like mt7622)=2E
 
-> 
->  - With new regulations like the EU CRA I think we need some sort of
->    secure-enclave anyway.
+This makes it unclear which irq is used for what
+on which SoC=2E Adding names for irq cleans this a bit
+in device tree and driver=2E
 
-Probably some sort of, yes. But not necessarily in the form of TEE or
-TrustZone, I guess.
+>> property=2E Also increase the maximum IRQ count to 8 (4 FE + 4 RSS),
+>
+>Why? There is no user of 8 items=2E
 
-> 
->  - Making it optional cause more paths of potential errors e.g. by not
->    including the correct "secure.dtsi". Multiple paths also require more
->    maintain- and testing effort. IMHO I do think that one of the paths
->    get unmaintened at some point but we would need to keep it for
->    backward compatibility.
-> 
->    Having one implementation eliminates this since.
-> 
->  - All above points assume that the ELE-FW and -HW is capable of talking
->    to both world, which is not the case. As we learned NXP doesn't have
->    a fix for the 2-MUs ELE yet and even more important there are 1-MU
->    ELE-IPs.
-> 
-> I do see the (minimal) drawback of having +1 FW but I think this is more
-> an integration problem.
-> Speaking of FW files, for the new i.MX9* you already have plenty fo
-> them: bootloader, TF-A, ele-fw, scu-fw (i.MX95). So your integation
-> needs to handle multiple firmware files already.
+MT7988 *with* RSS/LRO (not yet supported by driver
+yet,but i add the irqs in devicetree in this series)
+use 8 irqs,but RSS is optional and 4 irqs get working
+ethernet stack=2E
 
-Sure, but I really like to keep the complexity and therefore the number
-of FW files as low as possible. I'm not sure what has more weight in
-terms of security: shipping an additional firmware and therefore
-increasing the attack surface or maintaining an additional code-path.
+I hope this explanation makes things clearer=2E=2E=2E
 
-> 
->> Anyway, I see your point of having a single implementation for the ELE
->> API in the "right" place. But as far as I know other platforms like
->> STM32MP1 also implement both ways for the HWRNG, secure access via OPTEE
->> and non-secure access via kernel directly.
-> 
-> I'm not a STM32MP1 expert but here you have this setup with the
-> *-scmi.dtsi. So you have two code paths which needs to be maintained and
-> tested. Also if one customer of yours want to use OP-TEE you need the
-> integration anyway, so you (Kontron) needs to maintain multiple
-> configuration as well. I don't see the added value.
-> 
-> I think for STM32MP1 the *-scmi.dtsi support was added later because it
-> required a lot effort to support it. This is not the case for the i.MX9*
-> series.
+>> but set boundaries for all compatibles same as irq count=2E
+>
+>Your patch does not do it=2E
 
-Anyway, thanks for elaborating. Your points are all valid and basically
-I agree. I'm fine with either way. But I'm afraid that implementing the
-ELE API in OP-TEE only will cause another tremendous delay for having
-ELE access in the kernel, especially seeing how slow NXP seems to be
-working on these topics right now.
+I set Min/max-items for interrupt names below like
+interrupts count defined=2E
 
+>>=20
+>> Signed-off-by: Frank Wunderlich <frank-w@public-files=2Ede>
+>> ---
+>> v7: fixed wrong rebase
+>> v6: new patch splitted from the mt7988 changes
+>> ---
+>>  =2E=2E=2E/devicetree/bindings/net/mediatek,net=2Eyaml | 38 +++++++++++=
++++++++-
+>>  1 file changed, 37 insertions(+), 1 deletion(-)
+>>=20
+>> diff --git a/Documentation/devicetree/bindings/net/mediatek,net=2Eyaml =
+b/Documentation/devicetree/bindings/net/mediatek,net=2Eyaml
+>> index 9e02fd80af83=2E=2E6672db206b38 100644
+>> --- a/Documentation/devicetree/bindings/net/mediatek,net=2Eyaml
+>> +++ b/Documentation/devicetree/bindings/net/mediatek,net=2Eyaml
+>> @@ -40,7 +40,19 @@ properties:
+>> =20
+>>    interrupts:
+>>      minItems: 1
+>> -    maxItems: 4
+>> +    maxItems: 8
+>> +
+>> +  interrupt-names:
+>> +    minItems: 1
+>> +    items:
+>> +      - const: fe0
+>> +      - const: fe1
+>> +      - const: fe2
+>> +      - const: fe3
+>> +      - const: pdma0
+>> +      - const: pdma1
+>> +      - const: pdma2
+>> +      - const: pdma3
+>> =20
+>>    power-domains:
+>>      maxItems: 1
+>> @@ -135,6 +147,10 @@ allOf:
+>>            minItems: 3
+>>            maxItems: 3
+>> =20
+>> +        interrupt-names:
+>> +          minItems: 3
+>> +          maxItems: 3
+>> +
+>>          clocks:
+>>            minItems: 4
+>>            maxItems: 4
+>> @@ -166,6 +182,9 @@ allOf:
+>>          interrupts:
+>>            maxItems: 1
+>> =20
+>> +        interrupt-namess:
+>> +          maxItems: 1
+>> +
+>>          clocks:
+>>            minItems: 2
+>>            maxItems: 2
+>> @@ -192,6 +211,10 @@ allOf:
+>>            minItems: 3
+>>            maxItems: 3
+>> =20
+>> +        interrupt-names:
+>> +          minItems: 3
+>> +          maxItems: 3
+>> +
+>>          clocks:
+>>            minItems: 11
+>>            maxItems: 11
+>> @@ -232,6 +255,10 @@ allOf:
+>>            minItems: 3
+>>            maxItems: 3
+>> =20
+>> +        interrupt-names:
+>> +          minItems: 3
+>> +          maxItems: 3
+>> +
+>>          clocks:
+>>            minItems: 17
+>>            maxItems: 17
+>> @@ -274,6 +301,9 @@ allOf:
+>>          interrupts:
+>>            minItems: 4
+>> =20
+>> +        interrupt-names:
+>> +          minItems: 4
+>> +
+>>          clocks:
+>>            minItems: 15
+>>            maxItems: 15
+>> @@ -312,6 +342,9 @@ allOf:
+>>          interrupts:
+>>            minItems: 4
+>> =20
+>> +        interrupt-names:
+>> +          minItems: 4
+>
+>8 interrupts is now valid?
+>
+>> +
+>>          clocks:
+>>            minItems: 15
+>>            maxItems: 15
+>> @@ -350,6 +383,9 @@ allOf:
+>>          interrupts:
+>>            minItems: 4
+>> =20
+>> +        interrupt-names:
+>> +          minItems: 4
+>
+>So why sudenly this device gets 8 interrupts? This makes no sense,
+>nothing explained in the commit msg=2E
+
+4 FrameEngine IRQs are required to be defined (currently 2 are used in dri=
+ver)=2E
+The other 4 are optional,but added in the devicetree
+to not run into problems supporting old devicetree
+when adding RSS/LRO to driver=2E
+
+>I understand nothing from this patch and I already asked you to clearly
+>explain why you are doing things=2E This patch on its own makes no sense=
+=2E
+>
+>Best regards,
+>Krzysztof
+>
+
+
+regards Frank
 
