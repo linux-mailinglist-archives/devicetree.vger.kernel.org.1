@@ -1,158 +1,117 @@
-Return-Path: <devicetree+bounces-191423-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-191425-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id D9A57AEF471
-	for <lists+devicetree@lfdr.de>; Tue,  1 Jul 2025 12:06:52 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 5B9A2AEF480
+	for <lists+devicetree@lfdr.de>; Tue,  1 Jul 2025 12:07:54 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id E5AE61C01BB7
-	for <lists+devicetree@lfdr.de>; Tue,  1 Jul 2025 10:06:27 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 93BCA188B019
+	for <lists+devicetree@lfdr.de>; Tue,  1 Jul 2025 10:07:46 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1295B26F445;
-	Tue,  1 Jul 2025 10:04:39 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id BE41127381C;
+	Tue,  1 Jul 2025 10:05:48 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=riscstar-com.20230601.gappssmtp.com header.i=@riscstar-com.20230601.gappssmtp.com header.b="sRAmk7AO"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="itSvZOop"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-yb1-f171.google.com (mail-yb1-f171.google.com [209.85.219.171])
+Received: from mail-ej1-f49.google.com (mail-ej1-f49.google.com [209.85.218.49])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3C3B426E173
-	for <devicetree@vger.kernel.org>; Tue,  1 Jul 2025 10:04:36 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.219.171
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CAC9527381A;
+	Tue,  1 Jul 2025 10:05:46 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.49
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1751364278; cv=none; b=ITmVRjZymoNrSUrMFRirhE8r5CD5aNNGQ2A4V/IUI0gNu9ssrUWLIVa8K1zUjf4JvJBYUbbTQrVjz5mkMqaFf6VggGsn4dodSdu98esDFS7b9SL7/Ahz6qIheW2VPrelLpQdZKOEaKEcXQoaSDObHigTRhPfiUvaFJMUf27xEmY=
+	t=1751364348; cv=none; b=BWmsvc9O674cLJSa0hRhNw6uzsj9boNNI0cU6y3tudEdL07hLd1g0w6HvlnUAi/xBEIH22pDWO8aTGG3rTOQPbtayCLJLFIwDPYkq6O270VmkpxTN8TiLeezY5TA07xS9mQbDt/PfG1y8EvoZzheHbQvThi00xFyne0/EjhquPU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1751364278; c=relaxed/simple;
-	bh=+R01mkuuQZpDljT5vbAlalpVcYu+V4XYhk80TEYXfd0=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=iOpINCvg2iMPFBah9nvZQsXzLENiz+5Ub4YF0Vaj3ib+M5j4281ZPpL8bO1g+SvX98xCHQ/vQtpeEB0xGActC+xWwcizTNFZCqfcI8CZshYqOnVoKckvokqjTsJJJBURiruaf7+2QiWWGffOPtJl6N9lNLsI4Y25iKr87CPZKes=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=riscstar.com; spf=pass smtp.mailfrom=riscstar.com; dkim=pass (2048-bit key) header.d=riscstar-com.20230601.gappssmtp.com header.i=@riscstar-com.20230601.gappssmtp.com header.b=sRAmk7AO; arc=none smtp.client-ip=209.85.219.171
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=riscstar.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=riscstar.com
-Received: by mail-yb1-f171.google.com with SMTP id 3f1490d57ef6-e812c817de0so2447660276.0
-        for <devicetree@vger.kernel.org>; Tue, 01 Jul 2025 03:04:36 -0700 (PDT)
+	s=arc-20240116; t=1751364348; c=relaxed/simple;
+	bh=jBkWrmYg85LJDEJOzQbvK9KxHKJ2Rxy2fOsHy69Bk70=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=PUpkwApcex1FYGmYlkDAdgDoXpRcIbjXrqSz2sx7pSzPr5Y2tBSdqaIwjmNkCbP9dETnxgAPlEfW1QpLt3QPTulrp/yHQoQESm9nUVYNbv3WdIuWDlc075CmRViS3N35XVlLcZeG76Wdbyt7ETxR0J521glgQcC1CNhuxUuRg/U=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=itSvZOop; arc=none smtp.client-ip=209.85.218.49
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-ej1-f49.google.com with SMTP id a640c23a62f3a-ade76b8356cso607339566b.2;
+        Tue, 01 Jul 2025 03:05:46 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=riscstar-com.20230601.gappssmtp.com; s=20230601; t=1751364275; x=1751969075; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=tI2TEX0v6p76uLE+ptZngTvOHJFtlrTXX6bq47hMyoo=;
-        b=sRAmk7AOR+Xp3FbwVhZewB+jhZZAo1UQ0AiAy4BiWeOvoBw9rEoFxPAEGmTnsZOKwr
-         5/HO2xxidGBgCy7j3Q9x8PPgmlg9pWpkHTHShTqm76fIlLDeNUbuyE3KxjT+uUojf/v3
-         iDQFXZ4TXhidFnKF6qn035I/la0IVzSo83mYZX09jcMIEPRiBIMkY0z5ARQvl4QuXdC9
-         sBd2f8vrI8jcRqaDYPmEkp4dQ+3AlPvywe+5+hgR5kQ6TQaSs4KFkPMRUqiP9PZyPl9Q
-         oG1luJSepn3ovJpgDEzTxaBUMCWhLeJ+/lWOpM8mG8EcTqIQhNVP9zXtwCbxcAMOS9SZ
-         t8yQ==
+        d=gmail.com; s=20230601; t=1751364345; x=1751969145; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=iadSvd9ADK8oMvjZilYGUvx8+bST1k9toFEmq4yiSaY=;
+        b=itSvZOopTgPUTkkB/8SfgO1lRqsT10VqHNDnMoaZouWpIBjmJppthy+7yirK8dAJcG
+         rZE2zWGOQB71ZRqzqgjggzoP/uWwJ8WATLvwcPYSps0h0dpaRUS3tfZohkDpGVdj24/l
+         VF+RrhRXJA1mrLnr+0wujRdwdsaxjlDfO9e0B6aS+SmyCHuJmQOkSm1iuWGYHs1IiR0h
+         hJX0DMMWa/hM+q3d6ENUe6I9fjdR2+HaqpUsx4X1hUSK7F0S5HKusQwCOQXHX/NwTUkH
+         /R89dDIsbMjToUHPCU+ENLzMVnvmTG5UahJJPOSFBJORAl/fuio0nqPzl5dtBuWUqsQ7
+         DN3Q==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1751364275; x=1751969075;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=tI2TEX0v6p76uLE+ptZngTvOHJFtlrTXX6bq47hMyoo=;
-        b=PlCIMM5200PSUSyItcsdXAr2Co+hKWIH9KhvmpRSutrIlcN7d3P/ejpClN7DI8JUUW
-         1wJVWz77Z2yg1SH2iqlwQn5ptD+PEgZSGeER7udsodikewyAZtpElyrr68JIby9r32Jq
-         IZ/P3Y3fmbsPgY4SnjAw7PQf4GsFgnPMUfFrhgA/lV3um711TXT/EzfXcNF6FbcAb2dn
-         rhpzooLCAwJJWWq3PWbsJ7/DHTUcO9dDd5laP1RU/Ditw02+H4uQHLU5zDufBJzQkYzd
-         ZJAe9T4IHYinl8hrISgQ2XUhBkL3TjS8A0RaU1Mv4XKewzxVi39H/vEAeZvbONcwYTGf
-         1I2A==
-X-Forwarded-Encrypted: i=1; AJvYcCVqk9HDqJbdzl3qatgu27PB2/Plh5899+qtsv3F+fPXjFIRkQypt4/3NZEWUtguUdXyITJjQ1UdmKIg@vger.kernel.org
-X-Gm-Message-State: AOJu0YwGAJwN9lcOGhRtuNwZiM2KgUdBPxADFzs+zqoQX1BHLmzJBiv9
-	YR8T6uaJKKmgF+6qlGRFGIRn3f5Q/R/hTUkR6bVmIwSjOhKrKavlYzgQURL13leBf4Fe+y2hmXd
-	eOJmL3aJRPJNwvsRIKWvUbZ1P8f3eQmbKLRwId1NkhA==
-X-Gm-Gg: ASbGncunPv4W7GryAKLWyf6Pcb++FcjtRgn6zEQLRu2myCplV0pPmA+yAp2OexuwQR2
-	HFSLvwC9HU2AICXfUljRrIyH+IcLLaHxCaI2svPObj5oFo9EYYMKHxhSNxGMDyzEaWXxULL/mTu
-	b4/Tjuh8vb/ud8AhKemx1Vxp8sSK2TPErx8p3xNUiCqxla1iTD3OsMdnZ+YG4=
-X-Google-Smtp-Source: AGHT+IFFvhwLw/jJrBvk5mcq4A9/NKoJsPfn9jlPFZrZKY33NEca9HgiwrZDw7XbN2a2/VI+7HKKIkBzK0LvZEqayRQ=
-X-Received: by 2002:a05:690c:38b:b0:709:1529:c24f with SMTP id
- 00721157ae682-7151713cdcemr231087327b3.4.1751364275152; Tue, 01 Jul 2025
- 03:04:35 -0700 (PDT)
+        d=1e100.net; s=20230601; t=1751364345; x=1751969145;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=iadSvd9ADK8oMvjZilYGUvx8+bST1k9toFEmq4yiSaY=;
+        b=jWiMwdScNu0dfqoeDN+d1Qk6C9OSlXnSzMw7zMruU5y8RqhTjiN4TIq1XJf18WUfaR
+         UtF/gzitrCTHgaWadk5rURej2yEyDyyVwr3y+5B3KP8mLGQFPmnUpbY7vqDgXukmG/32
+         1f+43AzZugSkPK7DwgwkCu5CG+8l0DTId7k3KONJS1KsiRZE0moQ15DKu2NldQbGzGy6
+         9W58Ie937bVGVkfLh67Xri7/s78D60VLNOQgDOLq3KnfSdFEM5mA3jH4wYCKrX8ltI1y
+         c1pmm1GrWa0Yf0iv061AKliaZQW7uCPubINCQP/JZpsThfs365DS1hBeojoEN0Go7PTp
+         22/g==
+X-Forwarded-Encrypted: i=1; AJvYcCVZRNlwA0EJiTXwhO7f6/TWFd8+HfpPFOV3yRa0Np+GxNwzdKO4W0ca/zDt5axWL1pI+09mreRhZi/55ddZ@vger.kernel.org, AJvYcCW7JSd1QguCvx7yUlRHEO/SFjZnRADPfT5szcuW7gbX4zNdYfOCY4HEvD89AYieJpNcWdyTx77gxs/n@vger.kernel.org
+X-Gm-Message-State: AOJu0Ywy2cplS43rEtsLVoOuRFo21YvSLvjOTyaKgsZ6FWNzPLK6HAHs
+	U4rWKcK48osEWK1ofmY5V08VeyLtqbjgrycNgJifeZEMYm1ofBBMpOjfszY1ucHbs9k=
+X-Gm-Gg: ASbGnctNcVnnf6vSImJ+pc4DzUBUPyekzQ2dzlrZhyp0iW9j5+08P0bO6DRTlFkTdLB
+	ccunfRW8xOpaafabZCWWsLQUjghOQzZLTv5cKSqs7HooZD/siLm5FudqSaNA/j5odlywrrOBhbi
+	lrxJDCeUweusRVulZ14mqbdxl3i4MiCHJVhY/dHgNyDtNRs5Yhpf2sJ0AkuHj09Ko2sqMSbCJp2
+	KUEdWP89gVlY1O6k6CLLSFsBAC9QXtH8TFnEFUodjQ7n+oUh3BUyITwivMhD/HX6mDwa5zmh4I2
+	U3aXnvMIJG52QpkjsH/6b5AhKnLWGihU8u0c210h9zQSiwnQiEpKID9rTrJevW1tJfno0DbH2LK
+	xHWemmqkgo4VA1pCEQw==
+X-Google-Smtp-Source: AGHT+IHQIGQ2Hch4gyaPW7HZupOC2DjnJn7l+GVqB7yhcz8qD/KnPlOuAVlsMHk5Rv61bStbPBh69w==
+X-Received: by 2002:a17:907:96ab:b0:adb:2ef9:db38 with SMTP id a640c23a62f3a-ae3500f2822mr1907835166b.36.1751364344429;
+        Tue, 01 Jul 2025 03:05:44 -0700 (PDT)
+Received: from maria-HP-Pavilion-Laptop.home ([178.226.54.132])
+        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-ae35365a15fsm850718066b.55.2025.07.01.03.05.43
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 01 Jul 2025 03:05:43 -0700 (PDT)
+From: Maria Garcia <mariagarcia7293@gmail.com>
+To: linux-gpio@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org
+Cc: Linus Walleij <linus.walleij@linaro.org>,
+	Bartosz Golaszewski <brgl@bgdev.pl>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Maria Garcia <mariagarcia7293@gmail.com>,
+	Maria Garcia <mgarcia@qblox.com>
+Subject: [PATCH 0/2] *** Add support for TI TCA6418 GPIO chip ***
+Date: Tue,  1 Jul 2025 12:05:35 +0200
+Message-ID: <20250701100537.91491-1-mariagarcia7293@gmail.com>
+X-Mailer: git-send-email 2.43.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20250701-working_dma_0701_v2-v2-0-ab6ee9171d26@riscstar.com>
- <20250701-working_dma_0701_v2-v2-7-ab6ee9171d26@riscstar.com>
- <ebc16dbe-2405-4956-91a0-bcce9f199326@kernel.org> <CAH1PCMa2dB1fefzGgo-kKfgAdou_KaDSvTDsvYPjsGKODHETCA@mail.gmail.com>
- <d3d73135-15d8-487d-a55a-44f1f98db930@kernel.org>
-In-Reply-To: <d3d73135-15d8-487d-a55a-44f1f98db930@kernel.org>
-From: Guodong Xu <guodong@riscstar.com>
-Date: Tue, 1 Jul 2025 18:04:24 +0800
-X-Gm-Features: Ac12FXwHr2IIx2UMlAjmgrdgoDgmw39WTy6GMM6om5RG4oXPV4Hi_Mb50OUfJEU
-Message-ID: <CAH1PCMa35n4dnJ94-EHGrJyU3kztQYO8_v2CkD=rid466zv3+A@mail.gmail.com>
-Subject: Re: [PATCH v2 7/8] riscv: dts: spacemit: Enable PDMA0 on Banana Pi F3
- and Milkv Jupiter
-To: Krzysztof Kozlowski <krzk@kernel.org>
-Cc: Vinod Koul <vkoul@kernel.org>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, Yixun Lan <dlan@gentoo.org>, 
-	=?UTF-8?Q?Duje_Mihanovi=C4=87?= <duje.mihanovic@skole.hr>, 
-	Philipp Zabel <p.zabel@pengutronix.de>, Paul Walmsley <paul.walmsley@sifive.com>, 
-	Palmer Dabbelt <palmer@dabbelt.com>, Albert Ou <aou@eecs.berkeley.edu>, 
-	Alexandre Ghiti <alex@ghiti.fr>, Alex Elder <elder@riscstar.com>, 
-	Vivian Wang <wangruikang@iscas.ac.cn>, dmaengine@vger.kernel.org, 
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	linux-riscv@lists.infradead.org, spacemit@lists.linux.dev
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Transfer-Encoding: 8bit
 
-On Tue, Jul 1, 2025 at 5:02=E2=80=AFPM Krzysztof Kozlowski <krzk@kernel.org=
-> wrote:
->
-> On 01/07/2025 10:48, Guodong Xu wrote:
-> > On Tue, Jul 1, 2025 at 3:36=E2=80=AFPM Krzysztof Kozlowski <krzk@kernel=
-.org> wrote:
-> >>
-> >> On 01/07/2025 07:37, Guodong Xu wrote:
-> >>> Enable the PDMA0 on the SpacemiT K1-based Banana Pi F3 and Milkv Jupi=
-ter
-> >>> boards by setting its status to "okay".
-> >>>
-> >>> Signed-off-by: Guodong Xu <guodong@riscstar.com>
-> >>> ---
-> >>> v2: added pdma0 enablement on Milkv Jupiter
-> >>> ---
-> >>>  arch/riscv/boot/dts/spacemit/k1-bananapi-f3.dts   | 4 ++++
-> >>>  arch/riscv/boot/dts/spacemit/k1-milkv-jupiter.dts | 4 ++++
-> >>>  2 files changed, 8 insertions(+)
-> >>>
-> >>> diff --git a/arch/riscv/boot/dts/spacemit/k1-bananapi-f3.dts b/arch/r=
-iscv/boot/dts/spacemit/k1-bananapi-f3.dts
-> >>> index fe22c747c5012fe56d42ac8a7efdbbdb694f31b6..39133450e07f2cb9cb224=
-7dc0284851f8c55031b 100644
-> >>> --- a/arch/riscv/boot/dts/spacemit/k1-bananapi-f3.dts
-> >>> +++ b/arch/riscv/boot/dts/spacemit/k1-bananapi-f3.dts
-> >>> @@ -45,3 +45,7 @@ &uart0 {
-> >>>       pinctrl-0 =3D <&uart0_2_cfg>;
-> >>>       status =3D "okay";
-> >>>  };
-> >>> +
-> >>> +&pdma0 {
-> >>
-> >>
-> >> Does not look like placed according to DTS coding style. What sort of
-> >> ordering Spacemit follows?
-> >>
-> >
-> > Agreed. We should establish a consistent ordering rule for SpacemiT boa=
-rd
->
->
-> Isn't there a style already? Or what is the style for Risc-v arch?
->
+This series introduces support for the Texas Instruments TCA6418 
+GPIO expander chip, added to the gpio-pca953x driver. It also includes the 
+necessary device tree binding definition.
 
-Per my checking, it's not consistent for arch/riscv.
+Signed-off-by: Maria Garcia <mariagarcia7293@gmail.com>
+---
+Changes in v2:
+ - gpio-pca953x.c: address review feedback: remove some else statements, 
+   turn some if-else statements into switch statements.
+Maria Garcia (2):
+  dt-bindings: gpio: pca95xx: add TI TCA6418
+  gpio: pca953x: Add support for TI TCA6418
 
-SiFive boards (hifive-unleashed-a00.dts and
-hifive-unmatched-a00.dts) are not alphabetical.
+ .../bindings/gpio/gpio-pca95xx.yaml           |   1 +
+ drivers/gpio/gpio-pca953x.c                   | 139 +++++++++++++++---
+ 2 files changed, 121 insertions(+), 19 deletions(-)
 
-Most other RISC-V vendors (StarFive, Microchip, Sophgo Milk-V Duo, etc.)
-use alphabetical ordering. That's the majority. Right?
+-- 
+2.43.0
 
--Guodong
-
-> Best regards,
-> Krzysztof
 
