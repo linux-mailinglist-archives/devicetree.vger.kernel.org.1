@@ -1,106 +1,225 @@
-Return-Path: <devicetree+bounces-191716-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-191717-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5F94FAF03DA
-	for <lists+devicetree@lfdr.de>; Tue,  1 Jul 2025 21:33:56 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 51ADFAF03E2
+	for <lists+devicetree@lfdr.de>; Tue,  1 Jul 2025 21:35:55 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 6AC3F1C21075
-	for <lists+devicetree@lfdr.de>; Tue,  1 Jul 2025 19:34:12 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 6A5F1172F82
+	for <lists+devicetree@lfdr.de>; Tue,  1 Jul 2025 19:35:55 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2B3EF27FB05;
-	Tue,  1 Jul 2025 19:33:52 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1667B27F75A;
+	Tue,  1 Jul 2025 19:35:50 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="eieWzaTT"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="jjGn1ARo"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wr1-f42.google.com (mail-wr1-f42.google.com [209.85.221.42])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EAF3E274643;
-	Tue,  1 Jul 2025 19:33:51 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5026B2727E0
+	for <devicetree@vger.kernel.org>; Tue,  1 Jul 2025 19:35:47 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.42
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1751398432; cv=none; b=SYZQbJjbZzCQup1tJa0uCFssnNyKXA6vA7+kI5ufs5MkcKuVPjuyNUyURntAhc/0Qt68zUv+LSmPmady+pZdBchTifjKIHhTrNH6JbLL/paXky3x5P3WHHJwokjK5OIYijXiy5yq330rBjFEZ03hpjKCaMi7zWVRbaV+hj2wYfk=
+	t=1751398550; cv=none; b=fLAfZNA67QW6Cba9NxnaYV8fvxKbIbV7rXdp6ZTp6dVDy9CS1sPg3O2tUOtCNTg3vqUAD5EtW2hHu/hMJf25IFRYM1IPmYjEB79PFwq8kCUsv4BEfNPuG3GjFV/28IXc4SZgAEIO1Zla204HHAA5Q8QNrGd+3KXLyN0zZkZqS8k=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1751398432; c=relaxed/simple;
-	bh=t76fGweTBymeWH8gKiI3BBohTVwjkyZEfHtPNBMgcrw=;
-	h=Date:Content-Type:MIME-Version:From:Cc:To:In-Reply-To:References:
-	 Message-Id:Subject; b=JrDreACtomwq0fNVpbXUXPkRR8aDGoRBX2krHN2d7KMb/I8iTQthabFwckHApNME9S2cdZAboUtmD7T3ml4oF8++1jhPGSwhTHvajZky0Pv95hQNJvX4qAtBTduUxFqQf7gDqFJv4QBPZ0FIW3ozJNcegq9ceTDkUtZTp2/LcF4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=eieWzaTT; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 672A4C4CEEB;
-	Tue,  1 Jul 2025 19:33:51 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1751398431;
-	bh=t76fGweTBymeWH8gKiI3BBohTVwjkyZEfHtPNBMgcrw=;
-	h=Date:From:Cc:To:In-Reply-To:References:Subject:From;
-	b=eieWzaTTxtzmX1lHcj02YFdTl1Ak8zaLjG0p9VCfNogRtFLGx8DU+5l81TXxFbeK8
-	 UwEXQtCkB5GFcSrB5x9yQiA6/bLvsgIMHb79s9LYDTPFKeLZiRb3utFqHI6IK4Amt0
-	 +OOuDUWEPPgAChURayvD+7uVBU/ky6pCWa3CCO6/AjhtYGS1nAdPnWfmLoIF8K+Oz+
-	 zhNCOxb+v0YRMHJaMnI8TMdioAeEMA/qaGE1IVp6FpstFaDPjPBWQyRqzymwvlEhUe
-	 9G8EQfTvsNKth+irXMkmvZvM348anwrnARuObJdebgWeGHYTa33UZRsHcDuzTGV+M2
-	 C6L4xJTk1+USw==
-Date: Tue, 01 Jul 2025 14:33:50 -0500
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
+	s=arc-20240116; t=1751398550; c=relaxed/simple;
+	bh=+pmAczIoAz20Sgyz7Pn5reSR+IXgzDoQvoDClC/I1fA=;
+	h=Mime-Version:Content-Type:Date:Message-Id:Cc:Subject:From:To:
+	 References:In-Reply-To; b=Y9OtIb04SsBexOldl4AdTm1j8o0F3HMMcA9mjTdwf4PDh/Cbnh35V6OkwuehfFxaaZCBeNLhCjKSffbGtIDoUk0hC+83dcRp39rA7PEaPxgcy7Yjkh4drOm6HXvuHWPzkThHaAg8JpN93YrZjxANTolMzj8W61UVe1DzHihKRSk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=jjGn1ARo; arc=none smtp.client-ip=209.85.221.42
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-wr1-f42.google.com with SMTP id ffacd0b85a97d-3a365a6804eso3253687f8f.3
+        for <devicetree@vger.kernel.org>; Tue, 01 Jul 2025 12:35:47 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1751398546; x=1752003346; darn=vger.kernel.org;
+        h=in-reply-to:references:to:from:subject:cc:message-id:date
+         :content-transfer-encoding:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=aN3BX1N8+BC+t/ow8nynRNiXWtKajXyZjEmDVu5QSCg=;
+        b=jjGn1ARo1MsU+akd6WRW9IjHuImBmWNFv2vepbSukxS6f12bHEAcumOAAHZkARzqSw
+         9aanTQ5RFELV0iCfIHvbzKj9Ufr/st7tZV9Uf/BO9ugU84DhRG0v4rQzlEdbJ0c/ynzd
+         ngsbtHrFuomWbEqb+X70evJCYMtlj9lPh/QE7MSyfam0q2B96lGLkEXG9Qb3yTekxCZl
+         xRe78oiusTQu95RVrsUIVTUFr4a04IAQRj+kt4dpXaRDk7D5ZsJKaXsF4Ay/FzuSQ94K
+         JTXtoqrX9rvvPaTbCm+vHEZQmyz8LFBBjveKJdNICwtL1+5vmV/mEwXmGHgpksdk3DC1
+         EKoA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1751398546; x=1752003346;
+        h=in-reply-to:references:to:from:subject:cc:message-id:date
+         :content-transfer-encoding:mime-version:x-gm-message-state:from:to
+         :cc:subject:date:message-id:reply-to;
+        bh=aN3BX1N8+BC+t/ow8nynRNiXWtKajXyZjEmDVu5QSCg=;
+        b=HtFHJlO2+LW/0CCRUM+Sux8B4sLVzXy5zjkKzC+CNRAhgTnTFsxAF42kxGEFdDB01T
+         uvDASoENHGyHeFgpwlAzb/IYinBzWmxYNNpvhUoetZLVETCvdVwy65+2TVyxtpCX4XGe
+         10mmTkRY+A6Zo7DIh7QglgVqiEPsf6imXObVe9qliNldSqLyGxwjokKfq69jY5AAu6Ix
+         EN++RXGuppaaYR/EIQ6M7JQwGAYmQp2nyk5r0vK/RJQndJBgoXZUmT/gjoaFIoE4FfvU
+         48FHtgC2Y2DUgDiCOLVvvc1ySAf+TjWi/we5MdDEQM0xZZjklQhIY0OKTOKb/nsCRvJD
+         Qanw==
+X-Forwarded-Encrypted: i=1; AJvYcCUKkcT9UECX88p2yAh/EcSHh0VK59z2oPgIBzJutgrcnJ2p1jhC1IVIVzezHFwZAkdHD7vfGKPjc06z@vger.kernel.org
+X-Gm-Message-State: AOJu0YxKP0O7RaOZfJRipRE69hsmWQqMg8qCIk7rPdsAM3ppsLDKznJC
+	yWwKUMdJtN8x09YG0XYVFy0rz/lqw046uqo2B3KqfZZqHSSB2qfrecmdpIEwla07jok=
+X-Gm-Gg: ASbGncvbGU3W1gu9+wOr4Ghq5dXVL2f4oenI2mHJa/+x9ryyzzph7jv8U+Uur8KADXF
+	tH9OuaLuK1TWhvw3DaqxO56cI4qBNNdZ4s1mxxeS4bZpA0cZxXbgrEIrQkLSFekuiUICTdlNUT9
+	KSDCbU0i8CNg9g8b+YbPIdtyWWFUxTjalhwrB6D4x4WnR+AwVdU2oAHGGeAffiOnoz66CNCXGNR
+	LO1a9rv72G8lGfq8yqgr+EZYZGYX2ffK+lzaVTYkCWylUw477GAjp1vwlQcqwhdaphvdNK7STSP
+	9ko0scDWnMXCM/LJGgbDW6Xt+TZbYC7cTYp8eSlToYTEK7ocfTb+HkexpeUDuC+OmFHM
+X-Google-Smtp-Source: AGHT+IHKNKmkuKmDbrMhk4D/Fosqh/fvD260/xNJ3I/m+eUhB036LtpCqopLJVCj9MPeocJBMoTfxA==
+X-Received: by 2002:a05:6000:440d:b0:3a4:dcfb:3118 with SMTP id ffacd0b85a97d-3a8fdb2a65fmr11528022f8f.10.1751398545560;
+        Tue, 01 Jul 2025 12:35:45 -0700 (PDT)
+Received: from localhost ([2a02:c7c:7213:c700:4dad:b69a:9c81:2e57])
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-3a892e61f48sm14258924f8f.93.2025.07.01.12.35.42
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 01 Jul 2025 12:35:43 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-MIME-Version: 1.0
-From: "Rob Herring (Arm)" <robh@kernel.org>
-Cc: devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
- krzk+dt@kernel.org, linux-doc@vger.kernel.org, conor+dt@kernel.org, 
- linux-hwmon@vger.kernel.org, jdelvare@suse.com, linux@roeck-us.net, 
- corbet@lwn.net
-To: =?utf-8?q?=C3=81lvaro_Fern=C3=A1ndez_Rojas?= <noltari@gmail.com>
-In-Reply-To: <20250701181228.1196102-3-noltari@gmail.com>
-References: <20250701181228.1196102-1-noltari@gmail.com>
- <20250701181228.1196102-3-noltari@gmail.com>
-Message-Id: <175139843060.2356328.5526096489625404757.robh@kernel.org>
-Subject: Re: [PATCH v2 2/3] dt-bindings: hwmon: Add Microchip EMC2101
- support
+Mime-Version: 1.0
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=UTF-8
+Date: Tue, 01 Jul 2025 20:35:42 +0100
+Message-Id: <DB0YYV10UD2Q.M36VAZJOVE7V@linaro.org>
+Cc: "Srinivas Kandagatla" <srini@kernel.org>, "Liam Girdwood"
+ <lgirdwood@gmail.com>, "Rob Herring" <robh@kernel.org>, "Krzysztof
+ Kozlowski" <krzk+dt@kernel.org>, "Conor Dooley" <conor+dt@kernel.org>,
+ "Stephen Boyd" <sboyd@kernel.org>, "Lee Jones" <lee@kernel.org>, "Jaroslav
+ Kysela" <perex@perex.cz>, "Takashi Iwai" <tiwai@suse.com>,
+ <linux-arm-msm@vger.kernel.org>, <linux-sound@vger.kernel.org>,
+ <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>, "Dmitry
+ Baryshkov" <dmitry.baryshkov@oss.qualcomm.com>, "Srinivas Kandagatla"
+ <srinivas.kandagatla@oss.qualcomm.com>
+Subject: Re: [PATCH 3/3] ASoC: codecs: add new pm4125 audio codec driver
+From: "Alexey Klimov" <alexey.klimov@linaro.org>
+To: "Mark Brown" <broonie@kernel.org>
+X-Mailer: aerc 0.20.0
+References: <20250626-pm4125_audio_codec_v1-v1-0-e52933c429a0@linaro.org>
+ <20250626-pm4125_audio_codec_v1-v1-3-e52933c429a0@linaro.org>
+ <aF01gRFjsKgy6j4V@finisterre.sirena.org.uk>
+In-Reply-To: <aF01gRFjsKgy6j4V@finisterre.sirena.org.uk>
+
+On Thu Jun 26, 2025 at 12:56 PM BST, Mark Brown wrote:
+> On Thu, Jun 26, 2025 at 12:50:31AM +0100, Alexey Klimov wrote:
+>
+>> --- a/sound/soc/codecs/Kconfig
+>> +++ b/sound/soc/codecs/Kconfig
+>> @@ -297,6 +297,7 @@ config SND_SOC_ALL_CODECS
+>>  	imply SND_SOC_WCD937X_SDW
+>>  	imply SND_SOC_WCD938X_SDW
+>>  	imply SND_SOC_WCD939X_SDW
+>> +	imply SND_SOC_PM4125_SDW
+>>  	imply SND_SOC_LPASS_MACRO_COMMON
+>>  	imply SND_SOC_LPASS_RX_MACRO
+>>  	imply SND_SOC_LPASS_TX_MACRO
+>
+> Please keep this file sorted, there's obviously been some things missed
+> but please don't make it worse.
+>
+>> +obj-$(CONFIG_SND_SOC_PM4125_SDW) +=3D snd-soc-pm4125-sdw.o
+>> +obj-$(CONFIG_SND_SOC_PM4125)   +=3D snd-soc-pm4125.o
+>> +ifdef CONFIG_SND_SOC_PM4125_SDW
+>> +# avoid link failure by forcing sdw code built-in when needed
+>> +obj-$(CONFIG_SND_SOC_PM4125) +=3D snd-soc-pm4125-sdw.o
+>> +endif
+>
+> Other drivers sort this out in Kconfig, do as they do.
+
+My bad, thanks for pointing it out. I'll change that.
+
+>> +static int pm4125_micbias_control(struct snd_soc_component *component,
+>> +				  int micb_num, int req, bool is_dapm)
+>> +{
+>> +	return 0;
+>> +}
+>
+> Why have this empty function which is only called from within the
+> driver?  At best it's making the callers look like they do something.
+
+I tried to make a minimal working version that we're going to
+update with more patches during next submission.
+
+Right now there seems to be at least two approaches:
+-- pull in everything and send it in one go. Srini said that it will
+be much more difficult to review due to the volume of code;
+-- provide few patches that iteratively update the initial one and
+add more functionality. The similar way when wcd937x was posted.
+I counted there 5 patches for wcd937x. We probably can do that with
+this audio-codec. In that case I need to figure out the right way
+to split it.
+
+My main issue was MBHC part -- it is needed to avoid IRQ storm
+from pdm watchdog interrupts but MBHC requires more things to be
+added for its support, that's why there are some empty/placeholder
+functions.
+
+What do you think should be the right strategy here?
+
+In theory I can remove MBHC and make much smaller driver but
+it will suffer from IRQ storms with some kernel WARNINGs generated.
+Or maybe I should remove watchdog interrupts from it as well.
+
+>> +static irqreturn_t pm4125_wd_handle_irq(int irq, void *data)
+>> +{
+>> +	return IRQ_HANDLED;
+>> +}
+>
+> Why bother regisering for the interrupt at all if you're just going to
+> ignore it?
+
+This approach seems to be inherited from older wcd-family codec and
+wcd939x.c (wcd939x_wd_handle_irq) provides this comment that I can copy
+and adjust here like this:
+
+/*
+ * HPHR/HPHL Watchdog interrupt threaded handler
+ *
+ * Watchdog interrupts are expected to be enabled when switching on  the HP=
+HL/R
+ * in order to make sure the interrupts are acked by the regmap_irq handler
+ * io allow PDM sync. We could leave those interrupts masked but we would
+ * not haveany valid way to enable/disable them without violating irq layer=
+s.
+ *
+ * The HPHR/HPHL Watchdog interrupts are handled by regmap_irq, so requesti=
+ng
+ * a threaded handler is the safest way to be able to ack those interrupts
+ * without colliding with the regmap_irq setup.
+ */
 
 
-On Tue, 01 Jul 2025 20:12:27 +0200, Álvaro Fernández Rojas wrote:
-> Introduce yaml schema for Microchip emc2101 pwm fan controller with
-> temperature monitoring.
-> 
-> Signed-off-by: Álvaro Fernández Rojas <noltari@gmail.com>
-> ---
->  .../bindings/hwmon/microchip,emc2101.yaml     | 79 +++++++++++++++++++
->  1 file changed, 79 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/hwmon/microchip,emc2101.yaml
-> 
->  v2: add missing properties.
-> 
+>> +#if defined(CONFIG_OF)
+>> +static const struct of_device_id pm4125_of_match[] =3D {
+>> +	{ .compatible =3D "qcom,pm4125-codec" },
+>> +	{ }
+>> +};
+>> +MODULE_DEVICE_TABLE(of, pm4125_of_match);
+>> +#endif
+>
+> Why does this compatible exist?  If the driver is instantiated from a
+> as a Linux software contruct it shouldn't appear in the DT.
 
-My bot found errors running 'make dt_binding_check' on your patch:
+Could you please elaborate a bit more? Should it be instantiated
+as an MFD device or platform device?
 
-yamllint warnings/errors:
+As far as I understood we need references to soundwire child nodes
+of the codec (which are in DT) hence this one is described in the DT.
 
-dtschema/dtc warnings/errors:
-/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/hwmon/microchip,emc2101.yaml: patternProperties: '^fan@0$' should not be valid under {'pattern': '^\\^[a-zA-Z0-9,\\-._#@]+\\$$'}
-	hint: Fixed strings belong in 'properties', not 'patternProperties'
-	from schema $id: http://devicetree.org/meta-schemas/keywords.yaml#
 
-doc reference errors (make refcheckdocs):
+>> +const u8 pm4125_reg_access_digital[
+>> +	PM4125_REG(PM4125_DIGITAL_REGISTERS_MAX_SIZE)] =3D {
+>> +		[PM4125_REG(PM4125_DIG_SWR_CHIP_ID0)] =3D RD_REG,
+>> +		[PM4125_REG(PM4125_DIG_SWR_CHIP_ID1)] =3D RD_REG,
+>> +		[PM4125_REG(PM4125_DIG_SWR_CHIP_ID2)] =3D RD_REG,
+>
+> Data tables like this shouldn't be in headers, they should be in C
+> files.  At worst you might end up with duplicate copies in the object
+> code.
 
-See https://patchwork.ozlabs.org/project/devicetree-bindings/patch/20250701181228.1196102-3-noltari@gmail.com
+Thanks, I pull in a change/patch that fixes-reworks this.
 
-The base for the series is generally the latest rc1. A different dependency
-should be noted in *this* patch.
-
-If you already ran 'make dt_binding_check' and didn't see the above
-error(s), then make sure 'yamllint' is installed and dt-schema is up to
-date:
-
-pip3 install dtschema --upgrade
-
-Please check and re-submit after running the above command yourself. Note
-that DT_SCHEMA_FILES can be set to your schema file to speed up checking
-your schema. However, it must be unset to test all examples with your schema.
+Thank you,
+Alexey Klimov
 
 
