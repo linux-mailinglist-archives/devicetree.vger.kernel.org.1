@@ -1,180 +1,155 @@
-Return-Path: <devicetree+bounces-191619-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-191620-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 78339AEFE7B
-	for <lists+devicetree@lfdr.de>; Tue,  1 Jul 2025 17:38:23 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id B33ACAEFE64
+	for <lists+devicetree@lfdr.de>; Tue,  1 Jul 2025 17:35:30 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 717DD1884DCF
-	for <lists+devicetree@lfdr.de>; Tue,  1 Jul 2025 15:33:02 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id DA43B4A2AF1
+	for <lists+devicetree@lfdr.de>; Tue,  1 Jul 2025 15:35:30 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B0C9927702D;
-	Tue,  1 Jul 2025 15:32:42 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7929827703A;
+	Tue,  1 Jul 2025 15:35:27 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="HfYb6PGW"
+	dkim=pass (1024-bit key) header.d=linux.dev header.i=@linux.dev header.b="HZW+nI2M"
 X-Original-To: devicetree@vger.kernel.org
-Received: from bali.collaboradmins.com (bali.collaboradmins.com [148.251.105.195])
+Received: from out-184.mta0.migadu.com (out-184.mta0.migadu.com [91.218.175.184])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7B00C1D5CC6;
-	Tue,  1 Jul 2025 15:32:40 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=148.251.105.195
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 50DC0274B58;
+	Tue,  1 Jul 2025 15:35:24 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=91.218.175.184
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1751383962; cv=none; b=MUO7Fc6DISJIsHtxPnI0QAwQSC03lfmNAWa/urtNyups5tb1v+CNjCpxrt4yUTP+gDnuFBhgcPBZoAjflwgVs4OfF+4yolrigveFGTpmLdM64VoSkPzFJW8I7zHD7hz4x6tap3Q68WEA52kCZZ8mzY6sWTRvoqootyblpIPUSUQ=
+	t=1751384127; cv=none; b=F6xHTZklS5rFrTMihYMFTPP8TTODocLqZ3H9sZYdLj7rr/Y8pxzSII3whOz5Sn9BrkFB5pC2eMYYEli4DOhyJpQGaZCW21o6VeNyP4C109Qh0ovksz9A5xdNnk0M8JbBRInz1F3i+VhKT80AVDGMvv6b2S0HtD6jP9L+6a29ljk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1751383962; c=relaxed/simple;
-	bh=+SSFv0hwrDzIL/TT/dGM60enfkAii5FwDqdxefO91yY=;
+	s=arc-20240116; t=1751384127; c=relaxed/simple;
+	bh=Dpe36OfClugyKwIMcaBC3dcK7aOGRu8qtIlgMAQ+2ro=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=a3vTznd6UOjeU5FiLEu0/8aRgiAyahP9Q6HnzCk/PwV9a3qi7t2HqHYMY6s/e/Askwl/XjEcwpe7TMdRPTt2C3YQsJ8USj7nezfer3U3B5Wniuye6O5+xATPjbWoSqGN2EYRMI00UUcac2y+x2OUkFP9777HZzggwOWeA5dwhvE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b=HfYb6PGW; arc=none smtp.client-ip=148.251.105.195
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-	s=mail; t=1751383958;
-	bh=+SSFv0hwrDzIL/TT/dGM60enfkAii5FwDqdxefO91yY=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=HfYb6PGWldbXX1aRGd+H5pCPI32KVnpcDanYeWZMC81I/jN5ytDsWRV0QksB5Hd4/
-	 vEMqWef8J5FWfY3cbCrXDKtLMON6urTZAYuX5bYXkRLpp5aJwQWxiSdaYxeFEIL8DN
-	 v+nJiUMMJLAh3kudkqHU+mZXVfCGt4+c+0tGY9E6Q5zokoGApTAzr+wf88NIfGrwOD
-	 jvitwM0jIPqotjIhd7m7XKkEpZ2BzGe54aug9AQKTEJT6XucaCStDteDTq+xlPQo96
-	 mdF3aKM5lV2klIMwyhAy/waH9tFiXIyYobQW9+MFkXqFovdIcrbXPDRoJfuzp8g5h+
-	 W/wQHIwVg42zA==
-Received: from [192.168.1.100] (2-237-20-237.ip236.fastwebnet.it [2.237.20.237])
-	(using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
-	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
-	(No client certificate requested)
-	(Authenticated sender: kholk11)
-	by bali.collaboradmins.com (Postfix) with ESMTPSA id 8386B17E03A5;
-	Tue,  1 Jul 2025 17:32:37 +0200 (CEST)
-Message-ID: <c7f00050-dc56-4ac7-b89d-5f315cef2aa5@collabora.com>
-Date: Tue, 1 Jul 2025 17:32:36 +0200
+	 In-Reply-To:Content-Type; b=ZqoonSgxLGbCl4iYpGB/7eHJbpnf7/0/pj7RFZe2njykUw9PA4vfALNL/ImHgmq34Q83myKSUjf7V1PjyoHpUXTq+otdZ70TOs11aUyzuHoD+rctUwHHEj2ikjhmQ8RWx9Trz5FP06b+Nv4ZED41rYZ0QDvqOg/IvtMm5OriP9U=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.dev; spf=pass smtp.mailfrom=linux.dev; dkim=pass (1024-bit key) header.d=linux.dev header.i=@linux.dev header.b=HZW+nI2M; arc=none smtp.client-ip=91.218.175.184
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.dev
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linux.dev
+Message-ID: <fd88c994-c4f0-4ba1-bc8a-908cfb3b5498@linux.dev>
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linux.dev; s=key1;
+	t=1751384121;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references;
+	bh=+INSP/GK6T+8bv6Vx93kwG7+YR+IlBFm0hRiAEEEXmI=;
+	b=HZW+nI2MTAledHyxlbBKwh7aSa9Lm5EiIUfLAfvH9NMJgPJieoRCcoNNRHtX3e+mw71sFd
+	4NOewdCxEfciPMKGTCz8e/Yg7H/3mHMEyWf20a0ZlW8cmuQ90oufqHW7gZk6d8Sw7M25gv
+	TQpuKFw/O3FnJLya2Tl1WY3AHBRcnbc=
+Date: Tue, 1 Jul 2025 11:35:10 -0400
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3 00/11] ARM: Add support for MediaTek MT6572 SoC
-To: Rob Herring <robh@kernel.org>, Max Shevchenko <wctrl@proton.me>
-Cc: linux-watchdog@vger.kernel.org, Conor Dooley <conor+dt@kernel.org>,
- Jiri Slaby <jirislaby@kernel.org>, Russell King <linux@armlinux.org.uk>,
- devicetree@vger.kernel.org, Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
- linux-mediatek@lists.infradead.org,
- Daniel Lezcano <daniel.lezcano@linaro.org>,
- Matthias Brugger <matthias.bgg@gmail.com>, Sean Wang
- <sean.wang@mediatek.com>, linux-arm-kernel@lists.infradead.org,
- Guenter Roeck <linux@roeck-us.net>,
- Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
- Thomas Gleixner <tglx@linutronix.de>,
- Wim Van Sebroeck <wim@linux-watchdog.org>, linux-serial@vger.kernel.org,
- linux-kernel@vger.kernel.org, Krzysztof Kozlowski <krzk+dt@kernel.org>
-References: <20250701-mt6572-v3-0-8937cfa33f95@proton.me>
- <175138000372.1627755.5505703571113478205.robh@kernel.org>
- <CAL_JsqLSa+1MYR6f6NcApGFdjCL0dDXSzpntVHCPGmKgytVfdQ@mail.gmail.com>
-From: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+Subject: Re: [PATCH net-next v2 05/18] net: macb: use BIT() macro for
+ capability definitions
+To: =?UTF-8?Q?Th=C3=A9o_Lebrun?= <theo.lebrun@bootlin.com>,
+ Andrew Lunn <andrew+netdev@lunn.ch>, "David S. Miller"
+ <davem@davemloft.net>, Eric Dumazet <edumazet@google.com>,
+ Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>,
+ Nicolas Ferre <nicolas.ferre@microchip.com>,
+ Claudiu Beznea <claudiu.beznea@tuxon.dev>,
+ Paul Walmsley <paul.walmsley@sifive.com>, Palmer Dabbelt
+ <palmer@dabbelt.com>, Albert Ou <aou@eecs.berkeley.edu>,
+ Alexandre Ghiti <alex@ghiti.fr>, Samuel Holland <samuel.holland@sifive.com>,
+ Richard Cochran <richardcochran@gmail.com>,
+ Russell King <linux@armlinux.org.uk>,
+ Thomas Bogendoerfer <tsbogend@alpha.franken.de>,
+ Vladimir Kondratiev <vladimir.kondratiev@mobileye.com>,
+ Gregory CLEMENT <gregory.clement@bootlin.com>,
+ Cyrille Pitchen <cyrille.pitchen@atmel.com>,
+ Harini Katakam <harini.katakam@xilinx.com>,
+ Rafal Ozieblo <rafalo@cadence.com>,
+ Haavard Skinnemoen <hskinnemoen@atmel.com>, Jeff Garzik <jeff@garzik.org>
+Cc: netdev@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, linux-riscv@lists.infradead.org,
+ linux-mips@vger.kernel.org, Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
+ Tawfik Bayouk <tawfik.bayouk@mobileye.com>, Andrew Lunn <andrew@lunn.ch>
+References: <20250627-macb-v2-0-ff8207d0bb77@bootlin.com>
+ <20250627-macb-v2-5-ff8207d0bb77@bootlin.com>
 Content-Language: en-US
-In-Reply-To: <CAL_JsqLSa+1MYR6f6NcApGFdjCL0dDXSzpntVHCPGmKgytVfdQ@mail.gmail.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
+X-Report-Abuse: Please report any abuse attempt to abuse@migadu.com and include these headers.
+From: Sean Anderson <sean.anderson@linux.dev>
+In-Reply-To: <20250627-macb-v2-5-ff8207d0bb77@bootlin.com>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
+X-Migadu-Flow: FLOW_OUT
 
-Il 01/07/25 17:30, Rob Herring ha scritto:
-> On Tue, Jul 1, 2025 at 10:27 AM Rob Herring (Arm) <robh@kernel.org> wrote:
->>
->>
->> On Tue, 01 Jul 2025 09:06:54 +0300, Max Shevchenko wrote:
->>> This series of patches adds support for the MT6572 SoC and
->>> the JTY D101 tablet and Lenovo A369i smartphone based on it.
->>>
->>> Signed-off-by: Max Shevchenko <wctrl@proton.me>
->>> ---
->>> Changes in v3:
->>> - Remove the compatible property from the SoC devicetree
->>> - Link to v2: https://lore.kernel.org/r/20250626-mt6572-v2-0-f7f842196986@proton.me
->>>
->>> Changes in v2:
->>> - Drop the status property for the board devicetrees
->>> - Add an soc node for the MT6572 and reorder the nodes and properties
->>> - Change the commit title to a more descriptive one
->>> - Change the cover title to the correct one
->>> - Link to v1: https://lore.kernel.org/r/20250620-mt6572-v1-0-e2d47820f042@proton.me
->>>
->>> ---
->>> Max Shevchenko (11):
->>>        dt-bindings: serial: mediatek,uart: add MT6572
->>>        dt-bindings: interrupt-controller: mediatek,mt6577-sysirq: add MT6572
->>>        dt-bindings: timer: mediatek: add MT6572
->>>        dt-bindings: watchdog: mediatek,mtk-wdt: add MT6572
->>>        dt-bindings: vendor-prefixes: add JTY
->>>        dt-bindings: arm: mediatek: add boards based on the MT6572 SoC
->>>        ARM: mediatek: add board_dt_compat entry for the MT6572 SoC
->>>        ARM: mediatek: add MT6572 smp bring up code
->>>        ARM: dts: mediatek: add basic support for MT6572 SoC
->>>        ARM: dts: mediatek: add basic support for JTY D101 board
->>>        ARM: dts: mediatek: add basic support for Lenovo A369i board
->>>
->>>   .../devicetree/bindings/arm/mediatek.yaml          |   5 +
->>>   .../mediatek,mt6577-sysirq.yaml                    |   1 +
->>>   .../devicetree/bindings/serial/mediatek,uart.yaml  |   1 +
->>>   .../devicetree/bindings/timer/mediatek,timer.yaml  |   1 +
->>>   .../devicetree/bindings/vendor-prefixes.yaml       |   2 +
->>>   .../bindings/watchdog/mediatek,mtk-wdt.yaml        |   1 +
->>>   arch/arm/boot/dts/mediatek/Makefile                |   2 +
->>>   arch/arm/boot/dts/mediatek/mt6572-jty-d101.dts     |  61 ++++++++++++
->>>   arch/arm/boot/dts/mediatek/mt6572-lenovo-a369i.dts |  56 +++++++++++
->>>   arch/arm/boot/dts/mediatek/mt6572.dtsi             | 108 +++++++++++++++++++++
->>>   arch/arm/mach-mediatek/Kconfig                     |   4 +
->>>   arch/arm/mach-mediatek/mediatek.c                  |   1 +
->>>   arch/arm/mach-mediatek/platsmp.c                   |   7 ++
->>>   13 files changed, 250 insertions(+)
->>> ---
->>> base-commit: 0ff41df1cb268fc69e703a08a57ee14ae967d0ca
->>> change-id: 20250619-mt6572-ef78a3d45168
->>>
->>> Best regards,
->>> --
->>> Max Shevchenko <wctrl@proton.me>
->>>
->>>
->>>
->>
->>
->> My bot found new DTB warnings on the .dts files added or changed in this
->> series.
->>
->> Some warnings may be from an existing SoC .dtsi. Or perhaps the warnings
->> are fixed by another series. Ultimately, it is up to the platform
->> maintainer whether these warnings are acceptable or not. No need to reply
->> unless the platform maintainer has comments.
->>
->> If you already ran DT checks and didn't see these error(s), then
->> make sure dt-schema is up to date:
->>
->>    pip3 install dtschema --upgrade
->>
->>
->> This patch series was applied (using b4) to base:
->>   Base: using specified base-commit 0ff41df1cb268fc69e703a08a57ee14ae967d0ca
->>
->> If this is not the correct base, please add 'base-commit' tag
->> (or use b4 which does this automatically)
->>
->> New warnings running 'make CHECK_DTBS=y for arch/arm/boot/dts/mediatek/' for 20250701-mt6572-v3-0-8937cfa33f95@proton.me:
->>
->> arch/arm/boot/dts/mediatek/mt6572-lenovo-a369i.dtb: / (lenovo,a369i): memory: False schema does not allow {'device_type': ['memory'], 'reg': [[2147483648, 536870912]]}
->>          from schema $id: http://devicetree.org/schemas/root-node.yaml#
->> arch/arm/boot/dts/mediatek/mt6572-jty-d101.dtb: / (jty,d101): memory: False schema does not allow {'device_type': ['memory'], 'reg': [[2147483648, 1073741824]]}
->>          from schema $id: http://devicetree.org/schemas/root-node.yaml#
+On 6/27/25 05:08, Théo Lebrun wrote:
+> Replace all capabilities values by calls to the BIT() macro.
 > 
-> 'memory' node without a unit-address has long been deprecated. Please
-> don't add more cases.
+> Reviewed-by: Andrew Lunn <andrew@lunn.ch>
+> Signed-off-by: Théo Lebrun <theo.lebrun@bootlin.com>
+> ---
+>  drivers/net/ethernet/cadence/macb.h | 40 ++++++++++++++++++-------------------
+>  1 file changed, 20 insertions(+), 20 deletions(-)
+> 
+> diff --git a/drivers/net/ethernet/cadence/macb.h b/drivers/net/ethernet/cadence/macb.h
+> index c9a5c8beb2fa8166195d1d83f187d2d0c62668a8..3b43cb9468e3618754ff2bc6c5f360447bdeeed0 100644
+> --- a/drivers/net/ethernet/cadence/macb.h
+> +++ b/drivers/net/ethernet/cadence/macb.h
+> @@ -727,26 +727,26 @@
+>  #define MACB_MAN_C45_CODE			2
+>  
+>  /* Capability mask bits */
+> -#define MACB_CAPS_ISR_CLEAR_ON_WRITE		0x00000001
+> -#define MACB_CAPS_USRIO_HAS_CLKEN		0x00000002
+> -#define MACB_CAPS_USRIO_DEFAULT_IS_MII_GMII	0x00000004
+> -#define MACB_CAPS_NO_GIGABIT_HALF		0x00000008
+> -#define MACB_CAPS_USRIO_DISABLED		0x00000010
+> -#define MACB_CAPS_JUMBO				0x00000020
+> -#define MACB_CAPS_GEM_HAS_PTP			0x00000040
+> -#define MACB_CAPS_BD_RD_PREFETCH		0x00000080
+> -#define MACB_CAPS_NEEDS_RSTONUBR		0x00000100
+> -#define MACB_CAPS_MIIONRGMII			0x00000200
+> -#define MACB_CAPS_NEED_TSUCLK			0x00000400
+> -#define MACB_CAPS_QUEUE_DISABLE			0x00000800
+> -#define MACB_CAPS_PCS				0x01000000
+> -#define MACB_CAPS_HIGH_SPEED			0x02000000
+> -#define MACB_CAPS_CLK_HW_CHG			0x04000000
+> -#define MACB_CAPS_MACB_IS_EMAC			0x08000000
+> -#define MACB_CAPS_FIFO_MODE			0x10000000
+> -#define MACB_CAPS_GIGABIT_MODE_AVAILABLE	0x20000000
+> -#define MACB_CAPS_SG_DISABLED			0x40000000
+> -#define MACB_CAPS_MACB_IS_GEM			0x80000000
+> +#define MACB_CAPS_ISR_CLEAR_ON_WRITE		BIT(0)
+> +#define MACB_CAPS_USRIO_HAS_CLKEN		BIT(1)
+> +#define MACB_CAPS_USRIO_DEFAULT_IS_MII_GMII	BIT(2)
+> +#define MACB_CAPS_NO_GIGABIT_HALF		BIT(3)
+> +#define MACB_CAPS_USRIO_DISABLED		BIT(4)
+> +#define MACB_CAPS_JUMBO				BIT(5)
+> +#define MACB_CAPS_GEM_HAS_PTP			BIT(6)
+> +#define MACB_CAPS_BD_RD_PREFETCH		BIT(7)
+> +#define MACB_CAPS_NEEDS_RSTONUBR		BIT(8)
+> +#define MACB_CAPS_MIIONRGMII			BIT(9)
+> +#define MACB_CAPS_NEED_TSUCLK			BIT(10)
+> +#define MACB_CAPS_QUEUE_DISABLE			BIT(11)
+> +#define MACB_CAPS_PCS				BIT(24)
+> +#define MACB_CAPS_HIGH_SPEED			BIT(25)
+> +#define MACB_CAPS_CLK_HW_CHG			BIT(26)
+> +#define MACB_CAPS_MACB_IS_EMAC			BIT(27)
+> +#define MACB_CAPS_FIFO_MODE			BIT(28)
+> +#define MACB_CAPS_GIGABIT_MODE_AVAILABLE	BIT(29)
+> +#define MACB_CAPS_SG_DISABLED			BIT(30)
+> +#define MACB_CAPS_MACB_IS_GEM			BIT(31)
+>  
+>  /* LSO settings */
+>  #define MACB_LSO_UFO_ENABLE			0x01
 > 
 
-Agreed.
+Reviewed-by: Sean Anderson <sean.anderson@linux.dev>
 
-Cheers,
-Angelo
-
+But since these capabilities don't correspond to hardware registers, can
+you add a follow-up patch to remove the gap between QUEUE_DISABLE and
+PCS?
 
