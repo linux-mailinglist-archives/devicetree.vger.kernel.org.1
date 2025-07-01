@@ -1,134 +1,158 @@
-Return-Path: <devicetree+bounces-191446-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-191447-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id AB4BFAEF5AA
-	for <lists+devicetree@lfdr.de>; Tue,  1 Jul 2025 12:55:00 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 90631AEF5AE
+	for <lists+devicetree@lfdr.de>; Tue,  1 Jul 2025 12:55:28 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 7D0683AF567
-	for <lists+devicetree@lfdr.de>; Tue,  1 Jul 2025 10:54:34 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 19A2E1C012C3
+	for <lists+devicetree@lfdr.de>; Tue,  1 Jul 2025 10:55:44 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C3028270548;
-	Tue,  1 Jul 2025 10:54:53 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 42C1D27145C;
+	Tue,  1 Jul 2025 10:55:21 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=siemens.com header.i=alexander.sverdlin@siemens.com header.b="NlTMdQLJ"
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="estkSzoU"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mta-64-226.siemens.flowmailer.net (mta-64-226.siemens.flowmailer.net [185.136.64.226])
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1A7C426FDBF
-	for <devicetree@vger.kernel.org>; Tue,  1 Jul 2025 10:54:49 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.136.64.226
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BFEB5270EC1
+	for <devicetree@vger.kernel.org>; Tue,  1 Jul 2025 10:55:19 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1751367293; cv=none; b=ctMhWN2Rzg6icmP37qE2ZWD93UnoYjXXgakWpGq/xbkH6SQgxUhxHDtYCdp9Eyrp53GQaiMMMI8B9Tr0h357PyHFZYo7dedK2ZSaPVHYCwv8MRcRREs0niCL0MXnIaBni+8Lse06/TFV3WshGPqsIFD5IC8tGycYTLbUGIy8Ngw=
+	t=1751367321; cv=none; b=Ziltb9+pmrOlNX5piPCYZlDqy1uEZKrxWf/BrE6g9ApmEKwWMXs7tlZJ1maf/kL4WwBS4yBcn7Fm57fwiAxvQn8k0AWRQ40FkMuXaafjznmyLTKh7KlhucMIWV4Z+9GftVk9sNbT8tfbARu/7krDd17EwZaZLDb5767uf09j638=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1751367293; c=relaxed/simple;
-	bh=toy7KDrxRKaBrKEHAnZbNH7DtmKUMTVQeK+rdhzUSuo=;
-	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=Wqio/UfHoIcBpvVQsCdVptvRDo1MwtIFIqEAjrW5HyIigFb/gMf/mjsmbdmf4xJAUwaXR2LP8JufeCDElck0wV0I1HeWln1EJDDSl30ePh7AAjJvcGn+syAuf+guqLf/8Nz2XxTqD4O2cTBJ2NQ+++RW0/v3KZxMyfYrASn9zzU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=siemens.com; spf=pass smtp.mailfrom=rts-flowmailer.siemens.com; dkim=pass (2048-bit key) header.d=siemens.com header.i=alexander.sverdlin@siemens.com header.b=NlTMdQLJ; arc=none smtp.client-ip=185.136.64.226
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=siemens.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=rts-flowmailer.siemens.com
-Received: by mta-64-226.siemens.flowmailer.net with ESMTPSA id 2025070110544183dc753925ce4a241c
-        for <devicetree@vger.kernel.org>;
-        Tue, 01 Jul 2025 12:54:41 +0200
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; s=fm1;
- d=siemens.com; i=alexander.sverdlin@siemens.com;
- h=Date:From:Subject:To:Message-ID:MIME-Version:Content-Type:Content-Transfer-Encoding:Cc;
- bh=pKdITuxJaA8EUNftYYb9o+8QYm/n/GOV6BYJNqWHBdI=;
- b=NlTMdQLJsQKRO+x5KTq2hOtxXWNHIw353VOH8ecekqR3fqCkYXcy1GzkN9+2Xg9zIpPkNS
- sIRAboDhQrWMSj8jSueadSK4W+XMLHWoccNhJf+HoWpcXJjQQOnEB5m2EceC8fcDC62X3BtH
- kvzdFOmQUmHRD/2kVxsxPE6dhP3BdwfiGnGcGG976L4ED6bZJHdwd7D4KzCw1cYZz5AKsuR/
- Bo7Y2cGuwVUKQVGThkbxmxByWBd1p+EZr0DYDF6AajBbXL6eq8keZCa1AbFRUKdDyHKK6/dx
- RI578UZhJNo0TpgPfkvGI0xYWezdfGKm1q2MS8tWtcizhHKizrbVHTzw==;
-From: "A. Sverdlin" <alexander.sverdlin@siemens.com>
-To: devicetree@vger.kernel.org
-Cc: Alexander Sverdlin <alexander.sverdlin@siemens.com>,
-	Nishanth Menon <nm@ti.com>,
-	Vignesh Raghavendra <vigneshr@ti.com>,
-	Tero Kristo <kristo@kernel.org>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	linux-arm-kernel@lists.infradead.org,
-	linux-kernel@vger.kernel.org
-Subject: [PATCH] arm64: dts: ti: k3-pinctrl: Enable Schmitt Trigger by default
-Date: Tue,  1 Jul 2025 12:54:35 +0200
-Message-ID: <20250701105437.3539924-1-alexander.sverdlin@siemens.com>
+	s=arc-20240116; t=1751367321; c=relaxed/simple;
+	bh=NCd5sIQQTpAQ9G791uZrqHLKe+SMtGOJg9CS63AJgdI=;
+	h=Message-ID:Date:MIME-Version:Subject:To:References:From:
+	 In-Reply-To:Content-Type; b=OVyXyawKhla3hXI4R60VPLFCx3qnFiRrUBOSc7LETsDJp59beNMp47COLwBCGhYAe+N5XZg2sxf8iqDnPnuPIBnwG4xh/bJcnzkPFlz1kUPVcCUOJmSSrcf6Yrr1TajwApgp3rlKpxthSvY725eXAUgn06H9zjeljrXHTlal+pQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=estkSzoU; arc=none smtp.client-ip=205.220.168.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
+Received: from pps.filterd (m0279867.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 5619tDcP032111
+	for <devicetree@vger.kernel.org>; Tue, 1 Jul 2025 10:55:19 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+	content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	e2pKpLvAmXhT0uHCFrgzvpgPRrPMpCsaV/9qCJmh82o=; b=estkSzoUBdzewSBQ
+	d3RXgmpoLZabRY3dQl3Its1mpJ4RHISfg9oquS/Jf0ZgP1KoZRUrtlEAAzcYSXRG
+	79YEly8t6j18uJZT64PLICD2kTgwfDicCGXBApuWZ0V/yK0XOMbs2vStfkvXQUfM
+	Otg7+20N/eQJvEJM4aPJge9NeYzGM9QGINBw39rO3NwATXAh2DoGRuqoAnl6ia5T
+	m59WuaM+qWyvBNrcnfIJUGVEqXlMkKuOYshmUc0vL1LB9Jb9Btq/dCN0pfkVsnAH
+	R65PjUXf7V362P0ruNX+XOOwuHK6tofAD/EZ7zD8R/54q7/UoQgm0SkdfNuCcIGG
+	QgfKBg==
+Received: from mail-qv1-f70.google.com (mail-qv1-f70.google.com [209.85.219.70])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 47j63k8nh9-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
+	for <devicetree@vger.kernel.org>; Tue, 01 Jul 2025 10:55:18 +0000 (GMT)
+Received: by mail-qv1-f70.google.com with SMTP id 6a1803df08f44-6fd1dcf1c5bso11620946d6.3
+        for <devicetree@vger.kernel.org>; Tue, 01 Jul 2025 03:55:18 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1751367317; x=1751972117;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=e2pKpLvAmXhT0uHCFrgzvpgPRrPMpCsaV/9qCJmh82o=;
+        b=KAVg2W02vsmYHkNrZaNHhJ1Q8KuwxsCZuzBpfdyYao291H3eu3l3R5MwjfnplhiX5i
+         yge+ldwK0F74XZJAD0tRm062GpU0rDqMRsbeMwk6L/SXbS5Hfb+nuW/r9qDb0frEQ9gP
+         lfAR++rvfSa+NhAtGfpFJ4MRCkFHLWLnz2ml39H978TQTBYopVQUBi+cXK7cdtgUTXvC
+         U/vZksuCljv/IucE1LUht/obJSXsDBxhpq0+y5pxmRJj5z8WW6J5qXM0modWERPra3Bb
+         dDSYK+yjR/dX4aXD0HZ73QuwmgPT3yO6LZdFRzX0jNeu35zeCHj5omkXnmt299AiC9ca
+         9dEg==
+X-Forwarded-Encrypted: i=1; AJvYcCURyWEaPIL+xY2cDC7Seqcethf+rKO7JO1rjQ4/0RrofNIvQkIzlaYi+AJENv1onKHdXEvkVRcdkF0x@vger.kernel.org
+X-Gm-Message-State: AOJu0YxRW1Yo3Y+r7I27svvlX1KQLqUszyRykeei2Mlyf6sMM0vVRkv5
+	zl7VsK4F0h18hs3Zils/B8wpFKbdEKdMrZ3+UKDAg72CZ/8o7avdl18XI3AxF/7NYfnTs5VBc/V
+	YyNIDKarYZUt7KdVZj1NBjvvWF/H4T8t2dW1/8GeRcx4d4QJv+wvydisJFpSbSVbH0duppFi7
+X-Gm-Gg: ASbGncsVC+Xuqu/IBnRE/baSZB9j7uup+jduJ4Ye9fr8QT3exbUbcJJYW2X2iLiJPNw
+	CKCKQlxI9IgZFSvrrybh6d0/HocmgXLAfUpcatyyqCzhSjkcKZXJ541agu4xYZQg5vk+4lteJd0
+	w0+3Gdd/XXQmJ43nfzCJNuBJfGQPWCkABRYUz2Z8ct+YG0WtRYXkg6BfdB9w3Q6uNbhL0zau8xQ
+	W3y9oXWKwEFbU06FICg21khhwcjnWbfT2et5B69nFWs3iEpfIVYRg5NuYqTXD8CD95H4M8hcD2X
+	t9LOXWgu8ewIcbkx6o43JbDbJXymU2CQiDGyZiv801J7jLQtJSJvMSFdaT/GcrPkx1T9IaFdnwH
+	7Lw4OtKzJ
+X-Received: by 2002:a05:620a:3710:b0:7c0:bc63:7b73 with SMTP id af79cd13be357-7d46774f6eamr135172885a.13.1751367316971;
+        Tue, 01 Jul 2025 03:55:16 -0700 (PDT)
+X-Google-Smtp-Source: AGHT+IFFQqI9KNTOy8LPHCm3hRNrOV23xCgE8dnjQkn6eZsL8uc0BW3Nf4hDGABNBn0BIgxQLuAUPw==
+X-Received: by 2002:a05:620a:3710:b0:7c0:bc63:7b73 with SMTP id af79cd13be357-7d46774f6eamr135171285a.13.1751367316401;
+        Tue, 01 Jul 2025 03:55:16 -0700 (PDT)
+Received: from [192.168.1.114] (83.9.29.190.neoplus.adsl.tpnet.pl. [83.9.29.190])
+        by smtp.gmail.com with ESMTPSA id 4fb4d7f45d1cf-60c831ccb44sm7137232a12.57.2025.07.01.03.55.15
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 01 Jul 2025 03:55:15 -0700 (PDT)
+Message-ID: <f931e284-6ae6-4177-83bf-c6eb1ce583f9@oss.qualcomm.com>
+Date: Tue, 1 Jul 2025 12:55:14 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Flowmailer-Platform: Siemens
-Feedback-ID: 519:519-456497:519-21489:flowmailer
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH] arm64: dts: qcom: sdm670-google-sargo: enable charger
+To: Richard Acayan <mailingradian@gmail.com>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley
+ <conor+dt@kernel.org>, linux-arm-msm@vger.kernel.org,
+        devicetree@vger.kernel.org
+References: <20250630224158.249726-2-mailingradian@gmail.com>
+Content-Language: en-US
+From: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
+In-Reply-To: <20250630224158.249726-2-mailingradian@gmail.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Authority-Analysis: v=2.4 cv=ZKfXmW7b c=1 sm=1 tr=0 ts=6863be96 cx=c_pps
+ a=oc9J++0uMp73DTRD5QyR2A==:117 a=fKQzr7EGRj+VoE0XNsDNvQ==:17
+ a=IkcTkHD0fZMA:10 a=Wb1JkmetP80A:10 a=pGLkceISAAAA:8 a=6ieJxNg1SIxEGqXPB-kA:9
+ a=QEXdDO2ut3YA:10 a=iYH6xdkBrDN1Jqds4HTS:22
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwNzAxMDA2NiBTYWx0ZWRfX0s+jixqFSoKX
+ SiGKElanIZny8afkn2pzs28LLrRD+2wRajmYRHddpiR1YQJYcW4mnnWyujMG7KlO8A2Qa+LarMO
+ 74FT8/mg/2qSVlabFe3+NPe5XRvEroToDUdtHfjTOjl6zhDOBCu0LkuyOgGh6YMKgi7ZxYFjvrV
+ sWnExrP0XrHtem6deB7VTKLB0ipWEXkSo+tRqG+ctO6mZHqVWE6vHYXzk2u8grSPfShxMplOWNW
+ wclfrt0g0k/YZ3AYZq4EqrVY+vupq8HVjh8hFGLYP8OtxWvHXY3hEBT2yKL4ACw6cH99IG3eWhS
+ dMpM36og2zwdg95M/QUn92MfK43dGLgZiwFCNEwRiVlVNnXzPVc7SZLIoE1TSTzkh2IhsjQY+p6
+ 5/P/YTkmtOc3aKAOZrrFY586W/Jn/9SFW1N6a8lvCIVjMCjiRKqwLYq0wMWSql9RZluLeVj2
+X-Proofpoint-ORIG-GUID: wOAFuSQrbT_2AdB9XD06MezNHvih1Bvs
+X-Proofpoint-GUID: wOAFuSQrbT_2AdB9XD06MezNHvih1Bvs
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1099,Hydra:6.1.7,FMLib:17.12.80.40
+ definitions=2025-07-01_02,2025-06-27_01,2025-03-28_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ adultscore=0 mlxscore=0 mlxlogscore=809 spamscore=0 suspectscore=0
+ bulkscore=0 priorityscore=1501 lowpriorityscore=0 phishscore=0
+ impostorscore=0 malwarescore=0 clxscore=1015 classifier=spam authscore=0
+ authtc=n/a authcc= route=outbound adjust=0 reason=mlx scancount=1
+ engine=8.19.0-2505280000 definitions=main-2507010066
 
-From: Alexander Sverdlin <alexander.sverdlin@siemens.com>
 
-Switch Schmitt Trigger functions for PIN_INPUT* macros by default. This is
-HW PoR configuration, the slew rate requirements without ST enabled are
-pretty tough for these devices. We've noticed spurious GPIO interrupts even
-with noise-free edges but not meeting slew rate requirements (3.3E+6 V/s
-for 3.3v LVCMOS).
 
-It's not obvious why one might want to disable the PoR-enabled ST on any
-pin. Just enable it by default. As it's not possible to provide OR-able
-macros to disable the ST, shall anyone require it, provide a set of
-new macros with _NOST suffix.
+On 01-Jul-25 00:41, Richard Acayan wrote:
+> The Pixel 3a has a rechargeable 3000 mAh battery. Describe it and enable
+> its charging controller in PM660.
+> 
+> Signed-off-by: Richard Acayan <mailingradian@gmail.com>
+> ---
+>  .../arm64/boot/dts/qcom/sdm670-google-sargo.dts | 17 +++++++++++++++++
+>  1 file changed, 17 insertions(+)
+> 
+> diff --git a/arch/arm64/boot/dts/qcom/sdm670-google-sargo.dts b/arch/arm64/boot/dts/qcom/sdm670-google-sargo.dts
+> index 74b5d9c68eb6..d01422844fbf 100644
+> --- a/arch/arm64/boot/dts/qcom/sdm670-google-sargo.dts
+> +++ b/arch/arm64/boot/dts/qcom/sdm670-google-sargo.dts
+> @@ -33,6 +33,14 @@ / {
+>  
+>  	aliases { };
+>  
+> +	battery: battery {
+> +		compatible = "simple-battery";
+> +
+> +		voltage-min-design-microvolt = <3312000>;
+> +		voltage-max-design-microvolt = <4400000>;
 
-Signed-off-by: Alexander Sverdlin <alexander.sverdlin@siemens.com>
----
-This patch could be considered a v2 of [1] but the subject has been changed.
+Does this match what downstream sets into the hw?
 
-[1] Link: https://lore.kernel.org/all/20250627131332.2806026-1-alexander.sverdlin@siemens.com/
-
- arch/arm64/boot/dts/ti/k3-pinctrl.h | 15 ++++++++++++---
- 1 file changed, 12 insertions(+), 3 deletions(-)
-
-diff --git a/arch/arm64/boot/dts/ti/k3-pinctrl.h b/arch/arm64/boot/dts/ti/k3-pinctrl.h
-index cac7cccc11121..38590188dd51c 100644
---- a/arch/arm64/boot/dts/ti/k3-pinctrl.h
-+++ b/arch/arm64/boot/dts/ti/k3-pinctrl.h
-@@ -8,6 +8,7 @@
- #ifndef DTS_ARM64_TI_K3_PINCTRL_H
- #define DTS_ARM64_TI_K3_PINCTRL_H
- 
-+#define ST_EN_SHIFT		(14)
- #define PULLUDEN_SHIFT		(16)
- #define PULLTYPESEL_SHIFT	(17)
- #define RXACTIVE_SHIFT		(18)
-@@ -19,6 +20,10 @@
- #define DS_PULLUD_EN_SHIFT	(27)
- #define DS_PULLTYPE_SEL_SHIFT	(28)
- 
-+/* Schmitt trigger configuration */
-+#define ST_DISABLE		(0 << ST_EN_SHIFT)
-+#define ST_ENABLE		(1 << ST_EN_SHIFT)
-+
- #define PULL_DISABLE		(1 << PULLUDEN_SHIFT)
- #define PULL_ENABLE		(0 << PULLUDEN_SHIFT)
- 
-@@ -32,9 +37,13 @@
- #define PIN_OUTPUT		(INPUT_DISABLE | PULL_DISABLE)
- #define PIN_OUTPUT_PULLUP	(INPUT_DISABLE | PULL_UP)
- #define PIN_OUTPUT_PULLDOWN	(INPUT_DISABLE | PULL_DOWN)
--#define PIN_INPUT		(INPUT_EN | PULL_DISABLE)
--#define PIN_INPUT_PULLUP	(INPUT_EN | PULL_UP)
--#define PIN_INPUT_PULLDOWN	(INPUT_EN | PULL_DOWN)
-+#define PIN_INPUT		(INPUT_EN | ST_ENABLE | PULL_DISABLE)
-+#define PIN_INPUT_PULLUP	(INPUT_EN | ST_ENABLE | PULL_UP)
-+#define PIN_INPUT_PULLDOWN	(INPUT_EN | ST_ENABLE | PULL_DOWN)
-+/* Input configurations with Schmitt Trigger disabled */
-+#define PIN_INPUT_NOST		(INPUT_EN | PULL_DISABLE)
-+#define PIN_INPUT_PULLUP_NOST	(INPUT_EN | PULL_UP)
-+#define PIN_INPUT_PULLDOWN_NOST	(INPUT_EN | PULL_DOWN)
- 
- #define PIN_DEBOUNCE_DISABLE	(0 << DEBOUNCE_SHIFT)
- #define PIN_DEBOUNCE_CONF1	(1 << DEBOUNCE_SHIFT)
--- 
-2.50.0
-
+Konrad
 
