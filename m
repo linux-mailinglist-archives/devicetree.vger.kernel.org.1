@@ -1,225 +1,189 @@
-Return-Path: <devicetree+bounces-191557-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-191558-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 917FDAEFAF9
-	for <lists+devicetree@lfdr.de>; Tue,  1 Jul 2025 15:42:58 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id A8C2FAEFB01
+	for <lists+devicetree@lfdr.de>; Tue,  1 Jul 2025 15:43:48 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 783943AEFD5
-	for <lists+devicetree@lfdr.de>; Tue,  1 Jul 2025 13:41:57 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id EA67518909F8
+	for <lists+devicetree@lfdr.de>; Tue,  1 Jul 2025 13:43:06 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1B3272750E3;
-	Tue,  1 Jul 2025 13:42:12 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0C6912749CB;
+	Tue,  1 Jul 2025 13:42:41 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=fairphone.com header.i=@fairphone.com header.b="OBO6iTkd"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="QgJoN4Ck"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ed1-f48.google.com (mail-ed1-f48.google.com [209.85.208.48])
+Received: from mail-wr1-f45.google.com (mail-wr1-f45.google.com [209.85.221.45])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E9D60149C4A
-	for <devicetree@vger.kernel.org>; Tue,  1 Jul 2025 13:42:09 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.48
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 43A7424466E;
+	Tue,  1 Jul 2025 13:42:37 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.45
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1751377331; cv=none; b=dM1ld/V99yTQtdrM7SscrFp2UaFRifIDLpRqAnKneRrx/VgRoY4XBCS0JPceMv75ME3+1MLjTfVY2X4sbrjxdBd8L+8ybQB4y2aoB9jrk2qYV4kMOmh04JC6D0hLBxCUr241pWaKJ6i1ZOF1jXybU+Zmtz/AaESf7kQM++ryQKQ=
+	t=1751377360; cv=none; b=cZ0gclyDXo8zqSH2bJBJbQqwSJjGleLj3iUl+Cz0wqXDh1FxKXDJZ6hhpYfBw+OJxM4xBMY6Yv7kiTd8+oPwLIkxvzdLhwIsf2YTxGy90D07hUDmAxdZodI0hOTL7OxuBPaLb2RoBIkb0xAAuUv1rby3ZgQvf6oCMX53EYz4f6o=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1751377331; c=relaxed/simple;
-	bh=Mc1KTGp8AQ3igfQCX1fLG/VmxsuDuKRGSwcWZkGX5/c=;
-	h=Mime-Version:Content-Type:Date:Message-Id:Cc:Subject:From:To:
-	 References:In-Reply-To; b=D1xKx2exYVh6Fgj0+BRgIsL/YoaiEkXNVxEYD/4+c3q0GW/2Fb4BPtSg7JFctQ6t5DH4O9TmxiJg7UbgI/jngBnvezOea8oH0JQxadH29vWf2Ukf3XLn3mdltKoHBdeFbbrunVO5oNbDle0MYSzkRG+OtdAF6XiF6ddgDhSaXmo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=fairphone.com; spf=pass smtp.mailfrom=fairphone.com; dkim=pass (2048-bit key) header.d=fairphone.com header.i=@fairphone.com header.b=OBO6iTkd; arc=none smtp.client-ip=209.85.208.48
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=fairphone.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=fairphone.com
-Received: by mail-ed1-f48.google.com with SMTP id 4fb4d7f45d1cf-607cc1a2bd8so5610371a12.2
-        for <devicetree@vger.kernel.org>; Tue, 01 Jul 2025 06:42:09 -0700 (PDT)
+	s=arc-20240116; t=1751377360; c=relaxed/simple;
+	bh=zEPKwaxizYmJFZbCuGJfe81nb4alVm8Vf9gWeFFK+to=;
+	h=Message-ID:Subject:From:To:Cc:Date:In-Reply-To:References:
+	 Content-Type:MIME-Version; b=pOMsoUCbfcZaCsAKnRCTBH8DdlanfXeFxmw6b8uaW6eSvTjYAjJl1MlljLKOZNghhnFJRYUE+a2g8wFoXdui6Mw0bV80WQnvlOztu+VJqoxq+Pg6Z340kRJNJyPmYmAFrXy5s2cRjyZpvC3dg313HALpuCDEdivn8AJXCXn8tDg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=QgJoN4Ck; arc=none smtp.client-ip=209.85.221.45
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-wr1-f45.google.com with SMTP id ffacd0b85a97d-3a548a73ff2so5047103f8f.0;
+        Tue, 01 Jul 2025 06:42:37 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=fairphone.com; s=fair; t=1751377328; x=1751982128; darn=vger.kernel.org;
-        h=in-reply-to:references:to:from:subject:cc:message-id:date
-         :content-transfer-encoding:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=K3NN3YOnZNPrDgXvyD2XIOWd2IQC6I9YUWFKOCRkpLE=;
-        b=OBO6iTkdmBRm4eMeS0Es6aAwNn7vMoDgC5DMUE0RyLrnT2Byx6S3YxDDL+AeDYspQP
-         Iop2DiV70VY40Svs8Tuik7W/uOlL9MyFR4y0qFtVT0oMUetOxjt3yScq8YyDTgSpxefC
-         rzbuZYHmIS+n0cK36GIR/kObpQQT1AXUGKlo8kQ87iKh3YA7CPNiWoXKrZzeW8a8HESc
-         5WN88aStwwvrEcJZfkuxlFFDjuSaAzfbpXfhA0vFvsk/eCGzqvodg7d6zmFVDzQXhDpn
-         LRZjpk7QJ/YJvXHCBLW9tfj6/7WQTvbsXKMIK11nvd8+zc6k4iBrA6r/JC7KaclhLrmt
-         anYA==
+        d=gmail.com; s=20230601; t=1751377356; x=1751982156; darn=vger.kernel.org;
+        h=mime-version:user-agent:content-transfer-encoding:references
+         :in-reply-to:date:cc:to:from:subject:message-id:from:to:cc:subject
+         :date:message-id:reply-to;
+        bh=zEPKwaxizYmJFZbCuGJfe81nb4alVm8Vf9gWeFFK+to=;
+        b=QgJoN4Ck87QYv9ZBZQhf6jl/PJcw13BerDEX0wAQwO7/NWAMgZrpRVpQKBE4kTdnbN
+         6LiCQRuoHMaJVekB9wv5o6Kc7qXrWZdjdoF8wHamS/t6JUrCRX993BG73goy8hD2G3Q5
+         BgDdxQKLqU4dTroC8DqKB8Vj2QS09DypIipi9D+EB2qcUN7I2ols6+ntYsDJaGArBFeT
+         p75bLX7yYaZJcPEAYiAPxIsv72gLzDpJyn2kKvsYPaGsQYnonwUCtkIi5uroT3AKvpuF
+         uALkYi38eHILmfA+G6w/EEYrcjyWAwhuCZSEbBydxEfqS6YudCACqrng2QuyOrKNGn8V
+         T7RA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1751377328; x=1751982128;
-        h=in-reply-to:references:to:from:subject:cc:message-id:date
-         :content-transfer-encoding:mime-version:x-gm-message-state:from:to
-         :cc:subject:date:message-id:reply-to;
-        bh=K3NN3YOnZNPrDgXvyD2XIOWd2IQC6I9YUWFKOCRkpLE=;
-        b=xKUpABe7C32n2ZbqqGII49ICRQ8zhrXIaEEu/kG7gGFqp0gyhmJNMhroZDJTSKancV
-         yKB8x6aMtjgMM3PyMqavnHqXvUKUF3yHXb4MoW0NV3ER4YNqY30/Z6nWVD65O+yV51vX
-         1fzv2F4dJNuvTZ4A5OSDMFrx70F3Ld4Um5XkOMkOegpaxm6zXwyC8SNAACm4fZBJF/GM
-         CBirZl/9pHJRInPwfohKnsvLC5kYElGeln97pCTaUJBjAj4j1aJfA6BBoSkYzyjdRgPL
-         BBgsOkx7TDAGz+FDk/gUgCoW82LBEACvjItsA1rYjoFgt7bnThuL8fTYYwtSWY5Nss5W
-         smvQ==
-X-Forwarded-Encrypted: i=1; AJvYcCUPGUJfoMnu1SQISSB1weucFPTQZJN5EoIAxvvLqLH/bqjRxytGT0SbWcJVF8impKY71t6lWnnYpzUb@vger.kernel.org
-X-Gm-Message-State: AOJu0YzgMI5/FKlPGbyBF3WY1jZLxo45xO8cvNGtuVZQxxZDSVwVXWQl
-	8xyWBtYCAgSvC/7ZHdGzyAFCpOxJ7+flqLCwxEQM8K8Ed3aW38Tt8NhBxVBUe5/n3cJ2/VepBY2
-	pNZDF
-X-Gm-Gg: ASbGncuxn7sbhFnkVdrtx1ntjgiOyih9IWEaBkuR6pvi2zsphMMXIkB3gKsETfsCffb
-	IU+tl3LSPwiUinqAiQp9DSrm8aq7uMxr+K9nvKKkKBgNShU3S8QshfstQ/+quSTzpEetIuXuzkp
-	jKTq8Jet/cH2wMqtF3FNy4uLvBn9YRsv3YYjFig8+AvD8bUs+UTR40z1jTKI9aQDeyv8vnMxEpQ
-	ktwy3UJlJ3XuxThjJhE/fy8U+5fJSiDloR2LqlnJbXSbKng/zhTDQVyfn5SyriPS+tmT/+5CU9V
-	oJ13OdIjoYB3dg532TOjglOygFQ9xNP0lraOaL32geH6MI0mrRy4+00RHSx88PbgmaYYTbhHh1K
-	8hZhakn0uqh4S3kc2kXAquX/6CcChMHlFRzxqjTkmSbLVyJp8jN3zo2KXYUBLrS/dBzq+djw=
-X-Google-Smtp-Source: AGHT+IGgNsYenmtHtqlifsI+EKQi0fEzMyYD6xYkDkrtd/syyHWZIutfcBHdoTD2pZXazBORFz/1ew==
-X-Received: by 2002:a05:6402:26cb:b0:602:1b8b:2902 with SMTP id 4fb4d7f45d1cf-60c88dd6503mr16076177a12.15.1751377328145;
-        Tue, 01 Jul 2025 06:42:08 -0700 (PDT)
-Received: from localhost (2001-1c00-3b8a-ea00-c4de-d39d-05f4-c77a.cable.dynamic.v6.ziggo.nl. [2001:1c00:3b8a:ea00:c4de:d39d:5f4:c77a])
-        by smtp.gmail.com with ESMTPSA id 4fb4d7f45d1cf-60c8290fb73sm7382663a12.35.2025.07.01.06.42.07
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 01 Jul 2025 06:42:07 -0700 (PDT)
+        d=1e100.net; s=20230601; t=1751377356; x=1751982156;
+        h=mime-version:user-agent:content-transfer-encoding:references
+         :in-reply-to:date:cc:to:from:subject:message-id:x-gm-message-state
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=zEPKwaxizYmJFZbCuGJfe81nb4alVm8Vf9gWeFFK+to=;
+        b=FUCCojFIVGZjgxDLFBwrY7cEyPFRJLPTdQ8KmErzw6XLi9jAlLyeIy26H2SwMvb1+f
+         Hvv8awP/JBjw7LnBxJoBFND2cbjkpoDqCk6mbUF/DvOPORBOcs492mYLHwwTbh8FzL3j
+         iMna9BVlVAbR24J3pOClXQjnJslvZGkbFXL0/VKmRKRSUzH/e/9aQzSOPlerxt96yBZ6
+         W7p952KGDHSCmOA3CdILvHhw/5SU/8o0OOevLY27tj7hOggR7MmN029MrNGjTeE716FO
+         IyodvKhaOfoc9ui8zMk85ZAQ5jw8+Fjxic3wUJtuwMCavZY0abz7X1GmTN3XSCycsP/W
+         uPvw==
+X-Forwarded-Encrypted: i=1; AJvYcCV4tjCU7hCYQ2Xcsept+4zgXlwdNoxI5pJC9YSCDgOL0J4to2y7zZsTOEHWlbeIBE2jJdOrC5gV4OrKwQ==@vger.kernel.org, AJvYcCVSdBe8P3s8Yu0R6rPxds8H6+zR3ZwlwR43+usdkE3W/BJBBaSV7+89U2/jP9Iu2R4ykOo9BZ3p0Jzg@vger.kernel.org, AJvYcCVd6NBu9tRg2Rvr5gA+sEbVQ+h47gbDu+AS9NirccU00Gf/yBfeNN1LCoc3xJ4pso7y0wG7WeJEYAhc@vger.kernel.org, AJvYcCXfhDptxDcltGjNMNDFLY4sOrreutWna+LmfXo5hs2Q7PqxVNher7HSU+KN9yu3op+e2qGBgMxM734MBD8=@vger.kernel.org
+X-Gm-Message-State: AOJu0YxApGuaxMDKfSysppUoVG02pLG624MasIZgIry67F5KsiqPCGYF
+	oqSIBguyfeCgBXwTPbA484goO/KSjQfMVNSG0wJclF5wDd+9C+oNFPQE
+X-Gm-Gg: ASbGncs3CBs6yUdQ0bt4tW+aHEzAKu37A13a7KHd9Ack/DrrHHLv+ieyhpnAjileB/U
+	mj9dfTKLHojr3sqWkISsTQIk13CflwrUbG8ikrWq6p2Ox/c2LsMx91Jiq+tmH70EXqa6VX7Qemc
+	Or7WTXLqQN1Mne4wqx/9R5Yc3LZKozhYgA/dK4hijuEvR1hWfJJgFNAQtGuXtkTJUbBtCJa3JCC
+	KQSeB6KoQsoni+htYcgGRFmDDHI0OH5c7Ufx+duau7lSyI6n4wNCYzV0yWBqg4uXJ4NPov9xEAC
+	MT4j+VDk0GTNyGgVQe5R/8XTcBl6+CKFDG/0m4v+skBA2tTQYOY7KvxTQxjacmE1oL5I6A==
+X-Google-Smtp-Source: AGHT+IESuCDJf6vslKrCMWWqWUvCb2mBDoVf2rcdTueuIcYkfVuN7pOkhii6idRhbM7v/S7vj6mHDw==
+X-Received: by 2002:a05:6000:104e:b0:3a4:f513:7f03 with SMTP id ffacd0b85a97d-3a917bc827cmr12426455f8f.44.1751377356141;
+        Tue, 01 Jul 2025 06:42:36 -0700 (PDT)
+Received: from [192.168.1.187] ([161.230.67.253])
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-4538a3a6716sm167153435e9.11.2025.07.01.06.42.35
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 01 Jul 2025 06:42:35 -0700 (PDT)
+Message-ID: <d60c08a3b518e12c8fc0d0eba4ed208aafa8ca82.camel@gmail.com>
+Subject: Re: [PATCH v5 00/20] mfd: adp5585: support keymap events and drop
+ legacy Input driver
+From: Nuno =?ISO-8859-1?Q?S=E1?= <noname.nuno@gmail.com>
+To: Lee Jones <lee@kernel.org>, Laurent Pinchart
+	 <laurent.pinchart@ideasonboard.com>
+Cc: nuno.sa@analog.com, linux-gpio@vger.kernel.org,
+ linux-pwm@vger.kernel.org, 	devicetree@vger.kernel.org,
+ linux-input@vger.kernel.org, Rob Herring	 <robh@kernel.org>, Krzysztof
+ Kozlowski <krzk+dt@kernel.org>, Conor Dooley	 <conor+dt@kernel.org>, Uwe
+ =?ISO-8859-1?Q?Kleine-K=F6nig?= <ukleinek@kernel.org>,  Linus Walleij
+ <linus.walleij@linaro.org>, Bartosz Golaszewski <brgl@bgdev.pl>, Dmitry
+ Torokhov	 <dmitry.torokhov@gmail.com>, Liu Ying <victor.liu@nxp.com>,
+ Bartosz Golaszewski	 <bartosz.golaszewski@linaro.org>, Krzysztof Kozlowski	
+ <krzysztof.kozlowski@linaro.org>
+Date: Tue, 01 Jul 2025 14:42:46 +0100
+In-Reply-To: <20250701133732.GO10134@google.com>
+References: <20250614-dev-adp5589-fw-v5-0-7e9d84906268@analog.com>
+	 <20250619133834.GC795775@google.com>
+	 <d20682874dbd65acde8b80efa004706a09b23248.camel@gmail.com>
+	 <20250701110522.GK10134@google.com>
+	 <15ba1febb0f0acf4057af64c5c84db0633cab864.camel@gmail.com>
+	 <20250701111948.GK15184@pendragon.ideasonboard.com>
+	 <20250701133732.GO10134@google.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+User-Agent: Evolution 3.56.2 
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-Mime-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-Content-Type: text/plain; charset=UTF-8
-Date: Tue, 01 Jul 2025 15:42:06 +0200
-Message-Id: <DB0RG4PFFP4A.1BAZWWZU2TWJF@fairphone.com>
-Cc: "Konrad Dybcio" <konrad.dybcio@oss.qualcomm.com>, "Bjorn Andersson"
- <andersson@kernel.org>, "Michael Turquette" <mturquette@baylibre.com>,
- "Stephen Boyd" <sboyd@kernel.org>, "Rob Herring" <robh@kernel.org>,
- "Krzysztof Kozlowski" <krzk+dt@kernel.org>, "Conor Dooley"
- <conor+dt@kernel.org>, "Konrad Dybcio" <konradybcio@kernel.org>,
- <~postmarketos/upstreaming@lists.sr.ht>, <phone-devel@vger.kernel.org>,
- <linux-arm-msm@vger.kernel.org>, <linux-clk@vger.kernel.org>,
- <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>
-Subject: Re: [PATCH 00/10] Add clock drivers for SM7635
-From: "Luca Weiss" <luca.weiss@fairphone.com>
-To: "Dmitry Baryshkov" <dmitry.baryshkov@oss.qualcomm.com>
-X-Mailer: aerc 0.20.1-0-g2ecb8770224a-dirty
-References: <20250625-sm7635-clocks-v1-0-ca3120e3a80e@fairphone.com>
- <68056b4a-b1c3-401f-8720-8e0c3cda6249@oss.qualcomm.com>
- <DAXEWQ93VELV.3HJXPNWASYBT7@fairphone.com>
- <DAZPKV5DQ1EK.2D4TQE5MIH4K9@fairphone.com>
- <w4eujq72uqflqpsqshc7zhu6lkc7owufep2g2rjacvzgj44vmf@auonp4ugbgow>
-In-Reply-To: <w4eujq72uqflqpsqshc7zhu6lkc7owufep2g2rjacvzgj44vmf@auonp4ugbgow>
+MIME-Version: 1.0
 
-On Tue Jul 1, 2025 at 1:16 PM CEST, Dmitry Baryshkov wrote:
-> On Mon, Jun 30, 2025 at 10:01:35AM +0200, Luca Weiss wrote:
->> Hi Konrad,
->>=20
->> On Fri Jun 27, 2025 at 5:14 PM CEST, Luca Weiss wrote:
->> > On Fri Jun 27, 2025 at 5:10 PM CEST, Konrad Dybcio wrote:
->> >> On 6/25/25 11:12 AM, Luca Weiss wrote:
->> >>> Document and add the clock drivers for GCC, CAMCC, DISPCC, GPUCC and
->> >>> VIDEOCC on the SM7635 SoC.
->> >>>=20
->> >>> Signed-off-by: Luca Weiss <luca.weiss@fairphone.com>
->> >>> ---
->> >>> Luca Weiss (10):
->> >>>       dt-bindings: clock: qcom: document the SM7635 Global Clock Con=
-troller
->> >>>       clk: qcom: Add Global Clock controller (GCC) driver for SM7635
->> >>>       dt-bindings: clock: qcom: document the SM7635 Camera Clock Con=
-troller
->> >>>       clk: qcom: Add Camera Clock controller (CAMCC) driver for SM76=
-35
->> >>>       dt-bindings: clock: qcom: document the SM7635 Display Clock Co=
-ntroller
->> >>>       clk: qcom: Add Display Clock controller (DISPCC) driver for SM=
-7635
->> >>>       dt-bindings: clock: qcom: document the SM7635 GPU Clock Contro=
-ller
->> >>>       clk: qcom: Add Graphics Clock controller (GPUCC) driver for SM=
-7635
->> >>>       dt-bindings: clock: qcom: document the SM7635 Video Clock Cont=
-roller
->> >>>       clk: qcom: Add Video Clock controller (VIDEOCC) driver for SM7=
-635
->> >>
->> >> We had a massive yak shaving patchset go in this season, please move
->> >> the magic settings in .probe to qcom_cc_driver_data {}
->> >
->> > Okay cool, I found them
->> > https://lore.kernel.org/linux-arm-msm/174970084192.547582.612305407582=
-982706.b4-ty@kernel.org/
->>=20
->> For camcc, gpucc and videocc it seems quite simple to follow these
->> changes.
->>=20
->> For dispcc I don't know what to do with this line.
->>=20
->> 	/* Enable clock gating for MDP clocks */
->> 	regmap_update_bits(regmap, DISP_CC_MISC_CMD, 0x10, 0x10);
->
-> Use clk_regs_configure() callback to set this bit.
+On Tue, 2025-07-01 at 14:37 +0100, Lee Jones wrote:
+> On Tue, 01 Jul 2025, Laurent Pinchart wrote:
+>=20
+> > On Tue, Jul 01, 2025 at 12:09:11PM +0100, Nuno S=C3=A1 wrote:
+> > > On Tue, 2025-07-01 at 12:05 +0100, Lee Jones wrote:
+> > > > On Fri, 27 Jun 2025, Nuno S=C3=A1 wrote:
+> > > >=20
+> > > > > On Thu, 2025-06-19 at 14:38 +0100, Lee Jones wrote:
+> > > > > > On Sat, 14 Jun 2025, Nuno S=C3=A1 via B4 Relay wrote:
+> > > > > >=20
+> > > > > > > Hi all,
+> > > > > > >=20
+> > > > > > > Here it goes v4. Main changes is to drop chip info based stru=
+ct
+> > > > > > > and
+> > > > > > > directly use an enum in the FW .data pointer, use the notifie=
+r API
+> > > > > > > for
+> > > > > > > dispatching events and multiple calls to mfd_add_devices().
+> > > > > > >=20
+> > > > > > > Regarding the last point, I think I could have used multiple =
+calls
+> > > > > > > to
+> > > > > > > devm_mfd_add_devices() and avoid those gotos in
+> > > > > > > adp5585_add_devices()
+> > > > > > > but I do not feel that would have been "correct".
+> > > > > > >=20
+> > > > > > > Thanks!
+> > > > > > > - Nuno S=C3=A1
+> > > > > > >=20
+> > > > > > > ---
+> > > > > > > Changes in v5:
+> > > > > >=20
+> > > > > > In future, these should be inside the patches themselves please=
+.
+> > > > >=20
+> > > > > Hi Lee,
+> > > > >=20
+> > > > > I'm about to send v6. I just have a question regarding the above.=
+ Do
+> > > > > you
+> > > > > mean to
+> > > > > have the log in the commit message itself like DRM or do it with =
+git
+> > > > > notes?
+> > > >=20
+> > > > I have no idea what git notes is.
+> > >=20
+> > > It pretty much adds a note before the diff stat but with an annoying
+> > > "Notes:"
+> > > line. b4 seems to ignore it anyways.
+> > >=20
+> > > > Simply place the Changelog inside the patch, just above the diff st=
+at.
+> > >=20
+> > > There's already some emails about this on v6. I ended up doing it DRM
+> > > style
+> > > because tweaking the patch before sensing is surprisingly non trivial=
+ with
+> > > b4.
+> > > Unless I missed something.
+> >=20
+> > You can record the changelog in the commit message below a=20
+> >=20
+> > ---
+> >=20
+> > line asyou modify commits. That way you won't have to write the
+> > changelogs when sending the patches, and b4 should not cause any issue.
+>=20
+> Exactly this.=C2=A0 Should be easy enough.
 
-Got it, found an example on the lists.
+Yes, just checked now. I was being mistaken by the fact that doing the abov=
+e
+while changing commits will still locally display on my 'git log'. But it w=
+ill
+then be discarded when you apply the patches.
 
->
->>=20
->> Do I just keep the regmap references in this probe function and just
->> move the clk_lucid_ole_pll_configure & qcom_branch_set_clk_en to the
->> config struct?
->>=20
->> And similar for gcc, I can move the qcom_branch_set_clk_en calls there
->> but the qcom_cc_register_rcg_dfs needs to be kept.
->
-> Would you mind extnding struct qcom_cc_desc with args to call
-> qcom_cc_register_rcg_dfs() and call it from qcom_cc_really_probe()?
+I'll send v7 with the changelog fixed.
 
-Something like this? Not quite sure when (in what order) this should be
-called, is that place fine?
-
-I'd include a patch then in the v2 of this series.
-
-diff --git a/drivers/clk/qcom/common.c b/drivers/clk/qcom/common.c
-index b3838d885db2..d53f290c6121 100644
---- a/drivers/clk/qcom/common.c
-+++ b/drivers/clk/qcom/common.c
-@@ -390,6 +390,14 @@ int qcom_cc_really_probe(struct device *dev,
- 			goto put_rpm;
- 	}
-=20
-+	if (desc->dfs_rcgs && desc->num_dfs_rcgs) {
-+		ret =3D qcom_cc_register_rcg_dfs(regmap,
-+					       desc->dfs_rcgs,
-+					       desc->num_dfs_rcgs);
-+		if (ret)
-+			goto put_rpm;
-+	}
-+
- 	cc->rclks =3D rclks;
- 	cc->num_rclks =3D num_clks;
-=20
-diff --git a/drivers/clk/qcom/common.h b/drivers/clk/qcom/common.h
-index 0f4b2d40c65c..dbe7ebe5b871 100644
---- a/drivers/clk/qcom/common.h
-+++ b/drivers/clk/qcom/common.h
-@@ -43,6 +43,8 @@ struct qcom_cc_desc {
- 	size_t num_gdscs;
- 	struct clk_hw **clk_hws;
- 	size_t num_clk_hws;
-+	const struct clk_rcg_dfs_data *dfs_rcgs;
-+	size_t num_dfs_rcgs;
- 	const struct qcom_icc_hws_data *icc_hws;
- 	size_t num_icc_hws;
- 	unsigned int icc_first_node_id;
-
-
-Regards
-Luca
-
->
->>=20
->> Does that sound okay, or what exactly is the desired outcome of the
->> requested changes?
->>=20
->> Regards
->> Luca
->>=20
->> >
->> >>
->> >> Konrad
->>=20
-
+- Nuno S=C3=A1
 
