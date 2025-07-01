@@ -1,111 +1,202 @@
-Return-Path: <devicetree+bounces-191450-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-191457-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id A8806AEF60E
-	for <lists+devicetree@lfdr.de>; Tue,  1 Jul 2025 13:05:34 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7AA18AEF636
+	for <lists+devicetree@lfdr.de>; Tue,  1 Jul 2025 13:12:34 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 742181BC6782
-	for <lists+devicetree@lfdr.de>; Tue,  1 Jul 2025 11:05:50 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id EF3213B993A
+	for <lists+devicetree@lfdr.de>; Tue,  1 Jul 2025 11:12:07 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3FFA7271450;
-	Tue,  1 Jul 2025 11:05:29 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 109B5272E4A;
+	Tue,  1 Jul 2025 11:12:19 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="JUo8IVhH"
+	dkim=pass (1024-bit key) header.d=samsung.com header.i=@samsung.com header.b="cFsEWnz4"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mailout1.samsung.com (mailout1.samsung.com [203.254.224.24])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0E5CD270EAD;
-	Tue,  1 Jul 2025 11:05:28 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 86CBC272817
+	for <devicetree@vger.kernel.org>; Tue,  1 Jul 2025 11:12:16 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=203.254.224.24
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1751367929; cv=none; b=Wf3sgjMM8gVeyrbqxMAweBZ4OpUnY58PA1en+oyJG9P1sqbdVlKJLV8jaa6CDXc30TP1duzzOoMg585cS/ZDXG/qXv+hb/NH/BqqTsvfa8FFD+OltsVcryLShaO2Ov8bvQ6m+UDluCj/ia7MbW6/MuEm8EizOLDGyardlKnXviY=
+	t=1751368339; cv=none; b=uYBBwgjPYwdbHCXvcudlfCpUz+c1cQPytDynYl4gDrLMxgiza9crXFT9dR2jYJ0u0Mvt3q7AN1/Kdebo9WZPMifMXDauPyP0FdcclLp1wWLAjrfjAK+yduTDzKORhMVOO2SP+iFWIK5aGqpphVPplVfTBZbO9QG1WpMpbzjZWnY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1751367929; c=relaxed/simple;
-	bh=diw1zKSfuCc17N+JAhn7SGSZnai2fAdM/N39ECYN1uo=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=esE7Cgt/eXIqdgA0vLjtgWzSb7zsmQAxURwd+FJFk4RuRiPmsr85pk9+VIr0+etc+vcpukToXhp91Wo7p7r5o45S0u63hINshQXGtZBMR+78GznxdtitjPtFGFmGAucjo6DLw8i6YhSfg8cjLU2b41le3+QQF/hnnMa7UGAG+qI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=JUo8IVhH; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 4B0DFC4CEEB;
-	Tue,  1 Jul 2025 11:05:25 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1751367928;
-	bh=diw1zKSfuCc17N+JAhn7SGSZnai2fAdM/N39ECYN1uo=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=JUo8IVhHkPLz6ZXyA60aarRMAAltliE8akv1sHRZIgfJT7UyA0pelivDBSfMV8l+z
-	 mCkY3QWdoxQWFawkVn6HKP+Tg14iYsNGiDsWvT1ZQFW1A3Q7fdgiBkTH+0WCMwzIWA
-	 sNuKeO2x/gyKeY1XHAO55Kz2NxTwM4+hEPk7j1zYTsrlVf7TK0C6KxxHmDb8i/dS60
-	 rHAbDiaevzKV33wKeSVRT9iIkrpTtax2kVTzMt+iuNLIlbWaJqMCBWN+TSi5zXWqe5
-	 n0Dbjm3060fTYum3xF9tyJl3bJCkBFmygtNK6siTsjY9i8DlMvrMigzNwMlTkREDuL
-	 LfalkPeeunYpQ==
-Date: Tue, 1 Jul 2025 12:05:22 +0100
-From: Lee Jones <lee@kernel.org>
-To: Nuno =?iso-8859-1?Q?S=E1?= <noname.nuno@gmail.com>
-Cc: nuno.sa@analog.com, linux-gpio@vger.kernel.org,
-	linux-pwm@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-input@vger.kernel.org, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Uwe =?iso-8859-1?Q?Kleine-K=F6nig?= <ukleinek@kernel.org>,
-	Linus Walleij <linus.walleij@linaro.org>,
-	Bartosz Golaszewski <brgl@bgdev.pl>,
-	Dmitry Torokhov <dmitry.torokhov@gmail.com>,
-	Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
-	Liu Ying <victor.liu@nxp.com>,
-	Bartosz Golaszewski <bartosz.golaszewski@linaro.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Subject: Re: [PATCH v5 00/20] mfd: adp5585: support keymap events and drop
- legacy Input driver
-Message-ID: <20250701110522.GK10134@google.com>
-References: <20250614-dev-adp5589-fw-v5-0-7e9d84906268@analog.com>
- <20250619133834.GC795775@google.com>
- <d20682874dbd65acde8b80efa004706a09b23248.camel@gmail.com>
+	s=arc-20240116; t=1751368339; c=relaxed/simple;
+	bh=M+teapMDErM1luC69yUTICbimOLTsaOpUH2S/iyezF4=;
+	h=From:To:Cc:In-Reply-To:Subject:Date:Message-ID:MIME-Version:
+	 Content-Type:References; b=a1Kq76BQeDTLFE+1y+7k1ooxHAyXK1xSUlzeLTvDRAVbCOXlhpWxEE/aCwPXVkxnvokrK0qA1mh1vHnclHeM1f38fpcnKayktlH/N05PCYnqcTLoGTlYGYVc7gc9payZcL7nKLndRvuo3T2C9dtQO1yrzAxIKgmViXFqv1TTTng=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=samsung.com; spf=pass smtp.mailfrom=samsung.com; dkim=pass (1024-bit key) header.d=samsung.com header.i=@samsung.com header.b=cFsEWnz4; arc=none smtp.client-ip=203.254.224.24
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=samsung.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=samsung.com
+Received: from epcas5p1.samsung.com (unknown [182.195.41.39])
+	by mailout1.samsung.com (KnoxPortal) with ESMTP id 20250701111209epoutp01c571faa9fdee50e31351a7703926e5b5~OHDdUeei-0779607796epoutp01e
+	for <devicetree@vger.kernel.org>; Tue,  1 Jul 2025 11:12:09 +0000 (GMT)
+DKIM-Filter: OpenDKIM Filter v2.11.0 mailout1.samsung.com 20250701111209epoutp01c571faa9fdee50e31351a7703926e5b5~OHDdUeei-0779607796epoutp01e
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=samsung.com;
+	s=mail20170921; t=1751368329;
+	bh=YTwebVUoQkQpDDdsDBbSlrPKaFDW2GsaHKchVaUCu5k=;
+	h=From:To:Cc:In-Reply-To:Subject:Date:References:From;
+	b=cFsEWnz4p/bZVuWOkULA+mahIAzoo6OZidUhTNxWRxbJaF+y9gxkIs+loiEtNwldd
+	 D5y+6OwXCoyM8FYJ6L+S6fZun41YKIz3yfAQs5hhiYX3YeByRJHm3vA/zzxMZL9SWP
+	 C/jE1XS81elzOdp01jtlh8gmZvDfZYVL/ys5RiaU=
+Received: from epsnrtp02.localdomain (unknown [182.195.42.154]) by
+	epcas5p3.samsung.com (KnoxPortal) with ESMTPS id
+	20250701111208epcas5p34bedc890d762054d069694d0ef399bb6~OHDcwX6uq3053630536epcas5p3U;
+	Tue,  1 Jul 2025 11:12:08 +0000 (GMT)
+Received: from epcas5p2.samsung.com (unknown [182.195.38.177]) by
+	epsnrtp02.localdomain (Postfix) with ESMTP id 4bWgN53tLPz2SSKX; Tue,  1 Jul
+	2025 11:12:05 +0000 (GMT)
+Received: from epsmtip1.samsung.com (unknown [182.195.34.30]) by
+	epcas5p3.samsung.com (KnoxPortal) with ESMTPA id
+	20250701110607epcas5p34c04a301caaf7d8c504eca2fec7f3139~OG_MoTLhB0394403944epcas5p3U;
+	Tue,  1 Jul 2025 11:06:07 +0000 (GMT)
+Received: from FDSFTE462 (unknown [107.122.81.248]) by epsmtip1.samsung.com
+	(KnoxPortal) with ESMTPA id
+	20250701110604epsmtip1b0a6d2e9ac97f7d6e2273144ea9b44df~OG_J9OoCr1403014030epsmtip1E;
+	Tue,  1 Jul 2025 11:06:04 +0000 (GMT)
+From: "Shradha Todi" <shradha.t@samsung.com>
+To: "'Rob Herring'" <robh@kernel.org>
+Cc: <linux-pci@vger.kernel.org>, <devicetree@vger.kernel.org>,
+	<linux-arm-kernel@lists.infradead.org>, <linux-samsung-soc@vger.kernel.org>,
+	<linux-kernel@vger.kernel.org>, <linux-phy@lists.infradead.org>,
+	<linux-fsd@tesla.com>, <mani@kernel.org>, <lpieralisi@kernel.org>,
+	<kw@linux.com>, <bhelgaas@google.com>, <jingoohan1@gmail.com>,
+	<krzk+dt@kernel.org>, <conor+dt@kernel.org>, <alim.akhtar@samsung.com>,
+	<vkoul@kernel.org>, <kishon@kernel.org>, <arnd@arndb.de>,
+	<m.szyprowski@samsung.com>, <jh80.chung@samsung.com>,
+	<pankaj.dubey@samsung.com>
+In-Reply-To: <20250627211721.GA153863-robh@kernel.org>
+Subject: RE: [PATCH v2 07/10] dt-bindings: phy: Add PHY bindings support for
+ FSD SoC
+Date: Tue, 1 Jul 2025 16:36:03 +0530
+Message-ID: <02af01dbea78$24f01310$6ed03930$@samsung.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <d20682874dbd65acde8b80efa004706a09b23248.camel@gmail.com>
+Content-Transfer-Encoding: 7bit
+X-Mailer: Microsoft Outlook 16.0
+Thread-Index: AQFUClgbainc6hQuKSBO0V8ttZVgkwGg1JXJAfs/ltABn1f9rLUC/odg
+Content-Language: en-in
+X-CMS-MailID: 20250701110607epcas5p34c04a301caaf7d8c504eca2fec7f3139
+X-Msg-Generator: CA
+Content-Type: text/plain; charset="utf-8"
+X-Sendblock-Type: REQ_APPROVE
+CMS-TYPE: 105P
+cpgsPolicy: CPGSC10-541,Y
+X-CFilter-Loop: Reflected
+X-CMS-RootMailID: 20250625165319epcas5p3721c19f6e6b482438c62dd1ef784de03
+References: <20250625165229.3458-1-shradha.t@samsung.com>
+	<CGME20250625165319epcas5p3721c19f6e6b482438c62dd1ef784de03@epcas5p3.samsung.com>
+	<20250625165229.3458-8-shradha.t@samsung.com>
+	<20250627211721.GA153863-robh@kernel.org>
 
-On Fri, 27 Jun 2025, Nuno Sá wrote:
 
-> On Thu, 2025-06-19 at 14:38 +0100, Lee Jones wrote:
-> > On Sat, 14 Jun 2025, Nuno Sá via B4 Relay wrote:
-> > 
-> > > Hi all,
-> > > 
-> > > Here it goes v4. Main changes is to drop chip info based struct and
-> > > directly use an enum in the FW .data pointer, use the notifier API for
-> > > dispatching events and multiple calls to mfd_add_devices().
-> > > 
-> > > Regarding the last point, I think I could have used multiple calls to
-> > > devm_mfd_add_devices() and avoid those gotos in adp5585_add_devices()
-> > > but I do not feel that would have been "correct".
-> > > 
-> > > Thanks!
-> > > - Nuno Sá
-> > > 
-> > > ---
-> > > Changes in v5:
-> > 
-> > In future, these should be inside the patches themselves please.
+
+> -----Original Message-----
+> From: Rob Herring <robh@kernel.org>
+> Sent: 28 June 2025 02:47
+> To: Shradha Todi <shradha.t@samsung.com>
+> Cc: linux-pci@vger.kernel.org; devicetree@vger.kernel.org; linux-arm-kernel@lists.infradead.org;
+linux-
+> samsung-soc@vger.kernel.org; linux-kernel@vger.kernel.org; linux-phy@lists.infradead.org; linux-
+> fsd@tesla.com; manivannan.sadhasivam@linaro.org; lpieralisi@kernel.org; kw@linux.com;
+> bhelgaas@google.com; jingoohan1@gmail.com; krzk+dt@kernel.org; conor+dt@kernel.org;
+> alim.akhtar@samsung.com; vkoul@kernel.org; kishon@kernel.org; arnd@arndb.de;
+> m.szyprowski@samsung.com; jh80.chung@samsung.com; pankaj.dubey@samsung.com
+> Subject: Re: [PATCH v2 07/10] dt-bindings: phy: Add PHY bindings support for FSD SoC
 > 
-> Hi Lee,
+> On Wed, Jun 25, 2025 at 10:22:26PM +0530, Shradha Todi wrote:
+> > Document PHY device tree bindings for Tesla FSD SoCs.
+> >
+> > Signed-off-by: Shradha Todi <shradha.t@samsung.com>
+> > ---
+> >  .../bindings/phy/samsung,exynos-pcie-phy.yaml | 25 +++++++++++++++++--
+> >  1 file changed, 23 insertions(+), 2 deletions(-)
+> >
+> > diff --git a/Documentation/devicetree/bindings/phy/samsung,exynos-pcie-phy.yaml
+> b/Documentation/devicetree/bindings/phy/samsung,exynos-pcie-phy.yaml
+> > index 41df8bb08ff7..4dc20156cdde 100644
+> > --- a/Documentation/devicetree/bindings/phy/samsung,exynos-pcie-phy.yaml
+> > +++ b/Documentation/devicetree/bindings/phy/samsung,exynos-pcie-phy.yaml
+> > @@ -15,10 +15,13 @@ properties:
+> >      const: 0
+> >
+> >    compatible:
+> > -    const: samsung,exynos5433-pcie-phy
+> > +    enum:
+> > +      - samsung,exynos5433-pcie-phy
+> > +      - tesla,fsd-pcie-phy
+> >
+> >    reg:
+> > -    maxItems: 1
+> > +    minItems: 1
+> > +    maxItems: 2
+> >
+> >    samsung,pmu-syscon:
+> >      $ref: /schemas/types.yaml#/definitions/phandle
+> > @@ -30,6 +33,24 @@ properties:
+> >      description: phandle for FSYS sysreg interface, used to control
+> >                   sysreg registers bits for PCIe PHY
+> >
+> > +allOf:
+> > +  - if:
+> > +      properties:
+> > +        compatible:
+> > +          contains:
+> > +            enum:
+> > +              - tesla,fsd-pcie-phy
+> > +    then:
+> > +      description:
+> > +        The PHY controller nodes are represented in the aliases node
+> > +        using the following format 'pciephy{n}'. Depending on whether
+> > +        n is 0 or 1, the phy init sequence is chosen.
 > 
-> I'm about to send v6. I just have a question regarding the above. Do you mean to
-> have the log in the commit message itself like DRM or do it with git notes?
+> What? Don't make up your own aliases.
+> 
+> If the PHY instances are different, then maybe you need a different
+> compatible. If this is just selecting the PHY mode, you can do that in
+> PHY cells as the mode depends on the consumer.
+> 
 
-I have no idea what git notes is.
+FSD PCIe has 2 instances of PHY. Both are the same HW Samsung
+PHYs (Therefore share the same register offsets). But the PHY used here
+does not support auto adaptation so we need to tune the PHYs
+according to the use case (considering channel loss, etc). This is why we
+have 2 different SW PHY initialization sequence depending on the instance
+number. Do you think having different compatible (something like
+tesla,fsd-pcie-phy0 and tesla,fsd-pcie-phy1) and having phy ID as platform data
+is okay in this case? I actually took reference from files like:
+drivers/usb/phy/phy-am335x-control.c
+drivers/phy/freescale/phy-fsl-imx8-mipi-dphy.c
+who use alias to differentiate between register offsets for instances.
 
-Simply place the Changelog inside the patch, just above the diff stat.
+> 
+> > +      properties:
+> > +        reg:
+> > +          items:
+> > +            - description: PHY
+> > +            - description: PCS
+> 
+> else:
+>   properties:
+>     reg:
+>       maxItems: 1
+> 
 
--- 
-Lee Jones [李琼斯]
+Will update. Thanks for the review!
+
+> > +
+> >  required:
+> >    - "#phy-cells"
+> >    - compatible
+> > --
+> > 2.49.0
+> >
+
 
