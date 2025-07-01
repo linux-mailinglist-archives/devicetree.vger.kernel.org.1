@@ -1,81 +1,81 @@
-Return-Path: <devicetree+bounces-191629-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-191631-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4DDB7AEFED7
-	for <lists+devicetree@lfdr.de>; Tue,  1 Jul 2025 18:03:20 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id DC0F9AEFEDF
+	for <lists+devicetree@lfdr.de>; Tue,  1 Jul 2025 18:03:34 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 24F7F3AABC0
-	for <lists+devicetree@lfdr.de>; Tue,  1 Jul 2025 16:02:09 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 76E763B43C5
+	for <lists+devicetree@lfdr.de>; Tue,  1 Jul 2025 16:02:20 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B4F1227E056;
-	Tue,  1 Jul 2025 16:02:05 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 116BC27E7E1;
+	Tue,  1 Jul 2025 16:02:08 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=raspberrypi.com header.i=@raspberrypi.com header.b="tBw/LCHz"
+	dkim=pass (2048-bit key) header.d=raspberrypi.com header.i=@raspberrypi.com header.b="U9bUGy2J"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wr1-f42.google.com (mail-wr1-f42.google.com [209.85.221.42])
+Received: from mail-wm1-f49.google.com (mail-wm1-f49.google.com [209.85.128.49])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3586927C175
-	for <devicetree@vger.kernel.org>; Tue,  1 Jul 2025 16:02:02 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.42
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A5BED27E045
+	for <devicetree@vger.kernel.org>; Tue,  1 Jul 2025 16:02:04 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.49
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1751385725; cv=none; b=STkR8ULMsS5CvXFONJdzjWigGAXXIsuzrwtChR4G33up/TDIp3yoOodecGQ9DlYUnOyJSwMHIOeP11+akWh4rECwDjaXkCRv2ZTrKw7MfPyenkZOlw2WeQg6JGU2Aa4ow6LeBgMv3fB6zp6ezo7ZbSsntp4GKfqWYambl9seE/4=
+	t=1751385727; cv=none; b=mcgngYfwFhro3my9YJvnmhOlsuGUr8sT3ZdokYTk9pJ51DhOmtuXI3w0/CzAK3MCmmFMjZsoRPH200yp1ZBbTBhSRyhIQ1v9jc9Ltr3wJmDd0V6OpO/bPC1DSZFu2JU2g84Z3PM+RuPTWepuA+YGAljYIWTqbmpLRfpwxeLBXww=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1751385725; c=relaxed/simple;
-	bh=Eb8wuovSBuSoIotj4pnFiy2j63/jKfYOw2hKqjPwOoI=;
+	s=arc-20240116; t=1751385727; c=relaxed/simple;
+	bh=7uOB2Iw2lMV+Pi6apoMiLdzrY9dCNnxEHoX8uR/Lr+A=;
 	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=ZfLI3DYpszzB326n5tQlXsI4H7nzv2hcuQv5mNV1k87k5EKlM+pwZCLt+ZlIfib/yAr4jAy2qY0ZjLooy7w7qMNqyaNtEB6eEKNQhFrJm6QQ/gKRT5yRJb9KoeYJrByGpW6ux0mR6GM/RPQ1JCRcaRhWQ2Oe0cL99BaMq/PRfO4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=raspberrypi.com; spf=pass smtp.mailfrom=raspberrypi.com; dkim=pass (2048-bit key) header.d=raspberrypi.com header.i=@raspberrypi.com header.b=tBw/LCHz; arc=none smtp.client-ip=209.85.221.42
+	 In-Reply-To:To:Cc; b=bzoaVTNxXqjv9kdjNIEkGqc+IH0cqfPnC95l4f70lnZFI5fHj0RpxndzXagVZlouMhjXqa4IKIoLjqGuuN5CjO5J6D/bc2HOojYMzCQdYyakr8gba7KXyfCdOq61xj1rz9qSRPPJIfyf3JIY+sx6G+W26jcK4VfO8w1Rz7wYA6M=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=raspberrypi.com; spf=pass smtp.mailfrom=raspberrypi.com; dkim=pass (2048-bit key) header.d=raspberrypi.com header.i=@raspberrypi.com header.b=U9bUGy2J; arc=none smtp.client-ip=209.85.128.49
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=raspberrypi.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=raspberrypi.com
-Received: by mail-wr1-f42.google.com with SMTP id ffacd0b85a97d-3a528243636so3698055f8f.3
-        for <devicetree@vger.kernel.org>; Tue, 01 Jul 2025 09:02:02 -0700 (PDT)
+Received: by mail-wm1-f49.google.com with SMTP id 5b1f17b1804b1-4531e146a24so35355765e9.0
+        for <devicetree@vger.kernel.org>; Tue, 01 Jul 2025 09:02:04 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=raspberrypi.com; s=google; t=1751385721; x=1751990521; darn=vger.kernel.org;
+        d=raspberrypi.com; s=google; t=1751385723; x=1751990523; darn=vger.kernel.org;
         h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
          :mime-version:subject:date:from:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=EOZP3BcptZSYROqm0ele75c0kFNzuWVKa5tBqUZYrLc=;
-        b=tBw/LCHzRk4aNynL2Ar+OPkH99+QZdBE6O46mepYpVUqbD2F7f5p2IZNhlT7KZt+aH
-         ksE7O7X7Seqwc0VpTaS3wmusUJMGd3Ywc3HNrIX9tYPXL3IvM2ndIPX47zNUKRGfxv82
-         dD75toq+UpSWhKY5ZQKV0dyEEGrL+Q1A0lQuCcrU5ybGoJuloNRtRhFvCw2fi38rxrS1
-         QTwucPUD9+EDMJAgCKe+4PA9gnXJwf9KoQwi2ivs1BbfE67zMBQ57Q/Uy4eh+YW2HTOl
-         RwkWoyfLQpM4IT+a++VPz8DQUsJ3FCsatzVqlNFDA1sniRpQnKUb+NetqbLchgUbGLmD
-         iF0A==
+        bh=shH843LHjaIQRh9aDyMZtBz794Pr/77dB5szPFtHFMg=;
+        b=U9bUGy2J84O+Ap3z4HmxsQLQ6EtNz61dowQSWDf/SAB6abCZxwSGzP8PhPgg1YxbF4
+         OWb45p5MaeLPkUS/EaThC4fu13MglRc/w1UWad4Y1jwrKwIX/m8UEvNPxZpQu3DgD9x4
+         w0GAxMcHRCtxGK2OSxT03SqYrJNgmbGhqsuVoY8l2sIbUYL7A2Satxf7g45j/Aa+NOps
+         hwkH4cn8SGtBCR8vnyKNF08/t/5c/J9tIvByE66L6VCfk0YDqDMo1NYbwlgtT0aV+8oh
+         LJJvb9fjiGEllJ5jVyGsH+T4qrp/8v/lv+A83XqF3hqmDQdze/3h/bTU/p+NIin3Mpr+
+         hJHA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1751385721; x=1751990521;
+        d=1e100.net; s=20230601; t=1751385723; x=1751990523;
         h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
          :mime-version:subject:date:from:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=EOZP3BcptZSYROqm0ele75c0kFNzuWVKa5tBqUZYrLc=;
-        b=fyuHBN1TlJGq1HbFCnnNo0aR5ErEkiO9PMXsEb5w9GAfaeWbg1Uo9MYksiU+pIe/EJ
-         OIujYp3GLi5Jel5IyjWWfm+HnWAquQd2kjFYRcq9Tzwm0nOIngLJVq19XJ/qTWYQjV7R
-         yweQQm9l1EuyBALTkDpOei0/TR26Pz/q40FOt2hIj1hULVkS1B6c5e4ND0P2h/uwL4rP
-         xXcBPh1AWpGMVNfpFVjAQFMQbhPZCDAdyOf6JyQAEa/fjRkQx/aljtQ5LBaejwsjxaYj
-         qRmoKQytrmpm5c+1r3po4dwhM5OrvJAHJyJzs3JzvQSDJgVFAWiYMR2I+c/hoj8P3/8G
-         iCSQ==
-X-Forwarded-Encrypted: i=1; AJvYcCUw8jE33Jlb3xO5KevM0u9Mdjz7Xe91nLfFkkZw6hKFM5mG0UDBkkSsBJ09YNEEaFwxQ63qOBay+JFB@vger.kernel.org
-X-Gm-Message-State: AOJu0YyXBQ33zVKHh3g1onSQnKoN8LsO4Wu+9lmpwqkny0wBZM+zuku1
-	ZePf7bLKRMrorix74LEi+bV68rJtz33KxUeZG1SrDQNywFK0FsaAM5zsD0oBVjI4uMo=
-X-Gm-Gg: ASbGncu4pkiyvrgaiOA0B/rQKsodvOhshrzmR88nxIWLo8hIdWi3hdcrTC39RzetwGK
-	Ku1W15tPlhgVoNgQnoJlsDCSb6cFtbYlMljbZKMtreC24ns0WgOuU5XDOakbkn98STXpMI4HKge
-	MN10uH2zlUnzKw2qHJzHso8DkHMsdDdRezrh6kF1TWxYdHwmVgX6ojaVXE5htRmlIksEGeMgAeo
-	BDcisnFNlHWg3hb0LTKb+f0sBgADI7ian/9DnO3X7PlI4Vq5UKgEqFhgaGGtKPjR5kqv56lpdmm
-	ouZxLerH2WMzxEqmAoU11LrFrXjK3kFbg3KXmuzNqoHlUdOfw7qy9yydb6432MeZ
-X-Google-Smtp-Source: AGHT+IGrDuGREIKIk2nqkFoR8uzIUjeElqTk8BPXwPJayvJvDoPAeAcRb+gzpufKi2d4K71fEGSFzw==
-X-Received: by 2002:a5d:530d:0:b0:3a5:27ba:47ba with SMTP id ffacd0b85a97d-3a900296715mr14744114f8f.44.1751385715670;
-        Tue, 01 Jul 2025 09:01:55 -0700 (PDT)
+        bh=shH843LHjaIQRh9aDyMZtBz794Pr/77dB5szPFtHFMg=;
+        b=j4imIyu6tevEvGIQFks0gMZpvxvu7lE9SjdiaHZOmOhdIFleQczq3890gpCBCq6Jck
+         oIk/rAHUEpDhQPmURMThiCHcKC0rh7SDyA9A4OOwTzzT3Iahe9zlkY8BqdGEYKAuc0K3
+         dg/lEIcjIczjmxj/mzyiXb7de6ve2XXQqf7E6uiEsI6uaZGL24THJt47UlaaESKzaYYj
+         xRPNaRwzcCJ13/YhlAktZqXM1OKYEwflCPEPEjOS2O3f3VuD9BBK6lcRJK8fqcYhWwcG
+         dHvZkKwsm4AUYXW8FnQjjNMx19dDg3g6bab3mgp6/KdKzcTsVZMRVLv3YvV7SKWpe1TJ
+         273w==
+X-Forwarded-Encrypted: i=1; AJvYcCWrtYdPppSJu9A88C+Ss5pvHIEOj7r9gcvecWY/GS3N0xvuNTRoeYRMLd9FwPTwpRBbdApM37gwP8Sl@vger.kernel.org
+X-Gm-Message-State: AOJu0YwcnLoGeJxo70NsREYUS7nNdeY0H8ygccqQB/ssWmdnUGCcUTwK
+	JN9TH3gHQFsz+ntotMsuotaNduu14YNK5VEsoQVIln5NmiOC3RsGIVcjvheyuAB9ZkQ=
+X-Gm-Gg: ASbGncstuUzL9CRYYyWNyp+lMeC84iB5ZDjnOVSz76AbK1Zmi2QAR3zXutKwt+GtT/h
+	CYDCJzbmTWOvEeohwhW2/UptoAcdDa5SudxkIhwqqMvcsKRWimfz21u0US4YRA4gOwWUtzW76Y6
+	VvZkvh4LYE5jBbu1nWWl1zAEKdxe1SNDk80te1NwKFsHD+3cO50ESePSP4d/VVVBdVICNTEgdLz
+	iLqwheVivO4nPXjpKfsBZA2POqyCcivcTHnhzxR8eZWMv2+jMSkhLuk3XyRULC26OXKzFfjW7pl
+	mtMbyCJPvuzj8DErULPOTxMKvBfkHdT4rOSXyKmnHd8GXmc34a7C9A==
+X-Google-Smtp-Source: AGHT+IE146BA9nfk2sth4Vr26o/ypIBHWd57X4CUtemwbh0xYtrD7BwQ6IkyNJhKZXFlcPZr5B86Jg==
+X-Received: by 2002:a05:600c:3b07:b0:43c:f0ae:da7 with SMTP id 5b1f17b1804b1-454a19df49dmr10490475e9.7.1751385722446;
+        Tue, 01 Jul 2025 09:02:02 -0700 (PDT)
 Received: from [127.0.1.1] ([2a00:1098:3142:e::8])
-        by smtp.googlemail.com with ESMTPSA id 5b1f17b1804b1-45388888533sm182500995e9.21.2025.07.01.09.01.54
+        by smtp.googlemail.com with ESMTPSA id 5b1f17b1804b1-45388888533sm182500995e9.21.2025.07.01.09.02.01
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 01 Jul 2025 09:01:54 -0700 (PDT)
+        Tue, 01 Jul 2025 09:02:01 -0700 (PDT)
 From: Dave Stevenson <dave.stevenson@raspberrypi.com>
-Date: Tue, 01 Jul 2025 17:01:36 +0100
-Subject: [PATCH v4 1/5] docs: uapi: media: Document Raspberry Pi NV12
- column format
+Date: Tue, 01 Jul 2025 17:01:37 +0100
+Subject: [PATCH v4 2/5] media: ioctl: Add pixel formats NV12MT_COL128 and
+ NV12MT_10_COL128
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -84,7 +84,7 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-Message-Id: <20250701-media-rpi-hevc-dec-v4-1-057cfa541177@raspberrypi.com>
+Message-Id: <20250701-media-rpi-hevc-dec-v4-2-057cfa541177@raspberrypi.com>
 References: <20250701-media-rpi-hevc-dec-v4-0-057cfa541177@raspberrypi.com>
 In-Reply-To: <20250701-media-rpi-hevc-dec-v4-0-057cfa541177@raspberrypi.com>
 To: Sakari Ailus <sakari.ailus@linux.intel.com>, 
@@ -104,68 +104,44 @@ Cc: John Cox <jc@kynesim.co.uk>, Stefan Wahren <wahrenst@gmx.net>,
  Dave Stevenson <dave.stevenson@raspberrypi.com>
 X-Mailer: b4 0.14.1
 
-The Raspberry Pi HEVC decoder uses a tiled format based on
-columns for 8 and 10 bit YUV images, so document them as
-NV12MT_COL128 and NV12MT_10_COL128.
+Add V4L2_PIXFMT_NV12MT_COL128 and V4L2_PIXFMT_NV12MT_10_COL128
+to describe the Raspberry Pi HEVC decoder NV12 multiplanar formats.
 
 Signed-off-by: Dave Stevenson <dave.stevenson@raspberrypi.com>
 ---
- .../userspace-api/media/v4l/pixfmt-yuv-planar.rst  | 42 ++++++++++++++++++++++
- 1 file changed, 42 insertions(+)
+ drivers/media/v4l2-core/v4l2-ioctl.c | 2 ++
+ include/uapi/linux/videodev2.h       | 4 ++++
+ 2 files changed, 6 insertions(+)
 
-diff --git a/Documentation/userspace-api/media/v4l/pixfmt-yuv-planar.rst b/Documentation/userspace-api/media/v4l/pixfmt-yuv-planar.rst
-index 6e4f399f1f88..84ec1dbcf41b 100644
---- a/Documentation/userspace-api/media/v4l/pixfmt-yuv-planar.rst
-+++ b/Documentation/userspace-api/media/v4l/pixfmt-yuv-planar.rst
-@@ -955,6 +955,48 @@ Data in the 12 high bits, zeros in the 4 low bits, arranged in little endian ord
-       - Cb\ :sub:`11`
-       - Cr\ :sub:`11`
- 
-+V4L2_PIX_FMT_NV12MT_COL128 and V4L2_PIX_FMT_NV12MT_10_COL128
-+------------------------------------------------------------
-+
-+``V4L2_PIX_FMT_NV12MT_COL128`` is a tiled version of
-+``V4L2_PIX_FMT_NV12M`` where the two planes are split into 128 byte wide columns
-+of Y or interleaved CbCr. The height is always aligned to a multiple of 8 lines.
-+
-+V4L2_PIX_FMT_NV12MT_10_COL128 expands that as a 10 bit format where 3 10 bit
-+values are packed into a 32bit word. A 128 byte wide column therefore holds 96
-+samples (either Y or interleaved CrCb). That effectively makes it 6 values in a
-+64 bit word for the CbCr plane, as the values always go in pairs.
-+
-+Bit-packed representation.
-+
-+.. tabularcolumns:: |p{1.2cm}||p{1.2cm}||p{1.2cm}||p{1.2cm}|p{3.2cm}|p{3.2cm}|
-+
-+.. flat-table::
-+    :header-rows:  0
-+    :stub-columns: 0
-+    :widths: 8 8 8 8
-+
-+    * - Y'\ :sub:`00[7:0]`
-+      - Y'\ :sub:`01[5:0] (bits 7--2)` Y'\ :sub:`00[9:8]`\ (bits 1--0)
-+      - Y'\ :sub:`02[3:0] (bits 7--4)` Y'\ :sub:`01[9:6]`\ (bits 3--0)
-+      - unused (bits 7--6)` Y'\ :sub:`02[9:4]`\ (bits 5--0)
-+
-+.. tabularcolumns:: |p{1.2cm}||p{1.2cm}||p{1.2cm}||p{1.2cm}|p{3.2cm}|p{3.2cm}|
-+
-+.. flat-table::
-+    :header-rows:  0
-+    :stub-columns: 0
-+    :widths: 12 12 12 12 12 12 12 12
-+
-+    * - Cb\ :sub:`00[7:0]`
-+      - Cr\ :sub:`00[5:0]`\ (bits 7--2) Cb\ :sub:`00[9:8]`\ (bits 1--0)
-+      - Cb\ :sub:`01[3:0]`\ (bits 7--4) Cr\ :sub:`00[9:6]`\ (bits 3--0)
-+      - unused (bits 7--6) Cb\ :sub:`02[9:4]`\ (bits 5--0)
-+      - Cr\ :sub:`01[7:0]`
-+      - Cb\ :sub:`02[5:0]`\ (bits 7--2) Cr\ :sub:`01[9:8]`\ (bits 1--0)
-+      - Cr\ :sub:`02[3:0]`\ (bits 7--4) Cb\ :sub:`02[9:6]`\ (bits 3--0)
-+      - unused (bits 7--6) Cr\ :sub:`02[9:4]`\ (bits 5--0)
+diff --git a/drivers/media/v4l2-core/v4l2-ioctl.c b/drivers/media/v4l2-core/v4l2-ioctl.c
+index 650dc1956f73..3bdcbb12bb30 100644
+--- a/drivers/media/v4l2-core/v4l2-ioctl.c
++++ b/drivers/media/v4l2-core/v4l2-ioctl.c
+@@ -1381,7 +1381,9 @@ static void v4l_fill_fmtdesc(struct v4l2_fmtdesc *fmt)
+ 	case V4L2_PIX_FMT_NV16M:	descr = "Y/UV 4:2:2 (N-C)"; break;
+ 	case V4L2_PIX_FMT_NV61M:	descr = "Y/VU 4:2:2 (N-C)"; break;
+ 	case V4L2_PIX_FMT_NV12MT:	descr = "Y/UV 4:2:0 (64x32 MB, N-C)"; break;
++	case V4L2_PIX_FMT_NV12MT_COL128: descr = "Y/CbCr 4:2:0 (128b cols)"; break;
+ 	case V4L2_PIX_FMT_NV12MT_16X16:	descr = "Y/UV 4:2:0 (16x16 MB, N-C)"; break;
++	case V4L2_PIX_FMT_NV12MT_10_COL128: descr = "10-bit Y/CbCr 4:2:0 (128b cols)"; break;
+ 	case V4L2_PIX_FMT_P012M:	descr = "12-bit Y/UV 4:2:0 (N-C)"; break;
+ 	case V4L2_PIX_FMT_YUV420M:	descr = "Planar YUV 4:2:0 (N-C)"; break;
+ 	case V4L2_PIX_FMT_YVU420M:	descr = "Planar YVU 4:2:0 (N-C)"; break;
+diff --git a/include/uapi/linux/videodev2.h b/include/uapi/linux/videodev2.h
+index 9e3b366d5fc7..f0934d647d75 100644
+--- a/include/uapi/linux/videodev2.h
++++ b/include/uapi/linux/videodev2.h
+@@ -697,6 +697,10 @@ struct v4l2_pix_format {
+ #define V4L2_PIX_FMT_NV12MT_16X16 v4l2_fourcc('V', 'M', '1', '2') /* 12  Y/CbCr 4:2:0 16x16 tiles */
+ #define V4L2_PIX_FMT_NV12M_8L128      v4l2_fourcc('N', 'A', '1', '2') /* Y/CbCr 4:2:0 8x128 tiles */
+ #define V4L2_PIX_FMT_NV12M_10BE_8L128 v4l2_fourcc_be('N', 'T', '1', '2') /* Y/CbCr 4:2:0 10-bit 8x128 tiles */
++#define V4L2_PIX_FMT_NV12MT_COL128 v4l2_fourcc('N', 'c', '1', '2') /* 12  Y/CbCr 4:2:0 128 pixel wide column */
++#define V4L2_PIX_FMT_NV12MT_10_COL128 v4l2_fourcc('N', 'c', '3', '0')
++			/* Y/CbCr 4:2:0 10bpc, 3x10 packed as 4 bytes in a 128 bytes / 96 pixel wide column */
 +
  
- Fully Planar YUV Formats
- ========================
+ /* Bayer formats - see http://www.siliconimaging.com/RGB%20Bayer.htm */
+ #define V4L2_PIX_FMT_SBGGR8  v4l2_fourcc('B', 'A', '8', '1') /*  8  BGBG.. GRGR.. */
 
 -- 
 2.34.1
