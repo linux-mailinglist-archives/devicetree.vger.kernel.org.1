@@ -1,124 +1,183 @@
-Return-Path: <devicetree+bounces-191410-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-191412-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id D1B84AEF31F
-	for <lists+devicetree@lfdr.de>; Tue,  1 Jul 2025 11:22:41 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 45139AEF348
+	for <lists+devicetree@lfdr.de>; Tue,  1 Jul 2025 11:28:36 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 206991BC09A0
-	for <lists+devicetree@lfdr.de>; Tue,  1 Jul 2025 09:22:53 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 54EFF446A99
+	for <lists+devicetree@lfdr.de>; Tue,  1 Jul 2025 09:28:09 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 07D2D26CE09;
-	Tue,  1 Jul 2025 09:22:29 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id F1F9A26E711;
+	Tue,  1 Jul 2025 09:28:19 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=tq-group.com header.i=@tq-group.com header.b="lOo6IJ1V";
+	dkim=fail reason="key not found in DNS" (0-bit key) header.d=ew.tq-group.com header.i=@ew.tq-group.com header.b="SVDMR+lO"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ua1-f41.google.com (mail-ua1-f41.google.com [209.85.222.41])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mx1.tq-group.com (mx1.tq-group.com [93.104.207.81])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 92EB225CC4B;
-	Tue,  1 Jul 2025 09:22:26 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.222.41
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2895326B948;
+	Tue,  1 Jul 2025 09:28:15 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=93.104.207.81
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1751361748; cv=none; b=escEW2hgtwtcHiuvMdss5U40a0oWJacCdoLzK+eGW5HGsw8oQvMAuXHaeqyytpcg8rfUXf9T2OCPLTdvzRVxmt3q6ORNh6lmFSjA7EgX3RbBbP/U65xhe/XzrPLqFo3fds2lcJuhXIY3NIJkHfntMdBgcbwH0+BVAkF2N70LoH0=
+	t=1751362099; cv=none; b=f8C/+ejfGKQK5BJ6YYz/V9AtcAqQygOBBwQclM9/jc1SjKe1AWAtHeaDIGgB9MaylP8YecB0oTl4dJqf02Mq56ULn8B0aRRnGP31nP5uXPn5zR7x7IKHDrBW74pLrgg93aqyrq+PwyRyo60CsXkMh7H3MPd5B50OSorQC1F4/nI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1751361748; c=relaxed/simple;
-	bh=kNU0Qh0UWY6C9Ff0TdpqpObVRU1t6f9dtCnDFQq8W4I=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=oOaA2CLUPeIMztoNoZ1hDmjpRqDkR4ihdcS/pSlVqLiCnpv1GpWapwBc+malGa3vSal725YyKy12tsKpdJQdEPxYelKJ1wP8ZF1/4ANFpSLM6vG5kNmCpWvQib9fKiJcuEjcWyXu6ZIM4Om7tqK2+sLdwWsDPEDRTV8Dvu8cLJI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.222.41
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-ua1-f41.google.com with SMTP id a1e0cc1a2514c-87ecdf5f326so3474285241.1;
-        Tue, 01 Jul 2025 02:22:26 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1751361745; x=1751966545;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=dUm/+QERyPsocCD8Go+FS+WuySKzS5FIx0c+iuNFBk8=;
-        b=grEboFJX+Uzgpogo4FXDYZnmnQM4/wwni6cyK2ultU1f9xgQlio1/GHbLKzu4zzcET
-         OT1JLp0irzCTSYYAWTu4/vlWaiaSrDZGRMOF8fmGc3BJQYq/29YNUXX3tqrIoNx9U9Di
-         AM2ur+fu55n0jqg39Yg6D3dZ6eeLxDKpxGcQgJVMizmbVfw483OeeFuPEu9E9c6Vg34K
-         MXgI/CkAYLEvKFfVNm0EHG/qbaRtBYp52kRQ7lHGUdxySdUD2lVoCu2LYKozvH6wARvS
-         6C4ktKV9lHY8k8phg98vGz28sycpz80H9MQN7cOjtui+tTMuxYKQMZTPnyCDjWmqFSlK
-         HrKg==
-X-Forwarded-Encrypted: i=1; AJvYcCUIo737b+0eqzCfirNI7DKYAC4Qdk/CphbKwl+Dg6k0paVSNxd0ltQ65vU/dU/3MhLod49myiXqjHRRoxls@vger.kernel.org, AJvYcCVYpWM3WTcpZtFqoWY/Nrnsm5CvpnvUI4tRlVpPLPynS4GppCPn/CI+lQA7vPPlbbwL3zN6MNBKzyakmjq/@vger.kernel.org, AJvYcCVl4BnWVQtDXx1Ur5mP1PBIZEBDclGjdTWccVGAEEFyPbs21vjfA1BcU+Qro3oSZqHPGxPsGzwwpKMW1TNY7KasAUw=@vger.kernel.org, AJvYcCXAzgC/y2XP8AdIBCGL6bp8H8sMXlwDvewGGGkqo8BEgGDKqToHjkZOjp0c3mHHaQeBhkKjE69V+9SW@vger.kernel.org
-X-Gm-Message-State: AOJu0YwO1IA5y7dRHSPST7MZxp73e9XCrhv5UcD5FUHrcgd3L3HLWmo3
-	N9E/D5ntZGZFTu7h/lOB0llgaqTvV9AUTpLBO2RpLA9BQVQ4fHQLj/QaXhn1jY26
-X-Gm-Gg: ASbGncvvlnYIeep9NtAdPawFIBcNo0zgud8nmKWb24qM/2xZvAXkFWT/CLiq+I5wCiN
-	UnqAMhhbZ5XepXwnC3urICQlxzmgSbEx0cgZR2/DHggRd5azRHFwnwSSs8TzQ1Xt808yapzBbqW
-	GqzB8P6XCsuP0fz2J4QdvEBSbrl4+PPxG/r2DnA92FrtV0D9Ev7FNhNJBC63e83rws97mNDqzJt
-	545F8fNqexAaf+CPQPmamKzR6tdGWlXGscaxwGA8pZpBwrUsgOpNIKYhSXww1fFd7MDjbTrzKTM
-	jqbpdiGe6VHJiqC6kkmnkAbhKuAQMqYr1SRtvOMXuwo7d+B3Z0ZuCQqcr82oels0qHmjsOHeMTa
-	ao38HJwaOk/uUOhrYNwn3nwUUcXEL
-X-Google-Smtp-Source: AGHT+IGRSsYCs7VVC9AeL9uT+P5Wkryoxe5tKmaxs6LAMyzLQJU1lnEqSfIRfDpIIV5SIf7CWVuhjg==
-X-Received: by 2002:a05:6122:311c:b0:52d:cc6f:81a2 with SMTP id 71dfb90a1353d-534256115admr1637632e0c.6.1751361744753;
-        Tue, 01 Jul 2025 02:22:24 -0700 (PDT)
-Received: from mail-vk1-f181.google.com (mail-vk1-f181.google.com. [209.85.221.181])
-        by smtp.gmail.com with ESMTPSA id 71dfb90a1353d-533091bea7esm1661363e0c.29.2025.07.01.02.22.24
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 01 Jul 2025 02:22:24 -0700 (PDT)
-Received: by mail-vk1-f181.google.com with SMTP id 71dfb90a1353d-53185535ed9so3925623e0c.0;
-        Tue, 01 Jul 2025 02:22:24 -0700 (PDT)
-X-Forwarded-Encrypted: i=1; AJvYcCUvAd3gdKYeDPvqPHltWz9iYlc+J3XF5w2nbjzaINRublfN0vn/rR8saNw84bpz6cCReBe2qOIhm37ZBzmg@vger.kernel.org, AJvYcCWEoF20M9UyOU8Gp0HFlqGGBkAbCewnSj1EHxhIfSdHHVe8M5e0NJDgg8b/ktY5tH99HR41c1ohwmiaUfly+xZVn8w=@vger.kernel.org, AJvYcCWlz9/KBwoQKv52cY6PW4D7EUJmHdp2BejWsP6l+H4bZ6QWFJ5uCnydUEMzMD8nZeQd2XmCEVaeiHULt/Lf@vger.kernel.org, AJvYcCX9a64roQFuTMvOhoT7lThJnbbawtYnMrgWK13hdp+Yj9i4PMu0cOpedxMA6/amL6j4AglcFgIbzggU@vger.kernel.org
-X-Received: by 2002:a05:6122:3089:b0:531:3a03:1122 with SMTP id
- 71dfb90a1353d-53417f7937bmr1670875e0c.2.1751361744302; Tue, 01 Jul 2025
- 02:22:24 -0700 (PDT)
+	s=arc-20240116; t=1751362099; c=relaxed/simple;
+	bh=7HMOHxoNy1+keb7VAvKnbVMcQgX7X0MpHiY3sQvB2BM=;
+	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=tOzyD1bmPonTY/+L82wKEu2nO2nCLwvkXtxR+WI248Fh/Am9yapKv7kmRIvdnuJx3G/CwCLUi2oQa4k5k4orJ0TDd2vIffExonTeZ1WhMT2sGSh8KJwCMJLJNrftE3T+8V+edd/sjd4HKCb2yFqAW7yKdgvrnnMuP99dRFXIMBk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ew.tq-group.com; spf=pass smtp.mailfrom=ew.tq-group.com; dkim=pass (2048-bit key) header.d=tq-group.com header.i=@tq-group.com header.b=lOo6IJ1V; dkim=fail (0-bit key) header.d=ew.tq-group.com header.i=@ew.tq-group.com header.b=SVDMR+lO reason="key not found in DNS"; arc=none smtp.client-ip=93.104.207.81
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ew.tq-group.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ew.tq-group.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+  d=tq-group.com; i=@tq-group.com; q=dns/txt; s=key1;
+  t=1751362096; x=1782898096;
+  h=from:to:cc:subject:date:message-id:in-reply-to:
+   references:mime-version:content-transfer-encoding;
+  bh=El0njB9QkMGVFRshxMbajamTSfz0oZTddg/R/RGwV9k=;
+  b=lOo6IJ1VorD1GGzdDiNOZDqmxFuzGGV2TTHQ3Jsf+nVRRVPoA5VDYaZu
+   RC1OLXttWi+lMD/+TrVdKvoiczQyWCbnW1LtBesI00mQvhA4aXBcUROL7
+   fd3H03in/P9smvHzjt74VD83fL/0TkhiZWFbWmG9G0bNsegqJULoXSB2C
+   idwijPVrOBxMoMVN4ASXOftSrQmBPRuTy9HSBBw9gHKKpNxDguSRK9r02
+   5Gy5tmuBzcxU9od/AoyeylfdDQVpdErB82+wxSXX0L1mwjavRc0lYDEQT
+   JH/6fH4Z84zQ/DYJAQNh4tIcOwbasaAk1lxrUAToTMhQWAx18WNn0/JSr
+   A==;
+X-CSE-ConnectionGUID: 5Zf31/qcQgK5fwixQENzjg==
+X-CSE-MsgGUID: nsiA9ZZdRnWjzj7r6P5fPg==
+X-IronPort-AV: E=Sophos;i="6.16,279,1744063200"; 
+   d="scan'208";a="44950455"
+Received: from vmailcow01.tq-net.de ([10.150.86.48])
+  by mx1.tq-group.com with ESMTP; 01 Jul 2025 11:28:13 +0200
+X-CheckPoint: {6863AA2D-7-ABFC28F4-D6731B76}
+X-MAIL-CPID: 1F1760676F1FD6B864D31B9984EE8645_5
+X-Control-Analysis: str=0001.0A006370.6863AA54.0046,ss=1,re=0.000,recu=0.000,reip=0.000,cl=1,cld=1,fgs=0
+Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id CB77916AFA8;
+	Tue,  1 Jul 2025 11:28:07 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ew.tq-group.com;
+	s=dkim; t=1751362088;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references;
+	bh=El0njB9QkMGVFRshxMbajamTSfz0oZTddg/R/RGwV9k=;
+	b=SVDMR+lOaUcf3oyASPFD1CmRQwfXLjQ5VrKgrNYJRRQW0kqIaT4ZvvRwBCVvciNuFiF0yp
+	5jJFO7JmRmhP+eRD/4kdJGqOUe0Ss8t47mjttec9DibDXU7BCty+xwDDWfrYsmfyp4DQ6V
+	D4kp42bB8bZwQPUeNx4gZAHUulfbXk1y5MrgkAk20Vkvwsb9JjS/CeVScYJKO86SGOhkDw
+	SdpTLKIOv3hr8Xzs+0nk+E43KXeZy610y3Yz+Dtz3fzyfqVqHDUXdvFAgy5pC5PVN0F5FE
+	waAUnxYR2IsB0HMHHqSH5VM8YbwAdS+QOeeON/bXntcKgROBmcASAEoGTZuaTA==
+From: Alexander Stein <alexander.stein@ew.tq-group.com>
+To: Michael Turquette <mturquette@baylibre.com>,
+ Stephen Boyd <sboyd@kernel.org>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>,
+ Shawn Guo <shawnguo@kernel.org>, Sascha Hauer <s.hauer@pengutronix.de>,
+ Pengutronix Kernel Team <kernel@pengutronix.de>,
+ Fabio Estevam <festevam@gmail.com>, Abel Vesa <abelvesa@kernel.org>,
+ Frank Li <frank.li@nxp.com>, Peng Fan <peng.fan@nxp.com>
+Cc: linux-clk@vger.kernel.org, devicetree@vger.kernel.org,
+ imx@lists.linux.dev, linux-arm-kernel@lists.infradead.org,
+ linux-kernel@vger.kernel.org, Abel Vesa <abel.vesa@linaro.org>,
+ Peng Fan <peng.fan@nxp.com>
+Subject: Re: [PATCH 5/5] arm64: dts: imx943: Add LVDS/DISPLAY CSR nodes
+Date: Tue, 01 Jul 2025 11:28:07 +0200
+Message-ID: <2791534.mvXUDI8C0e@steina-w>
+Organization: TQ-Systems GmbH
+In-Reply-To: <20250701-imx95-blk-ctl-7-1-v1-5-00db23bd8876@nxp.com>
+References:
+ <20250701-imx95-blk-ctl-7-1-v1-0-00db23bd8876@nxp.com>
+ <20250701-imx95-blk-ctl-7-1-v1-5-00db23bd8876@nxp.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20250630202323.279809-1-prabhakar.mahadev-lad.rj@bp.renesas.com> <20250630202323.279809-6-prabhakar.mahadev-lad.rj@bp.renesas.com>
-In-Reply-To: <20250630202323.279809-6-prabhakar.mahadev-lad.rj@bp.renesas.com>
-From: Geert Uytterhoeven <geert@linux-m68k.org>
-Date: Tue, 1 Jul 2025 11:22:12 +0200
-X-Gmail-Original-Message-ID: <CAMuHMdUDtvKjHRAyvCPpBAf8uuK1EL4p5yo0e3QHeVqn=pC3OQ@mail.gmail.com>
-X-Gm-Features: Ac12FXxbh-YLa-x4qYu4MdRAklij9uSF8x54ewlANZ0ZK7sR0ovq73GRKlK5Jnc
-Message-ID: <CAMuHMdUDtvKjHRAyvCPpBAf8uuK1EL4p5yo0e3QHeVqn=pC3OQ@mail.gmail.com>
-Subject: Re: [PATCH v14 5/5] serial: sh-sci: Add support for RZ/T2H SCI
-To: Prabhakar <prabhakar.csengg@gmail.com>
-Cc: Greg Kroah-Hartman <gregkh@linuxfoundation.org>, Jiri Slaby <jirislaby@kernel.org>, 
-	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Magnus Damm <magnus.damm@gmail.com>, Wolfram Sang <wsa+renesas@sang-engineering.com>, 
-	linux-serial@vger.kernel.org, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, linux-renesas-soc@vger.kernel.org, 
-	Biju Das <biju.das.jz@bp.renesas.com>, 
-	Fabrizio Castro <fabrizio.castro.jz@renesas.com>, 
-	Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset="iso-8859-1"
+X-Last-TLS-Session-Version: TLSv1.3
 
-On Mon, 30 Jun 2025 at 22:23, Prabhakar <prabhakar.csengg@gmail.com> wrote:
-> From: Thierry Bultel <thierry.bultel.yh@bp.renesas.com>
->
-> Define a new RSCI port type, and the RSCI 32 bits registers set.
-> The RZ/T2H SCI has a a fifo, and a quite different set of registers
-> from the original SH SCI ones.
-> DMA is not supported yet.
->
-> Signed-off-by: Thierry Bultel <thierry.bultel.yh@bp.renesas.com>
-> Signed-off-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-> Reviewed-by: Wolfram Sang <wsa+renesas@sang-engineering.com>
-> Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
+Hi,
+
+Am Dienstag, 1. Juli 2025, 09:04:41 CEST schrieb Peng Fan:
+> Add nodes for LVDS/DISPLAY CSR.
+>=20
+> Add ldb_pll_div7 node which is used for clock source of DISPLAY CSR.
+>=20
+> Signed-off-by: Peng Fan <peng.fan@nxp.com>
 > ---
-> v13->v14:
-> - Switched to using `EXPORT_SYMBOL_NS_GPL` for all exported
->   symbols in the sh-sci driver to allow RSCI driver to use SH-SCI symbols.
-> - Added MODULE_IMPORT_NS for SH_SCI to allow RSCI driver to use SH-SCI
->   symbols.
+>  arch/arm64/boot/dts/freescale/imx943.dtsi | 34 +++++++++++++++++++++++++=
+++++++
+>  1 file changed, 34 insertions(+)
+>=20
+> diff --git a/arch/arm64/boot/dts/freescale/imx943.dtsi b/arch/arm64/boot/=
+dts/freescale/imx943.dtsi
+> index 45b8da758e87771c0775eb799ce2da3aac37c060..cf67dba21e4f6f27fff7e5d29=
+744086e4ec9c021 100644
+> --- a/arch/arm64/boot/dts/freescale/imx943.dtsi
+> +++ b/arch/arm64/boot/dts/freescale/imx943.dtsi
 
-Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
+Why is this specific to imx943 but not imx94? What is the difference anyway?
 
-Gr{oetje,eeting}s,
+Best regards
+Alexander
 
-                        Geert
+> @@ -3,6 +3,8 @@
+>   * Copyright 2025 NXP
+>   */
+> =20
+> +#include <dt-bindings/clock/nxp,imx94-clock.h>
+> +
+>  #include "imx94.dtsi"
+> =20
+>  / {
+> @@ -145,4 +147,36 @@ l3_cache: l3-cache {
+>  			cache-unified;
+>  		};
+>  	};
+> +
+> +	ldb_pll_pixel: ldb_pll_div7 {
+> +		compatible =3D "fixed-factor-clock";
+> +		#clock-cells =3D <0>;
+> +		clocks =3D <&scmi_clk IMX94_CLK_LDBPLL>;
+> +		clock-div =3D <7>;
+> +		clock-mult =3D <1>;
+> +		clock-output-names =3D "ldb_pll_div7";
+> +	};
+> +
+> +	soc {
+> +		dispmix_csr: syscon@4b010000 {
+> +			compatible =3D "nxp,imx94-display-csr", "syscon";
+> +			reg =3D <0x0 0x4b010000 0x0 0x10000>;
+> +			clocks =3D <&scmi_clk IMX94_CLK_DISPAPB>;
+> +			#clock-cells =3D <1>;
+> +			power-domains =3D <&scmi_devpd IMX94_PD_DISPLAY>;
+> +			assigned-clocks =3D <&scmi_clk IMX94_CLK_DISPAXI>,
+> +					  <&scmi_clk IMX94_CLK_DISPAPB>;
+> +			assigned-clock-parents =3D <&scmi_clk IMX94_CLK_SYSPLL1_PFD1>,
+> +						 <&scmi_clk IMX94_CLK_SYSPLL1_PFD1_DIV2>;
+> +			assigned-clock-rates =3D <400000000>,  <133333333>;
+> +		};
+> +
+> +		lvds_csr: syscon@4b0c0000 {
+> +			compatible =3D "nxp,imx94-lvds-csr", "syscon";
+> +			reg =3D <0x0 0x4b0c0000 0x0 0x10000>;
+> +			clocks =3D <&scmi_clk IMX94_CLK_DISPAPB>;
+> +			#clock-cells =3D <1>;
+> +			power-domains =3D <&scmi_devpd IMX94_PD_DISPLAY>;
+> +		};
+> +	};
+>  };
+>=20
+>=20
 
--- 
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
 
-In personal conversations with technical people, I call myself a hacker. But
-when I'm talking to journalists I just say "programmer" or something like that.
-                                -- Linus Torvalds
+=2D-=20
+TQ-Systems GmbH | M=FChlstra=DFe 2, Gut Delling | 82229 Seefeld, Germany
+Amtsgericht M=FCnchen, HRB 105018
+Gesch=E4ftsf=FChrer: Detlef Schneider, R=FCdiger Stahl, Stefan Schneider
+http://www.tq-group.com/
+
+
 
