@@ -1,97 +1,209 @@
-Return-Path: <devicetree+bounces-191566-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-191567-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id A8B66AEFB25
-	for <lists+devicetree@lfdr.de>; Tue,  1 Jul 2025 15:49:44 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 32263AEFB41
+	for <lists+devicetree@lfdr.de>; Tue,  1 Jul 2025 15:55:47 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id CA6B21888762
-	for <lists+devicetree@lfdr.de>; Tue,  1 Jul 2025 13:49:30 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 154663BF3EF
+	for <lists+devicetree@lfdr.de>; Tue,  1 Jul 2025 13:55:21 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 62104275B0F;
-	Tue,  1 Jul 2025 13:49:00 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id F14B02749C9;
+	Tue,  1 Jul 2025 13:55:42 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="S6osAEVz"
+	dkim=pass (1024-bit key) header.d=yeah.net header.i=@yeah.net header.b="mdMixECc"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mail-m16.yeah.net (mail-m16.yeah.net [1.95.21.17])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 306611DFD84;
-	Tue,  1 Jul 2025 13:48:59 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C0ADF2749CA;
+	Tue,  1 Jul 2025 13:55:37 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=1.95.21.17
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1751377740; cv=none; b=aIRc/wgSdLU9dVt/rH7Mf+7csM7D5XYeQe4dvgL1Zr/4VZY9ZzyRH9OvaggZbZt1nqBsPB0EhBC256PGiphT2qutZbWCrxlxhRDv9iLSQbpJR8/1FRjisg255VLJQ+llM8UBW7GeYVo0T4IgAF8KhXMhlsr4z6iryYD/jvM5f3I=
+	t=1751378142; cv=none; b=qTsVovkP4+FgUSpiytG87Rgixi6ri3K/GUDAxbz4pRvUS5jXhmGiIt+GJtY1Ooq6Muy6qdsFeOBCZrRwZ4Q3OEtVeOF04xtbJbTiw1hiu5E/1UF3fv+6JEJdTm5OqeW/kY1/NLmEYve8/ndWV8znPQdQ6RrA7RPzbpMFuLSHe+U=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1751377740; c=relaxed/simple;
-	bh=vFTK1oxgqsdO+2h7SzDJQ8yWLt6+O2FcznPSuZUqwgY=;
-	h=From:To:Cc:In-Reply-To:References:Subject:Message-Id:Date:
-	 MIME-Version:Content-Type; b=pHDrBe41sUBTspcPlRlYl159J8oFFjL7044jIhTwyEXWM64Awvjnn9x9VMf3t1SEb8TSvJa5fsI21/PyzeQmWVRMuJksajbMvnR4F0NDwBJpdoyXBsNDDVaO2cn7xaRdVtSrU/oyOHVBNhp2IMkZslhszwxgwQXLBYaJU+BDInM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=S6osAEVz; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id D6B83C4CEEF;
-	Tue,  1 Jul 2025 13:48:54 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1751377739;
-	bh=vFTK1oxgqsdO+2h7SzDJQ8yWLt6+O2FcznPSuZUqwgY=;
-	h=From:To:Cc:In-Reply-To:References:Subject:Date:From;
-	b=S6osAEVzWABx4z9if+DseWM9EOJS4Pn4c0Lq5ODsWWcCbOOfd6RGKPL6N4FLT8y2H
-	 VB1Ld4mmUJoBqp7zDtsYnsCThsXtlusA5nvTOWW7PyOUSt3lbS+ApysjxGGFYnZmau
-	 S6jS8yrg3B22HhD0QRLDV3GFYAYbhQJc5Dsx0DVCOZyGtb7aMbdbFZtdQwxvvqWOYZ
-	 V86KYy1QA6Wm4PDAgoQ6onPOFsHPwLWWf7kYzaF4/zIG6/3AsaXS8ZhlViBjrwqC6K
-	 m+map4A8YGL+N3xPtTYZMzLGNfq6eu+xP/xIBEoVXrsueM+iIrUSt6gTUitp/qd7YX
-	 RdTzsmfeC/3EQ==
-From: Manivannan Sadhasivam <mani@kernel.org>
-To: linux-pci@vger.kernel.org, will@kernel.org, lpieralisi@kernel.org, 
- robh@kernel.org, bhelgaas@google.com, andersson@kernel.org, 
- krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org, 
- devicetree@vger.kernel.org, 
- =?utf-8?q?Krzysztof_Wilczy=C5=84ski?= <kwilczynski@kernel.org>, 
- Mayank Rana <mayank.rana@oss.qualcomm.com>
-Cc: linux-arm-msm@vger.kernel.org, quic_ramkri@quicinc.com, 
- quic_shazhuss@quicinc.com, quic_msarkar@quicinc.com, 
- quic_nitegupt@quicinc.com
-In-Reply-To: <20250616224259.3549811-1-mayank.rana@oss.qualcomm.com>
-References: <20250616224259.3549811-1-mayank.rana@oss.qualcomm.com>
-Subject: Re: [PATCH v5 0/4] Add Qualcomm SA8255p based firmware managed
- PCIe root complex
-Message-Id: <175137773442.25265.15621888836513361848.b4-ty@kernel.org>
-Date: Tue, 01 Jul 2025 19:18:54 +0530
+	s=arc-20240116; t=1751378142; c=relaxed/simple;
+	bh=j8DqhOjO/y33zK4keb4QH8Ti7vNpk1R1IA2kSO2tRI8=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=g644Ez2tsDvQ4ve9p70PUBnS97sXCY/WIutNmYLPzuECqQtauB35PAzicp+4kd/bTKVtcDeN+fQZFnaxN2Sv9KNABH9+aQ2pEr3g/nwYxqemsEMCDxfex7OIl1jigBGGFqKCSKqat8Kw3urDlCLbUchvrJ5vQJSP6UzJJT53vvw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=yeah.net; spf=pass smtp.mailfrom=yeah.net; dkim=pass (1024-bit key) header.d=yeah.net header.i=@yeah.net header.b=mdMixECc; arc=none smtp.client-ip=1.95.21.17
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=yeah.net
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=yeah.net
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=yeah.net;
+	s=s110527; h=Date:From:To:Subject:Message-ID:MIME-Version:
+	Content-Type; bh=GwNQqB8pBJVwu+Xy+ljesQ25T/+91BIQflo1XREJg40=;
+	b=mdMixECcLagBJQzyNSbxLKjgirGpbSIPT6x2HT/8O2EpMR17+Byz+sqe1JLTY/
+	lAyKizyHyoNHO6ZomxZOwgR0m7sC3MaPg6bzzo5wsuHifiunl0uJc0qhK6mQbKVj
+	FNT0NPsUI02xkLVZyWysdE1D8qNIn5MN7Rv9Ej2+tE2qo=
+Received: from dragon (unknown [])
+	by gzsmtp1 (Coremail) with SMTP id Mc8vCgDnL6eS6GNopYgBAA--.3609S3;
+	Tue, 01 Jul 2025 21:54:28 +0800 (CST)
+Date: Tue, 1 Jul 2025 21:54:26 +0800
+From: Shawn Guo <shawnguo2@yeah.net>
+To: Stefano Radaelli <stefano.radaelli21@gmail.com>
+Cc: devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	othacehe@gnu.org, andrew@lunn.ch, Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
+	Sascha Hauer <s.hauer@pengutronix.de>,
+	Pengutronix Kernel Team <kernel@pengutronix.de>,
+	Fabio Estevam <festevam@gmail.com>, imx@lists.linux.dev,
+	linux-arm-kernel@lists.infradead.org
+Subject: Re: [PATCH v3] arm64: dts: freescale: imx93-var-som: update eqos
+ support for MaxLinear PHY
+Message-ID: <aGPokie6sW/FCjWc@dragon>
+References: <20250605085904.12199-1-stefano.radaelli21@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-X-Mailer: b4 0.14.2
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20250605085904.12199-1-stefano.radaelli21@gmail.com>
+X-CM-TRANSID:Mc8vCgDnL6eS6GNopYgBAA--.3609S3
+X-Coremail-Antispam: 1Uf129KBjvJXoWxZFW3tryfuF4DJF4ruw4Uurg_yoWrKF48pa
+	yfurWIqrZ3t34fK3yxWa13CF1jya15Ar9rur15trW093WxCF9rtr1Skws8Xr4DCrW8Aw13
+	Xryq9F13C3Z293DanT9S1TB71UUUUU7qnTZGkaVYY2UrUUUUjbIjqfuFe4nvWSU5nxnvy2
+	9KBjDUYxBIdaVFxhVjvjDU0xZFpf9x07jYyIUUUUUU=
+X-CM-SenderInfo: pvkd40hjxrjqh1hdxhhqhw/1tbiNBdSt2hj6JeipQAA31
 
-
-On Mon, 16 Jun 2025 15:42:55 -0700, Mayank Rana wrote:
-> Based on received feedback, this patch series adds support with existing
-> Linux qcom-pcie.c driver to get PCIe host root complex functionality on
-> Qualcomm SA8255P auto platform.
+On Thu, Jun 05, 2025 at 10:59:04AM +0200, Stefano Radaelli wrote:
+> Variscite has updated the Ethernet PHY on the VAR-SOM-MX93 from the
+> ADIN1300BCPZ to the MaxLinear MXL86110, as documented in the
+> August 2023 revision changelog.
+> Link: https://variwiki.com/index.php?title=VAR-SOM-MX93_rev_changelog
 > 
-> 1. Interface to allow requesting firmware to manage system resources and
-> performing PCIe Link up (devicetree binding in terms of power domain and
-> runtime PM APIs is used in driver)
+> Update the device tree accordingly:
+> - Drop the regulator node used to power the previously PHY.
+> - Add support for the reset line using GPIO1_IO07 with proper timings.
+> - Configure the PHY LEDs via the LED subsystem under /sys/class/leds/,
+>   leveraging the support implemented in the mxl86110 PHY driver
+>   (drivers/net/phy/mxl-86110.c).
+>   Two LEDs are defined to match the LED configuration on the Variscite
+>   VAR-SOM Carrier Boards:
+>     * LED@0: Yellow, netdev trigger.
+>     * LED@1: Green, netdev trigger.
+> - Adjust the RGMII clock pad control settings to match the updated PHY
+>   requirements.
 > 
-> [...]
+> These changes ensure proper PHY initialization and LED status indication
+> for the new MaxLinear MXL86110, improving board compatibility with the
+> latest hardware revision.
+> 
+> Signed-off-by: Stefano Radaelli <stefano.radaelli21@gmail.com>
+> ---
+> v3:
+>   - Add "PATCH" to subject line.
+>   - Fix wrong reference to previous PHY in commit message.
+> 
+> v2: https://lore.kernel.org/imx/20250604153510.55689-1-stefano.radaelli21@gmail.com/
+>   - Clarified the use of 'rgmii' mode by adding a comment in the DT,
+>     explaining that hardware delays are already implemented on the SOM PCB.
+> 
+> v1: https://lore.kernel.org/imx/20250603221416.74523-1-stefano.radaelli21@gmail.com/
+> 
+>  .../boot/dts/freescale/imx93-var-som.dtsi     | 45 ++++++++++++-------
+>  1 file changed, 30 insertions(+), 15 deletions(-)
+> 
+> diff --git a/arch/arm64/boot/dts/freescale/imx93-var-som.dtsi b/arch/arm64/boot/dts/freescale/imx93-var-som.dtsi
+> index 783938245e4f..cea8d792328c 100644
+> --- a/arch/arm64/boot/dts/freescale/imx93-var-som.dtsi
+> +++ b/arch/arm64/boot/dts/freescale/imx93-var-som.dtsi
+> @@ -19,26 +19,19 @@ mmc_pwrseq: mmc-pwrseq {
+>  		reset-gpios = <&gpio4 14 GPIO_ACTIVE_LOW>,	/* WIFI_RESET */
+>  			      <&gpio3 7 GPIO_ACTIVE_LOW>;	/* WIFI_PWR_EN */
+>  	};
+> -
+> -	reg_eqos_phy: regulator-eqos-phy {
+> -		compatible = "regulator-fixed";
+> -		pinctrl-names = "default";
+> -		pinctrl-0 = <&pinctrl_reg_eqos_phy>;
+> -		regulator-name = "eth_phy_pwr";
+> -		regulator-min-microvolt = <3300000>;
+> -		regulator-max-microvolt = <3300000>;
+> -		gpio = <&gpio1 7 GPIO_ACTIVE_HIGH>;
+> -		enable-active-high;
+> -		startup-delay-us = <100000>;
+> -		regulator-always-on;
+> -	};
+>  };
+>  
+>  &eqos {
+>  	pinctrl-names = "default";
+>  	pinctrl-0 = <&pinctrl_eqos>;
+> +	/*
+> +	 * The required RGMII TX and RX 2ns delays are implemented directly
+> +	 * in hardware via passive delay elements on the SOM PCB.
+> +	 * No delay configuration is needed in software via PHY driver.
+> +	 */
+>  	phy-mode = "rgmii";
+>  	phy-handle = <&ethphy0>;
+> +	snps,clk-csr = <5>;
+>  	status = "okay";
+>  
+>  	mdio {
+> @@ -51,6 +44,27 @@ ethphy0: ethernet-phy@0 {
+>  			compatible = "ethernet-phy-ieee802.3-c22";
+>  			reg = <0>;
+>  			eee-broken-1000t;
+> +			reset-gpios = <&gpio1 7 GPIO_ACTIVE_LOW>;
+> +			reset-assert-us = <10000>;
+> +			reset-deassert-us = <100000>;
 
-Applied, thanks!
+Missing a newline between property list and child node.
 
-[1/4] PCI: dwc: Export dwc MSI controller related APIs
-      (no commit info)
-[2/4] PCI: host-generic: Rename and export gen_pci_init() to allow ECAM creation
-      (no commit info)
-[3/4] dt-bindings: PCI: qcom,pcie-sa8255p: Document ECAM compliant PCIe root complex
-      commit: f1cf5ea8e91b4d66b3f9f89b09edf509cc9da077
-[4/4] PCI: qcom: Add support for Qualcomm SA8255p based PCIe root complex
-      (no commit info)
+I fixed it up and applied the patch.
 
-Best regards,
--- 
-Manivannan Sadhasivam <mani@kernel.org>
+Shawn
+
+> +			leds {
+> +				#address-cells = <1>;
+> +				#size-cells = <0>;
+> +
+> +				led@0 {
+> +					reg = <0>;
+> +					color = <LED_COLOR_ID_YELLOW>;
+> +					function = LED_FUNCTION_LAN;
+> +					linux,default-trigger = "netdev";
+> +				};
+> +
+> +				led@1 {
+> +					reg = <1>;
+> +					color = <LED_COLOR_ID_GREEN>;
+> +					function = LED_FUNCTION_LAN;
+> +					linux,default-trigger = "netdev";
+> +				};
+> +			};
+>  		};
+>  	};
+>  };
+> @@ -75,14 +89,15 @@ MX93_PAD_ENET1_RD0__ENET_QOS_RGMII_RD0			0x57e
+>  			MX93_PAD_ENET1_RD1__ENET_QOS_RGMII_RD1			0x57e
+>  			MX93_PAD_ENET1_RD2__ENET_QOS_RGMII_RD2			0x57e
+>  			MX93_PAD_ENET1_RD3__ENET_QOS_RGMII_RD3			0x57e
+> -			MX93_PAD_ENET1_RXC__CCM_ENET_QOS_CLOCK_GENERATE_RX_CLK	0x5fe
+> +			MX93_PAD_ENET1_RXC__CCM_ENET_QOS_CLOCK_GENERATE_RX_CLK	0x58e
+>  			MX93_PAD_ENET1_RX_CTL__ENET_QOS_RGMII_RX_CTL		0x57e
+>  			MX93_PAD_ENET1_TD0__ENET_QOS_RGMII_TD0			0x57e
+>  			MX93_PAD_ENET1_TD1__ENET_QOS_RGMII_TD1			0x57e
+>  			MX93_PAD_ENET1_TD2__ENET_QOS_RGMII_TD2			0x57e
+>  			MX93_PAD_ENET1_TD3__ENET_QOS_RGMII_TD3			0x57e
+> -			MX93_PAD_ENET1_TXC__CCM_ENET_QOS_CLOCK_GENERATE_TX_CLK	0x5fe
+> +			MX93_PAD_ENET1_TXC__CCM_ENET_QOS_CLOCK_GENERATE_TX_CLK	0x58e
+>  			MX93_PAD_ENET1_TX_CTL__ENET_QOS_RGMII_TX_CTL		0x57e
+> +			MX93_PAD_UART2_TXD__GPIO1_IO07				0x51e
+>  		>;
+>  	};
+>  
+> 
+> base-commit: a9dfb7db96f7bc1f30feae673aab7fdbfbc94e9c
+> prerequisite-patch-id: 2335ebcc90360b008c840e7edf7e34a595880edf
+> -- 
+> 2.43.0
+> 
 
 
