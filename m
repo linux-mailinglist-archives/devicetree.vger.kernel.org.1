@@ -1,151 +1,132 @@
-Return-Path: <devicetree+bounces-191357-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-191358-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 00AFCAEF02F
-	for <lists+devicetree@lfdr.de>; Tue,  1 Jul 2025 09:54:21 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id C1767AEF03F
+	for <lists+devicetree@lfdr.de>; Tue,  1 Jul 2025 09:57:08 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 2D424164057
-	for <lists+devicetree@lfdr.de>; Tue,  1 Jul 2025 07:54:21 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id E40E91BC5B85
+	for <lists+devicetree@lfdr.de>; Tue,  1 Jul 2025 07:57:24 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3A4E225C81F;
-	Tue,  1 Jul 2025 07:54:15 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B16A026059F;
+	Tue,  1 Jul 2025 07:57:03 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=arndb.de header.i=@arndb.de header.b="fQvKWJVy";
-	dkim=pass (2048-bit key) header.d=messagingengine.com header.i=@messagingengine.com header.b="VSKx4sNM"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="PzEVAzFl"
 X-Original-To: devicetree@vger.kernel.org
-Received: from fout-a5-smtp.messagingengine.com (fout-a5-smtp.messagingengine.com [103.168.172.148])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 64E51263F30;
-	Tue,  1 Jul 2025 07:54:12 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=103.168.172.148
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8849F23C51B;
+	Tue,  1 Jul 2025 07:57:03 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1751356455; cv=none; b=orfvOII40x1UR6j4Fos2ilJl5Kev/yRYKBCOprquT+jpRQgxQmCHVrxiRN2cbVGI+i1X3A1wDEjbCemC1r7uK9AO7FSBWPk7dIVMn81uUDUkTEfF3UZ2DTBZOPvdSgGJMzcKIpHGroOph/zSi0idGyNu4GJfw6PjwcJea63S6Zw=
+	t=1751356623; cv=none; b=eXfuKU0jNTkPvkkc4EV1GzaoinfwH/IeTB01D5W86bQPVaPPGjossqoYZpmtNbce3GKzgGmc0oVS7iPcsLoqF3UrvXI2VLMWsdSCn8/mcFN2SXNKZjUScUUfIvBVVi76qRg0maVXKtX8VRWUjfIE6c2yYo5ghtMARZlSDtEYXo4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1751356455; c=relaxed/simple;
-	bh=h+G1tTJ0bFf9zk0gY6dlDAUz1LYkXgQlPfSzWe/IUJg=;
-	h=MIME-Version:Date:From:To:Cc:Message-Id:In-Reply-To:References:
-	 Subject:Content-Type; b=G2frK6YnRuIBl+9wthC6HWbrh3tvFuvcUi769AGFjiFZjdYKB2r82FbjxJ7lihj1j/851nASUEwF15OwgW187+9p1zknSL3oUB1l6GqR6W6zYc6N3J7sIkXt4O9qeNR7nqx/N/ZxTb2hCQD6VxC/qx49nCfNHRKtr1qtVH7jh6I=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arndb.de; spf=pass smtp.mailfrom=arndb.de; dkim=pass (2048-bit key) header.d=arndb.de header.i=@arndb.de header.b=fQvKWJVy; dkim=pass (2048-bit key) header.d=messagingengine.com header.i=@messagingengine.com header.b=VSKx4sNM; arc=none smtp.client-ip=103.168.172.148
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arndb.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=arndb.de
-Received: from phl-compute-05.internal (phl-compute-05.phl.internal [10.202.2.45])
-	by mailfout.phl.internal (Postfix) with ESMTP id 4BB3CEC04B8;
-	Tue,  1 Jul 2025 03:54:11 -0400 (EDT)
-Received: from phl-imap-02 ([10.202.2.81])
-  by phl-compute-05.internal (MEProxy); Tue, 01 Jul 2025 03:54:11 -0400
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=arndb.de; h=cc
-	:cc:content-transfer-encoding:content-type:content-type:date
-	:date:from:from:in-reply-to:in-reply-to:message-id:mime-version
-	:references:reply-to:subject:subject:to:to; s=fm1; t=1751356451;
-	 x=1751442851; bh=zYIM/y5KUb8LuLsTwnFRYfBitpCmTyytEVjI+bZcC+M=; b=
-	fQvKWJVy2F3XL9mrW/NsX/znHcPnnTFslnWBNBlOamy2LW4SuQaEyFVZxZP0TPGL
-	h24EJEbr2R0HrUPO6hUYxeDCUpwbWANk3gaCg3BndYUyUY3fPMm/kt3lyQQbsY5B
-	Qgffs2amWH6K5UtF9OGJo8DsHytlaLgajonYKqzKvEYBzr5MKTy2/d1fS1Rv1hjN
-	Tqrlxr8Pjl/EYxhzvJ6LY64woUgvSJlZmckvcn7146lOs3CA/otzxs/21jlY6Knr
-	nFjmawuOv9oNUD28wJFbb2zGfCayZDb8lUWzo0pXx/kjfYnTb7ySCL5x+TgnZcvE
-	oFuGYjWsu0/XCzgXZfhXrg==
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
-	messagingengine.com; h=cc:cc:content-transfer-encoding
-	:content-type:content-type:date:date:feedback-id:feedback-id
-	:from:from:in-reply-to:in-reply-to:message-id:mime-version
-	:references:reply-to:subject:subject:to:to:x-me-proxy
-	:x-me-sender:x-me-sender:x-sasl-enc; s=fm2; t=1751356451; x=
-	1751442851; bh=zYIM/y5KUb8LuLsTwnFRYfBitpCmTyytEVjI+bZcC+M=; b=V
-	SKx4sNM2UGFbEnljcl6Y58fity3E1hqrLS2cdYU50g5m1XH+4Gy2iI0xOiyY64Pm
-	l37XCLysJd9arB8gs9uTuZrDirMv+maPlHY4Q7hOrHvDhRUJjHmLcPE0kY7/vniy
-	4Cgbh6PwaCafaGgMKkjIXRPbi1NreRcRoQ7JkJqVt6bW06luGBghN0V8K3F9v8p1
-	b5CNYMY6UKasWTV+D8qEyjvgmPVHpKZJo6YAH6rQLa1CqxwF6T8tM+hLv27Jhhmc
-	ZI23FoaPD8LEUFm8/AW8NydgIgKjIkbZDvIzY34cyVZvN+tyCoL72tXbFrUV5FqV
-	mpolCCIdrGzm8RbS64b9g==
-X-ME-Sender: <xms:I5RjaE9borZee998x-h_5WVKHMNTHkps3VnUh9PTj4kTa4i1KK1TWA>
-    <xme:I5RjaMv285eOopSFmrNL2zt94807nqhXbs6RCRnSBPqIQpdxGpCQlqnQfCgLVRlIe
-    sn4BocR7nYIyWkiZHU>
-X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgeeffedrtdefgddugedtvdcutefuodetggdotefrod
-    ftvfcurfhrohhfihhlvgemucfhrghsthforghilhdpuffrtefokffrpgfnqfghnecuuegr
-    ihhlohhuthemuceftddtnecusecvtfgvtghiphhivghnthhsucdlqddutddtmdenucfjug
-    hrpefoggffhffvvefkjghfufgtgfesthejredtredttdenucfhrhhomhepfdetrhhnugcu
-    uegvrhhgmhgrnhhnfdcuoegrrhhnugesrghrnhgusgdruggvqeenucggtffrrghtthgvrh
-    hnpefhtdfhvddtfeehudekteeggffghfejgeegteefgffgvedugeduveelvdekhfdvieen
-    ucevlhhushhtvghrufhiiigvpedtnecurfgrrhgrmhepmhgrihhlfhhrohhmpegrrhhnug
-    esrghrnhgusgdruggvpdhnsggprhgtphhtthhopeduhedpmhhouggvpehsmhhtphhouhht
-    pdhrtghpthhtohepjhhsthhulhhtiiesghhoohhglhgvrdgtohhmpdhrtghpthhtohepsh
-    grrhgrvhgrnhgrkhesghhoohhglhgvrdgtohhmpdhrtghpthhtohepfihilhhlmhgtvhhi
-    tghkvghrsehgohhoghhlvgdrtghomhdprhgtphhtthhopehhrghnshhgsehkvghrnhgvlh
-    drohhrghdprhgtphhtthhopehrohgshheskhgvrhhnvghlrdhorhhgpdhrtghpthhtohep
-    shgsohihugeskhgvrhhnvghlrdhorhhgpdhrtghpthhtohepsghrhigrnhdrohguohhnoh
-    hghhhuvgeslhhinhgrrhhordhorhhgpdhrtghpthhtohepuggrnhhivghlrdhlvgiitggr
-    nhhosehlihhnrghrohdrohhrghdprhgtphhtthhopehlohhrvghniihordhpihgvrhgrlh
-    hishhisehlihhnrghrohdrohhrgh
-X-ME-Proxy: <xmx:I5RjaKDOHmfxwDXqz6reR74Lp2qNwZ0tnhwyINVohVBmr3SxDc0-Qw>
-    <xmx:I5RjaEcmJRYHeoPYaMv99I6yPTutVSAhzTydwxd7tM6iGaMNlBxwlQ>
-    <xmx:I5RjaJPa7OXiI8J-zZyOCzVZIr5DGUEDP2FNQM4KzV01AWhDT6QhKA>
-    <xmx:I5RjaOm-oywwV26M2wEaJUVCX7K6ffXR310n0WndyUn81ud1BsCbDw>
-    <xmx:I5RjaFXfvouvH1YOkUeI79muLG8uoWNYvYRRg5Uvn_zAB9nuADwzfmRR>
-Feedback-ID: i56a14606:Fastmail
-Received: by mailuser.phl.internal (Postfix, from userid 501)
-	id 05E2B700063; Tue,  1 Jul 2025 03:54:11 -0400 (EDT)
-X-Mailer: MessagingEngine.com Webmail Interface
+	s=arc-20240116; t=1751356623; c=relaxed/simple;
+	bh=84c/8VnCRGgcIitUBQ7SvEu6yaZ6dejloS9N7ZTlcT4=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=g2t/6qnVSJ/nW+1MZrSW4a2t5ozWMFyjpAEjwzTfovTkhPnKKn8RyA8yu54w0q3Rg3am2kYNbJvK/IPfqjjI/Vxj9D3hs0zD23DXaFu/z/vsfIyMzinczDAZsTT3sfIKYQU9kE5flYfG8uEnrNH4RNc/cmarZSpA0cRjJMovMNo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=PzEVAzFl; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id BA26DC4CEEB;
+	Tue,  1 Jul 2025 07:56:57 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1751356623;
+	bh=84c/8VnCRGgcIitUBQ7SvEu6yaZ6dejloS9N7ZTlcT4=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=PzEVAzFl+NDgfOaEkPJfkwZftz1Y1hnOBwJ60YrqB7q+xGBvV1Jh55kgfBx+gsBEG
+	 /DMpr6YnM7BavlwWW6xQvGV9vWnS0brbUoWNVBEErSS3cUs93YAYz3fPQja9uAPbSO
+	 b6BOs9ziS+HfNC43S87uxXjS3M3ewBh3e+oVz23DI0Yy3lC6Du8X2WdWyvxS7yIAxM
+	 9J2bAP7z5ON6ZRkhcMwt2GqN2Z6mHrIhhJKidygqZG2wOXtFd/LzmRr0Vie9rMIZsC
+	 ETwMsegLpyA4NEq8voJnaOsau9oo0DM2GXV1bKfwYoSwrEu6S2IRF6sudkSaQmEpKp
+	 3KqvRn2ui2rSg==
+Message-ID: <ea5058cd-29da-4939-990d-697396197ed9@kernel.org>
+Date: Tue, 1 Jul 2025 09:56:54 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-ThreadId: T1067a3d3a42d0b8a
-Date: Tue, 01 Jul 2025 09:52:45 +0200
-From: "Arnd Bergmann" <arnd@arndb.de>
-To: "William McVicker" <willmcvicker@google.com>,
- "Daniel Lezcano" <daniel.lezcano@linaro.org>
-Cc: "Greg Kroah-Hartman" <gregkh@linuxfoundation.org>,
- linux-kernel@vger.kernel.org,
- "Lorenzo Pieralisi" <lorenzo.pieralisi@linaro.org>,
- "Hans de Goede" <hansg@kernel.org>,
- =?UTF-8?Q?Ilpo_J=C3=A4rvinen?= <ilpo.jarvinen@linux.intel.com>,
- "Bryan O'Donoghue" <bryan.odonoghue@linaro.org>,
- "Rob Herring" <robh@kernel.org>, "Thomas Gleixner" <tglx@linutronix.de>,
- "John Stultz" <jstultz@google.com>, "Stephen Boyd" <sboyd@kernel.org>,
- "Saravana Kannan" <saravanak@google.com>,
- Linux-Arch <linux-arch@vger.kernel.org>,
- "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE" <devicetree@vger.kernel.org>
-Message-Id: <27644998-b089-44ae-ae5f-95f4d7cbe756@app.fastmail.com>
-In-Reply-To: <aGMjfxIvbCkyR5rw@google.com>
-References: <20250625085715.889837-1-daniel.lezcano@linaro.org>
- <aGMjfxIvbCkyR5rw@google.com>
-Subject: Re: [PATCH RFC] timer: of: Create a platform_device before the framework is
- initialized
-Content-Type: text/plain
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH] arm64: dts: qcom: sc7280: Add support for two additional
+ DDR frequencies
+To: Pushpendra Singh <quic_pussin@quicinc.com>,
+ cros-qcom-dts-watchers@chromium.org, andersson@kernel.org,
+ konradybcio@kernel.org, robh@kernel.org, krzk+dt@kernel.org,
+ conor+dt@kernel.org, linux-arm-msm@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Cc: kernel@quicinc.com
+References: <20250701074334.1782967-1-quic_pussin@quicinc.com>
+From: Krzysztof Kozlowski <krzk@kernel.org>
+Content-Language: en-US
+Autocrypt: addr=krzk@kernel.org; keydata=
+ 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 a/A=
+In-Reply-To: <20250701074334.1782967-1-quic_pussin@quicinc.com>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On Tue, Jul 1, 2025, at 01:53, William McVicker wrote:
->> @@ -1550,6 +1553,8 @@ typedef void (*of_init_fn_1)(struct device_node *);
->>  		_OF_DECLARE(table, name, compat, fn, of_init_fn_1_ret)
->>  #define OF_DECLARE_2(table, name, compat, fn) \
->>  		_OF_DECLARE(table, name, compat, fn, of_init_fn_2)
->> +#define OF_DECLARE_PDEV(table, name, compat, fn) \
->> +		_OF_DECLARE(table, name, compat, fn, of_init_fn_pdev)
->
-> To support auto-module loading you'll need to also define the
-> MODULE_DEVICE_TABLE() as part of TIMER_OF_DECLARE_PDEV().
->
-> I haven't tested the patch yet, but aside from my comment above it LGTM.
+On 01/07/2025 09:43, Pushpendra Singh wrote:
+> Cc: kernel@quicinc.com, kernel@oss.qualcomm.com
+> 
+> The SC7280 SoC now supports two additional frequencies. This patch
+> add those frequencies to the BWMON OPP table and updates the frequency
+> mapping table accordingly.
+> 
+> These changes do not impact existing platforms, as the updated mapping
+> only affects the highest OPP. On any given platform, this will continue
+> to vote for the maximum available OPP.
+> 
+> Change-Id: Id3a91e065c49848d9af18e5c3edee0836cb693e5
+> Signed-off-by: Pushpendra Singh <quic_pussin@quicinc.com>
 
-The patch doesn't actually have a module_platform_driver_probe()
-yet either, so loading the module wouldn't actually do anything.
+Doesn't your internal guideline tell you to run checkpatch before sending?
 
-I feel that this RFC by itself a good step in the direction we want, 
-so Daniel should go ahead with prototyping the next two steps:
-adding the platform_driver registration into OF_DECLARE_PDEV,
-and converting a driver so it can be used either with the _OF_DECLARE()
-or the platform_driver case.
+Also it mentions many other things, so read entire guideline prior to
+posting.
 
-Regarding the sh_early_platform_driver code that Rob mentioned,
-I think this one is already better since it doesn't duplicate
-parts of the platform_driver framework and it interfaces with
-device tree based probing.
-
-     Arnd
+Best regards,
+Krzysztof
 
