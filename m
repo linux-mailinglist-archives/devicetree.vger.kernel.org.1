@@ -1,115 +1,143 @@
-Return-Path: <devicetree+bounces-191713-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-191714-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id DFDF5AF0303
-	for <lists+devicetree@lfdr.de>; Tue,  1 Jul 2025 20:45:21 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id D9980AF03D2
+	for <lists+devicetree@lfdr.de>; Tue,  1 Jul 2025 21:32:51 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 18900169C5B
-	for <lists+devicetree@lfdr.de>; Tue,  1 Jul 2025 18:45:22 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id E0C331C20CAE
+	for <lists+devicetree@lfdr.de>; Tue,  1 Jul 2025 19:33:07 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 06BF223AB87;
-	Tue,  1 Jul 2025 18:45:17 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D252A2741DA;
+	Tue,  1 Jul 2025 19:32:45 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="SDEXL8+y"
+	dkim=pass (2048-bit key) header.d=sntech.de header.i=@sntech.de header.b="COv/WEvL"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pf1-f169.google.com (mail-pf1-f169.google.com [209.85.210.169])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from gloria.sntech.de (gloria.sntech.de [185.11.138.130])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5E874244667;
-	Tue,  1 Jul 2025 18:45:15 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.169
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8407A25B1FC;
+	Tue,  1 Jul 2025 19:32:43 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.11.138.130
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1751395516; cv=none; b=f1K98z2QLHWBuBjmhwQ3iO+EgHEGfuDmIwkZZOIqi9VkPkhQiFhKYhJhx4//soZGtZOJD8X9pDRROPANmqApLy1IFRBq9PFq8JOm4q6hTIx4FnyqkJ5iCB12qiwScvz9TyvzRDBw0e8eIUvkJpEnyQG+cbYC4iAh1EkqlmR+EZs=
+	t=1751398365; cv=none; b=jLtG+eYqpt2QjEXH0KNq4rSaebw2DiUKR2nUuZLLOVQyekdH5e6Qfhj4vEaXN1qOf8U3M3sqGK06r/vyGCfsRQifiKlb6KLc+EhTvKpQUCwgiIS3cqoKxGQXON5hII0PI+alEot7A2AbmBCIVIWUGvt284ISAwGRzDHcRKUcGnA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1751395516; c=relaxed/simple;
-	bh=yotvt+VubhlQzqgAXZ/7b4/jA+phf336AoyYvG5yUCM=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=miJlg/OdpSo06gcefx+6JnVLddqF9X8awpl//Opay9SI7R29TeRG6WkbBSneYxFjlwohD+ZcPdxuXQD2tb+KvzKfxOUJuOGrCHffRjDSdgo1sa6RUgT62Vt9e+97xFOz2mjOf4heChs2FOGkyNAl423PT8iRN38xDfFpV/a0z+I=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=SDEXL8+y; arc=none smtp.client-ip=209.85.210.169
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-pf1-f169.google.com with SMTP id d2e1a72fcca58-74264d1832eso4496079b3a.0;
-        Tue, 01 Jul 2025 11:45:15 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1751395515; x=1752000315; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=Tnia59gg+T70FOFbTyMycg8nemN4LO0JGdZNZ7zRv+c=;
-        b=SDEXL8+yqPVFmEoGpcHnrPGD1fpWc9Skv+nChmsKW8/hHkgI4JvZRYXjC8Vm95QGyx
-         iwxItvIXroiiGztKjOexYoJgj6t5m/fofWfk6IDRV7nhauxXvf1fMT3krbJMSmii7Wvc
-         8sLbmWzWxjMl8uy8NqAhXM0736aPRFWBgbJoUmFznb7GZAyzncXIJW6L8vI2UYYGQwZE
-         +EH0KBJUI2gO77j68Z/HE2UMGuVLou6Rzrvf00eQtDREEhXpJWdiAuDxaiQBiKsLwDfo
-         t8aCvoS3ooQr/ONWPqRjisOSlcvllID44ocqy2l7P/zK7WFTHgD+S2jPbiED/NTz1o7h
-         6uNw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1751395515; x=1752000315;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=Tnia59gg+T70FOFbTyMycg8nemN4LO0JGdZNZ7zRv+c=;
-        b=D7eAfXu5q6Z1Xt2xrrKTtSSrgFwrlOnDeKJ/24v3vgqOwCZUpDKHpTIta3S4jSWJfT
-         neWzaZgCI7IDWnZdUxzn7L+6Rsr21Tw/z0Vml3F56ZqcY86sbhsW4SPErHVvXsCgzIO/
-         ndx0D8tAgiW3wvCq8KPlPQ1uEBaoTrghx/a25c8tUXCE+bNjVx+tXKUjOR5sRbdIXSXQ
-         hKjw6JCQKFylOVh7pda1B+iGD4SRkQQWvh6ktJv0EHIGeu0LamSTo4bLJt6R4O85pBzL
-         rNbOiv7B1tDwvz2QswHAj4bZNiAtXyvA3l0feZvmEKlA1IhQ6QqchyKVaYc/WvQF89ab
-         4EPQ==
-X-Forwarded-Encrypted: i=1; AJvYcCVX3nXe2gKvaOFpug/FKBLvN1CrQsZ6hv0I5UeJx5tHY0EuXtfIK2G/hPvw53ZxtuA5KhAtp4iNCfBQq2VN@vger.kernel.org, AJvYcCVXJE+EwqCASgNEj/ra/hyaW+qoWw8rCTMchxsAz9t6JTzTxaIjVWMhXr6SmZsyhiyVUnydCJHJDveaoKA=@vger.kernel.org, AJvYcCX2xn96WbSZex4KxPlm0iNPZ4wdeHo1IYThr2CJXDyQjmy4jwQnbuBkDgiHudj+FWggfNqi6WJNtOm7@vger.kernel.org, AJvYcCXj/z+93g6W0jFwjGhfY8yZsvcyslBWMJPDTxuqHFLGyuzFo6tl8IGbgxHRLh6jTCF1HFxlNSAAwgzGXJE=@vger.kernel.org
-X-Gm-Message-State: AOJu0Yx/c5UQ5yl09ZiVB3ets6YVsrEbYRpESKQrAL4JO8Wt992fhp76
-	uByWNieCZKvQcneUlOVduvu2amW7iA/JMUyIsN2bG8oy/oGiL9iIo63U
-X-Gm-Gg: ASbGncsuJ+1m/aRWvSQSCkzxEmTz/M9GZXK9UDbSgjzvnYqBfDtQAoRPGLF4OlPynM6
-	LBPrWKE8wqKMfdaeQk87b6wgz2qjnUHaClE2f1rBjKQ6h4o4EsdVsqBKzfnyMEiaVsTDkttIuX7
-	zodDX7ohznZshdU1AAr/Rut6RkGYKmt6SXdb1NuBNbs9y2DhUoY78e92NLZJXF2qeXBzrAATllR
-	Xq+2i/7EsfKaC70veygO2ybxcRJBWiYcnAvvDZv21HQrJIGXpVv3VK33w1fryR/zrW79ZaR9qwh
-	45kDspBo/XEZZV6N5LWjSBRsdNf6lNBUQZxFTosn/MMpQ2aCTzMot4f6lzI2Qi8=
-X-Google-Smtp-Source: AGHT+IGKUG44G2rksdxfziQ+CeEH+a5tb04A0pht0E6IWn/xT8NXyFNARVMhyyLdtFiys43l33hw2w==
-X-Received: by 2002:a05:6a00:929f:b0:748:f750:14c6 with SMTP id d2e1a72fcca58-74af6f26d05mr26751724b3a.14.1751395514656;
-        Tue, 01 Jul 2025 11:45:14 -0700 (PDT)
-Received: from google.com ([2620:15c:9d:2:7bb0:b5bc:35bb:1cb4])
-        by smtp.gmail.com with ESMTPSA id d2e1a72fcca58-74af541cc81sm12258320b3a.58.2025.07.01.11.45.13
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 01 Jul 2025 11:45:14 -0700 (PDT)
-Date: Tue, 1 Jul 2025 11:45:11 -0700
-From: Dmitry Torokhov <dmitry.torokhov@gmail.com>
-To: Jens Reidel <adrian@mainlining.org>
-Cc: Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Joel Selvaraj <joelselvaraj.oss@gmail.com>, Oliver Graute <oliver.graute@kococonnector.com>, 
-	Felix Kaechele <felix@kaechele.ca>, Andreas Kemnade <andreas@kemnade.info>, 
-	Fabio Estevam <festevam@denx.de>, Al Viro <viro@zeniv.linux.org.uk>, 
-	Yu Jiaoliang <yujiaoliang@vivo.com>, linux-input@vger.kernel.org, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, phone-devel@vger.kernel.org, linux@mainlining.org, 
-	~postmarketos/upstreaming@lists.sr.ht
-Subject: Re: [PATCH 0/2] Add FT8716 support
-Message-ID: <ymxplfejkkyups4w6wgrjwwju57sx3psbulvs444jghpvtvim7@nnf7ir2iwd4w>
-References: <20250313202017.19621-1-adrian@mainlining.org>
+	s=arc-20240116; t=1751398365; c=relaxed/simple;
+	bh=niNzJeXLvd5lsHTembyVglZRkYxCH3CvL+tZgUzKEfY=;
+	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=TaX77UP326RdMtL3aLAclr9rbfVDTJTfB+SgO0WKqbUJdV+hO2RIXtPbFY7Tgxr27ySxF0MSzhJqjWvEQpTw7RVy3nd6FnKmGngZ2WQNYMDC97CZQSBmvdmuJFlVDjIx8r0IlThsrlaasIYuEPIgBAli68tGLBRu15z7Y8ab42U=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sntech.de; spf=pass smtp.mailfrom=sntech.de; dkim=pass (2048-bit key) header.d=sntech.de header.i=@sntech.de header.b=COv/WEvL; arc=none smtp.client-ip=185.11.138.130
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sntech.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=sntech.de
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sntech.de;
+	s=gloria202408; h=Content-Type:Content-Transfer-Encoding:MIME-Version:
+	References:In-Reply-To:Message-ID:Date:Subject:Cc:To:From:Reply-To;
+	bh=Dj2RXbZ/Tv5yAxHz/6WWadAXm0f+rEasqd5wSxNrNfk=; b=COv/WEvLADeJ6fd21KY0S80AoD
+	XAN2jdqZDbmJLuHjkwzeQOPC/J+uLnEp4cOPZMr64nMBTTT7O9tyv1Eo5P3D9VzrPR9ii5R68h9u8
+	x0wMgRHL8MjOUXKpx0bTeMlN96lBxW0hVtxOE/OolJEMZsQgACj71Dk+raYFqFUv+5Gt3KAdnqG5O
+	zQjvfJUL9d9YX9i6ONayuZX4GPHZyO0Ot9qQXBgoQ4iOfk84Nb3DKg+BwfGpR8mQuFu0N7a1Z0iag
+	J4Vn9kQA332jEckCkT25MeMr0VHE/7KDpvPcC6ylfJlD/Vwf3GgBc+asJkJag5aiUgs2e71ApfHnG
+	sFw0nDZw==;
+Received: from i53875bc7.versanet.de ([83.135.91.199] helo=diego.localnet)
+	by gloria.sntech.de with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+	(Exim 4.94.2)
+	(envelope-from <heiko@sntech.de>)
+	id 1uWgi0-0007Fd-TC; Tue, 01 Jul 2025 21:32:00 +0200
+From: Heiko =?UTF-8?B?U3TDvGJuZXI=?= <heiko@sntech.de>
+To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, Oded Gabbay <ogabbay@kernel.org>,
+ Jonathan Corbet <corbet@lwn.net>,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>,
+ David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
+ Sumit Semwal <sumit.semwal@linaro.org>,
+ Christian =?UTF-8?B?S8O2bmln?= <christian.koenig@amd.com>,
+ Sebastian Reichel <sebastian.reichel@collabora.com>,
+ Nicolas Frattaroli <nicolas.frattaroli@collabora.com>,
+ Kever Yang <kever.yang@rock-chips.com>, Robin Murphy <robin.murphy@arm.com>,
+ Daniel Stone <daniel@fooishbar.org>, Da Xue <da@libre.computer>,
+ Jeff Hugo <jeff.hugo@oss.qualcomm.com>, Tomeu Vizoso <tomeu@tomeuvizoso.net>
+Cc: devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org,
+ dri-devel@lists.freedesktop.org, linux-doc@vger.kernel.org,
+ linux-media@vger.kernel.org, linaro-mm-sig@lists.linaro.org,
+ Tomeu Vizoso <tomeu@tomeuvizoso.net>
+Subject: Re: [PATCH v7 03/10] accel/rocket: Add IOCTL for BO creation
+Date: Tue, 01 Jul 2025 21:31:59 +0200
+Message-ID: <8888010.K2JlShyGXD@diego>
+In-Reply-To: <20250606-6-10-rocket-v7-3-dc16cfe6fe4e@tomeuvizoso.net>
+References:
+ <20250606-6-10-rocket-v7-0-dc16cfe6fe4e@tomeuvizoso.net>
+ <20250606-6-10-rocket-v7-3-dc16cfe6fe4e@tomeuvizoso.net>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20250313202017.19621-1-adrian@mainlining.org>
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset="utf-8"
 
-On Thu, Mar 13, 2025 at 09:20:15PM +0100, Jens Reidel wrote:
-> This series adds support for the FocalTech FT8716 touchscreen to the
-> edt-ft5x06 driver. It was tested on the BQ Aquaris X (bq-bardock) and BQ
-> Aquaris X Pro (bq-bardockpro).
-> 
-> Jens Reidel (2):
->   dt-bindings: input: touchscreen: edt-ft5x06: Document FT8716 support
->   Input: edt-ft5x06 - add support for FocalTech FT8716
-> 
->  .../devicetree/bindings/input/touchscreen/edt-ft5x06.yaml   | 1 +
->  drivers/input/touchscreen/edt-ft5x06.c                      | 6 ++++++
->  2 files changed, 7 insertions(+)
+Am Freitag, 6. Juni 2025, 08:28:23 Mitteleurop=C3=A4ische Sommerzeit schrie=
+b Tomeu Vizoso:
+> This uses the SHMEM DRM helpers and we map right away to the CPU and NPU
+> sides, as all buffers are expected to be accessed from both.
+>=20
+> v2:
+> - Sync the IOMMUs for the other cores when mapping and unmapping.
+>=20
+> v3:
+> - Make use of GPL-2.0-only for the copyright notice (Jeff Hugo)
+>=20
+> v6:
+> - Use mutexes guard (Markus Elfring)
+>=20
+> v7:
+> - Assign its own IOMMU domain to each client, for isolation (Daniel
+>   Stone and Robin Murphy)
+>=20
+> Reviewed-by: Jeffrey Hugo <quic_jhugo@quicinc.com>
+> Signed-off-by: Tomeu Vizoso <tomeu@tomeuvizoso.net>
+> ---
 
-Applied the lot, thank you.
+> diff --git a/drivers/accel/rocket/rocket_gem.c b/drivers/accel/rocket/roc=
+ket_gem.c
+> new file mode 100644
+> index 0000000000000000000000000000000000000000..61b7f970a6885aa13784daa12=
+22611a02aa10dee
+> --- /dev/null
+> +++ b/drivers/accel/rocket/rocket_gem.c
+> @@ -0,0 +1,115 @@
+> +// SPDX-License-Identifier: GPL-2.0-only
+> +/* Copyright 2024-2025 Tomeu Vizoso <tomeu@tomeuvizoso.net> */
+> +
+> +#include <drm/drm_device.h>
+> +#include <drm/drm_utils.h>
+> +#include <drm/rocket_accel.h>
+> +#include <linux/dma-mapping.h>
+> +#include <linux/iommu.h>
+> +
+> +#include "rocket_device.h"
+> +#include "rocket_drv.h"
+> +#include "rocket_gem.h"
+> +
+> +static void rocket_gem_bo_free(struct drm_gem_object *obj)
+> +{
+> +	struct rocket_device *rdev =3D to_rocket_device(obj->dev);
+> +	struct rocket_gem_object *bo =3D to_rocket_bo(obj);
+> +	size_t unmapped;
+> +
+> +	drm_WARN_ON(obj->dev, bo->base.pages_use_count > 1);
 
--- 
-Dmitry
+This should probably be
+    drm_WARN_ON(obj->dev, refcount_read(&bo->base.pages_use_count) > 1);
+
+as pages_use_count is of type refcount_t since
+commit 051b6646d36d ("drm/shmem-helper: Use refcount_t for pages_use_count")
+
+Heiko
+
+
 
