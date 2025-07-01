@@ -1,222 +1,151 @@
-Return-Path: <devicetree+bounces-191355-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-191357-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 76D3DAEF018
-	for <lists+devicetree@lfdr.de>; Tue,  1 Jul 2025 09:51:07 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 00AFCAEF02F
+	for <lists+devicetree@lfdr.de>; Tue,  1 Jul 2025 09:54:21 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 6700D1892DE6
-	for <lists+devicetree@lfdr.de>; Tue,  1 Jul 2025 07:51:23 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 2D424164057
+	for <lists+devicetree@lfdr.de>; Tue,  1 Jul 2025 07:54:21 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 88DED264626;
-	Tue,  1 Jul 2025 07:50:39 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3A4E225C81F;
+	Tue,  1 Jul 2025 07:54:15 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=axis.com header.i=@axis.com header.b="MxGhosPc"
+	dkim=pass (2048-bit key) header.d=arndb.de header.i=@arndb.de header.b="fQvKWJVy";
+	dkim=pass (2048-bit key) header.d=messagingengine.com header.i=@messagingengine.com header.b="VSKx4sNM"
 X-Original-To: devicetree@vger.kernel.org
-Received: from MRWPR03CU001.outbound.protection.outlook.com (mail-francesouthazon11011070.outbound.protection.outlook.com [40.107.130.70])
+Received: from fout-a5-smtp.messagingengine.com (fout-a5-smtp.messagingengine.com [103.168.172.148])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 36BB625EFB6;
-	Tue,  1 Jul 2025 07:50:36 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.130.70
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1751356239; cv=fail; b=NgAOuC857uxQttvERn7YpAx+/T24f3Y0LhSQmTqtJ58XGw9lrePnmELkAi6bO6oWnXD+L6ZMlSwJM1vUn9bMGM366vOen4TtSW8y4YeBbduBvblqyYhYVIB1pESp/4dxk2oo/ajqLb+w3+4MpvyAoz29w8WoUcDl2srGfrh4rXY=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1751356239; c=relaxed/simple;
-	bh=ZIqrQX3B5auXXf7dh6XPzPgSAICs/5GwnGv787GA8xw=;
-	h=From:To:CC:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=okiD2BsKNXzuUq/7yKiEQVX16oYkJZhtqKK2SWNdDT2bJ/qYd/VS4t3PrXIxV8tRaNEqfK/KWgLhc8m4kTjjv4JTiTzZUFWci+I+oNNqP5v6mLH3zMXIvtmVNw9Nywzrf4fvxqQ0Sxwv1Dfe9MXg5dExjC7kfzr9P0bl+SS0eRw=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=axis.com; spf=pass smtp.mailfrom=2n.com; dkim=pass (1024-bit key) header.d=axis.com header.i=@axis.com header.b=MxGhosPc; arc=fail smtp.client-ip=40.107.130.70
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=axis.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=2n.com
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=PKTj+sJRB2fGVJNCzLb/k1RnxlWaAIfboFtUC7pF/RDX2b4DqdVUt+D199js1bWdoAA8CpplwXbDDiV8JlaKktg5rL0XxbPKwqqyJ/q6Vll4Kj/PpRXqAtRdaD8vRS1Nt4iInsEO5MFcm6giF4pB7xiAztrSOxElWb9rxI3+EbXmpn5szQsGwZLPcf65wtern9XpnIW8vFWPbByQz0+WZrhlOtsUY7UZO0yqtYj0FBazg3tadx4JFn5wWENdMdSdTlOTnvFqd6roJwXBXmELRS2m3LAL/TorwSzvGbstsD62QvbQfzRfi+IkzIMmDPHfD1SSfmKPUxZTVriO/QTk3Q==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=3nncrQjzvQr2sLVmhKgPZphMPq7RADJzbXx84i4q1ds=;
- b=yWPQiIRlZwMnR43ovKJnBCbdIdvIxR1oOgy7GfTCH2TV6pc2NEvlopi/NXNf+mHuZk/seG3GnbmYY14mFkCQAMdnmWtynoc5iurxRlg7cCwE2Mknijh09NlrqSGHJGfZc9ItqKMjM7m118Q0lzdmlqihRhd0tFN8ZHPDEeoA7K+taV6afLSt1dPuVfb3nd3TOHomu0/SJ7rTrbl6mj9f0v2S7je6JHAPBEyX1uPJGb4DXqkRkegbNM/ho049N1Z7a8JL3hzeD8gaIPSIIfeOqEZrnDtu/e9Ep9pbnN830MqXvr5bqOYOg734fmqBRroN/onAQHWu/vCDr6BmaYpStA==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
- 195.60.68.100) smtp.rcpttodomain=broadcom.com smtp.mailfrom=2n.com;
- dmarc=fail (p=none sp=none pct=100) action=none header.from=axis.com;
- dkim=none (message not signed); arc=none (0)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=axis.com; s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=3nncrQjzvQr2sLVmhKgPZphMPq7RADJzbXx84i4q1ds=;
- b=MxGhosPcijLV8pZJMw1MaNOIAT64pOraFrito0AgnorH5Ow3Vtul9VCOHQT9S9NImn6Pmq8htt+cV6hnJa+FolodcexJh/k9ADn808dUf5DcHlDPsDWAn9+t/6zKqS67sKGbgOCbOdN1WGAHWV7oLBvQGc8dXSPY1JM51A+v2IE=
-Received: from AM4PR07CA0026.eurprd07.prod.outlook.com (2603:10a6:205:1::39)
- by GV2PR02MB11417.eurprd02.prod.outlook.com (2603:10a6:150:2a1::8) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8880.31; Tue, 1 Jul
- 2025 07:50:34 +0000
-Received: from AM3PEPF00009BA2.eurprd04.prod.outlook.com
- (2603:10a6:205:1:cafe::44) by AM4PR07CA0026.outlook.office365.com
- (2603:10a6:205:1::39) with Microsoft SMTP Server (version=TLS1_3,
- cipher=TLS_AES_256_GCM_SHA384) id 15.20.8901.17 via Frontend Transport; Tue,
- 1 Jul 2025 07:50:33 +0000
-X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 195.60.68.100)
- smtp.mailfrom=2n.com; dkim=none (message not signed) header.d=none;dmarc=fail
- action=none header.from=axis.com;
-Received-SPF: Pass (protection.outlook.com: domain of 2n.com designates
- 195.60.68.100 as permitted sender) receiver=protection.outlook.com;
- client-ip=195.60.68.100; helo=mail.axis.com; pr=C
-Received: from mail.axis.com (195.60.68.100) by
- AM3PEPF00009BA2.mail.protection.outlook.com (10.167.16.27) with Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.20.8901.15 via Frontend Transport; Tue, 1 Jul 2025 07:50:33 +0000
-Received: from pcczc3457tyd.2n.cz.axis.com (10.4.0.13) by se-mail01w.axis.com
- (10.20.40.7) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.44; Tue, 1 Jul
- 2025 09:50:32 +0200
-From: =?UTF-8?q?Kamil=20Hor=C3=A1k=20-=202N?= <kamilh@axis.com>
-To: <florian.fainelli@broadcom.com>, <bcm-kernel-feedback-list@broadcom.com>,
-	<andrew@lunn.ch>, <hkallweit1@gmail.com>, <linux@armlinux.org.uk>,
-	<davem@davemloft.net>, <edumazet@google.com>, <kuba@kernel.org>,
-	<pabeni@redhat.com>, <krzk+dt@kernel.org>, <conor+dt@kernel.org>
-CC: <kamilh@axis.com>, <netdev@vger.kernel.org>, <devicetree@vger.kernel.org>,
-	<linux-kernel@vger.kernel.org>, <f.fainelli@gmail.com>, <robh@kernel.org>,
-	<andrew+netdev@lunn.ch>, <horms@kernel.org>, <corbet@lwn.net>,
-	<linux-doc@vger.kernel.org>
-Subject: [PATCH net v5 4/4] net: phy: bcm54811: Fix the PHY initialization
-Date: Tue, 1 Jul 2025 09:50:15 +0200
-Message-ID: <20250701075015.2601518-5-kamilh@axis.com>
-X-Mailer: git-send-email 2.39.5
-In-Reply-To: <20250701075015.2601518-1-kamilh@axis.com>
-References: <20250701075015.2601518-1-kamilh@axis.com>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 64E51263F30;
+	Tue,  1 Jul 2025 07:54:12 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=103.168.172.148
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1751356455; cv=none; b=orfvOII40x1UR6j4Fos2ilJl5Kev/yRYKBCOprquT+jpRQgxQmCHVrxiRN2cbVGI+i1X3A1wDEjbCemC1r7uK9AO7FSBWPk7dIVMn81uUDUkTEfF3UZ2DTBZOPvdSgGJMzcKIpHGroOph/zSi0idGyNu4GJfw6PjwcJea63S6Zw=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1751356455; c=relaxed/simple;
+	bh=h+G1tTJ0bFf9zk0gY6dlDAUz1LYkXgQlPfSzWe/IUJg=;
+	h=MIME-Version:Date:From:To:Cc:Message-Id:In-Reply-To:References:
+	 Subject:Content-Type; b=G2frK6YnRuIBl+9wthC6HWbrh3tvFuvcUi769AGFjiFZjdYKB2r82FbjxJ7lihj1j/851nASUEwF15OwgW187+9p1zknSL3oUB1l6GqR6W6zYc6N3J7sIkXt4O9qeNR7nqx/N/ZxTb2hCQD6VxC/qx49nCfNHRKtr1qtVH7jh6I=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arndb.de; spf=pass smtp.mailfrom=arndb.de; dkim=pass (2048-bit key) header.d=arndb.de header.i=@arndb.de header.b=fQvKWJVy; dkim=pass (2048-bit key) header.d=messagingengine.com header.i=@messagingengine.com header.b=VSKx4sNM; arc=none smtp.client-ip=103.168.172.148
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arndb.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=arndb.de
+Received: from phl-compute-05.internal (phl-compute-05.phl.internal [10.202.2.45])
+	by mailfout.phl.internal (Postfix) with ESMTP id 4BB3CEC04B8;
+	Tue,  1 Jul 2025 03:54:11 -0400 (EDT)
+Received: from phl-imap-02 ([10.202.2.81])
+  by phl-compute-05.internal (MEProxy); Tue, 01 Jul 2025 03:54:11 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=arndb.de; h=cc
+	:cc:content-transfer-encoding:content-type:content-type:date
+	:date:from:from:in-reply-to:in-reply-to:message-id:mime-version
+	:references:reply-to:subject:subject:to:to; s=fm1; t=1751356451;
+	 x=1751442851; bh=zYIM/y5KUb8LuLsTwnFRYfBitpCmTyytEVjI+bZcC+M=; b=
+	fQvKWJVy2F3XL9mrW/NsX/znHcPnnTFslnWBNBlOamy2LW4SuQaEyFVZxZP0TPGL
+	h24EJEbr2R0HrUPO6hUYxeDCUpwbWANk3gaCg3BndYUyUY3fPMm/kt3lyQQbsY5B
+	Qgffs2amWH6K5UtF9OGJo8DsHytlaLgajonYKqzKvEYBzr5MKTy2/d1fS1Rv1hjN
+	Tqrlxr8Pjl/EYxhzvJ6LY64woUgvSJlZmckvcn7146lOs3CA/otzxs/21jlY6Knr
+	nFjmawuOv9oNUD28wJFbb2zGfCayZDb8lUWzo0pXx/kjfYnTb7ySCL5x+TgnZcvE
+	oFuGYjWsu0/XCzgXZfhXrg==
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
+	messagingengine.com; h=cc:cc:content-transfer-encoding
+	:content-type:content-type:date:date:feedback-id:feedback-id
+	:from:from:in-reply-to:in-reply-to:message-id:mime-version
+	:references:reply-to:subject:subject:to:to:x-me-proxy
+	:x-me-sender:x-me-sender:x-sasl-enc; s=fm2; t=1751356451; x=
+	1751442851; bh=zYIM/y5KUb8LuLsTwnFRYfBitpCmTyytEVjI+bZcC+M=; b=V
+	SKx4sNM2UGFbEnljcl6Y58fity3E1hqrLS2cdYU50g5m1XH+4Gy2iI0xOiyY64Pm
+	l37XCLysJd9arB8gs9uTuZrDirMv+maPlHY4Q7hOrHvDhRUJjHmLcPE0kY7/vniy
+	4Cgbh6PwaCafaGgMKkjIXRPbi1NreRcRoQ7JkJqVt6bW06luGBghN0V8K3F9v8p1
+	b5CNYMY6UKasWTV+D8qEyjvgmPVHpKZJo6YAH6rQLa1CqxwF6T8tM+hLv27Jhhmc
+	ZI23FoaPD8LEUFm8/AW8NydgIgKjIkbZDvIzY34cyVZvN+tyCoL72tXbFrUV5FqV
+	mpolCCIdrGzm8RbS64b9g==
+X-ME-Sender: <xms:I5RjaE9borZee998x-h_5WVKHMNTHkps3VnUh9PTj4kTa4i1KK1TWA>
+    <xme:I5RjaMv285eOopSFmrNL2zt94807nqhXbs6RCRnSBPqIQpdxGpCQlqnQfCgLVRlIe
+    sn4BocR7nYIyWkiZHU>
+X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgeeffedrtdefgddugedtvdcutefuodetggdotefrod
+    ftvfcurfhrohhfihhlvgemucfhrghsthforghilhdpuffrtefokffrpgfnqfghnecuuegr
+    ihhlohhuthemuceftddtnecusecvtfgvtghiphhivghnthhsucdlqddutddtmdenucfjug
+    hrpefoggffhffvvefkjghfufgtgfesthejredtredttdenucfhrhhomhepfdetrhhnugcu
+    uegvrhhgmhgrnhhnfdcuoegrrhhnugesrghrnhgusgdruggvqeenucggtffrrghtthgvrh
+    hnpefhtdfhvddtfeehudekteeggffghfejgeegteefgffgvedugeduveelvdekhfdvieen
+    ucevlhhushhtvghrufhiiigvpedtnecurfgrrhgrmhepmhgrihhlfhhrohhmpegrrhhnug
+    esrghrnhgusgdruggvpdhnsggprhgtphhtthhopeduhedpmhhouggvpehsmhhtphhouhht
+    pdhrtghpthhtohepjhhsthhulhhtiiesghhoohhglhgvrdgtohhmpdhrtghpthhtohepsh
+    grrhgrvhgrnhgrkhesghhoohhglhgvrdgtohhmpdhrtghpthhtohepfihilhhlmhgtvhhi
+    tghkvghrsehgohhoghhlvgdrtghomhdprhgtphhtthhopehhrghnshhgsehkvghrnhgvlh
+    drohhrghdprhgtphhtthhopehrohgshheskhgvrhhnvghlrdhorhhgpdhrtghpthhtohep
+    shgsohihugeskhgvrhhnvghlrdhorhhgpdhrtghpthhtohepsghrhigrnhdrohguohhnoh
+    hghhhuvgeslhhinhgrrhhordhorhhgpdhrtghpthhtohepuggrnhhivghlrdhlvgiitggr
+    nhhosehlihhnrghrohdrohhrghdprhgtphhtthhopehlohhrvghniihordhpihgvrhgrlh
+    hishhisehlihhnrghrohdrohhrgh
+X-ME-Proxy: <xmx:I5RjaKDOHmfxwDXqz6reR74Lp2qNwZ0tnhwyINVohVBmr3SxDc0-Qw>
+    <xmx:I5RjaEcmJRYHeoPYaMv99I6yPTutVSAhzTydwxd7tM6iGaMNlBxwlQ>
+    <xmx:I5RjaJPa7OXiI8J-zZyOCzVZIr5DGUEDP2FNQM4KzV01AWhDT6QhKA>
+    <xmx:I5RjaOm-oywwV26M2wEaJUVCX7K6ffXR310n0WndyUn81ud1BsCbDw>
+    <xmx:I5RjaFXfvouvH1YOkUeI79muLG8uoWNYvYRRg5Uvn_zAB9nuADwzfmRR>
+Feedback-ID: i56a14606:Fastmail
+Received: by mailuser.phl.internal (Postfix, from userid 501)
+	id 05E2B700063; Tue,  1 Jul 2025 03:54:11 -0400 (EDT)
+X-Mailer: MessagingEngine.com Webmail Interface
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 8bit
-X-ClientProxiedBy: se-mail02w.axis.com (10.20.40.8) To se-mail01w.axis.com
- (10.20.40.7)
-X-EOPAttributedMessage: 0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: AM3PEPF00009BA2:EE_|GV2PR02MB11417:EE_
-X-MS-Office365-Filtering-Correlation-Id: db1f3a90-0e41-4274-eb2c-08ddb873f5b0
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam:
-	BCL:0;ARA:13230040|36860700013|1800799024|82310400026|7416014|376014|19092799006|921020|7053199007;
-X-Microsoft-Antispam-Message-Info:
-	=?utf-8?B?cWZqL0swVUh4TjJyREM1NEhXdStSSEV0azU4SUR0T3VBQk1xRXZaNlB4eE9m?=
- =?utf-8?B?VjFNZVVEbFpZR3hvMzNCdEFjSGtPZ1pwSWx0RXFNUVkzQk9PMkl3c3UyTHF1?=
- =?utf-8?B?RTNnVUx3L0NNaDhtZ0Z2VDBSN09Dc3JKMjJ0OEVuaXduK2ZVVU9Cd255NDVR?=
- =?utf-8?B?RGR1dUtSdC9ibFZiTHl3aHllYkFUV002MU81VjlFMU1lakRlTFFocm5GcEdD?=
- =?utf-8?B?aDlSKzlCUDNuY0Uvb1drZnNON09OQ3NubFI5dzBxZEE0U2VtNnBMZkdEaFhI?=
- =?utf-8?B?UHNXSlZETS9DR1JXMC8xOGNpQ1JlRDB4d2h1VnFScVBXdC9mSEFaQWZIV2tL?=
- =?utf-8?B?b2NMampSMkw1TEFTNnFnRGlvbWJNbmxGVnVaR2F5UkRxRU53NFhZNDJkS1Bj?=
- =?utf-8?B?VEs1Z1c5bDlSYUV3SHRXV05HaXNjcEtCWVVXOStXYzVNaDk5SDY0VHRLbEpV?=
- =?utf-8?B?RGl3VW9BSlFrSEg1ajBhZ2IxOUtvWXRvemhUSUMybUxhb29ON2xZeUlkMW9l?=
- =?utf-8?B?Z2N1ZWgrWmt0cHhWVTRaTTd3QkZLMTFJaHVJUlhBMkRpV1pWa0dWRHNZSWk2?=
- =?utf-8?B?OXJPbVFFd0xMb1RDMGxSYWx5ckVkK3RLSUpBTUxENWxybHpsblltZzNlcWxl?=
- =?utf-8?B?dSt1Rjl1UUNqWks2bkF0RDBwVkRXWkJYWmRrZklBYm9BenpRMVMvdFQvVFQ1?=
- =?utf-8?B?cUNMRkFrWGdBeUFNbmoxaTl6d2RxenhlKzhuMFBNUVFieU95blNzRVBRTXdX?=
- =?utf-8?B?clhUMWs1MkxEa1BtK3F2V1BiUWZ2cFp6WHU2amF4blMwa3Z2WndDSXUzSk9Q?=
- =?utf-8?B?V2ppOXhJWWVsZkRianRBK1pVY1N0eW1yZUdCbE1sL21raXNFNjFOY3dQNkhE?=
- =?utf-8?B?Q3BmaHdIRnA1enpSamxyMzFHeVR1a2VQVDdLYWRjMWdET084RlFBNjl5M2FN?=
- =?utf-8?B?cVpabUFDS2xsQkFGWUtKcWYvRkt4aVNiZzZFNXJBelVhUDRPSGVMMVh1V3pj?=
- =?utf-8?B?VGlUajBPMmFYUkpUWVF5TkpDUXpZdHFtR3Q0MS9OelFxc0xnYnlqRSt3b0Js?=
- =?utf-8?B?MzRiQWRXY25QYVE5TmlRVWJnSDJEakd6ZFk2OW5VRUNTaU5CSnpOYzZuREFt?=
- =?utf-8?B?Mlk1czlJK3JzbEF6TnJITzFjZDJqSnFwZmpSay9CQTBkUk9jaDNvWjNhR1hR?=
- =?utf-8?B?eHV4MHhYc2p3UlJRNE53MDdJbldBWkhCbmhMNTlvRGtKYXpibGRDc1pXd1RV?=
- =?utf-8?B?eWdtSmRqbmtIZEJGc1BPR1VTamxkMDZJaWtLT0d3bmRLMWZpV2ZqQjMxLzQr?=
- =?utf-8?B?ejN6YzM3NlRXN2lFaWt6NmNRZzVRaUQ2Q2UvT2hhd2xFYWJYUnREWUFFcFRx?=
- =?utf-8?B?RUVIVjdsVUtvZ2g2YVRTT1NMUUZSMDkwRVdaNTBiZWV5bmJZQzV4NFlybXNo?=
- =?utf-8?B?UjcrT3ZlY3J4SWZGTU9VSk5HZDFXR2xLZGJ2cDEzWGtkaHowLyt5K3M1WHpw?=
- =?utf-8?B?U0RWaEMyZTRuY0ZYRVdtZlQ0WkRRQWpFbWhPSEdsZEpjOHlPd0c2SEs2OHFz?=
- =?utf-8?B?SWMrNG1lNkpYL3RIQ1Vta2hHSk5jYlpKcFB1WmUxSU03VU8rNzY5L29rMmw2?=
- =?utf-8?B?OThveUZMTVJQU2R0WlNQOHNHaFFsREVYdTJyYmNmQm5KVGZzbWdBVExoS1Nm?=
- =?utf-8?B?M3pGSHJHYWR4S3BaQjFTZDlHWFB1cnhaOHBlRXhQa2hORS9ORFAzNUMyakl0?=
- =?utf-8?B?c1BnTmlCT1Y3TEtheW5MRDNWdkppL3VKbjY2aVZSblNDRjFwaGpzY1FlN2kr?=
- =?utf-8?B?RW50M0l6VTZJOGpjaWxPUW5oc3MvTyt3RytWMzZxRDEwNjlkUC9Cd2hrREVm?=
- =?utf-8?B?UWJTMTNzdTEyZldSVVdvaWdNK3h5UTMvOTEyN05hRUVvbzBjKzFTNXozRWtV?=
- =?utf-8?B?bUFVOWhHVkpMS3pEako4RXlYSmwyalluY05SdDNPdnpQTmkyZFh6amJCak5a?=
- =?utf-8?B?Z1p3eFJSbGRxMUJIdG9sQlVZSUxJeURhRlBBZy90REpNVm15b21oNkxOQXZo?=
- =?utf-8?B?eXdhL1pySFVBM0NIM0FOWjhqYlB2UHROUUpBQT09?=
-X-Forefront-Antispam-Report:
-	CIP:195.60.68.100;CTRY:SE;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:mail.axis.com;PTR:InfoDomainNonexistent;CAT:NONE;SFS:(13230040)(36860700013)(1800799024)(82310400026)(7416014)(376014)(19092799006)(921020)(7053199007);DIR:OUT;SFP:1101;
-X-OriginatorOrg: axis.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 01 Jul 2025 07:50:33.8823
- (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: db1f3a90-0e41-4274-eb2c-08ddb873f5b0
-X-MS-Exchange-CrossTenant-Id: 78703d3c-b907-432f-b066-88f7af9ca3af
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=78703d3c-b907-432f-b066-88f7af9ca3af;Ip=[195.60.68.100];Helo=[mail.axis.com]
-X-MS-Exchange-CrossTenant-AuthSource:
-	AM3PEPF00009BA2.eurprd04.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Anonymous
-X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: GV2PR02MB11417
+X-ThreadId: T1067a3d3a42d0b8a
+Date: Tue, 01 Jul 2025 09:52:45 +0200
+From: "Arnd Bergmann" <arnd@arndb.de>
+To: "William McVicker" <willmcvicker@google.com>,
+ "Daniel Lezcano" <daniel.lezcano@linaro.org>
+Cc: "Greg Kroah-Hartman" <gregkh@linuxfoundation.org>,
+ linux-kernel@vger.kernel.org,
+ "Lorenzo Pieralisi" <lorenzo.pieralisi@linaro.org>,
+ "Hans de Goede" <hansg@kernel.org>,
+ =?UTF-8?Q?Ilpo_J=C3=A4rvinen?= <ilpo.jarvinen@linux.intel.com>,
+ "Bryan O'Donoghue" <bryan.odonoghue@linaro.org>,
+ "Rob Herring" <robh@kernel.org>, "Thomas Gleixner" <tglx@linutronix.de>,
+ "John Stultz" <jstultz@google.com>, "Stephen Boyd" <sboyd@kernel.org>,
+ "Saravana Kannan" <saravanak@google.com>,
+ Linux-Arch <linux-arch@vger.kernel.org>,
+ "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE" <devicetree@vger.kernel.org>
+Message-Id: <27644998-b089-44ae-ae5f-95f4d7cbe756@app.fastmail.com>
+In-Reply-To: <aGMjfxIvbCkyR5rw@google.com>
+References: <20250625085715.889837-1-daniel.lezcano@linaro.org>
+ <aGMjfxIvbCkyR5rw@google.com>
+Subject: Re: [PATCH RFC] timer: of: Create a platform_device before the framework is
+ initialized
+Content-Type: text/plain
+Content-Transfer-Encoding: 7bit
 
-Reset the bit 12 in PHY's LRE Control register upon initialization.
-According to the datasheet, this bit must be written to zero after
-every device reset.
+On Tue, Jul 1, 2025, at 01:53, William McVicker wrote:
+>> @@ -1550,6 +1553,8 @@ typedef void (*of_init_fn_1)(struct device_node *);
+>>  		_OF_DECLARE(table, name, compat, fn, of_init_fn_1_ret)
+>>  #define OF_DECLARE_2(table, name, compat, fn) \
+>>  		_OF_DECLARE(table, name, compat, fn, of_init_fn_2)
+>> +#define OF_DECLARE_PDEV(table, name, compat, fn) \
+>> +		_OF_DECLARE(table, name, compat, fn, of_init_fn_pdev)
+>
+> To support auto-module loading you'll need to also define the
+> MODULE_DEVICE_TABLE() as part of TIMER_OF_DECLARE_PDEV().
+>
+> I haven't tested the patch yet, but aside from my comment above it LGTM.
 
-Fixes: 03ab6c244bb0 ("net: phy: bcm-phy-lib: Implement BroadR-Reach link modes")
-Signed-off-by: Kamil Horák - 2N <kamilh@axis.com>
-Reviewed-by: Florian Fainelli <florian.fainelli@broadcom.com>
----
- drivers/net/phy/broadcom.c | 25 +++++++++++++++++++++----
- 1 file changed, 21 insertions(+), 4 deletions(-)
+The patch doesn't actually have a module_platform_driver_probe()
+yet either, so loading the module wouldn't actually do anything.
 
-diff --git a/drivers/net/phy/broadcom.c b/drivers/net/phy/broadcom.c
-index 8547983bd72f..a60e58ef90c4 100644
---- a/drivers/net/phy/broadcom.c
-+++ b/drivers/net/phy/broadcom.c
-@@ -667,7 +667,7 @@ static int bcm5481x_read_abilities(struct phy_device *phydev)
- {
- 	struct device_node *np = phydev->mdio.dev.of_node;
- 	struct bcm54xx_phy_priv *priv = phydev->priv;
--	int i, val, err;
-+	int i, val, err, aneg;
- 
- 	for (i = 0; i < ARRAY_SIZE(bcm54811_linkmodes); i++)
- 		linkmode_clear_bit(bcm54811_linkmodes[i], phydev->supported);
-@@ -688,9 +688,19 @@ static int bcm5481x_read_abilities(struct phy_device *phydev)
- 		if (val < 0)
- 			return val;
- 
-+		/* BCM54811 is not capable of LDS but the corresponding bit
-+		 * in LRESR is set to 1 and marked "Ignore" in the datasheet.
-+		 * So we must read the bcm54811 as unable to auto-negotiate
-+		 * in BroadR-Reach mode.
-+		 */
-+		if (BRCM_PHY_MODEL(phydev) == PHY_ID_BCM54811)
-+			aneg = 0;
-+		else
-+			aneg = val & LRESR_LDSABILITY;
-+
- 		linkmode_mod_bit(ETHTOOL_LINK_MODE_Autoneg_BIT,
- 				 phydev->supported,
--				 val & LRESR_LDSABILITY);
-+				 aneg);
- 		linkmode_mod_bit(ETHTOOL_LINK_MODE_100baseT1_Full_BIT,
- 				 phydev->supported,
- 				 val & LRESR_100_1PAIR);
-@@ -747,8 +757,15 @@ static int bcm54811_config_aneg(struct phy_device *phydev)
- 
- 	/* Aneg firstly. */
- 	if (priv->brr_mode) {
--		/* BCM54811 is only capable of autonegotiation in IEEE mode */
--		phydev->autoneg = 0;
-+		/* BCM54811 is only capable of autonegotiation in IEEE mode.
-+		 * In BroadR-Reach mode, disable the Long Distance Signaling,
-+		 * the BRR mode autoneg as supported in other Broadcom PHYs.
-+		 * This bit is marked as "Reserved" and "Default 1, must be
-+		 *  written to 0 after every device reset" in the datasheet.
-+		 */
-+		ret = phy_modify(phydev, MII_BCM54XX_LRECR, LRECR_LDSEN, 0);
-+		if (ret < 0)
-+			return ret;
- 		ret = bcm_config_lre_aneg(phydev, false);
- 	} else {
- 		ret = genphy_config_aneg(phydev);
--- 
-2.39.5
+I feel that this RFC by itself a good step in the direction we want, 
+so Daniel should go ahead with prototyping the next two steps:
+adding the platform_driver registration into OF_DECLARE_PDEV,
+and converting a driver so it can be used either with the _OF_DECLARE()
+or the platform_driver case.
 
+Regarding the sh_early_platform_driver code that Rob mentioned,
+I think this one is already better since it doesn't duplicate
+parts of the platform_driver framework and it interfaces with
+device tree based probing.
+
+     Arnd
 
