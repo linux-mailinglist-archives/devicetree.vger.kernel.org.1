@@ -1,125 +1,123 @@
-Return-Path: <devicetree+bounces-191368-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-191371-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8E709AEF0BF
-	for <lists+devicetree@lfdr.de>; Tue,  1 Jul 2025 10:18:22 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 90776AEF0CE
+	for <lists+devicetree@lfdr.de>; Tue,  1 Jul 2025 10:20:31 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 75C233B84E8
-	for <lists+devicetree@lfdr.de>; Tue,  1 Jul 2025 08:17:56 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 795851BC471F
+	for <lists+devicetree@lfdr.de>; Tue,  1 Jul 2025 08:20:36 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 884FE2620F5;
-	Tue,  1 Jul 2025 08:18:16 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6010026AAB8;
+	Tue,  1 Jul 2025 08:20:08 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="o2ZS5y16"
+	dkim=pass (2048-bit key) header.d=cknow.org header.i=@cknow.org header.b="f/t6qj6p"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from out-182.mta1.migadu.com (out-182.mta1.migadu.com [95.215.58.182])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 59D3A4A0C;
-	Tue,  1 Jul 2025 08:18:16 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 84C8B25FA29
+	for <devicetree@vger.kernel.org>; Tue,  1 Jul 2025 08:20:04 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=95.215.58.182
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1751357896; cv=none; b=AMz+zjSGjxzAywUdvatbdIDhd+4dUQgOJC26tjzD7Gm35vgv1V45V5Ow/V7b+6I4U1EbzcjOqAS4J0fJJNe2xN7GPYmsyS0b50bQhojz+WRE4SQxT74do9C8IHdpdI7a41fkdjxI0LZxH3OPKhYSHZffFjOe/hH8cUH5rSdwfIs=
+	t=1751358008; cv=none; b=cjwe+ns6HJazB3Cz9Mw0BAIEUYtfRnEKDCv6dF2FAPhgE72Mit8h+W29LvbrdqSGY68wPUkCs7mAVhM8p6EFo9o7LhGoTyyPGR4NaSqfXf5bE/iBhuN0fOlquayKbRbcBhmN7qeVUWvl1ilgpSJmWsgiQ4VyaScAS4keXLXvoC4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1751357896; c=relaxed/simple;
-	bh=JawAbuKcYWoYST8hWbMbcg8n7XTzLeaxNe5wApabh/w=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=NmmvjkUtQVLGQMVAluOT3CvdqOxRIChJ4jNkVfGtZPekDpGerReoHYK5EsN17l2ACmJChC1HcT05bA0IbNn8IZaB+HtT1f9x6PBL+5GMkQnO5S08qD6iDNnXNJAuzsuJDWnpAGGo601Bg5PHpI42+bTFaBR6qQCuHNmBLNV8VCE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=o2ZS5y16; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id D7BBFC4CEEB;
-	Tue,  1 Jul 2025 08:18:14 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1751357895;
-	bh=JawAbuKcYWoYST8hWbMbcg8n7XTzLeaxNe5wApabh/w=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=o2ZS5y16YEMWNAlU4163CjQiZrBNWx6Zza7l5DkjrQ4AW7eYVsTzHSRr5w2TO3vkC
-	 x+AzNqw8iQc1Dp0NePGjQzi0yiQODrW6hRIeEYJWOZAq8Jn1rRGuh+5sNmumc7MRPP
-	 7TQZvYsYu0650q71rjAFkiUz5JqB906jTLfqSKWrqCJvRedzvbTQRgthFd/jKQ7vWm
-	 3bnC7HYVeMJrnX7MvT2/ij73m1xwDjwz5w45/DcRX+Dm7X3d6xEBuHHLWc5e5sjX8o
-	 nCNmqyydP90bH0p6cpBUSu87GBHc6/Ni++naIpR//Nkj/UyPzyfwxDisjjx8LDQZql
-	 zAqOlPUMGrz8w==
-Date: Tue, 1 Jul 2025 10:18:12 +0200
-From: Krzysztof Kozlowski <krzk@kernel.org>
-To: =?utf-8?B?VGjDqW8=?= Lebrun <theo.lebrun@bootlin.com>
-Cc: Andrew Lunn <andrew+netdev@lunn.ch>, 
-	"David S. Miller" <davem@davemloft.net>, Eric Dumazet <edumazet@google.com>, 
-	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Nicolas Ferre <nicolas.ferre@microchip.com>, Claudiu Beznea <claudiu.beznea@tuxon.dev>, 
-	Paul Walmsley <paul.walmsley@sifive.com>, Palmer Dabbelt <palmer@dabbelt.com>, 
-	Albert Ou <aou@eecs.berkeley.edu>, Alexandre Ghiti <alex@ghiti.fr>, 
-	Samuel Holland <samuel.holland@sifive.com>, Richard Cochran <richardcochran@gmail.com>, 
-	Russell King <linux@armlinux.org.uk>, Thomas Bogendoerfer <tsbogend@alpha.franken.de>, 
-	Vladimir Kondratiev <vladimir.kondratiev@mobileye.com>, Gregory CLEMENT <gregory.clement@bootlin.com>, 
-	Cyrille Pitchen <cyrille.pitchen@atmel.com>, Harini Katakam <harini.katakam@xilinx.com>, 
-	Rafal Ozieblo <rafalo@cadence.com>, Haavard Skinnemoen <hskinnemoen@atmel.com>, 
-	Jeff Garzik <jeff@garzik.org>, netdev@vger.kernel.org, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, linux-riscv@lists.infradead.org, linux-mips@vger.kernel.org, 
-	Thomas Petazzoni <thomas.petazzoni@bootlin.com>, Tawfik Bayouk <tawfik.bayouk@mobileye.com>
-Subject: Re: [PATCH net-next v2 02/18] dt-bindings: net: cdns,macb: add
- Mobileye EyeQ5 ethernet interface
-Message-ID: <20250701-hulking-idealistic-adder-80ae8f@krzk-bin>
-References: <20250627-macb-v2-0-ff8207d0bb77@bootlin.com>
- <20250627-macb-v2-2-ff8207d0bb77@bootlin.com>
+	s=arc-20240116; t=1751358008; c=relaxed/simple;
+	bh=9kLBJIY1j0nyDfSn8DjLT/zr1ebptC24eyJqaN32CvM=;
+	h=Mime-Version:Content-Type:Date:Message-Id:Cc:Subject:From:To:
+	 References:In-Reply-To; b=oluvnZ4EvFgIbXGl6vC7h5nb4jXpQZmStu11/q8C+GvbnCshTnQwVDDantdtz6fRQHW0QTEdJJMuLli5skgzRnJw3MDGJan+ymqH2IfweY+KN68Bv07o0ebyrxrCoYJA9dWWNzrryyWaXeoCcYO8znREbn5MPFsG/MKmcJmC66Q=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=cknow.org; spf=pass smtp.mailfrom=cknow.org; dkim=pass (2048-bit key) header.d=cknow.org header.i=@cknow.org header.b=f/t6qj6p; arc=none smtp.client-ip=95.215.58.182
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=cknow.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=cknow.org
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
+Mime-Version: 1.0
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cknow.org; s=key1;
+	t=1751357992;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 in-reply-to:in-reply-to:references:references;
+	bh=5lG1lZ4wTBqNQl0EYVKKzdzGkBoFkZNZqcyt1z8734U=;
+	b=f/t6qj6pKG54lCbY53Sunp7mqaPSbRc5H1X0tEQklgAq5suOFxddzV80NWrxXyAvmr/lRV
+	1Dto+v4xBF4t+Zhh3RHFuQ/JDSF8+J9AOVdNOvNaeQOoPCyzhn6YjoG9w0fwNpUoQotP3T
+	no2BXMcOLzWFkEKXPJ/i0tv/yPWXDPzDMRhe4Lp9mjhtB1JKJQ6NtSB23/UcJwi2uc2s2/
+	8hZWN1LMgeF2sP890h5JCSwNsE6KJcnFotTSoGE+FDEMHUAZCrlMaTOLRk/ChdnvaXQUcc
+	WVQm/80AdIhv2xRdsUFr58hIIEOADfl3f0WtGoAHj6FcWIg/r6idjSaCIfws5w==
+Content-Type: multipart/signed;
+ boundary=38693364ded63ed777e864851ae1da7c89f5b94f050aba042d5a6802b722;
+ micalg=pgp-sha512; protocol="application/pgp-signature"
+Date: Tue, 01 Jul 2025 10:19:33 +0200
+Message-Id: <DB0KL629S4E4.3ENNM27XN3IYM@cknow.org>
+Cc: "Nicolas Frattaroli" <nicolas.frattaroli@collabora.com>, "Rob Herring"
+ <robh@kernel.org>, "Krzysztof Kozlowski" <krzk+dt@kernel.org>, "Conor
+ Dooley" <conor+dt@kernel.org>, "Heiko Stuebner" <heiko@sntech.de>,
+ <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+ <linux-rockchip@lists.infradead.org>, <kernel@collabora.com>,
+ <linux-arm-kernel@lists.infradead.org>
+Subject: Re: [PATCH 1/3] arm64: dts: rockchip: adjust dcin regulator on ROCK
+ 4D
+X-Report-Abuse: Please report any abuse attempt to abuse@migadu.com and include these headers.
+From: "Diederik de Haas" <didi.debian@cknow.org>
+To: "Sebastian Reichel" <sebastian.reichel@collabora.com>
+References: <20250630-rock4d-reg-usb-wifi-v1-0-1057f412d98c@collabora.com>
+ <20250630-rock4d-reg-usb-wifi-v1-1-1057f412d98c@collabora.com>
+ <DB02KKR1VK9H.1Q1Y5A98FKGLK@cknow.org>
+ <5acizoywvjolaffojiawqlzixiclrqzohuhq55lbsjm6yhhlwi@w2amqugl3ee2>
+In-Reply-To: <5acizoywvjolaffojiawqlzixiclrqzohuhq55lbsjm6yhhlwi@w2amqugl3ee2>
+X-Migadu-Flow: FLOW_OUT
+
+--38693364ded63ed777e864851ae1da7c89f5b94f050aba042d5a6802b722
 Content-Transfer-Encoding: quoted-printable
-In-Reply-To: <20250627-macb-v2-2-ff8207d0bb77@bootlin.com>
+Content-Type: text/plain; charset=UTF-8
 
-On Fri, Jun 27, 2025 at 11:08:48AM +0200, Th=C3=A9o Lebrun wrote:
-> Add cdns,eyeq5-gem as compatible for the integrated GEM block inside
-> Mobileye EyeQ5 SoCs. Add a phandle (and two offset arguments) for
-> accessing syscon registers.
->=20
-> Signed-off-by: Th=C3=A9o Lebrun <theo.lebrun@bootlin.com>
-> ---
->  .../devicetree/bindings/net/cdns,macb.yaml         | 24 ++++++++++++++++=
-++++++
->  1 file changed, 24 insertions(+)
->=20
-> diff --git a/Documentation/devicetree/bindings/net/cdns,macb.yaml b/Docum=
-entation/devicetree/bindings/net/cdns,macb.yaml
-> index df883354c7e635099885da42e4604e1c31b05c72..6cf43cc50377f23d60ef40bf1=
-c8efa22ce1ae0bb 100644
-> --- a/Documentation/devicetree/bindings/net/cdns,macb.yaml
-> +++ b/Documentation/devicetree/bindings/net/cdns,macb.yaml
-> @@ -57,6 +57,7 @@ properties:
->            - cdns,np4-macb             # NP4 SoC devices
->            - microchip,sama7g5-emac    # Microchip SAMA7G5 ethernet inter=
-face
->            - microchip,sama7g5-gem     # Microchip SAMA7G5 gigabit ethern=
-et interface
-> +          - mobileye,eyeq5-gem        # Mobileye EyeQ5 SoCs
->            - sifive,fu540-c000-gem     # SiFive FU540-C000 SoC
-> =20
->        - items:
-> @@ -137,6 +138,17 @@ properties:
->        Node containing PHY children. If this node is not present, then PH=
-Ys will
->        be direct children.
-> =20
-> +  mobileye,olb:
-> +    $ref: /schemas/types.yaml#/definitions/phandle-array
-> +    description:
-> +      Handle to the OLB system controller that owns registers configurin=
-g the
-> +      MACB integration.
+Hi,
 
-=2E.. to do what?
+On Tue Jul 1, 2025 at 1:10 AM CEST, Sebastian Reichel wrote:
+> On Mon, Jun 30, 2025 at 08:12:27PM +0200, Diederik de Haas wrote:
+>> On Mon Jun 30, 2025 at 5:36 PM CEST, Nicolas Frattaroli wrote:
+>> > The ROCK 4D's actual DC input is 5V, and the schematic names it as bei=
+ng
+>> > 5V as well.
+>> >
+>> > Rename the regulator, and change the voltage it claims to be at.
+>>=20
+>> Shouldn't it have a fixes tag then? Providing 12V where 5V is expected
+>> sounds problematic ;-)
+>
+> This is basically "just" documentation, as the DT just describes
+> a fixed regulator (i.e. nothing software controllable). This just
+> changes a number in sysfs :)
+>
+> Note, that the 5V DCIN is a USB-C port, which does not do any PD
+> negotiation, but has the 5K1 resistors on the CC lines to "request"
+> 5V. If for whatever reason a higher voltage is applied (which does
+> not happen as long as the power is provided by anything remotely
+> following the USB specifications) there also is an over-voltage
+> protection chip. So it's not problematic :)
 
-Maybe you just miss some sort of phy or power domain provider. Syscon is
-not a replacement for that.
+I was worried about and wondered why I/we did NOT receive reports about
+boards being fried. Good to know, thanks!
 
-Best regards,
-Krzysztof
+> OTOH adding a Fixes tag does not hurt ;)
 
+Cheers,
+  Diederik
+
+--38693364ded63ed777e864851ae1da7c89f5b94f050aba042d5a6802b722
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYKAB0WIQT1sUPBYsyGmi4usy/XblvOeH7bbgUCaGOaGQAKCRDXblvOeH7b
+brm5AQDBQgTI6i56C46hjlIfyd5URIiHLipsV2TsQBP3ETCBSAD/S76s5EMy093j
+72Dzr2Gp3zlu93a5HL9EgvMHM4K/YwE=
+=0tkF
+-----END PGP SIGNATURE-----
+
+--38693364ded63ed777e864851ae1da7c89f5b94f050aba042d5a6802b722--
 
