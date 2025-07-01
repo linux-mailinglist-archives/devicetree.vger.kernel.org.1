@@ -1,198 +1,131 @@
-Return-Path: <devicetree+bounces-191315-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-191316-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id D9946AEEE85
-	for <lists+devicetree@lfdr.de>; Tue,  1 Jul 2025 08:22:38 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 24A31AEEE96
+	for <lists+devicetree@lfdr.de>; Tue,  1 Jul 2025 08:25:24 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id E1CBB1BC4411
-	for <lists+devicetree@lfdr.de>; Tue,  1 Jul 2025 06:22:54 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 1DCBF7A2A12
+	for <lists+devicetree@lfdr.de>; Tue,  1 Jul 2025 06:23:59 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 097652586EB;
-	Tue,  1 Jul 2025 06:22:26 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B11F0242909;
+	Tue,  1 Jul 2025 06:25:18 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=tq-group.com header.i=@tq-group.com header.b="IwXXSFLK";
-	dkim=fail reason="key not found in DNS" (0-bit key) header.d=ew.tq-group.com header.i=@ew.tq-group.com header.b="HoGaA2xH"
+	dkim=pass (2048-bit key) header.d=tq-group.com header.i=@tq-group.com header.b="EI04OAKk";
+	dkim=fail reason="key not found in DNS" (0-bit key) header.d=ew.tq-group.com header.i=@ew.tq-group.com header.b="k7zGGGA5"
 X-Original-To: devicetree@vger.kernel.org
 Received: from mx1.tq-group.com (mx1.tq-group.com [93.104.207.81])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F41CA24503E;
-	Tue,  1 Jul 2025 06:22:22 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4B2C3450F2;
+	Tue,  1 Jul 2025 06:25:14 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=93.104.207.81
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1751350945; cv=none; b=Mxo4mm4SEDqjnf8xZlR3F/7uOklhelSot/QEnVrNIlqzDBUJTdlW7eATDcRDsVB0iDRHfBf0pvs5ZFLNU2u9nFw2f6mvzDNQF3fK0qX7a35mr+IOUn8UHVXPoPJ/KJeDYL9I4t3ihj38cBtkTYlTpyKav9hpKms1UD417HgeK2U=
+	t=1751351118; cv=none; b=M4J3DPre2SmNXQNj/eYX9bQ6yZLQLKe/1+Lk6yLgtTKaaoKS80jYg8nAnHbm92K6M2UPjRV00lZw6D0omxEJUUM4X6x1YKWr/n2d/fZus6DvGnnhqM/NRO4yb5LPKY+1owzAneyPSz8fmyHsqW6GYUlK5iMG0PI/drXw2p+UEw8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1751350945; c=relaxed/simple;
-	bh=DO/FC9eqbmHDsDOaTJpR7zYxi/QdSkoXPd6WTZ7eP5k=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=ltcis2/Jw4HdYbOBbzzdlkUPHnX3B1cZT8MmqvFanzBE0N1hXA4w8ee1hDiZf4/c464+tjPM2hZbf2RO1uSFgDmeP5QTZt9KEpYmiiwD3CgS84BZIX3MWkmArS15hoYTwY7PBN9VOREIT47a18dk1q9AIbu2kCWeSWm/pLlSwVM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ew.tq-group.com; spf=pass smtp.mailfrom=ew.tq-group.com; dkim=pass (2048-bit key) header.d=tq-group.com header.i=@tq-group.com header.b=IwXXSFLK; dkim=fail (0-bit key) header.d=ew.tq-group.com header.i=@ew.tq-group.com header.b=HoGaA2xH reason="key not found in DNS"; arc=none smtp.client-ip=93.104.207.81
+	s=arc-20240116; t=1751351118; c=relaxed/simple;
+	bh=hBK1puw3CmwnwUZ8lXhRAEqf7onqewrfI8EIkYdtkR4=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version:Content-Type; b=FRXwRrYuWbc4+kAMCjuqpV2JjaGRVNKytBc0GSeJcO/CXSakvdYm7T/mqn2RhL1WiQAKF0iYBTbepPNmss45qNQAVL+ulZwOlFf/egDJuyqKbSzo+7owaTVND6wIHTbX47v7XwS/acyRbMGlHPu7O36+E+y60BCRjDryEoJEmeE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ew.tq-group.com; spf=pass smtp.mailfrom=ew.tq-group.com; dkim=pass (2048-bit key) header.d=tq-group.com header.i=@tq-group.com header.b=EI04OAKk; dkim=fail (0-bit key) header.d=ew.tq-group.com header.i=@ew.tq-group.com header.b=k7zGGGA5 reason="key not found in DNS"; arc=none smtp.client-ip=93.104.207.81
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ew.tq-group.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ew.tq-group.com
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
   d=tq-group.com; i=@tq-group.com; q=dns/txt; s=key1;
-  t=1751350943; x=1782886943;
-  h=from:to:cc:subject:date:message-id:in-reply-to:
-   references:mime-version:content-transfer-encoding;
-  bh=kR9rfnoVOVe16EyLIxGv6T9MzhuL6wq8eecdODEGjBs=;
-  b=IwXXSFLK+UQIElBMGZJjCRBVN73d4LC+0AH6QXhfFIrR4mdcOvYqeKZp
-   /mWM6cOETZxEumoWU5h7NjIKD+pUy1GQvuTXhtBYS6mLqvAVdjpIjmfVb
-   MkglKSvec3j0bc69OQqZrHucgIfLGhoUkRBGR0C+t4jxAXqAktq5bYdNn
-   eTTYxdsnt/VQzrj5bViwo70klW/dWjpMcNC72riGFLNw+qrJLcEHBgN1X
-   QvNcTMrr9Sv4LL3D+5+/0YrhCWd1VLX4BLJHGWs4qlgY4J36LG0AWMNk4
-   bxfOFtJ7QpSk/RUVwvFFB38MNBYmSG28mkRHu3SogmunFmn5WJ2kOc773
-   Q==;
-X-CSE-ConnectionGUID: qDvpkikBQVqD4xT6d3HzGQ==
-X-CSE-MsgGUID: +tlzL95wQu+Nu0ooHrAyGA==
+  t=1751351115; x=1782887115;
+  h=from:to:cc:subject:date:message-id:mime-version:
+   content-transfer-encoding;
+  bh=JxIQLyP26v4rF0viEUEQnw43xKOq8QxXK3Q1+9z51gI=;
+  b=EI04OAKkQyEs8h3Njo4pav1pZIrj70hmAPKdyiMl+TgFMX5KCoIej+++
+   3BJR18293efyJqGEDlbNVDMtBqb6yFpob3+lan873M487L5Gb2t/cCACt
+   UuO58NJKiJe+Ga3du16W8UzaHDa4+MSGEmJ/e+R8m1zqvgqzhQc+2nZK9
+   IFNRD3vLelVwWUgn3+o5MDk1hP8yhRD26ptFXNhW0rNfQLpGGBwx/COEe
+   oX+AYAYHmBuyEJcpi6ZAsBczI90CguQ9b7TrDUjQWg5lG/Q6jH4HxKxRf
+   VGFSxEXrq3CFJbhUHOVQ3DqG/7m6p9awq1xJ5qghrLwnJK/qAYsyD0X0T
+   A==;
+X-CSE-ConnectionGUID: kLXLKSUvSECYNTAmH4TDvg==
+X-CSE-MsgGUID: ZSAxOqnSR+mJTwx/0dmXug==
 X-IronPort-AV: E=Sophos;i="6.16,279,1744063200"; 
-   d="scan'208";a="44943278"
+   d="scan'208";a="44943368"
 Received: from vmailcow01.tq-net.de ([10.150.86.48])
-  by mx1.tq-group.com with ESMTP; 01 Jul 2025 08:22:13 +0200
-X-CheckPoint: {68637E95-51-F34124BF-F8CE6E96}
-X-MAIL-CPID: 1DBD312352FCC5035A60DE205D2263D9_4
-X-Control-Analysis: str=0001.0A006374.68637EA1.0059,ss=1,re=0.000,recu=0.000,reip=0.000,cl=1,cld=1,fgs=0
-Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id 9F9E3167F67;
-	Tue,  1 Jul 2025 08:22:09 +0200 (CEST)
+  by mx1.tq-group.com with ESMTP; 01 Jul 2025 08:25:12 +0200
+X-CheckPoint: {68637F48-4-ABFC28F4-D6731B76}
+X-MAIL-CPID: 4D93FC8CE74F964E39D083D9A1BE8425_5
+X-Control-Analysis: str=0001.0A006376.68637F79.0065,ss=1,re=0.000,recu=0.000,reip=0.000,cl=1,cld=1,fgs=0
+Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id 1E2AD165890;
+	Tue,  1 Jul 2025 08:25:07 +0200 (CEST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ew.tq-group.com;
-	s=dkim; t=1751350929;
+	s=dkim; t=1751351107;
 	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=kR9rfnoVOVe16EyLIxGv6T9MzhuL6wq8eecdODEGjBs=;
-	b=HoGaA2xHrnI+dqY64XbGlGmCZJM00O40EPMWjDSgcwXrFoNDb4r5/iN+mQRBQq7EBxxJoK
-	YcsMX9v6ZfCcaWVO0G5wN55WZmo5xdzIBynLnvUXYP65Ar78k03pH0kvstLYI5EHJ7BIGA
-	qFyEOKod4oeXMHrhvyVDZZI5YIvnfYHC6toa9xiSPEffM7lZXWS48AMUwBRRwLbi/v9VI7
-	9qQtTzlX5toi1S8WSigCQqIee3JYTfmb08ebgAJ4zYn7R0Kl8YWjLnt6v8sUA70YesYV21
-	UbnB2/5+wKcqWqCXE7dD3yx6196cYWLtOpwboTBPhoEoFBGM7Tc6vUx+RXkyVA==
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding;
+	bh=JxIQLyP26v4rF0viEUEQnw43xKOq8QxXK3Q1+9z51gI=;
+	b=k7zGGGA5zJxR9wVKxccy/UDRfdq5y6EhEtggs8bEFWvgaV+fRV9iDe5y11DVvr9e7uO0NQ
+	z2fsY/1vI1HdFriLCVJAIFw7wSn2fGSbamg6RrK9MfowAs+3Obt7vdL6FSxA9xEraQgnUd
+	LTnzMdnDZxuV0+ty4tg6vdflXiVfWQGNJihdn8PqbP4sFsmS0Fn3F8BEG9gN4lAyT/TaBo
+	d4zvFpeBrcLBvCBKPBCCguwSHfDEGNsmoyCdT/FcAPORFvld5XdDTm9JFLtZ+rw1D1Csub
+	yjrPW22fTv1L4YXZuofBNBaeMnA77cRtiKV1cPIqN1dO8T2dzrAKWi+PvxYNsA==
 From: Alexander Stein <alexander.stein@ew.tq-group.com>
 To: Shawn Guo <shawnguo@kernel.org>,
 	Rob Herring <robh@kernel.org>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>
+	Conor Dooley <conor+dt@kernel.org>,
+	Sascha Hauer <s.hauer@pengutronix.de>,
+	Pengutronix Kernel Team <kernel@pengutronix.de>,
+	Fabio Estevam <festevam@gmail.com>
 Cc: Alexander Stein <alexander.stein@ew.tq-group.com>,
+	linux@ew.tq-group.com,
 	linux-arm-kernel@lists.infradead.org,
 	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org
-Subject: [PATCH 2/2] arm64: dts: fsl-ls1046a: Add missing DMA entries for I2C & LPUART
-Date: Tue,  1 Jul 2025 08:21:55 +0200
-Message-ID: <20250701062157.514969-2-alexander.stein@ew.tq-group.com>
+	linux-kernel@vger.kernel.org,
+	imx@lists.linux.dev
+Subject: [PATCH 0/8] TQMLS10xxA DT fixes
+Date: Tue,  1 Jul 2025 08:24:48 +0200
+Message-ID: <20250701062500.515735-1-alexander.stein@ew.tq-group.com>
 X-Mailer: git-send-email 2.43.0
-In-Reply-To: <20250701062157.514969-1-alexander.stein@ew.tq-group.com>
-References: <20250701062157.514969-1-alexander.stein@ew.tq-group.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 X-Last-TLS-Session-Version: TLSv1.3
 
-Only i2c0 had it's DMA channels configured. Add the missing one.
+Hi,
 
-Signed-off-by: Alexander Stein <alexander.stein@ew.tq-group.com>
----
- .../arm64/boot/dts/freescale/fsl-ls1046a.dtsi | 27 +++++++++++++++++++
- 1 file changed, 27 insertions(+)
+this series adds some fixes for TQMLS10xxA family and consists of several
+groups:
+1. Remove superflous properties for spi-nor
+2. Enable SFP interfaces on TQMLS1043A and TQMLS1046A
+3. Add missing vdd-supply properties
 
-diff --git a/arch/arm64/boot/dts/freescale/fsl-ls1046a.dtsi b/arch/arm64/boot/dts/freescale/fsl-ls1046a.dtsi
-index 0baf256b44003..d4681c491b33a 100644
---- a/arch/arm64/boot/dts/freescale/fsl-ls1046a.dtsi
-+++ b/arch/arm64/boot/dts/freescale/fsl-ls1046a.dtsi
-@@ -523,6 +523,9 @@ i2c1: i2c@2190000 {
- 			clocks = <&clockgen QORIQ_CLK_PLATFORM_PLL
- 					    QORIQ_CLK_PLL_DIV(2)>;
- 			scl-gpios = <&gpio3 2 (GPIO_ACTIVE_HIGH | GPIO_OPEN_DRAIN)>;
-+			dmas = <&edma0 1 36>,
-+			       <&edma0 1 37>;
-+			dma-names = "rx", "tx";
- 			status = "disabled";
- 		};
- 
-@@ -535,6 +538,9 @@ i2c2: i2c@21a0000 {
- 			clocks = <&clockgen QORIQ_CLK_PLATFORM_PLL
- 					    QORIQ_CLK_PLL_DIV(2)>;
- 			scl-gpios = <&gpio3 10 (GPIO_ACTIVE_HIGH | GPIO_OPEN_DRAIN)>;
-+			dmas = <&edma0 1 34>,
-+			       <&edma0 1 35>;
-+			dma-names = "rx", "tx";
- 			status = "disabled";
- 		};
- 
-@@ -547,6 +553,9 @@ i2c3: i2c@21b0000 {
- 			clocks = <&clockgen QORIQ_CLK_PLATFORM_PLL
- 					    QORIQ_CLK_PLL_DIV(2)>;
- 			scl-gpios = <&gpio3 12 (GPIO_ACTIVE_HIGH | GPIO_OPEN_DRAIN)>;
-+			dmas = <&edma0 1 40>,
-+			       <&edma0 1 41>;
-+			dma-names = "rx", "tx";
- 			status = "disabled";
- 		};
- 
-@@ -633,6 +642,9 @@ lpuart0: serial@2950000 {
- 			clocks = <&clockgen QORIQ_CLK_PLATFORM_PLL
- 					    QORIQ_CLK_PLL_DIV(1)>;
- 			clock-names = "ipg";
-+			dmas = <&edma0 1 32>,
-+			       <&edma0 1 33>;
-+			dma-names = "rx", "tx";
- 			status = "disabled";
- 		};
- 
-@@ -643,6 +655,9 @@ lpuart1: serial@2960000 {
- 			clocks = <&clockgen QORIQ_CLK_PLATFORM_PLL
- 					    QORIQ_CLK_PLL_DIV(2)>;
- 			clock-names = "ipg";
-+			dmas = <&edma0 1 30>,
-+			       <&edma0 1 31>;
-+			dma-names = "rx", "tx";
- 			status = "disabled";
- 		};
- 
-@@ -653,6 +668,9 @@ lpuart2: serial@2970000 {
- 			clocks = <&clockgen QORIQ_CLK_PLATFORM_PLL
- 					    QORIQ_CLK_PLL_DIV(2)>;
- 			clock-names = "ipg";
-+			dmas = <&edma0 1 28>,
-+			       <&edma0 1 29>;
-+			dma-names = "rx", "tx";
- 			status = "disabled";
- 		};
- 
-@@ -663,6 +681,9 @@ lpuart3: serial@2980000 {
- 			clocks = <&clockgen QORIQ_CLK_PLATFORM_PLL
- 					    QORIQ_CLK_PLL_DIV(2)>;
- 			clock-names = "ipg";
-+			dmas = <&edma0 1 26>,
-+			       <&edma0 1 27>;
-+			dma-names = "rx", "tx";
- 			status = "disabled";
- 		};
- 
-@@ -673,6 +694,9 @@ lpuart4: serial@2990000 {
- 			clocks = <&clockgen QORIQ_CLK_PLATFORM_PLL
- 					    QORIQ_CLK_PLL_DIV(2)>;
- 			clock-names = "ipg";
-+			dmas = <&edma0 1 24>,
-+			       <&edma0 1 25>;
-+			dma-names = "rx", "tx";
- 			status = "disabled";
- 		};
- 
-@@ -683,6 +707,9 @@ lpuart5: serial@29a0000 {
- 			clocks = <&clockgen QORIQ_CLK_PLATFORM_PLL
- 					    QORIQ_CLK_PLL_DIV(2)>;
- 			clock-names = "ipg";
-+			dmas = <&edma0 1 22>,
-+			       <&edma0 1 23>;
-+			dma-names = "rx", "tx";
- 			status = "disabled";
- 		};
- 
+Best regards,
+Alexander
+
+Alexander Stein (8):
+  arm64: dts: fsl-ls1043a: Remove superfluous address and size cells
+  arm64: dts: fsl-ls1046a: Remove superfluous address and size cells
+  arm64: dts: fsl-ls1088a: Remove superfluous address and size cells
+  arm64: dts: tqmls10xxa: Move SFP cage definition to common place
+  arm64: dts: tqmls1043a: Enable SFP interface
+  arm64: dts: tqmls1046a: Enable SFP interfaces
+  arm64: dts: freescale: tqmls10xx-mbls10xxa: Add vdd-supply for i2c mux
+  arm64: dts: freescale: tqmls10xx: Add vdd-supply for spi-nor flash
+
+ .../fsl-ls1043a-tqmls1043a-mbls10xxa.dts      | 12 ++++++++++
+ .../dts/freescale/fsl-ls1043a-tqmls1043a.dtsi |  3 +--
+ .../fsl-ls1046a-tqmls1046a-mbls10xxa.dts      | 22 ++++++++++++++++++-
+ .../dts/freescale/fsl-ls1046a-tqmls1046a.dtsi |  4 ++--
+ .../fsl-ls1088a-tqmls1088a-mbls10xxa.dts      |  8 +++++++
+ .../dts/freescale/fsl-ls1088a-tqmls1088a.dtsi |  4 ++--
+ .../freescale/tqmls1088a-mbls10xxa-mc.dtsi    | 16 --------------
+ .../dts/freescale/tqmls10xxa-mbls10xxa.dtsi   | 21 ++++++++++++++++++
+ arch/arm64/boot/dts/freescale/tqmls10xxa.dtsi |  8 +++++++
+ 9 files changed, 75 insertions(+), 23 deletions(-)
+
 -- 
 2.43.0
 
