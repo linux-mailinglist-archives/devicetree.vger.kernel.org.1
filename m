@@ -1,202 +1,109 @@
-Return-Path: <devicetree+bounces-191457-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-191451-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7AA18AEF636
-	for <lists+devicetree@lfdr.de>; Tue,  1 Jul 2025 13:12:34 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1DB64AEF61E
+	for <lists+devicetree@lfdr.de>; Tue,  1 Jul 2025 13:07:25 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id EF3213B993A
-	for <lists+devicetree@lfdr.de>; Tue,  1 Jul 2025 11:12:07 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 51B2C4A1654
+	for <lists+devicetree@lfdr.de>; Tue,  1 Jul 2025 11:07:25 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 109B5272E4A;
-	Tue,  1 Jul 2025 11:12:19 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1FC22271471;
+	Tue,  1 Jul 2025 11:07:20 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=samsung.com header.i=@samsung.com header.b="cFsEWnz4"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="k7GZChhX"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mailout1.samsung.com (mailout1.samsung.com [203.254.224.24])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 86CBC272817
-	for <devicetree@vger.kernel.org>; Tue,  1 Jul 2025 11:12:16 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=203.254.224.24
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DE874270EDD;
+	Tue,  1 Jul 2025 11:07:19 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1751368339; cv=none; b=uYBBwgjPYwdbHCXvcudlfCpUz+c1cQPytDynYl4gDrLMxgiza9crXFT9dR2jYJ0u0Mvt3q7AN1/Kdebo9WZPMifMXDauPyP0FdcclLp1wWLAjrfjAK+yduTDzKORhMVOO2SP+iFWIK5aGqpphVPplVfTBZbO9QG1WpMpbzjZWnY=
+	t=1751368040; cv=none; b=R7lEThe3D7fyK6XiuZyt1gLCA7WUVzSj5ljjOcnhig9vMdjNnJ0aAewq6SBef//cAHpgo7SZHSVEyMZ1ETVfX8/TNqgXuf/1puBtts4JDhbqo8sP/f49hqAkie0guU/3eFdg2peFeVJ2o7buik8kjDo7bZR+6Fh9q5YFexpZuqI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1751368339; c=relaxed/simple;
-	bh=M+teapMDErM1luC69yUTICbimOLTsaOpUH2S/iyezF4=;
-	h=From:To:Cc:In-Reply-To:Subject:Date:Message-ID:MIME-Version:
-	 Content-Type:References; b=a1Kq76BQeDTLFE+1y+7k1ooxHAyXK1xSUlzeLTvDRAVbCOXlhpWxEE/aCwPXVkxnvokrK0qA1mh1vHnclHeM1f38fpcnKayktlH/N05PCYnqcTLoGTlYGYVc7gc9payZcL7nKLndRvuo3T2C9dtQO1yrzAxIKgmViXFqv1TTTng=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=samsung.com; spf=pass smtp.mailfrom=samsung.com; dkim=pass (1024-bit key) header.d=samsung.com header.i=@samsung.com header.b=cFsEWnz4; arc=none smtp.client-ip=203.254.224.24
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=samsung.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=samsung.com
-Received: from epcas5p1.samsung.com (unknown [182.195.41.39])
-	by mailout1.samsung.com (KnoxPortal) with ESMTP id 20250701111209epoutp01c571faa9fdee50e31351a7703926e5b5~OHDdUeei-0779607796epoutp01e
-	for <devicetree@vger.kernel.org>; Tue,  1 Jul 2025 11:12:09 +0000 (GMT)
-DKIM-Filter: OpenDKIM Filter v2.11.0 mailout1.samsung.com 20250701111209epoutp01c571faa9fdee50e31351a7703926e5b5~OHDdUeei-0779607796epoutp01e
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=samsung.com;
-	s=mail20170921; t=1751368329;
-	bh=YTwebVUoQkQpDDdsDBbSlrPKaFDW2GsaHKchVaUCu5k=;
-	h=From:To:Cc:In-Reply-To:Subject:Date:References:From;
-	b=cFsEWnz4p/bZVuWOkULA+mahIAzoo6OZidUhTNxWRxbJaF+y9gxkIs+loiEtNwldd
-	 D5y+6OwXCoyM8FYJ6L+S6fZun41YKIz3yfAQs5hhiYX3YeByRJHm3vA/zzxMZL9SWP
-	 C/jE1XS81elzOdp01jtlh8gmZvDfZYVL/ys5RiaU=
-Received: from epsnrtp02.localdomain (unknown [182.195.42.154]) by
-	epcas5p3.samsung.com (KnoxPortal) with ESMTPS id
-	20250701111208epcas5p34bedc890d762054d069694d0ef399bb6~OHDcwX6uq3053630536epcas5p3U;
-	Tue,  1 Jul 2025 11:12:08 +0000 (GMT)
-Received: from epcas5p2.samsung.com (unknown [182.195.38.177]) by
-	epsnrtp02.localdomain (Postfix) with ESMTP id 4bWgN53tLPz2SSKX; Tue,  1 Jul
-	2025 11:12:05 +0000 (GMT)
-Received: from epsmtip1.samsung.com (unknown [182.195.34.30]) by
-	epcas5p3.samsung.com (KnoxPortal) with ESMTPA id
-	20250701110607epcas5p34c04a301caaf7d8c504eca2fec7f3139~OG_MoTLhB0394403944epcas5p3U;
-	Tue,  1 Jul 2025 11:06:07 +0000 (GMT)
-Received: from FDSFTE462 (unknown [107.122.81.248]) by epsmtip1.samsung.com
-	(KnoxPortal) with ESMTPA id
-	20250701110604epsmtip1b0a6d2e9ac97f7d6e2273144ea9b44df~OG_J9OoCr1403014030epsmtip1E;
-	Tue,  1 Jul 2025 11:06:04 +0000 (GMT)
-From: "Shradha Todi" <shradha.t@samsung.com>
-To: "'Rob Herring'" <robh@kernel.org>
-Cc: <linux-pci@vger.kernel.org>, <devicetree@vger.kernel.org>,
-	<linux-arm-kernel@lists.infradead.org>, <linux-samsung-soc@vger.kernel.org>,
-	<linux-kernel@vger.kernel.org>, <linux-phy@lists.infradead.org>,
-	<linux-fsd@tesla.com>, <mani@kernel.org>, <lpieralisi@kernel.org>,
-	<kw@linux.com>, <bhelgaas@google.com>, <jingoohan1@gmail.com>,
-	<krzk+dt@kernel.org>, <conor+dt@kernel.org>, <alim.akhtar@samsung.com>,
-	<vkoul@kernel.org>, <kishon@kernel.org>, <arnd@arndb.de>,
-	<m.szyprowski@samsung.com>, <jh80.chung@samsung.com>,
-	<pankaj.dubey@samsung.com>
-In-Reply-To: <20250627211721.GA153863-robh@kernel.org>
-Subject: RE: [PATCH v2 07/10] dt-bindings: phy: Add PHY bindings support for
- FSD SoC
-Date: Tue, 1 Jul 2025 16:36:03 +0530
-Message-ID: <02af01dbea78$24f01310$6ed03930$@samsung.com>
+	s=arc-20240116; t=1751368040; c=relaxed/simple;
+	bh=QvUkAIj85QispQ/Cda6kxqhm5CHP0RxSRAtQsd9DPbY=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=kEMyVxmTFYjFBZbQ0jNNX5yxisawFeS0Dxb6dM73rPhNBnjlSKf2LmDcl8ILOrRtxPh8Ah1RSml+ZgCGFfIxdH2vhMUa/0jPEbbZaTs7TaPv7cs+hCkiHibsdedtFh7eslwonCB5p08Ox/fUfkycg4zpxV4QHlOnXX/Bu20K+/w=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=k7GZChhX; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id F2E43C4CEEB;
+	Tue,  1 Jul 2025 11:07:15 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1751368039;
+	bh=QvUkAIj85QispQ/Cda6kxqhm5CHP0RxSRAtQsd9DPbY=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=k7GZChhX1jIGglTCB6ytto/fvvg7NWrSPNfZQwWfVXH4VPxJ37v2OCyFpfp8ZMofi
+	 yzD6f21+FrwFsN6thLLYUbL89IDVsaJcI3rcY5r3we9p0EcOO0ZkdH9vQYjFeHLOAc
+	 vjF8cQqH27UlHDnmQr8w542/Wd3U5bgEigvxAmG/pO+kdfvctNi3tNeD+hkJo8XBvn
+	 AGnDrS+QOPOJ2lql/PMSLP4x0+drp3IILj/Ax06aJcixFn8w36sa30oRzZw/lRK7Fl
+	 xNk+CqlU9x1is+X07hzCaNGH0XONGITOUgiU31yJtkTUfgZrXe9sLlJz9TLMUG2wlF
+	 JafNuKRYR6ZNg==
+Date: Tue, 1 Jul 2025 12:07:13 +0100
+From: Lee Jones <lee@kernel.org>
+To: Alex Elder <elder@riscstar.com>
+Cc: lgirdwood@gmail.com, broonie@kernel.org, alexandre.belloni@bootlin.com,
+	robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
+	mat.jonczyk@o2.pl, dlan@gentoo.org, paul.walmsley@sifive.com,
+	palmer@dabbelt.com, aou@eecs.berkeley.edu, alex@ghiti.fr,
+	troymitchell988@gmail.com, linux-rtc@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-riscv@lists.infradead.org,
+	spacemit@lists.linux.dev, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v4 2/7] mfd: simple-mfd-i2c: add SpacemiT P1 support
+Message-ID: <20250701110713.GL10134@google.com>
+References: <20250625164119.1068842-1-elder@riscstar.com>
+ <20250625164119.1068842-3-elder@riscstar.com>
+ <20250627125119.GF10134@google.com>
+ <0eda5bf4-ce63-43da-9c2f-7d4ec902758c@riscstar.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-X-Mailer: Microsoft Outlook 16.0
-Thread-Index: AQFUClgbainc6hQuKSBO0V8ttZVgkwGg1JXJAfs/ltABn1f9rLUC/odg
-Content-Language: en-in
-X-CMS-MailID: 20250701110607epcas5p34c04a301caaf7d8c504eca2fec7f3139
-X-Msg-Generator: CA
-Content-Type: text/plain; charset="utf-8"
-X-Sendblock-Type: REQ_APPROVE
-CMS-TYPE: 105P
-cpgsPolicy: CPGSC10-541,Y
-X-CFilter-Loop: Reflected
-X-CMS-RootMailID: 20250625165319epcas5p3721c19f6e6b482438c62dd1ef784de03
-References: <20250625165229.3458-1-shradha.t@samsung.com>
-	<CGME20250625165319epcas5p3721c19f6e6b482438c62dd1ef784de03@epcas5p3.samsung.com>
-	<20250625165229.3458-8-shradha.t@samsung.com>
-	<20250627211721.GA153863-robh@kernel.org>
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <0eda5bf4-ce63-43da-9c2f-7d4ec902758c@riscstar.com>
 
+On Fri, 27 Jun 2025, Alex Elder wrote:
 
-
-> -----Original Message-----
-> From: Rob Herring <robh@kernel.org>
-> Sent: 28 June 2025 02:47
-> To: Shradha Todi <shradha.t@samsung.com>
-> Cc: linux-pci@vger.kernel.org; devicetree@vger.kernel.org; linux-arm-kernel@lists.infradead.org;
-linux-
-> samsung-soc@vger.kernel.org; linux-kernel@vger.kernel.org; linux-phy@lists.infradead.org; linux-
-> fsd@tesla.com; manivannan.sadhasivam@linaro.org; lpieralisi@kernel.org; kw@linux.com;
-> bhelgaas@google.com; jingoohan1@gmail.com; krzk+dt@kernel.org; conor+dt@kernel.org;
-> alim.akhtar@samsung.com; vkoul@kernel.org; kishon@kernel.org; arnd@arndb.de;
-> m.szyprowski@samsung.com; jh80.chung@samsung.com; pankaj.dubey@samsung.com
-> Subject: Re: [PATCH v2 07/10] dt-bindings: phy: Add PHY bindings support for FSD SoC
+> On 6/27/25 7:51 AM, Lee Jones wrote:
+> > > @@ -93,12 +93,30 @@ static const struct simple_mfd_data maxim_mon_max77705 = {
+> > >   	.mfd_cell_size = ARRAY_SIZE(max77705_sensor_cells),
+> > >   };
+> > > +static const struct regmap_config spacemit_p1_regmap_config = {
+> > > +	.reg_bits = 8,
+> > > +	.val_bits = 8,
+> > > +	.max_register = 0xaa,
+> > > +};
+> > Suggest making this more widely useful by adding the 'max_register'
+> > attribute to 'struct simple_mfd' and conditionally overriding
+> > regmap_config_8r_8v's value during probe.
 > 
-> On Wed, Jun 25, 2025 at 10:22:26PM +0530, Shradha Todi wrote:
-> > Document PHY device tree bindings for Tesla FSD SoCs.
-> >
-> > Signed-off-by: Shradha Todi <shradha.t@samsung.com>
-> > ---
-> >  .../bindings/phy/samsung,exynos-pcie-phy.yaml | 25 +++++++++++++++++--
-> >  1 file changed, 23 insertions(+), 2 deletions(-)
-> >
-> > diff --git a/Documentation/devicetree/bindings/phy/samsung,exynos-pcie-phy.yaml
-> b/Documentation/devicetree/bindings/phy/samsung,exynos-pcie-phy.yaml
-> > index 41df8bb08ff7..4dc20156cdde 100644
-> > --- a/Documentation/devicetree/bindings/phy/samsung,exynos-pcie-phy.yaml
-> > +++ b/Documentation/devicetree/bindings/phy/samsung,exynos-pcie-phy.yaml
-> > @@ -15,10 +15,13 @@ properties:
-> >      const: 0
-> >
-> >    compatible:
-> > -    const: samsung,exynos5433-pcie-phy
-> > +    enum:
-> > +      - samsung,exynos5433-pcie-phy
-> > +      - tesla,fsd-pcie-phy
-> >
-> >    reg:
-> > -    maxItems: 1
-> > +    minItems: 1
-> > +    maxItems: 2
-> >
-> >    samsung,pmu-syscon:
-> >      $ref: /schemas/types.yaml#/definitions/phandle
-> > @@ -30,6 +33,24 @@ properties:
-> >      description: phandle for FSYS sysreg interface, used to control
-> >                   sysreg registers bits for PCIe PHY
-> >
-> > +allOf:
-> > +  - if:
-> > +      properties:
-> > +        compatible:
-> > +          contains:
-> > +            enum:
-> > +              - tesla,fsd-pcie-phy
-> > +    then:
-> > +      description:
-> > +        The PHY controller nodes are represented in the aliases node
-> > +        using the following format 'pciephy{n}'. Depending on whether
-> > +        n is 0 or 1, the phy init sequence is chosen.
-> 
-> What? Don't make up your own aliases.
-> 
-> If the PHY instances are different, then maybe you need a different
-> compatible. If this is just selecting the PHY mode, you can do that in
-> PHY cells as the mode depends on the consumer.
-> 
+> So you're suggesting I make a general improvement to
+> "simple-mfd-i2c.c", because everybody else just uses
+> the generic fallback regmap config?
 
-FSD PCIe has 2 instances of PHY. Both are the same HW Samsung
-PHYs (Therefore share the same register offsets). But the PHY used here
-does not support auto adaptation so we need to tune the PHYs
-according to the use case (considering channel loss, etc). This is why we
-have 2 different SW PHY initialization sequence depending on the instance
-number. Do you think having different compatible (something like
-tesla,fsd-pcie-phy0 and tesla,fsd-pcie-phy1) and having phy ID as platform data
-is okay in this case? I actually took reference from files like:
-drivers/usb/phy/phy-am335x-control.c
-drivers/phy/freescale/phy-fsl-imx8-mipi-dphy.c
-who use alias to differentiate between register offsets for instances.
+Yes, exactly that.
 
+> (I'm asking because at first I didn't understand your
+> statement, and the "more widely useful" comment).
 > 
-> > +      properties:
-> > +        reg:
-> > +          items:
-> > +            - description: PHY
-> > +            - description: PCS
-> 
-> else:
->   properties:
->     reg:
->       maxItems: 1
-> 
+> I would be happy to do this, and it's not that hard.
+> Can I do it as a follow-on patch though?  It's adding
+> scope (again), beyond what I anticipated and honestly
+> I'm ready to be done with this...
 
-Will update. Thanks for the review!
+Good job you're not working on a complex addition then.  =;-)
 
-> > +
-> >  required:
-> >    - "#phy-cells"
-> >    - compatible
-> > --
-> > 2.49.0
-> >
+> Anyway, if you say "no" I'll send another version of
+> this series today.
 
+A follow-up would be good, thanks.
+
+-- 
+Lee Jones [李琼斯]
 
