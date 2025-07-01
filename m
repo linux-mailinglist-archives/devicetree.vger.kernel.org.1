@@ -1,322 +1,141 @@
-Return-Path: <devicetree+bounces-191653-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-191654-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1BAE4AEFF96
-	for <lists+devicetree@lfdr.de>; Tue,  1 Jul 2025 18:22:55 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id B9C60AEFFB8
+	for <lists+devicetree@lfdr.de>; Tue,  1 Jul 2025 18:26:49 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 064D51660F1
-	for <lists+devicetree@lfdr.de>; Tue,  1 Jul 2025 16:22:04 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 4453B1882A3A
+	for <lists+devicetree@lfdr.de>; Tue,  1 Jul 2025 16:24:23 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 69AED27EFEC;
-	Tue,  1 Jul 2025 16:21:22 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E9F1D2727E4;
+	Tue,  1 Jul 2025 16:23:52 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="KQ8PAisH"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="IFMHXUn2"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wm1-f42.google.com (mail-wm1-f42.google.com [209.85.128.42])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 90D5627E04C
-	for <devicetree@vger.kernel.org>; Tue,  1 Jul 2025 16:21:20 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 292B1271452
+	for <devicetree@vger.kernel.org>; Tue,  1 Jul 2025 16:23:50 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.42
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1751386882; cv=none; b=i9R57cVDxVDblEyXQ3mGS7nP6yZFIoLeq4hEpHN0CU4jPICSkjiL+dUDBz/TZWQ4kQ9efZqxl1TZdXGZqM1NU2CSrOOEzODo8tDqZ0JSjXACxsVtAS0VGYCDrj4vv+dkTPt2VdO50n9TPac0EyXH+XmdfvqigXyx/iQM/fdgOZ8=
+	t=1751387032; cv=none; b=C0HO+hDOP2jP2xd2KgoPERSFeYfdt5p5Tg3xILdtqAsj3bPTJ2RAfVE3l1x560YgBONzb94JZ/Ck/b+rOw3/VIMFbmz8k21nUJ9L/VleN3vcwaHuaNI8yJAYt/ll4K3zxs/H5AZL4xtgJDSVQEUHldVmFllMNkTu5aHXqIOEj4M=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1751386882; c=relaxed/simple;
-	bh=iXh1qfjmRxzFSEp5Qe43klnLYUlFeXvUPZ+Uu96OpqY=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=YhEdXtr2gl16uhiVG+y3sG8luOMUAJHJUqg22DiSEYbqXk+TxFP5krWDugFvjrowhr6ceRJ0MHOCMeLJh3SaRL8WBGSNanK6lfrzbt5dVp2vbvXg7ONIkIlwy5d/POzWQ/5Qf83pB+4NqyXpZ5tXSWC04fp9AdPU5C8X76q3euM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=KQ8PAisH; arc=none smtp.client-ip=205.220.180.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
-Received: from pps.filterd (m0279869.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 561A1mtd025201
-	for <devicetree@vger.kernel.org>; Tue, 1 Jul 2025 16:21:19 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	ECxHJdh089e4eirAYjIbtiZqI6yOfBriOuAruldttXw=; b=KQ8PAisH45UI77lp
-	RbssAwdt+58kpI+c80gw3XOddJyGrj9mFP2O8phh5d7/G4+eeOcpMQo8O4ugscxK
-	AdxXTRzyqUQYGNOE+eFDsLCU8EKc6CpsqLSR5V8e2GediDblNu50FJsbLm+fH7IP
-	9/Nj2ikuOSxvj/m9fp1yrdifVZWRm9ZptDYLwQI1cvND8pM2ffNzdnYo3XjxR0+b
-	gm6Eb4OmQuwAXSNkic6f3UjWep/5TPKPvrNW+7LYeXO1J1zRLLEGlv3H2K3/AkS+
-	+2ngknjmXTXGVRniaxuhf4QkqsCeNJ39+XQOUMpcuv7b3dDRsb1au11JcABVpmbM
-	qLu0cA==
-Received: from mail-pg1-f199.google.com (mail-pg1-f199.google.com [209.85.215.199])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 47kd64ptk8-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Tue, 01 Jul 2025 16:21:19 +0000 (GMT)
-Received: by mail-pg1-f199.google.com with SMTP id 41be03b00d2f7-b2fcbd76b61so4448108a12.3
-        for <devicetree@vger.kernel.org>; Tue, 01 Jul 2025 09:21:19 -0700 (PDT)
+	s=arc-20240116; t=1751387032; c=relaxed/simple;
+	bh=TRyKPGlzqNiaAIc+Td0ze+LpUFf6sYZ4Ct+UtsDxJJ8=;
+	h=Mime-Version:Content-Type:Date:Message-Id:Cc:Subject:From:To:
+	 References:In-Reply-To; b=Ov4GqmlLprQ8/rVli5T7wRCTKmK94tJRtbSuF82Lk73NXb6gUvIp7sHI/aeoR9T7sivAJkpRUvpC6OKkWuDYVtPgSWavqr2JasfsYd8wncoTmIyBvcD2U1T9M6y4De95dexpkOUzCkxrILzJia+W0pVkdKZPC7m5wGG4Sknjb6U=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=IFMHXUn2; arc=none smtp.client-ip=209.85.128.42
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-wm1-f42.google.com with SMTP id 5b1f17b1804b1-453608ed113so35864745e9.0
+        for <devicetree@vger.kernel.org>; Tue, 01 Jul 2025 09:23:50 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1751387029; x=1751991829; darn=vger.kernel.org;
+        h=in-reply-to:references:to:from:subject:cc:message-id:date
+         :content-transfer-encoding:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=N84p1IfPOnU2LRyJ4jJI6ylTwqJRzAAmh1pUeFRFmtE=;
+        b=IFMHXUn26XoQxgu1PEOhUk+1DwDCC0gLL1fvGvxN6KXwHj83WYK7MaMemjuyu6Bj6C
+         s6kIMqsWWEeY8yBZuvpFt8JZmMrPDXLzxWb21dw+utltdf4Q9XhLNMkuhPzP6MKkXyvU
+         dBcze56B2AcofUbbLP3R0xmh/GJEWkmBoR6NoOIu4g7IW8Gr7tZgju0zBQiknwyUR2IK
+         ue+Vqe7Lp/z/zGd6Q9EBY7megXj46NTu3uPFLZZc78ubpCu7fSmApHW2EONsaOeOAMeK
+         x8JfK+lv1V7mTm2i5A0ZoE7eOfbWSgacnkUcWgy4hR21+6XBUe+RNurXqFZY993daOIe
+         AyUA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1751386878; x=1751991678;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=ECxHJdh089e4eirAYjIbtiZqI6yOfBriOuAruldttXw=;
-        b=vNsJrHHvEA1Sd4l+0ZnW0rTNrqyk3Tm9JfqFiGqxx5anBNl4FbuYxp/WhmKjnxTNKB
-         BFbZC38WOUWEUEpLtZ/lQ7BR47dZ9NNynwTfVV6EwwwZccBgdIrPbvLUL++SWhufmGCG
-         s7aWp9CNWCTAcWIj9m+8hY80mw68RBuXDucL45D6zvl/Y9TyomTB8/pbz8Awr6y3vtmR
-         UDoBf3K+Ec0QrnfWW842qgS6YrXVlsmnTE1MKodIYVLIYxDIjTiSPb5itmb0chm8HpeR
-         CROhZdYL8wSzfPaLrUDhmp8fOphYPYsWdE5mij3UJT5qa0nFQO+xbg+bTklBhfH/BNUT
-         aczg==
-X-Forwarded-Encrypted: i=1; AJvYcCWMHiOgMnmL2UdTnk+5lhw93U6hvKXd3uV2+qbdPVqMJ/70mEyXZhKcJ6z0U2s4FbGR72d+kxaDd5xD@vger.kernel.org
-X-Gm-Message-State: AOJu0YwGW1HBff17QHvlaYtWdVYtlaYJsguyrcNTPd3BEgPEjYRnwKLG
-	LPp2sRITpG4LuViLzaS1DcD1mzRMOFyNibhLUu7Gsy0V2yUkGzN3f6l9vOF/ohi+o+IL6UBgkAT
-	+I6dcJzRdoNaMNe05eFAivVync3WiuF07v/Kua02iy9ISfa2zaYVY+cWUrh6m7p2r
-X-Gm-Gg: ASbGnctXZrZPdNXvz3EUaU3ZlqNPusaj+9vBf7v3SXKLj4TduEYNL7WpUjFXb60xBPe
-	Vn2hdAxYcYAYuRYeYuVgoEIn2XCZTJFEaqDeJrsRnomYuPS1GAit6eoe+enKiYX/WDrxWxW3GNM
-	VMCFwZMCkVrVeCY2DFjCL4DfC0eMCgZP8mUGCo9RI81xjDrDmdbhJlqn/526t64457SWxQq+szt
-	iHKsmgCJKUEMKHVUSC+nEBJ5jrY+TDFnEV/MDQphWZM17RN45jj+SF73QDNOk+XarBqWdP+g964
-	o4PzjXj2exCTPBuwGhrfE/LLFnpmfYZFoE4+ATs6eG/3HS8=
-X-Received: by 2002:a05:6a20:3d92:b0:215:ead1:b867 with SMTP id adf61e73a8af0-220a127df83mr30988037637.14.1751386878024;
-        Tue, 01 Jul 2025 09:21:18 -0700 (PDT)
-X-Google-Smtp-Source: AGHT+IGikc5hlYAw77wNpsHSmV1xvhSCkmessjBjU4c3k6bkM5aZC4AkaSqdgr7kwRC4ZvzWgHmXUg==
-X-Received: by 2002:a05:6a20:3d92:b0:215:ead1:b867 with SMTP id adf61e73a8af0-220a127df83mr30987961637.14.1751386877516;
-        Tue, 01 Jul 2025 09:21:17 -0700 (PDT)
-Received: from hu-akhilpo-hyd.qualcomm.com ([202.46.23.25])
-        by smtp.gmail.com with ESMTPSA id d2e1a72fcca58-74af5805265sm12573010b3a.168.2025.07.01.09.21.12
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 01 Jul 2025 09:21:17 -0700 (PDT)
-From: Akhil P Oommen <akhilpo@oss.qualcomm.com>
-Date: Tue, 01 Jul 2025 21:50:46 +0530
-Subject: [PATCH v2 3/3] arm64: dts: qcom: x1e80100: Update GPU OPP table
+        d=1e100.net; s=20230601; t=1751387029; x=1751991829;
+        h=in-reply-to:references:to:from:subject:cc:message-id:date
+         :content-transfer-encoding:mime-version:x-gm-message-state:from:to
+         :cc:subject:date:message-id:reply-to;
+        bh=N84p1IfPOnU2LRyJ4jJI6ylTwqJRzAAmh1pUeFRFmtE=;
+        b=KWKH/FAq5V8gpitNQXsyHoeJAKud5wB1dvnodJXM0PRQmD+Hfoi0ftzhPFYxfnla3Q
+         jW5duZNWZIvV6KpwUIgkq2WCu27DujbP0R6cJJAqjLoc8JqOKLT4Bh0BwDCDipDkPs+H
+         LPBLbj14Zod4P0IMxcwI4UByxHbBxrACN0rGIrpVev11coOhoZa9/asnXZgbUTFgltzV
+         G71/mflc9meXorNni5aEqco9jK6aH8zroXZjtzldpdIiWf4a/9+NTSvQgghHIyggTsxR
+         Gv80L3RIuEGi5whty4rHTWaKKlrNxmP1WJpMw0oQ/DUvkLOzc5bhVkP3KcBMjCuUftuM
+         3B3g==
+X-Forwarded-Encrypted: i=1; AJvYcCX0MNe+tgP/FbbBbARKbF4qwpyaTlLMVrFatUqijxe2fHYNKtYBcGxgx61EZJBM4u4UoWP85bwv9sg9@vger.kernel.org
+X-Gm-Message-State: AOJu0Yw8fOwPwSz4ek9coMmBL65fKXmRiUH+kbGYd/j5peWmhwFygQpo
+	FHgGWJmdetW5lF1VtNqXOHM4SFrYNZp1MQgLOosvGHlEGohz0PnLaxPm1QaQBcyjdkA=
+X-Gm-Gg: ASbGncuMsifM80xMjqsL3QOsyJ9YGEl6Dd5G62XdaHXrp/d+7CKq/E+GZ7tWLCoTmFU
+	0OoD+FIECdIUbAXihMvCbBlIzLUtdBfOyGcTDHNEL5JGLx/krPVk+tJqmvKNdCAhbD04ziwaFOq
+	rKuQRvZpx0kPe45ud6gpBxiby/Ggdih5whJLZQEEfatBggJUg2iFI0vySjoZFurVrHn58zM9akb
+	oZuLZgnY5W1fQPQigIPTjy1yWndXG1D6KnCilgSe3oUz1takLVu/7x4sPijB1EFcvyZHWaAKbNU
+	WTrOtrJq6sB1hUr0hjReYYb888wF2ZktcOSjQvByiEwxOxi41WqR5heMMfhOWL0m3owOwmyCuQL
+	zLVM=
+X-Google-Smtp-Source: AGHT+IF76AvC+yZFLcI56pCMDzSJYwqFxY/61zrbScuKifRBlFHkGuW5GbezYGfN5iWuHq0HbK4jxA==
+X-Received: by 2002:a05:600d:7:b0:442:cd03:3e2 with SMTP id 5b1f17b1804b1-4538eedf21cmr160209575e9.2.1751387029430;
+        Tue, 01 Jul 2025 09:23:49 -0700 (PDT)
+Received: from localhost ([2a02:c7c:7213:c700:4dad:b69a:9c81:2e57])
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-3a892e528a9sm13932521f8f.60.2025.07.01.09.23.48
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 01 Jul 2025 09:23:49 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20250701-x1e-speedbin-b4-v2-3-a8a7e06d39fb@oss.qualcomm.com>
-References: <20250701-x1e-speedbin-b4-v2-0-a8a7e06d39fb@oss.qualcomm.com>
-In-Reply-To: <20250701-x1e-speedbin-b4-v2-0-a8a7e06d39fb@oss.qualcomm.com>
-To: Rob Clark <robin.clark@oss.qualcomm.com>, Sean Paul <sean@poorly.run>,
-        Konrad Dybcio <konradybcio@kernel.org>,
-        Dmitry Baryshkov <lumag@kernel.org>,
-        Abhinav Kumar <abhinav.kumar@linux.dev>,
-        Jessica Zhang <jessica.zhang@oss.qualcomm.com>,
-        Marijn Suijten <marijn.suijten@somainline.org>,
-        David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
-        Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>
-Cc: linux-arm-msm@vger.kernel.org, dri-devel@lists.freedesktop.org,
-        freedreno@lists.freedesktop.org, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org, Akhil P Oommen <akhilpo@oss.qualcomm.com>
-X-Mailer: b4 0.14.2
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1751386855; l=5522;
- i=akhilpo@oss.qualcomm.com; s=20240726; h=from:subject:message-id;
- bh=iXh1qfjmRxzFSEp5Qe43klnLYUlFeXvUPZ+Uu96OpqY=;
- b=Hzh38TN2ttV1DlAByOF1pUVt5sRr71VhCRAno+AkCnms4Y+O9p6yTAiU8WkntITjn1FmwhNCi
- qoxaXTAsCEvDEl0z9YyGuUfVzc5XWsv/5Ph7Gyo+WjTHBffxxaykJND
-X-Developer-Key: i=akhilpo@oss.qualcomm.com; a=ed25519;
- pk=lmVtttSHmAUYFnJsQHX80IIRmYmXA4+CzpGcWOOsfKA=
-X-Authority-Analysis: v=2.4 cv=Z+PsHGRA c=1 sm=1 tr=0 ts=68640aff cx=c_pps
- a=Oh5Dbbf/trHjhBongsHeRQ==:117 a=ZePRamnt/+rB5gQjfz0u9A==:17
- a=IkcTkHD0fZMA:10 a=Wb1JkmetP80A:10 a=EUspDBNiAAAA:8 a=y21bc7L5uEJNErKunEYA:9
- a=QEXdDO2ut3YA:10 a=_Vgx9l1VpLgwpw_dHYaR:22
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwNzAxMDExMCBTYWx0ZWRfXwqpRrbj1BKRS
- sq9Awv24tmVzuBmh46qPPND5aSZPdVOqzTht1qUL2R8L7TTt58EkegqC6WBDx+I8EFBvi24g3th
- FavJkB3fmaUXFyfUZv+ifHoJ4O69cwW1iXveOcnL47HgM5n/mwCbYxYbOHONLsSkksxCg4uRaaG
- bksp+D69okhsbpx7EMg2qDy+E2sSyNeDohPEpmWHs5RNpo48K/U8U+KiWrKoQJtTmlPZZFnV8Pj
- zsVsmmFrrzhA0LPrksJsVYkUz19RdZJc38j6fIVwevJow+xVhO5EdRYpWo0hQKQlacue+wWmEhe
- 2e9E5hlZyqInM7UMXrztdQ92rdsZ5apCNU1h3e0IrFPtgcFZQkBJh4trOQ84MLhJgM6rRy3/Cdf
- ldOxB3juuDWg6QKRDia1kbxRxoBoQpgKH7tpVOpln/LkRejUQxZXZ2534PoZP2fKMeJlBQwt
-X-Proofpoint-GUID: Zum0XT5AXxDDpfVc-8H7OZYKRWmKpu6f
-X-Proofpoint-ORIG-GUID: Zum0XT5AXxDDpfVc-8H7OZYKRWmKpu6f
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1099,Hydra:6.1.7,FMLib:17.12.80.40
- definitions=2025-07-01_02,2025-06-27_01,2025-03-28_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- phishscore=0 lowpriorityscore=0 clxscore=1015 malwarescore=0 mlxlogscore=878
- spamscore=0 adultscore=0 mlxscore=0 priorityscore=1501 bulkscore=0
- impostorscore=0 suspectscore=0 classifier=spam authscore=0 authtc=n/a authcc=
- route=outbound adjust=0 reason=mlx scancount=1 engine=8.19.0-2505280000
- definitions=main-2507010110
+Mime-Version: 1.0
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=UTF-8
+Date: Tue, 01 Jul 2025 17:23:48 +0100
+Message-Id: <DB0UVXK5ATOQ.3JOWJ0A1JNIAF@linaro.org>
+Cc: <linux-arm-msm@vger.kernel.org>, <devicetree@vger.kernel.org>,
+ <linux-kernel@vger.kernel.org>, "Bartosz Golaszewski"
+ <bartosz.golaszewski@linaro.org>
+Subject: Re: [PATCH 2/3] arm64: dts: qcom: qrb4210-rb2: fix GPIO lookup
+ flags for i2c SDA and SCL
+From: "Alexey Klimov" <alexey.klimov@linaro.org>
+To: "Bartosz Golaszewski" <brgl@bgdev.pl>, "Bjorn Andersson"
+ <andersson@kernel.org>, "Konrad Dybcio" <konradybcio@kernel.org>, "Rob
+ Herring" <robh@kernel.org>, "Krzysztof Kozlowski" <krzk+dt@kernel.org>,
+ "Conor Dooley" <conor+dt@kernel.org>
+X-Mailer: aerc 0.20.0
+References: <20250701-qcom-gpio-lookup-open-drain-v1-0-9678c4352f11@linaro.org> <20250701-qcom-gpio-lookup-open-drain-v1-2-9678c4352f11@linaro.org>
+In-Reply-To: <20250701-qcom-gpio-lookup-open-drain-v1-2-9678c4352f11@linaro.org>
 
-Update the GPU OPP table with new opp levels along with the
-speedbin configurations.
+On Tue Jul 1, 2025 at 10:01 AM BST, Bartosz Golaszewski wrote:
+> From: Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
+>
+> The I2C GPIO bus driver enforces the SDA and SCL pins as open-drain
+> outputs but the lookup flags in the DTS don't reflect that triggering
+> warnings from GPIO core. Add the appropriate flags.
+>
+> Signed-off-by: Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
 
-Signed-off-by: Akhil P Oommen <akhilpo@oss.qualcomm.com>
----
- arch/arm64/boot/dts/qcom/x1e80100.dtsi | 57 ++++++++++++++++++++++++++++++++--
- arch/arm64/boot/dts/qcom/x1p42100.dtsi |  1 +
- 2 files changed, 56 insertions(+), 2 deletions(-)
+Reported-by: Alexey Klimov <alexey.klimov@linaro.org>
 
-diff --git a/arch/arm64/boot/dts/qcom/x1e80100.dtsi b/arch/arm64/boot/dts/qcom/x1e80100.dtsi
-index 558d7d387d7710770244fcc901f461384dd9b0d4..ae3a84e95bbbb282edcd8e42a860618ca9873b27 100644
---- a/arch/arm64/boot/dts/qcom/x1e80100.dtsi
-+++ b/arch/arm64/boot/dts/qcom/x1e80100.dtsi
-@@ -3773,6 +3773,9 @@ gpu: gpu@3d00000 {
- 			qcom,gmu = <&gmu>;
- 			#cooling-cells = <2>;
- 
-+			nvmem-cells = <&gpu_speed_bin>;
-+			nvmem-cell-names = "speed_bin";
-+
- 			interconnects = <&gem_noc MASTER_GFX3D 0 &mc_virt SLAVE_EBI1 0>;
- 			interconnect-names = "gfx-mem";
- 
-@@ -3785,11 +3788,28 @@ gpu_zap_shader: zap-shader {
- 			gpu_opp_table: opp-table {
- 				compatible = "operating-points-v2-adreno", "operating-points-v2";
- 
-+				opp-1500000000 {
-+					opp-hz = /bits/ 64 <1500000000>;
-+					opp-level = <RPMH_REGULATOR_LEVEL_TURBO_L5>;
-+					opp-peak-kBps = <16500000>;
-+					qcom,opp-acd-level = <0xa82a5ffd>;
-+					opp-supported-hw = <0x03>;
-+				};
-+
-+				opp-1375000000 {
-+					opp-hz = /bits/ 64 <1375000000>;
-+					opp-level = <RPMH_REGULATOR_LEVEL_TURBO_L4>;
-+					opp-peak-kBps = <16500000>;
-+					qcom,opp-acd-level = <0xa82a5ffd>;
-+					opp-supported-hw = <0x03>;
-+				};
-+
- 				opp-1250000000 {
- 					opp-hz = /bits/ 64 <1250000000>;
- 					opp-level = <RPMH_REGULATOR_LEVEL_TURBO_L3>;
- 					opp-peak-kBps = <16500000>;
- 					qcom,opp-acd-level = <0xa82a5ffd>;
-+					opp-supported-hw = <0x07>;
- 				};
- 
- 				opp-1175000000 {
-@@ -3797,13 +3817,24 @@ opp-1175000000 {
- 					opp-level = <RPMH_REGULATOR_LEVEL_TURBO_L2>;
- 					opp-peak-kBps = <14398438>;
- 					qcom,opp-acd-level = <0xa82a5ffd>;
-+					opp-supported-hw = <0x07>;
- 				};
- 
--				opp-1100000000 {
-+				opp-1100000000-0 {
- 					opp-hz = /bits/ 64 <1100000000>;
- 					opp-level = <RPMH_REGULATOR_LEVEL_TURBO_L1>;
- 					opp-peak-kBps = <14398438>;
- 					qcom,opp-acd-level = <0xa82a5ffd>;
-+					opp-supported-hw = <0x07>;
-+				};
-+
-+				/* Only applicable for SKUs which has 1100Mhz as Fmax */
-+				opp-1100000000-1 {
-+					opp-hz = /bits/ 64 <1100000000>;
-+					opp-level = <RPMH_REGULATOR_LEVEL_TURBO_L1>;
-+					opp-peak-kBps = <16500000>;
-+					qcom,opp-acd-level = <0xa82a5ffd>;
-+					opp-supported-hw = <0x08>;
- 				};
- 
- 				opp-1000000000 {
-@@ -3811,6 +3842,7 @@ opp-1000000000 {
- 					opp-level = <RPMH_REGULATOR_LEVEL_TURBO>;
- 					opp-peak-kBps = <14398438>;
- 					qcom,opp-acd-level = <0xa82b5ffd>;
-+					opp-supported-hw = <0x0f>;
- 				};
- 
- 				opp-925000000 {
-@@ -3818,6 +3850,7 @@ opp-925000000 {
- 					opp-level = <RPMH_REGULATOR_LEVEL_NOM_L1>;
- 					opp-peak-kBps = <14398438>;
- 					qcom,opp-acd-level = <0xa82b5ffd>;
-+					opp-supported-hw = <0x0f>;
- 				};
- 
- 				opp-800000000 {
-@@ -3825,6 +3858,7 @@ opp-800000000 {
- 					opp-level = <RPMH_REGULATOR_LEVEL_NOM>;
- 					opp-peak-kBps = <12449219>;
- 					qcom,opp-acd-level = <0xa82c5ffd>;
-+					opp-supported-hw = <0x0f>;
- 				};
- 
- 				opp-744000000 {
-@@ -3832,13 +3866,24 @@ opp-744000000 {
- 					opp-level = <RPMH_REGULATOR_LEVEL_SVS_L2>;
- 					opp-peak-kBps = <10687500>;
- 					qcom,opp-acd-level = <0x882e5ffd>;
-+					opp-supported-hw = <0x0f>;
- 				};
- 
--				opp-687000000 {
-+				opp-687000000-0 {
- 					opp-hz = /bits/ 64 <687000000>;
- 					opp-level = <RPMH_REGULATOR_LEVEL_SVS_L1>;
- 					opp-peak-kBps = <8171875>;
- 					qcom,opp-acd-level = <0x882e5ffd>;
-+					opp-supported-hw = <0x0f>;
-+				};
-+
-+				/* Only applicable for SKUs which has 687Mhz as Fmax */
-+				opp-687000000-1 {
-+					opp-hz = /bits/ 64 <687000000>;
-+					opp-level = <RPMH_REGULATOR_LEVEL_SVS_L1>;
-+					opp-peak-kBps = <16500000>;
-+					qcom,opp-acd-level = <0x882e5ffd>;
-+					opp-supported-hw = <0x10>;
- 				};
- 
- 				opp-550000000 {
-@@ -3846,6 +3891,7 @@ opp-550000000 {
- 					opp-level = <RPMH_REGULATOR_LEVEL_SVS>;
- 					opp-peak-kBps = <6074219>;
- 					qcom,opp-acd-level = <0xc0285ffd>;
-+					opp-supported-hw = <0x1f>;
- 				};
- 
- 				opp-390000000 {
-@@ -3853,6 +3899,7 @@ opp-390000000 {
- 					opp-level = <RPMH_REGULATOR_LEVEL_LOW_SVS>;
- 					opp-peak-kBps = <3000000>;
- 					qcom,opp-acd-level = <0xc0285ffd>;
-+					opp-supported-hw = <0x1f>;
- 				};
- 
- 				opp-300000000 {
-@@ -3860,6 +3907,7 @@ opp-300000000 {
- 					opp-level = <RPMH_REGULATOR_LEVEL_LOW_SVS_D1>;
- 					opp-peak-kBps = <2136719>;
- 					qcom,opp-acd-level = <0xc02b5ffd>;
-+					opp-supported-hw = <0x1f>;
- 				};
- 			};
- 		};
-@@ -8250,6 +8298,11 @@ qfprom: efuse@221c8000 {
- 			reg = <0 0x221c8000 0 0x1000>;
- 			#address-cells = <1>;
- 			#size-cells = <1>;
-+
-+			gpu_speed_bin: gpu-speed-bin@119 {
-+				reg = <0x119 0x2>;
-+				bits = <7 8>;
-+			};
- 		};
- 
- 		pmu@24091000 {
-diff --git a/arch/arm64/boot/dts/qcom/x1p42100.dtsi b/arch/arm64/boot/dts/qcom/x1p42100.dtsi
-index 090659b8bb8942cdcc46f8d4a3e7dbcc043a0f78..c64727e3c00db1e4f8f34da2701061255caa620d 100644
---- a/arch/arm64/boot/dts/qcom/x1p42100.dtsi
-+++ b/arch/arm64/boot/dts/qcom/x1p42100.dtsi
-@@ -18,6 +18,7 @@
- /delete-node/ &cpu_pd10;
- /delete-node/ &cpu_pd11;
- /delete-node/ &gpu_opp_table;
-+/delete-node/ &gpu_speed_bin;
- /delete-node/ &pcie3_phy;
- 
- &gcc {
-
--- 
-2.48.1
+> ---
+>  arch/arm64/boot/dts/qcom/qrb4210-rb2.dts | 5 +++--
+>  1 file changed, 3 insertions(+), 2 deletions(-)
+>
+> diff --git a/arch/arm64/boot/dts/qcom/qrb4210-rb2.dts b/arch/arm64/boot/d=
+ts/qcom/qrb4210-rb2.dts
+> index a37860175d2733214f1b257e84d5cb4821033242..bdf2d66e40c62596b8b024de8=
+33835a0750df35d 100644
+> --- a/arch/arm64/boot/dts/qcom/qrb4210-rb2.dts
+> +++ b/arch/arm64/boot/dts/qcom/qrb4210-rb2.dts
+> @@ -5,6 +5,7 @@
+> =20
+>  /dts-v1/;
+> =20
+> +#include <dt-bindings/gpio/gpio.h>
+>  #include <dt-bindings/leds/common.h>
+>  #include <dt-bindings/sound/qcom,q6afe.h>
+>  #include <dt-bindings/sound/qcom,q6asm.h>
+> @@ -65,8 +66,8 @@ hdmi_con: endpoint {
+>  	i2c2_gpio: i2c {
+>  		compatible =3D "i2c-gpio";
+> =20
+> -		sda-gpios =3D <&tlmm 6 GPIO_ACTIVE_HIGH>;
+> -		scl-gpios =3D <&tlmm 7 GPIO_ACTIVE_HIGH>;
+> +		sda-gpios =3D <&tlmm 6 (GPIO_ACTIVE_HIGH | GPIO_OPEN_DRAIN)>;
+> +		scl-gpios =3D <&tlmm 7 (GPIO_ACTIVE_HIGH | GPIO_OPEN_DRAIN)>;
+>  		#address-cells =3D <1>;
+>  		#size-cells =3D <0>;
+> =20
 
 
