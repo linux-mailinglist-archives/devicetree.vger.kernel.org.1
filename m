@@ -1,80 +1,82 @@
-Return-Path: <devicetree+bounces-191398-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-191397-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2CAB1AEF25D
-	for <lists+devicetree@lfdr.de>; Tue,  1 Jul 2025 11:05:14 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id F23AFAEF248
+	for <lists+devicetree@lfdr.de>; Tue,  1 Jul 2025 11:03:11 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 935CE4458F3
-	for <lists+devicetree@lfdr.de>; Tue,  1 Jul 2025 09:02:47 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id A5AD918871C9
+	for <lists+devicetree@lfdr.de>; Tue,  1 Jul 2025 09:03:27 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id DA62F26D4C1;
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9494726CE1D;
 	Tue,  1 Jul 2025 09:01:39 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=bgdev-pl.20230601.gappssmtp.com header.i=@bgdev-pl.20230601.gappssmtp.com header.b="np7EHz3R"
+	dkim=pass (2048-bit key) header.d=bgdev-pl.20230601.gappssmtp.com header.i=@bgdev-pl.20230601.gappssmtp.com header.b="jyYIF9UC"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wr1-f45.google.com (mail-wr1-f45.google.com [209.85.221.45])
+Received: from mail-wm1-f42.google.com (mail-wm1-f42.google.com [209.85.128.42])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 03CA326C3A7
-	for <devicetree@vger.kernel.org>; Tue,  1 Jul 2025 09:01:36 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.45
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C274926C3A9
+	for <devicetree@vger.kernel.org>; Tue,  1 Jul 2025 09:01:37 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.42
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1751360499; cv=none; b=RV25Xy4rohsMpwtXgqO9TKAlJjV7aHKqlyjkHeqch1t7T21vjRGBvMalYbqMVZ7CzECHEIZkN95HfkDqeMvRandiZ1/F6aaP5p4g51SFLGm/uDm8/eHlaC2F202ne6YhIU5R6FC2novfkGjn1d6cDBfEQKUWyaq4YOIxUp2VFiw=
+	t=1751360499; cv=none; b=uRdfk0MIJAPEilSWPF0Z/kFXUB5HUcUZ3VkQtewPfpzra4B+/GxNtE85VeG74k9+mopmAsn/Q97QUjPwwi+8kOBO/h9tTrLSVtzQgTHRUIHIya8uqc7utC27eGUWpvGqiNh3YiAza+2mmpJ7PM0DIkG9sVN80H7rQVMpMf9sX/g=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
 	s=arc-20240116; t=1751360499; c=relaxed/simple;
-	bh=UM/a95nU6vNLC8ZVtNDfSoDoqDmVKHLoqiuDZiPQOFY=;
-	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=Fqp57Xe91DFt7QCLTCQK2GBpZM+S6/ykklxBllVT3RjhTRWRvBllF5RP4gom7QFbQU9k5xLzLaJyzYw4/txm7x4azrpkpeFvY2qHC9ps1ng1Qz0nbdl/egFutJRpJhTHzwFBUCfbRDrXvZVyoyhmYPkkZc6/O6CzdV9/nFhw2SQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=bgdev.pl; spf=none smtp.mailfrom=bgdev.pl; dkim=pass (2048-bit key) header.d=bgdev-pl.20230601.gappssmtp.com header.i=@bgdev-pl.20230601.gappssmtp.com header.b=np7EHz3R; arc=none smtp.client-ip=209.85.221.45
+	bh=xyipH3EsXGzcJoghGmIL6bV002b73SSHZcnI0Bd4lYg=;
+	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
+	 In-Reply-To:To:Cc; b=RuvXZYY+H3+s6hwQr9jYX4im694/oPgRaYC1cwdN+XUUm+YB/hOVnsLqSjSFTxYbie9E9YToA2SEazGZAQK1NMqIGol/ZyAnzzjTXETDOjALYK2wcssBdXQwCBPTrpng9W2hpbvWl5Ws6KsUG7EVQrvY5Bnec5leQ9lNfQL+4/k=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=bgdev.pl; spf=none smtp.mailfrom=bgdev.pl; dkim=pass (2048-bit key) header.d=bgdev-pl.20230601.gappssmtp.com header.i=@bgdev-pl.20230601.gappssmtp.com header.b=jyYIF9UC; arc=none smtp.client-ip=209.85.128.42
 Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=bgdev.pl
 Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=bgdev.pl
-Received: by mail-wr1-f45.google.com with SMTP id ffacd0b85a97d-3a5257748e1so1919406f8f.2
-        for <devicetree@vger.kernel.org>; Tue, 01 Jul 2025 02:01:36 -0700 (PDT)
+Received: by mail-wm1-f42.google.com with SMTP id 5b1f17b1804b1-450ce671a08so19544925e9.3
+        for <devicetree@vger.kernel.org>; Tue, 01 Jul 2025 02:01:37 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=bgdev-pl.20230601.gappssmtp.com; s=20230601; t=1751360495; x=1751965295; darn=vger.kernel.org;
-        h=cc:to:content-transfer-encoding:mime-version:message-id:date
-         :subject:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=WP8VKsIDrL+Rlg/Gxr50hjhldFCuzpVHMlIsVNdgSK0=;
-        b=np7EHz3R+tpby4q8v+07EcNGGZjaP9cYWJWWz8VrfmjRl58RnpufLNdjmdmv7/2O8m
-         8R9ldZJrqQO98aY81OdOJaDNqZN5087oKjEDzmKGH/yY39U5Q+2HzlDqJ4fWfUto1n2A
-         w5WiiivN26Ll7hEerlpfMVJ1t/oD4PlN42cO/pKCAvvPKPIHhJZa5o404Je7iCflIUfE
-         0B4e6T4AIJ2cuP2p0KTk15mOcQUdIIkVCxcD698mubR3yeYmyL4m9PfOXi49fXgEZ5k0
-         id1xl9AmEQwzi8a4kA4I7FWASm5/FjSbeGfuWHMPEdGKrreOz/sv0jNFf8Cnyn1qcKdp
-         4KRA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1751360495; x=1751965295;
-        h=cc:to:content-transfer-encoding:mime-version:message-id:date
-         :subject:from:x-gm-message-state:from:to:cc:subject:date:message-id
+        d=bgdev-pl.20230601.gappssmtp.com; s=20230601; t=1751360496; x=1751965296; darn=vger.kernel.org;
+        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
+         :mime-version:subject:date:from:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=WP8VKsIDrL+Rlg/Gxr50hjhldFCuzpVHMlIsVNdgSK0=;
-        b=LJ+1UoDWRYDuErw6tnizjsa7ZPzrEjSV++lyLTS+6h0kXW3XoNYDaKSNdHk8aG9uz+
-         WPDPep/TTgml/JhjgyqnPCUh94Nj+vrgIxNwBLWwdFgHIpsUboUdnw3OXz+hlGkSAXAs
-         avj5cvK+Uf7yvpsQDIiSALMw4E0H0MnRt6ALBkN6/nV2p7JOR67S0YjWtB1EPNykNqcu
-         vcYtCaMcaZhlvxoEU22u8u0+1uxgzTUvNgOwBmTKwlIQDgU0meSdwiccc2ea6ZmKyKWE
-         pyu3Ajv9ypm5au261V5rV41zSzLZSpZARoq/QJs+TatFTFkLPU4NmthAEVlLOwOu5aeh
-         6U2w==
-X-Forwarded-Encrypted: i=1; AJvYcCX2k7asVCl8MvB/gVktcaCVRWbLRR95GcNfoiSdyMWtj19/PHHVIgw7LLQz/ovL3DfUSeTH4K07dC/o@vger.kernel.org
-X-Gm-Message-State: AOJu0YxhkiJbmLnmdcXGRkUqW0/ZJOwIWf4iqPUiTToLZL/2190tqIHr
-	AE4ygzv4Hg2ADVDcNLA8AfgE7RoSfrmv+U8B7WB5HwL2hdw58uQ+NNGdz3PKmuKPbpE=
-X-Gm-Gg: ASbGncvrh9fynUNxwcJnm0zHjLkQnmSfZusTY38JZEFIQB9QxXFe27tZtWZ0VqpGSoL
-	F/uVRtQgPxPHnW1y7PciwFT7LTYq9ohsxo8FvUs9s5AH0VohU1ID+6Eww5O/m5VqLrmjt3dGDYc
-	A/ExLEPNQAQ/LqOzT5+WqZvPE56aR1Mdb87J6Kvd98u8IdlY7p58AnkuO6vbTmWLOFMO/ItB87f
-	Zl7y9ibk1fJgRS6N9+1K5HPZpAm940U+jVF/gz4ymfAOtBXhSLlPtXBzEmE614cnR5nTutpf1xU
-	yJfHq04zpvSH/Memk8Vp8lvXUAproBRrk81IAjk1ZJv3+HtghcSHgZI=
-X-Google-Smtp-Source: AGHT+IHaVKK5/KLi+D7h/i2dCCKCKD/8hgl9hcBgDka+2suPtO7Ix58QUwQem6y4dI/BfL73PW5K7A==
-X-Received: by 2002:a05:6000:270f:b0:3a4:d994:be7d with SMTP id ffacd0b85a97d-3a8fdc1f5a9mr9410263f8f.23.1751360495002;
+        bh=YoHl5puINVJ0Ve4YxxvYISOWNCVrnk5j1B2aIYAYSzA=;
+        b=jyYIF9UCg9Vlkuch9j7KIqjHGtYtQwoXFM3ZnEMmWFy/HH3l+HoorUFT2dWbn85T0b
+         8IgyJpJ7ICFZX7MM90BI/drWnt5RH3CRWzzWQjfB9nP/to9NkWwpopRSBfuyXxJS3Bpl
+         W5i7yqvm2p5gmr6stBu9jwz/vBoT6ISxiqsfuZxiV3pB8SOAnPsxSpyx7SyU7kcqERTz
+         qSxt81ZosV5uqs6Lg/AwSmLmyPkrLtdwA2cwcf51ykJ7iMlvb/DDU6ZqlRhSItODjr6b
+         tyuB+4+VUM2Y9iobvBQhATHZYBESz87gnWtU1IBysvHgCxYN5WxJA7MrOXwG3jTUKvkz
+         3+wA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1751360496; x=1751965296;
+        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
+         :mime-version:subject:date:from:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=YoHl5puINVJ0Ve4YxxvYISOWNCVrnk5j1B2aIYAYSzA=;
+        b=EQqSDNe8rzBZ8uPBYRYP7X9xbm16b4QRerU1WGD6E6bsTzuvqGwsDal13ASUev0lZ7
+         3KhNpHFmx2bGsJYTHobn9eKhIDExbqIVyvcyPJFBonHS+iOkROINQ91lATuExsklq66y
+         bCNbXYTADAhK7lIGKG8D7Bq4Qx8uTV6g2bZeM7soaR44y0Qv4WMAVb5UnYPUIeTcrTRI
+         IBU6gnozq3fknxt4GXmk5PQQ269/TdSR+9NbsUUDdCX99TwTodD/S9MnxBBW3rap4tC4
+         bIKk7abLA4WFHdidpO4AlPuDFd51VOZMgM4w/Tn0P3KED7Vu1+Vom9WH3tvvO9g0vWsi
+         7huA==
+X-Forwarded-Encrypted: i=1; AJvYcCXCPTR4HW7+RiPWvZ3nZd1MloZaaVOiY8I4liwXdZOdyvtocg9zT2/WAxHQAmE8CcUU6YVdvh2QdHQY@vger.kernel.org
+X-Gm-Message-State: AOJu0YwlgDkVsOVPwuHeAAuFAL1M8/BWb9Gsiw/5omJ0Wa0FQKPBHJV/
+	CF3H0PP3bDJ9IKAbj0QJBVHdSD7dO8oy4RRknA5qnCQC3sm72sosWJ/bouyhLksC8DAwn2n5Gab
+	bpGIQer8=
+X-Gm-Gg: ASbGncs0cwpLNsubKP+wvvd1j6bgpy9xN2FHsxzbGi/OLPLjscQcK15G3Qf2fyqbfP8
+	iOONt6C+YI560qmT+MLRAsku3Axp1KHW7qiRv1cyNHh/41Da9ARqJlS5n+O/9FmRri2Wif427rt
+	5viWUoSblV4Sxe2o9vPpS8EyI9F/RGnkMUWzi2tPyEbBUirpvkBMorR8QNmmbLguOnRtfkeNPFs
+	PlpU0xaUqv4ZdA2hOHHxeFXGzVwVSOxS066My9mPfSgsBA0JuSEJ9ZhwGSw6GgsdezptNEG9usc
+	5j9Lpn2SpD+QOvEJLMDNu7MlnG94i1LatQ90wmXU+peEYjnrOaHQeS8=
+X-Google-Smtp-Source: AGHT+IEkwOT13Zt2Lni51R0BCavP63O3KSLZPOFaIrkcqHbcTQMv4J3grlnUcCmcEbqzChRvlEJ5ew==
+X-Received: by 2002:a05:600c:19cb:b0:43d:8ea:8d7a with SMTP id 5b1f17b1804b1-4538ee71251mr146489945e9.28.1751360495669;
         Tue, 01 Jul 2025 02:01:35 -0700 (PDT)
 Received: from [127.0.1.1] ([2a01:cb1d:dc:7e00:a387:7a32:8457:f9b])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-3ac6ee0d0b9sm6949707f8f.18.2025.07.01.02.01.34
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-3ac6ee0d0b9sm6949707f8f.18.2025.07.01.02.01.35
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 01 Jul 2025 02:01:34 -0700 (PDT)
+        Tue, 01 Jul 2025 02:01:35 -0700 (PDT)
 From: Bartosz Golaszewski <brgl@bgdev.pl>
-Subject: [PATCH 0/3] arm64: dts: qcom: fix GPIO lookup flags for i2c-gpio
- SDA and SCL pins
-Date: Tue, 01 Jul 2025 11:01:28 +0200
-Message-Id: <20250701-qcom-gpio-lookup-open-drain-v1-0-9678c4352f11@linaro.org>
+Date: Tue, 01 Jul 2025 11:01:29 +0200
+Subject: [PATCH 1/3] arm64: dts: qcom: qrb2210-rb1: fix GPIO lookup flags
+ for i2c SDA and SCL
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -83,10 +85,9 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-X-B4-Tracking: v=1; b=H4sIAOijY2gC/x3MQQqAIBAAwK/EnltQM4K+Eh2ktloq15QiiP6ed
- JzLPJAoMiVoiwciXZxYfIYuCxgW52dCHrPBKFOrRmk8BtlxDiy4iaxnQAnkcYyOPVJlbaV1Tc5
- YyEOINPH9713/vh+OY8wBbQAAAA==
-X-Change-ID: 20250701-qcom-gpio-lookup-open-drain-e3443115ea24
+Message-Id: <20250701-qcom-gpio-lookup-open-drain-v1-1-9678c4352f11@linaro.org>
+References: <20250701-qcom-gpio-lookup-open-drain-v1-0-9678c4352f11@linaro.org>
+In-Reply-To: <20250701-qcom-gpio-lookup-open-drain-v1-0-9678c4352f11@linaro.org>
 To: Bjorn Andersson <andersson@kernel.org>, 
  Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>, 
  Krzysztof Kozlowski <krzk+dt@kernel.org>, 
@@ -95,51 +96,60 @@ Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
  linux-kernel@vger.kernel.org, 
  Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
 X-Mailer: b4 0.14.2
-X-Developer-Signature: v=1; a=openpgp-sha256; l=1316;
+X-Developer-Signature: v=1; a=openpgp-sha256; l=1202;
  i=bartosz.golaszewski@linaro.org; h=from:subject:message-id;
- bh=UM/a95nU6vNLC8ZVtNDfSoDoqDmVKHLoqiuDZiPQOFY=;
- b=owEBbQKS/ZANAwAKARGnLqAUcddyAcsmYgBoY6Ptvgi5B1OXpXy5Qc5dnFDSASskBDGBNT7tD
- OMK42Jx9kmJAjMEAAEKAB0WIQQWnetsC8PEYBPSx58Rpy6gFHHXcgUCaGOj7QAKCRARpy6gFHHX
- coV/D/kBLaSkzFODESNxhQquue3V2OATAFhq1h95NGrcmcbTr2WP1XSY35uU5H0aSGmg3Y2PREF
- lli5mQrrTjqGPUIuiKSC9/Wny8Xh/eJmZYIH+C71NuAOMklmKmPiR+sRapU2cVz4/w3ed+bXUjy
- VPf6Dsy4NyIxSopChXiWApRhxy4xNK85rqhDY0d33/tHhXlys55KjThYN4eymQkj0wXN1x4Skm7
- 2jCtEYXk8YLOU17Go4prTHZfLUcTvqVR7/70oHsvHLi49tLjoz617+h7FqkrQIiRnTXNk5Yilex
- x4WRK9ejG7PeDo16zCXL2RaJSbOG17OE4Iesx9NN7+JoDywaZ/eBLXcUDwyN02mZqmX1tY+VxH8
- aTFucL7UmodT160gh4GBK6+/E/OCWy5CbLPXOcPE7/JylXuX5gRpQunrygiHoSXksXQYdSixh1x
- 7DbRQO3QhGk5hVf4wAHr/46xkk8LZ7xkvj9jXk4Goxp8gAgmNDPvYgr5THBYArBxlh/MsZsC8sa
- yDcMKjYRBwvjaERWmgfY0nRy6AAqhzC3PwlZ3keyGB/yWGk5KvltgENDb3bBm7u/u/PoCBJ3Utj
- 1fMARwmZKGWaqrewAZ7hOIEbA5L+Y/WN+schcjzlC3CGHWtoBYPC75eF1mxH+ahaM7kN/A7jL5g
- wVxVvMWO6Naff+w==
+ bh=B6EZY7zli8B1mlffzLMWzAcw5rKfVX2fkyiIUXf7/nM=;
+ b=owEBbQKS/ZANAwAKARGnLqAUcddyAcsmYgBoY6PtucQ+FGHhe1dgF2HIOPFscGtFa4NTbOfAo
+ t/sRUg4sruJAjMEAAEKAB0WIQQWnetsC8PEYBPSx58Rpy6gFHHXcgUCaGOj7QAKCRARpy6gFHHX
+ cpv/D/wNVTzi02SS/tvFMEp0fEzisY4URHW4kW0jv9DJ52F1hhUcYpisAcMMbbV48COkuYki06d
+ 3hV9y/ZRi0D+z+KrtHiPIdMnOFfEAMrqK9CDNqYpwnv8jrvbsCLEhxen6/1e7POLnhI6Wmhbz0s
+ y3rBLU9xGXEs4rS784NVAkOFQpBGtDKPmNK7XsFiyn2cyOSxIP+4mnjss1uUM5ojA1j9NiMGsXA
+ /tJKl8A15cwcarDYfP8qHpMxGljRZFXkIhYU2/CldnmvbXNhfIXmRqeET5zi3ErmLFktxXSDroX
+ EmPfACThxoW01WhdiQ3cCHdqZCbitEZmdqwXDsyLn5gq0OYbnFiznKHetQLZwvB9OW4pevJD9sB
+ g0Os6W+aUxZe2ika+Ssbw4N+YGaCWEEjBmxxXRqM6WoCeznACH+6ZH1hHm2TAmexfEZj8128DGp
+ jn0VDBG8Sxo2ko6ZhTyD/8jidlC4KemYRu/87193jXOw3sj8cswpZpbVQPLGUVl9EnPICTD2Go6
+ 1cD3nJzH3iNAWlNlXA/RrtoQZfJD2nnAvxerRahR1obFZpLJpAU2GS3cM9/f4pM2Hj4EnqKJDhu
+ 5oLU0FfVRvB3d8cNPRyBccOMkgrga3ICZtGAP9M7riYCk4YILmF/kFY5jh3A+JHmrWrg4CAPCHU
+ s29lfpdBeDgmRtA==
 X-Developer-Key: i=bartosz.golaszewski@linaro.org; a=openpgp;
  fpr=169DEB6C0BC3C46013D2C79F11A72EA01471D772
 
-There are three platforms in the QCom DTS tree that are missing the
-open-drain lookup flag in their DT nodes associated with the i2c-gpio
-device whose driver enforces open-drain outputs. This causes the GPIO
-core to emit warnings such as:
+From: Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
 
-[    5.153550] gpio-528 (sda): enforced open drain please flag it properly in DT/ACPI DSDT/board file
-[    5.166373] gpio-529 (scl): enforced open drain please flag it properly in DT/ACPI DSDT/board file
-
-Silence the warnings by adding appriopriate flags.
+The I2C GPIO bus driver enforces the SDA and SCL pins as open-drain
+outputs but the lookup flags in the DTS don't reflect that triggering
+warnings from GPIO core. Add the appropriate flags.
 
 Signed-off-by: Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
 ---
-Bartosz Golaszewski (3):
-      arm64: dts: qcom: qrb2210-rb1: fix GPIO lookup flags for i2c SDA and SCL
-      arm64: dts: qcom: qrb4210-rb2: fix GPIO lookup flags for i2c SDA and SCL
-      arm64: dts: qcom: sdm845-samsung-starqltechn: fix GPIO lookup flags for i2c SDA and SCL
+ arch/arm64/boot/dts/qcom/qrb2210-rb1.dts | 5 +++--
+ 1 file changed, 3 insertions(+), 2 deletions(-)
 
- arch/arm64/boot/dts/qcom/qrb2210-rb1.dts                | 5 +++--
- arch/arm64/boot/dts/qcom/qrb4210-rb2.dts                | 5 +++--
- arch/arm64/boot/dts/qcom/sdm845-samsung-starqltechn.dts | 4 ++--
- 3 files changed, 8 insertions(+), 6 deletions(-)
----
-base-commit: 1343433ed38923a21425c602e92120a1f1db5f7a
-change-id: 20250701-qcom-gpio-lookup-open-drain-e3443115ea24
+diff --git a/arch/arm64/boot/dts/qcom/qrb2210-rb1.dts b/arch/arm64/boot/dts/qcom/qrb2210-rb1.dts
+index b2e0fc5501c1eefc7e037b2efd939126b483b226..277b33100ac07cb1e8477e9e51331f974b65092b 100644
+--- a/arch/arm64/boot/dts/qcom/qrb2210-rb1.dts
++++ b/arch/arm64/boot/dts/qcom/qrb2210-rb1.dts
+@@ -5,6 +5,7 @@
+ 
+ /dts-v1/;
+ 
++#include <dt-bindings/gpio/gpio.h>
+ #include <dt-bindings/leds/common.h>
+ #include "qcm2290.dtsi"
+ #include "pm4125.dtsi"
+@@ -63,8 +64,8 @@ hdmi_con: endpoint {
+ 	i2c2_gpio: i2c {
+ 		compatible = "i2c-gpio";
+ 
+-		sda-gpios = <&tlmm 6 GPIO_ACTIVE_HIGH>;
+-		scl-gpios = <&tlmm 7 GPIO_ACTIVE_HIGH>;
++		sda-gpios = <&tlmm 6 (GPIO_ACTIVE_HIGH | GPIO_OPEN_DRAIN)>;
++		scl-gpios = <&tlmm 7 (GPIO_ACTIVE_HIGH | GPIO_OPEN_DRAIN)>;
+ 		#address-cells = <1>;
+ 		#size-cells = <0>;
+ 
 
-Best regards,
 -- 
-Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
+2.48.1
 
 
