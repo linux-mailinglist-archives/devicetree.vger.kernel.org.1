@@ -1,81 +1,80 @@
-Return-Path: <devicetree+bounces-191291-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-191292-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 165DAAEEDC2
-	for <lists+devicetree@lfdr.de>; Tue,  1 Jul 2025 07:38:24 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id DE3CFAEEDC4
+	for <lists+devicetree@lfdr.de>; Tue,  1 Jul 2025 07:38:37 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 541D01BC30C2
-	for <lists+devicetree@lfdr.de>; Tue,  1 Jul 2025 05:38:36 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 0B5907ACA3D
+	for <lists+devicetree@lfdr.de>; Tue,  1 Jul 2025 05:37:13 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9983F241672;
-	Tue,  1 Jul 2025 05:37:45 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id ACE7D23E352;
+	Tue,  1 Jul 2025 05:37:51 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=riscstar-com.20230601.gappssmtp.com header.i=@riscstar-com.20230601.gappssmtp.com header.b="y4qYTNfW"
+	dkim=pass (2048-bit key) header.d=riscstar-com.20230601.gappssmtp.com header.i=@riscstar-com.20230601.gappssmtp.com header.b="ebfiRMjU"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pl1-f181.google.com (mail-pl1-f181.google.com [209.85.214.181])
+Received: from mail-pl1-f172.google.com (mail-pl1-f172.google.com [209.85.214.172])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AF02822FE0F
-	for <devicetree@vger.kernel.org>; Tue,  1 Jul 2025 05:37:43 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.181
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EA563245014
+	for <devicetree@vger.kernel.org>; Tue,  1 Jul 2025 05:37:49 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.172
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1751348265; cv=none; b=SFa/e8cJuVs5tzvJmP3pLGhi3fVZQ1XVI/79/mnu1pWrfpPgAOZpkGTrqe+QBZge5FfIu+afXgrcwofTOpV/pqfSdBE5d14aZ6ZHbT7adeB8fWLIHWTqEXPZCLy7sf5xoKf9mBgKmNCnhKiNk4QbNC2LM+ewapZc+VvZGHRappo=
+	t=1751348271; cv=none; b=jYOuiIgFQRgeSoXfwnhBBJRQgMUsBAV5MXnzI5siValQxjDTr+gPdcrnUACNIxkQ1TWvPV6rJzDkxpp4F7WmG0XDVPEQK8nqJDAmfvPG/tzbBQpEGmsBAD3qPi84ru2pIzUp4oYPVbCMxB752q5iaqbzGRXCBVT58JHUo0ClVDU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1751348265; c=relaxed/simple;
-	bh=NIlTRZr0gcC7/jQ4AsqDDf4lWRiohLEHahWEpxHvWxQ=;
+	s=arc-20240116; t=1751348271; c=relaxed/simple;
+	bh=cvJMbBhCxqZy7PEHIdbrxOx/t31kggur4xA0D6K3PIU=;
 	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=eJU9eBSld9pvWb4N5NzF0VQU67Tt35oSeXuY86tMIm1DZIfS6QxNYX2Fb/BXdVYw0ivQZ6+hSH4C+5pcD4SqJ7pdy0n1vWmNlpXEwXxjO+6CFsBjoa/kcO6afwkMJ1e6BE0VTRQhkvsbElAERKTzqinPZWMRPOpUlzZd2DCtyQI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=riscstar.com; spf=pass smtp.mailfrom=riscstar.com; dkim=pass (2048-bit key) header.d=riscstar-com.20230601.gappssmtp.com header.i=@riscstar-com.20230601.gappssmtp.com header.b=y4qYTNfW; arc=none smtp.client-ip=209.85.214.181
+	 In-Reply-To:To:Cc; b=pDA7RiAOHy/HFPcQ2TD10YH5MdowN0UeMo2PYBi6tud6rV0mSjPlX4nEQgjFSOZMgUJow1tgNjyKH2fDn6A/s1hpDjGWBtBh+CBeTYlowxdwZ1EVerhNKRn09esduPTqo4msE0WssanTtUOvsmwnyouQ/1sllqOoS6VzdUt62a8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=riscstar.com; spf=pass smtp.mailfrom=riscstar.com; dkim=pass (2048-bit key) header.d=riscstar-com.20230601.gappssmtp.com header.i=@riscstar-com.20230601.gappssmtp.com header.b=ebfiRMjU; arc=none smtp.client-ip=209.85.214.172
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=riscstar.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=riscstar.com
-Received: by mail-pl1-f181.google.com with SMTP id d9443c01a7336-235f9e87f78so28334135ad.2
-        for <devicetree@vger.kernel.org>; Mon, 30 Jun 2025 22:37:43 -0700 (PDT)
+Received: by mail-pl1-f172.google.com with SMTP id d9443c01a7336-23602481460so53489305ad.0
+        for <devicetree@vger.kernel.org>; Mon, 30 Jun 2025 22:37:49 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=riscstar-com.20230601.gappssmtp.com; s=20230601; t=1751348263; x=1751953063; darn=vger.kernel.org;
+        d=riscstar-com.20230601.gappssmtp.com; s=20230601; t=1751348269; x=1751953069; darn=vger.kernel.org;
         h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
          :mime-version:subject:date:from:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=K8FP50QWAxhaRk638SaOf4ESK8SqYeIg7LMU7MbzlTw=;
-        b=y4qYTNfWsaa1/MH4dkwr0ubJLibn6aMH6Ng2vz3Qa1Xkg+S/WP8b1C9jEC6J3C8JF7
-         C52De6iuiGO3ufPmxZRo/yFrp1KAcKPcwtbBTehXfMZ+JubDIdootfPNCHp6vkz+u1Eu
-         Y3WfK74PawiHiNT4zWgc53OAgWn5pOUK2dJhm46H3e6sfedHEtLePA9k2Q+Opq7huxHO
-         tGAHZzqo/lsdQ7dPglBrQX15rzIHo6SnIWWnJLsgw0Xa5W9mfilUCn27kxvfLZOi1WxN
-         lvb0XnTgTU1nH30QaNYDRS0eYkcRRVCXu3H2fwniu2cvfP4MLyvGu8lEvqC7bw4Ot+Cc
-         eJTg==
+        bh=SIPMZwIjwsVXUr19w5dAJ2kyFpb+jn5E1yMbGJ484tE=;
+        b=ebfiRMjUsj7KnaD3yzoYEIf1cRZanPi7VrtOx1REX2ojZtRcFnvZUkiPRuJWdAg01U
+         VW/R2HDXJuk4OE/rCMHpLR5gTOxhq+x6stc5hz96outdNz7MfLjsAzex4e7r0CSK/ekC
+         GHtD7sun4/3s1e3d7d0CmjzEh/yp7hqPROGF7XoRFGLFMintD5XOwUB3dhAsT6QLFcW3
+         mdy7avP43pm3vuHernYHyt/OR1H3HuEe22a/2hvewIxhkNCuEHg3diMdRTEwHxtAgjjw
+         eP6CWfZw0X7bSQ+QOLoU88fFSf4JZiJ2sUIAy7ekShMHiCy2DXDXiTgRjsiPZ8HLX6EU
+         KXPA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1751348263; x=1751953063;
+        d=1e100.net; s=20230601; t=1751348269; x=1751953069;
         h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
          :mime-version:subject:date:from:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=K8FP50QWAxhaRk638SaOf4ESK8SqYeIg7LMU7MbzlTw=;
-        b=UU+9ofaoTEplu/SOL6WScvDrjTz2qTduYDCxVt7+Uj6KmALaiuoPZlMvpNH95AIqhZ
-         mF5YSeE5U+7almTPsdyqwPObCUbj9BW+vrvwBRDb4r7Vs9gl8nlQfuO4htD4ut9revX0
-         UKY9JotyAXum3cvg8bhcjAxs7raj5vetr9NzeJKPqY64t19KefbfsitiXXSUJSSCHMVg
-         +92yzZWWBubfFozl1PEVRz48vk/cc1n0P/q2rQcognOfnxAGMHYg74nACdH9kFdOsJxC
-         9qREt0xUnE7+eqEHbye0bAfgYMjAzap3DeWA3wLXzjItlARgyndoNOQ6ngep6sdWhkxv
-         N4sw==
-X-Forwarded-Encrypted: i=1; AJvYcCWCzvnhivBp9VuQhi+kftJdMcDbsdeD9iLth1Zl+Upw01cYl+bclwncZAhgewqRzuUyb3qmlpeoRlod@vger.kernel.org
-X-Gm-Message-State: AOJu0YyQBViQIkamPXOOJr5ppYpUWTAJPs+eUaPBlAPTngzRuOmOmn5x
-	gOb7I0nV7hktwRpoNLKbeEWT2Xhu39y/arWpy1ChT1LnC5HExOVivlpUwWn5WSRibc4=
-X-Gm-Gg: ASbGncv8uMoH1Hw/x8ywITtgygaUcDkQ1oMsaFXxMhrhhuHIzfSRfMGcNAFtbM/m0Ex
-	8+9JrDlegW8GLK5layTysZrO3C/n5Tizcwhe15KImAX+yg3D2ZL2oCZAN5P58PTAQ4S7fktPtEn
-	3BdQEsJ3Dor+1v5TVOb4h9klIYj1/JT/tLyERoFu50FTz1oxoON+Zw5pu3ezat0Z5/GdGwnyPqU
-	HzoheT9m8/0IcuyGaZnxMzQJPkdzfW7S7Xw4XpoNRwiSB4ODnVNBkn//JTEwDAj4Te8dbWxDOzv
-	ghmZBnKvmcjxt60a1w7Qg+NcftdoGnvG4zz+fgE=
-X-Google-Smtp-Source: AGHT+IFdEG/r6gnSMZ5F+fn/H12Ii9bbpF2XMMeZ4mCGdFa4TwRSqSrBT/QNNdd/8YlLJFb2+ZPknQ==
-X-Received: by 2002:a17:902:e94c:b0:234:f6ba:e689 with SMTP id d9443c01a7336-23ac46341eemr214284055ad.39.1751348262985;
-        Mon, 30 Jun 2025 22:37:42 -0700 (PDT)
+        bh=SIPMZwIjwsVXUr19w5dAJ2kyFpb+jn5E1yMbGJ484tE=;
+        b=rEp01K+Rx5IJMeL+UrzniF7im21ct7gqliEjKtDYBsxd0r8lMMEPj4FjSZyAs+37Sg
+         BVr/Ih+NO+nmtk11bbrOiPg1TVOn2k3X+n2nOMtjOfftBuJUa+OZNq9NEtzqt/rUqHmC
+         1pvsmNP+wFGATqlWoTyZfWXo5953W/aTVHcT/Euynt/dxD20N+lMhsRm6tXuwHAtrWy2
+         gHc9q5EX6hlnF7aeNHmsTrKGdIZ8aFZ4yhHrGsEjDALYIe58KYA8YCezdKMK6oEuNqUD
+         yS3HqWeVcpU83kgL2VWf0PnWXab75nMGqUgP5j9/yl75W1/jP0EqZlCx880cD6ryD8oP
+         cMzA==
+X-Forwarded-Encrypted: i=1; AJvYcCXcABJTZHkCnaxbRRL62iiwd3gtCzF0ZCRZPzLKnyPssSEvZ6vLPyNy9TemXzudZu/VhguSfFrFvnZa@vger.kernel.org
+X-Gm-Message-State: AOJu0Yzud3vKU7ZhKOGcLWpCFBxdIUVvlhN78f0scV7uJojEmUVSznra
+	xA0yCPA3DDY5emQqRKLy2ySa8Gp/DxBO7aonLy8m/Oqj9rhhLcrzfV8Ak3XGVNU6V7U=
+X-Gm-Gg: ASbGncuW9zgus+PzQE7nPyIvdxev6ap9r58/Q9ECtjnLNHV0R5QPH1CsozUKrlKIA7k
+	UFX19kxcGP2FlyEFsjVoLEIOZYskfGVz71H/qi0RxpAT5RiNdEdzs93gN4cmji07RG88JJBY6ws
+	ha4rYBD12rVXQGvdUu+ARWL5STvuAoyU+g3LZBJgan2S9sg+22sC/+LQgrdhUTrP6cwsAUdMzij
+	V+M0zKA68b3RtWQpGn3wY/U8K9GSyxbQO3hYMMWHWyMVswdAxV3CPnGU1G3EvsUUuRqlZNuwlMT
+	Ip11Kr8J9MtfogcfvzM05LYC/Eg672IEDjXDolM=
+X-Google-Smtp-Source: AGHT+IE16tX1sCq4DSpvKgkQxnN+PHXsI78p3M94DOvhTbzRw8dgntEK2GQnFLXWQ+awumOj/AFs5g==
+X-Received: by 2002:a17:903:244c:b0:224:910:23f6 with SMTP id d9443c01a7336-23ac463e8d8mr248581755ad.45.1751348269319;
+        Mon, 30 Jun 2025 22:37:49 -0700 (PDT)
 Received: from [127.0.1.1] ([2403:2c80:6::3092])
-        by smtp.gmail.com with ESMTPSA id d9443c01a7336-23acb39bf5fsm101729865ad.115.2025.06.30.22.37.38
+        by smtp.gmail.com with ESMTPSA id d9443c01a7336-23acb39bf5fsm101729865ad.115.2025.06.30.22.37.43
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 30 Jun 2025 22:37:42 -0700 (PDT)
+        Mon, 30 Jun 2025 22:37:49 -0700 (PDT)
 From: Guodong Xu <guodong@riscstar.com>
-Date: Tue, 01 Jul 2025 13:36:55 +0800
-Subject: [PATCH v2 1/8] dt-bindings: dma: marvell,mmp-dma: Add SpacemiT K1
- PDMA support
+Date: Tue, 01 Jul 2025 13:36:56 +0800
+Subject: [PATCH v2 2/8] dmaengine: mmp_pdma: Add optional clock support
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -84,7 +83,7 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-Message-Id: <20250701-working_dma_0701_v2-v2-1-ab6ee9171d26@riscstar.com>
+Message-Id: <20250701-working_dma_0701_v2-v2-2-ab6ee9171d26@riscstar.com>
 References: <20250701-working_dma_0701_v2-v2-0-ab6ee9171d26@riscstar.com>
 In-Reply-To: <20250701-working_dma_0701_v2-v2-0-ab6ee9171d26@riscstar.com>
 To: Vinod Koul <vkoul@kernel.org>, Rob Herring <robh@kernel.org>, 
@@ -101,112 +100,47 @@ Cc: Alex Elder <elder@riscstar.com>, Vivian Wang <wangruikang@iscas.ac.cn>,
  spacemit@lists.linux.dev, Guodong Xu <guodong@riscstar.com>
 X-Mailer: b4 0.14.2
 
-Add "spacemit,k1-pdma" compatible string to support SpacemiT K1 PDMA
-controller. This variant requires:
-- clocks: Clock controller for the DMA
-- resets: Reset controller for the DMA
-
-Also add explicit #dma-cells property definition with proper constraints:
-- 2 cells for marvell,pdma-1.0 and spacemit,k1-pdma
-    - (request number + unused)
-- 1 cell for other variants
-    - (request number only)
-
-This fixes "make dtbs_check W=3" warnings about unevaluated properties.
+Add support for retrieving and enabling an optional clock during
+mmp_pdma_probe().
 
 Signed-off-by: Guodong Xu <guodong@riscstar.com>
 ---
-v2:
-- Used more specific compatible string "spacemit,k1-pdma"
-- Enhanced DT bindings with conditional constraints:
-  - clocks/resets properties only required for SpacemiT K1
-  - #dma-cells set to 2 for marvell,pdma-1.0 and spacemit,k1-pdma
-  - #dma-cells set to 1 for other variants, ie.
-      marvell,adma-1.0 and  marvell,pxa910-squ
+v2: No change.
 ---
- .../devicetree/bindings/dma/marvell,mmp-dma.yaml   | 49 ++++++++++++++++++++++
- 1 file changed, 49 insertions(+)
+ drivers/dma/mmp_pdma.c | 6 ++++++
+ 1 file changed, 6 insertions(+)
 
-diff --git a/Documentation/devicetree/bindings/dma/marvell,mmp-dma.yaml b/Documentation/devicetree/bindings/dma/marvell,mmp-dma.yaml
-index d447d5207be0436bc7fb648dffe31f8b780b491d..7b5f7ccfc9dbb69bfef250146cba5434548f3702 100644
---- a/Documentation/devicetree/bindings/dma/marvell,mmp-dma.yaml
-+++ b/Documentation/devicetree/bindings/dma/marvell,mmp-dma.yaml
-@@ -18,6 +18,7 @@ properties:
-       - marvell,pdma-1.0
-       - marvell,adma-1.0
-       - marvell,pxa910-squ
-+      - spacemit,k1-pdma
+diff --git a/drivers/dma/mmp_pdma.c b/drivers/dma/mmp_pdma.c
+index a95d31103d3063a1d11177a1a37b89ac2fd213e9..4a6dbf55823722d26cc69379d22aaa88fbe19313 100644
+--- a/drivers/dma/mmp_pdma.c
++++ b/drivers/dma/mmp_pdma.c
+@@ -15,6 +15,7 @@
+ #include <linux/device.h>
+ #include <linux/platform_data/mmp_dma.h>
+ #include <linux/dmapool.h>
++#include <linux/clk.h>
+ #include <linux/of_dma.h>
+ #include <linux/of.h>
  
-   reg:
-     maxItems: 1
-@@ -32,6 +33,19 @@ properties:
-       A phandle to the SRAM pool
-     $ref: /schemas/types.yaml#/definitions/phandle
+@@ -1019,6 +1020,7 @@ static int mmp_pdma_probe(struct platform_device *op)
+ {
+ 	struct mmp_pdma_device *pdev;
+ 	struct mmp_dma_platdata *pdata = dev_get_platdata(&op->dev);
++	struct clk *clk;
+ 	int i, ret, irq = 0;
+ 	int dma_channels = 0, irq_num = 0;
+ 	const enum dma_slave_buswidth widths =
+@@ -1037,6 +1039,10 @@ static int mmp_pdma_probe(struct platform_device *op)
+ 	if (IS_ERR(pdev->base))
+ 		return PTR_ERR(pdev->base);
  
-+  clocks:
-+    description: Clock for the controller
-+    maxItems: 1
++	clk = devm_clk_get_optional_enabled(pdev->dev, NULL);
++	if (IS_ERR(clk))
++		return PTR_ERR(clk);
 +
-+  resets:
-+    description: Reset controller for the DMA controller
-+    maxItems: 1
-+
-+  '#dma-cells':
-+    description:
-+      DMA specifier, consisting of a phandle to DMA controller plus the
-+      following integer cells
-+
-   '#dma-channels':
-     deprecated: true
- 
-@@ -52,12 +66,47 @@ allOf:
-           contains:
-             enum:
-               - marvell,pdma-1.0
-+              - spacemit,k1-pdma
-     then:
-       properties:
-         asram: false
-     else:
-       required:
-         - asram
-+  - if:
-+      properties:
-+        compatible:
-+          contains:
-+            const: spacemit,k1-pdma
-+    then:
-+      required:
-+        - clocks
-+        - resets
-+    else:
-+      properties:
-+        clocks: false
-+        resets: false
-+  - if:
-+      properties:
-+        compatible:
-+          contains:
-+            enum:
-+              - marvell,pdma-1.0
-+              - spacemit,k1-pdma
-+    then:
-+      properties:
-+        '#dma-cells':
-+          const: 2
-+          description:
-+            The first cell contains the DMA request number for the peripheral
-+            device. The second cell is currently unused but must be present for
-+            backward compatibility.
-+    else:
-+      properties:
-+        '#dma-cells':
-+          const: 1
-+          description:
-+            The cell contains the DMA request number for the peripheral device.
- 
- unevaluatedProperties: false
- 
+ 	if (pdev->dev->of_node) {
+ 		/* Parse new and deprecated dma-channels properties */
+ 		if (of_property_read_u32(pdev->dev->of_node, "dma-channels",
 
 -- 
 2.43.0
