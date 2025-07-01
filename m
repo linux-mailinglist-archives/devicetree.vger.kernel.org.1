@@ -1,135 +1,134 @@
-Return-Path: <devicetree+bounces-191556-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-191657-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 92AA8AEFAE9
-	for <lists+devicetree@lfdr.de>; Tue,  1 Jul 2025 15:40:53 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id A8D49AEFFEA
+	for <lists+devicetree@lfdr.de>; Tue,  1 Jul 2025 18:33:09 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id A0A2D3A2D76
-	for <lists+devicetree@lfdr.de>; Tue,  1 Jul 2025 13:37:17 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id B5AC018861C5
+	for <lists+devicetree@lfdr.de>; Tue,  1 Jul 2025 16:31:47 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id CABBE2741D4;
-	Tue,  1 Jul 2025 13:37:39 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 25FA027C145;
+	Tue,  1 Jul 2025 16:31:16 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="DKr1p6Ir"
+	dkim=pass (1024-bit key) header.d=samsung.com header.i=@samsung.com header.b="oT3g7+5y"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mailout2.samsung.com (mailout2.samsung.com [203.254.224.25])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8A567149C51;
-	Tue,  1 Jul 2025 13:37:38 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4934027E04C
+	for <devicetree@vger.kernel.org>; Tue,  1 Jul 2025 16:31:14 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=203.254.224.25
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1751377059; cv=none; b=JirVPoOVUBdgLzY/fcGARxTuGZ7uTCXCj2qCuuuEMJmwAkvQlAo/Lz88UuSzt5VU0EvEjImzyqifYLTlA8mtR6kUEhRuyDmosf3gTozMFJR0QY7733Nsp2GLorUYzXx2EUZSz39SRBPMVlakqUuxLcLCbqta4c33MbvXjdTJrgE=
+	t=1751387476; cv=none; b=OGwOePs01TB8pH/ugzDE/IRIDccuLN3AGOvM2dasfTo3CJeW5cpuiglhf7Su7yYwoO39iP0MrYErBgHn3L40tP8SheQJV+aieR8whEaQyekbOxbrdGteyA+PG9NLvYNO2J1inG3VY/Yu5uimCE2EWHWLPHeCi2Jf+xKKGyPstFs=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1751377059; c=relaxed/simple;
-	bh=7kex+hChDbryDUCX0yvhuKf5gjmTH1H07CmQQ+0ixkU=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=pmwtEwkjgT7e3DrSJ+3eWcSrxT28++APaHF1fohCUp5ocsuaHlWAOTLzZlBA+GsCE36ssrWMZRYGVDV2E3hvjXPzvRj9ld2evN4LQMxWlgciOQS1vrom2D/asAURHn5bEvTLhaffQR0zVsp5SpqUTdvnqaVasLl5+sWhP9vfpl8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=DKr1p6Ir; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id CACF5C4CEEB;
-	Tue,  1 Jul 2025 13:37:34 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1751377058;
-	bh=7kex+hChDbryDUCX0yvhuKf5gjmTH1H07CmQQ+0ixkU=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=DKr1p6Irs5p3Q2l07ebZSnZOUBCvJmUYkdiDMXD7fzSRJ8f1KwCy1dvYV1e6Jnw4G
-	 RElvbVJ1q+heW0L1YKaIJJrUJxU5zTP74/E5rzwOnVXMBn9la4YPpMgVaKqbdgM4/P
-	 Eqd9iJv5ulDvlIiDPo8x8MGX0MTu8PtxprL0h34QxmgwkCJ0bkVVzvDrpLO8Z/qh3P
-	 vqR5K1YF3M3vsHfXAUQNT04/VWh61G6sS0FAVwCQo0yrrfiUpscqsCHncasPbzkfUp
-	 KNungCRDRsy/woeVcKOpM9qzKeBN6EEIOKEt4M0RCh1CzEvsoBUBNhMKK/IkvXNhCE
-	 XKOcuivHykfdQ==
-Date: Tue, 1 Jul 2025 14:37:32 +0100
-From: Lee Jones <lee@kernel.org>
-To: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-Cc: Nuno =?iso-8859-1?Q?S=E1?= <noname.nuno@gmail.com>, nuno.sa@analog.com,
-	linux-gpio@vger.kernel.org, linux-pwm@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-input@vger.kernel.org,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Uwe =?iso-8859-1?Q?Kleine-K=F6nig?= <ukleinek@kernel.org>,
-	Linus Walleij <linus.walleij@linaro.org>,
-	Bartosz Golaszewski <brgl@bgdev.pl>,
-	Dmitry Torokhov <dmitry.torokhov@gmail.com>,
-	Liu Ying <victor.liu@nxp.com>,
-	Bartosz Golaszewski <bartosz.golaszewski@linaro.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Subject: Re: [PATCH v5 00/20] mfd: adp5585: support keymap events and drop
- legacy Input driver
-Message-ID: <20250701133732.GO10134@google.com>
-References: <20250614-dev-adp5589-fw-v5-0-7e9d84906268@analog.com>
- <20250619133834.GC795775@google.com>
- <d20682874dbd65acde8b80efa004706a09b23248.camel@gmail.com>
- <20250701110522.GK10134@google.com>
- <15ba1febb0f0acf4057af64c5c84db0633cab864.camel@gmail.com>
- <20250701111948.GK15184@pendragon.ideasonboard.com>
+	s=arc-20240116; t=1751387476; c=relaxed/simple;
+	bh=28omV3/O3aHzL6uKDlQ2PANINxBfKNKjkJr4kIo7X54=;
+	h=From:To:Cc:In-Reply-To:Subject:Date:Message-ID:MIME-Version:
+	 Content-Type:References; b=ZUA+gJs+NQPBhNaT8FthfI1rUedALqI1pEHa13nQdJBWFEKuR5/mkUNXNx8qRxjUETfkUpbM/jY5adRtm52BTnNBDOtS4aVVIayWF5DmBIXrN0ZBV/nz+JA/sIsk9T75duD43y2v6qCsiahccBX2/FWkErzA6HzpnKI1W2tA/yo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=samsung.com; spf=pass smtp.mailfrom=samsung.com; dkim=pass (1024-bit key) header.d=samsung.com header.i=@samsung.com header.b=oT3g7+5y; arc=none smtp.client-ip=203.254.224.25
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=samsung.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=samsung.com
+Received: from epcas5p3.samsung.com (unknown [182.195.41.41])
+	by mailout2.samsung.com (KnoxPortal) with ESMTP id 20250701163112epoutp02921ed9882295cd99421576254523e8a0~OLaCLc3oX0663506635epoutp02M
+	for <devicetree@vger.kernel.org>; Tue,  1 Jul 2025 16:31:12 +0000 (GMT)
+DKIM-Filter: OpenDKIM Filter v2.11.0 mailout2.samsung.com 20250701163112epoutp02921ed9882295cd99421576254523e8a0~OLaCLc3oX0663506635epoutp02M
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=samsung.com;
+	s=mail20170921; t=1751387472;
+	bh=CYCieZx7RGc4LBogHf+a8UqHutLdl5VHK4F8STwbvPM=;
+	h=From:To:Cc:In-Reply-To:Subject:Date:References:From;
+	b=oT3g7+5ykWliopi8mIAdsTlCpWF4z7LPDgU/YHY2nVhTIVLVp/iNxC6sMHGpCscf6
+	 xXqM5Vf8YsWk3RvOJ8/byHzgAuVETzDxQ3lqsd3/X5++BIaDvsp8+hk9g/aj6uzSwF
+	 qpm6UMUNgJgIvc3JXmvsYi33AP+FsPag3DbUfyZY=
+Received: from epsnrtp04.localdomain (unknown [182.195.42.156]) by
+	epcas5p2.samsung.com (KnoxPortal) with ESMTPS id
+	20250701163111epcas5p2709c45ba4dad180fe68d0ca67be7a784~OLaBi-Gsx2740427404epcas5p2f;
+	Tue,  1 Jul 2025 16:31:11 +0000 (GMT)
+Received: from epcas5p1.samsung.com (unknown [182.195.38.174]) by
+	epsnrtp04.localdomain (Postfix) with ESMTP id 4bWpSF6RFTz6B9m5; Tue,  1 Jul
+	2025 16:31:09 +0000 (GMT)
+Received: from epsmtip1.samsung.com (unknown [182.195.34.30]) by
+	epcas5p3.samsung.com (KnoxPortal) with ESMTPA id
+	20250701133810epcas5p3e1acdfe3bfcf5276e6c70f12755fdf57~OJC9HjeEd0290902909epcas5p3y;
+	Tue,  1 Jul 2025 13:38:10 +0000 (GMT)
+Received: from FDSFTE462 (unknown [107.122.81.248]) by epsmtip1.samsung.com
+	(KnoxPortal) with ESMTPA id
+	20250701133807epsmtip15aa5b5f8243b909f80b036d6b7b3ca61~OJC6dIU3K0912509125epsmtip18;
+	Tue,  1 Jul 2025 13:38:07 +0000 (GMT)
+From: "Shradha Todi" <shradha.t@samsung.com>
+To: "'Rob Herring'" <robh@kernel.org>
+Cc: <linux-pci@vger.kernel.org>, <devicetree@vger.kernel.org>,
+	<linux-arm-kernel@lists.infradead.org>, <linux-samsung-soc@vger.kernel.org>,
+	<linux-kernel@vger.kernel.org>, <linux-phy@lists.infradead.org>,
+	<linux-fsd@tesla.com>, <manivannan.sadhasivam@linaro.org>,
+	<lpieralisi@kernel.org>, <kw@linux.com>, <bhelgaas@google.com>,
+	<jingoohan1@gmail.com>, <krzk+dt@kernel.org>, <conor+dt@kernel.org>,
+	<alim.akhtar@samsung.com>, <vkoul@kernel.org>, <kishon@kernel.org>,
+	<arnd@arndb.de>, <m.szyprowski@samsung.com>, <jh80.chung@samsung.com>,
+	<pankaj.dubey@samsung.com>
+In-Reply-To: <20250627211236.GA147018-robh@kernel.org>
+Subject: RE: [PATCH v2 06/10] dt-bindings: PCI: Add bindings support for
+ Tesla FSD SoC
+Date: Tue, 1 Jul 2025 19:08:06 +0530
+Message-ID: <02c001dbea8d$62b21d50$281657f0$@samsung.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20250701111948.GK15184@pendragon.ideasonboard.com>
+Content-Transfer-Encoding: 7bit
+X-Mailer: Microsoft Outlook 16.0
+Thread-Index: AQFUClgbainc6hQuKSBO0V8ttZVgkwK41mGpAfhwG8gB/KC3xLT3likQ
+Content-Language: en-in
+X-CMS-MailID: 20250701133810epcas5p3e1acdfe3bfcf5276e6c70f12755fdf57
+X-Msg-Generator: CA
+Content-Type: text/plain; charset="utf-8"
+X-Sendblock-Type: REQ_APPROVE
+CMS-TYPE: 105P
+cpgsPolicy: CPGSC10-541,Y
+X-CFilter-Loop: Reflected
+X-CMS-RootMailID: 20250625165315epcas5p19f081c8a0e2e7dc87698577cc2d460ca
+References: <20250625165229.3458-1-shradha.t@samsung.com>
+	<CGME20250625165315epcas5p19f081c8a0e2e7dc87698577cc2d460ca@epcas5p1.samsung.com>
+	<20250625165229.3458-7-shradha.t@samsung.com>
+	<20250627211236.GA147018-robh@kernel.org>
 
-On Tue, 01 Jul 2025, Laurent Pinchart wrote:
 
-> On Tue, Jul 01, 2025 at 12:09:11PM +0100, Nuno Sá wrote:
-> > On Tue, 2025-07-01 at 12:05 +0100, Lee Jones wrote:
-> > > On Fri, 27 Jun 2025, Nuno Sá wrote:
-> > > 
-> > > > On Thu, 2025-06-19 at 14:38 +0100, Lee Jones wrote:
-> > > > > On Sat, 14 Jun 2025, Nuno Sá via B4 Relay wrote:
-> > > > > 
-> > > > > > Hi all,
-> > > > > > 
-> > > > > > Here it goes v4. Main changes is to drop chip info based struct and
-> > > > > > directly use an enum in the FW .data pointer, use the notifier API for
-> > > > > > dispatching events and multiple calls to mfd_add_devices().
-> > > > > > 
-> > > > > > Regarding the last point, I think I could have used multiple calls to
-> > > > > > devm_mfd_add_devices() and avoid those gotos in adp5585_add_devices()
-> > > > > > but I do not feel that would have been "correct".
-> > > > > > 
-> > > > > > Thanks!
-> > > > > > - Nuno Sá
-> > > > > > 
-> > > > > > ---
-> > > > > > Changes in v5:
-> > > > > 
-> > > > > In future, these should be inside the patches themselves please.
-> > > > 
-> > > > Hi Lee,
-> > > > 
-> > > > I'm about to send v6. I just have a question regarding the above. Do you
-> > > > mean to
-> > > > have the log in the commit message itself like DRM or do it with git notes?
-> > > 
-> > > I have no idea what git notes is.
-> > 
-> > It pretty much adds a note before the diff stat but with an annoying "Notes:"
-> > line. b4 seems to ignore it anyways.
-> > 
-> > > Simply place the Changelog inside the patch, just above the diff stat.
-> > 
-> > There's already some emails about this on v6. I ended up doing it DRM style
-> > because tweaking the patch before sensing is surprisingly non trivial with b4.
-> > Unless I missed something.
+
+> -----Original Message-----
+> From: Rob Herring <robh@kernel.org>
+> Sent: 28 June 2025 02:43
+> To: Shradha Todi <shradha.t@samsung.com>
+> Cc: linux-pci@vger.kernel.org; devicetree@vger.kernel.org; linux-arm-kernel@lists.infradead.org;
+linux-
+> samsung-soc@vger.kernel.org; linux-kernel@vger.kernel.org; linux-phy@lists.infradead.org; linux-
+> fsd@tesla.com; manivannan.sadhasivam@linaro.org; lpieralisi@kernel.org; kw@linux.com;
+> bhelgaas@google.com; jingoohan1@gmail.com; krzk+dt@kernel.org; conor+dt@kernel.org;
+> alim.akhtar@samsung.com; vkoul@kernel.org; kishon@kernel.org; arnd@arndb.de;
+> m.szyprowski@samsung.com; jh80.chung@samsung.com; pankaj.dubey@samsung.com
+> Subject: Re: [PATCH v2 06/10] dt-bindings: PCI: Add bindings support for Tesla FSD SoC
 > 
-> You can record the changelog in the commit message below a 
+> On Wed, Jun 25, 2025 at 10:22:25PM +0530, Shradha Todi wrote:
+> > Document the PCIe controller device tree bindings for Tesla FSD
+> > SoC for both RC and EP.
 > 
-> ---
+> Drop 'bindings support for ' in the subject.
 > 
-> line asyou modify commits. That way you won't have to write the
-> changelogs when sending the patches, and b4 should not cause any issue.
+> >
+> > Signed-off-by: Shradha Todi <shradha.t@samsung.com>
+> > ---
+> >  .../bindings/pci/samsung,exynos-pcie.yaml     | 121 ++++++++++++------
+> 
+> I think this should be its own schema file. There's not much shared.
+> 
 
-Exactly this.  Should be easy enough.
+Resending my reply after trimming.
 
--- 
-Lee Jones [李琼斯]
+Will make 2 new bindings - samsung,exynos-pcie-common.yaml and
+tesla,fsd-pcie.yaml
+Does that sound okay?
+
 
