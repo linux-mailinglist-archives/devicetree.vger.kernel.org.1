@@ -1,259 +1,145 @@
-Return-Path: <devicetree+bounces-192294-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-192295-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3512DAF62B7
-	for <lists+devicetree@lfdr.de>; Wed,  2 Jul 2025 21:34:15 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9CD02AF62BD
+	for <lists+devicetree@lfdr.de>; Wed,  2 Jul 2025 21:38:12 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 61C8A164EF6
-	for <lists+devicetree@lfdr.de>; Wed,  2 Jul 2025 19:34:15 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 530307A960A
+	for <lists+devicetree@lfdr.de>; Wed,  2 Jul 2025 19:36:47 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B09CD2DCF4F;
-	Wed,  2 Jul 2025 19:34:11 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (4096-bit key) header.d=prolan.hu header.i=@prolan.hu header.b="eZn8oWSn"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4B3492E49B3;
+	Wed,  2 Jul 2025 19:38:05 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from fw2.prolan.hu (fw2.prolan.hu [193.68.50.107])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-vk1-f170.google.com (mail-vk1-f170.google.com [209.85.221.170])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7DB712D374D;
-	Wed,  2 Jul 2025 19:34:09 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=193.68.50.107
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DD44B1EE019;
+	Wed,  2 Jul 2025 19:38:02 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.170
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1751484851; cv=none; b=T4OOo23a3Z2akADKwcjM58XMft0kI4x6GQc6Iind85MlMdSiS3aiakRH3iQXxrRddAwGPF2FJ42fyCwEVtFMOWRoUjyXxugBbBq0qYB961eeX5BNydQnt6D7Hqr7kM5AAGNEN24gKVWvnrgs2ZCxcLAjg2F6VZh9dO6N7lBHsjc=
+	t=1751485085; cv=none; b=fV21fqhA3KxnAlZkmaoTeIAOmVogBp8JwqLwZRJfjrgjJBNEHnvdVfOy7G2GWGEZsaUmr4WcZ+T8Q2DJwCBTIoy6nrTpEloyTSEe8suKfWKrR6elZT782GWX4w4Uejln6a3fBOMZAdjHkozJCs1TXph2tIUl5bZZ6cv42UTKCVY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1751484851; c=relaxed/simple;
-	bh=8pnqjpTgm/dY3uJQ/K8gTFLBuTuerdpi72ooNZgSryU=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-ID:To:CC; b=RW05JKmIGTGrKKScIkMFirmDwomAGbFH2DizKWEuRWTYxHkuKvQFcLLKMkjF5HJsSAiGdxIv53kl/kA+pm6LRR1kyzWO2BYIhWiNGMdyKK1NltpTC6N/+k6nfqX0258QhMOWABOlJObbgv2S6Z3baK9Pu8Fx+GmNwBoN0RF2VII=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=prolan.hu; spf=pass smtp.mailfrom=prolan.hu; dkim=pass (4096-bit key) header.d=prolan.hu header.i=@prolan.hu header.b=eZn8oWSn; arc=none smtp.client-ip=193.68.50.107
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=prolan.hu
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=prolan.hu
-Received: from proxmox-mailgw.intranet.prolan.hu (localhost.localdomain [127.0.0.1])
-	by proxmox-mailgw.intranet.prolan.hu (Proxmox) with ESMTP id 621FCA0BB5;
-	Wed,  2 Jul 2025 21:34:07 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=prolan.hu; h=cc
-	:cc:content-transfer-encoding:content-type:content-type:date
-	:from:from:message-id:mime-version:reply-to:subject:subject:to
-	:to; s=mail; bh=+dOny2yXaYYEUCrrYRoGP+TgzGV8/v/+itODD2XxlNI=; b=
-	eZn8oWSnz/wocugRyc8b3w6SY/z0CIIaAzpyOC371dqKreQlGQL2FIR++K9IxjOT
-	gqjm3yh4EL7rsKt8tUti55ctrPDkNIyQE0uOh8s/yOdEGaWguoe4A4IYqWDj3bLP
-	eJn7AeRdUCp1jFmuHjqdbe6zYF4LNlLnQyZCRdsB5TLqnrTpcfaMfcfmaBoWMI2b
-	oy4wOueVeHBvkAq0N4TbrB0vVMSWW7YoNDs4sqvV4XT43HRmKE+BtWfxdnPVmEFj
-	WFP+TXOLE3JQayfbt1kW7SfiDu0H8YKjLf32mhu4mN8lB9Temf4d/J9mDvZssAx1
-	PvXAnt9KSjnXiO+c1mT+v4BUvQpCpb9V+KW0Y16xBLqg2uh5zs9E+gJOAN3WjhwU
-	AoQNLrCBtCAaRD4dqV0VfzfaSWsvcRlCX5He4TOhiNjKSByJtxETuoixPw0VzSTS
-	HX4G1v9aunBgVltXc/lLqhBDq3t1RYPtSZk/KIuuEveir+qeiwiGuUIteLGWhW/w
-	xBz1QJuUbN2aFdMx8kNBmq5iWe8FgCulugk9BjdnCDDUxnPDdfmvJ1tyBDkvYjvd
-	EF+qqC1PiLnPRjTp5Tr1FoNTw5rwoFgtn3bA4fQKvFR78TQ1RE0UT2atxSEJhSDS
-	xARObhVWYRcb8zd/Dkw2mmNj+kSpisVAuuAYJ5RAJBk=
-From: =?utf-8?q?Bence_Cs=C3=B3k=C3=A1s?= <csokas.bence@prolan.hu>
-Date: Wed, 2 Jul 2025 21:34:02 +0200
-Subject: [PATCH] arm: DT: aristainetos2: Replace license text comment with
- SPDX identifier
+	s=arc-20240116; t=1751485085; c=relaxed/simple;
+	bh=IVhkOaWSUTaZqjB0QGXKGMBcTybR/181Qpd5tcdnc3E=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=A9PC45G+kWXCfOeM9CVGNtg4m4Bur3uDfFk2H/iJeHygNfd3ukFl2CoLJTI+RuQZLGSrcOdjivCgIi7ETz7xCNsCNKvmD6PMwT/ZU+a1WXK/58XBbicdGmXJVfJQSqqUyUqB1V8hTfexaafNHX9LzGVLjB1mDC9as2nhisYvOJ8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.221.170
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-vk1-f170.google.com with SMTP id 71dfb90a1353d-5314d78e74fso1344509e0c.3;
+        Wed, 02 Jul 2025 12:38:02 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1751485081; x=1752089881;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=HtMKBOZ556aBvP2zcfMZQR1v98z+BxBM1OE31DhPt44=;
+        b=wJC6NjOm8bGmmL6CZ7a92qmj5PuDJTUvGS9Fbs7i8r9fhTXmaKQJUc7lnIF/c8MilW
+         DI1VRx5BmneGGTNCBVJyfcbUGuQRA3JIPUjjRzPpd9K0PBsuU5RUfJDivm5Lx84pAziq
+         9nhUGPq86M6F+rA8S7BIXs0R8TBhXbKXWfWyjsao47qQkuFaTgfXSbK0CqEqfgYrmgEe
+         mxSX8Mh/BNEOf40rKC1fiftp56JVIGMXD3J0v9+nqY8cSRnSCMOkl0n3yYkDloo5GCWf
+         6yootpGphj9APAq3YndEdDWVeHkOfrHwj8au9YPoqwK27XXQE3lGOVhKiy330EMmncOM
+         DrHA==
+X-Forwarded-Encrypted: i=1; AJvYcCUTkRE7/9OIhc6427Q5BwVENtpLxg4lMoCKh03aZ+ZKpss+MZdagjLO1uvo4tqsD+FfF18IM+YUW1miambuET8Cst8=@vger.kernel.org, AJvYcCUaL8Sv1jRRlg1ONg5vsi/kkUGPDAvYHqzVnxgpFpaU1n94an2gmcEYGMbzPOk8XL/G1HP7GYR5QYlGt183@vger.kernel.org, AJvYcCW6WovdoviBmHhsbJSzMSr/QOxHeBdkPPWRcsi2yQnIG+jIcUB7iROnWbacKpolC8DP7XQSVeZgKzWb@vger.kernel.org, AJvYcCXZnlrTOgrGaVMAFMXOaL41f2auYa9onk5fwtmtF++Si+sgTBBUimL583nQ2vy1dx+L2SJfTp0dXek/@vger.kernel.org
+X-Gm-Message-State: AOJu0YxYgYW6XKCoI6n0Fvu64hIlhpCJYW1V6on8d/qe2RwFIAtltlfa
+	2YBQyjThL3OTJkHwAw31SmRSS4wVNxevcgmQ1r2HLOL4PbXFJ+w2m3p4frzVqeTf
+X-Gm-Gg: ASbGncsL2h1FFSdJsqjeEpwdXigOVQ0ar6Z9DnaDvIKqwzfMZfRlZeB0yaWrK3Kn9Ec
+	+gdW56HgfVUkmxUJd4CaxwZKP37xJ/XFM6HUd1NVznwAtSHB1uRpEoFlJ2WcDmt0GUol20PZOYR
+	38K6RcNNeASuB85sSUMF1lFcB/wXQehJsJES81tpJ+wGC2Ec8wl6RZOtaY0XL37BIkNGuS49nBi
+	47+ggohRjCApmcST9UQxuaJwfcpYR5gQEk+vUf5Za87ynwLZ2AemZWcsNhpJ2FQMD03ILXNZXLN
+	90HFfcbKqeFnubAR2Z9N8gUGznQaLVn9bQNh87f2/8x7Y6FEUnEyFC0i36tT7fUKqoHdFWc8cSe
+	9SBHhYCUXiLrNY794JnwIaACX
+X-Google-Smtp-Source: AGHT+IH1GcVByLGuwOLrnRZ5S0im5OXXJ+LXQWG1+zPEsClt1IYDg1kxJgzYve/uhtjwGZZolSNUbw==
+X-Received: by 2002:a05:6122:2390:b0:531:2afc:462a with SMTP id 71dfb90a1353d-534580afb84mr3914178e0c.3.1751485081400;
+        Wed, 02 Jul 2025 12:38:01 -0700 (PDT)
+Received: from mail-ua1-f50.google.com (mail-ua1-f50.google.com. [209.85.222.50])
+        by smtp.gmail.com with ESMTPSA id 71dfb90a1353d-533090796e8sm2244540e0c.10.2025.07.02.12.38.00
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 02 Jul 2025 12:38:00 -0700 (PDT)
+Received: by mail-ua1-f50.google.com with SMTP id a1e0cc1a2514c-880f92a63c7so963409241.1;
+        Wed, 02 Jul 2025 12:38:00 -0700 (PDT)
+X-Forwarded-Encrypted: i=1; AJvYcCVJsXHr5pm/2nQtt8Ztc+gdpHR6DASzPtm0ZLMYyWyia88P2tbQ2VTQK60pLdPyjoB9qNUObwcLGk3xam9T8r9zjNU=@vger.kernel.org, AJvYcCVt7T35F2dLDa/xX/ngjw4pFUZF52DH9D5IrnPBblUH0zaZNXe5O4K91LtIto1bwdf1K5/MMjHkB68MnEva@vger.kernel.org, AJvYcCW+bpUr2Ng+qcMCS7g21LWEr17M1QJ07BrmNc3zjfdDHvgLdkasz9GSWC4Kgx/PghvgbrWfWfsLmS64@vger.kernel.org, AJvYcCWjVwJzY6BDbsLtLSeJPnnkUo0LBtrMkm6ootPG5s5mOTMf4kT66Uep0qfU7OQO0guKMgnmhsE8dEeR@vger.kernel.org
+X-Received: by 2002:a05:6102:5804:b0:4e2:df8d:dfeb with SMTP id
+ ada2fe7eead31-4f16101c38cmr2310698137.6.1751485080433; Wed, 02 Jul 2025
+ 12:38:00 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
-Message-ID: <20250702-abb-dts-lic-v1-1-b122fd6d456c@prolan.hu>
-X-B4-Tracking: v=1; b=H4sIAKmJZWgC/x3MQQrCQAxA0auUrA1MR6XWq0gXSSbagI6SFBFK7
- +7o8i3+XyHUTQPO3Qqubwt71oZ+14HMVG+KVpohp3xMQ8pIzFiWwLsJFuH9kPpRTuMBWvFyvdr
- nf7tMzUyhyE5V5t/jQbGow7Z9AfohG9p2AAAA
-To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>, "Sascha
- Hauer" <s.hauer@pengutronix.de>, Pengutronix Kernel Team
-	<kernel@pengutronix.de>, Fabio Estevam <festevam@gmail.com>
-CC: <devicetree@vger.kernel.org>, <imx@lists.linux.dev>,
-	<linux-arm-kernel@lists.infradead.org>, <linux-kernel@vger.kernel.org>,
-	"Heiko Schocher" <hs@denx.de>, =?utf-8?q?Bence_Cs=C3=B3k=C3=A1s?=
-	<csokas.bence@prolan.hu>
-X-Mailer: b4 0.13.0
-X-ESET-AS: R=OK;S=0;OP=CALC;TIME=1751484846;VERSION=7994;MC=1848634841;ID=360775;TRN=0;CRV=0;IPC=;SP=0;SIPS=0;PI=3;F=0
-X-ESET-Antispam: OK
-X-EsetResult: clean, is OK
-X-EsetId: 37303A29BB64155D6C7260
+References: <20250625141705.151383-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
+ <20250625141705.151383-4-prabhakar.mahadev-lad.rj@bp.renesas.com>
+ <CAMuHMdWnDhhJ+G5GvMZw+7WGBdiMfWHPXSwkwOqnK5XtKdyS1A@mail.gmail.com> <CA+V-a8tMV+eHduBduu_xRYAo7m+AH3ttWBM+BCMAGzF8fzFJLQ@mail.gmail.com>
+In-Reply-To: <CA+V-a8tMV+eHduBduu_xRYAo7m+AH3ttWBM+BCMAGzF8fzFJLQ@mail.gmail.com>
+From: Geert Uytterhoeven <geert@linux-m68k.org>
+Date: Wed, 2 Jul 2025 21:37:48 +0200
+X-Gmail-Original-Message-ID: <CAMuHMdUMoC5_tHn9u0XKE_Sbu=LoiNt=H_CoQ_sYuD0KC07NgA@mail.gmail.com>
+X-Gm-Features: Ac12FXwVxQN7L-649eS5lu85DAy8wwvO1IQX5bM3Tu7fQ_IW13GOgmihwuAkr9Y
+Message-ID: <CAMuHMdUMoC5_tHn9u0XKE_Sbu=LoiNt=H_CoQ_sYuD0KC07NgA@mail.gmail.com>
+Subject: Re: [PATCH 3/3] clk: renesas: r9a09g077-cpg: Add RIIC module clocks
+To: "Lad, Prabhakar" <prabhakar.csengg@gmail.com>
+Cc: Michael Turquette <mturquette@baylibre.com>, Stephen Boyd <sboyd@kernel.org>, 
+	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Magnus Damm <magnus.damm@gmail.com>, linux-renesas-soc@vger.kernel.org, 
+	linux-clk@vger.kernel.org, linux-kernel@vger.kernel.org, 
+	devicetree@vger.kernel.org, Biju Das <biju.das.jz@bp.renesas.com>, 
+	Fabrizio Castro <fabrizio.castro.jz@renesas.com>, 
+	Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-Replace verbatim license text with a `SPDX-License-Identifier`
+Hi Prabhakar,
 
-The comment heades mis-attributes this license to be "X11", but the
-license text does not include the last line "Except as contained in this
-notice, the name of the X Consortium shall not be used in advertising or
-otherwise to promote the sale, use or other dealings in this Software
-without prior written authorization from the X Consortium.". Therefore,
-this license is actually equivalent to the SPDX "MIT" license (confirmed
-by text diffing).
+On Wed, 2 Jul 2025 at 21:30, Lad, Prabhakar <prabhakar.csengg@gmail.com> wr=
+ote:
+> On Wed, Jul 2, 2025 at 2:46=E2=80=AFPM Geert Uytterhoeven <geert@linux-m6=
+8k.org> wrote:
+> > On Wed, 25 Jun 2025 at 16:17, Prabhakar <prabhakar.csengg@gmail.com> wr=
+ote:
+> > > From: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+> > >
+> > > Add RIIC module clocks for: iic0, iic1, and iic2.
+> > >
+> > > Signed-off-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com=
+>
+> >
+> > Thanks for your patch!
+> >
+> > > --- a/drivers/clk/renesas/r9a09g077-cpg.c
+> > > +++ b/drivers/clk/renesas/r9a09g077-cpg.c
+> > > @@ -154,6 +154,9 @@ static const struct cpg_core_clk r9a09g077_core_c=
+lks[] __initconst =3D {
+> > >
+> > >  static const struct mssr_mod_clk r9a09g077_mod_clks[] __initconst =
+=3D {
+> > >         DEF_MOD("sci0fck", 8, CLK_SCI0ASYNC),
+> > > +       DEF_MOD("iic0", 100, R9A09G077_CLK_PCLKL),
+> > > +       DEF_MOD("iic1", 101, R9A09G077_CLK_PCLKL),
+> > > +       DEF_MOD("iic2", 501, R9A09G077_CLK_PCLKL),
+> >
+> > Shouldn't that be 601?
+> > (MSTPCRA =3D> xx, MSTPCRB =3D> 1xx, MSTPCRG =3D> 6xx)
+> > If you agree, I can fix that while applying...
+> >
+> Agreed, thank you for taking care of it.
 
-Cc: Heiko Schocher <hs@denx.de>
-Signed-off-by: Bence Csókás <csokas.bence@prolan.hu>
----
- .../boot/dts/nxp/imx/imx6dl-aristainetos2_4.dts    | 38 +---------------------
- .../boot/dts/nxp/imx/imx6dl-aristainetos2_7.dts    | 38 +---------------------
- .../boot/dts/nxp/imx/imx6qdl-aristainetos2.dtsi    | 38 +---------------------
- 3 files changed, 3 insertions(+), 111 deletions(-)
+Thanks, queued in renesas-clk for v6.17, and pushed.
 
-diff --git a/arch/arm/boot/dts/nxp/imx/imx6dl-aristainetos2_4.dts b/arch/arm/boot/dts/nxp/imx/imx6dl-aristainetos2_4.dts
-index c9b2ea2b24b2..fc62ba2a4fcb 100644
---- a/arch/arm/boot/dts/nxp/imx/imx6dl-aristainetos2_4.dts
-+++ b/arch/arm/boot/dts/nxp/imx/imx6dl-aristainetos2_4.dts
-@@ -1,44 +1,8 @@
-+// SPDX-License-Identifier: (GPL-2.0-only OR MIT)
- /*
-  * support for the imx6 based aristainetos2 board
-  *
-  * Copyright (C) 2015 Heiko Schocher <hs@denx.de>
-- *
-- * This file is dual-licensed: you can use it either under the terms
-- * of the GPL or the X11 license, at your option. Note that this dual
-- * licensing only applies to this file, and not this project as a
-- * whole.
-- *
-- *  a) This file is free software; you can redistribute it and/or
-- *     modify it under the terms of the GNU General Public License
-- *     version 2 as published by the Free Software Foundation.
-- *
-- *     This file is distributed in the hope that it will be useful,
-- *     but WITHOUT ANY WARRANTY; without even the implied warranty of
-- *     MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-- *     GNU General Public License for more details.
-- *
-- * Or, alternatively,
-- *
-- *  b) Permission is hereby granted, free of charge, to any person
-- *     obtaining a copy of this software and associated documentation
-- *     files (the "Software"), to deal in the Software without
-- *     restriction, including without limitation the rights to use,
-- *     copy, modify, merge, publish, distribute, sublicense, and/or
-- *     sell copies of the Software, and to permit persons to whom the
-- *     Software is furnished to do so, subject to the following
-- *     conditions:
-- *
-- *     The above copyright notice and this permission notice shall be
-- *     included in all copies or substantial portions of the Software.
-- *
-- *     THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
-- *     EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES
-- *     OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
-- *     NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT
-- *     HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY,
-- *     WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
-- *     FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR
-- *     OTHER DEALINGS IN THE SOFTWARE.
-  */
- /dts-v1/;
- #include "imx6dl.dtsi"
-diff --git a/arch/arm/boot/dts/nxp/imx/imx6dl-aristainetos2_7.dts b/arch/arm/boot/dts/nxp/imx/imx6dl-aristainetos2_7.dts
-index 5e15212eaf3a..a7400d42475b 100644
---- a/arch/arm/boot/dts/nxp/imx/imx6dl-aristainetos2_7.dts
-+++ b/arch/arm/boot/dts/nxp/imx/imx6dl-aristainetos2_7.dts
-@@ -1,44 +1,8 @@
-+// SPDX-License-Identifier: (GPL-2.0-only OR MIT)
- /*
-  * support for the imx6 based aristainetos2 board
-  *
-  * Copyright (C) 2015 Heiko Schocher <hs@denx.de>
-- *
-- * This file is dual-licensed: you can use it either under the terms
-- * of the GPL or the X11 license, at your option. Note that this dual
-- * licensing only applies to this file, and not this project as a
-- * whole.
-- *
-- *  a) This file is free software; you can redistribute it and/or
-- *     modify it under the terms of the GNU General Public License
-- *     version 2 as published by the Free Software Foundation.
-- *
-- *     This file is distributed in the hope that it will be useful,
-- *     but WITHOUT ANY WARRANTY; without even the implied warranty of
-- *     MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-- *     GNU General Public License for more details.
-- *
-- * Or, alternatively,
-- *
-- *  b) Permission is hereby granted, free of charge, to any person
-- *     obtaining a copy of this software and associated documentation
-- *     files (the "Software"), to deal in the Software without
-- *     restriction, including without limitation the rights to use,
-- *     copy, modify, merge, publish, distribute, sublicense, and/or
-- *     sell copies of the Software, and to permit persons to whom the
-- *     Software is furnished to do so, subject to the following
-- *     conditions:
-- *
-- *     The above copyright notice and this permission notice shall be
-- *     included in all copies or substantial portions of the Software.
-- *
-- *     THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
-- *     EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES
-- *     OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
-- *     NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT
-- *     HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY,
-- *     WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
-- *     FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR
-- *     OTHER DEALINGS IN THE SOFTWARE.
-  */
- /dts-v1/;
- #include "imx6dl.dtsi"
-diff --git a/arch/arm/boot/dts/nxp/imx/imx6qdl-aristainetos2.dtsi b/arch/arm/boot/dts/nxp/imx/imx6qdl-aristainetos2.dtsi
-index 7cc7ae195988..57970f29367d 100644
---- a/arch/arm/boot/dts/nxp/imx/imx6qdl-aristainetos2.dtsi
-+++ b/arch/arm/boot/dts/nxp/imx/imx6qdl-aristainetos2.dtsi
-@@ -1,44 +1,8 @@
-+// SPDX-License-Identifier: (GPL-2.0-only OR MIT)
- /*
-  * support for the imx6 based aristainetos2 board
-  *
-  * Copyright (C) 2015 Heiko Schocher <hs@denx.de>
-- *
-- * This file is dual-licensed: you can use it either under the terms
-- * of the GPL or the X11 license, at your option. Note that this dual
-- * licensing only applies to this file, and not this project as a
-- * whole.
-- *
-- *  a) This file is free software; you can redistribute it and/or
-- *     modify it under the terms of the GNU General Public License
-- *     version 2 as published by the Free Software Foundation.
-- *
-- *     This file is distributed in the hope that it will be useful,
-- *     but WITHOUT ANY WARRANTY; without even the implied warranty of
-- *     MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-- *     GNU General Public License for more details.
-- *
-- * Or, alternatively,
-- *
-- *  b) Permission is hereby granted, free of charge, to any person
-- *     obtaining a copy of this software and associated documentation
-- *     files (the "Software"), to deal in the Software without
-- *     restriction, including without limitation the rights to use,
-- *     copy, modify, merge, publish, distribute, sublicense, and/or
-- *     sell copies of the Software, and to permit persons to whom the
-- *     Software is furnished to do so, subject to the following
-- *     conditions:
-- *
-- *     The above copyright notice and this permission notice shall be
-- *     included in all copies or substantial portions of the Software.
-- *
-- *     THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
-- *     EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES
-- *     OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
-- *     NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT
-- *     HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY,
-- *     WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
-- *     FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR
-- *     OTHER DEALINGS IN THE SOFTWARE.
-  */
- #include <dt-bindings/gpio/gpio.h>
- #include <dt-bindings/clock/imx6qdl-clock.h>
+Gr{oetje,eeting}s,
 
----
-base-commit: 66701750d5565c574af42bef0b789ce0203e3071
-change-id: 20250702-abb-dts-lic-dcb37019c894
+                        Geert
 
-Best regards,
--- 
-Bence Csókás <csokas.bence@prolan.hu>
+--=20
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k=
+.org
 
-
+In personal conversations with technical people, I call myself a hacker. Bu=
+t
+when I'm talking to journalists I just say "programmer" or something like t=
+hat.
+                                -- Linus Torvalds
 
