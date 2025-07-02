@@ -1,278 +1,189 @@
-Return-Path: <devicetree+bounces-192187-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-192188-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id E0908AF5A9A
-	for <lists+devicetree@lfdr.de>; Wed,  2 Jul 2025 16:10:10 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 398E8AF5ABC
+	for <lists+devicetree@lfdr.de>; Wed,  2 Jul 2025 16:13:47 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id B0B20480DD4
-	for <lists+devicetree@lfdr.de>; Wed,  2 Jul 2025 14:08:56 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id BF4411765A2
+	for <lists+devicetree@lfdr.de>; Wed,  2 Jul 2025 14:13:23 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C65EC27F01C;
-	Wed,  2 Jul 2025 14:09:14 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id DDA342BE7B3;
+	Wed,  2 Jul 2025 14:13:06 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=resnulli-us.20230601.gappssmtp.com header.i=@resnulli-us.20230601.gappssmtp.com header.b="0g8/CW6n"
 X-Original-To: devicetree@vger.kernel.org
-Received: from frasgout.his.huawei.com (frasgout.his.huawei.com [185.176.79.56])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wm1-f51.google.com (mail-wm1-f51.google.com [209.85.128.51])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 24A22275846;
-	Wed,  2 Jul 2025 14:09:11 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.176.79.56
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D13B92BDC25
+	for <devicetree@vger.kernel.org>; Wed,  2 Jul 2025 14:13:04 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.51
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1751465354; cv=none; b=dnGpZu1bmM8Viv2TkwLN/TZck5fTUCj7TyHKmSq8VeeTaik/2G2l7KpqT5/MO6s8gF5SJ8sE6/PecVzXe70RV06thWMP5GYpB1NZLdTqb0q1bNxAWcscPv1oteiWWs3W3QYyYB+Nq5zqVBsyxD4j41pbmoVmv7oTB+MOSIf8ZpI=
+	t=1751465586; cv=none; b=HAZeDC9JK9cAanou896PASVJYd8JfkrVns4odX9TQUoowlAjyKcZD4SQKfKdDmGFEgey116HhoDmBfaNTjH6yDFnhzcB0/9vblhJcdio4w1/tfwPckE8L7LbIUEclxXCL4APPE8tTo+5AyoAOuTU+j7o8PP6wD7ORta3+kQy+zY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1751465354; c=relaxed/simple;
-	bh=KrByScEse9zQAz1mFpAbnHuiASOxgUN38QwBq7EKRwY=;
-	h=Date:From:To:CC:Subject:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=bHxzEPZC7eDPjgeSc6/nAqQw/+m0Me9Onkl0kEoWPU7frGOShvPeGYDwv2zdf4kgWZ4DF7m875mjzKWPMsag5D65ubf2r4P4D7SRyZCkGLSe2T3HMvS0j3yIiSC3Wa8PaxB0QjaLcwx7FPW4I/uxHeU4V6/oSSwLLxn+O6cKLww=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=huawei.com; spf=pass smtp.mailfrom=huawei.com; arc=none smtp.client-ip=185.176.79.56
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=huawei.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=huawei.com
-Received: from mail.maildlp.com (unknown [172.18.186.231])
-	by frasgout.his.huawei.com (SkyGuard) with ESMTP id 4bXMDt2j8gz6M4dR;
-	Wed,  2 Jul 2025 22:08:14 +0800 (CST)
-Received: from frapeml500008.china.huawei.com (unknown [7.182.85.71])
-	by mail.maildlp.com (Postfix) with ESMTPS id 155B41402EA;
-	Wed,  2 Jul 2025 22:09:10 +0800 (CST)
-Received: from localhost (10.203.177.66) by frapeml500008.china.huawei.com
- (7.182.85.71) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.1.2507.39; Wed, 2 Jul
- 2025 16:09:09 +0200
-Date: Wed, 2 Jul 2025 15:09:07 +0100
-From: Jonathan Cameron <Jonathan.Cameron@huawei.com>
-To: Lorenzo Pieralisi <lpieralisi@kernel.org>
-CC: Thomas Gleixner <tglx@linutronix.de>, Catalin Marinas
-	<catalin.marinas@arm.com>, Marc Zyngier <maz@kernel.org>, Rob Herring
-	<robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
-	<conor+dt@kernel.org>, Will Deacon <will@kernel.org>, Arnd Bergmann
-	<arnd@arndb.de>, Sascha Bischoff <sascha.bischoff@arm.com>, Timothy Hayes
-	<timothy.hayes@arm.com>, Bjorn Helgaas <bhelgaas@google.com>, "Liam R.
- Howlett" <Liam.Howlett@oracle.com>, Peter Maydell <peter.maydell@linaro.org>,
-	Mark Rutland <mark.rutland@arm.com>, Jiri Slaby <jirislaby@kernel.org>,
-	<linux-arm-kernel@lists.infradead.org>, <linux-kernel@vger.kernel.org>,
-	<devicetree@vger.kernel.org>, <linux-pci@vger.kernel.org>
-Subject: Re: [PATCH v6 20/31] irqchip/gic-v5: Add GICv5 PPI support
-Message-ID: <20250702150907.000060d8@huawei.com>
-In-Reply-To: <aGUycEuLadcG+IfV@lpieralisi>
-References: <20250626-gicv5-host-v6-0-48e046af4642@kernel.org>
-	<20250626-gicv5-host-v6-20-48e046af4642@kernel.org>
-	<20250702124019.00006b01@huawei.com>
-	<aGUqEkascwGFD9x+@lpieralisi>
-	<20250702140022.00001c65@huawei.com>
-	<aGUycEuLadcG+IfV@lpieralisi>
-X-Mailer: Claws Mail 4.3.0 (GTK 3.24.42; x86_64-w64-mingw32)
+	s=arc-20240116; t=1751465586; c=relaxed/simple;
+	bh=xIX6GxkYy+RMVioZ/VaEmi8TDF7cbtgtQXVNUQIlmus=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=rnB1fYiydxuhSuSQEVhuzZE1SZBBQCs/tZFjIXSWL7srxnGJzftXvkLA9A9tA/y2Lxp5TdVxOIoFpDsiMrzQlcuI4c655V8YQzKdvlUgBNfqKL7UeQx5ZkVyDnGCOLLSWlUpKSS7bQQUuVqCjK/poaEYOn8W4qRULTEcOfFIyis=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=resnulli.us; spf=none smtp.mailfrom=resnulli.us; dkim=pass (2048-bit key) header.d=resnulli-us.20230601.gappssmtp.com header.i=@resnulli-us.20230601.gappssmtp.com header.b=0g8/CW6n; arc=none smtp.client-ip=209.85.128.51
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=resnulli.us
+Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=resnulli.us
+Received: by mail-wm1-f51.google.com with SMTP id 5b1f17b1804b1-4530921461aso45937865e9.0
+        for <devicetree@vger.kernel.org>; Wed, 02 Jul 2025 07:13:04 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=resnulli-us.20230601.gappssmtp.com; s=20230601; t=1751465583; x=1752070383; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=KCX8EDCd8/i/wYRS9YBmGDW0iWUiXiEN/46xP+vv74E=;
+        b=0g8/CW6n4xengA9/rppoYsTHQxislg1Z2I5aP0twp4c8xYsmszHOV/Mpf+zRNJV7cw
+         Q5NpzqCvER6Hwbt+TGuNv95T0LPr2gZtIN775W3NCc4Oy6BZN9tReQxeGchZZ9TGl+G7
+         IVVsH5CErKsV0gwC8iSYFI3qUaoH1oMvVIpTvGJEoeWHBZ3T78rvkfO5BE3a15uv3eeV
+         2iuN0R7Ef47Z8WLCkj3PX8X5G0UauUE6c5zWyFEKKKMcVZ+psObLob816QgkeW7zIfGI
+         aKVKBjrsSwhrF7xrGDig/xh5ruQCa4dSyRgtOik80DqnLuVSVAwACKdYmABsd1dVdZ6x
+         ZQXg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1751465583; x=1752070383;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=KCX8EDCd8/i/wYRS9YBmGDW0iWUiXiEN/46xP+vv74E=;
+        b=ZGNNn5V5bZmkEAZmNru6UXlUnN+i9dwzqVYAmm5n3OA9l8ND0l3wlAl6XfgGalM8gK
+         waWxt6id9zSMH9iW/zPVoagAelDVfHpiZGTFYxBSBtamd6pMP6Wc5F7Xxq92D+9jXgOB
+         y15N1w39k1ZgOH4P3qFh+VHtcixxkTr8ITTXcxa94w9ZhHdpzeB7bcRxi2QL5ogvi0M3
+         Dbn9e6o2llE2gG9HyCOVQOOLIt1MIbTnQcCp0I6fqjKFPe9i0bXHwIhKrrp4Zl6GltCX
+         fataVRW8D7P/4ofxINDD6QHFq4vuXTvuKv8E283FFQktSV+IPlNnmgrvshiflA2mVi5T
+         7eGA==
+X-Forwarded-Encrypted: i=1; AJvYcCXP6Z6l5bCZVbQNyc2PVbQzawschQp54JFijgRKk/meA4vFkuxNJ4/2oZntdThBAQhB7wZ2G722fkRM@vger.kernel.org
+X-Gm-Message-State: AOJu0YwmrBz/jllPxiMqQ5vIy5hiSXouDKTYTeqiQyiPaZ32fzTgozEy
+	j4QdS/yqKrfRPG08kbLegYf/rrPogPeJhWorLjz7z4ybf4gk7K2y/MFGsdWEtoLlrgs=
+X-Gm-Gg: ASbGncv5w5HlMy+IklslmUvkxRlHGwr84qnQ7oysjUfBsVHJCR7gQMkw+8WsfQy64mw
+	BnrsVcLruIUmEnbMI1iTRJeFicjOmRZsgcCCccF8Hdmm86VyuR8TZPB5isEhGNiiqF/reGGvVEz
+	U/AO+iYfu7NZm8XarU0Sl+qGtHtC6EMw1SWlMFaDocAI8dCGg08AlvtxGlCdbx+gjMY5pX2IeMP
+	NMYV8Mx9jDYKL9mOIbv6OaQtnge1o5lxRQrXIx4ZMyqVD+c+Nkd99En7BetMbfEav1ivh/Q54XV
+	169j5vchjUmx+gaeRGtz+gogKuyLzptU9xPkV/45cYkCx/dq48Xf+A5YjUSApe+hzdhrHA==
+X-Google-Smtp-Source: AGHT+IEk1Iz9F6Hzi17G8siVxy1kneMMVA9o7oJxCvLiimTGG5VAQ9oHTXa5JjHBEPPb8pmO2Hxa8w==
+X-Received: by 2002:a05:600c:638e:b0:453:b44:eb71 with SMTP id 5b1f17b1804b1-454a370c313mr35319005e9.19.1751465582882;
+        Wed, 02 Jul 2025 07:13:02 -0700 (PDT)
+Received: from jiri-mlt ([193.47.165.251])
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-453823b6d50sm233164175e9.30.2025.07.02.07.12.56
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 02 Jul 2025 07:13:02 -0700 (PDT)
+Date: Wed, 2 Jul 2025 16:12:54 +0200
+From: Jiri Pirko <jiri@resnulli.us>
+To: Ivan Vecera <ivecera@redhat.com>
+Cc: netdev@vger.kernel.org, 
+	Prathosh Satish <Prathosh.Satish@microchip.com>, Vadim Fedorenko <vadim.fedorenko@linux.dev>, 
+	Arkadiusz Kubalewski <arkadiusz.kubalewski@intel.com>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	"David S. Miller" <davem@davemloft.net>, Eric Dumazet <edumazet@google.com>, 
+	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>, Simon Horman <horms@kernel.org>, 
+	Jonathan Corbet <corbet@lwn.net>, Jason Gunthorpe <jgg@ziepe.ca>, 
+	Shannon Nelson <shannon.nelson@amd.com>, Dave Jiang <dave.jiang@intel.com>, 
+	Jonathan Cameron <Jonathan.Cameron@huawei.com>, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+	linux-doc@vger.kernel.org, Michal Schmidt <mschmidt@redhat.com>, 
+	Petr Oros <poros@redhat.com>
+Subject: Re: [PATCH net-next v12 09/14] dpll: zl3073x: Register DPLL devices
+ and pins
+Message-ID: <3sgsj5vxtkzfpfpn5igave2qppy27mq7erpcmhqtfswaayaynv@zcsldf44o7b3>
+References: <20250629191049.64398-1-ivecera@redhat.com>
+ <20250629191049.64398-10-ivecera@redhat.com>
+ <ne36b7ky5cg2g3juejcah7bnvsajihncmpzag3vpjnb3gabz2m@xtxhpfhvfmwl>
+ <1848e2f6-a0bb-48e6-9bfc-5ea6cbea2e5c@redhat.com>
+ <k2osi2mzfmudh7q3av5raxj33smbdjgnrmaqjx2evjaaloddb3@vublvfldqlnm>
+ <e55caefa-2ea9-4d31-be76-48cdfd481b5c@redhat.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="US-ASCII"
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: lhrpeml500004.china.huawei.com (7.191.163.9) To
- frapeml500008.china.huawei.com (7.182.85.71)
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <e55caefa-2ea9-4d31-be76-48cdfd481b5c@redhat.com>
 
-On Wed, 2 Jul 2025 15:21:52 +0200
-Lorenzo Pieralisi <lpieralisi@kernel.org> wrote:
+Wed, Jul 02, 2025 at 02:16:53PM +0200, ivecera@redhat.com wrote:
+>
+>
+>On 02. 07. 25 2:02 odp., Jiri Pirko wrote:
+>> Wed, Jul 02, 2025 at 01:49:22PM +0200, ivecera@redhat.com wrote:
+>> > 
+>> > 
+>> > On 02. 07. 25 12:57 odp., Jiri Pirko wrote:
+>> > > Sun, Jun 29, 2025 at 09:10:44PM +0200, ivecera@redhat.com wrote:
+>> > > 
+>> > > [...]
+>> > > 
+>> > > > +/**
+>> > > > + * zl3073x_dpll_device_register - register DPLL device
+>> > > > + * @zldpll: pointer to zl3073x_dpll structure
+>> > > > + *
+>> > > > + * Registers given DPLL device into DPLL sub-system.
+>> > > > + *
+>> > > > + * Return: 0 on success, <0 on error
+>> > > > + */
+>> > > > +static int
+>> > > > +zl3073x_dpll_device_register(struct zl3073x_dpll *zldpll)
+>> > > > +{
+>> > > > +	struct zl3073x_dev *zldev = zldpll->dev;
+>> > > > +	u8 dpll_mode_refsel;
+>> > > > +	int rc;
+>> > > > +
+>> > > > +	/* Read DPLL mode and forcibly selected reference */
+>> > > > +	rc = zl3073x_read_u8(zldev, ZL_REG_DPLL_MODE_REFSEL(zldpll->id),
+>> > > > +			     &dpll_mode_refsel);
+>> > > > +	if (rc)
+>> > > > +		return rc;
+>> > > > +
+>> > > > +	/* Extract mode and selected input reference */
+>> > > > +	zldpll->refsel_mode = FIELD_GET(ZL_DPLL_MODE_REFSEL_MODE,
+>> > > > +					dpll_mode_refsel);
+>> > > 
+>> > > Who sets this?
+>> > 
+>> > WDYM? refsel_mode register? If so this register is populated from
+>> > configuration stored in flash inside the chip. And the configuration
+>> > is prepared by vendor/OEM.
+>> 
+>> Okay. Any plan to implement on-fly change of this?
+>
+>Do you mean switching between automatic and manual mode?
+>If so? Yes, later, need to extend DPLL API to allow this.
 
-> On Wed, Jul 02, 2025 at 02:00:22PM +0100, Jonathan Cameron wrote:
-> > On Wed, 2 Jul 2025 14:46:10 +0200
-> > Lorenzo Pieralisi <lpieralisi@kernel.org> wrote:
-> >   
-> > > On Wed, Jul 02, 2025 at 12:40:19PM +0100, Jonathan Cameron wrote:  
-> > > > On Thu, 26 Jun 2025 12:26:11 +0200
-> > > > Lorenzo Pieralisi <lpieralisi@kernel.org> wrote:
-> > > >     
-> > > > > The GICv5 CPU interface implements support for PE-Private Peripheral
-> > > > > Interrupts (PPI), that are handled (enabled/prioritized/delivered)
-> > > > > entirely within the CPU interface hardware.    
-> > > > 
-> > > > I can't remember where I got to last time so if I repeat stuff that
-> > > > you already responded to, feel free to just ignore me this time ;)
-> > > > 
-> > > > All superficial stuff. Feel free to completely ignore if you like.    
-> > > 
-> > > We are at v6.16-rc4, series has been on the lists for 3 months, it has
-> > > been reviewed and we would like to get it into v6.17 if possible and
-> > > deemed reasonable, I am asking you folks please, what should I do ?
-> > > 
-> > > I can send a v7 with the changes requested below (no bug fixes there)
-> > > - it is fine by me - but I need to know please asap if we have a
-> > > plan to get this upstream this cycle.  
-> > 
-> > I'm absolutely fine with leaving these be.  The mask stuff I would like
-> > to clean up as it applies quite widely in the series but that
-> > can be a follow up as no bugs (so far!).   
-> 
-> I am certain that at a given state in the development I used the
-> FIELD_PREP() on the hwirq_id and then was asked to remove it because
-> it does not serve any purpose - this, for the records.
+That is why I ask. Looking forward to it.
 
-Fair enough.  Though on that front the code is inconsistent as
-there are places where it is masked.  Anyhow, no problem either
-way. The bit of feedback I gave on patch 22 might be more useful
-to address (comments not matching code).
-
-
-Jonathan
-
-> 
-> Thanks,
-> Lorenzo
-> 
-> > As Marc said, these are in a good state.
-> > 
-> > Jonathan
-> >   
-> > > 
-> > > Thanks,
-> > > Lorenzo
-> > >   
-> > > > > diff --git a/drivers/irqchip/irq-gic-v5.c b/drivers/irqchip/irq-gic-v5.c
-> > > > > new file mode 100644
-> > > > > index 000000000000..a08daa562d21
-> > > > > --- /dev/null
-> > > > > +++ b/drivers/irqchip/irq-gic-v5.c
-> > > > > @@ -0,0 +1,461 @@
-> > > > > +// SPDX-License-Identifier: GPL-2.0-only
-> > > > > +/*
-> > > > > + * Copyright (C) 2024-2025 ARM Limited, All Rights Reserved.
-> > > > > + */
-> > > > > +
-> > > > > +#define pr_fmt(fmt)	"GICv5: " fmt
-> > > > > +
-> > > > > +#include <linux/irqdomain.h>
-> > > > > +#include <linux/wordpart.h>
-> > > > > +
-> > > > > +#include <linux/irqchip.h>
-> > > > > +#include <linux/irqchip/arm-gic-v5.h>
-> > > > > +
-> > > > > +#include <asm/cpufeature.h>
-> > > > > +#include <asm/exception.h>
-> > > > > +
-> > > > > +static u8 pri_bits __ro_after_init = 5;
-> > > > > +
-> > > > > +#define GICV5_IRQ_PRI_MASK	0x1f
-> > > > > +#define GICV5_IRQ_PRI_MI	(GICV5_IRQ_PRI_MASK & GENMASK(4, 5 - pri_bits))
-> > > > > +
-> > > > > +#define PPI_NR	128
-> > > > > +
-> > > > > +static bool gicv5_cpuif_has_gcie(void)
-> > > > > +{
-> > > > > +	return this_cpu_has_cap(ARM64_HAS_GICV5_CPUIF);
-> > > > > +}
-> > > > > +
-> > > > > +struct gicv5_chip_data {
-> > > > > +	struct fwnode_handle	*fwnode;
-> > > > > +	struct irq_domain	*ppi_domain;
-> > > > > +};
-> > > > > +
-> > > > > +static struct gicv5_chip_data gicv5_global_data __read_mostly;    
-> > > >     
-> > > > > +static void gicv5_hwirq_eoi(u32 hwirq_id, u8 hwirq_type)
-> > > > > +{
-> > > > > +	u64 cddi = hwirq_id | FIELD_PREP(GICV5_GIC_CDDI_TYPE_MASK, hwirq_type);    
-> > > > 
-> > > > Slight preference for not needing to care where hwirq_id goes in CDDI or how big
-> > > > it is (other than when I checked the header defines).
-> > > >  
-> > > > 	u64 cddi = FIELD_PREP(GICV5_GIC_CDDI_ID_MASK, hwirq_id) |
-> > > >         	   FIELD_PREP(GICV5_GIC_CDDI_TYPE_MASK, hwirq_type);
-> > > > 
-> > > >     
-> > > > > +
-> > > > > +	gic_insn(cddi, CDDI);
-> > > > > +
-> > > > > +	gic_insn(0, CDEOI);
-> > > > > +}    
-> > > >     
-> > > > > +static int gicv5_ppi_irq_get_irqchip_state(struct irq_data *d,
-> > > > > +					   enum irqchip_irq_state which,
-> > > > > +					   bool *state)
-> > > > > +{
-> > > > > +	u64 hwirq_id_bit = BIT_ULL(d->hwirq % 64);
-> > > > > +
-> > > > > +	switch (which) {
-> > > > > +	case IRQCHIP_STATE_PENDING:
-> > > > > +		*state = !!(read_ppi_sysreg_s(d->hwirq, PPI_PENDING) & hwirq_id_bit);    
-> > > > 
-> > > > Technically don't need the !! but if you really like it I don't mind that much.
-> > > >     
-> > > > > +		return 0;
-> > > > > +	case IRQCHIP_STATE_ACTIVE:
-> > > > > +		*state = !!(read_ppi_sysreg_s(d->hwirq, PPI_ACTIVE) & hwirq_id_bit);
-> > > > > +		return 0;
-> > > > > +	default:
-> > > > > +		pr_debug("Unexpected PPI irqchip state\n");
-> > > > > +		return -EINVAL;
-> > > > > +	}
-> > > > > +}    
-> > > > 
-> > > >     
-> > > > > +static int gicv5_irq_ppi_domain_translate(struct irq_domain *d,
-> > > > > +					  struct irq_fwspec *fwspec,
-> > > > > +					  irq_hw_number_t *hwirq,
-> > > > > +					  unsigned int *type)
-> > > > > +{
-> > > > > +	if (!is_of_node(fwspec->fwnode))
-> > > > > +		return -EINVAL;
-> > > > > +
-> > > > > +	if (fwspec->param_count < 3)    
-> > > > 
-> > > > I don't care that much, but could relax this seeing as fwspec->param[2]
-> > > > isn't used anyway? Maybe a tiny comment on why it matters?
-> > > >     
-> > > > > +		return -EINVAL;
-> > > > > +
-> > > > > +	if (fwspec->param[0] != GICV5_HWIRQ_TYPE_PPI)
-> > > > > +		return -EINVAL;
-> > > > > +
-> > > > > +	*hwirq = fwspec->param[1];
-> > > > > +
-> > > > > +	/*
-> > > > > +	 * Handling mode is hardcoded for PPIs, set the type using
-> > > > > +	 * HW reported value.
-> > > > > +	 */
-> > > > > +	*type = gicv5_ppi_irq_is_level(*hwirq) ? IRQ_TYPE_LEVEL_LOW : IRQ_TYPE_EDGE_RISING;
-> > > > > +
-> > > > > +	return 0;    
-> > > > 
-> > > >     
-> > > > > +static int __init gicv5_of_init(struct device_node *node, struct device_node *parent)
-> > > > > +{
-> > > > > +	int ret = gicv5_init_domains(of_fwnode_handle(node));
-> > > > > +	if (ret)
-> > > > > +		return ret;
-> > > > > +
-> > > > > +	gicv5_set_cpuif_pribits();
-> > > > > +
-> > > > > +	ret = gicv5_starting_cpu(smp_processor_id());
-> > > > > +	if (ret)
-> > > > > +		goto out_dom;
-> > > > > +
-> > > > > +	ret = set_handle_irq(gicv5_handle_irq);
-> > > > > +	if (ret)
-> > > > > +		goto out_int;
-> > > > > +
-> > > > > +	return 0;
-> > > > > +
-> > > > > +out_int:
-> > > > > +	gicv5_cpu_disable_interrupts();
-> > > > > +out_dom:
-> > > > > +	gicv5_free_domains();    
-> > > > 
-> > > > Naming is always tricky but I'd not really expect gicv5_free_domains() as the
-> > > > pair of gicv5_init_domains() (which is doing creation rather than just initializing).
-> > > > 
-> > > > Ah well, names are never prefect and I don't really mind.
-> > > >     
-> > > > > +
-> > > > > +	return ret;
-> > > > > +}
-> > > > > +IRQCHIP_DECLARE(gic_v5, "arm,gic-v5", gicv5_of_init);    
-> > > >     
-> > >   
-> >   
-
+>
+>Ivan
+>
+>> > 
+>> > > > +	zldpll->forced_ref = FIELD_GET(ZL_DPLL_MODE_REFSEL_REF,
+>> > > > +				       dpll_mode_refsel);
+>> > > > +
+>> > > > +	zldpll->dpll_dev = dpll_device_get(zldev->clock_id, zldpll->id,
+>> > > > +					   THIS_MODULE);
+>> > > > +	if (IS_ERR(zldpll->dpll_dev)) {
+>> > > > +		rc = PTR_ERR(zldpll->dpll_dev);
+>> > > > +		zldpll->dpll_dev = NULL;
+>> > > > +
+>> > > > +		return rc;
+>> > > > +	}
+>> > > > +
+>> > > > +	rc = dpll_device_register(zldpll->dpll_dev,
+>> > > > +				  zl3073x_prop_dpll_type_get(zldev, zldpll->id),
+>> > > > +				  &zl3073x_dpll_device_ops, zldpll);
+>> > > > +	if (rc) {
+>> > > > +		dpll_device_put(zldpll->dpll_dev);
+>> > > > +		zldpll->dpll_dev = NULL;
+>> > > > +	}
+>> > > > +
+>> > > > +	return rc;
+>> > > > +}
+>> > > 
+>> > > [...]
+>> > > 
+>> > 
+>> 
+>
 
