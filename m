@@ -1,221 +1,124 @@
-Return-Path: <devicetree+bounces-192266-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-192267-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0D40EAF5ED8
-	for <lists+devicetree@lfdr.de>; Wed,  2 Jul 2025 18:38:26 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1E6F6AF5F34
+	for <lists+devicetree@lfdr.de>; Wed,  2 Jul 2025 18:55:25 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 0EA517A4830
-	for <lists+devicetree@lfdr.de>; Wed,  2 Jul 2025 16:37:00 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 9EB954A7257
+	for <lists+devicetree@lfdr.de>; Wed,  2 Jul 2025 16:53:49 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 23DAA2F508F;
-	Wed,  2 Jul 2025 16:38:11 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1145F2F0E5E;
+	Wed,  2 Jul 2025 16:53:57 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="KMVg3dYL"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="mKlMaTth"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F11252F5086;
-	Wed,  2 Jul 2025 16:38:10 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D5533289E30;
+	Wed,  2 Jul 2025 16:53:56 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1751474291; cv=none; b=LLNUJSe372EIbc4/Ar/aQnWH1vzIveeUDe2FUpWdqrd5PDAOPpzNNyjsmqCwLNYpfBHApca/kNPxOAzYhzd6GBKJOm59TupMGRbJJpBV1T6If8J4IWNudbkekKVovjGcHhVTzx7m5Tj8ZLwdTmiqH3M1A+01h7QXA3axp0v6/Wo=
+	t=1751475237; cv=none; b=skSJO3bENTs8mBBJZn7c19QGmLCJg5r6GYqjzfdtB3/e9tbjJB3K7kLpZWrO6GLx3lUHGd+Zxa747LnA65nvbUiz7jbqq4y7FRkbTApp/KFiAXrhYhXD8dfEl7k2HlXr0KvKaYW1NVj2F098wThQ/v1vzqChJmh1uEdacibtT9g=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1751474291; c=relaxed/simple;
-	bh=Qc9qaZjtszTGfIo1ETHEUtNH5a2Y5/f+r7cHk6zLCuA=;
+	s=arc-20240116; t=1751475237; c=relaxed/simple;
+	bh=SPe4Uai1bMQkO9HlAyYOM9wfRpZK1LE+tL6F2AD8u1I=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=qVR0ciropc/GjzsqgNwkrG934o6/maL9N4JiiFbcn2+co5w+jsCyu6lnmQqwLk/XNXa9sTihir53qJRVluurKlU4RB2REMtF8nxHBhDsSPepiOfCa3UAb9yToVsda86TQGt3hb0zLZ5nOJwRSmUff4gnXb8U0qm6exPS1QygOZQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=KMVg3dYL; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 34A0BC4CEE7;
-	Wed,  2 Jul 2025 16:38:09 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=YU50kBNlwviTyW/2W+0qHAkTaE+NhsPR8SBFVB6Onv5WNfNENyseoV0rWhedxojf50kJcvjN1jD4b53uF3aOhxb8MJhZm38tqQitUDZnhcH3c8yUBfijNDyQWC0pkpttfFzFF9gjiFrA18Yk8VfFiq69WNvfWpewV76iRnOt8Bk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=mKlMaTth; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 4DE08C4CEE7;
+	Wed,  2 Jul 2025 16:53:56 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1751474290;
-	bh=Qc9qaZjtszTGfIo1ETHEUtNH5a2Y5/f+r7cHk6zLCuA=;
+	s=k20201202; t=1751475236;
+	bh=SPe4Uai1bMQkO9HlAyYOM9wfRpZK1LE+tL6F2AD8u1I=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=KMVg3dYLUaNyfuSBOfBXNwS3dJMPaU7p8P4tXXQzf/3p1CZXHWxsu+U4+KHbw/8Ep
-	 1SmQeG/jqruES5oXpLVu5y3lCHXMI70Md2yNVm6DV0NWeNlkK2mRw+24f5FIVzvAT9
-	 odpAX1YvQqK/1hldpCiexN0q2RbOfPNlkzeR2zRymdgXAoDyWhUgfuVNCj+TrnTOGd
-	 3QMykmPmHpJIrTW6PiHdTMIFfaErsDejIpKsHyX8SxBPLoSr/DBRB7K1mMc+nWqP1u
-	 w+wGkPe3j/WnHFmjcFoyeKmU7LNeV2XJgDzMHkkH226McR033f5zuogRE+LfX/2KNt
-	 aCSVhhnkvTATQ==
-Date: Wed, 2 Jul 2025 17:38:06 +0100
-From: Conor Dooley <conor@kernel.org>
-To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org
-Subject: Re: [PATCH] docs: dt: writing-bindings: Express better expectation
- of "specific"
-Message-ID: <20250702-dicing-yo-yo-ddccd5ae7d5a@spud>
-References: <20250702161700.229458-2-krzysztof.kozlowski@linaro.org>
+	b=mKlMaTth9qVjFXD1OrmZjGPDo89B+QjHzvGZv11qCVAmnmt/fVk1mV1FCiB8JKdNf
+	 D6Vro1jZ4YN3ADYJXKWzZZ0cMndBt84UGCpSFWW6ygeTgBzpcY3zazVZgGcp/pOmZn
+	 ogalxEGv0qRjivDYljIcQikdjDt35QapyEsoKDEDNgjC1H5OZtoSx8r+0M/n89FHhv
+	 0FYBMICOQWnsCj5jPKwA8Rc/Eab0BMqBGNMlX10Iu1ef++FnlKUjF7Yzo+gSzkKtv1
+	 iie6R/1OsgeHiMDbSfpx/RKVgdJAKwTyD8furAM25FZyQPwLA+Gzt81wBv3ZltyBeM
+	 R/NPEBCybHM9g==
+Date: Wed, 2 Jul 2025 11:53:55 -0500
+From: "Rob Herring (Arm)" <robh@kernel.org>
+To: Matthew Gerlach <matthew.gerlach@altera.com>
+Cc: netdev@vger.kernel.org, maxime.chevallier@bootlin.com,
+	Mun Yew Tham <mun.yew.tham@altera.com>, davem@davemloft.net,
+	richardcochran@gmail.com, linux-arm-kernel@lists.infradead.org,
+	pabeni@redhat.com, krzk+dt@kernel.org, devicetree@vger.kernel.org,
+	kuba@kernel.org, linux-kernel@vger.kernel.org,
+	alexandre.torgue@foss.st.com, andrew+netdev@lunn.ch,
+	conor+dt@kernel.org, linux-stm32@st-md-mailman.stormreply.com,
+	dinguyen@kernel.org, edumazet@google.com, mcoquelin.stm32@gmail.com
+Subject: Re: [PATCH v7] dt-bindings: net: Convert socfpga-dwmac bindings to
+ yaml
+Message-ID: <175147523465.1908626.13539013933475728908.robh@kernel.org>
+References: <20250630213748.71919-1-matthew.gerlach@altera.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="ExsRr/5aIlsNDTUR"
-Content-Disposition: inline
-In-Reply-To: <20250702161700.229458-2-krzysztof.kozlowski@linaro.org>
-
-
---ExsRr/5aIlsNDTUR
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+In-Reply-To: <20250630213748.71919-1-matthew.gerlach@altera.com>
 
-On Wed, Jul 02, 2025 at 06:17:01PM +0200, Krzysztof Kozlowski wrote:
-> Devicetree bindings are supposed to be specific in terms of compatibles
-> and other properties.  Short "specific" has many implications, so extend
-> the description to cover them: no family names, avoid generic SoC
-> fallbacks, avoid versioned compatibles, avoid properties implied by
-             ^^^^^^^^^^^^^^^^^^^^^^^^^^^
-IDK if it is intentional, but while you mention this here it doesn't
-appear in the text below. Probably as simple as "DON'T use versioned
-compatibles, unless documenting a HDL IP core"?
 
-> compatible.
->=20
-> Also document desired lack of ABI impact and acceptable solution if such
-> needs arises: clearly marking it in commit msg.
->=20
-> All above follows established Devicetree bindings maintainers review
-> practice, so no new rules are introduced here.
->=20
-> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
->=20
+On Mon, 30 Jun 2025 14:37:48 -0700, Matthew Gerlach wrote:
+> Convert the bindings for socfpga-dwmac to yaml. Since the original
+> text contained descriptions for two separate nodes, two separate
+> yaml files were created.
+> 
+> Signed-off-by: Mun Yew Tham <mun.yew.tham@altera.com>
+> Signed-off-by: Matthew Gerlach <matthew.gerlach@altera.com>
+> Reviewed-by: Maxime Chevallier <maxime.chevallier@bootlin.com>
 > ---
->=20
-> I have vast (~10-page) document describing DT bindings and DTS rules,
-> based on Rob's and other people's reviews (with references...). Let me
-> try to funnel it here gradually. Why gradually? The intention of
-> writing-bindings document is to be concise, so rephrasing my 10 pages
-> covering each little detail into generic, concise rule is not that easy,
-> especially for non-native speaker.
->=20
-> Optionally I could also post my 10-page guide somewhere, but then it
-> would be one more document to ignore. I think we have enough of such.
-> Ah, and I would have one less topic for conference. :)
+> v7:
+>  - Add compatible definition for Arria10.
+>  - Update iommus to maxItems: 2.
+> 
+> v6:
+>  - Fix reference to altr,gmii-to-sgmii-2.0.yaml in MAINTAINERS.
+>  - Add Reviewed-by:
+> 
+> v5:
+>  - Fix dt_binding_check error: comptabile.
+>  - Rename altr,gmii-to-sgmii.yaml to altr,gmii-to-sgmii-2.0.yaml
+> 
+> v4:
+>  - Change filename from socfpga,dwmac.yaml to altr,socfpga-stmmac.yaml.
+>  - Updated compatible in select properties and main properties.
+>  - Fixed clocks so stmmaceth clock is required.
+>  - Added binding for altr,gmii-to-sgmii.
+>  - Update MAINTAINERS.
+> 
+> v3:
+>  - Add missing supported phy-modes.
+> 
+> v2:
+>  - Add compatible to required.
+>  - Add descriptions for clocks.
+>  - Add clock-names.
+>  - Clean up items: in altr,sysmgr-syscon.
+>  - Change "additionalProperties: true" to "unevaluatedProperties: false".
+>  - Add properties needed for "unevaluatedProperties: false".
+>  - Fix indentation in examples.
+>  - Drop gmac0: label in examples.
+>  - Exclude support for Arria10 that is not validating.
 > ---
->  .../devicetree/bindings/writing-bindings.rst  | 25 +++++++++++++++----
->  1 file changed, 20 insertions(+), 5 deletions(-)
->=20
-> diff --git a/Documentation/devicetree/bindings/writing-bindings.rst b/Doc=
-umentation/devicetree/bindings/writing-bindings.rst
-> index 1ad081de2dd0..dc0e4b63984c 100644
-> --- a/Documentation/devicetree/bindings/writing-bindings.rst
-> +++ b/Documentation/devicetree/bindings/writing-bindings.rst
-> @@ -39,10 +39,15 @@ Overall design
->  Properties
->  =3D=3D=3D=3D=3D=3D=3D=3D=3D=3D
-> =20
-> -- DO make 'compatible' properties specific. DON'T use wildcards in compa=
-tible
-> -  strings. DO use fallback compatibles when devices are the same as or a=
- subset
-> -  of prior implementations. DO add new compatibles in case there are new
-> -  features or bugs.
-> +- DO make 'compatible' properties specific. DON'T use wildcards or
-> +  device-family names in compatible strings.
+>  .../bindings/net/altr,gmii-to-sgmii-2.0.yaml  |  49 ++++++
+>  .../bindings/net/altr,socfpga-stmmac.yaml     | 166 ++++++++++++++++++
+>  .../devicetree/bindings/net/socfpga-dwmac.txt |  57 ------
+>  MAINTAINERS                                   |   7 +-
+>  4 files changed, 221 insertions(+), 58 deletions(-)
+>  create mode 100644 Documentation/devicetree/bindings/net/altr,gmii-to-sgmii-2.0.yaml
+>  create mode 100644 Documentation/devicetree/bindings/net/altr,socfpga-stmmac.yaml
+>  delete mode 100644 Documentation/devicetree/bindings/net/socfpga-dwmac.txt
+> 
 
-> DO use fallback compatibles when
-> +  devices are the same as or a subset of prior implementations.
+Reviewed-by: Rob Herring (Arm) <robh@kernel.org>
 
-Isn't this wrong? If you're a subset of a prior implementation, falling
-back to the prior implementation's compatible would enable features that
-are not present in the new device. That's not something you introduced,
-it's the existing wording, but I don't think that's correct. It would have
-to be a /superset/ of a prior implementation for this to be correct, no?
-
-> DO add new
-> +  compatibles in case there are new features or bugs.
-
-I think it might be best to break each "DO" or "DON'T" into a bullet
-point of its own. At least it'd make it more clear what the specific dos
-and don'ts are.
-
-> +
-> +   - Use SoC-specific compatible for all SoC devices, followed by a fall=
-back if
-
-"Use a".
-
-> +     appropriate.
-> +
-> +   - Specific SoC compatible is also preferred for the fallbacks.
-
-I hate to nitpick language to a non-native speaker, but when you have a
-plural "fallbacks", it would be "Specific SoC compatibles are also
-preferred". Probably also "SoC-specific" too, to match the wording used
-in the bullet prior?
-
-> =20
->  - DO use a vendor prefix on device-specific property names. Consider if
->    properties could be common among devices of the same class. Check other
-> @@ -51,12 +56,22 @@ Properties
->  - DON'T redefine common properties. Just reference the definition and de=
-fine
->    constraints specific to the device.
-> =20
-> +- DON'T add properties to avoid a specific compatible.  DON'T add proper=
-ties if
-> +  they are implied by (deducible from) the compatible.
-> +
->  - DO use common property unit suffixes for properties with scientific un=
-its.
->    Recommended suffixes are listed at
->    https://github.com/devicetree-org/dt-schema/blob/main/dtschema/schemas=
-/property-units.yaml
-> =20
->  - DO define properties in terms of constraints. How many entries? What a=
-re
-> -  possible values? What is the order?
-> +  possible values? What is the order? All these constraints represent th=
-e ABI
-> +  as well.
-> +
-> +- DON't change the ABI, but if ever needed to change, then DO explicitly
-
-"DON'T", not "DON't". But this immediately contradicts itself, so maybe
-a different wording could be used here. Maybe "DON'T make changes that
-break the ABI without explicit and detailed rationale for why the
-changes have to be made and their impact."?
-
-> +  document that in the commit msg with rationale WHY ABI has to be broke=
-n and
-> +  what is the impact. ABI impact is beyond Linux kernel, because it cove=
-rs also
-
-I think this should be "ABI impact /goes/ beyond /the/ Linux kernel,
-because it /also/ covers other open-source upstream projects.".
-
-Cheers,
-Conor.
-
-> +  other open-source upstream projects.
-> +
-> =20
->  Typical cases and caveats
->  =3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D
-> --=20
-> 2.43.0
->=20
-
---ExsRr/5aIlsNDTUR
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCaGVgbgAKCRB4tDGHoIJi
-0v+SAQDiSRz2cEksHUrXKYhuPZfURXHZTVQuM4alHdgIjusWfgEAnsR8HMVKSvzM
-bbZv4zC519Chhfd2InIlDy1eUjmG4g0=
-=ELdN
------END PGP SIGNATURE-----
-
---ExsRr/5aIlsNDTUR--
 
