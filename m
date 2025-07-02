@@ -1,121 +1,130 @@
-Return-Path: <devicetree+bounces-191989-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-191990-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id ACBF4AF11CD
-	for <lists+devicetree@lfdr.de>; Wed,  2 Jul 2025 12:26:18 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id DF389AF11D7
+	for <lists+devicetree@lfdr.de>; Wed,  2 Jul 2025 12:28:03 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 47B1F440FE3
-	for <lists+devicetree@lfdr.de>; Wed,  2 Jul 2025 10:25:52 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 7563E3B520C
+	for <lists+devicetree@lfdr.de>; Wed,  2 Jul 2025 10:27:37 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7086E255F26;
-	Wed,  2 Jul 2025 10:26:13 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7D32224DCEF;
+	Wed,  2 Jul 2025 10:27:59 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=resnulli-us.20230601.gappssmtp.com header.i=@resnulli-us.20230601.gappssmtp.com header.b="mGb7Bmlz"
+	dkim=pass (4096-bit key) header.d=alien8.de header.i=@alien8.de header.b="fCivF7Sn"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f52.google.com (mail-wm1-f52.google.com [209.85.128.52])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mail.alien8.de (mail.alien8.de [65.109.113.108])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 78DF925487B
-	for <devicetree@vger.kernel.org>; Wed,  2 Jul 2025 10:26:11 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.52
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E6A6524BBFD;
+	Wed,  2 Jul 2025 10:27:55 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=65.109.113.108
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1751451973; cv=none; b=JhFH4dIOp6IvA2AFa6t90rNH4VyJ5UwKbVejo++NdnVW5QCjz+wpRQxdTZB/PD6VxI8IdGb/eylg25VZ15SUQUVfDBuFd2JRbP8oSJrO1EM/HTbh0ortWgX6vAmaUtz16jYYNdSVbOIvfB8Pgnrxa851IeeD2ClHrAyXQW1TA9U=
+	t=1751452079; cv=none; b=AEiUk1+x8xHJ9uqsVD2u7C5z9AMzBazL8E91bN9Fxg5oO6v29fjLQgqRE4FLCrxULt1orJ8g5VSkv0BMxjPDbZYVwrw3siT7GAF1/RfXy9ScD00/RpbFF0u5opqH7WerF360gYzJH85c9zdmF9E+LfW8JU04WQi7uj14/tXxy78=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1751451973; c=relaxed/simple;
-	bh=A7Ag2M/xCPgnbM81/Ed1DfzL0YgWiPbRTDK/kNWLRz4=;
+	s=arc-20240116; t=1751452079; c=relaxed/simple;
+	bh=mKxFnJrFfq5yKXaS2svEXQwbcRkwD+z83At+PELKWzY=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=pMzonNnZK+zc/QPvrqzsfMoBMRNowdiosQuiA7Xmfn+3xMYW7k0ZJZMqgHBXppnoAd+rq/hpZRQf6mkKmbDLJ0W27xd7VKDJN14xYqKaUG0J2s0H2+84eJRJRdVXjLtyL2bg0Ln2kvIn0HWGDBlNWXdhk1XjSLvmWZHV2MA/OAM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=resnulli.us; spf=none smtp.mailfrom=resnulli.us; dkim=pass (2048-bit key) header.d=resnulli-us.20230601.gappssmtp.com header.i=@resnulli-us.20230601.gappssmtp.com header.b=mGb7Bmlz; arc=none smtp.client-ip=209.85.128.52
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=resnulli.us
-Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=resnulli.us
-Received: by mail-wm1-f52.google.com with SMTP id 5b1f17b1804b1-453634d8609so47197805e9.3
-        for <devicetree@vger.kernel.org>; Wed, 02 Jul 2025 03:26:11 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=resnulli-us.20230601.gappssmtp.com; s=20230601; t=1751451970; x=1752056770; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=yN3/Rce9O/Hh8jlflcA/tOl9nLaEQorrzHfucHxWn78=;
-        b=mGb7Bmlz5/GUSD+zaFlQiXe4qbRmr+J7MCz76Kw6ja5yYPuwSBnB/0kEVLxM9abifM
-         ZvwkBIcyzD5eaygzZdztn/QN0ZOkXhetgxNo3mn40WWpAEMsuj5Gx4pum/JA69pCOP2k
-         +GBT5oJkj0Ga8rXxr1/6mpaGntuhSjAScFxktzwC0ZlhPeZbBNEQrwINQ62lKqXNTPjz
-         ZMn3Uj664DcLFuZihjd3bZudbJTDgUAI8yYMrKTzIfsR3y3nyLzxygYfuFHlkUWGNT1e
-         UTUuo4MtxoJg4rPu5IwfiMVDw8EOW1mbTyfXRUOAl78sp2DQ8m7MXAANO6C+MM6D3SIv
-         NFLg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1751451970; x=1752056770;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=yN3/Rce9O/Hh8jlflcA/tOl9nLaEQorrzHfucHxWn78=;
-        b=qCRehiPkLbl4K4eih2mzyddfdm5i1U1frSQV2KFfsQ3uUxKsfEaBMdKh+2hgEKD9Dm
-         fc8RyK5aEokq47c32ivg2/l8/8Cit2trWs4rCx4vzKJsPU5B/4dSv2K9j8D7PKWvrpnD
-         HevLr17OonaQmbyUmAU6QdWD8mSsCsX7uqkmVfJgFKRIhF8kiOKwb1APocoTU/rPZxG/
-         9k/iT4KPNUsv20p0GGnEkySQUsuYtaHnEN9Q4SyWbzT51m7UKYI7bUfXyJyZ4vA8jt0I
-         MTcv04NL2EHCR6BcdSAfd4i1y/TSKISYaifKocYNovLfPale7gkwxuc1W82BTbDH943R
-         C6Bw==
-X-Forwarded-Encrypted: i=1; AJvYcCWbb9Epnm5PkBznB2JhWSBarnFCi/aigMahw0g40YZfX13FgGfb5w++JWcZ2d6AwNzGPj51oX0GGnLl@vger.kernel.org
-X-Gm-Message-State: AOJu0YwE639hhwbxieEl2o6gL5VMiW5Tnq4fVxw84O6sWdeIjSm617CV
-	K9OejyjAHYOYV4rpKQyps53DIJtpFsHi46fMCQRVuyl0JJ4w9yJoYyYRQRkkOKTHHWw=
-X-Gm-Gg: ASbGnctGdsDEXIs5hcSJ+/Y483lcgyDQ1Jkk1aCBRPEHwbfgD6HmNXTVdkOPbQYRcEG
-	sjnGDhn2qsY6p6nCHxH28XiAusvB3bvbPHlNU8w7Ggh/Y6Ntrkc1EAoKjlOZB/33+Q05te9dSCr
-	Ovubw78mZN64oojE42pkCcUyVUPu7HskhymL5FpfF80pqdzX+UIC30XqWjHe9wvE03SIFlN+t9v
-	v3F7gDSe/EkjN8h5FSsYilenHWCsfPx5tSgBbaTQlgAX+NIlirylzojAxaPONSaxy02NOEnAofo
-	J0mhZlwtqb7Aqa8CgB+4/w2zozroR29YE8FFsRIFivpBj3Mp82+pmYlNraVcbANLNRhLJA==
-X-Google-Smtp-Source: AGHT+IE3Ue/jFuqGKk2j82UXQrlkpofLQZxfY4sZQlx7+9veKW80qJCzF944xSFEweUYweW+L+RcHQ==
-X-Received: by 2002:a05:600c:698e:b0:43b:cc42:c54f with SMTP id 5b1f17b1804b1-454a36ec56amr26467775e9.14.1751451969448;
-        Wed, 02 Jul 2025 03:26:09 -0700 (PDT)
-Received: from jiri-mlt ([193.47.165.251])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-3a88c7e6f8bsm16191924f8f.17.2025.07.02.03.26.02
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 02 Jul 2025 03:26:08 -0700 (PDT)
-Date: Wed, 2 Jul 2025 12:25:57 +0200
-From: Jiri Pirko <jiri@resnulli.us>
-To: Ivan Vecera <ivecera@redhat.com>
-Cc: netdev@vger.kernel.org, Vadim Fedorenko <vadim.fedorenko@linux.dev>, 
-	Arkadiusz Kubalewski <arkadiusz.kubalewski@intel.com>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Prathosh Satish <Prathosh.Satish@microchip.com>, "David S. Miller" <davem@davemloft.net>, 
-	Eric Dumazet <edumazet@google.com>, Jakub Kicinski <kuba@kernel.org>, 
-	Paolo Abeni <pabeni@redhat.com>, Simon Horman <horms@kernel.org>, 
-	Jonathan Corbet <corbet@lwn.net>, Jason Gunthorpe <jgg@ziepe.ca>, 
-	Shannon Nelson <shannon.nelson@amd.com>, Dave Jiang <dave.jiang@intel.com>, 
-	Jonathan Cameron <Jonathan.Cameron@huawei.com>, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	linux-doc@vger.kernel.org, Michal Schmidt <mschmidt@redhat.com>, 
-	Petr Oros <poros@redhat.com>
-Subject: Re: [PATCH net-next v12 04/14] dpll: zl3073x: Add support for
- devlink device info
-Message-ID: <x23jvoo4eycl5whishhsy2qpb5qajsqcx36amltwkqwu5xuj7s@ghg47je4hbjt>
-References: <20250629191049.64398-1-ivecera@redhat.com>
- <20250629191049.64398-5-ivecera@redhat.com>
+	 Content-Type:Content-Disposition:In-Reply-To; b=S92geAgOxmgnQdRHEqViyGguR+4cJ1cUgzmBM7+CHP5TV37aav50GQBtJYaxGfIpKXA3ta2nAR7vBVg3ju56DW84yXvtT37dD/DwOiirUB507u+hp0osI4XlPiTwxXshEbn5Lc06q4hvXTSB83jcl/HMjl8exczBAD9l2Zcjkds=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=alien8.de; spf=pass smtp.mailfrom=alien8.de; dkim=pass (4096-bit key) header.d=alien8.de header.i=@alien8.de header.b=fCivF7Sn; arc=none smtp.client-ip=65.109.113.108
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=alien8.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=alien8.de
+Received: from localhost (localhost.localdomain [127.0.0.1])
+	by mail.alien8.de (SuperMail on ZX Spectrum 128k) with ESMTP id 812A240E0217;
+	Wed,  2 Jul 2025 10:27:47 +0000 (UTC)
+X-Virus-Scanned: Debian amavisd-new at mail.alien8.de
+Authentication-Results: mail.alien8.de (amavisd-new); dkim=pass (4096-bit key)
+	header.d=alien8.de
+Received: from mail.alien8.de ([127.0.0.1])
+	by localhost (mail.alien8.de [127.0.0.1]) (amavisd-new, port 10026)
+	with ESMTP id tG13KCk_QJPf; Wed,  2 Jul 2025 10:27:44 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=alien8.de; s=alien8;
+	t=1751452063; bh=K6vtF+/FrP3SZLJ1xW3eTnYKlR656Bz2ybvMfEhgy7k=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=fCivF7SnbWweND0RenAM+SeXpWWhRNFm7diOBCTtNiFbTia1+A4ubAK+7EWc1Pczs
+	 j55PbI1oOTPZZBUvsyk44Yh2sMO3q/PX3Tb6adz20ZmwpV0DNdgmOsPSE6MpsQy9Yl
+	 8Yvcfttr4npkoc2LpcId+T6tMc6kcHy7yxHqRfOXnmbZN6HFlmdndo2mnCxQz2pZYA
+	 yJUFDzw0DObeiAvLa3j84d+LcnLH2p2h3x74+2zZJhDJPLPOZgMZCil+Hh5Tq+OpZG
+	 23ldmQjXzcBqPEBK1fN1pw3FCJY6w6J8JMMBQlaQMG2h/m20bMtJKVHsBymWiQr7p3
+	 ggpm23yjDoQ6zc29jCsdHF+8wBbdT2+wyt/38eYnSnnqF1nLKarnjLxtdtjHpjBEj7
+	 P3VS6rBs3+gJ8iNxjObUz+vriA9vt8OmihX9s3mfoMwDTQLqRSvVU29J4qpwitvvdN
+	 xTmoRFASFgManLq+nefrBKUuD9CjavMVGNWdoeQVs5cHG4r0jYxnWMnxU88ZvTBIQw
+	 5w/LbBxPwrJi3Qkvos6X+ek3gv1vt9O6lCy2qDNUIqyUjfWwMnVU26viP2y4rYo7qI
+	 8ztdARHlWLtTxYzh1mBf3Cyl4kTDk+EsAjT0DfxYHb3VmVYcKZ1vT+kU2AbBYI7MVz
+	 CMYxsyfYxSjc+ozQ42aLXP7M=
+Received: from zn.tnic (p57969c58.dip0.t-ipconnect.de [87.150.156.88])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange ECDHE (P-256) server-signature ECDSA (P-256) server-digest SHA256)
+	(No client certificate requested)
+	by mail.alien8.de (SuperMail on ZX Spectrum 128k) with ESMTPSA id 662C140E01FE;
+	Wed,  2 Jul 2025 10:27:28 +0000 (UTC)
+Date: Wed, 2 Jul 2025 12:27:21 +0200
+From: Borislav Petkov <bp@alien8.de>
+To: "Datta, Shubhrajyoti" <shubhrajyoti.datta@amd.com>,
+	"Gupta, Nipun" <Nipun.Gupta@amd.com>,
+	"Agarwal, Nikhil" <nikhil.agarwal@amd.com>
+Cc: "Ghannam, Yazen" <Yazen.Ghannam@amd.com>,
+	"linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+	"linux-edac@vger.kernel.org" <linux-edac@vger.kernel.org>,
+	"git (AMD-Xilinx)" <git@amd.com>,
+	Krzysztof Kozlowski <krzk@kernel.org>,
+	Rob Herring <robh@kernel.org>, Conor Dooley <conor+dt@kernel.org>,
+	Tony Luck <tony.luck@intel.com>, James Morse <james.morse@arm.com>,
+	Mauro Carvalho Chehab <mchehab@kernel.org>,
+	Robert Richter <rric@kernel.org>
+Subject: Re: [PATCH v7 2/5] cdx: Export Symbols for MCDI RPC and
+ Initialization
+Message-ID: <20250702102721.GKaGUJiXLkOEC5kdpd@fat_crate.local>
+References: <20250529070017.7288-1-shubhrajyoti.datta@amd.com>
+ <20250529070017.7288-3-shubhrajyoti.datta@amd.com>
+ <20250613201034.GC171759@yaz-khff2.amd.com>
+ <SA1PR12MB89474C0C76A66775B91A20C98170A@SA1PR12MB8947.namprd12.prod.outlook.com>
+ <SA1PR12MB8947279143D868E39D30F616817CA@SA1PR12MB8947.namprd12.prod.outlook.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <20250629191049.64398-5-ivecera@redhat.com>
+In-Reply-To: <SA1PR12MB8947279143D868E39D30F616817CA@SA1PR12MB8947.namprd12.prod.outlook.com>
 
-Sun, Jun 29, 2025 at 09:10:39PM +0200, ivecera@redhat.com wrote:
+On Fri, Jun 20, 2025 at 11:03:02AM +0000, Datta, Shubhrajyoti wrote:
+> I plan to have the current (in the cdx) mcdi.h to mcdid.h and move the common parts to
+> Include/linux/cdx/mcdi.h
+> 
+> And for the bitfield.h will move to include/linux/cdx/bitfield.h as most of it is needed
+> by others
+> 
+> 
+> I plan to rename the existing mcdi.h under cdx/controller/ to mcdid.h.
+> The common prototypes and definitions will be moved to the new global header at
+> include/linux/cdx/mcdi.h.
+> 
+> I am using most of (close to 90/95 percent) the bitfield.h, I'll move it to include/linux/cdx/bitfield.h to
+>  make it accessible for other subsystems.
+> 
+> Let me know if that sounds good.
 
-[...]
+Well, I'd expect the maintainers of that thing to move:
 
->+	snprintf(buf, sizeof(buf), "%lu.%lu.%lu.%lu",
->+		 FIELD_GET(GENMASK(31, 24), cfg_ver),
->+		 FIELD_GET(GENMASK(23, 16), cfg_ver),
->+		 FIELD_GET(GENMASK(15, 8), cfg_ver),
->+		 FIELD_GET(GENMASK(7, 0), cfg_ver));
->+
->+	return devlink_info_version_running_put(req, "cfg.custom_ver", buf);
+./scripts/get_maintainer.pl -f drivers/cdx/
+Nipun Gupta <nipun.gupta@amd.com> (maintainer:AMD CDX BUS DRIVER)
+Nikhil Agarwal <nikhil.agarwal@amd.com> (maintainer:AMD CDX BUS DRIVER)
 
-Nit:
+and maintain.
 
-It's redundant to put "ver" string into version name. Also, isn't it
-rather "custom_config" or "custom_cfg"?
+Perhaps ping them on internal chat to catch their attention.
 
+Thx.
 
+-- 
+Regards/Gruss,
+    Boris.
+
+https://people.kernel.org/tglx/notes-about-netiquette
 
