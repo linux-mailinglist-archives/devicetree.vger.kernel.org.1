@@ -1,48 +1,48 @@
-Return-Path: <devicetree+bounces-192300-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-192301-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id D0C30AF631E
-	for <lists+devicetree@lfdr.de>; Wed,  2 Jul 2025 22:15:55 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6D1EBAF6330
+	for <lists+devicetree@lfdr.de>; Wed,  2 Jul 2025 22:17:44 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id E7540188BE8A
-	for <lists+devicetree@lfdr.de>; Wed,  2 Jul 2025 20:16:11 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 0A8747B5C2C
+	for <lists+devicetree@lfdr.de>; Wed,  2 Jul 2025 20:16:19 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0CEE530E824;
-	Wed,  2 Jul 2025 20:14:43 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id CDE012DE6F7;
+	Wed,  2 Jul 2025 20:16:51 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="hoRIaife"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="j0HZqPnp"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D30D53093CA;
-	Wed,  2 Jul 2025 20:14:41 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9C7A42DE6EE;
+	Wed,  2 Jul 2025 20:16:51 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1751487282; cv=none; b=WN+7AETj8D/LfgSgWZOAd6170ziWZYwR3FIDE2c/Mkr0XKid8FcK0Y2gQjOZt6moxgm4vMLfuiGReq4qkXo6SN2qZZEXpUto8dsEQqjKMBIsX50Ss2lyzh9ljYCS7eln7j15uJaSvLwomanS4p93btVVDGEn+ptIb9h4Enn/0a0=
+	t=1751487411; cv=none; b=c7rT3cDvRMjC0tfDvNuDEB9y4NaYa2o6W491CCSXA3Wvc3zi2y6mC2q311JqGCPl1MvrQmnEzC4oxy+XFjhxyWKtGFtVU86EDG0th981bUALCjTuNbHkHGhvEbcGuSH4p7fLVatougvfxyEgEtTVTQHp40TYUAgazCMZYJuxvyY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1751487282; c=relaxed/simple;
-	bh=6eSaApPhk3wJVbii9cEkGt0eTlySUhDBHN3P7aS4uUM=;
+	s=arc-20240116; t=1751487411; c=relaxed/simple;
+	bh=kKwgqTUxVWwdPmdc+f5tNybuH8KrJ5yHvr4ySbSweco=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=CBeK9nV2VNn5k+Et0hG0uaAQxcg2NZH3DBKCK3oOZrK0vpGnxECq/YFL+gvUR3VUnpQsEgmCcOEv7dnbsj2Kscb7yjN6feRyGd3qEIUnPqMRy/b8H6CDR+9IcrnpWMUBpAw23CEbpU1qiEBiPzfIIhgsZq3abLCoBrh2Xw7KZ5A=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=hoRIaife; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id B2B21C4CEE7;
-	Wed,  2 Jul 2025 20:14:36 +0000 (UTC)
+	 In-Reply-To:Content-Type; b=PItkeiIJG44u/6INTyxMhKPILht2QyEdl8Fqn3jp8e6Fb66SiFLAUgOkAkrBuysKrTdnXc8o48zQFCGk9Dh0Jf6OPqyWV760nfL+ojZ8ZA4cMrOWnCv+E0/tnYdMlO3PS2KMO5crCEfuEesmaEQEVUj3d5KgSoahrdtVohvfKKk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=j0HZqPnp; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 6C470C4CEE7;
+	Wed,  2 Jul 2025 20:16:46 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1751487281;
-	bh=6eSaApPhk3wJVbii9cEkGt0eTlySUhDBHN3P7aS4uUM=;
+	s=k20201202; t=1751487411;
+	bh=kKwgqTUxVWwdPmdc+f5tNybuH8KrJ5yHvr4ySbSweco=;
 	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=hoRIaifeAR9VN04Rc7+qMCtEan1HTEfv2e41o0Nvp9ZBIHJ5xrlodBpv2v8Mtwq/6
-	 v4fUbXTlYgGFWl5Bh0K8/6ntwPtQoKIveaPQPPncb6FMwXuQI8fNp4Nc65EpTaz02S
-	 fWFVaudbUTxo2h+LJ9my80uFO/qD+OshbnTtrBPLWOuCg6JiopHyUM9YgbnhhqiZEK
-	 +ok7oKsPE8FJqfeUVM01lug5kXjpaOnJmoKHLVto321ibSKd6GvPTkQu4qWbrEBM3S
-	 HVmubt+Gq5WFZYqlQ9fVKVwzdPFxZ9I6Ug6/uVOM3OpbiF6PedXEQVpbLcCAI1f0us
-	 UNiGKx9uTqWeQ==
-Message-ID: <5d4dfcb2-cdf5-41d6-a94f-5a116837ee25@kernel.org>
-Date: Wed, 2 Jul 2025 22:14:34 +0200
+	b=j0HZqPnpyqmitn684wftBUqS8D/8gqCYud30k/xqnoCp1iN/P0IFfll/kT+mecpBF
+	 SJj7I3WIr0Wg6ksoawA1+kHwRfQSfTnRHFi9U0Dn5dd2phxzF1MV7ZvQgaxEK46DMm
+	 tHEEiy7gMoSWEnS9qdOv6S8En5SRuspaneiiIMBV58K1GPyoC4Q64qmmQKun2KASJC
+	 tNUY+DfnesF1+u38s3Ma/caW9blHf5RphalgZwHvrBZwtw7UatpT0FVVvYJDpuhPa4
+	 CBi1smMK+j6E89OIZXmj0pQAlmpw+zbABPDIqXNPRuxWg/SX/O9w0ed45AJz2D+lHu
+	 tajzfy7ak/YNA==
+Message-ID: <e40211c4-8ae3-4aa1-af80-f4a0525a863b@kernel.org>
+Date: Wed, 2 Jul 2025 22:16:44 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,22 +50,25 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 4/8] dt-bindings: vendor-prefixes: Add Winrise
- Technology
-To: Christian Hewitt <christianshewitt@gmail.com>
-Cc: =?UTF-8?Q?Jean-Fran=C3=A7ois_Lessard?= <jefflessard3@gmail.com>,
- Andy Shevchenko <andy@kernel.org>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Geert Uytterhoeven <geert@linux-m68k.org>,
- devicetree@vger.kernel.org, linux-leds@vger.kernel.org,
- linux-kernel@vger.kernel.org, =?UTF-8?Q?Andreas_F=C3=A4rber?=
- <afaerber@suse.de>, Boris Gjenero <boris.gjenero@gmail.com>,
- Heiner Kallweit <hkallweit1@gmail.com>,
- Paolo Sabatino <paolo.sabatino@gmail.com>
-References: <20250629130002.49842-1-jefflessard3@gmail.com>
- <20250629130002.49842-6-jefflessard3@gmail.com>
- <c6d0d856-0c49-4ad7-bc6f-1a228dcb2d9d@kernel.org>
- <0182CF05-6011-479C-A4A2-18A0C60F7710@gmail.com>
+Subject: Re: [PATCH v3 1/5] media: dt-bindings: add non-pixel property in iris
+ schema
+To: Vikash Garodia <quic_vgarodia@quicinc.com>,
+ Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>,
+ Dikshita Agarwal <quic_dikshita@quicinc.com>,
+ Abhinav Kumar <abhinav.kumar@linux.dev>,
+ Bryan O'Donoghue <bryan.odonoghue@linaro.org>,
+ Mauro Carvalho Chehab <mchehab@kernel.org>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>
+Cc: linux-media@vger.kernel.org, linux-arm-msm@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+References: <20250627-video_cb-v3-0-51e18c0ffbce@quicinc.com>
+ <20250627-video_cb-v3-1-51e18c0ffbce@quicinc.com>
+ <19dd2e69-ad13-46f2-b99f-04a5e26f10d3@kernel.org>
+ <08c8cdfd-099e-7b90-b163-23ecee3a5da4@quicinc.com>
+ <118f2cbe-d8bd-4177-b0d5-91d9f1dbbef0@kernel.org>
+ <9f5be122-302d-402f-91f2-675507612d32@oss.qualcomm.com>
+ <023038d4-2258-4b2d-a3f9-b817ef0173bc@kernel.org>
+ <7aa47821-ed22-2602-f56d-a6d58195e75f@quicinc.com>
 From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
@@ -111,51 +114,19 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  jWt87ecuHlpL3uuQ0ZZNWqHgZoQLXoqC2ZV5KrtKWb/jyiFX/sxSrodALf0zf+tfHv0FZWT2
  zHjUqd0t4njD/UOsuIMOQn4Ig0SdivYPfZukb5cdasKJukG1NOpbW7yRNivaCnfZz6dTawXw
  XRIV/KDsHQiyVxKvN73bThKhONkcX2LWuD928tAR6XMM2G5ovxLe09vuOzzfTWQDsm++9UKF a/A=
-In-Reply-To: <0182CF05-6011-479C-A4A2-18A0C60F7710@gmail.com>
+In-Reply-To: <7aa47821-ed22-2602-f56d-a6d58195e75f@quicinc.com>
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: 7bit
 
-On 30/06/2025 15:51, Christian Hewitt wrote:
->> On 30 Jun 2025, at 4:25 pm, Krzysztof Kozlowski <krzk@kernel.org> wrote:
+On 02/07/2025 18:36, Vikash Garodia wrote:
 >>
->> On 29/06/2025 14:59, Jean-François Lessard wrote:
->>> Assign vendor prefix "winrise", matching their domain name.
->>>
->>> Signed-off-by: Jean-François Lessard <jefflessard3@gmail.com>
->>> ---
->>> Documentation/devicetree/bindings/vendor-prefixes.yaml | 2 ++
->>> 1 file changed, 2 insertions(+)
->>>
->>> diff --git a/Documentation/devicetree/bindings/vendor-prefixes.yaml b/Documentation/devicetree/bindings/vendor-prefixes.yaml
->>> index f03ab02afe..a3bf93e5dc 100644
->>> --- a/Documentation/devicetree/bindings/vendor-prefixes.yaml
->>> +++ b/Documentation/devicetree/bindings/vendor-prefixes.yaml
->>> @@ -1711,6 +1711,8 @@ patternProperties:
->>>     description: Wingtech Technology Co., Ltd.
->>>   "^winlink,.*":
->>>     description: WinLink Co., Ltd
->>> +  "^winrise,.*":
->>> +    description: Shenzhen Winrise Technology Co., Ltd.
->> Hm? https://winrise.com/ redirects to https://amdaluminum.com/ for
->> fences and other alu products.
-> 
-> According to multiple Chinese chip-buying/trade websites [0],[1] and
-> the internet archive [2] their domain is winrise.cn (not .com). There
-> is currently no active website despite whois entries showing that the
-> domain registration is still active/alive.
-> 
-> [0] http://www.84878.tradebig.com/
-> [1] https://www.tradeeasy.com/supplier/714703/products
-> [2] https://web.archive.org/web/20160312143416/http://winrise.cn/
-> 
-> If you’d prefer “Assign vendor prefix based on their name” as the
-> patch description? we can change that for the next iteration.
-If commit msg says "domain name" as an argument and it turns out it is
-not matching domain name, then that other domain name least needs to be
-in commit msg. The rule of domain name comes from US tickers, so only
-.com should be considered. If there is no conflict and no .com
-manufacturer it is fine to use whatever other name, but the commit msg
-is not then correct.
+>> Also commit msg says "Existing definition limits the IOVA to an
+>> addressable range of 4GiB, and" but I do not see such definition in the
+>> binding at all. So what does it refer to?
+> Processors based out of 32 bit OS, can serve addresses in range 0-31, which
+> implies 4GiB (2pow31).
+You are not replying to statements. Your commit msg said "existing
+definition". Point me to the binding part saying that.
 
 Best regards,
 Krzysztof
