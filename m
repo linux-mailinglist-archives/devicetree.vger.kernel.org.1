@@ -1,52 +1,99 @@
-Return-Path: <devicetree+bounces-192120-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-192080-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 61E34AF5895
-	for <lists+devicetree@lfdr.de>; Wed,  2 Jul 2025 15:23:39 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id B9661AF14E4
+	for <lists+devicetree@lfdr.de>; Wed,  2 Jul 2025 14:03:50 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id B84124E0C1C
-	for <lists+devicetree@lfdr.de>; Wed,  2 Jul 2025 13:21:28 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 9219E1C430E0
+	for <lists+devicetree@lfdr.de>; Wed,  2 Jul 2025 12:04:00 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0DF102857E9;
-	Wed,  2 Jul 2025 13:19:27 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B98AB26D4D9;
+	Wed,  2 Jul 2025 12:03:35 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="JNHwal9f"
 X-Original-To: devicetree@vger.kernel.org
-Received: from elvis.franken.de (elvis.franken.de [193.175.24.41])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E6D2F28541A;
-	Wed,  2 Jul 2025 13:19:24 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=193.175.24.41
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.16])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+	(No client certificate requested)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0B26C1E1DE0;
+	Wed,  2 Jul 2025 12:03:33 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.198.163.16
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1751462366; cv=none; b=TEI2splvfWZYBhZoE2VWl72BNQtzPSWYIaqORooy7q+lkjtbgGKmS7mSy91IniIJQPM4r1w1QHjyQWBBaU+f9KygL2WPcHaczN2q7NLkHARZwWcl5d8WRtJ85RzUcG5vbeBbNNktnANgx4x1KCa6KCtn378BiPi2TUauc8nP/4s=
+	t=1751457815; cv=none; b=T1QX+hyzZ43oJ/cEE/j1liEbYa3nNTJOsb9iMYvricJzqYF4Hx7Q9aA5wlHv99mINGNnbYzzFL0/26oRY/M1mykfgjWT/0EVzQkHO/XU0QK/O5KJfsnb9GWixkI/XBqirGOjwYXwxMeHsyi1qENdhmjO5dYGDXs6VPipUKpfplo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1751462366; c=relaxed/simple;
-	bh=za+ahsJl3QAV648TPMaYsd1GcjFiLAeapw44Eq/9I2s=;
+	s=arc-20240116; t=1751457815; c=relaxed/simple;
+	bh=ejD2BbOWhhH2C3aYM/UenuDYs6xR5HBlVSofSY5zouA=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=cSo9/iY/ZGuIgIjxaHszm2jVAgNulmO7TozJ5QlAvi4Stoe3FeAEVAkham/iCAjvyVvhit9obZZ2GpnokLBWLDqN9pPGEcbmFQMJvntfa3baRf0KQicJx7EfH3TuOPkfTkoiq/PgQSozX9c3LZZAKwBb4LlFwT2+KD1ubgJYna8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=alpha.franken.de; spf=pass smtp.mailfrom=alpha.franken.de; arc=none smtp.client-ip=193.175.24.41
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=alpha.franken.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=alpha.franken.de
-Received: from uucp by elvis.franken.de with local-rmail (Exim 3.36 #1)
-	id 1uWwab-00058I-00; Wed, 02 Jul 2025 14:29:25 +0200
-Received: by alpha.franken.de (Postfix, from userid 1000)
-	id D3D63C0B44; Wed,  2 Jul 2025 14:03:02 +0200 (CEST)
-Date: Wed, 2 Jul 2025 14:03:02 +0200
-From: Thomas Bogendoerfer <tsbogend@alpha.franken.de>
-To: Ezra Buehler <ezra@easyb.ch>
-Cc: linux-mips@vger.kernel.org, devicetree@vger.kernel.org,
-	Conor Dooley <conor+dt@kernel.org>,
-	Harvey Hunt <harveyhuntnexus@gmail.com>,
+	 Content-Type:Content-Disposition:In-Reply-To; b=p1/p/N24kKOfn4XlB5m94OQBzYyPvsbGP6ZibzvcttW59d/FdOw0tUCXEct3nSUjOvhbQyNTmZbjC8qOwD7Nx3HgxSdz8xxBXabEDfoyns+JAHOa5E0BhUx8/cUnp8uC3SwqLw2YSkFg4WcJzW6sw/URYrRNHxy/4ai9gJjb1Hw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com; spf=none smtp.mailfrom=linux.intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=JNHwal9f; arc=none smtp.client-ip=192.198.163.16
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com
+Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=linux.intel.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1751457814; x=1782993814;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=ejD2BbOWhhH2C3aYM/UenuDYs6xR5HBlVSofSY5zouA=;
+  b=JNHwal9f2KB7zlNMY6Me6280RZL1B09WCY3bJSYEtSyaYg9zm1I6KrD1
+   Kx/QnH9VZOJ42EFSSRhl4TE7/l5ZtLY8SOam3SeKuX6BGI2I1YgT1jLqL
+   7//YPVBFHsRjdR9bJH3N35cOYe5IgEgbJh2ez027CuvprzQrr7LOSSTcP
+   I8QqmgKKvTNrT3KbSUB1DdjL5xVep696X56M7x+q0WofGTWIPSmFVZdfJ
+   8FRQHteFL8A9lI7riIZbAtyeU1I2USsNjU0nm1Azdyf24MLMalGgP/Boo
+   SHsS9pY8Zmslvn/vPhv5GLwPf1lUqwqkkvQvscnI+yuH0uYUW5j1U6UYn
+   Q==;
+X-CSE-ConnectionGUID: VdSNpAm2Sq2KvvL5a1IqiQ==
+X-CSE-MsgGUID: /JfRz4d4RUi4mK/OeOy94g==
+X-IronPort-AV: E=McAfee;i="6800,10657,11481"; a="41376325"
+X-IronPort-AV: E=Sophos;i="6.16,281,1744095600"; 
+   d="scan'208";a="41376325"
+Received: from orviesa008.jf.intel.com ([10.64.159.148])
+  by fmvoesa110.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 02 Jul 2025 05:03:33 -0700
+X-CSE-ConnectionGUID: y/UVNBj2THGcJc/iCveI0A==
+X-CSE-MsgGUID: TLSUro/aQVGE2wGprEhSKQ==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.16,281,1744095600"; 
+   d="scan'208";a="154536438"
+Received: from smile.fi.intel.com ([10.237.72.52])
+  by orviesa008.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 02 Jul 2025 05:03:26 -0700
+Received: from andy by smile.fi.intel.com with local (Exim 4.98.2)
+	(envelope-from <andriy.shevchenko@linux.intel.com>)
+	id 1uWwBN-0000000BuWY-1IDx;
+	Wed, 02 Jul 2025 15:03:21 +0300
+Date: Wed, 2 Jul 2025 15:03:21 +0300
+From: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
+To: Anup Patel <apatel@ventanamicro.com>
+Cc: Michael Turquette <mturquette@baylibre.com>,
+	Stephen Boyd <sboyd@kernel.org>, Rob Herring <robh@kernel.org>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Reto Schneider <reto.schneider@husqvarnagroup.com>,
-	Rob Herring <robh@kernel.org>,
-	Sergio Paracuellos <sergio.paracuellos@gmail.com>,
-	Stefan Roese <sr@denx.de>,
-	Ezra Buehler <ezra.buehler@husqvarnagroup.com>
-Subject: Re: [PATCH v4 0/4] MIPS: dts: ralink: mt7628a: Tweak for GARDENA
- smart Gateway
-Message-ID: <aGUf9sLDQgJHGy3M@alpha.franken.de>
-References: <20250624115810.37851-1-ezra@easyb.ch>
+	Conor Dooley <conor+dt@kernel.org>,
+	Jassi Brar <jassisinghbrar@gmail.com>,
+	Thomas Gleixner <tglx@linutronix.de>,
+	"Rafael J . Wysocki" <rafael@kernel.org>,
+	Mika Westerberg <mika.westerberg@linux.intel.com>,
+	Linus Walleij <linus.walleij@linaro.org>,
+	Bartosz Golaszewski <brgl@bgdev.pl>,
+	Uwe =?iso-8859-1?Q?Kleine-K=F6nig?= <ukleinek@kernel.org>,
+	Palmer Dabbelt <palmer@dabbelt.com>,
+	Paul Walmsley <paul.walmsley@sifive.com>,
+	Alexandre Ghiti <alex@ghiti.fr>, Len Brown <lenb@kernel.org>,
+	Sunil V L <sunilvl@ventanamicro.com>,
+	Rahul Pathak <rpathak@ventanamicro.com>,
+	Leyfoon Tan <leyfoon.tan@starfivetech.com>,
+	Atish Patra <atish.patra@linux.dev>,
+	Andrew Jones <ajones@ventanamicro.com>,
+	Samuel Holland <samuel.holland@sifive.com>,
+	Anup Patel <anup@brainfault.org>, linux-clk@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-acpi@vger.kernel.org,
+	linux-riscv@lists.infradead.org, linux-kernel@vger.kernel.org,
+	Atish Patra <atishp@rivosinc.com>
+Subject: Re: [PATCH v7 03/24] RISC-V: Add defines for the SBI message proxy
+ extension
+Message-ID: <aGUgCeDvNv4RxCwv@smile.fi.intel.com>
+References: <20250702051345.1460497-1-apatel@ventanamicro.com>
+ <20250702051345.1460497-4-apatel@ventanamicro.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -55,46 +102,20 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20250624115810.37851-1-ezra@easyb.ch>
+In-Reply-To: <20250702051345.1460497-4-apatel@ventanamicro.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park, 6
+ krs, Bertel Jungin Aukio 5, 02600 Espoo
 
-On Tue, Jun 24, 2025 at 01:58:06PM +0200, Ezra Buehler wrote:
-> From: Ezra Buehler <ezra.buehler@husqvarnagroup.com>
-> 
-> Various devicetree changes needed for the MT7688-based GARDENA smart
-> Gateway.
-> 
-> Signed-off-by: Ezra Buehler <ezra.buehler@husqvarnagroup.com>
-> ---
-> Changes in v4:
-> - Re-add ralink,mt7688-sysc to enum in mediatek,mtmips-sysc DT binding
-> - Link to v3: https://lore.kernel.org/20250619203502.1293695-1-ezra@easyb.ch
-> 
-> Changes in v3:
-> - Remove duplicate entries in mediatek,mtmips-sysc DT binding
-> - Link to v2: https://lore.kernel.org/20250617103058.1125836-1-ezra@easyb.ch
-> 
-> Changes in v2:
-> - Add patch for mediatek,mtmips-sysc DT binding
-> - Add Reviewed-by tags
-> - Link to v1: https://lore.kernel.org/20250611194716.302126-1-ezra@easyb.ch
-> 
-> Ezra Buehler (4):
->   dt-bindings: clock: mediatek,mtmips-sysc: Adapt compatible for MT7688
->     boards
->   MIPS: dts: ralink: mt7628a: Fix sysc's compatible property for MT7688
->   MIPS: dts: ralink: mt7628a: Update watchdog node according to bindings
->   MIPS: dts: ralink: gardena_smart_gateway_mt7688: Fix power LED
-> 
->  .../bindings/clock/mediatek,mtmips-sysc.yaml  | 28 +++++++++++--------
->  .../ralink/gardena_smart_gateway_mt7688.dts   |  2 +-
->  arch/mips/boot/dts/ralink/mt7628a.dtsi        | 11 ++------
->  3 files changed, 20 insertions(+), 21 deletions(-)
+On Wed, Jul 02, 2025 at 10:43:24AM +0530, Anup Patel wrote:
+> Add defines for the new SBI message proxy extension which is part
+> of the SBI v3.0 specification.
 
-series applied to mips-next.
-
-Thomas.
+LGTM,
+Reviewed-by: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
 
 -- 
-Crap can work. Given enough thrust pigs will fly, but it's not necessarily a
-good idea.                                                [ RFC1925, 2.3 ]
+With Best Regards,
+Andy Shevchenko
+
+
 
