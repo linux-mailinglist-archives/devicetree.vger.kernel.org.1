@@ -1,52 +1,72 @@
-Return-Path: <devicetree+bounces-191806-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-191810-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 21F07AF07E2
-	for <lists+devicetree@lfdr.de>; Wed,  2 Jul 2025 03:20:35 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9BD62AF0804
+	for <lists+devicetree@lfdr.de>; Wed,  2 Jul 2025 03:34:02 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 5D1C14E199F
-	for <lists+devicetree@lfdr.de>; Wed,  2 Jul 2025 01:20:32 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id DEDAF7A18B8
+	for <lists+devicetree@lfdr.de>; Wed,  2 Jul 2025 01:32:27 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 51F0818DB26;
-	Wed,  2 Jul 2025 01:20:13 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9B11670808;
+	Wed,  2 Jul 2025 01:33:38 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (1024-bit key) header.d=samsung.com header.i=@samsung.com header.b="PRfDgnPy"
 X-Original-To: devicetree@vger.kernel.org
-Received: from TWMBX01.aspeed.com (mail.aspeedtech.com [211.20.114.72])
+Received: from mailout3.samsung.com (mailout3.samsung.com [203.254.224.33])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 24E9D17A316;
-	Wed,  2 Jul 2025 01:20:11 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=211.20.114.72
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9D73425761
+	for <devicetree@vger.kernel.org>; Wed,  2 Jul 2025 01:33:35 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=203.254.224.33
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1751419213; cv=none; b=hdpbgQ9huEHPpJk5UvQbjGLzFhsQFn42ZzPQAOZqXzhENPRQ2YlvG2qR2a5Zzh7w6L9ZpqVctFWHFxB2m1Gv8Y+TSO9m1N/amTVP5TgcVsoQ73jFByBFUrEgt6KmiKFJtrq9lSp71ivjvRFkWfAAXw60qR9D9OIiKoFuOru6GZE=
+	t=1751420018; cv=none; b=ZOQaOmqB6rKLEw2cOuwf/i39WW778wIHTwCKEkMmRxZIAkQimD8iicCT11Z/gyLC8Oer3T/QTKL0eZFrrRFiHCMvUs2jCySX0Cwg2JtIXct0qFnHQPe5aquS52S2AXWXlWVBMIozjNYqakgri0Y4DalMyfQmMkPh4Qn0UzRqn6s=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1751419213; c=relaxed/simple;
-	bh=TwWVA1VvMX0DpkIUEoR5yhu/u2+xYc7uh+RWgFUA1eo=;
-	h=From:To:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=H7WCXdTEaja5DIJSGDSJQueBw4tuOyPy0MTOFatan5VpEa3FVxRk+tSonmvaCblo7dk2mASc/KJAGL++V5GFPq5padpTGXo0obhb/2dmYHeZFQanEHuiAhG2ZlauZtDSJMj6bavBUy7wbLtHP2N/rqmR5w5t4AE6wOMYVhjlXtk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=aspeedtech.com; spf=pass smtp.mailfrom=aspeedtech.com; arc=none smtp.client-ip=211.20.114.72
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=aspeedtech.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=aspeedtech.com
-Received: from TWMBX01.aspeed.com (192.168.0.62) by TWMBX01.aspeed.com
- (192.168.0.62) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1748.10; Wed, 2 Jul
- 2025 09:19:57 +0800
-Received: from mail.aspeedtech.com (192.168.10.13) by TWMBX01.aspeed.com
- (192.168.0.62) with Microsoft SMTP Server id 15.2.1748.10 via Frontend
- Transport; Wed, 2 Jul 2025 09:19:57 +0800
-From: Jammy Huang <jammy_huang@aspeedtech.com>
-To: <jassisinghbrar@gmail.com>, <robh@kernel.org>, <krzk+dt@kernel.org>,
-	<conor+dt@kernel.org>, <joel@jms.id.au>, <andrew@codeconstruct.com.au>,
-	<linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>,
-	<linux-arm-kernel@lists.infradead.org>, <linux-aspeed@lists.ozlabs.org>
-Subject: [PATCH v6 2/2] mailbox: aspeed: add mailbox driver for AST27XX series SoC
-Date: Wed, 2 Jul 2025 09:19:56 +0800
-Message-ID: <20250702011956.47479-3-jammy_huang@aspeedtech.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20250702011956.47479-1-jammy_huang@aspeedtech.com>
-References: <20250702011956.47479-1-jammy_huang@aspeedtech.com>
+	s=arc-20240116; t=1751420018; c=relaxed/simple;
+	bh=AF7omRMZRLd5scwxtbkEuD3UqDHzNIQwcvhUKNY2VNc=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version:Content-Type:
+	 References; b=JjrsP1WhVqZ3QDXGfEZXojj7YVD2Qh2W16LGjNIvdOyw8wsaXHHTYl4kYVzje1nnSUDpUqAkbsE3oQ7lyJul2Ppqvw9++S2BhOjV3RdcwO9iT6wNyqB9pbBRWe1dQeiVSH3lzq6dII9d12bUMARWlvfnVM3qewqQFyaBt5oYs+M=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=samsung.com; spf=pass smtp.mailfrom=samsung.com; dkim=pass (1024-bit key) header.d=samsung.com header.i=@samsung.com header.b=PRfDgnPy; arc=none smtp.client-ip=203.254.224.33
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=samsung.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=samsung.com
+Received: from epcas2p1.samsung.com (unknown [182.195.41.53])
+	by mailout3.samsung.com (KnoxPortal) with ESMTP id 20250702013333epoutp03b74b502115735b5cc2a81f1a7790abc1~OSzkSFgl32470924709epoutp03K
+	for <devicetree@vger.kernel.org>; Wed,  2 Jul 2025 01:33:33 +0000 (GMT)
+DKIM-Filter: OpenDKIM Filter v2.11.0 mailout3.samsung.com 20250702013333epoutp03b74b502115735b5cc2a81f1a7790abc1~OSzkSFgl32470924709epoutp03K
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=samsung.com;
+	s=mail20170921; t=1751420013;
+	bh=dAX8Jb9Bx+UN5wIdbfjnE5hKdAw3VOpDOA4U8IQYlBI=;
+	h=From:To:Cc:Subject:Date:References:From;
+	b=PRfDgnPyY4I9kSSdor01uODZ7ueKTFGvqgLtw7hJEFRYdrQAhINsIZbz7YIHn1FLh
+	 wg5S49awn2ML+73blddTQNc8jDvrbkWO+h4SPwRVnm4h8URx4+il286thHv6vHnz9B
+	 3nc9Ohjl9mH6rsmxFQbEQj6nkNFaC3O77zzfZ1Uw=
+Received: from epsnrtp03.localdomain (unknown [182.195.42.155]) by
+	epcas2p4.samsung.com (KnoxPortal) with ESMTPS id
+	20250702013333epcas2p4d73d892c396c3c464258c92b92a2432f~OSzkC46nl0722207222epcas2p4S;
+	Wed,  2 Jul 2025 01:33:33 +0000 (GMT)
+Received: from epcas2p2.samsung.com (unknown [182.195.36.91]) by
+	epsnrtp03.localdomain (Postfix) with ESMTP id 4bX2V44mcBz3hhTB; Wed,  2 Jul
+	2025 01:33:32 +0000 (GMT)
+Received: from epsmtip2.samsung.com (unknown [182.195.34.31]) by
+	epcas2p1.samsung.com (KnoxPortal) with ESMTPA id
+	20250702013332epcas2p168d0293f0b7385b0cca88c649fe9c813~OSzi8Bsvt0051400514epcas2p18;
+	Wed,  2 Jul 2025 01:33:32 +0000 (GMT)
+Received: from asswp146.dsn.sec.samsung.com (unknown [10.229.19.146]) by
+	epsmtip2.samsung.com (KnoxPortal) with ESMTPA id
+	20250702013332epsmtip26c988295d5b5383a3cbcc5159d45b2e9~OSzi2IFUf2822028220epsmtip2i;
+	Wed,  2 Jul 2025 01:33:32 +0000 (GMT)
+From: Sowon Na <sowon.na@samsung.com>
+To: robh@kernel.org, krzk@kernel.org, conor+dt@kernel.org, vkoul@kernel.org,
+	alim.akhtar@samsung.com, kishon@kernel.org
+Cc: krzk+dt@kernel.org, linux-kernel@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-samsung-soc@vger.kernel.org,
+	sowon.na@samsung.com
+Subject: [PATCH 0/5] ufs-exynos support for ExynosAutov920
+Date: Wed,  2 Jul 2025 10:33:06 +0900
+Message-ID: <20250702013316.2837427-1-sowon.na@samsung.com>
+X-Mailer: git-send-email 2.45.2
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -54,294 +74,45 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
+X-CMS-MailID: 20250702013332epcas2p168d0293f0b7385b0cca88c649fe9c813
+X-Msg-Generator: CA
+Content-Type: text/plain; charset="utf-8"
+X-Sendblock-Type: AUTO_CONFIDENTIAL
+CMS-TYPE: 102P
+cpgsPolicy: CPGSC10-234,Y
+X-CFilter-Loop: Reflected
+X-CMS-RootMailID: 20250702013332epcas2p168d0293f0b7385b0cca88c649fe9c813
+References: <CGME20250702013332epcas2p168d0293f0b7385b0cca88c649fe9c813@epcas2p1.samsung.com>
 
-Add mailbox controller driver for AST27XX SoCs, which provides
-independent tx/rx mailbox between different processors. There are 4
-channels for each tx/rx mailbox and each channel has an 32-byte FIFO.
+Hi,
 
-Signed-off-by: Jammy Huang <jammy_huang@aspeedtech.com>
----
- drivers/mailbox/Kconfig           |   8 +
- drivers/mailbox/Makefile          |   2 +
- drivers/mailbox/ast2700-mailbox.c | 240 ++++++++++++++++++++++++++++++
- 3 files changed, 250 insertions(+)
- create mode 100644 drivers/mailbox/ast2700-mailbox.c
+This series adds support to the ufs-exynos driver for ExynosAutov920,
+Samsung Automotive SoC series.
+ExynosAutov920 has the UFSHCI 3.1 compliant UFS controller.
 
-diff --git a/drivers/mailbox/Kconfig b/drivers/mailbox/Kconfig
-index 68eeed660a4a..1c38cd570091 100644
---- a/drivers/mailbox/Kconfig
-+++ b/drivers/mailbox/Kconfig
-@@ -340,4 +340,12 @@ config THEAD_TH1520_MBOX
- 	  kernel is running, and E902 core used for power management among other
- 	  things.
- 
-+config AST2700_MBOX
-+	tristate "ASPEED AST2700 IPC driver"
-+	depends on ARCH_ASPEED || COMPILE_TEST
-+	help
-+	  Mailbox driver implementation for ASPEED AST27XX SoCs. This driver
-+	  can be used to send message between different processors in SoC.
-+	  The driver provides mailbox support for sending interrupts to the
-+	  clients. Say Y here if you want to build this driver.
- endif
-diff --git a/drivers/mailbox/Makefile b/drivers/mailbox/Makefile
-index 13a3448b3271..9a9add9a7548 100644
---- a/drivers/mailbox/Makefile
-+++ b/drivers/mailbox/Makefile
-@@ -72,3 +72,5 @@ obj-$(CONFIG_QCOM_CPUCP_MBOX)	+= qcom-cpucp-mbox.o
- obj-$(CONFIG_QCOM_IPCC)		+= qcom-ipcc.o
- 
- obj-$(CONFIG_THEAD_TH1520_MBOX)	+= mailbox-th1520.o
-+
-+obj-$(CONFIG_AST2700_MBOX)	+= ast2700-mailbox.o
-diff --git a/drivers/mailbox/ast2700-mailbox.c b/drivers/mailbox/ast2700-mailbox.c
-new file mode 100644
-index 000000000000..6d9269e89979
---- /dev/null
-+++ b/drivers/mailbox/ast2700-mailbox.c
-@@ -0,0 +1,240 @@
-+// SPDX-License-Identifier: GPL-2.0-only
-+/*
-+ * Copyright Aspeed Technology Inc. (C) 2025. All rights reserved
-+ */
-+
-+#include <linux/interrupt.h>
-+#include <linux/io.h>
-+#include <linux/iopoll.h>
-+#include <linux/kernel.h>
-+#include <linux/mailbox_controller.h>
-+#include <linux/module.h>
-+#include <linux/of.h>
-+#include <linux/platform_device.h>
-+#include <linux/slab.h>
-+
-+/* Each bit in the register represents an IPC ID */
-+#define IPCR_TX_TRIG		0x00
-+#define IPCR_ENABLE		0x04
-+#define IPCR_STATUS		0x08
-+#define  RX_IRQ(n)		BIT(n)
-+#define  RX_IRQ_MASK		0xf
-+#define IPCR_DATA		0x10
-+
-+struct ast2700_mbox_data {
-+	u8 num_chans;
-+	u8 msg_size;
-+};
-+
-+struct ast2700_mbox {
-+	struct mbox_controller mbox;
-+	u8 msg_size;
-+	void __iomem *tx_regs;
-+	void __iomem *rx_regs;
-+	spinlock_t lock;
-+};
-+
-+static inline int ch_num(struct mbox_chan *chan)
-+{
-+	return chan - chan->mbox->chans;
-+}
-+
-+static inline bool ast2700_mbox_tx_done(struct ast2700_mbox *mb, int idx)
-+{
-+	return !(readl(mb->tx_regs + IPCR_STATUS) & BIT(idx));
-+}
-+
-+static irqreturn_t ast2700_mbox_irq(int irq, void *p)
-+{
-+	struct ast2700_mbox *mb = p;
-+	void __iomem *data_reg;
-+	int num_words;
-+	u32 *word_data;
-+	u32 status;
-+	int n;
-+
-+	/* Only examine channels that are currently enabled. */
-+	status = readl(mb->rx_regs + IPCR_ENABLE) &
-+		 readl(mb->rx_regs + IPCR_STATUS);
-+
-+	if (!(status & RX_IRQ_MASK))
-+		return IRQ_NONE;
-+
-+	for (n = 0; n < mb->mbox.num_chans; ++n) {
-+		struct mbox_chan *chan = &mb->mbox.chans[n];
-+
-+		if (!(status & RX_IRQ(n)))
-+			continue;
-+
-+		/* Read the message data */
-+		for (data_reg = mb->rx_regs + IPCR_DATA + mb->msg_size * n,
-+		     word_data = chan->con_priv,
-+		     num_words = (mb->msg_size / sizeof(u32));
-+		     num_words;
-+		     num_words--, data_reg += sizeof(u32), word_data++)
-+			*word_data = readl(data_reg);
-+
-+		mbox_chan_received_data(chan, chan->con_priv);
-+
-+		/* The IRQ can be cleared only once the FIFO is empty. */
-+		writel(RX_IRQ(n), mb->rx_regs + IPCR_STATUS);
-+	}
-+
-+	return IRQ_HANDLED;
-+}
-+
-+static int ast2700_mbox_send_data(struct mbox_chan *chan, void *data)
-+{
-+	struct ast2700_mbox *mb = dev_get_drvdata(chan->mbox->dev);
-+	void __iomem *data_reg;
-+	u32 *word_data;
-+	int num_words;
-+	int idx = ch_num(chan);
-+
-+	if (!(readl(mb->tx_regs + IPCR_ENABLE) & BIT(idx))) {
-+		dev_warn(mb->mbox.dev, "%s: Ch-%d not enabled yet\n", __func__, idx);
-+		return -ENODEV;
-+	}
-+
-+	if (!(ast2700_mbox_tx_done(mb, idx))) {
-+		dev_warn(mb->mbox.dev, "%s: Ch-%d last data has not finished\n", __func__, idx);
-+		return -EBUSY;
-+	}
-+
-+	/* Write the message data */
-+	for (data_reg = mb->tx_regs + IPCR_DATA + mb->msg_size * idx,
-+	     word_data = (u32 *)data,
-+	     num_words = (mb->msg_size / sizeof(u32));
-+	     num_words;
-+	     num_words--, data_reg += sizeof(u32), word_data++)
-+		writel(*word_data, data_reg);
-+
-+	writel(BIT(idx), mb->tx_regs + IPCR_TX_TRIG);
-+	dev_dbg(mb->mbox.dev, "%s: Ch-%d sent\n", __func__, idx);
-+
-+	return 0;
-+}
-+
-+static int ast2700_mbox_startup(struct mbox_chan *chan)
-+{
-+	struct ast2700_mbox *mb = dev_get_drvdata(chan->mbox->dev);
-+	int idx = ch_num(chan);
-+	void __iomem *reg = mb->rx_regs + IPCR_ENABLE;
-+	unsigned long flags;
-+
-+	spin_lock_irqsave(&mb->lock, flags);
-+	writel(readl(reg) | BIT(idx), reg);
-+	spin_unlock_irqrestore(&mb->lock, flags);
-+
-+	return 0;
-+}
-+
-+static void ast2700_mbox_shutdown(struct mbox_chan *chan)
-+{
-+	struct ast2700_mbox *mb = dev_get_drvdata(chan->mbox->dev);
-+	int idx = ch_num(chan);
-+	void __iomem *reg = mb->rx_regs + IPCR_ENABLE;
-+	unsigned long flags;
-+
-+	spin_lock_irqsave(&mb->lock, flags);
-+	writel(readl(reg) & ~BIT(idx), reg);
-+	spin_unlock_irqrestore(&mb->lock, flags);
-+}
-+
-+static bool ast2700_mbox_last_tx_done(struct mbox_chan *chan)
-+{
-+	struct ast2700_mbox *mb = dev_get_drvdata(chan->mbox->dev);
-+	int idx = ch_num(chan);
-+
-+	return ast2700_mbox_tx_done(mb, idx);
-+}
-+
-+static const struct mbox_chan_ops ast2700_mbox_chan_ops = {
-+	.send_data	= ast2700_mbox_send_data,
-+	.startup	= ast2700_mbox_startup,
-+	.shutdown	= ast2700_mbox_shutdown,
-+	.last_tx_done	= ast2700_mbox_last_tx_done,
-+};
-+
-+static int ast2700_mbox_probe(struct platform_device *pdev)
-+{
-+	struct ast2700_mbox *mb;
-+	const struct ast2700_mbox_data *dev_data;
-+	struct device *dev = &pdev->dev;
-+	int irq, ret;
-+
-+	if (!pdev->dev.of_node)
-+		return -ENODEV;
-+
-+	dev_data = device_get_match_data(&pdev->dev);
-+
-+	mb = devm_kzalloc(dev, sizeof(*mb), GFP_KERNEL);
-+	if (!mb)
-+		return -ENOMEM;
-+
-+	mb->mbox.chans = devm_kcalloc(&pdev->dev, dev_data->num_chans,
-+				      sizeof(*mb->mbox.chans), GFP_KERNEL);
-+	if (!mb->mbox.chans)
-+		return -ENOMEM;
-+
-+	/* con_priv of each channel is used to store the message received */
-+	for (int i = 0; i < dev_data->num_chans; i++) {
-+		mb->mbox.chans[i].con_priv = devm_kcalloc(dev, dev_data->msg_size,
-+							  sizeof(u8), GFP_KERNEL);
-+		if (!mb->mbox.chans[i].con_priv)
-+			return -ENOMEM;
-+	}
-+
-+	platform_set_drvdata(pdev, mb);
-+
-+	mb->tx_regs = devm_platform_ioremap_resource_byname(pdev, "tx");
-+	if (IS_ERR(mb->tx_regs))
-+		return PTR_ERR(mb->tx_regs);
-+
-+	mb->rx_regs = devm_platform_ioremap_resource_byname(pdev, "rx");
-+	if (IS_ERR(mb->rx_regs))
-+		return PTR_ERR(mb->rx_regs);
-+
-+	mb->msg_size = dev_data->msg_size;
-+	mb->mbox.dev = dev;
-+	mb->mbox.num_chans = dev_data->num_chans;
-+	mb->mbox.ops = &ast2700_mbox_chan_ops;
-+	mb->mbox.txdone_irq = false;
-+	mb->mbox.txdone_poll = true;
-+	mb->mbox.txpoll_period = 5;
-+	spin_lock_init(&mb->lock);
-+
-+	irq = platform_get_irq(pdev, 0);
-+	if (irq < 0)
-+		return irq;
-+
-+	ret = devm_request_irq(dev, irq, ast2700_mbox_irq, 0, dev_name(dev), mb);
-+	if (ret)
-+		return ret;
-+
-+	return devm_mbox_controller_register(dev, &mb->mbox);
-+}
-+
-+static const struct ast2700_mbox_data ast2700_dev_data = {
-+	.num_chans = 4,
-+	.msg_size = 0x20,
-+};
-+
-+static const struct of_device_id ast2700_mbox_of_match[] = {
-+	{ .compatible = "aspeed,ast2700-mailbox", .data = &ast2700_dev_data },
-+	{}
-+};
-+MODULE_DEVICE_TABLE(of, ast2700_mbox_of_match);
-+
-+static struct platform_driver ast2700_mbox_driver = {
-+	.driver = {
-+		.name = "ast2700-mailbox",
-+		.of_match_table = ast2700_mbox_of_match,
-+	},
-+	.probe = ast2700_mbox_probe,
-+};
-+module_platform_driver(ast2700_mbox_driver);
-+
-+MODULE_AUTHOR("Jammy Huang <jammy_huang@aspeedtech.com>");
-+MODULE_DESCRIPTION("ASPEED AST2700 IPC driver");
-+MODULE_LICENSE("GPL");
+ExynosAutov920 has a different mask of UFS sharability from ExynosAutov9,
+so this series provide flexible parameter for the mask.
+
+With this series applied, UFS is functional. The Samsung KLUDG4UHYB is
+tested for enumeration and I/O.
+
+Sowon Na (5):
+  phy: samsung-ufs: update calibration settings for EVT2
+  dt-bindings: ufs: exynos: add ExynosAutov920 compatible string
+  dt-bindings: soc: samsung: exynos-sysreg: add hsi2 for ExynosAutov920
+  scsi: ufs: exynos: add support for ExynosAutov920 SoC
+  arm64: dts: exynosautov920: enable support for ufs device
+
+ .../soc/samsung/samsung,exynos-sysreg.yaml    |   1 +
+ .../bindings/ufs/samsung,exynos-ufs.yaml      |   1 +
+ .../boot/dts/exynos/exynosautov920-sadk.dts   |  17 +++
+ .../arm64/boot/dts/exynos/exynosautov920.dtsi |  27 ++++
+ drivers/phy/samsung/phy-exynosautov920-ufs.c  |  39 ++----
+ drivers/phy/samsung/phy-samsung-ufs.h         |   1 -
+ drivers/ufs/host/ufs-exynos.c                 | 130 ++++++++++++++++--
+ 7 files changed, 180 insertions(+), 36 deletions(-)
+
 -- 
-2.25.1
+2.45.2
 
 
