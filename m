@@ -1,75 +1,82 @@
-Return-Path: <devicetree+bounces-192231-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-192232-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5F707AF5CBF
-	for <lists+devicetree@lfdr.de>; Wed,  2 Jul 2025 17:23:27 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8285BAF5CD6
+	for <lists+devicetree@lfdr.de>; Wed,  2 Jul 2025 17:25:53 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 600721C46196
-	for <lists+devicetree@lfdr.de>; Wed,  2 Jul 2025 15:22:03 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id D3F26165E46
+	for <lists+devicetree@lfdr.de>; Wed,  2 Jul 2025 15:24:41 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1B2372DCF68;
-	Wed,  2 Jul 2025 15:21:09 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 30ADD2E03F8;
+	Wed,  2 Jul 2025 15:24:36 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="gt1ABjjI"
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="jZ9gUgQy"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.12])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DFC022F365B;
-	Wed,  2 Jul 2025 15:21:08 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 907712E03E5;
+	Wed,  2 Jul 2025 15:24:34 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.198.163.12
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1751469669; cv=none; b=MoxZH+q+y4A2vJYAqfclfvcgvMYH15Y8DO2i4Va4YKPyA7a88IU9FtDcFktBhmqR5ID2/tBZqS0dEbsW0nfK389DVvR6OMr+gqKwMz0G1XzDjrHEpKHUbnSd1Liha8wLYec89Bz1aX8HZhLGU6yNvIFfSx6syyyLr3C52H2i2b8=
+	t=1751469876; cv=none; b=XMunB8fgClNW2a9oSQUkjxt4SVxB9dER7t1eeRVRjJ0Uq1LxYDS5mieTFM7w7iXo7ADs1M4O1SS3aVkvF2u15IzssiXzmrRscgb/OCrAcdiDYeB4mmiPRPEqK9NlqEKkcS0IytDJ4s8Znn5zBwq+uZ7f+5fdDOPzpthKt8hqyCo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1751469669; c=relaxed/simple;
-	bh=M/1qI026Rf8MHuDJoLIxqcQbHcw9InNMCIRG1daBlW4=;
+	s=arc-20240116; t=1751469876; c=relaxed/simple;
+	bh=n2uds1SGDuST3HJtFNerzTi5t0rAhdLCpAKX+VAYgIQ=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=gS6C02ukT/m718ZBuT2daezwc3+RWT/FVyB4zXKG8qjf4UW7U43xdoEeXC0WVyA16njWTE6R77Ccn6cjCLn2DfMJhb6lh0dffqYm/MFsidnv2BMzN1FbgNBJoMxrH50xL0PSRdK+NK31rY2Ds8wY+tVIauA655yfDzlmKXQwsN0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=gt1ABjjI; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 6A127C4CEE7;
-	Wed,  2 Jul 2025 15:21:03 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1751469668;
-	bh=M/1qI026Rf8MHuDJoLIxqcQbHcw9InNMCIRG1daBlW4=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=gt1ABjjID7Yl1S93DXNEXXx9Gu+slXGI3XlUkze9+VdPfBrRji29vH/Za7ojXIyJc
-	 NoY/8Kk5iCroXeRw/044bIbHoRswoHsJy00tTHMdd1NAnNLUdJg0rNQvTJQNRoa9Vk
-	 oEjZWsS/9UOnwcmtp+bEdcCepAJJ1B4kb1zCN2LG1SUT3mtc2IoqUnW2p1WwAm+aBU
-	 kUKnxBuGnEEuO9FWQHj+ewubg6e7wXbxE7icOT9PkwujBlhN8Kwtdx2p0aFiwVd+FD
-	 rthuZtHy4zRT/tsB04nNnve7FTpvTj7Q0Dppc1lF1c4kvsndaOBiafeh1s4WRaKNNR
-	 dih7Dip1xrTLg==
-Date: Wed, 2 Jul 2025 17:21:00 +0200
-From: Danilo Krummrich <dakr@kernel.org>
-To: Michal Wilczynski <m.wilczynski@samsung.com>
-Cc: Uwe =?iso-8859-1?Q?Kleine-K=F6nig?= <ukleinek@kernel.org>,
-	Miguel Ojeda <ojeda@kernel.org>,
-	Alex Gaynor <alex.gaynor@gmail.com>,
-	Boqun Feng <boqun.feng@gmail.com>, Gary Guo <gary@garyguo.net>,
-	=?iso-8859-1?Q?Bj=F6rn?= Roy Baron <bjorn3_gh@protonmail.com>,
-	Andreas Hindborg <a.hindborg@kernel.org>,
-	Alice Ryhl <aliceryhl@google.com>, Trevor Gross <tmgross@umich.edu>,
-	Guo Ren <guoren@kernel.org>, Fu Wei <wefu@redhat.com>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Paul Walmsley <paul.walmsley@sifive.com>,
-	Palmer Dabbelt <palmer@dabbelt.com>,
-	Albert Ou <aou@eecs.berkeley.edu>, Alexandre Ghiti <alex@ghiti.fr>,
-	Marek Szyprowski <m.szyprowski@samsung.com>,
-	Benno Lossin <lossin@kernel.org>,
-	Michael Turquette <mturquette@baylibre.com>,
-	Drew Fustini <fustini@kernel.org>, linux-kernel@vger.kernel.org,
-	linux-pwm@vger.kernel.org, rust-for-linux@vger.kernel.org,
-	linux-riscv@lists.infradead.org, devicetree@vger.kernel.org
-Subject: Re: [PATCH v7 4/8] rust: pwm: Add driver operations trait and
- registration support
-Message-ID: <aGVOXNqnSjCm8fQl@pollux>
-References: <20250702-rust-next-pwm-working-fan-for-sending-v7-0-67ef39ff1d29@samsung.com>
- <CGME20250702134958eucas1p26baf0f661006f5b79c31b2afa683baee@eucas1p2.samsung.com>
- <20250702-rust-next-pwm-working-fan-for-sending-v7-4-67ef39ff1d29@samsung.com>
+	 Content-Type:Content-Disposition:In-Reply-To; b=oDx3bDXVPDpHGjhCtkz2ezGghJ8sqF3uY3sUpxcXo3nHZ+zuZWYfWhwnIQfNOR0cnVH/Q44KS6VXK7Ws21a+ywVxsB2rhX1fyykWD1M8oB6omIppOzA6l8ozVMpGhqXJNfoPxNNVi1Ia0pfd9p2qMtJVDHsjv+qsXG1ImCzRNKw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com; spf=none smtp.mailfrom=linux.intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=jZ9gUgQy; arc=none smtp.client-ip=192.198.163.12
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com
+Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=linux.intel.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1751469874; x=1783005874;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=n2uds1SGDuST3HJtFNerzTi5t0rAhdLCpAKX+VAYgIQ=;
+  b=jZ9gUgQydStQy6MM27pW3yw9cUyf6XJ7xhmfdIOvwq54TyVQqvxS3dDG
+   sO5tX1DD0xDbU/gIH66W4zOJvDiPLU3qm3aFIED7FEWOIZxYadDwK9ChF
+   mXsUEO3BhtYt1LOzflQ45tEbRnDTFrTLSZqlSu4kNav3wtDTzWTSguhTC
+   Q0o0ftiAF7M76jVY6WYKepuQkfTJsbc1AQN1xn4JXnJqeJ1QGOoIx7/WD
+   elhsuPPrrYl82or4tqlC7WFqiOB94VGRFlHu20L7WO0K0vN9Uuun0GJkw
+   a5sV3mbqX15ffazHErr2aOkCGoLYkuiVqYJZKUGiovn6OJoi5RlQ4HOB7
+   w==;
+X-CSE-ConnectionGUID: QPN5L4UUReaHKbx6UpDJJg==
+X-CSE-MsgGUID: z0N9AkF7TFW8kcFNs+v65A==
+X-IronPort-AV: E=McAfee;i="6800,10657,11482"; a="57583760"
+X-IronPort-AV: E=Sophos;i="6.16,281,1744095600"; 
+   d="scan'208";a="57583760"
+Received: from fmviesa006.fm.intel.com ([10.60.135.146])
+  by fmvoesa106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 02 Jul 2025 08:24:33 -0700
+X-CSE-ConnectionGUID: 0znNlbShRteCN4lWUwrA6Q==
+X-CSE-MsgGUID: 2dXvRZeTTeWlCnNtgKD8qA==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.16,281,1744095600"; 
+   d="scan'208";a="154184982"
+Received: from smile.fi.intel.com ([10.237.72.52])
+  by fmviesa006.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 02 Jul 2025 08:24:29 -0700
+Received: from andy by smile.fi.intel.com with local (Exim 4.98.2)
+	(envelope-from <andriy.shevchenko@linux.intel.com>)
+	id 1uWzJy-0000000BxDT-2Pk7;
+	Wed, 02 Jul 2025 18:24:26 +0300
+Date: Wed, 2 Jul 2025 18:24:26 +0300
+From: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
+To: Akhil R <akhilrajeev@nvidia.com>
+Cc: andi.shyti@kernel.org, digetx@gmail.com, jonathanh@nvidia.com,
+	linux-i2c@vger.kernel.org, linux-kernel@vger.kernel.org,
+	linux-tegra@vger.kernel.org, p.zabel@pengutronix.de,
+	thierry.reding@gmail.com, conor+dt@kernel.org,
+	devicetree@vger.kernel.org, krzk+dt@kernel.org,
+	ldewangan@nvidia.com, robh@kernel.org,
+	Robin Murphy <robin.murphy@arm.com>,
+	Thierry Reding <treding@nvidia.com>
+Subject: Re: [PATCH v5 3/3] i2c: tegra: Remove dma_sync_*() calls
+Message-ID: <aGVPKi1PZfnvv1s7@smile.fi.intel.com>
+References: <20250702133450.64257-1-akhilrajeev@nvidia.com>
+ <20250702133450.64257-3-akhilrajeev@nvidia.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -78,43 +85,23 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20250702-rust-next-pwm-working-fan-for-sending-v7-4-67ef39ff1d29@samsung.com>
+In-Reply-To: <20250702133450.64257-3-akhilrajeev@nvidia.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park, 6
+ krs, Bertel Jungin Aukio 5, 02600 Espoo
 
-On Wed, Jul 02, 2025 at 03:45:32PM +0200, Michal Wilczynski wrote:
-> +impl Registration {
-> +    /// Registers a PWM chip with the PWM subsystem.
-> +    ///
-> +    /// Transfers its ownership to the `devres` framework, which ties its lifetime
-> +    /// to the parent device.
-> +    /// On unbind of the parent device, the `devres` entry will be dropped, automatically
-> +    /// calling `pwmchip_remove`. This function should be called from the driver's `probe`.
-> +    pub fn register(
-> +        dev: &device::Device<Bound>,
-> +        chip: ARef<Chip>,
-> +        ops_vtable: &'static PwmOpsVTable,
-> +    ) -> Result {
+On Wed, Jul 02, 2025 at 07:04:49PM +0530, Akhil R wrote:
+> Calling dma_sync_*() on a buffer from dma_alloc_coherent() is pointless.
+> The driver should not be doing its own bounce-buffering if the buffer is
+> allocated through dma_alloc_coherent()
 
-One thing I did miss here: Given that this should give us the guarantee that the
-parent device of the Chip is always bound, you have to add a check for this
-here, i.e. fail if `dev.as_raw() != chip.parent().as_raw()`.
+Missing period at the end of the sentence.
 
-> +        let c_chip_ptr = chip.as_raw();
-> +
-> +        // SAFETY: `c_chip_ptr` is valid because the `ARef<Chip>` that owns it exists.
-> +        // The vtable pointer is also valid. This sets the `.ops` field on the C struct.
-> +        unsafe {
-> +            (*c_chip_ptr).ops = ops_vtable.as_raw();
-> +        }
-> +
-> +        // SAFETY: `c_chip_ptr` points to a valid chip with its ops initialized.
-> +        // `__pwmchip_add` is the C function to register the chip with the PWM core.
-> +        unsafe {
-> +            to_result(bindings::__pwmchip_add(c_chip_ptr, core::ptr::null_mut()))?;
-> +        }
-> +
-> +        let registration = Registration { chip };
-> +
-> +        devres::register(dev, registration, GFP_KERNEL)
-> +    }
-> +}
+Code wise LGTM,
+Reviewed-by: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
+
+-- 
+With Best Regards,
+Andy Shevchenko
+
+
 
