@@ -1,185 +1,182 @@
-Return-Path: <devicetree+bounces-191950-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-191951-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7A65FAF0F54
-	for <lists+devicetree@lfdr.de>; Wed,  2 Jul 2025 11:13:18 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 66A54AF0F5E
+	for <lists+devicetree@lfdr.de>; Wed,  2 Jul 2025 11:14:04 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 6B0CC484934
-	for <lists+devicetree@lfdr.de>; Wed,  2 Jul 2025 09:12:43 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id AFFB84A2EF4
+	for <lists+devicetree@lfdr.de>; Wed,  2 Jul 2025 09:13:46 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 16460233D9E;
-	Wed,  2 Jul 2025 09:13:05 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id CC4F023DEB6;
+	Wed,  2 Jul 2025 09:13:34 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=sifive.com header.i=@sifive.com header.b="N9Wy0j0I"
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="FehmnoY1"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-qk1-f178.google.com (mail-qk1-f178.google.com [209.85.222.178])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 65BF8219A8D
-	for <devicetree@vger.kernel.org>; Wed,  2 Jul 2025 09:13:03 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.222.178
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AAFDD233D9E;
+	Wed,  2 Jul 2025 09:13:32 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1751447585; cv=none; b=Qm4jZ6Muwq6eHxIkApRhgSsmWpLaBwFimRTB5SGB/jr+oviHoF2WGRWkrccic4kRTtlcoh3JVAeSaoaT6gsNZIRhGyJaA8CV5dQYMA1J6yer0hcli+BVCZ3uZUXIiu6rJhn2Hjc+LBrMFr11TxfR1lMP9nqwJPv468ywCMKUuDc=
+	t=1751447614; cv=none; b=oHXlJfnRgx6v/f+tf7+y8tgo8GkXulIqMxd2gU9PhtprG4kIVgzWbfJpndGeOpC7CYuSraNlxakqHmLdhtiPJV+wNIp+emnQbyjDNBDenNKv0i/D78ida4olC/K0f/TX92ysx98LhlC1m3tFNZLWjfFs+JnV5PlZxhJE/T0lHzk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1751447585; c=relaxed/simple;
-	bh=Bw+luCpgfro4plTSzFDqCPmRYgzWS01RJtIYCu6pB2M=;
-	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References; b=R8ll/i0Dk+fyGELds3f5taTz5nYhd8sUbWY7x+WkxZDXlaUcYYNs0Ikp+wwBq9lfUu90Su9rITwjGHJj0vw2SKCRTpF0q55B/2sTV1WcVR6QTdC6V1pxrRnLISWLhHhJGZ29T+cneH+0ro29I723aKjop1jt9a4cPs709JBRk4c=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=sifive.com; spf=pass smtp.mailfrom=sifive.com; dkim=pass (2048-bit key) header.d=sifive.com header.i=@sifive.com header.b=N9Wy0j0I; arc=none smtp.client-ip=209.85.222.178
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=sifive.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=sifive.com
-Received: by mail-qk1-f178.google.com with SMTP id af79cd13be357-7d21cecc11fso1108971385a.3
-        for <devicetree@vger.kernel.org>; Wed, 02 Jul 2025 02:13:03 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=sifive.com; s=google; t=1751447582; x=1752052382; darn=vger.kernel.org;
-        h=references:in-reply-to:message-id:date:subject:cc:to:from:from:to
-         :cc:subject:date:message-id:reply-to;
-        bh=05oSeZnKkOuwHRWSxX5BsGUyoGxJgB1j6SCGcyk/mG8=;
-        b=N9Wy0j0ICRCwFRBtyvAhAbj63REf0h0DMlAczkhotv/LrB439b6jhb5Zp6hqC3byt3
-         MKS6tpP3ESEDek7ZreGzitOQzCb8AKDLAH3pCDy36Q9X+LJzrlGj21mdU4Ilwc3kGl9m
-         SVkNpdus/dMgu3daps7Q+AvLxAvfvLcWOEhA3tDddUzDHd3mf1/jeilRwgS2KfVlXLKP
-         07XdM+FOy38b6tXPkkPmUaEJZGZhzu6DqD0soEnehU7J4gt9cVeQAFCyd5S+JdKE83CB
-         xY0945R9GhCe5p2X+NzGphGSmwoFn/lUbcVxU+6ZT5lyGoz2+VfdRRvp9NwbG+Mx0td3
-         LZqA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1751447582; x=1752052382;
-        h=references:in-reply-to:message-id:date:subject:cc:to:from
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=05oSeZnKkOuwHRWSxX5BsGUyoGxJgB1j6SCGcyk/mG8=;
-        b=sj1sDbBz2bM0xY9+FhQ2OP1UsdNxifSxisP5tO4eeIlvGoOH8HBh3jjPkkmEIux+nc
-         CUDbXtLhH4Ka9An94xFPsJYt8Z1lGNZ+Hrzbn/Rr11k7xFfem6cDpnlxy/429RrwXYnl
-         cIe1QyKAFTVO/55yy/oCfyIQcSh/E6W5OhnZ0dsD+6qLXi2OhHQd8vloYwO+9rcsJFtw
-         PR4IAooJ6KWaXLQC31SFklaJ0HhWf15gIJVBiImI8a/EfbpmtTaQmpt29oO9WtJ+rVVl
-         Y+DI8TW+p+Py4pLM37+13sY4Kgh1Fks6VxO00AB5FHFu7WKZxMk+n5A2c1IUf7cu1CWW
-         341w==
-X-Forwarded-Encrypted: i=1; AJvYcCUy3gZ79d5psvaY49ZcGscJpdKLSGaz4slgY11eXmw8wH9h/gT0GDG7/PUNhzMZqigQ1dy3aYajvasg@vger.kernel.org
-X-Gm-Message-State: AOJu0Yx1ZhHh8kVUAT3qwnwRHW0OIWobLGxRekrGzp+Yx48geXYUs3zR
-	Vq4f5r6toK8bPLkRIiwsB4Iz+xXlIAksDgYgT9qRGUZaN7nyUNtEhpcrFoIX5hUa+M0=
-X-Gm-Gg: ASbGncskplrohYpCFx0rS9rTJjO7sd1QwnJMRtoGar6mtBEunzineZZ91fO4v41Fn0d
-	d1Y2sRVjQAN7s34C/wkeLJZElesGyJPmLq9UmO5mnol6oZeCcdGPG+MM8gRCqR9RvqYK1lXF6Et
-	wvmbYli8TJQC+ry9JpcGwUoEuSuKLyOsmWcrj/03OSCdsB5bFSojL8Z3/ao1vTRB30brhzmzX14
-	En+UMBAivwZeRFxmAeB1Aluq0vQGtXASw8jEmjbBbFFB80h57AOQ44QVUUXPZAw/XbRF1VwgBQb
-	qbzAp1uJdEoGsh7awbwKh2+ffBihL5I2SGM/zMeleMU/3MHjPyCjCr48t3JRRGY240jcWwv86BC
-	jJ9VXw7Js
-X-Google-Smtp-Source: AGHT+IFJq/oyXbT34XXbgyZs+VaHr9wzfkSMmLdoDz1YCb55z55iK/HwDroOxqnoVByLo9PegJxBuQ==
-X-Received: by 2002:a05:620a:439c:b0:7d4:28d9:efbe with SMTP id af79cd13be357-7d5c4718eccmr335297885a.32.1751447582153;
-        Wed, 02 Jul 2025 02:13:02 -0700 (PDT)
-Received: from hsinchu26.internal.sifive.com ([210.176.154.34])
-        by smtp.gmail.com with ESMTPSA id af79cd13be357-7d4431344f7sm911736285a.2.2025.07.02.02.12.59
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 02 Jul 2025 02:13:01 -0700 (PDT)
-From: Nick Hu <nick.hu@sifive.com>
-To: conor+dt@kernel.org,
-	krzk+dt@kernel.org,
-	Cyan Yang <cyan.yang@sifive.com>,
-	Nick Hu <nick.hu@sifive.com>,
-	Samuel Holland <samuel.holland@sifive.com>,
-	devicetree@vger.kernel.org,
-	linux-riscv@lists.infradead.org,
-	linux-kernel@vger.kernel.org
-Cc: Rob Herring <robh@kernel.org>,
-	Paul Walmsley <paul.walmsley@sifive.com>
-Subject: [PATCH v3 1/3] dt-bindings: power: Add SiFive Domain Management controllers
-Date: Wed,  2 Jul 2025 17:12:34 +0800
-Message-Id: <20250702091236.5281-2-nick.hu@sifive.com>
-X-Mailer: git-send-email 2.17.1
-In-Reply-To: <20250702091236.5281-1-nick.hu@sifive.com>
-References: <20250702091236.5281-1-nick.hu@sifive.com>
+	s=arc-20240116; t=1751447614; c=relaxed/simple;
+	bh=mhAUJwLGyWJWM5SoEqiWDX1ozKMiVyu7+WEYBedEpWw=;
+	h=From:Subject:Date:Message-ID:MIME-Version:Content-Type:To:CC; b=Qqu9ztbgzHjGZ4e9s42uOslnN2pv/DQHGLh4DtyOB3o/Ad6xqsonDBOBqFdwvNMkTiaI3vree/y2cRgBzs+GLtfRyvlbX7uUaN+vjUfW8rPsVCEmxUHCDPg9xiiAR6SP0jz/cHvEfeifY9TZ20AtekWp9ityk1DH1Swq2kiaCts=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=FehmnoY1; arc=none smtp.client-ip=205.220.180.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
+Received: from pps.filterd (m0279872.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 5625Bn8e024756;
+	Wed, 2 Jul 2025 09:13:29 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
+	cc:content-transfer-encoding:content-type:date:from:message-id
+	:mime-version:subject:to; s=qcppdkim1; bh=dGErFcn2bbUfPM6EYCa3He
+	g6EeeHal565bae2oygEyc=; b=FehmnoY1d7PyHiOmPU4x2GMQhblSfJUZU+fFZs
+	4wDEroZ+1NgZNSKy6GYxW3+46slGyFcjWueiHTTiyZiS21wNMAvbfUxNobO4jkBT
+	T5slpbeBxyZ7X+8jV3XvUD+hArWmRfZvgi3Jxr6Kz5/V8Osecg/7sFIWdQogPGEF
+	o3IVLA1W+F+mD0wok1PigrqBQFCK3unshMiBwgzXq0TLci33SzZi/2VHRLBFZ0k7
+	aCoXneBdT7+ehA89Wo3yUxeOMcoXwH2pvnoeSu8lFsHN+C5xAxhPWoMYzskpObQ1
+	Yp/nyWK2Gjw0gfP6mtm9+Mf56tLlWNI1NKj6a8MiBdHj3QOg==
+Received: from nalasppmta01.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 47j8s9m07p-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Wed, 02 Jul 2025 09:13:28 +0000 (GMT)
+Received: from nalasex01c.na.qualcomm.com (nalasex01c.na.qualcomm.com [10.47.97.35])
+	by NALASPPMTA01.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 5629DR0U012657
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Wed, 2 Jul 2025 09:13:27 GMT
+Received: from hu-tdas-hyd.qualcomm.com (10.80.80.8) by
+ nalasex01c.na.qualcomm.com (10.47.97.35) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.1748.10; Wed, 2 Jul 2025 02:13:23 -0700
+From: Taniya Das <quic_tdas@quicinc.com>
+Subject: [PATCH v5 0/3] Add support for clock controllers and CPU scaling
+ for QCS615
+Date: Wed, 2 Jul 2025 14:43:08 +0530
+Message-ID: <20250702-qcs615-mm-cpu-dt-v4-v5-0-df24896cbb26@quicinc.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
+MIME-Version: 1.0
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIACT4ZGgC/32QTW7EIAyFrxKxrisgQH5UVb1HNQtwnA5qCDOQi
+ VqNcveSzGZWlbx5lt/nZ99ZpuQps766s0Srzz7OReiXiuHZzl8EfiiaSS41N1LDFbMRGkIAvNx
+ gWGBV4IzrHDZDTdqw4rwkGv3PQf08PXSi663Al0eTBcrZHvC+ejvYDZdP7FVwwCniN2CclxSni
+ VIuXQEcOpTCkCiT1n0UKvoZXzGG9321s5mKJwS/9JW0JK21o5NCaTWqphVY86ZWne5wlLK2TrW
+ GRraHPPu8xPR7fGJVR8p/jy61Z7Fty1HX2vDnLOy0bdsfYsPA6l0BAAA=
+X-Change-ID: 20250625-qcs615-mm-cpu-dt-v4-b6b9bc7d3e56
+To: Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio
+	<konradybcio@kernel.org>, Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski
+	<krzk+dt@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        "Rafael J. Wysocki"
+	<rafael@kernel.org>,
+        Viresh Kumar <viresh.kumar@linaro.org>,
+        "Manivannan
+ Sadhasivam" <mani@kernel.org>
+CC: Ajit Pandey <quic_ajipan@quicinc.com>,
+        Imran Shaik
+	<quic_imrashai@quicinc.com>,
+        Jagadeesh Kona <quic_jkona@quicinc.com>,
+        <linux-arm-msm@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>, <linux-pm@vger.kernel.org>,
+        Taniya Das
+	<quic_tdas@quicinc.com>,
+        Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
+X-Mailer: b4 0.15-dev-aa3f6
+X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
+ nalasex01c.na.qualcomm.com (10.47.97.35)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Authority-Analysis: v=2.4 cv=H/Pbw/Yi c=1 sm=1 tr=0 ts=6864f838 cx=c_pps
+ a=ouPCqIW2jiPt+lZRy3xVPw==:117 a=ouPCqIW2jiPt+lZRy3xVPw==:17
+ a=GEpy-HfZoHoA:10 a=IkcTkHD0fZMA:10 a=Wb1JkmetP80A:10 a=VwQbUJbxAAAA:8
+ a=COk6AnOGAAAA:8 a=a7MBU3iHR-4UK4nVPLsA:9 a=QEXdDO2ut3YA:10
+ a=TjNXssC_j7lpFel5tvFf:22
+X-Proofpoint-ORIG-GUID: 7Sa-EcWuHgivbyF7NZ0tzl0QW1TLf6Xs
+X-Proofpoint-GUID: 7Sa-EcWuHgivbyF7NZ0tzl0QW1TLf6Xs
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwNzAyMDA3NCBTYWx0ZWRfX59chx2AqQDrX
+ 09P4BHgy8BYV5xdMqsb7QYZaNatuXX68Hrq3XsFWNBsrQGZO1rNxhBJ+3Tdy70zn2lUwQft4Bom
+ Q7GZXHezXlV2jbgWL3xrFMw1+WwyWmspB/RfVUUtFg1XHZGTbRsw2Zmf2URnNTpsF4apGk/ihV3
+ ra6r6lyjuqZAXgsx906kUzXX7gcTLIi91MrWdjy2cAVSMEcNjvTw4HP0hcH/eAc5WZKe4qQ99W1
+ 0TCkSlNG9LnV9Z85w0GniGzJYEXWqg8tgl7ygKEwRUpHQ7zZxNZxhFvTHIiXpHhEFxxYmJUlRHz
+ Tr1sLvYmpzLoAEJL3ctbx2i1GVgcJbVD2tzUQnjo3LdVGp5RccyXxK6XXZNmaUgD0HoxlDKL+qY
+ 2Ins7as3wOLnyCc3KIDBPbIUgvodmUruQakw+iKKi5l+ODZd8qWgj+I0YASveJi5DHywTCMG
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1099,Hydra:6.1.7,FMLib:17.12.80.40
+ definitions=2025-07-02_01,2025-06-27_01,2025-03-28_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ impostorscore=0 malwarescore=0 suspectscore=0 mlxlogscore=999
+ priorityscore=1501 clxscore=1011 mlxscore=0 lowpriorityscore=0 spamscore=0
+ adultscore=0 bulkscore=0 phishscore=0 classifier=spam authscore=0 authtc=n/a
+ authcc= route=outbound adjust=0 reason=mlx scancount=1
+ engine=8.19.0-2505280000 definitions=main-2507020074
 
-SiFive Domain Management controller includes the following components
-- SiFive Tile Management Controller
-- SiFive Cluster Management Controller
-- SiFive Core Complex Management Controller
+Add the video, camera, display and gpu clock controller nodes and the
+cpufreq-hw node to support cpu scaling.
 
-These controllers control the clock and power domain of the
-corresponding domain.
+Clock Dependency:
+https://lore.kernel.org/all/20250702-qcs615-mm-v10-clock-controllers-v11-0-9c216e1615ab@quicinc.com
 
-Add `- {}` for the first entry [1][2]. Once the SoCs are ready, we will
-add the SoC compatible string at that time.
+Changes in v5:
+- Update the documentation for CPUFREQ-HW for QCS615.
+- Update the device tree node for cpufreq-hw to point to the new compatible.
+- Link to v4: https://lore.kernel.org/r/20250625-qcs615-mm-cpu-dt-v4-v4-0-9ca880c53560@quicinc.com
 
-Links:
-- [1] https://lore.kernel.org/lkml/20250311195953.GA14239-robh@kernel.org/
-- [2] https://lore.kernel.org/lkml/CAKddAkAzDGL-7MbroRqQnZzPXOquUMKNuGGppqB-d_XZXbcvBA@mail.gmail.com/T/#t
+Changes in v4:
+- Fix the typo(removal of "") from cpufreq-hw node
+- Link to v3: https://lore.kernel.org/r/20250612-qcs615-mm-cpu-dt-v3-v3-0-721d5db70342@quicinc.com
 
-Signed-off-by: Nick Hu <nick.hu@sifive.com>
-Reviewed-by: Samuel Holland <samuel.holland@sifive.com>
+Changes in v3:
+- Move the cpufreq-hw node under /soc {}
+- Add the RB-tag on (v2) from [Konrad]
+
+Changes in v2:
+- pad address field to 8 digits [Dmitry]
+- Replace cpu/CPU in commit [Dmitry]
+- Update the binding to use SC7180 compatible, as QCS615 uses the same
+  hardware version.
+- Link to v1: https://lore.kernel.org/r/20241108-qcs615-mm-dt-nodes-v1-0-b2669cac0624@quicinc.com
+
+Signed-off-by: Taniya Das <quic_tdas@quicinc.com>
+
+Signed-off-by: Taniya Das <quic_tdas@quicinc.com>
 ---
- .../devicetree/bindings/power/sifive,tmc.yaml | 58 +++++++++++++++++++
- 1 file changed, 58 insertions(+)
- create mode 100644 Documentation/devicetree/bindings/power/sifive,tmc.yaml
+Taniya Das (3):
+      dt-bindings: cpufreq: cpufreq-qcom-hw: Add QCS615 compatible
+      arm64: dts: qcom: qcs615: Add clock nodes for multimedia clock
+      arm64: dts: qcom: qcs615: Add CPU scaling clock node
 
-diff --git a/Documentation/devicetree/bindings/power/sifive,tmc.yaml b/Documentation/devicetree/bindings/power/sifive,tmc.yaml
-new file mode 100644
-index 000000000000..4ab2b94785f4
---- /dev/null
-+++ b/Documentation/devicetree/bindings/power/sifive,tmc.yaml
-@@ -0,0 +1,58 @@
-+# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/power/sifive,tmc.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: SiFive Domain Management Controller
-+
-+maintainers:
-+  - Cyan Yang <cyan.yang@sifive.com>
-+  - Nick Hu <nick.hu@sifive.com>
-+  - Samuel Holland <samuel.holland@sifive.com>
-+
-+description: |
-+  SiFive Domain Management Controllers includes the following components
-+    - Tile Management Controller (TMC)
-+    - Cluster Management Controller (CMC)
-+    - Subsystem Management Controller (SMC)
-+  These controllers manage both the clock and power domains of the
-+  associated components. They support the SiFive Quiet Interface Protocol
-+  (SQIP) starting from Version 1. The control method differs from Version
-+  0, making them incompatible.
-+
-+allOf:
-+  - $ref: power-domain.yaml#
-+
-+properties:
-+  compatible:
-+    oneOf:
-+      - items:
-+          - {} # Leave a empty for future SoC specific compatible string
-+          - const: sifive,cmc2
-+      - items:
-+          - {} # Leave a empty for future SoC specific compatible string
-+          - const: sifive,smc0
-+      - items:
-+          - {} # Leave a empty for future SoC specific compatible string
-+          - const: sifive,smc1
-+      - items:
-+          - {} # Leave a empty for future SoC specific compatible string
-+          - const: sifive,tmc0
-+      - items:
-+          - {} # Leave a empty for future SoC specific compatible string
-+          - const: sifive,tmc1
-+
-+  reg:
-+    maxItems: 1
-+
-+  "#power-domain-cells":
-+    const: 0
-+
-+required:
-+  - compatible
-+  - reg
-+
-+additionalProperties: false
-+
-+# The example will be added once the SoCs are ready
+ .../bindings/cpufreq/cpufreq-qcom-hw.yaml          |  2 +
+ arch/arm64/boot/dts/qcom/qcs615.dtsi               | 80 ++++++++++++++++++++++
+ 2 files changed, 82 insertions(+)
+---
+base-commit: 2ae2aaafb21454f4781c30734959cf223ab486ef
+change-id: 20250625-qcs615-mm-cpu-dt-v4-b6b9bc7d3e56
+prerequisite-message-id: <20250702-qcs615-mm-v10-clock-controllers-v11-0-9c216e1615ab@quicinc.com>
+prerequisite-patch-id: 9879d98848e0c7b1a5d898d657c8318738c44ac2
+prerequisite-patch-id: 6414e91724ba90fe820c3d2bb5caa720c99cf3be
+prerequisite-patch-id: e4e24f3dc507891b70936c9587ee1416f1a53e6f
+prerequisite-patch-id: 23062409b23977940c958bf22a215ae5dc45e93a
+prerequisite-patch-id: c35335d37fdf9a7f665f1c6d79d34b091d45e291
+prerequisite-patch-id: 9a0caaaa8d25634dd0db5edffbc939eb7e734c6c
+prerequisite-patch-id: 0b08c5ea612ac291dd829f5e7e63c499cd2812f7
+prerequisite-patch-id: 2327271def3656283d53dadb2ce9f8cd561249d1
+prerequisite-patch-id: c97840c551e081b0b9bf6c0e77b551935454f62d
+prerequisite-patch-id: 71f0eb0fb98c3177dcbe6736c120cba4efef0c33
+
+Best regards,
 -- 
-2.17.1
+Taniya Das <quic_tdas@quicinc.com>
 
 
