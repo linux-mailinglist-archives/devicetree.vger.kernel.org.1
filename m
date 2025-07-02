@@ -1,158 +1,185 @@
-Return-Path: <devicetree+bounces-191949-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-191950-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id B39F5AF0F07
-	for <lists+devicetree@lfdr.de>; Wed,  2 Jul 2025 11:08:05 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7A65FAF0F54
+	for <lists+devicetree@lfdr.de>; Wed,  2 Jul 2025 11:13:18 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id EF3A2161BA1
-	for <lists+devicetree@lfdr.de>; Wed,  2 Jul 2025 09:08:02 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 6B0CC484934
+	for <lists+devicetree@lfdr.de>; Wed,  2 Jul 2025 09:12:43 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D5BC024DD09;
-	Wed,  2 Jul 2025 09:06:01 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 16460233D9E;
+	Wed,  2 Jul 2025 09:13:05 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="CYKAM0Tx"
+	dkim=pass (2048-bit key) header.d=sifive.com header.i=@sifive.com header.b="N9Wy0j0I"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-qk1-f178.google.com (mail-qk1-f178.google.com [209.85.222.178])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6BC4C2417F9;
-	Wed,  2 Jul 2025 09:06:00 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 65BF8219A8D
+	for <devicetree@vger.kernel.org>; Wed,  2 Jul 2025 09:13:03 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.222.178
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1751447161; cv=none; b=uVJc9Tp3O8FubnHSm2G7/b5NZkmgz19CLnBMbGC6kAWMfr1jykcQxBkyiAJ60To91AFVekPT0CW2fcrujkEgLgfEQtiSMe60KN1vxSWNKptzCXsnhOaFxMjr+/lLiEkjrmuvQk0W7LLQTcB9TMS7fGXtAmMGudC3+2QeSeYAczQ=
+	t=1751447585; cv=none; b=Qm4jZ6Muwq6eHxIkApRhgSsmWpLaBwFimRTB5SGB/jr+oviHoF2WGRWkrccic4kRTtlcoh3JVAeSaoaT6gsNZIRhGyJaA8CV5dQYMA1J6yer0hcli+BVCZ3uZUXIiu6rJhn2Hjc+LBrMFr11TxfR1lMP9nqwJPv468ywCMKUuDc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1751447161; c=relaxed/simple;
-	bh=VZX8FhOZn+A2VpoDlQnaJSm+6rFeBl/toi1Zd8pgfQI=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-ID:References:
-	 In-Reply-To:To:CC; b=LsOwXMYKD0P2l0oZS4vROcYkwBeV09iip7TcyrYMgrJi/PTr6JJ4UVCA2hJIDLsbS+pjNvGPWRwfS5cmLznV9HyMPvDAjlfnUuSj7MgK8l2eQWh0jiouY74F7UKbNxhOnydys8hzQcIk3L4drdCv9HEf5s4KRCg47GCnOVG442w=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=CYKAM0Tx; arc=none smtp.client-ip=205.220.168.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
-Received: from pps.filterd (m0279863.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 5626moFX007047;
-	Wed, 2 Jul 2025 09:05:53 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	4D5xBGxSr4jfA7P6+oNyoTxU2RBo4soyNKPqrCLRTt0=; b=CYKAM0TxVhnhi19M
-	O7geWmNioAV9szXM1OF7QXjhogvDwO3+bGMbV0cpPmCqsCx/AjCV4lNWboU0E2V+
-	5TSqbwWTRP3Ae/zIrxFJdS6FeCf9rfy5Rlh1/pa+/mhP2+TGzvh7YFHQ3BVj8i5X
-	YMj/Z1U1l/UnBkVmLgYHajF84iNHIE2N289asF5Env++3o37ZmioA7BZvWswB5gD
-	pdeuQw+D5WXY9LPaCQsPIJFmm7t/ObGIwoff/jW+b7QHp+uhr20kuvwG3uV7+UPG
-	C5y0eIqSJ4+8DN1GyoYTe6k9PWBiQg+ezOFVJIifQvGAcAoNCaiF0p8dHgnCUmUK
-	x+8o3Q==
-Received: from nalasppmta04.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 47kn5jga7y-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Wed, 02 Jul 2025 09:05:52 +0000 (GMT)
-Received: from nalasex01b.na.qualcomm.com (nalasex01b.na.qualcomm.com [10.47.209.197])
-	by NALASPPMTA04.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 56295pBF003686
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Wed, 2 Jul 2025 09:05:51 GMT
-Received: from hu-tdas-hyd.qualcomm.com (10.80.80.8) by
- nalasex01b.na.qualcomm.com (10.47.209.197) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1748.10; Wed, 2 Jul 2025 02:05:46 -0700
-From: Taniya Das <quic_tdas@quicinc.com>
-Date: Wed, 2 Jul 2025 14:34:30 +0530
-Subject: [PATCH v11 10/10] arm64: defconfig: Enable QCS615 clock
- controllers
+	s=arc-20240116; t=1751447585; c=relaxed/simple;
+	bh=Bw+luCpgfro4plTSzFDqCPmRYgzWS01RJtIYCu6pB2M=;
+	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References; b=R8ll/i0Dk+fyGELds3f5taTz5nYhd8sUbWY7x+WkxZDXlaUcYYNs0Ikp+wwBq9lfUu90Su9rITwjGHJj0vw2SKCRTpF0q55B/2sTV1WcVR6QTdC6V1pxrRnLISWLhHhJGZ29T+cneH+0ro29I723aKjop1jt9a4cPs709JBRk4c=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=sifive.com; spf=pass smtp.mailfrom=sifive.com; dkim=pass (2048-bit key) header.d=sifive.com header.i=@sifive.com header.b=N9Wy0j0I; arc=none smtp.client-ip=209.85.222.178
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=sifive.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=sifive.com
+Received: by mail-qk1-f178.google.com with SMTP id af79cd13be357-7d21cecc11fso1108971385a.3
+        for <devicetree@vger.kernel.org>; Wed, 02 Jul 2025 02:13:03 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=sifive.com; s=google; t=1751447582; x=1752052382; darn=vger.kernel.org;
+        h=references:in-reply-to:message-id:date:subject:cc:to:from:from:to
+         :cc:subject:date:message-id:reply-to;
+        bh=05oSeZnKkOuwHRWSxX5BsGUyoGxJgB1j6SCGcyk/mG8=;
+        b=N9Wy0j0ICRCwFRBtyvAhAbj63REf0h0DMlAczkhotv/LrB439b6jhb5Zp6hqC3byt3
+         MKS6tpP3ESEDek7ZreGzitOQzCb8AKDLAH3pCDy36Q9X+LJzrlGj21mdU4Ilwc3kGl9m
+         SVkNpdus/dMgu3daps7Q+AvLxAvfvLcWOEhA3tDddUzDHd3mf1/jeilRwgS2KfVlXLKP
+         07XdM+FOy38b6tXPkkPmUaEJZGZhzu6DqD0soEnehU7J4gt9cVeQAFCyd5S+JdKE83CB
+         xY0945R9GhCe5p2X+NzGphGSmwoFn/lUbcVxU+6ZT5lyGoz2+VfdRRvp9NwbG+Mx0td3
+         LZqA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1751447582; x=1752052382;
+        h=references:in-reply-to:message-id:date:subject:cc:to:from
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=05oSeZnKkOuwHRWSxX5BsGUyoGxJgB1j6SCGcyk/mG8=;
+        b=sj1sDbBz2bM0xY9+FhQ2OP1UsdNxifSxisP5tO4eeIlvGoOH8HBh3jjPkkmEIux+nc
+         CUDbXtLhH4Ka9An94xFPsJYt8Z1lGNZ+Hrzbn/Rr11k7xFfem6cDpnlxy/429RrwXYnl
+         cIe1QyKAFTVO/55yy/oCfyIQcSh/E6W5OhnZ0dsD+6qLXi2OhHQd8vloYwO+9rcsJFtw
+         PR4IAooJ6KWaXLQC31SFklaJ0HhWf15gIJVBiImI8a/EfbpmtTaQmpt29oO9WtJ+rVVl
+         Y+DI8TW+p+Py4pLM37+13sY4Kgh1Fks6VxO00AB5FHFu7WKZxMk+n5A2c1IUf7cu1CWW
+         341w==
+X-Forwarded-Encrypted: i=1; AJvYcCUy3gZ79d5psvaY49ZcGscJpdKLSGaz4slgY11eXmw8wH9h/gT0GDG7/PUNhzMZqigQ1dy3aYajvasg@vger.kernel.org
+X-Gm-Message-State: AOJu0Yx1ZhHh8kVUAT3qwnwRHW0OIWobLGxRekrGzp+Yx48geXYUs3zR
+	Vq4f5r6toK8bPLkRIiwsB4Iz+xXlIAksDgYgT9qRGUZaN7nyUNtEhpcrFoIX5hUa+M0=
+X-Gm-Gg: ASbGncskplrohYpCFx0rS9rTJjO7sd1QwnJMRtoGar6mtBEunzineZZ91fO4v41Fn0d
+	d1Y2sRVjQAN7s34C/wkeLJZElesGyJPmLq9UmO5mnol6oZeCcdGPG+MM8gRCqR9RvqYK1lXF6Et
+	wvmbYli8TJQC+ry9JpcGwUoEuSuKLyOsmWcrj/03OSCdsB5bFSojL8Z3/ao1vTRB30brhzmzX14
+	En+UMBAivwZeRFxmAeB1Aluq0vQGtXASw8jEmjbBbFFB80h57AOQ44QVUUXPZAw/XbRF1VwgBQb
+	qbzAp1uJdEoGsh7awbwKh2+ffBihL5I2SGM/zMeleMU/3MHjPyCjCr48t3JRRGY240jcWwv86BC
+	jJ9VXw7Js
+X-Google-Smtp-Source: AGHT+IFJq/oyXbT34XXbgyZs+VaHr9wzfkSMmLdoDz1YCb55z55iK/HwDroOxqnoVByLo9PegJxBuQ==
+X-Received: by 2002:a05:620a:439c:b0:7d4:28d9:efbe with SMTP id af79cd13be357-7d5c4718eccmr335297885a.32.1751447582153;
+        Wed, 02 Jul 2025 02:13:02 -0700 (PDT)
+Received: from hsinchu26.internal.sifive.com ([210.176.154.34])
+        by smtp.gmail.com with ESMTPSA id af79cd13be357-7d4431344f7sm911736285a.2.2025.07.02.02.12.59
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 02 Jul 2025 02:13:01 -0700 (PDT)
+From: Nick Hu <nick.hu@sifive.com>
+To: conor+dt@kernel.org,
+	krzk+dt@kernel.org,
+	Cyan Yang <cyan.yang@sifive.com>,
+	Nick Hu <nick.hu@sifive.com>,
+	Samuel Holland <samuel.holland@sifive.com>,
+	devicetree@vger.kernel.org,
+	linux-riscv@lists.infradead.org,
+	linux-kernel@vger.kernel.org
+Cc: Rob Herring <robh@kernel.org>,
+	Paul Walmsley <paul.walmsley@sifive.com>
+Subject: [PATCH v3 1/3] dt-bindings: power: Add SiFive Domain Management controllers
+Date: Wed,  2 Jul 2025 17:12:34 +0800
+Message-Id: <20250702091236.5281-2-nick.hu@sifive.com>
+X-Mailer: git-send-email 2.17.1
+In-Reply-To: <20250702091236.5281-1-nick.hu@sifive.com>
+References: <20250702091236.5281-1-nick.hu@sifive.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-ID: <20250702-qcs615-mm-v10-clock-controllers-v11-10-9c216e1615ab@quicinc.com>
-References: <20250702-qcs615-mm-v10-clock-controllers-v11-0-9c216e1615ab@quicinc.com>
-In-Reply-To: <20250702-qcs615-mm-v10-clock-controllers-v11-0-9c216e1615ab@quicinc.com>
-To: Bjorn Andersson <andersson@kernel.org>,
-        Michael Turquette
-	<mturquette@baylibre.com>,
-        Stephen Boyd <sboyd@kernel.org>, Rob Herring
-	<robh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley
-	<conor+dt@kernel.org>,
-        Konrad Dybcio <konradybcio@kernel.org>,
-        "Catalin
- Marinas" <catalin.marinas@arm.com>,
-        Will Deacon <will@kernel.org>
-CC: Ajit Pandey <quic_ajipan@quicinc.com>,
-        Imran Shaik
-	<quic_imrashai@quicinc.com>,
-        Jagadeesh Kona <quic_jkona@quicinc.com>,
-        <linux-arm-msm@vger.kernel.org>, <linux-clk@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        Taniya Das <quic_tdas@quicinc.com>,
-        Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
-X-Mailer: b4 0.15-dev-aa3f6
-X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
- nalasex01b.na.qualcomm.com (10.47.209.197)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Authority-Analysis: v=2.4 cv=KtJN2XWN c=1 sm=1 tr=0 ts=6864f670 cx=c_pps
- a=ouPCqIW2jiPt+lZRy3xVPw==:117 a=ouPCqIW2jiPt+lZRy3xVPw==:17
- a=GEpy-HfZoHoA:10 a=IkcTkHD0fZMA:10 a=Wb1JkmetP80A:10 a=EUspDBNiAAAA:8
- a=COk6AnOGAAAA:8 a=AElZlkIX1ip-SmTVEvQA:9 a=QEXdDO2ut3YA:10
- a=TjNXssC_j7lpFel5tvFf:22
-X-Proofpoint-ORIG-GUID: 8D4pnAOlKXlkEx_FIGcSy9WTl_Nh1zEQ
-X-Proofpoint-GUID: 8D4pnAOlKXlkEx_FIGcSy9WTl_Nh1zEQ
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwNzAyMDA3MyBTYWx0ZWRfX3M3UH9nqqUIF
- H5xn16PPDkApfsNNCgDz1W+jXuogtMdbj7x4nThsXMjT8uxuY+SZjRS0u7v6RdwT8BIujnoVGOW
- 1tTXtLCodYiW2dTHXSbCDwrxyuB6ygPZ4fss8oUKLbwnkMqRkbUqEWohYiVuxBUTbYuQJjQiFWf
- n3ficY3r0z6plcZ2hBxzSCdJdyMjer68lirfMZuvkVVG2iyqK0jt9Z5VeiDVZLILZfvCGanxi/m
- tcPJ6gHLAHfZPpITyxJefxUOzhG3e3J5zepDz238kl8FG4tMpqesB4TVLc7lowrIGhlE2AqXBH5
- QGN0eNbNCQkH0N6OWdw7QwiA6930nrh7CDlHjJ9GA+Pn4xJd4gWZaOWnHZrM9BWbWCcXJDK8tsV
- I2mts978dJEWPg81F6z8dMci13Q5du5UEkzG51kdTtMLfKY3CyPc+CWfjFunsKuNkp5QqGcU
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1099,Hydra:6.1.7,FMLib:17.12.80.40
- definitions=2025-07-02_01,2025-06-27_01,2025-03-28_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- impostorscore=0 bulkscore=0 priorityscore=1501 malwarescore=0 suspectscore=0
- mlxscore=0 spamscore=0 adultscore=0 lowpriorityscore=0 phishscore=0
- clxscore=1015 mlxlogscore=763 classifier=spam authscore=0 authtc=n/a authcc=
- route=outbound adjust=0 reason=mlx scancount=1 engine=8.19.0-2505280000
- definitions=main-2507020073
 
-Enable the QCS615 display, video, camera and graphics clock controller
-for their respective functionalities on the Qualcomm QCS615 ride
-platform.
+SiFive Domain Management controller includes the following components
+- SiFive Tile Management Controller
+- SiFive Cluster Management Controller
+- SiFive Core Complex Management Controller
 
-Reviewed-by: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
-Signed-off-by: Taniya Das <quic_tdas@quicinc.com>
+These controllers control the clock and power domain of the
+corresponding domain.
+
+Add `- {}` for the first entry [1][2]. Once the SoCs are ready, we will
+add the SoC compatible string at that time.
+
+Links:
+- [1] https://lore.kernel.org/lkml/20250311195953.GA14239-robh@kernel.org/
+- [2] https://lore.kernel.org/lkml/CAKddAkAzDGL-7MbroRqQnZzPXOquUMKNuGGppqB-d_XZXbcvBA@mail.gmail.com/T/#t
+
+Signed-off-by: Nick Hu <nick.hu@sifive.com>
+Reviewed-by: Samuel Holland <samuel.holland@sifive.com>
 ---
- arch/arm64/configs/defconfig | 4 ++++
- 1 file changed, 4 insertions(+)
+ .../devicetree/bindings/power/sifive,tmc.yaml | 58 +++++++++++++++++++
+ 1 file changed, 58 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/power/sifive,tmc.yaml
 
-diff --git a/arch/arm64/configs/defconfig b/arch/arm64/configs/defconfig
-index e071f8f45607dbfd8e00b915b27999949ee0fc88..3c5c1901ca5670d1bfd0a6edd73f0591ccb9c76f 100644
---- a/arch/arm64/configs/defconfig
-+++ b/arch/arm64/configs/defconfig
-@@ -1375,11 +1375,15 @@ CONFIG_MSM_GCC_8998=y
- CONFIG_MSM_MMCC_8998=m
- CONFIG_QCM_GCC_2290=y
- CONFIG_QCM_DISPCC_2290=m
-+CONFIG_QCS_DISPCC_615=m
-+CONFIG_QCS_CAMCC_615=m
- CONFIG_QCS_GCC_404=y
- CONFIG_QCS_GCC_615=y
- CONFIG_QCS_GCC_8300=y
- CONFIG_SC_CAMCC_7280=m
- CONFIG_SA_CAMCC_8775P=m
-+CONFIG_QCS_GPUCC_615=m
-+CONFIG_QCS_VIDEOCC_615=m
- CONFIG_QDU_GCC_1000=y
- CONFIG_SC_CAMCC_8280XP=m
- CONFIG_SC_DISPCC_7280=m
-
+diff --git a/Documentation/devicetree/bindings/power/sifive,tmc.yaml b/Documentation/devicetree/bindings/power/sifive,tmc.yaml
+new file mode 100644
+index 000000000000..4ab2b94785f4
+--- /dev/null
++++ b/Documentation/devicetree/bindings/power/sifive,tmc.yaml
+@@ -0,0 +1,58 @@
++# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/power/sifive,tmc.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: SiFive Domain Management Controller
++
++maintainers:
++  - Cyan Yang <cyan.yang@sifive.com>
++  - Nick Hu <nick.hu@sifive.com>
++  - Samuel Holland <samuel.holland@sifive.com>
++
++description: |
++  SiFive Domain Management Controllers includes the following components
++    - Tile Management Controller (TMC)
++    - Cluster Management Controller (CMC)
++    - Subsystem Management Controller (SMC)
++  These controllers manage both the clock and power domains of the
++  associated components. They support the SiFive Quiet Interface Protocol
++  (SQIP) starting from Version 1. The control method differs from Version
++  0, making them incompatible.
++
++allOf:
++  - $ref: power-domain.yaml#
++
++properties:
++  compatible:
++    oneOf:
++      - items:
++          - {} # Leave a empty for future SoC specific compatible string
++          - const: sifive,cmc2
++      - items:
++          - {} # Leave a empty for future SoC specific compatible string
++          - const: sifive,smc0
++      - items:
++          - {} # Leave a empty for future SoC specific compatible string
++          - const: sifive,smc1
++      - items:
++          - {} # Leave a empty for future SoC specific compatible string
++          - const: sifive,tmc0
++      - items:
++          - {} # Leave a empty for future SoC specific compatible string
++          - const: sifive,tmc1
++
++  reg:
++    maxItems: 1
++
++  "#power-domain-cells":
++    const: 0
++
++required:
++  - compatible
++  - reg
++
++additionalProperties: false
++
++# The example will be added once the SoCs are ready
 -- 
-2.34.1
+2.17.1
 
 
