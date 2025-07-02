@@ -1,192 +1,150 @@
-Return-Path: <devicetree+bounces-192212-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-192214-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 97CF6AF5C1C
-	for <lists+devicetree@lfdr.de>; Wed,  2 Jul 2025 17:04:37 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 52C01AF5C2A
+	for <lists+devicetree@lfdr.de>; Wed,  2 Jul 2025 17:06:27 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 8933C1634D7
-	for <lists+devicetree@lfdr.de>; Wed,  2 Jul 2025 15:04:11 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 667B217F8C9
+	for <lists+devicetree@lfdr.de>; Wed,  2 Jul 2025 15:04:59 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9267F1C84A0;
-	Wed,  2 Jul 2025 15:04:07 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 520EA2DCBF3;
+	Wed,  2 Jul 2025 15:04:54 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="QGtuVsuS"
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="kqO0uarx"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.7])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6B0BD17A316;
-	Wed,  2 Jul 2025 15:04:07 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6160F2D0C9C;
+	Wed,  2 Jul 2025 15:04:51 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.198.163.7
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1751468647; cv=none; b=oyGjcZuPcQV8MB2xlHgXFFONfHl/CxQfp0voFhpLKQzWw/5v50hIomzhgenAHam/2R54pLb6+tYoax3BHwgR8oRQxPbhstxyNME+rZ2XuFawIkfDvcjpHuYYemZqJjABUelXjMTHM07ZrYBqEG7gRJlpI5n5V7oISSSvzMGcvkM=
+	t=1751468694; cv=none; b=LMJpMIebDOCInI1gj6P4MpbNgBLSG0V4R+T1NQZHq+k+v4Zd11mO3xndPdVGjmyHPfYM2xjW7+FNxuYhUZki0TKhcAB8lD2i4eXjZNoelL2LSHIdSW51AljOjuoUl/Qf9H5oJI6cEfZBvdDCSQHSD01zxrIExiVTjXR07v/Rkas=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1751468647; c=relaxed/simple;
-	bh=zSa8O6++7TChyD92GhQH8Isxl4J1BK4QEVSgdr9j1TQ=;
-	h=Date:Content-Type:MIME-Version:From:Cc:To:In-Reply-To:References:
-	 Message-Id:Subject; b=GPLi45+OBYAHyeMGK76FoZI5POgvAHqmMRN9MDy5UrApTUDQ1fwxBb0XaqrpCXhcZdek4Z5uGKCfXcsGsxb1gadqn6yFHKu2VS3R7rS7NCIGzxjFCDOBFOlpPF+Mvu6qII//2/kFHaifzJ8YkdoDS1+l0+ns2w6s28Qa4UiP5mI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=QGtuVsuS; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id C7DFCC4CEE7;
-	Wed,  2 Jul 2025 15:04:06 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1751468647;
-	bh=zSa8O6++7TChyD92GhQH8Isxl4J1BK4QEVSgdr9j1TQ=;
-	h=Date:From:Cc:To:In-Reply-To:References:Subject:From;
-	b=QGtuVsuSUFMqszlSUFBijlIDrMwT9FUd46IInr3QPQvqKvpkTJadXuhDK9p01W6am
-	 q1gtGiVkl8Y+ofae/5CCpvLad3WpV+56ftbGm3tVsb/KuQkDSV96Z1wZcy2wnVI8be
-	 decPOfIsJ6amRBSbUBTuUQlQXQ70Fd8F8aDAMWNQdmNCtaS61twqsUt13ekzKRYr5A
-	 KkFLkBGTYBWfVO/Z/06KO4WoFRY/rxQX2qjq+YiZ8FWuR3pZyr1LK8xXGCHHQfK71M
-	 tD7nRS9TiAPxI3bUV4CpDhTMuyTTXVgpOx2mxCr+aQHvRjyB4fIAm240tjbIytDM7O
-	 50tW8uNgkm49g==
-Date: Wed, 02 Jul 2025 10:04:06 -0500
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
+	s=arc-20240116; t=1751468694; c=relaxed/simple;
+	bh=yO6uTKYQhiusu7eCe6xECv5LUII9BjG7D5i9iisHetY=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=bhaYsVNLa/pfAcjYWVCahWoaF/MRdB9HMku1bHDF1xd9y1yd3yFR7Jpf86zoWPcc3IUrH0uayZDe8F2hJEZ0OCCMtYdBq5nnjJqt0h1FZqSc8++cMVMw09hnKWWbgv9Ff9LoL9hicFNwvvWnefZG6/DYPXfuQ6qtBiBRtLcnwQY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com; spf=none smtp.mailfrom=linux.intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=kqO0uarx; arc=none smtp.client-ip=192.198.163.7
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com
+Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=linux.intel.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1751468692; x=1783004692;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=yO6uTKYQhiusu7eCe6xECv5LUII9BjG7D5i9iisHetY=;
+  b=kqO0uarxwjgc9CpojIGiraxRLskNr7n3QF3BKP2fcGvh1IFc5CIs4r5U
+   3n4peqs4EsPCnmdhfopAEHHUU/JxAFe8ISFeLOYKxiJPrgVugROMX9G4p
+   ExWv6zOxwKwSfLvRtzShKmi4lGwOmPENopYf3KDp+mDW0iZ3s9ZF/x0KE
+   UZ8zZJEQLFKpE2PmAaWP74xzDD/JuKvuNuhkJJp6JyM1okxvNQmDiXZ0/
+   TjjJeZ4nfikPKblYHXC+87XBACIe0cXd7I+wiSYj6DpB0QK2AblI+3ENO
+   0yoFv4rNl1xD6g7qXfAPHDgpy/GAO/FJRIu9nzoiBRlGtZd7l4M/Ioic0
+   w==;
+X-CSE-ConnectionGUID: TLU1jQoPQcieGuNJz0xWUQ==
+X-CSE-MsgGUID: 38E2AHsmR9eXPYY6HbHHig==
+X-IronPort-AV: E=McAfee;i="6800,10657,11482"; a="79212457"
+X-IronPort-AV: E=Sophos;i="6.16,281,1744095600"; 
+   d="scan'208";a="79212457"
+Received: from orviesa006.jf.intel.com ([10.64.159.146])
+  by fmvoesa101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 02 Jul 2025 08:04:51 -0700
+X-CSE-ConnectionGUID: M7Lk57hFSyaUDXwNi9tsLQ==
+X-CSE-MsgGUID: we2hrY3LSKOjVS/yzFTsIA==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.16,281,1744095600"; 
+   d="scan'208";a="153555466"
+Received: from smile.fi.intel.com ([10.237.72.52])
+  by orviesa006.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 02 Jul 2025 08:04:47 -0700
+Received: from andy by smile.fi.intel.com with local (Exim 4.98.2)
+	(envelope-from <andriy.shevchenko@linux.intel.com>)
+	id 1uWz0u-0000000Bwus-3KQj;
+	Wed, 02 Jul 2025 18:04:44 +0300
+Date: Wed, 2 Jul 2025 18:04:44 +0300
+From: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
+To: Akhil R <akhilrajeev@nvidia.com>
+Cc: andi.shyti@kernel.org, digetx@gmail.com, jonathanh@nvidia.com,
+	linux-i2c@vger.kernel.org, linux-kernel@vger.kernel.org,
+	linux-tegra@vger.kernel.org, p.zabel@pengutronix.de,
+	thierry.reding@gmail.com, conor+dt@kernel.org,
+	devicetree@vger.kernel.org, krzk+dt@kernel.org,
+	ldewangan@nvidia.com, robh@kernel.org
+Subject: Re: [PATCH v5 1/3] i2c: tegra: Fix reset error handling with ACPI
+Message-ID: <aGVKjIwRjMOMlZRF@smile.fi.intel.com>
+References: <20250702133450.64257-1-akhilrajeev@nvidia.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-From: "Rob Herring (Arm)" <robh@kernel.org>
-Cc: devicetree@vger.kernel.org, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- linux-aspeed@lists.ozlabs.org, linux-arm-kernel@lists.infradead.org, 
- Andrew Jeffery <andrew@codeconstruct.com.au>, Tao Ren <taoren@meta.com>, 
- linux-kernel@vger.kernel.org, Joel Stanley <joel@jms.id.au>, 
- Conor Dooley <conor+dt@kernel.org>
-To: rentao.bupt@gmail.com
-In-Reply-To: <20250702050421.13729-1-rentao.bupt@gmail.com>
-References: <20250702050421.13729-1-rentao.bupt@gmail.com>
-Message-Id: <175146850009.1675461.3391275598675831917.robh@kernel.org>
-Subject: Re: [PATCH 0/5] ARM: dts: aspeed: Add Meta Darwin dts
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20250702133450.64257-1-akhilrajeev@nvidia.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park, 6
+ krs, Bertel Jungin Aukio 5, 02600 Espoo
+
+On Wed, Jul 02, 2025 at 07:04:47PM +0530, Akhil R wrote:
+> The acpi_evaluate_object() returns an ACPI error code and not the
+> Linux one. For the some platforms the error will have positive code
+> which may be interpreted incorrectly. Use ACPI_FAILURE() to determine
+> the failure and return the error. Also move the reset to a separate
+> function to handle this better.
+
+...
+
+> +static int tegra_i2c_reset(struct tegra_i2c_dev *i2c_dev)
+> +{
+> +	acpi_handle handle = ACPI_HANDLE(i2c_dev->dev);
+> +	int err;
+> +
+> +	if (handle) {
+> +		err = acpi_evaluate_object(handle, "_RST", NULL, NULL);
+> +		if (ACPI_FAILURE(err))
+> +			return -EIO;
+> +
+> +		return 0;
+> +	}
+> +
+> +	return reset_control_reset(i2c_dev->rst);
 
 
-On Tue, 01 Jul 2025 22:04:11 -0700, rentao.bupt@gmail.com wrote:
-> From: Tao Ren <rentao.bupt@gmail.com>
-> 
-> The patch series introduces the initial device tree for Meta/Facebook
-> Darwin AST2600 BMC.
-> 
-> Patch #1 extends data0 partition in facebook-bmc-flash-layout-128.dtsi.
-> 
-> Patch #2, #3 and #4 move eMMC out of ast2600-facebook-netbmc-common.dtsi
-> because eMMC is removed from future Meta Network BMC platforms.
-> 
-> Patch #5 adds the initial dts for Meta Darwin BMC.
-> 
-> Tao Ren (5):
->   ARM: dts: aspeed: Expand data0 partition in
->     facebook-bmc-flash-layout-128.dtsi
->   ARM: dts: aspeed: Remove eMMC from ast2600-facebook-netbmc-common.dtsi
->   ARM: dts: aspeed: elbert: Enable eMMC device
->   ARM: dts: aspeed: fuji: Enable eMMC device
->   ARM: dts: aspeed: Add Facebook Darwin (AST2600) BMC
-> 
->  arch/arm/boot/dts/aspeed/Makefile             |  1 +
->  .../dts/aspeed/aspeed-bmc-facebook-darwin.dts | 92 +++++++++++++++++++
->  .../dts/aspeed/aspeed-bmc-facebook-elbert.dts | 12 +++
->  .../dts/aspeed/aspeed-bmc-facebook-fuji.dts   | 12 +++
->  .../ast2600-facebook-netbmc-common.dtsi       | 12 ---
->  .../aspeed/facebook-bmc-flash-layout-128.dtsi | 10 +-
->  6 files changed, 122 insertions(+), 17 deletions(-)
->  create mode 100644 arch/arm/boot/dts/aspeed/aspeed-bmc-facebook-darwin.dts
-> 
-> --
-> 2.47.1
-> 
-> 
-> 
+It's better to be written other way around:
 
+	acpi_handle handle;
+	int err;
 
-My bot found new DTB warnings on the .dts files added or changed in this
-series.
+	handle = ACPI_HANDLE(i2c_dev->dev);
+	if (!handle)
+		return reset_control_reset(i2c_dev->rst);
 
-Some warnings may be from an existing SoC .dtsi. Or perhaps the warnings
-are fixed by another series. Ultimately, it is up to the platform
-maintainer whether these warnings are acceptable or not. No need to reply
-unless the platform maintainer has comments.
+	err = acpi_evaluate_object(handle, "_RST", NULL, NULL);
+	if (ACPI_FAILURE(err))
+		return -EIO;
 
-If you already ran DT checks and didn't see these error(s), then
-make sure dt-schema is up to date:
+	return 0;
 
-  pip3 install dtschema --upgrade
+> +}
 
+Other than that, LGTM,
 
-This patch series was applied (using b4) to base:
- Base: attempting to guess base-commit...
- Base: remotes/gl-ci/linus-45-gdf3f9755452c (exact match)
+Reviewed-by: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
 
-If this is not the correct base, please add 'base-commit' tag
-(or use b4 which does this automatically)
+...
 
-New warnings running 'make CHECK_DTBS=y for arch/arm/boot/dts/aspeed/' for 20250702050421.13729-1-rentao.bupt@gmail.com:
+> +	err = tegra_i2c_reset(i2c_dev);
+>  	WARN_ON_ONCE(err);
 
-arch/arm/boot/dts/aspeed/aspeed-bmc-facebook-darwin.dtb: / (facebook,darwin-bmc): compatible: 'oneOf' conditional failed, one must be fixed:
-	'facebook,darwin-bmc' is not one of ['delta,ahe50dc-bmc', 'facebook,galaxy100-bmc', 'facebook,wedge100-bmc', 'facebook,wedge40-bmc', 'microsoft,olympus-bmc', 'quanta,q71l-bmc', 'tyan,palmetto-bmc', 'yadro,vesnin-bmc']
-	'facebook,darwin-bmc' is not one of ['amd,daytonax-bmc', 'amd,ethanolx-bmc', 'ampere,mtjade-bmc', 'aspeed,ast2500-evb', 'asrock,e3c246d4i-bmc', 'asrock,e3c256d4i-bmc', 'asrock,romed8hm3-bmc', 'asrock,spc621d8hm3-bmc', 'asrock,x570d4u-bmc', 'bytedance,g220a-bmc', 'facebook,cmm-bmc', 'facebook,minipack-bmc', 'facebook,tiogapass-bmc', 'facebook,yamp-bmc', 'facebook,yosemitev2-bmc', 'facebook,wedge400-bmc', 'hxt,stardragon4800-rep2-bmc', 'ibm,mihawk-bmc', 'ibm,mowgli-bmc', 'ibm,romulus-bmc', 'ibm,swift-bmc', 'ibm,witherspoon-bmc', 'ingrasys,zaius-bmc', 'inspur,fp5280g2-bmc', 'inspur,nf5280m6-bmc', 'inspur,on5263m5-bmc', 'intel,s2600wf-bmc', 'inventec,lanyang-bmc', 'lenovo,hr630-bmc', 'lenovo,hr855xg2-bmc', 'portwell,neptune-bmc', 'qcom,centriq2400-rep-bmc', 'supermicro,x11spi-bmc', 'tyan,s7106-bmc', 'tyan,s8036-bmc', 'yadro,nicole-bmc', 'yadro,vegman-n110-bmc', 'yadro,vegman-rx20-bmc', 'yadro,vegman-sx20-bmc']
-	'facebook,darwin-bmc' is not one of ['ampere,mtjefferson-bmc', 'ampere,mtmitchell-bmc', 'aspeed,ast2600-evb', 'aspeed,ast2600-evb-a1', 'asus,x4tf-bmc', 'facebook,bletchley-bmc', 'facebook,catalina-bmc', 'facebook,cloudripper-bmc', 'facebook,elbert-bmc', 'facebook,fuji-bmc', 'facebook,greatlakes-bmc', 'facebook,harma-bmc', 'facebook,minerva-cmc', 'facebook,yosemite4-bmc', 'ibm,blueridge-bmc', 'ibm,everest-bmc', 'ibm,fuji-bmc', 'ibm,rainier-bmc', 'ibm,sbp1-bmc', 'ibm,system1-bmc', 'ibm,tacoma-bmc', 'inventec,starscream-bmc', 'inventec,transformer-bmc', 'jabil,rbp-bmc', 'qcom,dc-scm-v1-bmc', 'quanta,s6q-bmc', 'ufispace,ncplite-bmc']
-	'aspeed,ast2400' was expected
-	'aspeed,ast2500' was expected
-	from schema $id: http://devicetree.org/schemas/arm/aspeed/aspeed.yaml#
-arch/arm/boot/dts/aspeed/aspeed-bmc-facebook-darwin.dtb: /: failed to match any schema with compatible: ['facebook,darwin-bmc', 'aspeed,ast2600']
-arch/arm/boot/dts/aspeed/aspeed-bmc-facebook-darwin.dtb: timer (arm,armv7-timer): 'clocks' does not match any of the regexes: '^pinctrl-[0-9]+$'
-	from schema $id: http://devicetree.org/schemas/timer/arm,arch_timer.yaml#
-arch/arm/boot/dts/aspeed/aspeed-bmc-facebook-darwin.dtb: /sdram@1e6e0000: failed to match any schema with compatible: ['aspeed,ast2600-sdram-edac', 'syscon']
-arch/arm/boot/dts/aspeed/aspeed-bmc-facebook-darwin.dtb: bus@1e600000 (aspeed,ast2600-ahbc): compatible: ['aspeed,ast2600-ahbc', 'syscon'] is too long
-	from schema $id: http://devicetree.org/schemas/bus/aspeed,ast2600-ahbc.yaml#
-arch/arm/boot/dts/aspeed/aspeed-bmc-facebook-darwin.dtb: syscon@1e6e2000 (aspeed,ast2600-scu): 'smp-memram@180' does not match any of the regexes: '^interrupt-controller@[0-9a-f]+$', '^p2a-control@[0-9a-f]+$', '^pinctrl(@[0-9a-f]+)?$', '^pinctrl-[0-9]+$', '^silicon-id@[0-9a-f]+$'
-	from schema $id: http://devicetree.org/schemas/mfd/aspeed,ast2x00-scu.yaml#
-arch/arm/boot/dts/aspeed/aspeed-bmc-facebook-darwin.dtb: /ahb/apb/syscon@1e6e2000/smp-memram@180: failed to match any schema with compatible: ['aspeed,ast2600-smpmem']
-arch/arm/boot/dts/aspeed/aspeed-bmc-facebook-darwin.dtb: /ahb/apb/display@1e6e6000: failed to match any schema with compatible: ['aspeed,ast2600-gfx', 'syscon']
-arch/arm/boot/dts/aspeed/aspeed-bmc-facebook-darwin.dtb: adc@1e6e9000 (aspeed,ast2600-adc0): 'interrupts', 'ref_voltage' do not match any of the regexes: '^pinctrl-[0-9]+$'
-	from schema $id: http://devicetree.org/schemas/iio/adc/aspeed,ast2600-adc.yaml#
-arch/arm/boot/dts/aspeed/aspeed-bmc-facebook-darwin.dtb: adc@1e6e9100 (aspeed,ast2600-adc1): 'interrupts', 'ref_voltage' do not match any of the regexes: '^pinctrl-[0-9]+$'
-	from schema $id: http://devicetree.org/schemas/iio/adc/aspeed,ast2600-adc.yaml#
-arch/arm/boot/dts/aspeed/aspeed-bmc-facebook-darwin.dtb: crypto@1e6fa000 (aspeed,ast2600-acry): 'aspeed,ahbc' does not match any of the regexes: '^pinctrl-[0-9]+$'
-	from schema $id: http://devicetree.org/schemas/crypto/aspeed,ast2600-acry.yaml#
-arch/arm/boot/dts/aspeed/aspeed-bmc-facebook-darwin.dtb: /ahb/apb/timer@1e782000: failed to match any schema with compatible: ['aspeed,ast2600-timer']
-arch/arm/boot/dts/aspeed/aspeed-bmc-facebook-darwin.dtb: lpc@1e789000 (aspeed,ast2600-lpc-v2): reg-io-width: 4 is not of type 'object'
-	from schema $id: http://devicetree.org/schemas/mfd/aspeed-lpc.yaml#
-arch/arm/boot/dts/aspeed/aspeed-bmc-facebook-darwin.dtb: lpc@1e789000 (aspeed,ast2600-lpc-v2): lpc-snoop@80: 'clocks' does not match any of the regexes: '^pinctrl-[0-9]+$'
-	from schema $id: http://devicetree.org/schemas/mfd/aspeed-lpc.yaml#
-arch/arm/boot/dts/aspeed/aspeed-bmc-facebook-darwin.dtb: kcs@24 (aspeed,ast2500-kcs-bmc-v2): 'clocks' does not match any of the regexes: '^pinctrl-[0-9]+$'
-	from schema $id: http://devicetree.org/schemas/ipmi/aspeed,ast2400-kcs-bmc.yaml#
-arch/arm/boot/dts/aspeed/aspeed-bmc-facebook-darwin.dtb: kcs@28 (aspeed,ast2500-kcs-bmc-v2): 'clocks' does not match any of the regexes: '^pinctrl-[0-9]+$'
-	from schema $id: http://devicetree.org/schemas/ipmi/aspeed,ast2400-kcs-bmc.yaml#
-arch/arm/boot/dts/aspeed/aspeed-bmc-facebook-darwin.dtb: kcs@2c (aspeed,ast2500-kcs-bmc-v2): 'clocks' does not match any of the regexes: '^pinctrl-[0-9]+$'
-	from schema $id: http://devicetree.org/schemas/ipmi/aspeed,ast2400-kcs-bmc.yaml#
-arch/arm/boot/dts/aspeed/aspeed-bmc-facebook-darwin.dtb: kcs@114 (aspeed,ast2500-kcs-bmc-v2): 'clocks' does not match any of the regexes: '^pinctrl-[0-9]+$'
-	from schema $id: http://devicetree.org/schemas/ipmi/aspeed,ast2400-kcs-bmc.yaml#
-arch/arm/boot/dts/aspeed/aspeed-bmc-facebook-darwin.dtb: /ahb/apb/lpc@1e789000/lhc@a0: failed to match any schema with compatible: ['aspeed,ast2600-lhc']
-arch/arm/boot/dts/aspeed/aspeed-bmc-facebook-darwin.dtb: /ahb/apb/lpc@1e789000/ibt@140: failed to match any schema with compatible: ['aspeed,ast2600-ibt-bmc']
-arch/arm/boot/dts/aspeed/aspeed-bmc-facebook-darwin.dtb: sdc@1e740000 (aspeed,ast2600-sd-controller): sdhci@1e740100:compatible: ['aspeed,ast2600-sdhci', 'sdhci'] is too long
-	from schema $id: http://devicetree.org/schemas/mmc/aspeed,sdhci.yaml#
-arch/arm/boot/dts/aspeed/aspeed-bmc-facebook-darwin.dtb: sdc@1e740000 (aspeed,ast2600-sd-controller): sdhci@1e740200:compatible: ['aspeed,ast2600-sdhci', 'sdhci'] is too long
-	from schema $id: http://devicetree.org/schemas/mmc/aspeed,sdhci.yaml#
-arch/arm/boot/dts/aspeed/aspeed-bmc-facebook-darwin.dtb: /ahb/apb/sdc@1e740000/sdhci@1e740100: failed to match any schema with compatible: ['aspeed,ast2600-sdhci', 'sdhci']
-arch/arm/boot/dts/aspeed/aspeed-bmc-facebook-darwin.dtb: /ahb/apb/sdc@1e740000/sdhci@1e740200: failed to match any schema with compatible: ['aspeed,ast2600-sdhci', 'sdhci']
-arch/arm/boot/dts/aspeed/aspeed-bmc-facebook-darwin.dtb: fsi@1e79b000 (aspeed,ast2600-fsi-master): compatible: ['aspeed,ast2600-fsi-master', 'fsi-master'] is too long
-	from schema $id: http://devicetree.org/schemas/fsi/aspeed,ast2600-fsi-master.yaml#
-arch/arm/boot/dts/aspeed/aspeed-bmc-facebook-darwin.dtb: /ahb/apb/fsi@1e79b000: failed to match any schema with compatible: ['aspeed,ast2600-fsi-master', 'fsi-master']
-arch/arm/boot/dts/aspeed/aspeed-bmc-facebook-darwin.dtb: fsi@1e79b100 (aspeed,ast2600-fsi-master): compatible: ['aspeed,ast2600-fsi-master', 'fsi-master'] is too long
-	from schema $id: http://devicetree.org/schemas/fsi/aspeed,ast2600-fsi-master.yaml#
-arch/arm/boot/dts/aspeed/aspeed-bmc-facebook-darwin.dtb: /ahb/apb/fsi@1e79b100: failed to match any schema with compatible: ['aspeed,ast2600-fsi-master', 'fsi-master']
-arch/arm/boot/dts/aspeed/aspeed-bmc-facebook-darwin.dtb: /ahb/apb/dma-controller@1e79e000: failed to match any schema with compatible: ['aspeed,ast2600-udma']
-arch/arm/boot/dts/aspeed/aspeed-bmc-facebook-darwin.dtb: spi (spi-gpio): gpio-miso: False schema does not allow [64, 189, 0]
-	from schema $id: http://devicetree.org/schemas/spi/spi-gpio.yaml#
-arch/arm/boot/dts/aspeed/aspeed-bmc-facebook-darwin.dtb: spi (spi-gpio): gpio-mosi: False schema does not allow [64, 188, 0]
-	from schema $id: http://devicetree.org/schemas/spi/spi-gpio.yaml#
-arch/arm/boot/dts/aspeed/aspeed-bmc-facebook-darwin.dtb: spi (spi-gpio): gpio-sck: False schema does not allow [64, 187, 0]
-	from schema $id: http://devicetree.org/schemas/spi/spi-gpio.yaml#
-arch/arm/boot/dts/aspeed/aspeed-bmc-facebook-darwin.dtb: spi (spi-gpio): 'sck-gpios' is a required property
-	from schema $id: http://devicetree.org/schemas/spi/spi-gpio.yaml#
-arch/arm/boot/dts/aspeed/aspeed-bmc-facebook-darwin.dtb: spi (spi-gpio): Unevaluated properties are not allowed ('gpio-miso', 'gpio-mosi', 'gpio-sck' were unexpected)
-	from schema $id: http://devicetree.org/schemas/spi/spi-gpio.yaml#
+Suggestion to improve in a separate change in the future:
 
+Add a comment explaining why we WARN() here. I.o.w. why this condition
+is so critical that we need to WARN().
 
-
+-- 
+With Best Regards,
+Andy Shevchenko
 
 
 
