@@ -1,132 +1,342 @@
-Return-Path: <devicetree+bounces-192034-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-192035-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 35701AF13C5
-	for <lists+devicetree@lfdr.de>; Wed,  2 Jul 2025 13:24:41 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 32975AF13C3
+	for <lists+devicetree@lfdr.de>; Wed,  2 Jul 2025 13:24:40 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 034994A0B56
-	for <lists+devicetree@lfdr.de>; Wed,  2 Jul 2025 11:23:37 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 578E17A38F5
+	for <lists+devicetree@lfdr.de>; Wed,  2 Jul 2025 11:23:14 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0372D269830;
-	Wed,  2 Jul 2025 11:23:19 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 45C1E25D219;
+	Wed,  2 Jul 2025 11:24:31 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="IHyztj8B"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="JpM27Uam"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C524D2620D5;
-	Wed,  2 Jul 2025 11:23:18 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 12C9022F772;
+	Wed,  2 Jul 2025 11:24:30 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1751455398; cv=none; b=FpWOKXWKcHXi9PfrWcbbc8gl2qY1vL/tApMhDtm53koxwbbRq4/+Nj1VOEj2siYiJNq4/aQjqJXfINQd11oxdr1B8DSFqu5c0uFY0T7ZGGaXkU11S/gHEBAJsTtOF1ZUmR9BQt85AXx+FeoT2KgB+6as2+cWcxZNtQplqZ9Nxms=
+	t=1751455471; cv=none; b=cQW3ol1TrEaeK7WrmV+TYZdIAxoYUo/K/JLWz7jRy7LqKIPsp8mUSjxBl22bMgfa5DLeobPFUMMovw3MDgjwPobpxp8xN/GyLwyHEt64znHDDtmx9S45TXl3zjhQY+ih5YArOYSEkvSKGX6sKnaPC6/we3iNAfHr8lRGHzdK/FQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1751455398; c=relaxed/simple;
-	bh=uWVJD/5l8mfS1+hU0OikvEF+t77G7TqsLYRSI3wmss0=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=itf94dfRdyWChWDm2+aHaPiRmeMoZYynhRZrZZuXnKVz8Yu+jCsxWmcTG1P//DW5GvJL3TCN4Z8oDTfRrsJcbkLuXaGDzRbYOqj7jk6EJqpt981qFkGliDs5SxDbyt34D8yYwwheTHs047CBx1cID6cIEmzmPEsigXTy+tAXOGI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=IHyztj8B; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id D82D2C4CEED;
-	Wed,  2 Jul 2025 11:23:14 +0000 (UTC)
+	s=arc-20240116; t=1751455471; c=relaxed/simple;
+	bh=IA/2Aoc2ccg90iO9RV45Ow0muVhnCbhQUxodyLSBxrg=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=U5LmU1I6ud4u0WUymWicBm27fUVfHBSHCbY5mG+xG9l3lJIWSCPyhnKTbJSpduJ1NTnGnAOJ55dwBscOwTANtGqBRByz90VAlGolDtpCp55MdR2NOcSOarBiwUWxwsI8OLUhKdCp6IKzp8zcm7vO6tblpOftJQnOPVfQi1P5iEk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=JpM27Uam; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id A159BC4CEED;
+	Wed,  2 Jul 2025 11:24:20 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1751455398;
-	bh=uWVJD/5l8mfS1+hU0OikvEF+t77G7TqsLYRSI3wmss0=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=IHyztj8Bg9kULRfdfK6nSG0pWeNJjNH4dR5ctWmNYb3sFqPFOtyKOeaOlEjfSltdT
-	 /wnwFaaBjcUKGKIlObJWE7hQX9uootBNapABQKE6GwfwaMMSCW50VrnFS94euYXIvR
-	 f3kTu+ZtHJ4srmqVjQ15s02t1cqtdvNq8vGKvw1d60eVCZs2HrFdQYL1+tprykG03z
-	 v1ELrgp3ovDP3NXgs88mP8gpFDRnLyOGsFnCM0wAOc3H/kR4U81HQRKTn7ju9xXu2O
-	 EVp6XKnyTAQQB3BRx2hVzB1N4Cw3JAWbBDWElYe6e1qvVs8I4GhwWLxLDyR//1hCFW
-	 tdmWTcceUPQyg==
-Message-ID: <6fd3fa34-69e1-484f-ad6f-8caa852f1a6c@kernel.org>
-Date: Wed, 2 Jul 2025 13:23:12 +0200
+	s=k20201202; t=1751455470;
+	bh=IA/2Aoc2ccg90iO9RV45Ow0muVhnCbhQUxodyLSBxrg=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=JpM27UamI+H5D2zrIla99YpfcAzFEhR1QAICOytH4cma9YVOs+qscYXwaANzm5ytL
+	 d3/7JIebSp7ifjdS0FpuzJGkK36HLGj+2WgGtDPgl9ou+XndETxsyIOjum6DIXo1pi
+	 zUx3WHDY0dEelfwlXhSDB/zbLo9DcEKG/Xh7nPawsDRsQf/2/7Yars1irCEJbjUA/3
+	 ya+MUd6BagJdUFe8DrDdF+Xy/51i4ctMuDsm7ME8U3ixBbBqwrD+vTNormvDzzIsIT
+	 9g7DZHONmjlh/BTFTap4qUsXpN6NL4LkIyJXAEYmUVZybmBRtPwCq0DqrLbJxgqKtM
+	 YT7GWTyOJlsXg==
+Date: Wed, 2 Jul 2025 16:54:12 +0530
+From: Manivannan Sadhasivam <mani@kernel.org>
+To: Frank Li <Frank.Li@nxp.com>
+Cc: Kishon Vijay Abraham I <kishon@kernel.org>, 
+	"Rafael J. Wysocki" <rafael@kernel.org>, Thomas Gleixner <tglx@linutronix.de>, 
+	Anup Patel <apatel@ventanamicro.com>, Marc Zyngier <maz@kernel.org>, 
+	Greg Kroah-Hartman <gregkh@linuxfoundation.org>, Danilo Krummrich <dakr@kernel.org>, 
+	Bjorn Helgaas <bhelgaas@google.com>, Arnd Bergmann <arnd@arndb.de>, Shuah Khan <shuah@kernel.org>, 
+	Richard Zhu <hongxing.zhu@nxp.com>, Lucas Stach <l.stach@pengutronix.de>, 
+	Lorenzo Pieralisi <lpieralisi@kernel.org>, Rob Herring <robh@kernel.org>, Shawn Guo <shawnguo@kernel.org>, 
+	Sascha Hauer <s.hauer@pengutronix.de>, Pengutronix Kernel Team <kernel@pengutronix.de>, 
+	Fabio Estevam <festevam@gmail.com>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+	Conor Dooley <conor+dt@kernel.org>, Krzysztof =?utf-8?Q?Wilczy=C5=84ski?= <kwilczynski@kernel.org>, 
+	Niklas Cassel <cassel@kernel.org>, dlemoal@kernel.org, jdmason@kudzu.us, 
+	linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org, linux-pci@vger.kernel.org, 
+	linux-kselftest@vger.kernel.org, imx@lists.linux.dev, devicetree@vger.kernel.org
+Subject: Re: [PATCH v19 02/10] PCI: endpoint: Add RC-to-EP doorbell support
+ using platform MSI controller
+Message-ID: <bvwpyg4amnuuqimcqxhwrtejfng66c2jenti3t7dgeegcc73vc@o5c5isvg2s4c>
+References: <20250609-ep-msi-v19-0-77362eaa48fa@nxp.com>
+ <20250609-ep-msi-v19-2-77362eaa48fa@nxp.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3 1/5] media: dt-bindings: add non-pixel property in iris
- schema
-To: Vikash Garodia <quic_vgarodia@quicinc.com>,
- Dikshita Agarwal <quic_dikshita@quicinc.com>,
- Abhinav Kumar <abhinav.kumar@linux.dev>,
- Bryan O'Donoghue <bryan.odonoghue@linaro.org>,
- Mauro Carvalho Chehab <mchehab@kernel.org>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>
-Cc: linux-media@vger.kernel.org, linux-arm-msm@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <20250627-video_cb-v3-0-51e18c0ffbce@quicinc.com>
- <20250627-video_cb-v3-1-51e18c0ffbce@quicinc.com>
-From: Krzysztof Kozlowski <krzk@kernel.org>
-Content-Language: en-US
-Autocrypt: addr=krzk@kernel.org; keydata=
- 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 a/A=
-In-Reply-To: <20250627-video_cb-v3-1-51e18c0ffbce@quicinc.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20250609-ep-msi-v19-2-77362eaa48fa@nxp.com>
 
-On 27/06/2025 17:48, Vikash Garodia wrote:
+On Mon, Jun 09, 2025 at 12:34:14PM GMT, Frank Li wrote:
+> Doorbell feature is implemented by mapping the EP's MSI interrupt
+> controller message address to a dedicated BAR in the EPC core. It is the
+> responsibility of the EPF driver to pass the actual message data to be
+> written by the host to the doorbell BAR region through its own logic.
+> 
+> Tested-by: Niklas Cassel <cassel@kernel.org>
+> Signed-off-by: Frank Li <Frank.Li@nxp.com>
+> ---
+> Change from v15 to v16
+> - fix rebase conflict
+> 
+> Change from v14 to v15
+> - check CONFIG_GENERIC_MSI
+> 
+> Fix below build error
+> | Reported-by: kernel test robot <lkp@intel.com>
+> | Closes: https://lore.kernel.org/oe-kbuild-all/202502082204.6PRR3cfG-lkp@intel.com/
+> 
+> All errors (new ones prefixed by >>):
+> 
+>    drivers/pci/endpoint/pci-ep-msi.c: In function 'pci_epf_alloc_doorbell':
+> >> drivers/pci/endpoint/pci-ep-msi.c:53:15: error: implicit declaration of function 'platform_device_msi_init_and_alloc_irqs' [-Werror=implicit-function-declaration]
+>       53 |         ret = platform_device_msi_init_and_alloc_irqs(&epf->dev, num_db, pci_epf_write_msi_msg);
+> 
+> | Reported-by: kernel test robot <lkp@intel.com>
+> | Closes: https://lore.kernel.org/oe-kbuild-all/202502082242.pOq1hB1d-lkp@intel.com/
+> 
+> All errors (new ones prefixed by >>):
+> 
+>    drivers/pci/endpoint/pci-ep-msi.c: In function 'pci_epf_alloc_doorbell':
+> >> drivers/pci/endpoint/pci-ep-msi.c:49:14: error: implicit declaration of function 'irq_domain_is_msi_immutable'; did you mean 'irq_domain_is_msi_device'? [-Werror=implicit-function-declaration]
+>       49 |         if (!irq_domain_is_msi_immutable(dom)) {
+> 
+> Change from v13 to v14
+> - basic roll back to v9
+> - use device:id as msi-map input, its will handle it
+> - use existed platform_device_msi_init_and_alloc_irqs()
+> - pass down epf->dev point, because epf->dev of-node will be the same as
+> epc's parent.
+> 
+> Change from v12 to v13
+> - Use DOMAIN_BUS_DEVICE_PCI_EP_MSI
+> 
+> Change from v10 to v12
+> - none
+> 
+> Change from v9 to v10
+> - Create msi domain for each function device.
+> - Remove only function support limiation. My hardware only support one
+> function, so not test more than one case.
+> - use "msi-map" descript msi information
+> 
+>   msi-map = <func_no << 8  | vfunc_no, &its, start_stream_id,  size>;
+> 
+> Chagne from v8 to v9
+> - sort header file
+> - use pci_epc_get(dev_name(msi_desc_to_dev(desc)));
+> - check epf number at pci_epf_alloc_doorbell
+> - Add comments for miss msi-parent case
+> 
+> change from v5 to v8
+> -none
+> 
+> Change from v4 to v5
+> - Remove request_irq() in pci_epc_alloc_doorbell() and leave to EP function
+> driver, so ep function driver can register differece call back function for
+> difference doorbell events and set irq affinity to differece CPU core.
+> - Improve error message when MSI allocate failure.
+> 
+> Change from v3 to v4
+> - msi change to use msi_get_virq() avoid use msi_for_each_desc().
+> - add new struct for pci_epf_doorbell_msg to msi msg,virq and irq name.
+> - move mutex lock to epc function
+> - initialize variable at declear place.
+> - passdown epf to epc*() function to simplify code.
+> ---
+>  drivers/pci/endpoint/Makefile     |  1 +
+>  drivers/pci/endpoint/pci-ep-msi.c | 82 +++++++++++++++++++++++++++++++++++++++
+>  include/linux/pci-ep-msi.h        | 28 +++++++++++++
+>  include/linux/pci-epf.h           | 16 ++++++++
+>  4 files changed, 127 insertions(+)
+> 
+> diff --git a/drivers/pci/endpoint/Makefile b/drivers/pci/endpoint/Makefile
+> index 95b2fe47e3b06..c502ea7ef367c 100644
+> --- a/drivers/pci/endpoint/Makefile
+> +++ b/drivers/pci/endpoint/Makefile
+> @@ -6,3 +6,4 @@
+>  obj-$(CONFIG_PCI_ENDPOINT_CONFIGFS)	+= pci-ep-cfs.o
+>  obj-$(CONFIG_PCI_ENDPOINT)		+= pci-epc-core.o pci-epf-core.o\
+>  					   pci-epc-mem.o functions/
+> +obj-$(CONFIG_GENERIC_MSI_IRQ)		+= pci-ep-msi.o
+
+I don't think we should build this driver for generic CONFIG_GENERIC_MSI_IRQ
+Kconfig. You should create a new EP specific Kconfig and make it depend on
+CONFIG_GENERIC_MSI_IRQ.
+
+> diff --git a/drivers/pci/endpoint/pci-ep-msi.c b/drivers/pci/endpoint/pci-ep-msi.c
+> new file mode 100644
+> index 0000000000000..549b55b864d0e
+> --- /dev/null
+> +++ b/drivers/pci/endpoint/pci-ep-msi.c
+> @@ -0,0 +1,82 @@
+> +// SPDX-License-Identifier: GPL-2.0
+> +/*
+> + * PCI Endpoint *Controller* (EPC) MSI library
+> + *
+> + * Copyright (C) 2025 NXP
+> + * Author: Frank Li <Frank.Li@nxp.com>
+> + */
 > +
->      video-codec@aa00000 {
->          compatible = "qcom,sm8550-iris";
->          reg = <0x0aa00000 0xf0000>;
-> @@ -144,12 +176,16 @@ examples:
->          resets = <&gcc GCC_VIDEO_AXI0_CLK_ARES>;
->          reset-names = "bus";
+> +#include <linux/device.h>
+> +#include <linux/irqdomain.h>
+> +#include <linux/module.h>
+> +#include <linux/msi.h>
+> +#include <linux/of_irq.h>
+> +#include <linux/pci-epc.h>
+> +#include <linux/pci-epf.h>
+> +#include <linux/pci-ep-cfs.h>
+> +#include <linux/pci-ep-msi.h>
+> +#include <linux/slab.h>
+> +
+> +static void pci_epf_write_msi_msg(struct msi_desc *desc, struct msi_msg *msg)
+> +{
+> +	struct pci_epf *epf = to_pci_epf(desc->dev);
+> +
+> +	if (epf && epf->db_msg && desc->msi_index < epf->num_db)
+> +		memcpy(&epf->db_msg[desc->msi_index].msg, msg, sizeof(*msg));
+> +}
+> +
+> +int pci_epf_alloc_doorbell(struct pci_epf *epf, u16 num_db)
+> +{
+> +	struct pci_epc *epc = epf->epc;
+> +	struct device *dev = &epf->dev;
+> +	struct irq_domain *dom;
+> +	void *msg;
+> +	u32 rid;
+> +	int ret;
+> +	int i;
+> +
+> +	rid = PCI_EPF_DEVID(epf->func_no, epf->vfunc_no);
+> +	dom = of_msi_map_get_device_domain(epc->dev.parent, rid, DOMAIN_BUS_PLATFORM_MSI);
+> +	if (!dom) {
+> +		dev_err(dev, "Can't find msi domain\n");
+
+s/msi/MSI
+
+Perhaps, "Can't find MSI domain for parent device" to be more explicit that we
+are searching for MSI domain in parent device?
+
+> +		return -EINVAL;
+
+-ENODATA
+
+> +	}
+> +
+> +	dev_set_msi_domain(dev, dom);
+> +
+> +	msg = kcalloc(num_db, sizeof(struct pci_epf_doorbell_msg), GFP_KERNEL);
+> +	if (!msg)
+> +		return -ENOMEM;
+> +
+> +	epf->num_db = num_db;
+> +	epf->db_msg = msg;
+> +
+> +	ret = platform_device_msi_init_and_alloc_irqs(&epf->dev, num_db, pci_epf_write_msi_msg);
+> +	if (ret) {
+> +		/*
+> +		 * The pcie_ep DT node has to specify 'msi-parent' for EP
+> +		 * doorbell support to work. Right now only GIC ITS is
+> +		 * supported. If you have GIC ITS and reached this print,
+> +		 * perhaps you are missing 'msi-map' in DT.
+> +		 */
+
+msi-map is a generic property, no need to tie it with GIC ITS. Also, this API
+could fail for different reasons. So please get rid of this comment.
+
+> +		dev_err(dev, "Failed to allocate MSI\n");
+> +		kfree(msg);
+> +		return -ENOMEM;
+
+Why are you overriding the errno and not using 'ret'?
+
+> +	}
+> +
+> +	for (i = 0; i < num_db; i++)
+> +		epf->db_msg[i].virq = msi_get_virq(dev, i);
+> +
+> +	return ret;
+> +}
+> +EXPORT_SYMBOL_GPL(pci_epf_alloc_doorbell);
+> +
+> +void pci_epf_free_doorbell(struct pci_epf *epf)
+> +{
+> +	platform_device_msi_free_irqs_all(&epf->dev);
+> +
+> +	kfree(epf->db_msg);
+> +	epf->db_msg = NULL;
+> +	epf->num_db = 0;
+> +}
+> +EXPORT_SYMBOL_GPL(pci_epf_free_doorbell);
+> diff --git a/include/linux/pci-ep-msi.h b/include/linux/pci-ep-msi.h
+> new file mode 100644
+> index 0000000000000..6dfbe9353f0d8
+> --- /dev/null
+> +++ b/include/linux/pci-ep-msi.h
+> @@ -0,0 +1,28 @@
+> +/* SPDX-License-Identifier: GPL-2.0 */
+> +/*
+> + * PCI Endpoint *Function* side MSI header file
+> + *
+> + * Copyright (C) 2024 NXP
+> + * Author: Frank Li <Frank.Li@nxp.com>
+> + */
+> +
+> +#ifndef __PCI_EP_MSI__
+> +#define __PCI_EP_MSI__
+> +
+> +struct pci_epf;
+> +
+> +#ifdef CONFIG_GENERIC_MSI_IRQ
+> +int pci_epf_alloc_doorbell(struct pci_epf *epf, u16 nums);
+> +void pci_epf_free_doorbell(struct pci_epf *epf);
+> +#else
+> +static inline int pci_epf_alloc_doorbell(struct pci_epf *epf, u16 nums)
+> +{
+> +	return -EINVAL;
+
+-ENODATA
+
+> +}
+> +
+> +static inline void pci_epf_free_doorbell(struct pci_epf *epf)
+> +{
+> +}
+> +#endif /* CONFIG_GENERIC_MSI_IRQ */
+> +
+> +#endif /* __PCI_EP_MSI__ */
+> diff --git a/include/linux/pci-epf.h b/include/linux/pci-epf.h
+> index c0864935c6864..9634bf2c1ac06 100644
+> --- a/include/linux/pci-epf.h
+> +++ b/include/linux/pci-epf.h
+> @@ -12,6 +12,7 @@
+>  #include <linux/configfs.h>
+>  #include <linux/device.h>
+>  #include <linux/mod_devicetable.h>
+> +#include <linux/msi.h>
+>  #include <linux/pci.h>
 >  
-> -        iommus = <&apps_smmu 0x1940 0x0000>,
-> -                 <&apps_smmu 0x1947 0x0000>;
-> +        iommus = <&apps_smmu 0x1947 0x0000>;
+>  struct pci_epf;
+> @@ -128,6 +129,17 @@ struct pci_epf_bar {
+>  	int		flags;
+>  };
+>  
+> +/**
+> + * struct pci_epf_doorbell_msg - represents doorbell message
+> + * @msi_msg: MSI message
+> + * @virq: irq number of this doorbell MSI message
+> + * @name: irq name for doorbell interrupt
 
-I missed, that's technically ABI break and nothing in commit msg
-explains that. You need to clearly explain the reasons and impact.
+'name' is not present in the struct.
 
-Best regards,
-Krzysztof
+- Mani
+
+-- 
+மணிவண்ணன் சதாசிவம்
 
