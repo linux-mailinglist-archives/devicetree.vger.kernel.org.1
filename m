@@ -1,68 +1,95 @@
-Return-Path: <devicetree+bounces-192195-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-192194-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3797EAF5B03
-	for <lists+devicetree@lfdr.de>; Wed,  2 Jul 2025 16:23:35 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id AF331AF5AFF
+	for <lists+devicetree@lfdr.de>; Wed,  2 Jul 2025 16:21:51 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 5DC223BCA95
-	for <lists+devicetree@lfdr.de>; Wed,  2 Jul 2025 14:23:01 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id D760B4E05A5
+	for <lists+devicetree@lfdr.de>; Wed,  2 Jul 2025 14:21:51 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A13622F530D;
-	Wed,  2 Jul 2025 14:23:22 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3ECE32F3633;
+	Wed,  2 Jul 2025 14:21:46 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="pArD1O/U"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="Jfizz3pi"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-pf1-f170.google.com (mail-pf1-f170.google.com [209.85.210.170])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6FB042BCF51;
-	Wed,  2 Jul 2025 14:23:22 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BA9A328A725;
+	Wed,  2 Jul 2025 14:21:44 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.170
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1751466202; cv=none; b=L9PJFsRgczzLMrR9aR/2RnFfyIrDyr4s1gDfknh3sGrUGsSgpe6VHQkJz2034572ZuV1On0skUM5EpWUZcLroHN7Eq+vZNj2ZDtxAb4j9iTpkGSU4ljNJuSRtleNPCnPHMySmiNklkcGw4OONRytzrwK72HEqj1qEl3QXwR/IcI=
+	t=1751466106; cv=none; b=aILAXZqcwPoqtbSLscvhgW/G9O+jOcGt9z5xsXVI5p1iYl3LtC5tBucVExbryyIQMz+Zhq0XrqxshE7Tagi9s3BXybKqLY/HZw72H+DzkRHxT2vfnzhIRK/f8AVhTjvKpdaHjrJe8VKYqEz/v4GErxYcq1W7KI/eigvkql8/cXQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1751466202; c=relaxed/simple;
-	bh=5xTRH5PYEaVJDARbqaeq3IhfaSjFqnrZPJsVGBRmnt4=;
+	s=arc-20240116; t=1751466106; c=relaxed/simple;
+	bh=tm6aTTQYt2hswi9o2BKu/XAyCfMaW8rDrN8KpJlIVzc=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=nNRBMu7B6bI0XxgwGRcxT5fZvElA1KsrWizTVDuQSRSVIhxgvWz/bSqdOMgvZmTjPO0Thq77AuVXNw9JEEc3Kg7i5sY5vSR0P0CI/02oaj0pNJk6dVU7kOxeYb/BkAuHKk1jfRWchZR0AWG72gX7T5W6l6qlsJrXHpwHXXugOJs=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=pArD1O/U; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id C58D3C4CEE7;
-	Wed,  2 Jul 2025 14:23:21 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1751466202;
-	bh=5xTRH5PYEaVJDARbqaeq3IhfaSjFqnrZPJsVGBRmnt4=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=pArD1O/UwmfYrZAe86RreErEXF52+qIoEnoLQU+hhAnMWuOcAdFOjloPWrEtrBCQp
-	 zZFb4YLZgiZ0Vq61POcF7jZO5M6NOYR09ft1QIklWZ2Lt9V/ArhZvehN6kUlEkmG/e
-	 FqQPia48H7N82vy/1DxdNXZxxWYBRHLtT+ugmfLObCSkX4GNgdFEtI2goRT+d33D1Y
-	 s+DZwh25hMpiMJLY4JkPC2tolt/w8gZ70iPpusFawKxfxyMYk+tIUeLwla7k/0LmiH
-	 1OQnMwqguOdfdJ2pJ12fatyR0PxKX6u06jUN493EpHj0sFho/EPhpN/tdLK8SpZlaD
-	 xmlA1VGo+dBag==
-Date: Wed, 2 Jul 2025 09:23:21 -0500
-From: Rob Herring <robh@kernel.org>
-To: Albert Yang <yangzh0906@thundersoft.com>
-Cc: krzk+dt@kernel.org, krzk@kernel.org, conor+dt@kernel.org,
-	gordon.ge@bst.ai, catalin.marinas@arm.com,
-	geert.uytterhoeven@gmail.com, will@kernel.org,
-	ulf.hansson@linaro.org, adrian.hunter@intel.com, arnd@arndb.de,
-	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-mmc@vger.kernel.org,
-	soc@lists.linux.dev, bst-upstream@bstai.top,
-	neil.armstrong@linaro.org, jonathan.cameron@huawei.com,
-	bigfoot@classfun.cn, kever.yang@rock-chips.com, mani@kernel.org,
-	geert+renesas@glider.be, andersson@kernel.org, nm@ti.com,
-	nfraprado@collabora.com, quic_tdas@quicinc.com, ebiggers@google.com,
-	victor.shih@genesyslogic.com.tw, shanchun1218@gmail.com,
-	ben.chuang@genesyslogic.com.tw
-Subject: Re: [PATCH v2 4/8] dt-bindings: mmc: add binding for BST DWCMSHC
- SDHCI controller
-Message-ID: <20250702142321.GA1462423-robh@kernel.org>
-References: <20250528085403.481055-1-yangzh0906@thundersoft.com>
- <20250702094444.3523973-1-yangzh0906@thundersoft.com>
- <20250702094444.3523973-5-yangzh0906@thundersoft.com>
+	 Content-Type:Content-Disposition:In-Reply-To; b=CinA5IANzmkIPRuaPJVav8duXbQbf8J8VB/366VdIKJYMt4mClb7sQmhJd7Ywd/YIrxucjUK6IM4GQS8cV/WbJUDggmfTjCjisiVLSZoTb9tDf9WV6exXcNf3q/JuRfUSsbnpiUaS6s9F38YJutESUAYxGpx0b6aZLbnnK9T8mQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=Jfizz3pi; arc=none smtp.client-ip=209.85.210.170
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-pf1-f170.google.com with SMTP id d2e1a72fcca58-74af4af04fdso5052444b3a.1;
+        Wed, 02 Jul 2025 07:21:44 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1751466104; x=1752070904; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=QoqW7uLmIq5o6ktQqYTPztNvgZ7wz4g3kzg+DnBETgM=;
+        b=Jfizz3piMrh5Ln52O0Djh3Hp/UkQarFCCteVALf8VpWm3gIVJGUPUP4B9chSXcvmDI
+         LCYvzMqGP2LpsUhnDKrUn3PNLf2F6659+CClWVz2KloRCatG94x21o8NApjiTg74R69E
+         RoRnjhT7saUQl1bOHu7dSM9GApaywMyd/T/u9MTNLD26/6woN75rV3RfyRdMUxm3d27P
+         Kku/srusDW9Hki39oZpOmPqoPmv9C5FBgxXMkvzubuP2Dl/R18GI8H4qYQULAlHoxvxF
+         vQlsflP3tdUx0gIO5Qf8Vw4zbOjuxe/GCA4b9A/9V2V186e9jOqxHxUKEdbD6M5iVJ2a
+         c/XA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1751466104; x=1752070904;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=QoqW7uLmIq5o6ktQqYTPztNvgZ7wz4g3kzg+DnBETgM=;
+        b=nfDR5p0vKAPMu20JFxQ2selzR/orH5QSi+TDmtpJ6/sJIETU9xqCrT0mMEJK/l7oAV
+         YgwlDzAOwhtL80okVpGr2qaz+HF7DQ3FClHdFUuIP06vIHKScijCadgWFPlRofUZn2yC
+         KPFenYmyGVm1zZVlF3YKTbmMf81hmjlTVnG4BD/h1qYxYGD7ABqgwSKqa0Zh1/zCD+ND
+         8hFLsr9vg/0G6orW9WDsq57OFx9V7iRR8b5lyvxPJbRQPUukEMf0V0OydcXM9fQOW3pV
+         TbUA2sq4GPyhGA/xu7DD9LjGLnRSM43Lzb89ilFpQ+0MLZSutkjBnzOhfoSuQ0X5in3h
+         0/wQ==
+X-Forwarded-Encrypted: i=1; AJvYcCWa/KH9o/6PTdg+uLff1w9vZ0/z3hDl4hR76c+OvkzWj68xdYBIflRv2woLLY3eGsDgZyeA7i9NDgUi@vger.kernel.org, AJvYcCX44KYti0E2RSbogcuin3175WfiPWaq9O7Cn7T3wmFITguAxsWu1dPBu0RR4k6IObKKc8F5ZKuuVM0glaxR@vger.kernel.org
+X-Gm-Message-State: AOJu0YzToJGoPWmgp7Vx0iiN1BCm7hegVXdTssXWrQwIoHXe4P7weEgg
+	jy1zEa5RwwJ0vSbHzoiLMKnGI7TQGBeLPCw0nhuGapH/iJ+QoS3UykQF
+X-Gm-Gg: ASbGnct0lofRpqc3qI4fb3m/603lrnvFxs2aYMZoRiPl6jf7Mj/k+pbA7yU9BmbWi+G
+	nox+qbuR/DVzTO1tI1ZPXu1jie+WSkjRtPGMMbAYGT3IniahqmjBY519PFDuBDYtuYvakMAjqog
+	CMtKRk2Wor5qUifXtOkchia9dfq2+qPl27QOOCi7nYKiD4jTy8Npkf9HMTpP+GYz42UgrrsvjHk
+	jaAgxI1muk/ZSiBQ+KYBxfmgDtONSSee11TLJFGH/O0QI3XGiLYf2Xw4xANwBbg+Tagcm3j3Pnc
+	rUcrHG9cbLn2ILxIa0PK3leNvlhOpEv0bKghM7p3lj55BLf504VSi5zYam8wnXOFPuHDTA==
+X-Google-Smtp-Source: AGHT+IEmEnGhey284f0Ong/chQehRAPRbLYx7zppPrcRzIt0TBFHenlyZKlI15FaEUWNu/0352DJ9w==
+X-Received: by 2002:a05:6a20:6a04:b0:220:42a0:7f65 with SMTP id adf61e73a8af0-222ed67fb94mr4237330637.17.1751466103842;
+        Wed, 02 Jul 2025 07:21:43 -0700 (PDT)
+Received: from localhost ([2804:30c:b15:b200:425a:de22:1d7f:2d4b])
+        by smtp.gmail.com with UTF8SMTPSA id d2e1a72fcca58-74af557591asm14803960b3a.99.2025.07.02.07.21.42
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 02 Jul 2025 07:21:42 -0700 (PDT)
+Date: Wed, 2 Jul 2025 11:23:43 -0300
+From: Marcelo Schmitt <marcelo.schmitt1@gmail.com>
+To: Jorge Marques <gastmaier@gmail.com>
+Cc: Krzysztof Kozlowski <krzk@kernel.org>,
+	Jorge Marques <jorge.marques@analog.com>,
+	Alexandre Belloni <alexandre.belloni@bootlin.com>,
+	Frank Li <Frank.Li@nxp.com>, Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>, linux-i3c@lists.infradead.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v4 1/2] dt-bindings: i3c: Add adi-i3c-master
+Message-ID: <aGVA779eeNZ0zWsa@debian-BULLSEYE-live-builder-AMD64>
+References: <20250626-adi-i3c-master-v4-0-3846a1f66d5e@analog.com>
+ <20250626-adi-i3c-master-v4-1-3846a1f66d5e@analog.com>
+ <20250627-steadfast-ferret-of-expertise-5c8ff2@krzk-bin>
+ <tl5fckhrivaqfyzwyb2o2a7gykpigwend7z2nduqgbbej3hqbs@vxxtsadhtdmt>
+ <41782ded-908b-46ef-8f75-4d2565476b7c@kernel.org>
+ <cfi6rzhco2ba6pcbk57l7tblimuks5jnpgaly7nbedbrpyhtma@u46if22kurwk>
+ <v2ybju75bpjdqxfkell47nlkeyal36ylmnqt2yvpncxnmp2irb@pygx56jsyxkr>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -71,122 +98,59 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20250702094444.3523973-5-yangzh0906@thundersoft.com>
+In-Reply-To: <v2ybju75bpjdqxfkell47nlkeyal36ylmnqt2yvpncxnmp2irb@pygx56jsyxkr>
 
-On Wed, Jul 02, 2025 at 05:44:40PM +0800, Albert Yang wrote:
-> Add device tree binding documentation for the Black Sesame Technologies
-> (BST) DWCMSHC SDHCI controller.
+Hello,
+
+On 07/02, Jorge Marques wrote:
+> On Fri, Jun 27, 2025 at 06:02:26PM +0200, Jorge Marques wrote:
+> > On Fri, Jun 27, 2025 at 04:49:19PM +0200, Krzysztof Kozlowski wrote:
+> > > On 27/06/2025 16:38, Jorge Marques wrote:
+> > > > On Fri, Jun 27, 2025 at 08:56:55AM +0200, Krzysztof Kozlowski wrote:
+> > > >> On Thu, Jun 26, 2025 at 12:07:36PM +0200, Jorge Marques wrote:
+> > > >>> Add bindings doc for ADI I3C Controller IP core, a FPGA synthesizable IP
+> > > >>> core that implements the MIPI I3C Basic controller specification.
+> > > >>
+...
 > 
-> This binding describes the required and optional properties for the
-> bst,dwcmshc-sdhci compatible controller, including register layout,
-> interrupts, bus width, clock configuration, and other controller-specific
-> features.
+> I went after the reason of the historically -1.00.a suffix and
+> discovered that they came into existence due to AMD Xilinx auto
+> generation devicetree tool SDTGen
+> https://github.com/Xilinx/system-device-tree-xlnx
+> that would automatically suffix with the IP version, defaulting to 1.00.a,
+> and for a seamless experience, the were copied over to the dt-bindings.
 > 
-> ---
-> Changes for v2:
-> - Simplified description, removed redundant paragraphs
-> - Updated $schema to reference mmc-specific scheme
-> - Corrected compatible to add soc name
-> (bst,c1200-dwcmshc-sdhci)
-> - Removed all redundant property descriptions
-> - Dropped invalid mmc_crm_base/size properties, use reg for all address
-> ranges
-> - Cleaned up required properties to only essential entries
-> - Standardized example DTS format, fixed reg syntax and property
-> ordering
-> - Removed additionalProperties: true
+> The adi,axi-pwmgen dt-binding went more creative and suffixed with
+> -2.00.a, while never enforcing Vivado to yield the devicetree with such
+> value (Major version is asserted in the driver through reg access, the
+> current core version is v2.1.1)
 > 
-> Signed-off-by: Ge Gordon <gordon.ge@bst.ai>
-> Signed-off-by: Albert Yang <yangzh0906@thundersoft.com>
-> ---
->  .../bindings/mmc/bst,dwcmshc-sdhci.yaml       | 67 +++++++++++++++++++
->  1 file changed, 67 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/mmc/bst,dwcmshc-sdhci.yaml
+> Testing on my side (AMD Xilinx Vivado 2024.2), it seems Vivado now
+> defaults to 1.0, so the previous bindings from the other IPs are not
+> accurate anymore, either, (axi-pwmgen auto gens
+> `compatible = "xlnx,axi-pwm-gen-1.0";` (`xlnx` instead of `adi`, also)).
 > 
-> diff --git a/Documentation/devicetree/bindings/mmc/bst,dwcmshc-sdhci.yaml b/Documentation/devicetree/bindings/mmc/bst,dwcmshc-sdhci.yaml
-> new file mode 100644
-> index 000000000000..699dc404caac
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/mmc/bst,dwcmshc-sdhci.yaml
-> @@ -0,0 +1,67 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/mmc/bst,dwcmshc-sdhci.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Black Sesame Technologies DWCMSHC SDHCI Controller
-> +
-> +maintainers:
-> +  - Ge Gordon <gordon.ge@bst.ai>
-> +
-> +allOf:
-> +  - $ref: mmc-controller.yaml#
-> +
-> +properties:
-> +  compatible:
-> +    const: bst,c1200-dwcmshc-sdhci
-> +
-> +  reg:
-> +    maxItems: 2
-> +    description: |
-> +      Register base addresses and sizes for the SDHCI controller.
-> +      First entry is the core SDHCI registers, second entry is the
-> +      CRM registers.
-
-items:
-  - description: Core SDHCI registers
-  - description: CRM registers
-
-Though what CRM is should be defined.
-
-> +
-> +  interrupts:
-> +    maxItems: 1
-> +
-> +  clocks:
-> +    maxItems: 1
-> +
-> +  clock-names:
-> +    items:
-> +      - const: core
-> +
-> +  memory-region:
-> +    maxItems: 1
-> +
-> +  dma-coherent: true
-> +
-> +required:
-> +  - compatible
-> +  - reg
-> +  - interrupts
-> +  - clocks
-> +  - clock-names
-> +
-> +unevaluatedProperties: false
-> +
-> +examples:
-> +  - |
-> +    #include <dt-bindings/interrupt-controller/arm-gic.h>
-> +
-> +    mmc@22200000 {
-> +        compatible = "bst,c1200-dwcmshc-sdhci";
-> +        reg = <0x0 0x22200000 0x0 0x1000>,
-> +              <0x0 0x23006000 0x0 0x1000>;
-> +        interrupts = <GIC_SPI 144 IRQ_TYPE_LEVEL_HIGH>;
-> +        clocks = <&clk_mmc>;
-> +        clock-names = "core";
-> +        memory-region = <&mmc0_reserved>;
-> +        max-frequency = <200000000>;
-> +        bus-width = <8>;
-> +        non-removable;
-> +        dma-coherent;
-> +        status = "disabled";
-
-Examples should be enabled. Drop.
-
-> +    };
-> -- 
-> 2.25.1
+> For fun, the current Vivado version thinks the devicetree node for the
+> i3c master should be as follows:
 > 
+>   i3c_host_interface: i3c_controller_host_interface@44a00000 {
+>           compatible = "xlnx,i3c-controller-host-interface-1.0";
+>           reg = <0x44a00000 0x10000>;
+>           clocks = <&clkc 15>;
+>           clock-names = "s_axi_aclk";
+>   };
+> 
+> Let me know if we can drop the suffix, or replace with something else.
+> The current register defined core version is v0.1.0.
+
+I have no say in how dt-bindings should be, but having the IP version number
+automatically generated doesn't sound like a sane thing to do IMHO. Maybe try to
+standardize with -1.00.a suffix? Though one could also argue about dropping such
+suffixes. Since we were told that the convention is to have the file name to
+follow the compatible, I would go with 'xlnx,i3c-controller-host-interface'
+(without any suffix) so the file name is smaller and clearer IMHO. dt maintainers
+might prefer that in a different way.
+
+Best regards,
+Marcelo
 
