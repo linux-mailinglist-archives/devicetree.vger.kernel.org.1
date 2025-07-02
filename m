@@ -1,60 +1,60 @@
-Return-Path: <devicetree+bounces-192235-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-192236-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 076FCAF5D53
-	for <lists+devicetree@lfdr.de>; Wed,  2 Jul 2025 17:39:48 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 7BFDCAF5D7B
+	for <lists+devicetree@lfdr.de>; Wed,  2 Jul 2025 17:43:37 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 30C8E7B7355
-	for <lists+devicetree@lfdr.de>; Wed,  2 Jul 2025 15:34:33 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id BA6C07B7B3F
+	for <lists+devicetree@lfdr.de>; Wed,  2 Jul 2025 15:36:18 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 526032DBF48;
-	Wed,  2 Jul 2025 15:30:07 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 35E08303DC6;
+	Wed,  2 Jul 2025 15:33:39 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="oQjZ8wsg"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="LCGgA+c9"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 272BE1C84CD;
-	Wed,  2 Jul 2025 15:30:06 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 03B972D0C9E;
+	Wed,  2 Jul 2025 15:33:38 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1751470207; cv=none; b=UKVTbkJfSQzB03O6R5W2EY2h0D9luzHgbG+lszrKXhgzSVdQERx74BA9lD1JEPlsb/0xdsbjClHBGl18d3PrV8XuOGieLEzMOIuyG+dskPd6iKZaC2FV8yj0tVVdtyR5EEspzWiRWCCpP7+QUMTRM4TFeXbBbA/AIsWuIzkFd8Q=
+	t=1751470419; cv=none; b=fV1ihhJetIMif23aFqEQScJimd1Ve47+4Ml+LCCkMYZeZrYG+DjLTomuOdHcl3Y97GXuDQeLkPEP/rcPE5fc53LhoG98szXRwB8KssFm2crR69y7xytw9XcCDHsfvXR9MNTIpKXhr63JVFol80+FnDy/D81v7zxuU/FF8HO++Q0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1751470207; c=relaxed/simple;
-	bh=1hB7Zt6/rC5KgiBrbFJS8tkSgdS8qaxfYi4Ore/zPkk=;
+	s=arc-20240116; t=1751470419; c=relaxed/simple;
+	bh=m4jNXgT+w4Hs09jExxagGWXs5YRAnZ/7SVfxbiR92Co=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=efAUTadAEuvpvRJzvVwS+uUKfvtbqoEohx0IWQfLx3gIyR+ooCSyglbDUcvCHoSuMt0W+Qd1sTDfGHe4bDNIzgU4vLjKTupw9T02JjbmNXgZ2i3tUehRl+FkcqGC4ZXXLADxG+0TPnZSx+fZ+Zt5kFlGCikHf95x10fHLAzz2qk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=oQjZ8wsg; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 416F6C4CEE7;
-	Wed,  2 Jul 2025 15:30:04 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=o0jm/UZ2T7m1rShcOdLMkhczFoXvB6gGASUcZ28ncNBqnQ9eS+NOUJ9EzXeTrqyU3aCusaqUtNYrh0DFkRY/GjbMNiEkfY+5ZjQBo4CrPZwey3WlrSY3At0bFNO+Eo2uxD0S4jBBnKGXtLPeIlTv4JOVj1Yizs2J+hFZG3iKmUc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=LCGgA+c9; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 77315C4CEE7;
+	Wed,  2 Jul 2025 15:33:33 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1751470206;
-	bh=1hB7Zt6/rC5KgiBrbFJS8tkSgdS8qaxfYi4Ore/zPkk=;
+	s=k20201202; t=1751470418;
+	bh=m4jNXgT+w4Hs09jExxagGWXs5YRAnZ/7SVfxbiR92Co=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=oQjZ8wsg7xexe1fb1H5E/QPkW4Oxb32rgzlfDzw5je0/rgRzrjasgqXZdKqMUFOht
-	 UhhSnbaPqc+MP65Uul8jywX2R3iIQacDKEt25Pyz34N7pV48pwLn88EJjv+WopyVMm
-	 CUC1gRcp1+Bz5qP7Dt2MUbc+G1X8nIjrpo45uKIHMy0iEkszX3GlJdBVayxBejpR1v
-	 mVeNzBsX3mssaa2J2UY1jfWIJf8sbzhA55FNRg3+xn8kUziMHacbNEkEYPk+2ormEK
-	 phkd2yhtTkXB5DIEfJk9AuVhVuplk4e8vwsroDkuAdUkXg0lp1zWXpOA5cCQ1GtZLF
-	 hkwfap89cvlfg==
-Date: Wed, 2 Jul 2025 16:30:01 +0100
-From: Lee Jones <lee@kernel.org>
-To: Michael Walle <mwalle@kernel.org>
-Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, Arnd Bergmann <arnd@arndb.de>,
-	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-	Linus Walleij <linus.walleij@linaro.org>,
-	Liam Girdwood <lgirdwood@gmail.com>,
-	Mark Brown <broonie@kernel.org>, Julien Panis <jpanis@baylibre.com>,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	linux-gpio@vger.kernel.org
-Subject: Re: [PATCH v2 0/7] mfd: tps6594: Add TI TPS652G1 support
-Message-ID: <20250702153001.GV10134@google.com>
-References: <20250613114518.1772109-1-mwalle@kernel.org>
+	b=LCGgA+c9TFzb/8uksnZ2Tj1ghRaQm6VM0g/MJYbMQ1521YHgfeqEZR7CQJrApug9P
+	 0+Pcpa11cSgNytCUmkvrP7LZzgluUoktRaxJR9yAWJZMlGaWaVhj6fMzpXtx6kUHJy
+	 9jsSwjGpDw2+ryhZoogfhphKmZOiofVVfH5WPa7TgOlkTOCY7pbey7nOH1FvmYPB2R
+	 K3FnnKfK08IF8KdiLIltGVesNdNtPWJreWfJD0QDrXq7/wg/3RPHfJ9vwb9cqOJuJZ
+	 schKz4Wufn+rbeAtuTZnq8+IjUpyqMVVceL85N8aAP1koCkDUawU4C7oGxY39NFkTC
+	 HR4cYpJRstw6g==
+Date: Wed, 2 Jul 2025 21:03:24 +0530
+From: Manivannan Sadhasivam <mani@kernel.org>
+To: Krishna Chaitanya Chundru <krishna.chundru@oss.qualcomm.com>
+Cc: Lorenzo Pieralisi <lpieralisi@kernel.org>, 
+	Krzysztof =?utf-8?Q?Wilczy=C5=84ski?= <kwilczynski@kernel.org>, Rob Herring <robh@kernel.org>, 
+	Bjorn Helgaas <bhelgaas@google.com>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+	Conor Dooley <conor+dt@kernel.org>, Bjorn Andersson <andersson@kernel.org>, 
+	Konrad Dybcio <konradybcio@kernel.org>, cros-qcom-dts-watchers@chromium.org, 
+	linux-arm-msm@vger.kernel.org, linux-pci@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, quic_vbadigan@quicinc.com, quic_mrana@quicinc.com
+Subject: Re: [PATCH v5 2/2] PCI: qcom: Add support for multi-root port
+Message-ID: <ws2kdznvbrvuvb6k4jov5cd4qzvadeaffjqgeso7u72stormlg@2ffiexejkrk6>
+References: <20250702-perst-v5-0-920b3d1f6ee1@qti.qualcomm.com>
+ <20250702-perst-v5-2-920b3d1f6ee1@qti.qualcomm.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -64,40 +64,44 @@ MIME-Version: 1.0
 Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <20250613114518.1772109-1-mwalle@kernel.org>
+In-Reply-To: <20250702-perst-v5-2-920b3d1f6ee1@qti.qualcomm.com>
 
-On Fri, 13 Jun 2025, Michael Walle wrote:
+On Wed, Jul 02, 2025 at 04:50:42PM GMT, Krishna Chaitanya Chundru wrote:
 
-> Add support for the TI TPS652G1 PMIC which is a stripped down
-> version of the TPS65224. Support for the latter has already been
-> merged. Refactor the regulator driver to ease adding new devices.
-> After doing that adding the TPS652G1 variant is really straight
-> forward. Some care has to be taken by the interrupt handling (of the
-> regulator part) because there interrupts are used for voltage
-> monitoring which this variant doesn't have.
-> 
-> Michael Walle (7):
->   mfd: tps6594: Add TI TPS652G1 support
->   misc: tps6594-pfsm: Add TI TPS652G1 PMIC PFSM
->   pinctrl: pinctrl-tps6594: Add TPS652G1 PMIC pinctrl and GPIO
->   regulator: tps6594-regulator: remove interrupt_count
->   regulator: tps6594-regulator: remove hardcoded buck config
->   regulator: tps6594-regulator: refactor variant descriptions
->   regulator: tps6594-regulator: Add TI TPS652G1 PMIC regulators
-> 
->  drivers/mfd/tps6594-core.c            |  88 ++++++++++-
->  drivers/mfd/tps6594-i2c.c             |  10 +-
->  drivers/mfd/tps6594-spi.c             |  10 +-
->  drivers/misc/tps6594-pfsm.c           |  31 ++--
->  drivers/pinctrl/pinctrl-tps6594.c     |  35 ++++
->  drivers/regulator/tps6594-regulator.c | 219 +++++++++++++++-----------
->  include/linux/mfd/tps6594.h           |   1 +
->  7 files changed, 284 insertions(+), 110 deletions(-)
+[...]
 
-Doesn't apply.
+> -	ret = phy_init(pcie->phy);
+> -	if (ret)
+> -		goto err_pm_runtime_put;
+> +	for_each_available_child_of_node(dev->of_node, of_port) {
+> +		ret = qcom_pcie_parse_port(pcie, of_port);
+> +		of_node_put(of_port);
+> +		if (ret) {
+> +			if (ret != -ENOENT) {
+> +				dev_err_probe(pci->dev, ret,
+> +					      "Failed to parse port nodes %d\n",
+> +					      ret);
+> +				goto err_port_del;
+> +			}
+> +			break;
+> +		}
+> +	}
+> +
+> +	/*
+> +	 * In the case of properties not populated in root port, fallback to the
+> +	 * legacy method of parsing the host bridge node. This is to maintain DT
+> +	 * backwards compatibility.
+> +	 */
+> +	if (ret) {
+> +		pcie->phy = devm_phy_optional_get(dev, "pciephy");
+> +		if (IS_ERR(pcie->phy)) {
+> +			ret = PTR_ERR(pcie->phy);
+> +			goto err_pm_runtime_put;
 
-Please rebase onto v6.16-rc1.
+Shouldn't this and below be err_port_del?
+
+- Mani
 
 -- 
-Lee Jones [李琼斯]
+மணிவண்ணன் சதாசிவம்
 
