@@ -1,189 +1,173 @@
-Return-Path: <devicetree+bounces-192188-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-192190-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 398E8AF5ABC
-	for <lists+devicetree@lfdr.de>; Wed,  2 Jul 2025 16:13:47 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id C3665AF5ADD
+	for <lists+devicetree@lfdr.de>; Wed,  2 Jul 2025 16:16:28 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id BF4411765A2
-	for <lists+devicetree@lfdr.de>; Wed,  2 Jul 2025 14:13:23 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 987784A08F8
+	for <lists+devicetree@lfdr.de>; Wed,  2 Jul 2025 14:15:30 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id DDA342BE7B3;
-	Wed,  2 Jul 2025 14:13:06 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 17C552EA163;
+	Wed,  2 Jul 2025 14:15:46 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=resnulli-us.20230601.gappssmtp.com header.i=@resnulli-us.20230601.gappssmtp.com header.b="0g8/CW6n"
+	dkim=pass (2048-bit key) header.d=foss.st.com header.i=@foss.st.com header.b="dBDQHoEX"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f51.google.com (mail-wm1-f51.google.com [209.85.128.51])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mx07-00178001.pphosted.com (mx07-00178001.pphosted.com [185.132.182.106])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D13B92BDC25
-	for <devicetree@vger.kernel.org>; Wed,  2 Jul 2025 14:13:04 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.51
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 664562E9EB2;
+	Wed,  2 Jul 2025 14:15:43 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.132.182.106
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1751465586; cv=none; b=HAZeDC9JK9cAanou896PASVJYd8JfkrVns4odX9TQUoowlAjyKcZD4SQKfKdDmGFEgey116HhoDmBfaNTjH6yDFnhzcB0/9vblhJcdio4w1/tfwPckE8L7LbIUEclxXCL4APPE8tTo+5AyoAOuTU+j7o8PP6wD7ORta3+kQy+zY=
+	t=1751465746; cv=none; b=pLWc7OHIb+aFdkPAThZIZHtamQY0sd2DjKXy/qlR0W6LW/S7BfuXSWpE13Ue/2o2jL5uHqCdGuc9caKt5bFOoVsSHH1z9sF04oNFfv9pBo7phDArEXBNAQO54IzMQrBNdOICaW5+D/CziL5n+ZN56WqZDsSUOqbNp1mL2Mc4tuA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1751465586; c=relaxed/simple;
-	bh=xIX6GxkYy+RMVioZ/VaEmi8TDF7cbtgtQXVNUQIlmus=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=rnB1fYiydxuhSuSQEVhuzZE1SZBBQCs/tZFjIXSWL7srxnGJzftXvkLA9A9tA/y2Lxp5TdVxOIoFpDsiMrzQlcuI4c655V8YQzKdvlUgBNfqKL7UeQx5ZkVyDnGCOLLSWlUpKSS7bQQUuVqCjK/poaEYOn8W4qRULTEcOfFIyis=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=resnulli.us; spf=none smtp.mailfrom=resnulli.us; dkim=pass (2048-bit key) header.d=resnulli-us.20230601.gappssmtp.com header.i=@resnulli-us.20230601.gappssmtp.com header.b=0g8/CW6n; arc=none smtp.client-ip=209.85.128.51
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=resnulli.us
-Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=resnulli.us
-Received: by mail-wm1-f51.google.com with SMTP id 5b1f17b1804b1-4530921461aso45937865e9.0
-        for <devicetree@vger.kernel.org>; Wed, 02 Jul 2025 07:13:04 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=resnulli-us.20230601.gappssmtp.com; s=20230601; t=1751465583; x=1752070383; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=KCX8EDCd8/i/wYRS9YBmGDW0iWUiXiEN/46xP+vv74E=;
-        b=0g8/CW6n4xengA9/rppoYsTHQxislg1Z2I5aP0twp4c8xYsmszHOV/Mpf+zRNJV7cw
-         Q5NpzqCvER6Hwbt+TGuNv95T0LPr2gZtIN775W3NCc4Oy6BZN9tReQxeGchZZ9TGl+G7
-         IVVsH5CErKsV0gwC8iSYFI3qUaoH1oMvVIpTvGJEoeWHBZ3T78rvkfO5BE3a15uv3eeV
-         2iuN0R7Ef47Z8WLCkj3PX8X5G0UauUE6c5zWyFEKKKMcVZ+psObLob816QgkeW7zIfGI
-         aKVKBjrsSwhrF7xrGDig/xh5ruQCa4dSyRgtOik80DqnLuVSVAwACKdYmABsd1dVdZ6x
-         ZQXg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1751465583; x=1752070383;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=KCX8EDCd8/i/wYRS9YBmGDW0iWUiXiEN/46xP+vv74E=;
-        b=ZGNNn5V5bZmkEAZmNru6UXlUnN+i9dwzqVYAmm5n3OA9l8ND0l3wlAl6XfgGalM8gK
-         waWxt6id9zSMH9iW/zPVoagAelDVfHpiZGTFYxBSBtamd6pMP6Wc5F7Xxq92D+9jXgOB
-         y15N1w39k1ZgOH4P3qFh+VHtcixxkTr8ITTXcxa94w9ZhHdpzeB7bcRxi2QL5ogvi0M3
-         Dbn9e6o2llE2gG9HyCOVQOOLIt1MIbTnQcCp0I6fqjKFPe9i0bXHwIhKrrp4Zl6GltCX
-         fataVRW8D7P/4ofxINDD6QHFq4vuXTvuKv8E283FFQktSV+IPlNnmgrvshiflA2mVi5T
-         7eGA==
-X-Forwarded-Encrypted: i=1; AJvYcCXP6Z6l5bCZVbQNyc2PVbQzawschQp54JFijgRKk/meA4vFkuxNJ4/2oZntdThBAQhB7wZ2G722fkRM@vger.kernel.org
-X-Gm-Message-State: AOJu0YwmrBz/jllPxiMqQ5vIy5hiSXouDKTYTeqiQyiPaZ32fzTgozEy
-	j4QdS/yqKrfRPG08kbLegYf/rrPogPeJhWorLjz7z4ybf4gk7K2y/MFGsdWEtoLlrgs=
-X-Gm-Gg: ASbGncv5w5HlMy+IklslmUvkxRlHGwr84qnQ7oysjUfBsVHJCR7gQMkw+8WsfQy64mw
-	BnrsVcLruIUmEnbMI1iTRJeFicjOmRZsgcCCccF8Hdmm86VyuR8TZPB5isEhGNiiqF/reGGvVEz
-	U/AO+iYfu7NZm8XarU0Sl+qGtHtC6EMw1SWlMFaDocAI8dCGg08AlvtxGlCdbx+gjMY5pX2IeMP
-	NMYV8Mx9jDYKL9mOIbv6OaQtnge1o5lxRQrXIx4ZMyqVD+c+Nkd99En7BetMbfEav1ivh/Q54XV
-	169j5vchjUmx+gaeRGtz+gogKuyLzptU9xPkV/45cYkCx/dq48Xf+A5YjUSApe+hzdhrHA==
-X-Google-Smtp-Source: AGHT+IEk1Iz9F6Hzi17G8siVxy1kneMMVA9o7oJxCvLiimTGG5VAQ9oHTXa5JjHBEPPb8pmO2Hxa8w==
-X-Received: by 2002:a05:600c:638e:b0:453:b44:eb71 with SMTP id 5b1f17b1804b1-454a370c313mr35319005e9.19.1751465582882;
-        Wed, 02 Jul 2025 07:13:02 -0700 (PDT)
-Received: from jiri-mlt ([193.47.165.251])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-453823b6d50sm233164175e9.30.2025.07.02.07.12.56
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 02 Jul 2025 07:13:02 -0700 (PDT)
-Date: Wed, 2 Jul 2025 16:12:54 +0200
-From: Jiri Pirko <jiri@resnulli.us>
-To: Ivan Vecera <ivecera@redhat.com>
-Cc: netdev@vger.kernel.org, 
-	Prathosh Satish <Prathosh.Satish@microchip.com>, Vadim Fedorenko <vadim.fedorenko@linux.dev>, 
-	Arkadiusz Kubalewski <arkadiusz.kubalewski@intel.com>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	"David S. Miller" <davem@davemloft.net>, Eric Dumazet <edumazet@google.com>, 
-	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>, Simon Horman <horms@kernel.org>, 
-	Jonathan Corbet <corbet@lwn.net>, Jason Gunthorpe <jgg@ziepe.ca>, 
-	Shannon Nelson <shannon.nelson@amd.com>, Dave Jiang <dave.jiang@intel.com>, 
-	Jonathan Cameron <Jonathan.Cameron@huawei.com>, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	linux-doc@vger.kernel.org, Michal Schmidt <mschmidt@redhat.com>, 
-	Petr Oros <poros@redhat.com>
-Subject: Re: [PATCH net-next v12 09/14] dpll: zl3073x: Register DPLL devices
- and pins
-Message-ID: <3sgsj5vxtkzfpfpn5igave2qppy27mq7erpcmhqtfswaayaynv@zcsldf44o7b3>
-References: <20250629191049.64398-1-ivecera@redhat.com>
- <20250629191049.64398-10-ivecera@redhat.com>
- <ne36b7ky5cg2g3juejcah7bnvsajihncmpzag3vpjnb3gabz2m@xtxhpfhvfmwl>
- <1848e2f6-a0bb-48e6-9bfc-5ea6cbea2e5c@redhat.com>
- <k2osi2mzfmudh7q3av5raxj33smbdjgnrmaqjx2evjaaloddb3@vublvfldqlnm>
- <e55caefa-2ea9-4d31-be76-48cdfd481b5c@redhat.com>
+	s=arc-20240116; t=1751465746; c=relaxed/simple;
+	bh=AjSA6Bdq5vB9w+D1KK5HtFTazyanZB6oZ2EEmsWUSP4=;
+	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
+	 In-Reply-To:Content-Type; b=VTGVPIFfOOVdqbzO4v8ClVYej6Ew7nMLCnL3cYlbCum4yVzVu2F2wUrLEWCuuShkDYVDvfOLZ9J9MgM6ZYCQR0wCS5uMPTyyjBq7+pO9fwEGIIEE00Q+sv+PWoetGBpQnW+3XBg75Wg1tRK74NMvVp7M/Rki+lbLgfJs/VDJNzI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=foss.st.com; spf=pass smtp.mailfrom=foss.st.com; dkim=pass (2048-bit key) header.d=foss.st.com header.i=@foss.st.com header.b=dBDQHoEX; arc=none smtp.client-ip=185.132.182.106
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=foss.st.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=foss.st.com
+Received: from pps.filterd (m0288072.ppops.net [127.0.0.1])
+	by mx07-00178001.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 562DIwPT009778;
+	Wed, 2 Jul 2025 16:15:22 +0200
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=foss.st.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=selector1; bh=
+	VR6E01Xg6J6Izs0olt9dR6pYp+S5ROquFthL7GlUqPs=; b=dBDQHoEXqF/md8Ai
+	OKxTINMTwYY9+MXakIisn2u4OHsDwVaws4+1VieBQiNXPftGP0VE8IKDZH79YV9C
+	gDu+8iKUecC6lTA5ex8FURzdpDRCP4m/LQweQkCWaJTIbkrTllzw7aH+Rxeuwntn
+	utlstZrXHzSVULtL2Cc2OeUtYOrfnxH6LYJk/mWHDIEXpYkQRK9ktb31DLmb16v8
+	IQ4M7f9TAHR4Q0aCT0gLzcFyIT99ZXhPfBCV/NcxixuYXHjqrUI8h1A2+IEiQK0n
+	OkuVflyw9cWVeufHcOel2SUgz5K4BtxO8qghv8cKOOkUm6NRS9TCAHbMDBGTCt8h
+	+QRk2A==
+Received: from beta.dmz-ap.st.com (beta.dmz-ap.st.com [138.198.100.35])
+	by mx07-00178001.pphosted.com (PPS) with ESMTPS id 47j5tmb9wc-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Wed, 02 Jul 2025 16:15:22 +0200 (MEST)
+Received: from euls16034.sgp.st.com (euls16034.sgp.st.com [10.75.44.20])
+	by beta.dmz-ap.st.com (STMicroelectronics) with ESMTP id 46F9340050;
+	Wed,  2 Jul 2025 16:14:05 +0200 (CEST)
+Received: from Webmail-eu.st.com (shfdag1node2.st.com [10.75.129.70])
+	by euls16034.sgp.st.com (STMicroelectronics) with ESMTP id 22C18BB2448;
+	Wed,  2 Jul 2025 16:13:50 +0200 (CEST)
+Received: from [10.48.86.185] (10.48.86.185) by SHFDAG1NODE2.st.com
+ (10.75.129.70) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.39; Wed, 2 Jul
+ 2025 16:13:49 +0200
+Message-ID: <164e93e7-b9b1-45ff-8418-3a381b2bc781@foss.st.com>
+Date: Wed, 2 Jul 2025 16:13:48 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <e55caefa-2ea9-4d31-be76-48cdfd481b5c@redhat.com>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 06/13] perf: stm32: introduce DDRPERFM driver
+To: Philipp Zabel <p.zabel@pengutronix.de>, Will Deacon <will@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>, Rob Herring <robh@kernel.org>,
+        Krzysztof
+ Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Maxime
+ Coquelin <mcoquelin.stm32@gmail.com>,
+        Alexandre Torgue
+	<alexandre.torgue@foss.st.com>,
+        Jonathan Corbet <corbet@lwn.net>,
+        Gatien
+ Chevallier <gatien.chevallier@foss.st.com>,
+        Michael Turquette
+	<mturquette@baylibre.com>,
+        Stephen Boyd <sboyd@kernel.org>,
+        Gabriel Fernandez
+	<gabriel.fernandez@foss.st.com>
+CC: <linux-arm-kernel@lists.infradead.org>, <linux-perf-users@vger.kernel.org>,
+        <devicetree@vger.kernel.org>,
+        <linux-stm32@st-md-mailman.stormreply.com>,
+        <linux-kernel@vger.kernel.org>, <linux-doc@vger.kernel.org>,
+        <linux-clk@vger.kernel.org>
+References: <20250623-ddrperfm-upstream-v1-0-7dffff168090@foss.st.com>
+ <20250623-ddrperfm-upstream-v1-6-7dffff168090@foss.st.com>
+ <5d4cf5bff7733421c8a031493742ba6a21e98583.camel@pengutronix.de>
+Content-Language: en-US
+From: Clement LE GOFFIC <clement.legoffic@foss.st.com>
+In-Reply-To: <5d4cf5bff7733421c8a031493742ba6a21e98583.camel@pengutronix.de>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 8bit
+X-ClientProxiedBy: SHFCAS1NODE1.st.com (10.75.129.72) To SHFDAG1NODE2.st.com
+ (10.75.129.70)
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1099,Hydra:6.1.7,FMLib:17.12.80.40
+ definitions=2025-07-02_02,2025-07-02_01,2025-03-28_01
 
-Wed, Jul 02, 2025 at 02:16:53PM +0200, ivecera@redhat.com wrote:
->
->
->On 02. 07. 25 2:02 odp., Jiri Pirko wrote:
->> Wed, Jul 02, 2025 at 01:49:22PM +0200, ivecera@redhat.com wrote:
->> > 
->> > 
->> > On 02. 07. 25 12:57 odp., Jiri Pirko wrote:
->> > > Sun, Jun 29, 2025 at 09:10:44PM +0200, ivecera@redhat.com wrote:
->> > > 
->> > > [...]
->> > > 
->> > > > +/**
->> > > > + * zl3073x_dpll_device_register - register DPLL device
->> > > > + * @zldpll: pointer to zl3073x_dpll structure
->> > > > + *
->> > > > + * Registers given DPLL device into DPLL sub-system.
->> > > > + *
->> > > > + * Return: 0 on success, <0 on error
->> > > > + */
->> > > > +static int
->> > > > +zl3073x_dpll_device_register(struct zl3073x_dpll *zldpll)
->> > > > +{
->> > > > +	struct zl3073x_dev *zldev = zldpll->dev;
->> > > > +	u8 dpll_mode_refsel;
->> > > > +	int rc;
->> > > > +
->> > > > +	/* Read DPLL mode and forcibly selected reference */
->> > > > +	rc = zl3073x_read_u8(zldev, ZL_REG_DPLL_MODE_REFSEL(zldpll->id),
->> > > > +			     &dpll_mode_refsel);
->> > > > +	if (rc)
->> > > > +		return rc;
->> > > > +
->> > > > +	/* Extract mode and selected input reference */
->> > > > +	zldpll->refsel_mode = FIELD_GET(ZL_DPLL_MODE_REFSEL_MODE,
->> > > > +					dpll_mode_refsel);
->> > > 
->> > > Who sets this?
->> > 
->> > WDYM? refsel_mode register? If so this register is populated from
->> > configuration stored in flash inside the chip. And the configuration
->> > is prepared by vendor/OEM.
->> 
->> Okay. Any plan to implement on-fly change of this?
->
->Do you mean switching between automatic and manual mode?
->If so? Yes, later, need to extend DPLL API to allow this.
+Hi Philip
 
-That is why I ask. Looking forward to it.
+On 6/30/25 10:38, Philipp Zabel wrote:
+> On Mo, 2025-06-23 at 11:27 +0200, Clément Le Goffic wrote:
+>> Introduce the driver for the DDR Performance Monitor available on
+>> STM32MPU SoC.
+>>
+>> On STM32MP2 platforms, the DDRPERFM allows to monitor up to 8 DDR events
+>> that come from the DDR Controller such as read or write events.
+>>
+>> On STM32MP1 platforms, the DDRPERFM cannot monitor any event on any
+>> counter, there is a notion of set of events.
+>> Events from different sets cannot be monitored at the same time.
+>> The first chosen event selects the set.
+>> The set is coded in the first two bytes of the config value which is on 4
+>> bytes.
+>>
+>> On STM32MP25x series, the DDRPERFM clock is shared with the DDR controller
+>> and may be secured by bootloaders.
+>> Access controllers allow to check access to a resource. Use the access
+>> controller defined in the devicetree to know about the access to the
+>> DDRPERFM clock.
+>>
+>> Signed-off-by: Clément Le Goffic <clement.legoffic@foss.st.com>
+>> ---
+>>   drivers/perf/Kconfig         |  11 +
+>>   drivers/perf/Makefile        |   1 +
+>>   drivers/perf/stm32_ddr_pmu.c | 893 +++++++++++++++++++++++++++++++++++++++++++
+>>   3 files changed, 905 insertions(+)
+>>
+> [...]
+>> diff --git a/drivers/perf/stm32_ddr_pmu.c b/drivers/perf/stm32_ddr_pmu.c
+>> new file mode 100644
+>> index 000000000000..c0bce1f446a0
+>> --- /dev/null
+>> +++ b/drivers/perf/stm32_ddr_pmu.c
+>> @@ -0,0 +1,893 @@
+> [...]
+>> +	if (of_property_present(pdev->dev.of_node, "resets")) {
+>> +		rst = devm_reset_control_get(&pdev->dev, NULL);
+> 
+> Use devm_reset_control_get_optional_exclusive() instead. It returns
+> NULL if the device tree doesn't contain a resets property.
 
->
->Ivan
->
->> > 
->> > > > +	zldpll->forced_ref = FIELD_GET(ZL_DPLL_MODE_REFSEL_REF,
->> > > > +				       dpll_mode_refsel);
->> > > > +
->> > > > +	zldpll->dpll_dev = dpll_device_get(zldev->clock_id, zldpll->id,
->> > > > +					   THIS_MODULE);
->> > > > +	if (IS_ERR(zldpll->dpll_dev)) {
->> > > > +		rc = PTR_ERR(zldpll->dpll_dev);
->> > > > +		zldpll->dpll_dev = NULL;
->> > > > +
->> > > > +		return rc;
->> > > > +	}
->> > > > +
->> > > > +	rc = dpll_device_register(zldpll->dpll_dev,
->> > > > +				  zl3073x_prop_dpll_type_get(zldev, zldpll->id),
->> > > > +				  &zl3073x_dpll_device_ops, zldpll);
->> > > > +	if (rc) {
->> > > > +		dpll_device_put(zldpll->dpll_dev);
->> > > > +		zldpll->dpll_dev = NULL;
->> > > > +	}
->> > > > +
->> > > > +	return rc;
->> > > > +}
->> > > 
->> > > [...]
->> > > 
->> > 
->> 
->
+Ok I will have a look, thank you
+
+> 
+>> +		if (IS_ERR(rst)) {
+>> +			dev_err(&pdev->dev, "Failed to get reset\n");
+> 
+> Please consider using dev_err_probe() instead.
+
+Ok
+
+>> +			ret = PTR_ERR(rst);
+>> +			goto err_clk;
+>> +		}
+>> +		reset_control_assert(rst);
+>> +		reset_control_deassert(rst);
+> 
+> These can be done unconditionally, as they are no-ops for rst == NULL.
+
+Indeed
+
+Best regards,
+Clément
 
