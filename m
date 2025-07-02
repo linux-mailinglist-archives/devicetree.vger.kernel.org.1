@@ -1,206 +1,221 @@
-Return-Path: <devicetree+bounces-192265-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-192266-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9608AAF5EDE
-	for <lists+devicetree@lfdr.de>; Wed,  2 Jul 2025 18:39:25 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0D40EAF5ED8
+	for <lists+devicetree@lfdr.de>; Wed,  2 Jul 2025 18:38:26 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 7AA903A6802
-	for <lists+devicetree@lfdr.de>; Wed,  2 Jul 2025 16:37:11 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 0EA517A4830
+	for <lists+devicetree@lfdr.de>; Wed,  2 Jul 2025 16:37:00 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id EABC930112C;
-	Wed,  2 Jul 2025 16:36:54 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 23DAA2F508F;
+	Wed,  2 Jul 2025 16:38:11 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="AfQnmP46"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="KMVg3dYL"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0B2222FF49F;
-	Wed,  2 Jul 2025 16:36:52 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F11252F5086;
+	Wed,  2 Jul 2025 16:38:10 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1751474214; cv=none; b=FOMsv8UQ1LyvF42Gb47WTkV2mZix3GztGqmrde6qWAnfhplmm/yhG+GpodaRdQHWwaEVT7sDG1Q52HPy2RXrxoS7VoZf4VEvzd4o4Iv36ruvH5xvkeR+DthkA4cc2Uydaxvh6WdvmWhdDDimOA/zT7FhG/0zJv4Eayek3uPBNHE=
+	t=1751474291; cv=none; b=LLNUJSe372EIbc4/Ar/aQnWH1vzIveeUDe2FUpWdqrd5PDAOPpzNNyjsmqCwLNYpfBHApca/kNPxOAzYhzd6GBKJOm59TupMGRbJJpBV1T6If8J4IWNudbkekKVovjGcHhVTzx7m5Tj8ZLwdTmiqH3M1A+01h7QXA3axp0v6/Wo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1751474214; c=relaxed/simple;
-	bh=jK6F28fMUJndVeavUBEiSQSCcmbleSbOimj3TE++GBM=;
-	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
-	 In-Reply-To:Content-Type; b=BZT9Ma3gBmbfIG2fmlKQMYt5d3HI+OlBxYi6E92OJlO5LftK0cGBq9eaNd+9aPjUW/oT+OJel+3BxrYNv7l2+qMBJp/GQtR/sfL0dFpYagrtWWAoEcbiPzSrU2XmPCQvLa22KIqaYyISwpyMIAwoQzs+wWV+OZdPTSZX1r7Efzs=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=AfQnmP46; arc=none smtp.client-ip=205.220.180.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
-Received: from pps.filterd (m0279873.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 562AlTUn020476;
-	Wed, 2 Jul 2025 16:36:35 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	tNhKWoiWQ/m2i8SMB2stHf9AmyJI1uxJF2UdfKqD+js=; b=AfQnmP46DFYPy7K/
-	MUh1BMuH1CH5+J/r60jc+A6aC8ucwYaH1ucwykC5jjQpNe6dnlrftiECCklZZvUr
-	0zsLsn//hBXZvtUCzqxd+7O3dtJxD/3u7hLItExG+Q3NjWOyojTiNF5qAhufvJ24
-	jywmOTObSJmXc1VL8R8naXuhjXzFz3ZGuFPap0xP0uRNrOQyp8P/B2WakmneTy8B
-	4JPMQ7f36S87MNrz1flYYWMNG0wdRMOTvQAcjHr4rWQxXDJ3RyXRPpAeaZpSg7BH
-	RNkdwRXpWb8UTuxM5YXmyofbXqUNf7YPQfZPipkHuQ8vCZhamWPoNnrzqi+Cmsm+
-	eTk5GQ==
-Received: from nasanppmta04.qualcomm.com (i-global254.qualcomm.com [199.106.103.254])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 47mhxn40nw-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Wed, 02 Jul 2025 16:36:34 +0000 (GMT)
-Received: from nasanex01a.na.qualcomm.com (nasanex01a.na.qualcomm.com [10.52.223.231])
-	by NASANPPMTA04.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 562GaX79017653
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Wed, 2 Jul 2025 16:36:33 GMT
-Received: from [10.50.58.161] (10.80.80.8) by nasanex01a.na.qualcomm.com
- (10.52.223.231) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.9; Wed, 2 Jul 2025
- 09:36:30 -0700
-Message-ID: <7aa47821-ed22-2602-f56d-a6d58195e75f@quicinc.com>
-Date: Wed, 2 Jul 2025 22:06:27 +0530
+	s=arc-20240116; t=1751474291; c=relaxed/simple;
+	bh=Qc9qaZjtszTGfIo1ETHEUtNH5a2Y5/f+r7cHk6zLCuA=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=qVR0ciropc/GjzsqgNwkrG934o6/maL9N4JiiFbcn2+co5w+jsCyu6lnmQqwLk/XNXa9sTihir53qJRVluurKlU4RB2REMtF8nxHBhDsSPepiOfCa3UAb9yToVsda86TQGt3hb0zLZ5nOJwRSmUff4gnXb8U0qm6exPS1QygOZQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=KMVg3dYL; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 34A0BC4CEE7;
+	Wed,  2 Jul 2025 16:38:09 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1751474290;
+	bh=Qc9qaZjtszTGfIo1ETHEUtNH5a2Y5/f+r7cHk6zLCuA=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=KMVg3dYLUaNyfuSBOfBXNwS3dJMPaU7p8P4tXXQzf/3p1CZXHWxsu+U4+KHbw/8Ep
+	 1SmQeG/jqruES5oXpLVu5y3lCHXMI70Md2yNVm6DV0NWeNlkK2mRw+24f5FIVzvAT9
+	 odpAX1YvQqK/1hldpCiexN0q2RbOfPNlkzeR2zRymdgXAoDyWhUgfuVNCj+TrnTOGd
+	 3QMykmPmHpJIrTW6PiHdTMIFfaErsDejIpKsHyX8SxBPLoSr/DBRB7K1mMc+nWqP1u
+	 w+wGkPe3j/WnHFmjcFoyeKmU7LNeV2XJgDzMHkkH226McR033f5zuogRE+LfX/2KNt
+	 aCSVhhnkvTATQ==
+Date: Wed, 2 Jul 2025 17:38:06 +0100
+From: Conor Dooley <conor@kernel.org>
+To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org
+Subject: Re: [PATCH] docs: dt: writing-bindings: Express better expectation
+ of "specific"
+Message-ID: <20250702-dicing-yo-yo-ddccd5ae7d5a@spud>
+References: <20250702161700.229458-2-krzysztof.kozlowski@linaro.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
- Thunderbird/102.15.1
-Subject: Re: [PATCH v3 1/5] media: dt-bindings: add non-pixel property in iris
- schema
-Content-Language: en-US
-To: Krzysztof Kozlowski <krzk@kernel.org>,
-        Konrad Dybcio
-	<konrad.dybcio@oss.qualcomm.com>,
-        Dikshita Agarwal
-	<quic_dikshita@quicinc.com>,
-        Abhinav Kumar <abhinav.kumar@linux.dev>,
-        "Bryan
- O'Donoghue" <bryan.odonoghue@linaro.org>,
-        Mauro Carvalho Chehab
-	<mchehab@kernel.org>,
-        Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski
-	<krzk+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>
-CC: <linux-media@vger.kernel.org>, <linux-arm-msm@vger.kernel.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>
-References: <20250627-video_cb-v3-0-51e18c0ffbce@quicinc.com>
- <20250627-video_cb-v3-1-51e18c0ffbce@quicinc.com>
- <19dd2e69-ad13-46f2-b99f-04a5e26f10d3@kernel.org>
- <08c8cdfd-099e-7b90-b163-23ecee3a5da4@quicinc.com>
- <118f2cbe-d8bd-4177-b0d5-91d9f1dbbef0@kernel.org>
- <9f5be122-302d-402f-91f2-675507612d32@oss.qualcomm.com>
- <023038d4-2258-4b2d-a3f9-b817ef0173bc@kernel.org>
-From: Vikash Garodia <quic_vgarodia@quicinc.com>
-In-Reply-To: <023038d4-2258-4b2d-a3f9-b817ef0173bc@kernel.org>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
- nasanex01a.na.qualcomm.com (10.52.223.231)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwNzAyMDEzNiBTYWx0ZWRfX2VlnT31Xl62X
- BtPnqIUeYFGusQ/lq/+aoAIV12Uuc210vOBLU75U2qKRl3w0N4G5xvgd7ABnbMrX5BB+dVSPvOA
- 60RI5mi6J2jVxF2RDKMCvUMLpjttIOixZ1+fV1p80hpFsXi+rk7f+Cq6c6SH3Vdh3NdWtOWeC3x
- hD45U2M+JN7t7ZxkAsNSsRLMChd5pbgIDAdS4jLaXZHe0xgZl0LeR/x+vZfxUqBvWwxzlv6KWbY
- klus5SubbMuOxjndKNbEJCJ5qxkOp1gQ9+uJyBTkLJ9ETsz2/Q/3rbWbktIJmrJ2Sp082qQRe+C
- IWd5V+LoKwB6nzEIf7+PjTqbFL04Wck6jwjl1aOz5YkeCsYZt2S/sttRiCxbxTj7VwiJnZ6mx/4
- n/HAe2SaNWHZPKF+3nepPT97v2vPhq64pbN/LZSnWgTRR3RcgliKiowl7v7ZCWYm5VS6zg8k
-X-Authority-Analysis: v=2.4 cv=EbvIQOmC c=1 sm=1 tr=0 ts=68656013 cx=c_pps
- a=JYp8KDb2vCoCEuGobkYCKw==:117 a=JYp8KDb2vCoCEuGobkYCKw==:17
- a=GEpy-HfZoHoA:10 a=IkcTkHD0fZMA:10 a=Wb1JkmetP80A:10 a=NEAV23lmAAAA:8
- a=HNBVKBRzm7chqmqNzysA:9 a=QEXdDO2ut3YA:10
-X-Proofpoint-ORIG-GUID: yPwUljbLtaJamIjb4y5GHOiJ1tQBaUfh
-X-Proofpoint-GUID: yPwUljbLtaJamIjb4y5GHOiJ1tQBaUfh
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1099,Hydra:6.1.7,FMLib:17.12.80.40
- definitions=2025-07-02_02,2025-07-02_02,2025-03-28_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- phishscore=0 mlxscore=0 priorityscore=1501 mlxlogscore=938 lowpriorityscore=0
- malwarescore=0 adultscore=0 clxscore=1015 bulkscore=0 impostorscore=0
- spamscore=0 suspectscore=0 classifier=spam authscore=0 authtc=n/a authcc=
- route=outbound adjust=0 reason=mlx scancount=1 engine=8.19.0-2505280000
- definitions=main-2507020136
+Content-Type: multipart/signed; micalg=pgp-sha256;
+	protocol="application/pgp-signature"; boundary="ExsRr/5aIlsNDTUR"
+Content-Disposition: inline
+In-Reply-To: <20250702161700.229458-2-krzysztof.kozlowski@linaro.org>
 
 
-On 7/2/2025 7:29 PM, Krzysztof Kozlowski wrote:
-> On 02/07/2025 15:11, Konrad Dybcio wrote:
->> On 7/2/25 1:46 PM, Krzysztof Kozlowski wrote:
->>> On 02/07/2025 13:32, Vikash Garodia wrote:
->>>>
->>>> On 7/2/2025 4:43 PM, Krzysztof Kozlowski wrote:
->>>>> On 27/06/2025 17:48, Vikash Garodia wrote:
->>>>>> Existing definition limits the IOVA to an addressable range of 4GiB, and
->>>>>> even within that range, some of the space is used by IO registers,
->>>>>> thereby limiting the available IOVA to even lesser. Video hardware is
->>>>>> designed to emit different stream-ID for pixel and non-pixel buffers,
->>>>>> thereby introduce a non-pixel sub node to handle non-pixel stream-ID.
->>>>>>
->>>>>> With this, both iris and non-pixel device can have IOVA range of 0-4GiB
->>>>>> individually. Certain video usecases like higher video concurrency needs
->>>>>> IOVA higher than 4GiB.
->>>>>>
->>>>>> Add reference to the reserve-memory schema, which defines reserved IOVA
->>
->> [...]
->>
->>>>>>    dma-coherent: true
->>>>>>  
->>>>>> +  non-pixel:
->>>>>
->>>>> Why EXISTING hardware grows?
->>>> Same here, the commit describes the limitation of existing design and also
->>>> explains the need for having the non-pixel device. Its not that the hardware is
->>>> growing here, rather the hardware stream-IDs are utilized differently to get
->>>> higher device addressable range.
->>>
->>> You are not doing this for a new device. There is no new device here at
->>> all. Nowhere here is a new device.
->>>
->>> Changes for a new device COME TOGETHER with the new device.
->>>
->>> What you are doing here is changing existing hardware without any
->>> explanation why.
->>
->> This is bindings getting a reality check.. this goes as far back as Venus
->> existed (msm8974/2012)
-> 
-> This won't fly. This is a new binding after long reviews and
-> discussions, why Qualcomm does not want to extend existing Venus but
-> needs completely new Iris. Well, if you get completely new Iris, you
-> cannot use argument of "legacy". We insisted on growing existing
-> solution, but choice of abandoning it and coming with a new one means
-> you were supposed to do it right since there is no legacy.
-> 
->>
->> We unfortunately have to expect a number of similar updates for all
->> multimedia peripherals (GPU/Camera/Display etc.), as certain mappings
->> must be done through certain SIDs (which are deemed 'secure') and some
->> hardware has general addressing limitations that may have been causing
->> silent issues all along
->>
-> Isn't all this commit msg here about non-pixel stuff just not really
-> describing the real problem at all? This commit msg is very vague and
-> silent on actual use cases and actual firmware, so even multiple
-> readings of commit msg did not help me. Stephan Gerhold now nicely
-> summarized what was never told in commit msg - there is a gap in address
-> space which is reserved for firmware and no allocations can be done from
-> that?
-Yes precisely that. Thanks to Stephan for clarifying.
+--ExsRr/5aIlsNDTUR
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-An existing example which is defined in reserve-memory schema here
-https://github.com/devicetree-org/dt-schema/blame/main/dtschema/schemas/reserved-memory/reserved-memory.yaml#L149
+On Wed, Jul 02, 2025 at 06:17:01PM +0200, Krzysztof Kozlowski wrote:
+> Devicetree bindings are supposed to be specific in terms of compatibles
+> and other properties.  Short "specific" has many implications, so extend
+> the description to cover them: no family names, avoid generic SoC
+> fallbacks, avoid versioned compatibles, avoid properties implied by
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+IDK if it is intentional, but while you mention this here it doesn't
+appear in the text below. Probably as simple as "DON'T use versioned
+compatibles, unless documenting a HDL IP core"?
 
-> 
-> Also commit msg says "Existing definition limits the IOVA to an
-> addressable range of 4GiB, and" but I do not see such definition in the
-> binding at all. So what does it refer to?
-Processors based out of 32 bit OS, can serve addresses in range 0-31, which
-implies 4GiB (2pow31).
-> 
-> 
-> 
-> Best regards,
-> Krzysztof
+> compatible.
+>=20
+> Also document desired lack of ABI impact and acceptable solution if such
+> needs arises: clearly marking it in commit msg.
+>=20
+> All above follows established Devicetree bindings maintainers review
+> practice, so no new rules are introduced here.
+>=20
+> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+>=20
+> ---
+>=20
+> I have vast (~10-page) document describing DT bindings and DTS rules,
+> based on Rob's and other people's reviews (with references...). Let me
+> try to funnel it here gradually. Why gradually? The intention of
+> writing-bindings document is to be concise, so rephrasing my 10 pages
+> covering each little detail into generic, concise rule is not that easy,
+> especially for non-native speaker.
+>=20
+> Optionally I could also post my 10-page guide somewhere, but then it
+> would be one more document to ignore. I think we have enough of such.
+> Ah, and I would have one less topic for conference. :)
+> ---
+>  .../devicetree/bindings/writing-bindings.rst  | 25 +++++++++++++++----
+>  1 file changed, 20 insertions(+), 5 deletions(-)
+>=20
+> diff --git a/Documentation/devicetree/bindings/writing-bindings.rst b/Doc=
+umentation/devicetree/bindings/writing-bindings.rst
+> index 1ad081de2dd0..dc0e4b63984c 100644
+> --- a/Documentation/devicetree/bindings/writing-bindings.rst
+> +++ b/Documentation/devicetree/bindings/writing-bindings.rst
+> @@ -39,10 +39,15 @@ Overall design
+>  Properties
+>  =3D=3D=3D=3D=3D=3D=3D=3D=3D=3D
+> =20
+> -- DO make 'compatible' properties specific. DON'T use wildcards in compa=
+tible
+> -  strings. DO use fallback compatibles when devices are the same as or a=
+ subset
+> -  of prior implementations. DO add new compatibles in case there are new
+> -  features or bugs.
+> +- DO make 'compatible' properties specific. DON'T use wildcards or
+> +  device-family names in compatible strings.
+
+> DO use fallback compatibles when
+> +  devices are the same as or a subset of prior implementations.
+
+Isn't this wrong? If you're a subset of a prior implementation, falling
+back to the prior implementation's compatible would enable features that
+are not present in the new device. That's not something you introduced,
+it's the existing wording, but I don't think that's correct. It would have
+to be a /superset/ of a prior implementation for this to be correct, no?
+
+> DO add new
+> +  compatibles in case there are new features or bugs.
+
+I think it might be best to break each "DO" or "DON'T" into a bullet
+point of its own. At least it'd make it more clear what the specific dos
+and don'ts are.
+
+> +
+> +   - Use SoC-specific compatible for all SoC devices, followed by a fall=
+back if
+
+"Use a".
+
+> +     appropriate.
+> +
+> +   - Specific SoC compatible is also preferred for the fallbacks.
+
+I hate to nitpick language to a non-native speaker, but when you have a
+plural "fallbacks", it would be "Specific SoC compatibles are also
+preferred". Probably also "SoC-specific" too, to match the wording used
+in the bullet prior?
+
+> =20
+>  - DO use a vendor prefix on device-specific property names. Consider if
+>    properties could be common among devices of the same class. Check other
+> @@ -51,12 +56,22 @@ Properties
+>  - DON'T redefine common properties. Just reference the definition and de=
+fine
+>    constraints specific to the device.
+> =20
+> +- DON'T add properties to avoid a specific compatible.  DON'T add proper=
+ties if
+> +  they are implied by (deducible from) the compatible.
+> +
+>  - DO use common property unit suffixes for properties with scientific un=
+its.
+>    Recommended suffixes are listed at
+>    https://github.com/devicetree-org/dt-schema/blob/main/dtschema/schemas=
+/property-units.yaml
+> =20
+>  - DO define properties in terms of constraints. How many entries? What a=
+re
+> -  possible values? What is the order?
+> +  possible values? What is the order? All these constraints represent th=
+e ABI
+> +  as well.
+> +
+> +- DON't change the ABI, but if ever needed to change, then DO explicitly
+
+"DON'T", not "DON't". But this immediately contradicts itself, so maybe
+a different wording could be used here. Maybe "DON'T make changes that
+break the ABI without explicit and detailed rationale for why the
+changes have to be made and their impact."?
+
+> +  document that in the commit msg with rationale WHY ABI has to be broke=
+n and
+> +  what is the impact. ABI impact is beyond Linux kernel, because it cove=
+rs also
+
+I think this should be "ABI impact /goes/ beyond /the/ Linux kernel,
+because it /also/ covers other open-source upstream projects.".
+
+Cheers,
+Conor.
+
+> +  other open-source upstream projects.
+> +
+> =20
+>  Typical cases and caveats
+>  =3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D
+> --=20
+> 2.43.0
+>=20
+
+--ExsRr/5aIlsNDTUR
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCaGVgbgAKCRB4tDGHoIJi
+0v+SAQDiSRz2cEksHUrXKYhuPZfURXHZTVQuM4alHdgIjusWfgEAnsR8HMVKSvzM
+bbZv4zC519Chhfd2InIlDy1eUjmG4g0=
+=ELdN
+-----END PGP SIGNATURE-----
+
+--ExsRr/5aIlsNDTUR--
 
