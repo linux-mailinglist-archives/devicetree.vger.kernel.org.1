@@ -1,235 +1,198 @@
-Return-Path: <devicetree+bounces-192354-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-192355-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 65C54AF65BD
-	for <lists+devicetree@lfdr.de>; Thu,  3 Jul 2025 01:00:48 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 498DFAF660E
+	for <lists+devicetree@lfdr.de>; Thu,  3 Jul 2025 01:11:00 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 718784E6E48
-	for <lists+devicetree@lfdr.de>; Wed,  2 Jul 2025 23:00:48 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 0919C4E0A15
+	for <lists+devicetree@lfdr.de>; Wed,  2 Jul 2025 23:10:34 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5B9C1247298;
-	Wed,  2 Jul 2025 23:00:36 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 946D826562C;
+	Wed,  2 Jul 2025 23:09:47 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="NqrK4lF6"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="hw2E8w9d"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-pl1-f169.google.com (mail-pl1-f169.google.com [209.85.214.169])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2E3082DE70A;
-	Wed,  2 Jul 2025 23:00:35 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 00D6E243964;
+	Wed,  2 Jul 2025 23:09:45 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.169
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1751497236; cv=none; b=RM4Wfk2DtrPqLZmUur8CSaRL4HBtqWP72Z7G9Bdi9RCO0Jl5FGu4tf27vh6EHseWXLAVv+l+kGb+wFjTayRim+o5vdClmO85rgOp5BulEO34kojIedMr/z08eDFGaTfL0wWv2fM7PVq6d/dyFomUFPp1YCERBqqTy7xWPE87pBQ=
+	t=1751497787; cv=none; b=Psi7rVl+yeNeMpplOatMxTdWeQowSdut/fQjvM0Q+kGLAL38bDX7ox2CQ+qIaeH8zJR/+WrXwRWzCcNR3Bf0WfzFTh29fY7zBDWMYclGLUeUGJ1PUDuKcadc5HSAB3cqSHddM9PGeVyCD3EllFeNeUSVWgqKVPxEN08zg6Sy2Qc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1751497236; c=relaxed/simple;
-	bh=l1Dq2ziWwCy451Reco0CZbXcQxerBHOVbkQIpdPT240=;
-	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=oGN2evjhYgVBjqCBcpK+E/dvDjZX5NxvdLhlc7SgHwQmKMTMe5Sel5qWhv6muT4wMEIC6wOpswmHyjmzg6xJSjpt03m4XROUifQHqkXZAkav6FDNzZ9Gb8mPgf8CAlCgumvM59EFg8k4F7m3IhtbnqH6fxqonRx1bjEGMtJMJ4c=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=NqrK4lF6; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 92B08C4CEEE;
-	Wed,  2 Jul 2025 23:00:35 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1751497235;
-	bh=l1Dq2ziWwCy451Reco0CZbXcQxerBHOVbkQIpdPT240=;
-	h=From:To:Cc:Subject:Date:From;
-	b=NqrK4lF6a7z0RVq/7bt66Zp0oxXtKIpRrzXkFKBfaIJU2s3PFVCsCHLaQgp6YlJc/
-	 TueC2n4JXr6dLMf9J9JnCi5wItGV4qNe3OvDTJdNRSAHRpA5r4DMdF+5NJiWVybWZ4
-	 cAJCV/mlVduWetQ6BavQ2ldpdlei0IxRi5S13AUvBNhGtqo01kcET9/3dsGvtoVXM0
-	 yQHeYo/5W6Usaj5ZokqltI3wSViXNlToX3ZI0+w4+ty7x8YjWi6jtKZRJ/RSjTU4m5
-	 LsnKbvE983+S2Q624hX6UZdlF6g7SsGdgo7OJM0xMk5KqkXQWxXjI9ml4xIoWLdQn8
-	 4Z7JN7FlAhW5g==
-From: "Rob Herring (Arm)" <robh@kernel.org>
-To: Andrew Lunn <andrew@lunn.ch>,
-	Gregory Clement <gregory.clement@bootlin.com>,
-	Sebastian Hesselbarth <sebastian.hesselbarth@gmail.com>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	"Rafael J. Wysocki" <rafael@kernel.org>,
-	Daniel Lezcano <daniel.lezcano@linaro.org>,
-	Zhang Rui <rui.zhang@intel.com>,
-	Lukasz Luba <lukasz.luba@arm.com>,
-	Miquel Raynal <miquel.raynal@bootlin.com>
-Cc: linux-arm-kernel@lists.infradead.org,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	linux-pm@vger.kernel.org
-Subject: [PATCH] dt-binding: thermal: Convert marvell,armada-ap806-thermal to DT schema
-Date: Wed,  2 Jul 2025 18:00:29 -0500
-Message-ID: <20250702230030.2892116-1-robh@kernel.org>
-X-Mailer: git-send-email 2.47.2
+	s=arc-20240116; t=1751497787; c=relaxed/simple;
+	bh=MhO+pwJmoll1p+yzF93yS9d1MkkzU6Tx+rIh+F8aVg8=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=Fcs93UT5Rd76tNylGxYUoEs2q4RBRkztJ8fa1V6TQNT58SAzY8mR4Han6JsRb4cBR227ggTprPQv2yeOyC7eahw4R4te1bHMfTQLs2tuYpqWcCTCscyDG5m0eB2UGX1eCvQ0Eofa+T9HFdR5cG/Xi9wpz9sg6CHYJJpA3VANAFE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=hw2E8w9d; arc=none smtp.client-ip=209.85.214.169
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-pl1-f169.google.com with SMTP id d9443c01a7336-234b440afa7so74810285ad.0;
+        Wed, 02 Jul 2025 16:09:45 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1751497785; x=1752102585; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=XeivJRV1NlwEM68DYnpxYNj/SFkkK7NrLDkX6W6GBRM=;
+        b=hw2E8w9dJnzqHd+Y+vypjVmsCnko1G46gLjMZ9E3NWow3FfDCHs3g/YRYvlKZVWNSj
+         BKw12QCGNzSm6lWnY1r5oqWvhJV7tshnaNzIhf4n6yT5Q3ouSdxkdYzGSZ7CoZmA6nEZ
+         tqKyFcTKgkVKzZrWJ15G9AGRj5yVSRLXl91h00JY9TLgw621rcZASXdWQ0Ds8qdes5ph
+         oxax5xB/B4T7zpRNR+BGlHjOiuqQdlPvATw1kiFKGQLna5T54txE2f2ZiuJWgzsMepm5
+         mID6riMT6Z/SkircN7sdjh8Pi450DvcDX+6QhSZkSSLU+rEInJ8meYlcudRbIR/MFNxq
+         pvDw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1751497785; x=1752102585;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=XeivJRV1NlwEM68DYnpxYNj/SFkkK7NrLDkX6W6GBRM=;
+        b=YhOpJoxKBfs6L1lTgtMOePle0KHZ9qiisfFAF6TnrIdUqlkeTxpD6p2MSlfsiusXCr
+         t1SVDwNobG9HyUaCXGVleSKGW+o52EfcuVu1cjTgZ6+FewRuAlCR6R0982bdB9MtGhpA
+         FZ1jiwYqIyxNNuPBrwxTa5onzSPmffmTNRU7XtbnMzkxOURXrB4brBFtR7uhrFWePyVo
+         AOmn9RbI0KVRx2j0+c4jIkhHVqEJOZlBLywcUDjWT5rKO+5dJQkwI68Wem92dzd2LnWV
+         WZPPL0DCambF0vRObZr72go/0+rvYUSdhcsprKyLh6ZKQE/8s2vEGhT/I/tSPV2cb3cf
+         x+OQ==
+X-Forwarded-Encrypted: i=1; AJvYcCUa0U/cKqJ1mTfnrjfyBXBRFm5hTpccCMcY+HInfA3/m6BLUcT/kXzBq8hgqU2v/04FfgOoeMV1eMi5@vger.kernel.org, AJvYcCWBMh3ROUwnXeYHc//dvM+FYcNYA5huO+/Siz6EC9Y6sxjmnJrYdek8vJ8W1645GabYNoqEqe7KmDYC7j3u@vger.kernel.org
+X-Gm-Message-State: AOJu0YxncNucH1z1bw2MsdPoPCBcwhGC2bCqVcHONGDBH+Zjt8ghkpiT
+	MwUAYsBGt731DFIs3RqC22eu6cA0pzn09Y9TE+BQaBqnDoqkx5qPdvne
+X-Gm-Gg: ASbGncum0qveftpexNXOFUONvUwTpgHqivnTEhejGlUpOfzT6WMuAQoD7WpFp3ZahgA
+	e+y3lOx9PB0HXni1WOWGLXeXYpt9zK1c8layK83zTnJol3NjqKj91fs5u+zGNwx3YQLQbFjl/lU
+	AEXAvbJYv3Bi8cpGoaA3HytE7W6+hLrb3FnufZC/jlUfTAVdgNggou3EBrOiJy27D04X1U8HCRX
+	4JV6ceDfeGdvvYx4OVF6SoNbBKdUTlBGacpX67UzxA5qQObLAZ6cgYdHeqCy8kJLj5mvkEZzldF
+	UpLPZ2TSmYp/AobIk2VgpEXFKGtlvH8vqLAi7LYVaw7n00lUAxBox1yZIziPjARoNF1B0aDg0fn
+	QOkU/iVNy3e5AUP9mOCfbBVDH3iJP4SOvlZXd09I=
+X-Google-Smtp-Source: AGHT+IEVdT1zTpOAW82Mu/cKqzXbhhazsjZMaKYPAm5vkqC5kKsvAAVyqV0n0+btI2SrjFS8l0lO5Q==
+X-Received: by 2002:a17:903:1ac4:b0:234:cb4a:bc48 with SMTP id d9443c01a7336-23c6e593323mr74668905ad.31.1751497785135;
+        Wed, 02 Jul 2025 16:09:45 -0700 (PDT)
+Received: from localhost.localdomain (c-76-133-73-115.hsd1.ca.comcast.net. [76.133.73.115])
+        by smtp.gmail.com with ESMTPSA id d9443c01a7336-23acb2e244fsm142696605ad.12.2025.07.02.16.09.43
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 02 Jul 2025 16:09:44 -0700 (PDT)
+Date: Wed, 2 Jul 2025 16:09:42 -0700
+From: Tao Ren <rentao.bupt@gmail.com>
+To: Andrew Lunn <andrew@lunn.ch>
+Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>, Joel Stanley <joel@jms.id.au>,
+	Andrew Jeffery <andrew@codeconstruct.com.au>,
+	devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+	linux-aspeed@lists.ozlabs.org, linux-kernel@vger.kernel.org,
+	Tao Ren <taoren@meta.com>
+Subject: Re: [PATCH 5/5] ARM: dts: aspeed: Add Facebook Darwin (AST2600) BMC
+Message-ID: <aGW8Nm8ZWMwRYVOo@localhost.localdomain>
+References: <20250702050421.13729-1-rentao.bupt@gmail.com>
+ <20250702050421.13729-6-rentao.bupt@gmail.com>
+ <a6f6966b-50ee-4b4f-9422-96c6ac9391a2@lunn.ch>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <a6f6966b-50ee-4b4f-9422-96c6ac9391a2@lunn.ch>
 
-Convert the Marvell Armada AP80x/CP110 thermal binding to schema. It is
-a straight forward conversion.
+On Wed, Jul 02, 2025 at 09:40:40AM +0200, Andrew Lunn wrote:
+> On Tue, Jul 01, 2025 at 10:04:16PM -0700, rentao.bupt@gmail.com wrote:
+> > From: Tao Ren <rentao.bupt@gmail.com>
+> > 
+> > Add initial device tree for the Meta (Facebook) Darwin AST2600 BMC.
+> > 
+> > Darwin is Meta's rack switch platform with an AST2600 BMC integrated for
+> > health monitoring purpose.
+> > 
+> > Signed-off-by: Tao Ren <rentao.bupt@gmail.com>
+> > ---
+> >  arch/arm/boot/dts/aspeed/Makefile             |  1 +
+> >  .../dts/aspeed/aspeed-bmc-facebook-darwin.dts | 92 +++++++++++++++++++
+> >  2 files changed, 93 insertions(+)
+> >  create mode 100644 arch/arm/boot/dts/aspeed/aspeed-bmc-facebook-darwin.dts
+> > 
+> > diff --git a/arch/arm/boot/dts/aspeed/Makefile b/arch/arm/boot/dts/aspeed/Makefile
+> > index 2e5f4833a073..debbfc0151f8 100644
+> > --- a/arch/arm/boot/dts/aspeed/Makefile
+> > +++ b/arch/arm/boot/dts/aspeed/Makefile
+> > @@ -20,6 +20,7 @@ dtb-$(CONFIG_ARCH_ASPEED) += \
+> >  	aspeed-bmc-facebook-bletchley.dtb \
+> >  	aspeed-bmc-facebook-catalina.dtb \
+> >  	aspeed-bmc-facebook-cmm.dtb \
+> > +	aspeed-bmc-facebook-darwin.dtb \
+> >  	aspeed-bmc-facebook-elbert.dtb \
+> >  	aspeed-bmc-facebook-fuji.dtb \
+> >  	aspeed-bmc-facebook-galaxy100.dtb \
+> > diff --git a/arch/arm/boot/dts/aspeed/aspeed-bmc-facebook-darwin.dts b/arch/arm/boot/dts/aspeed/aspeed-bmc-facebook-darwin.dts
+> > new file mode 100644
+> > index 000000000000..f902230dada3
+> > --- /dev/null
+> > +++ b/arch/arm/boot/dts/aspeed/aspeed-bmc-facebook-darwin.dts
+> > @@ -0,0 +1,92 @@
+> > +// SPDX-License-Identifier: GPL-2.0+
+> > +// Copyright (c) 2021 Facebook Inc.
+> > +
+> > +/dts-v1/;
+> > +
+> > +#include "ast2600-facebook-netbmc-common.dtsi"
+> > +
+> > +/ {
+> > +	model = "Facebook Darwin BMC";
+> > +	compatible = "facebook,darwin-bmc", "aspeed,ast2600";
+> > +
+> > +	aliases {
+> > +		serial0 = &uart5;
+> > +		serial1 = &uart1;
+> > +		serial2 = &uart2;
+> > +		serial3 = &uart3;
+> > +	};
+> > +
+> > +	chosen {
+> > +		stdout-path = &uart5;
+> > +	};
+> > +
+> > +	iio-hwmon {
+> > +		compatible = "iio-hwmon";
+> > +		io-channels = <&adc0 0>, <&adc0 1>, <&adc0 2>, <&adc0 3>,
+> > +			      <&adc0 4>, <&adc0 5>, <&adc0 6>, <&adc0 7>,
+> > +			      <&adc1 0>, <&adc1 1>, <&adc1 2>, <&adc1 3>,
+> > +			      <&adc1 4>, <&adc1 5>, <&adc1 6>, <&adc1 7>;
+> > +	};
+> > +
+> > +	spi_gpio: spi {
+> > +		num-chipselects = <1>;
+> > +		cs-gpios = <&gpio0 ASPEED_GPIO(X, 0) GPIO_ACTIVE_LOW>;
+> > +	};
+> > +};
+> > +
+> > +/*
+> > + * BMC's "mac3" controller is connected to BCM53134P's IMP_RGMII port
+> > + * directly (fixed link, no PHY in between).
+> > + * Note: BMC's "mdio0" controller is connected to BCM53134P's MDIO
+> > + * interface, and the MDIO channel will be enabled in dts later (when
+> > + * "bcm53xx" driver's probe failure is solved on the platform).
+> > + */
+> > +&mac3 {
+> > +	status = "okay";
+> > +	phy-mode = "rgmii";
+> 
+> How do RGMII delays work? Connections to switches have to be handled
+> different to PHYs, to avoid double delays. But is there extra long
+> clock lines? Or are you expecting the switch to add the delays?
+> 
+>       Andrew
 
-Signed-off-by: Rob Herring (Arm) <robh@kernel.org>
----
- .../arm/marvell/ap80x-system-controller.txt   | 39 ----------------
- .../arm/marvell/cp110-system-controller.txt   | 43 ------------------
- .../thermal/marvell,armada-ap806-thermal.yaml | 44 +++++++++++++++++++
- 3 files changed, 44 insertions(+), 82 deletions(-)
- create mode 100644 Documentation/devicetree/bindings/thermal/marvell,armada-ap806-thermal.yaml
+Hi Andrew,
 
-diff --git a/Documentation/devicetree/bindings/arm/marvell/ap80x-system-controller.txt b/Documentation/devicetree/bindings/arm/marvell/ap80x-system-controller.txt
-index c83245065d44..72de11bd2ef0 100644
---- a/Documentation/devicetree/bindings/arm/marvell/ap80x-system-controller.txt
-+++ b/Documentation/devicetree/bindings/arm/marvell/ap80x-system-controller.txt
-@@ -115,45 +115,6 @@ ap_syscon: system-controller@6f4000 {
- SYSTEM CONTROLLER 1
- ===================
- 
--Thermal:
----------
--
--For common binding part and usage, refer to
--Documentation/devicetree/bindings/thermal/thermal*.yaml
--
--The thermal IP can probe the temperature all around the processor. It
--may feature several channels, each of them wired to one sensor.
--
--It is possible to setup an overheat interrupt by giving at least one
--critical point to any subnode of the thermal-zone node.
--
--Required properties:
--- compatible: must be one of:
--  * marvell,armada-ap806-thermal
--- reg: register range associated with the thermal functions.
--
--Optional properties:
--- interrupts: overheat interrupt handle. Should point to line 18 of the
--  SEI irqchip. See interrupt-controller/interrupts.txt
--- #thermal-sensor-cells: shall be <1> when thermal-zones subnodes refer
--  to this IP and represents the channel ID. There is one sensor per
--  channel. O refers to the thermal IP internal channel, while positive
--  IDs refer to each CPU.
--
--Example:
--ap_syscon1: system-controller@6f8000 {
--	compatible = "syscon", "simple-mfd";
--	reg = <0x6f8000 0x1000>;
--
--	ap_thermal: thermal-sensor@80 {
--		compatible = "marvell,armada-ap806-thermal";
--		reg = <0x80 0x10>;
--		interrupt-parent = <&sei>;
--		interrupts = <18>;
--		#thermal-sensor-cells = <1>;
--	};
--};
--
- Cluster clocks:
- ---------------
- 
-diff --git a/Documentation/devicetree/bindings/arm/marvell/cp110-system-controller.txt b/Documentation/devicetree/bindings/arm/marvell/cp110-system-controller.txt
-index 9d5d70c98058..54ff9f218328 100644
---- a/Documentation/devicetree/bindings/arm/marvell/cp110-system-controller.txt
-+++ b/Documentation/devicetree/bindings/arm/marvell/cp110-system-controller.txt
-@@ -189,46 +189,3 @@ CP110_LABEL(syscon0): system-controller@440000 {
- 	};
- 
- };
--
--SYSTEM CONTROLLER 1
--===================
--
--Thermal:
----------
--
--The thermal IP can probe the temperature all around the processor. It
--may feature several channels, each of them wired to one sensor.
--
--It is possible to setup an overheat interrupt by giving at least one
--critical point to any subnode of the thermal-zone node.
--
--For common binding part and usage, refer to
--Documentation/devicetree/bindings/thermal/thermal*.yaml
--
--Required properties:
--- compatible: must be one of:
--  * marvell,armada-cp110-thermal
--- reg: register range associated with the thermal functions.
--
--Optional properties:
--- interrupts-extended: overheat interrupt handle. Should point to
--  a line of the ICU-SEI irqchip (116 is what is usually used by the
--  firmware). The ICU-SEI will redirect towards interrupt line #37 of the
--  AP SEI which is shared across all CPs.
--  See interrupt-controller/interrupts.txt
--- #thermal-sensor-cells: shall be <1> when thermal-zones subnodes refer
--  to this IP and represents the channel ID. There is one sensor per
--  channel. O refers to the thermal IP internal channel.
--
--Example:
--CP110_LABEL(syscon1): system-controller@6f8000 {
--	compatible = "syscon", "simple-mfd";
--	reg = <0x6f8000 0x1000>;
--
--	CP110_LABEL(thermal): thermal-sensor@70 {
--		compatible = "marvell,armada-cp110-thermal";
--		reg = <0x70 0x10>;
--		interrupts-extended = <&CP110_LABEL(icu_sei) 116 IRQ_TYPE_LEVEL_HIGH>;
--		#thermal-sensor-cells = <1>;
--	};
--};
-diff --git a/Documentation/devicetree/bindings/thermal/marvell,armada-ap806-thermal.yaml b/Documentation/devicetree/bindings/thermal/marvell,armada-ap806-thermal.yaml
-new file mode 100644
-index 000000000000..fdbdf3c1273a
---- /dev/null
-+++ b/Documentation/devicetree/bindings/thermal/marvell,armada-ap806-thermal.yaml
-@@ -0,0 +1,44 @@
-+# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/thermal/marvell,armada-ap806-thermal.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: Marvell Armada AP80x/CP110 thermal management
-+
-+maintainers:
-+  - Miquel Raynal <miquel.raynal@bootlin.com>
-+
-+properties:
-+  compatible:
-+    enum:
-+      - marvell,armada-ap806-thermal
-+      - marvell,armada-ap807-thermal
-+      - marvell,armada-cp110-thermal
-+
-+  reg:
-+    maxItems: 1
-+
-+  interrupts:
-+    description: overheat interrupt
-+    maxItems: 1
-+
-+  '#thermal-sensor-cells':
-+    description: Cell represents the channel ID. There is one sensor per
-+      channel. O refers to the thermal IP internal channel.
-+    const: 1
-+
-+required:
-+  - compatible
-+  - reg
-+
-+additionalProperties: false
-+
-+examples:
-+  - |
-+    thermal-sensor@80 {
-+        compatible = "marvell,armada-ap806-thermal";
-+        reg = <0x80 0x10>;
-+        interrupts = <18>;
-+        #thermal-sensor-cells = <1>;
-+    };
--- 
-2.47.2
+The delays are introduced in BMC MAC by setting SCU control registers in
+u-boot. The delays on the switch side are disabled.
 
+I will add some comments for the delays in v2 (after addressing the dts
+schema warnings). Is that okay?
+
+
+Thanks,
+
+Tao
 
