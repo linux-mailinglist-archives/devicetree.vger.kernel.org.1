@@ -1,137 +1,138 @@
-Return-Path: <devicetree+bounces-192320-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-192321-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 36810AF63B8
-	for <lists+devicetree@lfdr.de>; Wed,  2 Jul 2025 23:05:20 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3AE8EAF63DE
+	for <lists+devicetree@lfdr.de>; Wed,  2 Jul 2025 23:22:41 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id CFE944A77C0
-	for <lists+devicetree@lfdr.de>; Wed,  2 Jul 2025 21:04:53 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 715E14A3708
+	for <lists+devicetree@lfdr.de>; Wed,  2 Jul 2025 21:22:41 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7B3231E5711;
-	Wed,  2 Jul 2025 21:05:13 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4DE0723BD0C;
+	Wed,  2 Jul 2025 21:22:36 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="NlmPAFZv"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="KrxjdOhH"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pl1-f173.google.com (mail-pl1-f173.google.com [209.85.214.173])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 076172DE6F9;
-	Wed,  2 Jul 2025 21:05:11 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.173
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1F5BA2367DA;
+	Wed,  2 Jul 2025 21:22:35 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1751490313; cv=none; b=EfA1IBaNmoaPTG0BPnxxJrGA99uLuyzvLn/ALz8rMZHM1lYqGVGFzQGlknPkqx2mOIYkwNd1ZATeNK8zDv0sog8Wd+uBzImfag7YouJOieNw1QVIqNnTss4B2g5Z0ApumxbbOHeQrlqpYVU2V8m1XDpeA37t3mfVtv0avptEFug=
+	t=1751491356; cv=none; b=PnlecfasFcaFYs472he4b0dj6NmBc1thvzszhHOFlAQe8G6quRYqnhv2cTv6hdi1s9wG4T/ArJGRB2i+g/SqyDkjXQ+uX/hCDnHm3iegwsJmihLt5IeopP11Ivotsco+WxkiOXxPHaLvWXtxUKa54vAZAYHp+OT5/0S0feArVr8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1751490313; c=relaxed/simple;
-	bh=YG6sPS0G+I71vksxn4epGkUMjbDGBdqbdGVeWWGjEjU=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=aAq/xuUFPzbIJJm3D3YUz8DctHyjadC1Y0mrSOumMYtMJC7sLBWZdom4OM1DAbwv+5oHB3tz8se3E7IUjU4ZVydOeYSIUCKpK5UZ1d8jMC3dn898hmN0zxj62Cet8l3+6AJY/7Q/6NxB73upuhqcr+JIppcldBWgSuyMGoF58uY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=NlmPAFZv; arc=none smtp.client-ip=209.85.214.173
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-pl1-f173.google.com with SMTP id d9443c01a7336-236470b2dceso42712775ad.0;
-        Wed, 02 Jul 2025 14:05:11 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1751490311; x=1752095111; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=Wh2PtfxFsXVqWIGJhK/ssCsDM+Xukv05BNpcs9NLP9I=;
-        b=NlmPAFZvcijlbCuhBELwDijrRXmTc+HQFPC/47TpiwehITCPDxVA3PqnDipqUXExiZ
-         V4mZVA2puHDq5xZtpfxegx1yjtbHM4ZNiE+3NjXh3jbXIexb9q78VjQszoZQ050cNSlE
-         ScUhBMKAL+3sz/xW5Ujavbk1dCXpmLS2bOpSbL+T0MYCI5zMb3GMN5XbPpIkWsDQexEf
-         +p0KbRAAnugxhtUnyBl66FDDY3DkOKicpCvBXHqpvTOD8WKQtRwHgFe4q/OrCtutnnqd
-         1rKELVfMbQssv9l2NHKoS12IXnO/rF+i+ssCbgoOkGSR8Bd25P/3bTL2qNeZ2oOioKlm
-         T6Wg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1751490311; x=1752095111;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=Wh2PtfxFsXVqWIGJhK/ssCsDM+Xukv05BNpcs9NLP9I=;
-        b=VZWNrLdWNBOYec343V0jTzZpJZc4mIqU450lLCqLxLe4R7a1JtcPtha6/b2F/oV2b3
-         bS1VgAr4/4E7VL1Gu0r3BNhsptMkb0c3ZntrGLGFz+QoaOdVfglnq5woYFycGkpNLu/u
-         XtdKTuOG4w2NZuj4ha1JwTKAotcZWSv405xI1PoPWs2LrbIP4z9AxTgM6syJsfuNOC85
-         0coK23T34gg4l4riQhjY5P3j0zLlxP+Zxjj69Ye6QtbEyHAF32nGxVYrM6AdJWEbprzs
-         +LHCtVIaCaoFf07q6qmpCcGTCHWsYfx+5fAQyPxeaYD3YT1kGKA8v+Ff0TvUqHCgr7Zz
-         RYdw==
-X-Forwarded-Encrypted: i=1; AJvYcCUSFCWKiuDnL20ckUmCSeYqERBRO1TcYpDn1lL9w+f/ETs3S7usZbQ6VOVRcIRwTu8n4+2xOoNYyTuj@vger.kernel.org, AJvYcCVBf7uz3ggCBG7CW20u0cEvO8QpZaS9hHUu3dRj+5+fIU1Ov5ty0RtzdS1GMrKkox7HEOx9Ybc+fSQRtw==@vger.kernel.org, AJvYcCWY7T6r5vnN8Ioc1jmo+JRUUU5UFx1B1nStS6MwwqZMQ3Gh5hs+mG5snHBJ4vaIbi8YJ6BOQTeGqjxhXJcd@vger.kernel.org, AJvYcCX/33PxYvrgDFyfzoHE1vCpc66kR5DOhQyr87ojGIHQdIf7w2IRNydBSqmfL2LtuRMHyEejwqcCAcKo@vger.kernel.org, AJvYcCXnVqLsx5o9Q4321TfEwccOMu+obPQdZWlgFYdbt7dAcaWk3VuhYCLHqfZORZ2xOg0j6l2tRe3nKj3ZDZw=@vger.kernel.org
-X-Gm-Message-State: AOJu0Yx5irhQ78EB8mb7UHUgt9dkOuagyGwTb2jNFXhjJZIBcoG82AAh
-	pyy7rL5oVj29PbjWpbJKvr3yMFeYXwpsAfdWPMBSCWIsuEsJzXduNGqk
-X-Gm-Gg: ASbGncvvhMgHH2boXRpfXrMqJaQyOPX5lH8D07DnetMgNMVP+Jzox5/Zp1m5ktB1eN9
-	Yy2X1XTLeIDWsPkeB72V+H8+jZ/7TJYQrrsDnLMe4St+55p5dldpHK69G8JtGQ3j2pdQN2WatGZ
-	TwdM72XnRE9zAnFCG1WZdVjRA8laSFbBLZvXmZvMlN2zwQS6hKUW2otPEVh1GCR6NUkTnoVchLe
-	8gSMFtRQ/5JE04HJrqdn5QT4L5cQLjw/GOJcQdtO2UxDmuJPkEJKaEh+T6wkRXiOCBlfgOYPklJ
-	1tUlQhlBYSc2jbAp7Nq5fSCMA6jMyXwLle16eJgV8OCeRWwovPiLdpKYSWSz/rI=
-X-Google-Smtp-Source: AGHT+IED4rigsUmACCM8UMue5pRAk+uyxupiG5Exv/rXBrfmLjc9Y12VetS1nwj6oMIn6YZGh8phpQ==
-X-Received: by 2002:a17:903:1a70:b0:234:cc7c:d2e8 with SMTP id d9443c01a7336-23c6e5b0fd8mr52532375ad.37.1751490311058;
-        Wed, 02 Jul 2025 14:05:11 -0700 (PDT)
-Received: from google.com ([2620:15c:9d:2:918b:9ece:525a:9158])
-        by smtp.gmail.com with ESMTPSA id d9443c01a7336-23acb3acc62sm146106955ad.143.2025.07.02.14.05.09
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 02 Jul 2025 14:05:10 -0700 (PDT)
-Date: Wed, 2 Jul 2025 14:05:07 -0700
-From: Dmitry Torokhov <dmitry.torokhov@gmail.com>
-To: Mathieu Dubois-Briand <mathieu.dubois-briand@bootlin.com>
-Cc: Lee Jones <lee@kernel.org>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Kamel Bouhara <kamel.bouhara@bootlin.com>, Linus Walleij <linus.walleij@linaro.org>, 
-	Bartosz Golaszewski <brgl@bgdev.pl>, Uwe =?utf-8?Q?Kleine-K=C3=B6nig?= <ukleinek@kernel.org>, 
-	Michael Walle <mwalle@kernel.org>, Mark Brown <broonie@kernel.org>, 
-	Greg Kroah-Hartman <gregkh@linuxfoundation.org>, "Rafael J. Wysocki" <rafael@kernel.org>, 
-	Danilo Krummrich <dakr@kernel.org>, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	linux-gpio@vger.kernel.org, linux-input@vger.kernel.org, linux-pwm@vger.kernel.org, 
-	andriy.shevchenko@intel.com, =?utf-8?Q?Gr=C3=A9gory?= Clement <gregory.clement@bootlin.com>, 
-	Thomas Petazzoni <thomas.petazzoni@bootlin.com>
-Subject: Re: [PATCH v10 10/11] input: misc: Add support for MAX7360 rotary
-Message-ID: <rfxdncj7o6ow53jthveea6byresoz3vwts3h4cqjezn3egrny3@sd63xrnhwm6s>
-References: <20250530-mdb-max7360-support-v10-0-ce3b9e60a588@bootlin.com>
- <20250530-mdb-max7360-support-v10-10-ce3b9e60a588@bootlin.com>
+	s=arc-20240116; t=1751491356; c=relaxed/simple;
+	bh=kj8Gg0AYv1enYAMQtc1VtjA66fJWq2pJJvt6NBWJetw=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=bs7dSUsIDA+1KGPfFEj7aUwjEJTtwwilvYxlewagmvtYcdwG9QcDN7IwIOly1pynn4nFBBuxDTAf/9wuFyLx57Ob50jqW4WZ2A6ackTaJzCyEGaMs/DZRmaOBenJFxqjHXQIUKsnaO8lYd/GRjOTPk1viIDR4xxUszoUiu6Vqn0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=KrxjdOhH; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPS id 90B62C4CEE7;
+	Wed,  2 Jul 2025 21:22:35 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1751491355;
+	bh=kj8Gg0AYv1enYAMQtc1VtjA66fJWq2pJJvt6NBWJetw=;
+	h=From:Subject:Date:To:Cc:Reply-To:From;
+	b=KrxjdOhHeNyRoMRycUrVTa6ipwBK8DDsL1SdSo63AKjo25HTAQ4d6LvTCNZEr1w6m
+	 y7y4XJjnRhNBBtWoIoV37Dpqpktjqtxl3IF8a1DZL3lc8wm+ZB3zmKWEvN4lC4Rt3c
+	 xnK3JjyXBJXj77VmhxE2PzdyfMaBFI/Hv3jsKD3rDTj1aiSpfHrIaKE3sKe9CRJk5w
+	 B664comzDS7G+wB5mEcp6ZhKJrSBZXQ//tVrml65fL7T38ZNR2XTqgFQtHKaD7y4tZ
+	 b+ezVutnSCPpc/jbliyrPh4Ahb9DagOS5GT6nhdJqhpYPyLm0X3m0/wcsRlJjle6Qx
+	 Ld71aRJwHtpQA==
+Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 77DC4C8303C;
+	Wed,  2 Jul 2025 21:22:35 +0000 (UTC)
+From: Jens Glathe via B4 Relay <devnull+jens.glathe.oldschoolsolutions.biz@kernel.org>
+Subject: [PATCH v2 0/3] arm64: dts: qcom: x1-hp-x14: Add support for
+ X1P42100 HP Omnibook X14
+Date: Wed, 02 Jul 2025 23:22:32 +0200
+Message-Id: <20250702-hp-x14-x1p-v2-0-af5b588d1979@oldschoolsolutions.biz>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20250530-mdb-max7360-support-v10-10-ce3b9e60a588@bootlin.com>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIABijZWgC/22OwQ6CMBBEf4Xs2Zp2gSKe/A/DQWCxmxDadJGgh
+ H+3cvYwhzfJvMwGQpFJ4JptEGlhYT8lwFMGnXtMT1LcJwbUWOpKo3JBraZICYraHIfC1ravLaR
+ BiDTwesjuTWLHMvv4PtyL+bV/NYtRWqGp89LSJUdd3fzYS+e8H8WPrzk9knPLH2j2ff8CRDcSj
+ rEAAAA=
+X-Change-ID: 20250702-hp-x14-x1p-eb32f4696d96
+To: Bjorn Andersson <andersson@kernel.org>, 
+ Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>, 
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>
+Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org, 
+ linux-kernel@vger.kernel.org, 
+ Jens Glathe <jens.glathe@oldschoolsolutions.biz>
+X-Mailer: b4 0.14.2
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1751491354; l=1939;
+ i=jens.glathe@oldschoolsolutions.biz; s=20240919;
+ h=from:subject:message-id;
+ bh=kj8Gg0AYv1enYAMQtc1VtjA66fJWq2pJJvt6NBWJetw=;
+ b=UnlBq+pRnFNJFLkVrmu3lnnjVmlaV74mBYVTdfg+1nhXv6hjHdHSFQON/Scs1w+w+IcR+9pE9
+ Bh2pnTdmku5DzGoRtp1TP9V+E6mMVmYXG/remFxAep19aWFTP2U7s6A
+X-Developer-Key: i=jens.glathe@oldschoolsolutions.biz; a=ed25519;
+ pk=JcRJqJc/y8LsxOlPakALD3juGfOKmFBWtO+GfELMJVg=
+X-Endpoint-Received: by B4 Relay for
+ jens.glathe@oldschoolsolutions.biz/20240919 with auth_id=216
+X-Original-From: Jens Glathe <jens.glathe@oldschoolsolutions.biz>
+Reply-To: jens.glathe@oldschoolsolutions.biz
 
-Hi Mathieu,
+This patch series adds support for the HP Omnibook X Laptop 14-fe1xxx. [1]
 
-On Fri, May 30, 2025 at 12:00:18PM +0200, Mathieu Dubois-Briand wrote:
-> +
-> +static void max7360_rotaty_report_event(struct max7360_rotary *max7360_rotary, int steps)
+Since this is actually the same model as the 14-fe0xxx, but with an
+X1P-42-100 SoC (Purwa), it needs a slightly different device tree.
+To have as minimal duplicate definition as possible, the hp X14 gets 
+commonalized into a dtsi (and it stays compatible to the derived 
+device trees, like the Ultrabook G1q). 
 
-s/rotaty/rotary
+The supported features are the same as for the original Omnibook X14:
 
-> +	if (max7360_rotary->relative_axis) {
-> +		input_report_rel(max7360_rotary->input, max7360_rotary->axis, steps);
-> +	} else {
-> +		int pos = max7360_rotary->pos;
-> +		int maxval = max7360_rotary->steps;
-> +
-> +		/*
-> +		 * Add steps to the position.
-> +		 * Make sure added steps are always in ]-maxval; maxval[
-> +		 * interval, so (pos + maxval) is always >= 0.
-> +		 * Then set back pos to the [0; maxval[ interval.
-> +		 */
-> +		pos += steps % maxval;
-> +		if (max7360_rotary->rollover)
-> +			pos = (pos + maxval) % maxval;
-> +		else
-> +			pos = clamp(pos, 0, maxval);
+- Keyboard (no function keys though)
+- Display
+- PWM brightness control
+- Touchpad
+- Touchscreen
+- PCIe ports (pcie4, pcie6a)
+- USB type-c, type-a
+- WCN6855 Wifi-6E
+- WCN6855 Bluetooth
+- ADSP and CDSP
+- X1 GPU
+- GPIO Keys (Lid switch)
+- Audio definition (works via USB and with internal speakers)
 
-Should it be clamp(pos, 0, maxval - 1) by chance?
+[1]: https://www.hp.com/us-en/shop/pdp/hp-omnibook-x-laptop-next-gen-ai-pc-14-fe100-14-a4nd1av-1#techSpecs
 
-Otherwise:
+Signed-off-by: Jens Glathe <jens.glathe@oldschoolsolutions.biz>
+---
+Changes in v2:
+- remove pm8010 handling
+- Link to v1: https://lore.kernel.org/r/20250702-hp-x14-x1p-v1-0-219356e83207@oldschoolsolutions.biz
 
-Acked-by: Dmitry Torokhov <dmitry.torokhov@gmail.com>
+---
+Jens Glathe (3):
+      dt-bindings: arm: qcom: Split HP Omnibook X14 AI in SoC variants
+      arm64: dts: qcom: x1-hp-x14: Commonalize HP Omnibook X14 device tree
+      arm64: dts: qcom: x1-hp-x14: Add support for X1P42100 HP Omnibook X14
 
-Thanks.
+ Documentation/devicetree/bindings/arm/qcom.yaml    |    3 +-
+ arch/arm64/boot/dts/qcom/Makefile                  |    2 +
+ arch/arm64/boot/dts/qcom/x1-hp-omnibook-x14.dtsi   | 1550 ++++++++++++++++++++
+ .../boot/dts/qcom/x1e80100-hp-omnibook-x14.dts     | 1544 +------------------
+ .../boot/dts/qcom/x1p42100-hp-omnibook-x14.dts     |   42 +
+ 5 files changed, 1600 insertions(+), 1541 deletions(-)
+---
+base-commit: 3f804361f3b9af33e00b90ec9cb5afcc96831e60
+change-id: 20250702-hp-x14-x1p-eb32f4696d96
 
+Best regards,
 -- 
-Dmitry
+Jens Glathe <jens.glathe@oldschoolsolutions.biz>
+
+
 
