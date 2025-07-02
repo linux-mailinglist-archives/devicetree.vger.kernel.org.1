@@ -1,201 +1,219 @@
-Return-Path: <devicetree+bounces-192086-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-192087-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id E4755AF151D
-	for <lists+devicetree@lfdr.de>; Wed,  2 Jul 2025 14:14:03 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 921F3AF1535
+	for <lists+devicetree@lfdr.de>; Wed,  2 Jul 2025 14:17:10 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id EB85B4A1B75
-	for <lists+devicetree@lfdr.de>; Wed,  2 Jul 2025 12:14:03 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id DC5C03B0BB2
+	for <lists+devicetree@lfdr.de>; Wed,  2 Jul 2025 12:16:12 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 14D73272E7F;
-	Wed,  2 Jul 2025 12:13:00 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="ZU28WMT7"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5E852272815;
+	Wed,  2 Jul 2025 12:15:23 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-yw1-f178.google.com (mail-yw1-f178.google.com [209.85.128.178])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
-	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2AFE92737E2
-	for <devicetree@vger.kernel.org>; Wed,  2 Jul 2025 12:12:57 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.178
+Received: from foss.arm.com (foss.arm.com [217.140.110.172])
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6728C26E173;
+	Wed,  2 Jul 2025 12:15:20 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.140.110.172
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1751458380; cv=none; b=AEHHTeTSuUWcDiZUdNn+qNuhPs7XLAUxcYumuxwCGwQI7Sgk8uKP5rwhJTMQ52U/ODY7xMG3AgoKY5v/kOvfeFBLG+5TlLFMdmrU65nbfHSo/x2jr1ZL/vq+6V7Gekx2i4jF/FzZyjtQgk4SXzc9WuqnkOaP9lUjG64iAz5g/qA=
+	t=1751458523; cv=none; b=cMHYUVrWTDUjqVBqwdHH4JvaNQIcZ/PqSSaCDdNjTIzOxcDnAmsx7P9X4zwzQOyduUC7xDY9ixXX4dFKw+Oc6s8VKUY3Of9J9DunK8kyMson8OQN44RO/862AW3cjjWz1F5q9RBoCO7SoJGMmtCyrqspujaOOD2nkqQUvVafMP0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1751458380; c=relaxed/simple;
-	bh=oClDJcT0mTELwPMf1uIqlxpRObpfhkuJDcTpu4d7ylI=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=kLiZLgdmOPjQh3KI1m0PYPUzsLmAJU5eno4BKARJx1wod4s7VKz75dkWMBlyDX9X/woW10LgGzs+4Sg+qg3KVh9f2XhgsRji9pCHn+SwTi3jAr56mlSd0Z3oYVNeoxYUY6KlNtGW3Rbyl4xq/la7tjdzhUlBt05Hoi2pXea7bYw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=ZU28WMT7; arc=none smtp.client-ip=209.85.128.178
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-yw1-f178.google.com with SMTP id 00721157ae682-70e3c6b88dbso50167817b3.0
-        for <devicetree@vger.kernel.org>; Wed, 02 Jul 2025 05:12:57 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1751458377; x=1752063177; darn=vger.kernel.org;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=9gk4s+SONPpEB34QsQQb13XEXrE5uFgXKOQWW3pBsTo=;
-        b=ZU28WMT7BcvN/b+AqfWX8nv6lqhMzC6PC4DdDm2j5uJVs79wLIa8LdUIviL6C7YjL1
-         GMcdbXoY3xo7hW5zBHIE7xHjDNz9r4ZaFjXE1bzPil/JUC9UhKGyVUsfzZOZ8inqN62J
-         Plfj2RXo6eL4sNHPV3cRUhwPnOZwi/6vgEOm71FPCvOVNe04b20L9eUMFXx/E8l4Wdrf
-         qIPn+QAgvh8pxl252LaP3bHn8u+W2uqnpIdTf9lQE1vZhAf15zV6jipEMgbUJ86xWPJu
-         rwUOYzW9qguirxoq7aqMyOfL+8vxyxu+V+dddJOj13U55QcP4o79Zjdwi97WpQfRUy+Z
-         1rZw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1751458377; x=1752063177;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=9gk4s+SONPpEB34QsQQb13XEXrE5uFgXKOQWW3pBsTo=;
-        b=l3XQHyQ4hDn8f8gizc4vEbnNpgk4KsZaeVB2HJ9TJuIGuDjofXRGDnah6c6RanMCD7
-         bTu34CLJg8DD6KCKC2KOOupPO7/fkwJuSRUDgi6LCJybfTuagcmlxxVVubNx5DxOta2v
-         RcXib/Rr5aJcF5X43yOQe2spdsIEStaQ9BSgwn6oo7XEWWTuQr3ky/WPYq5i3tP0ppWp
-         q/l+y7jrvA35b3+TNuRPgh/K3ePu7G0w6qJnlQraplzccAK6OcbbV2QTA7QgiaHlZeax
-         RE0F1WgeTyHumJOg9QgVJGgXmDMZwKrYsfDrFN5cmw2+7ZwcKMgy38cEI5FjO9WWBFGz
-         6Yuw==
-X-Forwarded-Encrypted: i=1; AJvYcCUslxfzogg4/Bo1nltnVW8SlAgQG8I+3wuMntfQskafLsyk9e6VGJg48G1smHEswiP5hQKrsXzlRY8/@vger.kernel.org
-X-Gm-Message-State: AOJu0Yz1Pb/IEvELd0/9m9R9w1SrRb0WTgCUcDmEu7CQH8Gv3zAiQDd8
-	gAs06YBCt5qk0Fn6ZjDQREg0VLaJjcWkWNE3Ii8zl1UD5IAPKlkljc1KKCKFrNsmASiANw7FzfY
-	5XUKPNd9e0wThAfCWb3mQuthZJoUHAvDR/maA/BmYQw==
-X-Gm-Gg: ASbGnctBa4WymifEbn4j1S1mtPySOzMRrFA75iC2/cfJdID2r0qHTg9o3/eseYquNYi
-	xZWzeSLWu30xbadhVYrSK3hwlh5qnEgTHhO8fBgBVFGyztnGF2+yWCpNGXyPZXcnXy76Ymxq+P+
-	cDXFIPHURO+qPBt/8Yc4bEbkPzwl9dOBMFG8Tpq084t5RR2hhvc8WYl8Q=
-X-Google-Smtp-Source: AGHT+IG3NWai+ZP/un1xZG3CzZCkLzSMLJaFL3JR+EQ/9jK23FydSpvbz+8ZOtgLz/en/MyFioW+0zHkRi1p3FqLmno=
-X-Received: by 2002:a05:690c:4a0b:b0:6fb:a696:b23b with SMTP id
- 00721157ae682-7164d571f91mr35480447b3.33.1751458376965; Wed, 02 Jul 2025
- 05:12:56 -0700 (PDT)
+	s=arc-20240116; t=1751458523; c=relaxed/simple;
+	bh=i2lOKI0qOB5KxI2VHSRVdByaSAIoK6aaq3MNFlB5CtY=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=oHGJaVWXrIKALZd4iYe7LpUUkPN2aDJjqfnYK1RrSgJo+D12uRlpu19QKKnEcYfPFibRkTQknOLdqdfR6nJ5FhOFjlZqCjEAWPlZdztailHN3/iuOlZ2RusOmFW+yCtIbZ5Uo+wfrzQCXtOyUiikXZmnhrHCa5EYygM/GMKdkqs=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com; spf=pass smtp.mailfrom=arm.com; arc=none smtp.client-ip=217.140.110.172
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=arm.com
+Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
+	by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id BAA6722D9;
+	Wed,  2 Jul 2025 05:15:04 -0700 (PDT)
+Received: from [10.1.27.90] (010265703453.arm.com [10.1.27.90])
+	by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id B9E7D3F58B;
+	Wed,  2 Jul 2025 05:15:15 -0700 (PDT)
+Message-ID: <b287de09-223c-4916-8ea1-ab474df407ef@arm.com>
+Date: Wed, 2 Jul 2025 13:15:13 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20250613-pmdomain-hierarchy-onecell-v3-0-5c770676fce7@baylibre.com>
- <20250613-pmdomain-hierarchy-onecell-v3-2-5c770676fce7@baylibre.com>
- <CAPDyKFrO9rb0eDb2qO+EGaVjOFG=7emgca8511XACDhWY=dt5g@mail.gmail.com>
- <7hsejzp4xg.fsf@baylibre.com> <CAPDyKFo-iPBPgkM43q+5cGR2sptkLk4E6TAERCQbCu24o1RfFQ@mail.gmail.com>
- <7hcyb1os9y.fsf@baylibre.com> <CAPDyKFpTgAmLBq2ZExPoxWM0wL756zH96vW7M6wHSA1MTTG1wA@mail.gmail.com>
- <7hjz4tnlg6.fsf@baylibre.com>
-In-Reply-To: <7hjz4tnlg6.fsf@baylibre.com>
-From: Ulf Hansson <ulf.hansson@linaro.org>
-Date: Wed, 2 Jul 2025 14:12:20 +0200
-X-Gm-Features: Ac12FXx099YexnSX3D-jd8HuUZnwt5D-jZ9PNizBBy6pBlCC473WjWV1dygsTok
-Message-ID: <CAPDyKFrY2kNaP=Hk-81B4WEGxyKUTYqBWJHQKtHnyTPWTFUOEQ@mail.gmail.com>
-Subject: Re: [PATCH RFC v3 2/2] pmdomain: core: add support for subdomains
- using power-domain-map
-To: Kevin Hilman <khilman@baylibre.com>
-Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, devicetree@vger.kernel.org, 
-	linux-pm@vger.kernel.org, arm-scmi@vger.kernel.org, 
-	linux-kernel@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2 6/8] arm64: dts: bst: add support for Black Sesame
+ Technologies C1200 CDCU1.0 board and defconfig
+To: Albert Yang <yangzh0906@thundersoft.com>, robh@kernel.org,
+ krzk+dt@kernel.org, krzk@kernel.org, conor+dt@kernel.org, gordon.ge@bst.ai,
+ catalin.marinas@arm.com, geert.uytterhoeven@gmail.com, will@kernel.org,
+ ulf.hansson@linaro.org, adrian.hunter@intel.com, arnd@arndb.de
+Cc: linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-mmc@vger.kernel.org, soc@lists.linux.dev,
+ bst-upstream@bstai.top, neil.armstrong@linaro.org,
+ jonathan.cameron@huawei.com, bigfoot@classfun.cn, kever.yang@rock-chips.com,
+ mani@kernel.org, geert+renesas@glider.be, andersson@kernel.org, nm@ti.com,
+ nfraprado@collabora.com, quic_tdas@quicinc.com, ebiggers@google.com,
+ victor.shih@genesyslogic.com.tw, shanchun1218@gmail.com,
+ ben.chuang@genesyslogic.com.tw
+References: <20250528085403.481055-1-yangzh0906@thundersoft.com>
+ <20250702094444.3523973-1-yangzh0906@thundersoft.com>
+ <20250702094444.3523973-7-yangzh0906@thundersoft.com>
+From: Robin Murphy <robin.murphy@arm.com>
+Content-Language: en-GB
+In-Reply-To: <20250702094444.3523973-7-yangzh0906@thundersoft.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 
-On Mon, 30 Jun 2025 at 20:17, Kevin Hilman <khilman@baylibre.com> wrote:
->
-> Ulf Hansson <ulf.hansson@linaro.org> writes:
->
-> > [...]
-> >
-> >> I've done an implementation with struct device_node *.  This works
-> >> better (IMO) than struct of_phandle_args * because the caller (in my
-> >> case scmi_pm_domain.c) already has device nodes, but not phandle args.
-> >>
-> >> The result will be that the pmdomain helper will call
-> >> pm_genpd_add_subdomain() instead of of_genpd_add_subdomain().
-> >>
-> >> Below[1] is the current working version, which includes adding the
-> >> helper to the PM domain core and showing the usage by the SCMI provider.
-> >>
-> >> How does this look?
-> >
-> > It's a lot better in my opinion. Although, I have a few comments below.
-> >
-> >>
-> >> Note that doing this at provider creation time instead of
-> >> <genpd>->attach_dev() time will require some changes to
-> >> of_parse_phandle_with_args_map() because that function expects to be
-> >> called for a device that has a `power-domains = <provider>` property,
-> >> not for the provider itself.  But I have it working with some local
-> >> changes to make that helper work if called for the provider directly.
-> >> If you're OK with the PM domains approach, I'll post another rev of this
-> >> series which includes the OF changes for review by DT maintainers.
-> >>
-> >> Kevin
-> >>
-> >> [1]
-> >> ---
-> >>  drivers/pmdomain/arm/scmi_pm_domain.c | 12 ++++++++--
-> >>  drivers/pmdomain/core.c               | 34 +++++++++++++++++++++++++++
-> >>  include/linux/pm_domain.h             | 11 ++++++++-
-> >>  3 files changed, 54 insertions(+), 3 deletions(-)
-> >>
-> >> diff --git a/drivers/pmdomain/arm/scmi_pm_domain.c b/drivers/pmdomain/arm/scmi_pm_domain.c
-> >> index a7784a8bb5db..8197447e9d17 100644
-> >> --- a/drivers/pmdomain/arm/scmi_pm_domain.c
-> >> +++ b/drivers/pmdomain/arm/scmi_pm_domain.c
-> >> @@ -54,7 +54,7 @@ static int scmi_pd_power_off(struct generic_pm_domain *domain)
-> >>
-> >>  static int scmi_pm_domain_probe(struct scmi_device *sdev)
-> >>  {
-> >> -       int num_domains, i;
-> >> +       int num_domains, i, ret;
-> >>         struct device *dev = &sdev->dev;
-> >>         struct device_node *np = dev->of_node;
-> >>         struct scmi_pm_domain *scmi_pd;
-> >> @@ -115,7 +115,15 @@ static int scmi_pm_domain_probe(struct scmi_device *sdev)
-> >>
-> >>         dev_set_drvdata(dev, scmi_pd_data);
-> >>
-> >> -       return of_genpd_add_provider_onecell(np, scmi_pd_data);
-> >> +       ret = of_genpd_add_provider_onecell(np, scmi_pd_data);
-> >> +       if (ret)
-> >> +               return ret;
-> >> +
-> >> +       /* check for (optional) subdomain mapping with power-domain-map */
-> >> +       for (i = 0; i < num_domains; i++, scmi_pd++)
-> >> +               of_genpd_add_subdomain_map(np, domains[i], i);
-> >> +
-> >> +       return ret;
-> >>  }
-> >>
-> >>  static void scmi_pm_domain_remove(struct scmi_device *sdev)
-> >> diff --git a/drivers/pmdomain/core.c b/drivers/pmdomain/core.c
-> >> index 88819659df83..3ede4baa4bee 100644
-> >> --- a/drivers/pmdomain/core.c
-> >> +++ b/drivers/pmdomain/core.c
-> >> @@ -3220,6 +3220,40 @@ int of_genpd_parse_idle_states(struct device_node *dn,
-> >>  }
-> >>  EXPORT_SYMBOL_GPL(of_genpd_parse_idle_states);
-> >>
-> >> +int of_genpd_add_subdomain_map(struct device_node *np,
-> >> +                              struct generic_pm_domain *domain,
-> >> +                              int index)
-> >
-> > Providing the struct generic_pm_domain *domain as an in-parameter for
-> > the child-domain seems unnecessary and limiting to me.
-> >
-> > Instead I think we should parse the power-domain-map DT property at
-> > 'index', to find the corresponding child-domain's specifier/index and
-> > its corresponding parent-domain.
-> >
-> > In other words, we don't need the struct generic_pm_domain *domain as
-> > an in-parameter, right?
->
-> I'm not sure I follow.  The `struct generic pm_domain *domain` is the
-> SCMI child domain.  From the map, we use the index to find the parent
-> domain.  And then we add the child as a subdomain of the parent.
->
-> Are you suggesting that I (re)parse the DT for to find the child domain
-> also?
+On 2025-07-02 10:44 am, Albert Yang wrote:
+[...]
+> diff --git a/arch/arm64/boot/dts/bst/bstc1200.dtsi b/arch/arm64/boot/dts/bst/bstc1200.dtsi
+> new file mode 100644
+> index 000000000000..ddff2cb82cb0
+> --- /dev/null
+> +++ b/arch/arm64/boot/dts/bst/bstc1200.dtsi
+> @@ -0,0 +1,117 @@
+> +// SPDX-License-Identifier: GPL-2.0
+> +#include <dt-bindings/interrupt-controller/arm-gic.h>
+> +#include <dt-bindings/interrupt-controller/irq.h>
+> +
+> +/ {
+> +	compatible = "bst,c1200";
+> +	#address-cells = <2>;
+> +	#size-cells = <2>;
+> +
+> +	cpus {
+> +		#address-cells = <1>;
+> +		#size-cells = <0>;
+> +
+> +		cpu@0 {
+> +			compatible = "arm,cortex-a78";
+> +			device_type = "cpu";
+> +			enable-method = "psci";
+> +			next-level-cache = <&l2_cache>;
+> +			reg = <0>;
+> +		};
+> +
+> +		cpu@1 {
+> +			compatible = "arm,cortex-a78";
+> +			device_type = "cpu";
+> +			enable-method = "psci";
+> +			next-level-cache = <&l2_cache>;
+> +			reg = <0x100>;
+> +		};
+> +
+> +		cpu@2 {
+> +			compatible = "arm,cortex-a78";
+> +			device_type = "cpu";
+> +			enable-method = "psci";
+> +			next-level-cache = <&l2_cache>;
+> +			reg = <0x200>;
+> +		};
+> +
+> +		cpu@3 {
+> +			compatible = "arm,cortex-a78";
+> +			device_type = "cpu";
+> +			enable-method = "psci";
+> +			next-level-cache = <&l2_cache>;
+> +			reg = <0x300>;
+> +		};
+> +
+> +		l2_cache: l2-cache-1 {
+> +			compatible = "cache";
+> +			cache-level = <2>;
+> +			cache-unified;
+> +		};
+> +	};
+> +
+> +	clk_mmc: clock-4000000 {
+> +		compatible = "fixed-clock";
+> +		#clock-cells = <0>;
+> +		clock-frequency = <4000000>;
+> +	};
+> +
+> +	timer {
+> +		compatible = "arm,armv8-timer";
+> +		interrupt-parent = <&gic>;
+> +		always-on;
+> +		interrupts = <GIC_PPI 13 (GIC_CPU_MASK_SIMPLE(8) | IRQ_TYPE_LEVEL_LOW)>,
+> +			     <GIC_PPI 14 (GIC_CPU_MASK_SIMPLE(8) | IRQ_TYPE_LEVEL_LOW)>,
+> +			     <GIC_PPI 11 (GIC_CPU_MASK_SIMPLE(8) | IRQ_TYPE_LEVEL_LOW)>,
+> +			     <GIC_PPI 10 (GIC_CPU_MASK_SIMPLE(8) | IRQ_TYPE_LEVEL_LOW)>;
 
-Correct!
+Your PPIs target 8 of the 4 CPUS? Either way you don't have GICv2, 
+please use the GICv3 binding.
 
-The DT property ("power-domains-map") that you added in patch1/2,
-contains all the information so let's just parse it and assign
-child/parent domains based on it.
+> +	};
+> +
+> +	soc: soc@0 {
+> +		compatible = "simple-bus";
+> +		#address-cells = <2>;
+> +		#size-cells = <2>;
+> +		ranges = <0x0 0x0 0x0 0x0 0xffffffff 0xffffffff>;
+> +		interrupt-parent = <&gic>;
+> +
+> +		mmc0: mmc@22200000 {
+> +			compatible = "bst,c1200-dwcmshc-sdhci";
+> +			reg = <0x0 0x22200000 0x0 0x1000>,
+> +			      <0x0 0x23006000 0x0 0x1000>;
+> +			interrupts = <GIC_SPI 144 IRQ_TYPE_LEVEL_HIGH>;
+> +			clocks = <&clk_mmc>;
+> +			clock-names = "core";
+> +			max-frequency = <200000000>;
+> +			bus-width = <8>;
+> +			non-removable;
+> +			dma-coherent;
 
-Kind regards
-Uffe
+Given the funky DMA setup, I can't help be mildly suspicious of this - 
+is the device genuinely I/O coherent and capable of snooping the CPU 
+caches, or are you only getting away with it because 
+dma_init_coherent_memory() happens to remap as non-cacheable regardless?
+
+Thanks,
+Robin.
+
+> +			status = "disabled";
+> +		};
+> +
+> +		uart0: serial@20008000 {
+> +			compatible = "snps,dw-apb-uart";
+> +			reg = <0x0 0x20008000 0x0 0x1000>;
+> +			interrupts = <GIC_SPI 211 IRQ_TYPE_LEVEL_HIGH>;
+> +			clock-frequency = <25000000>;
+> +			reg-shift = <2>;
+> +			reg-io-width = <4>;
+> +			status = "disabled";
+> +		};
+> +
+> +		gic: interrupt-controller@32800000 {
+> +			compatible = "arm,gic-v3";
+> +			#interrupt-cells = <3>;
+> +			#address-cells = <2>;
+> +			#size-cells = <2>;
+> +			interrupt-controller;
+> +			ranges;
+> +			reg = <0x0 0x32800000 0x0 0x10000>,
+> +			      <0x0 0x32880000 0x0 0x100000>;
+> +			interrupts = <GIC_PPI 9 (GIC_CPU_MASK_SIMPLE(8) | IRQ_TYPE_LEVEL_LOW)>;
+> +		};
+> +	};
+> +
+> +	psci {
+> +		compatible = "arm,psci-1.0";
+> +		method = "smc";
+> +	};
+> +};
+> diff --git a/arch/arm64/configs/defconfig b/arch/arm64/configs/defconfig
+> index 897fc686e6a9..0a1cfaa19688 100644
+> --- a/arch/arm64/configs/defconfig
+> +++ b/arch/arm64/configs/defconfig
+> @@ -45,6 +45,7 @@ CONFIG_ARCH_BCMBCA=y
+>   CONFIG_ARCH_BRCMSTB=y
+>   CONFIG_ARCH_BERLIN=y
+>   CONFIG_ARCH_BLAIZE=y
+> +CONFIG_ARCH_BST=y
+>   CONFIG_ARCH_EXYNOS=y
+>   CONFIG_ARCH_SPARX5=y
+>   CONFIG_ARCH_K3=y
+
 
