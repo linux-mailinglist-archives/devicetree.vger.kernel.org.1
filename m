@@ -1,148 +1,266 @@
-Return-Path: <devicetree+bounces-191911-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-191912-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 18604AF0D2B
-	for <lists+devicetree@lfdr.de>; Wed,  2 Jul 2025 09:51:16 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id D996FAF0D47
+	for <lists+devicetree@lfdr.de>; Wed,  2 Jul 2025 09:57:01 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 6279C16A1FC
-	for <lists+devicetree@lfdr.de>; Wed,  2 Jul 2025 07:51:16 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 087FE1C2353E
+	for <lists+devicetree@lfdr.de>; Wed,  2 Jul 2025 07:57:18 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4E41A230BDF;
-	Wed,  2 Jul 2025 07:51:02 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D2B90225760;
+	Wed,  2 Jul 2025 07:56:55 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="F5HOWbF9"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="mkEbQmU+"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wr1-f52.google.com (mail-wr1-f52.google.com [209.85.221.52])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 266AA230BD4;
-	Wed,  2 Jul 2025 07:51:01 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 04776211F;
+	Wed,  2 Jul 2025 07:56:53 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.52
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1751442662; cv=none; b=jUPM6H7Uke7/nuXimU1FWRxwwu7uSsU43dvnGmJ2yyBwthBGBpDP0USwfhFMryxRi4dACyvofImLhrm11Ks0YsC6RCaYJE1aJB2wIwEtyP+p9ligUcILr0A7MBIunpx2+2gC3SRhSfnBh0TIjuSBOBdqZl8uju/eOPSTQlnKfwI=
+	t=1751443015; cv=none; b=kC/HYumFPY30SZzxcZKvmpCnpvaXHN0Kfyu4y9pPIJWDRl8bFDVmepLRVbMHmbmsyq/VNQAd8V8xvOBQR1fd9lfD6cjYLhO35UwH7YUmvOF//bTXK5LuYU3PfRYSPP3k75p5eXbfkf+Z6tmuh3O11Ft36Nt3FrOhGHaD2cB2NmY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1751442662; c=relaxed/simple;
-	bh=k8J6bw7qUijMDcnUBmDdYgC0NRQa9b09ibKM5hAyvCA=;
-	h=Message-ID:Date:MIME-Version:Subject:To:References:From:
-	 In-Reply-To:Content-Type; b=b/EkIqSCjmiU9InJESpPynflOgKZgD8qF83YOjazguNSpzbseJR7NC8F1xdSQyIQpNqYM3Gv8DugUHbjB7QiMUeJGdQ1n8CE8Ls468lPuz7jupQVeCCVXF7swT0UtbRlMxNb7CHCbwG+uANi8esWjOmp7gvZCpmPMtA3iejN/qI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=F5HOWbF9; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id DE849C4CEED;
-	Wed,  2 Jul 2025 07:50:57 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1751442661;
-	bh=k8J6bw7qUijMDcnUBmDdYgC0NRQa9b09ibKM5hAyvCA=;
-	h=Date:Subject:To:References:From:In-Reply-To:From;
-	b=F5HOWbF9MWloGOKPKXRrqEoPJyMWJXV72nyEenQJKuSrlSyOjCBrjUybzuehfGCAh
-	 aQ2SHrtvwHiwilmFu5UrhhzSKEfEbISzf0qf8y1WwYFBsLCxk0EWkCkJrIODG3+5Wl
-	 3oBadofTN4yJFUiVfnfi631lgeC71gzoowDejZHKJlMVaWySnVk6TqbBJLJQzGJ9Rq
-	 dSBJmi4Y3uxEwNcBjXmpEzTgPgIGYo5Yw/fIhtaegFFVpsYm68Mt03y1+v3Xfad21x
-	 29t/QryCe7uUPWSCa/mrkuSNnZUqJVMgvxq06YB/L8g3KrLWyRKyXoj96Dep5m2g1E
-	 Yb9IVj4PlQznA==
-Message-ID: <34b0f5e2-0341-41cb-8915-8f1606e14827@kernel.org>
-Date: Wed, 2 Jul 2025 09:50:56 +0200
+	s=arc-20240116; t=1751443015; c=relaxed/simple;
+	bh=Q1X6bbdTEe0yaSMMjkEwghrZRhqOzko97t3w24mThPc=;
+	h=Message-ID:Subject:From:To:Cc:Date:In-Reply-To:References:
+	 Content-Type:MIME-Version; b=RCImwZleXOQb7e/SSQkKcl4hhfp6IJy2CRQaeYqr9RnUnTc6uj09eDfBWt2JZqGdmBN/iYpP/6Aq9h73SnCiNR9+adWW5zca9pks0OKmL9LYD6FO482bREOeQAgPEDpRZdf6WrNcQKyBJBlMQq+G2I8Fx8fsbyIl4mrw7Ar635A=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=mkEbQmU+; arc=none smtp.client-ip=209.85.221.52
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-wr1-f52.google.com with SMTP id ffacd0b85a97d-3a582e09144so2990700f8f.1;
+        Wed, 02 Jul 2025 00:56:53 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1751443012; x=1752047812; darn=vger.kernel.org;
+        h=mime-version:user-agent:content-transfer-encoding:references
+         :in-reply-to:date:cc:to:from:subject:message-id:from:to:cc:subject
+         :date:message-id:reply-to;
+        bh=iV/Ph2dG/u7sFBYK4MRj6qlkNVP0kA9qMDQUm1APqRw=;
+        b=mkEbQmU+nQlsK22g6e36oNoe6ZzTGFVZHw87FMIS0ON3doEKGaUP1XAuCZGtWrZ0Lq
+         8vSVlXHO9Sa0KKcsM3bMgHVboMa36Se+zg8XiZh6xxx8pgS/Bykoul5aMuE+aT/eTiV3
+         FGlK/YIMQIFaGOY4dWjCNsPj/JhIJP1K6Aekp3lo9NqdMcFGGrArzMtkjg/q8PIy1jNX
+         62LfJqljk5PdVLuPImFOecbPfJ2gudutHQumZxolUGN4Jih+67+rAKcRHqYFmIv6wS10
+         lm6Nx/7ZSj9rVtThelgFT3Fh93ih9VPLXK0Q8XFqtyQonuVjlfiz/AFJWZwA9ovyTvCi
+         qZJw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1751443012; x=1752047812;
+        h=mime-version:user-agent:content-transfer-encoding:references
+         :in-reply-to:date:cc:to:from:subject:message-id:x-gm-message-state
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=iV/Ph2dG/u7sFBYK4MRj6qlkNVP0kA9qMDQUm1APqRw=;
+        b=Pjri87IFlsYmwFhtWJOC9EOduC0Ul2c5oJW72D9mZgHZ1spUHRbYumGmzO8r0IrcS0
+         sk7OUzfNMIfq1xxVKqRbBBUEiJq/35srJs3BzLTNwxcUaw87Ivw4uWjKOiL18oB4ucJc
+         mu9iaZJfF5Q3pnPzBtILWdXvpu1OaXkwcBuX4Skky1CwxG5ly8Rn5JgI6G30gYqFDDXF
+         vC5R1p82Xt4Cz7m6ATL605O4af91Bq3GDnqa4ruCNoSxWdhFqKwDWHJpC2W7tYvgszsy
+         +VQb5cNGKiHSeTyHeS48lqk6XyJpRFtdO/KH/xdja/yLPPJfKem8YDD8HGzwexkCrQmz
+         etVA==
+X-Forwarded-Encrypted: i=1; AJvYcCVD4f5YnSWga3tS1cqKTzqD3p2zGcC8FQUFzpzJh3u4ZRBUS/V5GhfrzxOJIixgFaNYMtkUfceyWpox@vger.kernel.org, AJvYcCXGibaYhJtabClwcLiyEmAHVixXogbuVd3NhvghF4+JqEaFLRprCsp7p0byjBeYpCRT15jGH4PNCNh2@vger.kernel.org, AJvYcCXR9zHXKRCiwP2MGEKIRqx/MuBY+Ab5Y2NC97znD5+BqRkKvZNINCfi/b9Oy4A4bHq/nyqP5GlMFQu7VQDC@vger.kernel.org
+X-Gm-Message-State: AOJu0Yy469XOjWD1T7SinwbYwXd8h1AYC8Uw2jN4obMzipS1gJ1yfL+s
+	8Ywm1ov6R2em9JqVgtS0vBSVOOIjhPdboAVWzun4Rm12e+auaiPLG3yizRYIXE4W
+X-Gm-Gg: ASbGncsMB9SB9g8Zdo8nJ5PclWvPy2gtY+UcCHltfrf30svFhfNZGc+o1JIT9AIWDNG
+	kT+rabC6ZhFhzJzVFqrwfsJC6uZwezhIBDS9aoxG0lm+bfIpVetmvt6LVgMQJ5UGZm1eiQNji3p
+	kDpag/w/TmyCPIZRzCabZFzwTqSwslKyWv1RBSUuEnrPTAMq+WCrZhKAZ0fKB39zXNypORC5baj
+	bolsnsfoEJAm41rNtzUy8/32OlNIBu78CDByU/VjCwFtd+d2yxtzvypxckRcHv3p13DRqhppzJw
+	vFg8U8tHdfZgWn2l40pRjTjgYbWHaF/G+9ecSdsshEW7Mnm7oNa+K29IIl6sJjJ6SnY8Ig==
+X-Google-Smtp-Source: AGHT+IGZkSowDuNZoXR+Ii7wVfmX3g9XMV/x4oWBOkv9yus3iBnYI5QLGYpYmv9BhmtvRzH01HlHDQ==
+X-Received: by 2002:adf:8b04:0:b0:3a4:ec23:dba7 with SMTP id ffacd0b85a97d-3b20095cd2bmr746462f8f.31.1751443012005;
+        Wed, 02 Jul 2025 00:56:52 -0700 (PDT)
+Received: from [192.168.1.187] ([161.230.67.253])
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-4538233c4acsm216227585e9.1.2025.07.02.00.56.51
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 02 Jul 2025 00:56:51 -0700 (PDT)
+Message-ID: <52c1fe276d16b68b955a00d0417b40902e2aa56e.camel@gmail.com>
+Subject: Re: [PATCH v3 10/12] spi: offload trigger: add ADI Util Sigma-Delta
+ SPI driver
+From: Nuno =?ISO-8859-1?Q?S=E1?= <noname.nuno@gmail.com>
+To: David Lechner <dlechner@baylibre.com>, Michael Hennerich
+	 <Michael.Hennerich@analog.com>, Jonathan Cameron <jic23@kernel.org>, Nuno
+ =?ISO-8859-1?Q?S=E1?=
+	 <nuno.sa@analog.com>, Andy Shevchenko <andy@kernel.org>, Rob Herring
+	 <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+	 <conor+dt@kernel.org>, Mark Brown <broonie@kernel.org>
+Cc: linux-iio@vger.kernel.org, linux-kernel@vger.kernel.org, 
+	devicetree@vger.kernel.org, linux-spi@vger.kernel.org
+Date: Wed, 02 Jul 2025 08:57:02 +0100
+In-Reply-To: <20250701-iio-adc-ad7173-add-spi-offload-support-v3-10-42abb83e3dac@baylibre.com>
+References: 
+	<20250701-iio-adc-ad7173-add-spi-offload-support-v3-0-42abb83e3dac@baylibre.com>
+	 <20250701-iio-adc-ad7173-add-spi-offload-support-v3-10-42abb83e3dac@baylibre.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+User-Agent: Evolution 3.56.2 
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 5/5] ARM: dts: aspeed: Add Facebook Darwin (AST2600) BMC
-To: rentao.bupt@gmail.com, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Joel Stanley <joel@jms.id.au>,
- Andrew Jeffery <andrew@codeconstruct.com.au>, devicetree@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, linux-aspeed@lists.ozlabs.org,
- linux-kernel@vger.kernel.org, Tao Ren <taoren@meta.com>
-References: <20250702050421.13729-1-rentao.bupt@gmail.com>
- <20250702050421.13729-6-rentao.bupt@gmail.com>
-From: Krzysztof Kozlowski <krzk@kernel.org>
-Content-Language: en-US
-Autocrypt: addr=krzk@kernel.org; keydata=
- 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 a/A=
-In-Reply-To: <20250702050421.13729-6-rentao.bupt@gmail.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
 
-On 02/07/2025 07:04, rentao.bupt@gmail.com wrote:
-> diff --git a/arch/arm/boot/dts/aspeed/aspeed-bmc-facebook-darwin.dts b/arch/arm/boot/dts/aspeed/aspeed-bmc-facebook-darwin.dts
+On Tue, 2025-07-01 at 16:37 -0500, David Lechner wrote:
+> Add a new driver for the ADI Util Sigma-Delta SPI FPGA IP core.
+>=20
+> This is used to trigger a SPI offload based on a RDY signal from an ADC
+> while masking out other signals on the same line.
+>=20
+> Signed-off-by: David Lechner <dlechner@baylibre.com>
+> ---
+> =C2=A0MAINTAINERS=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 |=C2=A0 2 +-
+> =C2=A0drivers/spi/Kconfig=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 |=C2=A0 5 +=
++
+> =C2=A0drivers/spi/Makefile=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 |=C2=A0 1 +
+> =C2=A0.../spi/spi-offload-trigger-adi-util-sigma-delta.c | 62
+> ++++++++++++++++++++++
+> =C2=A04 files changed, 69 insertions(+), 1 deletion(-)
+>=20
+> diff --git a/MAINTAINERS b/MAINTAINERS
+> index
+> 60ba572be7f5b48c0ab1d0d9724e19e335e8761b..4ed4977deb6ddc545be39b5c1d5e995=
+9e9fe
+> 64cf 100644
+> --- a/MAINTAINERS
+> +++ b/MAINTAINERS
+> @@ -23357,7 +23357,7 @@ F:	include/linux/mtd/spi-nor.h
+> =C2=A0
+> =C2=A0SPI OFFLOAD
+> =C2=A0R:	David Lechner <dlechner@baylibre.com>
+> -F:	drivers/spi/spi-offload-trigger-pwm.c
+> +F:	drivers/spi/spi-offload-trigger-*.c
+> =C2=A0F:	drivers/spi/spi-offload.c
+> =C2=A0F:	include/linux/spi/offload/
+> =C2=A0K:	spi_offload
+> diff --git a/drivers/spi/Kconfig b/drivers/spi/Kconfig
+> index
+> c51da3fc3604977b05388687e5e64a58370186c4..e69f060d3875c168a2dc701a372e47b=
+8ffd3
+> 3268 100644
+> --- a/drivers/spi/Kconfig
+> +++ b/drivers/spi/Kconfig
+> @@ -1355,6 +1355,11 @@ if SPI_OFFLOAD
+> =C2=A0
+> =C2=A0comment "SPI Offload triggers"
+> =C2=A0
+> +config SPI_OFFLOAD_TRIGGER_ADI_UTIL_SD
+> +	tristate "SPI offload trigger using ADI sigma-delta utility"
+> +	help
+> +	=C2=A0 SPI offload trigger from ADI sigma-delta utility FPGA IP block.
+> +
+> =C2=A0config SPI_OFFLOAD_TRIGGER_PWM
+> =C2=A0	tristate "SPI offload trigger using PWM"
+> =C2=A0	depends on PWM
+> diff --git a/drivers/spi/Makefile b/drivers/spi/Makefile
+> index
+> 4ea89f6fc531625060255ecff237470927e1f041..51f9f16ed734424ff10672a04f2ec16=
+6dc63
+> 7e0b 100644
+> --- a/drivers/spi/Makefile
+> +++ b/drivers/spi/Makefile
+> @@ -170,3 +170,4 @@ obj-$(CONFIG_SPI_SLAVE_SYSTEM_CONTROL)	+=3D spi-slave=
+-
+> system-control.o
+> =C2=A0
+> =C2=A0# SPI offload triggers
+> =C2=A0obj-$(CONFIG_SPI_OFFLOAD_TRIGGER_PWM)	+=3D spi-offload-trigger-pwm.=
+o
+> +obj-$(CONFIG_SPI_OFFLOAD_TRIGGER_ADI_UTIL_SD) +=3D spi-offload-trigger-a=
+di-
+> util-sigma-delta.o
+> diff --git a/drivers/spi/spi-offload-trigger-adi-util-sigma-delta.c
+> b/drivers/spi/spi-offload-trigger-adi-util-sigma-delta.c
 > new file mode 100644
-> index 000000000000..f902230dada3
+> index
+> 0000000000000000000000000000000000000000..8468c773713a3d203b2e668f340ee3f=
+477b8
+> fb6c
 > --- /dev/null
-> +++ b/arch/arm/boot/dts/aspeed/aspeed-bmc-facebook-darwin.dts
-> @@ -0,0 +1,92 @@
-> +// SPDX-License-Identifier: GPL-2.0+
-> +// Copyright (c) 2021 Facebook Inc.
+> +++ b/drivers/spi/spi-offload-trigger-adi-util-sigma-delta.c
+> @@ -0,0 +1,62 @@
+> +// SPDX-License-Identifier: GPL-2.0-only
+> +/*
+> + * Copyright (C) 2025 Analog Devices Inc.
+> + * Copyright (C) 2025 BayLibre, SAS
+> + */
 > +
-> +/dts-v1/;
+> +#include <linux/clk.h>
+> +#include <linux/dev_printk.h>
+> +#include <linux/err.h>
+> +#include <linux/mod_devicetable.h>
+> +#include <linux/module.h>
+> +#include <linux/platform_device.h>
+> +#include <linux/property.h>
+> +#include <linux/spi/offload/provider.h>
+> +#include <linux/spi/offload/types.h>
+> +#include <linux/types.h>
 > +
-> +#include "ast2600-facebook-netbmc-common.dtsi"
+> +static bool adi_util_sigma_delta_match(struct spi_offload_trigger *trigg=
+er,
+> +				=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 enum spi_offload_trigger_type t=
+ype,
+> +				=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 u64 *args, u32 nargs)
+> +{
+> +	return type =3D=3D SPI_OFFLOAD_TRIGGER_DATA_READY && nargs =3D=3D 0;
+> +}
 > +
-> +/ {
-> +	model = "Facebook Darwin BMC";
-> +	compatible = "facebook,darwin-bmc", "aspeed,ast2600";
+> +static const struct spi_offload_trigger_ops adi_util_sigma_delta_ops =3D=
+ {
+> +	.match =3D adi_util_sigma_delta_match,
+> +};
+> +
+> +static int adi_util_sigma_delta_probe(struct platform_device *pdev)
+> +{
+> +	struct device *dev =3D &pdev->dev;
+> +	struct spi_offload_trigger_info info =3D {
+> +		.fwnode =3D dev_fwnode(dev),
+> +		.ops =3D &adi_util_sigma_delta_ops,
+> +	};
+> +	struct clk *clk;
+> +
+> +	clk =3D devm_clk_get_enabled(dev, NULL);
+> +	if (IS_ERR(clk))
+> +		return dev_err_probe(dev, PTR_ERR(clk), "Failed to get
+> clock\n");
+> +
 
-Please run scripts/checkpatch.pl on the patches and fix reported
-warnings. After that, run also 'scripts/checkpatch.pl --strict' on the
-patches and (probably) fix more warnings. Some warnings can be ignored,
-especially from --strict run, but the code here looks like it needs a
-fix. Feel free to get in touch if the warning is not clear.
+Small nit. Did you consider enabling/disabling the clock on the trigger
+enable()/disable() callback? I guess the ref clk will be enabled anyways by
+someone else but conceptually kind of makes sense to enable the resource on=
+ly
+when needed.
 
-It does not look like you tested the DTS against bindings. Please run
-`make dtbs_check W=1` (see
-Documentation/devicetree/bindings/writing-schema.rst or
-https://www.linaro.org/blog/tips-and-tricks-for-validating-devicetree-sources-with-the-devicetree-schema/
-for instructions).
-Maybe you need to update your dtschema and yamllint. Don't rely on
-distro packages for dtschema and be sure you are using the latest
-released dtschema.
+Not a big deal (at least to me).
 
+- Nuno S=C3=A1
 
-
-Best regards,
-Krzysztof
+> +	return devm_spi_offload_trigger_register(dev, &info);
+> +}
+> +
+> +static const struct of_device_id adi_util_sigma_delta_of_match_table[] =
+=3D {
+> +	{ .compatible =3D "adi,util-sigma-delta-spi", },
+> +	{ }
+> +};
+> +MODULE_DEVICE_TABLE(of, adi_util_sigma_delta_of_match_table);
+> +
+> +static struct platform_driver adi_util_sigma_delta_driver =3D {
+> +	.probe=C2=A0 =3D adi_util_sigma_delta_probe,
+> +	.driver =3D {
+> +		.name =3D "adi-util-sigma-delta-spi",
+> +		.of_match_table =3D adi_util_sigma_delta_of_match_table,
+> +	},
+> +};
+> +module_platform_driver(adi_util_sigma_delta_driver);
+> +
+> +MODULE_AUTHOR("David Lechner <dlechner@baylibre.com>");
+> +MODULE_DESCRIPTION("ADI Sigma-Delta SPI offload trigger utility driver")=
+;
+> +MODULE_LICENSE("GPL");
 
