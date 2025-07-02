@@ -1,133 +1,124 @@
-Return-Path: <devicetree+bounces-192164-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-192166-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 47053AF5985
-	for <lists+devicetree@lfdr.de>; Wed,  2 Jul 2025 15:39:33 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id D994CAF598D
+	for <lists+devicetree@lfdr.de>; Wed,  2 Jul 2025 15:39:54 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id E89CD1C4409C
-	for <lists+devicetree@lfdr.de>; Wed,  2 Jul 2025 13:38:44 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 2B3401C45259
+	for <lists+devicetree@lfdr.de>; Wed,  2 Jul 2025 13:39:12 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 92B77287254;
-	Wed,  2 Jul 2025 13:36:16 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="r4txNhWG"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2425D27D77D;
+	Wed,  2 Jul 2025 13:37:31 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-vs1-f50.google.com (mail-vs1-f50.google.com [209.85.217.50])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 63ABE285419;
-	Wed,  2 Jul 2025 13:36:16 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3B3D9265293;
+	Wed,  2 Jul 2025 13:37:29 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.217.50
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1751463376; cv=none; b=q6slvwH0QOXF89oJsuz3Tik8JAXRt8GtCHzSdg+iMizX13TZn7Es1ZN5mZKufsml9/TEbw4A07WMqse6YmZnVrQYP/Mf4swq8J+nJ2tiUwre8lLFICVX8EBXZkCsEmhz/2SH0dmhI2iVS2IEHjeoXM4zmnVO3nJxRgdmPLJ7kMI=
+	t=1751463451; cv=none; b=sO7uzCQ9JB9hq8hCVXV/tU8zUS8LHVh68limAE2NgcW9g5XmgDMxnUYoLt4rpvs8k+K7H9IoDFaicsLzM1fBt/p1np1hhodOHUqdIvYwy4bbyipnoTgWNSfGldDroIQBYjZHT7/MT32e94NrlP2ezjWfVElReptXGKtqTqSL1To=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1751463376; c=relaxed/simple;
-	bh=uGa43jc2Cw+4x9AMXsf5PdOX9TokrUCZweehn6ucM+s=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=Bz7fr7gdOUXrfMAoznpWbE7ZuwHkMS/KBavfgfnRWPefVeypZGpywEjz6cEmVQkMAyzDj/cszmV4Db5Um3LIj8CRkpcSurghwfPcpJ21zJnCMr18Lbuz1VINFDvOjerYEpd8776pYRpk4vliOOcdE3PsjqwQ+718Udtb+5EosZc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=r4txNhWG; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id DEDACC4CEEF;
-	Wed,  2 Jul 2025 13:36:12 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1751463375;
-	bh=uGa43jc2Cw+4x9AMXsf5PdOX9TokrUCZweehn6ucM+s=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=r4txNhWGJvKd7MU6iu0wLQlijrtUNUKE8RoyYSSe3x4erxW9ja4H4l/Zlv9Kf2KQb
-	 YezXsf9i8R2vmgYrPLXF/yGQF0sE89hXqwjMlF29G/uP2fiPPPCbK3kwnyJbCy0KkX
-	 bbtnyMuvmMxXWSZnDnqZGYIpfMh86rJSOQo5UqjWH/HzcYRamtswvlbDBUPBheDl9p
-	 LT03Ufirkb3SvCGMuHABZeBn9wOVeGlvK6Rz9UrrerZX3i/ubryCzH2c0ncXotxfj0
-	 f5qbPEFGoF7+2KvKxQuleVFxTdsymAgIbg2yQoakjQJAlm/bBCgAGk8/XB9FtAmBtj
-	 CBt248lNYl4bA==
-Date: Wed, 2 Jul 2025 14:36:09 +0100
-From: Lee Jones <lee@kernel.org>
-To: nuno.sa@analog.com
-Cc: linux-gpio@vger.kernel.org, linux-pwm@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-input@vger.kernel.org,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Uwe =?iso-8859-1?Q?Kleine-K=F6nig?= <ukleinek@kernel.org>,
-	Linus Walleij <linus.walleij@linaro.org>,
-	Bartosz Golaszewski <brgl@bgdev.pl>,
-	Dmitry Torokhov <dmitry.torokhov@gmail.com>,
-	Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
-	Liu Ying <victor.liu@nxp.com>,
-	Bartosz Golaszewski <bartosz.golaszewski@linaro.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Subject: [GIT PULL] Immutable branch between MFD, GPIO, Input and PWM due for
- the v6.17 merge window
-Message-ID: <20250702133609.GQ10134@google.com>
-References: <20250701-dev-adp5589-fw-v7-0-b1fcfe9e9826@analog.com>
+	s=arc-20240116; t=1751463451; c=relaxed/simple;
+	bh=paLD67x1FzaRwqR/xpvFzQ8Fc9DlFlVSRz8qIEb5eEc=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=cluka6Z0cWBLIHN7sG6a+RsERmtklCYFWKcv5HVMPxhYVKW/HQoBg+pupAQjA4WDLh9F+MsEnKEJF+stCRbyFY4IxsCKsZXVmHy+rfM8HCG/a2UVu7ZcYxEG+noYPcc41EdT3iiA62oxDEep0Sr3o1eix+9yhS6QcoKU0PWTGp8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.217.50
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-vs1-f50.google.com with SMTP id ada2fe7eead31-4e7e5b6207bso1258771137.2;
+        Wed, 02 Jul 2025 06:37:29 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1751463447; x=1752068247;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=HPDxw2ki8ShPYUI34Gu+fJWCqybrGWaID95/meCOhV8=;
+        b=h1xrc8fgwQO/r9sfveQBwvsq4rUazyztzKCmX4JDa7RZdcFjMPWxm90NrLQZqJPlCK
+         JjhHo+5U8ahc6ckb//JVqg8bTbmcDQTZLNlvL0gjCmjl4sfXpAputrTjlWeZc/fjHyoV
+         jtr7xgN8KEKh7JOgovpLphAc761k4hmYCRamW3YmDzgyWeItp1pty6BQvPzsKntsLKO5
+         K6xI/GvaW01Nzf3NHAOVzqP+Yr0+1xz75+8Y3SlJbqGxzLZ4b0jdkrj+xXMcRYixuD6W
+         1bNfvHZOcSu0kdItZnj6mztseit8PymEz6tpWXopIOO+8Yde3t0IFWW+tPmoW55r8fbz
+         65zQ==
+X-Forwarded-Encrypted: i=1; AJvYcCV0gnVubyS0VdKUJv+xAfuKZpUnwFk749sqP6YVPUyea7TDbuCVe64ml3spHCst3OG/uNDkjT9XDOq0@vger.kernel.org, AJvYcCVpVdLOg36CqzgYPgZJ7wM+ccvCopw5v8GZmzlKYuUmKFeREc8YKoKn/rrXRZuGNPgSV6y31JclWgzzSrxj@vger.kernel.org, AJvYcCVrrm5oD4zUoGmDtZqxTzpgl1dD7mK63r+/wDgKwvdrsBsEJPotFChvUE/2HfCXAPPsb2JxE2Upsvln@vger.kernel.org, AJvYcCWzyLjAEeeqFRxxBA8K+d12VGOZJ4VcZz1pkJRd7vdjphwmilk6Retg6N8eEzTRzlJp7xn81FsuWO7v8sSiVC5x7g4=@vger.kernel.org
+X-Gm-Message-State: AOJu0YwMar2o/KOeD8DJHifKvjIQHxKurqe20lSB2u7X3Lla9tfyVHdv
+	xgJ5MJbXAQdGK3R7L8h2k/eTEuL9AsLQgQQh6bbBVwx/myAyIHocPhwiU9p/B57N
+X-Gm-Gg: ASbGncu7v+VtPmbtxLIf8nFtR6Bb/cOo2ycyZGdpKvX+5XxCUTHK9m9qFeKOTHzN3pS
+	RXSiBuZzzkKXDO+KnqbOavaxndCqEOvligU08wxSt9VNbdQaOwDNGQrDWjPelpVYTskPjlxk45y
+	gIMm5tIB2a/WIk0s4+TMUOALfa+hAurMGtEO7xSQqVwzZqphJ0W1kxb/aZfu0QQgTDpghmtUhnL
+	KNp1MbVBx9KZnlvhtoO4TbWYuw5sDLUJhBU/X67P1QC0u2qZGaP+YYlHmHclFFAB7MMxv2RP6AD
+	GcY5pVT66OMwNl4dKsfHF17t3UTrxYhvitObs/F023umYqL5BPr6/sZBRRlaJhkLTm/MztsAdsx
+	4LaOoMFifm1VZQUQHp9FOCd3G
+X-Google-Smtp-Source: AGHT+IGpYnoOwBAUW76Ioy85tZfB46PELnL/75aSLlcKuL2VHEDnMgqkxi1d/jEn3dk3KifF31XNXg==
+X-Received: by 2002:a05:6102:d92:b0:4e6:ddd0:96f7 with SMTP id ada2fe7eead31-4f1611d69e5mr1227194137.13.1751463447142;
+        Wed, 02 Jul 2025 06:37:27 -0700 (PDT)
+Received: from mail-ua1-f42.google.com (mail-ua1-f42.google.com. [209.85.222.42])
+        by smtp.gmail.com with ESMTPSA id a1e0cc1a2514c-884d1c377e4sm2442883241.12.2025.07.02.06.37.26
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 02 Jul 2025 06:37:26 -0700 (PDT)
+Received: by mail-ua1-f42.google.com with SMTP id a1e0cc1a2514c-8815049d0a8so1105148241.2;
+        Wed, 02 Jul 2025 06:37:26 -0700 (PDT)
+X-Forwarded-Encrypted: i=1; AJvYcCViAaFvbCHF2jsTMTxe+GkK/xUx62r9lxqDgG3ZeuYnsNjO3qFXjakDwD6eWC+iFa7vlD9SF1awD2HR@vger.kernel.org, AJvYcCWB+q5lMBK+T2IWvtKFwmyY7kb/8yt6Vi9H7BjT+UuSu1G6g0hKddaDOyBT5M3zEyaV7RiCRa29cfvi@vger.kernel.org, AJvYcCXK2gKP3jCa4Aiq5/ZToZPx01BNhQvGQbIeT4Qn/QGWPmJhfHLJCpYr5OTCkOwLD7gY4WaWsyIdHpg/CxZGvzn4qBo=@vger.kernel.org, AJvYcCXUgsI7PVBETUplGlLWjYTUeZwsQe33x8c6qiP42imIxkyVn8mG/NVdSBQO5CjlS1OKFw4KkkmAeUtrhW8d@vger.kernel.org
+X-Received: by 2002:a05:6102:cd2:b0:4e5:ac99:e466 with SMTP id
+ ada2fe7eead31-4f16123a957mr1134312137.18.1751463446206; Wed, 02 Jul 2025
+ 06:37:26 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20250701-dev-adp5589-fw-v7-0-b1fcfe9e9826@analog.com>
+References: <20250625141705.151383-1-prabhakar.mahadev-lad.rj@bp.renesas.com> <20250625141705.151383-2-prabhakar.mahadev-lad.rj@bp.renesas.com>
+In-Reply-To: <20250625141705.151383-2-prabhakar.mahadev-lad.rj@bp.renesas.com>
+From: Geert Uytterhoeven <geert@linux-m68k.org>
+Date: Wed, 2 Jul 2025 15:37:14 +0200
+X-Gmail-Original-Message-ID: <CAMuHMdXbr5Rb7SNzYTQz+rBNuRrLCC4mf+XauTFA8FArFZzfNQ@mail.gmail.com>
+X-Gm-Features: Ac12FXyffxCRE32g6fggFgUAuaDMG4TZHuxf_OzpBlyzNjf5XBDeWtqxbEOjIos
+Message-ID: <CAMuHMdXbr5Rb7SNzYTQz+rBNuRrLCC4mf+XauTFA8FArFZzfNQ@mail.gmail.com>
+Subject: Re: [PATCH 1/3] dt-bindings: clock: renesas,r9a09g077/87: Add
+ SDHI_CLKHS clock ID
+To: Prabhakar <prabhakar.csengg@gmail.com>
+Cc: Michael Turquette <mturquette@baylibre.com>, Stephen Boyd <sboyd@kernel.org>, 
+	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Magnus Damm <magnus.damm@gmail.com>, linux-renesas-soc@vger.kernel.org, 
+	linux-clk@vger.kernel.org, linux-kernel@vger.kernel.org, 
+	devicetree@vger.kernel.org, Biju Das <biju.das.jz@bp.renesas.com>, 
+	Fabrizio Castro <fabrizio.castro.jz@renesas.com>, 
+	Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+Content-Type: text/plain; charset="UTF-8"
 
-Enjoy!
+Hi Prabhakar,
 
-The following changes since commit 19272b37aa4f83ca52bdf9c16d5d81bdd1354494:
+On Wed, 25 Jun 2025 at 16:17, Prabhakar <prabhakar.csengg@gmail.com> wrote:
+> From: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+>
+> Add the SDHI high-speed clock (SDHI_CLKHS) definition for the Renesas
+> RZ/T2H (R9A09G077) and RZ/N2H (R9A09G087) SoCs. SDHI_CLKHS is used as
+> a core clock for the SDHI IP and operates at 800MHz.
+>
+> Signed-off-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
 
-  Linux 6.16-rc1 (2025-06-08 13:44:43 -0700)
+Thanks for your patch!
 
-are available in the Git repository at:
+>  include/dt-bindings/clock/renesas,r9a09g077-cpg-mssr.h | 1 +
+>  include/dt-bindings/clock/renesas,r9a09g087-cpg-mssr.h | 1 +
 
-  git://git.kernel.org/pub/scm/linux/kernel/git/lee/mfd.git ib-mfd-gpio-input-pwm-v6.17
+Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
+i.e. will split, and queue in renesas-r9a09g077-dt-binding-defs resp.
+renesas-r9a09g087-dt-binding-defs, to be shared by renesas-clk and
+renesas-devel.
 
-for you to fetch changes up to 45ee66c37f9bd8cff7718c70d84e0291d385a093:
+Gr{oetje,eeting}s,
 
-  mfd: adp5585: Add support for a reset pin (2025-07-01 21:50:51 +0100)
-
-----------------------------------------------------------------
-Immutable branch between MFD, GPIO, Input and PWM due for the v6.17 merge window
-
-----------------------------------------------------------------
-Nuno Sá (20):
-      dt-bindings: mfd: adp5585: ease on the required properties
-      mfd: adp5585: Only add devices given in FW
-      mfd: adp5585: Enable oscillator during probe
-      mfd: adp5585: Make use of MFD_CELL_NAME()
-      dt-bindings: mfd: adp5585: document adp5589 I/O expander
-      mfd: adp5585: Refactor how regmap defaults are handled
-      mfd: adp5585: Add support for adp5589
-      mfd: adp5585: Add a per chip reg struture
-      gpio: adp5585: add support for the adp5589 expander
-      pwm: adp5585: add support for adp5589
-      dt-bindings: mfd: adp5585: add properties for input events
-      mfd: adp5585: Add support for event handling
-      mfd: adp5585: Support reset and unlock events
-      mfd: adp5585: Add support for input devices
-      gpio: adp5585: support gpi events
-      Input: adp5585: Add Analog Devices ADP5585/89 support
-      Input: adp5589: remove the driver
-      mfd: adp5585: Support getting vdd regulator
-      dt-bindings: mfd: adp5585: document reset gpio
-      mfd: adp5585: Add support for a reset pin
-
- .../devicetree/bindings/mfd/adi,adp5585.yaml       |  240 ++++-
- .../devicetree/bindings/trivial-devices.yaml       |    2 -
- MAINTAINERS                                        |    1 +
- drivers/gpio/Kconfig                               |    1 +
- drivers/gpio/gpio-adp5585.c                        |  364 ++++++-
- drivers/input/keyboard/Kconfig                     |   21 +-
- drivers/input/keyboard/Makefile                    |    2 +-
- drivers/input/keyboard/adp5585-keys.c              |  371 +++++++
- drivers/input/keyboard/adp5589-keys.c              | 1066 --------------------
- drivers/mfd/adp5585.c                              |  739 +++++++++++++-
- drivers/pwm/pwm-adp5585.c                          |   78 +-
- include/linux/mfd/adp5585.h                        |  118 ++-
- 12 files changed, 1796 insertions(+), 1207 deletions(-)
- create mode 100644 drivers/input/keyboard/adp5585-keys.c
- delete mode 100644 drivers/input/keyboard/adp5589-keys.c
+                        Geert
 
 -- 
-Lee Jones [李琼斯]
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
+
+In personal conversations with technical people, I call myself a hacker. But
+when I'm talking to journalists I just say "programmer" or something like that.
+                                -- Linus Torvalds
 
