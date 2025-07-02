@@ -1,148 +1,169 @@
-Return-Path: <devicetree+bounces-192083-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-192084-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 62617AF1500
-	for <lists+devicetree@lfdr.de>; Wed,  2 Jul 2025 14:07:45 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0460BAF1506
+	for <lists+devicetree@lfdr.de>; Wed,  2 Jul 2025 14:08:47 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id ABA3B7A73E1
-	for <lists+devicetree@lfdr.de>; Wed,  2 Jul 2025 12:06:17 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 30A244A7CD8
+	for <lists+devicetree@lfdr.de>; Wed,  2 Jul 2025 12:08:47 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9435C26B77C;
-	Wed,  2 Jul 2025 12:07:35 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E86C8253F15;
+	Wed,  2 Jul 2025 12:08:41 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="lEQiOujZ"
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="EAlsEvaf"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.19])
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D7FFE1624F7;
-	Wed,  2 Jul 2025 12:07:33 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.198.163.19
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5E8791624F7;
+	Wed,  2 Jul 2025 12:08:40 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1751458055; cv=none; b=qGjLBbVBRz6+INWALDlN+8KCtV5vaoSMGe+KdfJPM7f4BmTWzOs7B8fLGwq/+PntTDFV0TyQ4WPRxVhIO7BQ+2Cx1Gmvw3wt1BKAIm0trIqh33CJMlbhM2kTMvSb/7WaF1mJzTGEg/6EaJaAawDAsULM25NEGHRlsbyGruhS0y4=
+	t=1751458121; cv=none; b=O83lKpuzsyTI6MM8KfLlDwS60OZIFsA6C/UYhQ5Dyqnz8hQsoMQtWRe3IKVaW2dBi6nNLEYoCBAKn5+dWv5wf1qoQqMYK3XD7ozZHPGAf/1tFCWw88rXnwELF3yOnGqcQResQN4KXp1HmseWQ5nCAqjFSZURA9oi/mvnr1tDEog=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1751458055; c=relaxed/simple;
-	bh=IR63JrJp4EpFgC2hqcOS6ZZUnx2E8wjz2gyvdSKhXcI=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=nZKSOyKRUze+0v4VUa52xKq1Uw+HmVxlRXue/IOpw6qD/+IN/+0a0kigMKtxrKLNpryHJrEbXRjhXuxsj0ICIX0jMutNNMwed8WVCjyqZZlmBSV9kxscMUxYS9+wigLOrRVamxshhMxuq3/nUPTgsQaXi/t7IsNf4OOfdZOGK6Q=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com; spf=none smtp.mailfrom=linux.intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=lEQiOujZ; arc=none smtp.client-ip=192.198.163.19
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com
-Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=linux.intel.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1751458054; x=1782994054;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=IR63JrJp4EpFgC2hqcOS6ZZUnx2E8wjz2gyvdSKhXcI=;
-  b=lEQiOujZxmBIZWffJH08A2FxdI/xZIiODCyRDtC3hXyJoOlWKU7LcB0u
-   dnCqPVkDYvZRjHfwrxIKlBJPbXcN4hGnh7PEro8pxc7M+fVQjbTIyHIge
-   OXlf+KuUiRVAbire6x4+FKeINxdRYycHzLRqSlEokVpfnw0QghPqwcGx6
-   UOTUzXTd33AqH67tSj8gSNn8OOKgyhSs5XtoRiI39lEvY1QvOxu+rYT+s
-   5asHtyb/AtPKRlAhbqLOaxwSAGW+AFYxVBQHGW9v9HauETtZ/nIJExVmC
-   ufKPbvt0DvcfJ5gIwnYqmMOO39jS4ajCCagevc9oZOMrQtF7uSFk4baI6
-   g==;
-X-CSE-ConnectionGUID: rpapoq/nQD6UFB0be2MkoA==
-X-CSE-MsgGUID: L6ilbGXsQqi3PwVOThMofQ==
-X-IronPort-AV: E=McAfee;i="6800,10657,11482"; a="52866031"
-X-IronPort-AV: E=Sophos;i="6.16,281,1744095600"; 
-   d="scan'208";a="52866031"
-Received: from orviesa006.jf.intel.com ([10.64.159.146])
-  by fmvoesa113.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 02 Jul 2025 05:07:06 -0700
-X-CSE-ConnectionGUID: z0XQZcSdS1KNJrdm0gyElA==
-X-CSE-MsgGUID: vG0JtjgiTqqFY8WX4z6jag==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.16,281,1744095600"; 
-   d="scan'208";a="153512567"
-Received: from smile.fi.intel.com ([10.237.72.52])
-  by orviesa006.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 02 Jul 2025 05:06:59 -0700
-Received: from andy by smile.fi.intel.com with local (Exim 4.98.2)
-	(envelope-from <andriy.shevchenko@linux.intel.com>)
-	id 1uWwEp-0000000BuZm-1DFY;
-	Wed, 02 Jul 2025 15:06:55 +0300
-Date: Wed, 2 Jul 2025 15:06:54 +0300
-From: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
-To: Anup Patel <apatel@ventanamicro.com>
-Cc: Michael Turquette <mturquette@baylibre.com>,
-	Stephen Boyd <sboyd@kernel.org>, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Jassi Brar <jassisinghbrar@gmail.com>,
-	Thomas Gleixner <tglx@linutronix.de>,
-	"Rafael J . Wysocki" <rafael@kernel.org>,
-	Mika Westerberg <mika.westerberg@linux.intel.com>,
-	Linus Walleij <linus.walleij@linaro.org>,
-	Bartosz Golaszewski <brgl@bgdev.pl>,
-	Uwe =?iso-8859-1?Q?Kleine-K=F6nig?= <ukleinek@kernel.org>,
-	Palmer Dabbelt <palmer@dabbelt.com>,
-	Paul Walmsley <paul.walmsley@sifive.com>,
-	Alexandre Ghiti <alex@ghiti.fr>, Len Brown <lenb@kernel.org>,
-	Sunil V L <sunilvl@ventanamicro.com>,
-	Rahul Pathak <rpathak@ventanamicro.com>,
-	Leyfoon Tan <leyfoon.tan@starfivetech.com>,
-	Atish Patra <atish.patra@linux.dev>,
-	Andrew Jones <ajones@ventanamicro.com>,
-	Samuel Holland <samuel.holland@sifive.com>,
-	Anup Patel <anup@brainfault.org>, linux-clk@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-acpi@vger.kernel.org,
-	linux-riscv@lists.infradead.org, linux-kernel@vger.kernel.org,
-	Atish Patra <atishp@rivosinc.com>
-Subject: Re: [PATCH v7 03/24] RISC-V: Add defines for the SBI message proxy
- extension
-Message-ID: <aGUg3h_vigc6mq5a@smile.fi.intel.com>
-References: <20250702051345.1460497-1-apatel@ventanamicro.com>
- <20250702051345.1460497-4-apatel@ventanamicro.com>
+	s=arc-20240116; t=1751458121; c=relaxed/simple;
+	bh=3vbzMSWGrM1IsM82wSUE9N2Euh4gG5Fkzv7YzCiDhcs=;
+	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
+	 In-Reply-To:Content-Type; b=fg1yRdgwkcS4GTGZsSIQNfu14hM+mDA7iFNdEZNZCCVwGXqarS8ysYHsLhxtcbQpxDvuCl59yur54zcFhdtYije+408WRqogzx9A/AsmHOI3RE6EH+mtzRUIO9ov7gs5lp5I5xTcSZ0hBcESBAosOk2gyNzpZY9PMsVoNdf9ys8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=EAlsEvaf; arc=none smtp.client-ip=205.220.168.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
+Received: from pps.filterd (m0279864.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 5627ah9o018798;
+	Wed, 2 Jul 2025 12:08:35 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	oEFqsMO38/rbtY274FEzDRC8zOV2tBwKXGLbUJZ3YLk=; b=EAlsEvafmBU0SrYe
+	YOjzYV13iim8M3dkHZzYLCtutwksKzFO09GqouZuXtUxu8gfiv+4SP4vqCY5bVvd
+	El6QKcQNuUuHryXt+r6tik1VANJ2UpWKnWcgHbVS4OqE/yDRlbuSitg7IWC5gl5O
+	ymlB39BWZpySexCiPglaobYijoCjYK56YeRQ6eV8DCWrkHlbEbm+qoH9C4TTk6D5
+	UiyF9RTh+JPg95iOh085OoG0/nBH6NADL77Gcg5ZjRurjQ8NpWwFH87F5qY+Vw19
+	w8WtFSdoNUZjfzBnikzjt760A35tQiU+ZB1IrmIWEdWxaZMxpnkzMU2tumr7p8rU
+	1jFLBg==
+Received: from nasanppmta03.qualcomm.com (i-global254.qualcomm.com [199.106.103.254])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 47n0h8gvvv-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Wed, 02 Jul 2025 12:08:34 +0000 (GMT)
+Received: from nasanex01a.na.qualcomm.com (nasanex01a.na.qualcomm.com [10.52.223.231])
+	by NASANPPMTA03.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 562C8Y6w008595
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Wed, 2 Jul 2025 12:08:34 GMT
+Received: from [10.50.58.161] (10.80.80.8) by nasanex01a.na.qualcomm.com
+ (10.52.223.231) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.9; Wed, 2 Jul 2025
+ 05:08:30 -0700
+Message-ID: <87d0795e-82d5-3274-4909-dd795d082295@quicinc.com>
+Date: Wed, 2 Jul 2025 17:38:16 +0530
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20250702051345.1460497-4-apatel@ventanamicro.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park, 6
- krs, Bertel Jungin Aukio 5, 02600 Espoo
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
+ Thunderbird/102.15.1
+Subject: Re: [PATCH v3 1/5] media: dt-bindings: add non-pixel property in iris
+ schema
+Content-Language: en-US
+To: Krzysztof Kozlowski <krzk@kernel.org>,
+        Dikshita Agarwal
+	<quic_dikshita@quicinc.com>,
+        Abhinav Kumar <abhinav.kumar@linux.dev>,
+        "Bryan
+ O'Donoghue" <bryan.odonoghue@linaro.org>,
+        Mauro Carvalho Chehab
+	<mchehab@kernel.org>,
+        Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski
+	<krzk+dt@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>
+CC: <linux-media@vger.kernel.org>, <linux-arm-msm@vger.kernel.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>
+References: <20250627-video_cb-v3-0-51e18c0ffbce@quicinc.com>
+ <20250627-video_cb-v3-1-51e18c0ffbce@quicinc.com>
+ <6fd3fa34-69e1-484f-ad6f-8caa852f1a6c@kernel.org>
+ <dc6e82a1-82be-b8b8-31c3-8b85447d4e43@quicinc.com>
+ <8b88cea4-b9f2-4365-829c-2a255aed6c69@kernel.org>
+ <ae23ebae-3101-4a73-2bbd-0dabb4efaba1@quicinc.com>
+ <45fdf98c-32f7-4b5f-889c-6d2f1fa5fbd6@kernel.org>
+From: Vikash Garodia <quic_vgarodia@quicinc.com>
+In-Reply-To: <45fdf98c-32f7-4b5f-889c-6d2f1fa5fbd6@kernel.org>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
+ nasanex01a.na.qualcomm.com (10.52.223.231)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwNzAyMDA5OCBTYWx0ZWRfX2VJVTobYMkTf
+ iDScy1c4eBeUbUaEUlDW36XpsCCXX+EtTmEuVNuuEiCDPxAkXi+xD9TWyv9N7d49HJH5D0pzO79
+ xwM8XcFzyjlirM5i404vuGQAGmxve4xmcwFuV0q6uC9rRrhsEfU6uQDjUcHuUv3pPhce9j7hG0h
+ ZkJH9/TzZiyFg39+//kH23Q0VkY7Mg/RlJDG42tBL9wOCu5C7SXMvdHC4Hxv84xfeJw4Ygq6vME
+ reY5XrN9ZOt9dRT6Jmby4vhBGM5pTEHoKGmuhAFE0uh20mod58d7vzGYqKgVnQnfD/AsdHObP29
+ s3owfxw5WH768lC0ql+2+fL7MMmsRLIW5IlfdizKsXo4UhlAzI/gB1nxBouCl06Vi3Yu+4K4Isj
+ jH2BLsbsM/AVfNluJU27Cjq+VZSQUa5F7Yv4/UNBRIpZUNE287+9H+akGwe5fblkxI54TzG3
+X-Proofpoint-ORIG-GUID: tCHFoBE4Ir2DAcQ1ctw1_XQrinWzNf35
+X-Authority-Analysis: v=2.4 cv=L4odQ/T8 c=1 sm=1 tr=0 ts=68652142 cx=c_pps
+ a=JYp8KDb2vCoCEuGobkYCKw==:117 a=JYp8KDb2vCoCEuGobkYCKw==:17
+ a=GEpy-HfZoHoA:10 a=IkcTkHD0fZMA:10 a=Wb1JkmetP80A:10
+ a=zSgUOyzFFViYIMMuxZIA:9 a=QEXdDO2ut3YA:10
+X-Proofpoint-GUID: tCHFoBE4Ir2DAcQ1ctw1_XQrinWzNf35
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1099,Hydra:6.1.7,FMLib:17.12.80.40
+ definitions=2025-07-02_01,2025-06-27_01,2025-03-28_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ priorityscore=1501 mlxscore=0 mlxlogscore=999 suspectscore=0 adultscore=0
+ malwarescore=0 spamscore=0 clxscore=1015 bulkscore=0 impostorscore=0
+ phishscore=0 lowpriorityscore=0 classifier=spam authscore=0 authtc=n/a
+ authcc= route=outbound adjust=0 reason=mlx scancount=1
+ engine=8.19.0-2505280000 definitions=main-2507020098
 
-On Wed, Jul 02, 2025 at 10:43:24AM +0530, Anup Patel wrote:
-> Add defines for the new SBI message proxy extension which is part
-> of the SBI v3.0 specification.
 
-Actually a few nit-picks.
+On 7/2/2025 5:28 PM, Krzysztof Kozlowski wrote:
+> On 02/07/2025 13:55, Vikash Garodia wrote:
+>>
+>>
+>> On 7/2/2025 5:17 PM, Krzysztof Kozlowski wrote:
+>>> On 02/07/2025 13:45, Vikash Garodia wrote:
+>>>>
+>>>> On 7/2/2025 4:53 PM, Krzysztof Kozlowski wrote:
+>>>>> On 27/06/2025 17:48, Vikash Garodia wrote:
+>>>>>> +
+>>>>>>      video-codec@aa00000 {
+>>>>>>          compatible = "qcom,sm8550-iris";
+>>>>>>          reg = <0x0aa00000 0xf0000>;
+>>>>>> @@ -144,12 +176,16 @@ examples:
+>>>>>>          resets = <&gcc GCC_VIDEO_AXI0_CLK_ARES>;
+>>>>>>          reset-names = "bus";
+>>>>>>  
+>>>>>> -        iommus = <&apps_smmu 0x1940 0x0000>,
+>>>>>> -                 <&apps_smmu 0x1947 0x0000>;
+>>>>>> +        iommus = <&apps_smmu 0x1947 0x0000>;
+>>>>>
+>>>>> I missed, that's technically ABI break and nothing in commit msg
+>>>>> explains that. You need to clearly explain the reasons and impact.
+>>>> No, it is not. Interface works well with old or new approach.
+>>>
+>>>
+>>> You changed the order of IOMMUs, so yes it is. Which interface works
+>>> well - FreeBSD? Or other? You are changing ABI for every user.
+>> Why do i need to change, when without changing would work as well ?
+> ? I don't understand. I made a statement, not a question. You are doing
+> this - you are changing the ABI.
+> 
+> Which item was the first IOMMU before and which was second?
+> 
+> Which item is the first IOMMU now?
+Old approach - max 2 iommus interface - <SID-A, SID-B>
+New approach - min 1/max 2, iommu interface - <SID-B>, child - <SID-A>
 
-...
+If both works, how is interchanging impacting any existing hardware OR breaking
+ABI ?
 
-> +enum sbi_ext_mpxy_fid {
-> +	SBI_EXT_MPXY_GET_SHMEM_SIZE,
-> +	SBI_EXT_MPXY_SET_SHMEM,
-> +	SBI_EXT_MPXY_GET_CHANNEL_IDS,
-> +	SBI_EXT_MPXY_READ_ATTRS,
-> +	SBI_EXT_MPXY_WRITE_ATTRS,
-> +	SBI_EXT_MPXY_SEND_MSG_WITH_RESP,
-> +	SBI_EXT_MPXY_SEND_MSG_WITHOUT_RESP,
-> +	SBI_EXT_MPXY_GET_NOTIFICATION_EVENTS
-
-Add a trailing comma.
-
-> +};
-
-...
-
-> +/* Possible values of MSG_PROT_ID attribute */
-> +enum sbi_mpxy_msgproto_id {
-> +	SBI_MPXY_MSGPROTO_RPMI_ID = 0x0
-
-Add a trailing comma, and you might want to drop 0x. I don't know what else can
-be here, esp. in the future, but some kind of the description of this in TRM
-can shed a light on what is better pattern to use.
-
-> +};
-
--- 
-With Best Regards,
-Andy Shevchenko
-
-
+> 
+> Best regards,
+> Krzysztof
 
