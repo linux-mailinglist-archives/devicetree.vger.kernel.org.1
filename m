@@ -1,147 +1,173 @@
-Return-Path: <devicetree+bounces-192352-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-192353-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id DF7FDAF653C
-	for <lists+devicetree@lfdr.de>; Thu,  3 Jul 2025 00:33:59 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2319FAF65BA
+	for <lists+devicetree@lfdr.de>; Thu,  3 Jul 2025 01:00:34 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 810B27A29BC
-	for <lists+devicetree@lfdr.de>; Wed,  2 Jul 2025 22:32:34 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 5A3AF4E67CD
+	for <lists+devicetree@lfdr.de>; Wed,  2 Jul 2025 23:00:34 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1D843242D79;
-	Wed,  2 Jul 2025 22:33:54 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 368BE246797;
+	Wed,  2 Jul 2025 23:00:28 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="DrfFrXe+"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="LdpJ23gs"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 826C97E0E4
-	for <devicetree@vger.kernel.org>; Wed,  2 Jul 2025 22:33:52 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 083772DE70A;
+	Wed,  2 Jul 2025 23:00:27 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1751495634; cv=none; b=vF61rdBA47PqYF7i3BCE8An6CvbpgqZlImbnZVo0++zjYKJ3ZxXXFohTa1+HQGP4gR4m7SPVff+dcUulBLfYekXrIghpwBcVSi8lXSFVikT0UTuB0FhiawtjjMuipCxTaXx8/DmRYHdaa4GNdlqvTsdJCSmQUZ5tRHxLquhEqm4=
+	t=1751497228; cv=none; b=VXBw1FGgqtl5hAzMfYbfehF+8bIJMGJzIcIkq0BwQLb1Vv/M5TT52I9u0Lg6AgSHXUM7Kr9faB+hIQ8h0KM3hzZjUQEMugFF39+80SHd2+qSsG9dN/b/az/TTwZ1brExkS5Qyr0Jax90b8Te57yQqGEhs9C06bkVVQii+716MOU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1751495634; c=relaxed/simple;
-	bh=fKYrShfy4eijBV7nECTRWv3J853kJl0gn/F00vK+lMQ=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=OSFKU7u3HELQA8S6gx2LyDG5TKLxEDaQ2b+K3NszZbqWcC6+8So1mVQBdYxypFXae95i0tNrHcuc43sbvo04Pvug8MjtCHdlIZ2qgajpUidjzBGbXxAptW+5jS4Sxr/2TuNhnp6IF27Z+POQ56mdGXXfpSw+MrQRhoufRyhGprU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=DrfFrXe+; arc=none smtp.client-ip=205.220.180.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
-Received: from pps.filterd (m0279871.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 562F7Sp1024884
-	for <devicetree@vger.kernel.org>; Wed, 2 Jul 2025 22:33:51 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
-	cc:content-type:date:from:in-reply-to:message-id:mime-version
-	:references:subject:to; s=qcppdkim1; bh=9m75rRNh/55YNUo8oud19uqS
-	Nh7ztNCNjf7HEJhz4Jw=; b=DrfFrXe+I0mvhum2HRzezn+EXJKPyXEcy+lFpiXD
-	yOW6Cz33OviCyc9FH6nvXpgJomdo/eHdhOG8aJTRmhOs1ghywi8LT3qVJZ1pxOD3
-	GyhruPTn6GEwW0yJPm8ALH1doE311dSlPuVVheig2nl/QFP/k3H5UtbRBlkFzk0R
-	64iMHYOn5V68PVk5s7LpCywTIpe72+rDeaQuJwMGen2pcr4W34h3ccIptIGUDJoP
-	z93TGYaaZMIRmax/U0SdcL8yN9FvAE53uNRVqNPy01th9lcZOlKG+K/+ZSrD0CUk
-	2AYUnGEcREoX4z71rFOJ3ex5ZlmLHJFGznZITV1RC0/zXQ==
-Received: from mail-qk1-f199.google.com (mail-qk1-f199.google.com [209.85.222.199])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 47j802614n-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Wed, 02 Jul 2025 22:33:51 +0000 (GMT)
-Received: by mail-qk1-f199.google.com with SMTP id af79cd13be357-7c5e2872e57so808585385a.0
-        for <devicetree@vger.kernel.org>; Wed, 02 Jul 2025 15:33:51 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1751495630; x=1752100430;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=9m75rRNh/55YNUo8oud19uqSNh7ztNCNjf7HEJhz4Jw=;
-        b=N2G/CF6gOcrWaU7KNzys+yHfTvGL5Q4Xs4MgT/z4NhT7SzDXhqp9xu8JM177aXZqso
-         DHsmA1lbMohYFuvUYMzQfT1xSq8bExptnIQJ/uVzUMHz4hhOE/Uqv7DssM6i5KPoRHSH
-         XSJ8OKzWtJ0BonNtU/JRWRQTFHdrpKYb4b+BoT7tc4+m9yakNo1MgQkwVD8FmLnbFwe9
-         CGzT/rEu9x2Ftl14tmI4xCrWqoD6u317TQpZW1xYnos/qHKditr/PuC/zSUGURSY2BRj
-         PuCsHNDSthZsAISYWfzV8Lv3HYhiT/gdtfhJ9Kl3Z6vzafKI1bvwG6wRA8UGDFYf8pe+
-         iMng==
-X-Forwarded-Encrypted: i=1; AJvYcCX2O30Rki1Afw4cFD6rg0iZ98mRN7o4VkVM6OCLmvDZ/Zizq6VTY0b5ooGomiN2TJApWVLPs0odTpNm@vger.kernel.org
-X-Gm-Message-State: AOJu0Yzbg98QZAYqxK+cOSgHYROfcCeFHp+lartHggqdLrA8uj3D4o1x
-	nPz1m2BBHcAXWfcV9TmnATApuh28N7XjmbcrnVFMLJ/KTAYzqFeh93pAuHb3EiIyBEeXmwP+y2o
-	m1t6CMOKqo+uKYSYkYLtalb5yauh6PPJthr1ahaJX+XJzom4qZbKFsITWn7HMpZ6C
-X-Gm-Gg: ASbGncuTmk8gvbZCt/RsljDIswfLaRwcDF+w0ew6phG2qV55mS65wfreS39l/RFRo6e
-	/AFw3UL12/KI44v9o+1IcHAfOO/Iy2HOgyOvoJBUrZsGIBMM7jGu7UVTqQLsFCPLrCll2+L0lX8
-	obpTvMUR1/ZS1/F2SeIArLG6AvnAE3BeTU9QFFgNm4on5UZ2CibT3I24LgO8s5Obx1LGLglgC4H
-	KpUCpFXFgZt66UklmXWvBNoDZ4SIN5mKxtyQgpywXm3InW10GSTSqMIJY1L/D3hJ9Mbbe0nW2cp
-	Fh5s7aXcSx5SmDF4qXtnK0YZHCV/hXjMAXyR8+p52dM8hyMUM3NN00LFKrcxegXGuWki8KnzjAZ
-	UIJznDavrc30dhD6nGZlMYVeN53CPW8LQoVw=
-X-Received: by 2002:a05:620a:394a:b0:7d4:5a4a:ceb1 with SMTP id af79cd13be357-7d5c4798da0mr884198485a.47.1751495630590;
-        Wed, 02 Jul 2025 15:33:50 -0700 (PDT)
-X-Google-Smtp-Source: AGHT+IHqHg8DuS5Rl+xyDTUq7jRwAVjwOfUy86K5mPVVKk/oqcQL3wgwaOndDK7teOB2+3l4vN8JRw==
-X-Received: by 2002:a05:620a:394a:b0:7d4:5a4a:ceb1 with SMTP id af79cd13be357-7d5c4798da0mr884194685a.47.1751495630175;
-        Wed, 02 Jul 2025 15:33:50 -0700 (PDT)
-Received: from umbar.lan (2001-14ba-a0c3-3a00-264b-feff-fe8b-be8a.rev.dnainternet.fi. [2001:14ba:a0c3:3a00:264b:feff:fe8b:be8a])
-        by smtp.gmail.com with ESMTPSA id 38308e7fff4ca-32cd2f00aa6sm18743291fa.99.2025.07.02.15.33.49
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 02 Jul 2025 15:33:49 -0700 (PDT)
-Date: Thu, 3 Jul 2025 01:33:47 +0300
-From: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
-To: Luca Weiss <luca.weiss@fairphone.com>
-Cc: Bjorn Andersson <andersson@kernel.org>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        ~postmarketos/upstreaming@lists.sr.ht, phone-devel@vger.kernel.org,
-        linux-arm-msm@vger.kernel.org, linux-gpio@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v2 2/2] pinctrl: qcom: Add Milos pinctrl driver
-Message-ID: <xtcfzqhwmxgyui7fyn5bsms52nnlflalhlkvkinhdc2sxdu4l3@logrn3cjupez>
-References: <20250702-sm7635-pinctrl-v2-0-c138624b9924@fairphone.com>
- <20250702-sm7635-pinctrl-v2-2-c138624b9924@fairphone.com>
+	s=arc-20240116; t=1751497228; c=relaxed/simple;
+	bh=YoxFkvvT3uGhs9+nxoPloOtRn0pJtIA5kzHG983qo/8=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=rczV0tumZGB64/bc7oH1qA/C7UbTi0A5ow/YmBX3HmekaiM+qnSJZ9SWUASWKwxuVXyNVHm/h2o/NrVafJBZlyK19U8y9SLb22IDsPrQ4g7XiBeFqzt7MQMANPQ0dwb+2Cj1VHfnB9Nmyp93k4gLmMUUijisiYVq3gTkj4fUqaM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=LdpJ23gs; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 6E1D8C4CEE7;
+	Wed,  2 Jul 2025 23:00:27 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1751497227;
+	bh=YoxFkvvT3uGhs9+nxoPloOtRn0pJtIA5kzHG983qo/8=;
+	h=From:To:Cc:Subject:Date:From;
+	b=LdpJ23gskwvtzo+wI4ZdwYtzxGN3XBWPweYW/AjiS5g5Og+WK1qiwTA5T99m0foMN
+	 dCrosyxmzEEuGSN3hvbdD/sFScH/4vki5rsnInDGIwYgbpsMlj2wF4uTFLpzfxuLk1
+	 mRV386m2m/W5L8+IehWoaZ2bzWiR8XNNMC0yhuY8Q43Er4mpDtzqRcoCrKYzjUwQGs
+	 96WHuvtEML0++8EpClnY5eG3OpSO+RNZalQ8b36CBsqw5Q/15HCJ2GwI93g5dY4rG2
+	 EcyGVAOmAloo3KTvzqITUEPcTUGoaI3rawRKcWUHH+vE0bH32i4bHB9ZTke0VDIxH1
+	 z0HmnMm2Wqs1Q==
+From: "Rob Herring (Arm)" <robh@kernel.org>
+To: "Rafael J. Wysocki" <rafael@kernel.org>,
+	Daniel Lezcano <daniel.lezcano@linaro.org>,
+	Zhang Rui <rui.zhang@intel.com>,
+	Lukasz Luba <lukasz.luba@arm.com>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Miquel Raynal <miquel.raynal@bootlin.com>
+Cc: linux-pm@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org
+Subject: [PATCH] dt-bindings: thermal: Convert marvell,armada370-thermal to DT schema
+Date: Wed,  2 Jul 2025 17:55:27 -0500
+Message-ID: <20250702225530.2858649-1-robh@kernel.org>
+X-Mailer: git-send-email 2.47.2
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20250702-sm7635-pinctrl-v2-2-c138624b9924@fairphone.com>
-X-Proofpoint-GUID: DM0zXfU4QQ3yII3RvijDHWKS82T4uJWB
-X-Authority-Analysis: v=2.4 cv=YPWfyQGx c=1 sm=1 tr=0 ts=6865b3cf cx=c_pps
- a=HLyN3IcIa5EE8TELMZ618Q==:117 a=xqWC_Br6kY4A:10 a=kj9zAlcOel0A:10
- a=Wb1JkmetP80A:10 a=6H0WHjuAAAAA:8 a=EUspDBNiAAAA:8 a=JBPsfPNCSnIN1veHQUAA:9
- a=CjuIK1q_8ugA:10 a=bTQJ7kPSJx9SKPbeHEYW:22 a=Soq9LBFxuPC4vsCAQt-j:22
-X-Proofpoint-ORIG-GUID: DM0zXfU4QQ3yII3RvijDHWKS82T4uJWB
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwNzAyMDE4NyBTYWx0ZWRfX+mFMrFPV7j7q
- g5EUklfNYH9zYj2FKPwlMKlY7JmcWVgNtNmIqm9tI5RxPeBPJK5ieMG56TSGJFkP0xrcECsYjHQ
- Bz8kpbpM0CbXh7+exr94Ut3eGjIqgUixyc27JguhfpUH6ExZA62ibuNzEELeU4wluLcAHEVpvGY
- mwx95PzP1niPKz4B4I6wqu4Tt39Qu71hk0/dijfxRHW2T6NFGZmlMsdNI9IylcNayzwWS5UVVMa
- H+Xm+UQ7NrJ0eTYeEq6iTxceVr3Qh6jC7OJnnU7KgCTSDJvq+aG7yDcVewNLcAEpjuVUeVeFERE
- hShMBjQtGI0uFEYCch4F7IovUpLN9TM7OYshJ7HmMaD9Mdf6CjvvrP8d3SOwW1DtjIiPuEFaW2Z
- NPSr2doj5ZzzkI5lJodL6KINN+SHGyXrz8/K4JIlV/iZFQrfJsJ/h+7mgEWFIC8OjBAb5rFZ
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1099,Hydra:6.1.7,FMLib:17.12.80.40
- definitions=2025-07-02_04,2025-07-02_04,2025-03-28_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- spamscore=0 mlxlogscore=962 mlxscore=0 malwarescore=0 suspectscore=0
- lowpriorityscore=0 clxscore=1015 impostorscore=0 adultscore=0
- priorityscore=1501 bulkscore=0 phishscore=0 classifier=spam authscore=0
- authtc=n/a authcc= route=outbound adjust=0 reason=mlx scancount=1
- engine=8.19.0-2505280000 definitions=main-2507020187
+Content-Transfer-Encoding: 8bit
 
-On Wed, Jul 02, 2025 at 05:56:17PM +0200, Luca Weiss wrote:
-> Add pinctrl driver for TLMM block found in the Milos SoC.
-> 
-> Signed-off-by: Luca Weiss <luca.weiss@fairphone.com>
-> ---
->  drivers/pinctrl/qcom/Kconfig.msm     |    8 +
->  drivers/pinctrl/qcom/Makefile        |    1 +
->  drivers/pinctrl/qcom/pinctrl-milos.c | 1340 ++++++++++++++++++++++++++++++++++
->  3 files changed, 1349 insertions(+)
-> 
+Convert the Marvell Armada 3xx/XP thermal binding to schema.
 
-Reviewed-by: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
+Drop the AP80x and CP110 as they have long been deprecated and have
+been replaced by a new binding.
 
+Signed-off-by: Rob Herring (Arm) <robh@kernel.org>
+---
+ .../bindings/thermal/armada-thermal.txt       | 42 -------------------
+ .../thermal/marvell,armada370-thermal.yaml    | 37 ++++++++++++++++
+ 2 files changed, 37 insertions(+), 42 deletions(-)
+ delete mode 100644 Documentation/devicetree/bindings/thermal/armada-thermal.txt
+ create mode 100644 Documentation/devicetree/bindings/thermal/marvell,armada370-thermal.yaml
 
+diff --git a/Documentation/devicetree/bindings/thermal/armada-thermal.txt b/Documentation/devicetree/bindings/thermal/armada-thermal.txt
+deleted file mode 100644
+index ab8b8fccc7af..000000000000
+--- a/Documentation/devicetree/bindings/thermal/armada-thermal.txt
++++ /dev/null
+@@ -1,42 +0,0 @@
+-* Marvell Armada 370/375/380/XP thermal management
+-
+-Required properties:
+-
+-- compatible: Should be set to one of the following:
+-    * marvell,armada370-thermal
+-    * marvell,armada375-thermal
+-    * marvell,armada380-thermal
+-    * marvell,armadaxp-thermal
+-    * marvell,armada-ap806-thermal
+-    * marvell,armada-ap807-thermal
+-    * marvell,armada-cp110-thermal
+-
+-Note: these bindings are deprecated for AP806/CP110 and should instead
+-follow the rules described in:
+-Documentation/devicetree/bindings/arm/marvell/ap80x-system-controller.txt
+-Documentation/devicetree/bindings/arm/marvell/cp110-system-controller.txt
+-
+-- reg: Device's register space.
+-  Two entries are expected, see the examples below. The first one points
+-  to the status register (4B). The second one points to the control
+-  registers (8B).
+-  Note: The compatibles marvell,armada370-thermal,
+-  marvell,armada380-thermal, and marvell,armadaxp-thermal must point to
+-  "control MSB/control 1", with size of 4 (deprecated binding), or point
+-  to "control LSB/control 0" with size of 8 (current binding). All other
+-  compatibles must point to "control LSB/control 0" with size of 8.
+-
+-Examples:
+-
+-	/* Legacy bindings */
+-	thermal@d0018300 {
+-		compatible = "marvell,armada370-thermal";
+-		reg = <0xd0018300 0x4
+-		       0xd0018304 0x4>;
+-	};
+-
+-	ap_thermal: thermal@6f8084 {
+-		compatible = "marvell,armada-ap806-thermal";
+-		reg = <0x6f808C 0x4>,
+-		      <0x6f8084 0x8>;
+-	};
+diff --git a/Documentation/devicetree/bindings/thermal/marvell,armada370-thermal.yaml b/Documentation/devicetree/bindings/thermal/marvell,armada370-thermal.yaml
+new file mode 100644
+index 000000000000..2f55b7252e51
+--- /dev/null
++++ b/Documentation/devicetree/bindings/thermal/marvell,armada370-thermal.yaml
+@@ -0,0 +1,37 @@
++# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/thermal/marvell,armada370-thermal.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: Marvell Armada 3xx/XP thermal management
++
++maintainers:
++  - Miquel Raynal <miquel.raynal@bootlin.com>
++
++properties:
++  compatible:
++    enum:
++      - marvell,armada370-thermal
++      - marvell,armada375-thermal
++      - marvell,armada380-thermal
++      - marvell,armadaxp-thermal
++
++  reg:
++    items:
++      - description: status register (4B)
++      - description: control register (4B or 8B)
++
++required:
++  - compatible
++  - reg
++
++additionalProperties: false
++
++examples:
++  - |
++    thermal@d0018300 {
++        compatible = "marvell,armada370-thermal";
++        reg = <0xd0018300 0x4
++               0xd0018304 0x4>;
++    };
 -- 
-With best wishes
-Dmitry
+2.47.2
+
 
