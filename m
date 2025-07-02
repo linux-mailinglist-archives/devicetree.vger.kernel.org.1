@@ -1,48 +1,48 @@
-Return-Path: <devicetree+bounces-191881-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-191882-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 906CEAF0B8E
-	for <lists+devicetree@lfdr.de>; Wed,  2 Jul 2025 08:22:12 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 77DC4AF0B91
+	for <lists+devicetree@lfdr.de>; Wed,  2 Jul 2025 08:22:45 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 114B51C00EFC
-	for <lists+devicetree@lfdr.de>; Wed,  2 Jul 2025 06:22:13 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id D46D31C05D62
+	for <lists+devicetree@lfdr.de>; Wed,  2 Jul 2025 06:22:52 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id EF3E521CA1F;
-	Wed,  2 Jul 2025 06:20:46 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id EC0F6219A86;
+	Wed,  2 Jul 2025 06:22:32 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="pzZO5UGi"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="YhyF7UW+"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BAE242AE8B;
-	Wed,  2 Jul 2025 06:20:45 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BBD3F2AE8B;
+	Wed,  2 Jul 2025 06:22:32 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1751437246; cv=none; b=CGpvLPmc4s6pZay7euT1RDvWRkomAAsJFJiSMXSrlnCujxFcxoDU01ywexlvWFx6weWho3jCSbdZdMBsWnxU7Fro8iWupGdyps6DSB1wQxJ8GoGpExlrqJne+/27wZTFfBrQt9Vt0y0aMFqxoudz5tPkMDVxeat8HWWOmmV11G8=
+	t=1751437352; cv=none; b=eFxopJiv9FIGNSxrGW/lLafDUfgBlb+5IgjfZ4XrvMJLSj8abJMC304wFlH1mHJzPDHLOnexLlb49UxFXZEoois7mlmSeDb/XjIt8KOoGJ5eTaZBfb4dQYYH2mmF8DlXYuCE2q69gMa2rh5IJeQowyA5w6iYjkCNsdWRKRQEmII=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1751437246; c=relaxed/simple;
-	bh=VLRieSIqs4BjM9SJJCKqQMY/f955o1jMxFMZny9Me74=;
+	s=arc-20240116; t=1751437352; c=relaxed/simple;
+	bh=YxS2qPZmDkIwQXB33JykK2wCJt5fRCCG7LCQRbDB53o=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=GirloVZWngnGLKU1v0WjFpQF8OEMoaXSMxuP/PDRwm1oZTrpMEV8CX22nnic7yQsxFMK6NZJX5sxNdgTN6FwQBcENmQIHYincOYBrkkSA9nIFGT41TpXjM9D6VWMz5Bn9qs5iDcvr1Jr9bx3opkr9p7tCJfefH9vvGlD0e5mB1I=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=pzZO5UGi; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 99CD8C4CEEE;
-	Wed,  2 Jul 2025 06:20:39 +0000 (UTC)
+	 In-Reply-To:Content-Type; b=eeC5GiyIAT6ZZt79Fy4ttHospUZctZr9LR4uw7LcSzMQ/5jb6ivFiivW0XZmgmhf0iHFK8E5YJEFLsJVLGwvJZSbN8ZMGHK2S4/bGI6KpZZjQ/+1sgOHGSZD0w0tUsF4ZdWw4Rz86x2F5FNZVa7dJhEabPvq88EmL7mmB4u5kG4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=YhyF7UW+; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 83AF3C4CEEE;
+	Wed,  2 Jul 2025 06:22:28 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1751437245;
-	bh=VLRieSIqs4BjM9SJJCKqQMY/f955o1jMxFMZny9Me74=;
+	s=k20201202; t=1751437352;
+	bh=YxS2qPZmDkIwQXB33JykK2wCJt5fRCCG7LCQRbDB53o=;
 	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=pzZO5UGils/MykmiDQ9C9bAw7mPtwgrdHFiRG4g1BeW3K8vNkikcugoWFXyKzLH6A
-	 tz15e2vYVjq270vvpxEvOwdTeLYob7mCWJj18OXqis82U0ww47IFiK5HC/CH7jqFEx
-	 +c/1I7ywgFTOGKvfYQl4mum8kdfbRAtWeOpJDlzJtTCcaHdneQ3J6aBr33UAowWweT
-	 u+a2Y+M4U/iC9QIXlmhmdV1VXh4ILkbCQgfPCTD4wHI17PPaYURHaFPC39WKYPgZTq
-	 lwSyVd/tC/lur2sE7Qk19/3GlCwhaNb38gmF6Os/WUXaEVrpCzYZZJjUU/91gsIlOu
-	 wP5qHp5QgEGwA==
-Message-ID: <88f3b2f5-17a2-4e59-a920-3d9a52564f14@kernel.org>
-Date: Wed, 2 Jul 2025 08:20:37 +0200
+	b=YhyF7UW+56VlG7sbrJjtyJXsq/gPYdYTiCc57Yww1gIE/F6er2NeGjvt+lPbtTEnH
+	 ALrm1Rj9JZX+48Elg8h2UJBGy30jNpmZvhrzdMMvIb9vsEqp2UEKt/mK14G7majwkg
+	 fa8Ior9dsdpcw+AssMMwSV05PvZlTBw4nVeubRfWJBlyroJmAzvGUJncurdwzr+4qK
+	 RqVxw4nNL0UGRQ8AEUaUvyJhqzSH2NCePZl8gUB6NHuFzjeo3YxIgidRUOmMbYczB1
+	 olQuq8XeWeb9Q32w1HBvHRABdXLHlDVrCVEs1B0UhmDCpK8vUcNc7cuMtDGia16gbI
+	 ZQ87E3ffpucmw==
+Message-ID: <8d869d3b-c815-49fb-a367-c404bfb55d98@kernel.org>
+Date: Wed, 2 Jul 2025 08:22:26 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,24 +50,25 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v4 08/10] arm64: dts: axiado: Add initial support for
- AX3000 SoC and eval board
-To: Harshit Shah <hshah@axiado.com>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Linus Walleij <linus.walleij@linaro.org>,
- Bartosz Golaszewski <brgl@bgdev.pl>, Arnd Bergmann <arnd@arndb.de>,
- Catalin Marinas <catalin.marinas@arm.com>, Will Deacon <will@kernel.org>,
- Jan Kotas <jank@cadence.com>, Greg Kroah-Hartman
- <gregkh@linuxfoundation.org>, Jiri Slaby <jirislaby@kernel.org>,
- Michal Simek <michal.simek@amd.com>, =?UTF-8?Q?Przemys=C5=82aw_Gaj?=
- <pgaj@cadence.com>, Alexandre Belloni <alexandre.belloni@bootlin.com>,
- Frank Li <Frank.Li@nxp.com>, Boris Brezillon <bbrezillon@kernel.org>
-Cc: devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, linux-gpio@vger.kernel.org,
- soc@lists.linux.dev, linux-serial@vger.kernel.org,
- linux-i3c@lists.infradead.org
-References: <20250701-axiado-ax3000-soc-and-evaluation-board-support-v4-0-11ba6f62bf86@axiado.com>
- <20250701-axiado-ax3000-soc-and-evaluation-board-support-v4-8-11ba6f62bf86@axiado.com>
+Subject: Re: [PATCH 1/3] dt-bindings: sound: add bindings for pm4125 audio
+ codec
+To: Alexey Klimov <alexey.klimov@linaro.org>
+Cc: Srinivas Kandagatla <srini@kernel.org>,
+ Liam Girdwood <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>,
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, Stephen Boyd <sboyd@kernel.org>,
+ Lee Jones <lee@kernel.org>, Jaroslav Kysela <perex@perex.cz>,
+ Takashi Iwai <tiwai@suse.com>, linux-arm-msm@vger.kernel.org,
+ linux-sound@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org,
+ Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>,
+ Srinivas Kandagatla <srinivas.kandagatla@oss.qualcomm.com>
+References: <20250626-pm4125_audio_codec_v1-v1-0-e52933c429a0@linaro.org>
+ <20250626-pm4125_audio_codec_v1-v1-1-e52933c429a0@linaro.org>
+ <wcmalvywoginosy5pp7wskgdzjbwbydividmk4dtwguoltiobf@muw5lzkvgu5c>
+ <DAYBDV1I7HH0.1GG9U3LI5NQ97@linaro.org>
+ <d24b2a88-fda7-4a8a-bb5b-73d8a928ff89@kernel.org>
+ <DB13YER95DCW.1IBRJ65LED5GX@linaro.org>
 From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
@@ -113,28 +114,36 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  jWt87ecuHlpL3uuQ0ZZNWqHgZoQLXoqC2ZV5KrtKWb/jyiFX/sxSrodALf0zf+tfHv0FZWT2
  zHjUqd0t4njD/UOsuIMOQn4Ig0SdivYPfZukb5cdasKJukG1NOpbW7yRNivaCnfZz6dTawXw
  XRIV/KDsHQiyVxKvN73bThKhONkcX2LWuD928tAR6XMM2G5ovxLe09vuOzzfTWQDsm++9UKF a/A=
-In-Reply-To: <20250701-axiado-ax3000-soc-and-evaluation-board-support-v4-8-11ba6f62bf86@axiado.com>
+In-Reply-To: <DB13YER95DCW.1IBRJ65LED5GX@linaro.org>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 01/07/2025 22:27, Harshit Shah wrote:
-> Add initial device tree support for the AX3000 SoC and its evaluation
-> platform. The AX3000 is a multi-core SoC featuring 4 Cortex-A53 cores,
-> Secure Vault, AI Engine and Firewall.
+On 02/07/2025 01:30, Alexey Klimov wrote:
+>>>>> +  It has RX and TX Soundwire slave devices. This bindings is for the
+>>>>> +  slave devices.
+>>>>
+>>>> Last sentence is redundant and makes no sense. Codec has only slave
+>>>> devices, so how this can be anything else than for slave devices?
+>>>
+>>> This came from other similar files that describe bindings for child codec nodes
+>>> of soundwire nodes. For example from qcom,wcd937x-sdw.yaml.
+>>> Should this be rephrased to "This bindings is for the soundwire slave devices." ?
+>>
+>> You just pasted the same, so I don't get how you want to rephrase into
+>> the same sentence.
 > 
-> It adds support for Cortex-A53 CPUs, timer, UARTs, and I3C
-> controllers on the AX3000 evaluation board.
+> Not really.
+> Original sentence: "This bindings is for the slave devices."
+> Sentence from my email: "This bindings is for the soundwire slave devices."
 > 
-> Signed-off-by: Harshit Shah <hshah@axiado.com>
-> ---
->  arch/arm64/boot/dts/Makefile              |   1 +
->  arch/arm64/boot/dts/axiado/Makefile       |   2 +
->  arch/arm64/boot/dts/axiado/ax3000-evk.dts |  79 +++++
->  arch/arm64/boot/dts/axiado/ax3000.dtsi    | 520 ++++++++++++++++++++++++++++++
->  4 files changed, 602 insertions(+)
-
-
-Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+> The difference is 1 word.
+> If it doesn't work, then maybe any suggestions?
+> 
+> Maybe "This bindings is for audio codec node that must be a child node of the
+> associated soundwire master node."?
+No, drop, it's not the pattern in the bindings. We don't explain that
+I2C device should be in I2C bus, because that's obvious. Saying this is
+a Soundwire device should be enough.
 
 Best regards,
 Krzysztof
