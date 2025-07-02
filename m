@@ -1,188 +1,134 @@
-Return-Path: <devicetree+bounces-192179-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-192170-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id C1287AF5A1D
-	for <lists+devicetree@lfdr.de>; Wed,  2 Jul 2025 15:51:36 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4CCFAAF59FE
+	for <lists+devicetree@lfdr.de>; Wed,  2 Jul 2025 15:49:04 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id EB662189AEA2
-	for <lists+devicetree@lfdr.de>; Wed,  2 Jul 2025 13:51:50 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id E8D1D7AD3A0
+	for <lists+devicetree@lfdr.de>; Wed,  2 Jul 2025 13:45:20 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4EA2D288C22;
-	Wed,  2 Jul 2025 13:50:08 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=samsung.com header.i=@samsung.com header.b="PLSOJR1e"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4C9A92749E6;
+	Wed,  2 Jul 2025 13:46:39 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mailout2.w1.samsung.com (mailout2.w1.samsung.com [210.118.77.12])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-ua1-f46.google.com (mail-ua1-f46.google.com [209.85.222.46])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3269E287268
-	for <devicetree@vger.kernel.org>; Wed,  2 Jul 2025 13:50:06 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=210.118.77.12
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9CA6323F404;
+	Wed,  2 Jul 2025 13:46:37 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.222.46
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1751464208; cv=none; b=htmB7zI1FKiocSxtaA8B8HiNV0g5F9VQBqADiQUrO+ARp9e1xOVSFqBE9vXSutKyTgeYO1PqWi/A5oQuyE4Te15iMwUsfpvm5a//FIEMwVEmMo9VkfpN+Ac/U/ySnnUBjY5pWjehqnM72g3xIPUvPaAT4kGf0b+Ved96CCcTIMM=
+	t=1751463999; cv=none; b=RbIR0Zde9QLVUHidwoq6cquY6TqP/5uKgzZx2Fo1fySX4Geevlmnf9rK1w993QblKMCfN/yOcWazMGEu6QuWffxC2Od/IZ4WHvDmBceo7aPsOD+6ICzGvMN1uv13SDb7tKXUFY31HLvAhmn12yrUc0hJUIUg8+ow8UfkueNv93Y=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1751464208; c=relaxed/simple;
-	bh=pQpdhYmfxqh3Yfxmei5sPv11PaCzGkgZVRufLVaDNj8=;
-	h=From:Date:Subject:MIME-Version:Message-Id:In-Reply-To:To:Cc:
-	 Content-Type:References; b=m+7UblnyZaHeoSblFxWJB3gEzSbrNYRtkd9OOg7kOFBIUWDBnfqIgNYOXnGdIL8wysGxC9mgauUf3NktGSdqMqL0jHayQszm0+6R80z7wAHnOu68M/qtDnMZSi2qfURAaA+EWgNfgJAdLmQUQ06EJzd8PfWuApNmSdRSgUI9fPQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=samsung.com; spf=pass smtp.mailfrom=samsung.com; dkim=pass (1024-bit key) header.d=samsung.com header.i=@samsung.com header.b=PLSOJR1e; arc=none smtp.client-ip=210.118.77.12
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=samsung.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=samsung.com
-Received: from eucas1p2.samsung.com (unknown [182.198.249.207])
-	by mailout2.w1.samsung.com (KnoxPortal) with ESMTP id 20250702135004euoutp02efd7c82a7966c2738f91fad73f738044~Oc2ob2Vr52728027280euoutp02W
-	for <devicetree@vger.kernel.org>; Wed,  2 Jul 2025 13:50:04 +0000 (GMT)
-DKIM-Filter: OpenDKIM Filter v2.11.0 mailout2.w1.samsung.com 20250702135004euoutp02efd7c82a7966c2738f91fad73f738044~Oc2ob2Vr52728027280euoutp02W
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=samsung.com;
-	s=mail20170921; t=1751464204;
-	bh=Thc/4MnT4r5I8ag38cbivyQhpbuX345C1nEB0lzCSSU=;
-	h=From:Date:Subject:In-Reply-To:To:Cc:References:From;
-	b=PLSOJR1ems9j+u01Iom1Bf7tfQqAO/+/i6RKbz6UaUaX9AtpnRZZ7lavK/yC7eR5x
-	 JeOIjXtNkv8gRas0XHkr9ijybMp3xbvaM3TA7v8CDzrpim4tzm4okn5gXj/hnI/cjH
-	 vgKaWaY3wiBd7raLicR1hTP6Oysay60LERJ06vsY=
-Received: from eusmtip2.samsung.com (unknown [203.254.199.222]) by
-	eucas1p1.samsung.com (KnoxPortal) with ESMTPA id
-	20250702135003eucas1p114a5ce5dea469242940b7e2e44a7ad59~Oc2nsQ3Sd2688626886eucas1p1g;
-	Wed,  2 Jul 2025 13:50:03 +0000 (GMT)
-Received: from AMDC4942.eu.corp.samsungelectronics.net (unknown
-	[106.210.136.40]) by eusmtip2.samsung.com (KnoxPortal) with ESMTPA id
-	20250702135002eusmtip2051f0a93828f9a33086d66487d03c072~Oc2moyBjI0829708297eusmtip2_;
-	Wed,  2 Jul 2025 13:50:02 +0000 (GMT)
-From: Michal Wilczynski <m.wilczynski@samsung.com>
-Date: Wed, 02 Jul 2025 15:45:36 +0200
-Subject: [PATCH v7 8/8] riscv: dts: thead: Add PWM fan and thermal control
+	s=arc-20240116; t=1751463999; c=relaxed/simple;
+	bh=34bL3484h8f6EhyPZ85OIedeYYI1+zm1EbhL4IbB30I=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=SQDtVSOTIvdVVpf8dwOOhtSc9ugE2pEuXqYmGUHK96YAt9LFpa5t1k6K2qwUg+rNC0M46w0fyozuPnL9l7aJRPJ8/u8by5MZIEor5zyQFybiYgt8RrZmbR2j2J7StS+/E7s4wWCPvZXNkDmO2GjRky65p3l/Sk515wdG+eb3Ics=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.222.46
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-ua1-f46.google.com with SMTP id a1e0cc1a2514c-884f7d29b85so847805241.1;
+        Wed, 02 Jul 2025 06:46:37 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1751463996; x=1752068796;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=4pfd6cAoRrTzkfPu1LB5UQmhr5tgGtIZITSglHPrqe8=;
+        b=oaF4SjqBVG+fVcg3BqkW2484UMvITxL8IgXGEppRufeLmdrS7M8DiSqLmajrYFD0hR
+         q6Ax+T30GjHT4GJ7nzysaaOvnAEWJ31SRzFmzuVXFn88i8NCerOMQuIsdnRK+vq/qff5
+         xI86o/0gXsfkVdtmxbGpPvdosSEBjtt6mGBqLt/W6KquVKecmPJ7sLmRT/nDYvYlXdHv
+         WAeSIXwTPXT5vGgkXIcy7R0IRl9PQ3A5wbjfeRac3uLdSTruf+39uwZLX/2EdVJeAYiO
+         FJtwKT+HbltRmFrRQ99EdbjykLQzbDsgFyxgKFeCKfcCUheTomDiY8SgENasMaGnMHjj
+         s/KA==
+X-Forwarded-Encrypted: i=1; AJvYcCVGzuYD32WWHOYVjpnQHjmnqDQVQUVaAUZKhq/KdijGUQD6SB4Igxp9iST+9NJTmoG+ZMSGSsQnbDCc@vger.kernel.org, AJvYcCWjb+VYZKN9XVy8/fXrdcoD5XGecHzgpHLU7RrBjhkjkenNwtx5R+fW/Grtj077vJsjFcbCR6Hyt7jqEXCZ@vger.kernel.org, AJvYcCXa/rKvWKFesbqAbInrKo4IiG/A1AsWnJc9pEPVQ2fqQpsDMaGFV6GU6a/hwihcl3euwXSyBF98PsSx@vger.kernel.org, AJvYcCXqmzh0BOT4udXhsoyR5q/2YbAwiCeW/XrYaK+/M2o6a8CUNyJy3a5IjDVJgOAjsEFsD9Iep4JT73yWv6C4n83j2OE=@vger.kernel.org
+X-Gm-Message-State: AOJu0YyUJ/v9TWkwfLPKoswLCvoe+gZ7mjxtXoY75ZkWCyed5ONRnP+w
+	p/O/dlikewXxzahzV4Wbi25V3EXS7Br6vtZqS+Bwde0OVXyEooKSpMS5/90EDlve
+X-Gm-Gg: ASbGnctvt0jbfc20g5/abC6ArGiw8ICNDgcWjONLYsEO40HuKWb/lZL4T/8j/eRxGEb
+	xih52/Vf4pRBTlL1EJM/d+6GSIPz6P0XojnDiD4t1fZaUT0FMEd9Cakf8AGDJx1jmbgUPkiqKup
+	EaqrpdaBiCRiq5hqmkoo6Q23b7FWR8+iuUw4zcLxTj6wRDuZ8ngYxX/BsnAOhu83KX7UMJ4PChD
+	/rvA+M/90M+KMXZrkW74ZLddTzj+rErQglACz8HnyR0/EeBR14dcHZ5jQzLh6dRZjRq2zu8kc9j
+	aliGX1kVPTu8ejXyXxMAK5nnoxA1FX/IqVhwV00U5l+Hu8dx0RnlguB0auQGA6ivxKOKYfj7HAZ
+	UTOnDy6MdRnsAbxNwx/dDLvCEz4Xy
+X-Google-Smtp-Source: AGHT+IEohexNHyUpRphuhFKRsi616M5d22xtSQItSZvEfraV7LENT1M+SI8dv/JcrrMEtAc56i7CrQ==
+X-Received: by 2002:a05:6102:f9a:b0:4e6:fb90:1e21 with SMTP id ada2fe7eead31-4f161074096mr1445161137.2.1751463995870;
+        Wed, 02 Jul 2025 06:46:35 -0700 (PDT)
+Received: from mail-vk1-f175.google.com (mail-vk1-f175.google.com. [209.85.221.175])
+        by smtp.gmail.com with ESMTPSA id ada2fe7eead31-4ee4cc5f0e6sm1866801137.30.2025.07.02.06.46.34
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 02 Jul 2025 06:46:34 -0700 (PDT)
+Received: by mail-vk1-f175.google.com with SMTP id 71dfb90a1353d-531466622beso2161714e0c.1;
+        Wed, 02 Jul 2025 06:46:34 -0700 (PDT)
+X-Forwarded-Encrypted: i=1; AJvYcCU+yGUJ4BI/JaJM/v+8KVFjysXR3VviN+ffpBrOrVQNVQeCnKAOANm2PvupyO9YSzNWsP1vL721GzfT@vger.kernel.org, AJvYcCUgTDrHVeI9bMlcT1ALeRAuaReGdAvkfFw8nRaO0BZZHSA/HspWAeM/L2SsTiidG2oUg6NYMqD9/6ucHEDa@vger.kernel.org, AJvYcCUgqWY1Ca/su4OErLMqJCb7b+ziUxVsNxzwX2afxNGk3+4QC94M/xOPU4PpXWd0SOwpBgqcBhODrW7g@vger.kernel.org, AJvYcCXYbEdHioFQojHEZaG/VNuqyvqsvyCjqxpLUCnaf9RptboDgz6zqx72cJEFg8HO+UbkbdZ8RvRClIH8w4FHYf0sa44=@vger.kernel.org
+X-Received: by 2002:a05:6122:3a18:b0:529:f50:7904 with SMTP id
+ 71dfb90a1353d-53458522f9amr2051964e0c.9.1751463994163; Wed, 02 Jul 2025
+ 06:46:34 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Message-Id: <20250702-rust-next-pwm-working-fan-for-sending-v7-8-67ef39ff1d29@samsung.com>
-In-Reply-To: <20250702-rust-next-pwm-working-fan-for-sending-v7-0-67ef39ff1d29@samsung.com>
-To: =?utf-8?q?Uwe_Kleine-K=C3=B6nig?= <ukleinek@kernel.org>,  Miguel Ojeda
-	<ojeda@kernel.org>, Alex Gaynor <alex.gaynor@gmail.com>,  Boqun Feng
-	<boqun.feng@gmail.com>, Gary Guo <gary@garyguo.net>, 
-	=?utf-8?q?Bj=C3=B6rn_Roy_Baron?= <bjorn3_gh@protonmail.com>,  Andreas
-	Hindborg <a.hindborg@kernel.org>, Alice Ryhl <aliceryhl@google.com>,  Trevor
-	Gross <tmgross@umich.edu>, Danilo Krummrich <dakr@kernel.org>,  Michal
-	Wilczynski <m.wilczynski@samsung.com>, Guo Ren <guoren@kernel.org>,  Fu Wei
-	<wefu@redhat.com>, Rob Herring <robh@kernel.org>,  Krzysztof Kozlowski
-	<krzk+dt@kernel.org>,  Conor Dooley <conor+dt@kernel.org>,  Paul Walmsley
-	<paul.walmsley@sifive.com>,  Palmer Dabbelt <palmer@dabbelt.com>, Albert Ou
-	<aou@eecs.berkeley.edu>,  Alexandre Ghiti <alex@ghiti.fr>,  Marek Szyprowski
-	<m.szyprowski@samsung.com>,  Benno Lossin <lossin@kernel.org>,  Michael
-	Turquette <mturquette@baylibre.com>,  Drew Fustini <fustini@kernel.org>,
-	Benno Lossin <lossin@kernel.org>,  Drew Fustini <fustini@kernel.org>
-Cc: linux-kernel@vger.kernel.org, linux-pwm@vger.kernel.org,
-	rust-for-linux@vger.kernel.org, linux-riscv@lists.infradead.org, 
-	devicetree@vger.kernel.org
-X-Mailer: b4 0.15-dev
-X-CMS-MailID: 20250702135003eucas1p114a5ce5dea469242940b7e2e44a7ad59
-X-Msg-Generator: CA
-Content-Type: text/plain; charset="utf-8"
-X-RootMTR: 20250702135003eucas1p114a5ce5dea469242940b7e2e44a7ad59
-X-EPHeader: CA
-X-CMS-RootMailID: 20250702135003eucas1p114a5ce5dea469242940b7e2e44a7ad59
-References: <20250702-rust-next-pwm-working-fan-for-sending-v7-0-67ef39ff1d29@samsung.com>
-	<CGME20250702135003eucas1p114a5ce5dea469242940b7e2e44a7ad59@eucas1p1.samsung.com>
+References: <20250625141705.151383-1-prabhakar.mahadev-lad.rj@bp.renesas.com> <20250625141705.151383-4-prabhakar.mahadev-lad.rj@bp.renesas.com>
+In-Reply-To: <20250625141705.151383-4-prabhakar.mahadev-lad.rj@bp.renesas.com>
+From: Geert Uytterhoeven <geert@linux-m68k.org>
+Date: Wed, 2 Jul 2025 15:46:20 +0200
+X-Gmail-Original-Message-ID: <CAMuHMdWnDhhJ+G5GvMZw+7WGBdiMfWHPXSwkwOqnK5XtKdyS1A@mail.gmail.com>
+X-Gm-Features: Ac12FXwkY5d7-POGtnUoMsKJ0PzgjY7e_snj97RCbehrlRkDnq1wpHABoeePNjc
+Message-ID: <CAMuHMdWnDhhJ+G5GvMZw+7WGBdiMfWHPXSwkwOqnK5XtKdyS1A@mail.gmail.com>
+Subject: Re: [PATCH 3/3] clk: renesas: r9a09g077-cpg: Add RIIC module clocks
+To: Prabhakar <prabhakar.csengg@gmail.com>
+Cc: Michael Turquette <mturquette@baylibre.com>, Stephen Boyd <sboyd@kernel.org>, 
+	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Magnus Damm <magnus.damm@gmail.com>, linux-renesas-soc@vger.kernel.org, 
+	linux-clk@vger.kernel.org, linux-kernel@vger.kernel.org, 
+	devicetree@vger.kernel.org, Biju Das <biju.das.jz@bp.renesas.com>, 
+	Fabrizio Castro <fabrizio.castro.jz@renesas.com>, 
+	Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+Content-Type: text/plain; charset="UTF-8"
 
-Add Device Tree nodes to enable a PWM controlled fan and it's associated
-thermal management for the Lichee Pi 4A board.
+Hi Prabhakar,
 
-This enables temperature-controlled active cooling for the Lichee Pi 4A
-board based on SoC temperature.
+On Wed, 25 Jun 2025 at 16:17, Prabhakar <prabhakar.csengg@gmail.com> wrote:
+> From: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+>
+> Add RIIC module clocks for: iic0, iic1, and iic2.
+>
+> Signed-off-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
 
-Signed-off-by: Michal Wilczynski <m.wilczynski@samsung.com>
----
- arch/riscv/boot/dts/thead/th1520-lichee-pi-4a.dts | 67 +++++++++++++++++++++++
- 1 file changed, 67 insertions(+)
+Thanks for your patch!
 
-diff --git a/arch/riscv/boot/dts/thead/th1520-lichee-pi-4a.dts b/arch/riscv/boot/dts/thead/th1520-lichee-pi-4a.dts
-index 4020c727f09e8e2286fdc7fecd79dbd8eba69556..c58c2085ca92a3234f1350500cedae4157f0c35f 100644
---- a/arch/riscv/boot/dts/thead/th1520-lichee-pi-4a.dts
-+++ b/arch/riscv/boot/dts/thead/th1520-lichee-pi-4a.dts
-@@ -28,9 +28,76 @@ aliases {
- 	chosen {
- 		stdout-path = "serial0:115200n8";
- 	};
-+
-+	thermal-zones {
-+		cpu-thermal {
-+			polling-delay = <1000>;
-+			polling-delay-passive = <1000>;
-+			thermal-sensors = <&pvt 0>;
-+
-+			trips {
-+				fan_config0: fan-trip0 {
-+					temperature = <39000>;
-+					hysteresis = <5000>;
-+					type = "active";
-+				};
-+
-+				fan_config1: fan-trip1 {
-+					temperature = <50000>;
-+					hysteresis = <5000>;
-+					type = "active";
-+				};
-+
-+				fan_config2: fan-trip2 {
-+					temperature = <60000>;
-+					hysteresis = <5000>;
-+					type = "active";
-+				};
-+			};
-+
-+			cooling-maps {
-+				map-active-0 {
-+					cooling-device = <&fan 1 1>;
-+					trip = <&fan_config0>;
-+				};
-+
-+				map-active-1 {
-+					cooling-device = <&fan 2 2>;
-+					trip = <&fan_config1>;
-+				};
-+
-+				map-active-2 {
-+					cooling-device = <&fan 3 3>;
-+					trip = <&fan_config2>;
-+				};
-+			};
-+		};
-+	};
-+
-+	fan: pwm-fan {
-+		pinctrl-names = "default";
-+		pinctrl-0 = <&fan_pins>;
-+		compatible = "pwm-fan";
-+		#cooling-cells = <2>;
-+		pwms = <&pwm 1 10000000 0>;
-+		cooling-levels = <0 66 196 255>;
-+	};
-+
- };
- 
- &padctrl0_apsys {
-+	fan_pins: fan-0 {
-+		pwm1-pins {
-+			pins = "GPIO3_3"; /* PWM1 */
-+			function = "pwm";
-+			bias-disable;
-+			drive-strength = <25>;
-+			input-disable;
-+			input-schmitt-disable;
-+			slew-rate = <0>;
-+		};
-+	};
-+
- 	uart0_pins: uart0-0 {
- 		tx-pins {
- 			pins = "UART0_TXD";
+> --- a/drivers/clk/renesas/r9a09g077-cpg.c
+> +++ b/drivers/clk/renesas/r9a09g077-cpg.c
+> @@ -154,6 +154,9 @@ static const struct cpg_core_clk r9a09g077_core_clks[] __initconst = {
+>
+>  static const struct mssr_mod_clk r9a09g077_mod_clks[] __initconst = {
+>         DEF_MOD("sci0fck", 8, CLK_SCI0ASYNC),
+> +       DEF_MOD("iic0", 100, R9A09G077_CLK_PCLKL),
+> +       DEF_MOD("iic1", 101, R9A09G077_CLK_PCLKL),
+> +       DEF_MOD("iic2", 501, R9A09G077_CLK_PCLKL),
+
+Shouldn't that be 601?
+(MSTPCRA => xx, MSTPCRB => 1xx, MSTPCRG => 6xx)
+If you agree, I can fix that while applying...
+
+>         DEF_MOD("sdhi0", 1212, R9A09G077_CLK_PCLKAM),
+>         DEF_MOD("sdhi1", 1213, R9A09G077_CLK_PCLKAM),
+>  };
+
+The rest LGTM, so with the above fixed:
+Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
+
+Gr{oetje,eeting}s,
+
+                        Geert
 
 -- 
-2.34.1
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
 
+In personal conversations with technical people, I call myself a hacker. But
+when I'm talking to journalists I just say "programmer" or something like that.
+                                -- Linus Torvalds
 
