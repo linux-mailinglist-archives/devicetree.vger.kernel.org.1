@@ -1,473 +1,120 @@
-Return-Path: <devicetree+bounces-192100-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-192101-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id CBB3AAF1614
-	for <lists+devicetree@lfdr.de>; Wed,  2 Jul 2025 14:50:42 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id AADE9AF162C
+	for <lists+devicetree@lfdr.de>; Wed,  2 Jul 2025 14:56:06 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 077321695D1
-	for <lists+devicetree@lfdr.de>; Wed,  2 Jul 2025 12:50:43 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id B9E677A7DAC
+	for <lists+devicetree@lfdr.de>; Wed,  2 Jul 2025 12:54:07 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 486062750EF;
-	Wed,  2 Jul 2025 12:50:38 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="CAV7bxes"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 63416275850;
+	Wed,  2 Jul 2025 12:55:18 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.12])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-vk1-f181.google.com (mail-vk1-f181.google.com [209.85.221.181])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 269DB274FEF;
-	Wed,  2 Jul 2025 12:50:35 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.198.163.12
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 820E827465A;
+	Wed,  2 Jul 2025 12:55:16 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.181
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1751460638; cv=none; b=ECHOFW9cgyyDp9FrZqxM86GKRXWXEUAP3QmvjkE74eliczFUDyxIvsUQPoApiOGjneuPAKo56zxyKuz+vz4JAeLg9Opn+87/woFpiT+yXjfquyNlSookmzcxeaRUrTDWGrIQPl4f5ID0Ak6UzoZlMnWhBwqdZzUzx25djKodeVg=
+	t=1751460918; cv=none; b=GFOXpAZtsN8/c1wTU5KdOgH4yRGGDaMjx9zw8+eMaKd3KmhX3YScsh058YOGfnK7NvnHYcJO5qsvUGHgAODWGKP4x1zlB4naWeomSyAK1tSkc9kT8ePWZr+eIwiEqT8ofb50Cs/IEIxvE9cChrtVkFIJN8mc1+LY97JoL40+8TE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1751460638; c=relaxed/simple;
-	bh=k/4MLllN69R+xjMZxq8j8APH8ytlW29jw6oqQSxzlYA=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=dhAnt1xQ2qJ8RknYuaMf2ocuA4uSMxrCs9VLURXeS8zc0BgTBljQX0EBq6rfNgvLBdpZUwOqRzvrVTD0FIkRKH1l32Xht/o9zdhNPXbYVDv9Lawix11K1ogXEEAY3CDHvcNg9e4rfFnZdWsSXY02zBXSdCCxISwliwSqHxRMpiM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com; spf=none smtp.mailfrom=linux.intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=CAV7bxes; arc=none smtp.client-ip=192.198.163.12
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com
-Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=linux.intel.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1751460636; x=1782996636;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=k/4MLllN69R+xjMZxq8j8APH8ytlW29jw6oqQSxzlYA=;
-  b=CAV7bxeszNFk4dSmoCITdCBJleMaMFj+gNZuNiVBubNmOBNMShRroIxa
-   L67diduI3RZMEl9OU/yeiAMAXz+ENH6ID6r5MBN65TcFJ+nxh4nk644Xg
-   Yzg5beuAuhtJBLlA809t7l7NXVMmfdErjvwhHSWe40NHi2Hwui9UNcAcd
-   ynsmVZJ/qSAPZLCUEr/AlhgZe6lTbhA8wIrE/338MMZV8ArmQbqbZI2f+
-   lShp5fVD/pP+pjpq2yFZCHgaJ5jJzOjINAg4ybr4s+lK2T5wCXYk8HPf3
-   TcmoePIJ485mnoln3A1BTSpcj4CbpOCswE8dQbttSvVplAZ9HnSzvmbZi
-   A==;
-X-CSE-ConnectionGUID: 8yOgQikqSZ67Wri0OxGa1g==
-X-CSE-MsgGUID: ovRrlOwXTzq0iy0+ywTCqA==
-X-IronPort-AV: E=McAfee;i="6800,10657,11482"; a="57560420"
-X-IronPort-AV: E=Sophos;i="6.16,281,1744095600"; 
-   d="scan'208";a="57560420"
-Received: from orviesa006.jf.intel.com ([10.64.159.146])
-  by fmvoesa106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 02 Jul 2025 05:50:35 -0700
-X-CSE-ConnectionGUID: 2SXMN1wlSqaPTHE7KCqoTQ==
-X-CSE-MsgGUID: PT5eXKRhSI68wWiVyTInkA==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.16,281,1744095600"; 
-   d="scan'208";a="153519699"
-Received: from smile.fi.intel.com ([10.237.72.52])
-  by orviesa006.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 02 Jul 2025 05:50:29 -0700
-Received: from andy by smile.fi.intel.com with local (Exim 4.98.2)
-	(envelope-from <andriy.shevchenko@linux.intel.com>)
-	id 1uWwut-0000000BvBY-3cPP;
-	Wed, 02 Jul 2025 15:50:23 +0300
-Date: Wed, 2 Jul 2025 15:50:23 +0300
-From: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
-To: Anup Patel <apatel@ventanamicro.com>
-Cc: Michael Turquette <mturquette@baylibre.com>,
-	Stephen Boyd <sboyd@kernel.org>, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Jassi Brar <jassisinghbrar@gmail.com>,
-	Thomas Gleixner <tglx@linutronix.de>,
-	"Rafael J . Wysocki" <rafael@kernel.org>,
-	Mika Westerberg <mika.westerberg@linux.intel.com>,
-	Linus Walleij <linus.walleij@linaro.org>,
-	Bartosz Golaszewski <brgl@bgdev.pl>,
-	Uwe =?iso-8859-1?Q?Kleine-K=F6nig?= <ukleinek@kernel.org>,
-	Palmer Dabbelt <palmer@dabbelt.com>,
-	Paul Walmsley <paul.walmsley@sifive.com>,
-	Alexandre Ghiti <alex@ghiti.fr>, Len Brown <lenb@kernel.org>,
-	Sunil V L <sunilvl@ventanamicro.com>,
-	Rahul Pathak <rpathak@ventanamicro.com>,
-	Leyfoon Tan <leyfoon.tan@starfivetech.com>,
-	Atish Patra <atish.patra@linux.dev>,
-	Andrew Jones <ajones@ventanamicro.com>,
-	Samuel Holland <samuel.holland@sifive.com>,
-	Anup Patel <anup@brainfault.org>, linux-clk@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-acpi@vger.kernel.org,
-	linux-riscv@lists.infradead.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v7 07/24] mailbox: Add RISC-V SBI message proxy (MPXY)
- based mailbox driver
-Message-ID: <aGUrD2Ht1idIlDCd@smile.fi.intel.com>
-References: <20250702051345.1460497-1-apatel@ventanamicro.com>
- <20250702051345.1460497-8-apatel@ventanamicro.com>
+	s=arc-20240116; t=1751460918; c=relaxed/simple;
+	bh=4RMRk7+aVwR+3Qw5vc1Ge0MyIELEc9PS8LA/+Ea8jc0=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=eBs92xRnd2K1r4L+e9hHy7A7VK/qghT5+2W+pGO9FFtuYZWx0oMytX8CZPjUSilvi8vMtSnrxY3E8ZVUJ40Cijb7CZKHw8SDDPQr+fTkdIqPAZ9//G9bIUJIP0rWkol2gR55zlvuj5HjtkG9NIP1VV1PQGKifskHbPQnY0xlsi8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.221.181
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-vk1-f181.google.com with SMTP id 71dfb90a1353d-531466622beso2144042e0c.1;
+        Wed, 02 Jul 2025 05:55:16 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1751460915; x=1752065715;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=p7ECsAw6yB8tihJqn6f0QSOOmPwyyTIsWvoJ6n9vWgs=;
+        b=lM7PkMjfIZ54SG+C67uykIS5xAgwa4Qm0TZxWx5uKwDKi+3OOzvH17cH4PdDKhGaaw
+         y5kIcdKsiSIuWkoFuvXq3EQ9yLfKGa0ppKYrQb8lCSY/TNg84YeG3AZD3x+140r0N5o1
+         vdDkGSjz2CAETjxFROGONozWBun6kAYhz20ocqGdyKyKaLWGz5Ej0emWEgsL3w2qBA7r
+         LeWTDuTrxgQmVQf/pasfV2ewLLFgmt8fqRP4+8ROOUsKi0HIJ3F4kweP8YqixOVaGLXo
+         fteicsqJTNH5uZ9R4AxbvfmxwAXSl3O0zkJApHnAD1mojVjA2Fbh/rnn7v844ne0ObL6
+         Q+jA==
+X-Forwarded-Encrypted: i=1; AJvYcCW609MiAIe9RFfdrsW+4c3WCqR3PPf/cAzxtwcXMLKK7cGdSp1AckuidUkTJ/eLhYUIclyhYSSjHnhyF6FJtMp6KLM=@vger.kernel.org, AJvYcCW67kj1JEAEGRiXSE85Gym5nksoJrcH/VHIGJUlr2Vn/E7CGQou0NkTi5Mnw+wq/asl8CD26MJ5HZ+5@vger.kernel.org, AJvYcCWe+3K/fKNZaeAu0miM9M0zvjolpnPlQ+MaUafkc/k31V0mK1TgaI8HI+d2qNU8rvTcwY0n7VYGIZqbtRUM@vger.kernel.org
+X-Gm-Message-State: AOJu0YxqhQiNOLsnjtJOwfOv+UpEP/zPRjcKTozCX7C63ODX7oYc/uRo
+	pG1rirwooDfoyirKKJWJ8rmH6F8CoCyGZUi1s2e9dNM5bEsT9jnAL3e9wLgnuRoP
+X-Gm-Gg: ASbGncs9EfRTRj+daCJoIua0oEPzkQyIarKZHJhOPVE9FGFzHX7mn6dPKI2dJmHJXIB
+	QCaYUxOVLyFo8Bv5nKp8ktYBq4bPjNzdAP9aElfvKn3jaC2Kqe0VnpYYHaz+z1/PoE9qhT0oQnl
+	IT9On/h1GwfWS0kBlznAhX6kIvvevvj1AqrzUHe8so1pUEvwBFb8RgS8ftBCyeauSwkuoQMmcs+
+	xzR2ZF9oYWqTTcXmkDBf4cj1KoE5t4Wir6L+wLNMf+TUqWrywvs2VbX2xJ3Xg4isfqBNHK7WjKH
+	8x+LuLuRUq1G5BdbbMfljhhlLZKNsEGKcRS414jB4jkGxK3oPRHHPNUMDFcyXKSFrXdQI+4IFYX
+	fMu/3F76n/EBwS91rzlDo6Ncv
+X-Google-Smtp-Source: AGHT+IEOZa61rOVXqWUImLBUueXdZ7FsJrWVa2PyZ3BfxDJAIJPFIRmop0rm7aoffoIRG2Y9rasRiQ==
+X-Received: by 2002:a05:6122:7d3:b0:531:2906:751e with SMTP id 71dfb90a1353d-5345842cfadmr1652539e0c.8.1751460914878;
+        Wed, 02 Jul 2025 05:55:14 -0700 (PDT)
+Received: from mail-ua1-f44.google.com (mail-ua1-f44.google.com. [209.85.222.44])
+        by smtp.gmail.com with ESMTPSA id 71dfb90a1353d-533090c46c0sm2112924e0c.19.2025.07.02.05.55.14
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 02 Jul 2025 05:55:14 -0700 (PDT)
+Received: by mail-ua1-f44.google.com with SMTP id a1e0cc1a2514c-87f4c8e9cdcso1574726241.2;
+        Wed, 02 Jul 2025 05:55:14 -0700 (PDT)
+X-Forwarded-Encrypted: i=1; AJvYcCUTAACNnnR+uYKz3sco/knX8WqT0Ck6jlqaVN9/y6er829Vf7IJj+YVEhInTX/0mnELJCJEyVoStncO+5Hk@vger.kernel.org, AJvYcCVnMlvNt9V8UiN0idA6B85DnsmYFSm1A4fAbmPjuDuOzoQBUxMBDPirqnGi/qvMIdAeQeSmJ8Q2xyMu@vger.kernel.org, AJvYcCWp9QtGIVcjVUmRjtv8yeY8N42UlHcDzkkrWW09xxx1NtVsqTPQw48Vc48KvZM4T50zYTDxsC308HEn0UBqZRifUHg=@vger.kernel.org
+X-Received: by 2002:a05:6102:26d3:b0:4de:d08f:6727 with SMTP id
+ ada2fe7eead31-4f1612b5345mr1087681137.13.1751460914346; Wed, 02 Jul 2025
+ 05:55:14 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20250702051345.1460497-8-apatel@ventanamicro.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park, 6
- krs, Bertel Jungin Aukio 5, 02600 Espoo
+References: <20250702092755.70847-1-biju.das.jz@bp.renesas.com>
+In-Reply-To: <20250702092755.70847-1-biju.das.jz@bp.renesas.com>
+From: Geert Uytterhoeven <geert@linux-m68k.org>
+Date: Wed, 2 Jul 2025 14:55:01 +0200
+X-Gmail-Original-Message-ID: <CAMuHMdUp90=Mt5_NsEBWwy-JZJN+oBHwoYPmA8CORZiXt2Fk+A@mail.gmail.com>
+X-Gm-Features: Ac12FXwam2Ru_p8NswoQrhU_Ll5UaQya1Z8AGYUKOu7OYX9gkB0z4zqCseLiccA
+Message-ID: <CAMuHMdUp90=Mt5_NsEBWwy-JZJN+oBHwoYPmA8CORZiXt2Fk+A@mail.gmail.com>
+Subject: Re: [PATCH v2] arm64: dts: renesas: r9a09g047e57-smarc: Add gpio keys
+To: Biju Das <biju.das.jz@bp.renesas.com>
+Cc: Magnus Damm <magnus.damm@gmail.com>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	linux-renesas-soc@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, 
+	Prabhakar Mahadev Lad <prabhakar.mahadev-lad.rj@bp.renesas.com>, Biju Das <biju.das.au@gmail.com>
+Content-Type: text/plain; charset="UTF-8"
 
-On Wed, Jul 02, 2025 at 10:43:28AM +0530, Anup Patel wrote:
-> Add a mailbox controller driver for the new SBI message proxy extension
-> which is part of the SBI v3.0 specification.
+On Wed, 2 Jul 2025 at 11:28, Biju Das <biju.das.jz@bp.renesas.com> wrote:
+> RZ/G3E SMARC EVK  has 3 user buttons called USER_SW1, USER_SW2 and
+> USER_SW3 and SLEEP button with NMI support. Add a DT node in device tree
+> to instantiate the gpio-keys driver for these buttons.
+>
+> The system can enter into STR state by pressing the sleep button and
+> wakeup from STR is done by pressing power button. The USER_SW{1,2,3}
+> configured as wakeup-source, so it can wakeup the system during s2idle.
+>
+> Signed-off-by: Biju Das <biju.das.jz@bp.renesas.com>
+> ---
+> v1->v2:
+>  * Added support for sleep button
+>  * Dropped the extra spaces after the define keywords for KEY_*_GPIO.
+>  * Dropped /delete-node/ keys as KEY_SLEEP will always present.
+>  * Moved input.h to r9a09g047e57-smarc.dts
 
-...
+Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
+i.e. will queue in renesas-devel for v6.17.
 
-> +#include <linux/cpu.h>
-> +#include <linux/errno.h>
-> +#include <linux/init.h>
-> +#include <linux/mailbox_controller.h>
-> +#include <linux/mailbox/riscv-rpmi-message.h>
+Gr{oetje,eeting}s,
 
-+ minmax.h
-
-> +#include <linux/mm.h>
-> +#include <linux/module.h>
-> +#include <linux/msi.h>
-> +#include <linux/of_irq.h>
-> +#include <linux/percpu.h>
-> +#include <linux/platform_device.h>
-> +#include <linux/smp.h>
-> +#include <linux/string.h>
-> +#include <linux/types.h>
-> +#include <asm/byteorder.h>
-> +#include <asm/sbi.h>
-
-...
-
-> +static void mpxy_mbox_send_rpmi_data(struct mpxy_mbox_channel *mchan,
-> +				     struct rpmi_mbox_message *msg)
-> +{
-> +	int rc = 0;
-
-Is it useful? I mean can you assign msg.error directly in each case?
-(Just asking)
-
-> +	switch (msg->type) {
-> +	case RPMI_MBOX_MSG_TYPE_GET_ATTRIBUTE:
-> +		switch (msg->attr.id) {
-> +		case RPMI_MBOX_ATTR_SPEC_VERSION:
-> +			msg->attr.value = mchan->attrs.msg_proto_version;
-> +			break;
-> +		case RPMI_MBOX_ATTR_MAX_MSG_DATA_SIZE:
-> +			msg->attr.value = mchan->max_xfer_len;
-> +			break;
-> +		case RPMI_MBOX_ATTR_SERVICEGROUP_ID:
-> +			msg->attr.value = mchan->rpmi_attrs.servicegroup_id;
-> +			break;
-> +		case RPMI_MBOX_ATTR_SERVICEGROUP_VERSION:
-> +			msg->attr.value = mchan->rpmi_attrs.servicegroup_version;
-> +			break;
-> +		case RPMI_MBOX_ATTR_IMPL_ID:
-> +			msg->attr.value = mchan->rpmi_attrs.impl_id;
-> +			break;
-> +		case RPMI_MBOX_ATTR_IMPL_VERSION:
-> +			msg->attr.value = mchan->rpmi_attrs.impl_version;
-> +			break;
-> +		default:
-> +			rc = -EOPNOTSUPP;
-> +			break;
-> +		}
-> +		break;
-> +	case RPMI_MBOX_MSG_TYPE_SET_ATTRIBUTE:
-> +		/* None of the RPMI linux mailbox attributes are writeable */
-> +		rc = -EOPNOTSUPP;
-> +		break;
-> +	case RPMI_MBOX_MSG_TYPE_SEND_WITH_RESPONSE:
-> +		if ((!msg->data.request && msg->data.request_len) ||
-> +		    (msg->data.request &&
-> +		     msg->data.request_len > mchan->max_xfer_len) ||
-> +		    (!msg->data.response && msg->data.max_response_len)) {
-> +			rc = -EINVAL;
-> +			break;
-> +		}
-> +		if (!(mchan->attrs.capability & SBI_MPXY_CHAN_CAP_SEND_WITH_RESP)) {
-> +			rc = -EIO;
-> +			break;
-> +		}
-> +		rc = mpxy_send_message_with_resp(mchan->channel_id,
-> +						 msg->data.service_id,
-> +						 msg->data.request,
-> +						 msg->data.request_len,
-> +						 msg->data.response,
-> +						 msg->data.max_response_len,
-> +						 &msg->data.out_response_len);
-> +		break;
-> +	case RPMI_MBOX_MSG_TYPE_SEND_WITHOUT_RESPONSE:
-> +		if ((!msg->data.request && msg->data.request_len) ||
-> +		    (msg->data.request &&
-> +		     msg->data.request_len > mchan->max_xfer_len)) {
-> +			rc = -EINVAL;
-> +			break;
-> +		}
-> +		if (!(mchan->attrs.capability & SBI_MPXY_CHAN_CAP_SEND_WITHOUT_RESP)) {
-> +			rc = -EIO;
-> +			break;
-> +		}
-> +		rc = mpxy_send_message_without_resp(mchan->channel_id,
-> +						    msg->data.service_id,
-> +						    msg->data.request,
-> +						    msg->data.request_len);
-> +		break;
-> +	default:
-> +		rc = -EOPNOTSUPP;
-> +		break;
-> +	}
-> +
-> +	msg->error = rc;
-> +}
-
-...
-
-> +static void mpxy_mbox_peek_rpmi_data(struct mbox_chan *chan,
-> +				     struct mpxy_mbox_channel *mchan,
-> +				     struct sbi_mpxy_notification_data *notif,
-> +				     unsigned long events_data_len)
-> +{
-> +	struct rpmi_notification_event *event;
-> +	unsigned long pos = 0, event_size;
-> +	struct rpmi_mbox_message msg;
-> +
-> +	while ((pos < events_data_len) && !(pos & 0x3) &&
-
-0x3 looks like a magic used for the non-aligned data.
-
-> +	       ((events_data_len - pos) <= sizeof(*event))) {
-> +		event = (struct rpmi_notification_event *)(notif->events_data + pos);
-> +
-> +		msg.type = RPMI_MBOX_MSG_TYPE_NOTIFICATION_EVENT;
-> +		msg.notif.event_datalen = le16_to_cpu(event->event_datalen);
-> +		msg.notif.event_id = event->event_id;
-> +		msg.notif.event_data = event->event_data;
-> +		msg.error = 0;
-> +
-> +		event_size = sizeof(*event) + msg.notif.event_datalen;
-
-Do you trust the source? This may wrap-around...
-
-> +		if (event_size > (events_data_len - pos)) {
-> +			event_size = events_data_len - pos;
-> +			goto skip_event;
-> +		}
-> +		if (event_size & 0x3)
-> +			goto skip_event;
-
-...and these checks be skipped. Is it a problem?
-
-> +		mbox_chan_received_data(chan, &msg);
-
-> +skip_event:
-
-I think this may be replaced by a continue inside if you make a loop to be
-do {} while (). But it's just a thought, you can check if it gives a better
-readability after all.
-
-> +		pos += event_size;
-> +	}
-> +}
-
-...
-
-> +static int mpxy_mbox_probe(struct platform_device *pdev)
-> +{
-> +	u32 i, *channel_ids __free(kfree) = NULL;
-
-It's not recommended. Can you split channel_ids to the actual scope where it's
-used? Somewhere...
-
-> +	struct device *dev = &pdev->dev;
-> +	struct mpxy_mbox_channel *mchan;
-> +	struct mpxy_mbox *mbox;
-> +	int msi_idx, rc;
-> +
-> +	/*
-> +	 * Initialize MPXY shared memory only once. This also ensures
-> +	 * that SBI MPXY mailbox is probed only once.
-> +	 */
-> +	if (mpxy_shmem_init_done) {
-> +		dev_err(dev, "SBI MPXY mailbox already initialized\n");
-> +		return -EALREADY;
-> +	}
-> +
-> +	/* Probe for SBI MPXY extension */
-> +	if (sbi_spec_version < sbi_mk_version(1, 0) ||
-> +	    sbi_probe_extension(SBI_EXT_MPXY) <= 0) {
-> +		dev_info(dev, "SBI MPXY extension not available\n");
-> +		return -ENODEV;
-> +	}
-> +
-> +	/* Find-out shared memory size */
-> +	rc = mpxy_get_shmem_size(&mpxy_shmem_size);
-> +	if (rc)
-> +		return dev_err_probe(dev, rc, "failed to get MPXY shared memory size\n");
-> +
-> +	/*
-> +	 * Setup MPXY shared memory on each CPU
-> +	 *
-> +	 * Note: Don't cleanup MPXY shared memory upon CPU power-down
-> +	 * because the RPMI System MSI irqchip driver needs it to be
-> +	 * available when migrating IRQs in CPU power-down path.
-> +	 */
-> +	cpuhp_setup_state(CPUHP_AP_ONLINE_DYN, "riscv/sbi-mpxy-shmem",
-> +			  mpxy_setup_shmem, NULL);
-> +
-> +	/* Mark as MPXY shared memory initialization done */
-> +	mpxy_shmem_init_done = true;
-> +
-> +	/* Allocate mailbox instance */
-> +	mbox = devm_kzalloc(dev, sizeof(*mbox), GFP_KERNEL);
-> +	if (!mbox)
-> +		return -ENOMEM;
-> +	mbox->dev = dev;
-> +	platform_set_drvdata(pdev, mbox);
-> +
-> +	/* Find-out of number of channels */
-> +	rc = mpxy_get_channel_count(&mbox->channel_count);
-> +	if (rc)
-> +		return dev_err_probe(dev, rc, "failed to get number of MPXY channels\n");
-> +	if (!mbox->channel_count)
-> +		dev_err_probe(dev, -ENODEV, "no MPXY channels available\n");
-> +
-> +	/* Allocate and fetch all channel IDs */
-> +	channel_ids = kcalloc(mbox->channel_count, sizeof(*channel_ids), GFP_KERNEL);
-
-...here.
-
-> +	if (!channel_ids)
-> +		return -ENOMEM;
-> +	rc = mpxy_get_channel_ids(mbox->channel_count, channel_ids);
-> +	if (rc)
-> +		return dev_err_probe(dev, rc, "failed to get MPXY channel IDs\n");
-> +
-> +	/* Populate all channels */
-> +	mbox->channels = devm_kcalloc(dev, mbox->channel_count,
-> +				      sizeof(*mbox->channels), GFP_KERNEL);
-> +	if (!mbox->channels)
-> +		return -ENOMEM;
-> +	for (i = 0; i < mbox->channel_count; i++) {
-> +		mchan = &mbox->channels[i];
-> +		mchan->mbox = mbox;
-> +		mchan->channel_id = channel_ids[i];
-> +
-> +		rc = mpxy_read_attrs(mchan->channel_id, SBI_MPXY_ATTR_MSG_PROT_ID,
-> +				     sizeof(mchan->attrs) / sizeof(u32),
-> +				     (u32 *)&mchan->attrs);
-> +		if (rc) {
-> +			return dev_err_probe(dev, rc,
-> +					     "MPXY channel 0x%x read attrs failed\n",
-> +					     mchan->channel_id);
-> +		}
-> +
-> +		if (mchan->attrs.msg_proto_id == SBI_MPXY_MSGPROTO_RPMI_ID) {
-> +			rc = mpxy_mbox_read_rpmi_attrs(mchan);
-> +			if (rc) {
-> +				return dev_err_probe(dev, rc,
-> +						     "MPXY channel 0x%x read RPMI attrs failed\n",
-> +						     mchan->channel_id);
-> +			}
-> +		}
-> +
-> +		mchan->notif = devm_kzalloc(dev, mpxy_shmem_size, GFP_KERNEL);
-> +		if (!mchan->notif)
-> +			return -ENOMEM;
-> +
-> +		mchan->max_xfer_len = min(mpxy_shmem_size, mchan->attrs.msg_max_len);
-> +
-> +		if ((mchan->attrs.capability & SBI_MPXY_CHAN_CAP_GET_NOTIFICATIONS) &&
-> +		    (mchan->attrs.capability & SBI_MPXY_CHAN_CAP_EVENTS_STATE))
-> +			mchan->have_events_state = true;
-> +
-> +		if ((mchan->attrs.capability & SBI_MPXY_CHAN_CAP_GET_NOTIFICATIONS) &&
-> +		    (mchan->attrs.capability & SBI_MPXY_CHAN_CAP_MSI))
-> +			mchan->msi_index = mbox->msi_count++;
-> +		else
-> +			mchan->msi_index = U32_MAX;
-> +		mchan->msi_irq = U32_MAX;
-> +	}
-> +
-> +	/* Initialize mailbox controller */
-> +	mbox->controller.txdone_irq = false;
-> +	mbox->controller.txdone_poll = false;
-> +	mbox->controller.ops = &mpxy_mbox_ops;
-> +	mbox->controller.dev = dev;
-> +	mbox->controller.num_chans = mbox->channel_count;
-> +	mbox->controller.fw_xlate = mpxy_mbox_fw_xlate;
-> +	mbox->controller.chans = devm_kcalloc(dev, mbox->channel_count,
-> +					      sizeof(*mbox->controller.chans),
-> +					      GFP_KERNEL);
-> +	if (!mbox->controller.chans)
-> +		return -ENOMEM;
-> +	for (i = 0; i < mbox->channel_count; i++)
-> +		mbox->controller.chans[i].con_priv = &mbox->channels[i];
-> +
-> +	/* Set the MSI domain if not available */
-> +	if (!dev_get_msi_domain(dev)) {
-> +		/*
-> +		 * The device MSI domain for OF devices is only set at the
-> +		 * time of populating/creating OF device. If the device MSI
-> +		 * domain is discovered later after the OF device is created
-> +		 * then we need to set it explicitly before using any platform
-> +		 * MSI functions.
-> +		 */
-
-> +		if (dev_of_node(dev))
-
-Do you really need this check? What about ACPI?
-
-> +			of_msi_configure(dev, dev_of_node(dev));
-> +	}
-> +
-> +	/* Setup MSIs for mailbox (if required) */
-> +	if (mbox->msi_count) {
-> +		mbox->msi_index_to_channel = devm_kcalloc(dev, mbox->msi_count,
-> +							  sizeof(*mbox->msi_index_to_channel),
-> +							  GFP_KERNEL);
-> +		if (!mbox->msi_index_to_channel)
-> +			return -ENOMEM;
-> +
-> +		for (msi_idx = 0; msi_idx < mbox->msi_count; msi_idx++) {
-> +			for (i = 0; i < mbox->channel_count; i++) {
-> +				mchan = &mbox->channels[i];
-> +				if (mchan->msi_index == msi_idx) {
-> +					mbox->msi_index_to_channel[msi_idx] = mchan;
-> +					break;
-> +				}
-> +			}
-> +		}
-> +
-> +		rc = platform_device_msi_init_and_alloc_irqs(dev, mbox->msi_count,
-> +							     mpxy_mbox_msi_write);
-> +		if (rc) {
-> +			return dev_err_probe(dev, rc, "Failed to allocate %d MSIs\n",
-> +					     mbox->msi_count);
-> +		}
-> +
-> +		for (i = 0; i < mbox->channel_count; i++) {
-> +			mchan = &mbox->channels[i];
-> +			if (mchan->msi_index == U32_MAX)
-> +				continue;
-> +			mchan->msi_irq = msi_get_virq(dev, mchan->msi_index);
-> +		}
-> +	}
-> +
-> +	/* Register mailbox controller */
-> +	rc = devm_mbox_controller_register(dev, &mbox->controller);
-> +	if (rc) {
-> +		dev_err_probe(dev, rc, "Registering SBI MPXY mailbox failed\n");
-> +		if (mbox->msi_count)
-> +			platform_device_msi_free_irqs_all(dev);
-> +		return rc;
-> +	}
-
-> +	dev_info(dev, "mailbox registered with %d channels\n",
-> +		 mbox->channel_count);
-
-Working driver doesn't need to issue a message.
-
-> +	return 0;
-> +}
+                        Geert
 
 -- 
-With Best Regards,
-Andy Shevchenko
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
 
-
+In personal conversations with technical people, I call myself a hacker. But
+when I'm talking to journalists I just say "programmer" or something like that.
+                                -- Linus Torvalds
 
