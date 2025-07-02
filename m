@@ -1,64 +1,48 @@
-Return-Path: <devicetree+bounces-192069-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-192070-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id AFB77AF148B
-	for <lists+devicetree@lfdr.de>; Wed,  2 Jul 2025 13:50:08 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id E05F2AF1493
+	for <lists+devicetree@lfdr.de>; Wed,  2 Jul 2025 13:52:32 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 228C13BDC49
-	for <lists+devicetree@lfdr.de>; Wed,  2 Jul 2025 11:49:23 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 9962B3AC8A6
+	for <lists+devicetree@lfdr.de>; Wed,  2 Jul 2025 11:52:06 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id EBE6A2673BF;
-	Wed,  2 Jul 2025 11:49:39 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 31ED82673BB;
+	Wed,  2 Jul 2025 11:52:28 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=redhat.com header.i=@redhat.com header.b="Ykv4PeYi"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="mLEOr6Z5"
 X-Original-To: devicetree@vger.kernel.org
-Received: from us-smtp-delivery-124.mimecast.com (us-smtp-delivery-124.mimecast.com [170.10.133.124])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 551CA257436
-	for <devicetree@vger.kernel.org>; Wed,  2 Jul 2025 11:49:37 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=170.10.133.124
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F2564263F22;
+	Wed,  2 Jul 2025 11:52:27 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1751456979; cv=none; b=AdPGO9Txd7BgbiH/CcsYmjOdBmBFPN9XJpzh089VWIWyc2CWHq3PGZe+fTh6wss/CsFUs4Z1xUmnmNbPd5K/dU3PpXOS4FLrIgbYGHi32UdUA5BkbPzCMtHs/WIUHh0737ldGnZ3P2Bg8Zyv2iHXVWn4eYSOXnUBqvZRPlmBiYY=
+	t=1751457148; cv=none; b=cqXSo1up5Ecc5WvsD+4Sh9JMFLJAOYAjGAHck3uanyQaFf7PsPwiXoEIMKURYBWvpXtpty1BqsgkVskpUAZRr0Cc9ikliwy6nIIxgr+8+fTm/sClCTie/IMNwj5A5jpyG62oUFB6kjLFCZiFZr/TmIiv22NJi0lk5JPk9FegP7s=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1751456979; c=relaxed/simple;
-	bh=Pvm8li19J1mQkV27wc91GwhHC/LyyLwQOprXDBjZ6z0=;
+	s=arc-20240116; t=1751457148; c=relaxed/simple;
+	bh=Q6FBmj3URmpZCBhCjeD2ZiHzR3DBwUjx+XG7OR8HJGk=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=KBUBjIkn1z2LWhJBAAfDKGXkJ6wvhS0runyA+8nlZKZZluQYf5/6P8OGpVe71U4YwcGHyPixAcTi3GGC8BqeW4+2Ij9CYe6DMBLCXgrO23HrHCm8XX21U/RuBWT4FZ5LgviXg9qqHBm11AQUGQLXbkYH9B/dDsUW7HW66hHJR10=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=redhat.com; spf=pass smtp.mailfrom=redhat.com; dkim=pass (1024-bit key) header.d=redhat.com header.i=@redhat.com header.b=Ykv4PeYi; arc=none smtp.client-ip=170.10.133.124
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=redhat.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=redhat.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
-	s=mimecast20190719; t=1751456977;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=I8fxI19STOiNYkYbv/K0P/oTNJXufNZSWyZwP8sW87E=;
-	b=Ykv4PeYi5NECUjD2ThfjHvbueTAUgHvsdo6QrCZLBifVhGfylRA/fkXKi3kwaWwzAoGYWx
-	XvkPZI1UM4xai2aljUPMlA3RL83+1BBaBn5BOcYU7obEBXEO0uoycihT06THfxjCcZGSJD
-	AMO5jiFWWbfE/ek0DMNFo19lvGkY9Jw=
-Received: from mx-prod-mc-02.mail-002.prod.us-west-2.aws.redhat.com
- (ec2-54-186-198-63.us-west-2.compute.amazonaws.com [54.186.198.63]) by
- relay.mimecast.com with ESMTP with STARTTLS (version=TLSv1.3,
- cipher=TLS_AES_256_GCM_SHA384) id us-mta-458-bOfnVxfLNbON-tTQ41R7rg-1; Wed,
- 02 Jul 2025 07:49:33 -0400
-X-MC-Unique: bOfnVxfLNbON-tTQ41R7rg-1
-X-Mimecast-MFC-AGG-ID: bOfnVxfLNbON-tTQ41R7rg_1751456971
-Received: from mx-prod-int-04.mail-002.prod.us-west-2.aws.redhat.com (mx-prod-int-04.mail-002.prod.us-west-2.aws.redhat.com [10.30.177.40])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
-	(No client certificate requested)
-	by mx-prod-mc-02.mail-002.prod.us-west-2.aws.redhat.com (Postfix) with ESMTPS id 073641955EC6;
-	Wed,  2 Jul 2025 11:49:31 +0000 (UTC)
-Received: from [10.45.226.95] (unknown [10.45.226.95])
-	by mx-prod-int-04.mail-002.prod.us-west-2.aws.redhat.com (Postfix) with ESMTP id 2E7BF1944CCA;
-	Wed,  2 Jul 2025 11:49:23 +0000 (UTC)
-Message-ID: <1848e2f6-a0bb-48e6-9bfc-5ea6cbea2e5c@redhat.com>
-Date: Wed, 2 Jul 2025 13:49:22 +0200
+	 In-Reply-To:Content-Type; b=O3lOtVur6Eas+VRmqr18os2frNRyGUefwo+RvEMvA33F7uwDpDsTyQENJGmTHZNtkGYFizqLqitxyHJp7BxiPO2tellcjXjafNJxiiRWgOuc8MUvco+SYfwC/9PZQdv6UhAIM9N2hJIvzVyYibusyityroWWUVMiwzviNMlaH78=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=mLEOr6Z5; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 62A6FC4CEED;
+	Wed,  2 Jul 2025 11:52:24 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1751457147;
+	bh=Q6FBmj3URmpZCBhCjeD2ZiHzR3DBwUjx+XG7OR8HJGk=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=mLEOr6Z5dKaFH5FWtLH77WS6LT7mE5lZILLPL71qW152ID183/QwYuy6laaYIQpl9
+	 hYGOh/VlT+c+eZs+KSrmmtYfiG0zVqzw8TjBKXr0mHpcYk7I2wT0UW/zdrnQHRMIkF
+	 pYTjrHJVSPnZdsONCS6GGScNHt+NeJThIWg8OcpHDV6oUw03y7oiNkL03ivJFzDBpO
+	 uY6NY1rknsqVlNz5ZNS/EcdtcGwFGBRKfllN+zeTIJDN7oLlRMSyrETWsIku8spa21
+	 kNq3oVmuPotr6tQp7LiAZHi6GrtW50PVjZnpOQXuvxFxghjgS4kH5WlfPDuZtL2k6i
+	 pabR9AOH8ggOQ==
+Message-ID: <5ad418d9-8199-43c9-a477-1e3b939c054c@kernel.org>
+Date: Wed, 2 Jul 2025 13:52:22 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -66,93 +50,131 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH net-next v12 09/14] dpll: zl3073x: Register DPLL devices
- and pins
-To: Jiri Pirko <jiri@resnulli.us>
-Cc: netdev@vger.kernel.org, Prathosh Satish <Prathosh.Satish@microchip.com>,
- Vadim Fedorenko <vadim.fedorenko@linux.dev>,
- Arkadiusz Kubalewski <arkadiusz.kubalewski@intel.com>,
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, "David S. Miller" <davem@davemloft.net>,
- Eric Dumazet <edumazet@google.com>, Jakub Kicinski <kuba@kernel.org>,
- Paolo Abeni <pabeni@redhat.com>, Simon Horman <horms@kernel.org>,
- Jonathan Corbet <corbet@lwn.net>, Jason Gunthorpe <jgg@ziepe.ca>,
- Shannon Nelson <shannon.nelson@amd.com>, Dave Jiang <dave.jiang@intel.com>,
- Jonathan Cameron <Jonathan.Cameron@huawei.com>, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, linux-doc@vger.kernel.org,
- Michal Schmidt <mschmidt@redhat.com>, Petr Oros <poros@redhat.com>
-References: <20250629191049.64398-1-ivecera@redhat.com>
- <20250629191049.64398-10-ivecera@redhat.com>
- <ne36b7ky5cg2g3juejcah7bnvsajihncmpzag3vpjnb3gabz2m@xtxhpfhvfmwl>
+Subject: Re: [PATCH v3 0/5] Introduce "non-pixel" sub node within iris video
+ node
+To: Vikash Garodia <quic_vgarodia@quicinc.com>,
+ Dikshita Agarwal <quic_dikshita@quicinc.com>,
+ Abhinav Kumar <abhinav.kumar@linux.dev>,
+ Bryan O'Donoghue <bryan.odonoghue@linaro.org>,
+ Mauro Carvalho Chehab <mchehab@kernel.org>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>
+Cc: linux-media@vger.kernel.org, linux-arm-msm@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+References: <20250627-video_cb-v3-0-51e18c0ffbce@quicinc.com>
+ <5f90547d-945a-4e26-b36c-75f2d8a1af97@kernel.org>
+ <eab8d79f-7188-9537-9176-3e4d22f0978a@quicinc.com>
+From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
-From: Ivan Vecera <ivecera@redhat.com>
-In-Reply-To: <ne36b7ky5cg2g3juejcah7bnvsajihncmpzag3vpjnb3gabz2m@xtxhpfhvfmwl>
-Content-Type: text/plain; charset=UTF-8; format=flowed
+Autocrypt: addr=krzk@kernel.org; keydata=
+ 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 a/A=
+In-Reply-To: <eab8d79f-7188-9537-9176-3e4d22f0978a@quicinc.com>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
-X-Scanned-By: MIMEDefang 3.0 on 10.30.177.40
 
-
-
-On 02. 07. 25 12:57 odp., Jiri Pirko wrote:
-> Sun, Jun 29, 2025 at 09:10:44PM +0200, ivecera@redhat.com wrote:
+On 02/07/2025 13:37, Vikash Garodia wrote:
 > 
-> [...]
-> 
->> +/**
->> + * zl3073x_dpll_device_register - register DPLL device
->> + * @zldpll: pointer to zl3073x_dpll structure
->> + *
->> + * Registers given DPLL device into DPLL sub-system.
->> + *
->> + * Return: 0 on success, <0 on error
->> + */
->> +static int
->> +zl3073x_dpll_device_register(struct zl3073x_dpll *zldpll)
->> +{
->> +	struct zl3073x_dev *zldev = zldpll->dev;
->> +	u8 dpll_mode_refsel;
->> +	int rc;
->> +
->> +	/* Read DPLL mode and forcibly selected reference */
->> +	rc = zl3073x_read_u8(zldev, ZL_REG_DPLL_MODE_REFSEL(zldpll->id),
->> +			     &dpll_mode_refsel);
->> +	if (rc)
->> +		return rc;
->> +
->> +	/* Extract mode and selected input reference */
->> +	zldpll->refsel_mode = FIELD_GET(ZL_DPLL_MODE_REFSEL_MODE,
->> +					dpll_mode_refsel);
-> 
-> Who sets this?
+> On 7/2/2025 4:48 PM, Krzysztof Kozlowski wrote:
+>> On 27/06/2025 17:48, Vikash Garodia wrote:
+>>> This series introduces a sub node "non-pixel" within iris video node.
+>>> Video driver registers this sub node as a platform device and configure 
+>>> it for DMA operations. All non pixel buffers, i.e bitstream, HFI queues 
+>>> and internal buffers related to bitstream processing, would be managed 
+>>> by this non_pixel device.
+>>>
+>>> Purpose to add this sub-node:
+>>> Iris device limits the IOVA to an addressable range of 4GiB, and even 
+>>> within that range, some of the space is used by IO registers, thereby 
+>>> limiting the available IOVA to even lesser. For certain video usecase, 
+>>> this limited range in not sufficient enough, hence it brings the need to 
+>>> extend the possibility of higher IOVA range.
+>>>
+>>> Video hardware is designed to emit different stream-ID for pixel and 
+>>> non-pixel buffers, thereby introduce a non-pixel sub node to handle 
+>>> non-pixel stream-ID into a separate platform device.
+>>> With this, both iris and non-pixel device can have IOVA range of 
+>>> approximately 0-4GiB individually for each device, thereby doubling the 
+>>> range of addressable IOVA.
+>>>
+>>> Tested on SM8550 and SA8775p hardwares.
+>>>
+>>> Signed-off-by: Vikash Garodia <quic_vgarodia@quicinc.com>
+>>> ---
+>>> Changes in v3:
+>>> - Add info about change in iommus binding (Thanks Krzysztof)
+>>
+>> Nothing improved in commit msg. You are changing existing device and the
+>> reason for that change is not communicated at all.
+>>
+>> There was big feedback from qualcomm saying that some commit in the past
+>> received review, so future commits can repeat the same stuff. If qcom
+>> approaches that way, sorry, no you need to come with proper commit
+>> description.
+>>
+>> Please align internally how to solve it, because my response that past
+>> imperfect review is not justification for whatever future issues was not
+>> enough.
+> Sure, lets take this as an example and you can suggest to provide a better
+> commit message for this case, it would help me to compare where is the gap. I
+> have tried my best to capture and explain the limitations and how the changes
+> address those limitations. If that is not sufficient, we might have the perfect
+> message from you and compare to find the gaps and improve, I am sorry, but thats
 
-WDYM? refsel_mode register? If so this register is populated from
-configuration stored in flash inside the chip. And the configuration
-is prepared by vendor/OEM.
+It is not question to me: I did not want imperfectness. Qualcomm
+engineer used issues in existing commits or imperfect commit in
+discussion, so that's my solution. I don't need that perfect commit, but
+it seems if I agree to that, then I will have to defend it later. Well,
+no, I don't want it.
 
->> +	zldpll->forced_ref = FIELD_GET(ZL_DPLL_MODE_REFSEL_REF,
->> +				       dpll_mode_refsel);
->> +
->> +	zldpll->dpll_dev = dpll_device_get(zldev->clock_id, zldpll->id,
->> +					   THIS_MODULE);
->> +	if (IS_ERR(zldpll->dpll_dev)) {
->> +		rc = PTR_ERR(zldpll->dpll_dev);
->> +		zldpll->dpll_dev = NULL;
->> +
->> +		return rc;
->> +	}
->> +
->> +	rc = dpll_device_register(zldpll->dpll_dev,
->> +				  zl3073x_prop_dpll_type_get(zldev, zldpll->id),
->> +				  &zl3073x_dpll_device_ops, zldpll);
->> +	if (rc) {
->> +		dpll_device_put(zldpll->dpll_dev);
->> +		zldpll->dpll_dev = NULL;
->> +	}
->> +
->> +	return rc;
->> +}
-> 
-> [...]
-> 
+> how i feel at the moment.
+Sure, I feel confused now as well.
 
+Anyway, in other messages I explained what is missing. You are changing
+existing hardware and you clearly must explain how existing hardware is
+affected, how can we reproduce it, how users are affected.
+
+All these answers.
+
+Best regards,
+Krzysztof
 
