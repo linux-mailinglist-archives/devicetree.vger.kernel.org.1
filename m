@@ -1,1079 +1,583 @@
-Return-Path: <devicetree+bounces-192252-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-192253-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 09E22AF5DDE
-	for <lists+devicetree@lfdr.de>; Wed,  2 Jul 2025 18:00:14 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 96DE8AF5E27
+	for <lists+devicetree@lfdr.de>; Wed,  2 Jul 2025 18:12:32 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 7D7347B30B8
-	for <lists+devicetree@lfdr.de>; Wed,  2 Jul 2025 15:58:46 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 76D7517CB84
+	for <lists+devicetree@lfdr.de>; Wed,  2 Jul 2025 16:12:32 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id DDCB6309A6A;
-	Wed,  2 Jul 2025 15:57:01 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 901F12EE27C;
+	Wed,  2 Jul 2025 16:12:19 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=amd.com header.i=@amd.com header.b="eRGssw13"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="DhLT66Qz"
 X-Original-To: devicetree@vger.kernel.org
-Received: from NAM12-DM6-obe.outbound.protection.outlook.com (mail-dm6nam12on2040.outbound.protection.outlook.com [40.107.243.40])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 08188303DD6;
-	Wed,  2 Jul 2025 15:56:58 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.243.40
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1751471821; cv=fail; b=ZMkDR+ExA3jw8oV00ORUbeCh6j16pcs9ePBd+oFMnq2CNvDCj2zUMvc2W1ZzYskD7Oci9Ab4QCnX9qnYij/EQTOt+OeVVshXtY2TqGKr4Do0VypPgaA8smErXyyoWYS0DXLOR6qWtDj6+VdjJ9Mlozq+pGzq3FPg07fyzdwq/yc=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1751471821; c=relaxed/simple;
-	bh=HwiknwkpbljvFlFtsAD7c9d8p7ZAXT2DI/qJyK3kYrs=;
-	h=From:To:CC:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=NKceG8USyFX45zT5u/LBChBbsErZmyD0qr9ZqLbZfseiVburucwSpImEnEsFkWWr+VAB173y5bu54Yh3fnQc4agwzjnLF/aFJI6CJKKRKkLTXKG2ndTcVbQKloDtkMRItKnj1vjwQ8BPiJTeyFMkw0U5qHVvI/45yHwujkfSrjg=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=amd.com; spf=fail smtp.mailfrom=amd.com; dkim=pass (1024-bit key) header.d=amd.com header.i=@amd.com header.b=eRGssw13; arc=fail smtp.client-ip=40.107.243.40
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=amd.com
-Authentication-Results: smtp.subspace.kernel.org; spf=fail smtp.mailfrom=amd.com
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=Rk4kNn5C4psgt7lPqdM2awZYmUhzAutvXkEl+8Sd6cMvjhj9dNSHHeE6p8KzA01VnlH0gsJZ3GqWIy/xWxA10+kMNyiO0zVlmY14Ko8qsTdw3kicG4j5yVKc+I5XTiW+D5hN/ivuXr3uWnGvgXDncuO9vhNX2Vowu/i8+mWSeFTEGvzOUXli3FB9i5BOytVVpveubLl8iIJe4tFsqEgXbS25lD+xsOD5+aU1Avt5g/4JiuutGDzQGJmgzoNElF1G+GG4Y5/tRvIcBN2QDpfYgoylonY94sRfmvjyaTnr5S+awFYH51gHa5P+rNzb970gbGJsQtNQ5p7B9VajdUvBkw==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=03+hix+gmPnEV0IxFrNb7C9JryMm9TekMt4qzXD1VWs=;
- b=wt9CPK0AJ/Mob/RnGnkO3O8zkp0/dKhAW3jJ/QE5zKKyxOWtR0f4hFjdcrHovXQq05WcbTVoVQmm2FMDLR6/llpgsuTkT5o2yntJtdDqo6SRNsWs/2FbW6//fO7K61+TqCJef0ItC/SR9QZRkDzxp/IN3O1up3dWEKDGAUUfL8bvoVr1MVLvAG9lL/+iHknu/ow6y+ttwjcLLt1MWNDpaqsplffLVt/GyjeLrIddywE9bTFF/YQvLX2r5k1caDp0BudaDcgMMCO2ZXB4+F7wSEiQ38i20O0yKaZFRG9RatsXp5ZgeHPraaso0G52ygHLrUzgcReAfr46b/shqnhD8g==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
- 165.204.84.17) smtp.rcpttodomain=kernel.org smtp.mailfrom=amd.com; dmarc=pass
- (p=quarantine sp=quarantine pct=100) action=none header.from=amd.com;
- dkim=none (message not signed); arc=none (0)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=03+hix+gmPnEV0IxFrNb7C9JryMm9TekMt4qzXD1VWs=;
- b=eRGssw13pYuAjz8nfzceCGEq8vPYJEwRtU776s3vYmXigPVXwAWgGsj6VAH5rvanpE2bHTevvlFN9OIQBAJ1TkWHInPV/FQBdoYLVKdSLqDLKfwqBF/1D9cfOWiO/0aJ1xlUAlT8RZyKnkhRvBE9BS4g53DnDvXSGDOzX1Vp7QY=
-Received: from CH2PR15CA0011.namprd15.prod.outlook.com (2603:10b6:610:51::21)
- by PH7PR12MB6443.namprd12.prod.outlook.com (2603:10b6:510:1f9::5) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8880.31; Wed, 2 Jul
- 2025 15:56:49 +0000
-Received: from CH3PEPF00000013.namprd21.prod.outlook.com
- (2603:10b6:610:51:cafe::1f) by CH2PR15CA0011.outlook.office365.com
- (2603:10b6:610:51::21) with Microsoft SMTP Server (version=TLS1_3,
- cipher=TLS_AES_256_GCM_SHA384) id 15.20.8901.19 via Frontend Transport; Wed,
- 2 Jul 2025 15:56:49 +0000
-X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
- smtp.mailfrom=amd.com; dkim=none (message not signed)
- header.d=none;dmarc=pass action=none header.from=amd.com;
-Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
- 165.204.84.17 as permitted sender) receiver=protection.outlook.com;
- client-ip=165.204.84.17; helo=SATLEXMB03.amd.com; pr=C
-Received: from SATLEXMB03.amd.com (165.204.84.17) by
- CH3PEPF00000013.mail.protection.outlook.com (10.167.244.118) with Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.20.8922.1 via Frontend Transport; Wed, 2 Jul 2025 15:56:49 +0000
-Received: from SATLEXMB03.amd.com (10.181.40.144) by SATLEXMB03.amd.com
- (10.181.40.144) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.39; Wed, 2 Jul
- 2025 10:56:48 -0500
-Received: from xsjgregoryw50.xilinx.com (10.180.168.240) by SATLEXMB03.amd.com
- (10.181.40.144) with Microsoft SMTP Server id 15.1.2507.39 via Frontend
- Transport; Wed, 2 Jul 2025 10:56:48 -0500
-From: Gregory Williams <gregory.williams@amd.com>
-To: <ogabbay@kernel.org>, <michal.simek@amd.com>, <robh@kernel.org>
-CC: Gregory Williams <gregory.williams@amd.com>,
-	<dri-devel@lists.freedesktop.org>, <devicetree@vger.kernel.org>,
-	<linux-kernel@vger.kernel.org>
-Subject: [PATCH V1 9/9] accel: amd-ai-engine: Adds AI Engine reset operations
-Date: Wed, 2 Jul 2025 08:56:30 -0700
-Message-ID: <20250702155630.1737227-10-gregory.williams@amd.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20250702155630.1737227-1-gregory.williams@amd.com>
-References: <20250702155630.1737227-1-gregory.williams@amd.com>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 621132E7BB9;
+	Wed,  2 Jul 2025 16:12:18 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1751472739; cv=none; b=VEkeppyfodrgz8YJmWWeOVaTPoac53jJYmeQVz+3Mx69xX9TTuKWA2ZX8Q6kTX0uMWrAsJy0fRvA+z/W+nKalXlu4STK3HsAawuWNyOETZJJqt83P94Z2UiZ+Om91LOUAwwb5GDhMzKJpM2k6JGhgkvO5Pe00cWh7AEejPEIekk=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1751472739; c=relaxed/simple;
+	bh=TFp7aezr/UNOAZstyTIBGkoYUirbtbx7u9huIRuuK50=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=lWcriEaxYc7jHuS2QzG1XaRCBAhRdgY10L/fD0kzvRv+naoc+q6tz8/i1u7R9y9wz/L1m1dcsFGzWrftYh3jJFGLAGzZYeuYxKTuv+vurHYTHsBSbUb45C+cHHWIP6rMeZIpPFP700B40eQkt5IFOJeFBsIN9pdUzgqBlYquX1M=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=DhLT66Qz; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 44ADCC4CEE7;
+	Wed,  2 Jul 2025 16:12:14 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1751472738;
+	bh=TFp7aezr/UNOAZstyTIBGkoYUirbtbx7u9huIRuuK50=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=DhLT66Qz3IDH5x5jbbzz1ZjRjqOr+6ra/+r6XpboPLlcAOpl71N8JRUIyScKGesqk
+	 7FMazVHS4dNdMLtRxol/ucD4JW/59diDwaLX2OxGF/J3nAVQFx4cZDat0ZZZHWM4TT
+	 EEbatZcEPEd4xTGxRcW1llrL+KvCZvNxEwRNZm634iavHAXc106cdAy6kVCMkoBAcz
+	 PK8l2ITroojV2ldTNP9cWiZqfbpr0xnYeup1ESdDMhzQPc1sV+SD6j/3fs9ATAaDlR
+	 lswGISBCjhZiMKJT3VlasWJ/e0sJHlFDanoNKLisMzZcQD9TroGhPnhtizNsWW8WZW
+	 y/pEyBi9bXM3g==
+Date: Wed, 2 Jul 2025 17:12:11 +0100
+From: Lee Jones <lee@kernel.org>
+To: Christian Marangi <ansuelsmth@gmail.com>
+Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Andrew Lunn <andrew+netdev@lunn.ch>,
+	"David S. Miller" <davem@davemloft.net>,
+	Eric Dumazet <edumazet@google.com>,
+	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
+	Vladimir Oltean <olteanv@gmail.com>,
+	Srinivas Kandagatla <srini@kernel.org>,
+	Heiner Kallweit <hkallweit1@gmail.com>,
+	Russell King <linux@armlinux.org.uk>,
+	"Chester A. Unal" <chester.a.unal@arinc9.com>,
+	Daniel Golle <daniel@makrotopia.org>,
+	DENG Qingfang <dqfext@gmail.com>,
+	Sean Wang <sean.wang@mediatek.com>, Simon Horman <horms@kernel.org>,
+	Matthias Brugger <matthias.bgg@gmail.com>,
+	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
+	linux-arm-kernel@lists.infradead.org,
+	linux-mediatek@lists.infradead.org, netdev@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [net-next PATCH v15 09/12] mfd: an8855: Add support for Airoha
+ AN8855 Switch MFD
+Message-ID: <20250702161211.GW10134@google.com>
+References: <20250626212321.28114-1-ansuelsmth@gmail.com>
+ <20250626212321.28114-10-ansuelsmth@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-Received-SPF: None (SATLEXMB03.amd.com: gregory.williams@amd.com does not
- designate permitted sender hosts)
-X-EOPAttributedMessage: 0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: CH3PEPF00000013:EE_|PH7PR12MB6443:EE_
-X-MS-Office365-Filtering-Correlation-Id: c1b93edc-35d8-4f64-a579-08ddb9810dfe
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam:
-	BCL:0;ARA:13230040|82310400026|1800799024|36860700013|376014;
-X-Microsoft-Antispam-Message-Info:
-	=?us-ascii?Q?4j59BGTA7m7o0PrMsEUj+mXNBJvSDBRrZV6nQB0AanvsQYnT86z/p5hUd69G?=
- =?us-ascii?Q?C5TPJIhs+C033synbqNaqrHdLOzg4qKyuucGkdtY6/f+XkS6wBdJfcKguqFz?=
- =?us-ascii?Q?4KN5TdlB5jqWlMw7LUa+r4L9/3KhCmIoN/+08DAO5CN9EpfqlNe640r936Oo?=
- =?us-ascii?Q?5rrt2GZoDaaG764+owji6KdpXNqE6dybY8Cy3uo5lm6RePncTitxx8arQ0ie?=
- =?us-ascii?Q?YOxpCXu5eoDlXsqJEkEaM99KrbGIVjLv94NyRn5C9KRkXola6bEYYHQL4Q15?=
- =?us-ascii?Q?KsOseGTspBJmcMlND1pPFjNoV9xozU2Qk37mxYa6jxSbZq+lc5bZZhWCl3xs?=
- =?us-ascii?Q?/ypQ9TcaMs5KEt/Jt3pDPsHU2Xs8CbsDRbStN06CA0wRjvmQksTR2R6rR1qO?=
- =?us-ascii?Q?aPnRHUgz+Act7YxmuOhq3zbFNDaV5kap3UoGiwFV2tKuFlREeRhmLf4Nvrhx?=
- =?us-ascii?Q?4dXH9GA9H+qbN3yi4OM0pSGeWOJmRKqhJeuWrnfTWWaB8eKAnqr8jkucEhRO?=
- =?us-ascii?Q?cTxwGxemVzhrwowC/BCruNfML7mUey4uhMRjHeHy+X1GI60h/h7bQNhqFqJO?=
- =?us-ascii?Q?mPg29k3pJFZoFjeJs7paTkcahX+8ue7QiJ99DpbFyuOfH0v2HBBZGPvnMrC6?=
- =?us-ascii?Q?r+mwd4rbYDSnKtJ4EhhUD1nIILdH/HCwVlbYDUNW1KKxBZDOHL2r7/hvUp3m?=
- =?us-ascii?Q?nB+0xmIwoRC0MVhGpi2eKuuFtCzcYjxHMwCnzyQbNCMFrPCfuJMI+BGTmJ59?=
- =?us-ascii?Q?je6SzHn9su3AEoACgE9389SpbJTtV+zg6ZSr4vRZGgeOuUsBZzkUZpPzZK4t?=
- =?us-ascii?Q?44q65/hwwHbmVaIMGHtbKZValJLTd5grrktWTHzA7VPXVjUWx/OwfM5VFBPM?=
- =?us-ascii?Q?tTORjkc+G0D3nl983S2Q76SFvxe+qimcG5VKGCGo1jn857Z5gwPu7Nfi4VJj?=
- =?us-ascii?Q?U/D9lAxb5kfM+qqrq1FS1MmgVsJ96N+8HAs35qRuTa1tnSf9TNKZyqtoo0zs?=
- =?us-ascii?Q?xo6t2+3sj2I0TPg/+cS3zzGUq6e+QqVtqLcClnaMJFgauim/an3ormi7kFVi?=
- =?us-ascii?Q?ax8mKCMtXiPL3sWy2v4fxSsjFbb7hdjOoAjt7brbRP8uwcI2WIlw8s3KZVkV?=
- =?us-ascii?Q?CdV38HLkye0LnfYegNgphxD4sqT2XTRPQJxZLrLpI+vNDKidhKkn+4b8iC1i?=
- =?us-ascii?Q?174TwqvRyqvKM774yrZz6sNC+oRwYx9otPpJfhhY/giWoNLTU9yvTf8PHl0O?=
- =?us-ascii?Q?ETjeY2Np2uuCweMAnJyR2tYzWlOkIqNSiuCGV1QQBuLAxumMbTIyJAMlxwVO?=
- =?us-ascii?Q?dJWthFaXa8TvcgZ54pHO6tpDOWg4oWY6fqO4ZiSjmOa4qKxxtb0M6k61lMsJ?=
- =?us-ascii?Q?SocwnbimQkC6wg1R0WiFPo2ivmYN3yzA9fcdIVNlHraHos8iCXlMKNULjMp5?=
- =?us-ascii?Q?iX1aN5DtldDnKv5/wgLRzOs2SqsQcZpOutfgUtLivjt0pA17+AhfWZstjViv?=
- =?us-ascii?Q?JU/8K7QRFgQE7Or89OU2va6LcGQO704ei6yG?=
-X-Forefront-Antispam-Report:
-	CIP:165.204.84.17;CTRY:US;LANG:en;SCL:1;SRV:;IPV:CAL;SFV:NSPM;H:SATLEXMB03.amd.com;PTR:InfoDomainNonexistent;CAT:NONE;SFS:(13230040)(82310400026)(1800799024)(36860700013)(376014);DIR:OUT;SFP:1101;
-X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 02 Jul 2025 15:56:49.2651
- (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: c1b93edc-35d8-4f64-a579-08ddb9810dfe
-X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d;Ip=[165.204.84.17];Helo=[SATLEXMB03.amd.com]
-X-MS-Exchange-CrossTenant-AuthSource:
-	CH3PEPF00000013.namprd21.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Anonymous
-X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: PH7PR12MB6443
+In-Reply-To: <20250626212321.28114-10-ansuelsmth@gmail.com>
 
-Adds AI Engine hardware reset functionality. Adds call to
-initialize and teardown partitions. Partition initialize resets
-columns, resets shim tiles, sets up AXIMM error reporting, ungates column
-clocks, sets up partition isolation, and zeroizes all tile memories.
-Teardown resets columns, resets shim tiles, zeroizes all tile
-memories, and gates column clocks.
+> Add support for Airoha AN8855 Switch MFD that provide support for a DSA
 
-Signed-off-by: Gregory Williams <gregory.williams@amd.com>
----
- drivers/accel/amd-ai-engine/Makefile          |   3 +-
- drivers/accel/amd-ai-engine/ai-engine-aie.c   | 104 ++++++
- drivers/accel/amd-ai-engine/ai-engine-aieml.c | 105 ++++++
- drivers/accel/amd-ai-engine/ai-engine-clock.c |  16 +-
- .../accel/amd-ai-engine/ai-engine-internal.h  |  45 +++
- drivers/accel/amd-ai-engine/ai-engine-part.c  |  31 ++
- drivers/accel/amd-ai-engine/ai-engine-res.c   |  16 +
- drivers/accel/amd-ai-engine/ai-engine-reset.c | 300 ++++++++++++++++++
- include/linux/amd-ai-engine.h                 |  24 ++
- 9 files changed, 629 insertions(+), 15 deletions(-)
- create mode 100644 drivers/accel/amd-ai-engine/ai-engine-reset.c
+Drop the MFD part from here and the subject line.
 
-diff --git a/drivers/accel/amd-ai-engine/Makefile b/drivers/accel/amd-ai-engine/Makefile
-index 66cbce4705ea..8522222f330a 100644
---- a/drivers/accel/amd-ai-engine/Makefile
-+++ b/drivers/accel/amd-ai-engine/Makefile
-@@ -11,4 +11,5 @@ amd-aie-$(CONFIG_DRM_ACCEL_AMDAIE) := \
- 	ai-engine-clock.o	\
- 	ai-engine-dev.o		\
- 	ai-engine-part.o	\
--	ai-engine-res.o
-+	ai-engine-res.o		\
-+	ai-engine-reset.o
-diff --git a/drivers/accel/amd-ai-engine/ai-engine-aie.c b/drivers/accel/amd-ai-engine/ai-engine-aie.c
-index 056db0b7be0e..23733d384a2e 100644
---- a/drivers/accel/amd-ai-engine/ai-engine-aie.c
-+++ b/drivers/accel/amd-ai-engine/ai-engine-aie.c
-@@ -22,7 +22,14 @@
-  * Register offsets
-  */
- #define AIE_SHIMPL_CLKCNTR_REGOFF		0x00036040U
-+#define AIE_SHIMPL_TILECTRL_REGOFF		0x00036030U
-+
-+#define AIE_TILE_CORE_AMH3_PART3_REGOFF		0x000307a0U
- #define AIE_TILE_CORE_CLKCNTR_REGOFF		0x00036040U
-+#define AIE_TILE_CORE_LC_REGOFF			0x00030520U
-+#define AIE_TILE_CORE_R0_REGOFF			0x00030000U
-+#define AIE_TILE_CORE_TILECTRL_REGOFF		0x00036030U
-+#define AIE_TILE_CORE_VRL0_REGOFF		0x00030530U
- 
- /*
-  * Register masks
-@@ -32,6 +39,27 @@
- #define AIE_TILE_CLKCNTR_COLBUF_MASK		BIT(0)
- #define AIE_TILE_CLKCNTR_NEXTCLK_MASK		BIT(1)
- 
-+static const struct aie_tile_regs aie_core_32bit_regs = {
-+	.attribute = AIE_TILE_TYPE_TILE << AIE_REGS_ATTR_TILE_TYPE_SHIFT,
-+	.soff = AIE_TILE_CORE_R0_REGOFF,
-+	.eoff = AIE_TILE_CORE_LC_REGOFF,
-+};
-+
-+static const struct aie_tile_regs aie_core_128bit_regs = {
-+	.attribute = AIE_TILE_TYPE_TILE << AIE_REGS_ATTR_TILE_TYPE_SHIFT,
-+	.soff = AIE_TILE_CORE_VRL0_REGOFF,
-+	.eoff = AIE_TILE_CORE_AMH3_PART3_REGOFF,
-+};
-+
-+static const struct aie_core_regs_attr aie_core_regs[] = {
-+	{.core_regs = &aie_core_32bit_regs,
-+	 .width = 1,
-+	},
-+	{.core_regs = &aie_core_128bit_regs,
-+	 .width = 4,
-+	},
-+};
-+
- static u32 aie_get_tile_type(struct aie_device *adev, struct aie_location *loc)
- {
- 	if (loc->row)
-@@ -79,6 +107,43 @@ static unsigned int aie_get_mem_info(struct aie_device *adev,
- 	return NUM_TYPES_OF_MEM;
- }
- 
-+/**
-+ * aie_part_clear_mems() - clear memories of every tile in a partition
-+ * @apart: AI engine partition
-+ *
-+ * Return: return 0 always.
-+ */
-+static int aie_part_clear_mems(struct aie_partition *apart)
-+{
-+	struct aie_part_mem *pmems = apart->pmems;
-+	struct aie_device *adev = apart->adev;
-+	u32 i;
-+
-+	/* Clear each type of memories in the partition */
-+	for (i = 0; i < NUM_TYPES_OF_MEM; i++) {
-+		struct aie_mem *mem = &pmems[i].mem;
-+		struct aie_range *range = &mem->range;
-+		u32 c, r;
-+
-+		for (c = range->start.col;
-+		     c < range->start.col + range->size.col; c++) {
-+			for (r = range->start.row;
-+			     r < range->start.row + range->size.row; r++) {
-+				struct aie_location loc;
-+				u32 memoff;
-+
-+				loc.col = c;
-+				loc.row = r;
-+				memoff = aie_cal_regoff(adev, loc, mem->offset);
-+				memset_io(apart->aperture->base + memoff, 0,
-+					  mem->size);
-+			}
-+		}
-+	}
-+
-+	return 0;
-+}
-+
- /* aie_scan_part_clocks() - scan clocks of a partition
-  * @apart: AI engine partition
-  *
-@@ -294,11 +359,48 @@ static int aie_set_part_clocks(struct aie_partition *apart)
- 
- 	return 0;
- }
-+
-+/**
-+ * aie_set_tile_isolation() - Set isolation boundary of AI engine tile
-+ * @apart: AI engine partition
-+ * @loc: Location of tile
-+ * @dir: Direction to block
-+ *
-+ * Possible direction values are:
-+ *      - AIE_ISOLATE_EAST_MASK
-+ *      - AIE_ISOLATE_NORTH_MASK
-+ *      - AIE_ISOLATE_WEST_MASK
-+ *      - AIE_ISOLATE_SOUTH_MASK
-+ *      - AIE_ISOLATE_ALL_MASK
-+ *      - or "OR" of multiple values
-+ */
-+static void aie_set_tile_isolation(struct aie_partition *apart,
-+				   struct aie_location *loc, u8 dir)
-+{
-+	struct aie_aperture *aperture = apart->aperture;
-+	struct aie_device *adev = apart->adev;
-+	void __iomem *va;
-+	u32 ttype, val;
-+
-+	val = (u32)dir;
-+	ttype = aie_get_tile_type(adev, loc);
-+	if (ttype == AIE_TILE_TYPE_TILE) {
-+		va = aperture->base +
-+		     aie_cal_regoff(adev, *loc, AIE_TILE_CORE_TILECTRL_REGOFF);
-+	} else {
-+		va = aperture->base +
-+		     aie_cal_regoff(adev, *loc, AIE_SHIMPL_TILECTRL_REGOFF);
-+	}
-+	writel(val, va);
-+}
-+
- static const struct aie_tile_operations aie_ops = {
- 	.get_tile_type = aie_get_tile_type,
- 	.get_mem_info = aie_get_mem_info,
-+	.mem_clear = aie_part_clear_mems,
- 	.scan_part_clocks = aie_scan_part_clocks,
- 	.set_part_clocks = aie_set_part_clocks,
-+	.set_tile_isolation = aie_set_tile_isolation,
- };
- 
- /**
-@@ -316,4 +418,6 @@ void aie_device_init(struct aie_device *adev)
- 	adev->col_shift = AIE_COL_SHIFT;
- 	adev->row_shift = AIE_ROW_SHIFT;
- 	adev->ops = &aie_ops;
-+	adev->num_core_regs = ARRAY_SIZE(aie_core_regs);
-+	adev->core_regs = aie_core_regs;
- }
-diff --git a/drivers/accel/amd-ai-engine/ai-engine-aieml.c b/drivers/accel/amd-ai-engine/ai-engine-aieml.c
-index 7730609ff7c0..4ceb51ea13af 100644
---- a/drivers/accel/amd-ai-engine/ai-engine-aieml.c
-+++ b/drivers/accel/amd-ai-engine/ai-engine-aieml.c
-@@ -27,6 +27,17 @@
-  * Register offsets
-  */
- #define AIEML_SHIMPL_COLCLOCK_CTRL_REGOFF		0x000fff20U
-+#define AIEML_SHIMPL_TILECTRL_REGOFF			0x00036030U
-+
-+#define AIEML_MEMORY_TILECTRL_REGOFF			0x00096030U
-+
-+#define AIEML_TILE_COREMOD_AMLL0_PART1_REGOFF		0x00030000U
-+#define AIEML_TILE_COREMOD_AMHH8_PART2_REGOFF		0x00030470U
-+#define AIEML_TILE_COREMOD_R0_REGOFF			0x00030c00U
-+#define AIEML_TILE_COREMOD_R31_REGOFF			0x00030df0U
-+#define AIEML_TILE_COREMOD_TILECTRL_REGOFF		0x00036030U
-+#define AIEML_TILE_COREMOD_WL0_PART1_REGOFF		0x00030800U
-+#define AIEML_TILE_COREMOD_WH11_PART2_REGOFF		0x00030af0U
- 
- /*
-  * Register masks
-@@ -34,6 +45,36 @@
- #define AIEML_SHIMPL_COLRESET_CTRL_MASK			GENMASK(1, 0)
- #define AIEML_SHIMPL_COLCLOCK_CTRL_MASK			GENMASK(1, 0)
- 
-+static const struct aie_tile_regs aieml_core_amxx_regs = {
-+	.attribute = AIE_TILE_TYPE_TILE << AIE_REGS_ATTR_TILE_TYPE_SHIFT,
-+	.soff = AIEML_TILE_COREMOD_AMLL0_PART1_REGOFF,
-+	.eoff = AIEML_TILE_COREMOD_AMHH8_PART2_REGOFF,
-+};
-+
-+static const struct aie_tile_regs aieml_core_wx_regs = {
-+	.attribute = AIE_TILE_TYPE_TILE << AIE_REGS_ATTR_TILE_TYPE_SHIFT,
-+	.soff = AIEML_TILE_COREMOD_WL0_PART1_REGOFF,
-+	.eoff = AIEML_TILE_COREMOD_WH11_PART2_REGOFF,
-+};
-+
-+static const struct aie_tile_regs aieml_core_32bit_regs = {
-+	.attribute = AIE_TILE_TYPE_TILE << AIE_REGS_ATTR_TILE_TYPE_SHIFT,
-+	.soff = AIEML_TILE_COREMOD_R0_REGOFF,
-+	.eoff = AIEML_TILE_COREMOD_R31_REGOFF,
-+};
-+
-+static const struct aie_core_regs_attr aieml_core_regs[] = {
-+	{.core_regs = &aieml_core_amxx_regs,
-+	 .width = 4,
-+	},
-+	{.core_regs = &aieml_core_wx_regs,
-+	 .width = 4,
-+	},
-+	{.core_regs = &aieml_core_32bit_regs,
-+	 .width = 1,
-+	},
-+};
-+
- static u32 aieml_get_tile_type(struct aie_device *adev,
- 			       struct aie_location *loc)
- {
-@@ -96,6 +137,27 @@ static unsigned int aieml_get_mem_info(struct aie_device *adev,
- 	return NUM_TYPES_OF_MEM;
- }
- 
-+/**
-+ * aieml_part_clear_mems() - clear memories of every tile in a partition
-+ * @apart: AI engine partition
-+ *
-+ * Return: return 0 for success, error code for failure
-+ */
-+static int aieml_part_clear_mems(struct aie_partition *apart)
-+{
-+	struct aie_range *range = &apart->range;
-+	u32 node_id = apart->adev->pm_node_id;
-+	int ret;
-+
-+	ret = zynqmp_pm_aie_operation(node_id, range->start.col,
-+				      range->size.col,
-+				      XILINX_AIE_OPS_ZEROISATION);
-+	if (ret < 0)
-+		dev_err(apart->aperture->dev, "failed to clear memory for partition\n");
-+
-+	return ret;
-+}
-+
- /* aieml_scan_part_clocks() - scan clocks of a partition
-  * @apart: AI engine partition
-  *
-@@ -232,11 +294,52 @@ static int aieml_set_part_clocks(struct aie_partition *apart)
- 	return 0;
- }
- 
-+/**
-+ * aieml_set_tile_isolation() - Set isolation boundary of AI engile tile
-+ * @apart: AI engine partition
-+ * @loc: Location of tile
-+ * @dir: Direction to block
-+ *
-+ * Possible direction values are:
-+ *      - AIE_ISOLATE_EAST_MASK
-+ *      - AIE_ISOLATE_NORTH_MASK
-+ *      - AIE_ISOLATE_WEST_MASK
-+ *      - AIE_ISOLATE_SOUTH_MASK
-+ *      - AIE_ISOLATE_ALL_MASK
-+ *      - or "OR" of multiple values
-+ */
-+static void aieml_set_tile_isolation(struct aie_partition *apart,
-+				     struct aie_location *loc, u8 dir)
-+{
-+	struct aie_aperture *aperture = apart->aperture;
-+	struct aie_device *adev = apart->adev;
-+	void __iomem *va;
-+	u32 ttype, val;
-+
-+	/* For AIEML device, dir input will match register mask */
-+	val = (u32)dir;
-+	ttype = aieml_get_tile_type(adev, loc);
-+	if (ttype == AIE_TILE_TYPE_TILE) {
-+		va = aperture->base +
-+		     aie_cal_regoff(adev, *loc,
-+				    AIEML_TILE_COREMOD_TILECTRL_REGOFF);
-+	} else if (ttype == AIE_TILE_TYPE_MEMORY) {
-+		va = aperture->base +
-+		     aie_cal_regoff(adev, *loc, AIEML_MEMORY_TILECTRL_REGOFF);
-+	} else {
-+		va = aperture->base +
-+		     aie_cal_regoff(adev, *loc, AIEML_SHIMPL_TILECTRL_REGOFF);
-+	}
-+	writel(val, va);
-+}
-+
- static const struct aie_tile_operations aieml_ops = {
- 	.get_tile_type = aieml_get_tile_type,
- 	.get_mem_info = aieml_get_mem_info,
-+	.mem_clear = aieml_part_clear_mems,
- 	.scan_part_clocks = aieml_scan_part_clocks,
- 	.set_part_clocks = aieml_set_part_clocks,
-+	.set_tile_isolation = aieml_set_tile_isolation,
- };
- 
- /**
-@@ -254,4 +357,6 @@ void aieml_device_init(struct aie_device *adev)
- 	adev->col_shift = AIEML_COL_SHIFT;
- 	adev->row_shift = AIEML_ROW_SHIFT;
- 	adev->ops = &aieml_ops;
-+	adev->num_core_regs = ARRAY_SIZE(aieml_core_regs);
-+	adev->core_regs = aieml_core_regs;
- }
-diff --git a/drivers/accel/amd-ai-engine/ai-engine-clock.c b/drivers/accel/amd-ai-engine/ai-engine-clock.c
-index 646ec1d1658c..6cf1348f135f 100644
---- a/drivers/accel/amd-ai-engine/ai-engine-clock.c
-+++ b/drivers/accel/amd-ai-engine/ai-engine-clock.c
-@@ -81,9 +81,6 @@ bool aie_part_check_clk_enable_loc(struct aie_partition *apart,
- int aie_part_request_tiles(struct aie_partition *apart, int num_tiles,
- 			   struct aie_location *locs)
- {
--	int ret;
--
--	mutex_lock(&apart->mlock);
- 	if (num_tiles == 0) {
- 		aie_resource_set(&apart->tiles_inuse, 0,
- 				 apart->tiles_inuse.total);
-@@ -102,10 +99,7 @@ int aie_part_request_tiles(struct aie_partition *apart, int num_tiles,
- 				aie_resource_set(&apart->tiles_inuse, bit, 1);
- 		}
- 	}
--	ret = apart->adev->ops->set_part_clocks(apart);
--	mutex_unlock(&apart->mlock);
--
--	return ret;
-+	return apart->adev->ops->set_part_clocks(apart);
- }
- 
- /**
-@@ -121,9 +115,6 @@ int aie_part_request_tiles(struct aie_partition *apart, int num_tiles,
- int aie_part_release_tiles(struct aie_partition *apart, int num_tiles,
- 			   struct aie_location *locs)
- {
--	int ret;
--
--	mutex_lock(&apart->mlock);
- 	if (num_tiles == 0) {
- 		aie_resource_clear(&apart->tiles_inuse, 0,
- 				   apart->tiles_inuse.total);
-@@ -143,10 +134,7 @@ int aie_part_release_tiles(struct aie_partition *apart, int num_tiles,
- 		}
- 	}
- 
--	ret = apart->adev->ops->set_part_clocks(apart);
--	mutex_unlock(&apart->mlock);
--
--	return ret;
-+	return apart->adev->ops->set_part_clocks(apart);
- }
- 
- /**
-diff --git a/drivers/accel/amd-ai-engine/ai-engine-internal.h b/drivers/accel/amd-ai-engine/ai-engine-internal.h
-index 13a39c4e3331..864fe5d57be4 100644
---- a/drivers/accel/amd-ai-engine/ai-engine-internal.h
-+++ b/drivers/accel/amd-ai-engine/ai-engine-internal.h
-@@ -23,6 +23,9 @@
- 
- #define KBYTES(n)		((n) * SZ_1K)
- 
-+/* AIE core registers step size */
-+#define AIE_CORE_REGS_STEP	0x10
-+
- /*
-  * Macros for AI engine tile type bitmasks
-  */
-@@ -40,6 +43,24 @@ enum aie_tile_type {
- #define AIE_TILE_TYPE_MASK_SHIMNOC	BIT(AIE_TILE_TYPE_SHIMNOC)
- #define AIE_TILE_TYPE_MASK_MEMORY	BIT(AIE_TILE_TYPE_MEMORY)
- 
-+/*
-+ * Macros for attribute property of AI engine registers accessed by kernel
-+ * 0 - 7 bits: tile type bits
-+ * 8 - 15 bits: permission bits. If it is 1, it allows write from userspace
-+ */
-+#define AIE_REGS_ATTR_TILE_TYPE_SHIFT	0U
-+#define AIE_REGS_ATTR_PERM_SHIFT	8U
-+#define AIE_REGS_ATTR_TILE_TYPE_MASK	GENMASK(AIE_REGS_ATTR_PERM_SHIFT - 1, \
-+						AIE_REGS_ATTR_TILE_TYPE_SHIFT)
-+#define AIE_REGS_ATTR_PERM_MASK		GENMASK(15, \
-+						AIE_REGS_ATTR_PERM_SHIFT)
-+
-+#define AIE_ISOLATE_EAST_MASK		BIT(3)
-+#define AIE_ISOLATE_NORTH_MASK		BIT(2)
-+#define AIE_ISOLATE_WEST_MASK		BIT(1)
-+#define AIE_ISOLATE_SOUTH_MASK		BIT(0)
-+#define AIE_ISOLATE_ALL_MASK		GENMASK(3, 0)
-+
- /**
-  * struct aie_tile_regs - contiguous range of AI engine register
-  *			  within an AI engine tile
-@@ -133,10 +154,21 @@ struct aie_tile_attr {
- 	const enum aie_module_type *mods;
- };
- 
-+/**
-+ * struct aie_core_regs_attr - AI engine core register attributes structure
-+ * @core_regs: core registers
-+ * @width: number of 32 bit words
-+ */
-+struct aie_core_regs_attr {
-+	const struct aie_tile_regs *core_regs;
-+	u32 width;
-+};
-+
- /**
-  * struct aie_tile_operations - AI engine device operations
-  * @get_tile_type: get type of tile based on tile operation
-  * @get_mem_info: get different types of memories information
-+ * @mem_clear: clear data memory banks of the partition.
-  * @scan_part_clocks: scan partition modules to check whether the modules are
-  *		      clock gated or not, and update the soft clock states
-  *		      structure. It is required to be called when the partition
-@@ -149,6 +181,7 @@ struct aie_tile_attr {
-  *		     caller to apply partition lock before calling this
-  *		     function. The caller function will need to set the bitmap
-  *		     on which tiles are required to be clocked on.
-+ * @set_tile_isolation: set tile isolation boundary for input direction.
-  * Different AI engine device version has its own device
-  * operation.
-  */
-@@ -157,8 +190,11 @@ struct aie_tile_operations {
- 	unsigned int (*get_mem_info)(struct aie_device *adev,
- 				     struct aie_range *range,
- 				     struct aie_part_mem *pmem);
-+	int (*mem_clear)(struct aie_partition *apart);
- 	int (*scan_part_clocks)(struct aie_partition *apart);
- 	int (*set_part_clocks)(struct aie_partition *apart);
-+	void (*set_tile_isolation)(struct aie_partition *apart,
-+				   struct aie_location *loc, u8 dir);
- };
- 
- /**
-@@ -167,12 +203,14 @@ struct aie_tile_operations {
-  * @dev: device pointer for the AI engine device
-  * @mlock: protection for AI engine device operations
-  * @clk: AI enigne device clock
-+ * @core_regs: array of core registers
-  * @ops: tile operations
-  * @array_shift: array address shift
-  * @col_shift: column address shift
-  * @row_shift: row address shift
-  * @dev_gen: aie hardware device generation
-  * @pm_node_id: AI Engine platform management node ID
-+ * @num_core_regs: number of core registers range
-  * @ttype_attr: tile type attributes
-  */
- struct aie_device {
-@@ -180,12 +218,14 @@ struct aie_device {
- 	struct device *dev;
- 	struct mutex mlock; /* protection for AI engine apertures */
- 	struct clk *clk;
-+	const struct aie_core_regs_attr *core_regs;
- 	const struct aie_tile_operations *ops;
- 	u32 array_shift;
- 	u32 col_shift;
- 	u32 row_shift;
- 	u32 dev_gen;
- 	u32 pm_node_id;
-+	u32 num_core_regs;
- 	struct aie_tile_attr ttype_attr[AIE_TILE_TYPE_MAX];
- };
- 
-@@ -301,6 +341,10 @@ int aie_part_request_tiles(struct aie_partition *apart, int num_tiles,
- 			   struct aie_location *locs);
- int aie_part_release_tiles(struct aie_partition *apart, int num_tiles,
- 			   struct aie_location *locs);
-+int aie_part_clean(struct aie_partition *apart);
-+int aie_part_initialize(struct aie_partition *apart,
-+			struct aie_partition_init_args *args);
-+int aie_part_teardown(struct aie_partition *apart);
- int aie_resource_initialize(struct aie_resource *res, int count);
- void aie_resource_uninitialize(struct aie_resource *res);
- int aie_resource_check_region(struct aie_resource *res, u32 start,
-@@ -310,6 +354,7 @@ int aie_resource_get_region(struct aie_resource *res, u32 start,
- void aie_resource_put_region(struct aie_resource *res, int start, u32 count);
- int aie_resource_set(struct aie_resource *res, u32 start, u32 count);
- int aie_resource_clear(struct aie_resource *res, u32 start, u32 count);
-+int aie_resource_clear_all(struct aie_resource *res);
- bool aie_resource_testbit(struct aie_resource *res, u32 bit);
- 
- #endif /* AIE_INTERNAL_H */
-diff --git a/drivers/accel/amd-ai-engine/ai-engine-part.c b/drivers/accel/amd-ai-engine/ai-engine-part.c
-index 878597eff202..97bb10d11309 100644
---- a/drivers/accel/amd-ai-engine/ai-engine-part.c
-+++ b/drivers/accel/amd-ai-engine/ai-engine-part.c
-@@ -12,6 +12,35 @@
- 
- #include "ai-engine-internal.h"
- 
-+/*
-+ * aie_partition_initialize() - Initialize AI engine partition
-+ * @apart: AI engine partition instance
-+ * @args: User initialization options
-+ *
-+ * Return: 0 for success, negative value for failure
-+ */
-+int aie_partition_initialize(void *apart, struct aie_partition_init_args *args)
-+{
-+	if (!apart)
-+		return -EINVAL;
-+	return aie_part_initialize((struct aie_partition *)apart, args);
-+}
-+EXPORT_SYMBOL_GPL(aie_partition_initialize);
-+
-+/*
-+ * aie_partition_reset() - Reset AI engine partition
-+ * @apart: AI engine partition instance
-+ *
-+ * Return: 0 for success, negative value for failure
-+ */
-+int aie_partition_teardown(void *apart)
-+{
-+	if (!apart)
-+		return -EINVAL;
-+	return aie_part_teardown((struct aie_partition *)apart);
-+}
-+EXPORT_SYMBOL_GPL(aie_partition_teardown);
-+
- /**
-  * aie_part_create_mems_info() - creates array to store the AI engine partition
-  *				 different memories types information
-@@ -58,6 +87,8 @@ void aie_part_release(struct aie_partition *apart)
- {
- 	struct aie_aperture *aperture = apart->aperture;
- 
-+	/* aie_part_clean() will do hardware reset */
-+	aie_part_clean(apart);
- 	aie_part_set_freq(apart, 0);
- 	mutex_lock(&aperture->mlock);
- 	aie_resource_put_region(&aperture->cols_res,
-diff --git a/drivers/accel/amd-ai-engine/ai-engine-res.c b/drivers/accel/amd-ai-engine/ai-engine-res.c
-index d71a3a5f7b29..eff41986d5b6 100644
---- a/drivers/accel/amd-ai-engine/ai-engine-res.c
-+++ b/drivers/accel/amd-ai-engine/ai-engine-res.c
-@@ -151,6 +151,22 @@ int aie_resource_clear(struct aie_resource *res, u32 start, u32 count)
- 	return 0;
- }
- 
-+/**
-+ * aie_resource_clear_all() - clear all the AI engine resource bits
-+ * @res: pointer to AI engine resource
-+ * @return: 0 for success and negative value for failure
-+ *
-+ * This function clears all the bits in the resource.
-+ */
-+int aie_resource_clear_all(struct aie_resource *res)
-+{
-+	if (!res || !res->bitmap)
-+		return -EINVAL;
-+
-+	bitmap_clear(res->bitmap, 0, res->total);
-+	return 0;
-+}
-+
- /**
-  * aie_resource_testbit() - test if a bit is set in a AI engine resource
-  * @res: pointer to AI engine resource
-diff --git a/drivers/accel/amd-ai-engine/ai-engine-reset.c b/drivers/accel/amd-ai-engine/ai-engine-reset.c
-new file mode 100644
-index 000000000000..650811063232
---- /dev/null
-+++ b/drivers/accel/amd-ai-engine/ai-engine-reset.c
-@@ -0,0 +1,300 @@
-+// SPDX-License-Identifier: GPL-2.0
-+/*
-+ * AMD AI Engine device driver reset implementation
-+ *
-+ * Copyright (C) 2025 Advanced Micro Devices, Inc.
-+ */
-+
-+#include <linux/amd-ai-engine.h>
-+#include <linux/firmware/xlnx-zynqmp.h>
-+#include <linux/io.h>
-+#include <linux/mutex.h>
-+
-+#include "ai-engine-internal.h"
-+
-+/**
-+ * aie_part_clear_core_regs_of_tile() - clear registers of aie core
-+ * @apart: AI engine partition
-+ * @loc: location of aie tile to clear
-+ */
-+static void aie_part_clear_core_regs_of_tile(struct aie_partition *apart,
-+					     struct aie_location loc)
-+{
-+	struct aie_device *adev = apart->adev;
-+	struct aie_aperture *aperture = apart->aperture;
-+	const struct aie_core_regs_attr *regs = adev->core_regs;
-+	u32 i;
-+
-+	for (i = 0; i < adev->num_core_regs; i++) {
-+		u32 j, soff, eoff, reg;
-+
-+		soff = aie_cal_regoff(adev, loc, regs[i].core_regs->soff);
-+		eoff = aie_cal_regoff(adev, loc, regs[i].core_regs->eoff);
-+
-+		for (reg = soff; reg <= eoff; reg += AIE_CORE_REGS_STEP) {
-+			for (j = 0; j < regs[i].width; j++)
-+				writel(0, aperture->base + reg + j * 4);
-+		}
-+	}
-+}
-+
-+/**
-+ * aie_part_clear_core_regs - clear registers of aie core of a partition
-+ * @apart: AI engine partition
-+ */
-+static void aie_part_clear_core_regs(struct aie_partition *apart)
-+{
-+	struct aie_range *range = &apart->range;
-+	u32 c, r;
-+
-+	/* clear core registers for each tile in the partition */
-+	for (c = range->start.col; c < range->start.col + range->size.col;
-+			c++) {
-+		for (r = range->start.row;
-+				r < range->start.row + range->size.row; r++) {
-+			struct aie_location loc;
-+			u32 ttype;
-+
-+			loc.row = r;
-+			loc.col = c;
-+			ttype = apart->adev->ops->get_tile_type(apart->adev,
-+								&loc);
-+			if (ttype == AIE_TILE_TYPE_TILE &&
-+			    aie_part_check_clk_enable_loc(apart, &loc))
-+				aie_part_clear_core_regs_of_tile(apart, loc);
-+		}
-+	}
-+}
-+
-+/**
-+ * aie_part_clean() - reset and clear AI engine partition
-+ * @apart: AI engine partition
-+ *
-+ * Return: 0 for success and negative value for failure
-+ *
-+ * This function will:
-+ *  * gate all the columns
-+ *  * reset AI engine partition columns
-+ *  * reset AI engine shims
-+ *  * clear the memories
-+ *  * clear core registers
-+ *  * gate all the tiles in a partition
-+ *  * update clock state bitmap
-+ *
-+ * This function will not validate the partition, the caller will need to
-+ * provide a valid AI engine partition.
-+ */
-+int aie_part_clean(struct aie_partition *apart)
-+{
-+	u32 node_id = apart->adev->pm_node_id;
-+	int ret;
-+
-+	mutex_lock(&apart->mlock);
-+	ret = zynqmp_pm_aie_operation(node_id, apart->range.start.col,
-+				      apart->range.size.col,
-+				      XILINX_AIE_OPS_DIS_COL_CLK_BUFF);
-+	if (ret < 0)
-+		goto exit;
-+
-+	ret = zynqmp_pm_aie_operation(node_id, apart->range.start.col,
-+				      apart->range.size.col,
-+				      XILINX_AIE_OPS_COL_RST |
-+				      XILINX_AIE_OPS_SHIM_RST);
-+	if (ret < 0)
-+		goto exit;
-+
-+	ret = zynqmp_pm_aie_operation(node_id, apart->range.start.col,
-+				      apart->range.size.col,
-+				      XILINX_AIE_OPS_ENB_COL_CLK_BUFF);
-+	if (ret < 0)
-+		goto exit;
-+
-+	apart->adev->ops->mem_clear(apart);
-+	aie_part_clear_core_regs(apart);
-+	ret = zynqmp_pm_aie_operation(node_id, apart->range.start.col,
-+				      apart->range.size.col,
-+				      XILINX_AIE_OPS_DIS_COL_CLK_BUFF);
-+	if (ret < 0)
-+		goto exit;
-+
-+	aie_resource_clear_all(&apart->cores_clk_state);
-+
-+exit:
-+	mutex_unlock(&apart->mlock);
-+	return ret;
-+}
-+
-+/**
-+ * aie_part_init_isolation() - Set isolation boundary of AI engine partition
-+ * @apart: AI engine partition
-+ */
-+static void aie_part_init_isolation(struct aie_partition *apart)
-+{
-+	struct aie_range *range = &apart->range;
-+	u32 c, r;
-+	u8 dir;
-+
-+	for (c = range->start.col;
-+	     c < range->start.col + range->size.col; c++) {
-+		if (c == range->start.col)
-+			dir = AIE_ISOLATE_WEST_MASK;
-+		else if (c == (range->start.col + range->size.col - 1))
-+			dir = AIE_ISOLATE_EAST_MASK;
-+		else
-+			dir = 0;
-+
-+		for (r = range->start.row;
-+		     r < range->start.row + range->size.row; r++) {
-+			struct aie_location loc;
-+
-+			loc.col = c;
-+			loc.row = r;
-+			apart->adev->ops->set_tile_isolation(apart, &loc, dir);
-+		}
-+	}
-+}
-+
-+/**
-+ * aie_part_initialize() - AI engine partition initialization
-+ * @apart: AI engine partition
-+ * @args: User initialization options
-+ *
-+ * Return: 0 for success and negative value for failure
-+ *
-+ * This function will:
-+ * - gate all columns
-+ * - enable column reset
-+ * - ungate all columns
-+ * - disable column reset
-+ * - reset shim tiles
-+ * - setup axi mm to raise events
-+ * - setup partition isolation
-+ * - zeroize memory
-+ */
-+int aie_part_initialize(struct aie_partition *apart,
-+			struct aie_partition_init_args *args)
-+{
-+	u32 node_id = apart->adev->pm_node_id;
-+	int ret;
-+
-+	if (!args)
-+		return -EINVAL;
-+
-+	mutex_lock(&apart->mlock);
-+
-+	/* Clear resources */
-+	aie_resource_clear_all(&apart->tiles_inuse);
-+	aie_resource_clear_all(&apart->cores_clk_state);
-+
-+	/* This operation will do first 4 steps of sequence */
-+	if (args->init_opts & AIE_PART_INIT_OPT_COLUMN_RST) {
-+		ret = zynqmp_pm_aie_operation(node_id, apart->range.start.col,
-+					      apart->range.size.col,
-+					      XILINX_AIE_OPS_COL_RST);
-+		if (ret < 0)
-+			goto exit;
-+	}
-+
-+	/* Reset Shims */
-+	if (args->init_opts & AIE_PART_INIT_OPT_SHIM_RST) {
-+		ret = zynqmp_pm_aie_operation(node_id, apart->range.start.col,
-+					      apart->range.size.col,
-+					      XILINX_AIE_OPS_SHIM_RST);
-+		if (ret < 0)
-+			goto exit;
-+	}
-+
-+	/* Setup AXIMM events */
-+	if (args->init_opts & AIE_PART_INIT_OPT_BLOCK_NOCAXIMMERR) {
-+		ret = zynqmp_pm_aie_operation(node_id, apart->range.start.col,
-+					      apart->range.size.col,
-+					      XILINX_AIE_OPS_ENB_AXI_MM_ERR_EVENT);
-+		if (ret < 0)
-+			goto exit;
-+	}
-+
-+	/* Setup partition isolation */
-+	if (args->init_opts & AIE_PART_INIT_OPT_ISOLATE)
-+		aie_part_init_isolation(apart);
-+
-+	/* Zeroize memory */
-+	if (args->init_opts & AIE_PART_INIT_OPT_ZEROIZEMEM) {
-+		ret = zynqmp_pm_aie_operation(node_id, apart->range.start.col,
-+					      apart->range.size.col,
-+					      XILINX_AIE_OPS_ZEROISATION);
-+		if (ret < 0)
-+			goto exit;
-+	}
-+
-+	/* Set L2 interrupt */
-+	ret = zynqmp_pm_aie_operation(node_id, apart->range.start.col,
-+				      apart->range.size.col,
-+				      XILINX_AIE_OPS_SET_L2_CTRL_NPI_INTR);
-+	if (ret < 0)
-+		goto exit;
-+
-+	/* Request tile locations */
-+	ret = aie_part_request_tiles(apart, args->num_tiles, args->locs);
-+
-+exit:
-+	mutex_unlock(&apart->mlock);
-+	return ret;
-+}
-+
-+/**
-+ * aie_part_teardown() - AI engine partition teardown
-+ * @apart: AI engine partition
-+ *
-+ * Return: 0 for success and negative value for failure
-+ *
-+ * This function will:
-+ * - gate all columns
-+ * - enable column reset
-+ * - ungate all columns
-+ * - disable column reset
-+ * - reset shim tiles
-+ * - zeroize memory
-+ * - gate all columns
-+ */
-+int aie_part_teardown(struct aie_partition *apart)
-+{
-+	u32 node_id = apart->adev->pm_node_id;
-+	int ret;
-+
-+	mutex_lock(&apart->mlock);
-+
-+	/* This operation will do first 4 steps of sequence */
-+	ret = zynqmp_pm_aie_operation(node_id, apart->range.start.col,
-+				      apart->range.size.col,
-+				      XILINX_AIE_OPS_COL_RST);
-+	if (ret < 0)
-+		goto exit;
-+
-+	/* Reset shims */
-+	ret = zynqmp_pm_aie_operation(node_id, apart->range.start.col,
-+				      apart->range.size.col,
-+				      XILINX_AIE_OPS_SHIM_RST);
-+	if (ret < 0)
-+		goto exit;
-+
-+	/* Zeroize mem */
-+	ret = zynqmp_pm_aie_operation(node_id, apart->range.start.col,
-+				      apart->range.size.col,
-+				      XILINX_AIE_OPS_ZEROISATION);
-+	if (ret < 0)
-+		goto exit;
-+
-+	/* Gate all columns */
-+	ret = zynqmp_pm_aie_operation(node_id, apart->range.start.col,
-+				      apart->range.size.col,
-+				      XILINX_AIE_OPS_DIS_COL_CLK_BUFF);
-+	if (ret < 0)
-+		goto exit;
-+
-+	/* Clear tile_inuse bitmap */
-+	ret = aie_part_release_tiles(apart, 0U, NULL);
-+
-+exit:
-+	mutex_unlock(&apart->mlock);
-+	return ret;
-+}
-diff --git a/include/linux/amd-ai-engine.h b/include/linux/amd-ai-engine.h
-index f1f6543f9eae..3e4ae8cb5e91 100644
---- a/include/linux/amd-ai-engine.h
-+++ b/include/linux/amd-ai-engine.h
-@@ -12,6 +12,16 @@
- #include <linux/list.h>
- #include <linux/mutex.h>
- 
-+/*
-+ * AI engine partition initialize options
-+ */
-+#define AIE_PART_INIT_OPT_COLUMN_RST		BIT(0)
-+#define AIE_PART_INIT_OPT_SHIM_RST		BIT(1)
-+#define AIE_PART_INIT_OPT_BLOCK_NOCAXIMMERR	BIT(2)
-+#define AIE_PART_INIT_OPT_ISOLATE		BIT(3)
-+#define AIE_PART_INIT_OPT_ZEROIZEMEM		BIT(4)
-+#define AIE_PART_INIT_OPT_DEFAULT		GENMASK(3, 0)
-+
- /**
-  * struct aie_partition_req - AIE request partition arguments
-  * @start_col: start column of the partition
-@@ -40,8 +50,22 @@ struct aie_location {
- 	u32 row;
- };
- 
-+/**
-+ * struct aie_partition_init_args - AIE partition initialization arguments
-+ * @locs: Allocated array of tile locations that will be used
-+ * @num_tiles: Number of tiles to use
-+ * @init_opts: Partition initialization options
-+ */
-+struct aie_partition_init_args {
-+	struct aie_location *locs;
-+	u32 num_tiles;
-+	u32 init_opts;
-+};
-+
- void *aie_partition_request(struct device *dev, struct aie_partition_req *req);
- void aie_partition_release(void *apart);
-+int aie_partition_initialize(void *apart, struct aie_partition_init_args *args);
-+int aie_partition_teardown(void *apart);
- int aie_partition_set_freq_req(void *apart, u64 freq);
- int aie_partition_get_freq(void *apart, u64 *freq);
- int aie_partition_get_freq_req(void *apart, u64 *freq);
+> switch and a NVMEM provider. Also provide support for the PBUS MDIO
+> to access the internal PHYs address from the switch registers to permit
+> the usage of a single regmap to handle both switch and PHYs.
+> 
+> An interesting HW bug wes discovered with the implementation of the MDIO
+> PBUS where the PHY status is not correctly detected if the PBUS is used
+> to read the PHY BMSR. For the only BMSR register, it's required to read
+> the address directly from the MDIO bus.
+> 
+> A check and a workaround is implemented to address this in the
+> regmap_read function.
+
+Couple of final points.
+
+Some of them are repeated from previous reviews.
+
+> Signed-off-by: Christian Marangi <ansuelsmth@gmail.com>
+> ---
+>  drivers/mfd/Kconfig         |  12 ++
+>  drivers/mfd/Makefile        |   1 +
+>  drivers/mfd/airoha-an8855.c | 393 ++++++++++++++++++++++++++++++++++++
+>  3 files changed, 406 insertions(+)
+>  create mode 100644 drivers/mfd/airoha-an8855.c
+> 
+> diff --git a/drivers/mfd/Kconfig b/drivers/mfd/Kconfig
+> index 6fb3768e3d71..f2bfd6c9fc5f 100644
+> --- a/drivers/mfd/Kconfig
+> +++ b/drivers/mfd/Kconfig
+> @@ -53,6 +53,18 @@ config MFD_ALTERA_SYSMGR
+>  	  using regmap_mmio accesses for ARM32 parts and SMC calls to
+>  	  EL3 for ARM64 parts.
+>  
+> +config MFD_AIROHA_AN8855
+> +	tristate "Airoha AN8855 Switch Core"
+> +	select MFD_CORE
+> +	select MDIO_DEVICE
+> +	depends on NETDEVICES && OF
+> +	help
+> +	  Support for the Airoha AN8855 Switch Core. This is an SoC
+> +	  that provides various peripherals, to count, i2c, an Ethrnet
+> +	  Switch, a CPU timer, GPIO, eFUSE.
+> +
+> +	  Currently it provides a DSA switch and a NVMEM provider.
+> +
+>  config MFD_ACT8945A
+>  	tristate "Active-semi ACT8945A"
+>  	select MFD_CORE
+> diff --git a/drivers/mfd/Makefile b/drivers/mfd/Makefile
+> index 79495f9f3457..f541b513f41e 100644
+> --- a/drivers/mfd/Makefile
+> +++ b/drivers/mfd/Makefile
+> @@ -8,6 +8,7 @@ obj-$(CONFIG_MFD_88PM860X)	+= 88pm860x.o
+>  obj-$(CONFIG_MFD_88PM800)	+= 88pm800.o 88pm80x.o
+>  obj-$(CONFIG_MFD_88PM805)	+= 88pm805.o 88pm80x.o
+>  obj-$(CONFIG_MFD_88PM886_PMIC)	+= 88pm886.o
+> +obj-$(CONFIG_MFD_AIROHA_AN8855)	+= airoha-an8855.o
+>  obj-$(CONFIG_MFD_ACT8945A)	+= act8945a.o
+>  obj-$(CONFIG_MFD_SM501)		+= sm501.o
+>  obj-$(CONFIG_ARCH_BCM2835)	+= bcm2835-pm.o
+> diff --git a/drivers/mfd/airoha-an8855.c b/drivers/mfd/airoha-an8855.c
+> new file mode 100644
+> index 000000000000..bb03a2436f25
+> --- /dev/null
+> +++ b/drivers/mfd/airoha-an8855.c
+> @@ -0,0 +1,393 @@
+> +// SPDX-License-Identifier: GPL-2.0+
+> +/*
+> + * Core driver for Airoha AN8855 Switch
+
+No Copyright?
+
+> + */
+> +
+> +#include <linux/bitfield.h>
+> +#include <linux/dsa/an8855.h>
+> +#include <linux/gpio/consumer.h>
+> +#include <linux/mfd/core.h>
+> +#include <linux/mdio.h>
+> +#include <linux/mdio/mdio-regmap.h>
+> +#include <linux/module.h>
+> +#include <linux/phy.h>
+> +#include <linux/regmap.h>
+> +
+> +/* Register for HW trap status */
+> +#define AN8855_HWTRAP			0x1000009c
+> +
+> +#define AN8855_CREV			0x10005000
+
+Please change the name of this or comment it.
+
+I still have no idea what it is.
+
+> +#define   AN8855_ID			0x8855
+
+Device ID, Chip ID, Platform ID, Driver's ID?
+
+> +#define AN8855_RG_GPHY_AFE_PWD		0x1028c840
+
+No clue.  Comment please.
+
+> +/* MII Registers */
+> +#define AN8855_PHY_SELECT_PAGE		0x1f
+> +#define   AN8855_PHY_PAGE		GENMASK(2, 0)
+> +#define   AN8855_PHY_PAGE_STANDARD	FIELD_PREP_CONST(AN8855_PHY_PAGE, 0x0)
+> +#define   AN8855_PHY_PAGE_EXTENDED_1	FIELD_PREP_CONST(AN8855_PHY_PAGE, 0x1)
+> +#define   AN8855_PHY_PAGE_EXTENDED_4	FIELD_PREP_CONST(AN8855_PHY_PAGE, 0x4)
+> +
+> +/* MII Registers Page 4 */
+> +#define AN8855_PBUS_MODE		0x10
+> +#define   AN8855_PBUS_MODE_ADDR_FIXED	0x0
+> +#define   AN8855_PBUS_MODE_ADDR_INCR	BIT(15)
+> +#define AN8855_PBUS_WR_ADDR_HIGH	0x11
+> +#define AN8855_PBUS_WR_ADDR_LOW		0x12
+> +#define AN8855_PBUS_WR_DATA_HIGH	0x13
+> +#define AN8855_PBUS_WR_DATA_LOW		0x14
+> +#define AN8855_PBUS_RD_ADDR_HIGH	0x15
+> +#define AN8855_PBUS_RD_ADDR_LOW		0x16
+> +#define AN8855_PBUS_RD_DATA_HIGH	0x17
+> +#define AN8855_PBUS_RD_DATA_LOW		0x18
+> +
+> +struct an8855_core_priv {
+> +	struct mii_bus *bus;
+> +
+
+Do we need this separation between only 2 attributes?
+
+> +	unsigned int switch_addr;
+> +};
+> +
+> +static const struct mfd_cell an8855_core_childs[] = {
+
+an8855_{devs,cells}
+
+> +	{
+> +		.name = "an8855-efuse",
+> +		.of_compatible = "airoha,an8855-efuse",
+
+MFD_CELL_OF()
+
+> +	}, {
+> +		.name = "an8855-switch",
+> +		.of_compatible = "airoha,an8855-switch",
+> +	}, {
+> +		.name = "an8855-mdio",
+> +		.of_compatible = "airoha,an8855-mdio",
+> +	}
+> +};
+> +
+> +static bool an8855_is_pbus_bmcr_reg(u32 reg)
+> +{
+> +	if ((reg & ~(AN8855_GPHY_PORT | AN8855_ADDR)) != AN8855_GPHY_ACCESS)
+> +		return false;
+> +
+> +	if ((reg & AN8855_ADDR) != FIELD_PREP_CONST(AN8855_CL22_ADDR,
+> +						    MII_BMSR))
+> +		return false;
+> +
+> +	return true;
+> +}
+> +
+> +/* PHY page is Global for every Switch PHY.
+> + * Configure it to 4 (as Switch PAGE) and keep it that way.
+> + * Page selection doesn't affect the first PHY address from 0x0 to
+> + * 0xf and we use PBUS to access the PHY address.
+> + */
+
+Proper multi-line comments please.
+
+> +static int an8855_mii_set_page(struct an8855_core_priv *priv, u8 addr,
+> +			       u8 page) __must_hold(&priv->bus->mdio_lock)
+> +{
+> +	struct mii_bus *bus = priv->bus;
+> +	int ret;
+> +
+> +	ret = __mdiobus_write(bus, addr, AN8855_PHY_SELECT_PAGE, page);
+> +	if (ret)
+> +		dev_err_ratelimited(&bus->dev, "failed to set mii page\n");
+> +
+> +	return ret;
+> +}
+> +
+> +static int an8855_mii_read32(struct mii_bus *bus, u8 phy_id, u32 reg,
+> +			     u32 *val) __must_hold(&bus->mdio_lock)
+> +{
+> +	int lo, hi, ret;
+> +
+> +	ret = __mdiobus_write(bus, phy_id, AN8855_PBUS_MODE,
+> +			      AN8855_PBUS_MODE_ADDR_FIXED);
+
+You can use up to 100-chars, if you want to avoid all of this wraps.
+
+> +	if (ret)
+> +		goto err;
+> +
+> +	ret = __mdiobus_write(bus, phy_id, AN8855_PBUS_RD_ADDR_HIGH,
+> +			      upper_16_bits(reg));
+> +	if (ret)
+> +		goto err;
+> +
+> +	ret = __mdiobus_write(bus, phy_id, AN8855_PBUS_RD_ADDR_LOW,
+> +			      lower_16_bits(reg));
+> +	if (ret)
+> +		goto err;
+> +
+> +	hi = __mdiobus_read(bus, phy_id, AN8855_PBUS_RD_DATA_HIGH);
+> +	if (hi < 0) {
+> +		ret = hi;
+> +		goto err;
+> +	}
+> +
+> +	lo = __mdiobus_read(bus, phy_id, AN8855_PBUS_RD_DATA_LOW);
+> +	if (lo < 0) {
+> +		ret = lo;
+> +		goto err;
+> +	}
+> +
+> +	*val = ((u16)hi << 16) | ((u16)lo & 0xffff);
+> +
+> +	return 0;
+> +err:
+> +	dev_err_ratelimited(&bus->dev, "failed to read register\n");
+> +	return ret;
+> +}
+> +
+> +static int an8855_regmap_read(void *ctx, uint32_t reg, uint32_t *val)
+> +{
+> +	struct an8855_core_priv *priv = ctx;
+> +	struct mii_bus *bus = priv->bus;
+> +	u16 addr = priv->switch_addr;
+> +	int ret;
+> +
+> +	/* Workaround a HW BUG where using only PBUS for
+> +	 * accessing internal PHY register cause the port status
+> +	 * to not be correctly detected. It seems BMSR is required
+> +	 * to go through direct MDIO read or is never refreshed.
+> +	 *
+> +	 * A theory about this is that PHY sideband signal is
+> +	 * checked only with MDIO operation on BMSR and using
+> +	 * PBUS doesn't trigger the check.
+> +	 *
+> +	 * Using interrupt to detect Link Up might be possible
+> +	 * but it's considered an optional feature for the Switch
+> +	 * reference (hence there could be devices with the
+> +	 * interrupt line not connected)
+> +	 */
+
+Re: comment formatting - as above and throughout.
+
+> +	if (an8855_is_pbus_bmcr_reg(reg)) {
+> +		addr += FIELD_GET(AN8855_GPHY_PORT, reg);
+> +		*val = mdiobus_read(bus, addr, MII_BMSR);
+> +		return 0;
+> +	}
+> +
+> +	mutex_lock_nested(&bus->mdio_lock, MDIO_MUTEX_NESTED);
+> +	ret = an8855_mii_set_page(priv, addr, AN8855_PHY_PAGE_EXTENDED_4);
+> +	if (ret < 0)
+> +		goto exit;
+> +
+> +	ret = an8855_mii_read32(bus, addr, reg, val);
+> +
+> +exit:
+> +	mutex_unlock(&bus->mdio_lock);
+> +
+> +	return ret < 0 ? ret : 0;
+> +}
+> +
+> +static int an8855_mii_write32(struct mii_bus *bus, u8 phy_id, u32 reg,
+> +			      u32 val) __must_hold(&bus->mdio_lock)
+> +{
+> +	int ret;
+> +
+> +	ret = __mdiobus_write(bus, phy_id, AN8855_PBUS_MODE,
+> +			      AN8855_PBUS_MODE_ADDR_FIXED);
+> +	if (ret)
+> +		goto err;
+> +
+> +	ret = __mdiobus_write(bus, phy_id, AN8855_PBUS_WR_ADDR_HIGH,
+> +			      upper_16_bits(reg));
+> +	if (ret)
+> +		goto err;
+> +	ret = __mdiobus_write(bus, phy_id, AN8855_PBUS_WR_ADDR_LOW,
+> +			      lower_16_bits(reg));
+> +	if (ret)
+> +		goto err;
+> +
+> +	ret = __mdiobus_write(bus, phy_id, AN8855_PBUS_WR_DATA_HIGH,
+> +			      upper_16_bits(val));
+> +	if (ret)
+> +		goto err;
+> +
+> +	ret = __mdiobus_write(bus, phy_id, AN8855_PBUS_WR_DATA_LOW,
+> +			      lower_16_bits(val));
+> +	if (ret)
+> +		goto err;
+> +
+> +	return 0;
+> +err:
+> +	dev_err_ratelimited(&bus->dev,
+> +			    "failed to write an8855 register\n");
+> +	return ret;
+> +}
+> +
+> +static int an8855_regmap_write(void *ctx, uint32_t reg, uint32_t val)
+> +{
+> +	struct an8855_core_priv *priv = ctx;
+> +	struct mii_bus *bus = priv->bus;
+> +	u16 addr = priv->switch_addr;
+> +	int ret;
+> +
+> +	mutex_lock_nested(&bus->mdio_lock, MDIO_MUTEX_NESTED);
+> +	ret = an8855_mii_set_page(priv, addr, AN8855_PHY_PAGE_EXTENDED_4);
+> +	if (ret)
+> +		goto exit;
+> +
+> +	ret = an8855_mii_write32(bus, addr, reg, val);
+> +
+> +exit:
+> +	mutex_unlock(&bus->mdio_lock);
+> +
+> +	return ret < 0 ? ret : 0;
+> +}
+> +
+> +static int an8855_regmap_update_bits(void *ctx, uint32_t reg, uint32_t mask,
+> +				     uint32_t write_val)
+> +{
+> +	struct an8855_core_priv *priv = ctx;
+> +	struct mii_bus *bus = priv->bus;
+> +	u16 addr = priv->switch_addr;
+> +	u32 val;
+> +	int ret;
+> +
+> +	mutex_lock_nested(&bus->mdio_lock, MDIO_MUTEX_NESTED);
+> +	ret = an8855_mii_set_page(priv, addr, AN8855_PHY_PAGE_EXTENDED_4);
+> +	if (ret)
+> +		goto exit;
+> +
+> +	ret = an8855_mii_read32(bus, addr, reg, &val);
+> +	if (ret < 0)
+> +		goto exit;
+> +
+> +	val &= ~mask;
+> +	val |= write_val;
+> +	ret = an8855_mii_write32(bus, addr, reg, val);
+> +
+> +exit:
+> +	mutex_unlock(&bus->mdio_lock);
+> +
+> +	return ret < 0 ? ret : 0;
+> +}
+> +
+> +static const struct regmap_range an8855_readable_ranges[] = {
+> +	regmap_reg_range(0x10000000, 0x10000fff), /* SCU */
+> +	regmap_reg_range(0x10001000, 0x10001fff), /* RBUS */
+> +	regmap_reg_range(0x10002000, 0x10002fff), /* MCU */
+> +	regmap_reg_range(0x10005000, 0x10005fff), /* SYS SCU */
+> +	regmap_reg_range(0x10007000, 0x10007fff), /* I2C Slave */
+> +	regmap_reg_range(0x10008000, 0x10008fff), /* I2C Master */
+> +	regmap_reg_range(0x10009000, 0x10009fff), /* PDMA */
+> +	regmap_reg_range(0x1000a100, 0x1000a2ff), /* General Purpose Timer */
+> +	regmap_reg_range(0x1000a200, 0x1000a2ff), /* GPU timer */
+> +	regmap_reg_range(0x1000a300, 0x1000a3ff), /* GPIO */
+> +	regmap_reg_range(0x1000a400, 0x1000a5ff), /* EFUSE */
+> +	regmap_reg_range(0x1000c000, 0x1000cfff), /* GDMP CSR */
+> +	regmap_reg_range(0x10010000, 0x1001ffff), /* GDMP SRAM */
+> +	regmap_reg_range(0x10200000, 0x10203fff), /* Switch - ARL Global */
+> +	regmap_reg_range(0x10204000, 0x10207fff), /* Switch - BMU */
+> +	regmap_reg_range(0x10208000, 0x1020bfff), /* Switch - ARL Port */
+> +	regmap_reg_range(0x1020c000, 0x1020cfff), /* Switch - SCH */
+> +	regmap_reg_range(0x10210000, 0x10213fff), /* Switch - MAC */
+> +	regmap_reg_range(0x10214000, 0x10217fff), /* Switch - MIB */
+> +	regmap_reg_range(0x10218000, 0x1021bfff), /* Switch - Port Control */
+> +	regmap_reg_range(0x1021c000, 0x1021ffff), /* Switch - TOP */
+> +	regmap_reg_range(0x10220000, 0x1022ffff), /* SerDes */
+> +	regmap_reg_range(0x10286000, 0x10286fff), /* RG Batcher */
+> +	regmap_reg_range(0x1028c000, 0x1028ffff), /* ETHER_SYS */
+> +	regmap_reg_range(0x30000000, 0x37ffffff), /* I2C EEPROM */
+> +	regmap_reg_range(0x38000000, 0x3fffffff), /* BOOT_ROM */
+> +	regmap_reg_range(0xa0000000, 0xbfffffff), /* GPHY */
+> +};
+> +
+> +static const struct regmap_access_table an8855_readable_table = {
+> +	.yes_ranges = an8855_readable_ranges,
+> +	.n_yes_ranges = ARRAY_SIZE(an8855_readable_ranges),
+> +};
+> +
+> +static const struct regmap_config an8855_regmap_config = {
+> +	.reg_bits = 32,
+> +	.val_bits = 32,
+> +	.reg_stride = 4,
+> +	.max_register = 0xbfffffff,
+> +	.reg_read = an8855_regmap_read,
+> +	.reg_write = an8855_regmap_write,
+> +	.reg_update_bits = an8855_regmap_update_bits,
+> +	.disable_locking = true,
+> +	.rd_table = &an8855_readable_table,
+> +};
+> +
+> +static int an8855_read_switch_id(struct device *dev, struct regmap *regmap)
+> +{
+> +	u32 id;
+> +	int ret;
+> +
+> +	ret = regmap_read(regmap, AN8855_CREV, &id);
+> +	if (ret)
+> +		return ret;
+> +
+> +	if (id != AN8855_ID) {
+> +		dev_err(dev, "Detected Switch ID %x but %x was expected\n",
+> +			id, AN8855_ID);
+> +		return -ENODEV;
+> +	}
+> +
+> +	return 0;
+> +}
+> +
+> +static int an8855_core_probe(struct mdio_device *mdiodev)
+> +{
+> +	struct device *dev = &mdiodev->dev;
+> +	struct an8855_core_priv *priv;
+> +	struct gpio_desc *reset_gpio;
+> +	struct regmap *regmap;
+> +	u32 val;
+> +	int ret;
+> +
+> +	priv = devm_kzalloc(dev, sizeof(*priv), GFP_KERNEL);
+> +	if (!priv)
+> +		return -ENOMEM;
+> +
+> +	priv->bus = mdiodev->bus;
+> +	priv->switch_addr = mdiodev->addr;
+> +	/* No DMA for mdiobus, mute warning for DMA mask not set */
+> +	dev->dma_mask = &dev->coherent_dma_mask;
+> +
+> +	regmap = devm_regmap_init(dev, NULL, priv, &an8855_regmap_config);
+> +	if (IS_ERR(regmap))
+> +		return dev_err_probe(dev, PTR_ERR(regmap),
+> +				     "regmap initialization failed\n");
+> +
+> +	reset_gpio = devm_gpiod_get_optional(dev, "reset", GPIOD_OUT_LOW);
+> +	if (IS_ERR(reset_gpio))
+> +		return PTR_ERR(reset_gpio);
+> +
+> +	if (reset_gpio) {
+> +		usleep_range(100000, 150000);
+> +		gpiod_set_value_cansleep(reset_gpio, 0);
+> +		usleep_range(100000, 150000);
+> +		gpiod_set_value_cansleep(reset_gpio, 1);
+> +
+> +		/* Poll HWTRAP reg to wait for Switch to fully Init */
+> +		ret = regmap_read_poll_timeout(regmap, AN8855_HWTRAP, val,
+> +					       val, 20, 200000);
+> +		if (ret)
+> +			return ret;
+> +	}
+> +
+> +	ret = an8855_read_switch_id(dev, regmap);
+> +	if (ret)
+> +		return ret;
+> +
+> +	/* Release global PHY power down */
+> +	ret = regmap_write(regmap, AN8855_RG_GPHY_AFE_PWD, 0x0);
+> +	if (ret)
+> +		return ret;
+> +
+> +	return devm_mfd_add_devices(dev, PLATFORM_DEVID_AUTO, an8855_core_childs,
+> +				    ARRAY_SIZE(an8855_core_childs), NULL, 0,
+> +				    NULL);
+> +}
+> +
+> +static const struct of_device_id an8855_core_of_match[] = {
+> +	{ .compatible = "airoha,an8855" },
+> +	{ /* sentinel */ }
+> +};
+> +MODULE_DEVICE_TABLE(of, an8855_core_of_match);
+> +
+> +static struct mdio_driver an8855_core_driver = {
+> +	.probe = an8855_core_probe,
+> +	.mdiodrv.driver = {
+> +		.name = "an8855",
+> +		.of_match_table = an8855_core_of_match,
+> +	},
+> +};
+> +mdio_module_driver(an8855_core_driver);
+> +
+> +MODULE_AUTHOR("Christian Marangi <ansuelsmth@gmail.com>");
+> +MODULE_DESCRIPTION("Driver for Airoha AN8855 MFD");
+
+Drop MFD.
+
+> +MODULE_LICENSE("GPL");
+> -- 
+> 2.48.1
+> 
+
 -- 
-2.34.1
-
+Lee Jones [李琼斯]
 
