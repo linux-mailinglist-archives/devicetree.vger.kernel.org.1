@@ -1,87 +1,48 @@
-Return-Path: <devicetree+bounces-192001-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-192002-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 841C9AF1240
-	for <lists+devicetree@lfdr.de>; Wed,  2 Jul 2025 12:46:56 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 487B0AF1246
+	for <lists+devicetree@lfdr.de>; Wed,  2 Jul 2025 12:47:58 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 8EE635257D8
-	for <lists+devicetree@lfdr.de>; Wed,  2 Jul 2025 10:46:56 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 0CFE44415F4
+	for <lists+devicetree@lfdr.de>; Wed,  2 Jul 2025 10:47:32 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D63E72571DF;
-	Wed,  2 Jul 2025 10:46:47 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C7CB0256C70;
+	Wed,  2 Jul 2025 10:47:52 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="oDIt/6cU"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="odj+E+jZ"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BAACE12CD88
-	for <devicetree@vger.kernel.org>; Wed,  2 Jul 2025 10:46:45 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 94D23253F15;
+	Wed,  2 Jul 2025 10:47:52 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1751453207; cv=none; b=K7t8ghQytKd5w/lcGiatNppq0Jj9VQk8CloryxOFlZSOAs2TIBiWpT0P9XYSlb1iy5TSmCovAXuteUvtsFhi5sKiEN8WCVvABuGWp5jlclFgc5WIfYnmXx3dVvfhDKhQWs8V7NtnxB+/3rk1Hk74qLHS7fHnKTO7e5pxGEjr0qg=
+	t=1751453272; cv=none; b=gH2Eg39k0BCTEVUHlD8Kfgvr+5zby7V3hnjp9cY7juwVFVmoICHfikpEuqsJt9egtNAPYl4c8SAYEz+ZHMMquIm+v/kgyYyeOA+HSgVSfb0AsQAvMtkT6CKX2El+E+Nw/+Nmb2XU2N1bVspZ+o5D3kXEx/i/U5dyCSX2x6wJJqk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1751453207; c=relaxed/simple;
-	bh=hflC/7EECoo+FWEYujbHOxOfZC61B76JoGLGfoAngoM=;
+	s=arc-20240116; t=1751453272; c=relaxed/simple;
+	bh=dkrctSKnjdlsw2PLtAn4EpKUFuAA7kypA3Hrt9pRSVY=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=h745nEJN3whKPN+IoFhr8Jlmc+mEzsbfBWkVhevCjhdmApaNBU6XJColkpb47mEJ/MaAvhQ7dsctpDh8wowD1Z21U6qaTXlzo2PCLfT3Z9PsF+cswiPQxQ7ks4H6upmx8c3DHjajRjnkSRPeExsmC2fjZ7Zu/V5G8M33Zl/preg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=oDIt/6cU; arc=none smtp.client-ip=205.220.180.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
-Received: from pps.filterd (m0279870.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 5625EQOb019593
-	for <devicetree@vger.kernel.org>; Wed, 2 Jul 2025 10:46:44 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	aHOxsE8EA5bCxjxcI+SDUjFcl+31uQAcsQipjX1gMnQ=; b=oDIt/6cU0of3O2Zm
-	tgpG2eB+nl45Av9pnRBhnYscFSBV+pZvylbh+9csIk5RtLOnvq4FMvw3VLII+EzF
-	xVJoiqiRAvP0IF/wBFu2kHvwuLwM//EkAVqtCMOoAfNyHSZvAM4LdtRsm6zDwo+T
-	QUcjHVbZD/08vYQkYZg2vRIOEscHGWuz34lXjWt7JsK3CthRBoshzjV+PbZG5Zcf
-	AOrRlW+mAnk62VZN6I6AUueYsXpqaNgy8ttZTxOfKcfBSxceMYDpyQcmbjDPmvHF
-	JhsG94EHmfzYwZzTCicqBOxveSmqQQHKiz2OmTC+gINBsgo43u1DszLw2NqnNifn
-	pOKvMw==
-Received: from mail-pf1-f199.google.com (mail-pf1-f199.google.com [209.85.210.199])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 47j8fxmcjx-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Wed, 02 Jul 2025 10:46:44 +0000 (GMT)
-Received: by mail-pf1-f199.google.com with SMTP id d2e1a72fcca58-74913a4f606so3770010b3a.1
-        for <devicetree@vger.kernel.org>; Wed, 02 Jul 2025 03:46:44 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1751453203; x=1752058003;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=aHOxsE8EA5bCxjxcI+SDUjFcl+31uQAcsQipjX1gMnQ=;
-        b=CA+CrB+xpr/H7I0TsiHmGAPU7jzUNI5+g7sntjetoNkTr7bvaH6/lrz/BnnxDtWPKj
-         egYU1mIQud0FKYO1diaJyDGKj8hl/oSGxe4AwgDq3bpH2cfFWMW6Wrl/uKTh6fl5FD1O
-         Aun15LjQKzbBD2q8l9REWV0oAe0N+kzuBAzXyAFmv88e7wZrbATiqksM2j4SWpIgah9H
-         L//vunmGVAfkDiT/aTqrQgnBcr8STHuDaCeYRXGA5kRGl+8yByQqsosPhdUX61sdzfaE
-         u92GhNvOZkC5gUauVKaDGRCDbUOXYNI89YGbEs4qwMS2ksNYjWjMi1AD91SD81GPF96L
-         eJpg==
-X-Forwarded-Encrypted: i=1; AJvYcCXjjMh79hu6rUKf9AtcjBeFlq925HAytWu2UUJP3s1UvfhwbVwQ2IwtjrRRT3sBR6ihSY9G7ruKyWi4@vger.kernel.org
-X-Gm-Message-State: AOJu0YwqD1EbxiGYzd2qn9GbTv8qlxZB+KtgEKLNf3sef1+NdOCedaj9
-	HonxgYMXX3rYmNAbd2Ne3a0sE1Dpw7SMmQYp7NuBDYpUWB04UWFle1KtLJ7kExE4SmSc9ieKSHk
-	l3m7JUOu5pTSyjBPuntEK3F1jWpFhwZww6bYDVR489KXHt1rAbkF5nU6o2yGDjgFb
-X-Gm-Gg: ASbGncsRKWYUIvuD0ty/9d09c6ISLAxFGdtQ6E01DIHWvbxMsLguBzEmd6qpfncrCby
-	qRvnXvjZnF07tf0ENKZFt5y2xSED5ucmguebUtnauQPm09YIPZ4HyIdmSQMuQhbtwbrSixxFprt
-	5Q+cGU38/vquGGv+rrjfcfn/eFzFscNsGQneKzpUkHq37qERhJ6QEvbdRweFynm3mOODDxyhPyn
-	eccbB7YhTLE6tDU6ILH3LX9oshJjcGNX8bOhoe9qWlnZ0Al6yFbBPtDxCddNcTadoWGM4Okzdt5
-	bGbX5Y1hwNw8+YsE432jAsnYXtEDoSHB1aLyxITCdhCdln9RL6Zh9JdLHaU+Ylc=
-X-Received: by 2002:a05:6a00:929e:b0:748:e1e4:71d9 with SMTP id d2e1a72fcca58-74b512a4b63mr3111387b3a.22.1751453203270;
-        Wed, 02 Jul 2025 03:46:43 -0700 (PDT)
-X-Google-Smtp-Source: AGHT+IGA7+CiZe4GA2cMk4Bhuat5NfBqDvPTJs1RWS1RavlKQ1uFs+BBJ1Y7wgYQ7e7I4vItRWBvcQ==
-X-Received: by 2002:a05:6a00:929e:b0:748:e1e4:71d9 with SMTP id d2e1a72fcca58-74b512a4b63mr3111356b3a.22.1751453202802;
-        Wed, 02 Jul 2025 03:46:42 -0700 (PDT)
-Received: from [10.151.37.217] ([202.46.23.19])
-        by smtp.gmail.com with ESMTPSA id d2e1a72fcca58-74af541bdeasm14377283b3a.53.2025.07.02.03.46.39
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 02 Jul 2025 03:46:42 -0700 (PDT)
-Message-ID: <37695966-1d7c-46c3-9717-30da4e8d1930@oss.qualcomm.com>
-Date: Wed, 2 Jul 2025 16:16:37 +0530
+	 In-Reply-To:Content-Type; b=B5kKAIpvPo8ETTSmRj1+hZO5UieKoclyT/tSAjkcjhNIq1BtkptIKKdoaipCGIsY3OuIOsOW7y0pPTVwEb015dB6HRhjwSFCOkNH2T7ulQN5wtXsaOrHQTO268hasLBwsiQUap1KVHbgH26eyyteIFJ0QbUN3d6d/k8xDtHjhyw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=odj+E+jZ; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id CC5CDC4CEED;
+	Wed,  2 Jul 2025 10:47:42 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1751453272;
+	bh=dkrctSKnjdlsw2PLtAn4EpKUFuAA7kypA3Hrt9pRSVY=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=odj+E+jZWQjYS9aRqRuwMJeYI88ylhf5Ci4buASLTti0if+pATjRwHaPhVXvSEP6Q
+	 ra2sJkuj2jGFwOiO9EpuoknxOD8gJHfN3Yj5Ta7MHd8EyJ4ejCc9NJNHwTUujrmwXY
+	 7k/4Deuh4JXl7yUr777QCZh5sJWgeoH6Dv3hwbbBnRtb/SVIqwHrR1Bs29CkxBpU/t
+	 FKQ9ToXgeATVt9+jalL9fYwzlL1bwFK3gfdeQFQoLispw70IC7NnfSosOnr67iHp+E
+	 DlvMSL22ZfKaVqdITqkEdbnXMrPlXXerxOu+HZm0EDFDmbFIABXj3MConV4Qjh0BW0
+	 PQLM8P1+TybkQ==
+Message-ID: <2559f035-787e-4c80-8889-d1826a27171b@kernel.org>
+Date: Wed, 2 Jul 2025 12:47:40 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -89,89 +50,155 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 1/7] dt-bindings: sram: qcom,imem: Document Qualcomm IPQ
- SoC's IMEM compatibles
+Subject: Re: [PATCH v2 5/8] mmc: sdhci: add Black Sesame Technologies BST
+ C1200 controller driver
+To: Albert Yang <yangzh0906@thundersoft.com>, robh@kernel.org,
+ krzk+dt@kernel.org, conor+dt@kernel.org, gordon.ge@bst.ai,
+ catalin.marinas@arm.com, geert.uytterhoeven@gmail.com, will@kernel.org,
+ ulf.hansson@linaro.org, adrian.hunter@intel.com, arnd@arndb.de
+Cc: linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-mmc@vger.kernel.org, soc@lists.linux.dev,
+ bst-upstream@bstai.top, neil.armstrong@linaro.org,
+ jonathan.cameron@huawei.com, bigfoot@classfun.cn, kever.yang@rock-chips.com,
+ mani@kernel.org, geert+renesas@glider.be, andersson@kernel.org, nm@ti.com,
+ nfraprado@collabora.com, quic_tdas@quicinc.com, ebiggers@google.com,
+ victor.shih@genesyslogic.com.tw, shanchun1218@gmail.com,
+ ben.chuang@genesyslogic.com.tw
+References: <20250528085403.481055-1-yangzh0906@thundersoft.com>
+ <20250702094444.3523973-1-yangzh0906@thundersoft.com>
+ <20250702094444.3523973-6-yangzh0906@thundersoft.com>
+From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
-To: Krzysztof Kozlowski <krzk@kernel.org>, Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley
- <conor+dt@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konradybcio@kernel.org>
-Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-References: <20250702-imem-v1-0-12d49b1ceff0@oss.qualcomm.com>
- <20250702-imem-v1-1-12d49b1ceff0@oss.qualcomm.com>
- <a68f46f0-8053-4d9f-96f7-55de33bb301f@kernel.org>
-From: Kathiravan Thirumoorthy <kathiravan.thirumoorthy@oss.qualcomm.com>
-In-Reply-To: <a68f46f0-8053-4d9f-96f7-55de33bb301f@kernel.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwNzAyMDA4NyBTYWx0ZWRfXzuCkPR4Mm9zM
- vhKcbDeHdMTBBQTw78TsU27+2myXisfYX+hnzbrFFNTsYaoLtS/BbdKOFZury3Ri2nhbQ7ZeUfP
- uaItpMWWjQlXOsiOzuTYDgjMSIDv1dPleUexL+3XuSGksfbLw2OKqaYoL7bIGZzj9AG2Q3LUPRo
- tpHpF4lMiW0GENrMDGZQnQrnqOTzTvhIHUT7jqYXfJmz2RM1tTWQ2jKW0BYyv7UzRE3t/QfC7+r
- hnLi0pzRLmnTO4EGJLFsSVUyaAL9cyIJurvrzoHmASzIV55i9f34KAmZG2KpsrZQ9+iSeEqqDbm
- J5DjLe/0qusAbkPDrqOFLdqlib5l624BpU5s498xxwPR7OZ2uJ71VZDY9X/Q8nMMG4VbtCAr3yz
- v8vmBTDZ2+LtzdLE72gX/iuZhucNxI2QxKF7uv7WPJ/nRW+H7LAVR9GHmQYU3tYSOifqzUzz
-X-Proofpoint-GUID: OpLS5lvQHqmQOuBBBYW3SkxykinSlu_s
-X-Proofpoint-ORIG-GUID: OpLS5lvQHqmQOuBBBYW3SkxykinSlu_s
-X-Authority-Analysis: v=2.4 cv=TqPmhCXh c=1 sm=1 tr=0 ts=68650e14 cx=c_pps
- a=WW5sKcV1LcKqjgzy2JUPuA==:117 a=j4ogTh8yFefVWWEFDRgCtg==:17
- a=IkcTkHD0fZMA:10 a=Wb1JkmetP80A:10 a=VwQbUJbxAAAA:8 a=EUspDBNiAAAA:8
- a=z-AMgQe07C8pQQwPwfQA:9 a=3ZKOabzyN94A:10 a=QEXdDO2ut3YA:10
- a=OpyuDcXvxspvyRM73sMx:22
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1099,Hydra:6.1.7,FMLib:17.12.80.40
- definitions=2025-07-02_01,2025-06-27_01,2025-03-28_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- priorityscore=1501 bulkscore=0 mlxlogscore=784 suspectscore=0 adultscore=0
- phishscore=0 malwarescore=0 clxscore=1015 lowpriorityscore=0 mlxscore=0
- impostorscore=0 spamscore=0 classifier=spam authscore=0 authtc=n/a authcc=
- route=outbound adjust=0 reason=mlx scancount=1 engine=8.19.0-2505280000
- definitions=main-2507020087
+Autocrypt: addr=krzk@kernel.org; keydata=
+ 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 a/A=
+In-Reply-To: <20250702094444.3523973-6-yangzh0906@thundersoft.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+
+On 02/07/2025 11:44, Albert Yang wrote:
+> Add a driver for the DesignWare Mobile Storage Host Controller (DWCMSHC)
+> SDHCI controller found in Black Sesame Technologies C1200 SoCs.
+> 
+> The driver provides specialized clock configuration, tuning, voltage
+> switching, and power management for the BST DWCMSHC controller. It also
+> includes support for eMMC boot and memory-mapped I/O for CRM registers.
+> 
+
+Missing SoB.
+
+...
+
+> +
+> +static int bst_sdhci_reallocate_bounce_buffer(struct sdhci_host *host)
+> +{
+> +	struct mmc_host *mmc = host->mmc;
+> +	unsigned int max_blocks;
+> +	unsigned int bounce_size;
+> +	int ret;
+> +
+> +	/*
+> +	 * Cap the bounce buffer at 64KB. Using a bigger bounce buffer
+> +	 * has diminishing returns, this is probably because SD/MMC
+> +	 * cards are usually optimized to handle this size of requests.
+> +	 */
+> +	bounce_size = SZ_32K;
+> +	/*
+> +	 * Adjust downwards to maximum request size if this is less
+> +	 * than our segment size, else hammer down the maximum
+> +	 * request size to the maximum buffer size.
+> +	 */
+> +	if (mmc->max_req_size < bounce_size)
+> +		bounce_size = mmc->max_req_size;
+> +	max_blocks = bounce_size / 512;
+> +
+> +	ret = of_reserved_mem_device_init_by_idx(mmc_dev(mmc), mmc_dev(mmc)->of_node, 0);
+> +	if (ret) {
+> +		dev_err(mmc_dev(mmc), "Failed to initialize reserved memory\n");
+> +		return ret;
+> +	}
+> +
+> +	host->bounce_buffer = dma_alloc_coherent(mmc_dev(mmc), bounce_size,
+> +						 &host->bounce_addr, GFP_KERNEL);
+> +	if (!host->bounce_buffer)
+> +		return -ENOMEM;
+> +
+> +	host->bounce_buffer_size = bounce_size;
+> +
+> +	/* Lie about this since we're bouncing */
+> +	mmc->max_segs = max_blocks;
+> +	mmc->max_seg_size = bounce_size;
+> +	mmc->max_req_size = bounce_size;
+> +
+> +	dev_info(mmc_dev(mmc), "BST reallocate %s bounce up to %u segments into one, max segment size %u bytes\n",
+> +		 mmc_hostname(mmc), max_blocks, bounce_size);
+
+Devices are supposed to be silent on success.
+
+> +
 
 
-On 7/2/2025 3:49 PM, Krzysztof Kozlowski wrote:
-> On 02/07/2025 12:17, Kathiravan Thirumoorthy wrote:
->> IMEM is present in the Qualcomm's IPQ SoCs as well. Document the same.
->>
->> Signed-off-by: Kathiravan Thirumoorthy <kathiravan.thirumoorthy@oss.qualcomm.com>
->> ---
->>   Documentation/devicetree/bindings/sram/qcom,imem.yaml | 6 ++++++
->>   1 file changed, 6 insertions(+)
->
-> Where is the changelog? This is not a v1.
+...
 
-This is the v1. The series[1] I pointed out describes only for the 
-IPQ5424 SoC. Since I have added few more SoCs, thought v1 is the 
-appropriate numbering.
+> +/**
+> + * dwcmshc_remove - Platform driver remove
+> + * @pdev: Platform device
+> + *
+> + * Removes the SDHCI host controller.
+> + *
+> + * Return: 0 on success
+> + */
+Drop all such fake comments, not helpful. We all now what is the purpose
+of the function and saying that platform driver remove callback is
+"platform driver remove" which "Removes the SDHCI host controller." is
+not only redundant, but actually harming because later you have:
+"Return: 0 on success"
+which is impossible.
 
-[1] 
-https://lore.kernel.org/linux-arm-msm/20250610-wdt_reset_reason-v5-0-2d2835160ab5@oss.qualcomm.com/
+Such redundant comments are not kernel coding style. Provide USEFUL
+comments, useful kerneldoc, not something to satisfy line-counters.
 
->
->> diff --git a/Documentation/devicetree/bindings/sram/qcom,imem.yaml b/Documentation/devicetree/bindings/sram/qcom,imem.yaml
->> index 72d35e30c439ccf4901d937f838fe7c7a81f33b1..48e2f332e0e9fc9fa4147fa12d9c6c70a77fafda 100644
->> --- a/Documentation/devicetree/bindings/sram/qcom,imem.yaml
->> +++ b/Documentation/devicetree/bindings/sram/qcom,imem.yaml
->> @@ -18,6 +18,12 @@ properties:
->>       items:
->>         - enum:
->>             - qcom,apq8064-imem
->> +          - qcom,ipq8074-imem
->> +          - qcom,ipq6018-imem
->> +          - qcom,ipq5018-imem
->> +          - qcom,ipq9574-imem
->> +          - qcom,ipq5332-imem
->> +          - qcom,ipq5424-imem
-> Random order, no, follow existing style. This applies for every qcom
-> binding and you received such feedbacks in the past.
 
-Apologies — I arranged them based on the evolutionary order of SoCs. 
-I’ll correct this in v2 and ensure it’s handled properly in the future.
-
->
-> Best regards,
-> Krzysztof
+Best regards,
+Krzysztof
 
