@@ -1,89 +1,129 @@
-Return-Path: <devicetree+bounces-192203-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-192204-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id C161AAF5BB5
-	for <lists+devicetree@lfdr.de>; Wed,  2 Jul 2025 16:52:46 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 848A8AF5BC2
+	for <lists+devicetree@lfdr.de>; Wed,  2 Jul 2025 16:53:42 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 62CA41C43F13
-	for <lists+devicetree@lfdr.de>; Wed,  2 Jul 2025 14:52:52 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 5A78A7AFC08
+	for <lists+devicetree@lfdr.de>; Wed,  2 Jul 2025 14:52:16 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id AA77930AAB4;
-	Wed,  2 Jul 2025 14:52:24 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2A7EF30AAB4;
+	Wed,  2 Jul 2025 14:53:26 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="mIVPzie0"
+	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="S88bvCmZ"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from lelvem-ot01.ext.ti.com (lelvem-ot01.ext.ti.com [198.47.23.234])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7936030AAA2;
-	Wed,  2 Jul 2025 14:52:24 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E89BB30AAA1;
+	Wed,  2 Jul 2025 14:53:23 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.23.234
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1751467944; cv=none; b=Lmjp2fUtgu8Zs9e9qzGofWQddifBkMuz2RY2Emh6Lk9AXjmC888lCzpelZLrRiu37xsh4cKiK5W926/lcayedrgrTDAJdZK6m/mE04sMi1I+6r1KWrNRrdIuoaNq62qrz0LrFj248xnxQvRGq6fHDLHObWb0hBtR1MlJv+BtJsg=
+	t=1751468006; cv=none; b=pp+42aE+/ZXIEsqHbCzfMYyZ6zfdq9qiQT4UYw9Val5X0ByvXc4WiWJZ1mEciNJJDniiORa+Yz7o8R6hQGMfzR3UUdfuHfGDLg78jve8cQtY+ZM+QYx3AnGCVrXv6Wa2zwqcvyxKwKDgJA3RHpOHiBVQo/v7OovbXLNPI+DsnuE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1751467944; c=relaxed/simple;
-	bh=MVpi/2/2fnQ827YrHnh39S3IE0+g76KY9HjB0fDt6co=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=WXZFN+eqMXl7b6xf9HqwINhUsct3Cxt2/df0gvLnHHWcZy0BemCbqrfF2f4bzJbGLoaljZPOhq9XL/W7HpnD8qhu7yXKYLo+LVpsVAchVZej9WJ1EcMxMmlfOXkh59+kvbCjkInwVPhBn79oUsCHVvrx2e5X2aFLv7tjDDoR2fs=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=mIVPzie0; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id DA287C4CEED;
-	Wed,  2 Jul 2025 14:52:23 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1751467944;
-	bh=MVpi/2/2fnQ827YrHnh39S3IE0+g76KY9HjB0fDt6co=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=mIVPzie0g1QxXxVl5u8UA/5kqjPs2xIqMzvwfvS0QVxTWTmrGT63OqB48u7OKTvw5
-	 9Q2qPKYWVxtLKfPx0Jgumg+G7Y8tF+8Ib6+I5Hxbrgqu84McvazwXTjpVZaiKyTNuE
-	 RZVe3K66xIjGCer1I6zWHH/bxcyGDzLXyfJsV8J9t2WXBIVEHxUojXP/q2XiWz8iQ5
-	 hG5OaAUXtDZ/Q+FLmKzmqBkbrcIp7QbdtM6Wr+S+c0xWvRDObWwZOHs9fCHcziGNhA
-	 pKnxdYuO+KAR0VEBmVyMtQt2vndp9SQee0krjRYHmXsOKGNQgvCnC5+LOfIoqXUwgA
-	 BG17hnalNHCxA==
-Date: Wed, 2 Jul 2025 09:52:23 -0500
-From: "Rob Herring (Arm)" <robh@kernel.org>
-To: Sayali Lokhande <quic_sayalil@quicinc.com>
-Cc: conor+dt@kernel.org, andersson@kernel.org,
-	linux-mmc-owner@vger.kernel.org, linux-kernel@vger.kernel.org,
-	krzk+dt@kernel.org, devicetree@vger.kernel.org,
-	linux-arm-msm@vger.kernel.org, konradybcio@kernel.org
-Subject: Re: [PATCH V3 1/3] dt-bindings: mmc: Add sdhci compatible for qcs8300
-Message-ID: <175146791377.1660977.16811984013097391499.robh@kernel.org>
-References: <20250702085927.10370-1-quic_sayalil@quicinc.com>
- <20250702085927.10370-2-quic_sayalil@quicinc.com>
+	s=arc-20240116; t=1751468006; c=relaxed/simple;
+	bh=Gq/LYYRF9JuFonhdLhqKO9+lm/YO9Plq5eHUax98lc8=;
+	h=From:To:CC:Subject:Date:Message-ID:MIME-Version:Content-Type; b=D1hN128okjOKqq3jQdMGPu9xM4TdUbS6FGplVXTHsJ++EL+zlsjA4KuT1gSUWwCr3hALJY/8z65HVMh2b/1DN2qcF3USQ0yiq6j3uBrW7HpOOt9pdBRYS7OBYIuNCmwDLIeyk4MvXGOf9pCLndqfRd41CTSjAtAWZwtWsovqEd4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=S88bvCmZ; arc=none smtp.client-ip=198.47.23.234
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
+Received: from lelvem-sh01.itg.ti.com ([10.180.77.71])
+	by lelvem-ot01.ext.ti.com (8.15.2/8.15.2) with ESMTP id 562ErGLe3265092;
+	Wed, 2 Jul 2025 09:53:16 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+	s=ti-com-17Q1; t=1751467996;
+	bh=2AF5EGj2qKzyf78LkwWbxJULTyLQiIdC4tmSHWVSetw=;
+	h=From:To:CC:Subject:Date;
+	b=S88bvCmZCoQkQIQ/eKSEQ5wbYz/HSld3j1dZRXMBH0Q80NMN6zZuzZOiuRtKbaVSQ
+	 BDqQusU9xeKQSCoUmMrvRVOUDQnMr9LIf4GH84M+6tLNbbabMu8OxARSBzdvfpYDRY
+	 ThsKCTY9x4aYeEk60HWHgJQeO/NlJkYBHBfp8S+4=
+Received: from DLEE109.ent.ti.com (dlee109.ent.ti.com [157.170.170.41])
+	by lelvem-sh01.itg.ti.com (8.18.1/8.18.1) with ESMTPS id 562ErFPs1372673
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-SHA256 bits=128 verify=FAIL);
+	Wed, 2 Jul 2025 09:53:15 -0500
+Received: from DLEE105.ent.ti.com (157.170.170.35) by DLEE109.ent.ti.com
+ (157.170.170.41) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.55; Wed, 2
+ Jul 2025 09:53:15 -0500
+Received: from lelvem-mr05.itg.ti.com (10.180.75.9) by DLEE105.ent.ti.com
+ (157.170.170.35) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.55 via
+ Frontend Transport; Wed, 2 Jul 2025 09:53:15 -0500
+Received: from ula0226330.dhcp.ti.com (ula0226330.dhcp.ti.com [10.247.22.38])
+	by lelvem-mr05.itg.ti.com (8.18.1/8.18.1) with ESMTP id 562ErFHm3616815;
+	Wed, 2 Jul 2025 09:53:15 -0500
+From: Andrew Davis <afd@ti.com>
+To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>, Nishanth Menon <nm@ti.com>,
+        Vignesh
+ Raghavendra <vigneshr@ti.com>,
+        Tero Kristo <kristo@kernel.org>
+CC: <devicetree@vger.kernel.org>, <linux-arm-kernel@lists.infradead.org>,
+        <linux-kernel@vger.kernel.org>, Andrew Davis <afd@ti.com>
+Subject: [PATCH] arm64: dts: ti: Enable overlays for all DTB files
+Date: Wed, 2 Jul 2025 09:53:14 -0500
+Message-ID: <20250702145314.71996-1-afd@ti.com>
+X-Mailer: git-send-email 2.39.2
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20250702085927.10370-2-quic_sayalil@quicinc.com>
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-C2ProcessedOrg: 333ef613-75bf-4e12-a4b1-8e3623f5dcea
 
+Allow overlays to be applied to any DTB without manually enabling it
+for each file. This adds around ~10% to the total size of the DTB files
+on average.
 
-On Wed, 02 Jul 2025 14:29:25 +0530, Sayali Lokhande wrote:
-> Document the sdhci compatible for Qualcomm qcs8300
-> to support function for emmc on the Soc.
-> 
-> Signed-off-by: Sayali Lokhande <quic_sayalil@quicinc.com>
-> ---
->  Documentation/devicetree/bindings/mmc/sdhci-msm.yaml | 1 +
->  1 file changed, 1 insertion(+)
-> 
+Signed-off-by: Andrew Davis <afd@ti.com>
+---
 
+Note that Broadcom's DTS already do this, so there is precedent for this.
+And we do this unconditionally in our Yocto Distros[0] already, this just
+moves this so everyone gets overlay support for all boards.
 
-Please add Acked-by/Reviewed-by tags when posting new versions. However,
-there's no need to repost patches *only* to add the tags. The upstream
-maintainer will do that for acks received on the version they apply.
+[0] https://git.yoctoproject.org/meta-ti/tree/meta-ti-bsp/recipes-kernel/linux/ti-kernel.inc#n5
 
-If a tag was not added on purpose, please state why and what changed.
+ arch/arm64/boot/dts/ti/Makefile | 22 +---------------------
+ 1 file changed, 1 insertion(+), 21 deletions(-)
 
-Missing tags:
-
-Acked-by: Rob Herring (Arm) <robh@kernel.org>
-
-
+diff --git a/arch/arm64/boot/dts/ti/Makefile b/arch/arm64/boot/dts/ti/Makefile
+index 743e7b945af3b..93fb2c5c3bbda 100644
+--- a/arch/arm64/boot/dts/ti/Makefile
++++ b/arch/arm64/boot/dts/ti/Makefile
+@@ -348,24 +348,4 @@ dtb- += k3-am625-beagleplay-csi2-ov5640.dtb \
+ 	k3-j784s4-evm-usxgmii-exp1-exp2.dtb
+ 
+ # Enable support for device-tree overlays
+-DTC_FLAGS_k3-am625-beagleplay += -@
+-DTC_FLAGS_k3-am625-phyboard-lyra-rdk += -@
+-DTC_FLAGS_k3-am62a7-phyboard-lyra-rdk += -@
+-DTC_FLAGS_k3-am625-sk += -@
+-DTC_FLAGS_k3-am62-lp-sk += -@
+-DTC_FLAGS_k3-am62a7-sk += -@
+-DTC_FLAGS_k3-am62p5-sk += -@
+-DTC_FLAGS_k3-am642-evm += -@
+-DTC_FLAGS_k3-am642-phyboard-electra-rdk += -@
+-DTC_FLAGS_k3-am642-tqma64xxl-mbax4xxl += -@
+-DTC_FLAGS_k3-am6548-iot2050-advanced-m2 += -@
+-DTC_FLAGS_k3-am68-sk-base-board += -@
+-DTC_FLAGS_k3-am69-sk += -@
+-DTC_FLAGS_k3-j7200-common-proc-board += -@
+-DTC_FLAGS_k3-j721e-common-proc-board += -@
+-DTC_FLAGS_k3-j721e-evm-pcie0-ep += -@
+-DTC_FLAGS_k3-j721e-sk += -@
+-DTC_FLAGS_k3-j721s2-common-proc-board += -@
+-DTC_FLAGS_k3-j722s-evm += -@
+-DTC_FLAGS_k3-j784s4-evm += -@
+-DTC_FLAGS_k3-j742s2-evm += -@
++DTC_FLAGS := -@
+-- 
+2.39.2
 
 
