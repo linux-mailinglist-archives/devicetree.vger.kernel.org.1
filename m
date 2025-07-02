@@ -1,69 +1,98 @@
-Return-Path: <devicetree+bounces-192099-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-192100-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id C95D1AF1603
-	for <lists+devicetree@lfdr.de>; Wed,  2 Jul 2025 14:46:24 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id CBB3AAF1614
+	for <lists+devicetree@lfdr.de>; Wed,  2 Jul 2025 14:50:42 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 1A9C54E6341
-	for <lists+devicetree@lfdr.de>; Wed,  2 Jul 2025 12:46:25 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 077321695D1
+	for <lists+devicetree@lfdr.de>; Wed,  2 Jul 2025 12:50:43 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D2C8B2652B6;
-	Wed,  2 Jul 2025 12:46:18 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 486062750EF;
+	Wed,  2 Jul 2025 12:50:38 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="mNR7wl67"
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="CAV7bxes"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.12])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A4F532367D3;
-	Wed,  2 Jul 2025 12:46:18 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 269DB274FEF;
+	Wed,  2 Jul 2025 12:50:35 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.198.163.12
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1751460378; cv=none; b=HP7TNq5NPEyjGP3tz3eYn/ExBR3o8PW9sLOTN8EB9o0iqnKyF8qgWCxfNr8+VAe+ySjJ4LVstdzAd3FJA7QQiBQSAtP46LR3kKmS8iAfH43QtsRNv08/M5IuJUptJOqGGzTV1l4+PY+zv7b4AH1zmm2Wr9raIIn/iWPXVg2Z7xs=
+	t=1751460638; cv=none; b=ECHOFW9cgyyDp9FrZqxM86GKRXWXEUAP3QmvjkE74eliczFUDyxIvsUQPoApiOGjneuPAKo56zxyKuz+vz4JAeLg9Opn+87/woFpiT+yXjfquyNlSookmzcxeaRUrTDWGrIQPl4f5ID0Ak6UzoZlMnWhBwqdZzUzx25djKodeVg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1751460378; c=relaxed/simple;
-	bh=xNQPpZ20lOA6x5uCrJooB3aWOdhA2rmyyeDbQ7gnXko=;
+	s=arc-20240116; t=1751460638; c=relaxed/simple;
+	bh=k/4MLllN69R+xjMZxq8j8APH8ytlW29jw6oqQSxzlYA=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=blwlP4BGLp0cIIyMey+2cO23hZxkNoZJhrB648rSA6gQCGl7OMC71uW6ksxLxDynrfGJR5zhptzfdvTZn7v9WSE9vEXTUIdShWP1YmtmWR8BuSwJwMZHLw9tDkKH4+xdVPRh1tHgudqJfFT+vo81F4srIAZ7V3VDWPcvFtaziu8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=mNR7wl67; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 59500C4CEED;
-	Wed,  2 Jul 2025 12:46:13 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1751460378;
-	bh=xNQPpZ20lOA6x5uCrJooB3aWOdhA2rmyyeDbQ7gnXko=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=mNR7wl67fUJ2fLWJnrx1eA6CYJm6IV4JftZYI+XEmFVsz7lMGCEwGdCC5HQJKSL+P
-	 WbmtKE5A2VC1USq0Zsu02x7JgMEDqI3gACbYL4GUNmkzSQNkm5l7OettVTB8PxH4jg
-	 j1YwlRsQiXVoIOgLo/OtOkw1wX8jRCEMXx6p9WelxYiMLV42sQIdcs8glj9kFFvMVI
-	 pqRPtMWSLgSw3hdmoOxX3X5LUSuHyDDW/0aBNru7JFTLVe7mTzPYNj4vyBOXlR4TI7
-	 GObGd74Oiz8VsftLMHHvCOJqdJSHHn8DOzxIFepQJmodlbIv0Q7gdZkSD544yKhGl/
-	 DnCgvewI3yFFQ==
-Date: Wed, 2 Jul 2025 14:46:10 +0200
-From: Lorenzo Pieralisi <lpieralisi@kernel.org>
-To: Jonathan Cameron <Jonathan.Cameron@huawei.com>,
+	 Content-Type:Content-Disposition:In-Reply-To; b=dhAnt1xQ2qJ8RknYuaMf2ocuA4uSMxrCs9VLURXeS8zc0BgTBljQX0EBq6rfNgvLBdpZUwOqRzvrVTD0FIkRKH1l32Xht/o9zdhNPXbYVDv9Lawix11K1ogXEEAY3CDHvcNg9e4rfFnZdWsSXY02zBXSdCCxISwliwSqHxRMpiM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com; spf=none smtp.mailfrom=linux.intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=CAV7bxes; arc=none smtp.client-ip=192.198.163.12
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com
+Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=linux.intel.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1751460636; x=1782996636;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=k/4MLllN69R+xjMZxq8j8APH8ytlW29jw6oqQSxzlYA=;
+  b=CAV7bxeszNFk4dSmoCITdCBJleMaMFj+gNZuNiVBubNmOBNMShRroIxa
+   L67diduI3RZMEl9OU/yeiAMAXz+ENH6ID6r5MBN65TcFJ+nxh4nk644Xg
+   Yzg5beuAuhtJBLlA809t7l7NXVMmfdErjvwhHSWe40NHi2Hwui9UNcAcd
+   ynsmVZJ/qSAPZLCUEr/AlhgZe6lTbhA8wIrE/338MMZV8ArmQbqbZI2f+
+   lShp5fVD/pP+pjpq2yFZCHgaJ5jJzOjINAg4ybr4s+lK2T5wCXYk8HPf3
+   TcmoePIJ485mnoln3A1BTSpcj4CbpOCswE8dQbttSvVplAZ9HnSzvmbZi
+   A==;
+X-CSE-ConnectionGUID: 8yOgQikqSZ67Wri0OxGa1g==
+X-CSE-MsgGUID: ovRrlOwXTzq0iy0+ywTCqA==
+X-IronPort-AV: E=McAfee;i="6800,10657,11482"; a="57560420"
+X-IronPort-AV: E=Sophos;i="6.16,281,1744095600"; 
+   d="scan'208";a="57560420"
+Received: from orviesa006.jf.intel.com ([10.64.159.146])
+  by fmvoesa106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 02 Jul 2025 05:50:35 -0700
+X-CSE-ConnectionGUID: 2SXMN1wlSqaPTHE7KCqoTQ==
+X-CSE-MsgGUID: PT5eXKRhSI68wWiVyTInkA==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.16,281,1744095600"; 
+   d="scan'208";a="153519699"
+Received: from smile.fi.intel.com ([10.237.72.52])
+  by orviesa006.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 02 Jul 2025 05:50:29 -0700
+Received: from andy by smile.fi.intel.com with local (Exim 4.98.2)
+	(envelope-from <andriy.shevchenko@linux.intel.com>)
+	id 1uWwut-0000000BvBY-3cPP;
+	Wed, 02 Jul 2025 15:50:23 +0300
+Date: Wed, 2 Jul 2025 15:50:23 +0300
+From: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
+To: Anup Patel <apatel@ventanamicro.com>
+Cc: Michael Turquette <mturquette@baylibre.com>,
+	Stephen Boyd <sboyd@kernel.org>, Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Jassi Brar <jassisinghbrar@gmail.com>,
 	Thomas Gleixner <tglx@linutronix.de>,
-	Catalin Marinas <catalin.marinas@arm.com>,
-	Marc Zyngier <maz@kernel.org>
-Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, Will Deacon <will@kernel.org>,
-	Arnd Bergmann <arnd@arndb.de>,
-	Sascha Bischoff <sascha.bischoff@arm.com>,
-	Timothy Hayes <timothy.hayes@arm.com>,
-	Bjorn Helgaas <bhelgaas@google.com>,
-	"Liam R. Howlett" <Liam.Howlett@oracle.com>,
-	Peter Maydell <peter.maydell@linaro.org>,
-	Mark Rutland <mark.rutland@arm.com>,
-	Jiri Slaby <jirislaby@kernel.org>,
-	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-pci@vger.kernel.org
-Subject: Re: [PATCH v6 20/31] irqchip/gic-v5: Add GICv5 PPI support
-Message-ID: <aGUqEkascwGFD9x+@lpieralisi>
-References: <20250626-gicv5-host-v6-0-48e046af4642@kernel.org>
- <20250626-gicv5-host-v6-20-48e046af4642@kernel.org>
- <20250702124019.00006b01@huawei.com>
+	"Rafael J . Wysocki" <rafael@kernel.org>,
+	Mika Westerberg <mika.westerberg@linux.intel.com>,
+	Linus Walleij <linus.walleij@linaro.org>,
+	Bartosz Golaszewski <brgl@bgdev.pl>,
+	Uwe =?iso-8859-1?Q?Kleine-K=F6nig?= <ukleinek@kernel.org>,
+	Palmer Dabbelt <palmer@dabbelt.com>,
+	Paul Walmsley <paul.walmsley@sifive.com>,
+	Alexandre Ghiti <alex@ghiti.fr>, Len Brown <lenb@kernel.org>,
+	Sunil V L <sunilvl@ventanamicro.com>,
+	Rahul Pathak <rpathak@ventanamicro.com>,
+	Leyfoon Tan <leyfoon.tan@starfivetech.com>,
+	Atish Patra <atish.patra@linux.dev>,
+	Andrew Jones <ajones@ventanamicro.com>,
+	Samuel Holland <samuel.holland@sifive.com>,
+	Anup Patel <anup@brainfault.org>, linux-clk@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-acpi@vger.kernel.org,
+	linux-riscv@lists.infradead.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v7 07/24] mailbox: Add RISC-V SBI message proxy (MPXY)
+ based mailbox driver
+Message-ID: <aGUrD2Ht1idIlDCd@smile.fi.intel.com>
+References: <20250702051345.1460497-1-apatel@ventanamicro.com>
+ <20250702051345.1460497-8-apatel@ventanamicro.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -72,173 +101,373 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20250702124019.00006b01@huawei.com>
+In-Reply-To: <20250702051345.1460497-8-apatel@ventanamicro.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park, 6
+ krs, Bertel Jungin Aukio 5, 02600 Espoo
 
-On Wed, Jul 02, 2025 at 12:40:19PM +0100, Jonathan Cameron wrote:
-> On Thu, 26 Jun 2025 12:26:11 +0200
-> Lorenzo Pieralisi <lpieralisi@kernel.org> wrote:
-> 
-> > The GICv5 CPU interface implements support for PE-Private Peripheral
-> > Interrupts (PPI), that are handled (enabled/prioritized/delivered)
-> > entirely within the CPU interface hardware.
-> 
-> I can't remember where I got to last time so if I repeat stuff that
-> you already responded to, feel free to just ignore me this time ;)
-> 
-> All superficial stuff. Feel free to completely ignore if you like.
+On Wed, Jul 02, 2025 at 10:43:28AM +0530, Anup Patel wrote:
+> Add a mailbox controller driver for the new SBI message proxy extension
+> which is part of the SBI v3.0 specification.
 
-We are at v6.16-rc4, series has been on the lists for 3 months, it has
-been reviewed and we would like to get it into v6.17 if possible and
-deemed reasonable, I am asking you folks please, what should I do ?
+...
 
-I can send a v7 with the changes requested below (no bug fixes there)
-- it is fine by me - but I need to know please asap if we have a
-plan to get this upstream this cycle.
+> +#include <linux/cpu.h>
+> +#include <linux/errno.h>
+> +#include <linux/init.h>
+> +#include <linux/mailbox_controller.h>
+> +#include <linux/mailbox/riscv-rpmi-message.h>
 
-Thanks,
-Lorenzo
++ minmax.h
 
-> > diff --git a/drivers/irqchip/irq-gic-v5.c b/drivers/irqchip/irq-gic-v5.c
-> > new file mode 100644
-> > index 000000000000..a08daa562d21
-> > --- /dev/null
-> > +++ b/drivers/irqchip/irq-gic-v5.c
-> > @@ -0,0 +1,461 @@
-> > +// SPDX-License-Identifier: GPL-2.0-only
-> > +/*
-> > + * Copyright (C) 2024-2025 ARM Limited, All Rights Reserved.
-> > + */
-> > +
-> > +#define pr_fmt(fmt)	"GICv5: " fmt
-> > +
-> > +#include <linux/irqdomain.h>
-> > +#include <linux/wordpart.h>
-> > +
-> > +#include <linux/irqchip.h>
-> > +#include <linux/irqchip/arm-gic-v5.h>
-> > +
-> > +#include <asm/cpufeature.h>
-> > +#include <asm/exception.h>
-> > +
-> > +static u8 pri_bits __ro_after_init = 5;
-> > +
-> > +#define GICV5_IRQ_PRI_MASK	0x1f
-> > +#define GICV5_IRQ_PRI_MI	(GICV5_IRQ_PRI_MASK & GENMASK(4, 5 - pri_bits))
-> > +
-> > +#define PPI_NR	128
-> > +
-> > +static bool gicv5_cpuif_has_gcie(void)
-> > +{
-> > +	return this_cpu_has_cap(ARM64_HAS_GICV5_CPUIF);
-> > +}
-> > +
-> > +struct gicv5_chip_data {
-> > +	struct fwnode_handle	*fwnode;
-> > +	struct irq_domain	*ppi_domain;
-> > +};
-> > +
-> > +static struct gicv5_chip_data gicv5_global_data __read_mostly;
-> 
-> > +static void gicv5_hwirq_eoi(u32 hwirq_id, u8 hwirq_type)
-> > +{
-> > +	u64 cddi = hwirq_id | FIELD_PREP(GICV5_GIC_CDDI_TYPE_MASK, hwirq_type);
-> 
-> Slight preference for not needing to care where hwirq_id goes in CDDI or how big
-> it is (other than when I checked the header defines).
->  
-> 	u64 cddi = FIELD_PREP(GICV5_GIC_CDDI_ID_MASK, hwirq_id) |
->         	   FIELD_PREP(GICV5_GIC_CDDI_TYPE_MASK, hwirq_type);
-> 
-> 
-> > +
-> > +	gic_insn(cddi, CDDI);
-> > +
-> > +	gic_insn(0, CDEOI);
-> > +}
-> 
-> > +static int gicv5_ppi_irq_get_irqchip_state(struct irq_data *d,
-> > +					   enum irqchip_irq_state which,
-> > +					   bool *state)
-> > +{
-> > +	u64 hwirq_id_bit = BIT_ULL(d->hwirq % 64);
-> > +
-> > +	switch (which) {
-> > +	case IRQCHIP_STATE_PENDING:
-> > +		*state = !!(read_ppi_sysreg_s(d->hwirq, PPI_PENDING) & hwirq_id_bit);
-> 
-> Technically don't need the !! but if you really like it I don't mind that much.
-> 
-> > +		return 0;
-> > +	case IRQCHIP_STATE_ACTIVE:
-> > +		*state = !!(read_ppi_sysreg_s(d->hwirq, PPI_ACTIVE) & hwirq_id_bit);
-> > +		return 0;
-> > +	default:
-> > +		pr_debug("Unexpected PPI irqchip state\n");
-> > +		return -EINVAL;
-> > +	}
-> > +}
-> 
-> 
-> > +static int gicv5_irq_ppi_domain_translate(struct irq_domain *d,
-> > +					  struct irq_fwspec *fwspec,
-> > +					  irq_hw_number_t *hwirq,
-> > +					  unsigned int *type)
-> > +{
-> > +	if (!is_of_node(fwspec->fwnode))
-> > +		return -EINVAL;
-> > +
-> > +	if (fwspec->param_count < 3)
-> 
-> I don't care that much, but could relax this seeing as fwspec->param[2]
-> isn't used anyway? Maybe a tiny comment on why it matters?
-> 
-> > +		return -EINVAL;
-> > +
-> > +	if (fwspec->param[0] != GICV5_HWIRQ_TYPE_PPI)
-> > +		return -EINVAL;
-> > +
-> > +	*hwirq = fwspec->param[1];
-> > +
-> > +	/*
-> > +	 * Handling mode is hardcoded for PPIs, set the type using
-> > +	 * HW reported value.
-> > +	 */
-> > +	*type = gicv5_ppi_irq_is_level(*hwirq) ? IRQ_TYPE_LEVEL_LOW : IRQ_TYPE_EDGE_RISING;
-> > +
-> > +	return 0;
-> 
-> 
-> > +static int __init gicv5_of_init(struct device_node *node, struct device_node *parent)
-> > +{
-> > +	int ret = gicv5_init_domains(of_fwnode_handle(node));
-> > +	if (ret)
-> > +		return ret;
-> > +
-> > +	gicv5_set_cpuif_pribits();
-> > +
-> > +	ret = gicv5_starting_cpu(smp_processor_id());
-> > +	if (ret)
-> > +		goto out_dom;
-> > +
-> > +	ret = set_handle_irq(gicv5_handle_irq);
-> > +	if (ret)
-> > +		goto out_int;
-> > +
-> > +	return 0;
-> > +
-> > +out_int:
-> > +	gicv5_cpu_disable_interrupts();
-> > +out_dom:
-> > +	gicv5_free_domains();
-> 
-> Naming is always tricky but I'd not really expect gicv5_free_domains() as the
-> pair of gicv5_init_domains() (which is doing creation rather than just initializing).
-> 
-> Ah well, names are never prefect and I don't really mind.
-> 
-> > +
-> > +	return ret;
-> > +}
-> > +IRQCHIP_DECLARE(gic_v5, "arm,gic-v5", gicv5_of_init);
-> 
+> +#include <linux/mm.h>
+> +#include <linux/module.h>
+> +#include <linux/msi.h>
+> +#include <linux/of_irq.h>
+> +#include <linux/percpu.h>
+> +#include <linux/platform_device.h>
+> +#include <linux/smp.h>
+> +#include <linux/string.h>
+> +#include <linux/types.h>
+> +#include <asm/byteorder.h>
+> +#include <asm/sbi.h>
+
+...
+
+> +static void mpxy_mbox_send_rpmi_data(struct mpxy_mbox_channel *mchan,
+> +				     struct rpmi_mbox_message *msg)
+> +{
+> +	int rc = 0;
+
+Is it useful? I mean can you assign msg.error directly in each case?
+(Just asking)
+
+> +	switch (msg->type) {
+> +	case RPMI_MBOX_MSG_TYPE_GET_ATTRIBUTE:
+> +		switch (msg->attr.id) {
+> +		case RPMI_MBOX_ATTR_SPEC_VERSION:
+> +			msg->attr.value = mchan->attrs.msg_proto_version;
+> +			break;
+> +		case RPMI_MBOX_ATTR_MAX_MSG_DATA_SIZE:
+> +			msg->attr.value = mchan->max_xfer_len;
+> +			break;
+> +		case RPMI_MBOX_ATTR_SERVICEGROUP_ID:
+> +			msg->attr.value = mchan->rpmi_attrs.servicegroup_id;
+> +			break;
+> +		case RPMI_MBOX_ATTR_SERVICEGROUP_VERSION:
+> +			msg->attr.value = mchan->rpmi_attrs.servicegroup_version;
+> +			break;
+> +		case RPMI_MBOX_ATTR_IMPL_ID:
+> +			msg->attr.value = mchan->rpmi_attrs.impl_id;
+> +			break;
+> +		case RPMI_MBOX_ATTR_IMPL_VERSION:
+> +			msg->attr.value = mchan->rpmi_attrs.impl_version;
+> +			break;
+> +		default:
+> +			rc = -EOPNOTSUPP;
+> +			break;
+> +		}
+> +		break;
+> +	case RPMI_MBOX_MSG_TYPE_SET_ATTRIBUTE:
+> +		/* None of the RPMI linux mailbox attributes are writeable */
+> +		rc = -EOPNOTSUPP;
+> +		break;
+> +	case RPMI_MBOX_MSG_TYPE_SEND_WITH_RESPONSE:
+> +		if ((!msg->data.request && msg->data.request_len) ||
+> +		    (msg->data.request &&
+> +		     msg->data.request_len > mchan->max_xfer_len) ||
+> +		    (!msg->data.response && msg->data.max_response_len)) {
+> +			rc = -EINVAL;
+> +			break;
+> +		}
+> +		if (!(mchan->attrs.capability & SBI_MPXY_CHAN_CAP_SEND_WITH_RESP)) {
+> +			rc = -EIO;
+> +			break;
+> +		}
+> +		rc = mpxy_send_message_with_resp(mchan->channel_id,
+> +						 msg->data.service_id,
+> +						 msg->data.request,
+> +						 msg->data.request_len,
+> +						 msg->data.response,
+> +						 msg->data.max_response_len,
+> +						 &msg->data.out_response_len);
+> +		break;
+> +	case RPMI_MBOX_MSG_TYPE_SEND_WITHOUT_RESPONSE:
+> +		if ((!msg->data.request && msg->data.request_len) ||
+> +		    (msg->data.request &&
+> +		     msg->data.request_len > mchan->max_xfer_len)) {
+> +			rc = -EINVAL;
+> +			break;
+> +		}
+> +		if (!(mchan->attrs.capability & SBI_MPXY_CHAN_CAP_SEND_WITHOUT_RESP)) {
+> +			rc = -EIO;
+> +			break;
+> +		}
+> +		rc = mpxy_send_message_without_resp(mchan->channel_id,
+> +						    msg->data.service_id,
+> +						    msg->data.request,
+> +						    msg->data.request_len);
+> +		break;
+> +	default:
+> +		rc = -EOPNOTSUPP;
+> +		break;
+> +	}
+> +
+> +	msg->error = rc;
+> +}
+
+...
+
+> +static void mpxy_mbox_peek_rpmi_data(struct mbox_chan *chan,
+> +				     struct mpxy_mbox_channel *mchan,
+> +				     struct sbi_mpxy_notification_data *notif,
+> +				     unsigned long events_data_len)
+> +{
+> +	struct rpmi_notification_event *event;
+> +	unsigned long pos = 0, event_size;
+> +	struct rpmi_mbox_message msg;
+> +
+> +	while ((pos < events_data_len) && !(pos & 0x3) &&
+
+0x3 looks like a magic used for the non-aligned data.
+
+> +	       ((events_data_len - pos) <= sizeof(*event))) {
+> +		event = (struct rpmi_notification_event *)(notif->events_data + pos);
+> +
+> +		msg.type = RPMI_MBOX_MSG_TYPE_NOTIFICATION_EVENT;
+> +		msg.notif.event_datalen = le16_to_cpu(event->event_datalen);
+> +		msg.notif.event_id = event->event_id;
+> +		msg.notif.event_data = event->event_data;
+> +		msg.error = 0;
+> +
+> +		event_size = sizeof(*event) + msg.notif.event_datalen;
+
+Do you trust the source? This may wrap-around...
+
+> +		if (event_size > (events_data_len - pos)) {
+> +			event_size = events_data_len - pos;
+> +			goto skip_event;
+> +		}
+> +		if (event_size & 0x3)
+> +			goto skip_event;
+
+...and these checks be skipped. Is it a problem?
+
+> +		mbox_chan_received_data(chan, &msg);
+
+> +skip_event:
+
+I think this may be replaced by a continue inside if you make a loop to be
+do {} while (). But it's just a thought, you can check if it gives a better
+readability after all.
+
+> +		pos += event_size;
+> +	}
+> +}
+
+...
+
+> +static int mpxy_mbox_probe(struct platform_device *pdev)
+> +{
+> +	u32 i, *channel_ids __free(kfree) = NULL;
+
+It's not recommended. Can you split channel_ids to the actual scope where it's
+used? Somewhere...
+
+> +	struct device *dev = &pdev->dev;
+> +	struct mpxy_mbox_channel *mchan;
+> +	struct mpxy_mbox *mbox;
+> +	int msi_idx, rc;
+> +
+> +	/*
+> +	 * Initialize MPXY shared memory only once. This also ensures
+> +	 * that SBI MPXY mailbox is probed only once.
+> +	 */
+> +	if (mpxy_shmem_init_done) {
+> +		dev_err(dev, "SBI MPXY mailbox already initialized\n");
+> +		return -EALREADY;
+> +	}
+> +
+> +	/* Probe for SBI MPXY extension */
+> +	if (sbi_spec_version < sbi_mk_version(1, 0) ||
+> +	    sbi_probe_extension(SBI_EXT_MPXY) <= 0) {
+> +		dev_info(dev, "SBI MPXY extension not available\n");
+> +		return -ENODEV;
+> +	}
+> +
+> +	/* Find-out shared memory size */
+> +	rc = mpxy_get_shmem_size(&mpxy_shmem_size);
+> +	if (rc)
+> +		return dev_err_probe(dev, rc, "failed to get MPXY shared memory size\n");
+> +
+> +	/*
+> +	 * Setup MPXY shared memory on each CPU
+> +	 *
+> +	 * Note: Don't cleanup MPXY shared memory upon CPU power-down
+> +	 * because the RPMI System MSI irqchip driver needs it to be
+> +	 * available when migrating IRQs in CPU power-down path.
+> +	 */
+> +	cpuhp_setup_state(CPUHP_AP_ONLINE_DYN, "riscv/sbi-mpxy-shmem",
+> +			  mpxy_setup_shmem, NULL);
+> +
+> +	/* Mark as MPXY shared memory initialization done */
+> +	mpxy_shmem_init_done = true;
+> +
+> +	/* Allocate mailbox instance */
+> +	mbox = devm_kzalloc(dev, sizeof(*mbox), GFP_KERNEL);
+> +	if (!mbox)
+> +		return -ENOMEM;
+> +	mbox->dev = dev;
+> +	platform_set_drvdata(pdev, mbox);
+> +
+> +	/* Find-out of number of channels */
+> +	rc = mpxy_get_channel_count(&mbox->channel_count);
+> +	if (rc)
+> +		return dev_err_probe(dev, rc, "failed to get number of MPXY channels\n");
+> +	if (!mbox->channel_count)
+> +		dev_err_probe(dev, -ENODEV, "no MPXY channels available\n");
+> +
+> +	/* Allocate and fetch all channel IDs */
+> +	channel_ids = kcalloc(mbox->channel_count, sizeof(*channel_ids), GFP_KERNEL);
+
+...here.
+
+> +	if (!channel_ids)
+> +		return -ENOMEM;
+> +	rc = mpxy_get_channel_ids(mbox->channel_count, channel_ids);
+> +	if (rc)
+> +		return dev_err_probe(dev, rc, "failed to get MPXY channel IDs\n");
+> +
+> +	/* Populate all channels */
+> +	mbox->channels = devm_kcalloc(dev, mbox->channel_count,
+> +				      sizeof(*mbox->channels), GFP_KERNEL);
+> +	if (!mbox->channels)
+> +		return -ENOMEM;
+> +	for (i = 0; i < mbox->channel_count; i++) {
+> +		mchan = &mbox->channels[i];
+> +		mchan->mbox = mbox;
+> +		mchan->channel_id = channel_ids[i];
+> +
+> +		rc = mpxy_read_attrs(mchan->channel_id, SBI_MPXY_ATTR_MSG_PROT_ID,
+> +				     sizeof(mchan->attrs) / sizeof(u32),
+> +				     (u32 *)&mchan->attrs);
+> +		if (rc) {
+> +			return dev_err_probe(dev, rc,
+> +					     "MPXY channel 0x%x read attrs failed\n",
+> +					     mchan->channel_id);
+> +		}
+> +
+> +		if (mchan->attrs.msg_proto_id == SBI_MPXY_MSGPROTO_RPMI_ID) {
+> +			rc = mpxy_mbox_read_rpmi_attrs(mchan);
+> +			if (rc) {
+> +				return dev_err_probe(dev, rc,
+> +						     "MPXY channel 0x%x read RPMI attrs failed\n",
+> +						     mchan->channel_id);
+> +			}
+> +		}
+> +
+> +		mchan->notif = devm_kzalloc(dev, mpxy_shmem_size, GFP_KERNEL);
+> +		if (!mchan->notif)
+> +			return -ENOMEM;
+> +
+> +		mchan->max_xfer_len = min(mpxy_shmem_size, mchan->attrs.msg_max_len);
+> +
+> +		if ((mchan->attrs.capability & SBI_MPXY_CHAN_CAP_GET_NOTIFICATIONS) &&
+> +		    (mchan->attrs.capability & SBI_MPXY_CHAN_CAP_EVENTS_STATE))
+> +			mchan->have_events_state = true;
+> +
+> +		if ((mchan->attrs.capability & SBI_MPXY_CHAN_CAP_GET_NOTIFICATIONS) &&
+> +		    (mchan->attrs.capability & SBI_MPXY_CHAN_CAP_MSI))
+> +			mchan->msi_index = mbox->msi_count++;
+> +		else
+> +			mchan->msi_index = U32_MAX;
+> +		mchan->msi_irq = U32_MAX;
+> +	}
+> +
+> +	/* Initialize mailbox controller */
+> +	mbox->controller.txdone_irq = false;
+> +	mbox->controller.txdone_poll = false;
+> +	mbox->controller.ops = &mpxy_mbox_ops;
+> +	mbox->controller.dev = dev;
+> +	mbox->controller.num_chans = mbox->channel_count;
+> +	mbox->controller.fw_xlate = mpxy_mbox_fw_xlate;
+> +	mbox->controller.chans = devm_kcalloc(dev, mbox->channel_count,
+> +					      sizeof(*mbox->controller.chans),
+> +					      GFP_KERNEL);
+> +	if (!mbox->controller.chans)
+> +		return -ENOMEM;
+> +	for (i = 0; i < mbox->channel_count; i++)
+> +		mbox->controller.chans[i].con_priv = &mbox->channels[i];
+> +
+> +	/* Set the MSI domain if not available */
+> +	if (!dev_get_msi_domain(dev)) {
+> +		/*
+> +		 * The device MSI domain for OF devices is only set at the
+> +		 * time of populating/creating OF device. If the device MSI
+> +		 * domain is discovered later after the OF device is created
+> +		 * then we need to set it explicitly before using any platform
+> +		 * MSI functions.
+> +		 */
+
+> +		if (dev_of_node(dev))
+
+Do you really need this check? What about ACPI?
+
+> +			of_msi_configure(dev, dev_of_node(dev));
+> +	}
+> +
+> +	/* Setup MSIs for mailbox (if required) */
+> +	if (mbox->msi_count) {
+> +		mbox->msi_index_to_channel = devm_kcalloc(dev, mbox->msi_count,
+> +							  sizeof(*mbox->msi_index_to_channel),
+> +							  GFP_KERNEL);
+> +		if (!mbox->msi_index_to_channel)
+> +			return -ENOMEM;
+> +
+> +		for (msi_idx = 0; msi_idx < mbox->msi_count; msi_idx++) {
+> +			for (i = 0; i < mbox->channel_count; i++) {
+> +				mchan = &mbox->channels[i];
+> +				if (mchan->msi_index == msi_idx) {
+> +					mbox->msi_index_to_channel[msi_idx] = mchan;
+> +					break;
+> +				}
+> +			}
+> +		}
+> +
+> +		rc = platform_device_msi_init_and_alloc_irqs(dev, mbox->msi_count,
+> +							     mpxy_mbox_msi_write);
+> +		if (rc) {
+> +			return dev_err_probe(dev, rc, "Failed to allocate %d MSIs\n",
+> +					     mbox->msi_count);
+> +		}
+> +
+> +		for (i = 0; i < mbox->channel_count; i++) {
+> +			mchan = &mbox->channels[i];
+> +			if (mchan->msi_index == U32_MAX)
+> +				continue;
+> +			mchan->msi_irq = msi_get_virq(dev, mchan->msi_index);
+> +		}
+> +	}
+> +
+> +	/* Register mailbox controller */
+> +	rc = devm_mbox_controller_register(dev, &mbox->controller);
+> +	if (rc) {
+> +		dev_err_probe(dev, rc, "Registering SBI MPXY mailbox failed\n");
+> +		if (mbox->msi_count)
+> +			platform_device_msi_free_irqs_all(dev);
+> +		return rc;
+> +	}
+
+> +	dev_info(dev, "mailbox registered with %d channels\n",
+> +		 mbox->channel_count);
+
+Working driver doesn't need to issue a message.
+
+> +	return 0;
+> +}
+
+-- 
+With Best Regards,
+Andy Shevchenko
+
+
 
