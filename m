@@ -1,187 +1,181 @@
-Return-Path: <devicetree+bounces-192020-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-192021-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 62359AF12D9
-	for <lists+devicetree@lfdr.de>; Wed,  2 Jul 2025 12:59:35 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 65BB0AF12DD
+	for <lists+devicetree@lfdr.de>; Wed,  2 Jul 2025 13:00:04 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 1558F3B22E9
-	for <lists+devicetree@lfdr.de>; Wed,  2 Jul 2025 10:59:09 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id E70094E3524
+	for <lists+devicetree@lfdr.de>; Wed,  2 Jul 2025 10:59:49 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 803E0260585;
-	Wed,  2 Jul 2025 10:58:07 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7AEC42580EC;
+	Wed,  2 Jul 2025 10:59:38 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="PjRiaMwy"
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="Rdojvwqz"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ej1-f43.google.com (mail-ej1-f43.google.com [209.85.218.43])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A5CE725F79A;
-	Wed,  2 Jul 2025 10:58:05 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.43
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id ED82323E320
+	for <devicetree@vger.kernel.org>; Wed,  2 Jul 2025 10:59:36 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1751453887; cv=none; b=Ub1Cxl8IRWThTMAlB/UfrUjHVd1h4Qbrob5M86OyFUg8B79ovhb5eo+VLCkkv8oxaBY3RNRj9wRkfI6BzkJtP+zhHog2qON0F5d9q6m4lR0Zy3J4zV4NBtX4qh2Zaw1V+4NZRAfcBTnMEUxf7cy7CVm6/v3jgnhEHserCaN0uvs=
+	t=1751453978; cv=none; b=HV/snU0gY8sJ7JZQPowLdyB7LdEou+W4K9RxQrF6EGiSV3iMDVaUcVkYDXDNe2pgitR5MTUzFX6IW92bL351EeGzeGG+4/IoxA49IhhT7f6MWFblz1ANLqh4UKf+d84ORIAv9k34yIAtdmNklPXaaaMdg5cWa6o17yR7AezbkMU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1751453887; c=relaxed/simple;
-	bh=ww9qVi9kS/GRl/dQgoVS7ktOBVeLoeyQcow80qPNWP4=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=XRwcsPKJhG/7CIRZEFOBoO5k8UufIRWQfKszaYyKtWfJ/HsUM4+8YBd/+/YAGKPeFxU+tHt9YXcAxxfo/QD/e1on9aHlzq1QtoPSnCZMDiGZCbuw/VY9Ffito3p2rff3MtgmmkOTeDA3EA36DWkLpZWECa68PAR7vBbPG9yKvg4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=PjRiaMwy; arc=none smtp.client-ip=209.85.218.43
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-ej1-f43.google.com with SMTP id a640c23a62f3a-ae36e88a5daso850338666b.1;
-        Wed, 02 Jul 2025 03:58:05 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1751453884; x=1752058684; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=4UQDvStLCCqdjbM2QKt6gHnnOIKDEa8/C2rjjg0SswI=;
-        b=PjRiaMwyYaG/UPgImqoFqHGZIyDPT22KEYAMGPEISUTuZiZfqnzZLfWI/2dHQf1XN/
-         00106gMqcwu6K1lcj+AgkPKw/bJawebg4yybpXwtuW8QabmgXAzLo5WTDXcrKjB32Sic
-         GGmm5T58P65Iko2OLLEy5WHQlYCLFjx7y4qMOltBbh4EsLwQh3mufH67RRDZ5Y/6oazo
-         0yIElvyR+MasZWI7JmuCH7594KPCuLm8t+uYCvERGDCZlGRD3g/Sz4QYq1Zy2uzwY2Ox
-         KZrWT8ClApsFg+R/izFd+rEN2hYW33QW3vQoELDlkQE2cg85+sTqQYiI6vUd79kVmF0h
-         Rywg==
+	s=arc-20240116; t=1751453978; c=relaxed/simple;
+	bh=NL5WZDSJLjYMpx9TL2pLWNNh4OW2ead/Z6PIBLBEMx8=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=QDaOuXi5TxrN3RKfjoVvaRlmzWe2FcdmLn55k0lJTNSitunmQ3MYPSz+vgP1GIypJbXUOFmIu1IYxwMC8vp27wFxiYUBamHkU7ei7Bc9Vxaldgpql80f/+0KUeim4ra/C1scUxfKrqScoxppCJDTo0MvnhWoyESBJiCSqLKuixA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=Rdojvwqz; arc=none smtp.client-ip=205.220.168.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
+Received: from pps.filterd (m0279862.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 5623fI5R010432
+	for <devicetree@vger.kernel.org>; Wed, 2 Jul 2025 10:59:36 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	u5BDQVhLvHH8BVr+x4dUYqKfZubZmTAaympRKgXLXq8=; b=RdojvwqzC6iQee1r
+	GD7vSCM9H6GkLsfK7wl3BdS/2dioV2w1ZDOyesTq4dVdFpeVPPpc9Gpa090LsgVB
+	04NhtLyj6ucRrN+Qegm+DNG+zrUhE9zwdoH9tvF8eeiETQV8DaDQ/g67Cv7xohGU
+	gwaKmdPlI1oCJDhMPe6oY+Y3CUVMdUdHd4k0wJdoalUDjnsJr4fPHGtUlxQRK+rY
+	2oSBOxR120S+iMtR8CkKR8Oa+qP34YX8Xh9hnU4FTJJjnh/T1O0lg0jgiMHt14SA
+	1YQOHhOVCf0Slb4E9eDqqviOOoO60WdHQo4tE0nbiyPKJBuLKGHg34EPay4UZoDo
+	6xboag==
+Received: from mail-pl1-f200.google.com (mail-pl1-f200.google.com [209.85.214.200])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 47mw3099yk-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
+	for <devicetree@vger.kernel.org>; Wed, 02 Jul 2025 10:59:36 +0000 (GMT)
+Received: by mail-pl1-f200.google.com with SMTP id d9443c01a7336-235eefe6a8fso49399765ad.1
+        for <devicetree@vger.kernel.org>; Wed, 02 Jul 2025 03:59:36 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1751453884; x=1752058684;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=4UQDvStLCCqdjbM2QKt6gHnnOIKDEa8/C2rjjg0SswI=;
-        b=M8Ryv1jWl4QwldGDUiwmEdOVwblJlcxiHzdxRZSeqdz7H3qvElcljdj78ruNhKxyXG
-         Auik6lRXQgO4AsGTo2Wr66kCpl6A6vlLKpFdPu1nljiJCogknLPEgAXWOFV1n9QcuuX7
-         pgVVUQSjtAV+qVZU3OM5F44EqftK23gBh481IWYpngPfcAeOM+bF8grESfR9AtCm+g0e
-         V31uMbbYo0dPsOuCJa8InZkvkG0ZfXpFW729KfnYEwf/xYLp/G0rw9sLUVqq5+LDKzON
-         VjqYmse8n9799OGAvmm4Y8za/LqhuUQsXoZLTE/wP/Ii/vx7HF7+TJt6KvN7fRYx4Ym6
-         PcNA==
-X-Forwarded-Encrypted: i=1; AJvYcCU7KXOG/+oFCxzv5IUnZfiGkx+toXiPO+Y2zjf0OMFx5wA7jBAgx3eggb0knOtCBEErBTEUaXGfWrgmDlT3@vger.kernel.org, AJvYcCW/2F8N86hP5ez5ONL6iRclz4uah+oUvMnHrfihk7bdsP9F32qeo5HkLF6GLtr3+NQKwNSnXfZozK8i@vger.kernel.org
-X-Gm-Message-State: AOJu0YwZ4QSdfq7lP24e0wMNUvwaTjb6PxfxpHuZcq3tkQQZyVFNQqnD
-	k18r8A60pJkiGwbGfQALAZeDikDNq9afRJOArKXtwj1O9WpTEnLzrXFr
-X-Gm-Gg: ASbGncs0uG0WVzBqwAazH8b8XWVn9odpeQR1dVDZg21A8m3qPmSflqIhEgjB3ncCBnI
-	bsbGMILwDFp0LyfE5duRR07yQqRviN93FhCGERqNhfGe6yxh8NWaJMbg50DJX+UkoL88TSlq731
-	qUzHwDUYBgiDwYiwEgPD5MC6Qr5uXeQD66fTyCENgjMymHynN1xl71e/fcAwRKoFeT72fkTWJCR
-	y7zSx5duFxd5vL9cAagaEZpP8nYu6+XS8duWSg7YaJwa1R+2TRqVKyPTWYxMEfSDYKqoH/OMLO7
-	cGPG7uSAFFTxUuLrbY7Ae4frAYn6xD6FQcmvZYEMOvdumFm4KZYe2kAxJuIXPAfIm9ney7vD2cx
-	yQr0N2+c=
-X-Google-Smtp-Source: AGHT+IEsoB7YBUau4TzIFD9Pd++QxJk8jVRKzBz/JBIA6OBn/guMweMpUf9qL70n0g01Wfz1g1iRgA==
-X-Received: by 2002:a17:907:6095:b0:ae0:a0d0:eca0 with SMTP id a640c23a62f3a-ae3c2c4bf31mr216834366b.14.1751453883569;
-        Wed, 02 Jul 2025 03:58:03 -0700 (PDT)
-Received: from HYB-DlYm71t3hSl.ad.analog.com ([137.71.226.91])
-        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-ae3c7606786sm79736466b.60.2025.07.02.03.58.02
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 02 Jul 2025 03:58:03 -0700 (PDT)
-Date: Wed, 2 Jul 2025 12:58:00 +0200
-From: Jorge Marques <gastmaier@gmail.com>
-To: Krzysztof Kozlowski <krzk@kernel.org>
-Cc: Jorge Marques <jorge.marques@analog.com>, 
-	Alexandre Belloni <alexandre.belloni@bootlin.com>, Frank Li <Frank.Li@nxp.com>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	linux-i3c@lists.infradead.org, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v4 1/2] dt-bindings: i3c: Add adi-i3c-master
-Message-ID: <v2ybju75bpjdqxfkell47nlkeyal36ylmnqt2yvpncxnmp2irb@pygx56jsyxkr>
-References: <20250626-adi-i3c-master-v4-0-3846a1f66d5e@analog.com>
- <20250626-adi-i3c-master-v4-1-3846a1f66d5e@analog.com>
- <20250627-steadfast-ferret-of-expertise-5c8ff2@krzk-bin>
- <tl5fckhrivaqfyzwyb2o2a7gykpigwend7z2nduqgbbej3hqbs@vxxtsadhtdmt>
- <41782ded-908b-46ef-8f75-4d2565476b7c@kernel.org>
- <cfi6rzhco2ba6pcbk57l7tblimuks5jnpgaly7nbedbrpyhtma@u46if22kurwk>
+        d=1e100.net; s=20230601; t=1751453975; x=1752058775;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=u5BDQVhLvHH8BVr+x4dUYqKfZubZmTAaympRKgXLXq8=;
+        b=YoRpWyGxDAFxP/zHTiIDKf2ApWjXTLiK6nJuwND0QotmIZiA3f0KcYlPf8uh3tg8L0
+         7JZajetxR5FxMt1vQCKeWPAVF6sVnHQ9p+tMPEEm+FpOJtYLVPBzIQaK7qSyBGGa5ifd
+         1kgu3kKiskBGDi0HG+6lphNni6XREEt//SDls/r4QLlUvsfGyRxKDdW7JoQLJ/gIlAPd
+         YRkBmw+9hLg7o8VOTGcvCBYXiQpDHDHdy9zxSu7qOVtrwkKHMGmE9rm0fTDqWTuEsUOY
+         +HaFS1sXGPQcUN1I/ZLRlIKMFABZOLQXK9ihLyf1dNJIxqV6OPcxKcLcdS1CxasOPpLo
+         QJuQ==
+X-Forwarded-Encrypted: i=1; AJvYcCVgF5BRHaiNtb+hLmvjE+Zjipa6I1OGMr7rmG+Kg0y2ooCw4EL1baT29u/9M9+fjC7/dv1KhsVbq7ha@vger.kernel.org
+X-Gm-Message-State: AOJu0YxpiodeQgUtbozlOCI31SXxq5S3Nvb64hQc/5rjhRcKoB652/if
+	Y76ilmk+qOcZpb7pouZYaC3+yQYWVgp0lH7A5njQZ927Mitd3EkWusEP0ows7j2gHtIEgetCbh7
+	YhDisopzQZSCpoAMMPQqAD8IT82I931P49jhb1vM4l5+dgmypW1vbjl4l71My3ODc
+X-Gm-Gg: ASbGncuymvwWVZ9JJWAfQn8XRF0mEjDoXFJ/ByS91tkHF/HSlQT8zcrGbxY+xot/b9S
+	b12ATvz9M3tvZ548ErkOCzryAL91ofwFkIarjIivtRbxWGklxOBAisk6AgTbFr/grpLclSj+MRL
+	OqK4SvH7n58VcgH+CcJVWVSwVLYiGm+25Sr83pM7ZIzHby9YUFDaPqa1oYMfRDKa4rt7z7NMokC
+	qX22qFehh9wx4VaX7eFSm3sycOqmASvB0bsmsrrg/1zzYGpbJn+B32YMBFEeJftWg3CYQ1JAbQI
+	9xYUePz+7WWBa76OEwKY727el5B9vtGdpF9LHKRQ8x8oNPCUPebuqayWtaNtHbI=
+X-Received: by 2002:a17:902:c950:b0:234:f4da:7eed with SMTP id d9443c01a7336-23c6e61fd93mr42616215ad.44.1751453975087;
+        Wed, 02 Jul 2025 03:59:35 -0700 (PDT)
+X-Google-Smtp-Source: AGHT+IFI1uiNa2DtkbC3czXuPd6JRMFL4J633cWnkq1CvMz4ROdmjIGLW4N8ll7TLtpVDulerN/hIA==
+X-Received: by 2002:a17:902:c950:b0:234:f4da:7eed with SMTP id d9443c01a7336-23c6e61fd93mr42615765ad.44.1751453974652;
+        Wed, 02 Jul 2025 03:59:34 -0700 (PDT)
+Received: from [10.151.37.217] ([202.46.23.19])
+        by smtp.gmail.com with ESMTPSA id d9443c01a7336-23acb3bbf9esm128223125ad.191.2025.07.02.03.59.30
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 02 Jul 2025 03:59:33 -0700 (PDT)
+Message-ID: <b5481363-ab6e-4b27-8a5c-d766f64e5169@oss.qualcomm.com>
+Date: Wed, 2 Jul 2025 16:29:29 +0530
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <cfi6rzhco2ba6pcbk57l7tblimuks5jnpgaly7nbedbrpyhtma@u46if22kurwk>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 1/7] dt-bindings: sram: qcom,imem: Document Qualcomm IPQ
+ SoC's IMEM compatibles
+Content-Language: en-US
+To: Krzysztof Kozlowski <krzk@kernel.org>, Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley
+ <conor+dt@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konradybcio@kernel.org>
+Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+References: <20250702-imem-v1-0-12d49b1ceff0@oss.qualcomm.com>
+ <20250702-imem-v1-1-12d49b1ceff0@oss.qualcomm.com>
+ <a68f46f0-8053-4d9f-96f7-55de33bb301f@kernel.org>
+ <37695966-1d7c-46c3-9717-30da4e8d1930@oss.qualcomm.com>
+ <e1424499-718a-41c8-b729-0ea96bb6a172@kernel.org>
+From: Kathiravan Thirumoorthy <kathiravan.thirumoorthy@oss.qualcomm.com>
+In-Reply-To: <e1424499-718a-41c8-b729-0ea96bb6a172@kernel.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
+X-Authority-Analysis: v=2.4 cv=CY4I5Krl c=1 sm=1 tr=0 ts=68651118 cx=c_pps
+ a=IZJwPbhc+fLeJZngyXXI0A==:117 a=j4ogTh8yFefVWWEFDRgCtg==:17
+ a=IkcTkHD0fZMA:10 a=Wb1JkmetP80A:10 a=VwQbUJbxAAAA:8 a=EUspDBNiAAAA:8
+ a=-s9buvLw_tBRhafl9uwA:9 a=3ZKOabzyN94A:10 a=QEXdDO2ut3YA:10
+ a=uG9DUKGECoFWVXl0Dc02:22
+X-Proofpoint-ORIG-GUID: qYogaulF1kvCApWwww7AVjZ406Cqvy7B
+X-Proofpoint-GUID: qYogaulF1kvCApWwww7AVjZ406Cqvy7B
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwNzAyMDA4OSBTYWx0ZWRfX2Q5keS5Vf33V
+ U19XTxGS/7Q9Y4BpOmw3gu8/vlSgysmp3zjo9PvWjo3FSQeAKXKyDYJRFGh1/aep0C7Pfb+qdP0
+ OswQMW4vSVg6akR3dVPxmEexCOzxckFSTQ/Ic+sn5O+jbC0/uV4/Le91eKg7dWwJuMtNsWbIxN7
+ 2QSIkA01L2vH2jM5P95wMVntPQkuc/DiFjPzp/FwQKC1ADRnTpVXN7i3q+wODnfNfioiPcg4HKh
+ OF5vMUGxS3cYOAfxxk0Clzd4pSiwgVw9dLCv4BPMUchSBNutLwbckryIp+B9GJxdFROQ+pgD6Gn
+ i38DVWn+KpdhX0wWC2xRgWkvHg/qnXhvat8bFWxpJvuLrI9uqc00lHJpxY00il4Si1zmK2Uah79
+ GLFu6yr+eWOvWk1m6qCdd+nnXRXDrtKrxuHGHGC3dTFIYHe56xy3hh0Da4pqN3wRULdyBfgU
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1099,Hydra:6.1.7,FMLib:17.12.80.40
+ definitions=2025-07-02_01,2025-06-27_01,2025-03-28_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ adultscore=0 mlxlogscore=999 priorityscore=1501 clxscore=1015
+ lowpriorityscore=0 mlxscore=0 phishscore=0 suspectscore=0 bulkscore=0
+ malwarescore=0 impostorscore=0 spamscore=0 classifier=spam authscore=0
+ authtc=n/a authcc= route=outbound adjust=0 reason=mlx scancount=1
+ engine=8.19.0-2505280000 definitions=main-2507020089
 
-On Fri, Jun 27, 2025 at 06:02:26PM +0200, Jorge Marques wrote:
-> On Fri, Jun 27, 2025 at 04:49:19PM +0200, Krzysztof Kozlowski wrote:
-> > On 27/06/2025 16:38, Jorge Marques wrote:
-> > > On Fri, Jun 27, 2025 at 08:56:55AM +0200, Krzysztof Kozlowski wrote:
-> > >> On Thu, Jun 26, 2025 at 12:07:36PM +0200, Jorge Marques wrote:
-> > >>> Add bindings doc for ADI I3C Controller IP core, a FPGA synthesizable IP
-> > >>> core that implements the MIPI I3C Basic controller specification.
-> > >>
-> > >> How did you resolve my last comment? I don't see any explanation -
-> > >> neither here nor in the binding description. Binding description is
-> > >> actually better place, I think now.
-> > >>
-> > >> Best regards,
-> > >> Krzysztof
-> > >>
-> > > 
-> > > Hi Krzysztof,
-> > > 
-> > > I forgot to condense out discussion on v4.
-> > > What about this binding description:
-> > > 
-> > >   description: |
-> > >     FPGA-based I3C controller designed to interface with I3C and I2C
-> > >     peripherals, implementing a subset of the I3C-basic specification.
-> > >     The IP core is tested on arm, microblaze, and arm64 architectures.
-> > >     It takes one or two clocks, axi and i3c. If only axi is provided,
-> > >     then there is no clock signal to the i3c input clock pin and axi
-> > 
-> > This is obvious from the schema, drop.
-> Ack.
-> 
-> > 
-> > >     clock drives the whole IP. The compatible is suffixed by 1.00.a
-> > >     foreseeing future controllers by Analog Devices Inc. and breaking
-> > >     changes.
-> > 
-> > I don't understand that. How are you breaking any changes? And how
-> > 1.00.a predicts future? I don't think this reflects previous discussion.
-> > Why you were asked to go with v1.00.a?
-> The -1.00.a suffix came from this discussion:
->   
->   https://lore.kernel.org/linux-i3c/ildi2pup2zkyv4stuknkrjysex3yzsbrrsrwbgcc4xgvdhwrdd@7qh4y6mutgy2/
-> 
-> Other adi bindings use this suffix. I personally wouldn't add any suffix
-> unless told otherwise, as I expressed on the thread. Should I drop it?
-> or suffix it with something else?
-> > 
-> > Best regards,
-> > Krzysztof
-> 
+
+On 7/2/2025 4:18 PM, Krzysztof Kozlowski wrote:
+> On 02/07/2025 12:46, Kathiravan Thirumoorthy wrote:
+>> On 7/2/2025 3:49 PM, Krzysztof Kozlowski wrote:
+>>> On 02/07/2025 12:17, Kathiravan Thirumoorthy wrote:
+>>>> IMEM is present in the Qualcomm's IPQ SoCs as well. Document the same.
+>>>>
+>>>> Signed-off-by: Kathiravan Thirumoorthy <kathiravan.thirumoorthy@oss.qualcomm.com>
+>>>> ---
+>>>>    Documentation/devicetree/bindings/sram/qcom,imem.yaml | 6 ++++++
+>>>>    1 file changed, 6 insertions(+)
+>>> Where is the changelog? This is not a v1.
+>> This is the v1. The series[1] I pointed out describes only for the
+>> IPQ5424 SoC. Since I have added few more SoCs, thought v1 is the
+>> appropriate numbering.
+>>
+>> [1]
+>> https://lore.kernel.org/linux-arm-msm/20250610-wdt_reset_reason-v5-0-2d2835160ab5@oss.qualcomm.com/
+> But IPQ5424 is already there, so you reworked that patch.
+Okay, so this should be V6?
+>
+>
+>>>> diff --git a/Documentation/devicetree/bindings/sram/qcom,imem.yaml b/Documentation/devicetree/bindings/sram/qcom,imem.yaml
+>>>> index 72d35e30c439ccf4901d937f838fe7c7a81f33b1..48e2f332e0e9fc9fa4147fa12d9c6c70a77fafda 100644
+>>>> --- a/Documentation/devicetree/bindings/sram/qcom,imem.yaml
+>>>> +++ b/Documentation/devicetree/bindings/sram/qcom,imem.yaml
+>>>> @@ -18,6 +18,12 @@ properties:
+>>>>        items:
+>>>>          - enum:
+>>>>              - qcom,apq8064-imem
+>>>> +          - qcom,ipq8074-imem
+>>>> +          - qcom,ipq6018-imem
+>>>> +          - qcom,ipq5018-imem
+>>>> +          - qcom,ipq9574-imem
+>>>> +          - qcom,ipq5332-imem
+>>>> +          - qcom,ipq5424-imem
+>>> Random order, no, follow existing style. This applies for every qcom
+>>> binding and you received such feedbacks in the past.
+>> Apologies — I arranged them based on the evolutionary order of SoCs.
+> Where is such ordering documented? How is it expressed in your internal
+> guideline for example?
+I made the mistake unintentionally and apologized for the same!
+>
 > Best regards,
-> Jorge
-
-Hi Krzysztof and Conor,
-
-I went after the reason of the historically -1.00.a suffix and
-discovered that they came into existence due to AMD Xilinx auto
-generation devicetree tool SDTGen
-https://github.com/Xilinx/system-device-tree-xlnx
-that would automatically suffix with the IP version, defaulting to 1.00.a,
-and for a seamless experience, the were copied over to the dt-bindings.
-
-The adi,axi-pwmgen dt-binding went more creative and suffixed with
--2.00.a, while never enforcing Vivado to yield the devicetree with such
-value (Major version is asserted in the driver through reg access, the
-current core version is v2.1.1)
-
-Testing on my side (AMD Xilinx Vivado 2024.2), it seems Vivado now
-defaults to 1.0, so the previous bindings from the other IPs are not
-accurate anymore, either, (axi-pwmgen auto gens
-`compatible = "xlnx,axi-pwm-gen-1.0";` (`xlnx` instead of `adi`, also)).
-
-For fun, the current Vivado version thinks the devicetree node for the
-i3c master should be as follows:
-
-  i3c_host_interface: i3c_controller_host_interface@44a00000 {
-          compatible = "xlnx,i3c-controller-host-interface-1.0";
-          reg = <0x44a00000 0x10000>;
-          clocks = <&clkc 15>;
-          clock-names = "s_axi_aclk";
-  };
-
-Let me know if we can drop the suffix, or replace with something else.
-The current register defined core version is v0.1.0.
-
-Best regards,
-Jorge
+> Krzysztof
 
