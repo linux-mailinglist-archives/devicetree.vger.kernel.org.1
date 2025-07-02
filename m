@@ -1,123 +1,167 @@
-Return-Path: <devicetree+bounces-192058-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-192059-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2EDE4AF144C
-	for <lists+devicetree@lfdr.de>; Wed,  2 Jul 2025 13:44:22 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1A28EAF1456
+	for <lists+devicetree@lfdr.de>; Wed,  2 Jul 2025 13:45:12 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 8FB2B1C22FFC
-	for <lists+devicetree@lfdr.de>; Wed,  2 Jul 2025 11:44:37 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 3F1FA7B51EF
+	for <lists+devicetree@lfdr.de>; Wed,  2 Jul 2025 11:43:17 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C6291267B07;
-	Wed,  2 Jul 2025 11:44:04 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3D74D2673A9;
+	Wed,  2 Jul 2025 11:44:35 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=redhat.com header.i=@redhat.com header.b="QxqZ6CPo"
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="ANu+x2wh"
 X-Original-To: devicetree@vger.kernel.org
-Received: from us-smtp-delivery-124.mimecast.com (us-smtp-delivery-124.mimecast.com [170.10.133.124])
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.12])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2D00E267729
-	for <devicetree@vger.kernel.org>; Wed,  2 Jul 2025 11:44:02 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=170.10.133.124
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6622225A2A2;
+	Wed,  2 Jul 2025 11:44:33 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.198.163.12
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1751456644; cv=none; b=gCV4sZTgedDVCrrzZ/yD78hsKxbgbbG7lOh0mZLy3Hx3P9XDkywde1twpveP2XyrveqsDVvMmyaICqqVYljjYSvhekJO1znGAlcC1lEcvNdI6FkWfKhT0sUC5tdqZd5Cx7ktPtsJN6THAMTdTehzWkUd7gAiKA7KiJgdDz5IpRM=
+	t=1751456675; cv=none; b=RLOVSs297uHfbRxxGWpDOFjz6cLwF7r2vtO3VUj7Xfx4cb3geb14hoplXSmStgaxXbqHXMjLk+lKinlIOG6H0PghRSWgm9yWAPN46EBOLTYvZNhPOlQbxz72vOy6xd8rXraE9w4qigVDwn3zquJb8HvudqmAYmOa7Rde6FdplaY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1751456644; c=relaxed/simple;
-	bh=lQ5pOB3PF0Ozj2m53e3VhTH0wmfKLgTVASK5lMyhgEI=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=aMEIo0R3uU7ViBsWO/O9g6z/rWF3J/tWoj6D0D0C+Bxi2iRQPhXkFvr5dACt7CUPXOYyb0hY8mOjVHK86m7WsQ5W2Wp35GS1K9Yug/loYqY1m9m2dKMlKmXh/BSMCkolWhkMIvCNwx4Dn8D61poDQna4bXgkk0zR0GZthcQBrrU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=redhat.com; spf=pass smtp.mailfrom=redhat.com; dkim=pass (1024-bit key) header.d=redhat.com header.i=@redhat.com header.b=QxqZ6CPo; arc=none smtp.client-ip=170.10.133.124
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=redhat.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=redhat.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
-	s=mimecast20190719; t=1751456639;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=dwvTGYy8qX0iUTJggFcHacmEi3yRTYRCFkLK9Jl7i5c=;
-	b=QxqZ6CPo5WrzQPf7lqJCHS+fcUk2KjwCELpeHU1sfgCwl5K2xCfs3GaHkCJRw5hDQLnfnh
-	DJDNhhBlTQCxTgNm59V/pW3ZDBYWUXLlgprokQSFYqAXvZngdq6xccifgIxXxrjFafFJTM
-	OzPqKIbR7QeQWaTYOnz5LNirhYcDUEQ=
-Received: from mx-prod-mc-06.mail-002.prod.us-west-2.aws.redhat.com
- (ec2-35-165-154-97.us-west-2.compute.amazonaws.com [35.165.154.97]) by
- relay.mimecast.com with ESMTP with STARTTLS (version=TLSv1.3,
- cipher=TLS_AES_256_GCM_SHA384) id us-mta-328-b07H8pFiO_mvNmbmdKQTUw-1; Wed,
- 02 Jul 2025 07:43:51 -0400
-X-MC-Unique: b07H8pFiO_mvNmbmdKQTUw-1
-X-Mimecast-MFC-AGG-ID: b07H8pFiO_mvNmbmdKQTUw_1751456627
-Received: from mx-prod-int-05.mail-002.prod.us-west-2.aws.redhat.com (mx-prod-int-05.mail-002.prod.us-west-2.aws.redhat.com [10.30.177.17])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
-	(No client certificate requested)
-	by mx-prod-mc-06.mail-002.prod.us-west-2.aws.redhat.com (Postfix) with ESMTPS id 852EF18011FE;
-	Wed,  2 Jul 2025 11:43:46 +0000 (UTC)
-Received: from [10.45.226.95] (unknown [10.45.226.95])
-	by mx-prod-int-05.mail-002.prod.us-west-2.aws.redhat.com (Postfix) with ESMTP id A0E02195608F;
-	Wed,  2 Jul 2025 11:43:39 +0000 (UTC)
-Message-ID: <e5e3409e-b6a8-4a63-97ac-33e6b1215979@redhat.com>
-Date: Wed, 2 Jul 2025 13:43:38 +0200
+	s=arc-20240116; t=1751456675; c=relaxed/simple;
+	bh=BpBCvq4RPD3JQB3NRc9+j8XkTmlFaTJQQCP78Asb59M=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=jJ9CYlrze88h6vmNG5Y+vcylUqdX9jYf3i1n6FWtStIgDAysgr7QgFk642GbdWshglSp6pJ40iTQvr3kNH5jzUKqb8QtzxJasiyWC9RiFKxGWNtN770hfjauq/Rh4DiLd+qOJP4nATu27bXCQrUpiG/cgci7MV9TqMdNiS9WCrE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com; spf=none smtp.mailfrom=linux.intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=ANu+x2wh; arc=none smtp.client-ip=192.198.163.12
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com
+Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=linux.intel.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1751456673; x=1782992673;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=BpBCvq4RPD3JQB3NRc9+j8XkTmlFaTJQQCP78Asb59M=;
+  b=ANu+x2whOGNRDhWJE5zkh3YPH1I4Z2Qo7+UxTqOnrVz2LIagbpglfuK5
+   GdzkFJ2s9yHERm0upmk3/zYG0oh40hgz5ZfTLvpR8fp3NwTeeSxLbHgKb
+   qfhltuZhRjnHv8zPTxLTJEtoMgVMTNeApmC/PzfbgGN/jxD5sIq4W312h
+   dCBrHNmzZYbVSQfxmJFI/vLJboTT9bV2bfrRm3AzHiSlJCsQQB9401JY3
+   Qp5rsMIHKiEllH5lyAyCaCR+vtxe+45Q4x9EzCWP/4JPlWE5thikbe2PS
+   YxcUnr1F3YQGqI4gzoCdvFst7d8DuUJTweZfp+zfVm5hevBpn3RefY0LH
+   Q==;
+X-CSE-ConnectionGUID: Zpa4+7rOTPm4Q9Bgi+X1Lg==
+X-CSE-MsgGUID: zcvOvrMRSjWGZhiBfte4NA==
+X-IronPort-AV: E=McAfee;i="6800,10657,11481"; a="57555489"
+X-IronPort-AV: E=Sophos;i="6.16,281,1744095600"; 
+   d="scan'208";a="57555489"
+Received: from fmviesa009.fm.intel.com ([10.60.135.149])
+  by fmvoesa106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 02 Jul 2025 04:44:32 -0700
+X-CSE-ConnectionGUID: kvCPwjhTQvmObDaiwBgeGQ==
+X-CSE-MsgGUID: oaJ5N5q4RoCq/O4ueG6nsA==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.16,281,1744095600"; 
+   d="scan'208";a="154393699"
+Received: from smile.fi.intel.com ([10.237.72.52])
+  by fmviesa009.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 02 Jul 2025 04:44:26 -0700
+Received: from andy by smile.fi.intel.com with local (Exim 4.98.2)
+	(envelope-from <andriy.shevchenko@linux.intel.com>)
+	id 1uWvsz-0000000BuFM-3tNf;
+	Wed, 02 Jul 2025 14:44:21 +0300
+Date: Wed, 2 Jul 2025 14:44:21 +0300
+From: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
+To: Anup Patel <apatel@ventanamicro.com>
+Cc: Michael Turquette <mturquette@baylibre.com>,
+	Stephen Boyd <sboyd@kernel.org>, Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Jassi Brar <jassisinghbrar@gmail.com>,
+	Thomas Gleixner <tglx@linutronix.de>,
+	"Rafael J . Wysocki" <rafael@kernel.org>,
+	Mika Westerberg <mika.westerberg@linux.intel.com>,
+	Linus Walleij <linus.walleij@linaro.org>,
+	Bartosz Golaszewski <brgl@bgdev.pl>,
+	Uwe =?iso-8859-1?Q?Kleine-K=F6nig?= <ukleinek@kernel.org>,
+	Palmer Dabbelt <palmer@dabbelt.com>,
+	Paul Walmsley <paul.walmsley@sifive.com>,
+	Alexandre Ghiti <alex@ghiti.fr>, Len Brown <lenb@kernel.org>,
+	Sunil V L <sunilvl@ventanamicro.com>,
+	Rahul Pathak <rpathak@ventanamicro.com>,
+	Leyfoon Tan <leyfoon.tan@starfivetech.com>,
+	Atish Patra <atish.patra@linux.dev>,
+	Andrew Jones <ajones@ventanamicro.com>,
+	Samuel Holland <samuel.holland@sifive.com>,
+	Anup Patel <anup@brainfault.org>, linux-clk@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-acpi@vger.kernel.org,
+	linux-riscv@lists.infradead.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v7 15/24] ACPI: property: Add support for cells property
+Message-ID: <aGUblcoNMCFiK3CL@smile.fi.intel.com>
+References: <20250702051345.1460497-1-apatel@ventanamicro.com>
+ <20250702051345.1460497-16-apatel@ventanamicro.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH net-next v12 07/14] dpll: zl3073x: Add clock_id field
-To: Jiri Pirko <jiri@resnulli.us>
-Cc: netdev@vger.kernel.org, Vadim Fedorenko <vadim.fedorenko@linux.dev>,
- Arkadiusz Kubalewski <arkadiusz.kubalewski@intel.com>,
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>,
- Prathosh Satish <Prathosh.Satish@microchip.com>,
- "David S. Miller" <davem@davemloft.net>, Eric Dumazet <edumazet@google.com>,
- Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
- Simon Horman <horms@kernel.org>, Jonathan Corbet <corbet@lwn.net>,
- Jason Gunthorpe <jgg@ziepe.ca>, Shannon Nelson <shannon.nelson@amd.com>,
- Dave Jiang <dave.jiang@intel.com>,
- Jonathan Cameron <Jonathan.Cameron@huawei.com>, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, linux-doc@vger.kernel.org,
- Michal Schmidt <mschmidt@redhat.com>, Petr Oros <poros@redhat.com>
-References: <20250629191049.64398-1-ivecera@redhat.com>
- <20250629191049.64398-8-ivecera@redhat.com>
- <amsh2xeltgadepx22kvcq4cfyhb3psnxafqhr33ra6nznswsaq@hfq6yrb4zvo7>
-Content-Language: en-US
-From: Ivan Vecera <ivecera@redhat.com>
-In-Reply-To: <amsh2xeltgadepx22kvcq4cfyhb3psnxafqhr33ra6nznswsaq@hfq6yrb4zvo7>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Scanned-By: MIMEDefang 3.0 on 10.30.177.17
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20250702051345.1460497-16-apatel@ventanamicro.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park, 6
+ krs, Bertel Jungin Aukio 5, 02600 Espoo
 
-
-On 02. 07. 25 12:31 odp., Jiri Pirko wrote:
-> Sun, Jun 29, 2025 at 09:10:42PM +0200, ivecera@redhat.com wrote:
->> Add .clock_id to zl3073x_dev structure that will be used by later
->> commits introducing DPLL feature. The clock ID is required for DPLL
->> device registration.
->>
->> To generate this ID, use chip ID read during device initialization.
->> In case where multiple zl3073x based chips are present, the chip ID
->> is shifted and lower bits are filled by an unique value - using
->> the I2C device address for I2C connections and the chip-select value
->> for SPI connections.
+On Wed, Jul 02, 2025 at 10:43:36AM +0530, Anup Patel wrote:
+> From: Sunil V L <sunilvl@ventanamicro.com>
 > 
-> You say that multiple chips may have the same chip ID? How is that
-> possible? Isn't it supposed to be unique?
-> I understand clock ID to be invariant regardless where you plug your
-> device. When you construct it from i2c address, sounds wrong.
+> Currently, ACPI doesn't support cells property when
+> fwnode_property_get_reference_args() is called. ACPI always expects
+> the number of arguments to be passed. However, the above mentioned
+> call being a common interface for OF and ACPI, it is better to have
+> single calling convention which works for both. Hence, add support
+> for cells property on the reference device to get the number of
+> arguments dynamically.
 
-The chip id is not like serial number but it is like device id under
-PCI. So if you will have multiple chips with this chip id you have to
-distinguish somehow between them, this is the reason why I2C address
-is added into the final value.
+You can use Elvis to shorten lines, but in my opinion this is okay change
+overall. FWIW,
+Reviewed-by: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
 
-Anyway this device does not have any attribute that corresponds to
-clock id (as per our previous discussion) and it will be better to NOT
-require clock id from DPLL core side.
 
-Ivan
+
+>  
+> +			nargs_count = acpi_fwnode_get_args_count(device, nargs_prop);
+>  			element++;
+> -
+
+
+u probably want to leave this blank line and rather move the new code here
+
+			element++;
+
+			nargs_count = acpi_fwnode_get_args_count(device, nargs_prop);
+
+>  			ret = acpi_get_ref_args(idx == index ? args : NULL,
+>  						acpi_fwnode_handle(device),
+> -						&element, end, args_count);
+> +						&element, end,
+> +						nargs_count ? nargs_count : args_count);
+
+						&element, end, nargs_count ?: args_count);
+
+>  			if (ret < 0)
+>  				return ret;
+
+...
+
+> +			device = to_acpi_device_node(ref_fwnode);
+> +			nargs_count = acpi_fwnode_get_args_count(device, nargs_prop);
+>  			element++;
+> -
+>  			ret = acpi_get_ref_args(idx == index ? args : NULL,
+>  						ref_fwnode, &element, end,
+> -						args_count);
+> +						nargs_count ? nargs_count : args_count);
+>  			if (ret < 0)
+>  				return ret;
+
+As per above.
+
+-- 
+With Best Regards,
+Andy Shevchenko
+
 
 
