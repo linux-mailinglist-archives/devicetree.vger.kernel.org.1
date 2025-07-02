@@ -1,161 +1,175 @@
-Return-Path: <devicetree+bounces-192215-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-192216-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3295AAF5C26
-	for <lists+devicetree@lfdr.de>; Wed,  2 Jul 2025 17:05:29 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3020FAF5C2D
+	for <lists+devicetree@lfdr.de>; Wed,  2 Jul 2025 17:06:45 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 17E427B26A0
-	for <lists+devicetree@lfdr.de>; Wed,  2 Jul 2025 15:03:47 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 322F6188C2ED
+	for <lists+devicetree@lfdr.de>; Wed,  2 Jul 2025 15:07:01 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 252B02741D6;
-	Wed,  2 Jul 2025 15:05:08 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 826CB286421;
+	Wed,  2 Jul 2025 15:06:38 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="NQGNITbX"
+	dkim=pass (2048-bit key) header.d=ventanamicro.com header.i=@ventanamicro.com header.b="mpA7MfC4"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-pl1-f171.google.com (mail-pl1-f171.google.com [209.85.214.171])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EBE9917A316;
-	Wed,  2 Jul 2025 15:05:07 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E9B322D0C90
+	for <devicetree@vger.kernel.org>; Wed,  2 Jul 2025 15:06:36 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.171
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1751468708; cv=none; b=MbAP98T84i52H4FvcP4ugeTAV376QLnV+ph/hIe39ZFE25udP87erlNXPU3XA13LtXK9CwtVq6JsQrH399js2WcADdMLtCcLO+sfjGwK02Z0c/XrLnzN768JTJE9lEK8V9ewZP5jZQ5celmH9cEls8pNW7FEEn2l9tdA73xTqko=
+	t=1751468798; cv=none; b=rv1OEyMKWQj6EK9CiLNClyENhRvMUhySBrhB7v5SsC3jg86E9B19nayd02EYSBT1A9y2oiB4eMwaXqyS8vzPEtfnunSjDLNlmrDu8D2bFPvTp+n7OfIkQsFuoPPyk2N5zQ64QlPCgN9UH4HZPqiEY82fRzeknrT1u1HvyzAjcR0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1751468708; c=relaxed/simple;
-	bh=NPSUKasHC9tbkTT8JYPAn0RlP9lrHU+bvQRVcKKzDTw=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=qacuMZHf3VPfON6/ckLRCCXEI6MtX5XdBnh3vPCax8kypAhkEympU2uQ11FHDQRAoDQsEIJIK9U4kt71GJIiL3Z6Y75RGWLajn7X1Ye696iAyu4WFogbKwjkr/2/VMPI9UNTU9W4mlnDVxLI5AqQPNXVoD5EBxTMYXDgXccHZ2M=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=NQGNITbX; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id D22CDC4CEE7;
-	Wed,  2 Jul 2025 15:05:02 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1751468707;
-	bh=NPSUKasHC9tbkTT8JYPAn0RlP9lrHU+bvQRVcKKzDTw=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=NQGNITbX/oHoAYhuSSIoG5XwYg3KxkVI7LHrZVxXLgbuvFl+sWD9uL2F7ofMWfYGJ
-	 IAfJDOoQDPwtVfExc2Ewt7KdVae97IcIJV576t4s3Odev9vql9gFQTHQAIQIy4Rdul
-	 9UCOGk3t9cRcoYJ8C55fW3tnOAb5D3zLiFaHbCRPoPy/f3AB6y4vSe/wj3BiJauMDE
-	 YqlcDQrIVtn4HSfkNVlXqVWs4xZxKhzei/pQMRN9MRsnpUOxu1i8PuYOyusGjhykI/
-	 /GsN7YO6WlJ1GnLiJ4oOWXfOuqJa1x+DFKV4EO8Y+peP2fdg0mPzkiYSNuKfFE4ybC
-	 b0D4zKWFfnfQA==
-Message-ID: <668a149e-f39f-45dc-8c55-d914df116b47@kernel.org>
-Date: Wed, 2 Jul 2025 17:05:00 +0200
+	s=arc-20240116; t=1751468798; c=relaxed/simple;
+	bh=68MAtXNRMrOlaqudDNa6dyhIXhKNWKCJp2ZktqVgKfw=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=KHjkANctLPs/di2k4568r6samly48/vpkwncGzgcp8zhSZUFrjPlHZKrdTGrgnGp2Cbv98frzSkaz7osPA8/hIq8upO/Q6CjLMZmJEmkGK0arTMYukLx5UfJcLKTZhFwVp8gO9RVExaYQdf9+maeur304BhE/xwVX8Ud8WzW0wk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ventanamicro.com; spf=pass smtp.mailfrom=ventanamicro.com; dkim=pass (2048-bit key) header.d=ventanamicro.com header.i=@ventanamicro.com header.b=mpA7MfC4; arc=none smtp.client-ip=209.85.214.171
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ventanamicro.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ventanamicro.com
+Received: by mail-pl1-f171.google.com with SMTP id d9443c01a7336-23633a6ac50so87587315ad.2
+        for <devicetree@vger.kernel.org>; Wed, 02 Jul 2025 08:06:36 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=ventanamicro.com; s=google; t=1751468796; x=1752073596; darn=vger.kernel.org;
+        h=in-reply-to:content-transfer-encoding:content-disposition
+         :mime-version:references:message-id:subject:cc:to:from:date:from:to
+         :cc:subject:date:message-id:reply-to;
+        bh=DuxrgWn37wvxnmqKJavpfaOGptqxe8oR/pHOsdwVSXg=;
+        b=mpA7MfC4Zt8G8Q2vqphc//2YrzrTFQPdfBMtdqUOf2tQ52hLWPE9XbULaLXAEquHkL
+         uxyMzrOHQusOEk+1K2Ll635NnZ5zW/6ZemPEldrFtwIvArAy5EiwHANlxkeovsIUdjr8
+         N5bfC2QAhN629IM7vgormxDklMpVpdalPQEcg9wYZzJXXQtKGvHUzS+sy//68RSJzd8z
+         Da2jqfXgxTTGxCZfNyv6j+QnoEuZyqpnFCvOqA8tDRWh9SRqHbOy8TKGubZsr0HIFEdm
+         ctJ9lT3tdw3Qja8sFzifAlDr1aeTisM7KHH3FDieuTugZBSH33MAVuINYUk1V5uogTeu
+         O5vg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1751468796; x=1752073596;
+        h=in-reply-to:content-transfer-encoding:content-disposition
+         :mime-version:references:message-id:subject:cc:to:from:date
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=DuxrgWn37wvxnmqKJavpfaOGptqxe8oR/pHOsdwVSXg=;
+        b=U0r8DdM3W3cngxPzVOZvlyzNG6dOi6eQoRhFzjJcrWAXIQquwNCYZphAZ3d+EIJ/+3
+         HUHNiKs6qbT8iowhHRhnjGdK4CVwS/6MqsPHRg4VJqo/iQx4d5vljk2I7++4/tTTJpgW
+         E0JHfo7HaPt4osHFIP4xt/IwLsI2sBPZGfudm9GJFOP7hIOAVHQvDNcGzhZeVkb12sGV
+         0+TYNfvC9YIHGoW+bnua0+5eY4G/SDqNmm3XdrcCGecVN/jqe35mTGtK6bQcmCqjJRVg
+         vynAJ2S5adkbKloBHU9q3/ZLMDk6Tnf7Pu4qFZVaEj+FS0PKILR3T2Zz1O2vSrnf/5Mx
+         bw+Q==
+X-Forwarded-Encrypted: i=1; AJvYcCWjIXkFGjurFzFR+fJUBcXWuqiQ8I5ksc2b8RvcqHf4vX52YdpfpSALbpE84BHMpev7ROPtI6yiSdTb@vger.kernel.org
+X-Gm-Message-State: AOJu0YzHGH0Y4QnIrELmnfftSW2WELETJVol5csi5kvrki759Dk6PMdz
+	v0NeNf7bWNa9fsJlfr7VAYHU2UWeMTyCILfS4XrgV1FTKooMuMjhzZ5KXdyV4rtlyjo=
+X-Gm-Gg: ASbGnctYMlGnMyubX6E4VjFi8+fIq1OJ6OXNNJ/rRT2Clgqh4PNTREjZ5GdHKcLyie/
+	XB8Fv2pzyy1uuv5Oz0zzq8Tc3Gwv5KiOGdvRYbVAJXbF7uOUlvjYQVbWHsR/xN8hKfJLnefZ0jv
+	QRMXoWg+eOagI1L9pdMuZ5gkeiWrz/1YnhqplCZhsjLaaKtiZZ7JVM1DA57+zQh0IocA3wDzH2T
+	UHycoltohBS0nYyC1tAOfaB9umkYG52TQHjzS1E+52ytF5fOyjHD6Rd6RsZ9xMVqyJllTD1LiyS
+	1IF9LKuE1GuC0VL9VhTlksJP8ueR/UiAmL/TvAYnhEusOglj3D6bIH60wY9Ee17xIpJgHg==
+X-Google-Smtp-Source: AGHT+IEayU19ekj4WiD0uxOsXBOzhuBGyVO7ozD4bXpw7JPLUlbTFpVZ7FSEPPWrdW6ZBL27rOJyQQ==
+X-Received: by 2002:a17:902:e78d:b0:234:8c3d:2912 with SMTP id d9443c01a7336-23c6e4e2a1bmr41479125ad.11.1751468796094;
+        Wed, 02 Jul 2025 08:06:36 -0700 (PDT)
+Received: from sunil-laptop ([103.97.166.196])
+        by smtp.gmail.com with ESMTPSA id d9443c01a7336-23acb3ba530sm130521215ad.200.2025.07.02.08.06.25
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 02 Jul 2025 08:06:35 -0700 (PDT)
+Date: Wed, 2 Jul 2025 20:36:20 +0530
+From: Sunil V L <sunilvl@ventanamicro.com>
+To: "Rafael J. Wysocki" <rafael@kernel.org>
+Cc: Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
+	Anup Patel <apatel@ventanamicro.com>,
+	Michael Turquette <mturquette@baylibre.com>,
+	Stephen Boyd <sboyd@kernel.org>, Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Jassi Brar <jassisinghbrar@gmail.com>,
+	Thomas Gleixner <tglx@linutronix.de>,
+	Mika Westerberg <mika.westerberg@linux.intel.com>,
+	Linus Walleij <linus.walleij@linaro.org>,
+	Bartosz Golaszewski <brgl@bgdev.pl>,
+	Uwe =?utf-8?Q?Kleine-K=C3=B6nig?= <ukleinek@kernel.org>,
+	Palmer Dabbelt <palmer@dabbelt.com>,
+	Paul Walmsley <paul.walmsley@sifive.com>,
+	Alexandre Ghiti <alex@ghiti.fr>, Len Brown <lenb@kernel.org>,
+	Rahul Pathak <rpathak@ventanamicro.com>,
+	Leyfoon Tan <leyfoon.tan@starfivetech.com>,
+	Atish Patra <atish.patra@linux.dev>,
+	Andrew Jones <ajones@ventanamicro.com>,
+	Samuel Holland <samuel.holland@sifive.com>,
+	Anup Patel <anup@brainfault.org>, linux-clk@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-acpi@vger.kernel.org,
+	linux-riscv@lists.infradead.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v7 15/24] ACPI: property: Add support for cells property
+Message-ID: <aGVK7NxRdDIGRzNR@sunil-laptop>
+References: <20250702051345.1460497-1-apatel@ventanamicro.com>
+ <20250702051345.1460497-16-apatel@ventanamicro.com>
+ <CAJZ5v0iYYuK2GF2Pg3NiO4vLFzoYm6Q3Dnk5O2DkMJm1R3qSfQ@mail.gmail.com>
+ <aGUaFX9WgTW1I_ZO@smile.fi.intel.com>
+ <CAJZ5v0h=qzS67Xu6NUfN_LmQUmKF9=AtkaRrTx81td0m-mRNNg@mail.gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 7/8] auxdisplay: Add Titanmec TM16xx 7-segment display
- controllers driver
-To: Andy Shevchenko <andriy.shevchenko@intel.com>
-Cc: ojeda@kernel.org, =?UTF-8?Q?Jean-Fran=C3=A7ois_Lessard?=
- <jefflessard3@gmail.com>, Andy Shevchenko <andy@kernel.org>,
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, Geert Uytterhoeven
- <geert@linux-m68k.org>, devicetree@vger.kernel.org,
- linux-leds@vger.kernel.org, linux-kernel@vger.kernel.org,
- =?UTF-8?Q?Andreas_F=C3=A4rber?= <afaerber@suse.de>,
- Boris Gjenero <boris.gjenero@gmail.com>,
- Christian Hewitt <christianshewitt@gmail.com>,
- Heiner Kallweit <hkallweit1@gmail.com>,
- Paolo Sabatino <paolo.sabatino@gmail.com>
-References: <20250629130002.49842-1-jefflessard3@gmail.com>
- <20250629131830.50034-1-jefflessard3@gmail.com>
- <47d24e31-1c6f-4299-aeaf-669c474c4459@kernel.org>
- <aGI8a4iaOpN5HMQe@smile.fi.intel.com>
- <57f0289a-7d82-4294-a1dc-c6986da0c5ce@kernel.org>
- <aGJe2krBnrPXQiU6@smile.fi.intel.com>
- <532c88b8-d938-4633-ac09-12bb3080a023@kernel.org>
- <aGKcfuQdNtQjmVC8@smile.fi.intel.com>
-From: Krzysztof Kozlowski <krzk@kernel.org>
-Content-Language: en-US
-Autocrypt: addr=krzk@kernel.org; keydata=
- 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 a/A=
-In-Reply-To: <aGKcfuQdNtQjmVC8@smile.fi.intel.com>
-Content-Type: text/plain; charset=UTF-8
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
+In-Reply-To: <CAJZ5v0h=qzS67Xu6NUfN_LmQUmKF9=AtkaRrTx81td0m-mRNNg@mail.gmail.com>
 
-On 30/06/2025 16:17, Andy Shevchenko wrote:
-> On Mon, Jun 30, 2025 at 01:39:25PM +0200, Krzysztof Kozlowski wrote:
->> On 30/06/2025 11:54, Andy Shevchenko wrote:
->>> On Mon, Jun 30, 2025 at 11:27:21AM +0200, Krzysztof Kozlowski wrote:
->>>> On 30/06/2025 09:27, Andy Shevchenko wrote:
->>>>> On Mon, Jun 30, 2025 at 08:12:16AM +0200, Krzysztof Kozlowski wrote:
->>>>>> On 29/06/2025 15:18, Jean-François Lessard wrote:
+On Wed, Jul 02, 2025 at 02:39:30PM +0200, Rafael J. Wysocki wrote:
+> On Wed, Jul 2, 2025 at 1:38 PM Andy Shevchenko
+> <andriy.shevchenko@linux.intel.com> wrote:
+> >
+> > On Wed, Jul 02, 2025 at 12:20:55PM +0200, Rafael J. Wysocki wrote:
+> > > On Wed, Jul 2, 2025 at 7:16 AM Anup Patel <apatel@ventanamicro.com> wrote:
+> >
+> > ...
+> >
+> > > >  static int acpi_fwnode_get_reference_args(const struct fwnode_handle *fwnode,
+> > > >                                           const char *propname, const char *nargs_prop,
+> > > >                                           unsigned int args_count, unsigned int index,
+> >
+> > > >         const struct acpi_device_data *data;
+> > > >         struct fwnode_handle *ref_fwnode;
+> > > >         struct acpi_device *device;
+> > > > +       unsigned int nargs_count;
+> > > >         int ret, idx = 0;
+> >
+> > > > +                       nargs_count = acpi_fwnode_get_args_count(device, nargs_prop);
+> > >
+> > > I think it should work the same way as it used to for the callers that
+> > > pass args_count, so maybe
+> > >
+> > > if (!args_count)
+> > >         args_count = acpi_fwnode_get_args_count(device, nargs_prop);
+> >
+> > But this is different variable.
 > 
-> ...
+> Of course it is different.  It is an acpi_fwnode_get_reference_args() parameter.
 > 
->>>>>>> +	display->leds =
->>>>>>> +		devm_kcalloc(dev, display->num_leds, sizeof(*display->leds), GFP_KERNEL);
->>>>>>
->>>>>> Wrong wrapping. Use kernel style, not clang style.
->>>>>>
->>>>>>
->>>>>>> +	if (!display->leds)
->>>>>>> +		return -ENOMEM;
->>>>>
->>>>> Just wondering how .clang-format is official? Note some of the maintainers even
->>>>
->>>> First time I hear above clang style is preferred. Where is it expected?
->>>
->>> Documented here:
->>> https://www.kernel.org/doc/html/latest/process/coding-style.html#you-ve-made-a-mess-of-it
->>
->> I mean, which maintainers prefer such style of wrapping. Above I know,
->> but it does not solve the discussion we have here - above line wrapping
->> preferred by clang and opposite to most of the kernel code.
+> > > >                         element++;
+> > > > -
+> > > >                         ret = acpi_get_ref_args(idx == index ? args : NULL,
+> > > >                                                 acpi_fwnode_handle(device),
+> > > > -                                               &element, end, args_count);
+> > > > +                                               &element, end,
+> > > > +                                               nargs_count ? nargs_count : args_count);
+> > >
+> > > And this change would not be necessary?
+> >
+> > This is not the same check as proposed above.
 > 
-> IIRC Dan Williams (as you might have deduced already from the links).
-BTW, if that's your preference, then obviously it is perfectly fine.
-It's your subsystem.
+> No, it is not.
+> 
+> It just makes the function work the same way it did before the change
+> for the callers who passed nozero args_count and so they might be
+> forgiven expecting that it would be taken into account.
 
+But if we do like this, the expectation of
+fwnode_property_get_reference_args() will differ for DT and ACPI, right?
+I mean nargs_prop should take higher precedence than nargs.
 
-Best regards,
-Krzysztof
+Thanks!
+Sunil
+
 
