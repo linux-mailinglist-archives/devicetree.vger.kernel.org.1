@@ -1,88 +1,113 @@
-Return-Path: <devicetree+bounces-191972-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-191973-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 49E10AF1150
-	for <lists+devicetree@lfdr.de>; Wed,  2 Jul 2025 12:10:46 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id D0BD5AF1166
+	for <lists+devicetree@lfdr.de>; Wed,  2 Jul 2025 12:14:33 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 870013B7A1E
-	for <lists+devicetree@lfdr.de>; Wed,  2 Jul 2025 10:10:02 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 76A161C23D9F
+	for <lists+devicetree@lfdr.de>; Wed,  2 Jul 2025 10:14:48 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 83CDB23817F;
-	Wed,  2 Jul 2025 10:10:24 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=yeah.net header.i=@yeah.net header.b="ivh1EUqD"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D1369253358;
+	Wed,  2 Jul 2025 10:14:29 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-m16.yeah.net (mail-m16.yeah.net [1.95.21.17])
+Received: from metis.whiteo.stw.pengutronix.de (metis.whiteo.stw.pengutronix.de [185.203.201.7])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 60ED423D2B8;
-	Wed,  2 Jul 2025 10:10:20 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=1.95.21.17
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4663124C09E
+	for <devicetree@vger.kernel.org>; Wed,  2 Jul 2025 10:14:27 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.203.201.7
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1751451024; cv=none; b=dGqIyU/fQLgU1+eSimx14dqXD6QhvrgVkei1TLTDJPT/nrv5MwCHEz5s0B8Q9dPjpOhMUL89PzKblRPePySUrjpUtO/3dKH7VfCFGdzqttjU9cpTJcDG5WINoHvHbHbr4XyYOpGRswDxOK7T0SjT6PdcWbMkKp/Q//JzStn0Xa4=
+	t=1751451269; cv=none; b=aVHIgeWJ5yRkmW0IExa0SHE8tcf/IJiq/XOwnvI6CSTap5ELmGFPdJfGzb37MIYwkY5sx1AUli5TtY9hKcGb4BFAW6dmezha4hP+RjrS62GJnFl87y1M4icQAdUDlDak38A58ida/rHd7MKeZzNy46hLs5K6ZOKE2N2yALzwPqY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1751451024; c=relaxed/simple;
-	bh=Avn8QZ56tvBOvMTNHEQSyXrUuokZ4oLrcdRoo87bmq4=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=C7+pKnRDhj/5zZB7IBWDu3TkrmNUTBb3cVNFLe4mU1p7obrvXUD18DqFVZXaxELbIACE4+LoxP3PAFgIn2hRjj41W/CYAePBFGjoW40vSGdxZ/btU3Whg5qQ/BmhfCkz1z3MvGqM3L/YKVwNlInqiatJR4GUFO9pRkK+vdup6wA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=yeah.net; spf=pass smtp.mailfrom=yeah.net; dkim=pass (1024-bit key) header.d=yeah.net header.i=@yeah.net header.b=ivh1EUqD; arc=none smtp.client-ip=1.95.21.17
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=yeah.net
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=yeah.net
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=yeah.net;
-	s=s110527; h=Date:From:To:Subject:Message-ID:MIME-Version:
-	Content-Type; bh=0szaTJk/2IIh92wT4SYepDsVV45HTf6oeyD1uk5eFNE=;
-	b=ivh1EUqD5vaLYJTdTkbxM/9LL+gDCtSiyyqjWax7fZYIWhMFfOk6AVZ1AxETZ/
-	Zrstmc87LCEp+hHlA6MTYt8Q2sYASbKCJdqtJvc/VTz1Ek6/RJ4SUElNo5MHOdHz
-	AzLaeoJ+jQhKglV+oyZezn1C3R5EgsFHgjqp5yd454e4s=
-Received: from dragon (unknown [])
-	by gzsmtp2 (Coremail) with SMTP id Ms8vCgD39w9aBWVoE_ApAA--.52421S3;
-	Wed, 02 Jul 2025 18:09:32 +0800 (CST)
-Date: Wed, 2 Jul 2025 18:09:30 +0800
-From: Shawn Guo <shawnguo2@yeah.net>
-To: =?iso-8859-1?Q?Jo=E3o_Paulo_Gon=E7alves?= <jpaulo.silvagoncalves@gmail.com>
-Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
-	Sascha Hauer <s.hauer@pengutronix.de>,
-	Pengutronix Kernel Team <kernel@pengutronix.de>,
-	Fabio Estevam <festevam@gmail.com>, devicetree@vger.kernel.org,
-	imx@lists.linux.dev, linux-arm-kernel@lists.infradead.org,
-	linux-kernel@vger.kernel.org,
-	=?iso-8859-1?Q?Jo=E3o_Paulo_Gon=E7alves?= <joao.goncalves@toradex.com>
-Subject: Re: [PATCH] arm64: dts: freescale: imx8mp-toradex-smarc: add fan
- cooling levels
-Message-ID: <aGUFWiXuJ514HlDV@dragon>
-References: <20250613-tdx-smarc-imx8mp-fan-cooling-level-v1-1-59aae8fee2db@toradex.com>
+	s=arc-20240116; t=1751451269; c=relaxed/simple;
+	bh=OTBODaYpyW6M8lWP3BhiF5zP7o1W1dXfIi+JCN9pZ8g=;
+	h=Message-ID:Subject:From:To:Cc:Date:In-Reply-To:References:
+	 Content-Type:MIME-Version; b=gU09x6Wf65pkQ13M07wffs4a0asGOl6LzLlYYBTSpUOrq/1bHZePmdSQnvMYtuvX63QX2zcE2dz82ZjKsOV/VtIsuFfbj/Xdv3ObYKktOQnB0KeYKllqG/jjmAsQWXbTDPpVd7nYMyk/mNYt9JLGCY9EHMrzb78t5uAqVtwsa0A=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de; spf=pass smtp.mailfrom=pengutronix.de; arc=none smtp.client-ip=185.203.201.7
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=pengutronix.de
+Received: from drehscheibe.grey.stw.pengutronix.de ([2a0a:edc0:0:c01:1d::a2])
+	by metis.whiteo.stw.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
+	(Exim 4.92)
+	(envelope-from <p.zabel@pengutronix.de>)
+	id 1uWuTe-0001VL-Qj; Wed, 02 Jul 2025 12:14:06 +0200
+Received: from lupine.office.stw.pengutronix.de ([2a0a:edc0:0:900:1d::4e] helo=lupine)
+	by drehscheibe.grey.stw.pengutronix.de with esmtps  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+	(Exim 4.96)
+	(envelope-from <p.zabel@pengutronix.de>)
+	id 1uWuTc-006Q4b-2S;
+	Wed, 02 Jul 2025 12:14:04 +0200
+Received: from pza by lupine with local (Exim 4.96)
+	(envelope-from <p.zabel@pengutronix.de>)
+	id 1uWuTc-000DK0-27;
+	Wed, 02 Jul 2025 12:14:04 +0200
+Message-ID: <0580d4e254705be3765be168ce17c8a1c2e12f8f.camel@pengutronix.de>
+Subject: Re: [PATCH v11 0/6] reset: spacemit: add K1 reset support
+From: Philipp Zabel <p.zabel@pengutronix.de>
+To: Yixun Lan <dlan@gentoo.org>
+Cc: Alex Elder <elder@riscstar.com>, robh@kernel.org, krzk+dt@kernel.org, 
+ conor+dt@kernel.org, mturquette@baylibre.com, sboyd@kernel.org, 
+ paul.walmsley@sifive.com, palmer@dabbelt.com, aou@eecs.berkeley.edu,
+ alex@ghiti.fr,  heylenay@4d2.org, inochiama@outlook.com,
+ guodong@riscstar.com,  devicetree@vger.kernel.org,
+ linux-clk@vger.kernel.org, spacemit@lists.linux.dev, 
+ linux-riscv@lists.infradead.org, linux-kernel@vger.kernel.org
+Date: Wed, 02 Jul 2025 12:14:04 +0200
+In-Reply-To: <20250702061717-GYA304216@gentoo>
+References: <20250613011139.1201702-1-elder@riscstar.com>
+	 <20250618111737-GYA157089@gentoo> <20250702061717-GYA304216@gentoo>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+User-Agent: Evolution 3.46.4-2 
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20250613-tdx-smarc-imx8mp-fan-cooling-level-v1-1-59aae8fee2db@toradex.com>
-X-CM-TRANSID:Ms8vCgD39w9aBWVoE_ApAA--.52421S3
-X-Coremail-Antispam: 1Uf129KBjDUn29KB7ZKAUJUUUU8529EdanIXcx71UUUUU7v73
-	VFW2AGmfu7bjvjm3AaLaJ3UbIYCTnIWIevJa73UjIFyTuYvjxUYZ2-UUUUU
-X-CM-SenderInfo: pvkd40hjxrjqh1hdxhhqhw/1tbiCRl+ZWhk3iqGNwAAsC
+X-SA-Exim-Connect-IP: 2a0a:edc0:0:c01:1d::a2
+X-SA-Exim-Mail-From: p.zabel@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.whiteo.stw.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: devicetree@vger.kernel.org
 
-On Fri, Jun 13, 2025 at 01:35:04PM -0300, João Paulo Gonçalves wrote:
-> From: João Paulo Gonçalves <joao.goncalves@toradex.com>
-> 
-> The fan controller on this board cannot work in automatic mode, and
-> requires software control, the reason is that it has no temperature
-> sensor connected.
-> 
-> Given that this board is a development kit and does not have any
-> specific fan, add a default single cooling level that would enable the
-> fan to spin with a 100% duty cycle, enabling a safe default.
-> 
-> Signed-off-by: João Paulo Gonçalves <joao.goncalves@toradex.com>
+On Mi, 2025-07-02 at 06:17 +0000, Yixun Lan wrote:
+> Hi Philipp,
+>=20
+> On 11:17 Wed 18 Jun     , Yixun Lan wrote:
+> > Hi ALL,
+> >   As the reset driver going through several review cycles,
+> > it becomes quite calm down now, I'd like to request to merge
+> > it into v6.17, because various drivers (pwm, emac..) will depend
+> > on it, even in the worst case if there is problem, I believe Alex
+> > will help to address..
+> >=20
+> > Hi Philipp,
+> >   I'd like to query if you willing to take the reset driver -
+> > patch [5/6] through the reset tree? It sounds more intuitive,
+> > which also will avoid potential conflicts with Kconfig/Makefile..
+> >   I've created a prerequisite immutable tag which could be
+> > shared between clock and reset subsytem. It's tag -
+> > spacemit-reset-deps-for-6.17 at SpacemiT's SoC tree [1], which=20
+> > effectively are patches [1-4] of this series.
+> > But, to make your life easy, I've also applied patch [5/6] at tag
+> > spacemit-reset-drv-for-6.17 [2] which has a small macro adjustment
+> > requested by Alex at [3]
+> >   Let me know what you think of this, thanks
+> >=20
+> Just want to ping this, what do you want from my side to proceed?
+>=20
+> or do you want me to send a more formal Pull-Request for [1],
+> then you can apply patch [5/6] (still need to fix the macro of [3])
 
-Applied, thanks!
+Please send a v12, so that the latest modifications are on the list.
 
+I'd prefer=C2=A0to either pick patches 1 and 5 from the list, or, if you
+provide a tag with only patch 1 to be pulled into both clk and reset
+trees, to merge that and then pick patch 5.
+
+regards
+Philipp
 
