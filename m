@@ -1,78 +1,78 @@
-Return-Path: <devicetree+bounces-191856-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-191857-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 83569AF0AB2
-	for <lists+devicetree@lfdr.de>; Wed,  2 Jul 2025 07:26:41 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 19A9FAF0A84
+	for <lists+devicetree@lfdr.de>; Wed,  2 Jul 2025 07:19:18 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id D131317CA90
-	for <lists+devicetree@lfdr.de>; Wed,  2 Jul 2025 05:26:41 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 19320486A7C
+	for <lists+devicetree@lfdr.de>; Wed,  2 Jul 2025 05:18:04 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 33B3F22A7E9;
-	Wed,  2 Jul 2025 05:16:03 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id BA59F23184F;
+	Wed,  2 Jul 2025 05:16:10 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=ventanamicro.com header.i=@ventanamicro.com header.b="TkeEvLIW"
+	dkim=pass (2048-bit key) header.d=ventanamicro.com header.i=@ventanamicro.com header.b="oepCvIPh"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pl1-f169.google.com (mail-pl1-f169.google.com [209.85.214.169])
+Received: from mail-pl1-f177.google.com (mail-pl1-f177.google.com [209.85.214.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 99C9622A4E4
-	for <devicetree@vger.kernel.org>; Wed,  2 Jul 2025 05:16:01 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.169
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3380622FF59
+	for <devicetree@vger.kernel.org>; Wed,  2 Jul 2025 05:16:08 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.177
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1751433363; cv=none; b=pfIkWuDQCimEGsOZHPxE8/U9aLNKl6fref9J0imO0nluU5P7r9fCkibqhzwitW8W51fCLu+5oF8N0pkzNQ4WQoZf2bg+e03EGzH0QNJwjdl32V/fEsBGVy8ix7VKca9PSIQFj1UKNaMsVxkJR9G/fXhf7bS+1swD6zXJwnn3WSA=
+	t=1751433370; cv=none; b=qJNYZt0M8w31QCRpst+sa21PjUn2HpL2yi+pn5LZure/8m+J8cWY7jS1mQa/1uqSr0TtAp98MWrHUBm+kBIPaFwZG9qb985DQOvWMFPtFghaTvseDUMVSDgAmJArMFFpDBBxBd4B+kM38GKwaARXNrlo1LiQk2obg0c/oXTFZZ4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1751433363; c=relaxed/simple;
-	bh=jN6vr49WydQekpKegVkjH3kRWbiat3b6Jw7xzzte404=;
+	s=arc-20240116; t=1751433370; c=relaxed/simple;
+	bh=vaT9fKqdkrP7eBvkYV5AtQjKTPo8A3kQSz0hOZrkoeM=;
 	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=JwbMNVfdPKohQs8HylJQdsYr0iiIcJxwzzCBNltOGzgHshxmZnver7HFtwUVjxuhToeVSdA73PO8O9JQWK5jEuJOY580/DD/VvYu/fyQpXhMsIXLHmeuXRqTgQ3H5XeqJqztMxxDXhQ6QmXivRElz2axF8Lr05KwwJDMgDtoY7Y=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ventanamicro.com; spf=pass smtp.mailfrom=ventanamicro.com; dkim=pass (2048-bit key) header.d=ventanamicro.com header.i=@ventanamicro.com header.b=TkeEvLIW; arc=none smtp.client-ip=209.85.214.169
+	 MIME-Version; b=Dxz1KDbF/EOJU5yQQXW3ZxU55u+uejxNJ0q+8QO55BHjYUscuVrW81KvjE0vUP8FlJY0ul6zBmra5ydLbJxDJXIhrVaUlM3gmCyl86bzuvi69n8UyF4PkGVZG1inBWUr9uMJYG/aLUTNhjg1Wd0gVbQB57SlMUqbVYf+hEKcZ5s=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ventanamicro.com; spf=pass smtp.mailfrom=ventanamicro.com; dkim=pass (2048-bit key) header.d=ventanamicro.com header.i=@ventanamicro.com header.b=oepCvIPh; arc=none smtp.client-ip=209.85.214.177
 Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ventanamicro.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ventanamicro.com
-Received: by mail-pl1-f169.google.com with SMTP id d9443c01a7336-2363616a1a6so34848715ad.3
-        for <devicetree@vger.kernel.org>; Tue, 01 Jul 2025 22:16:01 -0700 (PDT)
+Received: by mail-pl1-f177.google.com with SMTP id d9443c01a7336-237e6963f63so25526325ad.2
+        for <devicetree@vger.kernel.org>; Tue, 01 Jul 2025 22:16:08 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=ventanamicro.com; s=google; t=1751433361; x=1752038161; darn=vger.kernel.org;
+        d=ventanamicro.com; s=google; t=1751433368; x=1752038168; darn=vger.kernel.org;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=QmlL9kMvvcYcWlU45z5MYmmVSDmE1amNKft2tyH29n8=;
-        b=TkeEvLIWFDN+/Cx7PbRqqnWqGlFU9US+Q4PiaWrRD9Y76t41oG3Laeb507aBjoY0Ei
-         sADyFMM2mrrlv3IK0NPUFJsgqekO15ClMFT0wW5U2lO/LV/wrudF4x8YbncksRcGkw4Z
-         wzKhrzPifSPxhqex94PS5/bUtj0vk9zYC4k/aOq8yLo3iX9oOCnq/x2LWsqxme+83kyw
-         lsPA99a0dLUvaA1sra0BRGmiKA3oWAChSuKmOh3QZpmRVsCdVO54gSWUR3c3TUYkOqN+
-         TPk4lyaQgKHIAgkuIW0HPmu7tQEDnrNv9oMba0HDWyE/qSSemVmEZYaAdgyyOISMi1tf
-         qqQw==
+        bh=PBceoBehx8BvgZH4kIrIZIQMdJgc3OIIxRIhQIQqZsc=;
+        b=oepCvIPh+8/OnytSok5GnubT1nWHOdXXZ7LOkAVvKZWR9yL4hSOvdJ0KMX0V5paano
+         WmM6ogESHX/1Z5ijmUpb8jAU76UYrgb/cteTSW8r5oP5+dm371bQqhmZncFoYsScWmMq
+         zUYX60Nx9Mmhm5gj+X+39xuPbugYZtNlxOytdAHEHoGxaizpLax0SeGr3BnNAvQHcDDa
+         9iZ+B3CX33L3BV12tBq4ULdboxl9Fmg0WWq0+WSRZR7qEQ3bewrYogxHR6NhaFgPiXlU
+         xT/aNhKy/MCB2BEMokVXagtHbZfUmmFFBdhDJfrTmYfELEPeVTYaeQIGSLgFCLej/dcW
+         7BBg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1751433361; x=1752038161;
+        d=1e100.net; s=20230601; t=1751433368; x=1752038168;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=QmlL9kMvvcYcWlU45z5MYmmVSDmE1amNKft2tyH29n8=;
-        b=bdtSB3HsLxZFJZLZngoZHdnDvPmafCoKybCquvXjMfYwbvZ63kizLO5Dmfe5/hdmGv
-         MCQj8VebrmfPZqbFzDXpqYTLrEBhLXqa0BrLLqUaQ2WjEXBbaIrCfOct/eT6zTMTyfPV
-         zQ3Fb1zHXiYXQhaD3Uul4HzyKTv9ljylPE5pt4/nV2J4LuOhDa67c3vOJu6bzAm/Ajas
-         lMRza2LRIN6x5K5TBk+Ku+S3VyD6Kzt/fx3Zf/+aL/7bMJFt2dENiMgJGSV7OSpqSbLv
-         hd0UTcltmNu18Cpp1Te0Nhzf+I4bmBNXYBTmuuo4G3qEZf78T1KiO38D/9sTqwDeF7S9
-         xt8w==
-X-Forwarded-Encrypted: i=1; AJvYcCXKJrArsSnbiwlQyRof/qrjm8OGUVwqXe5Gj4pkUUvFXOKbyaGONoCcsl3ANC61JX8HG60sObh4057K@vger.kernel.org
-X-Gm-Message-State: AOJu0Yy6Sjq83gP8lBbh0tmob10vBVMA1W6/5JxMD7kqTHHbfbOBzQQo
-	57iK+yN3eC6SXvTXM/hsePSOiQfoekksYP0hOmxuO+hrI88aUhXuwxpD1Fb8Mrg5Oio=
-X-Gm-Gg: ASbGnctHVuVe23DBD6KrsXcPjnyQ2OpR5AhFdA5nZEnHrLeBX8dQIraKtcggBMiW18a
-	aIPGy38l2rPinEySw+eixfGX5Vr6YyWx4yFO1heEB3o05I1xdBdTxthbwBqqlQ+L533DxLa3elj
-	C9KfSQ4P2EX8+BwRGUiRZA3FX/Rr80tU35VArzgMib+mZwVyUsYR55py7ropQ370xg1ZSGaTc2l
-	6VEneYNGw7TpYRID0CKnR7WqFzzLa7BL6IhmvLF4pj7U6WsVON1BUy8Xxm9K48Eopr4M4BeeYnU
-	AoMpA1lpaOdFlkhJyMB5kQD3VnEDC4Scu9kSRYyufNb744L1pfIxVMYdKREwuao6jrWk/12TMfT
-	8iMwaGisgnQcZpnWN
-X-Google-Smtp-Source: AGHT+IE1P7SGRwHhgK16MRfDAXrEX7DH1YLnpHg6sa/GNFGZg6KWOiAXLcWOV6zX2nV96zG+z8muGg==
-X-Received: by 2002:a17:903:3c47:b0:235:f143:9b07 with SMTP id d9443c01a7336-23c6e483a2fmr24735045ad.5.1751433360617;
-        Tue, 01 Jul 2025 22:16:00 -0700 (PDT)
+        bh=PBceoBehx8BvgZH4kIrIZIQMdJgc3OIIxRIhQIQqZsc=;
+        b=NQtHSc+8fOQFKn2jPtUeS+P/G6sj2ugleemrJ8rnZigKptl037DVccu3mOpjfrn+9P
+         ilZCu3ASasVTvUK+7MfkPbGO2yUiK2dP7EEx0lZqa39W5PBrFSxkxF6oQBIO3v8vn/i1
+         vV/oPtMA6RptdzQjMyQDutZwvEaPzwx5TopxypbreOcn6UPhiU1/WVCo1uS0tiufgwR/
+         CCH1/BbYX5sDHGPoGsDA9TTpAZy+FJQQbW4K56dNHrfcb2NHc9G2U2LNmEhsIINJUfyQ
+         zHAf3bCX9AEAi3/UfK80mcBSAuc4/xS7mL1PZB7s1n0pZtu1GdaPHx4JR6BrNdgrxlL8
+         d9AA==
+X-Forwarded-Encrypted: i=1; AJvYcCV15lmpxeAGP53fTcOC8JZmF512lmhnX8vCEG2MT8675xOP7OVt68ier2TfmT59+/hdM6ROog7RuaCL@vger.kernel.org
+X-Gm-Message-State: AOJu0YxR4wp8kHp0+EtXObrU01R6NcIO9AUFhiSF2z5Ot/fw4rtLhJX3
+	wewJ2d5s5a4oWu4EnkyIvqFqVrF56SovfMfU0PJs9FzWRS4ZkDoUE9WG4wwW2mw3EK0=
+X-Gm-Gg: ASbGncte4gumrEYoRKPVZxAnCnxMNRvW33zmN/o8gG5NuyTemofRGtlkjw5GWPe9x3q
+	WHBzroxTbqQYv6+2DLOuZufWbdFtlebxlROwxeVHilokiFXfzXBKvTiKaplPC1vT2ezs1tsBtfs
+	b5p4L1AkPjH7JwwYSAZ/4uD+ATIC+grk7ca8UOEmiWvPN0yV7s56djrwnd7wpGD9xYm73Tntg96
+	Fmj8JBzT7D558y+A8Sq6r3EAaN3ja9JOqgKL5WN/eW0PCRXclLnqlguIPztnlJUpn/IQKS0zHvg
+	23a4w0wmHF2rcMx4UdhTOwYSTSNWRmUWA1DwucOHmjQWfQYF5KJn2tTG6xjePoqx6d1yS9UH5wx
+	ZNfErfdy6353IyXBF
+X-Google-Smtp-Source: AGHT+IFKKOiOcB60DEsZKqmVfcXE0dhCOXPWFAp2kRuerlsj/aT4QarUNKrpH9hQuOyq/8oYcK2PvQ==
+X-Received: by 2002:a17:903:3c4d:b0:237:d486:706a with SMTP id d9443c01a7336-23c6e584257mr21721685ad.48.1751433368200;
+        Tue, 01 Jul 2025 22:16:08 -0700 (PDT)
 Received: from localhost.localdomain ([14.141.91.70])
-        by smtp.gmail.com with ESMTPSA id d9443c01a7336-23c6fe31933sm4719595ad.220.2025.07.01.22.15.53
+        by smtp.gmail.com with ESMTPSA id d9443c01a7336-23c6fe31933sm4719595ad.220.2025.07.01.22.16.00
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 01 Jul 2025 22:16:00 -0700 (PDT)
+        Tue, 01 Jul 2025 22:16:07 -0700 (PDT)
 From: Anup Patel <apatel@ventanamicro.com>
 To: Michael Turquette <mturquette@baylibre.com>,
 	Stephen Boyd <sboyd@kernel.org>,
@@ -103,10 +103,11 @@ Cc: Palmer Dabbelt <palmer@dabbelt.com>,
 	linux-acpi@vger.kernel.org,
 	linux-riscv@lists.infradead.org,
 	linux-kernel@vger.kernel.org,
+	Atish Patra <atishp@rivosinc.com>,
 	Anup Patel <apatel@ventanamicro.com>
-Subject: [PATCH v7 15/24] ACPI: property: Add support for cells property
-Date: Wed,  2 Jul 2025 10:43:36 +0530
-Message-ID: <20250702051345.1460497-16-apatel@ventanamicro.com>
+Subject: [PATCH v7 16/24] ACPI: scan: Update honor list for RPMI System MSI
+Date: Wed,  2 Jul 2025 10:43:37 +0530
+Message-ID: <20250702051345.1460497-17-apatel@ventanamicro.com>
 X-Mailer: git-send-email 2.43.0
 In-Reply-To: <20250702051345.1460497-1-apatel@ventanamicro.com>
 References: <20250702051345.1460497-1-apatel@ventanamicro.com>
@@ -120,94 +121,33 @@ Content-Transfer-Encoding: 8bit
 
 From: Sunil V L <sunilvl@ventanamicro.com>
 
-Currently, ACPI doesn't support cells property when
-fwnode_property_get_reference_args() is called. ACPI always expects
-the number of arguments to be passed. However, the above mentioned
-call being a common interface for OF and ACPI, it is better to have
-single calling convention which works for both. Hence, add support
-for cells property on the reference device to get the number of
-arguments dynamically.
+The RPMI System MSI interrupt controller (just like PLIC and APLIC)
+needs to probed prior to devices like GED which use interrupts provided
+by it. Also, it has dependency on the SBI MPXY mailbox device.
 
+Add HIDs of RPMI System MSI and SBI MPXY mailbox devices to the honor
+list so that those dependencies are handled.
+
+Reviewed-by: Atish Patra <atishp@rivosinc.com>
 Signed-off-by: Sunil V L <sunilvl@ventanamicro.com>
 Signed-off-by: Anup Patel <apatel@ventanamicro.com>
 ---
- drivers/acpi/property.c | 22 ++++++++++++++++++----
- drivers/base/property.c |  2 +-
- 2 files changed, 19 insertions(+), 5 deletions(-)
+ drivers/acpi/scan.c | 2 ++
+ 1 file changed, 2 insertions(+)
 
-diff --git a/drivers/acpi/property.c b/drivers/acpi/property.c
-index d4863746fb11..d08b0ea5c915 100644
---- a/drivers/acpi/property.c
-+++ b/drivers/acpi/property.c
-@@ -882,6 +882,17 @@ static struct fwnode_handle *acpi_parse_string_ref(const struct fwnode_handle *f
- 	return &dn->fwnode;
- }
- 
-+static unsigned int acpi_fwnode_get_args_count(const struct acpi_device *device,
-+					       const char *nargs_prop)
-+{
-+	const union acpi_object *obj;
-+
-+	if (acpi_dev_get_property(device, nargs_prop, ACPI_TYPE_INTEGER, &obj))
-+		return 0;
-+
-+	return obj->integer.value;
-+}
-+
- static int acpi_fwnode_get_reference_args(const struct fwnode_handle *fwnode,
- 					  const char *propname, const char *nargs_prop,
- 					  unsigned int args_count, unsigned int index,
-@@ -892,6 +903,7 @@ static int acpi_fwnode_get_reference_args(const struct fwnode_handle *fwnode,
- 	const struct acpi_device_data *data;
- 	struct fwnode_handle *ref_fwnode;
- 	struct acpi_device *device;
-+	unsigned int nargs_count;
- 	int ret, idx = 0;
- 
- 	data = acpi_device_data_of_node(fwnode);
-@@ -960,11 +972,12 @@ static int acpi_fwnode_get_reference_args(const struct fwnode_handle *fwnode,
- 			if (!device)
- 				return -EINVAL;
- 
-+			nargs_count = acpi_fwnode_get_args_count(device, nargs_prop);
- 			element++;
--
- 			ret = acpi_get_ref_args(idx == index ? args : NULL,
- 						acpi_fwnode_handle(device),
--						&element, end, args_count);
-+						&element, end,
-+						nargs_count ? nargs_count : args_count);
- 			if (ret < 0)
- 				return ret;
- 
-@@ -978,11 +991,12 @@ static int acpi_fwnode_get_reference_args(const struct fwnode_handle *fwnode,
- 			if (!ref_fwnode)
- 				return -EINVAL;
- 
-+			device = to_acpi_device_node(ref_fwnode);
-+			nargs_count = acpi_fwnode_get_args_count(device, nargs_prop);
- 			element++;
--
- 			ret = acpi_get_ref_args(idx == index ? args : NULL,
- 						ref_fwnode, &element, end,
--						args_count);
-+						nargs_count ? nargs_count : args_count);
- 			if (ret < 0)
- 				return ret;
- 
-diff --git a/drivers/base/property.c b/drivers/base/property.c
-index f626d5bbe806..6a63860579dd 100644
---- a/drivers/base/property.c
-+++ b/drivers/base/property.c
-@@ -578,7 +578,7 @@ EXPORT_SYMBOL_GPL(fwnode_property_match_property_string);
-  * @prop:	The name of the property
-  * @nargs_prop:	The name of the property telling the number of
-  *		arguments in the referred node. NULL if @nargs is known,
-- *		otherwise @nargs is ignored. Only relevant on OF.
-+ *		otherwise @nargs is ignored.
-  * @nargs:	Number of arguments. Ignored if @nargs_prop is non-NULL.
-  * @index:	Index of the reference, from zero onwards.
-  * @args:	Result structure with reference and integer arguments.
+diff --git a/drivers/acpi/scan.c b/drivers/acpi/scan.c
+index fb1fe9f3b1a3..54181b03b345 100644
+--- a/drivers/acpi/scan.c
++++ b/drivers/acpi/scan.c
+@@ -858,6 +858,8 @@ static const char * const acpi_honor_dep_ids[] = {
+ 	"INTC10CF", /* IVSC (MTL) driver must be loaded to allow i2c access to camera sensors */
+ 	"RSCV0001", /* RISC-V PLIC */
+ 	"RSCV0002", /* RISC-V APLIC */
++	"RSCV0005", /* RISC-V SBI MPXY MBOX */
++	"RSCV0006", /* RISC-V RPMI SYSMSI */
+ 	"PNP0C0F",  /* PCI Link Device */
+ 	NULL
+ };
 -- 
 2.43.0
 
