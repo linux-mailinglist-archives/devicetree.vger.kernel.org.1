@@ -1,183 +1,155 @@
-Return-Path: <devicetree+bounces-192029-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-192030-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1744FAF1378
-	for <lists+devicetree@lfdr.de>; Wed,  2 Jul 2025 13:17:16 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id EB3A3AF1385
+	for <lists+devicetree@lfdr.de>; Wed,  2 Jul 2025 13:18:51 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 196581C243BC
-	for <lists+devicetree@lfdr.de>; Wed,  2 Jul 2025 11:17:32 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 567467A75F1
+	for <lists+devicetree@lfdr.de>; Wed,  2 Jul 2025 11:17:26 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C046D264A61;
-	Wed,  2 Jul 2025 11:16:43 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E60F724C09E;
+	Wed,  2 Jul 2025 11:18:43 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="cinJtd5W"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="F2wliuph"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f43.google.com (mail-wm1-f43.google.com [209.85.128.43])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DE6552620D5;
-	Wed,  2 Jul 2025 11:16:41 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.43
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AF83A1C6B4;
+	Wed,  2 Jul 2025 11:18:43 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1751455003; cv=none; b=ZWvIlkyQM1WOUp5fJVeyi5dH+rKm7YdzoqdAih2gi1c3DYd0SYoXsPZDrbwP2FSVhs0oMY0amlld5g4XBiNtgBM9wAuLN+g8FJz0uo8LncNtE/n28nmdPRTTTnK2fwdP77Z73F/SGlXFmzowIl6YRhIMViudcoh5X6gy4Wn1fKc=
+	t=1751455123; cv=none; b=KdZdnxQmR/I6pwhMUOrMDTSNHMTnCTTGY9o2TLayAU4nuR9iQsOlvbgzqXuekJsbCpQOwCHDQpVy6myIPtaDqzqdXg+N2jpOksydKPciyOxZa5uHj1xa4n5TEKqKHjPtLB4zQx2PfxNTF3fvmsYVURVj/KGuwp1fwgzD4FFkoSE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1751455003; c=relaxed/simple;
-	bh=iai0tW//mVRNAaFjjMnCpnaKmwhfswFybX05OfYaVN4=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=Qa3Tz6nLQ61ilSva4eYqC1aHuejoI6gZgbBfjeBaiaYRKVLAiV27Mfb0r5i7ZMUAgciDuojJEYRf6nRdAg/ckAWLy+oh6NtObDzjJqIppK5Zzr3MD6wPrXLY0V2M1GRhdcLQ9YJV4OAJhm9q/JKwH28p7l6qfb3ys4SR8bmz7MI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=cinJtd5W; arc=none smtp.client-ip=209.85.128.43
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-wm1-f43.google.com with SMTP id 5b1f17b1804b1-453643020bdso58137615e9.1;
-        Wed, 02 Jul 2025 04:16:41 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1751455000; x=1752059800; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=549RYgSqBKWypR35lL4+7WsRiiZbDOpf2dghVsPGmpY=;
-        b=cinJtd5WaVCtDTZ011LM8TWoc/p3qFiro//4Eda/f1QqMs/JSvhrC1Nj6tf6jXLeHC
-         4+SPETwi/Dv6L78QqXwIZavuDGRESoHN2B2VFU+kaq4yDSOLAETzAeWhJIs7h4YtHFqC
-         cxSvEy7OJrKyfK3KjyW0cjQSKfJZdVh4Ynj7CWE6s2RD/ef8LKIrh+B4flBJA8FcgqKN
-         1l3NOognVJ96oJzZuAJItE9/apuMcLedKrVzXhBxCcsoSZZ0WEWmxSMldTF3lhWiURI9
-         xc2259kwh8mbIHvpjMmApsgep81hsUq9LG7YXPF1KY6znG0j2oSOK2ejkqE6wSI5bkFJ
-         a4ng==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1751455000; x=1752059800;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=549RYgSqBKWypR35lL4+7WsRiiZbDOpf2dghVsPGmpY=;
-        b=MsS24RrNBbKhgkTDpTfLiqyZbvq5UkVrezjXL5zf06BqCZHR5cdpY4F94DzITJWdaJ
-         CONePv5wEVZc9IkUYBb+QeThvRyRqrdSTb8BVymANq2y6oNgA9b0bS1cIvXJ0a9SURGd
-         6tb1lCeRrHLwECl4rH3v4eUS3VnXYOz53JbmXuJG4mIpqdKFfMrTMqkPjpksSqW4o0XE
-         mio8U/LmZ9MZy1J8xXLn6pvhc7HrG1Ak9mqq/w63aBonFNo/BU6Mu1zAruIRWPgRf8Fz
-         2BMO+62N0X9kCJKvciePpNlr9Kcn+yzOi4SocS7MH53CA7DdBO7Ga/Tn3vhCTqwHsMBt
-         tCYw==
-X-Forwarded-Encrypted: i=1; AJvYcCV1mtDbCvn7nXKo2jp15ctZr1gAMEysNJnuAb+4sei2zbuQGziP5qodyi9r5geVzEWgRbKybweqpfIT@vger.kernel.org, AJvYcCVjLpwKt4wWKwHtISflVyiguP/atBkF5lHCOgmpOFze+l2IfjbvYLEbB8FkJvz4cEK46+gENXl8Adjuv1Pz@vger.kernel.org, AJvYcCWJDwfSBKp01wFRXVIlBHh+8sMrhaChgI4W7tsil6aJZjSwyEIAW/pod9uHEDX19AEFLcP6lLVx8qg0fs7sej9bVlk=@vger.kernel.org, AJvYcCWTDmOh0aPCk7i/sI5I0uAhI1XifmMoAtmtpXLgf01ri1aLB/1WSeIbV9BC2O7+Dj0vfmlsLsT7Y/q0@vger.kernel.org, AJvYcCXOBH19+uYvcm3gk4ktZPVavvtQDpqJcM015WMoP+hdCFpIEny3Q3mFS1KtrNhv53Ur8xiZ5HCD@vger.kernel.org
-X-Gm-Message-State: AOJu0YwhxKnnJSKASmDRz4e/baB/Icz1TlG00vTyN8rKlAfmDuMpjGgQ
-	vRLuVseWPePiIE5ADILcASu9Z62J58KiV3f2+87NNpxdeUQIoG7NlVyuxlHgrJ4IPd4SVk5NjQz
-	haYpt3L1yKupk7RMRtXWjVODlaIdFDY3qNOk8
-X-Gm-Gg: ASbGncsjMbiu0nUWhO2OMViKtGzssirWIOGlfUNdv7kQmHJk8XKtu2NTxSKyEFeJpfi
-	5Z2WQRihAsltul05f3mWPEZnqjJ7WMuMLadqoH57eRhDcsMt2hQuqPKxQcQgaX3rLMUwiCsiplI
-	SdRIgjucI/zYuPPrEFf1f/3zOkwK85iGwtPE1PII23D7H3LrG0kJnGc2QFTtbgCnHvaN66zgGH6
-	vuBksQ8rP8kZNo=
-X-Google-Smtp-Source: AGHT+IFeKN0FvjV/iKqE42THXeDbLi9oziLlix03inqM9yiGjQuLrcguM/r8tfbOm1mYwyZ+nUwAsTk4bCYzYh2DZSA=
-X-Received: by 2002:a05:600c:628c:b0:442:ccf9:e6f2 with SMTP id
- 5b1f17b1804b1-454a3708f05mr28698715e9.16.1751454999782; Wed, 02 Jul 2025
- 04:16:39 -0700 (PDT)
+	s=arc-20240116; t=1751455123; c=relaxed/simple;
+	bh=003hlfVaFFE/bTm8F0x+pZQukmDlchKj7RVWJM9ZXEc=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=BHMzJLPRtzQcYAowAyyMV9z58L26uOh2McaIrmy9X5oEezxmEEQTmzbnzhr3N5EPLCLluBDEfImup3NObyz57tD1H1M01pJQKyxa7NgtThPQWhCgKmEvDEQ5MvsVmo16HsD93sQ2TqJIeKK7FeXzawVHUWW9l5mpsGsUIhrlcmk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=F2wliuph; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 6F731C4CEED;
+	Wed,  2 Jul 2025 11:18:40 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1751455123;
+	bh=003hlfVaFFE/bTm8F0x+pZQukmDlchKj7RVWJM9ZXEc=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=F2wliuphASPILKkHU8jdHsbM8yqSPCtMGgRMdlc937TOG9fwG1/XrLRj3xlWPUk74
+	 ybEUN82r+sZmnwPK+gz7z54rUTqtB4rPYhPYZKtVVCRDpPOfO72t0aHEX4ume8KTmx
+	 kGExBvaxAWlZrbOZdMOOJ93bu02b/QkVkIkDEzlW71yIV5eAN5TUJWkNaOr7G/50IN
+	 pbKlbBs9jmHP+AErNR8vfHgPNPvVnI8Oc5QwnufxtRqw1vVV7NUFuuKKaAiDrKstcA
+	 djHg/CuiAY/aez4FKMHKc0LBh32s1e7dB1nev5+xkaiHTHIfNnGa6T++jXs6GEGXsZ
+	 4nfit4oqHbYtQ==
+Message-ID: <5f90547d-945a-4e26-b36c-75f2d8a1af97@kernel.org>
+Date: Wed, 2 Jul 2025 13:18:38 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20250702005706.1200059-1-john.madieu.xa@bp.renesas.com>
- <20250702005706.1200059-4-john.madieu.xa@bp.renesas.com> <CAMuHMdVOhJaYuKqJeJA4N1n-_a=msyaYbiSHpaMw8OkHrprZSA@mail.gmail.com>
-In-Reply-To: <CAMuHMdVOhJaYuKqJeJA4N1n-_a=msyaYbiSHpaMw8OkHrprZSA@mail.gmail.com>
-From: "Lad, Prabhakar" <prabhakar.csengg@gmail.com>
-Date: Wed, 2 Jul 2025 12:16:13 +0100
-X-Gm-Features: Ac12FXxKgI7r15K6Lifif8agJoG7VZyyIB7KQTuknktkKr34MscCH7t7bPpgpoA
-Message-ID: <CA+V-a8tUVgvYeMd5g8Y_FUTiE1v0eNcYFvdJsW2Rk3-a2ui1DA@mail.gmail.com>
-Subject: Re: [PATCH v4 3/4] pinctrl: renesas: rzg2l: Add PFC_OEN support for
- RZ/G3E SoC
-To: Geert Uytterhoeven <geert@linux-m68k.org>
-Cc: John Madieu <john.madieu.xa@bp.renesas.com>, prabhakar.mahadev-lad.rj@bp.renesas.com, 
-	magnus.damm@gmail.com, robh@kernel.org, krzk+dt@kernel.org, 
-	conor+dt@kernel.org, mturquette@baylibre.com, sboyd@kernel.org, 
-	richardcochran@gmail.com, linux-renesas-soc@vger.kernel.org, 
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	linux-clk@vger.kernel.org, netdev@vger.kernel.org, biju.das.jz@bp.renesas.com, 
-	john.madieu@gmail.com
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v3 0/5] Introduce "non-pixel" sub node within iris video
+ node
+To: Vikash Garodia <quic_vgarodia@quicinc.com>,
+ Dikshita Agarwal <quic_dikshita@quicinc.com>,
+ Abhinav Kumar <abhinav.kumar@linux.dev>,
+ Bryan O'Donoghue <bryan.odonoghue@linaro.org>,
+ Mauro Carvalho Chehab <mchehab@kernel.org>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>
+Cc: linux-media@vger.kernel.org, linux-arm-msm@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+References: <20250627-video_cb-v3-0-51e18c0ffbce@quicinc.com>
+From: Krzysztof Kozlowski <krzk@kernel.org>
+Content-Language: en-US
+Autocrypt: addr=krzk@kernel.org; keydata=
+ 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 a/A=
+In-Reply-To: <20250627-video_cb-v3-0-51e18c0ffbce@quicinc.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-Hi Geert,
+On 27/06/2025 17:48, Vikash Garodia wrote:
+> This series introduces a sub node "non-pixel" within iris video node.
+> Video driver registers this sub node as a platform device and configure 
+> it for DMA operations. All non pixel buffers, i.e bitstream, HFI queues 
+> and internal buffers related to bitstream processing, would be managed 
+> by this non_pixel device.
+> 
+> Purpose to add this sub-node:
+> Iris device limits the IOVA to an addressable range of 4GiB, and even 
+> within that range, some of the space is used by IO registers, thereby 
+> limiting the available IOVA to even lesser. For certain video usecase, 
+> this limited range in not sufficient enough, hence it brings the need to 
+> extend the possibility of higher IOVA range.
+> 
+> Video hardware is designed to emit different stream-ID for pixel and 
+> non-pixel buffers, thereby introduce a non-pixel sub node to handle 
+> non-pixel stream-ID into a separate platform device.
+> With this, both iris and non-pixel device can have IOVA range of 
+> approximately 0-4GiB individually for each device, thereby doubling the 
+> range of addressable IOVA.
+> 
+> Tested on SM8550 and SA8775p hardwares.
+> 
+> Signed-off-by: Vikash Garodia <quic_vgarodia@quicinc.com>
+> ---
+> Changes in v3:
+> - Add info about change in iommus binding (Thanks Krzysztof)
 
-Thank you for the review.
+Nothing improved in commit msg. You are changing existing device and the
+reason for that change is not communicated at all.
 
-On Wed, Jul 2, 2025 at 10:55=E2=80=AFAM Geert Uytterhoeven <geert@linux-m68=
-k.org> wrote:
->
-> Hi John, Prabhakar,
->
-> On Wed, 2 Jul 2025 at 02:57, John Madieu <john.madieu.xa@bp.renesas.com> =
-wrote:
-> > From: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-> >
-> > Add support to configure the PFC_OEN register on the RZ/G3E SoC for
-> > specific pins that require direction control via output-enable.
-> >
-> > On the RZ/G3E SoC, certain pins such as TXC_TXCLK must be switchable
-> > between input and output modes depending on the PHY interface mode
-> > (MII or RGMII). This behavior maps to the `output-enable` property in
-> > the device tree and requires configuring the PFC_OEN register.
-> >
-> > Update the r9a09g047_variable_pin_cfg array to include PB1, PE1, PL0,
-> > PL1, PL2, and PL4 with PIN_CFG_OEN flags to indicate support for this
-> > feature. Define a new rzg3e_hwcfg structure with SoC-specific pin names
-> > used for OEN bit mapping.
-> >
-> > Signed-off-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
->
-> Thanks for your patch!
->
-> > --- a/drivers/pinctrl/renesas/pinctrl-rzg2l.c
-> > +++ b/drivers/pinctrl/renesas/pinctrl-rzg2l.c
->
-> > @@ -3283,6 +3307,19 @@ static const char * const rzv2h_oen_pin_names[] =
-=3D {
-> >         "XSPI0_CKN", "XSPI0_CKP"
-> >  };
-> >
-> > +static const char * const rzg3e_oen_pin_names[] =3D {
-> > +       "PB1", "PE1", "PL4", "PL1", "PL2", "PL0"
-> > +};
-> > +
-> > +static const struct rzg2l_hwcfg rzg3e_hwcfg =3D {
-> > +       .regs =3D {
-> > +               .pwpr =3D 0x3c04,
-> > +       },
-> > +       .tint_start_index =3D 17,
-> > +       .oen_pin_names =3D rzg3e_oen_pin_names,
-> > +       .oen_pin_names_len =3D ARRAY_SIZE(rzg3e_oen_pin_names),
-> > +};
-> > +
-> >  static const struct rzg2l_hwcfg rzv2h_hwcfg =3D {
-> >         .regs =3D {
-> >                 .pwpr =3D 0x3c04,
-> > @@ -3352,7 +3389,7 @@ static struct rzg2l_pinctrl_data r9a09g047_data =
-=3D {
-> >         .dedicated_pins =3D rzg3e_dedicated_pins,
-> >         .n_port_pins =3D ARRAY_SIZE(r9a09g047_gpio_configs) * RZG2L_PIN=
-S_PER_PORT,
-> >         .n_dedicated_pins =3D ARRAY_SIZE(rzg3e_dedicated_pins),
-> > -       .hwcfg =3D &rzv2h_hwcfg,
-> > +       .hwcfg =3D &rzg3e_hwcfg,
-> >         .variable_pin_cfg =3D r9a09g047_variable_pin_cfg,
-> >         .n_variable_pin_cfg =3D ARRAY_SIZE(r9a09g047_variable_pin_cfg),
-> >         .num_custom_params =3D ARRAY_SIZE(renesas_rzv2h_custom_bindings=
-),
->
-> I would rather use the existing .oen_{read,write}() abstraction,
-> and thus provide new rzg3e_oen_{read,write}() implementations:
->
-Ok.
+There was big feedback from qualcomm saying that some commit in the past
+received review, so future commits can repeat the same stuff. If qcom
+approaches that way, sorry, no you need to come with proper commit
+description.
 
->     -    .oen_read =3D &rzv2h_oen_read,
->     -    .oen_write =3D &rzv2h_oen_write,
->     +    .oen_read =3D &rzg3e_oen_read,
->     +    .oen_write =3D &rzg3e_oen_write,
->
-> Of course this requires refactoring the existing rzv2h_pin_to_oen_bit()
-> and rzv2h_oen_{read,write}() functions to avoid duplication.
-> Do you agree?
->
-Agreed.
+Please align internally how to solve it, because my response that past
+imperfect review is not justification for whatever future issues was not
+enough.
 
-Cheers,
-Prabhakar
+Best regards,
+Krzysztof
 
