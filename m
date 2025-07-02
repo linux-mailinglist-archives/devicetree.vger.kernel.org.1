@@ -1,48 +1,48 @@
-Return-Path: <devicetree+bounces-192307-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-192308-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 803A1AF634E
-	for <lists+devicetree@lfdr.de>; Wed,  2 Jul 2025 22:28:40 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 9B2F0AF6354
+	for <lists+devicetree@lfdr.de>; Wed,  2 Jul 2025 22:30:46 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id D26804A5150
-	for <lists+devicetree@lfdr.de>; Wed,  2 Jul 2025 20:28:40 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id C4FAD522DCC
+	for <lists+devicetree@lfdr.de>; Wed,  2 Jul 2025 20:30:46 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id F279A1BEF8C;
-	Wed,  2 Jul 2025 20:28:36 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 254B122FAFD;
+	Wed,  2 Jul 2025 20:30:43 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="QgVHoA18"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="p6AqKF+c"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C2B662DE6F9;
-	Wed,  2 Jul 2025 20:28:35 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EED5C2DE714;
+	Wed,  2 Jul 2025 20:30:42 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1751488116; cv=none; b=bRKwNklsGrHtmwDEd6dio/tKr9w3qoyBeoUfbQfBQQpuZmOtJaW23uRFgpRySarM52mX8prf98VFIBi2eiJDNYu1HwYK4bvc1jx9yam30qMS13mMWqORoi6u6PR/M/11teuN50kTR84MhaoAVzs6J/XXoTaXSbdUyl3Z8yIEVQM=
+	t=1751488243; cv=none; b=UhX7Wgv/UMuhczX6Fhi7PU/yc2CtvFzG+v7/3T0kKy14R3P/JTg5jDI94eDaqnVymwHOpCkninF1L2WX4tovyyDShB9Apotf4NeVc5r9siuqWlND7irXHo5v2xCp32qPA3oqX1o/q7yo2Q/vAFX7PV92/AGZgc6KgvMmT+q3WO4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1751488116; c=relaxed/simple;
-	bh=EcR4+ln9wMqpjyQvSKoH8VVU7uAGxeRP9WlpelVUD6Q=;
+	s=arc-20240116; t=1751488243; c=relaxed/simple;
+	bh=40B926dekfZk7Pc/F4+emVpgtLxhyiFMEso0dncmUIA=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=VldCBJ4rpThYp8XWbk9hyUemPd+Z4g/Wm7TRjLqnwkD08LIMSVAy5wHWr0sDwQ5KbDMXGOLlv/GSvxg3QgKXesMkgiYCs/0QFU4sfpNDc3j8+6o6QGImjf88SNX6NmC4Cf7ORJZqhSomAGWh/Lrf7/mpt18HtA5fHqkOgaFbj74=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=QgVHoA18; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 4FB1FC4CEE7;
-	Wed,  2 Jul 2025 20:28:28 +0000 (UTC)
+	 In-Reply-To:Content-Type; b=oWge2T9iWqxeRe2fFvbQyXfX5jNBwHW1+ObGEC8CIYiVptqzPE9TH8BzEmXfPk+AnQdLHUWHAiLcglyVFTE/2J44T5YECvClJiNymmJtClgWEmF4GskSyD5ETjUW1A0wE8UMSkpxpXTKTzNxSBgAftGb4tn4ESxzaKwjbIaq4Q4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=p6AqKF+c; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 0023DC4CEE7;
+	Wed,  2 Jul 2025 20:30:38 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1751488115;
-	bh=EcR4+ln9wMqpjyQvSKoH8VVU7uAGxeRP9WlpelVUD6Q=;
+	s=k20201202; t=1751488242;
+	bh=40B926dekfZk7Pc/F4+emVpgtLxhyiFMEso0dncmUIA=;
 	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=QgVHoA185ko+hM3joHPYDcRNSPDDHaq7aNPl+L/GHdUDM4Pwpqa3qsS6u12Xa3k0H
-	 O/2gGTCxZM+MltSvcIlR/FQA60FFz/vzNntyKqklBUhc7JpCatdlRjeuo56o/mZ1Xk
-	 ZmPEsWPSO5FpkJquGa/kfWwXK7OftY21SR2/K88hnkvJfdld+z1y0sMRp2Elue3wLx
-	 9x4V/GtDCqoxjr++0eIkN2rVe74Dg7yMpFP1jsGF+uqKMzMVtEPdGclX2KEeoMRzXN
-	 XmpyAO0ZbjUvcy6fqtzDtIxi0qDcgm5n8YinQWGxLmoGFu+LlOrxSC7DEs529kTf7X
-	 2XRAo9yqaNZBw==
-Message-ID: <913b3a01-5610-4709-87c1-4e225df466d5@kernel.org>
-Date: Wed, 2 Jul 2025 22:28:25 +0200
+	b=p6AqKF+cwI6HQXTqSt5ZPVF9JLfz3+WXIMuVDLSo9DziV9jgI0nOlVDgMAESYW7gT
+	 saIRoebpuGVzZMKWJ9qidFdeYouV7Bhvw0+f7s5MnZFIXeLkJsLaKIRxYORqpmOhLn
+	 MNrFoqSKaSeLK0lwz1CtHvl6loQ5Kiqr/7xV6jr3oE9mpx3vbxdKHw6l2CkrXPBZg/
+	 mKYkp2evTMXnnhatUO8zM+3ewUyONf+Lx1P7YAAiza+aPlhKaLDySnwAbtyxDCxl3c
+	 EV6voz3nrjSW490VyW+CLJUFVhRvqaEj3s35hC7WZpVVnZLp/68ivxkpI6z05fUeun
+	 YAHxOa0hOA6MQ==
+Message-ID: <04a0d550-3fb4-4cf9-8adf-4ed54e3af7ba@kernel.org>
+Date: Wed, 2 Jul 2025 22:30:37 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,19 +50,18 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v5 10/14] dt-bindings: PCI: Add CIX Sky1 PCIe Root Complex
- bindings
-To: Hans Zhang <hans.zhang@cixtech.com>
-Cc: bhelgaas@google.com, lpieralisi@kernel.org, kw@linux.com,
- mani@kernel.org, robh@kernel.org, kwilczynski@kernel.org,
- krzk+dt@kernel.org, conor+dt@kernel.org, mpillai@cadence.com,
- fugang.duan@cixtech.com, guoyin.chen@cixtech.com, peter.chen@cixtech.com,
- cix-kernel-upstream@cixtech.com, linux-pci@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <20250630041601.399921-1-hans.zhang@cixtech.com>
- <20250630041601.399921-11-hans.zhang@cixtech.com>
- <20250630-graceful-horse-of-science-eecc53@krzk-bin>
- <5e9ddbe4-c94c-4087-8b34-0407ea278888@cixtech.com>
+Subject: Re: [PATCH 1/4] arm64: dts: ti: k3-j721e-main: Make the "scm_conf"
+ node a "simple-bus"
+To: Jayesh Choudhary <j-choudhary@ti.com>, nm@ti.com, vigneshr@ti.com,
+ devicetree@vger.kernel.org
+Cc: kristo@kernel.org, robh@kernel.org, krzk+dt@kernel.org,
+ conor+dt@kernel.org, s-vadapalli@ti.com, rogerq@kernel.org, afd@ti.com,
+ linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org
+References: <20250603095609.33569-1-j-choudhary@ti.com>
+ <20250603095609.33569-2-j-choudhary@ti.com>
+ <15da3051-c35e-4876-9185-9079493dc66c@kernel.org>
+ <0c69137d-93ad-4843-8512-9885b9cba452@ti.com>
+ <d8a8293d-2759-4408-b1a7-a2689383b043@ti.com>
 From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
@@ -108,53 +107,51 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  jWt87ecuHlpL3uuQ0ZZNWqHgZoQLXoqC2ZV5KrtKWb/jyiFX/sxSrodALf0zf+tfHv0FZWT2
  zHjUqd0t4njD/UOsuIMOQn4Ig0SdivYPfZukb5cdasKJukG1NOpbW7yRNivaCnfZz6dTawXw
  XRIV/KDsHQiyVxKvN73bThKhONkcX2LWuD928tAR6XMM2G5ovxLe09vuOzzfTWQDsm++9UKF a/A=
-In-Reply-To: <5e9ddbe4-c94c-4087-8b34-0407ea278888@cixtech.com>
+In-Reply-To: <d8a8293d-2759-4408-b1a7-a2689383b043@ti.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 30/06/2025 17:54, Hans Zhang wrote:
+On 01/07/2025 12:23, Jayesh Choudhary wrote:
+> Hello Krzysztof,
 > 
+> On 04/06/25 15:18, Jayesh Choudhary wrote:
+>> Hello Krzysztof,
+>>
+>> On 03/06/25 16:32, Krzysztof Kozlowski wrote:
+>>> On 03/06/2025 11:56, Jayesh Choudhary wrote:
+>>>> The "scm_conf" bus need not be "syscon". Now that we have "pcie*_ctrl"
+>>>> child nodes for "ti,syscon-pcie-ctrl" property in "pcie" nodes, change
+>>>> "scm_conf" node to "simple-bus".
+>>>> Also remove "reg" property as it is not needed by "simple-bus".
+>>>
+>>> This (possibly) affects all other users of DTS which were expecting this
+>>> ABI. It's not only about forward-compatibility, but other projects.
+>>>
+>>> Maybe this doe snot matter for you, so explain that in commit msg and
+>>> provide rationale why you are affecting other users.
+>>>
+>>>
+>>
+>> This should not affect other users of DTS. J784S4 already has this
+>> change and it serves as a validation that DT nodes are compatible
+>> with other projects (for example uboot driver handles it).
+>> Other SoCs are being modified with taking J784S4 as a working reference.
+>>
+>> Considering this, do I still need to add something? Or is it okay
+>> since I am not exactly affecting other projects?
+>> Should I add something along the lines of "similar to j784s4...."?
+>>
 > 
-> On 2025/6/30 15:26, Krzysztof Kozlowski wrote:
->>> +  sky1,pcie-ctrl-id:
->>> +    description: |
->>> +      Specifies the PCIe controller instance identifier (0-4).
->> No, you don't get an instance ID. Drop the property and look how other
->> bindings encoded it (not sure about the purpose and you did not explain
->> it, so cannot advise).
+> Gentle ping on the above comment.
 > 
-> 
-> Dear Krzysztof,
-> 
-> Sorry, I missed your reply to this in the previous email.
-> 
-> Because our Root Port driver needs to support 5 PCIe ports, and the 
-> register configuration and offset of each port are different, it is 
-> necessary to know which port it is currently. Perhaps I can use the 
-> following method and then delete this attribute.
-> 
-> aliases {
-> 		......
-> 		pcie_rc0 = &pcie_x8_rc;
-> 		pcie_rc1 = &pcie_x4_rc;
-> 		pcie_rc2 = &pcie_x2_rc;
-> 		pcie_rc3 = &pcie_x1_0_rc;
-> 		pcie_rc4 = &pcie_x1_1_rc;
-> 		
-> id = of_alias_get_id(dev->of_node, "pcie_rc");
-I think Rob commented pretty strongly about aliases in this thread... or
-was it other one? Maybe it was about Tesla FSD PCI PHY... huh, same pattern.
+> I have checked other projects like Barebox. That supports TI K3 SoC
+> but only AM62x and AM62L. Nothing in this series affects it.
 
-So no, you do not get your own aliases.
+Your answer is really not sufficient, just something to reply so I will
+bug off, so I decided to ignore it.
 
-Explain the differences in the hardware. If the hardware is different,
-then it warrants different compatibles or other properties. But you need
-to explain these differences. What is there? Different number of lanes?
-Different phy? We have properties for that, use these. Different speed?
-All of them have their own properties already, so use them. Maybe
-something else... Do the homework and look at schemas and dtschema (yes,
-I know that I said other poor solutions are not excuse to copy them, but
-look for good solutions).
+This affects other projects - it is clearly visible in the diff. You
+removed a compatible and you cannot do that.
 
 Best regards,
 Krzysztof
