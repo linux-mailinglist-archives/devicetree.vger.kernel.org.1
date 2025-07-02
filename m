@@ -1,120 +1,166 @@
-Return-Path: <devicetree+bounces-192101-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-192102-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id AADE9AF162C
-	for <lists+devicetree@lfdr.de>; Wed,  2 Jul 2025 14:56:06 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7D8ABAF1634
+	for <lists+devicetree@lfdr.de>; Wed,  2 Jul 2025 14:57:05 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id B9E677A7DAC
-	for <lists+devicetree@lfdr.de>; Wed,  2 Jul 2025 12:54:07 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 19DBA3AE560
+	for <lists+devicetree@lfdr.de>; Wed,  2 Jul 2025 12:56:39 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 63416275850;
-	Wed,  2 Jul 2025 12:55:18 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7DFB0275105;
+	Wed,  2 Jul 2025 12:56:58 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="A7MSSLLj"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-vk1-f181.google.com (mail-vk1-f181.google.com [209.85.221.181])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.7])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 820E827465A;
-	Wed,  2 Jul 2025 12:55:16 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.181
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BB4A42750F2;
+	Wed,  2 Jul 2025 12:56:56 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.198.163.7
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1751460918; cv=none; b=GFOXpAZtsN8/c1wTU5KdOgH4yRGGDaMjx9zw8+eMaKd3KmhX3YScsh058YOGfnK7NvnHYcJO5qsvUGHgAODWGKP4x1zlB4naWeomSyAK1tSkc9kT8ePWZr+eIwiEqT8ofb50Cs/IEIxvE9cChrtVkFIJN8mc1+LY97JoL40+8TE=
+	t=1751461018; cv=none; b=POeOYOAVSCXhfBzAZBcT6bwBoAEtCj2Z+NvO8Bail43kN5c1MmVSr1WcQANoIPzCwLmbPoINgmkOPQM31nqwOVT9URXTzYmjgOL+9ufkYequsfc1jA7p7ZgdouOw//8IkLvNNKRTUoUr6wLwLQSDk6mfytt252DfVu9Z4RW0g4c=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1751460918; c=relaxed/simple;
-	bh=4RMRk7+aVwR+3Qw5vc1Ge0MyIELEc9PS8LA/+Ea8jc0=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=eBs92xRnd2K1r4L+e9hHy7A7VK/qghT5+2W+pGO9FFtuYZWx0oMytX8CZPjUSilvi8vMtSnrxY3E8ZVUJ40Cijb7CZKHw8SDDPQr+fTkdIqPAZ9//G9bIUJIP0rWkol2gR55zlvuj5HjtkG9NIP1VV1PQGKifskHbPQnY0xlsi8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.221.181
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-vk1-f181.google.com with SMTP id 71dfb90a1353d-531466622beso2144042e0c.1;
-        Wed, 02 Jul 2025 05:55:16 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1751460915; x=1752065715;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=p7ECsAw6yB8tihJqn6f0QSOOmPwyyTIsWvoJ6n9vWgs=;
-        b=lM7PkMjfIZ54SG+C67uykIS5xAgwa4Qm0TZxWx5uKwDKi+3OOzvH17cH4PdDKhGaaw
-         y5kIcdKsiSIuWkoFuvXq3EQ9yLfKGa0ppKYrQb8lCSY/TNg84YeG3AZD3x+140r0N5o1
-         vdDkGSjz2CAETjxFROGONozWBun6kAYhz20ocqGdyKyKaLWGz5Ej0emWEgsL3w2qBA7r
-         LeWTDuTrxgQmVQf/pasfV2ewLLFgmt8fqRP4+8ROOUsKi0HIJ3F4kweP8YqixOVaGLXo
-         fteicsqJTNH5uZ9R4AxbvfmxwAXSl3O0zkJApHnAD1mojVjA2Fbh/rnn7v844ne0ObL6
-         Q+jA==
-X-Forwarded-Encrypted: i=1; AJvYcCW609MiAIe9RFfdrsW+4c3WCqR3PPf/cAzxtwcXMLKK7cGdSp1AckuidUkTJ/eLhYUIclyhYSSjHnhyF6FJtMp6KLM=@vger.kernel.org, AJvYcCW67kj1JEAEGRiXSE85Gym5nksoJrcH/VHIGJUlr2Vn/E7CGQou0NkTi5Mnw+wq/asl8CD26MJ5HZ+5@vger.kernel.org, AJvYcCWe+3K/fKNZaeAu0miM9M0zvjolpnPlQ+MaUafkc/k31V0mK1TgaI8HI+d2qNU8rvTcwY0n7VYGIZqbtRUM@vger.kernel.org
-X-Gm-Message-State: AOJu0YxqhQiNOLsnjtJOwfOv+UpEP/zPRjcKTozCX7C63ODX7oYc/uRo
-	pG1rirwooDfoyirKKJWJ8rmH6F8CoCyGZUi1s2e9dNM5bEsT9jnAL3e9wLgnuRoP
-X-Gm-Gg: ASbGncs9EfRTRj+daCJoIua0oEPzkQyIarKZHJhOPVE9FGFzHX7mn6dPKI2dJmHJXIB
-	QCaYUxOVLyFo8Bv5nKp8ktYBq4bPjNzdAP9aElfvKn3jaC2Kqe0VnpYYHaz+z1/PoE9qhT0oQnl
-	IT9On/h1GwfWS0kBlznAhX6kIvvevvj1AqrzUHe8so1pUEvwBFb8RgS8ftBCyeauSwkuoQMmcs+
-	xzR2ZF9oYWqTTcXmkDBf4cj1KoE5t4Wir6L+wLNMf+TUqWrywvs2VbX2xJ3Xg4isfqBNHK7WjKH
-	8x+LuLuRUq1G5BdbbMfljhhlLZKNsEGKcRS414jB4jkGxK3oPRHHPNUMDFcyXKSFrXdQI+4IFYX
-	fMu/3F76n/EBwS91rzlDo6Ncv
-X-Google-Smtp-Source: AGHT+IEOZa61rOVXqWUImLBUueXdZ7FsJrWVa2PyZ3BfxDJAIJPFIRmop0rm7aoffoIRG2Y9rasRiQ==
-X-Received: by 2002:a05:6122:7d3:b0:531:2906:751e with SMTP id 71dfb90a1353d-5345842cfadmr1652539e0c.8.1751460914878;
-        Wed, 02 Jul 2025 05:55:14 -0700 (PDT)
-Received: from mail-ua1-f44.google.com (mail-ua1-f44.google.com. [209.85.222.44])
-        by smtp.gmail.com with ESMTPSA id 71dfb90a1353d-533090c46c0sm2112924e0c.19.2025.07.02.05.55.14
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 02 Jul 2025 05:55:14 -0700 (PDT)
-Received: by mail-ua1-f44.google.com with SMTP id a1e0cc1a2514c-87f4c8e9cdcso1574726241.2;
-        Wed, 02 Jul 2025 05:55:14 -0700 (PDT)
-X-Forwarded-Encrypted: i=1; AJvYcCUTAACNnnR+uYKz3sco/knX8WqT0Ck6jlqaVN9/y6er829Vf7IJj+YVEhInTX/0mnELJCJEyVoStncO+5Hk@vger.kernel.org, AJvYcCVnMlvNt9V8UiN0idA6B85DnsmYFSm1A4fAbmPjuDuOzoQBUxMBDPirqnGi/qvMIdAeQeSmJ8Q2xyMu@vger.kernel.org, AJvYcCWp9QtGIVcjVUmRjtv8yeY8N42UlHcDzkkrWW09xxx1NtVsqTPQw48Vc48KvZM4T50zYTDxsC308HEn0UBqZRifUHg=@vger.kernel.org
-X-Received: by 2002:a05:6102:26d3:b0:4de:d08f:6727 with SMTP id
- ada2fe7eead31-4f1612b5345mr1087681137.13.1751460914346; Wed, 02 Jul 2025
- 05:55:14 -0700 (PDT)
+	s=arc-20240116; t=1751461018; c=relaxed/simple;
+	bh=87AuNJuW+2yV1B9Zb2+kKYqb3dCQ3S9+ENTr/v9ygw8=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=VoG8qMVN4WPFh3B7mTyCZde3awc1Vl9lMXCLfN+EBYM5nYIDNOD/ZTeq9T7JPV130OQ90rLJDokUKWa+E/+jGfI8MfPlcV5xg2dUJfV4mytrvky3RZHrzdEGfZG40sVNil2+J4At71+hHqT2VKoL6UA/6g+pT9uLO5l0lou0wB8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com; spf=none smtp.mailfrom=linux.intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=A7MSSLLj; arc=none smtp.client-ip=192.198.163.7
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com
+Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=linux.intel.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1751461017; x=1782997017;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:content-transfer-encoding:in-reply-to;
+  bh=87AuNJuW+2yV1B9Zb2+kKYqb3dCQ3S9+ENTr/v9ygw8=;
+  b=A7MSSLLjgmgy1cI4PG+rH5xJN3O9HtYltk0DJ9+Cn4E1Z4afNNH7NZtZ
+   +hpvmsQCIaLuCIakotv07WQVRIgRdH30mprFQl0UNZ+YF+Io4N8EdvRh7
+   sWU8rk0Y1eN45idjFU6JbYhW4RLhBZbzjF+q5ymeEgFbbZq0Rfx7pGsSU
+   SYhQv44cEDiOD6wf527r0vnZe2TU379hAnZD+VwydipiPvRouAcH1+wbT
+   5lSPZ8r5ydrC2h6czEOJ0Cs7KwjXeGGCeYBRB4jz33F7n186CNu9o+e+i
+   Ig8cUnTcWlvN0XqecDIRQ1eD4wIUeBLSrPLSrexy4w1iBR9rqg51/VPZd
+   Q==;
+X-CSE-ConnectionGUID: xVFwBIAiRP6ETwkCqRFZHA==
+X-CSE-MsgGUID: WdS/eiK6QIW9xIn/er9tiA==
+X-IronPort-AV: E=McAfee;i="6800,10657,11482"; a="79193524"
+X-IronPort-AV: E=Sophos;i="6.16,281,1744095600"; 
+   d="scan'208";a="79193524"
+Received: from fmviesa005.fm.intel.com ([10.60.135.145])
+  by fmvoesa101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 02 Jul 2025 05:56:46 -0700
+X-CSE-ConnectionGUID: k5aMYtXJR2qEFNakZQpjgw==
+X-CSE-MsgGUID: aq3oM6NuTeeQ7eQWflv3ig==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.16,281,1744095600"; 
+   d="scan'208";a="158331640"
+Received: from smile.fi.intel.com ([10.237.72.52])
+  by fmviesa005.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 02 Jul 2025 05:56:40 -0700
+Received: from andy by smile.fi.intel.com with local (Exim 4.98.2)
+	(envelope-from <andriy.shevchenko@linux.intel.com>)
+	id 1uWx0t-0000000BvFQ-3atU;
+	Wed, 02 Jul 2025 15:56:35 +0300
+Date: Wed, 2 Jul 2025 15:56:35 +0300
+From: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
+To: "Rafael J. Wysocki" <rafael@kernel.org>
+Cc: Anup Patel <apatel@ventanamicro.com>,
+	Michael Turquette <mturquette@baylibre.com>,
+	Stephen Boyd <sboyd@kernel.org>, Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Jassi Brar <jassisinghbrar@gmail.com>,
+	Thomas Gleixner <tglx@linutronix.de>,
+	Mika Westerberg <mika.westerberg@linux.intel.com>,
+	Linus Walleij <linus.walleij@linaro.org>,
+	Bartosz Golaszewski <brgl@bgdev.pl>,
+	Uwe =?iso-8859-1?Q?Kleine-K=F6nig?= <ukleinek@kernel.org>,
+	Palmer Dabbelt <palmer@dabbelt.com>,
+	Paul Walmsley <paul.walmsley@sifive.com>,
+	Alexandre Ghiti <alex@ghiti.fr>, Len Brown <lenb@kernel.org>,
+	Sunil V L <sunilvl@ventanamicro.com>,
+	Rahul Pathak <rpathak@ventanamicro.com>,
+	Leyfoon Tan <leyfoon.tan@starfivetech.com>,
+	Atish Patra <atish.patra@linux.dev>,
+	Andrew Jones <ajones@ventanamicro.com>,
+	Samuel Holland <samuel.holland@sifive.com>,
+	Anup Patel <anup@brainfault.org>, linux-clk@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-acpi@vger.kernel.org,
+	linux-riscv@lists.infradead.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v7 15/24] ACPI: property: Add support for cells property
+Message-ID: <aGUsg121lenWHL-w@smile.fi.intel.com>
+References: <20250702051345.1460497-1-apatel@ventanamicro.com>
+ <20250702051345.1460497-16-apatel@ventanamicro.com>
+ <CAJZ5v0iYYuK2GF2Pg3NiO4vLFzoYm6Q3Dnk5O2DkMJm1R3qSfQ@mail.gmail.com>
+ <aGUaFX9WgTW1I_ZO@smile.fi.intel.com>
+ <CAJZ5v0h=qzS67Xu6NUfN_LmQUmKF9=AtkaRrTx81td0m-mRNNg@mail.gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20250702092755.70847-1-biju.das.jz@bp.renesas.com>
-In-Reply-To: <20250702092755.70847-1-biju.das.jz@bp.renesas.com>
-From: Geert Uytterhoeven <geert@linux-m68k.org>
-Date: Wed, 2 Jul 2025 14:55:01 +0200
-X-Gmail-Original-Message-ID: <CAMuHMdUp90=Mt5_NsEBWwy-JZJN+oBHwoYPmA8CORZiXt2Fk+A@mail.gmail.com>
-X-Gm-Features: Ac12FXwam2Ru_p8NswoQrhU_Ll5UaQya1Z8AGYUKOu7OYX9gkB0z4zqCseLiccA
-Message-ID: <CAMuHMdUp90=Mt5_NsEBWwy-JZJN+oBHwoYPmA8CORZiXt2Fk+A@mail.gmail.com>
-Subject: Re: [PATCH v2] arm64: dts: renesas: r9a09g047e57-smarc: Add gpio keys
-To: Biju Das <biju.das.jz@bp.renesas.com>
-Cc: Magnus Damm <magnus.damm@gmail.com>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	linux-renesas-soc@vger.kernel.org, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, 
-	Prabhakar Mahadev Lad <prabhakar.mahadev-lad.rj@bp.renesas.com>, Biju Das <biju.das.au@gmail.com>
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <CAJZ5v0h=qzS67Xu6NUfN_LmQUmKF9=AtkaRrTx81td0m-mRNNg@mail.gmail.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park, 6
+ krs, Bertel Jungin Aukio 5, 02600 Espoo
 
-On Wed, 2 Jul 2025 at 11:28, Biju Das <biju.das.jz@bp.renesas.com> wrote:
-> RZ/G3E SMARC EVK  has 3 user buttons called USER_SW1, USER_SW2 and
-> USER_SW3 and SLEEP button with NMI support. Add a DT node in device tree
-> to instantiate the gpio-keys driver for these buttons.
->
-> The system can enter into STR state by pressing the sleep button and
-> wakeup from STR is done by pressing power button. The USER_SW{1,2,3}
-> configured as wakeup-source, so it can wakeup the system during s2idle.
->
-> Signed-off-by: Biju Das <biju.das.jz@bp.renesas.com>
-> ---
-> v1->v2:
->  * Added support for sleep button
->  * Dropped the extra spaces after the define keywords for KEY_*_GPIO.
->  * Dropped /delete-node/ keys as KEY_SLEEP will always present.
->  * Moved input.h to r9a09g047e57-smarc.dts
+On Wed, Jul 02, 2025 at 02:39:30PM +0200, Rafael J. Wysocki wrote:
+> On Wed, Jul 2, 2025 at 1:38 PM Andy Shevchenko
+> <andriy.shevchenko@linux.intel.com> wrote:
+> > On Wed, Jul 02, 2025 at 12:20:55PM +0200, Rafael J. Wysocki wrote:
+> > > On Wed, Jul 2, 2025 at 7:16 AM Anup Patel <apatel@ventanamicro.com> wrote:
 
-Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
-i.e. will queue in renesas-devel for v6.17.
+...
 
-Gr{oetje,eeting}s,
+> > > >  static int acpi_fwnode_get_reference_args(const struct fwnode_handle *fwnode,
+> > > >                                           const char *propname, const char *nargs_prop,
+> > > >                                           unsigned int args_count, unsigned int index,
+> >
+> > > >         const struct acpi_device_data *data;
+> > > >         struct fwnode_handle *ref_fwnode;
+> > > >         struct acpi_device *device;
+> > > > +       unsigned int nargs_count;
+> > > >         int ret, idx = 0;
+> >
+> > > > +                       nargs_count = acpi_fwnode_get_args_count(device, nargs_prop);
+> > >
+> > > I think it should work the same way as it used to for the callers that
+> > > pass args_count, so maybe
+> > >
+> > > if (!args_count)
+> > >         args_count = acpi_fwnode_get_args_count(device, nargs_prop);
+> >
+> > But this is different variable.
+> 
+> Of course it is different.  It is an acpi_fwnode_get_reference_args() parameter.
+> 
+> > > >                         element++;
+> > > > -
+> > > >                         ret = acpi_get_ref_args(idx == index ? args : NULL,
+> > > >                                                 acpi_fwnode_handle(device),
+> > > > -                                               &element, end, args_count);
+> > > > +                                               &element, end,
+> > > > +                                               nargs_count ? nargs_count : args_count);
+> > >
+> > > And this change would not be necessary?
+> >
+> > This is not the same check as proposed above.
+> 
+> No, it is not.
+> 
+> It just makes the function work the same way it did before the change
+> for the callers who passed nozero args_count and so they might be
+> forgiven expecting that it would be taken into account.
 
-                        Geert
+I see your point now. But do we have such a user? I dunno.
 
 -- 
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
+With Best Regards,
+Andy Shevchenko
 
-In personal conversations with technical people, I call myself a hacker. But
-when I'm talking to journalists I just say "programmer" or something like that.
-                                -- Linus Torvalds
+
 
