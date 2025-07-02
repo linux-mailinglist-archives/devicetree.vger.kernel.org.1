@@ -1,88 +1,98 @@
-Return-Path: <devicetree+bounces-191990-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-191991-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id DF389AF11D7
-	for <lists+devicetree@lfdr.de>; Wed,  2 Jul 2025 12:28:03 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id C7F39AF11E5
+	for <lists+devicetree@lfdr.de>; Wed,  2 Jul 2025 12:29:46 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 7563E3B520C
-	for <lists+devicetree@lfdr.de>; Wed,  2 Jul 2025 10:27:37 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 981F63AE5A2
+	for <lists+devicetree@lfdr.de>; Wed,  2 Jul 2025 10:29:20 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7D32224DCEF;
-	Wed,  2 Jul 2025 10:27:59 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9312C252292;
+	Wed,  2 Jul 2025 10:29:42 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (4096-bit key) header.d=alien8.de header.i=@alien8.de header.b="fCivF7Sn"
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=couthit.com header.i=@couthit.com header.b="Qn3501aa"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail.alien8.de (mail.alien8.de [65.109.113.108])
+Received: from server.couthit.com (server.couthit.com [162.240.164.96])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E6A6524BBFD;
-	Wed,  2 Jul 2025 10:27:55 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=65.109.113.108
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 417332367D3;
+	Wed,  2 Jul 2025 10:29:40 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=162.240.164.96
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1751452079; cv=none; b=AEiUk1+x8xHJ9uqsVD2u7C5z9AMzBazL8E91bN9Fxg5oO6v29fjLQgqRE4FLCrxULt1orJ8g5VSkv0BMxjPDbZYVwrw3siT7GAF1/RfXy9ScD00/RpbFF0u5opqH7WerF360gYzJH85c9zdmF9E+LfW8JU04WQi7uj14/tXxy78=
+	t=1751452182; cv=none; b=N9gkYimefNkzCX05zijy8YJG4KV/r8DGDQauSJER6xbnafLh4ApulOttSTwi/BY70H8CJvSo8BJRPKG2LhAvUjXWx3Zf6gRP9o5kb7jAsHF2oGR+DeE2pWyGZtUy032wprHbg3xbJs9mgTDMTF8akMBwfGtJ3yvGGiFvJWZwHrs=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1751452079; c=relaxed/simple;
-	bh=mKxFnJrFfq5yKXaS2svEXQwbcRkwD+z83At+PELKWzY=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=S92geAgOxmgnQdRHEqViyGguR+4cJ1cUgzmBM7+CHP5TV37aav50GQBtJYaxGfIpKXA3ta2nAR7vBVg3ju56DW84yXvtT37dD/DwOiirUB507u+hp0osI4XlPiTwxXshEbn5Lc06q4hvXTSB83jcl/HMjl8exczBAD9l2Zcjkds=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=alien8.de; spf=pass smtp.mailfrom=alien8.de; dkim=pass (4096-bit key) header.d=alien8.de header.i=@alien8.de header.b=fCivF7Sn; arc=none smtp.client-ip=65.109.113.108
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=alien8.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=alien8.de
-Received: from localhost (localhost.localdomain [127.0.0.1])
-	by mail.alien8.de (SuperMail on ZX Spectrum 128k) with ESMTP id 812A240E0217;
-	Wed,  2 Jul 2025 10:27:47 +0000 (UTC)
-X-Virus-Scanned: Debian amavisd-new at mail.alien8.de
-Authentication-Results: mail.alien8.de (amavisd-new); dkim=pass (4096-bit key)
-	header.d=alien8.de
-Received: from mail.alien8.de ([127.0.0.1])
-	by localhost (mail.alien8.de [127.0.0.1]) (amavisd-new, port 10026)
-	with ESMTP id tG13KCk_QJPf; Wed,  2 Jul 2025 10:27:44 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=alien8.de; s=alien8;
-	t=1751452063; bh=K6vtF+/FrP3SZLJ1xW3eTnYKlR656Bz2ybvMfEhgy7k=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=fCivF7SnbWweND0RenAM+SeXpWWhRNFm7diOBCTtNiFbTia1+A4ubAK+7EWc1Pczs
-	 j55PbI1oOTPZZBUvsyk44Yh2sMO3q/PX3Tb6adz20ZmwpV0DNdgmOsPSE6MpsQy9Yl
-	 8Yvcfttr4npkoc2LpcId+T6tMc6kcHy7yxHqRfOXnmbZN6HFlmdndo2mnCxQz2pZYA
-	 yJUFDzw0DObeiAvLa3j84d+LcnLH2p2h3x74+2zZJhDJPLPOZgMZCil+Hh5Tq+OpZG
-	 23ldmQjXzcBqPEBK1fN1pw3FCJY6w6J8JMMBQlaQMG2h/m20bMtJKVHsBymWiQr7p3
-	 ggpm23yjDoQ6zc29jCsdHF+8wBbdT2+wyt/38eYnSnnqF1nLKarnjLxtdtjHpjBEj7
-	 P3VS6rBs3+gJ8iNxjObUz+vriA9vt8OmihX9s3mfoMwDTQLqRSvVU29J4qpwitvvdN
-	 xTmoRFASFgManLq+nefrBKUuD9CjavMVGNWdoeQVs5cHG4r0jYxnWMnxU88ZvTBIQw
-	 5w/LbBxPwrJi3Qkvos6X+ek3gv1vt9O6lCy2qDNUIqyUjfWwMnVU26viP2y4rYo7qI
-	 8ztdARHlWLtTxYzh1mBf3Cyl4kTDk+EsAjT0DfxYHb3VmVYcKZ1vT+kU2AbBYI7MVz
-	 CMYxsyfYxSjc+ozQ42aLXP7M=
-Received: from zn.tnic (p57969c58.dip0.t-ipconnect.de [87.150.156.88])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange ECDHE (P-256) server-signature ECDSA (P-256) server-digest SHA256)
-	(No client certificate requested)
-	by mail.alien8.de (SuperMail on ZX Spectrum 128k) with ESMTPSA id 662C140E01FE;
-	Wed,  2 Jul 2025 10:27:28 +0000 (UTC)
-Date: Wed, 2 Jul 2025 12:27:21 +0200
-From: Borislav Petkov <bp@alien8.de>
-To: "Datta, Shubhrajyoti" <shubhrajyoti.datta@amd.com>,
-	"Gupta, Nipun" <Nipun.Gupta@amd.com>,
-	"Agarwal, Nikhil" <nikhil.agarwal@amd.com>
-Cc: "Ghannam, Yazen" <Yazen.Ghannam@amd.com>,
-	"linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-	"linux-edac@vger.kernel.org" <linux-edac@vger.kernel.org>,
-	"git (AMD-Xilinx)" <git@amd.com>,
-	Krzysztof Kozlowski <krzk@kernel.org>,
-	Rob Herring <robh@kernel.org>, Conor Dooley <conor+dt@kernel.org>,
-	Tony Luck <tony.luck@intel.com>, James Morse <james.morse@arm.com>,
-	Mauro Carvalho Chehab <mchehab@kernel.org>,
-	Robert Richter <rric@kernel.org>
-Subject: Re: [PATCH v7 2/5] cdx: Export Symbols for MCDI RPC and
- Initialization
-Message-ID: <20250702102721.GKaGUJiXLkOEC5kdpd@fat_crate.local>
-References: <20250529070017.7288-1-shubhrajyoti.datta@amd.com>
- <20250529070017.7288-3-shubhrajyoti.datta@amd.com>
- <20250613201034.GC171759@yaz-khff2.amd.com>
- <SA1PR12MB89474C0C76A66775B91A20C98170A@SA1PR12MB8947.namprd12.prod.outlook.com>
- <SA1PR12MB8947279143D868E39D30F616817CA@SA1PR12MB8947.namprd12.prod.outlook.com>
+	s=arc-20240116; t=1751452182; c=relaxed/simple;
+	bh=IgF47niL06R/b5FZ45fAzO2Gb3Qe/rN91oJO+jm6Upc=;
+	h=Date:From:To:Cc:Message-ID:In-Reply-To:References:Subject:
+	 MIME-Version:Content-Type; b=lg78b2FJBmLXz/WO1AS2nz/cqY1QpUgVFuEX2r4d1lWjSKdUHmB0Wsf6P9LMoT6CRBlOnQFP46kSBzLQp1oR70ih86y3Lkty4c10ZmxijYVFLdOvJ6f1nmz2dgdxQFIg/Aiq4TypsQizsVJp4XaaECmnoup1FjJ4IQggDJbKF4U=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=couthit.com; spf=pass smtp.mailfrom=couthit.com; dkim=pass (2048-bit key) header.d=couthit.com header.i=@couthit.com header.b=Qn3501aa; arc=none smtp.client-ip=162.240.164.96
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=couthit.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=couthit.com
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=couthit.com
+	; s=default; h=Content-Transfer-Encoding:Content-Type:MIME-Version:Subject:
+	References:In-Reply-To:Message-ID:Cc:To:From:Date:Sender:Reply-To:Content-ID:
+	Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
+	:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
+	List-Post:List-Owner:List-Archive;
+	bh=dy+wTEKgltIegMgJQUD08uRqAUQFGtxWKbjAsEpmnfk=; b=Qn3501aaqC4T5EmLAPUmD9on5j
+	RqUAz2trRXvP9tkAPE576de7j97j1GrLJ1DaJA91TOqbrjwgX+6cpepD4Ysf0UO2ZdHrNKtiEGc1m
+	Zp+xNaDvkMk1m99GDW/XWkE0j++QA6V+lxqIUCt0WhwpVAvYzoG6gzIDVpoR7H8njSs4L1VHMJ2P7
+	ji15QFIVO0+rT4ZOpLoUGIgRrAPM5kZbgTfgvEQLI93MnL9257lm/yoq4MRPHQIT/fL2ZeWGrrDcC
+	i16WkDlUlWAH2C6/ZL5D/6UvCURq3nCTgqHGh5uNQPChjqOjabNOfNadqtkp6RLVUyEmKH2KRvC2D
+	VzjziAeA==;
+Received: from [122.175.9.182] (port=43083 helo=zimbra.couthit.local)
+	by server.couthit.com with esmtpsa  (TLS1.2) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+	(Exim 4.98.1)
+	(envelope-from <parvathi@couthit.com>)
+	id 1uWuiU-00000004M7n-0f52;
+	Wed, 02 Jul 2025 06:29:26 -0400
+Received: from zimbra.couthit.local (localhost [127.0.0.1])
+	by zimbra.couthit.local (Postfix) with ESMTPS id 010AD17840A3;
+	Wed,  2 Jul 2025 15:59:18 +0530 (IST)
+Received: from localhost (localhost [127.0.0.1])
+	by zimbra.couthit.local (Postfix) with ESMTP id CB8121783FD7;
+	Wed,  2 Jul 2025 15:59:17 +0530 (IST)
+Received: from zimbra.couthit.local ([127.0.0.1])
+	by localhost (zimbra.couthit.local [127.0.0.1]) (amavisd-new, port 10026)
+	with ESMTP id uP5WyTMOf4O6; Wed,  2 Jul 2025 15:59:17 +0530 (IST)
+Received: from zimbra.couthit.local (zimbra.couthit.local [10.10.10.103])
+	by zimbra.couthit.local (Postfix) with ESMTP id 6F79917840A3;
+	Wed,  2 Jul 2025 15:59:17 +0530 (IST)
+Date: Wed, 2 Jul 2025 15:59:17 +0530 (IST)
+From: Parvathi Pudi <parvathi@couthit.com>
+To: Vadim Fedorenko <vadim.fedorenko@linux.dev>
+Cc: parvathi <parvathi@couthit.com>, danishanwar <danishanwar@ti.com>, 
+	rogerq <rogerq@kernel.org>, andrew+netdev <andrew+netdev@lunn.ch>, 
+	davem <davem@davemloft.net>, edumazet <edumazet@google.com>, 
+	kuba <kuba@kernel.org>, pabeni <pabeni@redhat.com>, 
+	robh <robh@kernel.org>, krzk+dt <krzk+dt@kernel.org>, 
+	conor+dt <conor+dt@kernel.org>, ssantosh <ssantosh@kernel.org>, 
+	richardcochran <richardcochran@gmail.com>, 
+	s hauer <s.hauer@pengutronix.de>, m-karicheri2 <m-karicheri2@ti.com>, 
+	glaroque <glaroque@baylibre.com>, afd <afd@ti.com>, 
+	saikrishnag <saikrishnag@marvell.com>, m-malladi <m-malladi@ti.com>, 
+	jacob e keller <jacob.e.keller@intel.com>, 
+	diogo ivo <diogo.ivo@siemens.com>, 
+	javier carrasco cruz <javier.carrasco.cruz@gmail.com>, 
+	horms <horms@kernel.org>, s-anna <s-anna@ti.com>, 
+	basharath <basharath@couthit.com>, 
+	linux-arm-kernel <linux-arm-kernel@lists.infradead.org>, 
+	netdev <netdev@vger.kernel.org>, 
+	devicetree <devicetree@vger.kernel.org>, 
+	linux-kernel <linux-kernel@vger.kernel.org>, 
+	pratheesh <pratheesh@ti.com>, Prajith Jayarajan <prajith@ti.com>, 
+	Vignesh Raghavendra <vigneshr@ti.com>, praneeth <praneeth@ti.com>, 
+	srk <srk@ti.com>, rogerq <rogerq@ti.com>, 
+	krishna <krishna@couthit.com>, pmohan <pmohan@couthit.com>, 
+	mohan <mohan@couthit.com>
+Message-ID: <2034056567.1653904.1751452157261.JavaMail.zimbra@couthit.local>
+In-Reply-To: <1528407284.1597726.1750858335213.JavaMail.zimbra@couthit.local>
+References: <20250623135949.254674-1-parvathi@couthit.com> <20250623164236.255083-12-parvathi@couthit.com> <68f46d06-c2ba-461b-9d88-8d76f9f84a8f@linux.dev> <1528407284.1597726.1750858335213.JavaMail.zimbra@couthit.local>
+Subject: Re: [PATCH net-next v9 11/11] net: ti: prueth: Adds PTP OC Support
+ for AM335x and AM437x
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -90,41 +100,431 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-In-Reply-To: <SA1PR12MB8947279143D868E39D30F616817CA@SA1PR12MB8947.namprd12.prod.outlook.com>
+Content-Transfer-Encoding: 7bit
+X-Mailer: Zimbra 8.8.15_GA_3968 (ZimbraWebClient - FF113 (Linux)/8.8.15_GA_3968)
+Thread-Topic: prueth: Adds PTP OC Support for AM335x and AM437x
+Thread-Index: gttxIigjDUoI0uhJByj5kfnS0rDDy4+ZRBSu
+X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
+X-AntiAbuse: Primary Hostname - server.couthit.com
+X-AntiAbuse: Original Domain - vger.kernel.org
+X-AntiAbuse: Originator/Caller UID/GID - [47 12] / [47 12]
+X-AntiAbuse: Sender Address Domain - couthit.com
+X-Get-Message-Sender-Via: server.couthit.com: authenticated_id: smtp@couthit.com
+X-Authenticated-Sender: server.couthit.com: smtp@couthit.com
+X-Source: 
+X-Source-Args: 
+X-Source-Dir: 
 
-On Fri, Jun 20, 2025 at 11:03:02AM +0000, Datta, Shubhrajyoti wrote:
-> I plan to have the current (in the cdx) mcdi.h to mcdid.h and move the common parts to
-> Include/linux/cdx/mcdi.h
+Hi,
+
 > 
-> And for the bitfield.h will move to include/linux/cdx/bitfield.h as most of it is needed
-> by others
+>> On 23/06/2025 17:42, Parvathi Pudi wrote:
+>>> From: Roger Quadros <rogerq@ti.com>
+>>> 
+>>> PRU-ICSS IEP module, which is capable of timestamping RX and
+>>> TX packets at HW level, is used for time synchronization by PTP4L.
+>>> 
+>>> This change includes interaction between firmware/driver and user
+>>> application (ptp4l) with required packet timestamps.
+>>> 
+>>> RX SOF timestamp comes along with packet and firmware will rise
+>>> interrupt with TX SOF timestamp after pushing the packet on to the wire.
+>>> 
+>>> IEP driver available in upstream linux as part of ICSSG assumes 64-bit
+>>> timestamp value from firmware.
+>>> 
+>>> Enhanced the IEP driver to support the legacy 32-bit timestamp
+>>> conversion to 64-bit timestamp by using 2 fields as below:
+>>> - 32-bit HW timestamp from SOF event in ns
+>>> - Seconds value maintained in driver.
+>>> 
+>>> Currently ordinary clock (OC) configuration has been validated with
+>>> Linux ptp4l.
+>>> 
+>>> Signed-off-by: Roger Quadros <rogerq@ti.com>
+>>> Signed-off-by: Andrew F. Davis <afd@ti.com>
+>>> Signed-off-by: Basharath Hussain Khaja <basharath@couthit.com>
+>>> Signed-off-by: Parvathi Pudi <parvathi@couthit.com>
+>>> ---
+>>>   drivers/net/ethernet/ti/icssg/icss_iep.c     | 155 ++++++++++++++++++-
+>>>   drivers/net/ethernet/ti/icssg/icss_iep.h     |  12 ++
+>>>   drivers/net/ethernet/ti/icssm/icssm_prueth.c |  56 ++++++-
+>>>   drivers/net/ethernet/ti/icssm/icssm_prueth.h |  11 ++
+>>>   4 files changed, 230 insertions(+), 4 deletions(-)
+>>> 
+>>> diff --git a/drivers/net/ethernet/ti/icssg/icss_iep.c
+>>> b/drivers/net/ethernet/ti/icssg/icss_iep.c
+>>> index d0850722814e..85e27cc77a3b 100644
+>>> --- a/drivers/net/ethernet/ti/icssg/icss_iep.c
+>>> +++ b/drivers/net/ethernet/ti/icssg/icss_iep.c
+>>> @@ -14,12 +14,15 @@
+>>>   #include <linux/of.h>
+>>>   #include <linux/of_platform.h>
+>>>   #include <linux/platform_device.h>
+>>> +#include <linux/timecounter.h>
+>>> +#include <linux/clocksource.h>
+>>>   #include <linux/timekeeping.h>
+>>>   #include <linux/interrupt.h>
+>>>   #include <linux/of_irq.h>
+>>>   #include <linux/workqueue.h>
+>>>   
+>>>   #include "icss_iep.h"
+>>> +#include "../icssm/icssm_prueth_ptp.h"
+>>>   
+>>>   #define IEP_MAX_DEF_INC		0xf
+>>>   #define IEP_MAX_COMPEN_INC		0xfff
+>>> @@ -53,6 +56,14 @@
+>>>   #define IEP_CAP_CFG_CAPNR_1ST_EVENT_EN(n)	BIT(LATCH_INDEX(n))
+>>>   #define IEP_CAP_CFG_CAP_ASYNC_EN(n)		BIT(LATCH_INDEX(n) + 10)
+>>>   
+>>> +#define IEP_TC_DEFAULT_SHIFT         28
+>>> +#define IEP_TC_INCR5_MULT            BIT(28)
+>>> +
+>>> +/* Polling period - how often iep_overflow_check() is called */
+>>> +#define IEP_OVERFLOW_CHECK_PERIOD_MS   50
+>>> +
+>>> +#define TIMESYNC_SECONDS_COUNT_SIZE    6
+>>> +
+>>>   /**
+>>>    * icss_iep_get_count_hi() - Get the upper 32 bit IEP counter
+>>>    * @iep: Pointer to structure representing IEP.
+>>> @@ -87,6 +98,28 @@ int icss_iep_get_count_low(struct icss_iep *iep)
+>>>   }
+>>>   EXPORT_SYMBOL_GPL(icss_iep_get_count_low);
+>>>   
+>>> +static u64 icss_iep_get_count32(struct icss_iep *iep)
+>>> +{
+>>> +	void __iomem *sram = iep->sram;
+>>> +	u64 v_sec = 0;
+>>> +	u32 v_ns = 0;
+>>> +	u64 v = 0;
+>>> +
+>>> +	v_ns = icss_iep_get_count_low(iep);
+>>> +	memcpy_fromio(&v_sec, sram + TIMESYNC_SECONDS_COUNT_OFFSET,
+>>> +		      TIMESYNC_SECONDS_COUNT_SIZE);
+>>> +	v = (v_sec * NSEC_PER_SEC) + v_ns;
+>> 
+>> How can you be sure that the nanoseconds part does belong to the second
+>> which was read afterwards? In other words, what is the protection for
+>> the sutiation when an overflow happened right after you read ns but
+>> before reading of seconds?
+>> And another question - you copy 6 bytes of seconds counter directly into
+>> the memory. How will it deal with different endianess?
+>> 
 > 
+> We are analyzing further to check the possibility of the race condition.
+> We will review and address this in next version.
 > 
-> I plan to rename the existing mcdi.h under cdx/controller/ to mcdid.h.
-> The common prototypes and definitions will be moved to the new global header at
-> include/linux/cdx/mcdi.h.
+
+We have analyzed and added extra handling to address the concern. We will
+post the updated patches shortly.
+
+PRU-ICSS operates only in little-endian byte ordering.
+
+>>> +
+>>> +	return v;
+>>> +}
+>>> +
+>>> +static u64 icss_iep_cc_read(const struct cyclecounter *cc)
+>>> +{
+>>> +	struct icss_iep *iep = container_of(cc, struct icss_iep, cc);
+>>> +
+>>> +	return icss_iep_get_count32(iep);
+>>> +}
+>>> +
+>>>   /**
+>>>    * icss_iep_get_ptp_clock_idx() - Get PTP clock index using IEP driver
+>>>    * @iep: Pointer to structure representing IEP.
+>>> @@ -280,6 +313,78 @@ static void icss_iep_set_slow_compensation_count(struct
+>>> icss_iep *iep,
+>>>   	regmap_write(iep->map, ICSS_IEP_SLOW_COMPEN_REG, compen_count);
+>>>   }
+>>>   
+>>> +/* PTP PHC operations */
+>>> +static int icss_iep_ptp_adjfine_v1(struct ptp_clock_info *ptp, long scaled_ppm)
+>>> +{
+>>> +	struct icss_iep *iep = container_of(ptp, struct icss_iep, ptp_info);
+>>> +	s32 ppb = scaled_ppm_to_ppb(scaled_ppm);
+>>> +	struct timespec64 ts;
+>>> +	int neg_adj = 0;
+>>> +	u32 diff, mult;
+>>> +	u64 adj;
+>>> +
+>>> +	mutex_lock(&iep->ptp_clk_mutex);
+>>> +
+>>> +	if (ppb < 0) {
+>>> +		neg_adj = 1;
+>>> +		ppb = -ppb;
+>>> +	}
+>>> +	mult = iep->cc_mult;
+>>> +	adj = mult;
+>>> +	adj *= ppb;
+>>> +	diff = div_u64(adj, 1000000000ULL);
+>>> +
+>>> +	ts = ns_to_timespec64(timecounter_read(&iep->tc));
+>>> +	pr_debug("iep ptp adjfine check at %lld.%09lu\n", ts.tv_sec,
+>>> +		 ts.tv_nsec);
+>>> +
+>>> +	iep->cc.mult = neg_adj ? mult - diff : mult + diff;
+>>> +
+>>> +	mutex_unlock(&iep->ptp_clk_mutex);
+>>> +
+>>> +	return 0;
+>>> +}
+>>> +
+>>> +static int icss_iep_ptp_adjtime_v1(struct ptp_clock_info *ptp, s64 delta)
+>>> +{
+>>> +	struct icss_iep *iep = container_of(ptp, struct icss_iep, ptp_info);
+>>> +
+>>> +	mutex_lock(&iep->ptp_clk_mutex);
+>>> +	timecounter_adjtime(&iep->tc, delta);
+>>> +	mutex_unlock(&iep->ptp_clk_mutex);
+>>> +
+>>> +	return 0;
+>>> +}
+>>> +
+>>> +static int icss_iep_ptp_gettimeex_v1(struct ptp_clock_info *ptp,
+>>> +				     struct timespec64 *ts,
+>>> +				     struct ptp_system_timestamp *sts)
+>>> +{
+>>> +	struct icss_iep *iep = container_of(ptp, struct icss_iep, ptp_info);
+>>> +	u64 ns;
+>>> +
+>>> +	mutex_lock(&iep->ptp_clk_mutex);
+>>> +	ns = timecounter_read(&iep->tc);
+>>> +	*ts = ns_to_timespec64(ns);
+>>> +	mutex_unlock(&iep->ptp_clk_mutex);
+>>> +
+>>> +	return 0;
+>>> +}
+>>> +
+>>> +static int icss_iep_ptp_settime_v1(struct ptp_clock_info *ptp,
+>>> +				   const struct timespec64 *ts)
+>>> +{
+>>> +	struct icss_iep *iep = container_of(ptp, struct icss_iep, ptp_info);
+>>> +	u64 ns;
+>>> +
+>>> +	mutex_lock(&iep->ptp_clk_mutex);
+>>> +	ns = timespec64_to_ns(ts);
+>>> +	timecounter_init(&iep->tc, &iep->cc, ns);
+>>> +	mutex_unlock(&iep->ptp_clk_mutex);
+>>> +
+>>> +	return 0;
+>>> +}
+>>> +
+>>>   /* PTP PHC operations */
+>>>   static int icss_iep_ptp_adjfine(struct ptp_clock_info *ptp, long scaled_ppm)
+>>>   {
+>>> @@ -669,6 +774,17 @@ static int icss_iep_ptp_enable(struct ptp_clock_info *ptp,
+>>>   	return -EOPNOTSUPP;
+>>>   }
+>>>   
+>>> +static long icss_iep_overflow_check(struct ptp_clock_info *ptp)
+>>> +{
+>>> +	struct icss_iep *iep = container_of(ptp, struct icss_iep, ptp_info);
+>>> +	unsigned long delay = iep->ovfl_check_period;
+>>> +	struct timespec64 ts;
+>>> +
+>>> +	ts = ns_to_timespec64(timecounter_read(&iep->tc));
+>>> +
+>>> +	pr_debug("iep overflow check at %lld.%09lu\n", ts.tv_sec, ts.tv_nsec);
+>>> +	return (long)delay;
+>>> +}
+>>>   static struct ptp_clock_info icss_iep_ptp_info = {
+>>>   	.owner		= THIS_MODULE,
+>>>   	.name		= "ICSS IEP timer",
+>>> @@ -680,6 +796,18 @@ static struct ptp_clock_info icss_iep_ptp_info = {
+>>>   	.enable		= icss_iep_ptp_enable,
+>>>   };
+>>>   
+>>> +static struct ptp_clock_info icss_iep_ptp_info_v1 = {
+>>> +	.owner		= THIS_MODULE,
+>>> +	.name		= "ICSS IEP timer",
+>>> +	.max_adj	= 10000000,
+>>> +	.adjfine	= icss_iep_ptp_adjfine_v1,
+>>> +	.adjtime	= icss_iep_ptp_adjtime_v1,
+>>> +	.gettimex64	= icss_iep_ptp_gettimeex_v1,
+>>> +	.settime64	= icss_iep_ptp_settime_v1,
+>>> +	.enable		= icss_iep_ptp_enable,
+>>> +	.do_aux_work	= icss_iep_overflow_check,
+>>> +};
+>>> +
+>>>   struct icss_iep *icss_iep_get_idx(struct device_node *np, int idx)
+>>>   {
+>>>   	struct platform_device *pdev;
+>>> @@ -701,6 +829,18 @@ struct icss_iep *icss_iep_get_idx(struct device_node *np,
+>>> int idx)
+>>>   	if (!iep)
+>>>   		return ERR_PTR(-EPROBE_DEFER);
+>>>   
+>>> +	if (iep->plat_data->iep_rev == IEP_REV_V1_0) {
+>>> +		iep->cc.shift = IEP_TC_DEFAULT_SHIFT;
+>>> +		iep->cc.mult = IEP_TC_INCR5_MULT;
+>>> +
+>>> +		iep->cc.read = icss_iep_cc_read;
+>>> +		iep->cc.mask = CLOCKSOURCE_MASK(64);
+>>> +
+>>> +		iep->ovfl_check_period =
+>>> +			msecs_to_jiffies(IEP_OVERFLOW_CHECK_PERIOD_MS);
+>>> +		iep->cc_mult = iep->cc.mult;
+>>> +	}
+>>> +
+>>>   	device_lock(iep->dev);
+>>>   	if (iep->client_np) {
+>>>   		device_unlock(iep->dev);
+>>> @@ -795,6 +935,10 @@ int icss_iep_init(struct icss_iep *iep, const struct
+>>> icss_iep_clockops *clkops,
+>>>   		icss_iep_enable(iep);
+>>>   	icss_iep_settime(iep, ktime_get_real_ns());
+>>>   
+>>> +	if (iep->plat_data->iep_rev == IEP_REV_V1_0)
+>>> +		timecounter_init(&iep->tc, &iep->cc,
+>>> +				 ktime_to_ns(ktime_get_real()));
+>>> +
+>>>   	iep->ptp_clock = ptp_clock_register(&iep->ptp_info, iep->dev);
+>>>   	if (IS_ERR(iep->ptp_clock)) {
+>>>   		ret = PTR_ERR(iep->ptp_clock);
+>>> @@ -802,6 +946,9 @@ int icss_iep_init(struct icss_iep *iep, const struct
+>>> icss_iep_clockops *clkops,
+>>>   		dev_err(iep->dev, "Failed to register ptp clk %d\n", ret);
+>>>   	}
+>>>   
+>>> +	if (iep->plat_data->iep_rev == IEP_REV_V1_0)
+>>> +		ptp_schedule_worker(iep->ptp_clock, iep->ovfl_check_period);
+>>> +
+>>>   	return ret;
+>>>   }
+>>>   EXPORT_SYMBOL_GPL(icss_iep_init);
+>>> @@ -879,7 +1026,11 @@ static int icss_iep_probe(struct platform_device *pdev)
+>>>   		return PTR_ERR(iep->map);
+>>>   	}
+>>>   
+>>> -	iep->ptp_info = icss_iep_ptp_info;
+>>> +	if (iep->plat_data->iep_rev == IEP_REV_V1_0)
+>>> +		iep->ptp_info = icss_iep_ptp_info_v1;
+>>> +	else
+>>> +		iep->ptp_info = icss_iep_ptp_info;
+>>> +
+>>>   	mutex_init(&iep->ptp_clk_mutex);
+>>>   	dev_set_drvdata(dev, iep);
+>>>   	icss_iep_disable(iep);
+>>> @@ -1004,6 +1155,7 @@ static const struct icss_iep_plat_data
+>>> am57xx_icss_iep_plat_data = {
+>>>   		[ICSS_IEP_SYNC_START_REG] = 0x19c,
+>>>   	},
+>>>   	.config = &am654_icss_iep_regmap_config,
+>>> +	.iep_rev = IEP_REV_V2_1,
+>>>   };
+>>>   
+>>>   static bool am335x_icss_iep_valid_reg(struct device *dev, unsigned int reg)
+>>> @@ -1057,6 +1209,7 @@ static const struct icss_iep_plat_data
+>>> am335x_icss_iep_plat_data = {
+>>>   		[ICSS_IEP_SYNC_START_REG] = 0x11C,
+>>>   	},
+>>>   	.config = &am335x_icss_iep_regmap_config,
+>>> +	.iep_rev = IEP_REV_V1_0,
+>>>   };
+>>>   
+>>>   static const struct of_device_id icss_iep_of_match[] = {
+>>> diff --git a/drivers/net/ethernet/ti/icssg/icss_iep.h
+>>> b/drivers/net/ethernet/ti/icssg/icss_iep.h
+>>> index 0bdca0155abd..f72f1ea9f3c9 100644
+>>> --- a/drivers/net/ethernet/ti/icssg/icss_iep.h
+>>> +++ b/drivers/net/ethernet/ti/icssg/icss_iep.h
+>>> @@ -47,21 +47,29 @@ enum {
+>>>   	ICSS_IEP_MAX_REGS,
+>>>   };
+>>>   
+>>> +enum iep_revision {
+>>> +	IEP_REV_V1_0 = 0,
+>>> +	IEP_REV_V2_1
+>>> +};
+>>> +
+>>>   /**
+>>>    * struct icss_iep_plat_data - Plat data to handle SoC variants
+>>>    * @config: Regmap configuration data
+>>>    * @reg_offs: register offsets to capture offset differences across SoCs
+>>>    * @flags: Flags to represent IEP properties
+>>> + * @iep_rev: IEP revision identifier.
+>>>    */
+>>>   struct icss_iep_plat_data {
+>>>   	const struct regmap_config *config;
+>>>   	u32 reg_offs[ICSS_IEP_MAX_REGS];
+>>>   	u32 flags;
+>>> +	enum iep_revision iep_rev;
+>>>   };
+>>>   
+>>>   struct icss_iep {
+>>>   	struct device *dev;
+>>>   	void __iomem *base;
+>>> +	void __iomem *sram;
+>>>   	const struct icss_iep_plat_data *plat_data;
+>>>   	struct regmap *map;
+>>>   	struct device_node *client_np;
+>>> @@ -70,6 +78,10 @@ struct icss_iep {
+>>>   	struct ptp_clock_info ptp_info;
+>>>   	struct ptp_clock *ptp_clock;
+>>>   	struct mutex ptp_clk_mutex;	/* PHC access serializer */
+>>> +	u32 cc_mult; /* for the nominal frequency */
+>>> +	struct cyclecounter cc;
+>>> +	struct timecounter tc;
+>>> +	unsigned long ovfl_check_period;
+>>>   	u32 def_inc;
+>>>   	s16 slow_cmp_inc;
+>>>   	u32 slow_cmp_count;
+>>> diff --git a/drivers/net/ethernet/ti/icssm/icssm_prueth.c
+>>> b/drivers/net/ethernet/ti/icssm/icssm_prueth.c
+>>> index 67ee4c72d3d6..7e90f9e71921 100644
+>>> --- a/drivers/net/ethernet/ti/icssm/icssm_prueth.c
+>>> +++ b/drivers/net/ethernet/ti/icssm/icssm_prueth.c
+>>> @@ -39,6 +39,8 @@
+>>>   #define TX_START_DELAY		0x40
+>>>   #define TX_CLK_DELAY_100M	0x6
+>>>   
+>>> +#define TIMESYNC_SECONDS_BIT_MASK   0x0000ffffffffffff
+>>> +
+>>>   static struct prueth_fw_offsets fw_offsets_v2_1;
+>>>   
+>>>   static void icssm_prueth_set_fw_offsets(struct prueth *prueth)
+>>> @@ -642,13 +644,49 @@ irqreturn_t icssm_prueth_ptp_tx_irq_handle(int irq, void
+>>> *dev)
+>>>   	return IRQ_HANDLED;
+>>>   }
+>>>   
+>>> +/**
+>>> + * icssm_iep_get_timestamp_cycles - IEP get timestamp
+>>> + * @iep: icss_iep structure
+>>> + * @mem: io memory address
+>>> + *
+>>> + * To convert the 10 byte timestamp from firmware
+>>> + * i.e., nanoseconds part from 32-bit IEP counter(4 bytes)
+>>> + * seconds part updated by firmware(rev FW_REV1_0) in SRAM
+>>> + * (6 bytes) into 64-bit timestamp in ns
+>>> + *
+>>> + * Return: 64-bit converted timestamp
+>>> + */
+>>> +u64 icssm_iep_get_timestamp_cycles(struct icss_iep *iep,
+>>> +				   void __iomem *mem)
+>>> +{
+>>> +	u64 cycles, cycles_sec = 0;
+>>> +	u32 cycles_ns;
+>>> +
+>>> +	memcpy_fromio(&cycles_ns, mem, sizeof(cycles_ns));
+>>> +	memcpy_fromio(&cycles_sec, mem + 4, sizeof(cycles_sec));
+>> 
+>> the same question is here - there is a possibility of overflow
+>> between these 2 reads...
+>> 
 > 
-> I am using most of (close to 90/95 percent) the bitfield.h, I'll move it to include/linux/cdx/bitfield.h to
->  make it accessible for other subsystems.
+> We are analyzing further to check the possibility of the race condition.
+> We will review and address this in next version.
 > 
-> Let me know if that sounds good.
 
-Well, I'd expect the maintainers of that thing to move:
+We are reading the snapshot of timestamp from local memory.
+The timestamp is captured by PRU-ICSS at a hardware level,
+so overflow does not apply here.
 
-./scripts/get_maintainer.pl -f drivers/cdx/
-Nipun Gupta <nipun.gupta@amd.com> (maintainer:AMD CDX BUS DRIVER)
-Nikhil Agarwal <nikhil.agarwal@amd.com> (maintainer:AMD CDX BUS DRIVER)
-
-and maintain.
-
-Perhaps ping them on internal chat to catch their attention.
-
-Thx.
-
--- 
-Regards/Gruss,
-    Boris.
-
-https://people.kernel.org/tglx/notes-about-netiquette
+ 
+Thanks and Regards,
+Parvathi.
 
