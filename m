@@ -1,48 +1,48 @@
-Return-Path: <devicetree+bounces-192299-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-192300-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 65F29AF630A
-	for <lists+devicetree@lfdr.de>; Wed,  2 Jul 2025 22:12:43 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id D0C30AF631E
+	for <lists+devicetree@lfdr.de>; Wed,  2 Jul 2025 22:15:55 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 8C68D5239E1
-	for <lists+devicetree@lfdr.de>; Wed,  2 Jul 2025 20:12:43 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id E7540188BE8A
+	for <lists+devicetree@lfdr.de>; Wed,  2 Jul 2025 20:16:11 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8F4572F5C2E;
-	Wed,  2 Jul 2025 20:12:29 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0CEE530E824;
+	Wed,  2 Jul 2025 20:14:43 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="CaWmvrdX"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="hoRIaife"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5FEA12E4990;
-	Wed,  2 Jul 2025 20:12:29 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D30D53093CA;
+	Wed,  2 Jul 2025 20:14:41 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1751487149; cv=none; b=XM76rlZCy+Qbpe1E9xixB5WkX0+MrMlM28iPe18jC1ljGOsXABls31hk1GmEn0M1pjc+edLBn2R+P/H0TVMm+BTMR9ix8HlmN62HDBgzvbpB22pWcKMWu72z9MP7njfUB5P4pNoZ2sqc+2FZ929dTFVkrd8SUoNkJz+PdYWS9OM=
+	t=1751487282; cv=none; b=WN+7AETj8D/LfgSgWZOAd6170ziWZYwR3FIDE2c/Mkr0XKid8FcK0Y2gQjOZt6moxgm4vMLfuiGReq4qkXo6SN2qZZEXpUto8dsEQqjKMBIsX50Ss2lyzh9ljYCS7eln7j15uJaSvLwomanS4p93btVVDGEn+ptIb9h4Enn/0a0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1751487149; c=relaxed/simple;
-	bh=Mrq/asFIQ+v9UShz0BqkOf/pQym57BDMDfvP5z1UQM4=;
+	s=arc-20240116; t=1751487282; c=relaxed/simple;
+	bh=6eSaApPhk3wJVbii9cEkGt0eTlySUhDBHN3P7aS4uUM=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=uvHeJmGWfnAmbrn61ijQ4Hy2efczwKv+Y6O69k2u0Kp+33pBx1timixRlzr26QKa0EqYDrHc3aMzcbzJjV0wGQCqcZ1eHHwZm37WLw2FyjYQ2RVu4ubgjhro/w6qDC63YDJNuvUfBCPo8btFL1f/AU+YsUgIbuCdk8CHexiLDlo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=CaWmvrdX; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id CBF01C4CEEE;
-	Wed,  2 Jul 2025 20:12:20 +0000 (UTC)
+	 In-Reply-To:Content-Type; b=CBeK9nV2VNn5k+Et0hG0uaAQxcg2NZH3DBKCK3oOZrK0vpGnxECq/YFL+gvUR3VUnpQsEgmCcOEv7dnbsj2Kscb7yjN6feRyGd3qEIUnPqMRy/b8H6CDR+9IcrnpWMUBpAw23CEbpU1qiEBiPzfIIhgsZq3abLCoBrh2Xw7KZ5A=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=hoRIaife; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id B2B21C4CEE7;
+	Wed,  2 Jul 2025 20:14:36 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1751487149;
-	bh=Mrq/asFIQ+v9UShz0BqkOf/pQym57BDMDfvP5z1UQM4=;
+	s=k20201202; t=1751487281;
+	bh=6eSaApPhk3wJVbii9cEkGt0eTlySUhDBHN3P7aS4uUM=;
 	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=CaWmvrdXFYdnbr0EkcQRaz7TP9MHNf/JzYBItAy+N3ZxqySIuFg4pBXdAUwfyKGwM
-	 9eB7iACRSgY4vkyfuvBFx6brP1RoT/JFEo75pD3o3h4+iAshwL53FvGRPy4LUQzwoE
-	 9NuJyQkuOQp8Fl6VLXCRnphOXXaouk6rZwoQWO3MwMYgCZgV0wIuEWq9LDBbzPr+If
-	 nOLRZV1KTC5uil+1TTugLEfyUEAuBdI7nb6jeetIhPcLnFbsUPEQHuDJC/uSHTyqMI
-	 PtBGkB022IdlOhlr18IzauCyz177Klx1esksSQI0w5Z2wtypxt6TMPN8Kx1zewRtSN
-	 3A3Zq3Nf6pxeA==
-Message-ID: <2e9cba16-0e5b-44b1-9333-fdb08505a2fe@kernel.org>
-Date: Wed, 2 Jul 2025 22:12:18 +0200
+	b=hoRIaifeAR9VN04Rc7+qMCtEan1HTEfv2e41o0Nvp9ZBIHJ5xrlodBpv2v8Mtwq/6
+	 v4fUbXTlYgGFWl5Bh0K8/6ntwPtQoKIveaPQPPncb6FMwXuQI8fNp4Nc65EpTaz02S
+	 fWFVaudbUTxo2h+LJ9my80uFO/qD+OshbnTtrBPLWOuCg6JiopHyUM9YgbnhhqiZEK
+	 +ok7oKsPE8FJqfeUVM01lug5kXjpaOnJmoKHLVto321ibSKd6GvPTkQu4qWbrEBM3S
+	 HVmubt+Gq5WFZYqlQ9fVKVwzdPFxZ9I6Ug6/uVOM3OpbiF6PedXEQVpbLcCAI1f0us
+	 UNiGKx9uTqWeQ==
+Message-ID: <5d4dfcb2-cdf5-41d6-a94f-5a116837ee25@kernel.org>
+Date: Wed, 2 Jul 2025 22:14:34 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,31 +50,22 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 2/7] dt-bindings: soc: imx-blk-ctrl: add MIPI CSI2 dphy
- support
-To: Frank Li <frank.li@nxp.com>, Rui Miguel Silva <rmfrfs@gmail.com>,
- Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
- Martin Kepplinger <martink@posteo.de>, Purism Kernel Team <kernel@puri.sm>,
- Mauro Carvalho Chehab <mchehab@kernel.org>, Rob Herring <robh@kernel.org>,
+Subject: Re: [PATCH v2 4/8] dt-bindings: vendor-prefixes: Add Winrise
+ Technology
+To: Christian Hewitt <christianshewitt@gmail.com>
+Cc: =?UTF-8?Q?Jean-Fran=C3=A7ois_Lessard?= <jefflessard3@gmail.com>,
+ Andy Shevchenko <andy@kernel.org>, Rob Herring <robh@kernel.org>,
  Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Eugen Hristev <eugen.hristev@linaro.org>,
- Shawn Guo <shawnguo@kernel.org>, Sascha Hauer <s.hauer@pengutronix.de>,
- Pengutronix Kernel Team <kernel@pengutronix.de>,
- Fabio Estevam <festevam@gmail.com>, Peng Fan <peng.fan@nxp.com>,
- Alice Yuan <alice.yuan@nxp.com>, Vinod Koul <vkoul@kernel.org>,
- Kishon Vijay Abraham I <kishon@kernel.org>,
- Philipp Zabel <p.zabel@pengutronix.de>
-Cc: "linux-media@vger.kernel.org" <linux-media@vger.kernel.org>,
- "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
- "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
- "imx@lists.linux.dev" <imx@lists.linux.dev>,
- "linux-arm-kernel@lists.infradead.org"
- <linux-arm-kernel@lists.infradead.org>,
- "linux-phy@lists.infradead.org" <linux-phy@lists.infradead.org>
-References: <20250701-95_cam-v1-0-c5172bab387b@nxp.com>
- <20250701-95_cam-v1-2-c5172bab387b@nxp.com>
- <f0c8c043-9c9d-427c-94a6-f46f6b7d0c50@kernel.org>
- <PAXPR04MB9642848BFCA791A634D276A18840A@PAXPR04MB9642.eurprd04.prod.outlook.com>
+ <conor+dt@kernel.org>, Geert Uytterhoeven <geert@linux-m68k.org>,
+ devicetree@vger.kernel.org, linux-leds@vger.kernel.org,
+ linux-kernel@vger.kernel.org, =?UTF-8?Q?Andreas_F=C3=A4rber?=
+ <afaerber@suse.de>, Boris Gjenero <boris.gjenero@gmail.com>,
+ Heiner Kallweit <hkallweit1@gmail.com>,
+ Paolo Sabatino <paolo.sabatino@gmail.com>
+References: <20250629130002.49842-1-jefflessard3@gmail.com>
+ <20250629130002.49842-6-jefflessard3@gmail.com>
+ <c6d0d856-0c49-4ad7-bc6f-1a228dcb2d9d@kernel.org>
+ <0182CF05-6011-479C-A4A2-18A0C60F7710@gmail.com>
 From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
@@ -120,20 +111,51 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  jWt87ecuHlpL3uuQ0ZZNWqHgZoQLXoqC2ZV5KrtKWb/jyiFX/sxSrodALf0zf+tfHv0FZWT2
  zHjUqd0t4njD/UOsuIMOQn4Ig0SdivYPfZukb5cdasKJukG1NOpbW7yRNivaCnfZz6dTawXw
  XRIV/KDsHQiyVxKvN73bThKhONkcX2LWuD928tAR6XMM2G5ovxLe09vuOzzfTWQDsm++9UKF a/A=
-In-Reply-To: <PAXPR04MB9642848BFCA791A634D276A18840A@PAXPR04MB9642.eurprd04.prod.outlook.com>
+In-Reply-To: <0182CF05-6011-479C-A4A2-18A0C60F7710@gmail.com>
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
 
-On 02/07/2025 20:02, Frank Li wrote:
-> For example: driver need touch a bit of this CSR, but we missed at begin.
-> We need find new interfaces, some time it is disaster for whole subnode
-> binding. We don't want to wrong use a reset interface to work around driver
-> need touch a bits of CSR.
+On 30/06/2025 15:51, Christian Hewitt wrote:
+>> On 30 Jun 2025, at 4:25 pm, Krzysztof Kozlowski <krzk@kernel.org> wrote:
+>>
+>> On 29/06/2025 14:59, Jean-François Lessard wrote:
+>>> Assign vendor prefix "winrise", matching their domain name.
+>>>
+>>> Signed-off-by: Jean-François Lessard <jefflessard3@gmail.com>
+>>> ---
+>>> Documentation/devicetree/bindings/vendor-prefixes.yaml | 2 ++
+>>> 1 file changed, 2 insertions(+)
+>>>
+>>> diff --git a/Documentation/devicetree/bindings/vendor-prefixes.yaml b/Documentation/devicetree/bindings/vendor-prefixes.yaml
+>>> index f03ab02afe..a3bf93e5dc 100644
+>>> --- a/Documentation/devicetree/bindings/vendor-prefixes.yaml
+>>> +++ b/Documentation/devicetree/bindings/vendor-prefixes.yaml
+>>> @@ -1711,6 +1711,8 @@ patternProperties:
+>>>     description: Wingtech Technology Co., Ltd.
+>>>   "^winlink,.*":
+>>>     description: WinLink Co., Ltd
+>>> +  "^winrise,.*":
+>>> +    description: Shenzhen Winrise Technology Co., Ltd.
+>> Hm? https://winrise.com/ redirects to https://amdaluminum.com/ for
+>> fences and other alu products.
 > 
-> So I try to upstream "confidence" part gradually.
-No, you cannot, because you add incompatible style of children. By
-adding piece by piece, without looking at big picture, you add different
-solutions. And that was one of the points before.
+> According to multiple Chinese chip-buying/trade websites [0],[1] and
+> the internet archive [2] their domain is winrise.cn (not .com). There
+> is currently no active website despite whois entries showing that the
+> domain registration is still active/alive.
+> 
+> [0] http://www.84878.tradebig.com/
+> [1] https://www.tradeeasy.com/supplier/714703/products
+> [2] https://web.archive.org/web/20160312143416/http://winrise.cn/
+> 
+> If you’d prefer “Assign vendor prefix based on their name” as the
+> patch description? we can change that for the next iteration.
+If commit msg says "domain name" as an argument and it turns out it is
+not matching domain name, then that other domain name least needs to be
+in commit msg. The rule of domain name comes from US tickers, so only
+.com should be considered. If there is no conflict and no .com
+manufacturer it is fine to use whatever other name, but the commit msg
+is not then correct.
 
 Best regards,
 Krzysztof
