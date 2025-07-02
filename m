@@ -1,147 +1,256 @@
-Return-Path: <devicetree+bounces-192296-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-192297-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id E5F54AF62DD
-	for <lists+devicetree@lfdr.de>; Wed,  2 Jul 2025 21:54:21 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id E4359AF62E1
+	for <lists+devicetree@lfdr.de>; Wed,  2 Jul 2025 21:55:14 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 449CE1C45750
-	for <lists+devicetree@lfdr.de>; Wed,  2 Jul 2025 19:54:38 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 169E75236BF
+	for <lists+devicetree@lfdr.de>; Wed,  2 Jul 2025 19:55:15 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 95AEC2D77FE;
-	Wed,  2 Jul 2025 19:54:16 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B009E2D77F3;
+	Wed,  2 Jul 2025 19:55:09 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="IEytrSfF"
+	dkim=pass (4096-bit key) header.d=prolan.hu header.i=@prolan.hu header.b="GpwnSAYt"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ed1-f54.google.com (mail-ed1-f54.google.com [209.85.208.54])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from fw2.prolan.hu (fw2.prolan.hu [193.68.50.107])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D5741269830;
-	Wed,  2 Jul 2025 19:54:14 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.54
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3AFDA2D878D;
+	Wed,  2 Jul 2025 19:55:07 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=193.68.50.107
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1751486056; cv=none; b=urILNZCzprDDxalSTxRHQyxH1pvW4bvY5SO1nEqd/xw+XS3DDnCM1UflZoYduMnALZrjM7U0fS3Eolkzdl0O7lUMw7+w0jN4ZcdCT4xGXmYwwMSX0jaV3XQMIVyyvclQHV20leU2f4gN3W0AW5kQmcEpzEi7CuBNiq1qGSqEXTM=
+	t=1751486109; cv=none; b=sHFgEd1NlOeBhnhINWbqik23m09xsCkuJkFCU/0kl4FyLiw2ikJsavRQPdWY23Fv1HBExNKSQxKksuN21g8vWuxXkvmtsqqFDeZ84tOs7frcJYmx/vSMc+uXP2lHQSojmBbetpiliamQxNijEo6Daw6ttlljoTtRvBSBoVZI5TI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1751486056; c=relaxed/simple;
-	bh=wwz1hIB1NXjK34VbesMPuAkjSQZMf2atfDZ/9HclXM4=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=Y88Z8AkQqQP6OSG/xV+BM62036fKDqbWcgfmdc6ISc8r6mDsn9yi7n3Tyv9gRs/2AUBp25Xz+htY83fg0GgIzMMR4y/1c/0Ny6Dv9uCjTLBGwT6Wr2UCHy87scSrPynBkzw3BsfXqqS95h4ihVGKV6C3U13uJjAuh6450vUsmmk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=IEytrSfF; arc=none smtp.client-ip=209.85.208.54
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-ed1-f54.google.com with SMTP id 4fb4d7f45d1cf-60c3aafae23so598513a12.1;
-        Wed, 02 Jul 2025 12:54:14 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1751486053; x=1752090853; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=TmPW8V8zA0N+0RM8g3oXGj0lKhBGP6NeWfr9DyiUeXw=;
-        b=IEytrSfFNPW+X/mgwDoF5syOcdhDieFJIw8UorwA2SWZpX2mtgUYxzI/wCeGx4yxwp
-         6fEgHghggN8Li5S92S02tvOQZm1aaXq0g4GvJn0P2l/4Y9MQspVIhb1kxckvJgtCsXOk
-         PVddyhn253kHPPeipE7yow4WhJS1kv6n/TIuPlaFbZWjOuJYZYK68mA7tyDoxnq6F9cG
-         m/IexDXUT368Ol7EIeQEZ4UWIwd9cmTly5nnvj4apl4Ef2fvla/LUl+a7fR5/1ZET7Op
-         /R+BqvjN+nCQ7eLIo+w+L/9Yq9iGS306lwjSWc8a4JZRdH3II+KlcyGj/TyHXDpJEu4Z
-         lhgg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1751486053; x=1752090853;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=TmPW8V8zA0N+0RM8g3oXGj0lKhBGP6NeWfr9DyiUeXw=;
-        b=Z4RkHOuWfDn2VyHdrRs9U1fGq+EYWXmEssfbVe2zJxsplKiNlbZv8Hbz+DM7EabJQ3
-         NJysZhgPEqulEOzCvWrz8LhLK95iWOQF1NnOn9fwf37ixcYs1COIc403+Uotwpno/kyv
-         56TnA3zdQBij2yeT/CzTSnWBM82kHqSYEx9TtVLlkVlhBu91ZtEEAifx3NP7SQyKLGBh
-         EC6dBKx9xhw1a9e18B+Esx18i3gtgyK52UXxwPwtoQ5sUtfe47CAGXmBJJoqUcmJCKCw
-         x78xFip9pN1VNufz8HfVrFlbwxFKi0/MJcs0jhfwo/4xaJGaOhEsGa0e7+VpViLE1k6X
-         6cvQ==
-X-Forwarded-Encrypted: i=1; AJvYcCVBXC8jLc+kRZUtNe4fX7U7uowReiDWaaD/GIaGHYByiuCGZlFOd+txM8nfLY7p8OdR0OJg0hKyTADF@vger.kernel.org, AJvYcCWT4qMNoK5LVCIqeGcGhnZcA8ziv55OmlT3WkSMnW3TbsYH1Cne22Mnp5wFMd+K6Z5OzH07n9Z8Xqa52/Ay@vger.kernel.org
-X-Gm-Message-State: AOJu0YymalxGMEiINgg/dKr2fVpwJB1lX2Kt8z5TNADuSmfh1jVGO0bx
-	EAJiVs75Lktx91w1s/ktb/uEw9S11obGGSHShId0reA5WFZIciRaHHOx
-X-Gm-Gg: ASbGnctEmrggvMF3IlgVQUSjPx1i8DSP1FYIRq8T8SHFB4ruNIyzKMLkwGcpOrL/Sm2
-	9vKIxENklmaoPu48YzaHOy+eD0+WMAUwYI44vZI58YbSGzgUH6Gi5+RVaIj+CkFxKRryQeevXgi
-	WeBzKeJQZi/Y24vS7xqcQmrOYCllPZ+g1z7DFdSvnfSsGaaAMx9KRQi68QGx5b8EmNqjCS3amOH
-	kFlJz/8Aid3db1oyPXZVfx8E+vBM7YsyYEHokeUDLdlRXL5o58jfUcvbZedxAvTdiJP5vpM4VwC
-	xKdgM/lJYW/Y/GEwDEmx9Q8toO7+OSL8tdR00Gimr01UXW+Fkp9PzLhsILboC50/EPk2KJoqqnI
-	HQTNBlxCSD7O6XQ==
-X-Google-Smtp-Source: AGHT+IEEv4SAI/kYMvjmT0AuIHDgZyTBNcF2bWLyaYLuZrid3Rgx7jF4/Zg1edoD8uel5WIfiOf7DQ==
-X-Received: by 2002:a17:906:ef0c:b0:ae0:a464:99d with SMTP id a640c23a62f3a-ae3dd3c1e03mr18767066b.17.1751486052730;
-        Wed, 02 Jul 2025 12:54:12 -0700 (PDT)
-Received: from [192.168.1.129] ([82.79.237.69])
-        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-ae353ca201asm1132959266b.150.2025.07.02.12.54.11
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 02 Jul 2025 12:54:12 -0700 (PDT)
-Message-ID: <c3deef24-fed7-4405-9953-804bff118c11@gmail.com>
-Date: Wed, 2 Jul 2025 22:54:09 +0300
+	s=arc-20240116; t=1751486109; c=relaxed/simple;
+	bh=DbKIiSlo3BFwBLUQLA0frZKOckMm68wzGgf4Mj9nyoU=;
+	h=From:Date:Subject:MIME-Version:Content-Type:Message-ID:To:CC; b=Xux1fIkGlx+Udr8iMMIJ1pC6uMJ+gNNd2S1icQCh7n4PE5dyaF4X/U6wJHs1Qz39wBMeSVWSfh0S9caG64uip2eZRtHRV+gTjHPD28qu1LIBWAx4aIacBOpfYiHOBX5xS7p7/7oEjFkS1ofpkjWQ/II4R3vYMi+URgdzVmsUl0k=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=prolan.hu; spf=pass smtp.mailfrom=prolan.hu; dkim=pass (4096-bit key) header.d=prolan.hu header.i=@prolan.hu header.b=GpwnSAYt; arc=none smtp.client-ip=193.68.50.107
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=prolan.hu
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=prolan.hu
+Received: from proxmox-mailgw.intranet.prolan.hu (localhost.localdomain [127.0.0.1])
+	by proxmox-mailgw.intranet.prolan.hu (Proxmox) with ESMTP id 4586EA0BB5;
+	Wed,  2 Jul 2025 21:55:05 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=prolan.hu; h=cc
+	:cc:content-transfer-encoding:content-type:content-type:date
+	:from:from:message-id:mime-version:reply-to:subject:subject:to
+	:to; s=mail; bh=Hnj6Hss73CKttxeWGckGF1QXioaUFteDW/dZYQS0Kuw=; b=
+	GpwnSAYtFQ8B/FNUrUl5IpRppAvDB33Y8yyssDgdD7Uc88/FbbI5utUsMUJccouM
+	qo8lirTDB+tQh00nQ6ICs1gZ0t3qjknHj7p5N7Z9n5vl0qUYOxGEFN3OKE6G6n9H
+	rsjxOr2sX5mck1nBky5mAJUiCExNWwYZFK4L+v0YJig+JRfTUL+Xa+P43Q/RS/gq
+	2kl+IGkj+b82XqH9jUXRaMvjbVNpjkSWOcypPDP63srvxCg8gdxPxX7MdqdW6eIs
+	gXjWhN0un+vbmkiI6VZVZTOqAwoDK1h8G4CXiH956FIGkx10KthYmJCLpVpRhurT
+	t43noRkGSmHkYLS6DnwcHB9MmLfVxfDoLNRhjtxn5+u9lmc8NWUqtK6KVUxGG0DP
+	ZVJpab0PeYpGqsOFhtVWl58tN2rt/OWZNWyoC6aZRQ5wRb072L4X/C2rHEPDTaJt
+	giEbhsR9gj6ocsZ0sKWJqz3IXgzbFPjox/eU+pAuZ4rjMm9C7CjcrRoidgrkaLEj
+	CPeFTJ4lVPH6dK3ocGSgIZkGUQf3YVjHyhPNilAR8jy487Zaq693cKqldDHdPFEu
+	fK274L7c5rcv7o1B9MleMQRlgCH1wqFjaGNsdpu/1BG0fcXyiYMtYcJWg+7KdGy/
+	79oBd4Hlb/GUiWakN/ABDBzVyU4xHQZ+Wizvb1fNyPk=
+From: =?utf-8?q?Bence_Cs=C3=B3k=C3=A1s?= <csokas.bence@prolan.hu>
+Date: Wed, 2 Jul 2025 21:55:00 +0200
+Subject: [PATCH] arm: DT: imx6-savageboard: Replace license text comment
+ with SPDX identifier
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v7 4/6] arm64: dts: imx8mp: convert 'aips5' to 'aipstz5'
-To: Mark Brown <broonie@kernel.org>
-Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
- Sascha Hauer <s.hauer@pengutronix.de>, Fabio Estevam <festevam@gmail.com>,
- Daniel Baluta <daniel.baluta@nxp.com>, Shengjiu Wang
- <shengjiu.wang@nxp.com>, Frank Li <Frank.Li@nxp.com>,
- Marco Felsch <m.felsch@pengutronix.de>,
- Marc Kleine-Budde <mkl@pengutronix.de>,
- Alexander Stein <alexander.stein@ew.tq-group.com>,
- Pengutronix Kernel Team <kernel@pengutronix.de>, devicetree@vger.kernel.org,
- imx@lists.linux.dev, linux-arm-kernel@lists.infradead.org,
- linux-kernel@vger.kernel.org
-References: <20250610160152.1113930-1-laurentiumihalcea111@gmail.com>
- <20250610160152.1113930-5-laurentiumihalcea111@gmail.com>
- <ac1daf6b-ee06-4076-b86f-b436ca0acd6d@sirena.org.uk>
-Content-Language: en-US
-From: Laurentiu Mihalcea <laurentiumihalcea111@gmail.com>
-In-Reply-To: <ac1daf6b-ee06-4076-b86f-b436ca0acd6d@sirena.org.uk>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
+Message-ID: <20250702-savage-dts-lic-v1-1-559c78ba9419@prolan.hu>
+X-B4-Tracking: v=1; b=H4sIAJOOZWgC/x3M0QqCYAyG4VuRHTf4G6TRrUQHc04d1F9sIoF47
+ y0Pnw++d4NQNw24NRu4rhb2ronzqQGZuU6KNqSBCl1KVwiDV851WAKfJihMJNeR2tJ2kKeP62j
+ fI3h/pHsOxd65yvzPvDgWddj3H/x6cyl5AAAA
+To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>, "Sascha
+ Hauer" <s.hauer@pengutronix.de>, Pengutronix Kernel Team
+	<kernel@pengutronix.de>, Fabio Estevam <festevam@gmail.com>
+CC: <devicetree@vger.kernel.org>, <imx@lists.linux.dev>,
+	<linux-arm-kernel@lists.infradead.org>, <linux-kernel@vger.kernel.org>, "Milo
+ Kim" <woogyom.kim@gmail.com>, =?utf-8?q?Bence_Cs=C3=B3k=C3=A1s?=
+	<csokas.bence@prolan.hu>
+X-Mailer: b4 0.13.0
+X-ESET-AS: R=OK;S=0;OP=CALC;TIME=1751486104;VERSION=7994;MC=2793024276;ID=360784;TRN=0;CRV=0;IPC=;SP=0;SIPS=0;PI=3;F=0
+X-ESET-Antispam: OK
+X-EsetResult: clean, is OK
+X-EsetId: 37303A29BB64155D6C7260
+
+Replace verbatim license text with a `SPDX-License-Identifier`.
+
+The comment heades mis-attributes this license to be "X11", but the
+license text does not include the last line "Except as contained in this
+notice, the name of the X Consortium shall not be used in advertising or
+otherwise to promote the sale, use or other dealings in this Software
+without prior written authorization from the X Consortium.". Therefore,
+this license is actually equivalent to the SPDX "MIT" license (confirmed
+by text diffing).
+
+Cc: Milo Kim <woogyom.kim@gmail.com>
+Signed-off-by: Bence Csókás <csokas.bence@prolan.hu>
+---
+ arch/arm/boot/dts/nxp/imx/imx6dl-savageboard.dts   | 39 +---------------------
+ arch/arm/boot/dts/nxp/imx/imx6q-savageboard.dts    | 39 +---------------------
+ arch/arm/boot/dts/nxp/imx/imx6qdl-savageboard.dtsi | 39 +---------------------
+ 3 files changed, 3 insertions(+), 114 deletions(-)
+
+diff --git a/arch/arm/boot/dts/nxp/imx/imx6dl-savageboard.dts b/arch/arm/boot/dts/nxp/imx/imx6dl-savageboard.dts
+index b95469c520a4..21a536c01011 100644
+--- a/arch/arm/boot/dts/nxp/imx/imx6dl-savageboard.dts
++++ b/arch/arm/boot/dts/nxp/imx/imx6dl-savageboard.dts
+@@ -1,43 +1,6 @@
++// SPDX-License-Identifier: (GPL-2.0-or-later OR MIT)
+ /*
+  * Copyright (C) 2017 Milo Kim <woogyom.kim@gmail.com>
+- *
+- * This file is dual-licensed: you can use it either under the terms
+- * of the GPL or the X11 license, at your option. Note that this dual
+- * licensing only applies to this file, and not this project as a
+- * whole.
+- *
+- *  a) This file is free software; you can redistribute it and/or
+- *     modify it under the terms of the GNU General Public License as
+- *     published by the Free Software Foundation; either version 2 of the
+- *     License, or (at your option) any later version.
+- *
+- *     This file is distributed in the hope that it will be useful,
+- *     but WITHOUT ANY WARRANTY; without even the implied warranty of
+- *     MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+- *     GNU General Public License for more details.
+- *
+- * Or, alternatively,
+- *
+- *  b) Permission is hereby granted, free of charge, to any person
+- *     obtaining a copy of this software and associated documentation
+- *     files (the "Software"), to deal in the Software without
+- *     restriction, including without limitation the rights to use,
+- *     copy, modify, merge, publish, distribute, sublicense, and/or
+- *     sell copies of the Software, and to permit persons to whom the
+- *     Software is furnished to do so, subject to the following
+- *     conditions:
+- *
+- *     The above copyright notice and this permission notice shall be
+- *     included in all copies or substantial portions of the Software.
+- *
+- *     THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
+- *     EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES
+- *     OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
+- *     NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT
+- *     HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY,
+- *     WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
+- *     FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR
+- *     OTHER DEALINGS IN THE SOFTWARE.
+  */
+ 
+ /dts-v1/;
+diff --git a/arch/arm/boot/dts/nxp/imx/imx6q-savageboard.dts b/arch/arm/boot/dts/nxp/imx/imx6q-savageboard.dts
+index 717ac62fc2cf..2dc20d70b200 100644
+--- a/arch/arm/boot/dts/nxp/imx/imx6q-savageboard.dts
++++ b/arch/arm/boot/dts/nxp/imx/imx6q-savageboard.dts
+@@ -1,43 +1,6 @@
++// SPDX-License-Identifier: (GPL-2.0-or-later OR MIT)
+ /*
+  * Copyright (C) 2017 Milo Kim <woogyom.kim@gmail.com>
+- *
+- * This file is dual-licensed: you can use it either under the terms
+- * of the GPL or the X11 license, at your option. Note that this dual
+- * licensing only applies to this file, and not this project as a
+- * whole.
+- *
+- *  a) This file is free software; you can redistribute it and/or
+- *     modify it under the terms of the GNU General Public License as
+- *     published by the Free Software Foundation; either version 2 of the
+- *     License, or (at your option) any later version.
+- *
+- *     This file is distributed in the hope that it will be useful,
+- *     but WITHOUT ANY WARRANTY; without even the implied warranty of
+- *     MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+- *     GNU General Public License for more details.
+- *
+- * Or, alternatively,
+- *
+- *  b) Permission is hereby granted, free of charge, to any person
+- *     obtaining a copy of this software and associated documentation
+- *     files (the "Software"), to deal in the Software without
+- *     restriction, including without limitation the rights to use,
+- *     copy, modify, merge, publish, distribute, sublicense, and/or
+- *     sell copies of the Software, and to permit persons to whom the
+- *     Software is furnished to do so, subject to the following
+- *     conditions:
+- *
+- *     The above copyright notice and this permission notice shall be
+- *     included in all copies or substantial portions of the Software.
+- *
+- *     THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
+- *     EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES
+- *     OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
+- *     NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT
+- *     HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY,
+- *     WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
+- *     FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR
+- *     OTHER DEALINGS IN THE SOFTWARE.
+  */
+ 
+ /dts-v1/;
+diff --git a/arch/arm/boot/dts/nxp/imx/imx6qdl-savageboard.dtsi b/arch/arm/boot/dts/nxp/imx/imx6qdl-savageboard.dtsi
+index 6823a639ed2f..c54cd2a7b7bf 100644
+--- a/arch/arm/boot/dts/nxp/imx/imx6qdl-savageboard.dtsi
++++ b/arch/arm/boot/dts/nxp/imx/imx6qdl-savageboard.dtsi
+@@ -1,43 +1,6 @@
++// SPDX-License-Identifier: (GPL-2.0-or-later OR MIT)
+ /*
+  * Copyright (C) 2017 Milo Kim <woogyom.kim@gmail.com>
+- *
+- * This file is dual-licensed: you can use it either under the terms
+- * of the GPL or the X11 license, at your option. Note that this dual
+- * licensing only applies to this file, and not this project as a
+- * whole.
+- *
+- *  a) This file is free software; you can redistribute it and/or
+- *     modify it under the terms of the GNU General Public License as
+- *     published by the Free Software Foundation; either version 2 of the
+- *     License, or (at your option) any later version.
+- *
+- *     This file is distributed in the hope that it will be useful,
+- *     but WITHOUT ANY WARRANTY; without even the implied warranty of
+- *     MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+- *     GNU General Public License for more details.
+- *
+- * Or, alternatively,
+- *
+- *  b) Permission is hereby granted, free of charge, to any person
+- *     obtaining a copy of this software and associated documentation
+- *     files (the "Software"), to deal in the Software without
+- *     restriction, including without limitation the rights to use,
+- *     copy, modify, merge, publish, distribute, sublicense, and/or
+- *     sell copies of the Software, and to permit persons to whom the
+- *     Software is furnished to do so, subject to the following
+- *     conditions:
+- *
+- *     The above copyright notice and this permission notice shall be
+- *     included in all copies or substantial portions of the Software.
+- *
+- *     THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
+- *     EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES
+- *     OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
+- *     NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT
+- *     HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY,
+- *     WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
+- *     FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR
+- *     OTHER DEALINGS IN THE SOFTWARE.
+  */
+ 
+ #include <dt-bindings/gpio/gpio.h>
+
+---
+base-commit: 66701750d5565c574af42bef0b789ce0203e3071
+change-id: 20250702-savage-dts-lic-ca22c8f26067
+
+Best regards,
+-- 
+Bence Csókás <csokas.bence@prolan.hu>
 
 
-
-On 7/2/2025 9:49 PM, Mark Brown wrote:
-> On Tue, Jun 10, 2025 at 12:01:50PM -0400, Laurentiu Mihalcea wrote:
->> From: Laurentiu Mihalcea <laurentiu.mihalcea@nxp.com>
->>
->> AIPS5 is actually AIPSTZ5 as it offers some security-related
->> configurations. Since these configurations need to be applied before
->> accessing any of the peripherals on the bus, it's better to make AIPSTZ5
->> be their parent instead of keeping AIPS5 and adding a child node for
->> AIPSTZ5. Also, because of the security configurations, the address space
->> of the bus has to be changed to that of the configuration registers.
->>
->> Finally, since AIPSTZ5 belongs to the AUDIOMIX power domain, add the
->> missing 'power-domains' property. The domain needs to be powered on before
->> attempting to configure the security-related registers.
-> I'm seeing failures to probe the audio devices on the i.MX8MP Verdin
-> system in -next which seem to bisect down to this commit,  I'm seeing
-> separate boot failures on the EVK so haven't been able to confirm the
-> status there.  There's no obvious logging, the dt selftest shows:
->
-> # not ok 141 /sound
-> # not ok 142 /sound-hdmi
->
-> Full log at:
->
->   https://lava.sirena.org.uk/scheduler/job/1530197#L5119
-
-Hi Mark,
-
-Thanks for catching this!
-
-After browsing through the provided logs it would seem like no device under the
-AIPSTZ bus gets probed. Right now, my guess is that the AIPSTZ driver is not being
-compiled since CONFIG_IMX_AIPSTZ might be set to 'n'.
-
-Which defconfig is the CI using? Is it arch/arm64/configs/defconfig?
-
-Thanks,
-Laurentiu
 
