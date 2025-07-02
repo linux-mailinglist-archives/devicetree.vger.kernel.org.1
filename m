@@ -1,420 +1,810 @@
-Return-Path: <devicetree+bounces-192182-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-192185-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4068DAF5A7D
-	for <lists+devicetree@lfdr.de>; Wed,  2 Jul 2025 16:06:45 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id A8FB2AF5A8E
+	for <lists+devicetree@lfdr.de>; Wed,  2 Jul 2025 16:08:47 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id AD6E67AB002
-	for <lists+devicetree@lfdr.de>; Wed,  2 Jul 2025 14:05:19 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 50FB71C26CB0
+	for <lists+devicetree@lfdr.de>; Wed,  2 Jul 2025 14:08:33 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id CDE4A286408;
-	Wed,  2 Jul 2025 14:06:32 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 44AC22857C5;
+	Wed,  2 Jul 2025 14:07:36 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=couthit.com header.i=@couthit.com header.b="zJaQP6++"
 X-Original-To: devicetree@vger.kernel.org
-Received: from frasgout.his.huawei.com (frasgout.his.huawei.com [185.176.79.56])
+Received: from server.couthit.com (server.couthit.com [162.240.164.96])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F0E0D283FD6;
-	Wed,  2 Jul 2025 14:06:29 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.176.79.56
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1800E28313F;
+	Wed,  2 Jul 2025 14:07:33 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=162.240.164.96
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1751465192; cv=none; b=ed8XdHsjphd3+yX72KlpjTAOPlFgbLDg2/5exCQcWOHg7U77BK60pKang/GA48sztCvMk8EDj0K100wORNjSrcIpgNACxNab4Lh+Lp04U8adwHSu2FISd+A4TUvNhvQyndCeF/uCiZyY5U6TbcJd4ldCbZn89zXY9DbgEl7Y5BI=
+	t=1751465256; cv=none; b=NjJOFc/Io2k6b2FGOMBTDm/6ZqwZdTMwwxPN6ZHSt2tdZuNVXYCx+yWHYNCz6W5ZvDVjpWDA0jOCrCYIDvitt8T4f79WPZOC/raCotMQ3QiAYnmnKr4uU92979Go9WfpaodQL209tCFPHl9ITfN2e1vDY9In1ovh/vTQ3G+QhAs=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1751465192; c=relaxed/simple;
-	bh=rXyo8ORdVakXK3X9Qi3/z2DRpIcRtRQbRD9iDzu8h4o=;
-	h=Date:From:To:CC:Subject:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=o7D/OVimjLVYEr/wlRDUPDzZEeTQEp12jQz5ki/NckLMpDQPTs32XCWwy3uewgKxvOIlZkLCfXAUg28bCwZ6seDMeb0PgmhTth7yIZ//GiZ6fhEImTxWhkprNZTZdjUD5gU8JCDKKpxftNnzgL1e4WhNrA0scnv3AE+FJqKvtCI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=huawei.com; spf=pass smtp.mailfrom=huawei.com; arc=none smtp.client-ip=185.176.79.56
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=huawei.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=huawei.com
-Received: from mail.maildlp.com (unknown [172.18.186.231])
-	by frasgout.his.huawei.com (SkyGuard) with ESMTP id 4bXMBK1glKz6L5vy;
-	Wed,  2 Jul 2025 22:06:01 +0800 (CST)
-Received: from frapeml500008.china.huawei.com (unknown [7.182.85.71])
-	by mail.maildlp.com (Postfix) with ESMTPS id 42615140446;
-	Wed,  2 Jul 2025 22:06:27 +0800 (CST)
-Received: from localhost (10.203.177.66) by frapeml500008.china.huawei.com
- (7.182.85.71) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.1.2507.39; Wed, 2 Jul
- 2025 16:06:26 +0200
-Date: Wed, 2 Jul 2025 15:06:24 +0100
-From: Jonathan Cameron <Jonathan.Cameron@huawei.com>
-To: Lorenzo Pieralisi <lpieralisi@kernel.org>
-CC: Marc Zyngier <maz@kernel.org>, Thomas Gleixner <tglx@linutronix.de>, "Rob
- Herring" <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, "Conor
- Dooley" <conor+dt@kernel.org>, Catalin Marinas <catalin.marinas@arm.com>,
-	Will Deacon <will@kernel.org>, Arnd Bergmann <arnd@arndb.de>, "Sascha
- Bischoff" <sascha.bischoff@arm.com>, Timothy Hayes <timothy.hayes@arm.com>,
-	Bjorn Helgaas <bhelgaas@google.com>, "Liam R. Howlett"
-	<Liam.Howlett@oracle.com>, Peter Maydell <peter.maydell@linaro.org>, "Mark
- Rutland" <mark.rutland@arm.com>, Jiri Slaby <jirislaby@kernel.org>,
-	<linux-arm-kernel@lists.infradead.org>, <linux-kernel@vger.kernel.org>,
-	<devicetree@vger.kernel.org>, <linux-pci@vger.kernel.org>
-Subject: Re: [PATCH v6 28/31] irqchip/gic-v5: Add GICv5 ITS support
-Message-ID: <20250702150624.00007ceb@huawei.com>
-In-Reply-To: <20250626-gicv5-host-v6-28-48e046af4642@kernel.org>
-References: <20250626-gicv5-host-v6-0-48e046af4642@kernel.org>
-	<20250626-gicv5-host-v6-28-48e046af4642@kernel.org>
-X-Mailer: Claws Mail 4.3.0 (GTK 3.24.42; x86_64-w64-mingw32)
+	s=arc-20240116; t=1751465256; c=relaxed/simple;
+	bh=n6tu2j7EZGycJ3rdLS7FR30qCNZ0qbZA2YoqjU/Ww98=;
+	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
+	 MIME-Version; b=T+iqIJ2Y/PJukGumTrQyMb7UTb+tTBdPa+kphA1WdDYZAxo8zWWDvU19TWfF1LrMaDT0TfnOBNzQNmCs2FN8OyapRp4POnDEV7BxjrNaqSC5w2oIhYWikfLm/BZhv2IkVZHfEhkZc3IvfsVJ7FI0dlLtbSc0cIQywadzmnvPq40=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=couthit.com; spf=pass smtp.mailfrom=couthit.com; dkim=pass (2048-bit key) header.d=couthit.com header.i=@couthit.com header.b=zJaQP6++; arc=none smtp.client-ip=162.240.164.96
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=couthit.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=couthit.com
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=couthit.com
+	; s=default; h=Content-Transfer-Encoding:MIME-Version:References:In-Reply-To:
+	Message-Id:Date:Subject:Cc:To:From:Sender:Reply-To:Content-Type:Content-ID:
+	Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
+	:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
+	List-Post:List-Owner:List-Archive;
+	bh=T/Ihsde+uEwgnZlYn2B0GeIicQWNudriS8f5QYDV0iA=; b=zJaQP6++RIwuA6r2eZm9pq/uP7
+	h9azP0taWtEAnd8CsetELJ7zFrLbofLoUWYtB+m/JJISFu91mfAoGNmTA7xz7L8fOx/jlX2K8hgJ6
+	tgMQadWiMl8Gru1/A2z0gauGB2aluWNqGaLVvXSgQCANaRdylr61gNoy5eYOF2LJ8h0/SmUbQ5Zvu
+	Cxb36Bj5EtWGZ5tyl9tUv4lxb3zQdtvJNUlHzMq9jAU1OvsJlSYCz4zBil5IjzyPRKUiqIHJZv0je
+	0Icu/PlCE5qKyjPqgDqgBoNSgDzwK5GAspAwX4D9FXci0NkdJ3OCfaRdkM25L4X2f9c1/75I1wMij
+	3S2/Hpqw==;
+Received: from [122.175.9.182] (port=44129 helo=cypher.couthit.local)
+	by server.couthit.com with esmtpa (Exim 4.98.1)
+	(envelope-from <parvathi@couthit.com>)
+	id 1uWy7U-00000004QcT-34pY;
+	Wed, 02 Jul 2025 10:07:29 -0400
+From: Parvathi Pudi <parvathi@couthit.com>
+To: danishanwar@ti.com,
+	rogerq@kernel.org,
+	andrew+netdev@lunn.ch,
+	davem@davemloft.net,
+	edumazet@google.com,
+	kuba@kernel.org,
+	pabeni@redhat.com,
+	robh@kernel.org,
+	krzk+dt@kernel.org,
+	conor+dt@kernel.org,
+	ssantosh@kernel.org,
+	richardcochran@gmail.com,
+	s.hauer@pengutronix.de,
+	m-karicheri2@ti.com,
+	glaroque@baylibre.com,
+	afd@ti.com,
+	saikrishnag@marvell.com,
+	m-malladi@ti.com,
+	jacob.e.keller@intel.com,
+	diogo.ivo@siemens.com,
+	javier.carrasco.cruz@gmail.com,
+	horms@kernel.org,
+	s-anna@ti.com,
+	basharath@couthit.com,
+	parvathi@couthit.com
+Cc: linux-arm-kernel@lists.infradead.org,
+	netdev@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	vadim.fedorenko@linux.dev,
+	pratheesh@ti.com,
+	prajith@ti.com,
+	vigneshr@ti.com,
+	praneeth@ti.com,
+	srk@ti.com,
+	rogerq@ti.com,
+	krishna@couthit.com,
+	pmohan@couthit.com,
+	mohan@couthit.com
+Subject: [PATCH net-next v10 02/11] net: ti: prueth: Adds ICSSM Ethernet driver
+Date: Wed,  2 Jul 2025 19:36:24 +0530
+Message-Id: <20250702140633.1612269-3-parvathi@couthit.com>
+X-Mailer: git-send-email 2.34.1
+In-Reply-To: <20250702140633.1612269-1-parvathi@couthit.com>
+References: <20250702140633.1612269-1-parvathi@couthit.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="US-ASCII"
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: lhrpeml500004.china.huawei.com (7.191.163.9) To
- frapeml500008.china.huawei.com (7.182.85.71)
+Content-Transfer-Encoding: 8bit
+X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
+X-AntiAbuse: Primary Hostname - server.couthit.com
+X-AntiAbuse: Original Domain - vger.kernel.org
+X-AntiAbuse: Originator/Caller UID/GID - [47 12] / [47 12]
+X-AntiAbuse: Sender Address Domain - couthit.com
+X-Get-Message-Sender-Via: server.couthit.com: authenticated_id: parvathi@couthit.com
+X-Authenticated-Sender: server.couthit.com: parvathi@couthit.com
+X-Source: 
+X-Source-Args: 
+X-Source-Dir: 
 
-On Thu, 26 Jun 2025 12:26:19 +0200
-Lorenzo Pieralisi <lpieralisi@kernel.org> wrote:
+From: Roger Quadros <rogerq@ti.com>
 
-> The GICv5 architecture implements Interrupt Translation Service
-> (ITS) components in order to translate events coming from peripherals
-> into interrupt events delivered to the connected IRSes.
-> 
-> Events (ie MSI memory writes to ITS translate frame), are translated
-> by the ITS using tables kept in memory.
-> 
-> ITS translation tables for peripherals is kept in memory storage
-> (device table [DT] and Interrupt Translation Table [ITT]) that
-> is allocated by the driver on boot.
-> 
-> Both tables can be 1- or 2-level; the structure is chosen by the
-> driver after probing the ITS HW parameters and checking the
-> allowed table splits and supported {device/event}_IDbits.
-> 
-> DT table entries are allocated on demand (ie when a device is
-> probed); the DT table is sized using the number of supported
-> deviceID bits in that that's a system design decision (ie the
-> number of deviceID bits implemented should reflect the number
-> of devices expected in a system) therefore it makes sense to
-> allocate a DT table that can cater for the maximum number of
-> devices.
-> 
-> DT and ITT tables are allocated using the kmalloc interface;
-> the allocation size may be smaller than a page or larger,
-> and must provide contiguous memory pages.
-> 
-> LPIs INTIDs backing the device events are allocated one-by-one
-> and only upon Linux IRQ allocation; this to avoid preallocating
-> a large number of LPIs to cover the HW device MSI vector
-> size whereas few MSI entries are actually enabled by a device.
-> 
-> ITS cacheability/shareability attributes are programmed
-> according to the provided firmware ITS description.
-> 
-> The GICv5 partially reuses the GICv3 ITS MSI parent infrastructure
-> and adds functions required to retrieve the ITS translate frame
-> addresses out of msi-map and msi-parent properties to implement
-> the GICv5 ITS MSI parent callbacks.
-> 
-> Co-developed-by: Sascha Bischoff <sascha.bischoff@arm.com>
-> Signed-off-by: Sascha Bischoff <sascha.bischoff@arm.com>
-> Co-developed-by: Timothy Hayes <timothy.hayes@arm.com>
-> Signed-off-by: Timothy Hayes <timothy.hayes@arm.com>
-> Signed-off-by: Lorenzo Pieralisi <lpieralisi@kernel.org>
-> Cc: Thomas Gleixner <tglx@linutronix.de>
-> Cc: Marc Zyngier <maz@kernel.org>
+Updates Kernel configuration to enable PRUETH driver and its dependencies
+along with makefile changes to add the new PRUETH driver.
 
-Hi Lorenzo,
+Changes includes init and deinit of ICSSM PRU Ethernet driver including
+net dev registration and firmware loading for DUAL-MAC mode running on
+PRU-ICSS2 instance.
 
-It almost certainly doesn't matter, but there are a couple of release
-paths in here where things don't happen in the same order as the
-equivalent error tear down paths (i.e. not reverse of setup).
+Changes also includes link handling, PRU booting, default firmware loading
+and PRU stopping using existing remoteproc driver APIs.
 
-There may well be a good reason for that but I couldn't immediately
-spot what it was.  Also a follow up similar to earlier comment about
-the table sizing code not matching the comments above it. Same thing
-going on here.
+Signed-off-by: Roger Quadros <rogerq@ti.com>
+Signed-off-by: Andrew F. Davis <afd@ti.com>
+Signed-off-by: Basharath Hussain Khaja <basharath@couthit.com>
+Signed-off-by: Parvathi Pudi <parvathi@couthit.com>
+---
+ drivers/net/ethernet/ti/Kconfig              |  12 +
+ drivers/net/ethernet/ti/Makefile             |   3 +
+ drivers/net/ethernet/ti/icssm/icssm_prueth.c | 520 +++++++++++++++++++
+ drivers/net/ethernet/ti/icssm/icssm_prueth.h | 100 ++++
+ 4 files changed, 635 insertions(+)
+ create mode 100644 drivers/net/ethernet/ti/icssm/icssm_prueth.c
+ create mode 100644 drivers/net/ethernet/ti/icssm/icssm_prueth.h
 
-Jonathan
-
-
-git a/drivers/irqchip/irq-gic-v5-its.c b/drivers/irqchip/irq-gic-v5-its.c
-> new file mode 100644
-> index 000000000000..cba632eb0273
-> --- /dev/null
-> +++ b/drivers/irqchip/irq-gic-v5-its.c
-
-> +/*
-> + * Function to check whether the device table or ITT table support
-> + * a two-level table and if so depending on the number of id_bits
-> + * requested, determine whether a two-level table is required.
-> + *
-> + * Return the 2-level size value if a two level table is deemed
-> + * necessary.
-> + */
-> +static bool gicv5_its_l2sz_two_level(bool devtab, u32 its_idr1, u8 id_bits, u8 *sz)
-> +{
-> +	unsigned int l2_bits, l2_sz;
-> +
-> +	if (devtab && !FIELD_GET(GICV5_ITS_IDR1_DT_LEVELS, its_idr1))
-> +		return false;
-> +
-> +	if (!devtab && !FIELD_GET(GICV5_ITS_IDR1_ITT_LEVELS, its_idr1))
-> +		return false;
-> +
-> +	/*
-> +	 * Pick an L2 size that matches the pagesize; if a match
-> +	 * is not found, go for the smallest supported l2 size granule.
-
-Similar to before, this description is confusing.  If Page size is 64K
-and 16 + 4 are supported we choose 16 which is not he smallest
-supported (4 is).  The condition the comment refers to only applies
-if only larger than pagesized things are supported.
-
-> +	 *
-> +	 * This ensures that we will always be able to allocate
-> +	 * contiguous memory at L2.
-> +	 */
-> +	switch (PAGE_SIZE) {
-> +	case SZ_64K:
-> +		if (GICV5_ITS_IDR1_L2SZ_SUPPORT_64KB(its_idr1)) {
-> +			l2_sz = GICV5_ITS_DT_ITT_CFGR_L2SZ_64k;
-> +			break;
-> +		}
-> +		fallthrough;
-> +	case SZ_16K:
-> +		if (GICV5_ITS_IDR1_L2SZ_SUPPORT_16KB(its_idr1)) {
-> +			l2_sz = GICV5_ITS_DT_ITT_CFGR_L2SZ_16k;
-> +			break;
-> +		}
-> +		fallthrough;
-> +	case SZ_4K:
-> +		if (GICV5_ITS_IDR1_L2SZ_SUPPORT_4KB(its_idr1)) {
-> +			l2_sz = GICV5_ITS_DT_ITT_CFGR_L2SZ_4k;
-> +			break;
-> +		}
-> +		if (GICV5_ITS_IDR1_L2SZ_SUPPORT_16KB(its_idr1)) {
-> +			l2_sz = GICV5_ITS_DT_ITT_CFGR_L2SZ_16k;
-> +			break;
-> +		}
-> +		if (GICV5_ITS_IDR1_L2SZ_SUPPORT_64KB(its_idr1)) {
-> +			l2_sz = GICV5_ITS_DT_ITT_CFGR_L2SZ_64k;
-> +			break;
-> +		}
-> +
-> +		l2_sz = GICV5_ITS_DT_ITT_CFGR_L2SZ_4k;
-> +		break;
-> +	}
-> +
-> +	l2_bits = gicv5_its_l2sz_to_l2_bits(l2_sz);
-> +
-> +	if (l2_bits > id_bits)
-> +		return false;
-> +
-> +	*sz = l2_sz;
-> +
-> +	return true;
-> +}
-
-
-
-> +/*
-> + * Register a new device in the device table. Allocate an ITT and
-> + * program the L2DTE entry according to the ITT structure that
-> + * was chosen.
-> + */
-> +static int gicv5_its_device_register(struct gicv5_its_chip_data *its,
-> +				     struct gicv5_its_dev *its_dev)
-> +{
-> +	u8 event_id_bits, device_id_bits, itt_struct, itt_l2sz;
-> +	phys_addr_t itt_phys_base;
-> +	bool two_level_itt;
-> +	u32 idr1, idr2;
-> +	__le64 *dte;
-> +	u64 val;
-> +	int ret;
-> +
-> +	device_id_bits = devtab_cfgr_field(its, DEVICEID_BITS);
-> +
-> +	if (its_dev->device_id >= BIT(device_id_bits)) {
-> +		pr_err("Supplied DeviceID (%u) outside of Device Table range (%u)!",
-> +		       its_dev->device_id, (u32)GENMASK(device_id_bits - 1, 0));
-> +		return -EINVAL;
-> +	}
-> +
-> +	dte = gicv5_its_devtab_get_dte_ref(its, its_dev->device_id, true);
-> +	if (!dte)
-> +		return -ENOMEM;
-> +
-> +	if (FIELD_GET(GICV5_DTL2E_VALID, le64_to_cpu(*dte)))
-> +		return -EBUSY;
-> +
-> +	/*
-> +	 * Determine how many bits we need, validate those against the max.
-> +	 * Based on these, determine if we should go for a 1- or 2-level ITT.
-> +	 */
-> +	event_id_bits = order_base_2(its_dev->num_events);
-> +
-> +	idr2 = its_readl_relaxed(its, GICV5_ITS_IDR2);
-> +
-> +	if (event_id_bits > FIELD_GET(GICV5_ITS_IDR2_EVENTID_BITS, idr2)) {
-> +		pr_err("Required EventID bits (%u) larger than supported bits (%u)!",
-> +		       event_id_bits,
-> +		       (u8)FIELD_GET(GICV5_ITS_IDR2_EVENTID_BITS, idr2));
-> +		return -EINVAL;
-> +	}
-> +
-> +	idr1 = its_readl_relaxed(its, GICV5_ITS_IDR1);
-> +
-> +	/*
-> +	 * L2 ITT size is programmed into the L2DTE regardless of
-> +	 * whether a two-level or linear ITT is built, init it.
-> +	 */
-> +	itt_l2sz = 0;
-> +
-> +	two_level_itt = gicv5_its_l2sz_two_level(false, idr1, event_id_bits,
-> +						  &itt_l2sz);
-> +	if (two_level_itt)
-> +		ret = gicv5_its_create_itt_two_level(its, its_dev, event_id_bits,
-> +						     itt_l2sz,
-> +						     its_dev->num_events);
-> +	else
-> +		ret = gicv5_its_create_itt_linear(its, its_dev, event_id_bits);
-> +	if (ret)
-> +		return ret;
-> +
-> +	itt_phys_base = two_level_itt ? virt_to_phys(its_dev->itt_cfg.l2.l1itt) :
-> +					virt_to_phys(its_dev->itt_cfg.linear.itt);
-> +
-> +	itt_struct = two_level_itt ? GICV5_ITS_DT_ITT_CFGR_STRUCTURE_TWO_LEVEL :
-> +				     GICV5_ITS_DT_ITT_CFGR_STRUCTURE_LINEAR;
-> +
-> +	val = FIELD_PREP(GICV5_DTL2E_EVENT_ID_BITS, event_id_bits)	|
-> +	      FIELD_PREP(GICV5_DTL2E_ITT_STRUCTURE, itt_struct)		|
-> +	      (itt_phys_base & GICV5_DTL2E_ITT_ADDR_MASK)		|
-> +	      FIELD_PREP(GICV5_DTL2E_ITT_L2SZ, itt_l2sz)		|
-> +	      FIELD_PREP(GICV5_DTL2E_VALID, 0x1);
-> +
-> +	its_write_table_entry(its, dte, val);
-> +
-> +	ret = gicv5_its_device_cache_inv(its, its_dev);
-> +	if (ret) {
-> +		gicv5_its_free_itt(its_dev);
-> +		its_write_table_entry(its, dte, 0);
-
-If it makes no difference, unwind in reverse order of setup so swap the
-two lines above.
-
-> +		return ret;
-> +	}
-> +
-> +	return 0;
-> +}
-
-> +static struct gicv5_its_dev *gicv5_its_alloc_device(struct gicv5_its_chip_data *its, int nvec,
-> +						    u32 dev_id)
-> +{
-> +	struct gicv5_its_dev *its_dev;
-> +	void *entry;
-> +	int ret;
-> +
-> +	its_dev = gicv5_its_find_device(its, dev_id);
-> +	if (!IS_ERR(its_dev)) {
-> +		pr_err("A device with this DeviceID (0x%x) has already been registered.\n",
-> +		       dev_id);
-> +
-> +		return ERR_PTR(-EBUSY);
-> +	}
-> +
-> +	its_dev = kzalloc(sizeof(*its_dev), GFP_KERNEL);
-> +	if (!its_dev)
-> +		return ERR_PTR(-ENOMEM);
-> +
-> +	its_dev->device_id = dev_id;
-> +	its_dev->num_events = nvec;
-> +
-> +	ret = gicv5_its_device_register(its, its_dev);
-> +	if (ret) {
-> +		pr_err("Failed to register the device\n");
-> +		goto out_dev_free;
-> +	}
-> +
-> +	gicv5_its_device_cache_inv(its, its_dev);
-> +
-> +	its_dev->its_node = its;
-> +
-> +	its_dev->event_map = (unsigned long *)bitmap_zalloc(its_dev->num_events, GFP_KERNEL);
-> +	if (!its_dev->event_map) {
-> +		ret = -ENOMEM;
-> +		goto out_unregister;
-> +	}
-> +
-> +	entry = xa_store(&its->its_devices, dev_id, its_dev, GFP_KERNEL);
-> +	if (xa_is_err(entry)) {
-> +		ret = xa_err(entry);
-> +		goto out_bitmap_free;
-> +	}
-> +
-> +	return its_dev;
-> +
-> +out_bitmap_free:
-> +	bitmap_free(its_dev->event_map);
-> +out_unregister:
-> +	gicv5_its_device_unregister(its, its_dev);
-> +out_dev_free:
-> +	kfree(its_dev);
-> +	return ERR_PTR(ret);
-> +}
-> +
-> +static int gicv5_its_msi_prepare(struct irq_domain *domain, struct device *dev,
-> +				 int nvec, msi_alloc_info_t *info)
-> +{
-> +	u32 dev_id = info->scratchpad[0].ul;
-> +	struct msi_domain_info *msi_info;
-> +	struct gicv5_its_chip_data *its;
-> +	struct gicv5_its_dev *its_dev;
-> +
-> +	msi_info = msi_get_domain_info(domain);
-> +	its = msi_info->data;
-> +
-> +	guard(mutex)(&its->dev_alloc_lock);
-> +
-> +	its_dev = gicv5_its_alloc_device(its, nvec, dev_id);
-> +	if (IS_ERR(its_dev))
-> +		return PTR_ERR(its_dev);
-> +
-> +	its_dev->its_trans_phys_base = info->scratchpad[1].ul;
-> +	info->scratchpad[0].ptr = its_dev;
-> +
-> +	return 0;
-> +}
-> +
-> +static void gicv5_its_msi_teardown(struct irq_domain *domain, msi_alloc_info_t *info)
-> +{
-> +	struct gicv5_its_dev *its_dev = info->scratchpad[0].ptr;
-> +	struct msi_domain_info *msi_info;
-> +	struct gicv5_its_chip_data *its;
-> +
-> +	msi_info = msi_get_domain_info(domain);
-> +	its = msi_info->data;
-> +
-> +	guard(mutex)(&its->dev_alloc_lock);
-> +
-> +	if (WARN_ON_ONCE(!bitmap_empty(its_dev->event_map, its_dev->num_events)))
-> +		return;
-> +
-> +	gicv5_its_device_unregister(its, its_dev);
-> +	bitmap_free(its_dev->event_map);
-> +	xa_erase(&its->its_devices, its_dev->device_id);
-
-I was expecting this to be in reverse order of what happens in *msi_prepare (and *msi_alloc under
-that). That would give the order
-
-	xa_erase();
-	bitmap_free();
-	gicv5_its_device_unregister();
-	kfree(its_dev);
-
-If there is a reason for this ordering it might be good to add a comment calling it out.
-
+diff --git a/drivers/net/ethernet/ti/Kconfig b/drivers/net/ethernet/ti/Kconfig
+index a07c910c497a..ab20f22524cb 100644
+--- a/drivers/net/ethernet/ti/Kconfig
++++ b/drivers/net/ethernet/ti/Kconfig
+@@ -229,4 +229,16 @@ config TI_ICSS_IEP
+ 	  To compile this driver as a module, choose M here. The module
+ 	  will be called icss_iep.
  
-> +	kfree(its_dev);
-> +}
++config TI_PRUETH
++	tristate "TI PRU Ethernet EMAC driver"
++	depends on PRU_REMOTEPROC
++	depends on NET_SWITCHDEV
++	select TI_ICSS_IEP
++	imply PTP_1588_CLOCK
++	help
++	  Some TI SoCs has Programmable Realtime Units (PRUs) cores which can
++	  support Single or Dual Ethernet ports with help of firmware code running
++	  on PRU cores. This driver supports remoteproc based communication to
++	  PRU firmware to expose ethernet interface to Linux.
++
+ endif # NET_VENDOR_TI
+diff --git a/drivers/net/ethernet/ti/Makefile b/drivers/net/ethernet/ti/Makefile
+index cbcf44806924..93c0a4d0e33a 100644
+--- a/drivers/net/ethernet/ti/Makefile
++++ b/drivers/net/ethernet/ti/Makefile
+@@ -3,6 +3,9 @@
+ # Makefile for the TI network device drivers.
+ #
+ 
++obj-$(CONFIG_TI_PRUETH) += icssm-prueth.o
++icssm-prueth-y := icssm/icssm_prueth.o
++
+ obj-$(CONFIG_TI_CPSW) += cpsw-common.o
+ obj-$(CONFIG_TI_DAVINCI_EMAC) += cpsw-common.o
+ obj-$(CONFIG_TI_CPSW_SWITCHDEV) += cpsw-common.o
+diff --git a/drivers/net/ethernet/ti/icssm/icssm_prueth.c b/drivers/net/ethernet/ti/icssm/icssm_prueth.c
+new file mode 100644
+index 000000000000..aed5cdc402b5
+--- /dev/null
++++ b/drivers/net/ethernet/ti/icssm/icssm_prueth.c
+@@ -0,0 +1,520 @@
++// SPDX-License-Identifier: GPL-2.0
++
++/* Texas Instruments ICSSM Ethernet Driver
++ *
++ * Copyright (C) 2018-2022 Texas Instruments Incorporated - https://www.ti.com/
++ *
++ */
++
++#include <linux/etherdevice.h>
++#include <linux/genalloc.h>
++#include <linux/if_bridge.h>
++#include <linux/if_hsr.h>
++#include <linux/if_vlan.h>
++#include <linux/interrupt.h>
++#include <linux/kernel.h>
++#include <linux/mfd/syscon.h>
++#include <linux/module.h>
++#include <linux/net_tstamp.h>
++#include <linux/of.h>
++#include <linux/of_irq.h>
++#include <linux/of_mdio.h>
++#include <linux/of_net.h>
++#include <linux/platform_device.h>
++#include <linux/phy.h>
++#include <linux/remoteproc/pruss.h>
++#include <linux/ptp_classify.h>
++#include <linux/regmap.h>
++#include <linux/remoteproc.h>
++#include <net/pkt_cls.h>
++
++#include "icssm_prueth.h"
++
++/* called back by PHY layer if there is change in link state of hw port*/
++static void icssm_emac_adjust_link(struct net_device *ndev)
++{
++	struct prueth_emac *emac = netdev_priv(ndev);
++	struct phy_device *phydev = emac->phydev;
++	bool new_state = false;
++	unsigned long flags;
++
++	spin_lock_irqsave(&emac->lock, flags);
++
++	if (phydev->link) {
++		/* check the mode of operation */
++		if (phydev->duplex != emac->duplex) {
++			new_state = true;
++			emac->duplex = phydev->duplex;
++		}
++		if (phydev->speed != emac->speed) {
++			new_state = true;
++			emac->speed = phydev->speed;
++		}
++		if (!emac->link) {
++			new_state = true;
++			emac->link = 1;
++		}
++	} else if (emac->link) {
++		new_state = true;
++		emac->link = 0;
++	}
++
++	if (new_state)
++		phy_print_status(phydev);
++
++	if (emac->link) {
++	       /* reactivate the transmit queue if it is stopped */
++		if (netif_running(ndev) && netif_queue_stopped(ndev))
++			netif_wake_queue(ndev);
++	} else {
++		if (!netif_queue_stopped(ndev))
++			netif_stop_queue(ndev);
++	}
++
++	spin_unlock_irqrestore(&emac->lock, flags);
++}
++
++static int icssm_emac_set_boot_pru(struct prueth_emac *emac,
++				   struct net_device *ndev)
++{
++	const struct prueth_firmware *pru_firmwares;
++	struct prueth *prueth = emac->prueth;
++	const char *fw_name;
++	int ret;
++
++	pru_firmwares = &prueth->fw_data->fw_pru[emac->port_id - 1];
++	fw_name = pru_firmwares->fw_name[prueth->eth_type];
++	if (!fw_name) {
++		netdev_err(ndev, "eth_type %d not supported\n",
++			   prueth->eth_type);
++		return -ENODEV;
++	}
++
++	ret = rproc_set_firmware(emac->pru, fw_name);
++	if (ret) {
++		netdev_err(ndev, "failed to set PRU0 firmware %s: %d\n",
++			   fw_name, ret);
++		return ret;
++	}
++
++	ret = rproc_boot(emac->pru);
++	if (ret) {
++		netdev_err(ndev, "failed to boot PRU0: %d\n", ret);
++		return ret;
++	}
++
++	return ret;
++}
++
++/**
++ * icssm_emac_ndo_open - EMAC device open
++ * @ndev: network adapter device
++ *
++ * Called when system wants to start the interface.
++ *
++ * Return: 0 for a successful open, or appropriate error code
++ */
++static int icssm_emac_ndo_open(struct net_device *ndev)
++{
++	struct prueth_emac *emac = netdev_priv(ndev);
++	int ret;
++
++	ret = icssm_emac_set_boot_pru(emac, ndev);
++	if (ret)
++		return ret;
++
++	/* start PHY */
++	phy_start(emac->phydev);
++
++	return 0;
++}
++
++/**
++ * icssm_emac_ndo_stop - EMAC device stop
++ * @ndev: network adapter device
++ *
++ * Called when system wants to stop or down the interface.
++ *
++ * Return: Always 0 (Success)
++ */
++static int icssm_emac_ndo_stop(struct net_device *ndev)
++{
++	struct prueth_emac *emac = netdev_priv(ndev);
++
++	/* stop PHY */
++	phy_stop(emac->phydev);
++
++	rproc_shutdown(emac->pru);
++
++	return 0;
++}
++
++static const struct net_device_ops emac_netdev_ops = {
++	.ndo_open = icssm_emac_ndo_open,
++	.ndo_stop = icssm_emac_ndo_stop,
++};
++
++/* get emac_port corresponding to eth_node name */
++static int icssm_prueth_node_port(struct device_node *eth_node)
++{
++	u32 port_id;
++	int ret;
++
++	ret = of_property_read_u32(eth_node, "reg", &port_id);
++	if (ret)
++		return ret;
++
++	if (port_id == 0)
++		return PRUETH_PORT_MII0;
++	else if (port_id == 1)
++		return PRUETH_PORT_MII1;
++	else
++		return PRUETH_PORT_INVALID;
++}
++
++/* get MAC instance corresponding to eth_node name */
++static int icssm_prueth_node_mac(struct device_node *eth_node)
++{
++	u32 port_id;
++	int ret;
++
++	ret = of_property_read_u32(eth_node, "reg", &port_id);
++	if (ret)
++		return ret;
++
++	if (port_id == 0)
++		return PRUETH_MAC0;
++	else if (port_id == 1)
++		return PRUETH_MAC1;
++	else
++		return PRUETH_MAC_INVALID;
++}
++
++static int icssm_prueth_netdev_init(struct prueth *prueth,
++				    struct device_node *eth_node)
++{
++	struct prueth_emac *emac;
++	struct net_device *ndev;
++	enum prueth_port port;
++	enum prueth_mac mac;
++	int ret;
++
++	port = icssm_prueth_node_port(eth_node);
++	if (port == PRUETH_PORT_INVALID)
++		return -EINVAL;
++
++	mac = icssm_prueth_node_mac(eth_node);
++	if (mac == PRUETH_MAC_INVALID)
++		return -EINVAL;
++
++	ndev = devm_alloc_etherdev(prueth->dev, sizeof(*emac));
++	if (!ndev)
++		return -ENOMEM;
++
++	SET_NETDEV_DEV(ndev, prueth->dev);
++	emac = netdev_priv(ndev);
++	prueth->emac[mac] = emac;
++	emac->prueth = prueth;
++	emac->ndev = ndev;
++	emac->port_id = port;
++
++	/* by default eth_type is EMAC */
++	switch (port) {
++	case PRUETH_PORT_MII0:
++		emac->pru = prueth->pru0;
++		break;
++	case PRUETH_PORT_MII1:
++		emac->pru = prueth->pru1;
++		break;
++	default:
++		return -EINVAL;
++	}
++	/* get mac address from DT and set private and netdev addr */
++	ret = of_get_ethdev_address(eth_node, ndev);
++	if (!is_valid_ether_addr(ndev->dev_addr)) {
++		eth_hw_addr_random(ndev);
++		dev_warn(prueth->dev, "port %d: using random MAC addr: %pM\n",
++			 port, ndev->dev_addr);
++	}
++	ether_addr_copy(emac->mac_addr, ndev->dev_addr);
++
++	/* connect PHY */
++	emac->phydev = of_phy_get_and_connect(ndev, eth_node,
++					      icssm_emac_adjust_link);
++	if (!emac->phydev) {
++		dev_dbg(prueth->dev, "PHY connection failed\n");
++		ret = -EPROBE_DEFER;
++		goto free;
++	}
++
++	/* remove unsupported modes */
++	phy_remove_link_mode(emac->phydev, ETHTOOL_LINK_MODE_10baseT_Full_BIT);
++
++	phy_remove_link_mode(emac->phydev, ETHTOOL_LINK_MODE_10baseT_Half_BIT);
++	phy_remove_link_mode(emac->phydev, ETHTOOL_LINK_MODE_100baseT_Half_BIT);
++
++	phy_remove_link_mode(emac->phydev, ETHTOOL_LINK_MODE_Pause_BIT);
++	phy_remove_link_mode(emac->phydev, ETHTOOL_LINK_MODE_Asym_Pause_BIT);
++
++	ndev->netdev_ops = &emac_netdev_ops;
++
++	return 0;
++free:
++	emac->ndev = NULL;
++	prueth->emac[mac] = NULL;
++
++	return ret;
++}
++
++static void icssm_prueth_netdev_exit(struct prueth *prueth,
++				     struct device_node *eth_node)
++{
++	struct prueth_emac *emac;
++	enum prueth_mac mac;
++
++	mac = icssm_prueth_node_mac(eth_node);
++	if (mac == PRUETH_MAC_INVALID)
++		return;
++
++	emac = prueth->emac[mac];
++	if (!emac)
++		return;
++
++	phy_disconnect(emac->phydev);
++
++	prueth->emac[mac] = NULL;
++}
++
++static int icssm_prueth_probe(struct platform_device *pdev)
++{
++	struct device_node *eth0_node = NULL, *eth1_node = NULL;
++	struct device_node *eth_node, *eth_ports_node;
++	enum pruss_pru_id pruss_id0, pruss_id1;
++	struct device *dev = &pdev->dev;
++	struct device_node *np;
++	struct prueth *prueth;
++	int i, ret;
++
++	np = dev->of_node;
++	if (!np)
++		return -ENODEV; /* we don't support non DT */
++
++	prueth = devm_kzalloc(dev, sizeof(*prueth), GFP_KERNEL);
++	if (!prueth)
++		return -ENOMEM;
++
++	platform_set_drvdata(pdev, prueth);
++	prueth->dev = dev;
++	prueth->fw_data = device_get_match_data(dev);
++
++	eth_ports_node = of_get_child_by_name(np, "ethernet-ports");
++	if (!eth_ports_node)
++		return -ENOENT;
++
++	for_each_child_of_node(eth_ports_node, eth_node) {
++		u32 reg;
++
++		if (strcmp(eth_node->name, "ethernet-port"))
++			continue;
++		ret = of_property_read_u32(eth_node, "reg", &reg);
++		if (ret < 0) {
++			dev_err(dev, "%pOF error reading port_id %d\n",
++				eth_node, ret);
++		}
++
++		of_node_get(eth_node);
++
++		if (reg == 0 && !eth0_node) {
++			eth0_node = eth_node;
++			if (!of_device_is_available(eth0_node)) {
++				of_node_put(eth0_node);
++				eth0_node = NULL;
++			}
++		} else if (reg == 1 && !eth1_node) {
++			eth1_node = eth_node;
++			if (!of_device_is_available(eth1_node)) {
++				of_node_put(eth1_node);
++				eth1_node = NULL;
++			}
++		} else {
++			dev_err(dev, "port reg should be 0 or 1\n");
++			of_node_put(eth_node);
++		}
++	}
++
++	of_node_put(eth_ports_node);
++
++	/* At least one node must be present and available else we fail */
++	if (!eth0_node && !eth1_node) {
++		dev_err(dev, "neither port0 nor port1 node available\n");
++		return -ENODEV;
++	}
++
++	prueth->eth_node[PRUETH_MAC0] = eth0_node;
++	prueth->eth_node[PRUETH_MAC1] = eth1_node;
++
++	if (eth0_node) {
++		prueth->pru0 = pru_rproc_get(np, 0, &pruss_id0);
++		if (IS_ERR(prueth->pru0)) {
++			ret = PTR_ERR(prueth->pru0);
++			if (ret != -EPROBE_DEFER)
++				dev_err(dev, "unable to get PRU0: %d\n", ret);
++			goto put_pru;
++		}
++	}
++
++	if (eth1_node) {
++		prueth->pru1 = pru_rproc_get(np, 1, &pruss_id1);
++		if (IS_ERR(prueth->pru1)) {
++			ret = PTR_ERR(prueth->pru1);
++			if (ret != -EPROBE_DEFER)
++				dev_err(dev, "unable to get PRU1: %d\n", ret);
++			goto put_pru;
++		}
++	}
++
++	/* setup netdev interfaces */
++	if (eth0_node) {
++		ret = icssm_prueth_netdev_init(prueth, eth0_node);
++		if (ret) {
++			if (ret != -EPROBE_DEFER) {
++				dev_err(dev, "netdev init %s failed: %d\n",
++					eth0_node->name, ret);
++			}
++			goto put_pru;
++		}
++	}
++
++	if (eth1_node) {
++		ret = icssm_prueth_netdev_init(prueth, eth1_node);
++		if (ret) {
++			if (ret != -EPROBE_DEFER) {
++				dev_err(dev, "netdev init %s failed: %d\n",
++					eth1_node->name, ret);
++			}
++			goto netdev_exit;
++		}
++	}
++
++	/* register the network devices */
++	if (eth0_node) {
++		ret = register_netdev(prueth->emac[PRUETH_MAC0]->ndev);
++		if (ret) {
++			dev_err(dev, "can't register netdev for port MII0");
++			goto netdev_exit;
++		}
++
++		prueth->registered_netdevs[PRUETH_MAC0] =
++			prueth->emac[PRUETH_MAC0]->ndev;
++	}
++
++	if (eth1_node) {
++		ret = register_netdev(prueth->emac[PRUETH_MAC1]->ndev);
++		if (ret) {
++			dev_err(dev, "can't register netdev for port MII1");
++			goto netdev_unregister;
++		}
++
++		prueth->registered_netdevs[PRUETH_MAC1] =
++			prueth->emac[PRUETH_MAC1]->ndev;
++	}
++
++	if (eth1_node)
++		of_node_put(eth1_node);
++	if (eth0_node)
++		of_node_put(eth0_node);
++	return 0;
++
++netdev_unregister:
++	for (i = 0; i < PRUETH_NUM_MACS; i++) {
++		if (!prueth->registered_netdevs[i])
++			continue;
++		unregister_netdev(prueth->registered_netdevs[i]);
++	}
++
++netdev_exit:
++	for (i = 0; i < PRUETH_NUM_MACS; i++) {
++		eth_node = prueth->eth_node[i];
++		if (!eth_node)
++			continue;
++
++		icssm_prueth_netdev_exit(prueth, eth_node);
++	}
++
++put_pru:
++	if (eth1_node) {
++		if (prueth->pru1)
++			pru_rproc_put(prueth->pru1);
++		of_node_put(eth1_node);
++	}
++
++	if (eth0_node) {
++		if (prueth->pru0)
++			pru_rproc_put(prueth->pru0);
++		of_node_put(eth0_node);
++	}
++
++	return ret;
++}
++
++static void icssm_prueth_remove(struct platform_device *pdev)
++{
++	struct prueth *prueth = platform_get_drvdata(pdev);
++	struct device_node *eth_node;
++	int i;
++
++	for (i = 0; i < PRUETH_NUM_MACS; i++) {
++		if (!prueth->registered_netdevs[i])
++			continue;
++		unregister_netdev(prueth->registered_netdevs[i]);
++	}
++
++	for (i = 0; i < PRUETH_NUM_MACS; i++) {
++		eth_node = prueth->eth_node[i];
++		if (!eth_node)
++			continue;
++
++		icssm_prueth_netdev_exit(prueth, eth_node);
++		of_node_put(eth_node);
++	}
++
++	pruss_put(prueth->pruss);
++
++	if (prueth->eth_node[PRUETH_MAC0])
++		pru_rproc_put(prueth->pru0);
++	if (prueth->eth_node[PRUETH_MAC1])
++		pru_rproc_put(prueth->pru1);
++}
++
++/* AM57xx SoC-specific firmware data */
++static struct prueth_private_data am57xx_prueth_pdata = {
++	.fw_pru[PRUSS_PRU0] = {
++		.fw_name[PRUSS_ETHTYPE_EMAC] =
++			"ti-pruss/am57xx-pru0-prueth-fw.elf",
++	},
++	.fw_pru[PRUSS_PRU1] = {
++		.fw_name[PRUSS_ETHTYPE_EMAC] =
++			"ti-pruss/am57xx-pru1-prueth-fw.elf",
++	},
++};
++
++static const struct of_device_id prueth_dt_match[] = {
++	{ .compatible = "ti,am57-prueth", .data = &am57xx_prueth_pdata, },
++	{ /* sentinel */ }
++};
++MODULE_DEVICE_TABLE(of, prueth_dt_match);
++
++static struct platform_driver prueth_driver = {
++	.probe = icssm_prueth_probe,
++	.remove = icssm_prueth_remove,
++	.driver = {
++		.name = "prueth",
++		.of_match_table = prueth_dt_match,
++	},
++};
++module_platform_driver(prueth_driver);
++
++MODULE_AUTHOR("Roger Quadros <rogerq@ti.com>");
++MODULE_AUTHOR("Andrew F. Davis <afd@ti.com>");
++MODULE_DESCRIPTION("PRUSS ICSSM Ethernet Driver");
++MODULE_LICENSE("GPL");
+diff --git a/drivers/net/ethernet/ti/icssm/icssm_prueth.h b/drivers/net/ethernet/ti/icssm/icssm_prueth.h
+new file mode 100644
+index 000000000000..7f857edc6eb2
+--- /dev/null
++++ b/drivers/net/ethernet/ti/icssm/icssm_prueth.h
+@@ -0,0 +1,100 @@
++/* SPDX-License-Identifier: GPL-2.0 */
++/* Texas Instruments ICSSM Ethernet driver
++ *
++ * Copyright (C) 2018-2022 Texas Instruments Incorporated - https://www.ti.com/
++ *
++ */
++
++#ifndef __NET_TI_PRUETH_H
++#define __NET_TI_PRUETH_H
++
++#include <linux/phy.h>
++#include <linux/types.h>
++#include <linux/pruss_driver.h>
++#include <linux/remoteproc/pruss.h>
++
++/* PRU Ethernet Type - Ethernet functionality (protocol
++ * implemented) provided by the PRU firmware being loaded.
++ */
++enum pruss_ethtype {
++	PRUSS_ETHTYPE_EMAC = 0,
++	PRUSS_ETHTYPE_HSR,
++	PRUSS_ETHTYPE_PRP,
++	PRUSS_ETHTYPE_SWITCH,
++	PRUSS_ETHTYPE_MAX,
++};
++
++/* In switch mode there are 3 real ports i.e. 3 mac addrs.
++ * however Linux sees only the host side port. The other 2 ports
++ * are the switch ports.
++ * In emac mode there are 2 real ports i.e. 2 mac addrs.
++ * Linux sees both the ports.
++ */
++enum prueth_port {
++	PRUETH_PORT_HOST = 0,	/* host side port */
++	PRUETH_PORT_MII0,	/* physical port MII 0 */
++	PRUETH_PORT_MII1,	/* physical port MII 1 */
++	PRUETH_PORT_INVALID,	/* Invalid prueth port */
++};
++
++enum prueth_mac {
++	PRUETH_MAC0 = 0,
++	PRUETH_MAC1,
++	PRUETH_NUM_MACS,
++	PRUETH_MAC_INVALID,
++};
++
++/**
++ * struct prueth_firmware - PRU Ethernet FW data
++ * @fw_name: firmware names of firmware to run on PRU
++ */
++struct prueth_firmware {
++	const char *fw_name[PRUSS_ETHTYPE_MAX];
++};
++
++/**
++ * struct prueth_private_data - PRU Ethernet private data
++ * @fw_pru: firmware names to be used for PRUSS ethernet usecases
++ * @support_lre: boolean to indicate if lre is enabled
++ * @support_switch: boolean to indicate if switch is enabled
++ */
++struct prueth_private_data {
++	const struct prueth_firmware fw_pru[PRUSS_NUM_PRUS];
++	bool support_lre;
++	bool support_switch;
++};
++
++/* data for each emac port */
++struct prueth_emac {
++	struct prueth *prueth;
++	struct net_device *ndev;
++
++	struct rproc *pru;
++	struct phy_device *phydev;
++
++	int link;
++	int speed;
++	int duplex;
++
++	enum prueth_port port_id;
++	const char *phy_id;
++	u8 mac_addr[6];
++	phy_interface_t phy_if;
++	spinlock_t lock;	/* serialize access */
++};
++
++struct prueth {
++	struct device *dev;
++	struct pruss *pruss;
++	struct rproc *pru0, *pru1;
++
++	const struct prueth_private_data *fw_data;
++	struct prueth_fw_offsets *fw_offsets;
++
++	struct device_node *eth_node[PRUETH_NUM_MACS];
++	struct prueth_emac *emac[PRUETH_NUM_MACS];
++	struct net_device *registered_netdevs[PRUETH_NUM_MACS];
++
++	unsigned int eth_type;
++};
++#endif /* __NET_TI_PRUETH_H */
+-- 
+2.34.1
 
 
