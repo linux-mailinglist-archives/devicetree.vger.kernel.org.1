@@ -1,48 +1,48 @@
-Return-Path: <devicetree+bounces-192313-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-192314-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 92185AF637A
-	for <lists+devicetree@lfdr.de>; Wed,  2 Jul 2025 22:41:02 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 340B7AF637E
+	for <lists+devicetree@lfdr.de>; Wed,  2 Jul 2025 22:43:40 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 5680F3B0E4C
-	for <lists+devicetree@lfdr.de>; Wed,  2 Jul 2025 20:40:36 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 45DB04E7102
+	for <lists+devicetree@lfdr.de>; Wed,  2 Jul 2025 20:43:40 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id AEFD12D63F1;
-	Wed,  2 Jul 2025 20:40:58 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E70182D63F1;
+	Wed,  2 Jul 2025 20:43:34 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="PwPZbBY7"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Niqtp9J8"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 841422D63EB;
-	Wed,  2 Jul 2025 20:40:57 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BAC182DE6FF;
+	Wed,  2 Jul 2025 20:43:34 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1751488858; cv=none; b=oAExJKnR2n42eaagdwZ3jd2p0nc8HPbB8QSyZcW3hr3Aj/jheE23GB5NN9dlF4eP2yj4c3VCERAuU6wPqjoeKmM7ZCBTI/gf8L0Pj7WUQm2RVFXdB4bbUp8HO3g3fv0L1tEn0GZKuuaRlWSTF5xDr2PCSX+RQwUDza3/0GJESxc=
+	t=1751489014; cv=none; b=L2vx73B22E9hlC+/11jQAbKTnGBCxl+LQYTEhbAJyzk8fySzIJC+excV8pLYKMHKGh8KHh/bn/AD+RdWMj5aQTL9QN/i6uNMxoxHaqrTW76u+IlWhYsOwUEdEMmghno74eToHj9hTmYulaw0+uROucHBqdqSwEuiE6YWvuWSPjs=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1751488858; c=relaxed/simple;
-	bh=hwwJv6iwQxx/+YBO40xNmcGnv/fZIAiYjW9TpAbks+U=;
+	s=arc-20240116; t=1751489014; c=relaxed/simple;
+	bh=namI4dysszPW24UwiquVsEdZsgVUccrHmEr3BMx1gy0=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=d7ICHCsNrDqCzmfgiStOYiny6Q73qIIHqmddkdwjYZPL2RxAogrFGRhlfih4rO3QfdN9A3lSVa2xtS6OjQ0ecTvdj7RuEokfp3wRMWK0lhNuS2uQO9XPda1X5Lt3xc4QUxkqvXd20GeDf4EPPZNddSSBpwUpRLr7XO1TGdQiRR0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=PwPZbBY7; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 814D0C4CEE7;
-	Wed,  2 Jul 2025 20:40:53 +0000 (UTC)
+	 In-Reply-To:Content-Type; b=oPmNHEI2SwoMX9vK3TLu9uRiXgwQhUpbOs7nKbnSKwc4uBeULQJWiZGY/A5LkGONDMTn9GYLw4ozFxhk9GtPYhkARWUgtIODHtz9xj08st/bPicrhgTmUCvicrOpNyEQTLjedjb8PI9SRnNDqqMjw4keGvc6UqoD61ud4I3inqk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Niqtp9J8; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id ADFD6C4CEE7;
+	Wed,  2 Jul 2025 20:43:29 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1751488857;
-	bh=hwwJv6iwQxx/+YBO40xNmcGnv/fZIAiYjW9TpAbks+U=;
+	s=k20201202; t=1751489014;
+	bh=namI4dysszPW24UwiquVsEdZsgVUccrHmEr3BMx1gy0=;
 	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=PwPZbBY70um8QiEwJQThZIiRhlGlRKZDtiZZYcb/Fm+ZkuPe8pQiV+coeW2XL6QOr
-	 j/pKDBKe0HC5Yndixit6vKSZbwRPKo175SIc5EAMwZDee6DQmjCNJ+dpa7RxxAWqUD
-	 vb2ra0RCVh5PvZjc2PcpXHFQlaBrpMc70ne7oYfp3uARyKZo1Tx1YyGXn+aKLfICAI
-	 TGuECNCR/hcfSeYVACCElUAj1SIF8LdtffRDjFwVcT4fQeHVmkj+wVInXfoVXFG95L
-	 1nJ95aV5pQ+/yAZRRprHdX/9gArexABeMuhKHTFgK4iQZQq4benHGUzvRM5uAaG5h+
-	 cenxbbPwkZYZA==
-Message-ID: <15fb5256-b0ab-49f9-9ec0-e681a9412fde@kernel.org>
-Date: Wed, 2 Jul 2025 22:40:51 +0200
+	b=Niqtp9J8h4UVxxF6taTXI/mIb3fWMvt7EJhRLbC5dSsiT3JQm9AbE0nRhZWGP/4jI
+	 sQnjMGp7vwfN2Aflm7BW/4C5Hp+MbOERaz/HNmXL2NAr3aohxwDSVTfgjmpCDWBIiO
+	 WaBkADr9bnHmgcL+A6OHOXWUBbmeU4Zn2QTJDI++r7q7dYDMgLSeerD1b7UJ32yYU2
+	 PMW0uL54pZczTRz8PnVbHT6cePsBX9F4o952mkr9g9UEmCzLw4tAe03rya5Yq1ppp/
+	 Gl9+/i0TroqHRjYy7VdBzDVgt6HZ0Ckpoz2qBvojEuHAxRWkq9O1G0CcTflrmffgKT
+	 X9O9Uc3r7nnSA==
+Message-ID: <6e4253dd-cd73-4302-b9df-44c8c311eb22@kernel.org>
+Date: Wed, 2 Jul 2025 22:43:27 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,23 +50,25 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH V4 1/5] dt-bindings: mfd: ti,bq25703a: Add TI BQ25703A
- Charger
-To: Christopher Morgan <macromorgan@hotmail.com>
-Cc: Chris Morgan <macroalpha82@gmail.com>,
- "linux-pm@vger.kernel.org" <linux-pm@vger.kernel.org>,
- "linux-rockchip@lists.infradead.org" <linux-rockchip@lists.infradead.org>,
- "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
- "broonie@kernel.org" <broonie@kernel.org>,
- "lgirdwood@gmail.com" <lgirdwood@gmail.com>, "sre@kernel.org"
- <sre@kernel.org>, "heiko@sntech.de" <heiko@sntech.de>,
- "conor+dt@kernel.org" <conor+dt@kernel.org>,
- "krzk+dt@kernel.org" <krzk+dt@kernel.org>, "robh@kernel.org"
- <robh@kernel.org>, "lee@kernel.org" <lee@kernel.org>
-References: <20250626195343.54653-1-macroalpha82@gmail.com>
- <20250626195343.54653-2-macroalpha82@gmail.com>
- <20250627-lurking-amorphous-elephant-e14c7f@krzk-bin>
- <SN6PR1901MB4654D8420C9F65C8BE2D10ECA546A@SN6PR1901MB4654.namprd19.prod.outlook.com>
+Subject: Re: [PATCH v2 1/5] dt-bindings: display: simple-framebuffer: Add
+ interconnects property
+To: Hans de Goede <hdegoede@redhat.com>, Luca Weiss <luca.weiss@fairphone.com>
+Cc: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>,
+ David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>,
+ Javier Martinez Canillas <javierm@redhat.com>, Helge Deller <deller@gmx.de>,
+ linux-fbdev@vger.kernel.org, dri-devel@lists.freedesktop.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+References: <20250623-simple-drm-fb-icc-v2-0-f69b86cd3d7d@fairphone.com>
+ <20250623-simple-drm-fb-icc-v2-1-f69b86cd3d7d@fairphone.com>
+ <20250627-mysterious-optimistic-bird-acaafb@krzk-bin>
+ <DAX7ZB27SBPV.2Y0I09TVSF3TT@fairphone.com>
+ <1129bc60-f9cb-40be-9869-8ffa3b3c9748@kernel.org>
+ <8a3ad930-bfb1-4531-9d34-fdf7d437f352@redhat.com>
+ <85521ded-734d-48e8-8f76-c57739102ded@kernel.org>
+ <e534d496-6ce0-46c8-835d-94b3346446a7@redhat.com>
 From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
@@ -112,29 +114,27 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  jWt87ecuHlpL3uuQ0ZZNWqHgZoQLXoqC2ZV5KrtKWb/jyiFX/sxSrodALf0zf+tfHv0FZWT2
  zHjUqd0t4njD/UOsuIMOQn4Ig0SdivYPfZukb5cdasKJukG1NOpbW7yRNivaCnfZz6dTawXw
  XRIV/KDsHQiyVxKvN73bThKhONkcX2LWuD928tAR6XMM2G5ovxLe09vuOzzfTWQDsm++9UKF a/A=
-In-Reply-To: <SN6PR1901MB4654D8420C9F65C8BE2D10ECA546A@SN6PR1901MB4654.namprd19.prod.outlook.com>
+In-Reply-To: <e534d496-6ce0-46c8-835d-94b3346446a7@redhat.com>
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: 7bit
 
-On 30/06/2025 16:33, Christopher Morgan wrote:
-> 
-> 
->> On Jun 27, 2025, at 1:58 AM, Krzysztof Kozlowski <krzk@kernel.org> wrote:
+On 30/06/2025 10:40, Hans de Goede wrote:
 >>
->> ﻿On Thu, Jun 26, 2025 at 02:53:39PM -0500, Chris Morgan wrote:
->>> From: Chris Morgan <macromorgan@hotmail.com>
->>>
->>> Document the Texas instruments BQ25703A series of charger managers/
->>> buck/boost regulators.
->>>
->>> Signed-off-by: Chris Morgan <macromorgan@hotmail.com>
->>
->> Didn't you receive tag?
+>> No one asks to drop them from the driver. I only want specific front
+>> compatible which will list and constrain the properties. It is not
+>> contradictory to your statements, U-boot support, driver support. I
+>> really do not see ANY argument why this cannot follow standard DT rules.
 > 
-> I did, I’m sorry but I thought the changes suggested were substantive enough to warrant another review so I dropped it. I did leave it on the other patches though. If I should have kept the tag I’ll try to remember next time.
-
-Which changes? Cover letter is vague - only some sort of cleanup - and
-anyway dropping tag needs to be explicit with a reason.
+> So what you are saying is that you want something like:
+> 
+> framebuffer0: framebuffer@1d385000 {
+> 	compatible = "qcom.simple-framebuffer-sm8650-mdss", "simple-framebuffer";
+> }
+> 
+> and that the binding for qcom.simple-framebuffer-sm8650-mdss
+> can then list interconnects ?
+IMO yes (after adjusting above to coding style), but as mentioned in
+other response you can just get an ack or opinion from Rob or Conor.
 
 Best regards,
 Krzysztof
