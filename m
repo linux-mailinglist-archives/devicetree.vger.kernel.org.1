@@ -1,112 +1,96 @@
-Return-Path: <devicetree+bounces-191917-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-191918-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id AB82FAF0D7E
-	for <lists+devicetree@lfdr.de>; Wed,  2 Jul 2025 10:09:40 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1FF4CAF0DCF
+	for <lists+devicetree@lfdr.de>; Wed,  2 Jul 2025 10:23:33 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 61F814478D4
-	for <lists+devicetree@lfdr.de>; Wed,  2 Jul 2025 08:09:14 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 3B2274E134E
+	for <lists+devicetree@lfdr.de>; Wed,  2 Jul 2025 08:23:33 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 67925231C9C;
-	Wed,  2 Jul 2025 08:09:35 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="cWCnhzsb"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8BA2B235061;
+	Wed,  2 Jul 2025 08:23:28 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.11])
+Received: from leonov.paulk.fr (leonov.paulk.fr [185.233.101.22])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C32CD10F2;
-	Wed,  2 Jul 2025 08:09:33 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.198.163.11
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 92B5617A2E6;
+	Wed,  2 Jul 2025 08:23:25 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.233.101.22
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1751443775; cv=none; b=BYe509nvQTimzcdOAgHhBw4hcGqOCt7DGh3bVYRRZFXfXqHZ7yPoyit4jIosrD9TNJVpqXgzp2IUHig8h+eiOdbvdo7cuRGp8+NZV8N4AGEehfwQsTIwNo2akAb/6RXktZO9uEGaPZEWarbVWLAduBaHT9vT+BD6WJ6t8qMbdI8=
+	t=1751444608; cv=none; b=outVh1o342E3ksySmq7Mfp1nlGf7LCUAIubKOzGikMntG+U26Q+ymhZSRuceazmH58eBgr3UKsG74hsP4w3poBPjVdPDU/puMnfBmXWGrH7qf8uDd6eEXoJ7THy5cG9GjG6PB7SFLXZd87PAwz1/cCm2Hyi1x7iayt55X0w4SOU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1751443775; c=relaxed/simple;
-	bh=W3WtiGVMoej2dClcyycFXyvtl2tDGQxDlRcj/pqxQCM=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=WMtVT8/8VLRLmyCUzsS2tX8MAN4YN5HbReYbmn4wvpwC4q4C6tu7WRWPl62TEInFR0KSXBxdC4JZv1TvsR7lOMhVbiKS7AA2M/zbi8AgJ6tPbxU3JbDP9TZ407bjBWfBLyFELjXu5hbJ8CoV8xPIH2Z/hcHjuEVUHz2ZlNTPyLo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=cWCnhzsb; arc=none smtp.client-ip=192.198.163.11
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1751443774; x=1782979774;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=W3WtiGVMoej2dClcyycFXyvtl2tDGQxDlRcj/pqxQCM=;
-  b=cWCnhzsboAGbFbcfqej5Bz/6qkD7ZIiuliBRDZUMu+PrvN+vlyXPOtwf
-   p9CLkTwtl63kB0bKQaFYSuq06hKhfwxPr/+/NU7aaikSGxyzI1UccQlWC
-   RjKRVKC2c8hT0BNp3n6j/Ti//BwMUIZVTCv18xO3jA/XfsB+6T9fjnVmN
-   UIN/RiH2pMlyaKuV3oC1m++Sv6306loNT63aJ+MaIIBFieg9ImUWtRWxp
-   sl539AP1WcmQxfxrQ2ML8UxMbtodBp26OgLix6VxAUeMBocl6EkIZgrk+
-   2Es/HJ0BsVTiXAZZHR+5JPwIqcHkyUaqviDO6xLM7cAwoVunaoQptvKr+
-   w==;
-X-CSE-ConnectionGUID: kWx/J+nrRQ6QhM4LbfAiEQ==
-X-CSE-MsgGUID: wi/ehwPdTJqB3PXJv/iSUg==
-X-IronPort-AV: E=McAfee;i="6800,10657,11481"; a="64327646"
-X-IronPort-AV: E=Sophos;i="6.16,281,1744095600"; 
-   d="scan'208";a="64327646"
-Received: from orviesa010.jf.intel.com ([10.64.159.150])
-  by fmvoesa105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 02 Jul 2025 01:09:33 -0700
-X-CSE-ConnectionGUID: WDR9/GeDTqqoty7c+Q5vHg==
-X-CSE-MsgGUID: qyIzbNiJQD2hCMlHTpOzZA==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.16,281,1744095600"; 
-   d="scan'208";a="153409030"
-Received: from smile.fi.intel.com ([10.237.72.52])
-  by orviesa010.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 02 Jul 2025 01:09:28 -0700
-Received: from andy by smile.fi.intel.com with local (Exim 4.98.2)
-	(envelope-from <andriy.shevchenko@intel.com>)
-	id 1uWsWy-0000000BrQP-2kwL;
-	Wed, 02 Jul 2025 11:09:24 +0300
-Date: Wed, 2 Jul 2025 11:09:24 +0300
-From: Andy Shevchenko <andriy.shevchenko@intel.com>
-To: Marcelo Schmitt <marcelo.schmitt@analog.com>
-Cc: linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-gpio@vger.kernel.org, linux-kernel@vger.kernel.org,
-	jic23@kernel.org, lars@metafoo.de, Michael.Hennerich@analog.com,
-	dlechner@baylibre.com, nuno.sa@analog.com, andy@kernel.org,
-	robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
-	linus.walleij@linaro.org, brgl@bgdev.pl, broonie@kernel.org,
-	lgirdwood@gmail.com, marcelo.schmitt1@gmail.com
-Subject: Re: [PATCH v7 00/12] iio: adc: Add support for AD4170 series of ADCs
-Message-ID: <aGTpNNaW7cXC18Jt@smile.fi.intel.com>
-References: <cover.1751289747.git.marcelo.schmitt@analog.com>
+	s=arc-20240116; t=1751444608; c=relaxed/simple;
+	bh=WxSznPqbYbVUoE7up+1y8GqEmNKZ6G36aoavQc8B348=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=GawGGuXHvrqG39YyFfyhDoSikY4TLdFNDuM3wleKrpa8QHw16z14OSJcP/qZQDF24yGgQ8Y0vI3V4f/ELC9KcqDO5AjkftWXHIUjor430EXCDU7sDTcpEMCaA7+GWncnQ4PuuxipRHmS5s+1Q3wuzbjwZCFDCC+Wbaa92Z8+1+8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=sys-base.io; spf=pass smtp.mailfrom=sys-base.io; arc=none smtp.client-ip=185.233.101.22
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=sys-base.io
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=sys-base.io
+Received: from laika.paulk.fr (12.234.24.109.rev.sfr.net [109.24.234.12])
+	by leonov.paulk.fr (Postfix) with ESMTPS id 733C51F0003D;
+	Wed,  2 Jul 2025 08:23:17 +0000 (UTC)
+Received: by laika.paulk.fr (Postfix, from userid 65534)
+	id E809FAC98C0; Wed,  2 Jul 2025 08:23:16 +0000 (UTC)
+X-Spam-Level: *
+Received: from localhost.localdomain (unknown [192.168.1.64])
+	by laika.paulk.fr (Postfix) with ESMTP id 5848FAC9884;
+	Wed,  2 Jul 2025 08:22:32 +0000 (UTC)
+From: Paul Kocialkowski <paulk@sys-base.io>
+To: dri-devel@lists.freedesktop.org,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org
+Cc: Neil Armstrong <neil.armstrong@linaro.org>,
+	Jessica Zhang <quic_jesszhan@quicinc.com>,
+	David Airlie <airlied@gmail.com>,
+	Simona Vetter <simona@ffwll.ch>,
+	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+	Maxime Ripard <mripard@kernel.org>,
+	Thomas Zimmermann <tzimmermann@suse.de>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Thierry Reding <thierry.reding@gmail.com>,
+	Sam Ravnborg <sam@ravnborg.org>,
+	Paul Kocialkowski <paulk@sys-base.io>
+Subject: [PATCH v2 1/2] dt-bindings: display: simple: Add Olimex LCD-OLinuXino-5CTS
+Date: Wed,  2 Jul 2025 10:22:29 +0200
+Message-ID: <20250702082230.1291953-1-paulk@sys-base.io>
+X-Mailer: git-send-email 2.49.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <cover.1751289747.git.marcelo.schmitt@analog.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park, 6
- krs, Bertel Jungin Aukio 5, 02600 Espoo
+Content-Transfer-Encoding: 8bit
 
-On Mon, Jun 30, 2025 at 10:57:32AM -0300, Marcelo Schmitt wrote:
-> Hello,
-> 
-> AD4170 support v7 comes after testing the driver with even more variations of
-> channel setups. Signal offset and amplification can be tricky to grasp at times.
-> 
-> Thank you to all reviewers of previous versions. This intends to comply with all
-> comments and suggestions to v6.
-> 
-> Same amount of patches than v6.
+Add the Olimex LCD-OLinuXino-5CTS, a 5-inch TFT LCD panel.
 
-...
+Signed-off-by: Paul Kocialkowski <paulk@sys-base.io>
+---
 
->  6 files changed, 3601 insertions(+)
+Changes since v1:
+- Fixed yaml indentation.
+---
+ .../devicetree/bindings/display/panel/panel-simple.yaml         | 2 ++
+ 1 file changed, 2 insertions(+)
 
-This is weird. At least patches 11 & 12 have '-' lines...
-
+diff --git a/Documentation/devicetree/bindings/display/panel/panel-simple.yaml b/Documentation/devicetree/bindings/display/panel/panel-simple.yaml
+index 5542c9229d54..f0f7ed4f9d36 100644
+--- a/Documentation/devicetree/bindings/display/panel/panel-simple.yaml
++++ b/Documentation/devicetree/bindings/display/panel/panel-simple.yaml
+@@ -234,6 +234,8 @@ properties:
+       - okaya,rs800480t-7x0gp
+         # Olimex 4.3" TFT LCD panel
+       - olimex,lcd-olinuxino-43-ts
++        # Olimex 5.0" TFT LCD panel
++      - olimex,lcd-olinuxino-5-cts
+         # On Tat Industrial Company 5" DPI TFT panel.
+       - ontat,kd50g21-40nt-a1
+         # On Tat Industrial Company 7" DPI TFT panel.
 -- 
-With Best Regards,
-Andy Shevchenko
-
+2.49.0
 
 
