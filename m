@@ -1,205 +1,132 @@
-Return-Path: <devicetree+bounces-192258-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-192259-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 20CB9AF5E75
-	for <lists+devicetree@lfdr.de>; Wed,  2 Jul 2025 18:22:41 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id C7D1DAF5E7F
+	for <lists+devicetree@lfdr.de>; Wed,  2 Jul 2025 18:24:34 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 2F8EA16CB18
-	for <lists+devicetree@lfdr.de>; Wed,  2 Jul 2025 16:22:41 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 87D023B0E53
+	for <lists+devicetree@lfdr.de>; Wed,  2 Jul 2025 16:24:08 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9D72E2F85ED;
-	Wed,  2 Jul 2025 16:22:35 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 88C272F85ED;
+	Wed,  2 Jul 2025 16:24:30 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="BzXyF+ug"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="b1+Ck7Ii"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6E9B12F4A03;
-	Wed,  2 Jul 2025 16:22:35 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 54C0E101DE;
+	Wed,  2 Jul 2025 16:24:29 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1751473355; cv=none; b=gDa6fwVAix4p/8MVBMjw/KyCAu87d4RpefI/QE77TjozCJv7B/1O9ET1weeV3leqT3RlkCoAM7wfzhrXILsph+zlXFDjVtHDhHd3ZP9VnZJoO9U06o2zfWV0LyqKOjX/4r8cjsOJzHdm2FaihOY1ATRiqagYR9tZda9BEgqFVOU=
+	t=1751473470; cv=none; b=bBQkahvj9wTvRhDesIZCX5hI9t0t4dzdqsAwLmhEkY964daOtyeoNJM8lsHkwcG2M2/ii23Rko+yRz6VPCd4iQpKqFGfCF1adVQxVwkN8MrP9iS865H9xv3YyWx/1JcXNJFzgWAzMhE4PtWfXWlXFbxGKpcuO1eyGsr/2eu+uP4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1751473355; c=relaxed/simple;
-	bh=Yn6tir8J9XvdPDtl4xNqq+XlLxtvPSFNpo4nddNGvYs=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=egjGdCBNiJ1p4445bv6OVkLvdWJXEcUovewfV0YdELfynAYgNDqPVW7ZWV/YkIeOXkujHawTajv0TG91htqj15eUon3Z4IaLXFa5JbUuRtBpsIOEYPUSc+WgXhPSyoivc9XuM1PephKZMsFCMF+qoAEGSOkfFxJJ1DF2SPC3bIo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=BzXyF+ug; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 282D7C4CEE7;
-	Wed,  2 Jul 2025 16:22:32 +0000 (UTC)
+	s=arc-20240116; t=1751473470; c=relaxed/simple;
+	bh=M6iEZcjkRbFz5jFtS+j4R+UxNJcxCweP+Ki5IzSq3mA=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=Bg328A1iJz+Ju4OKQPOXm0aw8UXK04BjUjuSlw1knWoLYLi2HXdsNjXbsPSWXuGBb6NxFnpoSRpM53wJXfOeRxKHxqg4HvLOkQqxNIk1fx8+FgrSCC6HS2J3c0peIYM/1DrPbnTb6jCDIzK2bEZjJyfpue7C2oBYRKqxFZ8w+Js=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=b1+Ck7Ii; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id E7934C4CEEF;
+	Wed,  2 Jul 2025 16:24:24 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1751473355;
-	bh=Yn6tir8J9XvdPDtl4xNqq+XlLxtvPSFNpo4nddNGvYs=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=BzXyF+ugjPx2nYeN+BwSQa3NpYp2WN6+OZ3AKCcVoCnn7bS942egTZ1DkKrm8liYk
-	 lnQ/FKwlLS2xZL76MRjv4YeRp44hCa1fBaZRYzbdu/RNUnR/QSKBlEtQr44JmMb9yg
-	 g7gXc8shcTMPbnzTuBhpMr9/tK3PslEoZd18AjK083S/6F/j4EeIZPLIKp6ouHfbx9
-	 +rjuxrnCqRLebBvUiMrjxJu/sto3JnucLMw85e8hMtLdCcnWnAGQKXNxp1tU5H1tz7
-	 c27RJjR0s/7mgMVgZEADNj34xiOCpmYThxgGlHYwcdtS1eiLUB9MgZ7O3K6FhK6jJ3
-	 iwGEQNWSDYONg==
-Date: Wed, 2 Jul 2025 17:22:30 +0100
-From: Lee Jones <lee@kernel.org>
-To: Pawel Zalewski <pzalewski@thegoodpenguin.co.uk>
-Cc: Pavel Machek <pavel@kernel.org>, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, linux-leds@vger.kernel.org,
-	linux-kernel@vger.kernel.org, Pavel Machek <pavel@ucw.cz>,
-	devicetree@vger.kernel.org
-Subject: Re: [PATCH v2 1/3] leds/leds-is31fl32xx: add support for is31fl3236a
-Message-ID: <20250702162230.GY10134@google.com>
-References: <20250627-leds-is31fl3236a-v2-0-f6ef7495ce65@thegoodpenguin.co.uk>
- <20250627-leds-is31fl3236a-v2-1-f6ef7495ce65@thegoodpenguin.co.uk>
+	s=k20201202; t=1751473469;
+	bh=M6iEZcjkRbFz5jFtS+j4R+UxNJcxCweP+Ki5IzSq3mA=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=b1+Ck7IiroyoCY2aTSWcgrd+53FNVecNW0MuH/4pFWFLjUOJT2hRavODGgpzDB3w6
+	 zs+iZ8+bpc6U2fXIrD3ZxokZMajWq2L1GGYry5CLzSyM9EIPRFOc2368Cnmls/CZAf
+	 M5oGXVtIDDZN7CX/VicYKxF27z8COAgD1RMUIGhqHAaYb4Xmw/UeK6phsz7dugvJqP
+	 8WrJGulfx+x9EcZXkD4ki+VyUeu4sREEgTF2EHw//vgDmoLkzs6f7eiPO/9P8rWUSy
+	 LNw8MWbE8oS2mN0rr7k3xotn4aj4U6TTacFwxYlLLXNES8oKwdqn0FkEHbOtZ5Likm
+	 hZgsrZjdWo4Og==
+Message-ID: <3d68babb-3dc7-40cb-aaad-ed31eef1d62a@kernel.org>
+Date: Wed, 2 Jul 2025 18:24:22 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20250627-leds-is31fl3236a-v2-1-f6ef7495ce65@thegoodpenguin.co.uk>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v3 1/2] dt-bindings: clock: qcom,videocc: Add sc8180x
+ compatible
+To: Satya Priya Kakitapalli <quic_skakitap@quicinc.com>,
+ Bjorn Andersson <andersson@kernel.org>,
+ Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Michael Turquette <mturquette@baylibre.com>,
+ Stephen Boyd <sboyd@kernel.org>
+Cc: Ajit Pandey <quic_ajipan@quicinc.com>,
+ Imran Shaik <quic_imrashai@quicinc.com>, Taniya Das <quic_tdas@quicinc.com>,
+ Jagadeesh Kona <quic_jkona@quicinc.com>, linux-arm-msm@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ linux-clk@vger.kernel.org
+References: <20250702-sc8180x-videocc-dt-v3-0-916d443d8a38@quicinc.com>
+ <20250702-sc8180x-videocc-dt-v3-1-916d443d8a38@quicinc.com>
+From: Krzysztof Kozlowski <krzk@kernel.org>
+Content-Language: en-US
+Autocrypt: addr=krzk@kernel.org; keydata=
+ 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 a/A=
+In-Reply-To: <20250702-sc8180x-videocc-dt-v3-1-916d443d8a38@quicinc.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-On Fri, 27 Jun 2025, Pawel Zalewski wrote:
-
-> Add an additional and optional control register for setting
-> the output PWM frequency to 22kHz. The default is 3kHz and
-> this option puts the operational frequency outside of the
-> audible range.
-> 
-> Signed-off-by: Pawel Zalewski <pzalewski@thegoodpenguin.co.uk>
-> ---
->  drivers/leds/leds-is31fl32xx.c | 35 +++++++++++++++++++++++++++++++++++
->  1 file changed, 35 insertions(+)
-
-So close!
-
-> diff --git a/drivers/leds/leds-is31fl32xx.c b/drivers/leds/leds-is31fl32xx.c
-> index 8793330dd4142f49f15d6ee9d87468c08509859f..b3f25854f97eac0f87c5be762b1d8e3afaaecc21 100644
-> --- a/drivers/leds/leds-is31fl32xx.c
-> +++ b/drivers/leds/leds-is31fl32xx.c
-> @@ -32,6 +32,8 @@
->  #define IS31FL3216_CONFIG_SSD_ENABLE  BIT(7)
->  #define IS31FL3216_CONFIG_SSD_DISABLE 0
+On 02/07/2025 17:13, Satya Priya Kakitapalli wrote:
 >  
-> +#define IS31FL32XX_PWM_FREQUENCY_22kHz  0x01
-> +
->  struct is31fl32xx_priv;
->  struct is31fl32xx_led_data {
->  	struct led_classdev cdev;
-> @@ -53,6 +55,7 @@ struct is31fl32xx_priv {
->   * @pwm_update_reg      : address of PWM Update register
->   * @global_control_reg  : address of Global Control register (optional)
->   * @reset_reg           : address of Reset register (optional)
-> + * @output_frequency_setting_reg: address of output frequency register (optional)
->   * @pwm_register_base   : address of first PWM register
->   * @pwm_registers_reversed: : true if PWM registers count down instead of up
->   * @led_control_register_base : address of first LED control register (optional)
-> @@ -76,6 +79,7 @@ struct is31fl32xx_chipdef {
->  	u8	pwm_update_reg;
->  	u8	global_control_reg;
->  	u8	reset_reg;
-> +	u8	output_frequency_setting_reg;
->  	u8	pwm_register_base;
->  	bool	pwm_registers_reversed;
->  	u8	led_control_register_base;
-> @@ -90,6 +94,19 @@ static const struct is31fl32xx_chipdef is31fl3236_cdef = {
->  	.pwm_update_reg				= 0x25,
->  	.global_control_reg			= 0x4a,
->  	.reset_reg				= 0x4f,
-> +	.output_frequency_setting_reg		= IS31FL32XX_REG_NONE,
-> +	.pwm_register_base			= 0x01,
-> +	.led_control_register_base		= 0x26,
-> +	.enable_bits_per_led_control_register	= 1,
-> +};
-> +
-> +static const struct is31fl32xx_chipdef is31fl3236a_cdef = {
-> +	.channels				= 36,
-> +	.shutdown_reg				= 0x00,
-> +	.pwm_update_reg				= 0x25,
-> +	.global_control_reg			= 0x4a,
-> +	.reset_reg				= 0x4f,
-> +	.output_frequency_setting_reg		= 0x4b,
->  	.pwm_register_base			= 0x01,
->  	.led_control_register_base		= 0x26,
->  	.enable_bits_per_led_control_register	= 1,
-> @@ -101,6 +118,7 @@ static const struct is31fl32xx_chipdef is31fl3235_cdef = {
->  	.pwm_update_reg				= 0x25,
->  	.global_control_reg			= 0x4a,
->  	.reset_reg				= 0x4f,
-> +	.output_frequency_setting_reg		= IS31FL32XX_REG_NONE,
->  	.pwm_register_base			= 0x05,
->  	.led_control_register_base		= 0x2a,
->  	.enable_bits_per_led_control_register	= 1,
-> @@ -112,6 +130,7 @@ static const struct is31fl32xx_chipdef is31fl3218_cdef = {
->  	.pwm_update_reg				= 0x16,
->  	.global_control_reg			= IS31FL32XX_REG_NONE,
->  	.reset_reg				= 0x17,
-> +	.output_frequency_setting_reg		= IS31FL32XX_REG_NONE,
->  	.pwm_register_base			= 0x01,
->  	.led_control_register_base		= 0x13,
->  	.enable_bits_per_led_control_register	= 6,
-> @@ -126,6 +145,7 @@ static const struct is31fl32xx_chipdef is31fl3216_cdef = {
->  	.pwm_update_reg				= 0xB0,
->  	.global_control_reg			= IS31FL32XX_REG_NONE,
->  	.reset_reg				= IS31FL32XX_REG_NONE,
-> +	.output_frequency_setting_reg		= IS31FL32XX_REG_NONE,
->  	.pwm_register_base			= 0x10,
->  	.pwm_registers_reversed			= true,
->  	.led_control_register_base		= 0x01,
-> @@ -363,8 +383,21 @@ static struct is31fl32xx_led_data *is31fl32xx_find_led_data(
->  static int is31fl32xx_parse_dt(struct device *dev,
->  			       struct is31fl32xx_priv *priv)
->  {
-> +	const struct is31fl32xx_chipdef *cdef = priv->cdef;
->  	int ret = 0;
->  
-> +	if ((cdef->output_frequency_setting_reg != IS31FL32XX_REG_NONE) &&
-> +	of_property_read_bool(dev_of_node(dev), "issi,22kHz-pwm")) {
+>    clocks:
+>      minItems: 1
+> @@ -111,6 +115,7 @@ allOf:
+>        properties:
+>          compatible:
+>            enum:
+> +            - qcom,sc8180x-videocc
 
-This needs tabbing in.
+This is not correct, does not match the compatibles - test yourself. You
+want here contains.
 
-> +
-> +		ret = is31fl32xx_write(priv, cdef->output_frequency_setting_reg,
-> +					IS31FL32XX_PWM_FREQUENCY_22kHz);
-> +
-
-This should line-up with the '(.
-
-> +		if (ret) {
-> +			dev_err(dev, "Failed to write output PWM frequency register\n");
-> +			return ret;
-> +		}
-> +	}
-> +
->  	for_each_available_child_of_node_scoped(dev_of_node(dev), child) {
->  		struct led_init_data init_data = {};
->  		struct is31fl32xx_led_data *led_data =
-> @@ -405,6 +438,7 @@ static int is31fl32xx_parse_dt(struct device *dev,
->  
->  static const struct of_device_id of_is31fl32xx_match[] = {
->  	{ .compatible = "issi,is31fl3236", .data = &is31fl3236_cdef, },
-> +	{ .compatible = "issi,is31fl3236a", .data = &is31fl3236a_cdef, },
->  	{ .compatible = "issi,is31fl3235", .data = &is31fl3235_cdef, },
->  	{ .compatible = "issi,is31fl3218", .data = &is31fl3218_cdef, },
->  	{ .compatible = "si-en,sn3218",    .data = &is31fl3218_cdef, },
-> @@ -466,6 +500,7 @@ static void is31fl32xx_remove(struct i2c_client *client)
->   */
->  static const struct i2c_device_id is31fl32xx_id[] = {
->  	{ "is31fl3236" },
-> +	{ "is31fl3236a" },
->  	{ "is31fl3235" },
->  	{ "is31fl3218" },
->  	{ "sn3218" },
-> 
-> -- 
-> 2.48.1
-> 
-
--- 
-Lee Jones [李琼斯]
+Best regards,
+Krzysztof
 
