@@ -1,48 +1,48 @@
-Return-Path: <devicetree+bounces-191885-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-191886-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9CE7BAF0BB0
-	for <lists+devicetree@lfdr.de>; Wed,  2 Jul 2025 08:30:03 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2ECAEAF0BB7
+	for <lists+devicetree@lfdr.de>; Wed,  2 Jul 2025 08:35:59 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 1B0D57B0C13
-	for <lists+devicetree@lfdr.de>; Wed,  2 Jul 2025 06:28:38 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 4A90F1C03216
+	for <lists+devicetree@lfdr.de>; Wed,  2 Jul 2025 06:36:15 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id CFE20221D9E;
-	Wed,  2 Jul 2025 06:29:55 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 05AF522068B;
+	Wed,  2 Jul 2025 06:35:54 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="OBIy9Vkk"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="FnqVTslP"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9B60821FF50;
-	Wed,  2 Jul 2025 06:29:55 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C6A3E1B4F1F;
+	Wed,  2 Jul 2025 06:35:52 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1751437795; cv=none; b=c3k8Lw9JCXt3yXvB0oMPUmYMV8O1DN5CzqMVSHSPH9Y/23Q81iS7NfXs+amdAAENFNLfelIurpPsqoIsdwAY7TS0SfOu18Q4RjyldQKb2BfsqYzmCz3KDNcMcPiqu3rjppmzjdpTV332+1IslbiCMZvXf/+UWpJTjyZWdYhmmhk=
+	t=1751438153; cv=none; b=cELha6YQaQ1BXoJPaYQgIXuPvrgkssNaG5O8y8NYvX88w3HmBQeQsM/dristANj9kD8dM+WmDFWKecqZyzMB8dJRueoZgHDUfKCBWDSD6XKwMRkFzCObP+DR1u0TYK0vyVCHYCdA1DTwtqTrUDl2OGwbEHDs3QE4Kpvu6X/t22M=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1751437795; c=relaxed/simple;
-	bh=AMRFxCWLdoWrMp2ZhjH6hlkSlVARLzk+UVFFQga9tCs=;
+	s=arc-20240116; t=1751438153; c=relaxed/simple;
+	bh=fqRreMA45Df/KL0jkrdfhWf0A/YHyyRMveuTP4pWk1k=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=Wwn+cd2tb7Ie6py0pKjmBOaCcHyVL8DznmzwAzMdz7Fw+VIjYdLwN3D2FSWivqLt5BuMtBY9VtQbqPiOegNKD8aaI3FuJMB3QMACejHKX8FRUEtUflUnHEyA/2u4tqPv74eeJySCfIQDt8fEnL4lxvzSKHKy+6f7f4tfGWJX23Q=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=OBIy9Vkk; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 9F8E7C4CEEE;
-	Wed,  2 Jul 2025 06:29:48 +0000 (UTC)
+	 In-Reply-To:Content-Type; b=PPYB11HPaGrsS2cNLTIwtVkDclI6hUG/Rh/AWhlbA7pq75ZyPcRCvjY97SQihrkoPPuPw6N9HxYSU7k+Rg4cNasS0WBDyB1jjuZIOS49+8aj/H8pU8nD6TFAuPGhAsQYhIa21f4fndRhcoIiAyxsHQZfxLBzX9aTyJWGlL+IkQg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=FnqVTslP; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 98DFBC4CEEF;
+	Wed,  2 Jul 2025 06:35:45 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1751437795;
-	bh=AMRFxCWLdoWrMp2ZhjH6hlkSlVARLzk+UVFFQga9tCs=;
+	s=k20201202; t=1751438152;
+	bh=fqRreMA45Df/KL0jkrdfhWf0A/YHyyRMveuTP4pWk1k=;
 	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=OBIy9Vkk7iB1SMBH4EXyad+ksf6gTOMwt8nGqer9NdvAujLPALLnLUVFWazyHSnZO
-	 kokNV8dkwznSbVcSLtu31gUjgptca+jnHj9LEeJAdCg4HTcq5pIl41leDpVKMrvZCH
-	 MDH7RXmxox3+h/25dFUWiixuCnCYRKlM1oxYeNPXN/UsRkmaC3DqtpZMD4BRBPMwfM
-	 x4SZWDIXXF1N+aN6pVjfNjW+C8o4oYyvxVSDQwtPRozG3UERuuG8njhzyOPd2m5Wm0
-	 cTPYJPZ/7XTaJthPKzZezng4VKQ6kaFtyokmaXOoQH+pz+XzFsoYjvROi1qhxR4uem
-	 lN+osU6+Lq3og==
-Message-ID: <24081402-4690-4a1b-a6d0-adab803d0049@kernel.org>
-Date: Wed, 2 Jul 2025 08:29:46 +0200
+	b=FnqVTslPsn1EY7AXbZKh8dNczsiWErGA7u5XM2+Z1Bw/rmh9BfEqA+8Rka5HTH5h6
+	 ZuYbzQxZqGIkoXHIHLvcDd6SAxNWguinhQAAHiWKE7nR9AdP4UoyZmEIrS6dh+cjZt
+	 OAAftjALjnsN8a46ehHdmnljPdkucF6giob2qG/RTmve6wrn/92G5vXvUZG0ZUHunE
+	 IVWjfl3hNRLqpIOsJgEcowpLWi4jBuI5af5WrvORk3ztFhT8O1L+g83dzSwHNV38ow
+	 YE4FI2UAaelPXD9D3T+AoVdpxCMCDIYBsAoBQIIjEO7/wMIvT2421QNX5+t+XdYlfI
+	 w3svJ24Yj8/Yg==
+Message-ID: <daf6fb72-5849-49f7-b17a-818944eb9f1e@kernel.org>
+Date: Wed, 2 Jul 2025 08:35:42 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,31 +50,26 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v7 02/14] dt-bindings: net: mediatek,net: update for
- mt7988
-To: frank-w@public-files.de, Frank Wunderlich <linux@fw-web.de>
-Cc: MyungJoo Ham <myungjoo.ham@samsung.com>,
- Kyungmin Park <kyungmin.park@samsung.com>,
- Chanwoo Choi <cw00.choi@samsung.com>, Georgi Djakov <djakov@kernel.org>,
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, Andrew Lunn <andrew@lunn.ch>,
- Vladimir Oltean <olteanv@gmail.com>, "David S. Miller"
- <davem@davemloft.net>, Eric Dumazet <edumazet@google.com>,
- Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
- Matthias Brugger <matthias.bgg@gmail.com>,
- AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
- Johnson Wang <johnson.wang@mediatek.com>, =?UTF-8?B?QXLEsW7DpyDDnE5BTA==?=
- <arinc.unal@arinc9.com>, Landen Chao <Landen.Chao@mediatek.com>,
- DENG Qingfang <dqfext@gmail.com>, Sean Wang <sean.wang@mediatek.com>,
- Daniel Golle <daniel@makrotopia.org>, Lorenzo Bianconi <lorenzo@kernel.org>,
- Felix Fietkau <nbd@nbd.name>, linux-pm@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- netdev@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- linux-mediatek@lists.infradead.org
-References: <20250628165451.85884-1-linux@fw-web.de>
- <20250628165451.85884-3-linux@fw-web.de>
- <20250701-rebel-mellow-parrot-fda216@krzk-bin>
- <8C311FDD-094A-4F1C-AE26-7E3ABB337C14@public-files.de>
+Subject: Re: [PATCH 5/7] media: nxp: add DesignWare MIPI CSI2 controller
+ driver
+To: Frank Li <Frank.Li@nxp.com>, Rui Miguel Silva <rmfrfs@gmail.com>,
+ Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
+ Martin Kepplinger <martink@posteo.de>, Purism Kernel Team <kernel@puri.sm>,
+ Mauro Carvalho Chehab <mchehab@kernel.org>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Eugen Hristev <eugen.hristev@linaro.org>,
+ Shawn Guo <shawnguo@kernel.org>, Sascha Hauer <s.hauer@pengutronix.de>,
+ Pengutronix Kernel Team <kernel@pengutronix.de>,
+ Fabio Estevam <festevam@gmail.com>, Peng Fan <peng.fan@nxp.com>,
+ Alice Yuan <alice.yuan@nxp.com>, Vinod Koul <vkoul@kernel.org>,
+ Kishon Vijay Abraham I <kishon@kernel.org>,
+ Philipp Zabel <p.zabel@pengutronix.de>
+Cc: linux-media@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, imx@lists.linux.dev,
+ linux-arm-kernel@lists.infradead.org, linux-phy@lists.infradead.org,
+ "Guoniu.zhou" <guoniu.zhou@nxp.com>
+References: <20250701-95_cam-v1-0-c5172bab387b@nxp.com>
+ <20250701-95_cam-v1-5-c5172bab387b@nxp.com>
 From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
@@ -120,55 +115,43 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  jWt87ecuHlpL3uuQ0ZZNWqHgZoQLXoqC2ZV5KrtKWb/jyiFX/sxSrodALf0zf+tfHv0FZWT2
  zHjUqd0t4njD/UOsuIMOQn4Ig0SdivYPfZukb5cdasKJukG1NOpbW7yRNivaCnfZz6dTawXw
  XRIV/KDsHQiyVxKvN73bThKhONkcX2LWuD928tAR6XMM2G5ovxLe09vuOzzfTWQDsm++9UKF a/A=
-In-Reply-To: <8C311FDD-094A-4F1C-AE26-7E3ABB337C14@public-files.de>
+In-Reply-To: <20250701-95_cam-v1-5-c5172bab387b@nxp.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 01/07/2025 12:33, Frank Wunderlich wrote:
-> Am 1. Juli 2025 08:41:42 MESZ schrieb Krzysztof Kozlowski <krzk@kernel.org>:
->> On Sat, Jun 28, 2025 at 06:54:37PM +0200, Frank Wunderlich wrote:
->>> From: Frank Wunderlich <frank-w@public-files.de>
->>>
->>> Update binding for mt7988 which has 3 gmac and a sram for dma
->>> operations.
->>
->> I asked why you are updating. You claim you update because it has 3
->> GMAC... but that's irrelevant, because it is easy to answer with: it did
->> not have 3 GMAC before?
->>
->> So same question: Provide real reason why you are making updates. That's
->> why you have commit msg.
+On 02/07/2025 00:06, Frank Li wrote:
+> +
+> +static const struct of_device_id dwc_csi_device_of_match[] = {
+> +	{ .compatible = "snps,dw-mipi-csi2-v150" },
+> +	{ },
+> +};
+> +MODULE_DEVICE_TABLE(of, dwc_csi_device_of_match);
+> +
+> +static struct platform_driver dwc_csi_device_driver = {
+> +	.driver = {
+> +		.owner          = THIS_MODULE,
+
+That's 12 or 15 year old downstream code. Drop.
+
+> +		.name           = "dwc-mipi-csi2",
+> +		.of_match_table = dwc_csi_device_of_match,
+> +		.pm             = &dwc_csi_device_pm_ops,
+> +	},
+> +	.probe  = dwc_csi_device_probe,
+> +	.remove = dwc_csi_device_remove,
+> +};
+> +
+> +module_platform_driver(dwc_csi_device_driver);
+> +
+> +MODULE_DESCRIPTION("DesignWare Core MIPI CSI2 driver");
+> +MODULE_LICENSE("GPL");
+> +MODULE_ALIAS("platform: dwc-mipi-csi2");
+
+No, drop.
+
+> +MODULE_AUTHOR("NXP Semiconductor, Inc.");
 > 
-> MT7988 had always 3 gmac,but no dts with ethernet
-> node till now.
-> As i try to upstream the dts,i fell over this.
 
-What does it mean? Are you adding new device or not? Nothing explains
-that something was missing.
-
-> 
-> Imho changing the regex for the mac subnodes was
-> simply forgotten to be updated on initial mt7988
-> support patch.
-
-Fix
-your
-wrapping because
-it is
-difficult
-to follow
-such
-style.
-
-> 
-> I try to rephrase it like this:
-> 
-> Binding was not aware for 3 MAC subnodes because
-> previous mediatek SoC had only 2. Change this to allow
-> 3 GMAC in mt7988 devicetree.
-
-So a fix for existing? Than add Fixes tag, describe the issue and fix
-ONLY that issue.
 
 Best regards,
 Krzysztof
