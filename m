@@ -1,194 +1,237 @@
-Return-Path: <devicetree+bounces-191996-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-191999-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7A0A7AF120B
-	for <lists+devicetree@lfdr.de>; Wed,  2 Jul 2025 12:37:02 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6D664AF1221
+	for <lists+devicetree@lfdr.de>; Wed,  2 Jul 2025 12:41:00 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id B3E591C27F63
-	for <lists+devicetree@lfdr.de>; Wed,  2 Jul 2025 10:37:17 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 8FB84164486
+	for <lists+devicetree@lfdr.de>; Wed,  2 Jul 2025 10:41:00 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id AA07725F97D;
-	Wed,  2 Jul 2025 10:36:22 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 82059253F38;
+	Wed,  2 Jul 2025 10:40:56 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="PC8AzE/T"
+	dkim=pass (2048-bit key) header.d=arndb.de header.i=@arndb.de header.b="DLhAkNIz";
+	dkim=pass (2048-bit key) header.d=messagingengine.com header.i=@messagingengine.com header.b="IjE3Feu5"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+Received: from fout-a5-smtp.messagingengine.com (fout-a5-smtp.messagingengine.com [103.168.172.148])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F1B3D25DD12;
-	Wed,  2 Jul 2025 10:36:20 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D8F15244693;
+	Wed,  2 Jul 2025 10:40:54 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=103.168.172.148
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1751452582; cv=none; b=SnA9vjjWurIqWGDGcLsqKqWhs461NyaKLBzRz0QoQkKouDCY8vzWe+vfkjJnjYriqa8u3e5xHbdKUioSbcZCWt3cmfsBv9p7CNOngT4Dq2v3AhAWoE6MjC/SjGRFz7JFN2+gluDp2dNKn7rf3kqj7Cdh1b+epPNYA1CXM2hd8Pw=
+	t=1751452856; cv=none; b=nmMVZOBiMhugcXNoIaiQHZ9G9jxOL4nFZk6Rse4T1IUFz4rWcklbRJKA6UmK2ozZXMNgv3SxBMLvDy1fQSTXZQ1cLytNYpcRDjT0O38iDd2FULMoSCYkoTc2nCrQrP44wlYqYVBxdIlZiz1/OitX0VErEdx8PjfNT5pJZJK3u+I=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1751452582; c=relaxed/simple;
-	bh=XK9k3Mh6uQMbWe9PXpjQuuqE3KxexxUEdn6IH4a+Wug=;
-	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
-	 MIME-Version; b=DboFzIsAS8ekLE5At8OfVOcWBT1taoLwp9RWcQ2cagCcSaSvhc9R8eDESfESLtzlyK9PtNmwhxWjLv/QREwVw2r6HzqCWi+ZmucTKoC2FIsgS0tp1G+uFlSID9uQKwBQVyvQf9xYFFXaABn7NzPuAn0eQUHkDvs946r8BuiPI6M=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=PC8AzE/T; arc=none smtp.client-ip=205.220.168.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=qualcomm.com
-Received: from pps.filterd (m0279867.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 5627Egim032396;
-	Wed, 2 Jul 2025 10:36:08 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
-	cc:content-transfer-encoding:date:from:in-reply-to:message-id
-	:mime-version:references:subject:to; s=qcppdkim1; bh=sq85Q/vJxoA
-	eidtGD92wyNYWRLccThyg6rGim2z8SQw=; b=PC8AzE/TBEuVbfRsNoDMiGYs3kW
-	1jILZjkGZAv5ZkEW81lWD1L80+t9iVMeQNw9kzROEm6r8Z6S/P7styLaTXlapIc4
-	5ytpSv0GJfk0sOApWYoz6zDyjDlbhUEIqwlsz9d+lNKLXSx8CdEAw9hoYmi7vhQs
-	dDBVAg9xZY0lwL+0jKvfPjCaGR8m71Bb7MQHcGIlUBU2wRmrt209SP1TJ3mqNyAm
-	OPVsrSQ6yIv7QjNDm2pNmpRfVhMB0E1mxUWmfbeMFVZREDlekSynwXLKAqEw+fkD
-	BiYR0Cw+yJz7pLjWq9nCLEDHWe4hrOmuuWukxwx84+QnVWoXJoiq/FSLArg==
-Received: from aptaippmta01.qualcomm.com (tpe-colo-wan-fw-bordernet.qualcomm.com [103.229.16.4])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 47j63kcbvc-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Wed, 02 Jul 2025 10:36:08 +0000 (GMT)
-Received: from pps.filterd (APTAIPPMTA01.qualcomm.com [127.0.0.1])
-	by APTAIPPMTA01.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTP id 562Aa6Ke012330;
-	Wed, 2 Jul 2025 10:36:06 GMT
-Received: from pps.reinject (localhost [127.0.0.1])
-	by APTAIPPMTA01.qualcomm.com (PPS) with ESMTPS id 47j9fmbe7m-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Wed, 02 Jul 2025 10:36:06 +0000
-Received: from APTAIPPMTA01.qualcomm.com (APTAIPPMTA01.qualcomm.com [127.0.0.1])
-	by pps.reinject (8.17.1.5/8.17.1.5) with ESMTP id 562Aa5u5012319;
-	Wed, 2 Jul 2025 10:36:05 GMT
-Received: from cse-cd02-lnx.ap.qualcomm.com (cse-cd02-lnx.qualcomm.com [10.64.75.246])
-	by APTAIPPMTA01.qualcomm.com (PPS) with ESMTPS id 562Aa4sm012313
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Wed, 02 Jul 2025 10:36:05 +0000
-Received: by cse-cd02-lnx.ap.qualcomm.com (Postfix, from userid 4438065)
-	id C36CE3921; Wed,  2 Jul 2025 18:36:03 +0800 (CST)
-From: Ziyue Zhang <ziyue.zhang@oss.qualcomm.com>
-To: andersson@kernel.org, konradybcio@kernel.org, robh@kernel.org,
-        krzk+dt@kernel.org, conor+dt@kernel.org, jingoohan1@gmail.com,
-        mani@kernel.org, lpieralisi@kernel.org, kwilczynski@kernel.org,
-        bhelgaas@google.com, johan+linaro@kernel.org, vkoul@kernel.org,
-        kishon@kernel.org, neil.armstrong@linaro.org, abel.vesa@linaro.org,
-        kw@linux.com
-Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-pci@vger.kernel.org,
-        linux-phy@lists.infradead.org, qiang.yu@oss.qualcomm.com,
-        quic_krichai@quicinc.com, quic_vbadigan@quicinc.com,
-        Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>,
-        Ziyue Zhang <ziyue.zhang@oss.qualcomm.com>
-Subject: [PATCH v7 3/3] arm64: dts: qcom: qcs615-ride: Enable PCIe interface
-Date: Wed,  2 Jul 2025 18:35:49 +0800
-Message-Id: <20250702103549.712039-4-ziyue.zhang@oss.qualcomm.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20250702103549.712039-1-ziyue.zhang@oss.qualcomm.com>
-References: <20250702103549.712039-1-ziyue.zhang@oss.qualcomm.com>
+	s=arc-20240116; t=1751452856; c=relaxed/simple;
+	bh=KAOjTDNNfMtSybxzzyF1oxwUo5aPUGM4sbjOFZt9Egw=;
+	h=MIME-Version:Date:From:To:Cc:Message-Id:In-Reply-To:References:
+	 Subject:Content-Type; b=iKV36f/3iG/asv8wPWr1INZS4It40TY+KW8DcAoO/0YOTNpSpXIJjbTdZvBRt8/0Q72SrspLFrOyiwcyORHOFe47jhEC4m0I0ZVq+pPvXqQ5/n3NtuyjUT35Fi5WKDgft/eWKOjgX3ormoUA4R46o6kSVkwBmYFgPLxNa2xJxW4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arndb.de; spf=pass smtp.mailfrom=arndb.de; dkim=pass (2048-bit key) header.d=arndb.de header.i=@arndb.de header.b=DLhAkNIz; dkim=pass (2048-bit key) header.d=messagingengine.com header.i=@messagingengine.com header.b=IjE3Feu5; arc=none smtp.client-ip=103.168.172.148
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arndb.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=arndb.de
+Received: from phl-compute-05.internal (phl-compute-05.phl.internal [10.202.2.45])
+	by mailfout.phl.internal (Postfix) with ESMTP id E59EEEC0476;
+	Wed,  2 Jul 2025 06:40:53 -0400 (EDT)
+Received: from phl-imap-02 ([10.202.2.81])
+  by phl-compute-05.internal (MEProxy); Wed, 02 Jul 2025 06:40:53 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=arndb.de; h=cc
+	:cc:content-transfer-encoding:content-type:content-type:date
+	:date:from:from:in-reply-to:in-reply-to:message-id:mime-version
+	:references:reply-to:subject:subject:to:to; s=fm1; t=1751452853;
+	 x=1751539253; bh=f+jtoViYxyDT44gIcm4ScVTqk+vWq1DU/+tdfl4XPXA=; b=
+	DLhAkNIzpkFpF2GoJ3uXO9a8+MQ6k2VWe4RnvK7qkowKYBtldXKEwql0AgYcTQjB
+	6C2WGef0oMQSUwiBTATwXRq1fdyId9dRkKldfFsUIkHvy3SGsHKcWikPXoGKSLLt
+	v2wip6qoJcj8hM+PDREDXIZcj2EkeQ7if5I0NYHooVwe/TjMg7M5vGMutHYK4zpf
+	JKC0nmlrS5+XaiYx0750b6NaXOi+l2CW/8JTaK/kEl2xcjoPDZzqDhBiCCp9loXn
+	E1egiloLO7fam3tP42RGmEVWVsaCYom6LmTgVzHnipHhtuXbyUBAPYzjC4XuyTOZ
+	E8VuUPkwCcc1E3QhpOxIMg==
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
+	messagingengine.com; h=cc:cc:content-transfer-encoding
+	:content-type:content-type:date:date:feedback-id:feedback-id
+	:from:from:in-reply-to:in-reply-to:message-id:mime-version
+	:references:reply-to:subject:subject:to:to:x-me-proxy
+	:x-me-sender:x-me-sender:x-sasl-enc; s=fm2; t=1751452853; x=
+	1751539253; bh=f+jtoViYxyDT44gIcm4ScVTqk+vWq1DU/+tdfl4XPXA=; b=I
+	jE3Feu53gTguVKZDRL2kpkOVMb0KpmQUwmy9BL89R82YGxQ5JpXq9mLZMvBykJdW
+	VUnxvpLKIYW8/e27LfyQMFUtMZJ9qsDWtBije6DVCVDkc2eXN6XzNQej9/cxdVSe
+	W7xNPLZs5DT0w76kYx/QXxUJkRdLWas8mPwQar8G5dxRsSMjzktgv/JdS+PjC7+/
+	Js1sxemUhjDPWstGJDvLdLNJqd1BRuCif5Mz7kI9XRY53e4/9nVSHUcV8R33O2OY
+	eCMG2IOhSds33jp2qgoKhriLBP5/HLWA7F2uZi1OX1oYCKNigZCGUVv4GPPYcv5q
+	goVcU8Lu1AUUSGjBIQ0Tg==
+X-ME-Sender: <xms:swxlaBcENGwyRdD3Lol3wY3YSNcqCO9oHyZae2kSARGeSYHVgoruRQ>
+    <xme:swxlaPOD_MyZkjrHVqAMOiN_BgP7IyrLpyYVV5odiVEkfJkQrvK12v7S2pcZs3Nl8
+    qQzw6DmdViY81zIqi8>
+X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgeeffedrtdefgddujedukecutefuodetggdotefrod
+    ftvfcurfhrohhfihhlvgemucfhrghsthforghilhdpuffrtefokffrpgfnqfghnecuuegr
+    ihhlohhuthemuceftddtnecusecvtfgvtghiphhivghnthhsucdlqddutddtmdenucfjug
+    hrpefoggffhffvvefkjghfufgtgfesthejredtredttdenucfhrhhomhepfdetrhhnugcu
+    uegvrhhgmhgrnhhnfdcuoegrrhhnugesrghrnhgusgdruggvqeenucggtffrrghtthgvrh
+    hnpefhtdfhvddtfeehudekteeggffghfejgeegteefgffgvedugeduveelvdekhfdvieen
+    ucevlhhushhtvghrufhiiigvpedtnecurfgrrhgrmhepmhgrihhlfhhrohhmpegrrhhnug
+    esrghrnhgusgdruggvpdhnsggprhgtphhtthhopeefuddpmhhouggvpehsmhhtphhouhht
+    pdhrtghpthhtoheptggrthgrlhhinhdrmhgrrhhinhgrshesrghrmhdrtghomhdprhgtph
+    htthhopehgohhrughonhdrghgvsegsshhtrdgrihdprhgtphhtthhopegsshhtqdhuphhs
+    thhrvggrmhessghsthgrihdrthhophdprhgtphhtthhopegsihhgfhhoohhtsegtlhgrsh
+    hsfhhunhdrtghnpdhrtghpthhtohepnhhfrhgrphhrrgguohestgholhhlrggsohhrrgdr
+    tghomhdprhgtphhtthhopegsvghnrdgthhhurghnghesghgvnhgvshihshhlohhgihgtrd
+    gtohhmrdhtfidprhgtphhtthhopehvihgtthhorhdrshhhihhhsehgvghnvghshihslhho
+    ghhitgdrtghomhdrthifpdhrtghpthhtohepghgvvghrthdorhgvnhgvshgrshesghhlih
+    guvghrrdgsvgdprhgtphhtthhopehgvggvrhhtrdhuhihtthgvrhhhohgvvhgvnhesghhm
+    rghilhdrtghomh
+X-ME-Proxy: <xmx:swxlaKjYdHsDdvduhQ0MEcXOW8CMKc87KCvkl6RjdvJ5XPD31U32gA>
+    <xmx:tAxlaK-bKjsdkvf85XBjTrRBq9bNDPMHJlelsR42NkRo33k7eUCebQ>
+    <xmx:tAxlaNtHm_x50MZxO88JkjSADPwfsDVmVUJ6WcBMuB3nd79uTugexQ>
+    <xmx:tAxlaJH2drl5pDUEuk4-L-F6GF3voZF2Kooj9dHI5mlDWaiEzFexTw>
+    <xmx:tQxlaDuN7y1Aicd_OJNllKymHr1i7ALXMocCOAl2OmgXckDib_xxzhcp>
+Feedback-ID: i56a14606:Fastmail
+Received: by mailuser.phl.internal (Postfix, from userid 501)
+	id D7AA1700065; Wed,  2 Jul 2025 06:40:51 -0400 (EDT)
+X-Mailer: MessagingEngine.com Webmail Interface
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-QCInternal: smtphost
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Authority-Analysis: v=2.4 cv=ZKfXmW7b c=1 sm=1 tr=0 ts=68650b98 cx=c_pps
- a=nuhDOHQX5FNHPW3J6Bj6AA==:117 a=nuhDOHQX5FNHPW3J6Bj6AA==:17
- a=Wb1JkmetP80A:10 a=COk6AnOGAAAA:8 a=EUspDBNiAAAA:8 a=3zbVK_edIv7hY8gRkFcA:9
- a=TjNXssC_j7lpFel5tvFf:22
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwNzAyMDA4NSBTYWx0ZWRfX5gP0jVyw5WmV
- qIoB1ce43OiP2iRNr1iPqj8+ub5hmZL7vFBfI1gaD8zqPw04UPedPHOL1NHzOt2PM+Q1s6jMeF1
- 9RrGq0KV71JD09QXMB/xWNT4iKvvhoW5Pc4jzGSCXqF+DsVmN/SvYY2RkIFIIHsq4aXFacT2EMf
- 2YyTg6KQNdAnkMZwYk4h0KF4LyIeJnwZdEWhUHULUEIrbXEvxEzlKBHOv7FfsVf00+PeQw7z4dI
- eaZISpnbsliHENusQ7hXjJuWDIdD835KcYHcWRacOirDuNncdxaGz/DOhQc4fpMcqe+tNSrykLC
- waR4TklANnyPU5Owcutj6DHpQubI6uvvMYYwWilNxy4YwDpWe8H8Kz+qWKdcgPYi/9S7kSpDWAq
- F7TMwZnhVmhcUgLiZ2znmnxV1x+wlG1Y5JEornUknVXymSsTfzRloQiEPqO+GB1K0R1SAtCf
-X-Proofpoint-ORIG-GUID: KpGtbZB3FqYwxc-2XnjX6OWJfBwzZGcM
-X-Proofpoint-GUID: KpGtbZB3FqYwxc-2XnjX6OWJfBwzZGcM
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1099,Hydra:6.1.7,FMLib:17.12.80.40
- definitions=2025-07-02_01,2025-06-27_01,2025-03-28_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- adultscore=0 mlxscore=0 mlxlogscore=999 spamscore=0 suspectscore=0
- bulkscore=0 priorityscore=1501 lowpriorityscore=0 phishscore=0
- impostorscore=0 malwarescore=0 clxscore=1011 classifier=spam authscore=0
- authtc=n/a authcc= route=outbound adjust=0 reason=mlx scancount=1
- engine=8.19.0-2505280000 definitions=main-2507020085
+X-ThreadId: Tf7f6c885039edc57
+Date: Wed, 02 Jul 2025 12:40:31 +0200
+From: "Arnd Bergmann" <arnd@arndb.de>
+To: "yangzh0906@thundersoft.com" <yangzh0906@thundersoft.com>,
+ "Rob Herring" <robh@kernel.org>, krzk+dt@kernel.org,
+ "Krzysztof Kozlowski" <krzk@kernel.org>,
+ "Conor Dooley" <conor+dt@kernel.org>, "gordon.ge" <gordon.ge@bst.ai>,
+ "Catalin Marinas" <catalin.marinas@arm.com>,
+ "Geert Uytterhoeven" <geert.uytterhoeven@gmail.com>,
+ "Will Deacon" <will@kernel.org>, "Ulf Hansson" <ulf.hansson@linaro.org>,
+ "Adrian Hunter" <adrian.hunter@intel.com>
+Cc: linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+ devicetree@vger.kernel.org,
+ "linux-mmc @ vger . kernel . org" <linux-mmc@vger.kernel.org>,
+ soc@lists.linux.dev, bst-upstream <bst-upstream@bstai.top>,
+ "Neil Armstrong" <neil.armstrong@linaro.org>,
+ "Jonathan Cameron" <jonathan.cameron@huawei.com>, bigfoot@classfun.cn,
+ kever.yang@rock-chips.com, "Manivannan Sadhasivam" <mani@kernel.org>,
+ "Geert Uytterhoeven" <geert+renesas@glider.be>,
+ "Bjorn Andersson" <andersson@kernel.org>, "Nishanth Menon" <nm@ti.com>,
+ =?UTF-8?Q?N=C3=ADcolas_F=2E_R=2E_A=2E_Prado?= <nfraprado@collabora.com>,
+ "Taniya Das" <quic_tdas@quicinc.com>, "Eric Biggers" <ebiggers@google.com>,
+ "Victor Shih" <victor.shih@genesyslogic.com.tw>,
+ "Shan-Chun Hung" <shanchun1218@gmail.com>,
+ "Ben Chuang" <ben.chuang@genesyslogic.com.tw>
+Message-Id: <53ba18c1-4554-4d77-84fd-d921febb7559@app.fastmail.com>
+In-Reply-To: <20250702094444.3523973-6-yangzh0906@thundersoft.com>
+References: <20250528085403.481055-1-yangzh0906@thundersoft.com>
+ <20250702094444.3523973-1-yangzh0906@thundersoft.com>
+ <20250702094444.3523973-6-yangzh0906@thundersoft.com>
+Subject: Re: [PATCH v2 5/8] mmc: sdhci: add Black Sesame Technologies BST C1200
+ controller driver
+Content-Type: text/plain
+Content-Transfer-Encoding: 7bit
 
-From: Krishna chaitanya chundru <quic_krichai@quicinc.com>
+On Wed, Jul 2, 2025, at 11:44, Albert Yang wrote:
 
-Add platform configurations in devicetree for PCIe, board related
-gpios, PMIC regulators, etc.
+> +
+> +config MMC_SDHCI_BST
+> +	tristate "SDHCI OF support for the BST DWC MSHC"
+> +	depends on ARCH_BST || COMPILE_TEST
+> +	depends on MMC_SDHCI_PLTFM
+> +	depends on OF
+> +	help
+> +	  This selects Synopsys DesignWare Cores Mobile Storage Controller
+> +	  support.
 
-Reviewed-by: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
-Signed-off-by: Krishna chaitanya chundru <quic_krichai@quicinc.com>
-Signed-off-by: Ziyue Zhang <ziyue.zhang@oss.qualcomm.com>
----
- arch/arm64/boot/dts/qcom/qcs615-ride.dts | 42 ++++++++++++++++++++++++
- 1 file changed, 42 insertions(+)
+The description does not mention the actual device it's for
+but only DesignWare.
 
-diff --git a/arch/arm64/boot/dts/qcom/qcs615-ride.dts b/arch/arm64/boot/dts/qcom/qcs615-ride.dts
-index a6652e4817d1..011f8ae077c2 100644
---- a/arch/arm64/boot/dts/qcom/qcs615-ride.dts
-+++ b/arch/arm64/boot/dts/qcom/qcs615-ride.dts
-@@ -217,6 +217,23 @@ &gcc {
- 		 <&sleep_clk>;
- };
- 
-+&pcie {
-+	perst-gpios = <&tlmm 101 GPIO_ACTIVE_LOW>;
-+	wake-gpios = <&tlmm 100 GPIO_ACTIVE_HIGH>;
-+
-+	pinctrl-0 = <&pcie_default_state>;
-+	pinctrl-names = "default";
-+
-+	status = "okay";
-+};
-+
-+&pcie_phy {
-+	vdda-phy-supply = <&vreg_l5a>;
-+	vdda-pll-supply = <&vreg_l12a>;
-+
-+	status = "okay";
-+};
-+
- &pm8150_gpios {
- 	usb2_en: usb2-en-state {
- 		pins = "gpio10";
-@@ -256,6 +273,31 @@ &rpmhcc {
- 	clocks = <&xo_board_clk>;
- };
- 
-+&tlmm {
-+	pcie_default_state: pcie-default-state {
-+		clkreq-pins {
-+			pins = "gpio90";
-+			function = "pcie_clk_req";
-+			drive-strength = <2>;
-+			bias-pull-up;
-+		};
-+
-+		perst-pins {
-+			pins = "gpio101";
-+			function = "gpio";
-+			drive-strength = <2>;
-+			bias-pull-down;
-+		};
-+
-+		wake-pins {
-+			pins = "gpio100";
-+			function = "gpio";
-+			drive-strength = <2>;
-+			bias-pull-up;
-+		};
-+	};
-+};
-+
- &sdhc_1 {
- 	pinctrl-0 = <&sdc1_state_on>;
- 	pinctrl-1 = <&sdc1_state_off>;
--- 
-2.34.1
+Try to keep this sorted alphabetically between the other
+CONFIG_MMC_SDHCI_* backends
 
+> +
+> +struct dwcmshc_priv {
+> +	void __iomem *crm_reg_base;
+> +	u32 phy_crm_reg_base;
+> +	u32 phy_crm_reg_size;
+> +};
+
+You are only using the first member here, the phy_crm_reg_base
+and phy_crm_reg_size are assigned during probe but not referenced
+later.  devm_platform_ioremap_resource() should help simplify
+that code further.
+
+> +
+> +static void bst_write_phys_bst(void __iomem *addr, u32 value)
+> +{
+> +	iowrite32(value, addr);
+> +}
+
+You always pass priv->crm_reg_base into this helper, so
+it would be simpler to make it take the sdhci_pltfm_host
+pointer and the offset instead of the address.
+
+> +static int bst_sdhci_reallocate_bounce_buffer(struct sdhci_host *host)
+> +{
+> +	struct mmc_host *mmc = host->mmc;
+> +	unsigned int max_blocks;
+> +	unsigned int bounce_size;
+> +	int ret;
+> +
+> +	/*
+> +	 * Cap the bounce buffer at 64KB. Using a bigger bounce buffer
+> +	 * has diminishing returns, this is probably because SD/MMC
+> +	 * cards are usually optimized to handle this size of requests.
+> +	 */
+> +	bounce_size = SZ_32K;
+
+The comment says 64K, but the size you use is 32K.
+
+
+> +	/* Get CRM registers from the second reg entry */
+> +	crm_res = platform_get_resource(pdev, IORESOURCE_MEM, 1);
+
+devm_platform_ioremap_resource()
+
+> +	/*
+> +	 * Hardware limitation workaround:
+> +	 *
+> +	 * Our platform supports 64-bit physical addressing, but the eMMC
+> +	 * controller's SRAM-based DMA engine is constrained to a 32-bit
+> +	 * address space. When using the standard SDHCI interface, which
+> +	 * allocates DDR-based DMA buffers with 64-bit addresses, the
+> +	 * dma_map_single() operation fails because the DMA engine cannot
+> +	 * handle addresses beyond 32 bits.
+> +	 *
+> +	 * To resolve this hardware limitation, we implement a bounce buffer
+> +	 * allocated via dma_alloc_coherent() to satisfy DMA addressing
+> +	 * constraints.
+> +	 */
+> +	err = bst_sdhci_reallocate_bounce_buffer(host);
+
+Having an explanation here makes sense, but I don't think this
+captures what is actually going on, in particular:
+
+- dma_alloc_coherent() being backed by an SRAM that is under
+  the 4GB boundary
+- the problem that the SoC is configured that all of DRAM
+  is outside of ZONE_DMA32
+- The type of hardware bug that leads to 64-bit DMA being
+  broken in this SoC.
+
+I still have some hope that the hardware is not actually
+that broken and you can get it working normally, in one
+of these ways:
+- enabling 64-bit addressing in the parent bus
+- enabling SMMU translation for the parent bus
+- configuring the parent bus or the sdhci itself to
+  access the first 4GB of RAM, and describing the
+  offset in dma-ranges
+- moving the start of RAM in a global SoC config
+
+It is rather unlikely that the SoC designer chose to
+integrate a 32-bit-only device without adding some
+way to configure it to access RAM.
+
+      Arnd
 
