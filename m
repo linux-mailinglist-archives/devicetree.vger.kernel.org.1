@@ -1,80 +1,80 @@
-Return-Path: <devicetree+bounces-192355-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-192356-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 498DFAF660E
-	for <lists+devicetree@lfdr.de>; Thu,  3 Jul 2025 01:11:00 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id AE55EAF6618
+	for <lists+devicetree@lfdr.de>; Thu,  3 Jul 2025 01:13:28 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 0919C4E0A15
-	for <lists+devicetree@lfdr.de>; Wed,  2 Jul 2025 23:10:34 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 715713A9263
+	for <lists+devicetree@lfdr.de>; Wed,  2 Jul 2025 23:13:02 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 946D826562C;
-	Wed,  2 Jul 2025 23:09:47 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8F02B2500DF;
+	Wed,  2 Jul 2025 23:13:24 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="hw2E8w9d"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="MFjQyvJj"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pl1-f169.google.com (mail-pl1-f169.google.com [209.85.214.169])
+Received: from mail-pf1-f182.google.com (mail-pf1-f182.google.com [209.85.210.182])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 00D6E243964;
-	Wed,  2 Jul 2025 23:09:45 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.169
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 15810236A70;
+	Wed,  2 Jul 2025 23:13:22 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.182
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1751497787; cv=none; b=Psi7rVl+yeNeMpplOatMxTdWeQowSdut/fQjvM0Q+kGLAL38bDX7ox2CQ+qIaeH8zJR/+WrXwRWzCcNR3Bf0WfzFTh29fY7zBDWMYclGLUeUGJ1PUDuKcadc5HSAB3cqSHddM9PGeVyCD3EllFeNeUSVWgqKVPxEN08zg6Sy2Qc=
+	t=1751498004; cv=none; b=oTzkYxsC4GJ4IJ2fZOQV0IBDUATaB9v0YetoHROVBLlzv/KNwuLeQ5HnLmyyVXMjx8AUg31GMbevLfsCcnG7klflk3lBH+I5G2aTDAkaqwt3e0SU2PR1RqdhEX3sSy9Uthc9ByqJhmBTdH6yQtTgzip2ReSRwGh9FQ3a1J/oah8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1751497787; c=relaxed/simple;
-	bh=MhO+pwJmoll1p+yzF93yS9d1MkkzU6Tx+rIh+F8aVg8=;
+	s=arc-20240116; t=1751498004; c=relaxed/simple;
+	bh=FWUFKVcaoIRgTIXnQmrgILEQlRTSPK1GpdKMOBwSC84=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=Fcs93UT5Rd76tNylGxYUoEs2q4RBRkztJ8fa1V6TQNT58SAzY8mR4Han6JsRb4cBR227ggTprPQv2yeOyC7eahw4R4te1bHMfTQLs2tuYpqWcCTCscyDG5m0eB2UGX1eCvQ0Eofa+T9HFdR5cG/Xi9wpz9sg6CHYJJpA3VANAFE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=hw2E8w9d; arc=none smtp.client-ip=209.85.214.169
+	 Content-Type:Content-Disposition:In-Reply-To; b=apTEMt0bPhgYexTuWV37tJWZEAR36ljXhufNWE41QCO4Y4Xh4HyLlAXu6i7Dymojs1I+FC4YqiZVlKD5RNIk3mWzJtXPrI3e7aR72L/3AQRlQbPUlhe7BHmhgtvELm3TuH4gUYOnPRMa+9oRfwntw90ekO1XRrhVHSCoW9QwuBg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=MFjQyvJj; arc=none smtp.client-ip=209.85.210.182
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-pl1-f169.google.com with SMTP id d9443c01a7336-234b440afa7so74810285ad.0;
-        Wed, 02 Jul 2025 16:09:45 -0700 (PDT)
+Received: by mail-pf1-f182.google.com with SMTP id d2e1a72fcca58-739b3fe7ce8so7988729b3a.0;
+        Wed, 02 Jul 2025 16:13:22 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1751497785; x=1752102585; darn=vger.kernel.org;
+        d=gmail.com; s=20230601; t=1751498002; x=1752102802; darn=vger.kernel.org;
         h=in-reply-to:content-disposition:mime-version:references:message-id
          :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=XeivJRV1NlwEM68DYnpxYNj/SFkkK7NrLDkX6W6GBRM=;
-        b=hw2E8w9dJnzqHd+Y+vypjVmsCnko1G46gLjMZ9E3NWow3FfDCHs3g/YRYvlKZVWNSj
-         BKw12QCGNzSm6lWnY1r5oqWvhJV7tshnaNzIhf4n6yT5Q3ouSdxkdYzGSZ7CoZmA6nEZ
-         tqKyFcTKgkVKzZrWJ15G9AGRj5yVSRLXl91h00JY9TLgw621rcZASXdWQ0Ds8qdes5ph
-         oxax5xB/B4T7zpRNR+BGlHjOiuqQdlPvATw1kiFKGQLna5T54txE2f2ZiuJWgzsMepm5
-         mID6riMT6Z/SkircN7sdjh8Pi450DvcDX+6QhSZkSSLU+rEInJ8meYlcudRbIR/MFNxq
-         pvDw==
+        bh=5q1f6Ouy7hbjx9qckWIFtBppIrqabDs5gJ+JKIQOaiQ=;
+        b=MFjQyvJjZT/l3+caby657MrN2IsXKR61ML62yNa4coh0lCTVeUEvLhtlmAKVcwcK2K
+         HgyZHtFWKr/oAZpcmutRofscE3TEil8TasAiT3X8IRpdytZ0rINKbMM/RSwpa3+W72AD
+         pr95IIWivQX2cHGUxg+tfQOT5wiUXDM+uQzKlavMVvF611UWjemUM5rd8mOgZ9yJNnLe
+         1kE93ftJii9EjKf9RP9zLdVl9nj79r4Uf4lsxUaE7vSaYlYME30cqP2Sj2WPxNeQzp+y
+         3RR5MH3joOMOEG/0WDhai+SlitvNPG7TvYxFbLRKok1512AVGsCwvcmd61ddgFNcpnjG
+         UKuQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1751497785; x=1752102585;
+        d=1e100.net; s=20230601; t=1751498002; x=1752102802;
         h=in-reply-to:content-disposition:mime-version:references:message-id
          :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=XeivJRV1NlwEM68DYnpxYNj/SFkkK7NrLDkX6W6GBRM=;
-        b=YhOpJoxKBfs6L1lTgtMOePle0KHZ9qiisfFAF6TnrIdUqlkeTxpD6p2MSlfsiusXCr
-         t1SVDwNobG9HyUaCXGVleSKGW+o52EfcuVu1cjTgZ6+FewRuAlCR6R0982bdB9MtGhpA
-         FZ1jiwYqIyxNNuPBrwxTa5onzSPmffmTNRU7XtbnMzkxOURXrB4brBFtR7uhrFWePyVo
-         AOmn9RbI0KVRx2j0+c4jIkhHVqEJOZlBLywcUDjWT5rKO+5dJQkwI68Wem92dzd2LnWV
-         WZPPL0DCambF0vRObZr72go/0+rvYUSdhcsprKyLh6ZKQE/8s2vEGhT/I/tSPV2cb3cf
-         x+OQ==
-X-Forwarded-Encrypted: i=1; AJvYcCUa0U/cKqJ1mTfnrjfyBXBRFm5hTpccCMcY+HInfA3/m6BLUcT/kXzBq8hgqU2v/04FfgOoeMV1eMi5@vger.kernel.org, AJvYcCWBMh3ROUwnXeYHc//dvM+FYcNYA5huO+/Siz6EC9Y6sxjmnJrYdek8vJ8W1645GabYNoqEqe7KmDYC7j3u@vger.kernel.org
-X-Gm-Message-State: AOJu0YxncNucH1z1bw2MsdPoPCBcwhGC2bCqVcHONGDBH+Zjt8ghkpiT
-	MwUAYsBGt731DFIs3RqC22eu6cA0pzn09Y9TE+BQaBqnDoqkx5qPdvne
-X-Gm-Gg: ASbGncum0qveftpexNXOFUONvUwTpgHqivnTEhejGlUpOfzT6WMuAQoD7WpFp3ZahgA
-	e+y3lOx9PB0HXni1WOWGLXeXYpt9zK1c8layK83zTnJol3NjqKj91fs5u+zGNwx3YQLQbFjl/lU
-	AEXAvbJYv3Bi8cpGoaA3HytE7W6+hLrb3FnufZC/jlUfTAVdgNggou3EBrOiJy27D04X1U8HCRX
-	4JV6ceDfeGdvvYx4OVF6SoNbBKdUTlBGacpX67UzxA5qQObLAZ6cgYdHeqCy8kJLj5mvkEZzldF
-	UpLPZ2TSmYp/AobIk2VgpEXFKGtlvH8vqLAi7LYVaw7n00lUAxBox1yZIziPjARoNF1B0aDg0fn
-	QOkU/iVNy3e5AUP9mOCfbBVDH3iJP4SOvlZXd09I=
-X-Google-Smtp-Source: AGHT+IEVdT1zTpOAW82Mu/cKqzXbhhazsjZMaKYPAm5vkqC5kKsvAAVyqV0n0+btI2SrjFS8l0lO5Q==
-X-Received: by 2002:a17:903:1ac4:b0:234:cb4a:bc48 with SMTP id d9443c01a7336-23c6e593323mr74668905ad.31.1751497785135;
-        Wed, 02 Jul 2025 16:09:45 -0700 (PDT)
+        bh=5q1f6Ouy7hbjx9qckWIFtBppIrqabDs5gJ+JKIQOaiQ=;
+        b=Z52tNZA+Pn8z51ANFVpH+RfXZEqnC4JncfW1+mfCHBntATix9kmnEVaNXJCi/i8J2q
+         IMSQLWr0hBLzCDhWTa3Y5De3Yo/MkkdKh2d2A4TQSoPLBDNUhwM7jR340ebo3185h6De
+         BKgUtbPjc9vBCnhVwz/pZNQ5Y3s99JqVyqq2i1IOce7KwUjNluD/kF8zMK5uDgLMtGGy
+         80hgQ8UoahQZu4m6iiWuh8qzAoth5yYAVaa45V/usoQokXo0PYozQNhl+VZkreSCWu5G
+         LnvH1C8tiDKEANYuC4F0kwPiS+o9COfXNp7QZ+ml3th6+xE+y13DK/obZORiDQxjqFi9
+         xiww==
+X-Forwarded-Encrypted: i=1; AJvYcCWaEgZNDVnxH+JfEBzd34Dpbj6mgR3kCrTV4x2RAsznQQLyohyle8TONqhxECQrtQsh/e+TVnkxQCnV@vger.kernel.org, AJvYcCXWD9CWivYJOX8VnowiI6TgnkIGo/jD3PREfzE7RRp20Pao9mcja7fYsYRdWee/GhG+kei5qWsYoHh1H28U@vger.kernel.org
+X-Gm-Message-State: AOJu0Yx01Rls7BdnVrKveNasMELV2YAXEed1skfktm/RHtZyj3Xdpmlf
+	KBQxg9+MHrpPpqtNfhH8FeU1Mar+3NRSP5jTsy1S1zypLbTxjM07cMv0aMQQahuG
+X-Gm-Gg: ASbGnctYcWqPo8PTeWxFBdKIMRUQChnHXYICojBJ+JHFiMzd3t1platGVPyi6CZP0KC
+	sv0aKgs5yt2q/E76SWJieyKDyNITVeTJDbQVAOr5XTR7DwEBbB3yjXp4yrlihaJe/OJ1pRHjwwR
+	4iAlYn7XHcBbOpNsJ7LyE6FKh3OkB9+uFjK9tgONpHuFo1PwyIL77w5Ok0d3n5P4KiZCiEPoqiW
+	ngWNnL+DA8knRyQ3cFnvwJ0Z6wzfp4BxjWsibICGgCY+pyOa4QKjSENoCxFhVr7iZERYuAn6kpK
+	hxHvB74NhGOC/KplQE05OzYyH5+2A8yhszInQYAAWFCsgcWYGtVo/R8vJ5tnibluiMZAzZ8Z7N3
+	H7S5apQ7U90KBr/t0BrCpBEL8WNjmfEUU5jjxxZ8=
+X-Google-Smtp-Source: AGHT+IHle8eoISP2qCXEJoMWIftmhm95QoQXG95iollb4SH97ajP9LpfNKXbVUJ+LNamKOS8iN7+RA==
+X-Received: by 2002:a05:6a21:32a4:b0:21f:50d9:dde with SMTP id adf61e73a8af0-222d7dcf414mr6544906637.5.1751498002261;
+        Wed, 02 Jul 2025 16:13:22 -0700 (PDT)
 Received: from localhost.localdomain (c-76-133-73-115.hsd1.ca.comcast.net. [76.133.73.115])
-        by smtp.gmail.com with ESMTPSA id d9443c01a7336-23acb2e244fsm142696605ad.12.2025.07.02.16.09.43
+        by smtp.gmail.com with ESMTPSA id 41be03b00d2f7-b34e300994asm13788791a12.3.2025.07.02.16.13.20
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 02 Jul 2025 16:09:44 -0700 (PDT)
-Date: Wed, 2 Jul 2025 16:09:42 -0700
+        Wed, 02 Jul 2025 16:13:21 -0700 (PDT)
+Date: Wed, 2 Jul 2025 16:13:19 -0700
 From: Tao Ren <rentao.bupt@gmail.com>
-To: Andrew Lunn <andrew@lunn.ch>
+To: Krzysztof Kozlowski <krzk@kernel.org>
 Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
 	Conor Dooley <conor+dt@kernel.org>, Joel Stanley <joel@jms.id.au>,
 	Andrew Jeffery <andrew@codeconstruct.com.au>,
@@ -82,10 +82,10 @@ Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
 	linux-aspeed@lists.ozlabs.org, linux-kernel@vger.kernel.org,
 	Tao Ren <taoren@meta.com>
 Subject: Re: [PATCH 5/5] ARM: dts: aspeed: Add Facebook Darwin (AST2600) BMC
-Message-ID: <aGW8Nm8ZWMwRYVOo@localhost.localdomain>
+Message-ID: <aGW9D+xO1NaDodJX@localhost.localdomain>
 References: <20250702050421.13729-1-rentao.bupt@gmail.com>
  <20250702050421.13729-6-rentao.bupt@gmail.com>
- <a6f6966b-50ee-4b4f-9422-96c6ac9391a2@lunn.ch>
+ <34b0f5e2-0341-41cb-8915-8f1606e14827@kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -94,36 +94,10 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <a6f6966b-50ee-4b4f-9422-96c6ac9391a2@lunn.ch>
+In-Reply-To: <34b0f5e2-0341-41cb-8915-8f1606e14827@kernel.org>
 
-On Wed, Jul 02, 2025 at 09:40:40AM +0200, Andrew Lunn wrote:
-> On Tue, Jul 01, 2025 at 10:04:16PM -0700, rentao.bupt@gmail.com wrote:
-> > From: Tao Ren <rentao.bupt@gmail.com>
-> > 
-> > Add initial device tree for the Meta (Facebook) Darwin AST2600 BMC.
-> > 
-> > Darwin is Meta's rack switch platform with an AST2600 BMC integrated for
-> > health monitoring purpose.
-> > 
-> > Signed-off-by: Tao Ren <rentao.bupt@gmail.com>
-> > ---
-> >  arch/arm/boot/dts/aspeed/Makefile             |  1 +
-> >  .../dts/aspeed/aspeed-bmc-facebook-darwin.dts | 92 +++++++++++++++++++
-> >  2 files changed, 93 insertions(+)
-> >  create mode 100644 arch/arm/boot/dts/aspeed/aspeed-bmc-facebook-darwin.dts
-> > 
-> > diff --git a/arch/arm/boot/dts/aspeed/Makefile b/arch/arm/boot/dts/aspeed/Makefile
-> > index 2e5f4833a073..debbfc0151f8 100644
-> > --- a/arch/arm/boot/dts/aspeed/Makefile
-> > +++ b/arch/arm/boot/dts/aspeed/Makefile
-> > @@ -20,6 +20,7 @@ dtb-$(CONFIG_ARCH_ASPEED) += \
-> >  	aspeed-bmc-facebook-bletchley.dtb \
-> >  	aspeed-bmc-facebook-catalina.dtb \
-> >  	aspeed-bmc-facebook-cmm.dtb \
-> > +	aspeed-bmc-facebook-darwin.dtb \
-> >  	aspeed-bmc-facebook-elbert.dtb \
-> >  	aspeed-bmc-facebook-fuji.dtb \
-> >  	aspeed-bmc-facebook-galaxy100.dtb \
+On Wed, Jul 02, 2025 at 09:50:56AM +0200, Krzysztof Kozlowski wrote:
+> On 02/07/2025 07:04, rentao.bupt@gmail.com wrote:
 > > diff --git a/arch/arm/boot/dts/aspeed/aspeed-bmc-facebook-darwin.dts b/arch/arm/boot/dts/aspeed/aspeed-bmc-facebook-darwin.dts
 > > new file mode 100644
 > > index 000000000000..f902230dada3
@@ -140,56 +114,32 @@ On Wed, Jul 02, 2025 at 09:40:40AM +0200, Andrew Lunn wrote:
 > > +/ {
 > > +	model = "Facebook Darwin BMC";
 > > +	compatible = "facebook,darwin-bmc", "aspeed,ast2600";
-> > +
-> > +	aliases {
-> > +		serial0 = &uart5;
-> > +		serial1 = &uart1;
-> > +		serial2 = &uart2;
-> > +		serial3 = &uart3;
-> > +	};
-> > +
-> > +	chosen {
-> > +		stdout-path = &uart5;
-> > +	};
-> > +
-> > +	iio-hwmon {
-> > +		compatible = "iio-hwmon";
-> > +		io-channels = <&adc0 0>, <&adc0 1>, <&adc0 2>, <&adc0 3>,
-> > +			      <&adc0 4>, <&adc0 5>, <&adc0 6>, <&adc0 7>,
-> > +			      <&adc1 0>, <&adc1 1>, <&adc1 2>, <&adc1 3>,
-> > +			      <&adc1 4>, <&adc1 5>, <&adc1 6>, <&adc1 7>;
-> > +	};
-> > +
-> > +	spi_gpio: spi {
-> > +		num-chipselects = <1>;
-> > +		cs-gpios = <&gpio0 ASPEED_GPIO(X, 0) GPIO_ACTIVE_LOW>;
-> > +	};
-> > +};
-> > +
-> > +/*
-> > + * BMC's "mac3" controller is connected to BCM53134P's IMP_RGMII port
-> > + * directly (fixed link, no PHY in between).
-> > + * Note: BMC's "mdio0" controller is connected to BCM53134P's MDIO
-> > + * interface, and the MDIO channel will be enabled in dts later (when
-> > + * "bcm53xx" driver's probe failure is solved on the platform).
-> > + */
-> > +&mac3 {
-> > +	status = "okay";
-> > +	phy-mode = "rgmii";
 > 
-> How do RGMII delays work? Connections to switches have to be handled
-> different to PHYs, to avoid double delays. But is there extra long
-> clock lines? Or are you expecting the switch to add the delays?
+> Please run scripts/checkpatch.pl on the patches and fix reported
+> warnings. After that, run also 'scripts/checkpatch.pl --strict' on the
+> patches and (probably) fix more warnings. Some warnings can be ignored,
+> especially from --strict run, but the code here looks like it needs a
+> fix. Feel free to get in touch if the warning is not clear.
 > 
->       Andrew
+> It does not look like you tested the DTS against bindings. Please run
+> `make dtbs_check W=1` (see
+> Documentation/devicetree/bindings/writing-schema.rst or
+> https://www.linaro.org/blog/tips-and-tricks-for-validating-devicetree-sources-with-the-devicetree-schema/
+> for instructions).
+> Maybe you need to update your dtschema and yamllint. Don't rely on
+> distro packages for dtschema and be sure you are using the latest
+> released dtschema.
+> 
+> 
+> 
+> Best regards,
+> Krzysztof
 
-Hi Andrew,
+Hi Krzysztof,
 
-The delays are introduced in BMC MAC by setting SCU control registers in
-u-boot. The delays on the switch side are disabled.
-
-I will add some comments for the delays in v2 (after addressing the dts
-schema warnings). Is that okay?
+Thank you for the detailed instructions, and I can see the warnings from
+my side now. I'm working on the fix, and will try to send out v2 by this
+week.
 
 
 Thanks,
