@@ -1,39 +1,48 @@
-Return-Path: <devicetree+bounces-191910-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-191911-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id AB4B6AF0CCD
-	for <lists+devicetree@lfdr.de>; Wed,  2 Jul 2025 09:42:11 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 18604AF0D2B
+	for <lists+devicetree@lfdr.de>; Wed,  2 Jul 2025 09:51:16 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 81EFC3B6581
-	for <lists+devicetree@lfdr.de>; Wed,  2 Jul 2025 07:41:45 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 6279C16A1FC
+	for <lists+devicetree@lfdr.de>; Wed,  2 Jul 2025 07:51:16 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E6D4422D7AA;
-	Wed,  2 Jul 2025 07:42:06 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4E41A230BDF;
+	Wed,  2 Jul 2025 07:51:02 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="F5HOWbF9"
 X-Original-To: devicetree@vger.kernel.org
-Received: from cstnet.cn (smtp81.cstnet.cn [159.226.251.81])
-	(using TLSv1.2 with cipher DHE-RSA-AES256-SHA (256/256 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DEA201DF977;
-	Wed,  2 Jul 2025 07:42:01 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=159.226.251.81
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 266AA230BD4;
+	Wed,  2 Jul 2025 07:51:01 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1751442126; cv=none; b=Jr4reNUNYXtb3TWgM2/ePcOq4q4gzJc0X/MAfesNnbXrDnZtEfP1uonNcazW24GIlSfPAZmBJ38+BtQ3Cl7vi8h9oxQUxFXLjdjXiIlOAh9HQLyg7R8aHlh85MRCiZSmDocuGvuiGR4Wv44fnbp/Ca5q/bylNqwzRg7jDJ4hVMk=
+	t=1751442662; cv=none; b=jUPM6H7Uke7/nuXimU1FWRxwwu7uSsU43dvnGmJ2yyBwthBGBpDP0USwfhFMryxRi4dACyvofImLhrm11Ks0YsC6RCaYJE1aJB2wIwEtyP+p9ligUcILr0A7MBIunpx2+2gC3SRhSfnBh0TIjuSBOBdqZl8uju/eOPSTQlnKfwI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1751442126; c=relaxed/simple;
-	bh=h5XObXmGPhWIsFNdl0j4c/OXIDA4oaPIHx3BFw437GQ=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=Ypz0bYUTW4oQrQDYOkICni46UDK3/jsCnkbB0lPMWpOgFumrxXVGZa8jRsNJihaxLcQt/hFkJapp43sJ64E8dfCMrkzN11XHtQnsnimBuYmZKbn6PgMKF9BbZha3yiUgbNRW0xJ+QYJFjiQUBSYRbyctV/AOKrtleZg/SuP5+gE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=iscas.ac.cn; spf=pass smtp.mailfrom=iscas.ac.cn; arc=none smtp.client-ip=159.226.251.81
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=iscas.ac.cn
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=iscas.ac.cn
-Received: from [192.168.33.13] (unknown [210.73.43.2])
-	by APP-03 (Coremail) with SMTP id rQCowAAXrn+f4mRooUF4AA--.33051S2;
-	Wed, 02 Jul 2025 15:41:20 +0800 (CST)
-Message-ID: <5f02539a-2541-4705-b1a3-c1095416463e@iscas.ac.cn>
-Date: Wed, 2 Jul 2025 15:41:18 +0800
+	s=arc-20240116; t=1751442662; c=relaxed/simple;
+	bh=k8J6bw7qUijMDcnUBmDdYgC0NRQa9b09ibKM5hAyvCA=;
+	h=Message-ID:Date:MIME-Version:Subject:To:References:From:
+	 In-Reply-To:Content-Type; b=b/EkIqSCjmiU9InJESpPynflOgKZgD8qF83YOjazguNSpzbseJR7NC8F1xdSQyIQpNqYM3Gv8DugUHbjB7QiMUeJGdQ1n8CE8Ls468lPuz7jupQVeCCVXF7swT0UtbRlMxNb7CHCbwG+uANi8esWjOmp7gvZCpmPMtA3iejN/qI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=F5HOWbF9; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id DE849C4CEED;
+	Wed,  2 Jul 2025 07:50:57 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1751442661;
+	bh=k8J6bw7qUijMDcnUBmDdYgC0NRQa9b09ibKM5hAyvCA=;
+	h=Date:Subject:To:References:From:In-Reply-To:From;
+	b=F5HOWbF9MWloGOKPKXRrqEoPJyMWJXV72nyEenQJKuSrlSyOjCBrjUybzuehfGCAh
+	 aQ2SHrtvwHiwilmFu5UrhhzSKEfEbISzf0qf8y1WwYFBsLCxk0EWkCkJrIODG3+5Wl
+	 3oBadofTN4yJFUiVfnfi631lgeC71gzoowDejZHKJlMVaWySnVk6TqbBJLJQzGJ9Rq
+	 dSBJmi4Y3uxEwNcBjXmpEzTgPgIGYo5Yw/fIhtaegFFVpsYm68Mt03y1+v3Xfad21x
+	 29t/QryCe7uUPWSCa/mrkuSNnZUqJVMgvxq06YB/L8g3KrLWyRKyXoj96Dep5m2g1E
+	 Yb9IVj4PlQznA==
+Message-ID: <34b0f5e2-0341-41cb-8915-8f1606e14827@kernel.org>
+Date: Wed, 2 Jul 2025 09:50:56 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -41,263 +50,99 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH net-next v3 2/5] net: spacemit: Add K1 Ethernet MAC
-To: Maxime Chevallier <maxime.chevallier@bootlin.com>
-Cc: Andrew Lunn <andrew+netdev@lunn.ch>, "David S. Miller"
- <davem@davemloft.net>, Eric Dumazet <edumazet@google.com>,
- Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, Yixun Lan <dlan@gentoo.org>,
- Philipp Zabel <p.zabel@pengutronix.de>,
- Paul Walmsley <paul.walmsley@sifive.com>, Palmer Dabbelt
- <palmer@dabbelt.com>, Albert Ou <aou@eecs.berkeley.edu>,
- Alexandre Ghiti <alex@ghiti.fr>, Vivian Wang <uwu@dram.page>,
- Lukas Bulwahn <lukas.bulwahn@redhat.com>,
- Geert Uytterhoeven <geert+renesas@glider.be>,
- Parthiban Veerasooran <Parthiban.Veerasooran@microchip.com>,
- netdev@vger.kernel.org, devicetree@vger.kernel.org,
- linux-riscv@lists.infradead.org, spacemit@lists.linux.dev,
- linux-kernel@vger.kernel.org
-References: <20250702-net-k1-emac-v3-0-882dc55404f3@iscas.ac.cn>
- <20250702-net-k1-emac-v3-2-882dc55404f3@iscas.ac.cn>
- <20250702091708.7d459213@fedora.home>
+Subject: Re: [PATCH 5/5] ARM: dts: aspeed: Add Facebook Darwin (AST2600) BMC
+To: rentao.bupt@gmail.com, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Joel Stanley <joel@jms.id.au>,
+ Andrew Jeffery <andrew@codeconstruct.com.au>, devicetree@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, linux-aspeed@lists.ozlabs.org,
+ linux-kernel@vger.kernel.org, Tao Ren <taoren@meta.com>
+References: <20250702050421.13729-1-rentao.bupt@gmail.com>
+ <20250702050421.13729-6-rentao.bupt@gmail.com>
+From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
-From: Vivian Wang <wangruikang@iscas.ac.cn>
-In-Reply-To: <20250702091708.7d459213@fedora.home>
+Autocrypt: addr=krzk@kernel.org; keydata=
+ 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 a/A=
+In-Reply-To: <20250702050421.13729-6-rentao.bupt@gmail.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
-X-CM-TRANSID:rQCowAAXrn+f4mRooUF4AA--.33051S2
-X-Coremail-Antispam: 1UD129KBjvJXoWxtw18ZF47GFWUAFy8KF13twb_yoW7Cw13pa
-	95GFWftF18Zr1xWr42vr4DJr92vw1ktF10kryYyay8u3sIyr1fJFy8KrWUCas5AFyqvrW5
-	Zw4UXFnrua1kWrJanT9S1TB71UUUUU7qnTZGkaVYY2UrUUUUjbIjqfuFe4nvWSU5nxnvy2
-	9KBjDU0xBIdaVrnRJUUUvCb7Iv0xC_Kw4lb4IE77IF4wAFF20E14v26ryj6rWUM7CY07I2
-	0VC2zVCF04k26cxKx2IYs7xG6rWj6s0DM7CIcVAFz4kK6r1j6r18M28lY4IEw2IIxxk0rw
-	A2F7IY1VAKz4vEj48ve4kI8wA2z4x0Y4vE2Ix0cI8IcVAFwI0_Ar0_tr1l84ACjcxK6xII
-	jxv20xvEc7CjxVAFwI0_Gr1j6F4UJwA2z4x0Y4vEx4A2jsIE14v26rxl6s0DM28EF7xvwV
-	C2z280aVCY1x0267AKxVW0oVCq3wAS0I0E0xvYzxvE52x082IY62kv0487Mc02F40EFcxC
-	0VAKzVAqx4xG6I80ewAv7VC0I7IYx2IY67AKxVWUJVWUGwAv7VC2z280aVAFwI0_Gr1j6F
-	4UJwAm72CE4IkC6x0Yz7v_Jr0_Gr1lF7xvr2IY64vIr41lFIxGxcIEc7CjxVA2Y2ka0xkI
-	wI1lc7CjxVAaw2AFwI0_GFv_Wryl42xK82IYc2Ij64vIr41l4I8I3I0E4IkC6x0Yz7v_Jr
-	0_Gr1lx2IqxVAqx4xG67AKxVWUJVWUGwC20s026x8GjcxK67AKxVWUGVWUWwC2zVAF1VAY
-	17CE14v26r4a6rW5MIIYrxkI7VAKI48JMIIF0xvE2Ix0cI8IcVAFwI0_Jr0_JF4lIxAIcV
-	C0I7IYx2IY6xkF7I0E14v26r4j6F4UMIIF0xvE42xK8VAvwI8IcIk0rVWUJVWUCwCI42IY
-	6I8E87Iv67AKxVWUJVW8JwCI42IY6I8E87Iv6xkF7I0E14v26r4UJVWxJrUvcSsGvfC2Kf
-	nxnUUI43ZEXa7IUY4pBDUUUUU==
-X-CM-SenderInfo: pzdqw2pxlnt03j6l2u1dvotugofq/
 
-Hi Maxime,
+On 02/07/2025 07:04, rentao.bupt@gmail.com wrote:
+> diff --git a/arch/arm/boot/dts/aspeed/aspeed-bmc-facebook-darwin.dts b/arch/arm/boot/dts/aspeed/aspeed-bmc-facebook-darwin.dts
+> new file mode 100644
+> index 000000000000..f902230dada3
+> --- /dev/null
+> +++ b/arch/arm/boot/dts/aspeed/aspeed-bmc-facebook-darwin.dts
+> @@ -0,0 +1,92 @@
+> +// SPDX-License-Identifier: GPL-2.0+
+> +// Copyright (c) 2021 Facebook Inc.
+> +
+> +/dts-v1/;
+> +
+> +#include "ast2600-facebook-netbmc-common.dtsi"
+> +
+> +/ {
+> +	model = "Facebook Darwin BMC";
+> +	compatible = "facebook,darwin-bmc", "aspeed,ast2600";
 
-Thanks for your suggestions.
+Please run scripts/checkpatch.pl on the patches and fix reported
+warnings. After that, run also 'scripts/checkpatch.pl --strict' on the
+patches and (probably) fix more warnings. Some warnings can be ignored,
+especially from --strict run, but the code here looks like it needs a
+fix. Feel free to get in touch if the warning is not clear.
 
-On 7/2/25 15:17, Maxime Chevallier wrote:
-> Hello Vivian,
->
-> On Wed, 02 Jul 2025 14:01:41 +0800
-> Vivian Wang <wangruikang@iscas.ac.cn> wrote:
->
->> The Ethernet MACs found on SpacemiT K1 appears to be a custom design
->> that only superficially resembles some other embedded MACs. SpacemiT
->> refers to them as "EMAC", so let's just call the driver "k1_emac".
->>
->> This driver is based on "k1x-emac" in the same directory in the vendor's
->> tree [1]. Some debugging tunables have been fixed to vendor-recommended
->> defaults, and PTP support is not included yet.
->>
->> [1]: https://github.com/spacemit-com/linux-k1x
->>
->> Signed-off-by: Vivian Wang <wangruikang@iscas.ac.cn>
-> I have a handful of tiny comments, the rest looks fine by me !
->
->> +static int emac_phy_connect(struct net_device *ndev)
->> +{
->> +	struct emac_priv *priv = netdev_priv(ndev);
->> +	struct device *dev = &priv->pdev->dev;
->> +	struct phy_device *phydev;
->> +	struct device_node *np;
->> +	int ret;
->> +
->> +	ret = of_get_phy_mode(dev->of_node, &priv->phy_interface);
->> +	if (ret) {
->> +		dev_err(dev, "No phy-mode found");
->> +		return ret;
->> +	}
->> +
->> +	np = of_parse_phandle(dev->of_node, "phy-handle", 0);
->> +	if (!np && of_phy_is_fixed_link(dev->of_node))
->> +		np = of_node_get(dev->of_node);
->> +
->> +	if (!np) {
->> +		dev_err(dev, "No PHY specified");
->> +		return -ENODEV;
->> +	}
->> +
->> +	ret = emac_phy_interface_config(priv);
->> +	if (ret)
->> +		goto err_node_put;
->> +
->> +	phydev = of_phy_connect(ndev, np, &emac_adjust_link, 0,
->> +				priv->phy_interface);
->> +	if (!phydev) {
->> +		dev_err(dev, "Could not attach to PHY\n");
->> +		ret = -ENODEV;
->> +		goto err_node_put;
->> +	}
->> +
->> +	phydev->mac_managed_pm = true;
->> +
->> +	ndev->phydev = phydev;
-> of_phy_connect() eventually calls phy_attach_direct(), which sets
-> ndev->phydev, so you don't need to do it here :)
+It does not look like you tested the DTS against bindings. Please run
+`make dtbs_check W=1` (see
+Documentation/devicetree/bindings/writing-schema.rst or
+https://www.linaro.org/blog/tips-and-tricks-for-validating-devicetree-sources-with-the-devicetree-schema/
+for instructions).
+Maybe you need to update your dtschema and yamllint. Don't rely on
+distro packages for dtschema and be sure you are using the latest
+released dtschema.
 
-I will remove it next version.
 
->> +
->> +	emac_update_delay_line(priv);
->> +
->> +err_node_put:
->> +	of_node_put(np);
->> +	return ret;
->> +}
-> [ ... ]
->
->> +static int emac_down(struct emac_priv *priv)
->> +{
->> +	struct platform_device *pdev = priv->pdev;
->> +	struct net_device *ndev = priv->ndev;
->> +
->> +	netif_stop_queue(ndev);
->> +
->> +	phy_stop(ndev->phydev);
-> phy_disconnect() will call phy_stop() for you, you can remove it.
 
-Thanks, I will simplify handling of this.
-
->> +	phy_disconnect(ndev->phydev);
->> +
->> +	emac_wr(priv, MAC_INTERRUPT_ENABLE, 0x0);
->> +	emac_wr(priv, DMA_INTERRUPT_ENABLE, 0x0);
->> +
->> +	free_irq(priv->irq, ndev);
->> +
->> +	napi_disable(&priv->napi);
->> +
->> +	emac_reset_hw(priv);
->> +
->> +	pm_runtime_put_sync(&pdev->dev);
->> +	return 0;
->> +}
->> +
-> [ ... ]
->
->> +static int emac_probe(struct platform_device *pdev)
->> +{
->> +	struct device *dev = &pdev->dev;
->> +	struct reset_control *reset;
->> +	struct net_device *ndev;
->> +	struct emac_priv *priv;
->> +	int ret;
->> +
->> +	ndev = devm_alloc_etherdev(dev, sizeof(struct emac_priv));
->> +	if (!ndev)
->> +		return -ENOMEM;
->> +
->> +	ndev->hw_features = NETIF_F_SG;
->> +	ndev->features |= ndev->hw_features;
->> +
->> +	ndev->min_mtu = ETH_MIN_MTU;
-> This should already be the default value when using
-> devm_alloc_etherdev()
-
-I will remove next version.
-
->> +	ndev->max_mtu = EMAC_RX_BUF_4K - (ETH_HLEN + ETH_FCS_LEN);
->> +
->> +	priv = netdev_priv(ndev);
->> +	priv->ndev = ndev;
->> +	priv->pdev = pdev;
->> +	platform_set_drvdata(pdev, priv);
->> +	priv->hw_stats = devm_kzalloc(dev, sizeof(*priv->hw_stats), GFP_KERNEL);
->> +	if (!priv->hw_stats) {
->> +		dev_err(dev, "Failed to allocate memory for stats\n");
->> +		ret = -ENOMEM;
->> +		goto err;
->> +	}
->> +
->> +	ret = emac_config_dt(pdev, priv);
->> +	if (ret < 0) {
->> +		dev_err(dev, "Configuration failed\n");
->> +		goto err;
->> +	}
->> +
->> +	ndev->watchdog_timeo = 5 * HZ;
->> +	ndev->base_addr = (unsigned long)priv->iobase;
->> +	ndev->irq = priv->irq;
->> +
->> +	ndev->ethtool_ops = &emac_ethtool_ops;
->> +	ndev->netdev_ops = &emac_netdev_ops;
->> +
->> +	devm_pm_runtime_enable(&pdev->dev);
->> +
->> +	priv->bus_clk = devm_clk_get_enabled(&pdev->dev, NULL);
->> +	if (IS_ERR(priv->bus_clk)) {
->> +		ret = dev_err_probe(dev, PTR_ERR(priv->bus_clk),
->> +				    "Failed to get clock\n");
->> +		goto err;
->> +	}
->> +
->> +	reset = devm_reset_control_get_optional_exclusive_deasserted(&pdev->dev,
->> +								     NULL);
->> +	if (IS_ERR(reset)) {
->> +		ret = dev_err_probe(dev, PTR_ERR(reset),
->> +				    "Failed to get reset\n");
->> +		goto err;
->> +	}
->> +
->> +	emac_sw_init(priv);
->> +
->> +	if (of_phy_is_fixed_link(dev->of_node)) {
->> +		ret = of_phy_register_fixed_link(dev->of_node);
->> +		if (ret) {
->> +			dev_err_probe(dev, ret,
->> +				      "Failed to register fixed-link");
->> +			goto err_timer_delete;
->> +		}
-> It looks like you're missing the calls to:
->
->   of_phy_deregister_fixed_link()
->
-> in the error path here as well as in the .remove() function.
-
-It seems I had misunderstood the use of of_phy_register_fixed_link, I
-will fix this next version.
-
-Thanks,
-Vivian "dramforever" Wang
-
->> +	}
->> +
->> +	ret = emac_mdio_init(priv);
->> +	if (ret)
->> +		goto err_timer_delete;
->> +
->> +	SET_NETDEV_DEV(ndev, &pdev->dev);
->> +
->> +	ret = devm_register_netdev(dev, ndev);
->> +	if (ret) {
->> +		dev_err(dev, "devm_register_netdev failed\n");
->> +		goto err_timer_delete;
->> +	}
->> +
->> +	netif_napi_add(ndev, &priv->napi, emac_rx_poll);
->> +	netif_carrier_off(ndev);
->> +
->> +	return 0;
->> +
->> +err_timer_delete:
->> +	timer_delete_sync(&priv->txtimer);
->> +err:
->> +	return ret;
->> +}
-> Maxime
-
+Best regards,
+Krzysztof
 
