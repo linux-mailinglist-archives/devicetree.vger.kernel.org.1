@@ -1,133 +1,192 @@
-Return-Path: <devicetree+bounces-192193-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-192195-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2106FAF5AFB
-	for <lists+devicetree@lfdr.de>; Wed,  2 Jul 2025 16:20:54 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3797EAF5B03
+	for <lists+devicetree@lfdr.de>; Wed,  2 Jul 2025 16:23:35 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 7F79817C2C4
-	for <lists+devicetree@lfdr.de>; Wed,  2 Jul 2025 14:20:52 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 5DC223BCA95
+	for <lists+devicetree@lfdr.de>; Wed,  2 Jul 2025 14:23:01 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2D2EB2F4A1E;
-	Wed,  2 Jul 2025 14:20:49 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A13622F530D;
+	Wed,  2 Jul 2025 14:23:22 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="Kf7C140y"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="pArD1O/U"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pj1-f48.google.com (mail-pj1-f48.google.com [209.85.216.48])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id ACEAE2F4A15;
-	Wed,  2 Jul 2025 14:20:47 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.216.48
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6FB042BCF51;
+	Wed,  2 Jul 2025 14:23:22 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1751466049; cv=none; b=s5h9LfQkc9mYv08lGE09PNR+vsV/recYltYSXxKMBPV9ZuFEi1ikfSI4CrwqxuRYBI+AcXtAYzske9RFq1fyAiAP739DWb9WwYqAeFY+bt/xydH+CWysfM6/0HBMvCWGD3c2cgPPBO2dggskLaGGvKXSJGf62+WAh/xXPmuEdCU=
+	t=1751466202; cv=none; b=L9PJFsRgczzLMrR9aR/2RnFfyIrDyr4s1gDfknh3sGrUGsSgpe6VHQkJz2034572ZuV1On0skUM5EpWUZcLroHN7Eq+vZNj2ZDtxAb4j9iTpkGSU4ljNJuSRtleNPCnPHMySmiNklkcGw4OONRytzrwK72HEqj1qEl3QXwR/IcI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1751466049; c=relaxed/simple;
-	bh=Pip7qVEFQVYSY76zLUx9PHCExnbAXgnUt8LulPOmRNk=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=MbGzeo/X8B48c0mI4TircJwZk+lSylNNUJ3970gi3QYr5yaTOIrQE8aL8Vy/OeubVGG655DsGszMyzWER+e2EMSO40WjYAjaLWPxTTNBHEZ4tqDAta+RzLSwf9XBc04zRW420jEFOh2Qik6HiDUOhVP0bJ/cq08zD02bnZYlgbo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=Kf7C140y; arc=none smtp.client-ip=209.85.216.48
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-pj1-f48.google.com with SMTP id 98e67ed59e1d1-3190fbe8536so3451237a91.3;
-        Wed, 02 Jul 2025 07:20:47 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1751466047; x=1752070847; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=yGQkzz5zRxRRS2uo+kWwt7fThwG7BuLxpPIngGvvrqc=;
-        b=Kf7C140yfoSvZmd3EKFpSUPnHLUFwfvFTJrWJDgq1SK0R0AGT8qBtazkhdonEgKeR0
-         XP1OXYYcEtzKCMxN4a22irggtK3NkKhFqZJiCAjuPMjMLVDY7xI2bmky978LtbT/+9bv
-         HqJpq5SQlGlta/zPkxwmHyE1CrktAPiozs7FxahyctFgnIak/ww8RT3CH2cATlrdgJ+Y
-         2IvpsN68Z19XtTSjB9X23pE5rmOIxzQtdPT7bc11c+KEwHwrdpnVWUIHF1TE7J5hlp+P
-         ZlxXpLxTQgx18ir9NQbS3DXS5Pfvqv93E0ONBYfJBh3as3///dHPQRvs3rP0wQIoErzg
-         pWgA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1751466047; x=1752070847;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=yGQkzz5zRxRRS2uo+kWwt7fThwG7BuLxpPIngGvvrqc=;
-        b=ane2vxuQ5RzUFzosCa5aaSOUtYxPKYJ6wABicclLAQ4+MGkhQH0SWBUeFrOGJ0TVPa
-         RTTB7FikwlcQQ4PwXuVu/bWxmDCba3NP5TNWhHk+mjGubK0Fx9N4paFVsR8ZgCLTdBIG
-         8Ceiys9ZtSr2USE2ZpaKqXAnNNZMoSd5BIwfZxRO1+3sBIoMaDo9AY/HeliNGSTeaSY1
-         qotCUvKSlOxM2aTr9l56w+WfGIHUqaplQo9a3epqormpJ679nllmU1VpVwWkIXiI7T8H
-         lDwYaJao5rPBfjGA1XDlWPeETrK49FnXxVojjKc8obVdNY4UdF5deSmfqUyuf8cK61EG
-         pocw==
-X-Forwarded-Encrypted: i=1; AJvYcCVdEzV4GTNQQqHZCA8Lun/B7UO8O3FEdsC/nMSrgkIcnF3VE3E6/9VE2k49RGNSbAQynkUrVr7Ym303@vger.kernel.org, AJvYcCXpakeqp7Zp+4hkguvPiuwTwHRWSWThghRHVv2gRHe3iOH/Wt4WVOSpACmbnipSxcq5xh47R0i7cMqHr3w8@vger.kernel.org
-X-Gm-Message-State: AOJu0YwAK1av1JUqEW0HMByUljYsKAH9ynUdAmNTswVtnC1Z6+r8YOrW
-	yI3ELjrnHh3RPpiLElfVRw2Awc/wSseVGP14Ig5EFR8VNhYvxgBT+iDo6hwR7UUbblvse1D+JWa
-	SpjGp98B9IcsT6ZT2UGryd0RUPptq1I0=
-X-Gm-Gg: ASbGncsdw8Uf+BeidB5Eyjoqa5MvjZeV5DaHqTnoBStgpNKdeahceoFuPNlRcsF5J0E
-	zSyH3YYAJQGxqGUIiYzRaW17qpTX92huiwUx9gHzcQUt1YYi2lF6cQUraQPyub1GdhINhQbEZaQ
-	m8UvWwRFpBy5HHzIXp6oABLC9OCK4aKnlsYQcnYrP9sOobJzO8cPzokQ==
-X-Google-Smtp-Source: AGHT+IHXe/1zFmqCjXQ3C8alvXOHiCKHLQ3bJLFyVQ/G6RNjB0hyZ7QrXCV2jrtHiA4TmMP8JM9c+KanMU9aiN4g/Xk=
-X-Received: by 2002:a17:90b:1c12:b0:31a:947d:6ca1 with SMTP id
- 98e67ed59e1d1-31a947d71e7mr2657565a91.22.1751466046836; Wed, 02 Jul 2025
- 07:20:46 -0700 (PDT)
+	s=arc-20240116; t=1751466202; c=relaxed/simple;
+	bh=5xTRH5PYEaVJDARbqaeq3IhfaSjFqnrZPJsVGBRmnt4=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=nNRBMu7B6bI0XxgwGRcxT5fZvElA1KsrWizTVDuQSRSVIhxgvWz/bSqdOMgvZmTjPO0Thq77AuVXNw9JEEc3Kg7i5sY5vSR0P0CI/02oaj0pNJk6dVU7kOxeYb/BkAuHKk1jfRWchZR0AWG72gX7T5W6l6qlsJrXHpwHXXugOJs=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=pArD1O/U; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id C58D3C4CEE7;
+	Wed,  2 Jul 2025 14:23:21 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1751466202;
+	bh=5xTRH5PYEaVJDARbqaeq3IhfaSjFqnrZPJsVGBRmnt4=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=pArD1O/UwmfYrZAe86RreErEXF52+qIoEnoLQU+hhAnMWuOcAdFOjloPWrEtrBCQp
+	 zZFb4YLZgiZ0Vq61POcF7jZO5M6NOYR09ft1QIklWZ2Lt9V/ArhZvehN6kUlEkmG/e
+	 FqQPia48H7N82vy/1DxdNXZxxWYBRHLtT+ugmfLObCSkX4GNgdFEtI2goRT+d33D1Y
+	 s+DZwh25hMpiMJLY4JkPC2tolt/w8gZ70iPpusFawKxfxyMYk+tIUeLwla7k/0LmiH
+	 1OQnMwqguOdfdJ2pJ12fatyR0PxKX6u06jUN493EpHj0sFho/EPhpN/tdLK8SpZlaD
+	 xmlA1VGo+dBag==
+Date: Wed, 2 Jul 2025 09:23:21 -0500
+From: Rob Herring <robh@kernel.org>
+To: Albert Yang <yangzh0906@thundersoft.com>
+Cc: krzk+dt@kernel.org, krzk@kernel.org, conor+dt@kernel.org,
+	gordon.ge@bst.ai, catalin.marinas@arm.com,
+	geert.uytterhoeven@gmail.com, will@kernel.org,
+	ulf.hansson@linaro.org, adrian.hunter@intel.com, arnd@arndb.de,
+	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-mmc@vger.kernel.org,
+	soc@lists.linux.dev, bst-upstream@bstai.top,
+	neil.armstrong@linaro.org, jonathan.cameron@huawei.com,
+	bigfoot@classfun.cn, kever.yang@rock-chips.com, mani@kernel.org,
+	geert+renesas@glider.be, andersson@kernel.org, nm@ti.com,
+	nfraprado@collabora.com, quic_tdas@quicinc.com, ebiggers@google.com,
+	victor.shih@genesyslogic.com.tw, shanchun1218@gmail.com,
+	ben.chuang@genesyslogic.com.tw
+Subject: Re: [PATCH v2 4/8] dt-bindings: mmc: add binding for BST DWCMSHC
+ SDHCI controller
+Message-ID: <20250702142321.GA1462423-robh@kernel.org>
+References: <20250528085403.481055-1-yangzh0906@thundersoft.com>
+ <20250702094444.3523973-1-yangzh0906@thundersoft.com>
+ <20250702094444.3523973-5-yangzh0906@thundersoft.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20250620213447.56392-1-aford173@gmail.com>
-In-Reply-To: <20250620213447.56392-1-aford173@gmail.com>
-From: Adam Ford <aford173@gmail.com>
-Date: Wed, 2 Jul 2025 09:20:35 -0500
-X-Gm-Features: Ac12FXzt0gezjSCPgKwgvm9n1EIPWkC5-wwtbhI6dVypdKni0yvTumI1x5nEKA8
-Message-ID: <CAHCN7x+2A476SgUP3uWSLovpDU0qxxP=a+sXLbdE0UU6Bv+_YQ@mail.gmail.com>
-Subject: Re: [PATCH 1/2] arm64: dts: imx8mm-beacon: Fix HS400 USDHC clock speed
-To: linux-arm-kernel@lists.infradead.org
-Cc: aford@beaconembedded.com, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Shawn Guo <shawnguo@kernel.org>, Sascha Hauer <s.hauer@pengutronix.de>, 
-	Pengutronix Kernel Team <kernel@pengutronix.de>, Fabio Estevam <festevam@gmail.com>, devicetree@vger.kernel.org, 
-	imx@lists.linux.dev, linux-kernel@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20250702094444.3523973-5-yangzh0906@thundersoft.com>
 
-On Fri, Jun 20, 2025 at 4:34=E2=80=AFPM Adam Ford <aford173@gmail.com> wrot=
-e:
->
-> The reference manual for the i.MX8MM states the clock rate in
-> MMC mode is 1/2 of the input clock, therefore to properly run
-> at HS400 rates, the input clock must be 400MHz to operate at
-> 200MHz.  Currently the clock is set to 200MHz which is half the
-> rate it should be, so the throughput is half of what it should be
-> for HS400 operation.
->
+On Wed, Jul 02, 2025 at 05:44:40PM +0800, Albert Yang wrote:
+> Add device tree binding documentation for the Black Sesame Technologies
+> (BST) DWCMSHC SDHCI controller.
+> 
+> This binding describes the required and optional properties for the
+> bst,dwcmshc-sdhci compatible controller, including register layout,
+> interrupts, bus width, clock configuration, and other controller-specific
+> features.
+> 
+> ---
+> Changes for v2:
+> - Simplified description, removed redundant paragraphs
+> - Updated $schema to reference mmc-specific scheme
+> - Corrected compatible to add soc name
+> (bst,c1200-dwcmshc-sdhci)
+> - Removed all redundant property descriptions
+> - Dropped invalid mmc_crm_base/size properties, use reg for all address
+> ranges
+> - Cleaned up required properties to only essential entries
+> - Standardized example DTS format, fixed reg syntax and property
+> ordering
+> - Removed additionalProperties: true
+> 
+> Signed-off-by: Ge Gordon <gordon.ge@bst.ai>
+> Signed-off-by: Albert Yang <yangzh0906@thundersoft.com>
+> ---
+>  .../bindings/mmc/bst,dwcmshc-sdhci.yaml       | 67 +++++++++++++++++++
+>  1 file changed, 67 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/mmc/bst,dwcmshc-sdhci.yaml
+> 
+> diff --git a/Documentation/devicetree/bindings/mmc/bst,dwcmshc-sdhci.yaml b/Documentation/devicetree/bindings/mmc/bst,dwcmshc-sdhci.yaml
+> new file mode 100644
+> index 000000000000..699dc404caac
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/mmc/bst,dwcmshc-sdhci.yaml
+> @@ -0,0 +1,67 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/mmc/bst,dwcmshc-sdhci.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Black Sesame Technologies DWCMSHC SDHCI Controller
+> +
+> +maintainers:
+> +  - Ge Gordon <gordon.ge@bst.ai>
+> +
+> +allOf:
+> +  - $ref: mmc-controller.yaml#
+> +
+> +properties:
+> +  compatible:
+> +    const: bst,c1200-dwcmshc-sdhci
+> +
+> +  reg:
+> +    maxItems: 2
+> +    description: |
+> +      Register base addresses and sizes for the SDHCI controller.
+> +      First entry is the core SDHCI registers, second entry is the
+> +      CRM registers.
 
-Shawn and/or Fabio,
+items:
+  - description: Core SDHCI registers
+  - description: CRM registers
 
-Any chance this can get reviewed and possibly applied for the next kernel?
+Though what CRM is should be defined.
 
-thank you,
+> +
+> +  interrupts:
+> +    maxItems: 1
+> +
+> +  clocks:
+> +    maxItems: 1
+> +
+> +  clock-names:
+> +    items:
+> +      - const: core
+> +
+> +  memory-region:
+> +    maxItems: 1
+> +
+> +  dma-coherent: true
+> +
+> +required:
+> +  - compatible
+> +  - reg
+> +  - interrupts
+> +  - clocks
+> +  - clock-names
+> +
+> +unevaluatedProperties: false
+> +
+> +examples:
+> +  - |
+> +    #include <dt-bindings/interrupt-controller/arm-gic.h>
+> +
+> +    mmc@22200000 {
+> +        compatible = "bst,c1200-dwcmshc-sdhci";
+> +        reg = <0x0 0x22200000 0x0 0x1000>,
+> +              <0x0 0x23006000 0x0 0x1000>;
+> +        interrupts = <GIC_SPI 144 IRQ_TYPE_LEVEL_HIGH>;
+> +        clocks = <&clk_mmc>;
+> +        clock-names = "core";
+> +        memory-region = <&mmc0_reserved>;
+> +        max-frequency = <200000000>;
+> +        bus-width = <8>;
+> +        non-removable;
+> +        dma-coherent;
+> +        status = "disabled";
 
-adam
+Examples should be enabled. Drop.
 
-> Fixes: 593816fa2f35 ("arm64: dts: imx: Add Beacon i.MX8m-Mini development=
- kit")
-> Signed-off-by: Adam Ford <aford173@gmail.com>
->
-> diff --git a/arch/arm64/boot/dts/freescale/imx8mm-beacon-som.dtsi b/arch/=
-arm64/boot/dts/freescale/imx8mm-beacon-som.dtsi
-> index 21bcd82fd092..8287a7f66ed3 100644
-> --- a/arch/arm64/boot/dts/freescale/imx8mm-beacon-som.dtsi
-> +++ b/arch/arm64/boot/dts/freescale/imx8mm-beacon-som.dtsi
-> @@ -294,6 +294,8 @@ &usdhc3 {
->         pinctrl-0 =3D <&pinctrl_usdhc3>;
->         pinctrl-1 =3D <&pinctrl_usdhc3_100mhz>;
->         pinctrl-2 =3D <&pinctrl_usdhc3_200mhz>;
-> +       assigned-clocks =3D <&clk IMX8MM_CLK_USDHC3>;
-> +       assigned-clock-rates =3D <400000000>;
->         bus-width =3D <8>;
->         non-removable;
->         status =3D "okay";
-> --
-> 2.48.1
->
+> +    };
+> -- 
+> 2.25.1
+> 
 
