@@ -1,156 +1,95 @@
-Return-Path: <devicetree+bounces-191961-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-191965-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id E4C10AF1098
-	for <lists+devicetree@lfdr.de>; Wed,  2 Jul 2025 11:51:43 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 64E0EAF10AA
+	for <lists+devicetree@lfdr.de>; Wed,  2 Jul 2025 11:53:14 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 27A92164D82
-	for <lists+devicetree@lfdr.de>; Wed,  2 Jul 2025 09:49:41 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 278A516FFE1
+	for <lists+devicetree@lfdr.de>; Wed,  2 Jul 2025 09:52:33 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 76A862472B5;
-	Wed,  2 Jul 2025 09:49:34 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id EB1AC24A066;
+	Wed,  2 Jul 2025 09:52:21 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="f71292rU"
+	dkim=pass (1024-bit key) header.d=yeah.net header.i=@yeah.net header.b="hGA4ZzeS"
 X-Original-To: devicetree@vger.kernel.org
-Received: from bali.collaboradmins.com (bali.collaboradmins.com [148.251.105.195])
+Received: from mail-m16.yeah.net (mail-m16.yeah.net [1.95.21.16])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 429FD182D0;
-	Wed,  2 Jul 2025 09:49:32 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=148.251.105.195
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BC0F9247297;
+	Wed,  2 Jul 2025 09:52:17 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=1.95.21.16
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1751449774; cv=none; b=kDRCVSB80un8puYF8v9fLp8wuE4USFWmRzaigcP64hM7pdFSBPJbxq/RqmLdshO4F4YQ5AbxkkyDZy3wFhsa497SG9ubzwYlfjvrwrBQyxF5Oz9Bvalt8M2S0PxYFufiT7eoGdF9HZbLWeQglyU14Y6RicvgswcKz3+wv0FXMzI=
+	t=1751449941; cv=none; b=YHYdD7TXyT9tZr7PSc2DDt3oiujfUdLMQRZ79180fzsmwmOhZ5+QoTmHedU5CZlDy13tS8KCWymKyd1Ty+UQHxVYxR5nMOAnxheIBZk16DhlAJH6SfJh22qNU1tESjdIjmFybrKf/u1N/0aJhZQ0nthu1u/UbI49KSrJ/0BW3Uk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1751449774; c=relaxed/simple;
-	bh=HaDbrpXJ0lT6/Xsy0anDOjZM40zt+N8qVQXlMq+igkE=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=Cl78CUXTiHn23Vs2mOfV8fk+1Pz1s8Pj/kUNsCndupldpqXvt2b771fZLv9EAvgHy+jnRd+NfloTB0v7CjrsRCfJOtP871pvgczy4wd84/Q8s/+VdtFKNUbmU91lnlNJf0jg+sAgfJfvEm7lLd0/MKQQdMmdox5YTmCd+9T3qVw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b=f71292rU; arc=none smtp.client-ip=148.251.105.195
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-	s=mail; t=1751449770;
-	bh=HaDbrpXJ0lT6/Xsy0anDOjZM40zt+N8qVQXlMq+igkE=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=f71292rUHg3WI4fUSBFc+KK9z9UY3VGWxdv3y3c+UbrfUwDm0DZ74NzaasxZy7qey
-	 b3I3owP50H3fZzi3SJ/tS8dGG9hayAu8pc6ytIHBEP1L3yBw53cQTwvYO6C1mC4i7g
-	 Bzqfz8X5QGCOZeiBFF1BBsAlIYdp72hhMFRdR6UFV6ndoOJR0MUONKuknnN3y4PZfl
-	 I2hBSlW1TOHwYjd5hg52TmWTB3r0jqeJbyNnYgPvtM6nIXHUcXiMXtUj+V/qLeK7z7
-	 Q3s1LLUIXPYiCXHFQuITvmgx72/frRdzu88TA86x1ot0zUb94rh3GIr4gUfFD4XdOG
-	 t3Uju+CuhRIqg==
-Received: from [192.168.1.90] (unknown [212.93.144.165])
-	(using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
-	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
-	(No client certificate requested)
-	(Authenticated sender: cristicc)
-	by bali.collaboradmins.com (Postfix) with ESMTPSA id BE03B17E04C0;
-	Wed,  2 Jul 2025 11:49:29 +0200 (CEST)
-Message-ID: <422d8ca6-00b6-4c69-b261-b0399d12c9d8@collabora.com>
-Date: Wed, 2 Jul 2025 12:49:29 +0300
+	s=arc-20240116; t=1751449941; c=relaxed/simple;
+	bh=oMaM/R8SFUD4LZpCTkVpqQIRRfxIiZ6hh0W2t8wEReI=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=W6WK+ZQNuDpjlm50PSgoGiRYQu032AN42zJnVXKC64Dfh11+xlPDg8Bk6P6yu/MqQ8ixCIYc8eqHJawVDZ/OYLeKyTk/Cy97O8D+l0nYEi9uMFa+bFj1p1/erePWZyFkNbBQvgMevPFqaaU4VcLtvPUkpP+Ro95ERkEX5wLz0JA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=yeah.net; spf=pass smtp.mailfrom=yeah.net; dkim=pass (1024-bit key) header.d=yeah.net header.i=@yeah.net header.b=hGA4ZzeS; arc=none smtp.client-ip=1.95.21.16
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=yeah.net
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=yeah.net
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=yeah.net;
+	s=s110527; h=Date:From:To:Subject:Message-ID:MIME-Version:
+	Content-Type; bh=aBCj5KCtd0YSw2+jeSI15O55rXmA7O2x9Co1/dUd/sc=;
+	b=hGA4ZzeSjGnd+cybXPReqSh4PH2pwX4u9pKlm/oeOv8yq86qURfz/Xt1IbIZyB
+	Wug27aAY1vskf6a32jw0WDNJ5T9BCynkbthhLJXmD+bMtuBff73qOYOmn4ZtmoUU
+	FZPkgcuFdhBZ68eC8rvxcrf73iB7XMs/T8+kH/XsNtOuM=
+Received: from dragon (unknown [])
+	by gzsmtp2 (Coremail) with SMTP id Ms8vCgDXfxAkAWVoRbopAA--.51920S3;
+	Wed, 02 Jul 2025 17:51:33 +0800 (CST)
+Date: Wed, 2 Jul 2025 17:51:31 +0800
+From: Shawn Guo <shawnguo2@yeah.net>
+To: Adam Ford <aford173@gmail.com>
+Cc: linux-arm-kernel@lists.infradead.org, aford@beaconembedded.com,
+	m.felsch@pengutronix.de, Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
+	Sascha Hauer <s.hauer@pengutronix.de>,
+	Pengutronix Kernel Team <kernel@pengutronix.de>,
+	Fabio Estevam <festevam@gmail.com>, devicetree@vger.kernel.org,
+	imx@lists.linux.dev, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH V2 0/4] Increase i.MX8MP VPU
+Message-ID: <aGUBIz1lYIkhMCWr@dragon>
+References: <20250612003924.178251-1-aford173@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 3/4] arm64: dts: rockchip: add analog audio to ROCK 4D
-To: Nicolas Frattaroli <nicolas.frattaroli@collabora.com>,
- Dmitry Torokhov <dmitry.torokhov@gmail.com>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Alexandre Belloni <alexandre.belloni@bootlin.com>,
- Heiko Stuebner <heiko@sntech.de>
-Cc: kernel@collabora.com, linux-input@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, linux-rockchip@lists.infradead.org
-References: <20250630-rock4d-audio-v1-0-0b3c8e8fda9c@collabora.com>
- <20250630-rock4d-audio-v1-3-0b3c8e8fda9c@collabora.com>
-Content-Language: en-US
-From: Cristian Ciocaltea <cristian.ciocaltea@collabora.com>
-In-Reply-To: <20250630-rock4d-audio-v1-3-0b3c8e8fda9c@collabora.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20250612003924.178251-1-aford173@gmail.com>
+X-CM-TRANSID:Ms8vCgDXfxAkAWVoRbopAA--.51920S3
+X-Coremail-Antispam: 1Uf129KBjvdXoWrtF43CFyUCFy5Kr4UZFWkJFb_yoW3urc_C3
+	4a9F1xCwn8KFs7Kw4DGan8Z3yDK3y2yr4DZa42qF4fZF1fZF4rZ340gr9avF18GF9akw1q
+	vF98Xw4xAry3CjkaLaAFLSUrUUUUjb8apTn2vfkv8UJUUUU8Yxn0WfASr-VFAUDa7-sFnT
+	9fnUUvcSsGvfC2KfnxnUUI43ZEXa7IUj7DGUUUUUU==
+X-CM-SenderInfo: pvkd40hjxrjqh1hdxhhqhw/1tbiNQa8ImhlASaNiAAA3C
 
-On 6/30/25 1:19 PM, Nicolas Frattaroli wrote:
-> The RADXA ROCK 4D, like many other Rockchip-based boards, uses an ES8388
-> analog audio codec. On the production version of the board, the codec's
-> LOUT1 and ROUT1 pins are tied to the headphone jack, whereas pins LOUT2
-> and ROUT2 lead to a non-populated speaker amplifier that itself leads to
-> a non-populated speaker jack. The schematic is still haunted by the
-> ghosts of those symbols, but it clearly marks them as "NC".
+On Wed, Jun 11, 2025 at 07:39:18PM -0500, Adam Ford wrote:
+> Some of the VPU clocks are under rated, even for nominal ratings.
+> Fix the nominial VPU clocks and clock parents, then introduce
+> the overdrive clock rates.  The fluster scores don't change,
+> but they do go faster.
 > 
-> The 3.5mm TRRS jack has its microphone ring (and ground ring) wired to
-> the codec's LINPUT1 and RINPUT1 pins for differential signalling.
+> This series was adapted from an RFC from Marco Felsch which
+> was setup to introduce the VC8000E encoder and extacted the
+> parts that affect the existing infrastructure.
 > 
-> Furthermore, it uses the SoCs ADC to detect whether the inserted cable
-> is of headphones (i.e., no microphone), or a headset (i.e., with
-> microphone). The way this is done is that the ADC input taps the output
-> of a 100K/100K resistor divider that divides the microphone ring pin
-> that's pulled up to 3.3V.
+> V2:  The only change is 4/4.  Patches 1-3 are all unchanged.
 > 
-> There is no ADC level difference between a completely empty jack and one
-> with a set of headphones (i.e., ones that don't have a microphone)
-> connected. Consequently headphone insertion detection isn't something
-> that can be done.
+> Adam Ford (2):
+>   arm64: dts: imx8mp-nominal: Explicitly configure nominal VPU clocks
+>   arm64: dts: imx8mp: Configure VPU clocks for overdrive
 > 
-> Add the necessary codec and audio card nodes. The non-populated parts,
-> i.e. LOUT2 and ROUT2, are not modeled at all, as they are not present on
-> the hardware.
-> 
-> Also, add an adc-keys node for the headset detection, which uses an
-> input type of EV_SW with the SW_MICROPHONE_INSERT keycode. Below the
-> 220mV pressed voltage level of our SW_MICROPHONE_INSERT switch, we also
-> define a button that emits a KEY_RESERVED code, which is there to model
-> this part of the voltage range as not just being extra legroom for the
-> button above it, but actually a state that is encountered in the real
-> world, and should be recognised as a valid state for the ADC range to be
-> in so that no "closer" ADC button is chosen.
-> 
-> Signed-off-by: Nicolas Frattaroli <nicolas.frattaroli@collabora.com>
+> Marco Felsch (2):
+>   arm64: dts: imx8mp: drop gpcv2 vpu power-domains and clocks
+>   arm64: dts: imx8mp: fix VPU_BUS clock setting
 
-Enabled CONFIG_SND_SOC_ES8328_I2C and confirm playback works fine:
-
-    $ speaker-test -D hw:ES8388,0 -F S16_LE -c 2 -t wav
-
-Unfortunately the recording doesn't seem to be functional:
-
-    $ arecord -D hw:ES8388,0 -f S16_LE -c 2 -r 48000 -d 5 -V stereo /tmp/test.wav
-    Recording WAVE '/tmp/test.wav' : Signed 16 bit Little Endian, Rate 48000 Hz, Stereo
-                                    +00%|00%+
-
-    $ aplay -D hw:ES8388,0 /tmp/test.wav
-
-However, the headset plug detection works correctly:
-
-    $ evtest
-    No device specified, trying to scan all of /dev/input/event*
-    Available devices:
-    /dev/input/event0:	Logitech USB Receiver
-    /dev/input/event1:	Logitech USB Receiver Mouse
-    /dev/input/event2:	Logitech USB Receiver Consumer Control
-    /dev/input/event3:	Logitech USB Receiver System Control
-    /dev/input/event4:	adc-keys
-    Select the device event number [0-4]: 4
-    Input driver version is 1.0.1
-    Input device ID: bus 0x19 vendor 0x1 product 0x1 version 0x100
-    Input device name: "adc-keys"
-    Supported events:
-      Event type 0 (EV_SYN)
-      Event type 1 (EV_KEY)
-      Event type 5 (EV_SW)
-        Event code 4 (SW_MICROPHONE_INSERT) state 0
-    Properties:
-    Testing ... (interrupt to exit)
-    Event: time 1751449448.185340, type 5 (EV_SW), code 4 (SW_MICROPHONE_INSERT), value 1
-    Event: time 1751449448.185340, -------------- SYN_REPORT ------------
-    Event: time 1751449448.289477, type 5 (EV_SW), code 4 (SW_MICROPHONE_INSERT), value 0
-    Event: time 1751449448.289477, -------------- SYN_REPORT ------------
-    Event: time 1751449449.329482, type 5 (EV_SW), code 4 (SW_MICROPHONE_INSERT), value 1
-    Event: time 1751449449.329482, -------------- SYN_REPORT ------------
-
-Tested-by: Cristian Ciocaltea <cristian.ciocaltea@collabora.com>
+Applied all, thanks!
 
 
