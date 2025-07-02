@@ -1,96 +1,117 @@
-Return-Path: <devicetree+bounces-193501-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-193519-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9DC17AFAB5F
-	for <lists+devicetree@lfdr.de>; Mon,  7 Jul 2025 08:00:02 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 26871AFAC27
+	for <lists+devicetree@lfdr.de>; Mon,  7 Jul 2025 08:52:50 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id E96AA3A4210
-	for <lists+devicetree@lfdr.de>; Mon,  7 Jul 2025 05:59:35 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 69AEC3A2B07
+	for <lists+devicetree@lfdr.de>; Mon,  7 Jul 2025 06:52:23 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id EDFC02750EE;
-	Mon,  7 Jul 2025 05:59:57 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 76EE727A452;
+	Mon,  7 Jul 2025 06:52:45 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b="Pc+Prd8u"
+	dkim=pass (1024-bit key) header.d=samsung.com header.i=@samsung.com header.b="gyKBUyc6"
 X-Original-To: devicetree@vger.kernel.org
-Received: from vps0.lunn.ch (vps0.lunn.ch [156.67.10.101])
+Received: from mailout1.samsung.com (mailout1.samsung.com [203.254.224.24])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 54DE9270574;
-	Mon,  7 Jul 2025 05:59:56 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=156.67.10.101
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 57CDCEEAB
+	for <devicetree@vger.kernel.org>; Mon,  7 Jul 2025 06:52:43 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=203.254.224.24
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1751867997; cv=none; b=PSlWwMTUxj/QHs48mYgYztZclK4sOmffc0q0s3eY3oXzOec/ICkqldo7WcTta4pk4y9AIu6TuSN+7U/xKA3/yy3AiNTq+B9tv+xM22GTh/SjwqYNZ/iFCZyCUzf6Z2i8z4rQ2ScM62g0/lt1rrS5KZzRSJkL/fCzv4WtIg7nUM8=
+	t=1751871165; cv=none; b=kJOM9zf2I1qPq4geeuM/OXOobfjMRLGDhpjZ6L8HBozIWola4qZ2BbFawI09ultUDRg+B0Nhf6Z52dU39uOOX/vE0S+ovWAGPVI7fX1W5F0jepT2CFadUbFeRm80um0o9SDJd1XW+wintZjTHe6SEyAJKet9N84U8aCY0M7FzME=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1751867997; c=relaxed/simple;
-	bh=rCSGVt5MG2J78FFUL2ZdYS66ktuOBCmymP5uqA+Bpw4=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=Pb6dgSv1cOGJ+LcRXj7/S+x0hfcwmU39Qxb+tvFRvvlDiGhKlbzXdCe8Lw1ZICjBId7+lO6yzrO41q4zkH0e+x2fObsztItWxperVKVQ3uzqO05GjfAWitr5UJUXpxL0zUR1+Z/d4gQFxi9Pa7n17CQ7cdGrJwZRPHnDxiUd8/M=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch; spf=pass smtp.mailfrom=lunn.ch; dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b=Pc+Prd8u; arc=none smtp.client-ip=156.67.10.101
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=lunn.ch
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
-	s=20171124; h=In-Reply-To:Content-Transfer-Encoding:Content-Disposition:
-	Content-Type:MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:From:
-	Sender:Reply-To:Subject:Date:Message-ID:To:Cc:MIME-Version:Content-Type:
-	Content-Transfer-Encoding:Content-ID:Content-Description:Content-Disposition:
-	In-Reply-To:References; bh=1Mo12jIp7JGdEvtjsw2OulO3/3LfrKIJdrPsh7bBfbU=; b=Pc
-	+Prd8uRRGn3vPyj24SLIx2z/vxR16IRch5EJPI/NXNW9bNOWeLFTm1l68YI/NTY7xFLTYdSxDgrc3
-	yynyqF3Kmtjcjw/TqyhrRhsnj9lF7L2jHEMEECKcQq3MEhxtiFE6grgkwXhaXM0l/61W8tKwDH4uK
-	QEF71+OpQGxs4LM=;
-Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
-	(envelope-from <andrew@lunn.ch>)
-	id 1uYetE-000gGj-GK; Mon, 07 Jul 2025 07:59:44 +0200
-Date: Mon, 7 Jul 2025 07:59:44 +0200
-From: Andrew Lunn <andrew@lunn.ch>
-To: Chen-Yu Tsai <wens@kernel.org>
-Cc: Andrew Lunn <andrew+netdev@lunn.ch>,
-	"David S. Miller" <davem@davemloft.net>,
-	Eric Dumazet <edumazet@google.com>,
-	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Jernej Skrabec <jernej@kernel.org>,
-	Samuel Holland <samuel@sholland.org>, netdev@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-	linux-sunxi@lists.linux.dev, linux-kernel@vger.kernel.org,
-	Andre Przywara <andre.przywara@arm.com>
-Subject: Re: [PATCH RFT net-next 02/10] net: stmmac: Add support for
- Allwinner A523 GMAC200
-Message-ID: <e04e30fe-6f7c-4e48-90bb-24bf3f2081ad@lunn.ch>
-References: <20250701165756.258356-1-wens@kernel.org>
- <20250701165756.258356-3-wens@kernel.org>
- <c464d56b-dfd2-4e8c-a77a-4a0d05588768@lunn.ch>
- <CAGb2v65rDZ+V6EuZQ5NDrV7n0C-4CpHLXP_M9M2hA-oR4cMJUQ@mail.gmail.com>
+	s=arc-20240116; t=1751871165; c=relaxed/simple;
+	bh=ZP791bj2hjwCZQDCpCyVU4iEWQD7W8DNUS8LI2sIB54=;
+	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version:Content-Type:
+	 References; b=HmOVzajb+ETpCxk0OVkZtLbh+5e6kEiQt5THRZZDgcVyDB3OediKLLmVUdLK2ZdsRkTBGSCKC7PjxrE+h/PllQwjyuySmjZIU76jsP804jKWR2PTFSyeIoa8n87Tbzj9QA3Su/5QuB0wpZZ49MSd7XrfhJGQu1y83JVUPQST3Z8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=samsung.com; spf=pass smtp.mailfrom=samsung.com; dkim=pass (1024-bit key) header.d=samsung.com header.i=@samsung.com header.b=gyKBUyc6; arc=none smtp.client-ip=203.254.224.24
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=samsung.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=samsung.com
+Received: from epcas5p3.samsung.com (unknown [182.195.41.41])
+	by mailout1.samsung.com (KnoxPortal) with ESMTP id 20250707065235epoutp013f6ea8e7f396358a8d29ff45b7a718bf~P5Yi-kXfo1652516525epoutp01f
+	for <devicetree@vger.kernel.org>; Mon,  7 Jul 2025 06:52:35 +0000 (GMT)
+DKIM-Filter: OpenDKIM Filter v2.11.0 mailout1.samsung.com 20250707065235epoutp013f6ea8e7f396358a8d29ff45b7a718bf~P5Yi-kXfo1652516525epoutp01f
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=samsung.com;
+	s=mail20170921; t=1751871155;
+	bh=FrHDaDAfk3KgT2C7ZF/2Xkfs1k54PYVs+MuIo0auhxk=;
+	h=From:To:Cc:Subject:Date:References:From;
+	b=gyKBUyc6qB1QH0nY/ZI+TA9i4lgHhcYsAcy7ug6QhfnkfXoBfd0qe5esBBGqeexNQ
+	 YX0/rpLgnM9ro6bkuNopGfpM2j56RoAt2/5FLbjM9Mm/T3ptxEi+VPFcxPwZA1SfbY
+	 xFgHXsyVs/doD90NeTzmYirloilMYGKhqur50GO8=
+Received: from epsnrtp03.localdomain (unknown [182.195.42.155]) by
+	epcas5p2.samsung.com (KnoxPortal) with ESMTPS id
+	20250707065234epcas5p23ac75f7dc240733c821cb66fa63a4753~P5YiTaled2809428094epcas5p2K;
+	Mon,  7 Jul 2025 06:52:34 +0000 (GMT)
+Received: from epcas5p1.samsung.com (unknown [182.195.38.175]) by
+	epsnrtp03.localdomain (Postfix) with ESMTP id 4bbFKs4FW6z3hhTD; Mon,  7 Jul
+	2025 06:52:33 +0000 (GMT)
+Received: from epsmtip2.samsung.com (unknown [182.195.34.31]) by
+	epcas5p2.samsung.com (KnoxPortal) with ESMTPA id
+	20250702051528epcas5p24abd15d8f554ea057bd6aac586644f4e~OV1UswxWQ0155001550epcas5p2i;
+	Wed,  2 Jul 2025 05:15:28 +0000 (GMT)
+Received: from bose.samsungds.net (unknown [107.108.83.9]) by
+	epsmtip2.samsung.com (KnoxPortal) with ESMTPA id
+	20250702051526epsmtip242781ce8ef6cad04273a3004ce7c9ae4~OV1TOPjAE0268202682epsmtip2n;
+	Wed,  2 Jul 2025 05:15:26 +0000 (GMT)
+From: Devang Tailor <dev.tailor@samsung.com>
+To: alexandre.belloni@bootlin.com, robh@kernel.org, krzk+dt@kernel.org,
+	conor+dt@kernel.org, alim.akhtar@samsung.com, linux-rtc@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	inux-arm-kernel@lists.infradead.org, linux-samsung-soc@vger.kernel.org,
+	faraz.ata@samsung.com
+Cc: Devang Tailor <dev.tailor@samsung.com>
+Subject: [PATCH 0/3] On-chip RTC support for ExynosAutov9
+Date: Wed,  2 Jul 2025 10:54:23 +0530
+Message-Id: <20250702052426.2404256-1-dev.tailor@samsung.com>
+X-Mailer: git-send-email 2.34.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <CAGb2v65rDZ+V6EuZQ5NDrV7n0C-4CpHLXP_M9M2hA-oR4cMJUQ@mail.gmail.com>
+X-CMS-MailID: 20250702051528epcas5p24abd15d8f554ea057bd6aac586644f4e
+X-Msg-Generator: CA
+Content-Type: text/plain; charset="utf-8"
+X-Sendblock-Type: REQ_APPROVE
+CMS-TYPE: 105P
+cpgsPolicy: CPGSC10-542,Y
+X-CFilter-Loop: Reflected
+X-CMS-RootMailID: 20250702051528epcas5p24abd15d8f554ea057bd6aac586644f4e
+References: <CGME20250702051528epcas5p24abd15d8f554ea057bd6aac586644f4e@epcas5p2.samsung.com>
 
-On Mon, Jul 07, 2025 at 11:06:55AM +0800, Chen-Yu Tsai wrote:
-> On Thu, Jul 3, 2025 at 4:19 PM Andrew Lunn <andrew@lunn.ch> wrote:
-> >
-> > > +     if (!of_property_read_u32(node, "allwinner,tx-delay-ps", &val)) {
-> >
-> > Please use the standard properties rx-internal-delay-ps and
-> > tx-internal-delay-ps.
-> 
-> Since they share the same binding, I guess I either need to split the
-> binding so that the new compatible uses the standard properties, or
-> introduce them to the existing dwmac-sun8i driver as well?
+Enable on-chip RTC support. The on-chip RTC of this SoC is similar
+to the previous versions of Samsung SoC. So re-use the existing
+RTC driver with additional changes required for timer counter
+specific registers.
 
-You should get them for free from ethernet-controller.yaml. But you
-might need to add a constraint that allwinner,tx-delay-ps etc is not
-valid for this device.
+Setting and getting hardware clock has been tested using 'hwclock'
+and 'date' utilities.
 
-	Andrew
+Alarm interrupt has been checked with incrementing interrupt
+count via "cat /proc/interrupts | grep rtc" for 10sec
+wakeup time via "echo +10 > /sys/class/rtc/rtc0/wakealarm"
+
+Devang Tailor (3):
+  dt-bindings: rtc: s3c-rtc: add compatible for exynosautov9
+  rtc: s3c: support for exynosautov9 on-chip RTC
+  arm64: dts: exynosautov9: add RTC DT node
+
+ .../devicetree/bindings/rtc/s3c-rtc.yaml      |  1 +
+ .../boot/dts/exynos/exynosautov9-sadk.dts     |  4 +++
+ arch/arm64/boot/dts/exynos/exynosautov9.dtsi  | 10 +++++++
+ drivers/rtc/rtc-s3c.c                         | 26 +++++++++++++++++++
+ drivers/rtc/rtc-s3c.h                         |  4 +++
+ 5 files changed, 45 insertions(+)
+
+
+base-commit: bc6e0ba6c9bafa6241b05524b9829808056ac4ad
+-- 
+2.34.1
+
 
