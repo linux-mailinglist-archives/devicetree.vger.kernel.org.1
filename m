@@ -1,151 +1,156 @@
-Return-Path: <devicetree+bounces-191960-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-191961-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id B3E3BAF108A
-	for <lists+devicetree@lfdr.de>; Wed,  2 Jul 2025 11:50:19 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id E4C10AF1098
+	for <lists+devicetree@lfdr.de>; Wed,  2 Jul 2025 11:51:43 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 2035216A714
-	for <lists+devicetree@lfdr.de>; Wed,  2 Jul 2025 09:47:59 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 27A92164D82
+	for <lists+devicetree@lfdr.de>; Wed,  2 Jul 2025 09:49:41 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id EDDAC248F5F;
-	Wed,  2 Jul 2025 09:47:43 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 76A862472B5;
+	Wed,  2 Jul 2025 09:49:34 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="f71292rU"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ua1-f50.google.com (mail-ua1-f50.google.com [209.85.222.50])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from bali.collaboradmins.com (bali.collaboradmins.com [148.251.105.195])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0E9D5247297;
-	Wed,  2 Jul 2025 09:47:41 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.222.50
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 429FD182D0;
+	Wed,  2 Jul 2025 09:49:32 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=148.251.105.195
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1751449663; cv=none; b=ZJUu9gprHOKMS5k6jrMHxFiPI/rI8IEmrQXW3xOzE/WU9kU6ws+u3bc4VoO+ydq64TFMB5l0Tn6APzb+2owoN8SVE+bBynEru1a1Jsh63/TqlGbcl7jG2U3g1ABoQnyFtbnKPon7PHKIqOLaGKBRiAbAqQez5gBf8Cy5PNJt9y8=
+	t=1751449774; cv=none; b=kDRCVSB80un8puYF8v9fLp8wuE4USFWmRzaigcP64hM7pdFSBPJbxq/RqmLdshO4F4YQ5AbxkkyDZy3wFhsa497SG9ubzwYlfjvrwrBQyxF5Oz9Bvalt8M2S0PxYFufiT7eoGdF9HZbLWeQglyU14Y6RicvgswcKz3+wv0FXMzI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1751449663; c=relaxed/simple;
-	bh=Ouh2tjXOCV5J1xbDYQClFn1faPkd4g72dS9hnpcKiwc=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=KFBeGQ2O87XNd1SVPY7iQ4lYlGTVKx4jaPiwz1eddJc3D8DC4GIAv7VcYQM+uFTWT4pkgMxJcfl+EkXLwtl+kBjYq+YrSETkL1/LPVIGm1xhsrWFu7fOQ/2omXcfXDlDf7Ny+sU05Kly68QoUXvNHvfrE/VBY7jLdnS/2wdeOsY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.222.50
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-ua1-f50.google.com with SMTP id a1e0cc1a2514c-87f4c8e9cdcso1520255241.2;
-        Wed, 02 Jul 2025 02:47:41 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1751449660; x=1752054460;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=UJLSZzMoHvI3XA3eUYjDZLD323ifNHYwsv3Hd6lOZUk=;
-        b=K4tw+vOGERB5jPntnu3uo+har3n5vaHjHsUPSpL2Pfl9+WJZKsh5KWnclZAZnGhlZ4
-         18Ur3LTdSLko5EojrpqmH20lsYQ7FrAhz1BLGNECRdQZfk/o/A/wBLKdNj6M6Gqyp19e
-         GBZJC6zw4N5q55Ld6kfiOR0bc5R0EfUdBWOz/KxGY0YXmQB+Cf0Yi9EdhILS5u7OChIL
-         8a7m0TupWLGSZmFxE2gCb2RbwC4qJkFs4grrwc9Xr8hDg6/AS7G0cWVBRwrX9thTU0J2
-         NOTvxEpwL6SYDvuBSGPGz9jbZCOqd83ofV8VgrvHAaucpX/BEu2K0/9YaSejh21puuHI
-         cCQg==
-X-Forwarded-Encrypted: i=1; AJvYcCUa3eAOcq10WMeh5cSjK8KbluyKhOotrUdXNVtqwvZrfh2bVU//hOkC2kQt684Z/9el9v6ohdUj@vger.kernel.org, AJvYcCVhB7i9ygtG4Ops5OiKUZR8esu5wA2/CIkIQeAyuHB3WyZBtb7IJ25DktMipHyM/4wd+Umqekxhpxvm@vger.kernel.org, AJvYcCWiZ7REFq+yVIZFveWXdD5Z8DUbmOTtSS3qZ99oYrT8IqvdFCg1CyvSaMNnUTvmLKyCGnO42C6AU12f@vger.kernel.org, AJvYcCWz6sW6J/ANgmlI9yfOK85B1FWpX2+buXm0ZHiUfclLxeFxBGo/Dj5klPzKsMakpfrH+EtQdulLxFxZBgY+@vger.kernel.org, AJvYcCXU7OaFn459Ei3ytaRzbEM0iqwAq9tl/BeImMx6H+YqMZeYr5u6rSbWZ26kQe3WnLDdcelhiziDxdD+J/fMBfaVVQg=@vger.kernel.org
-X-Gm-Message-State: AOJu0YxZxZ5jOGFWnTE2ifZZKCYIRyr/WcWFpHnh9acTHBs3Tw4zvrHA
-	n9b79hTXfb0izTvSRXGU6QAGLt+8eWTGEkxduIO+zQlssBrYfwjKH5+BJHfEKcHo
-X-Gm-Gg: ASbGncuTzah0PkjykJNIyHlQdkdryqQ+PVHUY98IQAPmzp/I5ftWX3wq+3d3xnp3hYa
-	qk56h3OOVHihMj8KC0Kjnkrzw+kiBM0ctgoTO1zhTrKpiw2JirFXi0qTscxBThelhgJ/ZzWSyzK
-	0HxTitq9CK4otFhpLWwShUqTlZz7ZZM1uZu+uPponj4e+0GwU936Vx2H2hCWuF7SC1yKCMGfR6+
-	0gszWG/jy9e1MDOWuDwPcOP04eDsR5At9otH0dohVKdnCV3Wtru76XcPf/JRqf73zf17ohsVnRm
-	3cRIHiWKR3eRPuWKEBu8j5ONf1dCYSQwnO7izF8TRBwvKJKz0FS4fO2Bv2vxO/joQw8K2M2ut5+
-	5ILcbl7AXZPGVj+hKx42E2dyP
-X-Google-Smtp-Source: AGHT+IFnbx4WhcjjRJhuYKew+vkIZVG5I7u/AhmG8xwPh273vO3UIHNcJCeZ+stYHAYQZdh042SYNg==
-X-Received: by 2002:a05:6102:41ab:b0:4ec:c50c:399f with SMTP id ada2fe7eead31-4f16117a294mr803148137.11.1751449660106;
-        Wed, 02 Jul 2025 02:47:40 -0700 (PDT)
-Received: from mail-vs1-f50.google.com (mail-vs1-f50.google.com. [209.85.217.50])
-        by smtp.gmail.com with ESMTPSA id ada2fe7eead31-4ee4c7ec2cfsm1776243137.7.2025.07.02.02.47.39
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 02 Jul 2025 02:47:39 -0700 (PDT)
-Received: by mail-vs1-f50.google.com with SMTP id ada2fe7eead31-4e7fc3309f2so1584627137.2;
-        Wed, 02 Jul 2025 02:47:39 -0700 (PDT)
-X-Forwarded-Encrypted: i=1; AJvYcCUG6VowTjowzfY9ejsqrzOa/fvya25urfdq4YVCXg4DAKVURqr5dgWpiErNyrVOBffHGD4e2La+HVcF@vger.kernel.org, AJvYcCUeJHyQAvITNXJKQw4rgKWsdymWqD12UJ+RANqxdVfC9vJMxR6Yw6cHw4EhhpjKCLJPmErJWBRk59V2YT7ua9DwETQ=@vger.kernel.org, AJvYcCVOy0C1N+x1kJ0UsV+eBK5eSDx4QjnolcPpdDKga6/dGOCPJ49aolt6TGQQJQ8+rXIonaMuOpH/@vger.kernel.org, AJvYcCWiCKqTrsptwVvSK7OHrHyD9siyIOiH2GlxaCXg5BGaWhXNgy3VkzkRqvcAt18AMBC1KEEy96ShQO/Lde8Q@vger.kernel.org, AJvYcCXeXhoJRMzpx2OoDbei+oMCH72QpaaJFo8+vjLC3E5f58jgOXf2ySroq5TzirO5yqmm+Ssp80PfYX9/@vger.kernel.org
-X-Received: by 2002:a05:6102:b0d:b0:4e7:efa3:6475 with SMTP id
- ada2fe7eead31-4f1614301fdmr617117137.25.1751449659490; Wed, 02 Jul 2025
- 02:47:39 -0700 (PDT)
+	s=arc-20240116; t=1751449774; c=relaxed/simple;
+	bh=HaDbrpXJ0lT6/Xsy0anDOjZM40zt+N8qVQXlMq+igkE=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=Cl78CUXTiHn23Vs2mOfV8fk+1Pz1s8Pj/kUNsCndupldpqXvt2b771fZLv9EAvgHy+jnRd+NfloTB0v7CjrsRCfJOtP871pvgczy4wd84/Q8s/+VdtFKNUbmU91lnlNJf0jg+sAgfJfvEm7lLd0/MKQQdMmdox5YTmCd+9T3qVw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b=f71292rU; arc=none smtp.client-ip=148.251.105.195
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+	s=mail; t=1751449770;
+	bh=HaDbrpXJ0lT6/Xsy0anDOjZM40zt+N8qVQXlMq+igkE=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=f71292rUHg3WI4fUSBFc+KK9z9UY3VGWxdv3y3c+UbrfUwDm0DZ74NzaasxZy7qey
+	 b3I3owP50H3fZzi3SJ/tS8dGG9hayAu8pc6ytIHBEP1L3yBw53cQTwvYO6C1mC4i7g
+	 Bzqfz8X5QGCOZeiBFF1BBsAlIYdp72hhMFRdR6UFV6ndoOJR0MUONKuknnN3y4PZfl
+	 I2hBSlW1TOHwYjd5hg52TmWTB3r0jqeJbyNnYgPvtM6nIXHUcXiMXtUj+V/qLeK7z7
+	 Q3s1LLUIXPYiCXHFQuITvmgx72/frRdzu88TA86x1ot0zUb94rh3GIr4gUfFD4XdOG
+	 t3Uju+CuhRIqg==
+Received: from [192.168.1.90] (unknown [212.93.144.165])
+	(using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
+	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+	(No client certificate requested)
+	(Authenticated sender: cristicc)
+	by bali.collaboradmins.com (Postfix) with ESMTPSA id BE03B17E04C0;
+	Wed,  2 Jul 2025 11:49:29 +0200 (CEST)
+Message-ID: <422d8ca6-00b6-4c69-b261-b0399d12c9d8@collabora.com>
+Date: Wed, 2 Jul 2025 12:49:29 +0300
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20250702005706.1200059-1-john.madieu.xa@bp.renesas.com> <20250702005706.1200059-3-john.madieu.xa@bp.renesas.com>
-In-Reply-To: <20250702005706.1200059-3-john.madieu.xa@bp.renesas.com>
-From: Geert Uytterhoeven <geert@linux-m68k.org>
-Date: Wed, 2 Jul 2025 11:47:27 +0200
-X-Gmail-Original-Message-ID: <CAMuHMdVsvWrTBXkZ4etWy-8sPH4TG7AEyD_Z27RBWutNvpmUHA@mail.gmail.com>
-X-Gm-Features: Ac12FXyvUOO4u1emMGsdqUSyi2v-LKjWFuqnGZiY-qtjH2LDcXJWx9ecan2toDc
-Message-ID: <CAMuHMdVsvWrTBXkZ4etWy-8sPH4TG7AEyD_Z27RBWutNvpmUHA@mail.gmail.com>
-Subject: Re: [PATCH v4 2/4] pinctrl: renesas: rzg2l: Pass OEN pin names
-To: John Madieu <john.madieu.xa@bp.renesas.com>, prabhakar.mahadev-lad.rj@bp.renesas.com
-Cc: magnus.damm@gmail.com, robh@kernel.org, krzk+dt@kernel.org, 
-	conor+dt@kernel.org, mturquette@baylibre.com, sboyd@kernel.org, 
-	richardcochran@gmail.com, linux-renesas-soc@vger.kernel.org, 
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	linux-clk@vger.kernel.org, netdev@vger.kernel.org, biju.das.jz@bp.renesas.com, 
-	john.madieu@gmail.com
-Content-Type: text/plain; charset="UTF-8"
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 3/4] arm64: dts: rockchip: add analog audio to ROCK 4D
+To: Nicolas Frattaroli <nicolas.frattaroli@collabora.com>,
+ Dmitry Torokhov <dmitry.torokhov@gmail.com>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Alexandre Belloni <alexandre.belloni@bootlin.com>,
+ Heiko Stuebner <heiko@sntech.de>
+Cc: kernel@collabora.com, linux-input@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, linux-rockchip@lists.infradead.org
+References: <20250630-rock4d-audio-v1-0-0b3c8e8fda9c@collabora.com>
+ <20250630-rock4d-audio-v1-3-0b3c8e8fda9c@collabora.com>
+Content-Language: en-US
+From: Cristian Ciocaltea <cristian.ciocaltea@collabora.com>
+In-Reply-To: <20250630-rock4d-audio-v1-3-0b3c8e8fda9c@collabora.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-Hi John, Prabhakar,
+On 6/30/25 1:19 PM, Nicolas Frattaroli wrote:
+> The RADXA ROCK 4D, like many other Rockchip-based boards, uses an ES8388
+> analog audio codec. On the production version of the board, the codec's
+> LOUT1 and ROUT1 pins are tied to the headphone jack, whereas pins LOUT2
+> and ROUT2 lead to a non-populated speaker amplifier that itself leads to
+> a non-populated speaker jack. The schematic is still haunted by the
+> ghosts of those symbols, but it clearly marks them as "NC".
+> 
+> The 3.5mm TRRS jack has its microphone ring (and ground ring) wired to
+> the codec's LINPUT1 and RINPUT1 pins for differential signalling.
+> 
+> Furthermore, it uses the SoCs ADC to detect whether the inserted cable
+> is of headphones (i.e., no microphone), or a headset (i.e., with
+> microphone). The way this is done is that the ADC input taps the output
+> of a 100K/100K resistor divider that divides the microphone ring pin
+> that's pulled up to 3.3V.
+> 
+> There is no ADC level difference between a completely empty jack and one
+> with a set of headphones (i.e., ones that don't have a microphone)
+> connected. Consequently headphone insertion detection isn't something
+> that can be done.
+> 
+> Add the necessary codec and audio card nodes. The non-populated parts,
+> i.e. LOUT2 and ROUT2, are not modeled at all, as they are not present on
+> the hardware.
+> 
+> Also, add an adc-keys node for the headset detection, which uses an
+> input type of EV_SW with the SW_MICROPHONE_INSERT keycode. Below the
+> 220mV pressed voltage level of our SW_MICROPHONE_INSERT switch, we also
+> define a button that emits a KEY_RESERVED code, which is there to model
+> this part of the voltage range as not just being extra legroom for the
+> button above it, but actually a state that is encountered in the real
+> world, and should be recognised as a valid state for the ADC range to be
+> in so that no "closer" ADC button is chosen.
+> 
+> Signed-off-by: Nicolas Frattaroli <nicolas.frattaroli@collabora.com>
 
-On Wed, 2 Jul 2025 at 02:57, John Madieu <john.madieu.xa@bp.renesas.com> wrote:
-> From: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
->
-> Pass the OEN pin names via the SoC-specific hardware configuration
-> structure to allow reuse of rzv2h_oen_read() and rzv2h_oen_write()
-> on multiple SoCs.
->
-> On the RZ/V2H(P) and RZ/G3E SoCs, the PFC_OEN register is located at the
-> same offset. However, the register controls different pins on each SoC.
-> Hardcoding the pin names in the common logic prevents reusability.
->
-> Extend struct rzg2l_hwcfg to include an array of OEN pin names and its
-> length. Use these values in rzv2h_pin_to_oen_bit() to determine the bit
-> position dynamically based on the active SoC.
->
-> This enables shared handling of OEN register access while accounting for
-> SoC-specific pin mappings.
->
-> Signed-off-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+Enabled CONFIG_SND_SOC_ES8328_I2C and confirm playback works fine:
 
-Thanks for your patch!
+    $ speaker-test -D hw:ES8388,0 -F S16_LE -c 2 -t wav
 
-> --- a/drivers/pinctrl/renesas/pinctrl-rzg2l.c
-> +++ b/drivers/pinctrl/renesas/pinctrl-rzg2l.c
-> @@ -257,6 +257,8 @@ enum rzg2l_iolh_index {
->   * @func_base: base number for port function (see register PFC)
->   * @oen_max_pin: the maximum pin number supporting output enable
->   * @oen_max_port: the maximum port number supporting output enable
-> + * @oen_pin_names: array of pin names for output enable
-> + * @oen_pin_names_len: length of the oen_pin_names array
->   */
->  struct rzg2l_hwcfg {
->         const struct rzg2l_register_offsets regs;
-> @@ -269,6 +271,8 @@ struct rzg2l_hwcfg {
->         u8 func_base;
->         u8 oen_max_pin;
->         u8 oen_max_port;
-> +       const char * const *oen_pin_names;
-> +       u8 oen_pin_names_len;
+Unfortunately the recording doesn't seem to be functional:
 
-Please exchange the order of the members, so the u8 fits in the
-existing hole.
+    $ arecord -D hw:ES8388,0 -f S16_LE -c 2 -r 48000 -d 5 -V stereo /tmp/test.wav
+    Recording WAVE '/tmp/test.wav' : Signed 16 bit Little Endian, Rate 48000 Hz, Stereo
+                                    +00%|00%+
 
-However, I think you better drop this patch, and use the existing
-rzg2l_pinctrl_data.oen_{read,write]() abstraction instead.
+    $ aplay -D hw:ES8388,0 /tmp/test.wav
 
->  };
+However, the headset plug detection works correctly:
 
-Gr{oetje,eeting}s,
+    $ evtest
+    No device specified, trying to scan all of /dev/input/event*
+    Available devices:
+    /dev/input/event0:	Logitech USB Receiver
+    /dev/input/event1:	Logitech USB Receiver Mouse
+    /dev/input/event2:	Logitech USB Receiver Consumer Control
+    /dev/input/event3:	Logitech USB Receiver System Control
+    /dev/input/event4:	adc-keys
+    Select the device event number [0-4]: 4
+    Input driver version is 1.0.1
+    Input device ID: bus 0x19 vendor 0x1 product 0x1 version 0x100
+    Input device name: "adc-keys"
+    Supported events:
+      Event type 0 (EV_SYN)
+      Event type 1 (EV_KEY)
+      Event type 5 (EV_SW)
+        Event code 4 (SW_MICROPHONE_INSERT) state 0
+    Properties:
+    Testing ... (interrupt to exit)
+    Event: time 1751449448.185340, type 5 (EV_SW), code 4 (SW_MICROPHONE_INSERT), value 1
+    Event: time 1751449448.185340, -------------- SYN_REPORT ------------
+    Event: time 1751449448.289477, type 5 (EV_SW), code 4 (SW_MICROPHONE_INSERT), value 0
+    Event: time 1751449448.289477, -------------- SYN_REPORT ------------
+    Event: time 1751449449.329482, type 5 (EV_SW), code 4 (SW_MICROPHONE_INSERT), value 1
+    Event: time 1751449449.329482, -------------- SYN_REPORT ------------
 
-                        Geert
+Tested-by: Cristian Ciocaltea <cristian.ciocaltea@collabora.com>
 
--- 
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
-
-In personal conversations with technical people, I call myself a hacker. But
-when I'm talking to journalists I just say "programmer" or something like that.
-                                -- Linus Torvalds
 
