@@ -1,251 +1,162 @@
-Return-Path: <devicetree+bounces-192027-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-192028-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7ED29AF1361
-	for <lists+devicetree@lfdr.de>; Wed,  2 Jul 2025 13:13:47 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 39639AF136A
+	for <lists+devicetree@lfdr.de>; Wed,  2 Jul 2025 13:15:49 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 44DA93A60C7
-	for <lists+devicetree@lfdr.de>; Wed,  2 Jul 2025 11:13:21 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 238A6170E9A
+	for <lists+devicetree@lfdr.de>; Wed,  2 Jul 2025 11:15:49 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1C5212571D8;
-	Wed,  2 Jul 2025 11:13:39 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 457802528F3;
+	Wed,  2 Jul 2025 11:15:43 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="taQoeuCG"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="AD/suekz"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wm1-f44.google.com (mail-wm1-f44.google.com [209.85.128.44])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DE75623956E;
-	Wed,  2 Jul 2025 11:13:38 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 645ED1C6B4;
+	Wed,  2 Jul 2025 11:15:41 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.44
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1751454819; cv=none; b=JOFnTLbuYLFyFw2/vHDyTJUnDisnJ0sWlE1obzVRyHxY+bhK7b6XLpCu3tO8wTUbvpmhtUsZXnDlqLwuUa/XeX7tO+xqE8mULB3KfW+I019g6obm1lfQkjLms001bOotdGMOOAhcUO9ORygvb/xK1KkHllwzAPp27v2gdzLoWKY=
+	t=1751454943; cv=none; b=SXSKyiiNOCEvfdYmpFarZ1HSmYWl/QQAL4eYEx93j/+p3KNPPArpYfxFYtAduY3BRYqEH7NeIILV/K/L/8PE6RS/xOh8es2HfrS+v5Ju6K44DIikICrJbxobeGUWez7HVWg46z5BUtB67oitXI0GBo9MUd3TSIpN2R1CVeJ97dM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1751454819; c=relaxed/simple;
-	bh=/3UcYFAtiHdK/x/wf/hpXgHjxC2DHsZORgWcfa0tL2c=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=qYMXHrMvaGbHC4/H5KjCtMLsZeD73cF2mply6b8DvZM16bcgcMGJlm4TvSEs1+Gta6YpPNNo3E+alLjUSsEtEST2rbzmS6YpHkVt9xPtOkFo52BLcH62A6LS8gKJe4BKYzzxUKR2Pr2frzV8pXMJ/A2lx3/Ux+UwWNluXQqg9Gs=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=taQoeuCG; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 6E6D2C4CEED;
-	Wed,  2 Jul 2025 11:13:35 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1751454818;
-	bh=/3UcYFAtiHdK/x/wf/hpXgHjxC2DHsZORgWcfa0tL2c=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=taQoeuCGyVGXCF3ArPdIgGKzktogQkojqAiYSWlI2bP0V1r193wDfgwFYXXKaCwRc
-	 nxtGQ0aW4R78AXPSwYeOHTLMG/OiaBjXSP3FBUonzgsLKsjhJxFu+1bmixSEerQcjO
-	 hpLhoyuSWkKAXmDKY2udJknbBCATqzZVDIlPZhWrewbX9zcQYRIrIDGf1lXb/RiKUN
-	 A0DM80KxchAhfTk62BLcIS0ByTjib7oLh/UgW54ifuWhdHK4C349y9L01BDfQ45l9x
-	 ZzZq1H9RV2k9SqtMiNgAzv0hED7aXkEsu86qIR+jujS8FPX0pdhLlyzKCxnhEIdw6a
-	 Mo3ovL6+xnw2w==
-Message-ID: <19dd2e69-ad13-46f2-b99f-04a5e26f10d3@kernel.org>
-Date: Wed, 2 Jul 2025 13:13:33 +0200
+	s=arc-20240116; t=1751454943; c=relaxed/simple;
+	bh=XHBfs/7WOQ9scU2jSPtKSd9vllzVKRNvz7nUZ1NCE98=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=dNh8e/PLHA/E+GvY0m9/Yb8z0rH0mO5ZGxu9SBz8WCpBTRewVVq2BW/X/oC4jjRhOGdFiXTgV9EtZTXI4ameO4SZqdvNPmNjlgX82dyIa71dqC6tAZvLrAuE0dUC54c6bPL4Tm85PM+faCrBeLIWxG30TLAuKuVgqaJMi12fqYQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=AD/suekz; arc=none smtp.client-ip=209.85.128.44
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-wm1-f44.google.com with SMTP id 5b1f17b1804b1-453647147c6so71385835e9.2;
+        Wed, 02 Jul 2025 04:15:41 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1751454940; x=1752059740; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=RkdySRtSGxI+LD2PLhuDfgWtTtkxYO/qJtJNP0L3PfU=;
+        b=AD/suekzVL4tPjszhBn/i4HaUDAUHBy4ABwGqToCIgEjwz+jWZaIlepeDQKXc/GxPn
+         XDSwj5jZeFbXUH0IIGNAdFnxiia0JZhbLiaRyhzjuyMzppqOT/xzyCkIVE2nW0jjIwoZ
+         zc05AWVouEy49sq16sWOUsdJLgNQOTO35gfatbuIuETvsh3yQXkabwdIu6Ei7CuOjI0k
+         2frc3BykNDGpwZTJdk8wm332zIJW08kqHwQHubcjIRnESflcEv5+MV3hxi2+ZdD2JC5Z
+         xxD9QwEmEx2xzgJ3ZFPSu/N0CUH5DVK+/LU3JNp04B7PhAe3S9+u53WwwVMHyY8usruI
+         xmTw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1751454940; x=1752059740;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=RkdySRtSGxI+LD2PLhuDfgWtTtkxYO/qJtJNP0L3PfU=;
+        b=L64VaEaMiPxFS81QQf6Q9wB+DrdVbE6wa0Dhj2QIxGMjppbffdGIJOr0dlEDZjsERi
+         wyDwzZ4CQ2U6FGC1xm4xVg++cKAgXDwXrYW4HDWbusAPMaRHmnTykBH+S6pPkueokrn6
+         JbqO0X3RO3rY/vfzcaYfUciSA2x9qeWFMDhHZ71Cs/FB5tU4TcUCtqloEVMX8AuMqn76
+         1Dsk5B06KlLz8lUGGClOsNucIfIYJqL1IMtb2id4jsjgmKxBDYSqUnIrOHvNvUCoG3vF
+         WFSPMit9kk5pcMvM7RuwzeqRCyw8jcjvgsRCeOMGrLl5kTJiT/XnHMZXMdGy9hwvwsPb
+         fJhg==
+X-Forwarded-Encrypted: i=1; AJvYcCUVo5fIkzT31Q39oT8TvB3CGtuFNbsowyxBce5wW3p8az3ZNevl3g09LUkUe1S8ohc31Ad/Ewan7Fwe@vger.kernel.org, AJvYcCUk8A1C5AGUEMehDZoC+k41srCkW52dlz1TIUJD6i0/wNlaZo8H4oyd7+QIb3FD300eWuUX3TbXJdgw@vger.kernel.org, AJvYcCUn/BzpuA+XG1qLe47JSUxuHCJ5z+JdA119O3WUHlm0OQaIKTqscHO8qbvvs4/dTAbA4bJetPkK@vger.kernel.org, AJvYcCV3A7ekWVk8ejGt+xfcb67v4XzFcrIS2isFOw0Xk+BXjihyGVktYkyEhbeHykjKWF+88DENoibI8PRDMZ/qHNn2oqA=@vger.kernel.org, AJvYcCW2fqxjLPzJXzpHE/vbIpx7DuyiFoJJnHNey2e7jhpm8waEVfBLh7teHkcz9/69VtDEZvqTACPUvgWXaI+a@vger.kernel.org
+X-Gm-Message-State: AOJu0YxTyFpOK0U95sVFiinnKdIgH1BUdOU3OpcT4Y+S2doH8EpNcrD3
+	s0ZLUAm2pxRs+yUH+j+YiQHRojTTgXcFrqdNug3BJdzH0+fyt9P+lvhXrKnhnAPohMaArf/ruUW
+	nVLqG99ZqwmAn8eyQ2jn8N//FLoKs5Og=
+X-Gm-Gg: ASbGncvLoUT9p23ueeTy/kzMCDBgDLmTM9+9iqeRBlL2eOhUDTGqqJg59fJ5/dfJVqL
+	8owON+c+dSetZapr+OqT+TynCj399XvuexHKLxPhsa3e+V3DztnZIoE5XLfWp0EcvwXIvORqbsj
+	Op3UX3+Me/V5Gb3S7Kex+ayp2ykd475nvR/Y3/MQ1+wVNM9Gt2x+XzQJvS8JRigrebAQq9nw2kl
+	ojT
+X-Google-Smtp-Source: AGHT+IGVdU3EbgW14kmi+l6rweiSFF+JR6bWIZlhS1tOmGLwvf9J6IHUAv3porE4RSNMgnM94zU9E2wUmQHddBSVfH8=
+X-Received: by 2002:a05:6000:43d8:b0:3a4:f9e7:2796 with SMTP id
+ ffacd0b85a97d-3b2001ac40bmr1421973f8f.35.1751454939432; Wed, 02 Jul 2025
+ 04:15:39 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3 1/5] media: dt-bindings: add non-pixel property in iris
- schema
-To: Vikash Garodia <quic_vgarodia@quicinc.com>,
- Dikshita Agarwal <quic_dikshita@quicinc.com>,
- Abhinav Kumar <abhinav.kumar@linux.dev>,
- Bryan O'Donoghue <bryan.odonoghue@linaro.org>,
- Mauro Carvalho Chehab <mchehab@kernel.org>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>
-Cc: linux-media@vger.kernel.org, linux-arm-msm@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <20250627-video_cb-v3-0-51e18c0ffbce@quicinc.com>
- <20250627-video_cb-v3-1-51e18c0ffbce@quicinc.com>
-From: Krzysztof Kozlowski <krzk@kernel.org>
-Content-Language: en-US
-Autocrypt: addr=krzk@kernel.org; keydata=
- xsFNBFVDQq4BEAC6KeLOfFsAvFMBsrCrJ2bCalhPv5+KQF2PS2+iwZI8BpRZoV+Bd5kWvN79
- cFgcqTTuNHjAvxtUG8pQgGTHAObYs6xeYJtjUH0ZX6ndJ33FJYf5V3yXqqjcZ30FgHzJCFUu
- JMp7PSyMPzpUXfU12yfcRYVEMQrmplNZssmYhiTeVicuOOypWugZKVLGNm0IweVCaZ/DJDIH
- gNbpvVwjcKYrx85m9cBVEBUGaQP6AT7qlVCkrf50v8bofSIyVa2xmubbAwwFA1oxoOusjPIE
- J3iadrwpFvsZjF5uHAKS+7wHLoW9hVzOnLbX6ajk5Hf8Pb1m+VH/E8bPBNNYKkfTtypTDUCj
- NYcd27tjnXfG+SDs/EXNUAIRefCyvaRG7oRYF3Ec+2RgQDRnmmjCjoQNbFrJvJkFHlPeHaeS
- BosGY+XWKydnmsfY7SSnjAzLUGAFhLd/XDVpb1Een2XucPpKvt9ORF+48gy12FA5GduRLhQU
- vK4tU7ojoem/G23PcowM1CwPurC8sAVsQb9KmwTGh7rVz3ks3w/zfGBy3+WmLg++C2Wct6nM
- Pd8/6CBVjEWqD06/RjI2AnjIq5fSEH/BIfXXfC68nMp9BZoy3So4ZsbOlBmtAPvMYX6U8VwD
- TNeBxJu5Ex0Izf1NV9CzC3nNaFUYOY8KfN01X5SExAoVTr09ewARAQABzSVLcnp5c3p0b2Yg
- S296bG93c2tpIDxrcnprQGtlcm5lbC5vcmc+wsGVBBMBCgA/AhsDBgsJCAcDAgYVCAIJCgsE
- FgIDAQIeAQIXgBYhBJvQfg4MUfjVlne3VBuTQ307QWKbBQJoF1BKBQkWlnSaAAoJEBuTQ307
- QWKbHukP/3t4tRp/bvDnxJfmNdNVn0gv9ep3L39IntPalBFwRKytqeQkzAju0whYWg+R/rwp
- +r2I1Fzwt7+PTjsnMFlh1AZxGDmP5MFkzVsMnfX1lGiXhYSOMP97XL6R1QSXxaWOpGNCDaUl
- ajorB0lJDcC0q3xAdwzRConxYVhlgmTrRiD8oLlSCD5baEAt5Zw17UTNDnDGmZQKR0fqLpWy
- 786Lm5OScb7DjEgcA2PRm17st4UQ1kF0rQHokVaotxRM74PPDB8bCsunlghJl1DRK9s1aSuN
- hL1Pv9VD8b4dFNvCo7b4hfAANPU67W40AaaGZ3UAfmw+1MYyo4QuAZGKzaP2ukbdCD/DYnqi
- tJy88XqWtyb4UQWKNoQqGKzlYXdKsldYqrLHGoMvj1UN9XcRtXHST/IaLn72o7j7/h/Ac5EL
- 8lSUVIG4TYn59NyxxAXa07Wi6zjVL1U11fTnFmE29ALYQEXKBI3KUO1A3p4sQWzU7uRmbuxn
- naUmm8RbpMcOfa9JjlXCLmQ5IP7Rr5tYZUCkZz08LIfF8UMXwH7OOEX87Y++EkAB+pzKZNNd
- hwoXulTAgjSy+OiaLtuCys9VdXLZ3Zy314azaCU3BoWgaMV0eAW/+gprWMXQM1lrlzvwlD/k
- whyy9wGf0AEPpLssLVt9VVxNjo6BIkt6d1pMg6mHsUEVzsFNBFVDXDQBEADNkrQYSREUL4D3
- Gws46JEoZ9HEQOKtkrwjrzlw/tCmqVzERRPvz2Xg8n7+HRCrgqnodIYoUh5WsU84N03KlLue
- MNsWLJBvBaubYN4JuJIdRr4dS4oyF1/fQAQPHh8Thpiz0SAZFx6iWKB7Qrz3OrGCjTPcW6ei
- OMheesVS5hxietSmlin+SilmIAPZHx7n242u6kdHOh+/SyLImKn/dh9RzatVpUKbv34eP1wA
- GldWsRxbf3WP9pFNObSzI/Bo3kA89Xx2rO2roC+Gq4LeHvo7ptzcLcrqaHUAcZ3CgFG88CnA
- 6z6lBZn0WyewEcPOPdcUB2Q7D/NiUY+HDiV99rAYPJztjeTrBSTnHeSBPb+qn5ZZGQwIdUW9
- YegxWKvXXHTwB5eMzo/RB6vffwqcnHDoe0q7VgzRRZJwpi6aMIXLfeWZ5Wrwaw2zldFuO4Dt
- 91pFzBSOIpeMtfgb/Pfe/a1WJ/GgaIRIBE+NUqckM+3zJHGmVPqJP/h2Iwv6nw8U+7Yyl6gU
- BLHFTg2hYnLFJI4Xjg+AX1hHFVKmvl3VBHIsBv0oDcsQWXqY+NaFahT0lRPjYtrTa1v3tem/
- JoFzZ4B0p27K+qQCF2R96hVvuEyjzBmdq2esyE6zIqftdo4MOJho8uctOiWbwNNq2U9pPWmu
- 4vXVFBYIGmpyNPYzRm0QPwARAQABwsF8BBgBCgAmAhsMFiEEm9B+DgxR+NWWd7dUG5NDfTtB
- YpsFAmgXUF8FCRaWWyoACgkQG5NDfTtBYptO0w//dlXJs5/42hAXKsk+PDg3wyEFb4NpyA1v
- qmx7SfAzk9Hf6lWwU1O6AbqNMbh6PjEwadKUk1m04S7EjdQLsj/MBSgoQtCT3MDmWUUtHZd5
- RYIPnPq3WVB47GtuO6/u375tsxhtf7vt95QSYJwCB+ZUgo4T+FV4hquZ4AsRkbgavtIzQisg
- Dgv76tnEv3YHV8Jn9mi/Bu0FURF+5kpdMfgo1sq6RXNQ//TVf8yFgRtTUdXxW/qHjlYURrm2
- H4kutobVEIxiyu6m05q3e9eZB/TaMMNVORx+1kM3j7f0rwtEYUFzY1ygQfpcMDPl7pRYoJjB
- dSsm0ZuzDaCwaxg2t8hqQJBzJCezTOIkjHUsWAK+tEbU4Z4SnNpCyM3fBqsgYdJxjyC/tWVT
- AQ18NRLtPw7tK1rdcwCl0GFQHwSwk5pDpz1NH40e6lU+NcXSeiqkDDRkHlftKPV/dV+lQXiu
- jWt87ecuHlpL3uuQ0ZZNWqHgZoQLXoqC2ZV5KrtKWb/jyiFX/sxSrodALf0zf+tfHv0FZWT2
- zHjUqd0t4njD/UOsuIMOQn4Ig0SdivYPfZukb5cdasKJukG1NOpbW7yRNivaCnfZz6dTawXw
- XRIV/KDsHQiyVxKvN73bThKhONkcX2LWuD928tAR6XMM2G5ovxLe09vuOzzfTWQDsm++9UKF a/A=
-In-Reply-To: <20250627-video_cb-v3-1-51e18c0ffbce@quicinc.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+References: <20250702005706.1200059-1-john.madieu.xa@bp.renesas.com>
+ <20250702005706.1200059-3-john.madieu.xa@bp.renesas.com> <CAMuHMdVsvWrTBXkZ4etWy-8sPH4TG7AEyD_Z27RBWutNvpmUHA@mail.gmail.com>
+In-Reply-To: <CAMuHMdVsvWrTBXkZ4etWy-8sPH4TG7AEyD_Z27RBWutNvpmUHA@mail.gmail.com>
+From: "Lad, Prabhakar" <prabhakar.csengg@gmail.com>
+Date: Wed, 2 Jul 2025 12:15:13 +0100
+X-Gm-Features: Ac12FXyoV27N90uiKRpolLpIwAqhAe8ZcyesbtrNWpZW4tvLgY188hwbPdZn7n8
+Message-ID: <CA+V-a8sbaFDXMj0fiF=Y9X1kwLHY66qgJz=pOEXHA4f6OGS6GQ@mail.gmail.com>
+Subject: Re: [PATCH v4 2/4] pinctrl: renesas: rzg2l: Pass OEN pin names
+To: Geert Uytterhoeven <geert@linux-m68k.org>
+Cc: John Madieu <john.madieu.xa@bp.renesas.com>, prabhakar.mahadev-lad.rj@bp.renesas.com, 
+	magnus.damm@gmail.com, robh@kernel.org, krzk+dt@kernel.org, 
+	conor+dt@kernel.org, mturquette@baylibre.com, sboyd@kernel.org, 
+	richardcochran@gmail.com, linux-renesas-soc@vger.kernel.org, 
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+	linux-clk@vger.kernel.org, netdev@vger.kernel.org, biju.das.jz@bp.renesas.com, 
+	john.madieu@gmail.com
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-On 27/06/2025 17:48, Vikash Garodia wrote:
-> Existing definition limits the IOVA to an addressable range of 4GiB, and
-> even within that range, some of the space is used by IO registers,
-> thereby limiting the available IOVA to even lesser. Video hardware is
-> designed to emit different stream-ID for pixel and non-pixel buffers,
-> thereby introduce a non-pixel sub node to handle non-pixel stream-ID.
-> 
-> With this, both iris and non-pixel device can have IOVA range of 0-4GiB
-> individually. Certain video usecases like higher video concurrency needs
-> IOVA higher than 4GiB.
-> 
-> Add reference to the reserve-memory schema, which defines reserved IOVA
+Hi Geert,
 
-No. That schema is always selected. This makes no sense at all.
-
-> regions that are *excluded* from addressable range. Video hardware
-> generates different stream IDs based on the predefined range of IOVA
-> addresses. Thereby IOVA addresses for firmware and data buffers need to
-> be non overlapping. For ex. 0x0-0x25800000 address range is reserved for
-> firmware stream-ID, while non-pixel (bitstream) stream-ID can be
-> generated by hardware only when bitstream buffers IOVA address is from
-> 0x25800000-0xe0000000.
-> Non-pixel stream-ID can now be part of the new sub-node, hence iommus in
-> iris node can have either 1 entry for pixel stream-id or 2 entries for
-> pixel and non-pixel stream-ids.
-> 
-> Signed-off-by: Vikash Garodia <quic_vgarodia@quicinc.com>
-> ---
->  .../bindings/media/qcom,sm8550-iris.yaml           | 40 ++++++++++++++++++++--
->  1 file changed, 38 insertions(+), 2 deletions(-)
-> 
-> diff --git a/Documentation/devicetree/bindings/media/qcom,sm8550-iris.yaml b/Documentation/devicetree/bindings/media/qcom,sm8550-iris.yaml
-> index c79bf2101812d83b99704f38b7348a9f728dff44..4dda2c9ca1293baa7aee3b9ee10aff38d280fe05 100644
-> --- a/Documentation/devicetree/bindings/media/qcom,sm8550-iris.yaml
-> +++ b/Documentation/devicetree/bindings/media/qcom,sm8550-iris.yaml
-> @@ -65,10 +65,31 @@ properties:
->        - const: core
->  
->    iommus:
-> +    minItems: 1
->      maxItems: 2
-
-No, why hardware suddenly has different amount?
-
->  
->    dma-coherent: true
->  
-> +  non-pixel:
-
-Why EXISTING hardware grows?
-
-> +    type: object
-> +    additionalProperties: false
-> +
-> +    description:
-> +      Non pixel context bank is needed when video hardware have distinct iommus
-> +      for non pixel buffers. Non pixel buffers are mainly compressed and
-> +      internal buffers.
-> +
-> +    properties:
-> +      iommus:
-> +        maxItems: 1
-> +
-> +      memory-region:
-> +        maxItems: 1
-> +
-> +    required:
-> +      - iommus
-> +      - memory-region
-> +
->    operating-points-v2: true
->  
->    opp-table:
-> @@ -86,6 +107,7 @@ required:
->  
->  allOf:
->    - $ref: qcom,venus-common.yaml#
-> +  - $ref: /schemas/reserved-memory/reserved-memory.yaml
-
-This makes no sense. how is this device a reserved memory?
-
->    - if:
->        properties:
->          compatible:
-> @@ -117,6 +139,16 @@ examples:
->      #include <dt-bindings/power/qcom-rpmpd.h>
->      #include <dt-bindings/power/qcom,rpmhpd.h>
->  
-> +    reserved-memory {
-> +      #address-cells = <2>;
-> +      #size-cells = <2>;
-
-Why do you need this?
-
-> +
-> +      iris_resv: reservation-iris {
-
-Mixing MMIO and non-MMIO is not the way to go. This is also not relevant
-here. Don't embed other things into your binding example.
+Thank you for the review.
 
 
-> +        iommu-addresses = <&iris_non_pixel 0x0 0x0 0x0 0x25800000>,
-> +                          <&iris_non_pixel 0x0 0xe0000000 0x0 0x20000000>;
-> +      };
-> +    };
-> +
->      video-codec@aa00000 {
->          compatible = "qcom,sm8550-iris";
->          reg = <0x0aa00000 0xf0000>;
-> @@ -144,12 +176,16 @@ examples:
->          resets = <&gcc GCC_VIDEO_AXI0_CLK_ARES>;
->          reset-names = "bus";
->  
-> -        iommus = <&apps_smmu 0x1940 0x0000>,
-> -                 <&apps_smmu 0x1947 0x0000>;
-> +        iommus = <&apps_smmu 0x1947 0x0000>;
+On Wed, Jul 2, 2025 at 10:54=E2=80=AFAM Geert Uytterhoeven <geert@linux-m68=
+k.org> wrote:
+>
+> Hi John, Prabhakar,
+>
+> On Wed, 2 Jul 2025 at 02:57, John Madieu <john.madieu.xa@bp.renesas.com> =
+wrote:
+> > From: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+> >
+> > Pass the OEN pin names via the SoC-specific hardware configuration
+> > structure to allow reuse of rzv2h_oen_read() and rzv2h_oen_write()
+> > on multiple SoCs.
+> >
+> > On the RZ/V2H(P) and RZ/G3E SoCs, the PFC_OEN register is located at th=
+e
+> > same offset. However, the register controls different pins on each SoC.
+> > Hardcoding the pin names in the common logic prevents reusability.
+> >
+> > Extend struct rzg2l_hwcfg to include an array of OEN pin names and its
+> > length. Use these values in rzv2h_pin_to_oen_bit() to determine the bit
+> > position dynamically based on the active SoC.
+> >
+> > This enables shared handling of OEN register access while accounting fo=
+r
+> > SoC-specific pin mappings.
+> >
+> > Signed-off-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+>
+> Thanks for your patch!
+>
+> > --- a/drivers/pinctrl/renesas/pinctrl-rzg2l.c
+> > +++ b/drivers/pinctrl/renesas/pinctrl-rzg2l.c
+> > @@ -257,6 +257,8 @@ enum rzg2l_iolh_index {
+> >   * @func_base: base number for port function (see register PFC)
+> >   * @oen_max_pin: the maximum pin number supporting output enable
+> >   * @oen_max_port: the maximum port number supporting output enable
+> > + * @oen_pin_names: array of pin names for output enable
+> > + * @oen_pin_names_len: length of the oen_pin_names array
+> >   */
+> >  struct rzg2l_hwcfg {
+> >         const struct rzg2l_register_offsets regs;
+> > @@ -269,6 +271,8 @@ struct rzg2l_hwcfg {
+> >         u8 func_base;
+> >         u8 oen_max_pin;
+> >         u8 oen_max_port;
+> > +       const char * const *oen_pin_names;
+> > +       u8 oen_pin_names_len;
+>
+> Please exchange the order of the members, so the u8 fits in the
+> existing hole.
+>
+OK.
 
-Why did the device or hardware change? Nothing explains in commit msg
-what is wrong with existing device and existing binding.
+> However, I think you better drop this patch, and use the existing
+> rzg2l_pinctrl_data.oen_{read,write]() abstraction instead.
+>
+Ok agreed, I will switch to that.
 
->          dma-coherent;
->  
->          operating-points-v2 = <&iris_opp_table>;
->  
-> +        iris_non_pixel: non-pixel {
-> +            iommus = <&apps_smmu 0x1940 0x0000>;
-> +            memory-region = <&iris_resv>;
-> +        };
-> +
->          iris_opp_table: opp-table {
->              compatible = "operating-points-v2";
->  
-> 
-
-
-Best regards,
-Krzysztof
+Cheers,
+Prabhakar
 
