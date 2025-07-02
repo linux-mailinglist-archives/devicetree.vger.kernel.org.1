@@ -1,48 +1,64 @@
-Return-Path: <devicetree+bounces-192062-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-192063-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4DFB7AF1464
-	for <lists+devicetree@lfdr.de>; Wed,  2 Jul 2025 13:46:33 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2EC30AF146D
+	for <lists+devicetree@lfdr.de>; Wed,  2 Jul 2025 13:47:34 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 6F6173A1D3E
-	for <lists+devicetree@lfdr.de>; Wed,  2 Jul 2025 11:46:03 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 3629C1C27704
+	for <lists+devicetree@lfdr.de>; Wed,  2 Jul 2025 11:47:50 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B266F25E80B;
-	Wed,  2 Jul 2025 11:46:25 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 91279261584;
+	Wed,  2 Jul 2025 11:47:28 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="PPHhGXzL"
+	dkim=pass (1024-bit key) header.d=redhat.com header.i=@redhat.com header.b="hg27Hb5y"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from us-smtp-delivery-124.mimecast.com (us-smtp-delivery-124.mimecast.com [170.10.129.124])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 80FAD1E520C;
-	Wed,  2 Jul 2025 11:46:25 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 07D6B25FA13
+	for <devicetree@vger.kernel.org>; Wed,  2 Jul 2025 11:47:26 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=170.10.129.124
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1751456785; cv=none; b=a4LGJzwPwvmJwlPrfTCGvhFqaPkuY74chAVAsKZ8ZYOBQ0aYO3IjOyjh2yXtgZjn+m23JpBji18X7sKknApQ3/65xEQi6PVRUgZXJyB0Li2zsJhGSiUovl0Am5gGG/kK56mcqOtlW9jcQ682hn6b1x0Tb9VSYCGdO8nTM1Bi6Dk=
+	t=1751456848; cv=none; b=YLlofhj1muHs1eoARHeg7/mXVQwEe0Bh1eu0AsOhXKURfjPe7ICo0Q/hI1k6G4LSlaHlflzzwQ8k+/TPhsL8tgrEA/DTz41mKulNrskLvr1c0oPxD5UTtHWHkb6mKhYqELfSNXUTvkb+N+hlYDqJQ783GtyrucgAYOdib6i4FcI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1751456785; c=relaxed/simple;
-	bh=DlMNNSKa5fd5Z8nq8x++bTBAIFXnq2fywf/4wIgekLU=;
+	s=arc-20240116; t=1751456848; c=relaxed/simple;
+	bh=EdrNrz0J5/F40ltBEuQ5eTDBQM8WpBm8Wgb12vkPL4g=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=b+zkktHkN1IRjePlcHX16SUPy1p4+kT8SZMxdlywKCYj8Vr8LJSR6H/BJdz9azdS4Y2TDQAFdVa3eQDF+sUXTOj6e0S8U6lrfJaZlqseQEVX27/tcuf/MKsrCTr4jx0U4V7Kw+EMp2Aoj3PfCbM7lKqIV071Hn6oLSRd1K7Er28=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=PPHhGXzL; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id E6A59C4CEED;
-	Wed,  2 Jul 2025 11:46:21 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1751456785;
-	bh=DlMNNSKa5fd5Z8nq8x++bTBAIFXnq2fywf/4wIgekLU=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=PPHhGXzLgDfms1WafGvfA+qtc+wlNqxG4VcXOi+MVTPiY17mqotPaZ8oxZiEIiLcf
-	 meXXhvsjcb8GxuhQh/9DKSBBx7xzG2EH+8PjjmcEt4ywhsnmd6JwIwTZuHyXoImVSN
-	 dVyJUMWlwYxUSITwk1sDb8rhnmmLBWGoIXTfLmJqS2cv9QJKb3NAiFeH1BNEOHfdzT
-	 OxRxNQSWEWZK9IuuabZVGLJtjMd2ws03ycZd3X9Eb2Ps5+2HsxY97sQ8X/keW5hK83
-	 jYGSRt8O5WQX/3vJ63LRj+UN+sFyWgw0cejtz47X068cBtzBsqJD+zUHnWtLiQQlun
-	 3aOwTR/NWVKBg==
-Message-ID: <118f2cbe-d8bd-4177-b0d5-91d9f1dbbef0@kernel.org>
-Date: Wed, 2 Jul 2025 13:46:19 +0200
+	 In-Reply-To:Content-Type; b=HXkdTDnAuLwXbZx1Ez6TfWyYEoH9uD9NOAlcFhG/v6932rSPk126+an0v+8z2aW863LX+htFjaa23Rnw+gTJr/ygEKXNkvDLH19lyW30q+yeTBHqVttvMZRDWKdhB9qFDT7CbxGMaqlkUYWWkp9l1lMFs3FJW5xRjoXpwdMGUeU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=redhat.com; spf=pass smtp.mailfrom=redhat.com; dkim=pass (1024-bit key) header.d=redhat.com header.i=@redhat.com header.b=hg27Hb5y; arc=none smtp.client-ip=170.10.129.124
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=redhat.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=redhat.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
+	s=mimecast20190719; t=1751456846;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references;
+	bh=Vpjls0kbN64i2dWrj9KDXg1RVSJyJ1rvA/dpxJi7NRE=;
+	b=hg27Hb5yGLoSjmqhsSbIIRtxlFHzjydmRfLkhQtD3X9SVMOWZG/Wbmjj4ob4Xw5/euTLq1
+	v3tdjAKJNFp7VHlUMvRRyAFaXt413dbXrLb85f0cXABApyqbnP3goVo62O9s0LtNA/7KLJ
+	4weSAx2Ae8zfjYlqFWw6gNKtHV+qLxY=
+Received: from mx-prod-mc-06.mail-002.prod.us-west-2.aws.redhat.com
+ (ec2-35-165-154-97.us-west-2.compute.amazonaws.com [35.165.154.97]) by
+ relay.mimecast.com with ESMTP with STARTTLS (version=TLSv1.3,
+ cipher=TLS_AES_256_GCM_SHA384) id us-mta-569-U-JgH6XrNR2I76D7Zs9FDQ-1; Wed,
+ 02 Jul 2025 07:47:22 -0400
+X-MC-Unique: U-JgH6XrNR2I76D7Zs9FDQ-1
+X-Mimecast-MFC-AGG-ID: U-JgH6XrNR2I76D7Zs9FDQ_1751456839
+Received: from mx-prod-int-01.mail-002.prod.us-west-2.aws.redhat.com (mx-prod-int-01.mail-002.prod.us-west-2.aws.redhat.com [10.30.177.4])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
+	(No client certificate requested)
+	by mx-prod-mc-06.mail-002.prod.us-west-2.aws.redhat.com (Postfix) with ESMTPS id D996B180028A;
+	Wed,  2 Jul 2025 11:47:18 +0000 (UTC)
+Received: from [10.45.226.95] (unknown [10.45.226.95])
+	by mx-prod-int-01.mail-002.prod.us-west-2.aws.redhat.com (Postfix) with ESMTP id 8BCBA30001B9;
+	Wed,  2 Jul 2025 11:47:12 +0000 (UTC)
+Message-ID: <18e5cef5-7907-4c65-a255-56af0cfa67b8@redhat.com>
+Date: Wed, 2 Jul 2025 13:47:10 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,243 +66,80 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3 1/5] media: dt-bindings: add non-pixel property in iris
- schema
-To: Vikash Garodia <quic_vgarodia@quicinc.com>,
- Dikshita Agarwal <quic_dikshita@quicinc.com>,
- Abhinav Kumar <abhinav.kumar@linux.dev>,
- Bryan O'Donoghue <bryan.odonoghue@linaro.org>,
- Mauro Carvalho Chehab <mchehab@kernel.org>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>
-Cc: linux-media@vger.kernel.org, linux-arm-msm@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <20250627-video_cb-v3-0-51e18c0ffbce@quicinc.com>
- <20250627-video_cb-v3-1-51e18c0ffbce@quicinc.com>
- <19dd2e69-ad13-46f2-b99f-04a5e26f10d3@kernel.org>
- <08c8cdfd-099e-7b90-b163-23ecee3a5da4@quicinc.com>
-From: Krzysztof Kozlowski <krzk@kernel.org>
+Subject: Re: [PATCH net-next v12 08/14] dpll: zl3073x: Read DPLL types and pin
+ properties from system firmware
+To: Jiri Pirko <jiri@resnulli.us>
+Cc: netdev@vger.kernel.org, Vadim Fedorenko <vadim.fedorenko@linux.dev>,
+ Arkadiusz Kubalewski <arkadiusz.kubalewski@intel.com>,
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>,
+ Prathosh Satish <Prathosh.Satish@microchip.com>,
+ "David S. Miller" <davem@davemloft.net>, Eric Dumazet <edumazet@google.com>,
+ Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
+ Simon Horman <horms@kernel.org>, Jonathan Corbet <corbet@lwn.net>,
+ Jason Gunthorpe <jgg@ziepe.ca>, Shannon Nelson <shannon.nelson@amd.com>,
+ Dave Jiang <dave.jiang@intel.com>,
+ Jonathan Cameron <Jonathan.Cameron@huawei.com>, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, linux-doc@vger.kernel.org,
+ Michal Schmidt <mschmidt@redhat.com>, Petr Oros <poros@redhat.com>
+References: <20250629191049.64398-1-ivecera@redhat.com>
+ <20250629191049.64398-9-ivecera@redhat.com>
+ <vpzjeh5kc6s4cpah5wagdy6sm3rzt6vlfyfcdbenppwnzftzow@u4xu7mhzg77u>
 Content-Language: en-US
-Autocrypt: addr=krzk@kernel.org; keydata=
- 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 a/A=
-In-Reply-To: <08c8cdfd-099e-7b90-b163-23ecee3a5da4@quicinc.com>
-Content-Type: text/plain; charset=UTF-8
+From: Ivan Vecera <ivecera@redhat.com>
+In-Reply-To: <vpzjeh5kc6s4cpah5wagdy6sm3rzt6vlfyfcdbenppwnzftzow@u4xu7mhzg77u>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
+X-Scanned-By: MIMEDefang 3.4.1 on 10.30.177.4
 
-On 02/07/2025 13:32, Vikash Garodia wrote:
+On 02. 07. 25 12:41 odp., Jiri Pirko wrote:
+> Sun, Jun 29, 2025 at 09:10:43PM +0200, ivecera@redhat.com wrote:
 > 
-> On 7/2/2025 4:43 PM, Krzysztof Kozlowski wrote:
->> On 27/06/2025 17:48, Vikash Garodia wrote:
->>> Existing definition limits the IOVA to an addressable range of 4GiB, and
->>> even within that range, some of the space is used by IO registers,
->>> thereby limiting the available IOVA to even lesser. Video hardware is
->>> designed to emit different stream-ID for pixel and non-pixel buffers,
->>> thereby introduce a non-pixel sub node to handle non-pixel stream-ID.
->>>
->>> With this, both iris and non-pixel device can have IOVA range of 0-4GiB
->>> individually. Certain video usecases like higher video concurrency needs
->>> IOVA higher than 4GiB.
->>>
->>> Add reference to the reserve-memory schema, which defines reserved IOVA
->>
->> No. That schema is always selected. This makes no sense at all.
-> I could not get this, are you suggesting to drop this reference ?
-
-What does the schema says?
-
-  7 title: /reserved-memory Child Node Common
-
-
-Is this the binding for reserved-memory node? Not sure, your subject
-does not have proper prefix, but diff suggested that not.
-
-Maybe I missed something.
-
-
->>
->>> regions that are *excluded* from addressable range. Video hardware
->>> generates different stream IDs based on the predefined range of IOVA
->>> addresses. Thereby IOVA addresses for firmware and data buffers need to
->>> be non overlapping. For ex. 0x0-0x25800000 address range is reserved for
->>> firmware stream-ID, while non-pixel (bitstream) stream-ID can be
->>> generated by hardware only when bitstream buffers IOVA address is from
->>> 0x25800000-0xe0000000.
->>> Non-pixel stream-ID can now be part of the new sub-node, hence iommus in
->>> iris node can have either 1 entry for pixel stream-id or 2 entries for
->>> pixel and non-pixel stream-ids.
->>>
->>> Signed-off-by: Vikash Garodia <quic_vgarodia@quicinc.com>
->>> ---
->>>  .../bindings/media/qcom,sm8550-iris.yaml           | 40 ++++++++++++++++++++--
->>>  1 file changed, 38 insertions(+), 2 deletions(-)
->>>
->>> diff --git a/Documentation/devicetree/bindings/media/qcom,sm8550-iris.yaml b/Documentation/devicetree/bindings/media/qcom,sm8550-iris.yaml
->>> index c79bf2101812d83b99704f38b7348a9f728dff44..4dda2c9ca1293baa7aee3b9ee10aff38d280fe05 100644
->>> --- a/Documentation/devicetree/bindings/media/qcom,sm8550-iris.yaml
->>> +++ b/Documentation/devicetree/bindings/media/qcom,sm8550-iris.yaml
->>> @@ -65,10 +65,31 @@ properties:
->>>        - const: core
->>>  
->>>    iommus:
->>> +    minItems: 1
->>>      maxItems: 2
->>
->> No, why hardware suddenly has different amount?
-> Its not about hardware started to have a new stream-ID. You can look for the
-> description in the commit which explains the need for a new device and hence the
-> split of stream-IDs in iris device OR non-pixel device.
-
-But this is not a new device! This is sm8550. Existing device.
-
->>
->>>  
->>>    dma-coherent: true
->>>  
->>> +  non-pixel:
->>
->> Why EXISTING hardware grows?
-> Same here, the commit describes the limitation of existing design and also
-> explains the need for having the non-pixel device. Its not that the hardware is
-> growing here, rather the hardware stream-IDs are utilized differently to get
-> higher device addressable range.
-
-You are not doing this for a new device. There is no new device here at
-all. Nowhere here is a new device.
-
-Changes for a new device COME TOGETHER with the new device.
-
-What you are doing here is changing existing hardware without any
-explanation why.
-
->>
->>> +    type: object
->>> +    additionalProperties: false
->>> +
->>> +    description:
->>> +      Non pixel context bank is needed when video hardware have distinct iommus
->>> +      for non pixel buffers. Non pixel buffers are mainly compressed and
->>> +      internal buffers.
->>> +
->>> +    properties:
->>> +      iommus:
->>> +        maxItems: 1
->>> +
->>> +      memory-region:
->>> +        maxItems: 1
->>> +
->>> +    required:
->>> +      - iommus
->>> +      - memory-region
->>> +
->>>    operating-points-v2: true
->>>  
->>>    opp-table:
->>> @@ -86,6 +107,7 @@ required:
->>>  
->>>  allOf:
->>>    - $ref: qcom,venus-common.yaml#
->>> +  - $ref: /schemas/reserved-memory/reserved-memory.yaml
->>
->> This makes no sense. how is this device a reserved memory?
-> Again, explained the "excluded" portion from IOVA part in commit description.
-> For such excluded region, reserved memory would be needed. I have followed the
-> adsp example in the reserved-memory schema[1], its same for iris.
+> [...]
 > 
-> [1]
-> https://github.com/devicetree-org/dt-schema/blame/main/dtschema/schemas/reserved-memory/reserved-memory.yaml
+> 
+>> +/**
+>> + * zl3073x_prop_dpll_type_get - get DPLL channel type
+>> + * @zldev: pointer to zl3073x device
+>> + * @index: DPLL channel index
+>> + *
+>> + * Return: DPLL type for given DPLL channel
+>> + */
+>> +enum dpll_type
+>> +zl3073x_prop_dpll_type_get(struct zl3073x_dev *zldev, u8 index)
+>> +{
+>> +	const char *types[ZL3073X_MAX_CHANNELS];
+>> +	int count;
+>> +
+>> +	/* Read dpll types property from firmware */
+>> +	count = device_property_read_string_array(zldev->dev, "dpll-types",
+>> +						  types, ARRAY_SIZE(types));
+>> +
+>> +	/* Return default if property or entry for given channel is missing */
+>> +	if (index >= count)
+>> +		return DPLL_TYPE_PPS;
+> 
+> Not sure how this embedded stuff works, but isn't better to just bail
+> out in case this is not present/unknown_value? Why assuming PPS is
+> correct?
 
-Read the title there.
+Per discussion with Microchip, the PPS should be reported as default.
+The platform can define either via DT or APCI or software_node the
+values for the DPLLs. Anyway this attribute is informational.
 
+>> +
+>> +	if (!strcmp(types[index], "pps"))
+>> +		return DPLL_TYPE_PPS;
+>> +	else if (!strcmp(types[index], "eec"))
+>> +		return DPLL_TYPE_EEC;
+>> +
+>> +	dev_info(zldev->dev, "Unknown DPLL type '%s', using default\n",
+>> +		 types[index]);
+>> +
+>> +	return DPLL_TYPE_PPS; /* Default */
+>> +}
+> 
+> [...]
+> 
 
->>
->>>    - if:
->>>        properties:
->>>          compatible:
->>> @@ -117,6 +139,16 @@ examples:
->>>      #include <dt-bindings/power/qcom-rpmpd.h>
->>>      #include <dt-bindings/power/qcom,rpmhpd.h>
->>>  
->>> +    reserved-memory {
->>> +      #address-cells = <2>;
->>> +      #size-cells = <2>;
->>
->> Why do you need this?
-> Was planning to drop this, as the reserved-memory region have it defined.
->>
->>> +
->>> +      iris_resv: reservation-iris {
->>
->> Mixing MMIO and non-MMIO is not the way to go. This is also not relevant
->> here. Don't embed other things into your binding example.
->>
->>
->>> +        iommu-addresses = <&iris_non_pixel 0x0 0x0 0x0 0x25800000>,
->>> +                          <&iris_non_pixel 0x0 0xe0000000 0x0 0x20000000>;
->>> +      };
->>> +    };
->>> +
->>>      video-codec@aa00000 {
->>>          compatible = "qcom,sm8550-iris";
->>>          reg = <0x0aa00000 0xf0000>;
->>> @@ -144,12 +176,16 @@ examples:
->>>          resets = <&gcc GCC_VIDEO_AXI0_CLK_ARES>;
->>>          reset-names = "bus";
->>>  
->>> -        iommus = <&apps_smmu 0x1940 0x0000>,
->>> -                 <&apps_smmu 0x1947 0x0000>;
->>> +        iommus = <&apps_smmu 0x1947 0x0000>;
->>
->> Why did the device or hardware change? Nothing explains in commit msg
->> what is wrong with existing device and existing binding.
-> Same query here, the commit well explains the limitation with existing device
-> and how adding a new sub node mitigates the situation.
-
-I read it and still do not get what is wrong with existing device. Which
-hardware emits different stream-ID? How does it affect users? How can I
-reproduce the problem?
-
-Remember, that you are now affecting ABI.
-
-Best regards,
-Krzysztof
 
