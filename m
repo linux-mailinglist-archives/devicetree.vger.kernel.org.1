@@ -1,240 +1,273 @@
-Return-Path: <devicetree+bounces-191838-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-191839-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id B3B6DAF0A25
-	for <lists+devicetree@lfdr.de>; Wed,  2 Jul 2025 07:05:44 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id DFC7CAF0A34
+	for <lists+devicetree@lfdr.de>; Wed,  2 Jul 2025 07:12:51 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id E7FEF4E329E
-	for <lists+devicetree@lfdr.de>; Wed,  2 Jul 2025 05:05:44 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 123EF4A7CA3
+	for <lists+devicetree@lfdr.de>; Wed,  2 Jul 2025 05:12:52 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 69E7C1DF97F;
-	Wed,  2 Jul 2025 05:05:14 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 224C31F30BB;
+	Wed,  2 Jul 2025 05:12:47 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b="J3Aam3wD"
+	dkim=pass (2048-bit key) header.d=ventanamicro.com header.i=@ventanamicro.com header.b="YyKniiLV"
 X-Original-To: devicetree@vger.kernel.org
-Received: from DUZPR83CU001.outbound.protection.outlook.com (mail-northeuropeazon11012009.outbound.protection.outlook.com [52.101.66.9])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-lf1-f44.google.com (mail-lf1-f44.google.com [209.85.167.44])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E0B941CAA7D;
-	Wed,  2 Jul 2025 05:05:11 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=52.101.66.9
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1751432714; cv=fail; b=uC++RmB/idYux4W0llaQGFRY3O8n0BGKaYeFxf16HcQQlKuW4ciRcxQQSpodd0b0iNoh5sWrJrPrzQvJqEKaN/46dvwhP2R6KLOrg0eLnXrzsLZ7cGtKpeBioGGRBiG3UjcaoWP1GMdohhws35HcE4GiQGinN6QcbMQAbf38zvk=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1751432714; c=relaxed/simple;
-	bh=PPmB7FA5LjlN+Pr4D/W1/bdGBcyzFuAcUGqqaXsPask=;
-	h=From:To:CC:Subject:Date:Message-ID:References:In-Reply-To:
-	 Content-Type:MIME-Version; b=aO6iXz6f9m7wnO39uMA8yOIXMMOtKBNNVnImcB/hRc6Z7lAuKOxyKALjGpCY+4DlS+ZSmy9clC92W1lA2BT/Y+70GYvY6YWxinF+PpqK8Nzv6NMj1Wn9KbbSWvSvaLhrGvSwXUxRJO2PY/1bqjN+1q1H3Js/L0BcsYaGb6JMqV4=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com; spf=pass smtp.mailfrom=nxp.com; dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b=J3Aam3wD; arc=fail smtp.client-ip=52.101.66.9
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=nxp.com
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=yWdCzG91fg+XJ7a1hP2EdWYCkBLEatCFDrBn7D8hOoVqQ/iYiW2B5Yj9hOBe2dE+mc+nX7tHch/TPo69VM9H1OdXx25j3QclNhMYY/uHCwImQKEiThhq7U4d7c6pwFeB8bsfavzLkDS341QM3VAVXtd6k1J1i1xhILyuWDS2vTm7LWGjJGZo6CAeJzwRooGGrd4uWuV3eYs1MDnGJ2J8ENXmwsorNjBxUFTT3jSqVsFSnoFEX2qioKDXgsOg75xO5skZGNug01b2Oeo3ZsxwmVWzNBQ1ycOMGCtAnEhtdlj/27M8iipQenHgqzzJYFBZ0V06dGEZKa2BVc/tROMq3g==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=AozRedXttuAw6Ii7WS3iXiM0AACkjH7pThEXHPhrxaM=;
- b=dXcfYxiYpxVg6OYVjwtBCUhCemBZ0M63m+Wzl7DVY8D1MN0mTtiWy68TgQRVyZzrZRgRADoRK48HI4n20f65ikrr5dNqAapi+rqXknOWkpti2RTC7sPs7KGpLTyAVP1Xa5LSjmp+nuwp2xymfjUKPEItqaMFGmnM52tsvpqQcoRxluqT5VyCyFto3qvfAE2AU73blcCEO8hriZQasVJgSlRCI2A+L69vFnYgMYX8Wtv6vjl8PH63kcp31zajMCdkpk+N6GaE9rTv+G1siQ+BuNhqwNGrQ/IPLRqKGZBEbQRoekMElCaZoSRVzyKF3Sz7Q/zRs0idqlVFluRtUmnisw==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
- header.d=nxp.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=AozRedXttuAw6Ii7WS3iXiM0AACkjH7pThEXHPhrxaM=;
- b=J3Aam3wDbkwlWmRjbplN5qf+PHDOi5CN2/prz7n8WRtjoCtimHi/sNaePBLiyqSAsU/Q+XErI7mdQyKbNcCWtoJGM3hc6GahhvVUq8NrQTVDJDERCSETGqdxI1xgD1epgUexHWmZjXGn2tgRDhhXEiajmqFzLkSJaz65rFPP6WTilCkY00MBebdugpPl39HzMAeYj5uqfMoVTAlyVo/08FkBAhYHYZdnCkrh6Pb2HadojnwNKK/hjApb3Gsb9NxPZ587XDXHzE5axCcrGFUJzOwwmv9EoiPUL6qtXjeqHXo6vt1v2tr0MlpHp+mMnbR08Dl//fPLxGdqIQ1laXgJrA==
-Received: from DB9PR04MB8429.eurprd04.prod.outlook.com (2603:10a6:10:242::19)
- by VI1PR04MB6925.eurprd04.prod.outlook.com (2603:10a6:803:135::11) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8901.20; Wed, 2 Jul
- 2025 05:05:08 +0000
-Received: from DB9PR04MB8429.eurprd04.prod.outlook.com
- ([fe80::2edf:edc4:794f:4e37]) by DB9PR04MB8429.eurprd04.prod.outlook.com
- ([fe80::2edf:edc4:794f:4e37%3]) with mapi id 15.20.8880.024; Wed, 2 Jul 2025
- 05:05:08 +0000
-From: Sherry Sun <sherry.sun@nxp.com>
-To: Frank Li <frank.li@nxp.com>
-CC: "robh@kernel.org" <robh@kernel.org>, "krzk+dt@kernel.org"
-	<krzk+dt@kernel.org>, "conor+dt@kernel.org" <conor+dt@kernel.org>,
-	"shawnguo@kernel.org" <shawnguo@kernel.org>, "s.hauer@pengutronix.de"
-	<s.hauer@pengutronix.de>, "festevam@gmail.com" <festevam@gmail.com>, Jacky
- Bai <ping.bai@nxp.com>, Bough Chen <haibo.chen@nxp.com>,
-	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-	"imx@lists.linux.dev" <imx@lists.linux.dev>,
-	"linux-arm-kernel@lists.infradead.org"
-	<linux-arm-kernel@lists.infradead.org>, "linux-kernel@vger.kernel.org"
-	<linux-kernel@vger.kernel.org>, "kernel@pengutronix.de"
-	<kernel@pengutronix.de>
-Subject: RE: [PATCH] arm64: dts: imx94: add missing clock related properties
- to flexcan1
-Thread-Topic: [PATCH] arm64: dts: imx94: add missing clock related properties
- to flexcan1
-Thread-Index: AQHb6v1tQXlZDafmKECCkIIFRF6J5rQeMTOAgAAWbeA=
-Date: Wed, 2 Jul 2025 05:05:08 +0000
-Message-ID:
- <DB9PR04MB84296DB3F0A5661FE9372E7A9240A@DB9PR04MB8429.eurprd04.prod.outlook.com>
-References: <20250702025911.2457322-1-sherry.sun@nxp.com>
- <aGSq7TZlkoqIkQMT@lizhi-Precision-Tower-5810>
-In-Reply-To: <aGSq7TZlkoqIkQMT@lizhi-Precision-Tower-5810>
-Accept-Language: zh-CN, en-US
-Content-Language: en-US
-X-MS-Has-Attach:
-X-MS-TNEF-Correlator:
-authentication-results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=nxp.com;
-x-ms-publictraffictype: Email
-x-ms-traffictypediagnostic: DB9PR04MB8429:EE_|VI1PR04MB6925:EE_
-x-ms-office365-filtering-correlation-id: d2d3ad1c-3650-4c5e-74aa-08ddb9260427
-x-ms-exchange-senderadcheck: 1
-x-ms-exchange-antispam-relay: 0
-x-microsoft-antispam:
- BCL:0;ARA:13230040|7416014|376014|1800799024|366016|19092799006|38070700018|7053199007;
-x-microsoft-antispam-message-info:
- =?us-ascii?Q?Xw/H+Rcqaw5R9PWPyBDOwlDfc9UnLQRwzxsg+RmP+R4Bd7RRepxiy1P7pEJO?=
- =?us-ascii?Q?DF9Go5WdZ7g1/aiDhiKWgjNYvKkV8C3NY9RV9kZcZMH1ytZ/b68dTArsOchQ?=
- =?us-ascii?Q?i+mnkYSNNEotito/qNAGdIB/8RAhmcU8hesDSZk3cMHyKSLZ0QhWRLZwYr7J?=
- =?us-ascii?Q?vyuo6XUyw58sfBwtj2Tp/bvMVzmpHgdkTm0Dux2q2V2ekOpXQHpU+i7dSjjo?=
- =?us-ascii?Q?/6mwSqbM9n+kqkR4UZWena2wSymXf7tSeK3Gma6rmFqVM2GufK+IZCso+SCj?=
- =?us-ascii?Q?VaqlH73RsEjS00RuWmZx2tzzQEHoT7robqiaAT2uPe8LymMdk8If53tIoI4j?=
- =?us-ascii?Q?k3Pu7WJztKPuoZvWUFm7eYxGiVx7SGoSFAGLCmHJGl4BS/wHYJlEMF2N8xPq?=
- =?us-ascii?Q?wK0BwdRfSj+nXumsToIDIwp1IYTM+oge+NAXFQjpHrL9McREZqcrZ5hhrYHy?=
- =?us-ascii?Q?WEaRKS3A5v31M+NzrHDJ1G3w9qTvRwWauYLLR7Q3NWLOHBkY6xkck2vCApRB?=
- =?us-ascii?Q?mQNoFrcvqXV7rRG4HqGPhnlZUwvLiH4X4Qa3IUTYSDagnLjO7w2h5m1BIcgN?=
- =?us-ascii?Q?o1RXDzkShsgPM9DfNHoeCzB98PqrN3c/suEs9XM0e32hVF43UuovJ+4Dj05Q?=
- =?us-ascii?Q?6kJtvM2w5xR1+3OPXXRFFlcmKWWcjbW3EhJN8muD3rKZO0oAgIoTFyBftQFa?=
- =?us-ascii?Q?jEFu/6LZr/BpzbuYccIyphWPGZkKLAXiM6e51yJpcqPt1C7o1qvfGASu7ARc?=
- =?us-ascii?Q?+F0jU4VX0B18KLoPjMvmuPMeIkWJZoOnBg/CHnNNvtncrMmRcgrv0BagM5YP?=
- =?us-ascii?Q?TuTdX1X7qLm1TqWdwidBlpgTY5e+KM913upKNQ0/AywugSrpHqzThOsf+gsw?=
- =?us-ascii?Q?Dcfvue1SihVN6bDjEWVdCkfQcOhJ7g2Php3SyJsLVf5bDeBywxrdzZLvm3Xm?=
- =?us-ascii?Q?h3A+SOk8FVrYfBWwNI45evv9mIZFoF2J5LlJStsY2DV7DoxAXsllaGamfWVO?=
- =?us-ascii?Q?NY9+D7Tz9U6q+YG0Zj5oTOkn90HUUIF2ne6l47N7Y4fVmDMe1cSqYVm0ZMYl?=
- =?us-ascii?Q?cIZDTM5cJr69gfyZEuBBLKBWL0/D9Vmr2PMamidSvl256CD2/dTfnvCYezwz?=
- =?us-ascii?Q?nP6f/EjYuWsdy8zRjOVIzsLYj7VblDCpdwptoRDXFaoi0mZmNBd9vx6wpy1a?=
- =?us-ascii?Q?5SN7M0A+wv6QgAPAj4ACNQPCDUJl9zZ44MEm0mw6RvxRezh2HNDCHgddjfyR?=
- =?us-ascii?Q?EOYJ/GE82zRX9V6JMhxGK+d3RIOlcB7Ji95PZ1wynOprmuB/+DjW/dBBW6Mw?=
- =?us-ascii?Q?1YkRh5u+xVq7rIQbm8wa1SZR7N4klBeIA4J831GhHeq6WrOU58J/hRab0g+A?=
- =?us-ascii?Q?2Qi1kaB2rBPybBKdQw+Mu7skLGrB0zPRjX23dOXATkew2xabuX94Cti+qT7/?=
- =?us-ascii?Q?BsMSy+M71869R9GNRBOMHOkn1hQYJs/cyhf78NNdWiR3FKm8fNL8uIGgVnRg?=
- =?us-ascii?Q?UzK8A6d2LeEWXvo=3D?=
-x-forefront-antispam-report:
- CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:DB9PR04MB8429.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(7416014)(376014)(1800799024)(366016)(19092799006)(38070700018)(7053199007);DIR:OUT;SFP:1101;
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0:
- =?us-ascii?Q?BTRt/LfT7F3Fi5v85SL6DabOWLK0XVGCa/HPrfbrELuAlt8O0TM9g83AvsbH?=
- =?us-ascii?Q?O0sJGt0dt9hmJ7aYGJpJkMBhf3+G3uU8hhoJR/2jpsj7CkiN9iB2reCDkr2l?=
- =?us-ascii?Q?mQ+tlGRNW1I4aTZqPb/LhrJt2w9bUOaD+TEh7nKVXXj7kOkghQRI8y6Zp4Ja?=
- =?us-ascii?Q?dQ0NynUQ9VWQ2rp6ovPcjueRIrmWAKTBhHGcVxQ+MFQ9tFf6+1jwQi6woozN?=
- =?us-ascii?Q?P84yrNWES+p/BEG14glL0TwEtRH5hudNk+wXaTOWJuOsyZUb6NC2duHfQW4f?=
- =?us-ascii?Q?zFDoIrvXhCnoLGyXDXDUQiexD8UXzumFYWLfdQTn2XJ39eCoIRS13UhvYIhw?=
- =?us-ascii?Q?eytrv6QRSpLljza3VTj9pxwzKTbQGMjO8QbyH+LmnkNNJN6GYUuSkThTHxHw?=
- =?us-ascii?Q?F4GDG+H4jS/L1Vb6G7apWzgFy+X6ytb5cmYELmPXd4ffwMyRXQrA1En2ZeY1?=
- =?us-ascii?Q?48FclW7Iy7R4SIvAFFfLZdinjtG9Azb6+r8/o9lUJ+CBnEfSJkgJvNOpkkkx?=
- =?us-ascii?Q?0VvZ9VSsGGY8WcZ+y6v5eIvIP5ZRCG8iGc6cxUkDMWSTHdTtg+D3UQRhGEJn?=
- =?us-ascii?Q?P3dpBWFkjt8yM37jL1EXZwjpZkQoB84sFvOsuqhkfgclN/VvWBNUzrJHJ8Ix?=
- =?us-ascii?Q?PzvK1Yt/KmmitbTVLBmqplziR6nhNJ7o5ro6Tz0vbznjnSc5tp2Y2iZFFsvP?=
- =?us-ascii?Q?qS0AdWfsBDK1HHTgDnUN6J78DhTJwLajUkyXW7VxBP2ETFSud5YNSuRQkeno?=
- =?us-ascii?Q?fDzmFISMtyGa3/vULVTLGUad30yAbVAi6CWmm1ny4wnnUmuA9INC/E+R/BhU?=
- =?us-ascii?Q?RQ6ph8+BCr15y4yQCt78xqdVIA8cm3iTx/XGxtjtxm8+UbZcGDTg+mRSGI0V?=
- =?us-ascii?Q?Z2BCjkp6tjXbn2FsUZHzZ+deflHjWoCMYiPqsAkoWgrdayeU7xH9pSx1ohLl?=
- =?us-ascii?Q?xoUW5UcDd50brCU2MTNBtSsPdishQ2wlNhnKCjOQpb9FHiZxFmUoie793Wzc?=
- =?us-ascii?Q?ptbyJfgzI7SyScV5aoz2KUCv4TqdGeRiviKoBr+ybTUwiAyBcWFqoYyLC4O6?=
- =?us-ascii?Q?hT76NaDB8b+KB5UkOGGFCLv45MFzbOslj0d2mw9qa20s6u7EEUNguYZjqSYh?=
- =?us-ascii?Q?onyYfxcBHxdJTZnIdQlUdxVQ7oKEm39Y9iWsNPqnw+wnG0UCS8in/BwH8m+E?=
- =?us-ascii?Q?4ou1dVUwy0J6VItpYffGsHsx9SLGdjPwaHR/3vjzfArv5oC9boG2S0O/sLTr?=
- =?us-ascii?Q?WMHr+njIOkB7MvXtJzJkNluLQLXNLpOgfrrkRfCUjyHxKCxl2BF+PXpvBBSi?=
- =?us-ascii?Q?PCXBHC/iZIEb0sJtpvMl1beOoQ6U+kM1anDohQn6yMgeQt8CXSuFqOxIB/SD?=
- =?us-ascii?Q?DNAvj/x75bvSkewDH1wlq4PWrGyqPRAwsKoarFq4X3Y/JfomjKyPagcELiaV?=
- =?us-ascii?Q?pRdqcAoUPgJYJA/zXXvvGY7ORO7zvZe8s9eZlkK6lpJi5I9Uf7XcN7XfFfly?=
- =?us-ascii?Q?44Fwe/OdgMXfEsp+eznTWmZjFNyF9QnQHDhHR0Fm1/oLs97+sKJR0UNW8kua?=
- =?us-ascii?Q?iRSYPvaPNY6pofUUW8M=3D?=
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 062471F237E
+	for <devicetree@vger.kernel.org>; Wed,  2 Jul 2025 05:12:44 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.44
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1751433167; cv=none; b=PTvxzJn9g9tRGA5/RGCEknP19MjdsElsPwqGKD4eW3rNV+i0ecnvf+IPwp8zwEEz69VxxTtSbBELDDvRjpQ74q7AEYnn5sA7G1klC0sDQbodTQNOjYJLfJdpprbiRba7ffXvEebs3n5TikQAMmgGckZqmi5sXbQnCdApf6DSTMM=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1751433167; c=relaxed/simple;
+	bh=8joN0LJaVDQo10RWLcdBh1pnMQwFO9WgLer/ZxCUWzw=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=C0cZU820tXlXRMknYVyZ9Eg3jojH1Q1eT3Fp0Z4npQPZtvr5/19WmxlP7Rg5JHxW0My6Jm/UMg7uLaUjdncUzTOGx/BZbsRTWNlIa6hIMaG17uA0zNzFfgAUO233BS2hiYFLkzEEo16jt/35uVe25XPHIjmAJ18wsVEkREyIYBk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ventanamicro.com; spf=pass smtp.mailfrom=ventanamicro.com; dkim=pass (2048-bit key) header.d=ventanamicro.com header.i=@ventanamicro.com header.b=YyKniiLV; arc=none smtp.client-ip=209.85.167.44
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ventanamicro.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ventanamicro.com
+Received: by mail-lf1-f44.google.com with SMTP id 2adb3069b0e04-553dceb342fso5830298e87.0
+        for <devicetree@vger.kernel.org>; Tue, 01 Jul 2025 22:12:44 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=ventanamicro.com; s=google; t=1751433163; x=1752037963; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=3QcssW5aPUXiwFCK6L0jNYXP8OcK0Ow1AwcYh0ozcCo=;
+        b=YyKniiLV6eBXt/y5x1AOWoIdyUkYxzXBnf+9dy0g9hTOXHyEwBH1zF16dFf4BXXexO
+         82P/PQWPPm/Q2oMhydqFn34MrTk3scnqMoFNdQqXXImojNZRuYqbv6PNL0OjU9EsUWSU
+         36rBgdixMfeuqdycBMdAiBjSnCub/Hmf0JkjV25b5SEyLWUDz/2RJddIs9vWdtNw7x5Y
+         Qc2uKpFo4OPKAiOTkDvBHrw/9DqIe0Vz/P+Zi+tyE2dsRr8tpPjJt/3e/5g5xQmH9WAI
+         LNeYtfejnYSUqIGlTVRuhX6OxcApAT6idWOkj51yS4UF5fLcdT4XfeogI7PSDHk7jXYa
+         x1mQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1751433163; x=1752037963;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=3QcssW5aPUXiwFCK6L0jNYXP8OcK0Ow1AwcYh0ozcCo=;
+        b=f4nx0+tPcHfwdgbwsyY/E+Az79ojNf2G/A0DskuzqKAEAOtyfq72ErQmvsrfYqy3DH
+         t8Gtv9slEF3HUuL5yGyyNfHnj/94NnUnG6aZEcWG7RXusOvfYpsPfYfNb9gzv0jx5Vub
+         hWUhq4DjeFc6iYrdxGIAgkRvJEpXhXqCATEQrjtYqDgSJoYdmUBBXpKRzgnt7oT1LiwL
+         k+e7gxSxJSluTNkptzoT46HeDH7hEZfYN0d/y6n/x3og66Dg6s7kyf3a8MF0o4KVWRoQ
+         Z2ZgGpgEoySSJusH4ragek0yWEJOmKQUmnQnF8PI07+bBk7TetkBajvRxIGw0xzf767C
+         3N3A==
+X-Forwarded-Encrypted: i=1; AJvYcCXs4XX69i3s7oGvHDjcP/kw/kxuVUEbOVEgx2n59a5qZ+A4pd0CsPNZd/iggmbs+XVTPfnnryjI4fzK@vger.kernel.org
+X-Gm-Message-State: AOJu0YzB/pzitXH/JrmnOToGb5hubrafv8gT5hwhZhiO3EVOutu2s1cK
+	Z5bvd9SMfTl4iQngiAs09bWdil6QcKLFRfquTZijzKIACg+CSh+w6iCBTGHI67z18u4sYkeawOy
+	ZVx72O5bS5D/pVOZqsgdxsneR6PlHwtAkixt4XrMIZw==
+X-Gm-Gg: ASbGncu8K5wZQPnMbJ6JbwICzEOjEK5ho/zefSN9IyLie4Ueu+zP+9CSiLSqYaMuXHP
+	HVkmV9JN6E5/Wkk21kevqcvJrMNMCIxAhw0NfumvsL7JC738846Wq7kEce1ZJ5R4mF+Myhk721c
+	tXoUa97vDSuzlI8NhbV8zW9A+YOE24zHNY7UtrC2eXlg==
+X-Google-Smtp-Source: AGHT+IHnMwkcE019cehQGVZuZ2PCc2mXaZWfa5Vu4PPJs8TwzfcwxSziD3rK0AJBRgR42ABbfp9UlrabtH6IyI6G4xc=
+X-Received: by 2002:a05:6512:1149:b0:553:2a16:2513 with SMTP id
+ 2adb3069b0e04-5562834d984mr520094e87.47.1751433162994; Tue, 01 Jul 2025
+ 22:12:42 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-OriginatorOrg: nxp.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: DB9PR04MB8429.eurprd04.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: d2d3ad1c-3650-4c5e-74aa-08ddb9260427
-X-MS-Exchange-CrossTenant-originalarrivaltime: 02 Jul 2025 05:05:08.5651
- (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: 7t3WW1UZRFTYrN5VyAqFbnWfV1IPtC25MVuqS8nZ/U1qcRWpube1krtWEhhc5pkOwnStRWOWyaCQ+CHOYAGO9Q==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: VI1PR04MB6925
+References: <20250618121358.503781-1-apatel@ventanamicro.com> <CABb+yY1UAwQiLCFY0Om1wsG+Hf_MobLfrEMx8JVdvoehVZ-g0A@mail.gmail.com>
+In-Reply-To: <CABb+yY1UAwQiLCFY0Om1wsG+Hf_MobLfrEMx8JVdvoehVZ-g0A@mail.gmail.com>
+From: Anup Patel <apatel@ventanamicro.com>
+Date: Wed, 2 Jul 2025 10:42:30 +0530
+X-Gm-Features: Ac12FXw2Suv7g_fgLu8mKqGnO_4g0j4o5PKhZ4nu9THoUoVNJahAiAcKL0Xp8_U
+Message-ID: <CAK9=C2Uk9D6ZBJTq7xQ1ztjx5Z29aHmU5nu+JteK=i80=4LOFQ@mail.gmail.com>
+Subject: Re: [PATCH v6 00/23] Linux SBI MPXY and RPMI drivers
+To: Jassi Brar <jassisinghbrar@gmail.com>
+Cc: Michael Turquette <mturquette@baylibre.com>, Stephen Boyd <sboyd@kernel.org>, 
+	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Thomas Gleixner <tglx@linutronix.de>, "Rafael J . Wysocki" <rafael@kernel.org>, 
+	Mika Westerberg <mika.westerberg@linux.intel.com>, 
+	Andy Shevchenko <andriy.shevchenko@linux.intel.com>, 
+	Linus Walleij <linus.walleij@linaro.org>, Bartosz Golaszewski <brgl@bgdev.pl>, 
+	=?UTF-8?Q?Uwe_Kleine=2DK=C3=B6nig?= <ukleinek@kernel.org>, 
+	Palmer Dabbelt <palmer@dabbelt.com>, Paul Walmsley <paul.walmsley@sifive.com>, 
+	Len Brown <lenb@kernel.org>, Sunil V L <sunilvl@ventanamicro.com>, 
+	Rahul Pathak <rpathak@ventanamicro.com>, Leyfoon Tan <leyfoon.tan@starfivetech.com>, 
+	Atish Patra <atish.patra@linux.dev>, Andrew Jones <ajones@ventanamicro.com>, 
+	Samuel Holland <samuel.holland@sifive.com>, Anup Patel <anup@brainfault.org>, 
+	linux-clk@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-riscv@lists.infradead.org, linux-kernel@vger.kernel.org, 
+	Alexandre Ghiti <alex@ghiti.fr>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
+Hi Jassi,
 
-
-> -----Original Message-----
-> From: Frank Li <frank.li@nxp.com>
-> Sent: Wednesday, July 2, 2025 11:44 AM
-> To: Sherry Sun <sherry.sun@nxp.com>
-> Cc: robh@kernel.org; krzk+dt@kernel.org; conor+dt@kernel.org;
-> shawnguo@kernel.org; s.hauer@pengutronix.de; festevam@gmail.com;
-> Jacky Bai <ping.bai@nxp.com>; Bough Chen <haibo.chen@nxp.com>;
-> devicetree@vger.kernel.org; imx@lists.linux.dev; linux-arm-
-> kernel@lists.infradead.org; linux-kernel@vger.kernel.org;
-> kernel@pengutronix.de
-> Subject: Re: [PATCH] arm64: dts: imx94: add missing clock related propert=
-ies
-> to flexcan1
->=20
-> On Wed, Jul 02, 2025 at 10:59:11AM +0800, Sherry Sun wrote:
-> > Somehow the flexcan1 clock related properties were missing in
-> > imx94.dtsi, add them here to keep align with other flexcan instances.
->=20
-> suggested commit message:
->=20
-> Add missing clocks and clock-names properties for flexcan1 in imx94.dtsi =
-to
-> align with other FlexCAN instances.
-
-Thanks, will improve this in V2.
-
-Best Regards
-Sherry
-
->=20
-> Frank
->=20
+On Sun, Jun 22, 2025 at 9:56=E2=80=AFPM Jassi Brar <jassisinghbrar@gmail.co=
+m> wrote:
+>
+> On Wed, Jun 18, 2025 at 7:14=E2=80=AFAM Anup Patel <apatel@ventanamicro.c=
+om> wrote:
 > >
-> > Fixes: b0d011d4841b ("arm64: dts: freescale: Add basic dtsi for
-> > imx943")
-> > Signed-off-by: Sherry Sun <sherry.sun@nxp.com>
-> > ---
-> >  arch/arm64/boot/dts/freescale/imx94.dtsi | 7 +++++++
-> >  1 file changed, 7 insertions(+)
+> > The SBI v3.0 (MPXY extension) [1] and RPMI v1.0 [2] specifications
+> > are frozen and in public review at the RISC-V International.
 > >
-> > diff --git a/arch/arm64/boot/dts/freescale/imx94.dtsi
-> > b/arch/arm64/boot/dts/freescale/imx94.dtsi
-> > index b8ffc428e95b..bd3437146746 100644
-> > --- a/arch/arm64/boot/dts/freescale/imx94.dtsi
-> > +++ b/arch/arm64/boot/dts/freescale/imx94.dtsi
-> > @@ -1035,6 +1035,13 @@ flexcan1: can@443a0000 {
-> >  				compatible =3D "fsl,imx94-flexcan", "fsl,imx95-
-> flexcan";
-> >  				reg =3D <0x443a0000 0x10000>;
-> >  				interrupts =3D <GIC_SPI 10
-> IRQ_TYPE_LEVEL_HIGH>;
-> > +				clocks =3D <&scmi_clk IMX94_CLK_BUSAON>,
-> > +					 <&scmi_clk IMX94_CLK_CAN1>;
-> > +				clock-names =3D "ipg", "per";
-> > +				assigned-clocks =3D <&scmi_clk
-> IMX94_CLK_CAN1>;
-> > +				assigned-clock-parents =3D <&scmi_clk
-> IMX94_CLK_SYSPLL1_PFD1_DIV2>;
-> > +				assigned-clock-rates =3D <80000000>;
-> > +				fsl,clk-source =3D /bits/ 8 <0>;
-> >  				status =3D "disabled";
-> >  			};
+> > Currently, most of the RPMI and MPXY drivers are in OpenSBI whereas
+> > Linux only has SBI MPXY mailbox controller driver, RPMI clock driver
+> > and RPMI system MSI driver This series also includes ACPI support
+> > for SBI MPXY mailbox controller and RPMI system MSI drivers.
 > >
-> > --
-> > 2.34.1
+> > These patches can be found in the riscv_sbi_mpxy_mailbox_v6 branch
+> > at: https://github.com/avpatel/linux.git
 > >
+> > To test these patches, boot Linux on "virt,rpmi=3Don,aia=3Daplic-imsic"
+> > machine with OpenSBI and QEMU from the dev-upstream branch at:
+> > https://github.com/ventanamicro/opensbi.git
+> > https://github.com/ventanamicro/qemu.git
+> >
+> > [1] https://github.com/riscv-non-isa/riscv-sbi-doc/releases
+> > [2] https://github.com/riscv-non-isa/riscv-rpmi/releases
+> >
+> > Changes since v5:
+> >  - Rebased the series on Linux-6.16-rc2
+> >  - Added Conor's Reviewed-by in all DT binding patches
+> >  - Addressed Andy's comments on PATCH5
+> >  - Addressed Tglx's comments on PATCH12 and PATCH21
+> >
+> > Changes since v4:
+> >  - Rebased the series on Linux-6.16-rc1
+> >  - Dropped PATCH1 since a similar change is already merged
+> >    https://lore.kernel.org/linux-riscv/20250523101932.1594077-4-cleger@=
+rivosinc.com/
+> >  - Addressed Andy's comments on PATCH4, PATCH5, PATCH6, PATCH7,
+> >    PATCH13, and PATCH17
+> >  - Addressed Atish's comments on PATCH11 and PATCH12
+> >  - Addressed Conor's comments on PATCH9
+> >
+> > Changes since v3:
+> >  - Rebased the series on Linux-6.15-rc7
+> >  - Updated PATCH2 DT bindings as-per Rob's suggestion
+> >  - Improved request_threaded_irq() usage in PATCH7
+> >  - Updated PATCH10 clk-rpmi driver as-per commments from Andy
+> >  - Updated PATCH13 irq-riscv-rpmi-sysmsi driver as-per comments
+> >    from Andy and Tglx
+> >  - Addressed ACPI related comments in PATCH14, PATCH15, PATCH18,
+> >    PATCH20 and PATCH21
+> >
+> > Changes since v2:
+> >  - Dropped the "RFC" tag from series since the SBI v3.0 and
+> >    RPMI v1.0 specifications are now frozen
+> >  - Rebased the series on Linux-6.15-rc5
+> >  - Split PATCH8 of v2 into two patches adding separate DT
+> >    bindings for "riscv,rpmi-mpxy-clock" and "riscv,rpmi-clock"
+> >  - Split PATCH10 of v2 into two patches adding separate DT
+> >    bindings for "riscv,rpmi-mpxy-system-msi" and
+> >    "riscv,rpmi-system-msi"
+> >  - Addressed comments from TGLX on PATCH11 of v2 adding irqchip
+> >    driver for RPMI system MSI
+> >  - Addressed ACPI related comments in PATCH15 and PATCH16 of v2
+> >  - New PATCH17 and PATCH18 in this series
+> >
+> > Changes since v1:
+> >  - Addressed DT bindings related comments in PATCH2, PATCH3, and
+> >    PATCH7 of v1 series
+> >  - Addressed comments in PATCH6 and PATCH8 of v1 series
+> >  - New PATCH6 in v2 series to allow fwnode based mailbox channel
+> >    request
+> >  - New PATCH10 and PATCH11 to add RPMI system MSI based interrupt
+> >    controller driver
+> >  - New PATCH12 to PATCH16 which adds ACPI support in SBI MPXY
+> >    mailbox driver and RPMI system MSI driver
+> >  - New PATCH17 to enable required kconfig option to allow graceful
+> >    shutdown on QEMU virt machine
+> >
+> > Anup Patel (13):
+> >   dt-bindings: mailbox: Add bindings for RPMI shared memory transport
+> >   dt-bindings: mailbox: Add bindings for RISC-V SBI MPXY extension
+> >   RISC-V: Add defines for the SBI message proxy extension
+> >   mailbox: Add common header for RPMI messages sent via mailbox
+> >   mailbox: Allow controller specific mapping using fwnode
+> >   mailbox: Add RISC-V SBI message proxy (MPXY) based mailbox driver
+> >   dt-bindings: clock: Add RPMI clock service message proxy bindings
+> >   dt-bindings: clock: Add RPMI clock service controller bindings
+> >   dt-bindings: Add RPMI system MSI message proxy bindings
+> >   dt-bindings: Add RPMI system MSI interrupt controller bindings
+> >   irqchip: Add driver for the RPMI system MSI service group
+> >   RISC-V: Enable GPIO keyboard and event device in RV64 defconfig
+> >   MAINTAINERS: Add entry for RISC-V RPMI and MPXY drivers
+> >
+> > Rahul Pathak (1):
+> >   clk: Add clock driver for the RISC-V RPMI clock service group
+> >
+> > Sunil V L (9):
+> >   ACPI: property: Refactor acpi_fwnode_get_reference_args()
+> >   ACPI: property: Add support for cells property
+> >   ACPI: scan: Update honor list for RPMI System MSI
+> >   ACPI: RISC-V: Create interrupt controller list in sorted order
+> >   ACPI: RISC-V: Add support to update gsi range
+> >   ACPI: RISC-V: Add RPMI System MSI to GSI mapping
+> >   irqchip/irq-riscv-imsic-early: Export imsic_acpi_get_fwnode()
+> >   mailbox/riscv-sbi-mpxy: Add ACPI support
+> >   irqchip/riscv-rpmi-sysmsi: Add ACPI support
+> >
+> >  .../bindings/clock/riscv,rpmi-clock.yaml      |   64 ++
+> >  .../bindings/clock/riscv,rpmi-mpxy-clock.yaml |   64 ++
+> >  .../riscv,rpmi-mpxy-system-msi.yaml           |   67 ++
+> >  .../riscv,rpmi-system-msi.yaml                |   74 ++
+> >  .../mailbox/riscv,rpmi-shmem-mbox.yaml        |  124 ++
+> >  .../bindings/mailbox/riscv,sbi-mpxy-mbox.yaml |   51 +
+> >  MAINTAINERS                                   |   15 +
+> >  arch/riscv/configs/defconfig                  |    2 +
+> >  arch/riscv/include/asm/irq.h                  |    6 +
+> >  arch/riscv/include/asm/sbi.h                  |   63 +
+> >  drivers/acpi/property.c                       |  123 +-
+> >  drivers/acpi/riscv/irq.c                      |   75 +-
+> >  drivers/acpi/scan.c                           |    2 +
+> >  drivers/base/property.c                       |    2 +-
+> >  drivers/clk/Kconfig                           |    8 +
+> >  drivers/clk/Makefile                          |    1 +
+> >  drivers/clk/clk-rpmi.c                        |  590 ++++++++++
+> >  drivers/irqchip/Kconfig                       |    7 +
+> >  drivers/irqchip/Makefile                      |    1 +
+> >  drivers/irqchip/irq-riscv-imsic-early.c       |    2 +
+> >  drivers/irqchip/irq-riscv-rpmi-sysmsi.c       |  324 ++++++
+> >  drivers/mailbox/Kconfig                       |   11 +
+> >  drivers/mailbox/Makefile                      |    2 +
+> >  drivers/mailbox/mailbox.c                     |   65 +-
+> >  drivers/mailbox/riscv-sbi-mpxy-mbox.c         | 1012 +++++++++++++++++
+> >  include/linux/byteorder/generic.h             |   16 +
+> >  include/linux/mailbox/riscv-rpmi-message.h    |  238 ++++
+> >  include/linux/mailbox_controller.h            |    3 +
+> >  include/linux/wordpart.h                      |   16 +
+> >  29 files changed, 2948 insertions(+), 80 deletions(-)
+> >  create mode 100644 Documentation/devicetree/bindings/clock/riscv,rpmi-=
+clock.yaml
+> >  create mode 100644 Documentation/devicetree/bindings/clock/riscv,rpmi-=
+mpxy-clock.yaml
+> >  create mode 100644 Documentation/devicetree/bindings/interrupt-control=
+ler/riscv,rpmi-mpxy-system-msi.yaml
+> >  create mode 100644 Documentation/devicetree/bindings/interrupt-control=
+ler/riscv,rpmi-system-msi.yaml
+> >  create mode 100644 Documentation/devicetree/bindings/mailbox/riscv,rpm=
+i-shmem-mbox.yaml
+> >  create mode 100644 Documentation/devicetree/bindings/mailbox/riscv,sbi=
+-mpxy-mbox.yaml
+> >  create mode 100644 drivers/clk/clk-rpmi.c
+> >  create mode 100644 drivers/irqchip/irq-riscv-rpmi-sysmsi.c
+> >  create mode 100644 drivers/mailbox/riscv-sbi-mpxy-mbox.c
+> >  create mode 100644 include/linux/mailbox/riscv-rpmi-message.h
+> >
+> I am ok with the mailbox patches. How are these to be picked into
+> mailbox and other subsystems? Maybe sculpt out a separate patchset for
+> the mailbox?
+
+The usual mechanism for a series touching multiple
+subsystems is to provide a shared tag so that other
+maintainers can avoid conflicts.
+
+I will post a v7 pretty soon so Alexandre Ghiti (RISC-V)
+or yourself (mailbox) can push it to your -next branch
+and provide a shared tag at appropriate time.
+
+Regards,
+Anup
 
