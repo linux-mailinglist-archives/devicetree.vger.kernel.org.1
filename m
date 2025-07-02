@@ -1,375 +1,163 @@
-Return-Path: <devicetree+bounces-192211-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-192213-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 18BF5AF5C16
-	for <lists+devicetree@lfdr.de>; Wed,  2 Jul 2025 17:03:55 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id D979DAF5C1A
+	for <lists+devicetree@lfdr.de>; Wed,  2 Jul 2025 17:04:29 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id A390D3AB04B
-	for <lists+devicetree@lfdr.de>; Wed,  2 Jul 2025 15:01:56 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id BEF6518914C9
+	for <lists+devicetree@lfdr.de>; Wed,  2 Jul 2025 15:04:38 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 87AD3DDBC;
-	Wed,  2 Jul 2025 15:02:18 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6987C2BDC3B;
+	Wed,  2 Jul 2025 15:04:11 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="J6kx+VL8"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="PxFHGchs"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 59F322D0C7A;
-	Wed,  2 Jul 2025 15:02:18 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3F3342C031D;
+	Wed,  2 Jul 2025 15:04:09 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1751468538; cv=none; b=TstQq9SrrNIOoNzWR/+4yBP5kg74eg9eZROpW92Z1/hRu9FahJGx87pBMO5mT6i4X4tbJUHWwiEQqp62RryTJPW7zlOUfB5dDJdiKX9Qu3gS6mWrH/Mb4IwON4Qb25sX228aI2/9VaLiHJK6iAiKpJVmB9hQzjTgxiHKLqBpmTM=
+	t=1751468651; cv=none; b=EPY5xN1iGxnSy7Kce4bSs/Y7R+YcpbBGeLWxsMwtLpYGVsMuRT5jB1IO1EBK0TYbuHmHcNR8FmE9dRQnfAm56A1Z7cLPqaEkhO83pzblLqDg7+ravpy1xsJlROe/RU8vuEnfz26oM/zbfclcPE6MPACwjODZ0QZqxa7d/cYtYSE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1751468538; c=relaxed/simple;
-	bh=Ol5p1wzxA4/a7sOfr8ShQphBbuSDW4KTebkk5U0x49o=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=amOv2dguOvztF9sSVFUTdffCaQMhRioSjcJ4irrDmZ3vEfrCA9oZ4hXzGfI5HlEXZLoj6GVlQZldW90xfg/R9za6ICALMbZ9ZBWSAbcC9b4tqEcCKSNUnqpMWcRnQK5VqM/3Sgx62kbt9exmZmi9tN2QE9ElgXeY+YAUteORMvc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=J6kx+VL8; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id C132EC4CEE7;
-	Wed,  2 Jul 2025 15:02:13 +0000 (UTC)
+	s=arc-20240116; t=1751468651; c=relaxed/simple;
+	bh=qj9JN0bIoM4q2XRV4+8lwVEY0tAGtWi0mdzE0otu6Yc=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=JaJyipC5D+f2aWKCKH8H08NhNMo60760aD9wQB5GiS6lr8YoO1qfPKCLGUtFhG7T23DQWpcflEHdlwPYmIa38IMKf4U8czyjeNFfTf0imSIPRHWNou7a7vJ08PA5HpjeXKO6ubl9vB2G/wdxrSVqW6mQD1HuFZKbyBSVWf34E9U=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=PxFHGchs; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 7FABEC4CEED;
+	Wed,  2 Jul 2025 15:04:07 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1751468537;
-	bh=Ol5p1wzxA4/a7sOfr8ShQphBbuSDW4KTebkk5U0x49o=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=J6kx+VL8vrXI0hZoKqFO8JWMHZqVNvR4Vo1qPHtI1YTLMggNW8nIZdEivwAxE3QYg
-	 YsNshKAiIdu1PlZM2Sy27GgEQYKnORN4inpTo81fKUI7gTaeK0CWWEJnd+jdDlVChH
-	 yqtMmNvorl2n1lGms1ZP8FCTqrOFZtK6SvEAmLprORR8w+tPb1tA5Oo8fCwgYwDuIt
-	 odJiVPts18It7AeQeiMUQrcuFqtZeMhrtZEfv1uNLDtcjcsTwmwBnbGPlShj0VFlIw
-	 V7JOweaxlgLML7tY3Znx8O7Z4PxDNmVBiuFHXtrjPYB1ETz5Kb6jmw+RJIaJy85rlC
-	 i/VkHkJcqKtOQ==
-Message-ID: <daa343f9-b5eb-4a46-8c3a-f5c07603a9f1@kernel.org>
-Date: Wed, 2 Jul 2025 17:02:11 +0200
+	s=k20201202; t=1751468649;
+	bh=qj9JN0bIoM4q2XRV4+8lwVEY0tAGtWi0mdzE0otu6Yc=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=PxFHGchsmxBrVAg+gQXYdRI8x3QES6OSYnCtYmCBe9sSdNjtJKPplC7fjl7c61y8C
+	 EXFuwR+kUIyYTyUbgHn2EuP3kLuq9NSQD4xv4caY0TQkiLUGM1uQKmj24StIIeH3rb
+	 KcfiVyXFzk4js6/KJBiYbnCi56Y3VVOi/9RzWkYT7hqntRgxaTad70RUsCK9th/an5
+	 qfsncyxnICCAPi77FNFOeOsHPlQclOffy57Y39eKgpPir+Osu1tMG+2kZEAWQrYk+Z
+	 KJngg4qUaP2jmgoIi5xZ4JV4Y4PtexxTM3eMrIQ+BARNHkq1h7Sie2EJS7MKo8vHjk
+	 k3kbFPfu45nKw==
+Date: Wed, 2 Jul 2025 16:04:05 +0100
+From: Conor Dooley <conor@kernel.org>
+To: Marcelo Schmitt <marcelo.schmitt1@gmail.com>
+Cc: Jorge Marques <gastmaier@gmail.com>,
+	Krzysztof Kozlowski <krzk@kernel.org>,
+	Jorge Marques <jorge.marques@analog.com>,
+	Alexandre Belloni <alexandre.belloni@bootlin.com>,
+	Frank Li <Frank.Li@nxp.com>, Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>, linux-i3c@lists.infradead.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v4 1/2] dt-bindings: i3c: Add adi-i3c-master
+Message-ID: <20250702-aliens-outage-958601861590@spud>
+References: <20250626-adi-i3c-master-v4-0-3846a1f66d5e@analog.com>
+ <20250626-adi-i3c-master-v4-1-3846a1f66d5e@analog.com>
+ <20250627-steadfast-ferret-of-expertise-5c8ff2@krzk-bin>
+ <tl5fckhrivaqfyzwyb2o2a7gykpigwend7z2nduqgbbej3hqbs@vxxtsadhtdmt>
+ <41782ded-908b-46ef-8f75-4d2565476b7c@kernel.org>
+ <cfi6rzhco2ba6pcbk57l7tblimuks5jnpgaly7nbedbrpyhtma@u46if22kurwk>
+ <v2ybju75bpjdqxfkell47nlkeyal36ylmnqt2yvpncxnmp2irb@pygx56jsyxkr>
+ <aGVA779eeNZ0zWsa@debian-BULLSEYE-live-builder-AMD64>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 6/8] dt-bindings: auxdisplay: add Titan Micro
- Electronics TM16XX
-To: =?UTF-8?Q?Jean-Fran=C3=A7ois_Lessard?= <jefflessard3@gmail.com>,
- Andy Shevchenko <andy@kernel.org>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>
-Cc: Geert Uytterhoeven <geert@linux-m68k.org>, devicetree@vger.kernel.org,
- linux-leds@vger.kernel.org, linux-kernel@vger.kernel.org,
- =?UTF-8?Q?Andreas_F=C3=A4rber?= <afaerber@suse.de>,
- Boris Gjenero <boris.gjenero@gmail.com>,
- Christian Hewitt <christianshewitt@gmail.com>,
- Heiner Kallweit <hkallweit1@gmail.com>,
- Paolo Sabatino <paolo.sabatino@gmail.com>
-References: <20250629130002.49842-1-jefflessard3@gmail.com>
- <20250629130002.49842-8-jefflessard3@gmail.com>
- <d3d8f72a-e4fe-4f85-8ead-6c104aa32893@kernel.org>
- <F09B92C5-9FF0-4818-9BF9-EFA4A456399C@gmail.com>
-From: Krzysztof Kozlowski <krzk@kernel.org>
-Content-Language: en-US
-Autocrypt: addr=krzk@kernel.org; keydata=
- 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 a/A=
-In-Reply-To: <F09B92C5-9FF0-4818-9BF9-EFA4A456399C@gmail.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
-
-On 01/07/2025 05:22, Jean-François Lessard wrote:
-> Le 30 juin 2025 02 h 19 min 11 s HAE, Krzysztof Kozlowski <krzk@kernel.org> a écrit :
->> On 29/06/2025 14:59, Jean-François Lessard wrote:
->>> Add documentation for Titanmec TM16XX and compatible LED display controllers.
->>>
->>> This patch is inspired by previous work from Andreas Färber and Heiner Kallweit.
->>
->> Please wrap commit message according to Linux coding style / submission
->> process (neither too early nor over the limit):
->> https://elixir.bootlin.com/linux/v6.4-rc1/source/Documentation/process/submitting-patches.rst#L597
->>
->> Please do not use "This commit/patch/change", but imperative mood. See
->> longer explanation here:
->> https://elixir.bootlin.com/linux/v5.17.1/source/Documentation/process/submitting-patches.rst#L95
->>
->>>
->>> Co-developed-by: Andreas Färber <afaerber@suse.de>
->>> Co-developed-by: Heiner Kallweit <hkallweit1@gmail.com>
->>> Signed-off-by: Jean-François Lessard <jefflessard3@gmail.com>
->>> ---
->>>  .../bindings/auxdisplay/titanmec,tm16xx.yaml  | 210 ++++++++++++++++++
->>>  1 file changed, 210 insertions(+)
->>>  create mode 100644 Documentation/devicetree/bindings/auxdisplay/titanmec,tm16xx.yaml
->>>
->>> diff --git a/Documentation/devicetree/bindings/auxdisplay/titanmec,tm16xx.yaml b/Documentation/devicetree/bindings/auxdisplay/titanmec,tm16xx.yaml
->>> new file mode 100644
->>> index 0000000000..65c43e3ba4
->>> --- /dev/null
->>> +++ b/Documentation/devicetree/bindings/auxdisplay/titanmec,tm16xx.yaml
->>> @@ -0,0 +1,210 @@
->>> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
->>> +%YAML 1.2
->>> +---
->>> +$id: http://devicetree.org/schemas/auxdisplay/titanmec,tm16xx.yaml#
->>
->> Why isn't this in leds directory? Everything below describes it as LED
->> controller.
->>
-> 
-> TM16XX controllers are commonly used as auxiliary display drivers in consumer Android-based TV boxes for driving 7-segment and icon displays, rather than for generic LEDs.
-> 
-> Previous attempts to place TM1628 drivers under LED subsystem were NAK’ed by LED maintainers, with Pavel Machek recommending drivers/auxdisplay instead (see https://lore.kernel.org/linux-devicetree/20200226130300.GB2800@duo.ucw.cz/).
-
-OK, it's fine. If you want to avoid the same question at v3, v4 and v5,
-please mention this in the patch changelog.
-
-...
-
->>> +  compatible:
->>> +    enum:
->>> +      - titanmec,tm1618
->>> +      - titanmec,tm1620
->>> +      - titanmec,tm1628
->>> +      - titanmec,tm1650
->>> +      - fdhisi,fd620
->>> +      - fdhisi,fd628
->>> +      - fdhisi,fd650
->>> +      - fdhisi,fd6551
->>> +      - fdhisi,fd655
->>> +      - icore,aip650
->>> +      - icore,aip1618
->>> +      - icore,aip1628
->>> +      - princeton,pt6964
->>> +      - winrise,hbs658
->>
->> Several devices are compatible, so express it here and drop redundant
->> entries in the driver.
->>
-> 
-> I understand the concern. I would appreciate your guidance since these are not always direct aliases. E.g.:
-> - tm1620 and fd620 varies on which bit is used for the 8th segment 
-> - fd655 and fd650 have no titanmec counterpart
-> - hbs658 is similar to tm1628, yet distinct
-
-You did not get the point. I did not ask to make incompatible devices as
-compatible. I asked to make compatible devices compatible.
-
-Also wrap your emails to mailing list style. It's very difficult to read
-and respond to them.
+Content-Type: multipart/signed; micalg=pgp-sha256;
+	protocol="application/pgp-signature"; boundary="L1KGBXrwH67o7R7G"
+Content-Disposition: inline
+In-Reply-To: <aGVA779eeNZ0zWsa@debian-BULLSEYE-live-builder-AMD64>
 
 
-> 
-> We could keep only known distinct implementations, that would yield to:
->       - titanmec,tm1618
->       - titanmec,tm1620
->       - titanmec,tm1628
->       - titanmec,tm1650
->       - fdhisi,fd620
->       - fdhisi,fd650
->       - fdhisi,fd6551
->       - fdhisi,fd655
->       - winrise,hbs658
+--L1KGBXrwH67o7R7G
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-I do not see compatibility expressed. You need front compatible and
-fallback.
+On Wed, Jul 02, 2025 at 11:23:43AM -0300, Marcelo Schmitt wrote:
+> Hello,
+>=20
+> On 07/02, Jorge Marques wrote:
+> > On Fri, Jun 27, 2025 at 06:02:26PM +0200, Jorge Marques wrote:
+> > > On Fri, Jun 27, 2025 at 04:49:19PM +0200, Krzysztof Kozlowski wrote:
+> > > > On 27/06/2025 16:38, Jorge Marques wrote:
+> > > > > On Fri, Jun 27, 2025 at 08:56:55AM +0200, Krzysztof Kozlowski wro=
+te:
+> > > > >> On Thu, Jun 26, 2025 at 12:07:36PM +0200, Jorge Marques wrote:
+> > > > >>> Add bindings doc for ADI I3C Controller IP core, a FPGA synthes=
+izable IP
+> > > > >>> core that implements the MIPI I3C Basic controller specificatio=
+n.
+> > > > >>
+> ...
+> >=20
+> > I went after the reason of the historically -1.00.a suffix and
+> > discovered that they came into existence due to AMD Xilinx auto
+> > generation devicetree tool SDTGen
+> > https://github.com/Xilinx/system-device-tree-xlnx
+> > that would automatically suffix with the IP version, defaulting to 1.00=
+=2Ea,
+> > and for a seamless experience, the were copied over to the dt-bindings.
+> >=20
+> > The adi,axi-pwmgen dt-binding went more creative and suffixed with
+> > -2.00.a, while never enforcing Vivado to yield the devicetree with such
+> > value (Major version is asserted in the driver through reg access, the
+> > current core version is v2.1.1)
+> >=20
+> > Testing on my side (AMD Xilinx Vivado 2024.2), it seems Vivado now
+> > defaults to 1.0, so the previous bindings from the other IPs are not
+> > accurate anymore, either, (axi-pwmgen auto gens
+> > `compatible =3D "xlnx,axi-pwm-gen-1.0";` (`xlnx` instead of `adi`, also=
+)).
+> >=20
+> > For fun, the current Vivado version thinks the devicetree node for the
+> > i3c master should be as follows:
+> >=20
+> >   i3c_host_interface: i3c_controller_host_interface@44a00000 {
+> >           compatible =3D "xlnx,i3c-controller-host-interface-1.0";
+> >           reg =3D <0x44a00000 0x10000>;
+> >           clocks =3D <&clkc 15>;
+> >           clock-names =3D "s_axi_aclk";
+> >   };
+> >=20
+> > Let me know if we can drop the suffix, or replace with something else.
+> > The current register defined core version is v0.1.0.
+>=20
+> I have no say in how dt-bindings should be, but having the IP version num=
+ber
+> automatically generated doesn't sound like a sane thing to do IMHO. Maybe=
+ try to
+> standardize with -1.00.a suffix? Though one could also argue about droppi=
+ng such
+> suffixes. Since we were told that the convention is to have the file name=
+ to
+> follow the compatible, I would go with 'xlnx,i3c-controller-host-interfac=
+e'
+> (without any suffix) so the file name is smaller and clearer IMHO. dt mai=
+ntainers
+> might prefer that in a different way.
 
-> 
-> Which would be inconsistent for cases where vendors appear for another variant.
-> e.g. fdhisi,fd628 now being aliased by titanmec,tm1628 while other fdhisi variants are listed.
+To my knowledge this is an ADI IP from their HDL catalogue:
+https://github.com/analogdevicesinc/hdl/tree/main/library/i3c_controller
+I see no reason why it should have an "xlnx" vendor prefix - and I don't
+think Jorge was seriously suggesting it either, given they mentioned it
+was being shared "for fun".
 
-I don't understand what that means. I don't understand what aliased
-means. There is no such term in DT bindings.
+--L1KGBXrwH67o7R7G
+Content-Type: application/pgp-signature; name="signature.asc"
 
-> 
-> Therefore I would suggest to keep fdhisi,fd628 even if implementation is the same as titanmec,tm1628.
+-----BEGIN PGP SIGNATURE-----
 
-I don't understand the problem.
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCaGVKZQAKCRB4tDGHoIJi
+0sjAAQCRJxw3ls7Pe6USBE3wFSZgnw2v13vG/nVg62Ip2v91kAD9Eue1UjXWxexy
+CoOEsjQ7V6tYsmDw2UPtnNbCEdAJRAE=
+=ce7m
+-----END PGP SIGNATURE-----
 
-> 
-> icore and princeton could be dropped in favor of titanmec equivalents, at least for the variants I am aware of. Specific implementation for other variants can be let for future extension, if ever needed.
-
-No clue what you are saying here.
-
-> 
-> How would you approach this?
-
-You have compatible devices, yes?  If so, you drop irrelevant entries in
-device ID tables and use fallbacks in the bindings, just like roughly
-80% of devices in the bindings.
-
-> 
->>> +
->>> +  reg:
->>> +    maxItems: 1
->>> +
->>> +  titanmec,digits:
->>> +    description: |
->>> +      Array of grid (row) indexes corresponding to specific wiring of digits in the display matrix.
->>
->> What is wiring of digits? This and other descriptions don't tell me much.
->>
-> 
-> Controllers use a matrix to drive LEDs. Terminology used in datasheets is:
-> - grids: matrix rows
-> - segments: matrix columns
-> 
-> Board manufacturers wires display panels differently, including LEDs which are parts of 7-segments:
-> - “digits” refers to the ordered list of GRID indices wired to the physical 7-segment digit displays (arranged right to left)
-> - “segment-mapping” defines how each SEGMENT index within these grids maps to the standard 7-segment elements (a-g)
-> 
->> Wrap according to Linux coding style, so at 80.
->>
->>> +      Defines which grid lines are connected to digit elements.
->>> +    $ref: /schemas/types.yaml#/definitions/uint8-array
->>> +    items:
->>> +      minimum: 0
->>> +      maximum: 7
->>> +    minItems: 1
->>> +    maxItems: 8
->>> +
->>> +  titanmec,segment-mapping:
->>> +    description: |
->>
->> Do not need '|' unless you need to preserve formatting.
->>
->>> +      Array of segment (column) indexes specifying the hardware layout mapping used for digit display.
->>> +      Each entry gives the segment index corresponding to a standard 7-segment element (a-g).
->>
->> Wrap according to Linux coding style, so at 80.
->>
->> This looks like duplicating the reg property.
->>
-> 
-> While related, this is not replicating the reg property of led child nodes.
-> 
-> Each (grid,segment) combination might have a distinct role:
-> - part of a 7-segment: described using digits and segment-mapping properties
-> - individual led: described using led child nodes
-> 
->>
->>> +    $ref: /schemas/types.yaml#/definitions/uint8-array
->>> +    items:
->>> +      minimum: 0
->>> +      maximum: 7
->>> +    minItems: 7
->>> +    maxItems: 7
->>> +
->>> +  titanmec,transposed:
->>> +    description: |
->>> +      Optional flag indicating if grids and segments are swapped compared to standard matrix orientation.
->>> +      This accommodates devices where segments are wired to rows and grids to columns.
->>> +    $ref: /schemas/types.yaml#/definitions/flag
->>> +
->>> +  "#address-cells":
->>> +    const: 2
->>> +
->>> +  "#size-cells":
->>> +    const: 0
->>> +
->>> +patternProperties:
->>> +  "^led@[0-7],[0-7]$":
->>
->> Why do you have two addresses? It's not used in your example.
->>
-> 
-> First is for the grid index, second of for the segment index.
-
-But it is not used. I really do not get why this is different than other
-matrix LED controllers.
-
-> 
->>> +    $ref: /schemas/leds/common.yaml#
->>> +    properties:
->>> +      reg:
->>> +        description: Grid (row) and segment (column) index in the matrix of this individual LED icon
->>
->> Missing constraints.
->>
->>> +    required:
->>> +      - reg
->>> +
-> 
-> Well noted.
-> 
->>> +required:
->>> +  - compatible
->>> +  - reg
->>> +  - titanmec,digits
->>> +  - titanmec,segment-mapping
->>> +
->>> +additionalProperties: true
->>
->> No, this cannot be true. Look at any other binding, look at example-schema.
->>
-> 
-> I got misled by "spi-3wire" which is not defined in spi-peripheral-props.yaml but only as a child node property of spi-controller.yaml.
-> 
-> I wasn't sure how to implement this correctly. I have reviewed existing examples and will replace with:
-> 
-> if:
->   properties:
->     compatible:
->       contains:
->         enum:
->           - titanmec,tm1618
->           - titanmec,tm1620
->           - titanmec,tm1628
->           - fdhisi,fd620
->           - fdhisi,fd628
->           - winrise,hbs658
-> then:
->   allOf:
->     - $ref: /schemas/spi/spi-peripheral-props.yaml#
-
-Why is this conditional? Are these devices with entirely different
-programming model? Then they usually should not be in the same binding,
-although depends on differences.
-
->   properties:
->     spi-3wire: true
->   required:
->     - spi-3wire
-
-
-
-Best regards,
-Krzysztof
+--L1KGBXrwH67o7R7G--
 
