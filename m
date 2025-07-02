@@ -1,104 +1,180 @@
-Return-Path: <devicetree+bounces-191928-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-191929-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3978AAF0E35
-	for <lists+devicetree@lfdr.de>; Wed,  2 Jul 2025 10:39:51 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 43F6EAF0E43
+	for <lists+devicetree@lfdr.de>; Wed,  2 Jul 2025 10:43:45 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 8A278174C82
-	for <lists+devicetree@lfdr.de>; Wed,  2 Jul 2025 08:39:51 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id C11A67A5788
+	for <lists+devicetree@lfdr.de>; Wed,  2 Jul 2025 08:42:19 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C929B238C1A;
-	Wed,  2 Jul 2025 08:39:46 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 70D4723AE7C;
+	Wed,  2 Jul 2025 08:43:37 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=yeah.net header.i=@yeah.net header.b="eNEcCmTp"
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="OnKdYIJO"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-m16.yeah.net (mail-m16.yeah.net [1.95.21.17])
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 522192367B3;
-	Wed,  2 Jul 2025 08:39:42 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=1.95.21.17
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DAA9C23A995;
+	Wed,  2 Jul 2025 08:43:35 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1751445586; cv=none; b=pFA56LyExn7O7G85cLU01ZhxqqaSGJVsU0/lCsXQQDWvTji2a06W0SmvB2UNhiyaw6NxAVYnHM/ip6wZ/MXniODPHPpYN1wHXsGoepYO0kAvKDDG06/uln5EU0qDLJiTT3/vwmPGT+COo+qSTaxEPu7wi//kJA3DTf0bBmT8TRg=
+	t=1751445817; cv=none; b=lAdx9wzKkVwbwVtoG+SHrTWEH8ml53slJK/9oTaxLrRzChqvYG6luv7c3ggkNFRh8dEpxHTWS0BAmlAeNgnDcM5Sl9tuEIPL1YUULIL5kLmMUbBuQdwlos6uiEA2x0z3hQsU2dksov93+TzpA3eEDxTDO9X31Ge4sFVEkn/vtbI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1751445586; c=relaxed/simple;
-	bh=h69eKJGK22OdLLw+KLex6FL443o3ymPTOdqDKgsyu2c=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=eo7LUMy7MezAGhtyUkhEQhiHvvIkxQMRG4RDhY/BZ0JAMMTXBbrz5MBO0brBcxYLNkq+pmJzoPbKohMq2JxkF8lp5nJlKjjLO7YpHW2C0GSITPDdHVagTh/a+P22al2CA2ZtyuwMvQdEfy4LoikCh4OSz27/9Q4vPwULVt9y3dk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=yeah.net; spf=pass smtp.mailfrom=yeah.net; dkim=pass (1024-bit key) header.d=yeah.net header.i=@yeah.net header.b=eNEcCmTp; arc=none smtp.client-ip=1.95.21.17
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=yeah.net
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=yeah.net
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=yeah.net;
-	s=s110527; h=Date:From:To:Subject:Message-ID:MIME-Version:
-	Content-Type; bh=bt7kRNitnRRomL12XcgnkgtBgNnfGJgLPobysScsIdU=;
-	b=eNEcCmTpKvsNznW2z72kTSHm/x8r/H5RnC6X9E5eszrzz7BzwCkQIwRnQpc3Jt
-	sZ+HdxhwUSfJxnvSLSoOfV8LGZMtn3nzjbvIH6KEQwsiDvY6LfbWnPITx1ypNfea
-	LEYanzNaQGBqt9UBxlWwfbKTKjx5MxMQu/cHIUBuSL/Es=
-Received: from dragon (unknown [])
-	by gzsmtp3 (Coremail) with SMTP id M88vCgDHz8oW8GRohq0NAA--.9535S3;
-	Wed, 02 Jul 2025 16:38:49 +0800 (CST)
-Date: Wed, 2 Jul 2025 16:38:46 +0800
-From: Shawn Guo <shawnguo2@yeah.net>
-To: John Ernberg <john.ernberg@actia.se>
-Cc: Horia =?utf-8?Q?Geant=C4=83?= <horia.geanta@nxp.com>,
-	Pankaj Gupta <pankaj.gupta@nxp.com>,
-	Gaurav Jain <gaurav.jain@nxp.com>,
-	Herbert Xu <herbert@gondor.apana.org.au>,
-	"David S . Miller" <davem@davemloft.net>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
-	Sascha Hauer <s.hauer@pengutronix.de>, Peng Fan <peng.fan@nxp.com>,
-	Frank Li <Frank.Li@nxp.com>,
-	Pengutronix Kernel Team <kernel@pengutronix.de>,
-	Fabio Estevam <festevam@gmail.com>,
-	"linux-crypto@vger.kernel.org" <linux-crypto@vger.kernel.org>,
-	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-	"linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-	"imx@lists.linux.dev" <imx@lists.linux.dev>,
-	"linux-arm-kernel@lists.infradead.org" <linux-arm-kernel@lists.infradead.org>
-Subject: Re: [PATCH v6 4/4] arm64: dts: freescale: imx8qxp/imx8qm: Add CAAM
- support
-Message-ID: <aGTwFl911B0W6PKu@dragon>
-References: <20250611113748.2986988-1-john.ernberg@actia.se>
- <20250611113748.2986988-5-john.ernberg@actia.se>
+	s=arc-20240116; t=1751445817; c=relaxed/simple;
+	bh=/Mj9IbvLmcEdXds6zDfjwnUJ2vNA7j8nuWO6n4VjrAo=;
+	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
+	 In-Reply-To:Content-Type; b=Kr09WIohx0Fgyi7Q5V8r4kKqylv91z99UE5Lp/ptv09iVosSmB8s1XjFi1EptNe/RvNrOHikzymALXP+nHtmM/Q5UhU8ARl0h4J8SGWbvd24jsahvUxaamp2iXo9LY3sOuDCSIs5uvo13GghhbpfL9ek14YZwNzz16GW13WV0y8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=OnKdYIJO; arc=none smtp.client-ip=205.220.180.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
+Received: from pps.filterd (m0279873.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 5622U1Sk020544;
+	Wed, 2 Jul 2025 08:43:25 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	5RbAHSbae8Jj29ZSVUOTUguuPqjViFL1e6ZVXS1jCfM=; b=OnKdYIJOX6kzgIG8
+	FV16+1iUUADbnb2TMJxRqharHmeXLLVOUrxS7d+YgGmVfKsXerCrndtTsDldyAvz
+	kxumGv5iYwwat7kIxw2wulzNc9VT8Zp5Zrk1+/C1UUSx2zThH/20yt/rWonQE3Oz
+	k0f6W5XaOi7lJK352QnAcjtoP1X8eB+BNiUsZXzWa5HKRr+uBLVXtw73bO4gTZ+4
+	7DQ23C2tcEaRtctCutfQBom1elKcfPwJp+sHGG9iAEFuF8LoYehusXtydKbUEv+7
+	LVYR19vjPc99RLUeYnnmGsr4VO2pHpFY8hN45HuPRe54LIIq5NOXlPCwfUZTaAzR
+	kilxNA==
+Received: from nasanppmta03.qualcomm.com (i-global254.qualcomm.com [199.106.103.254])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 47mhxn2h0d-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Wed, 02 Jul 2025 08:43:25 +0000 (GMT)
+Received: from nasanex01c.na.qualcomm.com (nasanex01c.na.qualcomm.com [10.45.79.139])
+	by NASANPPMTA03.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 5628hOmg031410
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Wed, 2 Jul 2025 08:43:24 GMT
+Received: from [10.217.217.109] (10.80.80.8) by nasanex01c.na.qualcomm.com
+ (10.45.79.139) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1748.10; Wed, 2 Jul
+ 2025 01:43:19 -0700
+Message-ID: <4884d189-e43a-4932-af52-e1987bd7106c@quicinc.com>
+Date: Wed, 2 Jul 2025 14:13:14 +0530
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v10 01/10] clk: qcom: clk-alpha-pll: Add support for
+ dynamic update for slewing PLLs
+To: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
+CC: Bjorn Andersson <andersson@kernel.org>,
+        Michael Turquette
+	<mturquette@baylibre.com>,
+        Stephen Boyd <sboyd@kernel.org>, Rob Herring
+	<robh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley
+	<conor+dt@kernel.org>,
+        Konrad Dybcio <konradybcio@kernel.org>,
+        "Catalin
+ Marinas" <catalin.marinas@arm.com>,
+        Will Deacon <will@kernel.org>, Ajit
+ Pandey <quic_ajipan@quicinc.com>,
+        Imran Shaik <quic_imrashai@quicinc.com>,
+        "Jagadeesh Kona" <quic_jkona@quicinc.com>,
+        <linux-arm-msm@vger.kernel.org>, <linux-clk@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>
+References: <20250625-qcs615-mm-v10-clock-controllers-v10-0-ec48255f90d8@quicinc.com>
+ <20250625-qcs615-mm-v10-clock-controllers-v10-1-ec48255f90d8@quicinc.com>
+ <trwdfk2oz2udtbiqxh3ybuqbvasfqywmqxgi4xyvsknz6svs2r@icpp7snpq6c5>
+ <44dddd3f-d2d2-4d4b-831a-21e6d9050445@quicinc.com>
+ <667ac51f-d19d-4832-9aa6-97d9a86e0068@oss.qualcomm.com>
+Content-Language: en-US
+From: Taniya Das <quic_tdas@quicinc.com>
+In-Reply-To: <667ac51f-d19d-4832-9aa6-97d9a86e0068@oss.qualcomm.com>
+Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <20250611113748.2986988-5-john.ernberg@actia.se>
-X-CM-TRANSID:M88vCgDHz8oW8GRohq0NAA--.9535S3
-X-Coremail-Antispam: 1Uf129KBjvdXoW7Xw4fJw4xJrykWFyDAryfCrg_yoWxCwc_Z3
-	WxJw10vw4rGFWxJa15Ga1fXr1rKay5Gr45WrZ0vwsxGas0vFWxKrykJrZaq3y09wsFvF9x
-	AF18t3yUu343ujkaLaAFLSUrUUUUjb8apTn2vfkv8UJUUUU8Yxn0WfASr-VFAUDa7-sFnT
-	9fnUUvcSsGvfC2KfnxnUUI43ZEXa7IUjX18PUUUUU==
-X-CM-SenderInfo: pvkd40hjxrjqh1hdxhhqhw/1tbiCwF+ZWhk3sY-3gAAsk
+X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
+ nasanex01c.na.qualcomm.com (10.45.79.139)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwNzAyMDA2OSBTYWx0ZWRfX8VcgtUhyolYE
+ VzR1RXp2VdwzTnrCopUKekm8qLZdpBh04QtuOXo8dJbDQSw6Xdzy5vJXf0uwXBd0gE1aa6GsjHo
+ Eq+UP46sNtfjAeq0r6rmQR+hFAGW8QHhIQPsFG02d9wVQjZEnsWHUlimx8kgUQDz2Tx5T08bBWz
+ uNuIKtPGXHKOL3uraFUOsUTvmz3poHoZ/yUzl+H9asmRwnfqfQeWF1I+IZP50hIQ6VxFYyaAR5E
+ wHEV9PYb8SU80DNxm+H//JlkA2n8jatGeYH2Ki3+D62sWbv1C1iLh3PLNmC2LKwriw7ZwchtZJ3
+ akOnR5a/x4eHFOkcnUDFkP2mUp9EVM0qKDSMkb2FV4YNUnZBDbCmxJ22apKKaBEJCiPm6e8Oyip
+ 1H+wf4BEMLPTPrqbZXcRldcfRexN0Anbj//UTVeDhHD33hH2BmEQxNhIAj9P1m0NaToa5yMR
+X-Authority-Analysis: v=2.4 cv=EbvIQOmC c=1 sm=1 tr=0 ts=6864f12d cx=c_pps
+ a=JYp8KDb2vCoCEuGobkYCKw==:117 a=JYp8KDb2vCoCEuGobkYCKw==:17
+ a=GEpy-HfZoHoA:10 a=IkcTkHD0fZMA:10 a=Wb1JkmetP80A:10 a=COk6AnOGAAAA:8
+ a=O75FsbJ6qr0OxAJT8SUA:9 a=3ZKOabzyN94A:10 a=QEXdDO2ut3YA:10
+ a=TjNXssC_j7lpFel5tvFf:22
+X-Proofpoint-ORIG-GUID: z_qDogjY66KuJUuri63Fz3YxX51oqibx
+X-Proofpoint-GUID: z_qDogjY66KuJUuri63Fz3YxX51oqibx
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1099,Hydra:6.1.7,FMLib:17.12.80.40
+ definitions=2025-07-02_01,2025-06-27_01,2025-03-28_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ phishscore=0 mlxscore=0 priorityscore=1501 mlxlogscore=999 lowpriorityscore=0
+ malwarescore=0 adultscore=0 clxscore=1015 bulkscore=0 impostorscore=0
+ spamscore=0 suspectscore=0 classifier=spam authscore=0 authtc=n/a authcc=
+ route=outbound adjust=0 reason=mlx scancount=1 engine=8.19.0-2505280000
+ definitions=main-2507020069
 
-On Wed, Jun 11, 2025 at 11:38:09AM +0000, John Ernberg wrote:
-> From: Horia Geantă <horia.geanta@nxp.com>
-> 
-> The iMX8QXP and iMX8QM have a CAAM (Cryptographic Acceleration and
-> Assurance Module) like many other iMXs.
-> 
-> Add the definitions for it.
-> 
-> Job Rings 0 and 1 are bound to the SECO (Security Controller) ARM core
-> and are not exposed outside it. There's no point to define them in the
-> bindings as they cannot be used outside the SECO.
-> 
-> Signed-off-by: Horia Geantă <horia.geanta@nxp.com>
-> Signed-off-by: John Ernberg <john.ernberg@actia.se>
-> Reviewed-by: Peng Fan <peng.fan@nxp.com>
-> Reviewed-by: Frank Li <Frank.Li@nxp.com>
 
-Applied, thanks!
+
+On 6/27/2025 6:07 PM, Dmitry Baryshkov wrote:
+> On 27/06/2025 13:13, Taniya Das wrote:
+>>
+>>
+>> On 6/25/2025 5:17 PM, Dmitry Baryshkov wrote:
+>>> On Wed, Jun 25, 2025 at 04:13:26PM +0530, Taniya Das wrote:
+>>>> The alpha PLLs which slew to a new frequency at runtime would require
+>>>> the PLL to calibrate at the mid point of the VCO. Add the new PLL ops
+>>>> which can support the slewing of the PLL to a new frequency.
+>>>>
+>>>> Reviewed-by: Imran Shaik <quic_imrashai@quicinc.com>
+>>>> Signed-off-by: Taniya Das <quic_tdas@quicinc.com>
+>>>> ---
+>>>>   drivers/clk/qcom/clk-alpha-pll.c | 169 +++++++++++++++++++++++++++
+>>>> ++++++++++++
+>>>>   drivers/clk/qcom/clk-alpha-pll.h |   1 +
+>>>>   2 files changed, 170 insertions(+)
+>>>>
+>>
+>>>> +    /*
+>>>> +     * Dynamic pll update will not support switching frequencies
+>>>> across
+>>>> +     * vco ranges. In those cases fall back to normal alpha set rate.
+>>>> +     */
+>>>> +    if (curr_vco->val != vco->val)
+>>>> +        return clk_alpha_pll_set_rate(hw, rate, parent_rate);
+>>>> +
+>>>> +    a <<= ALPHA_REG_BITWIDTH - ALPHA_BITWIDTH;
+>>>> +
+>>>> +    regmap_write(pll->clkr.regmap, PLL_L_VAL(pll), l);
+>>>> +    regmap_write(pll->clkr.regmap, PLL_ALPHA_VAL(pll),
+>>>> lower_32_bits(a));
+>>>> +    regmap_write(pll->clkr.regmap, PLL_ALPHA_VAL_U(pll),
+>>>> upper_32_bits(a));
+>>>
+>>> We have code that does this in __clk_alpha_pll_set_rate() and now you
+>>> are adding two more copies. Please extract PLL_L_VAL, PLL_ALPHA_VAL and
+>>> PLL_USER_CTL / PLL_VCO_MASK into a helper function.
+>>>
+>>
+>> Dmitry, I was thinking of implementing the following as a reusable
+>> helper since it can be leveraged by most of the functions. I'd
+>> appreciate your suggestions or feedback.
+> 
+> The code below looks good to me. Please use 'alpha' instead of 'a'.
+
+Thanks, I will use 'alpha' in the next patch.
+
+
+Taniya
 
 
