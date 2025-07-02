@@ -1,57 +1,80 @@
-Return-Path: <devicetree+bounces-192339-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-192340-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id CD05FAF6472
-	for <lists+devicetree@lfdr.de>; Wed,  2 Jul 2025 23:56:42 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5C34AAF64B3
+	for <lists+devicetree@lfdr.de>; Thu,  3 Jul 2025 00:01:24 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 8C7C616CB81
-	for <lists+devicetree@lfdr.de>; Wed,  2 Jul 2025 21:56:40 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 6B92E7A83BA
+	for <lists+devicetree@lfdr.de>; Wed,  2 Jul 2025 21:59:57 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 25CBA244668;
-	Wed,  2 Jul 2025 21:56:27 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 35C82242D84;
+	Wed,  2 Jul 2025 22:01:12 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (4096-bit key) header.d=prolan.hu header.i=@prolan.hu header.b="JgN5qKZR"
+	dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b="y48xNPQ1"
 X-Original-To: devicetree@vger.kernel.org
-Received: from fw2.prolan.hu (fw2.prolan.hu [193.68.50.107])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-oi1-f172.google.com (mail-oi1-f172.google.com [209.85.167.172])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id ADA1D24291C;
-	Wed,  2 Jul 2025 21:56:24 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=193.68.50.107
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D7F3C24169D
+	for <devicetree@vger.kernel.org>; Wed,  2 Jul 2025 22:01:09 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.172
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1751493387; cv=none; b=HZiKOQaeO2jPE8dIyjfF0cyoM9YRcIV1VqNLDGb6FGh16PZFeRVCztuSJHQcdynb/ilRMEoyGhDFswNGrR+3eAOPPMaJTlfdMf2Tb7CmlO509C3R7i6cnAv9Iv3fKPOUsd6ZD5w/udJQs+IPgJYmpPfk9KGbW/1bgxhRAnZqsnw=
+	t=1751493672; cv=none; b=d2PSO/PtVnONAFBU3zLq7sLnc2QgBN6dM8BuAz93rCDrRqSRqzUkaOlPahJRoC6ooXwFaijueUvlt8qEp28PnQGXqktJZg7tbjHkGqdgBdK+ct9UNLWaf03bu4TeCGE5zqwwEMzaher+wdLDDYq7hlt/KDSkXU/cRkWViVbBsVQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1751493387; c=relaxed/simple;
-	bh=4fU/Xqk7oxY2MogaKEZwQL5CtwrxPv8uOkGDktPbTs0=;
-	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
-	 In-Reply-To:Content-Type; b=ZHEa6MxvCa2yxlzuVp3QwZLhGyub6fmSLRY4RUjCWwuHtzts6KfNfX8370OwV45SKBKo4lp5rrzwBqc5AAJLqThD8Fygy7bkcCMx37Z6gRjhtJTSS0yuQRcAJmFUWMl7tGgei94n9vyGaThsgtT8FivNvIPOnWHwOMcB4ADD6Wk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=prolan.hu; spf=pass smtp.mailfrom=prolan.hu; dkim=pass (4096-bit key) header.d=prolan.hu header.i=@prolan.hu header.b=JgN5qKZR; arc=none smtp.client-ip=193.68.50.107
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=prolan.hu
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=prolan.hu
-Received: from proxmox-mailgw.intranet.prolan.hu (localhost.localdomain [127.0.0.1])
-	by proxmox-mailgw.intranet.prolan.hu (Proxmox) with ESMTP id 8B62DA0057;
-	Wed,  2 Jul 2025 23:56:22 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=prolan.hu; h=cc
-	:cc:content-transfer-encoding:content-type:content-type:date
-	:from:from:in-reply-to:message-id:mime-version:references
-	:reply-to:subject:subject:to:to; s=mail; bh=3e8ZfmzVr8jG57PEK3YQ
-	YM1MaAzpKV6K4dgRXSV1tKw=; b=JgN5qKZRW6ohwswImPvNTLkJthhXf6Ucwfck
-	6Hzv9+aTvM784CoQcqC1aMM+cBU6qNquxGNIswE/Ys8PSL/1ocMGup9xEoC2yss+
-	skPpRdOH2eiSVIx9w/0czjhmErMt/luUpHdHrL97bC4h9yXKF/gaYwWgDEKCRR1j
-	5fiuKain4ROChqGHEirDYj5dU7az0ZVJ+u/6miTU/FC87/PdlFR3NFk+uINhI5Gy
-	DqkEFc3d3HU6wfeit5WhBuv/+CsyOsWeHdBJBYop9yPpBQsoimWrj/xSgoonZVGN
-	0UCH4/4ehmqMolDI4RYZ1EiB8N7lxjCcBSljqneNVzV1ub+JwwtbKdipbRYr//Ss
-	EHGpcm2Yc8BSVTKribB+p9/UYwk7vGi3LyPQ+55MkvADL28VD9fpPIjTl2TbXZXS
-	J/y92lMn4zrvgfzEzVBSa7BPsUMvjzembyaesCm6JqIhH3FUs3TRdXCiVZ/98PE7
-	50/ohY0LNRfMYJq618ervFxHfLwCg+m8gkY0vLhtr5bh8rDpG/CVmFS9j6SjO7xq
-	jokhffH5ArKTvAvHQG6LHn2ZsKi+vD2ceSmeIUfWr3gT2xoVIS0ImTmSa1M1D1zy
-	dCUqeY72S0teCB5QIB/OisfU/I6B3JxR8gCSrYPf2o7T/Yusm+fCm5atZ7x1f18Z
-	yU7HBac=
-Message-ID: <2f628251-5b67-47e0-8038-6c1aeee1ef91@prolan.hu>
-Date: Wed, 2 Jul 2025 23:56:20 +0200
+	s=arc-20240116; t=1751493672; c=relaxed/simple;
+	bh=hjhHlOolfaZNDUs+RdvLckgniM7ltNQJFdfTBZFssqw=;
+	h=Message-ID:Date:MIME-Version:Subject:To:References:From:
+	 In-Reply-To:Content-Type; b=GHhnHbktsnm7Hvy0pyawvXgk/zbyvvFqQ7n1Hw7+NH+fviYIfR3wLVKA46kMu9Qc4p+m496jX11nvzzMg5WyQJrdUdVEMyd+DsVU91RqtOHlG3WXbqMRenz8xOt0Na2Q1TsAH+wXsB8trxkrDIMe7MAKI+CQOnvohLkMiBHWm8Q=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com; spf=pass smtp.mailfrom=baylibre.com; dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b=y48xNPQ1; arc=none smtp.client-ip=209.85.167.172
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=baylibre.com
+Received: by mail-oi1-f172.google.com with SMTP id 5614622812f47-40ab5bd9088so4509865b6e.0
+        for <devicetree@vger.kernel.org>; Wed, 02 Jul 2025 15:01:09 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1751493669; x=1752098469; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:to:subject:user-agent:mime-version:date:message-id:from
+         :to:cc:subject:date:message-id:reply-to;
+        bh=DKgWS7/qdk7+Eg50DbHdDl8mGYC2JyCvr3ER8bCDhe0=;
+        b=y48xNPQ1VGFonG90ers22n9CaIGu/U0THcQn5c8nBkrNDl4s9PaFjS+j1I6g9WKNKk
+         AIt90eg9oaV1EgKUwMKqT6KK+6qZm0ycbC3hNp4m6EMABEfx09alAUON+kWaoxtIKcLc
+         KpF0R66j9mNHBxgK3gVzHPFVU3zoE/wqhAbjqow81uQxg+cfY447RdnKngepHdBwkEoA
+         erkhwbWUhLFkvzceqJ0cHWv3nN9vR0F3ZV9QQRRlcAkjmr2yRwkjT/VoCkPEvvC4uya0
+         +4NGqWis8xoTuzKwFm7oiFKXthN/Lw8UdUwMqdkbwyOEA+arjT+4IL8OlrccbhJhMKY1
+         F5nQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1751493669; x=1752098469;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=DKgWS7/qdk7+Eg50DbHdDl8mGYC2JyCvr3ER8bCDhe0=;
+        b=lkHiYKHvr+99eV1n6DrnLvqqHEjc9SjnmCfrdTqOlS+yWh6LzytXU3SMDY/Qru/TB0
+         0Q3k6OO4ghTKqzCiTXQur3KYgVJUJWzbPK++JzRG+8RmWVYAtYKFNaRzsqufGXskpLgd
+         y8SPDUWIFq1hAvr8t7ZbT/h7iL793kjEMgrcyqiKDxUuogzDfnMyDYTla7iCF47Bow0r
+         Gw1OUP+8KRopVFsI1jmaQS91SYl5GIArmIgenStshxKOCt5ngRzLckMiOopVkt5Xkmrl
+         4iQQsazDN71rQNSPpWbt0b/z+pS9axW4uV8BPktwSbPXfEJKNJhVhFM7Depme6U0dLrU
+         R1xA==
+X-Forwarded-Encrypted: i=1; AJvYcCXrPjMrPhrnvCTyZU5AGEb65ZtoB4LeAVFJlF0A3gzMNyvFwQbu5I0wyHkYiCcZmv16yOrC+gQu+K1o@vger.kernel.org
+X-Gm-Message-State: AOJu0YyDS+wSNzAm6Xs0AFYhjn7Ot/DN6abxloUc8UAPdh7HVOTGOS2L
+	ogYryn90q1Pb46CNvvvqZbWbP8NHQ6i0oG5jT7UDcNYdlfFUNrmX/rk+QpQa2fKbbJc=
+X-Gm-Gg: ASbGncuv6NpYXZohVh2TqEf95CJZTv/eA1n6ucI3ny8KOts5qEibHqEyMzbrRi+lnm3
+	S4tKhX2EpUyu7qDaKvorsVRlNILBv4kI2Y1aAslb7PU973j2RMtsKuVvbLT1KS9hkqW64CkvKBv
+	mDnzDqzt8sVuN3n1a0+GfRquEpGDXaOr8ue81Sv2geAQZGzaFWPhs8YWLtgSJEPoMxud6vE0dkc
+	1bZwrp/0WgW8aUsebB2FV2YSkwqTegtPIdoMT1yyaAh8C4SsViyCxg2OwdGGTDMruT2HYwQeCl6
+	mW4cQhreBeyAObZLH65UMM895hV8ba6uEJBlDjH/6KA8D9Zl6Y8kEfmNcKxQVEeUb4UZQ5ooe70
+	rGILZ7FFVeWG7dvHbzKCLkVKIN0LTBHDOouZVtwE=
+X-Google-Smtp-Source: AGHT+IHKZNhePlF0+T6dWuoOeOIoDbpvywH95ABuicUB05Dmc1aVoalsdNueqPirXs97Btv0KkGWcg==
+X-Received: by 2002:a05:6808:e8a:b0:403:3673:65f0 with SMTP id 5614622812f47-40b88b25dc6mr3169424b6e.31.1751493668851;
+        Wed, 02 Jul 2025 15:01:08 -0700 (PDT)
+Received: from ?IPV6:2600:8803:e7e4:1d00:5c00:24f0:997b:5458? ([2600:8803:e7e4:1d00:5c00:24f0:997b:5458])
+        by smtp.gmail.com with ESMTPSA id 5614622812f47-40b32420c83sm2747613b6e.36.2025.07.02.15.01.07
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 02 Jul 2025 15:01:08 -0700 (PDT)
+Message-ID: <a30cbe3a-7d1b-4072-880e-99688657a093@baylibre.com>
+Date: Wed, 2 Jul 2025 17:01:07 -0500
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -59,50 +82,66 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH] arm: DT: imx6-sr-som: Replace license text comment with
- SPDX identifier
-To: "Russell King (Oracle)" <linux@armlinux.org.uk>
-CC: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>, "Sascha
- Hauer" <s.hauer@pengutronix.de>, Pengutronix Kernel Team
-	<kernel@pengutronix.de>, Fabio Estevam <festevam@gmail.com>,
-	<devicetree@vger.kernel.org>, <imx@lists.linux.dev>,
-	<linux-arm-kernel@lists.infradead.org>, <linux-kernel@vger.kernel.org>
-References: <20250702-sr-som-dts-lic-v1-1-2e8584e6c837@prolan.hu>
- <aGWqIzNvSVw4olz5@shell.armlinux.org.uk>
+Subject: Re: [PATCH v2 1/2] dt-bindings: iio: adc: Add support for MT7981
+To: Aleksander Jan Bajkowski <olek2@wp.pl>, jic23@kernel.org,
+ nuno.sa@analog.com, andy@kernel.org, robh@kernel.org, krzk+dt@kernel.org,
+ conor+dt@kernel.org, matthias.bgg@gmail.com,
+ angelogioacchino.delregno@collabora.com, zhiyong.tao@mediatek.com,
+ linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ linux-mediatek@lists.infradead.org
+References: <20250702214830.255898-1-olek2@wp.pl>
+ <20250702214830.255898-2-olek2@wp.pl>
 Content-Language: en-US
-From: =?UTF-8?B?Q3PDs2vDoXMgQmVuY2U=?= <csokas.bence@prolan.hu>
-In-Reply-To: <aGWqIzNvSVw4olz5@shell.armlinux.org.uk>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 8bit
-X-ClientProxiedBy: ATLAS.intranet.prolan.hu (10.254.0.229) To
- ATLAS.intranet.prolan.hu (10.254.0.229)
-X-EsetResult: clean, is OK
-X-EsetId: 37303A296767155D6C7266
+From: David Lechner <dlechner@baylibre.com>
+In-Reply-To: <20250702214830.255898-2-olek2@wp.pl>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-Hi,
-
-On 2025. 07. 02. 23:52, Russell King (Oracle) wrote:
-> On Wed, Jul 02, 2025 at 11:41:54PM +0200, Bence Csókás wrote:
->> Replace verbatim license text with a `SPDX-License-Identifier`.
->>
->> The comment heades mis-attributes this license to be "X11", but the
->> license text does not include the last line "Except as contained in this
->> notice, the name of the X Consortium shall not be used in advertising or
->> otherwise to promote the sale, use or other dealings in this Software
->> without prior written authorization from the X Consortium.". Therefore,
->> this license is actually equivalent to the SPDX "MIT" license (confirmed
->> by text diffing).
->>
->> Signed-off-by: Bence Csókás <csokas.bence@prolan.hu>
+On 7/2/25 4:48 PM, Aleksander Jan Bajkowski wrote:
+> The temperature sensor in the MT7981 is same as in the MT7986.
+> Add compatible string for mt7981.
 > 
-> As Florian has already mentioned, the preferred format for the summary
-> for arch/arm is "ARM: ... " and by extension for arch/arm/boot/dts,
-> it's "ARM: dts: ...", not "arm: DT: ..."
+> Signed-off-by: Aleksander Jan Bajkowski <olek2@wp.pl>
+> Reviewed-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+> ---
+>  .../devicetree/bindings/iio/adc/mediatek,mt2701-auxadc.yaml      | 1 +
+>  1 file changed, 1 insertion(+)
+> 
+> diff --git a/Documentation/devicetree/bindings/iio/adc/mediatek,mt2701-auxadc.yaml b/Documentation/devicetree/bindings/iio/adc/mediatek,mt2701-auxadc.yaml
+> index b489c984c1bb..ceb914dde15b 100644
+> --- a/Documentation/devicetree/bindings/iio/adc/mediatek,mt2701-auxadc.yaml
+> +++ b/Documentation/devicetree/bindings/iio/adc/mediatek,mt2701-auxadc.yaml
+> @@ -26,6 +26,7 @@ properties:
+>            - mediatek,mt2712-auxadc
+>            - mediatek,mt6765-auxadc
+>            - mediatek,mt7622-auxadc
+> +          - mediatek,mt7981-auxadc
+>            - mediatek,mt7986-auxadc
+>            - mediatek,mt8173-auxadc
+>        - items:
 
-Ohh, I misread it, I thought it was just about `imx6: board:` -> 
-`imx6-board:`... Ok, I will re-format it for v2.
+The new compatible with fallback should look like this:
 
-Bence
+diff --git a/Documentation/devicetree/bindings/iio/adc/mediatek,mt2701-auxadc.yaml b/Documentation/devicetree/bindings/iio/adc/mediatek,mt2701-auxadc.yaml
+index b489c984c1bb..14363389f30a 100644
+--- a/Documentation/devicetree/bindings/iio/adc/mediatek,mt2701-auxadc.yaml
++++ b/Documentation/devicetree/bindings/iio/adc/mediatek,mt2701-auxadc.yaml
+@@ -32,6 +32,10 @@ properties:
+           - enum:
+               - mediatek,mt7623-auxadc
+           - const: mediatek,mt2701-auxadc
++      - items:
++          - enum:
++              - mediatek,mt7981-auxadc
++          - const: mediatek,mt7986-auxadc
+       - items:
+           - enum:
+               - mediatek,mt6893-auxadc
+---
 
+Then you can validate that the next patch matches the bindings with
+`make CHECK_DTBS=1`. I would expect it to fail currently since the
+binding is specifying a compatible without a fallback but the .dts
+uses a fallback.
 
