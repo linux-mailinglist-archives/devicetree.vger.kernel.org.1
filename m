@@ -1,245 +1,137 @@
-Return-Path: <devicetree+bounces-192319-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-192320-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id AD89BAF63AC
-	for <lists+devicetree@lfdr.de>; Wed,  2 Jul 2025 23:03:16 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 36810AF63B8
+	for <lists+devicetree@lfdr.de>; Wed,  2 Jul 2025 23:05:20 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 239D73A7DF8
-	for <lists+devicetree@lfdr.de>; Wed,  2 Jul 2025 21:02:48 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id CFE944A77C0
+	for <lists+devicetree@lfdr.de>; Wed,  2 Jul 2025 21:04:53 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id AEF2923A9BD;
-	Wed,  2 Jul 2025 21:03:01 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7B3231E5711;
+	Wed,  2 Jul 2025 21:05:13 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=google.com header.i=@google.com header.b="lcN/2g1d"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="NlmPAFZv"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-qk1-f171.google.com (mail-qk1-f171.google.com [209.85.222.171])
+Received: from mail-pl1-f173.google.com (mail-pl1-f173.google.com [209.85.214.173])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5EAE01E9B1C
-	for <devicetree@vger.kernel.org>; Wed,  2 Jul 2025 21:02:59 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.222.171
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 076172DE6F9;
+	Wed,  2 Jul 2025 21:05:11 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.173
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1751490181; cv=none; b=EL8fJMi6jE9B1yRlNZHV2v7hsBmJBhBRFqeaVvYG1Y3evBpkGdrdM0sMLpk1AqyKVNW/6lHya5ILg1gUWsid0spsJNZwqrjguKG/BHiWOD+s3CT/hBHMWSClNEp7K7oH7hfoT2lLoh5gl2lJPsSjBGPMdd9fmZMpVzlzwx60tQ8=
+	t=1751490313; cv=none; b=EfA1IBaNmoaPTG0BPnxxJrGA99uLuyzvLn/ALz8rMZHM1lYqGVGFzQGlknPkqx2mOIYkwNd1ZATeNK8zDv0sog8Wd+uBzImfag7YouJOieNw1QVIqNnTss4B2g5Z0ApumxbbOHeQrlqpYVU2V8m1XDpeA37t3mfVtv0avptEFug=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1751490181; c=relaxed/simple;
-	bh=4vQ93QOR7sUMLGuKKWYA5MqL8eulcSCyBQPNC6yOAz0=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=Cw37fck0tlj00So+QNH7Xmtma8P0CNxHQzpUQnDwalWbKQKifo8DLA2KTrr5F/kyhjqAow4mYs2niS+7tMkkTrv/2hDcOyusLnxIo1VtmUqD6uXuuDUP0+iDbt5/MophTQJQjU5yA+wihGrz6erzH/FIilsMa9eukiU/a8U46L0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=google.com; spf=pass smtp.mailfrom=google.com; dkim=pass (2048-bit key) header.d=google.com header.i=@google.com header.b=lcN/2g1d; arc=none smtp.client-ip=209.85.222.171
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=google.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=google.com
-Received: by mail-qk1-f171.google.com with SMTP id af79cd13be357-7d3dd14a7edso763242885a.2
-        for <devicetree@vger.kernel.org>; Wed, 02 Jul 2025 14:02:59 -0700 (PDT)
+	s=arc-20240116; t=1751490313; c=relaxed/simple;
+	bh=YG6sPS0G+I71vksxn4epGkUMjbDGBdqbdGVeWWGjEjU=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=aAq/xuUFPzbIJJm3D3YUz8DctHyjadC1Y0mrSOumMYtMJC7sLBWZdom4OM1DAbwv+5oHB3tz8se3E7IUjU4ZVydOeYSIUCKpK5UZ1d8jMC3dn898hmN0zxj62Cet8l3+6AJY/7Q/6NxB73upuhqcr+JIppcldBWgSuyMGoF58uY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=NlmPAFZv; arc=none smtp.client-ip=209.85.214.173
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-pl1-f173.google.com with SMTP id d9443c01a7336-236470b2dceso42712775ad.0;
+        Wed, 02 Jul 2025 14:05:11 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=google.com; s=20230601; t=1751490178; x=1752094978; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=EJ91IALf7qL2mLAV9e8zmgMyOJhT80+BeW9rsMA6c10=;
-        b=lcN/2g1dPDvkVT7gcoUnSi5cF3fKLcQFP47h2jxNP4+OcUJX3+z1EU1MijGnA+BhCa
-         6iU5o9D3lUwJH3ZGp2PjvTSuSum1AwrsX5uImQ0WRn318fBx1NNley0entkaXTkt6NTm
-         3/UX3hYj8GjY4/HaWdPaSpEfcNtGjd+dCnGGJ2qZ8GNX12N5iSlrrNbHXENl9JTDfQ9X
-         Zm0NAcugGC9AiyDy6Ogy/IiI5tkPv0enAUSdCACh1H2+APpm35gUKOfxcsQH/RtQ2rWY
-         qmIY+NjArnY1+Pja8Y6cT8f5xIS/pT1fb8dw6o2CguZLfJ3F57jldd3pi8uG2OCXRWmy
-         Zuyw==
+        d=gmail.com; s=20230601; t=1751490311; x=1752095111; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=Wh2PtfxFsXVqWIGJhK/ssCsDM+Xukv05BNpcs9NLP9I=;
+        b=NlmPAFZvcijlbCuhBELwDijrRXmTc+HQFPC/47TpiwehITCPDxVA3PqnDipqUXExiZ
+         V4mZVA2puHDq5xZtpfxegx1yjtbHM4ZNiE+3NjXh3jbXIexb9q78VjQszoZQ050cNSlE
+         ScUhBMKAL+3sz/xW5Ujavbk1dCXpmLS2bOpSbL+T0MYCI5zMb3GMN5XbPpIkWsDQexEf
+         +p0KbRAAnugxhtUnyBl66FDDY3DkOKicpCvBXHqpvTOD8WKQtRwHgFe4q/OrCtutnnqd
+         1rKELVfMbQssv9l2NHKoS12IXnO/rF+i+ssCbgoOkGSR8Bd25P/3bTL2qNeZ2oOioKlm
+         T6Wg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1751490178; x=1752094978;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=EJ91IALf7qL2mLAV9e8zmgMyOJhT80+BeW9rsMA6c10=;
-        b=OluGbj3QgzVudtNgpwq9cqRTb8p4BMNqAjcabkIobqnmX9GHVu3Pl8mjc3MnU8495M
-         EgoxunVGzP91bHpps1HZTSQFirIEXceFJWjMHiqmunaEVdzCuu2+I/jIPXPVrXGMa6N/
-         t6m0xOkuYmDB/VKwkm2IjDh0/kW99V8LRknHHPHEADmJp6bni7C1yWvwHcruP80Ioi47
-         Jl7J1Qu+mCgJ5AYsx/Q0hp7kzdF+2NqNFeryDpdOFAZkVNof85IqvXWm4zjU2sUHexD3
-         +EIZIPO3a298VLuCOtXs8e7Pz8s9IJxBp0oyzsxEn87V3lG2YSMK7DPUXN32yZ3tmHDI
-         5BbA==
-X-Forwarded-Encrypted: i=1; AJvYcCUlLpr+j8v53NGXhYgm25XPE1bHbhlXU29PQEeqX5GMh96ZQbJ2J5HJt3nt3DSECS2CC2K7EiGxicO/@vger.kernel.org
-X-Gm-Message-State: AOJu0YxMbPB/FTTDECTuLyiq7su4QL285JE5lmY+pMuJwM+n0pK4O6NT
-	Dw/7fW3iRSP0tsjz3Ob6SOgpMss9f06kuINzqz4hkppWBgEUQ6pUwJAwh7rSyJVZWI7M7cTRpu0
-	IVCItxO7KoNIS2mYBxzuI/XUqJgh3INDPQ13s10Q2
-X-Gm-Gg: ASbGnctFaaO9V1ZuXrw+ZS80QLd/UVShoboxtx+S8X+ljJlY3Ds1+OYs1VWqHBlyWnl
-	bVVcAU1/B5rk0tHX5NgWCu20L82B21fDr/dRRBzbM0egKwDupVfVl4Sa/kD+8x1o/gSvAEG8KE0
-	4462E9PVh+2mQKFxoBwXdyyNs/22T988ugPdORYMgdJ/Hzx6jU83EFZiUEgnv9BER9UN+EwZyS
-X-Google-Smtp-Source: AGHT+IHZLJBo9iF9+nKbDyZZYnf6PcVxrcD0+f+tDZM+7z0OQ6NWXKWPaxUOSfKFFIK+EtLpeM3pSDTuYA14QV/DaCA=
-X-Received: by 2002:a05:620a:280d:b0:7d3:f0a0:ea5f with SMTP id
- af79cd13be357-7d5d13f3399mr185371785a.22.1751490177645; Wed, 02 Jul 2025
- 14:02:57 -0700 (PDT)
+        d=1e100.net; s=20230601; t=1751490311; x=1752095111;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=Wh2PtfxFsXVqWIGJhK/ssCsDM+Xukv05BNpcs9NLP9I=;
+        b=VZWNrLdWNBOYec343V0jTzZpJZc4mIqU450lLCqLxLe4R7a1JtcPtha6/b2F/oV2b3
+         bS1VgAr4/4E7VL1Gu0r3BNhsptMkb0c3ZntrGLGFz+QoaOdVfglnq5woYFycGkpNLu/u
+         XtdKTuOG4w2NZuj4ha1JwTKAotcZWSv405xI1PoPWs2LrbIP4z9AxTgM6syJsfuNOC85
+         0coK23T34gg4l4riQhjY5P3j0zLlxP+Zxjj69Ye6QtbEyHAF32nGxVYrM6AdJWEbprzs
+         +LHCtVIaCaoFf07q6qmpCcGTCHWsYfx+5fAQyPxeaYD3YT1kGKA8v+Ff0TvUqHCgr7Zz
+         RYdw==
+X-Forwarded-Encrypted: i=1; AJvYcCUSFCWKiuDnL20ckUmCSeYqERBRO1TcYpDn1lL9w+f/ETs3S7usZbQ6VOVRcIRwTu8n4+2xOoNYyTuj@vger.kernel.org, AJvYcCVBf7uz3ggCBG7CW20u0cEvO8QpZaS9hHUu3dRj+5+fIU1Ov5ty0RtzdS1GMrKkox7HEOx9Ybc+fSQRtw==@vger.kernel.org, AJvYcCWY7T6r5vnN8Ioc1jmo+JRUUU5UFx1B1nStS6MwwqZMQ3Gh5hs+mG5snHBJ4vaIbi8YJ6BOQTeGqjxhXJcd@vger.kernel.org, AJvYcCX/33PxYvrgDFyfzoHE1vCpc66kR5DOhQyr87ojGIHQdIf7w2IRNydBSqmfL2LtuRMHyEejwqcCAcKo@vger.kernel.org, AJvYcCXnVqLsx5o9Q4321TfEwccOMu+obPQdZWlgFYdbt7dAcaWk3VuhYCLHqfZORZ2xOg0j6l2tRe3nKj3ZDZw=@vger.kernel.org
+X-Gm-Message-State: AOJu0Yx5irhQ78EB8mb7UHUgt9dkOuagyGwTb2jNFXhjJZIBcoG82AAh
+	pyy7rL5oVj29PbjWpbJKvr3yMFeYXwpsAfdWPMBSCWIsuEsJzXduNGqk
+X-Gm-Gg: ASbGncvvhMgHH2boXRpfXrMqJaQyOPX5lH8D07DnetMgNMVP+Jzox5/Zp1m5ktB1eN9
+	Yy2X1XTLeIDWsPkeB72V+H8+jZ/7TJYQrrsDnLMe4St+55p5dldpHK69G8JtGQ3j2pdQN2WatGZ
+	TwdM72XnRE9zAnFCG1WZdVjRA8laSFbBLZvXmZvMlN2zwQS6hKUW2otPEVh1GCR6NUkTnoVchLe
+	8gSMFtRQ/5JE04HJrqdn5QT4L5cQLjw/GOJcQdtO2UxDmuJPkEJKaEh+T6wkRXiOCBlfgOYPklJ
+	1tUlQhlBYSc2jbAp7Nq5fSCMA6jMyXwLle16eJgV8OCeRWwovPiLdpKYSWSz/rI=
+X-Google-Smtp-Source: AGHT+IED4rigsUmACCM8UMue5pRAk+uyxupiG5Exv/rXBrfmLjc9Y12VetS1nwj6oMIn6YZGh8phpQ==
+X-Received: by 2002:a17:903:1a70:b0:234:cc7c:d2e8 with SMTP id d9443c01a7336-23c6e5b0fd8mr52532375ad.37.1751490311058;
+        Wed, 02 Jul 2025 14:05:11 -0700 (PDT)
+Received: from google.com ([2620:15c:9d:2:918b:9ece:525a:9158])
+        by smtp.gmail.com with ESMTPSA id d9443c01a7336-23acb3acc62sm146106955ad.143.2025.07.02.14.05.09
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 02 Jul 2025 14:05:10 -0700 (PDT)
+Date: Wed, 2 Jul 2025 14:05:07 -0700
+From: Dmitry Torokhov <dmitry.torokhov@gmail.com>
+To: Mathieu Dubois-Briand <mathieu.dubois-briand@bootlin.com>
+Cc: Lee Jones <lee@kernel.org>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Kamel Bouhara <kamel.bouhara@bootlin.com>, Linus Walleij <linus.walleij@linaro.org>, 
+	Bartosz Golaszewski <brgl@bgdev.pl>, Uwe =?utf-8?Q?Kleine-K=C3=B6nig?= <ukleinek@kernel.org>, 
+	Michael Walle <mwalle@kernel.org>, Mark Brown <broonie@kernel.org>, 
+	Greg Kroah-Hartman <gregkh@linuxfoundation.org>, "Rafael J. Wysocki" <rafael@kernel.org>, 
+	Danilo Krummrich <dakr@kernel.org>, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+	linux-gpio@vger.kernel.org, linux-input@vger.kernel.org, linux-pwm@vger.kernel.org, 
+	andriy.shevchenko@intel.com, =?utf-8?Q?Gr=C3=A9gory?= Clement <gregory.clement@bootlin.com>, 
+	Thomas Petazzoni <thomas.petazzoni@bootlin.com>
+Subject: Re: [PATCH v10 10/11] input: misc: Add support for MAX7360 rotary
+Message-ID: <rfxdncj7o6ow53jthveea6byresoz3vwts3h4cqjezn3egrny3@sd63xrnhwm6s>
+References: <20250530-mdb-max7360-support-v10-0-ce3b9e60a588@bootlin.com>
+ <20250530-mdb-max7360-support-v10-10-ce3b9e60a588@bootlin.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20250613134817.681832-1-herve.codina@bootlin.com>
- <20250613134817.681832-5-herve.codina@bootlin.com> <CAJZ5v0g01QzAkpnJGdjEuif9h==tyB94tU3nCbumx_Ya3EOoDQ@mail.gmail.com>
-In-Reply-To: <CAJZ5v0g01QzAkpnJGdjEuif9h==tyB94tU3nCbumx_Ya3EOoDQ@mail.gmail.com>
-From: Saravana Kannan <saravanak@google.com>
-Date: Wed, 2 Jul 2025 14:02:20 -0700
-X-Gm-Features: Ac12FXwhrjwNcoQlswzlpTiwmASKCStdWYLWRIuHlvNKRRZirJ70zPEsjhz1ybo
-Message-ID: <CAGETcx85vKLcFcWBR2G005Nup8UkmVZFLYgd4DuUBOKxHvJn8Q@mail.gmail.com>
-Subject: Re: [PATCH v3 04/28] driver core: Avoid warning when removing a
- device while its supplier is unbinding
-To: "Rafael J. Wysocki" <rafael@kernel.org>
-Cc: Herve Codina <herve.codina@bootlin.com>, Andrew Lunn <andrew@lunn.ch>, 
-	Greg Kroah-Hartman <gregkh@linuxfoundation.org>, Danilo Krummrich <dakr@kernel.org>, 
-	Shawn Guo <shawnguo@kernel.org>, Sascha Hauer <s.hauer@pengutronix.de>, 
-	Pengutronix Kernel Team <kernel@pengutronix.de>, Fabio Estevam <festevam@gmail.com>, 
-	Michael Turquette <mturquette@baylibre.com>, Stephen Boyd <sboyd@kernel.org>, 
-	Andi Shyti <andi.shyti@kernel.org>, Wolfram Sang <wsa+renesas@sang-engineering.com>, 
-	Peter Rosin <peda@axentia.se>, Derek Kiernan <derek.kiernan@amd.com>, 
-	Dragan Cvetic <dragan.cvetic@amd.com>, Arnd Bergmann <arnd@arndb.de>, Rob Herring <robh@kernel.org>, 
-	Bjorn Helgaas <bhelgaas@google.com>, Mark Brown <broonie@kernel.org>, Len Brown <lenb@kernel.org>, 
-	Andy Shevchenko <andriy.shevchenko@linux.intel.com>, Daniel Scally <djrscally@gmail.com>, 
-	Heikki Krogerus <heikki.krogerus@linux.intel.com>, 
-	Sakari Ailus <sakari.ailus@linux.intel.com>, Wolfram Sang <wsa@kernel.org>, 
-	Geert Uytterhoeven <geert+renesas@glider.be>, Davidlohr Bueso <dave@stgolabs.net>, 
-	Dave Jiang <dave.jiang@intel.com>, Alison Schofield <alison.schofield@intel.com>, 
-	Vishal Verma <vishal.l.verma@intel.com>, Ira Weiny <ira.weiny@intel.com>, 
-	Dan Williams <dan.j.williams@intel.com>, linux-kernel@vger.kernel.org, 
-	imx@lists.linux.dev, linux-arm-kernel@lists.infradead.org, 
-	linux-clk@vger.kernel.org, linux-i2c@vger.kernel.org, 
-	devicetree@vger.kernel.org, linux-pci@vger.kernel.org, 
-	linux-spi@vger.kernel.org, linux-acpi@vger.kernel.org, 
-	linux-cxl@vger.kernel.org, Allan Nielsen <allan.nielsen@microchip.com>, 
-	Horatiu Vultur <horatiu.vultur@microchip.com>, 
-	Steen Hegelund <steen.hegelund@microchip.com>, Luca Ceresoli <luca.ceresoli@bootlin.com>, 
-	Thomas Petazzoni <thomas.petazzoni@bootlin.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20250530-mdb-max7360-support-v10-10-ce3b9e60a588@bootlin.com>
 
-On Wed, Jul 2, 2025 at 11:22=E2=80=AFAM Rafael J. Wysocki <rafael@kernel.or=
-g> wrote:
->
-> On Fri, Jun 13, 2025 at 3:48=E2=80=AFPM Herve Codina <herve.codina@bootli=
-n.com> wrote:
-> >
-> > During driver removal, the following warning can appear:
-> >    WARNING: CPU: 1 PID: 139 at drivers/base/core.c:1497 __device_links_=
-no_driver+0xcc/0xfc
-> >    ...
-> >    Call trace:
-> >      __device_links_no_driver+0xcc/0xfc (P)
-> >      device_links_driver_cleanup+0xa8/0xf0
-> >      device_release_driver_internal+0x208/0x23c
-> >      device_links_unbind_consumers+0xe0/0x108
-> >      device_release_driver_internal+0xec/0x23c
-> >      device_links_unbind_consumers+0xe0/0x108
-> >      device_release_driver_internal+0xec/0x23c
-> >      device_links_unbind_consumers+0xe0/0x108
-> >      device_release_driver_internal+0xec/0x23c
-> >      driver_detach+0xa0/0x12c
-> >      bus_remove_driver+0x6c/0xbc
-> >      driver_unregister+0x30/0x60
-> >      pci_unregister_driver+0x20/0x9c
-> >      lan966x_pci_driver_exit+0x18/0xa90 [lan966x_pci]
-> >
-> > This warning is triggered when a consumer is removed because the links
-> > status of its supplier is not DL_DEV_DRIVER_BOUND and the link flag
-> > DL_FLAG_SYNC_STATE_ONLY is not set.
-> >
-> > The topology in terms of consumers/suppliers used was the following
-> > (consumer ---> supplier):
-> >
-> >       i2c -----------> OIC ----> PCI device
-> >        |                ^
-> >        |                |
-> >        +---> pinctrl ---+
-> >
-> > When the PCI device is removed, the OIC (interrupt controller) has to b=
-e
-> > removed. In order to remove the OIC, pinctrl and i2c need to be removed
-> > and to remove pinctrl, i2c need to be removed. The removal order is:
-> >   1) i2c
-> >   2) pinctrl
-> >   3) OIC
-> >   4) PCI device
-> >
-> > In details, the removal sequence is the following (with 0000:01:00.0 th=
-e
-> > PCI device):
-> >   driver_detach: call device_release_driver_internal(0000:01:00.0)...
-> >     device_links_busy(0000:01:00.0):
-> >       links->status =3D DL_DEV_UNBINDING
-> >     device_links_unbind_consumers(0000:01:00.0):
-> >       0000:01:00.0--oic link->status =3D DL_STATE_SUPPLIER_UNBIND
-> >       call device_release_driver_internal(oic)...
-> >         device_links_busy(oic):
-> >           links->status =3D DL_DEV_UNBINDING
-> >         device_links_unbind_consumers(oic):
-> >           oic--pinctrl link->status =3D DL_STATE_SUPPLIER_UNBIND
-> >           call device_release_driver_internal(pinctrl)...
-> >             device_links_busy(pinctrl):
-> >               links->status =3D DL_DEV_UNBINDING
-> >             device_links_unbind_consumers(pinctrl):
-> >               pinctrl--i2c link->status =3D DL_STATE_SUPPLIER_UNBIND
-> >               call device_release_driver_internal(i2c)...
-> >                 device_links_busy(i2c): links->status =3D DL_DEV_UNBIND=
-ING
-> >                 __device_links_no_driver(i2c)...
-> >                   pinctrl--i2c link->status is DL_STATE_SUPPLIER_UNBIND
-> >                   oic--i2c link->status is DL_STATE_ACTIVE
-> >                   oic--i2c link->supplier->links.status is DL_DEV_UNBIN=
-DING
-> >
-> > The warning is triggered by the i2c removal because the OIC (supplier)
-> > links status is not DL_DEV_DRIVER_BOUND. Its links status is indeed set
-> > to DL_DEV_UNBINDING.
-> >
-> > It is perfectly legit to have the links status set to DL_DEV_UNBINDING
-> > in that case. Indeed we had started to unbind the OIC which triggered
-> > the consumer unbinding and didn't finish yet when the i2c is unbound.
-> >
-> > Avoid the warning when the supplier links status is set to
-> > DL_DEV_UNBINDING and thus support this removal sequence without any
-> > warnings.
-> >
-> > Signed-off-by: Herve Codina <herve.codina@bootlin.com>
->
-> The change is OK, so
->
-> Reviewed-by: Rafael J. Wysocki <rafael@kernel.org>
+Hi Mathieu,
 
-You can add mine too.
+On Fri, May 30, 2025 at 12:00:18PM +0200, Mathieu Dubois-Briand wrote:
+> +
+> +static void max7360_rotaty_report_event(struct max7360_rotary *max7360_rotary, int steps)
 
-Reviewed-by: Saravana Kannan <saravanak@google.com>
+s/rotaty/rotary
 
--Saravana
+> +	if (max7360_rotary->relative_axis) {
+> +		input_report_rel(max7360_rotary->input, max7360_rotary->axis, steps);
+> +	} else {
+> +		int pos = max7360_rotary->pos;
+> +		int maxval = max7360_rotary->steps;
+> +
+> +		/*
+> +		 * Add steps to the position.
+> +		 * Make sure added steps are always in ]-maxval; maxval[
+> +		 * interval, so (pos + maxval) is always >= 0.
+> +		 * Then set back pos to the [0; maxval[ interval.
+> +		 */
+> +		pos += steps % maxval;
+> +		if (max7360_rotary->rollover)
+> +			pos = (pos + maxval) % maxval;
+> +		else
+> +			pos = clamp(pos, 0, maxval);
 
->
-> but it will clash with
->
-> https://lore.kernel.org/linux-pm/2793309.mvXUDI8C0e@rjwysocki.net/
->
-> that's been queued up by Greg AFAICS.
->
-> > ---
-> >  drivers/base/core.c | 3 ++-
-> >  1 file changed, 2 insertions(+), 1 deletion(-)
-> >
-> > diff --git a/drivers/base/core.c b/drivers/base/core.c
-> > index 8fead097c404..ce367c44f642 100644
-> > --- a/drivers/base/core.c
-> > +++ b/drivers/base/core.c
-> > @@ -1494,7 +1494,8 @@ static void __device_links_no_driver(struct devic=
-e *dev)
-> >                 if (link->supplier->links.status =3D=3D DL_DEV_DRIVER_B=
-OUND) {
-> >                         WRITE_ONCE(link->status, DL_STATE_AVAILABLE);
-> >                 } else {
-> > -                       WARN_ON(!(link->flags & DL_FLAG_SYNC_STATE_ONLY=
-));
-> > +                       WARN_ON(link->supplier->links.status !=3D DL_DE=
-V_UNBINDING &&
-> > +                               !(link->flags & DL_FLAG_SYNC_STATE_ONLY=
-));
-> >                         WRITE_ONCE(link->status, DL_STATE_DORMANT);
-> >                 }
-> >         }
-> > --
-> > 2.49.0
-> >
+Should it be clamp(pos, 0, maxval - 1) by chance?
+
+Otherwise:
+
+Acked-by: Dmitry Torokhov <dmitry.torokhov@gmail.com>
+
+Thanks.
+
+-- 
+Dmitry
 
