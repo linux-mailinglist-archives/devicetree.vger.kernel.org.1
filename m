@@ -1,199 +1,176 @@
-Return-Path: <devicetree+bounces-191827-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-191829-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 813FDAF0959
-	for <lists+devicetree@lfdr.de>; Wed,  2 Jul 2025 05:44:38 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id D6F0EAF09B9
+	for <lists+devicetree@lfdr.de>; Wed,  2 Jul 2025 06:35:58 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 29E707A21F1
-	for <lists+devicetree@lfdr.de>; Wed,  2 Jul 2025 03:43:13 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 2FE6C7AE8D3
+	for <lists+devicetree@lfdr.de>; Wed,  2 Jul 2025 04:34:33 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id CB7551DD543;
-	Wed,  2 Jul 2025 03:44:30 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id F39141DDC07;
+	Wed,  2 Jul 2025 04:35:50 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b="cSznYk1T"
+	dkim=pass (1024-bit key) header.d=leica-geosystems.com.cn header.i=@leica-geosystems.com.cn header.b="n/KRad7O"
 X-Original-To: devicetree@vger.kernel.org
-Received: from DUZPR83CU001.outbound.protection.outlook.com (mail-northeuropeazon11012044.outbound.protection.outlook.com [52.101.66.44])
+Received: from AS8PR04CU009.outbound.protection.outlook.com (mail-westeuropeazon11011028.outbound.protection.outlook.com [52.101.70.28])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B507C2AE84;
-	Wed,  2 Jul 2025 03:44:28 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=52.101.66.44
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 920C2BA2E;
+	Wed,  2 Jul 2025 04:35:46 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=52.101.70.28
 ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1751427870; cv=fail; b=hwq1WWkOZpkO99efdGqW1taQzVOE6RW+HciOan3gDidrMvTkl45sojHexSiwLle4EWE0uPrNErfz4UJxbE9S3VRQeiiKLXDiZ8BYeshFLXcaCLtRZQQp3Y/qEY61jkVs42wFyM5tmDEKbHnJHBqKjdsvgsDhZNJV79TbdkMS5PA=
+	t=1751430950; cv=fail; b=Jk/JWclRpEapVTEE+EWyYlh1PuZ4FXC9r+M7T/0p8Sw4y1MN5kFd/sr8+uB2NrkI48FfGRsMkMD1WD0HcIcH0eAFb7+JqNnHBSJRODwCDh8MbgiObNQGtTYTtyqk3jKalgZr4CsXwoPDawBZF8IXimj+61rQNzdOrZZidiJHFhA=
 ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1751427870; c=relaxed/simple;
-	bh=KBLQrS07WEaxc6xRV0Mz3hVWLQGmBmHiV5aC7O8makE=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:Content-Type:
-	 Content-Disposition:In-Reply-To:MIME-Version; b=Yt2WVNkgv+4+Nt2kg5pI6J6ja4dUC2FK4cC+ah0yQFcZRhXCQR/uSRV059cn1xQTI7skT6kdh/9hu3wbLaSYjV58ncDYUxfkmwQtgZi27nCen0RuvA3U12Uij8k/Zrd2e7lsZSrgzR08AyXLluaiQDvHk7aBqcqCY3573U62aYU=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com; spf=pass smtp.mailfrom=nxp.com; dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b=cSznYk1T; arc=fail smtp.client-ip=52.101.66.44
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=nxp.com
+	s=arc-20240116; t=1751430950; c=relaxed/simple;
+	bh=wVH+8cFtNx1V2ck+eDdeU+T+XxWg44sUrFzbRm7B5gw=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version:Content-Type; b=YB4E3Eu8AxlTUg/i7W2H4utyGM3TctAAKPuKLEOZ0w6VeiBJ5+ZZfIDTO44K26m8WZx2zoCFegCXuhoUmoAtgQzQPCM7waPEHnYveCMgXfNSkRbco3CJj/0W+xOO7dDd6u1JJx0aaFf2zaCMZz2k3XZcoasd2LLJ+3BBvRlD3ec=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=leica-geosystems.com.cn; spf=fail smtp.mailfrom=leica-geosystems.com.cn; dkim=pass (1024-bit key) header.d=leica-geosystems.com.cn header.i=@leica-geosystems.com.cn header.b=n/KRad7O; arc=fail smtp.client-ip=52.101.70.28
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=leica-geosystems.com.cn
+Authentication-Results: smtp.subspace.kernel.org; spf=fail smtp.mailfrom=leica-geosystems.com.cn
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=xWYYSN0T2w5UrFVzREMGMIHR4i1ogSQ3oZYcroxRgtQ3dGnsYY/yCAmmUfcP0YCtwLTfHl7PM5JwX6ICaLb96atbln/vzQWGOkbHb3YvMbv2pKz55sqz/NJGvxMk/w3N/6z6vzvyNimMZ2CKzx0b0ozSqWbXGDjMNulLOn9tYEBVcYof9Z+CgpQFQo5+wXv2xWBQvxLqLByaghsl8QlBCc7L1QTuzxk1Nv3XAqVQIZyG5q1CFKko+A+gxt7d8DLsfVmJOFZ3bvnZK86RY7HiIeod54U5TLkrjKMu2485Ag/hVTEUdbLIyka6cQruD3RqUnoQt6oiz8B9WUVXb0OStg==
+ b=L9zT0dpvSWCg6surgKWLmryz0b3I2rNhstVIjRRuJaw9WqY7NIrysE4ngYm75lJKpZaZGgLI5PcvT/hFCbkQJAC0ecJ6Fnb3JiyWBYVgV2teFor/+tfdO6ZXEtX/iKpxVBfQFAMqrj4Vi2jzoOkSvQ2U3rYB+O1TYjy/hCZpzNJt1GillTM89vLpxeD1K0305cnm9mEyIFdWoXNmSTSNm3SQUsJKv6avke2wnh9VFxMsWPQ8H67mPkMzaWIHCGuZAeXSQUJ6RRySQDWtvDWKUA1qfZCt7BpKMoP7YK+Zn6v1AiHPaFVUB19xxG6gtDdAa6on4tEcFX0Oj+bskSKssQ==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
  s=arcselector10001;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=wRKrOPbVXxoCYq477hEiLdPy3euUUCQnXQjbhABPw8s=;
- b=COiYo6msgjSxJL7yzjshv0ZadvcsXmUyx7MmnpVdwcNKtfSpZ22Wl+f5GZM86B02NX5LYDB4S/83FgmqmgIQ8XeDfAMEOp7g0iwDs+3FELWfnWNIuoSYOjOgYyNs/L9SPsMEkc3qy/p5H1nHYVkAFA4KNYEE9X8h32YJM1Wjb9KH5Fw5dqNxBNTR6r94SexGoDFQdXjxL8g2mGPycnR3e0GBg+8bFfGJU+NiMendQriY+wugIia6AArXxHBVgq0438BaHUZhuggG8iOMA3itHS0MaHB+KuPIcEBo/bFpVR4EoF8EujuCLvv8EPKi30du/cjnBMJl7PO2GGXDsSTXZw==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
- header.d=nxp.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector1;
+ bh=xo9Z+XK34hJZczwAcldIfvykgztqu0kNKu1iXmcDtFY=;
+ b=geMAADLfDJYdtJaON011J18g9G0YcQmbXCrzz/C4nQfw4+gbWCG9vXJi6JsRcxxWEMQBerjeC/Wfx1KvdY07z4IJKa7MXzeek8n0oigx+pN4FUKZRq108ptLsR1Z73eeQzgXt03NovrIfOlpzyB6RuYJ+9agsoF42ML3BZ6PSlGS991YAzRt6TfrwLufPAodPPki7T1B+7FU3INXygcN6iMcjuqDdVPUtT5Pda+bhUr2k96GQOpRx68OWgjGRG040q3a6wWD6gcXTfaDPWoVKZIOSwnhfC6RvUWgSDcgt60O8DGdRSOT9nYxT+Gn+cCmEkZyj7rwlP1wG2ybsphBRg==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
+ 193.8.40.94) smtp.rcpttodomain=vger.kernel.org
+ smtp.mailfrom=leica-geosystems.com.cn; dmarc=pass (p=reject sp=reject
+ pct=100) action=none header.from=leica-geosystems.com.cn; dkim=none (message
+ not signed); arc=none (0)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=leica-geosystems.com.cn; s=selector1;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=wRKrOPbVXxoCYq477hEiLdPy3euUUCQnXQjbhABPw8s=;
- b=cSznYk1TcMm551C0bVsZbzYEHNiDGZwyAbeqr9g6ABlTJ9I5Wro9hDoofYwlPFjyLTQfaeUh1T2hpWjoQoEraj2M+PAXrEDYtMecC7Y6xw4H8FbmrPUWRFmcEXpFlZBSTiJnsAynkoq9aTyXLSH6+pXKJl5deKO9Vj/g6jp+w341b5vvnTdRap+aHi0yLxyKTxOoL9jWcCWUliSI/STt2zCO1/GaU1hWKQD/kWQlFicPnFXjSgSwcSNhc0zFbKduS44u2R9xcjqWv543Jy9ShvtrnIxLsTYOfvDsALA/W+f1uqnRhCb6lmrYwbMSXIwl0ZpP1O7H6VmiDtmKcjOwHA==
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=nxp.com;
-Received: from PAXPR04MB9642.eurprd04.prod.outlook.com (2603:10a6:102:240::14)
- by GV1PR04MB11061.eurprd04.prod.outlook.com (2603:10a6:150:20d::6) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8880.32; Wed, 2 Jul
- 2025 03:44:24 +0000
-Received: from PAXPR04MB9642.eurprd04.prod.outlook.com
- ([fe80::9126:a61e:341d:4b06]) by PAXPR04MB9642.eurprd04.prod.outlook.com
- ([fe80::9126:a61e:341d:4b06%7]) with mapi id 15.20.8880.029; Wed, 2 Jul 2025
- 03:44:24 +0000
-Date: Tue, 1 Jul 2025 23:44:19 -0400
-From: Frank Li <Frank.li@nxp.com>
-To: Sherry Sun <sherry.sun@nxp.com>
-Cc: robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
-	shawnguo@kernel.org, s.hauer@pengutronix.de, festevam@gmail.com,
-	ping.bai@nxp.com, haibo.chen@nxp.com, devicetree@vger.kernel.org,
-	imx@lists.linux.dev, linux-arm-kernel@lists.infradead.org,
-	linux-kernel@vger.kernel.org, kernel@pengutronix.de
-Subject: Re: [PATCH] arm64: dts: imx94: add missing clock related properties
- to flexcan1
-Message-ID: <aGSq7TZlkoqIkQMT@lizhi-Precision-Tower-5810>
-References: <20250702025911.2457322-1-sherry.sun@nxp.com>
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20250702025911.2457322-1-sherry.sun@nxp.com>
-X-ClientProxiedBy: AS4P192CA0015.EURP192.PROD.OUTLOOK.COM
- (2603:10a6:20b:5da::10) To PAXPR04MB9642.eurprd04.prod.outlook.com
- (2603:10a6:102:240::14)
+ bh=xo9Z+XK34hJZczwAcldIfvykgztqu0kNKu1iXmcDtFY=;
+ b=n/KRad7OcN0vvyG5+4sf+8lUMnkfk37SnNNFZmbUNX+Yl0q/iq0Z66N3u11/EEfTHzoTtOala3ypqo+BHq/7M39zIMF0U/Hvn68+TIvRkXAPD9hML3a7DAjadgTXsK1YYiGvxtKNShfFt9QRXhcuBCv7DUpKnO14TFAnC1faCZI=
+Received: from DU7PR01CA0038.eurprd01.prod.exchangelabs.com
+ (2603:10a6:10:50e::20) by AS8PR06MB7189.eurprd06.prod.outlook.com
+ (2603:10a6:20b:23a::24) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8880.18; Wed, 2 Jul
+ 2025 04:35:43 +0000
+Received: from DB5PEPF00014B94.eurprd02.prod.outlook.com
+ (2603:10a6:10:50e:cafe::1a) by DU7PR01CA0038.outlook.office365.com
+ (2603:10a6:10:50e::20) with Microsoft SMTP Server (version=TLS1_3,
+ cipher=TLS_AES_256_GCM_SHA384) id 15.20.8901.20 via Frontend Transport; Wed,
+ 2 Jul 2025 04:35:43 +0000
+X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 193.8.40.94)
+ smtp.mailfrom=leica-geosystems.com.cn; dkim=none (message not signed)
+ header.d=none;dmarc=pass action=none header.from=leica-geosystems.com.cn;
+Received-SPF: Pass (protection.outlook.com: domain of leica-geosystems.com.cn
+ designates 193.8.40.94 as permitted sender) receiver=protection.outlook.com;
+ client-ip=193.8.40.94; helo=hexagon.com; pr=C
+Received: from hexagon.com (193.8.40.94) by
+ DB5PEPF00014B94.mail.protection.outlook.com (10.167.8.232) with Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.8901.15 via Frontend Transport; Wed, 2 Jul 2025 04:35:42 +0000
+Received: from GEO-W5CG2253GWB.lgs-net.com ([10.132.33.182]) by hexagon.com with Microsoft SMTPSVC(10.0.17763.1697);
+	 Wed, 2 Jul 2025 06:35:41 +0200
+From: LI Qingwu <Qing-wu.Li@leica-geosystems.com.cn>
+To: lee@kernel.org,
+	pavel@kernel.org,
+	robh@kernel.org,
+	krzk+dt@kernel.org,
+	conor+dt@kernel.org,
+	linux-leds@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	Qing-wu.Li@leica-geosystems.com.cn
+Cc: bsp-development.geo@leica-geosystems.com
+Subject: [PATCH V1 1/2] dt-bindings: leds: pwm: Add enable-gpios property
+Date: Wed,  2 Jul 2025 12:35:36 +0800
+Message-ID: <20250702043537.220478-1-Qing-wu.Li@leica-geosystems.com.cn>
+X-Mailer: git-send-email 2.43.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
+X-OriginalArrivalTime: 02 Jul 2025 04:35:42.0198 (UTC) FILETIME=[C4D3D960:01DBEB0A]
+X-EOPAttributedMessage: 0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: PAXPR04MB9642:EE_|GV1PR04MB11061:EE_
-X-MS-Office365-Filtering-Correlation-Id: 5c7db247-f27c-4db8-667a-08ddb91abc9f
+X-MS-TrafficTypeDiagnostic: DB5PEPF00014B94:EE_|AS8PR06MB7189:EE_
+Content-Type: text/plain
+X-MS-Office365-Filtering-Correlation-Id: bb543922-7dcf-4004-39e2-08ddb921e7a9
+X-SET-LOWER-SCL-SCANNER: YES
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam:
-	BCL:0;ARA:13230040|366016|1800799024|19092799006|376014|52116014|7416014|38350700014;
+	BCL:0;ARA:13230040|1800799024|36860700013|82310400026|376014;
 X-Microsoft-Antispam-Message-Info:
-	=?us-ascii?Q?fqSPSRj0LrHaBJR8SJsYB9311MY+1MJS7TB7U0qaliA6LZSwxzNeBjo19VrX?=
- =?us-ascii?Q?gpqrdIGd77TSK0gPoC7a5Sdeo0KYLvhcrye5C1HtYneJKafogPdKhm9v7ABZ?=
- =?us-ascii?Q?3lgELYOSmHM6Z1VGOgRCOu73lnFqFPuNsbzOyETBMHx9myG4lGHJ7T3KCOYR?=
- =?us-ascii?Q?wDQMscsOWdwnnIEFalZ+KtSSt1NZg40vATd131FsI6R685M4XMIP2cMi1ZgM?=
- =?us-ascii?Q?WmrycsRACAAaQR7JUYdjuMEj6hbdJzjZ/Fw5eCVJTcffoj5Vfj8dZt+4iUWQ?=
- =?us-ascii?Q?zoCNJq3Z2z5RGf8Lc7v1WkYar8HlxWgnuJHaBQSBu0GnFe51LgS+v0SUAsBF?=
- =?us-ascii?Q?vRGspR0WfXMZUdJOZkTGGxL3eitv50mECNneC/YGjcENzls5kD6i8ThtGpb5?=
- =?us-ascii?Q?C9wsMsMwXKTd+mK8Ov/ceOPhs4HjQGLbTRHQQZU13Pg+GiScUF57kHAA4mo0?=
- =?us-ascii?Q?u28LS1Z9sLxjvXsX8tDFKd+ik+pncMdidgYKtEOPTMM1HQbQJ5JGtH96V5Z7?=
- =?us-ascii?Q?8rem0Rxc5nNxIBbPbDa8BkwNmljPySslQkqUwmLeyovEGPnfLHV4faiFe2vN?=
- =?us-ascii?Q?wvbefES4NHtNhSWFnS0+/X29OpJpKuRi3KNtmAWY8a0Ojl0xS0uffhvQo+m9?=
- =?us-ascii?Q?OFj9kTCpfxU/HfVGpuipCWEJgcmlvoJ46ehsJNR8Ca2Dgsy5WZoDjVtjzhMl?=
- =?us-ascii?Q?hy7VwLRMeFhCYVInllVb1lPtuCu+hjleSE/PQX0opdnC825Yyr9Ai2etFQik?=
- =?us-ascii?Q?q527JHVssRm/GdwIWTw/8JymYzknOp+RUN4yy2N5sTHaiViIDbI4kXkol35g?=
- =?us-ascii?Q?7SJyApNKBY9f8F4TJoK11J8Y5nqO9Uh8Azp27YEU2CqYrFV1IZIHydpyaq67?=
- =?us-ascii?Q?MxeSjiwRjn4SSvzu03hWOiDNM6mPHYHYeCagkZ7ytgUt5+wtP4yvzXKq0l2N?=
- =?us-ascii?Q?oJsX4Y2eBp/i7xGJNCG+mvh4rhjRrS5qvZ7QIqEV5KXYCdd0MDa7cuZfbvNF?=
- =?us-ascii?Q?Tjff79jKl6forb0jTbYi/l6QL0Ztfe2GPR1NRuBI8rY4zayAVm0q4cO8Vho0?=
- =?us-ascii?Q?8cuEiakcIG+vyTCGQ7Dmiv//XFvsAwbCl8V25f6Wfee+wDSeq1gIewtQEJGO?=
- =?us-ascii?Q?jKQlHhyjPfwMMfgTDYtGQpHiFJ0AYC4re59NrvKoxtsS19kyyPmz5+Y2DYRn?=
- =?us-ascii?Q?2Wt0BK65hJsnMfLe67I9R74iAzKUuLdRIa3n5Bc+7jSyn7ARNy2gmGBUpJkp?=
- =?us-ascii?Q?zCXRqpMsYMqcbhoAZZ6WWuIdto9GqRUL+AWRDzKDNgQOBVubwPk9h9Z9eCNR?=
- =?us-ascii?Q?wCd94/redTXa32JPsgaoIR08R7JXAWKdjh6Ie74ZhrQEirv7cmKvfu+thJrQ?=
- =?us-ascii?Q?iTfXR5CN7utvrk5U4nJWaJIRzuc/U9RkKl5sRyKorxbvOvmfevmaKwyIN/5E?=
- =?us-ascii?Q?9/bpFZKD3sWHv+YKckTFCZM9yQ91RYEwc+X8un2WvE1nZE0sgCL3SBtr/u+V?=
- =?us-ascii?Q?fjBkwEARZvGCc4I=3D?=
+	=?us-ascii?Q?GBTznCbPvI338msNdwKbqMsn5jr0pUe3hhFeia9IHvCnlWurNPXzOvJ72tAF?=
+ =?us-ascii?Q?9eKmYlj4n4yQjVeuST4sBKtYiyM4dq+eRG/HP2bw9bkoaKLXoPSrVg0m/Y3P?=
+ =?us-ascii?Q?oLOMSTNH6uEF9BJers5AWNKhTTUyK1yr1BaUt69GaihA7Zx69WAau+04SR3H?=
+ =?us-ascii?Q?a0oPLV/1PD9OsJbwOEWLnYg9qWs0VMddj8b7/KhFlt+L9G/JgrYm+giN8vGE?=
+ =?us-ascii?Q?ADY2rh3VaiMd/+tfQqPGF+jXAEwF0kgtkTvtK3TFos+KmXqPpvIznDFC2HN0?=
+ =?us-ascii?Q?cS0NM10MDgLDMsYNXcYL3ZSqY3yICLTogwqX9AH47pxAQxSJaCTg1rYOwV+j?=
+ =?us-ascii?Q?frz5jN80GwVQG46hBA4E1NwUYPCNl4sEEVGvEiq2vsmPC0CUmMe9lqSfwI/B?=
+ =?us-ascii?Q?l/zRBNDYt5A5+uF6w+Ubtkqj7t5bZTcLGFtqJL9C5/eD6NOKmN6N2RL+MfwO?=
+ =?us-ascii?Q?bJCdTsyHTyNm9V2gVrF1Dzjh2PHFGlo+J4sCn1reA19xVitfouWzctAqAQ4F?=
+ =?us-ascii?Q?tDmfpxwscvsNsdKm9sLBdQnKRoaa+qk+8n28pprV9XknuP1SH0ycbTYfEnm1?=
+ =?us-ascii?Q?/oHsmzBannXzrQmAH5sQ6vUqpifYN0Sla1uhv3Tf64umC0xtZYH0Ydzo4uqT?=
+ =?us-ascii?Q?9HQgBOnXsq2qOQLQQzH1e31pJeVwHE+a+WOvHKgU1jTZC2ERfwo4PyRFMmQv?=
+ =?us-ascii?Q?Sp2wWY2GGKGYzD4OZ3Mfno6iDemmAOTJoPuyhlets5Yb0EHlqKDQERi8R8Ve?=
+ =?us-ascii?Q?67AqnQ3tcF9ATqNlf0etR3F1HOfgCiTbTHYbsEdK5GLtyaXmOtVVjAyAltFb?=
+ =?us-ascii?Q?H5/f6Ab9UBpw/4n6eDMUblntDqbaGWt6BEW2CzObKvvBZc8ZhxR86XYhukI7?=
+ =?us-ascii?Q?U3etuCFXoA9I6RcazpRXv2ZhvtT/y6RYawyusxpQytfrY6YCLLxzZKHTSxjP?=
+ =?us-ascii?Q?qzy90FfKDb9qynXv2l76eZ62MzGxzHWNGgmG/Rs2woWPKXg999p1eCdMtukA?=
+ =?us-ascii?Q?0BouCySnU8BKDSj4+MaXxIeyrdRDU2A21wrzywKfpe7DqL0kbgro4RLZo01F?=
+ =?us-ascii?Q?du44e16x+R0ZPEqKkYiCyMdufQzs6y/nkwZVmEIVHX28KIzKXCLckwWvmje9?=
+ =?us-ascii?Q?Cxc706lMbGdUw1J3sVD8bdyu+nOGN6jT51cwzVeTiG01xiYxD8xedd9zlgn6?=
+ =?us-ascii?Q?KY3zGqgbdm7RKDlAN+UjjwSTOiu65VEDSrZbVVm86l9DOH0oVd+7ysA3ThLb?=
+ =?us-ascii?Q?RSzm1kuUjJy4fXBjlV4Frz98Q5+Nb+u/fi48iSJZ6bFisABsOTe4PoA99+/9?=
+ =?us-ascii?Q?G46Ym9t88fmW0W5dI01Ri6mf4lglglDfdvmtDGqwwv1xmeuD5r6nxG0Mf1Cd?=
+ =?us-ascii?Q?jPtidrku4Xx9W+iFLQICekmNTpma3MxknVwaKyy+G6qJEGPNu9mUse671x4E?=
+ =?us-ascii?Q?asyZ6JJyp8EAZj2Pbf69T5x9PVb9JOMX2OsPuBLRmRV3xe0a8jSoR6HLm+np?=
+ =?us-ascii?Q?xYVYF7xMAl2Yrz02+snVWzwwH6xcdpYp+NJa?=
 X-Forefront-Antispam-Report:
-	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:PAXPR04MB9642.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(366016)(1800799024)(19092799006)(376014)(52116014)(7416014)(38350700014);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0:
-	=?us-ascii?Q?CZEnUqsGHQbwCX1RNLByTGc/Y7+O+Rr6ksoKWJoB1L0pF/byVltiMd7YhL/m?=
- =?us-ascii?Q?C9roRSbxIsvxc/+1ZgjpNS/3KpTRXpjWDGRkQC6X135UkOoAT3Agr0prIlEX?=
- =?us-ascii?Q?uUcHSerNUH9CDW5VLQ0QYzrUSGQ7RrW5jy1tnOktJc3zFCsCV/qvyfsPbmk7?=
- =?us-ascii?Q?Har/mkikuRs7cnQCcRDqDbux8bIbVETXWBMCVYlMzVrUsU6R9f2B2OjlCHt0?=
- =?us-ascii?Q?Lvs2iyPIXHwZqq8RWQ2ezVc8P7wUIAd+zww3CZ7/Eb9sVqOoksIfH0ZmCtX8?=
- =?us-ascii?Q?/iCoG3I4nvRK3sAjhA1BTxBwqAJvdZopa+J1WbkmLBTLDQVKDls7yFX0ntY8?=
- =?us-ascii?Q?+rPdBgYqOssDXiIPpSJbiBNdRy7DRjDvSTht3btDztfOJTnMHEr3ZFhiIgZw?=
- =?us-ascii?Q?DnAHkHYbcmBH/jCm4ZxzNKsDCmo3P3yHhkqknxVW3/qXKAIbL1I/9EKYP3FS?=
- =?us-ascii?Q?lXio5koyGm0Gg60yUxMT3Fv3SfqNzTNDNzWFru8VFBAet68tQE7y4HqoOx6h?=
- =?us-ascii?Q?K9ynH4CMX2waeShqrIUbxoYaurgDP782+6RzxSgDiYsGh+qtwgLuqoe6u07r?=
- =?us-ascii?Q?OI90yV9zN+ukV2HkVI1k5o5U3cCgUeTnOtBRq2OFgOvr+CB18iOUjeDW02z3?=
- =?us-ascii?Q?7r0nj+ZQM9boQzxKKwqB+A8Kxt910tK5w4EayhRWNPmO+njdr7XR1dKTnojL?=
- =?us-ascii?Q?q0yQabzc1U1+t5NafeDPNEdoheD9yCI2tue8pTQYhby1lWhnZoVsl7w4/pxg?=
- =?us-ascii?Q?HBscKURZ4cRIC4GHXGL5rGAg6DxWg8nMZJkvCTn99KzNrhSXj28maz4EF2IX?=
- =?us-ascii?Q?/LwWIxY81GqeyMFLyl/YukCOARFZpYHiyFfNUIyBpECzi1o7RQNXMrif9wRd?=
- =?us-ascii?Q?d8W4/iSQkQpfdqU3iAWC2KuZ1XSG+vzs/1qep19/5N7moytoB6VGyEjxg5X6?=
- =?us-ascii?Q?QMW5pO8mQV6c3UWNmviOeVlhgLWNwrlr0bFrQyj1veKFQ9yjFTk2M9hBK/Vu?=
- =?us-ascii?Q?IKiaoFUGsfX80BZHNghoB4YmsRbunVQixPE7UzHFlI5d/By7M6YKsv4ROqvC?=
- =?us-ascii?Q?kVGSS3xpXJoOeHQsHvr56SzqXACQQlZOTWhI5dGSnMyEr/IEv+Ajq1wP+VdK?=
- =?us-ascii?Q?lZfWosu6x2mFAJK0S5PVLibFV6EH2Q5nt4GnLVRwGY+0fEJcsyzkLa3XWde9?=
- =?us-ascii?Q?Ahx5YO4UUXGYznDRK8CibFulxGrX2IenyAFoDinZr8cL7fShSTjbYXjjdIUK?=
- =?us-ascii?Q?GYseXbcrL2DjXefQo/HhR3apwJd4bZvzUieD5GKhnlVY/tGWHPHF4a4tDjuB?=
- =?us-ascii?Q?laC0noBwA1a2mZ6hgT1dqDHBoz095FdvzYUm3DCsDp4WJVH1Z8qtRz8qu85/?=
- =?us-ascii?Q?148+kG/Y83sL3zSo++xOakIfQf1ApyrQZb1ae/MvwUlNSjrdIbqbvvOa7E/S?=
- =?us-ascii?Q?y+tZhYTuf8FF7wvYJywHAAOGdOFfKdLVQL2eBn1tVgpqhwIq0gka8EcAd6+t?=
- =?us-ascii?Q?mQznvEssOq+ugmY+6zhyxsWejISx1IxYeJKO1lvqxtY5uknqL2XMp+eGplbs?=
- =?us-ascii?Q?gbGxR2XZIHCZeXMskthz2kmoZ/tASoCa/6VNkhbd?=
-X-OriginatorOrg: nxp.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 5c7db247-f27c-4db8-667a-08ddb91abc9f
-X-MS-Exchange-CrossTenant-AuthSource: PAXPR04MB9642.eurprd04.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 02 Jul 2025 03:44:24.2860
+	CIP:193.8.40.94;CTRY:CH;LANG:en;SCL:1;SRV:;IPV:CAL;SFV:NSPM;H:hexagon.com;PTR:ahersrvdom50.leica-geosystems.com;CAT:NONE;SFS:(13230040)(1800799024)(36860700013)(82310400026)(376014);DIR:OUT;SFP:1101;
+X-OriginatorOrg: leica-geosystems.com.cn
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 02 Jul 2025 04:35:42.6769
  (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: AKiPFL87T4aa1fcJBIpgVyRFWuc54GtWP9pScySqUMAH5NDPVGODYd6DbhHNeZsM4fNhnCfnMUhaUeEO/NXS5g==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: GV1PR04MB11061
+X-MS-Exchange-CrossTenant-Network-Message-Id: bb543922-7dcf-4004-39e2-08ddb921e7a9
+X-MS-Exchange-CrossTenant-Id: 1b16ab3e-b8f6-4fe3-9f3e-2db7fe549f6a
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=1b16ab3e-b8f6-4fe3-9f3e-2db7fe549f6a;Ip=[193.8.40.94];Helo=[hexagon.com]
+X-MS-Exchange-CrossTenant-AuthSource:
+	DB5PEPF00014B94.eurprd02.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Anonymous
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: AS8PR06MB7189
 
-On Wed, Jul 02, 2025 at 10:59:11AM +0800, Sherry Sun wrote:
-> Somehow the flexcan1 clock related properties were missing in
-> imx94.dtsi, add them here to keep align with other flexcan instances.
+Some PWM LED chips have a dedicated enable GPIO.
+This commit adds the support to specify such GPIO.
 
-suggested commit message:
+Signed-off-by: LI Qingwu <Qing-wu.Li@leica-geosystems.com.cn>
+---
+ Documentation/devicetree/bindings/leds/leds-pwm.yaml | 8 ++++++++
+ 1 file changed, 8 insertions(+)
 
-Add missing clocks and clock-names properties for flexcan1 in imx94.dtsi
-to align with other FlexCAN instances.
+diff --git a/Documentation/devicetree/bindings/leds/leds-pwm.yaml b/Documentation/devicetree/bindings/leds/leds-pwm.yaml
+index 61b97e8bc36d0..2d38504f74c23 100644
+--- a/Documentation/devicetree/bindings/leds/leds-pwm.yaml
++++ b/Documentation/devicetree/bindings/leds/leds-pwm.yaml
+@@ -40,6 +40,14 @@ patternProperties:
+           initialization. If the option is not set then max brightness is used.
+         $ref: /schemas/types.yaml#/definitions/uint32
+ 
++      enable-gpios:
++        description:
++        enable-gpios:
++          GPIO for LED hardware enable control. Set active when brightness is
++          non-zero and inactive when brightness is zero.
++          The GPIO default state follows the "default-state" property.
++        maxItems: 1
++
+     required:
+       - pwms
+       - max-brightness
+-- 
+2.43.0
 
-Frank
-
->
-> Fixes: b0d011d4841b ("arm64: dts: freescale: Add basic dtsi for imx943")
-> Signed-off-by: Sherry Sun <sherry.sun@nxp.com>
-> ---
->  arch/arm64/boot/dts/freescale/imx94.dtsi | 7 +++++++
->  1 file changed, 7 insertions(+)
->
-> diff --git a/arch/arm64/boot/dts/freescale/imx94.dtsi b/arch/arm64/boot/dts/freescale/imx94.dtsi
-> index b8ffc428e95b..bd3437146746 100644
-> --- a/arch/arm64/boot/dts/freescale/imx94.dtsi
-> +++ b/arch/arm64/boot/dts/freescale/imx94.dtsi
-> @@ -1035,6 +1035,13 @@ flexcan1: can@443a0000 {
->  				compatible = "fsl,imx94-flexcan", "fsl,imx95-flexcan";
->  				reg = <0x443a0000 0x10000>;
->  				interrupts = <GIC_SPI 10 IRQ_TYPE_LEVEL_HIGH>;
-> +				clocks = <&scmi_clk IMX94_CLK_BUSAON>,
-> +					 <&scmi_clk IMX94_CLK_CAN1>;
-> +				clock-names = "ipg", "per";
-> +				assigned-clocks = <&scmi_clk IMX94_CLK_CAN1>;
-> +				assigned-clock-parents = <&scmi_clk IMX94_CLK_SYSPLL1_PFD1_DIV2>;
-> +				assigned-clock-rates = <80000000>;
-> +				fsl,clk-source = /bits/ 8 <0>;
->  				status = "disabled";
->  			};
->
-> --
-> 2.34.1
->
 
