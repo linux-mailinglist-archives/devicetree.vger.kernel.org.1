@@ -1,48 +1,48 @@
-Return-Path: <devicetree+bounces-192002-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-192003-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 487B0AF1246
-	for <lists+devicetree@lfdr.de>; Wed,  2 Jul 2025 12:47:58 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id E053FAF1252
+	for <lists+devicetree@lfdr.de>; Wed,  2 Jul 2025 12:48:52 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 0CFE44415F4
-	for <lists+devicetree@lfdr.de>; Wed,  2 Jul 2025 10:47:32 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 6BD134A4688
+	for <lists+devicetree@lfdr.de>; Wed,  2 Jul 2025 10:48:26 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C7CB0256C70;
-	Wed,  2 Jul 2025 10:47:52 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2D6242571D4;
+	Wed,  2 Jul 2025 10:48:47 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="odj+E+jZ"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="nMgCFVXH"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 94D23253F15;
-	Wed,  2 Jul 2025 10:47:52 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id ED25324DD15;
+	Wed,  2 Jul 2025 10:48:46 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1751453272; cv=none; b=gH2Eg39k0BCTEVUHlD8Kfgvr+5zby7V3hnjp9cY7juwVFVmoICHfikpEuqsJt9egtNAPYl4c8SAYEz+ZHMMquIm+v/kgyYyeOA+HSgVSfb0AsQAvMtkT6CKX2El+E+Nw/+Nmb2XU2N1bVspZ+o5D3kXEx/i/U5dyCSX2x6wJJqk=
+	t=1751453327; cv=none; b=jtb+3vQoiI/TnGr53gwR/f4FW/kpbKbFfDLN4qVgPX6j9gaxLL4ZosxcBEYQHiqtlGhN1+dku4ceL5h4JMwBC1LwB7QMK9QQRECJrBvc8V3feQRW5V/vDeS0aP/FB0a2VoX8PRFpj61MZQKpGQg2GJ1LWAKr+gOOtz2mspk42xA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1751453272; c=relaxed/simple;
-	bh=dkrctSKnjdlsw2PLtAn4EpKUFuAA7kypA3Hrt9pRSVY=;
+	s=arc-20240116; t=1751453327; c=relaxed/simple;
+	bh=vJdn2QMSXcZcb690u8yK41bZcR/TwATYLNVDQSiXwGs=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=B5kKAIpvPo8ETTSmRj1+hZO5UieKoclyT/tSAjkcjhNIq1BtkptIKKdoaipCGIsY3OuIOsOW7y0pPTVwEb015dB6HRhjwSFCOkNH2T7ulQN5wtXsaOrHQTO268hasLBwsiQUap1KVHbgH26eyyteIFJ0QbUN3d6d/k8xDtHjhyw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=odj+E+jZ; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id CC5CDC4CEED;
-	Wed,  2 Jul 2025 10:47:42 +0000 (UTC)
+	 In-Reply-To:Content-Type; b=nPLG5FAHBrsA4av/pFXoCh1nlBeHN7HTQMZiZIGHzmQJ8CvBbUvm0NsmA1OGAVBgp9hMF0vw1L0G8xwGDCDS/AfYiRTRpOdb3z02Ff4eQn3PJ84kgio+SApshPgZe9ZevkIOc+Pl0JxW1gFu/uUbKROj/mnhemoLRsqlZ7MFcC0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=nMgCFVXH; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 44A28C4CEED;
+	Wed,  2 Jul 2025 10:48:43 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1751453272;
-	bh=dkrctSKnjdlsw2PLtAn4EpKUFuAA7kypA3Hrt9pRSVY=;
+	s=k20201202; t=1751453326;
+	bh=vJdn2QMSXcZcb690u8yK41bZcR/TwATYLNVDQSiXwGs=;
 	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=odj+E+jZWQjYS9aRqRuwMJeYI88ylhf5Ci4buASLTti0if+pATjRwHaPhVXvSEP6Q
-	 ra2sJkuj2jGFwOiO9EpuoknxOD8gJHfN3Yj5Ta7MHd8EyJ4ejCc9NJNHwTUujrmwXY
-	 7k/4Deuh4JXl7yUr777QCZh5sJWgeoH6Dv3hwbbBnRtb/SVIqwHrR1Bs29CkxBpU/t
-	 FKQ9ToXgeATVt9+jalL9fYwzlL1bwFK3gfdeQFQoLispw70IC7NnfSosOnr67iHp+E
-	 DlvMSL22ZfKaVqdITqkEdbnXMrPlXXerxOu+HZm0EDFDmbFIABXj3MConV4Qjh0BW0
-	 PQLM8P1+TybkQ==
-Message-ID: <2559f035-787e-4c80-8889-d1826a27171b@kernel.org>
-Date: Wed, 2 Jul 2025 12:47:40 +0200
+	b=nMgCFVXH5e4zdVJ/ZP434GtVlDcdW5DEm3u/Jd2WvLZRfCLVf9FbrXeFefnqyv9xx
+	 rzQCM9QheBf/wcKwPLdXQQLqOJoqtuRaqsTwZhOepur53XQUyqlj7hIkAXdxFrv8hJ
+	 4CM1w5kKmD9YAjTQSjzR3RHAS33kj5Qq1hxd+MPQKGA9iOJs7EkadHpqlpEWmst6Uw
+	 TUMEA54G2IJgXjVz/JxfrWynwMd5fs1si7HgZzC1TAz3fH4mBVcGhRz6R6qsvDyCwy
+	 6NNS4kQwVDwoRprmSzq3f9SO71s80X+ZswawycNwPheI9E7CFP4X+h4JGSz2PUIAQ5
+	 GDfxJl4a5taww==
+Message-ID: <e1424499-718a-41c8-b729-0ea96bb6a172@kernel.org>
+Date: Wed, 2 Jul 2025 12:48:41 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,23 +50,18 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 5/8] mmc: sdhci: add Black Sesame Technologies BST
- C1200 controller driver
-To: Albert Yang <yangzh0906@thundersoft.com>, robh@kernel.org,
- krzk+dt@kernel.org, conor+dt@kernel.org, gordon.ge@bst.ai,
- catalin.marinas@arm.com, geert.uytterhoeven@gmail.com, will@kernel.org,
- ulf.hansson@linaro.org, adrian.hunter@intel.com, arnd@arndb.de
-Cc: linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
- devicetree@vger.kernel.org, linux-mmc@vger.kernel.org, soc@lists.linux.dev,
- bst-upstream@bstai.top, neil.armstrong@linaro.org,
- jonathan.cameron@huawei.com, bigfoot@classfun.cn, kever.yang@rock-chips.com,
- mani@kernel.org, geert+renesas@glider.be, andersson@kernel.org, nm@ti.com,
- nfraprado@collabora.com, quic_tdas@quicinc.com, ebiggers@google.com,
- victor.shih@genesyslogic.com.tw, shanchun1218@gmail.com,
- ben.chuang@genesyslogic.com.tw
-References: <20250528085403.481055-1-yangzh0906@thundersoft.com>
- <20250702094444.3523973-1-yangzh0906@thundersoft.com>
- <20250702094444.3523973-6-yangzh0906@thundersoft.com>
+Subject: Re: [PATCH 1/7] dt-bindings: sram: qcom,imem: Document Qualcomm IPQ
+ SoC's IMEM compatibles
+To: Kathiravan Thirumoorthy <kathiravan.thirumoorthy@oss.qualcomm.com>,
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, Bjorn Andersson <andersson@kernel.org>,
+ Konrad Dybcio <konradybcio@kernel.org>
+Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org
+References: <20250702-imem-v1-0-12d49b1ceff0@oss.qualcomm.com>
+ <20250702-imem-v1-1-12d49b1ceff0@oss.qualcomm.com>
+ <a68f46f0-8053-4d9f-96f7-55de33bb301f@kernel.org>
+ <37695966-1d7c-46c3-9717-30da4e8d1930@oss.qualcomm.com>
 From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
@@ -112,92 +107,56 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  jWt87ecuHlpL3uuQ0ZZNWqHgZoQLXoqC2ZV5KrtKWb/jyiFX/sxSrodALf0zf+tfHv0FZWT2
  zHjUqd0t4njD/UOsuIMOQn4Ig0SdivYPfZukb5cdasKJukG1NOpbW7yRNivaCnfZz6dTawXw
  XRIV/KDsHQiyVxKvN73bThKhONkcX2LWuD928tAR6XMM2G5ovxLe09vuOzzfTWQDsm++9UKF a/A=
-In-Reply-To: <20250702094444.3523973-6-yangzh0906@thundersoft.com>
+In-Reply-To: <37695966-1d7c-46c3-9717-30da4e8d1930@oss.qualcomm.com>
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
 
-On 02/07/2025 11:44, Albert Yang wrote:
-> Add a driver for the DesignWare Mobile Storage Host Controller (DWCMSHC)
-> SDHCI controller found in Black Sesame Technologies C1200 SoCs.
+On 02/07/2025 12:46, Kathiravan Thirumoorthy wrote:
 > 
-> The driver provides specialized clock configuration, tuning, voltage
-> switching, and power management for the BST DWCMSHC controller. It also
-> includes support for eMMC boot and memory-mapped I/O for CRM registers.
+> On 7/2/2025 3:49 PM, Krzysztof Kozlowski wrote:
+>> On 02/07/2025 12:17, Kathiravan Thirumoorthy wrote:
+>>> IMEM is present in the Qualcomm's IPQ SoCs as well. Document the same.
+>>>
+>>> Signed-off-by: Kathiravan Thirumoorthy <kathiravan.thirumoorthy@oss.qualcomm.com>
+>>> ---
+>>>   Documentation/devicetree/bindings/sram/qcom,imem.yaml | 6 ++++++
+>>>   1 file changed, 6 insertions(+)
+>>
+>> Where is the changelog? This is not a v1.
 > 
+> This is the v1. The series[1] I pointed out describes only for the 
+> IPQ5424 SoC. Since I have added few more SoCs, thought v1 is the 
+> appropriate numbering.
+> 
+> [1] 
+> https://lore.kernel.org/linux-arm-msm/20250610-wdt_reset_reason-v5-0-2d2835160ab5@oss.qualcomm.com/
 
-Missing SoB.
-
-...
-
-> +
-> +static int bst_sdhci_reallocate_bounce_buffer(struct sdhci_host *host)
-> +{
-> +	struct mmc_host *mmc = host->mmc;
-> +	unsigned int max_blocks;
-> +	unsigned int bounce_size;
-> +	int ret;
-> +
-> +	/*
-> +	 * Cap the bounce buffer at 64KB. Using a bigger bounce buffer
-> +	 * has diminishing returns, this is probably because SD/MMC
-> +	 * cards are usually optimized to handle this size of requests.
-> +	 */
-> +	bounce_size = SZ_32K;
-> +	/*
-> +	 * Adjust downwards to maximum request size if this is less
-> +	 * than our segment size, else hammer down the maximum
-> +	 * request size to the maximum buffer size.
-> +	 */
-> +	if (mmc->max_req_size < bounce_size)
-> +		bounce_size = mmc->max_req_size;
-> +	max_blocks = bounce_size / 512;
-> +
-> +	ret = of_reserved_mem_device_init_by_idx(mmc_dev(mmc), mmc_dev(mmc)->of_node, 0);
-> +	if (ret) {
-> +		dev_err(mmc_dev(mmc), "Failed to initialize reserved memory\n");
-> +		return ret;
-> +	}
-> +
-> +	host->bounce_buffer = dma_alloc_coherent(mmc_dev(mmc), bounce_size,
-> +						 &host->bounce_addr, GFP_KERNEL);
-> +	if (!host->bounce_buffer)
-> +		return -ENOMEM;
-> +
-> +	host->bounce_buffer_size = bounce_size;
-> +
-> +	/* Lie about this since we're bouncing */
-> +	mmc->max_segs = max_blocks;
-> +	mmc->max_seg_size = bounce_size;
-> +	mmc->max_req_size = bounce_size;
-> +
-> +	dev_info(mmc_dev(mmc), "BST reallocate %s bounce up to %u segments into one, max segment size %u bytes\n",
-> +		 mmc_hostname(mmc), max_blocks, bounce_size);
-
-Devices are supposed to be silent on success.
-
-> +
+But IPQ5424 is already there, so you reworked that patch.
 
 
-...
+> 
+>>
+>>> diff --git a/Documentation/devicetree/bindings/sram/qcom,imem.yaml b/Documentation/devicetree/bindings/sram/qcom,imem.yaml
+>>> index 72d35e30c439ccf4901d937f838fe7c7a81f33b1..48e2f332e0e9fc9fa4147fa12d9c6c70a77fafda 100644
+>>> --- a/Documentation/devicetree/bindings/sram/qcom,imem.yaml
+>>> +++ b/Documentation/devicetree/bindings/sram/qcom,imem.yaml
+>>> @@ -18,6 +18,12 @@ properties:
+>>>       items:
+>>>         - enum:
+>>>             - qcom,apq8064-imem
+>>> +          - qcom,ipq8074-imem
+>>> +          - qcom,ipq6018-imem
+>>> +          - qcom,ipq5018-imem
+>>> +          - qcom,ipq9574-imem
+>>> +          - qcom,ipq5332-imem
+>>> +          - qcom,ipq5424-imem
+>> Random order, no, follow existing style. This applies for every qcom
+>> binding and you received such feedbacks in the past.
+> 
+> Apologies — I arranged them based on the evolutionary order of SoCs. 
 
-> +/**
-> + * dwcmshc_remove - Platform driver remove
-> + * @pdev: Platform device
-> + *
-> + * Removes the SDHCI host controller.
-> + *
-> + * Return: 0 on success
-> + */
-Drop all such fake comments, not helpful. We all now what is the purpose
-of the function and saying that platform driver remove callback is
-"platform driver remove" which "Removes the SDHCI host controller." is
-not only redundant, but actually harming because later you have:
-"Return: 0 on success"
-which is impossible.
-
-Such redundant comments are not kernel coding style. Provide USEFUL
-comments, useful kerneldoc, not something to satisfy line-counters.
-
+Where is such ordering documented? How is it expressed in your internal
+guideline for example?
 
 Best regards,
 Krzysztof
