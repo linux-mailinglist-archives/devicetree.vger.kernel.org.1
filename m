@@ -1,131 +1,78 @@
-Return-Path: <devicetree+bounces-192274-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-192275-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1632FAF6089
-	for <lists+devicetree@lfdr.de>; Wed,  2 Jul 2025 19:56:39 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 77E37AF60B2
+	for <lists+devicetree@lfdr.de>; Wed,  2 Jul 2025 20:02:14 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 4E51E1C46274
-	for <lists+devicetree@lfdr.de>; Wed,  2 Jul 2025 17:56:55 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id C5ADA1C46811
+	for <lists+devicetree@lfdr.de>; Wed,  2 Jul 2025 18:02:30 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2BD8530B992;
-	Wed,  2 Jul 2025 17:56:34 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 63E0A30B9A3;
+	Wed,  2 Jul 2025 18:02:08 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=broadcom.com header.i=@broadcom.com header.b="K6gmh1XI"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="hL6mpdgQ"
 X-Original-To: devicetree@vger.kernel.org
-Received: from relay.smtp-ext.broadcom.com (relay.smtp-ext.broadcom.com [192.19.144.207])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A06C7309A75;
-	Wed,  2 Jul 2025 17:56:32 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.19.144.207
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2B17C2F3C39;
+	Wed,  2 Jul 2025 18:02:07 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1751478994; cv=none; b=SPVhC3ae/q+XG25CI0kCUxfI2sbHBkhRLf+Yt9MVZg3/t9SvSc8wZnTH+O+5wROqSTvD8oxpC4lLBiLMnjWigtLBRzz15kG7nldy+zTte9aOfhaZuPbhbR84F09IhUZMPcD0yDjFL0IG82WoxEpbPaVl+luW9vzCiUWOLf9OS2k=
+	t=1751479328; cv=none; b=pFdceHySH4oNC2xVrRh/CgCrATO9jLm19GwCSV/ktJSsHNUsV7zV3tyM4wt7vhniZyksPAbi3hyHoZQVcKwXurj0EaJ3MdPAD02VVxSWu9kMz7MPk4W8K28NX2lyVknbYzLLJ1K7xlGM1ZjkY+qI7vUgh9Oy6xxk9kEiPXgJ4Qg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1751478994; c=relaxed/simple;
-	bh=2JufP1vE8BWmTAgWOhaC6QCXSRwArHKrkTbWIH5lo3k=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=DwXFtH6qjoQz/IKN8mFIj5vcLmbaXknV52WZzUZkvCfg09h19QWxsY6xyjmn7fvczwt/m65RAxlLSE37p62aMlLLvJ2XL0dQ1mIy2YKk/0t0AR8HsDovFCb5yvqgd0zBE8VsRkdUTk2itcVLdYU7WLanaQ9jY4NY6uLJ1tmIRIg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=broadcom.com; spf=fail smtp.mailfrom=broadcom.com; dkim=pass (1024-bit key) header.d=broadcom.com header.i=@broadcom.com header.b=K6gmh1XI; arc=none smtp.client-ip=192.19.144.207
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=broadcom.com
-Authentication-Results: smtp.subspace.kernel.org; spf=fail smtp.mailfrom=broadcom.com
-Received: from mail-lvn-it-01.broadcom.com (mail-lvn-it-01.lvn.broadcom.net [10.36.132.253])
-	by relay.smtp-ext.broadcom.com (Postfix) with ESMTP id BB7CBC0005DE;
-	Wed,  2 Jul 2025 10:56:25 -0700 (PDT)
-DKIM-Filter: OpenDKIM Filter v2.11.0 relay.smtp-ext.broadcom.com BB7CBC0005DE
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=broadcom.com;
-	s=dkimrelay; t=1751478985;
-	bh=2JufP1vE8BWmTAgWOhaC6QCXSRwArHKrkTbWIH5lo3k=;
-	h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-	b=K6gmh1XIas7rreYOGWF7e3SvInmhH2x5EqJ8fTop24IEcvYAba46WnkVkN7rc6yEp
-	 /uUZ3+WYmmWIKQ774jCOcjs0taXYigqQJHmXMu/tqDcjSA1Mn8gtwsBqtWTK2CDov7
-	 hXnDTHl3HihzK5EDb1UDRtMuy552ayRhE5gSuj1I=
-Received: from fainelli-desktop.igp.broadcom.net (fainelli-desktop.dhcp.broadcom.net [10.67.48.245])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
-	(No client certificate requested)
-	by mail-lvn-it-01.broadcom.com (Postfix) with ESMTPSA id 30F1118000A5F;
-	Wed,  2 Jul 2025 10:56:25 -0700 (PDT)
-From: Florian Fainelli <florian.fainelli@broadcom.com>
-To: bcm-kernel-feedback-list@broadcom.com,
-	Andrea della Porta <andrea.porta@suse.com>,
-	Michael Turquette <mturquette@baylibre.com>,
-	Stephen Boyd <sboyd@kernel.org>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Florian Fainelli <florian.fainelli@broadcom.com>,
-	Lorenzo Pieralisi <lpieralisi@kernel.org>,
-	Krzysztof Wilczynski <kw@linux.com>,
-	Bjorn Helgaas <bhelgaas@google.com>,
-	Linus Walleij <linus.walleij@linaro.org>,
-	Catalin Marinas <catalin.marinas@arm.com>,
-	Will Deacon <will@kernel.org>,
-	Bartosz Golaszewski <brgl@bgdev.pl>,
-	Derek Kiernan <derek.kiernan@amd.com>,
-	Dragan Cvetic <dragan.cvetic@amd.com>,
-	Arnd Bergmann <arnd@arndb.de>,
-	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-	Saravana Kannan <saravanak@google.com>,
-	linux-clk@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	linux-kernel@vger.kernel.org,
-	linux-pci@vger.kernel.org,
-	linux-gpio@vger.kernel.org,
-	Masahiro Yamada <masahiroy@kernel.org>,
-	Stefan Wahren <wahrenst@gmx.net>,
-	Herve Codina <herve.codina@bootlin.com>,
-	Luca Ceresoli <luca.ceresoli@bootlin.com>,
-	Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
-	Andrew Lunn <andrew@lunn.ch>,
-	Phil Elwell <phil@raspberrypi.com>,
-	Dave Stevenson <dave.stevenson@raspberrypi.com>,
-	kernel-list@raspberrypi.com,
-	Matthias Brugger <mbrugger@suse.com>
-Cc: Florian Fainelli <f.fainelli@gmail.com>
-Subject: Re: [PATCH v2 stblinux/next 2/2] clk: rp1: Implement remaining clock tree
-Date: Wed,  2 Jul 2025 10:56:24 -0700
-Message-ID: <20250702175624.1714748-1-florian.fainelli@broadcom.com>
-X-Mailer: git-send-email 2.43.0
-In-Reply-To: <17e5c6e0c085cfa0bf4b63b639cdc92c6a4c1418.1750714412.git.andrea.porta@suse.com>
-References: <c20066500908db854aa4816b40e956296bab526a.1750714412.git.andrea.porta@suse.com> <17e5c6e0c085cfa0bf4b63b639cdc92c6a4c1418.1750714412.git.andrea.porta@suse.com>
+	s=arc-20240116; t=1751479328; c=relaxed/simple;
+	bh=K3EF5y1XYtVlfOzcfxLVUR0k5e39PRhXTE+YAgxFBYU=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=dOkeUbjfWb7oXPEl4slg5wUm2AgRpLhvT3T+D1koSGWh9WRtDAPdApSfmlouWLq43Lb167GuX5fnKdpU6bMkLPCrpkng/u26tDmMoe1gVb4O/1IYuMg1ObFxXjgnCAUMP+OCfxhOFpg+kV9FCLp7RcSOQWN4JzJoYyjbQTh0kCA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=hL6mpdgQ; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id A2733C4CEE7;
+	Wed,  2 Jul 2025 18:02:06 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1751479327;
+	bh=K3EF5y1XYtVlfOzcfxLVUR0k5e39PRhXTE+YAgxFBYU=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=hL6mpdgQ2HYzV2GXO2ZHGcmSnT8ChOtZfsMbwC4ve6NViO53XZzFHGb90wrbafD3K
+	 hhfeuBxtJUrneoQW5t6RhotwxUVcNqTnSgfrxG2jk7j91NCvlBY15yIQRXX+aOXszQ
+	 ENgGAetPLNhNM7woQu7qa554fWwR9EqK5DY/qk4Ww9f6sqpzXrmA2nhYL9/pE2pw2l
+	 WQQQTCyDJHQMrnyR83XYUOtAD/Wljb0HnLR6GK6JyCr67GyLEEqbl5+w2U7ZQXHd7w
+	 p4nHZ0OSGzJKAvDyuzpBtXA5RGvtRKfd2ugnixmoTiCcg1CB0ZzkoMZqfZCktgYhKU
+	 gBozKpcN3W+Qg==
+Date: Wed, 2 Jul 2025 20:02:02 +0200
+From: Andi Shyti <andi.shyti@kernel.org>
+To: Viken Dadhaniya <viken.dadhaniya@oss.qualcomm.com>
+Cc: robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org, 
+	gregkh@linuxfoundation.org, jirislaby@kernel.org, andersson@kernel.org, 
+	konradybcio@kernel.org, johan+linaro@kernel.org, dianders@chromium.org, 
+	agross@kernel.org, linux-arm-msm@vger.kernel.org, linux-i2c@vger.kernel.org, 
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, linux-serial@vger.kernel.org, 
+	linux-spi@vger.kernel.org, mukesh.savaliya@oss.qualcomm.com, quic_anupkulk@quicinc.com
+Subject: Re: [PATCH v5 3/5] i2c: qcom-geni: Load i2c qup Firmware from linux
+ side
+Message-ID: <bapt7lht2jegc4ri7oh5t3zjlaeeedwjhrov6yqlty6pjed2fi@whmconfbfwl5>
+References: <20250624095102.1587580-1-viken.dadhaniya@oss.qualcomm.com>
+ <20250624095102.1587580-4-viken.dadhaniya@oss.qualcomm.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20250624095102.1587580-4-viken.dadhaniya@oss.qualcomm.com>
 
-From: Florian Fainelli <f.fainelli@gmail.com>
+Hi Viken,
 
-On Mon, 23 Jun 2025 23:46:28 +0200, Andrea della Porta <andrea.porta@suse.com> wrote:
-> The RP1 clock generator driver currently defines only the fundamental
-> clocks such as the front PLLs for system, audio and video subsystems
-> and the ethernet clock.
-> 
-> Add the remaining clocks to the tree so as to be completed, which means
-> that the following RP1 peripherals could now consume their specific clocks
-> and be enabled to work (provided that the relevant driver changes for each
-> specific peripheral, if any, are committed):
-> 
-> - ADC
-> - Audio IN/OUT
-> - DMA controller
-> - I2S
-> - MIPI DPI/DSI
-> - PWM
-> - SDIO
-> - UART
-> - Video Encoder
-> 
-> Signed-off-by: Andrea della Porta <andrea.porta@suse.com>
-> ---
+> Co-developed-by: Mukesh Kumar Savaliya <mukesh.savaliya@oss.qualcomm.com>
+> Signed-off-by: Mukesh Kumar Savaliya <mukesh.savaliya@oss.qualcomm.com>
+> Signed-off-by: Viken Dadhaniya <viken.dadhaniya@oss.qualcomm.com>
 
-Applied to https://github.com/Broadcom/stblinux/commits/drivers/next, thanks!
---
-Florian
+Acked-by: Andi Shyti <andi.shyti@kernel.org>
+
+Thanks,
+Andi
 
