@@ -1,249 +1,182 @@
-Return-Path: <devicetree+bounces-192113-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-192114-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 49FA8AF582C
-	for <lists+devicetree@lfdr.de>; Wed,  2 Jul 2025 15:12:08 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id B3146AF583B
+	for <lists+devicetree@lfdr.de>; Wed,  2 Jul 2025 15:13:29 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 4FEBA441DAB
-	for <lists+devicetree@lfdr.de>; Wed,  2 Jul 2025 13:11:30 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id E76944A29E4
+	for <lists+devicetree@lfdr.de>; Wed,  2 Jul 2025 13:13:13 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9957D26D4E7;
-	Wed,  2 Jul 2025 13:11:54 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="sdILcO/Z"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 210F8275851;
+	Wed,  2 Jul 2025 13:13:02 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-qt1-f178.google.com (mail-qt1-f178.google.com [209.85.160.178])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6519F1853;
-	Wed,  2 Jul 2025 13:11:54 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 248C826658A;
+	Wed,  2 Jul 2025 13:12:59 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.160.178
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1751461914; cv=none; b=CaqqtLjcaFYtH3wh9N/JCJBXKiDK015vD77K+1OjrdW6dJGPoh2DrPJegu+Q8gId5RH6i9QZ+1ygK+cd+l4O16a0hwLsld7u+I2WXJau24Z64dVPBvTbjr436nQ/DrOvOuscc2o/sAnPDtEwmI3ZOlufk4AniQSrwqwRNo/visA=
+	t=1751461982; cv=none; b=VgUNa99LsIydv2MEOAzOnRGheHd9iXQBF2NiGEhfoMFxHgk6Y22+SXssqLTkPiukoaIblZz7TuWkMLCsrnULDTxsfVwGoc58ktlS4JCRCr2P/4Ja/Ay8HmdKHhVpwdCKTo4J6Z/BzJtoL5Msq5fNXmWTSScm9EUvay0lPWCM4Sk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1751461914; c=relaxed/simple;
-	bh=usr+vdh8Cfv5WvS7rBd3qHZjCIE9fEJFds9FkIOefCM=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=FxJXPbiE0HEVvCxJbJBK239M5V6X7hLEmiFrA63tE8FLE0r4tapjNZG4HcANpL9SPnLwFVhPPvTw2Uq4+NW/WlF0outDKi+ZyQubF/dIP1ldL5At6mZcQrMnfFz0gjxRxYR38OgN/F7YRdjKoyTTA+JYEhmZHiTC53LNm7dEQqE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=sdILcO/Z; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 69CAFC4CEF0;
-	Wed,  2 Jul 2025 13:11:44 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1751461913;
-	bh=usr+vdh8Cfv5WvS7rBd3qHZjCIE9fEJFds9FkIOefCM=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=sdILcO/ZVXR3CK4sFxnZRrFNZC9os6Ca2Md/27nxTz4uSSQJJgDg2ZtUqBBAL0UUY
-	 q8YNMlZueUe+olSpZ/lVIl4u52Qzje626rfNfuMBEUZqJkPU6LqN6zvh+nDqE6iOmN
-	 2TXH9ZEGuiH3lhZNoFo+O7XuKb+HAFeHe0Fhe9DJ8p2JVWMJkaznknlKHtUJ9vNkYE
-	 +ENZ+AXsOTTetVgtp57o8oCNlOUNoR34UTgFDhvwiMs3WcgT+q0cWfQu8wZOc1/YPd
-	 Iw0Q9I5rGoK6VfgPL2aBnsur5OIgoKKhR1jaaAviJLcjxdMsm6QvHPNSOOJDzd4vTL
-	 4VLMbOH+VjLaw==
-Date: Wed, 2 Jul 2025 18:41:34 +0530
-From: Manivannan Sadhasivam <mani@kernel.org>
-To: Frank Li <Frank.Li@nxp.com>
-Cc: Kishon Vijay Abraham I <kishon@kernel.org>, 
-	"Rafael J. Wysocki" <rafael@kernel.org>, Thomas Gleixner <tglx@linutronix.de>, 
-	Anup Patel <apatel@ventanamicro.com>, Marc Zyngier <maz@kernel.org>, 
-	Greg Kroah-Hartman <gregkh@linuxfoundation.org>, Danilo Krummrich <dakr@kernel.org>, 
-	Bjorn Helgaas <bhelgaas@google.com>, Arnd Bergmann <arnd@arndb.de>, Shuah Khan <shuah@kernel.org>, 
-	Richard Zhu <hongxing.zhu@nxp.com>, Lucas Stach <l.stach@pengutronix.de>, 
-	Lorenzo Pieralisi <lpieralisi@kernel.org>, Rob Herring <robh@kernel.org>, Shawn Guo <shawnguo@kernel.org>, 
-	Sascha Hauer <s.hauer@pengutronix.de>, Pengutronix Kernel Team <kernel@pengutronix.de>, 
-	Fabio Estevam <festevam@gmail.com>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
-	Conor Dooley <conor+dt@kernel.org>, Krzysztof =?utf-8?Q?Wilczy=C5=84ski?= <kwilczynski@kernel.org>, 
-	Niklas Cassel <cassel@kernel.org>, dlemoal@kernel.org, jdmason@kudzu.us, 
-	linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org, linux-pci@vger.kernel.org, 
-	linux-kselftest@vger.kernel.org, imx@lists.linux.dev, devicetree@vger.kernel.org
-Subject: Re: [PATCH v19 06/10] misc: pci_endpoint_test: Add doorbell test case
-Message-ID: <whbsnegk5g4vi626pstz5z3blztyrxdji566hpt6yq5jvna2ks@3nap2g4jiftg>
-References: <20250609-ep-msi-v19-0-77362eaa48fa@nxp.com>
- <20250609-ep-msi-v19-6-77362eaa48fa@nxp.com>
+	s=arc-20240116; t=1751461982; c=relaxed/simple;
+	bh=G/X8FLYXIhm8Xtuy1bdv90EErCQcha2aru4EN9oN/OQ=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=LoWjejih5Asbt2IPKU3YuOGblJpUxMVFjrsOKcAJTnQeav5n+Nrd7MA4K6Rs/gy3v9x3vNGE62I6dIkRv8NGdA+iMn/EiVPUCCm/QnqO7gVERXN8soSewL5iPAl2bBr/DJzX0EVEvc0v8N4n+q58qCW+VH47JggRgGaNSeeyTvE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.160.178
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-qt1-f178.google.com with SMTP id d75a77b69052e-4a4bb155edeso79655281cf.2;
+        Wed, 02 Jul 2025 06:12:59 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1751461978; x=1752066778;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=d8vJAeCiyCz2kQO3TB9Yq0+wZP0/k8LFuyb4YwCjLgw=;
+        b=Bch8Jn+IbRfBkYwkDcpk75G4OqHGbYffm3dF/eqhRg7VOJam3v+fAawS5DzVML7Gd4
+         DItIuJk5KYn7Or7tN8uvYqRzxNN7oGtgZBkg+k/Sl9j2HGkLdGorrKObcCncbINHYOUx
+         y2idKTwzIclyv6Ym482uH/4tTyKpjEmYriNzgN8b/gRT1MXNEHNQUMDT038RZf+Yi74o
+         XE2HDNjQncGGb7nYgMFor8woz6XEA/MxEDNnCE0kB7YoST69yKMOx2Xx8KLpFfHkxQkX
+         6tE9LYql7lyv1j6cZZ9t+LnAtlJP32VMraL0JjOVJDrl8tUhK1Zqq58UwD0bs2CihWrJ
+         gUXw==
+X-Forwarded-Encrypted: i=1; AJvYcCUt2IXiJsGwm68OitJHxHLwOhglpLhipsY0Ets6Eq3tTURhLPH03LBOUByk6YanIdBtr9xubYrtgquF@vger.kernel.org, AJvYcCWXH67oYM3/s4rI5LpwlkfGm3mcowZr1/Jr82cXEwxwFWhIX5fiPxL+YwHQIR1cgzUrP1DIDiGZRTuOBvAeAKv6qLY=@vger.kernel.org, AJvYcCWmPO5QS2nhO7WsKNPQCeuG7bgCqEbV3HVrhrN3udVHZLy5+mSPpZGvrAlJTPEw/5uizODTumdo8ANqf25D@vger.kernel.org
+X-Gm-Message-State: AOJu0YwS4IOEDQu3cEERVQnhSZ99P8C2n1gNKOB2+pxPr4taPrMIR4Ie
+	IUkFFlmfgWxtQsHaHYFdP3rWcOTZn25IYrqcwhNrLOLUlCk09YAVYdDJlctm8CGf
+X-Gm-Gg: ASbGncuz8lBvjOhAalgqIq3f8TqLY3h66BVbMzvqXftPU3ePsmkrkGApwXyE725abDL
+	3BWofrg/jwtTWL2pNr7WPtW4CfPMdxPa1sBuDEMPlg+QVipFul+uIi6YwKUC9Xv3iKSkIAipk02
+	SnNSRObnlKta5dFfT71cUMEMNU1wTHSh/gIFMET0kR2e1fu8JtZIRxqqeyBNvhdkO8FYv5DGIZM
+	WPACY3iDQYQusZl+fFVIFH1aJnt8MNLp2Ym6MKGSuEDKG/v/ExyzXH4GNXOrOdwZxGarX934qgy
+	zHLs3lBlO8ZWy8tL5gYKSyohJQPIq8tQgBsH3b/uTr8csGWuXzoAAHpTrekBIGbdT2VIAus9MYH
+	MCHMllNubvwtQ0xxZcv30ZvLDY18p0p8Z8nC8Vcg=
+X-Google-Smtp-Source: AGHT+IHgT57N6yqC7AunftHC3anA2jtFrHp4h0aNi/X1RpOnY3PMCb1mj8YAvpyW4SgfCIYgO7QKJw==
+X-Received: by 2002:a05:622a:406:b0:4a5:a96d:6071 with SMTP id d75a77b69052e-4a9769e54a0mr49484121cf.38.1751461978242;
+        Wed, 02 Jul 2025 06:12:58 -0700 (PDT)
+Received: from mail-qk1-f177.google.com (mail-qk1-f177.google.com. [209.85.222.177])
+        by smtp.gmail.com with ESMTPSA id d75a77b69052e-4a7fc57d905sm90612731cf.64.2025.07.02.06.12.58
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 02 Jul 2025 06:12:58 -0700 (PDT)
+Received: by mail-qk1-f177.google.com with SMTP id af79cd13be357-7d425fc4e5fso565024785a.0;
+        Wed, 02 Jul 2025 06:12:58 -0700 (PDT)
+X-Forwarded-Encrypted: i=1; AJvYcCUBRHrpMDImFFfOtTr3JkM/5ebcpJZCokDAu7j0Vrwavxhas6jtgxGibpDD7WQ+lKW3ggcvoBhEIKoaQw4u@vger.kernel.org, AJvYcCV8vQjPShWSmc2qvrdRiF7xRFj25k3WuAX8lUf0im1Gra8AuLjAYkouJxxogA/5rah1jDzTdJpG06PIn9bohfzWQEE=@vger.kernel.org, AJvYcCVsU4P/v9IoCcIKocbfykYplLCMAgeFSUCA3OYN+U8LT01D/ACWj/yd5cbfEp8jyyLGqn7+nd+TJKy8@vger.kernel.org
+X-Received: by 2002:a05:620a:4392:b0:7d4:dce:5f5d with SMTP id
+ af79cd13be357-7d5c4718813mr355226985a.38.1751461976712; Wed, 02 Jul 2025
+ 06:12:56 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20250609-ep-msi-v19-6-77362eaa48fa@nxp.com>
+References: <20250627193742.110818-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
+In-Reply-To: <20250627193742.110818-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
+From: Geert Uytterhoeven <geert@linux-m68k.org>
+Date: Wed, 2 Jul 2025 15:12:44 +0200
+X-Gmail-Original-Message-ID: <CAMuHMdWaoToq0ZHx5_nFCx0iL4B2PUHRkegm5Vy3K+5MG2YSrg@mail.gmail.com>
+X-Gm-Features: Ac12FXyyu7nDvYgvHQb8BzoWhr6k4DDH67v3mSfFK_-ePILOH8E1-RslKsIyuio
+Message-ID: <CAMuHMdWaoToq0ZHx5_nFCx0iL4B2PUHRkegm5Vy3K+5MG2YSrg@mail.gmail.com>
+Subject: Re: [PATCH v2] arm64: dts: renesas: Add CN15 eMMC and SD overlays for
+ RZ/V2H and RZ/V2N EVKs
+To: Prabhakar <prabhakar.csengg@gmail.com>
+Cc: Magnus Damm <magnus.damm@gmail.com>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	linux-renesas-soc@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, Biju Das <biju.das.jz@bp.renesas.com>, 
+	Fabrizio Castro <fabrizio.castro.jz@renesas.com>, 
+	Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+Content-Type: text/plain; charset="UTF-8"
 
-On Mon, Jun 09, 2025 at 12:34:18PM GMT, Frank Li wrote:
-> Add three registers: PCIE_ENDPOINT_TEST_DB_BAR, PCIE_ENDPOINT_TEST_DB_ADDR,
-> and PCIE_ENDPOINT_TEST_DB_DATA.
-> 
-> Trigger the doorbell by writing data from PCI_ENDPOINT_TEST_DB_DATA to the
-> address provided by PCI_ENDPOINT_TEST_DB_OFFSET and wait for endpoint
-> feedback.
-> 
-> Add two command to COMMAND_ENABLE_DOORBELL and COMMAND_DISABLE_DOORBELL
-> to enable EP side's doorbell support and avoid compatible problem, which
-> host side driver miss-match with endpoint side function driver. See below
-> table:
-> 
-> 		Host side new driver	Host side old driver
-> EP: new driver		S			F
-> EP: old driver		F			F
-> 
-> S: If EP side support MSI, 'pci_endpoint_test -f pcie_ep_doorbell' return
-> success.
->    If EP side doesn't support MSI, the same to 'F'.
-> 
-> F: 'pci_endpoint_test -f pcie_ep_doorbell' return failure, other case as
-> usual.
-> 
-> Tested-by: Niklas Cassel <cassel@kernel.org>
-> Signed-off-by: Frank Li <Frank.Li@nxp.com>
+Hi Prabhakar,
+
+On Fri, 27 Jun 2025 at 21:37, Prabhakar <prabhakar.csengg@gmail.com> wrote:
+> From: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+>
+> Introduce device tree overlays for supporting the eMMC (RTK0EF0186B02000BJ)
+> and microSD (RTK0EF0186B01000BJ) sub-boards connected via the CN15
+> connector on the RZ/V2H and RZ/V2N evaluation kits.
+>
+> These overlays enable SDHI0 with appropriate pin control settings, power
+> regulators, and GPIO handling. Both sub-boards are supported using shared
+> overlay files that can be applied to either EVK due to their identical
+> connector layout and interface support.
+>
+> To support this, new DT overlay files are added:
+> - `rzv2-evk-cn15-emmc.dtso` for eMMC
+> - `rzv2-evk-cn15-sd.dtso` for microSD
+>
+> Additionally, the base DTS files for both EVKs are updated to include a
+> fixed 1.8V regulator (`reg_1p8v`) needed by the eMMC sub-board and
+> potential future use cases such as HDMI output.
+>
+> Signed-off-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
 > ---
-> change from v14 to v16
-> - none
-> 
-> Change from v13 to v14
-> - update to use pci_endpoint_test -f pcie_ep_doorbell
-> - change ioctrl id to fix conflict
-> 
-> Change from v9 to v13
-> - none
-> 
-> Change from v8 to v9
-> - change PCITEST_DOORBELL to 0xa
-> 
-> Change form v6 to v8
-> - none
-> 
-> Change from v5 to v6
-> - %s/PCI_ENDPOINT_TEST_DB_ADDR/PCI_ENDPOINT_TEST_DB_OFFSET/g
-> 
-> Change from v4 to v5
-> - remove unused varible
-> - add irq_type at pci_endpoint_test_doorbell();
-> 
-> change from v3 to v4
-> - Add COMMAND_ENABLE_DOORBELL and COMMAND_DISABLE_DOORBELL.
-> - Remove new DID requirement.
-> ---
->  drivers/misc/pci_endpoint_test.c | 82 ++++++++++++++++++++++++++++++++++++++++
->  include/uapi/linux/pcitest.h     |  1 +
->  2 files changed, 83 insertions(+)
-> 
-> diff --git a/drivers/misc/pci_endpoint_test.c b/drivers/misc/pci_endpoint_test.c
-> index c4e5e2c977be2..0f3af7adea107 100644
-> --- a/drivers/misc/pci_endpoint_test.c
-> +++ b/drivers/misc/pci_endpoint_test.c
-> @@ -37,6 +37,8 @@
->  #define COMMAND_READ				BIT(3)
->  #define COMMAND_WRITE				BIT(4)
->  #define COMMAND_COPY				BIT(5)
-> +#define COMMAND_ENABLE_DOORBELL			BIT(6)
-> +#define COMMAND_DISABLE_DOORBELL		BIT(7)
->  
->  #define PCI_ENDPOINT_TEST_STATUS		0x8
->  #define STATUS_READ_SUCCESS			BIT(0)
-> @@ -48,6 +50,11 @@
->  #define STATUS_IRQ_RAISED			BIT(6)
->  #define STATUS_SRC_ADDR_INVALID			BIT(7)
->  #define STATUS_DST_ADDR_INVALID			BIT(8)
-> +#define STATUS_DOORBELL_SUCCESS			BIT(9)
-> +#define STATUS_DOORBELL_ENABLE_SUCCESS		BIT(10)
-> +#define STATUS_DOORBELL_ENABLE_FAIL		BIT(11)
-> +#define STATUS_DOORBELL_DISABLE_SUCCESS		BIT(12)
-> +#define STATUS_DOORBELL_DISABLE_FAIL		BIT(13)
->  
->  #define PCI_ENDPOINT_TEST_LOWER_SRC_ADDR	0x0c
->  #define PCI_ENDPOINT_TEST_UPPER_SRC_ADDR	0x10
-> @@ -62,6 +69,7 @@
->  #define PCI_ENDPOINT_TEST_IRQ_NUMBER		0x28
->  
->  #define PCI_ENDPOINT_TEST_FLAGS			0x2c
-> +
->  #define FLAG_USE_DMA				BIT(0)
->  
->  #define PCI_ENDPOINT_TEST_CAPS			0x30
-> @@ -70,6 +78,10 @@
->  #define CAP_MSIX				BIT(2)
->  #define CAP_INTX				BIT(3)
->  
-> +#define PCI_ENDPOINT_TEST_DB_BAR		0x34
-> +#define PCI_ENDPOINT_TEST_DB_OFFSET		0x38
-> +#define PCI_ENDPOINT_TEST_DB_DATA		0x3c
-> +
->  #define PCI_DEVICE_ID_TI_AM654			0xb00c
->  #define PCI_DEVICE_ID_TI_J7200			0xb00f
->  #define PCI_DEVICE_ID_TI_AM64			0xb010
-> @@ -100,6 +112,7 @@ enum pci_barno {
->  	BAR_3,
->  	BAR_4,
->  	BAR_5,
-> +	NO_BAR = -1,
->  };
->  
->  struct pci_endpoint_test {
-> @@ -841,6 +854,72 @@ static int pci_endpoint_test_set_irq(struct pci_endpoint_test *test,
->  	return 0;
->  }
->  
-> +static int pci_endpoint_test_doorbell(struct pci_endpoint_test *test)
-> +{
-> +	struct pci_dev *pdev = test->pdev;
-> +	struct device *dev = &pdev->dev;
-> +	int irq_type = test->irq_type;
-> +	enum pci_barno bar;
-> +	u32 data, status;
-> +	u32 addr;
-> +
-> +	if (irq_type < PCITEST_IRQ_TYPE_INTX ||
-> +	    irq_type > PCITEST_IRQ_TYPE_MSIX) {
-> +		dev_err(dev, "Invalid IRQ type option\n");
+> v1->v2:
+> - Dropped patch 2/3 from previous series as that has been merged.
+> - Dropped adding alias in base DTS instead added in overlay.
+> - Switched to using single overlay files for both RZ/V2H and RZ/V2N EVKs
+>   instead of separate overlays for each EVK.
+> - Used RZG2L_GPIO and RZG2L_PORT_PINMUX to avoid using SoC specific
+>   macros.
 
-'Invalid IRQ type\n'
+Thanks for the update!
 
-> +		return -EINVAL;
-> +	}
-> +
-> +	pci_endpoint_test_writel(test, PCI_ENDPOINT_TEST_IRQ_TYPE, irq_type);
-> +	pci_endpoint_test_writel(test, PCI_ENDPOINT_TEST_IRQ_NUMBER, 1);
-> +	pci_endpoint_test_writel(test, PCI_ENDPOINT_TEST_COMMAND,
-> +				 COMMAND_ENABLE_DOORBELL);
-> +
-> +	wait_for_completion_timeout(&test->irq_raised, msecs_to_jiffies(1000));
+> --- a/arch/arm64/boot/dts/renesas/Makefile
+> +++ b/arch/arm64/boot/dts/renesas/Makefile
+> @@ -161,8 +161,16 @@ r9a09g047e57-smarc-cru-csi-ov5645-dtbs := r9a09g047e57-smarc.dtb r9a09g047e57-sm
+>  dtb-$(CONFIG_ARCH_R9A09G047) += r9a09g047e57-smarc-cru-csi-ov5645.dtb
+>
+>  dtb-$(CONFIG_ARCH_R9A09G056) += r9a09g056n48-rzv2n-evk.dtb
+> +dtb-$(CONFIG_ARCH_R9A09G056) += rzv2-evk-cn15-emmc.dtbo
+> +r9a09g056n48-rzv2-evk-cn15-emmc.dts := r9a09g056n48-rzv2n-evk.dtb rzv2-evk-cn15-emmc.dtbo
 
-You should check for the timeout here and below.
+.dts?
 
-> +
-> +	status = pci_endpoint_test_readl(test, PCI_ENDPOINT_TEST_STATUS);
-> +	if (status & STATUS_DOORBELL_ENABLE_FAIL) {
-> +		dev_err(dev, "Failed to enable doorbell\n");
-> +		return -EINVAL;
-> +	}
-> +
-> +	data = pci_endpoint_test_readl(test, PCI_ENDPOINT_TEST_DB_DATA);
-> +	addr = pci_endpoint_test_readl(test, PCI_ENDPOINT_TEST_DB_OFFSET);
-> +	bar = pci_endpoint_test_readl(test, PCI_ENDPOINT_TEST_DB_BAR);
-> +
-> +	pci_endpoint_test_writel(test, PCI_ENDPOINT_TEST_IRQ_TYPE, irq_type);
-> +	pci_endpoint_test_writel(test, PCI_ENDPOINT_TEST_IRQ_NUMBER, 1);
-> +
-> +	pci_endpoint_test_writel(test, PCI_ENDPOINT_TEST_STATUS, 0);
-> +
-> +	bar = pci_endpoint_test_readl(test, PCI_ENDPOINT_TEST_DB_BAR);
-> +
-> +	writel(data, test->bar[bar] + addr);
-> +
-> +	wait_for_completion_timeout(&test->irq_raised, msecs_to_jiffies(1000));
-> +
-> +	status = pci_endpoint_test_readl(test, PCI_ENDPOINT_TEST_STATUS);
-> +
-> +	if (!(status & STATUS_DOORBELL_SUCCESS))
-> +		dev_err(dev, "Endpoint have not received Doorbell\n");
+I take it you meant:
 
-'Failed to trigger doorbell in endpoint\n'
+    +r9a09g056n48-rzv2n-evk-cn15-emmc-dtbs :=
+r9a09g056n48-rzv2n-evk.dtb rzv2-evk-cn15-emmc.dtbo
+    +dtb-$(CONFIG_ARCH_R9A09G056) += r9a09g056n48-rzv2n-evk-cn15-emmc.dtb
 
-- Mani
+> +dtb-$(CONFIG_ARCH_R9A09G056) += rzv2-evk-cn15-sd.dtbo
+> +r9a09g056n48-rzv2-evk-cn15-sd.dts := r9a09g056n48-rzv2n-evk.dtb rzv2-evk-cn15-sd.dtbo
+
+    +r9a09g056n48-rzv2n-evk-cn15-sd-dtbs := r9a09g056n48-rzv2n-evk.dtb
+rzv2-evk-cn15-sd.dtbo
+    +dtb-$(CONFIG_ARCH_R9A09G056) += r9a09g056n48-rzv2n-evk-cn15-sd.dtb
+
+>  dtb-$(CONFIG_ARCH_R9A09G057) += r9a09g057h44-rzv2h-evk.dtb
+> +dtb-$(CONFIG_ARCH_R9A09G057) += rzv2-evk-cn15-emmc.dtbo
+> +r9a09g057h44-rzv2-evk-cn15-emmc.dts := r9a09g057h44-rzv2h-evk.dtb rzv2-evk-cn15-emmc.dtbo
+
+    +r9a09g057h44-rzv2h-evk-cn15-emmc-dtbs :=
+r9a09g057h44-rzv2h-evk.dtb rzv2-evk-cn15-emmc.dtbo
+    +dtb-$(CONFIG_ARCH_R9A09G057) += r9a09g057h44-rzv2h-evk-cn15-emmc.dtb
+
+> +dtb-$(CONFIG_ARCH_R9A09G057) += rzv2-evk-cn15-sd.dtbo
+> +r9a09g057h44-rzv2-evk-cn15-sd.dts := r9a09g057h44-rzv2h-evk.dtb rzv2-evk-cn15-sd.dtbo
+
+    +r9a09g057h44-rzv2h-evk-cn15-sd-dtbs := r9a09g057h44-rzv2h-evk.dtb
+rzv2-evk-cn15-sd.dtbo
+    +dtb-$(CONFIG_ARCH_R9A09G057) += r9a09g057h44-rzv2h-evk-cn15-sd.dtb
+
+>  dtb-$(CONFIG_ARCH_R9A09G057) += r9a09g057h48-kakip.dtb
+>
+>  dtb-$(CONFIG_ARCH_RCAR_GEN3) += draak-ebisu-panel-aa104xd12.dtbo
+
+Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
+i.e. will queue in renesas-devel for v6.17, with the above fixed.
+
+Gr{oetje,eeting}s,
+
+                        Geert
 
 -- 
-மணிவண்ணன் சதாசிவம்
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
+
+In personal conversations with technical people, I call myself a hacker. But
+when I'm talking to journalists I just say "programmer" or something like that.
+                                -- Linus Torvalds
 
