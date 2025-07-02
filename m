@@ -1,182 +1,156 @@
-Return-Path: <devicetree+bounces-192114-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-192116-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id B3146AF583B
-	for <lists+devicetree@lfdr.de>; Wed,  2 Jul 2025 15:13:29 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 784B3AF585C
+	for <lists+devicetree@lfdr.de>; Wed,  2 Jul 2025 15:18:51 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id E76944A29E4
-	for <lists+devicetree@lfdr.de>; Wed,  2 Jul 2025 13:13:13 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 0414718978FF
+	for <lists+devicetree@lfdr.de>; Wed,  2 Jul 2025 13:18:12 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 210F8275851;
-	Wed,  2 Jul 2025 13:13:02 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id DD6BD2820C7;
+	Wed,  2 Jul 2025 13:16:13 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="K8gk/D1N"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-qt1-f178.google.com (mail-qt1-f178.google.com [209.85.160.178])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 248C826658A;
-	Wed,  2 Jul 2025 13:12:59 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.160.178
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AA1DA2741C0;
+	Wed,  2 Jul 2025 13:16:13 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1751461982; cv=none; b=VgUNa99LsIydv2MEOAzOnRGheHd9iXQBF2NiGEhfoMFxHgk6Y22+SXssqLTkPiukoaIblZz7TuWkMLCsrnULDTxsfVwGoc58ktlS4JCRCr2P/4Ja/Ay8HmdKHhVpwdCKTo4J6Z/BzJtoL5Msq5fNXmWTSScm9EUvay0lPWCM4Sk=
+	t=1751462173; cv=none; b=klB6XNP+3XOb/BpmbEhHhrMeB6B4/c6DFMg+vgKkMc9xqXVB3HHWVWb63hKkgYCpHVTVR7bkHJdq8gz6ODXdY0KUHeP3ACPEtolZFnEXapmR9LlrhLKGdcn4+mAzCMxAGogzpyKU4oHXPnze+8VrZh/uFn/Md0cUAgTQHsIP7hI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1751461982; c=relaxed/simple;
-	bh=G/X8FLYXIhm8Xtuy1bdv90EErCQcha2aru4EN9oN/OQ=;
+	s=arc-20240116; t=1751462173; c=relaxed/simple;
+	bh=GdEMIMP/ZD2NlQMB7UwdH4vkioz/Fr9+gYnj68JSXJE=;
 	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=LoWjejih5Asbt2IPKU3YuOGblJpUxMVFjrsOKcAJTnQeav5n+Nrd7MA4K6Rs/gy3v9x3vNGE62I6dIkRv8NGdA+iMn/EiVPUCCm/QnqO7gVERXN8soSewL5iPAl2bBr/DJzX0EVEvc0v8N4n+q58qCW+VH47JggRgGaNSeeyTvE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.160.178
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-qt1-f178.google.com with SMTP id d75a77b69052e-4a4bb155edeso79655281cf.2;
-        Wed, 02 Jul 2025 06:12:59 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1751461978; x=1752066778;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=d8vJAeCiyCz2kQO3TB9Yq0+wZP0/k8LFuyb4YwCjLgw=;
-        b=Bch8Jn+IbRfBkYwkDcpk75G4OqHGbYffm3dF/eqhRg7VOJam3v+fAawS5DzVML7Gd4
-         DItIuJk5KYn7Or7tN8uvYqRzxNN7oGtgZBkg+k/Sl9j2HGkLdGorrKObcCncbINHYOUx
-         y2idKTwzIclyv6Ym482uH/4tTyKpjEmYriNzgN8b/gRT1MXNEHNQUMDT038RZf+Yi74o
-         XE2HDNjQncGGb7nYgMFor8woz6XEA/MxEDNnCE0kB7YoST69yKMOx2Xx8KLpFfHkxQkX
-         6tE9LYql7lyv1j6cZZ9t+LnAtlJP32VMraL0JjOVJDrl8tUhK1Zqq58UwD0bs2CihWrJ
-         gUXw==
-X-Forwarded-Encrypted: i=1; AJvYcCUt2IXiJsGwm68OitJHxHLwOhglpLhipsY0Ets6Eq3tTURhLPH03LBOUByk6YanIdBtr9xubYrtgquF@vger.kernel.org, AJvYcCWXH67oYM3/s4rI5LpwlkfGm3mcowZr1/Jr82cXEwxwFWhIX5fiPxL+YwHQIR1cgzUrP1DIDiGZRTuOBvAeAKv6qLY=@vger.kernel.org, AJvYcCWmPO5QS2nhO7WsKNPQCeuG7bgCqEbV3HVrhrN3udVHZLy5+mSPpZGvrAlJTPEw/5uizODTumdo8ANqf25D@vger.kernel.org
-X-Gm-Message-State: AOJu0YwS4IOEDQu3cEERVQnhSZ99P8C2n1gNKOB2+pxPr4taPrMIR4Ie
-	IUkFFlmfgWxtQsHaHYFdP3rWcOTZn25IYrqcwhNrLOLUlCk09YAVYdDJlctm8CGf
-X-Gm-Gg: ASbGncuz8lBvjOhAalgqIq3f8TqLY3h66BVbMzvqXftPU3ePsmkrkGApwXyE725abDL
-	3BWofrg/jwtTWL2pNr7WPtW4CfPMdxPa1sBuDEMPlg+QVipFul+uIi6YwKUC9Xv3iKSkIAipk02
-	SnNSRObnlKta5dFfT71cUMEMNU1wTHSh/gIFMET0kR2e1fu8JtZIRxqqeyBNvhdkO8FYv5DGIZM
-	WPACY3iDQYQusZl+fFVIFH1aJnt8MNLp2Ym6MKGSuEDKG/v/ExyzXH4GNXOrOdwZxGarX934qgy
-	zHLs3lBlO8ZWy8tL5gYKSyohJQPIq8tQgBsH3b/uTr8csGWuXzoAAHpTrekBIGbdT2VIAus9MYH
-	MCHMllNubvwtQ0xxZcv30ZvLDY18p0p8Z8nC8Vcg=
-X-Google-Smtp-Source: AGHT+IHgT57N6yqC7AunftHC3anA2jtFrHp4h0aNi/X1RpOnY3PMCb1mj8YAvpyW4SgfCIYgO7QKJw==
-X-Received: by 2002:a05:622a:406:b0:4a5:a96d:6071 with SMTP id d75a77b69052e-4a9769e54a0mr49484121cf.38.1751461978242;
-        Wed, 02 Jul 2025 06:12:58 -0700 (PDT)
-Received: from mail-qk1-f177.google.com (mail-qk1-f177.google.com. [209.85.222.177])
-        by smtp.gmail.com with ESMTPSA id d75a77b69052e-4a7fc57d905sm90612731cf.64.2025.07.02.06.12.58
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 02 Jul 2025 06:12:58 -0700 (PDT)
-Received: by mail-qk1-f177.google.com with SMTP id af79cd13be357-7d425fc4e5fso565024785a.0;
-        Wed, 02 Jul 2025 06:12:58 -0700 (PDT)
-X-Forwarded-Encrypted: i=1; AJvYcCUBRHrpMDImFFfOtTr3JkM/5ebcpJZCokDAu7j0Vrwavxhas6jtgxGibpDD7WQ+lKW3ggcvoBhEIKoaQw4u@vger.kernel.org, AJvYcCV8vQjPShWSmc2qvrdRiF7xRFj25k3WuAX8lUf0im1Gra8AuLjAYkouJxxogA/5rah1jDzTdJpG06PIn9bohfzWQEE=@vger.kernel.org, AJvYcCVsU4P/v9IoCcIKocbfykYplLCMAgeFSUCA3OYN+U8LT01D/ACWj/yd5cbfEp8jyyLGqn7+nd+TJKy8@vger.kernel.org
-X-Received: by 2002:a05:620a:4392:b0:7d4:dce:5f5d with SMTP id
- af79cd13be357-7d5c4718813mr355226985a.38.1751461976712; Wed, 02 Jul 2025
- 06:12:56 -0700 (PDT)
+	 To:Cc:Content-Type; b=HRmmO+3DRYIw+95Be5ritqnFBF/UAiZW+D3N3rXuBlG+slYnFNzCveO5/02dFsYe50pziF5x0wzeRKITQnhDFHeHNrK0sovdjfW3BBAkEbhPJLsQs+ynPA57p2eJ1KHcdWfG3HWIa/J3TwBkg/GiRoIFJu84f6J2bdDBeNbn2bQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=K8gk/D1N; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 33346C4CEF1;
+	Wed,  2 Jul 2025 13:16:13 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1751462173;
+	bh=GdEMIMP/ZD2NlQMB7UwdH4vkioz/Fr9+gYnj68JSXJE=;
+	h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+	b=K8gk/D1N97NJRGD8yl+gE3NWFQ+5KuP9HYW2FqRyQ/4JTJEPBM8X/N982uJJ6EzMR
+	 VsYVfyeUXgaaFLZYStMMQjnubPBkNAnDKUWGWHn9cVf2eQkAeknknYNqnZUPYNNYRs
+	 WIkGwK8fpIZ7R1NHzL//sWRtHihvtdClFEPPnuAPf1PqwWK6XtQu0SVtpUo8vmDLWG
+	 kS62HZt1jSyObot7BUj2ILorYHb7/RMCH9MqByKhQSIF2WGVnxDTl94yP52JgglKFz
+	 jfA1dqr6x0/RSi7JDqTzDdcqvlJ+u7ExRK1D37Ec/MFkGavGNzb/QLw/eIQtNa7dYY
+	 xECWnyEfd/wNQ==
+Received: by mail-oo1-f51.google.com with SMTP id 006d021491bc7-6118b000506so1630266eaf.0;
+        Wed, 02 Jul 2025 06:16:13 -0700 (PDT)
+X-Forwarded-Encrypted: i=1; AJvYcCWDs5D46GfyjnLOrN+I1ctIxWwASMv+z7qa0e7z0ifbcg6i2wwYD+GCIsVNir8xLF6EG+BURhIXuU3jlQ==@vger.kernel.org, AJvYcCWi4ydMWnI46TPvr97ZoqxKYLjuJaEaE63Y+bFAaWjEyZgmuw9LXBt1O82PsyzWmm1RnlUPqYtfNNNms8Cf@vger.kernel.org, AJvYcCX5Bxg6kJBYUt68W2XVrtPLx+duycWI6UZdxGL7hrHHyAswQ7DNamIjOLPHBbUE5RraLbAthpCDWLFt@vger.kernel.org, AJvYcCXcr3V3LRXlxUItxvDUbjb/+c0yT0ayxsiygVuT3T89TUPCUEnHnRWX5+ePjFEKMHuXwxXvAsu66FWA@vger.kernel.org
+X-Gm-Message-State: AOJu0YxdwDYJ7lNQZax+QSsBLF72GKKtjwZz1GVdQFA6rzpgHF5FFvrB
+	+OJnDgm1S/4QIA+hZQEYB/058A3+W03SGTQoK2W1xCOM63Z7TvXo46LUravygMocU3NfU4obP+P
+	e2KH5YRNZY7jfgHagP6QwLGq3gUWU770=
+X-Google-Smtp-Source: AGHT+IExuMqttOKIUYDi+vcXqSuKCbKvlhqQnT1REYwcx9EA5ftg4W7ZWLLFZPOL0rfqf8a4k8cL0HPmiaY5KvT1aRo=
+X-Received: by 2002:a05:6820:1e0d:b0:611:af6f:ee77 with SMTP id
+ 006d021491bc7-612010dfe12mr1692210eaf.8.1751462172310; Wed, 02 Jul 2025
+ 06:16:12 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20250627193742.110818-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
-In-Reply-To: <20250627193742.110818-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
-From: Geert Uytterhoeven <geert@linux-m68k.org>
-Date: Wed, 2 Jul 2025 15:12:44 +0200
-X-Gmail-Original-Message-ID: <CAMuHMdWaoToq0ZHx5_nFCx0iL4B2PUHRkegm5Vy3K+5MG2YSrg@mail.gmail.com>
-X-Gm-Features: Ac12FXyyu7nDvYgvHQb8BzoWhr6k4DDH67v3mSfFK_-ePILOH8E1-RslKsIyuio
-Message-ID: <CAMuHMdWaoToq0ZHx5_nFCx0iL4B2PUHRkegm5Vy3K+5MG2YSrg@mail.gmail.com>
-Subject: Re: [PATCH v2] arm64: dts: renesas: Add CN15 eMMC and SD overlays for
- RZ/V2H and RZ/V2N EVKs
-To: Prabhakar <prabhakar.csengg@gmail.com>
-Cc: Magnus Damm <magnus.damm@gmail.com>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	linux-renesas-soc@vger.kernel.org, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, Biju Das <biju.das.jz@bp.renesas.com>, 
-	Fabrizio Castro <fabrizio.castro.jz@renesas.com>, 
-	Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+References: <20250702051345.1460497-1-apatel@ventanamicro.com>
+ <20250702051345.1460497-16-apatel@ventanamicro.com> <CAJZ5v0iYYuK2GF2Pg3NiO4vLFzoYm6Q3Dnk5O2DkMJm1R3qSfQ@mail.gmail.com>
+ <aGUaFX9WgTW1I_ZO@smile.fi.intel.com> <CAJZ5v0h=qzS67Xu6NUfN_LmQUmKF9=AtkaRrTx81td0m-mRNNg@mail.gmail.com>
+ <aGUsg121lenWHL-w@smile.fi.intel.com>
+In-Reply-To: <aGUsg121lenWHL-w@smile.fi.intel.com>
+From: "Rafael J. Wysocki" <rafael@kernel.org>
+Date: Wed, 2 Jul 2025 15:16:01 +0200
+X-Gmail-Original-Message-ID: <CAJZ5v0ja5eUiAn7Ht5+-7-b40JtzsCqmztN9WdtLY=kJ7vbtQw@mail.gmail.com>
+X-Gm-Features: Ac12FXwc4zqpJNNErqBqjCI2hKLQ3Xi8ekft38n4p6qLhM2Gh3XrHd9uynY6pvk
+Message-ID: <CAJZ5v0ja5eUiAn7Ht5+-7-b40JtzsCqmztN9WdtLY=kJ7vbtQw@mail.gmail.com>
+Subject: Re: [PATCH v7 15/24] ACPI: property: Add support for cells property
+To: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
+Cc: "Rafael J. Wysocki" <rafael@kernel.org>, Anup Patel <apatel@ventanamicro.com>, 
+	Michael Turquette <mturquette@baylibre.com>, Stephen Boyd <sboyd@kernel.org>, 
+	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Jassi Brar <jassisinghbrar@gmail.com>, Thomas Gleixner <tglx@linutronix.de>, 
+	Mika Westerberg <mika.westerberg@linux.intel.com>, Linus Walleij <linus.walleij@linaro.org>, 
+	Bartosz Golaszewski <brgl@bgdev.pl>, =?UTF-8?Q?Uwe_Kleine=2DK=C3=B6nig?= <ukleinek@kernel.org>, 
+	Palmer Dabbelt <palmer@dabbelt.com>, Paul Walmsley <paul.walmsley@sifive.com>, 
+	Alexandre Ghiti <alex@ghiti.fr>, Len Brown <lenb@kernel.org>, Sunil V L <sunilvl@ventanamicro.com>, 
+	Rahul Pathak <rpathak@ventanamicro.com>, Leyfoon Tan <leyfoon.tan@starfivetech.com>, 
+	Atish Patra <atish.patra@linux.dev>, Andrew Jones <ajones@ventanamicro.com>, 
+	Samuel Holland <samuel.holland@sifive.com>, Anup Patel <anup@brainfault.org>, 
+	linux-clk@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-acpi@vger.kernel.org, linux-riscv@lists.infradead.org, 
+	linux-kernel@vger.kernel.org
 Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-Hi Prabhakar,
-
-On Fri, 27 Jun 2025 at 21:37, Prabhakar <prabhakar.csengg@gmail.com> wrote:
-> From: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+On Wed, Jul 2, 2025 at 2:56=E2=80=AFPM Andy Shevchenko
+<andriy.shevchenko@linux.intel.com> wrote:
 >
-> Introduce device tree overlays for supporting the eMMC (RTK0EF0186B02000BJ)
-> and microSD (RTK0EF0186B01000BJ) sub-boards connected via the CN15
-> connector on the RZ/V2H and RZ/V2N evaluation kits.
+> On Wed, Jul 02, 2025 at 02:39:30PM +0200, Rafael J. Wysocki wrote:
+> > On Wed, Jul 2, 2025 at 1:38=E2=80=AFPM Andy Shevchenko
+> > <andriy.shevchenko@linux.intel.com> wrote:
+> > > On Wed, Jul 02, 2025 at 12:20:55PM +0200, Rafael J. Wysocki wrote:
+> > > > On Wed, Jul 2, 2025 at 7:16=E2=80=AFAM Anup Patel <apatel@ventanami=
+cro.com> wrote:
 >
-> These overlays enable SDHI0 with appropriate pin control settings, power
-> regulators, and GPIO handling. Both sub-boards are supported using shared
-> overlay files that can be applied to either EVK due to their identical
-> connector layout and interface support.
+> ...
 >
-> To support this, new DT overlay files are added:
-> - `rzv2-evk-cn15-emmc.dtso` for eMMC
-> - `rzv2-evk-cn15-sd.dtso` for microSD
+> > > > >  static int acpi_fwnode_get_reference_args(const struct fwnode_ha=
+ndle *fwnode,
+> > > > >                                           const char *propname, c=
+onst char *nargs_prop,
+> > > > >                                           unsigned int args_count=
+, unsigned int index,
+> > >
+> > > > >         const struct acpi_device_data *data;
+> > > > >         struct fwnode_handle *ref_fwnode;
+> > > > >         struct acpi_device *device;
+> > > > > +       unsigned int nargs_count;
+> > > > >         int ret, idx =3D 0;
+> > >
+> > > > > +                       nargs_count =3D acpi_fwnode_get_args_coun=
+t(device, nargs_prop);
+> > > >
+> > > > I think it should work the same way as it used to for the callers t=
+hat
+> > > > pass args_count, so maybe
+> > > >
+> > > > if (!args_count)
+> > > >         args_count =3D acpi_fwnode_get_args_count(device, nargs_pro=
+p);
+> > >
+> > > But this is different variable.
+> >
+> > Of course it is different.  It is an acpi_fwnode_get_reference_args() p=
+arameter.
+> >
+> > > > >                         element++;
+> > > > > -
+> > > > >                         ret =3D acpi_get_ref_args(idx =3D=3D inde=
+x ? args : NULL,
+> > > > >                                                 acpi_fwnode_handl=
+e(device),
+> > > > > -                                               &element, end, ar=
+gs_count);
+> > > > > +                                               &element, end,
+> > > > > +                                               nargs_count ? nar=
+gs_count : args_count);
+> > > >
+> > > > And this change would not be necessary?
+> > >
+> > > This is not the same check as proposed above.
+> >
+> > No, it is not.
+> >
+> > It just makes the function work the same way it did before the change
+> > for the callers who passed nozero args_count and so they might be
+> > forgiven expecting that it would be taken into account.
 >
-> Additionally, the base DTS files for both EVKs are updated to include a
-> fixed 1.8V regulator (`reg_1p8v`) needed by the eMMC sub-board and
-> potential future use cases such as HDMI output.
->
-> Signed-off-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-> ---
-> v1->v2:
-> - Dropped patch 2/3 from previous series as that has been merged.
-> - Dropped adding alias in base DTS instead added in overlay.
-> - Switched to using single overlay files for both RZ/V2H and RZ/V2N EVKs
->   instead of separate overlays for each EVK.
-> - Used RZG2L_GPIO and RZG2L_PORT_PINMUX to avoid using SoC specific
->   macros.
+> I see your point now. But do we have such a user? I dunno.
 
-Thanks for the update!
-
-> --- a/arch/arm64/boot/dts/renesas/Makefile
-> +++ b/arch/arm64/boot/dts/renesas/Makefile
-> @@ -161,8 +161,16 @@ r9a09g047e57-smarc-cru-csi-ov5645-dtbs := r9a09g047e57-smarc.dtb r9a09g047e57-sm
->  dtb-$(CONFIG_ARCH_R9A09G047) += r9a09g047e57-smarc-cru-csi-ov5645.dtb
->
->  dtb-$(CONFIG_ARCH_R9A09G056) += r9a09g056n48-rzv2n-evk.dtb
-> +dtb-$(CONFIG_ARCH_R9A09G056) += rzv2-evk-cn15-emmc.dtbo
-> +r9a09g056n48-rzv2-evk-cn15-emmc.dts := r9a09g056n48-rzv2n-evk.dtb rzv2-evk-cn15-emmc.dtbo
-
-.dts?
-
-I take it you meant:
-
-    +r9a09g056n48-rzv2n-evk-cn15-emmc-dtbs :=
-r9a09g056n48-rzv2n-evk.dtb rzv2-evk-cn15-emmc.dtbo
-    +dtb-$(CONFIG_ARCH_R9A09G056) += r9a09g056n48-rzv2n-evk-cn15-emmc.dtb
-
-> +dtb-$(CONFIG_ARCH_R9A09G056) += rzv2-evk-cn15-sd.dtbo
-> +r9a09g056n48-rzv2-evk-cn15-sd.dts := r9a09g056n48-rzv2n-evk.dtb rzv2-evk-cn15-sd.dtbo
-
-    +r9a09g056n48-rzv2n-evk-cn15-sd-dtbs := r9a09g056n48-rzv2n-evk.dtb
-rzv2-evk-cn15-sd.dtbo
-    +dtb-$(CONFIG_ARCH_R9A09G056) += r9a09g056n48-rzv2n-evk-cn15-sd.dtb
-
->  dtb-$(CONFIG_ARCH_R9A09G057) += r9a09g057h44-rzv2h-evk.dtb
-> +dtb-$(CONFIG_ARCH_R9A09G057) += rzv2-evk-cn15-emmc.dtbo
-> +r9a09g057h44-rzv2-evk-cn15-emmc.dts := r9a09g057h44-rzv2h-evk.dtb rzv2-evk-cn15-emmc.dtbo
-
-    +r9a09g057h44-rzv2h-evk-cn15-emmc-dtbs :=
-r9a09g057h44-rzv2h-evk.dtb rzv2-evk-cn15-emmc.dtbo
-    +dtb-$(CONFIG_ARCH_R9A09G057) += r9a09g057h44-rzv2h-evk-cn15-emmc.dtb
-
-> +dtb-$(CONFIG_ARCH_R9A09G057) += rzv2-evk-cn15-sd.dtbo
-> +r9a09g057h44-rzv2-evk-cn15-sd.dts := r9a09g057h44-rzv2h-evk.dtb rzv2-evk-cn15-sd.dtbo
-
-    +r9a09g057h44-rzv2h-evk-cn15-sd-dtbs := r9a09g057h44-rzv2h-evk.dtb
-rzv2-evk-cn15-sd.dtbo
-    +dtb-$(CONFIG_ARCH_R9A09G057) += r9a09g057h44-rzv2h-evk-cn15-sd.dtb
-
->  dtb-$(CONFIG_ARCH_R9A09G057) += r9a09g057h48-kakip.dtb
->
->  dtb-$(CONFIG_ARCH_RCAR_GEN3) += draak-ebisu-panel-aa104xd12.dtbo
-
-Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
-i.e. will queue in renesas-devel for v6.17, with the above fixed.
-
-Gr{oetje,eeting}s,
-
-                        Geert
-
--- 
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
-
-In personal conversations with technical people, I call myself a hacker. But
-when I'm talking to journalists I just say "programmer" or something like that.
-                                -- Linus Torvalds
+Well, __acpi_node_get_property_reference() gets called in a couple of place=
+s.
 
