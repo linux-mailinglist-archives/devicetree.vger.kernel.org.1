@@ -1,113 +1,133 @@
-Return-Path: <devicetree+bounces-192192-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-192193-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5A9B8AF5AF6
-	for <lists+devicetree@lfdr.de>; Wed,  2 Jul 2025 16:20:06 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2106FAF5AFB
+	for <lists+devicetree@lfdr.de>; Wed,  2 Jul 2025 16:20:54 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 4482D7A1BB5
-	for <lists+devicetree@lfdr.de>; Wed,  2 Jul 2025 14:18:40 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 7F79817C2C4
+	for <lists+devicetree@lfdr.de>; Wed,  2 Jul 2025 14:20:52 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 844E92F4A07;
-	Wed,  2 Jul 2025 14:19:59 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2D2EB2F4A1E;
+	Wed,  2 Jul 2025 14:20:49 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="RSoutkQH"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="Kf7C140y"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-pj1-f48.google.com (mail-pj1-f48.google.com [209.85.216.48])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 59AE72749E6;
-	Wed,  2 Jul 2025 14:19:58 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id ACEAE2F4A15;
+	Wed,  2 Jul 2025 14:20:47 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.216.48
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1751465999; cv=none; b=DsrFR/Sj02HBu4EOxbahqnaP2BKHolSQMO1pG3jNbN+Zp4Cu8nFYQUpdGMb+kIuEl3MlWHUv/nK+5GHmZ+WUW/TA2DPkJMx9qRH2arhw3j85PcqrGYHzym6x54aJkHHh1d8PQ7Badzdy1xUg3kouiwEOZ9Y8aI26YKFHJJQCRjU=
+	t=1751466049; cv=none; b=s5h9LfQkc9mYv08lGE09PNR+vsV/recYltYSXxKMBPV9ZuFEi1ikfSI4CrwqxuRYBI+AcXtAYzske9RFq1fyAiAP739DWb9WwYqAeFY+bt/xydH+CWysfM6/0HBMvCWGD3c2cgPPBO2dggskLaGGvKXSJGf62+WAh/xXPmuEdCU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1751465999; c=relaxed/simple;
-	bh=TPciPNVldYlLCshBF0wNkXQDpxHCap/jBcx6/N7ZGKk=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=X8E/dvULG7Kfor9eQt8VOczeKs3vGPumPgWqnREsUrjXZueZ+bQqfnTII8B+vb/XlzuNMzZ6/Z9oe2cUIQSS74pQTH5uxn10eL8FBq8kteo8etAW+mUHx3npzsgFP0hVVE0MbBzKlcx6bqnsN9zbiCLUrQmlk7MeB6Kgh7t0TBs=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=RSoutkQH; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 9BA4DC4CEED;
-	Wed,  2 Jul 2025 14:19:58 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1751465998;
-	bh=TPciPNVldYlLCshBF0wNkXQDpxHCap/jBcx6/N7ZGKk=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=RSoutkQHiqJIZLfUz4vLG5XDmN61dCtG2vxH88aVVxYgbY2s9SRl0IbEMYSiyhzQo
-	 s2OXWG+BCzsu9j5vribhCGAEsebId23u2ttvwXSmYEm0/Jj0i4kIwwAB/N0HH4SYP/
-	 xE+fk4ZoBdyLkf/9hWtB1rNOcAEUU0lFA8uwxjgGuIwfUS9d8uFsmoVZWOx2ntk+36
-	 /deJGiEystKHF5JPG8MxB6KF0mhlAAtwzeioTnYf1u+TWI+FjItJg1TJRAT5aEeVIo
-	 e1tWtCoNL2LjC00UCpQb7t6Y+pCTupCvQbGk1qH9whnF/yHOEIeUAyFOPi6RMIJHlu
-	 VbGGSePVMB9jQ==
-Date: Wed, 2 Jul 2025 09:19:57 -0500
-From: Rob Herring <robh@kernel.org>
-To: Albert Yang <yangzh0906@thundersoft.com>
-Cc: krzk@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v2 6/8] arm64: dts: bst: add support for Black Sesame
- Technologies C1200 CDCU1.0 board
-Message-ID: <20250702141957.GA1416711-robh@kernel.org>
-References: <a570b833-0619-4d1a-909f-971ba08f4202@kernel.org>
- <20250702123133.3613126-1-yangzh0906@thundersoft.com>
+	s=arc-20240116; t=1751466049; c=relaxed/simple;
+	bh=Pip7qVEFQVYSY76zLUx9PHCExnbAXgnUt8LulPOmRNk=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=MbGzeo/X8B48c0mI4TircJwZk+lSylNNUJ3970gi3QYr5yaTOIrQE8aL8Vy/OeubVGG655DsGszMyzWER+e2EMSO40WjYAjaLWPxTTNBHEZ4tqDAta+RzLSwf9XBc04zRW420jEFOh2Qik6HiDUOhVP0bJ/cq08zD02bnZYlgbo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=Kf7C140y; arc=none smtp.client-ip=209.85.216.48
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-pj1-f48.google.com with SMTP id 98e67ed59e1d1-3190fbe8536so3451237a91.3;
+        Wed, 02 Jul 2025 07:20:47 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1751466047; x=1752070847; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=yGQkzz5zRxRRS2uo+kWwt7fThwG7BuLxpPIngGvvrqc=;
+        b=Kf7C140yfoSvZmd3EKFpSUPnHLUFwfvFTJrWJDgq1SK0R0AGT8qBtazkhdonEgKeR0
+         XP1OXYYcEtzKCMxN4a22irggtK3NkKhFqZJiCAjuPMjMLVDY7xI2bmky978LtbT/+9bv
+         HqJpq5SQlGlta/zPkxwmHyE1CrktAPiozs7FxahyctFgnIak/ww8RT3CH2cATlrdgJ+Y
+         2IvpsN68Z19XtTSjB9X23pE5rmOIxzQtdPT7bc11c+KEwHwrdpnVWUIHF1TE7J5hlp+P
+         ZlxXpLxTQgx18ir9NQbS3DXS5Pfvqv93E0ONBYfJBh3as3///dHPQRvs3rP0wQIoErzg
+         pWgA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1751466047; x=1752070847;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=yGQkzz5zRxRRS2uo+kWwt7fThwG7BuLxpPIngGvvrqc=;
+        b=ane2vxuQ5RzUFzosCa5aaSOUtYxPKYJ6wABicclLAQ4+MGkhQH0SWBUeFrOGJ0TVPa
+         RTTB7FikwlcQQ4PwXuVu/bWxmDCba3NP5TNWhHk+mjGubK0Fx9N4paFVsR8ZgCLTdBIG
+         8Ceiys9ZtSr2USE2ZpaKqXAnNNZMoSd5BIwfZxRO1+3sBIoMaDo9AY/HeliNGSTeaSY1
+         qotCUvKSlOxM2aTr9l56w+WfGIHUqaplQo9a3epqormpJ679nllmU1VpVwWkIXiI7T8H
+         lDwYaJao5rPBfjGA1XDlWPeETrK49FnXxVojjKc8obVdNY4UdF5deSmfqUyuf8cK61EG
+         pocw==
+X-Forwarded-Encrypted: i=1; AJvYcCVdEzV4GTNQQqHZCA8Lun/B7UO8O3FEdsC/nMSrgkIcnF3VE3E6/9VE2k49RGNSbAQynkUrVr7Ym303@vger.kernel.org, AJvYcCXpakeqp7Zp+4hkguvPiuwTwHRWSWThghRHVv2gRHe3iOH/Wt4WVOSpACmbnipSxcq5xh47R0i7cMqHr3w8@vger.kernel.org
+X-Gm-Message-State: AOJu0YwAK1av1JUqEW0HMByUljYsKAH9ynUdAmNTswVtnC1Z6+r8YOrW
+	yI3ELjrnHh3RPpiLElfVRw2Awc/wSseVGP14Ig5EFR8VNhYvxgBT+iDo6hwR7UUbblvse1D+JWa
+	SpjGp98B9IcsT6ZT2UGryd0RUPptq1I0=
+X-Gm-Gg: ASbGncsdw8Uf+BeidB5Eyjoqa5MvjZeV5DaHqTnoBStgpNKdeahceoFuPNlRcsF5J0E
+	zSyH3YYAJQGxqGUIiYzRaW17qpTX92huiwUx9gHzcQUt1YYi2lF6cQUraQPyub1GdhINhQbEZaQ
+	m8UvWwRFpBy5HHzIXp6oABLC9OCK4aKnlsYQcnYrP9sOobJzO8cPzokQ==
+X-Google-Smtp-Source: AGHT+IHXe/1zFmqCjXQ3C8alvXOHiCKHLQ3bJLFyVQ/G6RNjB0hyZ7QrXCV2jrtHiA4TmMP8JM9c+KanMU9aiN4g/Xk=
+X-Received: by 2002:a17:90b:1c12:b0:31a:947d:6ca1 with SMTP id
+ 98e67ed59e1d1-31a947d71e7mr2657565a91.22.1751466046836; Wed, 02 Jul 2025
+ 07:20:46 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20250702123133.3613126-1-yangzh0906@thundersoft.com>
+References: <20250620213447.56392-1-aford173@gmail.com>
+In-Reply-To: <20250620213447.56392-1-aford173@gmail.com>
+From: Adam Ford <aford173@gmail.com>
+Date: Wed, 2 Jul 2025 09:20:35 -0500
+X-Gm-Features: Ac12FXzt0gezjSCPgKwgvm9n1EIPWkC5-wwtbhI6dVypdKni0yvTumI1x5nEKA8
+Message-ID: <CAHCN7x+2A476SgUP3uWSLovpDU0qxxP=a+sXLbdE0UU6Bv+_YQ@mail.gmail.com>
+Subject: Re: [PATCH 1/2] arm64: dts: imx8mm-beacon: Fix HS400 USDHC clock speed
+To: linux-arm-kernel@lists.infradead.org
+Cc: aford@beaconembedded.com, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Shawn Guo <shawnguo@kernel.org>, Sascha Hauer <s.hauer@pengutronix.de>, 
+	Pengutronix Kernel Team <kernel@pengutronix.de>, Fabio Estevam <festevam@gmail.com>, devicetree@vger.kernel.org, 
+	imx@lists.linux.dev, linux-kernel@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-On Wed, Jul 02, 2025 at 08:31:33PM +0800, Albert Yang wrote:
-> Hi Krzysztof,
-> 
-> Thank you for your detailed review and feedback. I have addressed all the issues you mentioned:
-> 
-> > This is messed. SoB does not go to changelog. Apply your patch and look
-> > at result - do you see SoB? No, because changelog is stripped.
-> > submitting patches explains how this is supposed to look like.
-> 
-> Fixed. Moved Signed-off-by lines to the correct position in commit message, 
-> outside of the changelog section.
-> 
-> > Nothing improved. I asked to follow DTS coding style in ordering.
-> 
-> Fixed. Reordered all nodes according to DTS coding style:
-> - Root level nodes: alphabetically ordered (clk_mmc → cpus → psci → soc → timer)
-> - SoC nodes: ordered by address (uart0@20008000 → mmc0@22200000 → gic@32800000)
-> - Applied consistent ordering throughout the dtsi file
-> 
-> > l2-cache. Otherwise it is incomplete, so add the second one.
-> 
-> Fixed. Renamed l2-cache-1 to l2-cache as per standard naming convention.
-> 
-> > Why do you have multiple memory nodes, not one?
-> 
-> Fixed. Consolidated multiple memory nodes into a single memory node with 
-> multiple reg entries as required by Device Tree specification:
-> 
-> Before (incorrect):
->   memory@800151000 { reg = <0x8 0x00151000 0x0 0x1000>; };
->   memory@800254000 { reg = <0x8 0x00254000 0x0 0x1000>; };
->   ...
-> 
-> After (correct):
->   memory@800151000 {
->     reg = <0x8 0x00151000 0x0 0x1000>,
->           <0x8 0x00254000 0x0 0x1000>,
+On Fri, Jun 20, 2025 at 4:34=E2=80=AFPM Adam Ford <aford173@gmail.com> wrot=
+e:
+>
+> The reference manual for the i.MX8MM states the clock rate in
+> MMC mode is 1/2 of the input clock, therefore to properly run
+> at HS400 rates, the input clock must be 400MHz to operate at
+> 200MHz.  Currently the clock is set to 200MHz which is half the
+> rate it should be, so the throughput is half of what it should be
+> for HS400 operation.
+>
 
-These are very odd. Are these really main memory vs. some on chip SRAM 
-or some other specific purpose? 
+Shawn and/or Fabio,
 
-A 4KB block doesn't really work if the OS uses 16 or 64KB pages, but I 
-guess that would be up to the OS to ignore them.
+Any chance this can get reviewed and possibly applied for the next kernel?
 
->           <0x8 0x10000000 0x0 0x30000000>,
->           <0x8 0xc0000000 0x1 0x0>,
->           <0xc 0x00000000 0x0 0x40000000>;
->   };
+thank you,
+
+adam
+
+> Fixes: 593816fa2f35 ("arm64: dts: imx: Add Beacon i.MX8m-Mini development=
+ kit")
+> Signed-off-by: Adam Ford <aford173@gmail.com>
+>
+> diff --git a/arch/arm64/boot/dts/freescale/imx8mm-beacon-som.dtsi b/arch/=
+arm64/boot/dts/freescale/imx8mm-beacon-som.dtsi
+> index 21bcd82fd092..8287a7f66ed3 100644
+> --- a/arch/arm64/boot/dts/freescale/imx8mm-beacon-som.dtsi
+> +++ b/arch/arm64/boot/dts/freescale/imx8mm-beacon-som.dtsi
+> @@ -294,6 +294,8 @@ &usdhc3 {
+>         pinctrl-0 =3D <&pinctrl_usdhc3>;
+>         pinctrl-1 =3D <&pinctrl_usdhc3_100mhz>;
+>         pinctrl-2 =3D <&pinctrl_usdhc3_200mhz>;
+> +       assigned-clocks =3D <&clk IMX8MM_CLK_USDHC3>;
+> +       assigned-clock-rates =3D <400000000>;
+>         bus-width =3D <8>;
+>         non-removable;
+>         status =3D "okay";
+> --
+> 2.48.1
+>
 
