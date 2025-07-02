@@ -1,149 +1,108 @@
-Return-Path: <devicetree+bounces-192337-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-192338-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9F8D8AF645E
-	for <lists+devicetree@lfdr.de>; Wed,  2 Jul 2025 23:49:27 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 61F0FAF6466
+	for <lists+devicetree@lfdr.de>; Wed,  2 Jul 2025 23:53:07 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 844227A33B6
-	for <lists+devicetree@lfdr.de>; Wed,  2 Jul 2025 21:48:02 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 2B9074A1DAE
+	for <lists+devicetree@lfdr.de>; Wed,  2 Jul 2025 21:52:41 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3E1162D9490;
-	Wed,  2 Jul 2025 21:48:49 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 95EB924467C;
+	Wed,  2 Jul 2025 21:52:55 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=wp.pl header.i=@wp.pl header.b="rwSUEglH"
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=armlinux.org.uk header.i=@armlinux.org.uk header.b="NrnPD4Oi"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx4.wp.pl (mx4.wp.pl [212.77.101.11])
+Received: from pandora.armlinux.org.uk (pandora.armlinux.org.uk [78.32.30.218])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 874FB23BF91
-	for <devicetree@vger.kernel.org>; Wed,  2 Jul 2025 21:48:47 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=212.77.101.11
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 71C812DE704;
+	Wed,  2 Jul 2025 21:52:53 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=78.32.30.218
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1751492929; cv=none; b=u4YaPQwIGIYQ6o2CieWgg2umcsjsXBePkOKEOtLiKgW10cdxytl8tdIQxEMkqQNNHn9rdcNFx/dgEWwavJtJTFxAjdsiQVghqUhRGPcKDGeTtu4BcemCuFtzTfsx6kzaMGumc80cPuKxOwqYWspVHB/MsBA6oVWG1g9PF58ltDA=
+	t=1751493175; cv=none; b=V84SmCrcvL6rLA+iW3Ubrrl9KtgDDQUkXdRRRqrLMB6cp27U/1ofeFeW0//TkRrmVk6217lw4NX6mfCEFw3I4Goa2KTxaziuxgYtrWruZJLsP/BJ7a4nXHj2PbqV1PE9T5vEY+9/KGjp9ICd9bva4QBvFDatw6Hb1rjH+3PfESE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1751492929; c=relaxed/simple;
-	bh=Ay+jX/XQ+lgyHRaO0A+yg+dqWvhepcP2lGXbEZ+ANbw=;
-	h=From:To:Subject:Date:Message-Id:In-Reply-To:References:
-	 MIME-Version; b=nptoAxXL0XuS1Oeoj0PPM1n0EN9dOm4EAarSg9y/Vja/41wFEla7y2vBqVLecipQtM9630J7tKm84jXAwGcUFRZDulzqTe++xpXD5lEW7ZLKYVy0WE7TZEa2WV0c9nfZXEpWI8d3yVU13EB1ft8jMyarCXrv6+/TbBpGf52+q+4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=wp.pl; spf=pass smtp.mailfrom=wp.pl; dkim=pass (2048-bit key) header.d=wp.pl header.i=@wp.pl header.b=rwSUEglH; arc=none smtp.client-ip=212.77.101.11
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=wp.pl
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=wp.pl
-Received: (wp-smtpd smtp.wp.pl 33642 invoked from network); 2 Jul 2025 23:48:35 +0200
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=wp.pl; s=20241105;
-          t=1751492915; bh=FnhMLudv+q/D/hSONBTmJZVo154ineWrRQ/21yucmkM=;
-          h=From:To:Subject;
-          b=rwSUEglHOPVgT4/GIJwGZNEcF1GJVdBKcJRwuyU/NIAVHU+i9oiuZESyRE3iWDxNl
-           j8AFXvIL3d4Isad15BsyOOdhoEQvJphwlfFmdkoVM1RmoW33Kq0VKS2q8v3aMtEMnI
-           Wmnr2eMYaNNoFCeGcgxu7gwMsYmeGmRnv8VBOPk0Jp35Dfx9dlNH2hUqWu3h3/TJ6U
-           eXH/Q1Li32civ9iShojvR47LYWdB2lYkmr+uUnrnbda5NcU/shWYGZuh2izRRpjbCJ
-           v6rnKJ4Ddq9zqbxeZGigWQlt32R1fxY+veqdd+75p6sEYSgau8VM2Yc/PFBU3bYXFC
-           YwCiyif19cQ9A==
-Received: from 83.5.239.54.ipv4.supernova.orange.pl (HELO laptop-olek.lan) (olek2@wp.pl@[83.5.239.54])
-          (envelope-sender <olek2@wp.pl>)
-          by smtp.wp.pl (WP-SMTPD) with ECDHE-RSA-AES256-GCM-SHA384 encrypted SMTP
-          for <jic23@kernel.org>; 2 Jul 2025 23:48:35 +0200
-From: Aleksander Jan Bajkowski <olek2@wp.pl>
-To: jic23@kernel.org,
-	dlechner@baylibre.com,
-	nuno.sa@analog.com,
-	andy@kernel.org,
-	robh@kernel.org,
-	krzk+dt@kernel.org,
-	conor+dt@kernel.org,
-	matthias.bgg@gmail.com,
-	angelogioacchino.delregno@collabora.com,
-	olek2@wp.pl,
-	zhiyong.tao@mediatek.com,
-	linux-iio@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	linux-mediatek@lists.infradead.org
-Subject: [PATCH v2 2/2] arm64: dts: mediatek: add thermal sensor support on mt7981
-Date: Wed,  2 Jul 2025 23:48:30 +0200
-Message-Id: <20250702214830.255898-3-olek2@wp.pl>
-X-Mailer: git-send-email 2.39.5
-In-Reply-To: <20250702214830.255898-1-olek2@wp.pl>
-References: <20250702214830.255898-1-olek2@wp.pl>
+	s=arc-20240116; t=1751493175; c=relaxed/simple;
+	bh=ShsEDavPd03jdfDzFNPmnHwHd01LCCQlm08KJ1l6LqI=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=TRhjJTPhw5HBjhgT9f/UhnazWkwjMnyMdPWuL6kyYPZSmqLKjQkNiyBYqiQwXlWeyrrQpzNdgY2Ic3yN6aoOZEbvdz/muiqtm2Co4+lWrxivHjCq7bIULDmEttNc1hIpuM1WPwEKhe3TDsCwk26pb140FsCBL3UX1AypzPuHUD4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=armlinux.org.uk; spf=none smtp.mailfrom=armlinux.org.uk; dkim=pass (2048-bit key) header.d=armlinux.org.uk header.i=@armlinux.org.uk header.b=NrnPD4Oi; arc=none smtp.client-ip=78.32.30.218
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=armlinux.org.uk
+Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=armlinux.org.uk
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+	d=armlinux.org.uk; s=pandora-2019; h=Sender:In-Reply-To:
+	Content-Transfer-Encoding:Content-Type:MIME-Version:References:Message-ID:
+	Subject:Cc:To:From:Date:Reply-To:Content-ID:Content-Description:Resent-Date:
+	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Id:
+	List-Help:List-Unsubscribe:List-Subscribe:List-Post:List-Owner:List-Archive;
+	bh=O2gzKkiuh/7XKQtv3DJDDajNDBRpKD1gmdPIiBKuNb0=; b=NrnPD4OiDyjcOqPJKQyfvjewYI
+	YyS0T7bf7+dUxAxIu6E7hM8R3UNc3BFnHTEJEM7G0a0jIDcsIrHsdNtQuNMEFi1LFjJZ+DoRB4RYW
+	6b4GWy+3OiY7sMDX8MDtZEeLCZZMOly4GlUB3LfoCVOvmE9QvQKCwPGGv8xP0s95SoOxUmqOBJzAq
+	3UoBHMHJohQI1Qa9r7q/l2b0TQ5gIwQDwMHOZzSdfqhvGvKict8vlJQBIwj64ATUSRdEML5KX1agz
+	D3TN9EOQeJUrKNgUdNlzZg3N5pjDqW7EWc9QfKpPYgAQedxo3WDatmcvsa3lwQ9NCdEO1F3NsZxik
+	+ioV5jUw==;
+Received: from shell.armlinux.org.uk ([fd8f:7570:feb6:1:5054:ff:fe00:4ec]:45462)
+	by pandora.armlinux.org.uk with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+	(Exim 4.96)
+	(envelope-from <linux@armlinux.org.uk>)
+	id 1uX5Ne-0008Gr-0D;
+	Wed, 02 Jul 2025 22:52:38 +0100
+Received: from linux by shell.armlinux.org.uk with local (Exim 4.96)
+	(envelope-from <linux@shell.armlinux.org.uk>)
+	id 1uX5Nb-0004QW-2f;
+	Wed, 02 Jul 2025 22:52:35 +0100
+Date: Wed, 2 Jul 2025 22:52:35 +0100
+From: "Russell King (Oracle)" <linux@armlinux.org.uk>
+To: Bence =?iso-8859-1?B?Q3Pza+Fz?= <csokas.bence@prolan.hu>
+Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
+	Sascha Hauer <s.hauer@pengutronix.de>,
+	Pengutronix Kernel Team <kernel@pengutronix.de>,
+	Fabio Estevam <festevam@gmail.com>, devicetree@vger.kernel.org,
+	imx@lists.linux.dev, linux-arm-kernel@lists.infradead.org,
+	linux-kernel@vger.kernel.org
+Subject: Re: [PATCH] arm: DT: imx6-sr-som: Replace license text comment with
+ SPDX identifier
+Message-ID: <aGWqIzNvSVw4olz5@shell.armlinux.org.uk>
+References: <20250702-sr-som-dts-lic-v1-1-2e8584e6c837@prolan.hu>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-X-WP-MailID: b00664f4f4ac2cf6bacf908830148b39
-X-WP-AV: skaner antywirusowy Poczty Wirtualnej Polski
-X-WP-SPAM: NO 0000000 [0YOR]                               
+In-Reply-To: <20250702-sr-som-dts-lic-v1-1-2e8584e6c837@prolan.hu>
+Sender: Russell King (Oracle) <linux@armlinux.org.uk>
 
-The temperature sensor in the MT7981 is same as in the MT7986.
+On Wed, Jul 02, 2025 at 11:41:54PM +0200, Bence Csókás wrote:
+> Replace verbatim license text with a `SPDX-License-Identifier`.
+> 
+> The comment heades mis-attributes this license to be "X11", but the
+> license text does not include the last line "Except as contained in this
+> notice, the name of the X Consortium shall not be used in advertising or
+> otherwise to promote the sale, use or other dealings in this Software
+> without prior written authorization from the X Consortium.". Therefore,
+> this license is actually equivalent to the SPDX "MIT" license (confirmed
+> by text diffing).
+> 
+> Signed-off-by: Bence Csókás <csokas.bence@prolan.hu>
 
-Signed-off-by: Aleksander Jan Bajkowski <olek2@wp.pl>
----
- arch/arm64/boot/dts/mediatek/mt7981b.dtsi | 32 ++++++++++++++++++++++-
- 1 file changed, 31 insertions(+), 1 deletion(-)
+As Florian has already mentioned, the preferred format for the summary
+for arch/arm is "ARM: ... " and by extension for arch/arm/boot/dts,
+it's "ARM: dts: ...", not "arm: DT: ..."
 
-diff --git a/arch/arm64/boot/dts/mediatek/mt7981b.dtsi b/arch/arm64/boot/dts/mediatek/mt7981b.dtsi
-index 5cbea9cd411f..759b9e8059d9 100644
---- a/arch/arm64/boot/dts/mediatek/mt7981b.dtsi
-+++ b/arch/arm64/boot/dts/mediatek/mt7981b.dtsi
-@@ -76,7 +76,7 @@ watchdog: watchdog@1001c000 {
- 			#reset-cells = <1>;
- 		};
- 
--		clock-controller@1001e000 {
-+		apmixedsys: clock-controller@1001e000 {
- 			compatible = "mediatek,mt7981-apmixedsys";
- 			reg = <0 0x1001e000 0 0x1000>;
- 			#clock-cells = <1>;
-@@ -184,6 +184,32 @@ spi@1100b000 {
- 			status = "disabled";
- 		};
- 
-+		thermal@1100c800 {
-+			compatible = "mediatek,mt7981-thermal",
-+				     "mediatek,mt7986-thermal";
-+			reg = <0 0x1100c800 0 0x800>;
-+			interrupts = <GIC_SPI 138 IRQ_TYPE_LEVEL_HIGH>;
-+			clocks = <&infracfg CLK_INFRA_THERM_CK>,
-+				 <&infracfg CLK_INFRA_ADC_26M_CK>;
-+			clock-names = "therm", "auxadc";
-+			nvmem-cells = <&thermal_calibration>;
-+			nvmem-cell-names = "calibration-data";
-+			#thermal-sensor-cells = <1>;
-+			mediatek,auxadc = <&auxadc>;
-+			mediatek,apmixedsys = <&apmixedsys>;
-+		};
-+
-+		auxadc: adc@1100d000 {
-+			compatible = "mediatek,mt7981-auxadc",
-+				     "mediatek,mt7986-auxadc",
-+				     "mediatek,mt7622-auxadc";
-+			reg = <0 0x1100d000 0 0x1000>;
-+			clocks = <&infracfg CLK_INFRA_ADC_26M_CK>;
-+			clock-names = "main";
-+			#io-channel-cells = <1>;
-+			status = "disabled";
-+		};
-+
- 		pio: pinctrl@11d00000 {
- 			compatible = "mediatek,mt7981-pinctrl";
- 			reg = <0 0x11d00000 0 0x1000>,
-@@ -211,6 +237,10 @@ efuse@11f20000 {
- 			reg = <0 0x11f20000 0 0x1000>;
- 			#address-cells = <1>;
- 			#size-cells = <1>;
-+
-+			thermal_calibration: thermal-calib@274 {
-+				reg = <0x274 0xc>;
-+			};
- 		};
- 
- 		clock-controller@15000000 {
+Please ensure that *all* your submissions follow this preferred
+format.
+
+When in doubt, do a git log on the file(s) you are modifying to
+discover what has been used in the past.
+
 -- 
-2.39.5
-
+RMK's Patch system: https://www.armlinux.org.uk/developer/patches/
+FTTP is here! 80Mbps down 10Mbps up. Decent connectivity at last!
 
