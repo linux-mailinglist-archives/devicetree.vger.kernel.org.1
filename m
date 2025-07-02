@@ -1,171 +1,196 @@
-Return-Path: <devicetree+bounces-191966-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-191967-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 16586AF10B0
-	for <lists+devicetree@lfdr.de>; Wed,  2 Jul 2025 11:55:28 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id A8C96AF10C7
+	for <lists+devicetree@lfdr.de>; Wed,  2 Jul 2025 11:58:26 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 149D9189E751
-	for <lists+devicetree@lfdr.de>; Wed,  2 Jul 2025 09:55:44 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id D4C071BC44FB
+	for <lists+devicetree@lfdr.de>; Wed,  2 Jul 2025 09:58:42 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0DE12245038;
-	Wed,  2 Jul 2025 09:55:23 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7E58C2475C2;
+	Wed,  2 Jul 2025 09:58:20 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="LcgduZoe"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-vk1-f174.google.com (mail-vk1-f174.google.com [209.85.221.174])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4F48123C4E5;
-	Wed,  2 Jul 2025 09:55:21 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.174
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CE83821B9D6;
+	Wed,  2 Jul 2025 09:58:18 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1751450122; cv=none; b=Ltf1df00VPPJpeW7giHEKY/TuYiR6TIWb/o3escnjSVvjIuAC8TUm+O7spFIY5P32aURkKlILvLFtk9/+GngVB3UHZWMZurvJmEneIc/gMXDW512csZIGzFJn+/YJXuZLRkVg3cxdJUmfwgDeRvkbTNwWDINOZQ2H/Sq8KUEkmI=
+	t=1751450300; cv=none; b=AbumCCRnpoa7iaPgKPgr9ZCHbNLJpUegSefsEGJE7AQI9XUHks6vVgWOwVEpQW620I5+NhQ004LWcyDwaiBijqSLLumhtCyzWgS2rrNODIVPvqJWYAVG2rw9RD4X16QsIv4ZUIyswQOvZhbVhMT13tBfxI1dYlQ5OYxOXpOErC0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1751450122; c=relaxed/simple;
-	bh=C5QXblfrBCzvu7BdLvGifTigoPSkoFM22gBY88eg8Hc=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=raegWlGORjMdb4eTrT1ntRSkYipBaNNepGZpe8zxZtDvbwjXC/VnqQwClpQcNQr7sYzddMr9JTWV1Ue9B6X2B2v9VApiEe31ssXJ2C+AukkqohtTR7a8LC5Y0mSE2I3m8zaFKcjViC8OlCjw2RRRlmlVa84fa1caTJSvzhylxPQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.221.174
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-vk1-f174.google.com with SMTP id 71dfb90a1353d-53159d11cecso4112713e0c.2;
-        Wed, 02 Jul 2025 02:55:21 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1751450119; x=1752054919;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=aOx75XV9/OUc0GtT1FSm/gKABj7KC8EmhXbi5Ta+wgM=;
-        b=PwskfG/nB6t+tj8b5o9dCBp/Wl6ZGN+uw/FCV6TAuXearukzrmvIg46VYtCvOguTTq
-         IYCYICfQSVtEnVu6dJUkl5X6vi19QSgjqM2jYcLPD2ZYgia1sTdVlbe810zAn5M+WikR
-         Yyw155Cr3XVMP87JdQr/lCE88i0ihWBonR2CFUNBkl8eRccEBvZnC3rAiSwqhzAu9Zly
-         K60dt4oA/BQYB12vrvkFmNHMsgnOUxelI+/hjaxcR7F2o3BySEUgg0E2GuEjxTp/IJea
-         e/5wXXUr9Me/3SzRF4QX5ZjP6bzCoZlfvMK+njt+ikAomEuAME90/rK2ovC1v4eXGZp+
-         nyOA==
-X-Forwarded-Encrypted: i=1; AJvYcCVrjZ1HI8i3KIuB/LPECEjXQX9AtCMVSoxygiRgpAn2Eme9UatzGJEAFWzCDacNJl5cUqn4RJ4lHi6U@vger.kernel.org, AJvYcCVv3VB+vzqA3WbCoN2mDxCNj5ga0OZHZUF5xBZSuMbGfza80YI//rBEhMAi53HhxA9+j7HZ1cQgswu22/Ug205Iba0=@vger.kernel.org, AJvYcCWYZD9JSSA+4jwlejHfF+ef0EWf+pwnjNI9hxOpx8O5D+zxyV0Blg9youc/G7n0Qy+NWfjtga9C@vger.kernel.org, AJvYcCWeMw0O5Flx38Z4ZfhPY/LaFRKWKNv9Auf3OOLr/GuEC0Tc3xMHQlwD5Yt+CAH9ovbU1w7bO8VpAs+B5ZS4@vger.kernel.org, AJvYcCX8CxOKmf/qII8t4AbU6zhaymTsaQAq8l8QFOvVqidSZQQ2KNc00qgHUYHY9rEH7qxGq+pn0JvQL/pN@vger.kernel.org
-X-Gm-Message-State: AOJu0YxlrpYDJascPfi+Hiw6fTcbiIEIo/XuCHTAD4eGwwf19hfIelex
-	ggX/UcQjbQdyGwrEJ0HH4jKm0zJEDhflZYTCTQgLQBLjgOdunI1t0GIyJhgQs8ZU
-X-Gm-Gg: ASbGnctahUWVgFEpLYm4KUnwzSMmTnAf+FOmHVmHfUq4ntieh8VSYpFAzaO7FeNXGSC
-	XJdrogviDx3yPPWfZoyH6xwJICOHxgMbn1BPOBMknaOC21wRIUR+KqyS4HO93r940SdpVYJhH8t
-	PwDzfevl/EUHN07KwEoglCw72qW5ZMfn5JXwm82EWQnrFKOJC7JvgwJOn79cd0iBXsOxcrph2MM
-	N2Zn27BVyZ6VmPjB0vdS3Mqy8PKdEg3BQ3hB5IFAs9mWp+r5lTnvODJMW3wchklDV8BJFV+PCPB
-	O1jTuOZSK5rhP4xZ0kFiCRePMfKEbbDdB18tZgHByoetwDm6SQ+FGxx3jWA3anaRSD/aZ2X2/gN
-	bOs449iGjLROoA046OCD5zX74
-X-Google-Smtp-Source: AGHT+IHQUTerjig7jhM2oeODUMFmoGxzKZinnz4Sg/Dq0Dcvk1urc/btp22t9YpRxgsyIH8VOMyerw==
-X-Received: by 2002:a05:6122:2381:b0:531:2906:7525 with SMTP id 71dfb90a1353d-534583bf125mr1534408e0c.6.1751450119081;
-        Wed, 02 Jul 2025 02:55:19 -0700 (PDT)
-Received: from mail-vs1-f49.google.com (mail-vs1-f49.google.com. [209.85.217.49])
-        by smtp.gmail.com with ESMTPSA id 71dfb90a1353d-5345ae35c6esm154196e0c.37.2025.07.02.02.55.18
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 02 Jul 2025 02:55:18 -0700 (PDT)
-Received: by mail-vs1-f49.google.com with SMTP id ada2fe7eead31-4e80d19c7ebso4062278137.3;
-        Wed, 02 Jul 2025 02:55:18 -0700 (PDT)
-X-Forwarded-Encrypted: i=1; AJvYcCU3cWRs0mgX1RiqAX/+TdgVjeaIL4Izdw+5inlmy1CzlVCj5JcYlHpo4VKoXl7jf0AkfgNm5jiDNqc8@vger.kernel.org, AJvYcCUvIehNGd9DmP4ucsAYFY/jEV0pduDD2D7+8IpA7jWR9oRfWTVsE4Hwh6OtsDCn3OB+y45B5EHLr50Uur4WNRBSk8o=@vger.kernel.org, AJvYcCUzYa/CT+RiKhiohni+v22MuIx9IjzLhSGQBdL1w7x042uxuce1qUV2SjjYKfjUUHx3N+nmZ0UNurJQ@vger.kernel.org, AJvYcCW/ZTnOf+I+qbufyDCLNrpcWMGivIX1MthUujcdy7NuInPDDSriK+VqyL5Kee74JF+RnJWZ+11zfdZkmt2J@vger.kernel.org, AJvYcCWu5tlv0A0CuoKa13jnGoyf497eWeV4DEoeTDVqahnnzHMYzpK4z4bYcATCU+AJiZzzTOXqcc0/@vger.kernel.org
-X-Received: by 2002:a05:6102:2d0c:b0:4e5:992e:e397 with SMTP id
- ada2fe7eead31-4f1611b63aemr846718137.19.1751450118032; Wed, 02 Jul 2025
- 02:55:18 -0700 (PDT)
+	s=arc-20240116; t=1751450300; c=relaxed/simple;
+	bh=yfplu+IybJ/rIPsisymgLSYrMZAW+veThvWdMZBknTo=;
+	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
+	 In-Reply-To:Content-Type; b=ozsfG7WkqUN95I1/JfxBuzOUix/4llYkDz1FHORJ3p2IH1b0BA7D1+N/rgNQFxAuMr0M+QoDRlh6UKdiQuQ933xbfqLd8suULIm1UvXNPBrLouqYkQCCppLvnFFh0VCOFyo51JgihuZTmFr6gFl8b9NNzKMKJ0sw6ozFNsTBG0A=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=LcgduZoe; arc=none smtp.client-ip=205.220.180.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
+Received: from pps.filterd (m0279869.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 5626OK2d025364;
+	Wed, 2 Jul 2025 09:58:14 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	TlTuoRYc85ZU1I6UU0g5G25mTjIeRsMqpm0KeSXhRkM=; b=LcgduZoeVX5rSk56
+	E1GhlJ/9xVNDKSdRfOKVR5x9wa2C+ujrj3uEAxL8k1nvt++VaqFMIJrn/6Scg/Zh
+	Q4a3QgEFBnPn2OcLy3ZTfptbNXmKOvLQPsX/xc/LMB9wwE7WNjwTgMGPoA/M9G4z
+	EIyFKxVmKfX54Aolc7deecQXOjLnoH2xpQrxBsOWGROkI+UQNa03ZdBlsWBeMsUn
+	fEvhvsyPaaaqj+bT7FX3JO2JT8Jf/OReUO69IxgQhMVhlUzGrz7SlrPnDjxrWo0U
+	20a2dqpLwRGx2w/3PZWRtb0oW1eSIiOs+sD3T0W/OroMlOWdviAnx72APAmN1lt2
+	zsWbLA==
+Received: from nalasppmta05.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 47kd64sbd5-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Wed, 02 Jul 2025 09:58:13 +0000 (GMT)
+Received: from nalasex01c.na.qualcomm.com (nalasex01c.na.qualcomm.com [10.47.97.35])
+	by NALASPPMTA05.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 5629wCZX011929
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Wed, 2 Jul 2025 09:58:12 GMT
+Received: from [10.216.7.186] (10.80.80.8) by nalasex01c.na.qualcomm.com
+ (10.47.97.35) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1748.10; Wed, 2 Jul
+ 2025 02:58:04 -0700
+Message-ID: <25808d55-7633-4986-9e32-58571c149af9@quicinc.com>
+Date: Wed, 2 Jul 2025 15:27:16 +0530
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20250702005706.1200059-1-john.madieu.xa@bp.renesas.com> <20250702005706.1200059-4-john.madieu.xa@bp.renesas.com>
-In-Reply-To: <20250702005706.1200059-4-john.madieu.xa@bp.renesas.com>
-From: Geert Uytterhoeven <geert@linux-m68k.org>
-Date: Wed, 2 Jul 2025 11:55:06 +0200
-X-Gmail-Original-Message-ID: <CAMuHMdVOhJaYuKqJeJA4N1n-_a=msyaYbiSHpaMw8OkHrprZSA@mail.gmail.com>
-X-Gm-Features: Ac12FXzTWEhjeOAh5YAp_gztZRfyET2-t76qHKNwKKlCmIBxnbJjNyzV2hJk3lE
-Message-ID: <CAMuHMdVOhJaYuKqJeJA4N1n-_a=msyaYbiSHpaMw8OkHrprZSA@mail.gmail.com>
-Subject: Re: [PATCH v4 3/4] pinctrl: renesas: rzg2l: Add PFC_OEN support for
- RZ/G3E SoC
-To: John Madieu <john.madieu.xa@bp.renesas.com>, prabhakar.mahadev-lad.rj@bp.renesas.com
-Cc: magnus.damm@gmail.com, robh@kernel.org, krzk+dt@kernel.org, 
-	conor+dt@kernel.org, mturquette@baylibre.com, sboyd@kernel.org, 
-	richardcochran@gmail.com, linux-renesas-soc@vger.kernel.org, 
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	linux-clk@vger.kernel.org, netdev@vger.kernel.org, biju.das.jz@bp.renesas.com, 
-	john.madieu@gmail.com
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH] arm64: dts: qcom: sc7280: Add support for two additional
+ DDR frequencies
+To: Trilok Soni <quic_tsoni@quicinc.com>,
+        <cros-qcom-dts-watchers@chromium.org>, <andersson@kernel.org>,
+        <konradybcio@kernel.org>, <robh@kernel.org>, <krzk+dt@kernel.org>,
+        <conor+dt@kernel.org>, <linux-arm-msm@vger.kernel.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>
+CC: <kernel@quicinc.com>
+References: <20250701074334.1782967-1-quic_pussin@quicinc.com>
+ <0c0e3732-54e3-4a4c-ac44-3175180298fd@quicinc.com>
+Content-Language: en-US
+From: Pushpendra Singh <quic_pussin@quicinc.com>
+In-Reply-To: <0c0e3732-54e3-4a4c-ac44-3175180298fd@quicinc.com>
 Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
+ nalasex01c.na.qualcomm.com (10.47.97.35)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Authority-Analysis: v=2.4 cv=Z+PsHGRA c=1 sm=1 tr=0 ts=686502b5 cx=c_pps
+ a=ouPCqIW2jiPt+lZRy3xVPw==:117 a=ouPCqIW2jiPt+lZRy3xVPw==:17
+ a=GEpy-HfZoHoA:10 a=IkcTkHD0fZMA:10 a=Wb1JkmetP80A:10 a=COk6AnOGAAAA:8
+ a=EUspDBNiAAAA:8 a=nyc-0TqUprqe_HWS510A:9 a=QEXdDO2ut3YA:10
+ a=TjNXssC_j7lpFel5tvFf:22
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwNzAyMDA4MCBTYWx0ZWRfX49r1PhZq7//f
+ p/J9J8b4aBdDrm2cp0riOOFs4+vWckxCadEQD6d7+WlCMkjQes7+E1YwMtdW2z32T75lvu26wuv
+ 6ic/7cOLTGP8eyZTzxPWB6jZmCWzrz0Nu4IEXFbM6TfhZGJ9hQidI4Yu4VWlwbAjH0yhLDZNL6F
+ 8eOvPxTDVQYSGyFbpSX+9CZ56dWyhr5w1HE05WtoPjWFTd8u1/YYTsG5IYJN08iaMgQfnxn7isG
+ JeTtZBZtI2VCLdLUzT0pcPooR5Sdrq94PadQ2NN7mpZRugRAmbtRgcoXbVurzeuFO1hF4MzTuyP
+ 4Sanm9apekfAYrtEez+rodDnSAonxSH5aVHDERKfTXqrksb22W3Pgw9TVCVH134JgQtLwAOqo5s
+ /IUNx++6R6GLJd4Vt76cpK7g2hyLbpPaDqYgbYF/tF+9x6Ix3Qspy95b6KnXgX451TrzDtwE
+X-Proofpoint-GUID: Jho3U1duj_7gvC2OaP6Wi2uybEi8GMo_
+X-Proofpoint-ORIG-GUID: Jho3U1duj_7gvC2OaP6Wi2uybEi8GMo_
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1099,Hydra:6.1.7,FMLib:17.12.80.40
+ definitions=2025-07-02_01,2025-06-27_01,2025-03-28_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ phishscore=0 lowpriorityscore=0 clxscore=1015 malwarescore=0 mlxlogscore=954
+ spamscore=0 adultscore=0 mlxscore=0 priorityscore=1501 bulkscore=0
+ impostorscore=0 suspectscore=0 classifier=spam authscore=0 authtc=n/a authcc=
+ route=outbound adjust=0 reason=mlx scancount=1 engine=8.19.0-2505280000
+ definitions=main-2507020080
 
-Hi John, Prabhakar,
+On 7/1/2025 11:43 PM, Trilok Soni wrote:
+> On 7/1/2025 12:43 AM, Pushpendra Singh wrote:
+>> Cc: kernel@quicinc.com, kernel@oss.qualcomm.com
+>>
+>> The SC7280 SoC now supports two additional frequencies. This patch
+>> add those frequencies to the BWMON OPP table and updates the frequency
+>> mapping table accordingly.
+>>
+>> These changes do not impact existing platforms, as the updated mapping
+>> only affects the highest OPP. On any given platform, this will continue
+>> to vote for the maximum available OPP.
+>>
+>> Change-Id: Id3a91e065c49848d9af18e5c3edee0836cb693e5
+> 
+> Why Change-Id? 
 
-On Wed, 2 Jul 2025 at 02:57, John Madieu <john.madieu.xa@bp.renesas.com> wrote:
-> From: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
->
-> Add support to configure the PFC_OEN register on the RZ/G3E SoC for
-> specific pins that require direction control via output-enable.
->
-> On the RZ/G3E SoC, certain pins such as TXC_TXCLK must be switchable
-> between input and output modes depending on the PHY interface mode
-> (MII or RGMII). This behavior maps to the `output-enable` property in
-> the device tree and requires configuring the PFC_OEN register.
->
-> Update the r9a09g047_variable_pin_cfg array to include PB1, PE1, PL0,
-> PL1, PL2, and PL4 with PIN_CFG_OEN flags to indicate support for this
-> feature. Define a new rzg3e_hwcfg structure with SoC-specific pin names
-> used for OEN bit mapping.
->
-> Signed-off-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+CC is a typo and fixed the Change-id in V2.
 
-Thanks for your patch!
+>> Signed-off-by: Pushpendra Singh <quic_pussin@quicinc.com>
+>> ---
+>>  arch/arm64/boot/dts/qcom/sc7280.dtsi | 18 ++++++++++++------
+>>  1 file changed, 12 insertions(+), 6 deletions(-)
+>>
+>> diff --git a/arch/arm64/boot/dts/qcom/sc7280.dtsi b/arch/arm64/boot/dts/qcom/sc7280.dtsi
+>> index 64a2abd30100..cb945abf0475 100644
+>> --- a/arch/arm64/boot/dts/qcom/sc7280.dtsi
+>> +++ b/arch/arm64/boot/dts/qcom/sc7280.dtsi
+>> @@ -620,12 +620,12 @@ cpu4_opp_2208mhz: opp-2208000000 {
+>>  
+>>  		cpu4_opp_2400mhz: opp-2400000000 {
+>>  			opp-hz = /bits/ 64 <2400000000>;
+>> -			opp-peak-kBps = <8532000 48537600>;
+>> +			opp-peak-kBps = <12787200 48537600>;
+>>  		};
+>>  
+>>  		cpu4_opp_2611mhz: opp-2611200000 {
+>>  			opp-hz = /bits/ 64 <2611200000>;
+>> -			opp-peak-kBps = <8532000 48537600>;
+>> +			opp-peak-kBps = <12787200 48537600>;
+>>  		};
+>>  	};
+>>  
+>> @@ -685,22 +685,22 @@ cpu7_opp_2381mhz: opp-2380800000 {
+>>  
+>>  		cpu7_opp_2400mhz: opp-2400000000 {
+>>  			opp-hz = /bits/ 64 <2400000000>;
+>> -			opp-peak-kBps = <8532000 48537600>;
+>> +			opp-peak-kBps = <12787200 48537600>;
+>>  		};
+>>  
+>>  		cpu7_opp_2515mhz: opp-2515200000 {
+>>  			opp-hz = /bits/ 64 <2515200000>;
+>> -			opp-peak-kBps = <8532000 48537600>;
+>> +			opp-peak-kBps = <12787200 48537600>;
+>>  		};
+>>  
+>>  		cpu7_opp_2707mhz: opp-2707200000 {
+>>  			opp-hz = /bits/ 64 <2707200000>;
+>> -			opp-peak-kBps = <8532000 48537600>;
+>> +			opp-peak-kBps = <12787200 48537600>;
+>>  		};
+>>  
+>>  		cpu7_opp_3014mhz: opp-3014400000 {
+>>  			opp-hz = /bits/ 64 <3014400000>;
+>> -			opp-peak-kBps = <8532000 48537600>;
+>> +			opp-peak-kBps = <12787200 48537600>;
+>>  		};
+>>  	};
+>>  
+>> @@ -4013,6 +4013,12 @@ opp-6 {
+>>  				opp-7 {
+>>  					opp-peak-kBps = <8532000>;
+>>  				};
+>> +				opp-8 {
+>> +					opp-peak-kBps = <10944000>;
+>> +				};
+>> +				opp-9 {
+>> +					opp-peak-kBps = <12787200>;
+>> +				};
+>>  			};
+>>  		};
+>>  
+> 
+> 
 
-> --- a/drivers/pinctrl/renesas/pinctrl-rzg2l.c
-> +++ b/drivers/pinctrl/renesas/pinctrl-rzg2l.c
-
-> @@ -3283,6 +3307,19 @@ static const char * const rzv2h_oen_pin_names[] = {
->         "XSPI0_CKN", "XSPI0_CKP"
->  };
->
-> +static const char * const rzg3e_oen_pin_names[] = {
-> +       "PB1", "PE1", "PL4", "PL1", "PL2", "PL0"
-> +};
-> +
-> +static const struct rzg2l_hwcfg rzg3e_hwcfg = {
-> +       .regs = {
-> +               .pwpr = 0x3c04,
-> +       },
-> +       .tint_start_index = 17,
-> +       .oen_pin_names = rzg3e_oen_pin_names,
-> +       .oen_pin_names_len = ARRAY_SIZE(rzg3e_oen_pin_names),
-> +};
-> +
->  static const struct rzg2l_hwcfg rzv2h_hwcfg = {
->         .regs = {
->                 .pwpr = 0x3c04,
-> @@ -3352,7 +3389,7 @@ static struct rzg2l_pinctrl_data r9a09g047_data = {
->         .dedicated_pins = rzg3e_dedicated_pins,
->         .n_port_pins = ARRAY_SIZE(r9a09g047_gpio_configs) * RZG2L_PINS_PER_PORT,
->         .n_dedicated_pins = ARRAY_SIZE(rzg3e_dedicated_pins),
-> -       .hwcfg = &rzv2h_hwcfg,
-> +       .hwcfg = &rzg3e_hwcfg,
->         .variable_pin_cfg = r9a09g047_variable_pin_cfg,
->         .n_variable_pin_cfg = ARRAY_SIZE(r9a09g047_variable_pin_cfg),
->         .num_custom_params = ARRAY_SIZE(renesas_rzv2h_custom_bindings),
-
-I would rather use the existing .oen_{read,write}() abstraction,
-and thus provide new rzg3e_oen_{read,write}() implementations:
-
-    -    .oen_read = &rzv2h_oen_read,
-    -    .oen_write = &rzv2h_oen_write,
-    +    .oen_read = &rzg3e_oen_read,
-    +    .oen_write = &rzg3e_oen_write,
-
-Of course this requires refactoring the existing rzv2h_pin_to_oen_bit()
-and rzv2h_oen_{read,write}() functions to avoid duplication.
-Do you agree?
-
-The actual pin parts LGTM.
-
-Gr{oetje,eeting}s,
-
-                        Geert
-
--- 
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
-
-In personal conversations with technical people, I call myself a hacker. But
-when I'm talking to journalists I just say "programmer" or something like that.
-                                -- Linus Torvalds
 
