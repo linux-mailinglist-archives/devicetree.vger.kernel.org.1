@@ -1,138 +1,202 @@
-Return-Path: <devicetree+bounces-191955-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-191956-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 65D0AAF0FBA
-	for <lists+devicetree@lfdr.de>; Wed,  2 Jul 2025 11:19:53 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 56DC3AF0FED
+	for <lists+devicetree@lfdr.de>; Wed,  2 Jul 2025 11:28:11 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 9881E4A59A5
-	for <lists+devicetree@lfdr.de>; Wed,  2 Jul 2025 09:19:23 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id A8757188CEC2
+	for <lists+devicetree@lfdr.de>; Wed,  2 Jul 2025 09:28:27 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B5BA62405F9;
-	Wed,  2 Jul 2025 09:18:42 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="NHa0mXnd"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 054D3245032;
+	Wed,  2 Jul 2025 09:28:06 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.9])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8C20B24113C;
-	Wed,  2 Jul 2025 09:18:40 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.198.163.9
+Received: from relmlie5.idc.renesas.com (relmlor1.renesas.com [210.160.252.171])
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B15C423CEF8;
+	Wed,  2 Jul 2025 09:28:02 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=210.160.252.171
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1751447922; cv=none; b=B8pSo/o0pqRiuklC75K+w+dfOn+kv74LASrnuv0WpbWPFEaVycicMWfbilR09S44IaD/PjEqG74bV62ke2WDVWVxSbHesvy57iJ5Tedmj0/P8nDjtqZ3obTeesywySd96t/WTM1uhT+ws56HYlShF80t9Kut9IQAMcG5f63TIck=
+	t=1751448485; cv=none; b=buDM+ycPQ4FuiR7FkVnLMS4OQRFNT9m216+lfQhzm9TAH8vdBUXkbBimeF47R37qIby8izfppY2h3ENTHI+pQ01rL5aLHbUWha+aylbISODbM7YV7uslGnjeiI9fehX89S9hhf3RYXRu+1g+ZpnW2Qtff2XQFcVisTLQoJALhcQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1751447922; c=relaxed/simple;
-	bh=YgIsYbsQFBijlbHTYsgXc9tCHNmRLzh8Vr+Nl8ZnQ3Y=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=GxJ478Vskn/ZuAM/zgH0PYkg4VXZkJUkHRMy5GKmCvmBsDmfs1eXxPCkoTpun93e37P7mnUmo9KmJmaVSylsGkPw2OLdEMWiYekjTUOihxDT3uA4/TUXYhu/bjmM5fy5971B7I0ciTKdRqun4t2Y4CLuHHMY1JvsIasrYPHq+QA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=NHa0mXnd; arc=none smtp.client-ip=192.198.163.9
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1751447921; x=1782983921;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=YgIsYbsQFBijlbHTYsgXc9tCHNmRLzh8Vr+Nl8ZnQ3Y=;
-  b=NHa0mXndNPsqjlQrfnWjAXFl0IMSNhz84cndMG2tSKjw+euM/Oyp9vFa
-   ixo1LLXfEIm9HtzAE1ubpLWvHg4bv8TUeMSD2U/GUWQ/hk7P85yndqVcX
-   wfl/BQmx2E2ZfEEb+QW9hChTSpulkYFuC6bbRN4nqmR37f/MkJIe3m/Ue
-   PXccaMN8oeLtYrXgITAR3jwszyIoaJ2jvPktZqBfosvEPTHXlbS3cKATq
-   dxtPq+yy2idujdWfTJFXnHEYP4bD5xDHIvYj2QfdUFVWtw89we8XjVo+I
-   XMbazlG4XKfyLikroo4TRYHVUzQ1PDXCYtNISQus8pwnJcp6gGosfUCtu
-   Q==;
-X-CSE-ConnectionGUID: +itLhkHVSiqOACp35zLYFQ==
-X-CSE-MsgGUID: SEjAjsBxRdWyilKroVWb2A==
-X-IronPort-AV: E=McAfee;i="6800,10657,11481"; a="64427969"
-X-IronPort-AV: E=Sophos;i="6.16,281,1744095600"; 
-   d="scan'208";a="64427969"
-Received: from fmviesa004.fm.intel.com ([10.60.135.144])
-  by fmvoesa103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 02 Jul 2025 02:18:39 -0700
-X-CSE-ConnectionGUID: vxd1XndcT3OoMKfVHJDRig==
-X-CSE-MsgGUID: gpP80ZaVRkCf3Rmd/W+dKw==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.16,281,1744095600"; 
-   d="scan'208";a="159538616"
-Received: from lkp-server01.sh.intel.com (HELO 0b2900756c14) ([10.239.97.150])
-  by fmviesa004.fm.intel.com with ESMTP; 02 Jul 2025 02:18:36 -0700
-Received: from kbuild by 0b2900756c14 with local (Exim 4.96)
-	(envelope-from <lkp@intel.com>)
-	id 1uWtbu-0000RX-0P;
-	Wed, 02 Jul 2025 09:18:34 +0000
-Date: Wed, 2 Jul 2025 17:17:54 +0800
-From: kernel test robot <lkp@intel.com>
-To: "Rob Herring (Arm)" <robh@kernel.org>,
-	Linus Walleij <linus.walleij@linaro.org>,
-	Bartosz Golaszewski <brgl@bgdev.pl>,
-	Krzysztof Kozlowski <krzk@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Marek =?iso-8859-1?Q?Beh=FAn?= <kabel@kernel.org>,
-	Keguang Zhang <keguang.zhang@gmail.com>,
-	Heiko Stuebner <heiko@sntech.de>,
-	Eugeniy Paltsev <Eugeniy.Paltsev@synopsys.com>
-Cc: oe-kbuild-all@lists.linux.dev, linux-gpio@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	linux-mips@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-	linux-rockchip@lists.infradead.org
-Subject: Re: [PATCH] dt-bindings: gpio: Create a trivial GPIO schema
-Message-ID: <202507021740.qURVV9D8-lkp@intel.com>
-References: <20250701225355.2977294-1-robh@kernel.org>
+	s=arc-20240116; t=1751448485; c=relaxed/simple;
+	bh=998uWJjRFOw5w+jHsc6gCACuy7MJzmnNtJzp2XH3cyo=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=m7usfD3C36Px9dW+IDmYgIpxPXLLzVor+US3euGSx0ZYjIUEE5mnPC9+BS0LfmP+bRPfkE+vcevUpQIBZcftH54a5DOzgZv4sWBVDBwjOVBCbryA+c6JZzKRQ6bRDTPincDVqqtESDwdbZRmvG5KZm+Z4dF4RrOUa+w3fU7o15I=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=bp.renesas.com; spf=pass smtp.mailfrom=bp.renesas.com; arc=none smtp.client-ip=210.160.252.171
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=bp.renesas.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bp.renesas.com
+X-CSE-ConnectionGUID: NitnyPPpTae6aSBJwSx/hA==
+X-CSE-MsgGUID: TvqiaY7XT5mjO4hvgffLIw==
+Received: from unknown (HELO relmlir6.idc.renesas.com) ([10.200.68.152])
+  by relmlie5.idc.renesas.com with ESMTP; 02 Jul 2025 18:28:01 +0900
+Received: from localhost.localdomain (unknown [10.226.92.89])
+	by relmlir6.idc.renesas.com (Postfix) with ESMTP id 6C56241B60C0;
+	Wed,  2 Jul 2025 18:27:58 +0900 (JST)
+From: Biju Das <biju.das.jz@bp.renesas.com>
+To: Geert Uytterhoeven <geert+renesas@glider.be>,
+	Magnus Damm <magnus.damm@gmail.com>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>
+Cc: Biju Das <biju.das.jz@bp.renesas.com>,
+	linux-renesas-soc@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	Prabhakar Mahadev Lad <prabhakar.mahadev-lad.rj@bp.renesas.com>,
+	Biju Das <biju.das.au@gmail.com>
+Subject: [PATCH v2] arm64: dts: renesas: r9a09g047e57-smarc: Add gpio keys
+Date: Wed,  2 Jul 2025 10:27:53 +0100
+Message-ID: <20250702092755.70847-1-biju.das.jz@bp.renesas.com>
+X-Mailer: git-send-email 2.43.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20250701225355.2977294-1-robh@kernel.org>
+Content-Transfer-Encoding: 8bit
 
-Hi Rob,
+RZ/G3E SMARC EVK  has 3 user buttons called USER_SW1, USER_SW2 and
+USER_SW3 and SLEEP button with NMI support. Add a DT node in device tree
+to instantiate the gpio-keys driver for these buttons.
 
-kernel test robot noticed the following build warnings:
+The system can enter into STR state by pressing the sleep button and
+wakeup from STR is done by pressing power button. The USER_SW{1,2,3}
+configured as wakeup-source, so it can wakeup the system during s2idle.
 
-[auto build test WARNING on brgl/gpio/for-next]
-[also build test WARNING on linus/master v6.16-rc4 next-20250701]
-[If your patch is applied to the wrong git tree, kindly drop us a note.
-And when submitting patch, we suggest to use '--base' as documented in
-https://git-scm.com/docs/git-format-patch#_base_tree_information]
+Signed-off-by: Biju Das <biju.das.jz@bp.renesas.com>
+---
+v1->v2:
+ * Added support for sleep button
+ * Dropped the extra spaces after the define keywords for KEY_*_GPIO.
+ * Dropped /delete-node/ keys as KEY_SLEEP will always present.
+ * Moved input.h to r9a09g047e57-smarc.dts
+---
+ .../boot/dts/renesas/r9a09g047e57-smarc.dts   | 37 +++++++++++++++++++
+ .../boot/dts/renesas/renesas-smarc2.dtsi      | 31 ++++++++++++++++
+ 2 files changed, 68 insertions(+)
 
-url:    https://github.com/intel-lab-lkp/linux/commits/Rob-Herring-Arm/dt-bindings-gpio-Create-a-trivial-GPIO-schema/20250702-065536
-base:   https://git.kernel.org/pub/scm/linux/kernel/git/brgl/linux.git gpio/for-next
-patch link:    https://lore.kernel.org/r/20250701225355.2977294-1-robh%40kernel.org
-patch subject: [PATCH] dt-bindings: gpio: Create a trivial GPIO schema
-reproduce: (https://download.01.org/0day-ci/archive/20250702/202507021740.qURVV9D8-lkp@intel.com/reproduce)
-
-If you fix the issue in a separate patch/commit (i.e. not just a new version of
-the same patch/commit), kindly add following tags
-| Reported-by: kernel test robot <lkp@intel.com>
-| Closes: https://lore.kernel.org/oe-kbuild-all/202507021740.qURVV9D8-lkp@intel.com/
-
-All warnings (new ones prefixed by >>):
-
->> Warning: Documentation/devicetree/bindings/mfd/lp3943.txt references a file that doesn't exist: Documentation/devicetree/bindings/gpio/gpio-lp3943.txt
->> Warning: Documentation/devicetree/bindings/powerpc/nintendo/wii.txt references a file that doesn't exist: Documentation/devicetree/bindings/gpio/nintendo,hollywood-gpio.txt
-   Warning: Documentation/devicetree/bindings/regulator/siliconmitus,sm5703-regulator.yaml references a file that doesn't exist: Documentation/devicetree/bindings/mfd/siliconmitus,sm5703.yaml
-   Warning: Documentation/hwmon/g762.rst references a file that doesn't exist: Documentation/devicetree/bindings/hwmon/g762.txt
-   Warning: Documentation/translations/ja_JP/SubmittingPatches references a file that doesn't exist: linux-2.6.12-vanilla/Documentation/dontdiff
-   Warning: Documentation/translations/ja_JP/process/submit-checklist.rst references a file that doesn't exist: Documentation/translations/ja_JP/SubmitChecklist
-   Warning: Documentation/translations/zh_CN/admin-guide/README.rst references a file that doesn't exist: Documentation/dev-tools/kgdb.rst
-   Warning: Documentation/translations/zh_CN/dev-tools/gdb-kernel-debugging.rst references a file that doesn't exist: Documentation/dev-tools/gdb-kernel-debugging.rst
-   Warning: Documentation/translations/zh_CN/how-to.rst references a file that doesn't exist: Documentation/xxx/xxx.rst
-   Warning: Documentation/translations/zh_TW/admin-guide/README.rst references a file that doesn't exist: Documentation/dev-tools/kgdb.rst
-   Warning: Documentation/translations/zh_TW/dev-tools/gdb-kernel-debugging.rst references a file that doesn't exist: Documentation/dev-tools/gdb-kernel-debugging.rst
->> Warning: MAINTAINERS references a file that doesn't exist: Documentation/devicetree/bindings/gpio/gpio-moxtet.txt
-   Warning: MAINTAINERS references a file that doesn't exist: Documentation/devicetree/bindings/firmware/intel,stratix10-svc.txt
->> Warning: MAINTAINERS references a file that doesn't exist: Documentation/devicetree/bindings/gpio/snps,creg-gpio.txt
-   Warning: MAINTAINERS references a file that doesn't exist: Documentation/devicetree/bindings/leds/ti,tps6131x.yaml
-   Warning: arch/riscv/kernel/kexec_image.c references a file that doesn't exist: Documentation/riscv/boot-image-header.rst
-   Warning: drivers/clocksource/timer-armada-370-xp.c references a file that doesn't exist: Documentation/devicetree/bindings/timer/marvell,armada-370-xp-timer.txt
-   Using alabaster theme
-
+diff --git a/arch/arm64/boot/dts/renesas/r9a09g047e57-smarc.dts b/arch/arm64/boot/dts/renesas/r9a09g047e57-smarc.dts
+index 2454a9743df2..8efc4f0c6517 100644
+--- a/arch/arm64/boot/dts/renesas/r9a09g047e57-smarc.dts
++++ b/arch/arm64/boot/dts/renesas/r9a09g047e57-smarc.dts
+@@ -8,6 +8,7 @@
+ /dts-v1/;
+ 
+ /* Switch selection settings */
++#define SW_LCD_EN		0
+ #define SW_GPIO8_CAN0_STB	0
+ #define SW_GPIO9_CAN1_STB	0
+ #define SW_LCD_EN		0
+@@ -15,7 +16,16 @@
+ #define SW_SD0_DEV_SEL		0
+ #define SW_SDIO_M2E		0
+ 
++#define PMOD_GPIO4		0
++#define PMOD_GPIO6		0
++#define PMOD_GPIO7		0
++
++#define KEY_1_GPIO		RZG3E_GPIO(3, 1)
++#define KEY_2_GPIO		RZG3E_GPIO(8, 4)
++#define KEY_3_GPIO		RZG3E_GPIO(8, 5)
++
+ #include <dt-bindings/gpio/gpio.h>
++#include <dt-bindings/input/input.h>
+ #include <dt-bindings/pinctrl/renesas,r9a09g047-pinctrl.h>
+ #include "r9a09g047e57.dtsi"
+ #include "rzg3e-smarc-som.dtsi"
+@@ -79,6 +89,29 @@ &i2c0 {
+ 	pinctrl-names = "default";
+ };
+ 
++&keys{
++	key-sleep {
++		pinctrl-0 = <&nmi_pins>;
++		pinctrl-names = "default";
++
++		interrupts-extended = <&icu 0 IRQ_TYPE_EDGE_FALLING>;
++		linux,code = <KEY_SLEEP>;
++		label = "SLEEP";
++		debounce-interval = <20>;
++	};
++#if PMOD_GPIO4
++	/delete-node/ key-1;
++#endif
++
++#if SW_LCD_EN || PMOD_GPIO6
++	/delete-node/ key-2;
++#endif
++
++#if SW_LCD_EN || PMOD_GPIO7
++	/delete-node/ key-3;
++#endif
++};
++
+ &pinctrl {
+ 	canfd_pins: canfd {
+ 		can1_pins: can1 {
+@@ -97,6 +130,10 @@ i2c0_pins: i2c0 {
+ 			 <RZG3E_PORT_PINMUX(D, 5, 4)>; /* SDA0 */
+ 	};
+ 
++	nmi_pins: nmi {
++		pinmux = <RZG3E_PORT_PINMUX(S, 0, 0)>; /* NMI */
++	};
++
+ 	scif_pins: scif {
+ 		pins = "SCIF_TXD", "SCIF_RXD";
+ 		renesas,output-impedance = <1>;
+diff --git a/arch/arm64/boot/dts/renesas/renesas-smarc2.dtsi b/arch/arm64/boot/dts/renesas/renesas-smarc2.dtsi
+index 3cac292f20b3..58561da3007a 100644
+--- a/arch/arm64/boot/dts/renesas/renesas-smarc2.dtsi
++++ b/arch/arm64/boot/dts/renesas/renesas-smarc2.dtsi
+@@ -23,6 +23,9 @@
+  * SW_GPIO9_CAN1_STB:
+  *	0 - Connect to GPIO9 PMOD (default)
+  *	1 - Connect to CAN1 transceiver STB pin
++ *
++ * GPIO keys are enabled by default. Use PMOD_GPIO macros to disable them
++ * if needed.
+  */
+ 
+ / {
+@@ -53,6 +56,34 @@ can_transceiver1: can-phy1 {
+ 		max-bitrate = <8000000>;
+ 		status = "disabled";
+ 	};
++
++	keys: keys {
++		compatible = "gpio-keys";
++
++		key-1 {
++			interrupts-extended = <&pinctrl KEY_1_GPIO IRQ_TYPE_EDGE_FALLING>;
++			linux,code = <KEY_1>;
++			label = "USER_SW1";
++			wakeup-source;
++			debounce-interval = <20>;
++		};
++
++		key-2 {
++			interrupts-extended = <&pinctrl KEY_2_GPIO IRQ_TYPE_EDGE_FALLING>;
++			linux,code = <KEY_2>;
++			label = "USER_SW2";
++			wakeup-source;
++			debounce-interval = <20>;
++		};
++
++		key-3 {
++			interrupts-extended = <&pinctrl KEY_3_GPIO IRQ_TYPE_EDGE_FALLING>;
++			linux,code = <KEY_3>;
++			label = "USER_SW3";
++			wakeup-source;
++			debounce-interval = <20>;
++		};
++	};
+ };
+ 
+ &canfd {
 -- 
-0-DAY CI Kernel Test Service
-https://github.com/intel/lkp-tests/wiki
+2.43.0
+
 
