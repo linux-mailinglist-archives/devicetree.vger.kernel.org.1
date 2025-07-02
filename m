@@ -1,185 +1,238 @@
-Return-Path: <devicetree+bounces-191898-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-191899-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id DFFC5AF0C21
-	for <lists+devicetree@lfdr.de>; Wed,  2 Jul 2025 09:01:02 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2ECD6AF0C2F
+	for <lists+devicetree@lfdr.de>; Wed,  2 Jul 2025 09:04:34 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 15F1E4E0286
-	for <lists+devicetree@lfdr.de>; Wed,  2 Jul 2025 07:01:03 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 55C9A1884D67
+	for <lists+devicetree@lfdr.de>; Wed,  2 Jul 2025 07:04:50 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9CCF8137923;
-	Wed,  2 Jul 2025 07:00:58 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 25C5D22257B;
+	Wed,  2 Jul 2025 07:04:28 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="e6Uvt45f"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-vk1-f171.google.com (mail-vk1-f171.google.com [209.85.221.171])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1D72C13AA53;
-	Wed,  2 Jul 2025 07:00:56 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.171
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EDCE31BEF74;
+	Wed,  2 Jul 2025 07:04:27 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1751439658; cv=none; b=JKTgkImt+tXKnxtT/2EY1VHDrthK2ISr6/2sAQdm2I50dIbFqU+I2sRJ5TEyVJjFPSky5vady9NcLXPRu4jrGucZDxRfK9pOL5/svphEFWLBl11Orwjr+ihjAguKGiWAA9ktmNnPJEX7CvUiiJL44FqiJcp3Jw0MQnYOpPeraOI=
+	t=1751439868; cv=none; b=YoubL/SkrToa5z6dsOZPpUA6U0mXyRBGErZj9MVYG1EOi9Hqmephomltx5WkDLiBUcWUj2ABRjf/1vBW5uqMpwlPz18mWpB9zCyAiXSiIpnNmCxOb2X44MUVNcSLKbsK+hqSRvlE5KEsSU2C3e+5wRthVpZsC4qWTT9+CmXZNrE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1751439658; c=relaxed/simple;
-	bh=ZAohozwgXhCfaTkIAbLY5WIlPGLIi2JDtWLffVfkn1M=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=RckgZdHnpQvOlTFC9mULAvOpKcjaKE1Rnsso6hiX8MBuzaisKf26IrexuBGtH0x9X/a74koI9kz190HuvJz03OeXL/wPcLIGgLNsyWUc5KvTykFXd+fKOsMDWSabYfXEokkaPIYuaoZqXVhJoOmc0BpqD4M8Omf5Ihn1pcK3R1s=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.221.171
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-vk1-f171.google.com with SMTP id 71dfb90a1353d-5313ea766d8so2124718e0c.0;
-        Wed, 02 Jul 2025 00:00:55 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1751439654; x=1752044454;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=1kzqFhDecSsPBGIKLh7TFgcJDtqSJLtrHW0rK4QgStU=;
-        b=ETKSgDDxLFC09rvuNch1BZTGNx6gJeFs5ZO546QCL3u/CftXNkkxXdikY7yn4VthUz
-         gdT2O5WRw+cBq/jnkUT9qW+qqii3BGqSlltajCwJB8TbTEOKXsNUtdOSTLEbN4cyNbUW
-         pa2GRlTKRqsq1hJuDQ3cthlNIbyTsuGcmQeoaE+Xh6eYuDfWQk599gbyNp8DBIuCPndV
-         BTT3O1R4TIgLNQ2v7q2nsCrYqz4+0roK4fheynAqkAnamR3Z7bWU8J+YHyMry+GJdYIo
-         JY51dmS3ueEMgdvkiCGrWF/I39GD8EMaYeMrthK7H0X/zJLAyFtpwgFIMJAOHS19NWhy
-         HzyA==
-X-Forwarded-Encrypted: i=1; AJvYcCUDwg7jdMwEYPBZl/Nujb+pnY+LWpUhF70kThn6L5ua5mZVxeqpdqrZgDwcSWfCZxLxL9QiTxZn0MlqpKD8HVQyur0=@vger.kernel.org, AJvYcCXadQe49sNIyrx+LSaoRU0F4wPGz7lc99we0tiij4nQYzdVCJBgC25fvJbw3zL6zJMWibnHRRpyd9+1@vger.kernel.org
-X-Gm-Message-State: AOJu0YxkqAhrY3gKpnNcfrzHAtDQHqBJiRD0ykIwZu7FDMlu1Te5pXyI
-	Jmzn5mSOXCSJRVYOd2q+Pbwk9Gz4OaUxP6/erFhGZnUzCOzKPlceORzXxtch68kK
-X-Gm-Gg: ASbGncsTYF4BVMK4l4p1/8k3paCKIG7l+L97ebDK9HnlNAupKTvaYZNPbVXCGpSud3f
-	tMZzyHxy5iY/MpMNn9WJs1Xfjaho1P+2kwi/a/e5nEf7B+sm+Bqa271K04FSiJkukUKcFucJ1oo
-	8lb7EiN4eQTvAh165oTEpfCq3hCI2CRS83mSfdagAjCInz9DNW04zH1pRAKhQtj0c42um3ZvB/E
-	RXCF1BP0HlA27a7tIA3+h5wWyHcgVI2CpWaL9bLtG+a8YAI/ix5VD8TJQR4a7TGXeDxotaLQREK
-	EAnreA6i+SzNxsghEybkX6+HSmXdjCjDxhArUenMwu169Psfm8Jlg6fUAyHzXZ0WI8PqGd/riVn
-	IdW0wFxUPR8xhdmLm2VggsSGY
-X-Google-Smtp-Source: AGHT+IGuxX11nmreO79ONBz8vPOYrACNCi4gx8mpSnScKUz+jlFmr9hPn3TS9hQOQPrKU+HbjT2ekg==
-X-Received: by 2002:a05:6122:2228:b0:530:65f0:7fc4 with SMTP id 71dfb90a1353d-53457fea6b9mr1088008e0c.1.1751439653750;
-        Wed, 02 Jul 2025 00:00:53 -0700 (PDT)
-Received: from mail-vs1-f48.google.com (mail-vs1-f48.google.com. [209.85.217.48])
-        by smtp.gmail.com with ESMTPSA id 71dfb90a1353d-533091ec4absm2037318e0c.32.2025.07.02.00.00.53
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 02 Jul 2025 00:00:53 -0700 (PDT)
-Received: by mail-vs1-f48.google.com with SMTP id ada2fe7eead31-4e770bb7b45so1840779137.0;
-        Wed, 02 Jul 2025 00:00:53 -0700 (PDT)
-X-Forwarded-Encrypted: i=1; AJvYcCXXZ+A9DuDsilLBrRPRHk3TCwejOnc6TOIDfrJZ2dTEYAVjOleHV9XNntWAjtDtYxJlw8NVGaW+J1lB@vger.kernel.org, AJvYcCXuWaa7G97cLhTWuBoqxP4ldg6emNHGhvlHt1V9InzY54ls0F4hKqjS37WMp4NSUV7sUokDZIph6MKI8gxHPiBUymo=@vger.kernel.org
-X-Received: by 2002:a05:6102:8097:b0:4eb:2eac:aaa0 with SMTP id
- ada2fe7eead31-4f160fe0f0emr744940137.19.1751439653138; Wed, 02 Jul 2025
- 00:00:53 -0700 (PDT)
+	s=arc-20240116; t=1751439868; c=relaxed/simple;
+	bh=Lz9zi/Yfl3Wdd/VDQ4o8Nf2IC7U8HcEQkmzBUjntbms=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=mF6nUfUV7Zg3TLsxjfIfpm0PIFICCOYcyywit3133AsPL4Ky8SfWm5TK3rP5stoBEAoiEySCYvQSCr7OWNXgVEshY830LhIf3ewpAduSLfZXVmm+SDUuPQG0bIMe6KVZe6EnB4e3NcW4Hm86RFfMnjjqZDBoNv48f+L0r0Ec1uE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=e6Uvt45f; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id DE803C4CEEE;
+	Wed,  2 Jul 2025 07:04:26 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1751439867;
+	bh=Lz9zi/Yfl3Wdd/VDQ4o8Nf2IC7U8HcEQkmzBUjntbms=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=e6Uvt45fUTbSfhjbkPMHQLssFEzKWpWN+mzGUMTYYN5Gi1XvxZE9ejkKM6NV5gGEv
+	 /L6Wrfr6naMHQvyKKPmAqxlPFsOcHbSfk6iJ+X7Ki3xEAB5yby/4zGiYF0og8W/rpG
+	 8Dg3nmt6iie/v8/S4xWrsbQArsL+QtKWUF8NAENGgIv+JctKDymLeroaRH6xVDOrsR
+	 6SmkjBxMafQxsXCOHsUDMUhHJbBmCvBcHyJ4iy5gmAZOwCsA0IObt7OjogavBvqww5
+	 gZ00xV9/kSLzhvfhJdJNAU2gzqTA6dlLnnOOaXrKftWgEmEF08QU5HJ23g679omwyu
+	 VlgUiZTSL85aQ==
+Date: Wed, 2 Jul 2025 09:04:24 +0200
+From: Krzysztof Kozlowski <krzk@kernel.org>
+To: philippe baetens <philippebaetens@gmail.com>
+Cc: mchehab@kernel.org, robh@kernel.org, conor+dt@kernel.org, 
+	krzk+dt@kernel.org, linux-media@vger.kernel.org, linux-kernel@vger.kernel.org, 
+	devicetree@vger.kernel.org
+Subject: Re: [PATCH v3 1/2] Add bindings for ams Mira220 cmos image sensor
+Message-ID: <20250702-cuddly-statuesque-jackrabbit-c8eb6f@krzk-bin>
+References: <aGP67H5_GxL4z2Nc@raspberrypi>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20250414153818.214811-1-biju.das.jz@bp.renesas.com>
- <CAMuHMdUjtG-EcrpbDO2y8M=GQeV=5i4qODp=VZqymipeCneXhQ@mail.gmail.com>
- <TY3PR01MB11346205BCA481EA7B740A3028641A@TY3PR01MB11346.jpnprd01.prod.outlook.com>
- <CAMuHMdVNCRGMmgBT2Ow4Af0CTf1iiS=AwhsLnZMFFy40tLYS0Q@mail.gmail.com>
- <TY3PR01MB113462A4490760D5C6C59FF968641A@TY3PR01MB11346.jpnprd01.prod.outlook.com>
- <TY3PR01MB11346C70FFD599B85A790B8278641A@TY3PR01MB11346.jpnprd01.prod.outlook.com>
-In-Reply-To: <TY3PR01MB11346C70FFD599B85A790B8278641A@TY3PR01MB11346.jpnprd01.prod.outlook.com>
-From: Geert Uytterhoeven <geert@linux-m68k.org>
-Date: Wed, 2 Jul 2025 09:00:40 +0200
-X-Gmail-Original-Message-ID: <CAMuHMdWCq7eQ0Fpq6oMFP-n_yZZV8TB2WXV3SgjhW3Wne77CxA@mail.gmail.com>
-X-Gm-Features: Ac12FXy9O598tRbSQe8MBdJ5lZ_Fke2AVhDAe-4HDC1E5uhnN0XHJiv2bfXyjOE
-Message-ID: <CAMuHMdWCq7eQ0Fpq6oMFP-n_yZZV8TB2WXV3SgjhW3Wne77CxA@mail.gmail.com>
-Subject: Re: [PATCH] arm64: dts: renesas: r9a09g047e57-smarc: Add gpio keys
-To: Biju Das <biju.das.jz@bp.renesas.com>
-Cc: Magnus Damm <magnus.damm@gmail.com>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	"linux-renesas-soc@vger.kernel.org" <linux-renesas-soc@vger.kernel.org>, 
-	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>, 
-	Prabhakar Mahadev Lad <prabhakar.mahadev-lad.rj@bp.renesas.com>, 
-	"biju.das.au" <biju.das.au@gmail.com>
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+In-Reply-To: <aGP67H5_GxL4z2Nc@raspberrypi>
 
-Hi Biju,
+On Tue, Jul 01, 2025 at 05:12:44PM +0200, philippe baetens wrote:
+> Mira220 is a global shutter NIR-enhanced image sensor made by AMS.
+> Driver is submitted in the next patch of this series and verified on a raspberry pi.
 
-On Tue, 1 Jul 2025 at 16:59, Biju Das <biju.das.jz@bp.renesas.com> wrote:
-> > From: Biju Das
-> > > From: Geert Uytterhoeven <geert@linux-m68k.org>
-> > > On Tue, 1 Jul 2025 at 13:40, Biju Das <biju.das.jz@bp.renesas.com> wrote:
-> > > > > From: Geert Uytterhoeven <geert@linux-m68k.org> On Mon, 14 Apr
-> > > > > 2025 at 17:38, Biju Das <biju.das.jz@bp.renesas.com> wrote:
-> > > > > > RZ/G3E SMARC EVK  has 3 user buttons called USER_SW1, USER_SW2
-> > > > > > and USER_SW3. Add a DT node in device tree to instantiate the
-> > > > > > gpio-keys driver for these buttons.
-> > > > > >
-> > > > > > Signed-off-by: Biju Das <biju.das.jz@bp.renesas.com>
-> > >
-> > > > > > --- a/arch/arm64/boot/dts/renesas/renesas-smarc2.dtsi
-> > > > > > +++ b/arch/arm64/boot/dts/renesas/renesas-smarc2.dtsi
-> > > > > > @@ -12,8 +12,13 @@
-> > > > > >   * SW_SDIO_M2E:
-> > > > > >   *     0 - SMARC SDIO signal is connected to uSD1
-> > > > > >   *     1 - SMARC SDIO signal is connected to M.2 Key E connector
-> > > > > > + *
-> > > > > > + * GPIO keys are enabled by default. Use PMOD_GPIO macros to
-> > > > > > + disable them
-> > > > > > + * if needed.
-> > > > > >   */
-> > > > > >
-> > > > > > +#include <dt-bindings/input/input.h>
-> > > > > > +
-> > > > > >  / {
-> > > > > >         model = "Renesas RZ SMARC Carrier-II Board";
-> > > > > >         compatible = "renesas,smarc2-evk"; @@ -27,6 +32,31 @@
-> > > > > > aliases {
-> > > > > >                 serial3 = &scif0;
-> > > > > >                 mmc1 = &sdhi1;
-> > > > > >         };
-> > > > > > +
-> > > > > > +       keys: keys {
-> > > > > > +               compatible = "gpio-keys";
-> > > > > > +
-> > > > > > +               key-1 {
-> > > > > > +                       interrupts-extended = <&pinctrl
-> > > > > > + KEY_1_GPIO IRQ_TYPE_EDGE_FALLING>;
-> > > > >
-> > > > > So you are using them as interrupts. Don't you need to configure
-> > > > > pin control for that (function 15 = IRQ14)?
-> > > >
-> > > > The same pin can be configured as TINT or IRQ15, currently it is configured as TINT IRQ.
-> > > > Is it ok?
-> > >
-> > > OK.
-> > >
-> > > > > Alternatively, can't you use them as gpios with interrupt facilities?
-> > > >
-> > > > interrupts-extended = <&pinctrl KEY_1_GPIO IRQ_TYPE_EDGE_FALLING>;
-> > > >
-> > > > The TINT IRQ will provide the same right? Am I missing anything here?
-> > >
-> > > When you use interrupts directly, the system will detect only key
-> > > presses, and fake (timer-based) key releases.
-> > > When you use GPIOs with interrupt-capability, the system can detect both key presses and releases.
-> > >
-> > > See also commit cab3511ea7a0b1fc ("ARM: dts: marzen: Add slide switches").
-> >
-> > As per [1], for GPIOs with interrupt-capability, IRQ controller needs to support both edges.
-> > But TINT supports Rising or Falling edge, but not both. So, we cannot use this.
-> >
-> > That is the reason using interrupt directly.
-> >
-> > [1]
-> > https://elixir.bootlin.com/linux/v6.16-rc4/source/drivers/input/keyboard/gpio_keys.c#L980
->
-> This is the error message I get if set gpio with irq capability
->
-> [    2.191819] genirq: Setting trigger mode 3 for irq 51 failed (rzg2l_gpio_irq_set_type+0x0/0x14)
-> [    2.204168] gpio-keys keys: Unable to claim irq 51; error -22
-> [    2.210018] gpio-keys keys: probe with driver gpio-keys failed with error -22
+Please wrap commit message according to Linux coding style / submission
+process (neither too early nor over the limit):
+https://elixir.bootlin.com/linux/v6.4-rc1/source/Documentation/process/submitting-patches.rst#L597
 
-So interrupts = <...> it shall be...
+Please use subject prefixes matching the subsystem. You can get them for
+example with 'git log --oneline -- DIRECTORY_OR_FILE' on the directory
+your patch is touching. For bindings, the preferred subjects are
+explained here:
+https://www.kernel.org/doc/html/latest/devicetree/bindings/submitting-patches.html#i-for-patch-submitters
 
-Gr{oetje,eeting}s,
+A nit, subject: drop second/last, redundant "bindings". The
+"dt-bindings" prefix is already stating that these are bindings.
+See also:
+https://elixir.bootlin.com/linux/v6.7-rc8/source/Documentation/devicetree/bindings/submitting-patches.rst#L18
 
-                        Geert
+> 
+> Signed-off-by: philippe baetens <philippebaetens@gmail.com>
 
--- 
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
+Fix your Git, so your identity uses same style. It is "Philippe
+Baetens", no?
 
-In personal conversations with technical people, I call myself a hacker. But
-when I'm talking to journalists I just say "programmer" or something like that.
-                                -- Linus Torvalds
+
+> ---
+> Changes in v3:
+> 	 - Improve commit message
+> 	 - add mailing list for device tree.
+> 
+> Changes in v2:
+> 	 - add maintainers and Documentation.yaml
+> 
+
+> ---
+>  .../bindings/media/i2c/ams,mira220.yaml       | 125 ++++++++++++++++++
+>  MAINTAINERS                                   |   6 +
+>  2 files changed, 131 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/media/i2c/ams,mira220.yaml
+> 
+> diff --git a/Documentation/devicetree/bindings/media/i2c/ams,mira220.yaml b/Documentation/devicetree/bindings/media/i2c/ams,mira220.yaml
+> new file mode 100644
+> index 000000000..21a55ff07
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/media/i2c/ams,mira220.yaml
+> @@ -0,0 +1,125 @@
+> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/media/i2c/ams,mira220.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: ams 2.2 MP NIR enhanced global shutter image sensor
+> +
+> +maintainers:
+> +  - Philippe Baetens <philippebaetens@gmail.com>
+> +
+> +description: |-
+> +  2.2 MP NIR enhanced global shutter image sensor designed for 2D and 3D
+> +  consumer and industrial machine vision applications.
+> +  Due to its small size, configurability and high sensitivity both
+> +  in visual as well as NIR, the Mira220 is well suited for 2D and
+> +  3D applications, which include Active Stereo Vision,
+> +  Structured Light Vision for Robotics and AR/VR.
+> +
+> +properties:
+> +  compatible:
+> +    const: ams,mira220
+> +
+> +  reg:
+> +    maxItems: 1
+> +
+> +  clocks:
+> +    maxItems: 1
+> +
+> +  clock-names:
+> +    description: Input clock (38.4 MHz)
+> +    items:
+> +      - const: inck
+
+Drop clock-names, redundant.
+
+> +
+> +  vdig-supply:
+> +    description:
+> +      Digital I/O voltage supply, 1.35 volts
+> +
+> +  vana1-supply:
+> +    description:
+> +      Analog1 voltage supply, 2.8 volts
+> +
+> +  vana2-supply:
+> +    description:
+> +      Analog2 voltage supply, 1.8 volts
+> +
+> +  vddl-supply:
+> +    description:
+> +      Digital core voltage supply, 1.8 volts
+> +
+> +  reset-gpios:
+> +    description: Sensor reset (XCLR) GPIO
+> +    maxItems: 1
+> +
+> +  port:
+> +    $ref: /schemas/graph.yaml#/$defs/port-base
+> +    description: |
+
+Drop |
+
+> +      Video output port
+> +
+> +    properties:
+> +      endpoint:
+> +        $ref: /schemas/media/video-interfaces.yaml#
+> +        unevaluatedProperties: false
+> +
+> +        properties:
+> +          data-lanes:
+> +            anyOf:
+> +              - items:
+> +                  - const: 1
+> +                  - const: 2
+> +              - items:
+> +                  - const: 1
+> +                  - const: 2
+> +                  - const: 3
+> +                  - const: 4
+> +
+> +          link-frequencies: true
+
+Drop, not needed.
+
+> +
+> +        required:
+> +          - data-lanes
+> +          - link-frequencies
+> +
+> +    additionalProperties: false
+
+This goes after $ref
+
+> +
+> +required:
+> +  - compatible
+> +  - reg
+> +  - clocks
+> +  - clock-names
+> +  - vdig-supply
+> +  - vana-supply
+> +  - vddl-supply
+> +  - port
+> +
+> +additionalProperties: false
+> +
+> +examples:
+> +  - |
+> +    #include <dt-bindings/gpio/gpio.h>
+> +
+> +    i2c {
+> +        #address-cells = <1>;
+> +        #size-cells = <0>;
+> +
+> +        mira220: camera-sensor@1a {
+> +            compatible = "ams,mira220";
+> +            reg = <0x54>;
+
+Does not match unit address.
+
+> +
+> +            clocks = <&cam1_clk>;
+
+Best regards,
+Krzysztof
+
 
