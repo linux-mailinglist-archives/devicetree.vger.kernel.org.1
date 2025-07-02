@@ -1,91 +1,120 @@
-Return-Path: <devicetree+bounces-191932-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-191933-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0EAC7AF0E92
-	for <lists+devicetree@lfdr.de>; Wed,  2 Jul 2025 10:57:48 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id A69B8AF0E9B
+	for <lists+devicetree@lfdr.de>; Wed,  2 Jul 2025 11:00:04 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 5DFA61C2603B
-	for <lists+devicetree@lfdr.de>; Wed,  2 Jul 2025 08:58:04 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id EEE257B037C
+	for <lists+devicetree@lfdr.de>; Wed,  2 Jul 2025 08:58:38 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E2E4323BF8F;
-	Wed,  2 Jul 2025 08:57:41 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3565B23C8A8;
+	Wed,  2 Jul 2025 08:59:56 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="Op8cI2b9"
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="VI/8Es4o"
 X-Original-To: devicetree@vger.kernel.org
-Received: from bali.collaboradmins.com (bali.collaboradmins.com [148.251.105.195])
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B14F6211C;
-	Wed,  2 Jul 2025 08:57:39 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=148.251.105.195
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C3D5119D8A7;
+	Wed,  2 Jul 2025 08:59:54 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1751446661; cv=none; b=TTnvNs+wHs/0gsxwmCaBljw3wuI1sQeGA2TYTk3z6cpSw2TbX3Pw2hdxEKzUWXhwd92R+gvGIqy276w1LX5mrQ8243P7ZXgFFPKr0nRVKViGpr7/ZrXyUW8ZjpNd7H+2BbH78mX4m2VXp5NozwuPNTbhX+TA+EzBVksgfN7RUZI=
+	t=1751446796; cv=none; b=kmfiBgv4Zdr3+hlTWdh7UYB3rYZwkh756LLoCKs5t3dacSGrwBJaiMO6yx9GvIxe8vuHzNOC0KcbwvSQpl6KmcfK+WGFAwVhnuNovoJifJp5TsCal8hlFOFh5Nbca+pROltkj3pb0rFwV/B+hSwWewgnSnPz13kmy7rTqRR9LUg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1751446661; c=relaxed/simple;
-	bh=AA9AlIrZgAydaDEjjbmsNIEiAQNjOYkPwuQMM7PW/hg=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=V+Lf3AT88Htjd+UrJHPET1e91GP9WRrBpOL1+e2MtMWP6aWKqUwx8w7faMAG1J/9ALcDtNdgDudLIXku08M+BwnTsL1VU6oEtZmVFbuNzOoLhW9E7dOhx6uGZmf3zAVG48+SKHzN1kNQTtRWWNhftaC/w7uGgLVEay1toR4xOBI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b=Op8cI2b9; arc=none smtp.client-ip=148.251.105.195
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-	s=mail; t=1751446652;
-	bh=AA9AlIrZgAydaDEjjbmsNIEiAQNjOYkPwuQMM7PW/hg=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=Op8cI2b9O6bAX4reORlcxA7sX3fWm61pByhJs7+IFee02nmz53x0Vk/5v3SQapl2/
-	 6lVtnC8O/3lFCmqy2LgNB3ZP6ZpsqnBCBOmPpYmDaC+GwSbTI+bLKYrWIq4oZb9LEu
-	 OyJm/uNOsDZDUv6AUwYF139FXcdtIIy3cjz5moAPV8hlwGCGxd25ZdmqznqZvnTE9T
-	 6joiDhezFcor9i9fGncK0Cy9NkreimW9JNHkOl5sHB8/UT4J9ij+AHCiT9JdgLR+X5
-	 +dxA1Gi9fFQYzcoBsGeq8fuKT2PfxMV4bjRPo9LVr42CotrNDil50f95uTlphhbKYK
-	 bOdegJCZ9+OdQ==
-Received: from [192.168.1.90] (unknown [212.93.144.165])
-	(using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
-	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
-	(No client certificate requested)
-	(Authenticated sender: cristicc)
-	by bali.collaboradmins.com (Postfix) with ESMTPSA id CE2B017E059B;
-	Wed,  2 Jul 2025 10:57:31 +0200 (CEST)
-Message-ID: <53dcc520-fd8a-4c6b-9bc0-cf9daf3e4597@collabora.com>
-Date: Wed, 2 Jul 2025 11:57:31 +0300
+	s=arc-20240116; t=1751446796; c=relaxed/simple;
+	bh=ZfMPwivvTIsQ6PZDC7WkfPU3P75vjElgVZ/5OTKTNeE=;
+	h=From:To:CC:Subject:Date:Message-ID:MIME-Version:Content-Type; b=geBCocjeQlT23rWi+3khQEcAhX5f+78x5ceN9IHZa45Hu9fpjQAHzXcAEC6X3aKOFLujevGKax4EiNcCVg6VZCAjkIdNFn086u1Vu0PCf5O1h2wQplGvRpksYLphFA5c1s3j5Em+/rqTc1BhZyeIDPUXcbIcjP3VQihx/n5iRKE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=VI/8Es4o; arc=none smtp.client-ip=205.220.168.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
+Received: from pps.filterd (m0279867.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 5626Yu3P032129;
+	Wed, 2 Jul 2025 08:59:52 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
+	cc:content-type:date:from:message-id:mime-version:subject:to; s=
+	qcppdkim1; bh=Pyqcy5rkgfwxs80fU3R7ymkbtZTlfvTPM2sjkOUpsdg=; b=VI
+	/8Es4oRal+UPffAu2whCe5z1/J0LLB5LOiXY/lMxdMxqUE0oO+F+zf9Nxa9ppeM2
+	o/M9xJY18l9TxDpPhSklZbECXIbzA2P5yzzF4GjQU3bytk4QxTaSOh4wnTeRQqHu
+	yH/ibhtmLDu3DkSwfbc5oFZbUSO7Vj+7pHclj/pVhxZ04pBcwJH9tT1gSm54msZk
+	cOsaWN5LsYgtJnPmNNKJH+fQMyebXNfiPJFdGXO6TWk2GZ4U//hAJl470sqnpOy0
+	Hgnjq+ps9ayxT4i+O8lcKRqS2y72DoOPS4Cpqn2n+razQE9O7ToVANwLqG+8xRQb
+	xdztO6WqQwGCyRXT8iNg==
+Received: from nalasppmta03.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 47j63kc0s7-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Wed, 02 Jul 2025 08:59:52 +0000 (GMT)
+Received: from nalasex01b.na.qualcomm.com (nalasex01b.na.qualcomm.com [10.47.209.197])
+	by NALASPPMTA03.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 5628xpWW025016
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Wed, 2 Jul 2025 08:59:51 GMT
+Received: from hu-sayalil-hyd.qualcomm.com (10.80.80.8) by
+ nalasex01b.na.qualcomm.com (10.47.209.197) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.1748.10; Wed, 2 Jul 2025 01:59:48 -0700
+From: Sayali Lokhande <quic_sayalil@quicinc.com>
+To: <andersson@kernel.org>, <konradybcio@kernel.org>, <robh@kernel.org>,
+        <krzk+dt@kernel.org>, <conor+dt@kernel.org>
+CC: <linux-arm-msm@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>, <linux-mmc-owner@vger.kernel.org>
+Subject: [PATCH V3 0/3] Add eMMC support for qcs8300
+Date: Wed, 2 Jul 2025 14:29:24 +0530
+Message-ID: <20250702085927.10370-1-quic_sayalil@quicinc.com>
+X-Mailer: git-send-email 2.17.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 4/4] arm64: dts: rockchip: add HDMI audio on ROCK 4D
-To: Nicolas Frattaroli <nicolas.frattaroli@collabora.com>,
- Dmitry Torokhov <dmitry.torokhov@gmail.com>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Alexandre Belloni <alexandre.belloni@bootlin.com>,
- Heiko Stuebner <heiko@sntech.de>
-Cc: kernel@collabora.com, linux-input@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, linux-rockchip@lists.infradead.org
-References: <20250630-rock4d-audio-v1-0-0b3c8e8fda9c@collabora.com>
- <20250630-rock4d-audio-v1-4-0b3c8e8fda9c@collabora.com>
-Content-Language: en-US
-From: Cristian Ciocaltea <cristian.ciocaltea@collabora.com>
-In-Reply-To: <20250630-rock4d-audio-v1-4-0b3c8e8fda9c@collabora.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain
+X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
+ nalasex01b.na.qualcomm.com (10.47.209.197)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Authority-Analysis: v=2.4 cv=ZKfXmW7b c=1 sm=1 tr=0 ts=6864f508 cx=c_pps
+ a=ouPCqIW2jiPt+lZRy3xVPw==:117 a=ouPCqIW2jiPt+lZRy3xVPw==:17
+ a=GEpy-HfZoHoA:10 a=Wb1JkmetP80A:10 a=D0nzxQA8UOXus3ycgvcA:9
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwNzAyMDA3MiBTYWx0ZWRfXz6jbC5g2NZYN
+ CDOxEhLJ+zuWjOn3vgEI6pBeG6CZrb30LA96oKxcz7/VbC2hcBOs2ekW9G7D62dt4Xi9UjaK1RN
+ 5iUSLLwR6WODO+grNN9lY+fM3XK8ACraflWYkWTrT96JGAIWiUiqkdjYmmUYbzhPqFNQpAaAP32
+ Oq9wL9DtvdVVBqu6SMpL89HuVI92H8Km6UaJZB6R+Hk8TknxEuYbTPKdni78CNzfcUsVtiueZhE
+ d9zvdWen9OTOKn5+jgNXbufo2zeEJof/7LOrVrBKNwUQ9qnnPBoQMg3NwoF3Bx1jX74gTnAix0m
+ lPlgLnPaD6Rq817RYEIiUObHrw3ki4LMfrB2b1CDIohH8ICKcF8v5eziF+8Z5O6jNJ0QiCJS0zB
+ INfTLQ6L78iSsEPDIG8rLkm/wKwu354YBCRcMan4FYqAKs4lC2C2wEdsjPbJeKcz3WDT14jT
+X-Proofpoint-ORIG-GUID: VWl9G-nFes8wLONWZeaE_YPOtX_O15JT
+X-Proofpoint-GUID: VWl9G-nFes8wLONWZeaE_YPOtX_O15JT
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1099,Hydra:6.1.7,FMLib:17.12.80.40
+ definitions=2025-07-02_01,2025-06-27_01,2025-03-28_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ adultscore=0 mlxscore=0 mlxlogscore=796 spamscore=0 suspectscore=0
+ bulkscore=0 priorityscore=1501 lowpriorityscore=0 phishscore=0
+ impostorscore=0 malwarescore=0 clxscore=1015 classifier=spam authscore=0
+ authtc=n/a authcc= route=outbound adjust=0 reason=mlx scancount=1
+ engine=8.19.0-2505280000 definitions=main-2507020072
 
-On 6/30/25 1:19 PM, Nicolas Frattaroli wrote:
-> Much like the Sige5, the ROCK 4D also has an HDMI port, so is capable of
-> providing HDMI audio output as well.
-> 
-> Enable the SoC's hdmi_sound card, and also enable the SoC audio
-> controller (sai6) that feeds into it.
-> 
-> Signed-off-by: Nicolas Frattaroli <nicolas.frattaroli@collabora.com>
+Add eMMC support for qcs8300 board.
 
-This worked as expected on my ROCK 4D board after enabling
-CONFIG_SND_SOC_ROCKCHIP_SAI, hence
+- Changed from V2
+ - splitted board and soc changes in separate commits
+ - used lower case hex values as per suggestion
+ - moved bias property under drive-strength for consistency as suggested
 
-Tested-by: Cristian Ciocaltea <cristian.ciocaltea@collabora.com>
+Sayali Lokhande (3):
+  dt-bindings: mmc: Add sdhci compatible for qcs8300
+  arm64: dts: qcom: Add eMMC support for qcs8300
+  arm64: dts: qcom: qcs8300-ride: Enable SDHC1 node
+
+ .../devicetree/bindings/mmc/sdhci-msm.yaml    |   1 +
+ arch/arm64/boot/dts/qcom/qcs8300-ride.dts     |  21 ++++
+ arch/arm64/boot/dts/qcom/qcs8300.dtsi         | 113 ++++++++++++++++++
+ 3 files changed, 135 insertions(+)
+
+-- 
+The Qualcomm Innovation Center, Inc. is a member of the Code Aurora Forum,
+a Linux Foundation Collaborative Project
 
 
