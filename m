@@ -1,227 +1,199 @@
-Return-Path: <devicetree+bounces-192054-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-192055-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 476BDAF1435
-	for <lists+devicetree@lfdr.de>; Wed,  2 Jul 2025 13:40:54 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3A5ACAF143B
+	for <lists+devicetree@lfdr.de>; Wed,  2 Jul 2025 13:41:41 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 57A571C41E38
-	for <lists+devicetree@lfdr.de>; Wed,  2 Jul 2025 11:41:10 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 6AFEE4E7269
+	for <lists+devicetree@lfdr.de>; Wed,  2 Jul 2025 11:41:41 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 045D4266B59;
-	Wed,  2 Jul 2025 11:40:27 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id EE41C19AD89;
+	Wed,  2 Jul 2025 11:41:35 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (1024-bit key) header.d=leica-geosystems.com header.i=@leica-geosystems.com header.b="kk5//f3u"
 X-Original-To: devicetree@vger.kernel.org
-Received: from frasgout.his.huawei.com (frasgout.his.huawei.com [185.176.79.56])
+Received: from OSPPR02CU001.outbound.protection.outlook.com (mail-norwayeastazon11013002.outbound.protection.outlook.com [40.107.159.2])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 32925266571;
-	Wed,  2 Jul 2025 11:40:24 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.176.79.56
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1751456426; cv=none; b=WZyb0RqyffwLVW0dRti8fXA/zxEqQ6pa1V/GpVu7JDQd80LrTWzDjFxB7nb64aEzFquOIDcW2T/To/tIQ5GHgE6an5c+TF3ocnC0d60z5yNj+1HSfcL7sWSYtr2ev0Hug9V/c68LXlCB/wmDhSNA5b7fkUZ56HwSzP/93qPMLLQ=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1751456426; c=relaxed/simple;
-	bh=iDOlzwUy5LLAeQthPAZIxuoMknnV3oq4jZoGvo17QjY=;
-	h=Date:From:To:CC:Subject:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=VewuF1q6V1PFjK4k1tVcg4VHt85K081EEWKiLE9IZ+uQUhY7Xotk1j5Qhspw3tizla697wsnBP6TAx3cJIq3w71tuUg905tHbZs+ncE1nijlLuvI3xc9iR5idWa6bFcr3dhqMtNm+tQuZq4zRm4YtoKBw1VHei4zRt5SLAtg9aM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=huawei.com; spf=pass smtp.mailfrom=huawei.com; arc=none smtp.client-ip=185.176.79.56
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=huawei.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=huawei.com
-Received: from mail.maildlp.com (unknown [172.18.186.31])
-	by frasgout.his.huawei.com (SkyGuard) with ESMTP id 4bXHxB117sz6M4RD;
-	Wed,  2 Jul 2025 19:39:26 +0800 (CST)
-Received: from frapeml500008.china.huawei.com (unknown [7.182.85.71])
-	by mail.maildlp.com (Postfix) with ESMTPS id A671D14011A;
-	Wed,  2 Jul 2025 19:40:21 +0800 (CST)
-Received: from localhost (10.203.177.66) by frapeml500008.china.huawei.com
- (7.182.85.71) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.1.2507.39; Wed, 2 Jul
- 2025 13:40:20 +0200
-Date: Wed, 2 Jul 2025 12:40:19 +0100
-From: Jonathan Cameron <Jonathan.Cameron@huawei.com>
-To: Lorenzo Pieralisi <lpieralisi@kernel.org>
-CC: Marc Zyngier <maz@kernel.org>, Thomas Gleixner <tglx@linutronix.de>, "Rob
- Herring" <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, "Conor
- Dooley" <conor+dt@kernel.org>, Catalin Marinas <catalin.marinas@arm.com>,
-	Will Deacon <will@kernel.org>, Arnd Bergmann <arnd@arndb.de>, "Sascha
- Bischoff" <sascha.bischoff@arm.com>, Timothy Hayes <timothy.hayes@arm.com>,
-	Bjorn Helgaas <bhelgaas@google.com>, "Liam R. Howlett"
-	<Liam.Howlett@oracle.com>, Peter Maydell <peter.maydell@linaro.org>, "Mark
- Rutland" <mark.rutland@arm.com>, Jiri Slaby <jirislaby@kernel.org>,
-	<linux-arm-kernel@lists.infradead.org>, <linux-kernel@vger.kernel.org>,
-	<devicetree@vger.kernel.org>, <linux-pci@vger.kernel.org>
-Subject: Re: [PATCH v6 20/31] irqchip/gic-v5: Add GICv5 PPI support
-Message-ID: <20250702124019.00006b01@huawei.com>
-In-Reply-To: <20250626-gicv5-host-v6-20-48e046af4642@kernel.org>
-References: <20250626-gicv5-host-v6-0-48e046af4642@kernel.org>
-	<20250626-gicv5-host-v6-20-48e046af4642@kernel.org>
-X-Mailer: Claws Mail 4.3.0 (GTK 3.24.42; x86_64-w64-mingw32)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 08F97225A31;
+	Wed,  2 Jul 2025 11:41:33 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.159.2
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1751456495; cv=fail; b=KznkZ+/ITlLI3e8mhmUabmSByYe1hR5RXRbIe2MmmS5dNRhZOT5bTUmnOOLBQ29fMAO9Z22EtwFN1FUbistkx5FFYgvg/KkldhmHw7PEadYarxq4J4V7E45xm0/wSI0fYmKGKh+j/h/wDtfMDzF/jyI1MA1FUk6A+p6TrJuFMic=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1751456495; c=relaxed/simple;
+	bh=bOyq/899DaMJKxssbP0rEa3MN8RZ2CbB4z4105CUGI8=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version:Content-Type; b=fx9CmiJ1insg1cXyQt8L8Az9n8a/B9M+cvT+vDpBQVoXExoJNCdjQ2tjQPKlM91dkkfJAMYeVAvMBv/SmfiVMOivzKVHbWVpUhr2GzZ6VkvDg3D5DEX4EFvwJcPh5aNAMG9T9wgIPjoP9zkvMobYjCh5agGKcTqqlIOt9rwip/g=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=leica-geosystems.com; spf=fail smtp.mailfrom=leica-geosystems.com; dkim=pass (1024-bit key) header.d=leica-geosystems.com header.i=@leica-geosystems.com header.b=kk5//f3u; arc=fail smtp.client-ip=40.107.159.2
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=leica-geosystems.com
+Authentication-Results: smtp.subspace.kernel.org; spf=fail smtp.mailfrom=leica-geosystems.com
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=r6fVIAr844YC0NCot3hRRy/RmEWxK/jRZE+gubmQbeD5mAo+gyRg+pHyzlfK/PIYD1HpwEnNUp3/qwQyfMNU1fkA0m5yok4rhQ2NNednorw0FEmD7J7nENwGsFrW+OKiYwWoBANKl/1PaRy1F7e0bIhGbS8SCTkeVCI36ylibk/C/JDljIv8ykrwB7cnvrzeh04tp1mPGadjzbUDCXeGWFmExsnbpikSX0+HggBWXQI2Qxb0msxWw2aMAWx6Dt6oc0yzKhn2Z/PtZ5mklurxwotgnw+vP7wimwixN5ORqmrkEdApx4qRK0VC/uGit6FVceAka4Lt8rN97J9gI8LcWA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=fraWZgSDlPhyjIFb18LKLCHq7bsu3shrTkN0xkrlKn8=;
+ b=FEYHlJYF/nPAvfNiLtijgS8Wan1XGhsDheJc0948avo2oMOX1cQijrJ2180RxZFtwtMwDsqHtN66f5HN+lH9l6IX9Kk50TL0rRwsmkO6aE+Qk7kkyRlGLEGRUyfTKMK81rVeSXAK01mVciGKWJgW4hhZu+ZCdxBfTlTx4F0Z3U83/UxmSL+DzpjgL9m/MqJWEigDjdiWyYIqV1Ar0V4qSyCuDSgRwYRX5vKHA4IbkDLd/gEZtOOJruk6qzK+XVzEP9Qeq+Kv4xjtQmr9pqEOjxelCZxlEhpLTa/DElc4SOch5Fskep072/AOTVi/tVkBZf9qeVsPq3jcr4o22fTokQ==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=temperror (sender ip
+ is 193.8.40.94) smtp.rcpttodomain=vger.kernel.org
+ smtp.mailfrom=leica-geosystems.com; dmarc=temperror action=none
+ header.from=leica-geosystems.com; dkim=none (message not signed); arc=none
+ (0)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=leica-geosystems.com;
+ s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=fraWZgSDlPhyjIFb18LKLCHq7bsu3shrTkN0xkrlKn8=;
+ b=kk5//f3uqv1SMnTibUKB8LQloaARD8YbjU8uEPn+OpeJ3E0s9el2pVCBojiYLPbLeU/d27H+TIWE87DBwTkWNrr4NR8bEkJshKXUPDLuTX6zhgDqTyNUW/ejGR86+apVBvDc6I2INM6G3VISJIOk1yH4F0x1bpKCWMqJpV8yVos=
+Received: from DB9PR02CA0013.eurprd02.prod.outlook.com (2603:10a6:10:1d9::18)
+ by AS8PR06MB7271.eurprd06.prod.outlook.com (2603:10a6:20b:251::19) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8901.20; Wed, 2 Jul
+ 2025 11:41:29 +0000
+Received: from DB5PEPF00014B8E.eurprd02.prod.outlook.com
+ (2603:10a6:10:1d9:cafe::32) by DB9PR02CA0013.outlook.office365.com
+ (2603:10a6:10:1d9::18) with Microsoft SMTP Server (version=TLS1_3,
+ cipher=TLS_AES_256_GCM_SHA384) id 15.20.8901.20 via Frontend Transport; Wed,
+ 2 Jul 2025 11:41:29 +0000
+X-MS-Exchange-Authentication-Results: spf=temperror (sender IP is 193.8.40.94)
+ smtp.mailfrom=leica-geosystems.com; dkim=none (message not signed)
+ header.d=none;dmarc=temperror action=none header.from=leica-geosystems.com;
+Received-SPF: TempError (protection.outlook.com: error in processing during
+ lookup of leica-geosystems.com: DNS Timeout)
+Received: from hexagon.com (193.8.40.94) by
+ DB5PEPF00014B8E.mail.protection.outlook.com (10.167.8.202) with Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.8901.15 via Frontend Transport; Wed, 2 Jul 2025 11:41:28 +0000
+Received: from AHERNOBLEIH55.lgs-net.com ([10.60.34.120]) by hexagon.com with Microsoft SMTPSVC(10.0.17763.1697);
+	 Wed, 2 Jul 2025 13:41:27 +0200
+From: Catalin Popescu <catalin.popescu@leica-geosystems.com>
+To: amitkumar.karwar@nxp.com,
+	neeraj.sanjaykale@nxp.com,
+	marcel@holtmann.org,
+	luiz.dentz@gmail.com,
+	robh@kernel.org,
+	krzk+dt@kernel.org,
+	conor+dt@kernel.org,
+	p.zabel@pengutronix.de
+Cc: linux-bluetooth@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	m.felsch@pengutronix.de,
+	Catalin Popescu <catalin.popescu@leica-geosystems.com>,
+	Conor Dooley <conor.dooley@microchip.com>
+Subject: [PATCH next v4 1/2] dt-bindings: net: bluetooth: nxp: add support for supply and reset
+Date: Wed,  2 Jul 2025 13:41:04 +0200
+Message-ID: <20250702114105.2229008-1-catalin.popescu@leica-geosystems.com>
+X-Mailer: git-send-email 2.43.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="US-ASCII"
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: lhrpeml100003.china.huawei.com (7.191.160.210) To
- frapeml500008.china.huawei.com (7.182.85.71)
+Content-Transfer-Encoding: 8bit
+X-OriginalArrivalTime: 02 Jul 2025 11:41:27.0810 (UTC) FILETIME=[3F32E620:01DBEB46]
+X-EOPAttributedMessage: 0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: DB5PEPF00014B8E:EE_|AS8PR06MB7271:EE_
+Content-Type: text/plain
+X-MS-Office365-Filtering-Correlation-Id: dea9152e-c16c-4137-6ee0-08ddb95d61f9
+X-SET-LOWER-SCL-SCANNER: YES
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam:
+	BCL:0;ARA:13230040|1800799024|82310400026|376014|36860700013;
+X-Microsoft-Antispam-Message-Info:
+	=?us-ascii?Q?7aX7tIYkrtH3pqY+fev5gyLARdm58oPBtMjTb5zgb+fmvYlUrSr+AAuY+4eB?=
+ =?us-ascii?Q?2C7UFVeezmxUAJL0oN9JL/iYikuTegOaHlGkC0JlNC4IDBGe7uNwcWNymoOb?=
+ =?us-ascii?Q?me3bC7sW0NxS0MEGHK72smKpc8SgFAmNHUlEY2BzZDyWT+2r42ETqyOWJJ+q?=
+ =?us-ascii?Q?OFsLzCe1YPNk//rtsh9gr+CQtCp9klamR2mV9pvlcA/Bm1J4t0dlgSooG+TE?=
+ =?us-ascii?Q?IncGH+j1YLag3ttTa302Ost1syULkW54RHyxlj9ajivmWF66dq3Z+e01ROym?=
+ =?us-ascii?Q?hAKWM0azjZPrzTeLuJTGjZicZkErcDJ3+xTrtYEJHcL8+dSmQlmxCuTcqVg3?=
+ =?us-ascii?Q?nyTlti8Ut9JgSuB+LrKIE7y97Ib2zDdKuPv0GGEHP5Fic16MaiZDZ7m723F/?=
+ =?us-ascii?Q?eo9+W3cMie6f5bcZztTNViWtpJbhqVCeZUZ2sTzG9HFLUTVjyRrAeqQhrr0q?=
+ =?us-ascii?Q?gGklZVNvIPKkwJ+Thf5VK5iW4XxVXUUvk3+cnaLR3HppHuZIOD03dJdGbDtO?=
+ =?us-ascii?Q?nTyujhPHiXWdHOEFGZFDP9zP2yGa+wzarwekpKyrm9PfF6YQWO+UwjkJQdvY?=
+ =?us-ascii?Q?UOc6p8xpB+FTlMdqSIIpqeZVlj7t4GqsLgRlaeRZ5oky5yF0gbeKenUXDFfg?=
+ =?us-ascii?Q?+ORwtQymJKnZnYZMXBR3tA1r0nz6v1bBrFnE4rRhKbVEwUE4UYRpUYZr1bA0?=
+ =?us-ascii?Q?18ZLygfEi5+FPxkJF+qsOxU4BhFg8PeS9sqZ73Ux/t5mMqs5I9GCGQpoN+Wl?=
+ =?us-ascii?Q?FwLlrMuqEZdTaU/skoC3xXDchf5eXr+ZKY4LCxiPVOBNOBqo/9O9ox01q0Pu?=
+ =?us-ascii?Q?06+kSul46966R/Xy0ANEQcfAULNX5OWIChcCeQWdYkqhtCqhmYKXniKQ1YQ5?=
+ =?us-ascii?Q?WKP1QuZK4R00rt3Yc4TzFffcMrsevxYI6ePvwb1ynUJZ+9lIUAYUJj2gYAIh?=
+ =?us-ascii?Q?iCadKCZYvW9qro42SloNanvDBHLFph3SMSmSIg2Hp8xJ3lhgkcpBvbt1lWNq?=
+ =?us-ascii?Q?RM3E1dyA3Z87EbyFwulk3iHTaTFiEHe0iG/EBRYO1cqjepvvwirb5XZRH4vR?=
+ =?us-ascii?Q?BgypgYkmJ2YuHe2znaM/njlUd4rSaLPtcxvFp0z7juYkDtGml6+YCs5hjL+p?=
+ =?us-ascii?Q?7ArXy1W+mj5dw0+r8rKCx9IPRJmpzEgBQ+zo7XIApLX6bBgSinDnizUmc/EQ?=
+ =?us-ascii?Q?XTQGT4h28oYzgLNDmaUXyLUc5LWkEBTG+3Ksjw4RfPnsXenLu46HZGZ2yiRJ?=
+ =?us-ascii?Q?MOfCtFSnOiauIqVNtccyPH1RhsoKD0j0BDaJV6RCOtdgzqgMfUt6t101FveD?=
+ =?us-ascii?Q?lwGyNYlIQpszmSTAXs6Rws/jwFIOmFVJCiN7roA47xje8P3E6RbaPmpHaRxY?=
+ =?us-ascii?Q?cA+1b2N1REize19zuh2+lWDRMgyccB6kRkI3+XcjdMvLS3mOKB3WuR/mjgpW?=
+ =?us-ascii?Q?N8eS7WurEX6E9S2fJCA2exrUaRd4Fa8ryUnHbLge/BvzEKiSzkZJlPdbCm93?=
+ =?us-ascii?Q?Z81Wo7sJD1u1GoNTAykisfe9rh/oRe/z6tZv?=
+X-Forefront-Antispam-Report:
+	CIP:193.8.40.94;CTRY:CH;LANG:en;SCL:1;SRV:;IPV:CAL;SFV:NSPM;H:hexagon.com;PTR:ahersrvdom50.leica-geosystems.com;CAT:NONE;SFS:(13230040)(1800799024)(82310400026)(376014)(36860700013);DIR:OUT;SFP:1101;
+X-OriginatorOrg: leica-geosystems.com
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 02 Jul 2025 11:41:28.1783
+ (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: dea9152e-c16c-4137-6ee0-08ddb95d61f9
+X-MS-Exchange-CrossTenant-Id: 1b16ab3e-b8f6-4fe3-9f3e-2db7fe549f6a
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=1b16ab3e-b8f6-4fe3-9f3e-2db7fe549f6a;Ip=[193.8.40.94];Helo=[hexagon.com]
+X-MS-Exchange-CrossTenant-AuthSource:
+	DB5PEPF00014B8E.eurprd02.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Anonymous
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: AS8PR06MB7271
 
-On Thu, 26 Jun 2025 12:26:11 +0200
-Lorenzo Pieralisi <lpieralisi@kernel.org> wrote:
+Add support for chip power supply and chip reset/powerdown.
 
-> The GICv5 CPU interface implements support for PE-Private Peripheral
-> Interrupts (PPI), that are handled (enabled/prioritized/delivered)
-> entirely within the CPU interface hardware.
+Signed-off-by: Catalin Popescu <catalin.popescu@leica-geosystems.com>
+Acked-by: Conor Dooley <conor.dooley@microchip.com>
+---
+v4:
+- rebase on linux-next tag next-20250701
+v3:
+- rebase on linux-next tag next-20250409
+v2:
+- rebase on linux-next tag next-20250227
+- add acked-by
+---
+ .../bindings/net/bluetooth/nxp,88w8987-bt.yaml         | 10 ++++++++++
+ 1 file changed, 10 insertions(+)
 
-I can't remember where I got to last time so if I repeat stuff that
-you already responded to, feel free to just ignore me this time ;)
-
-All superficial stuff. Feel free to completely ignore if you like.
-
-> diff --git a/drivers/irqchip/irq-gic-v5.c b/drivers/irqchip/irq-gic-v5.c
-> new file mode 100644
-> index 000000000000..a08daa562d21
-> --- /dev/null
-> +++ b/drivers/irqchip/irq-gic-v5.c
-> @@ -0,0 +1,461 @@
-> +// SPDX-License-Identifier: GPL-2.0-only
-> +/*
-> + * Copyright (C) 2024-2025 ARM Limited, All Rights Reserved.
-> + */
-> +
-> +#define pr_fmt(fmt)	"GICv5: " fmt
-> +
-> +#include <linux/irqdomain.h>
-> +#include <linux/wordpart.h>
-> +
-> +#include <linux/irqchip.h>
-> +#include <linux/irqchip/arm-gic-v5.h>
-> +
-> +#include <asm/cpufeature.h>
-> +#include <asm/exception.h>
-> +
-> +static u8 pri_bits __ro_after_init = 5;
-> +
-> +#define GICV5_IRQ_PRI_MASK	0x1f
-> +#define GICV5_IRQ_PRI_MI	(GICV5_IRQ_PRI_MASK & GENMASK(4, 5 - pri_bits))
-> +
-> +#define PPI_NR	128
-> +
-> +static bool gicv5_cpuif_has_gcie(void)
-> +{
-> +	return this_cpu_has_cap(ARM64_HAS_GICV5_CPUIF);
-> +}
-> +
-> +struct gicv5_chip_data {
-> +	struct fwnode_handle	*fwnode;
-> +	struct irq_domain	*ppi_domain;
-> +};
-> +
-> +static struct gicv5_chip_data gicv5_global_data __read_mostly;
-
-> +static void gicv5_hwirq_eoi(u32 hwirq_id, u8 hwirq_type)
-> +{
-> +	u64 cddi = hwirq_id | FIELD_PREP(GICV5_GIC_CDDI_TYPE_MASK, hwirq_type);
-
-Slight preference for not needing to care where hwirq_id goes in CDDI or how big
-it is (other than when I checked the header defines).
+diff --git a/Documentation/devicetree/bindings/net/bluetooth/nxp,88w8987-bt.yaml b/Documentation/devicetree/bindings/net/bluetooth/nxp,88w8987-bt.yaml
+index bb9ab5dd3b4a..857c6234ba9b 100644
+--- a/Documentation/devicetree/bindings/net/bluetooth/nxp,88w8987-bt.yaml
++++ b/Documentation/devicetree/bindings/net/bluetooth/nxp,88w8987-bt.yaml
+@@ -72,6 +72,14 @@ properties:
+     description:
+       The GPIO number of the NXP chipset used for BT_WAKE_OUT.
  
-	u64 cddi = FIELD_PREP(GICV5_GIC_CDDI_ID_MASK, hwirq_id) |
-        	   FIELD_PREP(GICV5_GIC_CDDI_TYPE_MASK, hwirq_type);
++  vcc-supply:
++    description:
++      phandle of the regulator that provides the supply voltage.
++
++  reset-gpios:
++    description:
++      Chip powerdown/reset signal (PDn).
++
+ required:
+   - compatible
+ 
+@@ -90,6 +98,8 @@ examples:
+             device-wakeup-gpios = <&gpio 11 GPIO_ACTIVE_HIGH>;
+             nxp,wakein-pin = /bits/ 8 <18>;
+             nxp,wakeout-pin = /bits/ 8 <19>;
++            vcc-supply = <&nxp_iw612_supply>;
++            reset-gpios = <&gpioctrl 2 GPIO_ACTIVE_LOW>;
+             local-bd-address = [66 55 44 33 22 11];
+             interrupt-parent = <&gpio>;
+             interrupts = <8 IRQ_TYPE_EDGE_FALLING>;
 
-
-> +
-> +	gic_insn(cddi, CDDI);
-> +
-> +	gic_insn(0, CDEOI);
-> +}
-
-> +static int gicv5_ppi_irq_get_irqchip_state(struct irq_data *d,
-> +					   enum irqchip_irq_state which,
-> +					   bool *state)
-> +{
-> +	u64 hwirq_id_bit = BIT_ULL(d->hwirq % 64);
-> +
-> +	switch (which) {
-> +	case IRQCHIP_STATE_PENDING:
-> +		*state = !!(read_ppi_sysreg_s(d->hwirq, PPI_PENDING) & hwirq_id_bit);
-
-Technically don't need the !! but if you really like it I don't mind that much.
-
-> +		return 0;
-> +	case IRQCHIP_STATE_ACTIVE:
-> +		*state = !!(read_ppi_sysreg_s(d->hwirq, PPI_ACTIVE) & hwirq_id_bit);
-> +		return 0;
-> +	default:
-> +		pr_debug("Unexpected PPI irqchip state\n");
-> +		return -EINVAL;
-> +	}
-> +}
-
-
-> +static int gicv5_irq_ppi_domain_translate(struct irq_domain *d,
-> +					  struct irq_fwspec *fwspec,
-> +					  irq_hw_number_t *hwirq,
-> +					  unsigned int *type)
-> +{
-> +	if (!is_of_node(fwspec->fwnode))
-> +		return -EINVAL;
-> +
-> +	if (fwspec->param_count < 3)
-
-I don't care that much, but could relax this seeing as fwspec->param[2]
-isn't used anyway? Maybe a tiny comment on why it matters?
-
-> +		return -EINVAL;
-> +
-> +	if (fwspec->param[0] != GICV5_HWIRQ_TYPE_PPI)
-> +		return -EINVAL;
-> +
-> +	*hwirq = fwspec->param[1];
-> +
-> +	/*
-> +	 * Handling mode is hardcoded for PPIs, set the type using
-> +	 * HW reported value.
-> +	 */
-> +	*type = gicv5_ppi_irq_is_level(*hwirq) ? IRQ_TYPE_LEVEL_LOW : IRQ_TYPE_EDGE_RISING;
-> +
-> +	return 0;
-
-
-> +static int __init gicv5_of_init(struct device_node *node, struct device_node *parent)
-> +{
-> +	int ret = gicv5_init_domains(of_fwnode_handle(node));
-> +	if (ret)
-> +		return ret;
-> +
-> +	gicv5_set_cpuif_pribits();
-> +
-> +	ret = gicv5_starting_cpu(smp_processor_id());
-> +	if (ret)
-> +		goto out_dom;
-> +
-> +	ret = set_handle_irq(gicv5_handle_irq);
-> +	if (ret)
-> +		goto out_int;
-> +
-> +	return 0;
-> +
-> +out_int:
-> +	gicv5_cpu_disable_interrupts();
-> +out_dom:
-> +	gicv5_free_domains();
-
-Naming is always tricky but I'd not really expect gicv5_free_domains() as the
-pair of gicv5_init_domains() (which is doing creation rather than just initializing).
-
-Ah well, names are never prefect and I don't really mind.
-
-> +
-> +	return ret;
-> +}
-> +IRQCHIP_DECLARE(gic_v5, "arm,gic-v5", gicv5_of_init);
+base-commit: 3f804361f3b9af33e00b90ec9cb5afcc96831e60
+prerequisite-patch-id: 0000000000000000000000000000000000000000
+-- 
+2.43.0
 
 
