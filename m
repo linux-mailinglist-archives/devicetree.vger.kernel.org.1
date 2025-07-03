@@ -1,35 +1,35 @@
-Return-Path: <devicetree+bounces-192756-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-192757-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 98047AF7CF8
-	for <lists+devicetree@lfdr.de>; Thu,  3 Jul 2025 17:58:23 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 60B72AF7CFB
+	for <lists+devicetree@lfdr.de>; Thu,  3 Jul 2025 17:58:38 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id A8009481DAA
-	for <lists+devicetree@lfdr.de>; Thu,  3 Jul 2025 15:57:50 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 5EAEA4825E0
+	for <lists+devicetree@lfdr.de>; Thu,  3 Jul 2025 15:58:04 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 26259233733;
-	Thu,  3 Jul 2025 15:57:58 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D2D2F238C12;
+	Thu,  3 Jul 2025 15:58:11 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F2D1F221DB7;
-	Thu,  3 Jul 2025 15:57:57 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AA2421FC104;
+	Thu,  3 Jul 2025 15:58:11 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1751558278; cv=none; b=JrbvugRZcFjGAocevumHqXhiqCsZLC2TXxcEkdYzpBlYYunzSTxVzLJ6Uom6rrdQmYJJXmRdgbQ/mOOdoFZO8MEoG5kKoIlHe/HFkhAjeHSmzks8dr7SVwilYbU+E4aWj3wffAl0G2R/+FcYLlva2UVm9Ya+Dns0WXGcyALFplg=
+	t=1751558291; cv=none; b=PNz6aqGvHg2/5yQdCXBukJqxuWYZ02B6bPWcenqu/lAN3kNlwGRSvBxa7PvA0tQTnlBFKOdOVrxSHqgAD2qWizJlIvwIZ4hhqIGZj+WzfSXWc6y++3I2UahKcX8AuJSgIQiI/tGkIP9N+mZe0IDLZj25KSqzYK8wE2JoHlFh070=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1751558278; c=relaxed/simple;
-	bh=uQmVOLozdl1zpHZIoqmvdxzn8WPNFIJzuHpjrH1/eGE=;
+	s=arc-20240116; t=1751558291; c=relaxed/simple;
+	bh=9hpGLX3lP0qZuREoxJY7/EqyJ1kILsu7aIONHGygz40=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=NQHtVuKBKvUMdwbi+FuApgEDLyYcbnIVYVnB83ES4sagNagECFHrOi+YnnNIPFCu4/lvzs1p/0S9/H1VfKM+KftBHTPM+o9b6fl322gYhH8RWlD2llVHRrAi0bLg1KZuBJAS+SdTLzh8RpIgkmJ6yP+T8OkFhnzCkwlG59tYJ30=
+	 Content-Type:Content-Disposition:In-Reply-To; b=e6Th1SEKL9NqGShNzmTWhRcJ6IIFF+YtLa6Ejh6fKapuwwLe5OgqFd8ScwmolEQAJoyjQx4oDf0rvdt/13p2BxpMIvefu6SZgKbAbjOZuqDopWNkWFKm8DkcjV5hKNN/Ns6vtm5e1mGkCFRCGx1ylhjJhiu7xdDnccXBSssZ3IM=
 ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 2DBC6C4CEE3;
-	Thu,  3 Jul 2025 15:57:53 +0000 (UTC)
-Date: Thu, 3 Jul 2025 16:57:51 +0100
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 4E2ACC4CEED;
+	Thu,  3 Jul 2025 15:58:08 +0000 (UTC)
+Date: Thu, 3 Jul 2025 16:58:05 +0100
 From: Catalin Marinas <catalin.marinas@arm.com>
 To: Lorenzo Pieralisi <lpieralisi@kernel.org>
 Cc: Marc Zyngier <maz@kernel.org>, Thomas Gleixner <tglx@linutronix.de>,
@@ -47,10 +47,10 @@ Cc: Marc Zyngier <maz@kernel.org>, Thomas Gleixner <tglx@linutronix.de>,
 	Jiri Slaby <jirislaby@kernel.org>,
 	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
 	devicetree@vger.kernel.org, linux-pci@vger.kernel.org
-Subject: Re: [PATCH v7 02/31] arm64/sysreg: Add GCIE field to ID_AA64PFR2_EL1
-Message-ID: <aGaofy9k0TtBOexm@arm.com>
+Subject: Re: [PATCH v7 03/31] arm64/sysreg: Add ICC_PPI_PRIORITY<n>_EL1
+Message-ID: <aGaojVPtAIwkZdqI@arm.com>
 References: <20250703-gicv5-host-v7-0-12e71f1b3528@kernel.org>
- <20250703-gicv5-host-v7-2-12e71f1b3528@kernel.org>
+ <20250703-gicv5-host-v7-3-12e71f1b3528@kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -59,10 +59,10 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20250703-gicv5-host-v7-2-12e71f1b3528@kernel.org>
+In-Reply-To: <20250703-gicv5-host-v7-3-12e71f1b3528@kernel.org>
 
-On Thu, Jul 03, 2025 at 12:24:52PM +0200, Lorenzo Pieralisi wrote:
-> Add field reporting the GCIE feature to ID_AA64PFR2_EL1 sysreg.
+On Thu, Jul 03, 2025 at 12:24:53PM +0200, Lorenzo Pieralisi wrote:
+> Add ICC_PPI_PRIORITY<n>_EL1 sysreg description.
 > 
 > Signed-off-by: Lorenzo Pieralisi <lpieralisi@kernel.org>
 > Reviewed-by: Jonathan Cameron <Jonathan.Cameron@huawei.com>
