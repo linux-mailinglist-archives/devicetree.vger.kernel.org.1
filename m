@@ -1,86 +1,88 @@
-Return-Path: <devicetree+bounces-192542-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-192543-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 088F4AF6FA8
-	for <lists+devicetree@lfdr.de>; Thu,  3 Jul 2025 12:04:53 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9D5F4AF6FA5
+	for <lists+devicetree@lfdr.de>; Thu,  3 Jul 2025 12:04:41 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id CFC7D4E63A8
-	for <lists+devicetree@lfdr.de>; Thu,  3 Jul 2025 10:03:59 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id ECCAD3AEC9D
+	for <lists+devicetree@lfdr.de>; Thu,  3 Jul 2025 10:04:14 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4A32C2E174A;
-	Thu,  3 Jul 2025 10:03:51 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 43EAF2E172C;
+	Thu,  3 Jul 2025 10:04:36 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=redhat.com header.i=@redhat.com header.b="ZSpfm78s"
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="gvFnyOSB"
 X-Original-To: devicetree@vger.kernel.org
-Received: from us-smtp-delivery-124.mimecast.com (us-smtp-delivery-124.mimecast.com [170.10.133.124])
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 854122DFA2E
-	for <devicetree@vger.kernel.org>; Thu,  3 Jul 2025 10:03:49 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=170.10.133.124
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 82A832D4B73
+	for <devicetree@vger.kernel.org>; Thu,  3 Jul 2025 10:04:34 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1751537031; cv=none; b=LsDYxbkTizgjE6qkhJ2Gj8UeZnszAO3MwyloBu7jUNzA8ZZcmPtlt6EmJJ/zvCW6vrFNh+pX5L2xo9XPj7rj6NWCS5bOQmTPg426lmD7GI8+QVW+FQZXqs+Wx0nUTfNaoK/D1o7TibIhMVbqJOtqE1X4jmHEyuqoe+sQOg6HU+A=
+	t=1751537076; cv=none; b=MgiK/ZiV9nUVpZlTVPacBqGt15KPPqKDG+BeothjK3fET+x/s/k0oMwwGNL56up18qpvznhLObdG+11EastONXSE/6MP+ynEpz4+IIadsDfhr2gc68bDSl6T6JX1d4Ic7HnuOoW1dxFb/dbLFWX8HvyMqDjJp1jxA8azDEkE4YM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1751537031; c=relaxed/simple;
-	bh=t2jpb7/Z5KgiLlt/9TEa+jgLsbUjBOFYGE/Oo12VC6Y=;
+	s=arc-20240116; t=1751537076; c=relaxed/simple;
+	bh=cyTu142mWOH15jjQQR8zgkNVkfWZan1wub5jXvzfRWY=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=WICITzS1RApOBp7FZUkTp2d+aRJK5tCC4tPRbUk42U+nXrlTKcbkAMmW5DYVIScpT1TWA5Y9X2/FI2hEHLZ7gSL54UQSnXZyraHQayXezgTlnzu91MoF/jXQQueYI2LRknu9F6CUDnUhONAkW4W0oLjDlogGxG/GKKyo4ssgtwI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=redhat.com; spf=pass smtp.mailfrom=redhat.com; dkim=pass (1024-bit key) header.d=redhat.com header.i=@redhat.com header.b=ZSpfm78s; arc=none smtp.client-ip=170.10.133.124
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=redhat.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=redhat.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
-	s=mimecast20190719; t=1751537028;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=9B3ihYuWOeAFzcnls83zQtIbBYRAt2J+SrasgFV6Zjc=;
-	b=ZSpfm78sb/acQ4XpbsIulma+mBERrQaA7p115HiYangNCCQTrx1BAx+ZcGqaXakP+2r+9D
-	pLVQImcm5jBV5TbmKYxjomImeCjRhRecQTxgbJnRWRdlaiDa+IF45nTb+wgxYznje+i4Ex
-	rkm+bri+tKbpHnIK96fwZPtFQa8BYYk=
-Received: from mail-wm1-f70.google.com (mail-wm1-f70.google.com
- [209.85.128.70]) by relay.mimecast.com with ESMTP with STARTTLS
- (version=TLSv1.3, cipher=TLS_AES_256_GCM_SHA384) id
- us-mta-688-tCTdPb45N6WGA2aADc2PSQ-1; Thu, 03 Jul 2025 06:03:46 -0400
-X-MC-Unique: tCTdPb45N6WGA2aADc2PSQ-1
-X-Mimecast-MFC-AGG-ID: tCTdPb45N6WGA2aADc2PSQ_1751537024
-Received: by mail-wm1-f70.google.com with SMTP id 5b1f17b1804b1-451deff247cso3700565e9.1
-        for <devicetree@vger.kernel.org>; Thu, 03 Jul 2025 03:03:45 -0700 (PDT)
+	 In-Reply-To:Content-Type; b=tphm2+QAI/Vt4hbTdcgkRbCULYlH86x7rlLt4Y3oCW6DDBNk8h3uhIAK/08+MpcUzkCyk0XkAZUCWW/hICeMu3QiHhWd+T6Sdbhn+/H/PVm6bW/rPQ5IYuSvU1qE+CaSy1OrwbO2sBH8eX78udF43bgcr8r45mCz44gBasMkLVI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=gvFnyOSB; arc=none smtp.client-ip=205.220.180.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
+Received: from pps.filterd (m0279870.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 5637ahSa018597
+	for <devicetree@vger.kernel.org>; Thu, 3 Jul 2025 10:04:33 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	oUtfiWChnTptD8GgF9Q1eg1hm3mYO2U2DifbMke4nQM=; b=gvFnyOSBx5Zh75xU
+	SLvcJThJvf6mWMXWPebbqcXw/LQKVtbzvTkao9o7jI2W3/eLsTxYdQOcYqabZbGQ
+	p+DRhgT1UPNJE3UiSUnW7SK+d6r+JHQ0Gnp50MYM119vTpQxOENAKRFxTIrI2uGV
+	Sx4otX5eeXvOsL5MJRxRr3N5bIdAgZ7pm12TeQjBbfboIvVwY33ocojvZkqnQ1gg
+	2kKZ9DcUj5Jvs4MWbh422O5U/tNiYfZC6fyzMDqc8yMjbaVDWOoB9IJycbJuIuz1
+	0anRYOh8dnf59cVcVUSQ9VK8ia2EoF5WYaXcUQ9DzSBgVpIa6fy69ZFLyZv9lsNF
+	TNHwFA==
+Received: from mail-qk1-f198.google.com (mail-qk1-f198.google.com [209.85.222.198])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 47j8fxr187-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
+	for <devicetree@vger.kernel.org>; Thu, 03 Jul 2025 10:04:33 +0000 (GMT)
+Received: by mail-qk1-f198.google.com with SMTP id af79cd13be357-7d0979e6263so42508785a.2
+        for <devicetree@vger.kernel.org>; Thu, 03 Jul 2025 03:04:33 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1751537024; x=1752141824;
+        d=1e100.net; s=20230601; t=1751537072; x=1752141872;
         h=content-transfer-encoding:in-reply-to:from:content-language
          :references:cc:to:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=9B3ihYuWOeAFzcnls83zQtIbBYRAt2J+SrasgFV6Zjc=;
-        b=P4hi85jB2i4JYDRuzvqMIGhDTHO/EG88yYojILRkd0+RtR/YWEZQOt7rHiuqZ2aQMj
-         1any9SKoPOaLlt09NPgD4Qbb6vFJnPuEPQoDADmPbpNW+2nhvulxClKHx+22Z+DEhnZ/
-         GSWWC06sCJGE+pBCDp0UNIkl4HPmMZJT+1+NKfk1EnsYIHT5XzYBzYipfWOyAKYWjY7p
-         3lAeOFU0+6Fkz03sIBsBD2kQxPV7azXjdCZjEeCpQOExJ0LzzOit4Wz83P+JwX9zn9Py
-         XOxaC3NBju8vjKw1L26gnE2A/hfL+KtjKpt+o7Hdg5v1Qv8c9pKRX5xD8Qfe7UMz3G/P
-         +8Pw==
-X-Forwarded-Encrypted: i=1; AJvYcCXq2yWjvefCGdrVHAGuSI9vnlos1HYgyfEtv/xAYULoO4AbaG3naNgjY0JLblbVvvtanP33pKQMX2zY@vger.kernel.org
-X-Gm-Message-State: AOJu0Yw46u8/cfbDiXeCd3r6GLfAMvuoTfj7zwKu5tq+e9uYurBAZtOd
-	N5a7f5/8v3F3TfgLzfG8Nj53LN+H+Qq35RozfiM5ydcKaqNB5ChCRhyRxmwMONDC9h8Bz23/sXv
-	aA10j+MXmci+4yEhrOlUs8ms2wmKLtX1z05VKmr5J2sPNLUl5Jen9m7bYtEwohSM=
-X-Gm-Gg: ASbGnctjGy6EN2ZR5tziSd8I5pfigIbu17qwgwt0rCg+EzFvVWFu7WMS3bMRs/KYJgN
-	h7JtAG6IWI0FzNPHLSQPTYCXZgSYGIP4CL7kzuqwgJOjtA65LRxccS3e3zaLjACfdbTb0F2/gaB
-	N2vOqLIxGi4+rMhhyHY1ajtLPuuf3vTRWSqXv5MWAxOKorRGvg54geopoNPYJlDOaXiNoonPOc2
-	YZSueuGKLlMAxfzkiqnf8Ki6Py3osfIMKhSUlVniSdZDqCPcPfUMKmi/4DGxr8Z8pICsyx6/8k9
-	yFFAU2Pmpq8N/zcMv0u5XLGyLFpj85O2qRQwk9u0Fw3Bm2HkImxc+Pw/PrQMPVl7oGo=
-X-Received: by 2002:a05:6000:2207:b0:3a5:8934:4959 with SMTP id ffacd0b85a97d-3b3450a2240mr1717353f8f.27.1751537024181;
-        Thu, 03 Jul 2025 03:03:44 -0700 (PDT)
-X-Google-Smtp-Source: AGHT+IEk+YmnervE/9rlaKNpBDo2E1RoLkBUfVqR7jtbbm8XVo68a+HMCOaP16O0KFNsHAN0CxbnUw==
-X-Received: by 2002:a05:6000:2207:b0:3a5:8934:4959 with SMTP id ffacd0b85a97d-3b3450a2240mr1717328f8f.27.1751537023692;
-        Thu, 03 Jul 2025 03:03:43 -0700 (PDT)
-Received: from ?IPV6:2a0d:3344:270a:b10:5fbf:faa5:ef2b:6314? ([2a0d:3344:270a:b10:5fbf:faa5:ef2b:6314])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-3aba76e40c0sm14156922f8f.59.2025.07.03.03.03.42
+        bh=oUtfiWChnTptD8GgF9Q1eg1hm3mYO2U2DifbMke4nQM=;
+        b=v+jA5SfwO7SWNKq3jmk0QgYvwPE4kzxSb4q4tTwURNpOmthsqCS9/Hr8Fo9odh3KIx
+         EUcKAImxCArWbW4HWI2s2/2S5p3C08RwD1HK1fksjifLca0HPqfJ7RGCOb+0JebWZxZz
+         UsgpRF6KXLwGmKWAHGrTsZPltaCKtGVA5WZrTOBGWzpUmqPSYbXlMaLuifmPKgp3Jbu+
+         QTjGhBRUHiCBcfAj5pt8P0yMZ5RXJaS0w/3NXru4IGOTa7qNGFrmn6osE1BAcZSagYuj
+         IrPqkCy12Jf9fDBt2bf1ZhQygGxyu4H/F8wTcpIAqiBQwLK3Dw0lxaMPBbk4hTccGFxE
+         dWng==
+X-Forwarded-Encrypted: i=1; AJvYcCVXADVnIszNmk0C1PARxFpOI6F52B80HtMlNXi6BNlcrf6l5r1PT3trxF2mwANioaPn3/DmxU1i9um1@vger.kernel.org
+X-Gm-Message-State: AOJu0YzafmHchSyahWQkON8Nq//qgBXYPWDX2l1Cxj/6IsAN8MS9e/09
+	hJYnz9xO8lAh30FUn7ohrilfjiNqoQzRvD7AhOu3o1vs83wk/dpwpGusKfbo8p24uo65gGFQJr0
+	cLKc9rA2Ohj6uphOlFzk065HxRabtyYrlDcgxAmtStPLVXP/DkcCoIU9y3zCWL1FU
+X-Gm-Gg: ASbGncvT1BRWTJUqUmqFenKPp0BSArVzLd0qE0Oxx5DF1cHAxaOS2ECKWPx+uU7e0J9
+	SdBQNFMfO61HhV0L7QLGWJuBUoWsNe9txeKDVUOQx8cwDFyI8PqmNBzHGSDlRER6/vK3uEuwLiO
+	PXTQvaHgoEmn2wcMdM1xjki+c58XxlK8ROREoH/e1P1c/sp0YHFIroZqB2lqNhvqj6yLtmxlbam
+	UzUc/txYtUww1zFJ8x5AOoY5vtrhPEFh0IXRygGDhUkkdTDjlONz/jPj3cVkzZHguqXC67QDqyL
+	MQ1UL9Xx2GZ5kY3wE2HbFmxAooEIR8Kb/av+6nJpHW4mpq5vhvKRUwx7zvwasGlRI0uxjySTPIH
+	mHeNcI297
+X-Received: by 2002:a05:620a:170a:b0:7d3:c69e:267 with SMTP id af79cd13be357-7d5d3f81630mr79845785a.12.1751537072319;
+        Thu, 03 Jul 2025 03:04:32 -0700 (PDT)
+X-Google-Smtp-Source: AGHT+IG2LJCfxQ4Vlc6G/INeD4FSxm9U7KnRLIwjqUdsVZx1frVxI2yUcjNbNlDmF6QyLAOxpw/4TA==
+X-Received: by 2002:a05:620a:170a:b0:7d3:c69e:267 with SMTP id af79cd13be357-7d5d3f81630mr79843585a.12.1751537071886;
+        Thu, 03 Jul 2025 03:04:31 -0700 (PDT)
+Received: from [192.168.1.114] (83.9.29.190.neoplus.adsl.tpnet.pl. [83.9.29.190])
+        by smtp.gmail.com with ESMTPSA id 4fb4d7f45d1cf-60e2a743d53sm4520080a12.28.2025.07.03.03.04.29
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 03 Jul 2025 03:03:43 -0700 (PDT)
-Message-ID: <56cb86e1-db38-43c9-857b-f14bb4a5ecd8@redhat.com>
-Date: Thu, 3 Jul 2025 12:03:41 +0200
+        Thu, 03 Jul 2025 03:04:31 -0700 (PDT)
+Message-ID: <a453bd90-b7c7-42eb-b769-b4c87b6dac12@oss.qualcomm.com>
+Date: Thu, 3 Jul 2025 12:04:28 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -88,72 +90,85 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH net v5 0/4] net: phy: bcm54811: Fix the PHY initialization
-To: =?UTF-8?B?S2FtaWwgSG9yw6FrICgyTik=?= <kamilh@axis.com>,
- Florian Fainelli <florian.fainelli@broadcom.com>,
- Jakub Kicinski <kuba@kernel.org>
-Cc: bcm-kernel-feedback-list@broadcom.com, andrew@lunn.ch,
- hkallweit1@gmail.com, linux@armlinux.org.uk, davem@davemloft.net,
- edumazet@google.com, krzk+dt@kernel.org, conor+dt@kernel.org,
- netdev@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, robh@kernel.org, andrew+netdev@lunn.ch,
- horms@kernel.org, corbet@lwn.net, linux-doc@vger.kernel.org
-References: <20250701075015.2601518-1-kamilh@axis.com>
- <20250702150216.2a5410b3@kernel.org>
- <da323894-7256-493d-a601-fe0b0e623b00@broadcom.com>
- <b89e3a66-3c98-45b3-9f16-8247ac1dc1f4@axis.com>
+Subject: Re: [PATCH v2 1/2] dt-bindings: pinctrl: document the Milos Top Level
+ Mode Multiplexer
+To: Luca Weiss <luca.weiss@fairphone.com>,
+        Krzysztof Kozlowski <krzk@kernel.org>
+Cc: Bjorn Andersson <andersson@kernel.org>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley
+ <conor+dt@kernel.org>,
+        ~postmarketos/upstreaming@lists.sr.ht, phone-devel@vger.kernel.org,
+        linux-arm-msm@vger.kernel.org, linux-gpio@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+References: <20250702-sm7635-pinctrl-v2-0-c138624b9924@fairphone.com>
+ <20250702-sm7635-pinctrl-v2-1-c138624b9924@fairphone.com>
+ <20250703-daring-burgundy-limpet-a1c97e@krzk-bin>
+ <DB293G0PC5P8.13IW22M6DDESM@fairphone.com>
 Content-Language: en-US
-From: Paolo Abeni <pabeni@redhat.com>
-In-Reply-To: <b89e3a66-3c98-45b3-9f16-8247ac1dc1f4@axis.com>
+From: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
+In-Reply-To: <DB293G0PC5P8.13IW22M6DDESM@fairphone.com>
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: 7bit
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwNzAzMDA4MiBTYWx0ZWRfX44GHvaay16Bn
+ HIOVY350NcDaHNaWHNXO5rtF+L7OCpiGY9DQZe0WKTeveoSPM5pzP1DJ7MR6DHHbnKnkDi1wMX9
+ Y8+u0pquUM4EqcBMQGtdQyaukY4KGKfhUQppw9Wjub2GlpLHp2O/EXZcWqOu8tV09kggFYBbIjd
+ aYXhk4lKJPs+QVgI/r/Dn8nPjJJenMCRWJErZGHPwtzYJyqbNVC33NVE8e6IoT8/VGI1BhEOU3u
+ PS1wTS2aNSNvuxZHQs92GonstwQCw1N8J5yy2LuM4iVj6QyCkzSVfUvq9m6Zu4GnqDbaGuR8byR
+ l10XiRcy5YO2RpESQAFacgCRXF65sRvgefVcSPXm0WGxfpgNZSn647s3P/kbl0s4A/hSwA31h0E
+ PvAQHQn9rZNkSaxTruxhUlwMcuMrhde90M3CC9pkG0z1uBsGJo2lG03JQ/KLIz03y0VPQ57m
+X-Proofpoint-GUID: x-6c-NiWs_nk93ICMbf7ZtxuCeTsKo-s
+X-Proofpoint-ORIG-GUID: x-6c-NiWs_nk93ICMbf7ZtxuCeTsKo-s
+X-Authority-Analysis: v=2.4 cv=TqPmhCXh c=1 sm=1 tr=0 ts=686655b1 cx=c_pps
+ a=qKBjSQ1v91RyAK45QCPf5w==:117 a=fKQzr7EGRj+VoE0XNsDNvQ==:17
+ a=IkcTkHD0fZMA:10 a=Wb1JkmetP80A:10 a=VwQbUJbxAAAA:8 a=EUspDBNiAAAA:8
+ a=K2Eths-FuMJ0g_30MjIA:9 a=QEXdDO2ut3YA:10 a=NFOGd7dJGGMPyQGDc5-O:22
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1099,Hydra:6.1.7,FMLib:17.12.80.40
+ definitions=2025-07-03_03,2025-07-02_04,2025-03-28_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ priorityscore=1501 bulkscore=0 mlxlogscore=999 suspectscore=0 adultscore=0
+ phishscore=0 malwarescore=0 clxscore=1015 lowpriorityscore=0 mlxscore=0
+ impostorscore=0 spamscore=0 classifier=spam authscore=0 authtc=n/a authcc=
+ route=outbound adjust=0 reason=mlx scancount=1 engine=8.19.0-2505280000
+ definitions=main-2507030082
 
-On 7/3/25 11:03 AM, Kamil Horák (2N) wrote:
-> On 7/3/25 01:46, Florian Fainelli wrote:
->> On 7/2/25 15:02, Jakub Kicinski wrote:
->>> On Tue, 1 Jul 2025 09:50:11 +0200 Kamil Horák - 2N wrote:
->>>> PATCH 1 - Add MII-Lite PHY interface mode as defined by Broadcom for
->>>>     their two-wire PHYs. It can be used with most Ethernet controllers
->>>>     under certain limitations (no half-duplex link modes etc.).
->>>>
->>>> PATCH 2 - Add MII-Lite PHY interface type
->>>>
->>>> PATCH 3 - Activation of MII-Lite interface mode on Broadcom bcm5481x
->>>>     PHYs
->>>>
->>>> PATCH 4 - Fix the BCM54811 PHY initialization so that it conforms
->>>>     to the datasheet regarding a reserved bit in the LRE Control
->>>>     register, which must be written to zero after every device reset.
->>>>     Also fix the LRE Status register reading, there is another bit to
->>>>     be ignored on bcm54811.
->>>
->>> I'm a bit lost why the first 3 patches are included in a series for net.
->>> My naive reading is we didn't support this extra mode, now we do,
->>> which sounds like a new feature.. Patch 4, sure, but the dependency
->>> is not obvious.
+
+
+On 03-Jul-25 09:44, Luca Weiss wrote:
+> On Thu Jul 3, 2025 at 9:41 AM CEST, Krzysztof Kozlowski wrote:
+>> On Wed, Jul 02, 2025 at 05:56:16PM +0200, Luca Weiss wrote:
+>>> Document the Top Level Mode Multiplexer on the Milos Platform.
 >>
->> I don't see the dependency either, at least not in an explicit way. 
->> Kamil, could patch #4 stand on its own and routed through "net" while 
->> patches 1-3 are routed through "net-next"?
-> It can be done this way, however, even the patch #3 is effectively a 
-> fix, not new feature, because the bcm54811 PHY in MLP package only has 
-> MII-Lite interface available externally. As far I know, there is no BGA 
-> casing available for bcm54811 (unlike bcm54810, that one having both MLP 
-> and BGA). Thus, it cannot function without being switched to MII-Lite 
-> mode. The introduction of MII-Lite itself is clearly a new feature and 
-> it is even (theoretically) available for any MII-capable PHY. So if 
-> putting it all to net it is really impossible or contrary to the 
-> net-next vs. net selection rules, let's divide it....
-> To get fully functional, bcm54811-based networking, all patches are 
-> necessary so any other user out there must wait for both branches to join.
+>> What is Milos platform? Does it have some sort of model number how we
+>> usually expect? Wasn't this SM7325 or similar?
+>>
+>> The problem with such new naming that it awfully sounds like family
+>> names, so just expand the name and explain it.
+> 
+> Please go argue with Bjorn/Konrad about this, wasn't my idea.
+> 
+> https://lore.kernel.org/linux-arm-msm/aGMI1Zv6D+K+vWZL@hu-bjorande-lv.qualcomm.com/
+> https://lore.kernel.org/linux-arm-msm/b98d305b-247f-415b-8675-50d073452feb@oss.qualcomm.com/
 
-The above makes sense to me, but I think it would be nice to capture
-some of this info in the cover letter - the fact that many people were
-confused by the series is an hint the info was indeed missing and required.
+Milos is the "real-est" name of this silicon. All the associated
+S[AM]|QC[MS]s are just variations of it, with different fusing.
 
-Please resubmit with an extended cover letter, thanks!
-(unless Florian jumps in and explicitly asks for something different :-P)
+You'll stumble upon it across e.g. firmware build strings, as
+well as in any documentation pieces.
 
-Paolo
+There are various internal reasons for the switch, but the most
+obvious external-facing one is not to have the user buy a devkit
+and wonder whether they should use QCS9100 or QCS9075 DTB, and
+why there's zero drivers code for these magic numbers (they
+include SA8775P). We can simply point them to "codename" and
+all C code will refer to it as well.
 
+As for external reviewers not knowing what the platform name
+refers to, this is nothing new - AMD submits colorful fish names
+and it's broadly accepted practice
+
+Konrad
 
