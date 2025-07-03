@@ -1,172 +1,114 @@
-Return-Path: <devicetree+bounces-192737-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-192738-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id B66C4AF7BB2
-	for <lists+devicetree@lfdr.de>; Thu,  3 Jul 2025 17:27:18 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id D3EFAAF7C01
+	for <lists+devicetree@lfdr.de>; Thu,  3 Jul 2025 17:30:58 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id C8BC81CA6377
-	for <lists+devicetree@lfdr.de>; Thu,  3 Jul 2025 15:21:00 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 0FD101CC13F7
+	for <lists+devicetree@lfdr.de>; Thu,  3 Jul 2025 15:23:56 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3E2D42EF9A6;
-	Thu,  3 Jul 2025 15:19:20 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="WYW0qcLi"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B5DEC2EF673;
+	Thu,  3 Jul 2025 15:21:24 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from relay7-d.mail.gandi.net (relay7-d.mail.gandi.net [217.70.183.200])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from smtp.gentoo.org (woodpecker.gentoo.org [140.211.166.183])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9E47C2EAD10;
-	Thu,  3 Jul 2025 15:19:17 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.70.183.200
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 27D122EAD10;
+	Thu,  3 Jul 2025 15:21:22 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=140.211.166.183
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1751555960; cv=none; b=Kf4TQDISydEONf0NBhH9z7hDdte3hLJJOtRd4Grhtx2Qkz8X/XWp/ATz1pO2DDnQokM+LEPKoyGP3rxeO/pw0Rn86h19d2MM5d1cjR/3f+5DdkbpldHt2sdaFH+CZ6YeHN0K3XhbFLecjjaEMTuezx2yvgK8ei9S5cmoRWTf+M8=
+	t=1751556084; cv=none; b=svuTglIRxxgwD2RXbfOtAAaAlvFdsXl7B4dBMtXo8uBklFBf/JtjIGf/ugS5P2fh1cvSBcJRxv69xn1KkGPbOUoUmg2Jp7HFkLws8CyFN5UuXPHa2uDPhOJVGB9jQSmRNVwITCsS7zXdXUjvTnB/iROViiYQJ3etpSH2JLsH9Xs=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1751555960; c=relaxed/simple;
-	bh=7R1O2w50zFVFdltzoczZuuzjYk84Ji5n0+6r3bBzZuw=;
-	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=L74oY4TMeaGYZ0r2aJMkQXkpLsLUFK4t/LhNC/Li2Qt9eMbawgU+nwa/hHeG1+SCiZ0nlXBeoYN0Tfg9/E67ROU1I3Avdqy1bQ2viAV5X7UfS245tr/OFVTQ4gQuwpWS1kCuLOScF/JXD2MAcnrmFE2OPNHvJvrQRKXnEBYdNCY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=WYW0qcLi; arc=none smtp.client-ip=217.70.183.200
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
-Received: by mail.gandi.net (Postfix) with ESMTPSA id 36B6D4433D;
-	Thu,  3 Jul 2025 15:19:08 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
-	t=1751555949;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=3vPbA55GiZOX20WwUdHkWkbBRAgEIfKrszAkQo+WB4o=;
-	b=WYW0qcLiT4vUm+pNNStTnW831aKTemEVwc+gCHUY6xKk/NtXaJjaqxwxpWv2WdW0e2BQ4Y
-	kf0PKD0b6P8isXfU4Vc5vefI726O2iG2WkLgbXFskKMM5oJevjCE/gm5cjHtLPvTm6l8dj
-	sCbTHLYLLlWbpPWWYyAIDOk6AYyT7C3BWpi9/XugIR9g/kCp35W032g2NUESsKCpmkegcv
-	cBUWO9vPpc918ug03XtOwZCrPgr6tGumYbpULTMrSRc7HLdZ6Ve9ZsX/G/ubSAwH48J7Yp
-	HUxPkRrUHwUfbJwccKfKpsC0htQC1s9PagdzubfbLV3Taoavcmx8aY64gijLiA==
-Date: Thu, 3 Jul 2025 17:19:07 +0200
-From: Herve Codina <herve.codina@bootlin.com>
-To: Ayush Singh <ayush@beagleboard.org>
-Cc: conor+dt@kernel.org, devicetree@vger.kernel.org, krzk+dt@kernel.org,
- linux-i2c@vger.kernel.org, linux-kernel@vger.kernel.org,
- luca.ceresoli@bootlin.com, robh@kernel.org, thomas.petazzoni@bootlin.com,
- wsa+renesas@sang-engineering.com
-Subject: Re: [RFC PATCH 0/3] i2c: Introduce i2c bus extensions
-Message-ID: <20250703171907.12b00c43@bootlin.com>
-In-Reply-To: <8859d983-f4ff-498b-bb0b-eb84206ad969@beagleboard.org>
-References: <20250205173918.600037-1-herve.codina@bootlin.com>
-	<525877c8-6c64-45b3-b4aa-a52768e59b86@beagleboard.org>
-	<20250613093016.43230e3b@bootlin.com>
-	<8859d983-f4ff-498b-bb0b-eb84206ad969@beagleboard.org>
-Organization: Bootlin
-X-Mailer: Claws Mail 4.3.1 (GTK 3.24.43; x86_64-redhat-linux-gnu)
+	s=arc-20240116; t=1751556084; c=relaxed/simple;
+	bh=9Hhn9GQn02LO6z2+r0noa5JITY+/qY7sfhXj8vfzzj4=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=XVJZEr5gkiCzFfoVY6omJa5DpAGE6XaBtzE3LqMXsxONpY+yDBIXbANBnwDlwPzSp+IpkmUIqYg2l/mV0dtYMH884ccZ/n/JhDNV6oJUt0dX2/cln7loB6xTGtNtiiF/gLi0RskhNQJbuggaIfeWoDmJETqDqWi54MmT3qAJnRo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gentoo.org; spf=pass smtp.mailfrom=gentoo.org; arc=none smtp.client-ip=140.211.166.183
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gentoo.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gentoo.org
+Received: from localhost (unknown [116.232.48.207])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange secp256r1 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+	(No client certificate requested)
+	(Authenticated sender: dlan)
+	by smtp.gentoo.org (Postfix) with ESMTPSA id 1E8013420E5;
+	Thu, 03 Jul 2025 15:21:21 +0000 (UTC)
+Date: Thu, 3 Jul 2025 15:21:17 +0000
+From: Yixun Lan <dlan@gentoo.org>
+To: Philipp Zabel <p.zabel@pengutronix.de>
+Cc: Alex Elder <elder@riscstar.com>, robh@kernel.org, krzk+dt@kernel.org,
+	conor+dt@kernel.org, mturquette@baylibre.com, sboyd@kernel.org,
+	paul.walmsley@sifive.com, palmer@dabbelt.com, aou@eecs.berkeley.edu,
+	alex@ghiti.fr, heylenay@4d2.org, inochiama@outlook.com,
+	guodong@riscstar.com, devicetree@vger.kernel.org,
+	linux-clk@vger.kernel.org, spacemit@lists.linux.dev,
+	linux-riscv@lists.infradead.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v11 0/6] reset: spacemit: add K1 reset support
+Message-ID: <20250703152117-GYA312388@gentoo>
+References: <20250613011139.1201702-1-elder@riscstar.com>
+ <20250618111737-GYA157089@gentoo>
+ <20250702061717-GYA304216@gentoo>
+ <0580d4e254705be3765be168ce17c8a1c2e12f8f.camel@pengutronix.de>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-X-GND-State: clean
-X-GND-Score: -100
-X-GND-Cause: gggruggvucftvghtrhhoucdtuddrgeeffedrtdefgddvtdeivdcutefuodetggdotefrodftvfcurfhrohhfihhlvgemucfitefpfffkpdcuggftfghnshhusghstghrihgsvgenuceurghilhhouhhtmecufedtudenucesvcftvggtihhpihgvnhhtshculddquddttddmnecujfgurhepfffhvfevuffkjghfohfogggtgfesthekredtredtjeenucfhrhhomhepjfgvrhhvvgcuvehoughinhgruceohhgvrhhvvgdrtghoughinhgrsegsohhothhlihhnrdgtohhmqeenucggtffrrghtthgvrhhnpeevleefvdeujedvheekvdegleevjefgtdeuieetveefhedvvdejleeuhedvfeetieenucffohhmrghinhepghhithhhuhgsrdgtohhmpdhkvghrnhgvlhdrohhrghdpsghoohhtlhhinhdrtghomhenucfkphepvdgrtddumegvtdgrmedvkeehmegsleektdemvgegtdgtmeeitgegfeemsgehsggsmegrgedvkeenucevlhhushhtvghrufhiiigvpedtnecurfgrrhgrmhepihhnvghtpedvrgdtudemvgdtrgemvdekheemsgelkedtmegvgedttgemiegtgeefmegshegssgemrgegvdekpdhhvghloheplhhotggrlhhhohhsthdpmhgrihhlfhhrohhmpehhvghrvhgvrdgtohguihhnrgessghoohhtlhhinhdrtghomhdpnhgspghrtghpthhtohepuddtpdhrtghpthhtoheprgihuhhshhessggvrghglhgvsghorghrugdrohhrghdprhgtphhtthhopegtohhnohhrodgutheskhgvrhhnvghlrdhorhhgpdhrtghpthhto
- hepuggvvhhitggvthhrvggvsehvghgvrhdrkhgvrhhnvghlrdhorhhgpdhrtghpthhtohepkhhriihkodgutheskhgvrhhnvghlrdhorhhgpdhrtghpthhtoheplhhinhhugidqihdvtgesvhhgvghrrdhkvghrnhgvlhdrohhrghdprhgtphhtthhopehlihhnuhigqdhkvghrnhgvlhesvhhgvghrrdhkvghrnhgvlhdrohhrghdprhgtphhtthhopehluhgtrgdrtggvrhgvshholhhisegsohhothhlihhnrdgtohhmpdhrtghpthhtoheprhhosghhsehkvghrnhgvlhdrohhrgh
-X-GND-Sasl: herve.codina@bootlin.com
+In-Reply-To: <0580d4e254705be3765be168ce17c8a1c2e12f8f.camel@pengutronix.de>
 
-Hi Ayush,
+Hi Philipp,
 
-On Thu, 3 Jul 2025 16:56:20 +0530
-Ayush Singh <ayush@beagleboard.org> wrote:
+On 12:14 Wed 02 Jul     , Philipp Zabel wrote:
+> On Mi, 2025-07-02 at 06:17 +0000, Yixun Lan wrote:
+> > Hi Philipp,
+> > 
+> > On 11:17 Wed 18 Jun     , Yixun Lan wrote:
+> > > Hi ALL,
+> > >   As the reset driver going through several review cycles,
+> > > it becomes quite calm down now, I'd like to request to merge
+> > > it into v6.17, because various drivers (pwm, emac..) will depend
+> > > on it, even in the worst case if there is problem, I believe Alex
+> > > will help to address..
+> > > 
+> > > Hi Philipp,
+> > >   I'd like to query if you willing to take the reset driver -
+> > > patch [5/6] through the reset tree? It sounds more intuitive,
+> > > which also will avoid potential conflicts with Kconfig/Makefile..
+> > >   I've created a prerequisite immutable tag which could be
+> > > shared between clock and reset subsytem. It's tag -
+> > > spacemit-reset-deps-for-6.17 at SpacemiT's SoC tree [1], which 
+> > > effectively are patches [1-4] of this series.
+> > > But, to make your life easy, I've also applied patch [5/6] at tag
+> > > spacemit-reset-drv-for-6.17 [2] which has a small macro adjustment
+> > > requested by Alex at [3]
+> > >   Let me know what you think of this, thanks
+> > > 
+> > Just want to ping this, what do you want from my side to proceed?
+> > 
+> > or do you want me to send a more formal Pull-Request for [1],
+> > then you can apply patch [5/6] (still need to fix the macro of [3])
+> 
+> Please send a v12, so that the latest modifications are on the list.
+> 
+> I'd prefer�to either pick patches 1 and 5 from the list, or, if you
+> provide a tag with only patch 1 to be pulled into both clk and reset
+> trees, to merge that and then pick patch 5.
+> 
+I will prepare a tag of only patch 1, and leave you to pick patch 5.
 
-> On 6/13/25 13:00, Herve Codina wrote:
-> 
-> > Hi Ayush,
-> >
-> > On Thu, 12 Jun 2025 13:22:45 +0530
-> > Ayush Singh <ayush@beagleboard.org> wrote:
-> >  
-> >> I have tested this patch series for use with pocketbeagle 2 connector
-> >> driver [0]. To get a better idea how it looks in real devicetree, see
-> >> the base tree [1] and the overlay [2]. Since it also used gpio and pwm
-> >> nexus nodes, along with providing pinmux for pins, it can provide a
-> >> better picture of how the different pieces (export-symbols, nexus nodes,
-> >> etc) look when combined.  
-> > Nice. Happy to see that I am no more alone with a system using these
-> > features.
-> >  
-> >>
-> >> I also have a question for Herve. Do you already have any working
-> >> patches for similar extension for SPI and UART in some private tree?  
-> > No, I didn't do anything related to SPI nor UART.
-> >
-> > On my system, no SPI nor UART are wired to my connector and so, I haven't
-> > got any needs to implement extension busses for SPI an UART (serial dev bus)
-> > nor any support for nexus nodes for other kind of components.
-> >
-> > Best regards,
-> > Hervé  
-> 
-> 
-> I have added SPI bus extension to my kernel tree [0]. Now, the techlab 
-> cape (other than mikrobus port) works using export-symbols + i2c and spi 
-> bus extension + eeprom auto detection.
-> 
-> 
-> Here is a list of everything currently working on the tree:
-> 
-> 1. EEPROM based auto-detection.
-> 
-> 2. SPI
-> 
-> 3. I2C
-> 
-> 4. PWM
-> 
-> 5. GPIO
-> 
-> 
-> Missing:
-> 
-> 1. UART (Don't have a cape that has something using the UART yet. Maybe 
-> need to experiment with MikroBUS).
-> 
-> 
-> Not quite sure what else to do to move things forward.
-> 
-> 
-> Best Regards,
-> 
-> Ayush Singh
-> 
-> 
-> [0]: https://github.com/Ayush1325/linux/tree/beagle-cape-v1
-> 
+So in this way, I can handle the reset - take patch 2-4 via clk tree,
+and patch 6 via SoC tree..
 
-I've just looked at your code related to SPI. It is closed to the I2C code
-and that's pretty nice!
+I've sent a PR here
+ https://lore.kernel.org/all/20250703151823-GYA312602@gentoo/ 
 
-I think to move forward we have to wrote the SPI bus extension binding and
-propose the binding + the code upstream.
-
-Compared to I2C bus extension, only one repo is involved for SPI, the Linux
-kernel repo. On I2C bus extension, I am stuck on the binding which is a
-modification on the dtschema repo [0].
-
-The SPI binding modifications for SPI bus extension will probably take place
-in spi-controller.yaml [1] and should be pretty close to modifications done
-for the I2C binding.
-
-When one of the two series (I2C or SPI) is accepted, it will be easier
-for the other one to follow (Same concept, same kind of binding, same kind
-of code).
-
-The advantage of the SPI series, I think, is that only one repo is involved.
-
-Best regards,
-Hervé
-
-[0]: https://lore.kernel.org/all/20250618082313.549140-1-herve.codina@bootlin.com/
-[1]: https://elixir.bootlin.com/linux/v6.16-rc4/source/Documentation/devicetree/bindings/spi/spi-controller.yaml
+-- 
+Yixun Lan (dlan)
 
