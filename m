@@ -1,206 +1,114 @@
-Return-Path: <devicetree+bounces-192504-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-192503-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id F2F4AAF6E12
-	for <lists+devicetree@lfdr.de>; Thu,  3 Jul 2025 11:03:06 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id E4798AF6E05
+	for <lists+devicetree@lfdr.de>; Thu,  3 Jul 2025 11:01:57 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 793201C232B1
-	for <lists+devicetree@lfdr.de>; Thu,  3 Jul 2025 09:03:04 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id E3C4F176573
+	for <lists+devicetree@lfdr.de>; Thu,  3 Jul 2025 09:01:57 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7DC8D2D4B69;
-	Thu,  3 Jul 2025 09:02:35 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9EBC12D0C94;
+	Thu,  3 Jul 2025 09:01:53 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=pigmoral.tech header.i=junhui.liu@pigmoral.tech header.b="qXVoJZH4"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="JaNj9cTv"
 X-Original-To: devicetree@vger.kernel.org
-Received: from sender4-op-o15.zoho.com (sender4-op-o15.zoho.com [136.143.188.15])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5436A2D46D8;
-	Thu,  3 Jul 2025 09:02:32 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=pass smtp.client-ip=136.143.188.15
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1751533355; cv=pass; b=I66GwIrWSxpMW6EXDIZsd9OOQSYL+fREVNiGix/H6l7fxvmm+71SrRWR5lL6SRYM736w8vzYxvp74fAmeJDEM3cRsO4ctGphNLX8KW+F63KQVtcU0yqiiV7mQWgemMWMFW2iYGHm1Ky78PzfiFds578gOOvzLaIPoM5CpSb5Xt8=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1751533355; c=relaxed/simple;
-	bh=1x9noGp/YyjeYTaho9SwTajjJAkTELQbXuhXq6ypjTQ=;
-	h=MIME-Version:From:To:In-Reply-To:Cc:Subject:Message-ID:Date:
-	 Content-Type; b=CgauUw8aqm3WjwYDN7paiAPwiMLd2ewvJA3nF5FcyzXlmgU1yLFgHAIc69bz9gT44gNvGIQGX78V60dlgosvk/ZZoRCJNgyM/dwFTMYfcjuDmfCPb53yRNJKJukjGrQI0h/l6jP9Hoo46CIkb65oQI1+xGStwfN9Z8NEWLJPs4g=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pigmoral.tech; spf=pass smtp.mailfrom=pigmoral.tech; dkim=pass (1024-bit key) header.d=pigmoral.tech header.i=junhui.liu@pigmoral.tech header.b=qXVoJZH4; arc=pass smtp.client-ip=136.143.188.15
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pigmoral.tech
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=pigmoral.tech
-ARC-Seal: i=1; a=rsa-sha256; t=1751533249; cv=none; 
-	d=zohomail.com; s=zohoarc; 
-	b=KKVvBkeo3qxgezrXeVABLPlIw6eJ6RvPjxqCLLPR4Wnc8F2rJVoSc/AEIptXtdu4xG8yAAuWEOf9cdgo/kBECOzxLRuHqdPPDDAw/HmE/CuvN4cezsUdL0OCJ0GWzVrpS1LI2/Ciu1SQcN+OkAXEc0lqPwn2fEYKP8P9g+y1ACg=
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=zohomail.com; s=zohoarc; 
-	t=1751533249; h=Content-Type:Content-Transfer-Encoding:Cc:Cc:Date:Date:From:From:In-Reply-To:MIME-Version:Message-ID:Subject:Subject:To:To:Message-Id:Reply-To; 
-	bh=1x9noGp/YyjeYTaho9SwTajjJAkTELQbXuhXq6ypjTQ=; 
-	b=TRDiAOb2YJWhEJMbR3dNNALR4dGoxA+pcqocs96/m/wERWsEejxGwuKEswbte2hd4eCHqJ37IJcmfQpdtcXRghKbNQxmFwIBZEz0JQqpF5QPbA5aIHFiSRdlqguMcVL2q8hyAMcP+FHQDlYCVZSao3IGgWy6LHN9cWiT2WoY9Kg=
-ARC-Authentication-Results: i=1; mx.zohomail.com;
-	dkim=pass  header.i=pigmoral.tech;
-	spf=pass  smtp.mailfrom=junhui.liu@pigmoral.tech;
-	dmarc=pass header.from=<junhui.liu@pigmoral.tech>
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; t=1751533249;
-	s=zmail; d=pigmoral.tech; i=junhui.liu@pigmoral.tech;
-	h=MIME-Version:From:From:To:To:In-Reply-To:Cc:Cc:Subject:Subject:Message-ID:Date:Date:Content-Type:Content-Transfer-Encoding:Message-Id:Reply-To;
-	bh=1x9noGp/YyjeYTaho9SwTajjJAkTELQbXuhXq6ypjTQ=;
-	b=qXVoJZH4IPSkxKuRWuy6EJrTq8XQNfEpvvT6bKfDt6znEZxc8MF2TGctYNIe6epI
-	Q7bHijO9JmxE/LeFbyiARWeQSK/7g+i/aq/na+ZyVvlj+wBYaPLB93n3J6D4yIr5+r1
-	l5cmMXZN430EDk9vglEow6IExvLngACe4mS9YahQ=
-Received: by mx.zohomail.com with SMTPS id 175153324571033.72754487040095;
-	Thu, 3 Jul 2025 02:00:45 -0700 (PDT)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 741EB2D0292;
+	Thu,  3 Jul 2025 09:01:53 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1751533313; cv=none; b=mPI9SvGtWtiaDiHKjebO/GED2RbUqL8aAIZRKlQTmH7zE6cvn77K82Vct02EOndsbWr1XHXd84i5HsikC+2Ek7NwmK0QuQxfj/hm8zNbGYgTjG9/R/Wm3ZpvDeiNlW/CwulUeBrnpiTEGPqPi4M4jnHq9QaMRHNC4PYYa6uZq7I=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1751533313; c=relaxed/simple;
+	bh=NAPX3z+5Hzs1tzhGj4iLZXmU149A+uDXJDgyn5k9ggk=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=sXWnncl9kuEUATWR5UZP5SRbjtEp8tlG5YFgUWC/eLRjl/ckobrgJDpl9p44MACM8oC7KXEaUb3d33ElE6zC8CfM8/JYIrnSNOFgCg5bIyS5Dj5vUcDa8ZFXxWSumZ3CDrvc9bN4MwszW81fG6mFYHkbNUf4m69OL5FNZOfUYNQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=JaNj9cTv; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 7961BC4CEE3;
+	Thu,  3 Jul 2025 09:01:52 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1751533313;
+	bh=NAPX3z+5Hzs1tzhGj4iLZXmU149A+uDXJDgyn5k9ggk=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=JaNj9cTvilRL1BXp9dI71RP1VExcmeRml6tzrJQmopCX2CCjbnw4R5UF9887xL0F7
+	 Xifb8roVNzKhu7Sah44k3nkKKRwb4NHGCHLJPA+9e7JKMwQbjeKptez22c/MsErYQx
+	 V2ZqTO/NHMkUPFW+WqUfL2gE42k+2R3s20vWb7SVh42DbAvOjaCEX9K9QbTS5423+W
+	 GS6yNoKt9meth48YXsi9sFRkkVSSrEeN8BF/qdZfgm/6haetTQB4c2zkSfco6mXL21
+	 OT+MnJSDdWXOUAHOlLEJhteMpR0tXlg6xdj2wj1omjH0zwTMLXzVZuEPott84R64Yz
+	 8roZc413BpGKA==
+Date: Thu, 3 Jul 2025 11:01:50 +0200
+From: Maxime Ripard <mripard@kernel.org>
+To: Kaustabh Chakraborty <kauschluss@disroot.org>
+Cc: Neil Armstrong <neil.armstrong@linaro.org>, 
+	Jessica Zhang <quic_jesszhan@quicinc.com>, David Airlie <airlied@gmail.com>, 
+	Simona Vetter <simona@ffwll.ch>, Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, 
+	Thomas Zimmermann <tzimmermann@suse.de>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Jessica Zhang <jessica.zhang@oss.qualcomm.com>, dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, Conor Dooley <conor.dooley@microchip.com>
+Subject: Re: [PATCH v3 1/2] dt-bindings: display: panel: document Samsung
+ S6E8AA5X01 panel driver
+Message-ID: <20250703-true-archetypal-skylark-dfb055@houat>
+References: <20250625-panel-samsung-s6e8aa5x01-v3-0-9a1494fe6c50@disroot.org>
+ <20250625-panel-samsung-s6e8aa5x01-v3-1-9a1494fe6c50@disroot.org>
+ <80055981-3624-4165-af0c-3b60c345e8f8@linaro.org>
+ <4b9e44b14395ff4c64eba1bd71e63150@disroot.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-From: "Junhui Liu" <junhui.liu@pigmoral.tech>
-To: "Vivian Wang" <wangruikang@iscas.ac.cn>, 
-	"Andrew Lunn" <andrew+netdev@lunn.ch>, 
-	"David S. Miller" <davem@davemloft.net>, 
-	"Eric Dumazet" <edumazet@google.com>, "Jakub Kicinski" <kuba@kernel.org>, 
-	"Paolo Abeni" <pabeni@redhat.com>, "Rob Herring" <robh@kernel.org>, 
-	"Krzysztof Kozlowski" <krzk+dt@kernel.org>, 
-	"Conor Dooley" <conor+dt@kernel.org>, "Yixun Lan" <dlan@gentoo.org>, 
-	"Philipp Zabel" <p.zabel@pengutronix.de>, 
-	"Paul Walmsley" <paul.walmsley@sifive.com>, 
-	"Palmer Dabbelt" <palmer@dabbelt.com>, "Albert Ou" <aou@eecs.berkeley.edu>, 
-	"Alexandre Ghiti" <alex@ghiti.fr>
-In-Reply-To: <ce2881b9-38ed-42b6-824d-72948389e8fa@iscas.ac.cn>
-Cc: "Vivian Wang" <uwu@dram.page>, 
-	"Lukas Bulwahn" <lukas.bulwahn@redhat.com>, 
-	"Geert Uytterhoeven" <geert+renesas@glider.be>, 
-	"Parthiban Veerasooran" <Parthiban.Veerasooran@microchip.com>, 
-	<netdev@vger.kernel.org>, <devicetree@vger.kernel.org>, 
-	<linux-riscv@lists.infradead.org>, <spacemit@lists.linux.dev>, 
-	<linux-kernel@vger.kernel.org>
-Subject: Re: [PATCH net-next v3 5/5] riscv: dts: spacemit: Add Ethernet support
-	 for Jupiter
-Message-ID: <184eb232eceb01f8.c7773f00732f7e87.4136a253a628cb2b@Jude-Air.local>
-Date: Thu, 3 Jul 2025 09:00:36 +0000
-Content-Type: text/plain; charset="utf-8"
+Content-Type: multipart/signed; micalg=pgp-sha384;
+	protocol="application/pgp-signature"; boundary="vgt7kszogf7yzhtt"
+Content-Disposition: inline
+In-Reply-To: <4b9e44b14395ff4c64eba1bd71e63150@disroot.org>
+
+
+--vgt7kszogf7yzhtt
+Content-Type: text/plain; protected-headers=v1; charset=us-ascii
+Content-Disposition: inline
 Content-Transfer-Encoding: quoted-printable
-X-ZohoMailClient: External
+Subject: Re: [PATCH v3 1/2] dt-bindings: display: panel: document Samsung
+ S6E8AA5X01 panel driver
+MIME-Version: 1.0
 
-Hi Vivian,
+On Mon, Jun 30, 2025 at 05:18:22PM +0000, Kaustabh Chakraborty wrote:
+> On 2025-06-30 15:29, Neil Armstrong wrote:
+> > On 25/06/2025 14:41, Kaustabh Chakraborty wrote:
+> > > Samsung S6E8AA5X01 is an AMOLED MIPI DSI panel controller. Document
+> > > the
+> > > compatible and devicetree properties of this panel driver. Timings are
+> > > provided through the devicetree node as panels are available in
+> > > different sizes.
+> >=20
+> > Wait, why ? Why not multiple compatibles ?
+>=20
+> The panel dimensions is the only thing which differs. The model name,
+> controller, registers, and functionality are supposedly all similar, so
+> I believe this is fine...
 
-On 03/07/2025 15:46, Vivian Wang wrote:
-> Hi Junhui,
->=20
-> On 7/3/25 14:48, Junhui Liu wrote:
->> Hi Vivian,
->> Thanks for you work!
->>
->> On 2025/7/2 14:01, Vivian Wang wrote:
->>> Milk-V Jupiter uses an RGMII PHY for each port and uses GPIO for PHY
->>> reset.
->>>
->>> Signed-off-by: Vivian Wang <wangruikang@iscas.ac.cn>
->>
->> Successfully tested with iperf3 on Milk-V Jupiter.
->>
->> TCP Rx: 941 Mbits/sec
->> TCP Tx: 943 Mbits/sec
->> UDP Rx: 956 Mbits/sec
->> UDP Tx: 956 Mbits/sec
->>
->> Tested-by: Junhui Liu <junhui.liu@pigmoral.tech>=C2=A0
->>
-> Thanks for the testing! I do not have a Milk-V Jupiter handy, so that
-> was very helpful.
->=20
-> As discussed [1], I will post a v4 soon with minor fixes and also sans
-> the DTS changes. I will put your Tested-by on the driver patch instead
-> of this DTS patch, so it will show up in v4.
->=20
-> Are you okay with this? If you don't like it feel free to tell me.
+If only the dimensions change, then width-mm and height-mm would be enough,=
+ right?
 
-It's okay to me. Thanks!
+Maxime
 
->=20
-> Regards,
-> Vivian "dramforever" Wang
->=20
-> [1]: https://lore.kernel.org/spacemit/a9cad07c-0973-43c3-89f3-95b856b575df=
-@iscas.ac.cn/
->=20
->>> ---
->>> =C2=A0 arch/riscv/boot/dts/spacemit/k1-milkv-jupiter.dts | 46
->>> +++++++++++++++++++++++
->>> =C2=A0 1 file changed, 46 insertions(+)
->>>
->>> diff --git a/arch/riscv/boot/dts/spacemit/k1-milkv-jupiter.dts
->>> b/arch/riscv/boot/dts/spacemit/k1-milkv-jupiter.dts
->>> index
->>> 4483192141049caa201c093fb206b6134a064f42..c5933555c06b66f40e61fe2b9c159b=
-a0770c2fa1
->>> 100644
->>> --- a/arch/riscv/boot/dts/spacemit/k1-milkv-jupiter.dts
->>> +++ b/arch/riscv/boot/dts/spacemit/k1-milkv-jupiter.dts
->>> @@ -20,6 +20,52 @@ chosen {
->>> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 };
->>> =C2=A0 };
->>> =C2=A0 +&eth0 {
->>> +=C2=A0=C2=A0=C2=A0 phy-handle =3D <&rgmii0>;
->>> +=C2=A0=C2=A0=C2=A0 phy-mode =3D "rgmii-id";
->>> +=C2=A0=C2=A0=C2=A0 pinctrl-names =3D "default";
->>> +=C2=A0=C2=A0=C2=A0 pinctrl-0 =3D <&gmac0_cfg>;
->>> +=C2=A0=C2=A0=C2=A0 rx-internal-delay-ps =3D <0>;
->>> +=C2=A0=C2=A0=C2=A0 tx-internal-delay-ps =3D <0>;
->>> +=C2=A0=C2=A0=C2=A0 status =3D "okay";
->>> +
->>> +=C2=A0=C2=A0=C2=A0 mdio-bus {
->>> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 #address-cells =3D <0x1>;
->>> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 #size-cells =3D <0x0>;
->>> +
->>> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 reset-gpios =3D <&gpio K1_GP=
-IO(110) GPIO_ACTIVE_LOW>;
->>> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 reset-delay-us =3D <10000>;
->>> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 reset-post-delay-us =3D <100=
-000>;
->>> +
->>> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 rgmii0: phy@1 {
->>> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 reg =
-=3D <0x1>;
->>> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 };
->>> +=C2=A0=C2=A0=C2=A0 };
->>> +};
->>> +
->>> +&eth1 {
->>> +=C2=A0=C2=A0=C2=A0 phy-handle =3D <&rgmii1>;
->>> +=C2=A0=C2=A0=C2=A0 phy-mode =3D "rgmii-id";
->>> +=C2=A0=C2=A0=C2=A0 pinctrl-names =3D "default";
->>> +=C2=A0=C2=A0=C2=A0 pinctrl-0 =3D <&gmac1_cfg>;
->>> +=C2=A0=C2=A0=C2=A0 rx-internal-delay-ps =3D <0>;
->>> +=C2=A0=C2=A0=C2=A0 tx-internal-delay-ps =3D <250>;
->>> +=C2=A0=C2=A0=C2=A0 status =3D "okay";
->>> +
->>> +=C2=A0=C2=A0=C2=A0 mdio-bus {
->>> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 #address-cells =3D <0x1>;
->>> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 #size-cells =3D <0x0>;
->>> +
->>> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 reset-gpios =3D <&gpio K1_GP=
-IO(115) GPIO_ACTIVE_LOW>;
->>> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 reset-delay-us =3D <10000>;
->>> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 reset-post-delay-us =3D <100=
-000>;
->>> +
->>> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 rgmii1: phy@1 {
->>> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 reg =
-=3D <0x1>;
->>> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 };
->>> +=C2=A0=C2=A0=C2=A0 };
->>> +};
->>> +
->>> =C2=A0 &uart0 {
->>> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 pinctrl-names =3D "default";
->>> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 pinctrl-0 =3D <&uart0_2_cfg>;
->>>
+--vgt7kszogf7yzhtt
+Content-Type: application/pgp-signature; name="signature.asc"
 
---=20
-Best regards,
-Junhui Liu
+-----BEGIN PGP SIGNATURE-----
+
+iJUEABMJAB0WIQTkHFbLp4ejekA/qfgnX84Zoj2+dgUCaGZG+QAKCRAnX84Zoj2+
+dkaKAYCpDgUynGpFGg0nAqhZ30rfPSkxPdT3Biba4y/wI3F/AcjI9V5YST4HJiga
+ZYrL9SMBf0M/4B6wrK0XPpwgMoKZsNfd5A6/xz/MW8Mf5bKc38jYSUrQQ4OzDSSo
+1h6PhC25sA==
+=PL0P
+-----END PGP SIGNATURE-----
+
+--vgt7kszogf7yzhtt--
 
