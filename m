@@ -1,208 +1,236 @@
-Return-Path: <devicetree+bounces-192494-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-192495-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 00A17AF6D27
-	for <lists+devicetree@lfdr.de>; Thu,  3 Jul 2025 10:38:40 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4D7D8AF6D3B
+	for <lists+devicetree@lfdr.de>; Thu,  3 Jul 2025 10:41:49 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 66BD94E4A94
-	for <lists+devicetree@lfdr.de>; Thu,  3 Jul 2025 08:37:52 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 5FFDD16DEE4
+	for <lists+devicetree@lfdr.de>; Thu,  3 Jul 2025 08:41:49 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 570E92D3236;
-	Thu,  3 Jul 2025 08:37:08 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 614272D23A4;
+	Thu,  3 Jul 2025 08:41:44 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b="bnUV0Wtv"
+	dkim=pass (1024-bit key) header.d=suse.de header.i=@suse.de header.b="hqLgk6Li";
+	dkim=permerror (0-bit key) header.d=suse.de header.i=@suse.de header.b="Td5aX4pb";
+	dkim=pass (1024-bit key) header.d=suse.de header.i=@suse.de header.b="oyoWjY0n";
+	dkim=permerror (0-bit key) header.d=suse.de header.i=@suse.de header.b="fPloqsmS"
 X-Original-To: devicetree@vger.kernel.org
-Received: from OSPPR02CU001.outbound.protection.outlook.com (mail-norwayeastazon11013050.outbound.protection.outlook.com [40.107.159.50])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from smtp-out1.suse.de (smtp-out1.suse.de [195.135.223.130])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 40FF22D12F4;
-	Thu,  3 Jul 2025 08:37:05 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.159.50
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1751531828; cv=fail; b=tBcO0Q3CaZAjChEgCf5mGrI5S5fNBaYgnRM9VM2Nx7QIhu6EjSxq1MGO9keC5i8GRFZCHSv/GSKs4+CdWze2MRd9UiAIhXj6v98L6SKwr6/D+zzRitf3tr7CtYJ8e9NrIGtepCH5YZ+GynYfma3zABDxbyrncCjFtRCz/eLgWnY=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1751531828; c=relaxed/simple;
-	bh=8POTI2Or3XtPSkHdMVYhUGdsVeykPYp+SKjExy2qEZU=;
-	h=From:To:CC:Subject:Date:Message-ID:References:In-Reply-To:
-	 Content-Type:MIME-Version; b=Cy3mlvokKFx1J5c+uUH3gJAZWX/xleF68IGx4LMB84i1FlW2gK55VrOBs5XRMfiUL4oL1Z6UkIILSaySnpKIumYM7A7k839VEDTUp2rhKX4yzggnW64B5qPMq1Qd0WJVE2XXIeDzdSiny3rZXmOJ5y4aYabqBBxLgBhuja31kF4=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com; spf=pass smtp.mailfrom=nxp.com; dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b=bnUV0Wtv; arc=fail smtp.client-ip=40.107.159.50
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=nxp.com
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=tOoWJYT+fJj6z6CiC8JlPtc08cwI1AngNRftul/P255ULoi9fKscZ6g3wwdjoN4gioCp+XN2SCAwhbkKxoIbgM/bUDNs/ezP1/q3NVoKS61sRqAD784BhzwW8UEHC8n68myYg0awkxJWXNncMrE0vxQZobJ6D3z9AE5H1912XJ4nhxqqqWecm6sKqvrnSnzG/CoYIZldRxFrrt2HCNsYEwBlWhA+VuZDP+jhXLUsM1na6i3v/xb1U4IHRtvLnsFmYSkXYLZ1oLbaaVynIwD2e6ede0nSn/pniMPI8cXheAcL0EHyVW1kDBoFAa2unAJMbpVXigMY5BaVSwCSZxCUCQ==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=8POTI2Or3XtPSkHdMVYhUGdsVeykPYp+SKjExy2qEZU=;
- b=Qqn9iweQlXfPmLG4js6THebCPDpZLVbVsR7lIEhRUe3nOJTWzsceg7Mr4tFMoLEeHJ6FOe+7x74nontfMe7Ak/iehyU+QTOy87kJLCfqlUzSf9Z3CCAuMfGe6ejnxrAf4Q51N+ThAu2+Ui9xYIgG/5J0BcSv4vg3ibJabFQMUI4xFdkPgGEQgq2AxJTATOlSKrb9CEBcIkk1VlPmW/hRk0pIEteOtmj2o6AaMZ6H1QIAwZT6vTN6afU/JTs42PmbLxg08lbsgPykv2/2nmaFvHgF9RpT9hiycZyWThf26d9/vmkplrbLbrXqa/U/SK1p2YK28+TIDUydqsHs4NwpYw==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
- header.d=nxp.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=8POTI2Or3XtPSkHdMVYhUGdsVeykPYp+SKjExy2qEZU=;
- b=bnUV0Wtv4KdQglXCRXJCI867kkAp+KSSMwB9c0BoS1f/5LQ2C9Iw/EtWB9Ir6g43tdUnOaYIgiJaS44CwQix0zXcDMEg02kqem+Yt7Qps4f+fvocjw4tglpGpjzI62jlY1WEgQ5bDrfrz3UHYU1ukpyxZUUGKcG3ocXmVRFaO8IIwnDhGNL91SqsslZqqLeCNdLWdJmIseG9IZHsnH/ijKwsDdGvUOBpizWKybq2m/GSm4BkVJ6olroh7zKsYvdp8fy5pKwuddt+quZMHEecMbEaMhmq1qGiU87Z0oiJlzyYgpkrFl7VIWFcvRuiQjbJs0v6dpKBDXeMqOxbkYPI+w==
-Received: from PAXPR04MB8459.eurprd04.prod.outlook.com (2603:10a6:102:1da::15)
- by DU2PR04MB8888.eurprd04.prod.outlook.com (2603:10a6:10:2e3::18) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8901.21; Thu, 3 Jul
- 2025 08:37:02 +0000
-Received: from PAXPR04MB8459.eurprd04.prod.outlook.com
- ([fe80::165a:30a2:5835:9630]) by PAXPR04MB8459.eurprd04.prod.outlook.com
- ([fe80::165a:30a2:5835:9630%6]) with mapi id 15.20.8901.018; Thu, 3 Jul 2025
- 08:37:02 +0000
-From: Peng Fan <peng.fan@nxp.com>
-To: Krzysztof Kozlowski <krzk@kernel.org>, Michael Turquette
-	<mturquette@baylibre.com>, Stephen Boyd <sboyd@kernel.org>, Rob Herring
-	<robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
-	<conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>, Sascha Hauer
-	<s.hauer@pengutronix.de>, Pengutronix Kernel Team <kernel@pengutronix.de>,
-	Fabio Estevam <festevam@gmail.com>, Abel Vesa <abelvesa@kernel.org>, Frank Li
-	<frank.li@nxp.com>
-CC: "linux-clk@vger.kernel.org" <linux-clk@vger.kernel.org>,
-	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-	"imx@lists.linux.dev" <imx@lists.linux.dev>,
-	"linux-arm-kernel@lists.infradead.org"
-	<linux-arm-kernel@lists.infradead.org>, "linux-kernel@vger.kernel.org"
-	<linux-kernel@vger.kernel.org>, Abel Vesa <abel.vesa@linaro.org>
-Subject: RE: [PATCH v2 1/5] dt-bindings: clock: Add support for i.MX94
- LVDS/DISPLAY CSR
-Thread-Topic: [PATCH v2 1/5] dt-bindings: clock: Add support for i.MX94
- LVDS/DISPLAY CSR
-Thread-Index: AQHb68x+oow63NwYokGomyOeoIsLI7Qf8tcAgAAgIzA=
-Date: Thu, 3 Jul 2025 08:37:02 +0000
-Message-ID:
- <PAXPR04MB8459CE9F696C59A30BFC5CC78843A@PAXPR04MB8459.eurprd04.prod.outlook.com>
-References: <20250703-imx95-blk-ctl-7-1-v2-0-b378ad796330@nxp.com>
- <20250703-imx95-blk-ctl-7-1-v2-1-b378ad796330@nxp.com>
- <264fec16-5974-4f9c-98a8-67c21b5fbf7f@kernel.org>
-In-Reply-To: <264fec16-5974-4f9c-98a8-67c21b5fbf7f@kernel.org>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach:
-X-MS-TNEF-Correlator:
-authentication-results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=nxp.com;
-x-ms-publictraffictype: Email
-x-ms-traffictypediagnostic: PAXPR04MB8459:EE_|DU2PR04MB8888:EE_
-x-ms-office365-filtering-correlation-id: d58a93b3-5287-488f-6262-08ddba0cc87d
-x-ms-exchange-senderadcheck: 1
-x-ms-exchange-antispam-relay: 0
-x-microsoft-antispam:
- BCL:0;ARA:13230040|366016|1800799024|7416014|376014|19092799006|38070700018|921020;
-x-microsoft-antispam-message-info:
- =?utf-8?B?Z2g5aURiSFdhN1FDaXZhQTJnNDRqSkdnZU56N3RwZWtpZTQzMmhzWGswMFVw?=
- =?utf-8?B?ZGYzUXVjOHp0Mlc2QUJqQVk5RTZWYXhUeTk5dlF5bzZwdERtOFgycVVDcVkz?=
- =?utf-8?B?NHdYb2tsRzIxMTREWWxLY21CL2RYYy83eitnRWlJVEQwQjBybGIzT2I5YzJs?=
- =?utf-8?B?YS9oWEc5UWV4L2c0V3hkSkdDcmwxNTk1K1k3N2lTZnB4Mkg5Y0taQU9ySWZU?=
- =?utf-8?B?M3U2YVY3Tmp0d1d3emtWWE9NR2F6SHNQYldoK1N2eEZ0M0h5NlVVSVhtdXlu?=
- =?utf-8?B?TmhlSEp1MEpzQzVpNXdNY1MyM2pXaE81THUxeGRHTDduc2h5Z0VLN0M4MFhP?=
- =?utf-8?B?dXFGcTlIMmZCbEkwMFF5NlNxZzhwdmh1UjRkNVk5bDkrUHk5Nkw4L25BU0Ru?=
- =?utf-8?B?NDNEQUU2NTgrc1BCU2UyZzBKT1JHUVNKYjRGMEdRWEFQVWdCb2dOSEZPUlYv?=
- =?utf-8?B?OUlmelJzYnZualR4ZGUzN1ZsVWNOUmVBT3hIalpIbk5oN1UySVJMUjJtOGZq?=
- =?utf-8?B?bEN4S1NyUGtXQWw0TG9mY3JXMHRTTStUVHpZMTFMSDZZK2czSVlScUhvRElB?=
- =?utf-8?B?UDQvckh4MEdJK1hqMmdheWFOR0Fhb2FtUHgwY0Z3VlBEZ0xrT0tHSzFmVkdW?=
- =?utf-8?B?SXM3ZTJCdmpETkcwRGtVMUdsK3MzaEVscEErcHBpallMcy91WDZGL2NHWU4r?=
- =?utf-8?B?bk1EbkNxSjQxcVREcEtPd2dlQXorN1MvTEluS0o2cWQrVUdoWFllL3BnaWlM?=
- =?utf-8?B?N3RVRGF5azNRMDR0SGNOV1k4WHowVXBER24rcXY0YmpHOEZPL08wSTlzNHdy?=
- =?utf-8?B?My9LZHNTV2YxdVRNVlFHN1dBd0pNQ0ZvaE9RTVkyajdsVG9lNEtyUVZxZU5Y?=
- =?utf-8?B?L2ZLZkJoQjZUWG9XYmlaU2F0cEpnNTh1MlJpWXBXNjZsWUQ1Mit2TGJnN2sx?=
- =?utf-8?B?ZlN5ZWRBT2V0c1c1TXcvUzduWGE0SzRRM0pmRUQzNXlUVXpJU3NncFhSMFJC?=
- =?utf-8?B?elVpcCszQTdNdVZWeGEycjJaNUhVY0RtbHpNL29ldDhYeWNVS3pWMXFqZDhC?=
- =?utf-8?B?djk4SVJlMWRlQ0dXUGxCTDBma2t0a21aTGZMeDBCN2lmU0c2RmlpL2JFRURu?=
- =?utf-8?B?bHJJcEgrRnhmbHBROFJUM084eC8wSjV4NVBhbVdTczVIYXBZSmZncDlSL3RO?=
- =?utf-8?B?TStGWU1FbTMwYUlybDJBNXhieHN3aXcwaGM0VUtxSUh0TDFZYnNLVVNoVXl0?=
- =?utf-8?B?VmhhNzZOYVBUZWxqV2FQS3JjdEV2TGpMQUZKa1doMGlSeGN3OUM5VkJrZURp?=
- =?utf-8?B?YWFkSnFVdGZXNXFOTmtscnRGWksvRURLOXJ1dUdPRlh0ZVdtRkdRUzdmUTVj?=
- =?utf-8?B?REx1VDhIQm1nczRaZDZrMUFaYmp6Z296bVc3UkFpU0dBV1FwY1QwR1lybDN1?=
- =?utf-8?B?enMyRUk5cFA1RlFUNDJWMzAxU2RWd3pYMmJhdkpCdEpsT1NkNUR1S1I1QVE0?=
- =?utf-8?B?eDIyY1dZYnRGZVRHbit6dWlMT2l6a3lUZXpFNWdNMEhqM000d1VLYUdPODhj?=
- =?utf-8?B?azJ3ZmdKUkRkQm1ZN3QzK0U2QXdwZmVoL0g0eWlWTk9qajNZQzhGUGE2M3NG?=
- =?utf-8?B?UVlOSlBYVC9KOEJGa3FKbEl0eTVBcVc0ZmQ2TDAyZ0xnKzVSdC9wb2NHbGJ5?=
- =?utf-8?B?NU5JSUNVMmhJVlZWWEJNWmdDOHF3ci95QlNMUW8wSk1aeUQxSU8yV3ZTZFF2?=
- =?utf-8?B?b29CUHV0aFBKV2ZhRmV5dXZGanAvamt0YStiSVpBeXMzUHJwOWxseHEvNkFQ?=
- =?utf-8?B?NnpXUnR1V2RBeitRS0tPTWZRZEhsMDZUZXRWOStUb1dVbVNRMGxjeDVucEpE?=
- =?utf-8?B?VlhQRVZBdzNnU2RoWldsVzRKaVgxa3hSZmNzTmgyRVBIQ3R1Wm9VMGo0Y1Nu?=
- =?utf-8?B?S3hSYzhVU0xRQ0hOTmZzbmprUWR1MXJMWlArM1Y0bXIwRS9xdFRCZTRkeGww?=
- =?utf-8?Q?dMHePCs5AJSjDZJNC3a+oKDeqXwJck=3D?=
-x-forefront-antispam-report:
- CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:PAXPR04MB8459.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(366016)(1800799024)(7416014)(376014)(19092799006)(38070700018)(921020);DIR:OUT;SFP:1101;
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0:
- =?utf-8?B?em1EcWV0MDRWd0x1VURTWnJXZERBZVZqUDArWE1vRTExYmxnMUsyYlpOREsz?=
- =?utf-8?B?d0VVck5OaUx0NmRFYVJUVXdRVythZk5vUENHcmJQNURZZVpmUi9HZ0QxZCtC?=
- =?utf-8?B?aWtrV3laK2NmUjdwME5oaVRkSHJCTnRWS2hJUnBCc1hkNFNIdjlMRXA5M29x?=
- =?utf-8?B?Y3Y3TFA0Qk1hblh3MkJySVVHSzdJd1plM3JNNEZyTFA0OUNPVkpoRWlUdEVP?=
- =?utf-8?B?S0R0VXVtSTRqVVo3eXpIUjFzUjZPSUpsYmh4TUIvNGhwUHk1emV0djlOOWdR?=
- =?utf-8?B?UENXUXBiV3N1U3NLS2xNbklOb1pqcTlzaWxFNDZqaEdaMzBndjZjbEw0UVp4?=
- =?utf-8?B?RUEyT29WeHg4VWQ4V0lPNmtpWHdxMGE0Z2pSQXdJNzNUMlhCOG9HR2xpNmJn?=
- =?utf-8?B?eXg0RDBONXZRRURXR0xTM0dXVUVkNllhcWt6TlRQZU13WGRCYS9MYktCbWdR?=
- =?utf-8?B?ZitYaU9CRU9CUkhRTUdZUHdFaFppMnhxZzZ2MmtEYUIvQkMxQ3dCVVdYalFE?=
- =?utf-8?B?RDgrOE9QQ0JLNXJPTTdueW1kdHhHQmhDK1BhSnhUZUhLdXhxWHRRZkIyc3Zv?=
- =?utf-8?B?dEpwQTlraW5ZWG9yajRCR1pYcGFuNS9lMGxpOXcvQlhYZ2EzM3JjVTU2TXJW?=
- =?utf-8?B?bEFFb2E4MDdrbU9MQ2c2aGt6U1hUdFJiMGcxVzFzRVJLTmx0L3N6SnlTbTNh?=
- =?utf-8?B?V0pMV0tMcGlIb2x5WWdiZXpXNi91VkhsTUtObWlPbjRRNCtYNkNNZ2JKSUxv?=
- =?utf-8?B?OXVwVGYyempZaWxHNVlrRWYwNXZoWXBHVkx3aktTMXJnc3ZPSFdYOTU3UlZG?=
- =?utf-8?B?VjlmOGFmSG9pZDRoUDZhMjlmYk9iK3hkczhWSGV5RFhIbzJWdVp0dDRaYndv?=
- =?utf-8?B?ZGpvS0JnM2xGcjdJMnptUVF5dmFDU3A3RUJCY0JMQWxPQU05bGt2NDUyaGdB?=
- =?utf-8?B?OXdaZkEzZzBSUSs2b0cxSFo2aFU1WDFBb3FvaWE0ZStOUjZ3S0NqYkJhZS94?=
- =?utf-8?B?K3RsTHlmNkZkeVB1TzZQVG9PUzVPekloZ0JvVmd0alNkK2JodlNTTE5mdnFa?=
- =?utf-8?B?SWlGVDUwZEhoT0tMbElHN05abm51TDZ6R2VjbTMyVjhlMVRyamhMN3ptSitY?=
- =?utf-8?B?Q21IV1VQOFhuQ2d5eTh5bG4zc2FrUHEvVjJ2M1VrcTNieG1zcXRtQWd0Zk5R?=
- =?utf-8?B?aE9CUC85OHRSUmdqNmRDTFFMb0RHQ25Hd3VkL0JobVBkaGE5ZFA4RmtPQzVN?=
- =?utf-8?B?aXc1U2lZQ3BDZkdEeE9mVDZJdUF6dzh1UkFiRTdPaGtsdlhML2drNWo0cXRz?=
- =?utf-8?B?dzRhc3h5TlRmYTc3YTB6MEQvMjB0SkE5WDNSeFF0L2x4R0dFVmFJK0FxSmZy?=
- =?utf-8?B?VTJvY1VxVEJ3N25CUDZCQ1kyNEtGQWtZdTh5bms2TS9mVmppbzNkZUw4b2xR?=
- =?utf-8?B?allPRS9Ta0JGeGl1NW1jVEFtMFREV0IwZmk0UlUvRnJ2NnRMaDZWbTdOSUdO?=
- =?utf-8?B?UEFLdEhoMTJTQWRycnIyaHBIcU82MlhIOTdaQnN3UHluaHVyNndoSGZmcFBI?=
- =?utf-8?B?WU0vWXBZY0VKSmgvRVVYUTZwQ3p0ZFo0c3g0YjdQNmxXNmFXdHRHTmlPREJO?=
- =?utf-8?B?ZmR5bVp3a0UyZVMzQUZIazl2a1pIUzVndnB5UldGL1YzS1BoOWdJQU01b0NW?=
- =?utf-8?B?YTZHRlFPbEo2WG5Ib1kzbkIvYU8xZFhaTGRxUk9XbG9KMWF0Y3A5ODNRRTVD?=
- =?utf-8?B?L0tzNFlVSXZVeHFuQXEvbEpUVEQxdDlZMlNJOTJIdmp0TTF0RW9vZDc0Zjdt?=
- =?utf-8?B?SlExdGpBbVRXY2liUzltNldyZWpoM0wwV2NsdW8ycVhwdUlCRnMralNGT250?=
- =?utf-8?B?ejlGeUg5VGEvYkJoQVFTNy9NUHFINmgrTHZzVDRTNUUySDdkanU2S1BIWVQz?=
- =?utf-8?B?TnFjcS84UHl2aFdTWUswVWh4TlBWS0Q5djRaN2tNa0tLUEdFZW13ai9zMG1C?=
- =?utf-8?B?b1JFWkloTUpuMjd0K21DUjZGajE0WW5LbGpFNkRnR2xZVFRkbUtzN2ZVaEl4?=
- =?utf-8?B?K292ekZDd1lVS09kaGYxcFZhTVFacm5uTVJLZ1EvdUQ2T2pSazkwZWgweUlR?=
- =?utf-8?Q?HKoY=3D?=
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7A76523AB94
+	for <devicetree@vger.kernel.org>; Thu,  3 Jul 2025 08:41:42 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=195.135.223.130
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1751532104; cv=none; b=p0jTCp6k6N9SVtItkkIZGpxc2/iMZPo7qYqYQhhSAve/SRQR+B6CA+Lebmy4Ybkw68t118CEG7eZaQziS5roHG8Zf0h2EwyOfOBCDywMiwm2eUPpyVMTDUjV6clntQCS7NxkQ/3TS9oJ7K2oMgEFmOu+WXIsUBJt1+84+RsvQ6k=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1751532104; c=relaxed/simple;
+	bh=vzb2/RqeE4XZiLHHT2ZiJwAFi9H17syhqfEek/VdZV0=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=TaMA7vVTTIJUgtMHTXv1Ye+p3Rl9/W+LNHSYQ3rJE02xCdHS3gKEYaDt7OGCpBDKM93fa3THH7VQONAtnRR15dp6s1Er79ujyiVMb/IwjoSudt4uE2c+rQhHlhJLoiwzNlKxT+SKeskyAJ33RTBb5+mA0MQA4+KtyHW9GEk6cFg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=suse.de; spf=pass smtp.mailfrom=suse.de; dkim=pass (1024-bit key) header.d=suse.de header.i=@suse.de header.b=hqLgk6Li; dkim=permerror (0-bit key) header.d=suse.de header.i=@suse.de header.b=Td5aX4pb; dkim=pass (1024-bit key) header.d=suse.de header.i=@suse.de header.b=oyoWjY0n; dkim=permerror (0-bit key) header.d=suse.de header.i=@suse.de header.b=fPloqsmS; arc=none smtp.client-ip=195.135.223.130
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=suse.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=suse.de
+Received: from imap1.dmz-prg2.suse.org (unknown [10.150.64.97])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+	(No client certificate requested)
+	by smtp-out1.suse.de (Postfix) with ESMTPS id BC63321161;
+	Thu,  3 Jul 2025 08:41:39 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.de; s=susede2_rsa;
+	t=1751532100; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
+	 mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references:autocrypt:autocrypt;
+	bh=jaa55Jkm4HEbY1gXLu6EskAh6+6v69clm2cvvQpaK6w=;
+	b=hqLgk6LixwgSTSd58ODQqJQO4dyz2yI31j/vjkv3VjA6zMVqVJ1dTVPVnbG3UR9H/2eM8y
+	je47VZ40OSvW0IsFAzfgplCc4gTQfp98K7/Lyq+vG0n/lNyORGw9g3P6l5uFa21QhcpzR0
+	nBgIgedb2yCTjKv+eLfM3wAoUXd6xy4=
+DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=suse.de;
+	s=susede2_ed25519; t=1751532100;
+	h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
+	 mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references:autocrypt:autocrypt;
+	bh=jaa55Jkm4HEbY1gXLu6EskAh6+6v69clm2cvvQpaK6w=;
+	b=Td5aX4pbyRlUMQR5ZNv11WTMesZL1Yrz6Braqj7o+Lo6lp5fhOJd104aF8EKKSXaFYfu0Y
+	j6qH4Kjy4TbqKUAg==
+Authentication-Results: smtp-out1.suse.de;
+	none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.de; s=susede2_rsa;
+	t=1751532099; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
+	 mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references:autocrypt:autocrypt;
+	bh=jaa55Jkm4HEbY1gXLu6EskAh6+6v69clm2cvvQpaK6w=;
+	b=oyoWjY0nB2sFn6JQe4gI4rfIHNGtc85eKw8sAWT8jH54gDfY5oj3oJuznTP1lJMAhXKf1+
+	hN/+paca234y0BPspALQKqbSiusuv5uDdwRWn1gf+tTa/zvSnVbfj49SmR9lxKsYO6FUNj
+	uDR45sk0HSBIy76jrZ1cPcO3RosqHkU=
+DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=suse.de;
+	s=susede2_ed25519; t=1751532099;
+	h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
+	 mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references:autocrypt:autocrypt;
+	bh=jaa55Jkm4HEbY1gXLu6EskAh6+6v69clm2cvvQpaK6w=;
+	b=fPloqsmSlO3wXTMK2Qv+9uC/ab+bhLQj9RBnGwQpluexHIwL+NtwtD3KKndVeepRFTyGSC
+	WSiF5GYfL4Pe/EDA==
+Received: from imap1.dmz-prg2.suse.org (localhost [127.0.0.1])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+	(No client certificate requested)
+	by imap1.dmz-prg2.suse.org (Postfix) with ESMTPS id 438041368E;
+	Thu,  3 Jul 2025 08:41:39 +0000 (UTC)
+Received: from dovecot-director2.suse.de ([2a07:de40:b281:106:10:150:64:167])
+	by imap1.dmz-prg2.suse.org with ESMTPSA
+	id eRJPDkNCZmiRcQAAD6G6ig
+	(envelope-from <tzimmermann@suse.de>); Thu, 03 Jul 2025 08:41:39 +0000
+Message-ID: <1555efd6-5a39-4bc7-92d4-63f5c33b1dca@suse.de>
+Date: Thu, 3 Jul 2025 10:41:38 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-OriginatorOrg: nxp.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: PAXPR04MB8459.eurprd04.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: d58a93b3-5287-488f-6262-08ddba0cc87d
-X-MS-Exchange-CrossTenant-originalarrivaltime: 03 Jul 2025 08:37:02.2019
- (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: bPeG7j11wpZ+UrsncQ1es6dqgUVLExFtRnvTwcPky9ONPIS3Kw+XpgohKKDAlMjKojh91M4l1kh7tCcyQRnETg==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DU2PR04MB8888
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2 1/5] dt-bindings: display: simple-framebuffer: Add
+ interconnects property
+To: Hans de Goede <hdegoede@redhat.com>, Krzysztof Kozlowski
+ <krzk@kernel.org>, Luca Weiss <luca.weiss@fairphone.com>
+Cc: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Maxime Ripard <mripard@kernel.org>, David Airlie <airlied@gmail.com>,
+ Simona Vetter <simona@ffwll.ch>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Javier Martinez Canillas <javierm@redhat.com>,
+ Helge Deller <deller@gmx.de>, linux-fbdev@vger.kernel.org,
+ dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org
+References: <20250623-simple-drm-fb-icc-v2-0-f69b86cd3d7d@fairphone.com>
+ <20250623-simple-drm-fb-icc-v2-1-f69b86cd3d7d@fairphone.com>
+ <20250627-mysterious-optimistic-bird-acaafb@krzk-bin>
+ <DAX7ZB27SBPV.2Y0I09TVSF3TT@fairphone.com>
+ <1129bc60-f9cb-40be-9869-8ffa3b3c9748@kernel.org>
+ <8a3ad930-bfb1-4531-9d34-fdf7d437f352@redhat.com>
+ <85521ded-734d-48e8-8f76-c57739102ded@kernel.org>
+ <e534d496-6ce0-46c8-835d-94b3346446a7@redhat.com>
+ <6e4253dd-cd73-4302-b9df-44c8c311eb22@kernel.org>
+ <e2159868-f31d-4d35-b6b1-2cbd1a9d249b@suse.de>
+ <f5fe3fe1-903a-48ca-9249-b77bc07dbc77@redhat.com>
+Content-Language: en-US
+From: Thomas Zimmermann <tzimmermann@suse.de>
+Autocrypt: addr=tzimmermann@suse.de; keydata=
+ xsBNBFs50uABCADEHPidWt974CaxBVbrIBwqcq/WURinJ3+2WlIrKWspiP83vfZKaXhFYsdg
+ XH47fDVbPPj+d6tQrw5lPQCyqjwrCPYnq3WlIBnGPJ4/jreTL6V+qfKRDlGLWFjZcsrPJGE0
+ BeB5BbqP5erN1qylK9i3gPoQjXGhpBpQYwRrEyQyjuvk+Ev0K1Jc5tVDeJAuau3TGNgah4Yc
+ hdHm3bkPjz9EErV85RwvImQ1dptvx6s7xzwXTgGAsaYZsL8WCwDaTuqFa1d1jjlaxg6+tZsB
+ 9GluwvIhSezPgnEmimZDkGnZRRSFiGP8yjqTjjWuf0bSj5rUnTGiyLyRZRNGcXmu6hjlABEB
+ AAHNJ1Rob21hcyBaaW1tZXJtYW5uIDx0emltbWVybWFubkBzdXNlLmRlPsLAjgQTAQgAOAIb
+ AwULCQgHAgYVCgkICwIEFgIDAQIeAQIXgBYhBHIX+6yM6c9jRKFo5WgNwR1TC3ojBQJftODH
+ AAoJEGgNwR1TC3ojx1wH/0hKGWugiqDgLNXLRD/4TfHBEKmxIrmfu9Z5t7vwUKfwhFL6hqvo
+ lXPJJKQpQ2z8+X2vZm/slsLn7J1yjrOsoJhKABDi+3QWWSGkaGwRJAdPVVyJMfJRNNNIKwVb
+ U6B1BkX2XDKDGffF4TxlOpSQzdtNI/9gleOoUA8+jy8knnDYzjBNOZqLG2FuTdicBXblz0Mf
+ vg41gd9kCwYXDnD91rJU8tzylXv03E75NCaTxTM+FBXPmsAVYQ4GYhhgFt8S2UWMoaaABLDe
+ 7l5FdnLdDEcbmd8uLU2CaG4W2cLrUaI4jz2XbkcPQkqTQ3EB67hYkjiEE6Zy3ggOitiQGcqp
+ j//OwE0EWznS4AEIAMYmP4M/V+T5RY5at/g7rUdNsLhWv1APYrh9RQefODYHrNRHUE9eosYb
+ T6XMryR9hT8XlGOYRwKWwiQBoWSDiTMo/Xi29jUnn4BXfI2px2DTXwc22LKtLAgTRjP+qbU6
+ 3Y0xnQN29UGDbYgyyK51DW3H0If2a3JNsheAAK+Xc9baj0LGIc8T9uiEWHBnCH+RdhgATnWW
+ GKdDegUR5BkDfDg5O/FISymJBHx2Dyoklv5g4BzkgqTqwmaYzsl8UxZKvbaxq0zbehDda8lv
+ hFXodNFMAgTLJlLuDYOGLK2AwbrS3Sp0AEbkpdJBb44qVlGm5bApZouHeJ/+n+7r12+lqdsA
+ EQEAAcLAdgQYAQgAIAIbDBYhBHIX+6yM6c9jRKFo5WgNwR1TC3ojBQJftOH6AAoJEGgNwR1T
+ C3ojVSkIALpAPkIJPQoURPb1VWjh34l0HlglmYHvZszJWTXYwavHR8+k6Baa6H7ufXNQtThR
+ yIxJrQLW6rV5lm7TjhffEhxVCn37+cg0zZ3j7zIsSS0rx/aMwi6VhFJA5hfn3T0TtrijKP4A
+ SAQO9xD1Zk9/61JWk8OysuIh7MXkl0fxbRKWE93XeQBhIJHQfnc+YBLprdnxR446Sh8Wn/2D
+ Ya8cavuWf2zrB6cZurs048xe0UbSW5AOSo4V9M0jzYI4nZqTmPxYyXbm30Kvmz0rYVRaitYJ
+ 4kyYYMhuULvrJDMjZRvaNe52tkKAvMevcGdt38H4KSVXAylqyQOW5zvPc4/sq9c=
+In-Reply-To: <f5fe3fe1-903a-48ca-9249-b77bc07dbc77@redhat.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
+X-Spam-Flag: NO
+X-Spam-Score: -2.80
+X-Spamd-Result: default: False [-2.80 / 50.00];
+	BAYES_HAM(-3.00)[100.00%];
+	SUSPICIOUS_RECIPS(1.50)[];
+	NEURAL_HAM_LONG(-1.00)[-1.000];
+	NEURAL_HAM_SHORT(-0.20)[-1.000];
+	MIME_GOOD(-0.10)[text/plain];
+	TAGGED_RCPT(0.00)[dt];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	ARC_NA(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[16];
+	MIME_TRACE(0.00)[0:+];
+	MID_RHS_MATCH_FROM(0.00)[];
+	FREEMAIL_ENVRCPT(0.00)[gmail.com,gmx.de];
+	DKIM_SIGNED(0.00)[suse.de:s=susede2_rsa,suse.de:s=susede2_ed25519];
+	FROM_EQ_ENVFROM(0.00)[];
+	FROM_HAS_DN(0.00)[];
+	FREEMAIL_CC(0.00)[linux.intel.com,kernel.org,gmail.com,ffwll.ch,redhat.com,gmx.de,vger.kernel.org,lists.freedesktop.org];
+	TO_DN_SOME(0.00)[];
+	TO_MATCH_ENVRCPT_SOME(0.00)[];
+	RCVD_COUNT_TWO(0.00)[2];
+	RCVD_TLS_ALL(0.00)[];
+	FUZZY_BLOCKED(0.00)[rspamd.com];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[imap1.dmz-prg2.suse.org:helo,1d385000:email,suse.de:mid]
+X-Spam-Level: 
 
-PiBTdWJqZWN0OiBSZTogW1BBVENIIHYyIDEvNV0gZHQtYmluZGluZ3M6IGNsb2NrOiBBZGQgc3Vw
-cG9ydCBmb3IgaS5NWDk0DQo+IExWRFMvRElTUExBWSBDU1INCj4gDQo+IE9uIDAzLzA3LzIwMjUg
-MDU6NDAsIFBlbmcgRmFuIHdyb3RlOg0KPiA+ICAgICAgICAgICAgLSBueHAsaW14OTUtaHNpby1i
-bGstY3RsDQo+ID4gZGlmZiAtLWdpdCBhL2luY2x1ZGUvZHQtYmluZGluZ3MvY2xvY2svbnhwLGlt
-eDk0LWNsb2NrLmggYi9pbmNsdWRlL2R0LQ0KPiBiaW5kaW5ncy9jbG9jay9ueHAsaW14OTQtY2xv
-Y2suaA0KPiA+IG5ldyBmaWxlIG1vZGUgMTAwNjQ0DQo+ID4gaW5kZXgNCj4gMDAwMDAwMDAwMDAw
-MDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMC4uYjQ3Zjc0ZjAwZjExOWZmMQ0KPiBjMWU2ZGFk
-ODg1YjViMWUzYjFmMjQ4YTENCj4gPiAtLS0gL2Rldi9udWxsDQo+ID4gKysrIGIvaW5jbHVkZS9k
-dC1iaW5kaW5ncy9jbG9jay9ueHAsaW14OTQtY2xvY2suaA0KPiA+IEBAIC0wLDAgKzEsMTMgQEAN
-Cj4gPiArLyogU1BEWC1MaWNlbnNlLUlkZW50aWZpZXI6IEdQTC0yLjAtb25seSBPUiBNSVQgKi8N
-Cj4gDQo+IFVzZSB0aGUgc2FtZSBsaWNlbnNlIGFzIGNoZWNrcGF0Y2ggYW5kIERUIHN1Ym1pdHRp
-bmcgcGF0Y2hlcyBhc2suDQoNCklmIGl0IGlzICJTUERYLUxpY2Vuc2UtSWRlbnRpZmllcjogKEdQ
-TC0yLjAtb25seSBPUiBCU0QtMi1DbGF1c2UpIiwNCkkgd2lsbCB1cGRhdGUgaW4gVjMgYW5kIHlv
-dSBjb3VsZCBpZ25vcmUgZm9sbG93aW5nIHRleHQuDQoNCklmIG5vdCwgcGxlYXNlIGhlbHAgY29t
-bWVudCB3aGljaCBMaWNlbnNlIEkgc2hvdWxkIHVzZS4gSSBub3QNCnNlZSBjaGVja3BhdGNoIHJl
-cG9ydCBpc3N1ZXMgYWJvdXQgTGljZW5zZS4NCg0KVGhhbmtzLA0KUGVuZy4NCg0KPiANCj4gQmVz
-dCByZWdhcmRzLA0KPiBLcnp5c3p0b2YNCg==
+Hi
+
+Am 03.07.25 um 10:34 schrieb Hans de Goede:
+> Hi Thomas,
+>
+> On 3-Jul-25 8:47 AM, Thomas Zimmermann wrote:
+>> Hi
+>>
+>> Am 02.07.25 um 22:43 schrieb Krzysztof Kozlowski:
+>>> On 30/06/2025 10:40, Hans de Goede wrote:
+>>>>> No one asks to drop them from the driver. I only want specific front
+>>>>> compatible which will list and constrain the properties. It is not
+>>>>> contradictory to your statements, U-boot support, driver support. I
+>>>>> really do not see ANY argument why this cannot follow standard DT rules.
+>>>> So what you are saying is that you want something like:
+>>>>
+>>>> framebuffer0: framebuffer@1d385000 {
+>>>>      compatible = "qcom.simple-framebuffer-sm8650-mdss", "simple-framebuffer";
+>>>> }
+>>>>
+>>>> and that the binding for qcom.simple-framebuffer-sm8650-mdss
+>>>> can then list interconnects ?
+>>> IMO yes (after adjusting above to coding style), but as mentioned in
+>>> other response you can just get an ack or opinion from Rob or Conor.
+>> But does that work with *any* device that requires interconnects? The next such simple-framebuffer device should work out of the box *without* the kernel knowing anything about it. That's one of the key features of the simple-framebuffer.  If we have to maintainer per-device feature sets, it breaks that assumption.
+> The driver code for this can still be generic and since the driver
+> will bind to the fallback plain "simple-framebuffer" compatible
+> this should also work for new platforms.
+>
+> The e.g. "qcom.simple-framebuffer-sm8650-mdss" compatible would
+> purely be something in the dt-bindings to document which simplefb
+> implementations will have interconnects and which ones will not.
+>
+> The driver does not necessarily need to check these more
+> precise compatibles, it can still just check for the generic
+> presence of interconnects.
+
+Thanks, that's good to hear.
+
+Best regards
+Thomas
+
+>
+> Regards,
+>
+> Hans
+>
+
+-- 
+--
+Thomas Zimmermann
+Graphics Driver Developer
+SUSE Software Solutions Germany GmbH
+Frankenstrasse 146, 90461 Nuernberg, Germany
+GF: Ivo Totev, Andrew Myers, Andrew McDonald, Boudien Moerman
+HRB 36809 (AG Nuernberg)
+
 
