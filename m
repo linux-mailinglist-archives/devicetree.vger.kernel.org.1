@@ -1,499 +1,205 @@
-Return-Path: <devicetree+bounces-192569-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-192580-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 39F7AAF7032
-	for <lists+devicetree@lfdr.de>; Thu,  3 Jul 2025 12:29:40 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0B328AF7063
+	for <lists+devicetree@lfdr.de>; Thu,  3 Jul 2025 12:33:47 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 5C178167CBF
-	for <lists+devicetree@lfdr.de>; Thu,  3 Jul 2025 10:29:27 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 90BF33B753D
+	for <lists+devicetree@lfdr.de>; Thu,  3 Jul 2025 10:32:09 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6E14D2E7BCD;
-	Thu,  3 Jul 2025 10:26:48 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B7E9A2EBBB2;
+	Thu,  3 Jul 2025 10:27:48 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="hcCowKGf"
+	dkim=pass (1024-bit key) header.d=leica-geosystems.com.cn header.i=@leica-geosystems.com.cn header.b="lINWA/Md"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f48.google.com (mail-wm1-f48.google.com [209.85.128.48])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from MRWPR03CU001.outbound.protection.outlook.com (mail-francesouthazon11011063.outbound.protection.outlook.com [40.107.130.63])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2D05E2E498F;
-	Thu,  3 Jul 2025 10:26:44 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.48
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1751538408; cv=none; b=bKgL2DBB1UhZpEvtJ3GVvnJnDFm0YcfaJe7hKwUErVIVSlYl7fu1sSktmgJ9w9Dh9PySup+PGWyKmQEaY4TeUXmAAxT1Q+8tWM2WqxYcDKyHb2VuQs1xtuWqO547IMwVIJnbCvThPKLouwBLFWINy7PcIcepDQ6k0xvSctgB+H0=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1751538408; c=relaxed/simple;
-	bh=dbilV22VO3muDCanYbKJvEOTnVO+6+dJBtvhpcD3hOc=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=lXon81TTanQ8Am9Vy3n/OYT9JMwNjaqj7IDSqrCxX23VyODgj22m+eStLDJAfA7ovEg3XR4dYe0ZD/0JOornHDVmuePBW1CVZiwxI5klJcObLA8Ejl4pNZ5vccdZGHOryqPHGbVoflm+3cjnUGdyv0X94wgCrCLKg8GQToDOjzY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=hcCowKGf; arc=none smtp.client-ip=209.85.128.48
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-wm1-f48.google.com with SMTP id 5b1f17b1804b1-451d41e1ad1so53099895e9.1;
-        Thu, 03 Jul 2025 03:26:43 -0700 (PDT)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 843262EBBA9;
+	Thu,  3 Jul 2025 10:27:44 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.130.63
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1751538468; cv=fail; b=UtjU+WjUUYqgQpFZVdAW0riieN+UvtZ4cm4QIcCOf1kjB/ePyjxXQMPHn+mJNtKPKWG1hxDPugiNczKGlJ2gLffs3nAM9KNJvM4KAuxImFqejxoKH4hKBbGsihJGz+hRXJY1a9tSFalAIjyFtFUqfO5MplN/rQgrJJHCe5s20/I=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1751538468; c=relaxed/simple;
+	bh=TOOaGYKzvNL2B0z0k2no3AlNGti7/25rKQi3+ZrVur4=;
+	h=From:To:CC:Subject:Date:Message-ID:References:In-Reply-To:
+	 Content-Type:MIME-Version; b=mpPvHI11rpz8tOPc+S3/xhAIm/w7tzv6m69zn+chKg3h5zoGt4vVA7jMh+Igb1Mh5zvKSPANnL28N9T0ugPxripI/qCucQMdO98ZsG8M4x25z0ge272Exsn7eQhQ3SyRjf4SQDfAO6Q5RThKns+GMJ/7zNgbH3vqGRyst4D9iNg=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=leica-geosystems.com.cn; spf=fail smtp.mailfrom=leica-geosystems.com.cn; dkim=pass (1024-bit key) header.d=leica-geosystems.com.cn header.i=@leica-geosystems.com.cn header.b=lINWA/Md; arc=fail smtp.client-ip=40.107.130.63
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=leica-geosystems.com.cn
+Authentication-Results: smtp.subspace.kernel.org; spf=fail smtp.mailfrom=leica-geosystems.com.cn
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=I78kEEM2GEicxNx8SlA/c42PJ9zb2rMiERx0s/nAaUkr38aiJW0FiyyM7yzCRRm5WYeC3rerIKPBVXliLcf0IM3g9vxpUFslCuh0sZ88HCJ6TekbWVw+MREKqx6EEx/nIzXrjwgxvXylKB6fyKhR6eQmTduUrtUinbJwJx4yFVq0oralHkh8aAmM3R41Z441iPvTfzibVA0TLPh84ePgKypisx6eElxIz3uUWmffO6Eyx05DikfNPPHQH8BnrhtWIILpB1QXmJgunmDCQ+mTGiP3KbwiJiBhcQvx778CaeRc22LMhHBuWedtKwG1r1+29iM4mxxmAsfFmPsiFPazTA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=TOOaGYKzvNL2B0z0k2no3AlNGti7/25rKQi3+ZrVur4=;
+ b=oP2ytQ2Z5Pzoo5u3lAUgKSb9tEfLHrbfj9nF/ymWsy107wK4FMgyzup4/tQWPWu62vtCyblciGEFjVyPEvaq0w6osVrZO43rfANcpMnOKNpNSMmb9b4KCVMQzaROEpuYZNF/GCwCa+hY/wK2gsIZsGcZdusbf2pNvo8WXuFBnohbTDijguwza2woxx3If1zVqWhudyTc85El/1f2fuyEIEleSMANWC+kRI1sGUqrIXpixSTJ/hxZ6bgSe9eGGAA9VbZYdAzMkWXnkoR5KFzxBznu9VDVjnjxFogZe2Ecv90/hmRnwYDCjNzf43PmyS6+mMfkHQgt3Ub5TRl6WOpQRQ==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=leica-geosystems.com.cn; dmarc=pass action=none
+ header.from=leica-geosystems.com.cn; dkim=pass
+ header.d=leica-geosystems.com.cn; arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1751538402; x=1752143202; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=pXWowOmGIffPRxlOWADDgGpb22fWorXamFRtd495nzE=;
-        b=hcCowKGfnetq7n6mbgM6WHJOs9GhuEPYJqm3y+c3mdGk6hup6E+8uv8SLN3zO+VBwI
-         gJb0/UkqFqCSlUp+78Ee8OXJ9/AoT3p9VNf2VOBlLyqmN6Qi31aHsk/rT8nZ7IlCK5H5
-         5fCXX9DsuzrhAlVyBRwUaYaU2fYbRlgnaqVYjNxpFe/zylCJ91XNeoy9Nb5oSWYKLoD0
-         psXHvBR3UpMmHiX6Q/55lhOYjVlv0OtEbT2ngO6/ZJvmBQqQK+2xE1sMwa/UwRSg/ADm
-         R81/4TxoF8MuUMtiNa9M38j6CfsQ1Q4VEnRjHhyVV/TCbBJ1vAmrG+5VhS8fVzajxWXi
-         FQCA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1751538402; x=1752143202;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=pXWowOmGIffPRxlOWADDgGpb22fWorXamFRtd495nzE=;
-        b=KITbZ1m/6IQeduAoT02NSi0qTcgfcbTL3wyW7WQOMOZldvRGvWB7iCelvRpCNEGwY1
-         B5rNxl/Th5XJbuhFG2bUrGI6gaJqWm51Sjx1PlD95Mwy0NOFYDbaGlU/OM1zRvS1O005
-         GY7mbBmJxvY5+2nTCTzQmxTd/DI97AW1iHScmustiDWBFKZQrdQt/GtGs5tCAnjED3jW
-         TApSQPAf+OPwP1YUSO/QRk/iVJvNdMJITSp8lSvQBufPTP7sLW7nbo7N6gYrJmPjVA/n
-         qKgXiu94e6OGmzR0yNE5MeLsJQmvoAoIBWcK5/H8JH1U3ixDhEeF0dLtj/TKv6uMeiOJ
-         AWLg==
-X-Forwarded-Encrypted: i=1; AJvYcCUpODsyqa0n0YCv3mqG/L/JJMpEOv568E5MzR/jg8/VQvoIjg+lvQy1DpUTzr+5LPmso0jhqYF3sPOK@vger.kernel.org, AJvYcCV0hg6zK0Eiq+P1H1V42bYpbj6gupmIk5dn8KZv0S8XXABr5LEFGHJWuJLXDOiQFAEqj+4jRxlmTNpO@vger.kernel.org, AJvYcCXFWik9faBxjc0Mv+56i5NT6yBZ9FtqRsWAnJNSq42FihJ3epOMNyepBGLSP2b4Fm7l1/CX4yrhyppOFVw=@vger.kernel.org, AJvYcCXSLUxF3f4r0XwnXswWv8afX7mgUYsEUaOhtyd8dhcRAz0WIZLuruxIgSPvgmTPwD6kQPHIkPe7liy4QtN8@vger.kernel.org
-X-Gm-Message-State: AOJu0YwVsiTegJ9X0OsP7GIguDDh++9NY6I6oULW6m0DYgcdcy9DAwud
-	v8h70csLJdIx4T/eGGywncIYMkx2+l/RkqgTmPcu6K6gyETeiv6pAhU401EuCw==
-X-Gm-Gg: ASbGncva2FGXBE2frlMrhV9TtQFf9omdRIckIgPRp+gknB0yRcVaxB2BwQtojeE9rNb
-	bbeXlfYRdoqXIqyzRdkLV64GdWn0IMQg5+spvLFIkdoAstNXm/bwVV+dkyfbzmPVZ+/JgYkn0De
-	Fk3CiAusxGCxKHETANQ5EBwPFZYLWVca2UBgP2AE15LoJHGzXdCVD2SOzQzE8+Yy9ic9me5TpEA
-	wAMf+36vmOTS03mkxygSYSYoo4ktCBmyv2ldhs7BIi8W2GSNJ88FtNft5/ay/AAocYT+M9ydQSu
-	smbHgLotJlmfsrwVs6Zq/dvYI82iC4PUAbR1Bdm/ITNGOsSlwrw0GKMvRC+j33Hq0BKQeA+wlym
-	BP149P94ydrD1m2Cy+dmKdhBle75bbGvZqS2FEEm+XoJfvWn2Ylca15wMTS0=
-X-Google-Smtp-Source: AGHT+IE9NZ2kqm5+/q6eR4siHuvm2lG5FAQ6w9JKxUm/eJ0KPWyzwgq9Kp8BLuTCzWpyoZ146BVymQ==
-X-Received: by 2002:a05:600c:19d4:b0:453:5c30:a1fd with SMTP id 5b1f17b1804b1-454ab3778a3mr23192875e9.8.1751538402020;
-        Thu, 03 Jul 2025 03:26:42 -0700 (PDT)
-Received: from orome (p200300e41f4e9b00f22f74fffe1f3a53.dip0.t-ipconnect.de. [2003:e4:1f4e:9b00:f22f:74ff:fe1f:3a53])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-454a997de2asm22779675e9.12.2025.07.03.03.26.40
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 03 Jul 2025 03:26:40 -0700 (PDT)
-Date: Thu, 3 Jul 2025 12:26:38 +0200
-From: Thierry Reding <thierry.reding@gmail.com>
-To: "Rob Herring (Arm)" <robh@kernel.org>
-Cc: Michael Turquette <mturquette@baylibre.com>, 
-	Stephen Boyd <sboyd@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
-	Conor Dooley <conor+dt@kernel.org>, Jonathan Hunter <jonathanh@nvidia.com>, 
-	Joseph Lo <josephl@nvidia.com>, Tuomas Tynkkynen <ttynkkynen@nvidia.com>, 
-	Thierry Reding <treding@nvidia.com>, linux-clk@vger.kernel.org, devicetree@vger.kernel.org, 
-	linux-tegra@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH] dt-bindings: clock: Convert nvidia,tegra124-dfll to DT
- schema
-Message-ID: <hphr525b57li2fe4xstxbpwihldv6fr5kslktpphlvku22buv7@w3n5ynczr27v>
-References: <20250630232632.3700405-1-robh@kernel.org>
+ d=leica-geosystems.com.cn; s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=TOOaGYKzvNL2B0z0k2no3AlNGti7/25rKQi3+ZrVur4=;
+ b=lINWA/MdVbPI8JSSU01OLH9MbOWi0EiT23apVCiZfWvIgtGny3RxfgSxWJyOX4d9gRlQjEg19xJyaqcRU65eqp0WFPvqf01nsz9EMKsspSR9qTVIQbzd7Mq2NaTKjjZEUixIuwhT3c/fLMSXXo8Jq1MgQRF0VQ/LV7cNLHwozfs=
+Received: from AM9PR06MB7955.eurprd06.prod.outlook.com (2603:10a6:20b:3a6::16)
+ by VI0PR06MB9391.eurprd06.prod.outlook.com (2603:10a6:800:23c::9) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8901.20; Thu, 3 Jul
+ 2025 10:27:40 +0000
+Received: from AM9PR06MB7955.eurprd06.prod.outlook.com
+ ([fe80::383f:82b9:8533:b78d]) by AM9PR06MB7955.eurprd06.prod.outlook.com
+ ([fe80::383f:82b9:8533:b78d%5]) with mapi id 15.20.8880.024; Thu, 3 Jul 2025
+ 10:27:40 +0000
+From: LI Qingwu <Qing-wu.Li@leica-geosystems.com.cn>
+To: Krzysztof Kozlowski <krzk@kernel.org>, "lee@kernel.org" <lee@kernel.org>,
+	"pavel@kernel.org" <pavel@kernel.org>, "robh@kernel.org" <robh@kernel.org>,
+	"krzk+dt@kernel.org" <krzk+dt@kernel.org>, "conor+dt@kernel.org"
+	<conor+dt@kernel.org>, "linux-leds@vger.kernel.org"
+	<linux-leds@vger.kernel.org>, "devicetree@vger.kernel.org"
+	<devicetree@vger.kernel.org>, "linux-kernel@vger.kernel.org"
+	<linux-kernel@vger.kernel.org>
+CC: GEO-CHHER-bsp-development <bsp-development.geo@leica-geosystems.com>
+Subject: RE: [PATCH V4 1/2] dt-bindings: leds: pwm: add enable-gpios property
+Thread-Topic: [PATCH V4 1/2] dt-bindings: leds: pwm: add enable-gpios property
+Thread-Index: AQHb6/20KOVFnvUpm0699jNoWMGGK7QgKlYAgAAGb+A=
+Date: Thu, 3 Jul 2025 10:27:39 +0000
+Message-ID:
+ <AM9PR06MB795507373B99DFF6820D979ED743A@AM9PR06MB7955.eurprd06.prod.outlook.com>
+References: <20250703093430.229959-1-Qing-wu.Li@leica-geosystems.com.cn>
+ <20250703093430.229959-2-Qing-wu.Li@leica-geosystems.com.cn>
+ <85e411bf-58cf-46fe-9afa-7b76999f1a42@kernel.org>
+In-Reply-To: <85e411bf-58cf-46fe-9afa-7b76999f1a42@kernel.org>
+Accept-Language: zh-CN, en-US
+Content-Language: zh-CN
+X-MS-Has-Attach:
+X-MS-TNEF-Correlator:
+authentication-results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=leica-geosystems.com.cn;
+x-ms-publictraffictype: Email
+x-ms-traffictypediagnostic: AM9PR06MB7955:EE_|VI0PR06MB9391:EE_
+x-ms-office365-filtering-correlation-id: 10f013b6-e6eb-4201-05b1-08ddba1c3ceb
+x-ms-exchange-senderadcheck: 1
+x-ms-exchange-antispam-relay: 0
+x-microsoft-antispam: BCL:0;ARA:13230040|1800799024|366016|376014|38070700018;
+x-microsoft-antispam-message-info:
+ =?utf-8?B?RTk4MmpKdEVyQnBOTDIydVJoOW5Mc2d2Z3VIMy9OUFJHTjBoNTR0NUt1d1A1?=
+ =?utf-8?B?N2pMTGVsRlMycCs5cHN6dHpQb1JwN0dQRDNJSWVxa05PSnlRU3JwOWlMUmxS?=
+ =?utf-8?B?U0Y0NHNibFp4VG15MG5YSE1aZnNVbUsxc1dwbWNNZlBkeVRTMVR6YnB6b1V2?=
+ =?utf-8?B?OWdsVk1wQnZWNWRodEN2NTJHMEJUOVZJU1pxSjJrcEx0NFRscUY2cEhGVGFO?=
+ =?utf-8?B?amEzK2FWR1JVU3E0UFdZbHNkNnpVdTA0UmpHUEhnNE11emE2N05yaW00Z1Vm?=
+ =?utf-8?B?VEt6NlFSMkgwaElyYTlzUXhXS1Niam5oQ2xwTDNwVTBpVjV5VGhtci9TRGNM?=
+ =?utf-8?B?K0pDdnpzNmNpd25QS3pDQzQwZEtuQkhSNnlFSitSem90RWJZQWNrQlNZV3Mv?=
+ =?utf-8?B?dC8vRU5KaVVoWWtnYnhpQkhXdTZheDNRQkFCaVlmb3M2ZXI2U1IzTGo4MzJl?=
+ =?utf-8?B?MDEzSy9IWXMvVjdpTVpIdDlSU3pETW9OdWJrY3NZTThITSt6SU1lRkMrOXRQ?=
+ =?utf-8?B?WXdqeW1rZGpOYnJyV2I5SWwzYVA4dlIyUHNLaStrbFdseWJqR2J6b0s1UzFw?=
+ =?utf-8?B?OXZvNkJMSzVBc2cxRXI3QmZDdHR4TWhid1ZFdzh0ZWpRakpWenoycStzNHRr?=
+ =?utf-8?B?eWVjSjk3UHdEWnNzVlY5M0tmb1pDMDBUWVdheGNURnl0Z0FYamhVVWQ1V0dG?=
+ =?utf-8?B?V3hDMS9TVnVNVUxqUTNtRTlDaHJmM0hFdTMxMWF6WDRVK0loemhSUEtaeFRW?=
+ =?utf-8?B?UDBpZldkMW43Vno5eXF6QTBYQktWOHJDaEpBMGg3Szl2UnNKamNZbzVtdEdB?=
+ =?utf-8?B?Nm1CYk1xWTRaOGdKWEJNd1lVeHUydFNDS00rZmJTbHNuR1JITDNOdVBobnAv?=
+ =?utf-8?B?VmowS0dwMVE0L1gwMUhGOWR3R0NSYnZjVC9qeExGZCtxczM4ZzNhSUFXWWFB?=
+ =?utf-8?B?Qm8wUmlXenNWK1Z1MXdPWm5DeFVtWStPNXl5V2wzbzRMM3I1YTZuWlJpc084?=
+ =?utf-8?B?V0szZGM0c2hwRFVLSUkvNnc3TDVMeUw5My92MWNNaUoxMUdTUlNQYmxzRkNa?=
+ =?utf-8?B?dk9uSXRjTTlZMzZpS3BrWVhGZ0s4YWwwQTd5N0FudGZCWEtPWWpScGxKWWN3?=
+ =?utf-8?B?dnZKZzY3d1Rrd2p4NUpQQUhNWkdFVDZYc1REQ2p5dWZPbmZteXprTWFNZU9o?=
+ =?utf-8?B?aWZwcCtCMjFFYU1sV3EwdXRoZmpvcFV4cjhpL3ArZHg4dml4TG4yaXhuUGxo?=
+ =?utf-8?B?RUhtcFJMR21ZRTRJV2IyS3l1MzZXK2ZGYjArdjB1NDI5WUlpUWttVzhsczdu?=
+ =?utf-8?B?SVZsR1VvTzBtK1cwU2ZjUFFjbm9DaUFLY2M3ZVhCYisyemxUVXpUZThXYWth?=
+ =?utf-8?B?TEkrNVpNaVNNR3lsL2JvOHdSVDM5VmxRYkxnM3JacmdTaXZJNk9uSWtvTWNJ?=
+ =?utf-8?B?WktWVkxzWGhtdXVVcjdFTXpnZ3BIdW9qZ01aWHgrRHpVQ0xjQ1U4bWU5TElW?=
+ =?utf-8?B?NU1IcnBkZ1ZBZnhvLzZJTndhbWNkVjNtUmlhanl5S2hXdHEzTElCVC9KRmZK?=
+ =?utf-8?B?S1BVZ2Q4THRXQ1NTSzdhMlRnYjJ0cklUUHhrWEIwczlJYWNqRFlaaFBCZW5O?=
+ =?utf-8?B?eUtMTUNlcDhISXN0bUt6Um40OHRFbCs4V3NZTkZQVEFhaGZIakRlTHZaYUgz?=
+ =?utf-8?B?UnIxMUxkWEdGZ0I5aVNEZ2lneXQ1Rks0V3BkTVZzOUZkVEdNRTMzaEhpbC9j?=
+ =?utf-8?B?YWllMko2U3I0aXBoN3VoN3lJelFUSERoVk9HdVMySmV4VzBQU0lHcHQrZDZ0?=
+ =?utf-8?B?RzNwbkdZM1Fqa0dkRVlqRDFjQkNwNFJMeEZCQXozS3ZCTDQ5c21GdGpBK0xG?=
+ =?utf-8?B?YUxTb2xhVEhMbGhBVDFlWUJZblMrK0x4VkhubzNsVUZ5UHc5TlFVMnpMMWZP?=
+ =?utf-8?B?L1IvVUJueEVNa1MvU1VZTVFUTzRJa1BqTnQzQXByRXZtbTZQa1VDTElvSGEw?=
+ =?utf-8?Q?+s8uzpyQ5RbADRASHYZoPYBctU6Ve4=3D?=
+x-forefront-antispam-report:
+ CIP:255.255.255.255;CTRY:;LANG:zh-cn;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:AM9PR06MB7955.eurprd06.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(1800799024)(366016)(376014)(38070700018);DIR:OUT;SFP:1101;
+x-ms-exchange-antispam-messagedata-chunkcount: 1
+x-ms-exchange-antispam-messagedata-0:
+ =?utf-8?B?SXo2dmc0YThQOTYzOWM2UmJsVWswNXkrYVZ3L0xrblJjSFpoY0NsbDNSUk9z?=
+ =?utf-8?B?STZCbnBpS04zb0Y3QmdPUVcvdTZ0dDdaVGs1MytxOTV2VTZIMVJlUlI4c3lq?=
+ =?utf-8?B?TTRBa2dkQUhWQVUyQXQrekZwTHZhRkRlZjk2cDBEM21nUEZrLzJnZExmTWVE?=
+ =?utf-8?B?MFNQYlo5Rld2V095WHNIQjh6Rk11Q0FtMk5nWXBYOU83YlhUMkhNZU1mNmpE?=
+ =?utf-8?B?ekowWXY5ZzNCTDE4Q1phTldwa2lzNUFTVWpmdnczNWUxeWJvT3RmaFhQTVY5?=
+ =?utf-8?B?Ty8zTG40WXN6eGplcE84QlVSbE5rbzIrWjJSejkzWlVXN0pRcU9xcmR0enZY?=
+ =?utf-8?B?d1MzZmFBT1Z6Zy9kZllrdWh6S2Q4c3l6MVVZeFdBc3V1TmpldERNZHdZSG1j?=
+ =?utf-8?B?SHFISVZ5ZHYycFFnenhrK2FVSk1rNmN2aWdBeFY1anlzV1V5WitlQWJHcjFp?=
+ =?utf-8?B?cFg0NDBOZjBrcWE1MDJmN25YLzFGR0xXYjlHZlJRV2hpNFVGaC9vcTZWOU9O?=
+ =?utf-8?B?aUk4TFFaeGx2RUtYYit2MFlQcFZ5MmY2Vng3NXVna0NPZkw0cFFFZngvWm0r?=
+ =?utf-8?B?MWdQeTFUT3I1aWJJVmlWT3c1MHdmN05vZ2RMQU9Wc0k2SVphUjV1ZmNmRDhY?=
+ =?utf-8?B?U0FQem1XTGpzMCtoNXc4aVVIWjBDeEVRQ0ZIOHY4N2hvWnRNU1o1UkV2L0ZM?=
+ =?utf-8?B?SWorWEdnNXRLTjZTeHhxWnM3S0ZOUFJDci9LOXU3c3lEQWMySFdqMkhhVzZ5?=
+ =?utf-8?B?Qk85V0M4VVdMb1Y4YWY0UFhsODJhem8vL3FZQllCdGl1d2N1YUlDWDRoMWdm?=
+ =?utf-8?B?VnRHWjVWRnZubXAvczdnc1UySTVoVWVCMm4zN3ZxUWJZWXhOQzgrbVdQWkNP?=
+ =?utf-8?B?d0xTQnhVWXd0cW5GRWZab1NHcFVLQU9qYmN4R0h0Z0kvK3lodGNmVjZIcTF2?=
+ =?utf-8?B?MW5vSXArckhad3ZzY251cUdZeGFvTENBRXd5L3NMMmJkcVR5VnF5bGwvRytG?=
+ =?utf-8?B?N0ZsWERnRzZlRFc1RnN4VUY5WXhTRUg1Sk04KzZrQk5kOEpuNnh5MjdqT1Nk?=
+ =?utf-8?B?MHgyR2UwcFNCT1R3Z2pNYXpVQkRGQlBzcWxtT0lOQXpiRDVsclVZcU5tVWJ1?=
+ =?utf-8?B?dGlXOGJYdTJDeWNIRHNxbHBNcy9LZU95NjFDRzNWQ3JocXRucVZjTUNyZjU3?=
+ =?utf-8?B?eXkzeWdScm9ldG95T2FMQmpmeWZDRUNzalVLZTRPNzJZVFU0ckRIemN6U2Qy?=
+ =?utf-8?B?WURhZFlYakNUZWZRbGxZQUtXaEVlMUtzS0I2K1oyUlV5U0hyUjQrV0wwOWF0?=
+ =?utf-8?B?MFpzeENxVlluV1RveWdlc2ppcEliZUZ6YlJhazUva3dnbVgya1YzU1hVd3FI?=
+ =?utf-8?B?Z2FKZndJRER5SzhUNW0rcUcrSlM3VXRuYWgrdWF4R2Fuci9qQStaU3dOd2Ur?=
+ =?utf-8?B?dDEyVjB5cXd1clJCbEFhMTFURXZMQmVzR1Zic2QyOUIwa2FjQTBCN0NsQjFJ?=
+ =?utf-8?B?dVAzNjJTQnVoUE1icFpZQWF5UlpLTldkbENHQ2VKV1NNU1FLYndtUzlteTFu?=
+ =?utf-8?B?OFp1SWFnUGNxYkhhVVdVamk3TnZPRGNHMlI3M1FqdDNhZEFoQnMxN2Z6c0ow?=
+ =?utf-8?B?QlNsdTduVUNpMExvSGd2bVV1Tm1ValF4THA2RXBaZE1mUTh2REJnam1FNnVP?=
+ =?utf-8?B?SEJoU3cxbFNIUi9CQTVDcEhFa3ZmKzZmMnk0Vnd5TDVqSFYvcmQva1VjUUpi?=
+ =?utf-8?B?ZHJNNlFBWllSelZoRHVJSk9zV1hQeG5lN0RNWW0xa0JBd3ozNVQ4SktGUVhi?=
+ =?utf-8?B?ZmoxOExPZHExbXEraGJ5RUZRS2hESWgwazNTcTI2ZlY4TjZKYnQxcitxZFhD?=
+ =?utf-8?B?dmV4Qmw0Uzc1QlRJQ2UrMExuME5QUVBWQ3k5RnU4UmRhcklMRmtDbXNrdzAx?=
+ =?utf-8?B?Y2ZWOURVa2xUQlkrMTZCcjdFRWhIR2FOS2xGR0E4WDJlV2c1NktaNy90TlRm?=
+ =?utf-8?B?WEN5M1FHK2o2VFdpOUhoVDlqQ1psSlhocTV1YlZ2R2hCVDJ0TXUwS29UWFk5?=
+ =?utf-8?B?V29TRHNUZGtLUnV1VXd3WlUxbnA1eVlFcVlDVXZjMmJMeHBpOGl5NjFEN3JQ?=
+ =?utf-8?B?ZnB4NW81VkZwaE8wVGM4cGZTWnc1aG1UWEIrRXNrMkNIVTQ0T0R2WHJmbXJ2?=
+ =?utf-8?Q?iH1mMywzmTzQ/J1Vj0NFKXU=3D?=
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="howhl4r74vwsl3vi"
-Content-Disposition: inline
-In-Reply-To: <20250630232632.3700405-1-robh@kernel.org>
+X-OriginatorOrg: leica-geosystems.com.cn
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-AuthSource: AM9PR06MB7955.eurprd06.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 10f013b6-e6eb-4201-05b1-08ddba1c3ceb
+X-MS-Exchange-CrossTenant-originalarrivaltime: 03 Jul 2025 10:27:40.0118
+ (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 1b16ab3e-b8f6-4fe3-9f3e-2db7fe549f6a
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: jTEoFl7fZzsv3eG6bykJlTlTRn3UD1xenyb1GwQrQlq/FBRgyjhaPmI7c2clZrTn00EpJ+OjnkyiVTwaVowd7qVsrQlae0FEvz4wHYutbJMaaj1mYTutQUAhTaxsHbDv
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: VI0PR06MB9391
 
-
---howhl4r74vwsl3vi
-Content-Type: text/plain; protected-headers=v1; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
-Subject: Re: [PATCH] dt-bindings: clock: Convert nvidia,tegra124-dfll to DT
- schema
-MIME-Version: 1.0
-
-On Mon, Jun 30, 2025 at 06:26:30PM -0500, Rob Herring (Arm) wrote:
-> Signed-off-by: Rob Herring (Arm) <robh@kernel.org>
-> ---
->  .../bindings/clock/nvidia,tegra124-dfll.txt   | 155 -------------
->  .../bindings/clock/nvidia,tegra124-dfll.yaml  | 219 ++++++++++++++++++
->  2 files changed, 219 insertions(+), 155 deletions(-)
->  delete mode 100644 Documentation/devicetree/bindings/clock/nvidia,tegra1=
-24-dfll.txt
->  create mode 100644 Documentation/devicetree/bindings/clock/nvidia,tegra1=
-24-dfll.yaml
->=20
-> diff --git a/Documentation/devicetree/bindings/clock/nvidia,tegra124-dfll=
-=2Etxt b/Documentation/devicetree/bindings/clock/nvidia,tegra124-dfll.txt
-> deleted file mode 100644
-> index f7d347385b57..000000000000
-> --- a/Documentation/devicetree/bindings/clock/nvidia,tegra124-dfll.txt
-> +++ /dev/null
-> @@ -1,155 +0,0 @@
-> -NVIDIA Tegra124 DFLL FCPU clocksource
-> -
-> -This binding uses the common clock binding:
-> -Documentation/devicetree/bindings/clock/clock-bindings.txt
-> -
-> -The DFLL IP block on Tegra is a root clocksource designed for clocking
-> -the fast CPU cluster. It consists of a free-running voltage controlled
-> -oscillator connected to the CPU voltage rail (VDD_CPU), and a closed loop
-> -control module that will automatically adjust the VDD_CPU voltage by
-> -communicating with an off-chip PMIC either via an I2C bus or via PWM sig=
-nals.
-> -
-> -Required properties:
-> -- compatible : should be one of:
-> -  - "nvidia,tegra124-dfll": for Tegra124
-> -  - "nvidia,tegra210-dfll": for Tegra210
-> -- reg : Defines the following set of registers, in the order listed:
-> -        - registers for the DFLL control logic.
-> -        - registers for the I2C output logic.
-> -        - registers for the integrated I2C master controller.
-> -        - look-up table RAM for voltage register values.
-> -- interrupts: Should contain the DFLL block interrupt.
-> -- clocks: Must contain an entry for each entry in clock-names.
-> -  See clock-bindings.txt for details.
-> -- clock-names: Must include the following entries:
-> -  - soc: Clock source for the DFLL control logic.
-> -  - ref: The closed loop reference clock
-> -  - i2c: Clock source for the integrated I2C master.
-> -- resets: Must contain an entry for each entry in reset-names.
-> -  See ../reset/reset.txt for details.
-> -- reset-names: Must include the following entries:
-> -  - dvco: Reset control for the DFLL DVCO.
-> -- #clock-cells: Must be 0.
-> -- clock-output-names: Name of the clock output.
-> -- vdd-cpu-supply: Regulator for the CPU voltage rail that the DFLL
-> -  hardware will start controlling. The regulator will be queried for
-> -  the I2C register, control values and supported voltages.
-> -
-> -Required properties for the control loop parameters:
-> -- nvidia,sample-rate: Sample rate of the DFLL control loop.
-> -- nvidia,droop-ctrl: See the register CL_DVFS_DROOP_CTRL in the TRM.
-> -- nvidia,force-mode: See the field DFLL_PARAMS_FORCE_MODE in the TRM.
-> -- nvidia,cf: Numeric value, see the field DFLL_PARAMS_CF_PARAM in the TR=
-M.
-> -- nvidia,ci: Numeric value, see the field DFLL_PARAMS_CI_PARAM in the TR=
-M.
-> -- nvidia,cg: Numeric value, see the field DFLL_PARAMS_CG_PARAM in the TR=
-M.
-> -
-> -Optional properties for the control loop parameters:
-> -- nvidia,cg-scale: Boolean value, see the field DFLL_PARAMS_CG_SCALE in =
-the TRM.
-> -
-> -Optional properties for mode selection:
-> -- nvidia,pwm-to-pmic: Use PWM to control regulator rather then I2C.
-> -
-> -Required properties for I2C mode:
-> -- nvidia,i2c-fs-rate: I2C transfer rate, if using full speed mode.
-> -
-> -Required properties for PWM mode:
-> -- nvidia,pwm-period-nanoseconds: period of PWM square wave in nanosecond=
-s.
-> -- nvidia,pwm-tristate-microvolts: Regulator voltage in micro volts when =
-PWM
-> -  control is disabled and the PWM output is tristated. Note that this vo=
-ltage is
-> -  configured in hardware, typically via a resistor divider.
-> -- nvidia,pwm-min-microvolts: Regulator voltage in micro volts when PWM c=
-ontrol
-> -  is enabled and PWM output is low. Hence, this is the minimum output vo=
-ltage
-> -  that the regulator supports when PWM control is enabled.
-> -- nvidia,pwm-voltage-step-microvolts: Voltage increase in micro volts
-> -  corresponding to a 1/33th increase in duty cycle. Eg the voltage for 2=
-/33th
-> -  duty cycle would be: nvidia,pwm-min-microvolts +
-> -  nvidia,pwm-voltage-step-microvolts * 2.
-> -- pinctrl-0: I/O pad configuration when PWM control is enabled.
-> -- pinctrl-1: I/O pad configuration when PWM control is disabled.
-> -- pinctrl-names: must include the following entries:
-> -  - dvfs_pwm_enable: I/O pad configuration when PWM control is enabled.
-> -  - dvfs_pwm_disable: I/O pad configuration when PWM control is disabled.
-> -
-> -Example for I2C:
-> -
-> -clock@70110000 {
-> -        compatible =3D "nvidia,tegra124-dfll";
-> -        reg =3D <0 0x70110000 0 0x100>, /* DFLL control */
-> -              <0 0x70110000 0 0x100>, /* I2C output control */
-> -              <0 0x70110100 0 0x100>, /* Integrated I2C controller */
-> -              <0 0x70110200 0 0x100>; /* Look-up table RAM */
-> -        interrupts =3D <GIC_SPI 62 IRQ_TYPE_LEVEL_HIGH>;
-> -        clocks =3D <&tegra_car TEGRA124_CLK_DFLL_SOC>,
-> -                 <&tegra_car TEGRA124_CLK_DFLL_REF>,
-> -                 <&tegra_car TEGRA124_CLK_I2C5>;
-> -        clock-names =3D "soc", "ref", "i2c";
-> -        resets =3D <&tegra_car TEGRA124_RST_DFLL_DVCO>;
-> -        reset-names =3D "dvco";
-> -        #clock-cells =3D <0>;
-> -        clock-output-names =3D "dfllCPU_out";
-> -        vdd-cpu-supply =3D <&vdd_cpu>;
-> -
-> -        nvidia,sample-rate =3D <12500>;
-> -        nvidia,droop-ctrl =3D <0x00000f00>;
-> -        nvidia,force-mode =3D <1>;
-> -        nvidia,cf =3D <10>;
-> -        nvidia,ci =3D <0>;
-> -        nvidia,cg =3D <2>;
-> -
-> -        nvidia,i2c-fs-rate =3D <400000>;
-> -};
-> -
-> -Example for PWM:
-> -
-> -clock@70110000 {
-> -	compatible =3D "nvidia,tegra124-dfll";
-> -	reg =3D <0 0x70110000 0 0x100>, /* DFLL control */
-> -	      <0 0x70110000 0 0x100>, /* I2C output control */
-> -	      <0 0x70110100 0 0x100>, /* Integrated I2C controller */
-> -	      <0 0x70110200 0 0x100>; /* Look-up table RAM */
-> -	interrupts =3D <GIC_SPI 62 IRQ_TYPE_LEVEL_HIGH>;
-> -	clocks =3D <&tegra_car TEGRA210_CLK_DFLL_SOC>,
-> -	         <&tegra_car TEGRA210_CLK_DFLL_REF>,
-> -		 <&tegra_car TEGRA124_CLK_I2C5>;;
-> -	clock-names =3D "soc", "ref", "i2c";
-> -	resets =3D <&tegra_car TEGRA124_RST_DFLL_DVCO>;
-> -	reset-names =3D "dvco";
-> -	#clock-cells =3D <0>;
-> -	clock-output-names =3D "dfllCPU_out";
-> -
-> -	nvidia,sample-rate =3D <25000>;
-> -	nvidia,droop-ctrl =3D <0x00000f00>;
-> -	nvidia,force-mode =3D <1>;
-> -	nvidia,cf =3D <6>;
-> -	nvidia,ci =3D <0>;
-> -	nvidia,cg =3D <2>;
-> -
-> -	nvidia,pwm-min-microvolts =3D <708000>; /* 708mV */
-> -	nvidia,pwm-period-nanoseconds =3D <2500>; /* 2.5us */
-> -	nvidia,pwm-to-pmic;
-> -	nvidia,pwm-tristate-microvolts =3D <1000000>;
-> -	nvidia,pwm-voltage-step-microvolts =3D <19200>; /* 19.2mV */
-> -
-> -	pinctrl-names =3D "dvfs_pwm_enable", "dvfs_pwm_disable";
-> -	pinctrl-0 =3D <&dvfs_pwm_active_state>;
-> -	pinctrl-1 =3D <&dvfs_pwm_inactive_state>;
-> -};
-> -
-> -/* pinmux nodes added for completeness. Binding doc can be found in:
-> - * Documentation/devicetree/bindings/pinctrl/nvidia,tegra210-pinmux.yaml
-> - */
-> -
-> -pinmux: pinmux@700008d4 {
-> -	dvfs_pwm_active_state: dvfs_pwm_active {
-> -		dvfs_pwm_pbb1 {
-> -			nvidia,pins =3D "dvfs_pwm_pbb1";
-> -			nvidia,tristate =3D <TEGRA_PIN_DISABLE>;
-> -		};
-> -	};
-> -	dvfs_pwm_inactive_state: dvfs_pwm_inactive {
-> -		dvfs_pwm_pbb1 {
-> -			nvidia,pins =3D "dvfs_pwm_pbb1";
-> -			nvidia,tristate =3D <TEGRA_PIN_ENABLE>;
-> -		};
-> -	};
-> -};
-> diff --git a/Documentation/devicetree/bindings/clock/nvidia,tegra124-dfll=
-=2Eyaml b/Documentation/devicetree/bindings/clock/nvidia,tegra124-dfll.yaml
-> new file mode 100644
-> index 000000000000..67d99fd89ea9
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/clock/nvidia,tegra124-dfll.yaml
-> @@ -0,0 +1,219 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/clock/nvidia,tegra124-dfll.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: NVIDIA Tegra124 DFLL FCPU clocksource
-> +
-> +maintainers:
-> +  - Joseph Lo <josephl@nvidia.com>
-> +  - Thierry Reding <treding@nvidia.com>
-> +  - Tuomas Tynkkynen <ttynkkynen@nvidia.com>
-
-Tuomas isn't at NVIDIA anymore, as far as I can tell.
-
-> +
-> +description:
-> +  The DFLL IP block on Tegra is a root clocksource designed for clocking=
- the
-> +  fast CPU cluster. It consists of a free-running voltage controlled osc=
-illator
-> +  connected to the CPU voltage rail (VDD_CPU), and a closed loop control=
- module
-> +  that will automatically adjust the VDD_CPU voltage by communicating wi=
-th an
-> +  off-chip PMIC either via an I2C bus or via PWM signals.
-> +
-> +properties:
-> +  compatible:
-> +    enum:
-> +      - nvidia,tegra124-dfll
-> +      - nvidia,tegra210-dfll
-> +
-> +  reg:
-> +    items:
-> +      - description: DFLL control logic registers
-> +      - description: I2C output logic registers
-> +      - description: Integrated I2C master controller registers
-> +      - description: Look-up table RAM for voltage register values
-> +
-> +  interrupts:
-> +    maxItems: 1
-> +
-> +  "#clock-cells":
-> +    const: 0
-> +
-> +  clocks:
-> +    items:
-> +      - description: Clock source for the DFLL control logic
-> +      - description: Closed loop reference clock
-> +      - description: Clock source for the integrated I2C master
-> +
-> +  clock-names:
-> +    items:
-> +      - const: soc
-> +      - const: ref
-> +      - const: i2c
-> +
-> +  clock-output-names:
-> +    description: Name of the DFLL CPU clock output
-> +    items:
-> +      - const: dfllCPU_out
-> +
-> +  resets:
-> +    minItems: 1
-> +    maxItems: 2
-> +
-> +  reset-names:
-> +    minItems: 1
-> +    items:
-> +      - const: dvco
-> +      - const: dfll
-> +
-> +  vdd-cpu-supply: true
-> +
-> +  nvidia,sample-rate:
-> +    description: Sample rate of the DFLL control loop
-> +    $ref: /schemas/types.yaml#/definitions/uint32
-
-I have a local patch for this and have a few additional restrictions for
-some of these properties that I think would make sense to include.
-
-For sample-rate, I have minimum: 12500 and maximum: 25000.
-
-> +
-> +  nvidia,droop-ctrl:
-> +    description: Droop control parameter (CL_DVFS_DROOP_CTRL) in TRM
-> +    $ref: /schemas/types.yaml#/definitions/uint32
-
-For this I have "enum: [ 0x00000f00 ]".
-
-> +
-> +  nvidia,force-mode:
-> +    description: Force mode parameter (DFLL_PARAMS_FORCE_MODE) in TRM
-> +    $ref: /schemas/types.yaml#/definitions/uint32
-
-enum: [ 0, 1, 2, 3 ]
-
-> +
-> +  nvidia,cf:
-> +    description: CF parameter (DFLL_PARAMS_CF_PARAM) in TRM
-> +    $ref: /schemas/types.yaml#/definitions/uint32
-
-minimum: 0, maximum: 63
-
-> +
-> +  nvidia,ci:
-> +    description: CI parameter (DFLL_PARAMS_CI_PARAM) in TRM
-> +    $ref: /schemas/types.yaml#/definitions/uint32
-
-minimum: 0, maximum: 7
-
-> +
-> +  nvidia,cg:
-> +    description: CG parameter (DFLL_PARAMS_CG_PARAM) in TRM
-> +    $ref: /schemas/types.yaml#/definitions/uint32
-
-minimum: 0, maximum: 255
-
-> +
-> +  nvidia,cg-scale:
-> +    description: CG scale flag (DFLL_PARAMS_CG_SCALE) in TRM
-> +    type: boolean
-> +
-> +  nvidia,pwm-to-pmic:
-> +    description: Use PWM to control regulator rather than I2C
-> +    type: boolean
-> +
-> +  nvidia,i2c-fs-rate:
-> +    description: I2C full speed transfer rate when using I2C mode
-> +    $ref: /schemas/types.yaml#/definitions/uint32
-
-enum: [ 100000, 400000 ]
-
-> +
-> +  nvidia,pwm-period-nanoseconds:
-> +    description: Period of PWM square wave in nanoseconds
-> +    $ref: /schemas/types.yaml#/definitions/uint32
-
-minimum: 1000, maximum: 1000000000
-
-> +
-> +  nvidia,pwm-tristate-microvolts:
-> +    description: Regulator voltage in microvolts when PWM control is dis=
-abled
-> +    $ref: /schemas/types.yaml#/definitions/uint32
-
-minimum: 0, maximum: 3300000
-
-> +
-> +  nvidia,pwm-min-microvolts:
-> +    description: Regulator voltage in microvolts when PWM control is ena=
-bled
-> +    $ref: /schemas/types.yaml#/definitions/uint32
-
-minimum: 0, maximum: 3300000
-
-> +
-> +  nvidia,pwm-voltage-step-microvolts:
-> +    description: Voltage increase in microvolts per duty cycle increment
-> +    $ref: /schemas/types.yaml#/definitions/uint32
-
-minimum: 0, maximum: 1000000
-
-Though given the additional comment that I added:
-
-+      Voltage increase in micro volts corresponding to a 1/33th increase
-+      in duty cycle. Eg the voltage for 2/33th duty cycle would be:
-+
-+        nvidia,pwm-min-microvolts + nvidia,pwm-voltage-step-microvolts * 2
-
-that maximum should probably be 100000 instead.
-
-Otherwise this looks very similar to what I have.
-
-Thanks for taking care of this.
-
-Thierry
-
---howhl4r74vwsl3vi
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQIzBAABCgAdFiEEiOrDCAFJzPfAjcif3SOs138+s6EFAmhmWtsACgkQ3SOs138+
-s6FIeA/8CAy41guIi8myMrlDgJUF8D1I0dyjzo59wfb9jZnpMqwpe0qHISPMasJa
-1MT04ZoILZpN7iHu7sWRE8S1WSDSlF0MqSzMw3sSrh4Dtv47ORuEhYudHFnYpLUF
-Gkr5FUScFCYUxFxh/NrHTdAzckNkAvy7ae29LDwAHydgDjqCCG2kfA5kPy/NMGWa
-I8JJCKpdYFEFWrrFV7UOBURN2bP9VOJgKocDZp6o7O5IWICsnsajEACJzixhp8RE
-b4HEwfqFWxiu1FEAtplEyAvmMRxrP3HtmNG5RrljpqFfi0u3Kpe6FecxpIg8lTrO
-dSgzYeAhc57a3XiOhE4S4cpJOfj6J3DsP5sSl6iCWpQpQPJvTyevf7ZGxs44pTGT
-saC6mKhjw5QCQQV4KL2G/sxvWvscSAvAtm66/Vf1odGSzv+1ZUaZ3iNoGE0iVJ9i
-x2qKOtiMJHg7wt1x/vgz558/izAU6NZuPSz1++NDCDRrKrMIwQsrYDlBJk/HCLU+
-mb3KpZ0q05XPioBC3TsRekzW9Lwq6tUs+tiQCCPnZxTEwhf9jyAKIctKKCjG98MQ
-O5h3v9Db1rVZCTY13X73p6RoTdavnbM2yWyB47wk35G09olGUHRo1ZfATOqJSWH+
-LcjwMknh/Am6NPvtIvbqDBZiPGV2E2EJ5kiA7kUiWApuLJtyEhM=
-=QvNW
------END PGP SIGNATURE-----
-
---howhl4r74vwsl3vi--
+DQoNCj4gLS0tLS1PcmlnaW5hbCBNZXNzYWdlLS0tLS0NCj4gRnJvbTogS3J6eXN6dG9mIEtvemxv
+d3NraSA8a3J6a0BrZXJuZWwub3JnPg0KPiBTZW50OiBUaHVyc2RheSwgSnVseSAzLCAyMDI1IDU6
+NTkgUE0NCj4gVG86IExJIFFpbmd3dSA8UWluZy13dS5MaUBsZWljYS1nZW9zeXN0ZW1zLmNvbS5j
+bj47IGxlZUBrZXJuZWwub3JnOw0KPiBwYXZlbEBrZXJuZWwub3JnOyByb2JoQGtlcm5lbC5vcmc7
+IGtyemsrZHRAa2VybmVsLm9yZzsNCj4gY29ub3IrZHRAa2VybmVsLm9yZzsgbGludXgtbGVkc0B2
+Z2VyLmtlcm5lbC5vcmc7IGRldmljZXRyZWVAdmdlci5rZXJuZWwub3JnOw0KPiBsaW51eC1rZXJu
+ZWxAdmdlci5rZXJuZWwub3JnDQo+IENjOiBHRU8tQ0hIRVItYnNwLWRldmVsb3BtZW50DQo+IDxi
+c3AtZGV2ZWxvcG1lbnQuZ2VvQGxlaWNhLWdlb3N5c3RlbXMuY29tPg0KPiBTdWJqZWN0OiBSZTog
+W1BBVENIIFY0IDEvMl0gZHQtYmluZGluZ3M6IGxlZHM6IHB3bTogYWRkIGVuYWJsZS1ncGlvcyBw
+cm9wZXJ0eQ0KPiANCj4gVGhpcyBlbWFpbCBpcyBub3QgZnJvbSBIZXhhZ29u4oCZcyBPZmZpY2Ug
+MzY1IGluc3RhbmNlLiBQbGVhc2UgYmUgY2FyZWZ1bCB3aGlsZQ0KPiBjbGlja2luZyBsaW5rcywg
+b3BlbmluZyBhdHRhY2htZW50cywgb3IgcmVwbHlpbmcgdG8gdGhpcyBlbWFpbC4NCj4gDQo+IA0K
+PiBPbiAwMy8wNy8yMDI1IDExOjM0LCBMSSBRaW5nd3Ugd3JvdGU6DQo+ID4gc29tZSBwd20gbGVk
+IGRyaXZlciBjaGlwcyBsaWtlIHRwczkyMzgwIHJlcXVpcmUgYSBzZXBhcmF0ZSBlbmFibGUNCj4g
+PiBzaWduYWwNCj4gDQo+IFNlbnRlbmNlIHN0YXJ0cyB3aXRoIGNhcGl0YWwgbGV0dGVyLg0KPiAN
+Cj4gdHBzOTIzODAgZG9lcyBub3QgaGF2ZSBkZWRpY2F0ZWQgZW5hYmxlIHBpbi4gSXQgaGFzIFZE
+RElPLCB3aGljaCBzZXJ2ZXMgYWxzbw0KPiBlbmFibGUgcHVycG9zZSwgYnV0IGl0IGlzIGEgc3Vw
+cGx5Lg0KDQpTbyB0aGlzIHBhdGNoIGlzIHVuYWNjZXB0YWJsZSBhbnl3YXk/DQogDQo+IEJlc3Qg
+cmVnYXJkcywNCj4gS3J6eXN6dG9mDQo=
 
