@@ -1,144 +1,252 @@
-Return-Path: <devicetree+bounces-192830-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-192831-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4FF13AF81F0
-	for <lists+devicetree@lfdr.de>; Thu,  3 Jul 2025 22:28:25 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 635F7AF81F9
+	for <lists+devicetree@lfdr.de>; Thu,  3 Jul 2025 22:36:43 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id D06501CA241E
-	for <lists+devicetree@lfdr.de>; Thu,  3 Jul 2025 20:28:41 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id B77794A2C79
+	for <lists+devicetree@lfdr.de>; Thu,  3 Jul 2025 20:36:43 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9FF3E2BDC02;
-	Thu,  3 Jul 2025 20:28:18 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C7E7D29994A;
+	Thu,  3 Jul 2025 20:36:39 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="ROXWG759"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="aUnuMd3l"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wr1-f45.google.com (mail-wr1-f45.google.com [209.85.221.45])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A52A329B8E5
-	for <devicetree@vger.kernel.org>; Thu,  3 Jul 2025 20:28:16 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.45
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7FB2325A333;
+	Thu,  3 Jul 2025 20:36:39 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1751574498; cv=none; b=HQo7MuoU9+HZi9BmkoJhAvvwx+bei+frm4A+WKv15imPp0P/ZPvi+e+uWTL1FVIigRXydcCBesSGn12ODIcqkSJO2q9oaem8XjCFA3XN4B01G7CgxJtueykZR7XxYzHejxyyepDxH1jz6ERI2crYRsuctV9CZMsLAF0T7ZEUURA=
+	t=1751574999; cv=none; b=nh7JWb7F08oAm0z+fR2U+L2ON9DV3v/EVpKZ9iTe2kocaklpJ0ZxBwkLTkpIOdEPXU97krjvveGvnEtRasu1rkqbSfs8QQstg3rgvGXH8as+FhmhJyKeVEf3L4qX3uswW85/ze+pLPT8P0b0ckfseX/HrsOkfGmB1Ef3EV3F1aw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1751574498; c=relaxed/simple;
-	bh=U7AmtgF3IwYm62ypi/7AR530Tbla2xssqfyVoRZWF0g=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=G/3w6nUFTupKGtv0xht6R/NtQXhPm8xrlk5rUxWHti/iVJ1j1RRYez47M3rODTKgsiCSKYaEpSVRmu6AMc32Iz2AmVSuyfHzy8f7siHMGBcJ7d1MXCSL5Z2XmGj7wNp67ZOD+xc/bOUucZipIFKVL8Of04GfLvJuYUP2kuCHisg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=ROXWG759; arc=none smtp.client-ip=209.85.221.45
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-wr1-f45.google.com with SMTP id ffacd0b85a97d-3a53359dea5so113340f8f.0
-        for <devicetree@vger.kernel.org>; Thu, 03 Jul 2025 13:28:16 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1751574495; x=1752179295; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:content-language:from
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=e5O8px/YNH1nurLN4WTbK3SKi9r/Z6D8/ENOb+Qojmw=;
-        b=ROXWG759KEzAxozseKEVlD5kT/yOw7CH1eGFL6Ovpj2sSThf7Szvuo6NGt8mFblMmG
-         om8JZQ2Kl8gdP25bHeXX1iWILPnjmlry7Jga/hv7/igZeAt7xhtxnkFOsVLTNsgZpV/I
-         EhIZr9IUftmZhye+VOMGpKvtsDBU86zAeDY18fw/uK5MTLaFftc4Fuj0fjmGJyHB04mp
-         Y3quHxZSFfqj9/uPF9sZ4RrAbQTCj4g2o2q5Z3ZTEsDE/HtNSk6hJ860yDlpFoGb9eSH
-         OclIoJhS+cktCec7Vp54urAY3xP+ULuW97BHLdnXokLbGOKrnZuG2cwEg7lT5TKkuLBV
-         PnUg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1751574495; x=1752179295;
-        h=content-transfer-encoding:in-reply-to:content-language:from
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=e5O8px/YNH1nurLN4WTbK3SKi9r/Z6D8/ENOb+Qojmw=;
-        b=DRncpVTi1m7NPtHgEOSTcFAktJwkpzdx1gdZpCkcw6/yyPrIXetRuLZo58iLTEN9oE
-         weXWZ7llk31BN7WiA/3xwpFcCbeidOWcGp18xLbYzXugQj9I4PZa4PpLK9qxqamRm/M0
-         RtING/vrIKT/Z5O8gNYt+UAjDoYMuKEvQw/ZbBLodctLu4/HqXKc6m9M0H602MxeG8WK
-         c+bBZBcPVAABud6Y/AcX7f5+uHU7D0ZX+2meK29mkN4eDkwnuOjWj0cjLwsugxz0t1v4
-         YugLsTOzqvJbj0Ht9BZ4zGy6kaW133t5/22UnrU7kYNjirTHpdHTHCxg9lEc/itVe48R
-         3WFA==
-X-Forwarded-Encrypted: i=1; AJvYcCV3uLwnyn7Kg+ysMGrNFU40REM8JhaMQtLdUesFD1JiyWaDOMI3qHX5qTKxj89NZ3nwYGQnfL/eNZ2w@vger.kernel.org
-X-Gm-Message-State: AOJu0YyFI8+KeaODVl/HN0Obyq9UGz9y43GU4EETF+1CeRVoZSZtS1ob
-	lV98fbu6GpNk0nMTCXMxpxQdCWF9FHM/I/3IzpG738Nmt+ioKEWUylBHGnm5EdSB4uc=
-X-Gm-Gg: ASbGncslummGcwF4sr2t9wbwHZWs2IxwMbUFs7fx2qpZhAFGrcHwV/sNLfilPfXpgcD
-	ntXhrNn+zEPX0RTbKNqfEUt8P8NPSHrmWzqyA/dRBn95QQUmeej2/4BFYu/YDPAS6x/MRJh7RY/
-	Yy16S8QJUPNuLYbF/Ggubh32u8jz4X/CAjQxAtV110ao56GrMg0U3EkT1+m04C96HV3UiCc0kst
-	cizAZbi22KApzG8fKSAebn92oHrF1oz+QerW2+vQ06/8Nhyfx60TY+wm+GYbWGLJap1tN2J8YhE
-	F2wpbo8k/JhBX68vygLIyQqzPzIkbmfaAkY/ymqzR4/IOmz70Q0AhM/tT+lO6IbsfkPc5PIY/fB
-	7olAwhEWUn6mw5JzCOyDQOxWLeYU=
-X-Google-Smtp-Source: AGHT+IH4o4ymOoffJrXAfZdAqSKhMIFw7CrgjjaM1GKfgO81ydOA6IKmZrwgR7eOW421JQWOQM5WOg==
-X-Received: by 2002:a05:6000:26cd:b0:3a5:3a3b:6a3a with SMTP id ffacd0b85a97d-3b201ba1ebdmr6512564f8f.54.1751574494978;
-        Thu, 03 Jul 2025 13:28:14 -0700 (PDT)
-Received: from [192.168.0.35] (188-141-3-146.dynamic.upc.ie. [188.141.3.146])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-3b47225afd4sm597179f8f.83.2025.07.03.13.28.13
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 03 Jul 2025 13:28:14 -0700 (PDT)
-Message-ID: <af0da28c-3ca0-41dc-aaa4-572723ea74bf@linaro.org>
-Date: Thu, 3 Jul 2025 21:28:12 +0100
+	s=arc-20240116; t=1751574999; c=relaxed/simple;
+	bh=2saPPEn9425FFhvGNMi4caxWoimFmbNxhrNrgWcW1xo=;
+	h=Mime-Version:Content-Type:Date:Message-Id:Cc:Subject:From:To:
+	 References:In-Reply-To; b=Ss+AVcWIbD8qRQ98ZUqYkZytm1EQL5vL5u9B0h0/sy88zX6MElKoraWLhMk9bb7/7qCiCCDev6PqCupntVMBotT7NwugcSrVgn43HoBGJ7TwIbYzH5JGHjFv096UcNlOxfVvy4hFrTx1SSltKDbwmW2B+UUaNz/QfFNVGqGWYEs=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=aUnuMd3l; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 148E8C4CEE3;
+	Thu,  3 Jul 2025 20:36:27 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1751574999;
+	bh=2saPPEn9425FFhvGNMi4caxWoimFmbNxhrNrgWcW1xo=;
+	h=Date:Cc:Subject:From:To:References:In-Reply-To:From;
+	b=aUnuMd3lAzNVdHKmsSOkvyHqWUVDyN6+5VbON6S2ighNhr4Tqjp9O3PhBDDj2sMad
+	 nqxCBeHK5NzhhRVBPjYzNndcgZ/kccpdZAdcJWBV0o9saMIsKJAWtx1ZkxONmMjsdr
+	 Udb4YVLk7WBZhm6YqdnYo3NrMhiTwycvAl2TEYwhBHH1wcp24c1oCYgr5FJhsvYWLt
+	 1A7y65+nZaib48GBOEWOV35upeNutd7vyU0IEd94P3uJ8clcVdtjcPpjKfd75HpyQw
+	 ZTiOSvUP4VLDscuViykR0Ij4TSTNCChDAd0OR28SQwH0lJd3J8F6FFoacf3Y1B8Imb
+	 NEJPgnffMTCAQ==
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3 0/5] Introduce "non-pixel" sub node within iris video
- node
-To: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>,
- Krzysztof Kozlowski <krzk@kernel.org>,
- Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
-Cc: Vikash Garodia <quic_vgarodia@quicinc.com>,
- Dikshita Agarwal <quic_dikshita@quicinc.com>,
- Abhinav Kumar <abhinav.kumar@linux.dev>,
- Mauro Carvalho Chehab <mchehab@kernel.org>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, linux-media@vger.kernel.org,
- linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org
-References: <20250627-video_cb-v3-0-51e18c0ffbce@quicinc.com>
- <5f90547d-945a-4e26-b36c-75f2d8a1af97@kernel.org>
- <eab8d79f-7188-9537-9176-3e4d22f0978a@quicinc.com>
- <5ad418d9-8199-43c9-a477-1e3b939c054c@kernel.org>
- <7b6db4fa-2f73-376d-4eb3-64c1c7e6cda3@quicinc.com>
- <f5ebf0d6-2f0b-45cc-b99a-b786e5df9edc@linaro.org>
- <5qsgbqml367yq6g5vb4lotrzulojqhi5zlwwribze373a63qrn@rxi4kwyt66m2>
- <4f38058d-a2f1-4ac5-b234-228cfb2e85ff@kernel.org>
- <1ad2ca1e-1d57-4ad8-a057-ab0d804f1d49@oss.qualcomm.com>
- <7da769b4-88e9-401f-bb21-0ff123818b9c@kernel.org>
- <6840d462-8269-4359-a6e5-d154842b62db@oss.qualcomm.com>
-From: Bryan O'Donoghue <bryan.odonoghue@linaro.org>
-Content-Language: en-US
-In-Reply-To: <6840d462-8269-4359-a6e5-d154842b62db@oss.qualcomm.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+Mime-Version: 1.0
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=UTF-8
+Date: Thu, 03 Jul 2025 22:36:26 +0200
+Message-Id: <DB2PIGAQHCJR.3BF8ZHECYH3KB@kernel.org>
+Cc: "Michal Rostecki" <vadorovsky@protonmail.com>, "Miguel Ojeda"
+ <ojeda@kernel.org>, "Alex Gaynor" <alex.gaynor@gmail.com>, "Boqun Feng"
+ <boqun.feng@gmail.com>, "Gary Guo" <gary@garyguo.net>,
+ =?utf-8?q?Bj=C3=B6rn_Roy_Baron?= <bjorn3_gh@protonmail.com>, "Andreas
+ Hindborg" <a.hindborg@kernel.org>, "Alice Ryhl" <aliceryhl@google.com>,
+ "Trevor Gross" <tmgross@umich.edu>, "Brendan Higgins"
+ <brendan.higgins@linux.dev>, "David Gow" <davidgow@google.com>, "Rae Moar"
+ <rmoar@google.com>, "Danilo Krummrich" <dakr@kernel.org>, "Maarten
+ Lankhorst" <maarten.lankhorst@linux.intel.com>, "Maxime Ripard"
+ <mripard@kernel.org>, "Thomas Zimmermann" <tzimmermann@suse.de>, "David
+ Airlie" <airlied@gmail.com>, "Simona Vetter" <simona@ffwll.ch>, "Greg
+ Kroah-Hartman" <gregkh@linuxfoundation.org>, "Rafael J. Wysocki"
+ <rafael@kernel.org>, "Luis Chamberlain" <mcgrof@kernel.org>, "Russ Weight"
+ <russ.weight@linux.dev>, "FUJITA Tomonori" <fujita.tomonori@gmail.com>,
+ "Rob Herring" <robh@kernel.org>, "Saravana Kannan" <saravanak@google.com>,
+ "Peter Zijlstra" <peterz@infradead.org>, "Ingo Molnar" <mingo@redhat.com>,
+ "Will Deacon" <will@kernel.org>, "Waiman Long" <longman@redhat.com>,
+ "Nathan Chancellor" <nathan@kernel.org>, "Nick Desaulniers"
+ <nick.desaulniers+lkml@gmail.com>, "Bill Wendling" <morbo@google.com>,
+ "Justin Stitt" <justinstitt@google.com>, "Andrew Lunn" <andrew@lunn.ch>,
+ "Heiner Kallweit" <hkallweit1@gmail.com>, "Russell King"
+ <linux@armlinux.org.uk>, "David S. Miller" <davem@davemloft.net>, "Eric
+ Dumazet" <edumazet@google.com>, "Jakub Kicinski" <kuba@kernel.org>, "Paolo
+ Abeni" <pabeni@redhat.com>, "Bjorn Helgaas" <bhelgaas@google.com>, "Arnd
+ Bergmann" <arnd@arndb.de>, "Jens Axboe" <axboe@kernel.dk>,
+ =?utf-8?q?Krzysztof_Wilczy=C5=84ski?= <kwilczynski@kernel.org>, "Dave
+ Ertman" <david.m.ertman@intel.com>, "Ira Weiny" <ira.weiny@intel.com>,
+ "Leon Romanovsky" <leon@kernel.org>, "Breno Leitao" <leitao@debian.org>,
+ "Viresh Kumar" <viresh.kumar@linaro.org>, "Michael Turquette"
+ <mturquette@baylibre.com>, "Stephen Boyd" <sboyd@kernel.org>,
+ <rust-for-linux@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+ <linux-kselftest@vger.kernel.org>, <kunit-dev@googlegroups.com>,
+ <dri-devel@lists.freedesktop.org>, <netdev@vger.kernel.org>,
+ <devicetree@vger.kernel.org>, <llvm@lists.linux.dev>,
+ <linux-pci@vger.kernel.org>, <nouveau@lists.freedesktop.org>,
+ <linux-block@vger.kernel.org>, <linux-pm@vger.kernel.org>,
+ <linux-clk@vger.kernel.org>
+Subject: Re: [PATCH v13 2/5] rust: support formatting of foreign types
+From: "Benno Lossin" <lossin@kernel.org>
+To: "Tamir Duberstein" <tamird@gmail.com>
+X-Mailer: aerc 0.20.1
+References: <20250701-cstr-core-v13-0-29f7d3eb97a6@gmail.com>
+ <20250701-cstr-core-v13-2-29f7d3eb97a6@gmail.com>
+ <DB2BDSN1JH51.14ZZPETJORBC6@kernel.org>
+ <CAJ-ks9nC=AyBPXRY3nJ0NuZvjFskzMcOkVNrBEfXD2hZ5uRntQ@mail.gmail.com>
+ <DB2IJ9HBIM0W.3N0JVGKX558QI@kernel.org>
+ <CAJ-ks9nF5+m+_bn0Pzi9yU0pw0TyN7Fs4x--mQ4ygyHz4A6hzg@mail.gmail.com>
+In-Reply-To: <CAJ-ks9nF5+m+_bn0Pzi9yU0pw0TyN7Fs4x--mQ4ygyHz4A6hzg@mail.gmail.com>
 
-On 03/07/2025 16:28, Konrad Dybcio wrote:
-> Back to the point, I actually think what this patchset does is
-> resonable, especially given the address range and SMMU SID requirements
-> that the OS*must* be aware of (or the device will crash after a
-> translation fault / security violation).
+On Thu Jul 3, 2025 at 8:55 PM CEST, Tamir Duberstein wrote:
+> On Thu, Jul 3, 2025 at 11:08=E2=80=AFAM Benno Lossin <lossin@kernel.org> =
+wrote:
+>> On Thu Jul 3, 2025 at 3:55 PM CEST, Tamir Duberstein wrote:
+>> > On Thu, Jul 3, 2025 at 5:32=E2=80=AFAM Benno Lossin <lossin@kernel.org=
+> wrote:
+>> >> On Tue Jul 1, 2025 at 6:49 PM CEST, Tamir Duberstein wrote:
+>> >> > Introduce a `fmt!` macro which wraps all arguments in
+>> >> > `kernel::fmt::Adapter` and a `kernel::fmt::Display` trait. This ena=
+bles
+>> >> > formatting of foreign types (like `core::ffi::CStr`) that do not
+>> >> > implement `core::fmt::Display` due to concerns around lossy convers=
+ions which
+>> >> > do not apply in the kernel.
+>> >> >
+>> >> > Replace all direct calls to `format_args!` with `fmt!`.
+>> >> >
+>> >> > Replace all implementations of `core::fmt::Display` with implementa=
+tions
+>> >> > of `kernel::fmt::Display`.
+>> >> >
+>> >> > Suggested-by: Alice Ryhl <aliceryhl@google.com>
+>> >> > Link: https://rust-for-linux.zulipchat.com/#narrow/channel/288089-G=
+eneral/topic/Custom.20formatting/with/516476467
+>> >> > Acked-by: Greg Kroah-Hartman <gregkh@linuxfoundation.org>
+>> >> > Reviewed-by: Alice Ryhl <aliceryhl@google.com>
+>> >> > Signed-off-by: Tamir Duberstein <tamird@gmail.com>
+>> >> > ---
+>> >> >  drivers/block/rnull.rs       |  2 +-
+>> >> >  drivers/gpu/nova-core/gpu.rs |  4 +-
+>> >> >  rust/kernel/block/mq.rs      |  2 +-
+>> >> >  rust/kernel/device.rs        |  2 +-
+>> >> >  rust/kernel/fmt.rs           | 89 ++++++++++++++++++++++++++++++++=
++++++++
+>> >> >  rust/kernel/kunit.rs         |  6 +--
+>> >> >  rust/kernel/lib.rs           |  1 +
+>> >> >  rust/kernel/prelude.rs       |  3 +-
+>> >> >  rust/kernel/print.rs         |  4 +-
+>> >> >  rust/kernel/seq_file.rs      |  2 +-
+>> >> >  rust/kernel/str.rs           | 22 ++++------
+>> >> >  rust/macros/fmt.rs           | 99 ++++++++++++++++++++++++++++++++=
+++++++++++++
+>> >> >  rust/macros/lib.rs           | 19 +++++++++
+>> >> >  rust/macros/quote.rs         |  7 ++++
+>> >> >  scripts/rustdoc_test_gen.rs  |  2 +-
+>> >> >  15 files changed, 236 insertions(+), 28 deletions(-)
+>> >>
+>> >> This would be a lot easier to review if he proc-macro and the call
+>> >> replacement were different patches.
+>> >>
+>> >> Also the `kernel/fmt.rs` file should be a different commit.
+>> >
+>> > Can you help me understand why? The changes you ask to be separated
+>> > would all be in different files, so why would separate commits make it
+>> > easier to review?
+>>
+>> It takes less time to go through the entire patch and give a RB. I can
+>> take smaller time chunks and don't have to get back into the entire
+>> context of the patch when I don't have 30-60min available.
+>
+> Ah, I see what you mean. Yeah, the requirement to RB the entire patch
+> does mean there's a benefit to smaller patches.
+>
+>> In this patch the biggest problem is the rename & addition of new
+>> things, maybe just adding 200 lines in those files could be okay to go
+>> together, see below for more.
+>
+> After implementing your suggestion of re-exporting things from
+> `kernel::fmt` the diffstat is
+>
+> 26 files changed, 253 insertions(+), 51 deletions(-)
+>
+> so I guess I could do all the additions in one patch, but then
+> *everything* else has to go in a single patch together because the
+> formatting macros either want core::fmt::Display or
+> kernel::fmt::Display; they can't work in a halfway state.
 
-I still give my RB for the series.
+I don't understand, can't you just do:
 
-To me the only question is should it be applied to sm8550 or to new SoCs 
-from now on, sa8775p, x1e and derivatives.
+* add `rust/kernel/fmt.rs`,
+* add `rust/macros/fmt.rs`,
+* change all occurrences of `core::fmt` to `kernel::fmt` and
+  `format_args!` to `fmt!`.
 
-I take the point on ABI breakage on 8550, so to me it seems fully 
-consistent with Krzysztof's statements on ABI maintenance and indeed the 
-need to expand the features of this driver to do so from the next 
-submission onwards.
+The last one could be split by subsystem, no? Some subsystems might
+interact and thus need simultaneous splitting, but there should be some
+independent ones.
 
-That can be as simple as
+>> > I prefer to keep things in one commit because the changes are highly
+>> > interdependent. The proc macro doesn't make sense without
+>> > kernel/fmt.rs and kernel/fmt.rs is useless without the proc macro.
+>>
+>> I think that `Adapter`, the custom `Display` and their impl blocks
+>> don't need to be in the same commit as the proc-macro. They are related,
+>> but maybe someone is not well-versed in proc-macros and thus doesn't
+>> want to review that part.
+>
+> Sure, I guess I will split them. But as noted above: changing the
+> formatting macros and all the types' trait implementations has to be a
+> "flag day" change.
 
-schema.yaml
+See above.
 
-if compatible newsoc
-     minItems:1
-     maxItems:2
+>> >> > +impl_fmt_adapter_forward!(Debug, LowerHex, UpperHex, Octal, Binary=
+, Pointer, LowerExp, UpperExp);
+>> >> > +
+>> >> > +/// A copy of [`fmt::Display`] that allows us to implement it for =
+foreign types.
+>> >> > +///
+>> >> > +/// Types should implement this trait rather than [`fmt::Display`]=
+. Together with the [`Adapter`]
+>> >> > +/// type and [`fmt!`] macro, it allows for formatting foreign type=
+s (e.g. types from core) which do
+>> >> > +/// not implement [`fmt::Display`] directly.
+>> >> > +///
+>> >> > +/// [`fmt!`]: crate::prelude::fmt!
+>> >> > +pub trait Display {
+>> >> > +    /// Same as [`fmt::Display::fmt`].
+>> >> > +    fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result;
+>> >> > +}
+>> >> > +
+>> >> > +impl<T: ?Sized + Display> Display for &T {
+>> >> > +    fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result {
+>> >> > +        Display::fmt(*self, f)
+>> >> > +    }
+>> >> > +}
+>> >> > +
+>> >> > +impl<T: ?Sized + Display> fmt::Display for Adapter<&T> {
+>> >> > +    fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result {
+>> >> > +        let Self(t) =3D self;
+>> >> > +        Display::fmt(t, f)
+>> >>
+>> >> Why not `Display::fmt(&self.0, f)`?
+>> >
+>> > I like destructuring because it shows me that there's only one field.
+>> > With `self.0` I don't see that.
+>>
+>> And what is the benefit here?
+>
+> In general the benefit is that the method does not ignore some portion
+> of `Self`. A method that uses `self.0` would not provoke a compiler
+> error in case another field is added, while this form would.
 
-8550's ABI is stable and new SoC submissions will support the 
-secure/non-pixel method.
+Yeah, but why would that change happen here? And even if it got another
+field, why would that invalidate the impl of `fn fmt`?
 
 ---
-bod
+Cheers,
+Benno
 
