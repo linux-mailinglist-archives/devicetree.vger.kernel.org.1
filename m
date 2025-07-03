@@ -1,77 +1,92 @@
-Return-Path: <devicetree+bounces-192753-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-192754-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 53EC9AF7CD3
-	for <lists+devicetree@lfdr.de>; Thu,  3 Jul 2025 17:49:20 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id E782FAF7CD6
+	for <lists+devicetree@lfdr.de>; Thu,  3 Jul 2025 17:49:48 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id A9A24188D26B
-	for <lists+devicetree@lfdr.de>; Thu,  3 Jul 2025 15:45:20 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 2884F3AB334
+	for <lists+devicetree@lfdr.de>; Thu,  3 Jul 2025 15:47:30 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B5A0C2D6605;
-	Thu,  3 Jul 2025 15:44:59 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="eM1gWYfQ"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id EA5E1221DB3;
+	Thu,  3 Jul 2025 15:47:51 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from frasgout.his.huawei.com (frasgout.his.huawei.com [185.176.79.56])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8613C2236E3;
-	Thu,  3 Jul 2025 15:44:59 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 94BA32F2E;
+	Thu,  3 Jul 2025 15:47:48 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.176.79.56
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1751557499; cv=none; b=Li2SRnshkbdpYdJOzs+PfB4lRztyxkWGgVuSBIH/COLpi+ZQazTDnin5Av+PxpmiFZ0nQL2kHEuHGC+MjF6KVNq6KOOaK6FI9SowmHdCPwnrACJ/2ELb2XU746jbgacMgovvIDQusvqRu9yACd/E2LtMi9SsC75KOhMbOCLX+2Y=
+	t=1751557671; cv=none; b=cHMmGEbmFT0/aDUkHFJGW20bQFIPRCPmQHO0zxSbGawa5MpBtr7Az+SbLbaiwPmjuBPie4+Ek4GZZxlpMBkQSCH0eXCRroqd3JM/nCd9lgcRxRDw7mQpdYiNjKxelJgB/+xFKGg/p+H3gzPoZjAyqRFCLBtzyef4dffHfHtLsJo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1751557499; c=relaxed/simple;
-	bh=bY+Xljp0l6L+Y1+hUN3hWFShFUuv2QI+G4X/M1K7w7c=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=DfHEpL+YjgD4JlaYZJb5f4jt/47o1r17PtSfW1bxS5o0lseN4TQ4L9Ania61nt904IZdkUyruplnZO/rD/wJlFWR8kMU30YhMauIaTeDEYUlPSXxARdSGwtsP3SJB/kGQVD+luiYHXr6sWz6YUDKVrGwp06jqT9vbqTJl4ODqHg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=eM1gWYfQ; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id ED3FEC4CEE3;
-	Thu,  3 Jul 2025 15:44:58 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1751557499;
-	bh=bY+Xljp0l6L+Y1+hUN3hWFShFUuv2QI+G4X/M1K7w7c=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=eM1gWYfQIkW+fVVPM2em1oRqEQ/5mkowKAFrekz9Er7UNVQHAHduRnaOvLJDG8Jrs
-	 dKaYD/l77Of5i9e2mRm+KRWxxPiMfL06u7VujnWsgHELUb0yyGJLM8+IqkVaGe1scO
-	 Sw34WtAk+30NA/4zVKXXwJ2cPb1+VXaL67PMYLeGBid43RU4p/RFvm5sHqFAqGjITy
-	 +QQ4m9jnmjDxVTK1fSP3kBacVuTwDg2Jm0I1dzZW8Y6+yig9owsNAOFTvnataY97m7
-	 c+d55bQipQdEo2ncbN3fhEhPRgCEMIkOFJxuvNWgUDQ+DqzLPWGnGiue5EqTlKVrxl
-	 4d5IzBLs5iB1Q==
-Date: Thu, 3 Jul 2025 10:44:58 -0500
-From: Rob Herring <robh@kernel.org>
-To: Meng Li <Meng.Li@windriver.com>
-Cc: krzk+dt@kernel.org, linux@roeck-us.net, s.hauer@pengutronix.de,
-	kernel@pengutronix.de, linux-watchdog@vger.kernel.org,
-	imx@lists.linux.dev, shawnguo@kernel.org, conor+dt@kernel.org,
-	Frank.Li@nxp.com, linux-arm-kernel@lists.infradead.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [v4 PATCH 1/2] dt-bindings: watchdog: fsl-imx-wdt: add
- compatible string fsl,ls1046a-wdt
-Message-ID: <20250703154458.GA1470571-robh@kernel.org>
-References: <20250608030616.3874517-1-Meng.Li@windriver.com>
- <20250608030616.3874517-2-Meng.Li@windriver.com>
+	s=arc-20240116; t=1751557671; c=relaxed/simple;
+	bh=RkiQbv6jcjROw1Dp0k32vk+7Ay6/ZtjNUJJxbO9e8lY=;
+	h=Date:From:To:CC:Subject:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=Nz+4bTmGnnPkluF2T4WgSqIFunl2YacvmSBzmh15zHOyqBSWXvy+4uqJV3VGpVGZOOHhjGKe2vpWyy941mCzKsaQqKzmsUCPhrOy+8VM1sMHTPKNr1VdLsz6s58tvTnu5gTiH3xSX8tFxmF6sSNTRngXFL/ESwNhuMyY5Y90s+s=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=huawei.com; spf=pass smtp.mailfrom=huawei.com; arc=none smtp.client-ip=185.176.79.56
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=huawei.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=huawei.com
+Received: from mail.maildlp.com (unknown [172.18.186.216])
+	by frasgout.his.huawei.com (SkyGuard) with ESMTP id 4bY1N8715Vz6M4lV;
+	Thu,  3 Jul 2025 23:46:48 +0800 (CST)
+Received: from frapeml500008.china.huawei.com (unknown [7.182.85.71])
+	by mail.maildlp.com (Postfix) with ESMTPS id 43813140447;
+	Thu,  3 Jul 2025 23:47:46 +0800 (CST)
+Received: from localhost (10.203.177.66) by frapeml500008.china.huawei.com
+ (7.182.85.71) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.1.2507.39; Thu, 3 Jul
+ 2025 17:47:45 +0200
+Date: Thu, 3 Jul 2025 16:47:43 +0100
+From: Jonathan Cameron <Jonathan.Cameron@huawei.com>
+To: Lorenzo Pieralisi <lpieralisi@kernel.org>
+CC: Marc Zyngier <maz@kernel.org>, Thomas Gleixner <tglx@linutronix.de>, "Rob
+ Herring" <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, "Conor
+ Dooley" <conor+dt@kernel.org>, Catalin Marinas <catalin.marinas@arm.com>,
+	Will Deacon <will@kernel.org>, Arnd Bergmann <arnd@arndb.de>, "Sascha
+ Bischoff" <sascha.bischoff@arm.com>, Timothy Hayes <timothy.hayes@arm.com>,
+	Bjorn Helgaas <bhelgaas@google.com>, "Liam R. Howlett"
+	<Liam.Howlett@oracle.com>, Peter Maydell <peter.maydell@linaro.org>, "Mark
+ Rutland" <mark.rutland@arm.com>, Jiri Slaby <jirislaby@kernel.org>,
+	<linux-arm-kernel@lists.infradead.org>, <linux-kernel@vger.kernel.org>,
+	<devicetree@vger.kernel.org>, <linux-pci@vger.kernel.org>
+Subject: Re: [PATCH v7 00/31] Arm GICv5: Host driver implementation
+Message-ID: <20250703164743.00004f3e@huawei.com>
+In-Reply-To: <20250703-gicv5-host-v7-0-12e71f1b3528@kernel.org>
+References: <20250703-gicv5-host-v7-0-12e71f1b3528@kernel.org>
+X-Mailer: Claws Mail 4.3.0 (GTK 3.24.42; x86_64-w64-mingw32)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20250608030616.3874517-2-Meng.Li@windriver.com>
+Content-Type: text/plain; charset="US-ASCII"
+Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: lhrpeml100010.china.huawei.com (7.191.174.197) To
+ frapeml500008.china.huawei.com (7.182.85.71)
 
-On Sun, Jun 08, 2025 at 11:06:15AM +0800, Meng Li wrote:
-> Add compatible string fsl,ls1046a-wdt for ls1046a SoC. fsl,ls1046a-wdt
-> allows big-endian property.
-> 
-> Signed-off-by: Meng Li <Meng.Li@windriver.com>
+
 > ---
->  Documentation/devicetree/bindings/watchdog/fsl-imx-wdt.yaml | 2 ++
->  1 file changed, 2 insertions(+)
+> Changes in v7:
+> - Added CDDI/CDDIS/CDEN FIELD_PREP(hwirqid) for instruction preparation
+> - Fixed IST/DT/ITT L2 size selection logic for 64K PAGE_SIZE
 
-Applied since this hasn't been picked up by the wdog maintainers.
+Hi Lorenzo,
+
+I took another look, particularly focused on this aspect and it all looks good to
+me.  Thanks for making these last minute changes.
+
+No more RBs from me but that is just down to my lack of confidence that I know my way
+around the spec well enough. It's not anything to do with the content of your series!
+
+Thanks
+
+Jonathan
+
+
+> - Reordered some ITS error paths according to review
+> - Link to v6: https://lore.kernel.org/r/20250626-gicv5-host-v6-0-48e046af4642@kernel.org
 
