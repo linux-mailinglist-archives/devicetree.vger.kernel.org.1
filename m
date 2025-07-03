@@ -1,241 +1,137 @@
-Return-Path: <devicetree+bounces-192501-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-192502-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id C7EFEAF6DCA
-	for <lists+devicetree@lfdr.de>; Thu,  3 Jul 2025 10:56:27 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 538E0AF6DF0
+	for <lists+devicetree@lfdr.de>; Thu,  3 Jul 2025 10:58:12 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 884C44A3399
-	for <lists+devicetree@lfdr.de>; Thu,  3 Jul 2025 08:55:57 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id BA2307AD959
+	for <lists+devicetree@lfdr.de>; Thu,  3 Jul 2025 08:56:46 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 20DE92D3A69;
-	Thu,  3 Jul 2025 08:56:18 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="qsJsW5iG"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 958D92D3749;
+	Thu,  3 Jul 2025 08:58:05 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from bali.collaboradmins.com (bali.collaboradmins.com [148.251.105.195])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CB2B02D3A63;
-	Thu,  3 Jul 2025 08:56:15 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=148.251.105.195
+Received: from azure-sdnproxy.icoremail.net (azure-sdnproxy.icoremail.net [13.75.44.102])
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6DDDD2D3A63;
+	Thu,  3 Jul 2025 08:58:00 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=13.75.44.102
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1751532978; cv=none; b=aNNyLdOJkH72uU6HiNCA+RoIqvcYNBC8e98Oezf2mPt1u7Pjlnd9DesHbOtrJfMtQodmjisOxztwhcDTBhiT72ZeqbQ68/hh9cqiCrTau8rgi8B77lJqv5vMVVn9GMcMPzznXx02/fXZTwszzHSzA5PfsZnbvYGle+Np/U5bZGc=
+	t=1751533085; cv=none; b=PZpejuTxz6DIyJ5cH09340DUA2UygrFAVxjIIBdYMZ7xNT2g7It5YuEhQgSHqwxMWqDESMfl7ZJqG4AchATTz5jTymofSTABaB79Gt3l1WgHYLyanfZ9BfKrNSgfmNhcSdh9G1UPZeGRpaCaCIYagRHrEIER2zcpHsvHTTdOF24=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1751532978; c=relaxed/simple;
-	bh=WRYS/1sGoCCDr61DxzWsZ362lJvyxDK2jvW+DD8snwk=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=FAay/Up7kOklotRKu1+4/AN0AvImkpNuNRKigQ27FL64M5KqYJlSnbGLI/PV1G9SKHQYehameMClv0ZPWBAPDDFi0ZmCSh4L2SDRBEeqemHq6xVq/sda2sb7VG/N1JCPVOl7rRBU0zajBHArnkVcEvM9jrv1MNbOTw243bvjtKk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b=qsJsW5iG; arc=none smtp.client-ip=148.251.105.195
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-	s=mail; t=1751532973;
-	bh=WRYS/1sGoCCDr61DxzWsZ362lJvyxDK2jvW+DD8snwk=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=qsJsW5iGG5C7CO+LNG8zFmzphjOfTuPdEzMUh/o5exQGGb/FZS4JEnJLfmP43Un/g
-	 oxvyFxfKDuaTBmNO9nsXgAKvKH0Qo8ebSMoTngL4ZIxcYw2GY/Ol9sUlb7tQJpn0Dg
-	 tUJbpIMXOER45eqWRQhSLMYYjBwJz5sRgBnQR5DDJvx48YJiGcGIuNPAAh33zjwh1y
-	 PzpOD2yhR/8bujX58qjEiGRV1maNpUoujm+tqTV6qPUrqZO3+qO+N4b+3IaDzLuT4E
-	 uKC8XhdwZuY8puZeg1ZeUMFJgpOgjstVukqBm0ajc2pvpt5xK40A6zKxgdfFPS+MpC
-	 q0A0ZVarrLY3g==
-Received: from [192.168.1.100] (2-237-20-237.ip236.fastwebnet.it [2.237.20.237])
-	(using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
-	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
-	(No client certificate requested)
-	(Authenticated sender: kholk11)
-	by bali.collaboradmins.com (Postfix) with ESMTPSA id 5CCF717E07FF;
-	Thu,  3 Jul 2025 10:56:12 +0200 (CEST)
-Message-ID: <d41a6c60-5368-4bcd-b028-2477e42e29bb@collabora.com>
-Date: Thu, 3 Jul 2025 10:56:11 +0200
+	s=arc-20240116; t=1751533085; c=relaxed/simple;
+	bh=bQyWiZYdYm5aXqkw3t73tYwoLPNz7/6/IJf5Lxr78zA=;
+	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=Ob6ltXcH/4JazrCfPK6+w/FQxxqJC6Q6v3IZOhR9jNcP23+5BEnFtSIMdfEOsl/avxV+3B2faPQEqxBPVko/gc2lQc5ipZB4j1R2XIJm6El3Iho0DneAYu2x8lSXCh/oJltfwvck8U+rcL6sTakRU7R5rb8FR0GchhEQd3towQ0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=eswincomputing.com; spf=pass smtp.mailfrom=eswincomputing.com; arc=none smtp.client-ip=13.75.44.102
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=eswincomputing.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=eswincomputing.com
+Received: from E0005182LT.eswin.cn (unknown [10.12.96.155])
+	by app2 (Coremail) with SMTP id TQJkCgBX9pT1RWZoWl2oAA--.28545S2;
+	Thu, 03 Jul 2025 16:57:28 +0800 (CST)
+From: weishangjuan@eswincomputing.com
+To: andrew+netdev@lunn.ch,
+	davem@davemloft.net,
+	edumazet@google.com,
+	kuba@kernel.org,
+	pabeni@redhat.com,
+	robh@kernel.org,
+	krzk+dt@kernel.org,
+	conor+dt@kernel.org,
+	netdev@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	mcoquelin.stm32@gmail.com,
+	alexandre.torgue@foss.st.com,
+	rmk+kernel@armlinux.org.uk,
+	yong.liang.choong@linux.intel.com,
+	vladimir.oltean@nxp.com,
+	jszhang@kernel.org,
+	jan.petrous@oss.nxp.com,
+	prabhakar.mahadev-lad.rj@bp.renesas.com,
+	inochiama@gmail.com,
+	boon.khai.ng@altera.com,
+	dfustini@tenstorrent.com,
+	0x1207@gmail.com,
+	linux-stm32@st-md-mailman.stormreply.com,
+	linux-arm-kernel@lists.infradead.org
+Cc: ningyu@eswincomputing.com,
+	linmin@eswincomputing.com,
+	lizhi2@eswincomputing.com,
+	Shangjuan Wei <weishangjuan@eswincomputing.com>
+Subject: [PATCH v3 0/2]  Add driver support for Eswin eic7700 SoC ethernet controller
+Date: Thu,  3 Jul 2025 16:57:24 +0800
+Message-Id: <20250703085724.1960-1-weishangjuan@eswincomputing.com>
+X-Mailer: git-send-email 2.31.1.windows.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [RFC PATCH 2/3] dt-bindings: firmware: Document the MediaTek
- Hardware Voter (HWV)
-To: Krzysztof Kozlowski <krzk@kernel.org>
-Cc: robh@kernel.org, conor+dt@kernel.org, matthias.bgg@gmail.com,
- ulf.hansson@linaro.org, arnd@arndb.de, m.wilczynski@samsung.com, nm@ti.com,
- khilman@baylibre.com, kabel@kernel.org, quic_hyiwei@quicinc.com,
- pjp@fedoraproject.org, tudor.ambarus@linaro.org, drew@pdp7.com,
- u.kleine-koenig@baylibre.com, gregkh@linuxfoundation.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, linux-mediatek@lists.infradead.org,
- laura.nao@collabora.com, kernel@collabora.com
-References: <20250701151149.136365-1-angelogioacchino.delregno@collabora.com>
- <20250701151149.136365-3-angelogioacchino.delregno@collabora.com>
- <20250702-debonair-lynx-of-serenity-ee7138@krzk-bin>
-From: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
-Content-Language: en-US
-In-Reply-To: <20250702-debonair-lynx-of-serenity-ee7138@krzk-bin>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
+X-CM-TRANSID:TQJkCgBX9pT1RWZoWl2oAA--.28545S2
+X-Coremail-Antispam: 1UD129KBjvJXoW7Aw1rGr1fKFy3tw4fZFW3trb_yoW8Cr18pa
+	yDCFy5Gw1ktryxJan3Jw10kFySqan7tr1a9r1Iq3WfXayqya90vw4avF4FkF9rArWDXF1a
+	qFW3urn8CFn8A3DanT9S1TB71UUUUU7qnTZGkaVYY2UrUUUUjbIjqfuFe4nvWSU5nxnvy2
+	9KBjDU0xBIdaVrnRJUUUBv14x267AKxVWrJVCq3wAFc2x0x2IEx4CE42xK8VAvwI8IcIk0
+	rVWrJVCq3wAFIxvE14AKwVWUJVWUGwA2ocxC64kIII0Yj41l84x0c7CEw4AK67xGY2AK02
+	1l84ACjcxK6xIIjxv20xvE14v26w1j6s0DM28EF7xvwVC0I7IYx2IY6xkF7I0E14v26r4U
+	JVWxJr1l84ACjcxK6I8E87Iv67AKxVW0oVCq3wA2z4x0Y4vEx4A2jsIEc7CjxVAFwI0_Gc
+	CE3s1le2I262IYc4CY6c8Ij28IcVAaY2xG8wAqx4xG64xvF2IEw4CE5I8CrVC2j2WlYx0E
+	2Ix0cI8IcVAFwI0_Jr0_Jr4lYx0Ex4A2jsIE14v26r1j6r4UMcvjeVCFs4IE7xkEbVWUJV
+	W8JwACjcxG0xvY0x0EwIxGrwACjI8F5VA0II8E6IAqYI8I648v4I1lFIxGxcIEc7CjxVA2
+	Y2ka0xkIwI1lw4CEc2x0rVAKj4xxMxkF7I0En4kS14v26r4a6rW5MxkIecxEwVCm-wCF04
+	k20xvY0x0EwIxGrwCFx2IqxVCFs4IE7xkEbVWUJVW8JwC20s026c02F40E14v26r1j6r18
+	MI8I3I0E7480Y4vE14v26r106r1rMI8E67AF67kF1VAFwI0_GFv_WrylIxkGc2Ij64vIr4
+	1lIxAIcVC0I7IYx2IY67AKxVWUJVWUCwCI42IY6xIIjxv20xvEc7CjxVAFwI0_Gr0_Cr1l
+	IxAIcVCF04k26cxKx2IYs7xG6r1j6r1xMIIF0xvEx4A2jsIE14v26r1j6r4UMIIF0xvEx4
+	A2jsIEc7CjxVAFwI0_Gr0_Gr1UYxBIdaVFxhVjvjDU0xZFpf9x0pRBOJnUUUUU=
+X-CM-SenderInfo: pzhl2xxdqjy31dq6v25zlqu0xpsx3x1qjou0bp/
 
-Il 02/07/25 08:50, Krzysztof Kozlowski ha scritto:
-> On Tue, Jul 01, 2025 at 05:11:48PM +0200, AngeloGioacchino Del Regno wrote:
->> Add documentation for the new MediaTek Hardware Voter, found in
->> MediaTek SoCs like the MT8196 Kompanio Ultra for Chromebooks and
->> the MT6991 Dimensity 9400 for Smartphones.
->>
->> Signed-off-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
->> ---
->>   .../mediatek,mt6991-hardware-voter.yaml       | 70 +++++++++++++++++++
->>   1 file changed, 70 insertions(+)
->>   create mode 100644 Documentation/devicetree/bindings/firmware/mediatek,mt6991-hardware-voter.yaml
->>
->> diff --git a/Documentation/devicetree/bindings/firmware/mediatek,mt6991-hardware-voter.yaml b/Documentation/devicetree/bindings/firmware/mediatek,mt6991-hardware-voter.yaml
->> new file mode 100644
->> index 000000000000..173b74c23a91
->> --- /dev/null
->> +++ b/Documentation/devicetree/bindings/firmware/mediatek,mt6991-hardware-voter.yaml
->> @@ -0,0 +1,70 @@
->> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
->> +# Copyright 2025 Collabora Ltd
->> +%YAML 1.2
->> +---
->> +$id: http://devicetree.org/schemas/firmware/mediatek,mt6991-hardware-voter.yaml#
->> +$schema: http://devicetree.org/meta-schemas/core.yaml#
->> +
->> +title: MediaTek Hardware Voter (HWV)
->> +
->> +maintainers:
->> +  - AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
->> +
->> +description:
->> +  The MediaTek Hardware Voter (HWV) is a SoC-internal fixed-function MCU
->> +  used to collect votes from both the Application Processor and from the
->> +  various other remote processors present in the SoC, and transparently
->> +  turn on or off various hardware resources (for example, power domains
->> +  or system clocks) based on aggregation of votes done in the HWV MCU's
->> +  internal state machine, therefore guaranteeing synchronization of the
->> +  hardware resource requests between all components of the SoC and hence
->> +  avoiding, for example, unclocked or unpowered access to the hardware.
->> +
->> +properties:
->> +  $nodename:
->> +    pattern: "^system-controller@[0-9a-f]+$"
->> +
->> +  compatible:
->> +    const: mediatek,mt6991-hardware-voter
->> +
->> +  reg:
->> +    items:
->> +      - description: Address and size of the Hardware Voter MMIO
->> +
-> 
-> No resources here, so this should go to power controller
-> 
->> +  power-controller:
->> +    $ref: /schemas/power/mediatek,power-controller.yaml
->> +
->> +required:
->> +  - compatible
->> +  - reg
->> +
->> +additionalProperties: true
->> +
->> +examples:
->> + - |
->> +   scp_hwv: system-controller@14500000 {
->> +     compatible = "mediatek,mt6991-hardware-voter";
->> +     reg = <0 0x14500000 0 0x3000>;
->> +
->> +     power-controller {
->> +       compatible = "mediatek,mt8196-hwv-scp-power-controller";
-> 
-> mt8196 in mt6991 is very confusing.
-> 
+From: Shangjuan Wei <weishangjuan@eswincomputing.com>
 
-Yeah that wasn't intentional; fyi, it's almost the same soc, that's why I mixed
-them up... :-)
+This patch depends on the vendor prefix patch:
+https://lore.kernel.org/all/20250616112316.3833343-4-pinkesh.vaghela@einfochips.com/
 
-> Anyway, this does not address my comment at all. You again create some
-> sort of syscon for voting, so no. You are supposed to use generic API
-> for voting: clocks, power domains, interconnects - whatever is there
-> applicable or necessary.
-> 
+Updates:
 
-Making that loud and clear: Interconnect is not applicable.
+  Changes in v3:
+  - Updated eswin,eic7700-eth.yaml
+    - Add descriptions of snps,write-questions, snps,read-questions,
+      snps,burst-map attributes
+    - Remove the description of reg
+    - Delete snps,axi-config
+  - Updated dwmac-eic7700.c
+    - Simplify drivers and remove unnecessary API and DTS attribute configurations
+    - Increase the mapping from tx/rx_delay_ps to private dly
+  - Link to v2: https://lore.kernel.org/all/aDad+8YHEFdOIs38@mev-dev.igk.intel.com/
 
-The only way to do what you're proposing would be to add a bunch of `reg`
-to each devicetree node for each clock controller and each power controller;
-I can do that, but looks a bit dirty - and still yet another syscon-like
-alternative, but without having a real syscon declared in there.
+  Changes in v2:
+  - Updated eswin,eic7700-eth.yaml
+    - Add snps,dwmac in binding file
+    - Chang the names of reset-names and phy-mode
+  - Updated dwmac-eic7700.c
+    - Remove the code related to PHY LED configuration from the MAC driver
+    - Adjust the code format and driver interfaces, such as replacing kzalloc
+      with devm_kzalloc, etc.
+    - Use phylib instead of the GPIO API in the driver to implement the PHY
+      reset function
+  - Link to v1: https://lore.kernel.org/all/20250516010849.784-1-weishangjuan@eswincomputing.com/
 
-Mind you - both clock and power controllers are writing both to their own
-register space (and enabling external regulators, etc, for power domains)
-and to the hardware voter MMIO (which means that the HWV, in hardware, is
-fundamentally broken).
+Shangjuan Wei (2):
+  dt-bindings: ethernet: eswin: Document for EIC7700 SoC
+  ethernet: eswin: Add eic7700 ethernet driver
 
-After this reply, the only option that is left to me is the following:
+ .../bindings/net/eswin,eic7700-eth.yaml       | 175 ++++++++++++
+ drivers/net/ethernet/stmicro/stmmac/Kconfig   |  11 +
+ drivers/net/ethernet/stmicro/stmmac/Makefile  |   1 +
+ .../ethernet/stmicro/stmmac/dwmac-eic7700.c   | 257 ++++++++++++++++++
+ 4 files changed, 444 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/net/eswin,eic7700-eth.yaml
+ create mode 100644 drivers/net/ethernet/stmicro/stmmac/dwmac-eic7700.c
 
-		topckgen: clock-controller@10000000 {
-			compatible = "mediatek,mt8196-topckgen", "syscon";
-			reg = <0 0x10000000 0 0x800>, <0 0x14500010 0 0x48>,
-			      <0 0x14502c08 0 0x24>;
-			reg-names = "base", "hwvoter-base", "hwvoter-status";
-			#clock-cells = <1>;
-		};
+-- 
+2.17.1
 
-		imp_iic_wrap_north: clock-controller@13c30000 {
-			compatible = "mediatek,mt8196-imp-iic-wrap-n", "syscon";
-			reg = <0 0x13c30000 0 0x1000>, <0 0x14500000 0 0xc>,
-			      <0 0x14502c00 0 0xc>;
-			reg-names = "base", "hwvoter-base", "hwvoter-status";
-			#clock-cells = <1>;
-		};
-
-		/* Power Manager with Hardware Voter */
-		spm_hwv: power-controller@14500218 {
-			compatible = "mediatek,mt8196-hwv-scp-power-controller";
-			reg = <0 0x14500218 0 0x20>, <0 0x14501410 0 0x20>,
-			      <0 0x14505514 0 0xc>;
-			reg-names = "hwvoter-base", "hwvoter-status", "hwvoter-ack";
-			#address-cells = <1>;
-			#size-cells = <0>;
-			#power-domain-cells = <1>;
-
-			/* SCPSYS hardware voter power domains */
-			mm_proc_dormant: power-domain@MT8196_POWER_DOMAIN_MM_PROC_DORMANT {
-				..... etc, all power domains
-
-At this point, I'm really not sure that this would be better than just passing
-the mediatek,hardware-voter syscon to the clock controllers - as what I've done
-previously was effectively representing the hardware in the devicetree as it is,
-matching the real HW layout 1:1 (because again, each of the whole HWV MCU(s) are
-embedded into each of the two power controllers, one for System power, and one
-for Multimedia power).
-
-(btw, hardware speaking, the power controller is child of a system controller:
-there are two system controllers - "scpsystem" is for "compute part", and the
-"hfrpsystem" is for the "multimedia part" of the soc).
-
-  _______________________________________
-|                                       |
-| SYSTEM CONTROLLER (SCPSYS or HFRPSYS) |
-|   _____________________               |
-|  |                     |              | <===> Clock Controllers (more than one)
-|  | Power Controller    |     SOME     |       (provide subsystem clocks for iso
-|  |                     |    OTHER     |        during power domain enablement
-|  |     ______________  |   BLOCKS     |        even if a PD is voted)
-|  |    |              | |              |       non-subsystem clocks are voted,
-|  |    | HW Voter MCU | |              |       but subsystem ones are not voted
-|  |    |______________| |              |
-|  |_____________________|              | ===> Rest of the SoC
-|_______________________________________|
-
-
-Hence I'm asking you - does your idea still stand?
-
-Because after this, sorry for that - this doesn't want to be an attack - but
-I'm starting to have doubts about an approach that doesn't involve syscons.
-
-Cheers,
-Angelo
 
