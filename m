@@ -1,403 +1,192 @@
-Return-Path: <devicetree+bounces-192515-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-192517-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id E4807AF6EC2
-	for <lists+devicetree@lfdr.de>; Thu,  3 Jul 2025 11:32:56 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0BC83AF6ED4
+	for <lists+devicetree@lfdr.de>; Thu,  3 Jul 2025 11:34:54 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id C41505605DD
-	for <lists+devicetree@lfdr.de>; Thu,  3 Jul 2025 09:32:46 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 8F0C94E7845
+	for <lists+devicetree@lfdr.de>; Thu,  3 Jul 2025 09:34:27 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id F1A352D7812;
-	Thu,  3 Jul 2025 09:32:21 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 39DC62D7805;
+	Thu,  3 Jul 2025 09:34:46 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="PdPt2XDh"
+	dkim=pass (1024-bit key) header.d=leica-geosystems.com.cn header.i=@leica-geosystems.com.cn header.b="KhAWfuQT"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from PA4PR04CU001.outbound.protection.outlook.com (mail-francecentralazon11013059.outbound.protection.outlook.com [40.107.162.59])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A68C81E8338;
-	Thu,  3 Jul 2025 09:32:19 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1751535141; cv=none; b=QdlQs2Ws0Wmug/kDdgXRrlW23jFPjrbgrSFRLi6TjUAB5f9cluP3YatoBEpFiwm5ltFD+x5WpTMQv797cEUxnZvPxxmogeyXj81BR1lPMhZvc1xLEZvmBoR9J7TpSzB9xYuE9fAcnZVUYV4695diHRHQnqikufFs/S9O8GToc4M=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1751535141; c=relaxed/simple;
-	bh=WtO1DgUxyix8oDOSgjZfMtxXQjswM3LI+TSs1gDywZg=;
-	h=Mime-Version:Content-Type:Date:Message-Id:Cc:Subject:From:To:
-	 References:In-Reply-To; b=l8GvH7Pdrtd4fJCoduqVchA49aHq03u5vBVzfqc5JkCBPapnlo+3Vk7ey0PBwRn1C9EUJ8cLDzZcp4QisnjwGKCJPpV3+EV1qQOZqq6b16ew+cYwtJ1c2FJadMiNicbETT8LWrda9mDjgF5tbdMC/XnqNf6I7WsBQNwFMw7n+pc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=PdPt2XDh; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 9FD0DC4CEE3;
-	Thu,  3 Jul 2025 09:32:07 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1751535139;
-	bh=WtO1DgUxyix8oDOSgjZfMtxXQjswM3LI+TSs1gDywZg=;
-	h=Date:Cc:Subject:From:To:References:In-Reply-To:From;
-	b=PdPt2XDhT93ntXTcvbBpnFi+Vp43qWrOTV8apH25X/OTbnhL7q3cDHTb+eEs1S6FN
-	 byoaUU84MkJoHRtB6frTgxrNxHJ07pzp7FkepC9If0jj/Woeiz8HWUFkxHC7CeQlR5
-	 T/5Iea4mPe/5Xf5+6YfdT7aRrUFon4wI1LeIJqR2/5nJvKSN9y/8Z+w5av1BnrjGCj
-	 inULlHQYluATDD3nWJfOJsLTnNmVB5K0jK8xLINhcQhHyS96/X5NCTLbc17DFX3OjI
-	 ay5ZRmAGoY67ktEqCeRBECvTPRbAc9Qcj4ukGwQrIHoHeiKjak6hbo3yOo4Cm8P9Gt
-	 LyMUdqnzaTcPw==
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 64EF82D23B0;
+	Thu,  3 Jul 2025 09:34:44 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.162.59
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1751535286; cv=fail; b=Fhl9xaJ0VIWgm5Iu4GOu89NI2cq3PeVP5vXWX086SPLgzammg0LtL9Sb0toFO9pt1FVs4GhzJxOqLMky1AKNlx/UgVBzKm+Io8pQzu9pYcpz4aF0tm/WcKC4ZvtRdzdsT/eRBk0qCgfaiOu7kst2lXJeS5X3gWFsFGLwcGhrDzw=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1751535286; c=relaxed/simple;
+	bh=g22LyTxh/ed54YX4M05+ONegfh95sMqe5bnfWmRWPjM=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version:Content-Type; b=QQhTnc1Xl982IOHPjRLKc6pde7zwHK0eezqvHbesI5O+vPqpl3ZvBRtdDjJ8Xz26txVRKW4n3BgrO0NdJIQx0Adf+xL53eqM2pKy58U23vzIShqNy0f0diUeGw2fF3hWnAmFXC8F9ExLkENN4Xhh4r/LvfXnhtpGQBtp6ULr6ko=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=leica-geosystems.com.cn; spf=fail smtp.mailfrom=leica-geosystems.com.cn; dkim=pass (1024-bit key) header.d=leica-geosystems.com.cn header.i=@leica-geosystems.com.cn header.b=KhAWfuQT; arc=fail smtp.client-ip=40.107.162.59
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=leica-geosystems.com.cn
+Authentication-Results: smtp.subspace.kernel.org; spf=fail smtp.mailfrom=leica-geosystems.com.cn
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=cXJxSwplD+VUSTnfL+bFjII0Rfw44wJV81wNqckLQSW55bZo2PFvLaNNNlNtrlcTrvIIrKc2/nZXnt5HbPUc+uhfcyEvmCeYnKimTkWsWZq3kmEDVWHM5L/rcBRaO5JMMAutTqjcU8+vMwnbQ65OgAAepoWw8tlTKk2T2SXYbobhXbx1f7IsIbLznynRKxGLRRM9GXPegNmbwlraR4ynIByVhZeGRkY2b1grO7+y9ENxKTx4LiMn1vHZorEiuuES+N7cVYXfCUh3llkIc3RjnH7Wk8ByoNl6aRFQkpjjUukSbB4onIkjo2FbteTIrwD2djiE3nVO1NIh7GZc1Q4Sjw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=87y330Bmtst1DnTMvjV2i4rTmWQdLEc06KMnxLkfxg8=;
+ b=wa29BOTaxItzKkQpM5bpQ4hVu+4YeSO4e8Zi0AwNkjCWCv9KI8AXyiByLggHJkoOyfWNYmloqeLkJ8DLtJ57jTDzPzI5OSQK35QXF2PNrcaKBMXr6ljQGKCz/dYCIlQ6xZP/GsdY2o5K3qFevNQSma8qcvAj++zSl5b4G3q7tiuGc2JNyiiFXcBIC4FmFq5qtXg3uK2r12WRBAMaix2dNyTX2xFhVF7PHVq+ChK2G63Bublyk4ty2h+Klg4kPp9RCn2G8zg1AFLgIFidMU3WNb8FC7l+kkZ/PHGT875zJqSaW5BdI6ZxN8ugHF2HY9zEmWD0MYsc/YSOUlzQtZ0/bQ==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
+ 193.8.40.94) smtp.rcpttodomain=vger.kernel.org
+ smtp.mailfrom=leica-geosystems.com.cn; dmarc=pass (p=reject sp=reject
+ pct=100) action=none header.from=leica-geosystems.com.cn; dkim=none (message
+ not signed); arc=none (0)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=leica-geosystems.com.cn; s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=87y330Bmtst1DnTMvjV2i4rTmWQdLEc06KMnxLkfxg8=;
+ b=KhAWfuQT6lnfSPwh6QbEEcjvQ7f6/v+jQaDZdjKvUIcWDa60MWD+kunRg1B7Z/Ecs6Ik7KJVJdSVuLVqRiT9/J5ShPPn6HWOwbc/Pcq4y4j0Dbh1xSTeh2Id17A1E0ZXo8PIzlPxzYWQ8GQOL5noZhaRaXPajxgoqw1eYxqAp2I=
+Received: from AS4P251CA0021.EURP251.PROD.OUTLOOK.COM (2603:10a6:20b:5d3::11)
+ by VI0PR06MB9422.eurprd06.prod.outlook.com (2603:10a6:800:23c::21) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8901.19; Thu, 3 Jul
+ 2025 09:34:38 +0000
+Received: from AMS0EPF00000195.eurprd05.prod.outlook.com
+ (2603:10a6:20b:5d3:cafe::c8) by AS4P251CA0021.outlook.office365.com
+ (2603:10a6:20b:5d3::11) with Microsoft SMTP Server (version=TLS1_3,
+ cipher=TLS_AES_256_GCM_SHA384) id 15.20.8901.22 via Frontend Transport; Thu,
+ 3 Jul 2025 09:34:37 +0000
+X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 193.8.40.94)
+ smtp.mailfrom=leica-geosystems.com.cn; dkim=none (message not signed)
+ header.d=none;dmarc=pass action=none header.from=leica-geosystems.com.cn;
+Received-SPF: Pass (protection.outlook.com: domain of leica-geosystems.com.cn
+ designates 193.8.40.94 as permitted sender) receiver=protection.outlook.com;
+ client-ip=193.8.40.94; helo=hexagon.com; pr=C
+Received: from hexagon.com (193.8.40.94) by
+ AMS0EPF00000195.mail.protection.outlook.com (10.167.16.215) with Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.8901.15 via Frontend Transport; Thu, 3 Jul 2025 09:34:36 +0000
+Received: from GEO-W5CG2253GWB.lgs-net.com ([10.132.33.66]) by hexagon.com with Microsoft SMTPSVC(10.0.17763.1697);
+	 Thu, 3 Jul 2025 11:34:35 +0200
+From: LI Qingwu <Qing-wu.Li@leica-geosystems.com.cn>
+To: lee@kernel.org,
+	pavel@kernel.org,
+	robh@kernel.org,
+	krzk+dt@kernel.org,
+	conor+dt@kernel.org,
+	linux-leds@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	Qing-wu.Li@leica-geosystems.com.cn
+Cc: bsp-development.geo@leica-geosystems.com
+Subject: [PATCH V4 0/2] leds: pwm: Add optional GPIO enable pin support
+Date: Thu,  3 Jul 2025 17:34:28 +0800
+Message-ID: <20250703093430.229959-1-Qing-wu.Li@leica-geosystems.com.cn>
+X-Mailer: git-send-email 2.43.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-Mime-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-Content-Type: text/plain; charset=UTF-8
-Date: Thu, 03 Jul 2025 11:32:05 +0200
-Message-Id: <DB2BDSN1JH51.14ZZPETJORBC6@kernel.org>
-Cc: <rust-for-linux@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
- <linux-kselftest@vger.kernel.org>, <kunit-dev@googlegroups.com>,
- <dri-devel@lists.freedesktop.org>, <netdev@vger.kernel.org>,
- <devicetree@vger.kernel.org>, <llvm@lists.linux.dev>,
- <linux-pci@vger.kernel.org>, <nouveau@lists.freedesktop.org>,
- <linux-block@vger.kernel.org>, <linux-pm@vger.kernel.org>,
- <linux-clk@vger.kernel.org>
-Subject: Re: [PATCH v13 2/5] rust: support formatting of foreign types
-From: "Benno Lossin" <lossin@kernel.org>
-To: "Tamir Duberstein" <tamird@gmail.com>, "Michal Rostecki"
- <vadorovsky@protonmail.com>, "Miguel Ojeda" <ojeda@kernel.org>, "Alex
- Gaynor" <alex.gaynor@gmail.com>, "Boqun Feng" <boqun.feng@gmail.com>, "Gary
- Guo" <gary@garyguo.net>, =?utf-8?q?Bj=C3=B6rn_Roy_Baron?=
- <bjorn3_gh@protonmail.com>, "Andreas Hindborg" <a.hindborg@kernel.org>,
- "Alice Ryhl" <aliceryhl@google.com>, "Trevor Gross" <tmgross@umich.edu>,
- "Brendan Higgins" <brendan.higgins@linux.dev>, "David Gow"
- <davidgow@google.com>, "Rae Moar" <rmoar@google.com>, "Danilo Krummrich"
- <dakr@kernel.org>, "Maarten Lankhorst" <maarten.lankhorst@linux.intel.com>,
- "Maxime Ripard" <mripard@kernel.org>, "Thomas Zimmermann"
- <tzimmermann@suse.de>, "David Airlie" <airlied@gmail.com>, "Simona Vetter"
- <simona@ffwll.ch>, "Greg Kroah-Hartman" <gregkh@linuxfoundation.org>,
- "Rafael J. Wysocki" <rafael@kernel.org>, "Luis Chamberlain"
- <mcgrof@kernel.org>, "Russ Weight" <russ.weight@linux.dev>, "FUJITA
- Tomonori" <fujita.tomonori@gmail.com>, "Rob Herring" <robh@kernel.org>,
- "Saravana Kannan" <saravanak@google.com>, "Peter Zijlstra"
- <peterz@infradead.org>, "Ingo Molnar" <mingo@redhat.com>, "Will Deacon"
- <will@kernel.org>, "Waiman Long" <longman@redhat.com>, "Nathan Chancellor"
- <nathan@kernel.org>, "Nick Desaulniers" <nick.desaulniers+lkml@gmail.com>,
- "Bill Wendling" <morbo@google.com>, "Justin Stitt"
- <justinstitt@google.com>, "Andrew Lunn" <andrew@lunn.ch>, "Heiner Kallweit"
- <hkallweit1@gmail.com>, "Russell King" <linux@armlinux.org.uk>, "David S.
- Miller" <davem@davemloft.net>, "Eric Dumazet" <edumazet@google.com>, "Jakub
- Kicinski" <kuba@kernel.org>, "Paolo Abeni" <pabeni@redhat.com>, "Bjorn
- Helgaas" <bhelgaas@google.com>, "Arnd Bergmann" <arnd@arndb.de>, "Jens
- Axboe" <axboe@kernel.dk>, =?utf-8?q?Krzysztof_Wilczy=C5=84ski?=
- <kwilczynski@kernel.org>, "Dave Ertman" <david.m.ertman@intel.com>, "Ira
- Weiny" <ira.weiny@intel.com>, "Leon Romanovsky" <leon@kernel.org>, "Breno
- Leitao" <leitao@debian.org>, "Viresh Kumar" <viresh.kumar@linaro.org>,
- "Michael Turquette" <mturquette@baylibre.com>, "Stephen Boyd"
- <sboyd@kernel.org>
-X-Mailer: aerc 0.20.1
-References: <20250701-cstr-core-v13-0-29f7d3eb97a6@gmail.com>
- <20250701-cstr-core-v13-2-29f7d3eb97a6@gmail.com>
-In-Reply-To: <20250701-cstr-core-v13-2-29f7d3eb97a6@gmail.com>
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
+X-OriginalArrivalTime: 03 Jul 2025 09:34:36.0211 (UTC) FILETIME=[B0BED030:01DBEBFD]
+X-EOPAttributedMessage: 0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: AMS0EPF00000195:EE_|VI0PR06MB9422:EE_
+Content-Type: text/plain
+X-MS-Office365-Filtering-Correlation-Id: db9640ec-4059-42f7-cd2a-08ddba14d390
+X-SET-LOWER-SCL-SCANNER: YES
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam:
+	BCL:0;ARA:13230040|376014|82310400026|1800799024|36860700013;
+X-Microsoft-Antispam-Message-Info:
+	=?us-ascii?Q?rB6Ehq6fSLl4uz6GKNVew5a+C1SgJb84zeNklm/ZDtuQ3edfrVb6JgKEoYfm?=
+ =?us-ascii?Q?z2R5bhUJuq8Yuz9VVybwWdXdnRqSjWOAblk4wPUITl3kVUp6LwNOCEq3GR1A?=
+ =?us-ascii?Q?WJwi/1fGqtuqQsbVaNo9ulzGCsq2UFC00ItgDR/nFM48UzhBE6RQnErwZrMW?=
+ =?us-ascii?Q?a9mAFQY7pqWj3Ii1zqSW/qEg8gR1MlLS3H6WzwAHcT3Uj5OKr6/H6+8A3nQ4?=
+ =?us-ascii?Q?/owII2B0enVPvrV5HpmG7uoNhbwKcj3S++I4EaVOwYqeDwtCPrE8yk0Sgrqu?=
+ =?us-ascii?Q?eKLn2o5aEGZ5xSIq9Tyglu0yOGi1VHJ74rIHWpcAV7qM2C4FxHP/UErDlykt?=
+ =?us-ascii?Q?L/s98ZfbSagvEj39TiDYyTZGM1hyKhZfwzXna2O+ffci38l80706QBpnEPlF?=
+ =?us-ascii?Q?/b6Sh+P22rU1pdWpYrCcGQ3+SJBI5M4Mr5uxpvju8Or70UTx87QU2QI0/t+7?=
+ =?us-ascii?Q?sHP8O8uqOj/Vhcm49/PHSzma1YTORfd7Eks3DydmEfaxolLvzmWbe/dTUEZE?=
+ =?us-ascii?Q?eClWH8sMQLgPrmGlADXuLtOQ/XKzZRbIaZvrP6eDeyxVzZ//qihNDX1RFajl?=
+ =?us-ascii?Q?zQOpVWHQ54/0SxHaxNBrGg7Y8s/+7K2BtiEUrLECG4UotCAIQKbaz5oaFoCu?=
+ =?us-ascii?Q?w9mfcxukB+4VD92FXv34GG9W4uGT0NYOSizPOOnipYgJ5GNJE0iUSa9DzMfg?=
+ =?us-ascii?Q?WYgxXzTV/r6zJoWL8uuUkuvhB7yARHI8xjlIXpIZg6o7LgyBVl4q2n17+KaJ?=
+ =?us-ascii?Q?+2amScLJ3E6/N+BD5oQ6tsDyNPsQxs351Dl6Mgw4seK2nrid5FMon6gccr3M?=
+ =?us-ascii?Q?ZeVYTGu5x0wWvkf+BtXRjV0DTH1V0I3sFQiX8IZadEUxmZkXoHiG7IlFjki9?=
+ =?us-ascii?Q?fHVPn7PraMq1dESusQLCqdDn9dlsQSqMjYAlErMoHdxZEVH2bk6GjWFM15CB?=
+ =?us-ascii?Q?idSsKPV+YMOxBi2o9o8NcKqay7WLTVSGL8oSPTehhIgYmEqb9K5nzXy+ua39?=
+ =?us-ascii?Q?8/CamuJo835X5QA4UtT7x2AH4qvMIGUSdv/zVtgkIF+uaoLsg7XlujLRl1E1?=
+ =?us-ascii?Q?zFvbOahtA1l0l4A0I2mvRCFN4gkW14j/eOLy87yAJzIE8T4cLXu7HTB0iW1s?=
+ =?us-ascii?Q?1lMwBculeoA6z6pp3Rcp3pNzE0P2vtt9euIPhwv69q5hhodcuvN0tqPgqvGf?=
+ =?us-ascii?Q?UrV87cS6vsrLl8RfTPDPXGPfgxaFE3GnPqmh3or26ahjrM8vRrjNpH6qGWY6?=
+ =?us-ascii?Q?fBhw80fYOSY5MAP2lvJFBKdAMKmdu0L+ERAbvhsrl/UyVYpwLS4weMpmwQaJ?=
+ =?us-ascii?Q?4UUiwGUC10Wnlqd5E2iSSi+4NIPMeqP/Q2Sh345PTUroz/kPUWgL+/9ddIUY?=
+ =?us-ascii?Q?/+jdf8U6C/WeuxSENKnfXjFWhME7RYXhpDyOdP/k+/sdiR5Iijf+vJyZ+QBd?=
+ =?us-ascii?Q?c+qQGn+pA4AtUC3WUFmYSqeB8Nv3pc5mJVOtAUMW5hvOFIwEMr/fd1DiSExv?=
+ =?us-ascii?Q?ePLAiuvlT+ACHXuhSZlWP4zcYmkhWXFj22I5?=
+X-Forefront-Antispam-Report:
+	CIP:193.8.40.94;CTRY:CH;LANG:en;SCL:1;SRV:;IPV:CAL;SFV:NSPM;H:hexagon.com;PTR:ahersrvdom50.leica-geosystems.com;CAT:NONE;SFS:(13230040)(376014)(82310400026)(1800799024)(36860700013);DIR:OUT;SFP:1101;
+X-OriginatorOrg: leica-geosystems.com.cn
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 03 Jul 2025 09:34:36.7057
+ (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: db9640ec-4059-42f7-cd2a-08ddba14d390
+X-MS-Exchange-CrossTenant-Id: 1b16ab3e-b8f6-4fe3-9f3e-2db7fe549f6a
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=1b16ab3e-b8f6-4fe3-9f3e-2db7fe549f6a;Ip=[193.8.40.94];Helo=[hexagon.com]
+X-MS-Exchange-CrossTenant-AuthSource:
+	AMS0EPF00000195.eurprd05.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Anonymous
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: VI0PR06MB9422
 
-On Tue Jul 1, 2025 at 6:49 PM CEST, Tamir Duberstein wrote:
-> Introduce a `fmt!` macro which wraps all arguments in
-> `kernel::fmt::Adapter` and a `kernel::fmt::Display` trait. This enables
-> formatting of foreign types (like `core::ffi::CStr`) that do not
-> implement `core::fmt::Display` due to concerns around lossy conversions w=
-hich
-> do not apply in the kernel.
->
-> Replace all direct calls to `format_args!` with `fmt!`.
->
-> Replace all implementations of `core::fmt::Display` with implementations
-> of `kernel::fmt::Display`.
->
-> Suggested-by: Alice Ryhl <aliceryhl@google.com>
-> Link: https://rust-for-linux.zulipchat.com/#narrow/channel/288089-General=
-/topic/Custom.20formatting/with/516476467
-> Acked-by: Greg Kroah-Hartman <gregkh@linuxfoundation.org>
-> Reviewed-by: Alice Ryhl <aliceryhl@google.com>
-> Signed-off-by: Tamir Duberstein <tamird@gmail.com>
-> ---
->  drivers/block/rnull.rs       |  2 +-
->  drivers/gpu/nova-core/gpu.rs |  4 +-
->  rust/kernel/block/mq.rs      |  2 +-
->  rust/kernel/device.rs        |  2 +-
->  rust/kernel/fmt.rs           | 89 ++++++++++++++++++++++++++++++++++++++=
-+
->  rust/kernel/kunit.rs         |  6 +--
->  rust/kernel/lib.rs           |  1 +
->  rust/kernel/prelude.rs       |  3 +-
->  rust/kernel/print.rs         |  4 +-
->  rust/kernel/seq_file.rs      |  2 +-
->  rust/kernel/str.rs           | 22 ++++------
->  rust/macros/fmt.rs           | 99 ++++++++++++++++++++++++++++++++++++++=
-++++++
->  rust/macros/lib.rs           | 19 +++++++++
->  rust/macros/quote.rs         |  7 ++++
->  scripts/rustdoc_test_gen.rs  |  2 +-
->  15 files changed, 236 insertions(+), 28 deletions(-)
+Add support for an optional GPIO enable pin to the PWM LED driver.
+Some LED controllers require an additional enable GPIO to be enabled
+on the device before PWM control can take effect.
 
-This would be a lot easier to review if he proc-macro and the call
-replacement were different patches.
+Testing:
+- Tested on i.MX8MP EVK board with TPS92380 LED backlight driver
+- Verified GPIO enable/disable functionality works correctly
+- Confirmed both GPIO_ACTIVE_HIGH and GPIO_ACTIVE_LOW polarities
+  work properly
 
-Also the `kernel/fmt.rs` file should be a different commit.
 
-> diff --git a/rust/kernel/fmt.rs b/rust/kernel/fmt.rs
-> new file mode 100644
-> index 000000000000..348d16987de6
-> --- /dev/null
-> +++ b/rust/kernel/fmt.rs
-> @@ -0,0 +1,89 @@
-> +// SPDX-License-Identifier: GPL-2.0
-> +
-> +//! Formatting utilities.
-> +
-> +use core::fmt;
+Device tree configuration used for testing:
 
-I think we should pub export all types that we are still using from
-`core::fmt`. For example `Result`, `Formatter`, `Debug` etc.
+	backlight_keypad: backlight-keypad {
+		compatible = "pwm-leds";
 
-That way I can still use the same pattern of importing `fmt` and then
-writing
+		led {
+			color = <LED_COLOR_ID_WHITE>;
+			enable-gpios = <&pca6416 11 GPIO_ACTIVE_HIGH>;
+			function = LED_FUNCTION_KBD_BACKLIGHT;
+			max-brightness = <100>;
+			pwms = <&pwm3 0 2500 0>;
+		};
+	};
 
-    impl fmt::Display for MyType {
-        fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {}
-    }
+Changes in V4:
+- Reword commit message to specify the LED driver chip TPS92380
+- Add tested device tree configuration to cover letter
 
-> +
-> +/// Internal adapter used to route allow implementations of formatting t=
-raits for foreign types.
-> +///
-> +/// It is inserted automatically by the [`fmt!`] macro and is not meant =
-to be used directly.
-> +///
-> +/// [`fmt!`]: crate::prelude::fmt!
-> +#[doc(hidden)]
-> +pub struct Adapter<T>(pub T);
-> +
-> +macro_rules! impl_fmt_adapter_forward {
-> +    ($($trait:ident),* $(,)?) =3D> {
-> +        $(
-> +            impl<T: fmt::$trait> fmt::$trait for Adapter<T> {
-> +                fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result=
- {
-> +                    let Self(t) =3D self;
-> +                    fmt::$trait::fmt(t, f)
-> +                }
-> +            }
-> +        )*
-> +    };
-> +}
-> +
-> +impl_fmt_adapter_forward!(Debug, LowerHex, UpperHex, Octal, Binary, Poin=
-ter, LowerExp, UpperExp);
-> +
-> +/// A copy of [`fmt::Display`] that allows us to implement it for foreig=
-n types.
-> +///
-> +/// Types should implement this trait rather than [`fmt::Display`]. Toge=
-ther with the [`Adapter`]
-> +/// type and [`fmt!`] macro, it allows for formatting foreign types (e.g=
-. types from core) which do
-> +/// not implement [`fmt::Display`] directly.
-> +///
-> +/// [`fmt!`]: crate::prelude::fmt!
-> +pub trait Display {
-> +    /// Same as [`fmt::Display::fmt`].
-> +    fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result;
-> +}
-> +
-> +impl<T: ?Sized + Display> Display for &T {
-> +    fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result {
-> +        Display::fmt(*self, f)
-> +    }
-> +}
-> +
-> +impl<T: ?Sized + Display> fmt::Display for Adapter<&T> {
-> +    fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result {
-> +        let Self(t) =3D self;
-> +        Display::fmt(t, f)
+Changes in V3:
+- fix make dt_binding_check failed on check leds-pwm.yaml
 
-Why not `Display::fmt(&self.0, f)`?
 
-> +    }
-> +}
-> +
-> +macro_rules! impl_display_forward {
-> +    ($(
-> +        $( { $($generics:tt)* } )? $ty:ty $( { where $($where:tt)* } )?
-> +    ),* $(,)?) =3D> {
-> +        $(
-> +            impl$($($generics)*)? Display for $ty $(where $($where)*)? {
-> +                fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result=
- {
-> +                    fmt::Display::fmt(self, f)
-> +                }
-> +            }
-> +        )*
-> +    };
-> +}
-> +
-> +impl_display_forward!(
-> +    bool,
-> +    char,
-> +    core::panic::PanicInfo<'_>,
-> +    fmt::Arguments<'_>,
-> +    i128,
-> +    i16,
-> +    i32,
-> +    i64,
-> +    i8,
-> +    isize,
-> +    str,
-> +    u128,
-> +    u16,
-> +    u32,
-> +    u64,
-> +    u8,
-> +    usize,
-> +    {<T: ?Sized>} crate::sync::Arc<T> {where crate::sync::Arc<T>: fmt::D=
-isplay},
-> +    {<T: ?Sized>} crate::sync::UniqueArc<T> {where crate::sync::UniqueAr=
-c<T>: fmt::Display},
-> +);
 
-> diff --git a/rust/macros/fmt.rs b/rust/macros/fmt.rs
-> new file mode 100644
-> index 000000000000..edc37c220a89
-> --- /dev/null
-> +++ b/rust/macros/fmt.rs
-> @@ -0,0 +1,99 @@
-> +// SPDX-License-Identifier: GPL-2.0
-> +
-> +use proc_macro::{Ident, TokenStream, TokenTree};
-> +use std::collections::BTreeSet;
-> +
-> +/// Please see [`crate::fmt`] for documentation.
-> +pub(crate) fn fmt(input: TokenStream) -> TokenStream {
-> +    let mut input =3D input.into_iter();
-> +
-> +    let first_opt =3D input.next();
-> +    let first_owned_str;
-> +    let mut names =3D BTreeSet::new();
-> +    let first_lit =3D {
-> +        let Some((mut first_str, first_lit)) =3D (match first_opt.as_ref=
-() {
-> +            Some(TokenTree::Literal(first_lit)) =3D> {
-> +                first_owned_str =3D first_lit.to_string();
-> +                Some(first_owned_str.as_str()).and_then(|first| {
-> +                    let first =3D first.strip_prefix('"')?;
-> +                    let first =3D first.strip_suffix('"')?;
-> +                    Some((first, first_lit))
 
-You're only using first_lit to get the span later, so why not just get
-the span directly here?
+LI Qingwu (2):
+  dt-bindings: leds: pwm: add enable-gpios property
+  leds: pwm: Add optional GPIO enable pin support
 
-> +                })
-> +            }
-> +            _ =3D> None,
-> +        }) else {
-> +            return first_opt.into_iter().chain(input).collect();
-> +        };
-> +        while let Some((_, rest)) =3D first_str.split_once('{') {
+ .../devicetree/bindings/leds/leds-pwm.yaml    |  7 ++++++
+ drivers/leds/leds-pwm.c                       | 22 +++++++++++++++++++
+ 2 files changed, 29 insertions(+)
 
-Let's put a comment above this loop mentioning [1] and saying that it
-parses the identifiers from the format arguments.
+-- 
+2.43.0
 
-[1]: https://doc.rust-lang.org/std/fmt/index.html#syntax
-
-> +            first_str =3D rest;
-> +            if let Some(rest) =3D first_str.strip_prefix('{') {
-> +                first_str =3D rest;
-> +                continue;
-> +            }
-> +            if let Some((name, rest)) =3D first_str.split_once('}') {
-> +                first_str =3D rest;
-> +                let name =3D name.split_once(':').map_or(name, |(name, _=
-)| name);
-> +                if !name.is_empty() && !name.chars().all(|c| c.is_ascii_=
-digit()) {
-> +                    names.insert(name);
-> +                }
-> +            }
-> +        }
-> +        first_lit
-> +    };
-> +
-> +    let first_span =3D first_lit.span();
-> +    let adapter =3D quote_spanned! {
-> +        first_span =3D> ::kernel::fmt::Adapter
-> +    };
-
-I think we should follow the formatting convention from the quote crate:
-
-    let adapter =3D quote_spanned!(first_span=3D> ::kernel::fmt::Adapter);
-
-> +
-> +    let mut args =3D TokenStream::from_iter(first_opt);
-> +    {
-> +        let mut flush =3D |args: &mut TokenStream, current: &mut TokenSt=
-ream| {
-
-You don't need to pass `args` as a closure argument, since you always
-call it with `&mut args`.
-
-> +            let current =3D std::mem::take(current);
-> +            if !current.is_empty() {
-> +                let (lhs, rhs) =3D (|| {
-> +                    let mut current =3D current.into_iter();
-> +                    let mut acc =3D TokenStream::new();
-> +                    while let Some(tt) =3D current.next() {
-> +                        // Split on `=3D` only once to handle cases like=
- `a =3D b =3D c`.
-> +                        if matches!(&tt, TokenTree::Punct(p) if p.as_cha=
-r() =3D=3D '=3D') {
-> +                            names.remove(acc.to_string().as_str());
-> +                            // Include the `=3D` itself to keep the hand=
-ling below uniform.
-> +                            acc.extend([tt]);
-> +                            return (Some(acc), current.collect::<TokenSt=
-ream>());
-> +                        }
-> +                        acc.extend([tt]);
-> +                    }
-> +                    (None, acc)
-> +                })();
-> +                args.extend(quote_spanned! {
-> +                    first_span =3D> #lhs #adapter(&#rhs)
-> +                });
-> +            }
-> +        };
-> +
-> +        let mut current =3D TokenStream::new();
-
-Define this before the closure, then you don't need to pass it as an
-argument.
-
----
-Cheers,
-Benno
-
-> +        for tt in input {
-> +            match &tt {
-> +                TokenTree::Punct(p) if p.as_char() =3D=3D ',' =3D> {
-> +                    flush(&mut args, &mut current);
-> +                    &mut args
-> +                }
-> +                _ =3D> &mut current,
-> +            }
-> +            .extend([tt]);
-> +        }
-> +        flush(&mut args, &mut current);
-> +    }
-> +
-> +    for name in names {
-> +        let name =3D Ident::new(name, first_span);
-> +        args.extend(quote_spanned! {
-> +            first_span =3D> , #name =3D #adapter(&#name)
-> +        });
-> +    }
-> +
-> +    quote_spanned! {
-> +        first_span =3D> ::core::format_args!(#args)
-> +    }
-> +}
 
