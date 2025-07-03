@@ -1,160 +1,165 @@
-Return-Path: <devicetree+bounces-192788-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-192789-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3D887AF7E1B
-	for <lists+devicetree@lfdr.de>; Thu,  3 Jul 2025 18:43:08 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 53D6DAF7E68
+	for <lists+devicetree@lfdr.de>; Thu,  3 Jul 2025 19:12:02 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id EC6345457D3
-	for <lists+devicetree@lfdr.de>; Thu,  3 Jul 2025 16:42:41 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 0D9F67B466C
+	for <lists+devicetree@lfdr.de>; Thu,  3 Jul 2025 17:10:36 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 83956257436;
-	Thu,  3 Jul 2025 16:43:03 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id DA7F725A2D1;
+	Thu,  3 Jul 2025 17:11:54 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=arndb.de header.i=@arndb.de header.b="CbTS/0O5";
-	dkim=pass (2048-bit key) header.d=messagingengine.com header.i=@messagingengine.com header.b="IjqWG0RZ"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="WJhGOhel"
 X-Original-To: devicetree@vger.kernel.org
-Received: from fhigh-a8-smtp.messagingengine.com (fhigh-a8-smtp.messagingengine.com [103.168.172.159])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-lj1-f169.google.com (mail-lj1-f169.google.com [209.85.208.169])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2D00D24EF76;
-	Thu,  3 Jul 2025 16:43:00 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=103.168.172.159
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0F1A2258CE9;
+	Thu,  3 Jul 2025 17:11:52 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.169
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1751560983; cv=none; b=Baj/HaXb2jOkqekkmzkslUJchQ2SwurIGjDy2J38AaT8CZfOi5F3jnzcM2H3lzHKTQ396l48vMXJHrEdJrNvJgxbVPAfNUKqfBJgRc47VNg0NGMr+u3CLNbSoE4rGJ3P+6NExQbLFxyGO+L8fetU4h4zgSIut5erGh1mAoeBxUo=
+	t=1751562714; cv=none; b=HAh4Qz/BhzCnDpCDDVC2CkIAbXRh2RWpGL5UBpqdSJy9LQjxE54f3tT6YTx0zyLE43i/siJ8TKsr6EhFUliLgeLyZIw06Xpz+yemyUGho/n1P90vUKMrcnUVgmtFq7ZMsPyfP7n92dwkru0WRyrAn00PFMBCBUB1y8iYchY4Asc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1751560983; c=relaxed/simple;
-	bh=3kNRDGSkGqzB77hAh0KZcAwmf+z4MncKOaolrYOe1nc=;
-	h=MIME-Version:Date:From:To:Cc:Message-Id:In-Reply-To:References:
-	 Subject:Content-Type; b=fRnGwrbJsI9ismCJCRFR6cDroYsBtR1Qa+AOIhvImCnZ1+/CFlMkhX/CfeCQfCniazY08k6u2dVv0zYkaVHIm/VQ66zpTu2yAL1AOf1SortfX0O9rm+gNUxuwVmgJymO5/wOctLnQRLF5Mvdq9xd5Fr6r0ygWTXshNeBd0mu5tA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arndb.de; spf=pass smtp.mailfrom=arndb.de; dkim=pass (2048-bit key) header.d=arndb.de header.i=@arndb.de header.b=CbTS/0O5; dkim=pass (2048-bit key) header.d=messagingengine.com header.i=@messagingengine.com header.b=IjqWG0RZ; arc=none smtp.client-ip=103.168.172.159
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arndb.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=arndb.de
-Received: from phl-compute-05.internal (phl-compute-05.phl.internal [10.202.2.45])
-	by mailfhigh.phl.internal (Postfix) with ESMTP id 3B58F14002E9;
-	Thu,  3 Jul 2025 12:43:00 -0400 (EDT)
-Received: from phl-imap-02 ([10.202.2.81])
-  by phl-compute-05.internal (MEProxy); Thu, 03 Jul 2025 12:43:00 -0400
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=arndb.de; h=cc
-	:cc:content-transfer-encoding:content-type:content-type:date
-	:date:from:from:in-reply-to:in-reply-to:message-id:mime-version
-	:references:reply-to:subject:subject:to:to; s=fm1; t=1751560980;
-	 x=1751647380; bh=8aHcjkC1vBbFHOk6YcAdLSw+GHoVCfk6IHr+e/5583U=; b=
-	CbTS/0O59R8Cr4Ad9SWLxJXjM8Bv+cTdBCk1BO9JfEXPrUDfj1NLppd1FmyGiLNV
-	KPsOD/NlMrhXi+vArXxAU0W7QyirbU8diItNb68P0bS+zA0OKp5/vLTU+lc6uaZa
-	2etnv39VNt18xQ7CmqMVkXnDraIwAuWIuYpPZBVqmryCOnPuno5yjrqsQY9MqzgW
-	oXqdBvvvOTDoJrE4ooKgarYR9iFEZ+p4t1+YdHYsCmA5DIGHIOjQS/vbfM3v9BPQ
-	Lx2lx7Bl2fDJXIaB2CM7E8PC3JUA4bPWi0WAuBLWMIV+2YLXsvsznsOz1SqjJr/H
-	PWpcj7kdiboQDQjqWxZsVQ==
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
-	messagingengine.com; h=cc:cc:content-transfer-encoding
-	:content-type:content-type:date:date:feedback-id:feedback-id
-	:from:from:in-reply-to:in-reply-to:message-id:mime-version
-	:references:reply-to:subject:subject:to:to:x-me-proxy
-	:x-me-sender:x-me-sender:x-sasl-enc; s=fm2; t=1751560980; x=
-	1751647380; bh=8aHcjkC1vBbFHOk6YcAdLSw+GHoVCfk6IHr+e/5583U=; b=I
-	jqWG0RZcN9q+snlWCGD0zO7MBeE9lsPF4uFnEFpPv7RppAJMgrY5i663ojpdKh98
-	zJ22v5GaD4qV33IS7f7RKLcXKfF1qfWsk+fTmpontyotc6CI/9aFM/3hzbkbFfnJ
-	Yw2BqAky0ty8dM1+XkmtBVSoosXHf9ay1Bq8q+nn9eCMHd3+RcwZNWf6wJfRCq/4
-	aMvxleNgcG54tXZD20krQnRUQWsaFriRjmcndjuzGrCy4nzypzqV/UIwumUi1FU5
-	QTS43jLgy7xm6P0/9NyjKVKx4ZxxgQYtTLgP7YLja7+E7lx7ptryG5ezmAWqDrlV
-	02dVtE9fRXp0IC/p3wAYA==
-X-ME-Sender: <xms:EbNmaAGJOktCXY08HIcUyu9ZXXNz2_zmCzYPiwZR3FkYRtfF7eDwHA>
-    <xme:EbNmaJVX5RFBdZHxslupYa0zRaydp4WyewbtID5rsxz5DsPp7-pH_SBwIY5nDjKsL
-    Rh4kMW_x7k1HMqJX-g>
-X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgeeffedrtdefgddvtdejkecutefuodetggdotefrod
-    ftvfcurfhrohhfihhlvgemucfhrghsthforghilhdpuffrtefokffrpgfnqfghnecuuegr
-    ihhlohhuthemuceftddtnecusecvtfgvtghiphhivghnthhsucdlqddutddtmdenucfjug
-    hrpefoggffhffvvefkjghfufgtgfesthejredtredttdenucfhrhhomhepfdetrhhnugcu
-    uegvrhhgmhgrnhhnfdcuoegrrhhnugesrghrnhgusgdruggvqeenucggtffrrghtthgvrh
-    hnpefhtdfhvddtfeehudekteeggffghfejgeegteefgffgvedugeduveelvdekhfdvieen
-    ucevlhhushhtvghrufhiiigvpedtnecurfgrrhgrmhepmhgrihhlfhhrohhmpegrrhhnug
-    esrghrnhgusgdruggvpdhnsggprhgtphhtthhopeduiedpmhhouggvpehsmhhtphhouhht
-    pdhrtghpthhtohepsggvnhejudejsegrnhguvghsthgvtghhrdgtohhmpdhrtghpthhtoh
-    epthhimheitdelsegrnhguvghsthgvtghhrdgtohhmpdhrtghpthhtohepphhrrggshhgr
-    khgrrhdrmhgrhhgruggvvhdqlhgrugdrrhhjsegsphdrrhgvnhgvshgrshdrtghomhdprh
-    gtphhtthhopehprghlmhgvrhesuggrsggsvghlthdrtghomhdprhgtphhtthhopegrohhu
-    segvvggtshdrsggvrhhkvghlvgihrdgvughupdhrtghpthhtoheprghlvgigsehghhhith
-    hirdhfrhdprhgtphhtthhopegtohhnohhrodgutheskhgvrhhnvghlrdhorhhgpdhrtghp
-    thhtoheptghonhhorheskhgvrhhnvghlrdhorhhgpdhrtghpthhtohepkhhriihkodguth
-    eskhgvrhhnvghlrdhorhhg
-X-ME-Proxy: <xmx:EbNmaKKAEpYwzXcZaSrWRIwGFo3mM3jbbggGC-GhAbHTniCGP_T-aA>
-    <xmx:EbNmaCG9rdvUQTq8-80tdurHDf6kVeG2RHPEexRpK5FsxHi7SptfQg>
-    <xmx:EbNmaGXxlNXp5V0VQF2p0gqYZnY4BK725hY1tGDvAunzZ9n1YHff2Q>
-    <xmx:EbNmaFMiTmF4cKXs_HmKU2qjGMRXNwKTlqfdo5ZJyZHclMgEDMTixA>
-    <xmx:FLNmaK6rhYxID1-tY6xW2Q4HhjF2vDA2o80rX-cjDIGYkqtMT5uyX9EY>
-Feedback-ID: i56a14606:Fastmail
-Received: by mailuser.phl.internal (Postfix, from userid 501)
-	id B4362700065; Thu,  3 Jul 2025 12:42:57 -0400 (EDT)
-X-Mailer: MessagingEngine.com Webmail Interface
+	s=arc-20240116; t=1751562714; c=relaxed/simple;
+	bh=DeRiQLwC9hH0Pfe7J+UzbD/J/UCdYASssdvcJZ0DNgo=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=WXPXXgFf0ezwmXaiDd5IsH/0d4ov9Q91PXM/UIgHMHnuMM9pEawgn2pWqdmz5xEnqnKLI0mLEv/c8YSZkGmWQ3ZZBpasF15C6PaXatupJcKMGawtDxpkWT2loutnd07VRPMp//1qmIjywqkHjHe09Y0Ojnu5BEvRFcY4/nUBnfk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=WJhGOhel; arc=none smtp.client-ip=209.85.208.169
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-lj1-f169.google.com with SMTP id 38308e7fff4ca-32b7123edb9so1620011fa.2;
+        Thu, 03 Jul 2025 10:11:52 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1751562711; x=1752167511; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=DeRiQLwC9hH0Pfe7J+UzbD/J/UCdYASssdvcJZ0DNgo=;
+        b=WJhGOheljX718ex+hW+rKJ2TGKgGW4YH6oS1AFEQkQU8rBsAMarRZPQqP3Cj8gxfFW
+         sZag/ARHloKFcgO9ftR0C4XWjRFHsgHXB/WLuXNnnN8vtAyKEzjMRmhujGf6krxS3JOV
+         +pDZl1p+c918tu8h6UmJUUtagBF3GsOQtpDPgKy5iNDBI2P/hTsmQqdISDMp0+DZptur
+         utvRVVp83bJEs5psCnHoLbZEwJrdxx7tVrQJ/xNbdj5u5roPNbS08Z2pw23J0mks3KZ+
+         iFz1phw6xp5HHJPzbJWyh8tvl/BoTa1MNQhONsI9IbAXD8rqGiXTFMffpxvmMOGTdHvi
+         8dig==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1751562711; x=1752167511;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=DeRiQLwC9hH0Pfe7J+UzbD/J/UCdYASssdvcJZ0DNgo=;
+        b=M02/FbKhh6atAK7J0IXVdMZtdO26wzGUR7Ph9fsgnz9izD0KYIIbeP/Imz44+7jRqK
+         b+bV2lZxojxLMu0OmqLQDJwW/iUzO3zZFuNszjaEGCdXP6i/QnxgdGUWhebHuyyL2Z8B
+         LUIk22rAVFkfXvrQMM2j+rqU2sE4+WpL2Z+xFtOkAdLmwVnWZPiHzQ3xxu5vhVqk7Az6
+         hsGP2ozfPUcnMX/qBLPYYEpTrZFNNCTnvGW9V/v2VmIBoZcrAlkfMHhkdTakdnG2hcZO
+         E3zynSsFQifKHhFYp8QEQFoRBq1Gg1FdGIZ1ELvvjnE7IJpA5hKkqbcI45YgHmNtkwbY
+         YYNQ==
+X-Forwarded-Encrypted: i=1; AJvYcCVHtwxJRBL9hbZ2+7NbhyHcuN+vQx46sQ9L38JQAPB/p1XpbRw59rVVXkuOfwSGcfrxHTUocMigTxxI@vger.kernel.org, AJvYcCW6z3Fpj2zaXzyj1wONLr+xT4CNFUg96OCg9u4tH0dEx/rvzbT55GIcxfyMdBpz70hjWCEIHOItUo5mKyx4@vger.kernel.org, AJvYcCX0c37eBGOl3m2Npl507FFn7uH5dR8VBWbEkaERXoJufO6YKzSwYh11/h6F6vBeKqCPIfz6igaL5aKL2uo=@vger.kernel.org
+X-Gm-Message-State: AOJu0YwAmZdRs8wJjGewZ5js05yCEaHm9MIXdCwCKc2YZazfhQyaH7wV
+	SBV45VdCQjQ0eudec3RzzHarsL6SUe9WN+LM6o3QNb9MTkOGv7pvhF8UtrTKsalYpb92uYnN4e5
+	E07LV0gvwU4+JOo0tEmonB61EUtxY0iyWjH1dKao=
+X-Gm-Gg: ASbGncs6L9n4duqxpRnkVm6zUIeKO6YRYrec8gflXjTwXEpBMMUYdSc3l1uqNxZstrz
+	vDhix4J8F4EaKQ+uF4AGxJoatTKpOqypnVpzbe1iu7mT63n8L4Bz7Uxj+WkXGCMnNaFjZQo+0hC
+	uNgaieEXUKCw6QtGnaitppG0sYF2rwJGBTc+e9JCEPGQR/9ipHV6895g==
+X-Google-Smtp-Source: AGHT+IHzT/p4DiBJb6XLRm5GxvH8m3/DrtVnGHCJcHCaOHiRp1mpq4WBT1jqf282ObG+eHZ2Yva13pFwEf05n9PaElc=
+X-Received: by 2002:a2e:a16d:0:b0:32b:47be:e1a5 with SMTP id
+ 38308e7fff4ca-32e0d0eb860mr14808471fa.39.1751562710873; Thu, 03 Jul 2025
+ 10:11:50 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-ThreadId: Te44b159e2532e323
-Date: Thu, 03 Jul 2025 18:42:37 +0200
-From: "Arnd Bergmann" <arnd@arndb.de>
-To: "Conor Dooley" <conor@kernel.org>
-Cc: "Ben Zong-You Xie" <ben717@andestech.com>,
- "Paul Walmsley" <paul.walmsley@sifive.com>,
- "Palmer Dabbelt" <palmer@dabbelt.com>, "Albert Ou" <aou@eecs.berkeley.edu>,
- "Alexandre Ghiti" <alex@ghiti.fr>, "Rob Herring" <robh@kernel.org>,
- krzk+dt@kernel.org, "Conor Dooley" <conor+dt@kernel.org>,
- "Thomas Gleixner" <tglx@linutronix.de>,
- "Daniel Lezcano" <daniel.lezcano@linaro.org>,
- "Lad, Prabhakar" <prabhakar.mahadev-lad.rj@bp.renesas.com>,
- devicetree@vger.kernel.org, linux-riscv@lists.infradead.org,
- linux-kernel@vger.kernel.org, tim609@andestech.com
-Message-Id: <f09dc88e-68b1-44dc-9761-724e64d1a5f1@app.fastmail.com>
-In-Reply-To: <20250703-exposable-exes-fd41e7318fba@spud>
-References: <20250602060747.689824-1-ben717@andestech.com>
- <20250606-booth-icky-b416c1827a43@spud>
- <aEbOLztcBsKs84pn@atctrx.andestech.com>
- <20250609-donut-oozy-4dcc8b8a292d@spud>
- <20250609-twiddling-clamp-eaa0dd2b1cad@spud>
- <aEmrHPd7RxUSOLAY@atctrx.andestech.com>
- <20250611-tapeless-arson-a6ace3c42c00@spud>
- <352681c3-88ca-4122-9ad3-0a0ef33caf7b@app.fastmail.com>
- <20250703-exposable-exes-fd41e7318fba@spud>
-Subject: Re: [PATCH v5 0/8] add Voyager board support
-Content-Type: text/plain
-Content-Transfer-Encoding: 7bit
+References: <20250508-tegra210-emc-dt-v2-0-d33dc20a1123@gmail.com>
+ <qhhv27thjnbz7rtcfja767bpxjvwa6iivc2bphar7t2wobuzb7@aspkmrgp2ihy>
+ <CALHNRZ-q7W9CfeD4ipmwFVqHm7oGfTgJpwNoVhfbSXFPDxF91Q@mail.gmail.com>
+ <eba00bd5-fa1a-4cad-bb41-b395011235e1@kernel.org> <CALHNRZ_WPUM8wKSLcyyZm4jc9onBYiP3oLd=39k4=hoqLzHhrA@mail.gmail.com>
+ <ckimvttxjgx44xhfql3nov3qbf35y73nbu3p4m63nqbi22vh37@6p2ji7he5toy>
+ <CALHNRZ-r_U+ByS0FWxamv9ozzjBWdkqAh2wJOt3s3cMsX6K_kQ@mail.gmail.com>
+ <CALHNRZ8qyu6wsTTnmRWtNgYL4XWR8G7TFammqTFPfHH5d==LbA@mail.gmail.com> <paksdvlwrbmdo7wg5cuzdazi4epu3oukxdavkkzoje2gw7aeuy@grsls7hp4khb>
+In-Reply-To: <paksdvlwrbmdo7wg5cuzdazi4epu3oukxdavkkzoje2gw7aeuy@grsls7hp4khb>
+From: Aaron Kling <webgeek1234@gmail.com>
+Date: Thu, 3 Jul 2025 12:11:39 -0500
+X-Gm-Features: Ac12FXy5QPP-Xi4wccNZ2mSLhMc03q_19NJIZjoxMWPzosT8-mMWWJyImNgN1KU
+Message-ID: <CALHNRZ8fOe_tQvybemvBa4yjS7JyXpAA1ksP_Dmx_9w=KXb2ig@mail.gmail.com>
+Subject: Re: [PATCH v2 0/4] memory: tegra210-emc: Support Device Tree EMC Tables
+To: Thierry Reding <thierry.reding@gmail.com>
+Cc: Krzysztof Kozlowski <krzk@kernel.org>, Jonathan Hunter <jonathanh@nvidia.com>, Rob Herring <robh@kernel.org>, 
+	Conor Dooley <conor+dt@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, linux-kernel@vger.kernel.org, 
+	linux-tegra@vger.kernel.org, devicetree@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-On Thu, Jul 3, 2025, at 17:53, Conor Dooley wrote:
-> On Thu, Jul 03, 2025 at 05:32:08PM +0200, Arnd Bergmann wrote:
->> On Wed, Jun 11, 2025, at 18:21, Conor Dooley wrote:
->>
->> I'm also planning to have multiple new SoC targets in 6.17 and
->> would put them into a separate branch that does not contain the
->> dts changes for the existing SoCs.
->> 
->> For the pull request that Ben sent, there were a couple of
->> mistakes, I'll reply on that separately. It probably would made
->> more sense to send the patches to soc@lists.linux.dev (note
->> that the soc@kernel.org address got renamed but they still
->> both work) than to send a pull request this time.
+On Thu, Jul 3, 2025 at 5:37=E2=80=AFAM Thierry Reding <thierry.reding@gmail=
+.com> wrote:
 >
-> Is that a general comment btw? If there are other people coming in with
-> new platforms should I ask them to send patches to soc@lists.linux.dev
-> instead of a PR for their first time?
+> On Mon, Jun 30, 2025 at 02:26:06PM -0500, Aaron Kling wrote:
+> > On Wed, May 28, 2025 at 12:41=E2=80=AFPM Aaron Kling <webgeek1234@gmail=
+.com> wrote:
+> > >
+> > > On Thu, May 8, 2025 at 7:48=E2=80=AFAM Thierry Reding <thierry.reding=
+@gmail.com> wrote:
+> > > >
+> > > > On Thu, May 08, 2025 at 07:27:52AM -0500, Aaron Kling wrote:
+> > > > [...]
+> > > > > The devices I'm talking about are not yet end of life, so it is
+> > > > > physically possible for them to get a bootloader update to confor=
+m to
+> > > > > the existing mainline model. But I'm just one guy trying to do 3r=
+d
+> > > > > party support for these devices, I can't affect what Nvidia does =
+with
+> > > > > the signed bootloader on these devices. I'd love to be able to sw=
+ap
+> > > > > out an open source bootloader on these, but the secure boot setup
+> > > > > prevents that.
+> > > >
+> > > > I've reached out to our Android team internally to see if there's
+> > > > anything we can realistically do about this.
+> > > >
+> > > > Thierry
+> > >
+> > > Thierry, has there been any feedback about this?
+> > >
+> >
+> > Reminder about this question. Has there been any response from the
+> > Nvidia Android team? Or do I/we need to continue pursuing independent
+> > solutions?
+>
+> There's been no decision either way, but it's fairly complicated because
+> the changes involved here are fairly large, even if the impact should be
+> fairly low.
+>
+> If all else fails, do we have other alternatives? I suspect that adding
+> some sort of shim that runs prior to the kernel won't work because the
+> EMC tables just aren't accessible from the bootloader anymore. Would it
+> entail parsing the entirety of the DT EMC tables and transcribing them
+> into some memory and pass that to the kernel?
 
-It's mainly about how comfortable the new maintainers are with
-the process, in this case it was clearly a bit too much for
-Ben to get right at the first time, but others are more
-experienced with sending pull requests to kernel maintainers
-already. Since the patches individually are all fine, I could
-have just applied them, but the PR ended up having too many
-mistakes.
+I see three options in general
 
-The one thing that is special for a new platform is that the branch
-can mix things that would otherwise be separate pull requests.
-Sending this as patches means that I have more flexibility to
-apply it either into a branch for the new platform or split it
-up as normal.
+1) Change the bootloader to conform with existing mainline standards
+2) Merge support for the existing bootloader method to mainline
+3) Have a chainloaded bootloader / shim that converts the tables
 
-    Arnd
+I submitted this series because I was trying to avoid 3. On most
+devices, I don't need u-boot and I'm trying to avoid it. Due to
+another issue on p2571 (nvtboot ignores the bootloader dtb when the
+cvm board id is 2530 and uses the kernel dtb, making it to where I
+can't replace the kernel dtb like I can everywhere else), I will
+likely have to use u-boot. But for p2897, p3425, and the devkits I can
+still avoid it.
+
+If 1 fails and 3 is undesirable, then 2 is the only option I see.
+Which based on responses seems pretty unlikely too. If u-boot becomes
+the only option, I should be able to write something to read the dt
+tables and write out a reserved memory region. I just want to exhaust
+every other possibility before adding that complexity to the boot
+flow.
+
+Aaron
 
