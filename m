@@ -1,63 +1,55 @@
-Return-Path: <devicetree+bounces-192500-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-192501-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 22BC6AF6DC1
-	for <lists+devicetree@lfdr.de>; Thu,  3 Jul 2025 10:55:14 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id C7EFEAF6DCA
+	for <lists+devicetree@lfdr.de>; Thu,  3 Jul 2025 10:56:27 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 181037B6B4B
-	for <lists+devicetree@lfdr.de>; Thu,  3 Jul 2025 08:53:44 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 884C44A3399
+	for <lists+devicetree@lfdr.de>; Thu,  3 Jul 2025 08:55:57 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 038C72D373D;
-	Thu,  3 Jul 2025 08:55:02 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 20DE92D3A69;
+	Thu,  3 Jul 2025 08:56:18 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="X/p6n1PL"
+	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="qsJsW5iG"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+Received: from bali.collaboradmins.com (bali.collaboradmins.com [148.251.105.195])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5676E299ABF;
-	Thu,  3 Jul 2025 08:55:00 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CB2B02D3A63;
+	Thu,  3 Jul 2025 08:56:15 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=148.251.105.195
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1751532901; cv=none; b=rRQg4s2y6tFNp3K7TFlNXEhh/G25vejZWHZ1O5sgBxzSPFfyBjzXCNgeNOD0PI2iCHS6FRLsnzON2s4tbuXx9DjO45ZFPgd+56JTez5tCh6g2hJ7iRYvPCVp+rJZTKKrG2yZh+wyEB3U9YMF8aU//MSlIjSLmTPFYHEeQ7lJbig=
+	t=1751532978; cv=none; b=aNNyLdOJkH72uU6HiNCA+RoIqvcYNBC8e98Oezf2mPt1u7Pjlnd9DesHbOtrJfMtQodmjisOxztwhcDTBhiT72ZeqbQ68/hh9cqiCrTau8rgi8B77lJqv5vMVVn9GMcMPzznXx02/fXZTwszzHSzA5PfsZnbvYGle+Np/U5bZGc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1751532901; c=relaxed/simple;
-	bh=bkxsZXQXk1taRkpxPK1WqrlT/Fj2yKejwmtoFGbPKrg=;
-	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
-	 In-Reply-To:Content-Type; b=AfQM0RPTYTePhgYVNk1gleWsd1Vv4DXgaIHO1OGf3aCHiwmoKvoQrpJ6nR0vTuOY0y2fjO2uPJ7Z9CAgFqfulY65CLcD5O6rjCCmYO21yIkKfhfdPcQQSW9wHGhZkSFXpQcflTqsrXSyJ6+C+/mY4y8MTh6/qnSkJLLj9VHClR0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=X/p6n1PL; arc=none smtp.client-ip=205.220.180.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
-Received: from pps.filterd (m0279869.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 5631018o026279;
-	Thu, 3 Jul 2025 08:54:56 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	Hc2H3+qssMR9WWuhbSr9WpF7LcGGN6jvOIx1REmjJ1s=; b=X/p6n1PLf2eKQTs6
-	US+qn7rPFmtVbrGeym0+/lnbg/pz1/9/MKouFEZjhOthjqV8lcxtIk4C7dBceyDU
-	5oMsaFnW75rlETOvra5AAw996Gt2wIf1/W5zfU5LuL0OflbautZbXfGDouWXV1xq
-	QKzA342M3x4rliNbfvmWo4dFwXzT6Mook67quTalmyrCc7rR0jY0PNomlNJ1T+Du
-	VxHXLMThvew8r73NJn7ahBTgURPpSW7t85WBmD7SmmZBin5AZ69OVZf+PyiAtHia
-	ExVV4+5szuC2bJkpqEuX7yj3d93VQqRg7S6GDwfvBmpNsN30u1h17BcsWPUTzgsu
-	iAacZg==
-Received: from nalasppmta01.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 47kd64vv56-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Thu, 03 Jul 2025 08:54:56 +0000 (GMT)
-Received: from nalasex01c.na.qualcomm.com (nalasex01c.na.qualcomm.com [10.47.97.35])
-	by NALASPPMTA01.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 5638st0d021889
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Thu, 3 Jul 2025 08:54:55 GMT
-Received: from [10.217.217.109] (10.80.80.8) by nalasex01c.na.qualcomm.com
- (10.47.97.35) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1748.10; Thu, 3 Jul
- 2025 01:54:50 -0700
-Message-ID: <8351e7ad-6f28-4500-a0e8-8b1c3f66672d@quicinc.com>
-Date: Thu, 3 Jul 2025 14:24:44 +0530
+	s=arc-20240116; t=1751532978; c=relaxed/simple;
+	bh=WRYS/1sGoCCDr61DxzWsZ362lJvyxDK2jvW+DD8snwk=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=FAay/Up7kOklotRKu1+4/AN0AvImkpNuNRKigQ27FL64M5KqYJlSnbGLI/PV1G9SKHQYehameMClv0ZPWBAPDDFi0ZmCSh4L2SDRBEeqemHq6xVq/sda2sb7VG/N1JCPVOl7rRBU0zajBHArnkVcEvM9jrv1MNbOTw243bvjtKk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b=qsJsW5iG; arc=none smtp.client-ip=148.251.105.195
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+	s=mail; t=1751532973;
+	bh=WRYS/1sGoCCDr61DxzWsZ362lJvyxDK2jvW+DD8snwk=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=qsJsW5iGG5C7CO+LNG8zFmzphjOfTuPdEzMUh/o5exQGGb/FZS4JEnJLfmP43Un/g
+	 oxvyFxfKDuaTBmNO9nsXgAKvKH0Qo8ebSMoTngL4ZIxcYw2GY/Ol9sUlb7tQJpn0Dg
+	 tUJbpIMXOER45eqWRQhSLMYYjBwJz5sRgBnQR5DDJvx48YJiGcGIuNPAAh33zjwh1y
+	 PzpOD2yhR/8bujX58qjEiGRV1maNpUoujm+tqTV6qPUrqZO3+qO+N4b+3IaDzLuT4E
+	 uKC8XhdwZuY8puZeg1ZeUMFJgpOgjstVukqBm0ajc2pvpt5xK40A6zKxgdfFPS+MpC
+	 q0A0ZVarrLY3g==
+Received: from [192.168.1.100] (2-237-20-237.ip236.fastwebnet.it [2.237.20.237])
+	(using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
+	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+	(No client certificate requested)
+	(Authenticated sender: kholk11)
+	by bali.collaboradmins.com (Postfix) with ESMTPSA id 5CCF717E07FF;
+	Thu,  3 Jul 2025 10:56:12 +0200 (CEST)
+Message-ID: <d41a6c60-5368-4bcd-b028-2477e42e29bb@collabora.com>
+Date: Thu, 3 Jul 2025 10:56:11 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -65,96 +57,185 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v5 0/3] Add support for clock controllers and CPU scaling
- for QCS615
+Subject: Re: [RFC PATCH 2/3] dt-bindings: firmware: Document the MediaTek
+ Hardware Voter (HWV)
 To: Krzysztof Kozlowski <krzk@kernel.org>
-CC: Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio
-	<konradybcio@kernel.org>, Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski
-	<krzk+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        "Rafael J. Wysocki"
-	<rafael@kernel.org>,
-        Viresh Kumar <viresh.kumar@linaro.org>,
-        "Manivannan
- Sadhasivam" <mani@kernel.org>,
-        Ajit Pandey <quic_ajipan@quicinc.com>,
-        "Imran
- Shaik" <quic_imrashai@quicinc.com>,
-        Jagadeesh Kona <quic_jkona@quicinc.com>,
-        <linux-arm-msm@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>, <linux-pm@vger.kernel.org>,
-        Konrad Dybcio
-	<konrad.dybcio@oss.qualcomm.com>
-References: <20250702-qcs615-mm-cpu-dt-v4-v5-0-df24896cbb26@quicinc.com>
- <20250703-daft-asparagus-gaur-e77861@krzk-bin>
- <b6cabc11-a4f0-4d8a-97b1-140be394feca@quicinc.com>
- <6df04862-2254-4181-8db7-c58023f9716c@kernel.org>
+Cc: robh@kernel.org, conor+dt@kernel.org, matthias.bgg@gmail.com,
+ ulf.hansson@linaro.org, arnd@arndb.de, m.wilczynski@samsung.com, nm@ti.com,
+ khilman@baylibre.com, kabel@kernel.org, quic_hyiwei@quicinc.com,
+ pjp@fedoraproject.org, tudor.ambarus@linaro.org, drew@pdp7.com,
+ u.kleine-koenig@baylibre.com, gregkh@linuxfoundation.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, linux-mediatek@lists.infradead.org,
+ laura.nao@collabora.com, kernel@collabora.com
+References: <20250701151149.136365-1-angelogioacchino.delregno@collabora.com>
+ <20250701151149.136365-3-angelogioacchino.delregno@collabora.com>
+ <20250702-debonair-lynx-of-serenity-ee7138@krzk-bin>
+From: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
 Content-Language: en-US
-From: Taniya Das <quic_tdas@quicinc.com>
-In-Reply-To: <6df04862-2254-4181-8db7-c58023f9716c@kernel.org>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 8bit
-X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
- nalasex01c.na.qualcomm.com (10.47.97.35)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Authority-Analysis: v=2.4 cv=Z+PsHGRA c=1 sm=1 tr=0 ts=68664560 cx=c_pps
- a=ouPCqIW2jiPt+lZRy3xVPw==:117 a=ouPCqIW2jiPt+lZRy3xVPw==:17
- a=GEpy-HfZoHoA:10 a=IkcTkHD0fZMA:10 a=Wb1JkmetP80A:10 a=VwQbUJbxAAAA:8
- a=COk6AnOGAAAA:8 a=PA7-FZJZPMTzKNGQEtQA:9 a=3ZKOabzyN94A:10 a=QEXdDO2ut3YA:10
- a=TjNXssC_j7lpFel5tvFf:22
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwNzAzMDA3MSBTYWx0ZWRfX7aqtEuf7wDVi
- fm+QUcDUfXBapxceB3SyX65FgIKIv84mRn007Sa5ehPavdMCFUpWypgpdHFdXVvq2A8crCMg1uY
- iSGP0wA1WOONEbHnHO8YBy+XuV8zeTBGfP1UvC0j/lrS/N3UKQ7HpF2AYfGZl5eHKsJ0UeIpJrD
- aNpds5RvxGdZfNQ/dfCn9NTMk8+gKwlHbKBuJ/EX9V7CuU6mndmXpIg9bQkN6kaL9FuhQwVet5h
- KKDLcmckK/ame83n6tg5IJp1GdFpcHPzHNCnS8egPkZRLRSZSb8WqkXBB1C06E9uZGf4R1OZLU5
- TXPTlrSK8fB+xDBASDSfICBUvhB966zFtVg9aSu4CjmHFW7fEqIRiQvzHYSIP9rJvLVLOGUJyTX
- vPPnzlt4DYFftGFTVU6ziKyCJzwzG67LEDPfqBwqBKb22jCrF5uRpR2P/9dF+KMbpiv6/hhQ
-X-Proofpoint-GUID: WolCNvLlDVPXjmxWy6Mi53AZ8pullkBi
-X-Proofpoint-ORIG-GUID: WolCNvLlDVPXjmxWy6Mi53AZ8pullkBi
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1099,Hydra:6.1.7,FMLib:17.12.80.40
- definitions=2025-07-03_02,2025-07-02_04,2025-03-28_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- phishscore=0 lowpriorityscore=0 clxscore=1015 malwarescore=0 mlxlogscore=619
- spamscore=0 adultscore=0 mlxscore=0 priorityscore=1501 bulkscore=0
- impostorscore=0 suspectscore=0 classifier=spam authscore=0 authtc=n/a authcc=
- route=outbound adjust=0 reason=mlx scancount=1 engine=8.19.0-2505280000
- definitions=main-2507030071
+In-Reply-To: <20250702-debonair-lynx-of-serenity-ee7138@krzk-bin>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 
-
-
-On 7/3/2025 2:06 PM, Krzysztof Kozlowski wrote:
-> On 03/07/2025 10:28, Taniya Das wrote:
+Il 02/07/25 08:50, Krzysztof Kozlowski ha scritto:
+> On Tue, Jul 01, 2025 at 05:11:48PM +0200, AngeloGioacchino Del Regno wrote:
+>> Add documentation for the new MediaTek Hardware Voter, found in
+>> MediaTek SoCs like the MT8196 Kompanio Ultra for Chromebooks and
+>> the MT6991 Dimensity 9400 for Smartphones.
 >>
+>> Signed-off-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+>> ---
+>>   .../mediatek,mt6991-hardware-voter.yaml       | 70 +++++++++++++++++++
+>>   1 file changed, 70 insertions(+)
+>>   create mode 100644 Documentation/devicetree/bindings/firmware/mediatek,mt6991-hardware-voter.yaml
 >>
->> On 7/3/2025 12:51 PM, Krzysztof Kozlowski wrote:
->>> On Wed, Jul 02, 2025 at 02:43:08PM +0530, Taniya Das wrote:
->>>> Add the video, camera, display and gpu clock controller nodes and the
->>>> cpufreq-hw node to support cpu scaling.
->>>>
->>>> Clock Dependency:
->>>> https://lore.kernel.org/all/20250702-qcs615-mm-v10-clock-controllers-v11-0-9c216e1615ab@quicinc.com
->>>>
->>>> Changes in v5:
->>>> - Update the documentation for CPUFREQ-HW for QCS615.
->>>
->>> What did you update? This has to be specific, not vague.
->>
->> Sorry, this is the update: "compatible for cpufreq hardware on Qualcomm
->> QCS615 platform."
->>
-> Do you mean you added a new patch?
+>> diff --git a/Documentation/devicetree/bindings/firmware/mediatek,mt6991-hardware-voter.yaml b/Documentation/devicetree/bindings/firmware/mediatek,mt6991-hardware-voter.yaml
+>> new file mode 100644
+>> index 000000000000..173b74c23a91
+>> --- /dev/null
+>> +++ b/Documentation/devicetree/bindings/firmware/mediatek,mt6991-hardware-voter.yaml
+>> @@ -0,0 +1,70 @@
+>> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
+>> +# Copyright 2025 Collabora Ltd
+>> +%YAML 1.2
+>> +---
+>> +$id: http://devicetree.org/schemas/firmware/mediatek,mt6991-hardware-voter.yaml#
+>> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+>> +
+>> +title: MediaTek Hardware Voter (HWV)
+>> +
+>> +maintainers:
+>> +  - AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+>> +
+>> +description:
+>> +  The MediaTek Hardware Voter (HWV) is a SoC-internal fixed-function MCU
+>> +  used to collect votes from both the Application Processor and from the
+>> +  various other remote processors present in the SoC, and transparently
+>> +  turn on or off various hardware resources (for example, power domains
+>> +  or system clocks) based on aggregation of votes done in the HWV MCU's
+>> +  internal state machine, therefore guaranteeing synchronization of the
+>> +  hardware resource requests between all components of the SoC and hence
+>> +  avoiding, for example, unclocked or unpowered access to the hardware.
+>> +
+>> +properties:
+>> +  $nodename:
+>> +    pattern: "^system-controller@[0-9a-f]+$"
+>> +
+>> +  compatible:
+>> +    const: mediatek,mt6991-hardware-voter
+>> +
+>> +  reg:
+>> +    items:
+>> +      - description: Address and size of the Hardware Voter MMIO
+>> +
+> 
+> No resources here, so this should go to power controller
+> 
+>> +  power-controller:
+>> +    $ref: /schemas/power/mediatek,power-controller.yaml
+>> +
+>> +required:
+>> +  - compatible
+>> +  - reg
+>> +
+>> +additionalProperties: true
+>> +
+>> +examples:
+>> + - |
+>> +   scp_hwv: system-controller@14500000 {
+>> +     compatible = "mediatek,mt6991-hardware-voter";
+>> +     reg = <0 0x14500000 0 0x3000>;
+>> +
+>> +     power-controller {
+>> +       compatible = "mediatek,mt8196-hwv-scp-power-controller";
+> 
+> mt8196 in mt6991 is very confusing.
 > 
 
-Yes, Krzysztof, I’ve added a new patch. Initially, I was reusing the
-compatible string of the SC7180 SoC for QCS615, since both SoCs share
-the same hardware design. However, Dmitry and Konrad raised a valid
-point — if we ever need to handle quirks specific to a particular SoC,
-using distinct compatible entries would make that easier. Based on that,
-I’ve updated the patch accordingly.
+Yeah that wasn't intentional; fyi, it's almost the same soc, that's why I mixed
+them up... :-)
 
--- Taniya.
+> Anyway, this does not address my comment at all. You again create some
+> sort of syscon for voting, so no. You are supposed to use generic API
+> for voting: clocks, power domains, interconnects - whatever is there
+> applicable or necessary.
+> 
+
+Making that loud and clear: Interconnect is not applicable.
+
+The only way to do what you're proposing would be to add a bunch of `reg`
+to each devicetree node for each clock controller and each power controller;
+I can do that, but looks a bit dirty - and still yet another syscon-like
+alternative, but without having a real syscon declared in there.
+
+Mind you - both clock and power controllers are writing both to their own
+register space (and enabling external regulators, etc, for power domains)
+and to the hardware voter MMIO (which means that the HWV, in hardware, is
+fundamentally broken).
+
+After this reply, the only option that is left to me is the following:
+
+		topckgen: clock-controller@10000000 {
+			compatible = "mediatek,mt8196-topckgen", "syscon";
+			reg = <0 0x10000000 0 0x800>, <0 0x14500010 0 0x48>,
+			      <0 0x14502c08 0 0x24>;
+			reg-names = "base", "hwvoter-base", "hwvoter-status";
+			#clock-cells = <1>;
+		};
+
+		imp_iic_wrap_north: clock-controller@13c30000 {
+			compatible = "mediatek,mt8196-imp-iic-wrap-n", "syscon";
+			reg = <0 0x13c30000 0 0x1000>, <0 0x14500000 0 0xc>,
+			      <0 0x14502c00 0 0xc>;
+			reg-names = "base", "hwvoter-base", "hwvoter-status";
+			#clock-cells = <1>;
+		};
+
+		/* Power Manager with Hardware Voter */
+		spm_hwv: power-controller@14500218 {
+			compatible = "mediatek,mt8196-hwv-scp-power-controller";
+			reg = <0 0x14500218 0 0x20>, <0 0x14501410 0 0x20>,
+			      <0 0x14505514 0 0xc>;
+			reg-names = "hwvoter-base", "hwvoter-status", "hwvoter-ack";
+			#address-cells = <1>;
+			#size-cells = <0>;
+			#power-domain-cells = <1>;
+
+			/* SCPSYS hardware voter power domains */
+			mm_proc_dormant: power-domain@MT8196_POWER_DOMAIN_MM_PROC_DORMANT {
+				..... etc, all power domains
+
+At this point, I'm really not sure that this would be better than just passing
+the mediatek,hardware-voter syscon to the clock controllers - as what I've done
+previously was effectively representing the hardware in the devicetree as it is,
+matching the real HW layout 1:1 (because again, each of the whole HWV MCU(s) are
+embedded into each of the two power controllers, one for System power, and one
+for Multimedia power).
+
+(btw, hardware speaking, the power controller is child of a system controller:
+there are two system controllers - "scpsystem" is for "compute part", and the
+"hfrpsystem" is for the "multimedia part" of the soc).
+
+  _______________________________________
+|                                       |
+| SYSTEM CONTROLLER (SCPSYS or HFRPSYS) |
+|   _____________________               |
+|  |                     |              | <===> Clock Controllers (more than one)
+|  | Power Controller    |     SOME     |       (provide subsystem clocks for iso
+|  |                     |    OTHER     |        during power domain enablement
+|  |     ______________  |   BLOCKS     |        even if a PD is voted)
+|  |    |              | |              |       non-subsystem clocks are voted,
+|  |    | HW Voter MCU | |              |       but subsystem ones are not voted
+|  |    |______________| |              |
+|  |_____________________|              | ===> Rest of the SoC
+|_______________________________________|
+
+
+Hence I'm asking you - does your idea still stand?
+
+Because after this, sorry for that - this doesn't want to be an attack - but
+I'm starting to have doubts about an approach that doesn't involve syscons.
+
+Cheers,
+Angelo
 
