@@ -1,59 +1,48 @@
-Return-Path: <devicetree+bounces-192465-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-192466-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3336CAF6BEC
-	for <lists+devicetree@lfdr.de>; Thu,  3 Jul 2025 09:48:11 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 92BB5AF6BF5
+	for <lists+devicetree@lfdr.de>; Thu,  3 Jul 2025 09:49:45 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 5FCFC3A4491
-	for <lists+devicetree@lfdr.de>; Thu,  3 Jul 2025 07:47:44 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 36F883A43D8
+	for <lists+devicetree@lfdr.de>; Thu,  3 Jul 2025 07:49:19 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 01BB7298259;
-	Thu,  3 Jul 2025 07:48:05 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="aUuM5KPM"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6699E29898D;
+	Thu,  3 Jul 2025 07:49:40 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C7E5D1C07F6;
-	Thu,  3 Jul 2025 07:48:04 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 44E3F225D6;
+	Thu,  3 Jul 2025 07:49:39 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1751528884; cv=none; b=oGWydLgyr9+T+h7qahbLCpxXfQodAVZePge00kkygqHZW5HNC4j7qeXRf8JGCFIXPVNaNH17JjOd9AEHOEA76ffW3CGA1pAz3i+YWXkwM9x0dtUeVRCtX0LnSjHs07WEGETaIWI8j6iq3K6IntDY+uS3eEBt/2tk7bd6oWV35ec=
+	t=1751528980; cv=none; b=MHTxKbmHzssVrzPg7WK/KQHpgm/NUzzfFF18kWl2c1923PzugvrPe4BjK/qAL6bh7k0Pbf1Dd32WqfW3FwWf3KUwPQ4Dl2AR5k1ExlGvpqlX4osAnqBAwI670rCeWEvMDy3asQ0OyPjZc9NyZWmGO5i02h5Rtg+pE5bbQJXPDkQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1751528884; c=relaxed/simple;
-	bh=s9ykGtfs0LX3ujSHVCs3mx6zSWxs7c6uLiOZIRxMw1Q=;
+	s=arc-20240116; t=1751528980; c=relaxed/simple;
+	bh=JAcb44Dm2Yo5eJrTvxaGRn4/w45OBGxTt8yGvkFC6Q4=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=mvcwJMVqFOLAtD0YPDhPXhuGgR8Yf2kG73CZHVilJMwOJD2ysO2sBxER8JpXa760ZeNTgvJ/IWjdrJ0/r0linnUhrE2c0RZ4BmTS9UbWrQN4VL0FADuFasBY7hjTcm6hSZxUfUZz2+Zv3R5LQzKfabHCqliWE5rBxj2U2C/45/g=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=aUuM5KPM; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 0E3CDC4CEE3;
-	Thu,  3 Jul 2025 07:48:03 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1751528884;
-	bh=s9ykGtfs0LX3ujSHVCs3mx6zSWxs7c6uLiOZIRxMw1Q=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=aUuM5KPMjzdteL2YobZ83lISj54WI3hx/7p6Y9OFk/b9TRhVpFerjnep5fby8I/n+
-	 bbuIpReZ9qRj6L/6xRZGU8T3hMd4ldO0jaMEcRBNZdvdDycyVFZ30R6fe+vv0ZlaWq
-	 doXZpPbxKiHhZEp93N6OAHQOa0ow8WbhVAdpNNyC/FRsc/DDOC7dHZPZwxJryewY+D
-	 zcAEItZBbSGG298kslLneC3FlmokV24ffsP/DdsIPmLOZ++8L+0jY3ys03ly8PfUoI
-	 c8xV9RFcUhhQxOCjmZxLYwJmAd7cMTqhMlF/vT+VaQf56K+xEDma7JTcHaJ5rydBgP
-	 4V/DEDhyQ6A5w==
-Date: Thu, 3 Jul 2025 09:48:01 +0200
-From: Krzysztof Kozlowski <krzk@kernel.org>
-To: Aleksander Jan Bajkowski <olek2@wp.pl>
-Cc: jic23@kernel.org, dlechner@baylibre.com, nuno.sa@analog.com, 
-	andy@kernel.org, robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org, 
-	matthias.bgg@gmail.com, angelogioacchino.delregno@collabora.com, 
-	zhiyong.tao@mediatek.com, linux-iio@vger.kernel.org, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
-	linux-mediatek@lists.infradead.org
-Subject: Re: [PATCH v2 1/2] dt-bindings: iio: adc: Add support for MT7981
-Message-ID: <20250703-impossible-determined-hamster-88da20@krzk-bin>
-References: <20250702214830.255898-1-olek2@wp.pl>
- <20250702214830.255898-2-olek2@wp.pl>
+	 Content-Type:Content-Disposition:In-Reply-To; b=u3fLvXBUCOWqTpOsi1R8Qv4Dml2f6+6r1x9DP5uYYjyQlR2lNKQVIH3AvUpXMSjjRUuG+bwd/ymdDTbXtth2X7oI5mIgvQDrJwlp9Qa79iLZjSO9QgliqqVUpVr7JfPy1O67mgIeOFRmrySZjrZJTe84+peTNgiiDMe48hWjQs4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 4B4EFC4CEE3;
+	Thu,  3 Jul 2025 07:49:39 +0000 (UTC)
+Date: Thu, 3 Jul 2025 09:49:37 +0200
+From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+To: Inochi Amaoto <inochiama@gmail.com>
+Cc: Rob Herring <robh@kernel.org>, 
+	Alexandre Belloni <alexandre.belloni@bootlin.com>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+	Conor Dooley <conor+dt@kernel.org>, Chen Wang <unicorn_wang@outlook.com>, sophgo@lists.linux.dev, 
+	Jingbao Qiu <qiujingbao.dlmu@gmail.com>, Alexander Sverdlin <alexander.sverdlin@gmail.com>, 
+	linux-rtc@vger.kernel.org, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH] dt-bindings: Move sophgo,cv1800b-rtc to rtc directory
+Message-ID: <20250703-naughty-diligent-nightingale-d2fa9f@krzk-bin>
+References: <20250608224252.3902421-1-robh@kernel.org>
+ <ywln42bb3i5hyzlsmfbx3xt2kjbefqmcxytcqxdcgah77gcesi@2cdw3cgxbg4c>
+ <20250617130924.GA1678432-robh@kernel.org>
+ <mig7k5zyhmata6uvjwlwlompwf22qffwvma2nhjww3cmsmxnas@y2t5ukucs76q>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -62,20 +51,55 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <20250702214830.255898-2-olek2@wp.pl>
+In-Reply-To: <mig7k5zyhmata6uvjwlwlompwf22qffwvma2nhjww3cmsmxnas@y2t5ukucs76q>
 
-On Wed, Jul 02, 2025 at 11:48:29PM +0200, Aleksander Jan Bajkowski wrote:
-> The temperature sensor in the MT7981 is same as in the MT7986.
-
-This is not what your binding is saying. Binding is saying it is
-completely different.
-
-> Add compatible string for mt7981.
+On Wed, Jun 18, 2025 at 07:18:32AM +0800, Inochi Amaoto wrote:
+> On Tue, Jun 17, 2025 at 08:09:24AM -0500, Rob Herring wrote:
+> > On Mon, Jun 09, 2025 at 06:49:38AM +0800, Inochi Amaoto wrote:
+> > > On Sun, Jun 08, 2025 at 05:42:51PM -0500, Rob Herring (Arm) wrote:
+> > > > The $id path for the sophgo,cv1800b-rtc binding was missing part of the
+> > > > path 'soc'. However, the correct place for RTC bindings (even if it's
+> > > > also a "syscon") is the rtc directory, so move the binding there while
+> > > > fixing the $id value.
+> > > > 
+> > > > Fixes: 76517429dbfd ("dt-bindings: soc: sophgo: add RTC support for Sophgo CV1800 series")
+> > > > Signed-off-by: Rob Herring (Arm) <robh@kernel.org>
+> > > > ---
+> > > >  .../bindings/{soc/sophgo => rtc}/sophgo,cv1800b-rtc.yaml        | 2 +-
+> > > >  1 file changed, 1 insertion(+), 1 deletion(-)
+> > > >  rename Documentation/devicetree/bindings/{soc/sophgo => rtc}/sophgo,cv1800b-rtc.yaml (96%)
+> > > > 
+> > > > diff --git a/Documentation/devicetree/bindings/soc/sophgo/sophgo,cv1800b-rtc.yaml b/Documentation/devicetree/bindings/rtc/sophgo,cv1800b-rtc.yaml
+> > > > similarity index 96%
+> > > > rename from Documentation/devicetree/bindings/soc/sophgo/sophgo,cv1800b-rtc.yaml
+> > > > rename to Documentation/devicetree/bindings/rtc/sophgo,cv1800b-rtc.yaml
+> > > > index 5cf186c396c9..c695d2ff9fcc 100644
+> > > > --- a/Documentation/devicetree/bindings/soc/sophgo/sophgo,cv1800b-rtc.yaml
+> > > > +++ b/Documentation/devicetree/bindings/rtc/sophgo,cv1800b-rtc.yaml
+> > > > @@ -1,7 +1,7 @@
+> > > >  # SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> > > >  %YAML 1.2
+> > > >  ---
+> > > > -$id: http://devicetree.org/schemas/sophgo/sophgo,cv1800b-rtc.yaml#
+> > > > +$id: http://devicetree.org/schemas/rtc/sophgo,cv1800b-rtc.yaml#
+> > > >  $schema: http://devicetree.org/meta-schemas/core.yaml#
+> > > >  
+> > > >  title: Real Time Clock of the Sophgo CV1800 SoC
+> > > > -- 
+> > > > 2.47.2
+> > > > 
+> > > 
+> > > As the rtc syscon has a sub function for remoteproc, is it proper to
+> > > move this binding into rtc subsystem?
+> > 
+> > Does that affect the binding (is there more to add)? Looks like an RTC 
+> > from the binding.
+> > 
 > 
-> Signed-off-by: Aleksander Jan Bajkowski <olek2@wp.pl>
-> Reviewed-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+> I think at least "resets" property may be added for the this, but I am
+> not sure whether there will be more.
 
-Please drop and request a re-review.
+Just post complete bindings - see writing bindings...
 
 Best regards,
 Krzysztof
