@@ -1,204 +1,169 @@
-Return-Path: <devicetree+bounces-192530-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-192531-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 32826AF6F59
-	for <lists+devicetree@lfdr.de>; Thu,  3 Jul 2025 11:54:42 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5A2BDAF6F63
+	for <lists+devicetree@lfdr.de>; Thu,  3 Jul 2025 11:56:09 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id C3ECB7AC183
-	for <lists+devicetree@lfdr.de>; Thu,  3 Jul 2025 09:52:33 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id E0DCB3A7BA8
+	for <lists+devicetree@lfdr.de>; Thu,  3 Jul 2025 09:55:42 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 39F3E2E0413;
-	Thu,  3 Jul 2025 09:53:42 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="V1W0cLuA"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id BF27C2DFA2B;
+	Thu,  3 Jul 2025 09:56:04 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-ua1-f51.google.com (mail-ua1-f51.google.com [209.85.222.51])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0B98B2E040C;
-	Thu,  3 Jul 2025 09:53:41 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 22C6F2D6632;
+	Thu,  3 Jul 2025 09:56:02 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.222.51
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1751536422; cv=none; b=GMUdovXEguOd0rhOSBx5mmpP0d5RgOvZ0IH7L4xN4mr/EWMBoTzPmowsGvGzUfcAJDkRTIG4lcDYnFCHlgkGNUGkw3dRYwBGMDbW//XNXV7gpH5Ox4J98e380LTSIHxbeLW60IaBYMiUoTYUSKc4hB4WFybPjeulCCJWeghu0tQ=
+	t=1751536564; cv=none; b=q8vlyJ0K/7jSemz060bYZQCbDGv0Fn66fxlTG0FzbSDvEQRCEq8eQQKmz1D2iujlRYlC7x0c0Zy9dAsNn0OMlyXlvRdbNcLpZWszkWGK7qtbbO6/lwVoEHPovFQACryqGxjk+i6LUl+d8N50UTjpdDiHzWeSnMqJ3VVzBo0iSMg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1751536422; c=relaxed/simple;
-	bh=Bi7+i0xNf9WQfukuXGjoBWe+6weV84Rvxqt6OcF2qAc=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=CZSfAM4CdQ8L2aD9/pKgwN2JMxMlDSn9BTFBElQlmfQdD/cTbY9ln7MaUmXg42tHt7B/f/hxruyJugc1nRJlkK+YvvEHSGUI9uESJKw8h4t2NGVrws0I+9t5DklCmTbnmAIDbp/4VYWDqGCOwIPhyTJ+RQBF50gbKVWsu+0zDwI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=V1W0cLuA; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 07ACFC4CEE3;
-	Thu,  3 Jul 2025 09:53:34 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1751536421;
-	bh=Bi7+i0xNf9WQfukuXGjoBWe+6weV84Rvxqt6OcF2qAc=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=V1W0cLuADda8+8dkcJQZ6ONYe+BTc32UJh52Ihb0I074zOxXB8bR/F9I+cB+BT2uG
-	 83MOZGrwN15ugDYfvoAakYItQIFz5xbrI4/99Z+I30+DnNpBB55+PtjKlvmhwU78O4
-	 APJnwZRgJydgdgkd1ekU9K2uZgCYZgM39prCX4/Hil1G60RlhqwbmWXpo7UOk4N2P5
-	 42bATMK7m3sl6psUl7bRE3udWeMHOPdxHztv6VJIgUSFgvG7gPvb1oSMtKlF5FeHZN
-	 MtdHcfFLj9SOoiOt2UynwTYVnXmg62qs0d5xunlTuPasgnB5lPZwh4oXDp+VDoeSd7
-	 cSj1VwLmkbn+g==
-Message-ID: <f096afa1-260e-4f8c-8595-3b41425b2964@kernel.org>
-Date: Thu, 3 Jul 2025 11:53:33 +0200
+	s=arc-20240116; t=1751536564; c=relaxed/simple;
+	bh=BacjBBfMYBpi9NV3JM7kqy5QRyTAmHqzbPyhsxloO6s=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=TaWdNHyHTqVck+LAaAfNsUQSfhZj7h7ShDoJl9m/QavP3NPCw5AHQvQwHwNghinw4jv50Q5u+tGIs79pEYl1i/zANGqZYhpb4pyacvngDsGI4r6MYsnIxGpgYiH5AfyHYmweuDNwd+5uNKBM5wGNWVbELkH7LwaOXKWb1vFazQM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.222.51
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-ua1-f51.google.com with SMTP id a1e0cc1a2514c-87f30519147so1615750241.0;
+        Thu, 03 Jul 2025 02:56:02 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1751536562; x=1752141362;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=NUiiIKD0lUTItPi1CnCx/nn/P2433OkxYlP7+gl/pyc=;
+        b=ElG91yLGETLLoDW88zBmcYAjycmE6oRFsTYaT7BAJ7xpUepVQS58H3vvebYoKzbOSj
+         VD4n17ICsweG8ylua6Fj0RAB4vSO1FsLH35pAl9o5yHc6La9OT78YxCoR/SCRXsz7lT2
+         ITuu+iy70AYNQsmVlM7iIq7ZZOrpjpBMniWmL66/XoJKuH3xcPc3LgRoWE9puouo2IH+
+         G4emMCcbqxc04+l0Ezrr33HAcOu1dzrHgtjzY0mAaE1dZuHG7WLdEGPOnHrdZx/nF1OK
+         uMRWS9bbO1397OdFXSCpn1xj2xV0bubo4zPNKC/c0TOOruYKPOfT7CKt2a42elut6pG8
+         toKg==
+X-Forwarded-Encrypted: i=1; AJvYcCW9XTj6keijvDYP45kvkAhy8pN29/4b4mKZLZvTTtOVT8dU1qfbmbj+WHcf23ytxPvcXxxJJcU5gaTx7Vnt@vger.kernel.org, AJvYcCX+SO46T3CJfMa/D9BQhFwIMXeysLPYVXIGc01P4BDWyuWs9BUcEUImhuM56OYZ33Q27es6kR+XMO8Og36SDSjBJsc=@vger.kernel.org, AJvYcCXFvIWOhx3PLQv1LjQEW/utPtM18HzR+W/gtZHkLnQkIJOxVLwgbwmD0/Np9LgTAgVC9wtmQjs/fGrc@vger.kernel.org
+X-Gm-Message-State: AOJu0YwkXwb23QRIqEBtUR/HWK7cqRp6raGMtfh0ZksPSrujqtn7vFVy
+	5SVf8a9zPvQdJWgMJrakT9DRQEddhnRwWkDBEGWWO+HQiKWvQh9annfB/Q8G7NWL
+X-Gm-Gg: ASbGncsQKIRYNFulsneLnXFiD19NmYi2aRxC+rZimrm0qwDABwVY2YrunHXbqLGhCn7
+	JoHupPdtip1h2bG3juLWbMc0hMn5f3sz93lFnEBBuJBkRHLAYNcNJ9xCElsUtA4J77qUrtjn6+y
+	Z8+5t9wJFKRYr4oxcQ8Gte2t3zmVJ9LBteyHIPECIm5OMofSb/0mZPF/7LYSAduVyHKjU20H085
+	vkWyvuhqOePIgSTwkmgrYAticnJpECKz0ezZ1LzAYHug6pvMsxKB+Y8Fs1JamanROg44qGor0s7
+	zcQVatjW0qIGjruWqwj6jrxhy110Q0UVA0Q55pERajXV9LrlLu0kSPB/IcFPEJvhY1zGRnD8eu1
+	YRj4RdusmcrhDoooy4d+I8hIUT+BQ
+X-Google-Smtp-Source: AGHT+IG8hEfcI+Jv+G+uBCM9avGAQ2JbDMXly56VC+pQcWOpZpS4Pm3QM1a1g3L7e/RABjoCtJJfPw==
+X-Received: by 2002:a05:6102:3048:b0:4e5:997a:748f with SMTP id ada2fe7eead31-4f1747e464fmr2062406137.22.1751536561597;
+        Thu, 03 Jul 2025 02:56:01 -0700 (PDT)
+Received: from mail-vk1-f171.google.com (mail-vk1-f171.google.com. [209.85.221.171])
+        by smtp.gmail.com with ESMTPSA id ada2fe7eead31-4f1745d469esm236219137.27.2025.07.03.02.56.01
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 03 Jul 2025 02:56:01 -0700 (PDT)
+Received: by mail-vk1-f171.google.com with SMTP id 71dfb90a1353d-53167fb5690so2804870e0c.3;
+        Thu, 03 Jul 2025 02:56:01 -0700 (PDT)
+X-Forwarded-Encrypted: i=1; AJvYcCW+xdR2mqsF4+0cim2HLQywddGFzA9ISXGob5mA3ixMK7DyWgFpBgvhMiCw3HHqmwhzgWit9k9HDGrsFawu@vger.kernel.org, AJvYcCWF/EMFExJrxbw8c4J6BC6knYiS1+wPwFFMtWb+iWHFDuQdE4PpBSBdaHVh0DMwjvm/pANB5KobLY8t@vger.kernel.org, AJvYcCX0obQDf0GhbEArzq/zYDLb6F86PFwIun4sOtScZGzz5H2LQLWMPu52ivcCBhZu1tYUwTOnx/lRMxe2BGYz09hcxnE=@vger.kernel.org
+X-Received: by 2002:a05:6122:6216:b0:534:69b3:a230 with SMTP id
+ 71dfb90a1353d-53469b41444mr815611e0c.11.1751536561150; Thu, 03 Jul 2025
+ 02:56:01 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3 2/2] ethernet: eswin: Add eic7700 ethernet driver
-To: weishangjuan@eswincomputing.com, andrew+netdev@lunn.ch,
- davem@davemloft.net, edumazet@google.com, kuba@kernel.org, robh@kernel.org,
- krzk+dt@kernel.org, conor+dt@kernel.org, netdev@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- mcoquelin.stm32@gmail.com, alexandre.torgue@foss.st.com,
- rmk+kernel@armlinux.org.uk, yong.liang.choong@linux.intel.com,
- vladimir.oltean@nxp.com, jszhang@kernel.org, jan.petrous@oss.nxp.com,
- prabhakar.mahadev-lad.rj@bp.renesas.com, inochiama@gmail.com,
- boon.khai.ng@altera.com, dfustini@tenstorrent.com, 0x1207@gmail.com,
- linux-stm32@st-md-mailman.stormreply.com,
- linux-arm-kernel@lists.infradead.org
-Cc: ningyu@eswincomputing.com, linmin@eswincomputing.com,
- lizhi2@eswincomputing.com
-References: <20250703091808.1092-1-weishangjuan@eswincomputing.com>
- <20250703092015.1200-1-weishangjuan@eswincomputing.com>
-From: Krzysztof Kozlowski <krzk@kernel.org>
-Content-Language: en-US
-Autocrypt: addr=krzk@kernel.org; keydata=
- xsFNBFVDQq4BEAC6KeLOfFsAvFMBsrCrJ2bCalhPv5+KQF2PS2+iwZI8BpRZoV+Bd5kWvN79
- cFgcqTTuNHjAvxtUG8pQgGTHAObYs6xeYJtjUH0ZX6ndJ33FJYf5V3yXqqjcZ30FgHzJCFUu
- JMp7PSyMPzpUXfU12yfcRYVEMQrmplNZssmYhiTeVicuOOypWugZKVLGNm0IweVCaZ/DJDIH
- gNbpvVwjcKYrx85m9cBVEBUGaQP6AT7qlVCkrf50v8bofSIyVa2xmubbAwwFA1oxoOusjPIE
- J3iadrwpFvsZjF5uHAKS+7wHLoW9hVzOnLbX6ajk5Hf8Pb1m+VH/E8bPBNNYKkfTtypTDUCj
- NYcd27tjnXfG+SDs/EXNUAIRefCyvaRG7oRYF3Ec+2RgQDRnmmjCjoQNbFrJvJkFHlPeHaeS
- BosGY+XWKydnmsfY7SSnjAzLUGAFhLd/XDVpb1Een2XucPpKvt9ORF+48gy12FA5GduRLhQU
- vK4tU7ojoem/G23PcowM1CwPurC8sAVsQb9KmwTGh7rVz3ks3w/zfGBy3+WmLg++C2Wct6nM
- Pd8/6CBVjEWqD06/RjI2AnjIq5fSEH/BIfXXfC68nMp9BZoy3So4ZsbOlBmtAPvMYX6U8VwD
- TNeBxJu5Ex0Izf1NV9CzC3nNaFUYOY8KfN01X5SExAoVTr09ewARAQABzSVLcnp5c3p0b2Yg
- S296bG93c2tpIDxrcnprQGtlcm5lbC5vcmc+wsGVBBMBCgA/AhsDBgsJCAcDAgYVCAIJCgsE
- FgIDAQIeAQIXgBYhBJvQfg4MUfjVlne3VBuTQ307QWKbBQJoF1BKBQkWlnSaAAoJEBuTQ307
- QWKbHukP/3t4tRp/bvDnxJfmNdNVn0gv9ep3L39IntPalBFwRKytqeQkzAju0whYWg+R/rwp
- +r2I1Fzwt7+PTjsnMFlh1AZxGDmP5MFkzVsMnfX1lGiXhYSOMP97XL6R1QSXxaWOpGNCDaUl
- ajorB0lJDcC0q3xAdwzRConxYVhlgmTrRiD8oLlSCD5baEAt5Zw17UTNDnDGmZQKR0fqLpWy
- 786Lm5OScb7DjEgcA2PRm17st4UQ1kF0rQHokVaotxRM74PPDB8bCsunlghJl1DRK9s1aSuN
- hL1Pv9VD8b4dFNvCo7b4hfAANPU67W40AaaGZ3UAfmw+1MYyo4QuAZGKzaP2ukbdCD/DYnqi
- tJy88XqWtyb4UQWKNoQqGKzlYXdKsldYqrLHGoMvj1UN9XcRtXHST/IaLn72o7j7/h/Ac5EL
- 8lSUVIG4TYn59NyxxAXa07Wi6zjVL1U11fTnFmE29ALYQEXKBI3KUO1A3p4sQWzU7uRmbuxn
- naUmm8RbpMcOfa9JjlXCLmQ5IP7Rr5tYZUCkZz08LIfF8UMXwH7OOEX87Y++EkAB+pzKZNNd
- hwoXulTAgjSy+OiaLtuCys9VdXLZ3Zy314azaCU3BoWgaMV0eAW/+gprWMXQM1lrlzvwlD/k
- whyy9wGf0AEPpLssLVt9VVxNjo6BIkt6d1pMg6mHsUEVzsFNBFVDXDQBEADNkrQYSREUL4D3
- Gws46JEoZ9HEQOKtkrwjrzlw/tCmqVzERRPvz2Xg8n7+HRCrgqnodIYoUh5WsU84N03KlLue
- MNsWLJBvBaubYN4JuJIdRr4dS4oyF1/fQAQPHh8Thpiz0SAZFx6iWKB7Qrz3OrGCjTPcW6ei
- OMheesVS5hxietSmlin+SilmIAPZHx7n242u6kdHOh+/SyLImKn/dh9RzatVpUKbv34eP1wA
- GldWsRxbf3WP9pFNObSzI/Bo3kA89Xx2rO2roC+Gq4LeHvo7ptzcLcrqaHUAcZ3CgFG88CnA
- 6z6lBZn0WyewEcPOPdcUB2Q7D/NiUY+HDiV99rAYPJztjeTrBSTnHeSBPb+qn5ZZGQwIdUW9
- YegxWKvXXHTwB5eMzo/RB6vffwqcnHDoe0q7VgzRRZJwpi6aMIXLfeWZ5Wrwaw2zldFuO4Dt
- 91pFzBSOIpeMtfgb/Pfe/a1WJ/GgaIRIBE+NUqckM+3zJHGmVPqJP/h2Iwv6nw8U+7Yyl6gU
- BLHFTg2hYnLFJI4Xjg+AX1hHFVKmvl3VBHIsBv0oDcsQWXqY+NaFahT0lRPjYtrTa1v3tem/
- JoFzZ4B0p27K+qQCF2R96hVvuEyjzBmdq2esyE6zIqftdo4MOJho8uctOiWbwNNq2U9pPWmu
- 4vXVFBYIGmpyNPYzRm0QPwARAQABwsF8BBgBCgAmAhsMFiEEm9B+DgxR+NWWd7dUG5NDfTtB
- YpsFAmgXUF8FCRaWWyoACgkQG5NDfTtBYptO0w//dlXJs5/42hAXKsk+PDg3wyEFb4NpyA1v
- qmx7SfAzk9Hf6lWwU1O6AbqNMbh6PjEwadKUk1m04S7EjdQLsj/MBSgoQtCT3MDmWUUtHZd5
- RYIPnPq3WVB47GtuO6/u375tsxhtf7vt95QSYJwCB+ZUgo4T+FV4hquZ4AsRkbgavtIzQisg
- Dgv76tnEv3YHV8Jn9mi/Bu0FURF+5kpdMfgo1sq6RXNQ//TVf8yFgRtTUdXxW/qHjlYURrm2
- H4kutobVEIxiyu6m05q3e9eZB/TaMMNVORx+1kM3j7f0rwtEYUFzY1ygQfpcMDPl7pRYoJjB
- dSsm0ZuzDaCwaxg2t8hqQJBzJCezTOIkjHUsWAK+tEbU4Z4SnNpCyM3fBqsgYdJxjyC/tWVT
- AQ18NRLtPw7tK1rdcwCl0GFQHwSwk5pDpz1NH40e6lU+NcXSeiqkDDRkHlftKPV/dV+lQXiu
- jWt87ecuHlpL3uuQ0ZZNWqHgZoQLXoqC2ZV5KrtKWb/jyiFX/sxSrodALf0zf+tfHv0FZWT2
- zHjUqd0t4njD/UOsuIMOQn4Ig0SdivYPfZukb5cdasKJukG1NOpbW7yRNivaCnfZz6dTawXw
- XRIV/KDsHQiyVxKvN73bThKhONkcX2LWuD928tAR6XMM2G5ovxLe09vuOzzfTWQDsm++9UKF a/A=
-In-Reply-To: <20250703092015.1200-1-weishangjuan@eswincomputing.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+References: <20250625153042.159690-1-prabhakar.mahadev-lad.rj@bp.renesas.com> <20250625153042.159690-4-prabhakar.mahadev-lad.rj@bp.renesas.com>
+In-Reply-To: <20250625153042.159690-4-prabhakar.mahadev-lad.rj@bp.renesas.com>
+From: Geert Uytterhoeven <geert@linux-m68k.org>
+Date: Thu, 3 Jul 2025 11:55:49 +0200
+X-Gmail-Original-Message-ID: <CAMuHMdVvxebkm9A4g9hADww=9zREXJqyW3eQ6tFVwVJvkUkEOw@mail.gmail.com>
+X-Gm-Features: Ac12FXzW3YNmL7fyTjxzXkgoVv1aLPfErnuGIFoPYkh0a7V_m04VM5PhljaJKrs
+Message-ID: <CAMuHMdVvxebkm9A4g9hADww=9zREXJqyW3eQ6tFVwVJvkUkEOw@mail.gmail.com>
+Subject: Re: [PATCH 3/6] arm64: dts: renesas: r9a09g077: Add SDHI nodes
+To: Prabhakar <prabhakar.csengg@gmail.com>
+Cc: Magnus Damm <magnus.damm@gmail.com>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	linux-renesas-soc@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, Biju Das <biju.das.jz@bp.renesas.com>, 
+	Fabrizio Castro <fabrizio.castro.jz@renesas.com>, 
+	Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+Content-Type: text/plain; charset="UTF-8"
 
-On 03/07/2025 11:20, weishangjuan@eswincomputing.com wrote:
-> +	ret = of_property_read_u32_index(pdev->dev.of_node, "eswin,syscrg_csr", 1,
-> +					 &hsp_aclk_ctrl_offset);
-> +	if (ret)
-> +		return dev_err_probe(&pdev->dev, ret, "can't get hsp_aclk_ctrl_offset\n");
-> +
-> +	regmap_read(dwc_priv->crg_regmap, hsp_aclk_ctrl_offset, &hsp_aclk_ctrl_regset);
-> +	hsp_aclk_ctrl_regset |= (EIC7700_HSP_ACLK_CLKEN | EIC7700_HSP_ACLK_DIVSOR);
-> +	regmap_write(dwc_priv->crg_regmap, hsp_aclk_ctrl_offset, hsp_aclk_ctrl_regset);
-> +
-> +	ret = of_property_read_u32_index(pdev->dev.of_node, "eswin,syscrg_csr", 2,
-> +					 &hsp_cfg_ctrl_offset);
-> +	if (ret)
-> +		return dev_err_probe(&pdev->dev, ret, "can't get hsp_cfg_ctrl_offset\n");
-> +
-> +	regmap_write(dwc_priv->crg_regmap, hsp_cfg_ctrl_offset, EIC7700_HSP_CFG_CTRL_REGSET);
-> +
-> +	dwc_priv->hsp_regmap = syscon_regmap_lookup_by_phandle(pdev->dev.of_node,
-> +							       "eswin,hsp_sp_csr");
+Hi Prabhakar,
 
-There is no such property. I already said at v2 you cannot have
-undocumented ABI.
+On Wed, 25 Jun 2025 at 17:31, Prabhakar <prabhakar.csengg@gmail.com> wrote:
+> From: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+>
+> Add SDHI0-SDHI1 nodes to RZ/T2H ("R9A09G077") SoC DTSI.
+>
+> Signed-off-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
 
-> +	if (IS_ERR(dwc_priv->hsp_regmap))
-> +		return dev_err_probe(&pdev->dev, PTR_ERR(dwc_priv->hsp_regmap),
-> +				"Failed to get hsp_sp_csr regmap\n");
-> +
-> +	ret = of_property_read_u32_index(pdev->dev.of_node, "eswin,hsp_sp_csr", 2,
+Thanks for your patch!
 
-NAK
+> --- a/arch/arm64/boot/dts/renesas/r9a09g077.dtsi
+> +++ b/arch/arm64/boot/dts/renesas/r9a09g077.dtsi
+> @@ -155,6 +155,46 @@ gic: interrupt-controller@83000000 {
+>                         interrupt-controller;
+>                         interrupts = <GIC_PPI 9 IRQ_TYPE_LEVEL_LOW>;
+>                 };
+> +
+> +               sdhi0: mmc@92080000  {
+> +                       compatible = "renesas,sdhi-r9a09g077",
+> +                                    "renesas,sdhi-r9a09g057";
+> +                       reg = <0x0 0x92080000 0 0x10000>;
+> +                       interrupts = <GIC_SPI 782 IRQ_TYPE_LEVEL_HIGH>,
+> +                                    <GIC_SPI 783 IRQ_TYPE_LEVEL_HIGH>;
+> +                       clocks = <&cpg CPG_MOD 1212>,
 
-> +					 &eth_phy_ctrl_offset);
-> +	if (ret)
-> +		return dev_err_probe(&pdev->dev, ret, "can't get eth_phy_ctrl_offset\n");
-> +
-> +	regmap_read(dwc_priv->hsp_regmap, eth_phy_ctrl_offset, &eth_phy_ctrl_regset);
-> +	eth_phy_ctrl_regset |= (EIC7700_ETH_TX_CLK_SEL | EIC7700_ETH_PHY_INTF_SELI);
-> +	regmap_write(dwc_priv->hsp_regmap, eth_phy_ctrl_offset, eth_phy_ctrl_regset);
-> +
-> +	ret = of_property_read_u32_index(pdev->dev.of_node, "eswin,hsp_sp_csr", 3,
-> +					 &eth_axi_lp_ctrl_offset);
-> +	if (ret)
-> +		return dev_err_probe(&pdev->dev, ret, "can't get eth_axi_lp_ctrl_offset\n");
-> +
-> +	regmap_write(dwc_priv->hsp_regmap, eth_axi_lp_ctrl_offset, EIC7700_ETH_CSYSREQ_VAL);
-> +
-> +	plat_dat->clk_tx_i = devm_clk_get_enabled(&pdev->dev, "tx");
-> +	if (IS_ERR(plat_dat->clk_tx_i))
-> +		return dev_err_probe(&pdev->dev, PTR_ERR(plat_dat->clk_tx_i),
-> +				"error getting tx clock\n");
-> +
-> +	plat_dat->fix_mac_speed = eic7700_qos_fix_speed;
-> +	plat_dat->set_clk_tx_rate = stmmac_set_clk_tx_rate;
-> +	plat_dat->bsp_priv = dwc_priv;
-> +
-> +	ret = stmmac_dvr_probe(&pdev->dev, plat_dat, &stmmac_res);
-> +	if (ret)
-> +		return dev_err_probe(&pdev->dev, ret, "Failed to driver probe\n");
-> +
-> +	return ret;
-> +}
-> +
-> +static const struct of_device_id eic7700_dwmac_match[] = {
-> +	{ .compatible = "eswin,eic7700-qos-eth" },
-> +	{ }
-> +};
-> +MODULE_DEVICE_TABLE(of, eic7700_dwmac_match);
-> +
-> +static struct platform_driver eic7700_dwmac_driver = {
-> +	.probe  = eic7700_dwmac_probe,
-> +	.remove = stmmac_pltfr_remove,
-> +	.driver = {
-> +		.name           = "eic7700-eth-dwmac",
-> +		.pm             = &stmmac_pltfr_pm_ops,
-> +		.of_match_table = eic7700_dwmac_match,
-> +	},
-> +};
-> +module_platform_driver(eic7700_dwmac_driver);
-> +
-> +MODULE_AUTHOR("Eswin");
+1112?
 
-Drop, that's not a person.
+> +                                <&cpg CPG_CORE R9A09G077_SDHI_CLKHS>;
+> +                       clock-names = "aclk", "clkh";
+> +                       power-domains = <&cpg>;
+> +                       status = "disabled";
+> +
+> +                       sdhi0_vqmmc: vqmmc-regulator {
+> +                               regulator-name = "SDHI0-VQMMC";
+> +                               regulator-min-microvolt = <1800000>;
+> +                               regulator-max-microvolt = <3300000>;
+> +                               status = "disabled";
+> +                       };
+> +               };
+> +
+> +               sdhi1: mmc@92090000 {
+> +                       compatible = "renesas,sdhi-r9a09g077",
+> +                                    "renesas,sdhi-r9a09g057";
+> +                       reg = <0x0 0x92090000 0 0x10000>;
+> +                       interrupts = <GIC_SPI 784 IRQ_TYPE_LEVEL_HIGH>,
+> +                                    <GIC_SPI 785 IRQ_TYPE_LEVEL_HIGH>;
+> +                       clocks = <&cpg CPG_MOD 1213>,
 
+1113?
 
-Best regards,
-Krzysztof
+> +                                <&cpg CPG_CORE R9A09G077_SDHI_CLKHS>;
+> +                       clock-names = "aclk", "clkh";
+> +                       power-domains = <&cpg>;
+> +                       status = "disabled";
+> +
+> +                       sdhi1_vqmmc: vqmmc-regulator {
+> +                               regulator-name = "SDHI1-VQMMC";
+> +                               regulator-min-microvolt = <1800000>;
+> +                               regulator-max-microvolt = <3300000>;
+> +                               status = "disabled";
+> +                       };
+> +               };
+>         };
+>
+
+The rest LGTM.
+
+Gr{oetje,eeting}s,
+
+                        Geert
+
+-- 
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
+
+In personal conversations with technical people, I call myself a hacker. But
+when I'm talking to journalists I just say "programmer" or something like that.
+                                -- Linus Torvalds
 
