@@ -1,96 +1,119 @@
-Return-Path: <devicetree+bounces-192784-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-192785-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 26E77AF7DBA
-	for <lists+devicetree@lfdr.de>; Thu,  3 Jul 2025 18:25:31 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3AC13AF7DB4
+	for <lists+devicetree@lfdr.de>; Thu,  3 Jul 2025 18:24:19 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id C1C0518991AF
-	for <lists+devicetree@lfdr.de>; Thu,  3 Jul 2025 16:20:29 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id E44074E74CF
+	for <lists+devicetree@lfdr.de>; Thu,  3 Jul 2025 16:23:52 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8747524DCFD;
-	Thu,  3 Jul 2025 16:20:09 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6B4D5230D14;
+	Thu,  3 Jul 2025 16:24:13 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=thegoodpenguin-co-uk.20230601.gappssmtp.com header.i=@thegoodpenguin-co-uk.20230601.gappssmtp.com header.b="nU7vv0+C"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="ZEgCWzvH"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-yb1-f178.google.com (mail-yb1-f178.google.com [209.85.219.178])
+Received: from mail-oo1-f53.google.com (mail-oo1-f53.google.com [209.85.161.53])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E6AFC24BCF5
-	for <devicetree@vger.kernel.org>; Thu,  3 Jul 2025 16:20:07 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.219.178
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EC63728E17;
+	Thu,  3 Jul 2025 16:24:10 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.161.53
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1751559609; cv=none; b=tKM1xL+tvZVSrMzp/zLHa5UlHbZdSs+I4bgHYjf+UU2NtC3gAhMhPhBLkNbb1aV0TqOQblOPhBSPQRUnAecLfN9YR5rMbijs41FqEqr4CPB1GhjLPDSTX4xX3Y25LQLlaWRYR9Uzo3l42hG2z1j+qsi8AZBIPqHJXiSPLqqp+b8=
+	t=1751559853; cv=none; b=kUzlTFQPYzZ44FE50wWLksQRvVMfSPimbBuf8oScIoybmQGOy7G39naYbhrXn1x7GS/lfcyRuZHufZhHNQqo8dYrPvxkhmp9wqkIgzaepPc693tzzPgdDcMQPH+FSlwC855bJhPwJCakS6OmfkOioX8HX1iSt5iB87vCztsLUe0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1751559609; c=relaxed/simple;
-	bh=jUo0bz7/9VqLbmKnuHSilXj/iz4VcO9C7Bb8RNU6+Ao=;
+	s=arc-20240116; t=1751559853; c=relaxed/simple;
+	bh=ZattO5Mn2hbw8j6k+Ojc2VZsIcamMU7rl1sPrW/W0SA=;
 	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=FUpODrYf4PMnUMhTJrn5D324N91nr3gQtj7b2zsEqcLOIaTOG2DFdJ2kkCNZGMhCpZO97+MZ1kXdxiuwHgbq5u67Wbbj9l2DyYsOKhrMimPlcZcmCBvRJECsISqZaC4Chex45BGTiYRHc7/4ibaAVMo5yk07U0NhWdUknlJ5tXk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=thegoodpenguin.co.uk; spf=pass smtp.mailfrom=thegoodpenguin.co.uk; dkim=pass (2048-bit key) header.d=thegoodpenguin-co-uk.20230601.gappssmtp.com header.i=@thegoodpenguin-co-uk.20230601.gappssmtp.com header.b=nU7vv0+C; arc=none smtp.client-ip=209.85.219.178
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=thegoodpenguin.co.uk
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=thegoodpenguin.co.uk
-Received: by mail-yb1-f178.google.com with SMTP id 3f1490d57ef6-e85e06a7f63so5083691276.1
-        for <devicetree@vger.kernel.org>; Thu, 03 Jul 2025 09:20:07 -0700 (PDT)
+	 To:Cc:Content-Type; b=j9r8EWEqPeQfDMdKRFSxSN6MG57YKidd9raHC4Aix5j5fZfwOrHlruUiOwpnlwMY6jeGhMyXquLkwPHm5+hh6jLj84zSvgjb348dWBn49MOlXFqJi+mDzbYvjAsNH8Qv99hdJtdG0s4f4olgLY2QxRg5btBRfrA0b+bGB1sOyrA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=ZEgCWzvH; arc=none smtp.client-ip=209.85.161.53
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-oo1-f53.google.com with SMTP id 006d021491bc7-60f24b478e3so76176eaf.3;
+        Thu, 03 Jul 2025 09:24:10 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=thegoodpenguin-co-uk.20230601.gappssmtp.com; s=20230601; t=1751559607; x=1752164407; darn=vger.kernel.org;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=niF8wOn9GTKmhQIt/vu6p0p8Z3gSuCH+GiDxHVgqCEA=;
-        b=nU7vv0+CWvLUobYkII3uyc+kOF6Eg6O+W7Nllp7+pBahwq0xsliUy7giwMQMNvWgGe
-         tGJdpsRaiOH1RQjYSNw/J+Msr/NjEY7g7kpKzjOK0b6M0njwrccLWE3SoW2iKhNj8IBV
-         79Fd2mbZBiiVDDakxDSewKydg8DLzxVqp+1kKXm3HeJVU6KHCrjNwUDZrwieibSLAXu8
-         drb0XZ15pfrhqfqu6BazEDdxe4jtwNpAANE7lOw1T8BcGW4vLd0J/qTu3GyYfQKZPFkY
-         IeZCZmO8wlnqXXExLzOE0xRgoDt3v4AZCgSE4o6NyOG2FYU5XN9Pf3g733NLDLX3mzN4
-         Ijfg==
+        d=gmail.com; s=20230601; t=1751559850; x=1752164650; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=ZattO5Mn2hbw8j6k+Ojc2VZsIcamMU7rl1sPrW/W0SA=;
+        b=ZEgCWzvHLTVHSgww+IzCSNfW+8Ih7H+5gTka5NGtzjwlOSTSd2yudGQfJaR6ZdLFE2
+         8woLK3hlCwW9YuvNC5lu2m3TlAGF4B1slPveL9pUCn+sSTTQfGQ7HZiwTysWgSTRxAjt
+         WTuOdxIrURSEihndDtlTLwtR/Wsnxxlbs//PIoY3v1eTZwUKYOwOmHmm5m+00hVTGE7f
+         2IJsra+44L7fAF0CX+rJE0HPDew+xxV7UiFM8DHLK2bPCsBGzTAJ3Mvzez9KHgMRtlRE
+         VTMDpUXxj8Kxru0CClgxJqafkskjYT3HW6hzlPnEJ33T4AOFDKCa7GA43pMMfwRZG028
+         M+nw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1751559607; x=1752164407;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=niF8wOn9GTKmhQIt/vu6p0p8Z3gSuCH+GiDxHVgqCEA=;
-        b=FUwLbjtkmQJNg23SpIYqvQ9RNZ20vV3+0gAx5ynTSs5e/fojTVD03ieqJEs+j80GZH
-         HfGn0xo0A+aS2e39N6otBkmv8z34eLk/tJSzGqB7xFhVfw40gaIKzGwR3r0oAxDKvOAb
-         u6zpTPlHMzI2AEH1GaXsDBjsOzwXNyxA3Hr9epxjYHcg1syK+vGj6LlcO2fXKWmFaj4v
-         GXblPJNlsc5HCDepehHI/nUcYuRxV9EJ+cUbPE7jHkyUpkH0bv1u3qKclYOWrb5h6Cvb
-         I+rNMJ/oS+xO0S7rzeQooEA38xR+6zSk7ddb674skPLG4u/hmgpDh9W0x2vGo9ebZ1gj
-         DBfw==
-X-Forwarded-Encrypted: i=1; AJvYcCVOJBMFjNmi9hOH0rhT0Oj8dGSuWW95QxAFBFMC/Bf3+fM1t8QDcutsECdKZ61vW+9IacIYorlNUknb@vger.kernel.org
-X-Gm-Message-State: AOJu0YyTH0mOXo5TFXbpvpfy2mkdlyWo4bDSQ17Rk2OzcQqJTi4PV57e
-	m6Za04+gekMKNp+1lII6xLkuxwFsOzaPhLYPjsyaVeCfRIcwhHwMQcv7yKLmL4Bcf6zLBDY4Hid
-	a2ObZSUH4IbC5Ecwv7HP4+HJPxTHl/G37xg5uwM8FMUGoVM/D+7FEwR429w==
-X-Gm-Gg: ASbGncvYCjqasOBP61RTvkxNCnPbA2h4fACF35ZzPfabxHZ8gAZem2nyNZe5yZNIGdl
-	lezkjL74EnJW3algbRMy6HjUqgp3/vWmW/baTLtn2k8CoghYlYWDPNKGdLqgb1Gvhf6t9RI5iLB
-	Y3Q4Q1tipywWbZzVPdKwUer1XtzsX+Xp5cRUVNqxaOudFxApLetECtVkWHDvyQX0qkYrLWNnM1z
-	053cg==
-X-Google-Smtp-Source: AGHT+IG9wu0uUr476DbA/3qZswqv3IWybYnshmLMaeMC5NZB1lprrIjfyK4Q5zzWoXuqVSaEu2jCsm7XUNSyqiP3lMI=
-X-Received: by 2002:a05:690c:315:b0:70f:84c8:3105 with SMTP id
- 00721157ae682-71659128263mr59933107b3.37.1751559606842; Thu, 03 Jul 2025
- 09:20:06 -0700 (PDT)
+        d=1e100.net; s=20230601; t=1751559850; x=1752164650;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=ZattO5Mn2hbw8j6k+Ojc2VZsIcamMU7rl1sPrW/W0SA=;
+        b=FKooUpFvffqwboSoGTlO5sNeDuN2CyMVdrU5In0Se8kLc0nOGoCXGN2xRuNIw4WSrB
+         gxLAaeOLsDJpJFJpO20sFItlDNJkJ/Da+0mRljrXasGCAXiNKQMr1ARikB830ZQwj4lV
+         9fEQfOLu7oirpJQnxtsWQQS1Alrg41jHiHSVD+nMpXIfXizQ1gwsKyIMnNl5xEFiIXn3
+         pqBpFVJPtChjKr0zcqaWum+ZLuLyIG65sAAjgcEtzwAPANfUljRWi49ZaYADv4DhEV9S
+         FrBXMIJXLre45LZmd4BtUziN9zshSZ6FL6NBnBGOk51DGELOP0QkStNj+r7bJEGbNjvA
+         5UgQ==
+X-Forwarded-Encrypted: i=1; AJvYcCVN1x5rV7vgUlgkpvME3J63XGxpbwODzo/3p5/VyNUEVKWSnWJkIw1maJDeZtyalxYLuc2B0lfQKuqb@vger.kernel.org, AJvYcCWTOCiaWU8W2FULAqqLVFYSbPK5uJFIaxma2QXlRvCN+sJRNIPnweWhiLhj1ILoWl8AL32t36Zyd6mL8DLi@vger.kernel.org, AJvYcCXyVwLUlW+lney2jqoMPzaEuj0J08/aBKTYI4N0yEFmUo/ZM/9Cbxa27FTaXg1IjeCNF/IIE37urApwK/Y=@vger.kernel.org
+X-Gm-Message-State: AOJu0YxCAWBXn4NqLJTHGDYauzmsMJIL6CUMV8QXRPckv6AoCuBbpVYL
+	uNHtL/vJK4bwcXpjGKZuma09ip7ihMJ6OP94nV1LQN8am4YNEAZ+706hZx6KIdkMOIAjKI8dANc
+	4DGEzytVAseIERRs41dTQMsCe9cxSkqM=
+X-Gm-Gg: ASbGncsUCtAD2BAY19faOwhvax/2CsfivtnG5E2Rsjw2B3g6ks5bJO2h7FQ3dsl7+Un
+	rR3tvb/Ay91X4uV89eNxiq2krOZ6vMuFrgfy+Cs2t/bVxmD8hxjjZaQk/4+KJcKM1bY2q/OOYH0
+	nsIGyy67iEm3vVCn+K+GLuSCO0+zrh3YI8oopYbful
+X-Google-Smtp-Source: AGHT+IH23ww8t4Ksjbvw04Pw1dg6g23ybwLHvx+e9HpnjY0WklCP4KSUDd3Djui5CG6kL/P3nrBFNMGPKv5nAgOzn1k=
+X-Received: by 2002:a05:6820:c8f:b0:611:e00a:598d with SMTP id
+ 006d021491bc7-6120116d82fmr5594771eaf.8.1751559849936; Thu, 03 Jul 2025
+ 09:24:09 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20250627-leds-is31fl3236a-v2-0-f6ef7495ce65@thegoodpenguin.co.uk>
- <20250627-leds-is31fl3236a-v2-1-f6ef7495ce65@thegoodpenguin.co.uk> <20250702162230.GY10134@google.com>
-In-Reply-To: <20250702162230.GY10134@google.com>
-From: Pawel Zalewski <pzalewski@thegoodpenguin.co.uk>
-Date: Thu, 3 Jul 2025 17:19:55 +0100
-X-Gm-Features: Ac12FXy_CDFzKjm4AokW8a0bG4a5ZEtQ-LJTabWie8Pk2p6JfFDWqEKdOo_LGZg
-Message-ID: <CAA6zWZ+KE+4bMVzacVB=EYMr0YrCbFWia6Y6LgCs8GZTTuMRHA@mail.gmail.com>
-Subject: Re: [PATCH v2 1/3] leds/leds-is31fl32xx: add support for is31fl3236a
-To: Lee Jones <lee@kernel.org>
-Cc: Pavel Machek <pavel@kernel.org>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, linux-leds@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, Pavel Machek <pavel@ucw.cz>, devicetree@vger.kernel.org
+References: <20250526-p3450-mts-bug-v1-1-78500613f02c@gmail.com>
+ <CALHNRZ_7wChDsvpUnQHnOTT9VzT1Lgg8JYgg13AFV8Jg_3itwQ@mail.gmail.com> <nuicekbfdgjbfudtlul74ifsqckfg6itybb76bkzuaxfcp5ve5@yevlttgtobxy>
+In-Reply-To: <nuicekbfdgjbfudtlul74ifsqckfg6itybb76bkzuaxfcp5ve5@yevlttgtobxy>
+From: Nicolas Chauvet <kwizart@gmail.com>
+Date: Thu, 3 Jul 2025 18:23:58 +0200
+X-Gm-Features: Ac12FXxB8p0am1jeHuRsG3pEC3-oMtt-Xsi26v4UVhYH88yQRdtMwuJ6D3jOGbA
+Message-ID: <CABr+WTnn2qOXEMCiRDywySAxn0UeKAcx5XOJNpn731tXxbCPDQ@mail.gmail.com>
+Subject: Re: [PATCH RFC] arm64: tegra: Add reserved-memory node for P3450
+To: Thierry Reding <thierry.reding@gmail.com>
+Cc: Aaron Kling <webgeek1234@gmail.com>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Jonathan Hunter <jonathanh@nvidia.com>, devicetree@vger.kernel.org, 
+	linux-tegra@vger.kernel.org, linux-kernel@vger.kernel.org
 Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-> So close!
-:)
+Le jeu. 3 juil. 2025 =C3=A0 13:00, Thierry Reding
+<thierry.reding@gmail.com> a =C3=A9crit :
+>
+> On Mon, May 26, 2025 at 02:07:35PM -0500, Aaron Kling wrote:
+> > On Mon, May 26, 2025 at 2:06=E2=80=AFPM Aaron Kling via B4 Relay
+> > <devnull+webgeek1234.gmail.com@kernel.org> wrote:
+> > >
+> > > From: Aaron Kling <webgeek1234@gmail.com>
+> > >
+> > > The Tegra210 L4T bootloader ram training will corrupt the in-ram kern=
+el
+> > > dt if no reserved-memory node exists. This prevents said bootloader f=
+rom
+> > > being able to boot a kernel without this node, unless a chainloaded
+> > > bootloader loads the dt. Add the node to eliminate the requirement fo=
+r
+> > > extra boot stages.
 
->  This should line-up with the '(.
-Spacebar to the rescue it is then.
+Is there any particular reason why this applies on jetson-nano but not
+jetson-tx1 (or any other l4t based boards ?)
+I wonder if it would be enough to boot an upstream kernel with the l4t
+bootloader (and no chainloaded upstream u-boot) as I cannot do the
+other way for some reason (using fedora based upstream u-boot cannot
+boot downstream l4t kernel anymore)
+
+Thanks for the hints.
 
