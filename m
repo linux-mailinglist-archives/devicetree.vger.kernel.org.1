@@ -1,117 +1,104 @@
-Return-Path: <devicetree+bounces-192855-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-192854-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id AF20CAF83EF
-	for <lists+devicetree@lfdr.de>; Fri,  4 Jul 2025 00:53:26 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 35AE6AF83EC
+	for <lists+devicetree@lfdr.de>; Fri,  4 Jul 2025 00:53:18 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 8A9F517BC70
-	for <lists+devicetree@lfdr.de>; Thu,  3 Jul 2025 22:53:23 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id E38314826FF
+	for <lists+devicetree@lfdr.de>; Thu,  3 Jul 2025 22:52:51 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7E5152D3A94;
-	Thu,  3 Jul 2025 22:53:15 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B47F92D3A66;
+	Thu,  3 Jul 2025 22:53:13 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=linux.dev header.i=@linux.dev header.b="let/ROpg"
+	dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b="QF7J8jz1"
 X-Original-To: devicetree@vger.kernel.org
-Received: from out-186.mta0.migadu.com (out-186.mta0.migadu.com [91.218.175.186])
+Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [213.167.242.64])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8F0102D3753
-	for <devicetree@vger.kernel.org>; Thu,  3 Jul 2025 22:53:12 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=91.218.175.186
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2F9802C15AA;
+	Thu,  3 Jul 2025 22:53:12 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=213.167.242.64
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1751583195; cv=none; b=QBCZp6U2wsRWBlRmnE/PfExZGly9zDSgu1NZ1910AWceJfudLzw5dJMeIeOxPTjAqz7W5/V9oB74Enxu3KofJpF04BbBLKCnSaHNwsu94diUn3GwBtj1DK5f9wanmetG8HZf5v2cuLmc6qAUlW6znxmjupI+tHJtreW9p91qbHc=
+	t=1751583193; cv=none; b=JSupy9rN97z9OPtOvd6svfq6fYeZZJg/NrBQLGF24RG7lrGzZjutUa9ExAaoRwDsdjFMat1cwXobIC2ItweMwmhG1kJLgp7FEUshAU25ztfd+dud9VhU8DNugkhWv/Lv4q8GKCfoFhI/M9c1NB5zkJWkJPr9dFCJaBN27HUuhsI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1751583195; c=relaxed/simple;
-	bh=3bWBSlOd1mEysHg8taMzS1I42clX6SsWKrJ8TpC5pSg=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=U833O2lzPvP4M2Yf9gxcHXuccSQGDM6QfZgKXmuj6IVdVE57GeszTy1t7t4n1fLArH5tJWRsMlTHKAWruEt1is4VyrpfIDAZU4wH4qb2wcANuSRvU/8ckHQqtIj/I+IB40USUTuSmL/iBdGlPzsD+gmeoG2iz/a6E9MQQFgoq4w=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.dev; spf=pass smtp.mailfrom=linux.dev; dkim=pass (1024-bit key) header.d=linux.dev header.i=@linux.dev header.b=let/ROpg; arc=none smtp.client-ip=91.218.175.186
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.dev
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linux.dev
-Message-ID: <218ed5ce-6e0d-41f7-809b-04e554d08c5a@linux.dev>
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linux.dev; s=key1;
-	t=1751583186;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=LIyqDlLt3CT1utfTbk2TkfmajXEi5ZvgikV+/3VcJck=;
-	b=let/ROpgpEs+HqLRrGdvieskEbzt9tFEKP9ekxEOGcwqnmErdLrGJ016+f28aLWFswBbmF
-	exExgIED9KiRFUeIyT4jn1VfJq/r0JPY0xLLmJbbbF+GAA6mGFCUB1WGIJTwYsMse1RLb4
-	HiQRVv3DpWbFq6UjPVjAFyXhxzupLh0=
-Date: Thu, 3 Jul 2025 23:52:17 +0100
+	s=arc-20240116; t=1751583193; c=relaxed/simple;
+	bh=dnLsOvKEg5PteS72ScqjZ5c1b2hf6+csvYSytfOs3UM=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=DiKl8z2H1tWW/jl1r5kTuplKnhiFMzVf4WVYjophbItfUaPLWlz31KPRUDkEtGFUMVFrqhvmRzwS5ZEOZ/lu8pNSioyZicL7h39OBqZYFmqBZ3qGwURYcltJ17LD143DqzNLSjFEHAsfbwLkgWN0fwckwYGYivelhxCXOLkodwk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ideasonboard.com; spf=pass smtp.mailfrom=ideasonboard.com; dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b=QF7J8jz1; arc=none smtp.client-ip=213.167.242.64
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ideasonboard.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ideasonboard.com
+Received: from pendragon.ideasonboard.com (81-175-209-231.bb.dnainternet.fi [81.175.209.231])
+	by perceval.ideasonboard.com (Postfix) with UTF8SMTPSA id 7926E667;
+	Fri,  4 Jul 2025 00:52:46 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
+	s=mail; t=1751583166;
+	bh=dnLsOvKEg5PteS72ScqjZ5c1b2hf6+csvYSytfOs3UM=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=QF7J8jz1tVsFUW+G/Fa+iCSy0CiNy9dE6iTSTvxYutA3CLQqEeUUwriES3yD/gMKu
+	 KtAEQ93UY9riE8EQ2jpCGH9IZ8PQhYGQ3HvBzIwKKi7EfVKLB4x/MwWbejDrGEUIN4
+	 5WjMuoSo0n5fqCcJxVvt/MeUspHBJ/3Xwc42TZ4c=
+Date: Fri, 4 Jul 2025 01:52:43 +0300
+From: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+To: Niklas =?utf-8?Q?S=C3=B6derlund?= <niklas.soderlund+renesas@ragnatech.se>
+Cc: Geert Uytterhoeven <geert+renesas@glider.be>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Marek Vasut <marek.vasut+renesas@mailbox.org>,
+	linux-renesas-soc@vger.kernel.org, devicetree@vger.kernel.org
+Subject: Re: [PATCH v2 1/5] arm64: dts: renesas:
+ r8a779g3-sparrow-hawk-fan-pwm: Add missing install target
+Message-ID: <20250703225243.GI3798@pendragon.ideasonboard.com>
+References: <20250701112612.3957799-1-niklas.soderlund+renesas@ragnatech.se>
+ <20250701112612.3957799-2-niklas.soderlund+renesas@ragnatech.se>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Subject: Re: [PATCH net-next v10 06/11] net: ti: prueth: Adds HW timestamping
- support for PTP using PRU-ICSS IEP module
-To: Parvathi Pudi <parvathi@couthit.com>, danishanwar@ti.com,
- rogerq@kernel.org, andrew+netdev@lunn.ch, davem@davemloft.net,
- edumazet@google.com, kuba@kernel.org, pabeni@redhat.com, robh@kernel.org,
- krzk+dt@kernel.org, conor+dt@kernel.org, ssantosh@kernel.org,
- richardcochran@gmail.com, s.hauer@pengutronix.de, m-karicheri2@ti.com,
- glaroque@baylibre.com, afd@ti.com, saikrishnag@marvell.com,
- m-malladi@ti.com, jacob.e.keller@intel.com, diogo.ivo@siemens.com,
- javier.carrasco.cruz@gmail.com, horms@kernel.org, s-anna@ti.com,
- basharath@couthit.com
-Cc: linux-arm-kernel@lists.infradead.org, netdev@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, pratheesh@ti.com,
- prajith@ti.com, vigneshr@ti.com, praneeth@ti.com, srk@ti.com, rogerq@ti.com,
- krishna@couthit.com, pmohan@couthit.com, mohan@couthit.com
-References: <20250702140633.1612269-1-parvathi@couthit.com>
- <20250702151756.1656470-7-parvathi@couthit.com>
-Content-Language: en-US
-X-Report-Abuse: Please report any abuse attempt to abuse@migadu.com and include these headers.
-From: Vadim Fedorenko <vadim.fedorenko@linux.dev>
-In-Reply-To: <20250702151756.1656470-7-parvathi@couthit.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Migadu-Flow: FLOW_OUT
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20250701112612.3957799-2-niklas.soderlund+renesas@ragnatech.se>
 
-On 02/07/2025 16:17, Parvathi Pudi wrote:
-> From: Roger Quadros <rogerq@ti.com>
+Hi Niklas,
+
+Thank you for the patch.
+
+On Tue, Jul 01, 2025 at 01:26:08PM +0200, Niklas Söderlund wrote:
+> The target to consider the dtbo file for installation is missing, add
+> it.
 > 
-> PRU-ICSS IEP module, which is capable of timestamping RX and
-> TX packets at HW level, is used for time synchronization by PTP4L.
-> 
-> This change includes interaction between firmware and user space
-> application (ptp4l) with required packet timestamps. The driver
-> initializes the PRU firmware with appropriate mode and configuration
-> flags. Firmware updates local registers with the flags set by driver
-> and uses for further operation. RX SOF timestamp comes along with
-> packet and firmware will rise interrupt with TX SOF timestamp after
-> pushing the packet on to the wire.
-> 
-> IEP driver is available in upstream and we are reusing for hardware
-> configuration for ICSSM as well. On top of that we have extended it
-> with the changes for AM57xx SoC.
-> 
-> Extended ethtool for reading HW timestamping capability of the PRU
-> interfaces.
-> 
-> Currently ordinary clock (OC) configuration has been validated with
-> Linux ptp4l.
-> 
-> Signed-off-by: Roger Quadros <rogerq@ti.com>
-> Signed-off-by: Andrew F. Davis <afd@ti.com>
-> Signed-off-by: Basharath Hussain Khaja <basharath@couthit.com>
-> Signed-off-by: Parvathi Pudi <parvathi@couthit.com>
+> Fixes: a719915e76f2 ("arm64: dts: renesas: r8a779g3: Add Retronix R-Car V4H Sparrow Hawk board support")
+> Signed-off-by: Niklas Söderlund <niklas.soderlund+renesas@ragnatech.se>
+> Reviewed-by: Marek Vasut <marek.vasut+renesas@mailbox.org>
+
+Reviewed-by: Laurent Pinchart <laurent.pinchart+renesas@ideasonboard.com>
+
 > ---
->   drivers/net/ethernet/ti/icssg/icss_iep.c      |  42 ++
->   drivers/net/ethernet/ti/icssm/icssm_ethtool.c |  23 +
->   drivers/net/ethernet/ti/icssm/icssm_prueth.c  | 423 +++++++++++++++++-
->   drivers/net/ethernet/ti/icssm/icssm_prueth.h  |  11 +
->   .../net/ethernet/ti/icssm/icssm_prueth_ptp.h  |  85 ++++
->   5 files changed, 582 insertions(+), 2 deletions(-)
->   create mode 100644 drivers/net/ethernet/ti/icssm/icssm_prueth_ptp.h
+>  arch/arm64/boot/dts/renesas/Makefile | 1 +
+>  1 file changed, 1 insertion(+)
 > 
+> diff --git a/arch/arm64/boot/dts/renesas/Makefile b/arch/arm64/boot/dts/renesas/Makefile
+> index 677ba3aa8931..47e46ef99d36 100644
+> --- a/arch/arm64/boot/dts/renesas/Makefile
+> +++ b/arch/arm64/boot/dts/renesas/Makefile
+> @@ -96,6 +96,7 @@ dtb-$(CONFIG_ARCH_R8A779G0) += r8a779g2-white-hawk-single-ard-audio-da7212.dtb
+>  
+>  DTC_FLAGS_r8a779g3-sparrow-hawk += -Wno-spi_bus_bridge
+>  dtb-$(CONFIG_ARCH_R8A779G0) += r8a779g3-sparrow-hawk.dtb
+> +dtb-$(CONFIG_ARCH_R8A779G0) += r8a779g3-sparrow-hawk-fan-pwm.dtbo
+>  r8a779g3-sparrow-hawk-fan-pwm-dtbs := r8a779g3-sparrow-hawk.dtb r8a779g3-sparrow-hawk-fan-pwm.dtbo
+>  dtb-$(CONFIG_ARCH_R8A779G0) += r8a779g3-sparrow-hawk-fan-pwm.dtb
+>  
 
-Reviewed-by: Vadim Fedorenko <vadim.fedorenko@linux.dev>
+-- 
+Regards,
 
+Laurent Pinchart
 
