@@ -1,48 +1,48 @@
-Return-Path: <devicetree+bounces-192526-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-192527-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 77BB7AF6F1E
-	for <lists+devicetree@lfdr.de>; Thu,  3 Jul 2025 11:47:07 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 66F10AF6F29
+	for <lists+devicetree@lfdr.de>; Thu,  3 Jul 2025 11:48:45 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id E2B1B1C82C73
-	for <lists+devicetree@lfdr.de>; Thu,  3 Jul 2025 09:46:32 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id BF04D1632ED
+	for <lists+devicetree@lfdr.de>; Thu,  3 Jul 2025 09:48:11 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8B3052DE1F0;
-	Thu,  3 Jul 2025 09:46:05 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 91BE92DFF17;
+	Thu,  3 Jul 2025 09:48:06 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="lJMnHNxG"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Ut4lMuLU"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5E0982DCF4A;
-	Thu,  3 Jul 2025 09:46:05 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5BA202D5430;
+	Thu,  3 Jul 2025 09:48:05 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1751535965; cv=none; b=eaX5tcG9jO/3c9MU+5g47hVcls1UhSIplFgWlMgOBWy+wsrXjUd1FLOFOhiFm4xMii3dQ0HXWaoLO64AI7wnjAREAyJj/IU/kODnLYkRzhWgzZDF7aX3FRMxYkwAqIUebhWR7L00ML/+kHpR6WTZ29R1zYaXuSzJMBvn7+DxyTc=
+	t=1751536086; cv=none; b=BVruYJzpGJE+iPdp4ZnRgnnWI56RF9s+Xrgzw2ZaErECt2XVN+CjCGDlJPIdzY3ZxrmMElrGramv82HjIssCTFL5hY8OIotVlWAFRc872XHeYJdqe7my0GDQS4TPwI4Kc1aruaFNmrSmZwTbE6szzW5E0hyO9Ittlr1efKhq5e4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1751535965; c=relaxed/simple;
-	bh=TqdILGUNLtHaa0kCIrn2n4mfoPZE8hzzx5z+kIeQFjE=;
+	s=arc-20240116; t=1751536086; c=relaxed/simple;
+	bh=ZTKqPImjcSOKSC55g+yqnIgIOsq+T6lJltFiNCqWR0k=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=mmAbtcisI6xBpyNxdVNJ+VYfkPTC1t1wJcoFk6RziEvQIfzkdQvsZoi7oT3ILCOqUcqoq+UYN0pmk9UhJgYLQgI9MgYnjCpzR2gITf52HKROf3E7jHwpguBJ3MnsTNdkp2e34q8xRVOnmLANKr218x+z9/VlL5eFMXdgxAcEEWg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=lJMnHNxG; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id AF723C4CEEB;
-	Thu,  3 Jul 2025 09:45:59 +0000 (UTC)
+	 In-Reply-To:Content-Type; b=oQtfxK6vurtkWI/RYchQHKLaszi1FkSzuBwZQ/ZQ/iPEc7/XgX6dI7Ssi48y+iT/dB6Qp3sUQz2ykBdBxo3TVO5yAN/b5SWKBos8mkTjYxHGCVykomvrMY59qYEr5onjiVHIccCkYyqP8cBOqzj5xq3uMq2S/M30JkflbWoubXE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Ut4lMuLU; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 5E110C4CEE3;
+	Thu,  3 Jul 2025 09:48:00 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1751535964;
-	bh=TqdILGUNLtHaa0kCIrn2n4mfoPZE8hzzx5z+kIeQFjE=;
+	s=k20201202; t=1751536085;
+	bh=ZTKqPImjcSOKSC55g+yqnIgIOsq+T6lJltFiNCqWR0k=;
 	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=lJMnHNxGEsCc4AINdhA6QQ7tcG9NUVosc4hrtxWYkvPH0dQEH5A31Oz+dlQzZnrSF
-	 r/r06Q9f0oWYzkIgq9JUHw1dhm/rbnR1LA2dJaHKLKc2XzgkNRsPZgGjeaey0mAHQN
-	 qmhK+aoVeMKQYCQck8COGRberTNMRmMs9OVnof5sTrjjFXgYsPF+HM5sP3NtBZMRA/
-	 OzC7Zg10KWGcEolc5ibRqWlVviocNADbL7zSWx4iWDHT6c90c3nhXwdPTmuUJpQWL4
-	 BjCFhXLIwOF7EKjQ8GIvShR9s2XgUOnvw5bjx1sVV7q8OvTNJtMlq8wtgzsUCWqViM
-	 jIqiAVLxVTDPg==
-Message-ID: <6af504ef-55b8-4599-a379-40842edfcfa5@kernel.org>
-Date: Thu, 3 Jul 2025 11:45:57 +0200
+	b=Ut4lMuLUHKYWdPGOyZYT5AsrAP9kud6PSAMMuh11fAxAvg4ptqJFU12FDlM3EVu0u
+	 1ce24of77xsiBsF1c45R23a6bbTaZcW0dWzOsLMqM7PBgi9EVI81E78Qy5NMPS93qP
+	 CN771AOLJVenkTSZ61A5GL3o0PuTYt70YSRX2D/2H+k7mFRsA3u/Qc1v9YVfRxl59x
+	 4UvmHrFD31/TY9g2E4sEjJAgy2DQUQ6yhUO2+8ONRzEb+NNJR+qzDQRP8No23R9gZn
+	 LT6fqE7OfokYE0M6rnSPyCut7vRFpIMGpZECOtl8Q9A6QWNztBpgSFt87vOKMXYHod
+	 3rNzWUb+q9iNg==
+Message-ID: <1290da56-1d43-4bb5-a224-f827b411909d@kernel.org>
+Date: Thu, 3 Jul 2025 11:47:58 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,29 +50,22 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 1/5] dt-bindings: display: simple-framebuffer: Add
- interconnects property
-To: Maxime Ripard <mripard@kernel.org>, Hans de Goede <hdegoede@redhat.com>
-Cc: Thomas Zimmermann <tzimmermann@suse.de>,
- Luca Weiss <luca.weiss@fairphone.com>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>,
- Javier Martinez Canillas <javierm@redhat.com>, Helge Deller <deller@gmx.de>,
- linux-fbdev@vger.kernel.org, dri-devel@lists.freedesktop.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <20250623-simple-drm-fb-icc-v2-1-f69b86cd3d7d@fairphone.com>
- <20250627-mysterious-optimistic-bird-acaafb@krzk-bin>
- <DAX7ZB27SBPV.2Y0I09TVSF3TT@fairphone.com>
- <1129bc60-f9cb-40be-9869-8ffa3b3c9748@kernel.org>
- <8a3ad930-bfb1-4531-9d34-fdf7d437f352@redhat.com>
- <85521ded-734d-48e8-8f76-c57739102ded@kernel.org>
- <e534d496-6ce0-46c8-835d-94b3346446a7@redhat.com>
- <6e4253dd-cd73-4302-b9df-44c8c311eb22@kernel.org>
- <e2159868-f31d-4d35-b6b1-2cbd1a9d249b@suse.de>
- <f5fe3fe1-903a-48ca-9249-b77bc07dbc77@redhat.com>
- <20250703-light-baboon-of-experiment-179ca3@houat>
+Subject: Re: [PATCH v5 2/2] ARM: dts: aspeed: clemente: add Meta Clemente BMC
+To: Leo Wang <leo.jt.wang@gmail.com>
+Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, Joel Stanley <joel@jms.id.au>,
+ Andrew Jeffery <andrew@codeconstruct.com.au>, Kees Cook <kees@kernel.org>,
+ Tony Luck <tony.luck@intel.com>, "Guilherme G. Piccoli"
+ <gpiccoli@igalia.com>, Geert Uytterhoeven <geert+renesas@glider.be>,
+ Magnus Damm <magnus.damm@gmail.com>, devicetree@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, linux-aspeed@lists.ozlabs.org,
+ linux-kernel@vger.kernel.org, linux-hardening@vger.kernel.org,
+ linux-renesas-soc@vger.kernel.org, bruce.jy.hung@fii-foxconn.com,
+ george.kw.lee@fii-foxconn.com, Leo Wang <leo.jt.wang@fii-foxconn.com>
+References: <20250627-add-support-for-meta-clemente-bmc-v5-0-038ed6f1cb9f@fii-foxconn.com>
+ <20250627-add-support-for-meta-clemente-bmc-v5-2-038ed6f1cb9f@fii-foxconn.com>
+ <06178661-5665-4b9d-8652-de12c2a55f94@kernel.org>
+ <CAF9ZvUvBtMVwUZLaqMLVJryx_0OqDXsybMDDcimSMPoPV0Pmyg@mail.gmail.com>
 From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
@@ -118,32 +111,32 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  jWt87ecuHlpL3uuQ0ZZNWqHgZoQLXoqC2ZV5KrtKWb/jyiFX/sxSrodALf0zf+tfHv0FZWT2
  zHjUqd0t4njD/UOsuIMOQn4Ig0SdivYPfZukb5cdasKJukG1NOpbW7yRNivaCnfZz6dTawXw
  XRIV/KDsHQiyVxKvN73bThKhONkcX2LWuD928tAR6XMM2G5ovxLe09vuOzzfTWQDsm++9UKF a/A=
-In-Reply-To: <20250703-light-baboon-of-experiment-179ca3@houat>
+In-Reply-To: <CAF9ZvUvBtMVwUZLaqMLVJryx_0OqDXsybMDDcimSMPoPV0Pmyg@mail.gmail.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 
-On 03/07/2025 11:41, Maxime Ripard wrote:
->>> But does that work with *any* device that requires interconnects? The next such simple-framebuffer device should work out of the box *without* the kernel knowing anything about it. That's one of the key features of the simple-framebuffer.  If we have to maintainer per-device feature sets, it breaks that assumption.
->>
->> The driver code for this can still be generic and since the driver
->> will bind to the fallback plain "simple-framebuffer" compatible
->> this should also work for new platforms.
->>
->> The e.g. "qcom.simple-framebuffer-sm8650-mdss" compatible would
->> purely be something in the dt-bindings to document which simplefb
->> implementations will have interconnects and which ones will not.
->>
->> The driver does not necessarily need to check these more
->> precise compatibles, it can still just check for the generic
->> presence of interconnects.
+On 03/07/2025 11:44, Leo Wang wrote:
+> Hi Krzysztof,
 > 
-> This ship has kind of sailed though. This binding has been used by
-> plenty of firmwares and bootloaders over the years, and has been
-> deployed on plenty of devices already.
+> Thanks for your feedback.
 > 
-> Good luck fixing it in all of them, and then updating every device.
-No one suggested that... We speak about new devices, although maybe this
-one SM7635 new device runs plenty of firmwares and bootloaders?
+> I checked my patches using b4 prep --check, and I see the following two
+> checkpatch warnings:
+> 
+>    1.
+> 
+>    WARNING: added, moved or deleted file(s), does MAINTAINERS need updating?
+>    2.
+> 
+>    WARNING: From:/Signed-off-by: email address mismatch: 'From: Leo Wang <
+>    leo.jt.wang@gmail.com>' != 'Signed-off-by: Leo Wang <
+>    leo.jt.wang@fii-foxconn.com>'
+> 
+> Are these the issues you were referring to?  If there are any other issues
+> I missed, I’d appreciate your guidance.
+
+The second warning. Please don't top post. It makes it difficult to
+understand what you refer to.
 
 Best regards,
 Krzysztof
