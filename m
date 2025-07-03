@@ -1,220 +1,210 @@
-Return-Path: <devicetree+bounces-192411-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-192412-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5338CAF69F7
-	for <lists+devicetree@lfdr.de>; Thu,  3 Jul 2025 07:56:08 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id AFC35AF6A40
+	for <lists+devicetree@lfdr.de>; Thu,  3 Jul 2025 08:26:52 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id CB19A7ACFF7
-	for <lists+devicetree@lfdr.de>; Thu,  3 Jul 2025 05:54:42 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 5ACDB48296E
+	for <lists+devicetree@lfdr.de>; Thu,  3 Jul 2025 06:26:26 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id CFF15291C0B;
-	Thu,  3 Jul 2025 05:55:58 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id BEF7E292B42;
+	Thu,  3 Jul 2025 06:26:33 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="G6wxXthv"
+	dkim=pass (4096-bit key) header.d=prolan.hu header.i=@prolan.hu header.b="jebrNMu/"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+Received: from fw2.prolan.hu (fw2.prolan.hu [193.68.50.107])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 098D3225D6;
-	Thu,  3 Jul 2025 05:55:56 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 876BF291C25;
+	Thu,  3 Jul 2025 06:26:30 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=193.68.50.107
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1751522158; cv=none; b=Dpma8PGhfeji+Xp6bnBhiohM+Zun1TjwEBjVriWYwlZuDpYroSt5Sp6QlNQbraLXkG8TenHNkoczPycFqmFakuOsqtcXN4gNY5nXBfK84/y8pY/vKGs7yGMAECJExrlmIyycpfTznKfDMpxedmwbMBKlD/uK68InJ7bpFXZOiNs=
+	t=1751523993; cv=none; b=rSpzg/1u+q67NcJr9g0kEfdO2N9QkVylXU5ncDTMYcYvh83so+keflSHvPjALS6lpT7D0+IZNb3xDvgedYjrLy/ygJCQjxqqLtmmt9+5oyO/29oCXBBecRVqO8bjdDRFOGaRcRviG/Rq6o0HK4bTP+JHjuqKgQl8udWkTG8a1ks=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1751522158; c=relaxed/simple;
-	bh=S38JpONH6W8dZbBwYv5WWAtVirhkEf8Ih0JiRwpo9MA=;
-	h=From:To:CC:Subject:Date:Message-ID:MIME-Version:Content-Type; b=eBZlSG3zo6SFUqirtq5AF/HEtL8KpqohTy6Y8dkcDVqQxprUD45g7VoNZp+Kz9WfilnILKRGvdPJpgCSMhtUZVtCEOgC4o8Dw+o2YW9glF0bkseYrXXQwONMGMhyA5OhlYugaC3bDDLoWo5xyxRtacWdkpUDBub2RF4UmRb2coo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=G6wxXthv; arc=none smtp.client-ip=205.220.180.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
-Received: from pps.filterd (m0279873.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 562MwDSt030091;
-	Thu, 3 Jul 2025 05:55:53 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	cc:content-transfer-encoding:content-type:date:from:message-id
-	:mime-version:subject:to; s=qcppdkim1; bh=JeY9R6QXpHeFJS6EQcb6j6
-	0aqIhPOXjzXLqFIeCf1yc=; b=G6wxXthvfUMfWt28bmVTMQUHuSy+I1nKnYcLZ7
-	Ju9IpjhuEbJdrboJyJNrFOADpA6Dy16BDJHTS7aB5Ynprh1T73Rne+M2xkVu0SBt
-	wFgezrInEzZf5hkhiEnaUg8Ha5Jnmpn3JaOL60LovWsl47i6OoX6glaVNWxrC2m7
-	097z7I9q3d0xr3a8CO2SILNXDBYNz2islH0m/53IGh4LOX62gK0C0A9eSezHqHmW
-	T9LqNM7t1SkeAnUnLFghYgPo20fPGvgOYc4dYNU3MRcXpJm2u6LUqqYL8MGNmQsZ
-	+ArFCXi9M6Mi9mphBxOc03ZDn3d98YhmRDkQ1iCjadM8vH7A==
-Received: from nasanppmta01.qualcomm.com (i-global254.qualcomm.com [199.106.103.254])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 47mhxn5utq-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Thu, 03 Jul 2025 05:55:53 +0000 (GMT)
-Received: from nasanex01c.na.qualcomm.com (nasanex01c.na.qualcomm.com [10.45.79.139])
-	by NASANPPMTA01.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 5635tqge029568
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Thu, 3 Jul 2025 05:55:52 GMT
-Received: from hu-lxu5-sha.qualcomm.com (10.80.80.8) by
- nasanex01c.na.qualcomm.com (10.45.79.139) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1748.10; Wed, 2 Jul 2025 22:55:49 -0700
-From: Ling Xu <quic_lxu5@quicinc.com>
-To: <andersson@kernel.org>, <konradybcio@kernel.org>, <robh@kernel.org>,
-        <krzk+dt@kernel.org>, <conor+dt@kernel.org>
-CC: <quic_kuiw@quicinc.com>, <ekansh.gupta@oss.qualcomm.com>,
-        <devicetree@vger.kernel.org>, <linux-arm-msm@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>, Ling Xu <quic_lxu5@quicinc.com>
-Subject: [PATCH v2] arm64: dts: qcom: qcs615: Add ADSP and CDSP fastrpc nodes
-Date: Thu, 3 Jul 2025 11:25:32 +0530
-Message-ID: <20250703055532.2199477-1-quic_lxu5@quicinc.com>
-X-Mailer: git-send-email 2.34.1
+	s=arc-20240116; t=1751523993; c=relaxed/simple;
+	bh=yolghlH84zNp3z3AnrA7Fl6gSmsC6ahPKxW1suPliIc=;
+	h=From:Date:Subject:MIME-Version:Content-Type:Message-ID:To:CC; b=X6+uBcW9VPggl8RafHWKldyjFdE9mSZccJ/Ur8hy9jTeDziRRHUYa09/n3P7CpqaUuj+JHAjuhSmDiQ+aQdP9AOB/67HntnDKpRicgoMI+HxLH0438xx/COnsaSx1tWyAN6rWYI8zwwJAYbzMy9oy4bpEeN2TmBjwM/LKr6/Hcc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=prolan.hu; spf=pass smtp.mailfrom=prolan.hu; dkim=pass (4096-bit key) header.d=prolan.hu header.i=@prolan.hu header.b=jebrNMu/; arc=none smtp.client-ip=193.68.50.107
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=prolan.hu
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=prolan.hu
+Received: from proxmox-mailgw.intranet.prolan.hu (localhost.localdomain [127.0.0.1])
+	by proxmox-mailgw.intranet.prolan.hu (Proxmox) with ESMTP id 0DF21A01EB;
+	Thu,  3 Jul 2025 08:26:28 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=prolan.hu; h=cc
+	:cc:content-transfer-encoding:content-type:content-type:date
+	:from:from:message-id:mime-version:reply-to:subject:subject:to
+	:to; s=mail; bh=V653CIHpf+sCA9FsZy5lY5aKTZr7iBRrsViFH9Fa8Ck=; b=
+	jebrNMu/DAB3eGxddhmjP6Ftt43ouIkz5H1RlbibUy392ojs1UxQppNX/gxb0V4u
+	J+l+0UWZKhnNzPRQKkFplKEmCit2AgAVMLNbaIZ7fFaiUy+EGioKRr0LVb3lyLwD
+	3i3PZc/pCnaVdLu+yyb0f00CBmXegNFzefN86kYYJDp+M8tfIGLioU2z6xnuMuwf
+	NIWEAN8mjHvPwYQrJp2r9mq1Gmfl0rtWNntJINLpLEfSjI4Er35q+/xOiOaClDUF
+	muhIKTlS31LEoug2arqSXxVGR0rTB2Hlop6NpJderdjlhoBl+CpqYitvVFgoq09Y
+	BDTBFgmC7vuVM7ZBpOaxLaY1/goVIl+ptBKFGVmRCjWA3Jm8jtbK6VspQMYBw/TA
+	MjSoH3SZFbhDK9gyVHC4UuOTVc90IfrNnB8XX2FpC8GRjFo0gT2ne8NxIb5IJeIg
+	QObbvljb/ayVDnzTKOa8m4OV8IO04QJQk86vUCvY8RYV8Q51ER4F+66rOI8NuRQH
+	ctGtAldZZ1fPVMUVvn6bvDMUzREB64QK+l9Zrib8uxTUWd8j8mwQ/tYnCERnnqGA
+	kv7nohsIGAcseq38uK0bpjZpwplq02xPN/wWPKoAgnVBBW8KLmbX8RuWDIMXPxB0
+	9iS/70lDSxRLwk4w2bvNNd5J3gYrFsKVg0wo31MB6eA=
+From: =?utf-8?q?Bence_Cs=C3=B3k=C3=A1s?= <csokas.bence@prolan.hu>
+Date: Thu, 3 Jul 2025 08:26:16 +0200
+Subject: [PATCH] ARM: dts: imx6-compulab: Replace license text comment with
+ SPDX identifier
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
- nasanex01c.na.qualcomm.com (10.45.79.139)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwNzAzMDA0NSBTYWx0ZWRfXzkoFuccDgLZ6
- T4UrjvcylpyT//h8LsLDJmJLRaJZGPxRWAbrIbvGxZwMfUr4iK4bryXMHOupZS2MgSlAOu5L7hd
- WMoXb4JfJeLBwVs04Ci9OQMS3yABl2OlPe1VV9/tTygsWLqX0BW/5yqm0LAoVbEE3Zq39q9yRvv
- WLU168d3hc9g46Rt5+j9TETDele0plWkaOpH4if8iYX1jDr35vCFbcNSoJUHHxql//SqUcJsKSA
- O1xjDyJiaKP0W+jxLlLUiBmgryF0F0Uz1XvEloRevaf78Xp5VzQhXT14reY7IAWv/VxI6wR/olv
- XQA/HSYUo7dFY19f8CTPy6PNK+JoRNs5pvo7vU2Tp62MIz/EagJqju6EfXMNe9khDBrLojWXPye
- nb013yEG91LsGW0Qyx3z3dbdbMzQ9f5HddaiK9j32xoMtATJzqA43k2iXwIpcKyg0Le9Hvw/
-X-Authority-Analysis: v=2.4 cv=EbvIQOmC c=1 sm=1 tr=0 ts=68661b69 cx=c_pps
- a=JYp8KDb2vCoCEuGobkYCKw==:117 a=JYp8KDb2vCoCEuGobkYCKw==:17
- a=GEpy-HfZoHoA:10 a=Wb1JkmetP80A:10 a=VwQbUJbxAAAA:8 a=COk6AnOGAAAA:8
- a=XD3BUoiH-jNJIxuL50sA:9 a=TjNXssC_j7lpFel5tvFf:22
-X-Proofpoint-ORIG-GUID: 4ccLEQl74UUtp4TTnUuV5pXkaCFRwYV4
-X-Proofpoint-GUID: 4ccLEQl74UUtp4TTnUuV5pXkaCFRwYV4
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1099,Hydra:6.1.7,FMLib:17.12.80.40
- definitions=2025-07-03_01,2025-07-02_04,2025-03-28_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- phishscore=0 mlxscore=0 priorityscore=1501 mlxlogscore=566 lowpriorityscore=0
- malwarescore=0 adultscore=0 clxscore=1015 bulkscore=0 impostorscore=0
- spamscore=0 suspectscore=0 classifier=spam authscore=0 authtc=n/a authcc=
- route=outbound adjust=0 reason=mlx scancount=1 engine=8.19.0-2505280000
- definitions=main-2507030045
+Message-ID: <20250703-clab-dts-lic-v1-1-768cfb78ceda@prolan.hu>
+X-B4-Tracking: v=1; b=H4sIAIciZmgC/x3MQQqDQAxA0atI1g2Mikp7FekiEzMasFNJpBTEu
+ 3fq8i3+P8DFVBwe1QEmH3V954L6VgEvlGdBnYqhCU0XhtAirxRx2h1XZby3Q6pT6lkoQkk2k6T
+ fazc+iyO5YDTKvPwnL/JdDM7zBxinAVp3AAAA
+To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>, "Sascha
+ Hauer" <s.hauer@pengutronix.de>, Pengutronix Kernel Team
+	<kernel@pengutronix.de>, Fabio Estevam <festevam@gmail.com>
+CC: <devicetree@vger.kernel.org>, <imx@lists.linux.dev>,
+	<linux-arm-kernel@lists.infradead.org>, <linux-kernel@vger.kernel.org>, "Igor
+ Grinberg" <grinberg@compulab.co.il>, Ilya Ledvich <ilya@compulab.co.il>,
+	Valentin Raevsky <valentin@compulab.co.il>,
+	=?utf-8?q?Bence_Cs=C3=B3k=C3=A1s?= <csokas.bence@prolan.hu>
+X-Mailer: b4 0.13.0
+X-ESET-AS: R=OK;S=0;OP=CALC;TIME=1751523987;VERSION=7994;MC=2198676828;ID=225030;TRN=0;CRV=0;IPC=;SP=0;SIPS=0;PI=3;F=0
+X-ESET-Antispam: OK
+X-EsetResult: clean, is OK
+X-EsetId: 37303A296767155D6C726A
 
-Add ADSP and CDSP fastrpc nodes for QCS615 platform.
+Replace verbatim license text with a `SPDX-License-Identifier`.
 
-Signed-off-by: Ling Xu <quic_lxu5@quicinc.com>
+For imx6q-cm-fx6.dts:
+
+The comment header mis-attributes this license to be "X11", but the
+license text does not include the last line "Except as contained in this
+notice, the name of the X Consortium shall not be used in advertising or
+otherwise to promote the sale, use or other dealings in this Software
+without prior written authorization from the X Consortium.". Therefore,
+this license is actually equivalent to the SPDX "MIT" license (confirmed
+by text diffing).
+
+For the rest:
+
+The header is cut short, there's no mention of either the GPL version,
+nor what is meant by the "X11" license. That would mean a SPDX of:
+
+  (GPL-1.0-or-later OR X11)
+
+However, since the header seems to be a truncated version of cm-fx6's,
+I'll *assume* that they meant to use the same license, but CompuLab will
+have to confirm or deny this.
+
+Cc: Igor Grinberg <grinberg@compulab.co.il>
+Cc: Ilya Ledvich <ilya@compulab.co.il>
+Cc: Valentin Raevsky <valentin@compulab.co.il>
+Signed-off-by: Bence Csókás <csokas.bence@prolan.hu>
 ---
-v1 -> v2:
-  - resend patch.
-Patch [v1]: https://lore.kernel.org/linux-arm-msm/20250523103853.1538813-1-quic_lxu5@quicinc.com/
----
- arch/arm64/boot/dts/qcom/qcs615.dtsi | 86 ++++++++++++++++++++++++++++
- 1 file changed, 86 insertions(+)
+ arch/arm/boot/dts/nxp/imx/imx6q-cm-fx6.dts      | 38 +------------------------
+ arch/arm/boot/dts/nxp/imx/imx7d-cl-som-imx7.dts |  6 +---
+ arch/arm/boot/dts/nxp/imx/imx7d-sbc-imx7.dts    |  5 ----
+ 3 files changed, 2 insertions(+), 47 deletions(-)
 
-diff --git a/arch/arm64/boot/dts/qcom/qcs615.dtsi b/arch/arm64/boot/dts/qcom/qcs615.dtsi
-index bfbb21035492..58e07c9c08c1 100644
---- a/arch/arm64/boot/dts/qcom/qcs615.dtsi
-+++ b/arch/arm64/boot/dts/qcom/qcs615.dtsi
-@@ -3166,6 +3166,56 @@ glink-edge {
- 				mboxes = <&apss_shared 4>;
- 				label = "cdsp";
- 				qcom,remote-pid = <5>;
-+
-+				fastrpc {
-+					compatible = "qcom,fastrpc";
-+					qcom,glink-channels = "fastrpcglink-apps-dsp";
-+					label = "cdsp";
-+					#address-cells = <1>;
-+					#size-cells = <0>;
-+
-+					compute-cb@1 {
-+						compatible = "qcom,fastrpc-compute-cb";
-+						reg = <1>;
-+						iommus = <&apps_smmu 0x1081 0x0>;
-+						dma-coherent;
-+					};
-+
-+					compute-cb@2 {
-+						compatible = "qcom,fastrpc-compute-cb";
-+						reg = <2>;
-+						iommus = <&apps_smmu 0x1082 0x0>;
-+						dma-coherent;
-+					};
-+
-+					compute-cb@3 {
-+						compatible = "qcom,fastrpc-compute-cb";
-+						reg = <3>;
-+						iommus = <&apps_smmu 0x1083 0x0>;
-+						dma-coherent;
-+					};
-+
-+					compute-cb@4 {
-+						compatible = "qcom,fastrpc-compute-cb";
-+						reg = <4>;
-+						iommus = <&apps_smmu 0x1084 0x0>;
-+						dma-coherent;
-+					};
-+
-+					compute-cb@5 {
-+						compatible = "qcom,fastrpc-compute-cb";
-+						reg = <5>;
-+						iommus = <&apps_smmu 0x1085 0x0>;
-+						dma-coherent;
-+					};
-+
-+					compute-cb@6 {
-+						compatible = "qcom,fastrpc-compute-cb";
-+						reg = <6>;
-+						iommus = <&apps_smmu 0x1086 0x0>;
-+						dma-coherent;
-+					};
-+				};
- 			};
- 		};
+diff --git a/arch/arm/boot/dts/nxp/imx/imx6q-cm-fx6.dts b/arch/arm/boot/dts/nxp/imx/imx6q-cm-fx6.dts
+index 299106fbe51c..e1161a750d60 100644
+--- a/arch/arm/boot/dts/nxp/imx/imx6q-cm-fx6.dts
++++ b/arch/arm/boot/dts/nxp/imx/imx6q-cm-fx6.dts
+@@ -1,44 +1,8 @@
++// SPDX-License-Identifier: (GPL-2.0-only OR MIT)
+ /*
+  * Copyright 2013 CompuLab Ltd.
+  *
+  * Author: Valentin Raevsky <valentin@compulab.co.il>
+- *
+- * This file is dual-licensed: you can use it either under the terms
+- * of the GPL or the X11 license, at your option. Note that this dual
+- * licensing only applies to this file, and not this project as a
+- * whole.
+- *
+- *  a) This file is free software; you can redistribute it and/or
+- *     modify it under the terms of the GNU General Public License
+- *     version 2 as published by the Free Software Foundation.
+- *
+- *     This file is distributed in the hope that it will be useful,
+- *     but WITHOUT ANY WARRANTY; without even the implied warranty of
+- *     MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+- *     GNU General Public License for more details.
+- *
+- * Or, alternatively,
+- *
+- *  b) Permission is hereby granted, free of charge, to any person
+- *     obtaining a copy of this software and associated documentation
+- *     files (the "Software"), to deal in the Software without
+- *     restriction, including without limitation the rights to use,
+- *     copy, modify, merge, publish, distribute, sublicense, and/or
+- *     sell copies of the Software, and to permit persons to whom the
+- *     Software is furnished to do so, subject to the following
+- *     conditions:
+- *
+- *     The above copyright notice and this permission notice shall be
+- *     included in all copies or substantial portions of the Software.
+- *
+- *     THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
+- *     EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES
+- *     OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
+- *     NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT
+- *     HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY,
+- *     WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
+- *     FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR
+- *     OTHER DEALINGS IN THE SOFTWARE.
+  */
  
-@@ -3838,6 +3888,42 @@ glink_edge: glink-edge {
- 				mboxes = <&apss_shared 24>;
- 				label = "lpass";
- 				qcom,remote-pid = <2>;
-+
-+				fastrpc {
-+					compatible = "qcom,fastrpc";
-+					qcom,glink-channels = "fastrpcglink-apps-dsp";
-+					label = "adsp";
-+					#address-cells = <1>;
-+					#size-cells = <0>;
-+
-+					compute-cb@3 {
-+						compatible = "qcom,fastrpc-compute-cb";
-+						reg = <3>;
-+						iommus = <&apps_smmu 0x1723 0x0>;
-+						dma-coherent;
-+					};
-+
-+					compute-cb@4 {
-+						compatible = "qcom,fastrpc-compute-cb";
-+						reg = <4>;
-+						iommus = <&apps_smmu 0x1724 0x0>;
-+						dma-coherent;
-+					};
-+
-+					compute-cb@5 {
-+						compatible = "qcom,fastrpc-compute-cb";
-+						reg = <5>;
-+						iommus = <&apps_smmu 0x1725 0x0>;
-+						dma-coherent;
-+					};
-+
-+					compute-cb@6 {
-+						compatible = "qcom,fastrpc-compute-cb";
-+						reg = <6>;
-+						iommus = <&apps_smmu 0x1726 0x0>;
-+						dma-coherent;
-+					};
-+				};
- 			};
- 		};
- 	};
+ /dts-v1/;
+diff --git a/arch/arm/boot/dts/nxp/imx/imx7d-cl-som-imx7.dts b/arch/arm/boot/dts/nxp/imx/imx7d-cl-som-imx7.dts
+index 713483c39c9d..a0e73e71ec5d 100644
+--- a/arch/arm/boot/dts/nxp/imx/imx7d-cl-som-imx7.dts
++++ b/arch/arm/boot/dts/nxp/imx/imx7d-cl-som-imx7.dts
+@@ -1,13 +1,9 @@
++// SPDX-License-Identifier: (GPL-2.0-only OR MIT)
+ /*
+  * Support for CompuLab CL-SOM-iMX7 System-on-Module
+  *
+  * Copyright (C) 2015 CompuLab Ltd. - http://www.compulab.co.il/
+  * Author: Ilya Ledvich <ilya@compulab.co.il>
+- *
+- * This file is dual-licensed: you can use it either under the terms
+- * of the GPL or the X11 license, at your option. Note that this dual
+- * licensing only applies to this file, and not this project as a
+- * whole.
+  */
+ 
+ /dts-v1/;
+diff --git a/arch/arm/boot/dts/nxp/imx/imx7d-sbc-imx7.dts b/arch/arm/boot/dts/nxp/imx/imx7d-sbc-imx7.dts
+index f8a868552707..4f989c3b0ef7 100644
+--- a/arch/arm/boot/dts/nxp/imx/imx7d-sbc-imx7.dts
++++ b/arch/arm/boot/dts/nxp/imx/imx7d-sbc-imx7.dts
+@@ -3,11 +3,6 @@
+  *
+  * Copyright (C) 2015 CompuLab Ltd. - http://www.compulab.co.il/
+  * Author: Ilya Ledvich <ilya@compulab.co.il>
+- *
+- * This file is dual-licensed: you can use it either under the terms
+- * of the GPL or the X11 license, at your option. Note that this dual
+- * licensing only applies to this file, and not this project as a
+- * whole.
+  */
+ 
+ #include "imx7d-cl-som-imx7.dts"
+
+---
+base-commit: 66701750d5565c574af42bef0b789ce0203e3071
+change-id: 20250703-clab-dts-lic-937f1ff6ceab
+
+Best regards,
 -- 
-2.34.1
+Bence Csókás <csokas.bence@prolan.hu>
+
 
 
