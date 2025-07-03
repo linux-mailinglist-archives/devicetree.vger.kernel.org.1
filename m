@@ -1,327 +1,132 @@
-Return-Path: <devicetree+bounces-192641-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-192642-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 87BE5AF72C0
-	for <lists+devicetree@lfdr.de>; Thu,  3 Jul 2025 13:46:17 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0C00EAF72F1
+	for <lists+devicetree@lfdr.de>; Thu,  3 Jul 2025 13:51:22 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 024924E5FFE
-	for <lists+devicetree@lfdr.de>; Thu,  3 Jul 2025 11:45:50 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id A5B6F4E6AB1
+	for <lists+devicetree@lfdr.de>; Thu,  3 Jul 2025 11:49:47 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1CEC32E425D;
-	Thu,  3 Jul 2025 11:45:59 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 92BFC2E49BE;
+	Thu,  3 Jul 2025 11:48:58 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="q1c+SvzR"
+	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="pYmAqzRK"
 X-Original-To: devicetree@vger.kernel.org
 Received: from bali.collaboradmins.com (bali.collaboradmins.com [148.251.105.195])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C61D6242D87;
-	Thu,  3 Jul 2025 11:45:56 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A80B42D77F2;
+	Thu,  3 Jul 2025 11:48:55 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=148.251.105.195
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1751543159; cv=none; b=YFINcJQ066qBknSGFtS0lro7rxLkiareOaWQfDsBGn7ox+cWWdMYCa+hocLzVbKiI66lac7rvQQmIKW/KNQGggoCh/7qhruhOMB02LvknpZdtzsM6nvM++Uks4D2IWyBE5Y13t1qW2K8024A2g9PpQd/Ymhvmv2EUFTlPe0+mtw=
+	t=1751543338; cv=none; b=KN7q1U/CmaWRQQhFDKAQaOmoPn5C7J2KLh7tmV/tAb8OIcNU0idWxKklOCNx666I2gLM/tMrIL/KrYtC2YWQWRa/D1F6TIoenY77a4i4/8dF7G0q03d3gcww+B7MPCFF7+uGnoSK0CrVBx42JyK39K5Rzad/MWty8lYJZuVXYcg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1751543159; c=relaxed/simple;
-	bh=zt20Qy3CieaOIiZUFtQZw2VGeHUHAWGAW6laSa6fU50=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=PiHcNWVPOZHywE+odQvkCbeeoEPurv87FQb3QoVySB7X9IjDkVXspSJGSrxmDOvUi3SqWXg5pwxeOsJHUnqs+EdtjV4nVmNp9oHLH5o/Nkj1rtBUKGTBeVTpn6DeGHal0PGHS8b8OfW/XVFimcZs9zGJdLTIbUGww1XXvgUfyBw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b=q1c+SvzR; arc=none smtp.client-ip=148.251.105.195
+	s=arc-20240116; t=1751543338; c=relaxed/simple;
+	bh=A20LFGjNp+gZfOV/c+s4NxwTMpmAgEjZ3epNnBK6ubI=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=TiIuoWR1UMpBL4q/2nNax4VAw/fEnQ/c2sg7hvOdsEqAhmdxBwWggwlbZaJ0rEFrFuDgFOiyF2ZfpmyFpVcmL0jbgXQh4yirRATFOUlbzx626ck41MNgFE+cxoHZyLzb23nZYdTbPG/Rc/phKqCTMNFRsv2Xz77Wrd6vPlY+f3A=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b=pYmAqzRK; arc=none smtp.client-ip=148.251.105.195
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-	s=mail; t=1751543155;
-	bh=zt20Qy3CieaOIiZUFtQZw2VGeHUHAWGAW6laSa6fU50=;
-	h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-	b=q1c+SvzR54Bzsh1h84VC66FmcJf98YwR5iGj4jD6Twzfz4PR2KAt+V4VgAWnxlOPz
-	 6Pe3lnMZCgkGW61bwX5tBrGcvOTaju/HtVgg4ALkeS+xsK8bMuFirbShIykAIhE1Lp
-	 u6UaP6jnU/g3TTQa/CSPnMLaIjc68UDX2qepsTdx8UT6gb/5opXmDDeMbWmbOS8fC5
-	 r3t7C0j9cy75SLydNV1R7tJaA8s3zmiMD30pUqVKPDtdDlF972H+E2tglg/fcK0y37
-	 DT/GM1wX8oIp+tzVhmjZaEiYNBwFKapAad3NU//do98JM7uuxBm+l5+KVjBbjr9Ahv
-	 obvdiZItDqc9g==
-Received: from IcarusMOD.eternityproject.eu (2-237-20-237.ip236.fastwebnet.it [2.237.20.237])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	s=mail; t=1751543333;
+	bh=A20LFGjNp+gZfOV/c+s4NxwTMpmAgEjZ3epNnBK6ubI=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=pYmAqzRKKwXxndgRMsp7Ue/kMz/YJIN4bFZKXJxaUMrQGS/f/MO1aa22l3DVpB3is
+	 Vk284nYKACgB0LiXWw3JEWGv+5dQFVHDdQMRzmQ8jitoYGGc7W7QMMxGriePUGgMQz
+	 fl30PmBCXWuFgu8ULKXUokZhiDDvrXUKvliRf/kuBgw46dbtw7JCZ4bMm9Lo51lRcQ
+	 mFmf6uWIW4HawaDXDILRmBNYHoQITYS9Lv7Ejg4v44N2hmhvWQzZGgboKzoP+ple4X
+	 BPP4rIoPMxtmW6LHwp5yK9CejrlKQeXwnntJvE0vqJn044Xj9IUlHn03znwAnkAdrs
+	 MpozlXGbRJx8A==
+Received: from [192.168.1.100] (2-237-20-237.ip236.fastwebnet.it [2.237.20.237])
+	(using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
 	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
 	(No client certificate requested)
 	(Authenticated sender: kholk11)
-	by bali.collaboradmins.com (Postfix) with ESMTPSA id 57AEB17E09C6;
-	Thu,  3 Jul 2025 13:45:54 +0200 (CEST)
-From: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
-To: jassisinghbrar@gmail.com
-Cc: robh@kernel.org,
-	krzk+dt@kernel.org,
-	conor+dt@kernel.org,
-	matthias.bgg@gmail.com,
-	angelogioacchino.delregno@collabora.com,
-	linux-kernel@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	linux-mediatek@lists.infradead.org,
-	kernel@collabora.com
-Subject: [PATCH v2 2/2] mailbox: Add MediaTek TinySYS MHU-like Mailbox
-Date: Thu,  3 Jul 2025 13:45:49 +0200
-Message-ID: <20250703114549.114313-3-angelogioacchino.delregno@collabora.com>
-X-Mailer: git-send-email 2.49.0
-In-Reply-To: <20250703114549.114313-1-angelogioacchino.delregno@collabora.com>
-References: <20250703114549.114313-1-angelogioacchino.delregno@collabora.com>
+	by bali.collaboradmins.com (Postfix) with ESMTPSA id 1CD5D17E07FF;
+	Thu,  3 Jul 2025 13:48:53 +0200 (CEST)
+Message-ID: <5ee16a72-01a0-4f2c-9bcb-e4b4b069b2dd@collabora.com>
+Date: Thu, 3 Jul 2025 13:48:52 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2 0/2] arm64: mediatek: Enable efuse GPU speed bin
+ post-processing
+To: Chen-Yu Tsai <wenst@chromium.org>
+Cc: linux-arm-kernel@lists.infradead.org, linux-mediatek@lists.infradead.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ Lala Lin <lala.lin@mediatek.com>, Matthias Brugger <matthias.bgg@gmail.com>,
+ Srinivas Kandagatla <srini@kernel.org>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Andrew-CT Chen <andrew-ct.chen@mediatek.com>
+References: <20250610063431.2955757-1-wenst@chromium.org>
+ <CAGXv+5HDAZ-MBBMk00O+cdcq55KnsKdEAMD7E2uaAf=2LY=1cg@mail.gmail.com>
+From: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+Content-Language: en-US
+In-Reply-To: <CAGXv+5HDAZ-MBBMk00O+cdcq55KnsKdEAMD7E2uaAf=2LY=1cg@mail.gmail.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 8bit
 
-Add the MediaTek TinySYS mailbox, used for IPC with the TinySYS
-MCU that is integrated in variousSoCs, enabling communication
-with remote processors that use the MediaTek IPIC framework
-through the TinySYS SCMI protocol.
+Il 01/07/25 11:15, Chen-Yu Tsai ha scritto:
+> Hi Angelo,
+> 
+> On Tue, Jun 10, 2025 at 2:34 PM Chen-Yu Tsai <wenst@chromium.org> wrote:
+>>
+>> Hi everyone,
+>>
+>> This is v2 of the MT8188 efuse GPU speed bin post-processing enablement
+>> patches. In v1 [1] the change was made to the driver. Angelo, the platform
+>> maintainer believes the change should be made to the DT binding instead
+>> [2]. v2 adopts Angelo's argument.
+>>
+>> Patch 1 updates the efuse DT binding so that MT8186 is a base compatible
+>> with no fallback, and MT8188 falls back to MT8186.
+>>
+>> Patch 2 updates the MT8188 DT to follow the new binding.
+>>
+>> If possible I would like to see both patches merged through the soc
+>> tree once the DT binding maintainers give an ack. This avoids prolonged
+>> waiting for the binding changes to land and uncertainty about whether
+>> things have fully landed or not.
+>>
+>>
+>> Thanks
+>> ChenYu
+>>
+>> [1] https://lore.kernel.org/all/20241223100648.2166754-1-wenst@chromium.org/
+>> [2] https://lore.kernel.org/all/11028242-afe4-474a-9d76-cd1bd9208987@collabora.com/
+>>
+>> Chen-Yu Tsai (2):
+>>    dt-bindings: nvmem: mediatek: efuse: split MT8186/MT8188 from base
+>>      version
+>>    arm64: dts: mediatek: mt8188: Change efuse fallback compatible to
+>>      mt8186
+> 
+> Friendly ping. Please take a look and see if this scheme is to your liking.
+> 
 
-Signed-off-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
----
- drivers/mailbox/Kconfig               |   9 ++
- drivers/mailbox/Makefile              |   2 +
- drivers/mailbox/mtk-tinysys-mailbox.c | 195 ++++++++++++++++++++++++++
- 3 files changed, 206 insertions(+)
- create mode 100644 drivers/mailbox/mtk-tinysys-mailbox.c
+For the whole series
 
-diff --git a/drivers/mailbox/Kconfig b/drivers/mailbox/Kconfig
-index 68eeed660a4a..35149110cb3a 100644
---- a/drivers/mailbox/Kconfig
-+++ b/drivers/mailbox/Kconfig
-@@ -285,6 +285,15 @@ config MTK_CMDQ_MBOX
- 	  critical time limitation, such as updating display configuration
- 	  during the vblank.
- 
-+config MTK_TINYSYS_MBOX
-+	tristate "MediaTek TINYSYS Mailbox Support"
-+	depends on ARCH_MEDIATEK || COMPILE_TEST
-+	help
-+	  The MediaTek TinySYS mailbox is used to communicate with remote
-+	  processors based on the MediaTek IPIC framework.
-+	  Say yes here to add support for the MediaTek TinySYS mailbox
-+	  driver.
-+
- config ZYNQMP_IPI_MBOX
- 	tristate "Xilinx ZynqMP IPI Mailbox"
- 	depends on ARCH_ZYNQMP && OF
-diff --git a/drivers/mailbox/Makefile b/drivers/mailbox/Makefile
-index 13a3448b3271..415eb1d9ed47 100644
---- a/drivers/mailbox/Makefile
-+++ b/drivers/mailbox/Makefile
-@@ -61,6 +61,8 @@ obj-$(CONFIG_MTK_ADSP_MBOX)	+= mtk-adsp-mailbox.o
- 
- obj-$(CONFIG_MTK_CMDQ_MBOX)	+= mtk-cmdq-mailbox.o
- 
-+obj-$(CONFIG_MTK_TINYSYS_MBOX)	+= mtk-tinysys-mailbox.o
-+
- obj-$(CONFIG_ZYNQMP_IPI_MBOX)	+= zynqmp-ipi-mailbox.o
- 
- obj-$(CONFIG_SUN6I_MSGBOX)	+= sun6i-msgbox.o
-diff --git a/drivers/mailbox/mtk-tinysys-mailbox.c b/drivers/mailbox/mtk-tinysys-mailbox.c
-new file mode 100644
-index 000000000000..0c33505dfd04
---- /dev/null
-+++ b/drivers/mailbox/mtk-tinysys-mailbox.c
-@@ -0,0 +1,195 @@
-+// SPDX-License-Identifier: GPL-2.0
-+/*
-+ * Copyright (c) 2021 MediaTek Inc.
-+ * Copyright (c) 2025 Collabora Ltd
-+ *                    AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
-+ */
-+
-+#include <linux/arm-smccc.h>
-+#include <linux/device.h>
-+#include <linux/interrupt.h>
-+#include <linux/io.h>
-+#include <linux/kernel.h>
-+#include <linux/mailbox_controller.h>
-+#include <linux/module.h>
-+#include <linux/of.h>
-+#include <linux/platform_device.h>
-+#include <linux/property.h>
-+#include <linux/soc/mediatek/mtk_sip_svc.h>
-+
-+#define MTK_SIP_TINYSYS_SSPM_CONTROL	MTK_SIP_SMC_CMD(0x53c)
-+#define MTK_TINYSYS_SSPM_OP_MBOX_CLR	0
-+#define MTK_TINYSYS_SSPM_OP_MD2SPM_CLR	1
-+
-+#define INTR_SET_OFS	0x0
-+#define INTR_CLR_OFS	0x4
-+
-+struct mtk_tinysys_mhu_mbox_pdata {
-+	bool is_secure_mbox;
-+	bool notify_spm;
-+};
-+
-+struct mtk_tinysys_mhu_mbox {
-+	void __iomem *base;
-+	int irq;
-+	const struct mtk_tinysys_mhu_mbox_pdata *pdata;
-+	struct mbox_controller mbox;
-+};
-+
-+static inline struct mtk_tinysys_mhu_mbox *to_mtk_tinysys_mhu_mbox(struct mbox_controller *mbox)
-+{
-+	return container_of(mbox, struct mtk_tinysys_mhu_mbox, mbox);
-+}
-+
-+static irqreturn_t mtk_tinysys_mhu_mbox_irq(int irq, void *data)
-+{
-+	u32 val;
-+	struct arm_smccc_res res;
-+	struct mbox_chan *chan = data;
-+	struct mtk_tinysys_mhu_mbox *priv = to_mtk_tinysys_mhu_mbox(chan->mbox);
-+
-+	val = readl_relaxed(priv->base + INTR_CLR_OFS);
-+	if (!val)
-+		return IRQ_NONE;
-+
-+	if (priv->pdata->is_secure_mbox) {
-+		/* Can't fail: ignore res.a0 checks */
-+		arm_smccc_smc(MTK_SIP_TINYSYS_SSPM_CONTROL,
-+			      MTK_TINYSYS_SSPM_OP_MBOX_CLR,
-+			      priv->irq, 0, 0, 0, 0, 0, &res);
-+	} else {
-+		writel(1, priv->base + INTR_CLR_OFS);
-+	}
-+
-+	mbox_chan_received_data(chan, (void *)&val);
-+
-+	if (priv->pdata->notify_spm)
-+		arm_smccc_smc(MTK_SIP_TINYSYS_SSPM_CONTROL,
-+			      MTK_TINYSYS_SSPM_OP_MD2SPM_CLR,
-+			      priv->irq, 0, 0, 0, 0, 0, &res);
-+	return IRQ_HANDLED;
-+}
-+
-+static bool mtk_tinysys_mhu_mbox_last_tx_done(struct mbox_chan *chan)
-+{
-+	struct mtk_tinysys_mhu_mbox *priv = to_mtk_tinysys_mhu_mbox(chan->mbox);
-+	u32 val = readl_relaxed(priv->base + INTR_SET_OFS);
-+
-+	return val == 0;
-+}
-+
-+static int mtk_tinysys_mhu_mbox_send_data(struct mbox_chan *chan, void *data)
-+{
-+	struct mtk_tinysys_mhu_mbox *priv = to_mtk_tinysys_mhu_mbox(chan->mbox);
-+	u32 *arg = data;
-+
-+	writel_relaxed(*arg, priv->base + INTR_SET_OFS);
-+
-+	return 0;
-+}
-+
-+static int mtk_tinysys_mhu_mbox_startup(struct mbox_chan *chan)
-+{
-+	struct mtk_tinysys_mhu_mbox *priv = to_mtk_tinysys_mhu_mbox(chan->mbox);
-+
-+	irq_clear_status_flags(priv->irq, IRQ_NOAUTOEN);
-+	enable_irq(priv->irq);
-+
-+	return 0;
-+}
-+
-+static void mtk_tinysys_mhu_mbox_shutdown(struct mbox_chan *chan)
-+{
-+	struct mtk_tinysys_mhu_mbox *priv = to_mtk_tinysys_mhu_mbox(chan->mbox);
-+
-+	disable_irq(priv->irq);
-+}
-+
-+static const struct mbox_chan_ops tinysys_mbox_chan_ops = {
-+	.send_data = mtk_tinysys_mhu_mbox_send_data,
-+	.startup = mtk_tinysys_mhu_mbox_startup,
-+	.shutdown = mtk_tinysys_mhu_mbox_shutdown,
-+	.last_tx_done = mtk_tinysys_mhu_mbox_last_tx_done,
-+};
-+
-+static int mtk_tinysys_mhu_mbox_probe(struct platform_device *pdev)
-+{
-+	struct device *dev = &pdev->dev;
-+	struct mtk_tinysys_mhu_mbox *priv;
-+	struct mbox_controller *mbox;
-+	int ret;
-+
-+	/* Allocate memory for device */
-+	priv = devm_kzalloc(dev, sizeof(*priv), GFP_KERNEL);
-+	if (!priv)
-+		return -ENOMEM;
-+
-+	priv->base = devm_platform_ioremap_resource(pdev, 0);
-+	if (IS_ERR(priv->base))
-+		return PTR_ERR(priv->base);
-+
-+	priv->irq = platform_get_irq(pdev, 0);
-+	if (priv->irq < 0)
-+		return priv->irq;
-+
-+	priv->pdata = device_get_match_data(dev);
-+	if (!priv->pdata)
-+		return -EINVAL;
-+
-+	mbox = &priv->mbox;
-+	mbox->dev = dev;
-+	mbox->ops = &tinysys_mbox_chan_ops;
-+	mbox->txdone_irq = false;
-+	mbox->txdone_poll = true;
-+	mbox->txpoll_period = 1;
-+	mbox->num_chans = 1;
-+	mbox->chans = devm_kzalloc(dev, sizeof(*mbox->chans), GFP_KERNEL);
-+	if (!mbox->chans)
-+		return -ENOMEM;
-+
-+	platform_set_drvdata(pdev, priv);
-+
-+	ret = devm_request_irq(dev, priv->irq, mtk_tinysys_mhu_mbox_irq,
-+			       IRQF_NO_AUTOEN, dev_name(dev), mbox->chans);
-+	if (ret < 0)
-+		return ret;
-+
-+	ret = devm_mbox_controller_register(dev, &priv->mbox);
-+	if (ret)
-+		return dev_err_probe(dev, ret, "Failed to register mailbox\n");
-+
-+	return 0;
-+}
-+
-+static const struct mtk_tinysys_mhu_mbox_pdata mt6985_tsmhu_mbox_cfg = {
-+	/* Unsecured mailbox, no SPM notification */
-+};
-+
-+static const struct mtk_tinysys_mhu_mbox_pdata mt6989_tsmhu_mbox_cfg = {
-+	.is_secure_mbox = true,
-+};
-+
-+static const struct mtk_tinysys_mhu_mbox_pdata mt8196_tsmhu_mbox_cfg = {
-+	.notify_spm = true,
-+};
-+
-+static const struct of_device_id mtk_tinysys_mhu_mbox_of_match[] = {
-+	{ .compatible = "mediatek,mt6985-tinysys-mhu-mbox", .data = &mt6985_tsmhu_mbox_cfg },
-+	{ .compatible = "mediatek,mt6989-tinysys-mhu-mbox", .data = &mt6989_tsmhu_mbox_cfg },
-+	{ .compatible = "mediatek,mt8196-tinysys-mhu-mbox", .data = &mt8196_tsmhu_mbox_cfg },
-+	{ /* sentinel */ }
-+};
-+MODULE_DEVICE_TABLE(of, mtk_tinysys_mhu_mbox_of_match);
-+
-+static struct platform_driver mtk_tinysys_mhu_mbox_drv = {
-+	.probe = mtk_tinysys_mhu_mbox_probe,
-+	.driver = {
-+		.name = "mtk-tinysys-mhu-mbox",
-+		.of_match_table = mtk_tinysys_mhu_mbox_of_match,
-+	}
-+};
-+module_platform_driver(mtk_tinysys_mhu_mbox_drv);
-+
-+MODULE_AUTHOR("AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>");
-+MODULE_DESCRIPTION("MediaTek TinySYS Mailbox Controller");
-+MODULE_LICENSE("GPL v2");
--- 
-2.49.0
+Reviewed-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+
+> 
+> Thanks
+> ChenYu
+> 
+>>   .../bindings/nvmem/mediatek,efuse.yaml          | 17 +++++++++++++++--
+>>   arch/arm64/boot/dts/mediatek/mt8188.dtsi        |  2 +-
+>>   2 files changed, 16 insertions(+), 3 deletions(-)
+>>
+>> --
+>> 2.50.0.rc0.604.gd4ff7b7c86-goog
+>>
+
 
 
