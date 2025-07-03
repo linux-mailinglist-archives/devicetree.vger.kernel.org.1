@@ -1,156 +1,119 @@
-Return-Path: <devicetree+bounces-192828-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-192827-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id D2299AF81E0
-	for <lists+devicetree@lfdr.de>; Thu,  3 Jul 2025 22:21:39 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id BE4F2AF81D5
+	for <lists+devicetree@lfdr.de>; Thu,  3 Jul 2025 22:20:08 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 78B365854F4
-	for <lists+devicetree@lfdr.de>; Thu,  3 Jul 2025 20:21:39 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 217821BC7DA1
+	for <lists+devicetree@lfdr.de>; Thu,  3 Jul 2025 20:20:25 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4CF9229B8D0;
-	Thu,  3 Jul 2025 20:21:29 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2446E29B8E5;
+	Thu,  3 Jul 2025 20:20:03 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ucw.cz header.i=@ucw.cz header.b="FiCglh9T"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="gL1N+Tkz"
 X-Original-To: devicetree@vger.kernel.org
-Received: from jabberwock.ucw.cz (jabberwock.ucw.cz [46.255.230.98])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8CC362BDC15;
-	Thu,  3 Jul 2025 20:21:25 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=46.255.230.98
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E372F229B36;
+	Thu,  3 Jul 2025 20:20:02 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1751574089; cv=none; b=JaM8siO8v+n+SVmPeTTsDvhDbDbSo0otRYBjImkEQIqatQ4epp8wDFIYbvmJcJMT2/IVFr1gf7p3V14hMvjKs8kCEOXSOMwvxDYqhfRT8Gqf7+p1kDlnGZhU/4EV6sdZy4Vh/naYTa+5WC2kf9v4aSNU2ejRYQTnpP667eGh9rU=
+	t=1751574003; cv=none; b=l5t8zjKZv0pgbQxrI28r1Y8xX/CLYMqkYL1YFiNJSSwzTEH28J53/b/AkoisdByhpUSzYFXoEFh4WI1Hp/cymQK4rvhO/YHemtSecTE3by4gyElcMxKilyFjvBq1wnGFARywdvimAg3elhutIFKzEOm9R4oJvA1JmL5XW6E39ag=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1751574089; c=relaxed/simple;
-	bh=nxQiQkdudWPZBcNRA9KIQ7hVUyuUQb/8xkQyaumgNEE=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=TA/wa/Owi0AAMtIRcUR7dPc0GH82hkHN/YftZyJH4sY2znUNV71s6P8MMnz6dTlxgqlD9SW3WXxfoexCqwEq8hvNzxwFRg7+h85Xz5+alSQH7H/AClHHrXb4lOfvFhxKZe/o7H050kxxeIvWa/c0H4DBzKmJIN+MGBPvMQxE0M0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ucw.cz; spf=pass smtp.mailfrom=ucw.cz; dkim=pass (1024-bit key) header.d=ucw.cz header.i=@ucw.cz header.b=FiCglh9T; arc=none smtp.client-ip=46.255.230.98
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ucw.cz
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ucw.cz
-Received: by jabberwock.ucw.cz (Postfix, from userid 1017)
-	id 0D95D1C00AB; Thu,  3 Jul 2025 22:12:29 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ucw.cz; s=gen1;
-	t=1751573549;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 in-reply-to:in-reply-to:references:references;
-	bh=ZgOphpMZQaLhZ23QXn+GUqOhSFA5+GAho7L5ktP0kac=;
-	b=FiCglh9Tms8WiSo2BtH3bmVpvbGxSAA+H8ByhHyEwFc5/ma9s41tmJrEqtguzLkvlWIiF6
-	uZM/wv6OEGMQQYm2Qghymc0jY08FVc4oavnkRCYR8Y7ZzPaJpKJ8U6nNQrFrqq4huTTvjh
-	UGiCg7Qtk6C7N7wGXUrLGYvqVroZ5Zg=
-Date: Thu, 3 Jul 2025 22:12:28 +0200
-From: Pavel Machek <pavel@ucw.cz>
-To: Sebastian Reichel <sebastian.reichel@collabora.com>
-Cc: t.antoine@uclouvain.be, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Dimitri Fedrau <dima.fedrau@gmail.com>,
-	Catalin Marinas <catalin.marinas@arm.com>,
-	Will Deacon <will@kernel.org>,
-	Peter Griffin <peter.griffin@linaro.org>,
-	=?iso-8859-1?Q?Andr=E9?= Draszik <andre.draszik@linaro.org>,
-	Tudor Ambarus <tudor.ambarus@linaro.org>,
-	Alim Akhtar <alim.akhtar@samsung.com>, linux-pm@vger.kernel.org,
-	linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	linux-samsung-soc@vger.kernel.org
-Subject: Re: [PATCH v4 2/5] power: supply: add support for max77759 fuel gauge
-Message-ID: <aGbkLIFkMlihbJUt@duo.ucw.cz>
-References: <20250523-b4-gs101_max77759_fg-v4-0-b49904e35a34@uclouvain.be>
- <20250523-b4-gs101_max77759_fg-v4-2-b49904e35a34@uclouvain.be>
- <4cahu6dog7ly4ww6xyjmjigjfxs4m55mrnym2bjmzskscfvk34@guazy6wxbzfh>
+	s=arc-20240116; t=1751574003; c=relaxed/simple;
+	bh=/Z6dqwWKcpslEvJUI8LhwqbM2J/z4HV3/9EflldkIS4=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=VsKVhX6m2p+g8P5qx5nqjgVQ0YHIP8nWQG7ZyfxXBGfvNMGH+WhpiaMIj5VTyVdFkEXEVMBiXx/mqrtLDTRYohs9ap9wwGArHROxVZGcHnLyVrb85QoR/ocgJ7hsplwdRn4iwy5JmMZuQ/cK+P9Q56pEPIFd3S88kVqHgaajf2M=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=gL1N+Tkz; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 73F6BC4CEF1;
+	Thu,  3 Jul 2025 20:20:02 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1751574002;
+	bh=/Z6dqwWKcpslEvJUI8LhwqbM2J/z4HV3/9EflldkIS4=;
+	h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+	b=gL1N+Tkz0OLj2NMAhLtIDCKg5/fS+DhRasCnj+SqRlpM8NFvysOtOlTCR5iYjE8ed
+	 xnfhUAewgXuKSGrWeNGmZoEST0fJhvNY9eAEkrzZTIj/Qs5yYvOti1bbwBIDWZd6no
+	 b9AZ6LqyGe/3aOe4Xgjsv/wIJ8DJh4R8tYO+zv1VkJgInVHm2eOEKA/JSjvcD7lDwG
+	 Hc9EWXC1HmCdYS3Ymzsg3gfeSebgRURaV2bSFSHl+PbqMyZ0dFw3geasAyJNOJ0E9j
+	 A5591Ld/1BadRwFSBKP5ged+niipxIlcxHPQyhDU3DaG2EA71By+6UQi1dZKyo7b11
+	 v/IlvtbIMeleA==
+Received: by mail-ed1-f53.google.com with SMTP id 4fb4d7f45d1cf-60c5b7cae8bso417391a12.1;
+        Thu, 03 Jul 2025 13:20:02 -0700 (PDT)
+X-Forwarded-Encrypted: i=1; AJvYcCW+JCbqLn+r0S2QtpFGQm84jJkeof/qE4VZeYxC/vvJqQoeSOqBMbGVFUEiKFxWU/O0Tg+fXGHySeOsY2BIsg==@vger.kernel.org, AJvYcCWEDsr/67B32EShW9O5re8IbTbm1lZSmXmDS8S6nNNstPRiqqrezqOmxiAnEaDwTQ/I70mT6lUfcEBCn30=@vger.kernel.org, AJvYcCWUVZ71ehxEae113sbPFB73gUwwbH4b/rIe7QhwQlGyUU0hsoNSmrzlHg0qgnY/804xIXW1l16cueU7do0O@vger.kernel.org, AJvYcCXU6PltZ+8DHau95W7wAezUkWdU6OggdYnc2JFMF8sUqhWIMCYR0v/AHXRUnFLFgk2Fv3hWBWwTxxiW@vger.kernel.org
+X-Gm-Message-State: AOJu0YwcYXBVatCt7asSDIXLKtUxcUL1t2Cls++9O2NIa0DNkD/jDX3j
+	LIJjYTXIiVFyUZA0ZdJxdIEDK8lvp8knFvtPQz3NnToZc0IvP6LeTnl2G9Qq3ZaKxkIDxUVCjBL
+	emCAjlw8RAnbl7bnhnAnVZijCoTqjlg==
+X-Google-Smtp-Source: AGHT+IE9hz7l5h4gKfA2Gok0trbBLrord6Qv4/OAvtCHoDspRQQMpgsUWP4XL2MXTLDAW0VEjFlalhjZGgWnYj7Qmpg=
+X-Received: by 2002:a17:907:2d2c:b0:adb:2a66:85bc with SMTP id
+ a640c23a62f3a-ae3d89953bamr452586966b.34.1751574000959; Thu, 03 Jul 2025
+ 13:20:00 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha1;
-	protocol="application/pgp-signature"; boundary="eiYFnwelYqG2iU/c"
-Content-Disposition: inline
-In-Reply-To: <4cahu6dog7ly4ww6xyjmjigjfxs4m55mrnym2bjmzskscfvk34@guazy6wxbzfh>
-
-
---eiYFnwelYqG2iU/c
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
+References: <20250612-sm8550-camss-v2-1-ed370124075e@quicinc.com> <175021976651.732077.6463322520296960558.b4-ty@kernel.org>
+In-Reply-To: <175021976651.732077.6463322520296960558.b4-ty@kernel.org>
+From: Rob Herring <robh@kernel.org>
+Date: Thu, 3 Jul 2025 15:19:49 -0500
+X-Gmail-Original-Message-ID: <CAL_Jsq+46ThxSwJm2RjPDjmK9LmhkFhc9UidjBirEq7-kescPw@mail.gmail.com>
+X-Gm-Features: Ac12FXzxV16zTuZlQN8D9DXY_qZpyOqeBk68ONoeu6ESaQCeuGhWEMIIFPY_tlk
+Message-ID: <CAL_Jsq+46ThxSwJm2RjPDjmK9LmhkFhc9UidjBirEq7-kescPw@mail.gmail.com>
+Subject: Re: [PATCH v2] arm64: dts: qcom: sm8550: Add support for camss
+To: Bjorn Andersson <andersson@kernel.org>
+Cc: Konrad Dybcio <konradybcio@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+	Conor Dooley <conor+dt@kernel.org>, todor.too@gmail.com, rfoss@kernel.org, 
+	bryan.odonoghue@linaro.org, Wenmeng Liu <quic_wenmliu@quicinc.com>, 
+	linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, linux-media@vger.kernel.org, 
+	Depeng Shao <quic_depengs@quicinc.com>, Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>, 
+	Vladimir Zapolskiy <vladimir.zapolskiy@linaro.org>
+Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-Hi!
+On Tue, Jun 17, 2025 at 11:09=E2=80=AFPM Bjorn Andersson <andersson@kernel.=
+org> wrote:
+>
+>
+> On Thu, 12 Jun 2025 16:01:26 +0800, Wenmeng Liu wrote:
+> > Add support for the camera subsystem on the SM8550 Qualcomm SoC. This
+> > includes bringing up the CSIPHY, CSID, VFE/RDI interfaces.
+> >
+> > SM8550 provides
+> > - 3 x VFE, 3 RDI per VFE
+> > - 2 x VFE Lite, 4 RDI per VFE
+> > - 3 x CSID
+> > - 2 x CSID Lite
+> > - 8 x CSI PHY
+> >
+> > [...]
+>
+> Applied, thanks!
+>
+> [1/1] arm64: dts: qcom: sm8550: Add support for camss
+>       commit: c5aeb681fcdd23d042d780f89ddcf908a13baee2
 
-> > Other differences include the lack of V_BATT register to read the batte=
-ry
-> > level. The voltage must instead be read from V_CELL, the lowest voltage=
- of
-> > all cells. The mask to identify the chip is different. The computation =
-of
-> > the charge must also be changed to take into account TASKPERIOD, which
-> > can add a factor 2 to the result.
-> >=20
-> > Add support for the MAX77759 by taking into account all of those
-> > differences based on chip type.
-> >=20
-> > Do not advertise temp probes using the non-volatile memory as those are
-> > not available.
-> >=20
-> > The regmap was proposed by Andr=E9 Draszik in
-> >=20
-> > Link: https://lore.kernel.org/all/d1bade77b5281c1de6b2ddcb4dbbd033e455a=
-116.camel@linaro.org/
-> >=20
-> > Signed-off-by: Thomas Antoine <t.antoine@uclouvain.be>
-> > ---
-> >  drivers/power/supply/max1720x_battery.c | 265 ++++++++++++++++++++++++=
-++++----
-> >  1 file changed, 238 insertions(+), 27 deletions(-)
-> >=20
-> > diff --git a/drivers/power/supply/max1720x_battery.c b/drivers/power/su=
-pply/max1720x_battery.c
-> > index 68b5314ecf3a234f906ec8fe400e586855b69cd9..c9ad452ada9d0a2a51f37d0=
-4fd8c3260be522405 100644
-> > --- a/drivers/power/supply/max1720x_battery.c
-> > +++ b/drivers/power/supply/max1720x_battery.c
-> > @@ -37,6 +37,7 @@
-> >  #define MAX172XX_REPCAP			0x05	/* Average capacity */
-> >  #define MAX172XX_REPSOC			0x06	/* Percentage of charge */
-> >  #define MAX172XX_TEMP			0x08	/* Temperature */
-> > +#define MAX172XX_VCELL			0x09	/* Lowest cell voltage */
-> [...]
-> >  	case POWER_SUPPLY_PROP_VOLTAGE_NOW:
-> [...]
-> > +			ret =3D regmap_read(info->regmap, MAX172XX_VCELL, &reg_val);
-> > +			val->intval =3D max172xx_cell_voltage_to_ps(reg_val);
->=20
-> I haven't reviewed this fully due to all the feedback you already
-> got from Peter Griffin and the DT binding being broken, but something
-> that catched my eye:
->=20
-> POWER_SUPPLY_PROP_VOLTAGE_NOW provides the voltage of the whole
-> battery and not of a single cell. E.g. a typical Li-Ion battery
-> with two serial cells has a nominal voltage of roughly 7.4V while
-> each cell has just 3.7V.
+And adds warnings:
 
-Phones normally only have one cell...
+      6  clock-controller@ade0000 (qcom,sm8550-camcc): required-opps:
+[[33]] is too short
+      6  clock-controller@ade0000 (qcom,sm8550-camcc): power-domains:
+[[56, 6]] is too short
+      6  clock-controller@ade0000 (qcom,sm8550-camcc): Unevaluated
+properties are not allowed ('power-domains', 'required-opps' were
+unexpected)
+      6  clock-controller@aaf0000 (qcom,sm8550-videocc):
+required-opps: [[33]] is too short
+      6  clock-controller@aaf0000 (qcom,sm8550-videocc):
+power-domains: [[56, 6]] is too short
+      6  clock-controller@aaf0000 (qcom,sm8550-videocc): Unevaluated
+properties are not allowed ('power-domains', 'required-opps' were
+unexpected)
 
-Best regards,
-								Pavel
---=20
-I don't work for Nazis and criminals, and neither should you.
-Boycott Putin, Trump, and Musk!
-
---eiYFnwelYqG2iU/c
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iF0EABECAB0WIQRPfPO7r0eAhk010v0w5/Bqldv68gUCaGbkLAAKCRAw5/Bqldv6
-8sYEAKCh0wimF36YRI80R6pAVmloU8qRRgCgnXM0UWB0vtffIz/feHaS3ubBHak=
-=t4+u
------END PGP SIGNATURE-----
-
---eiYFnwelYqG2iU/c--
+Rob
 
