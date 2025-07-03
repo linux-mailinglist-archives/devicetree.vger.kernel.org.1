@@ -1,177 +1,134 @@
-Return-Path: <devicetree+bounces-192839-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-192840-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id DAB20AF8290
-	for <lists+devicetree@lfdr.de>; Thu,  3 Jul 2025 23:23:37 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id E0E40AF829A
+	for <lists+devicetree@lfdr.de>; Thu,  3 Jul 2025 23:27:05 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 778931C87F89
-	for <lists+devicetree@lfdr.de>; Thu,  3 Jul 2025 21:23:54 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 52550585AAC
+	for <lists+devicetree@lfdr.de>; Thu,  3 Jul 2025 21:27:06 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D3DB5299ABF;
-	Thu,  3 Jul 2025 21:23:33 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 53DBC2BD5A7;
+	Thu,  3 Jul 2025 21:27:02 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="FlakmxkK"
+	dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b="y3WsPSGt"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-ot1-f42.google.com (mail-ot1-f42.google.com [209.85.210.42])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3D6E6230D14
-	for <devicetree@vger.kernel.org>; Thu,  3 Jul 2025 21:23:32 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 35A5229992A
+	for <devicetree@vger.kernel.org>; Thu,  3 Jul 2025 21:27:00 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.42
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1751577813; cv=none; b=bQHXT8r/Ll/wdEgU+98TlrfCvdRs8BBle5bx2QC3l+E2GQKPFkjBrQ4XaHdINKb9IwVQfL2M6684HZ4xrqP+olbohYUd7BCsoAEJ02oXU/TzvejuDrVwsfB3QpS6rtSHNzxsixjnYB3hSBlJgm4DGjndTBPqLX77mh0GUqw6+Rg=
+	t=1751578022; cv=none; b=jlFngJMEKLdRFo2A2pdxtijzcavMBwR1gQPALjJWfAc4FxqNj4IdMJDgpgsjMTsg0+eO8NOshVllFuzYxz9QI6n9jc6uk+eoAoYjDOJNRGdK3oAsgaNLhKC+b3/lyRxkSe+c/hwGcUr8zC4D5er9rALUj79bUh8+e+vMofenrRc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1751577813; c=relaxed/simple;
-	bh=cGY2lIGGOd9fq+QNIYFD/MkFVxXi0A3AXTIQeZMkteU=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=b4SjpddpeVun8+Pd2keHouCVMCEgfDm4dndlJk62bkMEpFdubrT1IgT0UCp/Zx4F/4JBbHoTNwtq5Onn4Zi74TR5LkdEM6/uvm8mInUT1BKKO2QKO4chQNEwl+v08M+C++eSxc6J8Lg/FIJP8q5HeyrEplqCZWt/6iFYPVaIzfw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=FlakmxkK; arc=none smtp.client-ip=205.220.180.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
-Received: from pps.filterd (m0279870.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 563HI96L022002
-	for <devicetree@vger.kernel.org>; Thu, 3 Jul 2025 21:23:31 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
-	cc:content-type:date:from:in-reply-to:message-id:mime-version
-	:references:subject:to; s=qcppdkim1; bh=tzuYAKzYTPeS6aJtUDbc8hLD
-	wJO6TUwHTIjzl203uPk=; b=FlakmxkK2s7oBRpQ4fzs1Xq3TwGXbgiEVqev1SWN
-	CsyYfOsLrN8c2QmZF0y57eb4aBrMy4zhOnHb/eKqLpxk2ooz9iB+dnTXtIMR9HX3
-	s2bwvM0iH99spdJsYof4soYVzM5EARh5/xT3z9k0ykpelhdM9iTjtLj1vTwmjDAw
-	o1JhGoWWVlsvKO82ZPe8Sn6czelJ6s7rD4xHWCKeHDLB0Tnu6h8n9ix1+spZQEbR
-	3KnQ+z+qUg5MlOtgTehnuF/n6fFwQs4mEg2O+vBr9Ux2kKK5N7h9TsMw8Jld9qKb
-	u7rq3aHHtZHE/GSjQ9SopFHoCf3K3hk6SM9HMcFJgaUo0w==
-Received: from mail-qk1-f200.google.com (mail-qk1-f200.google.com [209.85.222.200])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 47j8fxstat-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Thu, 03 Jul 2025 21:23:31 +0000 (GMT)
-Received: by mail-qk1-f200.google.com with SMTP id af79cd13be357-7d4576e83cdso65077485a.1
-        for <devicetree@vger.kernel.org>; Thu, 03 Jul 2025 14:23:31 -0700 (PDT)
+	s=arc-20240116; t=1751578022; c=relaxed/simple;
+	bh=0eZUQlunxZ8ZDJSlGg5YWG682u4zGCezcHWcVBPA8Lc=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=GkPT+HovvhF55BPhS+Zon+3TMVkAyZKa7hIT1l9EOQUU2R+jc8cBfRVz3XnfVl+pb+uoi9XSpvbgKbmP012vBKxcRK+mTADjZ0xkGBzCmc0Yx0ZsyMumJWYNF6+uQ9Bz/tN6UbcYcPfqtUCI5FyPqgQWH5+6+wAGYpEI2cJlOug=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com; spf=pass smtp.mailfrom=baylibre.com; dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b=y3WsPSGt; arc=none smtp.client-ip=209.85.210.42
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=baylibre.com
+Received: by mail-ot1-f42.google.com with SMTP id 46e09a7af769-72c27166ab3so289955a34.1
+        for <devicetree@vger.kernel.org>; Thu, 03 Jul 2025 14:27:00 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1751578019; x=1752182819; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=0oJ8ujZlzaPcZCmdOGOROSSXlk7hultXH6uDj8y1p0g=;
+        b=y3WsPSGt6KofVFHQ15vJmM3j4/IE3YhCNFJXX/7eoDI9Idfalg08NbQzyTky8YYgb+
+         DZboWJZJQCMIzuBFdJMKcmP+uxMC7RCD93/YJi6G74oA4ysjv4lHdwACyHP9Q4jpcf3c
+         ktCAFiHdsD+hZHVuFa4V/Lob+dRRCL1BTkn0JeJfXn9IH107Ezg205pGN6P+qs87ei5O
+         SWU26vw47OrdvnEtc2HTcLD3oSi1USljWqxIlhN2r6BM+4TUaFuv0EpmU789CH22bqFY
+         Dro29edbfugyZgKnkG74Ve9tMdk/oIX7eVlxtYgJWlb1OvR2Bymo/MSCUHAWvRNya3oT
+         WLLQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1751577810; x=1752182610;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=tzuYAKzYTPeS6aJtUDbc8hLDwJO6TUwHTIjzl203uPk=;
-        b=WReVvp5qubU3seO5wZ+ewiOQUjPnLegUHezdKxf/m7dkZNRAMp6Au4nYF11lGOVXjF
-         VKjVZvsiCrs893O73QIR9uy8lRgZvuQ6+Nc3nYVVCgn2bwhwgEbGoQqGqr7pcCVrotnf
-         zUmKRNkizY3+FPYrC2x6ThGs8U+UMdeaPfhvSJwyFq75MExbZ6X7VbMvh5tFfGAKzvQK
-         USMBR/7CtrhrjIcQwa/eU60ANL/XHGc7RiWHdXik1NFA8oON4l64gj9PBdxCxMDL7uBH
-         0V3rwytv6a4cY/AcRjupgMgOJRzOiJ5Lf8HUupjwrg9yqcO80lCPjGAX/iirlMY+dXk8
-         FWKA==
-X-Forwarded-Encrypted: i=1; AJvYcCUuPH0E0JJbw/ij5Aykg9W5G52KCoTB7vizCHsczEUAL/WAN94tVEEAof+JzGhgsSxCdK18zWJmfvec@vger.kernel.org
-X-Gm-Message-State: AOJu0Ywg2u8Vrz+mrPXiEX3arH0D02F3geEUpqg+uWEzgvgPF1Bo0HEO
-	hX0Mo0podYr2infIjKe4Fg489SoTaRaojj9WmmM4zbNQVNJ7AJGQJbTIKpV1BCoNW+8QjsnjvTL
-	v4tHr4B4z0bp3xDtEzwqQPrq6QOoaOlkdQ6RF8Hrnb+BUwpLSUuryd7zHru84dppp
-X-Gm-Gg: ASbGnct+S7T+oB4kfkeltCqjlnNgTjSOl8FRhGd5JDD3SGcuPFRA4oMFwuJV/fNisuc
-	mbnJE4Ku4gAESPXILD5CoF5Ww/d/2puhYDNwAsZZPtF4ZfDKGLETnckrxlUJpeparqWdVsLlqiL
-	UupK5hVAdieSeItu1x0YpSxG5SYIoPZUB3xbQEBaKnH+Rp5Kt9+yyA2KqxzssBz2NTdqrWW+9C/
-	w0m5M6Hysg4i5PsOqy+SrQxspcT6P6/01wLvIHsAxkiL/rfYZVhQmFzswiWJV6x7aD6yOjXxf54
-	bfJmkTy5UFCRbYZwHfbC3hfSgs++ZomfgW6WXkpEuFophVgos/Zo0Rs2a7Xwd6eMUIobdd6vdj3
-	ns1FpBW1Sx53cze8Sxvl/AEHM6iCsqED6Oms=
-X-Received: by 2002:a05:620a:d84:b0:7d4:295c:884c with SMTP id af79cd13be357-7d5ddaa7f06mr3372585a.7.1751577810115;
-        Thu, 03 Jul 2025 14:23:30 -0700 (PDT)
-X-Google-Smtp-Source: AGHT+IFINdfgxbyPqUdf883k4+Vr9NRdf7g6WnrukLw7A52eYGFZP2R7fQunjPHXE2kuAq6Nvq0M5g==
-X-Received: by 2002:a05:620a:d84:b0:7d4:295c:884c with SMTP id af79cd13be357-7d5ddaa7f06mr3369185a.7.1751577809730;
-        Thu, 03 Jul 2025 14:23:29 -0700 (PDT)
-Received: from umbar.lan (2001-14ba-a0c3-3a00-264b-feff-fe8b-be8a.rev.dnainternet.fi. [2001:14ba:a0c3:3a00:264b:feff:fe8b:be8a])
-        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-556384c638csm70543e87.235.2025.07.03.14.23.28
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 03 Jul 2025 14:23:28 -0700 (PDT)
-Date: Fri, 4 Jul 2025 00:23:27 +0300
-From: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
-To: Bryan O'Donoghue <bryan.odonoghue@linaro.org>
-Cc: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>,
-        Krzysztof Kozlowski <krzk@kernel.org>,
-        Vikash Garodia <quic_vgarodia@quicinc.com>,
-        Dikshita Agarwal <quic_dikshita@quicinc.com>,
-        Abhinav Kumar <abhinav.kumar@linux.dev>,
-        Mauro Carvalho Chehab <mchehab@kernel.org>,
-        Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>, linux-media@vger.kernel.org,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v3 0/5] Introduce "non-pixel" sub node within iris video
- node
-Message-ID: <klhvgzizub33f46buqsog54wqksqp24a5tijwyv355l2ao2imo@wdkojfebc6s2>
-References: <eab8d79f-7188-9537-9176-3e4d22f0978a@quicinc.com>
- <5ad418d9-8199-43c9-a477-1e3b939c054c@kernel.org>
- <7b6db4fa-2f73-376d-4eb3-64c1c7e6cda3@quicinc.com>
- <f5ebf0d6-2f0b-45cc-b99a-b786e5df9edc@linaro.org>
- <5qsgbqml367yq6g5vb4lotrzulojqhi5zlwwribze373a63qrn@rxi4kwyt66m2>
- <4f38058d-a2f1-4ac5-b234-228cfb2e85ff@kernel.org>
- <1ad2ca1e-1d57-4ad8-a057-ab0d804f1d49@oss.qualcomm.com>
- <7da769b4-88e9-401f-bb21-0ff123818b9c@kernel.org>
- <6840d462-8269-4359-a6e5-d154842b62db@oss.qualcomm.com>
- <af0da28c-3ca0-41dc-aaa4-572723ea74bf@linaro.org>
+        d=1e100.net; s=20230601; t=1751578019; x=1752182819;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=0oJ8ujZlzaPcZCmdOGOROSSXlk7hultXH6uDj8y1p0g=;
+        b=WX8YnEFFBFGANrfacYBd3eiAxUUFDxli6RHtsJ68cfGGq2+RI0EOzQu7xSOCXfiyit
+         Icl7k1cXX85obCk7SvZpELfeHVGXIMs/biy2kTNtFJGUPJoa5zUXVl/yZqdrQr0eevO4
+         DwSaPddUWQrjxWM11M34diF78VpBwsi8Tj4wGXyfJ9r3IQohQXUphtC56TAfAyFosSIW
+         88HwhAruf/iNwUck0AO3PEwk+XwwvqrDCWOWjv0xPyRATBUt6U4pSVr3RbsBB8RhmbLS
+         wHlQ7CkvYV9LQh8lNi9ReEceRRH+ZrlenleFekNG13fppd6JtlY9XPugGXNkRmmdmZIq
+         PiOw==
+X-Forwarded-Encrypted: i=1; AJvYcCX3tLaByeOlwkY9cnnQz2KfJmMRlIpDSG4MMa7EwcteUV1G47RaNGwaGsjd74fjHKxETNmSj1Vt0ATy@vger.kernel.org
+X-Gm-Message-State: AOJu0YyJioChk2cq7jcUCj++btzdJjdCCjDTvwbQGNoM7Dco0XAbaPky
+	MGDAiTaQv0ipVBfOMDjTaxXPUDTsutzqoii0mtVLSl0VxNXPtY+2yqEZbK33LAJhu7I=
+X-Gm-Gg: ASbGnctfAMHgAtKuVzjQbr8Qx1bciO+sp8JcGzSGquQslBrutUisX6MJ6WITGDtLK4d
+	sA3l8zbX5iYHZi496LaGLDpYkr2en28C2x+Kk1YIsxsMubM6/G/rUue3v3/CM3tTiDOS3X+FQFl
+	ZcoA2onfVqpQJPffJ0Bf5YYUS6EU051hY59Ua896pf2t5pnst+7YD6OpsJreqIP/8neqaIY4B6c
+	F4rekcWcD5ZeEl8WakOKAioWW0mfkGvO1PI6Ppdp/Y8x9Zx9agXeGaLKnyPzfEDWLhocaFQT5+t
+	ZCnLfJXbAy+dgkdZ4I26XNHfkKCIydSHiyU+WzUMBDU8E9YyKEG+EiU6u8Fb0SfX8mv8y9rquf4
+	o7BG3W10FT1SSC3t/tHq78AsjZ6CCeyO5CWSV7bY=
+X-Google-Smtp-Source: AGHT+IHgAPBq1aur/7S/6mcI4NLp7GN7zcjgxxqJEIA8K08LOieFpkPn8SZoEH61J9kn9BXdbBYAmQ==
+X-Received: by 2002:a05:6830:6b0c:b0:727:3439:5bdf with SMTP id 46e09a7af769-73ca12c508cmr453337a34.13.1751578019296;
+        Thu, 03 Jul 2025 14:26:59 -0700 (PDT)
+Received: from ?IPV6:2600:8803:e7e4:1d00:4f2b:5167:10f4:c985? ([2600:8803:e7e4:1d00:4f2b:5167:10f4:c985])
+        by smtp.gmail.com with ESMTPSA id 46e09a7af769-73c9f938346sm126011a34.53.2025.07.03.14.26.58
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 03 Jul 2025 14:26:58 -0700 (PDT)
+Message-ID: <8f4b72bb-3c5f-4137-a4f9-5ce94631d3c1@baylibre.com>
+Date: Thu, 3 Jul 2025 16:26:58 -0500
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <af0da28c-3ca0-41dc-aaa4-572723ea74bf@linaro.org>
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwNzAzMDE3NiBTYWx0ZWRfX+SerEQWiJ9IQ
- TDtZlOSMH4EDCkMKGIXMXMUb3CrLTZsDqBAX3Aecz+GDUqeBJHKr1o3IXYTLA9C/7Aka3U/h4mG
- twaO0ng5QdsT5mboSATrlTEqC5c9KzA1dFh3hpKvuDvgz1PZXKCXopRnxNMZ51TG1Lfg9BiQPj4
- 42iwBPmU7nFl9VsDWydeL+3rrC2Ntj+tZXJGarc9zQfqsvCsW89CMX/nNdVVXwuf+rmf5PUo2Hr
- HRHxAPknalElqOShsO3MAW5pZ33+ECGgMLuciLc3JJyH0hVGVg7aMBFjFT+du+/eX3Pi8EPXxts
- kyET4d5orWoiqjSlrRsf/7fAkOUngdC7Bi0Ue1g0pqeGJzD31DlTR76mClUrBgKqHO3lCUB57dy
- g5+7hKi88bLIMYuTjELn4Hj7JRXzBkwkyLR6/04FmDPGk4fhNgtom/VeHou4V1RqPhQ2L9vi
-X-Proofpoint-GUID: 5deDAZJ4y9k6wB5PWI7Zzbd7tD8obLhO
-X-Proofpoint-ORIG-GUID: 5deDAZJ4y9k6wB5PWI7Zzbd7tD8obLhO
-X-Authority-Analysis: v=2.4 cv=TqPmhCXh c=1 sm=1 tr=0 ts=6866f4d3 cx=c_pps
- a=hnmNkyzTK/kJ09Xio7VxxA==:117 a=xqWC_Br6kY4A:10 a=kj9zAlcOel0A:10
- a=Wb1JkmetP80A:10 a=Ipd-sNmO_c9uXuzhwosA:9 a=CjuIK1q_8ugA:10
- a=PEH46H7Ffwr30OY-TuGO:22
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1099,Hydra:6.1.7,FMLib:17.12.80.40
- definitions=2025-07-03_05,2025-07-02_04,2025-03-28_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- priorityscore=1501 bulkscore=0 mlxlogscore=999 suspectscore=0 adultscore=0
- phishscore=0 malwarescore=0 clxscore=1015 lowpriorityscore=0 mlxscore=0
- impostorscore=0 spamscore=0 classifier=spam authscore=0 authtc=n/a authcc=
- route=outbound adjust=0 reason=mlx scancount=1 engine=8.19.0-2505280000
- definitions=main-2507030176
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH] dt-bindings: trivial-devices: Add Garmin lidar-lite-v3
+To: Rodrigo Gobbi <rodrigo.gobbi.7@gmail.com>, robh@kernel.org,
+ krzk+dt@kernel.org, conor+dt@kernel.org
+Cc: ~lkcamp/patches@lists.sr.ht, linux-iio@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+References: <20250701223341.36835-1-rodrigo.gobbi.7@gmail.com>
+Content-Language: en-US
+From: David Lechner <dlechner@baylibre.com>
+In-Reply-To: <20250701223341.36835-1-rodrigo.gobbi.7@gmail.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-On Thu, Jul 03, 2025 at 09:28:12PM +0100, Bryan O'Donoghue wrote:
-> On 03/07/2025 16:28, Konrad Dybcio wrote:
-> > Back to the point, I actually think what this patchset does is
-> > resonable, especially given the address range and SMMU SID requirements
-> > that the OS*must* be aware of (or the device will crash after a
-> > translation fault / security violation).
-> 
-> I still give my RB for the series.
-> 
-> To me the only question is should it be applied to sm8550 or to new SoCs
-> from now on, sa8775p, x1e and derivatives.
+On 7/1/25 5:30 PM, Rodrigo Gobbi wrote:
+> The compatible grmn,lidar-lite-v3 is managed by the same
+> driver of pulsedlight,lidar-lite-v2, which is a trivial device.
 
-I think we need to apply it to _all_ SoCs, maybe starting from MSM8x26
-and MSM8x16. Likewise, we need to think bout secure buffers usecase. And
-once we do that, we will realize that it also changes the ABI for all
-SoCs that support either Venus or Iris.
+As a general rule of thumb, using the driver as justification for
+dt-bindings is never a good reason. The bindings describe the hardware,
+not the driver.
 
-> I take the point on ABI breakage on 8550, so to me it seems fully consistent
-> with Krzysztof's statements on ABI maintenance and indeed the need to expand
-> the features of this driver to do so from the next submission onwards.
-> 
-> That can be as simple as
-> 
-> schema.yaml
-> 
-> if compatible newsoc
->     minItems:1
->     maxItems:2
-> 
-> 8550's ABI is stable and new SoC submissions will support the
-> secure/non-pixel method.
+Assuming I found the correct datasheet [1], I see a power enable pin
+and a mode control pin, so I would say that this isn't a trivial device.
+Therefore this will need it's own new file. We could at least add
+power-gpios and power-supply properties. How to handle the mode pin
+isn't so clear to me though, so might omit that for now.
 
--- 
-With best wishes
-Dmitry
+[1]: https://static.garmin.com/pumac/LIDAR_Lite_v3_Operation_Manual_and_Technical_Specifications.pdf
+
+> 
+> Signed-off-by: Rodrigo Gobbi <rodrigo.gobbi.7@gmail.com>
+> Fixes: b257c1a45e99 ("iio: pulsedlight-lidar-lite-v2: add lidar-lite-v3 property")
+> ---
+>  Documentation/devicetree/bindings/trivial-devices.yaml | 2 ++
+>  1 file changed, 2 insertions(+)
+> 
+> diff --git a/Documentation/devicetree/bindings/trivial-devices.yaml b/Documentation/devicetree/bindings/trivial-devices.yaml
+> index 8da408107e55..cd9d7d5eec51 100644
+> --- a/Documentation/devicetree/bindings/trivial-devices.yaml
+> +++ b/Documentation/devicetree/bindings/trivial-devices.yaml
+> @@ -107,6 +107,8 @@ properties:
+>            - fsl,mpl3115
+>              # MPR121: Proximity Capacitive Touch Sensor Controller
+>            - fsl,mpr121
+> +            # Optical Distance Measurement Sensor
+> +          - grmn,lidar-lite-v3
+>              # Honeywell Humidicon HIH-6130 humidity/temperature sensor
+>            - honeywell,hi6130
+>              # IBM Common Form Factor Power Supply Versions (all versions)
+
 
