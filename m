@@ -1,64 +1,59 @@
-Return-Path: <devicetree+bounces-192752-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-192753-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 643AEAF7CC9
-	for <lists+devicetree@lfdr.de>; Thu,  3 Jul 2025 17:47:27 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 53EC9AF7CD3
+	for <lists+devicetree@lfdr.de>; Thu,  3 Jul 2025 17:49:20 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 32BDF4E178C
-	for <lists+devicetree@lfdr.de>; Thu,  3 Jul 2025 15:43:09 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id A9A24188D26B
+	for <lists+devicetree@lfdr.de>; Thu,  3 Jul 2025 15:45:20 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B83E422A4DA;
-	Thu,  3 Jul 2025 15:43:27 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B5A0C2D6605;
+	Thu,  3 Jul 2025 15:44:59 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="DQokQwHY"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="eM1gWYfQ"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8C7822236E3;
-	Thu,  3 Jul 2025 15:43:27 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8613C2236E3;
+	Thu,  3 Jul 2025 15:44:59 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1751557407; cv=none; b=mzvMSBUtlBztmPyO39JZ7P1/K7qvcKc6BoummRV9ZZQyLd3W8jaAEtJf75MObRywUkuhpUcuyCVWEj33L+v2lkw7ME0+Ru+kawOqkc578WCUyEfjQ545QsC0Oij/AXUUDCqqJsy9U2ZgN0iwYs1LhtuU/GpNBS1ENnpeTXFERj8=
+	t=1751557499; cv=none; b=Li2SRnshkbdpYdJOzs+PfB4lRztyxkWGgVuSBIH/COLpi+ZQazTDnin5Av+PxpmiFZ0nQL2kHEuHGC+MjF6KVNq6KOOaK6FI9SowmHdCPwnrACJ/2ELb2XU746jbgacMgovvIDQusvqRu9yACd/E2LtMi9SsC75KOhMbOCLX+2Y=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1751557407; c=relaxed/simple;
-	bh=KPNx93oq+EW5S/Omi2rpiF4iPr+uVFbJwi4esUMXMw8=;
+	s=arc-20240116; t=1751557499; c=relaxed/simple;
+	bh=bY+Xljp0l6L+Y1+hUN3hWFShFUuv2QI+G4X/M1K7w7c=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=sTRAlLMZkYAGYaDkkJ/a4idgCX55TdhlOtzkzfXXHnD1/VZPEVzyEI1FVs1yc6+rYmI7cyRJ9BvZeRAfB2I1OkTbFm5NyEO0FOHaOzywbwkAwZryzKj5KMYIYqUMpE/r5lKFwVHVZ3ewiSqJUJgyEnAwE/bBaTe71Ua/HKfgMxc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=DQokQwHY; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id EBBCFC4CEE3;
-	Thu,  3 Jul 2025 15:43:26 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=DfHEpL+YjgD4JlaYZJb5f4jt/47o1r17PtSfW1bxS5o0lseN4TQ4L9Ania61nt904IZdkUyruplnZO/rD/wJlFWR8kMU30YhMauIaTeDEYUlPSXxARdSGwtsP3SJB/kGQVD+luiYHXr6sWz6YUDKVrGwp06jqT9vbqTJl4ODqHg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=eM1gWYfQ; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id ED3FEC4CEE3;
+	Thu,  3 Jul 2025 15:44:58 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1751557407;
-	bh=KPNx93oq+EW5S/Omi2rpiF4iPr+uVFbJwi4esUMXMw8=;
+	s=k20201202; t=1751557499;
+	bh=bY+Xljp0l6L+Y1+hUN3hWFShFUuv2QI+G4X/M1K7w7c=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=DQokQwHYANLecf4Ib1umWY+AGlxYxq08A9BPwAQDmyMGnOEUzkN/i53aQU3zQ84xb
-	 qv5GXEFWKjqnfFKbc6ztk2zDSqi7lZANLS7jPwGPQ7+rtWKbR+Wd0l1zm3y7khDZze
-	 R8gzRR/l97lxaGYKzf0GhHjeMyMzPgtW82oHPFRgWfPXvInAjWbGjbDOmWRqQnH+aU
-	 dJH/jQOUVXgvC//Ma3uGHV68ZQB3kcxLNUX5wvX8fP89FPqOWoZ/aLZcb1p3K5X8Nn
-	 Bs/xJLWmppAhz5Q4n/RAWKVvjM8hA1JUVLpI3DgLY3eVW7qAU+kOUdwTZqWqfKbs7j
-	 yl0xlGnRr51KA==
-Date: Thu, 3 Jul 2025 10:43:26 -0500
+	b=eM1gWYfQIkW+fVVPM2em1oRqEQ/5mkowKAFrekz9Er7UNVQHAHduRnaOvLJDG8Jrs
+	 dKaYD/l77Of5i9e2mRm+KRWxxPiMfL06u7VujnWsgHELUb0yyGJLM8+IqkVaGe1scO
+	 Sw34WtAk+30NA/4zVKXXwJ2cPb1+VXaL67PMYLeGBid43RU4p/RFvm5sHqFAqGjITy
+	 +QQ4m9jnmjDxVTK1fSP3kBacVuTwDg2Jm0I1dzZW8Y6+yig9owsNAOFTvnataY97m7
+	 c+d55bQipQdEo2ncbN3fhEhPRgCEMIkOFJxuvNWgUDQ+DqzLPWGnGiue5EqTlKVrxl
+	 4d5IzBLs5iB1Q==
+Date: Thu, 3 Jul 2025 10:44:58 -0500
 From: Rob Herring <robh@kernel.org>
-To: Mao Jinlong <quic_jinlmao@quicinc.com>
-Cc: Suzuki K Poulose <suzuki.poulose@arm.com>,
-	Mike Leach <mike.leach@linaro.org>,
-	James Clark <james.clark@arm.com>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Mathieu Poirier <mathieu.poirier@linaro.org>,
-	Bjorn Andersson <andersson@kernel.org>,
-	Konrad Dybcio <konradybcio@kernel.org>, coresight@lists.linaro.org,
-	linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org
-Subject: Re: [PATCH v8 1/2] dt-bindings: arm: Add label in the coresight
- components
-Message-ID: <20250703154326.GA1674898-robh@kernel.org>
-References: <20250703130453.4265-1-quic_jinlmao@quicinc.com>
- <20250703130453.4265-2-quic_jinlmao@quicinc.com>
+To: Meng Li <Meng.Li@windriver.com>
+Cc: krzk+dt@kernel.org, linux@roeck-us.net, s.hauer@pengutronix.de,
+	kernel@pengutronix.de, linux-watchdog@vger.kernel.org,
+	imx@lists.linux.dev, shawnguo@kernel.org, conor+dt@kernel.org,
+	Frank.Li@nxp.com, linux-arm-kernel@lists.infradead.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [v4 PATCH 1/2] dt-bindings: watchdog: fsl-imx-wdt: add
+ compatible string fsl,ls1046a-wdt
+Message-ID: <20250703154458.GA1470571-robh@kernel.org>
+References: <20250608030616.3874517-1-Meng.Li@windriver.com>
+ <20250608030616.3874517-2-Meng.Li@windriver.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -67,60 +62,16 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20250703130453.4265-2-quic_jinlmao@quicinc.com>
+In-Reply-To: <20250608030616.3874517-2-Meng.Li@windriver.com>
 
-On Thu, Jul 03, 2025 at 09:04:52PM +0800, Mao Jinlong wrote:
-> Current name of coresight component's folder consists of prefix of
-> the device and the id in the device list. When run 'ls' command,
-> we can get the register address of the device. Take CTI for example,
-> if we want to set the config for modem CTI, but we can't know which
-> CTI is modem CTI from all current information.
+On Sun, Jun 08, 2025 at 11:06:15AM +0800, Meng Li wrote:
+> Add compatible string fsl,ls1046a-wdt for ls1046a SoC. fsl,ls1046a-wdt
+> allows big-endian property.
 > 
-> cti_sys0 -> ../../../devices/platform/soc@0/138f0000.cti/cti_sys0
-> cti_sys1 -> ../../../devices/platform/soc@0/13900000.cti/cti_sys1
-> 
-> Add label to show hardware context information of each coresight
-> device. There will be a sysfs node label in each device folder.
-> 
-> cat /sys/bus/coresight/devices/cti_sys0/label
-> 
-> Signed-off-by: Mao Jinlong <quic_jinlmao@quicinc.com>
-> Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-> Reviewed-by: Mike Leach <mike.leach@linaro.org>
+> Signed-off-by: Meng Li <Meng.Li@windriver.com>
 > ---
->  .../devicetree/bindings/arm/arm,coresight-cti.yaml          | 6 ++++++
->  .../devicetree/bindings/arm/arm,coresight-dummy-sink.yaml   | 6 ++++++
->  .../devicetree/bindings/arm/arm,coresight-dummy-source.yaml | 6 ++++++
->  .../bindings/arm/arm,coresight-dynamic-funnel.yaml          | 6 ++++++
->  .../bindings/arm/arm,coresight-dynamic-replicator.yaml      | 6 ++++++
->  .../bindings/arm/arm,coresight-static-funnel.yaml           | 6 ++++++
->  .../bindings/arm/arm,coresight-static-replicator.yaml       | 6 ++++++
->  .../devicetree/bindings/arm/arm,coresight-tmc.yaml          | 6 ++++++
->  .../devicetree/bindings/arm/qcom,coresight-tpda.yaml        | 6 ++++++
->  .../devicetree/bindings/arm/qcom,coresight-tpdm.yaml        | 6 ++++++
->  10 files changed, 60 insertions(+)
-> 
-> diff --git a/Documentation/devicetree/bindings/arm/arm,coresight-cti.yaml b/Documentation/devicetree/bindings/arm/arm,coresight-cti.yaml
-> index 2d5545a2b49c..5ca6d3d313a3 100644
-> --- a/Documentation/devicetree/bindings/arm/arm,coresight-cti.yaml
-> +++ b/Documentation/devicetree/bindings/arm/arm,coresight-cti.yaml
-> @@ -98,6 +98,12 @@ properties:
->    power-domains:
->      maxItems: 1
->  
-> +  label:
-> +    $ref: /schemas/types.yaml#/definitions/string
+>  Documentation/devicetree/bindings/watchdog/fsl-imx-wdt.yaml | 2 ++
+>  1 file changed, 2 insertions(+)
 
-label already has a type. Drop.
-
-> +    description:
-> +      Define the label which can describe what kind of HW or system the
-> +      coresight device belongs to.
-
-'compatible' tells us 'what kind of HW'.
-
-> +
->    arm,cti-ctm-id:
->      $ref: /schemas/types.yaml#/definitions/uint32
->      description:
+Applied since this hasn't been picked up by the wdog maintainers.
 
