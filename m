@@ -1,137 +1,137 @@
-Return-Path: <devicetree+bounces-192786-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-192787-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6D12FAF7DDF
-	for <lists+devicetree@lfdr.de>; Thu,  3 Jul 2025 18:29:30 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 92333AF7E10
+	for <lists+devicetree@lfdr.de>; Thu,  3 Jul 2025 18:41:10 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id E83371888121
-	for <lists+devicetree@lfdr.de>; Thu,  3 Jul 2025 16:27:01 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 54F3354337A
+	for <lists+devicetree@lfdr.de>; Thu,  3 Jul 2025 16:40:44 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7F70F24EA9D;
-	Thu,  3 Jul 2025 16:26:25 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 58BF12566E9;
+	Thu,  3 Jul 2025 16:41:05 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="g3sTY+eu"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="Ere3aHR+"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pl1-f179.google.com (mail-pl1-f179.google.com [209.85.214.179])
+Received: from mail-lf1-f49.google.com (mail-lf1-f49.google.com [209.85.167.49])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id ED3D8230D14;
-	Thu,  3 Jul 2025 16:26:23 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.179
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 811D6158535;
+	Thu,  3 Jul 2025 16:41:03 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.49
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1751559985; cv=none; b=DKfr1fPZ5JLRm4gr9rynPLRDLf4cRWdpyY4fYq3Tb2osG4+jyC+VQFTU3sH7zfCQvnfo+VRf1JDkJBl+nLjkl23Xb6haJiv4V7ZGPu5vmYvy6IFxKuBMvjlLFhMBevniyr842ea/dvBBok2pb6CcFA22BHy3EqO1AA08OIf9P70=
+	t=1751560865; cv=none; b=Zb39fMGS27wpCCNxJGhoSwI0A7EJjFDBlaqaePOL37NM+x0A+dNE9ALvIDgUfTd63Xk1NssJd8OQUWyYEWQHso+2SADMsIrPc5IlOWQE0/mzWQFnVyvnrvQEtTdvu7AhIio/QfhaXw273AcppzC8Rahla1hxzVVxbE6kYZEbdM4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1751559985; c=relaxed/simple;
-	bh=rSyt4WnF+qHRwEMJ5395X7EAvgdTWUY/zMhaiamm5RI=;
+	s=arc-20240116; t=1751560865; c=relaxed/simple;
+	bh=WdH4sBTuoMdc8vCQH2pqGoLuQIke7zGv5YkPaKRmBMY=;
 	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=XVC2h1s7nUxxGwV0yn+xms37AYNIAzrpqHpuakdc+t66nGlgg2O0bS40KAHgiOkdqveNY380mM4Hy9alXOiqgHS9QCxZi+pcl+Ni7JuRDDSkfEQ0kXNdVC9WjMR0DPk5Q9VcVPkJJl8ud7M9GhG/EnkTZbu4VI1pckSX6gCPCh0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=g3sTY+eu; arc=none smtp.client-ip=209.85.214.179
+	 To:Cc:Content-Type; b=iZf+UyGbC34ywan0Ac3TbxkL51NY/mBcjIY4pLmKD4wPPsPFBZW8pdjNRt/xFJrAb6hPG/RcPZe10w25JiZqaN00nsjagqAwS6TLTuXEerpLW8u7Uxdbb08zsi1UU4XSLEjahDWKFEwbgSn7FEnDDMNz0JHDRKnK3j2SWuaT1Is=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=Ere3aHR+; arc=none smtp.client-ip=209.85.167.49
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-pl1-f179.google.com with SMTP id d9443c01a7336-2355360ea88so128595ad.2;
-        Thu, 03 Jul 2025 09:26:23 -0700 (PDT)
+Received: by mail-lf1-f49.google.com with SMTP id 2adb3069b0e04-5562838ce68so118729e87.2;
+        Thu, 03 Jul 2025 09:41:03 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1751559983; x=1752164783; darn=vger.kernel.org;
+        d=gmail.com; s=20230601; t=1751560861; x=1752165661; darn=vger.kernel.org;
         h=content-transfer-encoding:cc:to:subject:message-id:date:from
          :in-reply-to:references:mime-version:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=rSyt4WnF+qHRwEMJ5395X7EAvgdTWUY/zMhaiamm5RI=;
-        b=g3sTY+euO3GvTdVZ8f0/AIpvIM3PPPLGpOLLt7qMJhCZpZx4qtwAj5qaV1C5j64VWd
-         9GYqDMsg60tYlHvviG85u4Ww/WYvch3EaYPIe1Cb1PTqlIQOWglSixKljpSq3o0SsRYu
-         zRkVVskX8i3S1b4J+MnUbpUqa3b3E6MWWMMgh033WQIVn/r2t2dhOl5UFZLf/C0CcTQu
-         xbYMeISan4ioanBy6UtKgk8pqaCv4IYE3b5eiWxqueB9wuMKSusV7SGPT/iD1myxVfWL
-         aWtjsZ8d+ptWhbxnPK2dnH7pG7vz3rZSMffgBeKOmg6p9qtd+ABVfb5JYI9ZnoYjEM5+
-         OGdA==
+        bh=WdH4sBTuoMdc8vCQH2pqGoLuQIke7zGv5YkPaKRmBMY=;
+        b=Ere3aHR+P0/IRabtsic4GmdC3hMY7RzPqV4KQLz1jDLNgPjEPIYeO6o5Tz+iPMpbUf
+         P4P4dTVwR+1LfslVLYilefdsU/WQEs5OmQ/QfV1uAgEcaFlaEqDOln2XtFwVvBVtKHas
+         lj/leJzHjfHCU4ULPMBrWDWallsZyvQON1GAAt/Rb9bdU1JAt0Kh8gDEpilVwsBzinlZ
+         jtHewR1keOOj4JK3dHyVrL1axvwbMbrM6q7XWkKLVQdZVbPKoUsYekzG2XUBLeBAtrN1
+         Nvn/LwjkS/FQq9gHfnl57LgtF/gVMhLVVIMeJQ/2VELQSZ8dSeQW0iZits+cpA7PT6Tn
+         8pAw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1751559983; x=1752164783;
+        d=1e100.net; s=20230601; t=1751560861; x=1752165661;
         h=content-transfer-encoding:cc:to:subject:message-id:date:from
          :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=rSyt4WnF+qHRwEMJ5395X7EAvgdTWUY/zMhaiamm5RI=;
-        b=cO0G34mIElQphWEBFCx5WPGW0ROHDJbu75a4s/BU8D94cKvCsGPsrwgen+o3RRoFw4
-         69uIBr+Q8joxDpp/ziohQxDXa3KokH4GXtEZrcE48GwGz6xV5ED5mEGZlYf8TSxy6/hn
-         tmWBoxqrYCvCygvwS0QmPyUoyBUo7ClaSKQKNuKPyX2DeOajLVhdW06hA6FOyTiVGF0N
-         8k9aj/vg2cxw8E7ouRORWRadLSpDEtapPhN1+2g1t5vL1a8wC2qxLP3zkuGJMrYN8LSp
-         1TA+GQFWb/ybbGBxl5pX2Mv43Vx+sDTkBn+yhrcwcpksXZcRuXB00IQoHOCB0lkDuLM8
-         mfIQ==
-X-Forwarded-Encrypted: i=1; AJvYcCU+pHe6VHHgmmuUbhOimV5itDneHlMbEjFQfN6m6xztjScc+o8S6ficzTNlodpXjiD375pnCuBcDuk1REFlrY9a@vger.kernel.org, AJvYcCUtYvhmCzdO9PpoXeSD3XAunsCmNpuHJzCQBUchnDqpxJeGlr6PdspRhKCpNnfCkhhdIN2kF/1BQBhG@vger.kernel.org, AJvYcCVe+hgrz61eq1UlJSA2eykJk21xWwvUWlmrImepYeAiyYkNbMmn7vjkPtSB+mQyVF7K8BOlXzwcyffl@vger.kernel.org, AJvYcCVpitAWol/gOZfK6FfPHRS+n1aRWViDgJoD22OXyEnMYEd72vXXgz9SBWYFXYj40hVsIvprNWM4q92F5kE=@vger.kernel.org, AJvYcCWdBLcvOf7eL6EsyLOJ8i9qjJ3CxV9WZxz3jRTRmRVCWW4h+ibT+LgInauq05BzcNCXddyJmTGR@vger.kernel.org, AJvYcCWlDbzXekGXS3AOJieIdqkZdvsAnMkXlF0qWjv66aNFapouOYzRBDWQB9McZFy0e5L9Fh6Vud3vfSNB@vger.kernel.org, AJvYcCWlgSqyRp5WSRVv0+5W6c/pGqRekVJgYfeZd2z8qs+HIqdsHY0/JOo60PWEKS30u32JjQFXT6eGj1w8yq87@vger.kernel.org, AJvYcCWp7siMtuYNbrzpdRc1hKn6Wyu3fr09yNsmnulH8hBDdbVoetBs49KuXddg5f3QIl1TmVg988MPg1Ha0ZiF0eU=@vger.kernel.org, AJvYcCX08kByfDL5ec+P4zBbyQvNQ5ueSMKXswFTOy0pkd1CPMlrwkHWgz8j88Qb9lYqDIM23JjlzmXK/t8=@vger.kernel.org
-X-Gm-Message-State: AOJu0YzofDK51ZYbATHuFb2uW/IRLi9TvLKi+CFTCD0hxxwjsCHl1pj0
-	yl++iggY0A66EuTXW2XI7NV/7h9kQDrLxwlwLVi/Y0UZy4DQ5Gv8PKSmI2nW99sAeXJCNBjJ0Ru
-	E7DFg27jHqAjwSpEwbysyL2qx8vHqd54=
-X-Gm-Gg: ASbGncszFfX6DWMo1cZPqQL/Ylv8YZ8cbpazdK+JrI4gs4OhcG2oxXpbGfyukCek5w7
-	uluCQONxpZQJzk2V8X57IATzIAtnBAQ4IGs/1Q2f/NbQkz5XCT7YWlrgAZmHSxdohohWP2Vkc0g
-	KI4ukOhApuTwD5+8AOWYge5LVTOuksFqh796qfUdTOParaGoZ9zvbBNQ==
-X-Google-Smtp-Source: AGHT+IE2AsrunGhRqAPTssN0vu1pH9T/puSPtq1EYmN/wZ3G149WG6FCC+weBXEH09090+WjrZpEYCR5WVBab3y8bBw=
-X-Received: by 2002:a17:902:d50c:b0:234:cb4a:bc1c with SMTP id
- d9443c01a7336-23c7b2c48abmr14508535ad.6.1751559983011; Thu, 03 Jul 2025
- 09:26:23 -0700 (PDT)
+        bh=WdH4sBTuoMdc8vCQH2pqGoLuQIke7zGv5YkPaKRmBMY=;
+        b=EbPK49UDsgRv2MKjgzsVbMHrnfXYpBSRd2Yq0a2+kHSFakl1sl4+3rXgczJcEzXtFf
+         lFvZAqCfjtuRuu8YqInmMsZ5F+B7jK+k1d6BGtp6k97OBYFCuN3SG2WMWjmSCoDJN3Qy
+         vrBtn7GxRdr4i2syTqJKZlgc2PQ3kGpDEWCQQb137NhtFWQvZl9/XFqmnVMY/q8lOH+3
+         x4j7aCe9cXdzzJ78k9okUvdaAFwX399LfFx/VbQrSfSiBeNdsgx7x0jR87F+QwswLde2
+         GE5gE7OyY7AAhg2AkWX7mvCKBRa3ZVA03gzJPWqDTUk9Qq7I9dIeYv/xIuzS66mlEuOh
+         7y7Q==
+X-Forwarded-Encrypted: i=1; AJvYcCWApgyYoGKznroKbY8wx5tgEzjeE/iqWWoexPl9WCSKjBhEVZC49KF67uwflG71dXbDSrvtMIuJd7JV@vger.kernel.org, AJvYcCWB8uV520m6oWPdsiNN6u2dLaTDUtXpl5af6yKxVtGawZusTmIUMNlZgADXPZG93Rgf2pAryppl+gT/sDon@vger.kernel.org, AJvYcCXb1y8TO9erQkRznfHTgqPzmJyFi3x3SQPtevcN5DIMqyT/Qvjb8BNWkrx2LAbeUk/olT3l+4FWdqu6hz8=@vger.kernel.org
+X-Gm-Message-State: AOJu0YzzPWoejCj8iOgSlpvwRb3Ybz2pvjGobTp4VOpfA0Do2lh8D1dT
+	pTYqbHOwhXwTWNHURDl0V98QzvgrQGTPP3Xs2AG+1tFlYLs+2E+KtgGQ1qtVxYqTEcbyA0C8Lg0
+	R6V1HD6K9BCTa8z4PJuue51qTI/kDZ+o=
+X-Gm-Gg: ASbGncsjffkyOJKoHRblKu0QK5HOroMDQFW+tjA1TEVwh8LaY5FjHCfmxvea9fDEjyp
+	8iz4qDfS7Nbw34zaqEvVVWhlCWh/4LNN8o4dfLRZUXhTPfbTxM/6mCjmajCj5qszIFoAnvd454Q
+	xBhSNffLPKtXuB4j09ukhAbcycYP6oncXNWGODEQxhMXw=
+X-Google-Smtp-Source: AGHT+IEKPGqxoBPyYO7oEQAAR+E5wt2+iHGhdlTdIjwJAOyj7LpnwTL2E17vH4/krE9C5LBajTRe0s14jyvKE4qvQqU=
+X-Received: by 2002:a05:6512:3c88:b0:554:f9c5:6b30 with SMTP id
+ 2adb3069b0e04-5562eef54f1mr1432503e87.38.1751560860978; Thu, 03 Jul 2025
+ 09:41:00 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20250701-cstr-core-v13-0-29f7d3eb97a6@gmail.com>
- <20250701-cstr-core-v13-2-29f7d3eb97a6@gmail.com> <DB2BDSN1JH51.14ZZPETJORBC6@kernel.org>
- <CAJ-ks9nC=AyBPXRY3nJ0NuZvjFskzMcOkVNrBEfXD2hZ5uRntQ@mail.gmail.com>
-In-Reply-To: <CAJ-ks9nC=AyBPXRY3nJ0NuZvjFskzMcOkVNrBEfXD2hZ5uRntQ@mail.gmail.com>
-From: Miguel Ojeda <miguel.ojeda.sandonis@gmail.com>
-Date: Thu, 3 Jul 2025 18:26:09 +0200
-X-Gm-Features: Ac12FXyK3yF1o66pvRj95wQBg--_tN8783HmS0ZULfxKl6rLdQ-EP0UVIzak-4s
-Message-ID: <CANiq72=61JhEf97JTkineo+FX+JG+Q9x9x86MC_hukSa9YSX3g@mail.gmail.com>
-Subject: Re: [PATCH v13 2/5] rust: support formatting of foreign types
-To: Tamir Duberstein <tamird@gmail.com>
-Cc: Benno Lossin <lossin@kernel.org>, Michal Rostecki <vadorovsky@protonmail.com>, 
-	Miguel Ojeda <ojeda@kernel.org>, Alex Gaynor <alex.gaynor@gmail.com>, 
-	Boqun Feng <boqun.feng@gmail.com>, Gary Guo <gary@garyguo.net>, 
-	=?UTF-8?Q?Bj=C3=B6rn_Roy_Baron?= <bjorn3_gh@protonmail.com>, 
-	Andreas Hindborg <a.hindborg@kernel.org>, Alice Ryhl <aliceryhl@google.com>, 
-	Trevor Gross <tmgross@umich.edu>, Brendan Higgins <brendan.higgins@linux.dev>, 
-	David Gow <davidgow@google.com>, Rae Moar <rmoar@google.com>, 
-	Danilo Krummrich <dakr@kernel.org>, Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, 
-	Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>, 
-	David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>, 
-	Greg Kroah-Hartman <gregkh@linuxfoundation.org>, "Rafael J. Wysocki" <rafael@kernel.org>, 
-	Luis Chamberlain <mcgrof@kernel.org>, Russ Weight <russ.weight@linux.dev>, 
-	FUJITA Tomonori <fujita.tomonori@gmail.com>, Rob Herring <robh@kernel.org>, 
-	Saravana Kannan <saravanak@google.com>, Peter Zijlstra <peterz@infradead.org>, 
-	Ingo Molnar <mingo@redhat.com>, Will Deacon <will@kernel.org>, Waiman Long <longman@redhat.com>, 
-	Nathan Chancellor <nathan@kernel.org>, Nick Desaulniers <nick.desaulniers+lkml@gmail.com>, 
-	Bill Wendling <morbo@google.com>, Justin Stitt <justinstitt@google.com>, Andrew Lunn <andrew@lunn.ch>, 
-	Heiner Kallweit <hkallweit1@gmail.com>, Russell King <linux@armlinux.org.uk>, 
-	"David S. Miller" <davem@davemloft.net>, Eric Dumazet <edumazet@google.com>, 
-	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>, Bjorn Helgaas <bhelgaas@google.com>, 
-	Arnd Bergmann <arnd@arndb.de>, Jens Axboe <axboe@kernel.dk>, 
-	=?UTF-8?Q?Krzysztof_Wilczy=C5=84ski?= <kwilczynski@kernel.org>, 
-	Dave Ertman <david.m.ertman@intel.com>, Ira Weiny <ira.weiny@intel.com>, 
-	Leon Romanovsky <leon@kernel.org>, Breno Leitao <leitao@debian.org>, 
-	Viresh Kumar <viresh.kumar@linaro.org>, Michael Turquette <mturquette@baylibre.com>, 
-	Stephen Boyd <sboyd@kernel.org>, rust-for-linux@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, linux-kselftest@vger.kernel.org, 
-	kunit-dev@googlegroups.com, dri-devel@lists.freedesktop.org, 
-	netdev@vger.kernel.org, devicetree@vger.kernel.org, llvm@lists.linux.dev, 
-	linux-pci@vger.kernel.org, nouveau@lists.freedesktop.org, 
-	linux-block@vger.kernel.org, linux-pm@vger.kernel.org, 
-	linux-clk@vger.kernel.org
+References: <20250526-p3450-mts-bug-v1-1-78500613f02c@gmail.com>
+ <CALHNRZ_7wChDsvpUnQHnOTT9VzT1Lgg8JYgg13AFV8Jg_3itwQ@mail.gmail.com>
+ <nuicekbfdgjbfudtlul74ifsqckfg6itybb76bkzuaxfcp5ve5@yevlttgtobxy> <CABr+WTnn2qOXEMCiRDywySAxn0UeKAcx5XOJNpn731tXxbCPDQ@mail.gmail.com>
+In-Reply-To: <CABr+WTnn2qOXEMCiRDywySAxn0UeKAcx5XOJNpn731tXxbCPDQ@mail.gmail.com>
+From: Aaron Kling <webgeek1234@gmail.com>
+Date: Thu, 3 Jul 2025 11:40:49 -0500
+X-Gm-Features: Ac12FXyw2cWLiolTgqYlITN0f61RfhoSLbyAs5KERbqnbb-BOrtGxa3SWwJfwas
+Message-ID: <CALHNRZ_T_-FDOhLsjr7Vm3V0ekKkLCtv+Lt0x07133Cq+62cfQ@mail.gmail.com>
+Subject: Re: [PATCH RFC] arm64: tegra: Add reserved-memory node for P3450
+To: Nicolas Chauvet <kwizart@gmail.com>
+Cc: Thierry Reding <thierry.reding@gmail.com>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Jonathan Hunter <jonathanh@nvidia.com>, devicetree@vger.kernel.org, 
+	linux-tegra@vger.kernel.org, linux-kernel@vger.kernel.org
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-On Thu, Jul 3, 2025 at 3:56=E2=80=AFPM Tamir Duberstein <tamird@gmail.com> =
-wrote:
+On Thu, Jul 3, 2025 at 11:24=E2=80=AFAM Nicolas Chauvet <kwizart@gmail.com>=
+ wrote:
 >
-> Can you help me understand why? The changes you ask to be separated
-> would all be in different files, so why would separate commits make it
-> easier to review?
+> Le jeu. 3 juil. 2025 =C3=A0 13:00, Thierry Reding
+> <thierry.reding@gmail.com> a =C3=A9crit :
+> >
+> > On Mon, May 26, 2025 at 02:07:35PM -0500, Aaron Kling wrote:
+> > > On Mon, May 26, 2025 at 2:06=E2=80=AFPM Aaron Kling via B4 Relay
+> > > <devnull+webgeek1234.gmail.com@kernel.org> wrote:
+> > > >
+> > > > From: Aaron Kling <webgeek1234@gmail.com>
+> > > >
+> > > > The Tegra210 L4T bootloader ram training will corrupt the in-ram ke=
+rnel
+> > > > dt if no reserved-memory node exists. This prevents said bootloader=
+ from
+> > > > being able to boot a kernel without this node, unless a chainloaded
+> > > > bootloader loads the dt. Add the node to eliminate the requirement =
+for
+> > > > extra boot stages.
+>
+> Is there any particular reason why this applies on jetson-nano but not
+> jetson-tx1 (or any other l4t based boards ?)
 
-By the way, if we are talking about splitting, it is easier to land
-patches that can go independently into different subsystems and
-avoiding flag day changes (or making those as small as possible), i.e.
-ideally being able to land big changes across more than one kernel
-cycle.
+I answered that in my first reply to this patch. This does also apply
+to p2371-2180, aka the Jetson TX1 devkit, but I don't need it for my
+use case because it is supported by the android bootloader. To my
+knowledge, there are not any other supported t210 devices that use the
+l4t bootloader. And this is not a problem on other archs. If there's a
+desire, I can replicate this to p2371-2180 and send a v2 without the
+rfc tag. Probably better to do so for consistency anyways.
 
-Cheers,
-Miguel
+> I wonder if it would be enough to boot an upstream kernel with the l4t
+> bootloader (and no chainloaded upstream u-boot) as I cannot do the
+> other way for some reason (using fedora based upstream u-boot cannot
+> boot downstream l4t kernel anymore)
+
+Mmm, I'm not sure. I can boot a mainline kernel on the l4t bootloader
+without u-boot after this patch. But my use case is android. I've also
+booted a simple busybox initramfs to do non-android verification of
+changes. But I've not booted a full Linux distro.
+
+Aaron
 
