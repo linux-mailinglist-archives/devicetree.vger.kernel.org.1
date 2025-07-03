@@ -1,151 +1,145 @@
-Return-Path: <devicetree+bounces-192689-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-192691-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7EF47AF75F5
-	for <lists+devicetree@lfdr.de>; Thu,  3 Jul 2025 15:42:00 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id A8B50AF7638
+	for <lists+devicetree@lfdr.de>; Thu,  3 Jul 2025 15:54:51 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 6F25A5676DF
-	for <lists+devicetree@lfdr.de>; Thu,  3 Jul 2025 13:42:00 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id C81E91C85669
+	for <lists+devicetree@lfdr.de>; Thu,  3 Jul 2025 13:55:04 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id ACB822D6605;
-	Thu,  3 Jul 2025 13:41:55 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B5F792E7F12;
+	Thu,  3 Jul 2025 13:54:29 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="O3EaC7pG"
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="Iuo4jH+Y"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.12])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7EB382222B4;
-	Thu,  3 Jul 2025 13:41:55 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 16FEB2E7BD9;
+	Thu,  3 Jul 2025 13:54:27 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.198.163.12
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1751550115; cv=none; b=jLx52m/FEOTElbgGCTBzB1Ozy6zYYKyPy9G4EKFyLd0eGB4oypokQXVoFovOzP+mE/XT9kQJ9IcPZGev6le6xZzugLPr92u5SDGm50JhHv5maBrEhm8KEOhCfd8D5Ql8hrEXhIcs1YJQh828/44rmoH6RygLjLbx9Hgpjf8xY6o=
+	t=1751550869; cv=none; b=OKUMMuhBtyouErkGNfKlrPWCg4KteOzPxtPoYasV4wYyFFnjAA6KdJF3IUnmEV1ArS3dsWi0LAQaY/CAO0iUlBvd4JD2L8lqv4ql6J+S9m0tLWwP1MmT3wg+poq4bNqmJWZ+o5RzRlihpbygMmzqrq1r8H9d6lsPY+zP9CCUoAc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1751550115; c=relaxed/simple;
-	bh=AzCyOeLYvvkd8ESz+bYjZcDSyDUTK6UgemqQUMKPmC8=;
-	h=Date:Content-Type:MIME-Version:From:Cc:To:In-Reply-To:References:
-	 Message-Id:Subject; b=qQBaU2bnCGLTjLEdsbgb98xZUs53nypw3fn1VVJ+QmND+epKxsjdZUu/PgvtVtK7y1ptVOwCcnSOFQjQkDx8BV4uSUi7O3lm+1w0TOOzyPiWK/SpvZ/ooZvrjy6GozGG81IVH0/kHWhmhWo4y0aLtKftkaSIB3dMJEEzC1vPGNc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=O3EaC7pG; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id D8872C4CEE3;
-	Thu,  3 Jul 2025 13:41:54 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1751550115;
-	bh=AzCyOeLYvvkd8ESz+bYjZcDSyDUTK6UgemqQUMKPmC8=;
-	h=Date:From:Cc:To:In-Reply-To:References:Subject:From;
-	b=O3EaC7pG9AYMtZ1GnmxlMDAujjKd2jjjy8oV9NgoYzH33twFw/sto/xm7oA/kF4wm
-	 QKXDolNstpowlpxlrxtFoYSELRJCAvHsmAyB9bIO4x0OOcS3jLkwCJPhzS/Xh5rqgz
-	 hk1vVueopNKfKZwerZQwRC1wTfPrEKXOhzdgvICHl5lxnT3QGCcSpRVfZwU2Yvpf2P
-	 gwlN76MM4FZmH3RjfneQUsu52PA9EtUPDjDJyOSwwjbtj7GzYI4Hl0r3FlkazbeZzQ
-	 YrlMpFfSPcWldPwJK0mnkJCRlSXQFfqiCuJbJ6NKbsa+4YwMgk3ttTtcbZ6Kkg8s4G
-	 1KS1rB+xP+p8w==
-Date: Thu, 03 Jul 2025 08:41:53 -0500
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
+	s=arc-20240116; t=1751550869; c=relaxed/simple;
+	bh=hkynFXqBgMDhBIacDm9GkRDPLniP47vYUeHzZhSjqPE=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=eddCL/2WAqbhIxeoZTgXOOl8fIXVfLrTyiudTVnbBsQD5HtjZ42vGxRcZ13DLMz02BPaLrbh4vVX1LoPWFfrgEh3KqK2SpsJdGCKUf0UgFSRKkxmhTGtAVH/WXorWJTK09jGVvWoQtVi6aMc+S/Z6WVIJk5GaEIAqbKJaqJbFrg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com; spf=none smtp.mailfrom=linux.intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=Iuo4jH+Y; arc=none smtp.client-ip=192.198.163.12
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com
+Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=linux.intel.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1751550868; x=1783086868;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=hkynFXqBgMDhBIacDm9GkRDPLniP47vYUeHzZhSjqPE=;
+  b=Iuo4jH+YLzq6DVWUeAq2jZK5USPTOhYisKgOROVHg/s55NC2xcZdIgf0
+   PzjpnFL2MftsrgmnEDMTFfbtf3muJR/QAxJ02GQrOaKkMuTRJsQQhovfV
+   v35Mv2WwQ6nAERKeS+eRBoBvmOegCfkEZF5gkJ9INxf2mNArOtNgYn7Cm
+   yTBH7KMdEVwPnDYSu4pVeupIQ49IRuUpSB8h9l64Nc9ClYc3zPLWrChwh
+   Y3DQbyt6jLzAgHCXfz6SQOaaJoqJyqCPZrG+n90AnPye/txXQsSBlzw1Y
+   KUglGPg+/BhwkjfKc7xbopkhawHf0uEC7nd0lq1aJPpIxy6mWCVowht+j
+   w==;
+X-CSE-ConnectionGUID: AAjKmMZ4TRutFgd4UTxzpQ==
+X-CSE-MsgGUID: B3OULOP1Qom2ex9Jj1K0Ww==
+X-IronPort-AV: E=McAfee;i="6800,10657,11483"; a="57686384"
+X-IronPort-AV: E=Sophos;i="6.16,284,1744095600"; 
+   d="scan'208";a="57686384"
+Received: from orviesa010.jf.intel.com ([10.64.159.150])
+  by fmvoesa106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 03 Jul 2025 06:54:27 -0700
+X-CSE-ConnectionGUID: Sz8pfLTHRumN6SVidx2zkw==
+X-CSE-MsgGUID: LlSnEty4TaS4oZ+RxqLYkg==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.16,284,1744095600"; 
+   d="scan'208";a="153790365"
+Received: from smile.fi.intel.com ([10.237.72.52])
+  by orviesa010.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 03 Jul 2025 06:54:21 -0700
+Received: from andy by smile.fi.intel.com with local (Exim 4.98.2)
+	(envelope-from <andriy.shevchenko@linux.intel.com>)
+	id 1uXKOG-0000000CDjq-1Yoc;
+	Thu, 03 Jul 2025 16:54:16 +0300
+Date: Thu, 3 Jul 2025 16:54:16 +0300
+From: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
+To: Sunil V L <sunilvl@ventanamicro.com>
+Cc: Anup Patel <apatel@ventanamicro.com>,
+	Michael Turquette <mturquette@baylibre.com>,
+	Stephen Boyd <sboyd@kernel.org>, Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Jassi Brar <jassisinghbrar@gmail.com>,
+	Thomas Gleixner <tglx@linutronix.de>,
+	"Rafael J . Wysocki" <rafael@kernel.org>,
+	Mika Westerberg <mika.westerberg@linux.intel.com>,
+	Linus Walleij <linus.walleij@linaro.org>,
+	Bartosz Golaszewski <brgl@bgdev.pl>,
+	Uwe =?iso-8859-1?Q?Kleine-K=F6nig?= <ukleinek@kernel.org>,
+	Palmer Dabbelt <palmer@dabbelt.com>,
+	Paul Walmsley <paul.walmsley@sifive.com>,
+	Alexandre Ghiti <alex@ghiti.fr>, Len Brown <lenb@kernel.org>,
+	Rahul Pathak <rpathak@ventanamicro.com>,
+	Leyfoon Tan <leyfoon.tan@starfivetech.com>,
+	Atish Patra <atish.patra@linux.dev>,
+	Andrew Jones <ajones@ventanamicro.com>,
+	Samuel Holland <samuel.holland@sifive.com>,
+	Anup Patel <anup@brainfault.org>, linux-clk@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-acpi@vger.kernel.org,
+	linux-riscv@lists.infradead.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v7 21/24] mailbox/riscv-sbi-mpxy: Add ACPI support
+Message-ID: <aGaLiK0eW8Mc1YC3@smile.fi.intel.com>
+References: <20250702051345.1460497-1-apatel@ventanamicro.com>
+ <20250702051345.1460497-22-apatel@ventanamicro.com>
+ <aGUl_S9irfhlHmy2@smile.fi.intel.com>
+ <aGZhWlxxQG0Z8awP@sunil-laptop>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-From: "Rob Herring (Arm)" <robh@kernel.org>
-Cc: linux-kernel@vger.kernel.org, nuno.sa@analog.com, conor+dt@kernel.org, 
- zhiyong.tao@mediatek.com, matthias.bgg@gmail.com, linux-iio@vger.kernel.org, 
- linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org, 
- krzk+dt@kernel.org, andy@kernel.org, 
- angelogioacchino.delregno@collabora.com, linux-mediatek@lists.infradead.org, 
- dlechner@baylibre.com, jic23@kernel.org
-To: Aleksander Jan Bajkowski <olek2@wp.pl>
-In-Reply-To: <20250702214830.255898-1-olek2@wp.pl>
-References: <20250702214830.255898-1-olek2@wp.pl>
-Message-Id: <175155007600.1164337.2694125057173487421.robh@kernel.org>
-Subject: Re: [PATCH v2 0/2] Add thermal sensors support for MT7981
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <aGZhWlxxQG0Z8awP@sunil-laptop>
+Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park, 6
+ krs, Bertel Jungin Aukio 5, 02600 Espoo
 
+On Thu, Jul 03, 2025 at 04:24:18PM +0530, Sunil V L wrote:
+> On Wed, Jul 02, 2025 at 03:28:45PM +0300, Andy Shevchenko wrote:
+> > On Wed, Jul 02, 2025 at 10:43:42AM +0530, Anup Patel wrote:
 
-On Wed, 02 Jul 2025 23:48:28 +0200, Aleksander Jan Bajkowski wrote:
-> This patch adds support for the temperature sensor in the MT7981 SoC.
-> This sensor is exactly the same as the one in the MT7986.
-> 
-> Changes in v2:
->  - added fallback to an existing compatible string
->  - removed second patch as obsolete
-> 
-> Aleksander Jan Bajkowski (2):
->   dt-bindings: iio: adc: Add support for MT7981
->   arm64: dts: mediatek: add thermal sensor support on mt7981
-> 
->  .../iio/adc/mediatek,mt2701-auxadc.yaml       |  1 +
->  arch/arm64/boot/dts/mediatek/mt7981b.dtsi     | 32 ++++++++++++++++++-
->  2 files changed, 32 insertions(+), 1 deletion(-)
-> 
-> --
-> 2.39.5
-> 
-> 
-> 
+...
 
+> > > -		if (dev_of_node(dev))
+> > > +		if (is_of_node(fwnode)) {
+> > >  			of_msi_configure(dev, dev_of_node(dev));
+> > > +		} else if (is_acpi_device_node(fwnode)) {
+> > > +			msi_domain = irq_find_matching_fwnode(imsic_acpi_get_fwnode(dev),
+> > > +							      DOMAIN_BUS_PLATFORM_MSI);
+> > > +			dev_set_msi_domain(dev, msi_domain);
+> > > +		}
+> > 
+> > Actually you don't need to have the if-else-if if I am not mistaken.
+> > The OF does almost the same as it's done in the second branch for ACPI case.
+> > How many MSI parents this may have?
+> > 
+> OF already has a well defined interface to configure the MSI domain. The
+> mechanisms existing today are different for DT vs ACPI to find out the
+> fwnode of the MSI controller. So, it is done differently.
 
-My bot found new DTB warnings on the .dts files added or changed in this
-series.
+I don't see how. The only difference I see is that OF iterates over all listed
+parents, if any, ACPI tries only one.
 
-Some warnings may be from an existing SoC .dtsi. Or perhaps the warnings
-are fixed by another series. Ultimately, it is up to the platform
-maintainer whether these warnings are acceptable or not. No need to reply
-unless the platform maintainer has comments.
+So, perhaps it's a time to have a common API somewhere for this to be agnostic?
+Something like fwnode_msi_configure() in somewhere of IRQ MSI core?
 
-If you already ran DT checks and didn't see these error(s), then
-make sure dt-schema is up to date:
+> In RISC-V case at least, there will be only one MSI parent.
 
-  pip3 install dtschema --upgrade
-
-
-This patch series was applied (using b4) to base:
- Base: attempting to guess base-commit...
- Base: tags/next-20250702 (exact match)
-
-If this is not the correct base, please add 'base-commit' tag
-(or use b4 which does this automatically)
-
-New warnings running 'make CHECK_DTBS=y for arch/arm64/boot/dts/mediatek/' for 20250702214830.255898-1-olek2@wp.pl:
-
-arch/arm64/boot/dts/mediatek/mt7981b-openwrt-one.dtb: thermal@1100c800 (mediatek,mt7981-thermal): compatible: ['mediatek,mt7981-thermal', 'mediatek,mt7986-thermal'] is too long
-	from schema $id: http://devicetree.org/schemas/thermal/mediatek,thermal.yaml#
-arch/arm64/boot/dts/mediatek/mt7981b-openwrt-one.dtb: thermal@1100c800 (mediatek,mt7981-thermal): Unevaluated properties are not allowed ('compatible' was unexpected)
-	from schema $id: http://devicetree.org/schemas/thermal/mediatek,thermal.yaml#
-arch/arm64/boot/dts/mediatek/mt7981b-openwrt-one.dtb: adc@1100d000 (mediatek,mt7981-auxadc): compatible: 'oneOf' conditional failed, one must be fixed:
-	['mediatek,mt7981-auxadc', 'mediatek,mt7986-auxadc', 'mediatek,mt7622-auxadc'] is too long
-	'mediatek,mt7981-auxadc' is not one of ['mediatek,mt7623-auxadc']
-	'mediatek,mt7981-auxadc' is not one of ['mediatek,mt6893-auxadc', 'mediatek,mt8183-auxadc', 'mediatek,mt8186-auxadc', 'mediatek,mt8188-auxadc', 'mediatek,mt8195-auxadc', 'mediatek,mt8516-auxadc']
-	'mediatek,mt2701-auxadc' was expected
-	'mediatek,mt8173-auxadc' was expected
-	from schema $id: http://devicetree.org/schemas/iio/adc/mediatek,mt2701-auxadc.yaml#
-arch/arm64/boot/dts/mediatek/mt7981b-cudy-wr3000-v1.dtb: thermal@1100c800 (mediatek,mt7981-thermal): compatible: ['mediatek,mt7981-thermal', 'mediatek,mt7986-thermal'] is too long
-	from schema $id: http://devicetree.org/schemas/thermal/mediatek,thermal.yaml#
-arch/arm64/boot/dts/mediatek/mt7981b-cudy-wr3000-v1.dtb: thermal@1100c800 (mediatek,mt7981-thermal): Unevaluated properties are not allowed ('compatible' was unexpected)
-	from schema $id: http://devicetree.org/schemas/thermal/mediatek,thermal.yaml#
-arch/arm64/boot/dts/mediatek/mt7981b-cudy-wr3000-v1.dtb: adc@1100d000 (mediatek,mt7981-auxadc): compatible: 'oneOf' conditional failed, one must be fixed:
-	['mediatek,mt7981-auxadc', 'mediatek,mt7986-auxadc', 'mediatek,mt7622-auxadc'] is too long
-	'mediatek,mt7981-auxadc' is not one of ['mediatek,mt7623-auxadc']
-	'mediatek,mt7981-auxadc' is not one of ['mediatek,mt6893-auxadc', 'mediatek,mt8183-auxadc', 'mediatek,mt8186-auxadc', 'mediatek,mt8188-auxadc', 'mediatek,mt8195-auxadc', 'mediatek,mt8516-auxadc']
-	'mediatek,mt2701-auxadc' was expected
-	'mediatek,mt8173-auxadc' was expected
-	from schema $id: http://devicetree.org/schemas/iio/adc/mediatek,mt2701-auxadc.yaml#
-arch/arm64/boot/dts/mediatek/mt7981b-xiaomi-ax3000t.dtb: thermal@1100c800 (mediatek,mt7981-thermal): compatible: ['mediatek,mt7981-thermal', 'mediatek,mt7986-thermal'] is too long
-	from schema $id: http://devicetree.org/schemas/thermal/mediatek,thermal.yaml#
-arch/arm64/boot/dts/mediatek/mt7981b-xiaomi-ax3000t.dtb: thermal@1100c800 (mediatek,mt7981-thermal): Unevaluated properties are not allowed ('compatible' was unexpected)
-	from schema $id: http://devicetree.org/schemas/thermal/mediatek,thermal.yaml#
-arch/arm64/boot/dts/mediatek/mt7981b-xiaomi-ax3000t.dtb: adc@1100d000 (mediatek,mt7981-auxadc): compatible: 'oneOf' conditional failed, one must be fixed:
-	['mediatek,mt7981-auxadc', 'mediatek,mt7986-auxadc', 'mediatek,mt7622-auxadc'] is too long
-	'mediatek,mt7981-auxadc' is not one of ['mediatek,mt7623-auxadc']
-	'mediatek,mt7981-auxadc' is not one of ['mediatek,mt6893-auxadc', 'mediatek,mt8183-auxadc', 'mediatek,mt8186-auxadc', 'mediatek,mt8188-auxadc', 'mediatek,mt8195-auxadc', 'mediatek,mt8516-auxadc']
-	'mediatek,mt2701-auxadc' was expected
-	'mediatek,mt8173-auxadc' was expected
-	from schema $id: http://devicetree.org/schemas/iio/adc/mediatek,mt2701-auxadc.yaml#
-
-
-
+-- 
+With Best Regards,
+Andy Shevchenko
 
 
 
