@@ -1,219 +1,488 @@
-Return-Path: <devicetree+bounces-192518-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-192519-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 77BA1AF6EDC
-	for <lists+devicetree@lfdr.de>; Thu,  3 Jul 2025 11:35:46 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id B9AE6AF6EE8
+	for <lists+devicetree@lfdr.de>; Thu,  3 Jul 2025 11:37:11 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 6E19A1883844
-	for <lists+devicetree@lfdr.de>; Thu,  3 Jul 2025 09:35:32 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 61FFF3A6828
+	for <lists+devicetree@lfdr.de>; Thu,  3 Jul 2025 09:36:38 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B26B02D94A7;
-	Thu,  3 Jul 2025 09:34:50 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3E4862D6401;
+	Thu,  3 Jul 2025 09:37:00 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=leica-geosystems.com.cn header.i=@leica-geosystems.com.cn header.b="vtoegF25"
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="d/2U4O7M"
 X-Original-To: devicetree@vger.kernel.org
-Received: from DUZPR83CU001.outbound.protection.outlook.com (mail-northeuropeazon11012025.outbound.protection.outlook.com [52.101.66.25])
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 011342D948A;
-	Thu,  3 Jul 2025 09:34:48 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=52.101.66.25
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1751535290; cv=fail; b=TYjsPOOm3vhZ96BgHLjFhElIk6O9ANf1tER9Qp7FK1sBiqsaeeussvOPFmkyqRm9tJLTyhaXwb29iYyJoXGHyKTqK9afO+Ff54R/usQPHZxT1levSNvwEN67lvV0DWwaabzmUF+kJmayetWXoCfKcyGNkZ68PDohs5xm2mtiiCw=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1751535290; c=relaxed/simple;
-	bh=diIXe8Z1qy247uMNW/+6mK2DGxdNUS1aMpzqQZFFMUc=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=MsPhyS3PjFMHKGbzn64r+wGfwKn0A515WDio/ycKFxWx+GcPpvqX+GEJZ8C9ccrVYtU6p3mJoPriInzmAcsSJoSCyrLc7si1jZy1Gp3gFyFlLxK/toLvKMUTIT4A+y/ScEUoP6VUhbb32BblqpP1EbR9jLVGSoT5GSG3BK/gvZo=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=leica-geosystems.com.cn; spf=fail smtp.mailfrom=leica-geosystems.com.cn; dkim=pass (1024-bit key) header.d=leica-geosystems.com.cn header.i=@leica-geosystems.com.cn header.b=vtoegF25; arc=fail smtp.client-ip=52.101.66.25
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=leica-geosystems.com.cn
-Authentication-Results: smtp.subspace.kernel.org; spf=fail smtp.mailfrom=leica-geosystems.com.cn
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=R4KcljsBOgC0wpwtFhiKYOxoJH++y3zGQ8hldA9zJqidSzWXWZHlgVeBD1VS7Ylxrwlk/yGh1WXLmMzJjxS5PG8VommlozynCvcoVocWkbxPTB7zRnYa5YAIEZ6OKJOGTz5XrEDHuwRxzO4wXlQcdM8uUkDPGALo5KUSOdmLj4ywv2cPfSiyG5R4HrPAY0R4xcOfzc5Vlgpl6A8Tdy0xlprfUeCTVBdPs+AjwW2Py0noQK2XsAWiOqTA5dT4ozxkCmnZ5o/fesgIVMrpot0pA3fLZtYdoCYnFQ95A4JsiKJu3UBRfTiJs81KNwsBmBaA8mB8mtTQdUz46Xi95hC9Vg==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=u2VbUgBRmOSBL67LpZaNlfVwsOmRrus1isPUVyBDvkU=;
- b=baFtvXy8rFwrKvaXaQx7gk6oJymXm1gYpPcp3r1+aXJXH0H/VpLRxqYrtGUYbw1WHYGh7ZRin4k8lraNag3YTS3O/6o0ts4sTIVUQl1uHwiUYjKUWgLm1R+0r29krGw/3/LWkl6c8BBWDhQkXtLd5gTSC868ZTPTIctQZgG4uReB97NS8e/dKX/60Papzthy9G2g9GfJIvtQ7gT0FxPurekD1QFmegCZuPc8MHSgz8RuLFBvpKbpzDxmK9MNtugKSsFvvvU5y2CaLjEeIt5vM8IpZjreNL91IUwJZMbOHbdBNOLgmJb8Qzia+d8ZcULiBCtKfun+/aiC76thjLhpUQ==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
- 193.8.40.94) smtp.rcpttodomain=vger.kernel.org
- smtp.mailfrom=leica-geosystems.com.cn; dmarc=pass (p=reject sp=reject
- pct=100) action=none header.from=leica-geosystems.com.cn; dkim=none (message
- not signed); arc=none (0)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=leica-geosystems.com.cn; s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=u2VbUgBRmOSBL67LpZaNlfVwsOmRrus1isPUVyBDvkU=;
- b=vtoegF255C2TUgSbW7P2BqV21O+xyd1y/3ahHXPUAbRmLbo9/KmwJcDQ8HDkI4AGXxYBCoGSxpSEFyP5g4HD8VEeRmEjur2vyv0KrF1Qi08o0FSRWN1xeRFIOKwt9LZ+VRVttCYR1ZufDoObyU8zkN7kiguFkNX6oyGtwZ8gilI=
-Received: from AS4P190CA0022.EURP190.PROD.OUTLOOK.COM (2603:10a6:20b:5d0::14)
- by VI1PR06MB6669.eurprd06.prod.outlook.com (2603:10a6:800:184::7) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8901.22; Thu, 3 Jul
- 2025 09:34:44 +0000
-Received: from AMS0EPF000001A7.eurprd05.prod.outlook.com
- (2603:10a6:20b:5d0:cafe::94) by AS4P190CA0022.outlook.office365.com
- (2603:10a6:20b:5d0::14) with Microsoft SMTP Server (version=TLS1_3,
- cipher=TLS_AES_256_GCM_SHA384) id 15.20.8901.21 via Frontend Transport; Thu,
- 3 Jul 2025 09:34:44 +0000
-X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 193.8.40.94)
- smtp.mailfrom=leica-geosystems.com.cn; dkim=none (message not signed)
- header.d=none;dmarc=pass action=none header.from=leica-geosystems.com.cn;
-Received-SPF: Pass (protection.outlook.com: domain of leica-geosystems.com.cn
- designates 193.8.40.94 as permitted sender) receiver=protection.outlook.com;
- client-ip=193.8.40.94; helo=hexagon.com; pr=C
-Received: from hexagon.com (193.8.40.94) by
- AMS0EPF000001A7.mail.protection.outlook.com (10.167.16.234) with Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.8901.15 via Frontend Transport; Thu, 3 Jul 2025 09:34:43 +0000
-Received: from GEO-W5CG2253GWB.lgs-net.com ([10.132.33.66]) by hexagon.com with Microsoft SMTPSVC(10.0.17763.1697);
-	 Thu, 3 Jul 2025 11:34:43 +0200
-From: LI Qingwu <Qing-wu.Li@leica-geosystems.com.cn>
-To: lee@kernel.org,
-	pavel@kernel.org,
-	robh@kernel.org,
-	krzk+dt@kernel.org,
-	conor+dt@kernel.org,
-	linux-leds@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	Qing-wu.Li@leica-geosystems.com.cn
-Cc: bsp-development.geo@leica-geosystems.com
-Subject: [PATCH V4 2/2] leds: pwm: Add optional GPIO enable pin support
-Date: Thu,  3 Jul 2025 17:34:30 +0800
-Message-ID: <20250703093430.229959-3-Qing-wu.Li@leica-geosystems.com.cn>
-X-Mailer: git-send-email 2.43.0
-In-Reply-To: <20250703093430.229959-1-Qing-wu.Li@leica-geosystems.com.cn>
-References: <20250703093430.229959-1-Qing-wu.Li@leica-geosystems.com.cn>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3048323BCF1;
+	Thu,  3 Jul 2025 09:36:57 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1751535420; cv=none; b=hXilwU4yzWVQhc6GXho8yX10zOQr5jvV8++ibLwZ8G4ZJJH+BTLgkRGxvIXEJZlrPY21lJhVVzrQf++/OKvQqZZYPu6/tFLQ2rArJafthc924NMGLhK1Z5hwrnjFh6OiLvSp7UVfQBtLsl4iEJudPieUeHAPujpnWUTjKwgJv4w=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1751535420; c=relaxed/simple;
+	bh=hQIHEuqeokZqHMrXMdMOy10SxuZNFEjF/nKwhEfgynE=;
+	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
+	 In-Reply-To:Content-Type; b=bC7MbdOlnEalcNOCfWDw6/fB3CsD1Xh2UWRCRTLHdkNeYoSYpQgNiocaREnZtrmCjDqQNCh/pWQzz0QelhSyTHg2xWdyrVpiVJiHW92Sex8azemjhUXu5yVeMI8xnX5bfPT33D1eXt/B+FZXcFfgolIhi8bhRNZIjnZ8y38YDVs=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=d/2U4O7M; arc=none smtp.client-ip=205.220.180.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
+Received: from pps.filterd (m0279869.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 56314BTM025364;
+	Thu, 3 Jul 2025 09:36:44 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	3Bx/D3f8npc4SVgVlVyBMLFb5KwIBdvI3Ykpbm7JiFg=; b=d/2U4O7MmgI2E25/
+	XyI77OUZU2WdhYAdQLuIqyTA8j5kPLGbz2tR3FyoZ8U8U3/gKrvFnUpc70DqkRTH
+	oN9OnZC/U+1paA5j1skHfguT/BaU8DxeLfvYZpL6bp44uGsR/H1uLKXV5cjjhx81
+	REC+oV2WZHHUiXkQQZ4CnxRcGpfasz3TRQ9cLAaRE6kGXwGx3LInOIW063RX/p79
+	nfOXRP7H1tlR6moY9id3ZdCPlpLjNOdRSUy26J1wSbvjYfWKhZke2ySSvdndSaZw
+	Q6SlML1wqvwgzB8CsxSt0E9aVfbDjHW3qlri4rN1ZfcFI7gv5WclW/kZGrVKxqGp
+	FEdgwg==
+Received: from nasanppmta03.qualcomm.com (i-global254.qualcomm.com [199.106.103.254])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 47kd64vyyx-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Thu, 03 Jul 2025 09:36:44 +0000 (GMT)
+Received: from nasanex01b.na.qualcomm.com (nasanex01b.na.qualcomm.com [10.46.141.250])
+	by NASANPPMTA03.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 5639agrH028261
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Thu, 3 Jul 2025 09:36:42 GMT
+Received: from [10.253.36.62] (10.80.80.8) by nasanex01b.na.qualcomm.com
+ (10.46.141.250) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1748.10; Thu, 3 Jul
+ 2025 02:36:36 -0700
+Message-ID: <e6185a22-8e32-417e-a2d5-a7526ff91bc6@quicinc.com>
+Date: Thu, 3 Jul 2025 17:36:33 +0800
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-OriginalArrivalTime: 03 Jul 2025 09:34:43.0257 (UTC) FILETIME=[B4F1F290:01DBEBFD]
-X-EOPAttributedMessage: 0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: AMS0EPF000001A7:EE_|VI1PR06MB6669:EE_
-Content-Type: text/plain
-X-MS-Office365-Filtering-Correlation-Id: 50919313-10da-4dc4-de3a-08ddba14d7bc
-X-SET-LOWER-SCL-SCANNER: YES
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam:
-	BCL:0;ARA:13230040|36860700013|1800799024|82310400026|376014;
-X-Microsoft-Antispam-Message-Info:
-	=?us-ascii?Q?KZQ0fTd5f2aEKdbwKvaklmnwebFmWtwILf6Z5Py0vdqKAseq/V00QUaCoAKy?=
- =?us-ascii?Q?HcP40BEYR2NIhPNz/YablzeLIn/Lw+7qP0YOptZLI4WTtFJUQ/wmZv4ANwOy?=
- =?us-ascii?Q?hzw40BqOshdpkOAu95o3NYPibMPFN6oMixlQE56KrP5LN2XiK3py4LbQAVW1?=
- =?us-ascii?Q?ogysrdPeQcxpVGRZJ2vUMDyylineZSR8Izjf/DuWbPrvAx+qQWwUnhFDhkOP?=
- =?us-ascii?Q?qvev9U1Qf43By0EFW4sghCZS7ZaX2Hf23sQAJvs/Ce3wjeZWvbB2kxTZRBU7?=
- =?us-ascii?Q?phgq6BdMGMkUbDXYzvZDj8Ba2FyjgjioAjkfDK+6FKKLluZF5bv4qLwzks5L?=
- =?us-ascii?Q?7tG2ErSkjyVLASsN6d3REz9wJh7YDcdzUl7vbSFj7uErghSmoa4A38ofGwUg?=
- =?us-ascii?Q?EeXoM6aMSFkayt1+mUppT4OhVwcw08EUdBzPn6iegUJfcIJG+K2nvzW605gB?=
- =?us-ascii?Q?PzsSSxK1T04mty2bX4yKBBBfCarW4UVK4d7NssGhq0SNSKPr1mqByNACoBs8?=
- =?us-ascii?Q?pI1rOpm1bW6reNn+00ZnUWNRNA1YNkC4mAN9NIXozqCwaaFJcntOHNhTUBHC?=
- =?us-ascii?Q?IyIgMXO3OuVOn96XSZKxOC5o1qDrS2PBNJ1NYl4cm2WdeUAKqUYJPnFXEZPJ?=
- =?us-ascii?Q?j2VGLWFIs8q0INWd1SOI/Lf9H34OYLWY9WULJ71BrdW5fzwfApu8hFjO4W0I?=
- =?us-ascii?Q?c5781nqIT04f8v5imphRq5UVokRcJSXN25+zBsa26IILnnaWAe1GG6vp+P9P?=
- =?us-ascii?Q?HoPinXcZNozkykn2yCB8r2juz/ag0p5B4V2arjTjGo4mbKF5nfhOXS8hwEFe?=
- =?us-ascii?Q?yW/mofr+5AB2rC7RxKSF7Gomv96c3RlLKRu8ROUGlJVZLW3X2Efupa5+Zs59?=
- =?us-ascii?Q?aAfoeZiZuSrOVFp3YEz5oW2q8GEnrYI75lSHHCmZ4AOcUG0g64enj9GY/bHQ?=
- =?us-ascii?Q?tnP4WY2jxPPdu3bdCi+UmgIz97DXoUVxYJqiGc2J8CCzcmMevUi4abpQb2O0?=
- =?us-ascii?Q?tGdVy1SBu6bVU89X7wwoUJN0tUlg7JP35mE4cq8CKUw0UH55M23Svfl5YNTg?=
- =?us-ascii?Q?R2KJty/nZhvMLRj1/bVeYc2BbQCPuqZtQRAoDn430b0mpIX/Vr8nPZKRzhh9?=
- =?us-ascii?Q?BSWOZ1Y1uSOi0X2Kt/QmLGW8ewcSi3Fv7GTptkmtWfCzLfp92mVw65LcrOEK?=
- =?us-ascii?Q?OBueeUqKeSFj6J2+wK0IkO1jFEcYpYDxloM3UXmALaBmU90n8ael1JsV+LMv?=
- =?us-ascii?Q?nc6FUwahTOzDHx9CLRy1WZcYZsmlJ/D7WPlkOAXyLkgdbrel4/dRIbCRyllW?=
- =?us-ascii?Q?/08fDFQtxs3grTcRz8hLvHmI0L3mR2zd68FteR++p60kNlEPyKB81VnnYjQ+?=
- =?us-ascii?Q?wPqtSmo8SvMDmdxJN+mnDwmsYOKdNqg3NneWdHiRJssPRVLcg3Rv/wnN8ZKC?=
- =?us-ascii?Q?A4RjOgMd01gStm3wP3JBRQM3Qiu43pvz/hkC/PsEqwFZOQpbrCj0/QBgajBi?=
- =?us-ascii?Q?AwPRRUv0acDbGJ+0/Y4Sa/8ynuHMVDPnunlj6kndV4vb+H3+VLROPmF5Ag?=
- =?us-ascii?Q?=3D=3D?=
-X-Forefront-Antispam-Report:
-	CIP:193.8.40.94;CTRY:CH;LANG:en;SCL:1;SRV:;IPV:CAL;SFV:NSPM;H:hexagon.com;PTR:ahersrvdom50.leica-geosystems.com;CAT:NONE;SFS:(13230040)(36860700013)(1800799024)(82310400026)(376014);DIR:OUT;SFP:1101;
-X-OriginatorOrg: leica-geosystems.com.cn
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 03 Jul 2025 09:34:43.7023
- (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: 50919313-10da-4dc4-de3a-08ddba14d7bc
-X-MS-Exchange-CrossTenant-Id: 1b16ab3e-b8f6-4fe3-9f3e-2db7fe549f6a
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=1b16ab3e-b8f6-4fe3-9f3e-2db7fe549f6a;Ip=[193.8.40.94];Helo=[hexagon.com]
-X-MS-Exchange-CrossTenant-AuthSource:
-	AMS0EPF000001A7.eurprd05.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Anonymous
-X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: VI1PR06MB6669
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH net-next v5 01/14] dt-bindings: net: Add PPE for Qualcomm
+ IPQ9574 SoC
+To: Krzysztof Kozlowski <krzk@kernel.org>
+CC: Andrew Lunn <andrew+netdev@lunn.ch>,
+        "David S. Miller"
+	<davem@davemloft.net>,
+        Eric Dumazet <edumazet@google.com>, Jakub Kicinski
+	<kuba@kernel.org>,
+        Paolo Abeni <pabeni@redhat.com>, Rob Herring
+	<robh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley
+	<conor+dt@kernel.org>, Lei Wei <quic_leiwei@quicinc.com>,
+        Suruchi Agarwal
+	<quic_suruchia@quicinc.com>,
+        Pavithra R <quic_pavir@quicinc.com>,
+        "Simon
+ Horman" <horms@kernel.org>, Jonathan Corbet <corbet@lwn.net>,
+        Kees Cook
+	<kees@kernel.org>,
+        "Gustavo A. R. Silva" <gustavoars@kernel.org>,
+        "Philipp
+ Zabel" <p.zabel@pengutronix.de>,
+        <linux-arm-msm@vger.kernel.org>, <netdev@vger.kernel.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <linux-doc@vger.kernel.org>, <linux-hardening@vger.kernel.org>,
+        <quic_kkumarcs@quicinc.com>, <quic_linchen@quicinc.com>
+References: <20250626-qcom_ipq_ppe-v5-0-95bdc6b8f6ff@quicinc.com>
+ <20250626-qcom_ipq_ppe-v5-1-95bdc6b8f6ff@quicinc.com>
+ <20250701-mottled-clever-walrus-f7dcd3@krzk-bin>
+Content-Language: en-US
+From: Luo Jie <quic_luoj@quicinc.com>
+In-Reply-To: <20250701-mottled-clever-walrus-f7dcd3@krzk-bin>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
+ nasanex01b.na.qualcomm.com (10.46.141.250)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Authority-Analysis: v=2.4 cv=Z+PsHGRA c=1 sm=1 tr=0 ts=68664f2c cx=c_pps
+ a=JYp8KDb2vCoCEuGobkYCKw==:117 a=JYp8KDb2vCoCEuGobkYCKw==:17
+ a=GEpy-HfZoHoA:10 a=IkcTkHD0fZMA:10 a=Wb1JkmetP80A:10
+ a=z97pFrWBJukyg1BkY94A:9 a=QEXdDO2ut3YA:10
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwNzAzMDA3OCBTYWx0ZWRfX8UQw/MA7PL37
+ gbOYW7JuoqHEOBxy8x0mHsSZtGIBk+voLShXu6J6WGNO0FUX2h9TGs1AKWl57erHEaMLe9ZQgnm
+ R+Zd5ReqTfa6Hl6nKR2Dznc3opNkUYn2E5sRhX0L/cLkYLkK7Fj6G5Y4OFkr6upvQPuAe3VBou/
+ 9ftvi33yD6AdQRatBDEh5aW5hyNehqkiiIeF8lKXb7cSrfgaaeiawTEO2DEFIXPskXGuwqGcYvy
+ U7oX2JNuWV3TA5NdIodajiLNh9vZ5SfjMWdpE2krEze95WPeV2GB+YRPfKuklCwuBqSkbKu3sQ1
+ whyAG3m09I9ItYVMPkrLTO8nYv2+NIKMlzLfrfaATDT0GilE+ynfoL06eQlrRyCnzB24D3M55dL
+ 7g6e9AOQZh45iS777CVKEQYOdI8RjNcLGe9VX+KQ4nUAkdQA1j/KfVc4SaDUDGMJSqbCywla
+X-Proofpoint-GUID: Ipww-gDeKaUXzGkcJvTRDz5XUSrPL6D8
+X-Proofpoint-ORIG-GUID: Ipww-gDeKaUXzGkcJvTRDz5XUSrPL6D8
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1099,Hydra:6.1.7,FMLib:17.12.80.40
+ definitions=2025-07-03_03,2025-07-02_04,2025-03-28_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ phishscore=0 lowpriorityscore=0 clxscore=1015 malwarescore=0 mlxlogscore=999
+ spamscore=0 adultscore=0 mlxscore=0 priorityscore=1501 bulkscore=0
+ impostorscore=0 suspectscore=0 classifier=spam authscore=0 authtc=n/a authcc=
+ route=outbound adjust=0 reason=mlx scancount=1 engine=8.19.0-2505280000
+ definitions=main-2507030078
 
-add support for optional GPIO-based enable pin control to PWM LED driver.
-some PWM LED chips,e.g.tps92380, have a dedicated enable GPIO, adds the
-support to specify such GPIO, activating the pin when LED brightness
-is non-zero and deactivating it when off.
-tested on imx8mp platform with led driver tps92380.
 
-Link: https://www.ti.com/lit/gpn/tps92380
-Signed-off-by: LI Qingwu <Qing-wu.Li@leica-geosystems.com.cn>
----
- drivers/leds/leds-pwm.c | 22 ++++++++++++++++++++++
- 1 file changed, 22 insertions(+)
 
-diff --git a/drivers/leds/leds-pwm.c b/drivers/leds/leds-pwm.c
-index c73134e7b9514..1397149464b35 100644
---- a/drivers/leds/leds-pwm.c
-+++ b/drivers/leds/leds-pwm.c
-@@ -17,6 +17,7 @@
- #include <linux/err.h>
- #include <linux/pwm.h>
- #include <linux/slab.h>
-+#include <linux/gpio/consumer.h>
- 
- struct led_pwm {
- 	const char	*name;
-@@ -29,6 +30,7 @@ struct led_pwm_data {
- 	struct led_classdev	cdev;
- 	struct pwm_device	*pwm;
- 	struct pwm_state	pwmstate;
-+	struct gpio_desc	*enable_gpio;
- 	unsigned int		active_low;
- };
- 
-@@ -51,6 +53,9 @@ static int led_pwm_set(struct led_classdev *led_cdev,
- 	if (led_dat->active_low)
- 		duty = led_dat->pwmstate.period - duty;
- 
-+	gpiod_set_value_cansleep(led_dat->enable_gpio,
-+				 brightness == LED_OFF ? 0 : 1);
-+
- 	led_dat->pwmstate.duty_cycle = duty;
- 	/*
- 	 * Disabling a PWM doesn't guarantee that it emits the inactive level.
-@@ -132,6 +137,23 @@ static int led_pwm_add(struct device *dev, struct led_pwm_priv *priv,
- 		break;
- 	}
- 
-+	/* Claim the GPIO as ASIS and set the value
-+	 * later on to honor the different default states
-+	 */
-+	led_data->enable_gpio =
-+		devm_fwnode_gpiod_get(dev, fwnode, "enable", GPIOD_ASIS, NULL);
-+
-+	/* enable_gpio is optional */
-+	if (IS_ERR(led_data->enable_gpio)) {
-+		if (PTR_ERR(led_data->enable_gpio) == -ENOENT)
-+			led_data->enable_gpio = NULL;
-+		else
-+			return PTR_ERR(led_data->enable_gpio);
-+	}
-+
-+	gpiod_direction_output(led_data->enable_gpio,
-+			       !!led_data->cdev.brightness);
-+
- 	ret = devm_led_classdev_register_ext(dev, &led_data->cdev, &init_data);
- 	if (ret) {
- 		dev_err(dev, "failed to register PWM led for %s: %d\n",
--- 
-2.43.0
+On 7/1/2025 3:11 PM, Krzysztof Kozlowski wrote:
+> On Thu, Jun 26, 2025 at 10:31:00PM +0800, Luo Jie wrote:
+>> +      resets:
+>> +        maxItems: 1
+>> +        description: EDMA reset from NSS clock controller
+>> +
+>> +      interrupts:
+>> +        minItems: 65
+>> +        maxItems: 65
+>> +
+>> +      interrupt-names:
+>> +        minItems: 65
+>> +        maxItems: 65
+>> +        description:
+>> +          Interrupts "txcmpl_[0-31]" are the Ethernet DMA TX completion ring interrupts.
+>> +          Interrupts "rxfill_[0-7]" are the Ethernet DMA RX fill ring interrupts.
+>> +          Interrupts "rxdesc_[0-23]" are the Ethernet DMA RX Descriptor ring interrupts.
+>> +          Interrupt "misc" is the Ethernet DMA miscellaneous error interrupt.
+>> +
+>> +    required:
+>> +      - clocks
+>> +      - clock-names
+>> +      - resets
+>> +      - interrupts
+>> +      - interrupt-names
+>> +
+>> +patternProperties:
+>> +  "^(ethernet-)?port@[0-9a-f]+$":
+> 
+> Only one port? What are you switching here?
+
+Sorry that this was missed in the update. We wanted to
+add the ethernet-port' property to ensure we document
+the per-port clocks/resets for completeness, but missed
+adding the 'ethernet-ports' property. I will add the
+'ethernet-ports' node in the updated version of the patch
+to accurately reflect the schema and hardware hierarchy.
+
+There are six physical ports in the PPE that can be part of
+the switch function.
+
+> 
+> Anyway, ^ethernet-port..... is preferred over port.
+
+OK, I will update to use '^ethernet-port' instead.
+
+> 
+> But other problem is that it does not match referenced schema at all and
+> nothing in commit msg explains why this appered. 1.5 years of
+> development of this and some significant, unexpected and not correct
+> changes.
+> 
+
+I understand your concern. This change was described briefly in the V5
+cover letter, but I will improve this description in cover letter and
+update the commit message as well, to explicitly document this change.
+The motivation for adding the ethernet-port node in bindings was to
+document the required per-port clocks and resets as well, as these
+are essential for enabling Ethernet functionality on this hardware.
+
+Could you please review the following proposed changes and let me know
+if this approach is acceptable?
+
+patternProperties:
+   "^(ethernet-)?ports$":
+     additionalProperties: true
+     patternProperties:
+       "^ethernet-port@[1-6]+$":
+         type: object
+         unevaluatedProperties: false
+         $ref: ethernet-controller.yaml#
+		
+         properties:
+           reg:
+             minimum: 1
+             maximum: 6
+             description: PPE Ethernet port ID
+			
+           clocks:
+             items:
+               - description: Port MAC clock from NSS clock controller
+               - description: Port RX clock from NSS clock controller
+               - description: Port TX clock from NSS clock controller
+			
+           clock-names:
+             items:
+               - const: mac
+               - const: rx
+               - const: tx
+			
+           resets:
+             items:
+               - description: Port MAC reset from NSS clock controller
+               - description: Port RX reset from NSS clock controller
+               - description: Port TX reset from NSS clock controller
+			
+           reset-names:
+             items:
+               - const: mac
+               - const: rx
+               - const: tx
+			
+         required:
+           - reg
+           - clocks
+           - clock-names
+           - resets
+           - reset-names
+		
+...
+
+allOf:
+   - $ref: ethernet-switch.yaml
+...
+
+>> +    unevaluatedProperties: false
+>> +    $ref: ethernet-switch-port.yaml#
+>> +
+>> +    properties:
+>> +      clocks:
+>> +        items:
+>> +          - description: Port MAC clock from NSS clock controller
+>> +          - description: Port RX clock from NSS clock controller
+>> +          - description: Port TX clock from NSS clock controller
+>> +
+>> +      clock-names:
+>> +        items:
+>> +          - const: mac
+>> +          - const: rx
+>> +          - const: tx
+>> +
+>> +      resets:
+>> +        items:
+>> +          - description: Port MAC reset from NSS clock controller
+>> +          - description: Port RX reset from NSS clock controller
+>> +          - description: Port TX reset from NSS clock controller
+>> +
+>> +      reset-names:
+>> +        items:
+>> +          - const: mac
+>> +          - const: rx
+>> +          - const: tx
+>> +
+>> +    required:
+>> +      - reg
+>> +      - clocks
+>> +      - clock-names
+>> +      - resets
+>> +      - reset-names
+>> +
+>> +required:
+>> +  - compatible
+>> +  - reg
+>> +  - clocks
+>> +  - clock-names
+>> +  - resets
+>> +  - interconnects
+>> +  - interconnect-names
+>> +  - ethernet-dma
+>> +
+>> +allOf:
+>> +  - $ref: ethernet-switch.yaml
+>> +
+>> +unevaluatedProperties: false
+>> +
+>> +examples:
+>> +  - |
+>> +    #include <dt-bindings/clock/qcom,ipq9574-gcc.h>
+>> +    #include <dt-bindings/clock/qcom,ipq9574-nsscc.h>
+>> +    #include <dt-bindings/interconnect/qcom,ipq9574.h>
+>> +    #include <dt-bindings/interrupt-controller/arm-gic.h>
+>> +    #include <dt-bindings/reset/qcom,ipq9574-nsscc.h>
+>> +
+>> +    ethernet-switch@3a000000 {
+>> +        compatible = "qcom,ipq9574-ppe";
+>> +        reg = <0x3a000000 0xbef800>;
+>> +        clocks = <&nsscc NSS_CC_PPE_SWITCH_CLK>,
+>> +                 <&nsscc NSS_CC_PPE_SWITCH_CFG_CLK>,
+>> +                 <&nsscc NSS_CC_PPE_SWITCH_IPE_CLK>,
+>> +                 <&nsscc NSS_CC_PPE_SWITCH_BTQ_CLK>;
+>> +        clock-names = "ppe",
+>> +                      "apb",
+>> +                      "ipe",
+>> +                      "btq";
+>> +        resets = <&nsscc PPE_FULL_RESET>;
+>> +        interrupts = <GIC_SPI 498 IRQ_TYPE_LEVEL_HIGH>;
+>> +        interconnects = <&nsscc MASTER_NSSNOC_PPE &nsscc SLAVE_NSSNOC_PPE>,
+>> +                        <&nsscc MASTER_NSSNOC_PPE_CFG &nsscc SLAVE_NSSNOC_PPE_CFG>,
+>> +                        <&gcc MASTER_NSSNOC_QOSGEN_REF &gcc SLAVE_NSSNOC_QOSGEN_REF>,
+>> +                        <&gcc MASTER_NSSNOC_TIMEOUT_REF &gcc SLAVE_NSSNOC_TIMEOUT_REF>,
+>> +                        <&gcc MASTER_MEM_NOC_NSSNOC &gcc SLAVE_MEM_NOC_NSSNOC>,
+>> +                        <&gcc MASTER_NSSNOC_MEMNOC &gcc SLAVE_NSSNOC_MEMNOC>,
+>> +                        <&gcc MASTER_NSSNOC_MEM_NOC_1 &gcc SLAVE_NSSNOC_MEM_NOC_1>;
+>> +        interconnect-names = "ppe",
+>> +                             "ppe_cfg",
+>> +                             "qos_gen",
+>> +                             "timeout_ref",
+>> +                             "nssnoc_memnoc",
+>> +                             "memnoc_nssnoc",
+>> +                             "memnoc_nssnoc_1";
+>> +
+>> +        ethernet-dma {
+>> +            clocks = <&nsscc NSS_CC_PPE_EDMA_CLK>,
+>> +                     <&nsscc NSS_CC_PPE_EDMA_CFG_CLK>;
+>> +            clock-names = "sys",
+>> +                          "apb";
+>> +            resets = <&nsscc EDMA_HW_RESET>;
+>> +            interrupts = <GIC_SPI 363 IRQ_TYPE_LEVEL_HIGH>,
+>> +                         <GIC_SPI 364 IRQ_TYPE_LEVEL_HIGH>,
+>> +                         <GIC_SPI 365 IRQ_TYPE_LEVEL_HIGH>,
+>> +                         <GIC_SPI 366 IRQ_TYPE_LEVEL_HIGH>,
+>> +                         <GIC_SPI 367 IRQ_TYPE_LEVEL_HIGH>,
+>> +                         <GIC_SPI 368 IRQ_TYPE_LEVEL_HIGH>,
+>> +                         <GIC_SPI 369 IRQ_TYPE_LEVEL_HIGH>,
+>> +                         <GIC_SPI 370 IRQ_TYPE_LEVEL_HIGH>,
+>> +                         <GIC_SPI 371 IRQ_TYPE_LEVEL_HIGH>,
+>> +                         <GIC_SPI 372 IRQ_TYPE_LEVEL_HIGH>,
+>> +                         <GIC_SPI 373 IRQ_TYPE_LEVEL_HIGH>,
+>> +                         <GIC_SPI 374 IRQ_TYPE_LEVEL_HIGH>,
+>> +                         <GIC_SPI 375 IRQ_TYPE_LEVEL_HIGH>,
+>> +                         <GIC_SPI 376 IRQ_TYPE_LEVEL_HIGH>,
+>> +                         <GIC_SPI 377 IRQ_TYPE_LEVEL_HIGH>,
+>> +                         <GIC_SPI 378 IRQ_TYPE_LEVEL_HIGH>,
+>> +                         <GIC_SPI 379 IRQ_TYPE_LEVEL_HIGH>,
+>> +                         <GIC_SPI 380 IRQ_TYPE_LEVEL_HIGH>,
+>> +                         <GIC_SPI 381 IRQ_TYPE_LEVEL_HIGH>,
+>> +                         <GIC_SPI 382 IRQ_TYPE_LEVEL_HIGH>,
+>> +                         <GIC_SPI 383 IRQ_TYPE_LEVEL_HIGH>,
+>> +                         <GIC_SPI 384 IRQ_TYPE_LEVEL_HIGH>,
+>> +                         <GIC_SPI 509 IRQ_TYPE_LEVEL_HIGH>,
+>> +                         <GIC_SPI 508 IRQ_TYPE_LEVEL_HIGH>,
+>> +                         <GIC_SPI 507 IRQ_TYPE_LEVEL_HIGH>,
+>> +                         <GIC_SPI 506 IRQ_TYPE_LEVEL_HIGH>,
+>> +                         <GIC_SPI 505 IRQ_TYPE_LEVEL_HIGH>,
+>> +                         <GIC_SPI 504 IRQ_TYPE_LEVEL_HIGH>,
+>> +                         <GIC_SPI 503 IRQ_TYPE_LEVEL_HIGH>,
+>> +                         <GIC_SPI 502 IRQ_TYPE_LEVEL_HIGH>,
+>> +                         <GIC_SPI 501 IRQ_TYPE_LEVEL_HIGH>,
+>> +                         <GIC_SPI 500 IRQ_TYPE_LEVEL_HIGH>,
+>> +                         <GIC_SPI 355 IRQ_TYPE_LEVEL_HIGH>,
+>> +                         <GIC_SPI 356 IRQ_TYPE_LEVEL_HIGH>,
+>> +                         <GIC_SPI 357 IRQ_TYPE_LEVEL_HIGH>,
+>> +                         <GIC_SPI 358 IRQ_TYPE_LEVEL_HIGH>,
+>> +                         <GIC_SPI 359 IRQ_TYPE_LEVEL_HIGH>,
+>> +                         <GIC_SPI 360 IRQ_TYPE_LEVEL_HIGH>,
+>> +                         <GIC_SPI 361 IRQ_TYPE_LEVEL_HIGH>,
+>> +                         <GIC_SPI 362 IRQ_TYPE_LEVEL_HIGH>,
+>> +                         <GIC_SPI 331 IRQ_TYPE_LEVEL_HIGH>,
+>> +                         <GIC_SPI 332 IRQ_TYPE_LEVEL_HIGH>,
+>> +                         <GIC_SPI 333 IRQ_TYPE_LEVEL_HIGH>,
+>> +                         <GIC_SPI 334 IRQ_TYPE_LEVEL_HIGH>,
+>> +                         <GIC_SPI 335 IRQ_TYPE_LEVEL_HIGH>,
+>> +                         <GIC_SPI 336 IRQ_TYPE_LEVEL_HIGH>,
+>> +                         <GIC_SPI 337 IRQ_TYPE_LEVEL_HIGH>,
+>> +                         <GIC_SPI 338 IRQ_TYPE_LEVEL_HIGH>,
+>> +                         <GIC_SPI 339 IRQ_TYPE_LEVEL_HIGH>,
+>> +                         <GIC_SPI 340 IRQ_TYPE_LEVEL_HIGH>,
+>> +                         <GIC_SPI 341 IRQ_TYPE_LEVEL_HIGH>,
+>> +                         <GIC_SPI 342 IRQ_TYPE_LEVEL_HIGH>,
+>> +                         <GIC_SPI 343 IRQ_TYPE_LEVEL_HIGH>,
+>> +                         <GIC_SPI 344 IRQ_TYPE_LEVEL_HIGH>,
+>> +                         <GIC_SPI 345 IRQ_TYPE_LEVEL_HIGH>,
+>> +                         <GIC_SPI 346 IRQ_TYPE_LEVEL_HIGH>,
+>> +                         <GIC_SPI 347 IRQ_TYPE_LEVEL_HIGH>,
+>> +                         <GIC_SPI 348 IRQ_TYPE_LEVEL_HIGH>,
+>> +                         <GIC_SPI 349 IRQ_TYPE_LEVEL_HIGH>,
+>> +                         <GIC_SPI 350 IRQ_TYPE_LEVEL_HIGH>,
+>> +                         <GIC_SPI 351 IRQ_TYPE_LEVEL_HIGH>,
+>> +                         <GIC_SPI 352 IRQ_TYPE_LEVEL_HIGH>,
+>> +                         <GIC_SPI 353 IRQ_TYPE_LEVEL_HIGH>,
+>> +                         <GIC_SPI 354 IRQ_TYPE_LEVEL_HIGH>,
+>> +                         <GIC_SPI 499 IRQ_TYPE_LEVEL_HIGH>;
+>> +            interrupt-names = "txcmpl_0",
+>> +                              "txcmpl_1",
+>> +                              "txcmpl_2",
+>> +                              "txcmpl_3",
+>> +                              "txcmpl_4",
+>> +                              "txcmpl_5",
+>> +                              "txcmpl_6",
+>> +                              "txcmpl_7",
+>> +                              "txcmpl_8",
+>> +                              "txcmpl_9",
+>> +                              "txcmpl_10",
+>> +                              "txcmpl_11",
+>> +                              "txcmpl_12",
+>> +                              "txcmpl_13",
+>> +                              "txcmpl_14",
+>> +                              "txcmpl_15",
+>> +                              "txcmpl_16",
+>> +                              "txcmpl_17",
+>> +                              "txcmpl_18",
+>> +                              "txcmpl_19",
+>> +                              "txcmpl_20",
+>> +                              "txcmpl_21",
+>> +                              "txcmpl_22",
+>> +                              "txcmpl_23",
+>> +                              "txcmpl_24",
+>> +                              "txcmpl_25",
+>> +                              "txcmpl_26",
+>> +                              "txcmpl_27",
+>> +                              "txcmpl_28",
+>> +                              "txcmpl_29",
+>> +                              "txcmpl_30",
+>> +                              "txcmpl_31",
+>> +                              "rxfill_0",
+>> +                              "rxfill_1",
+>> +                              "rxfill_2",
+>> +                              "rxfill_3",
+>> +                              "rxfill_4",
+>> +                              "rxfill_5",
+>> +                              "rxfill_6",
+>> +                              "rxfill_7",
+>> +                              "rxdesc_0",
+>> +                              "rxdesc_1",
+>> +                              "rxdesc_2",
+>> +                              "rxdesc_3",
+>> +                              "rxdesc_4",
+>> +                              "rxdesc_5",
+>> +                              "rxdesc_6",
+>> +                              "rxdesc_7",
+>> +                              "rxdesc_8",
+>> +                              "rxdesc_9",
+>> +                              "rxdesc_10",
+>> +                              "rxdesc_11",
+>> +                              "rxdesc_12",
+>> +                              "rxdesc_13",
+>> +                              "rxdesc_14",
+>> +                              "rxdesc_15",
+>> +                              "rxdesc_16",
+>> +                              "rxdesc_17",
+>> +                              "rxdesc_18",
+>> +                              "rxdesc_19",
+>> +                              "rxdesc_20",
+>> +                              "rxdesc_21",
+>> +                              "rxdesc_22",
+>> +                              "rxdesc_23",
+>> +                              "misc";
+>> +        };
+>> +
+>> +        ethernet-ports {
+> 
+> Look at your binding, not what it said...
+
+I will fix this to add the ethernet-ports node in the next version.
+
+> 
+>> +            #address-cells = <1>;
+>> +            #size-cells = <0>;
+>> +
+>> +            port@1 {
+> 
+> Best regards,
+> Krzysztof
+> 
+> 
 
 
