@@ -1,122 +1,140 @@
-Return-Path: <devicetree+bounces-192818-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-192820-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id A6AE3AF7FFC
-	for <lists+devicetree@lfdr.de>; Thu,  3 Jul 2025 20:28:34 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 09419AF8003
+	for <lists+devicetree@lfdr.de>; Thu,  3 Jul 2025 20:33:20 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 4AD1D7B41C1
-	for <lists+devicetree@lfdr.de>; Thu,  3 Jul 2025 18:27:09 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id B96AB545AD4
+	for <lists+devicetree@lfdr.de>; Thu,  3 Jul 2025 18:32:53 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 67AD82E54D4;
-	Thu,  3 Jul 2025 18:28:28 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 51C292F2366;
+	Thu,  3 Jul 2025 18:33:13 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=collabora.com header.i=nfraprado@collabora.com header.b="lB5lACBU"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="UN1ALmzw"
 X-Original-To: devicetree@vger.kernel.org
-Received: from sender4-pp-f112.zoho.com (sender4-pp-f112.zoho.com [136.143.188.112])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8955528E616;
-	Thu,  3 Jul 2025 18:28:26 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=pass smtp.client-ip=136.143.188.112
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1751567308; cv=pass; b=Xnv3yBKLCIdRJk3fQZyyFz4CvsRrxdDqDLLUn8iAXgglriWvWA6e/djjhL9yuCNYsm8uBETwOUSb0xqs4QrBpCGqye5A4CCfVVEraguj/BrzBqHzSgVCxxPBPKjbXWYfJmgwaolZAFEGcPla9ONCnFx+6wKClQNksKY+N+y7M3Y=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1751567308; c=relaxed/simple;
-	bh=EIGTeSFGl+y3lSh82LnuwOwDvyKO/NJTdsF2vBpDxJ0=;
-	h=Message-ID:Subject:From:To:Cc:Date:In-Reply-To:References:
-	 Content-Type:MIME-Version; b=kOI843MKyM6YVuLsI1QxO8QmxAW1U1Gd/6tuQ7HcCwAmMrYOBZieqIr0hJZTx2zP4edATqVagHt78ipdB632TG0fCsBTLyauYv9GA0CssMo7KH9XbVAgkyhas4CvtIFDa/Yb0cPtGs0z3dPFJj7sBlVXJ32A7Gs7JQZz3Zrs/hw=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (1024-bit key) header.d=collabora.com header.i=nfraprado@collabora.com header.b=lB5lACBU; arc=pass smtp.client-ip=136.143.188.112
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
-ARC-Seal: i=1; a=rsa-sha256; t=1751567269; cv=none; 
-	d=zohomail.com; s=zohoarc; 
-	b=EAwRzK/atLZp81y99CJDlb538jQm470pWJL4qPIlO8yDaz/DWV2sIUxttUGQHjEl44LLYuE4sHAVToGp3ItB4hvFekOq1tkPgSHMhWmyBO0b+edEooKS8kV0ovrSYr3icN1n4sMdmnLop98XqG7Sk9kEt8I1Ab6bAzG/USpdsiA=
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=zohomail.com; s=zohoarc; 
-	t=1751567269; h=Content-Type:Content-Transfer-Encoding:Cc:Cc:Date:Date:From:From:In-Reply-To:MIME-Version:Message-ID:References:Subject:Subject:To:To:Message-Id:Reply-To; 
-	bh=EIGTeSFGl+y3lSh82LnuwOwDvyKO/NJTdsF2vBpDxJ0=; 
-	b=oB0LfmZBG66ZUZ/wv2kO3rQ97NauunYjM3/lZhpzefJ4wUSNUf15RztBrKGu7NBuyE4lFC5hwuyj0wBCPTHU3df5Eiq/AV1roJVSMbp0NyYEYnzBRPBNR0yKbmGWAgK0ZHyWewIRMIjFESDHy9RjAEGPSiA7vsdR0h17mRUOduQ=
-ARC-Authentication-Results: i=1; mx.zohomail.com;
-	dkim=pass  header.i=collabora.com;
-	spf=pass  smtp.mailfrom=nfraprado@collabora.com;
-	dmarc=pass header.from=<nfraprado@collabora.com>
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; t=1751567269;
-	s=zohomail; d=collabora.com; i=nfraprado@collabora.com;
-	h=Message-ID:Subject:Subject:From:From:To:To:Cc:Cc:Date:Date:In-Reply-To:References:Content-Type:Content-Transfer-Encoding:MIME-Version:Message-Id:Reply-To;
-	bh=EIGTeSFGl+y3lSh82LnuwOwDvyKO/NJTdsF2vBpDxJ0=;
-	b=lB5lACBUqAuSqEfnmk/y2Ek/zH4biccP08KIK/ORsFGlJv/GtpNvLOKD96lJEfkC
-	io0PymrNsahr9NRUjcE28owwMk57ai76yrZR6iFrzMzFSYWU6z6+jjXEMIOVNENEopU
-	OUosdZjl2cu7sFBOMDJ6QRDtaa1d5+CmypeIdqss=
-Received: by mx.zohomail.com with SMTPS id 1751567267207310.7183175991179;
-	Thu, 3 Jul 2025 11:27:47 -0700 (PDT)
-Message-ID: <5bfcd5e059e86a96807426bfc6543209d09b557f.camel@collabora.com>
-Subject: Re: [PATCH 00/10] pmdomain: Partial refactor, support modem and RTFF
-From: =?ISO-8859-1?Q?N=EDcolas?= "F. R. A. Prado" <nfraprado@collabora.com>
-To: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>, 
-	linux-mediatek@lists.infradead.org
-Cc: robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org, 
-	matthias.bgg@gmail.com, ulf.hansson@linaro.org, y.oudjana@protonmail.com, 
-	fshao@chromium.org, wenst@chromium.org, lihongbo22@huawei.com, 
-	mandyjh.liu@mediatek.com, mbrugger@suse.com, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
-	linux-pm@vger.kernel.org, kernel@collabora.com
-Date: Thu, 03 Jul 2025 14:27:45 -0400
-In-Reply-To: <20250703110247.99927-1-angelogioacchino.delregno@collabora.com>
-References: <20250703110247.99927-1-angelogioacchino.delregno@collabora.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-User-Agent: Evolution 3.56.1-1 
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1F05B25A2C0;
+	Thu,  3 Jul 2025 18:33:12 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1751567593; cv=none; b=W+CKt5xEnZSAMMHuptLEhMytTrxG//+DQluBySzB+jxkfw8RLWoEMYnbsgC/b069G9A0IV8DWLooZ6qEXChmlOBlDp+sTMeBCyLjQ/ePdusKVgr69qeZrRSfurTasYTfgdMY8Di2fbKzdtQ5eDaK1qx6BnhKDw/EuXZeIOPB7lc=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1751567593; c=relaxed/simple;
+	bh=GncYf9X2oA31TYye7DaUgi5Js+6gPq6VIcXaYOMi3r4=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=B1Nz+kQA5sa2xMEhXj+zZvHWSB/w4WLAqVIlve9anK8SpcSyUli3uHzgH2kbSaDkWGFpBqFAbpi/0Shqy1iRw3VrZ2rN0DwhoFxxlaAgvFvCfYmEyJc0PESAQJjfifCYPYzJGYzjEH8DgsvjR/Tby3iVIo1cChqbxYX2U5vNLCU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=UN1ALmzw; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPS id 95AC2C4CEE3;
+	Thu,  3 Jul 2025 18:33:12 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1751567592;
+	bh=GncYf9X2oA31TYye7DaUgi5Js+6gPq6VIcXaYOMi3r4=;
+	h=From:Subject:Date:To:Cc:Reply-To:From;
+	b=UN1ALmzwZ6bsOhZ9sEsVrEJIN/1ItpN6otlmAD/U6NXSxvQ4jlsM6oMR8MyxF/3eb
+	 EZZKwktdxyxbU7eZzqjYHMeuL0BHfAs7dCbQBcSz1kMy7O2rwjH8hI6cgSpyrOBMZd
+	 zivpykfNtBPczC71dUotDtrE+1VFASdAQgpBzB9I2I/emuhYQ5wNMJGN+x3ay7zkQO
+	 iJ7yCuqQOjrl5hctz3klm3HwYoMZEvmoN39gfsOyeyKFPYPA7OMQ8UyPOUPTDxTwpy
+	 Frp3sdKuMEoX6H6SemNKT6K98xqkcZw9akMVgnm9HYSuEQWk6ZwjdtMCNizXAAz9XT
+	 7O8a8RVJjJosQ==
+Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 81E6DC83030;
+	Thu,  3 Jul 2025 18:33:12 +0000 (UTC)
+From: Frank Li via B4 Relay <devnull+Frank.Li.nxp.com@kernel.org>
+Subject: [PATCH v2 0/4] media: imx8qxp: add parallel camera support
+Date: Thu, 03 Jul 2025 14:33:05 -0400
+Message-Id: <20250703-imx8qxp_pcam-v2-0-188be85f06f1@nxp.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-ZohoMailClient: External
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIAOHMZmgC/1XMSwrCMBSF4a2UOzaShy2pI/chRcpNtHeQNCYSI
+ iV7NxYnDv8D59sg2Ug2wbnbINpMiVbfQh46wGX2D8vItAbJZc8HOTByRT9LuAWcHTO6F1JpdVK
+ ooF1CtHcqO3edWi+UXmt873oW3/UHKf4PZcE4s4hGaTOOkouLL+GIq4Op1voBiKkSVKYAAAA=
+X-Change-ID: 20250626-imx8qxp_pcam-d851238343c3
+To: Laurent Pinchart <laurent.pinchart@ideasonboard.com>, 
+ Mauro Carvalho Chehab <mchehab@kernel.org>, Shawn Guo <shawnguo@kernel.org>, 
+ Sascha Hauer <s.hauer@pengutronix.de>, 
+ Pengutronix Kernel Team <kernel@pengutronix.de>, 
+ Fabio Estevam <festevam@gmail.com>, Rui Miguel Silva <rmfrfs@gmail.com>, 
+ Martin Kepplinger <martink@posteo.de>, Purism Kernel Team <kernel@puri.sm>, 
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, Philipp Zabel <p.zabel@pengutronix.de>
+Cc: linux-media@vger.kernel.org, imx@lists.linux.dev, 
+ linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org, 
+ devicetree@vger.kernel.org, Frank Li <Frank.Li@nxp.com>, 
+ Alice Yuan <alice.yuan@nxp.com>, Robert Chiras <robert.chiras@nxp.com>, 
+ Zhipeng Wang <zhipeng.wang_1@nxp.com>
+X-Mailer: b4 0.14.2
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1751567591; l=2021;
+ i=Frank.Li@nxp.com; s=20240130; h=from:subject:message-id;
+ bh=GncYf9X2oA31TYye7DaUgi5Js+6gPq6VIcXaYOMi3r4=;
+ b=d8M8uU0lP7VvBvBdTdRf18XypZa/rv3UYjM9qkcsk0J/9tqRXx5HW9r63W5fCReeAhwYq/IO5
+ DOCsPxh/PvKCNSAfqe07sTFdPwEEaZXYxDCVwdXWu4qk0kh0pwPszx9
+X-Developer-Key: i=Frank.Li@nxp.com; a=ed25519;
+ pk=I0L1sDUfPxpAkRvPKy7MdauTuSENRq+DnA+G4qcS94Q=
+X-Endpoint-Received: by B4 Relay for Frank.Li@nxp.com/20240130 with
+ auth_id=121
+X-Original-From: Frank Li <Frank.Li@nxp.com>
+Reply-To: Frank.Li@nxp.com
 
-On Thu, 2025-07-03 at 13:02 +0200, AngeloGioacchino Del Regno wrote:
-> This series is a subset of [1], leaving out the Hardware Voter
-> specific
-> bits for MT8196 until the discussion around it reaches a conclusion.
-[..]
-> Compared to v1 in [1]:
-> =C2=A0- Changed mediatek,bus-protection to access-controllers
-> =C2=A0=C2=A0 as suggested by Rob (thanks!)
-> =C2=A0- Added commits to document #access-controller-cells on all of
-> =C2=A0=C2=A0 the access control providers
-[..]
-> [1]
-> https://lore.kernel.org/all/20250623120154.109429-1-angelogioacchino.delr=
-egno@collabora.com
->=20
-> AngeloGioacchino Del Regno (10):
-> =C2=A0 dt-bindings: memory: mtk-smi: Document #access-controller-cells
-> =C2=A0 dt-bindings: clock: mediatek: Document #access-controller-cells
-> =C2=A0 dt-bindings: power: mediatek: Document access-controllers property
-> =C2=A0 pmdomain: mediatek: Refactor bus protection regmaps retrieval
-> =C2=A0 pmdomain: mediatek: Handle SoCs with inverted SRAM power-down bits
-> =C2=A0 pmdomain: mediatek: Move ctl sequences out of power_on/off
-> functions
-> =C2=A0 pmdomain: mediatek: Add support for modem power sequences
-> =C2=A0 pmdomain: mediatek: Add support for RTFF Hardware in MT8196/MT6991
-> =C2=A0 pmdomain: mediatek: Convert all SoCs to new style regmap retrieval
-> =C2=A0 arm64: dts: mediatek: Convert all SoCs to use access-controllers
+Add parallel camera support for i.MX8 chips.
 
-As already pointed out by rob's bot you're missing adding the
-properties to
+The below patch to add new format support to test ov5640 sensor
+   media: nxp: isi: add support for UYVY8_2X8 and YUYV8_2X8 bus codes
 
-mediatek,mt8195-sys-clock.yaml
-mediatek,mt8188-sys-clock.yaml
+The bindings and driver for parallel CSI
+   dt-bindings: media: add i.MX parallel csi support
+   media: nxp: add V4L2 subdev driver for parallel CSI
 
-on patch 2. But other than that, for the whole series (since the tag
-wasn't added from the previous version):
+DTS part need depend on previous MIPI CSI patches.
+  https://lore.kernel.org/imx/20250522-8qxp_camera-v5-13-d4be869fdb7e@nxp.com/
 
-Reviewed-by: N=C3=ADcolas F. R. A. Prado <nfraprado@collabora.com>
+  arm64: dts: imx8: add parellel csi nodes
+  arm64: dts: imx8qxp-mek: add parallel ov5640 camera support
 
---=20
-Thanks,
+Signed-off-by: Frank Li <Frank.Li@nxp.com>
+---
+Changes in v2:
+- remove patch media: nxp: isi: add support for UYVY8_2X8 and YUYV8_2X8 bus codes
+  because pcif controller convert 2x8 to 1x16 to match isi's input
+- rename comaptible string to fsl,imx8qxp-pcif
+- See each patches's change log for detail
+- Link to v1: https://lore.kernel.org/r/20250630-imx8qxp_pcam-v1-0-eccd38d99201@nxp.com
 
-N=C3=ADcolas
+---
+Alice Yuan (2):
+      dt-bindings: media: add i.MX parallel csi support
+      media: nxp: add V4L2 subdev driver for parallel CSI
+
+Frank Li (2):
+      arm64: dts: imx8: add parallel CSI node
+      arm64: dts: imx8qxp-mek: add parallel ov5640 camera support
+
+ .../devicetree/bindings/media/fsl,imx93-pcif.yaml  | 109 +++
+ MAINTAINERS                                        |   2 +
+ arch/arm64/boot/dts/freescale/Makefile             |   3 +
+ arch/arm64/boot/dts/freescale/imx8-ss-img.dtsi     |  13 +
+ .../dts/freescale/imx8qxp-mek-ov5640-parallel.dtso |  82 ++
+ arch/arm64/boot/dts/freescale/imx8qxp-ss-img.dtsi  |  27 +
+ drivers/media/platform/nxp/Kconfig                 |  11 +
+ drivers/media/platform/nxp/Makefile                |   1 +
+ drivers/media/platform/nxp/imx-parallel-csi.c      | 944 +++++++++++++++++++++
+ 9 files changed, 1192 insertions(+)
+---
+base-commit: 93355cfe8aec9e47fc93fbc940f1bbeedd62e249
+change-id: 20250626-imx8qxp_pcam-d851238343c3
+
+Best regards,
+-- 
+Frank Li <Frank.Li@nxp.com>
+
+
 
