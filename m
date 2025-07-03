@@ -1,156 +1,118 @@
-Return-Path: <devicetree+bounces-192601-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-192602-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 482CBAF7104
-	for <lists+devicetree@lfdr.de>; Thu,  3 Jul 2025 12:55:08 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3B2DAAF710E
+	for <lists+devicetree@lfdr.de>; Thu,  3 Jul 2025 12:56:28 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 79FB11C812D1
-	for <lists+devicetree@lfdr.de>; Thu,  3 Jul 2025 10:55:23 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 84ADC7ADC9B
+	for <lists+devicetree@lfdr.de>; Thu,  3 Jul 2025 10:54:56 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 985262E266C;
-	Thu,  3 Jul 2025 10:54:48 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id F26442E3398;
+	Thu,  3 Jul 2025 10:56:07 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="gl2H4/2J"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="rihWwu2S"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6CB1B29C33E;
-	Thu,  3 Jul 2025 10:54:48 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C4BDF2E3390;
+	Thu,  3 Jul 2025 10:56:07 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1751540088; cv=none; b=G8hG2Ymgo8a85oTHFgocKswzWp8cpirDfBgJPSfqgrL5O6d3ay6wT9efQDoyZbA7NqUgnVq8dvFYhDN9HW+lPzGA9wnDeMRMfPKMnJpVzzPquhHBJLVtufEe4nS8hJH2H+dhWW6/fjKHrAltcBZsyfOSm4ABPyWn9XPWRTXhifw=
+	t=1751540167; cv=none; b=S0Fx5BvFgzZOVVKFwC74z5AAa8m67RvUWidUeEJHoLF1cXMOcHuiwWMKs9BY9Ra/rhjgBRSI0bsDWUNfXMIRVpN0zWO4iOogOWl3bepYI22ZpUP4Z9ocBjubLDKe15VhqZPQkfQ24Zzsput/qVADfLoHwPIwyqBAIX/cb3RvY2c=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1751540088; c=relaxed/simple;
-	bh=cRCXm0lP5n7xm7KKxtJF4+SEXeDjRYvbNgycsf6d4z0=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=qQVZYiFaquCXxxONr9uUObcQWEHucdVdeWsCEXc2Mgr+vCv/ctT7aMaYBVT3q9FhPJ9BGWubT7pgzcr1aLTSWxXKR+K8BIKK9GBXcItJZI8ibPrFaZYt1FN2OdhZG88cKbCo6rKYui4WXqU06FgCs0sFJ+C3WGpa9R2cU4w3FrE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=gl2H4/2J; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 9FA92C4CEE3;
-	Thu,  3 Jul 2025 10:54:45 +0000 (UTC)
+	s=arc-20240116; t=1751540167; c=relaxed/simple;
+	bh=Kw2PheC9E/MMW8eMFElXfvA9R2LFtPQHkGQfw1x647A=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=XTUG82Ys7lJXR0bkuE5noqhrmdRoE2QDxOFDrNkDRGG5s/ONnvBxEdinOrm1J7wjSgygYVmfb2k3zB1+ib3Uy2tUfSAMWiCwg0q1Bif5SizT1d8LfsxY2o1hxrIpqqjmC4l7HvmStyc7ZsL/Qp1hJ1DHdCloPXApJzzDQa4MzMc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=rihWwu2S; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 023C9C4CEE3;
+	Thu,  3 Jul 2025 10:56:03 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1751540088;
-	bh=cRCXm0lP5n7xm7KKxtJF4+SEXeDjRYvbNgycsf6d4z0=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=gl2H4/2J5NiEV5eUw+iJsAhi1S9EFE2GUFjmTlKBuTkDKp52gx20an4BFa8cOWPEM
-	 /11TdmCJICe7auCfZY5ay/ipRTwqs9lqhfSwVBEwRsfgi9Dum041f8y8rBDIq4n3r1
-	 5qNiHRgdtar9c+dzXKCD0ruEdT1H9KFNPwdpalAmIj/0yaXjH4QUGkka8BFbTzIX1M
-	 V8iGBli3W6Ui2Oez/YpuCn0oA3Al4YVKDbH7IKOOW9rigjP+L5yUZBEdIOO4l2Tsd2
-	 EXgiDjuHaRuXRqA3+M9cfq1qwfB2Maqw32FMzKKLynhA5GL0JsmYZtRDokucIlXSvm
-	 vS75om15fa3NQ==
-Message-ID: <1c95927e-a028-43fe-bdf5-449767b49ec1@kernel.org>
-Date: Thu, 3 Jul 2025 12:54:43 +0200
+	s=k20201202; t=1751540167;
+	bh=Kw2PheC9E/MMW8eMFElXfvA9R2LFtPQHkGQfw1x647A=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=rihWwu2S05zHYot+UsCmVXJMi0ZgyEPMtCEd877BRgignOfQo8CYUX9Oo6IrexS+V
+	 Zed595xMMlKcVUZ1ym1ltx5jIJq6oqVS5icakUpon9Zb6EgTkatxFWfOPt/QeLxdpE
+	 n3L6i2eQGnTKotyH0MCNNjYrgVlWVxxBqKf3Ct98sHQtzl1NkvpcOQK4viukuawcvN
+	 Xf7Wyy55CsZCphDZvCGxDYnT9X7e8mP+TZuCJanp6SALIGbyYQp3HiiAWEbXUmJws2
+	 uNfrSiYlKkBWS3fUkWDV1vUc6Y6ReSayXWC45IZtqXjRMHejpvtRUujfE2khNr83zf
+	 uK5tUpzOjnrRA==
+Date: Thu, 3 Jul 2025 11:56:01 +0100
+From: Mark Brown <broonie@kernel.org>
+To: Laurentiu Mihalcea <laurentiumihalcea111@gmail.com>
+Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
+	Sascha Hauer <s.hauer@pengutronix.de>,
+	Fabio Estevam <festevam@gmail.com>,
+	Daniel Baluta <daniel.baluta@nxp.com>,
+	Shengjiu Wang <shengjiu.wang@nxp.com>, Frank Li <Frank.Li@nxp.com>,
+	Marco Felsch <m.felsch@pengutronix.de>,
+	Marc Kleine-Budde <mkl@pengutronix.de>,
+	Alexander Stein <alexander.stein@ew.tq-group.com>,
+	Pengutronix Kernel Team <kernel@pengutronix.de>,
+	devicetree@vger.kernel.org, imx@lists.linux.dev,
+	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v7 4/6] arm64: dts: imx8mp: convert 'aips5' to 'aipstz5'
+Message-ID: <84a56059-9aed-47f6-b06e-bd5752ee4a0f@sirena.org.uk>
+References: <20250610160152.1113930-1-laurentiumihalcea111@gmail.com>
+ <20250610160152.1113930-5-laurentiumihalcea111@gmail.com>
+ <ac1daf6b-ee06-4076-b86f-b436ca0acd6d@sirena.org.uk>
+ <c3deef24-fed7-4405-9953-804bff118c11@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH V4 1/2] dt-bindings: leds: pwm: add enable-gpios property
-To: LI Qingwu <Qing-wu.Li@leica-geosystems.com.cn>,
- "lee@kernel.org" <lee@kernel.org>, "pavel@kernel.org" <pavel@kernel.org>,
- "robh@kernel.org" <robh@kernel.org>, "krzk+dt@kernel.org"
- <krzk+dt@kernel.org>, "conor+dt@kernel.org" <conor+dt@kernel.org>,
- "linux-leds@vger.kernel.org" <linux-leds@vger.kernel.org>,
- "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
- "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
-Cc: GEO-CHHER-bsp-development <bsp-development.geo@leica-geosystems.com>
-References: <20250703093430.229959-1-Qing-wu.Li@leica-geosystems.com.cn>
- <20250703093430.229959-2-Qing-wu.Li@leica-geosystems.com.cn>
- <85e411bf-58cf-46fe-9afa-7b76999f1a42@kernel.org>
- <AM9PR06MB795507373B99DFF6820D979ED743A@AM9PR06MB7955.eurprd06.prod.outlook.com>
-From: Krzysztof Kozlowski <krzk@kernel.org>
-Content-Language: en-US
-Autocrypt: addr=krzk@kernel.org; keydata=
- xsFNBFVDQq4BEAC6KeLOfFsAvFMBsrCrJ2bCalhPv5+KQF2PS2+iwZI8BpRZoV+Bd5kWvN79
- cFgcqTTuNHjAvxtUG8pQgGTHAObYs6xeYJtjUH0ZX6ndJ33FJYf5V3yXqqjcZ30FgHzJCFUu
- JMp7PSyMPzpUXfU12yfcRYVEMQrmplNZssmYhiTeVicuOOypWugZKVLGNm0IweVCaZ/DJDIH
- gNbpvVwjcKYrx85m9cBVEBUGaQP6AT7qlVCkrf50v8bofSIyVa2xmubbAwwFA1oxoOusjPIE
- J3iadrwpFvsZjF5uHAKS+7wHLoW9hVzOnLbX6ajk5Hf8Pb1m+VH/E8bPBNNYKkfTtypTDUCj
- NYcd27tjnXfG+SDs/EXNUAIRefCyvaRG7oRYF3Ec+2RgQDRnmmjCjoQNbFrJvJkFHlPeHaeS
- BosGY+XWKydnmsfY7SSnjAzLUGAFhLd/XDVpb1Een2XucPpKvt9ORF+48gy12FA5GduRLhQU
- vK4tU7ojoem/G23PcowM1CwPurC8sAVsQb9KmwTGh7rVz3ks3w/zfGBy3+WmLg++C2Wct6nM
- Pd8/6CBVjEWqD06/RjI2AnjIq5fSEH/BIfXXfC68nMp9BZoy3So4ZsbOlBmtAPvMYX6U8VwD
- TNeBxJu5Ex0Izf1NV9CzC3nNaFUYOY8KfN01X5SExAoVTr09ewARAQABzSVLcnp5c3p0b2Yg
- S296bG93c2tpIDxrcnprQGtlcm5lbC5vcmc+wsGVBBMBCgA/AhsDBgsJCAcDAgYVCAIJCgsE
- FgIDAQIeAQIXgBYhBJvQfg4MUfjVlne3VBuTQ307QWKbBQJoF1BKBQkWlnSaAAoJEBuTQ307
- QWKbHukP/3t4tRp/bvDnxJfmNdNVn0gv9ep3L39IntPalBFwRKytqeQkzAju0whYWg+R/rwp
- +r2I1Fzwt7+PTjsnMFlh1AZxGDmP5MFkzVsMnfX1lGiXhYSOMP97XL6R1QSXxaWOpGNCDaUl
- ajorB0lJDcC0q3xAdwzRConxYVhlgmTrRiD8oLlSCD5baEAt5Zw17UTNDnDGmZQKR0fqLpWy
- 786Lm5OScb7DjEgcA2PRm17st4UQ1kF0rQHokVaotxRM74PPDB8bCsunlghJl1DRK9s1aSuN
- hL1Pv9VD8b4dFNvCo7b4hfAANPU67W40AaaGZ3UAfmw+1MYyo4QuAZGKzaP2ukbdCD/DYnqi
- tJy88XqWtyb4UQWKNoQqGKzlYXdKsldYqrLHGoMvj1UN9XcRtXHST/IaLn72o7j7/h/Ac5EL
- 8lSUVIG4TYn59NyxxAXa07Wi6zjVL1U11fTnFmE29ALYQEXKBI3KUO1A3p4sQWzU7uRmbuxn
- naUmm8RbpMcOfa9JjlXCLmQ5IP7Rr5tYZUCkZz08LIfF8UMXwH7OOEX87Y++EkAB+pzKZNNd
- hwoXulTAgjSy+OiaLtuCys9VdXLZ3Zy314azaCU3BoWgaMV0eAW/+gprWMXQM1lrlzvwlD/k
- whyy9wGf0AEPpLssLVt9VVxNjo6BIkt6d1pMg6mHsUEVzsFNBFVDXDQBEADNkrQYSREUL4D3
- Gws46JEoZ9HEQOKtkrwjrzlw/tCmqVzERRPvz2Xg8n7+HRCrgqnodIYoUh5WsU84N03KlLue
- MNsWLJBvBaubYN4JuJIdRr4dS4oyF1/fQAQPHh8Thpiz0SAZFx6iWKB7Qrz3OrGCjTPcW6ei
- OMheesVS5hxietSmlin+SilmIAPZHx7n242u6kdHOh+/SyLImKn/dh9RzatVpUKbv34eP1wA
- GldWsRxbf3WP9pFNObSzI/Bo3kA89Xx2rO2roC+Gq4LeHvo7ptzcLcrqaHUAcZ3CgFG88CnA
- 6z6lBZn0WyewEcPOPdcUB2Q7D/NiUY+HDiV99rAYPJztjeTrBSTnHeSBPb+qn5ZZGQwIdUW9
- YegxWKvXXHTwB5eMzo/RB6vffwqcnHDoe0q7VgzRRZJwpi6aMIXLfeWZ5Wrwaw2zldFuO4Dt
- 91pFzBSOIpeMtfgb/Pfe/a1WJ/GgaIRIBE+NUqckM+3zJHGmVPqJP/h2Iwv6nw8U+7Yyl6gU
- BLHFTg2hYnLFJI4Xjg+AX1hHFVKmvl3VBHIsBv0oDcsQWXqY+NaFahT0lRPjYtrTa1v3tem/
- JoFzZ4B0p27K+qQCF2R96hVvuEyjzBmdq2esyE6zIqftdo4MOJho8uctOiWbwNNq2U9pPWmu
- 4vXVFBYIGmpyNPYzRm0QPwARAQABwsF8BBgBCgAmAhsMFiEEm9B+DgxR+NWWd7dUG5NDfTtB
- YpsFAmgXUF8FCRaWWyoACgkQG5NDfTtBYptO0w//dlXJs5/42hAXKsk+PDg3wyEFb4NpyA1v
- qmx7SfAzk9Hf6lWwU1O6AbqNMbh6PjEwadKUk1m04S7EjdQLsj/MBSgoQtCT3MDmWUUtHZd5
- RYIPnPq3WVB47GtuO6/u375tsxhtf7vt95QSYJwCB+ZUgo4T+FV4hquZ4AsRkbgavtIzQisg
- Dgv76tnEv3YHV8Jn9mi/Bu0FURF+5kpdMfgo1sq6RXNQ//TVf8yFgRtTUdXxW/qHjlYURrm2
- H4kutobVEIxiyu6m05q3e9eZB/TaMMNVORx+1kM3j7f0rwtEYUFzY1ygQfpcMDPl7pRYoJjB
- dSsm0ZuzDaCwaxg2t8hqQJBzJCezTOIkjHUsWAK+tEbU4Z4SnNpCyM3fBqsgYdJxjyC/tWVT
- AQ18NRLtPw7tK1rdcwCl0GFQHwSwk5pDpz1NH40e6lU+NcXSeiqkDDRkHlftKPV/dV+lQXiu
- jWt87ecuHlpL3uuQ0ZZNWqHgZoQLXoqC2ZV5KrtKWb/jyiFX/sxSrodALf0zf+tfHv0FZWT2
- zHjUqd0t4njD/UOsuIMOQn4Ig0SdivYPfZukb5cdasKJukG1NOpbW7yRNivaCnfZz6dTawXw
- XRIV/KDsHQiyVxKvN73bThKhONkcX2LWuD928tAR6XMM2G5ovxLe09vuOzzfTWQDsm++9UKF a/A=
-In-Reply-To: <AM9PR06MB795507373B99DFF6820D979ED743A@AM9PR06MB7955.eurprd06.prod.outlook.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
-
-On 03/07/2025 12:27, LI Qingwu wrote:
-> 
-> 
->> -----Original Message-----
->> From: Krzysztof Kozlowski <krzk@kernel.org>
->> Sent: Thursday, July 3, 2025 5:59 PM
->> To: LI Qingwu <Qing-wu.Li@leica-geosystems.com.cn>; lee@kernel.org;
->> pavel@kernel.org; robh@kernel.org; krzk+dt@kernel.org;
->> conor+dt@kernel.org; linux-leds@vger.kernel.org; devicetree@vger.kernel.org;
->> linux-kernel@vger.kernel.org
->> Cc: GEO-CHHER-bsp-development
->> <bsp-development.geo@leica-geosystems.com>
->> Subject: Re: [PATCH V4 1/2] dt-bindings: leds: pwm: add enable-gpios property
->>
->> This email is not from Hexagon’s Office 365 instance. Please be careful while
->> clicking links, opening attachments, or replying to this email.
-
-Please drop this, it is not relevant in upstream discussions. Use normal
-email client which will not produce useless header above.
+Content-Type: multipart/signed; micalg=pgp-sha512;
+	protocol="application/pgp-signature"; boundary="/OzG7Gq/P3EQSxoI"
+Content-Disposition: inline
+In-Reply-To: <c3deef24-fed7-4405-9953-804bff118c11@gmail.com>
+X-Cookie: Uh-oh!!  I'm having TOO MUCH FUN!!
 
 
->>
->>
->> On 03/07/2025 11:34, LI Qingwu wrote:
->>> some pwm led driver chips like tps92380 require a separate enable
->>> signal
->>
->> Sentence starts with capital letter.
->>
->> tps92380 does not have dedicated enable pin. It has VDDIO, which serves also
->> enable purpose, but it is a supply.
-> 
-> So this patch is unacceptable anyway?
+--/OzG7Gq/P3EQSxoI
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-If you make this patch for tps92380, I think it is not correct. You have
-entire commit msg to explain the hardware and all unusual things. Having
-VDDIO and EN pin is unusual, because you do not supply power directly
-from GPIOs of a SoC. All this should be explained.
+On Wed, Jul 02, 2025 at 10:54:09PM +0300, Laurentiu Mihalcea wrote:
+> On 7/2/2025 9:49 PM, Mark Brown wrote:
 
-Best regards,
-Krzysztof
+> >> attempting to configure the security-related registers.
+> > I'm seeing failures to probe the audio devices on the i.MX8MP Verdin
+> > system in -next which seem to bisect down to this commit,  I'm seeing
+> > separate boot failures on the EVK so haven't been able to confirm the
+> > status there.  There's no obvious logging, the dt selftest shows:
+
+> After browsing through the provided logs it would seem like no device und=
+er the
+> AIPSTZ bus gets probed. Right now, my guess is that the AIPSTZ driver is =
+not being
+> compiled since CONFIG_IMX_AIPSTZ might be set to 'n'.
+>=20
+> Which defconfig is the CI using? Is it arch/arm64/configs/defconfig?
+
+Yes, it's covering defconfig here.
+
+--/OzG7Gq/P3EQSxoI
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmhmYcAACgkQJNaLcl1U
+h9B3/Af9GmKYHJUj2YUz9rcqkYCIFaTj+Bcdv9as3xUcaU3jCMDuKPsE9TnCGaRn
+ocbfagpvAQZSWYGOrXWnSTXjiPNtJ1tK9YjBqJr/AHoKIIA1iPlams7pvTc+tcew
+u1+u5qBHT46ehvmrh1ux7lEXcd8pjnLj45PipsMZ+i8eHCxeT6X5Wbc3lA0MVo1q
+QYG6V4xpcfpzNgHpZQXxkvxQ7gHUKQ+sgzNhxpaEMX49wku7rSxkqr940Rbn9hr8
+SfixRjLRr8wadKk4K5ERJoNIOCg1d2WIETdl3Dvk69GQ+5ybdxNEdmwZsG9ZGR3v
+sAyvw097HAvp0lpcFAOPRSKeigC/7A==
+=nB+8
+-----END PGP SIGNATURE-----
+
+--/OzG7Gq/P3EQSxoI--
 
