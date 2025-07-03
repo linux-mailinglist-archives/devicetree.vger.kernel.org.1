@@ -1,226 +1,247 @@
-Return-Path: <devicetree+bounces-192716-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-192718-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id A54E5AF7822
-	for <lists+devicetree@lfdr.de>; Thu,  3 Jul 2025 16:47:21 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 410B8AF787E
+	for <lists+devicetree@lfdr.de>; Thu,  3 Jul 2025 16:51:04 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id B79883AB19D
-	for <lists+devicetree@lfdr.de>; Thu,  3 Jul 2025 14:46:42 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id B137216D500
+	for <lists+devicetree@lfdr.de>; Thu,  3 Jul 2025 14:50:12 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 18DDF2EE96D;
-	Thu,  3 Jul 2025 14:46:57 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C9B402E7649;
+	Thu,  3 Jul 2025 14:50:10 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="a+sUUeut"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="UOPfgh3Q"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ed1-f42.google.com (mail-ed1-f42.google.com [209.85.208.42])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 11E842E7F07;
-	Thu,  3 Jul 2025 14:46:54 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.42
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9E3E3126BFF;
+	Thu,  3 Jul 2025 14:50:10 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1751554017; cv=none; b=tzJnpolx4kr8dYXLJxv9vVE0XB82bT2A+2xKulOOZD84Fre0P27CwVhZoqzppQeN8XsYyjSYk95pvYHBylBQqp5EVF+SfC7Pwc8aodWwrYww7XNvuFotM/hjY9XYEJVaFGbArmW7XVT0QGFyqZwiDi/kgp5gl+nFKNjH9HQzniQ=
+	t=1751554210; cv=none; b=NTCbOCSaYEBTZFnbMhyr/bKUrI7y8y+GEr8JrriXovIbp7qCUdEA1a0pxThorMWmGkpOIbDM/w1TKVB44KzqP3ENjwDG2n+oNkTtduLBQCDf9KrYSaKarZMHdDcnL+83XOSV8t2ByOMcwGp61ojRyxI9nPoj8R83+MQ1VubTx6I=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1751554017; c=relaxed/simple;
-	bh=lN5s32Jbcs7WNkSmhy7bYvtYTmkxdABMhyRkzs0DgUQ=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=iEslgP8/YgAO2ux7DxmnWa8i6f+XD4XKHySAsR6vTU/Mcj0OhqQeRo98dCkBpxIxDAdGtj2Pac7Mr5N6/fqkDJEQMovV7W/2hxuUw4vk/nIYgkASNNiWpDu/XyyOAHMqGvfcGEMlzyFPsit0zMnrEyc8IMAAiu8axzkiVDTxCiE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=a+sUUeut; arc=none smtp.client-ip=209.85.208.42
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-ed1-f42.google.com with SMTP id 4fb4d7f45d1cf-60789b450ceso10743965a12.2;
-        Thu, 03 Jul 2025 07:46:54 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1751554013; x=1752158813; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:content-language:from
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=1vG5loofJoHI/2oT8MQ0obd1zMTsI6DHFF+BLI2gKVY=;
-        b=a+sUUeutEhHjW6FY/Ru5O6nVJf87XPWxn6aTyH5qdgE91zLdVdhV3OtVKlZbounLvW
-         w1LnTtpDBBPrGVOH5sg7CEQYqrSxbv5B+hJJkeaD15etdL15IYD9dM/dgIvrgvxw7pYn
-         XVKgXS7MsWikh1GKaEMxSVG6dE4Kb/wYJoIDVyLirW0ig6nxMSFJ6xVkBq1Fci/BU7wq
-         MMHb5TL5FgeRFNZGVVqrkhsV0NoPRMENUnwFxK0gggaBPRw1ncXl53jz4a5oYZqFMOt4
-         2yKfS4lWU62ZEPj5UpGkCqy2NxvyJg7P9jPS5wPROXe8gdqoHk7NeQvTUg6Lolsjv8Ah
-         fEcg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1751554013; x=1752158813;
-        h=content-transfer-encoding:in-reply-to:content-language:from
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=1vG5loofJoHI/2oT8MQ0obd1zMTsI6DHFF+BLI2gKVY=;
-        b=igFP119sQH1nhz4xlA6XtYmZZKBytwMx1CJlaz58dfcgGWdqdRBRRSt92T8jID07Bu
-         ISeai9+Rkxg8CBNXmftJm0tbGDTPzIw1Uw4oI4WqVREACHlZPjlm8apyNUtoGtrshgbU
-         2nFr/p7oVMthbtjVIs/H5Fyu8DZGqCPRtTyusN+PwdrUcn3Ay7T7Sc4fgceMMBBZx3AY
-         M6lleHdQrEwMNqA7guhs6xrLE4Mat09P9aZVECrF6aiihAb1o82S1KeTyO++rcmCWUir
-         3z3e6FtXCM8HYLwO5fb+rJdqP9SxX4h1RJWG5Fvr7ewu0sxMcr9NOyNrT31iw5rbJX1j
-         z6JQ==
-X-Forwarded-Encrypted: i=1; AJvYcCV1jG86jY5gx73KTX60qlFq0L9Oe5KoLJdI2rRvXclcYL0nZutAkkA4YOGaPuto+/50ssOPzp3AnoNy@vger.kernel.org, AJvYcCWZKPG3OWEpCKXsX98HnYz3HwGQxjEmg7Z7ZkNdGYoadcNHi42N2LoLIXh65D6sfTYKmGv/HZzhq95h26VD@vger.kernel.org, AJvYcCXn2cqoi6OcolgW2qmlzgzKaq3pPq9nsCErnzxgBCDaqeOEHe5l3T+j2DpTD2Fg2qVr9bJ0ktWuvEKEVg==@vger.kernel.org
-X-Gm-Message-State: AOJu0Yze+9Bl2AfYCkL4mxgvqRNe6/sW55Y++IS4gydYENKhXLUeaTq8
-	k1o0W/fYfOfA0o5UzNLTIheU7u9sB/xINelIqNMnqUQM3gFrUsvkHztj
-X-Gm-Gg: ASbGnct+2Sxepa85v9ih4cjvy/ftPdOMjQ+5CncKV9ugDopIk3F1OvVhu/7wOw92D6o
-	79nTbEyCR0l24+FQ+hI+0GlsWHtSgPveB0GsWpHtMysiTSuz+NEGd2lXyyAbJxP84o1DHJ4kP6i
-	S6NOGGxmpzPPj/PO1rpiTcW1nMGA2pwbCWB+Unn7YOnHIQm763wybp6VP7eUCtDcHhpdeZrFT52
-	QuwkbakZY81fOguio/98mksj90Xmgf5ra3Aisxj5/4d5uPEHvTL+iqgdBk0YX1VMERScWMbWz87
-	3+3LDB2Pl2NzVQkrt1h8p31IAhELd2pKTrXeZkFNKLz8RSEjXseMteUC2iWcXqrPEdteMLytt7z
-	d9sg=
-X-Google-Smtp-Source: AGHT+IG3d3NfRg9+cPD1+4PBfyGx8gRVD7/AozdqjiToYMztJLCFly4TfxgJoNGqYews3daJwQLNLg==
-X-Received: by 2002:a05:6402:35d3:b0:608:155c:bf81 with SMTP id 4fb4d7f45d1cf-60e6ce24caemr3706836a12.31.1751554012933;
-        Thu, 03 Jul 2025 07:46:52 -0700 (PDT)
-Received: from [192.168.0.100] ([188.27.131.45])
-        by smtp.gmail.com with ESMTPSA id 4fb4d7f45d1cf-60c828bb5b2sm10745485a12.4.2025.07.03.07.46.51
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 03 Jul 2025 07:46:52 -0700 (PDT)
-Message-ID: <cbf8d7bd-24a4-4dc1-8d9f-bbc4bee45d8d@gmail.com>
-Date: Thu, 3 Jul 2025 17:46:47 +0300
+	s=arc-20240116; t=1751554210; c=relaxed/simple;
+	bh=F7RvP/tiiiQNXxTLIP1aaIsmsYJmGxBSXe+6aPe6DVM=;
+	h=Date:Content-Type:MIME-Version:From:Cc:To:In-Reply-To:References:
+	 Message-Id:Subject; b=smUGCWlzL83y0lQHEUdVcfiRIbPzLObS3gCmZirUwY7GIB2qKaw8C3y9w68kuRHEQE1Lta8m2QnZhUFxD85VbdpVgS2utxXXpzj7B7oLQXqviZYndko6fWq7G+pmjsWV2yFA72qix/vlXLmQb/JRPaASay0W9NZU45+01aBmv4w=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=UOPfgh3Q; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 14886C4CEE3;
+	Thu,  3 Jul 2025 14:50:10 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1751554210;
+	bh=F7RvP/tiiiQNXxTLIP1aaIsmsYJmGxBSXe+6aPe6DVM=;
+	h=Date:From:Cc:To:In-Reply-To:References:Subject:From;
+	b=UOPfgh3QO0BLF3AWsS2lAqyghScbGjFU+/fNQdrJzJjF3i16KZFUoItNwMxmSiyIH
+	 UoWUWUxeIlT8yoHROjjmKGDfSobSfzfhx3WlexkT9sZ9hDvgp+JLfIbtzqduG5qU+1
+	 X7vQvVi1lMnjgPNhVUiGGM4Ycim7gCy28QllTw1VllKAQfBt030P7oh4qKSuvY2K/n
+	 9EWBGaIoOmz8dLQa4rFtJePbuaspcTHxpdXIDwGAUuIIGXA/GPoEDqiHO9X2Wlk/10
+	 30Po9bzBXbRRDgMtTUbN8zQEv7biSiZTuRQ0TUUBAC9Rx+qHlUBYMMviuDgJ212t1q
+	 v+LjV//qCvdtw==
+Date: Thu, 03 Jul 2025 09:50:09 -0500
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v5 00/24] media: i2c: add Maxim GMSL2/3 serializer and
- deserializer drivers
-To: Julien Massot <julien.massot@collabora.com>,
- Cosmin Tanislav <cosmin.tanislav@analog.com>,
- Tomi Valkeinen <tomi.valkeinen+renesas@ideasonboard.com>,
- Mauro Carvalho Chehab <mchehab@kernel.org>, Rob Herring <robh@kernel.org>,
- =?UTF-8?Q?Niklas_S=C3=B6derlund?= <niklas.soderlund@ragnatech.se>,
- Sakari Ailus <sakari.ailus@linux.intel.com>,
- Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
- Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
- Linus Walleij <linus.walleij@linaro.org>
-Cc: linux-media@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- linux-staging@lists.linux.dev, linux-gpio@vger.kernel.org
-References: <20250702132104.1537926-1-demonsingur@gmail.com>
- <5e1b26637706f6eac92acbbb3d5a7dafa0c2c232.camel@collabora.com>
- <d4052ab3-9cd1-45e8-81b0-b6512822e646@gmail.com>
- <c661e7f3faec269f73d6240fbe7b84e3bc97157a.camel@collabora.com>
-From: Cosmin Tanislav <demonsingur@gmail.com>
-Content-Language: en-US
-In-Reply-To: <c661e7f3faec269f73d6240fbe7b84e3bc97157a.camel@collabora.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
+From: "Rob Herring (Arm)" <robh@kernel.org>
+Cc: y.oudjana@protonmail.com, conor+dt@kernel.org, lihongbo22@huawei.com, 
+ mandyjh.liu@mediatek.com, matthias.bgg@gmail.com, linux-pm@vger.kernel.org, 
+ wenst@chromium.org, linux-arm-kernel@lists.infradead.org, 
+ krzk+dt@kernel.org, linux-mediatek@lists.infradead.org, 
+ devicetree@vger.kernel.org, mbrugger@suse.com, kernel@collabora.com, 
+ linux-kernel@vger.kernel.org, ulf.hansson@linaro.org, fshao@chromium.org
+To: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+In-Reply-To: <20250703110247.99927-1-angelogioacchino.delregno@collabora.com>
+References: <20250703110247.99927-1-angelogioacchino.delregno@collabora.com>
+Message-Id: <175155413560.1472431.15279781929013873275.robh@kernel.org>
+Subject: Re: [PATCH 00/10] pmdomain: Partial refactor, support modem and
+ RTFF
 
 
-
-On 7/3/25 4:54 PM, Julien Massot wrote:
-> On Thu, 2025-07-03 at 15:17 +0300, Cosmin Tanislav wrote:
->>
->>
->> On 7/3/25 3:07 PM, Julien Massot wrote:
->>> Hi Cosmin,
->>>
->>> On Wed, 2025-07-02 at 16:20 +0300, Cosmin Tanislav wrote:
->>>> This series adds new drivers for multiple Maxim GMSL2 and GMSL3 devices,
->>>> replacing the few GMSL2 drivers already in upstream, and introducing a
->>>> common framework that can be used to implement such GMSL chips, which
->>>> avoids code duplication while also adding support for previously
->>>> unsupported features.
->>>>
->>>> While the normally acceptable and polite way would be to extend the
->>>> current mainline drivers, the choice was made here to add a totally new
->>>> set of drivers. The current drivers support only a small subset of the
->>>> possible features, and only a few devices, so the end result after
->>>> extending them would in any case be essentially fully rewritten, new
->>>> drivers.
->>>>
->>> Thanks for your work,
->>> The common framework will help a lot to drive new GMSL chips, and most of the
->>> features are covered.
->>>
->>>> This series depends on support for internal pads, for which a patch has
->>>> been added.
->>>>
->>>> The previous version is at:
->>>> https://lore.kernel.org/lkml/20250618095858.2145209-1-demonsingur@gmail.com
->>>>
->>>> The following deserializers are supported:
->>>>    * MAX96712 (already exists in staging)
->>>>    * MAX96714 (already exists)
->>>>    * MAX96714F (already exists)
->>>>    * MAX96714R (GMSL2)
->>>>    * MAX96716 (GMSL2)
->>>>    * MAX96724 (already exists as part of existing MAX96712 driver)
->>>>    * MAX96724F (GMSL2)
->>>>    * MAX96724R (GMSL2)
->>>>    * MAX9296A (GMSL2)
->>>>    * MAX96792A (GMSL3)
->>>>
->>>> The following serializers are supported:
->>>>    * MAX96717 (already exists)
->>>>    * MAX9295A (GMSL2)
->>>>    * MAX96793 (GMSL3)
->>>>
->>>> Known backward compatibility breakages:
->>>>    * No default routing. Default routing has been intentionally ommitted
->>>>      as the devices support quite complex routing and it would be
->>>>      unfeasible to provide sane defaults for multi-link deserialziers.
->>>>      It is expected that userspace programs would set appropritate
->>>>      routing.
->>>>
->>> This part is the most annoying one: at the moment, there is no way to set the routing except by
->>> manually enabling a boolean within the kernel source.
->>> You can't guess what routing the user really wants, but please at least provide a default
->>> routing
->>> table that allows using your drivers — for example, the device's default routing.
->>>
->>
->> It's a very delicate issue... I'll try to see if I can do that.
->> It would be great if we could enable the streams API globally since it's
->> been merged since Jan 15 2023. It's been over two years.
->>
->>
->> Thanks,
->>
->>>
->>>
->>>> The following list enumerates new features that are supported by the
->>>> common framework and their respective chip-specific drivers:
->>>>    * Full Streams API support. Most deserializers have support for more
->>>>      than one link, and more than one PHY. Streams support allows
->>>>      configuration of routing between these links and PHYs.
->>>>
->>>>    * .get_frame_desc() support. Both the serializers and deserializers
->>>>      implement this to query and provide frame descriptor data. This is
->>>>      used in features explained in-depth below.
->>>
->>> So are almost all the sensor drivers incompatible?
->>>
->>
->> Yes, sensor drivers need to have .get_frame_desc() implemented... It's
->> not a huge feat and it's the only way this type of bridge could work
->> properly.
->>
->> Alternatively, we could add a fallback that bases its decision on the
->> stream format, but I'd prefer if we didn't and we would just implement
->> .get_frame_desc(). After this series is merged I can submit my patches
->> for imx219.
-> There is already one pending on the mailing list
-> "media: i2c: imx219: Report streams using frame descriptors"
-> I guess it's fine if we require the sensor to implement this function.
+On Thu, 03 Jul 2025 13:02:37 +0200, AngeloGioacchino Del Regno wrote:
+> This series is a subset of [1], leaving out the Hardware Voter specific
+> bits for MT8196 until the discussion around it reaches a conclusion.
 > 
-> But I had to do it for vgxy61.
+> Even though the proposed code was born as a preparation to support the
+> MT8196/MT6991 SoCs power domain controllers, it is a necessary cleanup
+> for all power domain controllers of all of the currently supported SoCs
+> from MediaTek.
 > 
-> Btw I tested:
-> TI AM62x + max96716 + 1 x max96717f + stvg5661 (tunnel mode)
-> With special lanes mapping and polarities.
+> You may also notice the addition of support for modem power sequences:
+> this was brought up 6 months ago (or more) by community contributors
+> (mainly Yassine Oudjana) that were trying to upstream the MediaTek
+> MT6735 Smartphone SoC and needed support to provide power to the MD
+> subsystem - so, even though in this specific series the code for the
+> modem power sequence is not yet triggered by any SoC, please please
+> please, let it in.
+> Besides, "a bunch" of upstream supported SoCs do have the MD power
+> domain even though it wasn't added to their drivers (because if there
+> was no support in the driver, it would just crash the system); the
+> addition is something that I plan to do at some point, but definitely
+> not now as I have no bandwidth for that (bar MT8196, which will have
+> this domain).
 > 
-> And I had to:
+> Compared to v1 in [1]:
+>  - Changed mediatek,bus-protection to access-controllers
+>    as suggested by Rob (thanks!)
+>  - Added commits to document #access-controller-cells on all of
+>    the access control providers
 > 
-> - Apply pending patches for j721e to support the enable_stream API instead of s_stream
-> - Enable the experimental v4l2_subdev_enable_streams_api
-> - Add get_frame_desc to the sensor driver
+> In the meanwhile.... relevant excerpt from the old series:
+> 
+> This series refactors the bus protection regmaps retrieval to avoid
+> searching in all power domain devicetree subnodes for vendor properties
+> to get syscons for different busses, and adds a new property which is
+> located in the power controller root node containing handles to the same.
+> 
+> Retrocompatibility is retained and was tested on multiple SoCs in the
+> Collabora lab - specifically, on Genio 350/510/700/1200, and manually
+> on MT6795 Helio (Xperia M5 Smartphone), MT8186, MT8192 and MT8195
+> Chromebooks.
+> 
+> This was tested *three times*:
+>  - Before the per-SoC conversion in drivers/pmdomain/mediatek
+>  - With per-SoC conversion code but with *legacy* devicetree
+>  - With per-SoC conversion code and with *new* devicetree conversion
+> 
+> All of those tests were successful on all of the aforementioned SoCs.
+> 
+> This also adds support for:
+>  - Modem power domain for both old and new MediaTek SoCs, useful for
+>    bringing up the GSM/3G/4G/5G modem for both laptop and smartphone use
+>  - RTFF MCU HW, as found in MT8196 Chromebooks and MT6991 Dimensity 9400
+> 
+> ...and prepares the pmdomain code to accomodate only the directly
+> controlled power domains for MT8196 (HW Voter support was left out).
+> 
+> [1] https://lore.kernel.org/all/20250623120154.109429-1-angelogioacchino.delregno@collabora.com
+> 
+> AngeloGioacchino Del Regno (10):
+>   dt-bindings: memory: mtk-smi: Document #access-controller-cells
+>   dt-bindings: clock: mediatek: Document #access-controller-cells
+>   dt-bindings: power: mediatek: Document access-controllers property
+>   pmdomain: mediatek: Refactor bus protection regmaps retrieval
+>   pmdomain: mediatek: Handle SoCs with inverted SRAM power-down bits
+>   pmdomain: mediatek: Move ctl sequences out of power_on/off functions
+>   pmdomain: mediatek: Add support for modem power sequences
+>   pmdomain: mediatek: Add support for RTFF Hardware in MT8196/MT6991
+>   pmdomain: mediatek: Convert all SoCs to new style regmap retrieval
+>   arm64: dts: mediatek: Convert all SoCs to use access-controllers
+> 
+>  .../bindings/clock/mediatek,infracfg.yaml     |   3 +
+>  .../clock/mediatek,mt8186-sys-clock.yaml      |  15 +
+>  .../clock/mediatek,mt8192-sys-clock.yaml      |  15 +
+>  .../clock/mediatek,mt8365-sys-clock.yaml      |  15 +
+>  .../mediatek,smi-common.yaml                  |  16 +
+>  .../power/mediatek,power-controller.yaml      |  39 ++
+>  arch/arm64/boot/dts/mediatek/mt6795.dtsi      |   5 +-
+>  arch/arm64/boot/dts/mediatek/mt8167.dtsi      |   6 +-
+>  arch/arm64/boot/dts/mediatek/mt8173.dtsi      |   4 +-
+>  arch/arm64/boot/dts/mediatek/mt8183.dtsi      |  17 +-
+>  arch/arm64/boot/dts/mediatek/mt8186.dtsi      |  12 +-
+>  arch/arm64/boot/dts/mediatek/mt8188.dtsi      |  23 +-
+>  arch/arm64/boot/dts/mediatek/mt8192.dtsi      |  13 +-
+>  arch/arm64/boot/dts/mediatek/mt8195.dtsi      |  20 +-
+>  arch/arm64/boot/dts/mediatek/mt8365.dtsi      |  16 +-
+>  drivers/pmdomain/mediatek/mt6795-pm-domains.h |   5 +
+>  drivers/pmdomain/mediatek/mt8167-pm-domains.h |   5 +
+>  drivers/pmdomain/mediatek/mt8173-pm-domains.h |   5 +
+>  drivers/pmdomain/mediatek/mt8183-pm-domains.h |   5 +
+>  drivers/pmdomain/mediatek/mt8186-pm-domains.h |   5 +
+>  drivers/pmdomain/mediatek/mt8188-pm-domains.h |   6 +
+>  drivers/pmdomain/mediatek/mt8192-pm-domains.h |   5 +
+>  drivers/pmdomain/mediatek/mt8195-pm-domains.h |   5 +
+>  drivers/pmdomain/mediatek/mt8365-pm-domains.h |  14 +-
+>  drivers/pmdomain/mediatek/mtk-pm-domains.c    | 399 +++++++++++++++---
+>  drivers/pmdomain/mediatek/mtk-pm-domains.h    |  74 +++-
+>  26 files changed, 566 insertions(+), 181 deletions(-)
+> 
+> --
+> 2.49.0
+> 
+> 
+> 
 
-Did it work without issues with those changes?
 
-If that's the case then I think all I can do to make it is easier is to
-add default routing. I'm not a fan of each driver having its own
-get_frame_desc() fallback, especially when it's a very small change to
-do to the sensor drivers.
+My bot found new DTB warnings on the .dts files added or changed in this
+series.
+
+Some warnings may be from an existing SoC .dtsi. Or perhaps the warnings
+are fixed by another series. Ultimately, it is up to the platform
+maintainer whether these warnings are acceptable or not. No need to reply
+unless the platform maintainer has comments.
+
+If you already ran DT checks and didn't see these error(s), then
+make sure dt-schema is up to date:
+
+  pip3 install dtschema --upgrade
+
+
+This patch series was applied (using b4) to base:
+ Base: attempting to guess base-commit...
+ Base: tags/next-20250703 (exact match)
+
+If this is not the correct base, please add 'base-commit' tag
+(or use b4 which does this automatically)
+
+New warnings running 'make CHECK_DTBS=y for arch/arm64/boot/dts/mediatek/' for 20250703110247.99927-1-angelogioacchino.delregno@collabora.com:
+
+arch/arm64/boot/dts/mediatek/mt8395-genio-1200-evk.dtb: syscon@10001000 (mediatek,mt8195-infracfg_ao): '#access-controller-cells' does not match any of the regexes: '^pinctrl-[0-9]+$'
+	from schema $id: http://devicetree.org/schemas/clock/mediatek,mt8195-sys-clock.yaml#
+arch/arm64/boot/dts/mediatek/mt8195-cherry-tomato-r2.dtb: syscon@10001000 (mediatek,mt8195-infracfg_ao): '#access-controller-cells' does not match any of the regexes: '^pinctrl-[0-9]+$'
+	from schema $id: http://devicetree.org/schemas/clock/mediatek,mt8195-sys-clock.yaml#
+arch/arm64/boot/dts/mediatek/mt8188-geralt-ciri-sku4.dtb: syscon@10001000 (mediatek,mt8188-infracfg-ao): '#access-controller-cells' does not match any of the regexes: '^pinctrl-[0-9]+$'
+	from schema $id: http://devicetree.org/schemas/clock/mediatek,mt8188-sys-clock.yaml#
+arch/arm64/boot/dts/mediatek/mt8370-genio-510-evk.dtb: syscon@10001000 (mediatek,mt8188-infracfg-ao): '#access-controller-cells' does not match any of the regexes: '^pinctrl-[0-9]+$'
+	from schema $id: http://devicetree.org/schemas/clock/mediatek,mt8188-sys-clock.yaml#
+arch/arm64/boot/dts/mediatek/mt8390-genio-700-evk.dtb: syscon@10001000 (mediatek,mt8188-infracfg-ao): '#access-controller-cells' does not match any of the regexes: '^pinctrl-[0-9]+$'
+	from schema $id: http://devicetree.org/schemas/clock/mediatek,mt8188-sys-clock.yaml#
+arch/arm64/boot/dts/mediatek/mt8192-asurada-hayato-r1.dtb: mt8192-afe-pcm (mediatek,mt8192-audio): clocks: [[59, 0], [59, 7], [59, 8], [59, 6], [59, 21], [59, 1], [59, 2], [59, 4], [59, 3], [59, 5], [59, 9], [59, 10], [59, 18], [59, 19], [59, 20], [59, 22], [59, 23], [59, 24], [59, 25], [59, 26], [22, 47], [22, 58], [23, 27], [23, 28], [23, 72], [23, 47], [23, 101], [23, 48], [23, 105], [23, 43], [23, 103], [23, 44], [23, 107], [23, 59], [23, 60], [23, 61], [23, 62], [23, 63], [23, 64], [23, 65], [23, 66], [23, 67], [23, 68], [23, 142], [23, 143], [23, 144], [23, 145], [23, 146], [23, 147], [23, 148], [23, 149], [23, 150], [23, 151], [23, 152], [23, 55], [2]] is too long
+	from schema $id: http://devicetree.org/schemas/sound/mt8192-afe-pcm.yaml#
+arch/arm64/boot/dts/mediatek/mt8395-kontron-3-5-sbc-i1200.dtb: syscon@10001000 (mediatek,mt8195-infracfg_ao): '#access-controller-cells' does not match any of the regexes: '^pinctrl-[0-9]+$'
+	from schema $id: http://devicetree.org/schemas/clock/mediatek,mt8195-sys-clock.yaml#
+arch/arm64/boot/dts/mediatek/mt8188-geralt-ciri-sku1.dtb: syscon@10001000 (mediatek,mt8188-infracfg-ao): '#access-controller-cells' does not match any of the regexes: '^pinctrl-[0-9]+$'
+	from schema $id: http://devicetree.org/schemas/clock/mediatek,mt8188-sys-clock.yaml#
+arch/arm64/boot/dts/mediatek/mt8195-demo.dtb: syscon@10001000 (mediatek,mt8195-infracfg_ao): '#access-controller-cells' does not match any of the regexes: '^pinctrl-[0-9]+$'
+	from schema $id: http://devicetree.org/schemas/clock/mediatek,mt8195-sys-clock.yaml#
+arch/arm64/boot/dts/mediatek/mt8192-asurada-spherion-r0.dtb: mt8192-afe-pcm (mediatek,mt8192-audio): clocks: [[56, 0], [56, 7], [56, 8], [56, 6], [56, 21], [56, 1], [56, 2], [56, 4], [56, 3], [56, 5], [56, 9], [56, 10], [56, 18], [56, 19], [56, 20], [56, 22], [56, 23], [56, 24], [56, 25], [56, 26], [22, 47], [22, 58], [23, 27], [23, 28], [23, 72], [23, 47], [23, 101], [23, 48], [23, 105], [23, 43], [23, 103], [23, 44], [23, 107], [23, 59], [23, 60], [23, 61], [23, 62], [23, 63], [23, 64], [23, 65], [23, 66], [23, 67], [23, 68], [23, 142], [23, 143], [23, 144], [23, 145], [23, 146], [23, 147], [23, 148], [23, 149], [23, 150], [23, 151], [23, 152], [23, 55], [2]] is too long
+	from schema $id: http://devicetree.org/schemas/sound/mt8192-afe-pcm.yaml#
+arch/arm64/boot/dts/mediatek/mt8188-geralt-ciri-sku7.dtb: syscon@10001000 (mediatek,mt8188-infracfg-ao): '#access-controller-cells' does not match any of the regexes: '^pinctrl-[0-9]+$'
+	from schema $id: http://devicetree.org/schemas/clock/mediatek,mt8188-sys-clock.yaml#
+arch/arm64/boot/dts/mediatek/mt8188-geralt-ciri-sku3.dtb: syscon@10001000 (mediatek,mt8188-infracfg-ao): '#access-controller-cells' does not match any of the regexes: '^pinctrl-[0-9]+$'
+	from schema $id: http://devicetree.org/schemas/clock/mediatek,mt8188-sys-clock.yaml#
+arch/arm64/boot/dts/mediatek/mt8188-evb.dtb: syscon@10001000 (mediatek,mt8188-infracfg-ao): '#access-controller-cells' does not match any of the regexes: '^pinctrl-[0-9]+$'
+	from schema $id: http://devicetree.org/schemas/clock/mediatek,mt8188-sys-clock.yaml#
+arch/arm64/boot/dts/mediatek/mt8195-evb.dtb: syscon@10001000 (mediatek,mt8195-infracfg_ao): '#access-controller-cells' does not match any of the regexes: '^pinctrl-[0-9]+$'
+	from schema $id: http://devicetree.org/schemas/clock/mediatek,mt8195-sys-clock.yaml#
+arch/arm64/boot/dts/mediatek/mt8395-radxa-nio-12l.dtb: syscon@10001000 (mediatek,mt8195-infracfg_ao): '#access-controller-cells' does not match any of the regexes: '^pinctrl-[0-9]+$'
+	from schema $id: http://devicetree.org/schemas/clock/mediatek,mt8195-sys-clock.yaml#
+arch/arm64/boot/dts/mediatek/mt8188-geralt-ciri-sku6.dtb: syscon@10001000 (mediatek,mt8188-infracfg-ao): '#access-controller-cells' does not match any of the regexes: '^pinctrl-[0-9]+$'
+	from schema $id: http://devicetree.org/schemas/clock/mediatek,mt8188-sys-clock.yaml#
+arch/arm64/boot/dts/mediatek/mt8188-geralt-ciri-sku0.dtb: syscon@10001000 (mediatek,mt8188-infracfg-ao): '#access-controller-cells' does not match any of the regexes: '^pinctrl-[0-9]+$'
+	from schema $id: http://devicetree.org/schemas/clock/mediatek,mt8188-sys-clock.yaml#
+arch/arm64/boot/dts/mediatek/mt8188-geralt-ciri-sku2.dtb: syscon@10001000 (mediatek,mt8188-infracfg-ao): '#access-controller-cells' does not match any of the regexes: '^pinctrl-[0-9]+$'
+	from schema $id: http://devicetree.org/schemas/clock/mediatek,mt8188-sys-clock.yaml#
+arch/arm64/boot/dts/mediatek/mt8195-cherry-dojo-r1.dtb: syscon@10001000 (mediatek,mt8195-infracfg_ao): '#access-controller-cells' does not match any of the regexes: '^pinctrl-[0-9]+$'
+	from schema $id: http://devicetree.org/schemas/clock/mediatek,mt8195-sys-clock.yaml#
+arch/arm64/boot/dts/mediatek/mt8195-cherry-tomato-r3.dtb: syscon@10001000 (mediatek,mt8195-infracfg_ao): '#access-controller-cells' does not match any of the regexes: '^pinctrl-[0-9]+$'
+	from schema $id: http://devicetree.org/schemas/clock/mediatek,mt8195-sys-clock.yaml#
+arch/arm64/boot/dts/mediatek/mt8192-evb.dtb: mt8192-afe-pcm (mediatek,mt8192-audio): clocks: [[45, 0], [45, 7], [45, 8], [45, 6], [45, 21], [45, 1], [45, 2], [45, 4], [45, 3], [45, 5], [45, 9], [45, 10], [45, 18], [45, 19], [45, 20], [45, 22], [45, 23], [45, 24], [45, 25], [45, 26], [22, 47], [22, 58], [23, 27], [23, 28], [23, 72], [23, 47], [23, 101], [23, 48], [23, 105], [23, 43], [23, 103], [23, 44], [23, 107], [23, 59], [23, 60], [23, 61], [23, 62], [23, 63], [23, 64], [23, 65], [23, 66], [23, 67], [23, 68], [23, 142], [23, 143], [23, 144], [23, 145], [23, 146], [23, 147], [23, 148], [23, 149], [23, 150], [23, 151], [23, 152], [23, 55], [2]] is too long
+	from schema $id: http://devicetree.org/schemas/sound/mt8192-afe-pcm.yaml#
+arch/arm64/boot/dts/mediatek/mt8195-cherry-tomato-r1.dtb: syscon@10001000 (mediatek,mt8195-infracfg_ao): '#access-controller-cells' does not match any of the regexes: '^pinctrl-[0-9]+$'
+	from schema $id: http://devicetree.org/schemas/clock/mediatek,mt8195-sys-clock.yaml#
+arch/arm64/boot/dts/mediatek/mt8188-geralt-ciri-sku5.dtb: syscon@10001000 (mediatek,mt8188-infracfg-ao): '#access-controller-cells' does not match any of the regexes: '^pinctrl-[0-9]+$'
+	from schema $id: http://devicetree.org/schemas/clock/mediatek,mt8188-sys-clock.yaml#
+
+
+
+
 
 
