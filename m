@@ -1,174 +1,163 @@
-Return-Path: <devicetree+bounces-192543-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-192544-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9D5F4AF6FA5
-	for <lists+devicetree@lfdr.de>; Thu,  3 Jul 2025 12:04:41 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id C78BCAF6FBA
+	for <lists+devicetree@lfdr.de>; Thu,  3 Jul 2025 12:10:13 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id ECCAD3AEC9D
-	for <lists+devicetree@lfdr.de>; Thu,  3 Jul 2025 10:04:14 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id C176C178BEF
+	for <lists+devicetree@lfdr.de>; Thu,  3 Jul 2025 10:10:13 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 43EAF2E172C;
-	Thu,  3 Jul 2025 10:04:36 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D33922E1738;
+	Thu,  3 Jul 2025 10:10:08 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="gvFnyOSB"
+	dkim=pass (2048-bit key) header.d=resnulli-us.20230601.gappssmtp.com header.i=@resnulli-us.20230601.gappssmtp.com header.b="cSpZCwJ8"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wr1-f51.google.com (mail-wr1-f51.google.com [209.85.221.51])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 82A832D4B73
-	for <devicetree@vger.kernel.org>; Thu,  3 Jul 2025 10:04:34 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6B3C62E173B
+	for <devicetree@vger.kernel.org>; Thu,  3 Jul 2025 10:10:06 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.51
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1751537076; cv=none; b=MgiK/ZiV9nUVpZlTVPacBqGt15KPPqKDG+BeothjK3fET+x/s/k0oMwwGNL56up18qpvznhLObdG+11EastONXSE/6MP+ynEpz4+IIadsDfhr2gc68bDSl6T6JX1d4Ic7HnuOoW1dxFb/dbLFWX8HvyMqDjJp1jxA8azDEkE4YM=
+	t=1751537408; cv=none; b=PVjk5uqzJUdhmSYc0Zr+7ZpNzOMsAE1oYeNXXeM0m/w4WFTO8zZis2wEdH3ENYXNRNdLni+oPTfBVCjc0PQUXaFFSpVsNPHyqIAgAOjrAF0qTZEPHcJh2YeUAy17iI9L9QoR24KsaqdYBNGsiWvmVK48K+BjAFGo+EhGQetFiws=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1751537076; c=relaxed/simple;
-	bh=cyTu142mWOH15jjQQR8zgkNVkfWZan1wub5jXvzfRWY=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=tphm2+QAI/Vt4hbTdcgkRbCULYlH86x7rlLt4Y3oCW6DDBNk8h3uhIAK/08+MpcUzkCyk0XkAZUCWW/hICeMu3QiHhWd+T6Sdbhn+/H/PVm6bW/rPQ5IYuSvU1qE+CaSy1OrwbO2sBH8eX78udF43bgcr8r45mCz44gBasMkLVI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=gvFnyOSB; arc=none smtp.client-ip=205.220.180.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
-Received: from pps.filterd (m0279870.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 5637ahSa018597
-	for <devicetree@vger.kernel.org>; Thu, 3 Jul 2025 10:04:33 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	oUtfiWChnTptD8GgF9Q1eg1hm3mYO2U2DifbMke4nQM=; b=gvFnyOSBx5Zh75xU
-	SLvcJThJvf6mWMXWPebbqcXw/LQKVtbzvTkao9o7jI2W3/eLsTxYdQOcYqabZbGQ
-	p+DRhgT1UPNJE3UiSUnW7SK+d6r+JHQ0Gnp50MYM119vTpQxOENAKRFxTIrI2uGV
-	Sx4otX5eeXvOsL5MJRxRr3N5bIdAgZ7pm12TeQjBbfboIvVwY33ocojvZkqnQ1gg
-	2kKZ9DcUj5Jvs4MWbh422O5U/tNiYfZC6fyzMDqc8yMjbaVDWOoB9IJycbJuIuz1
-	0anRYOh8dnf59cVcVUSQ9VK8ia2EoF5WYaXcUQ9DzSBgVpIa6fy69ZFLyZv9lsNF
-	TNHwFA==
-Received: from mail-qk1-f198.google.com (mail-qk1-f198.google.com [209.85.222.198])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 47j8fxr187-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Thu, 03 Jul 2025 10:04:33 +0000 (GMT)
-Received: by mail-qk1-f198.google.com with SMTP id af79cd13be357-7d0979e6263so42508785a.2
-        for <devicetree@vger.kernel.org>; Thu, 03 Jul 2025 03:04:33 -0700 (PDT)
+	s=arc-20240116; t=1751537408; c=relaxed/simple;
+	bh=2URzPKeWwOWlfZr3VMU/R70qtUMAmLZrCaO6QOVU9A4=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=Qy5BWxsxRtwAXHbiQPpfJsjadRI73kIsHYUcQzKctYhUS1Y9YX744BakBwSIn+QK91Lao5EZkzUcWKh3gYpsP8W9ht3N9zlp/YKs7PzxgPkGoywKJGtimJWpWlHYUvlSe2TSYV+R892M87tdKH/RcrE7pehagsWP77udK88kPTQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=resnulli.us; spf=none smtp.mailfrom=resnulli.us; dkim=pass (2048-bit key) header.d=resnulli-us.20230601.gappssmtp.com header.i=@resnulli-us.20230601.gappssmtp.com header.b=cSpZCwJ8; arc=none smtp.client-ip=209.85.221.51
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=resnulli.us
+Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=resnulli.us
+Received: by mail-wr1-f51.google.com with SMTP id ffacd0b85a97d-3a6d77b43c9so5029334f8f.3
+        for <devicetree@vger.kernel.org>; Thu, 03 Jul 2025 03:10:06 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=resnulli-us.20230601.gappssmtp.com; s=20230601; t=1751537405; x=1752142205; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=4hFA4oh4QUQdOxuaA9SVG8ATJhstNeNbsNX9+qVlE1g=;
+        b=cSpZCwJ8EPQEGj92CQZ/ZWw+yF7rLqbrdcjuFEdf4Y652bVBXhqNYK+ICQdPhG6UdM
+         owHTylNd4rfnKmPr8lKRATHqlljA2qmGlRlSgDEECbxMa6kyrnvRqyIozmxt1pKOSRXa
+         BUvMAmUtUxdYdtsouIjrQfIjlFRccIOT6pRIxr7HZom5sKNWDw+4np1Okbp1Q5YiNAsD
+         +w3lZnRhVkKiAHKcwh3CbGAZk1GRfEF0RZjtoIfnWnitXe+FU7FzoV1U9fwQF+zXL2R2
+         RsFd/EiMOvIsTgZQP+V/+RVPD5/NEGIzmz47jGh6tMRn+ma9iJOgVukk9b3rV8fopbUb
+         Vy0g==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1751537072; x=1752141872;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=oUtfiWChnTptD8GgF9Q1eg1hm3mYO2U2DifbMke4nQM=;
-        b=v+jA5SfwO7SWNKq3jmk0QgYvwPE4kzxSb4q4tTwURNpOmthsqCS9/Hr8Fo9odh3KIx
-         EUcKAImxCArWbW4HWI2s2/2S5p3C08RwD1HK1fksjifLca0HPqfJ7RGCOb+0JebWZxZz
-         UsgpRF6KXLwGmKWAHGrTsZPltaCKtGVA5WZrTOBGWzpUmqPSYbXlMaLuifmPKgp3Jbu+
-         QTjGhBRUHiCBcfAj5pt8P0yMZ5RXJaS0w/3NXru4IGOTa7qNGFrmn6osE1BAcZSagYuj
-         IrPqkCy12Jf9fDBt2bf1ZhQygGxyu4H/F8wTcpIAqiBQwLK3Dw0lxaMPBbk4hTccGFxE
-         dWng==
-X-Forwarded-Encrypted: i=1; AJvYcCVXADVnIszNmk0C1PARxFpOI6F52B80HtMlNXi6BNlcrf6l5r1PT3trxF2mwANioaPn3/DmxU1i9um1@vger.kernel.org
-X-Gm-Message-State: AOJu0YzafmHchSyahWQkON8Nq//qgBXYPWDX2l1Cxj/6IsAN8MS9e/09
-	hJYnz9xO8lAh30FUn7ohrilfjiNqoQzRvD7AhOu3o1vs83wk/dpwpGusKfbo8p24uo65gGFQJr0
-	cLKc9rA2Ohj6uphOlFzk065HxRabtyYrlDcgxAmtStPLVXP/DkcCoIU9y3zCWL1FU
-X-Gm-Gg: ASbGncvT1BRWTJUqUmqFenKPp0BSArVzLd0qE0Oxx5DF1cHAxaOS2ECKWPx+uU7e0J9
-	SdBQNFMfO61HhV0L7QLGWJuBUoWsNe9txeKDVUOQx8cwDFyI8PqmNBzHGSDlRER6/vK3uEuwLiO
-	PXTQvaHgoEmn2wcMdM1xjki+c58XxlK8ROREoH/e1P1c/sp0YHFIroZqB2lqNhvqj6yLtmxlbam
-	UzUc/txYtUww1zFJ8x5AOoY5vtrhPEFh0IXRygGDhUkkdTDjlONz/jPj3cVkzZHguqXC67QDqyL
-	MQ1UL9Xx2GZ5kY3wE2HbFmxAooEIR8Kb/av+6nJpHW4mpq5vhvKRUwx7zvwasGlRI0uxjySTPIH
-	mHeNcI297
-X-Received: by 2002:a05:620a:170a:b0:7d3:c69e:267 with SMTP id af79cd13be357-7d5d3f81630mr79845785a.12.1751537072319;
-        Thu, 03 Jul 2025 03:04:32 -0700 (PDT)
-X-Google-Smtp-Source: AGHT+IG2LJCfxQ4Vlc6G/INeD4FSxm9U7KnRLIwjqUdsVZx1frVxI2yUcjNbNlDmF6QyLAOxpw/4TA==
-X-Received: by 2002:a05:620a:170a:b0:7d3:c69e:267 with SMTP id af79cd13be357-7d5d3f81630mr79843585a.12.1751537071886;
-        Thu, 03 Jul 2025 03:04:31 -0700 (PDT)
-Received: from [192.168.1.114] (83.9.29.190.neoplus.adsl.tpnet.pl. [83.9.29.190])
-        by smtp.gmail.com with ESMTPSA id 4fb4d7f45d1cf-60e2a743d53sm4520080a12.28.2025.07.03.03.04.29
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 03 Jul 2025 03:04:31 -0700 (PDT)
-Message-ID: <a453bd90-b7c7-42eb-b769-b4c87b6dac12@oss.qualcomm.com>
-Date: Thu, 3 Jul 2025 12:04:28 +0200
+        d=1e100.net; s=20230601; t=1751537405; x=1752142205;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=4hFA4oh4QUQdOxuaA9SVG8ATJhstNeNbsNX9+qVlE1g=;
+        b=CEvL1+naH0c93ThREyNEi+DSbZ7wG5+hmY/fp5VtKbKru1Xbdc8jXhNqGkdrbf3tCt
+         66eO0bpvRpXS5Pny8piJuB3Z1TXDSlXA3RMHC6pJVcboFVEw/yDFDk5uV3GoNnlO6b6y
+         WlnswMN+SZSurKcxnYiPIU2mjgcXCtBz9bCOFW1Ng6KHWmG0dHLOD4GwywSEXiNNSjEB
+         abnHO1ul+ALHvzxO+awcQH8vEkknXDhQRzASk+PHv2cuzkqR3SipYfEsxCCClk8l5aTV
+         rDE99SROMx3PlkOR4vsmPYt6CcmzXAF/i0UuPlTHNYxqeP2tP5oIzcmGbnDAYf8GbaDS
+         32og==
+X-Forwarded-Encrypted: i=1; AJvYcCUdzj3t3KD4SnPv08MQ/QWC1epFcQSAD2MLWW7FTs5KC8hkeu6hpuCxXwXrSUuOHky+L/Le2Q2n06L9@vger.kernel.org
+X-Gm-Message-State: AOJu0YyyBtfXCEUWdBzkimqhBLNyvy++Lmp7GaQi0JOEt1tp+bA6riod
+	JlB+PzX/E2gsHfWFRt3zKuKlX0P195BbWb3lF500SjvcnyQdq8dLypMS2w5PzMekPdo=
+X-Gm-Gg: ASbGncuAlJTXr4TfZG/wQXlKgfUwbrYpRdzlHVSwoIlCy1ihGcsO1dMBMHkfDKmDTDl
+	iREiaWz4cWsBC3P7WspOHNAbjbpT/AETSl+ueSjQds1+v7ilErvhhO7nFEIUthDRLSu92d7FyFI
+	MZzpYCrUldEx6B4bBY/9tNL0lsGm2t1gn2h52W8TPwAqbEN+gMrQcqvE97V19JuEabwCK41iURg
+	8CRMFWkYQbKQPt4goTU6ZrMhtnUxirFmJsYpADjO6Ceec6DOEjCIZhrbKlsUAsYDPtYtkHaCky/
+	w/YuWvYKxo1MwvWjdP9QP2halw0Ovtny4e0hgnMJmjtHpfUjIfS5qE6WcBgXx3d++Gwqrw==
+X-Google-Smtp-Source: AGHT+IHfNjDl88KLIzBBak/j4QsOeoXaT11cx/c0F4gN8GQS6D2qXXuoCo04NSmd3GiJG1PcpnF/0A==
+X-Received: by 2002:a05:6000:4011:b0:3b2:e07f:757 with SMTP id ffacd0b85a97d-3b32b145539mr2068694f8f.1.1751537404431;
+        Thu, 03 Jul 2025 03:10:04 -0700 (PDT)
+Received: from jiri-mlt ([193.47.165.251])
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-454a99878acsm22244925e9.17.2025.07.03.03.09.58
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 03 Jul 2025 03:10:04 -0700 (PDT)
+Date: Thu, 3 Jul 2025 12:09:53 +0200
+From: Jiri Pirko <jiri@resnulli.us>
+To: Ivan Vecera <ivecera@redhat.com>
+Cc: netdev@vger.kernel.org, Vadim Fedorenko <vadim.fedorenko@linux.dev>, 
+	Arkadiusz Kubalewski <arkadiusz.kubalewski@intel.com>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Prathosh Satish <Prathosh.Satish@microchip.com>, "David S. Miller" <davem@davemloft.net>, 
+	Eric Dumazet <edumazet@google.com>, Jakub Kicinski <kuba@kernel.org>, 
+	Paolo Abeni <pabeni@redhat.com>, Simon Horman <horms@kernel.org>, 
+	Jonathan Corbet <corbet@lwn.net>, Jason Gunthorpe <jgg@ziepe.ca>, 
+	Shannon Nelson <shannon.nelson@amd.com>, Dave Jiang <dave.jiang@intel.com>, 
+	Jonathan Cameron <Jonathan.Cameron@huawei.com>, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+	linux-doc@vger.kernel.org, Michal Schmidt <mschmidt@redhat.com>, 
+	Petr Oros <poros@redhat.com>
+Subject: Re: [PATCH net-next v12 07/14] dpll: zl3073x: Add clock_id field
+Message-ID: <pfkr62fp4jr2bts3ektfwn4or36lqdsdqfsntryubr5oawx7kv@adqwk2qoflhu>
+References: <20250629191049.64398-1-ivecera@redhat.com>
+ <20250629191049.64398-8-ivecera@redhat.com>
+ <amsh2xeltgadepx22kvcq4cfyhb3psnxafqhr33ra6nznswsaq@hfq6yrb4zvo7>
+ <e5e3409e-b6a8-4a63-97ac-33e6b1215979@redhat.com>
+ <cpgoccukn5tuespqse5fep4gzzaeggth2dkzqh6l5jjchumfyc@5kjorwx57med>
+ <4f2e040b-3761-441c-b8b1-3d6aa90c77fc@redhat.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 1/2] dt-bindings: pinctrl: document the Milos Top Level
- Mode Multiplexer
-To: Luca Weiss <luca.weiss@fairphone.com>,
-        Krzysztof Kozlowski <krzk@kernel.org>
-Cc: Bjorn Andersson <andersson@kernel.org>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley
- <conor+dt@kernel.org>,
-        ~postmarketos/upstreaming@lists.sr.ht, phone-devel@vger.kernel.org,
-        linux-arm-msm@vger.kernel.org, linux-gpio@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <20250702-sm7635-pinctrl-v2-0-c138624b9924@fairphone.com>
- <20250702-sm7635-pinctrl-v2-1-c138624b9924@fairphone.com>
- <20250703-daring-burgundy-limpet-a1c97e@krzk-bin>
- <DB293G0PC5P8.13IW22M6DDESM@fairphone.com>
-Content-Language: en-US
-From: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
-In-Reply-To: <DB293G0PC5P8.13IW22M6DDESM@fairphone.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwNzAzMDA4MiBTYWx0ZWRfX44GHvaay16Bn
- HIOVY350NcDaHNaWHNXO5rtF+L7OCpiGY9DQZe0WKTeveoSPM5pzP1DJ7MR6DHHbnKnkDi1wMX9
- Y8+u0pquUM4EqcBMQGtdQyaukY4KGKfhUQppw9Wjub2GlpLHp2O/EXZcWqOu8tV09kggFYBbIjd
- aYXhk4lKJPs+QVgI/r/Dn8nPjJJenMCRWJErZGHPwtzYJyqbNVC33NVE8e6IoT8/VGI1BhEOU3u
- PS1wTS2aNSNvuxZHQs92GonstwQCw1N8J5yy2LuM4iVj6QyCkzSVfUvq9m6Zu4GnqDbaGuR8byR
- l10XiRcy5YO2RpESQAFacgCRXF65sRvgefVcSPXm0WGxfpgNZSn647s3P/kbl0s4A/hSwA31h0E
- PvAQHQn9rZNkSaxTruxhUlwMcuMrhde90M3CC9pkG0z1uBsGJo2lG03JQ/KLIz03y0VPQ57m
-X-Proofpoint-GUID: x-6c-NiWs_nk93ICMbf7ZtxuCeTsKo-s
-X-Proofpoint-ORIG-GUID: x-6c-NiWs_nk93ICMbf7ZtxuCeTsKo-s
-X-Authority-Analysis: v=2.4 cv=TqPmhCXh c=1 sm=1 tr=0 ts=686655b1 cx=c_pps
- a=qKBjSQ1v91RyAK45QCPf5w==:117 a=fKQzr7EGRj+VoE0XNsDNvQ==:17
- a=IkcTkHD0fZMA:10 a=Wb1JkmetP80A:10 a=VwQbUJbxAAAA:8 a=EUspDBNiAAAA:8
- a=K2Eths-FuMJ0g_30MjIA:9 a=QEXdDO2ut3YA:10 a=NFOGd7dJGGMPyQGDc5-O:22
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1099,Hydra:6.1.7,FMLib:17.12.80.40
- definitions=2025-07-03_03,2025-07-02_04,2025-03-28_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- priorityscore=1501 bulkscore=0 mlxlogscore=999 suspectscore=0 adultscore=0
- phishscore=0 malwarescore=0 clxscore=1015 lowpriorityscore=0 mlxscore=0
- impostorscore=0 spamscore=0 classifier=spam authscore=0 authtc=n/a authcc=
- route=outbound adjust=0 reason=mlx scancount=1 engine=8.19.0-2505280000
- definitions=main-2507030082
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <4f2e040b-3761-441c-b8b1-3d6aa90c77fc@redhat.com>
 
+Wed, Jul 02, 2025 at 04:51:47PM +0200, ivecera@redhat.com wrote:
+>On 02. 07. 25 2:01 odp., Jiri Pirko wrote:
+>> Wed, Jul 02, 2025 at 01:43:38PM +0200, ivecera@redhat.com wrote:
+>> > 
+>> > On 02. 07. 25 12:31 odp., Jiri Pirko wrote:
+>> > > Sun, Jun 29, 2025 at 09:10:42PM +0200, ivecera@redhat.com wrote:
+>> > > > Add .clock_id to zl3073x_dev structure that will be used by later
+>> > > > commits introducing DPLL feature. The clock ID is required for DPLL
+>> > > > device registration.
+>> > > > 
+>> > > > To generate this ID, use chip ID read during device initialization.
+>> > > > In case where multiple zl3073x based chips are present, the chip ID
+>> > > > is shifted and lower bits are filled by an unique value - using
+>> > > > the I2C device address for I2C connections and the chip-select value
+>> > > > for SPI connections.
+>> > > 
+>> > > You say that multiple chips may have the same chip ID? How is that
+>> > > possible? Isn't it supposed to be unique?
+>> > > I understand clock ID to be invariant regardless where you plug your
+>> > > device. When you construct it from i2c address, sounds wrong.
+>> > 
+>> > The chip id is not like serial number but it is like device id under
+>> > PCI. So if you will have multiple chips with this chip id you have to
+>> > distinguish somehow between them, this is the reason why I2C address
+>> > is added into the final value.
+>> > 
+>> > Anyway this device does not have any attribute that corresponds to
+>> > clock id (as per our previous discussion) and it will be better to NOT
+>> > require clock id from DPLL core side.
+>> 
+>> Yes, better not to require it comparing to having it wrong.
+>
+>It looks that using clock_id==0 is safe from DPLL API point of view.
+>The problem is if you will have multiple zl3073x based chips because
+>the driver would call dpll_device_get(0 /* clock_id */, channel, module)
+>
+>For 1st chip (e.g. 2 channel) the driver will call:
+>dpll_device_get(0, 0, module);
+>dpll_device_get(0, 1, module);
+>
+>and for the second the same that is wrong. The clock_id would help to
+>distinguish between them.
+>
+>Wouldn't it be better to use a random number for clock_id from the
+>driver?
 
+I take my suggestion to not require it back, does not make sense.
 
-On 03-Jul-25 09:44, Luca Weiss wrote:
-> On Thu Jul 3, 2025 at 9:41 AM CEST, Krzysztof Kozlowski wrote:
->> On Wed, Jul 02, 2025 at 05:56:16PM +0200, Luca Weiss wrote:
->>> Document the Top Level Mode Multiplexer on the Milos Platform.
->>
->> What is Milos platform? Does it have some sort of model number how we
->> usually expect? Wasn't this SM7325 or similar?
->>
->> The problem with such new naming that it awfully sounds like family
->> names, so just expand the name and explain it.
-> 
-> Please go argue with Bjorn/Konrad about this, wasn't my idea.
-> 
-> https://lore.kernel.org/linux-arm-msm/aGMI1Zv6D+K+vWZL@hu-bjorande-lv.qualcomm.com/
-> https://lore.kernel.org/linux-arm-msm/b98d305b-247f-415b-8675-50d073452feb@oss.qualcomm.com/
+Clock id actually has a reason to exist from UAPI perspective. Checkout
+dpll_device_find_from_nlattr(). The user passes CLOCK_ID attr (among
+others) to obtain device by DPLL_CMD_DEVICE_ID_GET command. He expects
+to get a result back from kernel regardless where the device is plugged
+and across the reboots/rebinds.
 
-Milos is the "real-est" name of this silicon. All the associated
-S[AM]|QC[MS]s are just variations of it, with different fusing.
-
-You'll stumble upon it across e.g. firmware build strings, as
-well as in any documentation pieces.
-
-There are various internal reasons for the switch, but the most
-obvious external-facing one is not to have the user buy a devkit
-and wonder whether they should use QCS9100 or QCS9075 DTB, and
-why there's zero drivers code for these magic numbers (they
-include SA8775P). We can simply point them to "codename" and
-all C code will refer to it as well.
-
-As for external reviewers not knowing what the platform name
-refers to, this is nothing new - AMD submits colorful fish names
-and it's broadly accepted practice
-
-Konrad
+Clock id should be properly filled with static and device specific
+value. If your chip can't be queried for it, I'm sure the embedded world
+has a solution for such cases. It's similar to MAC of a NIC device.
 
