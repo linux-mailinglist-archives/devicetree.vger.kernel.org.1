@@ -1,269 +1,175 @@
-Return-Path: <devicetree+bounces-192385-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-192392-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id C241BAF68C2
-	for <lists+devicetree@lfdr.de>; Thu,  3 Jul 2025 05:42:37 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 69C3AAF68DD
+	for <lists+devicetree@lfdr.de>; Thu,  3 Jul 2025 05:53:15 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 0FA861C27E1A
-	for <lists+devicetree@lfdr.de>; Thu,  3 Jul 2025 03:42:54 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 7F07E16F8E3
+	for <lists+devicetree@lfdr.de>; Thu,  3 Jul 2025 03:53:15 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id AF1EF23ABBB;
-	Thu,  3 Jul 2025 03:42:28 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9AD4A239562;
+	Thu,  3 Jul 2025 03:53:10 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=amlogic.com header.i=@amlogic.com header.b="zew83Azn"
+	dkim=pass (1024-bit key) header.d=leica-geosystems.com.cn header.i=@leica-geosystems.com.cn header.b="XOEMkw6N"
 X-Original-To: devicetree@vger.kernel.org
-Received: from SEYPR02CU001.outbound.protection.outlook.com (mail-koreacentralazon11023114.outbound.protection.outlook.com [40.107.44.114])
+Received: from AM0PR83CU005.outbound.protection.outlook.com (mail-westeuropeazon11010035.outbound.protection.outlook.com [52.101.69.35])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CB275239562;
-	Thu,  3 Jul 2025 03:42:26 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.44.114
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C946023185F;
+	Thu,  3 Jul 2025 03:53:06 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=52.101.69.35
 ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1751514148; cv=fail; b=I/RiLF22+cHw9Stf+YkGRKgryNC8g0288Jdm34L7l2TZsjF1KO22LIbpt4J/PNWqU1BOADLumz7UG/Fqgi/bXUuZh1JtvG43hW/O9VmWN9BMVeEPSZRp8K9/xC7BQhSZMNaHP7v8dAjWAI+y+0f7VF5mkRiMGTIeFbvsATkOB3Y=
+	t=1751514790; cv=fail; b=laZ5SVYoZ6uoogZ9TsQFgqBIFUUuUf6PmScLTdmqIYVjT4ZAZSOEPxdorjySBgidrirjisobjG4orj98arFNWKpq7SXolORUtaJRP2/4OoYsawWCzS7qOTkTfWc6pYbS59NKrB1qJI3WOpzUgVpin4R+vPJWjQ573hIVFg2Y7bM=
 ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1751514148; c=relaxed/simple;
-	bh=bk7ntFuhAqLnQQgfd54yt3pn87d3+WpLaIifGlXpLI4=;
-	h=Message-ID:Date:Subject:To:Cc:References:From:In-Reply-To:
-	 Content-Type:MIME-Version; b=LRt05lA4cwOy0ha2ASP7iW5CzWrMNJ927pqS1Ti7Teke3+qd6SD9LeE4zmOBwANSwDO6a+ji7QuYR5Y2uQTEDiAgL+yhfTL85wSq0BFmlPXs6CdTG98oxHBWktgIYVNXaEvtG0mWPb/gycENGOChPSD1lKZq8WzSHtjXdtoPXnw=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=amlogic.com; spf=pass smtp.mailfrom=amlogic.com; dkim=pass (2048-bit key) header.d=amlogic.com header.i=@amlogic.com header.b=zew83Azn; arc=fail smtp.client-ip=40.107.44.114
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=amlogic.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=amlogic.com
+	s=arc-20240116; t=1751514790; c=relaxed/simple;
+	bh=mRKibXqpkkmOgBBVYn2Oc1w9k687GQTmABU6vgUX5DU=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version:Content-Type; b=TRIZTmyOGk1H5f0Sp1I3DpAIN4Ox4j+1qgLEsVB6KiWp6LSTvZq1JnNv337a3C2J2+Jd9NTmy96naHUPjIc0S9Om7yRpM49MmZG5ItUluBBuibbtS+V4bW4PZfQr69J05m1RuE5TwUb0XOcl/SiUhfeC7n7FdSl5B/V22qPJuxw=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=leica-geosystems.com.cn; spf=fail smtp.mailfrom=leica-geosystems.com.cn; dkim=pass (1024-bit key) header.d=leica-geosystems.com.cn header.i=@leica-geosystems.com.cn header.b=XOEMkw6N; arc=fail smtp.client-ip=52.101.69.35
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=leica-geosystems.com.cn
+Authentication-Results: smtp.subspace.kernel.org; spf=fail smtp.mailfrom=leica-geosystems.com.cn
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=HRd0RZhvA+qEwR1VYI2098rBXjmvi/vG7Jxplr/Czaz2QOY/qGqHGcrgF9FLYVOaW0BUKXnTy3+HCsTg742OKkqWYJlnB69PxkkcAn4DC2qIXVr1J48O0HdIVlFQI/XcjIAkcKWV8jt3i+kXal+e3+XKXdL5QGOzeU0sZzhvjWyA19CqZ2292H/lDTyFLkmErsgIpKpRH+nGF1MwbjAKuxbP9Abv0hN3b7te+SCp4upZBiHZ7G4/Sy3pk2YZmVipRvXfJGETTvCJik6v5ljHg5/pWQybnUpvLYySfU9SugpG9rWPnmLve1D3qcHviAPmDsBuaUdA1ogekd/uSneHPw==
+ b=k8AidIASc6d71TroHkS3qcgtZx1HdcHuyZeOq8617lXiw3Q55/lbDoAl2MQrcMsITbVGWL8I03qnuBOQs87/nuXz6kXiEBCHDwHSg4cLkU7PDqkE0gcSFyq9nopur4PwkDPI8D0RshPvV36+pJq9RQw6AwmjBtt6Zr2DmvY3YLKH1RKKZQPxtrdANAppJbZRqARk9G9ivY+ZACm7oUH4q9t28vVLkWtICBVo3WvuDdAPo0BhDULuihR7GqOgo4dxvmLGSGzv4Y5qKPtDmu8rJ295LnTYoc4qtOHhOZVb9uwLvP0738DXXA2IxHVxGuX0b50tvFJzLPtwwX3tKAiftA==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
  s=arcselector10001;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=sByetnw4LR2FTA52xGZ97GxS+efL9v9o3UY2MDL0Bcw=;
- b=FQ5ovR+PACCGiNkN/4OZhMiK+H8Z9NuY34Mvd4L7KUAXOEXq9p3vZvKcio6pxbgU4mLIaxvgYM8oGJnOxv/Y+8Lc/hVz97Z52DH9FuiU5LFDTGhBcIss/3ybh3BZiS7x4V15aB8BZF8ez9CKRWE20uiyUJPWtqUROUaVRTceywLBlHdM8Q0XOCvCWHoQfkpgdGnUgPmfC3dN7k5n0ZBbwLiSNcnp+/lVvjc635IVox/s2NUcFacxY/YsHzswLms5eLrJfOS2SlZ91UdPOlYgycAA4vXC/JHBYSnaUtFvPkygApr6No8Y4zlLUvGssNK5SYGJNw7rGy7ATUt4g2ALIA==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=amlogic.com; dmarc=pass action=none header.from=amlogic.com;
- dkim=pass header.d=amlogic.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amlogic.com;
- s=selector1;
+ bh=vNx6sohQB/zRLnrJ5R1ue5ZUoo80dlKQhijyuZToC4Q=;
+ b=boQXnliHvYey94afCtCSNFEzxD7pV5RADdigXj3kEiG5INESpjoP4k1vsFfLuYjB5azhKGjE4My+BChfTQ1PVs1LjCcDgMaYEvXiumYhXN0qMmeFIZ1GXl5g6MQfE13BvsNQSMnmpXvEAmNiB6Khtge5SYzx7VP0IYHIZs1se3fzD1g59lYuJQlJ3lUJiwNh2MhVXsbF4s25iwT+PmIr1W059Kg66YAj7foIjtI78q9o6VMYd+3fbjHRl0rzWZcC9MdeZNIqfb0+TU60NBSkmPgXRA8E3mN3Tsao+FCpHxaDHkywBgAPqNkOKDWTn8sdC6ulcDknZ2kt0Z0vTcwATA==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
+ 193.8.40.94) smtp.rcpttodomain=vger.kernel.org
+ smtp.mailfrom=leica-geosystems.com.cn; dmarc=pass (p=reject sp=reject
+ pct=100) action=none header.from=leica-geosystems.com.cn; dkim=none (message
+ not signed); arc=none (0)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=leica-geosystems.com.cn; s=selector1;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=sByetnw4LR2FTA52xGZ97GxS+efL9v9o3UY2MDL0Bcw=;
- b=zew83AznrACkJZDgQ70T2sJTcL1NFJVZSsfaZrpfhnY9XHVd9HUbJR6buFBezhH1dUmKd7vJTlLm1FCkpDjCm6HpgVgV14Q9M+0+mzUp8u6Uly6FKRqw6IcwB+zDPhY4gwaJBjR382tmMmcPi9Ni6hIJN1FLoPM9qN8QmZVfm0V4u3DL7sNGa7Oy7GUAZtuSwejHkF/5whnoKprDKnqBqtxRYaXEorabdqc+rtarBLwFu9MWnym/dgMrgshi9Ynx4T7NRwza2PHq9F9nQOghU6FTABMWWx2ISShYSieII6JiiXcknjMFlMIidhUyYlPrv2ILHWb7yak5Z8AdUZgzGQ==
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=amlogic.com;
-Received: from KL1PR03MB7149.apcprd03.prod.outlook.com (2603:1096:820:ca::7)
- by TYZPR03MB8338.apcprd03.prod.outlook.com (2603:1096:405:24::14) with
+ bh=vNx6sohQB/zRLnrJ5R1ue5ZUoo80dlKQhijyuZToC4Q=;
+ b=XOEMkw6NpH8Ai/uAdYoAI3r78rkMRMuM2kspSvRbySbTZn0QafpjwftETDeheUSNCx9b4tO78WX3H9EEFon/vn2P2LOmOQd2Ksng4VH1afiJ1e/Cdsc6u/D7glKVLXpvTzjYXFsTJo4Lo6MfjyclimiZaqa9kG8dAkE3kquwIgE=
+Received: from PAYP264CA0003.FRAP264.PROD.OUTLOOK.COM (2603:10a6:102:11e::8)
+ by VI0PR06MB9106.eurprd06.prod.outlook.com (2603:10a6:800:247::10) with
  Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8901.20; Thu, 3 Jul
- 2025 03:42:22 +0000
-Received: from KL1PR03MB7149.apcprd03.prod.outlook.com
- ([fe80::a311:33f6:519d:73bf]) by KL1PR03MB7149.apcprd03.prod.outlook.com
- ([fe80::a311:33f6:519d:73bf%3]) with mapi id 15.20.8880.027; Thu, 3 Jul 2025
- 03:42:21 +0000
-Message-ID: <bd68352f-7f8c-4cbc-9f4f-f83645cc1f70@amlogic.com>
-Date: Thu, 3 Jul 2025 11:42:19 +0800
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3 4/6] clk: meson: t7: add support for the T7 SoC PLL
- clock
-To: Jerome Brunet <jbrunet@baylibre.com>
-Cc: Xianwei Zhao <xianwei.zhao@amlogic.com>, Chuan Liu
- <chuan.liu@amlogic.com>, Neil Armstrong <neil.armstrong@linaro.org>,
- Kevin Hilman <khilman@baylibre.com>, Stephen Boyd <sboyd@kernel.org>,
- Michael Turquette <mturquette@baylibre.com>,
- Dmitry Rokosov <ddrokosov@sberdevices.ru>, robh+dt <robh+dt@kernel.org>,
- Rob Herring <robh@kernel.org>, devicetree <devicetree@vger.kernel.org>,
- linux-clk <linux-clk@vger.kernel.org>,
- linux-amlogic <linux-amlogic@lists.infradead.org>,
- linux-kernel <linux-kernel@vger.kernel.org>,
- linux-arm-kernel <linux-arm-kernel@lists.infradead.org>
-References: <20250509074825.1933254-1-jian.hu@amlogic.com>
- <20250509074825.1933254-5-jian.hu@amlogic.com>
- <1jtt5ny6gq.fsf@starbuckisacylon.baylibre.com>
- <4dd25114-212d-44d6-938a-63871750c292@amlogic.com>
- <1jh60fd52u.fsf@starbuckisacylon.baylibre.com>
- <22a24fe6-9e62-4aba-825e-aee214f683ee@amlogic.com>
- <1j7c10jmbp.fsf@starbuckisacylon.baylibre.com>
-From: Jian Hu <jian.hu@amlogic.com>
-In-Reply-To: <1j7c10jmbp.fsf@starbuckisacylon.baylibre.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
-X-ClientProxiedBy: SI2P153CA0019.APCP153.PROD.OUTLOOK.COM
- (2603:1096:4:190::10) To KL1PR03MB7149.apcprd03.prod.outlook.com
- (2603:1096:820:ca::7)
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8880.32; Thu, 3 Jul
+ 2025 03:53:02 +0000
+Received: from AMS0EPF00000199.eurprd05.prod.outlook.com
+ (2603:10a6:102:11e:cafe::16) by PAYP264CA0003.outlook.office365.com
+ (2603:10a6:102:11e::8) with Microsoft SMTP Server (version=TLS1_3,
+ cipher=TLS_AES_256_GCM_SHA384) id 15.20.8901.20 via Frontend Transport; Thu,
+ 3 Jul 2025 03:53:02 +0000
+X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 193.8.40.94)
+ smtp.mailfrom=leica-geosystems.com.cn; dkim=none (message not signed)
+ header.d=none;dmarc=pass action=none header.from=leica-geosystems.com.cn;
+Received-SPF: Pass (protection.outlook.com: domain of leica-geosystems.com.cn
+ designates 193.8.40.94 as permitted sender) receiver=protection.outlook.com;
+ client-ip=193.8.40.94; helo=hexagon.com; pr=C
+Received: from hexagon.com (193.8.40.94) by
+ AMS0EPF00000199.mail.protection.outlook.com (10.167.16.245) with Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.8901.15 via Frontend Transport; Thu, 3 Jul 2025 03:53:02 +0000
+Received: from GEO-W5CG2253GWB.lgs-net.com ([10.132.33.182]) by hexagon.com with Microsoft SMTPSVC(10.0.17763.1697);
+	 Thu, 3 Jul 2025 05:53:01 +0200
+From: LI Qingwu <Qing-wu.Li@leica-geosystems.com.cn>
+To: lee@kernel.org,
+	pavel@kernel.org,
+	robh@kernel.org,
+	krzk+dt@kernel.org,
+	conor+dt@kernel.org,
+	linux-leds@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	Qing-wu.Li@leica-geosystems.com.cn
+Cc: bsp-development.geo@leica-geosystems.com
+Subject: [PATCH V3 1/2] dt-bindings: leds: pwm: Add enable-gpios property
+Date: Thu,  3 Jul 2025 11:52:55 +0800
+Message-ID: <20250703035256.225289-1-Qing-wu.Li@leica-geosystems.com.cn>
+X-Mailer: git-send-email 2.43.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
+X-OriginalArrivalTime: 03 Jul 2025 03:53:01.0863 (UTC) FILETIME=[F9297B70:01DBEBCD]
+X-EOPAttributedMessage: 0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: KL1PR03MB7149:EE_|TYZPR03MB8338:EE_
-X-MS-Office365-Filtering-Correlation-Id: 5e308440-9f06-405f-d560-08ddb9e39ddd
+X-MS-TrafficTypeDiagnostic: AMS0EPF00000199:EE_|VI0PR06MB9106:EE_
+Content-Type: text/plain
+X-MS-Office365-Filtering-Correlation-Id: 3a328f0c-600d-43b0-107e-08ddb9e51bcc
+X-SET-LOWER-SCL-SCANNER: YES
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;ARA:13230040|1800799024|366016|7416014|376014;
+X-Microsoft-Antispam:
+	BCL:0;ARA:13230040|82310400026|1800799024|36860700013|376014;
 X-Microsoft-Antispam-Message-Info:
-	=?utf-8?B?RVZPYUhoeTJwRVFQUUVaWklzZXY1UjFFWVNFLy9rU0FSQ3YrNFZLaE10TXB4?=
- =?utf-8?B?ZW5KbkpxRTJYeWJNWEVtWmRuNWVzdFZ6aEV2Y240UXYwdC80cjRVUUg2ZUFG?=
- =?utf-8?B?eU9FL2FDV3dLem9YeDQ1UENLbGkwaGd4TzVUenBMeEdmOEhuWU4rT0N4ZVlW?=
- =?utf-8?B?Sk9EZ2RwZ0Mwb0xiRTdaUUVhZS9wMGxST1A2Z3g5VEVwM1dzU3krb2NOMUc4?=
- =?utf-8?B?WFU4emFPZEY4N1hCM3A5eVZUZnpZak5yVVZ3K1A2WDdMUnRSUGgwRWRSdVBK?=
- =?utf-8?B?cDBYZ0xCTXdXRCt5TjBRaDdMQXVvczA4L1E5KzM4aFJ3aTNwTnlwK3VCM3hQ?=
- =?utf-8?B?WGp2eWpvSmo1WDk2TzZkRjBTODlYQVVlVlNkSVFsTHAwZnZZRVJHS2VpcVJt?=
- =?utf-8?B?MXAwblNrc2dHMHJ6eTZNOHBCcytEdkZmVSt0STFZc3Facmx3dmxkdHRtUVlH?=
- =?utf-8?B?amdadDdTczBvWEZhd09sUGp5VXNDZU5GRHMxYU1RSUNtZWpHN3JjLzJtUWxB?=
- =?utf-8?B?SjBBb1Y4VklXMURwQVFMNTBRYmw0bmpaVmdFSG5ZV2hQWXg0MG0zb2c0TGJr?=
- =?utf-8?B?NkFPT01FVm40NUVhUlIwZDYvVEdTK21TUjlrOVBtL0FXOVdpUVFTN0RrcXA4?=
- =?utf-8?B?cHV3NVNXbW43ZFphUnB3UGo5YkxTMHR1eHZMeFdVSVNBYkpuOUJLWGNPZkEv?=
- =?utf-8?B?OWRxRXdsQ3BjSUkreXE1VWh6SlVXQzRUMExpcGR0VERnNFdFRjdJYnQvQlZU?=
- =?utf-8?B?QzRhd3RFbDZTUEYvTERmeEhYNHVIVnkvZnpQQldBSytFRGRuVFNFcFlRbmho?=
- =?utf-8?B?aW9Va1lUNXBOSTQvQU9TaDFLNFh4V0ZjSVVDLytnanBRMVBhSzhyTG4vYUdo?=
- =?utf-8?B?eUQxeEFJekFRQkNnU1ZRTjQxanNjMGUyK3Q3SmF3dm9JSnZPaHhxbDhKSVR0?=
- =?utf-8?B?elh5SFN1R2pmaFhyWEZWeEZaL0dhZFdvMmluV2NYWmNtamJuQUdKRFM4dk9K?=
- =?utf-8?B?RloyenZVazlNNjlSR3dvaitsOTZIYmZtOWVuVHRreHZlaWYxZjRxeXRhOTRG?=
- =?utf-8?B?Tlo5V1dJd3lnbEhhMzJORlBHLzBLZlN4ZTZkVUU5eXBMWUQ3VTIrOTFHUVMr?=
- =?utf-8?B?bXRKM0g4Vi9VN3RVdk5mMDJrVFcyanJDc2xvbVBaN1RDbzVla01scExGYU50?=
- =?utf-8?B?dkt5Q3pwajQvYXVQUVAxZ1Zldm0xd29FNXVWdjAzUU4xMC9GSTMrTU5LMUpj?=
- =?utf-8?B?V0pIZUttdksvbTRQYm1KTGpLZFN3TEEwYTBaVFRsQklaSlRlYUFwbURYRXYx?=
- =?utf-8?B?a0lWaUNtYy9wVTlVb21BYVIzUVdNbU1VY2hnUTg4ZDNoOXJSd0Y0YXVKR3Fi?=
- =?utf-8?B?N1liRE1XOStVVjYyZlZocGJtNmpDYkdxTmpqSkNnNTQzb2E1ZHBjR1NCalhK?=
- =?utf-8?B?TEZvemY2L0R2bUpiTXlUMmhMaTlvZ3FESTFKWkpTVnpQbWZDeDNrdkdnbXdx?=
- =?utf-8?B?VzJCR25BclRUZEM0RlpJSzRYZ0FTY2RBTVBjTmVwamF6Y1JEbEZlV2E3MDR6?=
- =?utf-8?B?T2NNcTlmUTQyQitKeVVDMmJ3amlDRDVQSmFkVHhwczdXcCtWVG4zZE96QVE5?=
- =?utf-8?B?dldwVmlsL1gwaG1zN2RkdWt3N1NWaDRnSzcxSWRoSlM2U2FmUGUveWpCS0FK?=
- =?utf-8?B?MUxoMmJHYS9wd1lreEVwaWFNTnlMZ3NHNWNMZEpvUzNERUhxWUtUeXZGQ21P?=
- =?utf-8?B?ZGVBZ1lJdkJhcHlQNlhTSU9OSGhEU0NXeHhLWVNINkJtaDE5QUZuYXNBeng1?=
- =?utf-8?B?dEYzVnRSblRITUtJUlNPVmU1UVBzUmFvdWtHRko2dTVIUTZjRHE2dW8zWjVt?=
- =?utf-8?B?L1gvNFhoWTZyUlZsQTlLREwrOVNpRUJnWDBEU0lnSlU3SGQ0NlVtTTQ3Qmth?=
- =?utf-8?Q?YsMhmoinQJk=3D?=
+	=?us-ascii?Q?Ljfl0uTUd+k9+c8Y1bs4O7khmPx0g3TKeBKdtJPwEXbrEL4bUjfH+0st7cHb?=
+ =?us-ascii?Q?JgrOLTUvau1+9sQDM5x+MRxyjeWVf+lMUkAslzqCdAOo4DvjL3VQlrXcHujs?=
+ =?us-ascii?Q?g6jlZdgpICExp71sB5T1LfmPu4BStpf2QOM5ZGkCNQbD4mpCdM1DwdGqsV3b?=
+ =?us-ascii?Q?pB4B4YB1YO7BTxrU3i8mF2PVznsIu1XSj8aW78pEfZs3P2B6lTxmql1esvas?=
+ =?us-ascii?Q?kYgT12HVyWcfWwJ8Y7nMe2lwlpvsE2t38BaD1zCIh2dl5RwGeefix1x/ywvz?=
+ =?us-ascii?Q?SA34Vj2SzOVDHpUZtRV4crKjjEPDqu2hSxbTCgDLT8VcPvdttypIgDpxanFt?=
+ =?us-ascii?Q?bzg5Dr9PwSa9LlUzbo5AI2SBOUe9QuIIQPg6CZMkm7yOBZPBi0afpK7KCyZv?=
+ =?us-ascii?Q?iigECFjJTD6hWUviukyUlm1nH/Wg8DR4aUvFIoDsmwSUn3si34GQFvjt078w?=
+ =?us-ascii?Q?ZzDrDGjOYAlTNgR0yUAaSgQmD6zPdjl3dWNsWn/BP6Cvyz9BxTyurUFcO1e3?=
+ =?us-ascii?Q?aq6S/HUIVxopsWoBO/5i8D2MjpCsCl1ebrgX1BrLxaDvDz4TGYijugH1lNot?=
+ =?us-ascii?Q?i+fJPWMcswQf7VpLwAFCA2+tgfgzIxFaRAYVW3zBg4wwKVhwdXjP4GEszU4E?=
+ =?us-ascii?Q?KZ4J56C8/ZZY3h44R6X413eVB5gljDNFBS/LUi1RMmMGqG3NmGxx+Creo6sE?=
+ =?us-ascii?Q?3KWvJ0LSRB/cNktCSFXqEusdBon28HnMiaOcWsMUJ1fckKyHSU0p/CIfFNtE?=
+ =?us-ascii?Q?MyYpQ3TKaLEbkfpB+XljEc27BdUDAfZKYKKnWkqmzR/tWnMFqhklvxx/47/j?=
+ =?us-ascii?Q?kIsWOP5LVhgAMMdLv2hH45kNtLJmJq9UE8mIxCD7O2AEiviyRiYuTBsvVEz8?=
+ =?us-ascii?Q?uZlwZnG9/+3VNTSPfuMcE0i68nuN6+Ml0CiGQkv8p1HZRaqTgrqSnsnui5Cb?=
+ =?us-ascii?Q?IGBC8bF33zMVG1UbmCsH97nEhH5mytesm4JEUKZqTcODYpJBg4nF6QjimJjq?=
+ =?us-ascii?Q?EwmtXGS5Rgri09LyDemOzbmyVXz8tV9vRiz/xGCgp9MwFodFJtopKU9TZs97?=
+ =?us-ascii?Q?W2FxezH8MugInCHu9coup5wREBMCB9OUzN+cIyaLgYb8g4R+igQURbOVDG02?=
+ =?us-ascii?Q?SlXTlOwKOfzyGPsOqlsEwRSHr7aBDItzqH/4rmZkkRFlu0aQ3U1+ZMILdBbe?=
+ =?us-ascii?Q?oQd3hlJ4LOz7o+d8Do9cUlPLodhktQ7Tl9rent9PV4dAJRuU1ZYqxFg/63rT?=
+ =?us-ascii?Q?yoUHTkFtwBhWoIlP4x+3xqwd0AovygkM3E7+CDS70CTn2jCQxXPDcOcfGzGW?=
+ =?us-ascii?Q?fd+sy26TLybboEHCtjGhy1LhZ191wscLv61LLlo1wTTbxsi39c4lES0ALaT/?=
+ =?us-ascii?Q?zoQyUBM4vH++OT4qNzKg3xdVi+tEnQY6MkNgCHtI77pzhK1v76l6T16PP0m/?=
+ =?us-ascii?Q?6MOAmKoArSHwe+UOHF3g6LG0TKM9W8AVj35IhiZlXrLVPGMFOhZgGxaK35xS?=
+ =?us-ascii?Q?kda3uk2IdRAEXEnqqfPy+VI8G3V52A0y/Gmu?=
 X-Forefront-Antispam-Report:
-	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:KL1PR03MB7149.apcprd03.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(1800799024)(366016)(7416014)(376014);DIR:OUT;SFP:1102;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0:
-	=?utf-8?B?WVcxdjhHaXN4ZUxtK25mMGo5a0E1NEo1SFpDSHpuSml6aDBxQ01uQzZveXJN?=
- =?utf-8?B?bHo0ZnVZVnBiMmZJeHJlZXh2dkxiVE92Rk1RdlRoS1F3RHR6dXRWblJvMEVi?=
- =?utf-8?B?ZzFBWndUMVFUTGVDb0RISlo2dkpKYTEzZ0RGUllYdk1MUGVLTFZ5M2VqMlll?=
- =?utf-8?B?Wm1OR2EvNjZESm5ocHF1bnB5NDM0Z01UbGVQbTlYYitISUtrWlk2Zm1kdm1E?=
- =?utf-8?B?eUs2U2FTWTcxam5jWTJjWjEzL0ljdS8vaW9aY3pNc0gxUHptcXY4Uk5YV1hi?=
- =?utf-8?B?YjZRdVZDQlNzWHQrTEpLcWFWQm1WSGJ3M0piTm9vVTVxVjlvS3NtYjVraXlI?=
- =?utf-8?B?dFRhcFlCUDhuWFMya2gyL3VrT2RMM3RCTTB3Qk1BOCtneEFvWnR5M1J1cjBD?=
- =?utf-8?B?UnpFbTBKbXpUVzJ4YU8vbWpjM0V2WC9nWlNMcWEzenVzRFNLNnFMb2hDTWIr?=
- =?utf-8?B?VGtjTzk5bFA0Q05tb1NObmtkRXBqTFpCUnJDemdkZnNZYmZnYUlNS1hlbW12?=
- =?utf-8?B?dzhMckprUmlTMGdVendLTm1EaHdsL0Y3Y2d5YzF5OGIxSGo5eUI0ejIremZP?=
- =?utf-8?B?WGJieG1rUzNXdUdBZlV0aVNvVFFOUmVFaG55eDZuRVRJM21kdSs4cngrQ2RK?=
- =?utf-8?B?ZkdKUjBKSFcvcWVkQytaSmVlQm11RUNsTkJMa0lnZ3h3dm40WVI3dHQzbzdo?=
- =?utf-8?B?RjJLMnBSbXhqcFBXaTFxQnIyWnV5Zmxyb2Z5NndZRzZzWVRvTkdxVC9JTGxB?=
- =?utf-8?B?WlNlc25kOGZzRnM3Qm1HZVJlYW1EMTJwZmJyelFEU0FRaDhQeXZ5Z1QyRUd0?=
- =?utf-8?B?MW5IMmlJWXVxU2RhYVRncDZjVlNMMVN2R1VLa3lFay91S3pCUEx3amhrM2J3?=
- =?utf-8?B?SjkwQkJCYWlTTU9rMWFuNjZia2w5WFk0R0FaRGY5NUE3N2xMSGRPUk5Qcnln?=
- =?utf-8?B?ZDZVT0pYMWlRUzN6UFNhS0hNeGxQRU9UZGdWNWNmL25WWHhYZjNzVGFPN013?=
- =?utf-8?B?anFyY1UwWmdGVXREZjhZd3V3MzdRQ2Fvc3hwSk0zK05sUlFNU2NSYnpXY0to?=
- =?utf-8?B?Q1FTVlVmdjdzak4xSjZTbjAvYmVhUXNGSlBYVGdkcXBzaVZDek9Sd0FqVTk4?=
- =?utf-8?B?bFpPVVBENENxeWNsNlhrTDZwS29aZWNWSTllUWI3Z3ZkNzA3eFFBYUpGZUZT?=
- =?utf-8?B?NHBvRnZMQlMxZXRjUTVtdDFYZ2N0N0xIOVVEY2NWbGVzcm04dXQveU8vYzVD?=
- =?utf-8?B?b081Nk9sMVU1WFlFT2k3SElsVXQ5N0lWZjltT0wrWEFxZ0hxejlRY0JYUnBV?=
- =?utf-8?B?WmJGSjB5aGtpbndnTXM4UlBGU3EvaldJaUxobGsyOWpiaHVrd2V2cnQvcE9X?=
- =?utf-8?B?b2tpM2g3M0JxT054OExueG9qWHR4eUo2NENZQ2FoZ2Z2aEdaSTk0RHV5elNW?=
- =?utf-8?B?MVVIb04rTmFsc2cyMXlxaDkvNlRhNHJZamRxWlNMaTdrcmRBbURvT3BEbkZs?=
- =?utf-8?B?TjZxNmdNWDhoV3BIaTdmbEwrMGtLVkdkeGVKb08yaUNWVktUSkJ3b2JGTnAr?=
- =?utf-8?B?TDBZT01NRG9qRjBicjNKcmxWVndhVFFwUTFBa3o3ZlUzRW5TTUxaUXZma1I2?=
- =?utf-8?B?dEZmOXR3MnY5Ry93ZXNqeTdmM3JuNkk3N3orZ3dnMVo1QmJFVUdhbHRwQTlE?=
- =?utf-8?B?UXk0OVREWGVUWWJuWDlDV2tsYVhaQkhnVHNJMlFzeWFVZldTcVdUZThnUVdD?=
- =?utf-8?B?cVpnZ0Q0alphRGlMODJzZ0JYcTltbGk3bjQrWnFHUUROVVlWenkydGZ4cnE5?=
- =?utf-8?B?b1daVTFOcGE1TCt0SURwY0VwNm9GR3dMNGtkK3lPaWZmT0h2OTRtZVFQUXRh?=
- =?utf-8?B?RjE0MC9FenNTZXF1V2FFL0E2V1lOdEttdE5VUTd2bGUwQXF2c3hBa1JIMHFY?=
- =?utf-8?B?TG43VGV6ZnhkR2lWOUUwTkI4WUhSbjV4UncvN3VSNkh1K1Q4WW8zQ0ZOdTBj?=
- =?utf-8?B?TCt5U3FBcTU5R0VVaWtEeDVXVG5LcGJhTTRrQXMzYWR4OWIzVFhteGpnN2c5?=
- =?utf-8?B?N2g2NEdFaXpycnVsS2trRDNRZnNUbmF2a0VyV3FJTkdUU1E5RjZHSEF5Wm5J?=
- =?utf-8?Q?noXtW1PknT7HW1zPkAoscNzJ6?=
-X-OriginatorOrg: amlogic.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 5e308440-9f06-405f-d560-08ddb9e39ddd
-X-MS-Exchange-CrossTenant-AuthSource: KL1PR03MB7149.apcprd03.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 03 Jul 2025 03:42:21.5477
+	CIP:193.8.40.94;CTRY:CH;LANG:en;SCL:1;SRV:;IPV:CAL;SFV:NSPM;H:hexagon.com;PTR:ahersrvdom50.leica-geosystems.com;CAT:NONE;SFS:(13230040)(82310400026)(1800799024)(36860700013)(376014);DIR:OUT;SFP:1101;
+X-OriginatorOrg: leica-geosystems.com.cn
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 03 Jul 2025 03:53:02.0518
  (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 0df2add9-25ca-4b3a-acb4-c99ddf0b1114
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: vlHG1NaggJauRNULGJQUYW4ztKRXKdXmd6Bg7QLRflteI9MfRaLzkQBTZBk7yZ711RgjQWfiO3VW7VoDHFRvEA==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: TYZPR03MB8338
+X-MS-Exchange-CrossTenant-Network-Message-Id: 3a328f0c-600d-43b0-107e-08ddb9e51bcc
+X-MS-Exchange-CrossTenant-Id: 1b16ab3e-b8f6-4fe3-9f3e-2db7fe549f6a
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=1b16ab3e-b8f6-4fe3-9f3e-2db7fe549f6a;Ip=[193.8.40.94];Helo=[hexagon.com]
+X-MS-Exchange-CrossTenant-AuthSource:
+	AMS0EPF00000199.eurprd05.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Anonymous
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: VI0PR06MB9106
 
+Some PWM LED chips have a dedicated enable GPIO.
+This commit adds the support to specify such GPIO.
 
-On 2025/6/25 15:46, Jerome Brunet wrote:
-> [ EXTERNAL EMAIL ]
->
-> On Wed 25 Jun 2025 at 10:52, Jian Hu <jian.hu@amlogic.com> wrote:
->
->> On 2025/6/17 0:27, Jerome Brunet wrote:
->>> [ EXTERNAL EMAIL ]
->>>
->>> On Thu 12 Jun 2025 at 21:02, Jian Hu <jian.hu@amlogic.com> wrote:
->>>
->>>>>> +
->>>>>> +static struct clk_regmap t7_pcie_pll_od = {
->>>>>> +     .data = &(struct clk_regmap_div_data){
->>>>>> +             .offset = ANACTRL_PCIEPLL_CTRL0,
->>>>>> +             .shift = 16,
->>>>>> +             .width = 5,
->>>>>> +             .flags = CLK_DIVIDER_ONE_BASED |
->>>>>> +                      CLK_DIVIDER_ALLOW_ZERO,
->>>>> What's the behaviour of the divider on zero then ?
->>>> If there is no CLK_DIVDER_ALLOW_ZERO, there is a warning when registering
->>>> t7_pcie_pll_od.
->>>>
->>>> like this:
->>>>
->>>>     ------------[ cut here ]------------
->>>>     WARNING: CPU: 1 PID: 1 at drivers/clk/clk-divider.c:140
->>>> divider_recalc_rate+0xfc/0x100
->>>>     pcie_pll_od: Zero divisor and CLK_DIVIDER_ALLOW_ZERO not set
->>>>     Modules linked in:
->>>>    CPU: 1 PID: 1 Comm: swapper/0 Not tainted
->>>> 5.4.283-09976-ga803e94eed88-dirty #91
->>>>     Hardware name: tm2_t962e2_ab311 (DT)
->>>>    Call trace:
->>>>     [ffffffc020003750+  64][<ffffffc0100e3e3c>] dump_backtrace+0x0/0x1e4
->>>>     [ffffffc020003790+  32][<ffffffc0100e4044>] show_stack+0x24/0x34
->>>>     [ffffffc0200037b0+  96][<ffffffc01130a2e8>] dump_stack+0xbc/0x108
->>>>    [ffffffc020003810+ 144][<ffffffc01010c484>] __warn+0xf4/0x1b8
->>>>     [ffffffc0200038a0+  64][<ffffffc01010c5f4>] warn_slowpath_fmt+0xac/0xc8
->>>>    [ffffffc0200038e0+  64][<ffffffc01061d364>] divider_recalc_rate+0xfc/0x100
->>>>    [ffffffc020003920+  80][<ffffffc010624e84>]
->>>> clk_regmap_div_recalc_rate+0x74/0x88
->>>>     [ffffffc020003970+  96][<ffffffc010616a54>] __clk_register+0x62c/0xb78
->>>>
->>>> so add it to avoid the warning.
->>> That does not really answer my question
->>
->> Sorry, I did not get you before.
->>
->> I have set OD to 0.  And measure pcie frequency,  It is 37.5Mhz.
->>
->> 4800Mhz/2/32/2=37.5Mhz, and the OD equal zero means divided by 32 in fact.
->>
-> CLK_DIVIDER_MAX_AT_ZERO maybe ?
+Signed-off-by: LI Qingwu <Qing-wu.Li@leica-geosystems.com.cn>
+---
+ Documentation/devicetree/bindings/leds/leds-pwm.yaml | 7 +++++++
+ 1 file changed, 7 insertions(+)
 
+diff --git a/Documentation/devicetree/bindings/leds/leds-pwm.yaml b/Documentation/devicetree/bindings/leds/leds-pwm.yaml
+index 61b97e8bc36d0..6c4fcefbe25f9 100644
+--- a/Documentation/devicetree/bindings/leds/leds-pwm.yaml
++++ b/Documentation/devicetree/bindings/leds/leds-pwm.yaml
+@@ -40,6 +40,13 @@ patternProperties:
+           initialization. If the option is not set then max brightness is used.
+         $ref: /schemas/types.yaml#/definitions/uint32
+ 
++      enable-gpios:
++        description:
++          GPIO for LED hardware enable control. Set active when brightness is
++          non-zero and inactive when brightness is zero.
++          The GPIO default state follows the "default-state" property.
++        maxItems: 1
++
+     required:
+       - pwms
+       - max-brightness
+-- 
+2.43.0
 
-You are right, CLK_DIVIDER_MAX_AT_ZERO makes sense here.
-
-
-its width is 5, and the divisor is 2^5 = 32.
-
-
-I will add CLK_DIVIDER_MAX_AT_ZERO  and remove CLK_DIVIDER_ALLOW_ZERO in 
-the next version.
-
->> Here is the test result:
->>
->> devm 0xfe008140 32
->>
->> 0xD40C04C8
->>
->> cat /sys/kernel/debug/meson-clk-msr/measure_summary | grep pcie
->>
->> [16] pcie_clk_inp      37500000  +/1 3125HZ
->>
->>
->> the OD divider is N crossover. it is one based.
->>
->> and It's possible to go from 1 to 31 crossovers.
-> --
-> Jerome
 
