@@ -1,167 +1,143 @@
-Return-Path: <devicetree+bounces-192429-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-192431-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4AEDDAF6AD3
-	for <lists+devicetree@lfdr.de>; Thu,  3 Jul 2025 08:55:41 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6F390AF6AEA
+	for <lists+devicetree@lfdr.de>; Thu,  3 Jul 2025 09:00:02 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 8408A7A9EFC
-	for <lists+devicetree@lfdr.de>; Thu,  3 Jul 2025 06:54:11 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id D334F188ECEF
+	for <lists+devicetree@lfdr.de>; Thu,  3 Jul 2025 06:59:39 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id DEB6A2980A3;
-	Thu,  3 Jul 2025 06:55:22 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 11B95295528;
+	Thu,  3 Jul 2025 06:59:17 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="rdTMrBeC"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="DOmfveil"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AFA35295DBD;
-	Thu,  3 Jul 2025 06:55:22 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D43AA292B42;
+	Thu,  3 Jul 2025 06:59:16 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1751525722; cv=none; b=QqDf2HmAnzIv5nySaFjY2vOMTkj8fxPJPNgxHr3rMDWZTnIc/w+rbGE45RTok0lwvz+VNbuhLZJAqRjWvNi/QlBZey6jFOfsq+zeYZ0nmK3ZiSySTxK1Hvhz+DjASvQ7go4zFn6zb0FhylPqZvfVCFtHgZPxJkIlHBEV0YQO5Fw=
+	t=1751525956; cv=none; b=eq6MyvvlNJBPC5mlYMcXInHh9eG4XSFDvETlGL853t0WGNfF4xENpbdlrYGD7Y7hDVQQGur0QgqHyCkkfHWK2Hwm1/LDBTnyRSQoHcKXXYWjxxjvEmy9Zo3Qvff/88x9TUWGz24cbhfoxpoi2ZzO3JH/LztRs5eh5DYngVvGrlQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1751525722; c=relaxed/simple;
-	bh=49F3PRCSlRrNYRSliv4rnookIWL6eXVvRbnSr2gXkqw=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=B/VHWKCbThuabXOGKLI0rZSANcn14mXi+DSSJvfJ4XSR0VM7fnV8ESMKvOhuMY3ObZ/q1Xou0aXsB4o0xE+E61hsB9dbcLaJ9uEF5OZW9HEskj94Dfk1Z+OgBOdvSmxxUH2TKZ4OEgQuIWxolGhPqHznMieVFfzwfCNhMye7X0w=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=rdTMrBeC; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id AD816C4CEE3;
-	Thu,  3 Jul 2025 06:55:15 +0000 (UTC)
+	s=arc-20240116; t=1751525956; c=relaxed/simple;
+	bh=tQJdnJYlTNIs5lgbSl8DiVHPrsh3z/fqveMuaTC90Og=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=iGPe4l/HrVFetRuep78xKfDlqfadBxr6jP1co9ZWMmVJ3QvjogC2QmfoX7wr7VeDhc0UQ7R2gnQLD6FY0oM4HWFBx3LQ+m9fpk2bpLH0ljFPQsxPAZ8C++h15W6IwQE5/034xjzOTAKU/mXvGEtbWZ2GDf2J0yTWP8qo0ioBM3w=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=DOmfveil; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPS id 67F0EC4CEE3;
+	Thu,  3 Jul 2025 06:59:16 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1751525722;
-	bh=49F3PRCSlRrNYRSliv4rnookIWL6eXVvRbnSr2gXkqw=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=rdTMrBeCbOm+Lo+JFbxbJJ4i06mfd+QAw9gKZ2AQJ5lnOIkWjHRr45BzFgZB8WPzO
-	 t/KSe4vI2shUzmB1AqprVNQxlQ9rPxPTKDrZslOKXcIbiG24QVT6aTv2CY7NqIJZIK
-	 +WI0fDAnoeJJ4uuJ0BO3TrpSDopZZI7rvXED+SQXNC57vyDDgMz7VkWRRQxAKVLTsh
-	 VqgLsYkququvBBDuUu+LOAhprHW9FNZkyxRCTjqTe0MOqeGJ8pn7RO+CKIkJYmgohG
-	 X0OXQfxwgjAcPFrSKNj6gyWSJhYs8YjNTyW/aSw3Fvx0/Y2h8l9wfLngHCBOOOrt7P
-	 VaSJqEYvaSIyw==
-Message-ID: <62a70894-13f6-4057-bd03-d26ce0506f49@kernel.org>
-Date: Thu, 3 Jul 2025 08:55:13 +0200
+	s=k20201202; t=1751525956;
+	bh=tQJdnJYlTNIs5lgbSl8DiVHPrsh3z/fqveMuaTC90Og=;
+	h=From:Subject:Date:To:Cc:Reply-To:From;
+	b=DOmfveilTtx0t/c5/RwXmiADFbeZITJU5cUD2pWtuxK0Cp0JCkROwyF/gM/kcXWMU
+	 rWLoCurzMjh5rkWxL72rCu5bf1EHoiRZgOR+/qwI73BtqFs7FrQu2vxP9zLBIGYryw
+	 2yRb6bBQzR9Iw8mVAwfQvNByeIXb2fgjUhlmTLDv5mqT7MR7rniSIO2YzH9Au82byZ
+	 OlNLkJ0zSOmjPXzsJVCAoh0fgDA2IZiUgdlA7NsLVYsyvA8OVAm2i1Rwty27UXtO5b
+	 EH8B+SLqqcB3J5hTjmpblMuVAzO6u4rtRN6doOU32ODd07z4BOlK7fk9IYEVdrTHJG
+	 1wuzoT6d04gGA==
+Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 537F7C83F03;
+	Thu,  3 Jul 2025 06:59:16 +0000 (UTC)
+From: Jens Glathe via B4 Relay <devnull+jens.glathe.oldschoolsolutions.biz@kernel.org>
+Subject: [PATCH v3 0/3] arm64: dts: qcom: x1-hp-x14: Add support for
+ X1P42100 HP Omnibook X14
+Date: Thu, 03 Jul 2025 08:59:10 +0200
+Message-Id: <20250703-hp-x14-x1p-v3-0-affe103b4356@oldschoolsolutions.biz>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v5 01/14] dt-bindings: pci: cadence: Extend compatible for
- new RP configuration
-To: Manikandan Karunakaran Pillai <mpillai@cadence.com>,
- Hans Zhang <hans.zhang@cixtech.com>
-Cc: "bhelgaas@google.com" <bhelgaas@google.com>,
- "lpieralisi@kernel.org" <lpieralisi@kernel.org>, "kw@linux.com"
- <kw@linux.com>, "mani@kernel.org" <mani@kernel.org>,
- "robh@kernel.org" <robh@kernel.org>,
- "kwilczynski@kernel.org" <kwilczynski@kernel.org>,
- "krzk+dt@kernel.org" <krzk+dt@kernel.org>,
- "conor+dt@kernel.org" <conor+dt@kernel.org>,
- "fugang.duan@cixtech.com" <fugang.duan@cixtech.com>,
- "guoyin.chen@cixtech.com" <guoyin.chen@cixtech.com>,
- "peter.chen@cixtech.com" <peter.chen@cixtech.com>,
- "cix-kernel-upstream@cixtech.com" <cix-kernel-upstream@cixtech.com>,
- "linux-pci@vger.kernel.org" <linux-pci@vger.kernel.org>,
- "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
- "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
-References: <20250630041601.399921-1-hans.zhang@cixtech.com>
- <20250630041601.399921-2-hans.zhang@cixtech.com>
- <20250630-heretic-space-bullfrog-d6b212@krzk-bin>
- <afeda0c7-1959-4501-b85b-5685698dc432@cixtech.com>
- <CH2PPF4D26F8E1CC95F84FFBB099955A065A246A@CH2PPF4D26F8E1C.namprd07.prod.outlook.com>
- <31415739-88cd-4350-9fd4-04b99b29be89@kernel.org>
- <CH2PPF4D26F8E1C590A00940496AAC9ED75A241A@CH2PPF4D26F8E1C.namprd07.prod.outlook.com>
- <225ea9f2-dce7-498c-a2a4-5b40471b8e2a@kernel.org>
- <CH2PPF4D26F8E1C29A09F1B6C6608DA3145A243A@CH2PPF4D26F8E1C.namprd07.prod.outlook.com>
-From: Krzysztof Kozlowski <krzk@kernel.org>
-Content-Language: en-US
-Autocrypt: addr=krzk@kernel.org; keydata=
- xsFNBFVDQq4BEAC6KeLOfFsAvFMBsrCrJ2bCalhPv5+KQF2PS2+iwZI8BpRZoV+Bd5kWvN79
- cFgcqTTuNHjAvxtUG8pQgGTHAObYs6xeYJtjUH0ZX6ndJ33FJYf5V3yXqqjcZ30FgHzJCFUu
- JMp7PSyMPzpUXfU12yfcRYVEMQrmplNZssmYhiTeVicuOOypWugZKVLGNm0IweVCaZ/DJDIH
- gNbpvVwjcKYrx85m9cBVEBUGaQP6AT7qlVCkrf50v8bofSIyVa2xmubbAwwFA1oxoOusjPIE
- J3iadrwpFvsZjF5uHAKS+7wHLoW9hVzOnLbX6ajk5Hf8Pb1m+VH/E8bPBNNYKkfTtypTDUCj
- NYcd27tjnXfG+SDs/EXNUAIRefCyvaRG7oRYF3Ec+2RgQDRnmmjCjoQNbFrJvJkFHlPeHaeS
- BosGY+XWKydnmsfY7SSnjAzLUGAFhLd/XDVpb1Een2XucPpKvt9ORF+48gy12FA5GduRLhQU
- vK4tU7ojoem/G23PcowM1CwPurC8sAVsQb9KmwTGh7rVz3ks3w/zfGBy3+WmLg++C2Wct6nM
- Pd8/6CBVjEWqD06/RjI2AnjIq5fSEH/BIfXXfC68nMp9BZoy3So4ZsbOlBmtAPvMYX6U8VwD
- TNeBxJu5Ex0Izf1NV9CzC3nNaFUYOY8KfN01X5SExAoVTr09ewARAQABzSVLcnp5c3p0b2Yg
- S296bG93c2tpIDxrcnprQGtlcm5lbC5vcmc+wsGVBBMBCgA/AhsDBgsJCAcDAgYVCAIJCgsE
- FgIDAQIeAQIXgBYhBJvQfg4MUfjVlne3VBuTQ307QWKbBQJoF1BKBQkWlnSaAAoJEBuTQ307
- QWKbHukP/3t4tRp/bvDnxJfmNdNVn0gv9ep3L39IntPalBFwRKytqeQkzAju0whYWg+R/rwp
- +r2I1Fzwt7+PTjsnMFlh1AZxGDmP5MFkzVsMnfX1lGiXhYSOMP97XL6R1QSXxaWOpGNCDaUl
- ajorB0lJDcC0q3xAdwzRConxYVhlgmTrRiD8oLlSCD5baEAt5Zw17UTNDnDGmZQKR0fqLpWy
- 786Lm5OScb7DjEgcA2PRm17st4UQ1kF0rQHokVaotxRM74PPDB8bCsunlghJl1DRK9s1aSuN
- hL1Pv9VD8b4dFNvCo7b4hfAANPU67W40AaaGZ3UAfmw+1MYyo4QuAZGKzaP2ukbdCD/DYnqi
- tJy88XqWtyb4UQWKNoQqGKzlYXdKsldYqrLHGoMvj1UN9XcRtXHST/IaLn72o7j7/h/Ac5EL
- 8lSUVIG4TYn59NyxxAXa07Wi6zjVL1U11fTnFmE29ALYQEXKBI3KUO1A3p4sQWzU7uRmbuxn
- naUmm8RbpMcOfa9JjlXCLmQ5IP7Rr5tYZUCkZz08LIfF8UMXwH7OOEX87Y++EkAB+pzKZNNd
- hwoXulTAgjSy+OiaLtuCys9VdXLZ3Zy314azaCU3BoWgaMV0eAW/+gprWMXQM1lrlzvwlD/k
- whyy9wGf0AEPpLssLVt9VVxNjo6BIkt6d1pMg6mHsUEVzsFNBFVDXDQBEADNkrQYSREUL4D3
- Gws46JEoZ9HEQOKtkrwjrzlw/tCmqVzERRPvz2Xg8n7+HRCrgqnodIYoUh5WsU84N03KlLue
- MNsWLJBvBaubYN4JuJIdRr4dS4oyF1/fQAQPHh8Thpiz0SAZFx6iWKB7Qrz3OrGCjTPcW6ei
- OMheesVS5hxietSmlin+SilmIAPZHx7n242u6kdHOh+/SyLImKn/dh9RzatVpUKbv34eP1wA
- GldWsRxbf3WP9pFNObSzI/Bo3kA89Xx2rO2roC+Gq4LeHvo7ptzcLcrqaHUAcZ3CgFG88CnA
- 6z6lBZn0WyewEcPOPdcUB2Q7D/NiUY+HDiV99rAYPJztjeTrBSTnHeSBPb+qn5ZZGQwIdUW9
- YegxWKvXXHTwB5eMzo/RB6vffwqcnHDoe0q7VgzRRZJwpi6aMIXLfeWZ5Wrwaw2zldFuO4Dt
- 91pFzBSOIpeMtfgb/Pfe/a1WJ/GgaIRIBE+NUqckM+3zJHGmVPqJP/h2Iwv6nw8U+7Yyl6gU
- BLHFTg2hYnLFJI4Xjg+AX1hHFVKmvl3VBHIsBv0oDcsQWXqY+NaFahT0lRPjYtrTa1v3tem/
- JoFzZ4B0p27K+qQCF2R96hVvuEyjzBmdq2esyE6zIqftdo4MOJho8uctOiWbwNNq2U9pPWmu
- 4vXVFBYIGmpyNPYzRm0QPwARAQABwsF8BBgBCgAmAhsMFiEEm9B+DgxR+NWWd7dUG5NDfTtB
- YpsFAmgXUF8FCRaWWyoACgkQG5NDfTtBYptO0w//dlXJs5/42hAXKsk+PDg3wyEFb4NpyA1v
- qmx7SfAzk9Hf6lWwU1O6AbqNMbh6PjEwadKUk1m04S7EjdQLsj/MBSgoQtCT3MDmWUUtHZd5
- RYIPnPq3WVB47GtuO6/u375tsxhtf7vt95QSYJwCB+ZUgo4T+FV4hquZ4AsRkbgavtIzQisg
- Dgv76tnEv3YHV8Jn9mi/Bu0FURF+5kpdMfgo1sq6RXNQ//TVf8yFgRtTUdXxW/qHjlYURrm2
- H4kutobVEIxiyu6m05q3e9eZB/TaMMNVORx+1kM3j7f0rwtEYUFzY1ygQfpcMDPl7pRYoJjB
- dSsm0ZuzDaCwaxg2t8hqQJBzJCezTOIkjHUsWAK+tEbU4Z4SnNpCyM3fBqsgYdJxjyC/tWVT
- AQ18NRLtPw7tK1rdcwCl0GFQHwSwk5pDpz1NH40e6lU+NcXSeiqkDDRkHlftKPV/dV+lQXiu
- jWt87ecuHlpL3uuQ0ZZNWqHgZoQLXoqC2ZV5KrtKWb/jyiFX/sxSrodALf0zf+tfHv0FZWT2
- zHjUqd0t4njD/UOsuIMOQn4Ig0SdivYPfZukb5cdasKJukG1NOpbW7yRNivaCnfZz6dTawXw
- XRIV/KDsHQiyVxKvN73bThKhONkcX2LWuD928tAR6XMM2G5ovxLe09vuOzzfTWQDsm++9UKF a/A=
-In-Reply-To: <CH2PPF4D26F8E1C29A09F1B6C6608DA3145A243A@CH2PPF4D26F8E1C.namprd07.prod.outlook.com>
-Content-Type: text/plain; charset=UTF-8
+Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIAD4qZmgC/3XOwQ6DIAyA4VcxnMcCRVB22nssO6jgIDFiwBE34
+ 7uvep6HHv4m/dKVJBu9TeRWrCTa7JMPI4a4FKRzzfiy1BtsAgwkqxhQN9GFlzgTta2AvlRaGa0
+ IHkzR9n45sMcT2/k0h/g57Mz37V8mc8oocC2ksrUAVt3DYFLnQhhSGN4zfpSurf+S3cxw7gA6T
+ S9bWdeG60qfOtu2/QDJ7uTo+QAAAA==
+X-Change-ID: 20250702-hp-x14-x1p-eb32f4696d96
+To: Bjorn Andersson <andersson@kernel.org>, 
+ Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>, 
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>
+Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org, 
+ linux-kernel@vger.kernel.org, 
+ Jens Glathe <jens.glathe@oldschoolsolutions.biz>
+X-Mailer: b4 0.14.2
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1751525956; l=2124;
+ i=jens.glathe@oldschoolsolutions.biz; s=20240919;
+ h=from:subject:message-id;
+ bh=tQJdnJYlTNIs5lgbSl8DiVHPrsh3z/fqveMuaTC90Og=;
+ b=IYn8bd9kGEwYlsibDlmnND/7ucFXPmAwIBpJYyW+D9VKz+iOMZp/t1SKVxeyH+VMnaWrftfCr
+ Xp7lo6zh01pB3ck+4C2aOJDK6zT3EkXhNnoc3r15KUSwJTY0YSrttqH
+X-Developer-Key: i=jens.glathe@oldschoolsolutions.biz; a=ed25519;
+ pk=JcRJqJc/y8LsxOlPakALD3juGfOKmFBWtO+GfELMJVg=
+X-Endpoint-Received: by B4 Relay for
+ jens.glathe@oldschoolsolutions.biz/20240919 with auth_id=216
+X-Original-From: Jens Glathe <jens.glathe@oldschoolsolutions.biz>
+Reply-To: jens.glathe@oldschoolsolutions.biz
 
-On 03/07/2025 03:35, Manikandan Karunakaran Pillai wrote:
+This patch series adds support for the HP Omnibook X Laptop 14-fe1xxx. [1]
 
->>> Hi Kryzsztof,
->>>
->>> Are you suggesting to create new file for both RC and EP for HPA host like:
->>> cdns,cdns-pcie-hpa-host.yaml
->>> cdns,cdns-pcie-hpa-ep.yaml
->>> And during the commit log, explain why you need to create a new file for
->> HPA, and not use the legacy one.
->>
->> No, there was no such suggestions in any previous or current
->> discussions. IIRC, this was simply rejected previously. I consider this
->> rejected still, with the same arguments: you should use specific SoC
->> compatibles. The generic compatible alone is rather legacy approach and
->> we have been commenting on this sooooo many times.
->>
-> 
-> Hi Kryzsztof,
-> 
-> Thanks for your response. 
-> The SoC specific dts patches are already being submitted by CIX team for their SoC based on the same PCIe controller IP. 
+Since this is actually the same model as the 14-fe0xxx, but with an
+X1P-42-100 SoC (Purwa), it needs a slightly different device tree.
+To have as minimal duplicate definition as possible, the hp X14 gets 
+commonalized into a dtsi (and it stays compatible to the derived 
+device trees, like the Ultrabook G1q). 
 
-There is a SoC, otherwise why is this attached to completely unrelated
-patches?
+The supported features are the same as for the original Omnibook X14:
 
-> 
-> Since there is no SoC for this platform(it only an FPGA based board),
-> are you suggesting to drop the dt-bindings patch altogether as the SoC specific dts bindings are already being in the same patch set.
+- Keyboard (no function keys though)
+- Display
+- PWM brightness control
+- Touchpad
+- Touchscreen
+- PCIe ports (pcie4, pcie6a)
+- USB type-c, type-a
+- WCN6855 Wifi-6E
+- WCN6855 Bluetooth
+- ADSP and CDSP
+- X1 GPU
+- GPIO Keys (Lid switch)
+- Audio definition (works via USB and with internal speakers)
 
-I have impression I discussed it... either in this thread or other. I am
-fine with adding compatible for your virtual setup / FPGA platform, but
-this has to reflect that case. Otherwise everyone will use this one
-here, just like it happened with other cdns cores.
+[1]: https://www.hp.com/us-en/shop/pdp/hp-omnibook-x-laptop-next-gen-ai-pc-14-fe100-14-a4nd1av-1#techSpecs
 
+Signed-off-by: Jens Glathe <jens.glathe@oldschoolsolutions.biz>
+---
+Changes in v3:
+- removed copyright strings
+- amended changed commit message  
+- Link to v2: https://lore.kernel.org/r/20250702-hp-x14-x1p-v2-0-af5b588d1979@oldschoolsolutions.biz
 
+Changes in v2:
+- remove pm8010 handling
+- Link to v1: https://lore.kernel.org/r/20250702-hp-x14-x1p-v1-0-219356e83207@oldschoolsolutions.biz
+
+---
+Jens Glathe (3):
+      dt-bindings: arm: qcom: Split HP Omnibook X14 AI in SoC variants
+      arm64: dts: qcom: x1-hp-x14: Commonalize HP Omnibook X14 device tree
+      arm64: dts: qcom: x1-hp-x14: Add support for X1P42100 HP Omnibook X14
+
+ Documentation/devicetree/bindings/arm/qcom.yaml    |    3 +-
+ arch/arm64/boot/dts/qcom/Makefile                  |    2 +
+ arch/arm64/boot/dts/qcom/x1-hp-omnibook-x14.dtsi   | 1549 ++++++++++++++++++++
+ .../boot/dts/qcom/x1e80100-hp-omnibook-x14.dts     | 1544 +------------------
+ .../boot/dts/qcom/x1p42100-hp-omnibook-x14.dts     |   40 +
+ 5 files changed, 1596 insertions(+), 1542 deletions(-)
+---
+base-commit: 3f804361f3b9af33e00b90ec9cb5afcc96831e60
+change-id: 20250702-hp-x14-x1p-eb32f4696d96
 
 Best regards,
-Krzysztof
+-- 
+Jens Glathe <jens.glathe@oldschoolsolutions.biz>
+
+
 
