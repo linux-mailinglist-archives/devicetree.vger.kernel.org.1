@@ -1,193 +1,121 @@
-Return-Path: <devicetree+bounces-192482-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-192483-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id B4C37AF6C87
-	for <lists+devicetree@lfdr.de>; Thu,  3 Jul 2025 10:12:13 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 99FEAAF6C91
+	for <lists+devicetree@lfdr.de>; Thu,  3 Jul 2025 10:13:46 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 71DB67A274F
-	for <lists+devicetree@lfdr.de>; Thu,  3 Jul 2025 08:10:47 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 86BF84A403C
+	for <lists+devicetree@lfdr.de>; Thu,  3 Jul 2025 08:13:46 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3CEAC2C08A1;
-	Thu,  3 Jul 2025 08:12:07 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5010C2C08DB;
+	Thu,  3 Jul 2025 08:13:41 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from metis.whiteo.stw.pengutronix.de (metis.whiteo.stw.pengutronix.de [185.203.201.7])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-vs1-f47.google.com (mail-vs1-f47.google.com [209.85.217.47])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 189DA28EA53
-	for <devicetree@vger.kernel.org>; Thu,  3 Jul 2025 08:12:04 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.203.201.7
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9ED8928D831;
+	Thu,  3 Jul 2025 08:13:39 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.217.47
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1751530327; cv=none; b=urqNC9+geYQN1TiUUR/7rR274N62tMg8y4nI+gpXF3yVsvGwRCBtv8yx8VjCdSFoug75ct9LRlinFHCDuKETYwerZHJzivI0gYAdZ1t0aubpn85NECY9mI5mSV6c6e4pOoXk6OIHJw+nAN2GntIhGVWSHIT1flolonZmTHty+os=
+	t=1751530421; cv=none; b=mCC6L6lOnOx+Nxn3BK1LwOvCm09dPMdKCbx9tIWuI/xaTe4gC/yY4APYBvTzEXqCvOTSvGfBjWbjpLlKRPxyHLEQutj/aO31WECT07ADDkj98uJ8dR/WqryhwIBRyqUf9Dr/QSxCdvwlLgT4bOOohql4l/mFV/7GobTZTMwnilg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1751530327; c=relaxed/simple;
-	bh=lDphxl+Sg2RIqYjkShGwzirhgk/K0xRM7vcy+iIsA24=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=khJceTpmzdGrm7/SCkm45NyxjWi3vOarbkh/g9LPNFVVfvVgnKgxt/melS4jr2K+3Pb32MbeczsbDHwAddyCdf8DmE1bAhh6UeIKh4m3+oJ4OAfmwOrj4GwGNyfQCA+t0ka1c/mvOyj7ZkSF5Hh+rNtgfNalaWDJAb8rMOEM9Fg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de; spf=pass smtp.mailfrom=pengutronix.de; arc=none smtp.client-ip=185.203.201.7
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=pengutronix.de
-Received: from ptz.office.stw.pengutronix.de ([2a0a:edc0:0:900:1d::77] helo=[127.0.0.1])
-	by metis.whiteo.stw.pengutronix.de with esmtp (Exim 4.92)
-	(envelope-from <a.fatoum@pengutronix.de>)
-	id 1uXF2q-0006JI-3y; Thu, 03 Jul 2025 10:11:48 +0200
-Message-ID: <3615415b-7ebd-45e5-8d7b-8a1b26ac7130@pengutronix.de>
-Date: Thu, 3 Jul 2025 10:11:46 +0200
+	s=arc-20240116; t=1751530421; c=relaxed/simple;
+	bh=K1T8vb+AjiMkMK0OBwAXZhpQTBL6kAj4yhM6KNlYMs8=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=ISPOZG7mrlRIjPmRQy+jtr+c/1sOFA7JYLkVaQPrBA+pNMC3ZPA2O4rUPp/sjrW+K4RCSCToy6EfR5+3k33A7LyVQGM6txUuTZkhg3wGdZYY1qNgZrBh72wlHolBpiYBH44r0ZBG2mgsvsGrLndkPQFFPSiAa7cwwRKSbeDxvow=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.217.47
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-vs1-f47.google.com with SMTP id ada2fe7eead31-4e8110ac0f5so2064585137.0;
+        Thu, 03 Jul 2025 01:13:39 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1751530418; x=1752135218;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=LGhvyf8wT5HmuLOSsA0GtGDTrw0TlszsoZtMsCcHoeA=;
+        b=srYnCHvNBKhJSfl64SUU1Qj+9SKMtaFTn9mdRqKN0aDF1JOI46ABKr4iKD+H4F1sdx
+         1iQTc3BTd5YgFApdIFLUdaEw7l4uya5aMlZoRDcdtx3UL8fvP4njN/5UevTC5RwP848M
+         INhrDTN6S/U1UDlowQaXlbwW3DWWjbLVvYmNqCN45g1tzYW19dcGoln+/f9BChVgJoAU
+         qy1+97mpxxL6n0jM1eEdfDWDUvAuWpP0yu7Ee4iL0KPxVm3TRI6nimK45z+xa5DdGu8P
+         xqWMXWrdfuWvChh86jgycOWtwVSS6HsQR41b5tvrqKZJKRfb43V1csWJh2vj6G7XKSip
+         Rfww==
+X-Forwarded-Encrypted: i=1; AJvYcCVcofvFQDIjV3e2A/toJ0k2bBS1Utl1z27PN4CFwRQbSbWdIYmeB6g8851/EMK5AWRseYSycmr0jkDxVg==@vger.kernel.org, AJvYcCWZiz0i8JWuSHrtsKyh9XDHBx8JpMVNlP1I6uVPIU2203FWw0qafE4xJezr/8me0Qu/V3oycDe05Ny9Qc8u@vger.kernel.org, AJvYcCXova0TZsLy0NHb8CS3zklGjqkTFUSXCKA9r6L4sR2Q6HaKceMXsYCoue3CV1uhA375qEqTYxyM7rXa@vger.kernel.org
+X-Gm-Message-State: AOJu0YxBl83hrc0sczxZpn+EOAeASq51t0z1bS07dYI8QMOUGPN8zOKi
+	2AXdsSwDCxR4NrrhvyslmQvtl7VgK8VicoxdIgd94NKk/FRi38yx9jVDSrtjysNu
+X-Gm-Gg: ASbGnctaLcUqfFG+AfXes85NrttPqyYKh6xnvKNV62BGOkknr8iu6TednjNTzRd+mRo
+	eaNfEqRUR+kmeV6tOf+YQCBiFDElVNdqOeHmB/3ej5gbmqOoInFZgtls4EJe8HHj2jOpwhjDxOR
+	q/q+8gTuAvdU6BdRZRQRGVPhOz2D43/5zLfXzBS+7VGf7LEQIT/1BErPv/+Y5eX+wSWr8mIMAwJ
+	wSF6cWBoaUWnwKVvdxjQr1IJ5HLKIhK1XqpedrZS8rmptMZToKsxT1DPC5CzetWKtKXgVh7ovAZ
+	t3A6De9W1t2oUfv2r/1uEQeWfCbZC+QYmdG5cjH5YkdE1XWlqdKF8ZYfdr8t2Jrup2So6mOSgSj
+	4QI1sZes5fndamRS0m+M+MlWzWHZNZnorGJg=
+X-Google-Smtp-Source: AGHT+IG+w6NdoIRo+v0uxoA/BB5/mvW7bdBfi9HA9cy1H5e9Qa816qHiU5pzRBl8w0uNd/7HTyOWNQ==
+X-Received: by 2002:a05:6102:689a:b0:4e7:e5b2:f651 with SMTP id ada2fe7eead31-4f175efeae2mr1674868137.0.1751530418123;
+        Thu, 03 Jul 2025 01:13:38 -0700 (PDT)
+Received: from mail-ua1-f46.google.com (mail-ua1-f46.google.com. [209.85.222.46])
+        by smtp.gmail.com with ESMTPSA id ada2fe7eead31-4ee4cc0a4basm1993280137.28.2025.07.03.01.13.37
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 03 Jul 2025 01:13:37 -0700 (PDT)
+Received: by mail-ua1-f46.google.com with SMTP id a1e0cc1a2514c-87ec9aee6dbso1672310241.0;
+        Thu, 03 Jul 2025 01:13:37 -0700 (PDT)
+X-Forwarded-Encrypted: i=1; AJvYcCUDtGgb/znrBhazW0iEP1BbV9lFYLvBHLURn65iRgZ/qbslut/a8YAmwUJVA0tuyjSXEGcaAwcVKtrNvbkc@vger.kernel.org, AJvYcCUav+iM/+uecNzIJeu3iXXjlK9vhjBH8idpX0dN1mMh3GeM1YZeJ8aOKZ7dvg7i9hV/u2n1bxucT5dD@vger.kernel.org, AJvYcCUtyxXKAvZePRqJ6/NUmux40Nl+oOyRfHFPCAF8hTke6WJwuLU1d+jUvuj9U0SwDqFRXqhfIruuiTkpsA==@vger.kernel.org
+X-Received: by 2002:a05:6102:8024:b0:4eb:502c:569a with SMTP id
+ ada2fe7eead31-4f1762483edmr1620003137.9.1751530417648; Thu, 03 Jul 2025
+ 01:13:37 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v7 0/6] imx8mp: add support for the IMX AIPSTZ bridge
-To: Laurentiu Mihalcea <laurentiumihalcea111@gmail.com>,
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
- Sascha Hauer <s.hauer@pengutronix.de>, Fabio Estevam <festevam@gmail.com>,
- Daniel Baluta <daniel.baluta@nxp.com>, Shengjiu Wang
- <shengjiu.wang@nxp.com>, Frank Li <Frank.Li@nxp.com>,
- Marco Felsch <m.felsch@pengutronix.de>,
- Marc Kleine-Budde <mkl@pengutronix.de>,
- Alexander Stein <alexander.stein@ew.tq-group.com>
-Cc: devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org,
- Pengutronix Kernel Team <kernel@pengutronix.de>, imx@lists.linux.dev
-References: <20250610160152.1113930-1-laurentiumihalcea111@gmail.com>
-Content-Language: en-US
-From: Ahmad Fatoum <a.fatoum@pengutronix.de>
-In-Reply-To: <20250610160152.1113930-1-laurentiumihalcea111@gmail.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-SA-Exim-Connect-IP: 2a0a:edc0:0:900:1d::77
-X-SA-Exim-Mail-From: a.fatoum@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.whiteo.stw.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: devicetree@vger.kernel.org
+References: <20250629130002.49842-1-jefflessard3@gmail.com>
+ <20250629130002.49842-5-jefflessard3@gmail.com> <20250703-truthful-warm-bobcat-b03e55@krzk-bin>
+In-Reply-To: <20250703-truthful-warm-bobcat-b03e55@krzk-bin>
+From: Geert Uytterhoeven <geert@linux-m68k.org>
+Date: Thu, 3 Jul 2025 10:13:24 +0200
+X-Gmail-Original-Message-ID: <CAMuHMdUJ2RdBdCC6tHckKPo4a_0hhBO65Ks2vtQu_OKtXNQNVQ@mail.gmail.com>
+X-Gm-Features: Ac12FXxJblwTVL0eKCxRbF4IXSVeVpDFQhudH161Hqfo6ILjyGpc8CaHcJ0YTvQ
+Message-ID: <CAMuHMdUJ2RdBdCC6tHckKPo4a_0hhBO65Ks2vtQu_OKtXNQNVQ@mail.gmail.com>
+Subject: Re: [PATCH v2 3/8] dt-bindings: vendor-prefixes: Add Princeton
+ Technology Corp
+To: Krzysztof Kozlowski <krzk@kernel.org>
+Cc: =?UTF-8?Q?Jean=2DFran=C3=A7ois_Lessard?= <jefflessard3@gmail.com>, 
+	Andy Shevchenko <andy@kernel.org>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, devicetree@vger.kernel.org, 
+	linux-leds@vger.kernel.org, linux-kernel@vger.kernel.org, 
+	=?UTF-8?Q?Andreas_F=C3=A4rber?= <afaerber@suse.de>, 
+	Boris Gjenero <boris.gjenero@gmail.com>, Christian Hewitt <christianshewitt@gmail.com>, 
+	Heiner Kallweit <hkallweit1@gmail.com>, Paolo Sabatino <paolo.sabatino@gmail.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-Hello Laurentiu,
+Hi Krzysztof,
 
-On 10.06.25 18:01, Laurentiu Mihalcea wrote:
-> From: Laurentiu Mihalcea <laurentiu.mihalcea@nxp.com>
-> 
-> The AIPSTZ bridge offers some security-related configurations which can
-> be used to restrict master access to certain peripherals on the bridge.
-> 
-> Normally, this could be done from a secure environment such as ATF before
-> Linux boots but the configuration of AIPSTZ5 is lost each time the power
-> domain is powered off and then powered on. Because of this, it has to be
-> configured each time the power domain is turned on and before any master
-> tries to access the peripherals (e.g: AP, CM7, DSP, on i.MX8MP).
+On Thu, 3 Jul 2025 at 09:32, Krzysztof Kozlowski <krzk@kernel.org> wrote:
+> On Sun, Jun 29, 2025 at 08:59:53AM -0400, Jean-Fran=C3=A7ois Lessard wrot=
+e:
+> > Assign vendor prefix "princeton", based on their domain name.
+>
+> princeton.com gives me consultants, although I expected known
+> university, so same questions or problem in commit msg as in other
+> cases.
 
-Sorry if this has been asked before, but I hoped the cover letter or patch
-3/6 would explain if it were.
+US universities are under .edu ;-)
 
-What is the default configuration for the AIPSTZ before this series?
-I assume the SAIs under AIPS5 can be accessed by SDMA already, so why was
-changing the AIPSTZ settings needed for the DSP to work?
+Gr{oetje,eeting}s,
 
-Thanks,
-Ahmad
+                        Geert
 
-> 
-> The child-parent relationship between the bridge and its peripherals
-> should guarantee that the bridge is configured before the AP attempts
-> to access the IPs.
-> 
-> Other masters should use the 'access-controllers' property to enforce
-> a dependency between their device and the bridge device (see the DSP,
-> for example).
-> 
-> The initial version of the series can be found at [1]. The new version
-> should provide better management of the device dependencies.
-> 
-> [1]: https://lore.kernel.org/linux-arm-kernel/20241119130726.2761726-1-daniel.baluta@nxp.com/
-> 
-> ---
-> Changes in v7:
-> * fix merge conflit caused by addition of the reset-related properties to the
-> dsp node.
-> * align values for the macros defined in "imx8mp-aipstz.h" as per Shawn's
-> comment.
-> * encapsulate the default configuration and base address in a
-> "struct imx_aipstz_data" to make the driver more future-proof as per
-> Shawn's comment.
-> * link to v6: https://lore.kernel.org/lkml/20250415171919.5623-1-laurentiumihalcea111@gmail.com/
-> 
-> Changes in v6:
-> * drop the 'IMX8MP_AIPSTZ_HIFI4_T_RW_PL' macro. Its whole point was to
-> help with making the DTS more readable but if it makes it look worse
-> then there's no point in keeping it.
-> * use consumer ID as first AC cell and consumer type as the second cell.
-> Better to go with a format that more people are used to as long as it
-> still makes sense.
-> * pick up Rob's R-b
-> * link to v5: https://lore.kernel.org/lkml/20250408154236.49421-1-laurentiumihalcea111@gmail.com/
-> 
-> Changes in v5:
-> * merge imx-aipstz.h into imx8mp-aipstz.h. imx-aipstz.h is
-> currently only used in the DTS so it can't be added as a binding.
-> * place 'ranges' property just after 'reg' in the binding DT example
-> as Frank suggested.
-> * use the  (1 << x) notation for the configuration bits. Previously,
-> hex values were used which didn't make it very clear that the
-> configuration options are bits.
-> * shorten the description of the bridge's AC cells.
-> * shorten the message of the commit introducing the bridge's binding.
-> * pick up some more R-b's on patches that remained untouched since V4.
-> * link to v4: https://lore.kernel.org/lkml/20250401154404.45932-1-laurentiumihalcea111@gmail.com/
-> 
-> Changes in v4:
-> * AIPS5 node now only contains a single memory region: that of the AC
-> (just like in V2). 'reg-names' property is dropped.
-> * AIPS5 node now uses 'ranges' property to restrict the size of the bus
-> (1:1 mapping)
-> * change the number of AC cells from 0 to 3
-> * add binding headers
-> * link to v3: https://lore.kernel.org/lkml/20250324162556.30972-1-laurentiumihalcea111@gmail.com/
-> 
-> Changes in v3:
-> * make '#address-cells' and '#size-cells' constants and equal to 1 in the
-> binding. The bus is 32-bit.
-> * add child node in the example DT snippet.
-> * the 'aips5' DT node now contains 2 memory regions: that of the
-> peripherals accessible via this bridge and that of the access controller.
-> * link to v2: https://lore.kernel.org/lkml/20250226165314.34205-1-laurentiumihalcea111@gmail.com/
-> 
-> Changes in v2:
-> * adress Frank Li's comments
-> * pick up some A-b/R-b's
-> * don't use "simple-bus" as the second compatible. As per Krzysztof's
-> comment, AIPSTZ is not a "simple-bus".
-> * link to v1: https://lore.kernel.org/lkml/20250221191909.31874-1-laurentiumihalcea111@gmail.com/
-> ---
-> 
-> Laurentiu Mihalcea (6):
->   dt-bindings: bus: document the IMX AIPSTZ bridge
->   dt-bindings: dsp: fsl,dsp: document 'access-controllers' property
->   bus: add driver for IMX AIPSTZ bridge
->   arm64: dts: imx8mp: convert 'aips5' to 'aipstz5'
->   arm64: dts: imx8mp: add aipstz-related definitions
->   arm64: dts: imx8mp: make 'dsp' node depend on 'aips5'
-> 
->  .../bindings/bus/fsl,imx8mp-aipstz.yaml       | 104 ++++++++++++++++++
->  .../devicetree/bindings/dsp/fsl,dsp.yaml      |   3 +
->  arch/arm64/boot/dts/freescale/imx8mp-aipstz.h |  33 ++++++
->  arch/arm64/boot/dts/freescale/imx8mp.dtsi     |  16 ++-
->  drivers/bus/Kconfig                           |   6 +
->  drivers/bus/Makefile                          |   1 +
->  drivers/bus/imx-aipstz.c                      |  96 ++++++++++++++++
->  7 files changed, 255 insertions(+), 4 deletions(-)
->  create mode 100644 Documentation/devicetree/bindings/bus/fsl,imx8mp-aipstz.yaml
->  create mode 100644 arch/arm64/boot/dts/freescale/imx8mp-aipstz.h
->  create mode 100644 drivers/bus/imx-aipstz.c
-> 
+--=20
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k=
+.org
 
-
--- 
-Pengutronix e.K.                           |                             |
-Steuerwalder Str. 21                       | http://www.pengutronix.de/  |
-31137 Hildesheim, Germany                  | Phone: +49-5121-206917-0    |
-Amtsgericht Hildesheim, HRA 2686           | Fax:   +49-5121-206917-5555 |
+In personal conversations with technical people, I call myself a hacker. Bu=
+t
+when I'm talking to journalists I just say "programmer" or something like t=
+hat.
+                                -- Linus Torvalds
 
