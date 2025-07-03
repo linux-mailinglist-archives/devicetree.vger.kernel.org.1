@@ -1,88 +1,87 @@
-Return-Path: <devicetree+bounces-192687-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-192688-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id B053AAF7510
-	for <lists+devicetree@lfdr.de>; Thu,  3 Jul 2025 15:08:32 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id BC75DAF751B
+	for <lists+devicetree@lfdr.de>; Thu,  3 Jul 2025 15:10:31 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id B4AE9167F78
-	for <lists+devicetree@lfdr.de>; Thu,  3 Jul 2025 13:08:15 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id C97FD483BAB
+	for <lists+devicetree@lfdr.de>; Thu,  3 Jul 2025 13:10:03 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 004C52E62DF;
-	Thu,  3 Jul 2025 13:08:11 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7A25B2E6D32;
+	Thu,  3 Jul 2025 13:10:26 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=bgdev-pl.20230601.gappssmtp.com header.i=@bgdev-pl.20230601.gappssmtp.com header.b="PWeSYD5S"
+	dkim=pass (2048-bit key) header.d=bgdev-pl.20230601.gappssmtp.com header.i=@bgdev-pl.20230601.gappssmtp.com header.b="Fm3QByJS"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lf1-f44.google.com (mail-lf1-f44.google.com [209.85.167.44])
+Received: from mail-lf1-f52.google.com (mail-lf1-f52.google.com [209.85.167.52])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3F62C2AF19
-	for <devicetree@vger.kernel.org>; Thu,  3 Jul 2025 13:08:09 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.44
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E00332E6D0C
+	for <devicetree@vger.kernel.org>; Thu,  3 Jul 2025 13:10:24 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.52
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1751548090; cv=none; b=Q1Zm3QQEcMTi8XFqMRq4H6nEHq0jdoIpqKt6xQVogvgt/+GP5x2jfdvOlLUAhk/FaKUs2BnJizB/SmCEDXfJlbe11X6iktvdAFmzYetSLg4JNrOPlj9LdadqyP6yRqYAJyo0/tzNv0CoceQefTPvXXYKJ8bPIT+h/boHNpsQ2Mk=
+	t=1751548226; cv=none; b=N15MDP+DSUia0n1vS63NjVZ+vA3vFbn6P7z2XmFB0A7adU6XdcfF/h37Yuh/p+AyeW0yJ9EJATP7WnyG73YFsOhqy/us3/6FlLDc4JCr6hEShlqMB13rZXFBLArNqwzIfyLUkCmu9QxEioqdIzX0JQGZ3go778DsKImZniU9H6U=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1751548090; c=relaxed/simple;
-	bh=JanBi7K9weyr7XmGzKurXsUQYBOqj7Q+2l2ycsuOc8k=;
+	s=arc-20240116; t=1751548226; c=relaxed/simple;
+	bh=Gb1IkFXCIe7rVjXkOXMxbgXAPrqKvgtCMq1ITbov+90=;
 	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=dKLSzBCXwe8h0P67MFXRfM31rCFxAOnK6FGE2imJFYPf74F8P/atkhG+BWgwgAFo0F7N+uOlRdjDMEPH4H1Fz9kw+QQcgoZxsXpxV9IsuijnpJ42UqtAC2uF1t/rmNEWBm7nvScQUXlaR7t2dzcKk5axEczxBtryWt69xNl4XP8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=bgdev.pl; spf=none smtp.mailfrom=bgdev.pl; dkim=pass (2048-bit key) header.d=bgdev-pl.20230601.gappssmtp.com header.i=@bgdev-pl.20230601.gappssmtp.com header.b=PWeSYD5S; arc=none smtp.client-ip=209.85.167.44
+	 To:Cc:Content-Type; b=i948rFDLVE8jqf9aPOXI17bncjTWpshZeVyPuET+WNlBHEsGvAs/XW7lM7YKi1021kAeQ9tPntWn6aVtA3Vfkgz3GXZNSGddHX4AYnhQAHIN7qPxNXBIe4sHyNYkZRug/N2W65xZrPEQj2fIJBWgqL+10Kxl7kUUUz/+2CK3qrA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=bgdev.pl; spf=none smtp.mailfrom=bgdev.pl; dkim=pass (2048-bit key) header.d=bgdev-pl.20230601.gappssmtp.com header.i=@bgdev-pl.20230601.gappssmtp.com header.b=Fm3QByJS; arc=none smtp.client-ip=209.85.167.52
 Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=bgdev.pl
 Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=bgdev.pl
-Received: by mail-lf1-f44.google.com with SMTP id 2adb3069b0e04-553b82f3767so6368453e87.3
-        for <devicetree@vger.kernel.org>; Thu, 03 Jul 2025 06:08:08 -0700 (PDT)
+Received: by mail-lf1-f52.google.com with SMTP id 2adb3069b0e04-5562d8c8970so1481647e87.2
+        for <devicetree@vger.kernel.org>; Thu, 03 Jul 2025 06:10:24 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=bgdev-pl.20230601.gappssmtp.com; s=20230601; t=1751548087; x=1752152887; darn=vger.kernel.org;
+        d=bgdev-pl.20230601.gappssmtp.com; s=20230601; t=1751548223; x=1752153023; darn=vger.kernel.org;
         h=content-transfer-encoding:cc:to:subject:message-id:date:from
          :in-reply-to:references:mime-version:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=GK4OKlfFeC5d0xwGKjxMnVvoaWzs29QyrzbuIGizZlk=;
-        b=PWeSYD5SWBijTvkMp8+pdC3F42Wvc8bShMdaIarmiNHYsfTwGUu4cjj66QiRndUosu
-         owYgOcbIkhR3gAczs4Wc61L7kXgHXAkbNx+2O7PQ4Jd0S2zLips/ZViGXmjNeKmAZGKS
-         rrq+z3SXmEVtRJP1OxYEOUT6BJWmxY1+eXsG6dzjvgkUUxWf9vmZKo+ve2WNZAl2Z/BZ
-         NUSuo6z1V0JvVQx2/3NAvvHb6PVNzeU9z1kjWePYgPwLXb2nmbqreGls7ths9z3tsxbF
-         mIRhzI8KqTZk4Oe8R+h2alG3xMQeaJszZcNmjbxtIhva6mPUFiKPH6pPaHT8SUbtyVG0
-         FezQ==
+        bh=bjaTGEjolLFoNk/E0+rgtJfC0Bhrwp6bJIAjq+oqaKQ=;
+        b=Fm3QByJS1yrxbRmZp3fOZbS12FUsmKzC2qR7cr2S+7KhebkmQmRw3L+fqVH2FLiepS
+         NSw86W06C7Spe5LBxo6PM9Gk89o8eKYgwkgJX9TXS7fs+/yfDQWf03dQU2YhcaPM2mNx
+         x/r0xAx0ILvD0EXqW3YrUNh3MfagoLNiYc/LjA/hJazb4zn6YCW4DCfu3fZglztQKjjy
+         RF2UG1hPgCdwYlDaLGeW/1WSSEZbM0uGTxJSiZeZiOp5/RnNI2f2fHJ+FmRCHU+tbE8I
+         N20c55GoqW60+x+MWu5yMJ8wzYMLiA4gVc+RYZ4tEEfH/jxSCVbbaVBzN/dEf7ZSGio0
+         xKww==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1751548087; x=1752152887;
+        d=1e100.net; s=20230601; t=1751548223; x=1752153023;
         h=content-transfer-encoding:cc:to:subject:message-id:date:from
          :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=GK4OKlfFeC5d0xwGKjxMnVvoaWzs29QyrzbuIGizZlk=;
-        b=chdA9Nj9ZaQqAocp75wXVhiUf2BNi3fv2e8zG1XRklv28iUcjRWEaOQ6Ex4CHHAqSt
-         HBW7fxjqDb4kVnb6PXGlSZaI6q2rX+PtfUpy/aG+Y+eIC9kP9XAlCLjaDjfXJMxhZAm+
-         C4UU5fdOKtDBrqSwwftwsEeCXNTLkPY5nHYqaitmS7YvhCZfb9ZC3my8Cw6hbDn5wfmd
-         n3bUWxCDaNOJoYRgtLGX24KifERiT/qYGZs5arifFspRmdd6aHmVkb8VtZ1JAnqohzHS
-         t6xKUO0WbSF+V5ndgt6vwlmthh3RYjRfNnTxH4aR55UKXLYmOcU0qefdGQ0Xi7Ixt9W2
-         o7Sw==
-X-Forwarded-Encrypted: i=1; AJvYcCV+BVv6zKd1GbwbZ9dqLyl63KGCkj4dGwcL5ZgM5o9WvB015UbhU/8ni/8qN6eDcc0/duqyWfBhBAsS@vger.kernel.org
-X-Gm-Message-State: AOJu0YwVhiIIG62OVgT78Q2q8yiATfBza4tQE6LgjqhjyOnJdGmGhHQT
-	Fb7zUYw0BqkVX9+VCStSizYx0lrmoWeeINuRO4AMy/VyiXawu265Ubgc4PFYeSYY/0eDnPKni9Q
-	SuXJW2aKBEJg8RbtR9KcAvarE0wpVHflfOgOgsARNVf6So7wh9SL0ah8=
-X-Gm-Gg: ASbGncuNs6jT4X+JEdKKonbqMI52P2cEwcscUO9n+TMof707lPwz7MRpespIpLsV6NA
-	3GUEB3x3ShLtqDLlkaAJ3VoqQ5A2wfInQ+xK+Zq3EE7UR0XF7zewHojuw254ObElJbYpoLxI1cE
-	h4xBYz60KropQfqss13qqsT4TBrMW2bAbjwOYMHmtkjxPqdhWHJu6Zuyx8vGtXQ/UdUvFLOr+po
-	Q==
-X-Google-Smtp-Source: AGHT+IFBpm7cQyJ+Bp1kO1gYZd6KKdHwC5WEoxgmE5pWV9k610l17z8/GvmnTu9RQrdixKBfL2RDfjtMmjSVA+fh0hc=
-X-Received: by 2002:a05:6512:68d:b0:553:2375:c6d9 with SMTP id
- 2adb3069b0e04-5562838b7c6mr2703310e87.55.1751548087045; Thu, 03 Jul 2025
- 06:08:07 -0700 (PDT)
+        bh=bjaTGEjolLFoNk/E0+rgtJfC0Bhrwp6bJIAjq+oqaKQ=;
+        b=bELFwGEjN1kxh5PXL+R/BqFvwz6/+wya16QGOz0Hi7/I0TmOuMJJpzY6ueQyMjmfAu
+         iU23cCzUmwv+rJqCdSkWwCPBzlLPgYr5zKoEoOD1fzYoABCTt+d/3eEEx4LcdYHfcRTV
+         hHkzt432seEHlYi0nyZAFXmzOecFe2JWKrGYUw6D8qZ0TT7aS9vklqgVWDiMtH0PTzbx
+         fJmxE9W+2gdeaCpzMfc/iLFnzsaIQWz4/vsFTILpmNXynGHn3OrZIi1Syqx69iDa/ByZ
+         W2sWhPtTpcZ643Wr7Foe6BSiVQV7571AFS/q1VrBqegCQGHe20EkV+yvkXNwmyXX/+my
+         tpzQ==
+X-Forwarded-Encrypted: i=1; AJvYcCXSOyFxt+n4OUysPd2kvJetMLx09+fCYo3SkpLSZ51Me6iuccOvwWg8HWvIyzdUWBX+/FScW8BzaAw0@vger.kernel.org
+X-Gm-Message-State: AOJu0YzCi4UitgiBR+mVe/uPnocG3p6IcyYoYY1QzrYd3ex6wm/Ga8l3
+	9Rl4NVsf7IrEVbAxqtdjwPsVRm5DAVRBNh6iiT9ECVcobE36punplmMPsXDHJ6LrcBrEADf7ryh
+	nNsguMdn+KCv+hiBrY2AW3OnHqaRUqyfEOCIaVsxOD6aPexNv95lR8EI=
+X-Gm-Gg: ASbGnctBVuuLBy9s/MVIl12h6nPQGG0WwSjURkv4DEfLNsEsU5GZlXebx/fG0QiCskd
+	Olt0C0ZdCWabLU8fxCZINyYhbR1bk5bFq7XGFiXq5W7TuwlMPJ3LOaLMFOC/2xT0dltW95BejKk
+	W+wnbA38GX5kMBp1WaqclCUyXsyE7Ef/1cpueth3qke4rg7s5VFcQI4y4vPPB69pyvshcLIVmyL
+	g==
+X-Google-Smtp-Source: AGHT+IHxWXlh+Xi5UEoyYXBIiyt+vfXSa6QG+Av8aHQdIOn0y2uNTayumcpylHFwtGf6UVpFfTW0gACu+FLBVk2PB+I=
+X-Received: by 2002:a05:6512:12d1:b0:553:3178:2928 with SMTP id
+ 2adb3069b0e04-556282c250bmr2816540e87.16.1751548223074; Thu, 03 Jul 2025
+ 06:10:23 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20250617204402.33656-1-mariagarcia7293@gmail.com>
- <20250617204402.33656-3-mariagarcia7293@gmail.com> <CAMRc=Mftput7DO+nmOA0yMcB0SvtsDf5U25ukkMVuOnV4XfX=g@mail.gmail.com>
-In-Reply-To: <CAMRc=Mftput7DO+nmOA0yMcB0SvtsDf5U25ukkMVuOnV4XfX=g@mail.gmail.com>
+References: <20250701161629.9782-1-mariagarcia7293@gmail.com> <20250701161629.9782-3-mariagarcia7293@gmail.com>
+In-Reply-To: <20250701161629.9782-3-mariagarcia7293@gmail.com>
 From: Bartosz Golaszewski <brgl@bgdev.pl>
-Date: Thu, 3 Jul 2025 15:07:56 +0200
-X-Gm-Features: Ac12FXy6w3XoUynazt1SiD5Ofkz80TXW3KXY7DW_5eZ5Fql3aGlbenMkOR_6Sy8
-Message-ID: <CAMRc=MeEj574YPgX17S8z5Z0miaksWw-2NQMhpwsjNL0z8FT-w@mail.gmail.com>
-Subject: Re: [PATCH 2/2] gpio: pca953x: Add support for TI TCA6418
+Date: Thu, 3 Jul 2025 15:10:11 +0200
+X-Gm-Features: Ac12FXwrt5arm8lRyaVLiwyu4dMeVOLCnYVwDOO42VXwvsCRxSv67Szmz7sFT_Y
+Message-ID: <CAMRc=MdEr+bP1y9DHYa-qrXGJT3-zEvemWm7FzHvkqyfBZC2bw@mail.gmail.com>
+Subject: Re: [PATCH v3 2/2] gpio: pca953x: Add support for TI TCA6418
 To: Maria Garcia <mariagarcia7293@gmail.com>
 Cc: linux-gpio@vger.kernel.org, devicetree@vger.kernel.org, 
 	linux-kernel@vger.kernel.org, Linus Walleij <linus.walleij@linaro.org>, 
@@ -91,23 +90,53 @@ Cc: linux-gpio@vger.kernel.org, devicetree@vger.kernel.org,
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-On Wed, Jun 25, 2025 at 1:53=E2=80=AFPM Bartosz Golaszewski <brgl@bgdev.pl>=
- wrote:
+On Tue, Jul 1, 2025 at 6:16=E2=80=AFPM Maria Garcia <mariagarcia7293@gmail.=
+com> wrote:
 >
-> >
-> > +static u8 tca6418_recalc_addr(struct pca953x_chip *chip, int reg_base,=
- int offset)
-> > +{
-> > +       /* reg_base will be TCA6418_INPUT, TCA6418_OUTPUT, or TCA6418_D=
-IRECTION
-> > +        * offset is the global GPIO line offset (0-17)
-> > +        * BANK_SZ is 8 for TCA6418 (8 bits per register bank)
-> > +        */
+> The TI TCA6418 is a 18-channel I2C I/O expander. It is slightly
+> different to other models from the same family, such as TCA6416,
+> but has enough in common with them to make it work with just a
+> few tweaks, which are explained in the code's documentation.
 >
-> Please use regular kernel comments, not the networking style.
+> Signed-off-by: Maria Garcia <mariagarcia7293@gmail.com>
+> ---
 >
+> +/* Helper function to get the correct bit mask for a given offset and ch=
+ip type.
+> + * The TCA6418's input, output, and direction banks have a peculiar bit =
+order:
+> + * the first byte uses reversed bit order, while the second byte uses st=
+andard order.
+> + */
 
-I asked for this under version 1. It's still not fixed in version 3.
+No networking-style comments in drivers/gpio/ please.
+
+> +static inline u8 pca953x_get_bit_mask(struct pca953x_chip *chip, unsigne=
+d int offset)
+> +{
+> +       unsigned int bit_pos_in_bank =3D offset % BANK_SZ;
+> +       int msb =3D BANK_SZ - 1;
+> +
+> +       if (PCA_CHIP_TYPE(chip->driver_data) =3D=3D TCA6418_TYPE && offse=
+t <=3D msb)
+> +               return BIT(msb - bit_pos_in_bank);
+
+Since you're going to respin it anyway, please add newlines between
+one return here and elsewhere.
+
+>
+> +/* TCA6418 breaks the PCA953x register order rule */
+> +static bool tca6418_check_register(struct pca953x_chip *chip, unsigned i=
+nt reg,
+> +                                  u32 access_type_mask)
+> +{
+> +       /*  Valid Input Registers - BIT(0) for readable access */
+> +       if (reg >=3D TCA6418_INPUT && reg < (TCA6418_INPUT + NBANK(chip))=
+)
+> +               return (access_type_mask & BIT(0));
+
+Same here, please sprinkle in some newlines when returning for better
+readability.
 
 Bart
 
