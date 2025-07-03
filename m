@@ -1,47 +1,47 @@
-Return-Path: <devicetree+bounces-192854-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-192856-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 35AE6AF83EC
-	for <lists+devicetree@lfdr.de>; Fri,  4 Jul 2025 00:53:18 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0CAC0AF83F5
+	for <lists+devicetree@lfdr.de>; Fri,  4 Jul 2025 01:03:53 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id E38314826FF
-	for <lists+devicetree@lfdr.de>; Thu,  3 Jul 2025 22:52:51 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 74DFF1C80E11
+	for <lists+devicetree@lfdr.de>; Thu,  3 Jul 2025 23:04:09 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B47F92D3A66;
-	Thu,  3 Jul 2025 22:53:13 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id AD3CD2D3A6C;
+	Thu,  3 Jul 2025 23:03:49 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b="QF7J8jz1"
+	dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b="uMkgI9zg"
 X-Original-To: devicetree@vger.kernel.org
 Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [213.167.242.64])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2F9802C15AA;
-	Thu,  3 Jul 2025 22:53:12 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 151AE1FDA89;
+	Thu,  3 Jul 2025 23:03:47 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=213.167.242.64
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1751583193; cv=none; b=JSupy9rN97z9OPtOvd6svfq6fYeZZJg/NrBQLGF24RG7lrGzZjutUa9ExAaoRwDsdjFMat1cwXobIC2ItweMwmhG1kJLgp7FEUshAU25ztfd+dud9VhU8DNugkhWv/Lv4q8GKCfoFhI/M9c1NB5zkJWkJPr9dFCJaBN27HUuhsI=
+	t=1751583829; cv=none; b=ugjicyoqSYyYY4hvQw3XYnzCMWy5Yb46m2qMlDyiy43wiV68D2epq75WzOlrSsG/1jUW9PirCcCb0BcBJBkb1dkj6+fJeG2kdeWNj1Kv9V9HOgTwlgIGRXhHWKBnN9bAceofl2Jl70Z0MDVE01ysro4+YMPvnj49moV2vp90tjo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1751583193; c=relaxed/simple;
-	bh=dnLsOvKEg5PteS72ScqjZ5c1b2hf6+csvYSytfOs3UM=;
+	s=arc-20240116; t=1751583829; c=relaxed/simple;
+	bh=ldQTKfdbYRNA67LImfxDV3Ma3Yn6QcGWtCJE+w0uLH8=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=DiKl8z2H1tWW/jl1r5kTuplKnhiFMzVf4WVYjophbItfUaPLWlz31KPRUDkEtGFUMVFrqhvmRzwS5ZEOZ/lu8pNSioyZicL7h39OBqZYFmqBZ3qGwURYcltJ17LD143DqzNLSjFEHAsfbwLkgWN0fwckwYGYivelhxCXOLkodwk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ideasonboard.com; spf=pass smtp.mailfrom=ideasonboard.com; dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b=QF7J8jz1; arc=none smtp.client-ip=213.167.242.64
+	 Content-Type:Content-Disposition:In-Reply-To; b=gWh0f1yOlwOwtUxuXGoHgMnlkPLzb+Bnsejp3rgkOEh8MU0xQ44CSAiikhdi8KLhuK7HA254RT1QnSBSjifts+E/yd4FHODcL+ulAR8+AjX/TMYUdtZzbGLVhCrzt7N0yX7MCGprS6gK9Ta09LfUeIt01wxR1SVcZyzZs66MraA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ideasonboard.com; spf=pass smtp.mailfrom=ideasonboard.com; dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b=uMkgI9zg; arc=none smtp.client-ip=213.167.242.64
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ideasonboard.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ideasonboard.com
 Received: from pendragon.ideasonboard.com (81-175-209-231.bb.dnainternet.fi [81.175.209.231])
-	by perceval.ideasonboard.com (Postfix) with UTF8SMTPSA id 7926E667;
-	Fri,  4 Jul 2025 00:52:46 +0200 (CEST)
+	by perceval.ideasonboard.com (Postfix) with UTF8SMTPSA id 6C889669;
+	Fri,  4 Jul 2025 01:03:22 +0200 (CEST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
-	s=mail; t=1751583166;
-	bh=dnLsOvKEg5PteS72ScqjZ5c1b2hf6+csvYSytfOs3UM=;
+	s=mail; t=1751583802;
+	bh=ldQTKfdbYRNA67LImfxDV3Ma3Yn6QcGWtCJE+w0uLH8=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=QF7J8jz1tVsFUW+G/Fa+iCSy0CiNy9dE6iTSTvxYutA3CLQqEeUUwriES3yD/gMKu
-	 KtAEQ93UY9riE8EQ2jpCGH9IZ8PQhYGQ3HvBzIwKKi7EfVKLB4x/MwWbejDrGEUIN4
-	 5WjMuoSo0n5fqCcJxVvt/MeUspHBJ/3Xwc42TZ4c=
-Date: Fri, 4 Jul 2025 01:52:43 +0300
+	b=uMkgI9zgFMX8CYhLRzq3q0NcTiNwDdwM+36CdiHRDrKbxms9hV6iECKx8aNBVlUe+
+	 KhbO6bzrjkwxwAEcov1DOLwwN7XdZWw+kl//sDkhRSV2zRQTRVeTng8ym9NBFjqMpL
+	 kQEEx09428b0F/B3Fj1w9uk4mKqx9n/suUU3NexY=
+Date: Fri, 4 Jul 2025 02:03:19 +0300
 From: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
 To: Niklas =?utf-8?Q?S=C3=B6derlund?= <niklas.soderlund+renesas@ragnatech.se>
 Cc: Geert Uytterhoeven <geert+renesas@glider.be>,
@@ -50,11 +50,11 @@ Cc: Geert Uytterhoeven <geert+renesas@glider.be>,
 	Conor Dooley <conor+dt@kernel.org>,
 	Marek Vasut <marek.vasut+renesas@mailbox.org>,
 	linux-renesas-soc@vger.kernel.org, devicetree@vger.kernel.org
-Subject: Re: [PATCH v2 1/5] arm64: dts: renesas:
- r8a779g3-sparrow-hawk-fan-pwm: Add missing install target
-Message-ID: <20250703225243.GI3798@pendragon.ideasonboard.com>
+Subject: Re: [PATCH v2 2/5] arm64: dts: renesas: sparrow-hawk: Add overlay
+ for IMX219 on J1
+Message-ID: <20250703230319.GJ3798@pendragon.ideasonboard.com>
 References: <20250701112612.3957799-1-niklas.soderlund+renesas@ragnatech.se>
- <20250701112612.3957799-2-niklas.soderlund+renesas@ragnatech.se>
+ <20250701112612.3957799-3-niklas.soderlund+renesas@ragnatech.se>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -64,38 +64,185 @@ MIME-Version: 1.0
 Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <20250701112612.3957799-2-niklas.soderlund+renesas@ragnatech.se>
+In-Reply-To: <20250701112612.3957799-3-niklas.soderlund+renesas@ragnatech.se>
 
 Hi Niklas,
 
 Thank you for the patch.
 
-On Tue, Jul 01, 2025 at 01:26:08PM +0200, Niklas Söderlund wrote:
-> The target to consider the dtbo file for installation is missing, add
-> it.
+The comments below apply to 3/5 where applicable.
+
+On Tue, Jul 01, 2025 at 01:26:09PM +0200, Niklas Söderlund wrote:
+> Add an overlay to connect an IMX219 camera sensor to the J1 connector.
+> The IMX219 utilizes 2 CSI-2 D-PHY lanes. This enables the video capture
+> pipeline behind the CSI40 Rx to be enabled to process images from the
+> sensor.
 > 
-> Fixes: a719915e76f2 ("arm64: dts: renesas: r8a779g3: Add Retronix R-Car V4H Sparrow Hawk board support")
 > Signed-off-by: Niklas Söderlund <niklas.soderlund+renesas@ragnatech.se>
-> Reviewed-by: Marek Vasut <marek.vasut+renesas@mailbox.org>
-
-Reviewed-by: Laurent Pinchart <laurent.pinchart+renesas@ideasonboard.com>
-
 > ---
->  arch/arm64/boot/dts/renesas/Makefile | 1 +
->  1 file changed, 1 insertion(+)
+> * Changes since v1
+> - Drop 'status = "okay"' property for the fixed regulators.
+> ---
+>  arch/arm64/boot/dts/renesas/Makefile          |   3 +
+>  ...8a779g3-sparrow-hawk-camera-j1-imx219.dtso | 118 ++++++++++++++++++
+>  2 files changed, 121 insertions(+)
+>  create mode 100644 arch/arm64/boot/dts/renesas/r8a779g3-sparrow-hawk-camera-j1-imx219.dtso
 > 
 > diff --git a/arch/arm64/boot/dts/renesas/Makefile b/arch/arm64/boot/dts/renesas/Makefile
-> index 677ba3aa8931..47e46ef99d36 100644
+> index 47e46ef99d36..73218f7ec9af 100644
 > --- a/arch/arm64/boot/dts/renesas/Makefile
 > +++ b/arch/arm64/boot/dts/renesas/Makefile
-> @@ -96,6 +96,7 @@ dtb-$(CONFIG_ARCH_R8A779G0) += r8a779g2-white-hawk-single-ard-audio-da7212.dtb
+> @@ -96,7 +96,10 @@ dtb-$(CONFIG_ARCH_R8A779G0) += r8a779g2-white-hawk-single-ard-audio-da7212.dtb
 >  
 >  DTC_FLAGS_r8a779g3-sparrow-hawk += -Wno-spi_bus_bridge
 >  dtb-$(CONFIG_ARCH_R8A779G0) += r8a779g3-sparrow-hawk.dtb
-> +dtb-$(CONFIG_ARCH_R8A779G0) += r8a779g3-sparrow-hawk-fan-pwm.dtbo
+> +dtb-$(CONFIG_ARCH_R8A779G0) += r8a779g3-sparrow-hawk-camera-j1-imx219.dtbo
+>  dtb-$(CONFIG_ARCH_R8A779G0) += r8a779g3-sparrow-hawk-fan-pwm.dtbo
+> +r8a779g3-sparrow-hawk-camera-j1-imx219-dtbs := r8a779g3-sparrow-hawk.dtb r8a779g3-sparrow-hawk-camera-j1-imx219.dtbo
+> +dtb-$(CONFIG_ARCH_R8A779G0) += r8a779g3-sparrow-hawk-camera-j1-imx219.dtb
 >  r8a779g3-sparrow-hawk-fan-pwm-dtbs := r8a779g3-sparrow-hawk.dtb r8a779g3-sparrow-hawk-fan-pwm.dtbo
 >  dtb-$(CONFIG_ARCH_R8A779G0) += r8a779g3-sparrow-hawk-fan-pwm.dtb
 >  
+> diff --git a/arch/arm64/boot/dts/renesas/r8a779g3-sparrow-hawk-camera-j1-imx219.dtso b/arch/arm64/boot/dts/renesas/r8a779g3-sparrow-hawk-camera-j1-imx219.dtso
+> new file mode 100644
+> index 000000000000..a9089d3a4b29
+> --- /dev/null
+> +++ b/arch/arm64/boot/dts/renesas/r8a779g3-sparrow-hawk-camera-j1-imx219.dtso
+> @@ -0,0 +1,118 @@
+> +// SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +/*
+> + * Device Tree Overlay for an IMX219 camera sensor in connector J1 on R-Car V4H
+> + * ES3.0 Sparrow Hawk board.
+> + *
+> + * Copyright 2025 Renesas Electronics Corp.
+> + * Copyright 2025 Niklas Söderlund <niklas.soderlund@ragnatech.se>
+> + */
+> +
+> +/dts-v1/;
+> +/plugin/;
+> +
+> +#include <dt-bindings/gpio/gpio.h>
+> +#include <dt-bindings/media/video-interfaces.h>
+> +
+> +&{/} {
+> +	clk_cam_j1: clk_cam_j1 {
+> +		compatible = "fixed-clock";
+> +		#clock-cells = <0>;
+> +		clock-frequency = <24000000>;
+> +		status = "okay";
+
+No need for status.
+
+> +	};
+> +
+> +	/* Page 29 / CSI_IF_CN / J1 */
+> +	reg_cam_j1: reg_cam_j1 {
+> +		compatible = "regulator-fixed";
+> +		regulator-name = "reg_cam_j1";
+> +		enable-active-high;
+> +		gpios = <&gpio0 1 GPIO_ACTIVE_HIGH>;
+
+No need for a pinctrl entry ?
+
+> +	};
+> +
+> +	reg_cam_j1_dummy: reg_cam_j1_dummy {
+> +		compatible = "regulator-fixed";
+> +		regulator-name = "reg_cam_j1_dummy";
+> +	};
+> +};
+> +
+> +&i2c1 {
+> +	#address-cells = <1>;
+> +	#size-cells = <0>;
+> +	status = "okay";
+> +
+> +	imx219_j1: imx219@10 {
+
+cam@10, and drop the label (it's unused).
+
+> +		compatible = "sony,imx219";
+> +		reg = <0x10>;
+> +		status = "okay";
+
+Drop status.
+
+> +
+> +		clocks = <&clk_cam_j1>;
+> +
+> +		VANA-supply = <&reg_cam_j1>;
+> +		VDIG-supply = <&reg_cam_j1_dummy>;
+> +		VDDL-supply = <&reg_cam_j1_dummy>;
+
+You could use the same regulator for the three supplies, and drop
+reg_cam_j1_dummy.
+
+> +
+> +		orientation = <2>;
+> +		rotation = <0>;
+> +
+> +		port {
+> +			imx219_j1_out: endpoint {
+> +				clock-noncontinuous;
+> +				link-frequencies = /bits/ 64 <456000000>;
+> +				data-lanes = <1 2>;
+> +				remote-endpoint = <&csi40_in>;
+> +			};
+> +		};
+> +	};
+> +};
+> +
+> +/* Page 29 / CSI_IF_CN */
+> +&csi40 {
+> +	status = "okay";
+> +
+> +	ports {
+> +		port {
+> +			csi40_in: endpoint {
+> +				bus-type = <MEDIA_BUS_TYPE_CSI2_DPHY>;
+> +				clock-lanes = <0>;
+> +				data-lanes = <1 2>;
+> +				remote-endpoint = <&imx219_j1_out>;
+> +			};
+> +		};
+> +	};
+> +};
+> +
+> +&isp0 {
+> +	status = "okay";
+> +};
+> +
+> +&vin00 {
+> +	status = "okay";
+> +};
+> +
+> +&vin01 {
+> +	status = "okay";
+> +};
+> +
+> +&vin02 {
+> +	status = "okay";
+> +};
+> +
+> +&vin03 {
+> +	status = "okay";
+> +};
+> +
+> +&vin04 {
+> +	status = "okay";
+> +};
+> +
+> +&vin05 {
+> +	status = "okay";
+> +};
+> +
+> +&vin06 {
+> +	status = "okay";
+> +};
+> +
+> +&vin07 {
+> +	status = "okay";
+> +};
 
 -- 
 Regards,
