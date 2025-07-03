@@ -1,151 +1,168 @@
-Return-Path: <devicetree+bounces-192616-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-192617-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 89982AF71D9
-	for <lists+devicetree@lfdr.de>; Thu,  3 Jul 2025 13:13:59 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 22A78AF71DD
+	for <lists+devicetree@lfdr.de>; Thu,  3 Jul 2025 13:14:51 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 0C71B4852DA
-	for <lists+devicetree@lfdr.de>; Thu,  3 Jul 2025 11:12:14 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 4403F16AAFA
+	for <lists+devicetree@lfdr.de>; Thu,  3 Jul 2025 11:14:51 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 622C32D46D8;
-	Thu,  3 Jul 2025 11:12:31 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 946D92D1F7C;
+	Thu,  3 Jul 2025 11:14:46 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="dR86CbiP"
+	dkim=pass (1024-bit key) header.d=amd.com header.i=@amd.com header.b="WSZW5BQN"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+Received: from NAM02-DM3-obe.outbound.protection.outlook.com (mail-dm3nam02on2060.outbound.protection.outlook.com [40.107.95.60])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A97962D12F1;
-	Thu,  3 Jul 2025 11:12:29 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1751541151; cv=none; b=e6zCIIsxg8GUSMElAYiDUKFmcYVc5+n2WfvfaqcuYRfdFfosE+KHKaFenIRvLGvd9cF+sJRPyhhmCrhiWC87/WbffxXnLaFAyX0CEeK38+xTqlFCGEOmYW7Bb0PauHbnVXXvyQcH/qSVkKZSUoVLTxVlPL277EWzDyvyo+VurUI=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1751541151; c=relaxed/simple;
-	bh=H2eJWmCk2lXnWMtMkSOrRf2uJVt39KVC0MJOU0u/Lng=;
-	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
-	 In-Reply-To:Content-Type; b=V8ucGNWF84DB3ecfahtT/obmdqaYpdxbZCDGyQkJN8k0irD5H3emD6c5YpSdqkZkYgeHVlCC83MVxFdDUO5kxEFHlnm8Uu8TR4zYXOSCEmsHC1zzRZO2XRaPhJcMYnnQnRJACDGs/UFtMb93jxA9M5sJmyQn0jPEwJczY9e4638=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=dR86CbiP; arc=none smtp.client-ip=205.220.168.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
-Received: from pps.filterd (m0279867.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 5638LES7032540;
-	Thu, 3 Jul 2025 11:12:24 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	/pXxxWAE4uu6DN1xz7bTHYkOJ7kt/M1Gthz7B060FP0=; b=dR86CbiPX8S7kMno
-	iTPWIH+FbvUBdxpc/WJdM/4juos7ftZCNLJ9fPbzzaupUd8UElRf/8T0IqZJXKDX
-	j/tvKakUzfoKexhiho35pK0hwL3pOzDtRebf56n2AjbZjK5dSI8HF8uUVlqsro0S
-	TZXOORlLaU+K1J9F8oLPo3p51KsNbHVEopZTXPpuLjXxEKuyQ1kckJ0yeTI0IJ6x
-	srsgCRpDy0m22gNi+mHhmv9JEtFaW5IaE2hNt7sf0p0jYGI7FYNBgD8GcX07kfRS
-	3amj6Pw3WvClF/Kti5E8meR5p3Wvd07uMlCTv8XJaJUL0jv0iCUFwiT7HtOw0cV3
-	ZrphOg==
-Received: from nasanppmta01.qualcomm.com (i-global254.qualcomm.com [199.106.103.254])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 47j63kgf4k-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Thu, 03 Jul 2025 11:12:23 +0000 (GMT)
-Received: from nasanex01b.na.qualcomm.com (nasanex01b.na.qualcomm.com [10.46.141.250])
-	by NASANPPMTA01.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 563BCMtW027979
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Thu, 3 Jul 2025 11:12:22 GMT
-Received: from [10.219.49.219] (10.80.80.8) by nasanex01b.na.qualcomm.com
- (10.46.141.250) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1748.10; Thu, 3 Jul
- 2025 04:12:17 -0700
-Message-ID: <e924a97b-02d4-4f99-833c-3f3297bbfc5e@quicinc.com>
-Date: Thu, 3 Jul 2025 16:42:15 +0530
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DFFC51FBCAE;
+	Thu,  3 Jul 2025 11:14:44 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.95.60
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1751541286; cv=fail; b=hGeZRPABGyjHLdQ9srelkTmaQTo05FcxqY2AB/oSN35j7ssv6KltAfQLitEyJG24RSDeCbXsyCBIHhctdXQAH5yEY5S/B4MyZaOHOSrvr5LiW0mQ4NiLPUIEBhZ/x3s5wN4Jyq0oLU6EVgwMdORfP8cyfJ67kD0lMQomV/30awo=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1751541286; c=relaxed/simple;
+	bh=Yc/n0m3tgHTt6IwGcnY2+xhnXi1GVoEfvOFg+2TeVJ8=;
+	h=From:To:CC:Subject:Date:Message-ID:MIME-Version:Content-Type; b=GZq+V6T7KoU3R+yvzaJCFa7Uwbc4kfWSD8ljcw+Gg/9qKorsaAOLax2Ea2frRCY2gV/lBejS4zx7VwTZnmILDVPq0D/eXKxFgUYAyxXjhZLvqOZHeJShfpsArn3uQPa4gY2a0QH319JYkTiuwvGbXLigsC/EXc4CBJ8ei+KOGmw=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=amd.com; spf=fail smtp.mailfrom=amd.com; dkim=pass (1024-bit key) header.d=amd.com header.i=@amd.com header.b=WSZW5BQN; arc=fail smtp.client-ip=40.107.95.60
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=amd.com
+Authentication-Results: smtp.subspace.kernel.org; spf=fail smtp.mailfrom=amd.com
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=Ki6MaJfMfbLX7umHU+k9cWo8zVr+0sK1msV0xlbADFeZRmyCEQ4HJvOToX9oTICxix4tC9pNTr2ykckmkM/K2RmLSAGfvvVJM2tJIwc9AXJYeZMaXL5oJZpd3CNv6ouxqmReTPklZSmSKPXW+1BVjNX4s3cKoITMbLHa1h0h56STIRlTv7x2sO9vXzFbAcs9WfREDtkitBrg+Uku9AuV3FZsAq1gd8mTDf4ugas2RJ5Tjqp58YA/aEqz7uthtyJe2ssyboO8tJbmP/Rfmh1CpDFHTs1EmrNi3gNMB1h3VR2f0GQ6O1kiZX9oeakpEgtdDlYbvlueImWbkMMHuUDOLQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=Ht2mb+8fauk9pDaQ5LmWohg5Cot9yFTujtwoaCJC83I=;
+ b=PtNulOcF4SXkFNWo1Zr7yhv2sBWJODoQ9GeeEiGrhzXYxT9ntC5dTWwxb6peaSd4w0fpV9uo98JI5DdfyjDZ9C6Ucw8w3vjGMtm8t/aKaTjxUf75i5jKaq31CifzVF1qmgT1VhjfdE8vsgSxW1/vokWEm2/GpYFtCIG7pNLfzf5Kbtgq2I0Vh/iICJARYJhMDmdPpDPGstVCJB7ucQzpczxrN5g5NytdwKDEW3AzC/KMKVkVkk/KwQAZXJpRz3APB8lwzPMhLU30A34e2BhEwENVwQPDdYZKyaJyTwsklWIOExbdnIH5Mn63C0csLUu3ARGoWi+nKw7upIAuuKj4lg==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
+ 165.204.84.17) smtp.rcpttodomain=gmail.com smtp.mailfrom=amd.com; dmarc=pass
+ (p=quarantine sp=quarantine pct=100) action=none header.from=amd.com;
+ dkim=none (message not signed); arc=none (0)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=Ht2mb+8fauk9pDaQ5LmWohg5Cot9yFTujtwoaCJC83I=;
+ b=WSZW5BQNMSqax1XzMIfIhLv7IS3eij6ULFBA9nZ2TwJROHnzXLr64dXe0huJHIOxlfayWPKryXo4x25eiR21/Gv8yAZTfFOolHRr9vh1EZ/BZ71FQcXvqUdTDD/qiR+/qQ7Y9m5wwQMpRwqKTGSScq693vMY6eYVcZjjHBFtPOo=
+Received: from BYAPR11CA0080.namprd11.prod.outlook.com (2603:10b6:a03:f4::21)
+ by LV8PR12MB9450.namprd12.prod.outlook.com (2603:10b6:408:202::13) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8901.20; Thu, 3 Jul
+ 2025 11:14:40 +0000
+Received: from BY1PEPF0001AE1D.namprd04.prod.outlook.com
+ (2603:10b6:a03:f4:cafe::e7) by BYAPR11CA0080.outlook.office365.com
+ (2603:10b6:a03:f4::21) with Microsoft SMTP Server (version=TLS1_3,
+ cipher=TLS_AES_256_GCM_SHA384) id 15.20.8901.21 via Frontend Transport; Thu,
+ 3 Jul 2025 11:14:40 +0000
+X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
+ smtp.mailfrom=amd.com; dkim=none (message not signed)
+ header.d=none;dmarc=pass action=none header.from=amd.com;
+Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
+ 165.204.84.17 as permitted sender) receiver=protection.outlook.com;
+ client-ip=165.204.84.17; helo=SATLEXMB03.amd.com; pr=C
+Received: from SATLEXMB03.amd.com (165.204.84.17) by
+ BY1PEPF0001AE1D.mail.protection.outlook.com (10.167.242.106) with Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.20.8901.20 via Frontend Transport; Thu, 3 Jul 2025 11:14:39 +0000
+Received: from SATLEXMB04.amd.com (10.181.40.145) by SATLEXMB03.amd.com
+ (10.181.40.144) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.39; Thu, 3 Jul
+ 2025 06:14:37 -0500
+Received: from xhdradheys41.xilinx.com (10.180.168.240) by SATLEXMB04.amd.com
+ (10.181.40.145) with Microsoft SMTP Server id 15.1.2507.39 via Frontend
+ Transport; Thu, 3 Jul 2025 06:14:33 -0500
+From: Manikanta Guntupalli <manikanta.guntupalli@amd.com>
+To: <git@amd.com>, <michal.simek@amd.com>, <alexandre.belloni@bootlin.com>,
+	<Frank.Li@nxp.com>, <robh@kernel.org>, <krzk+dt@kernel.org>,
+	<conor+dt@kernel.org>, <kees@kernel.org>, <gustavoars@kernel.org>,
+	<jarkko.nikula@linux.intel.com>, <linux-i3c@lists.infradead.org>,
+	<devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+	<linux-hardening@vger.kernel.org>
+CC: <radhey.shyam.pandey@amd.com>, <srinivas.goud@amd.com>,
+	<shubhrajyoti.datta@amd.com>, <manion05gk@gmail.com>, Manikanta Guntupalli
+	<manikanta.guntupalli@amd.com>
+Subject: [PATCH 0/2] Add AMD I3C master controller driver and bindings
+Date: Thu, 3 Jul 2025 16:44:26 +0530
+Message-ID: <20250703111428.2111484-1-manikanta.guntupalli@amd.com>
+X-Mailer: git-send-email 2.34.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v5 2/9] dt-bindings: pinctrl:
- qcom,sc7280-lpass-lpi-pinctrl: Document the clock property
-To: Krzysztof Kozlowski <krzk@kernel.org>,
-        Bjorn Andersson
-	<andersson@kernel.org>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        Rob Herring
-	<robh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley
-	<conor+dt@kernel.org>,
-        Srinivas Kandagatla <srini@kernel.org>,
-        Liam Girdwood
-	<lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>,
-        Konrad Dybcio
-	<konradybcio@kernel.org>
-CC: <cros-qcom-dts-watchers@chromium.org>, <linux-arm-msm@vger.kernel.org>,
-        <linux-gpio@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>, <linux-sound@vger.kernel.org>,
-        <kernel@oss.qualcomm.com>, Mohammad Rafi Shaik <quic_mohs@quicinc.com>
-References: <20250625082927.31038-1-quic_pkumpatl@quicinc.com>
- <20250625082927.31038-3-quic_pkumpatl@quicinc.com>
- <46f3ca15-b638-4a05-ad61-88e8bb025915@kernel.org>
-Content-Language: en-US
-From: Prasad Kumpatla <quic_pkumpatl@quicinc.com>
-In-Reply-To: <46f3ca15-b638-4a05-ad61-88e8bb025915@kernel.org>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
- nasanex01b.na.qualcomm.com (10.46.141.250)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Authority-Analysis: v=2.4 cv=ZKfXmW7b c=1 sm=1 tr=0 ts=68666597 cx=c_pps
- a=JYp8KDb2vCoCEuGobkYCKw==:117 a=JYp8KDb2vCoCEuGobkYCKw==:17
- a=GEpy-HfZoHoA:10 a=IkcTkHD0fZMA:10 a=Wb1JkmetP80A:10 a=COk6AnOGAAAA:8
- a=_2Pm6FfrxIRCaX_8azEA:9 a=QEXdDO2ut3YA:10 a=TjNXssC_j7lpFel5tvFf:22
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwNzAzMDA5MiBTYWx0ZWRfXwy6Gcke2NU+T
- PUipZlSlvIIvfqL+FA2wjxoUTGzzbSHYJ8yuH8uV++MTZHZ69vndvuk2JxGAWWkJPDdSK8pFPIY
- cJwGN7hYVccu6l7ckB/0VO+67ULk4BlQpw4bfkmp0E2iFCG+cY65IPvliTULzIWxgRhdtQ0nInz
- xr/mGnAJNSjQ22uUpNBkoxk+eBXZYvLLAMBd3DvqLMsMAl6C4IFPKihHm71Cs1RxwJ0WyYZSofs
- 8TFgXGMwKjv+i6d2E+A34f0OVW8irJYGWaBlm1HeR3LWAIZ6U1PAkzUvd6AkfSfE8rkF2kI6pGE
- s5VdWQDEE7ZRRlI08aC5wPnMZH1Y4bHSW6w1p5wVqOPlcorB/bWgD7E/1QuYKwosrYPuKfOV5cq
- q4KbMhqxRkW83LgXoHE1fwkFaDyH8kb4427RCvYFymTTHTmYKm9IoZ07DIPMQqW9ENqx/6F/
-X-Proofpoint-ORIG-GUID: 9lfPPEPyLMRxkwz3nyKYz2k3aSKw5HRj
-X-Proofpoint-GUID: 9lfPPEPyLMRxkwz3nyKYz2k3aSKw5HRj
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1099,Hydra:6.1.7,FMLib:17.12.80.40
- definitions=2025-07-03_03,2025-07-02_04,2025-03-28_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- adultscore=0 mlxscore=0 mlxlogscore=986 spamscore=0 suspectscore=0
- bulkscore=0 priorityscore=1501 lowpriorityscore=0 phishscore=0
- impostorscore=0 malwarescore=0 clxscore=1015 classifier=spam authscore=0
- authtc=n/a authcc= route=outbound adjust=0 reason=mlx scancount=1
- engine=8.19.0-2505280000 definitions=main-2507030092
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+Received-SPF: None (SATLEXMB03.amd.com: manikanta.guntupalli@amd.com does not
+ designate permitted sender hosts)
+X-EOPAttributedMessage: 0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: BY1PEPF0001AE1D:EE_|LV8PR12MB9450:EE_
+X-MS-Office365-Filtering-Correlation-Id: bf1e8086-a7a5-4b17-b136-08ddba22cdcf
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam:
+	BCL:0;ARA:13230040|82310400026|376014|7416014|36860700013|1800799024|921020;
+X-Microsoft-Antispam-Message-Info:
+	=?us-ascii?Q?rCrLulbsqHaZMCFIx/Lwp63tfZr0zUS3m4+Qxjwy2onrWYToRgqg4Od8zGt8?=
+ =?us-ascii?Q?JTe1lnL2J1ekCfzA2awAG1raQ9s6HyYo/+JrQLFXGXIu/Zz7gMYKXO/vQY5d?=
+ =?us-ascii?Q?4P46PkGvk6qvnjLn3JXOSgNRFF5lNchFGVS4Xp05Q7JeKdkoJGM7tgPCsncs?=
+ =?us-ascii?Q?ylv5YfcReAe1p2FWaDdXZOBATQS9SvvIUlsS4UyyTNaeDV15T9+HRlpKdJBQ?=
+ =?us-ascii?Q?CB1gOQ6PdeVTacn/569Bbs0aKCl090H+N34RMo8i2GJh/BUL3U8nvZALh/h/?=
+ =?us-ascii?Q?wLR7iDFPMkWiDOUbBe7aFAn1gF3bwjCXT8blGVdTT5R3V8GYxF3hSTGSzRny?=
+ =?us-ascii?Q?7o+7NWu+WF/9oW8lEg6LsaNF/awaG9RnB+nayqYRbCsgwNezeLs6ffE9vgBn?=
+ =?us-ascii?Q?i3GXhRyakLomyLpuwl6WtwseB6dVphqr20tbydPC4GGTQDuZbYlEIIaZQjeN?=
+ =?us-ascii?Q?YcFrd3bzXzy7NI/6oFAex9IqrwQwGzHxb83bV7ur/BuH/LI30q8inJCruDyz?=
+ =?us-ascii?Q?bNoI+Tqlo7SpTPOEbOTvR8e3KZZhtipDlkQ36UGCbx5DgtLhJdwS+T1L3OcV?=
+ =?us-ascii?Q?HOoxMT+bTYC2UrNN/JTWkIfjrZtCA8ix0OiBuPmu0K8NtpObmkcF02FnoWBF?=
+ =?us-ascii?Q?YQhMoN7W1UOfHw9Yr+frzPzr849MGqtUis2kJB0zLhgthU4lg63d5bnzVvE+?=
+ =?us-ascii?Q?PKedf1v2CtSMQfgGz/5X4bpEj+f+00oSTyzJjWVLUvt1TEaFAMOMtBofjgPs?=
+ =?us-ascii?Q?OztJNePwdsQ3P4caKQSsavmJSljuMYSs4OlP0NgYfzPME8zBYLwZm4yAnEy6?=
+ =?us-ascii?Q?zdWHYoBOCq3wC/v+ytELeUj4g5muswR77CdcnshHq8pQbhA4oQJ2pGjln3yC?=
+ =?us-ascii?Q?S1Cjn6gC8l2oK2ml4RBzD3ELTXHZMGr3KsX8+il70dtsE8D+mSdZNut4MIhJ?=
+ =?us-ascii?Q?OiQGG/z2JAyoJMEbxdppv0sNX3fPQ3A6iM0hjRHa5WXAaZczfLqO+G6Tvo+J?=
+ =?us-ascii?Q?BBL9tiazgpV3WrrHdgXYRDo5D9+jZ4Py2KC/eaq2BsyXdcq3YCdjroQ+qGyI?=
+ =?us-ascii?Q?hpeCNR6WihjJyWXGPMFQEytkH0O46a/+JH20oizYusiPIQqDeCxW2PGCW2ug?=
+ =?us-ascii?Q?ouQ4CDYY2RDrp6d2OoZVsMvArORND8yjs3b0lDbXiTf97b0skHwAYZj1zFDh?=
+ =?us-ascii?Q?ULQpr1OCNaVPFGDIzZO/aROLhnD8VQmVLyXDrtC88WbnGWPBC82ZigKzr87G?=
+ =?us-ascii?Q?KpOG2Gc3FPsH/2Dxj9v1y5NrQs6+yttotJlFOx5/0mTFDc6KSTgmO2USIfoU?=
+ =?us-ascii?Q?e19+1fJbZw0RdZ1xC8Me8jIB3cVRzk8tgJUgRVY2bOCBHxWaNPPBAzyl7+tW?=
+ =?us-ascii?Q?dU0H18kRkFvn8Tv7ZvqfuJoJ5QNsJpS+Hac92c8l37SyjYUklmQHfwzu2py1?=
+ =?us-ascii?Q?mPmcl16KGPLOpT/6LNC+usMLMKla0b5F+KlhJnKwsZnDLNQoSlrVwNoOqLmG?=
+ =?us-ascii?Q?f+7RBVYC3tFj1cRs6yqGmuSk7s77niDDjbWQ/2BOTV88wmxkDiZDalXvaQ?=
+ =?us-ascii?Q?=3D=3D?=
+X-Forefront-Antispam-Report:
+	CIP:165.204.84.17;CTRY:US;LANG:en;SCL:1;SRV:;IPV:CAL;SFV:NSPM;H:SATLEXMB03.amd.com;PTR:InfoDomainNonexistent;CAT:NONE;SFS:(13230040)(82310400026)(376014)(7416014)(36860700013)(1800799024)(921020);DIR:OUT;SFP:1101;
+X-OriginatorOrg: amd.com
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 03 Jul 2025 11:14:39.9727
+ (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: bf1e8086-a7a5-4b17-b136-08ddba22cdcf
+X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d;Ip=[165.204.84.17];Helo=[SATLEXMB03.amd.com]
+X-MS-Exchange-CrossTenant-AuthSource:
+	BY1PEPF0001AE1D.namprd04.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Anonymous
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: LV8PR12MB9450
 
+This patch series introduces support for the AMD I3C master controller,
+including the device tree binding and driver implementation.
 
+Manikanta Guntupalli (2):
+  dt-bindings: i3c: Add binding for AMD I3C master controller
+  i3c: master: Add AMD I3C bus controller driver
 
-On 6/25/2025 2:16 PM, Krzysztof Kozlowski wrote:
-> On 25/06/2025 10:29, Prasad Kumpatla wrote:
->> From: Mohammad Rafi Shaik <quic_mohs@quicinc.com>
->>
->> Document the clock property for sc7280-lpass-lpi-pinctrl driver.
-> 
-> Describe the hardware, not drivers.
+ .../devicetree/bindings/i3c/xlnx,axi-i3c.yaml |  61 ++
+ MAINTAINERS                                   |   7 +
+ drivers/i3c/master/Kconfig                    |  16 +
+ drivers/i3c/master/Makefile                   |   1 +
+ drivers/i3c/master/amd-i3c-master.c           | 945 ++++++++++++++++++
+ 5 files changed, 1030 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/i3c/xlnx,axi-i3c.yaml
+ create mode 100644 drivers/i3c/master/amd-i3c-master.c
 
-Ack, Will update commit message.
-
-Thanks,
-Prasad
-
-> 
->> Clock settings required for Audioreach solution.
->>
->> Signed-off-by: Mohammad Rafi Shaik <quic_mohs@quicinc.com>
->> Co-developed-by: Prasad Kumpatla <quic_pkumpatl@quicinc.com>
->> Signed-off-by: Prasad Kumpatla <quic_pkumpatl@quicinc.com>
->> ---
->>   .../pinctrl/qcom,sc7280-lpass-lpi-pinctrl.yaml   | 16 ++++++++++++++++
-> 
-> 
-> Best regards,
-> Krzysztof
+-- 
+2.34.1
 
 
