@@ -1,209 +1,474 @@
-Return-Path: <devicetree+bounces-192690-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-192692-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id F205CAF7634
-	for <lists+devicetree@lfdr.de>; Thu,  3 Jul 2025 15:54:31 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id CBB19AF7647
+	for <lists+devicetree@lfdr.de>; Thu,  3 Jul 2025 15:56:37 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 13B781C84EB4
-	for <lists+devicetree@lfdr.de>; Thu,  3 Jul 2025 13:54:48 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 1047D177A53
+	for <lists+devicetree@lfdr.de>; Thu,  3 Jul 2025 13:56:38 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id DB6E42E7636;
-	Thu,  3 Jul 2025 13:54:25 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9E0222E7647;
+	Thu,  3 Jul 2025 13:56:33 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="Vn1T+Adm"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="ELAsMRoN"
 X-Original-To: devicetree@vger.kernel.org
-Received: from bali.collaboradmins.com (bali.collaboradmins.com [148.251.105.195])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-lj1-f176.google.com (mail-lj1-f176.google.com [209.85.208.176])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7945518DB0D;
-	Thu,  3 Jul 2025 13:54:23 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=148.251.105.195
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B9A94139CE3;
+	Thu,  3 Jul 2025 13:56:30 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.176
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1751550865; cv=none; b=dKIYSO5bhkCmrdwPeu8KlLzILDQnm5nnhlTr6YYDm6CD/BfIlgYaTWRGaZuZultIqco0rBcY9eJwl0U0VSMXVZIedyVNi6vSglRuaye+z4n22SDAr8+XC/st5Bm2+vF1ZnSGphuQIQoQ9uqqmhsZK0oqf4d86LbKK9loR7KowJ4=
+	t=1751550993; cv=none; b=Wj/LoNRbKq54unr1qlwZohgBa6pnnNYAg9tAhid0PJ7r32e0+Z1pKeVZeru4UO6H+ClSB5DrJ8ZAFC8poNHGDBNqUwxKcw6Z+z+vbWnY06SX7echjZkqUo3l0a8jiTDNoomNeWn18Ywuo05SitZfu5TLV01t7NPSCx8wMxxl+OM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1751550865; c=relaxed/simple;
-	bh=y78VCoYM7VevEWRRosTle7tdkMGhmFsw5rVCtfwQPJE=;
-	h=Message-ID:Subject:From:To:Cc:Date:In-Reply-To:References:
-	 Content-Type:MIME-Version; b=cB0vRXQA+asG8iymECk3kzmfWchbYGxH8cKsxvQMTseM+vXaPxoxsf2AdDZtPWHU1yjbJQ43SFOlPEhnirLmOKqBEcwckEq0iLjkhagzY+n1ei09ka7IgTp491MCkcCYwHDPha6bg4mygnHf8laiPn8yp+ROq0AaXKs13jXs+L8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b=Vn1T+Adm; arc=none smtp.client-ip=148.251.105.195
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-	s=mail; t=1751550861;
-	bh=y78VCoYM7VevEWRRosTle7tdkMGhmFsw5rVCtfwQPJE=;
-	h=Subject:From:To:Cc:Date:In-Reply-To:References:From;
-	b=Vn1T+Adm7dAOD3R6Sydh5vATGD9TWJZ4xQXiRE2DGkOlDTfk8bXDfo1eKlk5S0p09
-	 Cs1wSRHanBGrFcD7QGpKHsDdMM6DPuPD5fq9rgNa+XNfdApZ+QCISKe+Ehdavsq38a
-	 3/U6GI2l5Fd+yxnDlYMfCO+flzBFFXnm8D4eKs771kVmY/bUWBqJVEA1pSJTc/Umkh
-	 Z0NjYxF51gOFpCuK07R3mhiGz1KP9VVVfkS0z6+nJACp5nzBw8zKn0b7lA50o6lNzI
-	 x4oH7h8fKJJgQtvZ34p/4pPJ0J8CqnjwaSl+xugSXkP65tazWhdrDHqH96Kj65JoGQ
-	 R6D9TUmYAR9FQ==
-Received: from 2a01cb0892f2d600c8f85cf092d4af51.ipv6.abo.wanadoo.fr (2a01cb0892f2D600c8F85cf092d4aF51.ipv6.abo.wanadoo.fr [IPv6:2a01:cb08:92f2:d600:c8f8:5cf0:92d4:af51])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
-	(No client certificate requested)
-	(Authenticated sender: jmassot)
-	by bali.collaboradmins.com (Postfix) with ESMTPSA id AA95C17E04C0;
-	Thu,  3 Jul 2025 15:54:20 +0200 (CEST)
-Message-ID: <c661e7f3faec269f73d6240fbe7b84e3bc97157a.camel@collabora.com>
-Subject: Re: [PATCH v5 00/24] media: i2c: add Maxim GMSL2/3 serializer and
- deserializer drivers
-From: Julien Massot <julien.massot@collabora.com>
-To: Cosmin Tanislav <demonsingur@gmail.com>, Cosmin Tanislav	
- <cosmin.tanislav@analog.com>, Tomi Valkeinen	
- <tomi.valkeinen+renesas@ideasonboard.com>, Mauro Carvalho Chehab	
- <mchehab@kernel.org>, Rob Herring <robh@kernel.org>, Niklas
- =?ISO-8859-1?Q?S=F6derlund?=	 <niklas.soderlund@ragnatech.se>, Sakari Ailus
- <sakari.ailus@linux.intel.com>,  Laurent Pinchart
- <laurent.pinchart@ideasonboard.com>, Greg Kroah-Hartman
- <gregkh@linuxfoundation.org>, Linus Walleij <linus.walleij@linaro.org>
-Cc: linux-media@vger.kernel.org, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
-	linux-staging@lists.linux.dev, linux-gpio@vger.kernel.org
-Date: Thu, 03 Jul 2025 15:54:20 +0200
-In-Reply-To: <d4052ab3-9cd1-45e8-81b0-b6512822e646@gmail.com>
-References: <20250702132104.1537926-1-demonsingur@gmail.com>
-	 <5e1b26637706f6eac92acbbb3d5a7dafa0c2c232.camel@collabora.com>
-	 <d4052ab3-9cd1-45e8-81b0-b6512822e646@gmail.com>
-Organization: Collabora Ltd.
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-User-Agent: Evolution 3.56.2 (3.56.2-1.fc42) 
+	s=arc-20240116; t=1751550993; c=relaxed/simple;
+	bh=Eu9yAhGMxFnFCRgXqutb86wxfbf2J7wghtSIo5kDSOk=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=oj+IJAiCoywqFABrRNjJ6o7SCsbRYHbP0LZGeUkBQBFi2RVTeqd3sxecyniNapEysNtrUMdq0JCGDHAUZHi+IM+QI/N4PSCN2f6F9ijrPiNIttQmF/NAPqSATRI/5aKMsnpX4hNovOO941bOnoHtDK2GiwX5/bY5oAlEwNQtvqc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=ELAsMRoN; arc=none smtp.client-ip=209.85.208.176
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-lj1-f176.google.com with SMTP id 38308e7fff4ca-32ac52f78c1so81823651fa.3;
+        Thu, 03 Jul 2025 06:56:30 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1751550989; x=1752155789; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=XroVTgiipbMk92z/0akuSiUYeZttfe/ce+IMaIERceI=;
+        b=ELAsMRoN9rNoDFctbRVCqtQnhFS/csCUuv3CNbWNRO4ja2tlSKz1bTPaZWAdASFud9
+         k+R+gnJyorPTZaWBmu5QbNd35WR7T7IqAk3bA6RVxEfqN2Vpm6ACkznyKZbsRyfD3g3P
+         fdRxFNW5X/2dcKey9jZzZ0dYtrPD+NKe/s/jLHDT52HioV1CWGqd1QxVkG8eq+Hc8lDS
+         1Rhecx/dAL2XB8FW1F88J8hS70RIZgM2hTZuGcrL7uDdVrQ/UmW4wwe6M/XWj0wpnUDg
+         Q6PUxfyOKIhw2OAFLsXy5Ws2IbMTkYjggg2gMV3CjsTMHGyG/Co5B3VtmQhHlmJ+VWYw
+         WGLA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1751550989; x=1752155789;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=XroVTgiipbMk92z/0akuSiUYeZttfe/ce+IMaIERceI=;
+        b=FMZm2QKjQmywUko0t1yOxEgVYC1D0xxV2HJV66GQHFLsSUeuW6TLXFqZr0G+wQeEqg
+         0N6sE25YeYacMYVkEkPBzoxCKIa5HeCI43CHHFjOEqVbJt7MY0xwX6+yzQC7xeLLEOcz
+         QGOK1bZ2g4aBe/P8NRmtovSj5rNWXQV7HQPBwNqxIgzZYDhpil5dwD+iFGp6h5JwUzE9
+         KnJW/XNOWpLwOVKr/V2cWvKCH2IPyBLj+axmZ3yigaj3YQlf9TH4a9VPQs7vqtsvOE1E
+         iZP0vo2S0mLDoOT6qJKVXdAwCjleZ/IwAgU3b8/n6X7FL9faZk6KPdUvgoepaFbcnswe
+         oTsg==
+X-Forwarded-Encrypted: i=1; AJvYcCUE/qgEa8HkhOCAsZta5PwGJpbZpwkoijRRK2sLCj4L93rdx7TKzeQYN+VK3LOanGURGK3p2qrogHD4@vger.kernel.org, AJvYcCV+bIxAEylHJZBNkyT9i0++XcPaovPzt59xezl8+gVnE+hYCnxHbUEhT/p5oZgDwjmwETDqK5C2Js+4Wj4=@vger.kernel.org, AJvYcCWSiAOtJE8IBRuGb1DZ/hqu+KW6getzWpXAime2Up4+TWX3NUZM061L7zTpor8OBasRHw3acUlx@vger.kernel.org, AJvYcCWkmcFWZWQYh6253M5TMQU54NKqtwQ0cNhTYdtC8jBaJ+yWwsk5oWMwGWPniPa5OMvE6RzLl9C3IDg=@vger.kernel.org, AJvYcCWrLEtxzssrvqxx6xehC9Zfjzr8huIF5lTxC2Wdy3pa8OEczigJ4oShTX2CH2l2CTetfj5JnrdH8zG8oOnxt/Y=@vger.kernel.org, AJvYcCWxyymn4QVFvHavmIv34spWudq1wuu6Dfn14m+qHfupSgw+tu/b1xX3Kl+aL4o2dzuYmsAzZ7MGIZ99ZZz1@vger.kernel.org, AJvYcCXOG/UkMwvXpw3wWIZSicK9UyElkUNwYsty/Quvp5hq9zorX1YEHYtFq3d82zPDTlXAgeS4UEfBHGo/@vger.kernel.org, AJvYcCXXvCRKXJEk0oCBSHjx3zHi/XtWqpiddL3WLaiWOY9lKQQMByIRG9WMkqq9/GOX11cBBKM33v0GvsqMtk/rfPoO@vger.kernel.org, AJvYcCXzbV1CX5iFF+QWFm4o9BDYiSBfxoVkZtCmhujpctznZ4THc6AhAvscdgEuBiaWi5UMF7XdwZ6Pfqe8@vger.kernel.org
+X-Gm-Message-State: AOJu0YwQqHnZFPge/f8UxDxO1P8yy9AcfEPtuPonjypigpf/e0MP8hgw
+	UiTgvY5f/QE8b6/TNvfUd4NzTHwhAL3DSugvJKZm4E71Mg/yfb7JzC4bIdmM32xY16GMSnJy6M6
+	ViWwXrcVL+B0Wf4gqMqFZ4LY+tlwKPR5p08bAqEvtCg==
+X-Gm-Gg: ASbGncujHwKgUQH4qe51LmI3RgpMp/eMTSWtV6f27OOiumBMMgRAm0GYjCH0YJaPkyM
+	Ht03qMUoR5fCeXrwXVCZzAeG1XN2QayUxdAJZ1ulIVpNZPGJeacQhyycQowPX6o5UQAvSxQTws+
+	ZsVr+f1tbN95m69Sf+n7nRQnDg73G12EdqJ8AlbSaWHtLq
+X-Google-Smtp-Source: AGHT+IHecHJqinQ0GtjAARewm2enIQAyyQD5rKLXQHe+ItluA3s82XioLx3xqz+ougAgIvj7CA1kgvJIs3FoZ5ExGxI=
+X-Received: by 2002:a2e:a369:0:b0:32c:bc69:e921 with SMTP id
+ 38308e7fff4ca-32e0cfaac22mr12120091fa.9.1751550988404; Thu, 03 Jul 2025
+ 06:56:28 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+References: <20250701-cstr-core-v13-0-29f7d3eb97a6@gmail.com>
+ <20250701-cstr-core-v13-2-29f7d3eb97a6@gmail.com> <DB2BDSN1JH51.14ZZPETJORBC6@kernel.org>
+In-Reply-To: <DB2BDSN1JH51.14ZZPETJORBC6@kernel.org>
+From: Tamir Duberstein <tamird@gmail.com>
+Date: Thu, 3 Jul 2025 09:55:52 -0400
+X-Gm-Features: Ac12FXwkwRINIecE-FwYN90tPuGpGFKpT2Ln86Mwgefjv5UkGbvTZ6CcK0fiY_k
+Message-ID: <CAJ-ks9nC=AyBPXRY3nJ0NuZvjFskzMcOkVNrBEfXD2hZ5uRntQ@mail.gmail.com>
+Subject: Re: [PATCH v13 2/5] rust: support formatting of foreign types
+To: Benno Lossin <lossin@kernel.org>
+Cc: Michal Rostecki <vadorovsky@protonmail.com>, Miguel Ojeda <ojeda@kernel.org>, 
+	Alex Gaynor <alex.gaynor@gmail.com>, Boqun Feng <boqun.feng@gmail.com>, 
+	Gary Guo <gary@garyguo.net>, =?UTF-8?Q?Bj=C3=B6rn_Roy_Baron?= <bjorn3_gh@protonmail.com>, 
+	Andreas Hindborg <a.hindborg@kernel.org>, Alice Ryhl <aliceryhl@google.com>, 
+	Trevor Gross <tmgross@umich.edu>, Brendan Higgins <brendan.higgins@linux.dev>, 
+	David Gow <davidgow@google.com>, Rae Moar <rmoar@google.com>, 
+	Danilo Krummrich <dakr@kernel.org>, Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, 
+	Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>, 
+	David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>, 
+	Greg Kroah-Hartman <gregkh@linuxfoundation.org>, "Rafael J. Wysocki" <rafael@kernel.org>, 
+	Luis Chamberlain <mcgrof@kernel.org>, Russ Weight <russ.weight@linux.dev>, 
+	FUJITA Tomonori <fujita.tomonori@gmail.com>, Rob Herring <robh@kernel.org>, 
+	Saravana Kannan <saravanak@google.com>, Peter Zijlstra <peterz@infradead.org>, 
+	Ingo Molnar <mingo@redhat.com>, Will Deacon <will@kernel.org>, Waiman Long <longman@redhat.com>, 
+	Nathan Chancellor <nathan@kernel.org>, Nick Desaulniers <nick.desaulniers+lkml@gmail.com>, 
+	Bill Wendling <morbo@google.com>, Justin Stitt <justinstitt@google.com>, Andrew Lunn <andrew@lunn.ch>, 
+	Heiner Kallweit <hkallweit1@gmail.com>, Russell King <linux@armlinux.org.uk>, 
+	"David S. Miller" <davem@davemloft.net>, Eric Dumazet <edumazet@google.com>, 
+	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>, Bjorn Helgaas <bhelgaas@google.com>, 
+	Arnd Bergmann <arnd@arndb.de>, Jens Axboe <axboe@kernel.dk>, 
+	=?UTF-8?Q?Krzysztof_Wilczy=C5=84ski?= <kwilczynski@kernel.org>, 
+	Dave Ertman <david.m.ertman@intel.com>, Ira Weiny <ira.weiny@intel.com>, 
+	Leon Romanovsky <leon@kernel.org>, Breno Leitao <leitao@debian.org>, 
+	Viresh Kumar <viresh.kumar@linaro.org>, Michael Turquette <mturquette@baylibre.com>, 
+	Stephen Boyd <sboyd@kernel.org>, rust-for-linux@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, linux-kselftest@vger.kernel.org, 
+	kunit-dev@googlegroups.com, dri-devel@lists.freedesktop.org, 
+	netdev@vger.kernel.org, devicetree@vger.kernel.org, llvm@lists.linux.dev, 
+	linux-pci@vger.kernel.org, nouveau@lists.freedesktop.org, 
+	linux-block@vger.kernel.org, linux-pm@vger.kernel.org, 
+	linux-clk@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-On Thu, 2025-07-03 at 15:17 +0300, Cosmin Tanislav wrote:
->=20
->=20
-> On 7/3/25 3:07 PM, Julien Massot wrote:
-> > Hi Cosmin,
-> >=20
-> > On Wed, 2025-07-02 at 16:20 +0300, Cosmin Tanislav wrote:
-> > > This series adds new drivers for multiple Maxim GMSL2 and GMSL3 devic=
-es,
-> > > replacing the few GMSL2 drivers already in upstream, and introducing =
-a
-> > > common framework that can be used to implement such GMSL chips, which
-> > > avoids code duplication while also adding support for previously
-> > > unsupported features.
-> > >=20
-> > > While the normally acceptable and polite way would be to extend the
-> > > current mainline drivers, the choice was made here to add a totally n=
-ew
-> > > set of drivers. The current drivers support only a small subset of th=
-e
-> > > possible features, and only a few devices, so the end result after
-> > > extending them would in any case be essentially fully rewritten, new
-> > > drivers.
-> > >=20
-> > Thanks for your work,
-> > The common framework will help a lot to drive new GMSL chips, and most =
-of the
-> > features are covered.
-> >=20
-> > > This series depends on support for internal pads, for which a patch h=
-as
-> > > been added.
-> > >=20
-> > > The previous version is at:
-> > > https://lore.kernel.org/lkml/20250618095858.2145209-1-demonsingur@gma=
-il.com
-> > >=20
-> > > The following deserializers are supported:
-> > > =C2=A0=C2=A0* MAX96712 (already exists in staging)
-> > > =C2=A0=C2=A0* MAX96714 (already exists)
-> > > =C2=A0=C2=A0* MAX96714F (already exists)
-> > > =C2=A0=C2=A0* MAX96714R (GMSL2)
-> > > =C2=A0=C2=A0* MAX96716 (GMSL2)
-> > > =C2=A0=C2=A0* MAX96724 (already exists as part of existing MAX96712 d=
-river)
-> > > =C2=A0=C2=A0* MAX96724F (GMSL2)
-> > > =C2=A0=C2=A0* MAX96724R (GMSL2)
-> > > =C2=A0=C2=A0* MAX9296A (GMSL2)
-> > > =C2=A0=C2=A0* MAX96792A (GMSL3)
-> > >=20
-> > > The following serializers are supported:
-> > > =C2=A0=C2=A0* MAX96717 (already exists)
-> > > =C2=A0=C2=A0* MAX9295A (GMSL2)
-> > > =C2=A0=C2=A0* MAX96793 (GMSL3)
-> > >=20
-> > > Known backward compatibility breakages:
-> > > =C2=A0=C2=A0* No default routing. Default routing has been intentiona=
-lly ommitted
-> > > =C2=A0=C2=A0=C2=A0 as the devices support quite complex routing and i=
-t would be
-> > > =C2=A0=C2=A0=C2=A0 unfeasible to provide sane defaults for multi-link=
- deserialziers.
-> > > =C2=A0=C2=A0=C2=A0 It is expected that userspace programs would set a=
-ppropritate
-> > > =C2=A0=C2=A0=C2=A0 routing.
-> > >=20
-> > This part is the most annoying one: at the moment, there is no way to s=
-et the routing except by
-> > manually enabling a boolean within the kernel source.
-> > You can't guess what routing the user really wants, but please at least=
- provide a default
-> > routing
-> > table that allows using your drivers =E2=80=94 for example, the device'=
-s default routing.
-> >=20
->=20
-> It's a very delicate issue... I'll try to see if I can do that.
-> It would be great if we could enable the streams API globally since it's
-> been merged since Jan 15 2023. It's been over two years.
->=20
->=20
-> Thanks,
->=20
-> >=20
-> >=20
-> > > The following list enumerates new features that are supported by the
-> > > common framework and their respective chip-specific drivers:
-> > > =C2=A0=C2=A0* Full Streams API support. Most deserializers have suppo=
-rt for more
-> > > =C2=A0=C2=A0=C2=A0 than one link, and more than one PHY. Streams supp=
-ort allows
-> > > =C2=A0=C2=A0=C2=A0 configuration of routing between these links and P=
-HYs.
-> > >=20
-> > > =C2=A0=C2=A0* .get_frame_desc() support. Both the serializers and des=
-erializers
-> > > =C2=A0=C2=A0=C2=A0 implement this to query and provide frame descript=
-or data. This is
-> > > =C2=A0=C2=A0=C2=A0 used in features explained in-depth below.
-> >=20
-> > So are almost all the sensor drivers incompatible?
-> >=20
->=20
-> Yes, sensor drivers need to have .get_frame_desc() implemented... It's
-> not a huge feat and it's the only way this type of bridge could work
-> properly.
->=20
-> Alternatively, we could add a fallback that bases its decision on the
-> stream format, but I'd prefer if we didn't and we would just implement
-> .get_frame_desc(). After this series is merged I can submit my patches
-> for imx219.
-There is already one pending on the mailing list
-"media: i2c: imx219: Report streams using frame descriptors"
-I guess it's fine if we require the sensor to implement this function.
+On Thu, Jul 3, 2025 at 5:32=E2=80=AFAM Benno Lossin <lossin@kernel.org> wro=
+te:
+>
+> On Tue Jul 1, 2025 at 6:49 PM CEST, Tamir Duberstein wrote:
+> > Introduce a `fmt!` macro which wraps all arguments in
+> > `kernel::fmt::Adapter` and a `kernel::fmt::Display` trait. This enables
+> > formatting of foreign types (like `core::ffi::CStr`) that do not
+> > implement `core::fmt::Display` due to concerns around lossy conversions=
+ which
+> > do not apply in the kernel.
+> >
+> > Replace all direct calls to `format_args!` with `fmt!`.
+> >
+> > Replace all implementations of `core::fmt::Display` with implementation=
+s
+> > of `kernel::fmt::Display`.
+> >
+> > Suggested-by: Alice Ryhl <aliceryhl@google.com>
+> > Link: https://rust-for-linux.zulipchat.com/#narrow/channel/288089-Gener=
+al/topic/Custom.20formatting/with/516476467
+> > Acked-by: Greg Kroah-Hartman <gregkh@linuxfoundation.org>
+> > Reviewed-by: Alice Ryhl <aliceryhl@google.com>
+> > Signed-off-by: Tamir Duberstein <tamird@gmail.com>
+> > ---
+> >  drivers/block/rnull.rs       |  2 +-
+> >  drivers/gpu/nova-core/gpu.rs |  4 +-
+> >  rust/kernel/block/mq.rs      |  2 +-
+> >  rust/kernel/device.rs        |  2 +-
+> >  rust/kernel/fmt.rs           | 89 ++++++++++++++++++++++++++++++++++++=
++++
+> >  rust/kernel/kunit.rs         |  6 +--
+> >  rust/kernel/lib.rs           |  1 +
+> >  rust/kernel/prelude.rs       |  3 +-
+> >  rust/kernel/print.rs         |  4 +-
+> >  rust/kernel/seq_file.rs      |  2 +-
+> >  rust/kernel/str.rs           | 22 ++++------
+> >  rust/macros/fmt.rs           | 99 ++++++++++++++++++++++++++++++++++++=
+++++++++
+> >  rust/macros/lib.rs           | 19 +++++++++
+> >  rust/macros/quote.rs         |  7 ++++
+> >  scripts/rustdoc_test_gen.rs  |  2 +-
+> >  15 files changed, 236 insertions(+), 28 deletions(-)
+>
+> This would be a lot easier to review if he proc-macro and the call
+> replacement were different patches.
+>
+> Also the `kernel/fmt.rs` file should be a different commit.
 
-But I had to do it for vgxy61.
+Can you help me understand why? The changes you ask to be separated
+would all be in different files, so why would separate commits make it
+easier to review?
 
-Btw I tested:
-TI AM62x + max96716 + 1 x max96717f + stvg5661 (tunnel mode)
-With special lanes mapping and polarities.
+I prefer to keep things in one commit because the changes are highly
+interdependent. The proc macro doesn't make sense without
+kernel/fmt.rs and kernel/fmt.rs is useless without the proc macro.
 
-And I had to:
+>
+> > diff --git a/rust/kernel/fmt.rs b/rust/kernel/fmt.rs
+> > new file mode 100644
+> > index 000000000000..348d16987de6
+> > --- /dev/null
+> > +++ b/rust/kernel/fmt.rs
+> > @@ -0,0 +1,89 @@
+> > +// SPDX-License-Identifier: GPL-2.0
+> > +
+> > +//! Formatting utilities.
+> > +
+> > +use core::fmt;
+>
+> I think we should pub export all types that we are still using from
+> `core::fmt`. For example `Result`, `Formatter`, `Debug` etc.
+>
+> That way I can still use the same pattern of importing `fmt` and then
+> writing
+>
+>     impl fmt::Display for MyType {
+>         fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {}
+>     }
 
-- Apply pending patches for j721e to support the enable_stream API instead =
-of s_stream
-- Enable the experimental v4l2_subdev_enable_streams_api
-- Add get_frame_desc to the sensor driver
+Great idea, done for the next spin. It would be nice to be able to
+lint against references to `core::fmt` outside of kernel/fmt.rs.
+
+> > +
+> > +/// Internal adapter used to route allow implementations of formatting=
+ traits for foreign types.
+> > +///
+> > +/// It is inserted automatically by the [`fmt!`] macro and is not mean=
+t to be used directly.
+> > +///
+> > +/// [`fmt!`]: crate::prelude::fmt!
+> > +#[doc(hidden)]
+> > +pub struct Adapter<T>(pub T);
+> > +
+> > +macro_rules! impl_fmt_adapter_forward {
+> > +    ($($trait:ident),* $(,)?) =3D> {
+> > +        $(
+> > +            impl<T: fmt::$trait> fmt::$trait for Adapter<T> {
+> > +                fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Resu=
+lt {
+> > +                    let Self(t) =3D self;
+> > +                    fmt::$trait::fmt(t, f)
+> > +                }
+> > +            }
+> > +        )*
+> > +    };
+> > +}
+> > +
+> > +impl_fmt_adapter_forward!(Debug, LowerHex, UpperHex, Octal, Binary, Po=
+inter, LowerExp, UpperExp);
+> > +
+> > +/// A copy of [`fmt::Display`] that allows us to implement it for fore=
+ign types.
+> > +///
+> > +/// Types should implement this trait rather than [`fmt::Display`]. To=
+gether with the [`Adapter`]
+> > +/// type and [`fmt!`] macro, it allows for formatting foreign types (e=
+.g. types from core) which do
+> > +/// not implement [`fmt::Display`] directly.
+> > +///
+> > +/// [`fmt!`]: crate::prelude::fmt!
+> > +pub trait Display {
+> > +    /// Same as [`fmt::Display::fmt`].
+> > +    fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result;
+> > +}
+> > +
+> > +impl<T: ?Sized + Display> Display for &T {
+> > +    fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result {
+> > +        Display::fmt(*self, f)
+> > +    }
+> > +}
+> > +
+> > +impl<T: ?Sized + Display> fmt::Display for Adapter<&T> {
+> > +    fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result {
+> > +        let Self(t) =3D self;
+> > +        Display::fmt(t, f)
+>
+> Why not `Display::fmt(&self.0, f)`?
+
+I like destructuring because it shows me that there's only one field.
+With `self.0` I don't see that.
+
+> > +    }
+> > +}
+> > +
+> > +macro_rules! impl_display_forward {
+> > +    ($(
+> > +        $( { $($generics:tt)* } )? $ty:ty $( { where $($where:tt)* } )=
+?
+> > +    ),* $(,)?) =3D> {
+> > +        $(
+> > +            impl$($($generics)*)? Display for $ty $(where $($where)*)?=
+ {
+> > +                fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Resu=
+lt {
+> > +                    fmt::Display::fmt(self, f)
+> > +                }
+> > +            }
+> > +        )*
+> > +    };
+> > +}
+> > +
+> > +impl_display_forward!(
+> > +    bool,
+> > +    char,
+> > +    core::panic::PanicInfo<'_>,
+> > +    fmt::Arguments<'_>,
+> > +    i128,
+> > +    i16,
+> > +    i32,
+> > +    i64,
+> > +    i8,
+> > +    isize,
+> > +    str,
+> > +    u128,
+> > +    u16,
+> > +    u32,
+> > +    u64,
+> > +    u8,
+> > +    usize,
+> > +    {<T: ?Sized>} crate::sync::Arc<T> {where crate::sync::Arc<T>: fmt:=
+:Display},
+> > +    {<T: ?Sized>} crate::sync::UniqueArc<T> {where crate::sync::Unique=
+Arc<T>: fmt::Display},
+> > +);
+>
+> > diff --git a/rust/macros/fmt.rs b/rust/macros/fmt.rs
+> > new file mode 100644
+> > index 000000000000..edc37c220a89
+> > --- /dev/null
+> > +++ b/rust/macros/fmt.rs
+> > @@ -0,0 +1,99 @@
+> > +// SPDX-License-Identifier: GPL-2.0
+> > +
+> > +use proc_macro::{Ident, TokenStream, TokenTree};
+> > +use std::collections::BTreeSet;
+> > +
+> > +/// Please see [`crate::fmt`] for documentation.
+> > +pub(crate) fn fmt(input: TokenStream) -> TokenStream {
+> > +    let mut input =3D input.into_iter();
+> > +
+> > +    let first_opt =3D input.next();
+> > +    let first_owned_str;
+> > +    let mut names =3D BTreeSet::new();
+> > +    let first_lit =3D {
+> > +        let Some((mut first_str, first_lit)) =3D (match first_opt.as_r=
+ef() {
+> > +            Some(TokenTree::Literal(first_lit)) =3D> {
+> > +                first_owned_str =3D first_lit.to_string();
+> > +                Some(first_owned_str.as_str()).and_then(|first| {
+> > +                    let first =3D first.strip_prefix('"')?;
+> > +                    let first =3D first.strip_suffix('"')?;
+> > +                    Some((first, first_lit))
+>
+> You're only using first_lit to get the span later, so why not just get
+> the span directly here?
+
+Good point. I was probably using it for more stuff in an earlier iteration.
+
+>
+> > +                })
+> > +            }
+> > +            _ =3D> None,
+> > +        }) else {
+> > +            return first_opt.into_iter().chain(input).collect();
+> > +        };
+> > +        while let Some((_, rest)) =3D first_str.split_once('{') {
+>
+> Let's put a comment above this loop mentioning [1] and saying that it
+> parses the identifiers from the format arguments.
+>
+> [1]: https://doc.rust-lang.org/std/fmt/index.html#syntax
+
+=F0=9F=91=8D
+
+>
+> > +            first_str =3D rest;
+> > +            if let Some(rest) =3D first_str.strip_prefix('{') {
+> > +                first_str =3D rest;
+> > +                continue;
+> > +            }
+> > +            if let Some((name, rest)) =3D first_str.split_once('}') {
+> > +                first_str =3D rest;
+> > +                let name =3D name.split_once(':').map_or(name, |(name,=
+ _)| name);
+> > +                if !name.is_empty() && !name.chars().all(|c| c.is_asci=
+i_digit()) {
+> > +                    names.insert(name);
+> > +                }
+> > +            }
+> > +        }
+> > +        first_lit
+> > +    };
+> > +
+> > +    let first_span =3D first_lit.span();
+> > +    let adapter =3D quote_spanned! {
+> > +        first_span =3D> ::kernel::fmt::Adapter
+> > +    };
+>
+> I think we should follow the formatting convention from the quote crate:
+>
+>     let adapter =3D quote_spanned!(first_span=3D> ::kernel::fmt::Adapter)=
+;
+
+Sure.
+
+>
+> > +
+> > +    let mut args =3D TokenStream::from_iter(first_opt);
+> > +    {
+> > +        let mut flush =3D |args: &mut TokenStream, current: &mut Token=
+Stream| {
+>
+> You don't need to pass `args` as a closure argument, since you always
+> call it with `&mut args`.
+
+This doesn't work because of the borrow checker. If I wrote what you
+suggest, then `args` is mutably borrowed by the closure, which
+prohibits the mutable borrow needed for the .extend() call here:
+
+        for tt in input {
+            match &tt {
+                TokenTree::Punct(p) if p.as_char() =3D=3D ',' =3D> {
+                    flush(&mut args, &mut current);
+                    &mut args
+                }
+                _ =3D> &mut current,
+            }
+            .extend([tt]);
+        }
+
+>
+> > +            let current =3D std::mem::take(current);
+> > +            if !current.is_empty() {
+> > +                let (lhs, rhs) =3D (|| {
+> > +                    let mut current =3D current.into_iter();
+> > +                    let mut acc =3D TokenStream::new();
+> > +                    while let Some(tt) =3D current.next() {
+> > +                        // Split on `=3D` only once to handle cases li=
+ke `a =3D b =3D c`.
+> > +                        if matches!(&tt, TokenTree::Punct(p) if p.as_c=
+har() =3D=3D '=3D') {
+> > +                            names.remove(acc.to_string().as_str());
+> > +                            // Include the `=3D` itself to keep the ha=
+ndling below uniform.
+> > +                            acc.extend([tt]);
+> > +                            return (Some(acc), current.collect::<Token=
+Stream>());
+> > +                        }
+> > +                        acc.extend([tt]);
+> > +                    }
+> > +                    (None, acc)
+> > +                })();
+> > +                args.extend(quote_spanned! {
+> > +                    first_span =3D> #lhs #adapter(&#rhs)
+> > +                });
+> > +            }
+> > +        };
+> > +
+> > +        let mut current =3D TokenStream::new();
+>
+> Define this before the closure, then you don't need to pass it as an
+> argument.
+
+Same reason as above. Borrow checker says no.
+
+>
+> ---
+> Cheers,
+> Benno
+>
+> > +        for tt in input {
+> > +            match &tt {
+> > +                TokenTree::Punct(p) if p.as_char() =3D=3D ',' =3D> {
+> > +                    flush(&mut args, &mut current);
+> > +                    &mut args
+> > +                }
+> > +                _ =3D> &mut current,
+> > +            }
+> > +            .extend([tt]);
+> > +        }
+> > +        flush(&mut args, &mut current);
+> > +    }
+> > +
+> > +    for name in names {
+> > +        let name =3D Ident::new(name, first_span);
+> > +        args.extend(quote_spanned! {
+> > +            first_span =3D> , #name =3D #adapter(&#name)
+> > +        });
+> > +    }
+> > +
+> > +    quote_spanned! {
+> > +        first_span =3D> ::core::format_args!(#args)
+> > +    }
+> > +}
 
