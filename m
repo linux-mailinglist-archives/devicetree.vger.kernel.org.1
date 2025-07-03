@@ -1,155 +1,190 @@
-Return-Path: <devicetree+bounces-192661-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-192662-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6F420AF7391
-	for <lists+devicetree@lfdr.de>; Thu,  3 Jul 2025 14:17:21 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 472FDAF7395
+	for <lists+devicetree@lfdr.de>; Thu,  3 Jul 2025 14:17:36 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 445931C486C7
-	for <lists+devicetree@lfdr.de>; Thu,  3 Jul 2025 12:17:21 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 3C76E1C4854A
+	for <lists+devicetree@lfdr.de>; Thu,  3 Jul 2025 12:17:36 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id EE95C2E62DD;
-	Thu,  3 Jul 2025 12:16:21 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C7C392E5400;
+	Thu,  3 Jul 2025 12:16:49 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="ICjvnVjY"
+	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="IEjvp4Ml"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+Received: from bali.collaboradmins.com (bali.collaboradmins.com [148.251.105.195])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3B58026528C
-	for <devicetree@vger.kernel.org>; Thu,  3 Jul 2025 12:16:19 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id ADEB42E424E;
+	Thu,  3 Jul 2025 12:16:47 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=148.251.105.195
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1751544981; cv=none; b=Ouj281gPrtJ9cRCwj0RFwEAG/IYS7WhPeU8rSC4LXmO41YmN+Gq1p2eNTlj/O2iGkradaj2sccsBP3geMAHMsQNFhRBCRXCZ0OCzqqcIRQiiCkKVcvZJ2crgKf/25TgZXAFj/9AfPjCtLZejQvQsp3UYs1DDvEPlj2U2MY7PTOg=
+	t=1751545009; cv=none; b=Qo9pJ0qmmzEmnp2C0/H5TnB7LFQxpZ8tZuGwmkNk8DVXkUwz+tJtdbkXfFffeTmKyYAI9Io1GodPZPt2SEfTFgFn24p/WKY5d5kfVynkDC4yzL8ZdlRUnO841QpMGzVnHE8nwkJ5oAaiKtBhqVXUNdiapllk+cACHQkr0OXFwSQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1751544981; c=relaxed/simple;
-	bh=wqz04Db6LoZ9YrCmc82vhkASDZs0DPlOdRoUbKw44cM=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=je4GlpokPoB+t9PpYKFB+/t5bz4bTXWeszdk5Ig3VE+qLNX7YAhfOqDl5yLr3iuUpIInZcK9hZU8w5NwpCSg2Cfyixew9QD0nRK1j6QkY/ZPbWP7ZbhP1ruwQDanLFMh++DDq5SBQgJGZAAt8GxnTtYPsYPRnCJmlkN8ySpuaT8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=ICjvnVjY; arc=none smtp.client-ip=205.220.168.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
-Received: from pps.filterd (m0279864.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 5636CGD3006750
-	for <devicetree@vger.kernel.org>; Thu, 3 Jul 2025 12:16:18 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	VkKzD5qOAqZJdTLWvOv7/OBA1XDD5p0ax7HN7SWd3zA=; b=ICjvnVjY3rSvxC8H
-	Rs3oOg97hLP4jbDcnW3srMrXJhYLCnNFqdph63UBFw9+gHvVoKmQGbaGNlFTluMg
-	CGr03xkjJ5VMFrzoeAT6k7P8OAQSV+I7YFvJq2jJERMCpGrbC6g7DM+WRvfEa9FA
-	Sr/cE8OdD/9H5q3awv2RBv0HyWaVdbG/lxKRkyjkzKHwu9GQUqIa5rjBt954qZ2C
-	PBsq9xKgJYmga65O1ouiAZPrCX8unTLBILn7J+soMoyQgNSxa4OviYq/ehZZelWJ
-	ZZpBI/mYiJGOGTPGSySVdr+OKG22UY6xyS1RQKT7PlQdAvR1zUbVpYm3/C/dZ66R
-	Aqfmpg==
-Received: from mail-qk1-f200.google.com (mail-qk1-f200.google.com [209.85.222.200])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 47napw2mkg-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Thu, 03 Jul 2025 12:16:18 +0000 (GMT)
-Received: by mail-qk1-f200.google.com with SMTP id af79cd13be357-7d094e04aa4so234057785a.1
-        for <devicetree@vger.kernel.org>; Thu, 03 Jul 2025 05:16:18 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1751544977; x=1752149777;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=VkKzD5qOAqZJdTLWvOv7/OBA1XDD5p0ax7HN7SWd3zA=;
-        b=UzjlFSRRpkrD1zJdhHDNE4u046uOw9ljrKnf+krYCLe1F1q2OG7ZqMNfaQn8CQeDbj
-         lmE3ygBaI7qsNFnx8HOO7MCVWCuoeynXEvzLeoxKZjzFTbzTcqApZrWgzM8vVkoZiPvq
-         oddzyNYpaWKqwJ3a26kxa/yHw3LEhuWR//GPj75cvIVfHQdTRaJCC2cD7ei2hWwqQ2nr
-         LZEfHkEAq2cA4h0Naiuko8fPkUdopG9dRtbfSdnL3uW06iPzgYriEWu6U64JPTrd7tmo
-         5z1Fa1P6hr8StvjmwPpXH7sCHAWRR4bNfq0suPKmtEd2H97DQdAgd+ALEisRkyDLWaue
-         cuiQ==
-X-Forwarded-Encrypted: i=1; AJvYcCUpPsVqujOE0VJ4q09T8k6zVetNkuo2u4Xgwma8/bjxuQgvoFTclVU5rC3uJNuwtC2NuVPZ5f6Zc70K@vger.kernel.org
-X-Gm-Message-State: AOJu0YyRh6VevYH3+BAmECSxCL65J+i/9vaWm63ShpuwUc/rZ7WeJ1ZE
-	5hxikxZVvNRgq4fOwi7vFaOcpObkRqVi8sq0kqkpjtycbYcuoMV/q0c3Qu78pK/33uktVcg2a7b
-	zNXM4hq7oPqMu/BGzDp45w98BifvXQvpAHP7OTmEOQeB6oiWNPCYKoJCPmVujzQ1T
-X-Gm-Gg: ASbGncsGXv2ay8xXyFY91mIRU7dBRTi2KyHGp2QOHj9KPenbIbiDLi8FmfJi62g5gQ+
-	U7MWOpP7T+/35KLKBNWjU5VuYp6dvqw5VByp3aqGxtjV/or+/ujU02JBwE0M4LKOA1PwTUOmZk5
-	jpX5bNXyEmUeebvfTECIwGA4TTPHhbtBUffjVgLOv41IaO/xSuUMxqycY11dkRy8p7WWvEscBC2
-	YBpzelfe5t0t/AMNVYPpIkmP5d1RbGpzibOuszrw6LWnpVscyxY2HReFXwiW2nVQfyAcKCBsUjy
-	2Cjg1UIm8Z32Plq73OSqXfaiHgK9TZ83E+goGmBtI4BDgMtt1FF77Bh/lF3orACow4qgyLXbXJ9
-	xrPAeJ+f5
-X-Received: by 2002:a05:620a:4553:b0:7d2:89c2:eddb with SMTP id af79cd13be357-7d5d3edaafemr103808785a.2.1751544976963;
-        Thu, 03 Jul 2025 05:16:16 -0700 (PDT)
-X-Google-Smtp-Source: AGHT+IEUrtibPHvr8N2yWud8azUvDMAXwVyMTTd9CkJd3HPkF5mfJT5kEni5VZ3YyZtkHv1BLI2AFQ==
-X-Received: by 2002:a05:620a:4553:b0:7d2:89c2:eddb with SMTP id af79cd13be357-7d5d3edaafemr103806385a.2.1751544976513;
-        Thu, 03 Jul 2025 05:16:16 -0700 (PDT)
-Received: from [192.168.1.114] (83.9.29.190.neoplus.adsl.tpnet.pl. [83.9.29.190])
-        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-ae3d0351285sm179677866b.23.2025.07.03.05.16.08
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 03 Jul 2025 05:16:11 -0700 (PDT)
-Message-ID: <185e2398-e804-46c6-ba94-44c42cce684c@oss.qualcomm.com>
-Date: Thu, 3 Jul 2025 14:16:08 +0200
+	s=arc-20240116; t=1751545009; c=relaxed/simple;
+	bh=j9N2ws6dgjGzhCmAui7+2Nfv44CSBzj66BikGMKCX9s=;
+	h=Message-ID:Subject:From:To:Cc:Date:In-Reply-To:References:
+	 Content-Type:MIME-Version; b=uf5vClW4lqvtLrLdtWyPCze31ZgVBZtnm3Xniu3IPTv4cIjYmdftEwWgGqIp2zTk7KRxEuBrXP/u277jsNaPGO+/1T7K2HfFd+nV2q9N+KZ6fTPhPfY40Du6r2dVSWmr2BlYSjtWUBt2A0nrg7/3iOgkx+xXlwOQff8PLQKEbYE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b=IEjvp4Ml; arc=none smtp.client-ip=148.251.105.195
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+	s=mail; t=1751545005;
+	bh=j9N2ws6dgjGzhCmAui7+2Nfv44CSBzj66BikGMKCX9s=;
+	h=Subject:From:To:Cc:Date:In-Reply-To:References:From;
+	b=IEjvp4MlpjczQfOnQ9pprmduaxPsC0BNR76fjMIHgLFk7snO9h8Vhxa0k5cAS1scT
+	 UxoY9vU2cRtYkiL+9e4q1/N94Roz6tJEPsyb0aRXdhVS4l7aawT64V0X5WSUkZPiev
+	 MjVx1vGiFPdfi5eGPcwBzoMP3B13l4cq5AbeMZR0/4eHlUI4OlvFkjPXTotNkc+l4S
+	 Y2nRzNUb7TiuY6UWrQIUBng/olCChmgjORo5UokoA7zOl3afMpujUyshzJDV963DXq
+	 cH4mRbSP7GkCzeMazhxo8m+jhsK2H7M0tvNhFjh2tG/BEEgx2zVamOO6MkiUQi6oXm
+	 lNZmoMIPlheIQ==
+Received: from 2a01cb0892f2d600c8f85cf092d4af51.ipv6.abo.wanadoo.fr (2a01cb0892f2d600c8F85cF092D4AF51.ipv6.abo.wanadoo.fr [IPv6:2a01:cb08:92f2:d600:c8f8:5cf0:92d4:af51])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+	(No client certificate requested)
+	(Authenticated sender: jmassot)
+	by bali.collaboradmins.com (Postfix) with ESMTPSA id 055F217E07FF;
+	Thu,  3 Jul 2025 14:16:44 +0200 (CEST)
+Message-ID: <b591e7daf1e351fbfee181fcce399db08b28faf9.camel@collabora.com>
+Subject: Re: [PATCH v5 18/24] media: i2c: maxim-serdes: add MAX96717 driver
+From: Julien Massot <julien.massot@collabora.com>
+To: Cosmin Tanislav <demonsingur@gmail.com>, Cosmin Tanislav	
+ <cosmin.tanislav@analog.com>, Tomi Valkeinen	
+ <tomi.valkeinen+renesas@ideasonboard.com>, Mauro Carvalho Chehab	
+ <mchehab@kernel.org>, Rob Herring <robh@kernel.org>, Niklas
+ =?ISO-8859-1?Q?S=F6derlund?=	 <niklas.soderlund@ragnatech.se>, Sakari Ailus
+ <sakari.ailus@linux.intel.com>,  Laurent Pinchart
+ <laurent.pinchart@ideasonboard.com>, Greg Kroah-Hartman
+ <gregkh@linuxfoundation.org>, Linus Walleij <linus.walleij@linaro.org>
+Cc: linux-media@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
+	linux-staging@lists.linux.dev, linux-gpio@vger.kernel.org
+Date: Thu, 03 Jul 2025 14:16:44 +0200
+In-Reply-To: <20250702132104.1537926-19-demonsingur@gmail.com>
+References: <20250702132104.1537926-1-demonsingur@gmail.com>
+	 <20250702132104.1537926-19-demonsingur@gmail.com>
+Organization: Collabora Ltd.
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+User-Agent: Evolution 3.56.2 (3.56.2-1.fc42) 
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v5 9/9] arm64: dts: qcom: qcm6490-idp: Add sound card
-To: Prasad Kumpatla <quic_pkumpatl@quicinc.com>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley
- <conor+dt@kernel.org>,
-        Srinivas Kandagatla <srini@kernel.org>,
-        Liam Girdwood <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>,
-        Konrad Dybcio <konradybcio@kernel.org>
-Cc: cros-qcom-dts-watchers@chromium.org, linux-arm-msm@vger.kernel.org,
-        linux-gpio@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-sound@vger.kernel.org,
-        kernel@oss.qualcomm.com, Mohammad Rafi Shaik <quic_mohs@quicinc.com>
-References: <20250625082927.31038-1-quic_pkumpatl@quicinc.com>
- <20250625082927.31038-10-quic_pkumpatl@quicinc.com>
-Content-Language: en-US
-From: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
-In-Reply-To: <20250625082927.31038-10-quic_pkumpatl@quicinc.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Authority-Analysis: v=2.4 cv=dIKmmPZb c=1 sm=1 tr=0 ts=68667492 cx=c_pps
- a=hnmNkyzTK/kJ09Xio7VxxA==:117 a=fKQzr7EGRj+VoE0XNsDNvQ==:17
- a=IkcTkHD0fZMA:10 a=Wb1JkmetP80A:10 a=COk6AnOGAAAA:8 a=EUspDBNiAAAA:8
- a=m2XL-mgSGVCMsbPKemYA:9 a=QEXdDO2ut3YA:10 a=zgiPjhLxNE0A:10
- a=PEH46H7Ffwr30OY-TuGO:22 a=TjNXssC_j7lpFel5tvFf:22
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwNzAzMDEwMiBTYWx0ZWRfXydWzsTkPsweH
- 4ELuzmj+PzaIlBIc7HQFJwFcRvVuQsH2N6jLSrsP9aF638k7p24Mg9Kv4wnCfXFQVgmpBEpkk+f
- rv6kqRp2AhglJMZm0fMoX4XUeFpkoQWRqU/Z0wgA5n9vC1lOenGcv/EpXItbkzLQh72l1yOJL9W
- JXSOXx+TMRTzwrguakcX4GnoITpquHBI8yuGlOsE/3L1LA6J6RIsFXROyhURCFPQJVcueumhPa3
- 5up50CaiWarYb2qKhpA9orAxskcojnlkV16ye2p9vg0uoJVHVxzwLVcer35cAlEXpfQirAZ+lCp
- QxQ3U/U7HmwbTiQL9Js1cvyozkk50yP2cw0ZchPNvJX1dZEyevUmDw8OW3KRqYPeZI7WhBda/nX
- 8surmwoowlQuio1m0GGfA3pTO/pj4wDsJ9m8VvZhRIGHJXB9RGZPUyCjbr2dry5IzhLgzSMk
-X-Proofpoint-GUID: 4Wb7r9FEKeTPTmLfZp80wftwmAvigEH3
-X-Proofpoint-ORIG-GUID: 4Wb7r9FEKeTPTmLfZp80wftwmAvigEH3
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1099,Hydra:6.1.7,FMLib:17.12.80.40
- definitions=2025-07-03_03,2025-07-02_04,2025-03-28_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- bulkscore=0 priorityscore=1501 lowpriorityscore=0 spamscore=0 malwarescore=0
- impostorscore=0 mlxscore=0 adultscore=0 mlxlogscore=810 phishscore=0
- suspectscore=0 clxscore=1015 classifier=spam authscore=0 authtc=n/a authcc=
- route=outbound adjust=0 reason=mlx scancount=1 engine=8.19.0-2505280000
- definitions=main-2507030102
 
-
-
-On 25-Jun-25 10:29, Prasad Kumpatla wrote:
-> From: Mohammad Rafi Shaik <quic_mohs@quicinc.com>
-> 
-> Add the sound card node with tested playback over WSA8835 speakers,
-> digital on-board mics along with wcd9370 headset playabck and record.
-> 
-> Signed-off-by: Mohammad Rafi Shaik <quic_mohs@quicinc.com>
-> Co-developed-by: Prasad Kumpatla <quic_pkumpatl@quicinc.com>
-> Signed-off-by: Prasad Kumpatla <quic_pkumpatl@quicinc.com>
+On Wed, 2025-07-02 at 16:20 +0300, Cosmin Tanislav wrote:
+> Add a new MAX96717 driver that also supports MAX9295A, MAX96717F and
+> MAX96793.
+>=20
+> Integrate it with the common serializer framework, while keeping
+> compatibility with existing usecases, avoiding code duplication, and
+> also enabling more features across all chips.
+>=20
+> Signed-off-by: Cosmin Tanislav <demonsingur@gmail.com>
 > ---
+> =C2=A0drivers/media/i2c/maxim-serdes/Kconfig=C2=A0=C2=A0=C2=A0 |=C2=A0=C2=
+=A0 16 +
+> =C2=A0drivers/media/i2c/maxim-serdes/Makefile=C2=A0=C2=A0 |=C2=A0=C2=A0=
+=C2=A0 1 +
+> =C2=A0drivers/media/i2c/maxim-serdes/max96717.c | 1685 ++++++++++++++++++=
++++
+> =C2=A03 files changed, 1702 insertions(+)
+> =C2=A0create mode 100644 drivers/media/i2c/maxim-serdes/max96717.c
+>=20
+> diff --git a/drivers/media/i2c/maxim-serdes/Kconfig b/drivers/media/i2c/m=
+axim-serdes/Kconfig
+> index cae1d5a1293e..648cb891eefe 100644
+> --- a/drivers/media/i2c/maxim-serdes/Kconfig
+> +++ b/drivers/media/i2c/maxim-serdes/Kconfig
+> @@ -14,3 +14,19 @@ config VIDEO_MAXIM_SERDES
+> =C2=A0
+> =C2=A0	=C2=A0 To compile this driver as a module, choose M here: the modu=
+le
+> =C2=A0	=C2=A0 will be called max_serdes.
+> +
+> +config VIDEO_MAX96717
+> +	tristate "Maxim MAX96717 Serializer support"
+> +	depends on COMMON_CLK
+> +	select VIDEO_MAXIM_SERDES
+> +	select GENERIC_PINCONF
+> +	select GENERIC_PINCTRL_GROUPS
+> +	select GENERIC_PINMUX_FUNCTIONS
+> +	select GPIOLIB
+> +	help
+> +	=C2=A0 This driver supports the Maxim MAX9295A, MAX96717, MAX96717F,
+> +	=C2=A0 MAX96793 Serializers, which receive video on a MIPI CSI-2
+> +	=C2=A0 interface and output it on a GMSL2/3 link.
+> +
+> +	=C2=A0 To compile this driver as a module, choose M here: the module
+> +	=C2=A0 will be called max96717.
+> diff --git a/drivers/media/i2c/maxim-serdes/Makefile b/drivers/media/i2c/=
+maxim-serdes/Makefile
+> index b54326a5c81b..04abda6a5437 100644
+> --- a/drivers/media/i2c/maxim-serdes/Makefile
+> +++ b/drivers/media/i2c/maxim-serdes/Makefile
+> @@ -1,3 +1,4 @@
+> =C2=A0# SPDX-License-Identifier: GPL-2.0
+> =C2=A0max-serdes-objs :=3D max_serdes.o max_ser.o max_des.o
+> =C2=A0obj-$(CONFIG_VIDEO_MAXIM_SERDES) +=3D max-serdes.o
+> +obj-$(CONFIG_VIDEO_MAX96717) +=3D max96717.o
+> diff --git a/drivers/media/i2c/maxim-serdes/max96717.c b/drivers/media/i2=
+c/maxim-serdes/max96717.c
+> new file mode 100644
+> index 000000000000..60b285e547b7
+> --- /dev/null
+> +++ b/drivers/media/i2c/maxim-serdes/max96717.c
+> @@ -0,0 +1,1685 @@
+> +// SPDX-License-Identifier: GPL-2.0
+> +/*
+> + * Maxim MAX96717 GMSL2 Serializer Driver
+> + *
+> + * Copyright (C) 2025 Analog Devices Inc.
+> + */
+> +
+> +#include <linux/clk.h>
+> +#include <linux/clk-provider.h>
+> +#include <linux/gpio/driver.h>
+> +#include <linux/pinctrl/pinctrl.h>
+> +#include <linux/pinctrl/pinmux.h>
+> +#include <linux/pinctrl/pinconf.h>
+> +#include <linux/pinctrl/pinconf-generic.h>
+> +#include <linux/regmap.h>
+> +
+> +#include "max_ser.h"
+> +
+> +#define MAX96717_REG0				0x0
+> +
+> +#define MAX96717_REG2				0x2
+> +#define MAX96717_REG2_VID_TX_EN_P(p)		BIT(4 + (p))
+> +
+> +#define MAX96717_REG3				0x3
+> +#define MAX96717_REG3_RCLKSEL			GENMASK(1, 0)
+> +#define MAX96717_REG3_RCLK_ALT			BIT(2)
+> +
+> +#define MAX96717_REG6				0x6
+> +#define MAX96717_REG6_RCLKEN			BIT(5)
+> +
+> +#define MAX96717_I2C_2(x)			(0x42 + (x) * 0x2)
+> +#define MAX96717_I2C_2_SRC			GENMASK(7, 1)
+> +
+> +#define MAX96717_I2C_3(x)			(0x43 + (x) * 0x2)
+> +#define MAX96717_I2C_3_DST			GENMASK(7, 1)
+> +
+> +#define MAX96717_TX3(p)				(0x53 + (p) * 0x4)
+> +#define MAX96717_TX3_TX_STR_SEL			GENMASK(1, 0)
+> +
+> +#define MAX96717_VIDEO_TX0(p)			(0x100 + (p) * 0x8)
+This is a bit confusing, looks like this register address is valid for MAX9=
+295a VIDEO_TX0
+but not for MAX96717, VIDEO_TX0 (Z) is at 0x110.
 
-Reviewed-by: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
 
-Konrad
+
+--=20
+Julien
 
