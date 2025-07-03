@@ -1,208 +1,143 @@
-Return-Path: <devicetree+bounces-192480-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-192481-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id CBF45AF6C6F
-	for <lists+devicetree@lfdr.de>; Thu,  3 Jul 2025 10:08:58 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id E95EEAF6C7C
+	for <lists+devicetree@lfdr.de>; Thu,  3 Jul 2025 10:11:26 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 10CDF4A0E42
-	for <lists+devicetree@lfdr.de>; Thu,  3 Jul 2025 08:08:59 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 1876D1BC72F0
+	for <lists+devicetree@lfdr.de>; Thu,  3 Jul 2025 08:11:43 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0E2762BDC08;
-	Thu,  3 Jul 2025 08:08:55 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 340C42C3245;
+	Thu,  3 Jul 2025 08:11:07 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="MCrZh1gZ"
+	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="GSWLBGNi"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from relay1-d.mail.gandi.net (relay1-d.mail.gandi.net [217.70.183.193])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D43C928D831;
-	Thu,  3 Jul 2025 08:08:54 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0B1422C15B8;
+	Thu,  3 Jul 2025 08:11:03 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.70.183.193
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1751530134; cv=none; b=hkrjqVEu17eMmDalolya/LxJ9JZoBgNZZ5cz+icJ922F5P1a0KEX9m8XIRt7Z8EYQMKEyOy6OBfk8TzszvFgMWM4LxmyFTbol8dIWkLh4FOiLMp+rjrATsXczqH467eWa59fzu9mIx8TUfSJlWFQ+GYHiCEhmu+s+D3nWD4w1rQ=
+	t=1751530267; cv=none; b=cCPnA8O/0zBAV5ruXRrXqklXzEWYUDXAALS7me6XPTVGNvVpt9MonJ1dOfZTMFEODtUTRFQfrHOLC5h4YC8R4QdLb3XghVj08a3iIT710K29dD/O4m5hVdf9iSeWx16BFFOr+VKb/lFZ143jB6ll7VwBRyqoOytM5t+0TLtXPAI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1751530134; c=relaxed/simple;
-	bh=bm2jknTdnxhbI/Q/FCLLjjBDjk4OaS61afFuDR5COX4=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=rCm6p9r7DkfUePjTR1SowU2R5GJKcn3TTwS8LMREDbccg0sL3Ic0jQzreM3dttqPawKqFu3oJSMT030BDFwkdiWZ2HW2AKLVZ6hwFATUaro8OK9471+LGXLhPi3eWmIXdaL/EmDVwdxk68nCH/QQQJvNYU2oVqykKSa5TPAcFQA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=MCrZh1gZ; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id A4A09C4CEE3;
-	Thu,  3 Jul 2025 08:08:48 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1751530134;
-	bh=bm2jknTdnxhbI/Q/FCLLjjBDjk4OaS61afFuDR5COX4=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=MCrZh1gZXDj6kfFLveBXi46IBDJUAUqC0pELll+5kKwUZfHupGASilVzb1nW69pxk
-	 UCaE631VUXiG8En/UdmzXxu+6t/fK3lAMa91fElQHq/7UuxepM0caK1Wj7/c4dfboQ
-	 gXdvRZdTmNEMwdLgpgNZyh6QsJZnD163TDyUqXGq6fgywSYzkc0INwqN15myy4b/EV
-	 PVkCuOt0mk0/wE9xLRxP7iz+xGGKJzkqU9F15Pmk6YMBRBrtg+92DMHo/Hu4hGQ+BI
-	 tidht/F7pDhWQXSHY1Rw1DdzcE7ZazuRTfsgWEFD70mwCbZ1V3zbDvsyWqcs8sgFRm
-	 yXbh5iiQD/PXg==
-Message-ID: <defd70cb-4351-4b0b-b4d0-dd1ff831615c@kernel.org>
-Date: Thu, 3 Jul 2025 10:08:45 +0200
+	s=arc-20240116; t=1751530267; c=relaxed/simple;
+	bh=VJxDMDcvuNiGqPzWy8ueJi3tfdG9/R3VPQDmQXZ2D0A=;
+	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=c8RMIpB6RaWOomHDQ0Rwo/NuF2mY8Chyfs9xwp5x9f/oc229ntqJoR0oUinzJ52xFLIUhXDLe046B0ongJXs+2x0FMIdZEmQVBdqxZytu/P8IPBXWVlFq7gt7uL1nlEZHYUye7IylFgZBVxkd1dyp3H2YpZHajzihY625DAPS7Y=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=GSWLBGNi; arc=none smtp.client-ip=217.70.183.193
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
+Received: by mail.gandi.net (Postfix) with ESMTPSA id 436CD44386;
+	Thu,  3 Jul 2025 08:10:59 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
+	t=1751530262;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references;
+	bh=LAI1mLd80Uu/qyT+cT0jcdFKQzyXKg/JSwW4hvNefdw=;
+	b=GSWLBGNiFskz3pPr5ysMh8m1slrvPREt+nJA5jB3928KCzs35bf7DaMYR36LU0hmj+ZrFe
+	F9+odOPUcBJU3EBWmgMatI+v7VS3qWTCAUmbU0wfbiqk1cGk0ZtBucHP+YzTk/Brygtscm
+	foQqGflkGwK79xENMpRHwxR/Utj3dBgU8mUgxW/OhixYGpR4Aw7cH3zK+8Ap4ry0sXwAms
+	JC17SVHo+z0ed5KiUmRefW0pNYnBbfO9kWUimNasF9qSxKQ/cIkxJBvExaQLj/XSqoHJbv
+	HOYtjqyBNzGSyGAQGPqEdRc+f+dwPc7oHl426XP5m+Kd1R3AepOl02VFEl83Mw==
+Date: Thu, 3 Jul 2025 10:10:58 +0200
+From: Herve Codina <herve.codina@bootlin.com>
+To: "Rafael J. Wysocki" <rafael@kernel.org>
+Cc: Andrew Lunn <andrew@lunn.ch>, Greg Kroah-Hartman
+ <gregkh@linuxfoundation.org>, Danilo Krummrich <dakr@kernel.org>, Shawn Guo
+ <shawnguo@kernel.org>, Sascha Hauer <s.hauer@pengutronix.de>, Pengutronix
+ Kernel Team <kernel@pengutronix.de>, Fabio Estevam <festevam@gmail.com>,
+ Michael Turquette <mturquette@baylibre.com>, Stephen Boyd
+ <sboyd@kernel.org>, Andi Shyti <andi.shyti@kernel.org>, Wolfram Sang
+ <wsa+renesas@sang-engineering.com>, Peter Rosin <peda@axentia.se>, Derek
+ Kiernan <derek.kiernan@amd.com>, Dragan Cvetic <dragan.cvetic@amd.com>,
+ Arnd Bergmann <arnd@arndb.de>, Rob Herring <robh@kernel.org>, Saravana
+ Kannan <saravanak@google.com>, Bjorn Helgaas <bhelgaas@google.com>, Mark
+ Brown <broonie@kernel.org>, Len Brown <lenb@kernel.org>, Andy Shevchenko
+ <andriy.shevchenko@linux.intel.com>, Daniel Scally <djrscally@gmail.com>,
+ Heikki Krogerus <heikki.krogerus@linux.intel.com>, Sakari Ailus
+ <sakari.ailus@linux.intel.com>, Wolfram Sang <wsa@kernel.org>, Geert
+ Uytterhoeven <geert+renesas@glider.be>, Davidlohr Bueso
+ <dave@stgolabs.net>, Dave Jiang <dave.jiang@intel.com>, Alison Schofield
+ <alison.schofield@intel.com>, Vishal Verma <vishal.l.verma@intel.com>, Ira
+ Weiny <ira.weiny@intel.com>, Dan Williams <dan.j.williams@intel.com>,
+ linux-kernel@vger.kernel.org, imx@lists.linux.dev,
+ linux-arm-kernel@lists.infradead.org, linux-clk@vger.kernel.org,
+ linux-i2c@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-pci@vger.kernel.org, linux-spi@vger.kernel.org,
+ linux-acpi@vger.kernel.org, linux-cxl@vger.kernel.org, Allan Nielsen
+ <allan.nielsen@microchip.com>, Horatiu Vultur
+ <horatiu.vultur@microchip.com>, Steen Hegelund
+ <steen.hegelund@microchip.com>, Luca Ceresoli <luca.ceresoli@bootlin.com>,
+ Thomas Petazzoni <thomas.petazzoni@bootlin.com>
+Subject: Re: [PATCH v3 02/28] driver core: Rename get_dev_from_fwnode()
+ wrapper to get_device_from_fwnode()
+Message-ID: <20250703101058.225e296f@bootlin.com>
+In-Reply-To: <CAJZ5v0iaqT5VY3=UCkTGQKjE7thEPmsSqsrEw9ntWEpZ6bNR3A@mail.gmail.com>
+References: <20250613134817.681832-1-herve.codina@bootlin.com>
+	<20250613134817.681832-3-herve.codina@bootlin.com>
+	<CAJZ5v0iaqT5VY3=UCkTGQKjE7thEPmsSqsrEw9ntWEpZ6bNR3A@mail.gmail.com>
+Organization: Bootlin
+X-Mailer: Claws Mail 4.3.1 (GTK 3.24.43; x86_64-redhat-linux-gnu)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 1/2] dt-bindings: dsp: mediatek: add mt8196 dsp
- document
-To: "hailong.fan" <hailong.fan@mediatek.com>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Matthias Brugger <matthias.bgg@gmail.com>,
- AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
- Liam Girdwood <lgirdwood@gmail.com>,
- Peter Ujfalusi <peter.ujfalusi@linux.intel.com>,
- Bard Liao <yung-chuan.liao@linux.intel.com>,
- Ranjani Sridharan <ranjani.sridharan@linux.intel.com>,
- Daniel Baluta <daniel.baluta@nxp.com>,
- Kai Vehmanen <kai.vehmanen@linux.intel.com>,
- Pierre-Louis Bossart <pierre-louis.bossart@linux.dev>,
- Mark Brown <broonie@kernel.org>, Jaroslav Kysela <perex@perex.cz>,
- Takashi Iwai <tiwai@suse.com>
-Cc: devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, linux-mediatek@lists.infradead.org,
- sound-open-firmware@alsa-project.org, linux-sound@vger.kernel.org,
- Project_Global_Chrome_Upstream_Group@mediatek.com
-References: <20250703075632.20758-1-hailong.fan@mediatek.com>
- <20250703075632.20758-2-hailong.fan@mediatek.com>
-From: Krzysztof Kozlowski <krzk@kernel.org>
-Content-Language: en-US
-Autocrypt: addr=krzk@kernel.org; keydata=
- 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 a/A=
-In-Reply-To: <20250703075632.20758-2-hailong.fan@mediatek.com>
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
+X-GND-State: clean
+X-GND-Score: -100
+X-GND-Cause: gggruggvucftvghtrhhoucdtuddrgeeffedrtdefgdduleejiecutefuodetggdotefrodftvfcurfhrohhfihhlvgemucfitefpfffkpdcuggftfghnshhusghstghrihgsvgenuceurghilhhouhhtmecufedtudenucesvcftvggtihhpihgvnhhtshculddquddttddmnecujfgurhepfffhvfevuffkjghfohfogggtgfesthekredtredtjeenucfhrhhomhepjfgvrhhvvgcuvehoughinhgruceohhgvrhhvvgdrtghoughinhgrsegsohhothhlihhnrdgtohhmqeenucggtffrrghtthgvrhhnpedvhfeljedtfedtjeevffegtddutdeghfettdduhfeuhfdttdffieeuiefgvdfhvdenucffohhmrghinhepkhgvrhhnvghlrdhorhhgnecukfhppedvrgdtudemvgdtrgemvdekheemsgelkedtmegvgedttgemiegtgeefmegshegssgemrgegvdeknecuvehluhhsthgvrhfuihiivgeptdenucfrrghrrghmpehinhgvthepvdgrtddumegvtdgrmedvkeehmegsleektdemvgegtdgtmeeitgegfeemsgehsggsmegrgedvkedphhgvlhhopehlohgtrghlhhhoshhtpdhmrghilhhfrhhomhephhgvrhhvvgdrtghoughinhgrsegsohhothhlihhnrdgtohhmpdhnsggprhgtphhtthhopeegkedprhgtphhtthhopehrrghfrggvlheskhgvrhhnvghlrdhorhhgpdhrtghpthhtoheprghnughrvgifsehluhhnnhdrtghhpdhrtghpthhtohepghhrvghgkhhhsehlihhnuhigfhhouhhnuggrthhiohhnrdhorhhgpdhrtghpt
+ hhtohepuggrkhhrsehkvghrnhgvlhdrohhrghdprhgtphhtthhopehshhgrfihnghhuoheskhgvrhhnvghlrdhorhhgpdhrtghpthhtohepshdrhhgruhgvrhesphgvnhhguhhtrhhonhhigidruggvpdhrtghpthhtohepkhgvrhhnvghlsehpvghnghhuthhrohhnihigrdguvgdprhgtphhtthhopehfvghsthgvvhgrmhesghhmrghilhdrtghomh
+X-GND-Sasl: herve.codina@bootlin.com
 
-On 03/07/2025 09:56, hailong.fan wrote:
-> From: Hailong Fan <hailong.fan@mediatek.com>
+On Wed, 2 Jul 2025 20:17:15 +0200
+"Rafael J. Wysocki" <rafael@kernel.org> wrote:
+
+> On Fri, Jun 13, 2025 at 3:48 PM Herve Codina <herve.codina@bootlin.com> wrote:
+> >
+> > get_dev_from_fwnode() calls get_device() and so it acquires a reference
+> > on the device returned.
+> >
+> > In order to be more obvious that this wrapper is a get_device() variant,
+> > rename it to get_device_from_fwnode().
+> >
+> > Suggested-by: Mark Brown <broonie@kernel.org>
+> > Link: https://lore.kernel.org/lkml/CAGETcx97QjnjVR8Z5g0ndLHpK96hLd4aYSV=iEkKPNbNOccYmA@mail.gmail.com/
+> > Signed-off-by: Herve Codina <herve.codina@bootlin.com>
+> > Reviewed-by: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
+> > Reviewed-by: Saravana Kannan <saravanak@google.com>
+> > Reviewed-by: Luca Ceresoli <luca.ceresoli@bootlin.com>
+> > ---
+> >  drivers/base/core.c | 14 +++++++-------
+> >  1 file changed, 7 insertions(+), 7 deletions(-)
+> >
+
+...
+
 > 
-> This patch adds mt8196 dsp document. The dsp is used for Sound Open
-
-Please do not use "This commit/patch/change", but imperative mood. See
-longer explanation here:
-https://elixir.bootlin.com/linux/v5.17.1/source/Documentation/process/submitting-patches.rst#L95
-
-> Firmware driver node. It includes registers,  clocks, memory regions,
-> and mailbox for dsp.
+> There are patches in flight that add new users of get_dev_from_fwnode(), see
 > 
-> Signed-off-by: Hailong Fan <hailong.fan@mediatek.com>
-> ---
->  .../bindings/sound/mediatek,mt8196-dsp.yaml   | 95 +++++++++++++++++++
->  1 file changed, 95 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/sound/mediatek,mt8196-dsp.yaml
-> 
-> diff --git a/Documentation/devicetree/bindings/sound/mediatek,mt8196-dsp.yaml b/Documentation/devicetree/bindings/sound/mediatek,mt8196-dsp.yaml
-> new file mode 100644
-> index 000000000000..68f594f476e8
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/sound/mediatek,mt8196-dsp.yaml
-> @@ -0,0 +1,95 @@
-> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/sound/mediatek,mt8196-dsp.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: MediaTek mt8196 DSP core
-> +
-> +maintainers:
-> +  - Hailong Fan <hailong.fan@mediatek.com>
-> +
-> +description: The MediaTek mt8196 SoC mt8196 contain a DSP core used for advanced
+> https://lore.kernel.org/linux-pm/20250701114733.636510-1-ulf.hansson@linaro.org/T/#mc45a73769821cc520c35d8eb92d4bac75412bb7c
 
-Missing blank line. Look at other bindings. Also does not look wrapped
-at 80 (see Linux coding style doc).
+Thanks for pointing out.
 
+I will monitor the series you pointed out.
 
-> +  pre- and post- audio processing.
-> +
-> +properties:
-> +  compatible:
-> +    const: mediatek,mt8196-dsp
-> +
-> +  reg:
-> +    items:
-> +      - description: DSP configuration registers
-> +      - description: DSP SRAM
-> +      - description: DSP secure registers
-> +      - description: DSP bus registers
-> +
-> +  reg-names:
-> +    items:
-> +      - const: cfg
-> +      - const: sram
-> +      - const: sec
-> +      - const: bus
-> +
-> +  clocks:
-> +    items:
-> +      - description: mux for dsp clock
-> +      - description: 26M clock
-> +      - description: ADSP PLL clock
-> +
-> +  clock-names:
-> +    items:
-> +      - const: adsp_sel
+Once it is applied, I will update my modifications but I will probably send other
+iterations in the meantime in order to move forward on the other topic without
+waiting for the Ulf's series.
 
-Isn't this called audiodsp in other bindings?
+In my other iterations I will point the dependency in patches impacted i.e
+patches 2 and 3.
 
-> +      - const: clk26m
-
-Don't use frequencies. How is the pin or input called in datasheet? How
-other devices call it?
-
-> +      - const: adsppll
-> +
-> +  power-domains:
-> +    maxItems: 1
-> +
 Best regards,
-Krzysztof
+Hervé
 
