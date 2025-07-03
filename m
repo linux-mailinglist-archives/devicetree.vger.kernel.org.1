@@ -1,57 +1,56 @@
-Return-Path: <devicetree+bounces-192457-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-192458-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6222BAF6BA6
-	for <lists+devicetree@lfdr.de>; Thu,  3 Jul 2025 09:34:30 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 471CCAF6BBA
+	for <lists+devicetree@lfdr.de>; Thu,  3 Jul 2025 09:38:41 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 1109D4E0DB1
-	for <lists+devicetree@lfdr.de>; Thu,  3 Jul 2025 07:34:04 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 5BD801C46A92
+	for <lists+devicetree@lfdr.de>; Thu,  3 Jul 2025 07:38:54 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6B0C9295DB2;
-	Thu,  3 Jul 2025 07:34:26 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 629BE2989B0;
+	Thu,  3 Jul 2025 07:38:17 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="ZRbh2hny"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Ft1vF1I4"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3CA9C221F37;
-	Thu,  3 Jul 2025 07:34:25 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 31450298262;
+	Thu,  3 Jul 2025 07:38:16 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1751528066; cv=none; b=SHd6OnyoogtBsqNl+4ESfw8I4i7PVs+aUWjMdwmFXB3fk/qqrUWv15LdytayUv7tV3Zml06/gcfd4mp8/3azGeeP+vKXignE46nHja7DuCwVGWk7noQqxeonYo/hwGdITp0kA2Ak/eWOPzREu1y8mgPkL76mYlZ7dYYRcv8yf8g=
+	t=1751528297; cv=none; b=UHAuVMXLsSl56MF8eaDcqliQl5pknBP97YaVJYVIP04uD3rYHcxVBONb0fkEku1mQNRXwL3v2Pq8KqBUhXSzwsDszfVlUdD+KlvWbbR0ixJx2I5iTvy9RytR/aZHeWiyQvQ4izi3UEwjvxldejrZuhvPIUqJfhW/LL9NJhB1RGA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1751528066; c=relaxed/simple;
-	bh=OXyik24k6kEHjjfox8LkK4QShsZAoRfkfhgqrU9IJl4=;
+	s=arc-20240116; t=1751528297; c=relaxed/simple;
+	bh=bPAdNa3X8EhTJmuygX9fPL1Pr2+T2oa+I0dsXMyn1Mc=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=C/J+SWIgUtJiktNBkFEEar5jXNMDS1+wou4C8cTzQ6otMhQHsdnd3P7//HF2Mapvzl0can6pcEZoDvloGW6Ntaut0a1k5QHBrkepgFR5oT3oxOYMcytfHY+tgXvR2VJGX/cjd4a9o6bgHNMq7hKCUkGbGGvUZWbQBLMAtLrqhhM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=ZRbh2hny; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 33281C4CEE3;
-	Thu,  3 Jul 2025 07:34:25 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=AEaM+cvJVvGOgO2vF0us377MYK61KOcNO12JH4PTqkXUDl84HWvgVxshEcorc79hD/FID62PqiAH/+jVwlUW9I+COceVGUqrsqUzK2aPoslrAiIgG2lRS1YwBbl70eXtJ3RyFs76vPA+yzx1Zz8OiQrLPENXVMtZUn3ZckRNMVU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Ft1vF1I4; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 2EE2DC4CEE3;
+	Thu,  3 Jul 2025 07:38:15 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1751528065;
-	bh=OXyik24k6kEHjjfox8LkK4QShsZAoRfkfhgqrU9IJl4=;
+	s=k20201202; t=1751528296;
+	bh=bPAdNa3X8EhTJmuygX9fPL1Pr2+T2oa+I0dsXMyn1Mc=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=ZRbh2hnyPLNIUvbVN+dKD4dpSHP1jkXtOKEQhOYhewBfdLVbPijuwM0vJTyifbAlX
-	 ClcOFM5+jF1k3nV+Gny/H3IOECsD0Cuw8c11bQphQk6uev3tmpCI+DDB+zewc0EEZ0
-	 uPhumR1VJzuc9OO/LyCrwx5K5qutzd+LcK9/kwoTEuMMfx3f7gpYJFDTEjOYOU35/c
-	 T/W3MaTS0ZSp04UKh0CDZiA1DyLMEU3OoBV9LVpkn0Xb1DoIQVNc1dEfLxtpvuJoCA
-	 9wtkv4fFNb+zlKInHscdT6NJTJy9tWJ9ln8/WQPig0Vcc/OQEtZ6JeksDvgbSvqCLb
-	 csC1r7unQrw5Q==
-Date: Thu, 3 Jul 2025 09:34:23 +0200
+	b=Ft1vF1I4iki46Sz33pbkWqT+1CaYUE1DFOm1VaBY8+ycOn5fpbIsyrONvLpQHwfxl
+	 3BWTzlzw+kLWfsMRehs4lE8YbUPBwI7KtpN3fJTMszPH8qW6SFbD2uyiimsmOI74xV
+	 RYqboYFAiMN8q5k5aEQs+VCyVLWyPWXX9c1xN8WyiaNJCp/gazkBsxG02Me4crP0t+
+	 HVlp6yQt3Uw98WTsvZ8LwyQt62SN9zkbf4q49IPGxEf9TlT1X6ioGzfPTWcRXkcpd4
+	 KFmdnPVNHa44Q0kB3zUTGsghsjRw3277FaQa/ZOHyD0cveb+a/n9doSc3knRfqhe6j
+	 E3dv9Pwr3Jv3g==
+Date: Thu, 3 Jul 2025 09:38:14 +0200
 From: Krzysztof Kozlowski <krzk@kernel.org>
-To: wenswang@yeah.net
-Cc: robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org, 
-	jdelvare@suse.com, linux@roeck-us.net, corbet@lwn.net, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, linux-hwmon@vger.kernel.org, linux-doc@vger.kernel.org
-Subject: Re: [PATCH v2 3/4] dt-bindings: hwmon: Add MPS mp29502
-Message-ID: <20250703-incredible-curious-snail-dcbc60@krzk-bin>
-References: <20250701095625.1049917-1-wenswang@yeah.net>
- <20250701095930.1050234-1-wenswang@yeah.net>
- <20250701095930.1050234-3-wenswang@yeah.net>
+To: Rodrigo Gobbi <rodrigo.gobbi.7@gmail.com>
+Cc: jic23@kernel.org, dlechner@baylibre.com, nuno.sa@analog.com, 
+	andy@kernel.org, conor+dt@kernel.org, krzk+dt@kernel.org, robh@kernel.org, 
+	jean-baptiste.maneyrol@tdk.com, ~lkcamp/patches@lists.sr.ht, linux-iio@vger.kernel.org, 
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v2] dt-bindings: iio: pressure: add invensense,icp10100
+Message-ID: <20250703-rational-laughing-hedgehog-cc0eec@krzk-bin>
+References: <20250701221700.34921-1-rodrigo.gobbi.7@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -60,20 +59,31 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <20250701095930.1050234-3-wenswang@yeah.net>
+In-Reply-To: <20250701221700.34921-1-rodrigo.gobbi.7@gmail.com>
 
-On Tue, Jul 01, 2025 at 05:59:29PM +0800, wenswang@yeah.net wrote:
-> From: Wensheng Wang <wenswang@yeah.net>
-> 
-> Add support for MPS mp29502 controller
-> 
-> Signed-off-by: Wensheng Wang <wenswang@yeah.net>
-> ---
->  Documentation/devicetree/bindings/trivial-devices.yaml | 2 ++
->  1 file changed, 2 insertions(+)
->
+On Tue, Jul 01, 2025 at 07:05:43PM -0300, Rodrigo Gobbi wrote:
+> +$id: http://devicetree.org/schemas/iio/pressure/invensense,icp10100.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: InvenSense ICP-101xx Barometric Pressure Sensors
+> +
+> +maintainers:
+> +  - Jean-Baptiste Maneyrol <jean-baptiste.maneyrol@tdk.com>
+> +
+> +description: |
+> +  Support for ICP-101xx family: ICP-10100, ICP-10101, ICP-10110, ICP-10111.
 
-Just squash this with previous patch. Keep Ack.
+The problem with title and description here is that they do not match
+compatible. oneOf:
+
+1. Your statement is correct, but then compatibles are incomplete and
+will encourage people to use incomplete compatibles for e.g. ICP-10111.
+2. Compatible is correct but your statement is not correct, so then fix
+the statement - drop other devices.
+
+Assuming 1 is closer to truth, then I suggest to express it with
+documenting these compatibles and using invensense,icp10100 as fallback.
+
 
 Best regards,
 Krzysztof
