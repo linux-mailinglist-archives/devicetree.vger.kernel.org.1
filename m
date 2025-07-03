@@ -1,63 +1,48 @@
-Return-Path: <devicetree+bounces-192422-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-192423-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6A477AF6A99
-	for <lists+devicetree@lfdr.de>; Thu,  3 Jul 2025 08:43:33 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id D98C0AF6AA2
+	for <lists+devicetree@lfdr.de>; Thu,  3 Jul 2025 08:44:03 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 049FE171611
-	for <lists+devicetree@lfdr.de>; Thu,  3 Jul 2025 06:43:29 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id D63691C46A78
+	for <lists+devicetree@lfdr.de>; Thu,  3 Jul 2025 06:44:17 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0DC0D2951C9;
-	Thu,  3 Jul 2025 06:43:13 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3CF4B2951C9;
+	Thu,  3 Jul 2025 06:43:51 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="QH7h1fV1"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="jlh7trl6"
 X-Original-To: devicetree@vger.kernel.org
-Received: from fllvem-ot04.ext.ti.com (fllvem-ot04.ext.ti.com [198.47.19.246])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7D3BD2951CD;
-	Thu,  3 Jul 2025 06:43:10 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.19.246
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 12ECB2949F1;
+	Thu,  3 Jul 2025 06:43:50 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1751524992; cv=none; b=sHNhlCnXV1IYBdDJnbg5S63NuMdxjCG3wVSKlvzT2vTk7FLVXqMXQ0zaoCRMhod4MiCHn3zzGc4cyubBtz8gl9sxDpp1v9xggU+EzyGBqOgyqmQYXqawZuUxNCg3jkYD3TAII0uc+7G/YQnu7zk589Rl9gVdz4HMME+ISGFOhDM=
+	t=1751525031; cv=none; b=n6V8eMEx9Syk8a3GLz3DWpjWcITh93ZNv5V8bSdi7BcB8pyL3Cpo+QTHMz3dNSKkUhRhOXRF4HxXYUi3z1eWZNrJMrsZo96H8oYKvptnzSaYfgOianq8eZmaSUifou+yfzS6jggTGovAl335rx4RqMZ4hJyBmC2lTqXPq72dr3s=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1751524992; c=relaxed/simple;
-	bh=IInDjQia2ME46qt6AmZ2In32ciFiqBmORUs3cZemT2I=;
-	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
-	 In-Reply-To:Content-Type; b=V1RoIgBdARQflVlOew4Azg6dvo7yCt9Y6a0bgcYIHIt6vwbtmZTDybZsSq71lTT6I73AjH4kqNebqM6x8p/FoVI9XcAMZdZCS46IVSltXdJUJqEB9yVWB5B+ZcSY8vvSSPtNnsJpztYiLGj4XqUHPd6urzWF8HkEWK+5lnmgzNI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=QH7h1fV1; arc=none smtp.client-ip=198.47.19.246
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
-Received: from lelvem-sh02.itg.ti.com ([10.180.78.226])
-	by fllvem-ot04.ext.ti.com (8.15.2/8.15.2) with ESMTP id 5636h0874128774;
-	Thu, 3 Jul 2025 01:43:00 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1751524980;
-	bh=8ZjWnkrA791iDf/xncUsMifSlZwO2guVSrO1y+XKT/c=;
-	h=Date:Subject:To:CC:References:From:In-Reply-To;
-	b=QH7h1fV10LGwkxXoEkyi3ANMinQMY+RosZkvIcydv7HKoXcVEOK2luHRm6qYGoSXC
-	 MAHV6hE0IWwcyBEqzNxGNlDZrKDBLN4PYKG6K1D3iKg0VrHB0O/LYtlgySM9GyiwGK
-	 3Tv7SOa6hYiqypbI7US4qJ5IfP2asLMp9weIOHn0=
-Received: from DFLE110.ent.ti.com (dfle110.ent.ti.com [10.64.6.31])
-	by lelvem-sh02.itg.ti.com (8.18.1/8.18.1) with ESMTPS id 5636h05t1590257
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-SHA256 bits=128 verify=FAIL);
-	Thu, 3 Jul 2025 01:43:00 -0500
-Received: from DFLE108.ent.ti.com (10.64.6.29) by DFLE110.ent.ti.com
- (10.64.6.31) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.55; Thu, 3
- Jul 2025 01:42:59 -0500
-Received: from lelvem-mr06.itg.ti.com (10.180.75.8) by DFLE108.ent.ti.com
- (10.64.6.29) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.55 via
- Frontend Transport; Thu, 3 Jul 2025 01:43:00 -0500
-Received: from [172.24.227.38] (ula0502350.dhcp.ti.com [172.24.227.38])
-	by lelvem-mr06.itg.ti.com (8.18.1/8.18.1) with ESMTP id 5636gsgk369926;
-	Thu, 3 Jul 2025 01:42:55 -0500
-Message-ID: <f7b0c7f0-9af1-4105-a143-103c49fe2320@ti.com>
-Date: Thu, 3 Jul 2025 12:12:54 +0530
+	s=arc-20240116; t=1751525031; c=relaxed/simple;
+	bh=hi5QSiT0wQzu22aUMQS/tmmtm5N0LCsu4T5qKCg3pus=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=KdZk73fIN2BDORdiBkBB+TXZxtM5SxDYSW2T4Kn55QgLjMmxlqQKFIhwUXL2ZPcbDw/Ye/mU8z9LLjbNanm0HV7bgp1e2k6PgDBg84sCOZQXIcPRkWXaiqe1tQepHgtFv8UXldG+kwiZ2xHFujM2VFdH/jKpVLf4XAgByFmdByU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=jlh7trl6; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id B7500C4CEE3;
+	Thu,  3 Jul 2025 06:43:48 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1751525030;
+	bh=hi5QSiT0wQzu22aUMQS/tmmtm5N0LCsu4T5qKCg3pus=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=jlh7trl6uSVOMqdBDCh3j49yHfcZGUKYt/rO4UcJHlAQzGFpMzX7aO2i2AoZdeZuH
+	 QtTnJ6ei0CqoERQA2+OVbOq7dc2idlyl3A5EhOAzzkmbr398bx5Vc6JcBeJ0Pwb/vR
+	 rV9pSfNE4EmTQI0vCO86T4uoJ4JPuKrEOVzx6LPLpb3eWMh08Aqv8ma/IoG1hE02c4
+	 MImZ9ZoB4FPXw3XTjk0fXvHT23xNWSFunU9C9QHyjWy4EoJU9PL4oSVRFnLsAtCLjv
+	 F1F7T5bGtUvqLiNec41sR6ntqIqOtnUXD1e1aav5sFfBpyl3ekFrD+ANFFrXgBt6BZ
+	 3NHfxi8Junltg==
+Message-ID: <6f4f68af-7b24-480f-8dae-372098b437fc@kernel.org>
+Date: Thu, 3 Jul 2025 08:43:46 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -65,132 +50,115 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v5 4/4] arm64: dts: ti: Add support for AM62D2-EVM
-To: Bryan Brattlof <bb@ti.com>
-CC: <nm@ti.com>, <vigneshr@ti.com>, <praneeth@ti.com>, <kristo@kernel.org>,
-        <robh@kernel.org>, <krzk+dt@kernel.org>, <conor+dt@kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>, <khasim@ti.com>, <v-singh1@ti.com>,
-        <afd@ti.com>, <devarsht@ti.com>, <s-vadapalli@ti.com>,
-        <andrew@lunn.ch>
-References: <20250627115753.2246881-1-p-bhagat@ti.com>
- <20250627115753.2246881-5-p-bhagat@ti.com>
- <20250701162504.dck3763ik6kpo7ec@bryanbrattlof.com>
+Subject: Re: [PATCH V1 3/9] dt-bindings: power: Add AMD Versal power domain
+ bindings
+To: Gregory Williams <gregory.williams@amd.com>, ogabbay@kernel.org,
+ michal.simek@amd.com, robh@kernel.org
+Cc: dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org
+References: <20250702155630.1737227-1-gregory.williams@amd.com>
+ <20250702155630.1737227-4-gregory.williams@amd.com>
+From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
-From: Paresh Bhagat <p-bhagat@ti.com>
-In-Reply-To: <20250701162504.dck3763ik6kpo7ec@bryanbrattlof.com>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
+Autocrypt: addr=krzk@kernel.org; keydata=
+ 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 a/A=
+In-Reply-To: <20250702155630.1737227-4-gregory.williams@amd.com>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
-X-C2ProcessedOrg: 333ef613-75bf-4e12-a4b1-8e3623f5dcea
 
-Hi Bryan,
+On 02/07/2025 17:56, Gregory Williams wrote:
+> Define Versal power domain value macros.
+> 
+> Signed-off-by: Gregory Williams <gregory.williams@amd.com>
+> ---
+>  include/dt-bindings/power/xlnx-versal-power.h | 55 +++++++++++++++++++
 
+<form letter>
+Please use scripts/get_maintainers.pl to get a list of necessary people
+and lists to CC (and consider --no-git-fallback argument, so you will
+not CC people just because they made one commit years ago). It might
+happen, that command when run on an older kernel, gives you outdated
+entries. Therefore please be sure you base your patches on recent Linux
+kernel.
 
-On 01/07/25 21:55, Bryan Brattlof wrote:
-> On June 27, 2025 thus sayeth Paresh Bhagat:
->> AM62D-EVM evaluation module (EVM) is a low-cost expandable platform board
->> designed for AM62D2 SoC from TI. It supports the following interfaces:
->>
->> * 4 GB LPDDR4 RAM
->> * x2 Gigabit Ethernet expansion connectors
->> * x4 3.5mm TRS Audio Jack Line In
->> * x4 3.5mm TRS Audio Jack Line Out
->> * x2 Audio expansion connectors
->> * x1 Type-A USB 2.0, x1 Type-C dual-role device (DRD) USB 2.0
->> * x1 UHS-1 capable micro SD card slot
->> * 32 GB eMMC Flash
->> * 512 Mb OSPI NOR flash
->> * x4 UARTs via USB 2.0-B
->> * XDS110 for onboard JTAG debug using USB
->> * Temperature sensors, user push buttons and LEDs
->>
->> Although AM62D2 and AM62A7 differ in peripheral capabilities example
->> multimedia, VPAC, and display subsystems, the core architecture remains
->> same. To reduce duplication, AM62D support reuses the AM62A dtsi and the
->> necessary overrides will be handled in SOC specific dtsi file and a
->> board specific dts.
->>
->> Add basic support for AM62D2-EVM.
->>
->> Schematics Link - https://www.ti.com/lit/zip/sprcal5
->>
->> Signed-off-by: Paresh Bhagat <p-bhagat@ti.com>
->> Signed-off-by: Siddharth Vadapalli <s-vadapalli@ti.com>
->> ---
->>   arch/arm64/boot/dts/ti/Makefile          |   3 +
->>   arch/arm64/boot/dts/ti/k3-am62d2-evm.dts | 599 +++++++++++++++++++++++
->>   arch/arm64/boot/dts/ti/k3-am62d2.dtsi    |  25 +
->>   3 files changed, 627 insertions(+)
->>   create mode 100644 arch/arm64/boot/dts/ti/k3-am62d2-evm.dts
->>   create mode 100644 arch/arm64/boot/dts/ti/k3-am62d2.dtsi
->>
-> ...
->
->> diff --git a/arch/arm64/boot/dts/ti/k3-am62d2.dtsi
->> b/arch/arm64/boot/dts/ti/k3-am62d2.dtsi
->> new file mode 100644
->> index 000000000000..70aeb40872a9
->> --- /dev/null
->> +++ b/arch/arm64/boot/dts/ti/k3-am62d2.dtsi
->> @@ -0,0 +1,25 @@
->> +// SPDX-License-Identifier: GPL-2.0-only OR MIT
->> +/*
->> + * Device Tree Source for AM62D2 SoC family in Quad core configuration
->> + *
->> + * TRM: https://www.ti.com/lit/pdf/sprujd4
->> + *
->> + * Copyright (C) 2025 Texas Instruments Incorporated - https://www.ti.com/
->> + */
->> +
->> +/dts-v1/;
->> +
->> +#include "k3-am62a7.dtsi"
-> If we want to reuse the AM62A chassis I think we should probably reused
-> the AM62AX_IOPAD() macro instead of creating a new one.
+Tools like b4 or scripts/get_maintainer.pl provide you proper list of
+people, so fix your workflow. Tools might also fail if you work on some
+ancient tree (don't, instead use mainline) or work on fork of kernel
+(don't, instead use mainline). Just use b4 and everything should be
+fine, although remember about `b4 prep --auto-to-cc` if you added new
+patches to the patchset.
+</form letter>
 
 
-AM62D does not necessarily have the same pin configuration compared to 
-AM62A. While it is a macro which could be shareable across many boards, 
-i think its preferable we maintain separate definitions to highlight the 
-new SoCs. AM62D is a separate package, with some components reused from 
-AM62a.
+>  1 file changed, 55 insertions(+)
+>  create mode 100644 include/dt-bindings/power/xlnx-versal-power.h
+> 
+> diff --git a/include/dt-bindings/power/xlnx-versal-power.h b/include/dt-bindings/power/xlnx-versal-power.h
+> new file mode 100644
+> index 000000000000..effbc70e5a12
+> --- /dev/null
+> +++ b/include/dt-bindings/power/xlnx-versal-power.h
+> @@ -0,0 +1,55 @@
+> +/* SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause) */
+> +/*
+> + *  Copyright (C) 2019 - 2021 Xilinx, Inc.
+> + *  Copyright (C) 2024 Advanced Micro Devices, Inc.
+> + */
+> +
+> +#ifndef _DT_BINDINGS_VERSAL_POWER_H
+> +#define _DT_BINDINGS_VERSAL_POWER_H
+> +
+> +#define PM_DEV_RPU0_0				(0x18110005U)
+> +#define PM_DEV_RPU0_1				(0x18110006U)
+
+Bindings ID start from 0 or 1 and are decimal numbers. None of these are
+bindings (and commit msg does not explain here anything).
+
+Also, where is the compatible using these? Why is this a separate patch?
 
 
->
->> +
->> +/ {
->> +	model = "Texas Instruments K3 AM62D SoC";
->> +	compatible = "ti,am62d2";
->> +};
->> +
->> +&vpu {
->> +	status = "disabled";
->> +};
->> +
->> +&e5010 {
->> +	status = "disabled";
->> +};
-> So I could be a little out of date on the style guidelines here, but my
-> intuition is device trees, much like real trees, can only grow, so we
-> can't inherit the am62a.dtsi and remove things.
->
-> My understanding is we have to create a full am62d.dtsi with its
-> features that the am62a.dtsi can extend with the vpu{} and e5010{} nodes
->
-> ~Bryan
 
-
-Agree we should ideally keep the device trees extending. But in this 
-case it will involve changes not only in am62a.dtsi but ideally it will 
-change k3-am62a-main.dtsi and k3-am62a-mcu.dtsi as well. This moves us 
-back to version 3 of this series 
-https://lore.kernel.org/all/20250508091422.288876-1-p-bhagat@ti.com/ 
-where i created *common*.dtsi files which looks a bit complex.
-
-
-The current method also ensures that customers can start their 
-development of a new board with k3-am62d2.dtsi, while maintaining less 
-complexity and is a easier to follow approach.
-
-
+Best regards,
+Krzysztof
 
