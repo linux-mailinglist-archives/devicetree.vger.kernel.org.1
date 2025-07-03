@@ -1,139 +1,172 @@
-Return-Path: <devicetree+bounces-192733-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-192737-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id E73CFAF7B30
-	for <lists+devicetree@lfdr.de>; Thu,  3 Jul 2025 17:22:54 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id B66C4AF7BB2
+	for <lists+devicetree@lfdr.de>; Thu,  3 Jul 2025 17:27:18 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 30A4C1CA7604
-	for <lists+devicetree@lfdr.de>; Thu,  3 Jul 2025 15:16:36 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id C8BC81CA6377
+	for <lists+devicetree@lfdr.de>; Thu,  3 Jul 2025 15:21:00 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E624F2EFD8C;
-	Thu,  3 Jul 2025 15:13:46 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3E2D42EF9A6;
+	Thu,  3 Jul 2025 15:19:20 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="mfgFCklq"
+	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="WYW0qcLi"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ed1-f47.google.com (mail-ed1-f47.google.com [209.85.208.47])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from relay7-d.mail.gandi.net (relay7-d.mail.gandi.net [217.70.183.200])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F15CC2EFD8A
-	for <devicetree@vger.kernel.org>; Thu,  3 Jul 2025 15:13:44 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.47
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9E47C2EAD10;
+	Thu,  3 Jul 2025 15:19:17 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.70.183.200
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1751555626; cv=none; b=JqWO/RmLI/LCsqDPXeWcHTrlvSQb9Gjt+fsJemtgN+ZWfvjuF69H3WB3OMm15vpMI+Ha+kO+A7qya5Q3ESLiLoyH9ESLKZyGe4mMdnl99fNYiRfk3X/0cajcPgFduJoCHhyJ0gWKIbwp1Gz0jgsLvjPO/4e8rjPOuoSyG947lUM=
+	t=1751555960; cv=none; b=Kf4TQDISydEONf0NBhH9z7hDdte3hLJJOtRd4Grhtx2Qkz8X/XWp/ATz1pO2DDnQokM+LEPKoyGP3rxeO/pw0Rn86h19d2MM5d1cjR/3f+5DdkbpldHt2sdaFH+CZ6YeHN0K3XhbFLecjjaEMTuezx2yvgK8ei9S5cmoRWTf+M8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1751555626; c=relaxed/simple;
-	bh=qJgf1RF5GwyM1t3Atw/Q+kAszB7c4DDzNJhbDeMNAts=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=MuNV+Oyd0fuf+b6/yV6GvC4m1ALl2RyrziFaMt4WvflYLL6pHqi9kvyBz84qllH4GvzViWStVFodjEX/XSQztfFIP/rdqvpUnDPhcp8iwQFPeLhn5I/oi5HQqTyVIB+oYBovl05Cm5IT3sTVZzm2/JfA0ZnbaSgc3+1kWXZ+sDA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=mfgFCklq; arc=none smtp.client-ip=209.85.208.47
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-ed1-f47.google.com with SMTP id 4fb4d7f45d1cf-60bf5a08729so11396564a12.0
-        for <devicetree@vger.kernel.org>; Thu, 03 Jul 2025 08:13:44 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1751555623; x=1752160423; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=+rhVhsVllegKUMnK5NOGl/rqgDtbDtwFSHzwLKRqIUk=;
-        b=mfgFCklqtoxCLPZy3t+4gjqsCrB5P567O9yGv2ICMwYWYF9p6akr2ozIQo9ulLf4tO
-         0PoL5YPOBvnRopNc286PS8bk/YmoBUOcxnbNraLGwo1JAdRZDUXSI5xySfRNPrkwBxBd
-         rAYoBG9IxVGiTLwP47thngj005FHJJmrWr3XQi5EnUgPSx64I//tDiSHwqhFceig2neX
-         vidUlXD9pV0cQ8Fyu/q6EvRw7p99gis1jmxGWvF2MrUMIZ/Mw1rNSWeK7p2I9HTd5d0I
-         pwOGrKytSCpojm6KyL8hDW0Sn3bXjYCePzrzkTq/CXBEkE8SxrXk9DpcrmqfFfM/MFU1
-         vF9A==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1751555623; x=1752160423;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=+rhVhsVllegKUMnK5NOGl/rqgDtbDtwFSHzwLKRqIUk=;
-        b=ceDMcPLqS2veFfGYKiGUM6Hm6a8vb0zyK40cTK/eUa9IAPbuKhBaKd1mANsqlPxZ3D
-         H5r6XiXw980/cXUmXzK6Izvm8tL70XwiMYOu/ze3+QHS57idf1aGnQtzyuFUIcz2W3Ow
-         iie//o8MQdMkqIm/XTabIzc3kQg7eI2TRi6B248m66VjjAffIq72AKIWc/jFSbhFr9BH
-         N1KP8al6NMp481W9NHxBBChzUgJqBiuWNlYBpCXa2n/RnSOqqPJS1cfj/4Jz/jUk57cL
-         osK0z2Qw42M7S501kZ63TvJGDsLitKJMTcLXDXtTewwerRzrttmj66+iQDxSmTY6rIJm
-         MxKA==
-X-Forwarded-Encrypted: i=1; AJvYcCWOXX7ADPH1j1E7SfKVS3IgnydZJH/RJwgR4rehcM9MhwMWWKw7nXZirRZow+s13rwwLBXwG1RIjcna@vger.kernel.org
-X-Gm-Message-State: AOJu0YytyIFVgIZWaFEuAMzJdnfyenysbhLdmYS4CZUKxmDgzKeogJCp
-	MzRC2eUZNrfxV2MbT2m/Bd84lRyuYgnBYGDMXtBmHXWbylievzSQT4bosAzfLyZjTGA=
-X-Gm-Gg: ASbGncvKplck1xu6mQOF5EfUh9pMhh8PHarLD8V7LKcnSoTOlBfMSQDoJDF+Jhqj/ee
-	HYYMJ0CqR1KtADMkhym96OsTINglfweZ8OBYSNsop+TzSTdbYFyThk1ofBHcFI2PVWl9oThdkHx
-	pdkW/Ptlw+pvjAIV/+tnWh4BTeQZKX2NCORCxdFW1ERbzKY+5toMuO0ftf5c+FlXC04f4T6SWK4
-	7Pa1uf7YV5yQMAiMs+CD0AdFJ4YY67u0RTw9SLX2K34nAggBJa0Ipb2k6BaAbj8sA46b2BFA5ui
-	v/7xDj8cwy2jJgpcLvcjLclGjbyYPGXqAQjEJcXoqSUV8pvf60xk0XzHS/tse5rznFhOyw==
-X-Google-Smtp-Source: AGHT+IHLbeEWvDtZyLpkZYq9v/9MjHWg44ua068Wk7HOmNac3d6CS9uj1wvGNiv38jkJSQ0CP6C9+w==
-X-Received: by 2002:a05:6402:22ca:b0:60c:39e4:93e6 with SMTP id 4fb4d7f45d1cf-60e52d1939cmr4886568a12.24.1751555623170;
-        Thu, 03 Jul 2025 08:13:43 -0700 (PDT)
-Received: from linaro.org ([82.79.186.23])
-        by smtp.gmail.com with ESMTPSA id 4fb4d7f45d1cf-60c828e1845sm10903471a12.23.2025.07.03.08.13.41
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 03 Jul 2025 08:13:42 -0700 (PDT)
-Date: Thu, 3 Jul 2025 18:13:40 +0300
-From: Abel Vesa <abel.vesa@linaro.org>
-To: Peng Fan <peng.fan@nxp.com>
-Cc: Michael Turquette <mturquette@baylibre.com>,
-	Stephen Boyd <sboyd@kernel.org>, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
-	Sascha Hauer <s.hauer@pengutronix.de>,
-	Pengutronix Kernel Team <kernel@pengutronix.de>,
-	Fabio Estevam <festevam@gmail.com>, Abel Vesa <abelvesa@kernel.org>,
-	Frank Li <frank.li@nxp.com>, linux-clk@vger.kernel.org,
-	devicetree@vger.kernel.org, imx@lists.linux.dev,
-	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v2 1/5] dt-bindings: clock: Add support for i.MX94
- LVDS/DISPLAY CSR
-Message-ID: <aGaeJIjFMLcV8ly1@linaro.org>
-References: <20250703-imx95-blk-ctl-7-1-v2-0-b378ad796330@nxp.com>
- <20250703-imx95-blk-ctl-7-1-v2-1-b378ad796330@nxp.com>
+	s=arc-20240116; t=1751555960; c=relaxed/simple;
+	bh=7R1O2w50zFVFdltzoczZuuzjYk84Ji5n0+6r3bBzZuw=;
+	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=L74oY4TMeaGYZ0r2aJMkQXkpLsLUFK4t/LhNC/Li2Qt9eMbawgU+nwa/hHeG1+SCiZ0nlXBeoYN0Tfg9/E67ROU1I3Avdqy1bQ2viAV5X7UfS245tr/OFVTQ4gQuwpWS1kCuLOScF/JXD2MAcnrmFE2OPNHvJvrQRKXnEBYdNCY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=WYW0qcLi; arc=none smtp.client-ip=217.70.183.200
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
+Received: by mail.gandi.net (Postfix) with ESMTPSA id 36B6D4433D;
+	Thu,  3 Jul 2025 15:19:08 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
+	t=1751555949;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references;
+	bh=3vPbA55GiZOX20WwUdHkWkbBRAgEIfKrszAkQo+WB4o=;
+	b=WYW0qcLiT4vUm+pNNStTnW831aKTemEVwc+gCHUY6xKk/NtXaJjaqxwxpWv2WdW0e2BQ4Y
+	kf0PKD0b6P8isXfU4Vc5vefI726O2iG2WkLgbXFskKMM5oJevjCE/gm5cjHtLPvTm6l8dj
+	sCbTHLYLLlWbpPWWYyAIDOk6AYyT7C3BWpi9/XugIR9g/kCp35W032g2NUESsKCpmkegcv
+	cBUWO9vPpc918ug03XtOwZCrPgr6tGumYbpULTMrSRc7HLdZ6Ve9ZsX/G/ubSAwH48J7Yp
+	HUxPkRrUHwUfbJwccKfKpsC0htQC1s9PagdzubfbLV3Taoavcmx8aY64gijLiA==
+Date: Thu, 3 Jul 2025 17:19:07 +0200
+From: Herve Codina <herve.codina@bootlin.com>
+To: Ayush Singh <ayush@beagleboard.org>
+Cc: conor+dt@kernel.org, devicetree@vger.kernel.org, krzk+dt@kernel.org,
+ linux-i2c@vger.kernel.org, linux-kernel@vger.kernel.org,
+ luca.ceresoli@bootlin.com, robh@kernel.org, thomas.petazzoni@bootlin.com,
+ wsa+renesas@sang-engineering.com
+Subject: Re: [RFC PATCH 0/3] i2c: Introduce i2c bus extensions
+Message-ID: <20250703171907.12b00c43@bootlin.com>
+In-Reply-To: <8859d983-f4ff-498b-bb0b-eb84206ad969@beagleboard.org>
+References: <20250205173918.600037-1-herve.codina@bootlin.com>
+	<525877c8-6c64-45b3-b4aa-a52768e59b86@beagleboard.org>
+	<20250613093016.43230e3b@bootlin.com>
+	<8859d983-f4ff-498b-bb0b-eb84206ad969@beagleboard.org>
+Organization: Bootlin
+X-Mailer: Claws Mail 4.3.1 (GTK 3.24.43; x86_64-redhat-linux-gnu)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20250703-imx95-blk-ctl-7-1-v2-1-b378ad796330@nxp.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+X-GND-State: clean
+X-GND-Score: -100
+X-GND-Cause: gggruggvucftvghtrhhoucdtuddrgeeffedrtdefgddvtdeivdcutefuodetggdotefrodftvfcurfhrohhfihhlvgemucfitefpfffkpdcuggftfghnshhusghstghrihgsvgenuceurghilhhouhhtmecufedtudenucesvcftvggtihhpihgvnhhtshculddquddttddmnecujfgurhepfffhvfevuffkjghfohfogggtgfesthekredtredtjeenucfhrhhomhepjfgvrhhvvgcuvehoughinhgruceohhgvrhhvvgdrtghoughinhgrsegsohhothhlihhnrdgtohhmqeenucggtffrrghtthgvrhhnpeevleefvdeujedvheekvdegleevjefgtdeuieetveefhedvvdejleeuhedvfeetieenucffohhmrghinhepghhithhhuhgsrdgtohhmpdhkvghrnhgvlhdrohhrghdpsghoohhtlhhinhdrtghomhenucfkphepvdgrtddumegvtdgrmedvkeehmegsleektdemvgegtdgtmeeitgegfeemsgehsggsmegrgedvkeenucevlhhushhtvghrufhiiigvpedtnecurfgrrhgrmhepihhnvghtpedvrgdtudemvgdtrgemvdekheemsgelkedtmegvgedttgemiegtgeefmegshegssgemrgegvdekpdhhvghloheplhhotggrlhhhohhsthdpmhgrihhlfhhrohhmpehhvghrvhgvrdgtohguihhnrgessghoohhtlhhinhdrtghomhdpnhgspghrtghpthhtohepuddtpdhrtghpthhtoheprgihuhhshhessggvrghglhgvsghorghrugdrohhrghdprhgtphhtthhopegtohhnohhrodgutheskhgvrhhnvghlrdhorhhgpdhrtghpthhto
+ hepuggvvhhitggvthhrvggvsehvghgvrhdrkhgvrhhnvghlrdhorhhgpdhrtghpthhtohepkhhriihkodgutheskhgvrhhnvghlrdhorhhgpdhrtghpthhtoheplhhinhhugidqihdvtgesvhhgvghrrdhkvghrnhgvlhdrohhrghdprhgtphhtthhopehlihhnuhigqdhkvghrnhgvlhesvhhgvghrrdhkvghrnhgvlhdrohhrghdprhgtphhtthhopehluhgtrgdrtggvrhgvshholhhisegsohhothhlihhnrdgtohhmpdhrtghpthhtoheprhhosghhsehkvghrnhgvlhdrohhrgh
+X-GND-Sasl: herve.codina@bootlin.com
 
-On 25-07-03 11:40:20, Peng Fan wrote:
-> Add i.MX94 LVDS/DISPLAY CSR compatible string.
+Hi Ayush,
+
+On Thu, 3 Jul 2025 16:56:20 +0530
+Ayush Singh <ayush@beagleboard.org> wrote:
+
+> On 6/13/25 13:00, Herve Codina wrote:
 > 
-> Add clock index for the two CSRs.
+> > Hi Ayush,
+> >
+> > On Thu, 12 Jun 2025 13:22:45 +0530
+> > Ayush Singh <ayush@beagleboard.org> wrote:
+> >  
+> >> I have tested this patch series for use with pocketbeagle 2 connector
+> >> driver [0]. To get a better idea how it looks in real devicetree, see
+> >> the base tree [1] and the overlay [2]. Since it also used gpio and pwm
+> >> nexus nodes, along with providing pinmux for pins, it can provide a
+> >> better picture of how the different pieces (export-symbols, nexus nodes,
+> >> etc) look when combined.  
+> > Nice. Happy to see that I am no more alone with a system using these
+> > features.
+> >  
+> >>
+> >> I also have a question for Herve. Do you already have any working
+> >> patches for similar extension for SPI and UART in some private tree?  
+> > No, I didn't do anything related to SPI nor UART.
+> >
+> > On my system, no SPI nor UART are wired to my connector and so, I haven't
+> > got any needs to implement extension busses for SPI an UART (serial dev bus)
+> > nor any support for nexus nodes for other kind of components.
+> >
+> > Best regards,
+> > Hervé  
 > 
-> Signed-off-by: Peng Fan <peng.fan@nxp.com>
-> ---
->  .../devicetree/bindings/clock/nxp,imx95-blk-ctl.yaml        |  2 ++
->  include/dt-bindings/clock/nxp,imx94-clock.h                 | 13 +++++++++++++
->  2 files changed, 15 insertions(+)
 > 
-> diff --git a/Documentation/devicetree/bindings/clock/nxp,imx95-blk-ctl.yaml b/Documentation/devicetree/bindings/clock/nxp,imx95-blk-ctl.yaml
-> index d0291bfff23a27cb55683880fe3a1f8b3e2ada5a..27403b4c52d6219d31649d75539af93edae0f17d 100644
-> --- a/Documentation/devicetree/bindings/clock/nxp,imx95-blk-ctl.yaml
-> +++ b/Documentation/devicetree/bindings/clock/nxp,imx95-blk-ctl.yaml
-> @@ -13,6 +13,8 @@ properties:
->    compatible:
->      items:
->        - enum:
-> +          - nxp,imx94-display-csr
-> +          - nxp,imx94-lvds-csr
->            - nxp,imx95-camera-csr
->            - nxp,imx95-display-csr
->            - nxp,imx95-hsio-blk-ctl
-> diff --git a/include/dt-bindings/clock/nxp,imx94-clock.h b/include/dt-bindings/clock/nxp,imx94-clock.h
-> new file mode 100644
-> index 0000000000000000000000000000000000000000..b47f74f00f119ff1c1e6dad885b5b1e3b1f248a1
-> --- /dev/null
-> +++ b/include/dt-bindings/clock/nxp,imx94-clock.h
-> @@ -0,0 +1,13 @@
-> +/* SPDX-License-Identifier: GPL-2.0-only OR MIT */
+> I have added SPI bus extension to my kernel tree [0]. Now, the techlab 
+> cape (other than mikrobus port) works using export-symbols + i2c and spi 
+> bus extension + eeprom auto detection.
+> 
+> 
+> Here is a list of everything currently working on the tree:
+> 
+> 1. EEPROM based auto-detection.
+> 
+> 2. SPI
+> 
+> 3. I2C
+> 
+> 4. PWM
+> 
+> 5. GPIO
+> 
+> 
+> Missing:
+> 
+> 1. UART (Don't have a cape that has something using the UART yet. Maybe 
+> need to experiment with MikroBUS).
+> 
+> 
+> Not quite sure what else to do to move things forward.
+> 
+> 
+> Best Regards,
+> 
+> Ayush Singh
+> 
+> 
+> [0]: https://github.com/Ayush1325/linux/tree/beagle-cape-v1
+> 
 
-/* SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause) */
+I've just looked at your code related to SPI. It is closed to the I2C code
+and that's pretty nice!
 
-With that fixed:
+I think to move forward we have to wrote the SPI bus extension binding and
+propose the binding + the code upstream.
 
-Reviewed-by: Abel Vesa <abel.vesa@linaro.org>
+Compared to I2C bus extension, only one repo is involved for SPI, the Linux
+kernel repo. On I2C bus extension, I am stuck on the binding which is a
+modification on the dtschema repo [0].
+
+The SPI binding modifications for SPI bus extension will probably take place
+in spi-controller.yaml [1] and should be pretty close to modifications done
+for the I2C binding.
+
+When one of the two series (I2C or SPI) is accepted, it will be easier
+for the other one to follow (Same concept, same kind of binding, same kind
+of code).
+
+The advantage of the SPI series, I think, is that only one repo is involved.
+
+Best regards,
+Hervé
+
+[0]: https://lore.kernel.org/all/20250618082313.549140-1-herve.codina@bootlin.com/
+[1]: https://elixir.bootlin.com/linux/v6.16-rc4/source/Documentation/devicetree/bindings/spi/spi-controller.yaml
 
