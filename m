@@ -1,1463 +1,2724 @@
-Return-Path: <devicetree+bounces-192804-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-192805-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id C79EAAF7F63
-	for <lists+devicetree@lfdr.de>; Thu,  3 Jul 2025 19:48:37 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id ECF34AF7F6D
+	for <lists+devicetree@lfdr.de>; Thu,  3 Jul 2025 19:52:01 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 1258E58250D
-	for <lists+devicetree@lfdr.de>; Thu,  3 Jul 2025 17:48:38 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 80EC51886D5F
+	for <lists+devicetree@lfdr.de>; Thu,  3 Jul 2025 17:52:17 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B588022A7EF;
-	Thu,  3 Jul 2025 17:48:33 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9B85025A359;
+	Thu,  3 Jul 2025 17:51:55 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="X0382/nB"
+	dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b="tsEZFycH"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [213.167.242.64])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6C6A72DE716;
-	Thu,  3 Jul 2025 17:48:33 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D3A15230BC2;
+	Thu,  3 Jul 2025 17:51:50 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=213.167.242.64
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1751564913; cv=none; b=dECeAr7n2a/awQFWqlWxRONl7/wEFBUWEwEBgSYj7zGukAlnThsNPa8e2XjcOigPX1AgZcu72VJQWMhKuZXGOZxnejXeKdgOsYWN2X7ftCSDbkqBNhmVvipu6uMSKZATNRkOj/8l6PKeiHVujHruq/bHL25PZwIooH6zMduCuUg=
+	t=1751565115; cv=none; b=SSLee/SAt9qQwR3mzVdmhHmwMY6fUoKWAlsSxDe5xZ3aehOtBmJjeUtBTQL/VYXccu+zTMD96MZzdeQ8pDf9wAnFz4+4NLk7ZsW82RG8Slg87KanK0pIKidhNkHGqcVMm7uloH4PxoJb5+GzF856LUNoLZiLUyPqbqQebQ+DEpU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1751564913; c=relaxed/simple;
-	bh=EmPMxV35Gu9YvxKRyZKXBlaYbfIq0JEac6IzaGtB4YE=;
+	s=arc-20240116; t=1751565115; c=relaxed/simple;
+	bh=Krzf/EUV86VedEtRYW1YxQkM0rlFJJQTskLguN+ubDE=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=uIFhG4SshZUqkIOZIbVWidFe1EFVcnVZ13uxvwXSP59yoxbMa0Nm5mMCC+aSCuM2VJ1b48sIcTy1eYKVTfikywoXL5yJEVy3nNuMFKWqyQPa7o+oaxz2VeYRHVdtwFj1DhvTGwo0472fRPvUpa2+Mmg1C05ookas5EXtm9WNZrQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=X0382/nB; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 23725C4CEE3;
-	Thu,  3 Jul 2025 17:48:32 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1751564913;
-	bh=EmPMxV35Gu9YvxKRyZKXBlaYbfIq0JEac6IzaGtB4YE=;
+	 Content-Type:Content-Disposition:In-Reply-To; b=aGjWNBCZAX49irmGf2CNhF22rgiid1M7K0za2HiIQkNrSaDjOZB6SbgS6fGH6Uu1WStBnb6NSU7O8PyY0oOuEZ36Rv6XbGwrxDC8um++eFkMP4ZqvFu1zL7Q3ruo6uSp8pKMK0cjtOJhCp5WR+uMKO0dKj2IqvWPYyC+74ysmoI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ideasonboard.com; spf=pass smtp.mailfrom=ideasonboard.com; dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b=tsEZFycH; arc=none smtp.client-ip=213.167.242.64
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ideasonboard.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ideasonboard.com
+Received: from pendragon.ideasonboard.com (81-175-209-231.bb.dnainternet.fi [81.175.209.231])
+	by perceval.ideasonboard.com (Postfix) with UTF8SMTPSA id 9D9BD6DE;
+	Thu,  3 Jul 2025 19:51:24 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
+	s=mail; t=1751565085;
+	bh=Krzf/EUV86VedEtRYW1YxQkM0rlFJJQTskLguN+ubDE=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=X0382/nB3/gFxtD/b8SQQRoP/W+R58sn9uBE/k1uoabbw70swytpLXcOQ4KdWPUVU
-	 wrE9wAvoQs5qMk2ItHgSSktrPnKh49wVDvaXET28fIeQzAbUaeh+kfgqJu7S9lKCMH
-	 fhJ1BL3BGcP/CEajaGHCMYraaQcYn0r5pWJIr4QtOeZFaaN+nP4yeiH5yaD8ht+z8t
-	 mdyF5AJWCy3DR35tm61frCtYh1u1CgILo16/pEtVcx0+ew8vU4gf17pReAxfbFbLnH
-	 4Ds8aU/mLHH3O4300O69OthfUiVMwbafCiuv8Q0hWz+Y7P375DRwk/Zaa7YwQ9MzcX
-	 tulYqR/I0//JQ==
-Date: Thu, 3 Jul 2025 12:48:30 -0500
-From: Bjorn Andersson <andersson@kernel.org>
-To: Luca Weiss <luca.weiss@fairphone.com>
-Cc: Linus Walleij <linus.walleij@linaro.org>, 
-	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
-	Conor Dooley <conor+dt@kernel.org>, ~postmarketos/upstreaming@lists.sr.ht, 
-	phone-devel@vger.kernel.org, linux-arm-msm@vger.kernel.org, linux-gpio@vger.kernel.org, 
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v2 2/2] pinctrl: qcom: Add Milos pinctrl driver
-Message-ID: <5xneafmm44itou6f5e7q7k2pg6usmouv4icci25ubqietvc677@qzjqg26jx5m7>
-References: <20250702-sm7635-pinctrl-v2-0-c138624b9924@fairphone.com>
- <20250702-sm7635-pinctrl-v2-2-c138624b9924@fairphone.com>
+	b=tsEZFycHE8EKEz/wP7aVMoJojplstZPZ8X4nVATuxItXVhvk46zqR1z46gQuFc8ih
+	 bc91pKy4NaZ5jOP+EcaE7zmsXa+91LTqZGHXVlnew0+cwfaGAHBNoSllIeQ5danfMr
+	 4E+9ilWMwABDY04OikePH6LA0YZGLJx27FjMqKnQ=
+Date: Thu, 3 Jul 2025 20:51:21 +0300
+From: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+To: Will Whang <will@willwhang.com>
+Cc: Sakari Ailus <sakari.ailus@linux.intel.com>,
+	Mauro Carvalho Chehab <mchehab@kernel.org>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	"open list:SONY IMX585 SENSOR DRIVER" <linux-media@vger.kernel.org>,
+	open list <linux-kernel@vger.kernel.org>,
+	"open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" <devicetree@vger.kernel.org>
+Subject: Re: [PATCH v1 3/4] media: i2c: imx585: Add Sony IMX585 image-sensor
+ driver
+Message-ID: <20250703175121.GA17709@pendragon.ideasonboard.com>
+References: <20250702063836.3984-1-will@willwhang.com>
+ <20250702063836.3984-4-will@willwhang.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <20250702-sm7635-pinctrl-v2-2-c138624b9924@fairphone.com>
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20250702063836.3984-4-will@willwhang.com>
 
-On Wed, Jul 02, 2025 at 05:56:17PM +0200, Luca Weiss wrote:
-> Add pinctrl driver for TLMM block found in the Milos SoC.
+Hi Will,
+
+Thank you for the patch.
+
+Here's a first review, focussing on API usage and coding style.
+
+On Wed, Jul 02, 2025 at 07:38:35AM +0100, Will Whang wrote:
+> Implements support for:
+>   * 4-lane / 2-lane CSI-2
+>   * 12-bit linear, 12-bit HDR-GC and 16-bit Clear-HDR modes
+>   * Mono variant switch, HCG, custom HDR controls
+>   * Tested on Raspberry Pi 4/5 with 24 MHz XCLK.
 > 
-
-Reviewed-by: Bjorn Andersson <andersson@kernel.org>
-
-Regards,
-Bjorn
-
-> Signed-off-by: Luca Weiss <luca.weiss@fairphone.com>
+> Signed-off-by: Will Whang <will@willwhang.com>
 > ---
->  drivers/pinctrl/qcom/Kconfig.msm     |    8 +
->  drivers/pinctrl/qcom/Makefile        |    1 +
->  drivers/pinctrl/qcom/pinctrl-milos.c | 1340 ++++++++++++++++++++++++++++++++++
->  3 files changed, 1349 insertions(+)
+>  drivers/media/i2c/Kconfig  |    9 +
+>  drivers/media/i2c/Makefile |    1 +
+>  drivers/media/i2c/imx585.c | 2466 ++++++++++++++++++++++++++++++++++++
+>  3 files changed, 2476 insertions(+)
+>  create mode 100644 drivers/media/i2c/imx585.c
 > 
-> diff --git a/drivers/pinctrl/qcom/Kconfig.msm b/drivers/pinctrl/qcom/Kconfig.msm
-> index 0bb44c9a4c06cb414e71cd65389ed8748e784759..6dad942b00a35f572f0c30b959320db5a68103f7 100644
-> --- a/drivers/pinctrl/qcom/Kconfig.msm
-> +++ b/drivers/pinctrl/qcom/Kconfig.msm
-> @@ -371,6 +371,14 @@ config PINCTRL_SM7150
->  	 Qualcomm Technologies Inc TLMM block found on the Qualcomm
->  	 Technologies Inc SM7150 platform.
+> diff --git a/drivers/media/i2c/Kconfig b/drivers/media/i2c/Kconfig
+> index e68202954..34eb1c19a 100644
+> --- a/drivers/media/i2c/Kconfig
+> +++ b/drivers/media/i2c/Kconfig
+> @@ -266,6 +266,15 @@ config VIDEO_IMX415
+>  	  To compile this driver as a module, choose M here: the
+>  	  module will be called imx415.
 >  
-> +config PINCTRL_MILOS
-> +	tristate "Qualcomm Technologies Inc Milos pin controller driver"
-> +	depends on ARM64 || COMPILE_TEST
-> +	help
-> +	  This is the pinctrl, pinmux, pinconf and gpiolib driver for the
-> +	  Qualcomm Technologies Inc TLMM block found on the Qualcomm
-> +	  Technologies Inc Milos platform.
+> +config VIDEO_IMX585
+> +       tristate "Sony IMX585 sensor support"
+> +       help
+> +          This is a Video4Linux2 sensor driver for the Sony
+> +          IMX585 camera.
 > +
->  config PINCTRL_SM8150
->  	tristate "Qualcomm Technologies Inc SM8150 pin controller driver"
->  	depends on ARM64 || COMPILE_TEST
-> diff --git a/drivers/pinctrl/qcom/Makefile b/drivers/pinctrl/qcom/Makefile
-> index 954f5291cc37242baffc021e3c68d850aabd57cd..2acff520a285a47a4a179f815402adaa5ce5addd 100644
-> --- a/drivers/pinctrl/qcom/Makefile
-> +++ b/drivers/pinctrl/qcom/Makefile
-> @@ -30,6 +30,7 @@ obj-$(CONFIG_PINCTRL_QCS8300)	+= pinctrl-qcs8300.o
->  obj-$(CONFIG_PINCTRL_QDF2XXX)	+= pinctrl-qdf2xxx.o
->  obj-$(CONFIG_PINCTRL_MDM9607)	+= pinctrl-mdm9607.o
->  obj-$(CONFIG_PINCTRL_MDM9615)	+= pinctrl-mdm9615.o
-> +obj-$(CONFIG_PINCTRL_MILOS) += pinctrl-milos.o
->  obj-$(CONFIG_PINCTRL_QCOM_SPMI_PMIC) += pinctrl-spmi-gpio.o
->  obj-$(CONFIG_PINCTRL_QCOM_SPMI_PMIC) += pinctrl-spmi-mpp.o
->  obj-$(CONFIG_PINCTRL_QCOM_SSBI_PMIC) += pinctrl-ssbi-gpio.o
-> diff --git a/drivers/pinctrl/qcom/pinctrl-milos.c b/drivers/pinctrl/qcom/pinctrl-milos.c
+> +          To compile this driver as a module, choose M here: the
+> +          module will be called imx585.
+> +
+>  config VIDEO_MAX9271_LIB
+>  	tristate
+>  
+> diff --git a/drivers/media/i2c/Makefile b/drivers/media/i2c/Makefile
+> index 5873d2943..887d19ca7 100644
+> --- a/drivers/media/i2c/Makefile
+> +++ b/drivers/media/i2c/Makefile
+> @@ -59,6 +59,7 @@ obj-$(CONFIG_VIDEO_IMX335) += imx335.o
+>  obj-$(CONFIG_VIDEO_IMX355) += imx355.o
+>  obj-$(CONFIG_VIDEO_IMX412) += imx412.o
+>  obj-$(CONFIG_VIDEO_IMX415) += imx415.o
+> +obj-$(CONFIG_VIDEO_IMX585) += imx585.o
+>  obj-$(CONFIG_VIDEO_IR_I2C) += ir-kbd-i2c.o
+>  obj-$(CONFIG_VIDEO_ISL7998X) += isl7998x.o
+>  obj-$(CONFIG_VIDEO_KS0127) += ks0127.o
+> diff --git a/drivers/media/i2c/imx585.c b/drivers/media/i2c/imx585.c
 > new file mode 100644
-> index 0000000000000000000000000000000000000000..0001506dc9ee803532e2f3ad14dcb4407d6d53d3
+> index 000000000..2c4212290
 > --- /dev/null
-> +++ b/drivers/pinctrl/qcom/pinctrl-milos.c
-> @@ -0,0 +1,1340 @@
-> +// SPDX-License-Identifier: GPL-2.0-only
+> +++ b/drivers/media/i2c/imx585.c
+> @@ -0,0 +1,2466 @@
+> +// SPDX-License-Identifier: GPL-2.0
 > +/*
-> + * Copyright (c) 2023-2024 Qualcomm Innovation Center, Inc. All rights reserved.
-> + * Copyright (c) 2025, Luca Weiss <luca.weiss@fairphone.com>
+> + * A V4L2 driver for Sony imx585 cameras.
+> + *
+> + * Based on Sony imx477 camera driver
+> + * Copyright (C) 2019-2020 Raspberry Pi (Trading) Ltd
+> + * Modified by Will WHANG
+> + * Modified by sohonomura2020 in Soho Enterprise Ltd.
 > + */
-> +
+
+Please add a blank line here.
+
+
+> +#include <linux/unaligned.h>
+
+And move this lower to keep include statements sorted alphabetically.
+
+> +#include <linux/clk.h>
+> +#include <linux/delay.h>
+> +#include <linux/gpio/consumer.h>
+> +#include <linux/i2c.h>
 > +#include <linux/module.h>
-> +#include <linux/of.h>
-> +#include <linux/platform_device.h>
+> +#include <linux/of_device.h>
+> +#include <linux/of_graph.h>
+> +#include <linux/pm_runtime.h>
+> +#include <linux/regulator/consumer.h>
+> +#include <media/v4l2-ctrls.h>
+> +#include <media/v4l2-device.h>
+> +#include <media/v4l2-event.h>
+> +#include <media/v4l2-fwnode.h>
+> +#include <media/v4l2-mediabus.h>
 > +
-> +#include "pinctrl-msm.h"
+> +// Support for rpi kernel pre git commit 314a685
+
+We yse C-style comments only. Please update the comment style through
+the driver.
+
+> +#ifndef MEDIA_BUS_FMT_SENSOR_DATA
+> +#define MEDIA_BUS_FMT_SENSOR_DATA       0x7002
+> +#endif
+
+That's for the downstream Raspberry Pi kernel, but is not applicable to
+upstream. We're working on an upstream API for embedded data, see
+https://lore.kernel.org/linux-media/20250619115836.1946016-1-sakari.ailus@linux.intel.com/.
+
+I recommend dropping embedded data support first, as the API isn't
+available upstream yet, and adding it back as a separate patch.
+
 > +
-> +#define REG_SIZE 0x1000
+> +#define V4L2_CID_IMX585_HDR_DATASEL_TH   (V4L2_CID_USER_IMX585_BASE + 0)
+> +#define V4L2_CID_IMX585_HDR_DATASEL_BK   (V4L2_CID_USER_IMX585_BASE + 1)
+> +#define V4L2_CID_IMX585_HDR_GRAD_TH      (V4L2_CID_USER_IMX585_BASE + 2)
+> +#define V4L2_CID_IMX585_HDR_GRAD_COMP_L  (V4L2_CID_USER_IMX585_BASE + 3)
+> +#define V4L2_CID_IMX585_HDR_GRAD_COMP_H  (V4L2_CID_USER_IMX585_BASE + 4)
+> +#define V4L2_CID_IMX585_HDR_GAIN         (V4L2_CID_USER_IMX585_BASE + 5)
+> +#define V4L2_CID_IMX585_HCG_GAIN         (V4L2_CID_USER_IMX585_BASE + 6)
 > +
-> +#define PINGROUP(id, f1, f2, f3, f4, f5, f6, f7, f8, f9, f10, f11) \
-> +	{						\
-> +		.grp = PINCTRL_PINGROUP("gpio" #id,	\
-> +			gpio##id##_pins,		\
-> +			ARRAY_SIZE(gpio##id##_pins)),	\
-> +		.funcs = (int[]){			\
-> +			msm_mux_gpio, /* gpio mode */	\
-> +			msm_mux_##f1,			\
-> +			msm_mux_##f2,			\
-> +			msm_mux_##f3,			\
-> +			msm_mux_##f4,			\
-> +			msm_mux_##f5,			\
-> +			msm_mux_##f6,			\
-> +			msm_mux_##f7,			\
-> +			msm_mux_##f8,			\
-> +			msm_mux_##f9,			\
-> +			msm_mux_##f10,			\
-> +			msm_mux_##f11 /* egpio mode */	\
-> +		},					\
-> +		.nfuncs = 12,				\
-> +		.ctl_reg = REG_SIZE * id,		\
-> +		.io_reg = 0x4 + REG_SIZE * id,		\
-> +		.intr_cfg_reg = 0x8 + REG_SIZE * id,	\
-> +		.intr_status_reg = 0xc + REG_SIZE * id,	\
-> +		.intr_target_reg = 0x8 + REG_SIZE * id,	\
-> +		.mux_bit = 2,				\
-> +		.pull_bit = 0,				\
-> +		.drv_bit = 6,				\
-> +		.i2c_pull_bit = 13,			\
-> +		.egpio_enable = 12,			\
-> +		.egpio_present = 11,			\
-> +		.oe_bit = 9,				\
-> +		.in_bit = 0,				\
-> +		.out_bit = 1,				\
-> +		.intr_enable_bit = 0,			\
-> +		.intr_status_bit = 0,			\
-> +		.intr_target_bit = 8,			\
-> +		.intr_wakeup_enable_bit = 7,		\
-> +		.intr_wakeup_present_bit = 6,		\
-> +		.intr_target_kpss_val = 3,		\
-> +		.intr_raw_status_bit = 4,		\
-> +		.intr_polarity_bit = 1,			\
-> +		.intr_detection_bit = 2,		\
-> +		.intr_detection_width = 2,		\
-> +	}
+> +/* Standby or streaming mode */
+> +#define IMX585_REG_MODE_SELECT          0x3000
+> +#define IMX585_MODE_STANDBY             0x01
+> +#define IMX585_MODE_STREAMING           0x00
+> +#define IMX585_STREAM_DELAY_US          25000
+> +#define IMX585_STREAM_DELAY_RANGE_US    1000
 > +
-> +#define SDC_QDSD_PINGROUP(pg_name, ctl, pull, drv)	\
-> +	{						\
-> +		.grp = PINCTRL_PINGROUP(#pg_name,	\
-> +			pg_name##_pins,			\
-> +			ARRAY_SIZE(pg_name##_pins)),	\
-> +		.ctl_reg = ctl,				\
-> +		.io_reg = 0,				\
-> +		.intr_cfg_reg = 0,			\
-> +		.intr_status_reg = 0,			\
-> +		.intr_target_reg = 0,			\
-> +		.mux_bit = -1,				\
-> +		.pull_bit = pull,			\
-> +		.drv_bit = drv,				\
-> +		.oe_bit = -1,				\
-> +		.in_bit = -1,				\
-> +		.out_bit = -1,				\
-> +		.intr_enable_bit = -1,			\
-> +		.intr_status_bit = -1,			\
-> +		.intr_target_bit = -1,			\
-> +		.intr_raw_status_bit = -1,		\
-> +		.intr_polarity_bit = -1,		\
-> +		.intr_detection_bit = -1,		\
-> +		.intr_detection_width = -1,		\
-> +	}
+> +/*
+> + * Initialisation delay between XCLR low->high and the moment when the sensor
+> + * can start capture (i.e. can leave software standby)
+> + */
+> +#define IMX585_XCLR_MIN_DELAY_US    500000
+> +#define IMX585_XCLR_DELAY_RANGE_US  1000
 > +
-> +#define UFS_RESET(pg_name, ctl, io)			\
-> +	{						\
-> +		.grp = PINCTRL_PINGROUP(#pg_name,	\
-> +			pg_name##_pins,			\
-> +			ARRAY_SIZE(pg_name##_pins)),	\
-> +		.ctl_reg = ctl,				\
-> +		.io_reg = io,				\
-> +		.intr_cfg_reg = 0,			\
-> +		.intr_status_reg = 0,			\
-> +		.intr_target_reg = 0,			\
-> +		.mux_bit = -1,				\
-> +		.pull_bit = 3,				\
-> +		.drv_bit = 0,				\
-> +		.oe_bit = -1,				\
-> +		.in_bit = -1,				\
-> +		.out_bit = 0,				\
-> +		.intr_enable_bit = -1,			\
-> +		.intr_status_bit = -1,			\
-> +		.intr_target_bit = -1,			\
-> +		.intr_raw_status_bit = -1,		\
-> +		.intr_polarity_bit = -1,		\
-> +		.intr_detection_bit = -1,		\
-> +		.intr_detection_width = -1,		\
-> +	}
+> +/* Leader mode and XVS/XHS direction */
+> +#define IMX585_REG_XMSTA     0x3002
+> +#define IMX585_REG_XXS_DRV   0x30A6
+
+Please use lower-case for hex constants.
+
+> +#define IMX585_REG_EXTMODE   0x30CE
+> +#define IMX585_REG_XXS_OUTSEL 0x30A4
 > +
-> +static const struct pinctrl_pin_desc milos_pins[] = {
-> +	PINCTRL_PIN(0, "GPIO_0"),
-> +	PINCTRL_PIN(1, "GPIO_1"),
-> +	PINCTRL_PIN(2, "GPIO_2"),
-> +	PINCTRL_PIN(3, "GPIO_3"),
-> +	PINCTRL_PIN(4, "GPIO_4"),
-> +	PINCTRL_PIN(5, "GPIO_5"),
-> +	PINCTRL_PIN(6, "GPIO_6"),
-> +	PINCTRL_PIN(7, "GPIO_7"),
-> +	PINCTRL_PIN(8, "GPIO_8"),
-> +	PINCTRL_PIN(9, "GPIO_9"),
-> +	PINCTRL_PIN(10, "GPIO_10"),
-> +	PINCTRL_PIN(11, "GPIO_11"),
-> +	PINCTRL_PIN(12, "GPIO_12"),
-> +	PINCTRL_PIN(13, "GPIO_13"),
-> +	PINCTRL_PIN(14, "GPIO_14"),
-> +	PINCTRL_PIN(15, "GPIO_15"),
-> +	PINCTRL_PIN(16, "GPIO_16"),
-> +	PINCTRL_PIN(17, "GPIO_17"),
-> +	PINCTRL_PIN(18, "GPIO_18"),
-> +	PINCTRL_PIN(19, "GPIO_19"),
-> +	PINCTRL_PIN(20, "GPIO_20"),
-> +	PINCTRL_PIN(21, "GPIO_21"),
-> +	PINCTRL_PIN(22, "GPIO_22"),
-> +	PINCTRL_PIN(23, "GPIO_23"),
-> +	PINCTRL_PIN(24, "GPIO_24"),
-> +	PINCTRL_PIN(25, "GPIO_25"),
-> +	PINCTRL_PIN(26, "GPIO_26"),
-> +	PINCTRL_PIN(27, "GPIO_27"),
-> +	PINCTRL_PIN(28, "GPIO_28"),
-> +	PINCTRL_PIN(29, "GPIO_29"),
-> +	PINCTRL_PIN(30, "GPIO_30"),
-> +	PINCTRL_PIN(31, "GPIO_31"),
-> +	PINCTRL_PIN(32, "GPIO_32"),
-> +	PINCTRL_PIN(33, "GPIO_33"),
-> +	PINCTRL_PIN(34, "GPIO_34"),
-> +	PINCTRL_PIN(35, "GPIO_35"),
-> +	PINCTRL_PIN(36, "GPIO_36"),
-> +	PINCTRL_PIN(37, "GPIO_37"),
-> +	PINCTRL_PIN(38, "GPIO_38"),
-> +	PINCTRL_PIN(39, "GPIO_39"),
-> +	PINCTRL_PIN(40, "GPIO_40"),
-> +	PINCTRL_PIN(41, "GPIO_41"),
-> +	PINCTRL_PIN(42, "GPIO_42"),
-> +	PINCTRL_PIN(43, "GPIO_43"),
-> +	PINCTRL_PIN(44, "GPIO_44"),
-> +	PINCTRL_PIN(45, "GPIO_45"),
-> +	PINCTRL_PIN(46, "GPIO_46"),
-> +	PINCTRL_PIN(47, "GPIO_47"),
-> +	PINCTRL_PIN(48, "GPIO_48"),
-> +	PINCTRL_PIN(49, "GPIO_49"),
-> +	PINCTRL_PIN(50, "GPIO_50"),
-> +	PINCTRL_PIN(51, "GPIO_51"),
-> +	PINCTRL_PIN(52, "GPIO_52"),
-> +	PINCTRL_PIN(53, "GPIO_53"),
-> +	PINCTRL_PIN(54, "GPIO_54"),
-> +	PINCTRL_PIN(55, "GPIO_55"),
-> +	PINCTRL_PIN(56, "GPIO_56"),
-> +	PINCTRL_PIN(57, "GPIO_57"),
-> +	PINCTRL_PIN(58, "GPIO_58"),
-> +	PINCTRL_PIN(59, "GPIO_59"),
-> +	PINCTRL_PIN(60, "GPIO_60"),
-> +	PINCTRL_PIN(61, "GPIO_61"),
-> +	PINCTRL_PIN(62, "GPIO_62"),
-> +	PINCTRL_PIN(63, "GPIO_63"),
-> +	PINCTRL_PIN(64, "GPIO_64"),
-> +	PINCTRL_PIN(65, "GPIO_65"),
-> +	PINCTRL_PIN(66, "GPIO_66"),
-> +	PINCTRL_PIN(67, "GPIO_67"),
-> +	PINCTRL_PIN(68, "GPIO_68"),
-> +	PINCTRL_PIN(69, "GPIO_69"),
-> +	PINCTRL_PIN(70, "GPIO_70"),
-> +	PINCTRL_PIN(71, "GPIO_71"),
-> +	PINCTRL_PIN(72, "GPIO_72"),
-> +	PINCTRL_PIN(73, "GPIO_73"),
-> +	PINCTRL_PIN(74, "GPIO_74"),
-> +	PINCTRL_PIN(75, "GPIO_75"),
-> +	PINCTRL_PIN(76, "GPIO_76"),
-> +	PINCTRL_PIN(77, "GPIO_77"),
-> +	PINCTRL_PIN(78, "GPIO_78"),
-> +	PINCTRL_PIN(79, "GPIO_79"),
-> +	PINCTRL_PIN(80, "GPIO_80"),
-> +	PINCTRL_PIN(81, "GPIO_81"),
-> +	PINCTRL_PIN(82, "GPIO_82"),
-> +	PINCTRL_PIN(83, "GPIO_83"),
-> +	PINCTRL_PIN(84, "GPIO_84"),
-> +	PINCTRL_PIN(85, "GPIO_85"),
-> +	PINCTRL_PIN(86, "GPIO_86"),
-> +	PINCTRL_PIN(87, "GPIO_87"),
-> +	PINCTRL_PIN(88, "GPIO_88"),
-> +	PINCTRL_PIN(89, "GPIO_89"),
-> +	PINCTRL_PIN(90, "GPIO_90"),
-> +	PINCTRL_PIN(91, "GPIO_91"),
-> +	PINCTRL_PIN(92, "GPIO_92"),
-> +	PINCTRL_PIN(93, "GPIO_93"),
-> +	PINCTRL_PIN(94, "GPIO_94"),
-> +	PINCTRL_PIN(95, "GPIO_95"),
-> +	PINCTRL_PIN(96, "GPIO_96"),
-> +	PINCTRL_PIN(97, "GPIO_97"),
-> +	PINCTRL_PIN(98, "GPIO_98"),
-> +	PINCTRL_PIN(99, "GPIO_99"),
-> +	PINCTRL_PIN(100, "GPIO_100"),
-> +	PINCTRL_PIN(101, "GPIO_101"),
-> +	PINCTRL_PIN(102, "GPIO_102"),
-> +	PINCTRL_PIN(103, "GPIO_103"),
-> +	PINCTRL_PIN(104, "GPIO_104"),
-> +	PINCTRL_PIN(105, "GPIO_105"),
-> +	PINCTRL_PIN(106, "GPIO_106"),
-> +	PINCTRL_PIN(107, "GPIO_107"),
-> +	PINCTRL_PIN(108, "GPIO_108"),
-> +	PINCTRL_PIN(109, "GPIO_109"),
-> +	PINCTRL_PIN(110, "GPIO_110"),
-> +	PINCTRL_PIN(111, "GPIO_111"),
-> +	PINCTRL_PIN(112, "GPIO_112"),
-> +	PINCTRL_PIN(113, "GPIO_113"),
-> +	PINCTRL_PIN(114, "GPIO_114"),
-> +	PINCTRL_PIN(115, "GPIO_115"),
-> +	PINCTRL_PIN(116, "GPIO_116"),
-> +	PINCTRL_PIN(117, "GPIO_117"),
-> +	PINCTRL_PIN(118, "GPIO_118"),
-> +	PINCTRL_PIN(119, "GPIO_119"),
-> +	PINCTRL_PIN(120, "GPIO_120"),
-> +	PINCTRL_PIN(121, "GPIO_121"),
-> +	PINCTRL_PIN(122, "GPIO_122"),
-> +	PINCTRL_PIN(123, "GPIO_123"),
-> +	PINCTRL_PIN(124, "GPIO_124"),
-> +	PINCTRL_PIN(125, "GPIO_125"),
-> +	PINCTRL_PIN(126, "GPIO_126"),
-> +	PINCTRL_PIN(127, "GPIO_127"),
-> +	PINCTRL_PIN(128, "GPIO_128"),
-> +	PINCTRL_PIN(129, "GPIO_129"),
-> +	PINCTRL_PIN(130, "GPIO_130"),
-> +	PINCTRL_PIN(131, "GPIO_131"),
-> +	PINCTRL_PIN(132, "GPIO_132"),
-> +	PINCTRL_PIN(133, "GPIO_133"),
-> +	PINCTRL_PIN(134, "GPIO_134"),
-> +	PINCTRL_PIN(135, "GPIO_135"),
-> +	PINCTRL_PIN(136, "GPIO_136"),
-> +	PINCTRL_PIN(137, "GPIO_137"),
-> +	PINCTRL_PIN(138, "GPIO_138"),
-> +	PINCTRL_PIN(139, "GPIO_139"),
-> +	PINCTRL_PIN(140, "GPIO_140"),
-> +	PINCTRL_PIN(141, "GPIO_141"),
-> +	PINCTRL_PIN(142, "GPIO_142"),
-> +	PINCTRL_PIN(143, "GPIO_143"),
-> +	PINCTRL_PIN(144, "GPIO_144"),
-> +	PINCTRL_PIN(145, "GPIO_145"),
-> +	PINCTRL_PIN(146, "GPIO_146"),
-> +	PINCTRL_PIN(147, "GPIO_147"),
-> +	PINCTRL_PIN(148, "GPIO_148"),
-> +	PINCTRL_PIN(149, "GPIO_149"),
-> +	PINCTRL_PIN(150, "GPIO_150"),
-> +	PINCTRL_PIN(151, "GPIO_151"),
-> +	PINCTRL_PIN(152, "GPIO_152"),
-> +	PINCTRL_PIN(153, "GPIO_153"),
-> +	PINCTRL_PIN(154, "GPIO_154"),
-> +	PINCTRL_PIN(155, "GPIO_155"),
-> +	PINCTRL_PIN(156, "GPIO_156"),
-> +	PINCTRL_PIN(157, "GPIO_157"),
-> +	PINCTRL_PIN(158, "GPIO_158"),
-> +	PINCTRL_PIN(159, "GPIO_159"),
-> +	PINCTRL_PIN(160, "GPIO_160"),
-> +	PINCTRL_PIN(161, "GPIO_161"),
-> +	PINCTRL_PIN(162, "GPIO_162"),
-> +	PINCTRL_PIN(163, "GPIO_163"),
-> +	PINCTRL_PIN(164, "GPIO_164"),
-> +	PINCTRL_PIN(165, "GPIO_165"),
-> +	PINCTRL_PIN(166, "GPIO_166"),
-> +	PINCTRL_PIN(167, "UFS_RESET"),
-> +	PINCTRL_PIN(168, "SDC2_CLK"),
-> +	PINCTRL_PIN(169, "SDC2_CMD"),
-> +	PINCTRL_PIN(170, "SDC2_DATA"),
+> +/*XVS pulse length, 2^n H with n=0~3*/
+
+Missing space after /* and before */. Please update other locations as
+appropriate.
+
+> +#define IMX585_REG_XVSLNG    0x30CC
+> +/*XHS pulse length, 16*(2^n) Clock with n=0~3*/
+> +#define IMX585_REG_XHSLNG    0x30CD
+> +
+> +/* Clk selection */
+> +#define IMX585_INCK_SEL                 0x3014
+> +
+> +/* Link Speed */
+> +#define IMX585_DATARATE_SEL             0x3015
+> +
+> +/* BIN mode */
+> +/* 2x2 Bin mode selection, 0x01 => Mono, 0x00 => Color */
+> +#define IMX585_BIN_MODE                 0x3019
+> +
+> +/* Lane Count */
+> +#define IMX585_LANEMODE                 0x3040
+> +
+> +/* VMAX internal VBLANK*/
+> +#define IMX585_REG_VMAX                 0x3028
+> +#define IMX585_VMAX_MAX                 0xfffff
+> +#define IMX585_VMAX_DEFAULT             2250
+> +
+> +/* HMAX internal HBLANK*/
+> +#define IMX585_REG_HMAX                 0x302C
+> +#define IMX585_HMAX_MAX                 0xffff
+> +
+> +/* SHR internal */
+> +#define IMX585_REG_SHR                  0x3050
+> +#define IMX585_SHR_MIN                  8
+> +#define IMX585_SHR_MIN_HDR              10
+> +#define IMX585_SHR_MAX                  0xfffff
+> +
+> +/* Exposure control */
+> +#define IMX585_EXPOSURE_MIN             2
+> +#define IMX585_EXPOSURE_STEP            1
+> +#define IMX585_EXPOSURE_DEFAULT         1000
+> +#define IMX585_EXPOSURE_MAX             49865
+> +
+> +/* HDR threshold */
+> +#define IMX585_REG_EXP_TH_H             0x36D0
+> +#define IMX585_REG_EXP_TH_L             0x36D4
+> +#define IMX585_REG_EXP_BK               0x36E2
+> +
+> +/* Gradation compression control */
+> +#define IMX595_REG_CCMP_EN              0x36EF
+> +#define IMX585_REG_CCMP1_EXP            0x36E8
+> +#define IMX585_REG_CCMP2_EXP            0x36E4
+> +#define IMX585_REG_ACMP1_EXP            0x36EE
+> +#define IMX585_REG_ACMP2_EXP            0x36EC
+> +
+> +/* HDR Gain Adder */
+> +#define IMX585_REG_EXP_GAIN             0x3081
+> +
+> +/* Black level control */
+> +#define IMX585_REG_BLKLEVEL             0x30DC
+> +#define IMX585_BLKLEVEL_DEFAULT         50
+> +
+> +/* Digital Clamp */
+> +#define IMX585_REG_DIGITAL_CLAMP        0x3458
+> +
+> +/* Analog gain control */
+> +#define IMX585_REG_ANALOG_GAIN          0x306C
+> +#define IMX585_REG_FDG_SEL0             0x3030
+> +#define IMX585_ANA_GAIN_MIN_NORMAL      0
+> +#define IMX585_ANA_GAIN_MIN_HCG         34
+> +#define IMX585_ANA_GAIN_MAX_HDR         80
+> +#define IMX585_ANA_GAIN_MAX_NORMAL      240
+> +#define IMX585_ANA_GAIN_STEP            1
+> +#define IMX585_ANA_GAIN_DEFAULT         0
+> +
+> +/* Flip */
+> +#define IMX585_FLIP_WINMODEH            0x3020
+> +#define IMX585_FLIP_WINMODEV            0x3021
+> +
+> +/* Embedded metadata stream structure */
+> +#define IMX585_EMBEDDED_LINE_WIDTH      16384
+> +#define IMX585_NUM_EMBEDDED_LINES       1
+> +
+> +#define IMX585_PIXEL_RATE               74250000
+> +
+> +enum pad_types {
+> +	IMAGE_PAD,
+> +	METADATA_PAD,
+> +	NUM_PADS
 > +};
 > +
-> +#define DECLARE_MSM_GPIO_PINS(pin) \
-> +	static const unsigned int gpio##pin##_pins[] = { pin }
-> +DECLARE_MSM_GPIO_PINS(0);
-> +DECLARE_MSM_GPIO_PINS(1);
-> +DECLARE_MSM_GPIO_PINS(2);
-> +DECLARE_MSM_GPIO_PINS(3);
-> +DECLARE_MSM_GPIO_PINS(4);
-> +DECLARE_MSM_GPIO_PINS(5);
-> +DECLARE_MSM_GPIO_PINS(6);
-> +DECLARE_MSM_GPIO_PINS(7);
-> +DECLARE_MSM_GPIO_PINS(8);
-> +DECLARE_MSM_GPIO_PINS(9);
-> +DECLARE_MSM_GPIO_PINS(10);
-> +DECLARE_MSM_GPIO_PINS(11);
-> +DECLARE_MSM_GPIO_PINS(12);
-> +DECLARE_MSM_GPIO_PINS(13);
-> +DECLARE_MSM_GPIO_PINS(14);
-> +DECLARE_MSM_GPIO_PINS(15);
-> +DECLARE_MSM_GPIO_PINS(16);
-> +DECLARE_MSM_GPIO_PINS(17);
-> +DECLARE_MSM_GPIO_PINS(18);
-> +DECLARE_MSM_GPIO_PINS(19);
-> +DECLARE_MSM_GPIO_PINS(20);
-> +DECLARE_MSM_GPIO_PINS(21);
-> +DECLARE_MSM_GPIO_PINS(22);
-> +DECLARE_MSM_GPIO_PINS(23);
-> +DECLARE_MSM_GPIO_PINS(24);
-> +DECLARE_MSM_GPIO_PINS(25);
-> +DECLARE_MSM_GPIO_PINS(26);
-> +DECLARE_MSM_GPIO_PINS(27);
-> +DECLARE_MSM_GPIO_PINS(28);
-> +DECLARE_MSM_GPIO_PINS(29);
-> +DECLARE_MSM_GPIO_PINS(30);
-> +DECLARE_MSM_GPIO_PINS(31);
-> +DECLARE_MSM_GPIO_PINS(32);
-> +DECLARE_MSM_GPIO_PINS(33);
-> +DECLARE_MSM_GPIO_PINS(34);
-> +DECLARE_MSM_GPIO_PINS(35);
-> +DECLARE_MSM_GPIO_PINS(36);
-> +DECLARE_MSM_GPIO_PINS(37);
-> +DECLARE_MSM_GPIO_PINS(38);
-> +DECLARE_MSM_GPIO_PINS(39);
-> +DECLARE_MSM_GPIO_PINS(40);
-> +DECLARE_MSM_GPIO_PINS(41);
-> +DECLARE_MSM_GPIO_PINS(42);
-> +DECLARE_MSM_GPIO_PINS(43);
-> +DECLARE_MSM_GPIO_PINS(44);
-> +DECLARE_MSM_GPIO_PINS(45);
-> +DECLARE_MSM_GPIO_PINS(46);
-> +DECLARE_MSM_GPIO_PINS(47);
-> +DECLARE_MSM_GPIO_PINS(48);
-> +DECLARE_MSM_GPIO_PINS(49);
-> +DECLARE_MSM_GPIO_PINS(50);
-> +DECLARE_MSM_GPIO_PINS(51);
-> +DECLARE_MSM_GPIO_PINS(52);
-> +DECLARE_MSM_GPIO_PINS(53);
-> +DECLARE_MSM_GPIO_PINS(54);
-> +DECLARE_MSM_GPIO_PINS(55);
-> +DECLARE_MSM_GPIO_PINS(56);
-> +DECLARE_MSM_GPIO_PINS(57);
-> +DECLARE_MSM_GPIO_PINS(58);
-> +DECLARE_MSM_GPIO_PINS(59);
-> +DECLARE_MSM_GPIO_PINS(60);
-> +DECLARE_MSM_GPIO_PINS(61);
-> +DECLARE_MSM_GPIO_PINS(62);
-> +DECLARE_MSM_GPIO_PINS(63);
-> +DECLARE_MSM_GPIO_PINS(64);
-> +DECLARE_MSM_GPIO_PINS(65);
-> +DECLARE_MSM_GPIO_PINS(66);
-> +DECLARE_MSM_GPIO_PINS(67);
-> +DECLARE_MSM_GPIO_PINS(68);
-> +DECLARE_MSM_GPIO_PINS(69);
-> +DECLARE_MSM_GPIO_PINS(70);
-> +DECLARE_MSM_GPIO_PINS(71);
-> +DECLARE_MSM_GPIO_PINS(72);
-> +DECLARE_MSM_GPIO_PINS(73);
-> +DECLARE_MSM_GPIO_PINS(74);
-> +DECLARE_MSM_GPIO_PINS(75);
-> +DECLARE_MSM_GPIO_PINS(76);
-> +DECLARE_MSM_GPIO_PINS(77);
-> +DECLARE_MSM_GPIO_PINS(78);
-> +DECLARE_MSM_GPIO_PINS(79);
-> +DECLARE_MSM_GPIO_PINS(80);
-> +DECLARE_MSM_GPIO_PINS(81);
-> +DECLARE_MSM_GPIO_PINS(82);
-> +DECLARE_MSM_GPIO_PINS(83);
-> +DECLARE_MSM_GPIO_PINS(84);
-> +DECLARE_MSM_GPIO_PINS(85);
-> +DECLARE_MSM_GPIO_PINS(86);
-> +DECLARE_MSM_GPIO_PINS(87);
-> +DECLARE_MSM_GPIO_PINS(88);
-> +DECLARE_MSM_GPIO_PINS(89);
-> +DECLARE_MSM_GPIO_PINS(90);
-> +DECLARE_MSM_GPIO_PINS(91);
-> +DECLARE_MSM_GPIO_PINS(92);
-> +DECLARE_MSM_GPIO_PINS(93);
-> +DECLARE_MSM_GPIO_PINS(94);
-> +DECLARE_MSM_GPIO_PINS(95);
-> +DECLARE_MSM_GPIO_PINS(96);
-> +DECLARE_MSM_GPIO_PINS(97);
-> +DECLARE_MSM_GPIO_PINS(98);
-> +DECLARE_MSM_GPIO_PINS(99);
-> +DECLARE_MSM_GPIO_PINS(100);
-> +DECLARE_MSM_GPIO_PINS(101);
-> +DECLARE_MSM_GPIO_PINS(102);
-> +DECLARE_MSM_GPIO_PINS(103);
-> +DECLARE_MSM_GPIO_PINS(104);
-> +DECLARE_MSM_GPIO_PINS(105);
-> +DECLARE_MSM_GPIO_PINS(106);
-> +DECLARE_MSM_GPIO_PINS(107);
-> +DECLARE_MSM_GPIO_PINS(108);
-> +DECLARE_MSM_GPIO_PINS(109);
-> +DECLARE_MSM_GPIO_PINS(110);
-> +DECLARE_MSM_GPIO_PINS(111);
-> +DECLARE_MSM_GPIO_PINS(112);
-> +DECLARE_MSM_GPIO_PINS(113);
-> +DECLARE_MSM_GPIO_PINS(114);
-> +DECLARE_MSM_GPIO_PINS(115);
-> +DECLARE_MSM_GPIO_PINS(116);
-> +DECLARE_MSM_GPIO_PINS(117);
-> +DECLARE_MSM_GPIO_PINS(118);
-> +DECLARE_MSM_GPIO_PINS(119);
-> +DECLARE_MSM_GPIO_PINS(120);
-> +DECLARE_MSM_GPIO_PINS(121);
-> +DECLARE_MSM_GPIO_PINS(122);
-> +DECLARE_MSM_GPIO_PINS(123);
-> +DECLARE_MSM_GPIO_PINS(124);
-> +DECLARE_MSM_GPIO_PINS(125);
-> +DECLARE_MSM_GPIO_PINS(126);
-> +DECLARE_MSM_GPIO_PINS(127);
-> +DECLARE_MSM_GPIO_PINS(128);
-> +DECLARE_MSM_GPIO_PINS(129);
-> +DECLARE_MSM_GPIO_PINS(130);
-> +DECLARE_MSM_GPIO_PINS(131);
-> +DECLARE_MSM_GPIO_PINS(132);
-> +DECLARE_MSM_GPIO_PINS(133);
-> +DECLARE_MSM_GPIO_PINS(134);
-> +DECLARE_MSM_GPIO_PINS(135);
-> +DECLARE_MSM_GPIO_PINS(136);
-> +DECLARE_MSM_GPIO_PINS(137);
-> +DECLARE_MSM_GPIO_PINS(138);
-> +DECLARE_MSM_GPIO_PINS(139);
-> +DECLARE_MSM_GPIO_PINS(140);
-> +DECLARE_MSM_GPIO_PINS(141);
-> +DECLARE_MSM_GPIO_PINS(142);
-> +DECLARE_MSM_GPIO_PINS(143);
-> +DECLARE_MSM_GPIO_PINS(144);
-> +DECLARE_MSM_GPIO_PINS(145);
-> +DECLARE_MSM_GPIO_PINS(146);
-> +DECLARE_MSM_GPIO_PINS(147);
-> +DECLARE_MSM_GPIO_PINS(148);
-> +DECLARE_MSM_GPIO_PINS(149);
-> +DECLARE_MSM_GPIO_PINS(150);
-> +DECLARE_MSM_GPIO_PINS(151);
-> +DECLARE_MSM_GPIO_PINS(152);
-> +DECLARE_MSM_GPIO_PINS(153);
-> +DECLARE_MSM_GPIO_PINS(154);
-> +DECLARE_MSM_GPIO_PINS(155);
-> +DECLARE_MSM_GPIO_PINS(156);
-> +DECLARE_MSM_GPIO_PINS(157);
-> +DECLARE_MSM_GPIO_PINS(158);
-> +DECLARE_MSM_GPIO_PINS(159);
-> +DECLARE_MSM_GPIO_PINS(160);
-> +DECLARE_MSM_GPIO_PINS(161);
-> +DECLARE_MSM_GPIO_PINS(162);
-> +DECLARE_MSM_GPIO_PINS(163);
-> +DECLARE_MSM_GPIO_PINS(164);
-> +DECLARE_MSM_GPIO_PINS(165);
-> +DECLARE_MSM_GPIO_PINS(166);
+> +/* imx585 native and active pixel array size. */
+> +#define IMX585_NATIVE_WIDTH         3856U
+> +#define IMX585_NATIVE_HEIGHT        2180U
+> +#define IMX585_PIXEL_ARRAY_LEFT     8U
+> +#define IMX585_PIXEL_ARRAY_TOP      8U
+> +#define IMX585_PIXEL_ARRAY_WIDTH    3840U
+> +#define IMX585_PIXEL_ARRAY_HEIGHT   2160U
 > +
-> +static const unsigned int ufs_reset_pins[] = { 167 };
-> +static const unsigned int sdc2_clk_pins[] = { 168 };
-> +static const unsigned int sdc2_cmd_pins[] = { 169 };
-> +static const unsigned int sdc2_data_pins[] = { 170 };
-> +
-> +enum milos_functions {
-> +	msm_mux_gpio,
-> +	msm_mux_aoss_cti,
-> +	msm_mux_atest_char,
-> +	msm_mux_atest_usb,
-> +	msm_mux_audio_ext_mclk0,
-> +	msm_mux_audio_ext_mclk1,
-> +	msm_mux_audio_ref_clk,
-> +	msm_mux_cam_mclk,
-> +	msm_mux_cci_async_in0,
-> +	msm_mux_cci_i2c_scl,
-> +	msm_mux_cci_i2c_sda,
-> +	msm_mux_cci_timer,
-> +	msm_mux_coex_uart1_rx,
-> +	msm_mux_coex_uart1_tx,
-> +	msm_mux_dbg_out_clk,
-> +	msm_mux_ddr_bist_complete,
-> +	msm_mux_ddr_bist_fail,
-> +	msm_mux_ddr_bist_start,
-> +	msm_mux_ddr_bist_stop,
-> +	msm_mux_ddr_pxi0,
-> +	msm_mux_ddr_pxi1,
-> +	msm_mux_dp0_hot,
-> +	msm_mux_egpio,
-> +	msm_mux_gcc_gp1,
-> +	msm_mux_gcc_gp2,
-> +	msm_mux_gcc_gp3,
-> +	msm_mux_host2wlan_sol,
-> +	msm_mux_i2s0_data0,
-> +	msm_mux_i2s0_data1,
-> +	msm_mux_i2s0_sck,
-> +	msm_mux_i2s0_ws,
-> +	msm_mux_ibi_i3c,
-> +	msm_mux_jitter_bist,
-> +	msm_mux_mdp_vsync,
-> +	msm_mux_mdp_vsync0_out,
-> +	msm_mux_mdp_vsync1_out,
-> +	msm_mux_mdp_vsync2_out,
-> +	msm_mux_mdp_vsync3_out,
-> +	msm_mux_mdp_vsync_e,
-> +	msm_mux_nav_gpio0,
-> +	msm_mux_nav_gpio1,
-> +	msm_mux_nav_gpio2,
-> +	msm_mux_pcie0_clk_req_n,
-> +	msm_mux_pcie1_clk_req_n,
-> +	msm_mux_phase_flag,
-> +	msm_mux_pll_bist_sync,
-> +	msm_mux_pll_clk_aux,
-> +	msm_mux_prng_rosc0,
-> +	msm_mux_prng_rosc1,
-> +	msm_mux_prng_rosc2,
-> +	msm_mux_prng_rosc3,
-> +	msm_mux_qdss_cti,
-> +	msm_mux_qdss_gpio,
-> +	msm_mux_qlink0_enable,
-> +	msm_mux_qlink0_request,
-> +	msm_mux_qlink0_wmss,
-> +	msm_mux_qlink1_enable,
-> +	msm_mux_qlink1_request,
-> +	msm_mux_qlink1_wmss,
-> +	msm_mux_qspi0,
-> +	msm_mux_qup0_se0,
-> +	msm_mux_qup0_se1,
-> +	msm_mux_qup0_se2,
-> +	msm_mux_qup0_se3,
-> +	msm_mux_qup0_se4,
-> +	msm_mux_qup0_se5,
-> +	msm_mux_qup0_se6,
-> +	msm_mux_qup1_se0,
-> +	msm_mux_qup1_se1,
-> +	msm_mux_qup1_se2,
-> +	msm_mux_qup1_se3,
-> +	msm_mux_qup1_se4,
-> +	msm_mux_qup1_se5,
-> +	msm_mux_qup1_se6,
-> +	msm_mux_resout_gpio_n,
-> +	msm_mux_sd_write_protect,
-> +	msm_mux_sdc1_clk,
-> +	msm_mux_sdc1_cmd,
-> +	msm_mux_sdc1_data,
-> +	msm_mux_sdc1_rclk,
-> +	msm_mux_sdc2_clk,
-> +	msm_mux_sdc2_cmd,
-> +	msm_mux_sdc2_data,
-> +	msm_mux_sdc2_fb_clk,
-> +	msm_mux_tb_trig_sdc1,
-> +	msm_mux_tb_trig_sdc2,
-> +	msm_mux_tgu_ch0_trigout,
-> +	msm_mux_tgu_ch1_trigout,
-> +	msm_mux_tmess_prng0,
-> +	msm_mux_tmess_prng1,
-> +	msm_mux_tmess_prng2,
-> +	msm_mux_tmess_prng3,
-> +	msm_mux_tsense_pwm1,
-> +	msm_mux_tsense_pwm2,
-> +	msm_mux_uim0_clk,
-> +	msm_mux_uim0_data,
-> +	msm_mux_uim0_present,
-> +	msm_mux_uim0_reset,
-> +	msm_mux_uim1_clk_mira,
-> +	msm_mux_uim1_clk_mirb,
-> +	msm_mux_uim1_data_mira,
-> +	msm_mux_uim1_data_mirb,
-> +	msm_mux_uim1_present_mira,
-> +	msm_mux_uim1_present_mirb,
-> +	msm_mux_uim1_reset_mira,
-> +	msm_mux_uim1_reset_mirb,
-> +	msm_mux_usb0_hs,
-> +	msm_mux_usb0_phy_ps,
-> +	msm_mux_vfr_0,
-> +	msm_mux_vfr_1,
-> +	msm_mux_vsense_trigger_mirnat,
-> +	msm_mux_wcn_sw,
-> +	msm_mux_wcn_sw_ctrl,
-> +	msm_mux__,
+> +/* Link frequency setup */
+> +enum {
+> +	IMX585_LINK_FREQ_297MHZ,  // 594Mbps/lane
+> +	IMX585_LINK_FREQ_360MHZ,  // 720Mbps/lane
+> +	IMX585_LINK_FREQ_445MHZ,  // 891Mbps/lane
+> +	IMX585_LINK_FREQ_594MHZ,  // 1188Mbps/lane
+> +	IMX585_LINK_FREQ_720MHZ,  // 1440Mbps/lane
+> +	IMX585_LINK_FREQ_891MHZ,  // 1782Mbps/lane
+> +	IMX585_LINK_FREQ_1039MHZ, // 2079Mbps/lane
+> +	IMX585_LINK_FREQ_1188MHZ, // 2376Mbps/lane
 > +};
 > +
-> +static const char *const gpio_groups[] = {
-> +	"gpio0",   "gpio1",   "gpio2",	 "gpio3",   "gpio4",   "gpio5",
-> +	"gpio6",   "gpio7",   "gpio8",	 "gpio9",   "gpio10",  "gpio11",
-> +	"gpio12",  "gpio13",  "gpio14",	 "gpio15",  "gpio16",  "gpio17",
-> +	"gpio18",  "gpio19",  "gpio20",	 "gpio21",  "gpio22",  "gpio23",
-> +	"gpio24",  "gpio25",  "gpio26",	 "gpio27",  "gpio28",  "gpio29",
-> +	"gpio30",  "gpio31",  "gpio32",	 "gpio33",  "gpio34",  "gpio35",
-> +	"gpio36",  "gpio37",  "gpio38",	 "gpio39",  "gpio40",  "gpio41",
-> +	"gpio42",  "gpio43",  "gpio44",	 "gpio45",  "gpio46",  "gpio47",
-> +	"gpio48",  "gpio49",  "gpio50",	 "gpio51",  "gpio52",  "gpio53",
-> +	"gpio54",  "gpio55",  "gpio56",	 "gpio57",  "gpio58",  "gpio59",
-> +	"gpio60",  "gpio61",  "gpio62",	 "gpio63",  "gpio64",  "gpio65",
-> +	"gpio66",  "gpio67",  "gpio68",	 "gpio69",  "gpio70",  "gpio71",
-> +	"gpio72",  "gpio73",  "gpio74",	 "gpio75",  "gpio76",  "gpio77",
-> +	"gpio78",  "gpio79",  "gpio80",	 "gpio81",  "gpio82",  "gpio83",
-> +	"gpio84",  "gpio85",  "gpio86",	 "gpio87",  "gpio88",  "gpio89",
-> +	"gpio90",  "gpio91",  "gpio92",	 "gpio93",  "gpio94",  "gpio95",
-> +	"gpio96",  "gpio97",  "gpio98",	 "gpio99",  "gpio100", "gpio101",
-> +	"gpio102", "gpio103", "gpio104", "gpio105", "gpio106", "gpio107",
-> +	"gpio108", "gpio109", "gpio110", "gpio111", "gpio112", "gpio113",
-> +	"gpio114", "gpio115", "gpio116", "gpio117", "gpio118", "gpio119",
-> +	"gpio120", "gpio121", "gpio122", "gpio123", "gpio124", "gpio125",
-> +	"gpio126", "gpio127", "gpio128", "gpio129", "gpio130", "gpio131",
-> +	"gpio132", "gpio133", "gpio134", "gpio135", "gpio136", "gpio137",
-> +	"gpio138", "gpio139", "gpio140", "gpio141", "gpio142", "gpio143",
-> +	"gpio144", "gpio145", "gpio146", "gpio147", "gpio148", "gpio149",
-> +	"gpio150", "gpio151", "gpio152", "gpio153", "gpio154", "gpio155",
-> +	"gpio156", "gpio157", "gpio158", "gpio159", "gpio160", "gpio161",
-> +	"gpio162", "gpio163", "gpio164", "gpio165", "gpio166",
-> +};
-> +static const char *const resout_gpio_n_groups[] = {
-> +	"gpio39",
-> +};
-> +static const char *const sdc1_clk_groups[] = {
-> +	"gpio77",
-> +};
-> +static const char *const sdc1_cmd_groups[] = {
-> +	"gpio78",
-> +};
-> +static const char *const sdc1_data_groups[] = {
-> +	"gpio73", "gpio74", "gpio75", "gpio76", "gpio79", "gpio80",
-> +	"gpio81", "gpio82",
-> +};
-> +static const char *const sdc1_rclk_groups[] = {
-> +	"gpio72",
-> +};
-> +static const char *const aoss_cti_groups[] = {
-> +	"gpio0",
-> +	"gpio1",
-> +	"gpio4",
-> +	"gpio5",
-> +};
-> +static const char *const atest_char_groups[] = {
-> +	"gpio44", "gpio45", "gpio46", "gpio47", "gpio63",
-> +};
-> +static const char *const atest_usb_groups[] = {
-> +	"gpio23", "gpio24", "gpio60",
-> +};
-> +static const char *const audio_ext_mclk0_groups[] = {
-> +	"gpio23",
-> +};
-> +static const char *const audio_ext_mclk1_groups[] = {
-> +	"gpio24",
-> +};
-> +static const char *const audio_ref_clk_groups[] = {
-> +	"gpio24",
-> +};
-> +static const char *const cam_mclk_groups[] = {
-> +	"gpio83", "gpio84", "gpio85", "gpio86", "gpio87",
-> +};
-> +static const char *const cci_async_in0_groups[] = {
-> +	"gpio86",
-> +};
-> +static const char *const cci_i2c_scl_groups[] = {
-> +	"gpio89", "gpio91", "gpio93", "gpio95",
-> +};
-> +static const char *const cci_i2c_sda_groups[] = {
-> +	"gpio88", "gpio90", "gpio92", "gpio94",
-> +};
-> +static const char *const cci_timer_groups[] = {
-> +	"gpio77", "gpio83", "gpio84", "gpio85",
-> +};
-> +static const char *const coex_uart1_rx_groups[] = {
-> +	"gpio64",
-> +};
-> +static const char *const coex_uart1_tx_groups[] = {
-> +	"gpio63",
-> +};
-> +static const char *const dbg_out_clk_groups[] = {
-> +	"gpio24",
-> +};
-> +static const char *const ddr_bist_complete_groups[] = {
-> +	"gpio137",
-> +};
-> +static const char *const ddr_bist_fail_groups[] = {
-> +	"gpio56",
-> +};
-> +static const char *const ddr_bist_start_groups[] = {
-> +	"gpio133",
-> +};
-> +static const char *const ddr_bist_stop_groups[] = {
-> +	"gpio47",
-> +};
-> +static const char *const ddr_pxi0_groups[] = {
-> +	"gpio23",
-> +	"gpio24",
-> +};
-> +static const char *const ddr_pxi1_groups[] = {
-> +	"gpio50",
-> +	"gpio51",
-> +};
-> +static const char *const dp0_hot_groups[] = {
-> +	"gpio75",
-> +};
-> +static const char *const egpio_groups[] = {
-> +	"gpio132", "gpio133", "gpio134", "gpio135", "gpio136", "gpio137",
-> +	"gpio138", "gpio139", "gpio140", "gpio141", "gpio142", "gpio143",
-> +	"gpio144", "gpio145", "gpio146", "gpio147", "gpio148", "gpio149",
-> +	"gpio150", "gpio151", "gpio152", "gpio153", "gpio154", "gpio155",
-> +	"gpio156", "gpio157", "gpio158", "gpio159", "gpio160", "gpio161",
-> +	"gpio162", "gpio163", "gpio164", "gpio165", "gpio166",
-> +};
-> +static const char *const gcc_gp1_groups[] = {
-> +	"gpio29",
-> +	"gpio32",
-> +};
-> +static const char *const gcc_gp2_groups[] = {
-> +	"gpio28",
-> +	"gpio30",
-> +};
-> +static const char *const gcc_gp3_groups[] = {
-> +	"gpio31",
-> +	"gpio33",
-> +};
-> +static const char *const host2wlan_sol_groups[] = {
-> +	"gpio46",
-> +};
-> +static const char *const i2s0_data0_groups[] = {
-> +	"gpio16",
-> +};
-> +static const char *const i2s0_data1_groups[] = {
-> +	"gpio17",
-> +};
-> +static const char *const i2s0_sck_groups[] = {
-> +	"gpio15",
-> +};
-> +static const char *const i2s0_ws_groups[] = {
-> +	"gpio18",
-> +};
-> +static const char *const ibi_i3c_groups[] = {
-> +	"gpio0",  "gpio1",  "gpio4",  "gpio5",
-> +	"gpio32", "gpio33", "gpio36", "gpio37",
-> +};
-> +static const char *const jitter_bist_groups[] = {
-> +	"gpio141",
-> +};
-> +static const char *const mdp_vsync_groups[] = {
-> +	"gpio19",
-> +	"gpio37",
-> +	"gpio72",
-> +	"gpio129",
-> +};
-> +static const char *const mdp_vsync0_out_groups[] = {
-> +	"gpio12",
-> +};
-> +static const char *const mdp_vsync1_out_groups[] = {
-> +	"gpio12",
-> +};
-> +static const char *const mdp_vsync2_out_groups[] = {
-> +	"gpio40",
-> +};
-> +static const char *const mdp_vsync3_out_groups[] = {
-> +	"gpio40",
-> +};
-> +static const char *const mdp_vsync_e_groups[] = {
-> +	"gpio45",
-> +};
-> +static const char *const nav_gpio0_groups[] = {
-> +	"gpio124",
-> +};
-> +static const char *const nav_gpio1_groups[] = {
-> +	"gpio125",
-> +};
-> +static const char *const nav_gpio2_groups[] = {
-> +	"gpio126",
-> +};
-> +static const char *const pcie0_clk_req_n_groups[] = {
-> +	"gpio67",
-> +};
-> +static const char *const pcie1_clk_req_n_groups[] = {
-> +	"gpio70",
-> +};
-> +static const char *const phase_flag_groups[] = {
-> +	"gpio8", "gpio9", "gpio11", "gpio12", "gpio13", "gpio14",
-> +	"gpio15", "gpio16", "gpio18", "gpio26", "gpio38", "gpio39",
-> +	"gpio40", "gpio41", "gpio42", "gpio43", "gpio44", "gpio45",
-> +	"gpio46", "gpio47", "gpio48", "gpio49", "gpio63", "gpio64",
-> +	"gpio127", "gpio138", "gpio139", "gpio140", "gpio142", "gpio143",
-> +	"gpio144", "gpio147",
-> +};
-> +static const char *const pll_bist_sync_groups[] = {
-> +	"gpio26",
-> +};
-> +static const char *const pll_clk_aux_groups[] = {
-> +	"gpio36",
-> +};
-> +static const char *const prng_rosc0_groups[] = {
-> +	"gpio66",
-> +};
-> +static const char *const prng_rosc1_groups[] = {
-> +	"gpio67",
-> +};
-> +static const char *const prng_rosc2_groups[] = {
-> +	"gpio68",
-> +};
-> +static const char *const prng_rosc3_groups[] = {
-> +	"gpio69",
-> +};
-> +static const char *const qdss_cti_groups[] = {
-> +	"gpio4",  "gpio5",  "gpio6",  "gpio7",
-> +	"gpio44", "gpio45", "gpio54", "gpio87",
-> +};
-> +static const char *const qdss_gpio_groups[] = {
-> +	"gpio40", "gpio41", "gpio42", "gpio43", "gpio46", "gpio47",
-> +	"gpio48", "gpio49", "gpio50", "gpio51", "gpio52", "gpio53",
-> +	"gpio83", "gpio84", "gpio85", "gpio86", "gpio88", "gpio89",
-> +	"gpio138", "gpio139", "gpio140", "gpio141", "gpio149", "gpio150",
-> +	"gpio155", "gpio156", "gpio157", "gpio158", "gpio159", "gpio160",
-> +	"gpio161", "gpio162", "gpio163", "gpio164", "gpio165", "gpio166",
-> +};
-> +static const char *const qlink0_enable_groups[] = {
-> +	"gpio105",
-> +};
-> +static const char *const qlink0_request_groups[] = {
-> +	"gpio104",
-> +};
-> +static const char *const qlink0_wmss_groups[] = {
-> +	"gpio106",
-> +};
-> +static const char *const qlink1_enable_groups[] = {
-> +	"gpio108",
-> +};
-> +static const char *const qlink1_request_groups[] = {
-> +	"gpio107",
-> +};
-> +static const char *const qlink1_wmss_groups[] = {
-> +	"gpio109",
-> +};
-> +static const char *const qspi0_groups[] = {
-> +	"gpio8", "gpio9", "gpio10", "gpio11", "gpio12", "gpio13", "gpio14",
-> +};
-> +static const char *const qup0_se0_groups[] = {
-> +	"gpio0", "gpio1", "gpio2", "gpio3",
-> +};
-> +static const char *const qup0_se1_groups[] = {
-> +	"gpio4", "gpio5", "gpio6", "gpio7",
-> +};
-> +static const char *const qup0_se2_groups[] = {
-> +	"gpio8", "gpio9", "gpio10", "gpio11", "gpio12", "gpio13", "gpio14",
-> +};
-> +static const char *const qup0_se3_groups[] = {
-> +	"gpio15", "gpio16", "gpio17", "gpio18", "gpio23", "gpio24", "gpio26",
-> +};
-> +static const char *const qup0_se4_groups[] = {
-> +	"gpio19", "gpio20", "gpio21", "gpio22",
-> +};
-> +static const char *const qup0_se5_groups[] = {
-> +	"gpio23", "gpio24", "gpio25", "gpio26",
-> +};
-> +static const char *const qup0_se6_groups[] = {
-> +	"gpio27", "gpio28", "gpio29", "gpio30", "gpio31",
-> +};
-> +static const char *const qup1_se0_groups[] = {
-> +	"gpio32", "gpio33", "gpio94", "gpio95",
-> +};
-> +static const char *const qup1_se1_groups[] = {
-> +	"gpio36", "gpio37", "gpio38", "gpio39",
-> +};
-> +static const char *const qup1_se2_groups[] = {
-> +	"gpio36", "gpio37", "gpio38", "gpio40", "gpio41", "gpio42", "gpio43",
-> +};
-> +static const char *const qup1_se3_groups[] = {
-> +	"gpio92", "gpio93", "gpio94", "gpio95",
-> +};
-> +static const char *const qup1_se4_groups[] = {
-> +	"gpio48", "gpio49", "gpio50", "gpio51", "gpio52", "gpio53", "gpio54",
-> +};
-> +static const char *const qup1_se5_groups[] = {
-> +	"gpio55", "gpio56", "gpio59", "gpio60",
-> +};
-> +static const char *const qup1_se6_groups[] = {
-> +	"gpio55", "gpio56", "gpio59", "gpio60", "gpio90", "gpio91",
-> +};
-> +static const char *const sd_write_protect_groups[] = {
-> +	"gpio4",
-> +};
-> +static const char *const sdc2_data_groups[] = {
-> +	"gpio34",
-> +	"gpio35",
-> +	"gpio57",
-> +	"gpio58",
-> +};
-> +static const char *const sdc2_clk_groups[] = {
-> +	"gpio62",
-> +};
-> +static const char *const sdc2_cmd_groups[] = {
-> +	"gpio61",
-> +};
-> +static const char *const sdc2_fb_clk_groups[] = {
-> +	"gpio128",
-> +};
-> +static const char *const tb_trig_sdc1_groups[] = {
-> +	"gpio87",
-> +};
-> +static const char *const tb_trig_sdc2_groups[] = {
-> +	"gpio78",
-> +};
-> +static const char *const tgu_ch0_trigout_groups[] = {
-> +	"gpio87",
-> +};
-> +static const char *const tgu_ch1_trigout_groups[] = {
-> +	"gpio88",
-> +};
-> +static const char *const tmess_prng0_groups[] = {
-> +	"gpio86",
-> +};
-> +static const char *const tmess_prng1_groups[] = {
-> +	"gpio83",
-> +};
-> +static const char *const tmess_prng2_groups[] = {
-> +	"gpio84",
-> +};
-> +static const char *const tmess_prng3_groups[] = {
-> +	"gpio85",
-> +};
-> +static const char *const tsense_pwm1_groups[] = {
-> +	"gpio17",
-> +};
-> +static const char *const tsense_pwm2_groups[] = {
-> +	"gpio17",
-> +};
-> +static const char *const uim0_clk_groups[] = {
-> +	"gpio97",
-> +};
-> +static const char *const uim0_data_groups[] = {
-> +	"gpio96",
-> +};
-> +static const char *const uim0_present_groups[] = {
-> +	"gpio99",
-> +};
-> +static const char *const uim0_reset_groups[] = {
-> +	"gpio98",
-> +};
-> +static const char *const uim1_clk_mira_groups[] = {
-> +	"gpio111",
-> +};
-> +static const char *const uim1_clk_mirb_groups[] = {
-> +	"gpio101",
-> +};
-> +static const char *const uim1_data_mira_groups[] = {
-> +	"gpio110",
-> +};
-> +static const char *const uim1_data_mirb_groups[] = {
-> +	"gpio100",
-> +};
-> +static const char *const uim1_present_mira_groups[] = {
-> +	"gpio113",
-> +};
-> +static const char *const uim1_present_mirb_groups[] = {
-> +	"gpio103",
-> +};
-> +static const char *const uim1_reset_mira_groups[] = {
-> +	"gpio112",
-> +};
-> +static const char *const uim1_reset_mirb_groups[] = {
-> +	"gpio102",
-> +};
-> +static const char *const usb0_hs_groups[] = {
-> +	"gpio125",
-> +};
-> +static const char *const usb0_phy_ps_groups[] = {
-> +	"gpio131",
-> +};
-> +static const char *const vfr_0_groups[] = {
-> +	"gpio56",
-> +};
-> +static const char *const vfr_1_groups[] = {
-> +	"gpio126",
-> +};
-> +static const char *const vsense_trigger_mirnat_groups[] = {
-> +	"gpio94",
-> +};
-> +static const char *const wcn_sw_groups[] = {
-> +	"gpio52",
-> +};
-> +static const char *const wcn_sw_ctrl_groups[] = {
-> +	"gpio45",
+> +static const u8 link_freqs_reg_value[] = {
+> +	[IMX585_LINK_FREQ_297MHZ]  = 0x07,
+> +	[IMX585_LINK_FREQ_360MHZ]  = 0x06,
+> +	[IMX585_LINK_FREQ_445MHZ]  = 0x05,
+> +	[IMX585_LINK_FREQ_594MHZ]  = 0x04,
+> +	[IMX585_LINK_FREQ_720MHZ]  = 0x03,
+> +	[IMX585_LINK_FREQ_891MHZ]  = 0x02,
+> +	[IMX585_LINK_FREQ_1039MHZ] = 0x01,
+> +	[IMX585_LINK_FREQ_1188MHZ] = 0x00,
 > +};
 > +
-> +static const struct pinfunction milos_functions[] = {
-> +	MSM_PIN_FUNCTION(gpio),
-> +	MSM_PIN_FUNCTION(aoss_cti),
-> +	MSM_PIN_FUNCTION(atest_char),
-> +	MSM_PIN_FUNCTION(atest_usb),
-> +	MSM_PIN_FUNCTION(audio_ext_mclk0),
-> +	MSM_PIN_FUNCTION(audio_ext_mclk1),
-> +	MSM_PIN_FUNCTION(audio_ref_clk),
-> +	MSM_PIN_FUNCTION(cam_mclk),
-> +	MSM_PIN_FUNCTION(cci_async_in0),
-> +	MSM_PIN_FUNCTION(cci_i2c_scl),
-> +	MSM_PIN_FUNCTION(cci_i2c_sda),
-> +	MSM_PIN_FUNCTION(cci_timer),
-> +	MSM_PIN_FUNCTION(coex_uart1_rx),
-> +	MSM_PIN_FUNCTION(coex_uart1_tx),
-> +	MSM_PIN_FUNCTION(dbg_out_clk),
-> +	MSM_PIN_FUNCTION(ddr_bist_complete),
-> +	MSM_PIN_FUNCTION(ddr_bist_fail),
-> +	MSM_PIN_FUNCTION(ddr_bist_start),
-> +	MSM_PIN_FUNCTION(ddr_bist_stop),
-> +	MSM_PIN_FUNCTION(ddr_pxi0),
-> +	MSM_PIN_FUNCTION(ddr_pxi1),
-> +	MSM_PIN_FUNCTION(dp0_hot),
-> +	MSM_PIN_FUNCTION(egpio),
-> +	MSM_PIN_FUNCTION(gcc_gp1),
-> +	MSM_PIN_FUNCTION(gcc_gp2),
-> +	MSM_PIN_FUNCTION(gcc_gp3),
-> +	MSM_PIN_FUNCTION(host2wlan_sol),
-> +	MSM_PIN_FUNCTION(i2s0_data0),
-> +	MSM_PIN_FUNCTION(i2s0_data1),
-> +	MSM_PIN_FUNCTION(i2s0_sck),
-> +	MSM_PIN_FUNCTION(i2s0_ws),
-> +	MSM_PIN_FUNCTION(ibi_i3c),
-> +	MSM_PIN_FUNCTION(jitter_bist),
-> +	MSM_PIN_FUNCTION(mdp_vsync),
-> +	MSM_PIN_FUNCTION(mdp_vsync0_out),
-> +	MSM_PIN_FUNCTION(mdp_vsync1_out),
-> +	MSM_PIN_FUNCTION(mdp_vsync2_out),
-> +	MSM_PIN_FUNCTION(mdp_vsync3_out),
-> +	MSM_PIN_FUNCTION(mdp_vsync_e),
-> +	MSM_PIN_FUNCTION(nav_gpio0),
-> +	MSM_PIN_FUNCTION(nav_gpio1),
-> +	MSM_PIN_FUNCTION(nav_gpio2),
-> +	MSM_PIN_FUNCTION(pcie0_clk_req_n),
-> +	MSM_PIN_FUNCTION(pcie1_clk_req_n),
-> +	MSM_PIN_FUNCTION(phase_flag),
-> +	MSM_PIN_FUNCTION(pll_bist_sync),
-> +	MSM_PIN_FUNCTION(pll_clk_aux),
-> +	MSM_PIN_FUNCTION(prng_rosc0),
-> +	MSM_PIN_FUNCTION(prng_rosc1),
-> +	MSM_PIN_FUNCTION(prng_rosc2),
-> +	MSM_PIN_FUNCTION(prng_rosc3),
-> +	MSM_PIN_FUNCTION(qdss_cti),
-> +	MSM_PIN_FUNCTION(qdss_gpio),
-> +	MSM_PIN_FUNCTION(qlink0_enable),
-> +	MSM_PIN_FUNCTION(qlink0_request),
-> +	MSM_PIN_FUNCTION(qlink0_wmss),
-> +	MSM_PIN_FUNCTION(qlink1_enable),
-> +	MSM_PIN_FUNCTION(qlink1_request),
-> +	MSM_PIN_FUNCTION(qlink1_wmss),
-> +	MSM_PIN_FUNCTION(qspi0),
-> +	MSM_PIN_FUNCTION(qup0_se0),
-> +	MSM_PIN_FUNCTION(qup0_se1),
-> +	MSM_PIN_FUNCTION(qup0_se2),
-> +	MSM_PIN_FUNCTION(qup0_se3),
-> +	MSM_PIN_FUNCTION(qup0_se4),
-> +	MSM_PIN_FUNCTION(qup0_se5),
-> +	MSM_PIN_FUNCTION(qup0_se6),
-> +	MSM_PIN_FUNCTION(qup1_se0),
-> +	MSM_PIN_FUNCTION(qup1_se1),
-> +	MSM_PIN_FUNCTION(qup1_se2),
-> +	MSM_PIN_FUNCTION(qup1_se3),
-> +	MSM_PIN_FUNCTION(qup1_se4),
-> +	MSM_PIN_FUNCTION(qup1_se5),
-> +	MSM_PIN_FUNCTION(qup1_se6),
-> +	MSM_PIN_FUNCTION(resout_gpio_n),
-> +	MSM_PIN_FUNCTION(sd_write_protect),
-> +	MSM_PIN_FUNCTION(sdc1_clk),
-> +	MSM_PIN_FUNCTION(sdc1_cmd),
-> +	MSM_PIN_FUNCTION(sdc1_data),
-> +	MSM_PIN_FUNCTION(sdc1_rclk),
-> +	MSM_PIN_FUNCTION(sdc2_clk),
-> +	MSM_PIN_FUNCTION(sdc2_cmd),
-> +	MSM_PIN_FUNCTION(sdc2_data),
-> +	MSM_PIN_FUNCTION(sdc2_fb_clk),
-> +	MSM_PIN_FUNCTION(tb_trig_sdc1),
-> +	MSM_PIN_FUNCTION(tb_trig_sdc2),
-> +	MSM_PIN_FUNCTION(tgu_ch0_trigout),
-> +	MSM_PIN_FUNCTION(tgu_ch1_trigout),
-> +	MSM_PIN_FUNCTION(tmess_prng0),
-> +	MSM_PIN_FUNCTION(tmess_prng1),
-> +	MSM_PIN_FUNCTION(tmess_prng2),
-> +	MSM_PIN_FUNCTION(tmess_prng3),
-> +	MSM_PIN_FUNCTION(tsense_pwm1),
-> +	MSM_PIN_FUNCTION(tsense_pwm2),
-> +	MSM_PIN_FUNCTION(uim0_clk),
-> +	MSM_PIN_FUNCTION(uim0_data),
-> +	MSM_PIN_FUNCTION(uim0_present),
-> +	MSM_PIN_FUNCTION(uim0_reset),
-> +	MSM_PIN_FUNCTION(uim1_clk_mira),
-> +	MSM_PIN_FUNCTION(uim1_clk_mirb),
-> +	MSM_PIN_FUNCTION(uim1_data_mira),
-> +	MSM_PIN_FUNCTION(uim1_data_mirb),
-> +	MSM_PIN_FUNCTION(uim1_present_mira),
-> +	MSM_PIN_FUNCTION(uim1_present_mirb),
-> +	MSM_PIN_FUNCTION(uim1_reset_mira),
-> +	MSM_PIN_FUNCTION(uim1_reset_mirb),
-> +	MSM_PIN_FUNCTION(usb0_hs),
-> +	MSM_PIN_FUNCTION(usb0_phy_ps),
-> +	MSM_PIN_FUNCTION(vfr_0),
-> +	MSM_PIN_FUNCTION(vfr_1),
-> +	MSM_PIN_FUNCTION(vsense_trigger_mirnat),
-> +	MSM_PIN_FUNCTION(wcn_sw),
-> +	MSM_PIN_FUNCTION(wcn_sw_ctrl),
+> +static const u64 link_freqs[] = {
+> +	[IMX585_LINK_FREQ_297MHZ]  = 297000000,
+> +	[IMX585_LINK_FREQ_360MHZ]  = 360000000,
+> +	[IMX585_LINK_FREQ_445MHZ]  = 445500000,
+> +	[IMX585_LINK_FREQ_594MHZ]  = 594000000,
+> +	[IMX585_LINK_FREQ_720MHZ]  = 720000000,
+> +	[IMX585_LINK_FREQ_891MHZ]  = 891000000,
+> +	[IMX585_LINK_FREQ_1039MHZ] = 1039500000,
+> +	[IMX585_LINK_FREQ_1188MHZ] = 1188000000,
+> +};
+> +
+> +//min HMAX for 4-lane 4K full res mode, x2 for 2-lane, /2 for FHD
+> +static const u16 HMAX_table_4lane_4K[] = {
+> +	[IMX585_LINK_FREQ_297MHZ] = 1584,
+> +	[IMX585_LINK_FREQ_360MHZ] = 1320,
+> +	[IMX585_LINK_FREQ_445MHZ] = 1100,
+> +	[IMX585_LINK_FREQ_594MHZ] =  792,
+> +	[IMX585_LINK_FREQ_720MHZ] =  660,
+> +	[IMX585_LINK_FREQ_891MHZ] =  550,
+> +	[IMX585_LINK_FREQ_1039MHZ] = 440,
+> +	[IMX585_LINK_FREQ_1188MHZ] = 396,
+> +};
+> +
+> +struct imx585_inck_cfg {
+> +	u32 xclk_hz;   /* platform clock rate  */
+> +	u8  inck_sel;  /* value for reg        */
+> +};
+> +
+> +static const struct imx585_inck_cfg imx585_inck_table[] = {
+> +	{ 74250000, 0x00 },
+> +	{ 37125000, 0x01 },
+> +	{ 72000000, 0x02 },
+> +	{ 27000000, 0x03 },
+> +	{ 24000000, 0x04 },
+> +};
+> +
+> +static const char * const hdr_gain_adder_menu[] = {
+> +	"+0dB",
+> +	"+6dB",
+> +	"+12dB",
+> +	"+18dB",
+> +	"+24dB",
+> +	"+29.1dB",
+> +};
+> +
+> +/*Honestly I don't know why there are two 50% 50% blend
+> + * but it is in the datasheet
+> + */
+
+Multi-line comments should have the comment opening alone on the first
+line:
+
+/*
+ * Honestly I don't know why there are two 50% 50% blend
+ * but it is in the datasheet
+ */
+
+> +static const char * const hdr_data_blender_menu[] = {
+> +	"HG 1/2, LG 1/2",
+> +	"HG 3/4, LG 1/4",
+> +	"HG 1/2, LG 1/2",
+> +	"HG 7/8, LG 1/8",
+> +	"HG 15/16, LG 1/16",
+> +	"2nd HG 1/2, LG 1/2",
+> +	"HG 1/16, LG 15/16",
+> +	"HG 1/8, LG 7/8",
+> +	"HG 1/4, LG 3/4",
+> +};
+> +
+> +static const char * const grad_compression_slope_menu[] = {
+> +	"1/1",
+> +	"1/2",
+> +	"1/4",
+> +	"1/8",
+> +	"1/16",
+> +	"1/32",
+> +	"1/64",
+> +	"1/128",
+> +	"1/256",
+> +	"1/512",
+> +	"1/1024",
+> +	"1/2048",
+> +};
+> +
+> +static const char * const sync_mode_menu[] = {
+> +	"Internal Sync Leader Mode",
+> +	"External Sync Leader Mode",
+> +	"Follower Mode",
+> +};
+> +
+> +struct imx585_reg {
+> +	u16 address;
+> +	u8 val;
+> +};
+> +
+> +struct IMX585_reg_list {
+> +	unsigned int num_of_regs;
+> +	const struct imx585_reg *regs;
+> +};
+> +
+> +/* Mode : resolution and related config&values */
+> +struct imx585_mode {
+> +	/* Frame width */
+> +	unsigned int width;
+> +
+> +	/* Frame height */
+> +	unsigned int height;
+> +
+> +	/* mode HMAX Scaling */
+> +	u8   hmax_div;
+> +
+> +	/* minimum H-timing */
+> +	u16 min_HMAX;
+> +
+> +	/* minimum V-timing */
+> +	u64 min_VMAX;
+> +
+> +	/* default H-timing */
+> +	u16 default_HMAX;
+> +
+> +	/* default V-timing */
+> +	u64 default_VMAX;
+> +
+> +	/* Analog crop rectangle. */
+> +	struct v4l2_rect crop;
+> +
+> +	/* Default register values */
+> +	struct IMX585_reg_list reg_list;
+> +};
+> +
+> +/* IMX585 Register List */
+> +/* Common Modes */
+> +static struct imx585_reg common_regs[] = {
+> +	{0x3002, 0x01},
+> +	{0x3069, 0x00},
+> +	{0x3074, 0x64},
+> +	{0x30D5, 0x04},// DIG_CLP_VSTART
+> +	{0x3030, 0x00},// FDG_SEL0 LCG, HCG:0x01
+> +	{0x30A6, 0x00},// XVS_DRV [1:0] Hi-Z
+> +	{0x3081, 0x00},// EXP_GAIN, Reset to 0
+> +	{0x3460, 0x21},// -
+> +	{0x3478, 0xA1},// -
+> +	{0x347C, 0x01},// -
+> +	{0x3480, 0x01},// -
+> +	{0x3A4E, 0x14},// -
+> +	{0x3A52, 0x14},// -
+> +	{0x3A56, 0x00},// -
+> +	{0x3A5A, 0x00},// -
+> +	{0x3A5E, 0x00},// -
+> +	{0x3A62, 0x00},// -
+> +	{0x3A6A, 0x20},// -
+> +	{0x3A6C, 0x42},// -
+> +	{0x3A6E, 0xA0},// -
+> +	{0x3B2C, 0x0C},// -
+> +	{0x3B30, 0x1C},// -
+> +	{0x3B34, 0x0C},// -
+> +	{0x3B38, 0x1C},// -
+> +	{0x3BA0, 0x0C},// -
+> +	{0x3BA4, 0x1C},// -
+> +	{0x3BA8, 0x0C},// -
+> +	{0x3BAC, 0x1C},// -
+> +	{0x3D3C, 0x11},// -
+> +	{0x3D46, 0x0B},// -
+> +	{0x3DE0, 0x3F},// -
+> +	{0x3DE1, 0x08},// -
+> +	{0x3E14, 0x87},// -
+> +	{0x3E16, 0x91},// -
+> +	{0x3E18, 0x91},// -
+> +	{0x3E1A, 0x87},// -
+> +	{0x3E1C, 0x78},// -
+> +	{0x3E1E, 0x50},// -
+> +	{0x3E20, 0x50},// -
+> +	{0x3E22, 0x50},// -
+> +	{0x3E24, 0x87},// -
+> +	{0x3E26, 0x91},// -
+> +	{0x3E28, 0x91},// -
+> +	{0x3E2A, 0x87},// -
+> +	{0x3E2C, 0x78},// -
+> +	{0x3E2E, 0x50},// -
+> +	{0x3E30, 0x50},// -
+> +	{0x3E32, 0x50},// -
+> +	{0x3E34, 0x87},// -
+> +	{0x3E36, 0x91},// -
+> +	{0x3E38, 0x91},// -
+> +	{0x3E3A, 0x87},// -
+> +	{0x3E3C, 0x78},// -
+> +	{0x3E3E, 0x50},// -
+> +	{0x3E40, 0x50},// -
+> +	{0x3E42, 0x50},// -
+> +	{0x4054, 0x64},// -
+> +	{0x4148, 0xFE},// -
+> +	{0x4149, 0x05},// -
+> +	{0x414A, 0xFF},// -
+> +	{0x414B, 0x05},// -
+> +	{0x420A, 0x03},// -
+> +	{0x4231, 0x08},// -
+> +	{0x423D, 0x9C},// -
+> +	{0x4242, 0xB4},// -
+> +	{0x4246, 0xB4},// -
+> +	{0x424E, 0xB4},// -
+> +	{0x425C, 0xB4},// -
+> +	{0x425E, 0xB6},// -
+> +	{0x426C, 0xB4},// -
+> +	{0x426E, 0xB6},// -
+> +	{0x428C, 0xB4},// -
+> +	{0x428E, 0xB6},// -
+> +	{0x4708, 0x00},// -
+> +	{0x4709, 0x00},// -
+> +	{0x470A, 0xFF},// -
+> +	{0x470B, 0x03},// -
+> +	{0x470C, 0x00},// -
+> +	{0x470D, 0x00},// -
+> +	{0x470E, 0xFF},// -
+> +	{0x470F, 0x03},// -
+> +	{0x47EB, 0x1C},// -
+> +	{0x47F0, 0xA6},// -
+> +	{0x47F2, 0xA6},// -
+> +	{0x47F4, 0xA0},// -
+> +	{0x47F6, 0x96},// -
+> +	{0x4808, 0xA6},// -
+> +	{0x480A, 0xA6},// -
+> +	{0x480C, 0xA0},// -
+> +	{0x480E, 0x96},// -
+> +	{0x492C, 0xB2},// -
+> +	{0x4930, 0x03},// -
+> +	{0x4932, 0x03},// -
+> +	{0x4936, 0x5B},// -
+> +	{0x4938, 0x82},// -
+> +	{0x493E, 0x23},// -
+> +	{0x4BA8, 0x1C},// -
+> +	{0x4BA9, 0x03},// -
+> +	{0x4BAC, 0x1C},// -
+> +	{0x4BAD, 0x1C},// -
+> +	{0x4BAE, 0x1C},// -
+> +	{0x4BAF, 0x1C},// -
+> +	{0x4BB0, 0x1C},// -
+> +	{0x4BB1, 0x1C},// -
+> +	{0x4BB2, 0x1C},// -
+> +	{0x4BB3, 0x1C},// -
+> +	{0x4BB4, 0x1C},// -
+> +	{0x4BB8, 0x03},// -
+> +	{0x4BB9, 0x03},// -
+> +	{0x4BBA, 0x03},// -
+> +	{0x4BBB, 0x03},// -
+> +	{0x4BBC, 0x03},// -
+> +	{0x4BBD, 0x03},// -
+> +	{0x4BBE, 0x03},// -
+> +	{0x4BBF, 0x03},// -
+> +	{0x4BC0, 0x03},// -
+> +	{0x4C14, 0x87},// -
+> +	{0x4C16, 0x91},// -
+> +	{0x4C18, 0x91},// -
+> +	{0x4C1A, 0x87},// -
+> +	{0x4C1C, 0x78},// -
+> +	{0x4C1E, 0x50},// -
+> +	{0x4C20, 0x50},// -
+> +	{0x4C22, 0x50},// -
+> +	{0x4C24, 0x87},// -
+> +	{0x4C26, 0x91},// -
+> +	{0x4C28, 0x91},// -
+> +	{0x4C2A, 0x87},// -
+> +	{0x4C2C, 0x78},// -
+> +	{0x4C2E, 0x50},// -
+> +	{0x4C30, 0x50},// -
+> +	{0x4C32, 0x50},// -
+> +	{0x4C34, 0x87},// -
+> +	{0x4C36, 0x91},// -
+> +	{0x4C38, 0x91},// -
+> +	{0x4C3A, 0x87},// -
+> +	{0x4C3C, 0x78},// -
+> +	{0x4C3E, 0x50},// -
+> +	{0x4C40, 0x50},// -
+> +	{0x4C42, 0x50},// -
+> +	{0x4D12, 0x1F},// -
+> +	{0x4D13, 0x1E},// -
+> +	{0x4D26, 0x33},// -
+> +	{0x4E0E, 0x59},// -
+> +	{0x4E14, 0x55},// -
+> +	{0x4E16, 0x59},// -
+> +	{0x4E1E, 0x3B},// -
+> +	{0x4E20, 0x47},// -
+> +	{0x4E22, 0x54},// -
+> +	{0x4E26, 0x81},// -
+> +	{0x4E2C, 0x7D},// -
+> +	{0x4E2E, 0x81},// -
+> +	{0x4E36, 0x63},// -
+> +	{0x4E38, 0x6F},// -
+> +	{0x4E3A, 0x7C},// -
+> +	{0x4F3A, 0x3C},// -
+> +	{0x4F3C, 0x46},// -
+> +	{0x4F3E, 0x59},// -
+> +	{0x4F42, 0x64},// -
+> +	{0x4F44, 0x6E},// -
+> +	{0x4F46, 0x81},// -
+> +	{0x4F4A, 0x82},// -
+> +	{0x4F5A, 0x81},// -
+> +	{0x4F62, 0xAA},// -
+> +	{0x4F72, 0xA9},// -
+> +	{0x4F78, 0x36},// -
+> +	{0x4F7A, 0x41},// -
+> +	{0x4F7C, 0x61},// -
+> +	{0x4F7D, 0x01},// -
+> +	{0x4F7E, 0x7C},// -
+> +	{0x4F7F, 0x01},// -
+> +	{0x4F80, 0x77},// -
+> +	{0x4F82, 0x7B},// -
+> +	{0x4F88, 0x37},// -
+> +	{0x4F8A, 0x40},// -
+> +	{0x4F8C, 0x62},// -
+> +	{0x4F8D, 0x01},// -
+> +	{0x4F8E, 0x76},// -
+> +	{0x4F8F, 0x01},// -
+> +	{0x4F90, 0x5E},// -
+> +	{0x4F91, 0x02},// -
+> +	{0x4F92, 0x69},// -
+> +	{0x4F93, 0x02},// -
+> +	{0x4F94, 0x89},// -
+> +	{0x4F95, 0x02},// -
+> +	{0x4F96, 0xA4},// -
+> +	{0x4F97, 0x02},// -
+> +	{0x4F98, 0x9F},// -
+> +	{0x4F99, 0x02},// -
+> +	{0x4F9A, 0xA3},// -
+> +	{0x4F9B, 0x02},// -
+> +	{0x4FA0, 0x5F},// -
+> +	{0x4FA1, 0x02},// -
+> +	{0x4FA2, 0x68},// -
+> +	{0x4FA3, 0x02},// -
+> +	{0x4FA4, 0x8A},// -
+> +	{0x4FA5, 0x02},// -
+> +	{0x4FA6, 0x9E},// -
+> +	{0x4FA7, 0x02},// -
+> +	{0x519E, 0x79},// -
+> +	{0x51A6, 0xA1},// -
+> +	{0x51F0, 0xAC},// -
+> +	{0x51F2, 0xAA},// -
+> +	{0x51F4, 0xA5},// -
+> +	{0x51F6, 0xA0},// -
+> +	{0x5200, 0x9B},// -
+> +	{0x5202, 0x91},// -
+> +	{0x5204, 0x87},// -
+> +	{0x5206, 0x82},// -
+> +	{0x5208, 0xAC},// -
+> +	{0x520A, 0xAA},// -
+> +	{0x520C, 0xA5},// -
+> +	{0x520E, 0xA0},// -
+> +	{0x5210, 0x9B},// -
+> +	{0x5212, 0x91},// -
+> +	{0x5214, 0x87},// -
+> +	{0x5216, 0x82},// -
+> +	{0x5218, 0xAC},// -
+> +	{0x521A, 0xAA},// -
+> +	{0x521C, 0xA5},// -
+> +	{0x521E, 0xA0},// -
+> +	{0x5220, 0x9B},// -
+> +	{0x5222, 0x91},// -
+> +	{0x5224, 0x87},// -
+> +	{0x5226, 0x82},// -
+> +};
+> +
+> +/* Common Registers for ClearHDR. */
+> +static const struct imx585_reg common_clearHDR_mode[] = {
+> +	{0x301A, 0x10}, // WDMODE: Clear HDR mode
+> +	{0x3024, 0x02}, // COMBI_EN: 0x02
+> +	{0x3069, 0x02}, // Clear HDR mode
+> +	{0x3074, 0x63}, // Clear HDR mode
+> +	{0x3930, 0xE6}, // DUR[15:8]: Clear HDR mode (12bit)
+> +	{0x3931, 0x00}, // DUR[7:0]: Clear HDR mode (12bit)
+> +	{0x3A4C, 0x61}, // WAIT_ST0[7:0]: Clear HDR mode
+> +	{0x3A4D, 0x02}, // WAIT_ST0[15:8]: Clear HDR mode
+> +	{0x3A50, 0x70}, // WAIT_ST1[7:0]: Clear HDR mode
+> +	{0x3A51, 0x02}, // WAIT_ST1[15:8]: Clear HDR mode
+> +	{0x3E10, 0x17}, // ADTHEN: Clear HDR mode
+> +	{0x493C, 0x41}, // WAIT_10_SHF AD 10-bit 0x0C disable
+> +	{0x4940, 0x41}, // WAIT_12_SHF AD 12-bit 0x41 enable
+> +	{0x3081, 0x02}, // EXP_GAIN: High gain setting +12dB default
+> +};
+> +
+> +/* Common Registers for non-ClearHDR. */
+> +static const struct imx585_reg common_normal_mode[] = {
+> +	{0x301A, 0x00}, // WDMODE: Normal mode
+> +	{0x3024, 0x00}, // COMBI_EN: 0x00
+> +	{0x3069, 0x00}, // Normal mode
+> +	{0x3074, 0x64}, // Normal mode
+> +	{0x3930, 0x0C}, // DUR[15:8]: Normal mode (12bit)
+> +	{0x3931, 0x01}, // DUR[7:0]: Normal mode (12bit)
+> +	{0x3A4C, 0x39}, // WAIT_ST0[7:0]: Normal mode
+> +	{0x3A4D, 0x01}, // WAIT_ST0[15:8]: Normal mode
+> +	{0x3A50, 0x48}, // WAIT_ST1[7:0]: Normal mode
+> +	{0x3A51, 0x01}, // WAIT_ST1[15:8]: Normal mode
+> +	{0x3E10, 0x10}, // ADTHEN: Normal mode
+> +	{0x493C, 0x23}, // WAIT_10_SHF AD 10-bit 0x23 Normal mode
+> +	{0x4940, 0x23}, // WAIT_12_SHF AD 12-bit 0x23 Normal mode
+> +};
+> +
+> +/* All pixel 4K60. 12-bit */
+> +static const struct imx585_reg mode_4k_regs_12bit[] = {
+> +	{0x301B, 0x00}, // ADDMODE non-binning
+> +	{0x3022, 0x02}, // ADBIT 12-bit
+> +	{0x3023, 0x01}, // MDBIT 12-bit
+> +	{0x30D5, 0x04}, // DIG_CLP_VSTART non-binning
+> +};
+> +
+> +/* 2x2 binned 1080p60. 12-bit */
+> +static const struct imx585_reg mode_1080_regs_12bit[] = {
+> +	{0x301B, 0x01}, // ADDMODE binning
+> +	{0x3022, 0x02}, // ADBIT 12-bit
+> +	{0x3023, 0x01}, // MDBIT 12-bit
+> +	{0x30D5, 0x02}, // DIG_CLP_VSTART binning
+> +};
+> +
+> +/* IMX585 Register List - END*/
+> +
+> +/* For Mode List:
+> + * Default:
+> + *   12Bit - FHD, 4K
+> + * ClearHDR Enabled:
+> + *   12bit + Gradation compression
+> + *   16bit - FHD, 4K
+> + *
+> + * Gradation compression is available on 12bit
+> + * With Default option, only 12bit mode is exposed
+> + * With ClearHDR enabled via parameters,
+> + *   12bit will be with Gradation compression enabled
+> + *   16bit mode exposed
+> + *
+> + * Technically, because the sensor is actually binning
+> + * in digital domain, its readout speed is the same
+> + * between 4K and FHD. However, through testing it is
+> + * possible to "overclock" the FHD mode, thus leaving the
+> + * hmax_div option for those who want to try.
+> + * Also, note that FHD and 4K mode shared the same VMAX.
+> + */
+> +
+> +/* Mode configs */
+> +struct imx585_mode supported_modes[] = {
+> +	{
+> +		/* 1080p60 2x2 binning */
+> +		.width = 1928,
+> +		.height = 1090,
+> +		.hmax_div = 1,
+> +		.min_HMAX = 366,
+> +		.min_VMAX = IMX585_VMAX_DEFAULT,
+> +		.default_HMAX = 366,
+> +		.default_VMAX = IMX585_VMAX_DEFAULT,
+> +		.crop = {
+> +			.left = IMX585_PIXEL_ARRAY_LEFT,
+> +			.top = IMX585_PIXEL_ARRAY_TOP,
+> +			.width = IMX585_PIXEL_ARRAY_WIDTH,
+> +			.height = IMX585_PIXEL_ARRAY_HEIGHT,
+> +		},
+> +		.reg_list = {
+> +			.num_of_regs = ARRAY_SIZE(mode_1080_regs_12bit),
+> +			.regs = mode_1080_regs_12bit,
+> +		},
+> +	},
+> +	{
+> +		/* 4K60 All pixel */
+> +		.width = 3856,
+> +		.height = 2180,
+> +		.min_HMAX = 550,
+> +		.min_VMAX = IMX585_VMAX_DEFAULT,
+> +		.default_HMAX = 550,
+> +		.default_VMAX = IMX585_VMAX_DEFAULT,
+> +		.hmax_div = 1,
+> +		.crop = {
+> +			.left = IMX585_PIXEL_ARRAY_LEFT,
+> +			.top = IMX585_PIXEL_ARRAY_TOP,
+> +			.width = IMX585_PIXEL_ARRAY_WIDTH,
+> +			.height = IMX585_PIXEL_ARRAY_HEIGHT,
+> +		},
+> +		.reg_list = {
+> +			.num_of_regs = ARRAY_SIZE(mode_4k_regs_12bit),
+> +			.regs = mode_4k_regs_12bit,
+> +		},
+> +	},
 > +};
 > +
 > +/*
-> + * Every pin is maintained as a single group, and missing or non-existing pin
-> + * would be maintained as dummy group to synchronize pin group index with
-> + * pin descriptor registered with pinctrl core.
-> + * Clients would not be able to request these dummy pin groups.
+> + * The supported formats.
+> + * This table MUST contain 4 entries per format, to cover the various flip
+> + * combinations in the order
+> + * - no flip
+> + * - h flip
+> + * - v flip
+> + * - h&v flips
 > + */
-> +static const struct msm_pingroup milos_groups[] = {
-> +	[0] = PINGROUP(0, qup0_se0, ibi_i3c, aoss_cti, _, _, _, _, _, _, _, _),
-> +	[1] = PINGROUP(1, qup0_se0, ibi_i3c, aoss_cti, _, _, _, _, _, _, _, _),
-> +	[2] = PINGROUP(2, qup0_se0, _, _, _, _, _, _, _, _, _, _),
-> +	[3] = PINGROUP(3, qup0_se0, _, _, _, _, _, _, _, _, _, _),
-> +	[4] = PINGROUP(4, qup0_se1, ibi_i3c, aoss_cti, sd_write_protect, qdss_cti, _, _, _, _, _, _),
-> +	[5] = PINGROUP(5, qup0_se1, ibi_i3c, aoss_cti, qdss_cti, _, _, _, _, _, _, _),
-> +	[6] = PINGROUP(6, qup0_se1, qdss_cti, _, _, _, _, _, _, _, _, _),
-> +	[7] = PINGROUP(7, qup0_se1, qdss_cti, _, _, _, _, _, _, _, _, _),
-> +	[8] = PINGROUP(8, qup0_se2, qspi0, _, phase_flag, _, _, _, _, _, _, _),
-> +	[9] = PINGROUP(9, qup0_se2, qspi0, _, phase_flag, _, _, _, _, _, _, _),
-> +	[10] = PINGROUP(10, qup0_se2, qspi0, _, _, _, _, _, _, _, _, _),
-> +	[11] = PINGROUP(11, qup0_se2, qspi0, _, phase_flag, _, _, _, _, _, _, _),
-> +	[12] = PINGROUP(12, qup0_se2, qspi0, mdp_vsync0_out, mdp_vsync1_out, _, phase_flag, _, _, _, _, _),
-> +	[13] = PINGROUP(13, qup0_se2, qspi0, _, phase_flag, _, _, _, _, _, _, _),
-> +	[14] = PINGROUP(14, qup0_se2, qspi0, _, phase_flag, _, _, _, _, _, _, _),
-> +	[15] = PINGROUP(15, qup0_se3, i2s0_sck, _, phase_flag, _, _, _, _, _, _, _),
-> +	[16] = PINGROUP(16, qup0_se3, i2s0_data0, _, phase_flag, _, _, _, _, _, _, _),
-> +	[17] = PINGROUP(17, qup0_se3, i2s0_data1, tsense_pwm1, tsense_pwm2, _, _, _, _, _, _, _),
-> +	[18] = PINGROUP(18, qup0_se3, i2s0_ws, _, phase_flag, _, _, _, _, _, _, _),
-> +	[19] = PINGROUP(19, qup0_se4, mdp_vsync, _, _, _, _, _, _, _, _, _),
-> +	[20] = PINGROUP(20, qup0_se4, _, _, _, _, _, _, _, _, _, _),
-> +	[21] = PINGROUP(21, qup0_se4, _, _, _, _, _, _, _, _, _, _),
-> +	[22] = PINGROUP(22, qup0_se4, _, _, _, _, _, _, _, _, _, _),
-> +	[23] = PINGROUP(23, qup0_se5, qup0_se3, audio_ext_mclk0, _, atest_usb, ddr_pxi0, _, _, _, _, _),
-> +	[24] = PINGROUP(24, qup0_se5, qup0_se3, audio_ext_mclk1, audio_ref_clk, dbg_out_clk, _, atest_usb, ddr_pxi0, _, _, _),
-> +	[25] = PINGROUP(25, qup0_se5, _, _, _, _, _, _, _, _, _, _),
-> +	[26] = PINGROUP(26, qup0_se5, qup0_se3, pll_bist_sync, _, phase_flag, _, _, _, _, _, _),
-> +	[27] = PINGROUP(27, qup0_se6, _, _, _, _, _, _, _, _, _, _),
-> +	[28] = PINGROUP(28, qup0_se6, gcc_gp2, _, _, _, _, _, _, _, _, _),
-> +	[29] = PINGROUP(29, qup0_se6, gcc_gp1, _, _, _, _, _, _, _, _, _),
-> +	[30] = PINGROUP(30, qup0_se6, gcc_gp2, _, _, _, _, _, _, _, _, _),
-> +	[31] = PINGROUP(31, qup0_se6, gcc_gp3, _, _, _, _, _, _, _, _, _),
-> +	[32] = PINGROUP(32, qup1_se0, ibi_i3c, gcc_gp1, _, _, _, _, _, _, _, _),
-> +	[33] = PINGROUP(33, qup1_se0, ibi_i3c, gcc_gp3, _, _, _, _, _, _, _, _),
-> +	[34] = PINGROUP(34, sdc2_data, _, _, _, _, _, _, _, _, _, _),
-> +	[35] = PINGROUP(35, sdc2_data, _, _, _, _, _, _, _, _, _, _),
-> +	[36] = PINGROUP(36, qup1_se1, qup1_se2, ibi_i3c, pll_clk_aux, _, _, _, _, _, _, _),
-> +	[37] = PINGROUP(37, qup1_se1, qup1_se2, ibi_i3c, mdp_vsync, _, _, _, _, _, _, _),
-> +	[38] = PINGROUP(38, qup1_se1, qup1_se2, _, phase_flag, _, _, _, _, _, _, _),
-> +	[39] = PINGROUP(39, qup1_se1, resout_gpio_n, _, phase_flag, _, _, _, _, _, _, _),
-> +	[40] = PINGROUP(40, qup1_se2, mdp_vsync2_out, mdp_vsync3_out, _, phase_flag, qdss_gpio, _, _, _, _, _),
-> +	[41] = PINGROUP(41, qup1_se2, _, phase_flag, qdss_gpio, _, _, _, _, _, _, _),
-> +	[42] = PINGROUP(42, qup1_se2, _, phase_flag, qdss_gpio, _, _, _, _, _, _, _),
-> +	[43] = PINGROUP(43, qup1_se2, _, _, phase_flag, qdss_gpio, _, _, _, _, _, _),
-> +	[44] = PINGROUP(44, _, _, phase_flag, qdss_cti, atest_char, _, _, _, _, _, _),
-> +	[45] = PINGROUP(45, wcn_sw_ctrl, mdp_vsync_e, _, _, phase_flag, qdss_cti, atest_char, _, _, _, _),
-> +	[46] = PINGROUP(46, host2wlan_sol, _, phase_flag, qdss_gpio, atest_char, _, _, _, _, _, _),
-> +	[47] = PINGROUP(47, ddr_bist_stop, _, phase_flag, qdss_gpio, atest_char, _, _, _, _, _, _),
-> +	[48] = PINGROUP(48, qup1_se4, _, phase_flag, qdss_gpio, _, _, _, _, _, _, _),
-> +	[49] = PINGROUP(49, qup1_se4, _, phase_flag, qdss_gpio, _, _, _, _, _, _, _),
-> +	[50] = PINGROUP(50, qup1_se4, qdss_gpio, ddr_pxi1, _, _, _, _, _, _, _, _),
-> +	[51] = PINGROUP(51, qup1_se4, qdss_gpio, ddr_pxi1, _, _, _, _, _, _, _, _),
-> +	[52] = PINGROUP(52, qup1_se4, wcn_sw, qdss_gpio, _, _, _, _, _, _, _, _),
-> +	[53] = PINGROUP(53, qup1_se4, qdss_gpio, _, _, _, _, _, _, _, _, _),
-> +	[54] = PINGROUP(54, qup1_se4, qdss_cti, _, _, _, _, _, _, _, _, _),
-> +	[55] = PINGROUP(55, qup1_se5, qup1_se6, _, _, _, _, _, _, _, _, _),
-> +	[56] = PINGROUP(56, qup1_se5, qup1_se6, vfr_0, ddr_bist_fail, _, _, _, _, _, _, _),
-> +	[57] = PINGROUP(57, sdc2_data, _, _, _, _, _, _, _, _, _, _),
-> +	[58] = PINGROUP(58, sdc2_data, _, _, _, _, _, _, _, _, _, _),
-> +	[59] = PINGROUP(59, qup1_se6, _, qup1_se5, _, _, _, _, _, _, _, _),
-> +	[60] = PINGROUP(60, qup1_se6, _, qup1_se5, atest_usb, _, _, _, _, _, _, _),
-> +	[61] = PINGROUP(61, sdc2_cmd, _, _, _, _, _, _, _, _, _, _),
-> +	[62] = PINGROUP(62, sdc2_clk, _, _, _, _, _, _, _, _, _, _),
-> +	[63] = PINGROUP(63, coex_uart1_tx, _, phase_flag, atest_char, _, _, _, _, _, _, _),
-> +	[64] = PINGROUP(64, coex_uart1_rx, _, phase_flag, _, _, _, _, _, _, _, _),
-> +	[65] = PINGROUP(65, _, _, _, _, _, _, _, _, _, _, _),
-> +	[66] = PINGROUP(66, prng_rosc0, _, _, _, _, _, _, _, _, _, _),
-> +	[67] = PINGROUP(67, pcie0_clk_req_n, prng_rosc1, _, _, _, _, _, _, _, _, _),
-> +	[68] = PINGROUP(68, prng_rosc2, _, _, _, _, _, _, _, _, _, _),
-> +	[69] = PINGROUP(69, prng_rosc3, _, _, _, _, _, _, _, _, _, _),
-> +	[70] = PINGROUP(70, pcie1_clk_req_n, _, _, _, _, _, _, _, _, _, _),
-> +	[71] = PINGROUP(71, _, _, _, _, _, _, _, _, _, _, _),
-> +	[72] = PINGROUP(72, sdc1_rclk, mdp_vsync, _, _, _, _, _, _, _, _, _),
-> +	[73] = PINGROUP(73, sdc1_data, _, _, _, _, _, _, _, _, _, _),
-> +	[74] = PINGROUP(74, sdc1_data, _, _, _, _, _, _, _, _, _, _),
-> +	[75] = PINGROUP(75, sdc1_data, dp0_hot, _, _, _, _, _, _, _, _, _),
-> +	[76] = PINGROUP(76, sdc1_data, _, _, _, _, _, _, _, _, _, _),
-> +	[77] = PINGROUP(77, sdc1_clk, cci_timer, _, _, _, _, _, _, _, _, _),
-> +	[78] = PINGROUP(78, sdc1_cmd, tb_trig_sdc2, _, _, _, _, _, _, _, _, _),
-> +	[79] = PINGROUP(79, sdc1_data, _, _, _, _, _, _, _, _, _, _),
-> +	[80] = PINGROUP(80, sdc1_data, _, _, _, _, _, _, _, _, _, _),
-> +	[81] = PINGROUP(81, sdc1_data, _, _, _, _, _, _, _, _, _, _),
-> +	[82] = PINGROUP(82, sdc1_data, _, _, _, _, _, _, _, _, _, _),
-> +	[83] = PINGROUP(83, cam_mclk, cci_timer, tmess_prng1, qdss_gpio, _, _, _, _, _, _, _),
-> +	[84] = PINGROUP(84, cam_mclk, cci_timer, tmess_prng2, qdss_gpio, _, _, _, _, _, _, _),
-> +	[85] = PINGROUP(85, cam_mclk, cci_timer, tmess_prng3, qdss_gpio, _, _, _, _, _, _, _),
-> +	[86] = PINGROUP(86, cam_mclk, cci_async_in0, tmess_prng0, qdss_gpio, _, _, _, _, _, _, _),
-> +	[87] = PINGROUP(87, cam_mclk, tb_trig_sdc1, tgu_ch0_trigout, qdss_cti, _, _, _, _, _, _, _),
-> +	[88] = PINGROUP(88, cci_i2c_sda, tgu_ch1_trigout, _, qdss_gpio, _, _, _, _, _, _, _),
-> +	[89] = PINGROUP(89, cci_i2c_scl, _, qdss_gpio, _, _, _, _, _, _, _, _),
-> +	[90] = PINGROUP(90, cci_i2c_sda, qup1_se6, _, _, _, _, _, _, _, _, _),
-> +	[91] = PINGROUP(91, cci_i2c_scl, qup1_se6, _, _, _, _, _, _, _, _, _),
-> +	[92] = PINGROUP(92, cci_i2c_sda, qup1_se3, _, _, _, _, _, _, _, _, _),
-> +	[93] = PINGROUP(93, cci_i2c_scl, qup1_se3, _, _, _, _, _, _, _, _, _),
-> +	[94] = PINGROUP(94, cci_i2c_sda, qup1_se3, qup1_se0, _, vsense_trigger_mirnat, _, _, _, _, _, _),
-> +	[95] = PINGROUP(95, cci_i2c_scl, qup1_se3, qup1_se0, _, _, _, _, _, _, _, _),
-> +	[96] = PINGROUP(96, uim0_data, _, _, _, _, _, _, _, _, _, _),
-> +	[97] = PINGROUP(97, uim0_clk, _, _, _, _, _, _, _, _, _, _),
-> +	[98] = PINGROUP(98, uim0_reset, _, _, _, _, _, _, _, _, _, _),
-> +	[99] = PINGROUP(99, uim0_present, _, _, _, _, _, _, _, _, _, _),
-> +	[100] = PINGROUP(100, uim1_data_mirb, _, _, _, _, _, _, _, _, _, _),
-> +	[101] = PINGROUP(101, uim1_clk_mirb, _, _, _, _, _, _, _, _, _, _),
-> +	[102] = PINGROUP(102, uim1_reset_mirb, _, _, _, _, _, _, _, _, _, _),
-> +	[103] = PINGROUP(103, uim1_present_mirb, _, _, _, _, _, _, _, _, _, _),
-> +	[104] = PINGROUP(104, qlink0_request, _, _, _, _, _, _, _, _, _, _),
-> +	[105] = PINGROUP(105, qlink0_enable, _, _, _, _, _, _, _, _, _, _),
-> +	[106] = PINGROUP(106, qlink0_wmss, _, _, _, _, _, _, _, _, _, _),
-> +	[107] = PINGROUP(107, qlink1_request, _, _, _, _, _, _, _, _, _, _),
-> +	[108] = PINGROUP(108, qlink1_enable, _, _, _, _, _, _, _, _, _, _),
-> +	[109] = PINGROUP(109, qlink1_wmss, _, _, _, _, _, _, _, _, _, _),
-> +	[110] = PINGROUP(110, uim1_data_mira, _, _, _, _, _, _, _, _, _, _),
-> +	[111] = PINGROUP(111, uim1_clk_mira, _, _, _, _, _, _, _, _, _, _),
-> +	[112] = PINGROUP(112, uim1_reset_mira, _, _, _, _, _, _, _, _, _, _),
-> +	[113] = PINGROUP(113, uim1_present_mira, _, _, _, _, _, _, _, _, _, _),
-> +	[114] = PINGROUP(114, _, _, _, _, _, _, _, _, _, _, _),
-> +	[115] = PINGROUP(115, _, _, _, _, _, _, _, _, _, _, _),
-> +	[116] = PINGROUP(116, _, _, _, _, _, _, _, _, _, _, _),
-> +	[117] = PINGROUP(117, _, _, _, _, _, _, _, _, _, _, _),
-> +	[118] = PINGROUP(118, _, _, _, _, _, _, _, _, _, _, _),
-> +	[119] = PINGROUP(119, _, _, _, _, _, _, _, _, _, _, _),
-> +	[120] = PINGROUP(120, _, _, _, _, _, _, _, _, _, _, _),
-> +	[121] = PINGROUP(121, _, _, _, _, _, _, _, _, _, _, _),
-> +	[122] = PINGROUP(122, _, _, _, _, _, _, _, _, _, _, _),
-> +	[123] = PINGROUP(123, _, _, _, _, _, _, _, _, _, _, _),
-> +	[124] = PINGROUP(124, nav_gpio0, _, _, _, _, _, _, _, _, _, _),
-> +	[125] = PINGROUP(125, nav_gpio1, usb0_hs, _, _, _, _, _, _, _, _, _),
-> +	[126] = PINGROUP(126, _, nav_gpio2, vfr_1, _, _, _, _, _, _, _, _),
-> +	[127] = PINGROUP(127, _, _, phase_flag, _, _, _, _, _, _, _, _),
-> +	[128] = PINGROUP(128, sdc2_fb_clk, _, _, _, _, _, _, _, _, _, _),
-> +	[129] = PINGROUP(129, mdp_vsync, _, _, _, _, _, _, _, _, _, _),
-> +	[130] = PINGROUP(130, _, _, _, _, _, _, _, _, _, _, _),
-> +	[131] = PINGROUP(131, usb0_phy_ps, _, _, _, _, _, _, _, _, _, _),
-> +	[132] = PINGROUP(132, _, _, _, _, _, _, _, _, _, _, egpio),
-> +	[133] = PINGROUP(133, ddr_bist_start, _, _, _, _, _, _, _, _, _, egpio),
-> +	[134] = PINGROUP(134, _, _, _, _, _, _, _, _, _, _, egpio),
-> +	[135] = PINGROUP(135, _, _, _, _, _, _, _, _, _, _, egpio),
-> +	[136] = PINGROUP(136, _, _, _, _, _, _, _, _, _, _, egpio),
-> +	[137] = PINGROUP(137, ddr_bist_complete, _, _, _, _, _, _, _, _, _, egpio),
-> +	[138] = PINGROUP(138, _, phase_flag, qdss_gpio, _, _, _, _, _, _, _, egpio),
-> +	[139] = PINGROUP(139, _, phase_flag, qdss_gpio, _, _, _, _, _, _, _, egpio),
-> +	[140] = PINGROUP(140, _, phase_flag, qdss_gpio, _, _, _, _, _, _, _, egpio),
-> +	[141] = PINGROUP(141, jitter_bist, qdss_gpio, _, _, _, _, _, _, _, _, egpio),
-> +	[142] = PINGROUP(142, _, phase_flag, _, _, _, _, _, _, _, _, egpio),
-> +	[143] = PINGROUP(143, _, phase_flag, _, _, _, _, _, _, _, _, egpio),
-> +	[144] = PINGROUP(144, _, phase_flag, _, _, _, _, _, _, _, _, egpio),
-> +	[145] = PINGROUP(145, _, _, _, _, _, _, _, _, _, _, egpio),
-> +	[146] = PINGROUP(146, _, _, _, _, _, _, _, _, _, _, egpio),
-> +	[147] = PINGROUP(147, _, phase_flag, _, _, _, _, _, _, _, _, egpio),
-> +	[148] = PINGROUP(148, _, _, _, _, _, _, _, _, _, _, egpio),
-> +	[149] = PINGROUP(149, _, qdss_gpio, _, _, _, _, _, _, _, _, egpio),
-> +	[150] = PINGROUP(150, _, qdss_gpio, _, _, _, _, _, _, _, _, egpio),
-> +	[151] = PINGROUP(151, _, _, _, _, _, _, _, _, _, _, egpio),
-> +	[152] = PINGROUP(152, _, _, _, _, _, _, _, _, _, _, egpio),
-> +	[153] = PINGROUP(153, _, _, _, _, _, _, _, _, _, _, egpio),
-> +	[154] = PINGROUP(154, _, _, _, _, _, _, _, _, _, _, egpio),
-> +	[155] = PINGROUP(155, _, qdss_gpio, _, _, _, _, _, _, _, _, egpio),
-> +	[156] = PINGROUP(156, _, qdss_gpio, _, _, _, _, _, _, _, _, egpio),
-> +	[157] = PINGROUP(157, _, qdss_gpio, _, _, _, _, _, _, _, _, egpio),
-> +	[158] = PINGROUP(158, qdss_gpio, _, _, _, _, _, _, _, _, _, egpio),
-> +	[159] = PINGROUP(159, qdss_gpio, _, _, _, _, _, _, _, _, _, egpio),
-> +	[160] = PINGROUP(160, qdss_gpio, _, _, _, _, _, _, _, _, _, egpio),
-> +	[161] = PINGROUP(161, qdss_gpio, _, _, _, _, _, _, _, _, _, egpio),
-> +	[162] = PINGROUP(162, qdss_gpio, _, _, _, _, _, _, _, _, _, egpio),
-> +	[163] = PINGROUP(163, qdss_gpio, _, _, _, _, _, _, _, _, _, egpio),
-> +	[164] = PINGROUP(164, qdss_gpio, _, _, _, _, _, _, _, _, _, egpio),
-> +	[165] = PINGROUP(165, qdss_gpio, _, _, _, _, _, _, _, _, _, egpio),
-> +	[166] = PINGROUP(166, qdss_gpio, _, _, _, _, _, _, _, _, _, egpio),
-> +	[167] = UFS_RESET(ufs_reset, 0xb4004, 0xb5000),
-> +	[168] = SDC_QDSD_PINGROUP(sdc2_clk, 0xab000, 0, 6),
-> +	[169] = SDC_QDSD_PINGROUP(sdc2_cmd, 0xab000, 12, 3),
-> +	[170] = SDC_QDSD_PINGROUP(sdc2_data, 0xab000, 9, 0),
+> +
+> +/* 12bit Only */
+> +static const u32 codes_normal[] = {
+> +	MEDIA_BUS_FMT_SRGGB12_1X12,
+> +	MEDIA_BUS_FMT_SGRBG12_1X12,
+> +	MEDIA_BUS_FMT_SGBRG12_1X12,
+> +	MEDIA_BUS_FMT_SBGGR12_1X12,
 > +};
 > +
-> +static const struct msm_gpio_wakeirq_map milos_pdc_map[] = {
-> +	{ 0, 122 },   { 3, 95 },    { 4, 100 },	  { 6, 52 },   { 7, 119 },
-> +	{ 8, 92 },    { 11, 54 },   { 12, 56 },	  { 13, 64 },  { 14, 75 },
-> +	{ 15, 82 },   { 18, 89 },   { 19, 90 },	  { 22, 93 },  { 23, 94 },
-> +	{ 26, 91 },   { 27, 57 },   { 30, 138 },  { 31, 96 },  { 32, 67 },
-> +	{ 34, 128 },  { 35, 98 },   { 36, 99 },	  { 38, 101 }, { 39, 102 },
-> +	{ 40, 69 },   { 43, 103 },  { 44, 104 },  { 45, 126 }, { 47, 59 },
-> +	{ 48, 106 },  { 51, 107 },  { 52, 108 },  { 54, 110 }, { 55, 140 },
-> +	{ 56, 58 },   { 57, 129 },  { 58, 111 },  { 59, 112 }, { 60, 115 },
-> +	{ 61, 113 },  { 62, 114 },  { 64, 105 },  { 65, 55 },  { 67, 116 },
-> +	{ 68, 117 },  { 70, 120 },  { 71, 121 },  { 72, 97 },  { 73, 109 },
-> +	{ 74, 118 },  { 75, 132 },  { 76, 144 },  { 77, 127 }, { 78, 133 },
-> +	{ 79, 134 },  { 80, 135 },  { 81, 124 },  { 82, 136 }, { 87, 60 },
-> +	{ 91, 123 },  { 92, 125 },  { 95, 139 },  { 99, 53 },  { 103, 61 },
-> +	{ 104, 71 },  { 107, 137 }, { 113, 51 },  { 124, 72 }, { 125, 62 },
-> +	{ 126, 73 },  { 128, 63 },  { 129, 130 }, { 130, 65 }, { 131, 66 },
-> +	{ 133, 68 },  { 136, 70 },  { 143, 78 },  { 144, 79 }, { 145, 142 },
-> +	{ 148, 81 },  { 149, 76 },  { 150, 83 },  { 151, 84 }, { 153, 74 },
-> +	{ 155, 131 }, { 158, 85 },  { 159, 77 },  { 161, 80 }, { 162, 143 },
-> +	{ 163, 86 },  { 164, 87 },  { 166, 88 },
+> +/* 12bit + 16bit for Clear HDR */
+> +static const u32 codes_clearhdr[] = {
+> +	/* 16-bit modes. */
+> +	MEDIA_BUS_FMT_SRGGB16_1X16,
+> +	MEDIA_BUS_FMT_SGRBG16_1X16,
+> +	MEDIA_BUS_FMT_SGBRG16_1X16,
+> +	MEDIA_BUS_FMT_SBGGR16_1X16,
+> +	/* 12-bit modes. */
+> +	MEDIA_BUS_FMT_SRGGB12_1X12,
+> +	MEDIA_BUS_FMT_SGRBG12_1X12,
+> +	MEDIA_BUS_FMT_SGBRG12_1X12,
+> +	MEDIA_BUS_FMT_SBGGR12_1X12,
 > +};
 > +
-> +static const struct msm_pinctrl_soc_data milos_tlmm = {
-> +	.pins = milos_pins,
-> +	.npins = ARRAY_SIZE(milos_pins),
-> +	.functions = milos_functions,
-> +	.nfunctions = ARRAY_SIZE(milos_functions),
-> +	.groups = milos_groups,
-> +	.ngroups = ARRAY_SIZE(milos_groups),
-> +	.ngpios = 168,
-> +	.wakeirq_map = milos_pdc_map,
-> +	.nwakeirq_map = ARRAY_SIZE(milos_pdc_map),
-> +	.egpio_func = 11,
+> +/* Flip isn’t relevant for mono */
+> +static const u32 mono_codes[] = {
+> +	MEDIA_BUS_FMT_Y16_1X16,   /* 16-bit mono */
+> +	MEDIA_BUS_FMT_Y12_1X12,   /* 12-bit mono */
 > +};
 > +
-> +static int milos_tlmm_probe(struct platform_device *pdev)
+> +/* regulator supplies */
+> +static const char * const imx585_supply_name[] = {
+> +	/* Supplies can be enabled in any order */
+> +	"VANA",  /* Analog (3.3V) supply */
+> +	"VDIG",  /* Digital Core (1.1V) supply */
+> +	"VDDL",  /* IF (1.8V) supply */
+> +};
+> +
+> +#define imx585_NUM_SUPPLIES ARRAY_SIZE(imx585_supply_name)
+> +
+> +struct imx585 {
+> +	struct v4l2_subdev sd;
+> +	struct media_pad pad[NUM_PADS];
+> +
+> +	unsigned int fmt_code;
+
+Please use the v4l2_subdev active state API to replace this. You will
+need to call v4l2_subdev_init_finalize(), and the V4L2 framework will
+allocate a v4l2_subdev_state instance for the active state. Most subdev
+operations won't have to test for V4L2_SUBDEV_FORMAT_ACTIVE or
+V4L2_SUBDEV_FORMAT_TRY, and will simply store data in the state passed
+to the function. See commit e8a5b1df000e ("media: i2c: imx219: Use
+subdev active state") for an example.
+
+> +
+> +	struct clk *xclk;
+> +	u32 xclk_freq;
+> +
+> +	/* chosen INCK_SEL register value */
+> +	u8  inck_sel_val;
+> +
+> +	/* Link configurations */
+> +	unsigned int lane_count;
+> +	unsigned int link_freq_idx;
+> +
+> +	struct gpio_desc *reset_gpio;
+> +	struct regulator_bulk_data supplies[imx585_NUM_SUPPLIES];
+> +
+> +	struct v4l2_ctrl_handler ctrl_handler;
+> +
+> +	/* V4L2 Controls */
+> +	struct v4l2_ctrl *pixel_rate;
+> +	struct v4l2_ctrl *link_freq;
+> +	struct v4l2_ctrl *exposure;
+> +	struct v4l2_ctrl *gain;
+> +	struct v4l2_ctrl *hcg_ctrl;
+> +	struct v4l2_ctrl *vflip;
+> +	struct v4l2_ctrl *hflip;
+> +	struct v4l2_ctrl *vblank;
+> +	struct v4l2_ctrl *hblank;
+> +	struct v4l2_ctrl *blacklevel;
+> +
+> +	/* V4L2 HDR Controls */
+> +	struct v4l2_ctrl *hdr_mode;
+> +	struct v4l2_ctrl *datasel_th_ctrl;
+> +	struct v4l2_ctrl *datasel_bk_ctrl;
+> +	struct v4l2_ctrl *gdc_th_ctrl;
+> +	struct v4l2_ctrl *gdc_exp_ctrl_l;
+> +	struct v4l2_ctrl *gdc_exp_ctrl_h;
+> +	struct v4l2_ctrl *hdr_gain_ctrl;
+> +
+> +	/* V4L2 IR Cut filter switch Controls */
+> +	bool   has_ircut;
+> +	struct v4l2_ctrl   *ircut_ctrl;
+> +	struct i2c_client  *ircut_client;
+> +
+> +	/* Current mode */
+> +	const struct imx585_mode *mode;
+
+This should be dropped too, the imx585_mode instance should be lookup up
+based on the v4l2_subdev_state.
+
+> +
+> +	/* HCG enabled flag*/
+> +	bool hcg;
+> +
+> +	/* Mono mode */
+> +	bool mono;
+> +
+> +	/* Clear HDR mode */
+> +	bool clear_HDR;
+
+All variables must be lower case.
+
+> +
+> +	/* Sync Mode*/
+> +	/* 0 = Internal Sync Leader Mode
+> +	 * 1 = External Sync Leader Mode
+> +	 * 2 = Follower Mode
+> +	 * The datasheet wording is very confusing but basically:
+> +	 * Leader Mode = Sensor using internal clock to drive the sensor
+> +	 * But with external sync mode you can send a XVS input so the sensor
+> +	 * will try to align with it.
+> +	 * For Follower mode it is purely driven by external clock.
+> +	 * In this case you need to drive both XVS and XHS.
+> +	 */
+> +	u32 sync_mode;
+> +
+> +	/* Tracking sensor VMAX/HMAX value */
+> +	u16 HMAX;
+> +	u32 VMAX;
+> +
+> +	/*
+> +	 * Mutex for serialized access:
+> +	 * Protect sensor module set pad format and start/stop streaming safely.
+> +	 */
+> +	struct mutex mutex;
+
+You will be able to drop this when switching to the v4l2_subdev active
+state API.
+
+> +
+> +	/* Streaming on/off */
+> +	bool streaming;
+> +
+> +	/* Rewrite common registers on stream on? */
+> +	bool common_regs_written;
+> +};
+> +
+> +static inline struct imx585 *to_imx585(struct v4l2_subdev *_sd)
 > +{
-> +	return msm_pinctrl_probe(pdev, &milos_tlmm);
+> +	return container_of(_sd, struct imx585, sd);
 > +}
 > +
-> +static const struct of_device_id milos_tlmm_of_match[] = {
-> +	{ .compatible = "qcom,milos-tlmm" },
+> +static inline void get_mode_table(struct imx585 *imx585, unsigned int code,
+> +				  const struct imx585_mode **mode_list,
+> +				  unsigned int *num_modes)
+> +{
+> +	*mode_list = NULL;
+> +	*num_modes = 0;
+> +
+> +	if (imx585->mono) {
+> +		/* --- Mono paths --- */
+> +		if (code == MEDIA_BUS_FMT_Y16_1X16 && imx585->clear_HDR) {
+> +			*mode_list = supported_modes;
+> +			*num_modes = ARRAY_SIZE(supported_modes);
+> +		}
+> +		if (code == MEDIA_BUS_FMT_Y12_1X12) {
+> +			*mode_list = supported_modes;
+> +			*num_modes = ARRAY_SIZE(supported_modes);
+> +		}
+> +	} else {
+> +		/* --- Color paths --- */
+> +		switch (code) {
+> +		/* 16-bit */
+> +		case MEDIA_BUS_FMT_SRGGB16_1X16:
+> +		case MEDIA_BUS_FMT_SGRBG16_1X16:
+> +		case MEDIA_BUS_FMT_SGBRG16_1X16:
+> +		case MEDIA_BUS_FMT_SBGGR16_1X16:
+> +		/* 12-bit */
+> +		case MEDIA_BUS_FMT_SRGGB12_1X12:
+> +		case MEDIA_BUS_FMT_SGRBG12_1X12:
+> +		case MEDIA_BUS_FMT_SGBRG12_1X12:
+> +		case MEDIA_BUS_FMT_SBGGR12_1X12:
+> +			*mode_list = supported_modes;
+> +			*num_modes = ARRAY_SIZE(supported_modes);
+> +			break;
+> +		default:
+> +			*mode_list = NULL;
+> +			*num_modes = 0;
+> +		}
+> +	}
+> +}
+> +
+> +/* ------------------------------------------------------------------
+> + * Optional IR-cut helper
+> + * ------------------------------------------------------------------
+> + */
+> +
+> +/* One-byte “command” sent to the IR-cut MCU at imx585->ircut_client   */
+
+Is that MCU integrated in the camera sensor, or in the camera module ?
+
+> +static int imx585_ircut_write(struct imx585 *imx585, u8 cmd)
+> +{
+> +	struct i2c_client *client = imx585->ircut_client;
+> +	int ret;
+> +
+> +	ret = i2c_smbus_write_byte(client, cmd);
+> +	if (ret < 0)
+> +		dev_err(&client->dev, "IR-cut write failed (%d)\n", ret);
+> +
+> +	return ret;
+> +}
+> +
+> +static int imx585_ircut_set(struct imx585 *imx585, int on)
+> +{
+> +	return imx585_ircut_write(imx585, on ? 0x01 : 0x00);
+> +}
+> +
+> +/* Read registers up to 2 at a time */
+> +static int imx585_read_reg(struct imx585 *imx585, u16 reg, u32 len, u32 *val)
+> +{
+> +	struct i2c_client *client = v4l2_get_subdevdata(&imx585->sd);
+> +	struct i2c_msg msgs[2];
+> +	u8 addr_buf[2] = { reg >> 8, reg & 0xff };
+> +	u8 data_buf[4] = { 0, };
+> +	int ret;
+> +
+> +	if (len > 4)
+> +		return -EINVAL;
+> +
+> +	/* Write register address */
+> +	msgs[0].addr = client->addr;
+> +	msgs[0].flags = 0;
+> +	msgs[0].len = ARRAY_SIZE(addr_buf);
+> +	msgs[0].buf = addr_buf;
+> +
+> +	/* Read data from register */
+> +	msgs[1].addr = client->addr;
+> +	msgs[1].flags = I2C_M_RD;
+> +	msgs[1].len = len;
+> +	msgs[1].buf = &data_buf[4 - len];
+> +
+> +	ret = i2c_transfer(client->adapter, msgs, ARRAY_SIZE(msgs));
+> +	if (ret != ARRAY_SIZE(msgs))
+> +		return -EIO;
+> +
+> +	*val = get_unaligned_be32(data_buf);
+> +
+> +	return 0;
+> +}
+> +
+> +/* Write registers 1 byte at a time */
+> +static int imx585_write_reg_1byte(struct imx585 *imx585, u16 reg, u8 val)
+> +{
+> +	struct i2c_client *client = v4l2_get_subdevdata(&imx585->sd);
+> +	u8 buf[3];
+> +	int ret;
+> +
+> +	put_unaligned_be16(reg, buf);
+> +	buf[2] = val;
+> +	ret = i2c_master_send(client, buf, 3);
+> +	if (ret != 3)
+> +		return ret;
+> +
+> +	return 0;
+> +}
+> +
+> +/* Write registers 2 byte at a time */
+> +static int imx585_write_reg_2byte(struct imx585 *imx585, u16 reg, u16 val)
+> +{
+> +	struct i2c_client *client = v4l2_get_subdevdata(&imx585->sd);
+> +	u8 buf[4];
+> +	int ret;
+> +
+> +	put_unaligned_be16(reg, buf);
+> +	buf[2] = val;
+> +	buf[3] = val >> 8;
+> +	ret = i2c_master_send(client, buf, 4);
+> +	if (ret != 4)
+> +		return ret;
+> +
+> +	return 0;
+> +}
+> +
+> +/* Write registers 3 byte at a time */
+> +static int imx585_write_reg_3byte(struct imx585 *imx585, u16 reg, u32 val)
+> +{
+> +	struct i2c_client *client = v4l2_get_subdevdata(&imx585->sd);
+> +	u8 buf[5];
+> +
+> +	put_unaligned_be16(reg, buf);
+> +	buf[2]  = val;
+> +	buf[3]  = val >> 8;
+> +	buf[4]  = val >> 16;
+> +	if (i2c_master_send(client, buf, 5) != 5)
+> +		return -EIO;
+> +
+> +	return 0;
+> +}
+
+Please use the v4l2-cci helpers to access registers. They encode the
+register width in the register address macro, simplifying the driver and
+making it less error-prone.
+
+> +
+> +/* Write a list of 1 byte registers */
+> +static int imx585_write_regs(struct imx585 *imx585,
+> +			     const struct imx585_reg *regs, u32 len)
+> +{
+> +	struct i2c_client *client = v4l2_get_subdevdata(&imx585->sd);
+> +	unsigned int i;
+> +	int ret;
+> +
+> +	for (i = 0; i < len; i++) {
+> +		ret = imx585_write_reg_1byte(imx585, regs[i].address,
+> +					     regs[i].val);
+> +		if (ret) {
+> +			dev_err_ratelimited(&client->dev,
+> +					    "Failed to write reg 0x%4.4x. error = %d\n",
+> +					    regs[i].address, ret);
+> +
+> +			return ret;
+> +		}
+> +	}
+> +
+> +	return 0;
+> +}
+> +
+> +/* Hold register values until hold is disabled */
+> +static inline void imx585_register_hold(struct imx585 *imx585, bool hold)
+> +{
+> +	imx585_write_reg_1byte(imx585, 0x3001, hold ? 1 : 0);
+> +}
+> +
+> +/* Get bayer order based on flip setting. */
+> +static u32 imx585_get_format_code(struct imx585 *imx585, u32 code)
+> +{
+> +	unsigned int i;
+> +
+> +	lockdep_assert_held(&imx585->mutex);
+> +
+> +	if (imx585->mono) {
+> +		for (i = 0; i < ARRAY_SIZE(mono_codes); i++)
+> +			if (mono_codes[i] == code)
+> +				break;
+> +		return mono_codes[i];
+> +	}
+> +
+> +	if (imx585->clear_HDR) {
+> +		for (i = 0; i < ARRAY_SIZE(codes_clearhdr); i++)
+> +			if (codes_clearhdr[i] == code)
+> +				break;
+> +		return codes_clearhdr[i];
+> +	}
+> +
+> +	for (i = 0; i < ARRAY_SIZE(codes_normal); i++)
+> +		if (codes_normal[i] == code)
+> +			break;
+> +	return codes_normal[i];
+> +}
+> +
+> +static void imx585_set_default_format(struct imx585 *imx585)
+> +{
+> +	/* Set default mode to max resolution */
+> +	imx585->mode = &supported_modes[0];
+> +	if (imx585->mono)
+> +		imx585->fmt_code = MEDIA_BUS_FMT_Y12_1X12;
+> +	else
+> +		imx585->fmt_code = MEDIA_BUS_FMT_SRGGB12_1X12;
+> +}
+> +
+> +static int imx585_open(struct v4l2_subdev *sd, struct v4l2_subdev_fh *fh)
+
+This should be dropped and replaced by the .init_state() operation.
+
+> +{
+> +	struct imx585 *imx585 = to_imx585(sd);
+> +	struct v4l2_mbus_framefmt *try_fmt_img =
+> +		v4l2_subdev_state_get_format(fh->state, IMAGE_PAD);
+> +	struct v4l2_mbus_framefmt *try_fmt_meta =
+> +		v4l2_subdev_state_get_format(fh->state, METADATA_PAD);
+> +	struct v4l2_rect *try_crop;
+> +
+> +	mutex_lock(&imx585->mutex);
+> +
+> +	/* Initialize try_fmt for the image pad */
+> +	try_fmt_img->width = supported_modes[0].width;
+> +	try_fmt_img->height = supported_modes[0].height;
+> +	if (imx585->mono)
+> +		try_fmt_img->code = imx585_get_format_code(imx585, MEDIA_BUS_FMT_Y12_1X12);
+> +	else
+> +		try_fmt_img->code = imx585_get_format_code(imx585, MEDIA_BUS_FMT_SRGGB12_1X12);
+> +
+> +	try_fmt_img->field = V4L2_FIELD_NONE;
+> +
+> +	/* Initialize try_fmt for the embedded metadata pad */
+> +	try_fmt_meta->width = IMX585_EMBEDDED_LINE_WIDTH;
+> +	try_fmt_meta->height = IMX585_NUM_EMBEDDED_LINES;
+> +	try_fmt_meta->code = MEDIA_BUS_FMT_SENSOR_DATA;
+> +	try_fmt_meta->field = V4L2_FIELD_NONE;
+> +
+> +	/* Initialize try_crop */
+> +	try_crop = v4l2_subdev_state_get_crop(fh->state, IMAGE_PAD);
+> +	try_crop->left = IMX585_PIXEL_ARRAY_LEFT;
+> +	try_crop->top = IMX585_PIXEL_ARRAY_TOP;
+> +	try_crop->width = IMX585_PIXEL_ARRAY_WIDTH;
+> +	try_crop->height = IMX585_PIXEL_ARRAY_HEIGHT;
+> +
+> +	mutex_unlock(&imx585->mutex);
+> +
+> +	return 0;
+> +}
+> +
+> +/* For HDR mode, Gain is limited to 0~80 and HCG is disabled
+> + * For Normal mode, Gain is limited to 0~240
+> + */
+> +static void imx585_update_gain_limits(struct imx585 *imx585)
+> +{
+> +		bool hcg_on = imx585->hcg;
+
+Wrong indentation.
+
+> +		bool clear_hdr = imx585->clear_HDR;
+> +		u32 min = hcg_on ? IMX585_ANA_GAIN_MIN_HCG : IMX585_ANA_GAIN_MIN_NORMAL;
+> +		u32 max = clear_hdr ? IMX585_ANA_GAIN_MAX_HDR : IMX585_ANA_GAIN_MAX_NORMAL;
+> +		u32 cur = imx585->gain->val;
+> +
+> +		__v4l2_ctrl_modify_range(imx585->gain,
+> +					 min, max,
+> +					 IMX585_ANA_GAIN_STEP,
+> +					 clamp(cur, min, max));
+> +
+> +		if (cur < min || cur > max)
+> +			__v4l2_ctrl_s_ctrl(imx585->gain,
+> +					   clamp(cur, min, max));
+> +}
+> +
+> +static void imx585_update_hmax(struct imx585 *imx585)
+> +{
+> +	struct i2c_client *client = v4l2_get_subdevdata(&imx585->sd);
+
+Store the struct device pointer in struct imx585 and use it instead of
+client->dev. This should drop most usages of i2c_client from the driver.
+
+> +
+> +	const u32 base_4lane = HMAX_table_4lane_4K[imx585->link_freq_idx];
+> +	const u32 lane_scale = (imx585->lane_count == 2) ? 2 : 1;
+> +	const u32 factor     = base_4lane * lane_scale;
+> +	const u32 hdr_factor = (imx585->clear_HDR) ? 2 : 1;
+> +
+> +	dev_info(&client->dev, "Upadte minimum HMAX\n");
+> +	dev_info(&client->dev, "\tbase_4lane: %d\n", base_4lane);
+> +	dev_info(&client->dev, "\tlane_scale: %d\n", lane_scale);
+> +	dev_info(&client->dev, "\tfactor: %d\n", factor);
+> +	dev_info(&client->dev, "\thdr_factor: %d\n", hdr_factor);
+
+This makes the driver way too chatty. The messages should be demoted to
+dev_dbg(), or dropped.
+
+> +
+> +	for (unsigned int i = 0; i < ARRAY_SIZE(supported_modes); ++i) {
+> +		u32 h = factor / supported_modes[i].hmax_div;
+> +		u64 v = IMX585_VMAX_DEFAULT * hdr_factor;
+> +
+> +		supported_modes[i].min_HMAX     = h;
+> +		supported_modes[i].default_HMAX = h;
+> +		supported_modes[i].min_VMAX     = v;
+> +		supported_modes[i].default_VMAX = v;
+> +		dev_info(&client->dev, "\tvmax: %lld x hmax: %d\n", v, h);
+> +	}
+> +}
+> +
+> +static void imx585_set_framing_limits(struct imx585 *imx585)
+> +{
+> +	struct i2c_client *client = v4l2_get_subdevdata(&imx585->sd);
+> +	const struct imx585_mode *mode = imx585->mode;
+> +	u64 default_hblank, max_hblank;
+> +	u64 pixel_rate;
+> +
+> +	imx585_update_hmax(imx585);
+> +
+> +	dev_info(&client->dev, "mode: %d x %d\n", mode->width, mode->height);
+> +
+> +	imx585->VMAX = mode->default_VMAX;
+> +	imx585->HMAX = mode->default_HMAX;
+> +
+> +	pixel_rate = (u64)mode->width * IMX585_PIXEL_RATE;
+> +	/* In the case where ClearHDR is enabled, HMAX is effectly doubled */
+> +	/* So pixel rate is half with the same HMAX with ClearHDR */
+> +	do_div(pixel_rate, mode->min_HMAX);
+> +	__v4l2_ctrl_modify_range(imx585->pixel_rate, pixel_rate, pixel_rate, 1, pixel_rate);
+> +
+> +	//int default_hblank = mode->default_HMAX*IMX585_PIXEL_RATE/72000000-IMX585_NATIVE_WIDTH;
+> +	default_hblank = mode->default_HMAX * pixel_rate;
+> +	do_div(default_hblank, IMX585_PIXEL_RATE);
+> +	default_hblank = default_hblank - mode->width;
+> +
+> +	max_hblank = IMX585_HMAX_MAX * pixel_rate;
+> +	do_div(max_hblank, IMX585_PIXEL_RATE);
+> +	max_hblank = max_hblank - mode->width;
+> +
+> +	__v4l2_ctrl_modify_range(imx585->hblank, 0, max_hblank, 1, default_hblank);
+> +	__v4l2_ctrl_s_ctrl(imx585->hblank, default_hblank);
+> +
+> +	/* Update limits and set FPS to default */
+> +	__v4l2_ctrl_modify_range(imx585->vblank, mode->min_VMAX - mode->height,
+> +				 IMX585_VMAX_MAX - mode->height,
+> +				 1, mode->default_VMAX - mode->height);
+> +	__v4l2_ctrl_s_ctrl(imx585->vblank, mode->default_VMAX - mode->height);
+> +
+> +	__v4l2_ctrl_modify_range(imx585->exposure, IMX585_EXPOSURE_MIN,
+> +				 imx585->VMAX - IMX585_SHR_MIN_HDR, 1,
+> +				 IMX585_EXPOSURE_DEFAULT);
+> +	dev_info(&client->dev, "default vmax: %lld x hmax: %d\n", mode->min_VMAX, mode->min_HMAX);
+> +	dev_info(&client->dev, "Setting default HBLANK : %llu, VBLANK : %llu PixelRate: %lld\n",
+> +		 default_hblank, mode->default_VMAX - mode->height, pixel_rate);
+> +}
+> +
+> +static int imx585_set_ctrl(struct v4l2_ctrl *ctrl)
+> +{
+> +	struct imx585 *imx585 = container_of(ctrl->handler, struct imx585, ctrl_handler);
+> +	struct i2c_client *client = v4l2_get_subdevdata(&imx585->sd);
+> +	const struct imx585_mode *mode = imx585->mode;
+> +	const struct imx585_mode *mode_list;
+> +	unsigned int code, num_modes;
+> +
+> +	int ret = 0;
+> +	/*
+> +	 * Applying V4L2 control value that
+> +	 * doesn't need to be in streaming mode
+> +	 */
+> +	switch (ctrl->id) {
+> +	case V4L2_CID_WIDE_DYNAMIC_RANGE:
+> +		if (imx585->clear_HDR != ctrl->val) {
+> +			imx585->clear_HDR = ctrl->val;
+> +			v4l2_ctrl_activate(imx585->datasel_th_ctrl,  imx585->clear_HDR);
+> +			v4l2_ctrl_activate(imx585->datasel_bk_ctrl,  imx585->clear_HDR);
+> +			v4l2_ctrl_activate(imx585->gdc_th_ctrl,      imx585->clear_HDR);
+> +			v4l2_ctrl_activate(imx585->gdc_exp_ctrl_h,   imx585->clear_HDR);
+> +			v4l2_ctrl_activate(imx585->gdc_exp_ctrl_l,   imx585->clear_HDR);
+> +			v4l2_ctrl_activate(imx585->hdr_gain_ctrl,    imx585->clear_HDR);
+> +			v4l2_ctrl_activate(imx585->hcg_ctrl,        !imx585->clear_HDR);
+> +			imx585_update_gain_limits(imx585);
+> +			if (imx585->mono)
+> +				code = imx585_get_format_code(imx585, MEDIA_BUS_FMT_Y12_1X12);
+> +			else
+> +				code = imx585_get_format_code(imx585, MEDIA_BUS_FMT_SRGGB12_1X12);
+> +			get_mode_table(imx585, code, &mode_list, &num_modes);
+> +			imx585->mode = v4l2_find_nearest_size(mode_list,
+> +							      num_modes,
+> +							      width, height,
+> +							      imx585->mode->width,
+> +							      imx585->mode->height);
+> +			imx585_set_framing_limits(imx585);
+> +		}
+> +		break;
+> +	}
+> +
+> +	/*
+> +	 * Applying V4L2 control value only happens
+> +	 * when power is up for streaming
+> +	 */
+> +	if (pm_runtime_get_if_in_use(&client->dev) == 0)
+> +		return 0;
+> +
+> +	switch (ctrl->id) {
+> +	case V4L2_CID_EXPOSURE:
+> +		{
+> +			u32 shr;
+
+	case V4L2_CID_EXPOSURE: {
+		u32 shr;
+
+Same below.
+
+> +
+> +			shr = (imx585->VMAX - ctrl->val)  & ~1u; //Always a multiple of 2
+> +			dev_info(&client->dev, "V4L2_CID_EXPOSURE : %d\n", ctrl->val);
+> +			dev_info(&client->dev, "\tVMAX:%d, HMAX:%d\n", imx585->VMAX, imx585->HMAX);
+> +			dev_info(&client->dev, "\tSHR:%d\n", shr);
+> +
+> +			ret = imx585_write_reg_3byte(imx585, IMX585_REG_SHR, shr);
+> +			if (ret)
+> +				dev_err_ratelimited(&client->dev,
+> +						    "Failed to write reg 0x%4.4x. error = %d\n",
+> +						    IMX585_REG_SHR, ret);
+> +		break;
+> +		}
+> +	case V4L2_CID_IMX585_HCG_GAIN:
+> +		{
+> +		if (ctrl->flags & V4L2_CTRL_FLAG_INACTIVE)
+> +			break;
+> +		imx585->hcg = ctrl->val;
+> +		imx585_update_gain_limits(imx585);
+> +
+> +		// Set HCG/LCG channel
+> +		ret = imx585_write_reg_1byte(imx585, IMX585_REG_FDG_SEL0, ctrl->val);
+> +		if (ret)
+> +			dev_err_ratelimited(&client->dev,
+> +					    "Failed to write reg 0x%4.4x. error = %d\n",
+> +					    IMX585_REG_FDG_SEL0, ret);
+> +		dev_info(&client->dev, "V4L2_CID_HCG_ENABLE: %d\n", ctrl->val);
+> +		break;
+> +		}
+> +	case V4L2_CID_ANALOGUE_GAIN:
+> +		{
+> +		u32 gain = ctrl->val;
+> +
+> +		dev_info(&client->dev, "analogue gain = %u (%s)\n",
+> +			 gain, imx585->hcg ? "HCG" : "LCG");
+> +
+> +		ret = imx585_write_reg_2byte(imx585, IMX585_REG_ANALOG_GAIN, gain);
+> +		if (ret)
+> +			dev_err_ratelimited(&client->dev,
+> +					    "ANALOG_GAIN write failed (%d)\n", ret);
+> +		break;
+> +		}
+> +	case V4L2_CID_VBLANK:
+> +		{
+> +			u32 current_exposure = imx585->exposure->cur.val;
+> +			u32 min_SHR = (imx585->clear_HDR) ? IMX585_SHR_MIN_HDR : IMX585_SHR_MIN;
+> +			/*
+> +			 * The VBLANK control may change the limits of usable exposure, so check
+> +			 * and adjust if necessary.
+> +			 */
+> +			imx585->VMAX = (mode->height + ctrl->val) & ~1u; //Always a multiple of 2
+> +
+> +			/* New maximum exposure limits,
+> +			 * modifying the range and make sure we are not exceed the new maximum.
+> +			 */
+> +			current_exposure = clamp_t(u32, current_exposure, IMX585_EXPOSURE_MIN,
+> +						   imx585->VMAX - min_SHR);
+> +			__v4l2_ctrl_modify_range(imx585->exposure, IMX585_EXPOSURE_MIN,
+> +						 imx585->VMAX - min_SHR, 1,
+> +						 current_exposure);
+> +
+> +			dev_info(&client->dev, "V4L2_CID_VBLANK : %d\n", ctrl->val);
+> +			dev_info(&client->dev, "\tVMAX:%d, HMAX:%d\n", imx585->VMAX, imx585->HMAX);
+> +			dev_info(&client->dev, "Update exposure limits: max:%d, min:%d, current:%d\n",
+> +				 imx585->VMAX - min_SHR,
+> +				 IMX585_EXPOSURE_MIN, current_exposure);
+> +
+> +			ret = imx585_write_reg_3byte(imx585, IMX585_REG_VMAX, imx585->VMAX);
+> +			if (ret)
+> +				dev_err_ratelimited(&client->dev,
+> +						    "Failed to write reg 0x%4.4x. error = %d\n",
+> +						    IMX585_REG_VMAX, ret);
+> +		break;
+> +		}
+> +	case V4L2_CID_HBLANK:
+> +		{
+> +			u64 pixel_rate;
+> +			u64 hmax;
+> +
+> +			pixel_rate = (u64)mode->width * IMX585_PIXEL_RATE;
+> +			do_div(pixel_rate, mode->min_HMAX);
+> +			hmax = (u64)(mode->width + ctrl->val) * IMX585_PIXEL_RATE;
+> +			do_div(hmax, pixel_rate);
+> +			imx585->HMAX = hmax;
+> +
+> +			dev_info(&client->dev, "V4L2_CID_HBLANK : %d\n", ctrl->val);
+> +			dev_info(&client->dev, "\tHMAX : %d\n", imx585->HMAX);
+> +
+> +			ret = imx585_write_reg_2byte(imx585, IMX585_REG_HMAX, hmax);
+> +			if (ret)
+> +				dev_err_ratelimited(&client->dev,
+> +						    "Failed to write reg 0x%4.4x. error = %d\n",
+> +						    IMX585_REG_HMAX, ret);
+> +		break;
+> +		}
+> +	case V4L2_CID_HFLIP:
+> +		dev_info(&client->dev, "V4L2_CID_HFLIP : %d\n", ctrl->val);
+> +		ret = imx585_write_reg_1byte(imx585, IMX585_FLIP_WINMODEH, ctrl->val);
+> +		if (ret)
+> +			dev_err_ratelimited(&client->dev,
+> +					    "Failed to write reg 0x%4.4x. error = %d\n",
+> +					    IMX585_FLIP_WINMODEH, ret);
+> +		break;
+> +	case V4L2_CID_VFLIP:
+> +		dev_info(&client->dev, "V4L2_CID_VFLIP : %d\n", ctrl->val);
+> +		ret = imx585_write_reg_1byte(imx585, IMX585_FLIP_WINMODEV, ctrl->val);
+> +		if (ret)
+> +			dev_err_ratelimited(&client->dev,
+> +					    "Failed to write reg 0x%4.4x. error = %d\n",
+> +					    IMX585_FLIP_WINMODEV, ret);
+> +		break;
+> +	case V4L2_CID_BRIGHTNESS:
+> +		{
+> +		u16 blacklevel = ctrl->val;
+> +
+> +		dev_info(&client->dev, "V4L2_CID_BRIGHTNESS : %d\n", ctrl->val);
+> +
+> +		if (blacklevel > 4095)
+> +			blacklevel = 4095;
+> +		ret = imx585_write_reg_1byte(imx585, IMX585_REG_BLKLEVEL, blacklevel);
+> +		if (ret)
+> +			dev_err_ratelimited(&client->dev,
+> +					    "Failed to write reg 0x%4.4x. error = %d\n",
+> +					    IMX585_REG_BLKLEVEL, ret);
+> +		break;
+> +		}
+> +	case V4L2_CID_BAND_STOP_FILTER:
+> +		if (imx585->has_ircut) {
+> +			dev_info(&client->dev, "V4L2_CID_BAND_STOP_FILTER : %d\n", ctrl->val);
+> +			imx585_ircut_set(imx585, ctrl->val);
+> +		}
+> +		break;
+> +	case V4L2_CID_IMX585_HDR_DATASEL_TH:{
+> +		const u16 *th = (const u16 *)ctrl->p_new.p;
+> +
+> +		ret = imx585_write_reg_2byte(imx585, IMX585_REG_EXP_TH_H, th[0]);
+> +		if (ret)
+> +			dev_err_ratelimited(&client->dev,
+> +					    "Failed to write reg 0x%4.4x. error = %d\n",
+> +					    IMX585_REG_EXP_TH_H, ret);
+> +		ret = imx585_write_reg_2byte(imx585, IMX585_REG_EXP_TH_L, th[1]);
+> +		if (ret)
+> +			dev_err_ratelimited(&client->dev,
+> +					    "Failed to write reg 0x%4.4x. error = %d\n",
+> +					    IMX585_REG_EXP_TH_L, ret);
+> +		dev_info(&client->dev, "V4L2_CID_IMX585_HDR_DATASEL_TH : %d, %d\n", th[0], th[1]);
+> +		break;
+> +		}
+> +	case V4L2_CID_IMX585_HDR_DATASEL_BK:
+> +		ret = imx585_write_reg_1byte(imx585, IMX585_REG_EXP_BK, ctrl->val);
+> +		dev_info(&client->dev, "V4L2_CID_IMX585_HDR_DATASEL_BK : %d\n", ctrl->val);
+> +		if (ret)
+> +			dev_err_ratelimited(&client->dev,
+> +					    "Failed to write reg 0x%4.4x. error = %d\n",
+> +					    IMX585_REG_EXP_BK, ret);
+> +		break;
+> +	case V4L2_CID_IMX585_HDR_GRAD_TH:{
+> +		const u32 *thr = (const u32 *)ctrl->p_new.p;
+> +
+> +		ret = imx585_write_reg_3byte(imx585, IMX585_REG_CCMP1_EXP, thr[0]);
+> +		if (ret)
+> +			dev_err_ratelimited(&client->dev,
+> +					    "Failed to write reg 0x%4.4x. error = %d\n",
+> +					    IMX585_REG_CCMP1_EXP, ret);
+> +		ret = imx585_write_reg_3byte(imx585, IMX585_REG_CCMP2_EXP, thr[1]);
+> +		if (ret)
+> +			dev_err_ratelimited(&client->dev,
+> +					    "Failed to write reg 0x%4.4x. error = %d\n",
+> +					    IMX585_REG_CCMP2_EXP, ret);
+> +		dev_info(&client->dev, "V4L2_CID_IMX585_HDR_GRAD_TH : %d, %d\n", thr[0], thr[1]);
+> +		break;
+> +		}
+> +	case V4L2_CID_IMX585_HDR_GRAD_COMP_L:{
+> +		ret = imx585_write_reg_1byte(imx585, IMX585_REG_ACMP1_EXP, ctrl->val);
+> +		if (ret)
+> +			dev_err_ratelimited(&client->dev,
+> +					    "Failed to write reg 0x%4.4x. error = %d\n",
+> +					    IMX585_REG_ACMP1_EXP, ret);
+> +		dev_info(&client->dev, "V4L2_CID_IMX585_HDR_GRAD_COMP_L : %d\n", ctrl->val);
+> +		break;
+> +		}
+> +	case V4L2_CID_IMX585_HDR_GRAD_COMP_H:{
+> +		ret = imx585_write_reg_1byte(imx585, IMX585_REG_ACMP2_EXP, ctrl->val);
+> +		if (ret)
+> +			dev_err_ratelimited(&client->dev,
+> +					    "Failed to write reg 0x%4.4x. error = %d\n",
+> +					    IMX585_REG_ACMP2_EXP, ret);
+> +		dev_info(&client->dev, "V4L2_CID_IMX585_HDR_GRAD_COMP_H : %d\n", ctrl->val);
+> +		break;
+> +		}
+> +	case V4L2_CID_IMX585_HDR_GAIN:
+> +		ret = imx585_write_reg_1byte(imx585, IMX585_REG_EXP_GAIN, ctrl->val);
+> +		dev_info(&client->dev, "IMX585_REG_EXP_GAIN : %d\n", ctrl->val);
+> +		if (ret)
+> +			dev_err_ratelimited(&client->dev,
+> +					    "Failed to write reg 0x%4.4x. error = %d\n",
+> +					    IMX585_REG_EXP_GAIN, ret);
+> +		break;
+> +	case V4L2_CID_WIDE_DYNAMIC_RANGE:
+> +		/* Already handled above. */
+> +		break;
+> +	default:
+> +		dev_info(&client->dev,
+> +			 "ctrl(id:0x%x,val:0x%x) is not handled\n",
+> +			 ctrl->id, ctrl->val);
+> +		break;
+> +	}
+> +
+> +	pm_runtime_put(&client->dev);
+> +
+> +	return ret;
+> +}
+> +
+> +static const struct v4l2_ctrl_ops imx585_ctrl_ops = {
+> +	.s_ctrl = imx585_set_ctrl,
+> +};
+> +
+> +static const u16 hdr_thresh_def[2] = { 512, 1024 };
+> +static const struct v4l2_ctrl_config imx585_cfg_datasel_th = {
+> +	.ops = &imx585_ctrl_ops,
+> +	.id = V4L2_CID_IMX585_HDR_DATASEL_TH,
+> +	.name = "HDR Data selection Threshold",
+> +	.type = V4L2_CTRL_TYPE_U16,
+> +	.min = 0,
+> +	.max = 0x0FFF,
+> +	.step = 1,
+> +	.def = 0,
+> +	.dims = { 2 },
+> +	.elem_size = sizeof(u16),
+> +};
+> +
+> +static const struct v4l2_ctrl_config imx585_cfg_datasel_bk = {
+> +	.ops = &imx585_ctrl_ops,
+> +	.id = V4L2_CID_IMX585_HDR_DATASEL_BK,
+> +	.name = "HDR Data Blending Mode",
+> +	.type = V4L2_CTRL_TYPE_MENU,
+> +	.max = ARRAY_SIZE(hdr_data_blender_menu) - 1,
+> +	.menu_skip_mask = 0,
+> +	.def = 0,
+> +	.qmenu = hdr_data_blender_menu,
+> +};
+> +
+> +static const u32 grad_thresh_def[2] = { 500, 11500 };
+> +static const struct v4l2_ctrl_config imx585_cfg_grad_th = {
+> +	.ops = &imx585_ctrl_ops,
+> +	.id = V4L2_CID_IMX585_HDR_GRAD_TH,
+> +	.name = "Gradiant Compression Threshold (16bit)",
+> +	.type = V4L2_CTRL_TYPE_U32,
+> +	.min = 0,
+> +	.max = 0x1FFFF,
+> +	.step = 1,
+> +	.def = 0,
+> +	.dims = { 2 },
+> +	.elem_size = sizeof(u32),
+> +};
+> +
+> +static const struct v4l2_ctrl_config imx585_cfg_grad_exp_l = {
+> +	.ops = &imx585_ctrl_ops,
+> +	.id = V4L2_CID_IMX585_HDR_GRAD_COMP_L,
+> +	.name = "Gradiant Compression Ratio Low",
+> +	.type = V4L2_CTRL_TYPE_MENU,
+> +	.min = 0,
+> +	.max = ARRAY_SIZE(grad_compression_slope_menu) - 1,
+> +	.menu_skip_mask = 0,
+> +	.def = 2,
+> +	.qmenu = grad_compression_slope_menu,
+> +};
+> +
+> +static const struct v4l2_ctrl_config imx585_cfg_grad_exp_h = {
+> +	.ops = &imx585_ctrl_ops,
+> +	.id = V4L2_CID_IMX585_HDR_GRAD_COMP_H,
+> +	.name = "Gradiant Compression Ratio High",
+> +	.type = V4L2_CTRL_TYPE_MENU,
+> +	.min = 0,
+> +	.max = ARRAY_SIZE(grad_compression_slope_menu) - 1,
+> +	.menu_skip_mask = 0,
+> +	.def = 6,
+> +	.qmenu = grad_compression_slope_menu,
+> +};
+> +
+> +static const struct v4l2_ctrl_config imx585_cfg_hdr_gain = {
+> +	.ops = &imx585_ctrl_ops,
+> +	.id = V4L2_CID_IMX585_HDR_GAIN,
+> +	.name = "HDR Gain Adder (dB)",
+> +	.type = V4L2_CTRL_TYPE_MENU,
+> +	.min = 0,
+> +	.max = ARRAY_SIZE(hdr_gain_adder_menu) - 1,
+> +	.menu_skip_mask = 0,
+> +	.def = 2,
+> +	.qmenu = hdr_gain_adder_menu,
+> +};
+> +
+> +static const struct v4l2_ctrl_config imx585_cfg_hcg = {
+> +	.ops = &imx585_ctrl_ops,
+> +	.id = V4L2_CID_IMX585_HCG_GAIN,
+> +	.name = "HCG Enable",
+> +	.type = V4L2_CTRL_TYPE_BOOLEAN,
+> +	.min  = 0,
+> +	.max  = 1,
+> +	.step = 1,
+> +	.def  = 0,
+> +};
+> +
+> +static int imx585_enum_mbus_code(struct v4l2_subdev *sd,
+> +				 struct v4l2_subdev_state *sd_state,
+> +				 struct v4l2_subdev_mbus_code_enum *code)
+> +{
+> +	struct imx585 *imx585 = to_imx585(sd);
+> +	unsigned int entries;
+> +	const u32 *tbl;
+> +
+> +	if (code->pad >= NUM_PADS)
+> +		return -EINVAL;
+> +
+> +	if (code->pad == IMAGE_PAD) {
+> +		if (imx585->mono) {
+> +			if (imx585->clear_HDR) {
+> +				if (code->index > 1)
+> +					return -EINVAL;
+> +				code->code = mono_codes[code->index];
+> +				return 0;
+> +			}
+> +			/* HDR off: expose Y12 only */
+> +			if (code->index)
+> +				return -EINVAL;
+> +
+> +			code->code = MEDIA_BUS_FMT_Y12_1X12;
+> +			return 0;
+> +		}
+> +
+> +		if (imx585->clear_HDR) {
+> +			tbl     = codes_clearhdr;  /* << 16bit + 12bit */
+> +			entries = ARRAY_SIZE(codes_clearhdr) / 4;
+> +		} else {
+> +			tbl     = codes_normal;    /* << ONLY 12bit */
+> +			entries = ARRAY_SIZE(codes_normal) / 4;
+> +		}
+> +
+> +		if (code->index >= entries)
+> +			return -EINVAL;
+> +
+> +		code->code = imx585_get_format_code(imx585, tbl[code->index * 4]);
+> +		return 0;
+> +	}
+> +	/* --- Metadata pad ------------------------------------------------- */
+> +	if (code->index)
+> +		return -EINVAL;
+> +
+> +	code->code = MEDIA_BUS_FMT_SENSOR_DATA;
+> +	return 0;
+> +}
+> +
+> +static int imx585_enum_frame_size(struct v4l2_subdev *sd,
+> +				  struct v4l2_subdev_state *sd_state,
+> +				  struct v4l2_subdev_frame_size_enum *fse)
+> +{
+> +	struct imx585 *imx585 = to_imx585(sd);
+> +
+> +	if (fse->pad >= NUM_PADS)
+> +		return -EINVAL;
+> +
+> +	if (fse->pad == IMAGE_PAD) {
+> +		const struct imx585_mode *mode_list;
+> +		unsigned int num_modes;
+> +
+> +		get_mode_table(imx585, fse->code, &mode_list, &num_modes);
+> +
+> +		if (fse->index >= num_modes)
+> +			return -EINVAL;
+> +
+> +		if (fse->code != imx585_get_format_code(imx585, fse->code))
+> +			return -EINVAL;
+> +
+> +		fse->min_width = mode_list[fse->index].width;
+> +		fse->max_width = fse->min_width;
+> +		fse->min_height = mode_list[fse->index].height;
+> +		fse->max_height = fse->min_height;
+> +	} else {
+> +		if (fse->code != MEDIA_BUS_FMT_SENSOR_DATA || fse->index > 0)
+> +			return -EINVAL;
+> +
+> +		fse->min_width = IMX585_EMBEDDED_LINE_WIDTH;
+> +		fse->max_width = fse->min_width;
+> +		fse->min_height = IMX585_NUM_EMBEDDED_LINES;
+> +		fse->max_height = fse->min_height;
+> +	}
+> +
+> +	return 0;
+> +}
+> +
+> +static void imx585_reset_colorspace(const struct imx585_mode *mode, struct v4l2_mbus_framefmt *fmt)
+> +{
+> +	fmt->colorspace = V4L2_COLORSPACE_RAW;
+> +	fmt->ycbcr_enc = V4L2_MAP_YCBCR_ENC_DEFAULT(fmt->colorspace);
+> +	fmt->quantization = V4L2_MAP_QUANTIZATION_DEFAULT(true,
+> +							  fmt->colorspace,
+> +							  fmt->ycbcr_enc);
+> +	fmt->xfer_func = V4L2_MAP_XFER_FUNC_DEFAULT(fmt->colorspace);
+> +}
+> +
+> +static void imx585_update_image_pad_format(struct imx585 *imx585,
+> +					   const struct imx585_mode *mode,
+> +					   struct v4l2_subdev_format *fmt)
+> +{
+> +	fmt->format.width = mode->width;
+> +	fmt->format.height = mode->height;
+> +	fmt->format.field = V4L2_FIELD_NONE;
+> +	imx585_reset_colorspace(mode, &fmt->format);
+> +}
+> +
+> +static void imx585_update_metadata_pad_format(struct v4l2_subdev_format *fmt)
+> +{
+> +	fmt->format.width = IMX585_EMBEDDED_LINE_WIDTH;
+> +	fmt->format.height = IMX585_NUM_EMBEDDED_LINES;
+> +	fmt->format.code = MEDIA_BUS_FMT_SENSOR_DATA;
+> +	fmt->format.field = V4L2_FIELD_NONE;
+> +}
+> +
+> +static int imx585_get_pad_format(struct v4l2_subdev *sd,
+> +				 struct v4l2_subdev_state *sd_state,
+> +				 struct v4l2_subdev_format *fmt)
+> +{
+> +	struct imx585 *imx585 = to_imx585(sd);
+> +
+> +	if (fmt->pad >= NUM_PADS)
+> +		return -EINVAL;
+> +
+> +	mutex_lock(&imx585->mutex);
+> +
+> +	if (fmt->which == V4L2_SUBDEV_FORMAT_TRY) {
+> +		struct v4l2_mbus_framefmt *try_fmt =
+> +			v4l2_subdev_state_get_format(sd_state, fmt->pad);
+> +		/* update the code which could change due to vflip or hflip: */
+> +		try_fmt->code = fmt->pad == IMAGE_PAD ?
+> +				imx585_get_format_code(imx585, try_fmt->code) :
+> +				MEDIA_BUS_FMT_SENSOR_DATA;
+> +		fmt->format = *try_fmt;
+> +	} else {
+> +		if (fmt->pad == IMAGE_PAD) {
+> +			imx585_update_image_pad_format(imx585, imx585->mode, fmt);
+> +			fmt->format.code =
+> +				   imx585_get_format_code(imx585, imx585->fmt_code);
+> +		} else {
+> +			imx585_update_metadata_pad_format(fmt);
+> +		}
+> +	}
+> +
+> +	mutex_unlock(&imx585->mutex);
+> +	return 0;
+> +}
+> +
+> +static int imx585_set_pad_format(struct v4l2_subdev *sd,
+> +				 struct v4l2_subdev_state *sd_state,
+> +				 struct v4l2_subdev_format *fmt)
+> +{
+> +	struct v4l2_mbus_framefmt *framefmt;
+> +	const struct imx585_mode *mode;
+> +	struct imx585 *imx585 = to_imx585(sd);
+> +
+> +	if (fmt->pad >= NUM_PADS)
+> +		return -EINVAL;
+> +
+> +	mutex_lock(&imx585->mutex);
+> +
+> +	if (fmt->pad == IMAGE_PAD) {
+> +		const struct imx585_mode *mode_list;
+> +		unsigned int num_modes;
+> +
+> +		/* Bayer order varies with flips */
+> +		fmt->format.code = imx585_get_format_code(imx585, fmt->format.code);
+> +		get_mode_table(imx585, fmt->format.code, &mode_list, &num_modes);
+> +		mode = v4l2_find_nearest_size(mode_list,
+> +					      num_modes,
+> +					      width, height,
+> +					      fmt->format.width,
+> +					      fmt->format.height);
+> +		imx585_update_image_pad_format(imx585, mode, fmt);
+> +		if (fmt->which == V4L2_SUBDEV_FORMAT_TRY) {
+> +			framefmt = v4l2_subdev_state_get_format(sd_state, fmt->pad);
+> +			*framefmt = fmt->format;
+> +		} else if (imx585->mode != mode ||
+> +			   imx585->fmt_code != fmt->format.code) {
+> +			imx585->mode = mode;
+> +			imx585->fmt_code = fmt->format.code;
+> +			imx585_set_framing_limits(imx585);
+> +		}
+> +	} else {
+> +		if (fmt->which == V4L2_SUBDEV_FORMAT_TRY) {
+> +			framefmt = v4l2_subdev_state_get_format(sd_state, fmt->pad);
+> +			*framefmt = fmt->format;
+> +		} else {
+> +			/* Only one embedded data mode is supported */
+> +			imx585_update_metadata_pad_format(fmt);
+> +		}
+> +	}
+> +
+> +	mutex_unlock(&imx585->mutex);
+> +
+> +	return 0;
+> +}
+> +
+> +static const struct v4l2_rect *
+> +__imx585_get_pad_crop(struct imx585 *imx585,
+> +		      struct v4l2_subdev_state *sd_state,
+> +		      unsigned int pad, enum v4l2_subdev_format_whence which)
+> +{
+> +	switch (which) {
+> +	case V4L2_SUBDEV_FORMAT_TRY:
+> +		return v4l2_subdev_state_get_crop(sd_state, IMAGE_PAD);
+> +	case V4L2_SUBDEV_FORMAT_ACTIVE:
+> +		return &imx585->mode->crop;
+> +	}
+> +
+> +	return NULL;
+> +}
+> +
+> +/* Start streaming */
+> +static int imx585_start_streaming(struct imx585 *imx585)
+> +{
+> +	struct i2c_client *client = v4l2_get_subdevdata(&imx585->sd);
+> +	const struct IMX585_reg_list *reg_list;
+> +	int ret;
+> +
+> +	if (!imx585->common_regs_written) {
+> +		ret = imx585_write_regs(imx585, common_regs, ARRAY_SIZE(common_regs));
+> +		if (ret) {
+> +			dev_err(&client->dev, "%s failed to set common settings\n", __func__);
+> +			return ret;
+> +		}
+> +
+> +		imx585_write_reg_1byte(imx585, IMX585_INCK_SEL, imx585->inck_sel_val);
+> +		imx585_write_reg_2byte(imx585, IMX585_REG_BLKLEVEL, IMX585_BLKLEVEL_DEFAULT);
+> +		imx585_write_reg_1byte(imx585, IMX585_DATARATE_SEL,
+> +				       link_freqs_reg_value[imx585->link_freq_idx]);
+> +
+> +		if (imx585->lane_count == 2)
+> +			imx585_write_reg_1byte(imx585, IMX585_LANEMODE, 0x01);
+> +		else
+> +			imx585_write_reg_1byte(imx585, IMX585_LANEMODE, 0x03);
+> +
+> +		if (imx585->mono)
+> +			imx585_write_reg_1byte(imx585, IMX585_BIN_MODE, 0x01);
+> +		else
+> +			imx585_write_reg_1byte(imx585, IMX585_BIN_MODE, 0x00);
+> +
+> +		if (imx585->sync_mode == 1) { //External Sync Leader Mode
+> +			dev_info(&client->dev, "External Sync Leader Mode, enable XVS input\n");
+> +			imx585_write_reg_1byte(imx585, IMX585_REG_EXTMODE, 0x01);
+> +			// Enable XHS output, but XVS is input
+> +			imx585_write_reg_1byte(imx585, IMX585_REG_XXS_DRV, 0x03);
+> +			// Disable XVS OUT
+> +			imx585_write_reg_1byte(imx585, IMX585_REG_XXS_OUTSEL, 0x08);
+> +		} else if (imx585->sync_mode == 0) { //Internal Sync Leader Mode
+> +			dev_info(&client->dev, "Internal Sync Leader Mode, enable output\n");
+> +			imx585_write_reg_1byte(imx585, IMX585_REG_EXTMODE, 0x00);
+> +			// Enable XHS and XVS output
+> +			imx585_write_reg_1byte(imx585, IMX585_REG_XXS_DRV, 0x00);
+> +			imx585_write_reg_1byte(imx585, IMX585_REG_XXS_OUTSEL, 0x0A);
+> +		} else {
+> +			dev_info(&client->dev, "Follower Mode, enable XVS/XHS input\n");
+> +			//For follower mode, switch both of them to input
+> +			imx585_write_reg_1byte(imx585, IMX585_REG_XXS_DRV, 0x0F);
+> +			imx585_write_reg_1byte(imx585, IMX585_REG_XXS_OUTSEL, 0x00);
+> +		}
+> +		imx585->common_regs_written = true;
+> +		dev_info(&client->dev, "common_regs_written\n");
+> +	}
+> +
+> +	/* Apply default values of current mode */
+> +	reg_list = &imx585->mode->reg_list;
+> +	ret = imx585_write_regs(imx585, reg_list->regs, reg_list->num_of_regs);
+> +	if (ret) {
+> +		dev_err(&client->dev, "%s failed to set mode\n", __func__);
+> +		return ret;
+> +	}
+> +
+> +	if (imx585->clear_HDR) {
+> +		ret = imx585_write_regs(imx585, common_clearHDR_mode,
+> +					ARRAY_SIZE(common_clearHDR_mode));
+> +		if (ret) {
+> +			dev_err(&client->dev, "%s failed to set ClearHDR settings\n", __func__);
+> +			return ret;
+> +		}
+> +		//16bit mode is linear, 12bit mode we need to enable gradation compression
+> +		switch (imx585->fmt_code) {
+> +		/* 16-bit */
+> +		case MEDIA_BUS_FMT_SRGGB16_1X16:
+> +		case MEDIA_BUS_FMT_SGRBG16_1X16:
+> +		case MEDIA_BUS_FMT_SGBRG16_1X16:
+> +		case MEDIA_BUS_FMT_SBGGR16_1X16:
+> +		case MEDIA_BUS_FMT_Y16_1X16:
+> +			imx585_write_reg_1byte(imx585, IMX595_REG_CCMP_EN, 0);
+> +			imx585_write_reg_1byte(imx585, 0x3023, 0x03); // MDBIT 16-bit
+> +			dev_info(&client->dev, "16bit HDR written\n");
+> +			break;
+> +		/* 12-bit */
+> +		case MEDIA_BUS_FMT_SRGGB12_1X12:
+> +		case MEDIA_BUS_FMT_SGRBG12_1X12:
+> +		case MEDIA_BUS_FMT_SGBRG12_1X12:
+> +		case MEDIA_BUS_FMT_SBGGR12_1X12:
+> +		case MEDIA_BUS_FMT_Y12_1X12:
+> +			imx585_write_reg_1byte(imx585, IMX595_REG_CCMP_EN, 1);
+> +			dev_info(&client->dev, "12bit HDR written\n");
+> +			break;
+> +		default:
+> +			break;
+> +		}
+> +		dev_info(&client->dev, "ClearHDR_regs_written\n");
+> +
+> +	} else {
+> +		ret = imx585_write_regs(imx585, common_normal_mode, ARRAY_SIZE(common_normal_mode));
+> +		if (ret) {
+> +			dev_err(&client->dev, "%s failed to set Normal settings\n", __func__);
+> +			return ret;
+> +		}
+> +		dev_info(&client->dev, "normal_regs_written\n");
+> +	}
+> +
+> +	/* Disable digital clamp */
+> +	imx585_write_reg_1byte(imx585, IMX585_REG_DIGITAL_CLAMP, 0);
+> +
+> +	/* Apply customized values from user */
+> +	ret =  __v4l2_ctrl_handler_setup(imx585->sd.ctrl_handler);
+> +	if (ret) {
+> +		dev_err(&client->dev, "%s failed to apply user values\n", __func__);
+> +		return ret;
+> +	}
+> +
+> +	if (imx585->sync_mode <= 1) {
+> +		dev_info(&client->dev, "imx585 Leader mode enabled\n");
+> +		imx585_write_reg_1byte(imx585, IMX585_REG_XMSTA, 0x00);
+> +	}
+> +
+> +	/* Set stream on register */
+> +	ret = imx585_write_reg_1byte(imx585, IMX585_REG_MODE_SELECT, IMX585_MODE_STREAMING);
+> +
+> +	dev_info(&client->dev, "Start Streaming\n");
+> +	usleep_range(IMX585_STREAM_DELAY_US, IMX585_STREAM_DELAY_US + IMX585_STREAM_DELAY_RANGE_US);
+> +	return ret;
+> +}
+> +
+> +/* Stop streaming */
+> +static void imx585_stop_streaming(struct imx585 *imx585)
+> +{
+> +	struct i2c_client *client = v4l2_get_subdevdata(&imx585->sd);
+> +	int ret;
+> +
+> +	dev_info(&client->dev, "Stop Streaming\n");
+> +
+> +	/* set stream off register */
+> +	ret = imx585_write_reg_1byte(imx585, IMX585_REG_MODE_SELECT, IMX585_MODE_STANDBY);
+> +	if (ret)
+> +		dev_err(&client->dev, "%s failed to stop stream\n", __func__);
+> +}
+> +
+> +static int imx585_set_stream(struct v4l2_subdev *sd, int enable)
+> +{
+> +	struct imx585 *imx585 = to_imx585(sd);
+> +	struct i2c_client *client = v4l2_get_subdevdata(sd);
+> +	int ret = 0;
+> +
+> +	mutex_lock(&imx585->mutex);
+> +	if (imx585->streaming == enable) {
+> +		mutex_unlock(&imx585->mutex);
+> +		return 0;
+> +	}
+> +
+> +	if (enable) {
+> +		ret = pm_runtime_get_sync(&client->dev);
+> +		if (ret < 0) {
+> +			pm_runtime_put_noidle(&client->dev);
+> +			goto err_unlock;
+> +		}
+> +
+> +		/*
+> +		 * Apply default & customized values
+> +		 * and then start streaming.
+> +		 */
+> +		ret = imx585_start_streaming(imx585);
+> +		if (ret)
+> +			goto err_rpm_put;
+> +	} else {
+> +		imx585_stop_streaming(imx585);
+> +		pm_runtime_put(&client->dev);
+> +	}
+> +
+> +	imx585->streaming = enable;
+> +
+> +	/* vflip/hflip and hdr mode cannot change during streaming */
+> +	__v4l2_ctrl_grab(imx585->vflip, enable);
+> +	__v4l2_ctrl_grab(imx585->hflip, enable);
+> +	__v4l2_ctrl_grab(imx585->hdr_mode, enable);
+> +
+> +	mutex_unlock(&imx585->mutex);
+> +
+> +	return ret;
+> +
+> +err_rpm_put:
+> +	pm_runtime_put(&client->dev);
+> +err_unlock:
+> +	mutex_unlock(&imx585->mutex);
+> +
+> +	return ret;
+> +}
+> +
+> +/* Power/clock management functions */
+> +static int imx585_power_on(struct device *dev)
+> +{
+> +	struct i2c_client *client = to_i2c_client(dev);
+> +	struct v4l2_subdev *sd = i2c_get_clientdata(client);
+> +	struct imx585 *imx585 = to_imx585(sd);
+> +	int ret;
+> +
+> +	ret = regulator_bulk_enable(imx585_NUM_SUPPLIES,
+> +				    imx585->supplies);
+> +	if (ret) {
+> +		dev_err(&client->dev, "%s: failed to enable regulators\n",
+> +			__func__);
+> +		return ret;
+> +	}
+> +
+> +	ret = clk_prepare_enable(imx585->xclk);
+> +	if (ret) {
+> +		dev_err(&client->dev, "%s: failed to enable clock\n",
+> +			__func__);
+> +		goto reg_off;
+> +	}
+> +
+> +	gpiod_set_value_cansleep(imx585->reset_gpio, 1);
+> +	usleep_range(IMX585_XCLR_MIN_DELAY_US,
+> +		     IMX585_XCLR_MIN_DELAY_US + IMX585_XCLR_DELAY_RANGE_US);
+> +
+> +	return 0;
+> +
+> +reg_off:
+> +	regulator_bulk_disable(imx585_NUM_SUPPLIES, imx585->supplies);
+> +	return ret;
+> +}
+> +
+> +static int imx585_power_off(struct device *dev)
+> +{
+> +	struct i2c_client *client = to_i2c_client(dev);
+> +	struct v4l2_subdev *sd = i2c_get_clientdata(client);
+> +	struct imx585 *imx585 = to_imx585(sd);
+> +
+> +	gpiod_set_value_cansleep(imx585->reset_gpio, 0);
+> +	regulator_bulk_disable(imx585_NUM_SUPPLIES, imx585->supplies);
+> +	clk_disable_unprepare(imx585->xclk);
+> +
+> +	/* Force reprogramming of the common registers when powered up again. */
+> +	imx585->common_regs_written = false;
+> +
+> +	return 0;
+> +}
+> +
+> +static int __maybe_unused imx585_suspend(struct device *dev)
+> +{
+> +	struct i2c_client *client = to_i2c_client(dev);
+> +	struct v4l2_subdev *sd = i2c_get_clientdata(client);
+> +	struct imx585 *imx585 = to_imx585(sd);
+> +
+> +	if (imx585->streaming)
+> +		imx585_stop_streaming(imx585);
+> +
+> +	return 0;
+> +}
+> +
+> +static int __maybe_unused imx585_resume(struct device *dev)
+> +{
+> +	struct i2c_client *client = to_i2c_client(dev);
+> +	struct v4l2_subdev *sd = i2c_get_clientdata(client);
+> +	struct imx585 *imx585 = to_imx585(sd);
+> +	int ret;
+> +
+> +	if (imx585->streaming) {
+> +		ret = imx585_start_streaming(imx585);
+> +		if (ret)
+> +			goto error;
+> +	}
+> +
+> +	return 0;
+> +
+> +error:
+> +	imx585_stop_streaming(imx585);
+> +	imx585->streaming = 0;
+> +	return ret;
+> +}
+> +
+> +static int imx585_get_regulators(struct imx585 *imx585)
+
+Please move this function and the next just before the probe function,
+to keep all probe code grouped together.
+
+> +{
+> +	struct i2c_client *client = v4l2_get_subdevdata(&imx585->sd);
+> +	unsigned int i;
+> +
+> +	for (i = 0; i < imx585_NUM_SUPPLIES; i++)
+> +		imx585->supplies[i].supply = imx585_supply_name[i];
+> +
+> +	return devm_regulator_bulk_get(&client->dev,
+> +					   imx585_NUM_SUPPLIES,
+> +					   imx585->supplies);
+> +}
+> +
+> +/* Verify chip ID */
+> +static int imx585_check_module_exists(struct imx585 *imx585)
+> +{
+> +	struct i2c_client *client = v4l2_get_subdevdata(&imx585->sd);
+> +	int ret;
+> +	u32 val;
+> +
+> +	/* We don't actually have a CHIP ID register so we try to read from BLKLEVEL instead*/
+> +	ret = imx585_read_reg(imx585, IMX585_REG_BLKLEVEL,
+> +			      1, &val);
+> +	if (ret) {
+> +		dev_err(&client->dev, "failed to read chip reg, with error %d\n", ret);
+> +		return ret;
+> +	}
+> +
+> +	dev_info(&client->dev, "Reg read success, Device found\n");
+> +
+> +	return 0;
+> +}
+> +
+> +static int imx585_get_selection(struct v4l2_subdev *sd,
+> +				struct v4l2_subdev_state *sd_state,
+> +				struct v4l2_subdev_selection *sel)
+> +{
+> +	switch (sel->target) {
+> +	case V4L2_SEL_TGT_CROP: {
+> +		struct imx585 *imx585 = to_imx585(sd);
+> +
+> +		mutex_lock(&imx585->mutex);
+> +		sel->r = *__imx585_get_pad_crop(imx585, sd_state, sel->pad, sel->which);
+> +		mutex_unlock(&imx585->mutex);
+> +
+> +		return 0;
+> +	}
+> +
+> +	case V4L2_SEL_TGT_NATIVE_SIZE:
+> +		sel->r.left = 0;
+> +		sel->r.top = 0;
+> +		sel->r.width = IMX585_NATIVE_WIDTH;
+> +		sel->r.height = IMX585_NATIVE_HEIGHT;
+> +		return 0;
+> +
+> +	case V4L2_SEL_TGT_CROP_DEFAULT:
+> +	case V4L2_SEL_TGT_CROP_BOUNDS:
+> +		sel->r.left = IMX585_PIXEL_ARRAY_LEFT;
+> +		sel->r.top = IMX585_PIXEL_ARRAY_TOP;
+> +		sel->r.width = IMX585_PIXEL_ARRAY_WIDTH;
+> +		sel->r.height = IMX585_PIXEL_ARRAY_HEIGHT;
+> +		return 0;
+> +	}
+> +
+> +	return -EINVAL;
+> +}
+> +
+> +static const struct v4l2_subdev_core_ops imx585_core_ops = {
+> +	.subscribe_event = v4l2_ctrl_subdev_subscribe_event,
+> +	.unsubscribe_event = v4l2_event_subdev_unsubscribe,
+> +};
+> +
+> +static const struct v4l2_subdev_video_ops imx585_video_ops = {
+> +	.s_stream = imx585_set_stream,
+
+Please implement the .enable_streams() and .disable_streams() pad
+ops, and use v4l2_subdev_s_stream_helper here.
+
+> +};
+> +
+> +static const struct v4l2_subdev_pad_ops imx585_pad_ops = {
+> +	.enum_mbus_code = imx585_enum_mbus_code,
+> +	.get_fmt = imx585_get_pad_format,
+> +	.set_fmt = imx585_set_pad_format,
+> +	.get_selection = imx585_get_selection,
+> +	.enum_frame_size = imx585_enum_frame_size,
+> +};
+> +
+> +static const struct v4l2_subdev_ops imx585_subdev_ops = {
+> +	.core = &imx585_core_ops,
+> +	.video = &imx585_video_ops,
+> +	.pad = &imx585_pad_ops,
+> +};
+> +
+> +static const struct v4l2_subdev_internal_ops imx585_internal_ops = {
+> +	.open = imx585_open,
+> +};
+> +
+> +/* Initialize control handlers */
+> +static int imx585_init_controls(struct imx585 *imx585)
+
+Please the control-related functions just below imx585_cfg_hcg, to keep
+the data and functions grouped together.
+
+> +{
+> +	struct v4l2_ctrl_handler *ctrl_hdlr;
+> +	struct i2c_client *client = v4l2_get_subdevdata(&imx585->sd);
+> +	struct v4l2_fwnode_device_properties props;
+> +	int ret;
+> +
+> +	ctrl_hdlr = &imx585->ctrl_handler;
+> +	ret = v4l2_ctrl_handler_init(ctrl_hdlr, 32);
+> +	if (ret)
+> +		return ret;
+> +
+> +	mutex_init(&imx585->mutex);
+> +	ctrl_hdlr->lock = &imx585->mutex;
+> +
+> +	/*
+> +	 * Create the controls here, but mode specific limits are setup
+> +	 * in the imx585_set_framing_limits() call below.
+> +	 */
+> +	/* By default, PIXEL_RATE is read only */
+> +	imx585->pixel_rate = v4l2_ctrl_new_std(ctrl_hdlr, &imx585_ctrl_ops,
+> +					       V4L2_CID_PIXEL_RATE,
+> +					       0xffff,
+> +					       0xffff, 1,
+> +					       0xffff);
+> +
+> +	/* LINK_FREQ is also read only */
+> +	imx585->link_freq =
+> +		v4l2_ctrl_new_int_menu(ctrl_hdlr, &imx585_ctrl_ops,
+> +				       V4L2_CID_LINK_FREQ, 0, 0,
+> +				       &link_freqs[imx585->link_freq_idx]);
+> +	if (imx585->link_freq)
+> +		imx585->link_freq->flags |= V4L2_CTRL_FLAG_READ_ONLY;
+> +
+> +	imx585->vblank = v4l2_ctrl_new_std(ctrl_hdlr, &imx585_ctrl_ops,
+> +					   V4L2_CID_VBLANK, 0, 0xfffff, 1, 0);
+> +	imx585->hblank = v4l2_ctrl_new_std(ctrl_hdlr, &imx585_ctrl_ops,
+> +					   V4L2_CID_HBLANK, 0, 0xffff, 1, 0);
+> +	imx585->blacklevel = v4l2_ctrl_new_std(ctrl_hdlr, &imx585_ctrl_ops,
+> +					       V4L2_CID_BRIGHTNESS, 0, 0xffff, 1,
+> +					       IMX585_BLKLEVEL_DEFAULT);
+> +
+> +	imx585->exposure = v4l2_ctrl_new_std(ctrl_hdlr, &imx585_ctrl_ops,
+> +					     V4L2_CID_EXPOSURE,
+> +					     IMX585_EXPOSURE_MIN,
+> +					     IMX585_EXPOSURE_MAX,
+> +					     IMX585_EXPOSURE_STEP,
+> +					     IMX585_EXPOSURE_DEFAULT);
+> +
+> +	imx585->gain = v4l2_ctrl_new_std(ctrl_hdlr, &imx585_ctrl_ops, V4L2_CID_ANALOGUE_GAIN,
+> +					 IMX585_ANA_GAIN_MIN_NORMAL, IMX585_ANA_GAIN_MAX_NORMAL,
+> +					 IMX585_ANA_GAIN_STEP, IMX585_ANA_GAIN_DEFAULT);
+> +
+> +	imx585->hflip = v4l2_ctrl_new_std(ctrl_hdlr, &imx585_ctrl_ops, V4L2_CID_HFLIP, 0, 1, 1, 0);
+> +	imx585->vflip = v4l2_ctrl_new_std(ctrl_hdlr, &imx585_ctrl_ops, V4L2_CID_VFLIP, 0, 1, 1, 0);
+> +
+> +	if (imx585->has_ircut) {
+> +		imx585->ircut_ctrl =
+> +			v4l2_ctrl_new_std(&imx585->ctrl_handler, &imx585_ctrl_ops,
+> +					  V4L2_CID_BAND_STOP_FILTER,
+> +					  0, 1, 1, 1);
+> +	}
+> +
+> +	imx585->hdr_mode = v4l2_ctrl_new_std(ctrl_hdlr, &imx585_ctrl_ops,
+> +					     V4L2_CID_WIDE_DYNAMIC_RANGE,
+> +					     0, 1, 1, 0);
+> +	imx585->datasel_th_ctrl = v4l2_ctrl_new_custom(ctrl_hdlr,
+> +						       &imx585_cfg_datasel_th, NULL);
+> +	imx585->datasel_bk_ctrl = v4l2_ctrl_new_custom(ctrl_hdlr,
+> +						       &imx585_cfg_datasel_bk, NULL);
+> +	imx585->gdc_th_ctrl     = v4l2_ctrl_new_custom(ctrl_hdlr,
+> +						       &imx585_cfg_grad_th, NULL);
+> +	imx585->gdc_exp_ctrl_l  = v4l2_ctrl_new_custom(ctrl_hdlr,
+> +						       &imx585_cfg_grad_exp_l, NULL);
+> +	imx585->gdc_exp_ctrl_h  = v4l2_ctrl_new_custom(ctrl_hdlr,
+> +						       &imx585_cfg_grad_exp_h, NULL);
+> +	imx585->hdr_gain_ctrl   = v4l2_ctrl_new_custom(ctrl_hdlr,
+> +						       &imx585_cfg_hdr_gain, NULL);
+> +	imx585->hcg_ctrl        = v4l2_ctrl_new_custom(ctrl_hdlr,
+> +						       &imx585_cfg_hcg, NULL);
+> +
+> +	v4l2_ctrl_activate(imx585->datasel_th_ctrl,  imx585->clear_HDR);
+> +	v4l2_ctrl_activate(imx585->datasel_bk_ctrl,  imx585->clear_HDR);
+> +	v4l2_ctrl_activate(imx585->gdc_th_ctrl,      imx585->clear_HDR);
+> +	v4l2_ctrl_activate(imx585->gdc_exp_ctrl_l,   imx585->clear_HDR);
+> +	v4l2_ctrl_activate(imx585->gdc_exp_ctrl_h,   imx585->clear_HDR);
+> +	v4l2_ctrl_activate(imx585->hdr_gain_ctrl,    imx585->clear_HDR);
+> +	v4l2_ctrl_activate(imx585->hcg_ctrl,        !imx585->clear_HDR);
+> +
+> +	if (ctrl_hdlr->error) {
+> +		ret = ctrl_hdlr->error;
+> +		dev_err(&client->dev, "%s control init failed (%d)\n",
+> +			__func__, ret);
+> +		goto error;
+> +	}
+> +
+> +	ret = v4l2_fwnode_device_parse(&client->dev, &props);
+> +	if (ret)
+> +		goto error;
+> +
+> +	ret = v4l2_ctrl_new_fwnode_properties(ctrl_hdlr, &imx585_ctrl_ops, &props);
+> +	if (ret)
+> +		goto error;
+> +
+> +	memcpy(imx585->datasel_th_ctrl->p_cur.p, hdr_thresh_def, sizeof(hdr_thresh_def));
+> +	memcpy(imx585->datasel_th_ctrl->p_new.p, hdr_thresh_def, sizeof(hdr_thresh_def));
+> +	memcpy(imx585->gdc_th_ctrl->p_cur.p, grad_thresh_def, sizeof(grad_thresh_def));
+> +	memcpy(imx585->gdc_th_ctrl->p_new.p, grad_thresh_def, sizeof(grad_thresh_def));
+> +
+> +	imx585->hdr_mode->flags |= V4L2_CTRL_FLAG_UPDATE;
+> +	imx585->hdr_mode->flags |= V4L2_CTRL_FLAG_MODIFY_LAYOUT;
+> +
+> +	imx585->sd.ctrl_handler = ctrl_hdlr;
+> +
+> +	/* Setup exposure and frame/line length limits. */
+> +	imx585_set_framing_limits(imx585);
+> +
+> +	return 0;
+> +
+> +error:
+> +	v4l2_ctrl_handler_free(ctrl_hdlr);
+> +	mutex_destroy(&imx585->mutex);
+> +
+> +	return ret;
+> +}
+> +
+> +static void imx585_free_controls(struct imx585 *imx585)
+> +{
+> +	v4l2_ctrl_handler_free(imx585->sd.ctrl_handler);
+> +	mutex_destroy(&imx585->mutex);
+> +}
+> +
+> +static const struct of_device_id imx585_dt_ids[] = {
+> +	{ .compatible = "sony,imx585"},
 > +	{ /* sentinel */ }
 > +};
 > +
-> +static struct platform_driver milos_tlmm_driver = {
-> +	.driver = {
-> +		.name = "milos-tlmm",
-> +		.of_match_table = milos_tlmm_of_match,
-> +	},
-> +	.probe = milos_tlmm_probe,
-> +	.remove = msm_pinctrl_remove,
+> +static int imx585_check_hwcfg(struct device *dev, struct imx585 *imx585)
+> +{
+> +	struct fwnode_handle *endpoint;
+
+	struct fwnode_handle *endpoint __free(fwnode_handle_put) = NULL;
+
+and rop the fwnode_handle_put() call below. That will simplify error
+handling.
+
+> +	struct v4l2_fwnode_endpoint ep_cfg = {
+> +		.bus_type = V4L2_MBUS_CSI2_DPHY
+> +	};
+> +	int ret = -EINVAL;
+> +	int i;
+> +
+> +	endpoint = fwnode_graph_get_next_endpoint(dev_fwnode(dev), NULL);
+> +	if (!endpoint) {
+> +		dev_err(dev, "endpoint node not found\n");
+> +		return -EINVAL;
+> +	}
+> +
+> +	if (v4l2_fwnode_endpoint_alloc_parse(endpoint, &ep_cfg)) {
+> +		dev_err(dev, "could not parse endpoint\n");
+> +		goto error_out;
+> +	}
+> +
+> +	/* Check the number of MIPI CSI2 data lanes */
+> +	if (ep_cfg.bus.mipi_csi2.num_data_lanes != 2 && ep_cfg.bus.mipi_csi2.num_data_lanes != 4) {
+> +		dev_err(dev, "only 2 or 4 data lanes are currently supported\n");
+> +		goto error_out;
+> +	}
+> +	imx585->lane_count = ep_cfg.bus.mipi_csi2.num_data_lanes;
+> +	dev_info(dev, "Data lanes: %d\n", imx585->lane_count);
+> +
+> +	/* Check the link frequency set in device tree */
+> +	if (!ep_cfg.nr_of_link_frequencies) {
+> +		dev_err(dev, "link-frequency property not found in DT\n");
+> +		goto error_out;
+> +	}
+> +
+> +	for (i = 0; i < ARRAY_SIZE(link_freqs); i++) {
+> +		if (link_freqs[i] == ep_cfg.link_frequencies[0]) {
+> +			imx585->link_freq_idx = i;
+> +			break;
+> +		}
+> +	}
+> +
+> +	if (i == ARRAY_SIZE(link_freqs)) {
+> +		dev_err(dev, "Link frequency not supported: %lld\n",
+> +			ep_cfg.link_frequencies[0]);
+> +			ret = -EINVAL;
+> +			goto error_out;
+> +	}
+> +
+> +	dev_info(dev, "Link Speed: %lld Mhz\n", ep_cfg.link_frequencies[0]);
+> +
+> +	ret = 0;
+> +
+> +error_out:
+> +	v4l2_fwnode_endpoint_free(&ep_cfg);
+> +	fwnode_handle_put(endpoint);
+> +
+> +	return ret;
+> +}
+> +
+> +static int imx585_probe(struct i2c_client *client)
+> +{
+> +	struct device *dev = &client->dev;
+> +	struct device_node  *np;
+> +	struct imx585 *imx585;
+> +	const struct of_device_id *match;
+> +	int ret, i;
+> +	u32 sync_mode;
+> +
+> +	imx585 = devm_kzalloc(&client->dev, sizeof(*imx585), GFP_KERNEL);
+> +	if (!imx585)
+> +		return -ENOMEM;
+> +
+> +	v4l2_i2c_subdev_init(&imx585->sd, client, &imx585_subdev_ops);
+> +
+> +	match = of_match_device(imx585_dt_ids, dev);
+> +	if (!match)
+> +		return -ENODEV;
+
+This doesn't seem needed.
+
+> +
+> +	dev_info(dev, "Reading dtoverlay config:\n");
+> +	imx585->mono = of_property_read_bool(dev->of_node, "mono-mode");
+
+Mono sensors should be detected based on the compatible string, not with
+a separate property.
+
+> +	if (imx585->mono)
+> +		dev_info(dev, "Mono Mode Selected, make sure you have the correct sensor variant\n");
+> +
+> +	imx585->clear_HDR = of_property_read_bool(dev->of_node, "clearHDR-mode");
+
+This doesn't seem to belong to DT, as it's a runtime option.
+
+> +	dev_info(dev, "ClearHDR: %d\n", imx585->clear_HDR);
+> +
+> +	imx585->sync_mode = 0;
+> +	ret = of_property_read_u32(dev->of_node, "sync-mode", &sync_mode);
+> +	if (!ret) {
+> +		if (sync_mode > 2) {
+> +			dev_warn(dev, "sync-mode out of range, using 0\n");
+> +			sync_mode = 0;
+> +		}
+> +		imx585->sync_mode = sync_mode;
+> +	} else if (ret != -EINVAL) {          /* property present but bad */
+> +		dev_err(dev, "sync-mode malformed (%pe)\n", ERR_PTR(ret));
+> +		return ret;
+> +	}
+> +	dev_info(dev, "Sync Mode: %s\n", sync_mode_menu[imx585->sync_mode]);
+> +
+> +	/* Check the hardware configuration in device tree */
+> +	if (imx585_check_hwcfg(dev, imx585))
+> +		return -EINVAL;
+> +
+> +	/* Get system clock (xclk) */
+> +	imx585->xclk = devm_clk_get(dev, NULL);
+> +	if (IS_ERR(imx585->xclk)) {
+> +		dev_err(dev, "failed to get xclk\n");
+> +		return PTR_ERR(imx585->xclk);
+> +	}
+> +
+> +	imx585->xclk_freq = clk_get_rate(imx585->xclk);
+> +
+> +	for (i = 0; i < ARRAY_SIZE(imx585_inck_table); ++i) {
+> +		if (imx585_inck_table[i].xclk_hz == imx585->xclk_freq) {
+> +			imx585->inck_sel_val = imx585_inck_table[i].inck_sel;
+> +			break;
+> +		}
+> +	}
+> +
+> +	if (i == ARRAY_SIZE(imx585_inck_table)) {
+> +		dev_err(dev, "unsupported XCLK rate %u Hz\n",
+> +			imx585->xclk_freq);
+> +		return -EINVAL;
+> +	}
+> +
+> +	dev_info(dev, "XCLK %u Hz → INCK_SEL 0x%02x\n",
+> +		 imx585->xclk_freq, imx585->inck_sel_val);
+> +
+> +	ret = imx585_get_regulators(imx585);
+> +	if (ret) {
+> +		dev_err(dev, "failed to get regulators\n");
+> +		return ret;
+> +	}
+> +
+> +	/* Request optional enable pin */
+> +	imx585->reset_gpio = devm_gpiod_get_optional(dev, "reset",
+> +						     GPIOD_OUT_HIGH);
+> +
+> +	/*
+> +	 * The sensor must be powered for imx585_check_module_exists()
+> +	 * to be able to read register
+> +	 */
+> +	ret = imx585_power_on(dev);
+> +	if (ret)
+> +		return ret;
+> +
+> +	ret = imx585_check_module_exists(imx585);
+> +	if (ret)
+> +		goto error_power_off;
+> +
+> +	imx585->has_ircut     = false;
+> +	imx585->ircut_client  = NULL;
+> +
+> +	if (of_property_read_bool(dev->of_node, "ircut-mode")) {
+> +		np = of_parse_phandle(dev->of_node, "ircut-controller", 0);
+> +		if (np) {
+> +			imx585->ircut_client = of_find_i2c_device_by_node(np);
+> +			of_node_put(np);
+> +			ret = imx585_ircut_write(imx585, 0x01);
+> +			if (!ret) {
+> +				imx585->has_ircut    = true;
+> +				dev_info(dev, "IR-cut controller present at 0x%02x\n",
+> +					 imx585->ircut_client->addr);
+> +			} else {
+> +				dev_info(dev,
+> +					 "Can't communication with IR-cut control, dropping\n");
+> +			}
+> +		}
+> +	} else {
+> +		dev_info(dev, "No IR-cut controller\n");
+> +	}
+> +
+> +	/* Initialize default format */
+> +	imx585_set_default_format(imx585);
+> +
+> +	/* Enable runtime PM and turn off the device */
+> +	pm_runtime_set_active(dev);
+> +	pm_runtime_enable(dev);
+> +	pm_runtime_idle(dev);
+
+It would be best to use PM runtime autosuspend. See the imx296 driver
+for an example.
+
+> +
+> +	/* This needs the pm runtime to be registered. */
+> +	ret = imx585_init_controls(imx585);
+> +	if (ret)
+> +		goto error_pm_runtime;
+> +
+> +	/* Initialize subdev */
+> +	imx585->sd.internal_ops = &imx585_internal_ops;
+> +	imx585->sd.flags |= V4L2_SUBDEV_FL_HAS_DEVNODE |
+> +				V4L2_SUBDEV_FL_HAS_EVENTS;
+> +	imx585->sd.entity.function = MEDIA_ENT_F_CAM_SENSOR;
+> +
+> +	/* Initialize source pads */
+> +	imx585->pad[IMAGE_PAD].flags = MEDIA_PAD_FL_SOURCE;
+> +	imx585->pad[METADATA_PAD].flags = MEDIA_PAD_FL_SOURCE;
+> +
+> +	ret = media_entity_pads_init(&imx585->sd.entity, NUM_PADS, imx585->pad);
+> +	if (ret) {
+> +		dev_err(dev, "failed to init entity pads: %d\n", ret);
+> +		goto error_handler_free;
+> +	}
+> +
+> +	ret = v4l2_async_register_subdev_sensor(&imx585->sd);
+> +	if (ret < 0) {
+> +		dev_err(dev, "failed to register sensor sub-device: %d\n", ret);
+> +		goto error_media_entity;
+> +	}
+> +
+> +	return 0;
+> +
+> +error_media_entity:
+> +	media_entity_cleanup(&imx585->sd.entity);
+> +
+> +error_handler_free:
+> +	imx585_free_controls(imx585);
+> +
+> +error_pm_runtime:
+> +	pm_runtime_disable(&client->dev);
+> +	pm_runtime_set_suspended(&client->dev);
+> +
+> +error_power_off:
+> +	imx585_power_off(&client->dev);
+> +
+> +	return ret;
+> +}
+> +
+> +static void imx585_remove(struct i2c_client *client)
+> +{
+> +	struct v4l2_subdev *sd = i2c_get_clientdata(client);
+> +	struct imx585 *imx585 = to_imx585(sd);
+> +
+> +	v4l2_async_unregister_subdev(sd);
+> +	media_entity_cleanup(&sd->entity);
+> +	imx585_free_controls(imx585);
+> +
+> +	pm_runtime_disable(&client->dev);
+> +	if (!pm_runtime_status_suspended(&client->dev))
+> +		imx585_power_off(&client->dev);
+> +	pm_runtime_set_suspended(&client->dev);
+> +}
+> +
+> +MODULE_DEVICE_TABLE(of, imx585_dt_ids);
+
+This should go just below imx585_dt_ids. I would move imx585_dt_ids just
+above the MODULE_DEVICE_TABLE macro.
+
+> +
+> +static const struct dev_pm_ops imx585_pm_ops = {
+> +	SET_SYSTEM_SLEEP_PM_OPS(imx585_suspend, imx585_resume)
+> +	SET_RUNTIME_PM_OPS(imx585_power_off, imx585_power_on, NULL)
 > +};
 > +
-> +static int __init milos_tlmm_init(void)
-> +{
-> +	return platform_driver_register(&milos_tlmm_driver);
-> +}
-> +arch_initcall(milos_tlmm_init);
+> +static struct i2c_driver imx585_i2c_driver = {
+> +	.driver = {
+> +		.name = "imx585",
+> +		.of_match_table = imx585_dt_ids,
+> +		.pm = &imx585_pm_ops,
+> +	},
+> +	.probe = imx585_probe,
+> +	.remove = imx585_remove,
+> +};
 > +
-> +static void __exit milos_tlmm_exit(void)
-> +{
-> +	platform_driver_unregister(&milos_tlmm_driver);
-> +}
-> +module_exit(milos_tlmm_exit);
+> +module_i2c_driver(imx585_i2c_driver);
 > +
-> +MODULE_DESCRIPTION("QTI Milos TLMM driver");
+> +MODULE_AUTHOR("Will Whang <will@willwhang.com>");
+> +MODULE_AUTHOR("Tetsuya NOMURA <tetsuya.nomura@soho-enterprise.com>");
+> +MODULE_DESCRIPTION("Sony imx585 sensor driver");
+
+s/imx585/IMX585/
+
 > +MODULE_LICENSE("GPL");
-> +MODULE_DEVICE_TABLE(of, milos_tlmm_of_match);
 > 
-> -- 
-> 2.50.0
-> 
+
+-- 
+Regards,
+
+Laurent Pinchart
 
