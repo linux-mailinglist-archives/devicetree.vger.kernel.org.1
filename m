@@ -1,125 +1,101 @@
-Return-Path: <devicetree+bounces-192546-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-192547-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7FD07AF6FD8
-	for <lists+devicetree@lfdr.de>; Thu,  3 Jul 2025 12:19:38 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id B8A08AF6FE3
+	for <lists+devicetree@lfdr.de>; Thu,  3 Jul 2025 12:22:05 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 308F74A22F1
-	for <lists+devicetree@lfdr.de>; Thu,  3 Jul 2025 10:19:12 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 8AD993AD56F
+	for <lists+devicetree@lfdr.de>; Thu,  3 Jul 2025 10:21:20 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2BF9D2DBF7C;
-	Thu,  3 Jul 2025 10:19:33 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E8A452E174A;
+	Thu,  3 Jul 2025 10:21:43 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="YNFLo32U"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="hF8dXvJA"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-pf1-f173.google.com (mail-pf1-f173.google.com [209.85.210.173])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 009B32D46D0;
-	Thu,  3 Jul 2025 10:19:32 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6F79F2DBF7C;
+	Thu,  3 Jul 2025 10:21:42 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.173
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1751537973; cv=none; b=ZMezxbURErTM/rvG7qTDaW8NVAwNVygRlUpzH0bM1PjfWAVsfDDs07emlsx87Wz9DvzZw0Q5lQpyaHmSGi4l66gKSHAl3TazaUP5wKEXzN+D+pPAxGXPL5HVaQjLKjrGU11oSO3Eg5bZ1bCMFed5YMieuDxD5y25Aj6KV1Uh9Rc=
+	t=1751538103; cv=none; b=H4lCDXji0650pEPAL/92Qkq0THHwA+IGs9xWtWRLLLZbCQ/VywRe8OCrLYA146LdzrIxX7leoqRBVz4U8cwYbGxzYa8GztLNE+XgOnET8QcfgpbrMDW7yO9NNMItIE9NFD814v4Huk+Egb9rvNNy37txE5GROLQuzXq9lxwlJqk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1751537973; c=relaxed/simple;
-	bh=6r+LqpL6KA2efSJCVmUCNNxEdOtaWMQouGC4z+YYw4E=;
-	h=Date:Content-Type:MIME-Version:From:Cc:To:In-Reply-To:References:
-	 Message-Id:Subject; b=BM/Sa6dlhNrQVjCCVwMXVvBZai7MzASvQfCwiO3Us8bWUOWO/FjpF3c1FnG9UBmSJZ7R54ov976a1NdAoRXWzPr8bK4XC2Q+TjK/REp7nzF2Ad1wmKYLAgYq5ciNxqo9CV2Cus0UJlQzMs+SfiBKfVf7Zl6wcmes3uR3xZP0n4U=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=YNFLo32U; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 3C5F3C4CEE3;
-	Thu,  3 Jul 2025 10:19:32 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1751537972;
-	bh=6r+LqpL6KA2efSJCVmUCNNxEdOtaWMQouGC4z+YYw4E=;
-	h=Date:From:Cc:To:In-Reply-To:References:Subject:From;
-	b=YNFLo32UcazxUvoPjazKAKec3zRIhjcZjy9aZW5xIpR7iyYaXGfJEgFQ4qSKLj9s7
-	 Hh33md7sT92kyDqWEutMGiywsTixGcMRLcYIshnSFZ+6pdD/FT2+y5mJQIziwtEVCL
-	 ztnxPL+RQza6KXSwqUCAyEDm5djhFVYJS9Fsv3wXIRkzE/vC/pkDnApbju1QnsHXyv
-	 VWDIVzggWvxBRs7JfRi/aV0SSfbWbjujR0kYoFv+N5rgQBu+ypzm51e4xjfVqte15f
-	 xH6pBYioIQQGFtNQfjnCtLy+x51KBUezJ6vrnUOwZHT+XAiNhbm9aczLaLqfohTfNM
-	 UD32VD/x8dD4w==
-Date: Thu, 03 Jul 2025 05:19:31 -0500
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
+	s=arc-20240116; t=1751538103; c=relaxed/simple;
+	bh=FGoJPVfwutBWJwGj9qB2xybMR3b6ZeRVmlw88KOQWHg=;
+	h=Date:From:To:Cc:Subject:Message-ID:MIME-Version:Content-Type:
+	 Content-Disposition; b=CCzPEHhpO64DPkL1DApRJpoV7U8Zw3Qwtjhm9fmVhb31V5o2YCautfwUhkqxgsWYXw7PPlGFCewvV6LWgBY8y1CIAbhGxLKr6hAMKHPnJG68zGFUhttDOO5Tu4QR1gsrb9d5BYpD4y9DB+RPCMMUPxnhrU5PX57HV3QaAJx1AFI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=hF8dXvJA; arc=none smtp.client-ip=209.85.210.173
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-pf1-f173.google.com with SMTP id d2e1a72fcca58-748e81d37a7so5470869b3a.1;
+        Thu, 03 Jul 2025 03:21:42 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1751538102; x=1752142902; darn=vger.kernel.org;
+        h=content-disposition:mime-version:message-id:subject:cc:to:from:date
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=bf3OnllIKy74CmmPzQiN5iB51QA0QlwijmOja/0ll0Q=;
+        b=hF8dXvJAdXf1/elj6pTzh3Sm3vUjCA+N8gdROppp67prT++S71fjgtcYau3Xg/Mc7X
+         JS1rHLR5P07ZvPf3kli+EIPbKgaFw1dHx+9WNyA7uIBr1bMiv5gpMklv4FppARaaO71B
+         I76OO5Ay5AqcFhAh17EtOa7FNTHbxal8DKl9iwJHumzwq/O24fSf3tKYwJ4/DuvvhZFk
+         yudvnbVuAbFrpHhvnFecS/0cqHC7VZ4u5csC8LaYjZRrKjZoRf390XvK67pQ33sLaj9p
+         Up2TiKIuQnO6QuOd/rFgSWDvii2fkTUqqrUtZkgxauKi2LEPXQjzQKzJDZ5fdkUD8iUi
+         1Vvw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1751538102; x=1752142902;
+        h=content-disposition:mime-version:message-id:subject:cc:to:from:date
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=bf3OnllIKy74CmmPzQiN5iB51QA0QlwijmOja/0ll0Q=;
+        b=ujvfNWG+iZUJhTOKWzIUTtdqun/gk7aGvV/4bQhhYzvfsSONYNFaA/S27efAAIlD20
+         LYxYkLrssm9ygUJoOvK2fJlOqHEVOKCmaOBJcsdUb8mXS6wexChexJ2DJJ+Mcjmep75H
+         wVgzcTgsv9Qfrv6p3PuKbgIOkbpab/ty0/WdaadkiO8nNiG40yKwEeitnMMHrd7TpZ2d
+         wGunk1p1PFwvewR29p7Fy4u7IOsZgKMm94IzIhJAG0LGiBTb1kbxrb4DQnK9q3HINBqG
+         O6wBt6SnYOmo3To+2EzBRJqx3P18eHJ6DLFblxWvs2+lXG6tUS4RQTLojqXGM25saFL3
+         3Edw==
+X-Forwarded-Encrypted: i=1; AJvYcCUhg+7iZM7c4GnrJvvYWNhCaph7tS/wwGf5n4tWFe/+Sw2wdU1KtDp9P62EHavzdOdz8DUD0xcKKmzM@vger.kernel.org
+X-Gm-Message-State: AOJu0YwUXnFLeVBo0/DQiIiMaKqPbzz0eSojP6VFKYlMV2nP3KKiPvuL
+	dejIhP2iFPaNy8oeQ2CmoK2W+zFHUO56JVsj5Rb0llEwI0Y8dO4OluOm
+X-Gm-Gg: ASbGncvR6L0zAUF/4WByWpjuSSt5QPT7J7TIoAi6mTRRsNrjZ+UZM110MFp1FbJl+ku
+	VfZ36POCWomjnRP2IOlMtFYPe0l+D12uJtaRritgWfEly1r51FJ8GchGbG2/U84fkSYHRXlR5Az
+	LYTyBxpubvCxgw8JDC266oAv/uo6u00c9nt1qRjWpreRG7ZNp2RI94bWfE+wTpn0AO1bGnpn2T7
+	OirpvOzHDos3nBWJoFnpJhQLZjiqv9cQy8Sww+k90yspHuAtQ18m6Oeco7S4OoU4n/7PcxMoUJD
+	GnamRon6kSc99uAPWy2ArqJJiQdcUS/faALkxb9qWIYTp7vKH0k9evCsp31aYg==
+X-Google-Smtp-Source: AGHT+IGq73HxNPtEVSnp5azdraH+JoXEP6E2e3ILYaUPK7FTlIC70puJ7IGvGTsd2cf9o9WMfsGxwA==
+X-Received: by 2002:a05:6a00:3cd2:b0:748:323f:ba21 with SMTP id d2e1a72fcca58-74c997fd590mr3720134b3a.1.1751538101662;
+        Thu, 03 Jul 2025 03:21:41 -0700 (PDT)
+Received: from localhost ([2001:19f0:ac00:4eb8:5400:5ff:fe30:7df3])
+        by smtp.gmail.com with UTF8SMTPSA id d2e1a72fcca58-74af541b6e5sm15788469b3a.43.2025.07.03.03.21.41
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 03 Jul 2025 03:21:41 -0700 (PDT)
+Date: Thu, 3 Jul 2025 18:21:38 +0800
+From: Inochi Amaoto <inochiama@gmail.com>
+To: Junhui Liu <junhui.liu@pigmoral.tech>, 
+	Jassi Brar <jassisinghbrar@gmail.com>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Chen Wang <unicorn_wang@outlook.com>, Inochi Amaoto <inochiama@gmail.com>, 
+	Yuntao Dai <d1581209858@live.com>, Paul Walmsley <paul.walmsley@sifive.com>, 
+	Palmer Dabbelt <palmer@dabbelt.com>, Albert Ou <aou@eecs.berkeley.edu>, 
+	Alexandre Ghiti <alex@ghiti.fr>
+Cc: linux-kernel@vger.kernel.org, devicetree@vger.kernel.org, 
+	sophgo@lists.linux.dev, linux-riscv@lists.infradead.org
+Subject: Question for CV1800 mailbox users series SoC
+Message-ID: <iq36z2mqetrdhxe24w455quvqixcy25ovuxjz3rgelpgln4j3f@kjxn5z7yb6bz>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-From: "Rob Herring (Arm)" <robh@kernel.org>
-Cc: linux-sound@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
- linux-mediatek@lists.infradead.org, 
- Ranjani Sridharan <ranjani.sridharan@linux.intel.com>, 
- AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>, 
- Kai Vehmanen <kai.vehmanen@linux.intel.com>, 
- Bard Liao <yung-chuan.liao@linux.intel.com>, 
- Daniel Baluta <daniel.baluta@nxp.com>, 
- Peter Ujfalusi <peter.ujfalusi@linux.intel.com>, 
- linux-kernel@vger.kernel.org, 
- Project_Global_Chrome_Upstream_Group@mediatek.com, 
- Jaroslav Kysela <perex@perex.cz>, 
- Pierre-Louis Bossart <pierre-louis.bossart@linux.dev>, 
- devicetree@vger.kernel.org, Conor Dooley <conor+dt@kernel.org>, 
- Liam Girdwood <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>, 
- Takashi Iwai <tiwai@suse.com>, sound-open-firmware@alsa-project.org, 
- Matthias Brugger <matthias.bgg@gmail.com>, 
- Krzysztof Kozlowski <krzk+dt@kernel.org>
-To: "hailong.fan" <hailong.fan@mediatek.com>
-In-Reply-To: <20250703075632.20758-2-hailong.fan@mediatek.com>
-References: <20250703075632.20758-1-hailong.fan@mediatek.com>
- <20250703075632.20758-2-hailong.fan@mediatek.com>
-Message-Id: <175153797140.484478.11959606684592113866.robh@kernel.org>
-Subject: Re: [PATCH v2 1/2] dt-bindings: dsp: mediatek: add mt8196 dsp
- document
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
 
+As I have seen you take the mailbox driver for CV1800, I wonder
+if you have developed the driver for the 8051 core on the CV1800
+system? 
 
-On Thu, 03 Jul 2025 15:56:23 +0800, hailong.fan wrote:
-> From: Hailong Fan <hailong.fan@mediatek.com>
-> 
-> This patch adds mt8196 dsp document. The dsp is used for Sound Open
-> Firmware driver node. It includes registers,  clocks, memory regions,
-> and mailbox for dsp.
-> 
-> Signed-off-by: Hailong Fan <hailong.fan@mediatek.com>
-> ---
->  .../bindings/sound/mediatek,mt8196-dsp.yaml   | 95 +++++++++++++++++++
->  1 file changed, 95 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/sound/mediatek,mt8196-dsp.yaml
-> 
-
-My bot found errors running 'make dt_binding_check' on your patch:
-
-yamllint warnings/errors:
-
-dtschema/dtc warnings/errors:
-Documentation/devicetree/bindings/sound/mediatek,mt8196-dsp.example.dts:18:18: fatal error: dt-bindings/clock/mt8196-clk.h: No such file or directory
-   18 |         #include <dt-bindings/clock/mt8196-clk.h>
-      |                  ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-compilation terminated.
-make[2]: *** [scripts/Makefile.dtbs:131: Documentation/devicetree/bindings/sound/mediatek,mt8196-dsp.example.dtb] Error 1
-make[2]: *** Waiting for unfinished jobs....
-make[1]: *** [/builds/robherring/dt-review-ci/linux/Makefile:1525: dt_binding_check] Error 2
-make: *** [Makefile:248: __sub-make] Error 2
-
-doc reference errors (make refcheckdocs):
-
-See https://patchwork.ozlabs.org/project/devicetree-bindings/patch/20250703075632.20758-2-hailong.fan@mediatek.com
-
-The base for the series is generally the latest rc1. A different dependency
-should be noted in *this* patch.
-
-If you already ran 'make dt_binding_check' and didn't see the above
-error(s), then make sure 'yamllint' is installed and dt-schema is up to
-date:
-
-pip3 install dtschema --upgrade
-
-Please check and re-submit after running the above command yourself. Note
-that DT_SCHEMA_FILES can be set to your schema file to speed up checking
-your schema. However, it must be unset to test all examples with your schema.
-
+Regards,
+Inochi
 
