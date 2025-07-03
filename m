@@ -1,48 +1,48 @@
-Return-Path: <devicetree+bounces-192440-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-192441-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id E4433AF6B28
-	for <lists+devicetree@lfdr.de>; Thu,  3 Jul 2025 09:11:51 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 28E2AAF6B33
+	for <lists+devicetree@lfdr.de>; Thu,  3 Jul 2025 09:15:47 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 23997520968
-	for <lists+devicetree@lfdr.de>; Thu,  3 Jul 2025 07:11:52 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id A3FCE3A7C1E
+	for <lists+devicetree@lfdr.de>; Thu,  3 Jul 2025 07:15:20 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8CE55292B42;
-	Thu,  3 Jul 2025 07:11:46 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9FB9014D2A0;
+	Thu,  3 Jul 2025 07:15:41 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="rDLrlRJx"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="p7hSGf6l"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5C5A429A9;
-	Thu,  3 Jul 2025 07:11:46 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7402C1CD1F;
+	Thu,  3 Jul 2025 07:15:41 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1751526706; cv=none; b=Nn+tnbvuj2rEdb+YpEQbanJIcM2e8gMl5R3sD+QK7lSDxNJZMBrpJVxVe7VULnGIp/CVjBOrkvb/Qau6DKca00E9CHX7gcY9YdQ9OOeba3VQEkgPqlugrxbVkM7WryGzESJ2fSgj4MPehEGFxEqFkNQieWEKbIOIHkSxJHugWbw=
+	t=1751526941; cv=none; b=SgCGDq3IkpoIytY7nqmDL5zsdEp9LGx/T5/vw4E2qPOm8nL5Rk+X7SviHF1m5zu45ExZujslTdzpqPWCCfRmh1KkrkArujB6gO0B1zHss1z9sqO8PBAeWPyLY7IDJbmmfEr9iitIVK9SrGDxIQmK+QqNYklCLFJyMvldKEc4pfg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1751526706; c=relaxed/simple;
-	bh=aSHssiIu/r3OHUdbIec9ulQZAyrKLp3mJLSbYRcXRds=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=PCAVGRZ3/ySTbAUEGjxOGljOHVj/aqDAk6hufbRterXzvMfBxKqj2wlL0/OJQF5W9ZDUq8zak6BTvBR+iNFTP9O7Z5bbf3zrollD4rl3RgoHg1QMsVyukar+fl6taKrFYxhfHEL8csEdReatvDHwe39lNkY4qW78xC5HeszVPRs=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=rDLrlRJx; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 758BAC4CEE3;
-	Thu,  3 Jul 2025 07:11:43 +0000 (UTC)
+	s=arc-20240116; t=1751526941; c=relaxed/simple;
+	bh=Md0dRMRkkbSeOSf2T1Uii6t+/Dj1H4mzaP7TnbUy7wo=;
+	h=Message-ID:Date:MIME-Version:Subject:From:To:Cc:References:
+	 In-Reply-To:Content-Type; b=mW87UrHerV1aDbwm/jsXGwLSnV0i1+NlfyfaKuoNDTBu+gPvEMN3uS4H9KBxillNAdPxkzOMKB9+9izHEoNNQ2bt5twWWIofs6I+O1RpGA/ViBtgE97rQVrSYojrjlrrrOYM9mDbRsSjBvZCZfavQUxrO/kAl+p4PKNVBRttyDY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=p7hSGf6l; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id E6247C4CEE3;
+	Thu,  3 Jul 2025 07:15:37 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1751526706;
-	bh=aSHssiIu/r3OHUdbIec9ulQZAyrKLp3mJLSbYRcXRds=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=rDLrlRJxvO51Lx849MABjADWmM7L1fM5lH9p63+t55Qqps8L3Vjv20Vf4D0K+KWAo
-	 I9609IRPAgXKbRV8PShH/3PbI7HL7Gz6n+AAveci2bVasQQSgyiSraqGWU3URNB+C+
-	 BE6mwsrcYjsDINr0vpmJfjQNQXft/r40uif5WTEq+t7Cb/62AwVNidWF5YED/X2nzF
-	 Nl26b1kXBUMWGWaiyB5T9XBbmPgsOKiJJKVf7BDDhWf5+6gcdKGujM0m2rZszhP7d6
-	 FpWyuf0yMRoHQcck86UbFP6NHjfeQDGHDH3enAype6J6NxyedHM766ukiGzPi4uebA
-	 i009Z0pKzhu5g==
-Message-ID: <e98aa9ed-2d32-4db2-b7f2-a5e5ce1d1d84@kernel.org>
-Date: Thu, 3 Jul 2025 09:11:41 +0200
+	s=k20201202; t=1751526941;
+	bh=Md0dRMRkkbSeOSf2T1Uii6t+/Dj1H4mzaP7TnbUy7wo=;
+	h=Date:Subject:From:To:Cc:References:In-Reply-To:From;
+	b=p7hSGf6l1wB62yE+NBdSGrVdqXxyYdvsFfD+7P8T5oO8m9C3zbDyXgHy+M2PLg1BZ
+	 +vZysQwtgP+ZF2XSwv+PdgPdcCExsl+SUzR2rDLb/pUFOqdAzdTnuaUidrlOQqbBu1
+	 5v33G0WOuI8Jd8bgrpoLMMlks7bGaZqgYlZG4KjwPtxBy3s2fOUdzf0xZluVUTlIVF
+	 O9YIv80UBKIEOiiTi61Efuz+9U5yfNXo6npsk8LVPIdzQzm8jdZ5YIl9F/RGb94vBy
+	 I1M5GaKwc+Wkh7qZe2Sd5iKMJAQwXpuM0zCq7wUsQiIpj+f+yNsCsQCtBTmRGAlkiR
+	 qb2jrQsbCbFnA==
+Message-ID: <6e209f3c-1d24-4669-8a51-3b651a28420c@kernel.org>
+Date: Thu, 3 Jul 2025 09:15:36 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,21 +50,18 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH V2 1/2] dt-bindings: leds: pwm: Add enable-gpios property
-To: LI Qingwu <Qing-wu.Li@leica-geosystems.com.cn>,
- "Rob Herring (Arm)" <robh@kernel.org>
-Cc: "krzk+dt@kernel.org" <krzk+dt@kernel.org>,
- "conor+dt@kernel.org" <conor+dt@kernel.org>,
- "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
- GEO-CHHER-bsp-development <bsp-development.geo@leica-geosystems.com>,
- "lee@kernel.org" <lee@kernel.org>,
- "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
- "pavel@kernel.org" <pavel@kernel.org>,
- "linux-leds@vger.kernel.org" <linux-leds@vger.kernel.org>
-References: <20250702114759.223925-1-Qing-wu.Li@leica-geosystems.com.cn>
- <175146290821.1131432.4001907939183416459.robh@kernel.org>
- <AM9PR06MB79557F8FFA113011C4D824D6D743A@AM9PR06MB7955.eurprd06.prod.outlook.com>
+Subject: Re: [PATCH v1 3/4] ASoC: dt-bindings: Add dt bindings for FS2104/5S
+ audio amplifiers
 From: Krzysztof Kozlowski <krzk@kernel.org>
+To: Nick <nick.li@foursemi.com>
+Cc: lgirdwood@gmail.com, broonie@kernel.org, robh@kernel.org,
+ krzk+dt@kernel.org, conor+dt@kernel.org, perex@perex.cz, tiwai@suse.com,
+ like.sin@gmail.com, xiaoming.yang@foursemi.com, danyang.zheng@foursemi.com,
+ linux-sound@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org
+References: <20250703035639.7252-1-nick.li@foursemi.com>
+ <20250703035639.7252-4-nick.li@foursemi.com>
+ <20250703-primitive-puzzling-toucanet-2c4870@krzk-bin>
 Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
  xsFNBFVDQq4BEAC6KeLOfFsAvFMBsrCrJ2bCalhPv5+KQF2PS2+iwZI8BpRZoV+Bd5kWvN79
@@ -109,32 +106,46 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  jWt87ecuHlpL3uuQ0ZZNWqHgZoQLXoqC2ZV5KrtKWb/jyiFX/sxSrodALf0zf+tfHv0FZWT2
  zHjUqd0t4njD/UOsuIMOQn4Ig0SdivYPfZukb5cdasKJukG1NOpbW7yRNivaCnfZz6dTawXw
  XRIV/KDsHQiyVxKvN73bThKhONkcX2LWuD928tAR6XMM2G5ovxLe09vuOzzfTWQDsm++9UKF a/A=
-In-Reply-To: <AM9PR06MB79557F8FFA113011C4D824D6D743A@AM9PR06MB7955.eurprd06.prod.outlook.com>
+In-Reply-To: <20250703-primitive-puzzling-toucanet-2c4870@krzk-bin>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 03/07/2025 05:54, LI Qingwu wrote:
+On 03/07/2025 09:10, Krzysztof Kozlowski wrote:
+> On Thu, Jul 03, 2025 at 11:56:38AM +0800, Nick wrote:
+>> From: Nick Li <nick.li@foursemi.com>
 >>
->> On Wed, 02 Jul 2025 19:47:58 +0800, LI Qingwu wrote:
->>> Some PWM LED chips have a dedicated enable GPIO.
->>> This commit adds the support to specify such GPIO.
->>>
->>> Signed-off-by: LI Qingwu <Qing-wu.Li@leica-geosystems.com.cn>
->>> ---
->>>  Documentation/devicetree/bindings/leds/leds-pwm.yaml | 8 ++++++++
->>>  1 file changed, 8 insertions(+)
->>>
+>> This patch adds bindings for FourSemi FS2104/5S audio amplifiers
+>> which can support both I2S and I2C interface.
 >>
->> My bot found errors running 'make dt_binding_check' on your patch:
+>> Signed-off-by: Nick Li <nick.li@foursemi.com>
+>> ---
+>>  .../bindings/sound/foursemi,fs210x.yaml       | 95 +++++++++++++++++++
+>>  1 file changed, 95 insertions(+)
+>>  create mode 100644 Documentation/devicetree/bindings/sound/foursemi,fs210x.yaml
 >>
->> yamllint warnings/errors:
->> ./Documentation/devicetree/bindings/leds/leds-pwm.yaml:44:21: [error] empty
->> value in block mapping (empty-values)
+>> diff --git a/Documentation/devicetree/bindings/sound/foursemi,fs210x.yaml b/Documentation/devicetree/bindings/sound/foursemi,fs210x.yaml
+>> new file mode 100644
+>> index 000000000..3a1aba9b8
+>> --- /dev/null
+>> +++ b/Documentation/devicetree/bindings/sound/foursemi,fs210x.yaml
+>> @@ -0,0 +1,95 @@
+>> +# SPDX-License-Identifier: GPL-2.0-only
 > 
-> Fixed in V3
+> Please run scripts/checkpatch.pl on the patches and fix reported
+> warnings. After that, run also 'scripts/checkpatch.pl --strict' on the
+> patches and (probably) fix more warnings. Some warnings can be ignored,
+> especially from --strict run, but the code here looks like it needs a
+> fix. Feel free to get in touch if the warning is not clear.
 
-So your answer to my "never tested" was to send again the same as v2 and
-still not tested?
+
+One more thing: Drop "dt-bindings for" from subject.
+See also:
+https://elixir.bootlin.com/linux/v6.7-rc8/source/Documentation/devicetree/bindings/submitting-patches.rst#L18
+
+
+... and that was my third email today... I apologize I did not send
+these as one review email, that's not really professional from my side
+but somehow coffee did not work good this morning.
 
 Best regards,
 Krzysztof
