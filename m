@@ -1,137 +1,160 @@
-Return-Path: <devicetree+bounces-192787-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-192788-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 92333AF7E10
-	for <lists+devicetree@lfdr.de>; Thu,  3 Jul 2025 18:41:10 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 3D887AF7E1B
+	for <lists+devicetree@lfdr.de>; Thu,  3 Jul 2025 18:43:08 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 54F3354337A
-	for <lists+devicetree@lfdr.de>; Thu,  3 Jul 2025 16:40:44 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id EC6345457D3
+	for <lists+devicetree@lfdr.de>; Thu,  3 Jul 2025 16:42:41 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 58BF12566E9;
-	Thu,  3 Jul 2025 16:41:05 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 83956257436;
+	Thu,  3 Jul 2025 16:43:03 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="Ere3aHR+"
+	dkim=pass (2048-bit key) header.d=arndb.de header.i=@arndb.de header.b="CbTS/0O5";
+	dkim=pass (2048-bit key) header.d=messagingengine.com header.i=@messagingengine.com header.b="IjqWG0RZ"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lf1-f49.google.com (mail-lf1-f49.google.com [209.85.167.49])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from fhigh-a8-smtp.messagingengine.com (fhigh-a8-smtp.messagingengine.com [103.168.172.159])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 811D6158535;
-	Thu,  3 Jul 2025 16:41:03 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.49
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2D00D24EF76;
+	Thu,  3 Jul 2025 16:43:00 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=103.168.172.159
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1751560865; cv=none; b=Zb39fMGS27wpCCNxJGhoSwI0A7EJjFDBlaqaePOL37NM+x0A+dNE9ALvIDgUfTd63Xk1NssJd8OQUWyYEWQHso+2SADMsIrPc5IlOWQE0/mzWQFnVyvnrvQEtTdvu7AhIio/QfhaXw273AcppzC8Rahla1hxzVVxbE6kYZEbdM4=
+	t=1751560983; cv=none; b=Baj/HaXb2jOkqekkmzkslUJchQ2SwurIGjDy2J38AaT8CZfOi5F3jnzcM2H3lzHKTQ396l48vMXJHrEdJrNvJgxbVPAfNUKqfBJgRc47VNg0NGMr+u3CLNbSoE4rGJ3P+6NExQbLFxyGO+L8fetU4h4zgSIut5erGh1mAoeBxUo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1751560865; c=relaxed/simple;
-	bh=WdH4sBTuoMdc8vCQH2pqGoLuQIke7zGv5YkPaKRmBMY=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=iZf+UyGbC34ywan0Ac3TbxkL51NY/mBcjIY4pLmKD4wPPsPFBZW8pdjNRt/xFJrAb6hPG/RcPZe10w25JiZqaN00nsjagqAwS6TLTuXEerpLW8u7Uxdbb08zsi1UU4XSLEjahDWKFEwbgSn7FEnDDMNz0JHDRKnK3j2SWuaT1Is=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=Ere3aHR+; arc=none smtp.client-ip=209.85.167.49
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-lf1-f49.google.com with SMTP id 2adb3069b0e04-5562838ce68so118729e87.2;
-        Thu, 03 Jul 2025 09:41:03 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1751560861; x=1752165661; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=WdH4sBTuoMdc8vCQH2pqGoLuQIke7zGv5YkPaKRmBMY=;
-        b=Ere3aHR+P0/IRabtsic4GmdC3hMY7RzPqV4KQLz1jDLNgPjEPIYeO6o5Tz+iPMpbUf
-         P4P4dTVwR+1LfslVLYilefdsU/WQEs5OmQ/QfV1uAgEcaFlaEqDOln2XtFwVvBVtKHas
-         lj/leJzHjfHCU4ULPMBrWDWallsZyvQON1GAAt/Rb9bdU1JAt0Kh8gDEpilVwsBzinlZ
-         jtHewR1keOOj4JK3dHyVrL1axvwbMbrM6q7XWkKLVQdZVbPKoUsYekzG2XUBLeBAtrN1
-         Nvn/LwjkS/FQq9gHfnl57LgtF/gVMhLVVIMeJQ/2VELQSZ8dSeQW0iZits+cpA7PT6Tn
-         8pAw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1751560861; x=1752165661;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=WdH4sBTuoMdc8vCQH2pqGoLuQIke7zGv5YkPaKRmBMY=;
-        b=EbPK49UDsgRv2MKjgzsVbMHrnfXYpBSRd2Yq0a2+kHSFakl1sl4+3rXgczJcEzXtFf
-         lFvZAqCfjtuRuu8YqInmMsZ5F+B7jK+k1d6BGtp6k97OBYFCuN3SG2WMWjmSCoDJN3Qy
-         vrBtn7GxRdr4i2syTqJKZlgc2PQ3kGpDEWCQQb137NhtFWQvZl9/XFqmnVMY/q8lOH+3
-         x4j7aCe9cXdzzJ78k9okUvdaAFwX399LfFx/VbQrSfSiBeNdsgx7x0jR87F+QwswLde2
-         GE5gE7OyY7AAhg2AkWX7mvCKBRa3ZVA03gzJPWqDTUk9Qq7I9dIeYv/xIuzS66mlEuOh
-         7y7Q==
-X-Forwarded-Encrypted: i=1; AJvYcCWApgyYoGKznroKbY8wx5tgEzjeE/iqWWoexPl9WCSKjBhEVZC49KF67uwflG71dXbDSrvtMIuJd7JV@vger.kernel.org, AJvYcCWB8uV520m6oWPdsiNN6u2dLaTDUtXpl5af6yKxVtGawZusTmIUMNlZgADXPZG93Rgf2pAryppl+gT/sDon@vger.kernel.org, AJvYcCXb1y8TO9erQkRznfHTgqPzmJyFi3x3SQPtevcN5DIMqyT/Qvjb8BNWkrx2LAbeUk/olT3l+4FWdqu6hz8=@vger.kernel.org
-X-Gm-Message-State: AOJu0YzzPWoejCj8iOgSlpvwRb3Ybz2pvjGobTp4VOpfA0Do2lh8D1dT
-	pTYqbHOwhXwTWNHURDl0V98QzvgrQGTPP3Xs2AG+1tFlYLs+2E+KtgGQ1qtVxYqTEcbyA0C8Lg0
-	R6V1HD6K9BCTa8z4PJuue51qTI/kDZ+o=
-X-Gm-Gg: ASbGncsjffkyOJKoHRblKu0QK5HOroMDQFW+tjA1TEVwh8LaY5FjHCfmxvea9fDEjyp
-	8iz4qDfS7Nbw34zaqEvVVWhlCWh/4LNN8o4dfLRZUXhTPfbTxM/6mCjmajCj5qszIFoAnvd454Q
-	xBhSNffLPKtXuB4j09ukhAbcycYP6oncXNWGODEQxhMXw=
-X-Google-Smtp-Source: AGHT+IEKPGqxoBPyYO7oEQAAR+E5wt2+iHGhdlTdIjwJAOyj7LpnwTL2E17vH4/krE9C5LBajTRe0s14jyvKE4qvQqU=
-X-Received: by 2002:a05:6512:3c88:b0:554:f9c5:6b30 with SMTP id
- 2adb3069b0e04-5562eef54f1mr1432503e87.38.1751560860978; Thu, 03 Jul 2025
- 09:41:00 -0700 (PDT)
+	s=arc-20240116; t=1751560983; c=relaxed/simple;
+	bh=3kNRDGSkGqzB77hAh0KZcAwmf+z4MncKOaolrYOe1nc=;
+	h=MIME-Version:Date:From:To:Cc:Message-Id:In-Reply-To:References:
+	 Subject:Content-Type; b=fRnGwrbJsI9ismCJCRFR6cDroYsBtR1Qa+AOIhvImCnZ1+/CFlMkhX/CfeCQfCniazY08k6u2dVv0zYkaVHIm/VQ66zpTu2yAL1AOf1SortfX0O9rm+gNUxuwVmgJymO5/wOctLnQRLF5Mvdq9xd5Fr6r0ygWTXshNeBd0mu5tA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arndb.de; spf=pass smtp.mailfrom=arndb.de; dkim=pass (2048-bit key) header.d=arndb.de header.i=@arndb.de header.b=CbTS/0O5; dkim=pass (2048-bit key) header.d=messagingengine.com header.i=@messagingengine.com header.b=IjqWG0RZ; arc=none smtp.client-ip=103.168.172.159
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arndb.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=arndb.de
+Received: from phl-compute-05.internal (phl-compute-05.phl.internal [10.202.2.45])
+	by mailfhigh.phl.internal (Postfix) with ESMTP id 3B58F14002E9;
+	Thu,  3 Jul 2025 12:43:00 -0400 (EDT)
+Received: from phl-imap-02 ([10.202.2.81])
+  by phl-compute-05.internal (MEProxy); Thu, 03 Jul 2025 12:43:00 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=arndb.de; h=cc
+	:cc:content-transfer-encoding:content-type:content-type:date
+	:date:from:from:in-reply-to:in-reply-to:message-id:mime-version
+	:references:reply-to:subject:subject:to:to; s=fm1; t=1751560980;
+	 x=1751647380; bh=8aHcjkC1vBbFHOk6YcAdLSw+GHoVCfk6IHr+e/5583U=; b=
+	CbTS/0O59R8Cr4Ad9SWLxJXjM8Bv+cTdBCk1BO9JfEXPrUDfj1NLppd1FmyGiLNV
+	KPsOD/NlMrhXi+vArXxAU0W7QyirbU8diItNb68P0bS+zA0OKp5/vLTU+lc6uaZa
+	2etnv39VNt18xQ7CmqMVkXnDraIwAuWIuYpPZBVqmryCOnPuno5yjrqsQY9MqzgW
+	oXqdBvvvOTDoJrE4ooKgarYR9iFEZ+p4t1+YdHYsCmA5DIGHIOjQS/vbfM3v9BPQ
+	Lx2lx7Bl2fDJXIaB2CM7E8PC3JUA4bPWi0WAuBLWMIV+2YLXsvsznsOz1SqjJr/H
+	PWpcj7kdiboQDQjqWxZsVQ==
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
+	messagingengine.com; h=cc:cc:content-transfer-encoding
+	:content-type:content-type:date:date:feedback-id:feedback-id
+	:from:from:in-reply-to:in-reply-to:message-id:mime-version
+	:references:reply-to:subject:subject:to:to:x-me-proxy
+	:x-me-sender:x-me-sender:x-sasl-enc; s=fm2; t=1751560980; x=
+	1751647380; bh=8aHcjkC1vBbFHOk6YcAdLSw+GHoVCfk6IHr+e/5583U=; b=I
+	jqWG0RZcN9q+snlWCGD0zO7MBeE9lsPF4uFnEFpPv7RppAJMgrY5i663ojpdKh98
+	zJ22v5GaD4qV33IS7f7RKLcXKfF1qfWsk+fTmpontyotc6CI/9aFM/3hzbkbFfnJ
+	Yw2BqAky0ty8dM1+XkmtBVSoosXHf9ay1Bq8q+nn9eCMHd3+RcwZNWf6wJfRCq/4
+	aMvxleNgcG54tXZD20krQnRUQWsaFriRjmcndjuzGrCy4nzypzqV/UIwumUi1FU5
+	QTS43jLgy7xm6P0/9NyjKVKx4ZxxgQYtTLgP7YLja7+E7lx7ptryG5ezmAWqDrlV
+	02dVtE9fRXp0IC/p3wAYA==
+X-ME-Sender: <xms:EbNmaAGJOktCXY08HIcUyu9ZXXNz2_zmCzYPiwZR3FkYRtfF7eDwHA>
+    <xme:EbNmaJVX5RFBdZHxslupYa0zRaydp4WyewbtID5rsxz5DsPp7-pH_SBwIY5nDjKsL
+    Rh4kMW_x7k1HMqJX-g>
+X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgeeffedrtdefgddvtdejkecutefuodetggdotefrod
+    ftvfcurfhrohhfihhlvgemucfhrghsthforghilhdpuffrtefokffrpgfnqfghnecuuegr
+    ihhlohhuthemuceftddtnecusecvtfgvtghiphhivghnthhsucdlqddutddtmdenucfjug
+    hrpefoggffhffvvefkjghfufgtgfesthejredtredttdenucfhrhhomhepfdetrhhnugcu
+    uegvrhhgmhgrnhhnfdcuoegrrhhnugesrghrnhgusgdruggvqeenucggtffrrghtthgvrh
+    hnpefhtdfhvddtfeehudekteeggffghfejgeegteefgffgvedugeduveelvdekhfdvieen
+    ucevlhhushhtvghrufhiiigvpedtnecurfgrrhgrmhepmhgrihhlfhhrohhmpegrrhhnug
+    esrghrnhgusgdruggvpdhnsggprhgtphhtthhopeduiedpmhhouggvpehsmhhtphhouhht
+    pdhrtghpthhtohepsggvnhejudejsegrnhguvghsthgvtghhrdgtohhmpdhrtghpthhtoh
+    epthhimheitdelsegrnhguvghsthgvtghhrdgtohhmpdhrtghpthhtohepphhrrggshhgr
+    khgrrhdrmhgrhhgruggvvhdqlhgrugdrrhhjsegsphdrrhgvnhgvshgrshdrtghomhdprh
+    gtphhtthhopehprghlmhgvrhesuggrsggsvghlthdrtghomhdprhgtphhtthhopegrohhu
+    segvvggtshdrsggvrhhkvghlvgihrdgvughupdhrtghpthhtoheprghlvgigsehghhhith
+    hirdhfrhdprhgtphhtthhopegtohhnohhrodgutheskhgvrhhnvghlrdhorhhgpdhrtghp
+    thhtoheptghonhhorheskhgvrhhnvghlrdhorhhgpdhrtghpthhtohepkhhriihkodguth
+    eskhgvrhhnvghlrdhorhhg
+X-ME-Proxy: <xmx:EbNmaKKAEpYwzXcZaSrWRIwGFo3mM3jbbggGC-GhAbHTniCGP_T-aA>
+    <xmx:EbNmaCG9rdvUQTq8-80tdurHDf6kVeG2RHPEexRpK5FsxHi7SptfQg>
+    <xmx:EbNmaGXxlNXp5V0VQF2p0gqYZnY4BK725hY1tGDvAunzZ9n1YHff2Q>
+    <xmx:EbNmaFMiTmF4cKXs_HmKU2qjGMRXNwKTlqfdo5ZJyZHclMgEDMTixA>
+    <xmx:FLNmaK6rhYxID1-tY6xW2Q4HhjF2vDA2o80rX-cjDIGYkqtMT5uyX9EY>
+Feedback-ID: i56a14606:Fastmail
+Received: by mailuser.phl.internal (Postfix, from userid 501)
+	id B4362700065; Thu,  3 Jul 2025 12:42:57 -0400 (EDT)
+X-Mailer: MessagingEngine.com Webmail Interface
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20250526-p3450-mts-bug-v1-1-78500613f02c@gmail.com>
- <CALHNRZ_7wChDsvpUnQHnOTT9VzT1Lgg8JYgg13AFV8Jg_3itwQ@mail.gmail.com>
- <nuicekbfdgjbfudtlul74ifsqckfg6itybb76bkzuaxfcp5ve5@yevlttgtobxy> <CABr+WTnn2qOXEMCiRDywySAxn0UeKAcx5XOJNpn731tXxbCPDQ@mail.gmail.com>
-In-Reply-To: <CABr+WTnn2qOXEMCiRDywySAxn0UeKAcx5XOJNpn731tXxbCPDQ@mail.gmail.com>
-From: Aaron Kling <webgeek1234@gmail.com>
-Date: Thu, 3 Jul 2025 11:40:49 -0500
-X-Gm-Features: Ac12FXyw2cWLiolTgqYlITN0f61RfhoSLbyAs5KERbqnbb-BOrtGxa3SWwJfwas
-Message-ID: <CALHNRZ_T_-FDOhLsjr7Vm3V0ekKkLCtv+Lt0x07133Cq+62cfQ@mail.gmail.com>
-Subject: Re: [PATCH RFC] arm64: tegra: Add reserved-memory node for P3450
-To: Nicolas Chauvet <kwizart@gmail.com>
-Cc: Thierry Reding <thierry.reding@gmail.com>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Jonathan Hunter <jonathanh@nvidia.com>, devicetree@vger.kernel.org, 
-	linux-tegra@vger.kernel.org, linux-kernel@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+X-ThreadId: Te44b159e2532e323
+Date: Thu, 03 Jul 2025 18:42:37 +0200
+From: "Arnd Bergmann" <arnd@arndb.de>
+To: "Conor Dooley" <conor@kernel.org>
+Cc: "Ben Zong-You Xie" <ben717@andestech.com>,
+ "Paul Walmsley" <paul.walmsley@sifive.com>,
+ "Palmer Dabbelt" <palmer@dabbelt.com>, "Albert Ou" <aou@eecs.berkeley.edu>,
+ "Alexandre Ghiti" <alex@ghiti.fr>, "Rob Herring" <robh@kernel.org>,
+ krzk+dt@kernel.org, "Conor Dooley" <conor+dt@kernel.org>,
+ "Thomas Gleixner" <tglx@linutronix.de>,
+ "Daniel Lezcano" <daniel.lezcano@linaro.org>,
+ "Lad, Prabhakar" <prabhakar.mahadev-lad.rj@bp.renesas.com>,
+ devicetree@vger.kernel.org, linux-riscv@lists.infradead.org,
+ linux-kernel@vger.kernel.org, tim609@andestech.com
+Message-Id: <f09dc88e-68b1-44dc-9761-724e64d1a5f1@app.fastmail.com>
+In-Reply-To: <20250703-exposable-exes-fd41e7318fba@spud>
+References: <20250602060747.689824-1-ben717@andestech.com>
+ <20250606-booth-icky-b416c1827a43@spud>
+ <aEbOLztcBsKs84pn@atctrx.andestech.com>
+ <20250609-donut-oozy-4dcc8b8a292d@spud>
+ <20250609-twiddling-clamp-eaa0dd2b1cad@spud>
+ <aEmrHPd7RxUSOLAY@atctrx.andestech.com>
+ <20250611-tapeless-arson-a6ace3c42c00@spud>
+ <352681c3-88ca-4122-9ad3-0a0ef33caf7b@app.fastmail.com>
+ <20250703-exposable-exes-fd41e7318fba@spud>
+Subject: Re: [PATCH v5 0/8] add Voyager board support
+Content-Type: text/plain
+Content-Transfer-Encoding: 7bit
 
-On Thu, Jul 3, 2025 at 11:24=E2=80=AFAM Nicolas Chauvet <kwizart@gmail.com>=
- wrote:
+On Thu, Jul 3, 2025, at 17:53, Conor Dooley wrote:
+> On Thu, Jul 03, 2025 at 05:32:08PM +0200, Arnd Bergmann wrote:
+>> On Wed, Jun 11, 2025, at 18:21, Conor Dooley wrote:
+>>
+>> I'm also planning to have multiple new SoC targets in 6.17 and
+>> would put them into a separate branch that does not contain the
+>> dts changes for the existing SoCs.
+>> 
+>> For the pull request that Ben sent, there were a couple of
+>> mistakes, I'll reply on that separately. It probably would made
+>> more sense to send the patches to soc@lists.linux.dev (note
+>> that the soc@kernel.org address got renamed but they still
+>> both work) than to send a pull request this time.
 >
-> Le jeu. 3 juil. 2025 =C3=A0 13:00, Thierry Reding
-> <thierry.reding@gmail.com> a =C3=A9crit :
-> >
-> > On Mon, May 26, 2025 at 02:07:35PM -0500, Aaron Kling wrote:
-> > > On Mon, May 26, 2025 at 2:06=E2=80=AFPM Aaron Kling via B4 Relay
-> > > <devnull+webgeek1234.gmail.com@kernel.org> wrote:
-> > > >
-> > > > From: Aaron Kling <webgeek1234@gmail.com>
-> > > >
-> > > > The Tegra210 L4T bootloader ram training will corrupt the in-ram ke=
-rnel
-> > > > dt if no reserved-memory node exists. This prevents said bootloader=
- from
-> > > > being able to boot a kernel without this node, unless a chainloaded
-> > > > bootloader loads the dt. Add the node to eliminate the requirement =
-for
-> > > > extra boot stages.
->
-> Is there any particular reason why this applies on jetson-nano but not
-> jetson-tx1 (or any other l4t based boards ?)
+> Is that a general comment btw? If there are other people coming in with
+> new platforms should I ask them to send patches to soc@lists.linux.dev
+> instead of a PR for their first time?
 
-I answered that in my first reply to this patch. This does also apply
-to p2371-2180, aka the Jetson TX1 devkit, but I don't need it for my
-use case because it is supported by the android bootloader. To my
-knowledge, there are not any other supported t210 devices that use the
-l4t bootloader. And this is not a problem on other archs. If there's a
-desire, I can replicate this to p2371-2180 and send a v2 without the
-rfc tag. Probably better to do so for consistency anyways.
+It's mainly about how comfortable the new maintainers are with
+the process, in this case it was clearly a bit too much for
+Ben to get right at the first time, but others are more
+experienced with sending pull requests to kernel maintainers
+already. Since the patches individually are all fine, I could
+have just applied them, but the PR ended up having too many
+mistakes.
 
-> I wonder if it would be enough to boot an upstream kernel with the l4t
-> bootloader (and no chainloaded upstream u-boot) as I cannot do the
-> other way for some reason (using fedora based upstream u-boot cannot
-> boot downstream l4t kernel anymore)
+The one thing that is special for a new platform is that the branch
+can mix things that would otherwise be separate pull requests.
+Sending this as patches means that I have more flexibility to
+apply it either into a branch for the new platform or split it
+up as normal.
 
-Mmm, I'm not sure. I can boot a mainline kernel on the l4t bootloader
-without u-boot after this patch. But my use case is android. I've also
-booted a simple busybox initramfs to do non-android verification of
-changes. But I've not booted a full Linux distro.
-
-Aaron
+    Arnd
 
