@@ -1,84 +1,55 @@
-Return-Path: <devicetree+bounces-192703-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-192704-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 71E5EAF76E9
-	for <lists+devicetree@lfdr.de>; Thu,  3 Jul 2025 16:15:15 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7E50DAF7727
+	for <lists+devicetree@lfdr.de>; Thu,  3 Jul 2025 16:21:26 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 6CDB14E64EF
-	for <lists+devicetree@lfdr.de>; Thu,  3 Jul 2025 14:13:36 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 71BB617163F
+	for <lists+devicetree@lfdr.de>; Thu,  3 Jul 2025 14:19:23 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 997402E92B1;
-	Thu,  3 Jul 2025 14:13:23 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="oIq5Jukm"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E86152EA146;
+	Thu,  3 Jul 2025 14:19:09 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.12])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C47402E7185;
-	Thu,  3 Jul 2025 14:13:21 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.175.65.12
+Received: from foss.arm.com (foss.arm.com [217.140.110.172])
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 64DCF18A6A7;
+	Thu,  3 Jul 2025 14:19:08 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.140.110.172
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1751552003; cv=none; b=mKMiiOU9rcXwmndj+Lsh6FdKtpfK+CRfAd5cGVOIGw6tp0Ynk1HFYaxjB6/yZDkGx64y1vn7k+SsFR4VwNNrCo+FGl/xmdJ6MztWbuvTmVresZUheG779AJePlCdUS8gvjTNo9+bLMpNDjPZZvFHpfI5wewb22UXCNedNouTNBA=
+	t=1751552349; cv=none; b=Ma2E8f6D4gTZpTiplfkFGLjwC/Vk+hDOk8MfEElnUb3WJPBjCB1lr6roS05/7LGMFATavRyDk1Gv4fQnfUs8bdwgG5DMprtrO1x3mfRlZ6FYgxUpBlLEa5Ei+g7GLwuDyCbfjiaGflWFc9qQNeq63OePqum+KQKr/7ceMuXnbMg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1751552003; c=relaxed/simple;
-	bh=kniA2y4sfnQQJjmDImSGwZ+VaTRUH/11XdXtDWuFZGo=;
+	s=arc-20240116; t=1751552349; c=relaxed/simple;
+	bh=RXl2AD1m2IYSvA9DnaRUoy0bq5NdmV6BO5rT6wHMAHI=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=AlnHddsf+TuVL9LNsvtP6zmSL8IQSbu2/s0Uz8SToHa7wB9139szOF4SsOQ8tbRWUThWevtdG6zs6HoLKGEBMohnkSl5rosunYGUMP1cB4i+5lQ/dbKzbzzv4OpMAIrkay+3K5mQY7AN4FnJmlATqd1yJ+eDN5lDCJxTyOOrODE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=oIq5Jukm; arc=none smtp.client-ip=198.175.65.12
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1751552002; x=1783088002;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=kniA2y4sfnQQJjmDImSGwZ+VaTRUH/11XdXtDWuFZGo=;
-  b=oIq5Jukm1GB6/tfNCu6xIPQXDuhoG38nkZ7j2iUJYPN6Btx2N/NQh7+o
-   V7WzkdVcIcfgKWLAQ7ZWhtJEbKhL1ckoYHZU9Uwpnwm2Kh8jMQuFqmhcN
-   JI/2MM5jCGi7ouRc3DwH3ZtRjpIJLJ8jaUdbaSuFdI/LkIRt/MaeW0MDt
-   TCgQ9W9fTMtIhf13Jw3jezF2iTpa8Ca4nxeLzbiKj0XmVeNdaiIqN/CHc
-   Dk+teQ4/FbBPMVcuB3DjjgORU6r5ZdCw5serGlbdBRuMtAsiTAsoQCNmO
-   vaW8YNZjrhbUmxxdTibmI0OX8TvvC3h6Q5n10HuzGH4Q3D8Ze2DaNWRQx
-   A==;
-X-CSE-ConnectionGUID: TV1K1VmdSV2qg4XXK3nGWA==
-X-CSE-MsgGUID: o1dk5BMsT5GDdMejljUVBw==
-X-IronPort-AV: E=McAfee;i="6800,10657,11483"; a="65334240"
-X-IronPort-AV: E=Sophos;i="6.16,284,1744095600"; 
-   d="scan'208";a="65334240"
-Received: from orviesa010.jf.intel.com ([10.64.159.150])
-  by orvoesa104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 03 Jul 2025 07:13:22 -0700
-X-CSE-ConnectionGUID: lqSfQKoTSWO2KNjJam8cyw==
-X-CSE-MsgGUID: HBd5YVVnREKQ3M2sJmueEw==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.16,284,1744095600"; 
-   d="scan'208";a="153792421"
-Received: from smile.fi.intel.com ([10.237.72.52])
-  by orviesa010.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 03 Jul 2025 07:13:16 -0700
-Received: from andy by smile.fi.intel.com with local (Exim 4.98.2)
-	(envelope-from <andriy.shevchenko@intel.com>)
-	id 1uXKgb-0000000CDxx-0vDp;
-	Thu, 03 Jul 2025 17:13:13 +0300
-Date: Thu, 3 Jul 2025 17:13:12 +0300
-From: Andy Shevchenko <andriy.shevchenko@intel.com>
-To: Marcelo Schmitt <marcelo.schmitt1@gmail.com>
-Cc: Marcelo Schmitt <marcelo.schmitt@analog.com>, linux-iio@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-gpio@vger.kernel.org,
-	linux-kernel@vger.kernel.org, jic23@kernel.org, lars@metafoo.de,
-	Michael.Hennerich@analog.com, dlechner@baylibre.com,
-	nuno.sa@analog.com, andy@kernel.org, robh@kernel.org,
-	krzk+dt@kernel.org, conor+dt@kernel.org, linus.walleij@linaro.org,
-	brgl@bgdev.pl, broonie@kernel.org, lgirdwood@gmail.com
-Subject: Re: [PATCH v7 00/12] iio: adc: Add support for AD4170 series of ADCs
-Message-ID: <aGaP-HBbIbfEoKlo@smile.fi.intel.com>
-References: <cover.1751289747.git.marcelo.schmitt@analog.com>
- <aGTpNNaW7cXC18Jt@smile.fi.intel.com>
- <aGUfapky2uh2tsFt@debian-BULLSEYE-live-builder-AMD64>
- <aGUi7r2dgnbqLOAH@smile.fi.intel.com>
- <aGWBgLLtOzVGwXek@debian-BULLSEYE-live-builder-AMD64>
+	 Content-Type:Content-Disposition:In-Reply-To; b=QEsntS5xlAhB8Wx8P9exaUCH2HPwmOzyjabykNxCw4OpdV/EGE78D2zAOlSZqyT9FhInGpfdtLRprDv2rexoLiq/rpM1KUM+J2Ov+cIM5WxCi5ZsKYwZXtnp/DTs5sZR/QAmvpLxCuUMHyXc0PNHz0JXZIeKCxFhATjvXamD8EA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com; spf=pass smtp.mailfrom=arm.com; arc=none smtp.client-ip=217.140.110.172
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=arm.com
+Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
+	by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 463221596;
+	Thu,  3 Jul 2025 07:18:53 -0700 (PDT)
+Received: from localhost (e132581.arm.com [10.1.196.87])
+	by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 4150E3F66E;
+	Thu,  3 Jul 2025 07:19:07 -0700 (PDT)
+Date: Thu, 3 Jul 2025 15:19:05 +0100
+From: Leo Yan <leo.yan@arm.com>
+To: Mao Jinlong <quic_jinlmao@quicinc.com>
+Cc: Suzuki K Poulose <suzuki.poulose@arm.com>,
+	Mike Leach <mike.leach@linaro.org>,
+	James Clark <james.clark@arm.com>, Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Mathieu Poirier <mathieu.poirier@linaro.org>,
+	Bjorn Andersson <andersson@kernel.org>,
+	Konrad Dybcio <konradybcio@kernel.org>, coresight@lists.linaro.org,
+	linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org
+Subject: Re: [PATCH v8 2/2] coresight: Add label sysfs node support
+Message-ID: <20250703141905.GE1039028@e132581.arm.com>
+References: <20250703130453.4265-1-quic_jinlmao@quicinc.com>
+ <20250703130453.4265-3-quic_jinlmao@quicinc.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -87,62 +58,101 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <aGWBgLLtOzVGwXek@debian-BULLSEYE-live-builder-AMD64>
-Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park, 6
- krs, Bertel Jungin Aukio 5, 02600 Espoo
+In-Reply-To: <20250703130453.4265-3-quic_jinlmao@quicinc.com>
 
-On Wed, Jul 02, 2025 at 03:59:12PM -0300, Marcelo Schmitt wrote:
-> On 07/02, Andy Shevchenko wrote:
-> > On Wed, Jul 02, 2025 at 09:00:42AM -0300, Marcelo Schmitt wrote:
-> > > On 07/02, Andy Shevchenko wrote:
-> > > > On Mon, Jun 30, 2025 at 10:57:32AM -0300, Marcelo Schmitt wrote:
+On Thu, Jul 03, 2025 at 09:04:53PM +0800, Mao Jinlong wrote:
 
-...
+[...]
 
-> > > > >  6 files changed, 3601 insertions(+)
-> > > > 
-> > > > This is weird. At least patches 11 & 12 have '-' lines...
-> > > > 
-> > > Yeah, sorry about that. These ADCs are fancy such that the base driver is about
-> > > 1500 LoCs due to channel setup handling and support for multiple combinations of
-> > > voltage references and channel setups.
-> > > 
-> > > About the '-' lines, I will rework ad4170_parse_channel_node() on earlier
-> > > patches to avoid 3 line removals in patch 11. Patch 12 is only makes sense
-> > > after patch 7 and I think it would lead to '-' lines if coming before patch 10
-> > > since both increment the number of IIO channels. Anyway, I'll see how to further
-> > > reduce the number of lines being removed.
-> > 
-> > My point is that the above statistics is mangled and I don't know how I can
-> > trust the contents of this series if it already lied about that.
+> +static ssize_t label_show(struct device *dev,
+> +		struct device_attribute *attr, char *buf)
+> +{
+> +
+> +	const char *str;
+> +	int ret = 0;
+
+No need to init ret to 0.
+
+> +	ret = fwnode_property_read_string(dev_fwnode(dev), "label", &str);
+> +	if (ret == 0)
+> +		return scnprintf(buf, PAGE_SIZE, "%s\n", str);
+> +	else
+> +		return ret;
+> +}
+> +static DEVICE_ATTR_RO(label);
+> +
+>  static struct attribute *coresight_sink_attrs[] = {
+>  	&dev_attr_enable_sink.attr,
+> +	&dev_attr_label.attr,
+>  	NULL,
+>  };
+>  ATTRIBUTE_GROUPS(coresight_sink);
+>  
+>  static struct attribute *coresight_source_attrs[] = {
+>  	&dev_attr_enable_source.attr,
+> +	&dev_attr_label.attr,
+>  	NULL,
+>  };
+>  ATTRIBUTE_GROUPS(coresight_source);
+>  
+> +static struct attribute *coresight_link_attrs[] = {
+> +	&dev_attr_label.attr,
+> +	NULL,
+> +};
+> +ATTRIBUTE_GROUPS(coresight_link);
+> +
+> +static struct attribute *coresight_helper_attrs[] = {
+> +	&dev_attr_label.attr,
+> +	NULL,
+> +};
+> +ATTRIBUTE_GROUPS(coresight_helper);
+> +
+
+This change adds a 'label' entry for source, link, helper, and sink
+components, but the documentation has only updated for three components:
+CTI, funnel, and TPDM.
+
+Should we also update the documentation for all relevant components,
+such as ETM, ETR, etc.?
+
+Additionally, patch 01 is missing the update to the ETM yaml file for
+the new property. I checked patch v4 [1], which includes a change to
+etm.yaml, but this change was dropped since v5. I briefly read the
+v4 discussion thread and didn't see any mention of removing the ETM
+related change. Did you see any particular issue when add label for
+ETM devices?
+
+Overall, this series is fine for me. Just please ensure that all
+relevant components are covered for completeness.
+
+Thanks,
+Leo
+
+[1] https://patchwork.kernel.org/project/linux-arm-msm/cover/20240703122340.26864-1-quic_jinlmao@quicinc.com/
+
+>  const struct device_type coresight_dev_type[] = {
+>  	[CORESIGHT_DEV_TYPE_SINK] = {
+>  		.name = "sink",
+> @@ -390,6 +420,7 @@ const struct device_type coresight_dev_type[] = {
+>  	},
+>  	[CORESIGHT_DEV_TYPE_LINK] = {
+>  		.name = "link",
+> +		.groups = coresight_link_groups,
+>  	},
+>  	[CORESIGHT_DEV_TYPE_LINKSINK] = {
+>  		.name = "linksink",
+> @@ -401,6 +432,7 @@ const struct device_type coresight_dev_type[] = {
+>  	},
+>  	[CORESIGHT_DEV_TYPE_HELPER] = {
+>  		.name = "helper",
+> +		.groups = coresight_helper_groups,
+>  	}
+>  };
+>  /* Ensure the enum matches the names and groups */
+> -- 
+> 2.17.1
 > 
-> Looks like git format-patch summarizes the changes from all patches when
-> printing the statistics to the cover letter. Also, git format-patch doc [1]
-> says the 'changes' dirstat option (default behavior) doesn't count
-> rearranged lines as much as other changes.
-
-TIL. Thanks for pointing that out.
-
-> There are cover letters of other
-> patch sets where the number of '-' lines don't match the sum of lines
-> removed by each patch. [2] and [3] are examples of that.
-
-That's different I believe due to the diff algorithm in use
-(btw, do you use histogramm?).
-
-> [1]: https://git-scm.com/docs/git-format-patch
-> [2]: https://lore.kernel.org/linux-iio/20250630-losd-3-inv-icm42600-add-wom-support-v6-0-5bb0c84800d9@tdk.com/
-> [3]: https://lore.kernel.org/linux-iio/20250627-iio-adc-ad7173-add-spi-offload-support-v2-0-f49c55599113@baylibre.com/
-> 
-> This set doesn't remove stuff that existed prior to it so I think it makes
-> sense the cover letter to show that lines are only being added.
-> 
-> I'll send v8 with the change I mentioned earlier. Unless patches 11 and 12
-> already look good the way they are in v7.
-
--- 
-With Best Regards,
-Andy Shevchenko
-
-
+> _______________________________________________
+> CoreSight mailing list -- coresight@lists.linaro.org
+> To unsubscribe send an email to coresight-leave@lists.linaro.org
 
