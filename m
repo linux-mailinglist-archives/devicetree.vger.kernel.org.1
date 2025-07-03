@@ -1,106 +1,147 @@
-Return-Path: <devicetree+bounces-192405-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-192406-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 77BBFAF694D
-	for <lists+devicetree@lfdr.de>; Thu,  3 Jul 2025 07:03:11 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 4925FAF6965
+	for <lists+devicetree@lfdr.de>; Thu,  3 Jul 2025 07:16:54 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id C327F1C4374A
-	for <lists+devicetree@lfdr.de>; Thu,  3 Jul 2025 05:03:27 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id A2C671C43BB3
+	for <lists+devicetree@lfdr.de>; Thu,  3 Jul 2025 05:17:10 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E416A1DE3D9;
-	Thu,  3 Jul 2025 05:03:05 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E8FB528D8F7;
+	Thu,  3 Jul 2025 05:16:47 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=thundersoft.com header.i=@thundersoft.com header.b="BSMAk/mc"
+	dkim=pass (2048-bit key) header.d=ventanamicro.com header.i=@ventanamicro.com header.b="oRfiQrSC"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-m32120.qiye.163.com (mail-m32120.qiye.163.com [220.197.32.120])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-lj1-f177.google.com (mail-lj1-f177.google.com [209.85.208.177])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C3EBB2DE6FC;
-	Thu,  3 Jul 2025 05:03:02 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=220.197.32.120
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 31F5713B5A9
+	for <devicetree@vger.kernel.org>; Thu,  3 Jul 2025 05:16:45 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.177
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1751518985; cv=none; b=lZYkNO8so6/zc824RCQal7a6++IwGAxvmH934onwa3bLRD/gJg9vVeLCNMZ4A9sCvdQOoZK5FLQzR3+sn485VNQ5M0FfDajX4aUX6k2bI9EO7S19O6A6sOOj4P0CmP7dq28rFEwPvm2ojszU72TpjjdLueyfuU1kGmukSfT041E=
+	t=1751519807; cv=none; b=O1yMGXlrI2SuykJ3Zfo7NDPkH9H6QzpRFcO/Iiya67D6K0bPjsowZpfrvM7cKWNh1gGCBgEKZXHuLE3tM8RVY5pIDydSzXimfDcMBt10+EUpxioj44CP+5mnuoGWaopKJmg0qrNdST/0s1UxompFaQm8Hmani4aU6j7zhSuqJO0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1751518985; c=relaxed/simple;
-	bh=iYMKqf5avjr+g3XPzcixJlsuO4LQdPf1nBoLZVMiQng=;
-	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
-	 MIME-Version; b=TgbKLYJP0UrwmwnrPz5M63y5clY23wq3K2pTvN00ZIXy8ZeWQBcycOWkrZuhq7Nva3V8aColPwdjmn4tUVoqfhMWXC/MW/ytI4bvF6IW6LIO/ungExFqynA2TzJsw7Q+s4hAO8u0PuI102xC4MliVuT4MDgo1oKI8UVHR8yiBZU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=thundersoft.com; spf=pass smtp.mailfrom=thundersoft.com; dkim=pass (1024-bit key) header.d=thundersoft.com header.i=@thundersoft.com header.b=BSMAk/mc; arc=none smtp.client-ip=220.197.32.120
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=thundersoft.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=thundersoft.com
-Received: from localhost.localdomain (unknown [117.184.129.134])
-	by smtp.qiye.163.com (Hmail) with ESMTP id 1ac2888fc;
-	Thu, 3 Jul 2025 13:02:53 +0800 (GMT+08:00)
-From: Albert Yang <yangzh0906@thundersoft.com>
-To: krzk@kernel.org
-Cc: robh@kernel.org,
-	krzk+dt@kernel.org,
-	conor+dt@kernel.org,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v2 1/8] dt-bindings: vendor-prefixes: Add Black Sesame Technologies Co., Ltd.
-Date: Thu,  3 Jul 2025 13:02:52 +0800
-Message-Id: <20250703050252.4104290-1-yangzh0906@thundersoft.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <c9160561-3792-4230-a7f6-57caf35f9a1d@kernel.org>
-References: <c9160561-3792-4230-a7f6-57caf35f9a1d@kernel.org>
+	s=arc-20240116; t=1751519807; c=relaxed/simple;
+	bh=5++AYJL1rr9Zw2k1O8YtBYT6eG8XMOCdu/Bm09aDZf0=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=StRa5Zo6kA4N68bwqgr+MgNd48a7o2oa0rRWDzoTGeGIb9n2K7Ubu1QcG9yz177eUl1tr4wLjT6yU0IakgHJLERbMQKbdd02rhxizidOeqwkMBROH1JbmDfUk6wHC6qZC5sRvTFEugdH3Pp+tX42cZWbpek8oBmAeokJ5ysCs+0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ventanamicro.com; spf=pass smtp.mailfrom=ventanamicro.com; dkim=pass (2048-bit key) header.d=ventanamicro.com header.i=@ventanamicro.com header.b=oRfiQrSC; arc=none smtp.client-ip=209.85.208.177
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ventanamicro.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ventanamicro.com
+Received: by mail-lj1-f177.google.com with SMTP id 38308e7fff4ca-32b553e33e6so45061421fa.2
+        for <devicetree@vger.kernel.org>; Wed, 02 Jul 2025 22:16:45 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=ventanamicro.com; s=google; t=1751519804; x=1752124604; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=vQGz01tJhAAGwav0P9s2fsB1+wOe9xwJQtDO+Z/F508=;
+        b=oRfiQrSCWdmS2Xci+ljopcSLoXTlFX6BHwDiCehpGj/iF22bL35oYl3/s3bhmNgKM7
+         OgknSu1hW0QJEWadauQzqv9h8/umdsowBzyFRn5KGgMCeaKHmIp/gXWbv+KdUTMUYtWp
+         hSlSMH+0rLNGtGsynGN+oqFQIPtvqKEfarWi7/cPUWuvov5VOPi/33WJpDW+pW+StPsp
+         ewADEh4nvd40m5VS/F0y7OvEvGgLKcIgmY67urGTHYjJLYrNXd1wR/PQCAWCfsRIRSHU
+         9w6WfWHtUQnwol2pIdy3zwOUuQOWrQRhira0852RDQn1xeBBbjX6udCD4HvR6sX8nH4z
+         fUmg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1751519804; x=1752124604;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=vQGz01tJhAAGwav0P9s2fsB1+wOe9xwJQtDO+Z/F508=;
+        b=XQ/OYJAAXh0Z6ZMuFtAXMCHJb2e5XGvv6dAHKsKhiMuZ+f8YxQQW6ZtsFkzZm/zFgR
+         J4tNvfH7ehCcQUavZtOg/gR0ZPgSatThlmIuL8WGN5W8Q1K011Ph+GKQbYsqvIU8vgc3
+         mRX2W44q3q5UFTNkclPirUdGkequt67iDeYZ8ujholzVLKT9I9q++/ryu1vT34rGOxfZ
+         aLGR3s/E9I2VzCQS3utv2bLN6clpWb5v/lII0zMlpLsn5lqiBrAyiHxMI5pkLqQHmDPL
+         r7tzYrzqmXuazVujx/2ukF0JsXSjpDgAMS5zmXaq41MXzJwg+RogWuSNRzKBXKlmRj+q
+         KxOA==
+X-Forwarded-Encrypted: i=1; AJvYcCVLdeNJOuCbmbhRgwif/bViZkWILAY2oE+AsTMTqAzX+YGQ8Gmk8NYsb7HOADOsbyf6ehGSm9DruJJU@vger.kernel.org
+X-Gm-Message-State: AOJu0YyFRw/s8nT/gbVjgkx0VhPfKYEX6MWtxfgTp0uFGp5i+P7LgjcO
+	EG3OnNFHMV5gBGZmHpGvhLnWzFcdrxMwl/T7DJ4xsQ5Lwn0RAO04CbbKSQi/xYPTyICmP6yxJHA
+	qMnbS08UrarlF3KbVIy6mNShGqmEYHy16XymfiybRPw==
+X-Gm-Gg: ASbGnctC0GjJMl62r8cEi4y+rUWQJEzn88Mmxc6VtLNqu4UBTtB7pkLmJ9FWEXApzKV
+	MFQG3vKuUJvcODArE2B6dTUsSv/cMTSFLDulHm5fXzC12hOHYXO7tgVfWaObOQbn6o+8F9jfZD3
+	hlfXcTmhl7oTMaXZah3Zg1heCFjNpGU7o10k9cpEyFzA==
+X-Google-Smtp-Source: AGHT+IHYSiHUidLGv4dXFytFZP2Nt0HvbdpSFDn7lYujOZRVAvsZkPmjzani3yVgvf24c1Q3Pz34/X6Np9T1yBQoZbA=
+X-Received: by 2002:a05:651c:1116:20b0:32b:4749:f929 with SMTP id
+ 38308e7fff4ca-32e00084c44mr11819561fa.30.1751519804242; Wed, 02 Jul 2025
+ 22:16:44 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-HM-Spam-Status: e1kfGhgUHx5ZQUpXWQgPGg8OCBgUHx5ZQUlOS1dZFg8aDwILHllBWSg2Ly
-	tZV1koWUFITzdXWS1ZQUlXWQ8JGhUIEh9ZQVkaGk1JVk4eH0MdTU4fGU1CH1YVFAkWGhdVEwETFh
-	oSFyQUDg9ZV1kYEgtZQVlKSkxVSkNPVUpJQlVKSE9ZV1kWGg8SFR0UWUFZT0tIVUpLSEpOTEpVSk
-	tLVUpCS0tZBg++
-X-HM-Tid: 0a97ceaa8d0f09cckunm8b3059b7562d72
-X-HM-MType: 1
-X-HM-Sender-Digest: e1kMHhlZQR0aFwgeV1kSHx4VD1lBWUc6Pgg6Dxw5TTE6AkwaNRIZECwP
-	FhFPCiJVSlVKTE5KTkpDQkxPSUNJVTMWGhIXVQIaFRwBE0tCS007DxMOFR8eCQgUHQ9VGBQWRVlX
-	WRILWUFZSkpMVUpDT1VKSUJVSkhPWVdZCAFZQUlISE83Bg++
-DKIM-Signature:a=rsa-sha256;
-	b=BSMAk/mc2Z372jIJuTVax7HuBGA6/5qf85k6ZJ4aDgiV1HSfEOWoftJO3dRUNdWzYwlZWjltXq+IIYs9yQCBxYga/UETLBXlgL9obgjGrDFT0G+t43F+1Drp96Ja97Z2MuLps86oni4mSWCyhg92IQKyyb1n6dtA6TW+OqX5/4U=; c=relaxed/relaxed; s=default; d=thundersoft.com; v=1;
-	bh=iYMKqf5avjr+g3XPzcixJlsuO4LQdPf1nBoLZVMiQng=;
-	h=date:mime-version:subject:message-id:from;
+References: <20250702051345.1460497-1-apatel@ventanamicro.com>
+ <20250702051345.1460497-4-apatel@ventanamicro.com> <aGUg3h_vigc6mq5a@smile.fi.intel.com>
+In-Reply-To: <aGUg3h_vigc6mq5a@smile.fi.intel.com>
+From: Anup Patel <apatel@ventanamicro.com>
+Date: Thu, 3 Jul 2025 10:46:33 +0530
+X-Gm-Features: Ac12FXzWllMhgTE9HbRqxwe6piDDOSlScwKPfW6gr6Tv5nNXJiWHPlUH56eQbZc
+Message-ID: <CAK9=C2VxhC6soxHtmacedbeCU=rFi84Br1RvN2uPcBKoLhRaJw@mail.gmail.com>
+Subject: Re: [PATCH v7 03/24] RISC-V: Add defines for the SBI message proxy extension
+To: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
+Cc: Michael Turquette <mturquette@baylibre.com>, Stephen Boyd <sboyd@kernel.org>, 
+	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Jassi Brar <jassisinghbrar@gmail.com>, Thomas Gleixner <tglx@linutronix.de>, 
+	"Rafael J . Wysocki" <rafael@kernel.org>, Mika Westerberg <mika.westerberg@linux.intel.com>, 
+	Linus Walleij <linus.walleij@linaro.org>, Bartosz Golaszewski <brgl@bgdev.pl>, 
+	=?UTF-8?Q?Uwe_Kleine=2DK=C3=B6nig?= <ukleinek@kernel.org>, 
+	Palmer Dabbelt <palmer@dabbelt.com>, Paul Walmsley <paul.walmsley@sifive.com>, 
+	Alexandre Ghiti <alex@ghiti.fr>, Len Brown <lenb@kernel.org>, Sunil V L <sunilvl@ventanamicro.com>, 
+	Rahul Pathak <rpathak@ventanamicro.com>, Leyfoon Tan <leyfoon.tan@starfivetech.com>, 
+	Atish Patra <atish.patra@linux.dev>, Andrew Jones <ajones@ventanamicro.com>, 
+	Samuel Holland <samuel.holland@sifive.com>, Anup Patel <anup@brainfault.org>, 
+	linux-clk@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-acpi@vger.kernel.org, linux-riscv@lists.infradead.org, 
+	linux-kernel@vger.kernel.org, Atish Patra <atishp@rivosinc.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-Hi Krzysztof,
+On Wed, Jul 2, 2025 at 5:37=E2=80=AFPM Andy Shevchenko
+<andriy.shevchenko@linux.intel.com> wrote:
+>
+> On Wed, Jul 02, 2025 at 10:43:24AM +0530, Anup Patel wrote:
+> > Add defines for the new SBI message proxy extension which is part
+> > of the SBI v3.0 specification.
+>
+> Actually a few nit-picks.
+>
+> ...
+>
+> > +enum sbi_ext_mpxy_fid {
+> > +     SBI_EXT_MPXY_GET_SHMEM_SIZE,
+> > +     SBI_EXT_MPXY_SET_SHMEM,
+> > +     SBI_EXT_MPXY_GET_CHANNEL_IDS,
+> > +     SBI_EXT_MPXY_READ_ATTRS,
+> > +     SBI_EXT_MPXY_WRITE_ATTRS,
+> > +     SBI_EXT_MPXY_SEND_MSG_WITH_RESP,
+> > +     SBI_EXT_MPXY_SEND_MSG_WITHOUT_RESP,
+> > +     SBI_EXT_MPXY_GET_NOTIFICATION_EVENTS
+>
+> Add a trailing comma.
 
-Thank you for your feedback.
+Okay, I will update.
 
-> Why is this attached to v1?
+>
+> > +};
+>
+> ...
+>
+> > +/* Possible values of MSG_PROT_ID attribute */
+> > +enum sbi_mpxy_msgproto_id {
+> > +     SBI_MPXY_MSGPROTO_RPMI_ID =3D 0x0
+>
+> Add a trailing comma, and you might want to drop 0x. I don't know what el=
+se can
+> be here, esp. in the future, but some kind of the description of this in =
+TRM
+> can shed a light on what is better pattern to use.
 
-I apologize for the confusion. This is indeed v2 of the patch series. The patch itself hasn't changed from v1 because it already received Rob Herring's Acked-by in the v1 review.
+Sure, I will update.
 
-> Where is the changelog?
-
-You are right to ask for this. For this specific patch (1/8), there is no changelog because it received "Acked-by: Rob Herring (Arm) <robh@kernel.org>" in v1 and required no modifications. However, I should have included a note in the cover letter explaining that some patches were unchanged from v1.
-
-The changes in v2 were primarily in other patches of the series (DTS consolidation, defconfig separation, etc.) based on your previous review feedback.
-
-> Most of your emails did not reach mailing list. I also did not get them.
-> ... and the huge amount of CC list, mostly redundant and not relevant to
-> this work, could explain that. Don't Cc random people.
-
-You are absolutely correct, and I apologize for this. I used get_maintainer.pl without proper filtering, which resulted in an unnecessarily large CC list. For future submissions, I will:
-
-1. Limit TO/CC to only directly relevant maintainers and lists
-2. Use a more targeted recipient list
-3. Consider using b4 send if delivery issues persist
-
-> Anyway, fix above points - all three - and resend after 24h at least.
-
-I will prepare v3 with:
-1. Proper changelog documentation in the cover letter
-2. Reduced and targeted recipient lists
-3. Clear indication of which patches changed vs. which carried forward acks
-
-Thank you for your patience and guidance on proper submission practices.
-
-Best regards,
-Albert Yang
+Regards,
+Anup
 
