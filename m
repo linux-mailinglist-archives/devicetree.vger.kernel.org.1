@@ -1,210 +1,137 @@
-Return-Path: <devicetree+bounces-192497-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-192498-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id A8AD4AF6D5F
-	for <lists+devicetree@lfdr.de>; Thu,  3 Jul 2025 10:47:02 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5F61CAF6DAA
+	for <lists+devicetree@lfdr.de>; Thu,  3 Jul 2025 10:51:41 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id A99891C802C8
-	for <lists+devicetree@lfdr.de>; Thu,  3 Jul 2025 08:47:18 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id A31BC1C27C00
+	for <lists+devicetree@lfdr.de>; Thu,  3 Jul 2025 08:51:57 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8BA282D29C4;
-	Thu,  3 Jul 2025 08:46:45 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B88912D23A3;
+	Thu,  3 Jul 2025 08:51:37 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="LrYxjxAT"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="Y1TlZeQW"
 X-Original-To: devicetree@vger.kernel.org
-Received: from relay1-d.mail.gandi.net (relay1-d.mail.gandi.net [217.70.183.193])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-ed1-f45.google.com (mail-ed1-f45.google.com [209.85.208.45])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 23A4C1D63F0;
-	Thu,  3 Jul 2025 08:46:41 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.70.183.193
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 099A22D0C8C;
+	Thu,  3 Jul 2025 08:51:35 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.45
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1751532405; cv=none; b=CIxJWtj9Vs/yVZrVWh30fR6FoTcsc/vN6DABadz6Zlm8dkT9WgWIN7eGAQmLujLyGEbKFEbJwOTSh6pmr10+zp0cVqMAJxYhGFyGjD6N8f4aeFFOP3UKa+rAeEVt3QY68gwdgKhswjjj3dyE3ZxVt46XUEkCwRKdefAuYJclRDs=
+	t=1751532697; cv=none; b=gY9bmnboK0C4tOmsFynmBpUCXogua5lLhv1UZBDSjnNG2t0thE6ODEInYdncuf87K2xKm5oupObvgYs3aA1YtdYRAO1CRNzDWFwx9mWQVgTVaYkVg6/pXMPgeIzgB7WLsnTR5pnu2efun/ZU5f40eumBi6RsloHqfzyKq7NZGBA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1751532405; c=relaxed/simple;
-	bh=oGnwNU54b6KjKEBNmnldSK7G2EHT2bg7bXi44Ajxx2c=;
-	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=mGgnbG4emSswKOmOaqjQ+ux4ph16qD3PTorXTNW8O3j5peN42QuonMuObOdRk27z4GWAtc/tBo2pVRwhcoPA03jH5np7hEGMU0u5tkMr6X4nNef+KpOc5kOzcYl4L1vTHtUBmQFK6+wJHrn3EgHFCtL68zQV7Q4O//DxK6dUU7k=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=LrYxjxAT; arc=none smtp.client-ip=217.70.183.193
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
-Received: by mail.gandi.net (Postfix) with ESMTPSA id 7AD90432F4;
-	Thu,  3 Jul 2025 08:46:37 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
-	t=1751532400;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=/cYj0q/giLszIR3kilyQWrZxMIeIjICge0MHLXkjJFo=;
-	b=LrYxjxAThrFQpeyWKPo7KHXblOcrN7BiWBU1ybIgmr/F8jlZn3oMMuFSHLRpDBJCmRCA1w
-	MsFwFPjimMNCZQBEGw0AUhUDK+RAMDTtWJ2veBlFxBS70NDSyClS2oazJsm9GXuSSiABnA
-	oV403Rb+nr5PpxxEXLcxSLdmT4WfVx+scbhDaUmQmv71EzmVWmfh952msl/4kd5FhS3UgG
-	H6v5SK89osI7/Zr7u5WkZX5kRsBq/netzt1snf3UAWVuxgU+g1X7fWrnla9+ir1xgj8s0A
-	kz1ZlldSa5AVR+gsrbQOELucUNukpblb0eV9CI8FzxxdgnsPKwKF60r3zk4j5Q==
-Date: Thu, 3 Jul 2025 10:46:36 +0200
-From: Herve Codina <herve.codina@bootlin.com>
-To: Rob Herring <robh@kernel.org>, Pengutronix Kernel Team
- <kernel@pengutronix.de>
-Cc: Andrew Lunn <andrew@lunn.ch>, Greg Kroah-Hartman
- <gregkh@linuxfoundation.org>, "Rafael J. Wysocki" <rafael@kernel.org>,
- Danilo Krummrich <dakr@kernel.org>, Shawn Guo <shawnguo@kernel.org>, Sascha
- Hauer <s.hauer@pengutronix.de>, Fabio Estevam <festevam@gmail.com>, Michael
- Turquette <mturquette@baylibre.com>, Stephen Boyd <sboyd@kernel.org>, Andi
- Shyti <andi.shyti@kernel.org>, Wolfram Sang
- <wsa+renesas@sang-engineering.com>, Peter Rosin <peda@axentia.se>, Derek
- Kiernan <derek.kiernan@amd.com>, Dragan Cvetic <dragan.cvetic@amd.com>,
- Arnd Bergmann <arnd@arndb.de>, Saravana Kannan <saravanak@google.com>,
- Bjorn Helgaas <bhelgaas@google.com>, Mark Brown <broonie@kernel.org>, Len
- Brown <lenb@kernel.org>, Andy Shevchenko
- <andriy.shevchenko@linux.intel.com>, Daniel Scally <djrscally@gmail.com>,
- Heikki Krogerus <heikki.krogerus@linux.intel.com>, Sakari Ailus
- <sakari.ailus@linux.intel.com>, Wolfram Sang <wsa@kernel.org>, Geert
- Uytterhoeven <geert+renesas@glider.be>, Davidlohr Bueso
- <dave@stgolabs.net>, Dave Jiang <dave.jiang@intel.com>, Alison Schofield
- <alison.schofield@intel.com>, Vishal Verma <vishal.l.verma@intel.com>, Ira
- Weiny <ira.weiny@intel.com>, Dan Williams <dan.j.williams@intel.com>,
- linux-kernel@vger.kernel.org, imx@lists.linux.dev,
- linux-arm-kernel@lists.infradead.org, linux-clk@vger.kernel.org,
- linux-i2c@vger.kernel.org, devicetree@vger.kernel.org,
- linux-pci@vger.kernel.org, linux-spi@vger.kernel.org,
- linux-acpi@vger.kernel.org, linux-cxl@vger.kernel.org, Allan Nielsen
- <allan.nielsen@microchip.com>, Horatiu Vultur
- <horatiu.vultur@microchip.com>, Steen Hegelund
- <steen.hegelund@microchip.com>, Luca Ceresoli <luca.ceresoli@bootlin.com>,
- Thomas Petazzoni <thomas.petazzoni@bootlin.com>
-Subject: Re: [PATCH v3 00/28] lan966x pci device: Add support for SFPs
-Message-ID: <20250703104636.5012907d@bootlin.com>
-In-Reply-To: <20250627155837.GC3234475-robh@kernel.org>
-References: <20250613134817.681832-1-herve.codina@bootlin.com>
-	<20250627155837.GC3234475-robh@kernel.org>
-Organization: Bootlin
-X-Mailer: Claws Mail 4.3.1 (GTK 3.24.43; x86_64-redhat-linux-gnu)
+	s=arc-20240116; t=1751532697; c=relaxed/simple;
+	bh=hsCXwqcLxI8cRSOYueVTYtswWbZ6ub7fGgL17jIiNL4=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=cxGMUcEwXx+GqEhWz0j/F02zSXTn7q9/bDOFML3uGSD9jE5ag3RKyP5E8xXqKzEDxSYpPFtnOgEbIO8bvdaHhFJJwmhmq3+iebV4rzO4onDFGc2gS23snvcMFZ6P8Hjxc3qVHHGJwCLTHVgtqRATbEJjSe1LPx7jcSbZcfSlbkc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=Y1TlZeQW; arc=none smtp.client-ip=209.85.208.45
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-ed1-f45.google.com with SMTP id 4fb4d7f45d1cf-60c4f796446so13028832a12.1;
+        Thu, 03 Jul 2025 01:51:35 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1751532694; x=1752137494; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=hsCXwqcLxI8cRSOYueVTYtswWbZ6ub7fGgL17jIiNL4=;
+        b=Y1TlZeQWAOT0fS4xrZ56DJi+WF5+MbZxDMo3s+crw4IjC6wAUAYazzdZbWo+Qh8aZW
+         +myxUeQDYuT31DIee9k7d//tiDL1RJBS5r+SWAzBaabhaQ1OQt8cPEkmAqhm8hTpLFNQ
+         GhiEHcQ2FrE9dyfmb2TxZpMo5eGWWK7XxvH6w84GYYp7ae/hjngSppuTxB+s6XGJZD3F
+         cuktG/oM6NrN7ziFSLfj7yzfcGSxhA8UXA59bJIrfBFiVhZMTBbbZygHarza7+lOYHAd
+         11La6Fi9BhMBu2Lz2CjVc2/UfjHc5+XUdWQoZEPr9ynSz3yCrjk9uu6x6K6c8dFKCPVt
+         rx9w==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1751532694; x=1752137494;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=hsCXwqcLxI8cRSOYueVTYtswWbZ6ub7fGgL17jIiNL4=;
+        b=nPSgClLZUunGbjr3iiAWQpXC0E6uSnsOtRwGYCMswBmJTHvMNyjTp2+u0v6PRcJerT
+         9DNiNDxHMwMsIMtPgZhjOkQqZqyn6Ufr8Tv0o5ZLCP4grUoOzM0qESnNiDoACYwaOCwQ
+         oI+icSWU/6eVV/0pDRirM0Oic8jbAq0VRM4V4uRAv3qjfuUXdbQKMxf+7kpCFYJ4Tb2K
+         5Eu7hr7qoB5uh9eraqarDMfImhhTATym4svnqywgDNjgn1t5/Ox8bmk1rOHwNRfSBjsr
+         NBlvjwFNaho8+tohDQ7gcA9Q3r6cfmJhfU4rYzHFBfEn8Uccugk2ygLmcW3n6vsI3WnY
+         TcqA==
+X-Forwarded-Encrypted: i=1; AJvYcCXFNDhqmXqAJ0BtuDaC9mm5IBScPXDaNPriHSIbPGDJhxKl981PyEGTUtULf++pl5Zyuvd49fhUH1OY6Sk=@vger.kernel.org
+X-Gm-Message-State: AOJu0YzxpllS/ZsYDpaQPakwbwo/n1nF3WBrJWk/9dCestgTTk8HBas2
+	JUnWv8bJhofTH1W6X+mbjYLcmVpwsjX+81/gSY3x+P3vS6kexR64b9wS
+X-Gm-Gg: ASbGncuid4R+CSMh2jKAvu8SVjcA8Y/O7kEc4TrbEMoVWp5fm2qiGRiX7Z0PCJisnbV
+	csa7TDi3kVCfbWfeQ8mc0FBMIqzor/iDb/SgCaXQf7eENhFRfjOGF9yo241qIPMhA9eBfxdAMem
+	Dd1qe+8b22+kuF5bxr1xo9Zm97Pimw7Z5USc7gwPNY7g2+Uyd7AKZ80SP2+lb26pzIbz0WBXW+2
+	gmCElHupBt7BkuC/MOFwPlq5OWnnTKeipRX3TVB4EYuo0SmUehGgPG7TJm9sUvRNFR8oE9I4FRK
+	oPGwWRpLZp+sZRpY1+j9jJkSQcZ5JSgQNF0MqR5E4rHg366OobuEplIJScGeOae6oWWrG4/1ksB
+	V+1vUdAOoLYs=
+X-Google-Smtp-Source: AGHT+IF/15k0UhDJHrTcrKwLdwkzfbrEugE0iaN0gMVkMiQ4Upn4VgFsHeYzGWOfl44lDF56ZG+LGw==
+X-Received: by 2002:a17:907:8b85:b0:ae0:cae0:cb35 with SMTP id a640c23a62f3a-ae3c2ce87b1mr512443266b.37.1751532693871;
+        Thu, 03 Jul 2025 01:51:33 -0700 (PDT)
+Received: from [192.168.7.84] ([92.120.5.11])
+        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-ae3b94b3b2esm388690066b.62.2025.07.03.01.51.32
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 03 Jul 2025 01:51:33 -0700 (PDT)
+Message-ID: <10ef8a9a-6d23-4fb9-933f-71ab493d21c7@gmail.com>
+Date: Thu, 3 Jul 2025 11:51:31 +0300
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v7 0/6] imx8mp: add support for the IMX AIPSTZ bridge
+To: Ahmad Fatoum <a.fatoum@pengutronix.de>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
+ Sascha Hauer <s.hauer@pengutronix.de>, Fabio Estevam <festevam@gmail.com>,
+ Daniel Baluta <daniel.baluta@nxp.com>, Shengjiu Wang
+ <shengjiu.wang@nxp.com>, Frank Li <Frank.Li@nxp.com>,
+ Marco Felsch <m.felsch@pengutronix.de>,
+ Marc Kleine-Budde <mkl@pengutronix.de>,
+ Alexander Stein <alexander.stein@ew.tq-group.com>
+Cc: devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org,
+ Pengutronix Kernel Team <kernel@pengutronix.de>, imx@lists.linux.dev
+References: <20250610160152.1113930-1-laurentiumihalcea111@gmail.com>
+ <3615415b-7ebd-45e5-8d7b-8a1b26ac7130@pengutronix.de>
+Content-Language: en-US
+From: Laurentiu Mihalcea <laurentiumihalcea111@gmail.com>
+In-Reply-To: <3615415b-7ebd-45e5-8d7b-8a1b26ac7130@pengutronix.de>
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
-X-GND-State: clean
-X-GND-Score: -100
-X-GND-Cause: gggruggvucftvghtrhhoucdtuddrgeeffedrtdefgdduleekgecutefuodetggdotefrodftvfcurfhrohhfihhlvgemucfitefpfffkpdcuggftfghnshhusghstghrihgsvgenuceurghilhhouhhtmecufedtudenucesvcftvggtihhpihgvnhhtshculddquddttddmnecujfgurhepfffhvfevuffkjghfohfogggtgfesthekredtredtjeenucfhrhhomhepjfgvrhhvvgcuvehoughinhgruceohhgvrhhvvgdrtghoughinhgrsegsohhothhlihhnrdgtohhmqeenucggtffrrghtthgvrhhnpeeviefffeegiedtleelieeghfejleeuueevkeevteegffehledtkeegudeigffgvdenucfkphepvdgrtddumegvtdgrmedvkeehmegsleektdemvgegtdgtmeeitgegfeemsgehsggsmegrgedvkeenucevlhhushhtvghrufhiiigvpedtnecurfgrrhgrmhepihhnvghtpedvrgdtudemvgdtrgemvdekheemsgelkedtmegvgedttgemiegtgeefmegshegssgemrgegvdekpdhhvghloheplhhotggrlhhhohhsthdpmhgrihhlfhhrohhmpehhvghrvhgvrdgtohguihhnrgessghoohhtlhhinhdrtghomhdpnhgspghrtghpthhtohepgeekpdhrtghpthhtoheprhhosghhsehkvghrnhgvlhdrohhrghdprhgtphhtthhopegrnhgurhgvfieslhhunhhnrdgthhdprhgtphhtthhopehgrhgvghhkhheslhhinhhugihfohhunhgurghtihhonhdrohhrghdprhgtphhtthhopehrrghfrggvlheskhgvrhhnvghlrdhorhhgp
- dhrtghpthhtohepuggrkhhrsehkvghrnhgvlhdrohhrghdprhgtphhtthhopehshhgrfihnghhuoheskhgvrhhnvghlrdhorhhgpdhrtghpthhtohepshdrhhgruhgvrhesphgvnhhguhhtrhhonhhigidruggvpdhrtghpthhtohepkhgvrhhnvghlsehpvghnghhuthhrohhnihigrdguvg
-X-GND-Sasl: herve.codina@bootlin.com
+Content-Transfer-Encoding: 7bit
 
-Hi Rob,
 
-On Fri, 27 Jun 2025 10:58:37 -0500
-Rob Herring <robh@kernel.org> wrote:
 
-> On Fri, Jun 13, 2025 at 03:47:40PM +0200, Herve Codina wrote:
-> > Hi,
-> > 
-> > This series add support for SFPs ports available on the LAN966x PCI
-> > device. In order to have the SFPs supported, additional devices are
-> > needed such as clock controller and I2C.
-> > 
-> > As a reminder, the LAN966x PCI device driver use a device-tree overlay
-> > to describe devices available on the PCI board. Adding support for SFPs
-> > ports consists in adding more devices in the already existing
-> > device-tree overlay.
-> > 
-> > With those devices added, the device-tree overlay is more complex and
-> > some consumer/supplier relationship are needed in order to remove
-> > devices in correct order when the LAN966x PCI driver is removed.
-> > 
-> > Those links are typically provided by fw_devlink and we faced some
-> > issues with fw_devlink and overlays.
-> > 
-> > This series gives the big picture related to the SFPs support from
-> > fixing issues to adding new devices. Of course, it can be split if
-> > needed.
-> > 
-> > The first part of the series (patch 1, 2 and 3) fixes fw_devlink when it
-> > is used with overlay. Patches 1 and 3 were previously sent by Saravana
-> > [0]. I just rebased them on top of v6.15-rc1 and added patch 2 in order
-> > to take into account feedback received on the series sent by Saravana.
-> > 
-> > Those modification were not sufficient in our case and so, on top of
-> > that, patch 4 and 5 fix some more issues related to fw_devlink.
-> > 
-> > Patches 6 to 12 introduce and use fw_devlink_set_device() in already
-> > existing code.
-> > 
-> > Patches 13 and 14 are related also to fw_devlink but specific to PCI and
-> > the device-tree nodes created during enumeration.
-> > 
-> > Patches 15, 15 and 17 are related fw_devlink too but specific to I2C
-> > muxes. Patches purpose is to correctly set a link between an adapter
-> > supplier and its consumer. Indeed, an i2c mux adapter's parent is not
-> > the i2c mux supplier but the adapter the i2c mux is connected to. Adding
-> > a new link between the adapter supplier involved when i2c muxes are used
-> > avoid a freeze observed during device removal.
-> > 
-> > Patch 18 adds support for fw_delink on x86. fw_devlink is needed to have
-> > the consumer/supplier relationship between devices in order to ensure a
-> > correct device removal order. Adding fw_devlink support for x86 has been
-> > tried in the past but was reverted [1] because it broke some systems.
-> > Instead of enabling fw_devlink on *all* x86 system or on *all* x86
-> > system except on those where it leads to issue, enable it only on system
-> > where it is needed.
-> > 
-> > Patches 19 and 20 allow to build clock and i2c controller used by the
-> > LAN966x PCI device when the LAN966x PCI device is enabled.
-> > 
-> > Patches 21 to 25 are specific to the LAN966x. They touch the current
-> > dtso, split it in dtsi/dtso files, rename the dtso and improve the
-> > driver to allow easier support for other boards.
-> > 
-> > The next patch (patch 26) update the LAN966x device-tree overlay itself
-> > to have the SPF ports and devices they depends on described.
-> > 
-> > The last two patches (patches 27 and 28) sort the existing drivers in
-> > the needed driver list available in the Kconfig help and add new drivers
-> > in this list keep the list up to date with the devices described in the
-> > device-tree overlay.
-> > 
-> > Once again, this series gives the big picture and can be split if
-> > needed. Let me know.  
-> 
-> Please suggest how you think this should get merged? There's 8 
-> maintainer trees involved here. Some parts can be merged independently? 
-> We need to spread over 2 cycles? Greg just takes it all?
-> 
-> Rob
+On 7/3/2025 11:11 AM, Ahmad Fatoum wrote:
+> Hello Laurentiu,
+>
+> On 10.06.25 18:01, Laurentiu Mihalcea wrote:
+>> From: Laurentiu Mihalcea <laurentiu.mihalcea@nxp.com>
+>>
+>> The AIPSTZ bridge offers some security-related configurations which can
+>> be used to restrict master access to certain peripherals on the bridge.
+>>
+>> Normally, this could be done from a secure environment such as ATF before
+>> Linux boots but the configuration of AIPSTZ5 is lost each time the power
+>> domain is powered off and then powered on. Because of this, it has to be
+>> configured each time the power domain is turned on and before any master
+>> tries to access the peripherals (e.g: AP, CM7, DSP, on i.MX8MP).
+> Sorry if this has been asked before, but I hoped the cover letter or patch
+> 3/6 would explain if it were.
+>
+> What is the default configuration for the AIPSTZ before this series?
 
-I will add this information in the next iteration.
+the default configuration is the reset configuration since AIPSTZ registers go
+back to their reset values during domain power cycling.
 
-I think, the merge strategy could be the following:
- - patches 1 to 14 could be merged by driver core maintainers in cycle N
+> I assume the SAIs under AIPS5 can be accessed by SDMA already, so why was
+> changing the AIPSTZ settings needed for the DSP to work?
 
- - patches 15 to 17 and 20 could be merged by I2C maintainers in cycle N
-   without any dependency issues against other patches.
-
- - patch 18 could be merged by OF maintainers in cycle N without any
-   dependency issues
-
- - patch 19 could be merged by clock maintainers in cycle N without any
-   dependency issues.
-
- - patch 21 to 25 could be merged by misc maintainers in cycle N without any
-   dependency issues.
-
- - patch 26 to 28, even if there is no compilation dependencies with other
-   patches, they need the other patches applied to have a working system and
-   so they could be merged in cycle N+1.
-
-Also, as the big picture and the goal of this series has been shown, I can
-extract patches from this series and send them alone depending on maintainers
-preferences.
-
-Maintainers, just tell me.
-
-Best regards,
-Hervé
+AFAIK SDMA transactions to peripherals don't go through AIPS5. They use SPBA, which
+is why SDMA works even w/o this series. As for the DSP: transactions to peripherals go
+through AIPS5. With the reset configuration, the DSP is not allowed to access said peripherals,
+which is why this series was needed.
 
