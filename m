@@ -1,129 +1,210 @@
-Return-Path: <devicetree+bounces-192436-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-192437-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id AA25AAF6B05
-	for <lists+devicetree@lfdr.de>; Thu,  3 Jul 2025 09:03:20 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id ACA83AF6B14
+	for <lists+devicetree@lfdr.de>; Thu,  3 Jul 2025 09:08:32 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id D19334A0F2E
-	for <lists+devicetree@lfdr.de>; Thu,  3 Jul 2025 07:02:53 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 119097AC262
+	for <lists+devicetree@lfdr.de>; Thu,  3 Jul 2025 07:07:07 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 20D6E28FFEC;
-	Thu,  3 Jul 2025 07:03:14 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 21AF2293B7F;
+	Thu,  3 Jul 2025 07:08:26 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="eFP0Ic4w"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="IwfpphQV"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wm1-f42.google.com (mail-wm1-f42.google.com [209.85.128.42])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E74FC2F32;
-	Thu,  3 Jul 2025 07:03:13 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4DEE26AA7;
+	Thu,  3 Jul 2025 07:08:24 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.42
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1751526194; cv=none; b=cJ4VpSWVsKfnfVypwBwGL6jgtCB64w2DJFzas77iual4Xz4/2wiN5mlkGMf/rwZWlbNutt8EnOb8/ExxzvFffrTpU2P8HPRYAdnGHgBZGYWLBCz8vtpO1pph5kqdpchEkAZPWeHpKliHFvIa42McYd9xxalXThDvDWdXlJDxFWE=
+	t=1751526506; cv=none; b=u5RUFL6i487jel4GQH1ZfWgSL1IEONRKehB9ZrjmaMgKV/oAbhVx77r8wP7RKUax17Lm18R0bPpzNyQKraeUzTQ7vu4PDRgOWQdpBgllL5v1JpoXt+roQFl41UcbDZM2DB+2Okdthfg2oEfte3Mj+NSN5kMq7zSCyClhUIiodDk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1751526194; c=relaxed/simple;
-	bh=EabIagtTGNFQmo6c6cTS90x5NF0eiLauIS+ZJH5NhWw=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=lh6PihVSuZ+SfoSdJfxhMRqvW50zSPOrVZLWIIJbX7PluPNWThBgyXyv80ch7UT18JCAh23H2CVAm2c5pkKkFdFZSBEtgklPcbAP+Oo1COfRqvEn2l2/dq/J7jFfJFyroNDaLnVQOiOB/oxVcb1C9kOXYNW3yBCidGGYseqXYgg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=eFP0Ic4w; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 617B2C4CEE3;
-	Thu,  3 Jul 2025 07:03:11 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1751526193;
-	bh=EabIagtTGNFQmo6c6cTS90x5NF0eiLauIS+ZJH5NhWw=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=eFP0Ic4wzQD8iErp2QUmEzc6T5U7XkKXRxBwVbNExGm1MvN0Sh9FWvIz9b77fGJsb
-	 qsS3iIN7aIRPdhxjguKYdu+ifWvd4+L0o8d2M5Y+LXL0R4BTvzEOWvLLp9WZ4VySzF
-	 WysoHfO1SMlHqTi9v+oZh+99nMqkUwg/tuwxNKaw6sch4lZYiu4irtu8V9E/QaDhF+
-	 Iq5k6o0/qtk4lfW5orBu7jOLfi5CEkiE+jmgG7zwHvYI5On03GiTYtcgN8O0S8ZhJP
-	 3eFEvujkBeWHDv/urZVyuLjyhuKzX9Tw4KRaGlC/DC3vUvTP+ZgiPF7ORGwrLffJdU
-	 j6fxX1uD/0Dag==
-Message-ID: <369fc807-f05e-4837-b623-b718e47fd840@kernel.org>
-Date: Thu, 3 Jul 2025 09:03:07 +0200
+	s=arc-20240116; t=1751526506; c=relaxed/simple;
+	bh=yYjCpeuYQtQNuaFa8dZMG9K73OIB5Fzop4v74jtN3mQ=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=n/n2PdgvQF3v+Zb1wxHTDBwfK+roPggi8S3pAa0kk4AkhKelJF0ZTb7xK7pFXbk/uMqWS5M0AORDD+tsAu/Slao4/Dm8J/Vp+RzqD8HBb9J1Pyi3uCM5lWqw0QG0zTT6IppdlA0swC/MLzGoArLM3lgqIUU+e16ZxBfxfT7kLYU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=IwfpphQV; arc=none smtp.client-ip=209.85.128.42
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-wm1-f42.google.com with SMTP id 5b1f17b1804b1-451d54214adso54533425e9.3;
+        Thu, 03 Jul 2025 00:08:24 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1751526502; x=1752131302; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=Knet8d8KkTP4ZKAEfHfgU7X+neJwgTW1V59mQo4vcKM=;
+        b=IwfpphQV4++ecMDF5lvNsCugup+C10YG3dNgyTdPhZam1asonw5ifYZPmaRLwa2h+p
+         IPU7H26GowrDDO0YCUyaw/to+XdUdyM/JYAwqzj6kHX6njxL4mYwxz7JYR3jOQ8x1VPj
+         SDsd8oFJSq7iW53t8ok5UssoUarLZXsljbxxbbYBQRXtvJKG83IJlChxuE41/Sw5HG9V
+         2QPpJLgluCwIrw8m3CX4QwuWdJr88OcFCRJPDy/o951xDEpKiv81wq5po4/hve8qoNu4
+         9JN/wLq1W2+hKKMk0gyQN31CK7Q+vz+MVjhjEEMi4AWWDJdv0zEv11y4c2MYPzZi0tG2
+         zXJA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1751526502; x=1752131302;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=Knet8d8KkTP4ZKAEfHfgU7X+neJwgTW1V59mQo4vcKM=;
+        b=XTqNt63bYrvMsFgsGzKkplzzKBhJWtLst9eIdr2839BduOWHgsraBzhrF3mgGIdafX
+         yYVJzpTLcYyujOEe73jgE2P0Ntb+Nv7WFPK9jly81t7Udzq4vIfzdhV49Wc1W4xiMjP0
+         na/cRqhVq36thCUx7tr8guWCjFIcotB8Kjd5TgVawFQgsQoV5rUVJ35OqI9PF9KX+6C8
+         gS9BfbLLesM+LEtS6a8crRaVtmYka4mHQ0hVTJfIfRcwTl3XVWFdRGw532Xm7RaSBtPh
+         cLqqiz7j+7S0BHQ5edVDV4lwNBK2c0AsGphavMvYwhfc4ajizO1LaqZ3pD3/JIFh30iX
+         A7Yg==
+X-Forwarded-Encrypted: i=1; AJvYcCUezH/qbZq4S5RLjLJQOdF+0FemJD/LG/lM8iRMNYdaotkVSC9RvQyzPyXr6wXkBKRHU+iQDdXFHQzu@vger.kernel.org, AJvYcCUtwAWx4YrjFBq0N+mE7XzWVWIehNDZc/eIvS23fH3X4gGh6GDICZLgd6PWU5XIGoAf7ZCCVTHXP8hrcg==@vger.kernel.org, AJvYcCUweakHDdF/mcQ5sEjIxOV1IFVXCyx4rQioiSAUpGsSFpDPXfvP9GjFZTuOOkOfG40Ur7g1vS/Toi+z6fEY@vger.kernel.org, AJvYcCUxpim4fHL2OJR6/h7H8/AC3Thbk7jC8XZFb0o1umSc/4ZD083lFymc1vQbTaLw0pTz/a04A+xlc40rnk4=@vger.kernel.org
+X-Gm-Message-State: AOJu0YwHzGlklX+uspa3rmHwiL/TTnbFe1x1WfnuwR0pm8e1Rt0H+b4B
+	VOoM165YuEAns7jmMTLE+iqH5Z/rJG6OTwZ+m5cNyDNmmXAdACr5zxZK/TyLXQ==
+X-Gm-Gg: ASbGncsU694b7FTVl9/VTQf3JM2Zy8rZKfDvBHfpQxdYEjjPGsa59YS7LLCdV90q8f8
+	KmW1d+xdhban2Txn9Y1HdLxs8lF1MABR2qkPeYgcq2ZG8+PIWEyofL9NrZJaNH4FMotcQHefQVS
+	Ofg0b4fN0qpDM9vpe0YYfYzkqdHK2rVNlnb+QetDWvIVlmLHv//UKu4uE5BEkz26OFbdofNwuSf
+	Q2oMADmLDJ0QrhUCIzQXdhm2fa5F09lK55me+yB06V4IhuZRrvHBFAgG5gWJs1BJorCOBPJam2o
+	BJITqWbu+idLpS1vkRIu2+ftGHAro1p2wuJ0dA99wv6oPzSFf4xpx8ofOVhpz9Kw1zqUJ45coyv
+	ooD0Gi/u7ig8sbkfEZWIXP+MdCokWS2xEp9QZyYiISPzXzyGS
+X-Google-Smtp-Source: AGHT+IFrLNW/KIKZ5DyhBIbYT6nPlrNb+rcXVcHkFVFnd/2G5k9pePw1ZCLmWlYDRnQYIaVmWuDvtg==
+X-Received: by 2002:a05:6000:24c7:b0:3a5:39bb:3d61 with SMTP id ffacd0b85a97d-3b1ff9f58f0mr4105638f8f.27.1751526502223;
+        Thu, 03 Jul 2025 00:08:22 -0700 (PDT)
+Received: from orome (p200300e41f4e9b00f22f74fffe1f3a53.dip0.t-ipconnect.de. [2003:e4:1f4e:9b00:f22f:74ff:fe1f:3a53])
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-3a88c7e9d1csm18062931f8f.13.2025.07.03.00.08.20
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 03 Jul 2025 00:08:20 -0700 (PDT)
+Date: Thu, 3 Jul 2025 09:08:18 +0200
+From: Thierry Reding <thierry.reding@gmail.com>
+To: Aaron Kling <webgeek1234@gmail.com>
+Cc: Linus Walleij <linus.walleij@linaro.org>, 
+	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+	Conor Dooley <conor+dt@kernel.org>, Jonathan Hunter <jonathanh@nvidia.com>, 
+	Bartosz Golaszewski <brgl@bgdev.pl>, linux-gpio@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-tegra@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v2 2/3] pinctrl: tegra: Add Tegra186 pinmux driver
+Message-ID: <xc72g7j7png443pjxu2wpsuqofgrpxvn43emkt3rv5qrjzf7vt@qzvsiy3eakub>
+References: <20250608-tegra186-pinctrl-v2-0-502d41f3eedd@gmail.com>
+ <20250608-tegra186-pinctrl-v2-2-502d41f3eedd@gmail.com>
+ <yw2uglyxxx22d3lwyezy34wdniouu32zppfgwqs5omny3ge5zd@iuqo4qmi55a2>
+ <CACRpkdZha_ucjWvP_NQ+z2vbD65Y3u7Q0U57NYbJ=vqQ6uPGGA@mail.gmail.com>
+ <yslfabklduaybg255d3ulaxmzpghyj54zdfeqkx3oxgisxf6fo@2wecuqpvvefc>
+ <CALHNRZ8jq++KVKxKP2-GwMA6CauP=cM2_wt==MRAV4mOzK2kxw@mail.gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3 2/3] arm64: dts: qcom: x1-hp-x14: Commonalize HP
- Omnibook X14 device tree
-To: jens.glathe@oldschoolsolutions.biz, Bjorn Andersson
- <andersson@kernel.org>, Konrad Dybcio <konradybcio@kernel.org>,
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>
-Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org
-References: <20250703-hp-x14-x1p-v3-0-affe103b4356@oldschoolsolutions.biz>
- <20250703-hp-x14-x1p-v3-2-affe103b4356@oldschoolsolutions.biz>
-From: Krzysztof Kozlowski <krzk@kernel.org>
-Content-Language: en-US
-Autocrypt: addr=krzk@kernel.org; keydata=
- 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 a/A=
-In-Reply-To: <20250703-hp-x14-x1p-v3-2-affe103b4356@oldschoolsolutions.biz>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Type: multipart/signed; micalg=pgp-sha512;
+	protocol="application/pgp-signature"; boundary="am4ud672vipjc4px"
+Content-Disposition: inline
+In-Reply-To: <CALHNRZ8jq++KVKxKP2-GwMA6CauP=cM2_wt==MRAV4mOzK2kxw@mail.gmail.com>
 
-On 03/07/2025 08:59, Jens Glathe via B4 Relay wrote:
-> From: Jens Glathe <jens.glathe@oldschoolsolutions.biz>
-> 
-> Commonalize the HP Omnibook X14 device tree for derivation of Hamoa (x1e*/x1p6*)
-> and Purwa (x1p4*/x1*) variants. Required because the device trees are not
-> compatible.
-> 
-> Signed-off-by: Jens Glathe <jens.glathe@oldschoolsolutions.biz>
-> ---
->  arch/arm64/boot/dts/qcom/x1-hp-omnibook-x14.dtsi   | 1549 ++++++++++++++++++++
->  .../boot/dts/qcom/x1e80100-hp-omnibook-x14.dts     | 1544 +------------------
 
-Use proper -M/-B/-C arguments for git format-patch (b4 cannot do it in
-the past), so this will be reviewable.
+--am4ud672vipjc4px
+Content-Type: text/plain; protected-headers=v1; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
+Subject: Re: [PATCH v2 2/3] pinctrl: tegra: Add Tegra186 pinmux driver
+MIME-Version: 1.0
 
-Best regards,
-Krzysztof
+On Mon, Jun 30, 2025 at 02:23:42PM -0500, Aaron Kling wrote:
+> On Wed, Jun 11, 2025 at 10:23=E2=80=AFAM Thierry Reding
+> <thierry.reding@gmail.com> wrote:
+> >
+> > On Wed, Jun 11, 2025 at 08:58:49AM +0200, Linus Walleij wrote:
+> > > On Tue, Jun 10, 2025 at 11:40=E2=80=AFAM Thierry Reding
+> > > <thierry.reding@gmail.com> wrote:
+> > >
+> > > > One thing that's not clear from this patch set is whether we actual=
+ly
+> > > > need the Tegra186 pinmux driver, or you're only adding it because it
+> > > > happens to be present in a 5.10 downstream driver. Do you actually =
+have
+> > > > a requirement for setting pins dynamically at runtime? Do you need =
+to be
+> > > > able to set a static configuration at boot that can't be set using =
+some
+> > > > earlier bootloader/firmware mechanism?
+> > >
+> > > Actually, speaking as the maintainer of pin control I hear the follow=
+ing
+> > > a lot:
+> > >
+> > > - We don't need pin control, the BIOS/firmware deals with it
+> > > - We don't need runtime pin control, the BIOS/firmware deals
+> > >   with it
+> > > - We don't need runtime pin control, static set-up should be
+> > >   enough
+> > >
+> > > These are all enthusiastic estimates, but in practice, for any
+> > > successful SoC we always need pin control. Either the BIOS
+> > > firmware authors got things wrong or made errors (bugs) and
+> > > there is no path to upgrade the firmware safely, or runtime
+> > > usecases appear that no-one ever thought about.
+> > >
+> > > Aarons case looks like that latter.
+> >
+> > This was a long time ago now, but I have a vague recollection about
+> > hardware engineers telling software engineers that muxing pins
+> > dynamically at runtime wasn't safe for all pins and hence we had to
+> > do static configuration during early boot.
+> >
+> > But then along came devkits with expansion headers and then people
+> > started using scripts to mux pins to the right functions and such.
+> >
+> > > I think it'd be wise to send the message to any SoC system
+> > > architects (or Linux base port overseer or whatever title
+> > > this person may have) that a pin control driver is usually
+> > > needed.
+> > >
+> > > The SCMI people heard the message and have added pin
+> > > control into the specification for that firmware interface.
+> >
+> > I'd agree with you that there's plenty of evidence that we need these
+> > drivers, so maybe I need to go back and look at what exactly the risks
+> > are that come with this and maybe there's something we need to do to
+> > avoid that (I'm thinking along the lines of certain pins being generally
+> > safe to mux at runtime, but not all).
+> >
+> > Thierry
+>=20
+> So what's the path forward on this? Will this series be used, or is
+> Nvidia going to bring back the pinmux scripts and regenerate
+> everything in a new series?
+
+Let's bring back the pinmux scripts. I don't have much time to look into
+this right now. If you have some spare cycles to take a stab, that'd be
+great.
+
+For most of these newer chips it should be far less work to get this
+going because we really only need the SoC bits, for which all of the
+information is available. For earlier chips where all of the default
+configuration had to be done by Linux there was a lot more generation
+needed, but newer chips do all of the default settings in early
+firmware, so we don't need a whole lot of pinmuxing in DT, only where
+it deviates from the defaults.
+
+Thierry
+
+--am4ud672vipjc4px
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQIzBAABCgAdFiEEiOrDCAFJzPfAjcif3SOs138+s6EFAmhmLF8ACgkQ3SOs138+
+s6GpYw/+M4gpp/wAF2RY4WC7v/y9T6Qqt4pnVptN3CzcT/XmZkydR1ATJpKVADF3
+vje3ycw2R7Mx8Rz/F0X51oceYbynSE3pgx9LRV6JsKuIsPPANiaykzp3q32mlKYk
+4HKZpsKSsFcuMWk3N3Q9QtS+tIn84EZHcvOxXEZlcMYOmiusWkuQHwdV0Eg001u1
+KVAlZJzZj6lqtfnw2fgkpVMz/+haQGgWhAeTN5H34thxZZmdzU8dTvrs3+Nk88p8
+6Vqx+VNPFd6Wba6LR0JV8ixkcqUE9Bv7IB5ZDLMTsvhAInKbzo/tQnot1xTfaQvQ
+4/7kkWi/P6Ru44GBG2+LFMe4VHO+bXGAjVElRqmqjS3eBeHG+0haD1ZdSTXVj27f
+wys0bZ/fiLHGDDwIyLiQ+VY3xxp+t+TkOYz2moq0P4WaOVjBFb0700lpCyh/yFW7
+TdEOSzoFJzwKfpdvDKBswoD/g2j21QW5awlqLKjBEhUs30vz8VqVTlWrRlmYWVf6
+DdqmgtYs+wYwg5Wt+60OWq3sff/H9RR1U9rcQUJ7D3ib1N9UbMEpbCyQl6Ymv5gx
+hvxn67J8H2dbjqu0PXtlUbXiRhewv7kXYLOhS3Bcpepphg3ImYM/qI+9PkvvGUT5
+htyZXVesWFeDPqH2tV0P/zDVHVXlTPk4qB6ISn5q4rG5V23aUGs=
+=0Qww
+-----END PGP SIGNATURE-----
+
+--am4ud672vipjc4px--
 
