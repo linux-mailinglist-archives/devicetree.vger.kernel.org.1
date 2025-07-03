@@ -1,120 +1,117 @@
-Return-Path: <devicetree+bounces-192539-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-192540-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 90413AF6F84
-	for <lists+devicetree@lfdr.de>; Thu,  3 Jul 2025 11:59:35 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id CF0DEAF6F8D
+	for <lists+devicetree@lfdr.de>; Thu,  3 Jul 2025 12:01:42 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 00E251C40297
-	for <lists+devicetree@lfdr.de>; Thu,  3 Jul 2025 09:59:52 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 4E1EE3A83E7
+	for <lists+devicetree@lfdr.de>; Thu,  3 Jul 2025 10:01:16 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B0B292DFF17;
-	Thu,  3 Jul 2025 09:59:30 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="WAwb1Em4"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9C51B2DA750;
+	Thu,  3 Jul 2025 10:01:37 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-il1-f172.google.com (mail-il1-f172.google.com [209.85.166.172])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8588E298CD0;
-	Thu,  3 Jul 2025 09:59:30 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id ED4B523ABAA;
+	Thu,  3 Jul 2025 10:01:35 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.166.172
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1751536770; cv=none; b=MzI80BZmApja0Pfh0weVXLmjeFh/Zhl6DYHzODE2H2v0HNrvLTBADOqJoVhLEtu6OMIjjt7WMfptly8GZHU+lE3ACNdxxv7jsMfLCULlZjH56B/yfPO9+GSC76o+LfHCh/GjcZ33qBgv0RNHv5ufP2SP8tMMXvdV7ShBIJopmRk=
+	t=1751536897; cv=none; b=DXqfbJuZZ9mA1ADfSPZ/hNDZP857IXiipUuiQ5xnRoL0UVp3fq4VBku0J+YMaognqu0j8Z46FI1fOkVipgoUe2ABA/Kh+oYVw+CDnopz1zaqneQHg81PIEJfXnmDuyr8SwAeHNFwski1+Pf9Bsr6RwHgwzzMzfBMPqcNqJ9rKE4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1751536770; c=relaxed/simple;
-	bh=hmwC8Mt81KOHlfysNu2B10HuUZTMpw5cNTgRwSymcdo=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=AZz10Y9RzJq2r2zCR5b8EZlqjBRG0dxPSWOy3iMolrE97qUzr8yNbewNn6Jp3+nSPmR2Mxj279BnDWMi9ov+SZ0nkwXsRPbZpEWYUUwpzbMYKnIEfc16khNWUTN4VS1pJwKjwxfHSN52ZEPqeyzYD65IGh2RlUmZBOMjXDmhBsA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=WAwb1Em4; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 88F50C4CEE3;
-	Thu,  3 Jul 2025 09:59:27 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1751536770;
-	bh=hmwC8Mt81KOHlfysNu2B10HuUZTMpw5cNTgRwSymcdo=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=WAwb1Em4E6QC5RUTSyZwVe7mgOT1Il4N5ExdOwvIAWj5/ZA40RRgL+uC2XdmT8Ome
-	 s1cPUPme7ChlwiKQRK9NuipqjC2mR1hW9+8qT9Wh3R0wU5cQjN1Cbl6NV1D5jRwyj6
-	 zk3Mxq8DOY/+ZPGgSbq51k0hG0ad6hTDnqMN19CosIDKJUAL/ty11dUAqmxFj83daD
-	 hpo8FvoBDrdI++x9RKn4sFOb3NqOiwu0HhrBqXPPCODhV+0PfuuKYgKlSYPE4Eo4mW
-	 YNuwDaIlaqMwKWDmdkVr+AgRnxgQmejFyESh0TBP+/R6tTpK6BReg4jVS9ilwnw9AR
-	 SrDeN47eA4IEA==
-Message-ID: <85e411bf-58cf-46fe-9afa-7b76999f1a42@kernel.org>
-Date: Thu, 3 Jul 2025 11:59:26 +0200
+	s=arc-20240116; t=1751536897; c=relaxed/simple;
+	bh=RkNPZD0gXbVv9QMnhyaYHoHf3RLE4sm+UPdb7vIE3GM=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=lsdSpImXSkypkirDxi7/3kCilm9guyzz1wcWSoYhPE6RofcpdOxap3H6YCppvOtr8RzJLn8aPCFnRM+GpJR8HZXkQgoiOxzD8iUYAOZ/hfdob0PmwtcNaOoLv0Xyywj5soCzsWBbSlEow/0PPk2F8y0m/2u6NfJfg1tj6Uje13M=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.166.172
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-il1-f172.google.com with SMTP id e9e14a558f8ab-3e05bb6efe0so9895705ab.3;
+        Thu, 03 Jul 2025 03:01:35 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1751536894; x=1752141694;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=Vk6ZYpOZ+r73oR7qUxC8epbzhU6ue1sl2KbvmZi/cL0=;
+        b=GC0NIYhFKej6qrxRbuItsw5Xrlxci54mcMpgOViV0S2nOdoT6UUr+lZ8q1ncD5ud84
+         4rGwQHQU/jPxby/HRYR2wD6WUxb/PolK8iGkWgFwX6bw61Faj9IMigxZBP1c+0TK4o0u
+         YU+g4hyGuuXWMqDlo7hk6qfpFNcHHMoi83MrvIMeAXVH94w39hv4+2PwmM59wQrZUwnF
+         aEwJOYrnZlnj61sx7yCICXfRsqzy4X6QyeSnFWkkKmov8RUbj+TA2TOwuOB49KjnHr54
+         NXUfrOo+402dsaNsIwTvyZH3qs/AtvgeOonTRsviAVFWL7cB/d+QXKg8udvaMUc016df
+         88KA==
+X-Forwarded-Encrypted: i=1; AJvYcCUV5Mo5dFail/UyeqrKSxJazgSHOUzxutgsBINfqlczVNOt03HhcfS2ywUqgbriz5HMyrzYnFgz7FE1@vger.kernel.org, AJvYcCVFACjHpizGuHCeaUiyUhzz0Kb1nzuDTRUwEoLbd7DXXROJ53XC7lvBciwH1/JEXAJK+HJS840uCoe6PZDzjJpUhfg=@vger.kernel.org
+X-Gm-Message-State: AOJu0YwI9/9EF0VQWSkxpsH4McvPoQNFCRJqPrBUWD/nGL+WHQ9M87Wl
+	Npm2RmT98Zpj50u+iLHcCNSGvQyIAbzG6yqekP0GiKH18NktXmArklAlOi2mE1b+
+X-Gm-Gg: ASbGncu3hdZ2taDUWScb8mhfNU/+nkqqUKNxqmGN6HJv9rQN8gXuXSq8OrSeHNeFQY0
+	s0+nwO5Ou6KYtSDfwBQlwiowSXzGB/BWVK+zGRjYOkklaz1IAVTO+wWvfe6pVsuun3Ef7+mecYY
+	ucsAb5+h8tqTofGX370gFFO/bcSigNZi7RUKFTBsc+/9lU1zGvCGtKZZnNfDH6jTsFx8oCdhF/C
+	No5B9vFTrhDJSI72o8CA8xXs7tFZUQyjlTAg+OnE+T/4zT/coWb9lZVyeAo9OAyjwMQU9t+fpOp
+	drfD3in8AI0Fp6EyPSgb+4W7g45kg91krQShKNbhoEjiZVQY8q0mKOMj/T70wLQtv5n+G815VsV
+	ORVMDtvnJhzZrzZnM1Z8m8HGlskHN
+X-Google-Smtp-Source: AGHT+IGUuxsdq4D+33wM78MhGzji7JM2Hstbeo8SLiYZArk7OIbMPVR7f2Wc18xBsBQ6NRE72BYWOQ==
+X-Received: by 2002:a05:6e02:b24:b0:3dd:f743:d182 with SMTP id e9e14a558f8ab-3e05c930472mr26973885ab.5.1751536893914;
+        Thu, 03 Jul 2025 03:01:33 -0700 (PDT)
+Received: from mail-il1-f182.google.com (mail-il1-f182.google.com. [209.85.166.182])
+        by smtp.gmail.com with ESMTPSA id 8926c6da1cb9f-50204ab05a8sm3387195173.120.2025.07.03.03.01.33
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 03 Jul 2025 03:01:33 -0700 (PDT)
+Received: by mail-il1-f182.google.com with SMTP id e9e14a558f8ab-3e058e82584so12187685ab.2;
+        Thu, 03 Jul 2025 03:01:33 -0700 (PDT)
+X-Forwarded-Encrypted: i=1; AJvYcCVgzcftcezD1bo6j8Iur5Qhprga1Gt3svFmRiiCU58NKmeMrALZZ1Vd/Upq6PHhFE/Ep9rQ/COLZfns@vger.kernel.org, AJvYcCVnnhOR2ol/dh8eSYBnosYahuGt4jfJBbtphHis+HCCVZihIV7JnadDduZIiwI41OJYa51BmQjjgD67YZW1uEWsScc=@vger.kernel.org
+X-Received: by 2002:a05:6102:f11:b0:4eb:eedf:df65 with SMTP id
+ ada2fe7eead31-4f1762801a1mr1715033137.11.1751536881731; Thu, 03 Jul 2025
+ 03:01:21 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH V4 1/2] dt-bindings: leds: pwm: add enable-gpios property
-To: LI Qingwu <Qing-wu.Li@leica-geosystems.com.cn>, lee@kernel.org,
- pavel@kernel.org, robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
- linux-leds@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org
-Cc: bsp-development.geo@leica-geosystems.com
-References: <20250703093430.229959-1-Qing-wu.Li@leica-geosystems.com.cn>
- <20250703093430.229959-2-Qing-wu.Li@leica-geosystems.com.cn>
-From: Krzysztof Kozlowski <krzk@kernel.org>
-Content-Language: en-US
-Autocrypt: addr=krzk@kernel.org; keydata=
- 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 a/A=
-In-Reply-To: <20250703093430.229959-2-Qing-wu.Li@leica-geosystems.com.cn>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+References: <20250701112612.3957799-1-niklas.soderlund+renesas@ragnatech.se> <20250701112612.3957799-2-niklas.soderlund+renesas@ragnatech.se>
+In-Reply-To: <20250701112612.3957799-2-niklas.soderlund+renesas@ragnatech.se>
+From: Geert Uytterhoeven <geert@linux-m68k.org>
+Date: Thu, 3 Jul 2025 12:01:08 +0200
+X-Gmail-Original-Message-ID: <CAMuHMdU7du6-BNo_Nf+iRWc3OVTiA1GVAzku05fkibvz=O7VgA@mail.gmail.com>
+X-Gm-Features: Ac12FXxdJw4l-iJqGZpsG2LNm2BkE2ShlbGH23VCJfTiv05ZqsDAcKNeOwiDEb0
+Message-ID: <CAMuHMdU7du6-BNo_Nf+iRWc3OVTiA1GVAzku05fkibvz=O7VgA@mail.gmail.com>
+Subject: Re: [PATCH v2 1/5] arm64: dts: renesas: r8a779g3-sparrow-hawk-fan-pwm:
+ Add missing install target
+To: =?UTF-8?Q?Niklas_S=C3=B6derlund?= <niklas.soderlund+renesas@ragnatech.se>
+Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+	Conor Dooley <conor+dt@kernel.org>, Marek Vasut <marek.vasut+renesas@mailbox.org>, 
+	linux-renesas-soc@vger.kernel.org, devicetree@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-On 03/07/2025 11:34, LI Qingwu wrote:
-> some pwm led driver chips like tps92380 require a separate enable signal
+On Tue, 1 Jul 2025 at 13:26, Niklas S=C3=B6derlund
+<niklas.soderlund+renesas@ragnatech.se> wrote:
+> The target to consider the dtbo file for installation is missing, add
+> it.
+>
+> Fixes: a719915e76f2 ("arm64: dts: renesas: r8a779g3: Add Retronix R-Car V=
+4H Sparrow Hawk board support")
+> Signed-off-by: Niklas S=C3=B6derlund <niklas.soderlund+renesas@ragnatech.=
+se>
+> Reviewed-by: Marek Vasut <marek.vasut+renesas@mailbox.org>
 
-Sentence starts with capital letter.
+Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
+i.e. will queue in renesas-devel for v6.17.
 
-tps92380 does not have dedicated enable pin. It has VDDIO, which serves
-also enable purpose, but it is a supply.
+Gr{oetje,eeting}s,
 
-Best regards,
-Krzysztof
+                        Geert
+
+--=20
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k=
+.org
+
+In personal conversations with technical people, I call myself a hacker. Bu=
+t
+when I'm talking to journalists I just say "programmer" or something like t=
+hat.
+                                -- Linus Torvalds
 
