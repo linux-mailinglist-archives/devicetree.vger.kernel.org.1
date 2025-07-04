@@ -1,94 +1,90 @@
-Return-Path: <devicetree+bounces-192877-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-192878-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id B5CD6AF856E
-	for <lists+devicetree@lfdr.de>; Fri,  4 Jul 2025 04:05:08 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id A2D62AF8573
+	for <lists+devicetree@lfdr.de>; Fri,  4 Jul 2025 04:10:43 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 62B7D3AA094
-	for <lists+devicetree@lfdr.de>; Fri,  4 Jul 2025 02:04:42 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id E781B1C231D6
+	for <lists+devicetree@lfdr.de>; Fri,  4 Jul 2025 02:10:59 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1BF781A256B;
-	Fri,  4 Jul 2025 02:05:06 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 359921A4E9E;
+	Fri,  4 Jul 2025 02:10:39 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b="oBD2R29W"
+	dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b="VFOhmAN0"
 X-Original-To: devicetree@vger.kernel.org
-Received: from AM0PR83CU005.outbound.protection.outlook.com (mail-westeuropeazon11010043.outbound.protection.outlook.com [52.101.69.43])
+Received: from AM0PR83CU005.outbound.protection.outlook.com (mail-westeuropeazon11010026.outbound.protection.outlook.com [52.101.69.26])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 84F262869E;
-	Fri,  4 Jul 2025 02:05:03 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=52.101.69.43
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DE0722869E;
+	Fri,  4 Jul 2025 02:10:35 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=52.101.69.26
 ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1751594706; cv=fail; b=gltgyytu2WeTcDTpFF09+S/zgNQeMyMswGrqRPiPqvoU3dbvC3hd9e9Y2Rpp0v1nM2crIIISHhYtFh7wSnXdPhTUpjbiaGs2mO20h4mThnfNjRXHhGwvH5QlOpE5wgmMO5lU6vRHKou0Fk8BNQKIEfcgJ8aFSXDemjsfvkX0lEU=
+	t=1751595039; cv=fail; b=fHHYfRAOLs/SRNYdqMagIlhQ2I8ui3P7Hd/S0p6d9Y3BeBy6p1+31TppGpNukflKc3CRbo6RD3WIfxfoC/+0Z6peeyXUOkC/YVW6aUkr+EaucS/Y0v+SN8KNyoW2WlbOn5VnV2MKK8DckxD/DyJVk6c3e1DZsmBv7KU6GSLcwJI=
 ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1751594706; c=relaxed/simple;
-	bh=24VU9zJXdsmVRF4pqwGZ1ePavAzgCzbAAHUlrLKjFyM=;
+	s=arc-20240116; t=1751595039; c=relaxed/simple;
+	bh=sKFZczL0oQ3eVEuXkmSrRI6KM19qlf/mnMeWx98/E3k=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:Content-Type:
-	 Content-Disposition:In-Reply-To:MIME-Version; b=hthrIM5uqaK4zlfceBBHddSRs81ttHtpBkZzlxQLrmFUq+2J/O82uBSOc3ZZeGTwYFh7qhCHOaNtQ78xWD4j7CaE3NDozfc+Z4+VpwaEq4fLc2BX+KtbqA6mV8ofzHseGrBgiaCB22TrFyBeQpJZdvDJqnGUNCNZSj6xLTh+8W4=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com; spf=pass smtp.mailfrom=nxp.com; dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b=oBD2R29W; arc=fail smtp.client-ip=52.101.69.43
+	 Content-Disposition:In-Reply-To:MIME-Version; b=o5blBhQIunZCm0rnnGseG0yGHXUcP2lwYltJfTNkYOxNIQBbULEcG8TzgBn/RROYIgkMwcFK+CGFj5JFMCtVe63QSJ8vRL32WEkoJK851upnbQMiIOFKiIwgjh5szXEP8WYFSh/nEz/XJewVIn7NbQifwHBuxnOea1PehSo9lPk=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com; spf=pass smtp.mailfrom=nxp.com; dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b=VFOhmAN0; arc=fail smtp.client-ip=52.101.69.26
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=nxp.com
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=CsRi1N9W2WyCuYXRWMtMG5Lej60MpP6fWtWObn4qwPOpcwVlyiPSHD+vfStAm1T0O1njn8XxQ0OJsw3kUvv5/rKfnEcJiABpe0gaVFdG+PWb47YSF6KKo4R5wsfhx6PTpeuZesDjCixU0mUTHhlD79FdM/OREKyB+YZ6fTKVFkjtjEwcwg4H6geimNlncXGih+8pMYcYBJjU6IuHCLDigGnyjN6TZCAFxLo4EKwOXVpcDuWFPmwBVlI6UPSGjYWQm8ajns7BKQCZzbovHJ/KR7y2WfrpP5Vl4ao6y2/45pGMl5MlYR6DlcKGz9TP5kO5r6uJFLvHKwzr6IUVerNu4w==
+ b=vq950y51UK/Z9x5qQWkOhPLhApnODql0el6eaHUEAju5Owlrp8ymPcjStvLIrT5fjvMc4ozsvqYmNVPUBVYrhdF9ApxUp1TuowTOLNC10VFWIXxpmPOgbZhFpZJ/w9Vu3nIs4aixXMROjFtQax8iTvFHWSZJUrkskJ0eRl86MFrVKyXpvn8c/GCyU7X69hfK0h/3/xok8lxxciUr8ngUw8WRKSQC9iZwxvZF8LEWHQHQJuaIAFPyymsR/R6daPamX2nU/+k8S2c+dn4r/WulKpXY84iVtabwrujWgHL6r+AzNSlkrWRgR51clopzvCMzijfXhlsCA2FSMocKya0VJQ==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
  s=arcselector10001;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=IAEIWLyERDW3c6a20WLkXZpwUKiX9PAax7IA/zHL3cQ=;
- b=BVp2liqKcX1Q9kbmAEraT9C5O04ipctGYVPcP0w8RAX2s0wIyM5ZQVjoyXnFWYnjpU25Drk19VlL+c7ed/FpsVsvG8SyXr4DQVKZKt0PDUTYEJ0BAV+WjW8mIaWbYfptaMq0b6dS5GLpArjwfVKrPVxOe308qIK7PZjOBI+9HFSvdwM3gobaWMBDCPc8GGFVjY50npARmCzEoAfJxPI/8O4UwA5qfv826KkfMKcmjtSZHXlFthcNQ7xy+1o2rN4NtaL0RABZ9AgPgdB6u6v5DTQHszuHlOL1XFkapCJE1sxMUapohVdMJfe6/EXIKeh+P4SacxuCWlk5q+8RmcqjkA==
+ bh=aoHakKGpa4Dzpiy9VJwri3mF0IXFOFhe5cdQRnUrMZ8=;
+ b=NjmHklKpN6rgTtp3s2M9dG9j70LwZfebkXQMhTxDAQXrSONS6Q5hpZcFPnaPjADBsiyrxPMix4f4vjUEIAeIXbh4FA570r+k9OVKEqBMI2KGBokWdMK80pdNiQmuWHKI84WLvnCJnK7LpHhMjky1Cdu0nf64xbLvnygAfa/NVu++08XoPMLnncTMORNLaELDLY1Tx16IWZ9zegjv68+W3FjypEdCkDN9c6oR8gSRXTyb8cAtidUpatdb6rZnWrXF8VAMMtU8NoQNt78AQ9H2krmTcnmX/VDe+YP+Zg0u8n7ziKA2cFPThS6FROE1DhC4QhGEtox831CU/y1wL3UzCQ==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
  header.d=nxp.com; arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector1;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=IAEIWLyERDW3c6a20WLkXZpwUKiX9PAax7IA/zHL3cQ=;
- b=oBD2R29WfQO8euXf7W7XCHfRj9zPct20eRghzBd4g/OllBge9FmGXUAKeK77mu5FBoVHxx6utsplWplHcEoUypKDZeRK0MnFgWQUNPy4T/U+0oNZ3OLWHNC7fQn6yvwA8rHZuR0WjiNJ8I8QKxrMTab+lSoDNnUTRuk/J7P4aiaahlqJ0MuxWugFo1CgwHsNtLd8u6dQCoVdsLflOfxpWY2hPUgH+C3sMEC8UIHtp5eH/O7bZsKptupTwhLQj0pdtAi9CYF9fLl6T/z70cQUgVhgG3sAtHPW41cu2GvmNb0xpGDVR/NZXvmB2DroCVKhcwu5ATJxbjykFEavlexxDQ==
+ bh=aoHakKGpa4Dzpiy9VJwri3mF0IXFOFhe5cdQRnUrMZ8=;
+ b=VFOhmAN082plQ4jnqDg1JMROeRV/vKxdtP2FqvJpw1w88t/xdKiOQBEaEQXHsoJU0GTemvZRLECjnxZUCMY5JBuQTxvJDmVdLGasYciTNiLehKIhVo0BdUE/Q8StyUdDXQTajVDiEokLiOc8iyLk9ZB2OgifTMYlxV1QSHAh4ek+0EQrISQLobpf83iXjbIc6ZFuG4/JYf9dDfYYyseaXJe8xpAHd3o447hFY76/kLILqPvom3nQvBisszB7sB/RwqUYPF9J7b4WA5SbtV8Qbb1Q1/fa/0iERbyy6BwS/QZZ7hNHxkYINgkOh8jnGwOh1IB2sLoNEwZDyhI1deSaGg==
 Authentication-Results: dkim=none (message not signed)
  header.d=none;dmarc=none action=none header.from=nxp.com;
 Received: from PAXPR04MB9642.eurprd04.prod.outlook.com (2603:10a6:102:240::14)
- by PAXPR04MB8607.eurprd04.prod.outlook.com (2603:10a6:102:21a::14) with
+ by AS8PR04MB7926.eurprd04.prod.outlook.com (2603:10a6:20b:2ab::14) with
  Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8901.21; Fri, 4 Jul
- 2025 02:05:00 +0000
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8901.22; Fri, 4 Jul
+ 2025 02:10:32 +0000
 Received: from PAXPR04MB9642.eurprd04.prod.outlook.com
  ([fe80::9126:a61e:341d:4b06]) by PAXPR04MB9642.eurprd04.prod.outlook.com
  ([fe80::9126:a61e:341d:4b06%7]) with mapi id 15.20.8901.018; Fri, 4 Jul 2025
- 02:05:00 +0000
-Date: Thu, 3 Jul 2025 22:04:52 -0400
+ 02:10:31 +0000
+Date: Thu, 3 Jul 2025 22:10:26 -0400
 From: Frank Li <Frank.li@nxp.com>
-To: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-Cc: Rui Miguel Silva <rmfrfs@gmail.com>,
-	Martin Kepplinger <martink@posteo.de>,
-	Purism Kernel Team <kernel@puri.sm>,
-	Mauro Carvalho Chehab <mchehab@kernel.org>,
+To: Ze Huang <huangze@whut.edu.cn>
+Cc: Thinh Nguyen <Thinh.Nguyen@synopsys.com>,
+	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
 	Rob Herring <robh@kernel.org>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Eugen Hristev <eugen.hristev@linaro.org>,
-	Shawn Guo <shawnguo@kernel.org>,
-	Sascha Hauer <s.hauer@pengutronix.de>,
-	Pengutronix Kernel Team <kernel@pengutronix.de>,
-	Fabio Estevam <festevam@gmail.com>, Peng Fan <peng.fan@nxp.com>,
-	Alice Yuan <alice.yuan@nxp.com>, Vinod Koul <vkoul@kernel.org>,
-	Kishon Vijay Abraham I <kishon@kernel.org>,
-	Philipp Zabel <p.zabel@pengutronix.de>, linux-media@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	imx@lists.linux.dev, linux-arm-kernel@lists.infradead.org,
-	linux-phy@lists.infradead.org, "Guoniu.zhou" <guoniu.zhou@nxp.com>
-Subject: Re: [PATCH 5/7] media: nxp: add DesignWare MIPI CSI2 controller
- driver
-Message-ID: <aGcOj4/0umfWaaTP@lizhi-Precision-Tower-5810>
-References: <20250701-95_cam-v1-0-c5172bab387b@nxp.com>
- <20250701-95_cam-v1-5-c5172bab387b@nxp.com>
- <20250702093806.GF16835@pendragon.ideasonboard.com>
- <aGVWd/bo22pPeKVS@lizhi-Precision-Tower-5810>
+	Conor Dooley <conor+dt@kernel.org>, Yixun Lan <dlan@gentoo.org>,
+	Philipp Zabel <p.zabel@pengutronix.de>,
+	Paul Walmsley <paul.walmsley@sifive.com>,
+	Palmer Dabbelt <palmer@dabbelt.com>,
+	Albert Ou <aou@eecs.berkeley.edu>, Alexandre Ghiti <alex@ghiti.fr>,
+	"linux-usb@vger.kernel.org" <linux-usb@vger.kernel.org>,
+	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+	"linux-riscv@lists.infradead.org" <linux-riscv@lists.infradead.org>,
+	"spacemit@lists.linux.dev" <spacemit@lists.linux.dev>,
+	"linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
+Subject: Re: [PATCH v4 3/4] usb: dwc3: add generic driver to support
+ flattened DT
+Message-ID: <aGc4EibLNTEj/H11@lizhi-Precision-Tower-5810>
+References: <20250526-b4-k1-dwc3-v3-v4-0-63e4e525e5cb@whut.edu.cn>
+ <20250526-b4-k1-dwc3-v3-v4-3-63e4e525e5cb@whut.edu.cn>
+ <20250603012029.4agja77rdoneeyrl@synopsys.com>
+ <aD5jL5DK6S8ii-DT@jean.localdomain>
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <aGVWd/bo22pPeKVS@lizhi-Precision-Tower-5810>
-X-ClientProxiedBy: AM8P190CA0026.EURP190.PROD.OUTLOOK.COM
- (2603:10a6:20b:219::31) To PAXPR04MB9642.eurprd04.prod.outlook.com
+In-Reply-To: <aD5jL5DK6S8ii-DT@jean.localdomain>
+X-ClientProxiedBy: AS4P195CA0008.EURP195.PROD.OUTLOOK.COM
+ (2603:10a6:20b:5e2::13) To PAXPR04MB9642.eurprd04.prod.outlook.com
  (2603:10a6:102:240::14)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
@@ -97,174 +93,241 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: PAXPR04MB9642:EE_|PAXPR04MB8607:EE_
-X-MS-Office365-Filtering-Correlation-Id: ba742618-74d6-4d1c-3335-08ddba9f2e3f
-X-LD-Processed: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635,ExtAddr
+X-MS-TrafficTypeDiagnostic: PAXPR04MB9642:EE_|AS8PR04MB7926:EE_
+X-MS-Office365-Filtering-Correlation-Id: 9550a194-d80b-4923-7c32-08ddba9ff43b
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam:
- BCL:0;ARA:13230040|366016|1800799024|52116014|19092799006|376014|7416014|38350700014;
+	BCL:0;ARA:13230040|1800799024|366016|376014|52116014|7416014|19092799006|38350700014|7053199007;
 X-Microsoft-Antispam-Message-Info:
- =?us-ascii?Q?mIJxHrdziC44w6OVeOh0c4W++2zZdgSHd6Ll8pqJC0v4s0smC0mgFSd40reF?=
- =?us-ascii?Q?Nzsx0h41WUTHi0xcXumfXZ5Yn486XApsy7xBfI/kDK2XrKSI9xaL8ykaHU7+?=
- =?us-ascii?Q?Bx/mNbdi/fXg9EZpRLluaDkM8jlbgkhBME2kf5OpE+PYjQNPIRal0+dFE/Bj?=
- =?us-ascii?Q?8IdPkkxJXEK696os5IjDTCf3g6DU8TnZxH31RcwrFTs0Il0qHJ7DLxTX+ctO?=
- =?us-ascii?Q?AX3Z/e3z1XJpSdLM0l3OMl31U0lTrP2EebF/cAzaRWHOYklYGaAJB7cZOMuj?=
- =?us-ascii?Q?CAAfHaKlfrWgBfZh3q3rJmJIk2TOdMSkY3bvKWSfqI0kZkTTuO0QSQ9w9FWP?=
- =?us-ascii?Q?yxtFXxEFTTCdD4vQUtp9mvacdyh1DL3tmDysPwxvcQLJHAvmGsz//Tgar0E6?=
- =?us-ascii?Q?uUiaekP+x6tdmVuq+NH4giPrdVfNY/N7fp4m+BjdV7hOZDjqnLtW2pESakRu?=
- =?us-ascii?Q?a/iDmWZOHrk9bt45xZB4r9dDncmFt6guTi6/NgkLyjDYvq23sbt0eGuKoMIT?=
- =?us-ascii?Q?useKnUUpIspgjYHVWNxujtDfU0PHWq97Lwv1bQ/cfQqnAQEwEzNSz6DQawWJ?=
- =?us-ascii?Q?UdUiLE60pRv1Szw2WXfPEmLZU8VM7ksporTAjiyh55d4pSf6sJZikDpB8pZL?=
- =?us-ascii?Q?ARdFKyB7rMc32jxw6dmlo31ZPdElcw11OvoXvP3i7MMwjlXfG61oAtEdC3Zf?=
- =?us-ascii?Q?5K+/DbktDMdNgLUYJMxmOKxFsEUPYMx8oM6L6Bd1fkKjuMsPc5u4f9PDtPjI?=
- =?us-ascii?Q?aTgCMENfdWpjvD8KQAhTWOUnJSVbjkhfXPH+/uvQ0DfCyQALLmU3TuNDXTjc?=
- =?us-ascii?Q?PFFEPcNDD7lC/wiPGcthVgknZCqLh3PrnG7LK8TwVkkk2dTgXZkxo6jysFq1?=
- =?us-ascii?Q?v/w+AUBNTloxHUhGjxg3kE16Pd7SvkEjbvCCq1dZqyPd6HOyTi8OKZy1c66p?=
- =?us-ascii?Q?JXNuaxCP3uWuFpH2Y4v1LKq43YHW2YhDlzDBhWp97JXCKcNyaksGpG96JjUr?=
- =?us-ascii?Q?eRtkEVDCtC/bMKdR0I5xfXMzbc3jpwyauiesbqqt+Y3sV45Vmki2iYeSGgXV?=
- =?us-ascii?Q?1uOhVb2O1R7/FY6ujcl89HVBCrlVaYpF/QOFkREBUZBxYFra6lOzC2AoSaG1?=
- =?us-ascii?Q?000whPxJF2mar3mqobjffdHLIgETxH7NZmm95dvXJmFPo/T2Xh0ffOsMUEeB?=
- =?us-ascii?Q?Nch2BnnBfoLCLsf7L/Z6bg559m+XN50FjTBuweLW0LMVaDNMoJLjJjHpEgor?=
- =?us-ascii?Q?y0SEYAnvl9GFDe+YRXnKmDNtu7psgbwXVw+79pbanNsJ3eisgLjR4uvn7+bw?=
- =?us-ascii?Q?Br56Wh/98/TxkGkOSa7GI6qdituPW3nKgecsqHbX3PE2M6oBd8SMbON4h9xJ?=
- =?us-ascii?Q?1ju3376K36Ub2RKnCAk6+xrlpyG00+ut40y+HQh4E+1onhCmDoeXSA3pMBfV?=
- =?us-ascii?Q?1Ju0mwbF3XjLwzPtchoNOG5qyK1aoWxQgzsNDK2wPzMX1JsDUvxY3g=3D=3D?=
+	=?us-ascii?Q?hKTuCl6XEhlbHBpSaAMvcV4t/gUoiEmfcC9h0tsjm/gx3RKBfwoKttAW7pkt?=
+ =?us-ascii?Q?547Lx95YNKVDHtMW1+09m8RUkoj835zSt5Zj8iooSI1GCvd4pfuTttjQ2afb?=
+ =?us-ascii?Q?EfhJtcr2CQfKDGMgLfFzP7u1oW5mtXGN3JOmy/OMWVR4MMAxCdnbrNOHKKNg?=
+ =?us-ascii?Q?R/6NzR4LvPgeu+oM2iRgJR6LFdCp/2QlrKSgpcb5qJvZIPcRCFhOQU2BPPdo?=
+ =?us-ascii?Q?vcLynFMRSEKO23eMxy85s7m+kk97CCWrmLJx7s5GhaUrcKE3XtD0TLk6n6Ft?=
+ =?us-ascii?Q?vdeKbRhzNIr+r+0F1f2F5mnjEau/BH3/Em844FFtHYQIjWlfWCY2JvHeXooL?=
+ =?us-ascii?Q?7nRsd3TdVmrISmlM428km4b55s7LIZYagRQjjk42kRnVq72WISW0afVnPPAr?=
+ =?us-ascii?Q?9YYs6a1AbWMqrov5VsDnZF69ml3uwT7cAeKLb2UG2e3fKbXaUO/oMnKElkeh?=
+ =?us-ascii?Q?Njt4CqQbI7nu2VQr4uv627bYGyEhhmK08qF+xKznF131jg8AqnnQTUVqAsry?=
+ =?us-ascii?Q?ktk4bjFVfBrbMMeip5Rj+zCX1HYVznkZpNd7RL110h2nW8eorJhgzW+l6aUu?=
+ =?us-ascii?Q?pd+Q1KSAl9qG/cDFmYwZvfq5LABUw14/S49ln6FV9eemkNUt2kWVdBIfTexW?=
+ =?us-ascii?Q?hJerdx0gsL/kXoQnPYYdGd0nPrLhDYTlmUoEo+EW58raE7fiiYInQkBGZtZP?=
+ =?us-ascii?Q?Ex+kncry2S2TN1+8RV396iO3SCqilX9BiTUdO+UyHfoytyz2CqzAkDMZ4/ld?=
+ =?us-ascii?Q?LZxMuIMZNQUu0rY/fahOmbzbUQ78TyJTnJT5SbiouK+rrm1xqSVmbfVt296I?=
+ =?us-ascii?Q?O0ASQU3lX/TrZYfwV+8J2m1KCEKSmOwA8Bu1i1Q/uGiloI7TgSs6WHCG+8Xw?=
+ =?us-ascii?Q?wzboTvo8XC0wrotVQOVGgcM5cPA7BB5deDOJ8F2/Ct5/EHv8PlK38rnFLNad?=
+ =?us-ascii?Q?Im2aZbi0eOIqysGaqDv3DXXce+v+Lgdf5uXrdRKl6oq1jea2qdwe+MS8kB86?=
+ =?us-ascii?Q?WV6GMweTSAbvKPs8okm5ixHA6BYROOpWdO7lwFO7DU5Ka/MtZzqoxJNdubXp?=
+ =?us-ascii?Q?2iuJZrJ/TPJD57aLGT2FOUIbrBrfIFS/2kQOvLa65Axv+pnGaPXrKc2+Dowq?=
+ =?us-ascii?Q?JbA7MCAVgcx7osbL6V4AM6H3uURBpZ0MF2qyxdITkalSbnSFfezSc3BapsLq?=
+ =?us-ascii?Q?HpB44S+lt2wLMcARfQPGf/j5vk2HRGSbxkC2N34ODttCJt0wa3R3j51jP3kv?=
+ =?us-ascii?Q?a/VLxtKxH8KZA/hZuPUNiVszoAlofKO/DFsddwnMaebEc5e3w2cb1/sGysCb?=
+ =?us-ascii?Q?l8XIDMU6YTb/bonbkPshp5+8T/A/axEMA+/+w1pkWfT6u2/YMstmfeqRTPmZ?=
+ =?us-ascii?Q?9Q/0O6Qehftn3tv/TOgOlT9bFiX2ckHU6opwjMpiZAF9t74XucEmmt3O+oGW?=
+ =?us-ascii?Q?UjVVRD4p0G3faYr33PJbe3H08ElbZGEabAxrYzVkh0YKIQdCoyxT6w7ABcdo?=
+ =?us-ascii?Q?FG+HikmjEVE890Y=3D?=
 X-Forefront-Antispam-Report:
- CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:PAXPR04MB9642.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(366016)(1800799024)(52116014)(19092799006)(376014)(7416014)(38350700014);DIR:OUT;SFP:1101;
+	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:PAXPR04MB9642.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(1800799024)(366016)(376014)(52116014)(7416014)(19092799006)(38350700014)(7053199007);DIR:OUT;SFP:1101;
 X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
 X-MS-Exchange-AntiSpam-MessageData-0:
- =?us-ascii?Q?XlZfurh5x3P2vFAUZguvnCNTtYwbQjSaCi9gF+SldPdJzbMAOt+eK/j4KY6c?=
- =?us-ascii?Q?3ekPmk2dt58a34+22ONxGfnFmY5zbJiKXGnSsujnqc7uFdwHEArRxkz8z4Kk?=
- =?us-ascii?Q?gNWOXW/Lq/deoeuddyQU/xhXVCRXEgKVgyurgBt3eaDysr52Z5MfBv43Oth8?=
- =?us-ascii?Q?tUUViUiTK2PC5ufTRFo/YkHrKFwOCAzf1IamrdxpNRWpE44TXS+kfWjIUGkU?=
- =?us-ascii?Q?F/F813uE3cBPYGLJtpSokmnKfXITaP0qxsFIkM8lKkE2o608BGfXPSvmueBr?=
- =?us-ascii?Q?SHLDftS/465ZOV0S/naIniAk7pC5muSF/g+Fx1LJ4jroJKMUsRvC5QTx1ANx?=
- =?us-ascii?Q?0c3K4wDBETFk4AQqkTpZ62VwB4lGCdvoBlToOVzTx/KdNrNGJ17TSrvzG0vk?=
- =?us-ascii?Q?yJfDmUyYc5y0KPryTtxMPxbOrz1g53VC9fklSjmnCrQb/2umZwdZj1TRB2c2?=
- =?us-ascii?Q?4tZifzw1N/NSN+XSxvEXkZj31qBlor1F59l8na6qfAIDjxVq4NwlfYEu0USr?=
- =?us-ascii?Q?xUEAlJFUN32X9JEs/sgUJ78fX81sAXTpcJPpyNy7VnkD7Gzt2j6MeEvis57g?=
- =?us-ascii?Q?pL4n8HERFBmEsPs2fe10nD0fKk5Q8SU7tX1fMQLOx5NBt78yGAEukftFY+pY?=
- =?us-ascii?Q?KfUvtahkF/iy5ETHJXQgRjhHbztJwOOpd9g4qrakbuVQkCfF6WwIaUWXlAOU?=
- =?us-ascii?Q?chxClYBMlWFUCTAxZanL/Q0ZsgEA9wwwpIVMXIusKP9NcxOUxI4z+f7TvMo+?=
- =?us-ascii?Q?7adRtAJu/e+90B5sQZKWwY/kSSfwt7bq2iFJ2fhgwzAiv0EKY90864Jrh6DP?=
- =?us-ascii?Q?w8moz7tispsumig9fBKJgsA0NFuEGUJAtaerGyyGliuOKD9712deNi4nBjQA?=
- =?us-ascii?Q?ocCaBh7cgX32bQISeJbG+f2DbXfKam5JOgG+JLkMrP3PhlVrKMreOqn8r7EK?=
- =?us-ascii?Q?UUeATIA9hlzOBVHTHsIaqE8WGpJH1oYzSNewfQjVt+IJqhlt/ttYymehR6h9?=
- =?us-ascii?Q?XVER0J0hORE0kC8ePaXfsm92D0WepJVU92phDjNJUG4Isi3IAjTau//B5xBn?=
- =?us-ascii?Q?oJ9/IYE1Fn2ibwQ0ZUFf+6sSvO+Tg7WfStJNnbK5QvwN6lBIF4PfqssxiVmi?=
- =?us-ascii?Q?/V2ZOkkYfBudfv3K/p5Bspjuj+1z9Luee7H46SyPy2/FssHUbnMI77bMpyQy?=
- =?us-ascii?Q?Sf5Txf5Xd0GAaadNDlBrsOIkQIZexFCZKtE6Kipl9ZO+n9L2yF/7ixuLZ2zv?=
- =?us-ascii?Q?LDj2B2eE+ymm/XCOyHfvS3yquuva2Q3MSOKPsxMs7GFm05WCnJdOjunsY4pe?=
- =?us-ascii?Q?temR1OEBnSuYsOmx/CmVYWGgQJIXhhKCcybKWFzpj8iYIostk4QB3NKvbeLw?=
- =?us-ascii?Q?B3G63w8Ver8+7NQNIduL0/OqOib1p5vq7tFIaxmYL1BOyODOxVAqqT2Rx9oW?=
- =?us-ascii?Q?QA/OV40jJCkgxRAuMwqMRGDieivlFHcl3knj8oEdLuqy67lsC8XBy77PC/71?=
- =?us-ascii?Q?0Q1cjdngduQq2dQSZfgifkKMs7LqBWpO/9GOW7ly4PAT3hOGllocntAU0bNn?=
- =?us-ascii?Q?42mLGQQLHNPev5fbjsg=3D?=
+	=?us-ascii?Q?ScseBTHnKIEF0V6CcMXpvr1kFnOcIk/+RWt9mLwJuZXYyBfZMiV7F+eGLNLQ?=
+ =?us-ascii?Q?CnV56rEh4xT0nxHxjIl0F4dsyGewVq6HLP0hocoEZfny27wvD6D82pRKeH9D?=
+ =?us-ascii?Q?o7cXNrKWts4xhe4uS5+N5SopKBHGBed8ekHbL1cwRHFc1KXBxYh9Z0eE7IQe?=
+ =?us-ascii?Q?u8gFWmSJYYuUmK5nmxibWkCHC4KzkZYj69hvtBUC7d0UDAUmns+SN83nNgXS?=
+ =?us-ascii?Q?IhaH4SB6FCRDpYIzu5253eb2RU8GoS9CUjprvqcQU1BDqz4pcHMq462YzVsa?=
+ =?us-ascii?Q?h35XTrOAN6IBJY6TbFAAOXK9O7BEkFg1U+ZAezpa6nA45jab66ZAIKTIFRpO?=
+ =?us-ascii?Q?v4gXGyq0BUf9EQ1CN8lYYdxxeXxmpOycNbCNYYiHlJVVvWhhM6lI6P1FOEbE?=
+ =?us-ascii?Q?sPt/CCnNfQhG4bbF1h3LxuxvDpk+j75/60LvXasGpBpnmWiTv4cHg2u4SUdQ?=
+ =?us-ascii?Q?i7gofvQMc6wpxoCxb0VavuMTpwEj+LApIL8Jh0EmrR06bh7nd/KMbCXIRkCS?=
+ =?us-ascii?Q?UV/ngLuUkHeVkrIxhnntAGJ/pmhTWqHhC9dP+B6Gx6Lxig2bvfrOWZYnpusB?=
+ =?us-ascii?Q?9YqKT6SvU5Iu5ACvsp1GM4CAXK1BrRml3ve0KoQKPhM4i+lsbolAOKs6BCcj?=
+ =?us-ascii?Q?8gOMrTh/6P0AaGFidrjmR8C3VuLSa6iZMbB9UuhDoonlG7BV0wNj7sCELBbo?=
+ =?us-ascii?Q?vXTMMDSkYbJFwTE2VEqDec2qwcVZhgR22Y+zm4OjIzpzhQ8uPMsdcylMU962?=
+ =?us-ascii?Q?CuXwH9taMuyDuZnDrxXnJ8xwxvSCJOQnzhexKcHfWLpTXAvQsClVVFDfQdOT?=
+ =?us-ascii?Q?vGY6K6XEBgK8VSsxq2o0SH3b4yUWBbBh884Wsi7CZrICCN+v25m7DFgSBhxu?=
+ =?us-ascii?Q?x/VMkCm+fJ53av2AocwnYsxfGxns3l3qfrWsgKY2KRmapKMkhf+8Pt8xSyPE?=
+ =?us-ascii?Q?Uu1Ezba42N/Cz9LbwxrF3BOnXCx3cIp5NiGwKpoGr4lcoMAG/UgjZJL8ZaQ8?=
+ =?us-ascii?Q?OdFEHRpus2c1cAe8rJ23dWQenQwPiVi0Di+ufEb8KpV8CW5IvgRQvOxuLvty?=
+ =?us-ascii?Q?tmflTpuTQAlPvJQQgwQg4Gh5Oj7bFa76dq/7vWchFboJiXXGXfZIoFv8eHtT?=
+ =?us-ascii?Q?WDiRk5MB1hJeaU2JnCoUi+TDZSbVzP58vtBjB03mvq33FUZl9+SnzI7m/7Jl?=
+ =?us-ascii?Q?Q6wRXVawxwGNHZqxnKm8PQ9TqmSG47GDyf8xCnTPYSBis2TIJ7mGyrdRqKdE?=
+ =?us-ascii?Q?b3M2Wr9gQLK8G7D6T0RZ58AEBURRJscugY1TDIXjAUUqJJGZKSiLU47zSB+c?=
+ =?us-ascii?Q?4Qh5E2WU67EwsIg3TFmmDrZQZkU0Rbzj1ebFXxXlOPxr3tYZC8hNNEzWpPwT?=
+ =?us-ascii?Q?R7OdKRn1wFtY01nI3m8MTGfYxIR8MoDgwjy92GO20TleokW/urygXZDZhrPk?=
+ =?us-ascii?Q?/sPpImuMFSFke9zJqJU9pKEHTvRlGzeVtIQm79yXXGXxxwCPMMSyeM6xhdiG?=
+ =?us-ascii?Q?YgZhxuxqHB5iSMpPUX/4I+sj5B/DsSwHHR5croUuSXhY7MgMLvRfoOV95tC8?=
+ =?us-ascii?Q?gnTyCxwADNvAk6fmGAIYWZOBocDWz/wMfl8iRmsx?=
 X-OriginatorOrg: nxp.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: ba742618-74d6-4d1c-3335-08ddba9f2e3f
+X-MS-Exchange-CrossTenant-Network-Message-Id: 9550a194-d80b-4923-7c32-08ddba9ff43b
 X-MS-Exchange-CrossTenant-AuthSource: PAXPR04MB9642.eurprd04.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 04 Jul 2025 02:05:00.4482
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 04 Jul 2025 02:10:31.7914
  (UTC)
 X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
 X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
 X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: EkZTzGVJJypkQGo0YJ8mjHrtVZLmcljOWnv3V+uWHYRVaEA9aUA+qFUrOlkPWCT5VvxDDMDL6prgpawHyW5ZIw==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: PAXPR04MB8607
+X-MS-Exchange-CrossTenant-UserPrincipalName: jTauH6/Gd23sfaJUpOTpB+TP7ejll/ftcYbF5C+zEfHLD1c7Ytr2qXcw7aMdVzozizlDywGcnbsC1m9qvwMTfQ==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: AS8PR04MB7926
 
-On Wed, Jul 02, 2025 at 11:55:35AM -0400, Frank Li wrote:
-> On Wed, Jul 02, 2025 at 12:38:06PM +0300, Laurent Pinchart wrote:
-> > Hi Frank,
-> >
-> > Thank you for the patch.
-> >
-> > On Tue, Jul 01, 2025 at 06:06:10PM -0400, Frank Li wrote:
-> > > From: "Guoniu.zhou" <guoniu.zhou@nxp.com>
+On Tue, Jun 03, 2025 at 10:51:27AM +0800, Ze Huang wrote:
+> On Tue, Jun 03, 2025 at 01:20:35AM +0000, Thinh Nguyen wrote:
+> > On Mon, May 26, 2025, Ze Huang wrote:
+> > > To support flattened dwc3 dt model and drop the glue layer, introduce the
+> > > `dwc3-generic` driver. This enables direct binding of the DWC3 core driver
+> > > and offers an alternative to the existing glue driver `dwc3-of-simple`.
 > > >
-> > > Add V4L2 subdev driver for DesignWare MIPI CSI2 controller.
-> >
-> > This seems to be at least the third instance of a driver for the CSI-2
-> > receiver, the first two being
->
-> when I read spec, I known it should be used at other SoC. But I just jump
-> to into this area, not easy to find who use it easily.
->
-> > drivers/media/platform/raspberrypi/rp1-cfe/dphy.c and the second one
->
-> I think this one is not good abstraction. it should be phy driver, which
-> use "test" interface to community MIPI phy. I think it'd better create
-> a bus driver, like test_if, DPHY should be child devices of this test_if.
->
-> like
-> 	csi2@000 {
-> 		...
-> 		phys = <&dphy>;
->
-> 		dphy: dphy {
-> 			compatible = "...";
-> 		}
-> 	}
->
-> 	The tough problem is that dwc phy have one kind of combo phy, which
-> 	under both dsi and csi controller's test_if.
->
-> 	CSI need config such combophy by DSI test_if. I still have not idea
-> 	how to descript this type hardware yet.
->
-> > drivers/media/platform/renesas/rcar-csi2.c (the latter seems to support
-> > multiple CSI-2 receivers).
->
-
-Are you sure it is use dwc IP? I check regiser layout only few is the same
-
-#define V4H_N_LANES_REG                                 0x0004
-#define V4H_CSI2_RESETN_REG                             0x0008
-
-#define V4H_PHY_MODE_REG                                0x001c
-#define V4H_PHY_MODE_DPHY                               0
-#define V4H_PHY_MODE_CPHY                               1
-
-#define V4H_PHY_SHUTDOWNZ_REG                           0x0040
-#define V4H_DPHY_RSTZ_REG                               0x0044
-
-Anything I missed?
-
-Frank
-
-> This is one mixed PHY and controller to one drivers, which is not problem
-> when use one big MMIO space.
->
-> We can create dwc mipi csi common library, let each vendor driver to link
-> it (dwc pci/usb did this). The issue is that I have not their hardware to
-> test it.
->
-> > drivers/staging/media/imx/imx6-mipi-csi2.c
-> > seem related too, likely for an old version of the IP.
->
-> After we create common dw mipi csi library, we can move this to there.
->
-> Frank
->
-> >
-> > Could we please try to avoid code duplication ?
-> >
-> > > Signed-off-by: Guoniu.zhou <guoniu.zhou@nxp.com>
-> > > Signed-off-by: Frank Li <Frank.Li@nxp.com>
+> > > Signed-off-by: Ze Huang <huangze@whut.edu.cn>
 > > > ---
-> > >  MAINTAINERS                                |    1 +
-> > >  drivers/media/platform/nxp/Kconfig         |   11 +
-> > >  drivers/media/platform/nxp/Makefile        |    1 +
-> > >  drivers/media/platform/nxp/dwc-mipi-csi2.c | 1675 ++++++++++++++++++++++++++++
+
+Any progress on this patch? If you have not time, I can continue work on
+this one.
+
+Frank Li
+
+> > >  drivers/usb/dwc3/Kconfig             |   9 ++
+> > >  drivers/usb/dwc3/Makefile            |   1 +
+> > >  drivers/usb/dwc3/dwc3-generic-plat.c | 189 +++++++++++++++++++++++++++++++++++
+> > >  3 files changed, 199 insertions(+)
+> > >
+> > > diff --git a/drivers/usb/dwc3/Kconfig b/drivers/usb/dwc3/Kconfig
+> > > index 310d182e10b50b253d7e5a51674806e6ec442a2a..082627f39c9726ee4e0c5f966c5bc454f5541c9a 100644
+> > > --- a/drivers/usb/dwc3/Kconfig
+> > > +++ b/drivers/usb/dwc3/Kconfig
+> > > @@ -118,6 +118,15 @@ config USB_DWC3_OF_SIMPLE
+> > >  	  Currently supports Xilinx and Qualcomm DWC USB3 IP.
+> > >  	  Say 'Y' or 'M' if you have one such device.
+> > >
+> > > +config USB_DWC3_GENERIC_PLAT
+> > > +       tristate "DWC3 Generic Platform Driver"
+> > > +       depends on OF && COMMON_CLK
+> > > +       default USB_DWC3
+> > > +       help
+> > > +         Support USB3 functionality in simple SoC integrations.
+> > > +         Currently supports SpacemiT DWC USB3 IP.
+> > > +         Say 'Y' or 'M' if you have one such device.
+> > > +
+> > >  config USB_DWC3_ST
+> > >  	tristate "STMicroelectronics Platforms"
+> > >  	depends on (ARCH_STI || COMPILE_TEST) && OF
+> > > diff --git a/drivers/usb/dwc3/Makefile b/drivers/usb/dwc3/Makefile
+> > > index 830e6c9e5fe073c1f662ce34b6a4a2da34c407a2..96469e48ff9d189cc8d0b65e65424eae2158bcfe 100644
+> > > --- a/drivers/usb/dwc3/Makefile
+> > > +++ b/drivers/usb/dwc3/Makefile
+> > > @@ -57,3 +57,4 @@ obj-$(CONFIG_USB_DWC3_IMX8MP)		+= dwc3-imx8mp.o
+> > >  obj-$(CONFIG_USB_DWC3_XILINX)		+= dwc3-xilinx.o
+> > >  obj-$(CONFIG_USB_DWC3_OCTEON)		+= dwc3-octeon.o
+> > >  obj-$(CONFIG_USB_DWC3_RTK)		+= dwc3-rtk.o
+> > > +obj-$(CONFIG_USB_DWC3_GENERIC_PLAT)	+= dwc3-generic-plat.o
+> > > diff --git a/drivers/usb/dwc3/dwc3-generic-plat.c b/drivers/usb/dwc3/dwc3-generic-plat.c
+> ...
+> > > +
+> > > +static void dwc3_generic_remove(struct platform_device *pdev)
+> > > +{
+> > > +	struct dwc3_generic *dwc3 = platform_get_drvdata(pdev);
+> > > +
+> > > +	dwc3_core_remove(&dwc3->dwc);
+> > > +
+> > > +	clk_bulk_disable_unprepare(dwc3->num_clocks, dwc3->clks);
+> > > +	clk_bulk_put_all(dwc3->num_clocks, dwc3->clks);
+> > > +
+> > > +	reset_control_assert(dwc3->resets);
+> > > +}
+> > > +
+> > > +static int __maybe_unused dwc3_generic_suspend(struct device *dev)
 > >
-> > This should go to drivers/media/platform/synopsys/
+> > We shouldn't need __maybe_unused attr with the new PM macros.
 > >
-> > >  4 files changed, 1688 insertions(+)
+>
+> Will drop these attr
+>
+> > > +{
+> > > +	struct dwc3_generic *dwc3 = dev_get_drvdata(dev);
+> > > +	int ret;
+> > > +
+> > > +	ret = dwc3_pm_suspend(&dwc3->dwc);
+> > > +	if (ret)
+> > > +		return ret;
+> > > +
+> > > +	clk_bulk_disable_unprepare(dwc3->num_clocks, dwc3->clks);
+> > > +
+> > > +	return 0;
+> > > +}
+> > > +
+> > > +static int __maybe_unused dwc3_generic_resume(struct device *dev)
+> > > +{
+> > > +	struct dwc3_generic *dwc3 = dev_get_drvdata(dev);
+> > > +	int ret;
+> > > +
+> > > +	ret = clk_bulk_prepare_enable(dwc3->num_clocks, dwc3->clks);
+> > > +	if (ret)
+> > > +		return ret;
+> > > +
+> > > +	ret = dwc3_pm_resume(&dwc3->dwc);
+> > > +	if (ret)
+> > > +		return ret;
+> > > +
+> > > +	return 0;
+> > > +}
+> > > +
+> > > +static int __maybe_unused dwc3_generic_runtime_suspend(struct device *dev)
+> > > +{
+> > > +	struct dwc3_generic *dwc3 = dev_get_drvdata(dev);
+> > > +
+> > > +	return dwc3_runtime_suspend(&dwc3->dwc);
+> > > +}
+> > > +
+> > > +static int __maybe_unused dwc3_generic_runtime_resume(struct device *dev)
+> > > +{
+> > > +	struct dwc3_generic *dwc3 = dev_get_drvdata(dev);
+> > > +
+> > > +	return dwc3_runtime_resume(&dwc3->dwc);
+> > > +}
+> > > +
+> > > +static int __maybe_unused dwc3_generic_runtime_idle(struct device *dev)
+> > > +{
+> > > +	struct dwc3_generic *dwc3 = dev_get_drvdata(dev);
+> > > +
+> > > +	return dwc3_runtime_idle(&dwc3->dwc);
+> > > +}
+> > > +
+> > > +static const struct dev_pm_ops dwc3_generic_dev_pm_ops = {
+> > > +	SET_SYSTEM_SLEEP_PM_OPS(dwc3_generic_suspend, dwc3_generic_resume)
+> > > +	SET_RUNTIME_PM_OPS(dwc3_generic_runtime_suspend, dwc3_generic_runtime_resume,
+> > > +			   dwc3_generic_runtime_idle)
+> > > +};
+> > > +
+> > > +static const struct of_device_id dwc3_generic_of_match[] = {
+> > > +	{ .compatible = "spacemit,k1-dwc3", },
+> > > +	{ /* sentinel */ }
+> > > +};
+> > > +MODULE_DEVICE_TABLE(of, dwc3_generic_of_match);
+> > > +
+> > > +static struct platform_driver dwc3_generic_driver = {
+> > > +	.probe		= dwc3_generic_probe,
+> > > +	.remove		= dwc3_generic_remove,
+> > > +	.driver		= {
+> > > +		.name	= "dwc3-generic-plat",
+> > > +		.of_match_table = dwc3_generic_of_match,
+> > > +#ifdef CONFIG_PM_SLEEP
 > >
-> > [snip]
+> > Use the new pm_ptr/pm_sleep_ptr.
 > >
-> > --
-> > Regards,
+>
+> Thanks for pointing it out, I missed this part. I will fix it
+>
+> > Thanks,
+> > Thinh
 > >
-> > Laurent Pinchart
+> > > +		.pm	= &dwc3_generic_dev_pm_ops,
+> > > +#endif /* CONFIG_PM_SLEEP */
+> > > +	},
+> > > +};
+> > > +module_platform_driver(dwc3_generic_driver);
+> > > +
+> > > +MODULE_LICENSE("GPL");
+> > > +MODULE_DESCRIPTION("DesignWare USB3 generic platform driver");
+> > >
+> > > --
+> > > 2.49.0
+> > >
 
