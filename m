@@ -1,83 +1,82 @@
-Return-Path: <devicetree+bounces-192956-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-192957-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 72AF5AF89A7
-	for <lists+devicetree@lfdr.de>; Fri,  4 Jul 2025 09:37:57 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9C28EAF89CD
+	for <lists+devicetree@lfdr.de>; Fri,  4 Jul 2025 09:44:25 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 2FC25586566
-	for <lists+devicetree@lfdr.de>; Fri,  4 Jul 2025 07:37:55 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 32D091CA01A3
+	for <lists+devicetree@lfdr.de>; Fri,  4 Jul 2025 07:44:42 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 947B028000B;
-	Fri,  4 Jul 2025 07:37:42 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0B73D28030C;
+	Fri,  4 Jul 2025 07:44:21 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b="u6rduk2c"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="JENtlCLl"
 X-Original-To: devicetree@vger.kernel.org
-Received: from vps0.lunn.ch (vps0.lunn.ch [156.67.10.101])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 25A49280CC1;
-	Fri,  4 Jul 2025 07:37:39 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=156.67.10.101
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CF27C1DCB09;
+	Fri,  4 Jul 2025 07:44:19 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1751614662; cv=none; b=pZaiJHEf5gOtiq5ilgrJq5a+p4VJdETvbQ9M/5MwILaH+Gbb6tzyfs36NklLK+LRhZryJSG7Hv2gEH/56RcYxpfhLhv6T18oOZNZMAJfwC0jAUR8vF7dpqypQ/uTjFhdc9l9g//VlntLGNJBVyNOnbg4Gf2YSXf3Wo8e5AfeybA=
+	t=1751615060; cv=none; b=L5eaLtEQVNWW2h9bc1ghGVqNES7vso3pi+qmZTD9nB9diPWmb0+oS7xrJBEQeMdoHbA5GBGn5jjpv4lcF6RiPNSqH0ExhtdUESW8Jtm37fJ/V8IteJQMC0tS4Vo533hIlDqgk9/UHjAlQLMP8RuvnOabs13kfCJS0/iQH6Nagyc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1751614662; c=relaxed/simple;
-	bh=7TS+GPjg3sX6vp225yAQ40TlxQx1FkzB1Rlq6D7dvZU=;
+	s=arc-20240116; t=1751615060; c=relaxed/simple;
+	bh=3py9atRl0Vxy/Um+TpKfDROUTNTZjoIU1e1Qplz+cOY=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=bgVGrjm0ObX1yQ5o04Ek1X/kXQs66Y90iccOY7PjD+yV6ABRGotnzfKlCaNAz4DzmVZjUFjugTI/Mm+BhyhoFMAMcZqu8pkxQUitrF4pmxj8SBAibhY3qLSLuyPPA3+gOwF0cAG0pdvKPs6Xw+1HA/k2M21k+zzDLLgzI6v/WHA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch; spf=pass smtp.mailfrom=lunn.ch; dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b=u6rduk2c; arc=none smtp.client-ip=156.67.10.101
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=lunn.ch
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
-	s=20171124; h=In-Reply-To:Content-Disposition:Content-Type:MIME-Version:
-	References:Message-ID:Subject:Cc:To:From:Date:From:Sender:Reply-To:Subject:
-	Date:Message-ID:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding:
-	Content-ID:Content-Description:Content-Disposition:In-Reply-To:References;
-	bh=BBUFPfqcb5RmlLprxF2vX8GSwab9JKWQEi3JfpeiZSg=; b=u6rduk2cLDiZJ613kl3yXRcvou
-	PluTPpMFX5LPyyLMgyVmlIndU0nfNy2cm9KDz2Wd2FO5PUiCTPKRsZuws0DuvHXgUEHawd15w6KIU
-	tc7vp6WuCc8gqz7fU0EnlPHx8g2VKDt7KEhR9C/7DTrG58Rv9q3gXw9gWvolr+g+AdwM=;
-Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
-	(envelope-from <andrew@lunn.ch>)
-	id 1uXaz2-000B1n-IZ; Fri, 04 Jul 2025 09:37:20 +0200
-Date: Fri, 4 Jul 2025 09:37:20 +0200
-From: Andrew Lunn <andrew@lunn.ch>
-To: Tao Ren <rentao.bupt@gmail.com>
-Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, Joel Stanley <joel@jms.id.au>,
-	Andrew Jeffery <andrew@codeconstruct.com.au>,
-	devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-	linux-aspeed@lists.ozlabs.org, linux-kernel@vger.kernel.org,
-	Tao Ren <taoren@meta.com>
-Subject: Re: [PATCH 5/5] ARM: dts: aspeed: Add Facebook Darwin (AST2600) BMC
-Message-ID: <95ff4056-d1cc-4564-8c44-0535196e7428@lunn.ch>
-References: <20250702050421.13729-1-rentao.bupt@gmail.com>
- <20250702050421.13729-6-rentao.bupt@gmail.com>
- <a6f6966b-50ee-4b4f-9422-96c6ac9391a2@lunn.ch>
- <aGW8Nm8ZWMwRYVOo@localhost.localdomain>
- <220ac6c2-8373-4742-86fa-f322d6ada624@lunn.ch>
- <aGcBEHMEyQJuzmjj@localhost.localdomain>
+	 Content-Type:Content-Disposition:In-Reply-To; b=B1pRSSBoe0O45fGRnwAvNZoA2B0nXEhUIZ9mVmhu7+WisfTLnjYKpjghTzfkQ5WXY6+R52PteQ5QGcutcbe/pOGusVLE/e2lw1wvDitzxKBRJ3v+O80dF29413LL9uMBHZ6LasoozqnUPUlLNw8ay3cuHgCbSqy3qAHgGlRSJBg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=JENtlCLl; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id C6CBEC4CEE3;
+	Fri,  4 Jul 2025 07:44:18 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1751615059;
+	bh=3py9atRl0Vxy/Um+TpKfDROUTNTZjoIU1e1Qplz+cOY=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=JENtlCLllPsXY9pgenywFH7k4WZgKcwe0zR9F1smsUoqcuXkcf4zBaXTQePWwev3p
+	 d/ORjmX1B41ZyvPm7ibHZ43fGWUBAoT0pJUHOwOe8ZdP2XLtTpMhtyXwP2mE0wBHtK
+	 bDWojGIrLQWroWdNHOVbsS6jybVELM+91vl2AE1Y6G5Ttgiki5FueqFNA8/azZMje3
+	 PUjowvSHLFfrpC2ae9CItQb0e8yu+Tj9sT2F4qiD3DvgmvS26n+l1oqtmUycIiHneu
+	 m2dGWfvqvkMOC7bFsSim/3dd6fPara90LedtTefjSf7udAnZrcmzP44ND3U2rot0oh
+	 Uof1KrA/Fe0kg==
+Date: Fri, 4 Jul 2025 09:44:16 +0200
+From: Krzysztof Kozlowski <krzk@kernel.org>
+To: Ziyue Zhang <ziyue.zhang@oss.qualcomm.com>
+Cc: andersson@kernel.org, konradybcio@kernel.org, robh@kernel.org, 
+	krzk+dt@kernel.org, conor+dt@kernel.org, jingoohan1@gmail.com, mani@kernel.org, 
+	lpieralisi@kernel.org, kwilczynski@kernel.org, bhelgaas@google.com, 
+	johan+linaro@kernel.org, vkoul@kernel.org, kishon@kernel.org, neil.armstrong@linaro.org, 
+	abel.vesa@linaro.org, kw@linux.com, linux-arm-msm@vger.kernel.org, 
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, linux-pci@vger.kernel.org, 
+	linux-phy@lists.infradead.org, qiang.yu@oss.qualcomm.com, quic_krichai@quicinc.com, 
+	quic_vbadigan@quicinc.com
+Subject: Re: [PATCH v8 1/3] dt-bindings: phy: qcom,sc8280xp-qmp-pcie-phy:
+ Update pcie phy bindings for QCS615
+Message-ID: <20250704-encouraging-pink-firefly-570be6@krzk-bin>
+References: <20250703095630.669044-1-ziyue.zhang@oss.qualcomm.com>
+ <20250703095630.669044-2-ziyue.zhang@oss.qualcomm.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <aGcBEHMEyQJuzmjj@localhost.localdomain>
+In-Reply-To: <20250703095630.669044-2-ziyue.zhang@oss.qualcomm.com>
 
-> Hi Andrew,
+On Thu, Jul 03, 2025 at 02:56:28AM -0700, Ziyue Zhang wrote:
+> QCS615 pcie phy only use 5 clocks, which are aux, cfg_ahb, ref,
+> ref_gen, pipe. So move "qcom,qcs615-qmp-gen3x1-pcie-phy" compatible
+> from 6 clocks' list to 5 clocks' list.
 > 
-> Got it, and thanks for sharing the context.
-> 
-> I will reach out to ASPEED offline to see if they are actively working
-> on the MAC fix, or if I have enough knowledge to work out the patch.
+> Fixes: 1e889f2bd837 ("dt-bindings: phy: qcom,sc8280xp-qmp-pcie-phy: Document the QCS615 QMP PCIe PHY Gen3 x1")
 
-There was some discussion about what needs to be done a couple of
-months ago. Look for emails from aspeed and IBM.
+Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
-	Andrew
+Best regards,
+Krzysztof
+
 
