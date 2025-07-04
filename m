@@ -1,42 +1,42 @@
-Return-Path: <devicetree+bounces-192975-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-192974-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 40838AF8BF0
-	for <lists+devicetree@lfdr.de>; Fri,  4 Jul 2025 10:37:19 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9AC59AF8B9A
+	for <lists+devicetree@lfdr.de>; Fri,  4 Jul 2025 10:29:47 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 5D5897B6553
-	for <lists+devicetree@lfdr.de>; Fri,  4 Jul 2025 08:24:50 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 48ACB765499
+	for <lists+devicetree@lfdr.de>; Fri,  4 Jul 2025 08:25:46 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0CAA02F85DA;
-	Fri,  4 Jul 2025 08:15:20 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 573971DCB09;
+	Fri,  4 Jul 2025 08:15:16 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from Atcsqr.andestech.com (60-248-80-70.hinet-ip.hinet.net [60.248.80.70])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B97AE2F2C64
-	for <devicetree@vger.kernel.org>; Fri,  4 Jul 2025 08:15:14 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D950A2F5C3F
+	for <devicetree@vger.kernel.org>; Fri,  4 Jul 2025 08:15:13 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=60.248.80.70
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1751616919; cv=none; b=qrZ8atX2gsnGdPM482V2g+WBn290WLwt+p7wQ85SHRpbTYdVBCii7iXntgf7TTked8kWLIwc14/4NpCYPZAG7eBSCOzzNqIVc2ebc8d4tSi5nIp2rutriAC6lNNV1hALovqi20gYHNBUSFtsox903Rj7b2+KFHRzhXxQPtoOt8Q=
+	t=1751616916; cv=none; b=NLfanGCVYnc/dL5bPBU9d/S3TSRZkOJkZ/i+3GZr2ar8vjrNYlSvLtYTCqGk8rWvgGyuo6ui9jQU13g9DXRk6p1t1VO5LGRaGxVzlbs+NugWht8RCihxL7GUZb9ZBv6x3+ci0SHEUgqvGo5fp6/ZbLKKxPw7rC60jWco3bULw4M=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1751616919; c=relaxed/simple;
-	bh=VbnAmLxBB+9ni3Y9B/gXoAlfLtNObeur1VJCWbvyhdM=;
+	s=arc-20240116; t=1751616916; c=relaxed/simple;
+	bh=zylAOvDJUdBHWCYEsmH/F3qbW1VoaC4/zwHAJ5vXbps=;
 	h=From:To:CC:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=NGVAjmpiw4L6VDStjHA/rOTg49g5B47jWKDI+TtP64W+CiYMPyc8VokRuXkeDCxg74t/DAhEC/zVBnqG8zucxlzjOs5omjWNJlyy0mMWcADV5qFK/ck/GaMAM9gAGor1zN9laD0TN7T1cgGrUemeitfiMuUtayd8prxWqzuc+GM=
+	 MIME-Version:Content-Type; b=tesSsS4jLZAE1i6ekdbrTrh6Klo8XEHUVN3xRZKcU7PXzbLp/zF5OHtOMo09gGrdoGza3MdQgK2Dqf3Y6mIMuUiBklJP6xjmgGNXbx0+z4pZnR0VIX6Kb2E24diUzNnCDzLmvdeRaiV3ISkU/dS/1gl6AYJQl6B4c2PiPzB8yk4=
 ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=andestech.com; spf=pass smtp.mailfrom=andestech.com; arc=none smtp.client-ip=60.248.80.70
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=andestech.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=andestech.com
 Received: from mail.andestech.com (ATCPCS31.andestech.com [10.0.1.89])
-	by Atcsqr.andestech.com with ESMTPS id 5648EvxA091877
+	by Atcsqr.andestech.com with ESMTPS id 5648EwqC091878
 	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
-	Fri, 4 Jul 2025 16:14:57 +0800 (+08)
+	Fri, 4 Jul 2025 16:14:58 +0800 (+08)
 	(envelope-from ben717@andestech.com)
 Received: from swlinux02.andestech.com (10.0.15.183) by ATCPCS31.andestech.com
  (10.0.1.89) with Microsoft SMTP Server id 14.3.498.0; Fri, 4 Jul 2025
- 16:14:56 +0800
+ 16:14:57 +0800
 From: Ben Zong-You Xie <ben717@andestech.com>
 To:
 CC: <arnd@arndb.de>, <paul.walmsley@sifive.com>, <palmer@dabbelt.com>,
@@ -46,9 +46,9 @@ CC: <arnd@arndb.de>, <paul.walmsley@sifive.com>, <palmer@dabbelt.com>,
         <devicetree@vger.kernel.org>, <linux-riscv@lists.infradead.org>,
         <linux-kernel@vger.kernel.org>, <soc@lists.linux.dev>,
         <tim609@andestech.com>, Ben Zong-You Xie <ben717@andestech.com>
-Subject: [PATCH 1/8] riscv: add Andes SoC family Kconfig support
-Date: Fri, 4 Jul 2025 16:14:44 +0800
-Message-ID: <20250704081451.2011407-2-ben717@andestech.com>
+Subject: [PATCH 2/8] dt-bindings: riscv: add Andes QiLai SoC and the Voyager board bindings
+Date: Fri, 4 Jul 2025 16:14:45 +0800
+Message-ID: <20250704081451.2011407-3-ben717@andestech.com>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20250704081451.2011407-1-ben717@andestech.com>
 References: <20250704081451.2011407-1-ben717@andestech.com>
@@ -63,53 +63,66 @@ Content-Type: text/plain
 X-DKIM-Results: atcpcs31.andestech.com; dkim=none;
 X-DNSRBL: 
 X-SPAM-SOURCE-CHECK: pass
-X-MAIL:Atcsqr.andestech.com 5648EvxA091877
+X-MAIL:Atcsqr.andestech.com 5648EwqC091878
 
-The first SoC in the Andes series is QiLai. It includes a high-performance
-quad-core RISC-V AX45MP cluster and one NX27V vector processor.
+Add DT binding documentation for the Andes QiLai SoC and the
+Voyager development board.
 
-For further information, refer to [1].
-
-[1] https://www.andestech.com/en/products-solutions/andeshape-platforms/qilai-chip/
-
+Reviewed-by: Rob Herring (Arm) <robh@kernel.org>
 Signed-off-by: Ben Zong-You Xie <ben717@andestech.com>
 ---
- arch/riscv/Kconfig.errata | 2 +-
- arch/riscv/Kconfig.socs   | 9 +++++++++
- 2 files changed, 10 insertions(+), 1 deletion(-)
+ .../devicetree/bindings/riscv/andes.yaml      | 25 +++++++++++++++++++
+ MAINTAINERS                                   |  5 ++++
+ 2 files changed, 30 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/riscv/andes.yaml
 
-diff --git a/arch/riscv/Kconfig.errata b/arch/riscv/Kconfig.errata
-index e318119d570d..be76883704a6 100644
---- a/arch/riscv/Kconfig.errata
-+++ b/arch/riscv/Kconfig.errata
-@@ -12,7 +12,7 @@ config ERRATA_ANDES
- 
- config ERRATA_ANDES_CMO
- 	bool "Apply Andes cache management errata"
--	depends on ERRATA_ANDES && ARCH_R9A07G043
-+	depends on ERRATA_ANDES && (ARCH_R9A07G043 || ARCH_ANDES)
- 	select RISCV_DMA_NONCOHERENT
- 	default y
- 	help
-diff --git a/arch/riscv/Kconfig.socs b/arch/riscv/Kconfig.socs
-index a9c3d2f6debc..1bf5637f2601 100644
---- a/arch/riscv/Kconfig.socs
-+++ b/arch/riscv/Kconfig.socs
-@@ -1,5 +1,14 @@
- menu "SoC selection"
- 
-+config ARCH_ANDES
-+	bool "Andes SoCs"
-+	depends on MMU && !XIP_KERNEL
-+	select ERRATA_ANDES
-+	select ERRATA_ANDES_CMO
-+	select AX45MP_L2_CACHE
-+	help
-+	  This enables support for Andes SoC platform hardware.
+diff --git a/Documentation/devicetree/bindings/riscv/andes.yaml b/Documentation/devicetree/bindings/riscv/andes.yaml
+new file mode 100644
+index 000000000000..aa1edf1fdec7
+--- /dev/null
++++ b/Documentation/devicetree/bindings/riscv/andes.yaml
+@@ -0,0 +1,25 @@
++# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/riscv/andes.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
 +
- config ARCH_MICROCHIP_POLARFIRE
- 	def_bool ARCH_MICROCHIP
++title: Andes SoC-based boards
++
++maintainers:
++  - Ben Zong-You Xie <ben717@andestech.com>
++
++description:
++  Andes SoC-based boards
++
++properties:
++  $nodename:
++    const: '/'
++  compatible:
++    oneOf:
++      - items:
++          - enum:
++              - andestech,voyager
++          - const: andestech,qilai
++
++additionalProperties: true
+diff --git a/MAINTAINERS b/MAINTAINERS
+index 6135a36a54a8..f4b4261d3c44 100644
+--- a/MAINTAINERS
++++ b/MAINTAINERS
+@@ -21285,6 +21285,11 @@ F:	drivers/irqchip/irq-riscv-intc.c
+ F:	include/linux/irqchip/riscv-aplic.h
+ F:	include/linux/irqchip/riscv-imsic.h
  
++RISC-V ANDES SoC Support
++M:	Ben Zong-You Xie <ben717@andestech.com>
++S:	Maintained
++F:	Documentation/devicetree/bindings/riscv/andes.yaml
++
+ RISC-V ARCHITECTURE
+ M:	Paul Walmsley <paul.walmsley@sifive.com>
+ M:	Palmer Dabbelt <palmer@dabbelt.com>
 -- 
 2.34.1
 
