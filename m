@@ -1,226 +1,130 @@
-Return-Path: <devicetree+bounces-192881-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-192882-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id B7762AF85AF
-	for <lists+devicetree@lfdr.de>; Fri,  4 Jul 2025 04:42:06 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id E31B3AF85D3
+	for <lists+devicetree@lfdr.de>; Fri,  4 Jul 2025 04:59:38 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 25BA61C82675
-	for <lists+devicetree@lfdr.de>; Fri,  4 Jul 2025 02:42:23 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 55A735673B1
+	for <lists+devicetree@lfdr.de>; Fri,  4 Jul 2025 02:59:39 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id BAF6E1DF725;
-	Fri,  4 Jul 2025 02:42:01 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 605E81DF265;
+	Fri,  4 Jul 2025 02:59:34 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="S9CZwYt3"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="hLoyU2wa"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E02481DB122
-	for <devicetree@vger.kernel.org>; Fri,  4 Jul 2025 02:41:59 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 33B0F4B5AE;
+	Fri,  4 Jul 2025 02:59:34 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1751596921; cv=none; b=dBpTEik8BvdRFF2+XHVRgAV5amD1sjkZDz2vDPGHtxWTnkq5zvw28DVX+wGjPK2eNXnTfHjk1ezy/LmvYoJxCQrd2vopwmRHnWV7E6/MfA0evl5UWln470HefhoAxpgo9nqhvzWtI/8NjjPL4LCPeEPNSsK2p9cmFtF+5i3xm4M=
+	t=1751597974; cv=none; b=RZZSRWEPUBKc5RxbRVfudZRvnYj9HktTCBtA0T+b9zz5LHst2/LCEXIQSv2nalLO17mIu72FnIwXVo1DimORrYI+NwknBtiatFEDFNDA1jDDAilkzqi8iRQp8uJHx76KXXNbSq2AwO9KZmbUA924jN/N59RpA26o7O/2T60VMiw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1751596921; c=relaxed/simple;
-	bh=QGAeURqyeOSdbvxNBjiKmHOeWgFff0xmmT1r5SF5A74=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=pS+E34JosNUuJVR4O5VfKOGzR2AedRvMX/75stx8mYYpgxomjjA1EX7u4dDNobpPBEXPa4cdvuYvcRKXc2waZRkyKAO2ABuiMY26aFuoymj7DM+9PYQh7PSbyG5IqeNESLdj3fA3rGlazLDQKMQDNmdeHEDgKHkc5AMvTxPYr6A=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=S9CZwYt3; arc=none smtp.client-ip=205.220.180.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
-Received: from pps.filterd (m0279869.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 563IAUWq025201
-	for <devicetree@vger.kernel.org>; Fri, 4 Jul 2025 02:41:59 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	1lPrfch2KOwf/c7/tLGBYrDbqU9wSEHHIhICPrrp1I4=; b=S9CZwYt3snTN5xZK
-	j0OkC87Dit0j3HNkRLGdoqtO8qJ5cTAP768R4UmRpASbmOtIrB1NQ4Ypw0Wr/lNK
-	V3rhtK0KN3B+YeYV09gmzfEinf1vEYzowJfIdhfuZghbqhbT+y7muQX7hC8tItHw
-	ogSR5UJv/FKCvB5KWs1FuGLIOVHAr6OzsP9aI6EXkbP+tLR8L2tm0tKfbvasY8gA
-	mqtYUv9R6vNV8QPOZZ5yWwdzN/ldMUmmPt7RZWa+1g401NuruHv0usrA99SJ/3/B
-	BgUVZ41XiZVhUXKLcmadhNdGwXovWATIA231YPm9xDPoFDC8HCSLHmycOQSZKBRg
-	JE+CEA==
-Received: from mail-pl1-f200.google.com (mail-pl1-f200.google.com [209.85.214.200])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 47kd64ycqe-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Fri, 04 Jul 2025 02:41:58 +0000 (GMT)
-Received: by mail-pl1-f200.google.com with SMTP id d9443c01a7336-23689228a7fso6879335ad.1
-        for <devicetree@vger.kernel.org>; Thu, 03 Jul 2025 19:41:58 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1751596917; x=1752201717;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=1lPrfch2KOwf/c7/tLGBYrDbqU9wSEHHIhICPrrp1I4=;
-        b=PSkayCjQlLi1KOBjldD52Ju6Jb955nHku6H16B31Bk82OBUKrAA1zd3aeaBjshLTAb
-         XX54WNPLGToEOMTbJrWrveq9nxhGwJUIyHAACYe6lBU/On5XdTGxaiFcbv35IOjGtMXt
-         Hq6LcN0PvPmI1oLdD/pGbDI7GnkMMdJYhC5PtDhh1CFDlJi3zZtg5K24CJBlslZahmab
-         wKXkelW4T2IL9iJDpsreZToNx48uSLWn9812CD9W6cbx5Jvjo3RtjDYTc1G47qZNdrSF
-         FAtgEkdT3YXz5nr7QUzB84DZF0novDxmxRYz1EsFnNSiThOiXmoxT/DDKsC1oIl+LQt6
-         LLMA==
-X-Forwarded-Encrypted: i=1; AJvYcCWb4TZA0iPyQDxexFc0+/EEK5Vp5dWr+MXPmtFn1QKLmdxUkp5FtQbGtPOOku1md8LVeySJGB/mWSnw@vger.kernel.org
-X-Gm-Message-State: AOJu0YzA5bGgbgF68sPQNdlYGBVWKCfeWZQNt8BPkU0XYCHEr1lNGi34
-	72mv38XSH/npyyuFjBUuH+UDnprfL9+QqAef/mRs84zv/WJXOecOrFIabcdtkL2ML+1TGjMOrbw
-	IBmZQBZqS8JjY8tS2smaYgfXLbAcOvKkY/J0LARcXtVdjVy607sKyCbgazzXBOwkP
-X-Gm-Gg: ASbGncvyO9eMnZtxh2ls340Nyyg7184e34/ehwrg7fT62FVC++cbEM0Aw4qmuPUKc5o
-	AUYQ/0hhqhsU/JCfzO0izaqtRdrZZmppERJa6Wy8nGQaxSEQXePdvAeNWJ6oeqXAA6N3R27i7FV
-	EJtS7XAh7DYSUDOf7satKthQSm1AA/LlSVLXWF5BauvV6ATwCrnaHyRC7ruGhDSFpJSxgyuYjf/
-	mOeMCXTt1TPmtUREVoYeP+8klA40vPdW1Z9cQq1X4gDlg8NuB5M6X1JGQpOz1wSVzvV2jp8LTuL
-	LVXv07VprnERgkLc8DV7ntlpvWz3PgDnJX72hr1gt1mUxNoT/l/g6Rv/pufgc1UTJ2gV1smV8KX
-	jOhDSy9s=
-X-Received: by 2002:a17:903:1b04:b0:234:d7b2:2aab with SMTP id d9443c01a7336-23c86066e22mr17464935ad.14.1751596917288;
-        Thu, 03 Jul 2025 19:41:57 -0700 (PDT)
-X-Google-Smtp-Source: AGHT+IHeWqGIPElykE9v+hg85L5a5KZ3QAOpihd97fl9vgoQOOfdPXTblhDGoYOMNi4iH4oHDkr31g==
-X-Received: by 2002:a17:903:1b04:b0:234:d7b2:2aab with SMTP id d9443c01a7336-23c86066e22mr17464635ad.14.1751596916850;
-        Thu, 03 Jul 2025 19:41:56 -0700 (PDT)
-Received: from [10.133.33.146] (tpe-colo-wan-fw-bordernet.qualcomm.com. [103.229.16.4])
-        by smtp.gmail.com with ESMTPSA id d9443c01a7336-23c8455db09sm7648685ad.121.2025.07.03.19.41.51
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 03 Jul 2025 19:41:56 -0700 (PDT)
-Message-ID: <d628c3da-4e2e-4d9b-81c5-8cf88628e400@oss.qualcomm.com>
-Date: Fri, 4 Jul 2025 10:41:50 +0800
+	s=arc-20240116; t=1751597974; c=relaxed/simple;
+	bh=AN3zYOg/SC8p0HEnNd2sFLzv/mQYAsIfsucNFSrf+Ac=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=lEHAJXSpPKEg6xN42YFSofCnVJN5RTSMhR7apmOnIK0NZs1xiEFsZJMKdEvHxWN1eyM+txU1S/Rs4qpJJQ+MB9qHI5xkwLb86v2ZrUEHI56NYaBZv1F17rPm5S96N4DCcB01l4SwpEUDHkupsveHvR/3mKMrRa0yyCuSAY9agGw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=hLoyU2wa; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPS id 06EB4C4CEE3;
+	Fri,  4 Jul 2025 02:59:34 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1751597974;
+	bh=AN3zYOg/SC8p0HEnNd2sFLzv/mQYAsIfsucNFSrf+Ac=;
+	h=From:Subject:Date:To:Cc:Reply-To:From;
+	b=hLoyU2wa2vxnTXkRBu8+xSYKzeOYv6xj9kpTusX9MBr+0w3hJd6K7mbZ52hOwHqpS
+	 cMO970JsYFT28MsqlQj4m8wgHhZ4p4wrgU6vYQzlx8ogMrYCqIhRF6Qo+M/G1layyJ
+	 PoY2o2XUQjSk6gngJIWYNVHKqDk6dUWE2LknRejdPJJ0Fvx/MryDHk1GhgBO+eRCVr
+	 Qpe4RnK2/RI2XE/oWQD70ifKmSTeIbbTpgwNmLPNHveAiQFkfYamU70smQHK/NViZz
+	 5hLWkjXceobD9RgBVfCxKmBHuJ/mmCPiUlF6Og3QD9+qLZbhm7TV/SRa1mHRwl56yx
+	 8F+pevcpKCCsQ==
+Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
+	by smtp.lore.kernel.org (Postfix) with ESMTP id EB148C83F07;
+	Fri,  4 Jul 2025 02:59:33 +0000 (UTC)
+From: Xianwei Zhao via B4 Relay <devnull+xianwei.zhao.amlogic.com@kernel.org>
+Subject: [PATCH v4 0/3] support for amlogic the new SPI IP
+Date: Fri, 04 Jul 2025 10:59:31 +0800
+Message-Id: <20250704-spisg-v4-0-6b731dfbe610@amlogic.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3 00/10] coresight: ctcu: Enable byte-cntr function for
- TMC ETR
-To: Jie Gan <jie.gan@oss.qualcomm.com>,
-        Suzuki K Poulose <suzuki.poulose@arm.com>,
-        Mike Leach
- <mike.leach@linaro.org>,
-        James Clark <james.clark@linaro.org>, Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konradybcio@kernel.org>,
-        Alexander Shishkin <alexander.shishkin@linux.intel.com>
-Cc: Tingwei Zhang <quic_tingweiz@quicinc.com>, coresight@lists.linaro.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org
-References: <20250624060438.7469-1-jie.gan@oss.qualcomm.com>
-Content-Language: en-US
-From: Jie Gan <jie.gan@oss.qualcomm.com>
-In-Reply-To: <20250624060438.7469-1-jie.gan@oss.qualcomm.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-X-Authority-Analysis: v=2.4 cv=Z+PsHGRA c=1 sm=1 tr=0 ts=68673f76 cx=c_pps
- a=IZJwPbhc+fLeJZngyXXI0A==:117 a=nuhDOHQX5FNHPW3J6Bj6AA==:17
- a=IkcTkHD0fZMA:10 a=Wb1JkmetP80A:10 a=VwQbUJbxAAAA:8 a=EUspDBNiAAAA:8
- a=COk6AnOGAAAA:8 a=UyySFntBJEnY6qwGPMMA:9 a=QEXdDO2ut3YA:10
- a=uG9DUKGECoFWVXl0Dc02:22 a=TjNXssC_j7lpFel5tvFf:22
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwNzA0MDAyMCBTYWx0ZWRfX4iZ+rvvUKzLT
- cJXc9aO25dcSlyxmyPQ17wzWONf0aXFgMoaBonUbo73gjJZdwAYwqZ/bvS5xd6RUBA4nTkMfOeE
- sc4c9COymyZnPgDaOYRntBlo2srv4r3BL3Yjlpi8Yapz1IF49vyl9aQu1TnTiyVmNoAXrhYmlfZ
- nhsMmRD7bqHvs+xu1FWeCuKvoO/OoOXqUUnIbqbzyDHg2Rwcr61OoCC00r+Fa8W4/8TovbGRw8F
- bB04guUAXIMCQdjjCCwn1hQsi6FzKv3XnXbfB0V7NEE4RklfZWq5O+Aaq2ry+ieNpSTJbgZcH/I
- b3J2ecLE3lOy2Kh0NArN5MnkGMxTd01EdOQqf7He6RwtQZI8+Q2lKlJcG8a/hTl3rYtzdEz7ACu
- zP68fE4EIXdyPwXUJxGJFaOUgavBOPYxcuIrJRUElrgIRmyfUqKRO3WSLad5Cl19opJxxfRY
-X-Proofpoint-GUID: hKsX04YoD80uUPJbVyw54HMd-02oqk2O
-X-Proofpoint-ORIG-GUID: hKsX04YoD80uUPJbVyw54HMd-02oqk2O
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1099,Hydra:6.1.7,FMLib:17.12.80.40
- definitions=2025-07-04_01,2025-07-02_04,2025-03-28_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- phishscore=0 lowpriorityscore=0 clxscore=1015 malwarescore=0 mlxlogscore=999
- spamscore=0 adultscore=0 mlxscore=0 priorityscore=1501 bulkscore=0
- impostorscore=0 suspectscore=0 classifier=spam authscore=0 authtc=n/a authcc=
- route=outbound adjust=0 reason=mlx scancount=1 engine=8.19.0-2505280000
- definitions=main-2507040020
+X-B4-Tracking: v=1; b=H4sIAJNDZ2gC/2XO3wqDIBiH4VsJj+fwT6btaPcxdmD6VcLK0CEb0
+ b3PYkFjh78PnxdnFCE4iOhSzChActH5MY/yVCDT67ED7GzeiBEmSEU4jpOLHZaqZbRSDBptUH4
+ 7BWjda+vc7nn3Lj59eG/ZRNfrXii/hUQxwULV3DZQ21rwqx4evnPmbPyA1kZiB0fl7tjqqK6I0
+ KpsrPh3/ODY/uPEszOS01ZIYKo2v25Zlg+IQNAaDAEAAA==
+To: Sunny Luo <sunny.luo@amlogic.com>, Mark Brown <broonie@kernel.org>, 
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>
+Cc: linux-amlogic@lists.infradead.org, linux-spi@vger.kernel.org, 
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+ Xianwei Zhao <xianwei.zhao@amlogic.com>, 
+ Conor Dooley <conor.dooley@microchip.com>
+X-Mailer: b4 0.12.4
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1751597972; l=1846;
+ i=xianwei.zhao@amlogic.com; s=20231208; h=from:subject:message-id;
+ bh=AN3zYOg/SC8p0HEnNd2sFLzv/mQYAsIfsucNFSrf+Ac=;
+ b=YOtuMj0B9H0vJgflB6YDqgr4DZR8xDKRQE+zqr8EJGDkPns+8Wx77xxiHz6G5IWKC70LWsVFx
+ SjJfINMCWdxDlZ4ZFu0uZcOT2TMP9aDOFCIZ4t90KAKctq0KAI8cb+d
+X-Developer-Key: i=xianwei.zhao@amlogic.com; a=ed25519;
+ pk=o4fDH8ZXL6xQg5h17eNzRljf6pwZHWWjqcOSsj3dW24=
+X-Endpoint-Received: by B4 Relay for xianwei.zhao@amlogic.com/20231208 with
+ auth_id=107
+X-Original-From: Xianwei Zhao <xianwei.zhao@amlogic.com>
+Reply-To: xianwei.zhao@amlogic.com
 
+Introduced support for the new SPI IP (SPISG). The SPISG is
+a communication-oriented SPI controller from Amlogic,supporting
+three operation modes: PIO, block DMA, and scatter-gather DMA.
 
+Add the drivers and device tree bindings corresponding to the SPISG.
 
-On 6/24/2025 2:04 PM, Jie Gan wrote:
-> The byte-cntr function provided by the CTCU device is used to count the
-> trace data entering the ETR. An interrupt is tiggered if the data size
-> exceeds the threshold set in the BYTECNTRVAL register. The interrupt
-> handler counts the number of triggered interruptions.
-> 
+Signed-off-by: Xianwei Zhao <xianwei.zhao@amlogic.com>
+---
+Changes in v4:
+- Add resets prop and modify some formats for bindings.
+- Remove irrelevant headers files and fix some issues.
+- Link to v3: https://lore.kernel.org/r/20250623-spisg-v3-0-c731f57e289c@amlogic.com
 
-Gentle ping.
+Changes in v3:
+- Rename of bit definition and fix some issues.
+- Enable runtime_suspend function.
+- Link to v2: https://lore.kernel.org/r/20250617-spisg-v2-0-51a605a84bd5@amlogic.com
 
-Thanks,
-Jie
+Changes in v2:
+- Use regmap to operation register and drop bitfied define.
+- Use "SPISG" prefix intead of "SPICC", and declare clock div table in the spisg_device. 
+- Delete other power operation functions except for runtime_supspend and runtime_resume.
+- Fix some format corrections.
+- Link to v1: https://lore.kernel.org/r/20250604-spisg-v1-0-5893dbe9d953@amlogic.com
 
-> Based on this concept, the irq_cnt can be used to determine whether
-> the etr_buf is full. The ETR device will be disabled when the active
-> etr_buf is nearly full or a timeout occurs. The nearly full buffer will
-> be switched to background after synced. A new buffer will be picked from
-> the etr_buf_list, then restart the ETR device.
-> 
-> The byte-cntr reading functions can access data from the synced and
-> deactivated buffer, transferring trace data from the etr_buf to userspace
-> without stopping the ETR device.
-> 
-> The byte-cntr read operation has integrated with the file node tmc_etr, e.g.
-> /dev/tmc_etr0
-> /dev/tmc_etr1
-> 
-> There are two scenarios for the tmc_etr file node with byte-cntr function:
-> 1. BYTECNTRVAL register is configured and byte-cntr is enabled -> byte-cntr read
-> 2. BYTECNTRVAL register is reset or byte-cntr is disabled -> original behavior
-> 
-> Shell commands to enable byte-cntr reading for etr0:
-> echo 0x10000 > /sys/bus/coresight/devices/ctcu0/irq_val
-> echo 1 > /sys/bus/coresight/devices/tmc_etr0/enable_sink
-> echo 1 > /sys/bus/coresight/devices/etm0/enable_source
-> cat /dev/tmc_etr0
-> 
-> Reset the BYTECNTR register for etr0:
-> echo 0 > /sys/bus/coresight/devices/ctcu0/irq_val
-> 
-> Changes in V3:
-> 1. The previous solution has been deprecated.
-> 2. Add a etr_buf_list to manage allcated etr buffers.
-> 3. Add a logic to switch buffer for ETR.
-> 4. Add read functions to read trace data from synced etr buffer.
-> Link to V2 - https://lore.kernel.org/all/20250410013330.3609482-1-jie.gan@oss.qualcomm.com/
-> 
-> Changes in V2:
-> 1. Removed the independent file node /dev/byte_cntr.
-> 2. Integrated the byte-cntr's file operations with current ETR file
->     node.
-> 3. Optimized the driver code of the CTCU that associated with byte-cntr.
-> 4. Add kernel document for the export API tmc_etr_get_rwp_offset.
-> 5. Optimized the way to read the rwp_offset according to Mike's
->     suggestion.
-> 6. Removed the dependency of the dts patch.
-> Link to V1 - https://lore.kernel.org/all/20250310090407.2069489-1-quic_jiegan@quicinc.com/
-> 
-> Jie Gan (10):
->    coresight: core: Refactoring ctcu_get_active_port and make it generic
->    coresight: core: add a new API to retrieve the helper device
->    dt-bindings: arm: add an interrupt property for Coresight CTCU
->    coresight: ctcu: enable byte-cntr for TMC ETR devices
->    coresight: tmc: add etr_buf_list to store allocated etr_buf
->    coresight: tmc: add create/delete functions for etr_buf_node
->    coresight: tmc: add prepare/unprepare functions for byte-cntr
->    coresight: tmc: add a switch buffer function for byte-cntr
->    coresight: tmc: add read function for byte-cntr
->    arm64: dts: qcom: sa8775p: Add interrupts to CTCU device
-> 
->   .../testing/sysfs-bus-coresight-devices-ctcu  |   5 +
->   .../bindings/arm/qcom,coresight-ctcu.yaml     |  17 ++
->   arch/arm64/boot/dts/qcom/sa8775p.dtsi         |   5 +
->   drivers/hwtracing/coresight/Makefile          |   2 +-
->   drivers/hwtracing/coresight/coresight-core.c  |  54 ++++
->   .../coresight/coresight-ctcu-byte-cntr.c      | 102 +++++++
->   .../hwtracing/coresight/coresight-ctcu-core.c | 113 ++++++--
->   drivers/hwtracing/coresight/coresight-ctcu.h  |  52 +++-
->   drivers/hwtracing/coresight/coresight-priv.h  |   4 +
->   .../hwtracing/coresight/coresight-tmc-core.c  |  70 ++++-
->   .../hwtracing/coresight/coresight-tmc-etr.c   | 270 ++++++++++++++++++
->   drivers/hwtracing/coresight/coresight-tmc.h   |  29 ++
->   12 files changed, 691 insertions(+), 32 deletions(-)
->   create mode 100644 Documentation/ABI/testing/sysfs-bus-coresight-devices-ctcu
->   create mode 100644 drivers/hwtracing/coresight/coresight-ctcu-byte-cntr.c
-> 
+---
+Sunny Luo (2):
+      spi: dt-bindings: Add binding document of Amlogic SPISG controller
+      spi: Add Amlogic SPISG driver
+
+Xianwei Zhao (1):
+      MAINTAINERS: Add an entry for Amlogic spi driver
+
+ .../devicetree/bindings/spi/amlogic,a4-spisg.yaml  |  59 ++
+ MAINTAINERS                                        |   9 +
+ drivers/spi/Kconfig                                |   9 +
+ drivers/spi/Makefile                               |   1 +
+ drivers/spi/spi-amlogic-spisg.c                    | 871 +++++++++++++++++++++
+ 5 files changed, 949 insertions(+)
+---
+base-commit: bd30b995df8fd053e13d10f78dbc7b2fa5ed1aae
+change-id: 20250603-spisg-78f21682ebac
+
+Best regards,
+-- 
+Xianwei Zhao <xianwei.zhao@amlogic.com>
+
 
 
