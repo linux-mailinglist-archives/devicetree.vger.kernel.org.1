@@ -1,374 +1,167 @@
-Return-Path: <devicetree+bounces-193057-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-193058-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id EA37EAF9122
-	for <lists+devicetree@lfdr.de>; Fri,  4 Jul 2025 13:14:24 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id D8100AF915F
+	for <lists+devicetree@lfdr.de>; Fri,  4 Jul 2025 13:20:49 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 91D2D1882F3B
-	for <lists+devicetree@lfdr.de>; Fri,  4 Jul 2025 11:14:38 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 3B9C05827D1
+	for <lists+devicetree@lfdr.de>; Fri,  4 Jul 2025 11:20:50 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 999472F2C78;
-	Fri,  4 Jul 2025 11:13:56 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 54FBE2C15AE;
+	Fri,  4 Jul 2025 11:20:45 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b="pYuy8hE1"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtpbgsg2.qq.com (smtpbgsg2.qq.com [54.254.200.128])
+Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [213.167.242.64])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9543A2E9742;
-	Fri,  4 Jul 2025 11:13:49 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=54.254.200.128
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9DEF7258CC0;
+	Fri,  4 Jul 2025 11:20:43 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=213.167.242.64
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1751627636; cv=none; b=X+eP0S4MeAOq7Z2LqmQC1LXaJggR9YRwUHqJV4AB3UFyTLVfqkpQvoaVLfH4Z2IewSYljjHNV3k5eCgfMMtNf5OI3BQrGKy3PZqi2dbvHqjHRPvYifGFkBsxR/dx9RUzBOQKvZ9OZzuNlwo5Fh73N+dELfa6TEJFEpv7xusSSu8=
+	t=1751628045; cv=none; b=HAVEEFVI5FzXcZ2C2DUo01d/X7nMkjjXHECZqL3CUsO79TeQHL253p0oO0TQhaHffM1sYCfJTZEdR3ZD8nzOsLkQ71mrnLaceejG07zML0x1m92izmfD9+Bd09kmTP0AQCs0h8Akw2G0SB8jgOzeKwkp/ULze87Y01byGTZfjQY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1751627636; c=relaxed/simple;
-	bh=TLjgjAKejhWnQQrBZuOEj0t8hkGOC2g238gXlgd2e4I=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=qqQLgr4xPxnlgyXnIqR75cwk3/U+KaNeRcZlGczNtdbcb6oAvLbPJPbHXG9DS5ZIRCzpRTvohhykWZ0CPqv1o8cmVQ3WcgxyoZc+40MTLNVN5lzFFGExfhwU2wPW4iiLM9ugWG2Gh2ShU2CojPKblK8crgS9aDyZ+TsmJ+MmK/U=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=foursemi.com; spf=pass smtp.mailfrom=foursemi.com; arc=none smtp.client-ip=54.254.200.128
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=foursemi.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=foursemi.com
-X-QQ-mid: zesmtpgz8t1751627568tf11212fc
-X-QQ-Originating-IP: DyyCLDr/VddxgWOyG6FtBM3EuCWAmFKBNj6PFHf6uvs=
-Received: from localhost ( [183.17.231.150])
-	by bizesmtp.qq.com (ESMTP) with 
-	id ; Fri, 04 Jul 2025 19:12:47 +0800 (CST)
-X-QQ-SSF: 0000000000000000000000000000000
-X-QQ-GoodBg: 0
-X-BIZMAIL-ID: 7044233768972954240
-EX-QQ-RecipientCnt: 12
-Date: Fri, 4 Jul 2025 19:12:47 +0800
-From: Nick Li <nick.li@foursemi.com>
-To: Mark Brown <broonie@kernel.org>
-Cc: lgirdwood@gmail.com, robh@kernel.org, krzk+dt@kernel.org,
-	conor+dt@kernel.org, perex@perex.cz, tiwai@suse.com,
-	xiaoming.yang@foursemi.com, danyang.zheng@foursemi.com,
-	linux-sound@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v1 2/4] ASoC: codecs: Add FourSemi FS2104/5S audio
- amplifier driver
-Message-ID: <1C4720AC50797830+aGe3L70OToh6txmC@foursemi.com>
-References: <20250703035639.7252-1-nick.li@foursemi.com>
- <20250703035639.7252-3-nick.li@foursemi.com>
- <b1ad15d1-bf9f-4b94-abb8-1e9c6d512987@sirena.org.uk>
+	s=arc-20240116; t=1751628045; c=relaxed/simple;
+	bh=N4dlHWBi2Yw9Z2ZRxUydBN+ggzvwZfk/YrAhBy+usOg=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=bLQk9BjSOfTyTnJKi2WZChWAzAQAsV4Bw94yLM7eyf/S1jrgTZ4AppwunFG1EQQ8YE9izdFxdQJ5hDBecc8iiZi3ZkoonpVxOKrR9hLevQbKPdg1JIUoI46GZseSnZT9xzqyppkocrFLG6QIUMwhKvxAlwr1OPjDUpbAZAHHa5I=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ideasonboard.com; spf=pass smtp.mailfrom=ideasonboard.com; dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b=pYuy8hE1; arc=none smtp.client-ip=213.167.242.64
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ideasonboard.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ideasonboard.com
+Received: from [127.0.1.1] (cpc141996-chfd3-2-0-cust928.12-3.cable.virginm.net [86.13.91.161])
+	by perceval.ideasonboard.com (Postfix) with ESMTPSA id 53C15669;
+	Fri,  4 Jul 2025 13:20:16 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
+	s=mail; t=1751628016;
+	bh=N4dlHWBi2Yw9Z2ZRxUydBN+ggzvwZfk/YrAhBy+usOg=;
+	h=From:Subject:Date:To:Cc:From;
+	b=pYuy8hE1iM8gnZo5SclQElv201Kg90dEgmOu1tdyXMPEJUbYuHlWiEFminIuAjVth
+	 /IwB0lwenzLoNV5FDkUVqFrrMQEUh4kLwBDWuGWDWvOfQG8Jrzt244Vt9l1wy+s+QA
+	 xnwjnY0vy9RAeMc8K3/uat8bybl3QTh33ylvfm5w=
+From: Daniel Scally <dan.scally@ideasonboard.com>
+Subject: [PATCH v3 0/5] Add Input Video Control Block driver for RZ/V2H
+Date: Fri, 04 Jul 2025 12:20:17 +0100
+Message-Id: <20250704-ivc-v3-0-5c45d936ef2e@ideasonboard.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-In-Reply-To: <b1ad15d1-bf9f-4b94-abb8-1e9c6d512987@sirena.org.uk>
-X-QQ-SENDSIZE: 520
-Feedback-ID: zesmtpgz:foursemi.com:qybglogicsvrsz:qybglogicsvrsz3a-0
-X-QQ-XMAILINFO: Nr5N425iK0yrrbPt1Ur/z62sh7k24J83ypD9WyxpXv0brnfcnktEh1Ym
-	76hvkRpdcJNFSR1GaM8zxGh+albknYSxuieVdWGGWZyOdQGgpu2RH1a5PaQ9FHUE4+DvJKU
-	VW++t+144A877EvroqOOf5PIceUMDgBSgm4aUDvcE9+QUoGPMklwXDwkVyTmKi5rwnTZuI3
-	nMC1mV0zar/mSmSjxd7D5sTwV3ETrFKdJfaf63HwNUcLH7AxoncmzRHMeNFO+jzMhja1HLG
-	1paOo63RSUUTPH4gon4RGNhBAsb081zTwJDhXDB39BSzyZSR/J/ydI8lyOU178MTB6DCrsR
-	UdfiRQkd0QQdVL1TrJsPUhrXR7VNH2LBjL9vttD6MRuEdg3EF8shBVeIYR+BQoJTF5pwNfa
-	2oHH8BTiFzyT8Dkd1ixcyWJ74aMbmFKb+XyixI240aQZ0GRtXbMlKuy15Hl5t0zu7lM0BNV
-	gu7Km5u/sbVYnEnbdUFJiJw03V5r7gYv30Ikmou4Scj0S7K9GsKu24AqZItKI0iR465RN5V
-	7oypCifzrexWykzBdSmUXiASpLnLEfiESEKlcqbVP4cVXAywZAjjD4OkmTXfSoC6fUGzRy5
-	EPplX4MsqT0PlGfBu1EX4UbBXv7Kd4Pd2DhdlsJXtpXhlb6/gSDknznaIJla8gdyW1RmLN8
-	/Ynb+0xY3vLHp7v+RIsLiYC3q3N2YNzzVuzOXFQkjm6FrKocJ+Bz0MKnDzJWQVLiiiLK6ST
-	lARmA2/3Piy+sT/+drbKd2HrmDAn4GqXIZa6QweFYKs1lg+z4i0DH7E6Tp4ASSPfTA/8z6w
-	SHeRJUG5LOsDAfT2BDGTQRUvoDgrPWQyZVQGiicqXXnPt1vz/MXS3NeGqmL1g6cAXX0lUKM
-	EdgYxmXpxfotWLEm1vyYRpmqJSVPXldPQhy/P/Tc4RHS3tAJHFsIkm9Ru3G86vY2yFmByc+
-	U2JZnnHOQ0dG4I5X00iIJ7qqgc1QF46LIDvncva3uFwV5Q6JYeX8Ama7FRoNQu8/SY7+COu
-	H9kAnQ5XNlOzK8W+OU4E3Wvj/NqS0=
-X-QQ-XMRINFO: MSVp+SPm3vtS1Vd6Y4Mggwc=
-X-QQ-RECHKSPAM: 0
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIAPG4Z2gC/2WSzW7bQAyEX8XQuTKWP/vnU9+jyIFLcmsBiZ1Kr
+ tEgyLt34xYo7N5EaOebITjv0+br4tt02L1Pq1+XbTmfxkBfdpMe5fTd58XGPGHAGBLyvFx1LkS
+ GTDlBytN4+bp6X37dKN+extzX88t8Oa4u/7QRKnDMkfccOYQ4w2xy2m8qz89vXxdz2c6ndpbV9
+ np++Utd/cfPEenyBz012Xwef1+Wy2EHFTM2yiLcC6lEbNarQrJoBZoZUGSufEPJRY9jk8NOHHo
+ MHCnXHiuzdYgWekIXlVoCpcjiRPeqPsDdAuZcyAeTOmABy5VMpTPnmlgzPnoV80gJqWZNwg2sd
+ CbRBkjemilDwLHGvcp65tIAikbsxpga5gAhV5PSNYQAkqGE/OCFHgtLbFBqq7lmEmnpU0fDuwf
+ PKahAuVdhTCWxazBrXUmSZ29RXCGKkTZHa875wctVIxcad+wjI5aqoZJnAIs8NgM1K02p3atAX
+ BJBEhSW3OLn96D3cboUiM3TsE0Zp88GHZftcl7fbrW84u34dw284hxmH8ltJA9S0/8Nevr4+Pg
+ NLwEAXd8CAAA=
+X-Change-ID: 20250624-ivc-833d24376167
+To: linux-media@vger.kernel.org, devicetree@vger.kernel.org, 
+ linux-renesas-soc@vger.kernel.org
+Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, 
+ Geert Uytterhoeven <geert+renesas@glider.be>, 
+ Magnus Damm <magnus.damm@gmail.com>, Philipp Zabel <p.zabel@pengutronix.de>, 
+ jacopo.mondi@ideasonboard.com, biju.das.jz@bp.renesas.com, 
+ Daniel Scally <dan.scally@ideasonboard.com>
+X-Mailer: b4 0.14.2
+X-Developer-Signature: v=1; a=openpgp-sha256; l=3661;
+ i=dan.scally@ideasonboard.com; h=from:subject:message-id;
+ bh=N4dlHWBi2Yw9Z2ZRxUydBN+ggzvwZfk/YrAhBy+usOg=;
+ b=owEBbQKS/ZANAwAKAchJV3psRXUyAcsmYgBoZ7kBoSwDnlqqAg27ZctLvqRYisRkiMWmujHE9
+ NQHwX/isQeJAjMEAAEKAB0WIQQqyuwyDnZdb+mxmm/ISVd6bEV1MgUCaGe5AQAKCRDISVd6bEV1
+ Mjh8D/9tMnKxm0EOfSDVveUdybgnldv6fdxifE5Ha5IQR2yHGCw7f/LUULvoSJrE8RA9xoubfhZ
+ dSBxfvkSDal9BmmfNq0nuz6BaMSbk8iHmuH51mQ/VlES7gvGkKtf6KBTUiBTZAtXJQxWFaymXjm
+ cLOQ2mETLDSLUdr693AQkO/Whsh7Bo1iIKNhuyTtjSixfN4lIQ/sAjBsMOWcD1OfACt0wt9NkAF
+ M8TYsAQoHyYLaAUTakAp26LpQWGJqco7CTILF+NLu9klKQXzmTZTNLEfYwtr1tzziPNFt2A4aOo
+ LCdnetmAYydOoOdO74daV1xzTnhrO0MkYoWB/Mqnlo9ZrxVrwS2o/yYLPqmc3zXDj+WpWEmyQnp
+ nRZR2xINDP4dYiLjUxeN9Fi4hc32o3YUlhvH7sI3f7nMkkYHaIEPYNzWuIdx/srHFnqxo/izkAL
+ hxQu1/gGTHOFBtEJUyPgOL5AUH3sWUfhNyQA00Ms/qebLcYqST6DJ6Prs7RM1u84CDb9qXUi8nU
+ gSuKKe0fusQvemjpHLt+MJPHDPuTNl854Sk5DORv4y5+6MlojABlTNdh2Qa1D9tpexPUH/19ePt
+ 90RivLLndlchTWwr6h/UqXFlga6m2Od6oiJR7PrHMuyzStBJk1UJrIMC1Pa0CTXB/tGBszHc4da
+ /L4bNQJ4C7tTS8w==
+X-Developer-Key: i=dan.scally@ideasonboard.com; a=openpgp;
+ fpr=EEC699ACA1B7CB5D31330C0BBD501C2A3546CCF6
 
-On Thu, Jul 03, 2025 at 03:59:34PM +0100, Mark Brown wrote:
-> On Thu, Jul 03, 2025 at 11:56:37AM +0800, Nick wrote:
-> 
-> > +++ b/sound/soc/codecs/fs210x.c
-> > @@ -0,0 +1,1616 @@
-> > +// SPDX-License-Identifier: GPL-2.0
-> > +/*
-> > + * fs210x.c -- Driver for the FS2104/5S Audio Amplifier
-> > + *
-> > + * Copyright (C) 2016-2025 Shanghai FourSemi Semiconductor Co.,Ltd.
-> 
-> Please make the entire comment a C++ one so things look more
-> intentional.
+Hello all
 
-OK, we will update to use // istead of /**/
+This series adds a driver for the Input Video Control Block in the
+RZ/V2H SoC. The IVC block transmits input image data from memory to
+the ISP core (on this SoC, a Mali-C55 ISP). The driver registers an
+output video device for userspace to queue image buffers to. One
+noteworthy feature is that - because it is not a part of the main ISP
+drive - the IVC driver also registers a subdevice, which connects to
+the media device created by the ISP driver through the usual v4l2
+async framework. This requires delaying the registration of the video
+device until the .registered() callback of the subdevice, so that the
+struct v4l2_dev pointer the subdevice connected to can be set to the
+video device.
 
-> 
-> > +#define FS210X_DRV_VERSION		"v1.0.6"
-> 
-> We generally don't do versions for components within the kernel, nobody
-> is going to update it going forward.
+This version of the driver drops the reliance on the new media
+framework that was posted recently [1], so can be merged without it
+and updated later. One patch from that series is retained here though
+(since it's used independently of the new framework) and another new
+patch added to add a new helper in V4L2. The series is also based on
+top of the latest version of the Mali-C55 driver [2] and some updates
+to rzg2l-cru [3].
 
-OK, we will delete the version and related calls
+Thanks
+Dan
 
-> 
-> > +static int fs210x_reg_read(struct fs210x_priv *fs210x,
-> > +			   u8 reg, u16 *pval)
-> 
-> > +	if (pval)
-> > +		*pval = (u16)val;
-> > +
-> 
-> If this cast is needed that's a bit worrying.
+[1] https://lore.kernel.org/linux-media/20250624-media-jobs-v2-0-8e649b069a96@ideasonboard.com/T/#t
+[2] https://lore.kernel.org/linux-media/20250624-c55-v10-0-54f3d4196990@ideasonboard.com/T/#t
+[3] https://lore.kernel.org/linux-media/20250625-rzg2l-cru-v6-0-a9099ed26c14@ideasonboard.com/T
 
-OK, we will delete the judgement.
+---
+Changes in v3:
+- Added two new patches that create helpers in V4L2 and mc core that
+  the driver then consumes.
 
-> 
-> > +	dev_dbg(fs210x->dev, "RR: %02x %04x\n", reg, val);
-> 
-> We do have a lot of logging support in regmap which is more
-> controllable.
+- Link to v2: https://lore.kernel.org/r/20250624-ivc-v2-0-e4ecdddb0a96@ideasonboard.com
 
-OK, we will remove this debug log, it's for test.
+---
+Daniel Scally (5):
+      media: mc: entity: Add pipeline_started/stopped ops
+      media: v4l2-dev: Add helpers to run media_pipeline_[started|stopped]()
+      dt-bindings: media: Add bindings for the RZ/V2H IVC block
+      media: platform: Add Renesas Input Video Control block driver
+      MAINTAINERS: Add entry for rzv2h-ivc driver
 
-> 
-> > +static int fs210x_reg_dump(struct fs210x_priv *fs210x)
-> > +{
-> 
-> This is duplicating regmap's debugfs.
-
-We use it to print reigsters when the device accors a fault in the checking
-monitor, especially for dealing with probabilistic issues,
-these logs are beneficial for analyzing the problem.
-
-> 
-> > +	} else if (pkg->cmd == FS_CMD_DELAY) {
-> > +		if (pkg->regv.val > FS_CMD_DELAY_MS_MAX)
-> > +			return -ENOTSUPP;
-> > +		delay_us = pkg->regv.val * 1000;
-> > +		usleep_range(delay_us, delay_us + 50);
-> 
-> Just use fsleep(), it'll use the most sensible delay type for the delay.
-> In general this applies to all delays in the driver, but especially with
-> a variable delay like this.
-
-OK, we will replace usleep_range to fsleep
-
-> 
-> > +static int fs210x_set_pcm_volume(struct fs210x_priv *fs210x)
-> 
-> > +	ret  = fs210x_reg_write(fs210x, FS210X_39H_LVOLCTRL, vol[0]);
-> > +	ret |= fs210x_reg_write(fs210x, FS210X_3AH_RVOLCTRL, vol[1]);
-> > +
-> 
-> This looks pretty generic, why is it not using a standard control type?
-
-1. We use regmap as REGMAP_NONE, because most of the registers settings
-   are in the firmware, if we use a standard control,the driver shouldn't
-   cache the registers after suspending the device(it will be reset).
-2. The volume registers of FS2104 and FS2105S are different,
-   if we us a stardard control, we need two controls,
-   and register it by checking the device type.
-so we customize the volume control.
-
-> 
-> > +	ret = fs210x_set_pcm_volume(fs210x);
-> 
-> The driver should use the device defaults rather than having to 
-
-The volume contorl can be used to set different volumes,
-the volume will be masked in fs210x->vol[2],
-we restore the volume when the driver resumes(reinitializes) the deivce.
-
-> 
-> > +static void fs210x_sdz_pin_set(struct fs210x_priv *fs210x, bool active)
-> > +{
-> > +	if (!fs210x || !fs210x->gpio_sdz)
-> > +		return;
-> 
-> Shouldn't this be integrated with the chip init/reset?
-
-1. We implement this function(reset and wait times) to clarify that
-   pulling up/down the SDZ/reset pin must to wait enougth delay time.
-
-> 
-> > +static int fs210x_mute(struct fs210x_priv *fs210x, bool mute)
-> > +{
-> > +	int ret;
-> > +
-> > +	if (mute) {
-> > +		cancel_delayed_work_sync(&fs210x->fault_check_work);
-> > +		cancel_delayed_work_sync(&fs210x->start_work);
-> > +		mutex_lock(&fs210x_mutex);
-> > +		ret = fs210x_dev_stop(fs210x);
-> > +		mutex_unlock(&fs210x_mutex);
-> > +		return ret;
-> > +	}
-> 
-> Mute is expected to be a really fast operation, this is stopping the
-> device entirely and fiddling about with locks (which were held where?).
-> This looks like the device just doesn't support mute.
-
-To avoid the pop noise, the device will fade out when we mute/stop it,
-and the power down sequence of FS210x requests the driver to wait
-enougth times before the BCLK is off or starting device in next time.
-
-> 
-> > +	/*
-> > +	 * According to the power up/down sequence of FS210x,
-> > +	 * the FS210x requests the I2S clock has been present
-> > +	 * and stable(>= 2ms) before it playing.
-> > +	 */
-> > +	if (fs210x->clk_bclk) {
-> > +		mutex_lock(&fs210x_mutex);
-> > +		ret = fs210x_dev_play(fs210x);
-> > +		mutex_unlock(&fs210x_mutex);
-> > +	} else {
-> 
-> This is definitely not appropriate for mute, it should be in the power
-> management flow - either set_bias_level() or a DAPM widget.
-
-1. Because the device uses BCLK clock as the clock source,
-   we need to start the device in the life cycle of the clock,
-   also we need to start device after the PLL setting(set in dai->hw_params)
-   so we start the device in here: dai->mute_stream(unmute)
-2. If the SOC(s) doesn't have the clock(bclk) for us to configure,
-   It meams no clock bclk defined in the DTS,
-   and the clock is activated in dai->trigger start usually,
-   so we will use a delay work to start the device in here.
-
-Any good ideas about satisfying this power up/down sequence?
-
-> 
-> > +	case SND_SOC_DAIFMT_CBC_CFC:
-> > +		/* Only supports slave mode */
-> 
-> consumer mode.
-
-OK.
-
-> 
-> > +static int fs210x_dai_hw_params(struct snd_pcm_substream *substream,
-> > +				struct snd_pcm_hw_params *params,
-> > +				struct snd_soc_dai *dai)
-> 
-> > +	dev_info(fs210x->dev, "hw params: %d-%d-%d\n",
-> > +		 fs210x->srate, chn_num, fs210x->bclk);
-> 
-> No dev_info() prints in the normal playback/record flow, that just spams
-> the logs too easily.
-
-OK.
-
-> 
-> > +	/* The FS2105S can't support 16kHz sample rate. */
-> > +	if (fs210x->devid == FS2105S_DEVICE_ID && fs210x->srate == 16000)
-> > +		return -ENOTSUPP;
-> 
-> This should be reported in constraints too.
-
-OK.
-
-> 
-> > +	if (!(status & FS210X_05H_AMPS_MASK))
-> > +		dev_err(fs210x->dev, "Amplifier unready\n");
-> 
-> Does this get triggered during the normal start/stop flow?
-
-It will get triggered when:
-1. BCLK clock is closed before stoping device
-2. BCLK clock is opened after starting device
-We should avoid these power up/down sequence, it may cause pop noise,
-If they happens, it should be reported and fixed?
-
-> 
-> > +	schedule_delayed_work(&fs210x->fault_check_work,
-> > +			      msecs_to_jiffies(FS210X_FAULT_CHECK_INTERVAL_MS));
-> 
-> Might be good to have this tunable from sysfs.
-
-Good idea, or set the interval times by the DTS property.
-We are considering adding a DTS property:
-foursemi,monitor-period-ms
-
-> 
-> > +static int fs210x_pcm_volume_put(struct snd_kcontrol *kcontrol,
-> > +				 struct snd_ctl_elem_value *ucontrol)
-> > +{
-> > +	struct fs210x_priv *fs210x;
-> > +	long *pval;
-> > +	int ret;
-> > +
-> > +	ret = fs210x_get_drvdata_from_kctrl(kcontrol, &fs210x);
-> > +	if (ret || !fs210x->dev) {
-> > +		pr_err("pcm_volume_put: fs210x is null\n");
-> > +		return -EINVAL;
-> > +	}
-> > +
-> 
-> _put() callbacks should return 1 when the control changes values, though
-> as indicated above I'm not clear this needs to be a custom control at
-> all.  Please run mixer-test against your driver, it will check for this
-> and other issues.
-
-OK, will fix it in next version.
-
-> 
-> > +static int fs210x_effect_scene_put(struct snd_kcontrol *kcontrol,
-> > +				   struct snd_ctl_elem_value *ucontrol)
-> > +{
-> 
-> > +	/*
-> > +	 * FS210x has scene(s) as below:
-> > +	 * init scene: id = 0(It's set in fs210x_init_chip() only)
-> > +	 * effect scene(s): id = 1~N (optional)
-> > +	 * scene_id = effect_index + 1.
-> > +	 */
-> > +	scene_id = ucontrol->value.integer.value[0] + 1;
-> > +	if (fs210x->is_suspended) {
-> > +		fs210x->scene_id = scene_id;
-> > +		mutex_unlock(&fs210x_mutex);
-> > +		return 0;
-> > +	}
-> 
-> This doesn't validate the passed value at all.
-
-OK, I will fix it.
-
-> 
-> > +static int fs210x_probe(struct snd_soc_component *cmpnt)
-> > +{
-> > +	struct fs210x_priv *fs210x;
-> > +	int ret;
-> 
-> > +	INIT_DELAYED_WORK(&fs210x->fault_check_work, fs210x_fault_check_work);
-> > +	INIT_DELAYED_WORK(&fs210x->start_work, fs210x_start_work);
-> > +
-> > +	fs210x_get_bclk(fs210x, cmpnt);
-> 
-> This sort of initialisation and resource acquisition that doesn't
-> require any audio stuff should be done at the bus level so that we don't
-> register with ASoC until all the inputs are ready.
-> 
-
-OK, we will do these work in i2c probe
-
-> > +#ifdef CONFIG_PM
-> > +static int fs210x_suspend(struct snd_soc_component *cmpnt)
-> > +{
-> > +	struct fs210x_priv *fs210x;
-> > +	int ret;
-> > +
-> > +	fs210x = snd_soc_component_get_drvdata(cmpnt);
-> > +	if (!fs210x || !fs210x->dev)
-> > +		return -EINVAL;
-> > +
-> > +	cancel_delayed_work_sync(&fs210x->start_work);
-> > +	cancel_delayed_work_sync(&fs210x->fault_check_work);
-> > +
-> > +	mutex_lock(&fs210x_mutex);
-> 
-> We don't need to prevent new work being scheduled?
-
-Could you please explain more details to help me understand and test this case?
-Thanks.
+ .../bindings/media/renesas,r9a09g057-ivc.yaml      | 103 ++++
+ MAINTAINERS                                        |   7 +
+ drivers/media/mc/mc-entity.c                       |  46 ++
+ drivers/media/platform/renesas/Kconfig             |   2 +
+ drivers/media/platform/renesas/Makefile            |   1 +
+ drivers/media/platform/renesas/rzv2h-ivc/Kconfig   |  16 +
+ drivers/media/platform/renesas/rzv2h-ivc/Makefile  |   5 +
+ .../platform/renesas/rzv2h-ivc/rzv2h-ivc-dev.c     | 228 +++++++++
+ .../platform/renesas/rzv2h-ivc/rzv2h-ivc-subdev.c  | 376 ++++++++++++++
+ .../platform/renesas/rzv2h-ivc/rzv2h-ivc-video.c   | 568 +++++++++++++++++++++
+ .../media/platform/renesas/rzv2h-ivc/rzv2h-ivc.h   | 131 +++++
+ drivers/media/v4l2-core/v4l2-dev.c                 |  57 +++
+ include/media/media-entity.h                       |  29 ++
+ include/media/v4l2-dev.h                           |  36 ++
+ 14 files changed, 1605 insertions(+)
+---
+base-commit: 19272b37aa4f83ca52bdf9c16d5d81bdd1354494
+change-id: 20250624-ivc-833d24376167
+prerequisite-patch-id: ae1f5045379f5944df15d0f62eaca9803654ae33
+prerequisite-patch-id: ff9cfd027783e4943f1281d793dcaf447964c724
+prerequisite-patch-id: a8de5362397c6a4b1d8f43acb123ebbdc4102192
+prerequisite-patch-id: df748b118c52fd426b2701079da8fc0001a71807
+prerequisite-patch-id: a2e584a5b189b97973aab601073c6af0e760ca18
+prerequisite-patch-id: 256864ec0ddbfc3a6e7eb5aec15ad3cbe2dbe477
+prerequisite-patch-id: ecc5483454fc52289c093e711d5423e1cdd8bc3b
+prerequisite-patch-id: 1aea6316a2a4a7b56316dbef3ca6034de6ec1672
 
 Best regards,
-Nick
+-- 
+Daniel Scally <dan.scally@ideasonboard.com>
 
 
