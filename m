@@ -1,118 +1,170 @@
-Return-Path: <devicetree+bounces-192894-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-192895-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 82B6BAF86C7
-	for <lists+devicetree@lfdr.de>; Fri,  4 Jul 2025 06:30:31 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1CAC1AF86DD
+	for <lists+devicetree@lfdr.de>; Fri,  4 Jul 2025 06:45:57 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 1FB1C1C8603D
-	for <lists+devicetree@lfdr.de>; Fri,  4 Jul 2025 04:30:16 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 71E474E740E
+	for <lists+devicetree@lfdr.de>; Fri,  4 Jul 2025 04:45:57 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id ADC9B1E5B7B;
-	Fri,  4 Jul 2025 04:27:09 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E5B891E9B29;
+	Fri,  4 Jul 2025 04:45:49 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="QwXPbPGf"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="FvcUe5pI"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.9])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-pl1-f172.google.com (mail-pl1-f172.google.com [209.85.214.172])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EDB021DBB0C;
-	Fri,  4 Jul 2025 04:27:07 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.198.163.9
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 673171DF26B;
+	Fri,  4 Jul 2025 04:45:48 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.172
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1751603229; cv=none; b=AxZRjUGYX5q/T+t7rneBQpiXvfwDvl3l4I3Il5IcBELhiI4N0datYkTUqS2YDCy+u9YGpoEjY2xPlHdapCj4HhjRT5/SX503Dv96jLbYG98K7TGDkqlpopdhyedDTkJwuMBRYZCFIDJopFrsNpxaN9IYiJC2t6wBKgOxvrjSimI=
+	t=1751604349; cv=none; b=bq7aEbiUvOtt7kZzSUGzIE+5k0JI6tdmDYi1UOEbbxUQYFfoB1tlkJLE2vGHTrbF58fAJp3B7u/OyC4uDe6dZFIqqHc3j2tqZv3G8G10e0ghMBjMgbOidSyg+5Z1BPhgkxv4/+MZDc/ZdwQ/SSgTSs7MQzfL7fLKchbHp8o/nP8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1751603229; c=relaxed/simple;
-	bh=GKXto71WjEelALVNdhvteys9iJZSXbhQ+UrUOK5zL+Q=;
+	s=arc-20240116; t=1751604349; c=relaxed/simple;
+	bh=CKP5uRYNVSYBRlVHhDqtjsaI9DEjKWDdEjiU0/9YFGU=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=PpG66m8yx1Cepj31FaFu0JD0Lu0ayrxK18zPkKNG0pkv0e6vLduvG2DyL4xOf3JwDFzy50USO8uMAvYrR1rUFsNTOzWzPTcJ3IE3zyhBgNWmMJCl25Q/M6CMaXXju3figmggB/eH8vAYFd6sjx3tjPJJBjpwHBGLEAlHA/r+iYU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=QwXPbPGf; arc=none smtp.client-ip=192.198.163.9
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1751603228; x=1783139228;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=GKXto71WjEelALVNdhvteys9iJZSXbhQ+UrUOK5zL+Q=;
-  b=QwXPbPGfzhcjO8wTFj+vNefF/3i+sUa6++TnAQhYvtqoSRwxPNgR0m2b
-   rub786yZbAHx4sa7SXXN2F4wgyEkxWZp7w9ulsRtiXBtEiz5DEaMDAS5u
-   4Q5Nt0eQxvHdkcRNmNLxthsK98oRm6vd30L5/1O87GYbSvXzMajets3Ph
-   +Wd5napfcOzwYePhNJs/QzTrqgcWr1CPCuRsExtmREJ7OH8Yu5v4fXWj/
-   CNGLf58HwpUyqJEZfHaxyrO+XNcxxVa8bGnzu1ZaZxUimFSEOC3JaBISr
-   p/zwl1/XkvAWzGertOrAIQm2xJRPp5mI4u18gYF0DLHSmwRKnE+xrqAgh
-   Q==;
-X-CSE-ConnectionGUID: ioWjBK3HR3u7pV9aBCGkaw==
-X-CSE-MsgGUID: kOXR6wjFTyKlKUzZyAoLvg==
-X-IronPort-AV: E=McAfee;i="6800,10657,11483"; a="64629310"
-X-IronPort-AV: E=Sophos;i="6.16,286,1744095600"; 
-   d="scan'208";a="64629310"
-Received: from fmviesa003.fm.intel.com ([10.60.135.143])
-  by fmvoesa103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 03 Jul 2025 21:27:07 -0700
-X-CSE-ConnectionGUID: NARYHCX/SiKnG2tHm0XMgA==
-X-CSE-MsgGUID: e6fRi3aoSTqQyVlz1ODRdw==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.16,286,1744095600"; 
-   d="scan'208";a="158577679"
-Received: from lkp-server01.sh.intel.com (HELO 0b2900756c14) ([10.239.97.150])
-  by fmviesa003.fm.intel.com with ESMTP; 03 Jul 2025 21:27:05 -0700
-Received: from kbuild by 0b2900756c14 with local (Exim 4.96)
-	(envelope-from <lkp@intel.com>)
-	id 1uXY0s-0003Kh-2r;
-	Fri, 04 Jul 2025 04:27:02 +0000
-Date: Fri, 4 Jul 2025 12:26:05 +0800
-From: kernel test robot <lkp@intel.com>
-To: Sayali Lokhande <quic_sayalil@quicinc.com>, andersson@kernel.org,
-	konradybcio@kernel.org, robh@kernel.org, krzk+dt@kernel.org,
-	conor+dt@kernel.org
-Cc: oe-kbuild-all@lists.linux.dev, linux-arm-msm@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	linux-mmc-owner@vger.kernel.org
-Subject: Re: [PATCH V3 2/3] arm64: dts: qcom: Add eMMC support for qcs8300
-Message-ID: <202507041209.XrPwGbTd-lkp@intel.com>
-References: <20250702085927.10370-3-quic_sayalil@quicinc.com>
+	 Content-Type:Content-Disposition:In-Reply-To; b=mj26sRuiQLpoHqoO30SlVUUu03rJ06kT221rTAMmuV0nQo0Gk/gT5YxZCO/SbgPS9v0zMUc9j50xnSP8ZwFgfxRMA49Kjy9E4to2yg4YcPU4Dq2pVvLzW0YUK0SBmyUuPz7mOm1vfPJuV06qo1Yr/SrVzojx//fUXzsH61Da6wA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=FvcUe5pI; arc=none smtp.client-ip=209.85.214.172
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-pl1-f172.google.com with SMTP id d9443c01a7336-2353a2bc210so6078995ad.2;
+        Thu, 03 Jul 2025 21:45:48 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1751604348; x=1752209148; darn=vger.kernel.org;
+        h=in-reply-to:content-transfer-encoding:content-disposition
+         :mime-version:references:message-id:subject:cc:to:from:date:from:to
+         :cc:subject:date:message-id:reply-to;
+        bh=cG3nGFKHy1r5C+lPIaBzR6QdGIwuCZhkFG9bY42b6Jw=;
+        b=FvcUe5pIEOZejOMCEenvkrUWpbOkZ6p5g3D87RJiwUvGy2nPVn9E/vsd/G104gdV9u
+         GzPyO3VWcg+6nxhpmVCP7NaypsLf8xOgEVSQUb1UqgxKqrAgribcs6t8XxUkwkdPrwHg
+         kLXgWFGQ6rs5EKpA2RR/xtz+wB9p/bZXfsHw1bNlPor1zn1rvnDttUHBk15/HDOkQWIn
+         nvrwOevoClbe3FgJEznJNw9dg7TME17brdjHBE4/4c9y4oPzqj5JBok/Y9l3iq0QAWAq
+         s6+Fw89e885EEKTmgg3bXhfG4srFdeLQC7cSyhgfQZis93JphvIwImVUUjL7qbLNXVd5
+         WgiA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1751604348; x=1752209148;
+        h=in-reply-to:content-transfer-encoding:content-disposition
+         :mime-version:references:message-id:subject:cc:to:from:date
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=cG3nGFKHy1r5C+lPIaBzR6QdGIwuCZhkFG9bY42b6Jw=;
+        b=OOFfy5X7Dqvu73lEJ+1asddJzbRnqYaosP1s8a/uzLlHejWl60vSAFg5GoAKS+dfvU
+         A7XWl2J/nt4cvcxiDPm41qHA1v8Q1b74td/j0tEr+im87b5gCJ6tESy+c4gJI/mVrTQu
+         dKIN/lgGSjEmsiCrtqLAHYKidVbKdVTRVmx++l/QK0CyVXfAx33FfU8urnaxi/4ePTbh
+         4RKW5xByGSSjkjeosP9+pNZF7Zcpv8KmlWJpmHbiSNfZ9QFKPrAsTlJdHObg4DqQKGYY
+         gHPW0sa/kBeSL6taUh1wgzO0CgzldhUKTr+vmSFsLyz16U0OELc1nY0RkP34SzC+VzSh
+         ZDYw==
+X-Forwarded-Encrypted: i=1; AJvYcCWrbcK+j5VglFQ7w+Qt7qV4ZslKvY47Ml/IW4eGMd2Y3kFwATLTxpNym1aqDKr5M3CH3x/3uUE22VjOB8Tt@vger.kernel.org, AJvYcCXfzB9R0vk5Xp2zbB+/MOrab8x1SvA/vHOjGRC5s9gT3Wroz24SoiNKHJtEIA+jeEWWmEPdg8sZmaee@vger.kernel.org
+X-Gm-Message-State: AOJu0YxBXbHc/hPwtYBy3f2o7F6bnqKQ4zet05chgS8uitHihiZlE7zh
+	PMRFqXsS+yuy0MxDsz76Vj460/o7Zv62JRh3KdHkq8kvIJTdGzjOpV2K
+X-Gm-Gg: ASbGncvTbFskoSOTlKiRWZ5n2ZAojzG+ammNLzVX56EMOO0Fb8XYhyySmss7Vnzpr3E
+	a2Y58vOqHGuWSpS7sLzcb9r9DptwM4OLWj2XfwPhVZLC3pDeyIeCS7rJf3imtzJknr50wWxcnvj
+	XfYfFFd9GP8bOTABCPEf8EwbyWvXAS2GNpDR3Nf2RKAooQ4p0qDCXj0kFPiPb9MWkzS7qoZCy1z
+	7M8JGXw69R6XH0bNvZgEqkPkkx4TkvTjDn/UmKrfbTeSw4t5eKu2+2mVHTv4+Khhr9TaAfPDGeB
+	yasTvBcO1E6TD+pSk8A7brtlfUrbNyLOkWd0Pn8mHlvsI+BHxsEM6vlpoxhMMc2pzqSGA87zAhZ
+	XutKd9enneM2OFyLSNtYAmFytJ//A55NqumYmH24=
+X-Google-Smtp-Source: AGHT+IF0o3ITf8BCpP5P9I2hnMwefUgNCwsqn4QO6uhOxBG7wPoKctcKA38mvJ7HISgAzRZvMAgLmA==
+X-Received: by 2002:a17:902:c404:b0:234:a139:1203 with SMTP id d9443c01a7336-23c85e7459amr19740725ad.32.1751604347591;
+        Thu, 03 Jul 2025 21:45:47 -0700 (PDT)
+Received: from localhost.localdomain (c-76-133-73-115.hsd1.ca.comcast.net. [76.133.73.115])
+        by smtp.gmail.com with ESMTPSA id d9443c01a7336-23c8455ba98sm9751345ad.135.2025.07.03.21.45.46
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 03 Jul 2025 21:45:47 -0700 (PDT)
+Date: Thu, 3 Jul 2025 21:45:44 -0700
+From: Tao Ren <rentao.bupt@gmail.com>
+To: Andrew Jeffery <andrew@codeconstruct.com.au>
+Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>, Joel Stanley <joel@jms.id.au>,
+	devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+	linux-aspeed@lists.ozlabs.org, linux-kernel@vger.kernel.org,
+	Tao Ren <taoren@meta.com>
+Subject: Re: [PATCH 1/5] ARM: dts: aspeed: Expand data0 partition in
+ facebook-bmc-flash-layout-128.dtsi
+Message-ID: <aGdceHVCEaWxo5QG@localhost.localdomain>
+References: <20250702050421.13729-1-rentao.bupt@gmail.com>
+ <20250702050421.13729-2-rentao.bupt@gmail.com>
+ <78f9fcbc58261064f248e95eb7740549e338bc78.camel@codeconstruct.com.au>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: text/plain; charset=iso-8859-1
 Content-Disposition: inline
-In-Reply-To: <20250702085927.10370-3-quic_sayalil@quicinc.com>
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <78f9fcbc58261064f248e95eb7740549e338bc78.camel@codeconstruct.com.au>
 
-Hi Sayali,
+On Fri, Jul 04, 2025 at 09:36:29AM +0930, Andrew Jeffery wrote:
+> On Tue, 2025-07-01 at 22:04 -0700, rentao.bupt@gmail.com wrote:
+> > From: Tao Ren <rentao.bupt@gmail.com>
+> > 
+> > Expand data0 partition to 64MB in facebook-bmc-flash-layout-128.dtsi for
+> > larger persistent storage.
+> > 
+> > Signed-off-by: Tao Ren <rentao.bupt@gmail.com>
+> > ---
+> >  .../boot/dts/aspeed/facebook-bmc-flash-layout-128.dtsi | 10 +++++-----
+> >  1 file changed, 5 insertions(+), 5 deletions(-)
+> > 
+> > diff --git a/arch/arm/boot/dts/aspeed/facebook-bmc-flash-layout-128.dtsi b/arch/arm/boot/dts/aspeed/facebook-bmc-flash-layout-128.dtsi
+> > index 7f3652dea550..efd92232cda2 100644
+> > --- a/arch/arm/boot/dts/aspeed/facebook-bmc-flash-layout-128.dtsi
+> > +++ b/arch/arm/boot/dts/aspeed/facebook-bmc-flash-layout-128.dtsi
+> > @@ -32,19 +32,19 @@ image-meta@f0000 {
+> >         };
+> >  
+> >         /*
+> > -        * FIT image: 119 MB.
+> > +        * FIT image: 63 MB.
+> >          */
+> >         fit@100000 {
+> > -               reg = <0x100000 0x7700000>;
+> > +               reg = <0x100000 0x3f00000>;
+> >                 label = "fit";
+> >         };
+> >  
+> >         /*
+> > -        * "data0" partition (8MB) is used by Facebook BMC platforms as
+> > +        * "data0" partition (64MB) is used by Facebook BMC platforms as
+> >          * persistent data store.
+> >          */
+> > -       data0@7800000 {
+> > -               reg = <0x7800000 0x800000>;
+> > +       data0@4000000 {
+> > +               reg = <0x4000000 0x4000000>;
+> >                 label = "data0";
+> >         };
+> >  
+> 
+> Two existing systems use this dtsi:
+> 
+>    > git grep facebook-bmc-flash-layout-128.dtsi
+>    arch/arm/boot/dts/aspeed/aspeed-bmc-facebook-wedge400.dts:#include "facebook-bmc-flash-layout-128.dtsi"
+>    arch/arm/boot/dts/aspeed/ast2600-facebook-netbmc-common.dtsi:#include "facebook-bmc-flash-layout-128.dtsi"
+> 
+> This change requires a full reflash of those devices, which is pretty
+> disruptive.
+> 
+> It seems more appropriate to me to create a separate dtsi for the new
+> flash layout to use in new systems.
+> 
+> Andrew
 
-kernel test robot noticed the following build errors:
+Hi Andrew,
 
-[auto build test ERROR on robh/for-next]
-[also build test ERROR on linus/master v6.16-rc4 next-20250703]
-[If your patch is applied to the wrong git tree, kindly drop us a note.
-And when submitting patch, we suggest to use '--base' as documented in
-https://git-scm.com/docs/git-format-patch#_base_tree_information]
+I agree it's better to create a new layout, and I will take care of it
+in v2. The migration is already done for all the network BMC platforms
+except elbert/darwin, and having separate layouts will make my life
+easier :)
 
-url:    https://github.com/intel-lab-lkp/linux/commits/Sayali-Lokhande/dt-bindings-mmc-Add-sdhci-compatible-for-qcs8300/20250702-170136
-base:   https://git.kernel.org/pub/scm/linux/kernel/git/robh/linux.git for-next
-patch link:    https://lore.kernel.org/r/20250702085927.10370-3-quic_sayalil%40quicinc.com
-patch subject: [PATCH V3 2/3] arm64: dts: qcom: Add eMMC support for qcs8300
-config: arm64-randconfig-051-20250703 (https://download.01.org/0day-ci/archive/20250704/202507041209.XrPwGbTd-lkp@intel.com/config)
-compiler: aarch64-linux-gcc (GCC) 12.3.0
-dtschema version: 2025.6.2.dev4+g8f79ddd
-reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20250704/202507041209.XrPwGbTd-lkp@intel.com/reproduce)
+Any suggestions about the file name of the new layout?
 
-If you fix the issue in a separate patch/commit (i.e. not just a new version of
-the same patch/commit), kindly add following tags
-| Reported-by: kernel test robot <lkp@intel.com>
-| Closes: https://lore.kernel.org/oe-kbuild-all/202507041209.XrPwGbTd-lkp@intel.com/
 
-All errors (new ones prefixed by >>):
+Thanks,
 
->> Error: arch/arm64/boot/dts/qcom/qcs8300.dtsi:3867.19-20 syntax error
->> FATAL ERROR: Unable to parse input tree
-
--- 
-0-DAY CI Kernel Test Service
-https://github.com/intel/lkp-tests/wiki
+Tao
 
