@@ -1,148 +1,166 @@
-Return-Path: <devicetree+bounces-193035-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-193037-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id EB60BAF8F64
-	for <lists+devicetree@lfdr.de>; Fri,  4 Jul 2025 12:05:45 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2AE90AF8F77
+	for <lists+devicetree@lfdr.de>; Fri,  4 Jul 2025 12:08:45 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 803871C226EE
-	for <lists+devicetree@lfdr.de>; Fri,  4 Jul 2025 10:06:02 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id C4A12482388
+	for <lists+devicetree@lfdr.de>; Fri,  4 Jul 2025 10:08:18 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0FD012EACEC;
-	Fri,  4 Jul 2025 10:05:41 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 353E02BEC20;
+	Fri,  4 Jul 2025 10:08:40 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="dIFzhyDo"
+	dkim=pass (2048-bit key) header.d=ragnatech.se header.i=@ragnatech.se header.b="J4NS9aZW";
+	dkim=pass (2048-bit key) header.d=messagingengine.com header.i=@messagingengine.com header.b="VszdXqLw"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from fhigh-b6-smtp.messagingengine.com (fhigh-b6-smtp.messagingengine.com [202.12.124.157])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BCA112877C7;
-	Fri,  4 Jul 2025 10:05:40 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EBA5325228C;
+	Fri,  4 Jul 2025 10:08:37 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=202.12.124.157
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1751623541; cv=none; b=SKmhhTy2nycJPZ7nFszWAZiFJarf70YCmeXcN+pOwvxH0vMKuoioFTDbQRpC5ncpfCRj0/NZ+ibd4qG5YbqrNp5A4GiBAgK1b67lOmx4IDpcils/5qwgN7+/hkeevOFroRt2y9WGXz5+na1gEz6BOAlcucpBD604As8EWtrVJD4=
+	t=1751623720; cv=none; b=AmlOO9NELCFPECC2ueCwirvNn6AK70OmLzrcO5z/jxWHOaMkmUKH29YidGhUlmLbV3wB7urYvhtV6PZLm/y9uNe5+ROavOnIC2t5zyrC/aGP/i+ACgFXEOcqnwQr43sur+WfYMf4OdWA7JKlW3jkK7OPpsnufoe2qV0tSRxOrAM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1751623541; c=relaxed/simple;
-	bh=3zMvBpnjYhXNk119LId6VxXRlohR+SMqHtEt+DjGgOs=;
-	h=Mime-Version:Content-Type:Date:Message-Id:Cc:Subject:From:To:
-	 References:In-Reply-To; b=Lw1FLW99xPWNr/qjic2EsDUo68wNQjAZq6pA+jWDO/bLp/oGaGiEwKpHmervEXwOmSI4KesNrU3KuCjHnH3rtFVwl+YwLRdS4sIEo/9ktlLjPuMm+uSD+pB0OPoQWRgaLgqLJuqRppZOdsWCZY+PyNzDLrwW1+rP5VarwAIpKwo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=dIFzhyDo; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 5C8AFC4CEE3;
-	Fri,  4 Jul 2025 10:05:28 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1751623540;
-	bh=3zMvBpnjYhXNk119LId6VxXRlohR+SMqHtEt+DjGgOs=;
-	h=Date:Cc:Subject:From:To:References:In-Reply-To:From;
-	b=dIFzhyDoOtTAbxDe4ng7ZMrO/97heBHHA2tlOt/nH+8zNG51bHrYZPY5Otop9wkEE
-	 GOrKb3MaWAOEqB12OvaklthhMEb5eZrWI0BPDhSMueKmloWwIpmrdhA574pgwdyDVL
-	 5lRojgAt+uopNziY+Nbq2Vyar7Ow/l0OqQ3ieJWWl/vzootQhnKntCRzNGjWwagrXs
-	 ZQVT86x9TMFgy9J6Lt1mMum6Y6ipYwyQeTLs74SvWohAan1nxvN+IidtlqAZw2lilc
-	 nqy6gMPSSrHzKKMC7HAuqqW0Qh3uEfCRekMqt+80F1Dobu3rSHA5697iSIX1wfMM87
-	 5aWiEaLuho2cA==
+	s=arc-20240116; t=1751623720; c=relaxed/simple;
+	bh=ICzVLU0NVW69UQ4cEPFCTFbn6mA43gvspSSQ/Nw9cms=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version:Content-Type; b=kG8UuRKub+3fM7i47sO51s4zizJ/BXgmVGUpc2HSB8WvXIQ+v5lFALdGmVQGHt914H+8pRnDRr/EXS7QRCgj3MrGMvZsA3xF/ONeWFJtbYL9Vx5jMq0ba3pp7G7KeHAOzj/eNPvtZ9EPbT+FkJd9ylkPnSqkLWnNdo2ctqcLU1M=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ragnatech.se; spf=pass smtp.mailfrom=ragnatech.se; dkim=pass (2048-bit key) header.d=ragnatech.se header.i=@ragnatech.se header.b=J4NS9aZW; dkim=pass (2048-bit key) header.d=messagingengine.com header.i=@messagingengine.com header.b=VszdXqLw; arc=none smtp.client-ip=202.12.124.157
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ragnatech.se
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ragnatech.se
+Received: from phl-compute-06.internal (phl-compute-06.phl.internal [10.202.2.46])
+	by mailfhigh.stl.internal (Postfix) with ESMTP id CA1907A0071;
+	Fri,  4 Jul 2025 06:08:36 -0400 (EDT)
+Received: from phl-mailfrontend-02 ([10.202.2.163])
+  by phl-compute-06.internal (MEProxy); Fri, 04 Jul 2025 06:08:37 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ragnatech.se; h=
+	cc:cc:content-transfer-encoding:content-type:content-type:date
+	:date:from:from:in-reply-to:message-id:mime-version:reply-to
+	:subject:subject:to:to; s=fm1; t=1751623716; x=1751710116; bh=S+
+	nKbPGI0YrzkrG63yT/hn5B9TV/L1LM/sdnULBqurQ=; b=J4NS9aZWNOxpItjOE8
+	Vzqu7zT5+URSLiX+fRqijLf7bOzTScFuTuiaxyniB/EZE9VwbzhTOLqCiFTHbp5r
+	XsxS7Fb0mROaqMRxvjh/jNglAEcemz5W3K6FeiqIssYIMxvsj3vEwpfXZUR0qoMl
+	zXrQ9OrBhXyefLDJ80E+JIt7hKNNumBTWUy35PPY2TeYiu1PNQ1tx11CiD8XpZJD
+	OXnon/Sn5jc5EXDmjIU3/o3NhArKnX6gF1fSmBUrQ7ESe31O06918rLrl9BZS7ai
+	RGhfJ2YASEbBnzbVRcbumEyyRPVe1Bg+TzNvswhtGXPPaQkYGoHxw2rLYccAvndb
+	11qQ==
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
+	messagingengine.com; h=cc:cc:content-transfer-encoding
+	:content-type:content-type:date:date:feedback-id:feedback-id
+	:from:from:in-reply-to:message-id:mime-version:reply-to:subject
+	:subject:to:to:x-me-proxy:x-me-sender:x-me-sender:x-sasl-enc; s=
+	fm2; t=1751623716; x=1751710116; bh=S+nKbPGI0YrzkrG63yT/hn5B9TV/
+	L1LM/sdnULBqurQ=; b=VszdXqLwDAWKYWCH3CwTc3poTzQ7ewHFxj1oTSfYMs3s
+	La1Tjer66a4WSFzdSSi6GL/mm8hqc0OyFutTAw6dyrZfJl7Z8l88irjbpxSkNOrK
+	pCk3DT6xn6zDRncthd+IYUjV9mLu+N1RNZcWlFHDrAUYSYjeTbZYDy/CBY+l1Xz1
+	UC0vUczjriWkxA6jt4vftf+ZIIWSRvbO2Ll2nUlIEJ7yBRTfj5GwwUDIp1ckdgrq
+	hXs2LzuolnwG0XNBA3LRQ2gyx8pkVpWJPXcaF4bA3sDkPT/7dkiuCVP5Wn2TIxKY
+	gkhQmaUg71ALLjLzqxFCyFgxaILpaTsrx7e74wRm+A==
+X-ME-Sender: <xms:JKhnaOIdfErU8iXsx4GiPnZ5wiKqiwc_vgfEKr_LZTmwCrAYsuWiww>
+    <xme:JKhnaGLh_wn4U037ZqO-mshRCoJk566unnZc-YbGqmfjnaUdl3Hf-9X7Yp030UHxU
+    nwEB4yqdNZZHS_pcUU>
+X-ME-Received: <xmr:JKhnaOtaKeBlfE9j2llJC2nVfWWJEU712hbwub8kqq2_tZzqKre2nwM3Fwpu306zwsCWiyZKNDZAS7YE6hj8EQEAOQ>
+X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgeeffedrtdefgddvvdekkecutefuodetggdotefrod
+    ftvfcurfhrohhfihhlvgemucfhrghsthforghilhdpuffrtefokffrpgfnqfghnecuuegr
+    ihhlohhuthemuceftddtnecusecvtfgvtghiphhivghnthhsucdlqddutddtmdenucfjug
+    hrpefhvfevufffkffogggtgfesthekredtredtjeenucfhrhhomheppfhikhhlrghsucfu
+    npguvghrlhhunhguuceonhhikhhlrghsrdhsohguvghrlhhunhguodhrvghnvghsrghsse
+    hrrghgnhgrthgvtghhrdhsvgeqnecuggftrfgrthhtvghrnhepheduleetteekgffffedu
+    feeuvdejiedvkefhveeifeegffehledtvdevhfefteegnecuvehluhhsthgvrhfuihiivg
+    eptdenucfrrghrrghmpehmrghilhhfrhhomhepnhhikhhlrghsrdhsohguvghrlhhunhgu
+    sehrrghgnhgrthgvtghhrdhsvgdpnhgspghrtghpthhtohepledpmhhouggvpehsmhhtph
+    houhhtpdhrtghpthhtohepghgvvghrthdorhgvnhgvshgrshesghhlihguvghrrdgsvgdp
+    rhgtphhtthhopehrohgshheskhgvrhhnvghlrdhorhhgpdhrtghpthhtohepkhhriihkod
+    gutheskhgvrhhnvghlrdhorhhgpdhrtghpthhtoheptghonhhorhdoughtsehkvghrnhgv
+    lhdrohhrghdprhgtphhtthhopehmrghrvghkrdhvrghsuhhtodhrvghnvghsrghssehmrg
+    hilhgsohigrdhorhhgpdhrtghpthhtoheplhgruhhrvghnthdrphhinhgthhgrrhhtsehi
+    uggvrghsohhnsghorghrugdrtghomhdprhgtphhtthhopehlihhnuhigqdhrvghnvghsrg
+    hsqdhsohgtsehvghgvrhdrkhgvrhhnvghlrdhorhhgpdhrtghpthhtohepuggvvhhitggv
+    thhrvggvsehvghgvrhdrkhgvrhhnvghlrdhorhhgpdhrtghpthhtohepnhhikhhlrghsrd
+    hsohguvghrlhhunhguodhrvghnvghsrghssehrrghgnhgrthgvtghhrdhsvg
+X-ME-Proxy: <xmx:JKhnaDZE0nhRJEvLcBWwYcglVkW3c4BU2b_2_NhMs24hAAhZyS7F4A>
+    <xmx:JKhnaFZT20w6X-HIGhYcAdSp7cf3GE6Ekv6kdhSBGB9_X-pI7s23AQ>
+    <xmx:JKhnaPBbcK7_8U5LOZxQXWuO7GNCuGfZx4AEJ5aQVXY2ogeJgFapww>
+    <xmx:JKhnaLZWTox0TN_UVYhS-L2dm1XpKYW-Nj3liSIrzsBr1NbOK7PvcA>
+    <xmx:JKhnaJxmGQGs3VCmrxaEsBE0DxY0aAQZwmbmLhqlZawyu3gU4s3UHz8P>
+Feedback-ID: i80c9496c:Fastmail
+Received: by mail.messagingengine.com (Postfix) with ESMTPA; Fri,
+ 4 Jul 2025 06:08:35 -0400 (EDT)
+From: =?UTF-8?q?Niklas=20S=C3=B6derlund?= <niklas.soderlund+renesas@ragnatech.se>
+To: Geert Uytterhoeven <geert+renesas@glider.be>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Marek Vasut <marek.vasut+renesas@mailbox.org>,
+	Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
+	linux-renesas-soc@vger.kernel.org,
+	devicetree@vger.kernel.org
+Cc: =?UTF-8?q?Niklas=20S=C3=B6derlund?= <niklas.soderlund+renesas@ragnatech.se>
+Subject: [PATCH v3 0/5] arm64: dts: renesas: sparrow-hawk: Add overlays for camera sensors
+Date: Fri,  4 Jul 2025 12:07:29 +0200
+Message-ID: <20250704100734.3387856-1-niklas.soderlund+renesas@ragnatech.se>
+X-Mailer: git-send-email 2.50.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-Mime-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
+MIME-Version: 1.0
 Content-Type: text/plain; charset=UTF-8
-Date: Fri, 04 Jul 2025 12:05:26 +0200
-Message-Id: <DB36PVASJ5G9.2TMRXNIXYI9UO@kernel.org>
-Cc: "Michal Rostecki" <vadorovsky@protonmail.com>, "Miguel Ojeda"
- <ojeda@kernel.org>, "Alex Gaynor" <alex.gaynor@gmail.com>, "Boqun Feng"
- <boqun.feng@gmail.com>, "Gary Guo" <gary@garyguo.net>,
- =?utf-8?q?Bj=C3=B6rn_Roy_Baron?= <bjorn3_gh@protonmail.com>, "Andreas
- Hindborg" <a.hindborg@kernel.org>, "Alice Ryhl" <aliceryhl@google.com>,
- "Trevor Gross" <tmgross@umich.edu>, "Brendan Higgins"
- <brendan.higgins@linux.dev>, "David Gow" <davidgow@google.com>, "Rae Moar"
- <rmoar@google.com>, "Danilo Krummrich" <dakr@kernel.org>, "Maarten
- Lankhorst" <maarten.lankhorst@linux.intel.com>, "Maxime Ripard"
- <mripard@kernel.org>, "Thomas Zimmermann" <tzimmermann@suse.de>, "David
- Airlie" <airlied@gmail.com>, "Simona Vetter" <simona@ffwll.ch>, "Greg
- Kroah-Hartman" <gregkh@linuxfoundation.org>, "Rafael J. Wysocki"
- <rafael@kernel.org>, "Luis Chamberlain" <mcgrof@kernel.org>, "Russ Weight"
- <russ.weight@linux.dev>, "FUJITA Tomonori" <fujita.tomonori@gmail.com>,
- "Rob Herring" <robh@kernel.org>, "Saravana Kannan" <saravanak@google.com>,
- "Peter Zijlstra" <peterz@infradead.org>, "Ingo Molnar" <mingo@redhat.com>,
- "Will Deacon" <will@kernel.org>, "Waiman Long" <longman@redhat.com>,
- "Nathan Chancellor" <nathan@kernel.org>, "Nick Desaulniers"
- <nick.desaulniers+lkml@gmail.com>, "Bill Wendling" <morbo@google.com>,
- "Justin Stitt" <justinstitt@google.com>, "Andrew Lunn" <andrew@lunn.ch>,
- "Heiner Kallweit" <hkallweit1@gmail.com>, "Russell King"
- <linux@armlinux.org.uk>, "David S. Miller" <davem@davemloft.net>, "Eric
- Dumazet" <edumazet@google.com>, "Jakub Kicinski" <kuba@kernel.org>, "Paolo
- Abeni" <pabeni@redhat.com>, "Bjorn Helgaas" <bhelgaas@google.com>, "Arnd
- Bergmann" <arnd@arndb.de>, "Jens Axboe" <axboe@kernel.dk>,
- =?utf-8?q?Krzysztof_Wilczy=C5=84ski?= <kwilczynski@kernel.org>, "Dave
- Ertman" <david.m.ertman@intel.com>, "Ira Weiny" <ira.weiny@intel.com>,
- "Leon Romanovsky" <leon@kernel.org>, "Breno Leitao" <leitao@debian.org>,
- "Viresh Kumar" <viresh.kumar@linaro.org>, "Michael Turquette"
- <mturquette@baylibre.com>, "Stephen Boyd" <sboyd@kernel.org>,
- <rust-for-linux@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
- <linux-kselftest@vger.kernel.org>, <kunit-dev@googlegroups.com>,
- <dri-devel@lists.freedesktop.org>, <netdev@vger.kernel.org>,
- <devicetree@vger.kernel.org>, <llvm@lists.linux.dev>,
- <linux-pci@vger.kernel.org>, <nouveau@lists.freedesktop.org>,
- <linux-block@vger.kernel.org>, <linux-pm@vger.kernel.org>,
- <linux-clk@vger.kernel.org>
-Subject: Re: [PATCH v13 2/5] rust: support formatting of foreign types
-From: "Benno Lossin" <lossin@kernel.org>
-To: "Tamir Duberstein" <tamird@gmail.com>
-X-Mailer: aerc 0.20.1
-References: <20250701-cstr-core-v13-0-29f7d3eb97a6@gmail.com>
- <20250701-cstr-core-v13-2-29f7d3eb97a6@gmail.com>
- <DB2BDSN1JH51.14ZZPETJORBC6@kernel.org>
- <CAJ-ks9nC=AyBPXRY3nJ0NuZvjFskzMcOkVNrBEfXD2hZ5uRntQ@mail.gmail.com>
- <DB2IJ9HBIM0W.3N0JVGKX558QI@kernel.org>
- <CAJ-ks9nF5+m+_bn0Pzi9yU0pw0TyN7Fs4x--mQ4ygyHz4A6hzg@mail.gmail.com>
- <DB2PIGAQHCJR.3BF8ZHECYH3KB@kernel.org>
- <CAJ-ks9=WmuXLJ6KkMEOP2jTvM_YBJO10SNsq0DU2J+_d4jp7qw@mail.gmail.com>
-In-Reply-To: <CAJ-ks9=WmuXLJ6KkMEOP2jTvM_YBJO10SNsq0DU2J+_d4jp7qw@mail.gmail.com>
+Content-Transfer-Encoding: 8bit
 
-On Fri Jul 4, 2025 at 12:41 AM CEST, Tamir Duberstein wrote:
-> On Thu, Jul 3, 2025 at 4:36=E2=80=AFPM Benno Lossin <lossin@kernel.org> w=
-rote:
->> On Thu Jul 3, 2025 at 8:55 PM CEST, Tamir Duberstein wrote:
->> > On Thu, Jul 3, 2025 at 11:08=E2=80=AFAM Benno Lossin <lossin@kernel.or=
-g> wrote:
->> >> On Thu Jul 3, 2025 at 3:55 PM CEST, Tamir Duberstein wrote:
->> >> > On Thu, Jul 3, 2025 at 5:32=E2=80=AFAM Benno Lossin <lossin@kernel.=
-org> wrote:
->> >> >> On Tue Jul 1, 2025 at 6:49 PM CEST, Tamir Duberstein wrote:
->> >> >> > +impl<T: ?Sized + Display> fmt::Display for Adapter<&T> {
->> >> >> > +    fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result {
->> >> >> > +        let Self(t) =3D self;
->> >> >> > +        Display::fmt(t, f)
->> >> >>
->> >> >> Why not `Display::fmt(&self.0, f)`?
->> >> >
->> >> > I like destructuring because it shows me that there's only one fiel=
-d.
->> >> > With `self.0` I don't see that.
->> >>
->> >> And what is the benefit here?
->> >
->> > In general the benefit is that the method does not ignore some portion
->> > of `Self`. A method that uses `self.0` would not provoke a compiler
->> > error in case another field is added, while this form would.
->>
->> Yeah, but why would that change happen here? And even if it got another
->> field, why would that invalidate the impl of `fn fmt`?
->
-> I don't know, but I would rather force a person to make that decision
-> when they add another field rather than assume that such an addition
-> wouldn't require changes here.
+Hello,
 
-I don't think so. If this were in another file, then destructuring
-might make sense if the struct could conceivably get more fields in the
-future **and** it if the other file relied on there only being one
-field (or if it *had* to be changed when there was a field added). This
-isn't the case here so it's just unnecessary noise.
+This series adds a couple of overlays to verify the two CSI-2 busses
+exposed on the V4H Sparrow Hawk board. The two busses are exposed on two
+connectors labeled J1 and J2 on the board.
 
----
-Cheers,
-Benno
+The first set adds overlays for the IMX219 camera sensor, one for each
+connector (patch 2/5 and 3/5). A Raspberry Pi Camera Module 2 have been
+used to verify the proper operation of the overlays.
+
+The second sets adds overlays for the IMX462 camera sensors, also one
+for each connector (patch 4/5 and 5/5). A DFM 36SX462-ML camera module
+have been used to verify the proper operation of the overlays.
+
+The reason two sets of overlays are needed is that the IMX219 uses
+2-lanes CSI-2 D-PHY bus, while the IMX462 uses a 4-lane CSI-2 D-PHY bus.
+To be able to properly test both situations on the board each sensor
+needs to be able to connected to each of the two external busses.
+
+Obviously only one sensor can be connected to J1, and one to J2 at any
+given time.
+
+Patch 1/5 is a drive-by fix that adds an missing install target for an
+existing sparrow-hawk overlay. It could have been posted as a separate
+patch but could have caused potential conflicts so I kept it in this
+series.
+
+See individual patches for changelog.
+
+Niklas Söderlund (5):
+  arm64: dts: renesas: r8a779g3-sparrow-hawk-fan-pwm: Add missing
+    install target
+  arm64: dts: renesas: sparrow-hawk: Add overlay for IMX219 on J1
+  arm64: dts: renesas: sparrow-hawk: Add overlay for IMX219 on J2
+  arm64: dts: renesas: sparrow-hawk: Add overlay for IMX462 on J1
+  arm64: dts: renesas: sparrow-hawk: Add overlay for IMX462 on J2
+
+ arch/arm64/boot/dts/renesas/Makefile          |  13 ++
+ ...8a779g3-sparrow-hawk-camera-j1-imx219.dtso | 111 +++++++++++++++++
+ ...8a779g3-sparrow-hawk-camera-j1-imx462.dtso | 112 ++++++++++++++++++
+ ...8a779g3-sparrow-hawk-camera-j2-imx219.dtso | 111 +++++++++++++++++
+ ...8a779g3-sparrow-hawk-camera-j2-imx462.dtso | 112 ++++++++++++++++++
+ 5 files changed, 459 insertions(+)
+ create mode 100644 arch/arm64/boot/dts/renesas/r8a779g3-sparrow-hawk-camera-j1-imx219.dtso
+ create mode 100644 arch/arm64/boot/dts/renesas/r8a779g3-sparrow-hawk-camera-j1-imx462.dtso
+ create mode 100644 arch/arm64/boot/dts/renesas/r8a779g3-sparrow-hawk-camera-j2-imx219.dtso
+ create mode 100644 arch/arm64/boot/dts/renesas/r8a779g3-sparrow-hawk-camera-j2-imx462.dtso
+
+-- 
+2.50.0
+
 
