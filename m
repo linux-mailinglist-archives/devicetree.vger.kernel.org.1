@@ -1,171 +1,125 @@
-Return-Path: <devicetree+bounces-193064-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-193087-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id AEE4BAF9194
-	for <lists+devicetree@lfdr.de>; Fri,  4 Jul 2025 13:30:18 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id C12FEAF92B0
+	for <lists+devicetree@lfdr.de>; Fri,  4 Jul 2025 14:34:58 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 4D3E43BE03F
-	for <lists+devicetree@lfdr.de>; Fri,  4 Jul 2025 11:29:52 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 2D4715842A3
+	for <lists+devicetree@lfdr.de>; Fri,  4 Jul 2025 12:34:59 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 808652D0267;
-	Fri,  4 Jul 2025 11:30:12 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8076A2D8DC8;
+	Fri,  4 Jul 2025 12:34:50 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=tq-group.com header.i=@tq-group.com header.b="OIsG7Ij3";
-	dkim=fail reason="key not found in DNS" (0-bit key) header.d=ew.tq-group.com header.i=@ew.tq-group.com header.b="W4gdiY2u"
+	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="TaU0izP5"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx1.tq-group.com (mx1.tq-group.com [93.104.207.81])
+Received: from mslow3.mail.gandi.net (mslow3.mail.gandi.net [217.70.178.249])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 425212D0C98;
-	Fri,  4 Jul 2025 11:30:07 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=93.104.207.81
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B77022D780A;
+	Fri,  4 Jul 2025 12:34:47 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.70.178.249
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1751628612; cv=none; b=cHGQ7Q5+p2z5nytndJkY1jHoNJghM1DBmY/hjIHvT4mbYvkcr2KLblEGBS93WKLOIG0uTauAPbgwqMHsaC9gSn8bItm/SQPoPY0HB7jDEEdaOt5013A35p5YGztnlg07LR77qpFToty0yAcWjAtmnvRvohATi4EtL1l6xissswk=
+	t=1751632490; cv=none; b=uyS+wkTJ1fW+ElLJBGQy/KkFiZ1hqAGSxGT2tAwAa2d3siS3R/NeGqvAN08IhXTIHqkFxi7o1UUfU3cY1cXn0OWxRmMD4clG5LSlth6iIjdvH9n1IeArP/MB46M3SKxDZZNrkMSGImqfL30Eml3EKrPUM5LuMKRwxZx0IikrKUc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1751628612; c=relaxed/simple;
-	bh=LBBKUZPE2gWKJIlUUTuZzM4rUYU+U7D59WGqtSEG+zU=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=dZSLO5ke68K5hWqz12gaSpZqzgdALLShetov/4/3OgWAtAABqiJUVdDWVJjEzPn/E+OFmal6gdhyh1TFXcQ3SBNwwGxVtF4Dp/29YwTJGhky2NuHdH+1Cx8KMd61+OWj/UztaxD9pHuVRcGlhirya3vnYy46saiAj5EzueOgy2w=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ew.tq-group.com; spf=pass smtp.mailfrom=ew.tq-group.com; dkim=pass (2048-bit key) header.d=tq-group.com header.i=@tq-group.com header.b=OIsG7Ij3; dkim=fail (0-bit key) header.d=ew.tq-group.com header.i=@ew.tq-group.com header.b=W4gdiY2u reason="key not found in DNS"; arc=none smtp.client-ip=93.104.207.81
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ew.tq-group.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ew.tq-group.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-  d=tq-group.com; i=@tq-group.com; q=dns/txt; s=key1;
-  t=1751628608; x=1783164608;
-  h=from:to:cc:subject:date:message-id:in-reply-to:
-   references:mime-version:content-transfer-encoding;
-  bh=oQLSCU6s7tadJXW3ijfkRaS6QjwulBRxirc1q6sY6so=;
-  b=OIsG7Ij3AG2IZL3NvAndB4AIBWeWdo28Ty9QKZqB9sStL0AenSZr/cGx
-   CgqALvouK5PdeRlAarSOfrXRgYbbGCL4kwkFYXDlsKYSgcP7lkPLXr6Kt
-   17iUHwTGam1pN2gY+9U6IiJ913coctf/bK8nH86ZNFaMtXVMTwPd9osIY
-   qr6rzJ1oycjjRjIUYi5CbGi13yyIsWr4RnLpvQ6sALQr391oBViziSRGD
-   lj1DR6e7+FqZrVlILIyY4Fc7KKjobRse9P14U8K1kPCQk5hi9NFwFshEB
-   Sy8Eu5S0S288doXeThQJW1bsgs4XqNTCGc7k8eJnjrGOmGY45/x5+C1iZ
-   w==;
-X-CSE-ConnectionGUID: jSRuNTPpRsydYLYRPhbXQg==
-X-CSE-MsgGUID: R+RKeJOgQ+S5uDN6S6S9fA==
-X-IronPort-AV: E=Sophos;i="6.16,287,1744063200"; 
-   d="scan'208";a="45031135"
-Received: from vmailcow01.tq-net.de ([10.150.86.48])
-  by mx1.tq-group.com with ESMTP; 04 Jul 2025 13:30:04 +0200
-X-CheckPoint: {6867BB3C-30-4FC15ADB-CD71293B}
-X-MAIL-CPID: 407389F97A04FFAD1E4F8CCE6D42EE93_0
-X-Control-Analysis: str=0001.0A006396.6867BB4C.0063,ss=1,re=0.000,recu=0.000,reip=0.000,cl=1,cld=1,fgs=0
-Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id AC794165607;
-	Fri,  4 Jul 2025 13:29:57 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ew.tq-group.com;
-	s=dkim; t=1751628600;
+	s=arc-20240116; t=1751632490; c=relaxed/simple;
+	bh=yPIV3TAF5m34q4sRomXTC5wAn+tia9dAeTvb8ukNRl8=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=fZrhUKrJ670g99X4+v3d9Ir1rDt/XSA/YWYXg0W3HUcT9KGkbWEsrVyXOuj1HXu2SbdrjTUamu4KUc6rwHD6atuEb0xhFap1FBuvkFcwhAo5KeXjnQ1lgBgBczrxe55mEFi//yZ06dJGn2LyEZOX9lunviQWCCWE8TMGnaAq744=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=TaU0izP5; arc=none smtp.client-ip=217.70.178.249
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
+Received: from relay3-d.mail.gandi.net (relay3-d.mail.gandi.net [IPv6:2001:4b98:dc4:8::223])
+	by mslow3.mail.gandi.net (Postfix) with ESMTP id EEB38582F55;
+	Fri,  4 Jul 2025 11:47:17 +0000 (UTC)
+Received: by mail.gandi.net (Postfix) with ESMTPSA id 5A9571FD37;
+	Fri,  4 Jul 2025 11:47:09 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
+	t=1751629630;
 	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
 	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=oQLSCU6s7tadJXW3ijfkRaS6QjwulBRxirc1q6sY6so=;
-	b=W4gdiY2u+KnVU6AEdD0acwe3gCkG8t/uyJscqkMzNXOpRFSqpVNFfLN9jFk/1GB+71IMXE
-	kWwh6jGmZ+hBi4ZZ98dPY9+hZRc8zDTWF5S42ufc3p0vo0uB7aULUruYxiNzkCrNAT/dIp
-	Qpw3v6qWfXz7EwZcnEe677+Ytex/+2ODif3jwmve/nnfYpoL1eTfa7lWOOciCU3ukcS0hr
-	d0eYqEiAt1eRyuRZmrjbZV+VihawcFagHfXxm7z1ahKQ7+MsGLI4O48PqNOEl8w9aK2jpC
-	vr9n7V6SlBwd92LVSYrWcBgrTkMgNkpj7p61/UB0iymUekecOOfIsYbbIAq8Aw==
-From: Alexander Stein <alexander.stein@ew.tq-group.com>
-To: Philipp Zabel <p.zabel@pengutronix.de>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>,
- David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
- Sascha Hauer <s.hauer@pengutronix.de>,
- Pengutronix Kernel Team <kernel@pengutronix.de>,
- Fabio Estevam <festevam@gmail.com>, Dmitry Baryshkov <lumag@kernel.org>,
- dri-devel@lists.freedesktop.org
-Cc: dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
- imx@lists.linux.dev, linux-arm-kernel@lists.infradead.org,
- linux-kernel@vger.kernel.org, Liu Ying <victor.liu@nxp.com>
-Subject: Re: [PATCH 04/14] drm/imx: dc-fu: Fix dimensions
-Date: Fri, 04 Jul 2025 13:29:57 +0200
-Message-ID: <3702593.R56niFO833@steina-w>
-Organization: TQ-Systems GmbH
-In-Reply-To: <20250704-imx8-dc-prefetch-v1-4-784c03fd645f@nxp.com>
-References:
- <20250704-imx8-dc-prefetch-v1-0-784c03fd645f@nxp.com>
- <20250704-imx8-dc-prefetch-v1-4-784c03fd645f@nxp.com>
+	 content-transfer-encoding:content-transfer-encoding;
+	bh=HFuOGsOl+YvjVySVfrtK0l79nf+JYtNJ6JXO2dwKdQs=;
+	b=TaU0izP524Zg468BLnpL3EluYD8a6hqmfYu7Hio/7/gsNPIBlY6YmU/yadPdCqV8o7WpqC
+	lepK3aGf/yZ0jEBxOwA1yIg6F3eiueWyp3FzIRRcHrjynICgX4fYqPYBiq4+rqWpOhQcKU
+	hWjYL1cShV6cU2vE4A2QfqAn/eXqZw7Xc9/rUsovmAhnD3BasLrdjIBSb1d5TAm/DEoQWI
+	U4ChfNGc1IZEZpWSlSJ9YxdZ3Wwp2R1zhag06PUyfgNSH1lvn/npLCVPge0w74WswSkD14
+	0erBUvypR46hxQO3QfqFHvLxm6pd3DbFSviKudNPsZ7KMM4di2VPPYgDkk2iuw==
+From: =?utf-8?q?Th=C3=A9o_Lebrun?= <theo.lebrun@bootlin.com>
+Subject: [PATCH 0/6] MIPS: Mobileye: EyeQ5: add GPIO/I2C
+ devicetrees/defconfigs
+Date: Fri, 04 Jul 2025 13:47:05 +0200
+Message-Id: <20250704-of-commits-v1-0-dc2006bf2846@bootlin.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-Content-Type: text/plain; charset="iso-8859-1"
-X-Last-TLS-Session-Version: TLSv1.3
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
+X-B4-Tracking: v=1; b=H4sIADm/Z2gC/6tWKk4tykwtVrJSqFYqSi3LLM7MzwNyDHUUlJIzE
+ vPSU3UzU4B8JSMDI1MDcwMT3fw03eT83NzMkmLdFHOzVDMgkWiWZqgE1FBQlJqWWQE2LDq2thY
+ AnU4veFwAAAA=
+X-Change-ID: 20250704-of-commits-d76e6d76a6f1
+To: Thomas Bogendoerfer <tsbogend@alpha.franken.de>, 
+ Vladimir Kondratiev <vladimir.kondratiev@mobileye.com>, 
+ Gregory CLEMENT <gregory.clement@bootlin.com>, 
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>
+Cc: Thomas Petazzoni <thomas.petazzoni@bootlin.com>, 
+ Tawfik Bayouk <tawfik.bayouk@mobileye.com>, linux-mips@vger.kernel.org, 
+ linux-kernel@vger.kernel.org, devicetree@vger.kernel.org, 
+ =?utf-8?q?Th=C3=A9o_Lebrun?= <theo.lebrun@bootlin.com>, 
+ Linus Walleij <linus.walleij@linaro.org>, 
+ Andi Shyti <andi.shyti@kernel.org>
+X-Mailer: b4 0.14.2
+X-GND-State: clean
+X-GND-Score: -100
+X-GND-Cause: gggruggvucftvghtrhhoucdtuddrgeeffedrtdefgddvfedtjecutefuodetggdotefrodftvfcurfhrohhfihhlvgemucfitefpfffkpdcuggftfghnshhusghstghrihgsvgenuceurghilhhouhhtmecufedtudenucesvcftvggtihhpihgvnhhtshculddquddttddmnecujfgurhephffufffkgggtgffvvefosehtkeertdertdejnecuhfhrohhmpefvhhorohcunfgvsghruhhnuceothhhvghordhlvggsrhhunhessghoohhtlhhinhdrtghomheqnecuggftrfgrthhtvghrnhepheffjeeftddtleetffduteekvdeuiedthfehgfffudehudefheffheehgeeujeevnecuffhomhgrihhnpehkvghrnhgvlhdrohhrghenucfkphepvdgrtddumegtsgdugeemheehieemjegrtddtmeeiieegsgemfhdtfhhfmehfvgdutdemlegvfhgunecuvehluhhsthgvrhfuihiivgeptdenucfrrghrrghmpehinhgvthepvdgrtddumegtsgdugeemheehieemjegrtddtmeeiieegsgemfhdtfhhfmehfvgdutdemlegvfhgupdhhvghloheplgduledvrdduieekrddutddrvdduiegnpdhmrghilhhfrhhomhepthhhvghordhlvggsrhhunhessghoohhtlhhinhdrtghomhdpnhgspghrtghpthhtohepudegpdhrtghpthhtohepvhhlrgguihhmihhrrdhkohhnughrrghtihgvvhesmhhosghilhgvhigvrdgtohhmpdhrtghpthhtohepthhhvghordhlvggsrhhunhessghoohhtlhhinhdrtghomhdprhgtphhtthhopegrnhgui
+ hdrshhhhihtiheskhgvrhhnvghlrdhorhhgpdhrtghpthhtoheprhhosghhsehkvghrnhgvlhdrohhrghdprhgtphhtthhopeguvghvihgtvghtrhgvvgesvhhgvghrrdhkvghrnhgvlhdrohhrghdprhgtphhtthhopehgrhgvghhorhihrdgtlhgvmhgvnhhtsegsohhothhlihhnrdgtohhmpdhrtghpthhtohepthgrfihfihhkrdgsrgihohhukhesmhhosghilhgvhigvrdgtohhmpdhrtghpthhtoheplhhinhhushdrfigrlhhlvghijheslhhinhgrrhhordhorhhg
+X-GND-Sasl: theo.lebrun@bootlin.com
 
-Hi,
+Here we push changes to have GPIO and I2C support by default in EyeQ5
+defconfigs and devicetrees.
 
-thanks for the patch.
+Linux driver work has been pushed in the past. Devicetree patches
+accompanied those series but didn't get merged at that time. Acked-by
+on I2C DTS patches come from there.
 
-Am Freitag, 4. Juli 2025, 11:03:51 CEST schrieb Liu Ying:
-> Fix off-by-one issue in LINEWIDTH, LINECOUNT, FRAMEWIDTH and FRAMEHEIGHT
-> macro definitions.  The first two macros are used to set a fetchunit's
-> source buffer dimension and the other two are used to set a fetchunit's
-> frame dimension.  It appears that display controller itself works ok
-> without this fix, however, it enters panic mode when prefetch engine(DPRC
-> and PRGs) attaches to it without this fix.
->=20
-> Fixes: 0e177d5ce01c ("drm/imx: Add i.MX8qxp Display Controller pixel engi=
-ne")
-> Signed-off-by: Liu Ying <victor.liu@nxp.com>
+We start by a small new defconfig patch that a clean working tree after:
 
-Reviewed-by: Alexander Stein <alexander.stein@ew.tq-group.com>
+   ⟩ make eyeq5_defconfig && \
+     make savedefconfig   && \
+     mv defconfig arch/mips/configs/eyeq5_defconfig
 
-> ---
->  drivers/gpu/drm/imx/dc/dc-fu.c | 4 ++--
->  drivers/gpu/drm/imx/dc/dc-fu.h | 4 ++--
->  2 files changed, 4 insertions(+), 4 deletions(-)
->=20
-> diff --git a/drivers/gpu/drm/imx/dc/dc-fu.c b/drivers/gpu/drm/imx/dc/dc-f=
-u.c
-> index f94c591c815891468a5c2a940076963eeaa4d51c..b36d3034b8d5962eaab212b6b=
-65ebbb5c29f978c 100644
-> --- a/drivers/gpu/drm/imx/dc/dc-fu.c
-> +++ b/drivers/gpu/drm/imx/dc/dc-fu.c
-> @@ -31,8 +31,8 @@
->  #define STRIDE(x)			FIELD_PREP(STRIDE_MASK, (x) - 1)
-> =20
->  /* SOURCEBUFFERDIMENSION */
-> -#define LINEWIDTH(x)			FIELD_PREP(GENMASK(13, 0), (x))
-> -#define LINECOUNT(x)			FIELD_PREP(GENMASK(29, 16), (x))
-> +#define LINEWIDTH(x)			FIELD_PREP(GENMASK(13, 0), (x) - 1)
-> +#define LINECOUNT(x)			FIELD_PREP(GENMASK(29, 16), (x) - 1)
-> =20
->  /* LAYEROFFSET */
->  #define LAYERXOFFSET(x)			FIELD_PREP(GENMASK(14, 0), (x))
-> diff --git a/drivers/gpu/drm/imx/dc/dc-fu.h b/drivers/gpu/drm/imx/dc/dc-f=
-u.h
-> index e016e1ea5b4e0471cf6627782603e72d0475c4e8..518d1af49f5ae9d4f67da5e6c=
-2e80abd7e962120 100644
-> --- a/drivers/gpu/drm/imx/dc/dc-fu.h
-> +++ b/drivers/gpu/drm/imx/dc/dc-fu.h
-> @@ -38,8 +38,8 @@
->  #define SOURCEBUFFERENABLE		BIT(31)
-> =20
->  /* FRAMEDIMENSIONS */
-> -#define FRAMEWIDTH(x)			FIELD_PREP(GENMASK(13, 0), (x))
-> -#define FRAMEHEIGHT(x)			FIELD_PREP(GENMASK(29, 16), (x))
-> +#define FRAMEWIDTH(x)			FIELD_PREP(GENMASK(13, 0), (x) - 1)
-> +#define FRAMEHEIGHT(x)			FIELD_PREP(GENMASK(29, 16), (x) - 1)
-> =20
->  /* CONTROL */
->  #define INPUTSELECT_MASK		GENMASK(4, 3)
->=20
->=20
+I2C DTS patches:
+https://lore.kernel.org/lkml/20240306-mbly-i2c-v3-0-605f866aa4ec@bootlin.com/
 
+GPIO DTS patch:
+https://lore.kernel.org/lkml/20240228-mbly-gpio-v2-28-3ba757474006@bootlin.com/
 
-=2D-=20
-TQ-Systems GmbH | M=FChlstra=DFe 2, Gut Delling | 82229 Seefeld, Germany
-Amtsgericht M=FCnchen, HRB 105018
-Gesch=E4ftsf=FChrer: Detlef Schneider, R=FCdiger Stahl, Stefan Schneider
-http://www.tq-group.com/
+Signed-off-by: Théo Lebrun <theo.lebrun@bootlin.com>
+---
+Théo Lebrun (6):
+      MIPS: eyeq5_defconfig: Update for v6.16-rc1
+      MIPS: mobileye: eyeq5: add 5 I2C controller nodes
+      MIPS: mobileye: eyeq5: add evaluation board I2C temp sensor
+      MIPS: mobileye: eyeq5: add two GPIO bank nodes
+      MIPS: eyeq5_defconfig: add GPIO subsystem & driver
+      MIPS: eyeq5_defconfig: add I2C subsystem, driver and temp sensor driver
 
+ arch/mips/boot/dts/mobileye/eyeq5-epm5.dts |   8 +++
+ arch/mips/boot/dts/mobileye/eyeq5.dtsi     | 105 +++++++++++++++++++++++++++++
+ arch/mips/configs/eyeq5_defconfig          |  10 ++-
+ 3 files changed, 120 insertions(+), 3 deletions(-)
+---
+base-commit: b4674c5af605321f2ec0c8ac5a884c4ecfad7214
+change-id: 20250704-of-commits-d76e6d76a6f1
+
+Best regards,
+-- 
+Théo Lebrun <theo.lebrun@bootlin.com>
 
 
