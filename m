@@ -1,48 +1,48 @@
-Return-Path: <devicetree+bounces-192970-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-192971-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0873AAF8B78
-	for <lists+devicetree@lfdr.de>; Fri,  4 Jul 2025 10:28:02 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 95227AF8BF7
+	for <lists+devicetree@lfdr.de>; Fri,  4 Jul 2025 10:38:37 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id DAAE06E7AA5
-	for <lists+devicetree@lfdr.de>; Fri,  4 Jul 2025 08:23:54 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 1361FB42F7D
+	for <lists+devicetree@lfdr.de>; Fri,  4 Jul 2025 08:23:51 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1C786306DC1;
-	Fri,  4 Jul 2025 08:08:59 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3D9CE307AD3;
+	Fri,  4 Jul 2025 08:10:13 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="AWWmR2mq"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="S06MNWQA"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D5320303DF3;
-	Fri,  4 Jul 2025 08:08:58 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 026073074BF;
+	Fri,  4 Jul 2025 08:10:12 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1751616538; cv=none; b=BCB69SbICtU5kmXN//QlJ9Tthgq4el+VIMLj0Aaao6u6sLrCIoT41AbJS4+4qNmElxCleeEeKX8TVkUkUaydFn8wwUFppfuJmuKcoKHyk3/OiMcT+BlByxufy1osN3JLJ88no+jgKUR2GZECUDoPZL3pA+Vc1YzzP1Ev0YIkMJk=
+	t=1751616613; cv=none; b=c7r6KDzz3y5yhMfnJgRZ/yggd5JzrRPsTqKxG1WV1EAcY05LML9apK6GCITf29JTlmuBaJyj+6bXnwu0Rd/hKp90xfFHEqtGhQLD7Ky3bwXCDtozkE5CLW9/45+A//ALvBvwjRBMcHMCa8zdRxSW8VmQ5wGyOFH10i3wGBfmCiQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1751616538; c=relaxed/simple;
-	bh=rGN315Ao+iDirINpTwMm+NSfebWgG3GOvTJmCfbPutk=;
-	h=Message-ID:Date:MIME-Version:Subject:To:References:From:
-	 In-Reply-To:Content-Type; b=WuVYoc3T2fnu/H7MwlI/IazZCe89wuPx81kHy9mM2a6EZND4izXfDVepoh9Eq/Jtk/CdcfOhgYcoxzDbXYJETe/tIo8ihmqMR6gZPutc0ZvXkJD0KfsAmKzcQZM05eFHM8RZu9rlzcduT0fnggFKgJ3P0Md+yZebfa31wEMzKXQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=AWWmR2mq; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 1288FC4CEE3;
-	Fri,  4 Jul 2025 08:08:55 +0000 (UTC)
+	s=arc-20240116; t=1751616613; c=relaxed/simple;
+	bh=Uxy5UXXWtAbOwt7++xbj9+BcKddhuDKigNY5YlhwB0U=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=BVn6AXTdGfCaywArWrPAsJ4JBIAra+LNoJwbQvFhzo575fcumcBYCR0Ex5hSZ/HZO/IHeYOD89wNymkDDQ5ndhNUSkrn8PzyWCjN1sdiD6wR3Lq3O9rV/YlIdV+DmhOxFyGmcdTtAuXY5AEQxv/l7sNbQ3p3mSjDVIMOSt4DmHE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=S06MNWQA; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id B794AC4CEE3;
+	Fri,  4 Jul 2025 08:10:08 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1751616538;
-	bh=rGN315Ao+iDirINpTwMm+NSfebWgG3GOvTJmCfbPutk=;
-	h=Date:Subject:To:References:From:In-Reply-To:From;
-	b=AWWmR2mqVWg0OWAQ2V1PEsbfdz+PBWPchQ4An7EnmcollFczeyleNjFMKG1sx1QEt
-	 AZ47v76UwG7Ac7l3XijLAL/W3XPyiwrGRgX8XU70cUMUx1nRejG1dPq97Ilj9+vYnD
-	 59MEQLiU5F2+dUfp5llHwy0EhWvTVbfX7XcQCW8yDQmbtyQDuGRSZZenSVVJcDVovH
-	 xpPhSEXlelrGtOY1rXjiSpYg84GkkzXlhd60dsRMbB024ZlbNIJtw35qS7/ykRfPIx
-	 kOA8E0cldwl0Qvrs6K6ZNaPhO+MxLMU26h2uIgs7yI4wwcTCCIWSnnHrMiiU9wQG8G
-	 H/h2qIF9u/Rtw==
-Message-ID: <2c558cde-b257-404e-805c-a59e41852bc6@kernel.org>
-Date: Fri, 4 Jul 2025 10:08:53 +0200
+	s=k20201202; t=1751616612;
+	bh=Uxy5UXXWtAbOwt7++xbj9+BcKddhuDKigNY5YlhwB0U=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=S06MNWQAxY8i/jlu8Y+ykCfAgwlAnC001aYmk5qeByv5sg4P1v9VjWZ70uo+gOnyZ
+	 959gY7a14UnTB2+kIACGwdgsFbTc4KwHQ9Jem7jPwjrzDPC2xXk+ZS1gjrzS3t4TtS
+	 nyfl+oE1TUd8WkschwqesXbbdMYj3JWWribtdz+RVkdPEMEq4KVdw4VxZtmo0yITSC
+	 DmQoX3o3LHeGmVUfbRx1ScqGdfci5J7jLnZi1mH9394zgHXMOKyaYYrUhZXH/aeT42
+	 e6pDXMC2N8D6UPFdv2ahdJ7J/ulX61LaUlcAHTaLgbrPejmPCb3DrLKY1Cm0+R/ga9
+	 UdSEyLKB/+lAQ==
+Message-ID: <9c11bd92-ff2e-493f-8e71-fd8d3f8b32e6@kernel.org>
+Date: Fri, 4 Jul 2025 10:10:06 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,19 +50,20 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v1 1/4] dt-bindings: media: Add Sony IMX585 CMOS image
- sensor
-To: Will Whang <will@willwhang.com>,
- Sakari Ailus <sakari.ailus@linux.intel.com>,
- Mauro Carvalho Chehab <mchehab@kernel.org>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>,
- "open list:SONY IMX585 SENSOR DRIVER" <linux-media@vger.kernel.org>,
- open list <linux-kernel@vger.kernel.org>,
- "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS"
- <devicetree@vger.kernel.org>
-References: <20250702063836.3984-1-will@willwhang.com>
- <20250702063836.3984-2-will@willwhang.com>
+Subject: Re: [PATCH v2 0/2] Enable CTCU device for QCS8300
+To: Jie Gan <quic_jiegan@quicinc.com>, Jie Gan <jie.gan@oss.qualcomm.com>,
+ Suzuki K Poulose <suzuki.poulose@arm.com>, Mike Leach
+ <mike.leach@linaro.org>, James Clark <james.clark@linaro.org>,
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, Bjorn Andersson <andersson@kernel.org>,
+ Konrad Dybcio <konradybcio@kernel.org>
+Cc: coresight@lists.linaro.org, linux-arm-kernel@lists.infradead.org,
+ linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org
+References: <20250624095905.7609-1-jie.gan@oss.qualcomm.com>
+ <338a9ee1-10aa-4bd2-9b0a-5006ed571bb9@quicinc.com>
+ <3551dba1-0c5f-4000-8b95-6a04cd81a027@kernel.org>
+ <2e8366b3-c060-4bb8-9704-0a8f41901706@quicinc.com>
 From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
@@ -108,179 +109,25 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  jWt87ecuHlpL3uuQ0ZZNWqHgZoQLXoqC2ZV5KrtKWb/jyiFX/sxSrodALf0zf+tfHv0FZWT2
  zHjUqd0t4njD/UOsuIMOQn4Ig0SdivYPfZukb5cdasKJukG1NOpbW7yRNivaCnfZz6dTawXw
  XRIV/KDsHQiyVxKvN73bThKhONkcX2LWuD928tAR6XMM2G5ovxLe09vuOzzfTWQDsm++9UKF a/A=
-In-Reply-To: <20250702063836.3984-2-will@willwhang.com>
+In-Reply-To: <2e8366b3-c060-4bb8-9704-0a8f41901706@quicinc.com>
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: 7bit
 
-On 02/07/2025 08:38, Will Whang wrote:
-> +
-> +description:
-> +  IMX585 sensor is a Sony CMOS sensor with 4K and FHD outputs.
-> +
-> +properties:
-> +  compatible:
-> +    const: sony,imx585
-> +
-> +  clocks:
-> +    maxItems: 1
-> +
-> +  clock-names:
-> +    const: xclk
-> +
-> +  clock-frequency:
-> +    enum: [ 74250000, 37125000, 72000000, 27000000, 24000000 ]
-
-Drop the property.
-
-> +
-> +  reg:
-
-reg always follows compatible.
-
-> +    maxItems: 1
-> +    description: I2C Address for IMX585
-
-Drop description, redundant.
-
-> +
-> +  VANA-supply:
-
-Lower case.
-
-> +    description: Analog power supply (3.3V)
-> +
-> +  VDDL-supply:
-> +    description: Interface power supply (1.8V)
-> +
-> +  VDIG-supply:
-> +    description: Digital power supply (1.1V)
-> +
-> +  reset-gpios:
-> +    description: Sensor reset (XCLR) GPIO
-> +    maxItems: 1
-> +
-> +  port:
-> +    $ref: /schemas/graph.yaml#/$defs/port-base
-> +    additionalProperties: false
-> +
-> +    properties:
-> +      endpoint:
-> +        $ref: /schemas/media/video-interfaces.yaml#
-> +        unevaluatedProperties: false
-> +
-> +        properties:
-> +          data-lanes:
-> +            anyOf:
-> +              - items:
-> +                  - const: 1
-> +                  - const: 2
-> +                  - const: 3
-> +                  - const: 4
-> +
-> +          sync-mode:
-
-Missing vendor prefix
-
-> +            description: |
-> +              Select the synchronisation mode of the sensor
-> +                0 – internal sync, leader (default)
-> +                1 – internal sync, follower
-> +                2 – external sync
-> +            $ref: /schemas/types.yaml#/definitions/uint8
-> +            enum: [ 0, 1, 2 ]
-
-This should be just string enum
-
-Missing default
-
-> +
-> +          link-frequencies:
-> +            description: Select the MIPI-CSI2 link speed in Mhz
-> +            items:
-> +              enum: [ 297000000, 360000000, 445500000, 594000000,
-> +                      720000000, 891000000, 1039500000 ]
-> +
-> +        required:
-> +          - data-lanes
-> +          - link-frequencies
-> +
-> +    required:
-> +      - endpoint
-> +
-> +required:
-> +  - compatible
-> +  - reg
-
-And why here is different? BTW, here it is correct.
-
-
-> +  - clocks
-> +  - clock-frequency
-
-Drop
-
-> +  - port
-> +
-> +additionalProperties: false
-> +
-> +examples:
-> +  - |
-> +    i2c {
-> +        #address-cells = <1>;
-> +        #size-cells = <0>;
-> +
-> +        imx585@1a {
-
-Node names should be generic. See also an explanation and list of
-examples (not exhaustive) in DT specification:
-https://devicetree-specification.readthedocs.io/en/latest/chapter2-devicetree-basics.html#generic-names-recommendation
-
-
-> +            compatible = "sony,imx585";
-> +            reg = <0x1a>;
-> +            clocks = <&imx585_clk>;
-> +            clock-frequency = <24000000>;
-> +
-> +            VANA-supply = <&camera_vadd_3v3>;
-> +            VDDL-supply = <&camera_vdd1_1v8>;
-> +            VDIG-supply = <&camera_vdd2_1v1>;
-> +
-> +            port {
-> +                imx585: endpoint {
-> +                    remote-endpoint = <&cam>;
-> +                    data-lanes = <1 2 3 4>;
-> +                    link-frequencies = /bits/ 64 <720000000>;
-> +                };
-> +            };
-> +        };
-> +    };
-> +...
-> diff --git a/MAINTAINERS b/MAINTAINERS
-> index da34c7227..9cc404790 100644
-> --- a/MAINTAINERS
-> +++ b/MAINTAINERS
-> @@ -23150,6 +23150,14 @@ T:	git git://linuxtv.org/media.git
->  F:	Documentation/devicetree/bindings/media/i2c/sony,imx415.yaml
->  F:	drivers/media/i2c/imx415.c
->  
-> +SONY IMX585 SENSOR DRIVER
-> +M:	Will Whang <will@willwhang.com>
-> +L:	linux-media@vger.kernel.org
-> +S:	Maintained
-> +T:	git git://linuxtv.org/media.git
-
-Drop, you do not have access there, AFAIK.
-
-> +F:	Documentation/devicetree/bindings/media/i2c/sony,imx585.yaml
-> +F:	drivers/media/i2c/imx585.c
-
-There is no such file.
-
-> +
->  SONY MEMORYSTICK SUBSYSTEM
->  M:	Maxim Levitsky <maximlevitsky@gmail.com>
->  M:	Alex Dubov <oakad@yahoo.com>
-
+On 04/07/2025 10:07, Jie Gan wrote:
+> 
+>>
+>>> offsets for the ATID and IRQ registers, because they integrate the same
+>>> version of the CTCU hardware.
+>>>
+>>> So I propose introducing a common compatible string,
+>>> "coresight-ctcu-v2", to simplify the device tree configuration for these
+>>> platforms.
+>>
+>> This is explained in writing bindings.
+> 
+> Yeah, explained in the code lines..
+I meant explained in writing bindings document. Please read writing
+bindings first.
 
 Best regards,
 Krzysztof
