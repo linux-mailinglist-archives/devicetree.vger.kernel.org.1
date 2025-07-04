@@ -1,48 +1,65 @@
-Return-Path: <devicetree+bounces-193027-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-193028-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6DC9EAF8E2F
-	for <lists+devicetree@lfdr.de>; Fri,  4 Jul 2025 11:19:37 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 11378AF8E7B
+	for <lists+devicetree@lfdr.de>; Fri,  4 Jul 2025 11:26:47 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id D1E991C859FF
-	for <lists+devicetree@lfdr.de>; Fri,  4 Jul 2025 09:18:45 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 80F92177A26
+	for <lists+devicetree@lfdr.de>; Fri,  4 Jul 2025 09:22:58 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id F0C362EF2A3;
-	Fri,  4 Jul 2025 09:15:54 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5764A2874EF;
+	Fri,  4 Jul 2025 09:22:17 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="da4KwEil"
+	dkim=pass (2048-bit key) header.d=foss.st.com header.i=@foss.st.com header.b="sNef83OI"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mx07-00178001.pphosted.com (mx07-00178001.pphosted.com [185.132.182.106])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C261B2EBDF6;
-	Fri,  4 Jul 2025 09:15:53 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8CFEC2882AB;
+	Fri,  4 Jul 2025 09:22:14 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.132.182.106
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1751620554; cv=none; b=uwRtrhC5JCot2h/A5mpLgdwbJUwrAbmsonpUv9JJ7FpbNRprjiViswg7ne24FrJgLcpQ6RGQdbigq5vMn8fEgGV5m2ceausIEJkH/BSOYLS+Ywnhyxuv9ZtHh2uX6xXKVx5CemsY+JIkpcU6crpndJbBl8UPhSD25WyD3GFaMaE=
+	t=1751620937; cv=none; b=rBPz70HMYscaYiEYge/TwXymCZ6EFTXudv8y0DYnl+jdGeWPApHR/IrCw5Q8zQCXdFPsWYL2qOETbWRrvi5CwGCdOn6jasvTDe0KwJtsP+OFgXcu89ftJs9YTtLASExvnV7cqK4Wpsze+5Or7sMAl9Tv79PVdLBrXsDCqFn3FiY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1751620554; c=relaxed/simple;
-	bh=3TB5brkS8M5VK1hs3MLjUrxhHeWeRrSyOSjTlAuIsP4=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=p4TRxawX9Zck2zWh3gXDEjtehz2dMztdjiWh/tNAw1xzh43cpNUkO+ZExFjKWoWZOpD12jyjcGrEetI1GWmj70ow66Wp+k6nBd7nCg0nByJXUHFg2cH8aZ2WtYWwt8WpQcxjjxWOcXfX6vBRVFEgpxncRwd4gMOBbaxsiEaqAyk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=da4KwEil; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 4BCF3C4CEE3;
-	Fri,  4 Jul 2025 09:15:46 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1751620553;
-	bh=3TB5brkS8M5VK1hs3MLjUrxhHeWeRrSyOSjTlAuIsP4=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=da4KwEilqRuA8zEEqbfhh9NlVqd6BFWLIPOSZFo13+5Re4xrkdVw+rQsx0G2y0SZ9
-	 i4ycYLIbTenpWb4boWdBTZTB7KOE8vhQ/LIUkIK6n+4oirsIwl/8F3jgYsND8ysEtc
-	 XpbyOI9b3xueb6m/eGsAqb1uFXVMUqYmOCZ5tWAKXDMFL5XPnL3OdoviqByTITTd5G
-	 NWGAYnqPdmgW3Zz6z9fbKItxJ0rSVEuT+peuWNOHX88Cyt7gses5uqji/f3GMbxIXa
-	 xORkSnBI4eCbiAU6PXo2l7B0JptifLLQvqCNCiHHSa27OHJ/4faMuQu9twDvg3QgYi
-	 ZZ4W6c2njZVlg==
-Message-ID: <cb8891d4-de4e-493c-9914-0391b3baf212@kernel.org>
-Date: Fri, 4 Jul 2025 11:15:43 +0200
+	s=arc-20240116; t=1751620937; c=relaxed/simple;
+	bh=8FO5F5EjVx57TSKaa67OcTlNYBBnxgV5KHWrj4CW2js=;
+	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
+	 In-Reply-To:Content-Type; b=K99F5WUqBsePrQU2uSIzbdQta3WwCLNTKB5k9APFplgLgNJNtLEtL38FQwzoD2vv0v1kVI1tp56eshPec6jLPtP5j757behSwpngulKtoctoV2SmzYOMWB47q2EaOd/fJ3cpwy7XUP2HmHx++7cAThjYx7RNRuhBNXB+LWBRAhk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=foss.st.com; spf=pass smtp.mailfrom=foss.st.com; dkim=pass (2048-bit key) header.d=foss.st.com header.i=@foss.st.com header.b=sNef83OI; arc=none smtp.client-ip=185.132.182.106
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=foss.st.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=foss.st.com
+Received: from pps.filterd (m0288072.ppops.net [127.0.0.1])
+	by mx07-00178001.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 5647ZvmT028297;
+	Fri, 4 Jul 2025 11:22:02 +0200
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=foss.st.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=selector1; bh=
+	xsJ35DXIFyb8IUUDkRLbnd+X8cIaumQnRj2kaGGtJi8=; b=sNef83OIHgj3F115
+	o4AALg+zZxQDdJCTO6KCuqgN/pa5mBGofZMlMVo+nveSjlE5cIFp4k8voMjRgUd9
+	nFbIfhETkVp2+ZH3XAYApA6FgTFwhVfzudS0Ai1+wz373rWqbrUws4vo4K6MPyuT
+	5jotQEMIhZG/ggNhBMCXEh3hiurcV8nK8Amcjy96DMGzMQXjj8Cnb0OGW5EncJAT
+	hKb7F7T6VtpEmcu7Mx2k9o6NqSGRm4ue7qI7TYkcwTDszxDDfGekhrj/cSZFZwgO
+	PIlXznP+370DUfnC5BpQ2oeuVy2jNhWPMk0FahSGvblDDyolZ8dU2dCHFOpSXfN4
+	AwvQ2w==
+Received: from beta.dmz-ap.st.com (beta.dmz-ap.st.com [138.198.100.35])
+	by mx07-00178001.pphosted.com (PPS) with ESMTPS id 47j5tmmj89-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Fri, 04 Jul 2025 11:22:02 +0200 (MEST)
+Received: from euls16034.sgp.st.com (euls16034.sgp.st.com [10.75.44.20])
+	by beta.dmz-ap.st.com (STMicroelectronics) with ESMTP id 53E7D4004F;
+	Fri,  4 Jul 2025 11:21:10 +0200 (CEST)
+Received: from Webmail-eu.st.com (shfdag1node1.st.com [10.75.129.69])
+	by euls16034.sgp.st.com (STMicroelectronics) with ESMTP id 60B8BA5594F;
+	Fri,  4 Jul 2025 11:20:37 +0200 (CEST)
+Received: from [10.48.86.79] (10.48.86.79) by SHFDAG1NODE1.st.com
+ (10.75.129.69) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.39; Fri, 4 Jul
+ 2025 11:20:36 +0200
+Message-ID: <ec89779f-2193-42a1-b980-de904be9d388@foss.st.com>
+Date: Fri, 4 Jul 2025 11:20:37 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,84 +67,63 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 0/8] add Voyager board support
-To: Ben Zong-You Xie <ben717@andestech.com>
-Cc: arnd@arndb.de, paul.walmsley@sifive.com, palmer@dabbelt.com,
- aou@eecs.berkeley.edu, alex@ghiti.fr, robh@kernel.org, krzk+dt@kernel.org,
- conor+dt@kernel.org, tglx@linutronix.de, daniel.lezcano@linaro.org,
- prabhakar.mahadev-lad.rj@bp.renesas.com, devicetree@vger.kernel.org,
- linux-riscv@lists.infradead.org, linux-kernel@vger.kernel.org,
- soc@lists.linux.dev, tim609@andestech.com
-References: <20250704081451.2011407-1-ben717@andestech.com>
-From: Krzysztof Kozlowski <krzk@kernel.org>
+Subject: Re: [PATCH] ARM: dts: stm32: add system-clock-direction-out on
+ stm32mp15xx-dkx
+To: Olivier Moysan <olivier.moysan@foss.st.com>,
+        Rob Herring
+	<robh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley
+	<conor+dt@kernel.org>,
+        Maxime Coquelin <mcoquelin.stm32@gmail.com>
+CC: <devicetree@vger.kernel.org>, <linux-stm32@st-md-mailman.stormreply.com>,
+        <linux-arm-kernel@lists.infradead.org>, <linux-kernel@vger.kernel.org>
+References: <20250521150418.488152-1-olivier.moysan@foss.st.com>
 Content-Language: en-US
-Autocrypt: addr=krzk@kernel.org; keydata=
- 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 a/A=
-In-Reply-To: <20250704081451.2011407-1-ben717@andestech.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+From: Alexandre TORGUE <alexandre.torgue@foss.st.com>
+In-Reply-To: <20250521150418.488152-1-olivier.moysan@foss.st.com>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: SHFCAS1NODE1.st.com (10.75.129.72) To SHFDAG1NODE1.st.com
+ (10.75.129.69)
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1099,Hydra:6.1.7,FMLib:17.12.80.40
+ definitions=2025-07-04_03,2025-07-02_04,2025-03-28_01
 
-On 04/07/2025 10:14, Ben Zong-You Xie wrote:
-> The Voyager is a 9.6” x 9.6” Micro ATX form factor development board
-> including Andes QiLai SoC. This patch series adds minimal device tree
-> files for the QiLai SoC and the Voyager board [1].
+Hi Olivier
+
+On 5/21/25 17:04, Olivier Moysan wrote:
+> The commit 5725bce709db
+> ("ASoC: simple-card-utils: Unify clock direction by clk_direction")
+> corrupts the audio on STM32MP15 DK sound cards.
+> The parent clock is not correctly set, because set_sai_ck_rate() is not
+> executed in stm32_sai_set_sysclk() callback.
+> This occurs because set_sysclk() is called with the wrong direction,
+> SND_SOC_CLOCK_IN instead of SND_SOC_CLOCK_OUT.
 > 
-> Now only support basic uart drivers to boot up into a basic console. Other
-> features will be added later.
+> Add system-clock-direction-out property in SAI2A endpoint node of
+> STM32MP15XX-DKX device tree, to specify the MCLK clock direction.
 > 
-> The original patchset [2] has been reviewed positively in relevant mailing
-> lists. Thus, send a new patchset to soc@lists.linux.dev .
+> Signed-off-by: Olivier Moysan <olivier.moysan@foss.st.com>
+> ---
+>   arch/arm/boot/dts/st/stm32mp15xx-dkx.dtsi | 1 +
+>   1 file changed, 1 insertion(+)
 > 
-> Also, there is a patch dependency in this patchset:
-> Patch 2 <- Patch 4 <- Patch 5 <- Patch 6
+> diff --git a/arch/arm/boot/dts/st/stm32mp15xx-dkx.dtsi b/arch/arm/boot/dts/st/stm32mp15xx-dkx.dtsi
+> index a5511b1f0ce3..c74e36676d1b 100644
+> --- a/arch/arm/boot/dts/st/stm32mp15xx-dkx.dtsi
+> +++ b/arch/arm/boot/dts/st/stm32mp15xx-dkx.dtsi
+> @@ -515,6 +515,7 @@ sai2a_endpoint: endpoint {
+>   				remote-endpoint = <&cs42l51_tx_endpoint>;
+>   				dai-format = "i2s";
+>   				mclk-fs = <256>;
+> +				system-clock-direction-out;
+>   				dai-tdm-slot-num = <2>;
+>   				dai-tdm-slot-width = <32>;
+>   			};
 
-How? These are bindings. How DTS can depend on the binding? Do you have
-akcs from their subsystem maintainers that you are sending it here?
+Applied on stm32-next.
 
-Sorry, but no, this should go via their maintainers, unless they did not
-want to pick it up. Is this the case here?
-
-Best regards,
-Krzysztof
+Thanks !!
+Alex
 
