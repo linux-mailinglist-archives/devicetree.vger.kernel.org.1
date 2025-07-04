@@ -1,131 +1,109 @@
-Return-Path: <devicetree+bounces-192866-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-192867-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 53E6EAF8499
-	for <lists+devicetree@lfdr.de>; Fri,  4 Jul 2025 01:56:13 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id E17B7AF84A5
+	for <lists+devicetree@lfdr.de>; Fri,  4 Jul 2025 02:06:45 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id DF3317B7052
-	for <lists+devicetree@lfdr.de>; Thu,  3 Jul 2025 23:54:47 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 9F9C77B60FE
+	for <lists+devicetree@lfdr.de>; Fri,  4 Jul 2025 00:05:20 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 463B52DCF73;
-	Thu,  3 Jul 2025 23:55:56 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 54105367;
+	Fri,  4 Jul 2025 00:06:39 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="kz/ts2Bs"
+	dkim=pass (2048-bit key) header.d=codeconstruct.com.au header.i=@codeconstruct.com.au header.b="bd8cK7MY"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f46.google.com (mail-wm1-f46.google.com [209.85.128.46])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from codeconstruct.com.au (pi.codeconstruct.com.au [203.29.241.158])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 861832D94B5;
-	Thu,  3 Jul 2025 23:55:54 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.46
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4EC83256D;
+	Fri,  4 Jul 2025 00:06:36 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=203.29.241.158
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1751586956; cv=none; b=TrwgoYGItpH4S/oiAprkKuB4GGWItxfFF6jXeGkLj7LU5NTejmp6rppcc8OyniLQhrqxxfWQZ85lVPC0MwmNt4dRCTNQgAdL7OOuMfm/uYilJ8+7VwWlmaTMDv2QT9wJGMQ6Ec0Rxh79/TrDZiP9PHEh8XfyAeABB6O1qqmQofc=
+	t=1751587599; cv=none; b=XWS2Ffzhrqsb2Nu+NdgWWVojSefX4dlAMg0n2mkdIrCd+7DKjx6cJIOcdQcAfghFhUHSS5TbL8K0fOHQ/S7c/DdzyfHG9yOCmYnsS6nKxJQL1XtwjluAwcmL69m1FttXUkVeZf+OP6cxP3HNrPmSTWmj+gayViJuuass0Wa3EvI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1751586956; c=relaxed/simple;
-	bh=u0ANpC16B14FJ0MBF9cnVDGrHEU/D3GBctgg8DSWQqQ=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=fDGBdEcOh24cWw7r0wVCNEwZtFGgtyJkl9kQxhO9CSWVUcqPbcv54BwwA8qXfabXPebkJ11iXbx6Wjk2nc8udykyzWAnvVoTJv89g8EVyOBJ024LQxg/0QAIsASkfUo5G9A0AzwDyzR5TrwhymiVr71x6AHuFGqr7uDQFW3RZ80=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=kz/ts2Bs; arc=none smtp.client-ip=209.85.128.46
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-wm1-f46.google.com with SMTP id 5b1f17b1804b1-4538a2fc7ffso10668815e9.0;
-        Thu, 03 Jul 2025 16:55:54 -0700 (PDT)
+	s=arc-20240116; t=1751587599; c=relaxed/simple;
+	bh=4HvshWDHlLlPvbXK9Y83KcYdKVX+YX4UjkJdPlQODCg=;
+	h=Message-ID:Subject:From:To:Date:In-Reply-To:References:
+	 Content-Type:MIME-Version; b=U6hOzfxgkEZEk33aR93UhZCOulKSbtzmkNbRRUE6G2S6/BHsNsDP/6KrfcFaFIjxcSfUHYHRzk8+c6zXVC+waQxgRvNFntoYTizs2PmndqDZGPYllWWyZx5EcPNNiFw0AHm8gcYaC/0Ra6Zzxj7iThxZ2X/fhF0+RqaaoBywWi4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=codeconstruct.com.au; spf=pass smtp.mailfrom=codeconstruct.com.au; dkim=pass (2048-bit key) header.d=codeconstruct.com.au header.i=@codeconstruct.com.au header.b=bd8cK7MY; arc=none smtp.client-ip=203.29.241.158
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=codeconstruct.com.au
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=codeconstruct.com.au
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1751586953; x=1752191753; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=+wqidWqIfOoA8OQeeV49xJDBAiz49nIOR1nc+UTiq1g=;
-        b=kz/ts2BsSVpno9yAvqF+la5igjH+zLzntuLgNNIpPPyNr6wwqc7/4CdhJatYUgJhi2
-         ICOtbmdSod/FKruUmwbtK9FsWYc2PfcRI0fWRkjd6yf+2hMrdbqdCbQVOLUZAE3qYVRE
-         rQ3e92fYYj2Qm5WovSRjBHmonOOo8RPnc1qe540wlJ9Sjz5mgR0GPdIuqlglKs0Px0Kw
-         E7/UVGNTzSQ6h4iq6ZvNK6m6iZX/aja12ohmX++WKQ9Kda1zSlTsSKBn1G43nYgZfehS
-         +u8I2VbKnnm3LolBjCYQuBaJK/XAwRA/N92p5sPLbsvcYhXCzgS9iTAxHDsInGm4KyNN
-         15lA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1751586953; x=1752191753;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=+wqidWqIfOoA8OQeeV49xJDBAiz49nIOR1nc+UTiq1g=;
-        b=FSlfqLPyBW3Tc+kQ3d5N4FpSSHgfdgRuJCSZI9TZavXH6rPHVaycuQw9LbNgfpjZgL
-         LJPS+ezMoPa2O7c572Wx8Z8lqJqG4/KgoFDnSk241UMvK1t8YlxrlLzyQLtsffrpyWcU
-         bFh0kMvHlD8GdrqcKdgbI6Nh6wkxisEY7Mdxd1ynYCVmA3tBdWTQGx5EOfKPZ/luVedb
-         2UmW9agZ2V4lqqhfoGhvcM6zasIvVzHt9KBJ0Ah7s+J5sjuKYk2vuFnZ69cAC7tJE3i5
-         6bQjmiNm1Y1NW/IWHnF0nfP/vLEHdg9noOtDN44GFCRIhooCahFV+MYY49u2pnWv86eK
-         ogRg==
-X-Forwarded-Encrypted: i=1; AJvYcCUSF+cwCiv4l8H+M3vHgVHxM+LpjQ3BIKPzbUuadfoDr1Zs732cP2XBFp1iJeRy81Jdp5VY4tgn7vG96cnJ@vger.kernel.org, AJvYcCXXqoMDhJR9o4+tYAiO+IBcO1C54HvQrOPu2wGZ6lzokZVqRq82WumJSZMv3HyYKZZfGJ5RU9GiVSiC@vger.kernel.org
-X-Gm-Message-State: AOJu0YwfN0SdkN5vYbNy7pR/xQKAmqICnzfbiuT2Jzbv+hlKOPD3birU
-	Y7HmUT1ki6OddQsoWaWaNccl4L7VgFZMi4lLgMiTcErkvdVMng7npZId
-X-Gm-Gg: ASbGnctk+r18gcIpzs/3wfIeumxRyVqlc0KZ2Pp6EGCzbRS4//tIwmxu1AE4qVgKxmx
-	qyO3ITMiLYIm3bbp0st8jtwPK6BuPj5MgtaFx5sVFgik4snbGpBL5BC1Xojd6CTQlUiRAknJUeO
-	C3Lcvj5ediGq2wdcTvZs101OavHCoqsYWoMJ510L/SB29rMqt5YTLNk5mY+XK5xW9GLln03sLza
-	DssrvE8ok4+iPcreO4XvA4REo7qImdc/8MpM3gThYEQIN3XnLXbndeJcggMon36zeX1/V8jhMnd
-	0fL7vRiDaFChoDLVskEXeizAwn6cPlV4cwhiWnSU+Yrapc4UeJEs/wJL15K0dTx9MLA8hZYl6My
-	vW+opvlzxH1s=
-X-Google-Smtp-Source: AGHT+IEhNhLFwtoERvqR4wwIzABw3n2OOlNv4OV5lL7WaKkPa5Z+UnEUJfje79VBNaD3WpA1dHlqtQ==
-X-Received: by 2002:a5d:6f02:0:b0:3a5:1241:afde with SMTP id ffacd0b85a97d-3b495b9446amr673335f8f.9.1751586952791;
-        Thu, 03 Jul 2025 16:55:52 -0700 (PDT)
-Received: from iku.Home ([2a06:5906:61b:2d00:5f46:9d65:6ef9:1650])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-3b47225b5cdsm932436f8f.85.2025.07.03.16.55.51
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 03 Jul 2025 16:55:52 -0700 (PDT)
-From: Prabhakar <prabhakar.csengg@gmail.com>
-X-Google-Original-From: Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-To: Geert Uytterhoeven <geert+renesas@glider.be>,
-	Magnus Damm <magnus.damm@gmail.com>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>
-Cc: linux-renesas-soc@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	Prabhakar <prabhakar.csengg@gmail.com>,
-	Biju Das <biju.das.jz@bp.renesas.com>,
-	Fabrizio Castro <fabrizio.castro.jz@renesas.com>,
-	Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-Subject: [PATCH 2/2] arm64: dts: renesas: r9a09g056n48-rzv2n-evk: Fix pinctrl node name for GBETH1
-Date: Fri,  4 Jul 2025 00:55:44 +0100
-Message-ID: <20250703235544.715433-3-prabhakar.mahadev-lad.rj@bp.renesas.com>
-X-Mailer: git-send-email 2.49.0
-In-Reply-To: <20250703235544.715433-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
-References: <20250703235544.715433-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
+	d=codeconstruct.com.au; s=2022a; t=1751587594;
+	bh=4HvshWDHlLlPvbXK9Y83KcYdKVX+YX4UjkJdPlQODCg=;
+	h=Subject:From:To:Date:In-Reply-To:References;
+	b=bd8cK7MYknGTS0lOj+U8WZ6K9i1+iL4/RcZ+73L+lPeLQ+/miHT1MDVXHrbVf1To8
+	 C5X6XpLEK6MffQ1s78rE7Y+heB8kXVhyjtBf6eeD0nQ8XtD2zZE4rseor3xURQ8SFV
+	 72jk/KMostVgC9EsC9AB7NasfNH/i0p1kfQnXVOaoWjelDS5zw0CuMm5FXdMtAR2b5
+	 FCbJTrOhbAlt9ZUnCaFUajIcfRUuCOVeRNxN3yh5SpDAZXKGKwJqY5228nsOnzo5W/
+	 hs3108j+Sw3AywZrDMEKTvq1sFY3CDCMMdOPU2vUqFTVgVLF+Fl1EGuPoBN+imQkG8
+	 TK9ry16QRj3Kg==
+Received: from [192.168.68.112] (unknown [180.150.112.153])
+	by mail.codeconstruct.com.au (Postfix) with ESMTPSA id 431E36443C;
+	Fri,  4 Jul 2025 08:06:33 +0800 (AWST)
+Message-ID: <78f9fcbc58261064f248e95eb7740549e338bc78.camel@codeconstruct.com.au>
+Subject: Re: [PATCH 1/5] ARM: dts: aspeed: Expand data0 partition in
+ facebook-bmc-flash-layout-128.dtsi
+From: Andrew Jeffery <andrew@codeconstruct.com.au>
+To: rentao.bupt@gmail.com, Rob Herring <robh@kernel.org>, Krzysztof
+ Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, Joel
+ Stanley <joel@jms.id.au>, devicetree@vger.kernel.org, 
+ linux-arm-kernel@lists.infradead.org, linux-aspeed@lists.ozlabs.org, 
+ linux-kernel@vger.kernel.org, Tao Ren <taoren@meta.com>
+Date: Fri, 04 Jul 2025 09:36:29 +0930
+In-Reply-To: <20250702050421.13729-2-rentao.bupt@gmail.com>
+References: <20250702050421.13729-1-rentao.bupt@gmail.com>
+	 <20250702050421.13729-2-rentao.bupt@gmail.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: base64
+User-Agent: Evolution 3.46.4-2 
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
 
-From: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-
-Rename the GBETH1 pinctrl node from "eth0" to "eth1" to avoid duplicate
-node names in the DT and correctly reflect the label "eth1_pins".
-
-Fixes: f111192baa80 ("arm64: dts: renesas: r9a09g056n48-rzv2n-evk: Enable GBETH")
-Signed-off-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
----
- arch/arm64/boot/dts/renesas/r9a09g056n48-rzv2n-evk.dts | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
-
-diff --git a/arch/arm64/boot/dts/renesas/r9a09g056n48-rzv2n-evk.dts b/arch/arm64/boot/dts/renesas/r9a09g056n48-rzv2n-evk.dts
-index 8bce7398c2c4..910679dd1b23 100644
---- a/arch/arm64/boot/dts/renesas/r9a09g056n48-rzv2n-evk.dts
-+++ b/arch/arm64/boot/dts/renesas/r9a09g056n48-rzv2n-evk.dts
-@@ -327,7 +327,7 @@ eth0_pins: eth0 {
- 		output-enable;
- 	};
- 
--	eth1_pins: eth0 {
-+	eth1_pins: eth1 {
- 		pins = "ET1_TXC_TXCLK";
- 		output-enable;
- 	};
--- 
-2.49.0
+T24gVHVlLCAyMDI1LTA3LTAxIGF0IDIyOjA0IC0wNzAwLCByZW50YW8uYnVwdEBnbWFpbC5jb20g
+d3JvdGU6Cj4gRnJvbTogVGFvIFJlbiA8cmVudGFvLmJ1cHRAZ21haWwuY29tPgo+IAo+IEV4cGFu
+ZCBkYXRhMCBwYXJ0aXRpb24gdG8gNjRNQiBpbiBmYWNlYm9vay1ibWMtZmxhc2gtbGF5b3V0LTEy
+OC5kdHNpIGZvcgo+IGxhcmdlciBwZXJzaXN0ZW50IHN0b3JhZ2UuCj4gCj4gU2lnbmVkLW9mZi1i
+eTogVGFvIFJlbiA8cmVudGFvLmJ1cHRAZ21haWwuY29tPgo+IC0tLQo+IMKgLi4uL2Jvb3QvZHRz
+L2FzcGVlZC9mYWNlYm9vay1ibWMtZmxhc2gtbGF5b3V0LTEyOC5kdHNpIHwgMTAgKysrKystLS0t
+LQo+IMKgMSBmaWxlIGNoYW5nZWQsIDUgaW5zZXJ0aW9ucygrKSwgNSBkZWxldGlvbnMoLSkKPiAK
+PiBkaWZmIC0tZ2l0IGEvYXJjaC9hcm0vYm9vdC9kdHMvYXNwZWVkL2ZhY2Vib29rLWJtYy1mbGFz
+aC1sYXlvdXQtMTI4LmR0c2kgYi9hcmNoL2FybS9ib290L2R0cy9hc3BlZWQvZmFjZWJvb2stYm1j
+LWZsYXNoLWxheW91dC0xMjguZHRzaQo+IGluZGV4IDdmMzY1MmRlYTU1MC4uZWZkOTIyMzJjZGEy
+IDEwMDY0NAo+IC0tLSBhL2FyY2gvYXJtL2Jvb3QvZHRzL2FzcGVlZC9mYWNlYm9vay1ibWMtZmxh
+c2gtbGF5b3V0LTEyOC5kdHNpCj4gKysrIGIvYXJjaC9hcm0vYm9vdC9kdHMvYXNwZWVkL2ZhY2Vi
+b29rLWJtYy1mbGFzaC1sYXlvdXQtMTI4LmR0c2kKPiBAQCAtMzIsMTkgKzMyLDE5IEBAIGltYWdl
+LW1ldGFAZjAwMDAgewo+IMKgwqDCoMKgwqDCoMKgwqB9Owo+IMKgCj4gwqDCoMKgwqDCoMKgwqDC
+oC8qCj4gLcKgwqDCoMKgwqDCoMKgICogRklUIGltYWdlOiAxMTkgTUIuCj4gK8KgwqDCoMKgwqDC
+oMKgICogRklUIGltYWdlOiA2MyBNQi4KPiDCoMKgwqDCoMKgwqDCoMKgICovCj4gwqDCoMKgwqDC
+oMKgwqDCoGZpdEAxMDAwMDAgewo+IC3CoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqByZWcg
+PSA8MHgxMDAwMDAgMHg3NzAwMDAwPjsKPiArwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKg
+cmVnID0gPDB4MTAwMDAwIDB4M2YwMDAwMD47Cj4gwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDC
+oMKgwqBsYWJlbCA9ICJmaXQiOwo+IMKgwqDCoMKgwqDCoMKgwqB9Owo+IMKgCj4gwqDCoMKgwqDC
+oMKgwqDCoC8qCj4gLcKgwqDCoMKgwqDCoMKgICogImRhdGEwIiBwYXJ0aXRpb24gKDhNQikgaXMg
+dXNlZCBieSBGYWNlYm9vayBCTUMgcGxhdGZvcm1zIGFzCj4gK8KgwqDCoMKgwqDCoMKgICogImRh
+dGEwIiBwYXJ0aXRpb24gKDY0TUIpIGlzIHVzZWQgYnkgRmFjZWJvb2sgQk1DIHBsYXRmb3JtcyBh
+cwo+IMKgwqDCoMKgwqDCoMKgwqAgKiBwZXJzaXN0ZW50IGRhdGEgc3RvcmUuCj4gwqDCoMKgwqDC
+oMKgwqDCoCAqLwo+IC3CoMKgwqDCoMKgwqDCoGRhdGEwQDc4MDAwMDAgewo+IC3CoMKgwqDCoMKg
+wqDCoMKgwqDCoMKgwqDCoMKgwqByZWcgPSA8MHg3ODAwMDAwIDB4ODAwMDAwPjsKPiArwqDCoMKg
+wqDCoMKgwqBkYXRhMEA0MDAwMDAwIHsKPiArwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKg
+cmVnID0gPDB4NDAwMDAwMCAweDQwMDAwMDA+Owo+IMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKg
+wqDCoMKgbGFiZWwgPSAiZGF0YTAiOwo+IMKgwqDCoMKgwqDCoMKgwqB9Owo+IMKgCgpUd28gZXhp
+c3Rpbmcgc3lzdGVtcyB1c2UgdGhpcyBkdHNpOgoKICAgPiBnaXQgZ3JlcCBmYWNlYm9vay1ibWMt
+Zmxhc2gtbGF5b3V0LTEyOC5kdHNpCiAgIGFyY2gvYXJtL2Jvb3QvZHRzL2FzcGVlZC9hc3BlZWQt
+Ym1jLWZhY2Vib29rLXdlZGdlNDAwLmR0czojaW5jbHVkZSAiZmFjZWJvb2stYm1jLWZsYXNoLWxh
+eW91dC0xMjguZHRzaSIKICAgYXJjaC9hcm0vYm9vdC9kdHMvYXNwZWVkL2FzdDI2MDAtZmFjZWJv
+b2stbmV0Ym1jLWNvbW1vbi5kdHNpOiNpbmNsdWRlICJmYWNlYm9vay1ibWMtZmxhc2gtbGF5b3V0
+LTEyOC5kdHNpIgoKVGhpcyBjaGFuZ2UgcmVxdWlyZXMgYSBmdWxsIHJlZmxhc2ggb2YgdGhvc2Ug
+ZGV2aWNlcywgd2hpY2ggaXMgcHJldHR5CmRpc3J1cHRpdmUuCgpJdCBzZWVtcyBtb3JlIGFwcHJv
+cHJpYXRlIHRvIG1lIHRvIGNyZWF0ZSBhIHNlcGFyYXRlIGR0c2kgZm9yIHRoZSBuZXcKZmxhc2gg
+bGF5b3V0IHRvIHVzZSBpbiBuZXcgc3lzdGVtcy4KCkFuZHJldwo=
 
 
