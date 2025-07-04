@@ -1,78 +1,63 @@
-Return-Path: <devicetree+bounces-192879-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-192880-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id CB0EFAF859D
-	for <lists+devicetree@lfdr.de>; Fri,  4 Jul 2025 04:38:37 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id B285DAF85AD
+	for <lists+devicetree@lfdr.de>; Fri,  4 Jul 2025 04:41:46 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 772005448C7
-	for <lists+devicetree@lfdr.de>; Fri,  4 Jul 2025 02:38:11 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 28FD31C82CD5
+	for <lists+devicetree@lfdr.de>; Fri,  4 Jul 2025 02:42:03 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6DD2F1A01B9;
-	Fri,  4 Jul 2025 02:38:32 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 12D9E1DEFF3;
+	Fri,  4 Jul 2025 02:41:37 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=broadcom.com header.i=@broadcom.com header.b="UP0WgrQ4"
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="E44G995I"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pj1-f45.google.com (mail-pj1-f45.google.com [209.85.216.45])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0B60F42056
-	for <devicetree@vger.kernel.org>; Fri,  4 Jul 2025 02:38:30 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.216.45
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 50A181DDA34;
+	Fri,  4 Jul 2025 02:41:35 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1751596712; cv=none; b=BjwfMME3LwjG29RdIu4vCzO7raj8swenTa3+cXo++o7jeq450gAg1AGAtFtmlVzPsdPm6vAPnMiBArPxt5Qz+mxdGpYbPBl1zoBx3pwFSWWCKftDOe/z7J0ZqTZaK/TIFkkjDocr0xHDWQpnLYzrEFxCuEfsHRJYIjEzYkVd4Tg=
+	t=1751596897; cv=none; b=m7ht5/ri62LdeaJRD0LDTkJl+md6yEMZFEiVsx1D6Yl86BOeqoR0mcx4vJFVWzOhiRlFfYjGoHq9IMGGHm7nVZHd7XzswusIAI1UqgRT6fqZWDV1XH+H4H5tIdavXCy3GxPc0yqjNQ+YOqR7to7GxdC/xXz/oOcgtPconYiStUc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1751596712; c=relaxed/simple;
-	bh=Vab/LD5zzpsdPtSzyL3f5bz48Sj6WuCxzyj08MvJ1ew=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=KaUIT6NUex4AWwgMu3KX35K15cLXE/XqZ9Kzu/inRZFGhHa0nwMiK7FhcHDh1K512Eg0WV7FVyic++TBOctKtwDluS4xAsizxrbgvV8S4kadpJrKlvXhzVMAaJAOYTJdEcmxkCMmnThhTHpaGhnxPQF87J1qwA7l9TrynkGxzjI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=broadcom.com; spf=fail smtp.mailfrom=broadcom.com; dkim=pass (1024-bit key) header.d=broadcom.com header.i=@broadcom.com header.b=UP0WgrQ4; arc=none smtp.client-ip=209.85.216.45
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=broadcom.com
-Authentication-Results: smtp.subspace.kernel.org; spf=fail smtp.mailfrom=broadcom.com
-Received: by mail-pj1-f45.google.com with SMTP id 98e67ed59e1d1-3122a63201bso464197a91.0
-        for <devicetree@vger.kernel.org>; Thu, 03 Jul 2025 19:38:30 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=broadcom.com; s=google; t=1751596710; x=1752201510; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from
-         :content-language:references:cc:to:subject:user-agent:mime-version
-         :date:message-id:from:to:cc:subject:date:message-id:reply-to;
-        bh=5q4W9N7qK+Wuy6yg62v5/iQ4NUV7tbbrVCXiTiMRs7Q=;
-        b=UP0WgrQ4AkNMjMl2PGh+TwaPD/8y8PA8LOjJMCfCBFeyiex0ojKps91cTgmB8V5WeU
-         THcmjG0AwYmX9PK5deDu9jey72Tr76OHuRSnpDuMJPPla5JCfw0C987RKkmU8S7ccBj+
-         opwc075DphAC1/nWKJPjVsLmRIckiSHkTgnA4=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1751596710; x=1752201510;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from
-         :content-language:references:cc:to:subject:user-agent:mime-version
-         :date:message-id:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=5q4W9N7qK+Wuy6yg62v5/iQ4NUV7tbbrVCXiTiMRs7Q=;
-        b=J2VAzo6dq6gOWI7qBf5Rw2/n9xN7oOPptHgNnKq/36S9Ae+BfxUgDJfpZ5f96NpOaX
-         p9ZhuFIet6GVIweOIKdYfMWCg6IwH64cSwzU16r4QCWyFso4Tb6Qm5ihlCavZDZsMElF
-         gbJF98T9Q0F4dXkRGotDkd8wvGA6/Wq1kiyCMEwRBIr+Od2kwiQskhLlu5HQUCoVhkwO
-         Sq/qhtG0XZlxi/3L5HaUFsaMuvgiaTPy3Dr0Jr9egmuwkfN8QzvxhRUQbvWQFOt9ZajT
-         tpU6urTdShKF2A68g2bXQec1jYSJVh/zXpAvTa4qCNGs3zZjJvZsxbpcZcxGmX45/GZa
-         jytQ==
-X-Forwarded-Encrypted: i=1; AJvYcCWuJFEQY/KuG9D9myc9Bgji7GWkF2pJfJiE7XWKhoWTnnWq0kABmsM3OeOlzXfRiszu+uXlpDIXyR4f@vger.kernel.org
-X-Gm-Message-State: AOJu0YwWlNqqkWJwUCb+wK9AgcvuGNWpMO3djeXxvbQL37sq7E4TbEQ5
-	29jJPeslzt9minICbP63rwV989UgvR6s53wm17mCnNQJ1S5TI39HGZcH5yi6tBCbhQ==
-X-Gm-Gg: ASbGncve+Q3nJpJoa3jnGsZK9eb2rxXXXYt5q1/hE8TpZ8uowbjqFUbDw9EAoG5ZsfP
-	y5LwE5NHX2GFx736Pmv5IWFhoIdARc/fpT5qTtMpF8thJdsq/PcBJddrX19Nv8//QnQin6U1uM9
-	tdPsUUPyf0V4y7y050yy2bxUkJlkU2EQ7+yodYSqrMaLx5w77PtpkDKQSeUHAT1Ihl/JZFjcw98
-	gTiTzhtldiSoVNJnst9CJKMQPFbuoim8KR4yFyqCEQKL1cqxAFeDoxilujxJfJSVnVRtUu1OXVb
-	Zh8ZJlN5s/WpAr7sJXOlzF2Wcv5qCqPoSoMRP36kT3uszQ7u+A2054rwhQIpytjQMVWZ6rfAwJw
-	Qcnyvy51HBuyhebOm+lsCMM+etd7TFVahCdq0NTrz
-X-Google-Smtp-Source: AGHT+IFP2Imb1D5Oqqdh7ad00SyRc+ove3xbG3fR465FpmV+kHbhkPwjj7ne8HRgVGhPkEwVcQd/Wg==
-X-Received: by 2002:a17:90b:3b90:b0:311:ea13:2e63 with SMTP id 98e67ed59e1d1-31aadd27f55mr601908a91.13.1751596710304;
-        Thu, 03 Jul 2025 19:38:30 -0700 (PDT)
-Received: from [192.168.1.3] (ip68-4-215-93.oc.oc.cox.net. [68.4.215.93])
-        by smtp.gmail.com with ESMTPSA id d9443c01a7336-23c8431e2c5sm8054455ad.39.2025.07.03.19.38.27
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 03 Jul 2025 19:38:29 -0700 (PDT)
-Message-ID: <215c9cf4-9062-4546-8237-8d02fcb5b6f9@broadcom.com>
-Date: Thu, 3 Jul 2025 19:38:27 -0700
+	s=arc-20240116; t=1751596897; c=relaxed/simple;
+	bh=y1My5v030XEh0WaLlRiSBHqtzi/T5G/z6AFiYN0rslQ=;
+	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
+	 In-Reply-To:Content-Type; b=ZIDWeZ+pOqOlBPIZn3rA7gjqpCg1hqz82oj+r7+PTjria8ef6jdiXSo4mw/UV8FnYhC0rQcUuBlzBt7SjHP/6F+7vPVf8ToBwbKYVeRZvWzJB0haYhGY55VgiI0XrsdhRgQHmgsX4TZppurgZFoa+Go2NjQWgy4LS1WrJ86SnSk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=E44G995I; arc=none smtp.client-ip=205.220.168.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
+Received: from pps.filterd (m0279866.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 563JPKf5029511;
+	Fri, 4 Jul 2025 02:41:24 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	4c2MhmG9LJubabheJJ4s6DnDEcYP/0f7ZQNfLP0aXkQ=; b=E44G995InBDYpB9J
+	YS6KMDHwNDDpsYUhj6882fA8loOTJOSfEffTbgXb2xMR/7/sH2Hcs75e4t/qnY8V
+	Wm3XipDB+pVyqhsD/2mPvoDym2q65fqKLEKklkx+4M6IdV1orbC9hdAJJY6AjdTp
+	REEoM9IeQPDshdXmVStAu3FGgtYXKdbFSvJU+qedU2UwOp4pBMkOvuiCDqvTkzlv
+	ATEErTSVpHThAaIBvhcbI56ysq7/UOGk8TI8WASpZFrDzWPbbr5VlLrlY7S3B762
+	VAir/i1i2FIJ0QbTvzSu+MlLgB19B4MCoTR0aLtXw0qosEGqfkoe4cObgtB8K8Dd
+	ZNL2EQ==
+Received: from nalasppmta05.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 47nh9s3mm8-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Fri, 04 Jul 2025 02:41:23 +0000 (GMT)
+Received: from nalasex01c.na.qualcomm.com (nalasex01c.na.qualcomm.com [10.47.97.35])
+	by NALASPPMTA05.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 5642fMOD023425
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Fri, 4 Jul 2025 02:41:22 GMT
+Received: from [10.133.33.146] (10.80.80.8) by nalasex01c.na.qualcomm.com
+ (10.47.97.35) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1748.10; Thu, 3 Jul
+ 2025 19:41:18 -0700
+Message-ID: <7f2cb415-3f56-4e3b-a6a6-093d5d2a5161@quicinc.com>
+Date: Fri, 4 Jul 2025 10:41:16 +0800
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -80,75 +65,120 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 1/3] dt-bindings: PCI: brcm,stb-pcie: Add 74110 SoC
-To: Jim Quinlan <james.quinlan@broadcom.com>, linux-pci@vger.kernel.org,
- Nicolas Saenz Julienne <nsaenz@kernel.org>,
- Bjorn Helgaas <bhelgaas@google.com>,
- Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>,
- Cyril Brulebois <kibi@debian.org>, bcm-kernel-feedback-list@broadcom.com,
- jim2101024@gmail.com
-Cc: Lorenzo Pieralisi <lpieralisi@kernel.org>,
- =?UTF-8?Q?Krzysztof_Wilczy=C5=84ski?= <kwilczynski@kernel.org>,
- Manivannan Sadhasivam <mani@kernel.org>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>,
- "moderated list:BROADCOM BCM7XXX ARM ARCHITECTURE"
- <linux-arm-kernel@lists.infradead.org>,
- "moderated list:BROADCOM BCM2711/BCM2835 ARM ARCHITECTURE"
- <linux-rpi-kernel@lists.infradead.org>,
- "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS"
- <devicetree@vger.kernel.org>, open list <linux-kernel@vger.kernel.org>
-References: <20250703215314.3971473-1-james.quinlan@broadcom.com>
- <20250703215314.3971473-2-james.quinlan@broadcom.com>
+Subject: Re: [PATCH v2 0/2] Enable CTCU device for QCS8300
+To: Jie Gan <jie.gan@oss.qualcomm.com>,
+        Suzuki K Poulose
+	<suzuki.poulose@arm.com>,
+        Mike Leach <mike.leach@linaro.org>,
+        James Clark
+	<james.clark@linaro.org>, Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski
+	<krzk+dt@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Bjorn Andersson
+	<andersson@kernel.org>,
+        Konrad Dybcio <konradybcio@kernel.org>
+CC: <coresight@lists.linaro.org>, <linux-arm-kernel@lists.infradead.org>,
+        <linux-arm-msm@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>
+References: <20250624095905.7609-1-jie.gan@oss.qualcomm.com>
+ <338a9ee1-10aa-4bd2-9b0a-5006ed571bb9@quicinc.com>
 Content-Language: en-US
-From: Florian Fainelli <florian.fainelli@broadcom.com>
-Autocrypt: addr=florian.fainelli@broadcom.com; keydata=
- xsBNBFPAG8ABCAC3EO02urEwipgbUNJ1r6oI2Vr/+uE389lSEShN2PmL3MVnzhViSAtrYxeT
- M0Txqn1tOWoIc4QUl6Ggqf5KP6FoRkCrgMMTnUAINsINYXK+3OLe7HjP10h2jDRX4Ajs4Ghs
- JrZOBru6rH0YrgAhr6O5gG7NE1jhly+EsOa2MpwOiXO4DE/YKZGuVe6Bh87WqmILs9KvnNrQ
- PcycQnYKTVpqE95d4M824M5cuRB6D1GrYovCsjA9uxo22kPdOoQRAu5gBBn3AdtALFyQj9DQ
- KQuc39/i/Kt6XLZ/RsBc6qLs+p+JnEuPJngTSfWvzGjpx0nkwCMi4yBb+xk7Hki4kEslABEB
- AAHNMEZsb3JpYW4gRmFpbmVsbGkgPGZsb3JpYW4uZmFpbmVsbGlAYnJvYWRjb20uY29tPsLB
- IQQQAQgAywUCZWl41AUJI+Jo+hcKAAG/SMv+fS3xUQWa0NryPuoRGjsA3SAUAAAAAAAWAAFr
- ZXktdXNhZ2UtbWFza0BwZ3AuY29tjDAUgAAAAAAgAAdwcmVmZXJyZWQtZW1haWwtZW5jb2Rp
- bmdAcGdwLmNvbXBncG1pbWUICwkIBwMCAQoFF4AAAAAZGGxkYXA6Ly9rZXlzLmJyb2FkY29t
- Lm5ldAUbAwAAAAMWAgEFHgEAAAAEFQgJChYhBNXZKpfnkVze1+R8aIExtcQpvGagAAoJEIEx
- tcQpvGagWPEH/2l0DNr9QkTwJUxOoP9wgHfmVhqc0ZlDsBFv91I3BbhGKI5UATbipKNqG13Z
- TsBrJHcrnCqnTRS+8n9/myOF0ng2A4YT0EJnayzHugXm+hrkO5O9UEPJ8a+0553VqyoFhHqA
- zjxj8fUu1px5cbb4R9G4UAySqyeLLeqnYLCKb4+GklGSBGsLMYvLmIDNYlkhMdnnzsSUAS61
- WJYW6jjnzMwuKJ0ZHv7xZvSHyhIsFRiYiEs44kiYjbUUMcXor/uLEuTIazGrE3MahuGdjpT2
- IOjoMiTsbMc0yfhHp6G/2E769oDXMVxCCbMVpA+LUtVIQEA+8Zr6mX0Yk4nDS7OiBlvOwE0E
- U8AbwQEIAKxr71oqe+0+MYCc7WafWEcpQHFUwvYLcdBoOnmJPxDwDRpvU5LhqSPvk/yJdh9k
- 4xUDQu3rm1qIW2I9Puk5n/Jz/lZsqGw8T13DKyu8eMcvaA/irm9lX9El27DPHy/0qsxmxVmU
- pu9y9S+BmaMb2CM9IuyxMWEl9ruWFS2jAWh/R8CrdnL6+zLk60R7XGzmSJqF09vYNlJ6Bdbs
- MWDXkYWWP5Ub1ZJGNJQ4qT7g8IN0qXxzLQsmz6tbgLMEHYBGx80bBF8AkdThd6SLhreCN7Uh
- IR/5NXGqotAZao2xlDpJLuOMQtoH9WVNuuxQQZHVd8if+yp6yRJ5DAmIUt5CCPcAEQEAAcLB
- gQQYAQIBKwUCU8AbwgUbDAAAAMBdIAQZAQgABgUCU8AbwQAKCRCTYAaomC8PVQ0VCACWk3n+
- obFABEp5Rg6Qvspi9kWXcwCcfZV41OIYWhXMoc57ssjCand5noZi8bKg0bxw4qsg+9cNgZ3P
- N/DFWcNKcAT3Z2/4fTnJqdJS//YcEhlr8uGs+ZWFcqAPbteFCM4dGDRruo69IrHfyyQGx16s
- CcFlrN8vD066RKevFepb/ml7eYEdN5SRALyEdQMKeCSf3mectdoECEqdF/MWpfWIYQ1hEfdm
- C2Kztm+h3Nkt9ZQLqc3wsPJZmbD9T0c9Rphfypgw/SfTf2/CHoYVkKqwUIzI59itl5Lze+R5
- wDByhWHx2Ud2R7SudmT9XK1e0x7W7a5z11Q6vrzuED5nQvkhAAoJEIExtcQpvGagugcIAJd5
- EYe6KM6Y6RvI6TvHp+QgbU5dxvjqSiSvam0Ms3QrLidCtantcGT2Wz/2PlbZqkoJxMQc40rb
- fXa4xQSvJYj0GWpadrDJUvUu3LEsunDCxdWrmbmwGRKqZraV2oG7YEddmDqOe0Xm/NxeSobc
- MIlnaE6V0U8f5zNHB7Y46yJjjYT/Ds1TJo3pvwevDWPvv6rdBeV07D9s43frUS6xYd1uFxHC
- 7dZYWJjZmyUf5evr1W1gCgwLXG0PEi9n3qmz1lelQ8lSocmvxBKtMbX/OKhAfuP/iIwnTsww
- 95A2SaPiQZA51NywV8OFgsN0ITl2PlZ4Tp9hHERDe6nQCsNI/Us=
-In-Reply-To: <20250703215314.3971473-2-james.quinlan@broadcom.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+From: Jie Gan <quic_jiegan@quicinc.com>
+In-Reply-To: <338a9ee1-10aa-4bd2-9b0a-5006ed571bb9@quicinc.com>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 8bit
+X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
+ nalasex01c.na.qualcomm.com (10.47.97.35)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Authority-Analysis: v=2.4 cv=frrcZE4f c=1 sm=1 tr=0 ts=68673f53 cx=c_pps
+ a=ouPCqIW2jiPt+lZRy3xVPw==:117 a=ouPCqIW2jiPt+lZRy3xVPw==:17
+ a=GEpy-HfZoHoA:10 a=IkcTkHD0fZMA:10 a=Wb1JkmetP80A:10 a=VwQbUJbxAAAA:8
+ a=EUspDBNiAAAA:8 a=gW6MYXlkPblPBwbZtHMA:9 a=3ZKOabzyN94A:10 a=QEXdDO2ut3YA:10
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwNzA0MDAyMCBTYWx0ZWRfX43QC1Rg2OVfQ
+ pgXAWSksEeAOdatAc1sqIIJANUhXpz+WuI8AVfjO5Eff0XHzi+mTfs/Bug+5NL7jx3LBWSPR5eo
+ QPHb8nqcEReLYr4RjkPOBu09hynA+hhIJSCwax891ln8gJCYCVehykxeiPFT6/ikp12vDUd08Wv
+ 0+gQSUY2C80u7sWetlq9iXzV1rv/0qE3l5TFUGOqscxByEzNv2x/8tz1ALe3Z63ugBXnG0Ym0B5
+ 29TOKn498Migml9myfp4abXXaOakSH6V3+QZOw9/c06+k6jCh5oz0qgWqcaqiqzrQHgOS1TKDCO
+ x0DJOW9F7slaZA89ki6wLDXKaY892ytDUVZ+nJAvK8kiqDZvr6EYNcKSEyadmejUx2AwFrnQ6Jy
+ Y8l99pPuvJhg7+IuY8qbAXq7A6xCetlH0xMY6/KZX/Ap2uN1CI8Dcx4meEiQmWlfmFopEAvK
+X-Proofpoint-GUID: E33tVrL2Pm-yhNsUEc6BC8z2FTjUBsgK
+X-Proofpoint-ORIG-GUID: E33tVrL2Pm-yhNsUEc6BC8z2FTjUBsgK
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1099,Hydra:6.1.7,FMLib:17.12.80.40
+ definitions=2025-07-04_01,2025-07-02_04,2025-03-28_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ phishscore=0 mlxlogscore=999 bulkscore=0 spamscore=0 adultscore=0
+ impostorscore=0 clxscore=1015 lowpriorityscore=0 suspectscore=0 mlxscore=0
+ priorityscore=1501 malwarescore=0 classifier=spam authscore=0 authtc=n/a
+ authcc= route=outbound adjust=0 reason=mlx scancount=1
+ engine=8.19.0-2505280000 definitions=main-2507040020
 
 
 
-On 7/3/2025 2:53 PM, Jim Quinlan wrote:
-> Adds BCM74110, a Broadcom SetTop box ARM64 based SoC.  Its
-> inbound window may be set to any size, unlike previous STB
-> SoCs whose inbound window size must be a power of two.
+On 6/25/2025 8:59 AM, Jie Gan wrote:
 > 
-> Signed-off-by: Jim Quinlan <james.quinlan@broadcom.com>
+> 
+> On 6/24/2025 5:59 PM, Jie Gan wrote:
+>> Enable CTCU device for QCS8300 platform. Add a fallback mechnasim in 
+>> binding to utilize
+>> the compitable of the SA8775p platform becuase the CTCU for QCS8300 
+>> shares same
+>> configurations as SA8775p platform.
+> 
+> Hi dear maintainers,
+> 
+> I just realized it would be more efficient to introduce a common 
+> compatible string for SoCs that include two TMC ETR devices.
+> 
+> Most of these SoCs share the same CTCU data configuration, such as the 
+> offsets for the ATID and IRQ registers, because they integrate the same 
+> version of the CTCU hardware.
+> 
+> So I propose introducing a common compatible string, "coresight-ctcu- 
+> v2", to simplify the device tree configuration for these platforms.
+> 
+> Here is the new dt-binding format:
+> 
+> properties:
+>    compatible:
+>      oneOf:
+>        - items:
+>            - enum:
+>                - qcom,sa8775p-ctcu
+>                - qcom,qcs8300-ctcu
+>            - const: qcom,coresight-ctcu-v2
+>        - enum:
+>            - qcom,coresight-ctcu-v2
+> 
+> Thanks,
+> Jie
 
-Reviewed-by: Florian Fainelli <florian.fainelli@broadcom.com>
--- 
-Florian
+Gentle ping.
+
+Thanks,
+Jie
+
+> 
+>>
+>> Changes in V2:
+>> 1. Add Krzysztof's R-B tag for dt-binding patch.
+>> 2. Add Konrad's Acked-by tag for dt patch.
+>> 3. Rebased on tag next-20250623.
+>> 4. Missed email addresses for coresight's maintainers in V1, loop them.
+>> Link to V1 - https://lore.kernel.org/all/20250327024943.3502313-1- 
+>> jie.gan@oss.qualcomm.com/
+>>
+>> Jie Gan (2):
+>>    dt-bindings: arm: add CTCU device for QCS8300
+>>    arm64: dts: qcom: qcs8300: Add CTCU and ETR nodes
+>>
+>>   .../bindings/arm/qcom,coresight-ctcu.yaml     |   9 +-
+>>   arch/arm64/boot/dts/qcom/qcs8300.dtsi         | 153 ++++++++++++++++++
+>>   2 files changed, 160 insertions(+), 2 deletions(-)
+>>
+> 
+> 
 
 
