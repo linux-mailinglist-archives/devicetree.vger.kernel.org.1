@@ -1,93 +1,62 @@
-Return-Path: <devicetree+bounces-193176-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-193177-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1DC09AF9A2A
-	for <lists+devicetree@lfdr.de>; Fri,  4 Jul 2025 19:54:36 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6F54FAF9A56
+	for <lists+devicetree@lfdr.de>; Fri,  4 Jul 2025 20:10:19 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id B5EC71C426CE
-	for <lists+devicetree@lfdr.de>; Fri,  4 Jul 2025 17:54:52 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 1A39C1BC7123
+	for <lists+devicetree@lfdr.de>; Fri,  4 Jul 2025 18:10:36 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id BE1AC1EE7B7;
-	Fri,  4 Jul 2025 17:54:29 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1EB3920E00B;
+	Fri,  4 Jul 2025 18:10:16 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=ziepe.ca header.i=@ziepe.ca header.b="Hy5unYwn"
+	dkim=pass (2048-bit key) header.d=dolcini.it header.i=@dolcini.it header.b="iadyuOg2"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pl1-f180.google.com (mail-pl1-f180.google.com [209.85.214.180])
+Received: from mail11.truemail.it (mail11.truemail.it [217.194.8.81])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B4FB42868A9
-	for <devicetree@vger.kernel.org>; Fri,  4 Jul 2025 17:54:27 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.180
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 574F21386B4;
+	Fri,  4 Jul 2025 18:10:11 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.194.8.81
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1751651669; cv=none; b=KpXQhFpouaQkYgaqZkI0IXys5UIsE4X/6Tkb0PwB6Z/sLLx8i+U/j6DHea/5ET9I//0p8D/lzgufVowaBt0rolAwQWTPnI00NgKBYzQS9LS9R56696RaLmVujts89sG15doDZbrgOy6a5oFCeZ/0pajyLYwPtWo/UeRdXaHqiRk=
+	t=1751652616; cv=none; b=OvanXbH9rR9p4191Fc+pHapyqiMN5LuRfOGm2vELONKdbm5+VeAES/6u4fzUsf4kjOHOkcE/Pzn5ngVUnKnSw6UI50tYzFRgNTE+uOFs5TU+Hic8GqWW2sAIAn2vRzBZUXoeFsVgJhsTlXnLvg/T7J6NnOkRa8WyDzLcANJYSow=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1751651669; c=relaxed/simple;
-	bh=qTNc7+1p4sx/z+Ihm4/J09j0G//xpF1WUSAnIfFyOOI=;
+	s=arc-20240116; t=1751652616; c=relaxed/simple;
+	bh=4mr5LslJozab8lqAEB2zOMbvAHGe4H6kYg5TxrNMFCU=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=ngoI/H/E8EHcSvdAS56HaUaZ3jN/0h/++TMurozW5xiy9H8sz3KfEEun1utnyh0uUGdJ1Msei+ZTCyvNm2LOf+hPa+YCdTunBLx3oc9tnCQJpZon0heTnlFruxTCFOKfody2JUe25Gu1WSbQNHTXz/TNbYbXNVf75YpXS/RDs/M=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ziepe.ca; spf=pass smtp.mailfrom=ziepe.ca; dkim=pass (2048-bit key) header.d=ziepe.ca header.i=@ziepe.ca header.b=Hy5unYwn; arc=none smtp.client-ip=209.85.214.180
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ziepe.ca
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ziepe.ca
-Received: by mail-pl1-f180.google.com with SMTP id d9443c01a7336-234b9dfb842so10801465ad.1
-        for <devicetree@vger.kernel.org>; Fri, 04 Jul 2025 10:54:27 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=ziepe.ca; s=google; t=1751651667; x=1752256467; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=XuxUGCJzgBIyontDTdqwJrs5j4TnI5gqZ41JcRqn9+o=;
-        b=Hy5unYwnQWeHvclqGWWZmlYVO6t+KVcSFgHvukAUZ8tsgk/4vTQ9COQ5UuGMNYID4l
-         HwovZvBbnI+XBTiEGO3F2ook5wLpIh0hA4P9YjCIE5Wqvv5kxlaM42548iO7exc57NNj
-         YOFmgIZP4XWrTV2bntXgkakHhuQEa0C6Z2+nftrl+XR6VUuadw0zQx1bAQ82mFwE10fr
-         27jxkATY2Ds0jGY4FsISrgsfw3OyvsyAQ3O8VkmEugbNeJORrSR/3Evbv6xm4WNpSoWc
-         AeXRX/rMaCKJGAy90Byg3U/1lRyQtvrOa5p3RJWre+iPkYPZVt2gO7B3i3MffOltvKXe
-         rRcg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1751651667; x=1752256467;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=XuxUGCJzgBIyontDTdqwJrs5j4TnI5gqZ41JcRqn9+o=;
-        b=nBmQ1ppdNj1xmlhHqIVtSaVyaPwHw6NhBb0DCPAuLF/z9EBPOYqWkVw/Te9HP/HeVa
-         XWuOyXzamNA2LjCuBEXnt0t5RJ2TE4r42thRUwAB/bibMC0iJZ4O8dM5J6tyx9mZjfeW
-         fROmtikfEJcLzMV79JepbfFklBB/ZuUsV6raDVzpkIGpDTfyEWcHcOO+57vJu04I5okx
-         a8UlSxehz07+mZUlKYAwVlLBwFH2+xrwLhozqL/HIMIpM2YK08JL5MlmM1p9OJ6aPlMf
-         5kfwgtsgrB+hx8HQufxIXoAwNfKhhyMMvzJVPTxtXbRGd6pEc38ipQn57MwfSlmjzcCC
-         utPw==
-X-Forwarded-Encrypted: i=1; AJvYcCUJg9rmhf66SbJODLM521EyeXIaG/ANA//K3lQGbpc2GNfxnKDEKB2zeCOVkvMzcP/OYQlChmQKu153@vger.kernel.org
-X-Gm-Message-State: AOJu0YxueaiZnu0QPOogNXVd1OaOwRpyfuzfyLu/tN2z+s6Vu+I/YtS3
-	vdyWeLQNBXdEedonaocbnrfYM+QEk4Jl2GRSPdNDp4Scb/lzcO08xy4XjmlfcitHYMQ=
-X-Gm-Gg: ASbGncsnUafyuNTWof6qYoGrEzQ+Z00GBICkQS6LeoL1Iw2trhRN5FTojCunz/t52bw
-	/kGe0ktzip6tsnQgYkGd3OS+QGLoMJJB0SBZn2OjQN9/EFPxi4fcO+Ep2sQhPbcmDrk/+TAG4rW
-	UxKrQ8h3ylweAvkT+XHEBmejJbrypR03Nl+VMfi4YKhqjSQOQBdypKEBSIX3X9i33igokpzlhLU
-	sG6kgUS/kRhRj4t7j+7nvPAgk31QI4ySa2WmEhenpYdv3iViuUqyKAiu2Tbdu0DBpk/jdojh99R
-	dzBAEoWg0bOprWbosgu4eo84OCVVDgzc0EgQ
-X-Google-Smtp-Source: AGHT+IEh1aJoFY/nLlH7wiffnloJQKoRXxbF/IF6yLU1DedrCGkd2rfvxrkg/X7+7Uo3KEx9efT39g==
-X-Received: by 2002:a17:90a:dfcc:b0:313:1e9d:404b with SMTP id 98e67ed59e1d1-31aadcf8e2bmr4389360a91.2.1751651667045;
-        Fri, 04 Jul 2025 10:54:27 -0700 (PDT)
-Received: from ziepe.ca ([130.41.10.202])
-        by smtp.gmail.com with ESMTPSA id 98e67ed59e1d1-31aaae4095asm2682225a91.8.2025.07.04.10.54.26
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 04 Jul 2025 10:54:26 -0700 (PDT)
-Received: from jgg by wakko with local (Exim 4.97)
-	(envelope-from <jgg@ziepe.ca>)
-	id 1uXkcD-00000005zua-0liE;
-	Fri, 04 Jul 2025 14:54:25 -0300
-Date: Fri, 4 Jul 2025 14:54:25 -0300
-From: Jason Gunthorpe <jgg@ziepe.ca>
-To: Benjamin Gaignard <benjamin.gaignard@collabora.com>
-Cc: joro@8bytes.org, will@kernel.org, robin.murphy@arm.com, robh@kernel.org,
-	krzk+dt@kernel.org, conor+dt@kernel.org, heiko@sntech.de,
-	nicolas.dufresne@collabora.com, iommu@lists.linux.dev,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	linux-rockchip@lists.infradead.org, kernel@collabora.com
-Subject: Re: [PATCH v4 3/5] iommu: Add verisilicon IOMMU driver
-Message-ID: <20250704175425.GM904431@ziepe.ca>
-References: <20250623153931.158765-1-benjamin.gaignard@collabora.com>
- <20250623153931.158765-4-benjamin.gaignard@collabora.com>
+	 Content-Type:Content-Disposition:In-Reply-To; b=NDszW3JOvfBHsvTlS6ZRBJKgMfK9DErJ0a328uX6JUhf2HXakzCgG6SpBX7j0pXJI3ta91PLRiBUarATRLTEXNG2BC1KkCsZjT51eSilwW4EG6HI2GinS9aBGKfy6rnXTTGnY21pyQenepiQnehDxHdQ08LeXIlGnPecQYmVwvs=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=dolcini.it; spf=pass smtp.mailfrom=dolcini.it; dkim=pass (2048-bit key) header.d=dolcini.it header.i=@dolcini.it header.b=iadyuOg2; arc=none smtp.client-ip=217.194.8.81
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=dolcini.it
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=dolcini.it
+Received: from francesco-nb (93-49-2-63.ip317.fastwebnet.it [93.49.2.63])
+	by mail11.truemail.it (Postfix) with ESMTPA id 4D8E61FA59;
+	Fri,  4 Jul 2025 20:10:03 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=dolcini.it;
+	s=default; t=1751652603;
+	bh=IaM0NNbZRvViiEdTJlyIueFfujxZh/7+S5Oou/xEwsA=; h=From:To:Subject;
+	b=iadyuOg2VBXUiKIe7yS0dzy5UqhoUm1OC3BN8PYKA3+VAYoPghMOqiU+UPqKL7lS8
+	 j/4wGPd0TM3xNo65vS18VUamul5aXqseIFimp5M4j5tWCyzAlEcmni64tQL7refLxG
+	 l5T5tdmFp+HT65umPjMjDKRQDGy63czJQ3K5k/9UwgDLJklcE4+XOA82bcbL4xXjyY
+	 X+OV+h/TUWg91SuaUQeg9oiuQclk5R232SIMlTkSblUAL1cqWsjiB66CECnhDteVu7
+	 6i56ss+AIzCdKs86ibYtmyRrPqKCkK18mDFCXoXprmcDfdf0RFviFoCZL/AhHb+usB
+	 3JG7wVDgmoD/Q==
+Date: Fri, 4 Jul 2025 20:09:58 +0200
+From: Francesco Dolcini <francesco@dolcini.it>
+To: Parth Pancholi <parth105105@gmail.com>
+Cc: Nishanth Menon <nm@ti.com>, Vignesh Raghavendra <vigneshr@ti.com>,
+	Tero Kristo <kristo@kernel.org>, Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Parth Pancholi <parth.pancholi@toradex.com>,
+	linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org
+Subject: Re: [PATCH] arm64: dts: ti: k3-am62p-verdin: fix PWM_3_DSI GPIO
+ direction
+Message-ID: <20250704180958.GA6379@francesco-nb>
+References: <20250703084534.1649594-1-parth105105@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -96,71 +65,23 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20250623153931.158765-4-benjamin.gaignard@collabora.com>
+In-Reply-To: <20250703084534.1649594-1-parth105105@gmail.com>
 
-On Mon, Jun 23, 2025 at 05:39:27PM +0200, Benjamin Gaignard wrote:
-> The Verisilicon IOMMU hardware block can be found in combination
-> with Verisilicon hardware video codecs (encoders or decoders) on
-> different SoCs.
-> Enable it will allow us to use non contiguous memory allocators
-> for Verisilicon video codecs.
+On Thu, Jul 03, 2025 at 10:45:34AM +0200, Parth Pancholi wrote:
+> From: Parth Pancholi <parth.pancholi@toradex.com>
 > 
-> Signed-off-by: Benjamin Gaignard <benjamin.gaignard@collabora.com>
-> ---
-> change in version 4:
-> - Kconfig dependencies
-> - Fix the remarks done by Jason and Robin: locking, clocks, macros
->   probing, pm_runtime, atomic allocation.
+> PWM_3_DSI is used as the HDMI Hot-Plug Detect (HPD) GPIO for the Verdin
+> DSI-to-HDMI adapter. After the commit 33bab9d84e52 ("arm64: dts: ti:
+> k3-am62p: fix pinctrl settings"), the pin was incorrectly set as output
+> without RXACTIVE, breaking HPD detection and display functionality.
+> The issue was previously hidden and worked by chance before the mentioned
+> pinctrl fix.
+> 
+> Fix the pinmux configuration to correctly set PWM_3_DSI GPIO as an input.
+> 
+> Fixes: 87f95ea316ac ("arm64: dts: ti: Add Toradex Verdin AM62P")
+> Signed-off-by: Parth Pancholi <parth.pancholi@toradex.com>
 
-It broadly seems OK to me
+Reviewed-by: Francesco Dolcini <francesco.dolcini@toradex.com>
 
-Though I did notice this:
-
-> +static struct iommu_domain *vsi_iommu_domain_alloc_paging(struct device *dev)
-> +{
-> +	struct vsi_iommu *iommu = dev_iommu_priv_get(dev);
-> +	struct vsi_iommu_domain *vsi_domain;
-> +
-> +	vsi_domain = kzalloc(sizeof(*vsi_domain), GFP_KERNEL);
-> +	if (!vsi_domain)
-> +		return NULL;
-> +
-> +	vsi_domain->iommu = iommu;
-
-So we store the iommu in the domain? And use the iommu->lock all over
-the place
-
-> +static int vsi_iommu_attach_device(struct iommu_domain *domain,
-> +				   struct device *dev)
-> +{
-> +	struct vsi_iommu *iommu = dev_iommu_priv_get(dev);
-> +	struct vsi_iommu_domain *vsi_domain = to_vsi_domain(domain);
-> +	unsigned long flags;
-> +	int ret = 0;
-> +
-> +	ret = pm_runtime_resume_and_get(iommu->dev);
-> +	if (ret < 0)
-> +		return ret;
-> +
-> +	spin_lock_irqsave(&iommu->lock, flags);
-> +	/* iommu already attached */
-> +	if (iommu->domain == domain)
-> +		goto unlock;
-
-But here we don't check that the domain matches the iommu of dev.
-
-This seems a bit weird to me, I didn't quite get why the domain uses
-iommu->lock instead of just having its own per-domain lock?
-
-But if it does use iommu->lock then this does need to prevent using
-domains with the wrong iommu because the also use the wrong lock and
-then this:
-
-> +
-> +	vsi_iommu_enable(iommu, domain);
-> +	list_add_tail(&iommu->node, &vsi_domain->iommus);
-
-Is not safe?
-
-Jason
 
