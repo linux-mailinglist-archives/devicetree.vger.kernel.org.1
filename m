@@ -1,184 +1,106 @@
-Return-Path: <devicetree+bounces-192880-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-192887-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id B285DAF85AD
-	for <lists+devicetree@lfdr.de>; Fri,  4 Jul 2025 04:41:46 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 76066AF85FE
+	for <lists+devicetree@lfdr.de>; Fri,  4 Jul 2025 05:17:07 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 28FD31C82CD5
-	for <lists+devicetree@lfdr.de>; Fri,  4 Jul 2025 02:42:03 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 063AC188A4B4
+	for <lists+devicetree@lfdr.de>; Fri,  4 Jul 2025 03:17:24 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 12D9E1DEFF3;
-	Fri,  4 Jul 2025 02:41:37 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="E44G995I"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A84C41D63C6;
+	Fri,  4 Jul 2025 03:17:03 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+Received: from mail-m155101.qiye.163.com (mail-m155101.qiye.163.com [101.71.155.101])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 50A181DDA34;
-	Fri,  4 Jul 2025 02:41:35 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 00DFE1EEE6;
+	Fri,  4 Jul 2025 03:16:59 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=101.71.155.101
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1751596897; cv=none; b=m7ht5/ri62LdeaJRD0LDTkJl+md6yEMZFEiVsx1D6Yl86BOeqoR0mcx4vJFVWzOhiRlFfYjGoHq9IMGGHm7nVZHd7XzswusIAI1UqgRT6fqZWDV1XH+H4H5tIdavXCy3GxPc0yqjNQ+YOqR7to7GxdC/xXz/oOcgtPconYiStUc=
+	t=1751599023; cv=none; b=Qz72Or8i4Bh1BfMpp/Ru2gkRCR97FeBue0uKVCZLJH2QTJFaw4Z2ls9BFRFJSmuCHe4B1YG1X0cfFeQzHdG7u00U6WxUqsEd2MqMBiQKYk0FsCMp2wOK6G/I4aJmGdm03t/gdl3YOANZtz2VWbYG7XAPOAzgG7bAN4fFU2r75sM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1751596897; c=relaxed/simple;
-	bh=y1My5v030XEh0WaLlRiSBHqtzi/T5G/z6AFiYN0rslQ=;
-	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
-	 In-Reply-To:Content-Type; b=ZIDWeZ+pOqOlBPIZn3rA7gjqpCg1hqz82oj+r7+PTjria8ef6jdiXSo4mw/UV8FnYhC0rQcUuBlzBt7SjHP/6F+7vPVf8ToBwbKYVeRZvWzJB0haYhGY55VgiI0XrsdhRgQHmgsX4TZppurgZFoa+Go2NjQWgy4LS1WrJ86SnSk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=E44G995I; arc=none smtp.client-ip=205.220.168.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
-Received: from pps.filterd (m0279866.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 563JPKf5029511;
-	Fri, 4 Jul 2025 02:41:24 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	4c2MhmG9LJubabheJJ4s6DnDEcYP/0f7ZQNfLP0aXkQ=; b=E44G995InBDYpB9J
-	YS6KMDHwNDDpsYUhj6882fA8loOTJOSfEffTbgXb2xMR/7/sH2Hcs75e4t/qnY8V
-	Wm3XipDB+pVyqhsD/2mPvoDym2q65fqKLEKklkx+4M6IdV1orbC9hdAJJY6AjdTp
-	REEoM9IeQPDshdXmVStAu3FGgtYXKdbFSvJU+qedU2UwOp4pBMkOvuiCDqvTkzlv
-	ATEErTSVpHThAaIBvhcbI56ysq7/UOGk8TI8WASpZFrDzWPbbr5VlLrlY7S3B762
-	VAir/i1i2FIJ0QbTvzSu+MlLgB19B4MCoTR0aLtXw0qosEGqfkoe4cObgtB8K8Dd
-	ZNL2EQ==
-Received: from nalasppmta05.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 47nh9s3mm8-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Fri, 04 Jul 2025 02:41:23 +0000 (GMT)
-Received: from nalasex01c.na.qualcomm.com (nalasex01c.na.qualcomm.com [10.47.97.35])
-	by NALASPPMTA05.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 5642fMOD023425
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Fri, 4 Jul 2025 02:41:22 GMT
-Received: from [10.133.33.146] (10.80.80.8) by nalasex01c.na.qualcomm.com
- (10.47.97.35) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1748.10; Thu, 3 Jul
- 2025 19:41:18 -0700
-Message-ID: <7f2cb415-3f56-4e3b-a6a6-093d5d2a5161@quicinc.com>
-Date: Fri, 4 Jul 2025 10:41:16 +0800
+	s=arc-20240116; t=1751599023; c=relaxed/simple;
+	bh=0tFcrfxkKL9ySeRCFB1ujQs+X0xxH4vdkOtO9MuupoI=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=INK73hjvT5NDSJQG5CxSbyVhYxHWh2yCetONB0C7i8NLfKL26ZnzlfEME3JG/KW4MePjqd8rKbsp9ObhIdUouHw+FzPPPm/b28VHeRYpu7H31ZVVltrDO2AYFKUS6IvhOyztY95n14eabgIEO32SfALePL1w+S/zUKBlt0lIyeA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=whut.edu.cn; spf=pass smtp.mailfrom=whut.edu.cn; arc=none smtp.client-ip=101.71.155.101
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=whut.edu.cn
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=whut.edu.cn
+Received: from localhost (gy-adaptive-ssl-proxy-4-entmail-virt151.gy.ntes [114.94.8.21])
+	by smtp.qiye.163.com (Hmail) with ESMTP id 1adedd589;
+	Fri, 4 Jul 2025 10:41:31 +0800 (GMT+08:00)
+Date: Fri, 4 Jul 2025 10:41:31 +0800
+From: Ze Huang <huangze@whut.edu.cn>
+To: Frank Li <Frank.li@nxp.com>, Ze Huang <huangze@whut.edu.cn>
+Cc: Thinh Nguyen <Thinh.Nguyen@synopsys.com>,
+	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>, Yixun Lan <dlan@gentoo.org>,
+	Philipp Zabel <p.zabel@pengutronix.de>,
+	Paul Walmsley <paul.walmsley@sifive.com>,
+	Palmer Dabbelt <palmer@dabbelt.com>,
+	Albert Ou <aou@eecs.berkeley.edu>, Alexandre Ghiti <alex@ghiti.fr>,
+	"linux-usb@vger.kernel.org" <linux-usb@vger.kernel.org>,
+	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+	"linux-riscv@lists.infradead.org" <linux-riscv@lists.infradead.org>,
+	"spacemit@lists.linux.dev" <spacemit@lists.linux.dev>,
+	"linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
+Subject: Re: [PATCH v4 3/4] usb: dwc3: add generic driver to support
+ flattened DT
+Message-ID: <aGc_W5Gfyiw8deYK@cse-cd03-lnx.ap.qualcomm.com>
+References: <20250526-b4-k1-dwc3-v3-v4-0-63e4e525e5cb@whut.edu.cn>
+ <20250526-b4-k1-dwc3-v3-v4-3-63e4e525e5cb@whut.edu.cn>
+ <20250603012029.4agja77rdoneeyrl@synopsys.com>
+ <aD5jL5DK6S8ii-DT@jean.localdomain>
+ <aGc4EibLNTEj/H11@lizhi-Precision-Tower-5810>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 0/2] Enable CTCU device for QCS8300
-To: Jie Gan <jie.gan@oss.qualcomm.com>,
-        Suzuki K Poulose
-	<suzuki.poulose@arm.com>,
-        Mike Leach <mike.leach@linaro.org>,
-        James Clark
-	<james.clark@linaro.org>, Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski
-	<krzk+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Bjorn Andersson
-	<andersson@kernel.org>,
-        Konrad Dybcio <konradybcio@kernel.org>
-CC: <coresight@lists.linaro.org>, <linux-arm-kernel@lists.infradead.org>,
-        <linux-arm-msm@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>
-References: <20250624095905.7609-1-jie.gan@oss.qualcomm.com>
- <338a9ee1-10aa-4bd2-9b0a-5006ed571bb9@quicinc.com>
-Content-Language: en-US
-From: Jie Gan <quic_jiegan@quicinc.com>
-In-Reply-To: <338a9ee1-10aa-4bd2-9b0a-5006ed571bb9@quicinc.com>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 8bit
-X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
- nalasex01c.na.qualcomm.com (10.47.97.35)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Authority-Analysis: v=2.4 cv=frrcZE4f c=1 sm=1 tr=0 ts=68673f53 cx=c_pps
- a=ouPCqIW2jiPt+lZRy3xVPw==:117 a=ouPCqIW2jiPt+lZRy3xVPw==:17
- a=GEpy-HfZoHoA:10 a=IkcTkHD0fZMA:10 a=Wb1JkmetP80A:10 a=VwQbUJbxAAAA:8
- a=EUspDBNiAAAA:8 a=gW6MYXlkPblPBwbZtHMA:9 a=3ZKOabzyN94A:10 a=QEXdDO2ut3YA:10
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwNzA0MDAyMCBTYWx0ZWRfX43QC1Rg2OVfQ
- pgXAWSksEeAOdatAc1sqIIJANUhXpz+WuI8AVfjO5Eff0XHzi+mTfs/Bug+5NL7jx3LBWSPR5eo
- QPHb8nqcEReLYr4RjkPOBu09hynA+hhIJSCwax891ln8gJCYCVehykxeiPFT6/ikp12vDUd08Wv
- 0+gQSUY2C80u7sWetlq9iXzV1rv/0qE3l5TFUGOqscxByEzNv2x/8tz1ALe3Z63ugBXnG0Ym0B5
- 29TOKn498Migml9myfp4abXXaOakSH6V3+QZOw9/c06+k6jCh5oz0qgWqcaqiqzrQHgOS1TKDCO
- x0DJOW9F7slaZA89ki6wLDXKaY892ytDUVZ+nJAvK8kiqDZvr6EYNcKSEyadmejUx2AwFrnQ6Jy
- Y8l99pPuvJhg7+IuY8qbAXq7A6xCetlH0xMY6/KZX/Ap2uN1CI8Dcx4meEiQmWlfmFopEAvK
-X-Proofpoint-GUID: E33tVrL2Pm-yhNsUEc6BC8z2FTjUBsgK
-X-Proofpoint-ORIG-GUID: E33tVrL2Pm-yhNsUEc6BC8z2FTjUBsgK
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1099,Hydra:6.1.7,FMLib:17.12.80.40
- definitions=2025-07-04_01,2025-07-02_04,2025-03-28_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- phishscore=0 mlxlogscore=999 bulkscore=0 spamscore=0 adultscore=0
- impostorscore=0 clxscore=1015 lowpriorityscore=0 suspectscore=0 mlxscore=0
- priorityscore=1501 malwarescore=0 classifier=spam authscore=0 authtc=n/a
- authcc= route=outbound adjust=0 reason=mlx scancount=1
- engine=8.19.0-2505280000 definitions=main-2507040020
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <aGc4EibLNTEj/H11@lizhi-Precision-Tower-5810>
+X-HM-Spam-Status: e1kfGhgUHx5ZQUpXWQgPGg8OCBgUHx5ZQUlOS1dZFg8aDwILHllBWSg2Ly
+	tZV1koWUFITzdXWS1ZQUlXWQ8JGhUIEh9ZQVlCS0hJVkhKH08YHk9JSx4YQlYeHw5VEwETFhoSFy
+	QUDg9ZV1kYEgtZQVlKSk9VQk9VQ1VJSllXWRYaDxIVHRRZQVlPS0hVSktJQk1LSlVKS0tVS1kG
+X-HM-Tid: 0a97d34f7e8b03a1kunm074d1ad6206a3a
+X-HM-MType: 10
+X-HM-Sender-Digest: e1kMHhlZQR0aFwgeV1kSHx4VD1lBWUc6P0k6DQw5VjEyATkZFEMRMDwM
+	LU0aCjBVSlVKTE5KTkJNQ0JISk1PVTMWGhIXVRMOGhUcAR47DBMOD1UeHw5VGBVFWVdZEgtZQVlK
+	Sk9VQk9VQ1VJSllXWQgBWUFJT01DNwY+
 
+On Thu, Jul 03, 2025 at 10:10:26PM -0400, Frank Li wrote:
+> On Tue, Jun 03, 2025 at 10:51:27AM +0800, Ze Huang wrote:
+> > On Tue, Jun 03, 2025 at 01:20:35AM +0000, Thinh Nguyen wrote:
+> > > On Mon, May 26, 2025, Ze Huang wrote:
+> > > > To support flattened dwc3 dt model and drop the glue layer, introduce the
+> > > > `dwc3-generic` driver. This enables direct binding of the DWC3 core driver
+> > > > and offers an alternative to the existing glue driver `dwc3-of-simple`.
+> > > >
+> > > > Signed-off-by: Ze Huang <huangze@whut.edu.cn>
+> > > > ---
+> 
+> Any progress on this patch? If you have not time, I can continue work on
+> this one.
 
+Hi Frank,
 
-On 6/25/2025 8:59 AM, Jie Gan wrote:
-> 
-> 
-> On 6/24/2025 5:59 PM, Jie Gan wrote:
->> Enable CTCU device for QCS8300 platform. Add a fallback mechnasim in 
->> binding to utilize
->> the compitable of the SA8775p platform becuase the CTCU for QCS8300 
->> shares same
->> configurations as SA8775p platform.
-> 
-> Hi dear maintainers,
-> 
-> I just realized it would be more efficient to introduce a common 
-> compatible string for SoCs that include two TMC ETR devices.
-> 
-> Most of these SoCs share the same CTCU data configuration, such as the 
-> offsets for the ATID and IRQ registers, because they integrate the same 
-> version of the CTCU hardware.
-> 
-> So I propose introducing a common compatible string, "coresight-ctcu- 
-> v2", to simplify the device tree configuration for these platforms.
-> 
-> Here is the new dt-binding format:
-> 
-> properties:
->    compatible:
->      oneOf:
->        - items:
->            - enum:
->                - qcom,sa8775p-ctcu
->                - qcom,qcs8300-ctcu
->            - const: qcom,coresight-ctcu-v2
->        - enum:
->            - qcom,coresight-ctcu-v2
-> 
-> Thanks,
-> Jie
+I was planning to submit everything together for full functionality, but since
+Alex's PHY work[1] is almost done, I'll send out the USB generic driver part
+separately first.
 
-Gentle ping.
+Link: https://lore.kernel.org/all/5084a99a-9140-4c4f-9873-f5478f48a49d@ieee.org/ [1]
+
+> 
+> Frank Li
+>
 
 Thanks,
-Jie
-
-> 
->>
->> Changes in V2:
->> 1. Add Krzysztof's R-B tag for dt-binding patch.
->> 2. Add Konrad's Acked-by tag for dt patch.
->> 3. Rebased on tag next-20250623.
->> 4. Missed email addresses for coresight's maintainers in V1, loop them.
->> Link to V1 - https://lore.kernel.org/all/20250327024943.3502313-1- 
->> jie.gan@oss.qualcomm.com/
->>
->> Jie Gan (2):
->>    dt-bindings: arm: add CTCU device for QCS8300
->>    arm64: dts: qcom: qcs8300: Add CTCU and ETR nodes
->>
->>   .../bindings/arm/qcom,coresight-ctcu.yaml     |   9 +-
->>   arch/arm64/boot/dts/qcom/qcs8300.dtsi         | 153 ++++++++++++++++++
->>   2 files changed, 160 insertions(+), 2 deletions(-)
->>
-> 
-> 
-
+Ze
 
