@@ -1,138 +1,118 @@
-Return-Path: <devicetree+bounces-192893-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-192894-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5F5BBAF864E
-	for <lists+devicetree@lfdr.de>; Fri,  4 Jul 2025 06:16:11 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 82B6BAF86C7
+	for <lists+devicetree@lfdr.de>; Fri,  4 Jul 2025 06:30:31 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 132E13A87EF
-	for <lists+devicetree@lfdr.de>; Fri,  4 Jul 2025 04:15:45 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 1FB1C1C8603D
+	for <lists+devicetree@lfdr.de>; Fri,  4 Jul 2025 04:30:16 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B827335955;
-	Fri,  4 Jul 2025 04:16:05 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id ADC9B1E5B7B;
+	Fri,  4 Jul 2025 04:27:09 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=ventanamicro.com header.i=@ventanamicro.com header.b="fLXVQafD"
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="QwXPbPGf"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lj1-f173.google.com (mail-lj1-f173.google.com [209.85.208.173])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.9])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 001557F9
-	for <devicetree@vger.kernel.org>; Fri,  4 Jul 2025 04:16:03 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.173
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EDB021DBB0C;
+	Fri,  4 Jul 2025 04:27:07 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.198.163.9
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1751602565; cv=none; b=X7RHr+lSPgWdQ6l7rlmhUynzXrwQnG2GkJwVafE01debFUIbwxkRDhzRBB3n8g5aiS6gFp7+ckukEYQ7cRulddRpOwP4A3ih8bgT6aamWMyMVvw4c0qHf07BPozHKXTMdzUDKoycv0VM7GHaxOl/dITVrZTTUJXxJod3+CwFZRk=
+	t=1751603229; cv=none; b=AxZRjUGYX5q/T+t7rneBQpiXvfwDvl3l4I3Il5IcBELhiI4N0datYkTUqS2YDCy+u9YGpoEjY2xPlHdapCj4HhjRT5/SX503Dv96jLbYG98K7TGDkqlpopdhyedDTkJwuMBRYZCFIDJopFrsNpxaN9IYiJC2t6wBKgOxvrjSimI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1751602565; c=relaxed/simple;
-	bh=XecpaQpCuIv0QLFbf9BkJc64XnkkPzRoGau5ylgPXdQ=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=ciWUOtiB7fFM6Uvy2Qfpwrjyn4gZ92t6ecY+WrZkmxMABnSSI+NHmJYvSL1UW/ftk7WnMG/uOtxB3OsFhtI34SkG5lpktAnD3s9lPYwZIR3QcLUcEb1Zfa/QHAYLO24s8xZL9IKW8FikRB/mCpRS3wD4mHgrsYOTZ5R/qp+O2b0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ventanamicro.com; spf=pass smtp.mailfrom=ventanamicro.com; dkim=pass (2048-bit key) header.d=ventanamicro.com header.i=@ventanamicro.com header.b=fLXVQafD; arc=none smtp.client-ip=209.85.208.173
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ventanamicro.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ventanamicro.com
-Received: by mail-lj1-f173.google.com with SMTP id 38308e7fff4ca-32b561a861fso4696261fa.0
-        for <devicetree@vger.kernel.org>; Thu, 03 Jul 2025 21:16:03 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=ventanamicro.com; s=google; t=1751602562; x=1752207362; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=LNpklbxS/261KY95nbuoqcElZCVt0F33NNxENOsgANs=;
-        b=fLXVQafDMTXkESNLw1znJESpLOawBnsAqZjcKsDdZuODtdhPkgbJ9V9HMn625QUmWv
-         /TzWUq+NLyGqiQyaKG+Lb6SbedVMkED1CLmLB6J+QLSb5abGejFwSYmVIRln1z28dbe1
-         Gi2YVH4P5n1OvvY5Hq3zQkM8QW8O7Tc1iF19yID3XWJuLEnQCSzDqwbGlXBe8/90wW1M
-         dOH+NoP2dwsZ7UpnAbOw68qMN6RCFJzhaqRcEQqVioJGvFR5FW0h25aDqW3wd2ZZwmwU
-         2GW2ZvaIZYxdR8VaiVRWPvSrLp1L+A1WVxGYahQh2c13E6fLvJiZGo5w3eyrYGq6Zc4b
-         K/Xw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1751602562; x=1752207362;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=LNpklbxS/261KY95nbuoqcElZCVt0F33NNxENOsgANs=;
-        b=px7KopeGrJQYdAqrl9cySq8SNk6OLxyklpFF4/jyfw1e9HC00mKcBSlP8fxB7V9yUx
-         v/LZ2sPauT6TS/PVase6AriFdWNdIMbE92/ehVREfxmCbbIE7FNN96Uwc7tEE4RkgTQn
-         qQPXpqovnOtRb/HNG5JE0iXpnWq2mbpiHyXF+fbCKzj8q1umGyylg8tfar4UraJKvNvk
-         uB0WugQ+V0lq/PQ9ELgagWhniVWErREAwhR4aU1yEBooINpm9bg9pza9DNafC/XiuGEF
-         xlIFTJZPl0ElrgCKTl28UJOlB1CNERUaMKp5JadBqI8lnraxkYTy3ncQx3Ve8ckqAZv7
-         IaMw==
-X-Forwarded-Encrypted: i=1; AJvYcCXFBnWQO8/jMXSdwQ75YstX+7ix03ZRlxgCfPrJaIN6yFdM1Gmwm+GaMB3BmzQMofEI+K1R+hUiaiC3@vger.kernel.org
-X-Gm-Message-State: AOJu0YzrNtoSQkSfIj6KgllkOt6XdHwYYYNuFAHSPN8TwilAexUnZVF5
-	5gggHakzb6nxxlyYgjS/G/OvUpBd2JetZdnnz5q9EU8AfUHSeG7lrrxHZPDtQqKch/CMtK3f/nr
-	k7tpPR9me+YkwBxDxDO16DQrs5u1e5Wr3n4chQF8S5w==
-X-Gm-Gg: ASbGncs0ew1beJQcOgybMFx4ANlwMLpltUmNl28+Qwr1zJF02BYNAN4UeVZMw3ueaOJ
-	hbEX0JyO+KUOj+8pdbL3vt17lQiYLmDD/FM5qwIG0oj5Xvwl7K5PdZqEEFTi41JicOg7PZPxk3h
-	DEkSOVCnUGSqYUr5kQcVgDpQOyGyo8PB9imNvB7NW5Rbj3
-X-Google-Smtp-Source: AGHT+IGcdpbloJSunZwHs/XaLhcDN9ntbioBpiLJkF8NXPKWTLMAoMKlItDbIAXXbqigvjFpNNf1X8SwQxnpI9ERS9s=
-X-Received: by 2002:a05:651c:33c:b0:32b:2f36:4d92 with SMTP id
- 38308e7fff4ca-32e5f5856d1mr2157481fa.12.1751602561921; Thu, 03 Jul 2025
- 21:16:01 -0700 (PDT)
+	s=arc-20240116; t=1751603229; c=relaxed/simple;
+	bh=GKXto71WjEelALVNdhvteys9iJZSXbhQ+UrUOK5zL+Q=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=PpG66m8yx1Cepj31FaFu0JD0Lu0ayrxK18zPkKNG0pkv0e6vLduvG2DyL4xOf3JwDFzy50USO8uMAvYrR1rUFsNTOzWzPTcJ3IE3zyhBgNWmMJCl25Q/M6CMaXXju3figmggB/eH8vAYFd6sjx3tjPJJBjpwHBGLEAlHA/r+iYU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=QwXPbPGf; arc=none smtp.client-ip=192.198.163.9
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1751603228; x=1783139228;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=GKXto71WjEelALVNdhvteys9iJZSXbhQ+UrUOK5zL+Q=;
+  b=QwXPbPGfzhcjO8wTFj+vNefF/3i+sUa6++TnAQhYvtqoSRwxPNgR0m2b
+   rub786yZbAHx4sa7SXXN2F4wgyEkxWZp7w9ulsRtiXBtEiz5DEaMDAS5u
+   4Q5Nt0eQxvHdkcRNmNLxthsK98oRm6vd30L5/1O87GYbSvXzMajets3Ph
+   +Wd5napfcOzwYePhNJs/QzTrqgcWr1CPCuRsExtmREJ7OH8Yu5v4fXWj/
+   CNGLf58HwpUyqJEZfHaxyrO+XNcxxVa8bGnzu1ZaZxUimFSEOC3JaBISr
+   p/zwl1/XkvAWzGertOrAIQm2xJRPp5mI4u18gYF0DLHSmwRKnE+xrqAgh
+   Q==;
+X-CSE-ConnectionGUID: ioWjBK3HR3u7pV9aBCGkaw==
+X-CSE-MsgGUID: kOXR6wjFTyKlKUzZyAoLvg==
+X-IronPort-AV: E=McAfee;i="6800,10657,11483"; a="64629310"
+X-IronPort-AV: E=Sophos;i="6.16,286,1744095600"; 
+   d="scan'208";a="64629310"
+Received: from fmviesa003.fm.intel.com ([10.60.135.143])
+  by fmvoesa103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 03 Jul 2025 21:27:07 -0700
+X-CSE-ConnectionGUID: NARYHCX/SiKnG2tHm0XMgA==
+X-CSE-MsgGUID: e6fRi3aoSTqQyVlz1ODRdw==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.16,286,1744095600"; 
+   d="scan'208";a="158577679"
+Received: from lkp-server01.sh.intel.com (HELO 0b2900756c14) ([10.239.97.150])
+  by fmviesa003.fm.intel.com with ESMTP; 03 Jul 2025 21:27:05 -0700
+Received: from kbuild by 0b2900756c14 with local (Exim 4.96)
+	(envelope-from <lkp@intel.com>)
+	id 1uXY0s-0003Kh-2r;
+	Fri, 04 Jul 2025 04:27:02 +0000
+Date: Fri, 4 Jul 2025 12:26:05 +0800
+From: kernel test robot <lkp@intel.com>
+To: Sayali Lokhande <quic_sayalil@quicinc.com>, andersson@kernel.org,
+	konradybcio@kernel.org, robh@kernel.org, krzk+dt@kernel.org,
+	conor+dt@kernel.org
+Cc: oe-kbuild-all@lists.linux.dev, linux-arm-msm@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	linux-mmc-owner@vger.kernel.org
+Subject: Re: [PATCH V3 2/3] arm64: dts: qcom: Add eMMC support for qcs8300
+Message-ID: <202507041209.XrPwGbTd-lkp@intel.com>
+References: <20250702085927.10370-3-quic_sayalil@quicinc.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20250702051345.1460497-1-apatel@ventanamicro.com>
- <20250702051345.1460497-11-apatel@ventanamicro.com> <aGUvOLXXwF8c_czJ@smile.fi.intel.com>
-In-Reply-To: <aGUvOLXXwF8c_czJ@smile.fi.intel.com>
-From: Anup Patel <apatel@ventanamicro.com>
-Date: Fri, 4 Jul 2025 09:45:49 +0530
-X-Gm-Features: Ac12FXyJ7NyM9IIDInA5TJDnv2m4UJrY1w22dfaDXM4YfjlbpVcnLOkOViGqoxk
-Message-ID: <CAK9=C2VfvsbFTjecQm0OSsssXbff7wC4fqWf3CTmnpWSiaLcBw@mail.gmail.com>
-Subject: Re: [PATCH v7 10/24] clk: Add clock driver for the RISC-V RPMI clock
- service group
-To: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
-Cc: Michael Turquette <mturquette@baylibre.com>, Stephen Boyd <sboyd@kernel.org>, 
-	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Jassi Brar <jassisinghbrar@gmail.com>, Thomas Gleixner <tglx@linutronix.de>, 
-	"Rafael J . Wysocki" <rafael@kernel.org>, Mika Westerberg <mika.westerberg@linux.intel.com>, 
-	Linus Walleij <linus.walleij@linaro.org>, Bartosz Golaszewski <brgl@bgdev.pl>, 
-	=?UTF-8?Q?Uwe_Kleine=2DK=C3=B6nig?= <ukleinek@kernel.org>, 
-	Palmer Dabbelt <palmer@dabbelt.com>, Paul Walmsley <paul.walmsley@sifive.com>, 
-	Alexandre Ghiti <alex@ghiti.fr>, Len Brown <lenb@kernel.org>, Sunil V L <sunilvl@ventanamicro.com>, 
-	Rahul Pathak <rpathak@ventanamicro.com>, Leyfoon Tan <leyfoon.tan@starfivetech.com>, 
-	Atish Patra <atish.patra@linux.dev>, Andrew Jones <ajones@ventanamicro.com>, 
-	Samuel Holland <samuel.holland@sifive.com>, Anup Patel <anup@brainfault.org>, 
-	linux-clk@vger.kernel.org, devicetree@vger.kernel.org, 
-	linux-acpi@vger.kernel.org, linux-riscv@lists.infradead.org, 
-	linux-kernel@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20250702085927.10370-3-quic_sayalil@quicinc.com>
 
-On Wed, Jul 2, 2025 at 6:38=E2=80=AFPM Andy Shevchenko
-<andriy.shevchenko@linux.intel.com> wrote:
->
-> On Wed, Jul 02, 2025 at 10:43:31AM +0530, Anup Patel wrote:
-> >
-> > The RPMI specification defines a clock service group which can be
-> > accessed via SBI MPXY extension or dedicated S-mode RPMI transport.
-> >
-> > Add mailbox client based clock driver for the RISC-V RPMI clock
-> > service group.
->
-> Now it looks much better!
->
-> Reviewed-by: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
-> One nit-pick below.
->
-> ...
->
-> > +/*
-> > + * rpmi_clk_rates represents the rates format
-> > + * as specified by the RPMI specification.
-> > + * No other format conversion(eg. linear_range) is
-> > + * required to avoid to and fro conversion.
->
-> conversion appears twice. I would suggest use this:
->
->  * No other data format (e.g., struct linear_range) is
->  * required to avoid to and from conversion.
->
+Hi Sayali,
 
-I will update it in the next revision.
+kernel test robot noticed the following build errors:
 
-Thanks,
-Anup
+[auto build test ERROR on robh/for-next]
+[also build test ERROR on linus/master v6.16-rc4 next-20250703]
+[If your patch is applied to the wrong git tree, kindly drop us a note.
+And when submitting patch, we suggest to use '--base' as documented in
+https://git-scm.com/docs/git-format-patch#_base_tree_information]
+
+url:    https://github.com/intel-lab-lkp/linux/commits/Sayali-Lokhande/dt-bindings-mmc-Add-sdhci-compatible-for-qcs8300/20250702-170136
+base:   https://git.kernel.org/pub/scm/linux/kernel/git/robh/linux.git for-next
+patch link:    https://lore.kernel.org/r/20250702085927.10370-3-quic_sayalil%40quicinc.com
+patch subject: [PATCH V3 2/3] arm64: dts: qcom: Add eMMC support for qcs8300
+config: arm64-randconfig-051-20250703 (https://download.01.org/0day-ci/archive/20250704/202507041209.XrPwGbTd-lkp@intel.com/config)
+compiler: aarch64-linux-gcc (GCC) 12.3.0
+dtschema version: 2025.6.2.dev4+g8f79ddd
+reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20250704/202507041209.XrPwGbTd-lkp@intel.com/reproduce)
+
+If you fix the issue in a separate patch/commit (i.e. not just a new version of
+the same patch/commit), kindly add following tags
+| Reported-by: kernel test robot <lkp@intel.com>
+| Closes: https://lore.kernel.org/oe-kbuild-all/202507041209.XrPwGbTd-lkp@intel.com/
+
+All errors (new ones prefixed by >>):
+
+>> Error: arch/arm64/boot/dts/qcom/qcs8300.dtsi:3867.19-20 syntax error
+>> FATAL ERROR: Unable to parse input tree
+
+-- 
+0-DAY CI Kernel Test Service
+https://github.com/intel/lkp-tests/wiki
 
