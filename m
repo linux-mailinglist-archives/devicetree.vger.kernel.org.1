@@ -1,118 +1,224 @@
-Return-Path: <devicetree+bounces-192896-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-192897-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1C5B3AF86E0
-	for <lists+devicetree@lfdr.de>; Fri,  4 Jul 2025 06:46:39 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 82BAFAF86E9
+	for <lists+devicetree@lfdr.de>; Fri,  4 Jul 2025 06:51:00 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id A3BDB1BC13D8
-	for <lists+devicetree@lfdr.de>; Fri,  4 Jul 2025 04:46:55 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id D279117853B
+	for <lists+devicetree@lfdr.de>; Fri,  4 Jul 2025 04:50:55 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4D2AB249EB;
-	Fri,  4 Jul 2025 04:46:34 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8081D7262A;
+	Fri,  4 Jul 2025 04:50:51 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="e+jusnQr"
+	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="piH+/xZN"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pl1-f172.google.com (mail-pl1-f172.google.com [209.85.214.172])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from lelvem-ot02.ext.ti.com (lelvem-ot02.ext.ti.com [198.47.23.235])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E024315C0;
-	Fri,  4 Jul 2025 04:46:32 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.172
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 77D0915C0;
+	Fri,  4 Jul 2025 04:50:49 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.23.235
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1751604394; cv=none; b=Prs3RnoLeMq1EGQ8He1fxkf9YF60w+9RB75aD/vP0mkjtPIKIWNHDriABlVp70jef4L7Gu5OEmt8ivoDqUnRJcl8LK99hIiOT4OW9FNZ2ZFn1GVE4Kd6ldYp12D3B2Ymg18nW/6yv1iIhrHKl6crZnrGLhH+QU3g4Xv7dcIUK2E=
+	t=1751604651; cv=none; b=C0Yg4Mon5KSBjbRQL7JZBIWOS6P8ffbRJ7gnYT5lLiQQLU+GWVTMqIarsA0moTKVWXVYaYG3oxPupSzdeT+uqQWz234SMmF2kpig5ggW1NO9tXhU0nQ1sE6dXDjiVevRwpEPAYXnUk1GfEH89uluWsUNoPCdBiSzNpUX5dkJQ/A=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1751604394; c=relaxed/simple;
-	bh=PKX/xPeaiHcewBqNKuZdPKW0x1IpsTo9+RwOo7Vto4M=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=mcTxA9N+8YJweET3vAddKZAcpBejErWjlABTUXcz9EEEOBJfUDNYuIwVmDKxqmlwJWcSdLI7UVedbTx1Y0YAZkP2WQZtgUvpQX92NTzvkn+QkRvOXrBBnVn9fCGHwjHq3aA/TBKOTffin6gzsx+aIzm+Zr1AUBWkB+owOe2E7ns=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=e+jusnQr; arc=none smtp.client-ip=209.85.214.172
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-pl1-f172.google.com with SMTP id d9443c01a7336-23602481460so6567915ad.0;
-        Thu, 03 Jul 2025 21:46:32 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1751604392; x=1752209192; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=xILUeuNzrr/Yo7TFwfYEmVtweggfhUGpHihnp3c3FuI=;
-        b=e+jusnQrcTS5Gy9eyfZ8ghqykk3mhp87GandjvbG949fDxNvGj8TJVArkOAAcFt6NW
-         eBQczHmCI0SCrkEXlxBE5CxLorcCWSEFiufunjehd3/EnZ4mwUyB4esvSXywhuNpIq59
-         HPyGPKlMKmUSQX6PZ9TLpJuvbPVBKHENDKFnbsUxWgypDKTFwj6+4bCkPLVZOgki7wMv
-         0XObIyZs7KmQzM7UwMdufdq7ko+ZYeCuh4aPE5Jdf29VHcPmYg9Kig0Lb40sMBswq7zJ
-         FIPZywbumej8OHJuhFZ+tdP20aFrXVzFbmmY9PeS9poDmfjNFeDsWMAdXouxB90vol3I
-         2ipw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1751604392; x=1752209192;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=xILUeuNzrr/Yo7TFwfYEmVtweggfhUGpHihnp3c3FuI=;
-        b=Z3YGw781EzRr8vCzyO8Hz6zbJYMrxd+196oJXhBe8zDmF2E2hklrpI/lwh/TI2qhzP
-         xFPgVx6haQrWLDa8VIx6ZNoRsCLbHEcOrwn2mAwNkSlBLwcxrEwmKJnEkWGC38cHx3R+
-         +AtXiOv+nRS7QnuB0OJT+ftGf14bpm6GIVrHHC1uipwQP2NpEbuw9M21NwR0xj/LCJ7g
-         HysqK9XxiBEnbLW/LkeRbvu4fPn1YsryXfcsxFvhUdayAxNlViR+uB7PHN4gHSgR6dCr
-         UlfacOR4NV6X+Ml8fu5H0fFtMDWtoVj6L+3M07DiC9nPHUSDHhW6H+5Nkr/x34rtaqdc
-         cXuw==
-X-Forwarded-Encrypted: i=1; AJvYcCURdEBouGfjTsH3Z5VajRY3wXTkyN4VJdvBkBfiNWymI3F0UxEbVE89Mg8mThkDsd4bHIZ5mzVxBPryrEvK@vger.kernel.org, AJvYcCWVG8D63iO1HnbCR8nrbWwQ3v2SlYLe56zWyAUCjzcv6eXq7uPt1WrQqZ1kzsmGu8MR2p35UySK+WVx@vger.kernel.org
-X-Gm-Message-State: AOJu0YyeyCAoXJ4Rf1NH155DOd9KZfLZkyNSdcqBaS3lYOvl4znDkxU5
-	NDG+v3Zi1S+RAQaiVUUHQBkCHPUoF3oq6ol70CIZINfpJ1yLVZlA67tn
-X-Gm-Gg: ASbGncu+cU3LdF2V1orEPmFFJhKV38i341zRF3INvDWTJ9cez2mAhnRkF4408MNGYc3
-	AuSfHxlO+gwuciQNb4psaZSZsaoQvMzuKiYArgTePHN3mOiEdsaB+NDSLrHX6Rx7X96AIe0/uPq
-	w+ubAXZlMAYKdyZ5Fiiz2KEuzlWrVA9Yt6Qo1aG2T2CzrohbOSpVI/gYMQ3ZHYmA0r4vRlRDl3U
-	pPfoAFORF1Qc7vS+hM4+mpAt9mocLlJW/xWWpyjXe3kTcVlb6wvH101VMVM1ATjCrB+gjNgteH/
-	pajsLrhXaV5niXQ/zJnDG1hErEEU4a6J1Bc3tmzXc1AA4QMdnQwG55PmC7CdCxlLS8msNnFmboC
-	5DaM1Of8D0GlV2Kn/ilrCjRvzVkgP9biJWiSpyoY=
-X-Google-Smtp-Source: AGHT+IEgR/rCAd1Y5FPgmuwSiO8qntbXNx6FG654nLbacD0JKhCOt3sZTQYV6V2u/abFqRuVhjf1Tw==
-X-Received: by 2002:a17:902:c412:b0:234:1163:ff99 with SMTP id d9443c01a7336-23c862a8090mr23121635ad.43.1751604392392;
-        Thu, 03 Jul 2025 21:46:32 -0700 (PDT)
-Received: from localhost.localdomain (c-76-133-73-115.hsd1.ca.comcast.net. [76.133.73.115])
-        by smtp.gmail.com with ESMTPSA id d9443c01a7336-23c8455cc1asm9413045ad.123.2025.07.03.21.46.30
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 03 Jul 2025 21:46:31 -0700 (PDT)
-Date: Thu, 3 Jul 2025 21:46:29 -0700
-From: Tao Ren <rentao.bupt@gmail.com>
-To: Andrew Jeffery <andrew@codeconstruct.com.au>
-Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, Joel Stanley <joel@jms.id.au>,
-	devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-	linux-aspeed@lists.ozlabs.org, linux-kernel@vger.kernel.org,
-	Tao Ren <taoren@meta.com>
-Subject: Re: [PATCH 2/5] ARM: dts: aspeed: Remove eMMC from
- ast2600-facebook-netbmc-common.dtsi
-Message-ID: <aGdcpfYM94Itr6ME@localhost.localdomain>
-References: <20250702050421.13729-1-rentao.bupt@gmail.com>
- <20250702050421.13729-3-rentao.bupt@gmail.com>
- <94e0c5bfe1239e7590cef427cbba405077d56d01.camel@codeconstruct.com.au>
+	s=arc-20240116; t=1751604651; c=relaxed/simple;
+	bh=Ql/WhDgZf7Q29or8+FR7wNGAuVfEIiWiJm9Gt1l1OXA=;
+	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
+	 In-Reply-To:Content-Type; b=HODWcb+zq3Yxu9YFqRAWEj9K6EFtivBGcMF36FmNt1j2lVcKgizrvP7IaBkyjvuRYxn51o+Yv1Ok79iLoAx55qkIb6qxOz9OVUIEvcfnPA2FD8saCC166eXmT4ShdzE0w3DThGJZ4DuCgCQg//I/sPuQVy/l1sRTxQUuCVkbM/A=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=piH+/xZN; arc=none smtp.client-ip=198.47.23.235
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
+Received: from fllvem-sh04.itg.ti.com ([10.64.41.54])
+	by lelvem-ot02.ext.ti.com (8.15.2/8.15.2) with ESMTP id 5644oe3u212429;
+	Thu, 3 Jul 2025 23:50:40 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+	s=ti-com-17Q1; t=1751604640;
+	bh=WD8sfe2YFYOmZs6gSyMvwaJbnuhYswZhRsw7+2d+uh8=;
+	h=Date:Subject:To:CC:References:From:In-Reply-To;
+	b=piH+/xZNlDizp0UXFQKn1sGm3z/CwNTBdLzVrYGwS5T9YzR8CpRkB6K69kV97wvam
+	 enbPPegakpC0jK7gY3I9N7G8ilZVD5zdshM6fDL8mnuSK76gOPzPwprGPP88raSPz6
+	 S0D8PKzruZ9eJh1PP3RqpysFHy1HK7276rU9HUCs=
+Received: from DFLE115.ent.ti.com (dfle115.ent.ti.com [10.64.6.36])
+	by fllvem-sh04.itg.ti.com (8.18.1/8.18.1) with ESMTPS id 5644oeUi1416277
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-SHA256 bits=128 verify=FAIL);
+	Thu, 3 Jul 2025 23:50:40 -0500
+Received: from DFLE114.ent.ti.com (10.64.6.35) by DFLE115.ent.ti.com
+ (10.64.6.36) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.55; Thu, 3
+ Jul 2025 23:50:39 -0500
+Received: from lelvem-mr05.itg.ti.com (10.180.75.9) by DFLE114.ent.ti.com
+ (10.64.6.35) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.55 via
+ Frontend Transport; Thu, 3 Jul 2025 23:50:39 -0500
+Received: from [172.24.227.245] (uda0132425.dhcp.ti.com [172.24.227.245])
+	by lelvem-mr05.itg.ti.com (8.18.1/8.18.1) with ESMTP id 5644oYtb2346939;
+	Thu, 3 Jul 2025 23:50:35 -0500
+Message-ID: <c9e0c113-f663-426b-8a23-d82300987b98@ti.com>
+Date: Fri, 4 Jul 2025 10:20:22 +0530
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <94e0c5bfe1239e7590cef427cbba405077d56d01.camel@codeconstruct.com.au>
-
-On Fri, Jul 04, 2025 at 09:38:39AM +0930, Andrew Jeffery wrote:
-> On Tue, 2025-07-01 at 22:04 -0700, rentao.bupt@gmail.com wrote:
-> > From: Tao Ren <rentao.bupt@gmail.com>
-> > 
-> > Remove eMMC device entries from ast2600-facebook-netbmc-common.dtsi
-> > because eMMC will be removed from future Meta/Facebook AST2600 network
-> > OpenBMC platforms.
-> 
-> Please squash this patch with the subsequent two patches so you don't
-> break Fuji and Elbert across a bisect.
-> 
-> Andrew
-
-Got it. I will take care of it in v2.
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v5 4/4] arm64: dts: ti: Add support for AM62D2-EVM
+To: Paresh Bhagat <p-bhagat@ti.com>, <nm@ti.com>, <praneeth@ti.com>
+CC: <kristo@kernel.org>, <robh@kernel.org>, <krzk+dt@kernel.org>,
+        <conor+dt@kernel.org>, <linux-arm-kernel@lists.infradead.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <khasim@ti.com>, <v-singh1@ti.com>, <afd@ti.com>, <bb@ti.com>,
+        <devarsht@ti.com>, <s-vadapalli@ti.com>, <andrew@lunn.ch>
+References: <20250627115753.2246881-1-p-bhagat@ti.com>
+ <20250627115753.2246881-5-p-bhagat@ti.com>
+From: Vignesh Raghavendra <vigneshr@ti.com>
+Content-Language: en-US
+In-Reply-To: <20250627115753.2246881-5-p-bhagat@ti.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 7bit
+X-C2ProcessedOrg: 333ef613-75bf-4e12-a4b1-8e3623f5dcea
 
 
-Thanks,
 
-Tao
+On 27/06/25 17:27, Paresh Bhagat wrote:
+> +&main_pmx0 {
+> +	main_uart0_pins_default: main-uart0-default-pins {
+> +		pinctrl-single,pins = <
+> +			AM62DX_IOPAD(0x01c8, PIN_INPUT, 0) /* (E14) UART0_RXD */
+> +			AM62DX_IOPAD(0x01cc, PIN_OUTPUT, 0) /* (D15) UART0_TXD */
+> +		>;
+> +		bootph-all;
+> +	};
+> +
+> +	main_i2c0_pins_default: main-i2c0-default-pins {
+> +		pinctrl-single,pins = <
+> +			AM62DX_IOPAD(0x01e0, PIN_INPUT_PULLUP, 0) /* (D17) I2C0_SCL */
+> +			AM62DX_IOPAD(0x01e4, PIN_INPUT_PULLUP, 0) /* (E16) I2C0_SDA */
+> +		>;
+> +		bootph-all;
+> +	};
+> +
+> +	main_i2c1_pins_default: main-i2c1-default-pins {
+> +		pinctrl-single,pins = <
+> +			AM62DX_IOPAD(0x01e8, PIN_INPUT_PULLUP, 0) /* (C17) I2C1_SCL */
+> +			AM62DX_IOPAD(0x01ec, PIN_INPUT_PULLUP, 0) /* (E17) I2C1_SDA */
+> +		>;
+> +		bootph-all;
+> +	};
+> +
+> +	main_i2c2_pins_default: main-i2c2-default-pins {
+> +		pinctrl-single,pins = <
+> +			AM62DX_IOPAD(0x00b0, PIN_INPUT_PULLUP, 1) /* (M22) GPMC0_CSn2.I2C2_SCL */
+> +			AM62DX_IOPAD(0x00b4, PIN_INPUT_PULLUP, 1) /* (M20) GPMC0_CSn3.I2C2_SDA */
+> +		>;
+> +	};
+> +
+> +	main_mmc0_pins_default: main-mmc0-default-pins {
+> +		pinctrl-single,pins = <
+> +			AM62DX_IOPAD(0x0220, PIN_INPUT_PULLUP, 0) /* (Y6) MMC0_CMD */
+> +			AM62DX_IOPAD(0x0218, PIN_OUTPUT, 0) /* (AB7) MMC0_CLK */
+> +			AM62DX_IOPAD(0x0214, PIN_INPUT_PULLUP, 0) /* (AA6) MMC0_DAT0 */
+> +			AM62DX_IOPAD(0x0210, PIN_INPUT_PULLUP, 0) /* (AB6) MMC0_DAT1 */
+> +			AM62DX_IOPAD(0x020c, PIN_INPUT_PULLUP, 0) /* (Y7) MMC0_DAT2 */
+> +			AM62DX_IOPAD(0x0208, PIN_INPUT_PULLUP, 0) /* (AA7) MMC0_DAT3 */
+> +			AM62DX_IOPAD(0x0204, PIN_INPUT_PULLUP, 0) /* (Y8) MMC0_DAT4 */
+> +			AM62DX_IOPAD(0x0200, PIN_INPUT_PULLUP, 0) /* (W7) MMC0_DAT5 */
+> +			AM62DX_IOPAD(0x01fc, PIN_INPUT_PULLUP, 0) /* (W9) MMC0_DAT6 */
+> +			AM62DX_IOPAD(0x01f8, PIN_INPUT_PULLUP, 0) /* (AB8) MMC0_DAT7 */
+> +		>;
+> +		bootph-all;
+> +	};
+> +
+> +	main_mmc1_pins_default: main-mmc1-default-pins {
+> +		pinctrl-single,pins = <
+> +			AM62DX_IOPAD(0x023c, PIN_INPUT, 0) /* (C21) MMC1_CMD */
+> +			AM62DX_IOPAD(0x0234, PIN_OUTPUT, 0) /* (E22) MMC1_CLK */
+> +			AM62DX_IOPAD(0x0230, PIN_INPUT, 0) /* (B22) MMC1_DAT0 */
+> +			AM62DX_IOPAD(0x022c, PIN_INPUT_PULLUP, 0) /* (D21) MMC1_DAT1 */
+> +			AM62DX_IOPAD(0x0228, PIN_INPUT_PULLUP, 0) /* (C22) MMC1_DAT2 */
+> +			AM62DX_IOPAD(0x0224, PIN_INPUT_PULLUP, 0) /* (D22) MMC1_DAT3 */
+
+Double check PULLUP here.. There seems to be external PULLUPs on the
+board. Do you still need internal pulls?
+
+> +			AM62DX_IOPAD(0x0240, PIN_INPUT, 0) /* (E18) MMC1_SDCD */
+
+> +			AM62DX_IOPAD(0x0244, PIN_INPUT, 0) /* (D18) MMC1_SDWP */
+
+This pin isn't needed/connected right?
+
+> +		>;
+> +		bootph-all;
+> +	};
+> +
+> +	main_mdio0_pins_default: main-mdio0-default-pins {
+> +		pinctrl-single,pins = <
+> +			AM62DX_IOPAD(0x160, PIN_OUTPUT, 0) /* (V12) MDIO0_MDC */
+> +			AM62DX_IOPAD(0x15c, PIN_INPUT, 0) /* (V13) MDIO0_MDIO */
+> +		>;
+> +		bootph-all;
+> +	};
+> +
+> +	main_rgmii1_pins_default: main-rgmii1-default-pins {
+> +		pinctrl-single,pins = <
+> +			AM62DX_IOPAD(0x14c, PIN_INPUT, 0) /* (AB16) RGMII1_RD0 */
+> +			AM62DX_IOPAD(0x150, PIN_INPUT, 0) /* (V15) RGMII1_RD1 */
+> +			AM62DX_IOPAD(0x154, PIN_INPUT, 0) /* (W15) RGMII1_RD2 */
+> +			AM62DX_IOPAD(0x158, PIN_INPUT, 0) /* (V14) RGMII1_RD3 */
+> +			AM62DX_IOPAD(0x148, PIN_INPUT, 0) /* (AA16) RGMII1_RXC */
+> +			AM62DX_IOPAD(0x144, PIN_INPUT, 0) /* (AA15) RGMII1_RX_CTL */
+> +			AM62DX_IOPAD(0x134, PIN_INPUT, 0) /* (Y17) RGMII1_TD0 */
+> +			AM62DX_IOPAD(0x138, PIN_INPUT, 0) /* (V16) RGMII1_TD1 */
+> +			AM62DX_IOPAD(0x13c, PIN_INPUT, 0) /* (Y16) RGMII1_TD2 */
+> +			AM62DX_IOPAD(0x140, PIN_INPUT, 0) /* (AA17) RGMII1_TD3 */
+> +			AM62DX_IOPAD(0x0130, PIN_OUTPUT, 0) /* (AB17) RGMII1_TXC */
+> +			AM62DX_IOPAD(0x012c, PIN_OUTPUT, 0) /* (W16) RGMII1_TX_CTL */
+> +		>;
+> +		bootph-all;
+> +	};
+> +
+> +	main_rgmii2_pins_default: main-rgmii2-default-pins {
+> +		pinctrl-single,pins = <
+> +			AM62DX_IOPAD(0x0184, PIN_INPUT, 0) /* (AA21) RGMII2_RD0 */
+> +			AM62DX_IOPAD(0x0188, PIN_INPUT, 0) /* (Y20) RGMII2_RD1 */
+> +			AM62DX_IOPAD(0x018c, PIN_INPUT, 0) /* (AB21) RGMII2_RD2 */
+> +			AM62DX_IOPAD(0x0190, PIN_INPUT, 0) /* (AB20) RGMII2_RD3 */
+> +			AM62DX_IOPAD(0x0180, PIN_INPUT, 0) /* (AA20) RGMII2_RXC */
+> +			AM62DX_IOPAD(0x017c, PIN_INPUT, 0) /* (W18) RGMII2_RX_CTL */
+> +			AM62DX_IOPAD(0x016c, PIN_INPUT, 0) /* (AA19) RGMII2_TD0 */
+> +			AM62DX_IOPAD(0x0170, PIN_INPUT, 0) /* (Y18) RGMII2_TD1 */
+> +			AM62DX_IOPAD(0x0174, PIN_INPUT, 0) /* (AA18) RGMII2_TD2 */
+> +			AM62DX_IOPAD(0x0178, PIN_INPUT, 0) /* (W17) RGMII2_TD3 */
+> +			AM62DX_IOPAD(0x0168, PIN_OUTPUT, 0) /* (AB19) RGMII2_TXC */
+> +			AM62DX_IOPAD(0x0164, PIN_OUTPUT, 0) /* (Y19) RGMII2_TX_CTL */
+> +		>;
+> +		bootph-all;
+> +	};
+> +
+> +	main_gpio1_ioexp_intr_pins_default: main-gpio1-ioexp-intr-default-pins {
+> +		pinctrl-single,pins = <
+> +			AM62DX_IOPAD(0x01d4, PIN_INPUT, 7) /* (C15) UART0_RTSn.GPIO1_23 */
+> +		>;
+> +	};
+> +
+> +	vddshv_sdio_pins_default: vddshv-sdio-default-pins {
+> +		pinctrl-single,pins = <
+> +			AM62DX_IOPAD(0x1F4, PIN_OUTPUT, 7) /* (M19) GPMC0_CLK.GPIO1_31 */
+
+					^^^ use lower case hexadecimals
+
+> +		>;
+> +		bootph-all;
+> +	};
+> +};
+> +
+
+-- 
+Regards
+Vignesh
+https://ti.com/opensource
+
 
