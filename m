@@ -1,187 +1,509 @@
-Return-Path: <devicetree+bounces-193110-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-193112-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 96AD1AF9507
-	for <lists+devicetree@lfdr.de>; Fri,  4 Jul 2025 16:09:37 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3D7F2AF952D
+	for <lists+devicetree@lfdr.de>; Fri,  4 Jul 2025 16:14:27 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 8B3586E2132
-	for <lists+devicetree@lfdr.de>; Fri,  4 Jul 2025 14:09:05 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 96EE516D3F8
+	for <lists+devicetree@lfdr.de>; Fri,  4 Jul 2025 14:14:27 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1B439277C87;
-	Fri,  4 Jul 2025 14:08:40 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id AE326194A60;
+	Fri,  4 Jul 2025 14:14:14 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="lMWDAR9p"
+	dkim=pass (2048-bit key) header.d=wanadoo.fr header.i=@wanadoo.fr header.b="WspZ3CFv"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wr1-f49.google.com (mail-wr1-f49.google.com [209.85.221.49])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.smtpout.orange.fr (smtp-66.smtpout.orange.fr [80.12.242.66])
+	(using TLSv1.2 with cipher AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4681E1D416E;
-	Fri,  4 Jul 2025 14:08:36 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.49
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A98E019005E;
+	Fri,  4 Jul 2025 14:14:08 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=80.12.242.66
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1751638120; cv=none; b=ISyFoeNcoOy/Wr/N/L+/8TbgtUXFSR8GhBw6qaAuLg1SsRcO20nREBopmnnWXCdzXt0Wm6n+AHYzdj6Nc04CnVYT2OgI+2aGgXOuSG6QcNZ+DBZlsGh+8y/SljkvAniaqL8Ntkca/uUGli3TOBuxgbfNGcsGQQ4JYqAlITOHeRc=
+	t=1751638454; cv=none; b=tGZO6I2UHc/pcehq0BXWEuGxdGWSIf+MBZXkZWuUAzLprIUXj5Cn4UVzImwhS4v7ReQFhowJ463xXWWVgFFUXMqDoSbYhiRWT8viHxwxtOJPcWXYpxhRANg9jesQJSXuyI7cFrzRMd9PgMnkCRGxleHsXRFGNVWe26dXXEPSydo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1751638120; c=relaxed/simple;
-	bh=P0U/0g0fst2J8rAQPUv5acG0Nz2tbp2E+UfQjvcNtQE=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=KBhvUPsU6opzBbcR7u5giwnlMdqX5R7510GVjxAK283zC4PQPYDBGgzP6Mu9pTNsx1v/7wbcbOftmN/B3EVj2eCNWh6xAx6ra8Y1IkHFUTGAC7eA66BNGZbxJreUFPfQo4MwKFR6AnlylR5nBha9EtkmdOdgVSGUNS2U34yzYec=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=lMWDAR9p; arc=none smtp.client-ip=209.85.221.49
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-wr1-f49.google.com with SMTP id ffacd0b85a97d-3a588da60dfso635447f8f.1;
-        Fri, 04 Jul 2025 07:08:36 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1751638114; x=1752242914; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=FibHmzo3lDELBTUxTJLF/DxzNb1Fvoooy+C4rDNJH90=;
-        b=lMWDAR9pcv5R3QGUIPjUAKFkEPMtKHNDogwLl3//z2HN+3xWw8X4u3HO9DCzlPj5f1
-         8pJ3qQ9Ag505v3sgh6yC0nUX+GMBUnTcaAGFA2S0GbOLc6yKabmEl+IM6OqpKUyt790T
-         k6CNfJrvgSIhmdhIK04HrBKVhFOenHpKRd4szZqr0vl8qrdX2nSQEpbOK9OMwk5LXMOY
-         xwjiJHsEpz8Ifb+RDSRjMW+q8utIWriy+Ac+fo0wzM8p755xA6Nwbm3pZlbOOboqtuse
-         bz7vIbwc6NmgAY2SNJPCb1LiqfSCXXgOv/qr34CBZ7aeKGDtU432THoUwImDGfJp4dbD
-         LIXQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1751638114; x=1752242914;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=FibHmzo3lDELBTUxTJLF/DxzNb1Fvoooy+C4rDNJH90=;
-        b=coJ77OEhQe/5aNZ0tLJn7nW5ROe/aTQjyxEJvzfRL9mPiSCZzoZYRGYsy1r5wvLHKf
-         /AQlhwdBqQ5xdyn4/kRdqcOq/oqrDgXtlDbW4AtDiZaZGpmao+wgJfsQ/yThWgBesS6T
-         sP8N7ISDFrkZzPczgS/jhRsjwTcYK9IWV7D4hrlAgUBpzCAg6/FYDprq4qGx6Pqsq3U1
-         IwPEqPj2DmRU8MZHNGQNhlBL4MFTnpOnTTOpayUgC7QBYd5+P6VrqFFqnlqDM+lH2dpE
-         NhgbIVMDT3OH5tlIvlsg4clqNNRoXMlLljh07HLSCf2mh4egkbikK6u41EkkjS7Cco88
-         m1qw==
-X-Forwarded-Encrypted: i=1; AJvYcCUPWIQmuoGFmWDeRkfJV1cLVC8qTnTC31n0UXDowZSq+tYa/Av1V2lK4vL0Q48HwZkEDDnIYMfpjmTu@vger.kernel.org, AJvYcCVfsbGMPP7LOmu+4rbbOcsWDkj4Ee8tMGAWLVIf1SlW+pjE3Qr/Ekw98G5rhpbFQSiajUrI0tbylDZqLHk+@vger.kernel.org
-X-Gm-Message-State: AOJu0YzPJI5UTwQTL2CTvjWQnlSnW8lpArcARNNoDSqidoZaQDGsLEGI
-	0mQ0VRdB4bKoiKRXKDcxNdyGkJi4BZJ5fPYjIA11kHxKHJjOFuWY/us78RwVJvF2
-X-Gm-Gg: ASbGncu3v/v6ZEUAzKXwiKJmsZDKjTVelUIGPK3qA50EzZsO66eCqvQDf2VEXryFHrA
-	HgAw7U0ldJtZQkCGj+s1oqJPmqhZQ0o9Dui87SsEedw2rMD/q/mdCiwXWLemkhlZhnyHhShT9y2
-	F5naqeHnBfbOVSuYyR/NbXrGn044+c5xwxnEPTxKRR4liKUDOC+tZGpbzRk3jpZD/Z9gZpm75yG
-	6w3nsj1tKpMigUv3u8x8/9gyyKpCKPgNLn1L7MKaaqZD8bDM7Ib5ujJYTUAI/1dfqTbH0b/+z+P
-	QQOLhtGi2I2nGfSTAZbKOE5lXwW+OZjbKIknOekZ8eZnNttwazo5NfXgDDOnTWAe7/L7ryPjixc
-	NuJW0K6qEinTuDY3oVk3j
-X-Google-Smtp-Source: AGHT+IE1YbibEdICgN45YeI30RH+KsqQ38fTFtQkMiSjhmmHX2r9JKKhkj6nTYHcf5cTiaJF9fzusg==
-X-Received: by 2002:a05:6000:41d5:b0:3a4:c9d4:2fb2 with SMTP id ffacd0b85a97d-3b4964e9ac4mr2213298f8f.46.1751638114188;
-        Fri, 04 Jul 2025 07:08:34 -0700 (PDT)
-Received: from iku.example.org ([2a06:5906:61b:2d00:e31c:ff37:8f66:5091])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-3b47225afd4sm2535946f8f.83.2025.07.04.07.08.32
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 04 Jul 2025 07:08:32 -0700 (PDT)
-From: Prabhakar <prabhakar.csengg@gmail.com>
-X-Google-Original-From: Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-To: Geert Uytterhoeven <geert+renesas@glider.be>,
-	Magnus Damm <magnus.damm@gmail.com>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>
-Cc: linux-renesas-soc@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	Prabhakar <prabhakar.csengg@gmail.com>,
-	Biju Das <biju.das.jz@bp.renesas.com>,
-	Fabrizio Castro <fabrizio.castro.jz@renesas.com>,
-	Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-Subject: [PATCH v2 4/4] arm64: dts: renesas: r9a09g057h44-rzv2h-evk: Enable serial NOR FLASH
-Date: Fri,  4 Jul 2025 15:08:23 +0100
-Message-ID: <20250704140823.163572-5-prabhakar.mahadev-lad.rj@bp.renesas.com>
-X-Mailer: git-send-email 2.49.0
-In-Reply-To: <20250704140823.163572-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
-References: <20250704140823.163572-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
+	s=arc-20240116; t=1751638454; c=relaxed/simple;
+	bh=+u2GpgGOhEl75nJxq3dmrduoPbHAFjg00Tgzqi123wM=;
+	h=Message-ID:Date:MIME-Version:Subject:References:From:To:Cc:
+	 In-Reply-To:Content-Type; b=CxGS+XZbofAp4wTn5g6n4iuJxJAiwXp2vm+hu/I6r3XeG4sY/S82ambTj2LDs+arQqu5gPGuVZbtuLcba2rJCLCFYupd5s4V7cMd302EYOaPf4ULWuSVZ0VrUrkVc6FvDTcWx3V5pnB4Dae1LHLUyC7JIaNaXqkk3igNn/KMwb0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=wanadoo.fr; spf=pass smtp.mailfrom=wanadoo.fr; dkim=pass (2048-bit key) header.d=wanadoo.fr header.i=@wanadoo.fr header.b=WspZ3CFv; arc=none smtp.client-ip=80.12.242.66
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=wanadoo.fr
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=wanadoo.fr
+Received: from [IPV6:2a01:cb10:785:b00:8347:f260:7456:7662]
+ ([IPv6:2a01:cb10:785:b00:8347:f260:7456:7662])
+	by smtp.orange.fr with ESMTPA
+	id Xh9tu0aMm2WitXh9tu0wY2; Fri, 04 Jul 2025 16:12:59 +0200
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=wanadoo.fr;
+	s=t20230301; t=1751638379;
+	bh=X6qAouzWloI4EGNQY3Oegqlye+V7PfXpkR1f2hKTYXQ=;
+	h=Message-ID:Date:MIME-Version:Subject:From:To;
+	b=WspZ3CFvM4C4xfg8r2lyEW+vkMIlfXef7JRzzLTzxyPeTyxCXUEyO2y5ISqtvLXZf
+	 g7tKwCwZ49XEXRbj5T3xHbAQJSr+l/FjqZ2cCUjCB4nlAuGzTQXh9ApbpKKqhO/SlM
+	 Sckqq+cmp153hFSyuk66uikpiaGpLeXmDF6qaODJAkTbvtZ9Tz0IY21LcWEvi8eEZM
+	 taVFO/QQ15+Yk8SG6ywQaPpI15bBW2vEA10UyeDOl0q8ZsVWVL0ui6SwDMcOQxIWRE
+	 ctWgtdX/cGGsNL2OXnnLT+lkTxim11xgpVCBW79Fiz6TjdWAS8jC93Mr0Cw7g1DLMn
+	 FNGAJI/k32FQQ==
+X-ME-Helo: [IPV6:2a01:cb10:785:b00:8347:f260:7456:7662]
+X-ME-Auth: bWFyaW9uLmphaWxsZXRAd2FuYWRvby5mcg==
+X-ME-Date: Fri, 04 Jul 2025 16:12:59 +0200
+X-ME-IP: 2a01:cb10:785:b00:8347:f260:7456:7662
+Message-ID: <f14dfb9a-caf7-4889-a892-6fd61a9a5ecd@wanadoo.fr>
+Date: Fri, 4 Jul 2025 16:12:56 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v5 2/3] eeprom: add driver for ST M24LR series RFID/NFC
+ EEPROM chips
+References: <20250704123914.11216-1-abd.masalkhi@gmail.com>
+ <20250704123914.11216-3-abd.masalkhi@gmail.com>
+Content-Language: en-US, fr-FR
+From: Christophe JAILLET <christophe.jaillet@wanadoo.fr>
+To: abd.masalkhi@gmail.com
+Cc: arnd@arndb.de, conor+dt@kernel.org, devicetree@vger.kernel.org,
+ gregkh@linuxfoundation.org, krzk+dt@kernel.org,
+ linux-kernel@vger.kernel.org, luoyifan@cmss.chinamobile.com, robh@kernel.org
+In-Reply-To: <20250704123914.11216-3-abd.masalkhi@gmail.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 8bit
 
-From: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+Le 04/07/2025 à 14:39, Abd-Alrhman Masalkhi a écrit :
+> adds support for STMicroelectronics M24LRxx devices, which expose
+> two separate I2C addresses: one for system control and one for EEPROM
+> access. The driver implements both a sysfs-based interface for control
+> registers (e.g. UID, password authentication) and an nvmem provider
+> for EEPROM access.
 
-Enable MT25QU512ABB8E12 FLASH connected to XSPI.
+Hi, some nitpicks below, mostly related to types.
 
-Signed-off-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
----
- .../dts/renesas/r9a09g057h44-rzv2h-evk.dts    | 55 +++++++++++++++++++
- 1 file changed, 55 insertions(+)
+...
 
-diff --git a/arch/arm64/boot/dts/renesas/r9a09g057h44-rzv2h-evk.dts b/arch/arm64/boot/dts/renesas/r9a09g057h44-rzv2h-evk.dts
-index 886ce31c1674..ae90d59d6015 100644
---- a/arch/arm64/boot/dts/renesas/r9a09g057h44-rzv2h-evk.dts
-+++ b/arch/arm64/boot/dts/renesas/r9a09g057h44-rzv2h-evk.dts
-@@ -370,6 +370,18 @@ vbus {
- 			pinmux = <RZV2H_PORT_PINMUX(6, 6, 14)>; /* VBUS */
- 		};
- 	};
-+
-+	xspi_pins: xspi0 {
-+		ctrl {
-+			pins = "XSPI0_RESET0N", "XSPI0_CS0N", "XSPI0_CKP";
-+			output-enable;
-+		};
-+
-+		io {
-+			pins = "XSPI0_IO0", "XSPI0_IO1", "XSPI0_IO2", "XSPI0_IO3";
-+			renesas,output-impedance = <3>;
-+		};
-+	};
- };
- 
- &qextal_clk {
-@@ -424,3 +436,46 @@ &usb2_phy1 {
- &wdt1 {
- 	status = "okay";
- };
-+
-+&xspi {
-+	pinctrl-0 = <&xspi_pins>;
-+	pinctrl-names = "default";
-+	/*
-+	 * MT25QU512ABB8E12 flash chip is capable of running at 166MHz
-+	 * clock frequency. Set the maximum clock frequency to 133MHz
-+	 * supported by the RZ/V2H SoC.
-+	 */
-+	assigned-clocks = <&cpg CPG_CORE R9A09G057_SPI_CLK_SPI>;
-+	assigned-clock-rates = <133333334>;
-+	status = "okay";
-+
-+	flash@0 {
-+		compatible = "jedec,spi-nor";
-+		reg = <0>;
-+		vcc-supply = <&reg_1p8v>;
-+		m25p,fast-read;
-+		spi-tx-bus-width = <4>;
-+		spi-rx-bus-width = <4>;
-+
-+		partitions {
-+			compatible = "fixed-partitions";
-+			#address-cells = <1>;
-+			#size-cells = <1>;
-+
-+			partition@0 {
-+				label = "bl2";
-+				reg = <0x00000000 0x00060000>;
-+			};
-+
-+			partition@60000 {
-+				label = "fip";
-+				reg = <0x00060000 0x1fa0000>;
-+			};
-+
-+			partition@2000000 {
-+				label = "user";
-+				reg = <0x2000000 0x2000000>;
-+			};
-+		};
-+	};
-+};
--- 
-2.49.0
+> +#include <linux/i2c.h>
+> +#include <linux/regmap.h>
+> +#include <linux/module.h>
+> +#include <linux/device.h>
+> +#include <linux/of.h>
+> +#include <linux/of_device.h>
+> +#include <linux/nvmem-provider.h>
+
+Sometimes, alphabetical order is preferred.
+
+> +
+> +#define M24LR_WRITE_TIMEOUT	  25u
+> +#define M24LR_READ_TIMEOUT	  (M24LR_WRITE_TIMEOUT)
+
+...
+
+> +/**
+> + * m24lr_regmap_read - read data using regmap with retry on failure
+> + * @regmap:  regmap instance for the device
+> + * @buf:     buffer to store the read data
+> + * @size:    number of bytes to read
+> + * @offset:  starting register address
+> + *
+> + * Attempts to read a block of data from the device with retries and timeout.
+> + * Some M24LR chips may transiently NACK reads (e.g., during internal write
+> + * cycles), so this function retries with a short sleep until the timeout
+> + * expires.
+> + *
+> + * Returns:
+> + *	 Number of bytes read on success,
+> + *	 -ETIMEDOUT if the read fails within the timeout window.
+> + */
+> +static ssize_t m24lr_regmap_read(struct regmap *regmap, u8 *buf,
+> +				 size_t size, unsigned int offset)
+
+Why returning a ssize_t?
+regmap_bulk_read() returns an int.
+
+> +{
+> +	int err;
+> +	unsigned long timeout, read_time;
+> +	ssize_t ret = -ETIMEDOUT;
+> +
+> +	timeout = jiffies + msecs_to_jiffies(M24LR_READ_TIMEOUT);
+> +	do {
+> +		read_time = jiffies;
+> +
+> +		err = regmap_bulk_read(regmap, offset, buf, size);
+> +		if (!err) {
+> +			ret = size;
+> +			break;
+> +		}
+> +
+> +		usleep_range(1000, 2000);
+> +	} while (time_before(read_time, timeout));
+> +
+> +	return ret;
+> +}
+...
+
+> +static ssize_t m24lr_read(struct m24lr *m24lr, u8 *buf, size_t size,
+> +			  unsigned int offset, bool is_eeprom)
+> +{
+> +	struct regmap *regmap;
+> +	long ret;
+
+Why long?
+m24lr_regmap_read() returns a ssize_t. (+ see comment there for why a 
+ssize_t)
+
+(same comment applies to several places)
+
+> +
+> +	if (is_eeprom)
+> +		regmap = m24lr->eeprom_regmap;
+> +	else
+> +		regmap = m24lr->ctl_regmap;
+> +
+> +	mutex_lock(&m24lr->lock);
+> +	ret = m24lr_regmap_read(regmap, buf, size, offset);
+> +	mutex_unlock(&m24lr->lock);
+> +
+> +	return ret;
+> +}
+> +
+> +/**
+> + * m24lr_write - write buffer to M24LR device with page alignment handling
+> + * @m24lr:     pointer to driver context
+> + * @buf:       data buffer to write
+> + * @size:      number of bytes to write
+> + * @offset:    target register address in the device
+> + * @is_eeprom: true if the write should target the EEPROM,
+> + *             false if it should target the system parameters sector.
+> + *
+> + * Writes data to the M24LR device using regmap, split into chunks no larger
+> + * than page_size to respect device-specific write limitations (e.g., page
+> + * size or I2C hold-time concerns). Each chunk is aligned to the page boundary
+> + * defined by page_size.
+> + *
+> + * Returns:
+> + *	 Total number of bytes written on success,
+> + *	 A negative error code if any write fails.
+> + */
+> +static ssize_t m24lr_write(struct m24lr *m24lr, const u8 *buf, size_t size,
+> +			   unsigned int offset, bool is_eeprom)
+> +{
+> +	unsigned int n, next_sector;
+> +	struct regmap *regmap;
+> +	ssize_t ret = 0;
+> +	long err;
+> +
+> +	if (is_eeprom)
+> +		regmap = m24lr->eeprom_regmap;
+> +	else
+> +		regmap = m24lr->ctl_regmap;
+> +
+> +	n = min(size, m24lr->page_size);
+
+min_t()?
+
+> +	next_sector = roundup(offset + 1, m24lr->page_size);
+> +	if (offset + n > next_sector)
+> +		n = next_sector - offset;
+> +
+> +	mutex_lock(&m24lr->lock);
+> +	while (n) {
+> +		err = m24lr_regmap_write(regmap, buf, n, offset);
+> +		if (IS_ERR_VALUE(err)) {
+> +			mutex_unlock(&m24lr->lock);
+> +			if (ret)
+> +				return ret;
+> +			else
+
+Unneeded else.
+
+> +				return err;
+> +		}
+> +
+> +		offset += n;
+> +		size -= n;
+> +		ret += n;
+> +		n = min(size, m24lr->page_size);
+
+min_t()?
+Or change the type of page_size?
+
+> +	}
+> +	mutex_unlock(&m24lr->lock);
+> +
+> +	return ret;
+> +}
+> +
+> +/**
+> + * m24lr_write_pass - Write password to M24LR043-R using secure format
+> + * @m24lr: Pointer to device control structure
+> + * @buf:   Input buffer containing hex-encoded password
+> + * @count: Number of bytes in @buf
+> + * @code:  Operation code to embed between password copies
+> + *
+> + * This function parses a 4-byte password, encodes it in  big-endian format,
+> + * and constructs a 9-byte sequence of the form:
+> + *
+> + *	  [BE(password), code, BE(password)]
+> + *
+> + * The result is written to register 0x0900 (2304), which is the password
+> + * register in M24LR04E-R chip.
+> + *
+> + * Return: Number of bytes written on success, or negative error code on failure
+> + */
+> +static ssize_t m24lr_write_pass(struct m24lr *m24lr, const char *buf,
+> +				size_t count, u8 code)
+> +{
+> +	__be32 be_pass;
+> +	u8 output[9];
+> +	long ret;
+
+long vs ssize_t vs int.
+
+> +	u32 pass;
+> +	int err;
+> +
+> +	if (!count)
+> +		return -EINVAL;
+> +
+> +	if (count > 8)
+> +		return -EINVAL;
+> +
+> +	err = kstrtou32(buf, 16, &pass);
+> +	if (err)
+> +		return err;
+> +
+> +	be_pass = cpu_to_be32(pass);
+> +
+> +	memcpy(output, &be_pass, sizeof(be_pass));
+> +	output[4] = code;
+> +	memcpy(output + 5, &be_pass, sizeof(be_pass));
+> +
+> +	mutex_lock(&m24lr->lock);
+> +	ret = m24lr_regmap_write(m24lr->ctl_regmap, output, 9, 2304);
+> +	mutex_unlock(&m24lr->lock);
+> +
+> +	return ret;
+> +}
+> +
+> +static ssize_t m24lr_read_reg_le(struct m24lr *m24lr, u64 *val,
+> +				 unsigned int reg_addr,
+> +				 unsigned int reg_size)
+> +{
+> +	long ret;
+
+same
+
+> +	__le64 input = 0;
+> +
+> +	ret = m24lr_read(m24lr, (u8 *)&input, reg_size, reg_addr, false);
+> +	if (IS_ERR_VALUE(ret))
+> +		return ret;
+> +
+> +	if (ret != reg_size)
+> +		return -EINVAL;
+> +
+> +	switch (reg_size) {
+> +	case 1:
+> +		*val = *(u8 *)&input;
+> +		break;
+> +	case 2:
+> +		*val = le16_to_cpu((__le16)input);
+> +		break;
+> +	case 4:
+> +		*val = le32_to_cpu((__le32)input);
+> +		break;
+> +	case 8:
+> +		*val = le64_to_cpu((__le64)input);
+> +		break;
+> +	default:
+> +		return -EINVAL;
+> +	};
+> +
+> +	return 0;
+> +}
+> +
+> +static int m24lr_nvmem_read(void *priv, unsigned int offset, void *val,
+> +			    size_t bytes)
+> +{
+> +	struct m24lr *m24lr = priv;
+> +
+> +	if (!bytes)
+> +		return bytes;
+> +
+> +	if (offset + bytes > m24lr->eeprom_size)
+> +		return -EINVAL;
+> +
+> +	return m24lr_read(m24lr, val, bytes, offset, true);
+
+We return an int now?
+
+> +}
+
+...
+
+> +static ssize_t m24lr_ctl_sss_read(struct file *filep, struct kobject *kobj,
+> +				  const struct bin_attribute *attr, char *buf,
+> +				  loff_t offset, size_t count)
+> +{
+> +	struct m24lr *m24lr = attr->private;
+> +
+> +	if (!count)
+> +		return count;
+> +
+> +	if (offset + count > m24lr->sss_len)
+
+Does using size_add() would make sense?
+
+> +		return -EINVAL;
+> +
+> +	return m24lr_read(m24lr, buf, count, offset, false);
+> +}
+> +
+> +static ssize_t m24lr_ctl_sss_write(struct file *filep, struct kobject *kobj,
+> +				   const struct bin_attribute *attr, char *buf,
+> +				   loff_t offset, size_t count)
+> +{
+> +	struct m24lr *m24lr = attr->private;
+> +
+> +	if (!count)
+> +		return -EINVAL;
+> +
+> +	if (offset + count > m24lr->sss_len)
+
+Same
+
+> +		return -EINVAL;
+> +
+> +	return m24lr_write(m24lr, buf, count, offset, false);
+> +}
+> +static BIN_ATTR(sss, 0600, m24lr_ctl_sss_read, m24lr_ctl_sss_write, 0);
+
+...
+
+> +static struct attribute *m24lr_ctl_dev_attrs[] = {
+> +	&dev_attr_unlock.attr,
+> +	&dev_attr_new_pass.attr,
+> +	&dev_attr_uid.attr,
+> +	&dev_attr_total_sectors.attr,
+> +	NULL,
+
+Unneeded trailing ,
+
+> +};
+
+...
+
+> +static int m24lr_probe(struct i2c_client *client)
+> +{
+> +	struct regmap_config eeprom_regmap_conf = {0};
+> +	struct nvmem_config nvmem_conf = {0};
+> +	struct device *dev = &client->dev;
+> +	struct i2c_client *eeprom_client;
+> +	const struct m24lr_chip *chip;
+> +	struct regmap *eeprom_regmap;
+> +	struct nvmem_device *nvmem;
+> +	struct regmap *ctl_regmap;
+> +	struct m24lr *m24lr;
+> +	u32 regs[2];
+> +	long err;
+> +
+> +	if (!i2c_check_functionality(client->adapter, I2C_FUNC_I2C))
+> +		return -EOPNOTSUPP;
+> +
+> +	chip = m24lr_get_chip(dev);
+> +	if (!chip)
+> +		return -ENODEV;
+> +
+> +	m24lr = devm_kzalloc(dev, sizeof(struct m24lr), GFP_KERNEL);
+> +	if (!m24lr)
+> +		return -ENOMEM;
+> +
+> +	err = device_property_read_u32_array(dev, "reg", regs, ARRAY_SIZE(regs));
+> +	if (err) {
+> +		dev_err(dev, "device_property_read_u32_array\n");
+
+return dev_err_probe() maybe?
+
+> +		return err;
+> +	}
+> +	/* Create a second I2C client for the eeprom interface */
+> +	eeprom_client = devm_i2c_new_dummy_device(dev, client->adapter, regs[1]);
+> +	if (IS_ERR(eeprom_client)) {
+> +		dev_err(dev,
+> +			"Failed to create dummy I2C client for the EEPROM\n");
+
+return dev_err_probe() maybe?
+...
+
+> +		return PTR_ERR(eeprom_client);
+> +	}
+> +
+> +	ctl_regmap = devm_regmap_init_i2c(client, &m24lr_ctl_regmap_conf);
+> +	if (IS_ERR(ctl_regmap)) {
+> +		err = PTR_ERR(ctl_regmap);
+> +		dev_err(dev, "Failed to init regmap\n");
+> +		return err;
+> +	}
+> +
+> +	eeprom_regmap_conf.name = "m24lr_eeprom";
+> +	eeprom_regmap_conf.reg_bits = 16;
+> +	eeprom_regmap_conf.val_bits = 8;
+> +	eeprom_regmap_conf.disable_locking = true;
+> +	eeprom_regmap_conf.max_register = chip->eeprom_size - 1;
+> +
+> +	eeprom_regmap = devm_regmap_init_i2c(eeprom_client,
+> +					     &eeprom_regmap_conf);
+> +	if (IS_ERR(eeprom_regmap)) {
+> +		err = PTR_ERR(eeprom_regmap);
+> +		dev_err(dev, "Failed to init regmap\n");
+> +		return err;
+> +	}
+> +
+> +	mutex_init(&m24lr->lock);
+> +	m24lr->sss_len = chip->sss_len;
+> +	m24lr->page_size = chip->page_size;
+> +	m24lr->eeprom_size = chip->eeprom_size;
+> +	m24lr->eeprom_regmap = eeprom_regmap;
+> +	m24lr->ctl_regmap = ctl_regmap;
+> +
+> +	nvmem_conf.dev = &eeprom_client->dev;
+> +	nvmem_conf.owner = THIS_MODULE;
+> +	nvmem_conf.type = NVMEM_TYPE_EEPROM;
+> +	nvmem_conf.reg_read = m24lr_nvmem_read;
+> +	nvmem_conf.reg_write = m24lr_nvmem_write;
+> +	nvmem_conf.size = chip->eeprom_size;
+> +	nvmem_conf.word_size = 1;
+> +	nvmem_conf.stride = 1;
+> +	nvmem_conf.priv = m24lr;
+> +
+> +	nvmem = devm_nvmem_register(dev, &nvmem_conf);
+> +	if (IS_ERR(nvmem))
+> +		return PTR_ERR(nvmem);
+> +
+> +	i2c_set_clientdata(client, m24lr);
+> +	i2c_set_clientdata(eeprom_client, m24lr);
+> +
+> +	bin_attr_sss.size = chip->sss_len;
+> +	bin_attr_sss.private = m24lr;
+> +	err = sysfs_create_bin_file(&dev->kobj, &bin_attr_sss);
+> +	if (err)
+> +		return err;
+> +
+> +	/* test by reading the uid, if success store it */
+> +	err = m24lr_read_reg_le(m24lr, &m24lr->uid, 2324, sizeof(m24lr->uid));
+> +	if (IS_ERR_VALUE(err))
+
+Missing sysfs_remove_bin_file() or error handling pah?
+
+> +		return -ENODEV;
+> +
+> +	return 0;
+> +}
+
+...
+
+CJ
 
 
