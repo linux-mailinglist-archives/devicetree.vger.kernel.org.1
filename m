@@ -1,119 +1,161 @@
-Return-Path: <devicetree+bounces-193023-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-193024-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8F3FFAF8EFC
-	for <lists+devicetree@lfdr.de>; Fri,  4 Jul 2025 11:45:11 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id A7537AF8E3E
+	for <lists+devicetree@lfdr.de>; Fri,  4 Jul 2025 11:21:16 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id CED87B45320
-	for <lists+devicetree@lfdr.de>; Fri,  4 Jul 2025 09:12:52 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 0D87D766888
+	for <lists+devicetree@lfdr.de>; Fri,  4 Jul 2025 09:14:59 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9642D28B419;
-	Fri,  4 Jul 2025 09:09:05 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D3DA82F3C11;
+	Fri,  4 Jul 2025 09:10:28 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="TTLPozt3"
 X-Original-To: devicetree@vger.kernel.org
-Received: from metis.whiteo.stw.pengutronix.de (metis.whiteo.stw.pengutronix.de [185.203.201.7])
+Received: from relay7-d.mail.gandi.net (relay7-d.mail.gandi.net [217.70.183.200])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B89E62EF9C4
-	for <devicetree@vger.kernel.org>; Fri,  4 Jul 2025 09:09:01 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.203.201.7
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5F4152BEFF0;
+	Fri,  4 Jul 2025 09:10:26 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.70.183.200
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1751620145; cv=none; b=MLBeUvY3fGbLr59r7/OOyoO92nJMpRrKVmCvzhBya9PeW0sXrL4W5uEMlTahAoxqjqQHuLoJKC0bevH2sQ0TgqeS/xB9FXqWMwzSQLEaB9hfpJlRV2JecXHrAQ6pflP1tshcwjndLJIBmjA0IXORwdvI3UdRyMBBGwHpAxcmWzM=
+	t=1751620228; cv=none; b=YcPxbPdSUYLlza+8ZvR8fqD9qpcTOb0LGb1nNGdGEvKNs310G3amxx4qX4+ecY/lO1SuSFXVF5cGjHblIu8wL/PIZbXUQhc05I6yc4uH/kEkPBLGQYX9YIw4CVLS+Q6p1+FigNRkdyCR1FsDSIwh/GLwHJRGPzR5oSR61bmJbt0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1751620145; c=relaxed/simple;
-	bh=Sh+wjzLAo6IPoI92SS951Z++tIQyLEeWn6kUDlcxkOo=;
-	h=Message-ID:Date:MIME-Version:From:Subject:To:Cc:Content-Type; b=PgoC7FEfvRXyiokSMzg/W6bldusOiHDYvOD6RDwvmskJ2c8M2zw+d+duQlFp7IH7dhFckjDh3AFBPOOI9T8uqe/1kxGe7PqvEOKYtRoVuqjAfznpMG2800P/c1YKDWC8o7XRb6PoF+7Qth/4D3sc5fXiAzCoQRjcjTqZP6Jpg/E=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de; spf=pass smtp.mailfrom=pengutronix.de; arc=none smtp.client-ip=185.203.201.7
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=pengutronix.de
-Received: from ptz.office.stw.pengutronix.de ([2a0a:edc0:0:900:1d::77] helo=[127.0.0.1])
-	by metis.whiteo.stw.pengutronix.de with esmtp (Exim 4.92)
-	(envelope-from <a.fatoum@pengutronix.de>)
-	id 1uXcPj-00083n-9x; Fri, 04 Jul 2025 11:08:59 +0200
-Message-ID: <a89f387d-bf81-459e-979e-d97afe25dea3@pengutronix.de>
-Date: Fri, 4 Jul 2025 11:08:58 +0200
+	s=arc-20240116; t=1751620228; c=relaxed/simple;
+	bh=LS55SnAvYsxVzeFBB6DMdq8qX0Bw9GOxFpUEDYhEl28=;
+	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=H7+GvgOcWGQ5kDdc39q/Z+VL6tc7Vkng2oCLcV5pJDx6vVSp8Uu3Jibkz8eNie3oB+z5WLn7coIwnmS6oesgRX9neiWyw+iNcnmA+0zZStve/4+AzXZUH2NRNwFxsmTtBk2C9xOWIGAXaY7BWHl/u4NZeEgTWARz5JLlYO/V1Kw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=TTLPozt3; arc=none smtp.client-ip=217.70.183.200
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
+Received: by mail.gandi.net (Postfix) with ESMTPSA id 0013341C06;
+	Fri,  4 Jul 2025 09:10:20 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
+	t=1751620224;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references;
+	bh=HSEJYUsoa+vkXDvdMIMqEjCNC9HqOGRY+ObCm1SntTI=;
+	b=TTLPozt3aTpWICefNME9ZYHQZEDiVeUpqHFdPo2ttK384ZJH2SPDL5JLidVYBaZ88zsEhW
+	YE+aZ0vkNVHBVKhlUri2cRuTq+GeCLZ1fuo4QVP7trqhN6bsjX6AmYvIZH0bbLtsRe4XMK
+	zfqyuR9XdCunB1KXX8lqTi+o5AraWy9H4sTWoWfi1+imqH1a4lkt9+Zz+GKiiOBnPlDRRw
+	oYD7ZGVhPPshZocGAUXaqUcWAy9fWAwROqUYMexlY7JXtCQWErjNLL//6jazAsif/6+4Sp
+	OprWoiMhB3+oLQGs01KKR9V/txErWX6w6+JGP3JI0eA3M4+O4n20f+bGsRBslQ==
+Date: Fri, 4 Jul 2025 11:10:20 +0200
+From: Herve Codina <herve.codina@bootlin.com>
+To: Ayush Singh <ayush@beagleboard.org>
+Cc: Krzysztof Kozlowski <krzk@kernel.org>, David Gibson
+ <david@gibson.dropbear.id.au>, Rob Herring <robh@kernel.org>, Andrew Davis
+ <afd@ti.com>, Geert Uytterhoeven <geert@linux-m68k.org>, Krzysztof
+ Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, Arnd
+ Bergmann <arnd@arndb.de>, Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+ Saravana Kannan <saravanak@google.com>, devicetree@vger.kernel.org,
+ devicetree-compiler@vger.kernel.org, linux-kernel@vger.kernel.org, Luca
+ Ceresoli <luca.ceresoli@bootlin.com>, Thomas Petazzoni
+ <thomas.petazzoni@bootlin.com>
+Subject: Re: [PATCH v2 1/7] dt-bindings: Add support for export-symbols node
+Message-ID: <20250704111020.7cde176b@bootlin.com>
+In-Reply-To: <ed6beb97-12f1-4d71-b4dc-b34d4d611b81@beagleboard.org>
+References: <20250430125154.195498-1-herve.codina@bootlin.com>
+	<20250430125154.195498-2-herve.codina@bootlin.com>
+	<0770a47e-fd2f-4b6f-9a9a-b0d539ace30c@kernel.org>
+	<20250528185740.4bf91bef@bootlin.com>
+	<49e1e1fc-412d-4334-8337-16e352a34788@kernel.org>
+	<20250618113232.6d237208@bootlin.com>
+	<ed6beb97-12f1-4d71-b4dc-b34d4d611b81@beagleboard.org>
+Organization: Bootlin
+X-Mailer: Claws Mail 4.3.1 (GTK 3.24.43; x86_64-redhat-linux-gnu)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-From: Ahmad Fatoum <a.fatoum@pengutronix.de>
-Subject: Access controllers: differentiate between access checks and grants?
-To: "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>
-Cc: Oleksii Moisieiev <Oleksii_Moisieiev@epam.com>,
- Gatien Chevallier <gatien.chevallier@foss.st.com>,
- Rob Herring <robh@kernel.org>, "kernel@pengutronix.de"
- <kernel@pengutronix.de>, Laurentiu Mihalcea
- <laurentiumihalcea111@gmail.com>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>
-Content-Language: en-US
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-SA-Exim-Connect-IP: 2a0a:edc0:0:900:1d::77
-X-SA-Exim-Mail-From: a.fatoum@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.whiteo.stw.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: devicetree@vger.kernel.org
+Content-Transfer-Encoding: 8bit
+X-GND-State: clean
+X-GND-Score: -100
+X-GND-Cause: gggruggvucftvghtrhhoucdtuddrgeeffedrtdefgddvvdejiecutefuodetggdotefrodftvfcurfhrohhfihhlvgemucfitefpfffkpdcuggftfghnshhusghstghrihgsvgenuceurghilhhouhhtmecufedtudenucesvcftvggtihhpihgvnhhtshculddquddttddmnecujfgurhepfffhvfevuffkjghfohfogggtgfesthekredtredtjeenucfhrhhomhepjfgvrhhvvgcuvehoughinhgruceohhgvrhhvvgdrtghoughinhgrsegsohhothhlihhnrdgtohhmqeenucggtffrrghtthgvrhhnpeeviefffeegiedtleelieeghfejleeuueevkeevteegffehledtkeegudeigffgvdenucfkphepledtrdekledrudeifedruddvjeenucevlhhushhtvghrufhiiigvpedtnecurfgrrhgrmhepihhnvghtpeeltddrkeelrdduieefrdduvdejpdhhvghloheplhhotggrlhhhohhsthdpmhgrihhlfhhrohhmpehhvghrvhgvrdgtohguihhnrgessghoohhtlhhinhdrtghomhdpnhgspghrtghpthhtohepudeipdhrtghpthhtoheprgihuhhshhessggvrghglhgvsghorghrugdrohhrghdprhgtphhtthhopehkrhiikheskhgvrhhnvghlrdhorhhgpdhrtghpthhtohepuggrvhhiugesghhisghsohhnrdgurhhophgsvggrrhdrihgurdgruhdprhgtphhtthhopehrohgshheskhgvrhhnvghlrdhorhhgpdhrtghpthhtoheprghfugesthhirdgtohhmpdhrtghpthhtohepghgvvghrtheslhhinhhugidqmheikehkr
+ dhorhhgpdhrtghpthhtohepkhhriihkodgutheskhgvrhhnvghlrdhorhhgpdhrtghpthhtoheptghonhhorhdoughtsehkvghrnhgvlhdrohhrgh
+X-GND-Sasl: herve.codina@bootlin.com
 
-Hi,
+Hi Krzysztof, David, Rob,
 
-Quoting access-controllers.yaml:
+Any opinion?
 
-  Access controllers are typically used to set/read the permissions of a
-  hardware block and grant access to it.
+Best regards,
+Hervé
 
-I am afraid that having the exact same binding for both granting and
-checking accesses complicates matters:
+On Wed, 18 Jun 2025 15:24:07 +0530
+Ayush Singh <ayush@beagleboard.org> wrote:
 
-  1) Harder to reason about device trees: Does this property actually
-     modify hardware state or not?
+> On 6/18/25 15:02, Herve Codina wrote:
+...
 
-  2) More difficult migration: If access granting is added initially to
-     Linux, but later moved into the secure world. How to reflect in
-     the DT that the access controller has become read-only and that the
-     driver should not attempt writes?
-
-My suggestion would be adding an `access-checks-only;` or similar
-property for access controllers that are read-only.
-
-By setting this property for simple devices like efuses with feature
-gates, we address 1) above.
-
-2) is addressed by adding this property to Linux device tree (e.g. via
-bootloader fixup) when secure firmware starts to handle a bus controller
-itself.
-
-An example where 2) would be relevant is the recent addition to
-linux-next of the AIPSTZ[1] bridge for i.MX8MP. The power-on reset
-defaults for the bridge preclude the DSP from accessing peripherals in
-the bridge and they are lost when shutting down the relevant power
-domain, so the driver takes care to apply a permissive access list on
-probe and resume.
-
-If we were to move this security setting into the secure world for
-actual security benefit and made the controller read-only for normal
-world, we will need a way to tell the Linux driver to avoid writing to
-the peripheral.
-
-access-checks-only could be that way.
-
-Thoughts?
-
-[1]:
-https://lore.kernel.org/all/20250610160152.1113930-1-laurentiumihalcea111@gmail.com/
-
-Thanks,
-Ahmad
-
-
-
--- 
-Pengutronix e.K.                       |                             |
-Steuerwalder Str. 21                   | http://www.pengutronix.de/  |
-31137 Hildesheim, Germany              | Phone: +49-5121-206917-0    |
-Amtsgericht Hildesheim, HRA 2686       | Fax:   +49-5121-206917-5555 |
+> >  
+> >>>>> +patternProperties:
+> >>>>> +  "^[a-zA-Z_]?[a-zA-Z0-9_]*$":  
+> >>>> This messes up with coding style which I would prefer keep intact.
+> >>>> Basically these properties will be using label style.  
+> >>> Yes, those properties remap phandles.
+> >>>
+> >>> Their names are the name of the label used from the overlay and their
+> >>> values are the phandle mapped.
+> >>>
+> >>> You already have this kind properties using label style in __symbols__,
+> >>> __fixups__, __local_fixups__ nodes.  
+> >> I have them in DTB, but I don't have these in DTS. The exported-symbols
+> >> would be in the DTS and that is what coding style is about.
+> >>  
+> > I think export-symbols has to be in DTS.
+> > Maybe it could be described in an other way in order to avoid the coding style
+> > issue you reported.
+> >
+> > Hardware:
+> >    i2c0 from SoC --------- connector 1, I2C A signals
+> >    i2c1 from SoC --------- connector 1, I2C B signals
+> >
+> >    connector1 {
+> >        export-symbols {
+> > 	  i2c_a = <&i2c0>;
+> > 	  i2c_b = <&i2c1>;
+> >        };
+> >    };
+> >
+> > In order to avoid the coding style issue, this could be replace
+> > with:
+> >   connector1 {
+> >        export-symbols {
+> > 	  symbol-names = "i2c_a", "i2c_b";
+> > 	  symbols = <&i2c0>, <&i2c1>;
+> >        };
+> >    };
+> >
+> > Krzysztof, Rob, do you think this could be accepted ?
+> >
+> > Ayush, David, do you thing this could be easily implemented in fdtoverlay ?
+> >
+> > Best regards,
+> > Hervé
+> >  
+> 
+> Well, it is possible.
+> 
+> However, on connectors like pb2 header, there will be 50-100 export 
+> symbols. So it will start becoming difficult to maintain.
+> 
+> Additionally, the further away we move from __symbols__ style, the more 
+> difficult the implementation will become since we can currently very 
+> easily piggy-back on __symbols__ resolution implementation.
+> 
+> 
+> Best Regards,
+> 
+> Ayush Singh
+> 
 
 
