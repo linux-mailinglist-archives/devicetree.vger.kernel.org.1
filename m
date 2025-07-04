@@ -1,118 +1,171 @@
-Return-Path: <devicetree+bounces-193062-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-193064-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 788ACAF916B
-	for <lists+devicetree@lfdr.de>; Fri,  4 Jul 2025 13:21:06 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id AEE4BAF9194
+	for <lists+devicetree@lfdr.de>; Fri,  4 Jul 2025 13:30:18 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 02F353ACD12
-	for <lists+devicetree@lfdr.de>; Fri,  4 Jul 2025 11:20:40 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 4D3E43BE03F
+	for <lists+devicetree@lfdr.de>; Fri,  4 Jul 2025 11:29:52 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D42E72D0C85;
-	Fri,  4 Jul 2025 11:20:52 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 808652D0267;
+	Fri,  4 Jul 2025 11:30:12 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b="PbIAcPqt"
+	dkim=pass (2048-bit key) header.d=tq-group.com header.i=@tq-group.com header.b="OIsG7Ij3";
+	dkim=fail reason="key not found in DNS" (0-bit key) header.d=ew.tq-group.com header.i=@ew.tq-group.com header.b="W4gdiY2u"
 X-Original-To: devicetree@vger.kernel.org
-Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [213.167.242.64])
+Received: from mx1.tq-group.com (mx1.tq-group.com [93.104.207.81])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4B8272C15B3;
-	Fri,  4 Jul 2025 11:20:51 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=213.167.242.64
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 425212D0C98;
+	Fri,  4 Jul 2025 11:30:07 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=93.104.207.81
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1751628052; cv=none; b=UhrIn85Q/zAYKXPzEOpIELbekLRanQHYVmr1HCS2weVj2n6xPuMhYGPt7Qm6NlacS9OHi+lMgUUvgsnOcealHfvjutmjpAWgTC/TVOcMEF4fUMhwu/35x4iEgF0K/Wl2DFs9FDMhSjYPBgPSeViv3DpACVe8Oz11/5y/jznvTLU=
+	t=1751628612; cv=none; b=cHGQ7Q5+p2z5nytndJkY1jHoNJghM1DBmY/hjIHvT4mbYvkcr2KLblEGBS93WKLOIG0uTauAPbgwqMHsaC9gSn8bItm/SQPoPY0HB7jDEEdaOt5013A35p5YGztnlg07LR77qpFToty0yAcWjAtmnvRvohATi4EtL1l6xissswk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1751628052; c=relaxed/simple;
-	bh=HTdso0RtITYclBAeLKTHPDfeiMK7OKZSCsVsffkY8Zc=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=Sie/21KGATDClH0N0jt4NHy1ZCjac6U0FWZQu2wUdsfZOfq9CwMZc8Dtn+2uVKGc2IxHfRY9JtEkIcQTWYaCzf6OnVFuXwdLYUrOJA+ZO8S/5RIwV8efRWm7fcrvZ0epXG+rGaxkmV6qOWX/Gym7uZQ0XVkLm0laTgvj5M2ugjM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ideasonboard.com; spf=pass smtp.mailfrom=ideasonboard.com; dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b=PbIAcPqt; arc=none smtp.client-ip=213.167.242.64
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ideasonboard.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ideasonboard.com
-Received: from [127.0.1.1] (cpc141996-chfd3-2-0-cust928.12-3.cable.virginm.net [86.13.91.161])
-	by perceval.ideasonboard.com (Postfix) with ESMTPSA id 51CCC833;
-	Fri,  4 Jul 2025 13:20:19 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
-	s=mail; t=1751628019;
-	bh=HTdso0RtITYclBAeLKTHPDfeiMK7OKZSCsVsffkY8Zc=;
-	h=From:Date:Subject:References:In-Reply-To:To:Cc:From;
-	b=PbIAcPqtK/XoecvivT4H+wgtb8ODg0FrQDwJnBoo3kaq3V4Hfr9dcasIF6HJ0XlxO
-	 2Nn/cGOrL/XgfllvSBtkcFBICKtPeKTLWdK/wy79BXZqpdWT0eY5+HFJsKX+XVaWyD
-	 Iiv6rlhzGZW4U7yzrCMvGJoX+zPjDJPtems3K658=
-From: Daniel Scally <dan.scally@ideasonboard.com>
-Date: Fri, 04 Jul 2025 12:20:22 +0100
-Subject: [PATCH v3 5/5] MAINTAINERS: Add entry for rzv2h-ivc driver
+	s=arc-20240116; t=1751628612; c=relaxed/simple;
+	bh=LBBKUZPE2gWKJIlUUTuZzM4rUYU+U7D59WGqtSEG+zU=;
+	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=dZSLO5ke68K5hWqz12gaSpZqzgdALLShetov/4/3OgWAtAABqiJUVdDWVJjEzPn/E+OFmal6gdhyh1TFXcQ3SBNwwGxVtF4Dp/29YwTJGhky2NuHdH+1Cx8KMd61+OWj/UztaxD9pHuVRcGlhirya3vnYy46saiAj5EzueOgy2w=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ew.tq-group.com; spf=pass smtp.mailfrom=ew.tq-group.com; dkim=pass (2048-bit key) header.d=tq-group.com header.i=@tq-group.com header.b=OIsG7Ij3; dkim=fail (0-bit key) header.d=ew.tq-group.com header.i=@ew.tq-group.com header.b=W4gdiY2u reason="key not found in DNS"; arc=none smtp.client-ip=93.104.207.81
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ew.tq-group.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ew.tq-group.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+  d=tq-group.com; i=@tq-group.com; q=dns/txt; s=key1;
+  t=1751628608; x=1783164608;
+  h=from:to:cc:subject:date:message-id:in-reply-to:
+   references:mime-version:content-transfer-encoding;
+  bh=oQLSCU6s7tadJXW3ijfkRaS6QjwulBRxirc1q6sY6so=;
+  b=OIsG7Ij3AG2IZL3NvAndB4AIBWeWdo28Ty9QKZqB9sStL0AenSZr/cGx
+   CgqALvouK5PdeRlAarSOfrXRgYbbGCL4kwkFYXDlsKYSgcP7lkPLXr6Kt
+   17iUHwTGam1pN2gY+9U6IiJ913coctf/bK8nH86ZNFaMtXVMTwPd9osIY
+   qr6rzJ1oycjjRjIUYi5CbGi13yyIsWr4RnLpvQ6sALQr391oBViziSRGD
+   lj1DR6e7+FqZrVlILIyY4Fc7KKjobRse9P14U8K1kPCQk5hi9NFwFshEB
+   Sy8Eu5S0S288doXeThQJW1bsgs4XqNTCGc7k8eJnjrGOmGY45/x5+C1iZ
+   w==;
+X-CSE-ConnectionGUID: jSRuNTPpRsydYLYRPhbXQg==
+X-CSE-MsgGUID: R+RKeJOgQ+S5uDN6S6S9fA==
+X-IronPort-AV: E=Sophos;i="6.16,287,1744063200"; 
+   d="scan'208";a="45031135"
+Received: from vmailcow01.tq-net.de ([10.150.86.48])
+  by mx1.tq-group.com with ESMTP; 04 Jul 2025 13:30:04 +0200
+X-CheckPoint: {6867BB3C-30-4FC15ADB-CD71293B}
+X-MAIL-CPID: 407389F97A04FFAD1E4F8CCE6D42EE93_0
+X-Control-Analysis: str=0001.0A006396.6867BB4C.0063,ss=1,re=0.000,recu=0.000,reip=0.000,cl=1,cld=1,fgs=0
+Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id AC794165607;
+	Fri,  4 Jul 2025 13:29:57 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ew.tq-group.com;
+	s=dkim; t=1751628600;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references;
+	bh=oQLSCU6s7tadJXW3ijfkRaS6QjwulBRxirc1q6sY6so=;
+	b=W4gdiY2u+KnVU6AEdD0acwe3gCkG8t/uyJscqkMzNXOpRFSqpVNFfLN9jFk/1GB+71IMXE
+	kWwh6jGmZ+hBi4ZZ98dPY9+hZRc8zDTWF5S42ufc3p0vo0uB7aULUruYxiNzkCrNAT/dIp
+	Qpw3v6qWfXz7EwZcnEe677+Ytex/+2ODif3jwmve/nnfYpoL1eTfa7lWOOciCU3ukcS0hr
+	d0eYqEiAt1eRyuRZmrjbZV+VihawcFagHfXxm7z1ahKQ7+MsGLI4O48PqNOEl8w9aK2jpC
+	vr9n7V6SlBwd92LVSYrWcBgrTkMgNkpj7p61/UB0iymUekecOOfIsYbbIAq8Aw==
+From: Alexander Stein <alexander.stein@ew.tq-group.com>
+To: Philipp Zabel <p.zabel@pengutronix.de>,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>,
+ David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
+ Sascha Hauer <s.hauer@pengutronix.de>,
+ Pengutronix Kernel Team <kernel@pengutronix.de>,
+ Fabio Estevam <festevam@gmail.com>, Dmitry Baryshkov <lumag@kernel.org>,
+ dri-devel@lists.freedesktop.org
+Cc: dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
+ imx@lists.linux.dev, linux-arm-kernel@lists.infradead.org,
+ linux-kernel@vger.kernel.org, Liu Ying <victor.liu@nxp.com>
+Subject: Re: [PATCH 04/14] drm/imx: dc-fu: Fix dimensions
+Date: Fri, 04 Jul 2025 13:29:57 +0200
+Message-ID: <3702593.R56niFO833@steina-w>
+Organization: TQ-Systems GmbH
+In-Reply-To: <20250704-imx8-dc-prefetch-v1-4-784c03fd645f@nxp.com>
+References:
+ <20250704-imx8-dc-prefetch-v1-0-784c03fd645f@nxp.com>
+ <20250704-imx8-dc-prefetch-v1-4-784c03fd645f@nxp.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20250704-ivc-v3-5-5c45d936ef2e@ideasonboard.com>
-References: <20250704-ivc-v3-0-5c45d936ef2e@ideasonboard.com>
-In-Reply-To: <20250704-ivc-v3-0-5c45d936ef2e@ideasonboard.com>
-To: linux-media@vger.kernel.org, devicetree@vger.kernel.org, 
- linux-renesas-soc@vger.kernel.org
-Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, 
- Geert Uytterhoeven <geert+renesas@glider.be>, 
- Magnus Damm <magnus.damm@gmail.com>, Philipp Zabel <p.zabel@pengutronix.de>, 
- jacopo.mondi@ideasonboard.com, biju.das.jz@bp.renesas.com, 
- Daniel Scally <dan.scally@ideasonboard.com>
-X-Mailer: b4 0.14.2
-X-Developer-Signature: v=1; a=openpgp-sha256; l=1026;
- i=dan.scally@ideasonboard.com; h=from:subject:message-id;
- bh=HTdso0RtITYclBAeLKTHPDfeiMK7OKZSCsVsffkY8Zc=;
- b=owEBbQKS/ZANAwAKAchJV3psRXUyAcsmYgBoZ7kIG+7+LoqwHri0/AHXF7/zGSfcrswd0TTDS
- DWc/68JvBKJAjMEAAEKAB0WIQQqyuwyDnZdb+mxmm/ISVd6bEV1MgUCaGe5CAAKCRDISVd6bEV1
- MpHEEAClEaII8hGDBkmhlZmKCt7l1Vb+1Fk8lGVqk149AcOjcZKwJAJWBBKaR4CWGQbmW/24D8H
- NNSa8nfR4c+FjC7FMw+lkvHcP0xcp3UOS4Pw6i5ctQe+G2vcr7DWP6xc3IjWW3EBA++s8S1A72d
- OWMlzdeAYVGmObxKwWGq/w3KeYI3GcUF7iYOwwXXd/BWmEMAzVJ8csmZj1saRH7oLjhuVPYMig8
- AZs7+1AEE2Tu8+3/4tNnAPJ9T5lNImNiOkh4wpl0oi+F+ptbJNgoMHGLJ+t+wOI1DV9i4o9uRbg
- PaMl3pDcEiVQZrxtL0+4pBIhbLAVFOwLKsl/RmmuxIoKmEY2eMEctGfWKK87TbITuU24NsWh737
- OS64U5OOmBrrDyKAn9DZaa4zghm245FFvXdg6U7zV/9b1pJWhJgLSFcSIafdx9zuRlL0bSuPOLx
- to8juBArom2BMbNtaUtdI+fHO+Dv7rLLHQfXV7ZFNdg7IC45tyHX8nKyzwHXVyevrcF6/71SQLh
- lZJiiN3ZJ/8eRGF0372Z+tG7qDC7RMveGgeRcLOG5TPVyOpef+mmwNJK2oQEBBDnm0sk8yfIJI1
- 3YDXSXLkdLiG2amqEc1ad7DT6VQzTXY/ZQc/jl/zLb2YygGt1QbU8UWk9R33swavKxyMO7NYf9w
- 2cd2QAd/ewgj8/g==
-X-Developer-Key: i=dan.scally@ideasonboard.com; a=openpgp;
- fpr=EEC699ACA1B7CB5D31330C0BBD501C2A3546CCF6
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset="iso-8859-1"
+X-Last-TLS-Session-Version: TLSv1.3
 
-Add an entry to the MAINTAINERS file for the rzv2h-ivc driver
+Hi,
 
-Signed-off-by: Daniel Scally <dan.scally@ideasonboard.com>
----
-Changes in v2:
+thanks for the patch.
 
-	- None
----
- MAINTAINERS | 7 +++++++
- 1 file changed, 7 insertions(+)
+Am Freitag, 4. Juli 2025, 11:03:51 CEST schrieb Liu Ying:
+> Fix off-by-one issue in LINEWIDTH, LINECOUNT, FRAMEWIDTH and FRAMEHEIGHT
+> macro definitions.  The first two macros are used to set a fetchunit's
+> source buffer dimension and the other two are used to set a fetchunit's
+> frame dimension.  It appears that display controller itself works ok
+> without this fix, however, it enters panic mode when prefetch engine(DPRC
+> and PRGs) attaches to it without this fix.
+>=20
+> Fixes: 0e177d5ce01c ("drm/imx: Add i.MX8qxp Display Controller pixel engi=
+ne")
+> Signed-off-by: Liu Ying <victor.liu@nxp.com>
 
-diff --git a/MAINTAINERS b/MAINTAINERS
-index 276c5a0b2dc58589b6bc5cc9ea549156ad088bdf..7dbfc61a4b18d478c67a4d939ddd0ec7e08b96ea 100644
---- a/MAINTAINERS
-+++ b/MAINTAINERS
-@@ -21166,6 +21166,13 @@ S:	Maintained
- F:	Documentation/devicetree/bindings/net/renesas,r9a09g057-gbeth.yaml
- F:	drivers/net/ethernet/stmicro/stmmac/dwmac-renesas-gbeth.c
- 
-+RENESAS RZ/V2H(P) INPUT VIDEO CONTROL BLOCK DRIVER
-+M:	Daniel Scally <dan.scally@ideasonboard.com>
-+L:	linux-media@vger.kernel.org
-+S:	Maintained
-+F:	Documentation/devicetree/bindings/media/renesas,r9a09g057-ivc.yaml
-+F:	drivers/media/platform/renesas/rzv2h-ivc/
-+
- RENESAS RZ/V2H(P) USB2PHY PORT RESET DRIVER
- M:	Fabrizio Castro <fabrizio.castro.jz@renesas.com>
- M:	Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+Reviewed-by: Alexander Stein <alexander.stein@ew.tq-group.com>
 
--- 
-2.34.1
+> ---
+>  drivers/gpu/drm/imx/dc/dc-fu.c | 4 ++--
+>  drivers/gpu/drm/imx/dc/dc-fu.h | 4 ++--
+>  2 files changed, 4 insertions(+), 4 deletions(-)
+>=20
+> diff --git a/drivers/gpu/drm/imx/dc/dc-fu.c b/drivers/gpu/drm/imx/dc/dc-f=
+u.c
+> index f94c591c815891468a5c2a940076963eeaa4d51c..b36d3034b8d5962eaab212b6b=
+65ebbb5c29f978c 100644
+> --- a/drivers/gpu/drm/imx/dc/dc-fu.c
+> +++ b/drivers/gpu/drm/imx/dc/dc-fu.c
+> @@ -31,8 +31,8 @@
+>  #define STRIDE(x)			FIELD_PREP(STRIDE_MASK, (x) - 1)
+> =20
+>  /* SOURCEBUFFERDIMENSION */
+> -#define LINEWIDTH(x)			FIELD_PREP(GENMASK(13, 0), (x))
+> -#define LINECOUNT(x)			FIELD_PREP(GENMASK(29, 16), (x))
+> +#define LINEWIDTH(x)			FIELD_PREP(GENMASK(13, 0), (x) - 1)
+> +#define LINECOUNT(x)			FIELD_PREP(GENMASK(29, 16), (x) - 1)
+> =20
+>  /* LAYEROFFSET */
+>  #define LAYERXOFFSET(x)			FIELD_PREP(GENMASK(14, 0), (x))
+> diff --git a/drivers/gpu/drm/imx/dc/dc-fu.h b/drivers/gpu/drm/imx/dc/dc-f=
+u.h
+> index e016e1ea5b4e0471cf6627782603e72d0475c4e8..518d1af49f5ae9d4f67da5e6c=
+2e80abd7e962120 100644
+> --- a/drivers/gpu/drm/imx/dc/dc-fu.h
+> +++ b/drivers/gpu/drm/imx/dc/dc-fu.h
+> @@ -38,8 +38,8 @@
+>  #define SOURCEBUFFERENABLE		BIT(31)
+> =20
+>  /* FRAMEDIMENSIONS */
+> -#define FRAMEWIDTH(x)			FIELD_PREP(GENMASK(13, 0), (x))
+> -#define FRAMEHEIGHT(x)			FIELD_PREP(GENMASK(29, 16), (x))
+> +#define FRAMEWIDTH(x)			FIELD_PREP(GENMASK(13, 0), (x) - 1)
+> +#define FRAMEHEIGHT(x)			FIELD_PREP(GENMASK(29, 16), (x) - 1)
+> =20
+>  /* CONTROL */
+>  #define INPUTSELECT_MASK		GENMASK(4, 3)
+>=20
+>=20
+
+
+=2D-=20
+TQ-Systems GmbH | M=FChlstra=DFe 2, Gut Delling | 82229 Seefeld, Germany
+Amtsgericht M=FCnchen, HRB 105018
+Gesch=E4ftsf=FChrer: Detlef Schneider, R=FCdiger Stahl, Stefan Schneider
+http://www.tq-group.com/
+
 
 
