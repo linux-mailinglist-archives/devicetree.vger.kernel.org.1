@@ -1,48 +1,48 @@
-Return-Path: <devicetree+bounces-193125-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-193126-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 930A2AF9687
-	for <lists+devicetree@lfdr.de>; Fri,  4 Jul 2025 17:15:10 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 27DFCAF9697
+	for <lists+devicetree@lfdr.de>; Fri,  4 Jul 2025 17:16:43 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 3AB987A3A29
-	for <lists+devicetree@lfdr.de>; Fri,  4 Jul 2025 15:13:16 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 6A4CA7BE102
+	for <lists+devicetree@lfdr.de>; Fri,  4 Jul 2025 15:15:09 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 99A162046A9;
-	Fri,  4 Jul 2025 15:14:27 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 049C4189B80;
+	Fri,  4 Jul 2025 15:16:26 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="mt2BaqYD"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="vMPCTojR"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 691CA42A83;
-	Fri,  4 Jul 2025 15:14:27 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CA88514B08A;
+	Fri,  4 Jul 2025 15:16:25 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1751642067; cv=none; b=Fs7hCh3JQWfipAhQ/Y8EbTz0cE0ZctxUgqIHRekuCZzr9UKCIZjAs50TIzN5bZrGmx4Ncip4blUqPS8TkWUw3RhhfEYb2H/XmPQowupeE+BFgbAGqMyObwiAHLO7CEwOGQduFPk8SjfZVcZsn9qOisMPVFEeRtVJRliYt8/MZV4=
+	t=1751642185; cv=none; b=AYK2f6VxbUIM6k5A+Q0jSVbaS5oR0T3zOiWjuiI5Pc1l34RGL9HYEcI1omSzi+qaNIkU1dkFeTpexEssrm11bTuLvKC5wrC92bSY5lV9tewvkH7PoEM2axXLW/VcAHp2hR7DsP3fhqk2FzAfjuVsS9oVQt9eL6v5FfkG5YKk9aI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1751642067; c=relaxed/simple;
-	bh=TBHQcyYRpGcdVOEQVFj80NwCERIwfVHVzoRx9Sa/NDE=;
-	h=Message-ID:Date:MIME-Version:Subject:To:References:From:
-	 In-Reply-To:Content-Type; b=PxIYUfRV71XrpXOABWQO5SFOsolM4IJpP4f3LvFI52KHsvwSR23jYHElkxLjWE2oSxr2GS+Ord1Cw385sUATrygFXN78vZY+0PNE8t5VQrhXFaXcR0MdXZc4LjBhbGhyM7WevddpCuw4D76/XZELmuyQWAP+zfl6ggsQuSFGeRI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=mt2BaqYD; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id D28AEC4CEE3;
-	Fri,  4 Jul 2025 15:14:23 +0000 (UTC)
+	s=arc-20240116; t=1751642185; c=relaxed/simple;
+	bh=sjcSd1BF/qV33Upvx8GEXJdPeuWsAmcFKhQ/MGs3ZDk=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=KwOuHZhe/YwOdVD5hdxic1ny5NxTbHaFSN+o+qsxr0s+D/r9jDfE+RKl7GE4s3lDsczXTkziFdU9J08Zc88ElU9amNwviWZpGQx+lUuE8ovbrjmERLRD/rm37pARwe4AG1yw1OUqWHdlU7BaXvMO6KucU+jIQlnKhQAP6QkQ3ac=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=vMPCTojR; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id B93D1C4CEE3;
+	Fri,  4 Jul 2025 15:16:22 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1751642067;
-	bh=TBHQcyYRpGcdVOEQVFj80NwCERIwfVHVzoRx9Sa/NDE=;
-	h=Date:Subject:To:References:From:In-Reply-To:From;
-	b=mt2BaqYDaR3+63mZfTYt27Ehr2qLIjlF/QkOAehNlUsKorB7zAvOWMp5+RIaFLMlN
-	 bBBKSC8QgC8Fy3PnxZkGIfUVXKEgNEqpYSyr/Uie3RpqX2ovQtkOJsP9EmNgWW2gYd
-	 rhmqQ2rH78Ajq/64rsCRqqyBTXv/Hz6hY3l6r+4yaLLcXSNH5txPK32pouE+BZvNLE
-	 17vYa/cxEZKM3hQ6F7xQDJMLzpqt6/Ke90R8u+WTTMpOFOQjv/+ljf/mtLVHB0+Qe7
-	 bus6QiWvFjtdUOZqMy26khCjQIhesOSq5GfdamEt2tcBml78D2Mjd/YQXfwNCsZ7U+
-	 XIVOIe8OcShKA==
-Message-ID: <1196da81-ecd7-487c-8afc-e0d3660fa158@kernel.org>
-Date: Fri, 4 Jul 2025 17:14:22 +0200
+	s=k20201202; t=1751642185;
+	bh=sjcSd1BF/qV33Upvx8GEXJdPeuWsAmcFKhQ/MGs3ZDk=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=vMPCTojR8QnMaxoc92m1q9WMlclXlAIL2PM/Md0B2KXPAjtKzyx10u2Q8OQYXbmdd
+	 2m2LLpZWUdt3WNZ+toh6GWBxc+7MSxcAn/i8kWkQQvsGPSlg6sDJhqGFL+EpvBM2Mi
+	 UEt/Yk284wdX8dBM/EEobaEnt/XADxWokzSFL+F24c7r8XJ6rQCoNGjInD5cyc6O7x
+	 bto/CMAMbVqarRJ5gRCJjSHOqEwjAk1LsZbnk+bmh9KV8VRAiWhjWXeKp1Y0VBHYGs
+	 jFVvYSpkGPutxl8MXJNYRyu7MxF9eCTtn0JlJMD1oIx/FHe50dPt997zGx3YsRPU2h
+	 f3CzPwIvjWnzw==
+Message-ID: <d6b94d4f-4f3f-4ca2-847f-7af7e94b2221@kernel.org>
+Date: Fri, 4 Jul 2025 17:16:20 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,15 +50,14 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3 1/2] dt-bindings: iio: imu: smi330: Add binding
-To: Jianping.Shen@de.bosch.com, jic23@kernel.org, lars@metafoo.de,
- robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
- dima.fedrau@gmail.com, marcelo.schmitt1@gmail.com,
- linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, Christian.Lorenz3@de.bosch.com,
- Ulrike.Frauendorf@de.bosch.com, Kai.Dolde@de.bosch.com
-References: <20250703153823.806073-1-Jianping.Shen@de.bosch.com>
- <20250703153823.806073-2-Jianping.Shen@de.bosch.com>
+Subject: Re: [PATCH V5 1/2] dt-bindings: leds: pwm: add enable-gpios property
+To: LI Qingwu <Qing-wu.Li@leica-geosystems.com.cn>, lee@kernel.org,
+ pavel@kernel.org, robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
+ linux-leds@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org
+Cc: bsp-development.geo@leica-geosystems.com
+References: <20250704104338.46546-1-Qing-wu.Li@leica-geosystems.com.cn>
+ <20250704104338.46546-2-Qing-wu.Li@leica-geosystems.com.cn>
 From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
@@ -104,37 +103,18 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  jWt87ecuHlpL3uuQ0ZZNWqHgZoQLXoqC2ZV5KrtKWb/jyiFX/sxSrodALf0zf+tfHv0FZWT2
  zHjUqd0t4njD/UOsuIMOQn4Ig0SdivYPfZukb5cdasKJukG1NOpbW7yRNivaCnfZz6dTawXw
  XRIV/KDsHQiyVxKvN73bThKhONkcX2LWuD928tAR6XMM2G5ovxLe09vuOzzfTWQDsm++9UKF a/A=
-In-Reply-To: <20250703153823.806073-2-Jianping.Shen@de.bosch.com>
+In-Reply-To: <20250704104338.46546-2-Qing-wu.Li@leica-geosystems.com.cn>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 03/07/2025 17:38, Jianping.Shen@de.bosch.com wrote:
-> From: Jianping Shen <Jianping.Shen@de.bosch.com>
+On 04/07/2025 12:43, LI Qingwu wrote:
+> Some PWM LED driver chips like TPS92380 and LT3743 require a separate
+> enable signal in addition to PWM control. Add this property to allow
+> device trees to specify such GPIO, which will be controlled automatically
+> by the driver based on the LED brightness state.
 > 
-> Add devicetree binding for Bosch imu smi330.
-> The smi330 is a combined three axis angular rate and
-> three axis acceleration sensor module.
-> 
-> Signed-off-by: Jianping Shen <Jianping.Shen@de.bosch.com>
-<form letter>
-This is a friendly reminder during the review process.
 
-It looks like you received a tag and forgot to add it.
-
-If you do not know the process, here is a short explanation:
-Please add Acked-by/Reviewed-by/Tested-by tags when posting new versions
-of patchset, under or above your Signed-off-by tag, unless patch changed
-significantly (e.g. new properties added to the DT bindings). Tag is
-"received", when provided in a message replied to you on the mailing
-list. Tools like b4 can help here. However, there's no need to repost
-patches *only* to add the tags. The upstream maintainer will do that for
-tags received on the version they apply.
-
-Please read:
-https://elixir.bootlin.com/linux/v6.12-rc3/source/Documentation/process/submitting-patches.rst#L577
-
-If a tag was not added on purpose, please state why and what changed.
-</form letter>
+Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
 Best regards,
 Krzysztof
