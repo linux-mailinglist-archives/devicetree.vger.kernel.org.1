@@ -1,78 +1,111 @@
-Return-Path: <devicetree+bounces-192869-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-192870-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 02313AF84AF
-	for <lists+devicetree@lfdr.de>; Fri,  4 Jul 2025 02:12:02 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id AAF7CAF84C7
+	for <lists+devicetree@lfdr.de>; Fri,  4 Jul 2025 02:19:48 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 6965A1787CF
-	for <lists+devicetree@lfdr.de>; Fri,  4 Jul 2025 00:12:02 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 5F97054623D
+	for <lists+devicetree@lfdr.de>; Fri,  4 Jul 2025 00:19:22 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id BC112A31;
-	Fri,  4 Jul 2025 00:11:56 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id BB54F1C27;
+	Fri,  4 Jul 2025 00:19:43 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=codeconstruct.com.au header.i=@codeconstruct.com.au header.b="XeyBwjIM"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="fSqW9n/2"
 X-Original-To: devicetree@vger.kernel.org
-Received: from codeconstruct.com.au (pi.codeconstruct.com.au [203.29.241.158])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2BD85360;
-	Fri,  4 Jul 2025 00:11:54 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=203.29.241.158
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 852731863E;
+	Fri,  4 Jul 2025 00:19:42 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1751587916; cv=none; b=l4NGDUi49EUltWh6kd8bIbO54CL7Fi6NjQ78iD8V5FT3v4rf2SV9Xj4x7P4bJuEG+cMkzuhVZOMWOcAYsOi/Fac7XA4x2w1VI0KnwlPHMSGjVvAUeLcOlE1irreHuGvb1ECk/eVztW6sxendNaOKP7EVo2wxmApPD4yIc4VV8/0=
+	t=1751588383; cv=none; b=KhgDUlyeMnq1r/RU63HeKdTg8eTB+7BgsYkKF5+6gp/H6GZQGXGlyRPL0ykHUjCW3fl2rsl7nVpRyWwTL4ejZHS4C9ZsCYiFMzCrWfJWpSsnQyKRDf6ApMiWbO90OWKCaqC2MEoBwkDfaam2S+AEQGe/8WXFNBuroAvlZ6zIcaY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1751587916; c=relaxed/simple;
-	bh=vRae16FTMewFnY4A+z3eMOBzVPHBvIAgsebZ5Q3YlCg=;
-	h=Message-ID:Subject:From:To:Cc:Date:In-Reply-To:References:
-	 Content-Type:MIME-Version; b=uIqw8L//YGXnEGyg2Y0hzHNisXJi18+IAeASm5mD7Z18L+cnr/ozKxmDC9uN7l05gj8p/QlBXCdkjmQPwjvGGDh+4f1sahzYZx1yXZXRXXYyttAFURVKf48O9K5dX8yzgJjBAQxN8oskEadN4tf0ESwSPoGFdDdAwNVYI+o99u4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=codeconstruct.com.au; spf=pass smtp.mailfrom=codeconstruct.com.au; dkim=pass (2048-bit key) header.d=codeconstruct.com.au header.i=@codeconstruct.com.au header.b=XeyBwjIM; arc=none smtp.client-ip=203.29.241.158
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=codeconstruct.com.au
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=codeconstruct.com.au
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=codeconstruct.com.au; s=2022a; t=1751587913;
-	bh=vRae16FTMewFnY4A+z3eMOBzVPHBvIAgsebZ5Q3YlCg=;
-	h=Subject:From:To:Cc:Date:In-Reply-To:References;
-	b=XeyBwjIMtpLKcmGrtMZ/p6veE7enBFfIx18cUA84QVUnc3r7+KVvnP460pGyRB7Lk
-	 fMJQc5WaHrrq7Iuym6bElVh7D+OWhkBVfOywVr61lhmlErWAUPZZZIRsYwjmFk2nq6
-	 cdn0uXeYgQvp5oYXwM0j5MlaDHoSZxj7o85AeYJWSWhFzl61fSls/yT3B0fUfgUTv7
-	 ZaD6Bf0+6z6CxWov480SlKUpL3V9msSQqoCMoEMwivfplSMEegPQ2ShA0AWew7xGhU
-	 hApgTFQZijidnuAvWx93Wdn0n1G7Cr+se8Vc4N+4fEqC6rIa5frvi15iIiT4SOS7Ga
-	 EYSuTjqpko4oQ==
-Received: from [192.168.68.112] (unknown [180.150.112.153])
-	by mail.codeconstruct.com.au (Postfix) with ESMTPSA id 4065E6A680;
-	Fri,  4 Jul 2025 08:11:52 +0800 (AWST)
-Message-ID: <0782e276f6e22a2f590eb905ef2c5617f0870b63.camel@codeconstruct.com.au>
-Subject: Re: [PATCH v6 1/2] dt-bindings: mailbox: Add ASPEED AST2700 series
- SoC
-From: Andrew Jeffery <andrew@codeconstruct.com.au>
-To: Jammy Huang <jammy_huang@aspeedtech.com>, jassisinghbrar@gmail.com, 
-	robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org, joel@jms.id.au, 
-	linux-kernel@vger.kernel.org, devicetree@vger.kernel.org, 
-	linux-arm-kernel@lists.infradead.org, linux-aspeed@lists.ozlabs.org
-Cc: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Date: Fri, 04 Jul 2025 09:41:51 +0930
-In-Reply-To: <20250702011956.47479-2-jammy_huang@aspeedtech.com>
-References: <20250702011956.47479-1-jammy_huang@aspeedtech.com>
-	 <20250702011956.47479-2-jammy_huang@aspeedtech.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-User-Agent: Evolution 3.46.4-2 
+	s=arc-20240116; t=1751588383; c=relaxed/simple;
+	bh=kOWoraaFaGiycuTlpCm/u/Von6eUYH3jWTREcNQSXW0=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=JL+lvHq5y7a+8qG+KnopWEYCUgb97KBNOhUWG6dTdVoMTlPzPpmZwp6vFe1/7PXohULOoYoCxgYN6H7JcpmnPgQtgse032jqzCe+liwLR1uu5Cv6IYRF5fekndJybbY7tANGgECtbBjEmpbATn6+J2Whi2/ZCSm4lh46G8DqjN0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=fSqW9n/2; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 32FADC4CEE3;
+	Fri,  4 Jul 2025 00:19:37 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1751588382;
+	bh=kOWoraaFaGiycuTlpCm/u/Von6eUYH3jWTREcNQSXW0=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=fSqW9n/2AluchfnGubEm6sj0PQnjnRbgsjUstbI/YaxMGT1oE5pn0PjeYxD6upycZ
+	 RVCITtbQ+WnTE0zlZ+gjwABtrAFMlRcGdoNw5bLuwlvFu3xnSriua5UO7aAx8yrlpQ
+	 dSSfKJVS7/4sZnncwvmt2bRavYh48iEW7i88Q5HMY1gHtLsn2yb0Vx8YIKrA5ykSGD
+	 XLaZJYxtbPXvLjlxsNg9AFkeiOkcTfUWKlxSaL6VxRa2Gxon358ryOAqaYGu5p4ue2
+	 6dgFIDClpqpEyGc/EQsxi21/eBtopgR2F2HJAplqjX39Tfpp4iyAupaqmBwKrlAnBN
+	 JeuL/zuL7E/6Q==
+Date: Fri, 4 Jul 2025 02:19:34 +0200
+From: Danilo Krummrich <dakr@kernel.org>
+To: FUJITA Tomonori <fujita.tomonori@gmail.com>
+Cc: ojeda@kernel.org, alex.gaynor@gmail.com, gregkh@linuxfoundation.org,
+	rafael@kernel.org, robh@kernel.org, saravanak@google.com,
+	a.hindborg@kernel.org, aliceryhl@google.com, bhelgaas@google.com,
+	bjorn3_gh@protonmail.com, boqun.feng@gmail.com,
+	david.m.ertman@intel.com, devicetree@vger.kernel.org,
+	gary@garyguo.net, ira.weiny@intel.com, kwilczynski@kernel.org,
+	leon@kernel.org, linux-kernel@vger.kernel.org,
+	linux-pci@vger.kernel.org, lossin@kernel.org,
+	netdev@vger.kernel.org, rust-for-linux@vger.kernel.org,
+	tmgross@umich.edu
+Subject: Re: [PATCH v1 1/3] rust: device_id: make DRIVER_DATA_OFFSET optional
+Message-ID: <aGceFtc7MUx9utaj@pollux>
+References: <20250623060951.118564-1-fujita.tomonori@gmail.com>
+ <20250623060951.118564-2-fujita.tomonori@gmail.com>
+ <64cec618-b883-4330-b1ba-5172f7790fe3@kernel.org>
+ <20250704.084159.887748101305692803.fujita.tomonori@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20250704.084159.887748101305692803.fujita.tomonori@gmail.com>
 
-On Wed, 2025-07-02 at 09:19 +0800, Jammy Huang wrote:
-> Introduce the mailbox module for AST27XX series SoC, which is responsible
-> for interchanging messages between asymmetric processors.
->=20
-> Signed-off-by: Jammy Huang <jammy_huang@aspeedtech.com>
-> Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+On Fri, Jul 04, 2025 at 08:41:59AM +0900, FUJITA Tomonori wrote:
+> On Fri, 4 Jul 2025 00:15:19 +0200
+> Danilo Krummrich <dakr@kernel.org> wrote:
+> 
+> > On 6/23/25 8:09 AM, FUJITA Tomonori wrote:
+> >> Enable support for device ID structures that do not contain
+> >> context/data field (usually named `driver_data`), making the trait
+> >> usable in a wider range of subsystems and buses.
+> >> Several such structures are defined in
+> >> include/linux/mod_devicetable.h.
+> >> This refactoring is a preparation for enabling the PHY abstractions to
+> >> use device_id trait.
+> >> Signed-off-by: FUJITA Tomonori <fujita.tomonori@gmail.com>
+> > 
+> > Acked-by: Danilo Krummrich <dakr@kernel.org>
+> 
+> Thanks a lot!
+> 
+> Miguel suggested that splitting the RawDeviceId trait might lead to a
+> cleaner design, and I also tried that approach [v2]. But just to
+> confirm ― do you prefer the original v1 approach instead?
 
-Reviewed-by: Andrew Jeffery <andrew@codeconstruct.com.au>
+Sorry, I didn't catch v2.
+
+From only looking at patch 1, I indeed prefer v1.
+
+> https://lore.kernel.org/lkml/CANiq72k0sdUoBxVYghgh50+ZRV2gbDkgVjuZgJLtj=4s9852xg@mail.gmail.com/
+
+Looking at this reply to patch 3, I can see why Miguel suggested it though.
+Given that, I think splitting the trait is the correct thing to do. I'll reply
+to v2.
+
+> [v2]: https://lore.kernel.org/rust-for-linux/20250701141252.600113-1-fujita.tomonori@gmail.com/ 
+> 
+> Either way works for me.
+> 
+> Sorry Miguel, I forgot to fix the comment typo you pointed out in v1. I'll correct it in v3.
 
