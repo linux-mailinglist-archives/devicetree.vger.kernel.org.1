@@ -1,138 +1,83 @@
-Return-Path: <devicetree+bounces-192955-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-192956-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 75767AF8987
-	for <lists+devicetree@lfdr.de>; Fri,  4 Jul 2025 09:32:01 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 72AF5AF89A7
+	for <lists+devicetree@lfdr.de>; Fri,  4 Jul 2025 09:37:57 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 3D6E3485C4A
-	for <lists+devicetree@lfdr.de>; Fri,  4 Jul 2025 07:30:28 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 2FC25586566
+	for <lists+devicetree@lfdr.de>; Fri,  4 Jul 2025 07:37:55 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id AC0A527F4F5;
-	Fri,  4 Jul 2025 07:27:16 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 947B028000B;
+	Fri,  4 Jul 2025 07:37:42 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b="u6rduk2c"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtpbgsg1.qq.com (smtpbgsg1.qq.com [54.254.200.92])
+Received: from vps0.lunn.ch (vps0.lunn.ch [156.67.10.101])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EB65B27F4C7;
-	Fri,  4 Jul 2025 07:27:13 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=54.254.200.92
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 25A49280CC1;
+	Fri,  4 Jul 2025 07:37:39 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=156.67.10.101
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1751614036; cv=none; b=EFrOUK16j1fxMMuMtc1NeDidvCdbHUt0Jc4OQ5eRV/3oKCPQ8HclDp+rrxz7/guoTEGmj9/9WzEP2a88NjXExsbsJ/EB7bJwENeIZWbwKXQVtJtTpVWGrYxIzqW4dVD/xkmRJuKJVq1qrFGRH8uyi9MH1PVFAW1Hre/okuSetmc=
+	t=1751614662; cv=none; b=pZaiJHEf5gOtiq5ilgrJq5a+p4VJdETvbQ9M/5MwILaH+Gbb6tzyfs36NklLK+LRhZryJSG7Hv2gEH/56RcYxpfhLhv6T18oOZNZMAJfwC0jAUR8vF7dpqypQ/uTjFhdc9l9g//VlntLGNJBVyNOnbg4Gf2YSXf3Wo8e5AfeybA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1751614036; c=relaxed/simple;
-	bh=APlujz3QqBIHliCa5cLij1ddIwxT5n25Q5hISvN8bJk=;
+	s=arc-20240116; t=1751614662; c=relaxed/simple;
+	bh=7TS+GPjg3sX6vp225yAQ40TlxQx1FkzB1Rlq6D7dvZU=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=XX7t0KaGey3oCts82qPKk0tFok+XGGFfiS/RxhRnukNUcWpi8oQJMst1wxG1niibKJhueNRlX/qaYB2rKFvaYn5i/GE9aU5FwWuwMOio5ZJy3PZWL2DKihc/4idZxqZi4oLUjokde/P99cHZVZLh/OCuqvZLXhFsb63Y3F9Tfbo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=foursemi.com; spf=none smtp.mailfrom=foursemi.com; arc=none smtp.client-ip=54.254.200.92
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=foursemi.com
-Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=foursemi.com
-X-QQ-mid: zesmtpgz9t1751613992t6c49a589
-X-QQ-Originating-IP: NKnTRTQqlnTiWFdThzYKqoMVdamEtqPW1awdNrhl788=
-Received: from localhost ( [183.17.231.150])
-	by bizesmtp.qq.com (ESMTP) with 
-	id ; Fri, 04 Jul 2025 15:26:30 +0800 (CST)
-X-QQ-SSF: 0000000000000000000000000000000
-X-QQ-GoodBg: 0
-X-BIZMAIL-ID: 2485475499401928861
-EX-QQ-RecipientCnt: 13
-Date: Fri, 4 Jul 2025 15:26:30 +0800
-From: Nick Li <nick.li@foursemi.com>
-To: Krzysztof Kozlowski <krzk@kernel.org>
-Cc: lgirdwood@gmail.com, broonie@kernel.org, robh@kernel.org,
-	krzk+dt@kernel.org, conor+dt@kernel.org, perex@perex.cz,
-	tiwai@suse.com, xiaoming.yang@foursemi.com,
-	danyang.zheng@foursemi.com, linux-sound@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v1 3/4] ASoC: dt-bindings: Add dt bindings for FS2104/5S
- audio amplifiers
-Message-ID: <021E47BD8882DB2D+aGeCJvwdYAs8pny9@foursemi.com>
-References: <20250703035639.7252-1-nick.li@foursemi.com>
- <20250703035639.7252-4-nick.li@foursemi.com>
- <20250703-primitive-puzzling-toucanet-2c4870@krzk-bin>
- <6e209f3c-1d24-4669-8a51-3b651a28420c@kernel.org>
+	 Content-Type:Content-Disposition:In-Reply-To; b=bgVGrjm0ObX1yQ5o04Ek1X/kXQs66Y90iccOY7PjD+yV6ABRGotnzfKlCaNAz4DzmVZjUFjugTI/Mm+BhyhoFMAMcZqu8pkxQUitrF4pmxj8SBAibhY3qLSLuyPPA3+gOwF0cAG0pdvKPs6Xw+1HA/k2M21k+zzDLLgzI6v/WHA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch; spf=pass smtp.mailfrom=lunn.ch; dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b=u6rduk2c; arc=none smtp.client-ip=156.67.10.101
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=lunn.ch
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
+	s=20171124; h=In-Reply-To:Content-Disposition:Content-Type:MIME-Version:
+	References:Message-ID:Subject:Cc:To:From:Date:From:Sender:Reply-To:Subject:
+	Date:Message-ID:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding:
+	Content-ID:Content-Description:Content-Disposition:In-Reply-To:References;
+	bh=BBUFPfqcb5RmlLprxF2vX8GSwab9JKWQEi3JfpeiZSg=; b=u6rduk2cLDiZJ613kl3yXRcvou
+	PluTPpMFX5LPyyLMgyVmlIndU0nfNy2cm9KDz2Wd2FO5PUiCTPKRsZuws0DuvHXgUEHawd15w6KIU
+	tc7vp6WuCc8gqz7fU0EnlPHx8g2VKDt7KEhR9C/7DTrG58Rv9q3gXw9gWvolr+g+AdwM=;
+Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
+	(envelope-from <andrew@lunn.ch>)
+	id 1uXaz2-000B1n-IZ; Fri, 04 Jul 2025 09:37:20 +0200
+Date: Fri, 4 Jul 2025 09:37:20 +0200
+From: Andrew Lunn <andrew@lunn.ch>
+To: Tao Ren <rentao.bupt@gmail.com>
+Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>, Joel Stanley <joel@jms.id.au>,
+	Andrew Jeffery <andrew@codeconstruct.com.au>,
+	devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+	linux-aspeed@lists.ozlabs.org, linux-kernel@vger.kernel.org,
+	Tao Ren <taoren@meta.com>
+Subject: Re: [PATCH 5/5] ARM: dts: aspeed: Add Facebook Darwin (AST2600) BMC
+Message-ID: <95ff4056-d1cc-4564-8c44-0535196e7428@lunn.ch>
+References: <20250702050421.13729-1-rentao.bupt@gmail.com>
+ <20250702050421.13729-6-rentao.bupt@gmail.com>
+ <a6f6966b-50ee-4b4f-9422-96c6ac9391a2@lunn.ch>
+ <aGW8Nm8ZWMwRYVOo@localhost.localdomain>
+ <220ac6c2-8373-4742-86fa-f322d6ada624@lunn.ch>
+ <aGcBEHMEyQJuzmjj@localhost.localdomain>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <6e209f3c-1d24-4669-8a51-3b651a28420c@kernel.org>
-X-QQ-SENDSIZE: 520
-Feedback-ID: zesmtpgz:foursemi.com:qybglogicsvrsz:qybglogicsvrsz3a-0
-X-QQ-XMAILINFO: MwFkbloawFgLe5s48+g8MFJ6b9xcuTIeCZD4OMBBYZa90d1lhtdTa4yR
-	CYJU6An09Z+R8bYYIPHqH00xcWjgjd0e4onP/EQuHAEGjpY7avw5sY5UOOMr/1sjq9VpdQs
-	SroY5VdWfdBUNpGFCsUo5X1/KIS+h4CksDJhLRe41CAWX9T0GeIBy/PUGGAI1UjCZBasgmt
-	NtX5Mma+bOpxxtBbQXh5EgWVLEZJRLHMzbNo0YgA8EL+nGvHMymL2QBjU8LtKMKewtBnPG2
-	kKNmTi8D8riV3HVxMp5ChZ+V8u3fifRyCNNXrrAA4NDAGu3JEdZaNaWYrphTSYKUguWPV1p
-	PAkhz6Hb8KFAhmm1QAcjH5n9b2OtFowcqJPax+fzP032pYpCU2fasb8P+H/bffg1Ky/c4bT
-	YduJPRiPAqWlOr649Pi8uj/s0sZdTltFmYRgdVRJBNFjSrRxHw9nafBCdeo0xLgmZn1wd4/
-	oA8qGSwJuNYhfb4Plk9l26O6ovEMiqz3ao9+SdMVI5+N1FKSphqX9NQY78rE1tivRY66Nci
-	dai+M0uCQXbmKkJ8Qm2NBbBfo/mD+mALBAjJIrG4dxv0MK4S87l3eD4Oi3AVQP6IcLVBl5J
-	nlSN6rsse+kcZYhAnHabgOuuL6EaxlT9lZtSfdUzx4H7650FMtBJWwJUMtATYf9ErfoTNzo
-	PpowqgE+SAHZ6JtGVU84PBlFOmiG+lxBLVDtdSah0Fsxg+e2XbDBVRbwK3dL1uR5EXjZLJ1
-	Mh5gGhdw1wgfZwOEJtIGSi/jFQUxOYA1S/ZxnzQFr7SzpOXzF9QUztjLzNVOchJQA+X0K8+
-	tXK2pCJBZEx8quzqaFOu6S5tGywwn+asdVmRh5n9PWNuJfuNxfYLVCysRF2lJZdTlQ8Tl3l
-	M3Uc/XaDqEms8UWOkKUKn59pB4XQ/WMugeCbo9fl+glWaZb0uoFbHWv54RE9fN3XtU2eo9r
-	VUNKCZZ6Jwx/d0/Lmc8SJLnD7AQuXxGo+kGOzIp8Y/IJWlFGqdrOdfnaezlA1CegXZaEn+F
-	JtnzGjgpbK+jLrdhAybN5nD2FodKxdScybd41AnZ5mVASXQyyRsf1LFh2aXm2Vm/5JbIZ0J
-	Rdc5ieOJgCyht9OUu8XcR3kvA00Scny2Z6hLEV5K5wUihwiCsggcbanFyAZX9NxZuvjXcsf
-	7l/q+zClKquWsnixm//xDTOyEAj/uTuWv7/5
-X-QQ-XMRINFO: Mp0Kj//9VHAxr69bL5MkOOs=
-X-QQ-RECHKSPAM: 0
+In-Reply-To: <aGcBEHMEyQJuzmjj@localhost.localdomain>
 
-On Thu, Jul 03, 2025 at 09:15:36AM +0200, Krzysztof Kozlowski wrote:
-> On 03/07/2025 09:10, Krzysztof Kozlowski wrote:
-> > On Thu, Jul 03, 2025 at 11:56:38AM +0800, Nick wrote:
-> >> From: Nick Li <nick.li@foursemi.com>
-> >>
-> >> This patch adds bindings for FourSemi FS2104/5S audio amplifiers
-> >> which can support both I2S and I2C interface.
-> >>
-> >> Signed-off-by: Nick Li <nick.li@foursemi.com>
-> >> ---
-> >>  .../bindings/sound/foursemi,fs210x.yaml       | 95 +++++++++++++++++++
-> >>  1 file changed, 95 insertions(+)
-> >>  create mode 100644 Documentation/devicetree/bindings/sound/foursemi,fs210x.yaml
-> >>
-> >> diff --git a/Documentation/devicetree/bindings/sound/foursemi,fs210x.yaml b/Documentation/devicetree/bindings/sound/foursemi,fs210x.yaml
-> >> new file mode 100644
-> >> index 000000000..3a1aba9b8
-> >> --- /dev/null
-> >> +++ b/Documentation/devicetree/bindings/sound/foursemi,fs210x.yaml
-> >> @@ -0,0 +1,95 @@
-> >> +# SPDX-License-Identifier: GPL-2.0-only
-> > 
-> > Please run scripts/checkpatch.pl on the patches and fix reported
-> > warnings. After that, run also 'scripts/checkpatch.pl --strict' on the
-> > patches and (probably) fix more warnings. Some warnings can be ignored,
-> > especially from --strict run, but the code here looks like it needs a
-> > fix. Feel free to get in touch if the warning is not clear.
+> Hi Andrew,
 > 
+> Got it, and thanks for sharing the context.
 > 
-> One more thing: Drop "dt-bindings for" from subject.
-> See also:
-> https://elixir.bootlin.com/linux/v6.7-rc8/source/Documentation/devicetree/bindings/submitting-patches.rst#L18
+> I will reach out to ASPEED offline to see if they are actively working
+> on the MAC fix, or if I have enough knowledge to work out the patch.
 
-OK, update it in next version.
+There was some discussion about what needs to be done a couple of
+months ago. Look for emails from aspeed and IBM.
 
-> 
-> 
-> ... and that was my third email today... I apologize I did not send
-> these as one review email, that's not really professional from my side
-> but somehow coffee did not work good this morning.
-> 
-
-Thank you for taking your valuable time to review the code.
-
-Best regards,
-Nick
-
-> Best regards,
-> Krzysztof
-> 
+	Andrew
 
