@@ -1,48 +1,48 @@
-Return-Path: <devicetree+bounces-192963-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-192965-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4D2C0AF8B05
-	for <lists+devicetree@lfdr.de>; Fri,  4 Jul 2025 10:18:46 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6558CAF8B10
+	for <lists+devicetree@lfdr.de>; Fri,  4 Jul 2025 10:19:46 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id EE6F11CA3623
-	for <lists+devicetree@lfdr.de>; Fri,  4 Jul 2025 08:17:40 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 7CC851BC46C8
+	for <lists+devicetree@lfdr.de>; Fri,  4 Jul 2025 08:18:34 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6350D326259;
-	Fri,  4 Jul 2025 07:57:30 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 053A2326A58;
+	Fri,  4 Jul 2025 07:59:58 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="n6EsqyGY"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="j5nu57eZ"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3408B32624E;
-	Fri,  4 Jul 2025 07:57:29 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CD4073271B7;
+	Fri,  4 Jul 2025 07:59:57 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1751615850; cv=none; b=b8R0FvItGZJHaw0xQsFmz/R22lRRLkzo/+fMtexXXV9Yi3pswwssaFVml4eL16mtlGIPbKgFCVS6Bg9PIg52RYADLXhSfIur6Uis/ydQvM+cULXbMoKXehhAIyRYrpuZVZAzuGxj2rbzsDsH+4DRamwo1uRq3qiUnmyYYEIDS9g=
+	t=1751615997; cv=none; b=HlGE3PFGIISnCQ6PkE2kKlmJMGXPMuejjbylPPgHXIrp+b+p55myQMRrKUlNPY8gjsd9GDROFWf/836VTlRrdBW32uYAKeyKpnvzeMeZvnLSzXiaF9/gN8SQJjHmGAc95P+FnYnzfZFO2hmUIUW+2TX3YJNPNx6tkHKvdEjp4J8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1751615850; c=relaxed/simple;
-	bh=t82jB92Da5ZA8vsIAa/Hi9HSTGrBWZGtztZr+fX47is=;
+	s=arc-20240116; t=1751615997; c=relaxed/simple;
+	bh=A+M8QlgWxHjdYMXQHd0o3QdJ1Ddlbq92Z7OrRAURhMo=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=V/V6F1T1qt8Je3HFNkb2tDQ/hb2xCXcbpl1ieOzEH5FQo5nP9gA9lJenoHe36zzE54LAPtl2k40X4SgRnLAeKeE7qBnzf26zT+EGZLdudKZGf3rpPVGGtMCZrf/iRH8LKXbkAQ1PPZCIvxVGHN+oT7Z6Lj5DOvsf3+OuufNRbEU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=n6EsqyGY; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 1B85BC4CEE3;
-	Fri,  4 Jul 2025 07:57:24 +0000 (UTC)
+	 In-Reply-To:Content-Type; b=MfFXd/V49x4dE8yCAqHIUwTIwYDYN2klMa0pCNUrZsyBF4lkdyP8FHa0zYkN4Sg54xw84aoa6WxvpkV5gLz/iofR5vqBH4r8o0F4KWwvQg8V++7hT4CS0ltzft90aBRDCuQXQ64G+i3mCC4aZxQzZ2zMA86dMYY0JcE+Hp+6Oxg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=j5nu57eZ; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 44D99C4CEE3;
+	Fri,  4 Jul 2025 07:59:55 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1751615849;
-	bh=t82jB92Da5ZA8vsIAa/Hi9HSTGrBWZGtztZr+fX47is=;
+	s=k20201202; t=1751615997;
+	bh=A+M8QlgWxHjdYMXQHd0o3QdJ1Ddlbq92Z7OrRAURhMo=;
 	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=n6EsqyGYQIjmXyZeZk9mcKz1zjbqxxOy5zh2buAfUlEICVl7eVAJ3M8XdPMwIiZgO
-	 7V4g4wn37mvK8J2AIchqhVaYJx+kISlInjBKx70VRZeCwLS75oeFpU2IrN5lmMk5gf
-	 /qRRrSGo1E8xdjba0X93cBOuonVrF7Cb/TNtqcCgGM/WGpQwwyw3q0ezXsrTScPEQm
-	 toJpIbN/nfZZKh10MlgURcNJkTGLDf2uzYzpZ1uV88a7ItkJ/ikcp85+az1ZmeOAAq
-	 MFBgWPGCIOxY/ixUirPmTynHkFptfZ1eaEU25FepzmOTK6Io059q9Vh0lVegFjNb2F
-	 uqc0I8kjsWiuA==
-Message-ID: <86e970ae-3d67-40a2-85f8-25b81a7242ca@kernel.org>
-Date: Fri, 4 Jul 2025 09:57:22 +0200
+	b=j5nu57eZESI1vbMiNM5SzhZVj0nerjBjTxIsROToMYOLWqYT9zcJpzIDrG7ZtAf4I
+	 8oK/1n34G9oK+MQ4FD9X2BvSaszrGZ0lMQZOGE4/D+nCARk/dlgUJEuAfVjCbc0M4s
+	 epIe+ZleOCEesfj9GCHchbtCuYhouRcD/Uduh4HkAJTBVIgSq5iWq1nzcOn1ideoap
+	 tf4/LwP62GfPkX/QO/j40xoc52WGPh6W39zgCDKMH3kDQkFuSQcX43HDVsEkCAJ8bz
+	 LXUaP6R/E3ImmzHGzqOT+xM/YbhRbhSxsb3u6AyZt8+RdQjRkTG6nlLkFXmhZtDsu7
+	 LUXxnFBeFOe+w==
+Message-ID: <367e2429-bfd5-4c09-9d7a-194a0539091a@kernel.org>
+Date: Fri, 4 Jul 2025 09:59:53 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,19 +50,12 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3 1/4] dt-bindings: usb: Add compatible strings for
- s32g2/s32g3
-To: Dan Carpenter <dan.carpenter@linaro.org>,
- Greg Kroah-Hartman <gregkh@linuxfoundation.org>
-Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, Xu Yang <xu.yang_2@nxp.com>,
- Peng Fan <peng.fan@nxp.com>, linux-usb@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, s32@nxp.com,
- linaro-s32@linaro.org, Larisa Grigore <larisa.grigore@nxp.com>,
- Ionut Vicovan <Ionut.Vicovan@nxp.com>,
- Ghennadi Procopciuc <ghennadi.procopciuc@nxp.com>
-References: <cover.1751591078.git.dan.carpenter@linaro.org>
- <596d188a-9a2d-41e5-af70-c99bc2b7ca7a@sabinyo.mountain>
+Subject: Re: [PATCH] dt-bindings: trivial-devices: Add Garmin lidar-lite-v3
+To: Rodrigo Gobbi <rodrigo.gobbi.7@gmail.com>, robh@kernel.org,
+ krzk+dt@kernel.org, conor+dt@kernel.org
+Cc: ~lkcamp/patches@lists.sr.ht, linux-iio@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+References: <20250701223341.36835-1-rodrigo.gobbi.7@gmail.com>
 From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
@@ -108,23 +101,26 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  jWt87ecuHlpL3uuQ0ZZNWqHgZoQLXoqC2ZV5KrtKWb/jyiFX/sxSrodALf0zf+tfHv0FZWT2
  zHjUqd0t4njD/UOsuIMOQn4Ig0SdivYPfZukb5cdasKJukG1NOpbW7yRNivaCnfZz6dTawXw
  XRIV/KDsHQiyVxKvN73bThKhONkcX2LWuD928tAR6XMM2G5ovxLe09vuOzzfTWQDsm++9UKF a/A=
-In-Reply-To: <596d188a-9a2d-41e5-af70-c99bc2b7ca7a@sabinyo.mountain>
+In-Reply-To: <20250701223341.36835-1-rodrigo.gobbi.7@gmail.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 04/07/2025 03:20, Dan Carpenter wrote:
-> From: Ghennadi Procopciuc <ghennadi.procopciuc@nxp.com>
-> 
-> Add the compatible strings for the NXP s32g2 and s32g3.  These chips
-> are mostly compatible.  The one difference is that the s32g2-usbmisc
-> device has an errata ERR050474 which requires a special flag to be set
-> for handling packages that aren't 4 byte aligned.
-> 
-> Signed-off-by: Ghennadi Procopciuc <ghennadi.procopciuc@nxp.com>
-> Signed-off-by: Dan Carpenter <dan.carpenter@linaro.org>
-> ---
+On 02/07/2025 00:30, Rodrigo Gobbi wrote:
+> The compatible grmn,lidar-lite-v3 is managed by the same
+> driver of pulsedlight,lidar-lite-v2, which is a trivial device.
 
-Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Nothing here explain the bug you are fixing. You need to be specific,
+what is missing, what are you doing. Apparently you are documenting
+existing ABI, but nothing in commit msg told me that.
+
+As David pointed out, this is not a trivial device.
+
+> 
+> Signed-off-by: Rodrigo Gobbi <rodrigo.gobbi.7@gmail.com>
+> Fixes: b257c1a45e99 ("iio: pulsedlight-lidar-lite-v2: add lidar-lite-v3 property")
+
+SoB goes the last.
+
 
 Best regards,
 Krzysztof
