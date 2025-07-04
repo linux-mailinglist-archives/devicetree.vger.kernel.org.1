@@ -1,231 +1,533 @@
-Return-Path: <devicetree+bounces-193114-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-193115-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 19242AF95AC
-	for <lists+devicetree@lfdr.de>; Fri,  4 Jul 2025 16:37:47 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 50082AF95C4
+	for <lists+devicetree@lfdr.de>; Fri,  4 Jul 2025 16:41:37 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 7ED861BC7EE6
-	for <lists+devicetree@lfdr.de>; Fri,  4 Jul 2025 14:38:03 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 957085A5B9B
+	for <lists+devicetree@lfdr.de>; Fri,  4 Jul 2025 14:41:37 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6584F1C8621;
-	Fri,  4 Jul 2025 14:37:40 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1AF831CAA7B;
+	Fri,  4 Jul 2025 14:41:34 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="azEE4WES"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="Wz+vggL1"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-ej1-f46.google.com (mail-ej1-f46.google.com [209.85.218.46])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 35A9542A83;
-	Fri,  4 Jul 2025 14:37:37 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0207282C60;
+	Fri,  4 Jul 2025 14:41:31 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.46
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1751639860; cv=none; b=JfrJkeKOQMfHJwL3/JHw7N8eYcK7i20bfc5UNnlyMj570U50tD+TLA+5ZHuyTIFNACvEfmNbo2ox77xyHPe+8sPTbfCylMDZrvtNItSLtxREqloBJ/E53C9bAOKMktKgTOTqzsEdLRpPXAaAeavUQ05AbXOn6K5PMwwGnKqz2Fk=
+	t=1751640094; cv=none; b=AwX7tr2Mz3dlZs20F7AxQrAGcdhbod4jQUhUBRa8K2BERByMrjwQ2bkh4XJyU9Owm7501BOKfBDaGlITwkd1v1cu9lp+XEq6lDUpfOifiY/wo29BTPJMvFUuIGiSJngYTafPwCaghSRHZK3mA341fOtJRjLbtxFxChEmEWYCzxQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1751639860; c=relaxed/simple;
-	bh=b/7DF43NShQz0jj5KS0cUtXQl9ATq8leuWFS9jBryPs=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=lIEcGIWactYokUnjussMurq7xCVRLgA9rntV2hTJg2RntuweFlpGLNLWAfdi1ADftPDnL5hebx4gRqrb2cfB4tCqJHMzVfoAwtL3YODwMyKLK5bOWWS7+tvsIGZPjbG2G71Jrck89ES0ylxNZRxR5HJlhLKw05z/QnoX0tFpf04=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=azEE4WES; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 5F2C2C4CEE3;
-	Fri,  4 Jul 2025 14:37:35 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1751639857;
-	bh=b/7DF43NShQz0jj5KS0cUtXQl9ATq8leuWFS9jBryPs=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=azEE4WES2NQXRB3qc3wkHQA+59XdtsTY4YediiX1ZhgNgF8rDwMXtNJQZPHUIJhwR
-	 +BzLaYJiyauOFizJ0BhQCC3ulf5qXYNjU81+TOvK2uRpD226/8/Fp7BZ9a45Lgoltu
-	 3NOqFTyEx5SjuR8+mhYVGivgP1T7jsTZw9tN8gD/Asr8DexTezm3vuPlZy0Tcs+R33
-	 m5QwB1lXQU2Di3zBD1kfzeVgmZmyj+CDjY9ircZ/QCFadZT0iXHJoZUY7+6Kdd7D4O
-	 tPn59BD38gC5405lrdPVgMBKH3Y45DAb9TGRb4W11tEGNK/QrUldRyUAqSWMhgHuSJ
-	 2Sd3UvoeWeY1Q==
-Date: Fri, 4 Jul 2025 15:37:32 +0100
-From: Mark Brown <broonie@kernel.org>
-To: Nick Li <nick.li@foursemi.com>
-Cc: lgirdwood@gmail.com, robh@kernel.org, krzk+dt@kernel.org,
-	conor+dt@kernel.org, perex@perex.cz, tiwai@suse.com,
-	xiaoming.yang@foursemi.com, danyang.zheng@foursemi.com,
-	linux-sound@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v1 2/4] ASoC: codecs: Add FourSemi FS2104/5S audio
- amplifier driver
-Message-ID: <0370941d-63eb-4676-8a74-b8afef524376@sirena.org.uk>
-References: <20250703035639.7252-1-nick.li@foursemi.com>
- <20250703035639.7252-3-nick.li@foursemi.com>
- <b1ad15d1-bf9f-4b94-abb8-1e9c6d512987@sirena.org.uk>
- <1C4720AC50797830+aGe3L70OToh6txmC@foursemi.com>
+	s=arc-20240116; t=1751640094; c=relaxed/simple;
+	bh=9nbypNAho9nadol4NSOwL4uWk3u4bC94DSwgDtmfi/g=;
+	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
+	 MIME-Version; b=mQcT+cxyE90jwfc8zIzRNnVxph45ZQCsqHN0sXx6qcsPtFzZakZNP64/WlRsXCcQLATQ1/EpFDC+IPikQtWeQle4B/hB/+8Csac+9ZSfOnMoQxqDpsnLpM2SGy7bi6mOq3Hkw+cKmc6Qm3pS/Tm+UUIqdRrs8YFOZZ2LqyO/9/M=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=Wz+vggL1; arc=none smtp.client-ip=209.85.218.46
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-ej1-f46.google.com with SMTP id a640c23a62f3a-ae0de1c378fso151885766b.3;
+        Fri, 04 Jul 2025 07:41:31 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1751640090; x=1752244890; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=Iu8qZZJRCeE/RahbP7L8lz9R1hckY1KpUM97hdaH2L4=;
+        b=Wz+vggL1cM7QCJ2zfy2/QEHgIT7uEV88veTSvTJuGs5PBf43rzLhXxqfjVSMTEH4qy
+         wd/kAfTN7KqJm0BfY6xquO0UxFzA5rzNMUQa7NGHLWw9wV7CpGRIFBM3+9aOdsfpvGgw
+         tSvfdlN/MeqYBKBayc+TFweT+EtFRxr1JKG5Mp8hxyEw0aSX5GWo1E662TIlaz/DOfsT
+         cQmXddbQC0ZpOVVLvcUJNQ/+GB47kxX61GCBmZI/4yxLLtbyUN6Y3leF4hoYNrFF+/jN
+         HbbYJnuUYtW8hBMZ7/URR3vliohSJJdJsZUK2vLTJYFBPd5pqJJwbWQUtAnglPFkDp8N
+         UcTA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1751640090; x=1752244890;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=Iu8qZZJRCeE/RahbP7L8lz9R1hckY1KpUM97hdaH2L4=;
+        b=mJfKSO2K8syDMwgyLIG+KNkO2Ys20vAWS1++F40f0twD17p5y7t9a12abAB2dS6Y8R
+         M2/sEOyE8xdsFP77DtAlcYhNpcJmN7uKkrNSVMbr9PpnFJy0Y3J1Z8W5lcBR5PDzRf3/
+         Z4ygKYMwx38kQ84Jxa+areygWHdVwxDqtm7OBwa76eHLlBD9+1mISy3yIUDxRfnOEFia
+         kBzOwxUSMUlXq2AK9lgws2CRZkpaPfugBb/IvHG9dFVmfb7geXu9Vvx0fuhRkPVd7lEl
+         N8099npDQFw8MNXM3jx2XUMpw2eFN2zr/C5dNCrwkiE1wfpRiA/0eemGu9V/Osz9r5pV
+         C0/A==
+X-Forwarded-Encrypted: i=1; AJvYcCUiucWc6+hsE+s46MSunjvp8/+U8lk82LiQKxlCg5JhbWEXWPSg3IAkSVLyd2sc4/7UomLEAMV3/Cro@vger.kernel.org, AJvYcCVLgS2KJJmoIH9xt/9julVjoRwPQrY8D71q5D1nnzMvyCQcLTFl39WDzAfnCyPKlf+jOf6tgIiMt4H6m55D@vger.kernel.org
+X-Gm-Message-State: AOJu0YyeRHIEM6ZeQ+QNHFNUqxEiz8cIPLr/yHlH2htkkeV1ZNhIFCnW
+	IsXljjI0hOLzAa9NVD1CNuVD3kxfN8etBn62gto8c7SRFZuRr1klsCAD
+X-Gm-Gg: ASbGnctfuu08x0D78XuM6vLdT2B8juVNBICshSfG3HQHYgrF4hHGpQ/Vy5LxMCkVb/u
+	hKM51N0znsTqc2WnSBGizBYCkb+7VQgvznXn922A0iWlTQ+u1PTU5vW/xraAvPsS9vnpz26caD0
+	s5you/LoYMvKIkTPLRjmf1Lsm8KOnADSDLarHwBNUi/JKPAokEcInBG1Axps4z05yzEsRoGmvdk
+	ZGcXNsBqPLdSpvWqDcy40KqrenJ2uhnTUCeE3Da89bvqd1iuAjIxu/JEsaf07r9CzdUI/PX7HqC
+	mAxVGiR4skV75f3eN3iNho2sGTGlzf7+R16nDE8UTa466O1fNOr/BjW0J6fO33ZMPjjaoTUtG+7
+	riBRy07/PEIT4uQXV2lzv4+cXxqWTMP9+IB4Rep89MC1/f64A
+X-Google-Smtp-Source: AGHT+IEsqn5ffeQ8ITnI7FSKA6V0dSpHAhCXvx37aUvzrskfrFtE5qmiG0tBwQAXTY4wY+dLBbE0mw==
+X-Received: by 2002:a17:907:3d0c:b0:ae3:163a:f69a with SMTP id a640c23a62f3a-ae3fbd13e86mr253767466b.33.1751640089906;
+        Fri, 04 Jul 2025 07:41:29 -0700 (PDT)
+Received: from masalkhi.. (ip-078-042-182-222.um17.pools.vodafone-ip.de. [78.42.182.222])
+        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-ae3f692a6desm182883766b.42.2025.07.04.07.41.28
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 04 Jul 2025 07:41:29 -0700 (PDT)
+From: Abd-Alrhman Masalkhi <abd.masalkhi@gmail.com>
+To: christophe.jaillet@wanadoo.fr
+Cc: abd.masalkhi@gmail.com,
+	arnd@arndb.de,
+	conor+dt@kernel.org,
+	devicetree@vger.kernel.org,
+	gregkh@linuxfoundation.org,
+	krzk+dt@kernel.org,
+	linux-kernel@vger.kernel.org,
+	luoyifan@cmss.chinamobile.com,
+	robh@kernel.org
+Subject: Re: [PATCH v5 2/3] eeprom: add driver for ST M24LR series RFID/NFC EEPROM chips
+Date: Fri,  4 Jul 2025 14:41:28 +0000
+Message-ID: <20250704144128.11341-1-abd.masalkhi@gmail.com>
+X-Mailer: git-send-email 2.43.0
+In-Reply-To: <f14dfb9a-caf7-4889-a892-6fd61a9a5ecd@wanadoo.fr>
+References: <f14dfb9a-caf7-4889-a892-6fd61a9a5ecd@wanadoo.fr>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="/dy0sp4doMeEvLCg"
-Content-Disposition: inline
-In-Reply-To: <1C4720AC50797830+aGe3L70OToh6txmC@foursemi.com>
-X-Cookie: VMS must die!
+Content-Transfer-Encoding: 8bit
 
+On Fri, 4 Jul 2025 16:12:56 +0200, Christophe JAILLET wrote:
+> Hi, some nitpicks below, mostly related to types.
+> 
+> ...
+> 
+> > +#include <linux/i2c.h>
+> > +#include <linux/regmap.h>
+> > +#include <linux/module.h>
+> > +#include <linux/device.h>
+> > +#include <linux/of.h>
+> > +#include <linux/of_device.h>
+> > +#include <linux/nvmem-provider.h>
+> 
+> Sometimes, alphabetical order is preferred.
+> 
+> > +
+> > +#define M24LR_WRITE_TIMEOUT	  25u
+> > +#define M24LR_READ_TIMEOUT	  (M24LR_WRITE_TIMEOUT)
+> 
+> ...
+> 
+> > +/**
+> > + * m24lr_regmap_read - read data using regmap with retry on failure
+> > + * @regmap:  regmap instance for the device
+> > + * @buf:     buffer to store the read data
+> > + * @size:    number of bytes to read
+> > + * @offset:  starting register address
+> > + *
+> > + * Attempts to read a block of data from the device with retries and timeout.
+> > + * Some M24LR chips may transiently NACK reads (e.g., during internal write
+> > + * cycles), so this function retries with a short sleep until the timeout
+> > + * expires.
+> > + *
+> > + * Returns:
+> > + *	 Number of bytes read on success,
+> > + *	 -ETIMEDOUT if the read fails within the timeout window.
+> > + */
+> > +static ssize_t m24lr_regmap_read(struct regmap *regmap, u8 *buf,
+> > +				 size_t size, unsigned int offset)
+> 
+> Why returning a ssize_t?
+> regmap_bulk_read() returns an int.
+> 
+> > +{
+> > +	int err;
+> > +	unsigned long timeout, read_time;
+> > +	ssize_t ret = -ETIMEDOUT;
+> > +
+> > +	timeout = jiffies + msecs_to_jiffies(M24LR_READ_TIMEOUT);
+> > +	do {
+> > +		read_time = jiffies;
+> > +
+> > +		err = regmap_bulk_read(regmap, offset, buf, size);
+> > +		if (!err) {
+> > +			ret = size;
+> > +			break;
+> > +		}
+> > +
+> > +		usleep_range(1000, 2000);
+> > +	} while (time_before(read_time, timeout));
+> > +
+> > +	return ret;
+> > +}
+> ...
+> 
+> > +static ssize_t m24lr_read(struct m24lr *m24lr, u8 *buf, size_t size,
+> > +			  unsigned int offset, bool is_eeprom)
+> > +{
+> > +	struct regmap *regmap;
+> > +	long ret;
+> 
+> Why long?
+> m24lr_regmap_read() returns a ssize_t. (+ see comment there for why a 
+> ssize_t)
+> 
+> (same comment applies to several places)
+> 
+> > +
+> > +	if (is_eeprom)
+> > +		regmap = m24lr->eeprom_regmap;
+> > +	else
+> > +		regmap = m24lr->ctl_regmap;
+> > +
+> > +	mutex_lock(&m24lr->lock);
+> > +	ret = m24lr_regmap_read(regmap, buf, size, offset);
+> > +	mutex_unlock(&m24lr->lock);
+> > +
+> > +	return ret;
+> > +}
+> > +
+> > +/**
+> > + * m24lr_write - write buffer to M24LR device with page alignment handling
+> > + * @m24lr:     pointer to driver context
+> > + * @buf:       data buffer to write
+> > + * @size:      number of bytes to write
+> > + * @offset:    target register address in the device
+> > + * @is_eeprom: true if the write should target the EEPROM,
+> > + *             false if it should target the system parameters sector.
+> > + *
+> > + * Writes data to the M24LR device using regmap, split into chunks no larger
+> > + * than page_size to respect device-specific write limitations (e.g., page
+> > + * size or I2C hold-time concerns). Each chunk is aligned to the page boundary
+> > + * defined by page_size.
+> > + *
+> > + * Returns:
+> > + *	 Total number of bytes written on success,
+> > + *	 A negative error code if any write fails.
+> > + */
+> > +static ssize_t m24lr_write(struct m24lr *m24lr, const u8 *buf, size_t size,
+> > +			   unsigned int offset, bool is_eeprom)
+> > +{
+> > +	unsigned int n, next_sector;
+> > +	struct regmap *regmap;
+> > +	ssize_t ret = 0;
+> > +	long err;
+> > +
+> > +	if (is_eeprom)
+> > +		regmap = m24lr->eeprom_regmap;
+> > +	else
+> > +		regmap = m24lr->ctl_regmap;
+> > +
+> > +	n = min(size, m24lr->page_size);
+> 
+> min_t()?
+> 
+> > +	next_sector = roundup(offset + 1, m24lr->page_size);
+> > +	if (offset + n > next_sector)
+> > +		n = next_sector - offset;
+> > +
+> > +	mutex_lock(&m24lr->lock);
+> > +	while (n) {
+> > +		err = m24lr_regmap_write(regmap, buf, n, offset);
+> > +		if (IS_ERR_VALUE(err)) {
+> > +			mutex_unlock(&m24lr->lock);
+> > +			if (ret)
+> > +				return ret;
+> > +			else
+> 
+> Unneeded else.
+> 
+> > +				return err;
+> > +		}
+> > +
+> > +		offset += n;
+> > +		size -= n;
+> > +		ret += n;
+> > +		n = min(size, m24lr->page_size);
+> 
+> min_t()?
+> Or change the type of page_size?
+> 
+> > +	}
+> > +	mutex_unlock(&m24lr->lock);
+> > +
+> > +	return ret;
+> > +}
+> > +
+> > +/**
+> > + * m24lr_write_pass - Write password to M24LR043-R using secure format
+> > + * @m24lr: Pointer to device control structure
+> > + * @buf:   Input buffer containing hex-encoded password
+> > + * @count: Number of bytes in @buf
+> > + * @code:  Operation code to embed between password copies
+> > + *
+> > + * This function parses a 4-byte password, encodes it in  big-endian format,
+> > + * and constructs a 9-byte sequence of the form:
+> > + *
+> > + *	  [BE(password), code, BE(password)]
+> > + *
+> > + * The result is written to register 0x0900 (2304), which is the password
+> > + * register in M24LR04E-R chip.
+> > + *
+> > + * Return: Number of bytes written on success, or negative error code on failure
+> > + */
+> > +static ssize_t m24lr_write_pass(struct m24lr *m24lr, const char *buf,
+> > +				size_t count, u8 code)
+> > +{
+> > +	__be32 be_pass;
+> > +	u8 output[9];
+> > +	long ret;
+> 
+> long vs ssize_t vs int.
+> 
+> > +	u32 pass;
+> > +	int err;
+> > +
+> > +	if (!count)
+> > +		return -EINVAL;
+> > +
+> > +	if (count > 8)
+> > +		return -EINVAL;
+> > +
+> > +	err = kstrtou32(buf, 16, &pass);
+> > +	if (err)
+> > +		return err;
+> > +
+> > +	be_pass = cpu_to_be32(pass);
+> > +
+> > +	memcpy(output, &be_pass, sizeof(be_pass));
+> > +	output[4] = code;
+> > +	memcpy(output + 5, &be_pass, sizeof(be_pass));
+> > +
+> > +	mutex_lock(&m24lr->lock);
+> > +	ret = m24lr_regmap_write(m24lr->ctl_regmap, output, 9, 2304);
+> > +	mutex_unlock(&m24lr->lock);
+> > +
+> > +	return ret;
+> > +}
+> > +
+> > +static ssize_t m24lr_read_reg_le(struct m24lr *m24lr, u64 *val,
+> > +				 unsigned int reg_addr,
+> > +				 unsigned int reg_size)
+> > +{
+> > +	long ret;
+> 
+> same
+> 
+> > +	__le64 input = 0;
+> > +
+> > +	ret = m24lr_read(m24lr, (u8 *)&input, reg_size, reg_addr, false);
+> > +	if (IS_ERR_VALUE(ret))
+> > +		return ret;
+> > +
+> > +	if (ret != reg_size)
+> > +		return -EINVAL;
+> > +
+> > +	switch (reg_size) {
+> > +	case 1:
+> > +		*val = *(u8 *)&input;
+> > +		break;
+> > +	case 2:
+> > +		*val = le16_to_cpu((__le16)input);
+> > +		break;
+> > +	case 4:
+> > +		*val = le32_to_cpu((__le32)input);
+> > +		break;
+> > +	case 8:
+> > +		*val = le64_to_cpu((__le64)input);
+> > +		break;
+> > +	default:
+> > +		return -EINVAL;
+> > +	};
+> > +
+> > +	return 0;
+> > +}
+> > +
+> > +static int m24lr_nvmem_read(void *priv, unsigned int offset, void *val,
+> > +			    size_t bytes)
+> > +{
+> > +	struct m24lr *m24lr = priv;
+> > +
+> > +	if (!bytes)
+> > +		return bytes;
+> > +
+> > +	if (offset + bytes > m24lr->eeprom_size)
+> > +		return -EINVAL;
+> > +
+> > +	return m24lr_read(m24lr, val, bytes, offset, true);
+> 
+> We return an int now?
+> 
+> > +}
+> 
+> ...
+> 
+> > +static ssize_t m24lr_ctl_sss_read(struct file *filep, struct kobject *kobj,
+> > +				  const struct bin_attribute *attr, char *buf,
+> > +				  loff_t offset, size_t count)
+> > +{
+> > +	struct m24lr *m24lr = attr->private;
+> > +
+> > +	if (!count)
+> > +		return count;
+> > +
+> > +	if (offset + count > m24lr->sss_len)
+> 
+> Does using size_add() would make sense?
+> 
+> > +		return -EINVAL;
+> > +
+> > +	return m24lr_read(m24lr, buf, count, offset, false);
+> > +}
+> > +
+> > +static ssize_t m24lr_ctl_sss_write(struct file *filep, struct kobject *kobj,
+> > +				   const struct bin_attribute *attr, char *buf,
+> > +				   loff_t offset, size_t count)
+> > +{
+> > +	struct m24lr *m24lr = attr->private;
+> > +
+> > +	if (!count)
+> > +		return -EINVAL;
+> > +
+> > +	if (offset + count > m24lr->sss_len)
+> 
+> Same
+> 
+> > +		return -EINVAL;
+> > +
+> > +	return m24lr_write(m24lr, buf, count, offset, false);
+> > +}
+> > +static BIN_ATTR(sss, 0600, m24lr_ctl_sss_read, m24lr_ctl_sss_write, 0);
+> 
+> ...
+> 
+> > +static struct attribute *m24lr_ctl_dev_attrs[] = {
+> > +	&dev_attr_unlock.attr,
+> > +	&dev_attr_new_pass.attr,
+> > +	&dev_attr_uid.attr,
+> > +	&dev_attr_total_sectors.attr,
+> > +	NULL,
+> 
+> Unneeded trailing ,
+> 
+> > +};
+> 
+> ...
+> 
+> > +static int m24lr_probe(struct i2c_client *client)
+> > +{
+> > +	struct regmap_config eeprom_regmap_conf = {0};
+> > +	struct nvmem_config nvmem_conf = {0};
+> > +	struct device *dev = &client->dev;
+> > +	struct i2c_client *eeprom_client;
+> > +	const struct m24lr_chip *chip;
+> > +	struct regmap *eeprom_regmap;
+> > +	struct nvmem_device *nvmem;
+> > +	struct regmap *ctl_regmap;
+> > +	struct m24lr *m24lr;
+> > +	u32 regs[2];
+> > +	long err;
+> > +
+> > +	if (!i2c_check_functionality(client->adapter, I2C_FUNC_I2C))
+> > +		return -EOPNOTSUPP;
+> > +
+> > +	chip = m24lr_get_chip(dev);
+> > +	if (!chip)
+> > +		return -ENODEV;
+> > +
+> > +	m24lr = devm_kzalloc(dev, sizeof(struct m24lr), GFP_KERNEL);
+> > +	if (!m24lr)
+> > +		return -ENOMEM;
+> > +
+> > +	err = device_property_read_u32_array(dev, "reg", regs, ARRAY_SIZE(regs));
+> > +	if (err) {
+> > +		dev_err(dev, "device_property_read_u32_array\n");
+> 
+> return dev_err_probe() maybe?
+> 
+> > +		return err;
+> > +	}
+> > +	/* Create a second I2C client for the eeprom interface */
+> > +	eeprom_client = devm_i2c_new_dummy_device(dev, client->adapter, regs[1]);
+> > +	if (IS_ERR(eeprom_client)) {
+> > +		dev_err(dev,
+> > +			"Failed to create dummy I2C client for the EEPROM\n");
+> 
+> return dev_err_probe() maybe?
+> ...
+> 
+> > +		return PTR_ERR(eeprom_client);
+> > +	}
+> > +
+> > +	ctl_regmap = devm_regmap_init_i2c(client, &m24lr_ctl_regmap_conf);
+> > +	if (IS_ERR(ctl_regmap)) {
+> > +		err = PTR_ERR(ctl_regmap);
+> > +		dev_err(dev, "Failed to init regmap\n");
+> > +		return err;
+> > +	}
+> > +
+> > +	eeprom_regmap_conf.name = "m24lr_eeprom";
+> > +	eeprom_regmap_conf.reg_bits = 16;
+> > +	eeprom_regmap_conf.val_bits = 8;
+> > +	eeprom_regmap_conf.disable_locking = true;
+> > +	eeprom_regmap_conf.max_register = chip->eeprom_size - 1;
+> > +
+> > +	eeprom_regmap = devm_regmap_init_i2c(eeprom_client,
+> > +					     &eeprom_regmap_conf);
+> > +	if (IS_ERR(eeprom_regmap)) {
+> > +		err = PTR_ERR(eeprom_regmap);
+> > +		dev_err(dev, "Failed to init regmap\n");
+> > +		return err;
+> > +	}
+> > +
+> > +	mutex_init(&m24lr->lock);
+> > +	m24lr->sss_len = chip->sss_len;
+> > +	m24lr->page_size = chip->page_size;
+> > +	m24lr->eeprom_size = chip->eeprom_size;
+> > +	m24lr->eeprom_regmap = eeprom_regmap;
+> > +	m24lr->ctl_regmap = ctl_regmap;
+> > +
+> > +	nvmem_conf.dev = &eeprom_client->dev;
+> > +	nvmem_conf.owner = THIS_MODULE;
+> > +	nvmem_conf.type = NVMEM_TYPE_EEPROM;
+> > +	nvmem_conf.reg_read = m24lr_nvmem_read;
+> > +	nvmem_conf.reg_write = m24lr_nvmem_write;
+> > +	nvmem_conf.size = chip->eeprom_size;
+> > +	nvmem_conf.word_size = 1;
+> > +	nvmem_conf.stride = 1;
+> > +	nvmem_conf.priv = m24lr;
+> > +
+> > +	nvmem = devm_nvmem_register(dev, &nvmem_conf);
+> > +	if (IS_ERR(nvmem))
+> > +		return PTR_ERR(nvmem);
+> > +
+> > +	i2c_set_clientdata(client, m24lr);
+> > +	i2c_set_clientdata(eeprom_client, m24lr);
+> > +
+> > +	bin_attr_sss.size = chip->sss_len;
+> > +	bin_attr_sss.private = m24lr;
+> > +	err = sysfs_create_bin_file(&dev->kobj, &bin_attr_sss);
+> > +	if (err)
+> > +		return err;
+> > +
+> > +	/* test by reading the uid, if success store it */
+> > +	err = m24lr_read_reg_le(m24lr, &m24lr->uid, 2324, sizeof(m24lr->uid));
+> > +	if (IS_ERR_VALUE(err))
+> 
+> Missing sysfs_remove_bin_file() or error handling pah?
+> 
+> > +		return -ENODEV;
+> > +
+> > +	return 0;
+> > +}
 
---/dy0sp4doMeEvLCg
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+Hi Christophe, 
 
-On Fri, Jul 04, 2025 at 07:12:47PM +0800, Nick Li wrote:
-> On Thu, Jul 03, 2025 at 03:59:34PM +0100, Mark Brown wrote:
-> > On Thu, Jul 03, 2025 at 11:56:37AM +0800, Nick wrote:
+Thank you for the review!
 
-> > > +static int fs210x_set_pcm_volume(struct fs210x_priv *fs210x)
+It is done.
 
-> > > +	ret  =3D fs210x_reg_write(fs210x, FS210X_39H_LVOLCTRL, vol[0]);
-> > > +	ret |=3D fs210x_reg_write(fs210x, FS210X_3AH_RVOLCTRL, vol[1]);
-
-> > This looks pretty generic, why is it not using a standard control type?
-
-> 1. We use regmap as REGMAP_NONE, because most of the registers settings
->    are in the firmware, if we use a standard control,the driver shouldn't
->    cache the registers after suspending the device(it will be reset).
-
-You can exclude registers from a cache, including excluding most of
-them, or manually handle registers over suspend/resume.  It's generally
-better to share the userspace facing interfaces.
-
-> 2. The volume registers of FS2104 and FS2105S are different,
->    if we us a stardard control, we need two controls,
->    and register it by checking the device type.
-> so we customize the volume control.
-
-If the different devices have different controls you should just
-register different controls.
-
-> > > +	ret =3D fs210x_set_pcm_volume(fs210x);
-
-> > The driver should use the device defaults rather than having to=20
-
-> The volume contorl can be used to set different volumes,
-> the volume will be masked in fs210x->vol[2],
-> we restore the volume when the driver resumes(reinitializes) the deivce.
-
-You're not just restoring the values on resume, you're also overwriting
-them on probe.
-
-> > > +static void fs210x_sdz_pin_set(struct fs210x_priv *fs210x, bool acti=
-ve)
-> > > +{
-> > > +	if (!fs210x || !fs210x->gpio_sdz)
-> > > +		return;
-
-> > Shouldn't this be integrated with the chip init/reset?
-
-> 1. We implement this function(reset and wait times) to clarify that
->    pulling up/down the SDZ/reset pin must to wait enougth delay time.
-
-That doesn't really answer the question?
-
-> > > +	 * According to the power up/down sequence of FS210x,
-> > > +	 * the FS210x requests the I2S clock has been present
-> > > +	 * and stable(>=3D 2ms) before it playing.
-> > > +	 */
-> > > +	if (fs210x->clk_bclk) {
-> > > +		mutex_lock(&fs210x_mutex);
-> > > +		ret =3D fs210x_dev_play(fs210x);
-> > > +		mutex_unlock(&fs210x_mutex);
-> > > +	} else {
-
-> > This is definitely not appropriate for mute, it should be in the power
-> > management flow - either set_bias_level() or a DAPM widget.
-
-> 1. Because the device uses BCLK clock as the clock source,
->    we need to start the device in the life cycle of the clock,
->    also we need to start device after the PLL setting(set in dai->hw_para=
-ms)
->    so we start the device in here: dai->mute_stream(unmute)
-
-All the power management happens after hw_params(), this isn't an issue.
-
-> 2. If the SOC(s) doesn't have the clock(bclk) for us to configure,
->    It meams no clock bclk defined in the DTS,
->    and the clock is activated in dai->trigger start usually,
->    so we will use a delay work to start the device in here.
-
-> Any good ideas about satisfying this power up/down sequence?
-
-There's not great options here, and you're going to loose the start of
-playback especially with devices that don't start clocking until audio
-starts.  You really need the CPU vendors you're working with to
-implement SND_SOC_DAIFMT_CONT or expose their clocks via the clock API
-but not all hardware is able to do this.  I think given how limited your
-hardware is here you really need something in trigger() or some new
-callback that runs later than that, the delayed work you've got there is
-trying to fudge things to run after trigger.
-
-> > > +	if (!(status & FS210X_05H_AMPS_MASK))
-> > > +		dev_err(fs210x->dev, "Amplifier unready\n");
-
-> > Does this get triggered during the normal start/stop flow?
-
-> It will get triggered when:
-> 1. BCLK clock is closed before stoping device
-> 2. BCLK clock is opened after starting device
-> We should avoid these power up/down sequence, it may cause pop noise,
-> If they happens, it should be reported and fixed?
-
-If they don't happen in normal operation it's fine to have them, the
-concern was that this would be triggered during normal operation as part
-of the startup or shutdown sequence.
-
-> > > +	schedule_delayed_work(&fs210x->fault_check_work,
-> > > +			      msecs_to_jiffies(FS210X_FAULT_CHECK_INTERVAL_MS));
-
-> > Might be good to have this tunable from sysfs.
-
-> Good idea, or set the interval times by the DTS property.
-> We are considering adding a DTS property:
-> foursemi,monitor-period-ms
-
-I suspect the DT people won't like that since it's more of a tuning
-thing.
-
-> > > +static int fs210x_suspend(struct snd_soc_component *cmpnt)
-> > > +{
-> > > +	struct fs210x_priv *fs210x;
-> > > +	int ret;
-> > > +
-> > > +	fs210x =3D snd_soc_component_get_drvdata(cmpnt);
-> > > +	if (!fs210x || !fs210x->dev)
-> > > +		return -EINVAL;
-
-> > > +	cancel_delayed_work_sync(&fs210x->start_work);
-> > > +	cancel_delayed_work_sync(&fs210x->fault_check_work);
-
-> > > +	mutex_lock(&fs210x_mutex);
-
-> > We don't need to prevent new work being scheduled?
-
-> Could you please explain more details to help me understand and test this=
- case?
-
-What if for example playback is starting up at the same time as the
-system enters suspend - the CODEC startup might get run after the
-delayed work is cancelled but before the lock is taken.
-
---/dy0sp4doMeEvLCg
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmhn5ysACgkQJNaLcl1U
-h9DiFAf6A7muddYRG3lx+NR9agOvs68qIJX5nnNGk/wPu/lrWK1Ud+xoyySqmb5S
-6BI3TiGzt4bJxqrA3uhmPo+NnFEqy1SolCfrjknTIfnvn8MKGU6Hs+weFpSnPtHz
-RZ/JBUYIwQDfcjGD0KxnM7AF68WV0sCyWObJ7JdiTjGsOHzkf6sSFau4vKzjPrpC
-S3n0FXXOFDUqOThjb0l0pYo2cKZ5K0kcK258EKNMi/BXu4VH/xSfx09sdAkSBxL+
-sqxD/PKjfMCQwUs+ekOzJOd1R1KNz0lBSIHS+pJxxelKibZLwcbe0x3jFVPQiEmb
-Fteu2kGgWHh4nsj4peVrymTQkIpSTg==
-=kaxR
------END PGP SIGNATURE-----
-
---/dy0sp4doMeEvLCg--
+Best regards,
+Abd-Alrhman Masalkhi
 
