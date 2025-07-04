@@ -1,90 +1,57 @@
-Return-Path: <devicetree+bounces-192898-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-192899-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id AC6CBAF8750
-	for <lists+devicetree@lfdr.de>; Fri,  4 Jul 2025 07:33:37 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 172D4AF875D
+	for <lists+devicetree@lfdr.de>; Fri,  4 Jul 2025 07:41:03 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 9992A567E51
-	for <lists+devicetree@lfdr.de>; Fri,  4 Jul 2025 05:33:26 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id BABEE7B0615
+	for <lists+devicetree@lfdr.de>; Fri,  4 Jul 2025 05:39:37 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 785C31FC104;
-	Fri,  4 Jul 2025 05:33:13 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E1A0A205E02;
+	Fri,  4 Jul 2025 05:40:55 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="I0HMhF3L"
+	dkim=pass (1024-bit key) header.d=yeah.net header.i=@yeah.net header.b="jzxXinBt"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pg1-f173.google.com (mail-pg1-f173.google.com [209.85.215.173])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mail-m16.yeah.net (mail-m16.yeah.net [1.95.21.14])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EFF141F4C8E;
-	Fri,  4 Jul 2025 05:33:10 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.215.173
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E09571F4C8E;
+	Fri,  4 Jul 2025 05:40:52 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=1.95.21.14
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1751607193; cv=none; b=DDdWUhnOH8tV8MNSoitKWZvIxq3ySyT63StSgKaoqYYeFw/Woat5FPX85lQc13mxd2RaxqzXe2lenTO80c1/uf/Fvw/18cLIG3m0JZQ53DPE8+WKg4n7dSCH8o+RGWVf6XrCmSwOLSh999OhcHuX4PANl4MX+3LkbwPX4ppsxYI=
+	t=1751607655; cv=none; b=my52TzwGN1hA3+OSsVswwoiJ8Gy0JRxjJ8ihiGx95oZRpMEZiAZCdGBom0xlR6FCAJDwdE5Et07J7mtRarvrCzeAb2MQV583pyIgkQRZyflvTBF4RDCs9Q3sQ6AD5d5Xn8ucZysiqQSOURdOskB3xWiXTU72+H+MtbHyvvCA9Ks=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1751607193; c=relaxed/simple;
-	bh=0O0Jyu0BDk1FKc0g99/EdYNFTiby1PgO4mCRC3uoNHY=;
+	s=arc-20240116; t=1751607655; c=relaxed/simple;
+	bh=qbtQlW7BbK/du6tBndcVg6FtocuvDFKfNSqM2W685Lo=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=RZ7/fjtPAAepHWvYLH21RG3FMI2WSS7OumqtZ293ZPm2H7ULDLsg5QI+C7ii2hCixOvp1FcSTvPsLlBOD6+RdymaG52vS504KzMsJb1wJBJPsve7f7sPLiqzibXbGoM1y2tSt39zhrJMzSfy9l1HwVDewuEw2PfB6r/OYCefwd4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=I0HMhF3L; arc=none smtp.client-ip=209.85.215.173
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-pg1-f173.google.com with SMTP id 41be03b00d2f7-b26f7d2c1f1so825635a12.0;
-        Thu, 03 Jul 2025 22:33:10 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1751607190; x=1752211990; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=ejt8F/jG6bpSz1vmmfKxJnYrV0UQOG6l/egw1qFjuDs=;
-        b=I0HMhF3L8kunr5mTu3k1sI2HN778L2uuKM2BXbZwIoG59aQJSGHGGIBLS5m0gTd/8l
-         AStRiFuJAN1etEs2+sTspNzb8fDXq35KT7kLLApDErfZQiBTDICHjt6/QSWrbuieQ1S/
-         P+FoLpI5KgozKdtZ24sqaXegCRDAkNE6yokSv83KOSqJbdvs6X97DRbctKVqZb1UA+YC
-         sYLVnxR8oj+yPvVgi/y+F5iagyok/apKc14Ce3+h2jzby/0e+tEW0qOk03REMhOkJi7m
-         0hFwr5rGcoYKLZPAPFF+MiMvEo+9BEyN7csm/ngAr81Tshgo0Z5wXybfDvByKt5Ukm0Z
-         i3CQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1751607190; x=1752211990;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=ejt8F/jG6bpSz1vmmfKxJnYrV0UQOG6l/egw1qFjuDs=;
-        b=rWfPGo81RM5zUERGyDWH9gFhDqCxqpj/9VRcI0KkcdrTFd4kqq4KMDhZjNxa+oGj54
-         6zIQGS2zWxinNdD1HhLUmyWK9GvYF7tOIF5NnF/Kvb5JalUt/6mQAI9fhfAvjMKIduOX
-         ucGSDyRcaipMUTutK7nC6XNHPYtwTgUrrrPNndccyBX9dbn7fAFyr9t0CMjJNCcLu0mH
-         Tlpuaw/jLhqf6P8L7DK4SC104g6FIbchfF2KY0WAq2Wgbi/cSMZ6KclX1hAMTFpwhCAK
-         KLOM4IOnMGkrYcbKmlwUXcBEPyCQsTDthXwh+9NqiQz5qq6AXC9OwGFOnRh3rPzfCy2K
-         ur8A==
-X-Forwarded-Encrypted: i=1; AJvYcCVHe+sFgWZ9oPGqIm+rcvWQ4lVjEFxFi7Q/WKywndjavTOv4HWgRgdZP69q5lslBlNm1hf7fgFS/TWp@vger.kernel.org, AJvYcCXbIeYRzrRUQ7al9BCJc6Hykn0AADtU5SAo0zLz4p8srSRxRLhnKPN5/uZS4xtJ5EYpmZkrqEO95XyXlXI=@vger.kernel.org, AJvYcCXuoO67yFdw5UMRBgF0T/oAQ+wIX/SccwRwdVxbCtq78if8CZAmjDzdKY5Wf0Uk3NR/4cmJFlMg6iBIzeX0@vger.kernel.org
-X-Gm-Message-State: AOJu0Yyg4oBlDY1eMfNxE6XR+u57uIS6xWrE4zLDHa5N+8tKIFdjehgD
-	Ys+3Xk/S/KCnI7A4pG/YQfO5HXWU5KY2TNRXP2MDhbROrJLFOVlX0aAt18KA+A==
-X-Gm-Gg: ASbGncvF5fVdg0F+N6Esq5/SSi6jf7M+KMDV2VEg6tjOWOTR+WBnOiTE7pOCeAfmedu
-	BtvGzqiyWTPpzDeeEwQd24u6Xj7F6emz8hRIWEhmg+NS2MSK+33aLr9BluBBwILvQOkN2w1JwXV
-	v8reyW/vY+PvAADPd6HZuncqoAQ/ThjosShnTg6I+0/3rnyyLjBM+FnjR8x4C9py5yJDulm/Hcl
-	VWD74Ct5cV+fcSl/hMjTAL9qkbM4QusUkAJ6FqGpWMle+J4czboqWryB205FCfxNCAfqd62gb37
-	R0MesVjT4KT8vNFjUXHOmBcQjnfXbg8CssBHAT7n+hNgmlwozzssQt481YetX/w9/yg19dR8LQ=
-	=
-X-Google-Smtp-Source: AGHT+IHIo3bt8SUUJoWUFyFWNKZw20xUxwX84UI64gCV5521klw5BbnY34brDo8xiSeCwodsN3rq1w==
-X-Received: by 2002:a17:903:19cc:b0:234:f580:9ed with SMTP id d9443c01a7336-23c85e18d97mr26485625ad.21.1751607190144;
-        Thu, 03 Jul 2025 22:33:10 -0700 (PDT)
-Received: from google.com ([2620:15c:9d:2:8ddd:816c:9ca2:2a5f])
-        by smtp.gmail.com with ESMTPSA id d9443c01a7336-23c8459e14bsm11636345ad.228.2025.07.03.22.33.09
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 03 Jul 2025 22:33:09 -0700 (PDT)
-Date: Thu, 3 Jul 2025 22:33:07 -0700
-From: Dmitry Torokhov <dmitry.torokhov@gmail.com>
-To: Louis-Alexis Eyraud <louisalexis.eyraud@collabora.com>
-Cc: Matthias Brugger <matthias.bgg@gmail.com>, 
-	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, kernel@collabora.com, 
-	linux-input@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	linux-arm-kernel@lists.infradead.org, linux-mediatek@lists.infradead.org, devicetree@vger.kernel.org
-Subject: Re: [PATCH 1/3] Input: mtk-pmic-keys - add support for MT6359 PMIC
- keys
-Message-ID: <vfdsmhfafwmdlbk2n6kibeaiufwkcdf3mbz77kw3w2fy353xgr@tjcmjp7mb6c6>
-References: <20250703-add-mt6359-pmic-keys-support-v1-0-21a4d2774e34@collabora.com>
- <20250703-add-mt6359-pmic-keys-support-v1-1-21a4d2774e34@collabora.com>
+	 Content-Type:Content-Disposition:In-Reply-To; b=PZjYygOH5/ePxnVHXc1wNZEdy++rM75JydzwKg+eZFy5ICtj2J8/dlezqj1ynixoZZoRFc9FI8L7huQAc2cA2EulatEghX3/Jxuiheau9t1LOi5C39g73IpuC/rk8vndNS1KGJAEYVoIEfk30WH3imvCzyYpazTq2RW/J4XgmcM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=yeah.net; spf=pass smtp.mailfrom=yeah.net; dkim=pass (1024-bit key) header.d=yeah.net header.i=@yeah.net header.b=jzxXinBt; arc=none smtp.client-ip=1.95.21.14
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=yeah.net
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=yeah.net
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=yeah.net;
+	s=s110527; h=Date:From:To:Subject:Message-ID:MIME-Version:
+	Content-Type; bh=hpZwSMsikkY5e1IDRF7CovSvRYahYoXectdVPFTib54=;
+	b=jzxXinBt44+BQ1jBtQTOSzsNVzdNfH7+Wh7Ibe1IBG1KpMpck/x+K5pTgSWmrF
+	Q+x+dvGN1ZOVr3a4vQjexja4jFkhXciEmxPPGx3loNuwvUcjwORVXvcQt8pw3YOB
+	M3xekiMNOtoNc9LucooJg4K8NO6XMHCLc0DovTDBkdnOc=
+Received: from dragon (unknown [])
+	by gzsmtp1 (Coremail) with SMTP id Mc8vCgD3f_QvaWdonnQKAA--.22224S3;
+	Fri, 04 Jul 2025 13:40:01 +0800 (CST)
+Date: Fri, 4 Jul 2025 13:39:59 +0800
+From: Shawn Guo <shawnguo2@yeah.net>
+To: Shengjiu Wang <shengjiu.wang@nxp.com>
+Cc: robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
+	shawnguo@kernel.org, s.hauer@pengutronix.de, kernel@pengutronix.de,
+	festevam@gmail.com, devicetree@vger.kernel.org, imx@lists.linux.dev,
+	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+	shengjiu.wang@gmail.com
+Subject: Re: [PATCH] arm64: dts: imx8mp-evk: Use fsl-asoc-card to replace
+ simple card
+Message-ID: <aGdpL5MUn58Se99Q@dragon>
+References: <20250617072646.3226865-1-shengjiu.wang@nxp.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -93,15 +60,18 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20250703-add-mt6359-pmic-keys-support-v1-1-21a4d2774e34@collabora.com>
+In-Reply-To: <20250617072646.3226865-1-shengjiu.wang@nxp.com>
+X-CM-TRANSID:Mc8vCgD3f_QvaWdonnQKAA--.22224S3
+X-Coremail-Antispam: 1Uf129KBjDUn29KB7ZKAUJUUUUU529EdanIXcx71UUUUU7v73
+	VFW2AGmfu7bjvjm3AaLaJ3UbIYCTnIWIevJa73UjIFyTuYvjxUzgAwUUUUU
+X-CM-SenderInfo: pvkd40hjxrjqh1hdxhhqhw/1tbiNRFav2hnaTEUAQAA3D
 
-On Thu, Jul 03, 2025 at 05:41:03PM +0200, Louis-Alexis Eyraud wrote:
-> Add PMIC key support on MT6359 SoC.
+On Tue, Jun 17, 2025 at 03:26:46PM +0800, Shengjiu Wang wrote:
+> In order to support Asynchronous Sample Rate Converter (ASRC), switch to
+> fsl-asoc-card driver for the wm8960 sound card.
 > 
-> Signed-off-by: Louis-Alexis Eyraud <louisalexis.eyraud@collabora.com>
+> Signed-off-by: Shengjiu Wang <shengjiu.wang@nxp.com>
 
-Applied, thank you.
+Applied, thanks!
 
--- 
-Dmitry
 
