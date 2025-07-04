@@ -1,509 +1,150 @@
-Return-Path: <devicetree+bounces-193112-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-193111-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3D7F2AF952D
-	for <lists+devicetree@lfdr.de>; Fri,  4 Jul 2025 16:14:27 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 731FDAF9528
+	for <lists+devicetree@lfdr.de>; Fri,  4 Jul 2025 16:13:51 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 96EE516D3F8
-	for <lists+devicetree@lfdr.de>; Fri,  4 Jul 2025 14:14:27 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id DB3A51895773
+	for <lists+devicetree@lfdr.de>; Fri,  4 Jul 2025 14:14:07 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id AE326194A60;
-	Fri,  4 Jul 2025 14:14:14 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4B56E19AD5C;
+	Fri,  4 Jul 2025 14:13:37 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=wanadoo.fr header.i=@wanadoo.fr header.b="WspZ3CFv"
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="PeyDfwkY"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.smtpout.orange.fr (smtp-66.smtpout.orange.fr [80.12.242.66])
-	(using TLSv1.2 with cipher AES128-GCM-SHA256 (128/128 bits))
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A98E019005E;
-	Fri,  4 Jul 2025 14:14:08 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=80.12.242.66
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9D29317AE11
+	for <devicetree@vger.kernel.org>; Fri,  4 Jul 2025 14:13:35 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1751638454; cv=none; b=tGZO6I2UHc/pcehq0BXWEuGxdGWSIf+MBZXkZWuUAzLprIUXj5Cn4UVzImwhS4v7ReQFhowJ463xXWWVgFFUXMqDoSbYhiRWT8viHxwxtOJPcWXYpxhRANg9jesQJSXuyI7cFrzRMd9PgMnkCRGxleHsXRFGNVWe26dXXEPSydo=
+	t=1751638417; cv=none; b=WPF5pri2hhV1KcGe+6HNAB2O7yL4j/Dogpc5yGXGOUv+l78N/FHhXr+ODAByUF7BEp+9X/Z6ahZU+//Cj18yMon5UBHuixw9Ov0Re+78EnvFz7bKu9P6j5mnj6fjRodV2rFrdwMrc+SzkMuWbjlMX1GX3l/mjbktErgmyheuBck=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1751638454; c=relaxed/simple;
-	bh=+u2GpgGOhEl75nJxq3dmrduoPbHAFjg00Tgzqi123wM=;
-	h=Message-ID:Date:MIME-Version:Subject:References:From:To:Cc:
-	 In-Reply-To:Content-Type; b=CxGS+XZbofAp4wTn5g6n4iuJxJAiwXp2vm+hu/I6r3XeG4sY/S82ambTj2LDs+arQqu5gPGuVZbtuLcba2rJCLCFYupd5s4V7cMd302EYOaPf4ULWuSVZ0VrUrkVc6FvDTcWx3V5pnB4Dae1LHLUyC7JIaNaXqkk3igNn/KMwb0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=wanadoo.fr; spf=pass smtp.mailfrom=wanadoo.fr; dkim=pass (2048-bit key) header.d=wanadoo.fr header.i=@wanadoo.fr header.b=WspZ3CFv; arc=none smtp.client-ip=80.12.242.66
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=wanadoo.fr
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=wanadoo.fr
-Received: from [IPV6:2a01:cb10:785:b00:8347:f260:7456:7662]
- ([IPv6:2a01:cb10:785:b00:8347:f260:7456:7662])
-	by smtp.orange.fr with ESMTPA
-	id Xh9tu0aMm2WitXh9tu0wY2; Fri, 04 Jul 2025 16:12:59 +0200
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=wanadoo.fr;
-	s=t20230301; t=1751638379;
-	bh=X6qAouzWloI4EGNQY3Oegqlye+V7PfXpkR1f2hKTYXQ=;
-	h=Message-ID:Date:MIME-Version:Subject:From:To;
-	b=WspZ3CFvM4C4xfg8r2lyEW+vkMIlfXef7JRzzLTzxyPeTyxCXUEyO2y5ISqtvLXZf
-	 g7tKwCwZ49XEXRbj5T3xHbAQJSr+l/FjqZ2cCUjCB4nlAuGzTQXh9ApbpKKqhO/SlM
-	 Sckqq+cmp153hFSyuk66uikpiaGpLeXmDF6qaODJAkTbvtZ9Tz0IY21LcWEvi8eEZM
-	 taVFO/QQ15+Yk8SG6ywQaPpI15bBW2vEA10UyeDOl0q8ZsVWVL0ui6SwDMcOQxIWRE
-	 ctWgtdX/cGGsNL2OXnnLT+lkTxim11xgpVCBW79Fiz6TjdWAS8jC93Mr0Cw7g1DLMn
-	 FNGAJI/k32FQQ==
-X-ME-Helo: [IPV6:2a01:cb10:785:b00:8347:f260:7456:7662]
-X-ME-Auth: bWFyaW9uLmphaWxsZXRAd2FuYWRvby5mcg==
-X-ME-Date: Fri, 04 Jul 2025 16:12:59 +0200
-X-ME-IP: 2a01:cb10:785:b00:8347:f260:7456:7662
-Message-ID: <f14dfb9a-caf7-4889-a892-6fd61a9a5ecd@wanadoo.fr>
-Date: Fri, 4 Jul 2025 16:12:56 +0200
+	s=arc-20240116; t=1751638417; c=relaxed/simple;
+	bh=uVBajTT2lSvw+Ur1hq0WlQKfumsobw7ctdnObFVhF5M=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=sEtynwZU0AbtZCzdbeSaVOHu/67+h5PwjOEVzY2Ryl6uSSOrtWxzaLmNKhrZ2gUxls0ecBW4xxj5Yg2rv6pcmiXwaKZOojv60HiwdOAAR++3BlDwIbNuPPrYK4EkJ5bQ8Ss6DA/kQXOSMMrqY2VdQwHhoT2DUz/pCsoOQv8c3jc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=PeyDfwkY; arc=none smtp.client-ip=205.220.168.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
+Received: from pps.filterd (m0279866.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 5648NsR0029446
+	for <devicetree@vger.kernel.org>; Fri, 4 Jul 2025 14:13:35 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+	cc:content-type:date:from:in-reply-to:message-id:mime-version
+	:references:subject:to; s=qcppdkim1; bh=YD7pRGBpQkYgS0oJMpIrXcLP
+	EFNPQFjZEJbaEoDadqo=; b=PeyDfwkY5pNipDMJLyYuhrfBfNdPTq+52K469xlq
+	5AEgLviN4MGDzs3DzMGJv32AvMOr2bfd2UqikCHIdMjfwv7exWdHlZp1hlVTsXWZ
+	t6S0SEle6xMweRqoxr1dvyf4Vv3/q7gO0NHQL4zFAXptQEORwGZbcsrpV0X1r0+9
+	40s04kOXjRNvIrbMwgXioCPR5DN6l6hB49tG0SHNZSpqvyNl6py8yUTSE3JjvBlL
+	ENohqWGpN4Yc0B1RkDray1q9b/Zsws5ojYE50zCIjeHak/rr3UQ17HNvW0nkd99z
+	U5/fre07ag215bQX1myuuHmgoSfFKyQ4cQinMXvhrP9HOg==
+Received: from mail-qk1-f198.google.com (mail-qk1-f198.google.com [209.85.222.198])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 47nh9s5mue-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
+	for <devicetree@vger.kernel.org>; Fri, 04 Jul 2025 14:13:34 +0000 (GMT)
+Received: by mail-qk1-f198.google.com with SMTP id af79cd13be357-7d40f335529so317615285a.0
+        for <devicetree@vger.kernel.org>; Fri, 04 Jul 2025 07:13:34 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1751638413; x=1752243213;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=YD7pRGBpQkYgS0oJMpIrXcLPEFNPQFjZEJbaEoDadqo=;
+        b=qEP+JMizh+J3er9ADyPwh2x0/g6n+rExjNnvzO9+ZmuGWpY+CYlEGejC64rtZkOf/0
+         RQ5ZUrz9njDJ08u9FyAgWi9Vo8F8QhPjvzyewQxwrqXQL4kvIMP7Gno6dv5cyOQVhVXj
+         XFEZUb40CNXhCAMy2BgMUkJZDGFnowTJKYYsPh8OMa7VKuvyi/z5Ibh84Se6Y/8F8po3
+         eZxmW7eAuhxAICo0e8RU850ihGPQxF6knwdVdHUBm/25qY2R9Xfy5eY+Dpsvh1pzqorD
+         ASQFThdJbYw7mA1ZNdw8UtSEP8k8rwlC8mSUatvmRPX2K+kFkRVAawkgj8HlWG42ctY5
+         oaqw==
+X-Forwarded-Encrypted: i=1; AJvYcCUhpuZ1FL48m4TyDT6gO3WkJmetHPOnb+KHPE91QsAlEo3LBDsoxLt1fgPwKeb4i97I74qwXNTYBZH2@vger.kernel.org
+X-Gm-Message-State: AOJu0YzMPiis6eOk6gvJ+HqfnrSlVo3ZaSSH5xCGLqobTweobEFS+wad
+	2up0DzHvlqUkmQICcwPCVv621Quvoh0aIiy7kigRgq0CACsjvGKoVlTLOXnmpkz4SK9QztOxdAx
+	xPO8oYL/G39TizIIve7isVjfzWSZr6a3QEnmYJ5vY0D6sNRhnJDECgbXprjjt0hQV
+X-Gm-Gg: ASbGncu/hf9eiVdFVaa73wc9X+/wsYxCAHPHtuZQJ7Wg89H++m6AtrWNJNndWC7uM7w
+	ZkUSFTyILfHhsRO7pbVgx13NK0bzssYo191A6dunqpeWxfFosX/vRmPCB5o/pfMQnne9BMEaraC
+	o+uOErQxkG/78FjHbO7n9KOZqTQwxunq2soEpbC20Oh09xsy8a/MhC4ovgoLNYfZQSNBvXKB8xx
+	v61cVQ/z73f6BQBhEFDxn+kfMh8YjRvSryFES6jLfA10rPX1r6T39M7z/Gr+QepTg1i++Vy0cTU
+	bVI3/+dskh1ry3iZo9yQcCav6G/H+pq6NoLyZIfLgYbQYGsc8f3bVs0mngDrD9UUBDKRT1tmQJq
+	hC7EoX/0f4/EUOKCXGannnV4aKihSvPBd7DU=
+X-Received: by 2002:a05:620a:1a9d:b0:7d4:4b12:a39c with SMTP id af79cd13be357-7d5dc6b8a4amr450023785a.16.1751638412484;
+        Fri, 04 Jul 2025 07:13:32 -0700 (PDT)
+X-Google-Smtp-Source: AGHT+IEu4sJ6opy4orpQRjMYZ1e4zAyxiuU2Gx/Jb2naX2Aa1H9ZNaTc56q7JfZ9aa/NrAcO8+wGkA==
+X-Received: by 2002:a05:620a:1a9d:b0:7d4:4b12:a39c with SMTP id af79cd13be357-7d5dc6b8a4amr450012485a.16.1751638410869;
+        Fri, 04 Jul 2025 07:13:30 -0700 (PDT)
+Received: from umbar.lan (2001-14ba-a0c3-3a00-264b-feff-fe8b-be8a.rev.dnainternet.fi. [2001:14ba:a0c3:3a00:264b:feff:fe8b:be8a])
+        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-55638494bb0sm261178e87.104.2025.07.04.07.13.29
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 04 Jul 2025 07:13:30 -0700 (PDT)
+Date: Fri, 4 Jul 2025 17:13:28 +0300
+From: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
+To: Luca Weiss <luca.weiss@fairphone.com>
+Cc: Bjorn Andersson <andersson@kernel.org>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Stephen Boyd <sboyd@kernel.org>, Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Konrad Dybcio <konradybcio@kernel.org>,
+        ~postmarketos/upstreaming@lists.sr.ht, phone-devel@vger.kernel.org,
+        linux-arm-msm@vger.kernel.org, linux-clk@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v2 09/11] clk: qcom: Add Graphics Clock controller
+ (GPUCC) driver for Milos
+Message-ID: <22mwkfbddaqrmfnkccn4ogjxdiq5hvbkiieebcbjtyk34ihmov@cnjp7c57ij3k>
+References: <20250704-sm7635-clocks-v2-0-9e47a7c0d47f@fairphone.com>
+ <20250704-sm7635-clocks-v2-9-9e47a7c0d47f@fairphone.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v5 2/3] eeprom: add driver for ST M24LR series RFID/NFC
- EEPROM chips
-References: <20250704123914.11216-1-abd.masalkhi@gmail.com>
- <20250704123914.11216-3-abd.masalkhi@gmail.com>
-Content-Language: en-US, fr-FR
-From: Christophe JAILLET <christophe.jaillet@wanadoo.fr>
-To: abd.masalkhi@gmail.com
-Cc: arnd@arndb.de, conor+dt@kernel.org, devicetree@vger.kernel.org,
- gregkh@linuxfoundation.org, krzk+dt@kernel.org,
- linux-kernel@vger.kernel.org, luoyifan@cmss.chinamobile.com, robh@kernel.org
-In-Reply-To: <20250704123914.11216-3-abd.masalkhi@gmail.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20250704-sm7635-clocks-v2-9-9e47a7c0d47f@fairphone.com>
+X-Authority-Analysis: v=2.4 cv=frrcZE4f c=1 sm=1 tr=0 ts=6867e18e cx=c_pps
+ a=qKBjSQ1v91RyAK45QCPf5w==:117 a=xqWC_Br6kY4A:10 a=kj9zAlcOel0A:10
+ a=Wb1JkmetP80A:10 a=6H0WHjuAAAAA:8 a=EUspDBNiAAAA:8 a=RwypAz-qddAaXUw-r8QA:9
+ a=CjuIK1q_8ugA:10 a=NFOGd7dJGGMPyQGDc5-O:22 a=Soq9LBFxuPC4vsCAQt-j:22
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwNzA0MDEwOCBTYWx0ZWRfX1jDcY33FuI86
+ ZTkgydBtu6BKHGt+KtM9XMYNWTzu7UMAEiUp8WLq9gBknvlm7rsn/Kf23ZRcwp2XFJX3/TR3ERL
+ gupDeCxGgASmJKkhur2rbTUdayDvx+9sM7yr5qomDLJMpvxgrSadSOXJ1aEH8ivfLizLXbzpmrX
+ HhvRWMe7j5YVqCXkeiK5CKyHYqIh8E/u1gchfe+qN43W9Wi+VjOqUbmtPOvqGugrS2Lk9J9+ScY
+ Y7Q3XBZoxBAeXudFinkciYVK8aNYU4ud7W/zUK7jXVEkbgbV18nE74YRGoBir+5wcHZoSQaCNjS
+ rGqrhAnGQDw8iJmvw7GCia7uF1OPRjNSPFY9HEqbmidMVdTgoEqPpBiIfNPWMzRu/BngsemM0Po
+ WWNsPcPLrkj9gANPNAGjMoJ4y0S3Tv3rJbRDJ6OF+yBTdeh0sc9xsRamNJphsDFc2XVbe0Bw
+X-Proofpoint-GUID: J6lSVxeQ-ONJyanm387h_Io6hs7s8AXs
+X-Proofpoint-ORIG-GUID: J6lSVxeQ-ONJyanm387h_Io6hs7s8AXs
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1099,Hydra:6.1.7,FMLib:17.12.80.40
+ definitions=2025-07-04_05,2025-07-04_01,2025-03-28_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ phishscore=0 mlxlogscore=999 bulkscore=0 spamscore=0 adultscore=0
+ impostorscore=0 clxscore=1015 lowpriorityscore=0 suspectscore=0 mlxscore=0
+ priorityscore=1501 malwarescore=0 classifier=spam authscore=0 authtc=n/a
+ authcc= route=outbound adjust=0 reason=mlx scancount=1
+ engine=8.19.0-2505280000 definitions=main-2507040108
 
-Le 04/07/2025 à 14:39, Abd-Alrhman Masalkhi a écrit :
-> adds support for STMicroelectronics M24LRxx devices, which expose
-> two separate I2C addresses: one for system control and one for EEPROM
-> access. The driver implements both a sysfs-based interface for control
-> registers (e.g. UID, password authentication) and an nvmem provider
-> for EEPROM access.
+On Fri, Jul 04, 2025 at 09:17:01AM +0200, Luca Weiss wrote:
+> Add support for the graphics clock controller found on Milos (e.g.
+> SM7635) based devices.
+> 
+> Signed-off-by: Luca Weiss <luca.weiss@fairphone.com>
+> ---
+>  drivers/clk/qcom/Kconfig       |   9 +
+>  drivers/clk/qcom/Makefile      |   1 +
+>  drivers/clk/qcom/gpucc-milos.c | 562 +++++++++++++++++++++++++++++++++++++++++
+>  3 files changed, 572 insertions(+)
+> 
 
-Hi, some nitpicks below, mostly related to types.
+Reviewed-by: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
 
-...
 
-> +#include <linux/i2c.h>
-> +#include <linux/regmap.h>
-> +#include <linux/module.h>
-> +#include <linux/device.h>
-> +#include <linux/of.h>
-> +#include <linux/of_device.h>
-> +#include <linux/nvmem-provider.h>
-
-Sometimes, alphabetical order is preferred.
-
-> +
-> +#define M24LR_WRITE_TIMEOUT	  25u
-> +#define M24LR_READ_TIMEOUT	  (M24LR_WRITE_TIMEOUT)
-
-...
-
-> +/**
-> + * m24lr_regmap_read - read data using regmap with retry on failure
-> + * @regmap:  regmap instance for the device
-> + * @buf:     buffer to store the read data
-> + * @size:    number of bytes to read
-> + * @offset:  starting register address
-> + *
-> + * Attempts to read a block of data from the device with retries and timeout.
-> + * Some M24LR chips may transiently NACK reads (e.g., during internal write
-> + * cycles), so this function retries with a short sleep until the timeout
-> + * expires.
-> + *
-> + * Returns:
-> + *	 Number of bytes read on success,
-> + *	 -ETIMEDOUT if the read fails within the timeout window.
-> + */
-> +static ssize_t m24lr_regmap_read(struct regmap *regmap, u8 *buf,
-> +				 size_t size, unsigned int offset)
-
-Why returning a ssize_t?
-regmap_bulk_read() returns an int.
-
-> +{
-> +	int err;
-> +	unsigned long timeout, read_time;
-> +	ssize_t ret = -ETIMEDOUT;
-> +
-> +	timeout = jiffies + msecs_to_jiffies(M24LR_READ_TIMEOUT);
-> +	do {
-> +		read_time = jiffies;
-> +
-> +		err = regmap_bulk_read(regmap, offset, buf, size);
-> +		if (!err) {
-> +			ret = size;
-> +			break;
-> +		}
-> +
-> +		usleep_range(1000, 2000);
-> +	} while (time_before(read_time, timeout));
-> +
-> +	return ret;
-> +}
-...
-
-> +static ssize_t m24lr_read(struct m24lr *m24lr, u8 *buf, size_t size,
-> +			  unsigned int offset, bool is_eeprom)
-> +{
-> +	struct regmap *regmap;
-> +	long ret;
-
-Why long?
-m24lr_regmap_read() returns a ssize_t. (+ see comment there for why a 
-ssize_t)
-
-(same comment applies to several places)
-
-> +
-> +	if (is_eeprom)
-> +		regmap = m24lr->eeprom_regmap;
-> +	else
-> +		regmap = m24lr->ctl_regmap;
-> +
-> +	mutex_lock(&m24lr->lock);
-> +	ret = m24lr_regmap_read(regmap, buf, size, offset);
-> +	mutex_unlock(&m24lr->lock);
-> +
-> +	return ret;
-> +}
-> +
-> +/**
-> + * m24lr_write - write buffer to M24LR device with page alignment handling
-> + * @m24lr:     pointer to driver context
-> + * @buf:       data buffer to write
-> + * @size:      number of bytes to write
-> + * @offset:    target register address in the device
-> + * @is_eeprom: true if the write should target the EEPROM,
-> + *             false if it should target the system parameters sector.
-> + *
-> + * Writes data to the M24LR device using regmap, split into chunks no larger
-> + * than page_size to respect device-specific write limitations (e.g., page
-> + * size or I2C hold-time concerns). Each chunk is aligned to the page boundary
-> + * defined by page_size.
-> + *
-> + * Returns:
-> + *	 Total number of bytes written on success,
-> + *	 A negative error code if any write fails.
-> + */
-> +static ssize_t m24lr_write(struct m24lr *m24lr, const u8 *buf, size_t size,
-> +			   unsigned int offset, bool is_eeprom)
-> +{
-> +	unsigned int n, next_sector;
-> +	struct regmap *regmap;
-> +	ssize_t ret = 0;
-> +	long err;
-> +
-> +	if (is_eeprom)
-> +		regmap = m24lr->eeprom_regmap;
-> +	else
-> +		regmap = m24lr->ctl_regmap;
-> +
-> +	n = min(size, m24lr->page_size);
-
-min_t()?
-
-> +	next_sector = roundup(offset + 1, m24lr->page_size);
-> +	if (offset + n > next_sector)
-> +		n = next_sector - offset;
-> +
-> +	mutex_lock(&m24lr->lock);
-> +	while (n) {
-> +		err = m24lr_regmap_write(regmap, buf, n, offset);
-> +		if (IS_ERR_VALUE(err)) {
-> +			mutex_unlock(&m24lr->lock);
-> +			if (ret)
-> +				return ret;
-> +			else
-
-Unneeded else.
-
-> +				return err;
-> +		}
-> +
-> +		offset += n;
-> +		size -= n;
-> +		ret += n;
-> +		n = min(size, m24lr->page_size);
-
-min_t()?
-Or change the type of page_size?
-
-> +	}
-> +	mutex_unlock(&m24lr->lock);
-> +
-> +	return ret;
-> +}
-> +
-> +/**
-> + * m24lr_write_pass - Write password to M24LR043-R using secure format
-> + * @m24lr: Pointer to device control structure
-> + * @buf:   Input buffer containing hex-encoded password
-> + * @count: Number of bytes in @buf
-> + * @code:  Operation code to embed between password copies
-> + *
-> + * This function parses a 4-byte password, encodes it in  big-endian format,
-> + * and constructs a 9-byte sequence of the form:
-> + *
-> + *	  [BE(password), code, BE(password)]
-> + *
-> + * The result is written to register 0x0900 (2304), which is the password
-> + * register in M24LR04E-R chip.
-> + *
-> + * Return: Number of bytes written on success, or negative error code on failure
-> + */
-> +static ssize_t m24lr_write_pass(struct m24lr *m24lr, const char *buf,
-> +				size_t count, u8 code)
-> +{
-> +	__be32 be_pass;
-> +	u8 output[9];
-> +	long ret;
-
-long vs ssize_t vs int.
-
-> +	u32 pass;
-> +	int err;
-> +
-> +	if (!count)
-> +		return -EINVAL;
-> +
-> +	if (count > 8)
-> +		return -EINVAL;
-> +
-> +	err = kstrtou32(buf, 16, &pass);
-> +	if (err)
-> +		return err;
-> +
-> +	be_pass = cpu_to_be32(pass);
-> +
-> +	memcpy(output, &be_pass, sizeof(be_pass));
-> +	output[4] = code;
-> +	memcpy(output + 5, &be_pass, sizeof(be_pass));
-> +
-> +	mutex_lock(&m24lr->lock);
-> +	ret = m24lr_regmap_write(m24lr->ctl_regmap, output, 9, 2304);
-> +	mutex_unlock(&m24lr->lock);
-> +
-> +	return ret;
-> +}
-> +
-> +static ssize_t m24lr_read_reg_le(struct m24lr *m24lr, u64 *val,
-> +				 unsigned int reg_addr,
-> +				 unsigned int reg_size)
-> +{
-> +	long ret;
-
-same
-
-> +	__le64 input = 0;
-> +
-> +	ret = m24lr_read(m24lr, (u8 *)&input, reg_size, reg_addr, false);
-> +	if (IS_ERR_VALUE(ret))
-> +		return ret;
-> +
-> +	if (ret != reg_size)
-> +		return -EINVAL;
-> +
-> +	switch (reg_size) {
-> +	case 1:
-> +		*val = *(u8 *)&input;
-> +		break;
-> +	case 2:
-> +		*val = le16_to_cpu((__le16)input);
-> +		break;
-> +	case 4:
-> +		*val = le32_to_cpu((__le32)input);
-> +		break;
-> +	case 8:
-> +		*val = le64_to_cpu((__le64)input);
-> +		break;
-> +	default:
-> +		return -EINVAL;
-> +	};
-> +
-> +	return 0;
-> +}
-> +
-> +static int m24lr_nvmem_read(void *priv, unsigned int offset, void *val,
-> +			    size_t bytes)
-> +{
-> +	struct m24lr *m24lr = priv;
-> +
-> +	if (!bytes)
-> +		return bytes;
-> +
-> +	if (offset + bytes > m24lr->eeprom_size)
-> +		return -EINVAL;
-> +
-> +	return m24lr_read(m24lr, val, bytes, offset, true);
-
-We return an int now?
-
-> +}
-
-...
-
-> +static ssize_t m24lr_ctl_sss_read(struct file *filep, struct kobject *kobj,
-> +				  const struct bin_attribute *attr, char *buf,
-> +				  loff_t offset, size_t count)
-> +{
-> +	struct m24lr *m24lr = attr->private;
-> +
-> +	if (!count)
-> +		return count;
-> +
-> +	if (offset + count > m24lr->sss_len)
-
-Does using size_add() would make sense?
-
-> +		return -EINVAL;
-> +
-> +	return m24lr_read(m24lr, buf, count, offset, false);
-> +}
-> +
-> +static ssize_t m24lr_ctl_sss_write(struct file *filep, struct kobject *kobj,
-> +				   const struct bin_attribute *attr, char *buf,
-> +				   loff_t offset, size_t count)
-> +{
-> +	struct m24lr *m24lr = attr->private;
-> +
-> +	if (!count)
-> +		return -EINVAL;
-> +
-> +	if (offset + count > m24lr->sss_len)
-
-Same
-
-> +		return -EINVAL;
-> +
-> +	return m24lr_write(m24lr, buf, count, offset, false);
-> +}
-> +static BIN_ATTR(sss, 0600, m24lr_ctl_sss_read, m24lr_ctl_sss_write, 0);
-
-...
-
-> +static struct attribute *m24lr_ctl_dev_attrs[] = {
-> +	&dev_attr_unlock.attr,
-> +	&dev_attr_new_pass.attr,
-> +	&dev_attr_uid.attr,
-> +	&dev_attr_total_sectors.attr,
-> +	NULL,
-
-Unneeded trailing ,
-
-> +};
-
-...
-
-> +static int m24lr_probe(struct i2c_client *client)
-> +{
-> +	struct regmap_config eeprom_regmap_conf = {0};
-> +	struct nvmem_config nvmem_conf = {0};
-> +	struct device *dev = &client->dev;
-> +	struct i2c_client *eeprom_client;
-> +	const struct m24lr_chip *chip;
-> +	struct regmap *eeprom_regmap;
-> +	struct nvmem_device *nvmem;
-> +	struct regmap *ctl_regmap;
-> +	struct m24lr *m24lr;
-> +	u32 regs[2];
-> +	long err;
-> +
-> +	if (!i2c_check_functionality(client->adapter, I2C_FUNC_I2C))
-> +		return -EOPNOTSUPP;
-> +
-> +	chip = m24lr_get_chip(dev);
-> +	if (!chip)
-> +		return -ENODEV;
-> +
-> +	m24lr = devm_kzalloc(dev, sizeof(struct m24lr), GFP_KERNEL);
-> +	if (!m24lr)
-> +		return -ENOMEM;
-> +
-> +	err = device_property_read_u32_array(dev, "reg", regs, ARRAY_SIZE(regs));
-> +	if (err) {
-> +		dev_err(dev, "device_property_read_u32_array\n");
-
-return dev_err_probe() maybe?
-
-> +		return err;
-> +	}
-> +	/* Create a second I2C client for the eeprom interface */
-> +	eeprom_client = devm_i2c_new_dummy_device(dev, client->adapter, regs[1]);
-> +	if (IS_ERR(eeprom_client)) {
-> +		dev_err(dev,
-> +			"Failed to create dummy I2C client for the EEPROM\n");
-
-return dev_err_probe() maybe?
-...
-
-> +		return PTR_ERR(eeprom_client);
-> +	}
-> +
-> +	ctl_regmap = devm_regmap_init_i2c(client, &m24lr_ctl_regmap_conf);
-> +	if (IS_ERR(ctl_regmap)) {
-> +		err = PTR_ERR(ctl_regmap);
-> +		dev_err(dev, "Failed to init regmap\n");
-> +		return err;
-> +	}
-> +
-> +	eeprom_regmap_conf.name = "m24lr_eeprom";
-> +	eeprom_regmap_conf.reg_bits = 16;
-> +	eeprom_regmap_conf.val_bits = 8;
-> +	eeprom_regmap_conf.disable_locking = true;
-> +	eeprom_regmap_conf.max_register = chip->eeprom_size - 1;
-> +
-> +	eeprom_regmap = devm_regmap_init_i2c(eeprom_client,
-> +					     &eeprom_regmap_conf);
-> +	if (IS_ERR(eeprom_regmap)) {
-> +		err = PTR_ERR(eeprom_regmap);
-> +		dev_err(dev, "Failed to init regmap\n");
-> +		return err;
-> +	}
-> +
-> +	mutex_init(&m24lr->lock);
-> +	m24lr->sss_len = chip->sss_len;
-> +	m24lr->page_size = chip->page_size;
-> +	m24lr->eeprom_size = chip->eeprom_size;
-> +	m24lr->eeprom_regmap = eeprom_regmap;
-> +	m24lr->ctl_regmap = ctl_regmap;
-> +
-> +	nvmem_conf.dev = &eeprom_client->dev;
-> +	nvmem_conf.owner = THIS_MODULE;
-> +	nvmem_conf.type = NVMEM_TYPE_EEPROM;
-> +	nvmem_conf.reg_read = m24lr_nvmem_read;
-> +	nvmem_conf.reg_write = m24lr_nvmem_write;
-> +	nvmem_conf.size = chip->eeprom_size;
-> +	nvmem_conf.word_size = 1;
-> +	nvmem_conf.stride = 1;
-> +	nvmem_conf.priv = m24lr;
-> +
-> +	nvmem = devm_nvmem_register(dev, &nvmem_conf);
-> +	if (IS_ERR(nvmem))
-> +		return PTR_ERR(nvmem);
-> +
-> +	i2c_set_clientdata(client, m24lr);
-> +	i2c_set_clientdata(eeprom_client, m24lr);
-> +
-> +	bin_attr_sss.size = chip->sss_len;
-> +	bin_attr_sss.private = m24lr;
-> +	err = sysfs_create_bin_file(&dev->kobj, &bin_attr_sss);
-> +	if (err)
-> +		return err;
-> +
-> +	/* test by reading the uid, if success store it */
-> +	err = m24lr_read_reg_le(m24lr, &m24lr->uid, 2324, sizeof(m24lr->uid));
-> +	if (IS_ERR_VALUE(err))
-
-Missing sysfs_remove_bin_file() or error handling pah?
-
-> +		return -ENODEV;
-> +
-> +	return 0;
-> +}
-
-...
-
-CJ
-
+-- 
+With best wishes
+Dmitry
 
