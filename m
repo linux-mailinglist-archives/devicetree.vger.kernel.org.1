@@ -1,143 +1,142 @@
-Return-Path: <devicetree+bounces-193172-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-193173-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8E342AF9986
-	for <lists+devicetree@lfdr.de>; Fri,  4 Jul 2025 19:14:20 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 61BC0AF9991
+	for <lists+devicetree@lfdr.de>; Fri,  4 Jul 2025 19:20:18 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 333544886C8
-	for <lists+devicetree@lfdr.de>; Fri,  4 Jul 2025 17:13:54 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id EAECC4A020E
+	for <lists+devicetree@lfdr.de>; Fri,  4 Jul 2025 17:19:51 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C36AF2D8361;
-	Fri,  4 Jul 2025 17:14:18 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 22F54150997;
+	Fri,  4 Jul 2025 17:20:15 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="KWDkUUao"
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="Y8Lixg3w"
 X-Original-To: devicetree@vger.kernel.org
-Received: from bali.collaboradmins.com (bali.collaboradmins.com [148.251.105.195])
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7E3842D59E1;
-	Fri,  4 Jul 2025 17:14:16 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=148.251.105.195
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 920C12E3707
+	for <devicetree@vger.kernel.org>; Fri,  4 Jul 2025 17:20:13 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1751649258; cv=none; b=hPqi0PqT+IUCrshWfnGLJGfvGwzhbospzb550mMk2Pv+VoW/ESd5GxZMj5etHwSOVUmGSluJxzzGI02Tbcn5btIsQROTVhnm3U66MejYfB4Ty2nz4VfJ3/e1zAr60CpiuHSCMZBMiK4ekRpBANyQ3aagkDDTGLYKGlRFhFbjxq0=
+	t=1751649615; cv=none; b=VTbj9+WkouEYvIdEe+O67o7n8ciVWnTFph/FYTbMP2obH7tskL6VPT5BK8FUGvR2JExY+bvVx+ktAVF3O0jtO4fICZJHKHg5VIX48PiYzjvTqws0y8Vaqu+N9a+GVNxTbIUZ9CApQQ2VXr7LCalQYw/Rwm1axrLpZYxuDjQa4tQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1751649258; c=relaxed/simple;
-	bh=S8cWKIiwtDiSfStJh84KCei6d3DwGM2GwUkVOE4faQo=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:To:Cc; b=Z8aztsvLWWnhvC1GdRrCRl39M+55+IP3ZdoY79QA10ypA0Bs+Qv8Xqh9EtT38OEu335mWF699kbr6hDKQxIX/pmlP7HSjCmrIlzU2E+NSEzgft8ClhSRMpdPSgWI8oINB8y7F2z2cvR0VLIVjBIo9lyQ6up9vBQGA1denH0QUQE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b=KWDkUUao; arc=none smtp.client-ip=148.251.105.195
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-	s=mail; t=1751649254;
-	bh=S8cWKIiwtDiSfStJh84KCei6d3DwGM2GwUkVOE4faQo=;
-	h=From:Date:Subject:To:Cc:From;
-	b=KWDkUUaoYN5CRfFZTT0YTXnnnEB67PNOS49ze/RoxK2MOpu2GIqsGC51CPfCScOQp
-	 F1da3abN0+7q7KS+1jti0WYgANv+bom883yz9AN/RxV5sgRzrMgKeEdRAPJqTdhSMD
-	 Roht7RWoTZrdIMj8W+Q5mLTPXAPv6+NMDghupC6Rh2gJiiG9yoZ00laB98vtWBawuf
-	 z3vzpz5Iv9sAqRPoUb9UK6qOhDtaMleOppXfUvPp8Ulmv5EJhF3O+aTlQMFj4IUFyC
-	 7c401ccgr0l//zJOOjLAIhJBg+zAYYreTsYw1VN7Hbjy2Hmp45gq/GsLRBqmZ9LIcj
-	 hy20ndBaFDmkw==
-Received: from jupiter.universe (dyndsl-091-248-191-229.ewe-ip-backbone.de [91.248.191.229])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
-	(No client certificate requested)
-	(Authenticated sender: sre)
-	by bali.collaboradmins.com (Postfix) with ESMTPSA id 7161A17E0202;
-	Fri,  4 Jul 2025 19:14:14 +0200 (CEST)
-Received: by jupiter.universe (Postfix, from userid 1000)
-	id 19F71480039; Fri, 04 Jul 2025 19:14:14 +0200 (CEST)
-From: Sebastian Reichel <sebastian.reichel@collabora.com>
-Date: Fri, 04 Jul 2025 19:14:14 +0200
-Subject: [PATCH] arm64: dts: rockchip: Enable HDMI receiver on RK3588 EVB1
+	s=arc-20240116; t=1751649615; c=relaxed/simple;
+	bh=Y+afNfEnr7ionJG6zDs8nJQjqBSEAWpeDKXJjf/L870=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=p3SOvQF8Kz5VWWuhqFznlqFWCCs+VMTJTDFvXgzXn7/ym3t77hCFQ8Xf2S6SrL0PF64SyiOp4Gi8XKuHqgqMiUrVPdvVkmwoWQKvR/b42RZQt9ERxzwakt4TknyxQmY+8asGhUSfKroklezHsz+8Tbfrltox/azE1I2iAva/ssQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=Y8Lixg3w; arc=none smtp.client-ip=205.220.168.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
+Received: from pps.filterd (m0279866.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 5649DUA8016525
+	for <devicetree@vger.kernel.org>; Fri, 4 Jul 2025 17:20:12 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+	cc:content-type:date:from:in-reply-to:message-id:mime-version
+	:references:subject:to; s=qcppdkim1; bh=K6S1+P0U6oPDZ1RZYx8X/1jb
+	24SS1+osCF5MwjAfyHU=; b=Y8Lixg3w1CDKjxNMA/MgzrwXdW5HrWLeWAsbYsO9
+	zQtdH9+ueb7JE8jCTTW1uA40jsbWnSK1jY9B0wVnauar+b9cfqJ3NA4ZhnHE2I9H
+	69k9m7ykwed/WWc4m5G1uM5SymKIpsav+65DjNnWJf4Sakb279K57vurjJslmKDi
+	I9K4rq47y7VMKN5ra6MyoSiuesh1YRggXa4BIqYv9acVT1Vf6Xly91WnRTRoKtHO
+	5QnHCh0F25FEiMSKXx+nfcMBq6URkRmjQH7K/DGSL+UNi2q/PXLn3yaSB95MDdcm
+	zrri+QL8ajsVBy7XrQz8BUw1D1T8mRG/oTHkv9ER6iDN/g==
+Received: from mail-qk1-f197.google.com (mail-qk1-f197.google.com [209.85.222.197])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 47nh9s6108-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
+	for <devicetree@vger.kernel.org>; Fri, 04 Jul 2025 17:20:12 +0000 (GMT)
+Received: by mail-qk1-f197.google.com with SMTP id af79cd13be357-7d0aa9cdecdso83289885a.3
+        for <devicetree@vger.kernel.org>; Fri, 04 Jul 2025 10:20:12 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1751649611; x=1752254411;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=K6S1+P0U6oPDZ1RZYx8X/1jb24SS1+osCF5MwjAfyHU=;
+        b=vzyRG1GchVh8JZX4rod+sXPKo3eyIyOxg30QP1LvCcUYNBgW3ElqIcQI6279V0NJr6
+         x7UUR8U4HCxAy0ogDeNFeuC+0E3hfu3ZxIqki+dz3Ikt34dn+fDSFQH3JpnKsX4b6U1/
+         92QtPLuf5BtNOL4SsiwJRrY75mDCvxU6qM4hoi/h+5sU3fIzPvYD7kgwHaAzUG+S3JBx
+         Y9PE8Prtkm7iTzJOrP3VXqrZRpnqiT1q1qG+rVYNmg1+oxtFJaoOI4sD6n51vdsfgM+h
+         leeXIoU/CkJurjsLzsXZRfo7rWIrwHzsGdFO/gvcSkhTRh+EtFGuwx+PyWsRBVWXvvG0
+         YULg==
+X-Forwarded-Encrypted: i=1; AJvYcCWvtOIW4bQA3/pTZQ9K4wZ/u/RCpNyhLO74nwLtVW9PRO00+LQr0S3Hqv09pQtHgJJxhDE9uY6+zfU9@vger.kernel.org
+X-Gm-Message-State: AOJu0YwM4NVE4SePkb2JCLTAQnxcKtbtrRS3ffjVm516WaPeRIdjwtrO
+	AIxyf1nLg+2QTholb/C2kdnAObK1kfvwhap9DeixQOieFASzqmRflmj80QQ6QZmJfAM1zfc/j3I
+	XrS+Za4MHNdZgW9XM+WjJe4Qb2ZHp89yJUyJdIfI7ROnKlbN/HSk2j/I1m6SLhSE7
+X-Gm-Gg: ASbGncukKOjLFmUg9OELSRBI66SI8uh/1EFAKQaOamvZIuiJLdPaUr3Y4f+fmpkoZ+4
+	AYjdH9U2FEntbBv2h41cjGCs/z9kCJ3vmV0wSrNoG+oMVQAp+An3I5wAPpyXYpwcM6pXztn2rtF
+	rtPbQSwx0dGfPG8dGlwUlLtfp4p8NFFOEPdqQGqQj/IcEPM6ktaSoh1DlAJMqN8jbRqaJesAXn5
+	xaz6Jq3g6WVhtkEAhgv35kTfc+6yt8OeRR0/ZaHLVyHih9duMx4lDHXnWS8Z/d4vCmbxhKjvYyS
+	umNTga6hL6bOVkkPPlZHXOYSmWYL6h4bj7zQtaUVMwg7yDmEZ0yhmrAicJfvMwHt3ExhqaX8Bva
+	W2+fUhJr3MeORjzmvpljQMkYmfdnffggk+h8=
+X-Received: by 2002:a05:620a:1a9e:b0:7d5:c2ba:bd4c with SMTP id af79cd13be357-7d5df16189cmr323256285a.27.1751649610673;
+        Fri, 04 Jul 2025 10:20:10 -0700 (PDT)
+X-Google-Smtp-Source: AGHT+IFo/MlCYNc+2uOnhzse2QKjigyvirO7UV8XPRf1Nz4++jIkIKFLOYbvO9lLcaeerpkVmk5Ukw==
+X-Received: by 2002:a05:620a:1a9e:b0:7d5:c2ba:bd4c with SMTP id af79cd13be357-7d5df16189cmr323253185a.27.1751649610205;
+        Fri, 04 Jul 2025 10:20:10 -0700 (PDT)
+Received: from umbar.lan (2001-14ba-a0c3-3a00-264b-feff-fe8b-be8a.rev.dnainternet.fi. [2001:14ba:a0c3:3a00:264b:feff:fe8b:be8a])
+        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-556383bb3fdsm307083e87.44.2025.07.04.10.20.07
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 04 Jul 2025 10:20:09 -0700 (PDT)
+Date: Fri, 4 Jul 2025 20:20:06 +0300
+From: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
+To: Gaurav Kohli <quic_gkohli@quicinc.com>
+Cc: amitk@kernel.org, daniel.lezcano@linaro.org, rui.zhang@intel.com,
+        lukasz.luba@arm.com, robh@kernel.org, krzk+dt@kernel.org,
+        andersson@kernel.org, konradybcio@kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-arm-msm@vger.kernel.org, quic_manafm@quicinc.com
+Subject: Re: [PATCH v6 2/2] arm64: dts: qcom: qcs615: Enable TSENS support
+ for QCS615 SoC
+Message-ID: <zuczd27utiu562fexg2oemgydcbe3fs22mjeb26xiocreqlncy@5nqhixgcdhdm>
+References: <20250702082311.4123461-1-quic_gkohli@quicinc.com>
+ <20250702082311.4123461-3-quic_gkohli@quicinc.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20250704-rk3588-evb1-hdmi-rx-v1-1-248315c36ccd@kernel.org>
-X-B4-Tracking: v=1; b=H4sIAOULaGgC/x3MSwqAMAwA0atI1gZStVi9irhQm2oQP6Qggnh3i
- 8u3mHkgsgpHaLMHlC+JcuwJJs9gWoZ9ZhSfDAUVlmqqUNfSOod8jQYXvwnqjda4sjHUEFGAVJ7
- KQe7/2vXv+wG/4P39ZQAAAA==
-X-Change-ID: 20250704-rk3588-evb1-hdmi-rx-51839109000f
-To: Heiko Stuebner <heiko@sntech.de>
-Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, devicetree@vger.kernel.org, 
- linux-arm-kernel@lists.infradead.org, linux-rockchip@lists.infradead.org, 
- linux-kernel@vger.kernel.org, 
- Sebastian Reichel <sebastian.reichel@collabora.com>
-X-Mailer: b4 0.14.2
-X-Developer-Signature: v=1; a=openpgp-sha256; l=1392; i=sre@kernel.org;
- h=from:subject:message-id; bh=S8cWKIiwtDiSfStJh84KCei6d3DwGM2GwUkVOE4faQo=;
- b=owJ4nAFtApL9kA0DAAoB2O7X88g7+poByyZiAGhoC+Ynu96nCSNsKxpenn4F4N4nZhIray6ew
- sopv3oLcmldc4kCMwQAAQoAHRYhBO9mDQdGP4tyanlUE9ju1/PIO/qaBQJoaAvmAAoJENju1/PI
- O/qa3gcP/0pAVYqWKnbMQo58dsFsLmzMm+rZ72RwyO8pvHgKJYwDUuibJYQSMwAI12W//vIOQ8S
- p6KZ4YmF7BClcHA/2cJiIk8Q3WygeLfOxxKjry6LEFOHjqy7Vn0jd7VNXZMbkX77LAdWAmf5kfx
- mxGLyjZYTTgS5CHmVi2NVw14gdZxmB9esDEk8SrIY2ycV1fntN5MiNFjnoTW/uQuxaCWaydbqCF
- W91WhRcOmdUozfmD7ybDOUKUMeRYRQBNZPHNDPGyYxQv8WPCWO5yvZ1BO0xO4VJWxkcEjcrBv3R
- BtxMDzAlrkusn71xdJ1hLCMhLVT0kUBGQlB/6ONIM17NFattTZ+pEo9CD78m4Fd+XigeE6X1Lvn
- OX6jhcFIt9th7c9n97je48RiKodHBJWZRcwOPIs7PheGVkYiq7zJAgoMAoWo/W9ZMkt/S29xz2t
- niKYxym7MgwzzKR+bREw9LGaIaNqADBmVeDh/vVZKFerZNdVwsFs/bfhI8UhQbuENmGfUBc2tT8
- gzfjdpcWb1fCmmLeI/BHAd+jEsNadaUjZHELSAAbou1DUNf8oqyaqQZ8GqvEHVipUCZwc6GzDZ1
- 8vRFAXLbgBYF3igUVZ6tX9dMdGSSr0Zb99AlM25zr2V9WA5/+v4yeVFmOCqmRLu+Qnkqqy4c3Ba
- LWGGlvGbb4XH7C0LXrk8fCA==
-X-Developer-Key: i=sre@kernel.org; a=openpgp;
- fpr=EF660D07463F8B726A795413D8EED7F3C83BFA9A
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20250702082311.4123461-3-quic_gkohli@quicinc.com>
+X-Authority-Analysis: v=2.4 cv=frrcZE4f c=1 sm=1 tr=0 ts=68680d4c cx=c_pps
+ a=50t2pK5VMbmlHzFWWp8p/g==:117 a=xqWC_Br6kY4A:10 a=kj9zAlcOel0A:10
+ a=Wb1JkmetP80A:10 a=COk6AnOGAAAA:8 a=EUspDBNiAAAA:8 a=GSS0VzHe2Y3C4L18hMQA:9
+ a=CjuIK1q_8ugA:10 a=IoWCM6iH3mJn3m4BftBB:22 a=TjNXssC_j7lpFel5tvFf:22
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwNzA0MDEzMCBTYWx0ZWRfX6vGiG0prWQMX
+ 09KIblpOm/WQjNOYnXefSrOzkmfv/6Ny0+MHZnNcVz4MqXhfRZTK2cdUlhkvg838if4LApXuUMU
+ PyN7QrI3uRh4PQBEkqziCc00FeinvobgtTCO8UaPr4KQJwRlWb9+fRECNzyZoH1Ij1nfXrYooO+
+ pIy059bZwn1QYpeOkGoLxq/Rj+sdCmLd5PrwObLN7Lq03jZnLsPtEYRZFLpYWmmX3St7Bnp79at
+ tauM0l6fECll6/PntJ9Et6EWKFr7A3702DdWtLd7crf8v6c3plUDJmoe0VVCmzawSbJe591Yh/9
+ NMmqa7vZMW2e/gIlBmHRFkcIY1w6IjkZ/DEqrqMTt0NAfDOfH5jcjrTwGbWGE84yk9SXMutSnYp
+ rvCulXdaTaq0d/RGnMfGqh/QLstYV4hNFfM3LxnT68ocvbvVvqm8p1+BFTkbDbucyoocAAEM
+X-Proofpoint-GUID: iTEpXrzUtRtLXqNluz-L0CW70A9_jvBi
+X-Proofpoint-ORIG-GUID: iTEpXrzUtRtLXqNluz-L0CW70A9_jvBi
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1099,Hydra:6.1.7,FMLib:17.12.80.40
+ definitions=2025-07-04_06,2025-07-04_01,2025-03-28_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ phishscore=0 mlxlogscore=691 bulkscore=0 spamscore=0 adultscore=0
+ impostorscore=0 clxscore=1015 lowpriorityscore=0 suspectscore=0 mlxscore=0
+ priorityscore=1501 malwarescore=0 classifier=spam authscore=0 authtc=n/a
+ authcc= route=outbound adjust=0 reason=mlx scancount=1
+ engine=8.19.0-2505280000 definitions=main-2507040130
 
-Enable HDMI input port of the RK3588 EVB1.
+On Wed, Jul 02, 2025 at 01:53:11PM +0530, Gaurav Kohli wrote:
+> Add TSENS and thermal devicetree node for QCS615 SoC.
+> 
+> Signed-off-by: Gaurav Kohli <quic_gkohli@quicinc.com>
+> ---
+>  arch/arm64/boot/dts/qcom/qcs615.dtsi | 205 +++++++++++++++++++++++++++
+>  1 file changed, 205 insertions(+)
+> 
 
-Signed-off-by: Sebastian Reichel <sebastian.reichel@collabora.com>
----
- arch/arm64/boot/dts/rockchip/rk3588-evb1-v10.dts | 17 +++++++++++++++++
- 1 file changed, 17 insertions(+)
+Reviewed-by: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
 
-diff --git a/arch/arm64/boot/dts/rockchip/rk3588-evb1-v10.dts b/arch/arm64/boot/dts/rockchip/rk3588-evb1-v10.dts
-index 8e912da299a218b61623e6973d2f955504bd44aa..ff1ba5ed56ef5b985c54fa9e1a433fc81f988f8b 100644
---- a/arch/arm64/boot/dts/rockchip/rk3588-evb1-v10.dts
-+++ b/arch/arm64/boot/dts/rockchip/rk3588-evb1-v10.dts
-@@ -391,6 +391,17 @@ hdmi1_out_con: endpoint {
- 	};
- };
- 
-+&hdmi_receiver_cma {
-+	status = "okay";
-+};
-+
-+&hdmi_receiver {
-+	hpd-gpios = <&gpio2 RK_PB5 GPIO_ACTIVE_LOW>;
-+	pinctrl-0 = <&hdmim1_rx_cec &hdmim1_rx_hpdin &hdmim1_rx_scl &hdmim1_rx_sda &hdmirx_hpd>;
-+	pinctrl-names = "default";
-+	status = "okay";
-+};
-+
- &hdptxphy0 {
- 	status = "okay";
- };
-@@ -582,6 +593,12 @@ rtl8211f_rst: rtl8211f-rst {
- 
- 	};
- 
-+	hdmirx {
-+		hdmirx_hpd: hdmirx-5v-detection {
-+			rockchip,pins = <2 RK_PB5 RK_FUNC_GPIO &pcfg_pull_none>;
-+		};
-+	};
-+
- 	hym8563 {
- 		hym8563_int: hym8563-int {
- 			rockchip,pins = <0 RK_PD4 RK_FUNC_GPIO &pcfg_pull_up>;
-
----
-base-commit: e05818ef75bee755fc56811cb54febf4174d7cf2
-change-id: 20250704-rk3588-evb1-hdmi-rx-51839109000f
-
-Best regards,
 -- 
-Sebastian Reichel <sre@kernel.org>
-
+With best wishes
+Dmitry
 
