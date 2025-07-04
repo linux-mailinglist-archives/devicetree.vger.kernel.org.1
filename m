@@ -1,191 +1,188 @@
-Return-Path: <devicetree+bounces-193144-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-193145-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id A3E4EAF9789
-	for <lists+devicetree@lfdr.de>; Fri,  4 Jul 2025 18:05:39 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id A8C3CAF97A6
+	for <lists+devicetree@lfdr.de>; Fri,  4 Jul 2025 18:14:46 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 1D8131CA36DE
-	for <lists+devicetree@lfdr.de>; Fri,  4 Jul 2025 16:05:56 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 425D54A01A1
+	for <lists+devicetree@lfdr.de>; Fri,  4 Jul 2025 16:14:20 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0B94B309A41;
-	Fri,  4 Jul 2025 16:05:35 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D8686326A67;
+	Fri,  4 Jul 2025 16:14:39 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=arndb.de header.i=@arndb.de header.b="R2pFAGxW";
-	dkim=pass (2048-bit key) header.d=messagingengine.com header.i=@messagingengine.com header.b="WUGIH107"
+	dkim=pass (2048-bit key) header.d=tuxon.dev header.i=@tuxon.dev header.b="PaB3f47z"
 X-Original-To: devicetree@vger.kernel.org
-Received: from fhigh-a2-smtp.messagingengine.com (fhigh-a2-smtp.messagingengine.com [103.168.172.153])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-ej1-f54.google.com (mail-ej1-f54.google.com [209.85.218.54])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0541813EFF3;
-	Fri,  4 Jul 2025 16:05:32 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=103.168.172.153
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0D5CF30B9BB
+	for <devicetree@vger.kernel.org>; Fri,  4 Jul 2025 16:14:36 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.54
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1751645134; cv=none; b=RT6Zr41nLpfvqAYFaAVQvrRrH2Ygssl2ao9fJ3d4WHKDX196L4e469hmsm6XGuSARoxJ2ei32EB+aWqdhouR+ofgZaHOWKYf//W6wKWCvwhBQogt1yh1PiTWixEZKihOMoFSCLeNl6MjqYGEzb9Q+f/+RxBBYG4e5Q/4nDDKW9I=
+	t=1751645679; cv=none; b=BSszkcT0/827swPPcbZ0Zozptc7eDVJn2Vu7DmWJyypec1MUk+SnUfe0zQUAsHHh6je3oq65XvxvoX4fKSUMS0tDiCSBSAOXfPgiQKtuP5n+OL4Wsso5SINpI1qRhN/lXTdWqHbFsV8VXGA3Iy8rs2YGn/8MrCoylLNd8/PBPmU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1751645134; c=relaxed/simple;
-	bh=+OYPHK1ZnPZMg6uKHuWwPmQ6Oe8JR3QO0E9b83zeALg=;
-	h=MIME-Version:Date:From:To:Cc:Message-Id:In-Reply-To:References:
-	 Subject:Content-Type; b=DQq9Gi79F86aAtVCANPYb9Ym5suBWLJlg3Gf/kDQrBaR0VVQK/OEg6iEu4OFyGk23Z7zLLXMbaNAhync695phxKsBRIdoCFKBtfa0XWHqJ1LxgP1Otaa6h5KtgfMg7smVKLsFjTCFyNrs/0d+uDrdWxWjBlFyU61zZ05+P8LxlA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arndb.de; spf=pass smtp.mailfrom=arndb.de; dkim=pass (2048-bit key) header.d=arndb.de header.i=@arndb.de header.b=R2pFAGxW; dkim=pass (2048-bit key) header.d=messagingengine.com header.i=@messagingengine.com header.b=WUGIH107; arc=none smtp.client-ip=103.168.172.153
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arndb.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=arndb.de
-Received: from phl-compute-05.internal (phl-compute-05.phl.internal [10.202.2.45])
-	by mailfhigh.phl.internal (Postfix) with ESMTP id 299C914002E6;
-	Fri,  4 Jul 2025 12:05:32 -0400 (EDT)
-Received: from phl-imap-02 ([10.202.2.81])
-  by phl-compute-05.internal (MEProxy); Fri, 04 Jul 2025 12:05:32 -0400
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=arndb.de; h=cc
-	:cc:content-transfer-encoding:content-type:content-type:date
-	:date:from:from:in-reply-to:in-reply-to:message-id:mime-version
-	:references:reply-to:subject:subject:to:to; s=fm1; t=1751645132;
-	 x=1751731532; bh=ye0B8joJLkUfI2iBIiVNnb3bZDrTy3icljur47MpVLc=; b=
-	R2pFAGxWHB+CVPV9OZJnmRWsqG3nhKdEqOGTcKNRMkKnMoM036fON8GXn6uabcjy
-	TBN/MHWftq9wyoMQxtXm+D7z8iS6tZJp7OAePZz65cKX3Dmwc7/Mci/JBTOHfDef
-	re97vnNU8ifHfXqUppw5tlCxvlHTb3fFFqAnCKSpHMdxqLxpLRB26ISesWLhfqQ0
-	VASKIisRksE+n4mJrs5bLSqkKHhD2UHI9UZFcgqNWJh+vvQ7BcnSzRjak1WdLIaZ
-	4KO4fcOsaLhawjtOVPusUnnDNC916t8F3Z9Ft7COf25LGBStqJD7KjB3P3X2S+UF
-	CjARKznyocSs+6uc87Gbcg==
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
-	messagingengine.com; h=cc:cc:content-transfer-encoding
-	:content-type:content-type:date:date:feedback-id:feedback-id
-	:from:from:in-reply-to:in-reply-to:message-id:mime-version
-	:references:reply-to:subject:subject:to:to:x-me-proxy
-	:x-me-sender:x-me-sender:x-sasl-enc; s=fm2; t=1751645132; x=
-	1751731532; bh=ye0B8joJLkUfI2iBIiVNnb3bZDrTy3icljur47MpVLc=; b=W
-	UGIH107UBjHOU4Bu0nQtmZ66iPfAwEoxdM+u52FoQopmi4D4DFvMvNK24G3evbaX
-	R05WrXzLJtac4Yn/lDKzztEhZOZWWqNH8sVfmnoph6Xvuz3ul9jEt5dglUjXCykc
-	N2ko18DEobA9rTfc9drWVA61ue8eVdRlkzsPAsclPvq4fbS/xREc5an8lIHn5Gmp
-	C/wPnZwl7F9G5/7IL+q+SzE+O2AlgmE72MV8+FEBV/aM8hwcCoRKrJKXFxXw5lH0
-	eDaVlCx5tag2iq1CvGshFjmbfe1kOzCi17BsQHLFFC7ux3zbm8tE0RNDGYyOL8MS
-	CMZACfjnN4er0bux3Qaew==
-X-ME-Sender: <xms:y_tnaERDHvuG2Tt-7fqQfifK0JhcCEezF0UBljXsNNa8D9hp3XOUVw>
-    <xme:y_tnaBzY9177SZBSHTvIJ6boVZAEJgyjxVs7qpr2S2TzClIJxD_jN8Fa4_iB5GwxG
-    UNM1U9Y5soUpEu3et4>
-X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgeeffedrtdefgddvfeehlecutefuodetggdotefrod
-    ftvfcurfhrohhfihhlvgemucfhrghsthforghilhdpuffrtefokffrpgfnqfghnecuuegr
-    ihhlohhuthemuceftddtnecusecvtfgvtghiphhivghnthhsucdlqddutddtmdenucfjug
-    hrpefoggffhffvvefkjghfufgtgfesthejredtredttdenucfhrhhomhepfdetrhhnugcu
-    uegvrhhgmhgrnhhnfdcuoegrrhhnugesrghrnhgusgdruggvqeenucggtffrrghtthgvrh
-    hnpefhtdfhvddtfeehudekteeggffghfejgeegteefgffgvedugeduveelvdekhfdvieen
-    ucevlhhushhtvghrufhiiigvpedtnecurfgrrhgrmhepmhgrihhlfhhrohhmpegrrhhnug
-    esrghrnhgusgdruggvpdhnsggprhgtphhtthhopedukedpmhhouggvpehsmhhtphhouhht
-    pdhrtghpthhtoheptggrthgrlhhinhdrmhgrrhhinhgrshesrghrmhdrtghomhdprhgtph
-    htthhopehkrghjvghtrghnrdhpuhgthhgrlhhskhhisegrrhhmrdgtohhmpdhrtghpthht
-    ohepshhuuggvvghprdhhohhllhgrsegrrhhmrdgtohhmpdhrtghpthhtohepghhuohhmih
-    hnrdgthhgvnhestghigihtvggthhdrtghomhdprhgtphhtthhopehlihhhuhgrrdhlihhu
-    segtihigthgvtghhrdgtohhmpdhrtghpthhtoheptghigidqkhgvrhhnvghlqdhuphhsth
-    hrvggrmhestghigihtvggthhdrtghomhdprhgtphhtthhopehgrghrhidrhigrnhhgsegt
-    ihigthgvtghhrdgtohhmpdhrtghpthhtohepphgvthgvrhdrtghhvghnsegtihigthgvtg
-    hhrdgtohhmpdhrtghpthhtohepjhgrshhsihhsihhnghhhsghrrghrsehgmhgrihhlrdgt
-    ohhm
-X-ME-Proxy: <xmx:y_tnaB2E4JRm2dhOmK9_0wW5WXjBI4yLf7QpziI9qi0xvshiu8hNKg>
-    <xmx:y_tnaIC66U_TewYOKGz-dYeh1IxZg_asLWlxTdxpoO7-dercT0kXBQ>
-    <xmx:y_tnaNgsVy7HSYzwPUJToU7TceJ5E5PbRavGZ9VmIqrTzOuc84HEhw>
-    <xmx:y_tnaErEbjV5Xd0NP2kFGmHg-c7Xinn-wkuYf3DF2jz2G60BhPQx-w>
-    <xmx:zPtnaBEBGz8iCLBuiXFxJ19OKmBWDn9wCeTbDHqPsvqTeXH1pfCeqoqT>
-Feedback-ID: i56a14606:Fastmail
-Received: by mailuser.phl.internal (Postfix, from userid 501)
-	id 359A3700068; Fri,  4 Jul 2025 12:05:31 -0400 (EDT)
-X-Mailer: MessagingEngine.com Webmail Interface
+	s=arc-20240116; t=1751645679; c=relaxed/simple;
+	bh=1yDT1jqjeSarkP/ETvqJMjt8SgFkac1TqmvFja6mNy4=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=GfG8Cd48g8mBk2K4U8YsGFaDGn/n3WjglYPYoz5QUpSyGWptJ/cvNW5yUZGaJaxKrySIaZa0No4HpnCxWNS0cvlF7xRTvPRh0+2hzDHMZVo6Jg5Q2dazyETPDyVd43SfNPtU+M2Dr9wsAnQOYKRgwzG6+stlL0XzJ9kwEqiVrZA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=tuxon.dev; spf=pass smtp.mailfrom=tuxon.dev; dkim=pass (2048-bit key) header.d=tuxon.dev header.i=@tuxon.dev header.b=PaB3f47z; arc=none smtp.client-ip=209.85.218.54
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=tuxon.dev
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=tuxon.dev
+Received: by mail-ej1-f54.google.com with SMTP id a640c23a62f3a-ad56cbc7b07so186488866b.0
+        for <devicetree@vger.kernel.org>; Fri, 04 Jul 2025 09:14:36 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=tuxon.dev; s=google; t=1751645675; x=1752250475; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=h6lG/AjsJH9S6BFCzOBiq+0c8U6DQuyEYF2+hQ6MY5k=;
+        b=PaB3f47z/EKi1DWmy68M1PUPn3pYdh8ZvL/IxOgmT8RW5Dn9lPirdKQc0hf7pXU+ZD
+         olZ+8GRYgW9SDs3jitfA7X/LFOXNYwFSCbpB20zSM63rQLEOI7usnfYrx534uDGT81Xb
+         ONqPHSXlz/0zcKQKoVlX1mAhGS6TMsqYsVlnaFTiAC+66JN/IU29XyW2nMBpyR3idmYf
+         QlUxxOyUX2WCAa+YRvhd+HiVIxreDsYjUpOhsaz1mYI4SewihqDQZbu1RrjelkIjnIkk
+         eV0PcFlk/OQ8mju1GZcufKoVl1FcdeN2w06Z+lEmZpqIn8PmBf9IHPwIaZa3dlvONIcE
+         J9bw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1751645675; x=1752250475;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=h6lG/AjsJH9S6BFCzOBiq+0c8U6DQuyEYF2+hQ6MY5k=;
+        b=E2ByJ6uztMIVrVOrVMaKUXki1c3kZZiucaKLRltEUEIJSX6mvNJtxkH3zZPvkxNkEa
+         vSU8DCccbSQ2jveIym8mRJk7fmpSuCFPHEnC217TFcK20rhxiyJl3MRj7Ctm/fkQwpgZ
+         If1/dg7227kIp3zopR1CHOPu7DrlB/UxvB63LNNl7mnTwTVggJt93VkFI+Bs55CZCJ16
+         DYn+IYOfu2VjVPbClVVIZ09ety4RnR2uO+qeEghuiq3e31gNjMjHi7kY4EfF9Sbzjg0E
+         lfbjCP3Ah1JrwTxQzpx3LAm2A5jj0C6mwl7cvo7tdjc47ieF/iHnk1NekdV267f3UpXa
+         /JnA==
+X-Forwarded-Encrypted: i=1; AJvYcCXQLXVnYicM0YcV66ppCnZokLG0ccLXx8g8kIgjE4Aavs7AJA8T7fnqgyGZwwdVS4mZ9eEyX265sUXn@vger.kernel.org
+X-Gm-Message-State: AOJu0YwDgzApmretIUCkuLiHsf4LEwouBok0f9uD1eqGdSTSh/hy1Uo7
+	Apth9r/chFFfLKYVpiscR+zpz840Ghc/iYTZjjJz2rWQ9KKq1aTMN1pk2CC6YpsriYw=
+X-Gm-Gg: ASbGnctevVG8DvDdKzvb4WIaL9IQMPTkNl1n3e/ZFhICWVT0XM4K9DTRlhxuDB8yxk5
+	NiDmaTE/U+GKjJ9DvmHp5ZhUp82vPGr0y/GrdiYSzFIZlxMIuduXP8mtbCeL9WFxHTeExWBcflq
+	uw07HAojxoCHRp6aupo60vBMKFJm5Rj4vCYm8RXD7JrOMc1oxNmQkFveq79hsJVpezWL34fokEH
+	NUiVwRaAQlJbu/Fenp10ziMv/PEb1f6rOuArmsuDwu7XGOIiCLh5g+WwN1RijfSK353AcjX+Pns
+	dn04MjadBBHDFuUlfG0C3b2Hyl1dTjag43sQQ8zau1kw15nASV5mhiOl88vXz02+RCieeFFiia6
+	gM0ovpsOBiL6lFmg=
+X-Google-Smtp-Source: AGHT+IEb528uiNOCOvEavhvPClvCp90Qlmh60cyGaa2Bd5e1NI48LJ+veXRwIR+jYzpAkq2kId7/kw==
+X-Received: by 2002:a17:907:9308:b0:ae3:b371:e7d3 with SMTP id a640c23a62f3a-ae3fe69333emr265030866b.22.1751645675327;
+        Fri, 04 Jul 2025 09:14:35 -0700 (PDT)
+Received: from claudiu-X670E-Pro-RS.. ([82.78.167.83])
+        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-ae3f66d9215sm194703766b.2.2025.07.04.09.14.33
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 04 Jul 2025 09:14:34 -0700 (PDT)
+From: Claudiu <claudiu.beznea@tuxon.dev>
+X-Google-Original-From: Claudiu <claudiu.beznea.uj@bp.renesas.com>
+To: bhelgaas@google.com,
+	lpieralisi@kernel.org,
+	kwilczynski@kernel.org,
+	mani@kernel.org,
+	robh@kernel.org,
+	krzk+dt@kernel.org,
+	conor+dt@kernel.org,
+	geert+renesas@glider.be,
+	magnus.damm@gmail.com,
+	catalin.marinas@arm.com,
+	will@kernel.org,
+	mturquette@baylibre.com,
+	sboyd@kernel.org,
+	p.zabel@pengutronix.de,
+	lizhi.hou@amd.com
+Cc: claudiu.beznea@tuxon.dev,
+	linux-pci@vger.kernel.org,
+	linux-renesas-soc@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	linux-clk@vger.kernel.org,
+	Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>
+Subject: [PATCH v3 0/9] PCI: rzg3s-host: Add PCIe driver for Renesas RZ/G3S SoC
+Date: Fri,  4 Jul 2025 19:14:00 +0300
+Message-ID: <20250704161410.3931884-1-claudiu.beznea.uj@bp.renesas.com>
+X-Mailer: git-send-email 2.43.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-ThreadId: T7a47ae1d7bea40f2
-Date: Fri, 04 Jul 2025 18:04:59 +0200
-From: "Arnd Bergmann" <arnd@arndb.de>
-To: "Peter Chen" <peter.chen@cixtech.com>, "Rob Herring" <robh@kernel.org>,
- krzk+dt@kernel.org, "Conor Dooley" <conor+dt@kernel.org>,
- "Catalin Marinas" <catalin.marinas@arm.com>, "Will Deacon" <will@kernel.org>,
- "Jassi Brar" <jassisinghbrar@gmail.com>
-Cc: linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, cix-kernel-upstream@cixtech.com,
- "Marc Zyngier" <maz@kernel.org>, "Sudeep Holla" <sudeep.holla@arm.com>,
- "Kajetan Puchalski" <kajetan.puchalski@arm.com>,
- "Enric Balletbo" <eballetb@redhat.com>,
- "Guomin Chen" <Guomin.Chen@cixtech.com>, "Gary Yang" <gary.yang@cixtech.com>,
- "Lihua Liu" <Lihua.Liu@cixtech.com>
-Message-Id: <64f39e94-7e88-49d0-8455-cd77d61d4fe2@app.fastmail.com>
-In-Reply-To: <20250609031627.1605851-6-peter.chen@cixtech.com>
-References: <20250609031627.1605851-1-peter.chen@cixtech.com>
- <20250609031627.1605851-6-peter.chen@cixtech.com>
-Subject: Re: [PATCH v9 5/9] mailbox: add CIX mailbox driver
-Content-Type: text/plain
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
 
-On Mon, Jun 9, 2025, at 05:16, Peter Chen wrote:
-> From: Guomin Chen <Guomin.Chen@cixtech.com>
->
-> The CIX mailbox controller, used in the Cix SoCs, like sky1.
-> facilitates message transmission between multiple processors
-> within the SoC, such as the AP, PM, audio DSP, SensorHub MCU,
-> and others.
->
-> Reviewed-by: Peter Chen <peter.chen@cixtech.com>
-> Signed-off-by: Guomin Chen <Guomin.Chen@cixtech.com>
-> Signed-off-by: Gary Yang <gary.yang@cixtech.com>
-> Signed-off-by: Lihua Liu <Lihua.Liu@cixtech.com>
-> Signed-off-by: Peter Chen <peter.chen@cixtech.com>
+From: Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>
 
-This is the only driver holding up the merge of the CIX
-platform, so I had a closer look myself. The driver looks
-well written overall, and I see a lot of details that have
-come up in previous versions are addressed.
+Hi,
 
-The one thing that stuck out to me is the design of
-having multiple types of mailbox in one driver, which
-feels out of scope for a simple mailbox.
+Series adds a PCIe driver for the Renesas RZ/G3S SoC.
+It is split as follows:
+- patch 1/9:		updates the max register offset for RZ/G3S SYSC;
+			this is necessary as the PCIe need to setup the
+			SYSC for proper functioning
+- patch 2/9:		adds clocks and resets support for the PCIe IP
+- patch 3/9:		fix the legacy interrupt request failure
+- patches 4-5/9:	add PCIe support for the RZ/G3S SoC
+- patches 6-9/9:	add device tree support and defconfig flag
 
-> +static int cix_mbox_send_data_reg(struct mbox_chan *chan, void *data)
-> +{
-> +       struct cix_mbox_priv *priv = to_cix_mbox_priv(chan->mbox);
-> +       union cix_mbox_msg_reg_fifo *msg = data;
-> +       u32 len, i;
-> +
-> +       if (!data)
-> +               return -EINVAL;
-> +
-> +       len = mbox_get_msg_size(data);
-> +       for (i = 0; i < len; i++)
-> +               cix_mbox_write(priv, msg->buf[i], REG_MSG(i));
+Please provide your feedback.
 
-In particular, this bit seems to do more than just what I think
-of as a simple mailbox that should have fixed-length messages,
-it feels more like a generic message passing interface between
-device drivers and firmware or some microcontroller.
+Merge strategy, if any:
+- patches 1-2,6-9/9 can go through the Renesas tree
+- patches 3-5/9 can go through the PCI tree
 
-What is the purpose here?
+Thank you,
+Claudiu Beznea
 
-> +static int cix_mbox_send_data(struct mbox_chan *chan, void *data)
-> +{
-...
-> +       switch (cp->type) {
-> +       case CIX_MBOX_TYPE_DB:
-> +               cix_mbox_send_data_db(chan, data);
-> +               break;
-> +       case CIX_MBOX_TYPE_REG:
-> +               cix_mbox_send_data_reg(chan, data);
-> +               break;
-> +       case CIX_MBOX_TYPE_FIFO:
-> +               cix_mbox_send_data_fifo(chan, data);
-> +               break;
-> +       case CIX_MBOX_TYPE_FAST:
-> +               cix_mbox_send_data_fast(chan, data);
-> +               break;
+Changes in v3:
+- added patch "PCI: of_property: Restore the arguments of the next level parent"
+  to fix the legacy interrupt request
+- addressed review comments
+- per-patch changes are described in each individual patch
 
-Similarly, this also exceeds the complexity I would expect
-in a simple controller, it feels like there should either
-be four separate drivers that implement one type of interface,
-or a much higher-level abstraction.
+Changes in v2:
+- dropped "of/irq: Export of_irq_count()" as it is not needed anymore
+  in this version
+- added "arm64: dts: renesas: rzg3s-smarc-som: Update dma-ranges for PCIe"
+  to reflect the board specific memory constraints
+- addressed review comments
+- updated patch "soc: renesas: rz-sysc: Add syscon/regmap support"
+- per-patch changes are described in each individual patch
 
-Is there a document that details how the messages are
-structured and what the users are? How does a user of
-the mailbox know the size of a message to pass down?
 
-     Arnd
+Claudiu Beznea (8):
+  clk: renesas: r9a08g045: Add clocks and resets support for PCIe
+  PCI: of_property: Restore the arguments of the next level parent
+  dt-bindings: PCI: renesas,r9a08g045s33-pcie: Add documentation for the
+    PCIe IP on Renesas RZ/G3S
+  PCI: rzg3s-host: Add Initial PCIe Host Driver for Renesas RZ/G3S SoC
+  arm64: dts: renesas: r9a08g045s33: Add PCIe node
+  arm64: dts: renesas: rzg3s-smarc-som: Update dma-ranges for PCIe
+  arm64: dts: renesas: rzg3s-smarc: Enable PCIe
+  arm64: defconfig: Enable PCIe for the Renesas RZ/G3S SoC
+
+John Madieu (1):
+  soc: renesas: rz-sysc: Add syscon/regmap support
+
+ .../pci/renesas,r9a08g045s33-pcie.yaml        |  202 ++
+ MAINTAINERS                                   |    8 +
+ arch/arm64/boot/dts/renesas/r9a08g045s33.dtsi |   60 +
+ .../boot/dts/renesas/rzg3s-smarc-som.dtsi     |    5 +
+ arch/arm64/boot/dts/renesas/rzg3s-smarc.dtsi  |   11 +
+ arch/arm64/configs/defconfig                  |    1 +
+ drivers/clk/renesas/r9a08g045-cpg.c           |   19 +
+ drivers/pci/controller/Kconfig                |    7 +
+ drivers/pci/controller/Makefile               |    1 +
+ drivers/pci/controller/pcie-rzg3s-host.c      | 1715 +++++++++++++++++
+ drivers/pci/of_property.c                     |    8 +
+ drivers/soc/renesas/Kconfig                   |    1 +
+ drivers/soc/renesas/r9a08g045-sysc.c          |   10 +
+ drivers/soc/renesas/r9a09g047-sys.c           |   10 +
+ drivers/soc/renesas/r9a09g057-sys.c           |   10 +
+ drivers/soc/renesas/rz-sysc.c                 |   17 +-
+ drivers/soc/renesas/rz-sysc.h                 |    3 +
+ 17 files changed, 2087 insertions(+), 1 deletion(-)
+ create mode 100644 Documentation/devicetree/bindings/pci/renesas,r9a08g045s33-pcie.yaml
+ create mode 100644 drivers/pci/controller/pcie-rzg3s-host.c
+
+-- 
+2.43.0
+
 
