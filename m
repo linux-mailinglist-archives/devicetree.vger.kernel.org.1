@@ -1,202 +1,228 @@
-Return-Path: <devicetree+bounces-193004-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-193005-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9141CAF8D82
-	for <lists+devicetree@lfdr.de>; Fri,  4 Jul 2025 11:06:34 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1E239AF8DB3
+	for <lists+devicetree@lfdr.de>; Fri,  4 Jul 2025 11:10:33 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 6CC9C5871B1
-	for <lists+devicetree@lfdr.de>; Fri,  4 Jul 2025 09:04:24 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 97070761E0E
+	for <lists+devicetree@lfdr.de>; Fri,  4 Jul 2025 09:05:51 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 61C712F50B4;
-	Fri,  4 Jul 2025 08:57:44 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9D4DA2F85C0;
+	Fri,  4 Jul 2025 09:00:49 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="IsFNgvOI"
+	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="Z/6cNXSG"
 X-Original-To: devicetree@vger.kernel.org
-Received: from relay8-d.mail.gandi.net (relay8-d.mail.gandi.net [217.70.183.201])
+Received: from fllvem-ot03.ext.ti.com (fllvem-ot03.ext.ti.com [198.47.19.245])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9D7BC2F50B2;
-	Fri,  4 Jul 2025 08:57:40 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.70.183.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6C6682DAFAA;
+	Fri,  4 Jul 2025 09:00:47 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.19.245
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1751619464; cv=none; b=f6movLKyJRvpjRiGsMj4mDQi0IS9UatXPem/F8Stpdrrfgu7C6Kxw/CgIkRPHG1vmfgm7w902VTlrELKkks9MfxAFvJIyizu7PcMET/BgSF6I6GLr6MqbGQV9E2HVZmoMTb7vrOkniJncMwMwoGCZMuTZo27rhmJcyUoShCnq2M=
+	t=1751619649; cv=none; b=WeOAQ4vBb8ykJRMKpdqBhti9Z9moLKTzWuRHGHwmtj5IsMPjadCEmo8EYqp108rY3tGlhAGPq7uRVyAQRS18KoM5jkuhaHDG2xEsRYP7yKJ+8DEZJghAsjs1eaww3PvIUeHjT5ysUMaJK8Hl72bSxYxZWBIA8AWQM7Es2qu1RNI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1751619464; c=relaxed/simple;
-	bh=Hq3evHZffKrfDtkoD9VkUHgds86PykelMMQhzlru9Hs=;
-	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=X/nxzsRwd1Tup1uKouZYYhidsPZFBNiij+ludw6SL+J2MW3YOEMJBtDI57LOteWkvJC+5CxVBHT6kU1k+EbltUZNIZhqAiHXNouGFHcjWdrW2GP/oN1SptdFmQDnY2lKPyi9jjfbigMWDmPihBfB6AfigX+wJw7aQ1mPzV47Jg4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=IsFNgvOI; arc=none smtp.client-ip=217.70.183.201
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
-Received: by mail.gandi.net (Postfix) with ESMTPSA id 8E24143AEE;
-	Fri,  4 Jul 2025 08:57:26 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
-	t=1751619453;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=z/ao/2kml8jJZFHPFKKmBePrXHDwomfciEfTApf1ng0=;
-	b=IsFNgvOIXVOwfZalpbJl3HeOSXGJ/b0Br9jNwmVj8c8XWQeGRJ8yNf3TykuiXP9YVWVNg9
-	WswEtsNyDmTb6lPYtNo8jxAwOyYHr7+xBhPVcBIgta1Gmw8VnOWUw/IIgLl0UbPh+PxatT
-	QEnGVRZSbWRjlpWe41sTUlxkGP/Yq4rgQ07Ce2ffpGvDVrPXEuUvzR/vQ7m9UpYt7tin2Y
-	sLZZm9ZYReoWxyEcrLAoB6ePBBOxMVsZYJxN9iYmAivhvHar9hS8v4H3i9GFkWozo5fSTm
-	tDdAojqJukJpigemHSwc8gA9r4PchXfJlcnlZExGtC/OGPUfoanwJMSTvEwmSg==
-Date: Fri, 4 Jul 2025 10:57:25 +0200
-From: Herve Codina <herve.codina@bootlin.com>
-To: Rob Herring <robh@kernel.org>
-Cc: Andrew Lunn <andrew@lunn.ch>, Greg Kroah-Hartman
- <gregkh@linuxfoundation.org>, "Rafael J. Wysocki" <rafael@kernel.org>,
- Danilo Krummrich <dakr@kernel.org>, Shawn Guo <shawnguo@kernel.org>, Sascha
- Hauer <s.hauer@pengutronix.de>, Pengutronix Kernel Team
- <kernel@pengutronix.de>, Fabio Estevam <festevam@gmail.com>, Michael
- Turquette <mturquette@baylibre.com>, Stephen Boyd <sboyd@kernel.org>, Andi
- Shyti <andi.shyti@kernel.org>, Wolfram Sang
- <wsa+renesas@sang-engineering.com>, Peter Rosin <peda@axentia.se>, Derek
- Kiernan <derek.kiernan@amd.com>, Dragan Cvetic <dragan.cvetic@amd.com>,
- Arnd Bergmann <arnd@arndb.de>, Saravana Kannan <saravanak@google.com>,
- Bjorn Helgaas <bhelgaas@google.com>, Mark Brown <broonie@kernel.org>, Len
- Brown <lenb@kernel.org>, Andy Shevchenko
- <andriy.shevchenko@linux.intel.com>, Daniel Scally <djrscally@gmail.com>,
- Heikki Krogerus <heikki.krogerus@linux.intel.com>, Sakari Ailus
- <sakari.ailus@linux.intel.com>, Wolfram Sang <wsa@kernel.org>, Geert
- Uytterhoeven <geert+renesas@glider.be>, Davidlohr Bueso
- <dave@stgolabs.net>, Dave Jiang <dave.jiang@intel.com>, Alison Schofield
- <alison.schofield@intel.com>, Vishal Verma <vishal.l.verma@intel.com>, Ira
- Weiny <ira.weiny@intel.com>, Dan Williams <dan.j.williams@intel.com>,
- linux-kernel@vger.kernel.org, imx@lists.linux.dev,
- linux-arm-kernel@lists.infradead.org, linux-clk@vger.kernel.org,
- linux-i2c@vger.kernel.org, devicetree@vger.kernel.org,
- linux-pci@vger.kernel.org, linux-spi@vger.kernel.org,
- linux-acpi@vger.kernel.org, linux-cxl@vger.kernel.org, Allan Nielsen
- <allan.nielsen@microchip.com>, Horatiu Vultur
- <horatiu.vultur@microchip.com>, Steen Hegelund
- <steen.hegelund@microchip.com>, Luca Ceresoli <luca.ceresoli@bootlin.com>,
- Thomas Petazzoni <thomas.petazzoni@bootlin.com>
-Subject: Re: [PATCH v3 05/28] bus: simple-pm-bus: Populate child nodes at
- probe
-Message-ID: <20250704105725.50cb72b9@bootlin.com>
-In-Reply-To: <20250703093302.4f7743ea@bootlin.com>
-References: <20250613134817.681832-1-herve.codina@bootlin.com>
-	<20250613134817.681832-6-herve.codina@bootlin.com>
-	<20250627155200.GB3234475-robh@kernel.org>
-	<20250703093302.4f7743ea@bootlin.com>
-Organization: Bootlin
-X-Mailer: Claws Mail 4.3.1 (GTK 3.24.43; x86_64-redhat-linux-gnu)
+	s=arc-20240116; t=1751619649; c=relaxed/simple;
+	bh=yPyhF4ei0C2eeEy4OzReACfjIMmhBwKbDXON5X9md+g=;
+	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
+	 In-Reply-To:Content-Type; b=u43NM7xxRt/hr7dbM+S94TwLF0Rfn1rIrxnjyYW5o4zkkA0mQdVyueJHH5TZOypfr6soJAZwfgxSLEdNHOcUP5xaiM4jBXyI7IW5EtVhfKbIVQejT8hBIPt2qu8mctCaeZ/UkdK+INRi93ZkYq8+yXHniUWEhi5nYg+EDEyfvz8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=Z/6cNXSG; arc=none smtp.client-ip=198.47.19.245
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
+Received: from lelvem-sh01.itg.ti.com ([10.180.77.71])
+	by fllvem-ot03.ext.ti.com (8.15.2/8.15.2) with ESMTP id 56490dFM4139738;
+	Fri, 4 Jul 2025 04:00:39 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+	s=ti-com-17Q1; t=1751619639;
+	bh=Nd5IU7a3XjIk16WFZhPfENBSU02gEYqyGGL1B15JCGE=;
+	h=Date:Subject:To:CC:References:From:In-Reply-To;
+	b=Z/6cNXSG/Xue9jVM5rSFkD/Rs6EyFwX4o5v+eURcqLB0dwlc93VoYvFec5oNgDlIC
+	 9kLfYnWXdBT3qbTAbkEKJdZTggybN8MjVFR0iLUftoGA0vu8TKHoPPbIbGFSvMmqPh
+	 24TJqXxVFk7/3T/8cdK/4OSdBW2jC4WWB9xvIKvk=
+Received: from DLEE115.ent.ti.com (dlee115.ent.ti.com [157.170.170.26])
+	by lelvem-sh01.itg.ti.com (8.18.1/8.18.1) with ESMTPS id 56490dFs3233464
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-SHA256 bits=128 verify=FAIL);
+	Fri, 4 Jul 2025 04:00:39 -0500
+Received: from DLEE112.ent.ti.com (157.170.170.23) by DLEE115.ent.ti.com
+ (157.170.170.26) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.55; Fri, 4
+ Jul 2025 04:00:39 -0500
+Received: from lelvem-mr05.itg.ti.com (10.180.75.9) by DLEE112.ent.ti.com
+ (157.170.170.23) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.55 via
+ Frontend Transport; Fri, 4 Jul 2025 04:00:39 -0500
+Received: from [172.24.227.38] (ula0502350.dhcp.ti.com [172.24.227.38])
+	by lelvem-mr05.itg.ti.com (8.18.1/8.18.1) with ESMTP id 56490Y8R2708392;
+	Fri, 4 Jul 2025 04:00:34 -0500
+Message-ID: <cb52029a-d1c8-47c8-bf4b-0de44601a9ef@ti.com>
+Date: Fri, 4 Jul 2025 14:30:33 +0530
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
-X-GND-State: clean
-X-GND-Score: -100
-X-GND-Cause: gggruggvucftvghtrhhoucdtuddrgeeffedrtdefgddvvdejfecutefuodetggdotefrodftvfcurfhrohhfihhlvgemucfitefpfffkpdcuggftfghnshhusghstghrihgsvgenuceurghilhhouhhtmecufedtudenucesvcftvggtihhpihgvnhhtshculddquddttddmnecujfgurhepfffhvfevuffkjghfohfogggtgfesthekredtredtjeenucfhrhhomhepjfgvrhhvvgcuvehoughinhgruceohhgvrhhvvgdrtghoughinhgrsegsohhothhlihhnrdgtohhmqeenucggtffrrghtthgvrhhnpeeviefffeegiedtleelieeghfejleeuueevkeevteegffehledtkeegudeigffgvdenucfkphepledtrdekledrudeifedruddvjeenucevlhhushhtvghrufhiiigvpedtnecurfgrrhgrmhepihhnvghtpeeltddrkeelrdduieefrdduvdejpdhhvghloheplhhotggrlhhhohhsthdpmhgrihhlfhhrohhmpehhvghrvhgvrdgtohguihhnrgessghoohhtlhhinhdrtghomhdpnhgspghrtghpthhtohepgeekpdhrtghpthhtoheprhhosghhsehkvghrnhgvlhdrohhrghdprhgtphhtthhopegrnhgurhgvfieslhhunhhnrdgthhdprhgtphhtthhopehgrhgvghhkhheslhhinhhugihfohhunhgurghtihhonhdrohhrghdprhgtphhtthhopehrrghfrggvlheskhgvrhhnvghlrdhorhhgpdhrtghpthhtohepuggrkhhrsehkvghrnhgvlhdrohhrghdprhgtphhtthhopehshhgrfihnghhuoheskhgvrhhnvghlrdhor
- hhgpdhrtghpthhtohepshdrhhgruhgvrhesphgvnhhguhhtrhhonhhigidruggvpdhrtghpthhtohepkhgvrhhnvghlsehpvghnghhuthhrohhnihigrdguvg
-X-GND-Sasl: herve.codina@bootlin.com
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v5 4/4] arm64: dts: ti: Add support for AM62D2-EVM
+To: Bryan Brattlof <bb@ti.com>
+CC: <nm@ti.com>, <vigneshr@ti.com>, <praneeth@ti.com>, <kristo@kernel.org>,
+        <robh@kernel.org>, <krzk+dt@kernel.org>, <conor+dt@kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>, <khasim@ti.com>, <v-singh1@ti.com>,
+        <afd@ti.com>, <devarsht@ti.com>, <s-vadapalli@ti.com>,
+        <andrew@lunn.ch>
+References: <20250627115753.2246881-1-p-bhagat@ti.com>
+ <20250627115753.2246881-5-p-bhagat@ti.com>
+ <20250701162504.dck3763ik6kpo7ec@bryanbrattlof.com>
+ <f7b0c7f0-9af1-4105-a143-103c49fe2320@ti.com>
+ <20250703122008.ygz5udttjdo3l2g4@bryanbrattlof.com>
+Content-Language: en-US
+From: Paresh Bhagat <p-bhagat@ti.com>
+In-Reply-To: <20250703122008.ygz5udttjdo3l2g4@bryanbrattlof.com>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 7bit
+X-C2ProcessedOrg: 333ef613-75bf-4e12-a4b1-8e3623f5dcea
 
-Hi Rob,
+Hi Bryan,
 
-On Thu, 3 Jul 2025 09:33:02 +0200
-Herve Codina <herve.codina@bootlin.com> wrote:
 
-> Hi Rob,
-> 
-> On Fri, 27 Jun 2025 10:52:00 -0500
-> Rob Herring <robh@kernel.org> wrote:
-> 
-> > On Fri, Jun 13, 2025 at 03:47:45PM +0200, Herve Codina wrote:  
-> > > The simple-pm-bus driver handles several simple busses. When it is used
-> > > with busses other than a compatible "simple-pm-bus", it doesn't populate
-> > > its child devices during its probe.
-> > > 
-> > > This confuses fw_devlink and results in wrong or missing devlinks.
-> > > 
-> > > Once a driver is bound to a device and the probe() has been called,
-> > > device_links_driver_bound() is called.
-> > > 
-> > > This function performs operation based on the following assumption:
-> > >     If a child firmware node of the bound device is not added as a
-> > >     device, it will never be added.
-> > > 
-> > > Among operations done on fw_devlinks of those "never be added" devices,
-> > > device_links_driver_bound() changes their supplier.
-> > > 
-> > > With devices attached to a simple-bus compatible device, this change
-> > > leads to wrong devlinks where supplier of devices points to the device
-> > > parent (i.e. simple-bus compatible device) instead of the device itself
-> > > (i.e. simple-bus child).
-> > > 
-> > > When the device attached to the simple-bus is removed, because devlinks
-> > > are not correct, its consumers are not removed first.
-> > > 
-> > > In order to have correct devlinks created, make the simple-pm-bus driver
-> > > compliant with the devlink assumption and create its child devices
-> > > during its probe.    
-> > 
-> > IIRC, skipping child nodes was because there were problems with 
-> > letting the driver handle 'simple-bus'. How does this avoid that now?  
-> 
-> I don't know about the specific issues related to those problems. Do you
-> have some pointers about them?
-> 
-> > 
-> > The root of_platform_populate() that created the simple-bus device that 
-> > gets us to the probe here will continue descending into child nodes. 
-> > Meanwhile, the probe here is also descending into those same child 
-> > nodes. Best case, that's just redundant. Worst case, won't you still 
-> > have the same problem if the first of_platform_populate() creates the 
-> > devices first?
-> >   
-> 
-> Maybe we could simply avoid of_platform_populate() to be recursive when a
-> device populate by of_platform_populate() is one of devices handled by
-> the simple-bus driver and let the simple-bus driver do the job.
-> 
-> of_platform_populate will handle the first level. It will populate children
-> of the node given to of_platform_populate() and the children of those
-> children will be populate by the simple-bus driver.
-> 
-> I could try a modification in that way. Do you think it could be a correct
-> solution?
-> 
+On 03/07/25 17:50, Bryan Brattlof wrote:
+> On July  3, 2025 thus sayeth Paresh Bhagat:
+>> Hi Bryan,
+>>
+>>
+>> On 01/07/25 21:55, Bryan Brattlof wrote:
+>>> On June 27, 2025 thus sayeth Paresh Bhagat:
+>>>> AM62D-EVM evaluation module (EVM) is a low-cost expandable platform board
+>>>> designed for AM62D2 SoC from TI. It supports the following interfaces:
+>>>>
+>>>> * 4 GB LPDDR4 RAM
+>>>> * x2 Gigabit Ethernet expansion connectors
+>>>> * x4 3.5mm TRS Audio Jack Line In
+>>>> * x4 3.5mm TRS Audio Jack Line Out
+>>>> * x2 Audio expansion connectors
+>>>> * x1 Type-A USB 2.0, x1 Type-C dual-role device (DRD) USB 2.0
+>>>> * x1 UHS-1 capable micro SD card slot
+>>>> * 32 GB eMMC Flash
+>>>> * 512 Mb OSPI NOR flash
+>>>> * x4 UARTs via USB 2.0-B
+>>>> * XDS110 for onboard JTAG debug using USB
+>>>> * Temperature sensors, user push buttons and LEDs
+>>>>
+>>>> Although AM62D2 and AM62A7 differ in peripheral capabilities example
+>>>> multimedia, VPAC, and display subsystems, the core architecture remains
+>>>> same. To reduce duplication, AM62D support reuses the AM62A dtsi and the
+>>>> necessary overrides will be handled in SOC specific dtsi file and a
+>>>> board specific dts.
+>>>>
+>>>> Add basic support for AM62D2-EVM.
+>>>>
+>>>> Schematics Link - https://www.ti.com/lit/zip/sprcal5
+>>>>
+>>>> Signed-off-by: Paresh Bhagat <p-bhagat@ti.com>
+>>>> Signed-off-by: Siddharth Vadapalli <s-vadapalli@ti.com>
+>>>> ---
+>>>>    arch/arm64/boot/dts/ti/Makefile          |   3 +
+>>>>    arch/arm64/boot/dts/ti/k3-am62d2-evm.dts | 599 +++++++++++++++++++++++
+>>>>    arch/arm64/boot/dts/ti/k3-am62d2.dtsi    |  25 +
+>>>>    3 files changed, 627 insertions(+)
+>>>>    create mode 100644 arch/arm64/boot/dts/ti/k3-am62d2-evm.dts
+>>>>    create mode 100644 arch/arm64/boot/dts/ti/k3-am62d2.dtsi
+>>>>
+>>> ...
+>>>
+>>>> diff --git a/arch/arm64/boot/dts/ti/k3-am62d2.dtsi
+>>>> b/arch/arm64/boot/dts/ti/k3-am62d2.dtsi
+>>>> new file mode 100644
+>>>> index 000000000000..70aeb40872a9
+>>>> --- /dev/null
+>>>> +++ b/arch/arm64/boot/dts/ti/k3-am62d2.dtsi
+>>>> @@ -0,0 +1,25 @@
+>>>> +// SPDX-License-Identifier: GPL-2.0-only OR MIT
+>>>> +/*
+>>>> + * Device Tree Source for AM62D2 SoC family in Quad core configuration
+>>>> + *
+>>>> + * TRM: https://www.ti.com/lit/pdf/sprujd4
+>>>> + *
+>>>> + * Copyright (C) 2025 Texas Instruments Incorporated - https://www.ti.com/
+>>>> + */
+>>>> +
+>>>> +/dts-v1/;
+>>>> +
+>>>> +#include "k3-am62a7.dtsi"
+>>> If we want to reuse the AM62A chassis I think we should probably reused
+>>> the AM62AX_IOPAD() macro instead of creating a new one.
+>>
+>> AM62D does not necessarily have the same pin configuration compared to
+>> AM62A. While it is a macro which could be shareable across many boards, i
+>> think its preferable we maintain separate definitions to highlight the new
+>> SoCs. AM62D is a separate package, with some components reused from AM62a.
+> I guess I don't understand the need to create a new padconfig macro when
+> we say, in device tree syntax, the AM62D and AM62A uses the same RTL
+> chassis. The pinout will always change with packaging changes but this
+> will not change the padconfig MMR layout.
+>
+> All that said. It's just a name and honestly when you look at all these
+> macros we haven't changed the padconfig layout for any K3 chip so it not
+> a big deal to me. If it helps people when grepping around i'll relent ;)
 
-I have started to look at this solution and it's going to be more complex
-than than I thought.
 
-Many MFD drivers uses a compatible of this kind (the same exist for bus
-driver with "simple-bus"):
-  compatible = "foo,bar", "simple-mfd";
+Makes sense. Thanks
+>
+>>
+>>>> +
+>>>> +/ {
+>>>> +	model = "Texas Instruments K3 AM62D SoC";
+>>>> +	compatible = "ti,am62d2";
+>>>> +};
+>>>> +
+>>>> +&vpu {
+>>>> +	status = "disabled";
+>>>> +};
+>>>> +
+>>>> +&e5010 {
+>>>> +	status = "disabled";
+>>>> +};
+>>> So I could be a little out of date on the style guidelines here, but my
+>>> intuition is device trees, much like real trees, can only grow, so we
+>>> can't inherit the am62a.dtsi and remove things.
+>>>
+>>> My understanding is we have to create a full am62d.dtsi with its
+>>> features that the am62a.dtsi can extend with the vpu{} and e5010{} nodes
+>>>
+>>> ~Bryan
+>>
+>> Agree we should ideally keep the device trees extending. But in this case it
+>> will involve changes not only in am62a.dtsi but ideally it will change
+>> k3-am62a-main.dtsi and k3-am62a-mcu.dtsi as well. This moves us back to
+>> version 3 of this series
+>> https://lore.kernel.org/all/20250508091422.288876-1-p-bhagat@ti.com/ where i
+>> created *common*.dtsi files which looks a bit complex.
+>>
+>>
+>> The current method also ensures that customers can start their development
+>> of a new board with k3-am62d2.dtsi, while maintaining less complexity and is
+>> a easier to follow approach.
+> The issue I take with this approach is what does 'status = "disabled"'
+> mean now. Historically (for TI SoCs at least) it indicated the node was
+> incomplete and would need to be extended in the board.dts to function
+> properly. But now we're trying to say for these two nodes the hardware
+> doesn't exist on this SoC and bad things will happen if you enable them.
+>
+> My recommendation is to try to flip this around. The am62a7.dtsi should
+> inherit the am62d2.dtsi and add the vpu{} and e5010{} nodes. I agree we
+> don't need to try to combine the two as we did in v3 just yet but we
+> should try to keep the device trees growing as we inherit things.
+>
+> ~Bryan
 
-Usually the last compatible string ("simple-mfd" here) is a last fallback
-and the first string is the more specific one.
 
-In the problematic case, "foo,bar" has a specific driver and the driver
-performs some operations at probe() but doesn't call of_platform_populate()
-and relies on the core to do the device creations (recursively) based on
-the "simple,mfd" string present in the compatible property.
-
-Some other calls of_platform_populate() in they probe (which I think is
-correct) and in that case, the child device creation can be done at two
-location: specific driver probe() and core.
-
-You pointed out that the core could create devices before the specific
-driver is probed. In that case, some of existing drivers calling
-of_platform_populate() are going to have issues.
-
-I can try to modify existing MFD and bus drivers (compatible fallback to
-simple-mfd, simple-bus, ...) in order to have them call of_platform_populate()
-in they probe() and after all problematic drivers are converted, the
-recursive creation of devices done in the core could be removed.
-
-Before starting in that way, can you confirm that this is the right
-direction?
-
-Best regards,
-Hervé
+Yep makes sense. I guess deleting the node will be better than having 
+'status = "disabled"' for components which are not supported/absent. 
+Also it will avoid the need to flip around and change the existing am62a 
+structure. I will send a new version with the updates. Thanks.
+>
+>>
 
