@@ -1,242 +1,164 @@
-Return-Path: <devicetree+bounces-192938-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-192940-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id D62F1AF88E1
-	for <lists+devicetree@lfdr.de>; Fri,  4 Jul 2025 09:12:23 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id D5C15AF88F6
+	for <lists+devicetree@lfdr.de>; Fri,  4 Jul 2025 09:17:30 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 8A09E3BECB2
-	for <lists+devicetree@lfdr.de>; Fri,  4 Jul 2025 07:11:44 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 461B4189BDE9
+	for <lists+devicetree@lfdr.de>; Fri,  4 Jul 2025 07:17:47 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id DF350274FFC;
-	Fri,  4 Jul 2025 07:11:22 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 822B427A12C;
+	Fri,  4 Jul 2025 07:17:17 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="VrV1onED"
+	dkim=pass (2048-bit key) header.d=fairphone.com header.i=@fairphone.com header.b="PT3RMI4U"
 X-Original-To: devicetree@vger.kernel.org
-Received: from bali.collaboradmins.com (bali.collaboradmins.com [148.251.105.195])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-ej1-f48.google.com (mail-ej1-f48.google.com [209.85.218.48])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A512F271A71;
-	Fri,  4 Jul 2025 07:11:20 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=148.251.105.195
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 20DEB1F8F04
+	for <devicetree@vger.kernel.org>; Fri,  4 Jul 2025 07:17:13 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.48
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1751613082; cv=none; b=bmlX81ZQcx6Wxn+1m1g9xejkEt/5DTK3Ad3anQFcdYASrBLRnOaEH+8nFF116Nqt963rzoiZD01KaGAQPcaX2nnstPiBW5O2QzFVFHOponwm2oLJaJJ+J2odLQc7mbUiF+Vz7ptIiNSxH8rnoR2FLwJ2nGYbBErhEqrv37D5svI=
+	t=1751613437; cv=none; b=gzIDRwD5gA3XuNvgV4LkkMNyWOUShR6xbrE4Lj/w4Br5MOgsOUKJw4sWb68VoKVOVry8DLgv4tmrGqe61YEa9kY2WHevhKxsYkWdfulFXDOjLTxATb7QxGlzBO/wAJCMUJN07BzvYPJZU0+iRmJY8rt0subSiyXVfnTuNW9hkoM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1751613082; c=relaxed/simple;
-	bh=u1t9kgo32n46P3lCiA/YsRG69hKIm2B9bRzkw/n0hCc=;
-	h=Message-ID:Subject:From:To:Cc:Date:In-Reply-To:References:
-	 Content-Type:MIME-Version; b=PzYlSYD0q6+2ingtuGxAktyNYRGD2+5iRnEQi3ZdPtBubc0Q3lJzuMIxm4RHYbCAVc/c4VH4dKtcTr5r+8SvEG2vLyZvVHwcgWvl/YQngA/orNzGCxBnVWhoGh8S0TUJ/SEHJ2xG5t/WC44fWvrFly276zTZNd+bhAwZjO02F8s=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b=VrV1onED; arc=none smtp.client-ip=148.251.105.195
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-	s=mail; t=1751613078;
-	bh=u1t9kgo32n46P3lCiA/YsRG69hKIm2B9bRzkw/n0hCc=;
-	h=Subject:From:To:Cc:Date:In-Reply-To:References:From;
-	b=VrV1onEDAPBj1gXtmoDisI701xglCoEK1T4zryC7ADJ75bTtZGaIAJCx4Y+zBoPs9
-	 jM2f/d/caI78n4W2MpPqQao8YaRoUF7u30y0XWeTUEDxLcBtmqmPRMGR2ST4oDCJu+
-	 Qx6XV7KY1/PubEW2Ziu6FYhvT5UhsTk+aXN8llhNT+E67Ib9Wug3a8gxAQe8iyLJx6
-	 tIcOVLsKDZ8XcymS+x2gdF32VGkyCvLqBB1epj+7AvtkVbnqQFHINFE/8SvYN0tDMH
-	 hyzc0M3q8/ZRbKrqC64M/xogbPmQeeNgeV7X/3VYKjRNVS/7aJk6Sgjm1Ztl1SbsLF
-	 Qt9f/pWZD7hsw==
-Received: from 2a01cb0892f2d600c8f85cf092d4af51.ipv6.abo.wanadoo.fr (2a01cb0892f2d600C8F85cF092d4Af51.ipv6.abo.wanadoo.fr [IPv6:2a01:cb08:92f2:d600:c8f8:5cf0:92d4:af51])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
-	(No client certificate requested)
-	(Authenticated sender: jmassot)
-	by bali.collaboradmins.com (Postfix) with ESMTPSA id B028B17E0EB8;
-	Fri,  4 Jul 2025 09:11:17 +0200 (CEST)
-Message-ID: <f2f39aad24dc000bd1066ade7a7a38a072a00664.camel@collabora.com>
-Subject: Re: [PATCH v5 00/24] media: i2c: add Maxim GMSL2/3 serializer and
- deserializer drivers
-From: Julien Massot <julien.massot@collabora.com>
-To: Cosmin Tanislav <demonsingur@gmail.com>, Cosmin Tanislav	
- <cosmin.tanislav@analog.com>, Tomi Valkeinen	
- <tomi.valkeinen+renesas@ideasonboard.com>, Mauro Carvalho Chehab	
- <mchehab@kernel.org>, Rob Herring <robh@kernel.org>, Niklas
- =?ISO-8859-1?Q?S=F6derlund?=	 <niklas.soderlund@ragnatech.se>, Sakari Ailus
- <sakari.ailus@linux.intel.com>,  Laurent Pinchart
- <laurent.pinchart@ideasonboard.com>, Greg Kroah-Hartman
- <gregkh@linuxfoundation.org>, Linus Walleij <linus.walleij@linaro.org>
-Cc: linux-media@vger.kernel.org, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
-	linux-staging@lists.linux.dev, linux-gpio@vger.kernel.org
-Date: Fri, 04 Jul 2025 09:11:16 +0200
-In-Reply-To: <cbf8d7bd-24a4-4dc1-8d9f-bbc4bee45d8d@gmail.com>
-References: <20250702132104.1537926-1-demonsingur@gmail.com>
-	 <5e1b26637706f6eac92acbbb3d5a7dafa0c2c232.camel@collabora.com>
-	 <d4052ab3-9cd1-45e8-81b0-b6512822e646@gmail.com>
-	 <c661e7f3faec269f73d6240fbe7b84e3bc97157a.camel@collabora.com>
-	 <cbf8d7bd-24a4-4dc1-8d9f-bbc4bee45d8d@gmail.com>
-Organization: Collabora Ltd.
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-User-Agent: Evolution 3.56.2 (3.56.2-1.fc42) 
+	s=arc-20240116; t=1751613437; c=relaxed/simple;
+	bh=uth/TQpjLf3lBUfNxZBkzPLdFlA4ZgzmdxkY4dVv4aM=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=FzmOfJWNkY6uaHimo6Dv93GGbmumhjO2SR4lfviv85VNa1cdFFk97VamJm+ouaN3EyG/ow5zCz0MHW+dCnqkpTwdR46zOhil6GoS5TWDfQTwP05x7zGqdDCDUG7v33/evMMG3G3BqXGHfrbNFCFwtl4C5902b9HklTCXq+dvolI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=fairphone.com; spf=pass smtp.mailfrom=fairphone.com; dkim=pass (2048-bit key) header.d=fairphone.com header.i=@fairphone.com header.b=PT3RMI4U; arc=none smtp.client-ip=209.85.218.48
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=fairphone.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=fairphone.com
+Received: by mail-ej1-f48.google.com with SMTP id a640c23a62f3a-ae0d758c3a2so103261266b.2
+        for <devicetree@vger.kernel.org>; Fri, 04 Jul 2025 00:17:13 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=fairphone.com; s=fair; t=1751613432; x=1752218232; darn=vger.kernel.org;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=ZOxW8sDZSm4A9YicXJzPnN/tY8ldwMWP8nLye+j8a0A=;
+        b=PT3RMI4U9x9Gjja66CkPgfRaA7d6458nKW68fgMU5QIqTGKEgBZ4DM4ticQ6f8UPt7
+         6kuEw+CFgqXBKXPpTlyDi+wIVYx5ENjKE8bhc7IOrtp4qkQjAFHencB/2FPs7RRyNrh3
+         +J/deWZlarC38+0YUB6KOZuwDd1J9NizYZAHZ1HB5Mm34FWPF9l1MabFxgCPrikvy9cz
+         bVMDRoVH5sPnFh/mKCK9Rb8ivmO+h6ECtxeP4czX0UsluhCliyD/8V01ZCfYjqBSS55U
+         LU9mVLHqmrtlI5UMCj+FTeq3xWTIgBkDuxyxYSgLKoKnPAePlTqpjB+CdP0Jw0GJB67q
+         FINQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1751613432; x=1752218232;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=ZOxW8sDZSm4A9YicXJzPnN/tY8ldwMWP8nLye+j8a0A=;
+        b=E4+GomG3pxVqe6AFJ+DlGIQ+08ag7KHMHmDYzweV2kEFRHK01GId9Zc6UyfDtz+xaf
+         08AQ7achXRiT9TzBnoM4+COt4R1N+zox69gEYMITbivEOdmuoePWZneyBR5s/7UXOMig
+         rpL+z810Z03EJtdplojrvUbCLDqEwdRRJ8UxoWjJhXWhntjMSAiILOp6snI4dRdvMGB6
+         2nEk4Tb0ZNExIf4IVWveVuNzNhYA39pH7QHNzxO9XvL3fSUkJANiwe3ZZ4BiN91QHiuc
+         yGA0mJf2mRlX2/dwfPsv00shSiKAVVkvPLhNHJZk+eZMTe0tGyEXTV6UHiTZE7R7VUFx
+         QEOA==
+X-Forwarded-Encrypted: i=1; AJvYcCWZKmWRRf8oQRis0DfKN1DHSsbvLYkLBaGuPGUhb1TDjIuPuMD/CHVkVNvFMEI37XOaGLkRlv4kezIZ@vger.kernel.org
+X-Gm-Message-State: AOJu0YyLltUzfC19GFv13H8/+/3hcBxBWhOEdZ4W/Qbqb2DxSQViYsdx
+	Shyjvc2aCjRMaSPPkVug4Fx4CxghNhjBJtfSBey0BnUC88VQbG4HPklUmsSrQIP8wpY=
+X-Gm-Gg: ASbGncvVnT/3ugq5lpApH8Nu99m2CBVYY/cLOyE7hgY7xDA0kwGhIDMB02RWLbCA2n1
+	tLc2kB+oULuHhMxihWLcK9LOlMcgo9pm9Un7zOHAgmkyJEzsVTd8j28mR26NFy2jrzZ/clYuBn6
+	lVgy1W7AT+V9mcyhzxIESVBapeHyXBXPoSoO2XImmusoftSnZuLcQYrwnGO7jiD7hZPzBFklk4E
+	pXYRTu1fhTiRFQMCJ25btUCS9/8OtqSVRArJVIRaHOvuXPb7jK2M08CcpQYaDI1LK+LZbuhfXLy
+	8Cz3fjyr7Y+PJIBaXM5+yXnGunHCjzwoNxV1toKXotDJfLLc3z0VfX+t1ExXAl/dqc9t6Y+Ci1L
+	XUc7GWUFbfraiZ8C8E9DTqbK0B8iuAis2
+X-Google-Smtp-Source: AGHT+IEqkKAlFA3Wv0a0+O2lG4Gewr8tyBjRmd36nr0j0b20xOn8+R6sxOjM9dV8a5eD98pz9vYk5A==
+X-Received: by 2002:a17:906:6a08:b0:ae3:b654:165b with SMTP id a640c23a62f3a-ae3fbc7da25mr147143366b.24.1751613432382;
+        Fri, 04 Jul 2025 00:17:12 -0700 (PDT)
+Received: from otso.local (144-178-202-139.static.ef-service.nl. [144.178.202.139])
+        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-ae3f66d1ae3sm119401766b.7.2025.07.04.00.17.11
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 04 Jul 2025 00:17:11 -0700 (PDT)
+From: Luca Weiss <luca.weiss@fairphone.com>
+Subject: [PATCH v2 00/11] Add clock drivers for Milos (SM7635)
+Date: Fri, 04 Jul 2025 09:16:52 +0200
+Message-Id: <20250704-sm7635-clocks-v2-0-9e47a7c0d47f@fairphone.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIAOR/Z2gC/13OwQ6CMAwG4FchO1sztsDAk+9hOMxRpFE23CbBE
+ N7dCfHi8W/zf+3CAnrCwE7ZwjxOFMjZFMQhY6bX9oZAbcpMcFHwUnAIgyplAebhzD2AKuu6lbJ
+ qjVQsdUaPHc2bd2lS7ilE598bP+Xf6U8q/qQpBw5Gy1xwlLrieO40+bF3Fo/GDaxZd97j85W+j
+ PsNdtUBIe0HiqfM4hxh8xWXqbF+AAMtKwXfAAAA
+X-Change-ID: 20250620-sm7635-clocks-7699d338dc37
+To: Bjorn Andersson <andersson@kernel.org>, 
+ Michael Turquette <mturquette@baylibre.com>, 
+ Stephen Boyd <sboyd@kernel.org>, Rob Herring <robh@kernel.org>, 
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, Konrad Dybcio <konradybcio@kernel.org>
+Cc: ~postmarketos/upstreaming@lists.sr.ht, phone-devel@vger.kernel.org, 
+ linux-arm-msm@vger.kernel.org, linux-clk@vger.kernel.org, 
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+ Luca Weiss <luca.weiss@fairphone.com>
+X-Mailer: b4 0.14.2
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1751613431; l=2902;
+ i=luca.weiss@fairphone.com; s=20250611; h=from:subject:message-id;
+ bh=uth/TQpjLf3lBUfNxZBkzPLdFlA4ZgzmdxkY4dVv4aM=;
+ b=bd8e4tDnMHNsvuFQteHi6X9U/WdUlNYw8STR6kJwPXqS0m6W3BAkimsyn4EelbCoGmkh84Cx0
+ VGHtKQWx6S9B2krWVcZjFHQxgmI84VUcpobGPg6+EqxIZPGXFTZSWkz
+X-Developer-Key: i=luca.weiss@fairphone.com; a=ed25519;
+ pk=O1aw+AAust5lEmgrNJ1Bs7PTY0fEsJm+mdkjExA69q8=
 
-On Thu, 2025-07-03 at 17:46 +0300, Cosmin Tanislav wrote:
->=20
->=20
-> On 7/3/25 4:54 PM, Julien Massot wrote:
-> > On Thu, 2025-07-03 at 15:17 +0300, Cosmin Tanislav wrote:
-> > >=20
-> > >=20
-> > > On 7/3/25 3:07 PM, Julien Massot wrote:
-> > > > Hi Cosmin,
-> > > >=20
-> > > > On Wed, 2025-07-02 at 16:20 +0300, Cosmin Tanislav wrote:
-> > > > > This series adds new drivers for multiple Maxim GMSL2 and GMSL3 d=
-evices,
-> > > > > replacing the few GMSL2 drivers already in upstream, and introduc=
-ing a
-> > > > > common framework that can be used to implement such GMSL chips, w=
-hich
-> > > > > avoids code duplication while also adding support for previously
-> > > > > unsupported features.
-> > > > >=20
-> > > > > While the normally acceptable and polite way would be to extend t=
-he
-> > > > > current mainline drivers, the choice was made here to add a total=
-ly new
-> > > > > set of drivers. The current drivers support only a small subset o=
-f the
-> > > > > possible features, and only a few devices, so the end result afte=
-r
-> > > > > extending them would in any case be essentially fully rewritten, =
-new
-> > > > > drivers.
-> > > > >=20
-> > > > Thanks for your work,
-> > > > The common framework will help a lot to drive new GMSL chips, and m=
-ost of the
-> > > > features are covered.
-> > > >=20
-> > > > > This series depends on support for internal pads, for which a pat=
-ch has
-> > > > > been added.
-> > > > >=20
-> > > > > The previous version is at:
-> > > > > https://lore.kernel.org/lkml/20250618095858.2145209-1-demonsingur=
-@gmail.com
-> > > > >=20
-> > > > > The following deserializers are supported:
-> > > > > =C2=A0=C2=A0=C2=A0* MAX96712 (already exists in staging)
-> > > > > =C2=A0=C2=A0=C2=A0* MAX96714 (already exists)
-> > > > > =C2=A0=C2=A0=C2=A0* MAX96714F (already exists)
-> > > > > =C2=A0=C2=A0=C2=A0* MAX96714R (GMSL2)
-> > > > > =C2=A0=C2=A0=C2=A0* MAX96716 (GMSL2)
-> > > > > =C2=A0=C2=A0=C2=A0* MAX96724 (already exists as part of existing =
-MAX96712 driver)
-> > > > > =C2=A0=C2=A0=C2=A0* MAX96724F (GMSL2)
-> > > > > =C2=A0=C2=A0=C2=A0* MAX96724R (GMSL2)
-> > > > > =C2=A0=C2=A0=C2=A0* MAX9296A (GMSL2)
-> > > > > =C2=A0=C2=A0=C2=A0* MAX96792A (GMSL3)
-> > > > >=20
-> > > > > The following serializers are supported:
-> > > > > =C2=A0=C2=A0=C2=A0* MAX96717 (already exists)
-> > > > > =C2=A0=C2=A0=C2=A0* MAX9295A (GMSL2)
-> > > > > =C2=A0=C2=A0=C2=A0* MAX96793 (GMSL3)
-> > > > >=20
-> > > > > Known backward compatibility breakages:
-> > > > > =C2=A0=C2=A0=C2=A0* No default routing. Default routing has been =
-intentionally ommitted
-> > > > > =C2=A0=C2=A0=C2=A0=C2=A0 as the devices support quite complex rou=
-ting and it would be
-> > > > > =C2=A0=C2=A0=C2=A0=C2=A0 unfeasible to provide sane defaults for =
-multi-link deserialziers.
-> > > > > =C2=A0=C2=A0=C2=A0=C2=A0 It is expected that userspace programs w=
-ould set appropritate
-> > > > > =C2=A0=C2=A0=C2=A0=C2=A0 routing.
-> > > > >=20
-> > > > This part is the most annoying one: at the moment, there is no way =
-to set the routing except
-> > > > by
-> > > > manually enabling a boolean within the kernel source.
-> > > > You can't guess what routing the user really wants, but please at l=
-east provide a default
-> > > > routing
-> > > > table that allows using your drivers =E2=80=94 for example, the dev=
-ice's default routing.
-> > > >=20
-> > >=20
-> > > It's a very delicate issue... I'll try to see if I can do that.
-> > > It would be great if we could enable the streams API globally since i=
-t's
-> > > been merged since Jan 15 2023. It's been over two years.
-> > >=20
-> > >=20
-> > > Thanks,
-> > >=20
-> > > >=20
-> > > >=20
-> > > > > The following list enumerates new features that are supported by =
-the
-> > > > > common framework and their respective chip-specific drivers:
-> > > > > =C2=A0=C2=A0=C2=A0* Full Streams API support. Most deserializers =
-have support for more
-> > > > > =C2=A0=C2=A0=C2=A0=C2=A0 than one link, and more than one PHY. St=
-reams support allows
-> > > > > =C2=A0=C2=A0=C2=A0=C2=A0 configuration of routing between these l=
-inks and PHYs.
-> > > > >=20
-> > > > > =C2=A0=C2=A0=C2=A0* .get_frame_desc() support. Both the serialize=
-rs and deserializers
-> > > > > =C2=A0=C2=A0=C2=A0=C2=A0 implement this to query and provide fram=
-e descriptor data. This is
-> > > > > =C2=A0=C2=A0=C2=A0=C2=A0 used in features explained in-depth belo=
-w.
-> > > >=20
-> > > > So are almost all the sensor drivers incompatible?
-> > > >=20
-> > >=20
-> > > Yes, sensor drivers need to have .get_frame_desc() implemented... It'=
-s
-> > > not a huge feat and it's the only way this type of bridge could work
-> > > properly.
-> > >=20
-> > > Alternatively, we could add a fallback that bases its decision on the
-> > > stream format, but I'd prefer if we didn't and we would just implemen=
-t
-> > > .get_frame_desc(). After this series is merged I can submit my patche=
-s
-> > > for imx219.
-> > There is already one pending on the mailing list
-> > "media: i2c: imx219: Report streams using frame descriptors"
-> > I guess it's fine if we require the sensor to implement this function.
-> >=20
-> > But I had to do it for vgxy61.
-> >=20
-> > Btw I tested:
-> > TI AM62x + max96716 + 1 x max96717f + stvg5661 (tunnel mode)
-> > With special lanes mapping and polarities.
-> >=20
-> > And I had to:
-> >=20
-> > - Apply pending patches for j721e to support the enable_stream API inst=
-ead of s_stream
-> > - Enable the experimental v4l2_subdev_enable_streams_api
-> > - Add get_frame_desc to the sensor driver
->=20
-> Did it work without issues with those changes?
->=20
-Yes :)
-btw you can add:
-Tested-by: Julien Massot <julien.massot@collabora.com>
->=20
-> If that's the case then I think all I can do to make it is easier is to
-> add default routing. I'm not a fan of each driver having its own
-> get_frame_desc() fallback, especially when it's a very small change to
-> do to the sensor drivers.
-Ok for me.
+Document and add the clock drivers for GCC, CAMCC, DISPCC, GPUCC and
+VIDEOCC on the Milos SoC (e.g. SM7635).
 
-Ragards,
---=20
-Julien
+Signed-off-by: Luca Weiss <luca.weiss@fairphone.com>
+---
+Changes in v2:
+- Rebrand SM7635 to Milos as requested: https://lore.kernel.org/linux-arm-msm/aGMI1Zv6D+K+vWZL@hu-bjorande-lv.qualcomm.com/
+- Use new qcom_cc_driver_data to configure e.g. always-on clks instead
+  of in probe function, plus some other related bits from the probe
+  function
+- Add patch to support registering rcg dfs in qcom_cc_really_probe
+- Link to v1: https://lore.kernel.org/r/20250625-sm7635-clocks-v1-0-ca3120e3a80e@fairphone.com
+
+---
+Luca Weiss (11):
+      clk: qcom: common: Add support to register rcg dfs in qcom_cc_really_probe
+      dt-bindings: clock: qcom: document the Milos Global Clock Controller
+      clk: qcom: Add Global Clock controller (GCC) driver for Milos
+      dt-bindings: clock: qcom: document the Milos Camera Clock Controller
+      clk: qcom: Add Camera Clock controller (CAMCC) driver for Milos
+      dt-bindings: clock: qcom: document the Milos Display Clock Controller
+      clk: qcom: Add Display Clock controller (DISPCC) driver for Milos
+      dt-bindings: clock: qcom: document the Milos GPU Clock Controller
+      clk: qcom: Add Graphics Clock controller (GPUCC) driver for Milos
+      dt-bindings: clock: qcom: document the Milos Video Clock Controller
+      clk: qcom: Add Video Clock controller (VIDEOCC) driver for Milos
+
+ .../bindings/clock/qcom,milos-camcc.yaml           |   51 +
+ .../bindings/clock/qcom,milos-dispcc.yaml          |   63 +
+ .../devicetree/bindings/clock/qcom,milos-gcc.yaml  |   62 +
+ .../bindings/clock/qcom,milos-videocc.yaml         |   53 +
+ .../bindings/clock/qcom,sm8450-gpucc.yaml          |    2 +
+ drivers/clk/qcom/Kconfig                           |   47 +
+ drivers/clk/qcom/Makefile                          |    5 +
+ drivers/clk/qcom/camcc-milos.c                     | 2161 +++++++++++++
+ drivers/clk/qcom/common.c                          |    8 +
+ drivers/clk/qcom/common.h                          |    2 +
+ drivers/clk/qcom/dispcc-milos.c                    |  974 ++++++
+ drivers/clk/qcom/gcc-milos.c                       | 3225 ++++++++++++++++++++
+ drivers/clk/qcom/gpucc-milos.c                     |  562 ++++
+ drivers/clk/qcom/videocc-milos.c                   |  403 +++
+ include/dt-bindings/clock/qcom,milos-camcc.h       |  131 +
+ include/dt-bindings/clock/qcom,milos-dispcc.h      |   61 +
+ include/dt-bindings/clock/qcom,milos-gcc.h         |  210 ++
+ include/dt-bindings/clock/qcom,milos-gpucc.h       |   56 +
+ include/dt-bindings/clock/qcom,milos-videocc.h     |   36 +
+ 19 files changed, 8112 insertions(+)
+---
+base-commit: b803ad80123e6efccfeeffa7cd37f98f642e37f4
+change-id: 20250620-sm7635-clocks-7699d338dc37
+
+Best regards,
+-- 
+Luca Weiss <luca.weiss@fairphone.com>
+
 
