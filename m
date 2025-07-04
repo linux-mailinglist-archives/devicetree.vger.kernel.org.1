@@ -1,148 +1,167 @@
-Return-Path: <devicetree+bounces-193157-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-193152-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0789FAF97DC
-	for <lists+devicetree@lfdr.de>; Fri,  4 Jul 2025 18:17:30 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id E6383AF97C1
+	for <lists+devicetree@lfdr.de>; Fri,  4 Jul 2025 18:15:51 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 722301CA79B2
-	for <lists+devicetree@lfdr.de>; Fri,  4 Jul 2025 16:17:46 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 925211CA682B
+	for <lists+devicetree@lfdr.de>; Fri,  4 Jul 2025 16:16:06 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D42262E5B01;
-	Fri,  4 Jul 2025 16:14:56 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3D375327A2E;
+	Fri,  4 Jul 2025 16:14:47 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=tuxon.dev header.i=@tuxon.dev header.b="BSCbg6+e"
+	dkim=pass (1024-bit key) header.d=axis.com header.i=@axis.com header.b="XnZEEwnh"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ed1-f43.google.com (mail-ed1-f43.google.com [209.85.208.43])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from AS8PR03CU001.outbound.protection.outlook.com (mail-westeuropeazon11012016.outbound.protection.outlook.com [52.101.71.16])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D58D72E091E
-	for <devicetree@vger.kernel.org>; Fri,  4 Jul 2025 16:14:54 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.43
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1751645696; cv=none; b=EBShhhHXcnK1mwiuDvnyg61BldSJOVBa9tY8XHSuZC8zHa/yGQKIsfFBCr0hxi3mQBZgBi1XTUuD6sa2oPTI1By1bIWY9zhT6/XVg/+O92Ft8h0gVYsIXtD8wjzUP9OO7KV9DkJeUDxGP7p+VrSFu+OyB8WWU8QTL9XItFiCggU=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1751645696; c=relaxed/simple;
-	bh=BH1aKcd76IaUZZ/ToYr9eDZkVxa6rxOK7GvAzGHVDi4=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=aIjW6JTws+8WlxRVLoGSNyCt5r6pyo9AflOXFyUedxmF8jw1r94bM6uZFHK1aUWo6Q/2pUk02suY+llHquV+D+hfEfCdI8/gAKZSe3YmuGBRJ6NRzvcNnj1WmG+YtNC9jx02uUaNupNU/RxgpVMLa8n/ouPi1ZP13eJzfRjI3d8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=tuxon.dev; spf=pass smtp.mailfrom=tuxon.dev; dkim=pass (2048-bit key) header.d=tuxon.dev header.i=@tuxon.dev header.b=BSCbg6+e; arc=none smtp.client-ip=209.85.208.43
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=tuxon.dev
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=tuxon.dev
-Received: by mail-ed1-f43.google.com with SMTP id 4fb4d7f45d1cf-60c51860bf5so1711799a12.1
-        for <devicetree@vger.kernel.org>; Fri, 04 Jul 2025 09:14:54 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=tuxon.dev; s=google; t=1751645693; x=1752250493; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=YJ/8zy8l4B85cHtddHm5bMRDVmAGhs389YDqHOJWbP8=;
-        b=BSCbg6+eqWxsdM+U4V+a2msCtN9paviA8SqT1mQaT4m+JjPTt/qE6lzwqKeRrxFQbW
-         6/WpbORYsVosT4sAg1E3xuUgAHt8JD4ZiKTkoIOPFNEb6VVX5aIOOXZ3p6MeXqbTXNGs
-         DApTUTlwAEdFF6mEDQRMOFHHl6Da/4uPOfPYofeZDLvri0GYWXXzvOuFyNMKzq9zpfiK
-         x8iZ8bqRH8YWa3Ze5MxGT+46IGjwIIY1jQcb1W8CHAJIN2TNlwbaM/6LOZf7U54wGaKC
-         n0zdwpEQ1Ax9WdQtH8dCw9Nwfg+ZI9xBASWVofuaAXNqARrLnrR+6aL/TsEb4x6gF1jv
-         DubQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1751645693; x=1752250493;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=YJ/8zy8l4B85cHtddHm5bMRDVmAGhs389YDqHOJWbP8=;
-        b=vmN9+VBHln3HFrrFk0U6Hb56dLBxwwqJcfbq0GPSid5L4WdWcZHu5FNi2jdvSv7Bfv
-         EphXFpze5QslLXKNL6sxQC5eQG5lB1juqQS2RGJfTifRVfVwmN96buhGfplTsSWhmUEX
-         FCZXVqiLEupRgSGS4kEcODzOV29eUyBA0MaXQNC8RtqLObKEZAMCScyIJavtpOa4j620
-         cVDKHQ4SZTMy711F0lSOpJ4GlS9jVlNmHaFffHhqmMr+199SBXw4pWLMqJwueJOoPmCR
-         zcvqz3Ra7AwrQE+TMzZwuFbUohKqmGgpPY8jOvaYw2a6pp9x7GW12hN9JrS1zj4Aub8T
-         AruA==
-X-Forwarded-Encrypted: i=1; AJvYcCWeNcgEQnxa8f7CcBDwXmvNvhsNqLanooaeCSUWtzoepF97bB83Uh/rwGlFJdBW580Uw2o2lIZK0j6V@vger.kernel.org
-X-Gm-Message-State: AOJu0YzN5faSXy/bWWuko//P9wa0Aon0Sqx4gQ+HzbFTvctTd1Si8kNH
-	aCcp6afR7thMRWAiVxVELQ/H1jJpP8PyI0Jm96DdromTaUTgqaJH8rPYrOHoUokLjvc=
-X-Gm-Gg: ASbGncuixMLKkgVUGOgHd0vMjIJMVJpjChpSY6Vcw327Oux/U1jV9h4/LCWYiNwnTp2
-	1z87foKyrNHQ+XAegvet98QM7NiEpyxHdISVQtFo4dRvwxdFxkwFZeAzEz6ZyEA/cI7nJjZKcgh
-	2Y82YYmaR4NjFuPBZK467oMijgiqHfCSCITz9J6vTB/aOGOldf+s+SHbWcBtMPXFE+U5SssWv6C
-	e4B5U0djFKt5agCjgWr7f8WRs0AbpGvomr8PatLHCRAdJX3GhB+0CoesI/P0EMkBSB9Tcyszc5j
-	Ayh6EaBqOxjavM8FoKnoFDF78qVtCYmSAkiu+tT/pujP9KMGbLUdmPKdV41mvbR1UPzpYJdPAlg
-	DiH7ktse9gYzNUEQ=
-X-Google-Smtp-Source: AGHT+IGDhz0qhVTw0+Jv8lS4jO8NKu6i+6S1WnDonE3OKo10n+XAusMMQdVW5VodGZ41K5WwIdd9Lg==
-X-Received: by 2002:a17:907:72c2:b0:ae3:bd92:e69b with SMTP id a640c23a62f3a-ae3fbc4c2a9mr336020266b.7.1751645693200;
-        Fri, 04 Jul 2025 09:14:53 -0700 (PDT)
-Received: from claudiu-X670E-Pro-RS.. ([82.78.167.83])
-        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-ae3f66d9215sm194703766b.2.2025.07.04.09.14.51
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 04 Jul 2025 09:14:52 -0700 (PDT)
-From: Claudiu <claudiu.beznea@tuxon.dev>
-X-Google-Original-From: Claudiu <claudiu.beznea.uj@bp.renesas.com>
-To: bhelgaas@google.com,
-	lpieralisi@kernel.org,
-	kwilczynski@kernel.org,
-	mani@kernel.org,
-	robh@kernel.org,
-	krzk+dt@kernel.org,
-	conor+dt@kernel.org,
-	geert+renesas@glider.be,
-	magnus.damm@gmail.com,
-	catalin.marinas@arm.com,
-	will@kernel.org,
-	mturquette@baylibre.com,
-	sboyd@kernel.org,
-	p.zabel@pengutronix.de,
-	lizhi.hou@amd.com
-Cc: claudiu.beznea@tuxon.dev,
-	linux-pci@vger.kernel.org,
-	linux-renesas-soc@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	linux-clk@vger.kernel.org,
-	Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>,
-	Wolfram Sang <wsa+renesas@sang-engineering.com>
-Subject: [PATCH v3 9/9] arm64: defconfig: Enable PCIe for the Renesas RZ/G3S SoC
-Date: Fri,  4 Jul 2025 19:14:09 +0300
-Message-ID: <20250704161410.3931884-10-claudiu.beznea.uj@bp.renesas.com>
-X-Mailer: git-send-email 2.43.0
-In-Reply-To: <20250704161410.3931884-1-claudiu.beznea.uj@bp.renesas.com>
-References: <20250704161410.3931884-1-claudiu.beznea.uj@bp.renesas.com>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 38F8B327A44;
+	Fri,  4 Jul 2025 16:14:44 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=52.101.71.16
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1751645687; cv=fail; b=kXNdYqSd40RvoZM8OGz0uzaL/N0Pyo7CNsiW9w8NnmwOMcKkgQtED/9j40sU5X8MqqPfSgGGHUDkPxwR40yAq/FbrvRIzeKLfdj5YbIQR9MSpYDqyKdjtrbDqpQm3E0NHazwRTiGsfqUT5gCi8Uv52bBa7IL2xaT120iRb+maPU=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1751645687; c=relaxed/simple;
+	bh=3Lh97zNuUlwWmgiYA9sCScnAF+x2wLc6lXcGCCZksqs=;
+	h=From:To:CC:Subject:In-Reply-To:Message-ID:Date:MIME-Version:
+	 Content-Type; b=hzUyBfCoENAZQ3NyIJLnod4EXk55H5DxmwxZmKh98bVVF2Vxx3Dqj1iuClokn6vJoodAskzu8W3ve6HOw1IMiYX/4RG8Ykv6YDbPy0KPBqPLGe+JXRXcE4cB49G0sdqtVyZWPAxD2pmBExNIrvKqysAxBA4HgSi97VZMw6QzyCY=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=axis.com; spf=pass smtp.mailfrom=axis.com; dkim=pass (1024-bit key) header.d=axis.com header.i=@axis.com header.b=XnZEEwnh; arc=fail smtp.client-ip=52.101.71.16
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=axis.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=axis.com
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=j2CXGHTRXSg00NJHhj9ZYgqEX07OMJlZx1KV/h3/gKSIxVUYML67jQPRcHGTRmqM8ifWrvOW6921mulN5E2rUccIKyBKlgyK9rKw7J0eutRZlnftV3FeaiEaNn5svhMZ9QwsnE6Yn/hzjEXEA6JOjedu9ZBL0GX+wTmwwMCxTjc8gNINXojPoBl6PR1RG0dztY04ghsoC+UKoLbX+vu3rWAv+P0QmnYTpci7Kr26ZdUcz4sbrsnrl0XiEfSNVIxTRM56yl4VWkguGdyZD0vGUyyvnnTRtTvgzKD/XZ1ThoR1wiIC5S3vHCnvUtcgA1H3m7SJDNckdUAQb7zGxcQqpw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=Zao9i4hK0Igw6t5Um4rKfileXPteOsT34WI+1I/RVzU=;
+ b=jgM1uWa6gFpIli/G/UtFxoEn67YUOR5oenPBdif+sY6b2TKiP9Hhelj8cfJLC8oQg7nWUc3sgYN1CQGUcSNzanrTlocbdzFj7QXalqhkYK5KX2phult61ZaukrWyCsS30uKuYo6l2kPVNOumId+EQIm1I0KOePwr6lQZHS1JojvXD6wfIP3ihfbPI4LPaGWo3QX571VRNgCVsgaaAwISylrfQ+DXrS6rc7ar2852EjGxwNHHTEfGeDssS9EKeEjzQOliY2A8rQd1DknEOuSmX0g+gG/YYFvTpLmF/92hliJNrZzboch2EAZJzfVrlVxVbZWYbJJfHcS5MDOONo32Bg==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
+ 195.60.68.100) smtp.rcpttodomain=vger.kernel.org smtp.mailfrom=axis.com;
+ dmarc=pass (p=none sp=none pct=100) action=none header.from=axis.com;
+ dkim=none (message not signed); arc=none (0)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=axis.com; s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=Zao9i4hK0Igw6t5Um4rKfileXPteOsT34WI+1I/RVzU=;
+ b=XnZEEwnhNrzB4zTj7DwkK5mdiuHFq/SyjxE8QaKR2+xk6J5fUgh1NLdMjERFgPUL5rLwD6tzzcn+bnKti3cSXmBnZeoTP3McAxlTU2FKjVkmzs81zfqhxl8FeFBRo085ArnRM4Tazx4XXdrOTcYckgLFx6i2ZcAP5NoFYSa1IbE=
+Received: from AM0PR01CA0175.eurprd01.prod.exchangelabs.com
+ (2603:10a6:208:aa::44) by GV2PR02MB8625.eurprd02.prod.outlook.com
+ (2603:10a6:150:76::13) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8901.20; Fri, 4 Jul
+ 2025 16:14:39 +0000
+Received: from AMS0EPF000001AD.eurprd05.prod.outlook.com
+ (2603:10a6:208:aa:cafe::49) by AM0PR01CA0175.outlook.office365.com
+ (2603:10a6:208:aa::44) with Microsoft SMTP Server (version=TLS1_3,
+ cipher=TLS_AES_256_GCM_SHA384) id 15.20.8901.23 via Frontend Transport; Fri,
+ 4 Jul 2025 16:14:51 +0000
+X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 195.60.68.100)
+ smtp.mailfrom=axis.com; dkim=none (message not signed)
+ header.d=none;dmarc=pass action=none header.from=axis.com;
+Received-SPF: Pass (protection.outlook.com: domain of axis.com designates
+ 195.60.68.100 as permitted sender) receiver=protection.outlook.com;
+ client-ip=195.60.68.100; helo=mail.axis.com; pr=C
+Received: from mail.axis.com (195.60.68.100) by
+ AMS0EPF000001AD.mail.protection.outlook.com (10.167.16.153) with Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.20.8901.15 via Frontend Transport; Fri, 4 Jul 2025 16:14:39 +0000
+Received: from pc52311-2249 (10.4.0.13) by se-mail01w.axis.com (10.20.40.7)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.44; Fri, 4 Jul
+ 2025 18:14:37 +0200
+From: Waqar Hameed <waqar.hameed@axis.com>
+To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>
+CC: <kernel@axis.com>, Rob Herring <robh@kernel.org>,
+	<devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+	<linux-iio@vger.kernel.org>
+Subject: [PATCH v3 1/3] dt-bindings: vendor-prefixes: Add Nicera
+In-Reply-To: <cover.1751636734.git.waqar.hameed@axis.com>
+User-Agent: a.out
+Message-ID: <b52e82aa312a52c03d2b6c58cf329884d1829d29.1751636734.git.waqar.hameed@axis.com>
+Date: Fri, 4 Jul 2025 18:14:37 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-ClientProxiedBy: se-mail02w.axis.com (10.20.40.8) To se-mail01w.axis.com
+ (10.20.40.7)
+X-EOPAttributedMessage: 0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: AMS0EPF000001AD:EE_|GV2PR02MB8625:EE_
+X-MS-Office365-Filtering-Correlation-Id: ad5174fd-bffc-4ff4-3026-08ddbb15e06f
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam:
+	BCL:0;ARA:13230040|376014|82310400026|36860700013|1800799024;
+X-Microsoft-Antispam-Message-Info:
+	=?us-ascii?Q?K2MFdARVk+Kzsjr6sU6Zpqc7inaBKL2J14LvUzf3gCxCsB0JmKRfjGPlr20R?=
+ =?us-ascii?Q?GniC2+LRWzy6BzpBRHH2zY6ShapWCWUjMAnNLMXkldzpK6jveYpgIuIL2GsQ?=
+ =?us-ascii?Q?oCXzV1Y1BOBCwnO2R9Qlqs+nLgyShT56rP+QuZ4BiGbP1cOsOlzcaD93ij3U?=
+ =?us-ascii?Q?O1yhT8fLhXUlPNdm5f1N0U6X0HoHwF2mRIfS2sJg7HbbB8T8P3DLGT/pVum+?=
+ =?us-ascii?Q?KpulpYnUAag93C5CvosBM9CdviAZQOGgOuGJ5e/ewIuR3ZzrK3oDbYgoGqLB?=
+ =?us-ascii?Q?bO01iS4fB2cm2zdXj3OlxVrqPQpQjs1dID9f979w9b7dXSs+Yq0XmKAbiLee?=
+ =?us-ascii?Q?a/5sIO5caonHDAPuXceC73ciZ7ke0bxQOYa6dk3NuGIuiuLjrcYRVKZyMbcX?=
+ =?us-ascii?Q?DV/Qpnr2AiFNWg+uh7YropcQWbA9hztpO5oQfNV/MqUH79joZjfYheOsOVcX?=
+ =?us-ascii?Q?mdU64g77jf09UqypvLrxPKrhFtopcCjYa+BX7FufWRz7amz+D/RXdBTwkCRm?=
+ =?us-ascii?Q?qsrfiDMrAPtfyE/rmrQ1H8G+n7sJylIjrnJomKZTpbBmphAT0yB5Sje+Be0P?=
+ =?us-ascii?Q?tY8oW1NU5oNm3qPftdp8ERIjCzMgElZD1qD2E/igWk+FempKYA5LqtZ85N19?=
+ =?us-ascii?Q?sHxiFeg9ooZMM0djr1IOgpC21DVrjKJkqSbE4PI2bF8LNW+ZIHb/e+DkvNtl?=
+ =?us-ascii?Q?bai7rBBOgccLHyO2S49WPQl7lAE0S6bU4MtLJ14oIoOVQlLwkedW0sQMBL6P?=
+ =?us-ascii?Q?YDr7MnDKAD5OEDuhYfVslallLRdm89i4SAydlyb6ykcdn4ya0JH8IgD5ZnGp?=
+ =?us-ascii?Q?eo+SA6d/m+dT0KcU3/iVJb04bDWe8boXGGiCAsC+D5XrkjIJSl0okytv5ipD?=
+ =?us-ascii?Q?brQneKrKIqgaCqL736khIvLzFI+h5usFhGOaT0p3qZBnftDAmW++f8+F/miQ?=
+ =?us-ascii?Q?bLm2JTq3AjUozIDJ3q4qoWvwTNxJIP08J31NOQCftZfUFx5WVs1kw4fFDr8N?=
+ =?us-ascii?Q?m53BUv78OXvmHx/bavAzPVa9lqmC7GUwqlXAYdyyE24oTUsqLLwsINxZQvo8?=
+ =?us-ascii?Q?r45t4z6Z8X2E5sTuI0g/xc/i+k7CBLAjHX2FSrFAo0Df+TjT3oAPZ474iOLe?=
+ =?us-ascii?Q?mNisXPrCjW604D76csBibSvfBsEBJYAciObBR9MuhHKbk3pRI05JXCTKpZPZ?=
+ =?us-ascii?Q?biDW1VG4TjPYZk1j0vrAXzKvE5tFg7/agwBtWE69Imwz8lI2JoyXcKkI7KLN?=
+ =?us-ascii?Q?dDiX07QzLNRnHlWvAh+PVt8egBbkU1puafRdTHiEJrx0Ga88MwZk2dFKwdxz?=
+ =?us-ascii?Q?ia9OwhkqXBYenHbhHoqWC8O9W925PhPmpjfhRZodW5looKuFekt4iZYpPtPZ?=
+ =?us-ascii?Q?YeccV5QuRwSXZTT95Sxhsgv5Ic1URI/wcXXhabwewKRhyisyUbx+HUHkoYhZ?=
+ =?us-ascii?Q?RMPDn9Mdx9C+XD/mur/tg3mwf5hLilk3W57/laNtia46F+VKUrlVEdpqmqdf?=
+ =?us-ascii?Q?x5dKwNB1AFhsnxHY3vpv4XlpGNAcLowBy9Dh?=
+X-Forefront-Antispam-Report:
+	CIP:195.60.68.100;CTRY:SE;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:mail.axis.com;PTR:InfoDomainNonexistent;CAT:NONE;SFS:(13230040)(376014)(82310400026)(36860700013)(1800799024);DIR:OUT;SFP:1101;
+X-OriginatorOrg: axis.com
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 04 Jul 2025 16:14:39.0139
+ (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: ad5174fd-bffc-4ff4-3026-08ddbb15e06f
+X-MS-Exchange-CrossTenant-Id: 78703d3c-b907-432f-b066-88f7af9ca3af
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=78703d3c-b907-432f-b066-88f7af9ca3af;Ip=[195.60.68.100];Helo=[mail.axis.com]
+X-MS-Exchange-CrossTenant-AuthSource:
+	AMS0EPF000001AD.eurprd05.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Anonymous
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: GV2PR02MB8625
 
-From: Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>
+Nicera (Nippon Ceramic Co.) is a manufacturer of a wide range of
+sensors. For example infrared, ultrasonic, gas sensors and much more.
 
-Enable PCIe for the Renesas RZ/G3S SoC.
-
-Tested-by: Wolfram Sang <wsa+renesas@sang-engineering.com>
-Signed-off-by: Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>
+Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Signed-off-by: Waqar Hameed <waqar.hameed@axis.com>
 ---
+ Documentation/devicetree/bindings/vendor-prefixes.yaml | 2 ++
+ 1 file changed, 2 insertions(+)
 
-Changes in v3:
-- collected tags
-
-Changes in v2:
-- none
-
- arch/arm64/configs/defconfig | 1 +
- 1 file changed, 1 insertion(+)
-
-diff --git a/arch/arm64/configs/defconfig b/arch/arm64/configs/defconfig
-index 739b19302865..b3533ba5be7e 100644
---- a/arch/arm64/configs/defconfig
-+++ b/arch/arm64/configs/defconfig
-@@ -227,6 +227,7 @@ CONFIG_PCIE_MEDIATEK_GEN3=m
- CONFIG_PCI_TEGRA=y
- CONFIG_PCIE_RCAR_HOST=y
- CONFIG_PCIE_RCAR_EP=y
-+CONFIG_PCIE_RENESAS_RZG3S_HOST=m
- CONFIG_PCIE_ROCKCHIP_HOST=m
- CONFIG_PCI_XGENE=y
- CONFIG_PCI_IMX6_HOST=y
+diff --git a/Documentation/devicetree/bindings/vendor-prefixes.yaml b/Documentation/devicetree/bindings/vendor-prefixes.yaml
+index 5d2a7a8d3ac6..9df4cb54eea9 100644
+--- a/Documentation/devicetree/bindings/vendor-prefixes.yaml
++++ b/Documentation/devicetree/bindings/vendor-prefixes.yaml
+@@ -1067,6 +1067,8 @@ patternProperties:
+     description: Next Thing Co.
+   "^ni,.*":
+     description: National Instruments
++  "^nicera,.*":
++    description: Nippon Ceramic Co., Ltd.
+   "^nintendo,.*":
+     description: Nintendo
+   "^nlt,.*":
 -- 
-2.43.0
+2.39.5
 
 
