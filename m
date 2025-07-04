@@ -1,126 +1,290 @@
-Return-Path: <devicetree+bounces-192951-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-192952-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 46C35AF8922
-	for <lists+devicetree@lfdr.de>; Fri,  4 Jul 2025 09:20:24 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 145CAAF8926
+	for <lists+devicetree@lfdr.de>; Fri,  4 Jul 2025 09:21:22 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id AD44117ACC8
-	for <lists+devicetree@lfdr.de>; Fri,  4 Jul 2025 07:20:24 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id B74C2543638
+	for <lists+devicetree@lfdr.de>; Fri,  4 Jul 2025 07:20:55 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E6F18279DDA;
-	Fri,  4 Jul 2025 07:19:39 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 480B52797BE;
+	Fri,  4 Jul 2025 07:21:16 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=ventanamicro.com header.i=@ventanamicro.com header.b="ZLumVnCF"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtpbgjp3.qq.com (smtpbgjp3.qq.com [54.92.39.34])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-lf1-f43.google.com (mail-lf1-f43.google.com [209.85.167.43])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id ECA572701CC;
-	Fri,  4 Jul 2025 07:19:34 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=54.92.39.34
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6188A275B02
+	for <devicetree@vger.kernel.org>; Fri,  4 Jul 2025 07:21:14 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.43
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1751613579; cv=none; b=BbXmpn4lZ4dX9mWjnAxmczZrdrKmsGdPVmq/+0RGWSEb3McaWJU8XAjQljV9x3J8VctM0Xt3WkUpWO1Z+kObQzMIAuFenlqajxDQJ2gAT9dpRIhb5gPsj2Gh1I8FYf4P4HHYRRQx9NDqHtajw+oTooblpZZQ6u25EuakGBx/5fg=
+	t=1751613676; cv=none; b=pFgtmgo7Bu6XAFu8vahKTwRW/QLo5Fh0WB7JvmPI/MAm2zxIuF6ROyWoXcac8qAqtkefLw43rfxE+tBOmla7TrVaCW7GQr1C2wxByKilMIoCZ7vSph7nzzUDPU99x9tD38RSQ6i6yAcDhoZ/4UiiBp81hJ6262Hhd6SP9rtPZbs=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1751613579; c=relaxed/simple;
-	bh=UcHF3TjBqRux/88Tho98NKiNY0aNVil9tUeI0/ZZlA4=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=jaf7HRC9Ohx/mPqDvi23IkRr3byW/4x12B/5X6esJZ6UX6PvcJLNlqz76VVQJl8Gn7gJS2M0FhcNC/8vIkR+HXD7Ub1CYShl5tt48E8Z5aHmBsb18bc5ZlUEUR0iocy8BK3ulwbwTkQ9j6bq1gYL+ze+BESIinc9WEU+gLuEvoY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=foursemi.com; spf=none smtp.mailfrom=foursemi.com; arc=none smtp.client-ip=54.92.39.34
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=foursemi.com
-Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=foursemi.com
-X-QQ-mid: esmtpgz16t1751613527t9b4c4649
-X-QQ-Originating-IP: sqjpDicPwX9V5zrS+U+79QAgeN+fW6ZtIOV9Dvj7kd8=
-Received: from localhost ( [183.17.231.150])
-	by bizesmtp.qq.com (ESMTP) with 
-	id ; Fri, 04 Jul 2025 15:18:45 +0800 (CST)
-X-QQ-SSF: 0000000000000000000000000000000
-X-QQ-GoodBg: 0
-X-BIZMAIL-ID: 14648494132943919214
-EX-QQ-RecipientCnt: 13
-Date: Fri, 4 Jul 2025 15:18:45 +0800
-From: Nick Li <nick.li@foursemi.com>
-To: Krzysztof Kozlowski <krzk@kernel.org>
-Cc: lgirdwood@gmail.com, broonie@kernel.org, robh@kernel.org,
-	krzk+dt@kernel.org, conor+dt@kernel.org, perex@perex.cz,
-	tiwai@suse.com, xiaoming.yang@foursemi.com,
-	danyang.zheng@foursemi.com, linux-sound@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v1 3/4] ASoC: dt-bindings: Add dt bindings for FS2104/5S
- audio amplifiers
-Message-ID: <958EB912F5B1E1BE+aGeAVcfUR_Uq_9Ct@foursemi.com>
-References: <20250703035639.7252-1-nick.li@foursemi.com>
- <20250703035639.7252-4-nick.li@foursemi.com>
- <20250703-primitive-puzzling-toucanet-2c4870@krzk-bin>
+	s=arc-20240116; t=1751613676; c=relaxed/simple;
+	bh=1vHGXUlZtyebRmzmZ6aE2d3iSmKznh50LzT5ifgwFgI=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=C9eYU5bQG3iDYy+NztU21xznE2raN5jEMIoQ5EDs3rpmKzAQcDLPnnordi/ipVEmEngyNcc/xJwSxBf0NgfmR+riH3gv6OVHDZznaBfjkii79NICn5zkj3ilm50cI948z7N5ISW7RzwnApJlo6EMee41ZbDgK1EtXrSK09nOZug=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ventanamicro.com; spf=pass smtp.mailfrom=ventanamicro.com; dkim=pass (2048-bit key) header.d=ventanamicro.com header.i=@ventanamicro.com header.b=ZLumVnCF; arc=none smtp.client-ip=209.85.167.43
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ventanamicro.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ventanamicro.com
+Received: by mail-lf1-f43.google.com with SMTP id 2adb3069b0e04-555163cd09aso633536e87.3
+        for <devicetree@vger.kernel.org>; Fri, 04 Jul 2025 00:21:14 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=ventanamicro.com; s=google; t=1751613672; x=1752218472; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=Ss38OfQK2BPStY8bJhweUCCLJplXw3xTcQ9jkhK3PpA=;
+        b=ZLumVnCF2+nN5qwCH87I3PU9oH2u1oQ8wzZENkRl0lsm/+gw3A5xKwsyBsPxnyMcrh
+         LK7HE488njmpN3ESoDePs26O0HgBFtDJo8ERHFV4q6gOLlfcPJGHmV5IHr2FlQByI+QK
+         ALKw9biucn6UflQSoB+MX71yuLDF8vA3wq2ou0ZpHqf6oV9kmvkkgTknVYeg2zgUwH7p
+         v9DkxaGHAwOR7QfsHvwifT8wIZXZiRVY5uggASO0fMPlOkVraupLbWAPv4JVQSf6Ez2F
+         h/mUK8NFdw6jem9TP/YLtiaUDwUzhwcotMsOXw1YgV7963u/hKNDjpG7S1BGm2NVEdjY
+         LFOg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1751613672; x=1752218472;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=Ss38OfQK2BPStY8bJhweUCCLJplXw3xTcQ9jkhK3PpA=;
+        b=Uyfeq13zQB2kwf0uR/kiC9O1JhmdWmJoq2vbUySHuQQla+6KxDYb1BlxRtPRtgeA8W
+         E1nCbfTMVwhCN+aupTcxKlqJXo/EK4m08LGPFa51KUU2PI+XUhV+Ne3rTTDIgFo6gDeY
+         5/25kVE8XMq+3kcZxZQN/HMSSxeQixN2I7U+RbXd0kbomQdTznEknzp0D0rIgecUmgIn
+         sYjqWGJEze2adNhxfoVMdXGYosmi+CjDVYwJZ2xblHiedNbiMbpUKkdruRyayBZdEuaC
+         OswBQS0Iv2pDnVmCyXHQ6N1MMLb+Qhn1NSoMKbRQBWfyMvWJgrPi0eVJNEO8WLGdC2k5
+         6n9g==
+X-Forwarded-Encrypted: i=1; AJvYcCWgjWOz75/qM6G+WPDXztKh12Xs3UqgklfaTnI7bRCGUatvaZLIaKZg9wAonjAoVW9v0g07tV4iszFb@vger.kernel.org
+X-Gm-Message-State: AOJu0YyANhPS9FJxdKSzKLKWwkKU+8U/TnDLi9zeoXk9rD7mJ4i+odD2
+	GXjfhNdWXL7J1s8dXPFaX4AX2iybQ6lVYADuJCllH5gbt4BMER+uPv+/Sp01lHSuXISvk+TMyff
+	MlEeOmALP69N4ijONaVsjq4o/aITAQskFERwlCVhzUA==
+X-Gm-Gg: ASbGncv6upvvbeF7rUNygKTk+Gp0uhqsIanAAtSrQtNC++39LEJZvWDW/06B1+YFk+3
+	qCzp0WCXoPvJlPIRWoSFKAknRSSPjaBZ2v62JAXuWIP5WEoDP6uo3VPmZ+CnqJXoDzcTsLEMBhQ
+	dq15K3XzyxN5Ed37I/YShmeiAwbxcVbMmZKcFK+MexuE/y
+X-Google-Smtp-Source: AGHT+IE8DLRDqSYLUcqchsHETOkTegf53IGv8dAwdZVbETPpZ0K8svFgBs92AbIFlCbZ+IJgkQazmLSfqkTSvGsT5OU=
+X-Received: by 2002:a05:6512:3984:b0:553:2a16:2513 with SMTP id
+ 2adb3069b0e04-556e6e31588mr402529e87.47.1751613672223; Fri, 04 Jul 2025
+ 00:21:12 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-In-Reply-To: <20250703-primitive-puzzling-toucanet-2c4870@krzk-bin>
-X-QQ-SENDSIZE: 520
-Feedback-ID: esmtpgz:foursemi.com:qybglogicsvrsz:qybglogicsvrsz3a-0
-X-QQ-XMAILINFO: NOIkHYnr7VzdaQRd1sbAU/pNymJj5JEUd/zUTwVjjc9aq/fT5aKAUnJ/
-	0blUPpdQY4daxVws1IwvifDyQCLnw2qLB9lJ5vHU10ZLqZ7d4S0+ksYIOLNpC5HZF2mafWw
-	hk/fHbqIr8RQHJV2UHyurEZrGQTUl2lmVNl2mE6Ww7D1Wd8uoYODyb6ctHWGenFLik9ZEqz
-	w+KsWTwcJvKqUewSqMssXdvAoLVyKkEO+g8/IpZK/YDf7y27jsHnXFnCbuAVjSxdcDq2OEe
-	gfdYWZK1HFCXBOtJ2W299TAH0YN0lxFzmbpPM43iEivjyFHdJtWpcTaJ9UI+yuFHBTeVxSX
-	0ga5mBTN+54CnFtolYuCz9S4R+7G/tgznlI8/LlnhAO8HR/ucg7BMGM8KFKwS6qFTPrb1yT
-	5XNCjWa5oUD03TCx7KDj7TvXI3ixvntnnLrkWby6JYDSHlfpxQjHtIqiIesD0m81NVJbKpn
-	Jeit1Z1zrRSVa60VRcwP8NhCwuevftmrl95GGZtvrEb2hqmONBxokoO2Te8cma+uzxgip7k
-	2v5remsnN5MYTIAZAvuD6LVm0PSk90oDEpFGt61nfBEpGLgTnoXSw4ETQ5PHMIS+mxaIG/F
-	vyQmW6B1p2z0L2RhlE5okMTuPiX3bAXp42PcEJ0gQMWLBwHxstoTt4XFBbAYnxWpzkxXDlJ
-	fWndbbyFOEKGrKiAtM/QUEZDYonh/pp1EaGuSaFWQYL1xaOJJTiYxNHktpRB0UOZ6Xl7lIX
-	BM6o4+yqxdboeZPZOyTff9EE/KR9eWgqSqf+1/YN2Mfgw8emX23ad4s53DvjMBNrTD1rbZW
-	bzNEgNTbsnEXBXopmWhadbkEjwJOczQFIF1M7aZnyoATDY5b/3WQsn9uYOIHTQ9j0gt4/6U
-	4rLq9tB9Y1f/OhiDB/n5jM2LnzJDSA9PxcxrSUuIM080GXPov6kPz3whQZ6Z9vifSrykA0f
-	IMxb55vMijV7FYakTQpebiK6rwpxXrTtqOzQTJtAMCaRgQ3HYQ+t7IDXhfQs1w7PvWE7JN+
-	F1+bZDHiYkQUGxD2piALtQpU2UlV9k1ed/DRo5DS45lVFbljMp8IEkwbpgKqe2Cg1CBUOtv
-	w==
-X-QQ-XMRINFO: NyFYKkN4Ny6FSmKK/uo/jdU=
-X-QQ-RECHKSPAM: 0
+References: <20250704070356.1683992-1-apatel@ventanamicro.com> <20250704070356.1683992-6-apatel@ventanamicro.com>
+In-Reply-To: <20250704070356.1683992-6-apatel@ventanamicro.com>
+From: Anup Patel <apatel@ventanamicro.com>
+Date: Fri, 4 Jul 2025 12:50:59 +0530
+X-Gm-Features: Ac12FXxBYrwMwLh2b63UTR1FF-vZ-WGXFQQu9oCdF8nHTC5uuKvhl5UMFA9rxMI
+Message-ID: <CAK9=C2VRtig5BUBbcriA7gkA8RAMKYiOJ0fYsz=VkNY4OeBMEQ@mail.gmail.com>
+Subject: Re: [PATCH v8 05/24] mailbox: Allow controller specific mapping using fwnode
+To: Michael Turquette <mturquette@baylibre.com>, Stephen Boyd <sboyd@kernel.org>, 
+	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Jassi Brar <jassisinghbrar@gmail.com>, Thomas Gleixner <tglx@linutronix.de>, 
+	"Rafael J . Wysocki" <rafael@kernel.org>, Mika Westerberg <mika.westerberg@linux.intel.com>, 
+	Andy Shevchenko <andriy.shevchenko@linux.intel.com>, 
+	Linus Walleij <linus.walleij@linaro.org>, Bartosz Golaszewski <brgl@bgdev.pl>, 
+	=?UTF-8?Q?Uwe_Kleine=2DK=C3=B6nig?= <ukleinek@kernel.org>
+Cc: Palmer Dabbelt <palmer@dabbelt.com>, Paul Walmsley <paul.walmsley@sifive.com>, 
+	Alexandre Ghiti <alex@ghiti.fr>, Len Brown <lenb@kernel.org>, Sunil V L <sunilvl@ventanamicro.com>, 
+	Rahul Pathak <rpathak@ventanamicro.com>, Leyfoon Tan <leyfoon.tan@starfivetech.com>, 
+	Atish Patra <atish.patra@linux.dev>, Andrew Jones <ajones@ventanamicro.com>, 
+	Samuel Holland <samuel.holland@sifive.com>, Anup Patel <anup@brainfault.org>, 
+	linux-clk@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-acpi@vger.kernel.org, linux-riscv@lists.infradead.org, 
+	linux-kernel@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-On Thu, Jul 03, 2025 at 09:10:38AM +0200, Krzysztof Kozlowski wrote:
-> On Thu, Jul 03, 2025 at 11:56:38AM +0800, Nick wrote:
-> > From: Nick Li <nick.li@foursemi.com>
-> > 
-> > This patch adds bindings for FourSemi FS2104/5S audio amplifiers
-> > which can support both I2S and I2C interface.
-> > 
-> > Signed-off-by: Nick Li <nick.li@foursemi.com>
-> > ---
-> >  .../bindings/sound/foursemi,fs210x.yaml       | 95 +++++++++++++++++++
-> >  1 file changed, 95 insertions(+)
-> >  create mode 100644 Documentation/devicetree/bindings/sound/foursemi,fs210x.yaml
-> > 
-> > diff --git a/Documentation/devicetree/bindings/sound/foursemi,fs210x.yaml b/Documentation/devicetree/bindings/sound/foursemi,fs210x.yaml
-> > new file mode 100644
-> > index 000000000..3a1aba9b8
-> > --- /dev/null
-> > +++ b/Documentation/devicetree/bindings/sound/foursemi,fs210x.yaml
-> > @@ -0,0 +1,95 @@
-> > +# SPDX-License-Identifier: GPL-2.0-only
-> 
-> Please run scripts/checkpatch.pl on the patches and fix reported
-> warnings. After that, run also 'scripts/checkpatch.pl --strict' on the
-> patches and (probably) fix more warnings. Some warnings can be ignored,
-> especially from --strict run, but the code here looks like it needs a
-> fix. Feel free to get in touch if the warning is not clear.
+On Fri, Jul 4, 2025 at 12:35=E2=80=AFPM Anup Patel <apatel@ventanamicro.com=
+> wrote:
+>
+> Introduce optional fw_node() callback which allows a mailbox controller
+> driver to provide controller specific mapping using fwnode.
+>
+> The Linux OF framework already implements fwnode operations for the
+> Linux DD framework so the fw_xlate() callback works fine with device
+> tree as well.
+>
+> Signed-off-by: Anup Patel <apatel@ventanamicro.com>
 
-OK, I will check the patches with option --strict, and fix the warnings/errors
-in next version.
+I missed adding Andy's Reviewed-by here which I will do in the
+next revision.
 
-Thanks.
+Regards,
+Anup
 
-Best regards,
-Nick
-
-> 
-> Best regards,
-> Krzysztof
-> 
-> 
+> ---
+>  drivers/mailbox/mailbox.c          | 65 ++++++++++++++++++------------
+>  include/linux/mailbox_controller.h |  3 ++
+>  2 files changed, 43 insertions(+), 25 deletions(-)
+>
+> diff --git a/drivers/mailbox/mailbox.c b/drivers/mailbox/mailbox.c
+> index 5cd8ae222073..2acc6ec229a4 100644
+> --- a/drivers/mailbox/mailbox.c
+> +++ b/drivers/mailbox/mailbox.c
+> @@ -15,6 +15,7 @@
+>  #include <linux/module.h>
+>  #include <linux/mutex.h>
+>  #include <linux/of.h>
+> +#include <linux/property.h>
+>  #include <linux/spinlock.h>
+>
+>  #include "mailbox.h"
+> @@ -383,34 +384,56 @@ EXPORT_SYMBOL_GPL(mbox_bind_client);
+>   */
+>  struct mbox_chan *mbox_request_channel(struct mbox_client *cl, int index=
+)
+>  {
+> -       struct device *dev =3D cl->dev;
+> +       struct fwnode_reference_args fwspec;
+> +       struct fwnode_handle *fwnode;
+>         struct mbox_controller *mbox;
+>         struct of_phandle_args spec;
+>         struct mbox_chan *chan;
+> +       struct device *dev;
+> +       unsigned int i;
+>         int ret;
+>
+> -       if (!dev || !dev->of_node) {
+> -               pr_debug("%s: No owner device node\n", __func__);
+> +       dev =3D cl->dev;
+> +       if (!dev) {
+> +               pr_debug("No owner device\n");
+>                 return ERR_PTR(-ENODEV);
+>         }
+>
+> -       ret =3D of_parse_phandle_with_args(dev->of_node, "mboxes", "#mbox=
+-cells",
+> -                                        index, &spec);
+> +       fwnode =3D dev_fwnode(dev);
+> +       if (!fwnode) {
+> +               dev_dbg(dev, "No owner fwnode\n");
+> +               return ERR_PTR(-ENODEV);
+> +       }
+> +
+> +       ret =3D fwnode_property_get_reference_args(fwnode, "mboxes", "#mb=
+ox-cells",
+> +                                                0, index, &fwspec);
+>         if (ret) {
+> -               dev_err(dev, "%s: can't parse \"mboxes\" property\n", __f=
+unc__);
+> +               dev_err(dev, "%s: can't parse \"%s\" property\n", __func_=
+_, "mboxes");
+>                 return ERR_PTR(ret);
+>         }
+>
+> +       spec.np =3D to_of_node(fwspec.fwnode);
+> +       spec.args_count =3D fwspec.nargs;
+> +       for (i =3D 0; i < spec.args_count; i++)
+> +               spec.args[i] =3D fwspec.args[i];
+> +
+>         scoped_guard(mutex, &con_mutex) {
+>                 chan =3D ERR_PTR(-EPROBE_DEFER);
+> -               list_for_each_entry(mbox, &mbox_cons, node)
+> -                       if (mbox->dev->of_node =3D=3D spec.np) {
+> -                               chan =3D mbox->of_xlate(mbox, &spec);
+> -                               if (!IS_ERR(chan))
+> -                                       break;
+> +               list_for_each_entry(mbox, &mbox_cons, node) {
+> +                       if (device_match_fwnode(mbox->dev, fwspec.fwnode)=
+) {
+> +                               if (mbox->fw_xlate) {
+> +                                       chan =3D mbox->fw_xlate(mbox, &fw=
+spec);
+> +                                       if (!IS_ERR(chan))
+> +                                               break;
+> +                               } else if (mbox->of_xlate) {
+> +                                       chan =3D mbox->of_xlate(mbox, &sp=
+ec);
+> +                                       if (!IS_ERR(chan))
+> +                                               break;
+> +                               }
+>                         }
+> +               }
+>
+> -               of_node_put(spec.np);
+> +               fwnode_handle_put(fwspec.fwnode);
+>
+>                 if (IS_ERR(chan))
+>                         return chan;
+> @@ -427,15 +450,8 @@ EXPORT_SYMBOL_GPL(mbox_request_channel);
+>  struct mbox_chan *mbox_request_channel_byname(struct mbox_client *cl,
+>                                               const char *name)
+>  {
+> -       struct device_node *np =3D cl->dev->of_node;
+> -       int index;
+> -
+> -       if (!np) {
+> -               dev_err(cl->dev, "%s() currently only supports DT\n", __f=
+unc__);
+> -               return ERR_PTR(-EINVAL);
+> -       }
+> +       int index =3D device_property_match_string(cl->dev, "mbox-names",=
+ name);
+>
+> -       index =3D of_property_match_string(np, "mbox-names", name);
+>         if (index < 0) {
+>                 dev_err(cl->dev, "%s() could not locate channel named \"%=
+s\"\n",
+>                         __func__, name);
+> @@ -470,9 +486,8 @@ void mbox_free_channel(struct mbox_chan *chan)
+>  }
+>  EXPORT_SYMBOL_GPL(mbox_free_channel);
+>
+> -static struct mbox_chan *
+> -of_mbox_index_xlate(struct mbox_controller *mbox,
+> -                   const struct of_phandle_args *sp)
+> +static struct mbox_chan *fw_mbox_index_xlate(struct mbox_controller *mbo=
+x,
+> +                                            const struct fwnode_referenc=
+e_args *sp)
+>  {
+>         int ind =3D sp->args[0];
+>
+> @@ -523,8 +538,8 @@ int mbox_controller_register(struct mbox_controller *=
+mbox)
+>                 spin_lock_init(&chan->lock);
+>         }
+>
+> -       if (!mbox->of_xlate)
+> -               mbox->of_xlate =3D of_mbox_index_xlate;
+> +       if (!mbox->fw_xlate && !mbox->of_xlate)
+> +               mbox->fw_xlate =3D fw_mbox_index_xlate;
+>
+>         scoped_guard(mutex, &con_mutex)
+>                 list_add_tail(&mbox->node, &mbox_cons);
+> diff --git a/include/linux/mailbox_controller.h b/include/linux/mailbox_c=
+ontroller.h
+> index ad01c4082358..80a427c7ca29 100644
+> --- a/include/linux/mailbox_controller.h
+> +++ b/include/linux/mailbox_controller.h
+> @@ -66,6 +66,7 @@ struct mbox_chan_ops {
+>   *                     no interrupt rises. Ignored if 'txdone_irq' is se=
+t.
+>   * @txpoll_period:     If 'txdone_poll' is in effect, the API polls for
+>   *                     last TX's status after these many millisecs
+> + * @fw_xlate:          Controller driver specific mapping of channel via=
+ fwnode
+>   * @of_xlate:          Controller driver specific mapping of channel via=
+ DT
+>   * @poll_hrt:          API private. hrtimer used to poll for TXDONE on a=
+ll
+>   *                     channels.
+> @@ -79,6 +80,8 @@ struct mbox_controller {
+>         bool txdone_irq;
+>         bool txdone_poll;
+>         unsigned txpoll_period;
+> +       struct mbox_chan *(*fw_xlate)(struct mbox_controller *mbox,
+> +                                     const struct fwnode_reference_args =
+*sp);
+>         struct mbox_chan *(*of_xlate)(struct mbox_controller *mbox,
+>                                       const struct of_phandle_args *sp);
+>         /* Internal to API */
+> --
+> 2.43.0
+>
 
