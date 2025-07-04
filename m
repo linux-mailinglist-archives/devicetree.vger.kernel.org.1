@@ -1,153 +1,166 @@
-Return-Path: <devicetree+bounces-193175-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-193176-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1FCC9AF99B2
-	for <lists+devicetree@lfdr.de>; Fri,  4 Jul 2025 19:32:19 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1DC09AF9A2A
+	for <lists+devicetree@lfdr.de>; Fri,  4 Jul 2025 19:54:36 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id B374D4A1886
-	for <lists+devicetree@lfdr.de>; Fri,  4 Jul 2025 17:31:52 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id B5EC71C426CE
+	for <lists+devicetree@lfdr.de>; Fri,  4 Jul 2025 17:54:52 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B2A3C42AA3;
-	Fri,  4 Jul 2025 17:32:14 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id BE1AC1EE7B7;
+	Fri,  4 Jul 2025 17:54:29 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="PEO/zFVr"
+	dkim=pass (2048-bit key) header.d=ziepe.ca header.i=@ziepe.ca header.b="Hy5unYwn"
 X-Original-To: devicetree@vger.kernel.org
-Received: from bali.collaboradmins.com (bali.collaboradmins.com [148.251.105.195])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-pl1-f180.google.com (mail-pl1-f180.google.com [209.85.214.180])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 857712E36E1;
-	Fri,  4 Jul 2025 17:32:12 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=148.251.105.195
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B4FB42868A9
+	for <devicetree@vger.kernel.org>; Fri,  4 Jul 2025 17:54:27 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.180
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1751650334; cv=none; b=MOOzpfni4BttLRxqmvbi7eYcIIa4yqloGiiv4s1IIL5b6RbrCogfEfT2JZWGzkZDtWXMqP3FkrYIZcNERr/+PylQebvzPGS2/iOG2GNgxPhcY98wiIYBv9M63AbeuI0Pn9SKyR3rSmrTtxveWp1XSMDyy32o2m0OW6Jubc9Sglw=
+	t=1751651669; cv=none; b=KpXQhFpouaQkYgaqZkI0IXys5UIsE4X/6Tkb0PwB6Z/sLLx8i+U/j6DHea/5ET9I//0p8D/lzgufVowaBt0rolAwQWTPnI00NgKBYzQS9LS9R56696RaLmVujts89sG15doDZbrgOy6a5oFCeZ/0pajyLYwPtWo/UeRdXaHqiRk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1751650334; c=relaxed/simple;
-	bh=3HlCyLBTGav/NM6Og4Z9SyTGsQu3ubUJXpozkmfc/48=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:To:Cc; b=T7TCc3UgmHTe5/Xtp8nLU3dGQ0jvNmomW1+LO4nJeyljPORzXVb5+NY8aUoajmCfksj6mAl9G9PRisEVS+YSZzczOqCnf2jlYiQG9Usxe8RDJAx6QDUrbz7RtwknN76c1pntVZ6AFZ4Fj0qWW+I1SyfHnpnxp7AcVqsKVQJWLW8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b=PEO/zFVr; arc=none smtp.client-ip=148.251.105.195
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-	s=mail; t=1751650330;
-	bh=3HlCyLBTGav/NM6Og4Z9SyTGsQu3ubUJXpozkmfc/48=;
-	h=From:Date:Subject:To:Cc:From;
-	b=PEO/zFVrWAoxzRBs6psKovdtDRzsj0OarIT4c5FtOegZtrxhLJX5dT0lMTMdhdzyG
-	 3zSZVzniSjvxjWtEHiRiXyaWABfc/3nADclJ0TYGrMNaL+/JafKc/RquBmXKB1jncF
-	 x2u6PgS+DrycaGzwn4F61LBT53pftytOVFIdpzeO7XMpkU3OZCz1ZQ7ax8UsLn8h53
-	 xZ7WLnfX5WKb5Tw2Wgk5FL0a28DOzg1OIw6f1ohuzdg5E6Zg4B2f9S4ph3BGMmGOB6
-	 0Egf8bQKNNiWexkZmcnRO7B/IOIJ9TYGaNzbIeDQDiVUhHsLcPp46JnqHyRfc2/qmP
-	 eTWZ9ErkeAkAA==
-Received: from jupiter.universe (dyndsl-091-248-191-229.ewe-ip-backbone.de [91.248.191.229])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange X25519 server-signature RSA-PSS (4096 bits))
-	(No client certificate requested)
-	(Authenticated sender: sre)
-	by bali.collaboradmins.com (Postfix) with ESMTPSA id 8938E17E0497;
-	Fri,  4 Jul 2025 19:32:10 +0200 (CEST)
-Received: by jupiter.universe (Postfix, from userid 1000)
-	id 1F988480039; Fri, 04 Jul 2025 19:32:10 +0200 (CEST)
-From: Sebastian Reichel <sebastian.reichel@collabora.com>
-Date: Fri, 04 Jul 2025 19:31:59 +0200
-Subject: [PATCH] arm64: dts: rockchip: fix PHY handling for ROCK 4D
+	s=arc-20240116; t=1751651669; c=relaxed/simple;
+	bh=qTNc7+1p4sx/z+Ihm4/J09j0G//xpF1WUSAnIfFyOOI=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=ngoI/H/E8EHcSvdAS56HaUaZ3jN/0h/++TMurozW5xiy9H8sz3KfEEun1utnyh0uUGdJ1Msei+ZTCyvNm2LOf+hPa+YCdTunBLx3oc9tnCQJpZon0heTnlFruxTCFOKfody2JUe25Gu1WSbQNHTXz/TNbYbXNVf75YpXS/RDs/M=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ziepe.ca; spf=pass smtp.mailfrom=ziepe.ca; dkim=pass (2048-bit key) header.d=ziepe.ca header.i=@ziepe.ca header.b=Hy5unYwn; arc=none smtp.client-ip=209.85.214.180
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ziepe.ca
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ziepe.ca
+Received: by mail-pl1-f180.google.com with SMTP id d9443c01a7336-234b9dfb842so10801465ad.1
+        for <devicetree@vger.kernel.org>; Fri, 04 Jul 2025 10:54:27 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=ziepe.ca; s=google; t=1751651667; x=1752256467; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=XuxUGCJzgBIyontDTdqwJrs5j4TnI5gqZ41JcRqn9+o=;
+        b=Hy5unYwnQWeHvclqGWWZmlYVO6t+KVcSFgHvukAUZ8tsgk/4vTQ9COQ5UuGMNYID4l
+         HwovZvBbnI+XBTiEGO3F2ook5wLpIh0hA4P9YjCIE5Wqvv5kxlaM42548iO7exc57NNj
+         YOFmgIZP4XWrTV2bntXgkakHhuQEa0C6Z2+nftrl+XR6VUuadw0zQx1bAQ82mFwE10fr
+         27jxkATY2Ds0jGY4FsISrgsfw3OyvsyAQ3O8VkmEugbNeJORrSR/3Evbv6xm4WNpSoWc
+         AeXRX/rMaCKJGAy90Byg3U/1lRyQtvrOa5p3RJWre+iPkYPZVt2gO7B3i3MffOltvKXe
+         rRcg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1751651667; x=1752256467;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=XuxUGCJzgBIyontDTdqwJrs5j4TnI5gqZ41JcRqn9+o=;
+        b=nBmQ1ppdNj1xmlhHqIVtSaVyaPwHw6NhBb0DCPAuLF/z9EBPOYqWkVw/Te9HP/HeVa
+         XWuOyXzamNA2LjCuBEXnt0t5RJ2TE4r42thRUwAB/bibMC0iJZ4O8dM5J6tyx9mZjfeW
+         fROmtikfEJcLzMV79JepbfFklBB/ZuUsV6raDVzpkIGpDTfyEWcHcOO+57vJu04I5okx
+         a8UlSxehz07+mZUlKYAwVlLBwFH2+xrwLhozqL/HIMIpM2YK08JL5MlmM1p9OJ6aPlMf
+         5kfwgtsgrB+hx8HQufxIXoAwNfKhhyMMvzJVPTxtXbRGd6pEc38ipQn57MwfSlmjzcCC
+         utPw==
+X-Forwarded-Encrypted: i=1; AJvYcCUJg9rmhf66SbJODLM521EyeXIaG/ANA//K3lQGbpc2GNfxnKDEKB2zeCOVkvMzcP/OYQlChmQKu153@vger.kernel.org
+X-Gm-Message-State: AOJu0YxueaiZnu0QPOogNXVd1OaOwRpyfuzfyLu/tN2z+s6Vu+I/YtS3
+	vdyWeLQNBXdEedonaocbnrfYM+QEk4Jl2GRSPdNDp4Scb/lzcO08xy4XjmlfcitHYMQ=
+X-Gm-Gg: ASbGncsnUafyuNTWof6qYoGrEzQ+Z00GBICkQS6LeoL1Iw2trhRN5FTojCunz/t52bw
+	/kGe0ktzip6tsnQgYkGd3OS+QGLoMJJB0SBZn2OjQN9/EFPxi4fcO+Ep2sQhPbcmDrk/+TAG4rW
+	UxKrQ8h3ylweAvkT+XHEBmejJbrypR03Nl+VMfi4YKhqjSQOQBdypKEBSIX3X9i33igokpzlhLU
+	sG6kgUS/kRhRj4t7j+7nvPAgk31QI4ySa2WmEhenpYdv3iViuUqyKAiu2Tbdu0DBpk/jdojh99R
+	dzBAEoWg0bOprWbosgu4eo84OCVVDgzc0EgQ
+X-Google-Smtp-Source: AGHT+IEh1aJoFY/nLlH7wiffnloJQKoRXxbF/IF6yLU1DedrCGkd2rfvxrkg/X7+7Uo3KEx9efT39g==
+X-Received: by 2002:a17:90a:dfcc:b0:313:1e9d:404b with SMTP id 98e67ed59e1d1-31aadcf8e2bmr4389360a91.2.1751651667045;
+        Fri, 04 Jul 2025 10:54:27 -0700 (PDT)
+Received: from ziepe.ca ([130.41.10.202])
+        by smtp.gmail.com with ESMTPSA id 98e67ed59e1d1-31aaae4095asm2682225a91.8.2025.07.04.10.54.26
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 04 Jul 2025 10:54:26 -0700 (PDT)
+Received: from jgg by wakko with local (Exim 4.97)
+	(envelope-from <jgg@ziepe.ca>)
+	id 1uXkcD-00000005zua-0liE;
+	Fri, 04 Jul 2025 14:54:25 -0300
+Date: Fri, 4 Jul 2025 14:54:25 -0300
+From: Jason Gunthorpe <jgg@ziepe.ca>
+To: Benjamin Gaignard <benjamin.gaignard@collabora.com>
+Cc: joro@8bytes.org, will@kernel.org, robin.murphy@arm.com, robh@kernel.org,
+	krzk+dt@kernel.org, conor+dt@kernel.org, heiko@sntech.de,
+	nicolas.dufresne@collabora.com, iommu@lists.linux.dev,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	linux-rockchip@lists.infradead.org, kernel@collabora.com
+Subject: Re: [PATCH v4 3/5] iommu: Add verisilicon IOMMU driver
+Message-ID: <20250704175425.GM904431@ziepe.ca>
+References: <20250623153931.158765-1-benjamin.gaignard@collabora.com>
+ <20250623153931.158765-4-benjamin.gaignard@collabora.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20250704-rk3576-rock4d-phy-handling-fixes-v1-1-1d64130c4139@kernel.org>
-X-B4-Tracking: v=1; b=H4sIAA4QaGgC/x2M0QqDMAwAf0XyvECm7Sr7lbEHaaMGpUoK4ij+u
- 2GPxx1XobAKF3g3FZQPKbJlg+ejgTgPeWKUZAwttZ4COdSl8+GFusXFJdznH1qWVskTjnJyQfJ
- uiGFMfXQEttmV/8Iun+913UFlhJ9yAAAA
-X-Change-ID: 20250704-rk3576-rock4d-phy-handling-fixes-054ac7fd8c40
-To: Heiko Stuebner <heiko@sntech.de>
-Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, devicetree@vger.kernel.org, 
- linux-arm-kernel@lists.infradead.org, linux-rockchip@lists.infradead.org, 
- linux-kernel@vger.kernel.org, 
- Sebastian Reichel <sebastian.reichel@collabora.com>
-X-Mailer: b4 0.14.2
-X-Developer-Signature: v=1; a=openpgp-sha256; l=2387; i=sre@kernel.org;
- h=from:subject:message-id; bh=3HlCyLBTGav/NM6Og4Z9SyTGsQu3ubUJXpozkmfc/48=;
- b=owJ4nAFtApL9kA0DAAoB2O7X88g7+poByyZiAGhoEBoTtZ9ECP5S4iU9jzszYGAsDJTKx5UY/
- gpOQl0cD67gjIkCMwQAAQoAHRYhBO9mDQdGP4tyanlUE9ju1/PIO/qaBQJoaBAaAAoJENju1/PI
- O/qahLAP/RK1HzGMX9QG9jBQOmeS4LVWCxoMBCCNqX4keR9zSW28xkuujCndnypBIqe8ROJ1vLH
- /IA07FMKqQGsBevdMvltvxBkN37SzdfKo1r5apIvCvoZoyFr2RRm1yghAlXp13DqoLwGQG3KTec
- lRIiXmildR10R7fyDWWgXumasD756UekyM68V5jlgOOnL0vu3bmN+jYWNLrUIcq2RRF6anyITrP
- HTjtqP18pgslFmd6ZAddzH51YRUksK8kAIWhEbVGFgcGE0K97oPLyVZdF72nNVQ4nDPixtw2eDS
- on/kqXYdB8ZByto7LUb1J241dc44SriGL63PTlqAI+STNRzOB2pl6EjDhyGQ3nRyL+vPz0lQS4p
- Gpy4uIhSMTmaHn6oYzvYbqhbnXz+o5afkdXN3bTLfhGL2Gyxdn2WHChKzlBFxGhRCaaCEXSQ2+Z
- bE0c+F9wCu7ZccYCnbSHz+t/xuObCOumn9M4crnhqTHxx9VXpGTu2UIRGscX1CS4Lj33Pv//W3A
- 2JS1j5VMKp1qkSunPWz1zuUNXPW33nQDMx2hQrqyliDKPA1Bz8vD5hqO3Pl8qxE0QMp2FaqIx6s
- SmkkBawGqw5vr1NmTPFiCe0OfMxjUdhzP5R/kLpU0Zgbp4iDxVecOUKuwctFoOFpBqbhrBhFqcM
- 2pxLQQtpxCJ4M/NpLCjsjVw==
-X-Developer-Key: i=sre@kernel.org; a=openpgp;
- fpr=EF660D07463F8B726A795413D8EED7F3C83BFA9A
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20250623153931.158765-4-benjamin.gaignard@collabora.com>
 
-Old revisions of the ROCK 4D board have a dedicated crystal to
-supply the RTL8211F PHY's 25MHz clock input. At least some newer
-revisions instead use REFCLKO25M_GMAC0_OUT. The DT already has
-this half-prepared, but there are some issues:
+On Mon, Jun 23, 2025 at 05:39:27PM +0200, Benjamin Gaignard wrote:
+> The Verisilicon IOMMU hardware block can be found in combination
+> with Verisilicon hardware video codecs (encoders or decoders) on
+> different SoCs.
+> Enable it will allow us to use non contiguous memory allocators
+> for Verisilicon video codecs.
+> 
+> Signed-off-by: Benjamin Gaignard <benjamin.gaignard@collabora.com>
+> ---
+> change in version 4:
+> - Kconfig dependencies
+> - Fix the remarks done by Jason and Robin: locking, clocks, macros
+>   probing, pm_runtime, atomic allocation.
 
-1. The DT relies on auto-selecting the right PHY driver, which
-   requires that it works good enough to read the ID registers.
-   This does not work without the clock, which is handled by
-   the PHY driver. By updating the compatible to contain the
-   RTL8211F IDs, so that the operating system can choose the
-   right PHY driver without relying on a pre-powered PHY.
+It broadly seems OK to me
 
-2. Despite the name REFCLKO25M_GMAC0_OUT could also provide a
-   different frequency, so ensure it is explicitly set to 25
-   MHz as expected by the PHY.
+Though I did notice this:
 
-3. While at it switch from deprecated "enable-gpio" to standard
-   "enable-gpios".
+> +static struct iommu_domain *vsi_iommu_domain_alloc_paging(struct device *dev)
+> +{
+> +	struct vsi_iommu *iommu = dev_iommu_priv_get(dev);
+> +	struct vsi_iommu_domain *vsi_domain;
+> +
+> +	vsi_domain = kzalloc(sizeof(*vsi_domain), GFP_KERNEL);
+> +	if (!vsi_domain)
+> +		return NULL;
+> +
+> +	vsi_domain->iommu = iommu;
 
-Fixes: a0fb7eca9c09 ("arm64: dts: rockchip: Add Radxa ROCK 4D device tree")
-Signed-off-by: Sebastian Reichel <sebastian.reichel@collabora.com>
----
-Note, that there is one additional problem, that the PHY driver
-needs to assert the reset line after enabling the clock. I will
-send out a separate patch for this problem.
----
- arch/arm64/boot/dts/rockchip/rk3576-rock-4d.dts | 6 ++++--
- 1 file changed, 4 insertions(+), 2 deletions(-)
+So we store the iommu in the domain? And use the iommu->lock all over
+the place
 
-diff --git a/arch/arm64/boot/dts/rockchip/rk3576-rock-4d.dts b/arch/arm64/boot/dts/rockchip/rk3576-rock-4d.dts
-index 0388d72076bf79ee4f20ac1d3bc04fe1859f857b..02839bb489ec67536678bb6464b04f1658dda53f 100644
---- a/arch/arm64/boot/dts/rockchip/rk3576-rock-4d.dts
-+++ b/arch/arm64/boot/dts/rockchip/rk3576-rock-4d.dts
-@@ -645,14 +645,16 @@ hym8563: rtc@51 {
- 
- &mdio0 {
- 	rgmii_phy0: ethernet-phy@1 {
--		compatible = "ethernet-phy-ieee802.3-c22";
-+		compatible = "ethernet-phy-id001c.c916";
- 		reg = <0x1>;
- 		clocks = <&cru REFCLKO25M_GMAC0_OUT>;
-+		assigned-clocks = <&cru REFCLKO25M_GMAC0_OUT>;
-+		assigned-clock-rates = <25000000>;
- 		pinctrl-names = "default";
- 		pinctrl-0 = <&rtl8211f_rst>;
- 		reset-assert-us = <20000>;
- 		reset-deassert-us = <100000>;
--		reset-gpio = <&gpio2 RK_PB5 GPIO_ACTIVE_LOW>;
-+		reset-gpios = <&gpio2 RK_PB5 GPIO_ACTIVE_LOW>;
- 	};
- };
- 
+> +static int vsi_iommu_attach_device(struct iommu_domain *domain,
+> +				   struct device *dev)
+> +{
+> +	struct vsi_iommu *iommu = dev_iommu_priv_get(dev);
+> +	struct vsi_iommu_domain *vsi_domain = to_vsi_domain(domain);
+> +	unsigned long flags;
+> +	int ret = 0;
+> +
+> +	ret = pm_runtime_resume_and_get(iommu->dev);
+> +	if (ret < 0)
+> +		return ret;
+> +
+> +	spin_lock_irqsave(&iommu->lock, flags);
+> +	/* iommu already attached */
+> +	if (iommu->domain == domain)
+> +		goto unlock;
 
----
-base-commit: e05818ef75bee755fc56811cb54febf4174d7cf2
-change-id: 20250704-rk3576-rock4d-phy-handling-fixes-054ac7fd8c40
+But here we don't check that the domain matches the iommu of dev.
 
-Best regards,
--- 
-Sebastian Reichel <sre@kernel.org>
+This seems a bit weird to me, I didn't quite get why the domain uses
+iommu->lock instead of just having its own per-domain lock?
 
+But if it does use iommu->lock then this does need to prevent using
+domains with the wrong iommu because the also use the wrong lock and
+then this:
+
+> +
+> +	vsi_iommu_enable(iommu, domain);
+> +	list_add_tail(&iommu->node, &vsi_domain->iommus);
+
+Is not safe?
+
+Jason
 
