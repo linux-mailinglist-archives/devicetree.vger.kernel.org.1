@@ -1,126 +1,129 @@
-Return-Path: <devicetree+bounces-193085-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-193093-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id E921DAF92A4
-	for <lists+devicetree@lfdr.de>; Fri,  4 Jul 2025 14:31:33 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3F52CAF92DA
+	for <lists+devicetree@lfdr.de>; Fri,  4 Jul 2025 14:39:38 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 34F091CA785B
-	for <lists+devicetree@lfdr.de>; Fri,  4 Jul 2025 12:31:42 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 93DD31CA4D14
+	for <lists+devicetree@lfdr.de>; Fri,  4 Jul 2025 12:39:54 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 48FE92EBDD1;
-	Fri,  4 Jul 2025 12:30:39 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1DC912D63F2;
+	Fri,  4 Jul 2025 12:39:34 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="gu1+/i46"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="Unioj+V4"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-ej1-f48.google.com (mail-ej1-f48.google.com [209.85.218.48])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0FACB2D46AC;
-	Fri,  4 Jul 2025 12:30:37 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 54CBF28C2DE;
+	Fri,  4 Jul 2025 12:39:32 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.48
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1751632239; cv=none; b=rr28O2QUX10XlRDFC+wriLAqwOcJ63D9a6rC8ICNSiUSYXt/Pva83mMZ6HFyXMjXRryA9nHGPjjrQJUvvwssqfUQC1aqd0tGeN9bmTqSGxlaSkG9bPqBoxv+lqlPUy81BkLrio0b4uw2fqfU8aCiPoVdXD9ULJRRIqmXIAO9b9s=
+	t=1751632774; cv=none; b=IvrgzTUzhVOoWn9rgDMuMMULwtsZYg6VpUl4n0cNaRu2a4gXcxKccExxYoJ5fQ4aljrlxotiSPOXmbate0kMLB8zNL0WM0rTxZPHWyjjTErYVcLIrbgrvBy9uPpGo20DP6ppyXBlCSnvE5vFeLWGt/ZeyN+fVoawi3d9bzZiSHI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1751632239; c=relaxed/simple;
-	bh=9rZiRzdv9CtJTFc6rhk2cR+OOMU0FF61Txdcw7HIcbA=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=SktkViYnqGj/Ir88vH5ffN9Hqk+hOLvUscfXTAZMoEkUk7gLXRW6Pfk/MlD2cAk2HYlb1BWFV6XKqVxQbu4pajTWps37a4+9Kaefik+iSRvqxJKNH3gDkb7zlC/binkLGQkL3jG0RvY3NTEqhCEOYTViuvhXQLpAHyhlhqSDh/U=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=gu1+/i46; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 75547C4CEE3;
-	Fri,  4 Jul 2025 12:30:29 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1751632237;
-	bh=9rZiRzdv9CtJTFc6rhk2cR+OOMU0FF61Txdcw7HIcbA=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=gu1+/i46XMKNQ6xNFRlzCovm6Nzzrc6XvBQshICMZ+70atFk9Z014eGcqKX6gTBe5
-	 dZUbjJW1r4Nc2AylOyLteMv0Wjps2ahM1mI4c8E8YeSdCIzcBEBw6Hb0dGfV2CAr3i
-	 D2y9Ch6xqd5JQW87kbsW3Y2sniw9G/LQsfKdT/ObSbDLXQ8anHEXhbrgAAlFLusSlX
-	 +QQoSTWEHn/U53HoEGYCT97+AGrwK5O81/diyinGC/wURzBpkhAwYSpx9SVrZXQVp3
-	 VbKacS440ehL6U6+HREuovwzsd/4TDVLPvSN3uuLYxVBQvP5YBccZovC/UYd9QWlDG
-	 w+n75aTREAhsg==
-Message-ID: <0191e184-7dd4-4dc3-957d-f045c5d8de93@kernel.org>
-Date: Fri, 4 Jul 2025 14:30:27 +0200
+	s=arc-20240116; t=1751632774; c=relaxed/simple;
+	bh=Qs6+HE89AUgmyAavkV7HuAS3JlNL54D/qBhAGlU+hDs=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=Dka6Ruh2wRJXLe2JtBK6lKrIZYME3kC0oxCbqorotlIzRgr8E5yunyLlj4yv9YtY9+YaJnqtLoHo43kscQGvZCTZaeHNpwIFVxv2tN8mv9fwxYemLGE6lFaHLJrjD+q8qPe/l0RdX+Jqv5GJnNzPlBAixtbchRBL1+PbdGWVdbg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=Unioj+V4; arc=none smtp.client-ip=209.85.218.48
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-ej1-f48.google.com with SMTP id a640c23a62f3a-ae0bde4d5c9so170406366b.3;
+        Fri, 04 Jul 2025 05:39:32 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1751632770; x=1752237570; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=CDenIljNSTVSHWuGkdw4tF8oL0H0P+4SvxvPT0+Mmn8=;
+        b=Unioj+V4KVbxeR7aXQKKHAYgZEDAIW+lS1wVrN++dF6TTKbsTdhS/dt3pf5va5oGCx
+         kSenZvK00fFV8qAaI+xIC7Lk8z+zsUZ21dyXRRJPalBGe3YxCYbF9uYqam8fdN1ngm1/
+         tsEAbbya7+SrxCNMPWWU1rWzlIf28UvofpdwzAoF/kfUaAEa93Eet8Z+7zna6q00LydM
+         Ico/0rEweSvmMa1LRjN+80+qw/slufRTaWFERLHeHze1yYVgTHaOERIo/FZldo+F7FzF
+         MV6N5xtY18OoNOsbusGSfRkt8lBCED/1nGapL6XMrYhEfbSsusWyMRx0yQzU29iKIDtx
+         fiJw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1751632770; x=1752237570;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=CDenIljNSTVSHWuGkdw4tF8oL0H0P+4SvxvPT0+Mmn8=;
+        b=jRGg5Gz3jvfBTp7yRwAiduXljqtsmaZGMmXS/CfQ59yDkrLo8jX4nEAHhI+ck2QbBq
+         ueTreUwsOhNL/wCAIlr3qf8pHoobYB0tNoj3dfBfGZX+2pscJ3W/EPbJ8aM4svhc/oHq
+         baRL6g+ipRa5wpdQLC/xAEvgHn6bL3Bvi+UVhukJ0rlCHCCP9uNL6sSj7k0XUBL9lTXo
+         drkdWPiNcC/z57cpvtdNJ9t+SkYTCdCCYu7whmIBEPKnDQX6iJY5zXi6FfxQZ4gOzRli
+         AbnfV/oIAKMoNYyFl40hXfbICyAh3ekIE7jWXep+lOGRQkPR3pPH2/OcBzqVE4WEHGNb
+         t+Lw==
+X-Forwarded-Encrypted: i=1; AJvYcCXErg5GaicQp3qDrEMvR7CvhcvQZtv3tLuHcEjP1sLZo1hANUbKOMeNeF+Usu29GI0sLBqNJIw0EPOU@vger.kernel.org
+X-Gm-Message-State: AOJu0YxFULN+jxumVtg2XIyzjkgMyUIzmQp5PTaXD6rIdSueaDj7MvKO
+	7pnCW8YEVbbQ9sLTnf3WxekBQhJOMc/X+FUGpZM/ZjoUVPJiSe6IVn5PdeZH7w==
+X-Gm-Gg: ASbGncvXD+/L5/Ytl+vhHQuwceh9H0NL+YpVcrWyC+i9sgs2TMIbHAiVKX7I613fV9r
+	spRPm19zRhKexHqMsh7p9eJrRT1YtR0unlzevPtRu7qKrVALCbuyCQSv2Obe6qGjv5s60D7aVEr
+	OtmDTNgvKfX7TQj3ghN3qtkFf3RzdSwsrcmvBUfOxw/NZXZrQiyG4MuLfFUU1xG7Bt7vNuS9CYr
+	RBJ9QV/0/JwLKPUuzbBz6mINR2+MO1KLRnYuNVFXlRx+9o2Qvp5UAxJs+qwCwDCQ4KioNOYjGPk
+	w+XaXSBs6Y2fzf0tz1zEzPsRX/M6UKH6plbgywDY8xvERLEE+LWBW2l9W/YxZ4OBK9di17R+gU3
+	Vu+hJ6lFO2YIdHqgn/Xk7nJVnNuXgncgLYvEKXA==
+X-Google-Smtp-Source: AGHT+IHFs68AZZz0zAG5AIayraRDywgGlGWjDo3QxMusR1i+ctcGkK+kv7pAFk360y80o2YcGXtRRw==
+X-Received: by 2002:a17:907:3c85:b0:ae3:6744:3677 with SMTP id a640c23a62f3a-ae3fbd0b99amr239581166b.32.1751632770048;
+        Fri, 04 Jul 2025 05:39:30 -0700 (PDT)
+Received: from masalkhi.. (ip-078-042-182-222.um17.pools.vodafone-ip.de. [78.42.182.222])
+        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-ae3f6b43264sm166648066b.141.2025.07.04.05.39.28
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 04 Jul 2025 05:39:29 -0700 (PDT)
+From: Abd-Alrhman Masalkhi <abd.masalkhi@gmail.com>
+To: linux-kernel@vger.kernel.org,
+	devicetree@vger.kernel.org
+Cc: arnd@arndb.de,
+	gregkh@linuxfoundation.org,
+	robh@kernel.org,
+	krzk+dt@kernel.org,
+	conor+dt@kernel.org,
+	luoyifan@cmss.chinamobile.com,
+	abd.masalkhi@gmail.com
+Subject: [PATCH v5 0/3] Add support for STMicroelectronics M24LR EEPROM/NFC chips
+Date: Fri,  4 Jul 2025 12:39:11 +0000
+Message-ID: <20250704123914.11216-1-abd.masalkhi@gmail.com>
+X-Mailer: git-send-email 2.43.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 10/11] dt-bindings: clock: qcom: document the Milos
- Video Clock Controller
-To: Luca Weiss <luca.weiss@fairphone.com>,
- Bjorn Andersson <andersson@kernel.org>,
- Michael Turquette <mturquette@baylibre.com>, Stephen Boyd
- <sboyd@kernel.org>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Konrad Dybcio <konradybcio@kernel.org>
-Cc: ~postmarketos/upstreaming@lists.sr.ht, phone-devel@vger.kernel.org,
- linux-arm-msm@vger.kernel.org, linux-clk@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <20250704-sm7635-clocks-v2-0-9e47a7c0d47f@fairphone.com>
- <20250704-sm7635-clocks-v2-10-9e47a7c0d47f@fairphone.com>
-From: Krzysztof Kozlowski <krzk@kernel.org>
-Content-Language: en-US
-Autocrypt: addr=krzk@kernel.org; keydata=
- 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 a/A=
-In-Reply-To: <20250704-sm7635-clocks-v2-10-9e47a7c0d47f@fairphone.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
 
-On 04/07/2025 09:17, Luca Weiss wrote:
-> Add bindings documentation for the Milos (e.g. SM7635) Video Clock
-> Controller.
-> 
-> Signed-off-by: Luca Weiss <luca.weiss@fairphone.com>
-> ---
+This patch series adds support for the STMicroelectronics M24LR series
+RFID/NFC EEPROM devices. These chips expose two I2C addresses: the primary
+one provides access to system control and configuration registers, while
+the secondary address is used for EEPROM access.
 
-Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+The driver implements both functionalities:
+ - A sysfs-based interface for the control and system parameter registers.
+ - EEPROM access via the nvmem subsystem using a secondary I2C dummy
+   client.
 
-Best regards,
-Krzysztof
+Tested on: M24LR04E-R using Yocto on Raspberry Pi 4
+
+Signed-off-by: Abd-Alrhman Masalkhi <abd.masalkhi@gmail.com>
+
+Abd-Alrhman Masalkhi (3):
+  dt-bindings: eeprom: Add ST M24LR support
+  eeprom: add driver for ST M24LR series RFID/NFC EEPROM chips
+  ABI: sysfs: add documentation for ST M24LR EEPROM and control
+    interface
+
+ .../ABI/testing/sysfs-bus-i2c-devices-m24lr   | 100 +++
+ .../devicetree/bindings/eeprom/st,m24lr.yaml  |  52 ++
+ drivers/misc/eeprom/Kconfig                   |  18 +
+ drivers/misc/eeprom/Makefile                  |   1 +
+ drivers/misc/eeprom/m24lr.c                   | 653 ++++++++++++++++++
+ 5 files changed, 824 insertions(+)
+ create mode 100644 Documentation/ABI/testing/sysfs-bus-i2c-devices-m24lr
+ create mode 100644 Documentation/devicetree/bindings/eeprom/st,m24lr.yaml
+ create mode 100644 drivers/misc/eeprom/m24lr.c
+
+-- 
+2.43.0
+
 
