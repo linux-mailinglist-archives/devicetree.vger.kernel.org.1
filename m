@@ -1,140 +1,152 @@
-Return-Path: <devicetree+bounces-193098-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-193100-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9DCA0AF9339
-	for <lists+devicetree@lfdr.de>; Fri,  4 Jul 2025 14:55:26 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7DDBAAF9374
+	for <lists+devicetree@lfdr.de>; Fri,  4 Jul 2025 15:03:03 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 491907BDB9F
-	for <lists+devicetree@lfdr.de>; Fri,  4 Jul 2025 12:53:15 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id A1DD16E0502
+	for <lists+devicetree@lfdr.de>; Fri,  4 Jul 2025 13:02:26 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6CAF82D9EED;
-	Fri,  4 Jul 2025 12:54:31 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D40FD302053;
+	Fri,  4 Jul 2025 13:00:40 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="UNx/YwSz"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="mi+LrZHj"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lf1-f47.google.com (mail-lf1-f47.google.com [209.85.167.47])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 888C828C2B3
-	for <devicetree@vger.kernel.org>; Fri,  4 Jul 2025 12:54:29 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.47
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 854A230115E;
+	Fri,  4 Jul 2025 13:00:40 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1751633671; cv=none; b=Zr6iZ+QHoI12pKFW4oBr0Qjnx/hZNbEdvUMRflc0O6JmgNN7L4ffYg3qoO748+ZwUHVmpitCs/IxrCzSxPLORlTAyadG8ofkPyFiHY/nHnmRm4vEMoiCHTWVhCgBq5wJmlidIUnuDrTnfX6duloXbAieR00xchQNv8CpZv+IgBI=
+	t=1751634040; cv=none; b=SKe0fAGSOx1JFqKAcC7jmbgGSKazfi17EXF98nTfCmeLnq5yV7JyZniqn3sNm6fGwQLfnaIfSZLVUC+FbTQn4OP/RgdcfInNo+4CMKE5qavggoSjnODOt4nhk3dqf3bDU2yp8zT4MMt9x24YnXYwbL4otgL1SIEvJhq/e6tLIH8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1751633671; c=relaxed/simple;
-	bh=sGt0j8wfgyR59Qi4qx3dd+mPQSgHo8ZxkbG+sN9/yAs=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:To:Cc; b=dcFmWnVSqNL3+lNbste35wwimh0iEycZghZXEJIcOmTfJ6f2ndu/Ren6swEFaggFptGqIwqh1vwdCFfvjjy5zvem9OQiQE4wOQ8zkyn8uj2wEvHWIj/37uVdU3i6Xs36Nq+Q6IfQwh1wzLnZ+iGLODPjp6jRzurs2TPA0GsIxV4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=UNx/YwSz; arc=none smtp.client-ip=209.85.167.47
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-lf1-f47.google.com with SMTP id 2adb3069b0e04-55622414cf4so962641e87.3
-        for <devicetree@vger.kernel.org>; Fri, 04 Jul 2025 05:54:29 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1751633668; x=1752238468; darn=vger.kernel.org;
-        h=cc:to:message-id:content-transfer-encoding:mime-version:subject
-         :date:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=df4s766AtSDMBj7EKonhWyVJqcdQEtK7oOb9T8S70vw=;
-        b=UNx/YwSza6OH5SOTi6LEmWw89fl4pvwUQNdafzCtx1N4ljw/wYfPCPxtLaGbb4hPai
-         k3KSdm2yXj7ZtkXdh7tGFkybd/fqP1lIBRp+d8qalGOPdaj5hZrDl2ncQt6qv/pWYk5+
-         1xnh9g11Ty2QGT7pzDgf8c7eHZJZ/y0wy/JqwrJ4phcrYGuL/Ou0kRZG+dmgEkJgErLs
-         SF8FGPVT+QYnsJl017j+BFzmT1hQaBJmM/zyL4273rCHt1ncoY+Hg3q5rRtJqxeZkXXq
-         7pHaMj1Nbiz6+CFYtz4jmi/mbUWib7/c89ldcBIjqjgCDaNv+wYA/WJSjeeqQ2A02vYH
-         C6XA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1751633668; x=1752238468;
-        h=cc:to:message-id:content-transfer-encoding:mime-version:subject
-         :date:from:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=df4s766AtSDMBj7EKonhWyVJqcdQEtK7oOb9T8S70vw=;
-        b=EKnItEs0EKN5vd694o83OhLsCJ/Wj+zEWwBUYhig79J2qhwcQUJ/uQ+jHyQvbiGXSf
-         u4N2MZ3RaeSBVerpjWf/BHnfxw/a1i4+QybTulHK0tnJ+S06+UCem10FLjgb8C9+bDDK
-         UBq7wNZ2rOUgftIJKyY5Qmkc0dQGybFiyPN9gYdGSlqpSKZJWyUWMUT+HkqgO8BR1SWe
-         JcN64iTROuszwcj7TsRoxdVtrOs5c9KWPPzOa7rmPFisk2OXaY21YF2PhQ4W/c1VouFk
-         Ur3dMRrS6J2uAYR11pyzzSB8NiDs4P0dGMOvLfGJtu0jaVCmPdIm2TCW8JLzx0jKXz48
-         23qQ==
-X-Forwarded-Encrypted: i=1; AJvYcCWPfrURnq8bRbmdMbNputh+luClPP3w+ypBzjJ8GEO0eWXZ62Nlmlh0pueNMerCjWlQ3W6k5O6CWPtM@vger.kernel.org
-X-Gm-Message-State: AOJu0YwIA8b95imaa2VbBfNlhDnB+vtmRAd1WdJDmAYURa6D2VrbU3VF
-	d7rQD1tQZTk2kTte5ONBpk5vjZ+tmnjatapjFnxdWlilKUvNHAAoX5lUIw1Uu4qzX8U=
-X-Gm-Gg: ASbGncsPXWQpABofxXguqciAxrdhUo+I4piXDF3V6R4tERBIdk9PAxvkyP7m2GdDfQT
-	Ha22wpay0YgI6d7Ckdw+wG494U2qw89Tk2SvPfp5MZQ1kOJoq7eQccgDiXSR2moX4ngFBNOO/Bh
-	mAuvlc10PmRwwAvg9vauc2lkhNipQ/p6sl+xJZLBNQOQMh5w56y1p99FIlp5rOdgnnE4WLypCHo
-	pS79tFsxWF3F/RORgHWY5p6zpKpy9GIxqn2yY6agcCnwHMmPmGENTDbmGVdpAKervUO+OVWEbT2
-	7WpH/sNWaBIMgVoxeWdRErg7CP5OAelrn5j4+zPvMZFefGvrp23aWVuh5eiWsw0H2XiXqB5k
-X-Google-Smtp-Source: AGHT+IHicQRG29Orgh83l7ZnK/DmvmeksKeirmIzUhPOzFJZqfryTtaMRPdg66jbn8op35IbWG+wcg==
-X-Received: by 2002:a05:6512:3c94:b0:553:2f8c:e615 with SMTP id 2adb3069b0e04-556d151a3cemr753161e87.11.1751633667639;
-        Fri, 04 Jul 2025 05:54:27 -0700 (PDT)
-Received: from [192.168.1.140] ([85.235.12.238])
-        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-556383bbaffsm246528e87.38.2025.07.04.05.54.27
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 04 Jul 2025 05:54:27 -0700 (PDT)
-From: Linus Walleij <linus.walleij@linaro.org>
-Date: Fri, 04 Jul 2025 14:54:26 +0200
-Subject: [PATCH net-next] net: dt-bindings: ixp4xx-ethernet: Support fixed
- links
+	s=arc-20240116; t=1751634040; c=relaxed/simple;
+	bh=PQ+uuvbgXKFc5vIr220QI1Lf8oYUGvsoSa+Kga5uCxI=;
+	h=Mime-Version:Content-Type:Date:Message-Id:Subject:From:To:Cc:
+	 References:In-Reply-To; b=CyR8vl9fWmINm7RKWId4dKPyemJ+9FqSebnWLZfFSs+UEEcvziTdvmE78TALAjSnNGurITdNjyS+SEu8DCBS807qDW6WL/bDrnQZx5dCJuxYJE94bbP6/KZGu2OL2Hm6q/X0mtxxoz1z+F233S/Li37GmVT0W4joNTzs5rGAUGU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=mi+LrZHj; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 3F840C4CEE3;
+	Fri,  4 Jul 2025 13:00:26 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1751634040;
+	bh=PQ+uuvbgXKFc5vIr220QI1Lf8oYUGvsoSa+Kga5uCxI=;
+	h=Date:Subject:From:To:Cc:References:In-Reply-To:From;
+	b=mi+LrZHjF+yRfLmrMqCm45+w6sUTBWLIFLln4t06TCRfNNID72odMCaUkq6P7uCUX
+	 6UUsEVXl8dcAwtsGpEQ4be8tzBNVlVqFR/dHUws6kyBu1YvtpkQhwwKUxloNwWR9R/
+	 IGSdHN0MxrYLaSCkpAV78+BdMxg3sCNdQTC9sRmKmYWFLMqIw4rrFCZRyV7KRJtd2E
+	 0j73lXtusTnleqcS0NxrPxjaCD0MHAoeWaeskbB4i7ET3pELASmMynDmabvpgju8s5
+	 lM5kWnUgAXLXzxzcI7AEuaVKCn3OYtKdR4/uhCwyRJ5lqmW3Ng5o+Qj0VkMX0rxdf6
+	 342H5Q7Nz/erA==
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20250704-ixp4xx-ethernet-binding-fix-v1-1-8ac360d5bc9b@linaro.org>
-X-B4-Tracking: v=1; b=H4sIAAHPZ2gC/x2MwQqDMBAFf0X23IUYlEh/RTxU89S9bCUJsiD+u
- 2mPMwxzUUYSZHo3FyWckuWrFdpXQ8v+0Q0ssTJ553sXXMdiR2fGKDuSovAsGkU3XsU4hnmFdyE
- Oi6d6OBKq/t9H+sUKKzTd9wMCyobfdwAAAA==
-X-Change-ID: 20250704-ixp4xx-ethernet-binding-fix-d7bfe207d8c2
-To: Andrew Lunn <andrew+netdev@lunn.ch>, 
- "David S. Miller" <davem@davemloft.net>, Eric Dumazet <edumazet@google.com>, 
- Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>, 
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>
-Cc: netdev@vger.kernel.org, devicetree@vger.kernel.org, 
- kernel test robot <lkp@intel.com>, Linus Walleij <linus.walleij@linaro.org>
-X-Mailer: b4 0.14.2
+Mime-Version: 1.0
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=UTF-8
+Date: Fri, 04 Jul 2025 15:00:24 +0200
+Message-Id: <DB3AFTUC22W1.39C4DMWSENZGB@kernel.org>
+Subject: Re: [PATCH v13 3/5] rust: replace `CStr` with `core::ffi::CStr`
+From: "Benno Lossin" <lossin@kernel.org>
+To: "Tamir Duberstein" <tamird@gmail.com>, "Michal Rostecki"
+ <vadorovsky@protonmail.com>, "Miguel Ojeda" <ojeda@kernel.org>, "Alex
+ Gaynor" <alex.gaynor@gmail.com>, "Boqun Feng" <boqun.feng@gmail.com>, "Gary
+ Guo" <gary@garyguo.net>, =?utf-8?q?Bj=C3=B6rn_Roy_Baron?=
+ <bjorn3_gh@protonmail.com>, "Andreas Hindborg" <a.hindborg@kernel.org>,
+ "Alice Ryhl" <aliceryhl@google.com>, "Trevor Gross" <tmgross@umich.edu>,
+ "Brendan Higgins" <brendan.higgins@linux.dev>, "David Gow"
+ <davidgow@google.com>, "Rae Moar" <rmoar@google.com>, "Danilo Krummrich"
+ <dakr@kernel.org>, "Maarten Lankhorst" <maarten.lankhorst@linux.intel.com>,
+ "Maxime Ripard" <mripard@kernel.org>, "Thomas Zimmermann"
+ <tzimmermann@suse.de>, "David Airlie" <airlied@gmail.com>, "Simona Vetter"
+ <simona@ffwll.ch>, "Greg Kroah-Hartman" <gregkh@linuxfoundation.org>,
+ "Rafael J. Wysocki" <rafael@kernel.org>, "Luis Chamberlain"
+ <mcgrof@kernel.org>, "Russ Weight" <russ.weight@linux.dev>, "FUJITA
+ Tomonori" <fujita.tomonori@gmail.com>, "Rob Herring" <robh@kernel.org>,
+ "Saravana Kannan" <saravanak@google.com>, "Peter Zijlstra"
+ <peterz@infradead.org>, "Ingo Molnar" <mingo@redhat.com>, "Will Deacon"
+ <will@kernel.org>, "Waiman Long" <longman@redhat.com>, "Nathan Chancellor"
+ <nathan@kernel.org>, "Nick Desaulniers" <nick.desaulniers+lkml@gmail.com>,
+ "Bill Wendling" <morbo@google.com>, "Justin Stitt"
+ <justinstitt@google.com>, "Andrew Lunn" <andrew@lunn.ch>, "Heiner Kallweit"
+ <hkallweit1@gmail.com>, "Russell King" <linux@armlinux.org.uk>, "David S.
+ Miller" <davem@davemloft.net>, "Eric Dumazet" <edumazet@google.com>, "Jakub
+ Kicinski" <kuba@kernel.org>, "Paolo Abeni" <pabeni@redhat.com>, "Bjorn
+ Helgaas" <bhelgaas@google.com>, "Arnd Bergmann" <arnd@arndb.de>, "Jens
+ Axboe" <axboe@kernel.dk>, =?utf-8?q?Krzysztof_Wilczy=C5=84ski?=
+ <kwilczynski@kernel.org>, "Dave Ertman" <david.m.ertman@intel.com>, "Ira
+ Weiny" <ira.weiny@intel.com>, "Leon Romanovsky" <leon@kernel.org>, "Breno
+ Leitao" <leitao@debian.org>, "Viresh Kumar" <viresh.kumar@linaro.org>,
+ "Michael Turquette" <mturquette@baylibre.com>, "Stephen Boyd"
+ <sboyd@kernel.org>
+Cc: <rust-for-linux@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+ <linux-kselftest@vger.kernel.org>, <kunit-dev@googlegroups.com>,
+ <dri-devel@lists.freedesktop.org>, <netdev@vger.kernel.org>,
+ <devicetree@vger.kernel.org>, <llvm@lists.linux.dev>,
+ <linux-pci@vger.kernel.org>, <nouveau@lists.freedesktop.org>,
+ <linux-block@vger.kernel.org>, <linux-pm@vger.kernel.org>,
+ <linux-clk@vger.kernel.org>
+X-Mailer: aerc 0.20.1
+References: <20250701-cstr-core-v13-0-29f7d3eb97a6@gmail.com>
+ <20250701-cstr-core-v13-3-29f7d3eb97a6@gmail.com>
+In-Reply-To: <20250701-cstr-core-v13-3-29f7d3eb97a6@gmail.com>
 
-This ethernet controller is using fixed links for DSA switches
-in two already existing device trees, so make sure the checker
-does not complain like this:
+On Tue Jul 1, 2025 at 6:49 PM CEST, Tamir Duberstein wrote:
+> `kernel::ffi::CStr` was introduced in commit d126d2380131 ("rust: str:
+> add `CStr` type") in November 2022 as an upstreaming of earlier work
+> that was done in May 2021[0]. That earlier work, having predated the
+> inclusion of `CStr` in `core`, largely duplicated the implementation of
+> `std::ffi::CStr`.
+>
+> `std::ffi::CStr` was moved to `core::ffi::CStr` in Rust 1.64 in
+> September 2022. Hence replace `kernel::str::CStr` with `core::ffi::CStr`
+> to reduce our custom code footprint, and retain needed custom
+> functionality through an extension trait.
+>
+> C-String literals were added in Rust 1.77, while our MSRV is 1.78. Thus
+> opportunistically replace instances of `kernel::c_str!` with C-String
+> literals where other code changes were already necessary or where
+> existing code triggered clippy lints; the rest will be done in a later
+> commit.
+>
+> Link: https://github.com/Rust-for-Linux/linux/commit/faa3cbcca03d0dec8f8e=
+43f1d8d5c0860d98a23f [0]
+> Acked-by: Greg Kroah-Hartman <gregkh@linuxfoundation.org>
+> Reviewed-by: Alice Ryhl <aliceryhl@google.com>
+> Signed-off-by: Tamir Duberstein <tamird@gmail.com>
+> ---
+>  drivers/gpu/drm/drm_panic_qr.rs |   2 +-
+>  rust/kernel/auxiliary.rs        |   4 +-
+>  rust/kernel/configfs.rs         |   4 +-
+>  rust/kernel/cpufreq.rs          |   2 +-
+>  rust/kernel/device.rs           |   4 +-
+>  rust/kernel/drm/device.rs       |   4 +-
+>  rust/kernel/error.rs            |   4 +-
+>  rust/kernel/firmware.rs         |  11 +-
+>  rust/kernel/kunit.rs            |   6 +-
+>  rust/kernel/miscdevice.rs       |   2 +-
+>  rust/kernel/net/phy.rs          |   2 +-
+>  rust/kernel/of.rs               |   2 +-
+>  rust/kernel/prelude.rs          |   5 +-
+>  rust/kernel/seq_file.rs         |   4 +-
+>  rust/kernel/str.rs              | 394 +++++++++++-----------------------=
+------
+>  rust/kernel/sync/condvar.rs     |   2 +-
+>  rust/kernel/sync/lock.rs        |   2 +-
+>  rust/kernel/sync/lock/global.rs |   2 +-
+>  samples/rust/rust_configfs.rs   |   2 +-
+>  19 files changed, 140 insertions(+), 318 deletions(-)
 
-intel-ixp42x-linksys-wrv54g.dtb: ethernet@c8009000 (intel,ixp4xx-ethernet):
-'fixed-link' does not match any of the regexes: '^pinctrl-[0-9]+$'
-from schema $id: http://devicetree.org/schemas/net/intel,ixp4xx-ethernet.yaml#
+Is it also possible to split this? First rename the existing functions
+on our CStr to match upstream & then you don't need to do the rename &
+removal of our CStr in the same patch?
 
-intel-ixp42x-usrobotics-usr8200.dtb: ethernet@c800a000 (intel,ixp4xx-ethernet):
-'fixed-link' does not match any of the regexes: '^pinctrl-[0-9]+$'
-from schema $id: http://devicetree.org/schemas/net/intel,ixp4xx-ethernet.yaml#
-
-Reported-by: kernel test robot <lkp@intel.com>
-Closes: https://lore.kernel.org/oe-kbuild-all/202507040609.K9KytWBA-lkp@intel.com/
-Signed-off-by: Linus Walleij <linus.walleij@linaro.org>
 ---
- Documentation/devicetree/bindings/net/intel,ixp4xx-ethernet.yaml | 2 ++
- 1 file changed, 2 insertions(+)
-
-diff --git a/Documentation/devicetree/bindings/net/intel,ixp4xx-ethernet.yaml b/Documentation/devicetree/bindings/net/intel,ixp4xx-ethernet.yaml
-index 4fdc5328826cf178968a2208aaabc1e05b3a2b55..8689de1aaea15f032ee0b6b30858385a910373eb 100644
---- a/Documentation/devicetree/bindings/net/intel,ixp4xx-ethernet.yaml
-+++ b/Documentation/devicetree/bindings/net/intel,ixp4xx-ethernet.yaml
-@@ -47,6 +47,8 @@ properties:
- 
-   phy-handle: true
- 
-+  fixed-link: true
-+
-   intel,npe-handle:
-     $ref: /schemas/types.yaml#/definitions/phandle-array
-     items:
-
----
-base-commit: 19272b37aa4f83ca52bdf9c16d5d81bdd1354494
-change-id: 20250704-ixp4xx-ethernet-binding-fix-d7bfe207d8c2
-
-Best regards,
--- 
-Linus Walleij <linus.walleij@linaro.org>
-
+Cheers,
+Benno
 
