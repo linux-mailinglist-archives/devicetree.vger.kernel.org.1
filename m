@@ -1,134 +1,141 @@
-Return-Path: <devicetree+bounces-193124-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-193125-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 75074AF9678
-	for <lists+devicetree@lfdr.de>; Fri,  4 Jul 2025 17:13:27 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 930A2AF9687
+	for <lists+devicetree@lfdr.de>; Fri,  4 Jul 2025 17:15:10 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 2B3C41CC0EF9
-	for <lists+devicetree@lfdr.de>; Fri,  4 Jul 2025 15:12:51 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 3AB987A3A29
+	for <lists+devicetree@lfdr.de>; Fri,  4 Jul 2025 15:13:16 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D73A928A71D;
-	Fri,  4 Jul 2025 15:12:28 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 99A162046A9;
+	Fri,  4 Jul 2025 15:14:27 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="hhI3At/Y"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="mt2BaqYD"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A3E381A76D4;
-	Fri,  4 Jul 2025 15:12:28 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 691CA42A83;
+	Fri,  4 Jul 2025 15:14:27 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1751641948; cv=none; b=X/t7jq1edE1kJ/m9K1wJXKKMQ6dNKGKd0drsjawo93C6+PXJgGzVA9rdjP3AJgn9cDd6uHzVx+qhCuQS2aK0PV132dDKWVT7QVrrQEqEu40c+C0ON3F+voj0xegbOIejKwXYPCLwpVxeKfbh+9YYsS7xdEitzFjozZE4S9eKIL0=
+	t=1751642067; cv=none; b=Fs7hCh3JQWfipAhQ/Y8EbTz0cE0ZctxUgqIHRekuCZzr9UKCIZjAs50TIzN5bZrGmx4Ncip4blUqPS8TkWUw3RhhfEYb2H/XmPQowupeE+BFgbAGqMyObwiAHLO7CEwOGQduFPk8SjfZVcZsn9qOisMPVFEeRtVJRliYt8/MZV4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1751641948; c=relaxed/simple;
-	bh=hZ10LiY5FNP/Dp6S+DBqAzx6uQgjXZaS8IlUwEsCGJs=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=Two0YHE0nJN/ex/+WCr7aVCXsEXfRfdJie1lenhD8nbYuc4bWcVvdy3QUpLT84tbnnNgYt4RYj+O2qZbH/ajvHUJSyfqFZjt4BuUq5n7QjE94TiNd+ht661JEqt9ztMdoRYRP6GBnjSMxAfIaRkdnhppHK7YpdAGdLRN5xBYecI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=hhI3At/Y; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id CA33FC4CEE3;
-	Fri,  4 Jul 2025 15:12:22 +0000 (UTC)
+	s=arc-20240116; t=1751642067; c=relaxed/simple;
+	bh=TBHQcyYRpGcdVOEQVFj80NwCERIwfVHVzoRx9Sa/NDE=;
+	h=Message-ID:Date:MIME-Version:Subject:To:References:From:
+	 In-Reply-To:Content-Type; b=PxIYUfRV71XrpXOABWQO5SFOsolM4IJpP4f3LvFI52KHsvwSR23jYHElkxLjWE2oSxr2GS+Ord1Cw385sUATrygFXN78vZY+0PNE8t5VQrhXFaXcR0MdXZc4LjBhbGhyM7WevddpCuw4D76/XZELmuyQWAP+zfl6ggsQuSFGeRI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=mt2BaqYD; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id D28AEC4CEE3;
+	Fri,  4 Jul 2025 15:14:23 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1751641948;
-	bh=hZ10LiY5FNP/Dp6S+DBqAzx6uQgjXZaS8IlUwEsCGJs=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=hhI3At/YWlFOPWeQNgWpOK/z7lt5fmnRr4cDgf1YXwCzaIRmj36teIkXdk7vE86Yt
-	 NQaVta+0qbjEWCt/cT9wzERra7juB8zjgR7V2k/ukkD63VLKuDw+9Oo6W9quS3s7Zv
-	 xO3423zNVGe9iqbpSlSXMLV+N5484Ts6ILuRp7iIiPxYpqQFjPXb3vmbOjQBHrNVWR
-	 UIl/QOTjK9iUzBsfpRaZPNscXPlIZnEuCr9Ljx7zP0JfPDSNXEF/o+dJEiqxZgOB88
-	 eRGMJOBnjk6stxn3bVpqeCjPrOeZxL2WG+MMbxUZ8EqkZsE57LfLXjv/EbQA0EGwpD
-	 uzpEujK8cHkVQ==
-Date: Fri, 4 Jul 2025 17:12:20 +0200
-From: Danilo Krummrich <dakr@kernel.org>
-To: Michal Wilczynski <m.wilczynski@samsung.com>
-Cc: Uwe =?iso-8859-1?Q?Kleine-K=F6nig?= <ukleinek@kernel.org>,
-	Miguel Ojeda <ojeda@kernel.org>,
-	Alex Gaynor <alex.gaynor@gmail.com>,
-	Boqun Feng <boqun.feng@gmail.com>, Gary Guo <gary@garyguo.net>,
-	=?iso-8859-1?Q?Bj=F6rn?= Roy Baron <bjorn3_gh@protonmail.com>,
-	Andreas Hindborg <a.hindborg@kernel.org>,
-	Alice Ryhl <aliceryhl@google.com>, Trevor Gross <tmgross@umich.edu>,
-	Guo Ren <guoren@kernel.org>, Fu Wei <wefu@redhat.com>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Paul Walmsley <paul.walmsley@sifive.com>,
-	Palmer Dabbelt <palmer@dabbelt.com>,
-	Albert Ou <aou@eecs.berkeley.edu>, Alexandre Ghiti <alex@ghiti.fr>,
-	Marek Szyprowski <m.szyprowski@samsung.com>,
-	Benno Lossin <lossin@kernel.org>,
-	Michael Turquette <mturquette@baylibre.com>,
-	Drew Fustini <fustini@kernel.org>, linux-kernel@vger.kernel.org,
-	linux-pwm@vger.kernel.org, rust-for-linux@vger.kernel.org,
-	linux-riscv@lists.infradead.org, devicetree@vger.kernel.org
-Subject: Re: [PATCH v8 2/7] rust: pwm: Add core 'Device' and 'Chip' object
- wrappers
-Message-ID: <aGfvVMBpNoFEJEgC@pollux>
-References: <20250704-rust-next-pwm-working-fan-for-sending-v8-0-951e5482c9fd@samsung.com>
- <CGME20250704120212eucas1p1c9ffeefa41b0ddb27db74d26174831bf@eucas1p1.samsung.com>
- <20250704-rust-next-pwm-working-fan-for-sending-v8-2-951e5482c9fd@samsung.com>
+	s=k20201202; t=1751642067;
+	bh=TBHQcyYRpGcdVOEQVFj80NwCERIwfVHVzoRx9Sa/NDE=;
+	h=Date:Subject:To:References:From:In-Reply-To:From;
+	b=mt2BaqYDaR3+63mZfTYt27Ehr2qLIjlF/QkOAehNlUsKorB7zAvOWMp5+RIaFLMlN
+	 bBBKSC8QgC8Fy3PnxZkGIfUVXKEgNEqpYSyr/Uie3RpqX2ovQtkOJsP9EmNgWW2gYd
+	 rhmqQ2rH78Ajq/64rsCRqqyBTXv/Hz6hY3l6r+4yaLLcXSNH5txPK32pouE+BZvNLE
+	 17vYa/cxEZKM3hQ6F7xQDJMLzpqt6/Ke90R8u+WTTMpOFOQjv/+ljf/mtLVHB0+Qe7
+	 bus6QiWvFjtdUOZqMy26khCjQIhesOSq5GfdamEt2tcBml78D2Mjd/YQXfwNCsZ7U+
+	 XIVOIe8OcShKA==
+Message-ID: <1196da81-ecd7-487c-8afc-e0d3660fa158@kernel.org>
+Date: Fri, 4 Jul 2025 17:14:22 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20250704-rust-next-pwm-working-fan-for-sending-v8-2-951e5482c9fd@samsung.com>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v3 1/2] dt-bindings: iio: imu: smi330: Add binding
+To: Jianping.Shen@de.bosch.com, jic23@kernel.org, lars@metafoo.de,
+ robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
+ dima.fedrau@gmail.com, marcelo.schmitt1@gmail.com,
+ linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, Christian.Lorenz3@de.bosch.com,
+ Ulrike.Frauendorf@de.bosch.com, Kai.Dolde@de.bosch.com
+References: <20250703153823.806073-1-Jianping.Shen@de.bosch.com>
+ <20250703153823.806073-2-Jianping.Shen@de.bosch.com>
+From: Krzysztof Kozlowski <krzk@kernel.org>
+Content-Language: en-US
+Autocrypt: addr=krzk@kernel.org; keydata=
+ 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 a/A=
+In-Reply-To: <20250703153823.806073-2-Jianping.Shen@de.bosch.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-On Fri, Jul 04, 2025 at 02:01:12PM +0200, Michal Wilczynski wrote:
-> +impl<T: 'static + ForeignOwnable> Chip<T> {
-> +    /// Allocates and wraps a PWM chip using `bindings::pwmchip_alloc`.
-> +    ///
-> +    /// Returns an [`ARef<Chip>`] managing the chip's lifetime via refcounting
-> +    /// on its embedded `struct device`.
-> +    pub fn new(
-> +        parent_dev: &device::Device,
-> +        npwm: u32,
-> +        sizeof_priv: usize,
-> +        drvdata: T,
-> +    ) -> Result<ARef<Self>> {
-> +        // SAFETY: `parent_device_for_dev_field.as_raw()` is valid.
-> +        // `bindings::pwmchip_alloc` returns a valid `*mut bindings::pwm_chip` (refcount 1)
-> +        // or an ERR_PTR.
-> +        let c_chip_ptr_raw =
-> +            unsafe { bindings::pwmchip_alloc(parent_dev.as_raw(), npwm, sizeof_priv) };
-> +
-> +        let c_chip_ptr: *mut bindings::pwm_chip = error::from_err_ptr(c_chip_ptr_raw)?;
-> +
-> +        // Cast the `*mut bindings::pwm_chip` to `*mut Chip`. This is valid because
-> +        // `Chip` is `repr(transparent)` over `Opaque<bindings::pwm_chip>`, and
-> +        // `Opaque<T>` is `repr(transparent)` over `T`.
-> +        let chip_ptr_as_self = c_chip_ptr.cast::<Self>();
-> +
-> +        // SAFETY: The pointer is valid, so we can create a temporary ref to set data.
-> +        let chip_ref = unsafe { &*chip_ptr_as_self };
-> +        // SAFETY: `chip_ref` points to a valid chip from `pwmchip_alloc` and `drvdata` is a valid,
-> +        // owned pointer from `ForeignOwnable` to be stored in the chip's private data.
-> +        unsafe { bindings::pwmchip_set_drvdata(chip_ref.as_raw(), drvdata.into_foreign().cast()) }
+On 03/07/2025 17:38, Jianping.Shen@de.bosch.com wrote:
+> From: Jianping Shen <Jianping.Shen@de.bosch.com>
+> 
+> Add devicetree binding for Bosch imu smi330.
+> The smi330 is a combined three axis angular rate and
+> three axis acceleration sensor module.
+> 
+> Signed-off-by: Jianping Shen <Jianping.Shen@de.bosch.com>
+<form letter>
+This is a friendly reminder during the review process.
 
-I think that's great now, but you're missing one last piece: You have to ensure
-that drvdata is freed eventually. Here you call into_foreign(), but I think
-you're missing from_foreign() in pwm_ops::free.
+It looks like you received a tag and forgot to add it.
 
-You also have to ensure that your pwm_ops::free() callback is properly called if
-a Chip<T> is dropped *before* it has been registered.
+If you do not know the process, here is a short explanation:
+Please add Acked-by/Reviewed-by/Tested-by tags when posting new versions
+of patchset, under or above your Signed-off-by tag, unless patch changed
+significantly (e.g. new properties added to the DT bindings). Tag is
+"received", when provided in a message replied to you on the mailing
+list. Tools like b4 can help here. However, there's no need to repost
+patches *only* to add the tags. The upstream maintainer will do that for
+tags received on the version they apply.
 
-Note that, since Chip is now generic over T, you can easily make the
-PwmOpsVTable a const within Chip and set the vtable in Chip::new().
+Please read:
+https://elixir.bootlin.com/linux/v6.12-rc3/source/Documentation/process/submitting-patches.rst#L577
 
-See also how drm::Device does this in [1].
+If a tag was not added on purpose, please state why and what changed.
+</form letter>
 
-[1] https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/tree/rust/kernel/drm/device.rs
-
-> +
-> +        // SAFETY: `chip_ptr_as_self` points to a valid `Chip` (layout-compatible with
-> +        // `bindings::pwm_chip`) whose embedded device has refcount 1.
-> +        // `ARef::from_raw` takes this pointer and manages it via `AlwaysRefCounted`.
-> +        Ok(unsafe { ARef::from_raw(NonNull::new_unchecked(chip_ptr_as_self)) })
-> +    }
+Best regards,
+Krzysztof
 
