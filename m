@@ -1,163 +1,231 @@
-Return-Path: <devicetree+bounces-193113-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-193114-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id A5D42AF956F
-	for <lists+devicetree@lfdr.de>; Fri,  4 Jul 2025 16:25:00 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 19242AF95AC
+	for <lists+devicetree@lfdr.de>; Fri,  4 Jul 2025 16:37:47 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id B84A33AA394
-	for <lists+devicetree@lfdr.de>; Fri,  4 Jul 2025 14:24:14 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 7ED861BC7EE6
+	for <lists+devicetree@lfdr.de>; Fri,  4 Jul 2025 14:38:03 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C7BCA1C84CB;
-	Fri,  4 Jul 2025 14:24:07 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6584F1C8621;
+	Fri,  4 Jul 2025 14:37:40 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="NKgRU8Hc"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="azEE4WES"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.21])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E03F71C84AB;
-	Fri,  4 Jul 2025 14:24:05 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.175.65.21
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 35A9542A83;
+	Fri,  4 Jul 2025 14:37:37 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1751639047; cv=none; b=OfE6D8Ilp8r9l6hThiFP9y6Nodr5lMrESdtOKYO1Qm+PoxAsK0DP4/2O9Bwn1J1GFlhBpoYlLeeVvGeDPsoRr94YNBkNtt7EAX40/GUODqb9aihqfLm0mMvsMl6gE8Tu7WXGZd8XBqUQf+/bIAW9I9G31KSBZrD63+iaOeYKJTE=
+	t=1751639860; cv=none; b=JfrJkeKOQMfHJwL3/JHw7N8eYcK7i20bfc5UNnlyMj570U50tD+TLA+5ZHuyTIFNACvEfmNbo2ox77xyHPe+8sPTbfCylMDZrvtNItSLtxREqloBJ/E53C9bAOKMktKgTOTqzsEdLRpPXAaAeavUQ05AbXOn6K5PMwwGnKqz2Fk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1751639047; c=relaxed/simple;
-	bh=gqGr7YMNSNGMmPO5TwyjCTxRgNuwtUce0xo5IGee5Nc=;
+	s=arc-20240116; t=1751639860; c=relaxed/simple;
+	bh=b/7DF43NShQz0jj5KS0cUtXQl9ATq8leuWFS9jBryPs=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=NIREuFqk/HdeBpHa8Gf+TlctmsR3JX6zCCHbPg0gJY2VUOFFx8i/jVjs3Y8uco9s0X4csGrvnYirSsBf26BfmY8luAIpmR9KGj4jWUH6oip+eOVkqbF5XMaHhC9GUyyNQVo/TZzLq6k2lSXmuZZUp7bNHK5ktKJ2G9XRs125GwE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=NKgRU8Hc; arc=none smtp.client-ip=198.175.65.21
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1751639046; x=1783175046;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=gqGr7YMNSNGMmPO5TwyjCTxRgNuwtUce0xo5IGee5Nc=;
-  b=NKgRU8HcQskjes1wfy0m/h6Wj7TlCFjDNOthhB/qfDa/msyUKNY7aQyj
-   azJ8wlGS7aJz/zo9WkWv3plUUOnhNrEOQ3uJvhSbZFTWXXK5Cr5PmdvHj
-   IZ3rkIvujL8REPUjhrU217xmfRSIDmsxLT4rpgM9Hh+Nm9q+HMfsTCNfq
-   oAN6fVRoxdnbuzObYIERjGXBf+UBrC283weDKNHyyMhKDrn3HiI0yucXL
-   vL91leTZLrVVLex7cK6O1tNX/Z10ueNZCbVKXD/0WwgNj1Y9HjZ993/I/
-   bjHhYEUX0r1F33v6AEbECtdu1QbuUeDyYpKw+fDA2Y/HWgJa0kHBNvujl
-   g==;
-X-CSE-ConnectionGUID: S2Yd6CuoSh+9MgRlTFXLfQ==
-X-CSE-MsgGUID: Ay03D01YR0mGvZPPMFOUSw==
-X-IronPort-AV: E=McAfee;i="6800,10657,11484"; a="53846979"
-X-IronPort-AV: E=Sophos;i="6.16,287,1744095600"; 
-   d="scan'208";a="53846979"
-Received: from orviesa006.jf.intel.com ([10.64.159.146])
-  by orvoesa113.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 04 Jul 2025 07:24:05 -0700
-X-CSE-ConnectionGUID: 4S/0i2I+QNCR9MadHUaojw==
-X-CSE-MsgGUID: pT61i3k+SwGGxvI3+kg+qw==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.16,287,1744095600"; 
-   d="scan'208";a="154078646"
-Received: from lkp-server01.sh.intel.com (HELO 0b2900756c14) ([10.239.97.150])
-  by orviesa006.jf.intel.com with ESMTP; 04 Jul 2025 07:24:02 -0700
-Received: from kbuild by 0b2900756c14 with local (Exim 4.96)
-	(envelope-from <lkp@intel.com>)
-	id 1uXhKZ-0003nH-1p;
-	Fri, 04 Jul 2025 14:23:59 +0000
-Date: Fri, 4 Jul 2025 22:23:31 +0800
-From: kernel test robot <lkp@intel.com>
-To: Jianping.Shen@de.bosch.com, jic23@kernel.org, lars@metafoo.de,
-	robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
-	dima.fedrau@gmail.com, marcelo.schmitt1@gmail.com,
-	linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org, Christian.Lorenz3@de.bosch.com,
-	Ulrike.Frauendorf@de.bosch.com, Kai.Dolde@de.bosch.com
-Cc: oe-kbuild-all@lists.linux.dev
-Subject: Re: [PATCH v3 2/2] iio: imu: smi330: Add driver
-Message-ID: <202507042238.UDo16CzT-lkp@intel.com>
-References: <20250703153823.806073-3-Jianping.Shen@de.bosch.com>
+	 Content-Type:Content-Disposition:In-Reply-To; b=lIEcGIWactYokUnjussMurq7xCVRLgA9rntV2hTJg2RntuweFlpGLNLWAfdi1ADftPDnL5hebx4gRqrb2cfB4tCqJHMzVfoAwtL3YODwMyKLK5bOWWS7+tvsIGZPjbG2G71Jrck89ES0ylxNZRxR5HJlhLKw05z/QnoX0tFpf04=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=azEE4WES; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 5F2C2C4CEE3;
+	Fri,  4 Jul 2025 14:37:35 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1751639857;
+	bh=b/7DF43NShQz0jj5KS0cUtXQl9ATq8leuWFS9jBryPs=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=azEE4WES2NQXRB3qc3wkHQA+59XdtsTY4YediiX1ZhgNgF8rDwMXtNJQZPHUIJhwR
+	 +BzLaYJiyauOFizJ0BhQCC3ulf5qXYNjU81+TOvK2uRpD226/8/Fp7BZ9a45Lgoltu
+	 3NOqFTyEx5SjuR8+mhYVGivgP1T7jsTZw9tN8gD/Asr8DexTezm3vuPlZy0Tcs+R33
+	 m5QwB1lXQU2Di3zBD1kfzeVgmZmyj+CDjY9ircZ/QCFadZT0iXHJoZUY7+6Kdd7D4O
+	 tPn59BD38gC5405lrdPVgMBKH3Y45DAb9TGRb4W11tEGNK/QrUldRyUAqSWMhgHuSJ
+	 2Sd3UvoeWeY1Q==
+Date: Fri, 4 Jul 2025 15:37:32 +0100
+From: Mark Brown <broonie@kernel.org>
+To: Nick Li <nick.li@foursemi.com>
+Cc: lgirdwood@gmail.com, robh@kernel.org, krzk+dt@kernel.org,
+	conor+dt@kernel.org, perex@perex.cz, tiwai@suse.com,
+	xiaoming.yang@foursemi.com, danyang.zheng@foursemi.com,
+	linux-sound@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v1 2/4] ASoC: codecs: Add FourSemi FS2104/5S audio
+ amplifier driver
+Message-ID: <0370941d-63eb-4676-8a74-b8afef524376@sirena.org.uk>
+References: <20250703035639.7252-1-nick.li@foursemi.com>
+ <20250703035639.7252-3-nick.li@foursemi.com>
+ <b1ad15d1-bf9f-4b94-abb8-1e9c6d512987@sirena.org.uk>
+ <1C4720AC50797830+aGe3L70OToh6txmC@foursemi.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+Content-Type: multipart/signed; micalg=pgp-sha512;
+	protocol="application/pgp-signature"; boundary="/dy0sp4doMeEvLCg"
+Content-Disposition: inline
+In-Reply-To: <1C4720AC50797830+aGe3L70OToh6txmC@foursemi.com>
+X-Cookie: VMS must die!
+
+
+--/dy0sp4doMeEvLCg
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20250703153823.806073-3-Jianping.Shen@de.bosch.com>
+Content-Transfer-Encoding: quoted-printable
 
-Hi,
+On Fri, Jul 04, 2025 at 07:12:47PM +0800, Nick Li wrote:
+> On Thu, Jul 03, 2025 at 03:59:34PM +0100, Mark Brown wrote:
+> > On Thu, Jul 03, 2025 at 11:56:37AM +0800, Nick wrote:
 
-kernel test robot noticed the following build warnings:
+> > > +static int fs210x_set_pcm_volume(struct fs210x_priv *fs210x)
 
-[auto build test WARNING on jic23-iio/togreg]
-[also build test WARNING on linus/master v6.16-rc4 next-20250704]
-[If your patch is applied to the wrong git tree, kindly drop us a note.
-And when submitting patch, we suggest to use '--base' as documented in
-https://git-scm.com/docs/git-format-patch#_base_tree_information]
+> > > +	ret  =3D fs210x_reg_write(fs210x, FS210X_39H_LVOLCTRL, vol[0]);
+> > > +	ret |=3D fs210x_reg_write(fs210x, FS210X_3AH_RVOLCTRL, vol[1]);
 
-url:    https://github.com/intel-lab-lkp/linux/commits/Jianping-Shen-de-bosch-com/dt-bindings-iio-imu-smi330-Add-binding/20250703-234441
-base:   https://git.kernel.org/pub/scm/linux/kernel/git/jic23/iio.git togreg
-patch link:    https://lore.kernel.org/r/20250703153823.806073-3-Jianping.Shen%40de.bosch.com
-patch subject: [PATCH v3 2/2] iio: imu: smi330: Add driver
-config: microblaze-randconfig-r073-20250704 (https://download.01.org/0day-ci/archive/20250704/202507042238.UDo16CzT-lkp@intel.com/config)
-compiler: microblaze-linux-gcc (GCC) 8.5.0
-reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20250704/202507042238.UDo16CzT-lkp@intel.com/reproduce)
+> > This looks pretty generic, why is it not using a standard control type?
 
-If you fix the issue in a separate patch/commit (i.e. not just a new version of
-the same patch/commit), kindly add following tags
-| Reported-by: kernel test robot <lkp@intel.com>
-| Closes: https://lore.kernel.org/oe-kbuild-all/202507042238.UDo16CzT-lkp@intel.com/
+> 1. We use regmap as REGMAP_NONE, because most of the registers settings
+>    are in the firmware, if we use a standard control,the driver shouldn't
+>    cache the registers after suspending the device(it will be reset).
 
-All warnings (new ones prefixed by >>):
+You can exclude registers from a cache, including excluding most of
+them, or manually handle registers over suspend/resume.  It's generally
+better to share the userspace facing interfaces.
 
-   drivers/iio/imu/smi330/smi330_i2c.c: In function 'smi330_regmap_i2c_read':
->> drivers/iio/imu/smi330/smi330_i2c.c:26:11: warning: unused variable 'retry' [-Wunused-variable]
-     int ret, retry;
-              ^~~~~
+> 2. The volume registers of FS2104 and FS2105S are different,
+>    if we us a stardard control, we need two controls,
+>    and register it by checking the device type.
+> so we customize the volume control.
 
+If the different devices have different controls you should just
+register different controls.
 
-vim +/retry +26 drivers/iio/imu/smi330/smi330_i2c.c
+> > > +	ret =3D fs210x_set_pcm_volume(fs210x);
 
-    20	
-    21	static int smi330_regmap_i2c_read(void *context, const void *reg_buf,
-    22					  size_t reg_size, void *val_buf,
-    23					  size_t val_size)
-    24	{
-    25		struct smi330_i2c_priv *priv = context;
-  > 26		int ret, retry;
-    27	
-    28		/*
-    29		 * SMI330 I2C read frame:
-    30		 * <Slave address[6:0], RnW> <x, Register address[6:0]>
-    31		 * <Slave address[6:0], RnW> <Dummy[7:0]> <Dummy[7:0]> <Data_0[7:0]> <Data_1[15:8]>...
-    32		 *                                                     <Data_N[7:0]> <Data_N[15:8]>
-    33		 * Remark: Slave address is not considered part of the frame in the following definitions
-    34		 */
-    35		struct i2c_msg msgs[] = {
-    36			{
-    37				.addr = priv->i2c->addr,
-    38				.flags = priv->i2c->flags,
-    39				.len = reg_size,
-    40				.buf = (u8 *)reg_buf,
-    41			},
-    42			{
-    43				.addr = priv->i2c->addr,
-    44				.flags = priv->i2c->flags | I2C_M_RD,
-    45				.len = SMI330_NUM_DUMMY_BYTES + val_size,
-    46				.buf = priv->rx_buffer,
-    47			},
-    48		};
-    49	
-    50		ret = i2c_transfer(priv->i2c->adapter, msgs, ARRAY_SIZE(msgs));
-    51		if (ret < 0)
-    52			return ret;
-    53	
-    54		memcpy(val_buf, priv->rx_buffer + SMI330_NUM_DUMMY_BYTES, val_size);
-    55	
-    56		return 0;
-    57	}
-    58	
+> > The driver should use the device defaults rather than having to=20
 
--- 
-0-DAY CI Kernel Test Service
-https://github.com/intel/lkp-tests/wiki
+> The volume contorl can be used to set different volumes,
+> the volume will be masked in fs210x->vol[2],
+> we restore the volume when the driver resumes(reinitializes) the deivce.
+
+You're not just restoring the values on resume, you're also overwriting
+them on probe.
+
+> > > +static void fs210x_sdz_pin_set(struct fs210x_priv *fs210x, bool acti=
+ve)
+> > > +{
+> > > +	if (!fs210x || !fs210x->gpio_sdz)
+> > > +		return;
+
+> > Shouldn't this be integrated with the chip init/reset?
+
+> 1. We implement this function(reset and wait times) to clarify that
+>    pulling up/down the SDZ/reset pin must to wait enougth delay time.
+
+That doesn't really answer the question?
+
+> > > +	 * According to the power up/down sequence of FS210x,
+> > > +	 * the FS210x requests the I2S clock has been present
+> > > +	 * and stable(>=3D 2ms) before it playing.
+> > > +	 */
+> > > +	if (fs210x->clk_bclk) {
+> > > +		mutex_lock(&fs210x_mutex);
+> > > +		ret =3D fs210x_dev_play(fs210x);
+> > > +		mutex_unlock(&fs210x_mutex);
+> > > +	} else {
+
+> > This is definitely not appropriate for mute, it should be in the power
+> > management flow - either set_bias_level() or a DAPM widget.
+
+> 1. Because the device uses BCLK clock as the clock source,
+>    we need to start the device in the life cycle of the clock,
+>    also we need to start device after the PLL setting(set in dai->hw_para=
+ms)
+>    so we start the device in here: dai->mute_stream(unmute)
+
+All the power management happens after hw_params(), this isn't an issue.
+
+> 2. If the SOC(s) doesn't have the clock(bclk) for us to configure,
+>    It meams no clock bclk defined in the DTS,
+>    and the clock is activated in dai->trigger start usually,
+>    so we will use a delay work to start the device in here.
+
+> Any good ideas about satisfying this power up/down sequence?
+
+There's not great options here, and you're going to loose the start of
+playback especially with devices that don't start clocking until audio
+starts.  You really need the CPU vendors you're working with to
+implement SND_SOC_DAIFMT_CONT or expose their clocks via the clock API
+but not all hardware is able to do this.  I think given how limited your
+hardware is here you really need something in trigger() or some new
+callback that runs later than that, the delayed work you've got there is
+trying to fudge things to run after trigger.
+
+> > > +	if (!(status & FS210X_05H_AMPS_MASK))
+> > > +		dev_err(fs210x->dev, "Amplifier unready\n");
+
+> > Does this get triggered during the normal start/stop flow?
+
+> It will get triggered when:
+> 1. BCLK clock is closed before stoping device
+> 2. BCLK clock is opened after starting device
+> We should avoid these power up/down sequence, it may cause pop noise,
+> If they happens, it should be reported and fixed?
+
+If they don't happen in normal operation it's fine to have them, the
+concern was that this would be triggered during normal operation as part
+of the startup or shutdown sequence.
+
+> > > +	schedule_delayed_work(&fs210x->fault_check_work,
+> > > +			      msecs_to_jiffies(FS210X_FAULT_CHECK_INTERVAL_MS));
+
+> > Might be good to have this tunable from sysfs.
+
+> Good idea, or set the interval times by the DTS property.
+> We are considering adding a DTS property:
+> foursemi,monitor-period-ms
+
+I suspect the DT people won't like that since it's more of a tuning
+thing.
+
+> > > +static int fs210x_suspend(struct snd_soc_component *cmpnt)
+> > > +{
+> > > +	struct fs210x_priv *fs210x;
+> > > +	int ret;
+> > > +
+> > > +	fs210x =3D snd_soc_component_get_drvdata(cmpnt);
+> > > +	if (!fs210x || !fs210x->dev)
+> > > +		return -EINVAL;
+
+> > > +	cancel_delayed_work_sync(&fs210x->start_work);
+> > > +	cancel_delayed_work_sync(&fs210x->fault_check_work);
+
+> > > +	mutex_lock(&fs210x_mutex);
+
+> > We don't need to prevent new work being scheduled?
+
+> Could you please explain more details to help me understand and test this=
+ case?
+
+What if for example playback is starting up at the same time as the
+system enters suspend - the CODEC startup might get run after the
+delayed work is cancelled but before the lock is taken.
+
+--/dy0sp4doMeEvLCg
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmhn5ysACgkQJNaLcl1U
+h9DiFAf6A7muddYRG3lx+NR9agOvs68qIJX5nnNGk/wPu/lrWK1Ud+xoyySqmb5S
+6BI3TiGzt4bJxqrA3uhmPo+NnFEqy1SolCfrjknTIfnvn8MKGU6Hs+weFpSnPtHz
+RZ/JBUYIwQDfcjGD0KxnM7AF68WV0sCyWObJ7JdiTjGsOHzkf6sSFau4vKzjPrpC
+S3n0FXXOFDUqOThjb0l0pYo2cKZ5K0kcK258EKNMi/BXu4VH/xSfx09sdAkSBxL+
+sqxD/PKjfMCQwUs+ekOzJOd1R1KNz0lBSIHS+pJxxelKibZLwcbe0x3jFVPQiEmb
+Fteu2kGgWHh4nsj4peVrymTQkIpSTg==
+=kaxR
+-----END PGP SIGNATURE-----
+
+--/dy0sp4doMeEvLCg--
 
