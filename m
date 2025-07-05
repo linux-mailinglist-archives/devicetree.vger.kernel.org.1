@@ -1,143 +1,149 @@
-Return-Path: <devicetree+bounces-193229-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-193230-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 84D69AF9F75
-	for <lists+devicetree@lfdr.de>; Sat,  5 Jul 2025 11:58:13 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id A2F20AF9FAB
+	for <lists+devicetree@lfdr.de>; Sat,  5 Jul 2025 12:05:04 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 318431BC71E0
-	for <lists+devicetree@lfdr.de>; Sat,  5 Jul 2025 09:58:30 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 2A7204A8135
+	for <lists+devicetree@lfdr.de>; Sat,  5 Jul 2025 10:04:38 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7FF3A244663;
-	Sat,  5 Jul 2025 09:58:08 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id CAC202356CB;
+	Sat,  5 Jul 2025 10:04:39 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=palvencia.se header.i=@palvencia.se header.b="bXkF61hd"
+	dkim=pass (1024-bit key) header.d=collabora.com header.i=benjamin.gaignard@collabora.com header.b="Z5qpHdf6"
 X-Original-To: devicetree@vger.kernel.org
-Received: from m101-out-mua-6.websupport.se (m101-out-mua-6.websupport.se [109.235.175.106])
+Received: from sender4-pp-f112.zoho.com (sender4-pp-f112.zoho.com [136.143.188.112])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 43DDC239E87;
-	Sat,  5 Jul 2025 09:58:06 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=109.235.175.106
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1751709488; cv=none; b=SY4FvOeAkSvDB8Hahq1LIX9MmFIF1sZ2ifT0uozmErDypPGTWd6hYpl7+Pja0OZp6FhphLSxqzfupbnRJsZU8KZCXhjj83Ka4ygjOVvtIAbWhHY/7AQx/XG6GJotMDwptm9f0uCOpPB7ia+6Xw8VY0rzNxtyAufuxkoLB3mHq8M=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1751709488; c=relaxed/simple;
-	bh=WJ4HbOQu78BdDONBa51774fnFcMtDdfI8U3P82ZRyVw=;
-	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=QAhE2IjD2ShR4xOoFXdpwjKLZt3UvY+UqcXAZrxX59g9liAM5DqaO/Sz9jAcjkX306na3h88ET5SuhtfS9EoQJjcAcRRGtb4XGkcpyX0YUKCIuh69tNq+p+3DF3LicJ6IMBTFc0kDftBYnT+vV5Gu0b35rIaNBMhCjD2u4o63EE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=palvencia.se; spf=pass smtp.mailfrom=palvencia.se; dkim=pass (2048-bit key) header.d=palvencia.se header.i=@palvencia.se header.b=bXkF61hd; arc=none smtp.client-ip=109.235.175.106
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=palvencia.se
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=palvencia.se
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=palvencia.se;
-	s=mail; t=1751708736;
-	bh=uhXa9esT/5VXql/uG7nuK4DRUevXL199pPe0ERZ9KrM=;
-	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
-	b=bXkF61hdjGYlYWI7fRAibPkbjV8n1SIWfk5H2xp0LjiOTtSSyNipITFlEldslm6XR
-	 NL9lHwpvEoxFWIdhZMsO8dsRo4R9FjCvrnauBbnR2fUof4OA7Qf+md1EqsFnbDIlWP
-	 lA3FCvK9wy8+qCNgs3Z6zWTCA2jEpaed+IdMyl5xMXlLNwgp02mtFYEuMAW73A4yX+
-	 diuvVGI66XejLonv7oR06HTMMEVVgv03mDqGuBVDNeNEjDuWg1YHXkz+tscKC867ei
-	 OVgWPnFf7abysW0LLxDFe1Xf+TjfzHFOu71XfAB4SBnHFHNdgPyzgi5x1v7/3dS+yq
-	 HDTjRn5tptW3Q==
-Received: from m101-u6-ing.websupport.se (unknown [10.30.6.2])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange X25519 server-signature RSA-PSS (4096 bits))
-	(No client certificate requested)
-	by m101-out-mua-6.websupport.se (Postfix) with ESMTPS id 4bZ5GS2fDHz1Ym9;
-	Sat,  5 Jul 2025 11:45:36 +0200 (CEST)
-X-Authenticated-Sender: per@palvencia.se
-Authentication-Results: m101-u6-ing.websupport.se;
-	auth=pass smtp.auth=per@palvencia.se smtp.mailfrom=per@palvencia.se
-Received: from rpi (unknown [213.204.219.8])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange ECDHE (P-256) server-signature RSA-PSS (4096 bits) server-digest SHA256)
-	(No client certificate requested)
-	(Authenticated sender: per@palvencia.se)
-	by m101-u6-ing.websupport.se (Postfix) with ESMTPSA id 4bZ5GN71HQz17mm;
-	Sat,  5 Jul 2025 11:45:32 +0200 (CEST)
-Date: Sat, 5 Jul 2025 11:45:27 +0200
-From: Per Larsson <per@palvencia.se>
-To: Chen-Yu Tsai <wens@csie.org>
-Cc: Andrew Lunn <andrew+netdev@lunn.ch>, "David S. Miller"
- <davem@davemloft.net>, Eric Dumazet <edumazet@google.com>, Jakub Kicinski
- <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>, Rob Herring
- <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Jernej Skrabec <jernej@kernel.org>, Samuel Holland
- <samuel@sholland.org>, netdev@vger.kernel.org, devicetree@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, linux-sunxi@lists.linux.dev,
- linux-kernel@vger.kernel.org, Andre Przywara <andre.przywara@arm.com>
-Subject: Re: [PATCH RFT net-next 04/10] soc: sunxi: sram: register regmap as
- syscon
-Message-ID: <20250705114527.73b15356@rpi>
-In-Reply-To: <CAGb2v646HvqipGd_C=WJ4LGsumFfF5P9a7XQ7UGO6t1901DDiw@mail.gmail.com>
-References: <20250701165756.258356-1-wens@kernel.org>
-	<20250701165756.258356-5-wens@kernel.org>
-	<CAGb2v646HvqipGd_C=WJ4LGsumFfF5P9a7XQ7UGO6t1901DDiw@mail.gmail.com>
-X-Mailer: Claws Mail 4.1.1 (GTK 3.24.38; arm-unknown-linux-gnueabihf)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F3D862E36ED;
+	Sat,  5 Jul 2025 10:04:35 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=pass smtp.client-ip=136.143.188.112
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1751709879; cv=pass; b=LFmVX9QfUBhCXVOaAQ48TQvgrDnw1Eo3crEk/QN8bsm1QBwWdvzDqeZV7FgBUfPhuziD/0fiWRhzwaPkkMa1ol8ycy6SoIq8WWFPZEZYplN1OOP1o6TJOBBXt0tZYPOwiET865TOvWgnJMjXbCmi7KN3u4a54CNKje+CcouaaD8=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1751709879; c=relaxed/simple;
+	bh=AFm0hKYWXZnKo6+zcZUUrSRbxBkQoLoEP1go/dH+c9M=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=t1i7ZzvHgixqk2/I4oW7LbAcMZclbJxJui+ZKrbXJE3/zHn52dRMKuocUeVX8BmTMw7jy8xUzLXrYg0fI9jFNTNidAGkqMi0EpThJoj1liqR7upSPV5HsVVsk2Ln6IZyuOroGk83dwVKLZmWN5YoHA2dHexPZ0p1+m2iOMH7wSk=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (1024-bit key) header.d=collabora.com header.i=benjamin.gaignard@collabora.com header.b=Z5qpHdf6; arc=pass smtp.client-ip=136.143.188.112
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
+ARC-Seal: i=1; a=rsa-sha256; t=1751709851; cv=none; 
+	d=zohomail.com; s=zohoarc; 
+	b=XuHk2ri8GSG4lBxChP/+R6h/v0JjJM7fresgHKd0dLQn7uzcCA0hY+emJrQhYBCdOSc1ZM+3CQfTZ51403WyvoVQyaVlV8C1KuhVhrRyyQ/q4h6xdYleLuY9wCU4wCYYQKmDFDpn+onBU63L3ZpmEm2vlSZtRNA8gRSK7vxB068=
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=zohomail.com; s=zohoarc; 
+	t=1751709851; h=Content-Type:Content-Transfer-Encoding:Cc:Cc:Date:Date:From:From:In-Reply-To:MIME-Version:Message-ID:References:Subject:Subject:To:To:Message-Id:Reply-To; 
+	bh=RviDwvDQqjYXFY5scaKMdpbhX+ttH9CgIKwYVhmfk4c=; 
+	b=GpxsAABxo7BDZ6TD42gmws+/uPa4EuRGWNAbg3Rha+bP6/vul0ntR2oOKCf9Be0LOVfVit1MF1q+uARLbBFIGS8RsjHocvx/pdESm12H9czkFj+qz7IaymK1tkvgqkmSBVqs4fYBu49sGBPo9FF28P+l2nOlkgWBPwD7Ve9VFXw=
+ARC-Authentication-Results: i=1; mx.zohomail.com;
+	dkim=pass  header.i=collabora.com;
+	spf=pass  smtp.mailfrom=benjamin.gaignard@collabora.com;
+	dmarc=pass header.from=<benjamin.gaignard@collabora.com>
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; t=1751709851;
+	s=zohomail; d=collabora.com; i=benjamin.gaignard@collabora.com;
+	h=Message-ID:Date:Date:MIME-Version:Subject:Subject:To:To:Cc:Cc:References:From:From:In-Reply-To:Content-Type:Content-Transfer-Encoding:Message-Id:Reply-To;
+	bh=RviDwvDQqjYXFY5scaKMdpbhX+ttH9CgIKwYVhmfk4c=;
+	b=Z5qpHdf60CuJzdWjIWkZgUznVTXkHbdc/Pd/98TEepfRGmwJBpxsOnPmOJd4VJcM
+	gvGlpvMDBtOfKFQsL2IIU4x5AjB+k/uBMIE2mos1U25Y8u2LY+n3gClKyXzFeaUFYfS
+	LrwqKZSuON4ppy5BZR7SqslbdI6ChRjO+DRCEjWs=
+Received: by mx.zohomail.com with SMTPS id 1751709849751114.53291093115388;
+	Sat, 5 Jul 2025 03:04:09 -0700 (PDT)
+Message-ID: <62cead85-2d50-45f1-8020-7aea77f6833b@collabora.com>
+Date: Sat, 5 Jul 2025 12:04:05 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
-X-Out-Spamd-Result: default: False [1.90 / 1000.00];
-	SUSPICIOUS_RECIPS(1.50)[];
-	MID_RHS_NOT_FQDN(0.50)[];
-	MIME_GOOD(-0.10)[text/plain];
-	FROM_HAS_DN(0.00)[];
-	ASN(0.00)[asn:35790, ipnet:213.204.219.0/24, country:SE];
-	TO_DN_SOME(0.00)[];
-	ARC_NA(0.00)[];
-	TAGGED_RCPT(0.00)[netdev,dt];
-	HAS_X_AS(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[17];
-	RCVD_COUNT_ZERO(0.00)[0];
-	FROM_EQ_ENVFROM(0.00)[];
-	TO_MATCH_ENVRCPT_ALL(0.00)[];
-	MIME_TRACE(0.00)[0:+]
-X-Out-Rspamd-Queue-Id: 4bZ5GN71HQz17mm
-X-Rspamd-Action: no action
-X-Out-Rspamd-Server: m101-rspamd-out-4
-X-purgate-type: clean
-X-purgate-Ad: Categorized by eleven eXpurgate (R) http://www.eleven.de
-X-purgate: This mail is considered clean (visit http://www.eleven.de for further information)
-X-purgate: clean
-X-purgate-size: 928
-X-purgate-ID: 155908::1751708736-048FF069-EA712F3F/0/0
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v4 3/5] iommu: Add verisilicon IOMMU driver
+To: Jason Gunthorpe <jgg@ziepe.ca>
+Cc: joro@8bytes.org, will@kernel.org, robin.murphy@arm.com, robh@kernel.org,
+ krzk+dt@kernel.org, conor+dt@kernel.org, heiko@sntech.de,
+ nicolas.dufresne@collabora.com, iommu@lists.linux.dev,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, linux-rockchip@lists.infradead.org,
+ kernel@collabora.com
+References: <20250623153931.158765-1-benjamin.gaignard@collabora.com>
+ <20250623153931.158765-4-benjamin.gaignard@collabora.com>
+ <20250704175425.GM904431@ziepe.ca>
+Content-Language: en-US
+From: Benjamin Gaignard <benjamin.gaignard@collabora.com>
+In-Reply-To: <20250704175425.GM904431@ziepe.ca>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
 
-On Wed, 2 Jul 2025 13:01:04 +0800
-Chen-Yu Tsai <wens@csie.org> wrote:
 
-> On Wed, Jul 2, 2025 at 12:58=E2=80=AFAM Chen-Yu Tsai <wens@kernel.org> wr=
-ote:
-> >
-> > From: Chen-Yu Tsai <wens@csie.org>
-> >
-> > Until now, if the system controller had a ethernet controller glue
-> > layer control register, a limited access regmap would be registered
-> > and tied to the system controller struct device for the ethernet
-> > driver to use.
+Le 04/07/2025 à 19:54, Jason Gunthorpe a écrit :
+> On Mon, Jun 23, 2025 at 05:39:27PM +0200, Benjamin Gaignard wrote:
+>> The Verisilicon IOMMU hardware block can be found in combination
+>> with Verisilicon hardware video codecs (encoders or decoders) on
+>> different SoCs.
+>> Enable it will allow us to use non contiguous memory allocators
+>> for Verisilicon video codecs.
+>>
+>> Signed-off-by: Benjamin Gaignard <benjamin.gaignard@collabora.com>
+>> ---
+>> change in version 4:
+>> - Kconfig dependencies
+>> - Fix the remarks done by Jason and Robin: locking, clocks, macros
+>>    probing, pm_runtime, atomic allocation.
+> It broadly seems OK to me
+>
+> Though I did notice this:
+>
+>> +static struct iommu_domain *vsi_iommu_domain_alloc_paging(struct device *dev)
+>> +{
+>> +	struct vsi_iommu *iommu = dev_iommu_priv_get(dev);
+>> +	struct vsi_iommu_domain *vsi_domain;
+>> +
+>> +	vsi_domain = kzalloc(sizeof(*vsi_domain), GFP_KERNEL);
+>> +	if (!vsi_domain)
+>> +		return NULL;
+>> +
+>> +	vsi_domain->iommu = iommu;
+> So we store the iommu in the domain? And use the iommu->lock all over
+> the place
+>
+>> +static int vsi_iommu_attach_device(struct iommu_domain *domain,
+>> +				   struct device *dev)
+>> +{
+>> +	struct vsi_iommu *iommu = dev_iommu_priv_get(dev);
+>> +	struct vsi_iommu_domain *vsi_domain = to_vsi_domain(domain);
+>> +	unsigned long flags;
+>> +	int ret = 0;
+>> +
+>> +	ret = pm_runtime_resume_and_get(iommu->dev);
+>> +	if (ret < 0)
+>> +		return ret;
+>> +
+>> +	spin_lock_irqsave(&iommu->lock, flags);
+>> +	/* iommu already attached */
+>> +	if (iommu->domain == domain)
+>> +		goto unlock;
+> But here we don't check that the domain matches the iommu of dev.
+>
+> This seems a bit weird to me, I didn't quite get why the domain uses
+> iommu->lock instead of just having its own per-domain lock?
+>
+> But if it does use iommu->lock then this does need to prevent using
+> domains with the wrong iommu because the also use the wrong lock and
+> then this:
 
-"Until now"?=20
-Does that description (i.e. something that used to happen, but not
-after the patch) really match the change?
+I would like to avoid that but maybe a static spinlock can solve that problem ?
 
-- snip -
+Regards,
+Benjamin
 
-> > +               ret =3D of_syscon_register_regmap(dev->of_node,
-> > regmap);
-> > +               if (IS_ERR(ret)) =20
->=20
-> BroderTuck on IRC pointed out that this gives a compiler warning.
-> Indeed it is incorrect. It should test `ret` directly.
->=20
-> ChenYu
->=20
-
-Regards
-Per Larsson, known as BroderTuck on #linux-sunxi
+>
+>> +
+>> +	vsi_iommu_enable(iommu, domain);
+>> +	list_add_tail(&iommu->node, &vsi_domain->iommus);
+> Is not safe?
+>
+> Jason
 
