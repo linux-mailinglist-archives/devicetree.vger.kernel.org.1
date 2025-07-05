@@ -1,110 +1,129 @@
-Return-Path: <devicetree+bounces-193217-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-193218-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7DD28AF9ECC
-	for <lists+devicetree@lfdr.de>; Sat,  5 Jul 2025 09:33:23 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 774C9AF9ED0
+	for <lists+devicetree@lfdr.de>; Sat,  5 Jul 2025 09:37:37 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 249051C82A6D
-	for <lists+devicetree@lfdr.de>; Sat,  5 Jul 2025 07:33:40 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id F39FD3BF95F
+	for <lists+devicetree@lfdr.de>; Sat,  5 Jul 2025 07:37:10 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1AEFF2749E3;
-	Sat,  5 Jul 2025 07:33:15 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=tuxon.dev header.i=@tuxon.dev header.b="jduw7J5p"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 23ACC229B38;
+	Sat,  5 Jul 2025 07:37:34 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ej1-f41.google.com (mail-ej1-f41.google.com [209.85.218.41])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
-	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 86C102222CC
-	for <devicetree@vger.kernel.org>; Sat,  5 Jul 2025 07:33:13 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.41
+Received: from foss.arm.com (foss.arm.com [217.140.110.172])
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6A8FD20B1E8;
+	Sat,  5 Jul 2025 07:37:31 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.140.110.172
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1751700795; cv=none; b=GtV2HxiILAU6jmeh9hJzpZHvgNpDS/D/ZdYTaXjTsiNGXppeoinpKmGe4mGNzk9Ahs47dmeKqZHWFRJTyEFhy0mv6re4x3y+YHj0DDg9HB8aV4C382wedOtpRONVHXh/sxnRl9m1TzgF8S92RqQwCnrTvjvYn95Ug4yHiVjvvPs=
+	t=1751701054; cv=none; b=lCmmX0XdCo8HFrWFw03hpGYsJ5g1JhjVyx/V7DnkztOC0m3An49KTEbp7qgUYZK3MO9q/Z+nRj3n2L8INI+nEQLplDHU+qIk3SRqV93tuXuhfeVo6DbyzXSr383g0gtyAZHsf8m5fznmu4WZWBbatdOnpW0QeEvcyF5x7hTTIdQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1751700795; c=relaxed/simple;
-	bh=dV8yKwn1s9RPq/fJzhyLBarLvoB7DcL37DKhMvTOZX8=;
-	h=Message-ID:Date:MIME-Version:Subject:To:References:From:
-	 In-Reply-To:Content-Type; b=BkQw+QlRn6KjzAAsd8xsgZAwHWzeWzP5Yfr/De4SGtDVZVHJssnEk2IOSGgk7tySSa7EF9sK79ZkSRfJKjFhZf8uJIc5Q5OROdMg2KKSVX/d8OqmNPM9Asj4gS0ZfRQFFJ54PYTpz4gvhTFnFcZ3Te61jn5VbTfZCOVlspOMAYk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=tuxon.dev; spf=pass smtp.mailfrom=tuxon.dev; dkim=pass (2048-bit key) header.d=tuxon.dev header.i=@tuxon.dev header.b=jduw7J5p; arc=none smtp.client-ip=209.85.218.41
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=tuxon.dev
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=tuxon.dev
-Received: by mail-ej1-f41.google.com with SMTP id a640c23a62f3a-ae0bc7aa21bso319393066b.2
-        for <devicetree@vger.kernel.org>; Sat, 05 Jul 2025 00:33:13 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=tuxon.dev; s=google; t=1751700792; x=1752305592; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:content-language:from
-         :references:to:subject:user-agent:mime-version:date:message-id:from
-         :to:cc:subject:date:message-id:reply-to;
-        bh=+BzfNtLpFJK/1rL9CXjpJI51Ye7+7b3LCibh0EaiIaI=;
-        b=jduw7J5pKMeyNN3N9qvafDLNWiQp3YAG/NtuCZtpdU3WQDuBwMxQIdwIhIxODAGSzg
-         QgOM+pFU2heUmZDclTfl2eFtP2AbRn75ry7qW0QzVbE9tn87MFk4nVCtawfAg4FomGcs
-         T4FjMFTFEHJLVEkVYiDpsgyNg8KsT2xTv8Irb/ZFhH7pF4w7T+BGTCNR5coTV3vh6zxE
-         qZJzOVA990LFGQI9FrpkVE62lYWSw1uQv5BWF920bF2Qx/YserYjd36gX8DoYMzF5OSu
-         hqpE59xAtayPlDu/kv64MR7BAn5salkx6ueyjzlDz0dxXl9Lg02tViXiP1lMnY754qiv
-         oqnQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1751700792; x=1752305592;
-        h=content-transfer-encoding:in-reply-to:content-language:from
-         :references:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=+BzfNtLpFJK/1rL9CXjpJI51Ye7+7b3LCibh0EaiIaI=;
-        b=fzIq2ZTHZBYvz3Hd1hf3IEV5DOkrOi8kjqXObDp2rfF3VCIVQ8KTFga9K1tgAh/1an
-         NM5CMqo2F6WeHxd+g0uvPeqbFGWskz3iNXcDJcj+P8hR3ywdxKcreRZNjXhZfr4EXGzt
-         y3L4gau1fM7rfbZEVChpgDosjM4c5w8QAeHr+cMw9vBPONJFVRU6X1U/TgIG1eHIbM25
-         e++3l/cvE+Kc7kKI7tkBves9VFM3DjRmSBIXG9pMKuqogBkQV9Yj14BogA5RRuxj+9fr
-         8MczVPwltkHqYP/j8KTrINyQydW/74zGOkt8a2tBXDxbFML7qJIs3u8wchzlO+VgJY50
-         Y+DQ==
-X-Forwarded-Encrypted: i=1; AJvYcCXdU2KlysUn3yZAlaAjXNFjQP2uNlMxtBbG4GfT4Xed+bivwCiRuBSbvnkxcV8/yJZUT4nZQYf+ZEQp@vger.kernel.org
-X-Gm-Message-State: AOJu0YwtEnSH06DUdsVHVy68m1d5dukxMoopyL9LZm6TGlJ6NKnptSQz
-	RJ+QXftjG9Wbo6lQKwhxT6UZ3E0XE8FJzI3iQXKCJNWSu6xbdGJxS7W5sxM/t2f5fTE=
-X-Gm-Gg: ASbGncu2cjrc7jX5fHvFgNo1qOHC+iuWcdo2mFmZ6IlY2c3KVxp7YadIPGvGYfrw/Og
-	Q8lvqi7XGLhyhXzu9ymVxUNzUnuZQk8j8+J8kx0oVpegFV/HfwCpWVdpeoSF4bVbLKRAc8MXVnw
-	NQgrQPkzksoouFgnEO58avR/tR6MQVzHmjwr4g/Z0NSZQsLzkQjrjkL4N6jxZzH+1h7pMdN52E3
-	503kEdsOz343wah+xJvoYg370BRXnjAcu9ksUU+uqS6Efk4hUSUrCGr/u1t+muc3G1/YJum9Uk6
-	TqRDMUX/z6F6Ow/9a4qUZrmnOeJYl7gSHRqCozIbRwqs7heYuj4RRqe+XAe5dqZL5W8oMg==
-X-Google-Smtp-Source: AGHT+IEyjZg5XLjSr836IBwSt2gYJioyHjqnWyfO3B2HFhMs77WWIN1RLtUFlIyuT+MplatiWpCWmw==
-X-Received: by 2002:a17:907:7ea4:b0:ade:44f8:569 with SMTP id a640c23a62f3a-ae3fe73f353mr500816666b.42.1751700791818;
-        Sat, 05 Jul 2025 00:33:11 -0700 (PDT)
-Received: from [192.168.50.4] ([82.78.167.83])
-        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-ae3f6b5e7d5sm301895766b.151.2025.07.05.00.33.10
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sat, 05 Jul 2025 00:33:11 -0700 (PDT)
-Message-ID: <0f6dac77-14d4-4bf9-a622-1f075568051c@tuxon.dev>
-Date: Sat, 5 Jul 2025 10:33:10 +0300
+	s=arc-20240116; t=1751701054; c=relaxed/simple;
+	bh=RSEN/2TWL3Q95UPQ30ZbVUKp/ioML++whRQBV7x0Oxg=;
+	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=CT+G4GeN0ndqbUeXn/6F/W3cLrX8PR+A/dq/k6NBZODVJ2lYEuP5QVxgGYezs/flg+UlUCNKaDYVq6/Ln/uq2nETh/uRaKlkKZ27XBq9DR4+M5wOpu4hWmphv8MHbG6/gE44Pz8hGxYOFRyTvaGZKiovjGdwJHbnVkiN6AhA+xo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com; spf=pass smtp.mailfrom=arm.com; arc=none smtp.client-ip=217.140.110.172
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=arm.com
+Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
+	by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 01A61153B;
+	Sat,  5 Jul 2025 00:37:17 -0700 (PDT)
+Received: from minigeek.lan (usa-sjc-mx-foss1.foss.arm.com [172.31.20.19])
+	by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 785EA3F6A8;
+	Sat,  5 Jul 2025 00:37:28 -0700 (PDT)
+Date: Sat, 5 Jul 2025 08:36:00 +0100
+From: Andre Przywara <andre.przywara@arm.com>
+To: Chen-Yu Tsai <wens@kernel.org>
+Cc: Andrew Lunn <andrew+netdev@lunn.ch>, "David S. Miller"
+ <davem@davemloft.net>, Eric Dumazet <edumazet@google.com>, Jakub Kicinski
+ <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>, Rob Herring
+ <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Chen-Yu Tsai <wens@csie.org>, Jernej Skrabec
+ <jernej@kernel.org>, Samuel Holland <samuel@sholland.org>,
+ netdev@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, linux-sunxi@lists.linux.dev
+Subject: Re: [PATCH net 0/2] allwinner: a523: Rename emac0 to gmac0
+Message-ID: <20250705083600.2916bf0c@minigeek.lan>
+In-Reply-To: <20250628054438.2864220-1-wens@kernel.org>
+References: <20250628054438.2864220-1-wens@kernel.org>
+Organization: Arm Ltd.
+X-Mailer: Claws Mail 4.2.0 (GTK 3.24.31; x86_64-slackware-linux-gnu)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 4/4] ARM: dts: microchip: sama5d2_icp: rename
- spi-cs-setup-ns property to spi-cs-setup-delay-ns
-To: Manikandan Muralidharan <manikandan.m@microchip.com>, robh@kernel.org,
- krzk+dt@kernel.org, conor+dt@kernel.org, nicolas.ferre@microchip.com,
- alexandre.belloni@bootlin.com, tudor.ambarus@linaro.org,
- devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- linux-kernel@vger.kernel.org
-References: <20250521054309.361894-1-manikandan.m@microchip.com>
- <20250521054309.361894-4-manikandan.m@microchip.com>
-From: Claudiu Beznea <claudiu.beznea@tuxon.dev>
-Content-Language: en-US
-In-Reply-To: <20250521054309.361894-4-manikandan.m@microchip.com>
-Content-Type: text/plain; charset=UTF-8
+Content-Type: text/plain; charset=US-ASCII
 Content-Transfer-Encoding: 7bit
 
+On Sat, 28 Jun 2025 13:44:36 +0800
+Chen-Yu Tsai <wens@kernel.org> wrote:
 
+Hi,
 
-On 21.05.2025 08:43, Manikandan Muralidharan wrote:
-> The naming scheme for delay properties includes "delay" in the name,
-> so renaming spi-cs-setup-ns property to spi-cs-setup-delay-ns.
+> From: Chen-Yu Tsai <wens@csie.org>
 > 
-> Fixes: 46a8a137d8f6 ("ARM: dts: at91: sama5d2_icp: Set sst26vf064b SPI NOR flash at its maximum frequency")
-> Signed-off-by: Manikandan Muralidharan <manikandan.m@microchip.com>
+> Hi folks,
+> 
+> This small series aims to align the name of the first ethernet
+> controller found on the Allwinner A523 SoC family with the name
+> found in the datasheets. It renames the compatible string and
+> any other references from "emac0" to "gmac0".
 
+To be honest I am not a big fan of those cosmetic renames when it
+touches DT files. It seems to not break compatibility in this case,
+since we don't use the specific compatible string, but leaves a bitter
+taste anyway. Also I pick DT patches out of -rc releases for U-Boot,
+and did so internally already, so it's not without churns.
 
-Applied to at91-dt, thanks!
+So is this really necessary, and what is the purpose of this patch?
+I am fine with using GMAC for the GMAC200 part in the SoC, but the A64,
+H6, H616, A133 all use the same IP - as the fallback compatible proves -
+and they call it all EMAC.
+
+That's not a NAK, but just wanted to bring this up.
+
+Cheers,
+Andre. 
+
+> When support of the hardware was introduced, the name chosen was
+> "EMAC", which followed previous generations. However the datasheets
+> use the name "GMAC" instead, likely because there is another "GMAC"
+> based on a newer DWMAC IP.
+> 
+> The first patch fixes the compatible string entry in the device tree
+> binding.
+> 
+> The second patch fixes all references in the existing device trees.
+> 
+> Since this was introduced in v6.16-rc1, I hope to land this for v6.16
+> as well.
+> 
+> There's a small conflict in patch one around the patch context with 
+> 
+>     dt-bindings: net: sun8i-emac: Add A100 EMAC compatible
+> 
+> that just landed in net-next today. I will leave this patch to the net
+> mainainers to merge to avoid making a bigger mess. Once that is landed
+> I will merge the second patch through the sunxi tree.
+> 
+> 
+> Thanks
+> ChenYu
+> 
+> 
+> Chen-Yu Tsai (2):
+>   dt-bindings: net: sun8i-emac: Rename A523 EMAC0 to GMAC0
+>   arm64: dts: allwinner: a523: Rename emac0 to gmac0
+> 
+>  .../devicetree/bindings/net/allwinner,sun8i-a83t-emac.yaml  | 2 +-
+>  arch/arm64/boot/dts/allwinner/sun55i-a523.dtsi              | 6 +++---
+>  arch/arm64/boot/dts/allwinner/sun55i-a527-cubie-a5e.dts     | 4 ++--
+>  arch/arm64/boot/dts/allwinner/sun55i-t527-avaota-a1.dts     | 4 ++--
+>  4 files changed, 8 insertions(+), 8 deletions(-)
+> 
+
 
