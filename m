@@ -1,58 +1,48 @@
-Return-Path: <devicetree+bounces-193230-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-193231-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id A2F20AF9FAB
-	for <lists+devicetree@lfdr.de>; Sat,  5 Jul 2025 12:05:04 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 51601AF9FB8
+	for <lists+devicetree@lfdr.de>; Sat,  5 Jul 2025 12:43:43 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 2A7204A8135
-	for <lists+devicetree@lfdr.de>; Sat,  5 Jul 2025 10:04:38 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id E7C471C44C38
+	for <lists+devicetree@lfdr.de>; Sat,  5 Jul 2025 10:43:59 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id CAC202356CB;
-	Sat,  5 Jul 2025 10:04:39 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id CA28A22FAC3;
+	Sat,  5 Jul 2025 10:43:39 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=collabora.com header.i=benjamin.gaignard@collabora.com header.b="Z5qpHdf6"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="ErssYqkZ"
 X-Original-To: devicetree@vger.kernel.org
-Received: from sender4-pp-f112.zoho.com (sender4-pp-f112.zoho.com [136.143.188.112])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F3D862E36ED;
-	Sat,  5 Jul 2025 10:04:35 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=pass smtp.client-ip=136.143.188.112
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1751709879; cv=pass; b=LFmVX9QfUBhCXVOaAQ48TQvgrDnw1Eo3crEk/QN8bsm1QBwWdvzDqeZV7FgBUfPhuziD/0fiWRhzwaPkkMa1ol8ycy6SoIq8WWFPZEZYplN1OOP1o6TJOBBXt0tZYPOwiET865TOvWgnJMjXbCmi7KN3u4a54CNKje+CcouaaD8=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1751709879; c=relaxed/simple;
-	bh=AFm0hKYWXZnKo6+zcZUUrSRbxBkQoLoEP1go/dH+c9M=;
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9D6397080E;
+	Sat,  5 Jul 2025 10:43:39 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1751712219; cv=none; b=sRNhFWMOo7TJncg7WtTgXvdI+tEstEWWfQRcmdJqfqUk6fhcigzjpWLmunWQClrP5LVZNHvTYgboNPy+lXuLAXkeiRnJpikiDNvoII4nfK84k+5YWcj5VWUVc0ESvum1c8jTdwwzA4wpFy1FsworiK9LE+1DX0VQHo/4IVgnsWQ=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1751712219; c=relaxed/simple;
+	bh=JhxMI7/EG676AzKwfstrllMTwdzS0VxSoLep29io6BI=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=t1i7ZzvHgixqk2/I4oW7LbAcMZclbJxJui+ZKrbXJE3/zHn52dRMKuocUeVX8BmTMw7jy8xUzLXrYg0fI9jFNTNidAGkqMi0EpThJoj1liqR7upSPV5HsVVsk2Ln6IZyuOroGk83dwVKLZmWN5YoHA2dHexPZ0p1+m2iOMH7wSk=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (1024-bit key) header.d=collabora.com header.i=benjamin.gaignard@collabora.com header.b=Z5qpHdf6; arc=pass smtp.client-ip=136.143.188.112
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
-ARC-Seal: i=1; a=rsa-sha256; t=1751709851; cv=none; 
-	d=zohomail.com; s=zohoarc; 
-	b=XuHk2ri8GSG4lBxChP/+R6h/v0JjJM7fresgHKd0dLQn7uzcCA0hY+emJrQhYBCdOSc1ZM+3CQfTZ51403WyvoVQyaVlV8C1KuhVhrRyyQ/q4h6xdYleLuY9wCU4wCYYQKmDFDpn+onBU63L3ZpmEm2vlSZtRNA8gRSK7vxB068=
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=zohomail.com; s=zohoarc; 
-	t=1751709851; h=Content-Type:Content-Transfer-Encoding:Cc:Cc:Date:Date:From:From:In-Reply-To:MIME-Version:Message-ID:References:Subject:Subject:To:To:Message-Id:Reply-To; 
-	bh=RviDwvDQqjYXFY5scaKMdpbhX+ttH9CgIKwYVhmfk4c=; 
-	b=GpxsAABxo7BDZ6TD42gmws+/uPa4EuRGWNAbg3Rha+bP6/vul0ntR2oOKCf9Be0LOVfVit1MF1q+uARLbBFIGS8RsjHocvx/pdESm12H9czkFj+qz7IaymK1tkvgqkmSBVqs4fYBu49sGBPo9FF28P+l2nOlkgWBPwD7Ve9VFXw=
-ARC-Authentication-Results: i=1; mx.zohomail.com;
-	dkim=pass  header.i=collabora.com;
-	spf=pass  smtp.mailfrom=benjamin.gaignard@collabora.com;
-	dmarc=pass header.from=<benjamin.gaignard@collabora.com>
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; t=1751709851;
-	s=zohomail; d=collabora.com; i=benjamin.gaignard@collabora.com;
-	h=Message-ID:Date:Date:MIME-Version:Subject:Subject:To:To:Cc:Cc:References:From:From:In-Reply-To:Content-Type:Content-Transfer-Encoding:Message-Id:Reply-To;
-	bh=RviDwvDQqjYXFY5scaKMdpbhX+ttH9CgIKwYVhmfk4c=;
-	b=Z5qpHdf60CuJzdWjIWkZgUznVTXkHbdc/Pd/98TEepfRGmwJBpxsOnPmOJd4VJcM
-	gvGlpvMDBtOfKFQsL2IIU4x5AjB+k/uBMIE2mos1U25Y8u2LY+n3gClKyXzFeaUFYfS
-	LrwqKZSuON4ppy5BZR7SqslbdI6ChRjO+DRCEjWs=
-Received: by mx.zohomail.com with SMTPS id 1751709849751114.53291093115388;
-	Sat, 5 Jul 2025 03:04:09 -0700 (PDT)
-Message-ID: <62cead85-2d50-45f1-8020-7aea77f6833b@collabora.com>
-Date: Sat, 5 Jul 2025 12:04:05 +0200
+	 In-Reply-To:Content-Type; b=NiaeD2/N4mw8qHI56IWidxhWxbrAt/Tn/FVyenB+6jRNKYL7Ul2hp/ldWwEiNtKON9NBqmC6mZt6fDziv8DQf6i2VZ0gy3Ru1eHC9Uw9PewmXl87YHmKkRWls29VQ41EizwC/CVv27K3dU6X65PG2W27x9/KOTwaAS6m4ekibfs=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=ErssYqkZ; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id BFBADC4CEE7;
+	Sat,  5 Jul 2025 10:43:36 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1751712219;
+	bh=JhxMI7/EG676AzKwfstrllMTwdzS0VxSoLep29io6BI=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=ErssYqkZHuXgnPlh3R0GBul7ISoq8tB9swPfE2vxUnYd40XH29ZUgVIx/CFMxFt5E
+	 8umwPlXU6IfG8wros9HAp2btf4QwyrG+NMM8Ed+xCiWi68wgs7Ub1hdjUSk8+vw6dI
+	 mW7toq/aQpa44tIiSiqO9jyspiy0eZIb9/JDS7b/spDtwVTGyeaG0r7tERQgA9vytr
+	 nGpuzvKPFdIJNFQ27Hw5XEvknloZIF2XXOgAXj1/PZ0B4F8f+gjpij73xb8ckYV3aQ
+	 kTzYrV5LvuhMsuqfUDvBHslJS16BH76n3BlWzhX566UpRzkznxszqf9EJ28fGPy00K
+	 +Oiw2qVB3KlgA==
+Message-ID: <4ce8cced-995c-4dfd-9fcc-607d6a07acf4@kernel.org>
+Date: Sat, 5 Jul 2025 12:43:34 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -60,90 +50,76 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v4 3/5] iommu: Add verisilicon IOMMU driver
-To: Jason Gunthorpe <jgg@ziepe.ca>
-Cc: joro@8bytes.org, will@kernel.org, robin.murphy@arm.com, robh@kernel.org,
- krzk+dt@kernel.org, conor+dt@kernel.org, heiko@sntech.de,
- nicolas.dufresne@collabora.com, iommu@lists.linux.dev,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, linux-rockchip@lists.infradead.org,
- kernel@collabora.com
-References: <20250623153931.158765-1-benjamin.gaignard@collabora.com>
- <20250623153931.158765-4-benjamin.gaignard@collabora.com>
- <20250704175425.GM904431@ziepe.ca>
+Subject: Re: [PATCH v5 5/6] media: dt-bindings: Add qcom,qcm2290-camss
+To: Loic Poulain <loic.poulain@oss.qualcomm.com>, bryan.odonoghue@linaro.org,
+ rfoss@kernel.org, konradybcio@kernel.org, krzk+dt@kernel.org, robh@kernel.org
+Cc: linux-arm-msm@vger.kernel.org, linux-media@vger.kernel.org,
+ devicetree@vger.kernel.org, dmitry.baryshkov@oss.qualcomm.com
+References: <20250704081537.1716613-1-loic.poulain@oss.qualcomm.com>
+ <20250704081537.1716613-6-loic.poulain@oss.qualcomm.com>
+From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
-From: Benjamin Gaignard <benjamin.gaignard@collabora.com>
-In-Reply-To: <20250704175425.GM904431@ziepe.ca>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
+Autocrypt: addr=krzk@kernel.org; keydata=
+ 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 a/A=
+In-Reply-To: <20250704081537.1716613-6-loic.poulain@oss.qualcomm.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
+On 04/07/2025 10:15, Loic Poulain wrote:
+> Add bindings for qcom,qcm2290-camss in order to support the camera
+> subsystem found in the Qualcomm Robotics RB1 Platform (QRB2210).
+> 
+> Signed-off-by: Loic Poulain <loic.poulain@oss.qualcomm.com>
+> ---
+>  .../bindings/media/qcom,qcm2290-camss.yaml    | 243 ++++++++++++++++++
+>  1 file changed, 243 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/media/qcom,qcm2290-camss.yaml
 
-Le 04/07/2025 à 19:54, Jason Gunthorpe a écrit :
-> On Mon, Jun 23, 2025 at 05:39:27PM +0200, Benjamin Gaignard wrote:
->> The Verisilicon IOMMU hardware block can be found in combination
->> with Verisilicon hardware video codecs (encoders or decoders) on
->> different SoCs.
->> Enable it will allow us to use non contiguous memory allocators
->> for Verisilicon video codecs.
->>
->> Signed-off-by: Benjamin Gaignard <benjamin.gaignard@collabora.com>
->> ---
->> change in version 4:
->> - Kconfig dependencies
->> - Fix the remarks done by Jason and Robin: locking, clocks, macros
->>    probing, pm_runtime, atomic allocation.
-> It broadly seems OK to me
->
-> Though I did notice this:
->
->> +static struct iommu_domain *vsi_iommu_domain_alloc_paging(struct device *dev)
->> +{
->> +	struct vsi_iommu *iommu = dev_iommu_priv_get(dev);
->> +	struct vsi_iommu_domain *vsi_domain;
->> +
->> +	vsi_domain = kzalloc(sizeof(*vsi_domain), GFP_KERNEL);
->> +	if (!vsi_domain)
->> +		return NULL;
->> +
->> +	vsi_domain->iommu = iommu;
-> So we store the iommu in the domain? And use the iommu->lock all over
-> the place
->
->> +static int vsi_iommu_attach_device(struct iommu_domain *domain,
->> +				   struct device *dev)
->> +{
->> +	struct vsi_iommu *iommu = dev_iommu_priv_get(dev);
->> +	struct vsi_iommu_domain *vsi_domain = to_vsi_domain(domain);
->> +	unsigned long flags;
->> +	int ret = 0;
->> +
->> +	ret = pm_runtime_resume_and_get(iommu->dev);
->> +	if (ret < 0)
->> +		return ret;
->> +
->> +	spin_lock_irqsave(&iommu->lock, flags);
->> +	/* iommu already attached */
->> +	if (iommu->domain == domain)
->> +		goto unlock;
-> But here we don't check that the domain matches the iommu of dev.
->
-> This seems a bit weird to me, I didn't quite get why the domain uses
-> iommu->lock instead of just having its own per-domain lock?
->
-> But if it does use iommu->lock then this does need to prevent using
-> domains with the wrong iommu because the also use the wrong lock and
-> then this:
+With Bryan comments fixed and *assuming you will do W=1 checks* afterwards:
 
-I would like to avoid that but maybe a static spinlock can solve that problem ?
+Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
-Regards,
-Benjamin
-
->
->> +
->> +	vsi_iommu_enable(iommu, domain);
->> +	list_add_tail(&iommu->node, &vsi_domain->iommus);
-> Is not safe?
->
-> Jason
+Best regards,
+Krzysztof
 
