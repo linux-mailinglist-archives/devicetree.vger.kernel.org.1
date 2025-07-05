@@ -1,96 +1,83 @@
-Return-Path: <devicetree+bounces-193252-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-193253-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id AE8F9AFA133
-	for <lists+devicetree@lfdr.de>; Sat,  5 Jul 2025 20:38:35 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 227C6AFA135
+	for <lists+devicetree@lfdr.de>; Sat,  5 Jul 2025 20:46:39 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 0836F4A21AA
-	for <lists+devicetree@lfdr.de>; Sat,  5 Jul 2025 18:38:36 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id E57853A7FEF
+	for <lists+devicetree@lfdr.de>; Sat,  5 Jul 2025 18:46:11 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 03A99215F6B;
-	Sat,  5 Jul 2025 18:38:31 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 629B51EBA14;
+	Sat,  5 Jul 2025 18:46:33 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=ziepe.ca header.i=@ziepe.ca header.b="M796u3Wh"
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="RGjaE1SO"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-qk1-f182.google.com (mail-qk1-f182.google.com [209.85.222.182])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.13])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 54FCD1AC88A
-	for <devicetree@vger.kernel.org>; Sat,  5 Jul 2025 18:38:29 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.222.182
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7B4731EA73;
+	Sat,  5 Jul 2025 18:46:31 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.175.65.13
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1751740710; cv=none; b=H8aH8KQ0XRHXaJpIhGx3tMibv9142oWoUAsCNrE5TnuB2b8k//Y5pxwFiGIecNWR4B19eQTjB4ZD33EjQR2OJSvBVjPgZdq9yo/832Kwtt2+c5v7eGdvlzf2CvtmIvyvjZHPozG8dgwrDsibjNhIHOcA91BxVwb0BbvwWn6wT1A=
+	t=1751741193; cv=none; b=Ag0mrQPdIjI17wVTea+QxY6si3v/3XHzlJOxhbSXOi1VdizPJYLgDkpwYBco9t0MFHsdNSMX2snGP1zz0Hc3Agl/Q6r9QmWNdS+WmXADCQYZglwBfJANPid8ZCf/hDclIjeYMihR8CLKVoAEK0mjJ553uOPcLo8PNW7+j4dq4RU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1751740710; c=relaxed/simple;
-	bh=WIHdEgEb4h7ncGmlqKNUeHDxe1TLcrT5/vC0Zduw6NY=;
+	s=arc-20240116; t=1751741193; c=relaxed/simple;
+	bh=Z0yzV/VPkDfvyUx/xopWYC8B14lYUePBKBtLJOQOW6U=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=NMXLi4yNIh7ZGrPTpxgwQUGbnMsgF5FY2LLZfDcEAKfohNWkTJ3elpCI9HKbu2BeThB4NtpyiaivMjPfBtthqnxohwfLjOBP9YbsO539XHi4V9KT/0wOH42sEYIBmaooQp3arsHfgvsMjiAqfO+v3KefEQMKufEPdpEIPmfHbUo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ziepe.ca; spf=pass smtp.mailfrom=ziepe.ca; dkim=pass (2048-bit key) header.d=ziepe.ca header.i=@ziepe.ca header.b=M796u3Wh; arc=none smtp.client-ip=209.85.222.182
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ziepe.ca
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ziepe.ca
-Received: by mail-qk1-f182.google.com with SMTP id af79cd13be357-7d0976776dcso223891585a.2
-        for <devicetree@vger.kernel.org>; Sat, 05 Jul 2025 11:38:28 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=ziepe.ca; s=google; t=1751740708; x=1752345508; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=WIHdEgEb4h7ncGmlqKNUeHDxe1TLcrT5/vC0Zduw6NY=;
-        b=M796u3WhOQlJnRyUi6KCA5mOBngSG7pYexme1NipRRKwhjCRZmRmaL4qW23/MADF04
-         EVMgpz8MSxd3mnCAkEUimm7nyDAAy/AfA+23koKmLFV0k+NeoR6++sQB0vN5ybXyYBIx
-         EnHBp7EwdcbMHoWEKN8S7YN5xL59XSA2mG27EuL1TmgjaLpfEkHkwx8sVFutTsL2Mqq+
-         JYzOzmoIPmpHnfTgNznnCQdiBpiGNk9s8gq7K10PAYP++hCN9ORjzrFlDHmNnkpAYoMN
-         kRJ5LyjwAjhARa6dWFNS2FFcGhgsuljQp+LGPcDYu+VbIhc4hK/IBj/Q4s1nzu4Y7waT
-         Qqtg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1751740708; x=1752345508;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=WIHdEgEb4h7ncGmlqKNUeHDxe1TLcrT5/vC0Zduw6NY=;
-        b=AWZvYRsK8sf6B4h/qRwI2YQbFOFoCXwXL0c4pg3UxZrf0g707DjRLFCoCYrjoSYQux
-         FaysMVXY3XLLGraCrlDgo2F8J+Bw+BSJUje3LLESEQn43o6za4TTgc7AVYBkW3cfQCRD
-         kNhf+8dgw2wC6/Ckvj3c4/LZZl3G0W/CqOz1yyfsnyg6WZWhoj2C1krWxtaiAT4mzAwl
-         dXfDHpYl5mZtCpjJyz4TOvRysadl4xH0rGsWF1Z6E0O7OZswvfAADjFm5xsqPBPP21cZ
-         P+ZKlyNm329L+pGcUSwAdVzCjaGp8QwJ2dbboRWRpNhZNvoQ1GXXgbtHDqfVWv2FYWSF
-         CzHg==
-X-Forwarded-Encrypted: i=1; AJvYcCXmO7gHJBQMUV6Jq5cgfoZQAcNsg9QSsZ3pGtjlTVel2tgMSL1GaPBjC7J7vjjJYrd68AkZ0ZH+B+W/@vger.kernel.org
-X-Gm-Message-State: AOJu0Ywxk00H/N9sw7jbPPdjEiU3E4Zx++Fvn71GL6E2s7sQ6SMrSWqJ
-	zVfnT5FomJP47kM/5tZMbMmngsikCMRwAYJ8ZNoNSjTfeX1i3G1aPcJlyNLumvmaCX4=
-X-Gm-Gg: ASbGncupPGpYd84N/BW+wLRpC9RFUFfSpi+1o1/SEIMY48avm73JC5IuEK7N29823LS
-	xareakjzl8p7IbubgjOTowLEv1sYDd21K7xM/P3hY1i4cVc/1S8NDrWl16jMtxuiF2CKvcdX1kN
-	eCW1rxkGdSqPE9UWwU5Pn3/EOg/O9U5qAbPCycT/lzBgbSN9Z2fEsf1nsi59N/wl7qJluDnceT5
-	3i8bhOxSARQqtQ42jXLAvbLyDK2tX7wt4kIFEk+CbqCh1fC1MMziDu8Onci9waGhnKiCyyir5+o
-	NbLmuCiz9pWIqFdiI+pXQQhYJ0CP/nt3SfRx6sA9WSs1Qyez40xCLxJLaadJ7P1jukvypsRiQfu
-	Dx6Nl58qetaVaWmT5YvzbclhMvoFjRy5H+voGeAy4A9Vq/XpZ
-X-Google-Smtp-Source: AGHT+IHGynn880Btao0rr5ATgmcaLhy8fafgWIOLP+yaNkVftZqqbIrm82pa3BfiHgQu8aK3kR04IA==
-X-Received: by 2002:a05:620a:40c9:b0:7d3:f0a3:d8cc with SMTP id af79cd13be357-7d5df169b32mr814175485a.45.1751740708064;
-        Sat, 05 Jul 2025 11:38:28 -0700 (PDT)
-Received: from ziepe.ca (hlfxns017vw-142-167-56-70.dhcp-dynamic.fibreop.ns.bellaliant.net. [142.167.56.70])
-        by smtp.gmail.com with ESMTPSA id af79cd13be357-7d5dbe7baedsm345886685a.57.2025.07.05.11.38.27
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sat, 05 Jul 2025 11:38:27 -0700 (PDT)
-Received: from jgg by wakko with local (Exim 4.97)
-	(envelope-from <jgg@ziepe.ca>)
-	id 1uY7mM-000000068pv-2jB7;
-	Sat, 05 Jul 2025 15:38:26 -0300
-Date: Sat, 5 Jul 2025 15:38:26 -0300
-From: Jason Gunthorpe <jgg@ziepe.ca>
-To: Benjamin Gaignard <benjamin.gaignard@collabora.com>
-Cc: joro@8bytes.org, will@kernel.org, robin.murphy@arm.com, robh@kernel.org,
-	krzk+dt@kernel.org, conor+dt@kernel.org, heiko@sntech.de,
-	nicolas.dufresne@collabora.com, iommu@lists.linux.dev,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	linux-rockchip@lists.infradead.org, kernel@collabora.com
-Subject: Re: [PATCH v4 3/5] iommu: Add verisilicon IOMMU driver
-Message-ID: <20250705183826.GN904431@ziepe.ca>
-References: <20250623153931.158765-1-benjamin.gaignard@collabora.com>
- <20250623153931.158765-4-benjamin.gaignard@collabora.com>
- <20250704175425.GM904431@ziepe.ca>
- <62cead85-2d50-45f1-8020-7aea77f6833b@collabora.com>
+	 Content-Type:Content-Disposition:In-Reply-To; b=hbGWs3qp32xKiZANKtA66xcUK5B1jo63Vt/G91k3iL0zWC5qV76P4qDJMFuoe5KLuDxslMePXsV9kFo5sGJGaSO0/7uiHg/kgBCYVBqzKEX8yTTP44xv/CmtVpNMcE2yoWS8gkuLNhw+UrpfqnKxnPuHDIGy8Q1MiVkBIFpWImU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=RGjaE1SO; arc=none smtp.client-ip=198.175.65.13
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1751741191; x=1783277191;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=Z0yzV/VPkDfvyUx/xopWYC8B14lYUePBKBtLJOQOW6U=;
+  b=RGjaE1SOpogHbX5ZMvtUtqyxUhHHwtaWEQY+i4i1iBEFZlyFLrZB6LNa
+   OUpKhv+9Uk+tBzCExdoAkTIqpOihQlGwijIhzPxMLGJEAHwmGOu3Iqg0U
+   86Nsp4iFb4ENa1WA9IOuEOwYZT/MBbseyizC78SGiXw/2FhL2XsNDOMKG
+   TQvlwgKnJoQ3l3i9Ec/M1St+HnXqp6TUfHc1jNmvlfSf5inaPuEAJDRnw
+   CBg96iRsBGYifpt1A4OU/RRPMzcw7wy6s1vFyjD3qI5yJDQwJrkcUngl1
+   484lGG6R0AtSUvgwM142LjaRIGe7D13Ce6G+koWemF3lklqNY9VeR60fT
+   g==;
+X-CSE-ConnectionGUID: EgGZNRROTg6Wm22dx8eExQ==
+X-CSE-MsgGUID: qERH2Zm4SiqMFDzNlZu5gg==
+X-IronPort-AV: E=McAfee;i="6800,10657,11485"; a="65079090"
+X-IronPort-AV: E=Sophos;i="6.16,290,1744095600"; 
+   d="scan'208";a="65079090"
+Received: from orviesa007.jf.intel.com ([10.64.159.147])
+  by orvoesa105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 05 Jul 2025 11:46:31 -0700
+X-CSE-ConnectionGUID: YtCQ6xlMTd6QNYDFXdZszw==
+X-CSE-MsgGUID: hhfPyBMXRqeKWA/pf1pBJA==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.16,290,1744095600"; 
+   d="scan'208";a="154988400"
+Received: from lkp-server01.sh.intel.com (HELO 0b2900756c14) ([10.239.97.150])
+  by orviesa007.jf.intel.com with ESMTP; 05 Jul 2025 11:46:27 -0700
+Received: from kbuild by 0b2900756c14 with local (Exim 4.96)
+	(envelope-from <lkp@intel.com>)
+	id 1uY7u5-0004fv-0y;
+	Sat, 05 Jul 2025 18:46:25 +0000
+Date: Sun, 6 Jul 2025 02:46:11 +0800
+From: kernel test robot <lkp@intel.com>
+To: Ze Huang <huang.ze@linux.dev>,
+	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>, Yixun Lan <dlan@gentoo.org>,
+	Thinh Nguyen <Thinh.Nguyen@synopsys.com>,
+	Philipp Zabel <p.zabel@pengutronix.de>
+Cc: oe-kbuild-all@lists.linux.dev, linux-usb@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-riscv@lists.infradead.org,
+	spacemit@lists.linux.dev, linux-kernel@vger.kernel.org,
+	Ze Huang <huang.ze@linux.dev>
+Subject: Re: [PATCH v5 2/2] usb: dwc3: add generic driver to support flattened
+Message-ID: <202507060206.iiBP6CQi-lkp@intel.com>
+References: <20250705-dwc3_generic-v5-2-9dbc53ea53d2@linux.dev>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -99,16 +86,102 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <62cead85-2d50-45f1-8020-7aea77f6833b@collabora.com>
+In-Reply-To: <20250705-dwc3_generic-v5-2-9dbc53ea53d2@linux.dev>
 
-On Sat, Jul 05, 2025 at 12:04:05PM +0200, Benjamin Gaignard wrote:
+Hi Ze,
 
-> I would like to avoid that but maybe a static spinlock can solve that problem ?
+kernel test robot noticed the following build warnings:
 
-I think you can't really (technically) store an iommu pointer in a
-domain and not prevent it from being used by other iommus.
+[auto build test WARNING on d9946fe286439c2aeaa7953b8c316efe5b83d515]
 
-Can't the spinlock be in the domain?
+url:    https://github.com/intel-lab-lkp/linux/commits/Ze-Huang/dt-bindings-usb-dwc3-add-support-for-SpacemiT-K1/20250705-210419
+base:   d9946fe286439c2aeaa7953b8c316efe5b83d515
+patch link:    https://lore.kernel.org/r/20250705-dwc3_generic-v5-2-9dbc53ea53d2%40linux.dev
+patch subject: [PATCH v5 2/2] usb: dwc3: add generic driver to support flattened
+config: arc-randconfig-001-20250706 (https://download.01.org/0day-ci/archive/20250706/202507060206.iiBP6CQi-lkp@intel.com/config)
+compiler: arc-linux-gcc (GCC) 8.5.0
+reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20250706/202507060206.iiBP6CQi-lkp@intel.com/reproduce)
 
-Jason
+If you fix the issue in a separate patch/commit (i.e. not just a new version of
+the same patch/commit), kindly add following tags
+| Reported-by: kernel test robot <lkp@intel.com>
+| Closes: https://lore.kernel.org/oe-kbuild-all/202507060206.iiBP6CQi-lkp@intel.com/
+
+All warnings (new ones prefixed by >>):
+
+>> drivers/usb/dwc3/dwc3-generic-plat.c:151:12: warning: 'dwc3_generic_runtime_idle' defined but not used [-Wunused-function]
+    static int dwc3_generic_runtime_idle(struct device *dev)
+               ^~~~~~~~~~~~~~~~~~~~~~~~~
+>> drivers/usb/dwc3/dwc3-generic-plat.c:144:12: warning: 'dwc3_generic_runtime_resume' defined but not used [-Wunused-function]
+    static int dwc3_generic_runtime_resume(struct device *dev)
+               ^~~~~~~~~~~~~~~~~~~~~~~~~~~
+>> drivers/usb/dwc3/dwc3-generic-plat.c:137:12: warning: 'dwc3_generic_runtime_suspend' defined but not used [-Wunused-function]
+    static int dwc3_generic_runtime_suspend(struct device *dev)
+               ^~~~~~~~~~~~~~~~~~~~~~~~~~~~
+>> drivers/usb/dwc3/dwc3-generic-plat.c:121:12: warning: 'dwc3_generic_resume' defined but not used [-Wunused-function]
+    static int dwc3_generic_resume(struct device *dev)
+               ^~~~~~~~~~~~~~~~~~~
+>> drivers/usb/dwc3/dwc3-generic-plat.c:107:12: warning: 'dwc3_generic_suspend' defined but not used [-Wunused-function]
+    static int dwc3_generic_suspend(struct device *dev)
+               ^~~~~~~~~~~~~~~~~~~~
+
+
+vim +/dwc3_generic_runtime_idle +151 drivers/usb/dwc3/dwc3-generic-plat.c
+
+   106	
+ > 107	static int dwc3_generic_suspend(struct device *dev)
+   108	{
+   109		struct dwc3_generic *dwc3 = dev_get_drvdata(dev);
+   110		int ret;
+   111	
+   112		ret = dwc3_pm_suspend(&dwc3->dwc);
+   113		if (ret)
+   114			return ret;
+   115	
+   116		clk_bulk_disable_unprepare(dwc3->num_clocks, dwc3->clks);
+   117	
+   118		return 0;
+   119	}
+   120	
+ > 121	static int dwc3_generic_resume(struct device *dev)
+   122	{
+   123		struct dwc3_generic *dwc3 = dev_get_drvdata(dev);
+   124		int ret;
+   125	
+   126		ret = clk_bulk_prepare_enable(dwc3->num_clocks, dwc3->clks);
+   127		if (ret)
+   128			return ret;
+   129	
+   130		ret = dwc3_pm_resume(&dwc3->dwc);
+   131		if (ret)
+   132			return ret;
+   133	
+   134		return 0;
+   135	}
+   136	
+ > 137	static int dwc3_generic_runtime_suspend(struct device *dev)
+   138	{
+   139		struct dwc3_generic *dwc3 = dev_get_drvdata(dev);
+   140	
+   141		return dwc3_runtime_suspend(&dwc3->dwc);
+   142	}
+   143	
+ > 144	static int dwc3_generic_runtime_resume(struct device *dev)
+   145	{
+   146		struct dwc3_generic *dwc3 = dev_get_drvdata(dev);
+   147	
+   148		return dwc3_runtime_resume(&dwc3->dwc);
+   149	}
+   150	
+ > 151	static int dwc3_generic_runtime_idle(struct device *dev)
+   152	{
+   153		struct dwc3_generic *dwc3 = dev_get_drvdata(dev);
+   154	
+   155		return dwc3_runtime_idle(&dwc3->dwc);
+   156	}
+   157	
+
+-- 
+0-DAY CI Kernel Test Service
+https://github.com/intel/lkp-tests/wiki
 
