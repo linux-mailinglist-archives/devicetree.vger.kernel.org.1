@@ -1,222 +1,175 @@
-Return-Path: <devicetree+bounces-193237-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-193238-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2B442AFA006
-	for <lists+devicetree@lfdr.de>; Sat,  5 Jul 2025 14:16:15 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4F164AFA00B
+	for <lists+devicetree@lfdr.de>; Sat,  5 Jul 2025 14:20:49 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 6D5167B41B0
-	for <lists+devicetree@lfdr.de>; Sat,  5 Jul 2025 12:14:49 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id B69821BC6F21
+	for <lists+devicetree@lfdr.de>; Sat,  5 Jul 2025 12:21:05 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8797924BD02;
-	Sat,  5 Jul 2025 12:16:07 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 683002550BA;
+	Sat,  5 Jul 2025 12:20:44 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="Y/qvHEkE"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="NO97l4Uh"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 06EBB220F36
-	for <devicetree@vger.kernel.org>; Sat,  5 Jul 2025 12:16:05 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 34B98252287;
+	Sat,  5 Jul 2025 12:20:43 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1751717767; cv=none; b=UwBUB1YiYn9LjfQrXfgMvtMYl6Ajdh/hhTLxBs/ahNhkMmWsq88F38Xr84mPKYup/vSyK2oaXTZ8i3I9ACIc0tH8oPE482voLWfsGsw5lUNFyZM5wvJS4RmY6768rrgewrcnEkhZoeMDugbF92rULb1M7JTyyUQ62ow76aZmlzw=
+	t=1751718044; cv=none; b=fhFZNxG74E6CgoHZHyjOntMStOjEkb35Ohli/xah5g14WALJU6XnFizxJOM1QhfcFotKt137bqFrG0YnYduxnkHCtqHu38B18B0pEwX+gJJWvlnLDEbd55h/tHeiUhqj0iuOV9u5mK7Hsq/bIfHAEP2ld2yOk63WQhgK/G7+tKw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1751717767; c=relaxed/simple;
-	bh=zXA7z4CAURglQcD0sdU5FjGHsRA0zPjWC2fjluyU4oU=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=FPWBpgydR4Kf8gTXA5SbOb0RMK7kndjUCK5SAnw/oI5PIwgCIMsV2UbW6rdQ16Anl3PDinjqOdTpy8ISF2YBVVyoRqPK2bssBBnM0qGp4HFcKkdK3VcmXI9nbmz5xDDF2oBwxb+99HNCl40E8+ELoFsXCCPKXUHasOsAhvWM3aA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=Y/qvHEkE; arc=none smtp.client-ip=205.220.168.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
-Received: from pps.filterd (m0279867.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 565BeoH5026583
-	for <devicetree@vger.kernel.org>; Sat, 5 Jul 2025 12:16:05 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
-	cc:content-type:date:from:in-reply-to:message-id:mime-version
-	:references:subject:to; s=qcppdkim1; bh=DZskBg0KwT3zvs6x4xilopTA
-	Ma1fKs/iNW6MtQwSdNc=; b=Y/qvHEkEDLVML7NMTl2jmdQOldxFH9AeSWShJCOz
-	Q6pEFpd5uq/w4pnZkdY8LlxEeIbjrgbrWVCUW+tAx3WQX8iKx7Yh76FcZe7xzzrM
-	j/gEe4vR0MUU76LYOU8yeD1Ci3VcRh9FAnwM8r5DYkSP4GMYLszVtMVawg+0w7r/
-	QBw2yoSSYieLCkI1pX2/o/j3/CBgRSbHpibURUv5I9IMgHV1nsoO6pV84FnF2qt1
-	9QdO2Cj91mE00ub0JZVitVtDcoN/VHQcZmJ2IzzpNDAIxSMAOnEhrDsoHxkOh131
-	O8qfIHglvtGXDIDhjUot3NONrEGYFKBxs4T9Ti6CcSzUcg==
-Received: from mail-qk1-f198.google.com (mail-qk1-f198.google.com [209.85.222.198])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 47psrk11ha-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Sat, 05 Jul 2025 12:16:04 +0000 (GMT)
-Received: by mail-qk1-f198.google.com with SMTP id af79cd13be357-7cf6c53390eso99438085a.2
-        for <devicetree@vger.kernel.org>; Sat, 05 Jul 2025 05:16:04 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1751717764; x=1752322564;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=DZskBg0KwT3zvs6x4xilopTAMa1fKs/iNW6MtQwSdNc=;
-        b=KwsAAj/MjppBfjPGWXbFbMSLD8eXM3bnzrDHktBDJlHxUp3Ql1KJxzNw0WEvpZfBKP
-         /kCmC7zJwPcpUADxZPhDqpg8rGQw1fzNaps21GQP/N54l9NxS/2tjLZlepAwmHEybi1R
-         BLwYu7wyAygdRSiCjA5k4hDA7wND+AHK0O6Wgg+meWIsa0GV12teGNmXs0Z6nnf8ghEs
-         62FILzcqrfzVAmmE6If9UL2vMQbBXINBKKJFZhVxx6WgrvK/nwcHPIC+wkeGILBlQIZy
-         +ahaPn+Ps94S+L1qWH+t4AscfcPlGy8sH2jdTYkK/yeLCvruupoL9GvxwnLXa5BIolSA
-         BF0Q==
-X-Forwarded-Encrypted: i=1; AJvYcCW9hx4Ul86nyRFCHCH5Sv5ptEPiih9ikt/PB25vDbn0rRnlMPBXfk4/Hh176KO/ulb6HkP32+WWVSzx@vger.kernel.org
-X-Gm-Message-State: AOJu0YwXSYvmVITo5bkFaiJL1CMjkyxEghtK6B2E3TxezYcEQMPI6Zi9
-	0X1BbJ0kwYDygGVyT2gKDM7WFDqThxxtt1y5REXdpHZyQqDfzSjyg8XaF+7+1joVHT9WWLsjV4L
-	LW+30aP97UQ/W3JTJG3YDuG9XZHffq/elwMMKYH6+2Z3shifhy0YEliSn/riG8sJy
-X-Gm-Gg: ASbGncvKZ9U9wO9xfk62Q3RqNcqbjXnXO4JsQGd+PIKynhaX+YjeNvcQYN+LRtmkaZ2
-	whdt5DxHGhqX9ooF0Zrjpv4LxaTs2bANEpEv22k3+VBd9EJZxM/oo4zIrQI0JIhJXIQZCrRCkOx
-	uv36N++UwGWck1NBmoaM9QZzpqNgJyVcawKAQyNgyHdK2MrxZznUHbHKRAR4CSHJAN2gGF1znLx
-	itfGc+ri0LtT81F7FperfYhbNuWqJee3M632x1bC3AjV3bQSyremnokaXvsAKE47uG70VXLq0ip
-	inJZOIPDE3f7Assfu7bfrExNR4fS5SwUFgKQ1QXOGyMQ6LABb4sN6aqZVkJ4/dr4ifsKNqQDt3b
-	RVap17WRtFZqaJhZjTNx5B1oFD8VL4FcqU1k=
-X-Received: by 2002:a05:620a:1b9c:b0:7d3:8ffa:f1bc with SMTP id af79cd13be357-7d5df194ad6mr647607785a.58.1751717763493;
-        Sat, 05 Jul 2025 05:16:03 -0700 (PDT)
-X-Google-Smtp-Source: AGHT+IE+gQQa0CaeGQsNRfGbtyGeCjeRcczJX70+ST7EoZUozdS8AfTgykjfKP0uSxr/FF8U1oHnzw==
-X-Received: by 2002:a05:620a:1b9c:b0:7d3:8ffa:f1bc with SMTP id af79cd13be357-7d5df194ad6mr647602985a.58.1751717762891;
-        Sat, 05 Jul 2025 05:16:02 -0700 (PDT)
-Received: from umbar.lan (2001-14ba-a0c3-3a00-264b-feff-fe8b-be8a.rev.dnainternet.fi. [2001:14ba:a0c3:3a00:264b:feff:fe8b:be8a])
-        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-556384c8c42sm570788e87.237.2025.07.05.05.16.01
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sat, 05 Jul 2025 05:16:01 -0700 (PDT)
-Date: Sat, 5 Jul 2025 15:16:00 +0300
-From: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
-To: Prasad Kumpatla <quic_pkumpatl@quicinc.com>
-Cc: Bjorn Andersson <andersson@kernel.org>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Srinivas Kandagatla <srini@kernel.org>,
-        Liam Girdwood <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>,
-        Konrad Dybcio <konradybcio@kernel.org>,
-        cros-qcom-dts-watchers@chromium.org, linux-arm-msm@vger.kernel.org,
-        linux-gpio@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-sound@vger.kernel.org,
-        kernel@oss.qualcomm.com, Mohammad Rafi Shaik <quic_mohs@quicinc.com>,
-        Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
-Subject: Re: [PATCH v4 1/8] arm64: dts: qcom: qcs6490-audioreach: Add gpr node
-Message-ID: <amnwwaoais7hpaoqb5zkkj6cd7aliufmeuwkhdrkyfc53ej6ut@yggpe53i2cvk>
-References: <20250527111227.2318021-1-quic_pkumpatl@quicinc.com>
- <20250527111227.2318021-2-quic_pkumpatl@quicinc.com>
- <q6rbvbvejugioon6l23nmmzeue7l4bgtlaf44o3a4krj3lytjp@p3y6opl7vs25>
- <74793074-19ee-48f3-b502-8d970b9f50af@quicinc.com>
+	s=arc-20240116; t=1751718044; c=relaxed/simple;
+	bh=w6JVrjNC7s+w46VT5qoV9Am1SjT66OpW5xDi+rFdRiw=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=n8uEW/Pq64xHI2Finazd41njOmJrDvrlQzqvtoO6Evp7s7npXYVgisDct7wvW2/XukGgO2GpYX4J6sXuecbPaHKVYZdlEhlVSRjqLJhGhw/xNS2mUt70f+ibbZh2t6GHc0Ocb/hhqgGt7NwZY8fwAgOlrTJBLzSRmh5qGwzbXz0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=NO97l4Uh; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id B691DC4AF09;
+	Sat,  5 Jul 2025 12:20:43 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1751718043;
+	bh=w6JVrjNC7s+w46VT5qoV9Am1SjT66OpW5xDi+rFdRiw=;
+	h=References:In-Reply-To:Reply-To:From:Date:Subject:To:Cc:From;
+	b=NO97l4Uh1TnQv0IgibQlK8jSxdy5+saaJFnqpoZJ32HXznZja1vuRpy6IEPbvBFjn
+	 U9ZDGiwSWzANC3fWbivFHWhkM9K2BrjwbNV6Lf+0PmbSRMSrPyZ8ZNdRL6pCWZnvJ6
+	 3I6skH+H3KsDvrEFB1VYPUU5v8nQDvn1vTUsZ/96mjDKVuanBfyzoU2bB3XD6felBG
+	 ksweZSvZdDnorhAx4dzGBd6rWikZ07JTWcl4q0ueZeSjKIGqgppB6oMFevOQeU2CbZ
+	 YCYMZpVTcqVfDCZQQQ9JlQs4R4kkCWpKuI634EhdyLXGu83HPKjWbs4gCXuNyC1bMj
+	 5Dz37HNSncqpA==
+Received: by mail-lj1-f178.google.com with SMTP id 38308e7fff4ca-32b595891d2so13263011fa.2;
+        Sat, 05 Jul 2025 05:20:43 -0700 (PDT)
+X-Forwarded-Encrypted: i=1; AJvYcCUeEeP32SsDiw/D2SS6KMqXdQEc812V/f/93NV8o5QQmYEEG67VOFOZ7qHyNB0nrezjy6i5qGiArlpv@vger.kernel.org, AJvYcCXReICa/2hLimgtimablo1Vm8Lk5Sai1PML7g6GfiR+Znwszx9/S7cXa76LPSIrC2iHgvhv0Hrb@vger.kernel.org
+X-Gm-Message-State: AOJu0Yzif8sjxx/37mrWjc3is2ew1ZAYwOpod9r338kNLWEzN6atSGyV
+	LlwGnX+yyugd2PG1VLKenjjQw2ka2Q9f1+Ycff6sfVI3+i3kzhAGHOajRtXdYFVtHqIS4eq6q1v
+	JwQiAf6YVkL5GfWn3UeaVd4117GGnMGE=
+X-Google-Smtp-Source: AGHT+IE2FeBYZ8ZmnNW0SV5XaswcVwlOSGE5JRdJuwk2CAsSkNvjgDvq3feTe9kdVd6rU22ciEC8vE3JOGVj9L4sHqY=
+X-Received: by 2002:a2e:ae1c:0:b0:32a:74db:f3c1 with SMTP id
+ 38308e7fff4ca-32f19ad68d4mr4847691fa.24.1751718042043; Sat, 05 Jul 2025
+ 05:20:42 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <74793074-19ee-48f3-b502-8d970b9f50af@quicinc.com>
-X-Proofpoint-ORIG-GUID: 7yK6-gSYe1icWNAEBOmBDQ6FPsyBxqUx
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwNzA1MDA3OSBTYWx0ZWRfXyuh6pS36fxmC
- JVgla/H2+cFVgC4F/lDrkvWqKBZu5RrLNOjnpKjnuHfRyCEkx+5l6PFm5f32lZzyWZLhRoITLTV
- iTUBz+8ciuYFGBkJeqHyoJrk2XSyE7hom2E/c97pl2Mv6gS4b6NOoIm0ywLqHw8g+2xs9jJfAdg
- hNW3hSz/tcaA+oKjrkTjLf4K92rhFFSGWYUhGx9+6pos0x8mRA5zOcu09Br2R6CF3f7stgf7HOo
- JGiGBdGJMFmCHcKGFmV439HIut1660MvxNLTGBcBfPJnAwXJj3ZeAyCCRMLiK78xG3OWoiQ15nd
- XwTzYm5bfkxwTgzhptn8XCXKr7PEKVKze+buTyDpzTXDR8hAmgAtb4lyFDRcBqlKHA47dZM5hug
- tAs9GSwMM/BhNvM4AyvxiTEslC7Ih6Vvotxi1de0hqOZaRvWGBjssdIVhCtEtQr1FbUWhWOm
-X-Proofpoint-GUID: 7yK6-gSYe1icWNAEBOmBDQ6FPsyBxqUx
-X-Authority-Analysis: v=2.4 cv=GtBC+l1C c=1 sm=1 tr=0 ts=68691785 cx=c_pps
- a=qKBjSQ1v91RyAK45QCPf5w==:117 a=xqWC_Br6kY4A:10 a=kj9zAlcOel0A:10
- a=Wb1JkmetP80A:10 a=COk6AnOGAAAA:8 a=EUspDBNiAAAA:8 a=NmWXvj1GLdLyyGW07i8A:9
- a=CjuIK1q_8ugA:10 a=NFOGd7dJGGMPyQGDc5-O:22 a=TjNXssC_j7lpFel5tvFf:22
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1099,Hydra:6.1.7,FMLib:17.12.80.40
- definitions=2025-07-04_07,2025-07-04_01,2025-03-28_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- mlxscore=0 clxscore=1015 spamscore=0 adultscore=0 phishscore=0 malwarescore=0
- priorityscore=1501 lowpriorityscore=0 bulkscore=0 suspectscore=0
- impostorscore=0 mlxlogscore=999 classifier=spam authscore=0 authtc=n/a
- authcc= route=outbound adjust=0 reason=mlx scancount=1
- engine=8.19.0-2505280000 definitions=main-2507050079
+References: <20250628054438.2864220-1-wens@kernel.org> <20250705083600.2916bf0c@minigeek.lan>
+In-Reply-To: <20250705083600.2916bf0c@minigeek.lan>
+Reply-To: wens@kernel.org
+From: Chen-Yu Tsai <wens@kernel.org>
+Date: Sat, 5 Jul 2025 21:20:29 +0900
+X-Gmail-Original-Message-ID: <CAGb2v64My=A_Jw+CBCsqno3SsSSTtBFKXOrgLv+Nyq_z5oeYBg@mail.gmail.com>
+X-Gm-Features: Ac12FXyj5gh1iUI7aiMezVsM5cn9-cQcjwImIe4vvpZrS6Hd_ny1T0St79tYcpI
+Message-ID: <CAGb2v64My=A_Jw+CBCsqno3SsSSTtBFKXOrgLv+Nyq_z5oeYBg@mail.gmail.com>
+Subject: Re: [PATCH net 0/2] allwinner: a523: Rename emac0 to gmac0
+To: Andre Przywara <andre.przywara@arm.com>
+Cc: Andrew Lunn <andrew+netdev@lunn.ch>, "David S. Miller" <davem@davemloft.net>, 
+	Eric Dumazet <edumazet@google.com>, Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>, 
+	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Jernej Skrabec <jernej@kernel.org>, Samuel Holland <samuel@sholland.org>, netdev@vger.kernel.org, 
+	devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
+	linux-sunxi@lists.linux.dev
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-On Wed, Jun 25, 2025 at 12:20:39PM +0530, Prasad Kumpatla wrote:
-> 
-> 
-> On 6/18/2025 2:15 AM, Bjorn Andersson wrote:
-> > On Tue, May 27, 2025 at 04:42:20PM +0530, Prasad Kumpatla wrote:
-> > > From: Mohammad Rafi Shaik <quic_mohs@quicinc.com>
-> > > 
-> > > Add GPR(Generic Pack router) node along with
-> > > APM(Audio Process Manager) and PRM(Proxy resource
-> > > Manager) audio services.
-> > > 
-> > 
-> > This should talk about the choice of adding a new "-audioreach.dtsi"
-> > file, and should cover why it wouldn't make more sense to add the
-> > opposite of this change in sc7180-trogdor.dtsi.
-> 
-> Ack
-> 
-> > 
-> > > Signed-off-by: Mohammad Rafi Shaik <quic_mohs@quicinc.com>
-> > > Co-developed-by: Prasad Kumpatla <quic_pkumpatl@quicinc.com>
-> > > Signed-off-by: Prasad Kumpatla <quic_pkumpatl@quicinc.com>
-> > > Reviewed-by: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
-> > > ---
-> > >   .../boot/dts/qcom/qcs6490-audioreach.dtsi     | 53 +++++++++++++++++++
-> > >   arch/arm64/boot/dts/qcom/sc7280.dtsi          |  2 +-
-> > >   2 files changed, 54 insertions(+), 1 deletion(-)
-> > >   create mode 100644 arch/arm64/boot/dts/qcom/qcs6490-audioreach.dtsi
-> > > 
-> > > diff --git a/arch/arm64/boot/dts/qcom/qcs6490-audioreach.dtsi b/arch/arm64/boot/dts/qcom/qcs6490-audioreach.dtsi
-> > > new file mode 100644
-> > > index 000000000000..29d4a6a2db26
-> > > --- /dev/null
-> > > +++ b/arch/arm64/boot/dts/qcom/qcs6490-audioreach.dtsi
-> > > @@ -0,0 +1,53 @@
-> > > +// SPDX-License-Identifier: GPL-2.0-only
-> > 
-> > We can be more permissive than that, please use BSD-3-Clause.
-> 
-> Ack
-> 
-> > 
-> > > +/*
-> > > + * qcs6490 device tree source for Audioreach Solution.
-> > > + * This file will handle the common audio device tree nodes.
-> > 
-> > "Common audio device tree nodes", but not those audio device tree nodes
-> > that are already specified in sc7180.dtsi...
-> 
-> Ack
-> 
-> > 
-> > > + *
-> > > + * Copyright (c) 2025 Qualcomm Innovation Center, Inc. All rights reserved.
-> > > + */
-> > > +
-> > > +#include <dt-bindings/clock/qcom,lpass-sc7280.h>
-> > > +#include <dt-bindings/soc/qcom,gpr.h>
-> > > +#include <dt-bindings/sound/qcom,q6afe.h>
-> > > +#include <dt-bindings/sound/qcom,q6dsp-lpass-ports.h>
-> > > +
-> > > +&remoteproc_adsp_glink {
-> > > +	/delete-node/ apr;
-> > > +
-> > > +	gpr {
-> > 
-> > Glink only consider available (status = "okay") nodes, so if there's a
-> > even spread across AudioReach and not, we could even move this to
-> > sc7180.dtsi and mark both status = "disabled", and have the appropriate
-> > one enabled for each board.
-> 
-> I am trying to add apr and gpr both the nodes under glink-edge, but yaml not
-> allowing to add both the nodes.
-> 
-> Facing yaml errors, it's accepting apr (or) gpr only one subnode.
+On Sat, Jul 5, 2025 at 4:37=E2=80=AFPM Andre Przywara <andre.przywara@arm.c=
+om> wrote:
+>
+> On Sat, 28 Jun 2025 13:44:36 +0800
+> Chen-Yu Tsai <wens@kernel.org> wrote:
+>
+> Hi,
+>
+> > From: Chen-Yu Tsai <wens@csie.org>
+> >
+> > Hi folks,
+> >
+> > This small series aims to align the name of the first ethernet
+> > controller found on the Allwinner A523 SoC family with the name
+> > found in the datasheets. It renames the compatible string and
+> > any other references from "emac0" to "gmac0".
+>
+> To be honest I am not a big fan of those cosmetic renames when it
+> touches DT files. It seems to not break compatibility in this case,
+> since we don't use the specific compatible string, but leaves a bitter
+> taste anyway. Also I pick DT patches out of -rc releases for U-Boot,
+> and did so internally already, so it's not without churns.
 
-It should be fine to add both nodes as disabled and select corresponding
-nodes only when it is actually implemented by the platform.
+I'd say that new stuff shouldn't really be considered stable until
+it is actually released, hence why I wanted to get this series merged
+now. Picking from an -rc release is a tradeoff of getting new stuff
+faster vs having something changed or reverted during the -rc process.
+I'm sorry that it went the other way this time.
 
-> 
-> Please find the error logs for reference.
-> 
--- 
-With best wishes
-Dmitry
+> So is this really necessary, and what is the purpose of this patch?
+
+It's really about aligning the names used throughout the kernel with
+the ones seen in the datasheet.
+
+> I am fine with using GMAC for the GMAC200 part in the SoC, but the A64,
+> H6, H616, A133 all use the same IP - as the fallback compatible proves -
+> and they call it all EMAC.
+
+There's also an EMAC in the A10 and A20 that only does up to 100 Mbps,
+and there's no lineage there. Also, not all datasheets for SoCs with
+this gigabit-capable EMAC call it the EMAC. Off the top of my head, I
+believe the R40 calls it the GMAC. And the R40's compatible string
+in this binding even uses the string "gmac".
+
+So it's really whatever Allwinner wants to call it. I would rather have
+the names follow the datasheet than us making some scheme up. We just
+have to remember that this funky gigabit-capable Ethernet controller
+is this piece of hardware.
+
+Hope that explains things.
+
+Thanks
+ChenYu
+
+> That's not a NAK, but just wanted to bring this up.
+>
+> Cheers,
+> Andre.
+>
+> > When support of the hardware was introduced, the name chosen was
+> > "EMAC", which followed previous generations. However the datasheets
+> > use the name "GMAC" instead, likely because there is another "GMAC"
+> > based on a newer DWMAC IP.
+> >
+> > The first patch fixes the compatible string entry in the device tree
+> > binding.
+> >
+> > The second patch fixes all references in the existing device trees.
+> >
+> > Since this was introduced in v6.16-rc1, I hope to land this for v6.16
+> > as well.
+> >
+> > There's a small conflict in patch one around the patch context with
+> >
+> >     dt-bindings: net: sun8i-emac: Add A100 EMAC compatible
+> >
+> > that just landed in net-next today. I will leave this patch to the net
+> > mainainers to merge to avoid making a bigger mess. Once that is landed
+> > I will merge the second patch through the sunxi tree.
+> >
+> >
+> > Thanks
+> > ChenYu
+> >
+> >
+> > Chen-Yu Tsai (2):
+> >   dt-bindings: net: sun8i-emac: Rename A523 EMAC0 to GMAC0
+> >   arm64: dts: allwinner: a523: Rename emac0 to gmac0
+> >
+> >  .../devicetree/bindings/net/allwinner,sun8i-a83t-emac.yaml  | 2 +-
+> >  arch/arm64/boot/dts/allwinner/sun55i-a523.dtsi              | 6 +++---
+> >  arch/arm64/boot/dts/allwinner/sun55i-a527-cubie-a5e.dts     | 4 ++--
+> >  arch/arm64/boot/dts/allwinner/sun55i-t527-avaota-a1.dts     | 4 ++--
+> >  4 files changed, 8 insertions(+), 8 deletions(-)
+> >
+>
 
