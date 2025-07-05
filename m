@@ -1,105 +1,197 @@
-Return-Path: <devicetree+bounces-193248-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-193249-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 53D84AFA085
-	for <lists+devicetree@lfdr.de>; Sat,  5 Jul 2025 16:46:15 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id C3BCBAFA0C3
+	for <lists+devicetree@lfdr.de>; Sat,  5 Jul 2025 17:52:52 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id F355018989B4
-	for <lists+devicetree@lfdr.de>; Sat,  5 Jul 2025 14:46:31 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id E56BC7AEBB6
+	for <lists+devicetree@lfdr.de>; Sat,  5 Jul 2025 15:51:26 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5D16A14F9FB;
-	Sat,  5 Jul 2025 14:46:10 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id AEA8F1EBFFF;
+	Sat,  5 Jul 2025 15:52:44 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=disroot.org header.i=@disroot.org header.b="hKacc+Vo"
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="OUmoXLhD"
 X-Original-To: devicetree@vger.kernel.org
-Received: from layka.disroot.org (layka.disroot.org [178.21.23.139])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0A3822F2E;
-	Sat,  5 Jul 2025 14:46:04 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=178.21.23.139
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2273C1DDC0F
+	for <devicetree@vger.kernel.org>; Sat,  5 Jul 2025 15:52:42 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1751726770; cv=none; b=XGL1AsytWSI7oK41mU6ZjgT/CkDTlWEzMmpTIscWDQZ51oaqCOFavRmrh3jCWrtzdaJNY/Ki6GTXqVCgrS/LS+ROLVQOW1gyuAf+qTHKUf+FSTLj9q4Hk4QgpBgkwFnUBdi3Rs1PgI0qA3m4W0m4P7+0XG8jLv2YuuvVLj0mqOo=
+	t=1751730764; cv=none; b=jEYmQiPIOy+xJTlIF9PbQSzQdR1sgKOG/ThfSOcVTZnFAh52tFZ0Yi0hbibddnqMgDdt7hIaUJ/adr6txu3/3sCdRWPVkNwgjcNIYW0yck/Sab4qRFBpN8/miep9JuoyhuqKY8vBlkaHrYhODbLTodzufRQPoaFIg0P3zkR4p5c=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1751726770; c=relaxed/simple;
-	bh=goQ0hTzbefy4V8CQMAJj1Lgw47gXhBOVmH5piWXh8Mo=;
-	h=MIME-Version:Date:From:To:Cc:Subject:In-Reply-To:References:
-	 Message-ID:Content-Type; b=n4f++PvmgoOYvKFsBDXO7OivKZpa0BheI2WxtYc+CuOXafWeyOZKx/aNckuVZ+GHBofOzO+v8Jba0Lx0XkhmK1g5jRHe8kiPwuqll5SpT0zzj9Lud6VJqJuYslrJgbwq+OeKbrJUnyVhbQlpC+7yn+K1IjZy20RTT3suKteB2Ng=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=disroot.org; spf=pass smtp.mailfrom=disroot.org; dkim=pass (2048-bit key) header.d=disroot.org header.i=@disroot.org header.b=hKacc+Vo; arc=none smtp.client-ip=178.21.23.139
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=disroot.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=disroot.org
-Received: from mail01.disroot.lan (localhost [127.0.0.1])
-	by disroot.org (Postfix) with ESMTP id 0140A25C85;
-	Sat,  5 Jul 2025 16:46:03 +0200 (CEST)
-X-Virus-Scanned: SPAM Filter at disroot.org
-Received: from layka.disroot.org ([127.0.0.1])
- by localhost (disroot.org [127.0.0.1]) (amavis, port 10024) with ESMTP
- id 1rSSLXsLas_B; Sat,  5 Jul 2025 16:46:02 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=disroot.org; s=mail;
-	t=1751726762; bh=goQ0hTzbefy4V8CQMAJj1Lgw47gXhBOVmH5piWXh8Mo=;
-	h=Date:From:To:Cc:Subject:In-Reply-To:References;
-	b=hKacc+Vo6+8x/FhFxsEQVjGy9F17hhqKOdfGpdKPv4qpkxW7s9hdQEyiX6LxOUPOs
-	 AXC7pWmC+V4r+N4VuEhPdc4BFPuj6tFf6tc7faxw/QfgRfQdSifj3AsIdm81gHZTIu
-	 lEJv3LXxRUVCWcV90QXFs+pfi9ZOCU+uCVzP4GqRPjanGRhrdX2DpDQXHi2QhfDy1R
-	 uwqmCGZsuZR51cAboAbn9xNEQENgh2j3oX311JEfNn9Mwe7kzvi+H67bdcKksqjvou
-	 PdAYIOYTtKpPdEma4vhU8VTxlsIVa2IgudgVUuf3IlyxkpZmqtblZyx5YPA5wd1WXn
-	 TdeNZOEGzWQPA==
+	s=arc-20240116; t=1751730764; c=relaxed/simple;
+	bh=xhWwgrpgmcVVry6NuCIENP9udmw+xY1OYwdHA3H7Jvc=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=re2Cu29kCRrPyEFK2w6tY0zWy7dYSWnFlQMM9r/giXZEK4EMu0x0gmAaE0bqVIJlmC0Nq74ufEQKX1pT0HEM+99BhDOAVX0q8kVWnw59gEW3pyI2/bSYrz/SJ/Uvl8A2equqmFCIcg3MJ2qeVkf6KlcG9NsMPU7FvcLfmK8w8mw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=OUmoXLhD; arc=none smtp.client-ip=205.220.180.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
+Received: from pps.filterd (m0279873.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 565DHCfJ029243
+	for <devicetree@vger.kernel.org>; Sat, 5 Jul 2025 15:52:42 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+	cc:content-type:date:from:in-reply-to:message-id:mime-version
+	:references:subject:to; s=qcppdkim1; bh=6nEgEic99UhCA7mg8krwNctb
+	NQ0OLwPSREGsrjw5rak=; b=OUmoXLhDdqoxYwgyY1EnvQq4cl2cjjaLQhkf9VSQ
+	XNGK6nyfhqQFlpBC/ObNAAqcZ8bcBZx31lU49FXhX0hOl0etwCZDEZCtcOsjA+tb
+	00gj9hjh/URsiSx7ASnKeC/d6qvJOdlQKCsb6StJVfmKZEZIBV95d/QAjPZu/LnG
+	A2++q/h4P1QTOfsfl7yMF3nltsNGdLUFefsRrLkauBG7ZJIYqPgjc2pcG4vTaOU0
+	ryuVjsdSNRPrQoOpw8zDpVIrchdzb55ISvF7sdSiF7dX9NixFACSnwcz0TkjAg9L
+	ozUfTCJGIHQeo7Mbz70niKkSMdbWC17T69OLZ+fjiLqZ4g==
+Received: from mail-qk1-f198.google.com (mail-qk1-f198.google.com [209.85.222.198])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 47psdq9m5n-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
+	for <devicetree@vger.kernel.org>; Sat, 05 Jul 2025 15:52:41 +0000 (GMT)
+Received: by mail-qk1-f198.google.com with SMTP id af79cd13be357-7d5e345a3fcso131526885a.1
+        for <devicetree@vger.kernel.org>; Sat, 05 Jul 2025 08:52:41 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1751730760; x=1752335560;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=6nEgEic99UhCA7mg8krwNctbNQ0OLwPSREGsrjw5rak=;
+        b=NYM7z1RRRE+IAxNnpjtyHyF9uaIQYSO2XEpLFlKVqYkWukmUoCGNOEHXez65HD1LKE
+         8G2ttxn0ghN16h4CgDhFYDT9imNCEN5wGzCSS8qfGdw3V3wREt1CCrIHL/MkAxSgsz4d
+         b1fPSvaIbZhp6y5KwMYOhFyo64ECzWdUQBSbC/4LDZgBjFMc4znxXz8AQwR/0sN6Jk91
+         gwBsQ7idtTukZCNzqtP2zxDQXlZU+HZffWx01zF1iDHgPGTt/0hvnHYXUSYrizEeXK6W
+         DOoAv3x2K8w9BMO4RzrCmfOGyoSWUrtkAPCAFbfYIxr6mGPd+xiOwO1D+ELZm5IX4nhF
+         qVzg==
+X-Forwarded-Encrypted: i=1; AJvYcCX2fetVw72aSEGHXhC86GW2ToGHFo0eKRKa6NTTUhI3LFr13pMnW3td7Zfd+M8PmJ+RU4hSJEf7yhQr@vger.kernel.org
+X-Gm-Message-State: AOJu0YzMXlvK3mjAtUCv5VClyJ+ubJKcLvMzjwJzXybXMLA1onJXPBez
+	/JlhXMe5tyjpaI89FypXKpm5v3fihXql0zxyFXpIL8x1gPLPQJ+M4oNdvGWZzLhPBmlFZEFstB/
+	Sa6SbRHeXU+q3zE991xhOx6lu3q0/7sZo5B6XFJFiSJYw8C4c1QFTd9Rb5Axw/jdzpgkUxCjIc1
+	U=
+X-Gm-Gg: ASbGnctjalvBQHFbQIey1bHIoOAE61Q3Tfkr4Bl7Q5F8HeDVQI6P59jTSqnGQEUxaaJ
+	RnjT0/97UrpAbJx3lO4FTiErakXcy47KqRBmg4lW3qERLsxMdk63Bk0u+CpwxQyS2WdvmAuEM79
+	RpxCzFmsTIDAQSiMRM+AFpysk5GKVeuv8AwV18b20B2dZfYnpzq/LaVO5aIPgGjcvA0DWtKDTuA
+	yzbXfcqN5DD8l8sYP/hu3ooIEAwTa2zduiG5ljUNbXjO32l321hvUlTbLQ7+fNyT6V9LUVxl7om
+	RCfURhnkD9gYt3x5cpvsX5dz2G/IbzhX6EafgqjwKzcm/nWmQEF2PIztmDykPayUz94UDR12/Ao
+	x9DXo7xfjN6MbgSPgo3KnD41wvDWkJS4mj/A=
+X-Received: by 2002:a05:620a:27c2:b0:7c0:b523:e1b6 with SMTP id af79cd13be357-7d5dcc7603emr945851585a.11.1751730760537;
+        Sat, 05 Jul 2025 08:52:40 -0700 (PDT)
+X-Google-Smtp-Source: AGHT+IF0YpcL5JVK8jKhh1AjM9vUcniIfH8EhFGQIv0JsaMl3Ukaei3i7V58vlU6Zg2fDsQwqQTfEg==
+X-Received: by 2002:a05:620a:27c2:b0:7c0:b523:e1b6 with SMTP id af79cd13be357-7d5dcc7603emr945849885a.11.1751730760115;
+        Sat, 05 Jul 2025 08:52:40 -0700 (PDT)
+Received: from umbar.lan (2001-14ba-a0c3-3a00-264b-feff-fe8b-be8a.rev.dnainternet.fi. [2001:14ba:a0c3:3a00:264b:feff:fe8b:be8a])
+        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-556384b7272sm604713e87.196.2025.07.05.08.52.38
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Sat, 05 Jul 2025 08:52:39 -0700 (PDT)
+Date: Sat, 5 Jul 2025 18:52:37 +0300
+From: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
+To: Luca Weiss <luca@lucaweiss.eu>
+Cc: ~postmarketos/upstreaming@lists.sr.ht, phone-devel@vger.kernel.org,
+        Bjorn Andersson <andersson@kernel.org>,
+        Mathieu Poirier <mathieu.poirier@linaro.org>,
+        Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Manivannan Sadhasivam <mani@kernel.org>,
+        Konrad Dybcio <konradybcio@kernel.org>, linux-arm-msm@vger.kernel.org,
+        linux-remoteproc@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Subject: Re: [PATCH 0/4] Start using rpmpd for power domains on MSM8974
+Message-ID: <yjz3rxpwgl5u2cmgs3yf3qhkbpflo455pewbkgxe62qp5jjaim@5xpinflzvflc>
+References: <20250621-msm8974-rpmpd-switch-v1-0-0a2cb303c446@lucaweiss.eu>
+ <amfgwjgstu4hoxz4lo7fqrqz5fqtf3r7o6wqvrrjkcfubwrjyz@5i75peprq3wn>
+ <841c41cc-e44d-40c7-9431-a77feaa49b05@lucaweiss.eu>
+ <225b94a0-eea5-4061-aebd-da497d349527@oss.qualcomm.com>
+ <2e338f72-c676-425c-a96b-1cfed466f9fc@lucaweiss.eu>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Date: Sat, 05 Jul 2025 14:46:01 +0000
-From: Kaustabh Chakraborty <kauschluss@disroot.org>
-To: Maxime Ripard <mripard@kernel.org>
-Cc: Neil Armstrong <neil.armstrong@linaro.org>, Jessica Zhang
- <quic_jesszhan@quicinc.com>, David Airlie <airlied@gmail.com>, Simona Vetter
- <simona@ffwll.ch>, Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Thomas Zimmermann <tzimmermann@suse.de>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Jessica Zhang <jessica.zhang@oss.qualcomm.com>,
- dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, Conor Dooley <conor.dooley@microchip.com>
-Subject: Re: [PATCH v3 1/2] dt-bindings: display: panel: document Samsung
- S6E8AA5X01 panel driver
-In-Reply-To: <20250703-true-archetypal-skylark-dfb055@houat>
-References: <20250625-panel-samsung-s6e8aa5x01-v3-0-9a1494fe6c50@disroot.org>
- <20250625-panel-samsung-s6e8aa5x01-v3-1-9a1494fe6c50@disroot.org>
- <80055981-3624-4165-af0c-3b60c345e8f8@linaro.org>
- <4b9e44b14395ff4c64eba1bd71e63150@disroot.org>
- <20250703-true-archetypal-skylark-dfb055@houat>
-Message-ID: <5f2c37bf2882530453ba91f6801f8ec0@disroot.org>
-X-Sender: kauschluss@disroot.org
-Content-Type: text/plain; charset=US-ASCII;
- format=flowed
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <2e338f72-c676-425c-a96b-1cfed466f9fc@lucaweiss.eu>
+X-Authority-Analysis: v=2.4 cv=ffSty1QF c=1 sm=1 tr=0 ts=68694a49 cx=c_pps
+ a=qKBjSQ1v91RyAK45QCPf5w==:117 a=xqWC_Br6kY4A:10 a=kj9zAlcOel0A:10
+ a=Wb1JkmetP80A:10 a=NEAV23lmAAAA:8 a=EUspDBNiAAAA:8 a=26E2V3-60KTWSeZm1QEA:9
+ a=CjuIK1q_8ugA:10 a=NFOGd7dJGGMPyQGDc5-O:22
+X-Proofpoint-ORIG-GUID: DyHjCBIyjjo1eLapjYqXkE6kKB1cGbWE
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwNzA1MDEwNCBTYWx0ZWRfX2rz4Q1mxMN1b
+ zUYG1AbC0/ZfK17+9ZtIdjj7q1n1FCfoZj6u4YGx8w/AB5UtDk3j6lDS8RNxZAlip77Ni1y0uIM
+ +0GYlD85C9gYE9gPRauO381V/z08Q89QTfptlbuSBRiHydFALMUVeTrNg+vGiXb8DaPW03izIuK
+ pnqe02Havb2a72hSQS4pDnx8kIAri20W59WsH6g0YTnrvu+UzXszNmZb/8Dph/ryvnieMXQQNWc
+ qRuBNlWgCSCn4adO+/VfILdp2bXGyv2KFohRlmSxr7l0x4xKSqnYPbavikSm9z+fViiX/3rj+xa
+ uaWxjceJffSFnrkmqlJJoUSuqrjPb7OayG/BKRAU1lsL+cDJqHJn8j+9MtY7ncZxe01sotU6Ami
+ 4NRlLlRsJIFbM0JurJONCozn5XeI8siHYdlc0ObP+hYhlRA2vZhpwQuPryg+stTWFQVagoAk
+X-Proofpoint-GUID: DyHjCBIyjjo1eLapjYqXkE6kKB1cGbWE
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1099,Hydra:6.1.7,FMLib:17.12.80.40
+ definitions=2025-07-04_07,2025-07-04_01,2025-03-28_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ malwarescore=0 mlxlogscore=999 mlxscore=0 bulkscore=0 priorityscore=1501
+ phishscore=0 clxscore=1015 suspectscore=0 impostorscore=0 lowpriorityscore=0
+ spamscore=0 adultscore=0 classifier=spam authscore=0 authtc=n/a authcc=
+ route=outbound adjust=0 reason=mlx scancount=1 engine=8.19.0-2505280000
+ definitions=main-2507050104
 
-On 2025-07-03 09:01, Maxime Ripard wrote:
-> On Mon, Jun 30, 2025 at 05:18:22PM +0000, Kaustabh Chakraborty wrote:
->> On 2025-06-30 15:29, Neil Armstrong wrote:
->> > On 25/06/2025 14:41, Kaustabh Chakraborty wrote:
->> > > Samsung S6E8AA5X01 is an AMOLED MIPI DSI panel controller. Document
->> > > the
->> > > compatible and devicetree properties of this panel driver. Timings are
->> > > provided through the devicetree node as panels are available in
->> > > different sizes.
->> >
->> > Wait, why ? Why not multiple compatibles ?
->> 
->> The panel dimensions is the only thing which differs. The model name,
->> controller, registers, and functionality are supposedly all similar, 
->> so
->> I believe this is fine...
+On Sat, Jul 05, 2025 at 04:16:44PM +0200, Luca Weiss wrote:
+> Hi Dmitry,
 > 
-> If only the dimensions change, then width-mm and height-mm would be 
-> enough, right?
-
-Sorry, meant panel resolution.
-
+> On 24-06-2025 11:03 p.m., Dmitry Baryshkov wrote:
+> > On 24/06/2025 21:46, Luca Weiss wrote:
+> > > Hi Dmitry,
+> > > 
+> > > On 24-06-2025 2:59 a.m., Dmitry Baryshkov wrote:
+> > > > On Sat, Jun 21, 2025 at 03:19:55PM +0200, Luca Weiss wrote:
+> > > > > Switch over the ADSP PIL to use power-domains instead of a regulator,
+> > > > > and have one commit switching over the MSM8974 SoC plus all the devices
+> > > > > to use power-domains.
+> > > > > 
+> > > > > Note, that I'm aware that these changes are not backwards
+> > > > > compatible and
+> > > > > not really bisectable, but since it only affects the ADSP on these
+> > > > 
+> > > > Why? The cx-supply is handled unconditionally. A single-domain usecase
+> > > > is also handled via a special code path. I think this might be
+> > > > backwards-compatible, by the pure luck.
+> > > 
+> > > Honestly I have not tried and not looked much. I mostly added this
+> > > paragraph to avoid the response that this change might break and is
+> > > not really backwards compatible. If it does (by accident) work with
+> > > the updated dts without the driver and the other way around, then
+> > > even better.
+> > 
+> > I think it's worth checking that new kernel works with older DTS (that's
+> > the usual rule). The platform doesn't have many users upstream, but I
+> > think it has been used by some PmOS users, which might mean not-yet-
+> > upstreamed DT.
 > 
-> Maxime
+> I was finally able to test this, but the patches except the dts patch does
+> not work.
+> 
+> [  170.802573] qcom_q6v5_pas fe200000.remoteproc: probe with driver
+> qcom_q6v5_pas failed with error -61
+> [  170.803127] remoteproc remoteproc0: releasing adsp
+> 
+> I didn't take much more of a look but probably adsp_pds_attach fails there.
+> 
+> For postmarketOS users, all msm8974 mainline devices that are packaged as
+> part of postmarketOS, come from the github.com/msm8974-mainline/linux fork,
+> which included this patch already since a few releases. I'm taking care that
+> all out-of-tree dts that are in that repo are updated.
+> 
+> Fortunately this is just breaking adsp probe, bootup still works as before.
+> So from my side again: I think it's not worth the effort to add a bunch of
+> complexity to the driver code and support this use case. I'm not aware of
+> any msm8974 upstream users that would require that.
+
+Ack.
+
+For the series:
+
+Reviewed-by: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
+
+
+-- 
+With best wishes
+Dmitry
 
