@@ -1,129 +1,150 @@
-Return-Path: <devicetree+bounces-193218-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-193219-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 774C9AF9ED0
-	for <lists+devicetree@lfdr.de>; Sat,  5 Jul 2025 09:37:37 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 938C4AF9ED3
+	for <lists+devicetree@lfdr.de>; Sat,  5 Jul 2025 09:40:27 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id F39FD3BF95F
-	for <lists+devicetree@lfdr.de>; Sat,  5 Jul 2025 07:37:10 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 4A0191BC4421
+	for <lists+devicetree@lfdr.de>; Sat,  5 Jul 2025 07:40:44 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 23ACC229B38;
-	Sat,  5 Jul 2025 07:37:34 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7F5C82749E3;
+	Sat,  5 Jul 2025 07:40:23 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="XL9G67Bk"
 X-Original-To: devicetree@vger.kernel.org
-Received: from foss.arm.com (foss.arm.com [217.140.110.172])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6A8FD20B1E8;
-	Sat,  5 Jul 2025 07:37:31 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.140.110.172
+Received: from mail-pf1-f176.google.com (mail-pf1-f176.google.com [209.85.210.176])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+	(No client certificate requested)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0AB2126CE21;
+	Sat,  5 Jul 2025 07:40:21 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.176
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1751701054; cv=none; b=lCmmX0XdCo8HFrWFw03hpGYsJ5g1JhjVyx/V7DnkztOC0m3An49KTEbp7qgUYZK3MO9q/Z+nRj3n2L8INI+nEQLplDHU+qIk3SRqV93tuXuhfeVo6DbyzXSr383g0gtyAZHsf8m5fznmu4WZWBbatdOnpW0QeEvcyF5x7hTTIdQ=
+	t=1751701223; cv=none; b=IwUJfFf46v4K3DeoP32iUuosKtHbcecNYfhiLxdppun7LcKJhoapNcQfhgWFBgqb36+akmW0jnjdHROYSu3JybzbGMy17abZGofRQTpgQ030MnsyfS03YF9KFJkuz9E0YXGbFXa3zSN+LwdH5UOj1177ot4NhEb4IsDtxmG1dQM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1751701054; c=relaxed/simple;
-	bh=RSEN/2TWL3Q95UPQ30ZbVUKp/ioML++whRQBV7x0Oxg=;
-	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=CT+G4GeN0ndqbUeXn/6F/W3cLrX8PR+A/dq/k6NBZODVJ2lYEuP5QVxgGYezs/flg+UlUCNKaDYVq6/Ln/uq2nETh/uRaKlkKZ27XBq9DR4+M5wOpu4hWmphv8MHbG6/gE44Pz8hGxYOFRyTvaGZKiovjGdwJHbnVkiN6AhA+xo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com; spf=pass smtp.mailfrom=arm.com; arc=none smtp.client-ip=217.140.110.172
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=arm.com
-Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-	by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 01A61153B;
-	Sat,  5 Jul 2025 00:37:17 -0700 (PDT)
-Received: from minigeek.lan (usa-sjc-mx-foss1.foss.arm.com [172.31.20.19])
-	by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 785EA3F6A8;
-	Sat,  5 Jul 2025 00:37:28 -0700 (PDT)
-Date: Sat, 5 Jul 2025 08:36:00 +0100
-From: Andre Przywara <andre.przywara@arm.com>
-To: Chen-Yu Tsai <wens@kernel.org>
-Cc: Andrew Lunn <andrew+netdev@lunn.ch>, "David S. Miller"
- <davem@davemloft.net>, Eric Dumazet <edumazet@google.com>, Jakub Kicinski
- <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>, Rob Herring
- <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Chen-Yu Tsai <wens@csie.org>, Jernej Skrabec
- <jernej@kernel.org>, Samuel Holland <samuel@sholland.org>,
- netdev@vger.kernel.org, devicetree@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, linux-sunxi@lists.linux.dev
-Subject: Re: [PATCH net 0/2] allwinner: a523: Rename emac0 to gmac0
-Message-ID: <20250705083600.2916bf0c@minigeek.lan>
-In-Reply-To: <20250628054438.2864220-1-wens@kernel.org>
-References: <20250628054438.2864220-1-wens@kernel.org>
-Organization: Arm Ltd.
-X-Mailer: Claws Mail 4.2.0 (GTK 3.24.31; x86_64-slackware-linux-gnu)
+	s=arc-20240116; t=1751701223; c=relaxed/simple;
+	bh=R+iSI6sdCJdeUl0gxats286kau8f7kIZFSY9tvlWBos=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=CYcAtnkeOgowduEmujhhJutlVI6RBQJowkizRY8GDNnYlSmI6qJS5JPL7NM5xiCHN4W5W6FlZJheYjl/FaxvwzWCwTCuyuCdH31do82wEw/uGswUyktMc8wXUGziHUToI5vSEPYaer8/IdzR+/iw0Tu0h4UKR9i/b1RF9xXrryw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=XL9G67Bk; arc=none smtp.client-ip=209.85.210.176
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-pf1-f176.google.com with SMTP id d2e1a72fcca58-73972a54919so1382058b3a.3;
+        Sat, 05 Jul 2025 00:40:21 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1751701221; x=1752306021; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=9pNVq0NFhmMGqq43JjiIlScR9xl4RowLJ7sMjICAIOQ=;
+        b=XL9G67BkaLvVICzSxHTHAFeQY6vvITTC1iojmUWpYxhj89vp8NY/izQtaMyFmM39AB
+         ndC3iBqpwkKUqawG8PSu89XTtI9m6uxZUH69AQsDH1l17Mzt+jpRmMpYTgYfvC+1c1W+
+         vggJvLGj43NIrA3HWg24Rj/1kwYrlU62u+E5tcVHDW2qJx8E/tHAz17H+aY+VZxZkJlN
+         yKcEPH4xDP1uTtcB1rMcd7atwchRVWgs7ZxEErZbBNgCIELHPyiAMgMuU+bEUWmQmM9o
+         R+Xb5BqZQYHpNG3XEqoHkF9y3D7B19zqCMVRSV5DqGCW3xorK/Lp1WraV+IZvmfELp+U
+         0L2g==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1751701221; x=1752306021;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=9pNVq0NFhmMGqq43JjiIlScR9xl4RowLJ7sMjICAIOQ=;
+        b=HEWDbU+6DTSQ9hYY/CM9Ev9iWL8vVFY8D9ZXQYAIag9gt7U45tTky7wfxr+vEDJ6Sq
+         RLhx1B+rWUZ6Hk0SFsl5u/0aay2vbLJoEFMSsP7LnQdF1Hiff7EyEKZsdQvCTram7ytR
+         RITIW674/e/POWe9JupIu2pSqMb9K3KFgMW0jnle35eRxUZLtTnWNSo0Su3iIPHP9xy4
+         vzf7VM8cluKkI/R6zPs6Y+yT2Mpq9Liyn0RBLimlY0ekTfwZojtzcRMj8Xh5gILYuYu9
+         rKkQVIMG8sfokUQRXwF58MI5NsEmY/Gg6U7NArTt1h6T7EVUW+cjj1gJVZnRNEmWnkDy
+         TgzA==
+X-Forwarded-Encrypted: i=1; AJvYcCXURHnOeubIrQjq1qM41GP0KBhRwlonNLVbyjiPtagGIIf6U8hCGtdjkYeEk5XuG6ZmdWK14frRPpte3OM=@vger.kernel.org
+X-Gm-Message-State: AOJu0YzLpKxaDqoPNA70rnFreTWRpJwFS47RiY+0lZtKAFIJUaVPErMN
+	5a07ppw35RMu1d9MYS9VU5Iglzp4ywZA2yGQBK0nYdhZJLFmzXBJSfnPl5Psnyw9fr3aag==
+X-Gm-Gg: ASbGncs2mOrAYlJdJMV5KtygpUlasw+EA6cswq3Wva26p0bzA+MBCIixdrOfi6N12jD
+	5Tqk6nhp723+1mlHMMSzZgNJ000mBGKG+SAIL8IpY0ZwwVQnokthlbjGHqkG4yx6cYTouKyQp9V
+	/bTxSfqbhhFVpgMhTNqNSUrFmL/nEmj8JNDxCeiq1zCY/00raPs9azpADAcoyJBkLgmWKS+1wgF
+	vB/Wf0ftO65UxojaNlnsYHsG1iRSUEy4ZmPORBg0YwKKL23LrgU968wMzCGxKL2ZiE07ZAppHvV
+	j2L5EK224/nXhLGLj8kd8kcz1HRZA6mf0T6HoS4Im76ky4h5K0UUIoALzGs2V6fLeO9HPAQ9Amg
+	iMaRqxC8=
+X-Google-Smtp-Source: AGHT+IEHsZMB8Rt3ySNMA98IFcpj7ykAyWeeEOZtesKG64iloxS1vXwaT1pyycU737qfyAG5dcZ0mg==
+X-Received: by 2002:aa7:8893:0:b0:736:3979:369e with SMTP id d2e1a72fcca58-74ce8841fc1mr5530451b3a.9.1751701220593;
+        Sat, 05 Jul 2025 00:40:20 -0700 (PDT)
+Received: from localhost.localdomain ([119.8.44.69])
+        by smtp.gmail.com with ESMTPSA id d2e1a72fcca58-74ce417e852sm3993616b3a.85.2025.07.05.00.40.16
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Sat, 05 Jul 2025 00:40:20 -0700 (PDT)
+From: Han Gao <rabenda.cn@gmail.com>
+To: devicetree@vger.kernel.org
+Cc: Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Paul Walmsley <paul.walmsley@sifive.com>,
+	Palmer Dabbelt <palmer@dabbelt.com>,
+	Albert Ou <aou@eecs.berkeley.edu>,
+	Alexandre Ghiti <alex@ghiti.fr>,
+	Chen Wang <unicorn_wang@outlook.com>,
+	Inochi Amaoto <inochiama@gmail.com>,
+	Han Gao <rabenda.cn@gmail.com>,
+	Thomas Bonnefille <thomas.bonnefille@bootlin.com>,
+	Guo Ren <guoren@kernel.org>,
+	Chao Wei <chao.wei@sophgo.com>,
+	linux-riscv@lists.infradead.org,
+	sophgo@lists.linux.dev,
+	linux-kernel@vger.kernel.org
+Subject: [PATCH v3 0/3] Add Sophgo EVB V1/V2 Board support
+Date: Sat,  5 Jul 2025 15:39:53 +0800
+Message-ID: <cover.1751700954.git.rabenda.cn@gmail.com>
+X-Mailer: git-send-email 2.47.2
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
 
-On Sat, 28 Jun 2025 13:44:36 +0800
-Chen-Yu Tsai <wens@kernel.org> wrote:
+Sophgo EVB V1/V2 [1][2] is a prototype board based on SOPHON SG2042 [3].
+There are many of these two boards in the hands of developers.
 
-Hi,
+Currently supports serial port, sdcard/emmc, pwm, fan speed control.
 
-> From: Chen-Yu Tsai <wens@csie.org>
-> 
-> Hi folks,
-> 
-> This small series aims to align the name of the first ethernet
-> controller found on the Allwinner A523 SoC family with the name
-> found in the datasheets. It renames the compatible string and
-> any other references from "emac0" to "gmac0".
+Added ethernet support based on [4].
 
-To be honest I am not a big fan of those cosmetic renames when it
-touches DT files. It seems to not break compatibility in this case,
-since we don't use the specific compatible string, but leaves a bitter
-taste anyway. Also I pick DT patches out of -rc releases for U-Boot,
-and did so internally already, so it's not without churns.
+Changed from v2:
+merge v1/v2 binding
+v2: https://lore.kernel.org/linux-riscv/cover.1747231254.git.rabenda.cn@gmail.com/
 
-So is this really necessary, and what is the purpose of this patch?
-I am fine with using GMAC for the GMAC200 part in the SoC, but the A64,
-H6, H616, A133 all use the same IP - as the fallback compatible proves -
-and they call it all EMAC.
+Changed from v1:
+1. replace "sophgo,sg2042-x8/4-evb" with "sophgo,sg2042-evb-v1/2".
+2. replace "Sophgo SG2042 X8/X4 EVB" with "Sophgo SG2042 EVB V1.X/V2.0".
+v1: https://lore.kernel.org/linux-riscv/cover.1746811744.git.rabenda.cn@gmail.com/
 
-That's not a NAK, but just wanted to bring this up.
+Thanks,
+Han
 
-Cheers,
-Andre. 
+[1]: https://github.com/sophgo/sophgo-hardware/tree/master/SG2042/SG2042-x8-EVB
+[2]: https://github.com/sophgo/sophgo-hardware/tree/master/SG2042/SG2042-x4-EVB
+[3]: https://en.sophgo.com/product/introduce/sg2042.html
+[4]: https://lore.kernel.org/all/20250506093256.1107770-5-inochiama@gmail.com/
 
-> When support of the hardware was introduced, the name chosen was
-> "EMAC", which followed previous generations. However the datasheets
-> use the name "GMAC" instead, likely because there is another "GMAC"
-> based on a newer DWMAC IP.
-> 
-> The first patch fixes the compatible string entry in the device tree
-> binding.
-> 
-> The second patch fixes all references in the existing device trees.
-> 
-> Since this was introduced in v6.16-rc1, I hope to land this for v6.16
-> as well.
-> 
-> There's a small conflict in patch one around the patch context with 
-> 
->     dt-bindings: net: sun8i-emac: Add A100 EMAC compatible
-> 
-> that just landed in net-next today. I will leave this patch to the net
-> mainainers to merge to avoid making a bigger mess. Once that is landed
-> I will merge the second patch through the sunxi tree.
-> 
-> 
-> Thanks
-> ChenYu
-> 
-> 
-> Chen-Yu Tsai (2):
->   dt-bindings: net: sun8i-emac: Rename A523 EMAC0 to GMAC0
->   arm64: dts: allwinner: a523: Rename emac0 to gmac0
-> 
->  .../devicetree/bindings/net/allwinner,sun8i-a83t-emac.yaml  | 2 +-
->  arch/arm64/boot/dts/allwinner/sun55i-a523.dtsi              | 6 +++---
->  arch/arm64/boot/dts/allwinner/sun55i-a527-cubie-a5e.dts     | 4 ++--
->  arch/arm64/boot/dts/allwinner/sun55i-t527-avaota-a1.dts     | 4 ++--
->  4 files changed, 8 insertions(+), 8 deletions(-)
-> 
+Han Gao (3):
+  dt-bindings: riscv: add Sophgo SG2042_EVB_V1.X/V2.0 bindings
+  riscv: dts: sophgo: add Sophgo SG2042_EVB_V1.X board device tree
+  riscv: dts: sophgo: add Sophgo SG2042_EVB_V2.0 board device tree
+
+ .../devicetree/bindings/riscv/sophgo.yaml     |   2 +
+ arch/riscv/boot/dts/sophgo/Makefile           |   2 +
+ arch/riscv/boot/dts/sophgo/sg2042-evb-v1.dts  | 245 ++++++++++++++++++
+ arch/riscv/boot/dts/sophgo/sg2042-evb-v2.dts  | 233 +++++++++++++++++
+ 4 files changed, 482 insertions(+)
+ create mode 100644 arch/riscv/boot/dts/sophgo/sg2042-evb-v1.dts
+ create mode 100644 arch/riscv/boot/dts/sophgo/sg2042-evb-v2.dts
+
+
+base-commit: d0b3b7b22dfa1f4b515fd3a295b3fd958f9e81af
+prerequisite-patch-id: 7a82e319b011e5d0486a6ef4216d931d671c9f53
+prerequisite-patch-id: 5a30fb99ec483c1f5a8dca97df862c3a042c9027
+prerequisite-patch-id: e0da79790a934916d9fc39c18e8e98c9596d27ab
+prerequisite-patch-id: 84d1e1637549f632729eaeb7cf935ca78a642fe3
+-- 
+2.47.2
 
 
