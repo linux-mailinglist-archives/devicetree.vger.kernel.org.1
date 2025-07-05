@@ -1,273 +1,105 @@
-Return-Path: <devicetree+bounces-193276-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-193278-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5DFE3AFA214
-	for <lists+devicetree@lfdr.de>; Sat,  5 Jul 2025 23:41:04 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4884CAFA253
+	for <lists+devicetree@lfdr.de>; Sun,  6 Jul 2025 01:24:02 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 7666A7ADBC0
-	for <lists+devicetree@lfdr.de>; Sat,  5 Jul 2025 21:39:38 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 9A8094A037F
+	for <lists+devicetree@lfdr.de>; Sat,  5 Jul 2025 23:24:02 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id BA11F279DDD;
-	Sat,  5 Jul 2025 21:40:19 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=netcube.li header.i=@netcube.li header.b="Ug3UZM0E"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6CE8F2BF3C3;
+	Sat,  5 Jul 2025 23:23:58 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail.netcube.li (mail.netcube.li [173.249.15.149])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
-	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6062D26A0EE;
-	Sat,  5 Jul 2025 21:40:16 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=173.249.15.149
+Received: from foss.arm.com (foss.arm.com [217.140.110.172])
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5B4B42BD5A0;
+	Sat,  5 Jul 2025 23:23:56 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.140.110.172
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1751751619; cv=none; b=omf9Fj5u8Cy1HqGY2Nl7MirfxVDYBa7ZACBitKrUqebv/wYXyaQ6Ssi9TUG7ygiRRbb7oHZSRB4BCWamGs4aHsmud4lOwP8DDcVX2Ugr0JlCMOIeE4eeF8tqb/lPHluM/x3Ry8MVdnvBU/RaTUnPGTXi8CM32EEOpxmXb0VduQ4=
+	t=1751757838; cv=none; b=WsKMODXhDGuJxI8wou9lvmSUTgx5KFU43NXpANR6E2/7rNWCGCYC0TnQgsbUhmRcNwijXLsMuIj0JAJ3+HmTfi5N3RGjJpPabZh0TWVk519A+3XbekPHBkkeXPtg9lDEAamUZeumBJwtwejP2gB16cncPtJVQSCRmM1NvDA938w=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1751751619; c=relaxed/simple;
-	bh=PibW8PHrq2hbYJuyfn/hYxa3wRLa7XPMj6/Fkq896fE=;
-	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
-	 MIME-Version; b=tV8qO1aPzrSguWwMmZqFQXibe7Jgn7DPHN2h4OHBZdUk8yRgHHcHTAHPJlxnC5RLeYNv+qiWIswMEt0oGV1LOTsHI+Ay37LMREbAYr5OI7Y9qstrp9rwSP3xQn2vEKV9gdBc015XKxvyxOV4Lp2qAA9tj7egZgaUJoRkkko/do8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=netcube.li; spf=pass smtp.mailfrom=netcube.li; dkim=pass (1024-bit key) header.d=netcube.li header.i=@netcube.li header.b=Ug3UZM0E; arc=none smtp.client-ip=173.249.15.149
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=netcube.li
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=netcube.li
-dkim-signature: v=1; a=rsa-sha256; d=netcube.li; s=s1;
-	c=relaxed/relaxed; q=dns/txt; h=From:Subject:Date:Message-ID:To:CC:MIME-Version:Content-Transfer-Encoding:In-Reply-To:References;
-	bh=Lb0D6uIH1pT+2b6K0Fe8p7uYcbSYVmUMEHxTXCcBaKw=;
-	b=Ug3UZM0EyWOLUvYJT05PkNXoAvVtg6hqIzqEzrth+zuUwyKMyrnWYS2lprWopdBpxTUv80sYwg/cr6JJI03m+G79d/u7k+N7Co85BrC10RdENryIpfw7+iC0jMuS5W1VQpHN/BmVj0kMmladKwkYHAaKMjbXQ4OI9oh8Tt3YYWQ=
-Received: from lukas-hpz440workstation.lan.sk100508.local (cm70-231.liwest.at [212.241.70.231])
-	by mail.netcube.li with ESMTPA
-	; Sat, 5 Jul 2025 23:40:01 +0200
-From: Lukas Schmid <lukas.schmid@netcube.li>
-To: Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Chen-Yu Tsai <wens@csie.org>,
-	Jernej Skrabec <jernej.skrabec@gmail.com>,
-	Samuel Holland <samuel@sholland.org>,
-	Paul Walmsley <paul.walmsley@sifive.com>,
-	Palmer Dabbelt <palmer@dabbelt.com>,
-	Albert Ou <aou@eecs.berkeley.edu>,
-	Alexandre Ghiti <alex@ghiti.fr>,
-	Maxime Ripard <mripard@kernel.org>
-Cc: Lukas Schmid <lukas.schmid@netcube.li>,
-	devicetree@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	linux-sunxi@lists.linux.dev,
-	linux-kernel@vger.kernel.org,
-	linux-riscv@lists.infradead.org
-Subject: [PATCH v1 7/7] ARM: dts: sunxi: add support for NetCube Systems Nagami Keypad Carrier
-Date: Sat,  5 Jul 2025 23:38:58 +0200
-Message-Id: <20250705213900.3614963-8-lukas.schmid@netcube.li>
-X-Mailer: git-send-email 2.39.5
-In-Reply-To: <20250705213900.3614963-1-lukas.schmid@netcube.li>
-References: <20250705213900.3614963-1-lukas.schmid@netcube.li>
+	s=arc-20240116; t=1751757838; c=relaxed/simple;
+	bh=iXCNf1YB3NIwYuKMj7k0Kc8P1cVVFy/saHOWN7fQLRk=;
+	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=id+PAbG90aK/PT3WYuBDbZA28p8zMQMc9loSC95SAKgIb4EqVsfiyNRv3NN6VwfkcXJA8mDOSxIBTdEDav2vtp3iLqqJyhOzgHJbdo2jVuuh872S0lCqcyt3qELiZ8i3SJiOadBYpVJwkORVNeGgX2E8cTFL+oWuMYU7MlVBqMw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com; spf=pass smtp.mailfrom=arm.com; arc=none smtp.client-ip=217.140.110.172
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=arm.com
+Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
+	by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 3520D152B;
+	Sat,  5 Jul 2025 16:23:42 -0700 (PDT)
+Received: from minigeek.lan (usa-sjc-mx-foss1.foss.arm.com [172.31.20.19])
+	by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 68AF03F66E;
+	Sat,  5 Jul 2025 16:23:53 -0700 (PDT)
+Date: Sun, 6 Jul 2025 00:22:23 +0100
+From: Andre Przywara <andre.przywara@arm.com>
+To: Andrew Lunn <andrew@lunn.ch>
+Cc: Chen-Yu Tsai <wens@kernel.org>, Andrew Lunn <andrew+netdev@lunn.ch>,
+ "David S. Miller" <davem@davemloft.net>, Eric Dumazet
+ <edumazet@google.com>, Jakub Kicinski <kuba@kernel.org>, Paolo Abeni
+ <pabeni@redhat.com>, Rob Herring <robh@kernel.org>, Krzysztof Kozlowski
+ <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, Jernej Skrabec
+ <jernej@kernel.org>, Samuel Holland <samuel@sholland.org>,
+ netdev@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, linux-sunxi@lists.linux.dev
+Subject: Re: [PATCH net 0/2] allwinner: a523: Rename emac0 to gmac0
+Message-ID: <20250706002223.128ff760@minigeek.lan>
+In-Reply-To: <e9c5949d-9ac5-4b33-810d-b716ccce5fe9@lunn.ch>
+References: <20250628054438.2864220-1-wens@kernel.org>
+	<20250705083600.2916bf0c@minigeek.lan>
+	<CAGb2v64My=A_Jw+CBCsqno3SsSSTtBFKXOrgLv+Nyq_z5oeYBg@mail.gmail.com>
+	<e9c5949d-9ac5-4b33-810d-b716ccce5fe9@lunn.ch>
+Organization: Arm Ltd.
+X-Mailer: Claws Mail 4.2.0 (GTK 3.24.31; x86_64-slackware-linux-gnu)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: 7bit
 
-The NetCube Systems Nagami Keypad Carrier uses the Nagami SoM and contains
-a MCP23008 for connecting to a 4x3 matrix keypad and internal status led.
-The I2C2 interface is connected to said MCP23008 and also a header for an
-PN532 NFC-Module. It also provides a pin-header for a bi-color status led.
-Ethernet with PoE support is available on a screwterminal after magnetics.
+On Sat, 5 Jul 2025 17:53:17 +0200
+Andrew Lunn <andrew@lunn.ch> wrote:
 
-Signed-off-by: Lukas Schmid <lukas.schmid@netcube.li>
----
- arch/arm/boot/dts/allwinner/Makefile          |   1 +
- ...8i-t113s-netcube-nagami-keypad-carrier.dts | 165 ++++++++++++++++++
- 2 files changed, 166 insertions(+)
- create mode 100644 arch/arm/boot/dts/allwinner/sun8i-t113s-netcube-nagami-keypad-carrier.dts
+Hi Andrew,
 
-diff --git a/arch/arm/boot/dts/allwinner/Makefile b/arch/arm/boot/dts/allwinner/Makefile
-index af287bb32..a2137bbe2 100644
---- a/arch/arm/boot/dts/allwinner/Makefile
-+++ b/arch/arm/boot/dts/allwinner/Makefile
-@@ -259,6 +259,7 @@ dtb-$(CONFIG_MACH_SUN8I) += \
- 	sun8i-s3-pinecube.dtb \
- 	sun8i-t113s-mangopi-mq-r-t113.dtb \
- 	sun8i-t113s-netcube-nagami-basic-carrier.dtb \
-+	sun8i-t113s-netcube-nagami-keypad-carrier.dtb \
- 	sun8i-t3-cqa3t-bv3.dtb \
- 	sun8i-v3-sl631-imx179.dtb \
- 	sun8i-v3s-anbernic-rg-nano.dtb \
-diff --git a/arch/arm/boot/dts/allwinner/sun8i-t113s-netcube-nagami-keypad-carrier.dts b/arch/arm/boot/dts/allwinner/sun8i-t113s-netcube-nagami-keypad-carrier.dts
-new file mode 100644
-index 000000000..7abecc355
---- /dev/null
-+++ b/arch/arm/boot/dts/allwinner/sun8i-t113s-netcube-nagami-keypad-carrier.dts
-@@ -0,0 +1,165 @@
-+// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
-+/*
-+ * Copyright (C) 2025 Lukas Schmid <lukas.schmid@netcube.li>
-+ */
-+
-+/dts-v1/;
-+#include "sun8i-t113s-netcube-nagami.dtsi"
-+
-+#include <dt-bindings/input/input.h>
-+#include <dt-bindings/leds/common.h>
-+
-+/ {
-+	model = "NetCube Systems Nagami Keypad Carrier Board";
-+	compatible = "netcube,nagami-keypad-carrier", "netcube,nagami",
-+				 "allwinner,sun8i-t113s";
-+
-+	keypad: keypad {
-+		compatible = "gpio-matrix-keypad";
-+		debounce-delay-ms = <5>;
-+		col-scan-delay-us = <2>;
-+
-+		row-gpios = <&mcp23008 0 0
-+					 &mcp23008 1 0
-+					 &mcp23008 2 0
-+					 &mcp23008 3 0>;
-+
-+		col-gpios = <&mcp23008 6 0
-+					 &mcp23008 5 0
-+					 &mcp23008 4 0>;
-+
-+		linux,keymap = <0x00000201
-+						0x00010202
-+						0x00020203
-+						0x01000204
-+						0x01010205
-+						0x01020206
-+						0x02000207
-+						0x02010208
-+						0x02020209
-+						0x0300020A
-+						0x03010200
-+						0x0302020D>;
-+	};
-+
-+	leds {
-+		compatible = "gpio-leds";
-+
-+		led-heartbeat {
-+			gpios = <&mcp23008 7 GPIO_ACTIVE_HIGH>;
-+			linux,default-trigger = "heartbeat";
-+			color = <LED_COLOR_ID_YELLOW>;
-+			function = LED_FUNCTION_HEARTBEAT;
-+		};
-+
-+		led_status_red: led-status-red {
-+			gpios = <&pio 3 16 GPIO_ACTIVE_HIGH>;  /* PD16 */
-+			color = <LED_COLOR_ID_RED>;
-+			function = LED_FUNCTION_STATUS;
-+		};
-+
-+		led_status_green: led-status-green {
-+			gpios = <&pio 3 22 GPIO_ACTIVE_HIGH>;  /* PD22 */
-+			color = <LED_COLOR_ID_GREEN>;
-+			function = LED_FUNCTION_STATUS;
-+		};
-+	};
-+
-+	status-led {
-+		compatible = "leds-group-multicolor";
-+		color = <LED_COLOR_ID_MULTI>;
-+		function = LED_FUNCTION_STATUS;
-+		leds = <&led_status_red &led_status_green>;
-+	};
-+};
-+
-+&ehci0 {
-+	status = "okay";
-+};
-+
-+&i2c2 {
-+	status = "okay";
-+
-+	mcp23008: gpio@20 {
-+		compatible = "microchip,mcp23008";
-+		gpio-controller;
-+		#gpio-cells = <2>;
-+		reg = <0x20>;
-+		interrupts-extended = <&pio 5 6 IRQ_TYPE_LEVEL_LOW>;  /* PF6 */
-+		interrupt-names = "mcp23008@20 irq";
-+		interrupt-controller;
-+		#interrupt-cells = <2>;
-+	};
-+};
-+
-+&ohci0 {
-+	status = "okay";
-+};
-+
-+&pio {
-+	gpio-line-names = "", "", "", "", // PA
-+					  "", "", "", "",
-+					  "", "", "", "",
-+					  "", "", "", "",
-+					  "", "", "", "",
-+					  "", "", "", "",
-+					  "", "", "", "",
-+					  "", "", "", "",
-+					  "", "", "", "", // PB
-+					  "", "", "UART3_TX", "UART3_RX",
-+					  "", "", "", "",
-+					  "", "", "", "",
-+					  "", "", "", "",
-+					  "", "", "", "",
-+					  "", "", "", "",
-+					  "", "", "", "",
-+					  "", "", "eMMC_CLK", "eMMC_CMD", // PC
-+					  "eMMC_D2", "eMMC_D1", "eMMC_D0", "eMMC_D3",
-+					  "", "", "", "",
-+					  "", "", "", "",
-+					  "", "", "", "",
-+					  "", "", "", "",
-+					  "", "", "", "",
-+					  "", "", "", "",
-+					  "", "", "", "", // PD
-+					  "", "", "", "",
-+					  "", "", "", "",
-+					  "", "", "", "",
-+					  "LED_STATUS_RED", "", "", "",
-+					  "I2C2_SCL", "I2C2_SDA", "LED_STATUS_GREEN", "",
-+					  "", "", "", "",
-+					  "", "", "", "",
-+					  "ETH_CRSDV", "ETH_RXD0", "ETH_RXD1", "ETH_TXCK", // PE
-+					  "ETH_TXD0", "ETH_TXD1", "ETH_TXEN", "",
-+					  "ETH_MDC", "ETH_MDIO", "QWIIC_nINT", "",
-+					  "", "", "", "",
-+					  "", "", "", "",
-+					  "", "", "", "",
-+					  "", "", "", "",
-+					  "", "", "", "",
-+					  "", "", "", "", // PF
-+					  "", "", "KEY_nINT", "",
-+					  "", "", "", "",
-+					  "", "", "", "",
-+					  "", "", "", "",
-+					  "", "", "", "",
-+					  "", "", "", "",
-+					  "", "", "", "",
-+					  "ESP_CLK", "ESP_CMD", "ESP_D0", "ESP_D1", // PG
-+					  "ESP_D2", "ESP_D3", "UART1_TXD", "UART1_RXD",
-+					  "ESP_nBOOT", "ESP_nRST", "I2C3_SCL", "I2C3_SDA",
-+					  "", "", "", "",
-+					  "", "", "", "",
-+					  "", "", "", "",
-+					  "", "", "", "",
-+					  "", "", "", "";
-+};
-+
-+&usb_otg {
-+	dr_mode = "device";
-+	status = "okay";
-+};
-+
-+&usbphy {
-+	status = "okay";
-+};
--- 
-2.39.5
+> > So it's really whatever Allwinner wants to call it. I would rather have
+> > the names follow the datasheet than us making some scheme up.  
+> 
+> Are the datasheets publicly available?
 
+We collect them in the sunxi wiki (see the links below), but just to
+make sure:
+I am not disputing that GMAC is the name mentioned in the A523 manual,
+and would have probably been the right name to use originally - even
+though it's not very consistent, as the same IP is called EMAC in the
+older SoCs' manuals. I am also not against renaming identifiers or even
+(internal) DT labels. But the problem here is that the renaming affects
+the DT compatible string and the pinctrl function name, both of which
+are used as an interface between the devicetree and its users, which is
+not only the Linux kernel, but also U-Boot and other OSes like the BSDs.
 
+In this particular case we would probably get away with it, because
+it's indeed very early in the development cycle for this SoC, but for
+instance the "emac0" function name is already used in some U-Boot
+patch series on the list:
+https://lore.kernel.org/linux-sunxi/20250323113544.7933-18-andre.przywara@arm.com/
+
+If we REALLY need to rename this, it wouldn't be the end of the world,
+but would create some churn on the U-Boot side.
+
+I just wanted to point out that any changes to the DT bindings have
+some impact to other projects, even if they are proposed as a coherent
+series on the Linux side. Hence my question if this is really necessary.
+
+Cheers,
+Andre
+
+https://linux-sunxi.org/A64#Documentation
+https://linux-sunxi.org/H616#Documentation
+https://linux-sunxi.org/A523#Documentation
 
