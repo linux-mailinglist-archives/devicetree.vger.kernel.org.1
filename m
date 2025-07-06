@@ -1,88 +1,82 @@
-Return-Path: <devicetree+bounces-193296-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-193297-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 47471AFA326
-	for <lists+devicetree@lfdr.de>; Sun,  6 Jul 2025 06:38:13 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 993C0AFA345
+	for <lists+devicetree@lfdr.de>; Sun,  6 Jul 2025 08:22:25 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 83C4A3BDCCF
-	for <lists+devicetree@lfdr.de>; Sun,  6 Jul 2025 04:37:34 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 222D11896F87
+	for <lists+devicetree@lfdr.de>; Sun,  6 Jul 2025 06:22:42 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 39CA61BEF7E;
-	Sun,  6 Jul 2025 04:37:19 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B45451A23AF;
+	Sun,  6 Jul 2025 06:22:23 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="LAVXJfZE"
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="giHSbQAG"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pg1-f175.google.com (mail-pg1-f175.google.com [209.85.215.175])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.15])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C16EE1B4257;
-	Sun,  6 Jul 2025 04:37:17 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.215.175
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EF8E8249E5;
+	Sun,  6 Jul 2025 06:22:21 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.175.65.15
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1751776639; cv=none; b=YhNUT6KDwnbZXDPGeECPPNoNRZTUBq1CG2Ygyy5+NpyzwZW9piBRIXXpWqoKuRwatwg3ozd0KSBK52xcdTQvkWsYeufje/cBpCVBC5uHjiUFT4aLA85L9/rlJsS6+EKk5SwMUQqDynIiJy5MEPetPzZtLTL/nCP5ANB+qW5m21U=
+	t=1751782943; cv=none; b=Jww+FfeUCObFbcuwOehfm4Eo99xvcuDMElbKo59zdSUd36ba7457nAy6xQyC8wRN8SGVXivz72/deFKi8oiqDe2z5lA5pvBGGIi3DoBgv0tIU3Z6zFuBaMp3Uwr8Os4vBG2nGKO7thj+7l2NU9BotV6h1mxIXW5s/QJtawPepxU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1751776639; c=relaxed/simple;
-	bh=q6s5Ov3YkPc8DxSGBllfcY6nOWAeMlWy4GrMMNB9wiA=;
-	h=Date:From:To:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=d50s3VAVl1T09cCvAiybmd/fdYEIFkLEsb+F6ij/CjCRj5Cq+FEGzrCRqOTlMMpOn0L4jfuXy56ovlMN2fK31R6genRG3WztMS6icvprJ5IEOvIfjsUvTVaQq+Hj4uz7oeg6kOXiqVyInXsctv8CrvjTcu3PqtAwHsMfcZYVFxE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=LAVXJfZE; arc=none smtp.client-ip=209.85.215.175
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-pg1-f175.google.com with SMTP id 41be03b00d2f7-b390d09e957so406341a12.1;
-        Sat, 05 Jul 2025 21:37:17 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1751776637; x=1752381437; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=1y2FRrOTA68hlJ+NjGl+jIRexDC9u6D/zy0MCfqEVY4=;
-        b=LAVXJfZETvOTurqWX6rHFL8L+m+Jxwq8ZBqFnC/etC1CAM8Inm7jw4EDzG68Sdrphf
-         LduwEc9pi5rqLzcRi4VwkkTHlAf12RHfgiHZjnPM5VM8N2nWC2JUMrLFnm+jHALEhSxP
-         u0tCikUL7W4GxbRW4aa+RXBGv0HvBvgg9y7ij1sYcq52x3f0VVWBQ6IyIEtjJysoNvEO
-         3Ldzn1DE4AF9uArcDW24uq26nnoa+X4BPYw3DfbXVk/7KH8p21QMoU45O70n8CKyKEyb
-         vPKYsN0BBUE1ZnKtC470jHItEeFp8fD4jgeozcj6PAs3Fm3BycslGMxDQURoeQd81Dy0
-         3weg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1751776637; x=1752381437;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=1y2FRrOTA68hlJ+NjGl+jIRexDC9u6D/zy0MCfqEVY4=;
-        b=HQ/FkuGQCbd9QsNKO+zJ9RB2RK4OasGq0lpOgAR2zxQupg0ITbnXcCyIl1SS3SNPWA
-         giiAIYpSatpofeWpUdhxL+BllEaFkgltSR8qDSrNrAzO9si5BDuKkE4LrvUB8IoK3Kx1
-         w3aa9mJnEi/8XyooeAXMjwTRg17CjwnOTir6K3uRXpeLOkBMwsxu0/YIDVWzj9FM4npA
-         2GU3GIr5Htx/jwkbjTxJGIjQcs0o+ZWjcMCBfjP1qz+Qzve4/QLpvNgPZaPypIZX6mbh
-         /GzJvYVR49Q6FL/+he4E4oXIhrBtyHR85hfRiRcoVTEOc05IpTWYA7VbRfTCsNiTvy8k
-         PGWg==
-X-Forwarded-Encrypted: i=1; AJvYcCUg68RQue2pnKvegESDl5g2zDg2gfj720+LSY4E/KJlrkNt8KdaA5SdIs8W2oF1Icrvx0YeNo91GKDWKph6@vger.kernel.org, AJvYcCVbJn6jFN5GPZxkxli5CwSfrbjbvIl9fuSC2VVrn3/GjK7syCq75kRRgRBplODl5/WDz/5ObBYM+Qdc@vger.kernel.org
-X-Gm-Message-State: AOJu0Yw0DxS2wIqt2KD9CPbdBPSh5R2szOYPhSmeHvYxyqSZkD4/i7CY
-	xT0u4Glqu8dFMDei70fTijjKkX8xUatOJpYwFfU3C0osoObRX/JvHpsm
-X-Gm-Gg: ASbGnctj8r3AhTrFpR9qB71jDhtxWs6gIMyMXWKa5UJShMXsGT4CMWcRAE3saD5eLd0
-	/QokQHgoAbqv2vjemwJm+GYu7VwRIdCFSFs8ssVX6nzAkARfoo6uZSv+z7kLA+W4chphLfjcbnk
-	wmLtarJU3GVxNzrUSkkWVD46EiyndXl+wQtaF/aBWqmzPw2urtqFTsuCnYmT3KJ3q5Ry5OXzCIM
-	zFyFdY+76nw7N/KsQAO9yPytehYlh+M5hpgE98rzw0uY43udNnIbXeucHI8rJZ084JHXXipBUlF
-	MhViN/Hn5KdAfrkqrq0kUNWCMkCDvF1MltrkjWs8MKGOxXWbTABwuB8g0bg2b83fLjEAz6Rybbd
-	aihRZgEyzCo963iYvte+VxTGaUmUCYA6nV8RAe+4=
-X-Google-Smtp-Source: AGHT+IG0ByxlfHWwgJ+AcNjU2yUsaqNnzgD75XgpxrmchkB3mZY7uDwPyNr4YJZ7aw0VrdPW/p4HBw==
-X-Received: by 2002:a05:6a20:7f9e:b0:220:658:855 with SMTP id adf61e73a8af0-2260a69f74amr13517414637.13.1751776637206;
-        Sat, 05 Jul 2025 21:37:17 -0700 (PDT)
-Received: from localhost.localdomain (c-76-133-73-115.hsd1.ca.comcast.net. [76.133.73.115])
-        by smtp.gmail.com with ESMTPSA id 41be03b00d2f7-b38ee62b1acsm5577847a12.56.2025.07.05.21.37.15
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sat, 05 Jul 2025 21:37:16 -0700 (PDT)
-Date: Sat, 5 Jul 2025 21:37:14 -0700
-From: Tao Ren <rentao.bupt@gmail.com>
-To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, Joel Stanley <joel@jms.id.au>,
-	Andrew Jeffery <andrew@codeconstruct.com.au>,
-	devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-	linux-aspeed@lists.ozlabs.org, linux-kernel@vger.kernel.org,
-	Andrew Lunn <andrew@lunn.ch>, Tao Ren <taoren@meta.com>
-Subject: Re: [PATCH v2 0/9] ARM: dts: aspeed: Add Meta Darwin dts
-Message-ID: <aGn9erhghE0Bpgl9@localhost.localdomain>
-References: <20250706042404.138128-1-rentao.bupt@gmail.com>
+	s=arc-20240116; t=1751782943; c=relaxed/simple;
+	bh=nW8O8YdElWySi7VcpRvqBHn54tWkhNDJ64guVXrJuCc=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=ptVv7kF1mf3o7fBHa4V94vxQ++wYotFWHBet1Y6CIHBu62W1cWhWUc5SgHD666l91xSBB5ePG9A60BMjVwWeFdRjkRoDknL9AYZF/WX85MKglIDyNOoEeWeFCk28+CTCH/TBf9KIDDDszZhVZWwz6x09PQlhLXkg2iMWlWxc0QU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=giHSbQAG; arc=none smtp.client-ip=198.175.65.15
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1751782942; x=1783318942;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=nW8O8YdElWySi7VcpRvqBHn54tWkhNDJ64guVXrJuCc=;
+  b=giHSbQAGnDhfI9O474JZ/JpNATY6jaD0JkD8IZ/Q/uxFhBNWWi6SBpyr
+   eIjAecfIXp1WMaeMVrUwSrxSI3N6saNmuNTNCypvnSv+6bIvo9eFjHDfc
+   cyLdUKFiafOHYXOfGKgNTOdaLE/CCLs2tAlCkq2VV9758BA5GQqginJu0
+   07hnV/W4TTMb5JD1mzxOQJYhIfa2erizFYENucWQzdj1SHDLW9n4Jd1NR
+   CFwgUbmNCp/+S9BWT0bD67j2jPZ7yl98TS6428q9uzTTL0blAGruDU+eE
+   aYXixwBA5Cx0BWxEvHSZUhuoKtirf77pv1Ig/B6iG/wa5sr7YCTprWrYx
+   g==;
+X-CSE-ConnectionGUID: ziNHpL9zQZe9o/qb0axoPw==
+X-CSE-MsgGUID: do6Rk6MyQ6u2QVWaD3J2WA==
+X-IronPort-AV: E=McAfee;i="6800,10657,11485"; a="57703926"
+X-IronPort-AV: E=Sophos;i="6.16,291,1744095600"; 
+   d="scan'208";a="57703926"
+Received: from orviesa004.jf.intel.com ([10.64.159.144])
+  by orvoesa107.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 05 Jul 2025 23:22:22 -0700
+X-CSE-ConnectionGUID: bHDd9G8XRAqckPZ8lMKU7A==
+X-CSE-MsgGUID: iSE7HrUbTUCEPReK/zoDzg==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.16,291,1744095600"; 
+   d="scan'208";a="159486719"
+Received: from lkp-server01.sh.intel.com (HELO 0b2900756c14) ([10.239.97.150])
+  by orviesa004.jf.intel.com with ESMTP; 05 Jul 2025 23:22:18 -0700
+Received: from kbuild by 0b2900756c14 with local (Exim 4.96)
+	(envelope-from <lkp@intel.com>)
+	id 1uYIlT-0004v1-2N;
+	Sun, 06 Jul 2025 06:22:15 +0000
+Date: Sun, 6 Jul 2025 14:22:01 +0800
+From: kernel test robot <lkp@intel.com>
+To: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
+	broonie@kernel.org
+Cc: llvm@lists.linux.dev, oe-kbuild-all@lists.linux.dev,
+	lgirdwood@gmail.com, robh@kernel.org, krzk+dt@kernel.org,
+	conor+dt@kernel.org, matthias.bgg@gmail.com,
+	angelogioacchino.delregno@collabora.com,
+	linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	linux-mediatek@lists.infradead.org, kernel@collabora.com
+Subject: Re: [PATCH v2 4/6] regulator: Add support for MediaTek MT6363 SPMI
+ PMIC Regulators
+Message-ID: <202507061437.VKBqvJPn-lkp@intel.com>
+References: <20250624073548.29732-5-angelogioacchino.delregno@collabora.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -91,40 +85,130 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20250706042404.138128-1-rentao.bupt@gmail.com>
+In-Reply-To: <20250624073548.29732-5-angelogioacchino.delregno@collabora.com>
 
-On Sat, Jul 05, 2025 at 09:23:50PM -0700, rentao.bupt@gmail.com wrote:
-> From: Tao Ren <rentao.bupt@gmail.com>
-> 
-> The patch series introduces the initial device tree for Meta/Facebook
-> Darwin AST2600 BMC.
-> 
-> Patches #1, #2 and #3 fixes the DTB warnings in wedge400/fuji dts and
-> ast2600-facebook-netbmc-common.dtsi.
-> 
-> Patches #4, #5 and #6 introduces a new BMC flash layout to be used by
-> wedge400 and fuji (and later more Meta Network BMC platforms).
-> 
-> Patch #7 moves eMMC entries from ast2600-facebook-netbmc-common.dtsi to
-> each BMC platform because eMMC was removed from future Meta Network BMC
-> platforms.
-> 
-> Patches #8 and #9 adds Meta Darwin BMC and updates devicetree bindings.
+Hi AngeloGioacchino,
 
-Hi Krzysztof and Andrew,
+kernel test robot noticed the following build errors:
 
-I've fixed all the "checkpatch.pl --strict" warnings except the "new
-file" warning, and I guess I can ignore the warning?
+[auto build test ERROR on broonie-regulator/for-next]
+[also build test ERROR on linus/master v6.16-rc4 next-20250704]
+[If your patch is applied to the wrong git tree, kindly drop us a note.
+And when submitting patch, we suggest to use '--base' as documented in
+https://git-scm.com/docs/git-format-patch#_base_tree_information]
 
-Regarding the dtb warnings, I've fixed the warnings from the individual
-dts files, but there are still some warnings from aspeed-g6.dtsi. Are
-these "known" warnings? Or is it because I'm using out-of-dated
-dtschema (2025.6.1)? Please suggest.
+url:    https://github.com/intel-lab-lkp/linux/commits/AngeloGioacchino-Del-Regno/dt-bindings-regulator-Document-MediaTek-MT6316-PMIC-Regulators/20250624-154048
+base:   https://git.kernel.org/pub/scm/linux/kernel/git/broonie/regulator.git for-next
+patch link:    https://lore.kernel.org/r/20250624073548.29732-5-angelogioacchino.delregno%40collabora.com
+patch subject: [PATCH v2 4/6] regulator: Add support for MediaTek MT6363 SPMI PMIC Regulators
+config: hexagon-allmodconfig (https://download.01.org/0day-ci/archive/20250706/202507061437.VKBqvJPn-lkp@intel.com/config)
+compiler: clang version 17.0.6 (https://github.com/llvm/llvm-project 6009708b4367171ccdbf4b5905cb6a803753fe18)
+reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20250706/202507061437.VKBqvJPn-lkp@intel.com/reproduce)
 
-Thank you very much for the review and feedback.
+If you fix the issue in a separate patch/commit (i.e. not just a new version of
+the same patch/commit), kindly add following tags
+| Reported-by: kernel test robot <lkp@intel.com>
+| Closes: https://lore.kernel.org/oe-kbuild-all/202507061437.VKBqvJPn-lkp@intel.com/
+
+All errors (new ones prefixed by >>):
+
+   drivers/regulator/mt6363-regulator.c:375:14: warning: variable 'ret' is used uninitialized whenever 'if' condition is false [-Wsometimes-uninitialized]
+     375 |                 } else if (cur_mode == REGULATOR_MODE_IDLE) {
+         |                            ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+   drivers/regulator/mt6363-regulator.c:388:6: note: uninitialized use occurs here
+     388 |         if (ret) {
+         |             ^~~
+   drivers/regulator/mt6363-regulator.c:375:10: note: remove the 'if' if its condition is always true
+     375 |                 } else if (cur_mode == REGULATOR_MODE_IDLE) {
+         |                        ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+   drivers/regulator/mt6363-regulator.c:347:19: note: initialize the variable 'ret' to silence this warning
+     347 |         int cur_mode, ret;
+         |                          ^
+         |                           = 0
+   drivers/regulator/mt6363-regulator.c:351:28: warning: variable 'regmap' is uninitialized when used here [-Wuninitialized]
+     351 |                 ret = mt6363_buck_unlock(regmap, true);
+         |                                          ^~~~~~
+   drivers/regulator/mt6363-regulator.c:346:23: note: initialize the variable 'regmap' to silence this warning
+     346 |         struct regmap *regmap;
+         |                              ^
+         |                               = NULL
+>> drivers/regulator/mt6363-regulator.c:455:9: error: call to undeclared function 'FIELD_PREP'; ISO C99 and later do not support implicit function declarations [-Wimplicit-function-declaration]
+     455 |                 sel = FIELD_PREP(MT6363_RG_VEMC_VOSEL_1_MASK, sel);
+         |                       ^
+>> drivers/regulator/mt6363-regulator.c:487:9: error: call to undeclared function 'FIELD_GET'; ISO C99 and later do not support implicit function declarations [-Wimplicit-function-declaration]
+     487 |                 ret = FIELD_GET(MT6363_RG_VEMC_VOSEL_1_MASK, sel);
+         |                       ^
+   2 warnings and 2 errors generated.
 
 
-Cheers,
+vim +/FIELD_PREP +455 drivers/regulator/mt6363-regulator.c
 
-Tao
+   430	
+   431	static int mt6363_vemc_set_voltage_sel(struct regulator_dev *rdev, unsigned int sel)
+   432	{
+   433		const u16 tma_unlock_key = MT6363_TMA_UNLOCK_VALUE;
+   434		struct regmap *regmap = rdev->regmap;
+   435		unsigned int val;
+   436		u16 mask;
+   437		int ret;
+   438	
+   439		ret = regmap_read(rdev->regmap, MT6363_TOP_TRAP, &val);
+   440		if (ret)
+   441			return ret;
+   442	
+   443		if (val > 1)
+   444			return -EINVAL;
+   445	
+   446		/* Unlock TMA for writing */
+   447		ret = regmap_bulk_write(rdev->regmap, MT6363_TOP_TMA_KEY_L,
+   448					&tma_unlock_key, sizeof(tma_unlock_key));
+   449		if (ret)
+   450			return ret;
+   451	
+   452		/* If HW trapping value is 1, use VEMC_VOSEL_1 instead of VEMC_VOSEL_0 */
+   453		if (val == 1) {
+   454			mask = MT6363_RG_VEMC_VOSEL_1_MASK;
+ > 455			sel = FIELD_PREP(MT6363_RG_VEMC_VOSEL_1_MASK, sel);
+   456		} else {
+   457			mask = rdev->desc->vsel_mask;
+   458		}
+   459	
+   460		/* Function must return the result of this write operation */
+   461		ret = regmap_update_bits(regmap, rdev->desc->vsel_reg, mask, sel);
+   462	
+   463		/* Unconditionally re-lock TMA */
+   464		val = 0;
+   465		regmap_bulk_write(rdev->regmap, MT6363_TOP_TMA_KEY_L, &val, 2);
+   466	
+   467		return ret;
+   468	}
+   469	
+   470	static int mt6363_vemc_get_voltage_sel(struct regulator_dev *rdev)
+   471	{
+   472		unsigned int sel, trap;
+   473		int ret;
+   474	
+   475		ret = regmap_read(rdev->regmap, rdev->desc->vsel_reg, &sel);
+   476		if (ret)
+   477			return ret;
+   478	
+   479		ret = regmap_read(rdev->regmap, MT6363_TOP_TRAP, &trap);
+   480		if (ret)
+   481			return ret;
+   482	
+   483		/* If HW trapping value is 1, use VEMC_VOSEL_1 instead of VEMC_VOSEL_0 */
+   484		if (trap > 1)
+   485			return -EINVAL;
+   486		else if (trap == 1)
+ > 487			ret = FIELD_GET(MT6363_RG_VEMC_VOSEL_1_MASK, sel);
+   488		else
+   489			ret = sel & rdev->desc->vsel_mask;
+   490	
+   491		return ret;
+   492	}
+   493	
+
+-- 
+0-DAY CI Kernel Test Service
+https://github.com/intel/lkp-tests/wiki
 
