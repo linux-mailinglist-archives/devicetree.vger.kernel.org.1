@@ -1,196 +1,189 @@
-Return-Path: <devicetree+bounces-193323-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-193324-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id D574BAFA456
-	for <lists+devicetree@lfdr.de>; Sun,  6 Jul 2025 12:08:39 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 618C9AFA46C
+	for <lists+devicetree@lfdr.de>; Sun,  6 Jul 2025 12:24:07 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 6904C189FFA4
-	for <lists+devicetree@lfdr.de>; Sun,  6 Jul 2025 10:08:56 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id BB69417ABAF
+	for <lists+devicetree@lfdr.de>; Sun,  6 Jul 2025 10:24:07 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5F7B282866;
-	Sun,  6 Jul 2025 10:08:34 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 17D9C1F8BCB;
+	Sun,  6 Jul 2025 10:24:02 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=netcube.li header.i=@netcube.li header.b="oyYJcxdv"
+	dkim=pass (2048-bit key) header.d=sntech.de header.i=@sntech.de header.b="bIhsV5Rx"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail.netcube.li (mail.netcube.li [173.249.15.149])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from gloria.sntech.de (gloria.sntech.de [185.11.138.130])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 140CE2AD00;
-	Sun,  6 Jul 2025 10:08:31 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=173.249.15.149
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CA5D31E86E;
+	Sun,  6 Jul 2025 10:23:59 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.11.138.130
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1751796514; cv=none; b=k9B4A7yJ/m8CerlM5s8kX9RJbzCwLabxAQE3h5RxKrzw11LR7TrcwIHUBe8qP/9eY5RIPQ63J/ssi9Aog50Xh4Onvu+nso2qYOUf143uYR6OwOYU0LUOG1HV7J8rj2DJieV4KqFGWP/Ze9emOlvF+CnVEP47vlVvmd180l7CaBM=
+	t=1751797442; cv=none; b=rlqnaCFnCLuLjIFIybepaN9oAQHFAyafmzpyVsPQVGH0WdRRux/NxprhMaPW9I6epAEfKYOeJ9JSwC8V84WDMbjotQTk2iLhx9IhqaVc/3lMb1G/rHitLjfdriUzVBOWGG5tMsrQnMq1RnIzzaDjBQd0MagJ5QnVAmw9F2rpsrc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1751796514; c=relaxed/simple;
-	bh=n77T+/3wzWMkjN3HwXQrl2Yz514wfjWWjXOH1TaiAf4=;
+	s=arc-20240116; t=1751797442; c=relaxed/simple;
+	bh=F0263zMv8G0iKYaC5yxEj4X+irraDgFLteH9ivlO5HU=;
 	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=Oc+MPoOfclVr2fW0iLNeKKdwqaIucAxJ6GL3ONy48i+WDucia0/y7MmpU5jJcwpldBcDx7tf5nOpGyc1KoLGocpHkbppDAO1jCfbsoRK6bCmnE+lpqLdiNFsTF2RcOSTG6zoPJ9FIIt1uv6Iy179hyZA2O3FXpywAe5JqCT3ltA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=netcube.li; spf=pass smtp.mailfrom=netcube.li; dkim=pass (1024-bit key) header.d=netcube.li header.i=@netcube.li header.b=oyYJcxdv; arc=none smtp.client-ip=173.249.15.149
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=netcube.li
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=netcube.li
-dkim-signature: v=1; a=rsa-sha256; d=netcube.li; s=s1;
-	c=relaxed/relaxed; q=dns/txt; h=From:Subject:Date:Message-ID:To:CC:MIME-Version:Content-Type:In-Reply-To:References;
-	bh=0T5ERNEDk8sZhawQuX8JVZNNOUKlYRbaNNvCcLZi7To=;
-	b=oyYJcxdvi2HSsrtA0NRNLP07hI9ZWZIgqk6i56SdDxhuilLTawGFGOSVJC912TFRMLct63t8lLnzoG7oTvvmDgV4EQBeh92HD+Ur9BHzL4r4O2nzndjBg/jeI4je5pMqv0FgdW6s+GlBpLEj4MSjeLNSdZYVlPYau+ThN9Towh0=
-Received: from lukas-hpz440workstation.localnet (cm70-231.liwest.at [212.241.70.231])
-	by mail.netcube.li with ESMTPSA
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256)
-	; Sun, 6 Jul 2025 12:08:20 +0200
-From: Lukas Schmid <lukas.schmid@netcube.li>
-To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, Chen-Yu Tsai <wens@csie.org>,
- Jernej Skrabec <jernej.skrabec@gmail.com>,
- Samuel Holland <samuel@sholland.org>,
- Paul Walmsley <paul.walmsley@sifive.com>,
- Palmer Dabbelt <palmer@dabbelt.com>, Albert Ou <aou@eecs.berkeley.edu>,
- Alexandre Ghiti <alex@ghiti.fr>, Maxime Ripard <mripard@kernel.org>,
- Krzysztof Kozlowski <krzk@kernel.org>
-Cc: devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- linux-sunxi@lists.linux.dev, linux-kernel@vger.kernel.org,
- linux-riscv@lists.infradead.org
-Subject:
- Re: [PATCH v1 3/7] dt-bindings: arm: sunxi: Add NetCube Systems Nagami Keypad
- Carrier Board
-Date: Sun, 06 Jul 2025 12:08:18 +0200
-Message-ID: <22754446.EfDdHjke4D@lukas-hpz440workstation>
-In-Reply-To: <8549188.T7Z3S40VBb@lukas-hpz440workstation>
+	 MIME-Version:Content-Type; b=Qfs5n8uDWnGz8v4LRZaAG1OARl86uv9BKqGsm7/atsuP5lOKa9RkK+9jVsSBi5zPcYc/9v1wmKCuMo6q33ONWvDd5IwNcncReLHs4RcWcJAuyUj+bEDeGCRvPqRfEY3ufvZASxhtRQvVcuVDHdlHPoSoJTPj+zgrgG7t0Afj7+w=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sntech.de; spf=pass smtp.mailfrom=sntech.de; dkim=pass (2048-bit key) header.d=sntech.de header.i=@sntech.de header.b=bIhsV5Rx; arc=none smtp.client-ip=185.11.138.130
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sntech.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=sntech.de
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sntech.de;
+	s=gloria202408; h=Content-Type:Content-Transfer-Encoding:MIME-Version:
+	References:In-Reply-To:Message-ID:Date:Subject:Cc:To:From:Reply-To;
+	bh=ulGSgijGk7YC4OX2ohfRWb9ZlHPzonSC7Ykb9+yR8PE=; b=bIhsV5Rx1JReBI9s0QhcdYeFOr
+	2A06OeQ6hmRD+/EoF6jfCAXR6MuqjNvAKN84SjrW0l03TQPhYgBsdVXPUdvySFjUBVJn+Iq3SUJy2
+	rgQT6RvuAR/L0nuvAPdkCRv+0m44QJs8cw7k1yj1493jDGA62tqBO9n55Ll+VW3h0X1/bvIxwtFmO
+	CeGOJ8QzRP1nOoc8IY44p/4lj7Xg6HoWcvdH3N7iQqpe58GRc76NPDUi3LrAheSFXYnqEtqgrQ9UB
+	pYF8oUVNwkMlzJMyD5lt0K94x/GWsIyYMcJjM5uENGeDQfSwBHgBL+hOrVgyNGvcytiWimKBT3HZH
+	mJzVYP/w==;
+Received: from i53875a35.versanet.de ([83.135.90.53] helo=diego.localnet)
+	by gloria.sntech.de with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+	(Exim 4.94.2)
+	(envelope-from <heiko@sntech.de>)
+	id 1uYMWu-0002nC-9F; Sun, 06 Jul 2025 12:23:28 +0200
+From: Heiko =?UTF-8?B?U3TDvGJuZXI=?= <heiko@sntech.de>
+To: linux-kernel@vger.kernel.org,
+ Detlev Casanova <detlev.casanova@collabora.com>
+Cc: Sandy Huang <hjc@rock-chips.com>, Andy Yan <andy.yan@rock-chips.com>,
+ David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>,
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>,
+ Heiko Stuebner <heiko.stuebner@cherry.de>,
+ Sebastian Reichel <sebastian.reichel@collabora.com>,
+ Dragan Simic <dsimic@manjaro.org>, Alexey Charkov <alchark@gmail.com>,
+ Jianfeng Liu <liujianfeng1994@gmail.com>,
+ Cristian Ciocaltea <cristian.ciocaltea@collabora.com>,
+ dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, linux-rockchip@lists.infradead.org,
+ kernel@collabora.com, Detlev Casanova <detlev.casanova@collabora.com>,
+ Conor Dooley <conor.dooley@microchip.com>
+Subject: Re: [PATCH v4 1/3] dt-bindings: display: vop2: Add VP clock resets
+Date: Sun, 06 Jul 2025 12:23:26 +0200
+Message-ID: <5453371.fEcJ0Lxnt5@diego>
+In-Reply-To: <20241115162120.83990-2-detlev.casanova@collabora.com>
 References:
- <20250705213900.3614963-1-lukas.schmid@netcube.li>
- <4648f0bf-2957-45bf-a6c1-01787e5d3e88@kernel.org>
- <8549188.T7Z3S40VBb@lukas-hpz440workstation>
+ <20241115162120.83990-1-detlev.casanova@collabora.com>
+ <20241115162120.83990-2-detlev.casanova@collabora.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; boundary="nextPart7824363.EvYhyI6sBW";
- micalg="pgp-sha512"; protocol="application/pgp-signature"
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset="utf-8"
 
---nextPart7824363.EvYhyI6sBW
-Content-Transfer-Encoding: 7Bit
-Content-Type: text/plain; charset="us-ascii"; protected-headers="v1"
-From: Lukas Schmid <lukas.schmid@netcube.li>
-Date: Sun, 06 Jul 2025 12:08:18 +0200
-Message-ID: <22754446.EfDdHjke4D@lukas-hpz440workstation>
-In-Reply-To: <8549188.T7Z3S40VBb@lukas-hpz440workstation>
-MIME-Version: 1.0
+Am Freitag, 15. November 2024, 17:20:40 Mitteleurop=C3=A4ische Sommerzeit s=
+chrieb Detlev Casanova:
+> Add the documentation for VOP2 video ports reset clocks.
+> One reset can be set per video port.
+>=20
+> Reviewed-by: Conor Dooley <conor.dooley@microchip.com>
+> Signed-off-by: Detlev Casanova <detlev.casanova@collabora.com>
+> ---
+>  .../display/rockchip/rockchip-vop2.yaml       | 40 +++++++++++++++++++
+>  1 file changed, 40 insertions(+)
+>=20
+> diff --git a/Documentation/devicetree/bindings/display/rockchip/rockchip-=
+vop2.yaml b/Documentation/devicetree/bindings/display/rockchip/rockchip-vop=
+2.yaml
+> index 2531726af306b..5b59d91de47bd 100644
+> --- a/Documentation/devicetree/bindings/display/rockchip/rockchip-vop2.ya=
+ml
+> +++ b/Documentation/devicetree/bindings/display/rockchip/rockchip-vop2.ya=
+ml
+> @@ -65,6 +65,26 @@ properties:
+>        - const: dclk_vp3
+>        - const: pclk_vop
+> =20
+> +  resets:
+> +    minItems: 5
+> +    items:
+> +      - description: AXI clock reset.
+> +      - description: AHB clock reset.
+> +      - description: Pixel clock reset for video port 0.
+> +      - description: Pixel clock reset for video port 1.
+> +      - description: Pixel clock reset for video port 2.
+> +      - description: Pixel clock reset for video port 3.
+> +
+> +  reset-names:
+> +    minItems: 5
+> +    items:
+> +      - const: aclk
+> +      - const: hclk
 
-On Sonntag, 6. Juli 2025 11:58:16 CEST Lukas Schmid wrote:
-> On Sonntag, 6. Juli 2025 11:46:46 CEST Krzysztof Kozlowski wrote:
-> > On 06/07/2025 11:41, Lukas Schmid wrote:
-> > > On Sonntag, 6. Juli 2025 11:36:34 CEST Krzysztof Kozlowski wrote:
-> > >> On 06/07/2025 11:07, Lukas Schmid wrote:
-> > >>> On Sonntag, 6. Juli 2025 09:49:58 CEST Krzysztof Kozlowski wrote:
-> > >>>> On 05/07/2025 23:38, Lukas Schmid wrote:
-> > >>>>> The NetCube Systems Nagami Keypad Carrier is a custom board intended
-> > >>>>> to
-> > >>>>> fit a standard Ritto Intercom enclosure and provides a Keypad,
-> > >>>>> NFC-Reader
-> > >>>>> and Status-LED all controllable over Ethernet with PoE support.
-> > >>>>> 
-> > >>>>> Signed-off-by: Lukas Schmid <lukas.schmid@netcube.li>
-> > >>>>> ---
-> > >>>>> 
-> > >>>>>  Documentation/devicetree/bindings/arm/sunxi.yaml | 6 ++++++
-> > >>>>>  1 file changed, 6 insertions(+)
-> > >>>>> 
-> > >>>>> diff --git a/Documentation/devicetree/bindings/arm/sunxi.yaml
-> > >>>>> b/Documentation/devicetree/bindings/arm/sunxi.yaml index
-> > >>>>> 7919b5bf5..a2f16d064 100644
-> > >>>>> --- a/Documentation/devicetree/bindings/arm/sunxi.yaml
-> > >>>>> +++ b/Documentation/devicetree/bindings/arm/sunxi.yaml
-> > >>>>> 
-> > >>>>> @@ -610,6 +610,12 @@ properties:
-> > >>>>>            - const: netcube,nagami
-> > >>>>>            - const: allwinner,sun8i-t113s
-> > >>>>> 
-> > >>>>> +      - description: NetCube Systems Nagami Keypad Carrier Board
-> > >>>>> +        items:
-> > >>>>> +          - const: netcube,nagami-keypad-carrier
-> > >>>> 
-> > >>>> That's just enum with previous entry. Don't make it over-complicated.
-> > >>>> 
-> > >>>> Best regards,
-> > >>>> Krzysztof
-> > >>> 
-> > >>> Just making sure here. The actual bindings are fine, but I should
-> > >>> merge
-> > >>> them into one patch, correct?
-> > >> 
-> > >> No, you got two comments what should be changed in the binding.
-> > >> 
-> > >> Best regards,
-> > >> Krzysztof
-> > > 
-> > > So if I understand correctly you want me to remove the
-> > > "allwinner,sun8i-t113s" from the carrier boards and keep it for the SoM?
-> > 
-> > No, I spoke nothing about that compatible. My comment is EXACTLY under
-> > the line being incorrect. That entry should have been made enum with
-> > previous board compatible. Look at other vendors, because this file
-> > repeats that pattern for some reason, eh...
-> > 
-> > Best regards,
-> > Krzysztof
-> 
-> Ah sorry. I think i understand now. You want the carrier boards in a single
-> entry with the different compatibles as the enum like:
-> 
->       - description: NetCube Systems Nagami SoM
->         items:
->           - const: netcube,nagami
->           - const: allwinner,sun8i-t113s
-> 
->       - description: NetCube Systems Nagami SoM based boards
->         items:
->           - enum:
->               - netcube,nagami-basic-carrier
->               - netcube,nagami-keypad-carrier
->           - const: netcube,nagami
->           - const: allwinner,sun8i-t113s
-> 
-> Best regards,
-> Lukas
+the vop1 uses "axi" and "ahb" (and "dclk") for these reset names.
 
-Oh, I will then drop the SoM's entry as well since the SoM is already defined 
-in the carrier boards then. So only
+The vendor vop2 code also uses that name in comments, like
+/*
+ * Reset AXI to get a clean state, which is conducive to recovering
+ * from exceptions when enable at next time(such as iommu page fault)
+ */
 
-      - description: NetCube Systems Nagami SoM based boards
-        items:
-          - enum:
-              - netcube,nagami-basic-carrier
-              - netcube,nagami-keypad-carrier
-          - const: netcube,nagami
-          - const: allwinner,sun8i-t113s
+So for these two we're not resetting clocks, but the parts of the
+vop2 ... so I'd strongly wish for matching names for the vop2 :-)
 
-correct?
+Thanks
+Heiko
 
-Sorry for the back-and-forth, and thanks for your patience.
 
-Best regards,
-Lukas
---nextPart7824363.EvYhyI6sBW
-Content-Type: application/pgp-signature; name="signature.asc"
-Content-Description: This is a digitally signed message part.
-Content-Transfer-Encoding: 7Bit
 
------BEGIN PGP SIGNATURE-----
-
-iQEzBAABCgAdFiEEPv6dcBmn59ssZMkSJnN+drMVRtgFAmhqSxMACgkQJnN+drMV
-RthYPgf7B7hvP/DGLODPXJ1qjUQvXaRZGtuTOiaLfm61dhyn2IsydYUhpwhhMViQ
-z6T4DAm9Eg8CcJqiTb1kckKS/dheJ+eom2IBK9LLb2JHbXaetlXlSvDfbWlTS1I2
-ofG6QKBDYHccjJiejjI2uEIAYALwCMjqxudUUCoMN2hz8euzwKx8dzEXfdWZmcRj
-OzeZsdwQkv8RvP+eiii1xdu/GbnMGKixs75n40v535LOdVWD/hptkJKMPW0fNe8A
-4Hd6uhLD7lZ3qIuEMZfvcCjOF/iCKafXpjCuK6CdFwfC5j+Sgrr3Z5zMAIJ3WRbr
-qCBfoSswKd8fkF5d6rVpVOBcBOPa5g==
-=JbSx
------END PGP SIGNATURE-----
-
---nextPart7824363.EvYhyI6sBW--
+> +      - const: dclk_vp0
+> +      - const: dclk_vp1
+> +      - const: dclk_vp2
+> +      - const: dclk_vp3
+> +
+>    rockchip,grf:
+>      $ref: /schemas/types.yaml#/definitions/phandle
+>      description:
+> @@ -128,6 +148,11 @@ allOf:
+>          clock-names:
+>            minItems: 7
+> =20
+> +        resets:
+> +          minItems: 6
+> +        reset-names:
+> +          minItems: 6
+> +
+>          ports:
+>            required:
+>              - port@0
+> @@ -152,6 +177,11 @@ allOf:
+>          clock-names:
+>            maxItems: 5
+> =20
+> +        resets:
+> +          maxItems: 5
+> +        reset-names:
+> +          maxItems: 5
+> +
+>          ports:
+>            required:
+>              - port@0
+> @@ -183,6 +213,16 @@ examples:
+>                                "dclk_vp0",
+>                                "dclk_vp1",
+>                                "dclk_vp2";
+> +                resets =3D <&cru SRST_A_VOP>,
+> +                         <&cru SRST_H_VOP>,
+> +                         <&cru SRST_VOP0>,
+> +                         <&cru SRST_VOP1>,
+> +                         <&cru SRST_VOP2>;
+> +                reset-names =3D "aclk",
+> +                              "hclk",
+> +                              "dclk_vp0",
+> +                              "dclk_vp1",
+> +                              "dclk_vp2";
+>                  power-domains =3D <&power RK3568_PD_VO>;
+>                  iommus =3D <&vop_mmu>;
+>                  vop_out: ports {
+>=20
 
 
 
