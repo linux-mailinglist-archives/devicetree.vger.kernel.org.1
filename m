@@ -1,114 +1,130 @@
-Return-Path: <devicetree+bounces-193326-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-193328-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id F25A9AFA488
-	for <lists+devicetree@lfdr.de>; Sun,  6 Jul 2025 12:45:07 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id CB86AAFA4A5
+	for <lists+devicetree@lfdr.de>; Sun,  6 Jul 2025 12:53:44 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id B673C18989BA
-	for <lists+devicetree@lfdr.de>; Sun,  6 Jul 2025 10:45:24 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 05F3617AC8E
+	for <lists+devicetree@lfdr.de>; Sun,  6 Jul 2025 10:53:45 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 28347202C46;
-	Sun,  6 Jul 2025 10:45:04 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D692C1FFC74;
+	Sun,  6 Jul 2025 10:53:33 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="ZD6sbyev"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="KGp/Wq4D"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wr1-f49.google.com (mail-wr1-f49.google.com [209.85.221.49])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EEA3620299E;
-	Sun,  6 Jul 2025 10:45:03 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1CDF117BCE;
+	Sun,  6 Jul 2025 10:53:31 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.49
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1751798704; cv=none; b=MXFHeUQbUd9zLHVc6GPLT7kt4/d8PuSmH6U0P82E6VqcKVRLKBcJEXeDfluJaFf6TKxBUuFO+wNjfwjzxf8wIoV3nd13ZZkXxWmHraDbVwRSBwTmVxAzb9ESC5DoWzTJN9CSyuGjlr654AK7T3pcaCT6WGhGtxroNjosV2t39X0=
+	t=1751799213; cv=none; b=uhj8g3HCERy/7gaYP8ikSheyQ6onvEkLwiw+2Cm0Df3duNnEDUbiJRCDtzKJSHAOhEFMh6wXcBiNQ1WbKCKM5RljZTIddK3UJVI5aX7ezomnQDHWBmx5ixukeh3U24XHMcfc0gCoHPx71byNnXXxbzoheMJcwgat2M5/mpBBdAg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1751798704; c=relaxed/simple;
-	bh=relSNinZmZOhsw3SUrIKIcecYWDMki2gp5tmi3W3ukw=;
-	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=tHYVVp02OZTL9XmNp8xepDXgKHn89ETjoug5H/nWTW7c8dOddR+iSYYlCgvR0rOeU3PXa9oweJKFNQzP/JOFUcB0GKUld5iQQfKj4rvANmqbwCKxarXIqFVSQKYHtO4Ijvh9r6gE2mFXVhK0lWTlFu8RJvvhSqn6h1tlAYNrDho=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=ZD6sbyev; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 1983CC4CEED;
-	Sun,  6 Jul 2025 10:44:58 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1751798703;
-	bh=relSNinZmZOhsw3SUrIKIcecYWDMki2gp5tmi3W3ukw=;
-	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
-	b=ZD6sbyevNQWtttBPqjhEmI+oJWV/FQ7TsYfcJppRl85pe0PAb7wpjQkzoBBol/Zvl
-	 3msv5fbaGw+TraDwcmPtAhuDsv/lL++0tL2w8laWmOwCYQHAxm9RQ1QEqK581SECz7
-	 Vh+1rGdqqbtO/f/WPMc7vfZHzXjVeEXP1JACBt7HGNrxQJow15n/63pj9w4QbxPkyI
-	 Np06V1hjKl7MPqukKPMIczLAv5NcCu8ZCUHt/1ChaEGo/fQN008wV5tJsz807jaeQG
-	 xN46KtMLN0WBFd70DLbE72QW0bYk/uuOArm6U7LzrDrbOagPT37HemtrIrUKiv5VL+
-	 3V1G5ZnZT4gRQ==
-Date: Sun, 6 Jul 2025 11:44:55 +0100
-From: Jonathan Cameron <jic23@kernel.org>
-To: Nuno =?UTF-8?B?U8Oh?= <noname.nuno@gmail.com>
-Cc: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
- dlechner@baylibre.com, nuno.sa@analog.com, andy@kernel.org,
- robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
- matthias.bgg@gmail.com, linux-iio@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, linux-mediatek@lists.infradead.org,
- kernel@collabora.com
-Subject: Re: [PATCH v2 0/6] iio: Add support for MT6363/6373 Auxiliary ADC
-Message-ID: <20250706114455.26748e20@jic23-huawei>
-In-Reply-To: <ab0a407412c705e409d9d26591543713a092c13f.camel@gmail.com>
-References: <20250703141146.171431-1-angelogioacchino.delregno@collabora.com>
-	<ab0a407412c705e409d9d26591543713a092c13f.camel@gmail.com>
-X-Mailer: Claws Mail 4.3.1 (GTK 3.24.49; x86_64-pc-linux-gnu)
+	s=arc-20240116; t=1751799213; c=relaxed/simple;
+	bh=hO91axIELC89D5o2swhCKNlygBueJYLWBNu0MZg03oQ=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=b70lFfhOpuyKVoXSeVzM0A1GOjU5IuCyAF0pJzvOruHbODS3X+THZryNHsooDEdRzS7cyWIZ4kwytF8QNxKVU01ovJtEFtzxl/a+PczXGj9MICdZ1hgsr58XWm3EfO+mi/hUlXRb+TfHSgnKgjDDZF6kmvAkBe94v+YXAFmIO5k=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=KGp/Wq4D; arc=none smtp.client-ip=209.85.221.49
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-wr1-f49.google.com with SMTP id ffacd0b85a97d-3a4f72cba73so2054345f8f.1;
+        Sun, 06 Jul 2025 03:53:31 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1751799210; x=1752404010; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=Rl5aIDFBl7BfHLUk8Y1FaZt5D9KfnVPhh08Fkw39vp8=;
+        b=KGp/Wq4DKHaXO86Leg/ifGzLh1zg+XQeTDA1Iahr5rtGlUGFy1gaGAiW3RV7x1SUIz
+         GYb3qojfhSBxEmIVduR5rTc/fKVXfV+bIP8CFGKW3azxEuFfi8myxAtTCbvVJ+Cp1v9B
+         fs6n1GWVnlFFvLt3ZahEdkYtb5bU4GLjRA8CgbO3TMUb471n1Qy2bT+c/J64FJptF1Cz
+         aAZAY5zhpUV4lzIVjIZx/BWGrkoUNo+HrTJnzEu4rcxKfgjk1bpOfBDtxQLa44SynXjR
+         vgZo9Eesibe6lU1qlhw8jmLzD7sL5CHC1OkBnq8PhtCabU8ElTXjKh8eYTIvhYbf5ftn
+         wzYA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1751799210; x=1752404010;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=Rl5aIDFBl7BfHLUk8Y1FaZt5D9KfnVPhh08Fkw39vp8=;
+        b=vDcQfASAjcgH90mVNQLyJMy9budwjqtSzGkDYY+mgr7cQCuwBMZuTjmInWHCOTeuI6
+         HSiYoWAobZOvjikJ/wJgrpQPwt/n+K2lZk+PkkuCsLI3T0OMyBc2OFUk55H+2HlVS27e
+         HE+R8wSGxyhcaQxtzZtelsnzIp8s8iXsOIpXXMLnEx7ai9KhBVz6KYU9ccl6yvggxfgl
+         Eh79WZXsAcwYthn2gzLVoHDFHBZHzmmf5Kd70fHvLNxc0Uzgux6ClGUEMitz83Su8pVF
+         boZDYFy3RRb5hMrd8CxUvYcDZIuwYYqIsMwpG0VROBBw+H0dqa8TfxGHARv4DZk+wD3Z
+         SNYw==
+X-Forwarded-Encrypted: i=1; AJvYcCVcMW7nh6Wk8NXqAD6+yLTo22F/+vBQWC6xfGp8/rjlORh910eh0Y2/0zJgSya5XUP+YvZNxq/VBWHVO3Ku@vger.kernel.org, AJvYcCXN6ifh4L8JlHMy9jUPtOG2MjmUu93Lcit0MqKqlPDizrLUbpu1I5/AU3IybNzuBS6MnhPyTEConZ5m@vger.kernel.org
+X-Gm-Message-State: AOJu0YziuJ1nLFbPTbHHAOaND8FFwXnh2bDtJQucfAY+C3rFadrCiZMv
+	c9eCSCN+L/+icaqJm9+Q+ck0bDVJeoD91W8cdLcu0OvbiUNQ/y5aovio
+X-Gm-Gg: ASbGncuMEfMsC+Igs4bZibdlmqU6Jb+qAmypIa/9lmhU1Z6QM8nTnXcBY/i5jt8NYGV
+	foULa6pQQ6HqCNrv5uQrJ5rGpy/CkX5FCkOKamzamt89BPom7PPvO61sNXekypavToZeYlLGfkk
+	C85jsZlPAZ1DfX04mHXVKjCEUKO9bdJ+CbaA7JRwnfKF5t4cLVel86lG7HLrzzUaHXmh4LxRomV
+	5qVKJIQaoqCSbpLMX8NY1UH6+WFpnoH2H400B1x3WfRRJjfIc+/PczuLG1ZR7GkrbaPYom2EUwa
+	E0HFTtql47IWKZJvHYW2UiTN5Lyb7Fx/nLNdtErQwHgQ0O6idKUWwwSkbNx2eGAo1G8uLLRaFRD
+	l5/8rtjSatMNx3sBIJQ==
+X-Google-Smtp-Source: AGHT+IEQPZxKSHEU6v6YjdCk3jMRA9LfzHcP+l2NaDcRx2syaWwk1uY2E6C4p46eeU1lYX6rRjeJIw==
+X-Received: by 2002:a05:600c:56cb:b0:440:69f5:f179 with SMTP id 5b1f17b1804b1-454b1f4fb49mr62520655e9.7.1751799210219;
+        Sun, 06 Jul 2025 03:53:30 -0700 (PDT)
+Received: from masalkhi.. (pd907d170.dip0.t-ipconnect.de. [217.7.209.112])
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-454b1634147sm80283985e9.18.2025.07.06.03.53.29
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Sun, 06 Jul 2025 03:53:29 -0700 (PDT)
+From: Abd-Alrhman Masalkhi <abd.masalkhi@gmail.com>
+To: arnd@arndb.de,
+	gregkh@linuxfoundation.org,
+	robh@kernel.org,
+	krzk+dt@kernel.org
+Cc: conor+dt@kernel.org,
+	luoyifan@cmss.chinamobile.com,
+	linux-kernel@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	christophe.jaillet@wanadoo.fr,
+	abd.masalkhi@gmail.com
+Subject: [PATCH v6 0/3] Add support for STMicroelectronics M24LR EEPROM/NFC chips
+Date: Sun,  6 Jul 2025 10:53:08 +0000
+Message-ID: <20250706105311.395162-1-abd.masalkhi@gmail.com>
+X-Mailer: git-send-email 2.43.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
+Content-Transfer-Encoding: 8bit
 
-On Fri, 04 Jul 2025 13:39:56 +0100
-Nuno S=C3=A1 <noname.nuno@gmail.com> wrote:
+This patch series adds support for the STMicroelectronics M24LR series
+RFID/NFC EEPROM devices. These chips expose two I2C addresses: the primary
+one provides access to system control and configuration registers, while
+the secondary address is used for EEPROM access.
 
-> On Thu, 2025-07-03 at 16:11 +0200, AngeloGioacchino Del Regno wrote:
-> > Changes in v2:
-> > =C2=A0- Added error checks to all regmap r/w operations
-> > =C2=A0- Moved adc_vref addition to different commit
-> > =C2=A0- Various other fixes
-> >=20
-> > This series adds support for the Auxiliary ADC IP found on the new
-> > MediaTek MT6363 and MT6373 PMICs, found on board designs featuring
-> > the MT8196 Chromebook SoC or the MT6991 Dimensity 9400 Smartphone SoC.
-> >=20
-> > AngeloGioacchino Del Regno (6):
-> > =C2=A0 dt-bindings: iio: adc: mt6359: Add MT6363 PMIC AuxADC
-> > =C2=A0 dt-bindings: iio: adc: mt6359: Add MT6373 PMIC AuxADC
-> > =C2=A0 iio: adc: mt6359: Add ready register index and mask to channel d=
-ata
-> > =C2=A0 iio: adc: mt6359: Move reference voltage to platform data
-> > =C2=A0 iio: adc: mt6359: Add support for MediaTek MT6363 PMIC AUXADC
-> > =C2=A0 iio: adc: mt6359: Add support for MediaTek MT6373 PMIC AUXADC
-> >=20
-> > =C2=A0.../iio/adc/mediatek,mt6359-auxadc.yaml=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0 |=C2=A0=C2=A0 2 +
-> > =C2=A0drivers/iio/adc/mt6359-auxadc.c=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 | 440 +++++++++++++++---
-> > =C2=A0.../iio/adc/mediatek,mt6363-auxadc.h=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0=C2=A0=C2=A0=C2=A0 |=C2=A0 24 +
-> > =C2=A0.../iio/adc/mediatek,mt6373-auxadc.h=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0=C2=A0=C2=A0=C2=A0 |=C2=A0 19 +
-> > =C2=A04 files changed, 416 insertions(+), 69 deletions(-)
-> > =C2=A0create mode 100644 include/dt-bindings/iio/adc/mediatek,mt6363-au=
-xadc.h
-> > =C2=A0create mode 100644 include/dt-bindings/iio/adc/mediatek,mt6373-au=
-xadc.h =20
->=20
->=20
-> LGTM,
->=20
-> Reviewed-by: Nuno S=C3=A1 <nuno.sa@analog.com>
->=20
-Applied to the togreg branch of iio.git.  Initially pushed out as testing
-for 0-day to take a first look and see if we missed anything.
-Jonathan
+The driver implements both functionalities:
+ - A sysfs-based interface for the control and system parameter registers.
+ - EEPROM access via the nvmem subsystem using a secondary I2C dummy
+   client.
+
+Tested on: M24LR04E-R using Yocto on Raspberry Pi 4
+
+Signed-off-by: Abd-Alrhman Masalkhi <abd.masalkhi@gmail.com>
+
+Abd-Alrhman Masalkhi (3):
+  dt-bindings: eeprom: Add ST M24LR support
+  eeprom: add driver for ST M24LR series RFID/NFC EEPROM chips
+  ABI: sysfs: add documentation for ST M24LR EEPROM and control
+    interface
+
+ .../ABI/testing/sysfs-bus-i2c-devices-m24lr   | 100 +++
+ .../devicetree/bindings/eeprom/st,m24lr.yaml  |  52 ++
+ drivers/misc/eeprom/Kconfig                   |  18 +
+ drivers/misc/eeprom/Makefile                  |   1 +
+ drivers/misc/eeprom/m24lr.c                   | 662 ++++++++++++++++++
+ 5 files changed, 833 insertions(+)
+ create mode 100644 Documentation/ABI/testing/sysfs-bus-i2c-devices-m24lr
+ create mode 100644 Documentation/devicetree/bindings/eeprom/st,m24lr.yaml
+ create mode 100644 drivers/misc/eeprom/m24lr.c
+
+-- 
+2.43.0
 
 
