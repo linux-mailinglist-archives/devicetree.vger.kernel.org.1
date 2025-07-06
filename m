@@ -1,120 +1,142 @@
-Return-Path: <devicetree+bounces-193430-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-193431-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6BA6DAFA82D
-	for <lists+devicetree@lfdr.de>; Mon,  7 Jul 2025 00:29:54 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 26CC0AFA867
+	for <lists+devicetree@lfdr.de>; Mon,  7 Jul 2025 01:34:28 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id C3D50174605
-	for <lists+devicetree@lfdr.de>; Sun,  6 Jul 2025 22:29:54 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id D47561898895
+	for <lists+devicetree@lfdr.de>; Sun,  6 Jul 2025 23:34:44 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 886F91EB9F2;
-	Sun,  6 Jul 2025 22:29:49 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9DE891F8AC8;
+	Sun,  6 Jul 2025 23:34:22 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="UaIqaj+b"
+	dkim=pass (1024-bit key) header.d=collabora.com header.i=sebastian.reichel@collabora.com header.b="fHqd48Hj"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from sender4-pp-f112.zoho.com (sender4-pp-f112.zoho.com [136.143.188.112])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4C755846F;
-	Sun,  6 Jul 2025 22:29:48 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1751840989; cv=none; b=HYr87vCEgaDHM7IhQv0eyxT0GRRY9Ncxfmh56YURSAS42sSSQQ3/SnVUqGQH1veZ497AIA6O06C0+MR74ypw5Sg38z785orOnyPPtp9ETlzg/imYGeyAtmtfb1G/H/TH700ZHvnpj9kdnjd2ROB56R/XzVDH5GWZGlrbU5dZA6c=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1751840989; c=relaxed/simple;
-	bh=+FqcxieyCSl/BmyJUx6uOpbHQwdGTCBbRvnIJVsyPnQ=;
-	h=Date:Content-Type:MIME-Version:From:Cc:To:In-Reply-To:References:
-	 Message-Id:Subject; b=Lh+QP1I4C6Skgtuw5c4mDZCit3r5HQuM1jEnHR2udsQ21w/oACqJKPYpi9ucFqcuvhm6lAqfDMSGEujRMtEPxDnnc1eA8Ul0opZaRwhqmKdTwAfXUalKGLL/PtZftCxmDhn0U2b8w6zeHyUlviYzgjkHAteElmYxUHQlD8Cw3/Y=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=UaIqaj+b; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 9AD28C4CEED;
-	Sun,  6 Jul 2025 22:29:48 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1751840988;
-	bh=+FqcxieyCSl/BmyJUx6uOpbHQwdGTCBbRvnIJVsyPnQ=;
-	h=Date:From:Cc:To:In-Reply-To:References:Subject:From;
-	b=UaIqaj+bE2PNvlzxHFsU8bKx/TvQ3nxBydLq7fyxyT/z8TiiGRP9154ikYh0K54sb
-	 Z4EZ6WP+xlLWwTRPFvI279+Mu0sNBBWRDyf93thd0x4XgRbRAi9/899cayp1axI3Qq
-	 EX4yMhpZd/Sy8d7UosGDsR4TuLoxLRVpwwKSuDeFL1+akM2+E1ByWZ4LcnDzOzltDM
-	 hTeuVRd+gUQpuOtJ8lda/i58I8WztFNzGk0pcu9nmY2i4NZ116tt+L4mOTB4wA4T13
-	 B1BO2f0YH9Xirjm5Vwyc9JwduiRJwc5yaCwXeqfw6fTuID9y6HlDM1XEm5tFvl3eg0
-	 U+xUMsY5ribCA==
-Date: Sun, 06 Jul 2025 17:29:47 -0500
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E572919005E;
+	Sun,  6 Jul 2025 23:34:20 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=pass smtp.client-ip=136.143.188.112
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1751844862; cv=pass; b=jcuZfsZJ+hk8WrGYA0NDbelXBqgPflxZSX3vFRMQuT1NFEl+f/ACyTWYdSTsYkMFQxh1+Wq9JoWtG56NmR+XhxsIc6CASMLrE1+3PtGUv3biglAGjBBZSn36pmJEZWzWlBg78SzXK9AnbZeeKFWJWraZhtusprwreu7JZ6neBoY=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1751844862; c=relaxed/simple;
+	bh=itjhecGpCikTA7dpGfNaSXg7eAyxUUlQBMvigTlb97k=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=BqwzD+wYdi4Y72fHoqPnDTJuufPjwGr5cFE+6cbhkFQYBn3Q3S41FHAt4zUfwVw0YxJBzVtv8mzL79Q1HYFkHRN09kZPjAUmApeQqTHXywlzq8aUJwzvfjoQ77kUXlvDmsysSdlS7cF40exNbks8AZSPw0HBguZP4FB/i2dMmHw=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (1024-bit key) header.d=collabora.com header.i=sebastian.reichel@collabora.com header.b=fHqd48Hj; arc=pass smtp.client-ip=136.143.188.112
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
+ARC-Seal: i=1; a=rsa-sha256; t=1751844824; cv=none; 
+	d=zohomail.com; s=zohoarc; 
+	b=BGHqLupuRiyOQ1O3SOFWjX1OzBR9/2L7EWvrdj4HC3DJ/jytlmR2oTGkvdkTTkiGWcc8Ijn6VTC1kcu+TMse5Y80UZe0qUlI6QQChhRRH7LGlSMsZEy+GsbqZ/7lN/ntpebKG6WsrhazZdgqCCUDZ1MmH2+12uixVLJqE9lKYMA=
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=zohomail.com; s=zohoarc; 
+	t=1751844824; h=Content-Type:Cc:Cc:Date:Date:From:From:In-Reply-To:MIME-Version:Message-ID:References:Subject:Subject:To:To:Message-Id:Reply-To; 
+	bh=itjhecGpCikTA7dpGfNaSXg7eAyxUUlQBMvigTlb97k=; 
+	b=FSCPsjbHM/QxheLzaj2IeDe18PIhW0v9YYck/XB+AhqrAH+Igv0HShxRaF+Te00iJIxc6hvX71Zx45J6YXOVfO2/989rxIPCP8vy9sQrfNb1BC6Cpuo70EQrezls9lAIEly5Kwl7b0jx86Nr3F84LgSqfV/XV79qnmFxzs4Bulg=
+ARC-Authentication-Results: i=1; mx.zohomail.com;
+	dkim=pass  header.i=collabora.com;
+	spf=pass  smtp.mailfrom=sebastian.reichel@collabora.com;
+	dmarc=pass header.from=<sebastian.reichel@collabora.com>
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; t=1751844824;
+	s=zohomail; d=collabora.com; i=sebastian.reichel@collabora.com;
+	h=Date:Date:From:From:To:To:Cc:Cc:Subject:Subject:Message-ID:References:MIME-Version:Content-Type:In-Reply-To:Message-Id:Reply-To;
+	bh=itjhecGpCikTA7dpGfNaSXg7eAyxUUlQBMvigTlb97k=;
+	b=fHqd48HjBTov/+ORYD0F1yxkLSXlu7JcNS+HeYvgngpp78UczV/swrwXMnSBXcsn
+	ZpocJNHdOcJepk9PPLo/xl+BkCf0242YbOp1zk0tR52eccGEVyS44J/A/RCSaEmq9fN
+	4ZqtNx/s+j96u+Ghlcc7+UlC+M4VRjM7Z5H2gBmo=
+Received: by mx.zohomail.com with SMTPS id 1751844821754603.230935627197;
+	Sun, 6 Jul 2025 16:33:41 -0700 (PDT)
+Received: by venus (Postfix, from userid 1000)
+	id 2C647180F14; Mon, 07 Jul 2025 01:33:36 +0200 (CEST)
+Date: Mon, 7 Jul 2025 01:33:36 +0200
+From: Sebastian Reichel <sebastian.reichel@collabora.com>
+To: Samuel Kayode <samuel.kayode@savoirfairelinux.com>
+Cc: Lee Jones <lee@kernel.org>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Liam Girdwood <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>, 
+	Dmitry Torokhov <dmitry.torokhov@gmail.com>, Frank Li <Frank.li@nxp.com>, imx@lists.linux.dev, 
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, linux-input@vger.kernel.org, 
+	linux-pm@vger.kernel.org, Abel Vesa <abelvesa@kernel.org>, Abel Vesa <abelvesa@linux.com>, 
+	Robin Gong <b38343@freescale.com>, Robin Gong <yibin.gong@nxp.com>, 
+	Enric Balletbo i Serra <eballetbo@gmail.com>
+Subject: Re: [PATCH v7 5/6] power: supply: pf1550: add battery charger support
+Message-ID: <i7qehdo46eegyj7ebp4hetr7jtwkxceoate6tqw6aukw4cbgsl@pl6lgh4k5m4o>
+References: <20250612-pf1550-v7-0-0e393b0f45d7@savoirfairelinux.com>
+ <20250612-pf1550-v7-5-0e393b0f45d7@savoirfairelinux.com>
+ <xgwx65axwiebh27hrq7rluuf7jynb7v4o77mf2zztsf64bx3bw@iagwzeumk2su>
+ <aFwFhYoaWoSXcFdR@fedora>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-From: "Rob Herring (Arm)" <robh@kernel.org>
-Cc: linux-mips@vger.kernel.org, 
- AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>, 
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
- linux-arm-kernel@lists.infradead.org, ansuelsmth@gmail.com, 
- Conor Dooley <conor+dt@kernel.org>, Stanislaw Gruszka <stf_xl@wp.pl>, 
- linux-mediatek@lists.infradead.org, 
- Johannes Berg <johannes@sipsolutions.net>, linux-wireless@vger.kernel.org, 
- Thomas Bogendoerfer <tsbogend@alpha.franken.de>, 
- Matthias Brugger <matthias.bgg@gmail.com>, 
- Krzysztof Kozlowski <krzk+dt@kernel.org>, yangshiji66@qq.com
-To: Rosen Penev <rosenp@gmail.com>
-In-Reply-To: <20250706214111.45687-6-rosenp@gmail.com>
-References: <20250706214111.45687-1-rosenp@gmail.com>
- <20250706214111.45687-6-rosenp@gmail.com>
-Message-Id: <175184098772.672740.2328928098872646704.robh@kernel.org>
-Subject: Re: [PATCH 5/6] dt-bindings: net: wireless: rt2800: add
+Content-Type: multipart/signed; micalg=pgp-sha512;
+	protocol="application/pgp-signature"; boundary="hkm4pffdfaovyioh"
+Content-Disposition: inline
+In-Reply-To: <aFwFhYoaWoSXcFdR@fedora>
+X-Zoho-Virus-Status: 1
+X-Zoho-Virus-Status: 1
+X-Zoho-AV-Stamp: zmail-av-1.4.3/251.827.75
+X-ZohoMailClient: External
 
 
-On Sun, 06 Jul 2025 14:41:10 -0700, Rosen Penev wrote:
-> Add device-tree bindings for the RT2800 SOC wifi device found in older
-> Ralink/Mediatek devices.
-> 
-> Signed-off-by: Rosen Penev <rosenp@gmail.com>
-> ---
->  .../bindings/net/wireless/ralink,rt2800.yaml  | 49 +++++++++++++++++++
->  1 file changed, 49 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/net/wireless/ralink,rt2800.yaml
-> 
+--hkm4pffdfaovyioh
+Content-Type: text/plain; protected-headers=v1; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
+Subject: Re: [PATCH v7 5/6] power: supply: pf1550: add battery charger support
+MIME-Version: 1.0
 
-My bot found errors running 'make dt_binding_check' on your patch:
+Hello Samuel,
 
-yamllint warnings/errors:
-./Documentation/devicetree/bindings/net/wireless/ralink,rt2800.yaml:43:5: [warning] wrong indentation: expected 2 but found 4 (indentation)
+On Wed, Jun 25, 2025 at 10:19:49AM -0400, Samuel Kayode wrote:
+> The pf1550 charger receives a VBUS power input which can be provided eith=
+er by
+> an AC adapter or a USB bus. A depleted battery is charged using the VBUS =
+power
+> input (VBUSIN). When no power is supplied to VBUSIN, the pf1550 switches =
+the
+> load to the connected non-depleted battery.
+>=20
+> I could have two power_supply_desc, one for battery and one for the exter=
+nal
+> power?
 
-dtschema/dtc warnings/errors:
-/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/net/wireless/ralink,rt2800.yaml: ignoring, error in schema: examples
-/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/net/wireless/ralink,rt2800.yaml: examples: 'wifi@110180000 { compatible = "ralink,rt2880-wifi"; reg = <0x10180000 0x40000>; clocks = <&sysc 16>; interrupt-parent = <&cpuintc>; interrupts = <6>; };' is not of type 'array'
-	from schema $id: http://json-schema.org/draft-07/schema#
-/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/net/wireless/ralink,rt2800.yaml: examples: 'wifi@110180000 { compatible = "ralink,rt2880-wifi"; reg = <0x10180000 0x40000>; clocks = <&sysc 16>; interrupt-parent = <&cpuintc>; interrupts = <6>; };' is not of type 'array'
-	from schema $id: http://devicetree.org/meta-schemas/base.yaml#
-/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/net/wireless/ralink,rt2800.yaml: properties:interrupt-parent: False schema does not allow {'maxItems': 1}
-	from schema $id: http://devicetree.org/meta-schemas/interrupts.yaml#
-Error: Documentation/devicetree/bindings/net/wireless/ralink,rt2800.example.dts:19.5-6 syntax error
-FATAL ERROR: Unable to parse input tree
-make[2]: *** [scripts/Makefile.dtbs:131: Documentation/devicetree/bindings/net/wireless/ralink,rt2800.example.dtb] Error 1
-make[2]: *** Waiting for unfinished jobs....
-make[1]: *** [/builds/robherring/dt-review-ci/linux/Makefile:1525: dt_binding_check] Error 2
-make: *** [Makefile:248: __sub-make] Error 2
+That's acceptable. But don't you have a fuel-gauge for the battery?
+If you register two POWER_SUPPLY_TYPE_BATTERY devices, then your
+board should have two batteries. If you have a fuel-gauge it will
+very likely provide much better battery data then anything you get
+out of pf1550.
 
-doc reference errors (make refcheckdocs):
+Greetings,
 
-See https://patchwork.ozlabs.org/project/devicetree-bindings/patch/20250706214111.45687-6-rosenp@gmail.com
+-- Sebastian
 
-The base for the series is generally the latest rc1. A different dependency
-should be noted in *this* patch.
+--hkm4pffdfaovyioh
+Content-Type: application/pgp-signature; name="signature.asc"
 
-If you already ran 'make dt_binding_check' and didn't see the above
-error(s), then make sure 'yamllint' is installed and dt-schema is up to
-date:
+-----BEGIN PGP SIGNATURE-----
 
-pip3 install dtschema --upgrade
+iQIzBAABCgAdFiEE72YNB0Y/i3JqeVQT2O7X88g7+poFAmhrB88ACgkQ2O7X88g7
++po93Q/6A6bYXRf5lstEnL9kwKOfTphsoJCMbORUtvQ+oD/fFxd9tJ2CL8+hZ9GZ
+++4xcLZp7Qc6HnLXF3OjnZBjCsCVUd/uUyfH6fU6ZqrXqLTJC2hFHHsuIvJUw3zZ
+GQY06j7LYRgvXuM2orQoxqtyi1x/GnajlmYzeUzT5NvvWWyXPE+rOPea7DeLghvM
+VVtlcnRIFQO2K/ZS6U0reUFDlzzjX+BfiyRDciBRIj9Xb8L5vwEiUdKXe3edZXyR
+xZ9/shpsmELBMo2QNjKN3dT9ReGqX+z/MxubOhR5CdK54nYsxl5fSanVIvNZ9AF3
+0sMvhYm1Iop4JZ6pCJhCLd2GCrAsys1LQ0f/6ppYU+zH4DHYO1+gb/g/UN7uFdvy
+aGl1q3E2XBQXUdVPsoHCuPId77Om7+opGaxk+vEtCw0H1a/1cmLvkfvkShy+XqKP
+nb73pvL9o2zECr6zeb+M2Ff+/1zv+R2p2HVfv51CHYC/LHvZcs+2UVQ+ZlqOEB+X
+Vr/9khKhm2E/WOPoINRAWbu17bvy5TCfyAej6hJbAB/TGkNv1FjYBmxmLgb1BwDT
+NN9dJVyBoDh5hqn9qAvs/cP40RWuP/dABj6GZ6AHYWaJMHOb4eC7zavrvWSBemWn
+Sow9U1YcnEF2WcTpp6WtK0PO8T83Gae4fY1iRlWLjN2tkqYffUE=
+=hZ0x
+-----END PGP SIGNATURE-----
 
-Please check and re-submit after running the above command yourself. Note
-that DT_SCHEMA_FILES can be set to your schema file to speed up checking
-your schema. However, it must be unset to test all examples with your schema.
-
+--hkm4pffdfaovyioh--
 
