@@ -1,273 +1,119 @@
-Return-Path: <devicetree+bounces-193403-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-193407-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 16D04AFA742
-	for <lists+devicetree@lfdr.de>; Sun,  6 Jul 2025 20:37:28 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 28A6BAFA74A
+	for <lists+devicetree@lfdr.de>; Sun,  6 Jul 2025 20:47:20 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 4F03E17BEF5
-	for <lists+devicetree@lfdr.de>; Sun,  6 Jul 2025 18:37:26 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 7402C3B3639
+	for <lists+devicetree@lfdr.de>; Sun,  6 Jul 2025 18:46:53 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 535B9288C9D;
-	Sun,  6 Jul 2025 18:37:08 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 85ED129E108;
+	Sun,  6 Jul 2025 18:47:10 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=netcube.li header.i=@netcube.li header.b="VJ9KQ/RF"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="jd91LstO"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail.netcube.li (mail.netcube.li [173.249.15.149])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1D2A617DFE7;
-	Sun,  6 Jul 2025 18:37:04 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=173.249.15.149
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 501DA19D8A3;
+	Sun,  6 Jul 2025 18:47:10 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1751827028; cv=none; b=l6hHv2ODAFeOlf8TtLE7Cku3pBuGGRVsasJrmZnSBWHiU8UhlYNsoswwDVhNO/uTd2OlooLXbKrAFtwwoXOHhTiPbGj4S31DhM55viKmJsnWB7UYmgaxw1tx32riuoh3SxAIqzFQKkp/KaZFKM+O80E5V36d3P8pSscgOgGmsKM=
+	t=1751827630; cv=none; b=HkK/ErFvlar/O1Mg6marJSyiLETywBc8f41ur9WjpsyS7uEjiPbL1NKifBbxjo2yMd9I9ckxG1NWNH+AH2P/AoHHf4CfwgAbEbdB/m4YSuihPld3pGqKtVQluWFtjiBJ6ypLWKFYhqsu7ie+N+jrq2I31IbWPKrOPR3znBku4lw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1751827028; c=relaxed/simple;
-	bh=PibW8PHrq2hbYJuyfn/hYxa3wRLa7XPMj6/Fkq896fE=;
-	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
-	 MIME-Version; b=t203ttknQFQ3Jw0qy3suUqWirG8E5beLY0wKzTqwCUd3mk93A1iZO//SKtYGNQcLC6YGz+WiuBlt82Qrk6cYkoEJ26ugxu9ccXFXykMCOu7u8ZwkAdmOQFCl0+6WDAkawVl/7ivHQ42YxH25nUhCpyyJCWDnnfuZ+5TKUEL1BVY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=netcube.li; spf=pass smtp.mailfrom=netcube.li; dkim=pass (1024-bit key) header.d=netcube.li header.i=@netcube.li header.b=VJ9KQ/RF; arc=none smtp.client-ip=173.249.15.149
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=netcube.li
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=netcube.li
-dkim-signature: v=1; a=rsa-sha256; d=netcube.li; s=s1;
-	c=relaxed/relaxed; q=dns/txt; h=From:Subject:Date:Message-ID:To:CC:MIME-Version:Content-Transfer-Encoding:In-Reply-To:References;
-	bh=Lb0D6uIH1pT+2b6K0Fe8p7uYcbSYVmUMEHxTXCcBaKw=;
-	b=VJ9KQ/RF58iqfKh4NEupuV1j2CcWxq9PbwDHY9aZlVsNVzfrWwEDH/6PHUI92UXymCEelOpIhi0/OfP0Z4oKmQPmen3eQjCiB0VR38DbaOC9U9vKb15Lh3UUd73BUDXto3NDjcMxCQhuPLTbebCaMkyTGnVJV7pPnT/0caFGH70=
-Received: from lukas-hpz440workstation.lan.sk100508.local (cm70-231.liwest.at [212.241.70.231])
-	by mail.netcube.li with ESMTPA
-	; Sun, 6 Jul 2025 20:36:34 +0200
-From: Lukas Schmid <lukas.schmid@netcube.li>
-To: Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Chen-Yu Tsai <wens@csie.org>,
-	Jernej Skrabec <jernej.skrabec@gmail.com>,
-	Samuel Holland <samuel@sholland.org>,
-	Paul Walmsley <paul.walmsley@sifive.com>,
-	Palmer Dabbelt <palmer@dabbelt.com>,
-	Albert Ou <aou@eecs.berkeley.edu>,
-	Alexandre Ghiti <alex@ghiti.fr>,
-	Maxime Ripard <mripard@kernel.org>
-Cc: Lukas Schmid <lukas.schmid@netcube.li>,
-	devicetree@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	linux-sunxi@lists.linux.dev,
-	linux-kernel@vger.kernel.org,
-	linux-riscv@lists.infradead.org
-Subject: [PATCH v2 5/5] ARM: dts: sunxi: add support for NetCube Systems Nagami Keypad Carrier
-Date: Sun,  6 Jul 2025 20:35:58 +0200
-Message-Id: <20250706183601.157523-6-lukas.schmid@netcube.li>
-X-Mailer: git-send-email 2.39.5
-In-Reply-To: <20250706183601.157523-1-lukas.schmid@netcube.li>
-References: <20250706183601.157523-1-lukas.schmid@netcube.li>
+	s=arc-20240116; t=1751827630; c=relaxed/simple;
+	bh=F01Zl2KLwJZEJs0qPrL6t3cMCxuqK7s2DTQP4dCVqcU=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=m0/6BBH94AaroNfkFKDEvcAoGLvcjxKuodKpjh5HWIwuaqYIOmfZ4cBp/u25pbY7rBdadnLMsi+qso2IOVXi1eiaf2WONBh7OX2BuJaKs4JQtp5KO7g7znrhiujQF//i96JEStm5rlWrr3Nm7uAskXXbhospSpdh02DQH7ji61s=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=jd91LstO; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPS id CEEC3C4CEED;
+	Sun,  6 Jul 2025 18:47:09 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1751827629;
+	bh=F01Zl2KLwJZEJs0qPrL6t3cMCxuqK7s2DTQP4dCVqcU=;
+	h=From:Subject:Date:To:Cc:Reply-To:From;
+	b=jd91LstO7qvQFfLNUb8fxwQNFAdN2QkEKBC9UGL8cITx4f/bd0BT4Xz27XK8MjQg2
+	 F/v6f3rQUVC7A1ewmzDgwgRVZ5oAieBG88Plesn+NNbsMTbtWzV4FfJDftanFKfYJq
+	 7yVyHS/MwEaFn2QacHuGTJn/OkAYXTyNiHD+d2mVkJLHjgKqZxicSpkv32z3XrOABf
+	 //qaVsKyyNAqGE9rdmPflSVlXeGFyWJAloP3Z0Bje0vFNS8dvkcT1Z3Lnsgz2wvV2l
+	 Yp+8rSw8NHJMX6Aj3FGXA5wXXzBW5QKSL7CO1h3/pIyqnKML4NHxdNwFJfKWmuilaC
+	 P3tFqL0saATCw==
+Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
+	by smtp.lore.kernel.org (Postfix) with ESMTP id B117FC83F09;
+	Sun,  6 Jul 2025 18:47:09 +0000 (UTC)
+From: Frank Li via B4 Relay <devnull+Frank.Li.nxp.com@kernel.org>
+Subject: [PATCH 00/11] ARM: dts: nxp: clean lpc18xx DTB check warning
+Date: Sun, 06 Jul 2025 14:46:56 -0400
+Message-Id: <20250706-lpc18xxx_dts-v1-0-7ae8cdfe8d7d@nxp.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIAKDEamgC/6tWKk4tykwtVrJSqFYqSi3LLM7MzwNyDHUUlJIzE
+ vPSU3UzU4B8JSMDI1MDcwMz3ZyCZEOLioqK+JSSYt0kI0NjcyNDs1SzZAMloJaCotS0zAqwcdG
+ xtbUAqorP3V4AAAA=
+X-Change-ID: 20250706-lpc18xxx_dts-b2137216e6c0
+To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, Vladimir Zapolskiy <vz@mleia.com>
+Cc: devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
+ linux-kernel@vger.kernel.org, imx@lists.linux.dev, vz@mleia.com, 
+ Frank Li <Frank.Li@nxp.com>
+X-Mailer: b4 0.14.2
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1751827628; l=1879;
+ i=Frank.Li@nxp.com; s=20240130; h=from:subject:message-id;
+ bh=F01Zl2KLwJZEJs0qPrL6t3cMCxuqK7s2DTQP4dCVqcU=;
+ b=Y44sZ3YsNp/IVrlrnvKtROO939BSVTW6WmqJDHFZ8OzLPEspu1u3iBWJ8qukYTqtKbLiW+fNR
+ 6+5hPmY9vrpDnEJLlArm74FP/V1e9PqGTeDkmqGWIPjxgFh5t5hSHCt
+X-Developer-Key: i=Frank.Li@nxp.com; a=ed25519;
+ pk=I0L1sDUfPxpAkRvPKy7MdauTuSENRq+DnA+G4qcS94Q=
+X-Endpoint-Received: by B4 Relay for Frank.Li@nxp.com/20240130 with
+ auth_id=121
+X-Original-From: Frank Li <Frank.Li@nxp.com>
+Reply-To: Frank.Li@nxp.com
 
-The NetCube Systems Nagami Keypad Carrier uses the Nagami SoM and contains
-a MCP23008 for connecting to a 4x3 matrix keypad and internal status led.
-The I2C2 interface is connected to said MCP23008 and also a header for an
-PN532 NFC-Module. It also provides a pin-header for a bi-color status led.
-Ethernet with PoE support is available on a screwterminal after magnetics.
+There are 3 dt-binding patch wait for pick.
+[1] https://lore.kernel.org/imx/20250617-hound-of-improbable-intensity-e7c3c9@kuoka/
+[2] https://lore.kernel.org/imx/174916907717.3619367.3745642154654809311.robh@kernel.org/
+[3] https://lore.kernel.org/imx/175087864578.2055525.4510390315154712025.robh@kernel.org/
 
-Signed-off-by: Lukas Schmid <lukas.schmid@netcube.li>
+lpc18xx related DTB warnings reduce to 0.
+
+Signed-off-by: Frank Li <Frank.Li@nxp.com>
 ---
- arch/arm/boot/dts/allwinner/Makefile          |   1 +
- ...8i-t113s-netcube-nagami-keypad-carrier.dts | 165 ++++++++++++++++++
- 2 files changed, 166 insertions(+)
- create mode 100644 arch/arm/boot/dts/allwinner/sun8i-t113s-netcube-nagami-keypad-carrier.dts
+Frank Li (11):
+      ARM: dts: lpc18xx: rename node name flash-controller to spi
+      ARM: dts: lpc18xx: rename node name mmcsd to mmc
+      ARM: dts: lpc4350-hitex-eval: change node name flash to flash@0
+      ARM: dts: lpc18xx: swap clock-names bic and cui
+      ARM: dts: lpc: add #address-cells and #size-cells for sram node
+      ARM: dts: lpc: add cfg surfix in pinctrl child node
+      ARM: dts: lpc4357-myd-lpc4357: add power-supply for innolux,at070tn92
+      ARM: dts: lpc: change node name 'button[0-9]' to button-[0-9]'
+      ARM: dts: lpc4357-myd-lpc4357: change node name mdio0 to mdio
+      ARM: dts: lpc18xx: add #address-cell and #szie-cell for spi flash controller
+      ARM: dts: lpc18xx: add missed arm,num-irq-priority-bits
 
-diff --git a/arch/arm/boot/dts/allwinner/Makefile b/arch/arm/boot/dts/allwinner/Makefile
-index af287bb32..a2137bbe2 100644
---- a/arch/arm/boot/dts/allwinner/Makefile
-+++ b/arch/arm/boot/dts/allwinner/Makefile
-@@ -259,6 +259,7 @@ dtb-$(CONFIG_MACH_SUN8I) += \
- 	sun8i-s3-pinecube.dtb \
- 	sun8i-t113s-mangopi-mq-r-t113.dtb \
- 	sun8i-t113s-netcube-nagami-basic-carrier.dtb \
-+	sun8i-t113s-netcube-nagami-keypad-carrier.dtb \
- 	sun8i-t3-cqa3t-bv3.dtb \
- 	sun8i-v3-sl631-imx179.dtb \
- 	sun8i-v3s-anbernic-rg-nano.dtb \
-diff --git a/arch/arm/boot/dts/allwinner/sun8i-t113s-netcube-nagami-keypad-carrier.dts b/arch/arm/boot/dts/allwinner/sun8i-t113s-netcube-nagami-keypad-carrier.dts
-new file mode 100644
-index 000000000..7abecc355
---- /dev/null
-+++ b/arch/arm/boot/dts/allwinner/sun8i-t113s-netcube-nagami-keypad-carrier.dts
-@@ -0,0 +1,165 @@
-+// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
-+/*
-+ * Copyright (C) 2025 Lukas Schmid <lukas.schmid@netcube.li>
-+ */
-+
-+/dts-v1/;
-+#include "sun8i-t113s-netcube-nagami.dtsi"
-+
-+#include <dt-bindings/input/input.h>
-+#include <dt-bindings/leds/common.h>
-+
-+/ {
-+	model = "NetCube Systems Nagami Keypad Carrier Board";
-+	compatible = "netcube,nagami-keypad-carrier", "netcube,nagami",
-+				 "allwinner,sun8i-t113s";
-+
-+	keypad: keypad {
-+		compatible = "gpio-matrix-keypad";
-+		debounce-delay-ms = <5>;
-+		col-scan-delay-us = <2>;
-+
-+		row-gpios = <&mcp23008 0 0
-+					 &mcp23008 1 0
-+					 &mcp23008 2 0
-+					 &mcp23008 3 0>;
-+
-+		col-gpios = <&mcp23008 6 0
-+					 &mcp23008 5 0
-+					 &mcp23008 4 0>;
-+
-+		linux,keymap = <0x00000201
-+						0x00010202
-+						0x00020203
-+						0x01000204
-+						0x01010205
-+						0x01020206
-+						0x02000207
-+						0x02010208
-+						0x02020209
-+						0x0300020A
-+						0x03010200
-+						0x0302020D>;
-+	};
-+
-+	leds {
-+		compatible = "gpio-leds";
-+
-+		led-heartbeat {
-+			gpios = <&mcp23008 7 GPIO_ACTIVE_HIGH>;
-+			linux,default-trigger = "heartbeat";
-+			color = <LED_COLOR_ID_YELLOW>;
-+			function = LED_FUNCTION_HEARTBEAT;
-+		};
-+
-+		led_status_red: led-status-red {
-+			gpios = <&pio 3 16 GPIO_ACTIVE_HIGH>;  /* PD16 */
-+			color = <LED_COLOR_ID_RED>;
-+			function = LED_FUNCTION_STATUS;
-+		};
-+
-+		led_status_green: led-status-green {
-+			gpios = <&pio 3 22 GPIO_ACTIVE_HIGH>;  /* PD22 */
-+			color = <LED_COLOR_ID_GREEN>;
-+			function = LED_FUNCTION_STATUS;
-+		};
-+	};
-+
-+	status-led {
-+		compatible = "leds-group-multicolor";
-+		color = <LED_COLOR_ID_MULTI>;
-+		function = LED_FUNCTION_STATUS;
-+		leds = <&led_status_red &led_status_green>;
-+	};
-+};
-+
-+&ehci0 {
-+	status = "okay";
-+};
-+
-+&i2c2 {
-+	status = "okay";
-+
-+	mcp23008: gpio@20 {
-+		compatible = "microchip,mcp23008";
-+		gpio-controller;
-+		#gpio-cells = <2>;
-+		reg = <0x20>;
-+		interrupts-extended = <&pio 5 6 IRQ_TYPE_LEVEL_LOW>;  /* PF6 */
-+		interrupt-names = "mcp23008@20 irq";
-+		interrupt-controller;
-+		#interrupt-cells = <2>;
-+	};
-+};
-+
-+&ohci0 {
-+	status = "okay";
-+};
-+
-+&pio {
-+	gpio-line-names = "", "", "", "", // PA
-+					  "", "", "", "",
-+					  "", "", "", "",
-+					  "", "", "", "",
-+					  "", "", "", "",
-+					  "", "", "", "",
-+					  "", "", "", "",
-+					  "", "", "", "",
-+					  "", "", "", "", // PB
-+					  "", "", "UART3_TX", "UART3_RX",
-+					  "", "", "", "",
-+					  "", "", "", "",
-+					  "", "", "", "",
-+					  "", "", "", "",
-+					  "", "", "", "",
-+					  "", "", "", "",
-+					  "", "", "eMMC_CLK", "eMMC_CMD", // PC
-+					  "eMMC_D2", "eMMC_D1", "eMMC_D0", "eMMC_D3",
-+					  "", "", "", "",
-+					  "", "", "", "",
-+					  "", "", "", "",
-+					  "", "", "", "",
-+					  "", "", "", "",
-+					  "", "", "", "",
-+					  "", "", "", "", // PD
-+					  "", "", "", "",
-+					  "", "", "", "",
-+					  "", "", "", "",
-+					  "LED_STATUS_RED", "", "", "",
-+					  "I2C2_SCL", "I2C2_SDA", "LED_STATUS_GREEN", "",
-+					  "", "", "", "",
-+					  "", "", "", "",
-+					  "ETH_CRSDV", "ETH_RXD0", "ETH_RXD1", "ETH_TXCK", // PE
-+					  "ETH_TXD0", "ETH_TXD1", "ETH_TXEN", "",
-+					  "ETH_MDC", "ETH_MDIO", "QWIIC_nINT", "",
-+					  "", "", "", "",
-+					  "", "", "", "",
-+					  "", "", "", "",
-+					  "", "", "", "",
-+					  "", "", "", "",
-+					  "", "", "", "", // PF
-+					  "", "", "KEY_nINT", "",
-+					  "", "", "", "",
-+					  "", "", "", "",
-+					  "", "", "", "",
-+					  "", "", "", "",
-+					  "", "", "", "",
-+					  "", "", "", "",
-+					  "ESP_CLK", "ESP_CMD", "ESP_D0", "ESP_D1", // PG
-+					  "ESP_D2", "ESP_D3", "UART1_TXD", "UART1_RXD",
-+					  "ESP_nBOOT", "ESP_nRST", "I2C3_SCL", "I2C3_SDA",
-+					  "", "", "", "",
-+					  "", "", "", "",
-+					  "", "", "", "",
-+					  "", "", "", "",
-+					  "", "", "", "";
-+};
-+
-+&usb_otg {
-+	dr_mode = "device";
-+	status = "okay";
-+};
-+
-+&usbphy {
-+	status = "okay";
-+};
--- 
-2.39.5
+ arch/arm/boot/dts/nxp/lpc/lpc18xx.dtsi             | 14 ++++++++++----
+ arch/arm/boot/dts/nxp/lpc/lpc4337-ciaa.dts         |  6 +++---
+ arch/arm/boot/dts/nxp/lpc/lpc4350-hitex-eval.dts   | 22 +++++++++++++---------
+ arch/arm/boot/dts/nxp/lpc/lpc4350.dtsi             |  9 +++++++++
+ .../arm/boot/dts/nxp/lpc/lpc4357-ea4357-devkit.dts | 21 +++++++++++----------
+ arch/arm/boot/dts/nxp/lpc/lpc4357-myd-lpc4357.dts  |  6 ++++--
+ arch/arm/boot/dts/nxp/lpc/lpc4357.dtsi             |  9 +++++++++
+ 7 files changed, 59 insertions(+), 28 deletions(-)
+---
+base-commit: bb0fde92b56b76f7a0c90a6e9d9f050919fa835e
+change-id: 20250706-lpc18xxx_dts-b2137216e6c0
+
+Best regards,
+--
+Frank Li <Frank.Li@nxp.com>
 
 
 
