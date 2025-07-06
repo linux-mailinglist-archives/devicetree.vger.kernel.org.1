@@ -1,179 +1,105 @@
-Return-Path: <devicetree+bounces-193319-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-193320-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id C5A08AFA438
-	for <lists+devicetree@lfdr.de>; Sun,  6 Jul 2025 11:59:14 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id CB2ACAFA444
+	for <lists+devicetree@lfdr.de>; Sun,  6 Jul 2025 12:04:30 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 31D1217D6CA
-	for <lists+devicetree@lfdr.de>; Sun,  6 Jul 2025 09:59:15 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 816FC189CF76
+	for <lists+devicetree@lfdr.de>; Sun,  6 Jul 2025 10:04:47 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 71E2E2045AD;
-	Sun,  6 Jul 2025 09:58:35 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 021391D5AC6;
+	Sun,  6 Jul 2025 10:04:26 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=netcube.li header.i=@netcube.li header.b="ZCYWZFzg"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="BFpAC89f"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail.netcube.li (mail.netcube.li [173.249.15.149])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4380A202F67;
-	Sun,  6 Jul 2025 09:58:32 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=173.249.15.149
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C5CCC19CC27;
+	Sun,  6 Jul 2025 10:04:25 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1751795915; cv=none; b=PD4c32WV/rXamQ4QU4XoBvnWzcQQ9jqrE9woNk1gSOx2V92fV2xgadliZdXbjNMW/TDaiSg5+H5PUqZC+6pzM2nPIbQEsKmJEnY61YJWUaj1QHoMFT4cf9SIsqpqrjECkcReBiURtirGf7CqZ82surCxH8h1F1hwPfLfsVR9izI=
+	t=1751796265; cv=none; b=eZjKkDY3M45+9rFNXV8afFBAofKEJmKhoQHH39JdDH7mbXNhcg02im78lGotc+qquMHeiETTY2YaPeUxWG5V8S6zFdHSExSYjRaDC8sTBbVnaD3tkxo65o/pgo4B9LOwbVkeyBfNHI3E0e7ImppeF54L/vJvYVairyYDqNbG3bA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1751795915; c=relaxed/simple;
-	bh=C6qblwhf7Ipn1ASAc76zndedi6aR8+qsdrNjj1sEqWk=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=ZJV8PHPMhrnvrrL6gU50HjIgpkxtCp6A/ffd+/fVBKlwPW+ul824nY3hOT71daUx9TE3a0r/PuMGM9bHojU/S07UeWl1JsrWC7CmtMnNHqIEQDK+NIJrjz/N5tI6ynTAgHZbc/EnszWqijbFTnZllziJuPddM9Iu5dbFHQID2fc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=netcube.li; spf=pass smtp.mailfrom=netcube.li; dkim=pass (1024-bit key) header.d=netcube.li header.i=@netcube.li header.b=ZCYWZFzg; arc=none smtp.client-ip=173.249.15.149
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=netcube.li
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=netcube.li
-dkim-signature: v=1; a=rsa-sha256; d=netcube.li; s=s1;
-	c=relaxed/relaxed; q=dns/txt; h=From:Subject:Date:Message-ID:To:CC:MIME-Version:Content-Type:In-Reply-To:References;
-	bh=7IFUgnPQyuVFa8Jj8ChajhgVnk7mfJFWlHVz17ozesI=;
-	b=ZCYWZFzg4P9WrTsU5d6CCna4Qga4Q/aWUCSIGZfBh+srCwNdj3w3iLVSFj478A/b5BDM7qoD+wsnt06xKUKPe1UqykDHEIDUpUno2Z7hXPAO5oX2zjP1t9FJuObAGEIEFZ52iLRYxY7WTkag5WRFMS+RXWRNl3Cztg/zmMffkuI=
-Received: from lukas-hpz440workstation.localnet (cm70-231.liwest.at [212.241.70.231])
-	by mail.netcube.li with ESMTPSA
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256)
-	; Sun, 6 Jul 2025 11:58:17 +0200
-From: Lukas Schmid <lukas.schmid@netcube.li>
-To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, Chen-Yu Tsai <wens@csie.org>,
- Jernej Skrabec <jernej.skrabec@gmail.com>,
- Samuel Holland <samuel@sholland.org>,
- Paul Walmsley <paul.walmsley@sifive.com>,
- Palmer Dabbelt <palmer@dabbelt.com>, Albert Ou <aou@eecs.berkeley.edu>,
- Alexandre Ghiti <alex@ghiti.fr>, Maxime Ripard <mripard@kernel.org>,
- Krzysztof Kozlowski <krzk@kernel.org>
-Cc: devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- linux-sunxi@lists.linux.dev, linux-kernel@vger.kernel.org,
- linux-riscv@lists.infradead.org
-Subject:
- Re: [PATCH v1 3/7] dt-bindings: arm: sunxi: Add NetCube Systems Nagami Keypad
- Carrier Board
-Date: Sun, 06 Jul 2025 11:58:16 +0200
-Message-ID: <8549188.T7Z3S40VBb@lukas-hpz440workstation>
-In-Reply-To: <4648f0bf-2957-45bf-a6c1-01787e5d3e88@kernel.org>
-References:
- <20250705213900.3614963-1-lukas.schmid@netcube.li>
- <2998364.e9J7NaK4W3@lukas-hpz440workstation>
- <4648f0bf-2957-45bf-a6c1-01787e5d3e88@kernel.org>
+	s=arc-20240116; t=1751796265; c=relaxed/simple;
+	bh=sfZPxovac7wExNUkxvV6YrqzR6NA/S1RS721Zk3YH+4=;
+	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=Oqe4sZu8Jj7+ekqMvs6z3pVgfOuEgT/1pwCGPJJENsWqwoxQ75a6nkcrGXRJmHOaNufv6khdp/srzaFfTElWWjFsY9ICVceg4dVzxoSZPCz1pRrCEUqQUUcSRV72OAK39Q3DuaJY75GMqzTiI6oOC1yikVBnF7hi+4Evjw4VUBk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=BFpAC89f; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 0B482C4CEED;
+	Sun,  6 Jul 2025 10:04:20 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1751796265;
+	bh=sfZPxovac7wExNUkxvV6YrqzR6NA/S1RS721Zk3YH+4=;
+	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
+	b=BFpAC89fLI9LG8L6sxsNAqnH1e2grHdj/j36sOZ8uyzB1LFOzxuvRFj576BROHVHD
+	 frWJXMGayWJhFH8fXn1Cl2hrAWdCMO6QWpLWJOAAyGhXbaQBotefB8BCu7LUwv3ewW
+	 MHw2W1b3pzxV3ugoeZNyhYQUIUAqOQObdYszXQG4T9yOgupw71rX4Jdd+rbMYoY1LT
+	 ykbIbh6mq5o00qZ6TiZggaPbsV/Src65UmMLwrziHQrvfcCVu5bsGfE53nM4QdbY5/
+	 goXIUEVr7BjUcpSEHYtwGDb4vNKp6oYav6l0CksRNa+eusbi9J3tORk7pG9JgE0ShZ
+	 PTqiLEzSL+xCQ==
+Date: Sun, 6 Jul 2025 11:04:17 +0100
+From: Jonathan Cameron <jic23@kernel.org>
+To: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
+Cc: David Lechner <dlechner@baylibre.com>, Michael Hennerich
+ <Michael.Hennerich@analog.com>, Nuno =?UTF-8?B?U8Oh?= <nuno.sa@analog.com>,
+ Andy Shevchenko <andy@kernel.org>, Rob Herring <robh@kernel.org>, Krzysztof
+ Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, Mark
+ Brown <broonie@kernel.org>, linux-iio@vger.kernel.org,
+ linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-spi@vger.kernel.org
+Subject: Re: [PATCH v3 00/12] iio: adc: ad7173: add SPI offload support
+Message-ID: <20250706110417.5182f679@jic23-huawei>
+In-Reply-To: <aGToIInJLMHmB4ay@smile.fi.intel.com>
+References: <20250701-iio-adc-ad7173-add-spi-offload-support-v3-0-42abb83e3dac@baylibre.com>
+	<aGToIInJLMHmB4ay@smile.fi.intel.com>
+X-Mailer: Claws Mail 4.3.1 (GTK 3.24.49; x86_64-pc-linux-gnu)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; boundary="nextPart10685525.nUPlyArG6x";
- micalg="pgp-sha512"; protocol="application/pgp-signature"
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: 7bit
 
---nextPart10685525.nUPlyArG6x
-Content-Transfer-Encoding: 7Bit
-Content-Type: text/plain; charset="us-ascii"; protected-headers="v1"
-From: Lukas Schmid <lukas.schmid@netcube.li>
-Date: Sun, 06 Jul 2025 11:58:16 +0200
-Message-ID: <8549188.T7Z3S40VBb@lukas-hpz440workstation>
-In-Reply-To: <4648f0bf-2957-45bf-a6c1-01787e5d3e88@kernel.org>
-MIME-Version: 1.0
+On Wed, 2 Jul 2025 11:04:48 +0300
+Andy Shevchenko <andriy.shevchenko@linux.intel.com> wrote:
 
-On Sonntag, 6. Juli 2025 11:46:46 CEST Krzysztof Kozlowski wrote:
-> On 06/07/2025 11:41, Lukas Schmid wrote:
-> > On Sonntag, 6. Juli 2025 11:36:34 CEST Krzysztof Kozlowski wrote:
-> >> On 06/07/2025 11:07, Lukas Schmid wrote:
-> >>> On Sonntag, 6. Juli 2025 09:49:58 CEST Krzysztof Kozlowski wrote:
-> >>>> On 05/07/2025 23:38, Lukas Schmid wrote:
-> >>>>> The NetCube Systems Nagami Keypad Carrier is a custom board intended
-> >>>>> to
-> >>>>> fit a standard Ritto Intercom enclosure and provides a Keypad,
-> >>>>> NFC-Reader
-> >>>>> and Status-LED all controllable over Ethernet with PoE support.
-> >>>>> 
-> >>>>> Signed-off-by: Lukas Schmid <lukas.schmid@netcube.li>
-> >>>>> ---
-> >>>>> 
-> >>>>>  Documentation/devicetree/bindings/arm/sunxi.yaml | 6 ++++++
-> >>>>>  1 file changed, 6 insertions(+)
-> >>>>> 
-> >>>>> diff --git a/Documentation/devicetree/bindings/arm/sunxi.yaml
-> >>>>> b/Documentation/devicetree/bindings/arm/sunxi.yaml index
-> >>>>> 7919b5bf5..a2f16d064 100644
-> >>>>> --- a/Documentation/devicetree/bindings/arm/sunxi.yaml
-> >>>>> +++ b/Documentation/devicetree/bindings/arm/sunxi.yaml
-> >>>>> 
-> >>>>> @@ -610,6 +610,12 @@ properties:
-> >>>>>            - const: netcube,nagami
-> >>>>>            - const: allwinner,sun8i-t113s
-> >>>>> 
-> >>>>> +      - description: NetCube Systems Nagami Keypad Carrier Board
-> >>>>> +        items:
-> >>>>> +          - const: netcube,nagami-keypad-carrier
-> >>>> 
-> >>>> That's just enum with previous entry. Don't make it over-complicated.
-> >>>> 
-> >>>> Best regards,
-> >>>> Krzysztof
-> >>> 
-> >>> Just making sure here. The actual bindings are fine, but I should merge
-> >>> them into one patch, correct?
-> >> 
-> >> No, you got two comments what should be changed in the binding.
-> >> 
-> >> Best regards,
-> >> Krzysztof
+> On Tue, Jul 01, 2025 at 04:37:48PM -0500, David Lechner wrote:
+> > Here comes another series for adding SPI offload support to an ADC.
 > > 
-> > So if I understand correctly you want me to remove the
-> > "allwinner,sun8i-t113s" from the carrier boards and keep it for the SoM?
+> > The primary target is AD411x, but since this uses the ad_sigma_delta
+> > shared module, a lot of this series is focused on that.
+> > 
+> > To start with, we have some cleanups to the ad_sigma_delta code, so feel
+> > free to pick these up as they are ready as they generally stand on their
+> > own.
+> > 
+> > Then before adding proper SPI offload support, we make use of
+> > spi_optimize_message() to reduce CPU usage of all users of this driver
+> > during buffered reads.
+> > 
+> > Also there is a new dt-binding and driver for a special SPI offload
+> > trigger FPGA IP core that is used in this particular setup.
+> > 
+> > Then finally actual SPI offload support is added to the ad_sigma_delta
+> > module and the ad7173 driver.
+> > 
+> > This was tested using EVAL-AD4112ARDZ on a DE10-Nano.  
 > 
-> No, I spoke nothing about that compatible. My comment is EXACTLY under
-> the line being incorrect. That entry should have been made enum with
-> previous board compatible. Look at other vendors, because this file
-> repeats that pattern for some reason, eh...
+> This version LGTM,
+> Reviewed-by: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
 > 
-> Best regards,
-> Krzysztof
 
-Ah sorry. I think i understand now. You want the carrier boards in a single 
-entry with the different compatibles as the enum like:
+Applied 1-7 and 11-12.  Mark picked up 8 and 9 from v2.
 
-      - description: NetCube Systems Nagami SoM
-        items:
-          - const: netcube,nagami
-          - const: allwinner,sun8i-t113s
+Thanks,
 
-      - description: NetCube Systems Nagami SoM based boards
-        items:
-          - enum:
-              - netcube,nagami-basic-carrier
-              - netcube,nagami-keypad-carrier
-          - const: netcube,nagami
-          - const: allwinner,sun8i-t113s
-
-Best regards,
-Lukas
-
-
---nextPart10685525.nUPlyArG6x
-Content-Type: application/pgp-signature; name="signature.asc"
-Content-Description: This is a digitally signed message part.
-Content-Transfer-Encoding: 7Bit
-
------BEGIN PGP SIGNATURE-----
-
-iQEzBAABCgAdFiEEPv6dcBmn59ssZMkSJnN+drMVRtgFAmhqSLgACgkQJnN+drMV
-RtiERQgAhtJfnRb+0MWY3I9NrlK10nZqNnvJr1RrRAl3ac/hg00rMlrCjI1GWna3
-WnNjQY8ztNvMI83gXaTLDv1raTVU+6sIMcwiZcSGn8wdWSO/Cx4Rl3ziY/z3mAtc
-axXLv907yLGC62k4U/wpBJ3+wTEe49M4JaBTs868YCa1Q/vjpqZsnIun+1nWlTFR
-hH06vVJhgoV32fDePHQsGyAdn6sQoxt8bLqryu3u2aZaJLDDH/K/bcxpbSCYlSyj
-c84tM50/VIdh8/MyMXUUbas/odCS/+7Tvm6fNdlJG/BdIeWL454EJNaVlUdj+Cvp
-/4qEOroTN+xTqZNKizC7wI6uMqBkjA==
-=g2nF
------END PGP SIGNATURE-----
-
---nextPart10685525.nUPlyArG6x--
-
+Jonathan
 
 
 
