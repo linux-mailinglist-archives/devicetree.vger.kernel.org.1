@@ -1,151 +1,81 @@
-Return-Path: <devicetree+bounces-193314-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-193315-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8A3E3AFA414
-	for <lists+devicetree@lfdr.de>; Sun,  6 Jul 2025 11:41:53 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id D0C06AFA418
+	for <lists+devicetree@lfdr.de>; Sun,  6 Jul 2025 11:42:32 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id DC13B17BBD9
-	for <lists+devicetree@lfdr.de>; Sun,  6 Jul 2025 09:41:53 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 3686F3BAEA3
+	for <lists+devicetree@lfdr.de>; Sun,  6 Jul 2025 09:42:06 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D76AD1FA178;
-	Sun,  6 Jul 2025 09:41:48 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2767E1FBE9B;
+	Sun,  6 Jul 2025 09:42:28 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=netcube.li header.i=@netcube.li header.b="WM1oT5px"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Cosgfw7O"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail.netcube.li (mail.netcube.li [173.249.15.149])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8CF741D5CE8;
-	Sun,  6 Jul 2025 09:41:46 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=173.249.15.149
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F00471ACECE;
+	Sun,  6 Jul 2025 09:42:27 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1751794908; cv=none; b=XXAbUQVAurgEXD6WOVFo80U0ZBNu2ZSTRSdl7WhOCBoHfQv4Y5QMfIl5d6TywQhdqR1g83I5WHNwyKinlwXd3CPOova0vRQbQCszMlzjRfrwR7Vq0icJdL/RnYwPYZHS8Cl5zQaJf2mmavdTYhIl1TZwlgeQV+Kqr6BGPqFW1iA=
+	t=1751794948; cv=none; b=TMjPyl9K1vrHradRBIpzHRDN+wv2Yzh2Sv4rHFjXqNwXWaeLPMrg3hzNwqMYRjCz23wwyCe7X0NOGovdfqbW+9G1ohTNehee6p2kCBciw4UfTsZ+soIswOZ+G497/f8E1I8B561bawgVrjupATyQPh2RZwzL67ZtZTo3tihnOd8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1751794908; c=relaxed/simple;
-	bh=Xi20BYTgtvSL7wbwXI2dPYfVQxDlWwuB4hQBwMpMsIo=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=T4jPpTP/BlyjYPD14XjXcbGaAWZJtWCOJQ2R6KsKu2AZ6w+sb4fxFSwvl8dwtwBsWtEicZGbshvhqYM+sPT9R9IU11ikpDwuqmauBjqetBRGS/Gy4wEWLiZVH3OJo4F0GckiX86fZM3+EJCn4Zga0UsGX6VG518xHkrfGEosgBY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=netcube.li; spf=pass smtp.mailfrom=netcube.li; dkim=pass (1024-bit key) header.d=netcube.li header.i=@netcube.li header.b=WM1oT5px; arc=none smtp.client-ip=173.249.15.149
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=netcube.li
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=netcube.li
-dkim-signature: v=1; a=rsa-sha256; d=netcube.li; s=s1;
-	c=relaxed/relaxed; q=dns/txt; h=From:Subject:Date:Message-ID:To:CC:MIME-Version:Content-Type:In-Reply-To:References;
-	bh=Tx6cDw7EKbhkJw6fG1D90ClaQuotZ1sAaoIkU3c1stM=;
-	b=WM1oT5pxVG9Iy9k5huD7gAh1ZzQlWUQf6t5rW9vfWRI3KVBlDO4eHl8jOQaokGwLNAz7ECOOaXQ6nT7snNJEwX7rtI0Yu/1HoS2ngzmKLM1TBLLFRCFvrhB5+JVaJ2FvcT7Y6I4C5Q+1107J2YwAaluYa2HuD0Qw7j1fQPir9gU=
-Received: from lukas-hpz440workstation.localnet (cm70-231.liwest.at [212.241.70.231])
-	by mail.netcube.li with ESMTPSA
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256)
-	; Sun, 6 Jul 2025 11:41:43 +0200
-From: Lukas Schmid <lukas.schmid@netcube.li>
-To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, Chen-Yu Tsai <wens@csie.org>,
- Jernej Skrabec <jernej.skrabec@gmail.com>,
- Samuel Holland <samuel@sholland.org>,
- Paul Walmsley <paul.walmsley@sifive.com>,
- Palmer Dabbelt <palmer@dabbelt.com>, Albert Ou <aou@eecs.berkeley.edu>,
- Alexandre Ghiti <alex@ghiti.fr>, Maxime Ripard <mripard@kernel.org>,
- Krzysztof Kozlowski <krzk@kernel.org>
-Cc: devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- linux-sunxi@lists.linux.dev, linux-kernel@vger.kernel.org,
- linux-riscv@lists.infradead.org
-Subject:
- Re: [PATCH v1 3/7] dt-bindings: arm: sunxi: Add NetCube Systems Nagami Keypad
- Carrier Board
-Date: Sun, 06 Jul 2025 11:41:42 +0200
-Message-ID: <2998364.e9J7NaK4W3@lukas-hpz440workstation>
-In-Reply-To: <6f257dd2-b88c-4dc2-a2ee-f92de4e0412b@kernel.org>
-References:
- <20250705213900.3614963-1-lukas.schmid@netcube.li>
- <4994705.GXAFRqVoOG@lukas-hpz440workstation>
- <6f257dd2-b88c-4dc2-a2ee-f92de4e0412b@kernel.org>
+	s=arc-20240116; t=1751794948; c=relaxed/simple;
+	bh=o8BGQC3EzZGSOI3FyUhUCrX+ZNPQ+odHc8p2fXNTVV4=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=Xi6DXUWDC0Pg9cdYPzmIUTSrNxv8VQyaa3p1p3quagy/l6J0eje9EPQ2X+iSjD0h7ZxGUn6WIfbIm/nvi0zilAn+D18ASKq8qeRCiiamjarbzgYupDbqAHItHAQZLHw6RWSyeJOu6QCtc2mx8kY3B47yOK3uw4t5ys6hcUy7P8k=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Cosgfw7O; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id E2D50C4CEED;
+	Sun,  6 Jul 2025 09:42:26 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1751794947;
+	bh=o8BGQC3EzZGSOI3FyUhUCrX+ZNPQ+odHc8p2fXNTVV4=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=Cosgfw7OD5N9f1YO5bJbOa83XZ4JMVkSbkguRs80O69y3GGteo9tWkzcOirgCf7Em
+	 jkHuJ4elK4UKgwYJZIv9c85KZ17eqtqhc9TNi4vWVaUQWZYIIhG0Loz1g3KBUm0r0O
+	 4vPLvs/9gvUO1VX6/VAgfPHg8s9cbX2x7CC5YdRpSArBEKj/cs74U3cnpMguV6UCmh
+	 lTo+rJn9VR8CYCAFBKlrAeUBGGQOSTMF3NuxpgnHj9ql8aslnrrdcOGKpE5hrAcqh/
+	 ISo2Gp0Xu00Qxl2xozTcFBcvYOqzniK78rehprmr7yQzEY6nkxxczLXTQTovjhBsEq
+	 zycQmYuci/gnQ==
+Date: Sun, 6 Jul 2025 11:42:25 +0200
+From: Krzysztof Kozlowski <krzk@kernel.org>
+To: Pritam Manohar Sutar <pritam.sutar@samsung.com>
+Cc: vkoul@kernel.org, kishon@kernel.org, robh@kernel.org, 
+	krzk+dt@kernel.org, conor+dt@kernel.org, alim.akhtar@samsung.com, 
+	andre.draszik@linaro.org, peter.griffin@linaro.org, neil.armstrong@linaro.org, 
+	kauschluss@disroot.org, ivo.ivanov.ivanov1@gmail.com, m.szyprowski@samsung.com, 
+	s.nawrocki@samsung.com, linux-phy@lists.infradead.org, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
+	linux-samsung-soc@vger.kernel.org, rosa.pila@samsung.com, dev.tailor@samsung.com, 
+	faraz.ata@samsung.com, muhammed.ali@samsung.com, selvarasu.g@samsung.com
+Subject: Re: [PATCH v4 3/6] dt-bindings: phy: samsung,usb3-drd-phy: add
+ ExynosAutov920 combo HS phy
+Message-ID: <20250706-grouse-of-pastoral-bloom-7d79b0@krzk-bin>
+References: <20250701120706.2219355-1-pritam.sutar@samsung.com>
+ <CGME20250701120002epcas5p2c4d728d599a819057bcc40b724881276@epcas5p2.samsung.com>
+ <20250701120706.2219355-4-pritam.sutar@samsung.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; boundary="nextPart3359771.aeNJFYEL58";
- micalg="pgp-sha512"; protocol="application/pgp-signature"
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+In-Reply-To: <20250701120706.2219355-4-pritam.sutar@samsung.com>
 
---nextPart3359771.aeNJFYEL58
-Content-Transfer-Encoding: 7Bit
-Content-Type: text/plain; charset="us-ascii"; protected-headers="v1"
-From: Lukas Schmid <lukas.schmid@netcube.li>
-Date: Sun, 06 Jul 2025 11:41:42 +0200
-Message-ID: <2998364.e9J7NaK4W3@lukas-hpz440workstation>
-In-Reply-To: <6f257dd2-b88c-4dc2-a2ee-f92de4e0412b@kernel.org>
-MIME-Version: 1.0
+On Tue, Jul 01, 2025 at 05:37:03PM +0530, Pritam Manohar Sutar wrote:
+> This phy supports USB3.1 SSP+(10Gbps) protocol and is backwards
 
-On Sonntag, 6. Juli 2025 11:36:34 CEST Krzysztof Kozlowski wrote:
-> On 06/07/2025 11:07, Lukas Schmid wrote:
-> > On Sonntag, 6. Juli 2025 09:49:58 CEST Krzysztof Kozlowski wrote:
-> >> On 05/07/2025 23:38, Lukas Schmid wrote:
-> >>> The NetCube Systems Nagami Keypad Carrier is a custom board intended to
-> >>> fit a standard Ritto Intercom enclosure and provides a Keypad,
-> >>> NFC-Reader
-> >>> and Status-LED all controllable over Ethernet with PoE support.
-> >>> 
-> >>> Signed-off-by: Lukas Schmid <lukas.schmid@netcube.li>
-> >>> ---
-> >>> 
-> >>>  Documentation/devicetree/bindings/arm/sunxi.yaml | 6 ++++++
-> >>>  1 file changed, 6 insertions(+)
-> >>> 
-> >>> diff --git a/Documentation/devicetree/bindings/arm/sunxi.yaml
-> >>> b/Documentation/devicetree/bindings/arm/sunxi.yaml index
-> >>> 7919b5bf5..a2f16d064 100644
-> >>> --- a/Documentation/devicetree/bindings/arm/sunxi.yaml
-> >>> +++ b/Documentation/devicetree/bindings/arm/sunxi.yaml
-> >>> 
-> >>> @@ -610,6 +610,12 @@ properties:
-> >>>            - const: netcube,nagami
-> >>>            - const: allwinner,sun8i-t113s
-> >>> 
-> >>> +      - description: NetCube Systems Nagami Keypad Carrier Board
-> >>> +        items:
-> >>> +          - const: netcube,nagami-keypad-carrier
-> >> 
-> >> That's just enum with previous entry. Don't make it over-complicated.
-> >> 
-> >> Best regards,
-> >> Krzysztof
-> > 
-> > Just making sure here. The actual bindings are fine, but I should merge
-> > them into one patch, correct?
-> 
-> No, you got two comments what should be changed in the binding.
-> 
-> Best regards,
-> Krzysztof
+What is "this"? You add here HS PHY, so HS is 3.1?
 
-So if I understand correctly you want me to remove the "allwinner,sun8i-t113s" 
-from the carrier boards and keep it for the SoM?
+If this is the same phy, why are you adding another compatible?
 
 Best regards,
-Lukas
---nextPart3359771.aeNJFYEL58
-Content-Type: application/pgp-signature; name="signature.asc"
-Content-Description: This is a digitally signed message part.
-Content-Transfer-Encoding: 7Bit
-
------BEGIN PGP SIGNATURE-----
-
-iQEzBAABCgAdFiEEPv6dcBmn59ssZMkSJnN+drMVRtgFAmhqRNYACgkQJnN+drMV
-Rtgc2ggAg2Nrmm5+cnCBI7/+eAqaPrOuJ58OsFqoNuxGRtkqTCEJMrnk9aphn+QO
-R+KYZmxhxFv8GTKAgfPdAG54XMVUTXV2upUYad0Qk2D2IbiPG/HU6Cd3EkxEtMum
-NICpcxvZid1uNT0WzzYsD3Agn3DsYNrvVFTPUhx413QWykIxtDw0yOAzIw+HPWCN
-8/1HSh+3TVj/Pk9HSuaBDzQ1faa9JHTsGoCQDsXGsybl2gis+J3CjR3MaNnCLKd4
-bwOnxGLUmwKl4JBD2t/sK+rUXi52phr3wcUQeHmCxhXegO3ck9kdCMRCSPAzHuqL
-zI6pL/QFThBIepZbBw12Vdv0YjmKJg==
-=qoZP
------END PGP SIGNATURE-----
-
---nextPart3359771.aeNJFYEL58--
-
-
-
+Krzysztof
 
 
