@@ -1,232 +1,125 @@
-Return-Path: <devicetree+bounces-193308-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-193309-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9633AAFA3B5
-	for <lists+devicetree@lfdr.de>; Sun,  6 Jul 2025 10:35:38 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id DED17AFA3D3
+	for <lists+devicetree@lfdr.de>; Sun,  6 Jul 2025 11:07:08 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id EB74417720A
-	for <lists+devicetree@lfdr.de>; Sun,  6 Jul 2025 08:35:38 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 9C381189F92A
+	for <lists+devicetree@lfdr.de>; Sun,  6 Jul 2025 09:07:25 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 953011A23A9;
-	Sun,  6 Jul 2025 08:35:36 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E3E601E834E;
+	Sun,  6 Jul 2025 09:07:04 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=wanadoo.fr header.i=@wanadoo.fr header.b="Pbhg67sX"
+	dkim=pass (1024-bit key) header.d=netcube.li header.i=@netcube.li header.b="Z+kPol28"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.smtpout.orange.fr (smtp-23.smtpout.orange.fr [80.12.242.23])
-	(using TLSv1.2 with cipher AES128-GCM-SHA256 (128/128 bits))
+Received: from mail.netcube.li (mail.netcube.li [173.249.15.149])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7F37135972;
-	Sun,  6 Jul 2025 08:35:32 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=80.12.242.23
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CC8A2199230;
+	Sun,  6 Jul 2025 09:07:02 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=173.249.15.149
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1751790936; cv=none; b=hH5WfDeiL/+NdVYN67zwx2VyBedyOOlN4pMtF+ne9JAcZS996fo6GE76cmRv/9Fn5EahAEE+Dv+Y8e7J+PrM68W9x/owR2m8cmMGMFYklbyVeBKI9mod6IgAYCyA58eTaO7RrfM/pCq4eZP18Tvn+BgTVgGFJHj+lOsNqtr26n4=
+	t=1751792824; cv=none; b=O0jZ3t3GI7FSwQZQRObIHL3uWmjr3Bu/LBg7/EQXkrFc9Yn+TivUyrcxXzLRK12jRCfonDWHgn3HzvvQV5bXoPQ8HvXBBdkGpIfM1ReU8Nd+JrdiKCfuov9oB1fd8jrKEeQam0zwDzp3CvhrdLHo+d4yy+lbPRsPkgTM0+ZF10Q=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1751790936; c=relaxed/simple;
-	bh=zZBUK8UI3llPineO/aa9x7oBS9wgghT1PNTWtF3og3M=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=epuyRKdVZgirVzsuRu17sIDbNQg88/bdrvdZcW/eHphRlRfwnGT9T+gqR3tDLA/a+90EwukbllvcpW6m1NYYLNa327um/jW9/7uMGcFCWkv2yb4JEJqJBUsVjfFVuDLsR2ZesERVLdmCNGh0qlrtmzf+IzTLOBXQ8pQmjkR+M1E=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=wanadoo.fr; spf=pass smtp.mailfrom=wanadoo.fr; dkim=pass (2048-bit key) header.d=wanadoo.fr header.i=@wanadoo.fr header.b=Pbhg67sX; arc=none smtp.client-ip=80.12.242.23
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=wanadoo.fr
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=wanadoo.fr
-Received: from [IPV6:2a01:cb10:785:b00:8347:f260:7456:7662]
- ([IPv6:2a01:cb10:785:b00:8347:f260:7456:7662])
-	by smtp.orange.fr with ESMTPA
-	id YKqHuLICcZ4iTYKqHu4AIl; Sun, 06 Jul 2025 10:35:24 +0200
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=wanadoo.fr;
-	s=t20230301; t=1751790924;
-	bh=MDB5p/WAC2P7Gszd897B3IA9qciUHzVqAJvFbhA+Lk0=;
-	h=Message-ID:Date:MIME-Version:Subject:To:From;
-	b=Pbhg67sX+6R6NST17kTPvzXRRIuZTve8csYNJfaBBXyUC6DzontwufivbY2GkUXlq
-	 fU607R+bT7Js4Z+hx8oyXDK26yY6M1Yc5pwwInThh8qqCacfvPWJj42J92IJGH/Rkn
-	 2PwQdjmyPF4ku/J1x/bIKiq0bSNgwOY3GzDhZO6tMVa8pv/oeP/LUWRV/MagN8X048
-	 SHVWwK8dbsEyZODw76WHRwQ4Lc3GAr1AEMZcZ5SlYAQ/2DvgV4Mx+yLh9VLsA1PAfa
-	 PW249lU8AK1EtKcAr6kTkIxyOLhJRzRmb+P6GUGXzDF1HFnKa0L2wy4c1xDOLA498d
-	 4ouFGntQlECOw==
-X-ME-Helo: [IPV6:2a01:cb10:785:b00:8347:f260:7456:7662]
-X-ME-Auth: bWFyaW9uLmphaWxsZXRAd2FuYWRvby5mcg==
-X-ME-Date: Sun, 06 Jul 2025 10:35:24 +0200
-X-ME-IP: 2a01:cb10:785:b00:8347:f260:7456:7662
-Message-ID: <225692dd-c41b-4e9d-a20b-551f9bfb5051@wanadoo.fr>
-Date: Sun, 6 Jul 2025 10:35:20 +0200
+	s=arc-20240116; t=1751792824; c=relaxed/simple;
+	bh=RT4KaCOpxpPxhU+0CxbKj0+VmeZqaPtuLJG2kAASxcc=;
+	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=OjCGo9lWZ7zO7SCvEB8CRkzILRjse3w1bM9FdTS183BWa9bzhsoPBTOwBTPDNJKXawQLiHKXTo1iWcwTW3RKeJsVdJ/xmhyx7IPNpiumUK06b0uClfXvKgdfmLCTpu/0QFw6bWRsIEcTuNN753MADr3yKqqpPbe7Nspumw5ML+4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=netcube.li; spf=pass smtp.mailfrom=netcube.li; dkim=pass (1024-bit key) header.d=netcube.li header.i=@netcube.li header.b=Z+kPol28; arc=none smtp.client-ip=173.249.15.149
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=netcube.li
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=netcube.li
+dkim-signature: v=1; a=rsa-sha256; d=netcube.li; s=s1;
+	c=relaxed/relaxed; q=dns/txt; h=From:Subject:Date:Message-ID:To:CC:MIME-Version:Content-Type:In-Reply-To:References;
+	bh=f9YbyZd/VkquKLsCeJc+buXmeOWhQCLEKhQGAUaZYVE=;
+	b=Z+kPol288sL8JofDkheKNemupUD5VjzDMljyelMvIg7rb/xmGurWDWWn3QNgp0+NZoKBpussttaylwyqA8IT+4bxMji0HCCqI3KgTg51cmyRuVaz8EAGiZNkyOGOJBl0MFp9qGuAwLdeGarfV76vtqAovbkArMqHglR2XTjPpPo=
+Received: from lukas-hpz440workstation.localnet (cm70-231.liwest.at [212.241.70.231])
+	by mail.netcube.li with ESMTPSA
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256)
+	; Sun, 6 Jul 2025 11:06:35 +0200
+From: Lukas Schmid <lukas.schmid@netcube.li>
+To: Andrew Lunn <andrew@lunn.ch>
+Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, Chen-Yu Tsai <wens@csie.org>,
+ Jernej Skrabec <jernej.skrabec@gmail.com>,
+ Samuel Holland <samuel@sholland.org>,
+ Paul Walmsley <paul.walmsley@sifive.com>,
+ Palmer Dabbelt <palmer@dabbelt.com>, Albert Ou <aou@eecs.berkeley.edu>,
+ Alexandre Ghiti <alex@ghiti.fr>, Maxime Ripard <mripard@kernel.org>,
+ devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ linux-sunxi@lists.linux.dev, linux-kernel@vger.kernel.org,
+ linux-riscv@lists.infradead.org
+Subject:
+ Re: [PATCH v1 5/7] ARM: dts: sunxi: add support for NetCube Systems Nagami
+ SoM
+Date: Sun, 06 Jul 2025 11:06:34 +0200
+Message-ID: <5023306.31r3eYUQgx@lukas-hpz440workstation>
+In-Reply-To: <b2351675-cba2-4d8c-af6c-f341f5c77ee7@lunn.ch>
+References:
+ <20250705213900.3614963-1-lukas.schmid@netcube.li>
+ <20250705213900.3614963-6-lukas.schmid@netcube.li>
+ <b2351675-cba2-4d8c-af6c-f341f5c77ee7@lunn.ch>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 2/3] ASoC: codecs: Add Awinic AW8898 amplifier driver
-To: Luca Weiss <luca@lucaweiss.eu>, ~postmarketos/upstreaming@lists.sr.ht,
- phone-devel@vger.kernel.org, Liam Girdwood <lgirdwood@gmail.com>,
- Mark Brown <broonie@kernel.org>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Jaroslav Kysela <perex@perex.cz>,
- Takashi Iwai <tiwai@suse.com>, Bjorn Andersson <andersson@kernel.org>,
- Konrad Dybcio <konradybcio@kernel.org>,
- Weidong Wang <wangweidong.a@awinic.com>
-Cc: linux-sound@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org
-References: <20250705-aw8898-v2-0-9c3adb1fc1a2@lucaweiss.eu>
- <20250705-aw8898-v2-2-9c3adb1fc1a2@lucaweiss.eu>
-Content-Language: en-US, fr-FR
-From: Christophe JAILLET <christophe.jaillet@wanadoo.fr>
-In-Reply-To: <20250705-aw8898-v2-2-9c3adb1fc1a2@lucaweiss.eu>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
+Content-Type: multipart/signed; boundary="nextPart4662866.LvFx2qVVIh";
+ micalg="pgp-sha512"; protocol="application/pgp-signature"
 
-Le 05/07/2025 à 14:03, Luca Weiss a écrit :
-> Add a driver for the AW8898 Audio Amplifier.
+--nextPart4662866.LvFx2qVVIh
+Content-Transfer-Encoding: 7Bit
+Content-Type: text/plain; charset="us-ascii"; protected-headers="v1"
+From: Lukas Schmid <lukas.schmid@netcube.li>
+To: Andrew Lunn <andrew@lunn.ch>
+Date: Sun, 06 Jul 2025 11:06:34 +0200
+Message-ID: <5023306.31r3eYUQgx@lukas-hpz440workstation>
+In-Reply-To: <b2351675-cba2-4d8c-af6c-f341f5c77ee7@lunn.ch>
+MIME-Version: 1.0
+
+On Sonntag, 6. Juli 2025 09:38:00 CEST Andrew Lunn wrote:
+> > +&mdio {
+> > +	lan8720a: ethernet-phy@1 {
+> > +			compatible = "ethernet-phy-ieee802.3-c22";
+> > +			reg = <1>;
+> > +	};
+> > +};
 > 
-> Signed-off-by: Luca Weiss <luca@lucaweiss.eu>
+> Just for clarification: The PHY is on the SOM? I've seen systems where
+> the PHY is on the SOM, and the magnetics and RJ45 on the carrier
+> board. I've also seen systems where the PHY, magnetics and RJ45 are on
+> the carrier.
 
-Hi,
+Yes that' the case here. The PHY is located on the SoM and the MDI signals
+before any magnetics are on the SoM's Card-Edge. The magnetics are required
+on the Carrier board (e.g. a MagJack or dedicated Transformer)
+> 
+>     Andrew
 
-...
 
-> +#define AW8898_CFG_NAME				"aw8898_cfg.bin"
-> +
-> +#define AW8898_NUM_SUPPLIES	3
+--nextPart4662866.LvFx2qVVIh
+Content-Type: application/pgp-signature; name="signature.asc"
+Content-Description: This is a digitally signed message part.
+Content-Transfer-Encoding: 7Bit
 
-See the probe below, but if simplified, AW8898_NUM_SUPPLIES would be 
-useless and could be removed.
+-----BEGIN PGP SIGNATURE-----
 
-> +static const char *aw8898_supply_names[AW8898_NUM_SUPPLIES] = {
+iQEzBAABCgAdFiEEPv6dcBmn59ssZMkSJnN+drMVRtgFAmhqPJoACgkQJnN+drMV
+RtiE8Af9ESLIraKnrfQi55OimnR0w4/F/EGAOF6naWZtJ2WLGLsJtRxz4XtvmJg5
+uTMGqjm/hF8f7xVSadaMBGnF1ZUEN13CxXoWiqE/uggNB4/9c4AxdgjlLjFeeAD0
+A1pDHXHJJQykUpbNHtMqhNE3rLrAthy1PW/f2MG3ALh8VkFnOY5ZraFuTaxYZzA9
+wiL5UBJw6XneItZUlr7BpFweH8H7kMusHg8eoOo2XKfj4REmQn1fj4FN1XEtGR+z
+Q5N7/o6ccDVHruZve7BXIwpGXCnOOl7AmXZ1zT+FWNAI16QRm7/a8TkmP70Na67V
+MvcLoylwZbp4U4SiH11wHuENj4rIdQ==
+=pi6Q
+-----END PGP SIGNATURE-----
 
-static const char * const ?
+--nextPart4662866.LvFx2qVVIh--
 
-> +	"vdd",		/* Battery power */
-> +	"vddio",	/* Digital IO power */
-> +	"dvdd",		/* Digital power */
-> +};
-> +
-> +static const char * const aw8898_dev_mode_text[] = {
-> +	"Speaker",
-> +	"Receiver",
-> +};
 
-...
 
-> +static int aw8898_drv_event(struct snd_soc_dapm_widget *w,
-> +				struct snd_kcontrol *kcontrol, int event)
-> +{
-> +	struct snd_soc_component *component = snd_soc_dapm_to_component(w->dapm);
-> +	struct aw8898 *aw8898 = snd_soc_component_get_drvdata(component);
-> +	int ret;
 
-Maybe ret = 0; to simplify the code below?
-
-Or, as done in aw8898_hw_params(), return -EINVAL; in the default case, 
-and a plain return 0; at the end of the function?
-
-> +
-> +	switch (event) {
-> +	case SND_SOC_DAPM_PRE_PMU:
-> +		aw8898_set_power(aw8898, true);
-> +
-> +		if (!aw8898->cfg_loaded)
-> +			aw8898_cold_start(aw8898);
-> +
-> +		ret = 0;
-> +		break;
-> +	case SND_SOC_DAPM_POST_PMD:
-> +		aw8898_set_power(aw8898, false);
-> +		ret = 0;
-> +		break;
-> +	default:
-> +		dev_err(component->dev, "%s: invalid event %d\n", __func__, event);
-> +		ret = -EINVAL;
-
-Even if useless, having a break is more standard.
-
-> +	}
-> +
-> +	return ret;
-> +}
-
-...
-
-> +static int aw8898_check_chipid(struct aw8898 *aw8898)
-> +{
-> +	unsigned int reg;
-> +	int ret;
-> +
-> +	ret = regmap_read(aw8898->regmap, AW8898_ID, &reg);
-> +	if (ret < 0) {
-> +		dev_err(&aw8898->client->dev,
-> +			"Failed to read register AW8898_ID: %d\n", ret);
-
-aw8898_check_chipid() is only called from the probe, so using return 
-dev_err_probe() should be fine.
-
-> +		return ret;
-> +	}
-> +
-> +	dev_dbg(&aw8898->client->dev, "Read chip ID 0x%x\n", reg);
-> +
-> +	if (reg != AW8898_CHIP_ID) {
-> +		dev_err(&aw8898->client->dev, "Unexpected chip ID: 0x%x\n",
-> +			reg);
-
-Same.
-
-> +		return -EINVAL;
-> +	}
-> +
-> +	return 0;
-> +}
-> +
-> +static int aw8898_probe(struct i2c_client *client)
-> +{
-> +	struct aw8898 *aw8898;
-> +	int ret;
-> +
-> +	aw8898 = devm_kzalloc(&client->dev, sizeof(*aw8898), GFP_KERNEL);
-> +	if (!aw8898)
-> +		return -ENOMEM;
-> +
-> +	i2c_set_clientdata(client, aw8898);
-> +	aw8898->client = client;
-> +
-> +	aw8898->regmap = devm_regmap_init_i2c(client, &aw8898_regmap);
-> +	if (IS_ERR(aw8898->regmap))
-> +		return dev_err_probe(&client->dev, PTR_ERR(aw8898->regmap),
-> +				     "Failed to allocate register map\n");
-> +
-> +	for (int i = 0; i < ARRAY_SIZE(aw8898->supplies); i++)
-> +		aw8898->supplies[i].supply = aw8898_supply_names[i];
-> +
-> +	ret = devm_regulator_bulk_get(&client->dev, ARRAY_SIZE(aw8898->supplies),
-> +				      aw8898->supplies);
-
-devm_regulator_bulk_get_enable() would simplify the code and 'struct 
-aw8898'.
-
-> +	if (ret)
-> +		return dev_err_probe(&client->dev, ret,
-> +				     "Failed to get regulators\n");
-> +
-> +	ret = regulator_bulk_enable(ARRAY_SIZE(aw8898->supplies),
-> +				    aw8898->supplies);
-> +	if (ret) {
-> +		dev_err(&client->dev, "Failed to enable supplies: %d\n",
-> +			ret);
-
-If dev_err_probe() to be consistent with the code below and above.
-But this would be removed if devm_regulator_bulk_get_enable() is used.
-
-> +		return ret;
-> +	}
-> +
-> +	aw8898->reset = devm_gpiod_get(&client->dev, "reset", GPIOD_OUT_HIGH);
-> +	if (IS_ERR(aw8898->reset))
-> +		return dev_err_probe(&client->dev, PTR_ERR(aw8898->reset),
-> +				     "Failed to get reset GPIO\n");
->
-
-...
-
-CJ
 
