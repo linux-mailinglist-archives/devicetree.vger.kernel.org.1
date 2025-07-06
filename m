@@ -1,141 +1,127 @@
-Return-Path: <devicetree+bounces-193310-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-193311-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id D6B24AFA3D5
-	for <lists+devicetree@lfdr.de>; Sun,  6 Jul 2025 11:08:05 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id CBC59AFA408
+	for <lists+devicetree@lfdr.de>; Sun,  6 Jul 2025 11:34:10 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 383F63B6A5C
-	for <lists+devicetree@lfdr.de>; Sun,  6 Jul 2025 09:07:39 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 232533BE33E
+	for <lists+devicetree@lfdr.de>; Sun,  6 Jul 2025 09:33:44 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7AE761E9B04;
-	Sun,  6 Jul 2025 09:08:00 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7F9851F473C;
+	Sun,  6 Jul 2025 09:34:06 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=netcube.li header.i=@netcube.li header.b="kGT+P99n"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="bF/MP1t2"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail.netcube.li (mail.netcube.li [173.249.15.149])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6BA7A80B;
-	Sun,  6 Jul 2025 09:07:58 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=173.249.15.149
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4DF1C35972;
+	Sun,  6 Jul 2025 09:34:05 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1751792880; cv=none; b=LXLj9eno3JDTSUtx2PYGcOSPNFTo5UQVHYYsKOt0VbXa6+6NrweliBXCDeWVv9aCO/bT8JEOapW1pxH8/puQj7h9T2upDAwADsIyrr6PgMDbIBO4Cij5gKZP/BcnCTYVMgq07fDMlnQcqiQNfgifLpvgRd3I5KB7NJOLs+h5iKM=
+	t=1751794446; cv=none; b=pvrD0VFwJKmUh43I29klg63PIHqXpNmwk5zaM+PwMXKmDYJMI6uahi+biwma9g+ih3duWU9rwSqjPjVNFGuxzSv8b+bhM59HYqK8mdwV/zpArIoK49xjxi1wbJhnrXrjKLBDxLMf64ZzGqWWx6YsIdZgF9Z8uD/IgrgR9P1tYlY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1751792880; c=relaxed/simple;
-	bh=o90NXVCoL+tGL5VVvy/yB5Xa0doRgIA76TaIzJVBePQ=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=HCYMIX1v3aTL4w86Jel6k2/n+WW2Xfewd1NgxjczBlR5gAWkF1hYGcYfmMu+5zpronG69mM5A4KPF5tHBZ4qLc/I4o2jRzmiWr4Af5D6Ax0o69pVmHHjrTuXk4WJZsofEYnsPKD0MB0DTpDZqIMLRgzPnLLnOEMdT4+3LDeOY38=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=netcube.li; spf=pass smtp.mailfrom=netcube.li; dkim=pass (1024-bit key) header.d=netcube.li header.i=@netcube.li header.b=kGT+P99n; arc=none smtp.client-ip=173.249.15.149
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=netcube.li
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=netcube.li
-dkim-signature: v=1; a=rsa-sha256; d=netcube.li; s=s1;
-	c=relaxed/relaxed; q=dns/txt; h=From:Subject:Date:Message-ID:To:CC:MIME-Version:Content-Type:In-Reply-To:References;
-	bh=Ho2vJrnmP0hAKFMj4ugRd5xpUyaSxVYHzOv8nai9HE4=;
-	b=kGT+P99nbmbmlDK5wRcoQe7iTi0tj4rgq8Ja1NThF/Ut/eVDDS6zSOy/cBNeWCpC2WaWEjsDTE9nALznc4eUbYmsFDflpU7Wy67/u3PIg+8N8YG8NlKJU/04n5ytvbG8QSj/DyZPcvrVBo4AODJMy3a1l8NyWoAb1HZ6/bnTz/o=
-Received: from lukas-hpz440workstation.localnet (cm70-231.liwest.at [212.241.70.231])
-	by mail.netcube.li with ESMTPSA
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256)
-	; Sun, 6 Jul 2025 11:07:39 +0200
-From: Lukas Schmid <lukas.schmid@netcube.li>
-To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, Chen-Yu Tsai <wens@csie.org>,
- Jernej Skrabec <jernej.skrabec@gmail.com>,
- Samuel Holland <samuel@sholland.org>,
- Paul Walmsley <paul.walmsley@sifive.com>,
- Palmer Dabbelt <palmer@dabbelt.com>, Albert Ou <aou@eecs.berkeley.edu>,
- Alexandre Ghiti <alex@ghiti.fr>, Maxime Ripard <mripard@kernel.org>,
- Krzysztof Kozlowski <krzk@kernel.org>
-Cc: devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- linux-sunxi@lists.linux.dev, linux-kernel@vger.kernel.org,
- linux-riscv@lists.infradead.org
-Subject:
- Re: [PATCH v1 3/7] dt-bindings: arm: sunxi: Add NetCube Systems Nagami Keypad
- Carrier Board
-Date: Sun, 06 Jul 2025 11:07:38 +0200
-Message-ID: <4994705.GXAFRqVoOG@lukas-hpz440workstation>
-In-Reply-To: <21e0785e-b2f6-4b31-8887-0c22bd686dc8@kernel.org>
-References:
- <20250705213900.3614963-1-lukas.schmid@netcube.li>
- <20250705213900.3614963-4-lukas.schmid@netcube.li>
- <21e0785e-b2f6-4b31-8887-0c22bd686dc8@kernel.org>
+	s=arc-20240116; t=1751794446; c=relaxed/simple;
+	bh=aL1Zrrz6z/GX1s92tmOuCSb81YdX/7rki1eHHVMKrxE=;
+	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=uPqlii5NrVOlCxh/eQ5esFdSFSOd9c9Pe5na0xgYfDM7GVCXxMX3BHJcIXcVEfTJCYbFamArYMyJdN9w9WQeKs6Qkvh7G1xclV23s3DcUK7VmBSRcvLvqQxClmcRojVEltO49ACJ0kH0bUlCBxtqiHAjpunozHgsQuChaXE9pf4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=bF/MP1t2; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 4A745C4CEED;
+	Sun,  6 Jul 2025 09:33:57 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1751794445;
+	bh=aL1Zrrz6z/GX1s92tmOuCSb81YdX/7rki1eHHVMKrxE=;
+	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
+	b=bF/MP1t26Fo8B1kKVCql0AarvJq+7AczeYvI/FCYfqAd3D7hCADu7hXFfChh3hmBf
+	 f0Ez0JsQToO1y5kBI7bLmAtU9wkOkba5nIoGlluPu7+wHXHVg6gunnZhna12PhGeyV
+	 AdfzEbIJO4CuVsaCmR7LrJiH/WqjcC9FSt42/6y45ptLvornjfIfvngAcWCNG24v4l
+	 eoQ+R11asgFAsAM6E7bOonyyfzuqHZhq/wnrRg6gR4lfeGeSIqAchbHP1vs0QUeN74
+	 UH87v+GUxNLNN1o1wNlAWa6jnxh5EwRWpo5cf3SHY2pB5+bD/pB/PhQvSktqXmLrJY
+	 uUfbx3dH9g9YA==
+Date: Sun, 6 Jul 2025 10:33:54 +0100
+From: Jonathan Cameron <jic23@kernel.org>
+To: Jonathan Santos <jonath4nns@gmail.com>
+Cc: aEwd4cS7j0Vvypg8@smile.fi.intel.com, Andy Shevchenko
+ <andriy.shevchenko@intel.com>, Jonathan Santos
+ <Jonathan.Santos@analog.com>, linux-iio@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ linux-gpio@vger.kernel.org, andy@kernel.org, nuno.sa@analog.com,
+ Michael.Hennerich@analog.com, marcelo.schmitt@analog.com, robh@kernel.org,
+ krzk+dt@kernel.org, conor+dt@kernel.org, marcelo.schmitt1@gmail.com,
+ linus.walleij@linaro.org, brgl@bgdev.pl, lgirdwood@gmail.com,
+ broonie@kernel.org, dlechner@baylibre.com
+Subject: Re: [PATCH v11 11/11] iio: adc: ad7768-1: add low pass -3dB cutoff
+ attribute
+Message-ID: <20250706103354.0059d320@jic23-huawei>
+In-Reply-To: <aFGVAWi7CZAy0E8k@JSANTO12-L01.ad.analog.com>
+References: <cover.1749569957.git.Jonathan.Santos@analog.com>
+	<804d66f1858014d7278aec3344d81c223661e878.1749569957.git.Jonathan.Santos@analog.com>
+	<aEwd4cS7j0Vvypg8@smile.fi.intel.com>
+	<aFGVAWi7CZAy0E8k@JSANTO12-L01.ad.analog.com>
+X-Mailer: Claws Mail 4.3.1 (GTK 3.24.49; x86_64-pc-linux-gnu)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; boundary="nextPart1926776.tdWV9SEqCh";
- micalg="pgp-sha512"; protocol="application/pgp-signature"
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: 7bit
 
---nextPart1926776.tdWV9SEqCh
-Content-Transfer-Encoding: 7Bit
-Content-Type: text/plain; charset="us-ascii"; protected-headers="v1"
-From: Lukas Schmid <lukas.schmid@netcube.li>
-Date: Sun, 06 Jul 2025 11:07:38 +0200
-Message-ID: <4994705.GXAFRqVoOG@lukas-hpz440workstation>
-In-Reply-To: <21e0785e-b2f6-4b31-8887-0c22bd686dc8@kernel.org>
-MIME-Version: 1.0
+On Tue, 17 Jun 2025 13:17:05 -0300
+Jonathan Santos <jonath4nns@gmail.com> wrote:
 
-On Sonntag, 6. Juli 2025 09:49:58 CEST Krzysztof Kozlowski wrote:
-> On 05/07/2025 23:38, Lukas Schmid wrote:
-> > The NetCube Systems Nagami Keypad Carrier is a custom board intended to
-> > fit a standard Ritto Intercom enclosure and provides a Keypad, NFC-Reader
-> > and Status-LED all controllable over Ethernet with PoE support.
+> On 06/13, Andy Shevchenko wrote:
+> > On Wed, Jun 11, 2025 at 08:52:03AM -0300, Jonathan Santos wrote:  
+> > > Ad7768-1 has a different -3db frequency multiplier depending on
+> > > the filter type configured. The cutoff frequency also varies according
+> > > to the current ODR.
+> > > 
+> > > Add a readonly low pass -3dB frequency cutoff attribute to clarify to
+> > > the user which bandwidth is being allowed depending on the filter
+> > > configurations.  
+> >   
+> > > +/* -3dB cutoff frequency multipliers (relative to ODR) for each filter type. */
+> > > +static const int ad7768_filter_3db_odr_multiplier[] = {
+> > > +	[AD7768_FILTER_SINC5] = 204,		/* 0.204 */
+> > > +	[AD7768_FILTER_SINC3] = 262,		/* 0.2617 */
+> > > +	[AD7768_FILTER_SINC3_REJ60] = 262,	/* 0.2617 */
+> > > +	[AD7768_FILTER_WIDEBAND] = 433,		/* 0.433 */  
 > > 
-> > Signed-off-by: Lukas Schmid <lukas.schmid@netcube.li>
-> > ---
-> > 
-> >  Documentation/devicetree/bindings/arm/sunxi.yaml | 6 ++++++
-> >  1 file changed, 6 insertions(+)
-> > 
-> > diff --git a/Documentation/devicetree/bindings/arm/sunxi.yaml
-> > b/Documentation/devicetree/bindings/arm/sunxi.yaml index
-> > 7919b5bf5..a2f16d064 100644
-> > --- a/Documentation/devicetree/bindings/arm/sunxi.yaml
-> > +++ b/Documentation/devicetree/bindings/arm/sunxi.yaml
-> > 
-> > @@ -610,6 +610,12 @@ properties:
-> >            - const: netcube,nagami
-> >            - const: allwinner,sun8i-t113s
-> > 
-> > +      - description: NetCube Systems Nagami Keypad Carrier Board
-> > +        items:
-> > +          - const: netcube,nagami-keypad-carrier
+> > Just to be sure, is it 0.433 or 0.4333(3) actually? Sometimes datasheets have
+> > rounding that even may lead to problems (see TSC issues for some of the Intel
+> > CPUs in the past). That's behind my question.
+> >   
 > 
-> That's just enum with previous entry. Don't make it over-complicated.
+> Every reference I have specifies it as 0.433, so I believe that is it.
 > 
-> Best regards,
-> Krzysztof
-
-Just making sure here. The actual bindings are fine, but I should merge them 
-into one patch, correct?
-
-Best regards,
-Lukas
-
---nextPart1926776.tdWV9SEqCh
-Content-Type: application/pgp-signature; name="signature.asc"
-Content-Description: This is a digitally signed message part.
-Content-Transfer-Encoding: 7Bit
-
------BEGIN PGP SIGNATURE-----
-
-iQEzBAABCgAdFiEEPv6dcBmn59ssZMkSJnN+drMVRtgFAmhqPNoACgkQJnN+drMV
-Rths8gf/e6eLq4uNu0vJSGM9LYg+wGaYJJBiydq7iEk18FH2Vf60tOp7PGIYhSjW
-hX9iL6iA5xvsycCO01AkcgT3+qV0r9sNoIiRyBPKVIdDltG4WRYzGnzGtGD6maff
-mN8PR9rZ6k9qhlAFvdqCPTagJJ2GOHFu7NMv+uWxtuDedBNR3bMm5Q/EixQ2iqF8
-tYMkXbl+DEGoMMbceDoBAitKJC6cZcWUsqaSFtLn84F9yl2EOM16r/9NTUAusT0T
-nOkfvSD05VWc9iDoukZbIHPlH+63S/+LksJVMKYtJXI+0OUTH+YZwi0qzrK3NVgI
-s9BZgcYcWUtfy5TXpq3lhvVxus+DDQ==
-=jjD0
------END PGP SIGNATURE-----
-
---nextPart1926776.tdWV9SEqCh--
+> > > +};  
+> > 
+> > ...
+> >   
+> > > +	case IIO_CHAN_INFO_LOW_PASS_FILTER_3DB_FREQUENCY:
+> > > +		temp = st->samp_freq * ad7768_filter_3db_odr_multiplier[st->filter_type];
+> > > +		*val = DIV_ROUND_CLOSEST(temp, 1000);  
+> > 
+> > MILLI? KILO/ MICRO/MILLI? ...?
+> >   
+> 
+> Yes, MILLI.
+I fixed this up and added units.h include and applied.
 
 
-
+> 
+> Thanks,
+> Jonathan S.
+> 
+> > -- 
+> > With Best Regards,
+> > Andy Shevchenko
+> > 
+> >   
+> 
 
 
