@@ -1,103 +1,173 @@
-Return-Path: <devicetree+bounces-193305-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-193306-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 099B9AFA38C
-	for <lists+devicetree@lfdr.de>; Sun,  6 Jul 2025 09:52:21 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id A1F31AFA38E
+	for <lists+devicetree@lfdr.de>; Sun,  6 Jul 2025 09:54:21 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 2647A189ED27
-	for <lists+devicetree@lfdr.de>; Sun,  6 Jul 2025 07:52:30 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 5C9D8189FC85
+	for <lists+devicetree@lfdr.de>; Sun,  6 Jul 2025 07:54:38 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 278131DF269;
-	Sun,  6 Jul 2025 07:50:44 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id EAD2D1CF5C6;
+	Sun,  6 Jul 2025 07:54:19 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b="wFFIirNL"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="OoLxtOQS"
 X-Original-To: devicetree@vger.kernel.org
-Received: from vps0.lunn.ch (vps0.lunn.ch [156.67.10.101])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wr1-f48.google.com (mail-wr1-f48.google.com [209.85.221.48])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 607381C6FEC;
-	Sun,  6 Jul 2025 07:50:42 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=156.67.10.101
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1924E1A314E
+	for <devicetree@vger.kernel.org>; Sun,  6 Jul 2025 07:54:16 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.48
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1751788244; cv=none; b=dPb7Ihb5u1YmKi05DdeHFG+W5dFRL5RiPEshau6l+Ia20XWOkQY9pD91BuqtEh7MRDUtNrIBWEO40rY5vmqjo7sb1IDt/Nvw/LtoQv1y1EoIJHiXaOgrcjOEslFAtAEZGfVHeIKw03nEILmSBcz6mZ2hjG4hbU14XE9NAJ/LnFw=
+	t=1751788459; cv=none; b=YwzHkNqAHOFvGpm6Xcxvzxgc+AJeSOO4M5gyThi9peh1hge+K7lev2xHGZFXgnv45ec8qgWYdoONdNWgTMMcgzXfcVsWeFYV4eM+A87pxpdImMwkG7cG5pOWsqITz16VrfVP6SXMZS2Eu/xPk+RonVGsbhGTD/8r0r6c6RaTolc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1751788244; c=relaxed/simple;
-	bh=Wz3QIftB7ku50zhSA5I8LX3BPYD+n8UHEOY5M4mivbE=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=PFDi3trKpYpIaGYkd9lbSIAfk+H3LMoDwhlsoUouIuMhQuMwLEJ9CZnzhUewOLin5OX108n34294NlTimucoF43pM2YlJ8bYF2RA9mDPFOrHik6gSRw1LOVsozQkZBMfcHVs5bHW0fTzHzwIn61vVwyoPfgsu1rjtCw8lVDmCIY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch; spf=pass smtp.mailfrom=lunn.ch; dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b=wFFIirNL; arc=none smtp.client-ip=156.67.10.101
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=lunn.ch
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
-	s=20171124; h=In-Reply-To:Content-Disposition:Content-Type:MIME-Version:
-	References:Message-ID:Subject:Cc:To:From:Date:From:Sender:Reply-To:Subject:
-	Date:Message-ID:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding:
-	Content-ID:Content-Description:Content-Disposition:In-Reply-To:References;
-	bh=tlI66Bz/sqx9wmUZBx5cdl25FDyXH6zR6tjKJVPWCsg=; b=wFFIirNLE5SoKa0/iKXE1484DW
-	r7+gZbf52dzCnHuQfy755y8Q0LISLB/oxnAoxuJ/l6I4++mdjB529Cub/3iLygRFWryyGMtLt0rIr
-	sTemlafQ52D04EZIUumCJSSwLUaLw6XexkFuUUbvKJsJXiXTzzMbItrGwT48zkdQOmyU=;
-Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
-	(envelope-from <andrew@lunn.ch>)
-	id 1uYK8s-000X3d-K1; Sun, 06 Jul 2025 09:50:30 +0200
-Date: Sun, 6 Jul 2025 09:50:30 +0200
-From: Andrew Lunn <andrew@lunn.ch>
-To: Andre Przywara <andre.przywara@arm.com>
-Cc: Chen-Yu Tsai <wens@kernel.org>, Andrew Lunn <andrew+netdev@lunn.ch>,
-	"David S. Miller" <davem@davemloft.net>,
-	Eric Dumazet <edumazet@google.com>,
-	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Jernej Skrabec <jernej@kernel.org>,
-	Samuel Holland <samuel@sholland.org>, netdev@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-	linux-sunxi@lists.linux.dev
-Subject: Re: [PATCH net 0/2] allwinner: a523: Rename emac0 to gmac0
-Message-ID: <0f0ca5ce-8ed2-4e07-a1c3-105d602e8cd1@lunn.ch>
-References: <20250628054438.2864220-1-wens@kernel.org>
- <20250705083600.2916bf0c@minigeek.lan>
- <CAGb2v64My=A_Jw+CBCsqno3SsSSTtBFKXOrgLv+Nyq_z5oeYBg@mail.gmail.com>
- <e9c5949d-9ac5-4b33-810d-b716ccce5fe9@lunn.ch>
- <20250706002223.128ff760@minigeek.lan>
+	s=arc-20240116; t=1751788459; c=relaxed/simple;
+	bh=i05MAW1HoIvDZNsvly8FS8JlN32892CPcR3zw7xVcb0=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=CFmz7FXbg9fQWmeWclSsBFf6K0N9pNydTjQ0xar6251FvdwriflwNIgj62f++Pts8y63M8QwoLZeYwAv8pGn9TTjXLjKsifNzVSo4I90BgNqStU3jxAWRTntZaI91Y7uYhsbF2XBcmhyrxkGVY1BdZxXMA0aQiWwiDHChiJU/ls=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=OoLxtOQS; arc=none smtp.client-ip=209.85.221.48
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-wr1-f48.google.com with SMTP id ffacd0b85a97d-3a4eb4acf29so136163f8f.0
+        for <devicetree@vger.kernel.org>; Sun, 06 Jul 2025 00:54:16 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1751788455; x=1752393255; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:autocrypt:content-language
+         :from:references:cc:to:subject:user-agent:mime-version:date
+         :message-id:from:to:cc:subject:date:message-id:reply-to;
+        bh=gY+1w/IpSjoLelrC9L08nmljWaMiTWqrIdpFXYu9vp8=;
+        b=OoLxtOQSVLt8I5j30AxoYSluJ8xKl8cJg3dZTTcyUkyTwOf9pM1ruWhMkE6fWaJn1B
+         Pa2s5CKai3TSsmuL+7vnbbofOHG90IL+FwuZe0Zr/DBzo6qCjiRcRubz3LEbbHOLIH00
+         5t7On5i2N8AIlM+7R+ZMhal04M6M41dX48BldpEElGGOymTtvQDk5u3g6gLFbEXAfZCc
+         EF+s4aSN24rSFHs2KmfOpcIkyX29iuFW+BAXFYWwxwKpcnDk2bzUUipfRv7e4XL3DSBO
+         nw00lldxyniU68AZqUFgXb6y7rJSw0L7dEwVeP8GujpQUVoK9m2MoJPTDa3M65kyCfF/
+         gAnw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1751788455; x=1752393255;
+        h=content-transfer-encoding:in-reply-to:autocrypt:content-language
+         :from:references:cc:to:subject:user-agent:mime-version:date
+         :message-id:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=gY+1w/IpSjoLelrC9L08nmljWaMiTWqrIdpFXYu9vp8=;
+        b=hmshKDPoa+WW/KU40d6GCvtV6iWnG8cd7l4evzLLBS3ukR9w17TYc6u4FxY3Q7NSep
+         KcDp5O3YdMgmAkEhuDRfDiW/10SiN0zoLtieXLHBXFSyY3YmF7t9asmavm7TkWZ9/6tB
+         qDJvoMqf4uvMKze2XZPX5oDbIybIseIRV5wwylEMhj2CxHXeAzYQvOmRpvqRg1Epp6DM
+         d4N+KYrynIHDygnRBF4+wP8dKkEXl98w8GXoT7uPWjR6vn+dndM8qL4VE35YmoM+X3m6
+         INbx1xrNSH7mx7DvNj7jaVdX+hv/hdQf4fUh+MW+/vKHwvy6NAkwcuXYbvbvZikPhYPQ
+         PtsQ==
+X-Forwarded-Encrypted: i=1; AJvYcCV59Zcf3YTGzXouY4FbS95jcKUDc3EN9A50my2KMTDmb4ET+fDCQuSpDGC5+AZhCofTkzEGB9dSt7SC@vger.kernel.org
+X-Gm-Message-State: AOJu0YwIhoUNUhTXNrvk7DuW6RJMAYkcMbcwouhXKn2cLXMaJ5k5B+PE
+	BtJNy91nHHeINtpplAy5rc9WXXjVup/rpeDnmftqNVWct7cwMDeqZi0aend/RPVrgiw=
+X-Gm-Gg: ASbGnctTqWNHP2FhL4WY9IB6j78E8JEB/+Ju7xmP8Te+8NqqfNIq11yw4PGrn/Zm14a
+	uM53VEbCwhrRnEBOiDbLuLZNm5BL0t+kVxkXSHKMyvo6vSY4josaQgU95qi8DI8HYapka78iu3w
+	xeHTRXpLns8hxwRf91JJXqIXQiAFB01Ft8sdVCt/sOGJSr3qCWmQRy8LnNjdS653ffeAz5ACHfC
+	vIyT8Y1cSmnNE9iR0dPe1FnrcpNGPqYlP875MDubOxvbaoR/AE9Yj4SNka/vSahv7D4+ICFSEqE
+	Ad0xS4Q/lyyAx9ppAEhREpJi1vpaxW4jskuemYqO2BHFy1rfxG/g/MX/gusCc4VSea3cSjRXNgr
+	lR1tVcw==
+X-Google-Smtp-Source: AGHT+IG4TA19oJA/4NLEDCAtZNYyk5/Fvf1KUNRsATQ8NH8vXDbyFQpNYkvW01WeN1E9t9+6gYU+yg==
+X-Received: by 2002:a05:600c:1552:b0:453:6332:a98c with SMTP id 5b1f17b1804b1-454b35ef640mr26770155e9.1.1751788455272;
+        Sun, 06 Jul 2025 00:54:15 -0700 (PDT)
+Received: from [192.168.1.110] ([178.197.222.89])
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-454a9bde35dsm103473235e9.30.2025.07.06.00.54.13
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Sun, 06 Jul 2025 00:54:14 -0700 (PDT)
+Message-ID: <9320092b-548d-4870-8d5f-d007a3713a81@linaro.org>
+Date: Sun, 6 Jul 2025 09:54:13 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20250706002223.128ff760@minigeek.lan>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v5 1/2] dt-bindings: usb: dwc3: add support for SpacemiT
+ K1
+To: Ze Huang <huang.ze@linux.dev>,
+ Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, Yixun Lan <dlan@gentoo.org>,
+ Thinh Nguyen <Thinh.Nguyen@synopsys.com>,
+ Philipp Zabel <p.zabel@pengutronix.de>
+Cc: linux-usb@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-riscv@lists.infradead.org, spacemit@lists.linux.dev,
+ linux-kernel@vger.kernel.org
+References: <20250705-dwc3_generic-v5-0-9dbc53ea53d2@linux.dev>
+ <20250705-dwc3_generic-v5-1-9dbc53ea53d2@linux.dev>
+ <aGkkKEMyY1JG7Z80@monica.localdomain>
+From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Content-Language: en-US
+Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
+ 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
+ 2+47PN9NZAOyb771QoVr8A==
+In-Reply-To: <aGkkKEMyY1JG7Z80@monica.localdomain>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-On Sun, Jul 06, 2025 at 12:22:23AM +0100, Andre Przywara wrote:
-> On Sat, 5 Jul 2025 17:53:17 +0200
-> Andrew Lunn <andrew@lunn.ch> wrote:
+On 05/07/2025 15:10, Ze Huang wrote:
+> On Sat, Jul 05, 2025 at 09:01:25PM +0800, Ze Huang wrote:
+>> Add support for the USB 3.0 Dual-Role Device (DRD) controller embedded
+>> in the SpacemiT K1 SoC. The controller is based on the Synopsys
+>> DesignWare Core USB 3 (DWC3) IP, supporting USB3.0 host mode and USB 2.0
+>> DRD mode.
+>>
+>> Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+>> Signed-off-by: Ze Huang <huang.ze@linux.dev>
+>> ---
 > 
-> Hi Andrew,
+> Hi Krzysztof,
 > 
-> > > So it's really whatever Allwinner wants to call it. I would rather have
-> > > the names follow the datasheet than us making some scheme up.  
-> > 
-> > Are the datasheets publicly available?
+> I kept your Reviewed-by tag, as this version only includes minor updates:
+> - Dropped the `interconnects` property
+> - Updated the `resets` property to match the latest convention from Alex's patch
 > 
-> We collect them in the sunxi wiki (see the links below), but just to
-> make sure:
+> Let me know if you have any concerns.
 
-O.K. The point i was trying to make is that some vendors datasheets
-are not public, or very restricted, and so names don't matter, since
-nobody has the datasheets. But if they are open, names are more
-relevant.
+It's fine, thanks.
 
-I do agree that stuff can be changed when it is in an -rcX
-kernel. However, it needs to be well justified, ABI related, or very
-broken.
-
-Since this is ABI, it could be changed. But i don't want to make the
-decision of if it should be changed.
-
-	Andrew
+Best regards,
+Krzysztof
 
