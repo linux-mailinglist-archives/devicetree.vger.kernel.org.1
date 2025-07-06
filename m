@@ -1,145 +1,179 @@
-Return-Path: <devicetree+bounces-193346-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-193347-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2E8A5AFA525
-	for <lists+devicetree@lfdr.de>; Sun,  6 Jul 2025 15:14:32 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id F0F2CAFA52A
+	for <lists+devicetree@lfdr.de>; Sun,  6 Jul 2025 15:17:27 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 9F95B3A4091
-	for <lists+devicetree@lfdr.de>; Sun,  6 Jul 2025 13:14:04 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 4946C17A3A3
+	for <lists+devicetree@lfdr.de>; Sun,  6 Jul 2025 13:17:28 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2B122214A9B;
-	Sun,  6 Jul 2025 13:14:25 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5ABCE2153CE;
+	Sun,  6 Jul 2025 13:17:15 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="H74tGhnO"
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="NfFVCm3b"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 01DAE2E3701;
-	Sun,  6 Jul 2025 13:14:24 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A6DAB205E2F
+	for <devicetree@vger.kernel.org>; Sun,  6 Jul 2025 13:17:13 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1751807665; cv=none; b=oyxxmBPC/xFAoYIpB+46OaGFm/5Mwk01HuxQXwv0lbMqWAZppIab4QEeUfN5HNuKAWowtd+lurzUqqnbESjiZADRAmRLfPrzItvfWFWEy895P4LweAfz4oVt8TYhUv9LZq+aKhXQWtOE53GwRI8nIutwqAh0HwLUBWoeU1xGT6s=
+	t=1751807835; cv=none; b=ZUHrdU9gIU8Qums6YzRNjjRctDdMswhK6GjJx8IjT2laikBeeCPl5TLJ+8/iF18SEuE+UmYU3rz+T24nVUNzC08hOuzu0rl2XEpGKcwyXQmVsp8sL7X6R7nfJ/KEdNwbYB19IpWuuSuc50hiQ3O1nB0V6dDOjaWU7BlNeq+t/hY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1751807665; c=relaxed/simple;
-	bh=u8xJci6BCA/NPXr2bGUVttu27gcVFr7isab2Lo+Nre0=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=o0VcCat9uPJeXhUBjbUOIEBOkG6zl1C9Bss5nlSrB90P/yb1ZW/4jQ8PnNMAlnPkp1AJEo3nF9DdgM2N+eFHvzl2GkObXAvW6jDpbB8O9VU8bfSN0nGO54ejnmNM4s51NHGE9BgtnVqQCWIc5c/7r3Ff0wR9UOtDV1DGzGeI/+Q=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=H74tGhnO; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 7F04BC4CEF4;
-	Sun,  6 Jul 2025 13:14:24 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1751807664;
-	bh=u8xJci6BCA/NPXr2bGUVttu27gcVFr7isab2Lo+Nre0=;
-	h=References:In-Reply-To:Reply-To:From:Date:Subject:To:Cc:From;
-	b=H74tGhnOnclNfDF4L3HiqPatu/Ckv4SZwOZieRM9X1HBvT72eGWkjGnmDrv7miyw9
-	 /md3SO6VV9wp5un7SLJY585Cu/xC634IOPRqKSenlFAWLasra7D84WocasA5yNAdlD
-	 truaLbkyAf1bmoInf5c1WugXZSj9/M49L3VtGnO0G/wlS3W6obpgMsPh1oh5ZBHhLa
-	 OVciZG90FoRDiu/0VBG5iGHISg1+KxXT01I0j1NFUAoFVv/Y/X1jlDlCm1VwhNH99F
-	 l5V7Z5whmNhUv3QtzTCBJdRKtGTxMvkg62s/rmxA1PI1IvYi/g1Oi0d8wu9E/jWLMx
-	 5blPMHji5owrA==
-Received: by mail-lf1-f50.google.com with SMTP id 2adb3069b0e04-55628eaec6cso2112782e87.0;
-        Sun, 06 Jul 2025 06:14:24 -0700 (PDT)
-X-Forwarded-Encrypted: i=1; AJvYcCWesOGrBnNtEBaTu+Rgx9QLxBjgSkk6UzfJG6rN2hpqKBwniNO3Jeu39v48FExmG/MEdjpBYJTg@vger.kernel.org, AJvYcCXkrovdX4KjTXTX1cnRxPee/pR0AcEFfOBIEeSzjNDb6RjWw0AGLyctsZi5+NYD4pQ8SWHaJiTe9Ia+@vger.kernel.org
-X-Gm-Message-State: AOJu0Yy2Nwu2D3nRaBL8sVw9SAomqFQQg/n/QTJvHmByPn+/dElTosDY
-	uAaMh405X4q7S75TCUc5NS9D8HCFFBE8tkz1HXeJg9QB7EJGkzVETssk3dry6yj4PsZj/wJ82In
-	xDugZ+DAhychPosr1AuYrORydJLbKWsM=
-X-Google-Smtp-Source: AGHT+IEzN50658kYdEZu4z11IX1+qj76bRNUj9L9XsGay2m70Sqt76p+ZP6G4FZVEV9964rwYfujWQD+iVC6l49gAsw=
-X-Received: by 2002:a05:6512:4027:b0:553:ceed:c859 with SMTP id
- 2adb3069b0e04-557e5537687mr1059540e87.21.1751807662868; Sun, 06 Jul 2025
- 06:14:22 -0700 (PDT)
+	s=arc-20240116; t=1751807835; c=relaxed/simple;
+	bh=qTTz9nPQxiJwRdpENmjn6LsyPlXW15ajO1SLMCtaUMU=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=S/CbxERZp0ZKiaj+R2Kuk7V6BMW2uxkYZEQYOLw+VsCEqC/OHyl4hTXIAx6lVJHZdgvXqWTHjY3cp4JyB62KjNGtFmMEMERqXr++eV94a2p6YvM9NmCJbDovDzsy/h06z4J/nXKSKminqFGn9RYrG6sLqGRDJAEJfk255hK0l4g=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=NfFVCm3b; arc=none smtp.client-ip=205.220.168.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
+Received: from pps.filterd (m0279866.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 566AhpvF023280
+	for <devicetree@vger.kernel.org>; Sun, 6 Jul 2025 13:17:13 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+	cc:content-type:date:from:in-reply-to:message-id:mime-version
+	:references:subject:to; s=qcppdkim1; bh=EMu8D2urkSnttwu+eBSYfOFZ
+	ChWl6OEMNQLTQc/BZm4=; b=NfFVCm3bAqCLeEFx8tbQdxy5LMQbfjsyd3BCCTIW
+	57n4/QGTnma2PdGDKa9w1yxSV0eIvEHgudsaXT2ewHe9xxw5gRVMN5tSIlN2bhCs
+	4vK3VIzN0LtBHUn2Fi7rtYsiBjao5MRw6wIIvTA+lmlMPaY0c80OsmuMtYSZfg/x
+	PmAMPoMuKxpFb1lNAfF5xY7y8jhLHDjiCSYOQqgZxe0ct5BBGht1bg0m+FUi53IZ
+	SXycJgGYJBDLOq+5NUxQjrFH+Yu3dW++5cXHFa5pE1YOscADutgMELLXCkRcVp+X
+	NiQIxB1WuiuTbH8LJkfz6Tn0+DWgFfy+g/aXZQ3NWYOmXQ==
+Received: from mail-qk1-f199.google.com (mail-qk1-f199.google.com [209.85.222.199])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 47pwbd46wd-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
+	for <devicetree@vger.kernel.org>; Sun, 06 Jul 2025 13:17:12 +0000 (GMT)
+Received: by mail-qk1-f199.google.com with SMTP id af79cd13be357-7d3f0958112so338257985a.0
+        for <devicetree@vger.kernel.org>; Sun, 06 Jul 2025 06:17:12 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1751807831; x=1752412631;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=EMu8D2urkSnttwu+eBSYfOFZChWl6OEMNQLTQc/BZm4=;
+        b=wUn31J48ALK0FSX2WWzgFetD7kgnL38PcRJ1ePUHGz0LbDiEGryuCfFC7PmY4+QcZ1
+         +qNLI7TWubdVkUsKmv3d6TCydAgl9GH+Gvr62VyJXU/j9OgVK4Eo5SOIXWsCW3yEyrw9
+         pyqZ1WXVdedFVjcKg6DlVI9FV0bLXKGQbko2lgUY8I9+GH+FrOzUL6qDhSyUijdM8m8n
+         +qLq+VdSq9WCXAFjIkplc+CA2I2Ui4J0h7TYZcxg6qRBzMv4NboypQqn9ZXPmk8lsVjx
+         ot5ML+NkgsWx4IhDDVHHMgW1Mr9WhZip6KZKcHZ0UjMAh6jLYk9oiqj3KAVoGEke/k52
+         Zjqw==
+X-Forwarded-Encrypted: i=1; AJvYcCUeX+7wApnTjncXoV3rDHpLQYAirqYRCRWMuIkGUfnsN/qM8fkKlvUo5v8eBrBCNvkaE/FvOuVE0g4i@vger.kernel.org
+X-Gm-Message-State: AOJu0YzIxgkCEVEFLH01E5jh5I4naVuETqEyBCdI+FFJZYNKJ2QGrlAD
+	07yk+PBhQ1A8SHSvprNZJr9QQaG5Qdy94yLLiQvH4f3FF+b0fNDUutFKkFUeVMcRTMME2WwZG3L
+	Zgyz4NOwzEN3qwmB7DJLQH8FiGzGI+xse9tvnR4TsGVaGAHm6Iza0n4z8po/wmYn/
+X-Gm-Gg: ASbGncvJAnOx5jRD0JYZZ01s8WpXWIAnoJs7k61LZCHjIIQfhiPkzrZ0neh4Ls7yVeu
+	+z/vYSqbSNpbKPxbgVXpteFmzv2Tth0xF1Z5Mw8pQYXIas0pUs7Tk3sssis3SKvXc2UBapOXmkW
+	uXfcgKzcyYOtsRukcaScjfKPsFRhNXyMcNJ85qmIuWS3Gf3Pid+p3sBCdTfUCjp+tQ/SZ5P4STW
+	phOPyAOTpk45zC3MpAs2kzCZqZJv1l4h/X10LfO31bMfJOHZUtGqt4s2TsH0jQqee7D/0uRz+aZ
+	FFOu8dWV9Q68qdVKMYBObMcWWDBvqxvnhf87xLjVgLKbSUYiOsAajqFf8Ou+RTc5w8KTRPCe6UF
+	r5i15sJYXWOw6k9KhMsw2O84ou/mJsUxCOok=
+X-Received: by 2002:a05:620a:404e:b0:7d0:9505:1797 with SMTP id af79cd13be357-7d5f0a3bb12mr606566185a.4.1751807831275;
+        Sun, 06 Jul 2025 06:17:11 -0700 (PDT)
+X-Google-Smtp-Source: AGHT+IG2HuT065tZ8I8BaaCuYfsYtZ4vVgMbrvNo6D9ps+z/dQZyU/3GSde1crlgPLIHhFHrrRmZ1Q==
+X-Received: by 2002:a05:620a:404e:b0:7d0:9505:1797 with SMTP id af79cd13be357-7d5f0a3bb12mr606562385a.4.1751807830714;
+        Sun, 06 Jul 2025 06:17:10 -0700 (PDT)
+Received: from umbar.lan (2001-14ba-a0c3-3a00-264b-feff-fe8b-be8a.rev.dnainternet.fi. [2001:14ba:a0c3:3a00:264b:feff:fe8b:be8a])
+        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-55638494d37sm953233e87.117.2025.07.06.06.17.09
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Sun, 06 Jul 2025 06:17:09 -0700 (PDT)
+Date: Sun, 6 Jul 2025 16:17:08 +0300
+From: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
+To: Luca Weiss <luca@lucaweiss.eu>
+Cc: ~postmarketos/upstreaming@lists.sr.ht, phone-devel@vger.kernel.org,
+        Bjorn Andersson <andersson@kernel.org>,
+        Mathieu Poirier <mathieu.poirier@linaro.org>,
+        Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Manivannan Sadhasivam <mani@kernel.org>,
+        Konrad Dybcio <konradybcio@kernel.org>, linux-arm-msm@vger.kernel.org,
+        linux-remoteproc@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Subject: Re: [PATCH 2/4] remoteproc: qcom_q6v5_pas: Use resource with CX PD
+ for MSM8974
+Message-ID: <huvsqr3hxkeerjevhvjobfyxzfjldoawlgj6xgmdgf27kwbea4@ijh6gqbsa35i>
+References: <20250621-msm8974-rpmpd-switch-v1-0-0a2cb303c446@lucaweiss.eu>
+ <20250621-msm8974-rpmpd-switch-v1-2-0a2cb303c446@lucaweiss.eu>
+ <hwewzj4ygfbb22vxrahjfc3b4oxyagh3nkd26bs3p5k2fcxr6m@mkgtyjkxz3d7>
+ <226fd16c-8071-43c7-9ecc-9bd95e319aaf@lucaweiss.eu>
+ <znv7ish4ufkgnzfwyxjt2ercdvemxh644zwpqthj7rtf5gb4fe@auvbeemdlbtk>
+ <6733d2ca-f73b-4332-97c3-ba79377538c2@lucaweiss.eu>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20250628054438.2864220-1-wens@kernel.org> <20250705083600.2916bf0c@minigeek.lan>
- <CAGb2v64My=A_Jw+CBCsqno3SsSSTtBFKXOrgLv+Nyq_z5oeYBg@mail.gmail.com>
- <e9c5949d-9ac5-4b33-810d-b716ccce5fe9@lunn.ch> <20250706002223.128ff760@minigeek.lan>
-In-Reply-To: <20250706002223.128ff760@minigeek.lan>
-Reply-To: wens@kernel.org
-From: Chen-Yu Tsai <wens@kernel.org>
-Date: Sun, 6 Jul 2025 21:14:09 +0800
-X-Gmail-Original-Message-ID: <CAGb2v64vxtAVi3QK3a=mvDz2u+gKQ6XPMN-JB46eEuwfusMG2w@mail.gmail.com>
-X-Gm-Features: Ac12FXwracJUFtxrR-geU8AnCt2mihSX7AlHGCMKyxbdZy4UN94qheE6j6Zh998
-Message-ID: <CAGb2v64vxtAVi3QK3a=mvDz2u+gKQ6XPMN-JB46eEuwfusMG2w@mail.gmail.com>
-Subject: Re: [PATCH net 0/2] allwinner: a523: Rename emac0 to gmac0
-To: Andre Przywara <andre.przywara@arm.com>
-Cc: Andrew Lunn <andrew@lunn.ch>, Andrew Lunn <andrew+netdev@lunn.ch>, 
-	"David S. Miller" <davem@davemloft.net>, Eric Dumazet <edumazet@google.com>, 
-	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Jernej Skrabec <jernej@kernel.org>, Samuel Holland <samuel@sholland.org>, netdev@vger.kernel.org, 
-	devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
-	linux-sunxi@lists.linux.dev
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <6733d2ca-f73b-4332-97c3-ba79377538c2@lucaweiss.eu>
+X-Proofpoint-GUID: uVVnhpXfZp4jR5h5uJT89juFQiKVBsvV
+X-Proofpoint-ORIG-GUID: uVVnhpXfZp4jR5h5uJT89juFQiKVBsvV
+X-Authority-Analysis: v=2.4 cv=e/kGSbp/ c=1 sm=1 tr=0 ts=686a7758 cx=c_pps
+ a=HLyN3IcIa5EE8TELMZ618Q==:117 a=xqWC_Br6kY4A:10 a=kj9zAlcOel0A:10
+ a=Wb1JkmetP80A:10 a=dlmhaOwlAAAA:8 a=tkrKlJn0stcreqTVr-UA:9 a=CjuIK1q_8ugA:10
+ a=bTQJ7kPSJx9SKPbeHEYW:22 a=y4cfut4LVr_MrANMpYTh:22
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwNzA2MDA4NCBTYWx0ZWRfXylpg2ZPLHmTx
+ CJFmTqswLSEc5xgAKYvdsUJu0BaKUxcwKFO196quTTBYWUW3PeZwfAUVj7yqltqFlF+8rLj++J5
+ MFf570ApQ2bDMk0U54q6eQ9XLkby82HaIY1kP2TP2pBQ4HKnWwIJfXfdiF0yrYwS2S1bhMQs4/w
+ YkXCslZEjjiD2FwhmAWLg4rr2t4RaYbHx6kOk8Emjbj4LgibL1g9S9OYlHWLWsdxJUMa4dWUvH1
+ HO/BzASOyACnMa9iP/uOJuSBrN46RwSCwO+y5QH2GfBl2Qg0IXA0TWNZ8mppa2Py+H5IdvzlCsw
+ nNVSovS4lM/7plrzuXeqEnp2tBqH+XXE0d29OmlldFa3tHk7xHGHC441+nU9dxepHavihZVbAuw
+ 7lNMW3OEEYIbjxKzc8pGYmJ88FoUzQZzop19ib3cEC3q5rxXI2CzIrAUop4r4sUc9W+cZA01
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1099,Hydra:6.1.7,FMLib:17.12.80.40
+ definitions=2025-07-04_07,2025-07-04_01,2025-03-28_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ spamscore=0 malwarescore=0 impostorscore=0 adultscore=0 mlxlogscore=999
+ lowpriorityscore=0 priorityscore=1501 suspectscore=0 mlxscore=0 phishscore=0
+ bulkscore=0 clxscore=1015 classifier=spam authscore=0 authtc=n/a authcc=
+ route=outbound adjust=0 reason=mlx scancount=1 engine=8.19.0-2505280000
+ definitions=main-2507060084
 
-On Sun, Jul 6, 2025 at 7:23=E2=80=AFAM Andre Przywara <andre.przywara@arm.c=
-om> wrote:
->
-> On Sat, 5 Jul 2025 17:53:17 +0200
-> Andrew Lunn <andrew@lunn.ch> wrote:
->
-> Hi Andrew,
->
-> > > So it's really whatever Allwinner wants to call it. I would rather ha=
-ve
-> > > the names follow the datasheet than us making some scheme up.
-> >
-> > Are the datasheets publicly available?
->
-> We collect them in the sunxi wiki (see the links below), but just to
-> make sure:
-> I am not disputing that GMAC is the name mentioned in the A523 manual,
-> and would have probably been the right name to use originally - even
-> though it's not very consistent, as the same IP is called EMAC in the
-> older SoCs' manuals. I am also not against renaming identifiers or even
-> (internal) DT labels. But the problem here is that the renaming affects
-> the DT compatible string and the pinctrl function name, both of which
-> are used as an interface between the devicetree and its users, which is
-> not only the Linux kernel, but also U-Boot and other OSes like the BSDs.
+On Sun, Jul 06, 2025 at 02:32:26PM +0200, Luca Weiss wrote:
+> On 06-07-2025 12:08 p.m., Dmitry Baryshkov wrote:
+> > On Sun, Jul 06, 2025 at 10:31:38AM +0200, Luca Weiss wrote:
+> > > On 05-07-2025 10:57 p.m., Dmitry Baryshkov wrote:
+> > > > On Sat, Jun 21, 2025 at 03:19:57PM +0200, Luca Weiss wrote:
+> > > > > MSM8974 requires the CX power domain, so use the msm8996_adsp_resource
+> > > > > which has cx under proxy_pd_names and is otherwise equivalent.
+> > > > > 
+> > > > > Signed-off-by: Luca Weiss <luca@lucaweiss.eu>
+> > > > > ---
+> > > > >    drivers/remoteproc/qcom_q6v5_pas.c | 2 +-
+> > > > >    1 file changed, 1 insertion(+), 1 deletion(-)
+> > > > 
+> > > > Hmm. You are modifying the ADSP configuration in the driver, but at the
+> > > > same time you've dropped CX supply from the MSS remoteproc.
+> > > 
+> > > The qcom_q6v5_mss driver has this support for .fallback_proxy_supply, which
+> > > are used in case the power domain is not specified.
+> > > 
+> > > So no driver change is necessary in the mss driver for both old and new
+> > > devicetrees, but the adsp driver does not have this fallback, so that's why
+> > > the adsp config is updated.
+> > > 
+> > > Does that make it clear?
+> > 
+> > Yes. Would it make sense to implement fallback_proxy_supply for ADSP
+> > too?
+> 
+> Definitely would be possible, but I don't see the point in doing the work to
+> implement this, to then carry around a bunch of legacy compatibility code
+> that (very likely) won't really be used in practice.
+> I don't think any platform apart from msm8974 are going to be affected by
+> this anyways.
+> 
+> Still same argument from my side, I think breaking compatibility here for
+> this one driver outweighs the effort/code of implementing compatibility.
 
-I reiterate my position: they are not stable until they actually hit a
-release. This provides some time to fix mistakes before they are set in
-stone.
+Ack. You have my r-b for the series anyways.
 
-> In this particular case we would probably get away with it, because
-> it's indeed very early in the development cycle for this SoC, but for
-> instance the "emac0" function name is already used in some U-Boot
-> patch series on the list:
-> https://lore.kernel.org/linux-sunxi/20250323113544.7933-18-andre.przywara=
-@arm.com/
->
-> If we REALLY need to rename this, it wouldn't be the end of the world,
-> but would create some churn on the U-Boot side.
->
-> I just wanted to point out that any changes to the DT bindings have
-> some impact to other projects, even if they are proposed as a coherent
-> series on the Linux side. Hence my question if this is really necessary.
-
-For the compatible string, I can live with having a comment in the binding
-stating the name used in the datasheet for reference.
-
-For the pinctrl stuff, which is the contentious bit here, I thought the
-whole idea of the newer pinctrl bindings is that the driver uses
-"allwinner,pinmux" instead of "function". I think having both being valid
-is confusing, and likely to cause conflicts later on. If we're going to
-use the hardware register values in the device tree, I'd really like them
-to be the only source of truth. The commit message for the binding also
-sort of suggests that "allwinner,pinmux" is the part that matters.
-
-
-ChenYu
-
-> Cheers,
-> Andre
->
-> https://linux-sunxi.org/A64#Documentation
-> https://linux-sunxi.org/H616#Documentation
-> https://linux-sunxi.org/A523#Documentation
+-- 
+With best wishes
+Dmitry
 
