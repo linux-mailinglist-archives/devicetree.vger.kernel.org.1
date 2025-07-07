@@ -1,119 +1,81 @@
-Return-Path: <devicetree+bounces-193553-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-193554-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id A0ACDAFAE30
-	for <lists+devicetree@lfdr.de>; Mon,  7 Jul 2025 10:08:25 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3B714AFAE40
+	for <lists+devicetree@lfdr.de>; Mon,  7 Jul 2025 10:09:33 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id CE3BD1657C4
-	for <lists+devicetree@lfdr.de>; Mon,  7 Jul 2025 08:08:10 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 4A2DF4A0F8D
+	for <lists+devicetree@lfdr.de>; Mon,  7 Jul 2025 08:09:03 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 13A5428C2C6;
-	Mon,  7 Jul 2025 08:05:36 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id F2F7828A3FC;
+	Mon,  7 Jul 2025 08:07:29 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=tuxon.dev header.i=@tuxon.dev header.b="Tg6+KlkY"
+	dkim=pass (1024-bit key) header.d=yeah.net header.i=@yeah.net header.b="BbL1vs6b"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ej1-f51.google.com (mail-ej1-f51.google.com [209.85.218.51])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from proxy41135.mail.163.com (proxy25215.mail.163.com [103.129.252.15])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2F18E28B3F8
-	for <devicetree@vger.kernel.org>; Mon,  7 Jul 2025 08:05:33 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.51
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0BDB828A1FB;
+	Mon,  7 Jul 2025 08:07:26 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=103.129.252.15
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1751875536; cv=none; b=GA7MQ8R6sdh8co9LUD1KFyK6PYnBYbv+Di/r2gaK8+A1IgmZl2qFZRvZzR1YGVLZxAeUrl+uXEuokro2GE/joKWI0in9V74494O1sJ7HN37VXaKe+tjtRAet5VLdaLmtb+zjn/c55xD1gfXIgwftHI7lRTJSQm+Ot8MoXsDGiPg=
+	t=1751875649; cv=none; b=mzAoIRV0pN62ZOz1qBT9vdEZal7sT+eqiRdlcalo0IIypv62TLtimM2YCeNDoPWdDzoRo+Ardln1lgkFvznKhDhSftV+8MhXVJZ2EM1W24y16Nmv/7/18prcmz0fsxAiFB1r8iRtxuUfewxkgbLLlUZEl6AAdtpUwC9LM2KItpM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1751875536; c=relaxed/simple;
-	bh=1TjqDgVep254QfrcOu3FK5y0aX/fhgV/uA6wQt9g1B0=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=hO8nz3DU1mnEtT4RRf2xuWXfnp/9kOi79P8ilHA4cLrz/RwakezYcEhgt8q/BYICj6VYjdO+ljHoWz6vJnHXQBKfibtQnyPeI7WCl3AjGr9BmuXi0iri4otWJ6SG8BLDYFC3fmReux6wRu9KqE42OpZQ47YHMyfyAizcclC6AuY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=tuxon.dev; spf=pass smtp.mailfrom=tuxon.dev; dkim=pass (2048-bit key) header.d=tuxon.dev header.i=@tuxon.dev header.b=Tg6+KlkY; arc=none smtp.client-ip=209.85.218.51
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=tuxon.dev
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=tuxon.dev
-Received: by mail-ej1-f51.google.com with SMTP id a640c23a62f3a-ae35f36da9dso534192166b.0
-        for <devicetree@vger.kernel.org>; Mon, 07 Jul 2025 01:05:33 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=tuxon.dev; s=google; t=1751875532; x=1752480332; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:content-language:from
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=cfSK4wZ0IXAaLuWeqeSbn2/BZJH/6gHhbVTHrVcpn3U=;
-        b=Tg6+KlkYIkFXgXxkf76IBjDYPoDHlDpa5+R9sQ9E0yxapxiDg1ZE3k2CpQNYBwvcJo
-         i+6CMi17RguMUp7i2E4Mjkyt/uOxokXr6F1rGWafqb1mSf9Ss/MMvhyGaR1OE2k6d+M1
-         V1lOeSCHbtVSOVWlUgia7cx96PPZwlvfwW7ZERFC5QkExixZ5Di+EkRKDx1KmvY0IQ31
-         jM6bkw3i1maYUBjsTjAZXvB7aPbVBLsRjo3oZJ9cXRjrlCyzv5/PBI7LI2VKVTHEvd4D
-         dVidOtE42tu+55CuhFyvk0Szo4uv9WxS0/XP9QV+pFwk6MBCd8bhQ8B74bpfUfwxFG5e
-         bUrA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1751875532; x=1752480332;
-        h=content-transfer-encoding:in-reply-to:content-language:from
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=cfSK4wZ0IXAaLuWeqeSbn2/BZJH/6gHhbVTHrVcpn3U=;
-        b=DpHiILA0/ph1inRnnL4n3fLUw+AgYGzhT/1g8IxW0aHuaGy7B4ZQZWKXwIH0/eO2wI
-         PvEAbdSbw4gR5ZTUh7wRPjA26c9vfB/ypRYzKzZjvC1VX5d0mVBhy+91fNkkKuDF5Zkg
-         llGLYahZ8bWz5tcFKLPzniksRg2P9eEzFbt5r5AO3uxgBRlRZ+W87Ekbg6HurS4+sH8w
-         BmJEv4pxjHGxJfrdAvT/cZfYF2egljvIhdEm9WJmkiQTkSYX7NFa0svdGnty2pJVTu5Z
-         AWlQKshlL37FgVh2gZbdSxU48ot13gcb7qWHYzgM8wxkPcAhpIsO2JC0J3LQPRvRnnU7
-         TsUg==
-X-Forwarded-Encrypted: i=1; AJvYcCXZNjLI6g/XGjenpvkAA8qpRco6Pk1mxs6Z4wvhPkgzbxzeNww9W65oaI3/VBVpfJx+XsuWKGoy30q1@vger.kernel.org
-X-Gm-Message-State: AOJu0YzbNHGCeIOQzIlBTPQdNWkC6rN4iiyNEG05M0nwjieXxhH5JIdf
-	5ZN9MNxAURIWBpIOPR4zBSNOr1qwPC9M4+x5qxwzszHiUMYRm8i2dk5yhnZaOorc5yI=
-X-Gm-Gg: ASbGncuzsu/Q7BxbIOMaJXbR42IpPyYcF7xKjQbO21n/ZHLv4N4ViCxlxZgaLZNxOlo
-	n5UavJOz40ptudxrqdOCru3+iHzO2paW2egfZm4kebJdeNT2P/VzzOQN7muQ9pDacNxJs8YOIm1
-	Pv7o4X47a5sHgPBuf7G+t6Fs2HSVZtabz/bAw7X8irkSomII/aI1XSV6YpMio+Z1lTpuh+gPJ/u
-	M/KdxoPKoISpoyXSNcMTueQrscX/8ihWPivIR84FUKRf2XICXhhJ2djyTxsfMDCt/SnuCTFZiPo
-	IawKLXYswuUYIn7NdDJfoNhVSr1udsREluNdpCljpWsXzvIC1nEe28SX/tmW9IPWsCQpHg==
-X-Google-Smtp-Source: AGHT+IE0L5DPGdmdGEN0u5OQ9V+2BW3fc6+QE6pzmfgPPJld1q+jXk9TxJBBsXR1qKPnO0Xzg35V4Q==
-X-Received: by 2002:a17:906:c14e:b0:ad8:914b:7d15 with SMTP id a640c23a62f3a-ae3fbc899b6mr1217341966b.7.1751875532226;
-        Mon, 07 Jul 2025 01:05:32 -0700 (PDT)
-Received: from [192.168.50.4] ([82.78.167.30])
-        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-ae3f66e8c26sm650083566b.25.2025.07.07.01.05.30
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 07 Jul 2025 01:05:31 -0700 (PDT)
-Message-ID: <96af5f63-dbaf-4177-95e2-a6cc24019dc0@tuxon.dev>
-Date: Mon, 7 Jul 2025 11:05:30 +0300
+	s=arc-20240116; t=1751875649; c=relaxed/simple;
+	bh=Q6WPFHuWWUDH9MZY9SgddwsUkXudgzIVOChasOefjEo=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=O/ldDzqJwBC+7NtldYlOQJK2yN/UHpt7F8a2ucNGnpOvX+VEgkv7BoS+nDEtExAA0fQD/VP8JoMZ7LTvWEWJGqRKuUQhBNSPaur3VT0KTChHReKcReOahRPiENES9fKl8WPx+FK4xHy5WJkWa1cLXXxD3RypzyZe7hgBn0i5twA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=yeah.net; spf=pass smtp.mailfrom=yeah.net; dkim=pass (1024-bit key) header.d=yeah.net header.i=@yeah.net header.b=BbL1vs6b; arc=none smtp.client-ip=103.129.252.15
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=yeah.net
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=yeah.net
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=yeah.net;
+	s=s110527; h=Date:From:To:Subject:Message-ID:MIME-Version:
+	Content-Type; bh=VwnTHZKkfxEnp/Ss1vXJUtlWc7EFWd8bXzp0BCH6DE4=;
+	b=BbL1vs6bgrfXA5oer3T3euuo1ru71ZQhna5Ez6l37/zsnzehv65QHggSz5CZEh
+	50ITyzDsyTxJFWeerdBL0BjHoBHJ9BJC1v5PpkcC5zMcPmGDg7U5wooY/KbZXry2
+	km9L1+KIljbYgKP9PixWKdPPnEZUQD9BbbJaBakQx+xyM=
+Received: from dragon (unknown [])
+	by gzsmtp1 (Coremail) with SMTP id Mc8vCgBnlanpf2toiac8AA--.9068S3;
+	Mon, 07 Jul 2025 16:06:03 +0800 (CST)
+Date: Mon, 7 Jul 2025 16:06:00 +0800
+From: Shawn Guo <shawnguo2@yeah.net>
+To: Primoz Fiser <primoz.fiser@norik.com>
+Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
+	Sascha Hauer <s.hauer@pengutronix.de>,
+	Pengutronix Kernel Team <kernel@pengutronix.de>,
+	Fabio Estevam <festevam@gmail.com>, devicetree@vger.kernel.org,
+	imx@lists.linux.dev, linux-arm-kernel@lists.infradead.org,
+	linux-kernel@vger.kernel.org, upstream@lists.phytec.de
+Subject: Re: [PATCH v2] arm64: dts: freescale: imx93-phycore-som: Add
+ watchdog ext-reset-output pin
+Message-ID: <aGt_6Kfe4IJ0XeVc@dragon>
+References: <20250626071629.3380656-1-primoz.fiser@norik.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3 0/9] PCI: rzg3s-host: Add PCIe driver for Renesas
- RZ/G3S SoC
-To: Wolfram Sang <wsa+renesas@sang-engineering.com>
-Cc: bhelgaas@google.com, lpieralisi@kernel.org, kwilczynski@kernel.org,
- mani@kernel.org, robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
- geert+renesas@glider.be, magnus.damm@gmail.com, catalin.marinas@arm.com,
- will@kernel.org, mturquette@baylibre.com, sboyd@kernel.org,
- p.zabel@pengutronix.de, lizhi.hou@amd.com, linux-pci@vger.kernel.org,
- linux-renesas-soc@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- linux-clk@vger.kernel.org, Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>
-References: <20250704161410.3931884-1-claudiu.beznea.uj@bp.renesas.com>
- <aGtsM22QYqekuiQA@shikoro>
-From: Claudiu Beznea <claudiu.beznea@tuxon.dev>
-Content-Language: en-US
-In-Reply-To: <aGtsM22QYqekuiQA@shikoro>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20250626071629.3380656-1-primoz.fiser@norik.com>
+X-CM-TRANSID:Mc8vCgBnlanpf2toiac8AA--.9068S3
+X-Coremail-Antispam: 1Uf129KBjDUn29KB7ZKAUJUUUUU529EdanIXcx71UUUUU7v73
+	VFW2AGmfu7bjvjm3AaLaJ3UbIYCTnIWIevJa73UjIFyTuYvjxUOmhFUUUUU
+X-CM-SenderInfo: pvkd40hjxrjqh1hdxhhqhw/1tbiNQsPdGhrf+tXygAA3P
 
-Hi, Wolfram,
-
-On 07.07.2025 09:41, Wolfram Sang wrote:
+On Thu, Jun 26, 2025 at 09:16:29AM +0200, Primoz Fiser wrote:
+> On phyCORE-i.MX93 SoM, the SoC WDOG_ANY output line is connected to the
+> external pca9451a PMIC WDOG_B input. Apply pinctrl and set the property
+> "fsl,ext-reset-output" for watchdog to trigger board reset via PMIC on
+> timeout/reset.
 > 
->> Please provide your feedback.
-> 
-> What is this based on? I tried v6.16-rc4 and renesas-driver/master. Or
-> is there a branch I could pull?
-> 
+> Signed-off-by: Primoz Fiser <primoz.fiser@norik.com>
 
-This is based on next-20250703. I pushed it here, as well:
-https://github.com/claudiubeznea/linux/commits/claudiu/rzg3s/pcie-v3/
+Applied, thanks!
 
-
-Thank you for looking into this,
-Claudiu
 
