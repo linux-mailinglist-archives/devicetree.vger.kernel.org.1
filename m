@@ -1,91 +1,149 @@
-Return-Path: <devicetree+bounces-193658-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-193659-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 69CACAFB2C8
-	for <lists+devicetree@lfdr.de>; Mon,  7 Jul 2025 14:01:26 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3F809AFB2CE
+	for <lists+devicetree@lfdr.de>; Mon,  7 Jul 2025 14:02:31 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 19A1B421514
-	for <lists+devicetree@lfdr.de>; Mon,  7 Jul 2025 12:00:56 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 9455A4A23B7
+	for <lists+devicetree@lfdr.de>; Mon,  7 Jul 2025 12:02:31 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7B15429A9CD;
-	Mon,  7 Jul 2025 12:01:10 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8CACF2951BD;
+	Mon,  7 Jul 2025 12:02:26 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=sang-engineering.com header.i=@sang-engineering.com header.b="J/CH2BNN"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="UeJKZrTL"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail.zeus03.de (zeus03.de [194.117.254.33])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 97AD81D416E
-	for <devicetree@vger.kernel.org>; Mon,  7 Jul 2025 12:01:07 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=194.117.254.33
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 58D2D1FFC48;
+	Mon,  7 Jul 2025 12:02:25 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1751889670; cv=none; b=q3EoO3jmgw2Bo3pkEZozi+h3RsqrcIY7gLnr+CeXS8zQyLWtuKa2SjZmgNJMZ/QxVRPNYGgaPQ/pLxQDINPfTn1JUg5n0GuUh8/tpNnChvvqDm+sBx9FTe6fe8abshApaisc+Dyop+c9YieVBRnYARVggjcH6GmM2A2w/2HCETA=
+	t=1751889746; cv=none; b=cIJLTMkGhoq0mvi1lwhrQ0tX8alnLD0wMB20Ag5atkSGoVSMGpvUeubTsdx8RDkYMrS8/kG5IcrGc0+gIRrKAOZUItUq4Awnw8DUy1qR6SHAAYHDahlb0h/KWYUkpPfzQd8IX5IGj3Aja67vaxxZnbwtB+BsvOPDM5eyURrUSW8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1751889670; c=relaxed/simple;
-	bh=NYE1/zwxWHmOulQ+HuKvBZEAn3rmUhfmFV+pVMZCm9M=;
+	s=arc-20240116; t=1751889746; c=relaxed/simple;
+	bh=VIqjqK+ketF5zBLE5EGm5mXuiGUfQu9PenuTdQQYfpE=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=GSMzE+2FEH0U+kqYNLb7lKaFHxksM1EbZ8y4mBUYZHq7V9O/B2bJxiI1XmF+LpBtpFVyYm4txJGJMpI2EeuukMR2n0d8NVwVp7khmJlWwOeTlFJ2pJCdC0MHK841nCfKzRvGgaKPEP0sh47Y1dfIqTB6znz5J/TwoW2uk1HU/Mc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=sang-engineering.com; spf=pass smtp.mailfrom=sang-engineering.com; dkim=pass (2048-bit key) header.d=sang-engineering.com header.i=@sang-engineering.com header.b=J/CH2BNN; arc=none smtp.client-ip=194.117.254.33
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=sang-engineering.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=sang-engineering.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
-	sang-engineering.com; h=date:from:to:cc:subject:message-id
-	:references:mime-version:content-type:in-reply-to; s=k1; bh=v6Qu
-	fareNLNn3UFYbV8ntusgGG8AMzvapPp5xVg2a8Q=; b=J/CH2BNNwBz/INtXzqUi
-	JzXmw4WYqaSpUAAl5/1nQT8ew9Vcj/uHeuDY4/TlaHIbmUr9vu3C9v4iGTMpG77P
-	5GzWM/Aa2pn3kjxwcRSglh8NniQese4kdaoTP/O6J1V8y2kIFx2uo/NN5MgDvycW
-	mX1ZNLG7AQUH1NisBz+5EdQVI5YmboE4V6rOALT7OaECyDBRR9Ywe99FCWm5jdbQ
-	mSlt21SJ9K+ib9+P2+HsOAe8oyJywIL6IREQsxZ5wXBH2dcRbmbUT73lnc2ltXlg
-	5h5l9EVJBJdbSP4R4ga7P5iTqAna5b89jaFCM2o1gF4bzyqI0BxWwNewC1eIQkTv
-	8Q==
-Received: (qmail 1234705 invoked from network); 7 Jul 2025 14:01:05 +0200
-Received: by mail.zeus03.de with UTF8SMTPSA (TLS_AES_256_GCM_SHA384 encrypted, authenticated); 7 Jul 2025 14:01:05 +0200
-X-UD-Smtp-Session: l3s3148p1@ksEpmVU5CsIgAwDPXxVOAFK6vZd9m4LR
-Date: Mon, 7 Jul 2025 14:01:04 +0200
-From: Wolfram Sang <wsa+renesas@sang-engineering.com>
-To: Claudiu Beznea <claudiu.beznea@tuxon.dev>
-Cc: bhelgaas@google.com, lpieralisi@kernel.org, kwilczynski@kernel.org,
-	mani@kernel.org, robh@kernel.org, krzk+dt@kernel.org,
-	conor+dt@kernel.org, geert+renesas@glider.be, magnus.damm@gmail.com,
-	catalin.marinas@arm.com, will@kernel.org, mturquette@baylibre.com,
-	sboyd@kernel.org, p.zabel@pengutronix.de, lizhi.hou@amd.com,
-	linux-pci@vger.kernel.org, linux-renesas-soc@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org, linux-clk@vger.kernel.org,
-	Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>
-Subject: Re: [PATCH v3 0/9] PCI: rzg3s-host: Add PCIe driver for Renesas
- RZ/G3S SoC
-Message-ID: <aGu3AJHIEYgHVRQQ@shikoro>
-References: <20250704161410.3931884-1-claudiu.beznea.uj@bp.renesas.com>
- <aGtsM22QYqekuiQA@shikoro>
- <96af5f63-dbaf-4177-95e2-a6cc24019dc0@tuxon.dev>
+	 Content-Type:Content-Disposition:In-Reply-To; b=uUyVPX6R7AXAO0clouspDe5Kl4iqLfmyD6IL1KhcW0HNFaA+XUNJf6+IDKOe3TCeP3nMinbLy/u3+PFszcQVEoW20MnaBgDRr0Wzyc34F2cwzVBpbfnNUuQzFVN7ru+V2BvZj1+9aqkrRLRgaiwdp1Y56GybrVTQxCVFFWlvbj4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=UeJKZrTL; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id C6169C4CEE3;
+	Mon,  7 Jul 2025 12:02:22 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1751889745;
+	bh=VIqjqK+ketF5zBLE5EGm5mXuiGUfQu9PenuTdQQYfpE=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=UeJKZrTLur64RLZYwjXyuTAHpBO/SvLlA+iTwBBpbfL1JJdS3Zg8SGBs9RvpyO1Ow
+	 5/4HQUuK+fQNL06y+B6pFbc2BtHn0deA4U6335NwiTV0uu44578T5dUslBKCQocztt
+	 VScD9mNHwCqyRXezy8Vi1SpwhDXoJEVWlpJfinScAlE/IC7YPbj+fYHSEIV5SGcnbY
+	 Mo7O90tPWwgN+oUY17V06pDHDHamBl92ykP8UocnMPR4SFIQkVS0Zeh1a9YiAsosxz
+	 NygEgv7oNvMCJby5umSijI/8ao68wh8jhhDIr+AlzxJCd/8h+I2GmILwVehTxTbATo
+	 ivkWLjZpU2jyg==
+Date: Mon, 7 Jul 2025 13:02:20 +0100
+From: Mark Brown <broonie@kernel.org>
+To: Luca Weiss <luca@lucaweiss.eu>
+Cc: ~postmarketos/upstreaming@lists.sr.ht, phone-devel@vger.kernel.org,
+	Liam Girdwood <lgirdwood@gmail.com>, Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Jaroslav Kysela <perex@perex.cz>, Takashi Iwai <tiwai@suse.com>,
+	Bjorn Andersson <andersson@kernel.org>,
+	Konrad Dybcio <konradybcio@kernel.org>,
+	Weidong Wang <wangweidong.a@awinic.com>,
+	linux-sound@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org
+Subject: Re: [PATCH v2 2/3] ASoC: codecs: Add Awinic AW8898 amplifier driver
+Message-ID: <57472ea1-a9c1-472b-a178-eae1cb207468@sirena.org.uk>
+References: <20250705-aw8898-v2-0-9c3adb1fc1a2@lucaweiss.eu>
+ <20250705-aw8898-v2-2-9c3adb1fc1a2@lucaweiss.eu>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+Content-Type: multipart/signed; micalg=pgp-sha512;
+	protocol="application/pgp-signature"; boundary="MlZQHhqJVJF+tiCZ"
+Content-Disposition: inline
+In-Reply-To: <20250705-aw8898-v2-2-9c3adb1fc1a2@lucaweiss.eu>
+X-Cookie: We are what we are.
+
+
+--MlZQHhqJVJF+tiCZ
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <96af5f63-dbaf-4177-95e2-a6cc24019dc0@tuxon.dev>
 
-On Mon, Jul 07, 2025 at 11:05:30AM +0300, Claudiu Beznea wrote:
-> Hi, Wolfram,
-> 
-> On 07.07.2025 09:41, Wolfram Sang wrote:
-> > 
-> >> Please provide your feedback.
-> > 
-> > What is this based on? I tried v6.16-rc4 and renesas-driver/master. Or
-> > is there a branch I could pull?
-> > 
-> 
-> This is based on next-20250703. I pushed it here, as well:
-> https://github.com/claudiubeznea/linux/commits/claudiu/rzg3s/pcie-v3/
+On Sat, Jul 05, 2025 at 02:03:06PM +0200, Luca Weiss wrote:
 
-Thank you, I doubled checked and tested again. Still works, great!
+> +static void aw8898_update_dev_mode(struct aw8898 *aw8898)
+> +{
+> +	unsigned int mode = AW8898_SYSCTRL_SPK_MODE;
+> +
+> +	if (aw8898->dev_mode == AW8898_RECEIVER)
+> +		mode = AW8898_SYSCTRL_RCV_MODE;
+> +
+> +	regmap_update_bits(aw8898->regmap, AW8898_SYSCTRL,
+> +			   AW8898_SYSCTRL_MODE_MASK,
+> +			   FIELD_PREP(AW8898_SYSCTRL_MODE_MASK, mode));
+> +}
 
+Why is this open coded rather than just being a standard enum?  AFAICT
+we never reference dev_mode outside of here or the _get() and put()
+callbacks.  You might be looking for a _VALUE_ENUM?
+
+> +	if (!fw) {
+> +		dev_err(&aw8898->client->dev, "Failed to load firmware\n");
+> +		return;
+> +	}
+> +
+> +	dev_dbg(&aw8898->client->dev, "Loaded %s - size: %zu\n", AW8898_CFG_NAME, fw->size);
+
+We print the firmware name we were looking for if we loaded it, but not
+if we failed to load it when it's probably more useful.
+
+> +	aw8898_cfg_write(aw8898, aw8898_cfg);
+
+The "firmware" here is just a list of arbatrary register writes with no
+validation of addresses or anything...
+
+> +	switch (fmt & SND_SOC_DAIFMT_FORMAT_MASK) {
+> +	case SND_SOC_DAIFMT_I2S:
+> +		if ((fmt & SND_SOC_DAIFMT_CLOCK_PROVIDER_MASK)
+> +				!= SND_SOC_DAIFMT_CBC_CFC) {
+> +			dev_err(component->dev, "Invalid codec master mode: %d\n",
+
+Clock provider mode.
+
+> +static int aw8898_startup(struct snd_pcm_substream *substream,
+> +               struct snd_soc_dai *dai)
+> +{
+> +	struct aw8898 *aw8898 = snd_soc_component_get_drvdata(dai->component);
+> +	unsigned int val;
+> +	int err;
+> +
+> +	err = regmap_read_poll_timeout(aw8898->regmap, AW8898_SYSST,
+> +				       val, val & AW8898_SYSST_PLLS,
+> +				       2000, 1 * USEC_PER_SEC);
+
+What's this actually checking?  You shouldn't rely on I2S being clocked
+prior to trigger...
+
+--MlZQHhqJVJF+tiCZ
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmhrt0sACgkQJNaLcl1U
+h9BPMQf/dmqzpSi55P7foF7RBlZpMSycih4Oi7PCjW3U957fX0OuP/4eq5U+gMl3
+MBbPPPDqBzN4ljGvWGXuAsWxyjNt+U+LEyNa8YJRnz+ysQvPjwANW+SnRKj+WtcE
+LJHf8JhuNzKaoMa4UQUNv9N2xFYbfZYCzkfmN1pGVrvxTJrKeeZSB8zAXfkdBM5s
+T/7g8OM3OG+BZs2WGFGmYNfVNZ/UTtNgbKAigqGj4pVrSuh+ICi7BBkf34nVBHFE
+/f6ywCEL/iKctaKft7NVU3E5y7mBtkQ8nCyZhGmcGvKoBlq3PBkUfZZz+PAab9P3
+f4P1tsKTIlHQ+EHMNlV0jemhAKRBLA==
+=Qb73
+-----END PGP SIGNATURE-----
+
+--MlZQHhqJVJF+tiCZ--
 
