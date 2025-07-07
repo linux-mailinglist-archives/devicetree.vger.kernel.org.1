@@ -1,192 +1,204 @@
-Return-Path: <devicetree+bounces-193702-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-193703-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id B75A8AFB5B8
-	for <lists+devicetree@lfdr.de>; Mon,  7 Jul 2025 16:19:18 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id A2BF9AFB643
+	for <lists+devicetree@lfdr.de>; Mon,  7 Jul 2025 16:42:26 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 0D3533A9795
-	for <lists+devicetree@lfdr.de>; Mon,  7 Jul 2025 14:18:49 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 364BD172D7D
+	for <lists+devicetree@lfdr.de>; Mon,  7 Jul 2025 14:42:25 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id BDB732D8798;
-	Mon,  7 Jul 2025 14:18:56 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id BFF9A2D8DB5;
+	Mon,  7 Jul 2025 14:42:20 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="NgNdtAJR"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="gm7GOlYa"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wr1-f47.google.com (mail-wr1-f47.google.com [209.85.221.47])
+Received: from mail-wr1-f46.google.com (mail-wr1-f46.google.com [209.85.221.46])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E7E382D8393;
-	Mon,  7 Jul 2025 14:18:54 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.47
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9E07D81724
+	for <devicetree@vger.kernel.org>; Mon,  7 Jul 2025 14:42:17 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.46
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1751897936; cv=none; b=l9nf1Wa5wgYwfvgwYmg6+Z/C2en6KlgpFS/Hq8yLofa302S1rqE/kXX3Kko/5nvdkilanhiPxTIv8Wt0X0A4fON65s5/F63n5V0sEN7f3tmR7m5i51t9wvUUzmrMPsyLwnoLNPVFiu+zG49bIiFGB5oCokDGyX2ItGd8dQ+MuFM=
+	t=1751899340; cv=none; b=hFII0KvGGJWNiTAQudTyaKxRLlpYSo1mNZGcpYSqMj4EgkcgLZDtLTE0pRBWwrCWRQgqYTiVSzj0pczU8YuQVGDxlR2LYSyi+S1dOUZL/HGgYtaCktYJAxhIVkvkEel7I5c8MTUJj8IPVbask/rd77wLyULH5ZW7ApMRjEfwHLk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1751897936; c=relaxed/simple;
-	bh=RCqVNrzJHaDjGi0nTRmKOCM2IBNClaZu6a32Pmp0POs=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=ldEP2Floi9UruVmp8Wh/VB55qSuXbnS78G2MhSLwkRfcrsl97L359Wllg6pbGgfObrZhlqpGbzuBJdj93f/trJ2Z1M4KNkarGVEmjvOEbSFJDUEuNal6Q+ITz3h9JdoXoT7vVdG8yAbeuSJBGdEJ8TSlOtOLJiNwnkMv6mjq+F8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=NgNdtAJR; arc=none smtp.client-ip=209.85.221.47
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-wr1-f47.google.com with SMTP id ffacd0b85a97d-3a4fd1ba177so2194084f8f.0;
-        Mon, 07 Jul 2025 07:18:54 -0700 (PDT)
+	s=arc-20240116; t=1751899340; c=relaxed/simple;
+	bh=WdArDEtLe89Q6g7L4LligwAlwWkbQ5MDMZfw7t5oEXo=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=GtyTxCikW8FsBTO5BNGJMmS007/JT/lEqxhAA4VONyegLjD8mQzPEK08hOeD3EqrRTi/HYLB1ta/uLFPAnl2IoBXaeRgZl7H1Pk33sgp9wwjwhkdCpckt962Db6ZBa2n0djavrUi9PXW8en7nrdBWSbAqB+wAP4NdWtrkpZmi0E=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=gm7GOlYa; arc=none smtp.client-ip=209.85.221.46
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-wr1-f46.google.com with SMTP id ffacd0b85a97d-3a6cdc27438so2707012f8f.2
+        for <devicetree@vger.kernel.org>; Mon, 07 Jul 2025 07:42:17 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1751897933; x=1752502733; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=OIhIWADLdNO/nd33yinxD1H8qsnfEtBKs3ChjZsVi4s=;
-        b=NgNdtAJRAgmXiCUZHVeuB0r9oi5uz/Usng+0P58uuI0kzRq/7b3MoswdmByXRTYqvZ
-         Pta+9hcn+eb0jqZcQVvdha7bjntUlrISLMgacYYgsaxNfGBDb7ImHZ3MEzZ5GD23uaII
-         v+Nzg5wkgESL3Sr7PETJ3+bwS/CkuEVHinrQ0qos+2tEf8Hw/4n6CSHqmVra8pLLAk22
-         0xXsnOVR8FMc6LHuEJwaEMsudYDnylgAhOjVBP8NzIBdqwH4f8iubb7tDNX8ichC1ibh
-         6DvtggfDojbzcSiXjtDKI/wHo8EDJuT58Dk50YsLMDVVB4qgLywo760HS191YeQRxfZh
-         pzjw==
+        d=linaro.org; s=google; t=1751899336; x=1752504136; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=PG8mV4pDhYymeozzS82ZZcM9xZV+pEOeW3uE1qROtU0=;
+        b=gm7GOlYapgAzIhHWkI9PQZFa/3JYUN7jYeN7v9dgRIDXhT9JPSIZQKhYHHOYEJ/I9F
+         xVMxX5vhx1Zixu95kLwJcnYkUvtM9vKTBTa24j73pR0VdQxVSy0pg2+Jhi+gKBMQD3Sg
+         iyT7duN/l0rL1wKkdeD+u8vc0d+YpA7kUeNfAzHCIGKhzG1deGPKYANhbRdWsWZYhJjq
+         zN/c4ZJGaDvjQGKDxJuHe4Kg89KydPzCUYTZiDARUGVPYFmVRYqV7Yu3CbRNBpmS227l
+         akRAwE6vdKJX1sfIhmHb9Ts+o3GKGpJIwhwCyll3554vDzJEp9OO2b+891+7mklueidY
+         Ua0Q==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1751897933; x=1752502733;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=OIhIWADLdNO/nd33yinxD1H8qsnfEtBKs3ChjZsVi4s=;
-        b=d2VE/DAR84EmLMf8V9unRvRe+BvH4nEp6btC/AX60psQ0oHv4XgjmIzLIKXmdWl0Ue
-         1gYCuN3/rys9eqiIP6EW7ZfFksUX/hFivfk7VQAkQLxB8Fz36BKMzX1bZVuc1eOZz783
-         J3q6BYbzE2lIA45p6KsENSvQ2Sum+n2RtPi6Gsh4A+L0ylynOOvsYkJWh9Ba2ojkHO/J
-         kxLfH5ZCMBvS84EdxQK41azxDTGzG4NDFck1AmYmTYacjt2y59uh2S6Fy043k4WEuBdL
-         xqAZv7X6lRri3FkegQiSF+9uAR21bFwOonTErnruZKIrDJdaA50pBsbLWaSrGruAhDEI
-         QoJQ==
-X-Forwarded-Encrypted: i=1; AJvYcCULQKSjrzRq0vRw6oXzjMYbW5FPz+eCJTHrcQve6B9EuJbTEQbn8VqREHSz2gq/G0oPDW3v5Tailvpy@vger.kernel.org, AJvYcCVqM889bbNGej18YNHtCATz0oCh2guWJd85mnPm6VlVHZcs5t+3q54iFg7T3Tx9HwC4SerkUohVHZkhpsD9@vger.kernel.org, AJvYcCWPdBN4HoEpuNqVthTynZFp3MCfmdd6UVkdzoYNgxzKie5WASKX8/AP92Q/yRQbTUmaLp+JgrAJI8oTAg==@vger.kernel.org
-X-Gm-Message-State: AOJu0YwtHk2Jk+EZyc22Btsus0hxHq0fo5wK7EOZZsYlp03ItLpWs7c9
-	nsUCpcvtLqiiS9nMJh6YXhr4to2ByVZCg6JAKMGNrBodxwJQV1DIFCXt
-X-Gm-Gg: ASbGncvvRRF3NxNw6pB3BY4e203/8bzWqGNH1sfGgym6+DeWt7cXxzwywbtCtK+zhTc
-	7WVZuBMj7JjcZG5W5Hd8KFmzYvwExmmI399ZQUIsqwUrqYXhah1vnUwElD2tt4xXY3/J8rIgVmG
-	0k6pqjS2me628Par0xtilWXQVWdSw+SIXx2DCL1agSOvWqV+wnhx8VH28C2LfTSebGxHcI8bbdX
-	4WjztYAKp3h5gTBGB29OY3o5LNWIPaFFzm0v7PUQRWR0yiAe/QYAgU1ipSsJSMbBDFAbCU+Fh3k
-	ao9tcC2qYEXOXGQK+rKOK6RoNrh4i2nSdbXDztUrTglH/EUuqWRbnu49yiwuuRuWvCv3iYUsmM8
-	FzBZ0cOd0oLIVji6ciNc=
-X-Google-Smtp-Source: AGHT+IGjLz6S5fM35cF5+hKHA2tlk2smJKUGXb+pW5FqZs9HjzbC9U07thu3RNUJDSRoioKMADfuCA==
-X-Received: by 2002:a05:6000:200c:b0:3b3:9c56:b825 with SMTP id ffacd0b85a97d-3b4955895fbmr11097185f8f.22.1751897932896;
-        Mon, 07 Jul 2025 07:18:52 -0700 (PDT)
-Received: from iku.example.org ([2a06:5906:61b:2d00:d418:e5eb:1bc:30dd])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-3b471b966cbsm10131868f8f.49.2025.07.07.07.18.51
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 07 Jul 2025 07:18:52 -0700 (PDT)
-From: Prabhakar <prabhakar.csengg@gmail.com>
-X-Google-Original-From: Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-To: Geert Uytterhoeven <geert+renesas@glider.be>,
-	Linus Walleij <linus.walleij@linaro.org>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Magnus Damm <magnus.damm@gmail.com>,
-	Bartosz Golaszewski <brgl@bgdev.pl>
-Cc: linux-renesas-soc@vger.kernel.org,
-	linux-gpio@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>,
-	Prabhakar <prabhakar.csengg@gmail.com>,
-	Biju Das <biju.das.jz@bp.renesas.com>,
-	Fabrizio Castro <fabrizio.castro.jz@renesas.com>
-Subject: [PATCH v3 3/3] pinctrl: renesas: rzt2h: Add support for RZ/N2H SoC
-Date: Mon,  7 Jul 2025 15:18:48 +0100
-Message-ID: <20250707141848.279528-4-prabhakar.mahadev-lad.rj@bp.renesas.com>
-X-Mailer: git-send-email 2.49.0
-In-Reply-To: <20250707141848.279528-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
-References: <20250707141848.279528-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
+        d=1e100.net; s=20230601; t=1751899336; x=1752504136;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=PG8mV4pDhYymeozzS82ZZcM9xZV+pEOeW3uE1qROtU0=;
+        b=BZ/hQ497XHfg9ZrTXi6We7/AxR+7QXyFW9xOinTGBDo1dUTct68GF5sGG2uh320O6o
+         EOJlkEBQAUEE7SlJupiD6x88n+yhqMLAZQwQIMRWqm7RDSRYtH2bjtJPjD5PGG9gAvKD
+         EdJabKLyEKRieF3BXlVR5fz6nytKdaKQWfvC2Ni6IHAcpOqCfvflB41LPsL93hdYY7LR
+         a8Z9AmhaC0/RMz3sizPJZrfMnHEEbj/T8p71Lc9Q6q/Hv0iZ6tpxR6Gl5uHqOrTnv5vI
+         Z7ZYBeykfDE52Ul5NXA2VJJg4L60WkMKYpOsMgoihAiYJnYUPpdPF3FwlyHFtWpnOWkd
+         nsOQ==
+X-Forwarded-Encrypted: i=1; AJvYcCUSuX/hZ5O2KFh3d65NgUH7SUjDZWzcSosPHD5vnEPkpzipjHKJtgR2qn4zy4kTK7HKjDGk1Ob2k61h@vger.kernel.org
+X-Gm-Message-State: AOJu0YzyQKr2D/95t+jUnAXLBOFw+Ww93qeSETl2vFtQLRDpcG2xjepn
+	+SP+KU9YpnBpHti893NHyvSDf0cmHXBF0aUlaILn4YNEGcPvIaLRh6e0POK1CjKJNwI=
+X-Gm-Gg: ASbGncsxHXbRUCmL9CNgzXXRBUFJo+uebTdEI3dwzDeCzxLNXxVxTYdwGN+pF3kmfgq
+	i+5qYmUk3g28BdPm9PPJQKOmRroNykz6y1kW7ix9KUCJKsuMD5i89u6tifhENQreG0PrEso8xCz
+	mHBz9lvyEHfW6lDF2PkdSwCJjZCiSc0YMZXEugr2KontVjsRrDvcwdF3gmRwFV5SEoAzsrj/Njy
+	uX5B6CK0TxizMIbSPqzn+o2VjCg4W9nBCfzXU2azlO6yXqRIGbgsYGt0o7lOjZr7mlX72B4T0yh
+	rRRLoLLwepX2bDHgOemNO9StmufOavrcoc7HLmuEiRnI3F5fYENwgPT679yVul3RCZGPWSjjVb6
+	cOA7OHOEqTAZSxCWZ8uSQucl7/BBvTJQ=
+X-Google-Smtp-Source: AGHT+IGyYoZy50qjmAjoyeY/+RRpyL9VdrWvFAUJlbX9qLSoaWQqvRrm9Uhn/ZI8f2iL8dQXzws9/w==
+X-Received: by 2002:a5d:6f0a:0:b0:3a4:ef70:e0e1 with SMTP id ffacd0b85a97d-3b49703dd84mr10413739f8f.55.1751899335190;
+        Mon, 07 Jul 2025 07:42:15 -0700 (PDT)
+Received: from [192.168.1.159] (p4fc3d4fa.dip0.t-ipconnect.de. [79.195.212.250])
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-3b471b968ebsm10252375f8f.47.2025.07.07.07.42.14
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 07 Jul 2025 07:42:14 -0700 (PDT)
+Message-ID: <fe454257-aa21-4304-868f-aefbea9963c4@linaro.org>
+Date: Mon, 7 Jul 2025 16:42:13 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2 2/2] pmdomain: qcom: rpmhpd: Add Milos power domains
+To: Luca Weiss <luca.weiss@fairphone.com>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Bjorn Andersson <andersson@kernel.org>,
+ Ulf Hansson <ulf.hansson@linaro.org>
+Cc: ~postmarketos/upstreaming@lists.sr.ht, phone-devel@vger.kernel.org,
+ linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, linux-pm@vger.kernel.org
+References: <20250707-sm7635-rpmhpd-v2-0-b4aa37acb065@fairphone.com>
+ <20250707-sm7635-rpmhpd-v2-2-b4aa37acb065@fairphone.com>
+ <06760125-4800-4068-8936-dddf27c28d17@linaro.org>
+ <DB5VDDKCAQQG.LDCMHXAZN17S@fairphone.com>
+Content-Language: en-US, en-GB
+From: Casey Connolly <casey.connolly@linaro.org>
+In-Reply-To: <DB5VDDKCAQQG.LDCMHXAZN17S@fairphone.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 
-From: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
 
-The RZ/N2H (R9A09G087) SoC from Renesas shares a similar pin controller
-architecture with the RZ/T2H (R9A09G077) SoC, differing primarily in the
-number of supported pins-576 on RZ/N2H versus 729 on RZ/T2H.
 
-Add the necessary pin configuration data and compatible string to enable
-support for the RZ/N2H SoC in the RZ/T2H pinctrl driver.
+On 7/7/25 15:49, Luca Weiss wrote:
+> Hi Casey,
+> 
+> On Mon Jul 7, 2025 at 3:23 PM CEST, Casey Connolly wrote:
+>>
+>>
+>> On 7/7/25 12:18, Luca Weiss wrote:
+>>> Add the power domains exposed by RPMH in the Qualcomm Milos platform.
+>>
+>> \o/ codenames!
+>>
+>>>
+>>> Signed-off-by: Luca Weiss <luca.weiss@fairphone.com>
+>>> ---
+>>>    drivers/pmdomain/qcom/rpmhpd.c | 19 +++++++++++++++++++
+>>>    1 file changed, 19 insertions(+)
+>>>
+>>> diff --git a/drivers/pmdomain/qcom/rpmhpd.c b/drivers/pmdomain/qcom/rpmhpd.c
+>>> index 078323b85b5648e33dd89e08cf31bdc5ab76d553..e09552a469264f28952fc46c3ab8c125e87310da 100644
+>>> --- a/drivers/pmdomain/qcom/rpmhpd.c
+>>> +++ b/drivers/pmdomain/qcom/rpmhpd.c
+>>> @@ -217,6 +217,24 @@ static struct rpmhpd gmxc = {
+>>>    	.res_name = "gmxc.lvl",
+>>>    };
+>>>    
+>>> +/* Milos RPMH powerdomains */
+>>
+>> I can't find any public docs telling us which SoC is Milos (the only
+>> relevant result is Bjorn's email asking you to use that name instead of
+>> SM7635). So for the sake of future generations could you reference both
+>> names in a comment somewhere? Or even the commit message would be enough
+>> tbh.
+> 
+> I don't know the full list of model numbers for Milos. I assume it's
+> SM7635, SM6650, SM6650P, QCM6690 and QCS6690 based on the info I could
+> fine, but such info is hard to get. So this is not a definite list that
+> all those are actually Milos, or that this is the full list of Milos
+> chipsets.
 
-Signed-off-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
----
-v2->v3:
-- No changes.
+oof, I see... that complicates things. It sure would be good if this 
+list was documented in the kernel though imo.
 
-v1->v2:
-- New patch.
----
- drivers/pinctrl/renesas/Kconfig         |  3 ++-
- drivers/pinctrl/renesas/pinctrl-rzt2h.c | 17 +++++++++++++++++
- 2 files changed, 19 insertions(+), 1 deletion(-)
+> 
+>> Off-topic here, but maybe it would be a good idea to add some Qualcomm
+>> platform docs to the kernel with a table of all the publicly known names
+>> for each SoC? This would also be really helpful even ignoring codenames
+>> just to know that SM8550 is Snapdragon 8 Gen 2 for example.
+> 
+> So far my source for this has been the postmarketOS wiki, and this
+> Google Doc, but the latter hasn't been updated for new chips since a
+> year or so, and is also probably not very complete:
+> https://docs.google.com/spreadsheets/d/1WrKHLj_oSoiykhSc6xqXAkT3nlD2hq-fzUPSGiq3Kbc/edit?gid=1270863184#gid=1270863184
+> 
+> And I've got some notes locally for a couple that I regularly need.
+> 
+> But I'd love a more central place that isn't specific to postmarketOS
+> for example. Not sure where though?
 
-diff --git a/drivers/pinctrl/renesas/Kconfig b/drivers/pinctrl/renesas/Kconfig
-index 0d0920f4678b..8cbd79a13414 100644
---- a/drivers/pinctrl/renesas/Kconfig
-+++ b/drivers/pinctrl/renesas/Kconfig
-@@ -45,6 +45,7 @@ config PINCTRL_RENESAS
- 	select PINCTRL_RZG2L if ARCH_R9A09G056
- 	select PINCTRL_RZG2L if ARCH_R9A09G057
- 	select PINCTRL_RZT2H if ARCH_R9A09G077
-+	select PINCTRL_RZT2H if ARCH_R9A09G087
- 	select PINCTRL_PFC_SH7203 if CPU_SUBTYPE_SH7203
- 	select PINCTRL_PFC_SH7264 if CPU_SUBTYPE_SH7264
- 	select PINCTRL_PFC_SH7269 if CPU_SUBTYPE_SH7269
-@@ -304,7 +305,7 @@ config PINCTRL_RZN1
- 	  This selects pinctrl driver for Renesas RZ/N1 devices.
- 
- config PINCTRL_RZT2H
--	bool "pin control support for RZ/T2H" if COMPILE_TEST
-+	bool "pin control support for RZ/N2H and RZ/T2H" if COMPILE_TEST
- 	depends on 64BIT && OF
- 	select GPIOLIB
- 	select GENERIC_PINCTRL_GROUPS
-diff --git a/drivers/pinctrl/renesas/pinctrl-rzt2h.c b/drivers/pinctrl/renesas/pinctrl-rzt2h.c
-index 877f6d00830f..55c64d74cb54 100644
---- a/drivers/pinctrl/renesas/pinctrl-rzt2h.c
-+++ b/drivers/pinctrl/renesas/pinctrl-rzt2h.c
-@@ -764,6 +764,12 @@ static const u8 r9a09g077_gpio_configs[] = {
- 	0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0x7f,
- };
- 
-+static const u8 r9a09g087_gpio_configs[] = {
-+	0x1f, 0xff, 0xff, 0x1f, 0, 0xfe, 0xff, 0, 0x7e, 0xf0, 0xff, 0x1,
-+	0xff, 0xff, 0xff, 0, 0xe0, 0xff, 0xff, 0, 0xff, 0xff, 0xff, 0x1,
-+	0xe0, 0xff, 0xff, 0x7f, 0, 0xfe, 0xff, 0x7f, 0, 0xfc, 0x7f,
-+};
-+
- static struct rzt2h_pinctrl_data r9a09g077_data = {
- 	.port_pins = rzt2h_gpio_names,
- 	.n_port_pins = ARRAY_SIZE(r9a09g077_gpio_configs) * RZT2H_PINS_PER_PORT,
-@@ -771,11 +777,22 @@ static struct rzt2h_pinctrl_data r9a09g077_data = {
- 	.n_ports = ARRAY_SIZE(r9a09g077_gpio_configs),
- };
- 
-+static struct rzt2h_pinctrl_data r9a09g087_data = {
-+	.port_pins = rzt2h_gpio_names,
-+	.n_port_pins = ARRAY_SIZE(r9a09g087_gpio_configs) * RZT2H_PINS_PER_PORT,
-+	.port_pin_configs = r9a09g087_gpio_configs,
-+	.n_ports = ARRAY_SIZE(r9a09g087_gpio_configs),
-+};
-+
- static const struct of_device_id rzt2h_pinctrl_of_table[] = {
- 	{
- 		.compatible = "renesas,r9a09g077-pinctrl",
- 		.data = &r9a09g077_data,
- 	},
-+	{
-+		.compatible = "renesas,r9a09g087-pinctrl",
-+		.data = &r9a09g087_data,
-+	},
- 	{ /* sentinel */ }
- };
- 
--- 
-2.49.0
+kernel docs seem sensible to me? Maybe a wiki on gh/linux-msm?
+
+> 
+> Regards
+> Luca
+> 
+>>
+>> Kind regards,
+>> Casey (she/they)
+>>
+>>> +static struct rpmhpd *milos_rpmhpds[] = {
+>>> +	[RPMHPD_CX] = &cx,
+>>> +	[RPMHPD_CX_AO] = &cx_ao,
+>>> +	[RPMHPD_EBI] = &ebi,
+>>> +	[RPMHPD_GFX] = &gfx,
+>>> +	[RPMHPD_LCX] = &lcx,
+>>> +	[RPMHPD_LMX] = &lmx,
+>>> +	[RPMHPD_MSS] = &mss,
+>>> +	[RPMHPD_MX] = &mx,
+>>> +	[RPMHPD_MX_AO] = &mx_ao,
+>>> +};
+>>> +
+>>> +static const struct rpmhpd_desc milos_desc = {
+>>> +	.rpmhpds = milos_rpmhpds,
+>>> +	.num_pds = ARRAY_SIZE(milos_rpmhpds),
+>>> +};
+>>> +
+>>>    /* SA8540P RPMH powerdomains */
+>>>    static struct rpmhpd *sa8540p_rpmhpds[] = {
+>>>    	[SC8280XP_CX] = &cx,
+>>> @@ -723,6 +741,7 @@ static const struct rpmhpd_desc qcs615_desc = {
+>>>    };
+>>>    
+>>>    static const struct of_device_id rpmhpd_match_table[] = {
+>>> +	{ .compatible = "qcom,milos-rpmhpd", .data = &milos_desc },
+>>>    	{ .compatible = "qcom,qcs615-rpmhpd", .data = &qcs615_desc },
+>>>    	{ .compatible = "qcom,qcs8300-rpmhpd", .data = &qcs8300_desc },
+>>>    	{ .compatible = "qcom,qdu1000-rpmhpd", .data = &qdu1000_desc },
+>>>
+> 
 
 
