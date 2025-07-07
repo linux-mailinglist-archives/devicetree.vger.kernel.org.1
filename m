@@ -1,211 +1,199 @@
-Return-Path: <devicetree+bounces-193685-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-193684-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 42298AFB528
-	for <lists+devicetree@lfdr.de>; Mon,  7 Jul 2025 15:50:58 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 01C8BAFB522
+	for <lists+devicetree@lfdr.de>; Mon,  7 Jul 2025 15:50:15 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 88EE4166F34
-	for <lists+devicetree@lfdr.de>; Mon,  7 Jul 2025 13:50:58 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 3A4B13A751F
+	for <lists+devicetree@lfdr.de>; Mon,  7 Jul 2025 13:49:48 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 71EFD1B4223;
-	Mon,  7 Jul 2025 13:50:52 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3B68E2BCF4A;
+	Mon,  7 Jul 2025 13:50:01 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=analog.com header.i=@analog.com header.b="pJaIQ5ew"
+	dkim=pass (2048-bit key) header.d=fairphone.com header.i=@fairphone.com header.b="EFGTtkZP"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-00128a01.pphosted.com (mx0a-00128a01.pphosted.com [148.163.135.77])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-ej1-f47.google.com (mail-ej1-f47.google.com [209.85.218.47])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A47A5194A73;
-	Mon,  7 Jul 2025 13:50:50 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=148.163.135.77
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0819B192B7D
+	for <devicetree@vger.kernel.org>; Mon,  7 Jul 2025 13:49:57 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.47
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1751896252; cv=none; b=Kngd4Ii3LCFoo1pokOjXv6lJ7SFaou1/ULKEW9pQZAdwIqjdH+JzdxFZOf1EuSJtqTA6WGwLHrvw92DKS4YeCQ7Tl63mBpy42fzyrlSbfC+agbNM0VGVWwYqL/CeSxrdVypwnRy2rF2miOYLnFktfEj6fUhV+wTIsEG8HdHjl2Q=
+	t=1751896201; cv=none; b=b+Zlv6ge2bqYNIctOMh2Q1CRMY81DsQ7w2vtNUBdAbSO7tLMEm/GVjO+Ga9I3+drPDU8Ks+ZAIwoO9tpUfbwLzcTXlEfhOR+YqW/FgWr67K1I34SD9ZxCGQpeW5sCyxzJYaiBnwlcz0iN25reju4jDIOfY02/jsS/JzklTXW0HM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1751896252; c=relaxed/simple;
-	bh=hSv+oI+RF0ez/63FrrphVj/k+AL+mIcvA7BZbrlUNN0=;
-	h=From:To:CC:Subject:Date:Message-ID:MIME-Version:Content-Type; b=UNAHvEYI1YLMJ0sPwtRCfIUVw7PvoFjLZryuOfd0xR6bT0IUFmEurzzEDsLzHESgOr9C+poiav7wHbFInOdb2i7RMXtpGdj9z48aUVvWPrAHEdl4UQzALGVdK24iKh+IUTbpkRr1FSmvYiQ7GzXwoQ325GoroU8FUWr29VPlszQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=analog.com; spf=pass smtp.mailfrom=analog.com; dkim=pass (2048-bit key) header.d=analog.com header.i=@analog.com header.b=pJaIQ5ew; arc=none smtp.client-ip=148.163.135.77
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=analog.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=analog.com
-Received: from pps.filterd (m0375855.ppops.net [127.0.0.1])
-	by mx0b-00128a01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 567D1HmN026990;
-	Mon, 7 Jul 2025 09:50:17 -0400
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=analog.com; h=cc
-	:content-transfer-encoding:content-type:date:from:message-id
-	:mime-version:subject:to; s=DKIM; bh=TE28+rWHWv1guN3wNh5GDHZufsL
-	o4KSJ3yYH4b3pZas=; b=pJaIQ5ewXJ8J/KxjHEKWQ+0PAY2p0/cnKazye/qLveb
-	F0NjF/aaFBwopyHVt7ejsbsZuylt/F1jSKsC1ZwAclTd/86S81NKZ8sWcffvLedR
-	D8A7YXbRFUzl5OGnPgRSAGOKvTUVfhcD2QASFVMivhKQZWc5kINxXLKgmIi+y3z9
-	BfiYcpPTk1K2LIsj+2NY1zCWczJcYIkzATMdKB76zUDMwW5S/fjRLHxaehLjR4Rq
-	gEnZXRyJ1WanCROkQYavvLmQ/T7zTt3gVkhj6IQGIVP/Jf7+OVL3iYUeYRZIVxp/
-	8fwdCw3dXH/EeoRlq5qQTRrIF3QArKaNZWObvCGFCzQ==
-Received: from nwd2mta4.analog.com ([137.71.173.58])
-	by mx0b-00128a01.pphosted.com (PPS) with ESMTPS id 47rayqh6dx-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Mon, 07 Jul 2025 09:50:16 -0400 (EDT)
-Received: from ASHBMBX8.ad.analog.com (ASHBMBX8.ad.analog.com [10.64.17.5])
-	by nwd2mta4.analog.com (8.14.7/8.14.7) with ESMTP id 567DoFPU013303
-	(version=TLSv1/SSLv3 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=FAIL);
-	Mon, 7 Jul 2025 09:50:15 -0400
-Received: from ASHBMBX8.ad.analog.com (10.64.17.5) by ASHBMBX8.ad.analog.com
- (10.64.17.5) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1748.10; Mon, 7 Jul
- 2025 09:50:14 -0400
-Received: from zeus.spd.analog.com (10.66.68.11) by ashbmbx8.ad.analog.com
- (10.64.17.5) with Microsoft SMTP Server id 15.2.1748.10 via Frontend
- Transport; Mon, 7 Jul 2025 09:50:14 -0400
-Received: from work.ad.analog.com (HYB-hERzalRezfV.ad.analog.com [10.65.205.9])
-	by zeus.spd.analog.com (8.15.1/8.15.1) with ESMTP id 567Dnpvu016068;
-	Mon, 7 Jul 2025 09:49:54 -0400
-From: Marcelo Schmitt <marcelo.schmitt@analog.com>
-To: <linux-iio@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-gpio@vger.kernel.org>, <linux-kernel@vger.kernel.org>
-CC: <jic23@kernel.org>, <lars@metafoo.de>, <Michael.Hennerich@analog.com>,
-        <dlechner@baylibre.com>, <nuno.sa@analog.com>, <andy@kernel.org>,
-        <andriy.shevchenko@intel.com>, <robh@kernel.org>, <krzk+dt@kernel.org>,
-        <conor+dt@kernel.org>, <linus.walleij@linaro.org>, <brgl@bgdev.pl>,
-        <broonie@kernel.org>, <lgirdwood@gmail.com>,
-        <marcelo.schmitt1@gmail.com>
-Subject: [PATCH v8 00/12] iio: adc: Add support for AD4170 series of ADCs
-Date: Mon, 7 Jul 2025 10:49:46 -0300
-Message-ID: <cover.1751895245.git.marcelo.schmitt@analog.com>
-X-Mailer: git-send-email 2.39.2
+	s=arc-20240116; t=1751896201; c=relaxed/simple;
+	bh=4luD94zEk/hzW29upK2TZa2T7UiavJ6bCdqdzulQjJM=;
+	h=Mime-Version:Content-Type:Date:Message-Id:Subject:From:To:Cc:
+	 References:In-Reply-To; b=TJPbSdSiCmL+S7GrtBqUKT7VF3thLDsUEkg0FMjfH2amYda02/Pa8NCGMF860bKxQ0ycCFU6rcRhqPs5xiNn+8Ndfxi+trhEW5RujaQ8qUGORKWG5hEm/5IhELeBEsu7KDBhhnkksjViONDn1SDiKbh/HV3U+vt0Rxyevcqk+ac=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=fairphone.com; spf=pass smtp.mailfrom=fairphone.com; dkim=pass (2048-bit key) header.d=fairphone.com header.i=@fairphone.com header.b=EFGTtkZP; arc=none smtp.client-ip=209.85.218.47
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=fairphone.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=fairphone.com
+Received: by mail-ej1-f47.google.com with SMTP id a640c23a62f3a-ae0bc7aa21bso664900166b.2
+        for <devicetree@vger.kernel.org>; Mon, 07 Jul 2025 06:49:57 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=fairphone.com; s=fair; t=1751896196; x=1752500996; darn=vger.kernel.org;
+        h=in-reply-to:references:cc:to:from:subject:message-id:date
+         :content-transfer-encoding:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=0zyQsmDxtSSwWfwFyswcoFXsE5e1vPtKLX9bKtkWsis=;
+        b=EFGTtkZPoDGNBenLlDebPipNIHoJAV4LY59Kj4OGN+LN005+ffaPDhF6TlqwP+mq6E
+         hXSdDcVu5BM2rSDtMuhwh/oKAbMtKWkLE/Yf851nhAgVyieNo6BkP8v83arMW6jyUgdu
+         Rf/ROko7f5++Zsz8z/9eVJo1fNugTrt7BHf9991Fvzb+JuAcTsjREFGys784yMxeZp+t
+         Bsp7u4I4Ewt4VpE+ACiU5YENRZ3zmRQgNccmkaYxokyMBoLRAG3o4AoBMJoof/JwQH74
+         d67cXli1+q6DXRUcs4ilC5hlhQKpQrrCBclSlxHQytAJbYP9FfcoRrj13orZ1RMZJpZp
+         1cWQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1751896196; x=1752500996;
+        h=in-reply-to:references:cc:to:from:subject:message-id:date
+         :content-transfer-encoding:mime-version:x-gm-message-state:from:to
+         :cc:subject:date:message-id:reply-to;
+        bh=0zyQsmDxtSSwWfwFyswcoFXsE5e1vPtKLX9bKtkWsis=;
+        b=ekNHF4eHIhf2yLMQ9tLvcQgpmDfPY/nW+3gH97KeW7Jg9jbl6UA2irUIVvN/PkGXVw
+         WriN3RBg7v0z35Cnjh7cPSJe8Qe0h9+nCtuYISM5KKPNN62CzIKP7NI8ahBoSdqQ128s
+         VqeYdbCuFK70pA1g8MQHG6Su7R5zudTFOLCC0AnoomHQiQiSKAgGjpi8YZs0Q1FcADkM
+         e0W3mVUAtuRt6HQVtFcGYnPaV1meCgEqP6y/CC6yp0pcXILkZs6e4m+MKwwa0fdZd3Dl
+         yyEEjHvtJGbDiOpYXWrbkX+dT2RpH1n0NgF0rLCaBve5fj/XgPGqSHDs95ps9/i19YJB
+         7NoA==
+X-Forwarded-Encrypted: i=1; AJvYcCVOZ5Db8jtz0EVLbkAe5HTq6vQEMHKKxn6hBsGOdLw1AhG1ryZEB/iMWhPL+U52e8y8KNvr8OziJ9HP@vger.kernel.org
+X-Gm-Message-State: AOJu0YxOHd8iaZr6rufde/r50DEL2MYCl8c5lPzi/67/iQk8t9NaumyL
+	RWcvEzBNBpb0rY4QNRrhwqTC1zG8U3X//SEpEbRDEIfFvciCBD4wc/i7Cj1cJDT/e+Q=
+X-Gm-Gg: ASbGncsy+2Fd2lztzBD70uwjMjhmJTf7oEGT9I5QxXC0Zsu1UekIhjmjsF2ByZvxBrk
+	TYSP7mVfT0IvAkEVy76PA1DMSVnpusPHNp7SHdXdG6nbmSXxIcoxNIMV34kbQqK1VYsMfU32WaC
+	9eJvETWZnC+KDLe1Jhk4sghXvhnzSju3LcPpOWqZQQ35LUnHx1UxKIdHDcORDLu6KNxi1pm0IN6
+	3LedcUpwyU3/FIO+pMmVcibV0kNGf9zT1OHRMi8gCz66YPqOxpQmc38tGZEaYL/74v+BBIpgG+1
+	eBngujGD6Ty6a1ReJwUKGYnhIKb2dcOOCHPPb9hnCpnfusvARoIH3qf/98FZY6dJ9RwEPDFRJPX
+	NCqGiyeuxNDu8uwZc1+2oPcJIUxZEOLs=
+X-Google-Smtp-Source: AGHT+IGS6AceJdvZjybPrOvkELUyoLgdZjzLvFcMOFta4Q1dd6p+klkTcLpeNvXPfTL15dUroYXivA==
+X-Received: by 2002:a17:906:6a05:b0:ae0:e065:de05 with SMTP id a640c23a62f3a-ae3fe5966c4mr1393350066b.3.1751896195957;
+        Mon, 07 Jul 2025 06:49:55 -0700 (PDT)
+Received: from localhost (144-178-202-139.static.ef-service.nl. [144.178.202.139])
+        by smtp.gmail.com with ESMTPSA id 4fb4d7f45d1cf-60ff11c3e83sm4012090a12.66.2025.07.07.06.49.55
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 07 Jul 2025 06:49:55 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-MIME-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 8bit
-X-ADIRuleOP-NewSCL: Rule Triggered
-X-Authority-Analysis: v=2.4 cv=AP9nYgXq c=1 sm=1 tr=0 ts=686bd099 cx=c_pps
- a=3WNzaoukacrqR9RwcOSAdA==:117 a=3WNzaoukacrqR9RwcOSAdA==:17
- a=IkcTkHD0fZMA:10 a=Wb1JkmetP80A:10 a=VwQbUJbxAAAA:8 a=gAnH3GRIAAAA:8
- a=jSzwRb7mbQI_SljNwmoA:9 a=QEXdDO2ut3YA:10
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwNzA3MDA4MCBTYWx0ZWRfX6XRzwetZqQCs
- nOEed4HPMEhf18KiXT9U3BN5h0hprX0ITcUc6KBQdWtwGb4UgHiM+6DBYDnuhgGT79imGUetb8Z
- jLEDu6Pu9x/sDW90FYxmai7qdw83vxan6DEQpbqlSAwI+zzjaujMxHhYmE2BkJrIlBoXEJq+DQY
- YlVlvHFMRgmYaqUT/pKNDLECntBozbOAZsYotGrEOEKNzj45JHs9fs+aJ7QT8hBPBYIo0cKPgE4
- XZHIGQqn6Rta0/APT4aP+f+giWzd5F4oHfBkaivcWtTunykrHR06FAusxpdqqf0tyGVYP6iRFn9
- 3d7DtZxPIDZ7o9DsUz+445cY+SUSUX2751Av5V9bZCXzWaZ5o+R0BbtpT+ZX/3/kzuil3rNZdm9
- OuWMGW+goLuAPgLEY5lH7o0x6xHfmNBhlvhhkyvDdW4fMObN0UeMvVkKkJAWjRDNyqXXSKnS
-X-Proofpoint-ORIG-GUID: BIMeXA3Mrhr5qwgPUszeEIR7QAcH_PB9
-X-Proofpoint-GUID: BIMeXA3Mrhr5qwgPUszeEIR7QAcH_PB9
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1099,Hydra:6.1.7,FMLib:17.12.80.40
- definitions=2025-07-07_03,2025-07-07_01,2025-03-28_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- suspectscore=0 mlxlogscore=999 mlxscore=0 bulkscore=0 priorityscore=1501
- clxscore=1011 lowpriorityscore=0 impostorscore=0 malwarescore=0 adultscore=0
- spamscore=0 phishscore=0 classifier=spam authscore=0 authtc=n/a authcc=
- route=outbound adjust=0 reason=mlx scancount=1 engine=8.19.0-2505280000
- definitions=main-2507070080
+Mime-Version: 1.0
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=UTF-8
+Date: Mon, 07 Jul 2025 15:49:55 +0200
+Message-Id: <DB5VDDKCAQQG.LDCMHXAZN17S@fairphone.com>
+Subject: Re: [PATCH v2 2/2] pmdomain: qcom: rpmhpd: Add Milos power domains
+From: "Luca Weiss" <luca.weiss@fairphone.com>
+To: "Casey Connolly" <casey.connolly@linaro.org>, "Rob Herring"
+ <robh@kernel.org>, "Krzysztof Kozlowski" <krzk+dt@kernel.org>, "Conor
+ Dooley" <conor+dt@kernel.org>, "Bjorn Andersson" <andersson@kernel.org>,
+ "Ulf Hansson" <ulf.hansson@linaro.org>
+Cc: <~postmarketos/upstreaming@lists.sr.ht>, <phone-devel@vger.kernel.org>,
+ <linux-arm-msm@vger.kernel.org>, <devicetree@vger.kernel.org>,
+ <linux-kernel@vger.kernel.org>, <linux-pm@vger.kernel.org>
+X-Mailer: aerc 0.20.1-0-g2ecb8770224a-dirty
+References: <20250707-sm7635-rpmhpd-v2-0-b4aa37acb065@fairphone.com>
+ <20250707-sm7635-rpmhpd-v2-2-b4aa37acb065@fairphone.com>
+ <06760125-4800-4068-8936-dddf27c28d17@linaro.org>
+In-Reply-To: <06760125-4800-4068-8936-dddf27c28d17@linaro.org>
 
-Hi,
+Hi Casey,
 
-AD4170-4 v8 most significant differences from v7 is the timestamp patch comes
-earlier in the series and struct ad4170_state fields have been rearranged
-to better align to cache line boundaries.
+On Mon Jul 7, 2025 at 3:23 PM CEST, Casey Connolly wrote:
+>
+>
+> On 7/7/25 12:18, Luca Weiss wrote:
+>> Add the power domains exposed by RPMH in the Qualcomm Milos platform.
+>
+> \o/ codenames!
+>
+>>=20
+>> Signed-off-by: Luca Weiss <luca.weiss@fairphone.com>
+>> ---
+>>   drivers/pmdomain/qcom/rpmhpd.c | 19 +++++++++++++++++++
+>>   1 file changed, 19 insertions(+)
+>>=20
+>> diff --git a/drivers/pmdomain/qcom/rpmhpd.c b/drivers/pmdomain/qcom/rpmh=
+pd.c
+>> index 078323b85b5648e33dd89e08cf31bdc5ab76d553..e09552a469264f28952fc46c=
+3ab8c125e87310da 100644
+>> --- a/drivers/pmdomain/qcom/rpmhpd.c
+>> +++ b/drivers/pmdomain/qcom/rpmhpd.c
+>> @@ -217,6 +217,24 @@ static struct rpmhpd gmxc =3D {
+>>   	.res_name =3D "gmxc.lvl",
+>>   };
+>>  =20
+>> +/* Milos RPMH powerdomains */
+>
+> I can't find any public docs telling us which SoC is Milos (the only=20
+> relevant result is Bjorn's email asking you to use that name instead of=
+=20
+> SM7635). So for the sake of future generations could you reference both=
+=20
+> names in a comment somewhere? Or even the commit message would be enough=
+=20
+> tbh.
 
-Jonathan, I see you have applied v7 to testing. Thank you. Though, if still
-possible to pick v8 instead, that will provide patches with fewer line removals.
-Totally fine if you prefer to keep v7, though.
+I don't know the full list of model numbers for Milos. I assume it's
+SM7635, SM6650, SM6650P, QCM6690 and QCS6690 based on the info I could
+fine, but such info is hard to get. So this is not a definite list that
+all those are actually Milos, or that this is the full list of Milos
+chipsets.
 
-Thank you to all reviewers of previous versions.
+> Off-topic here, but maybe it would be a good idea to add some Qualcomm=20
+> platform docs to the kernel with a table of all the publicly known names=
+=20
+> for each SoC? This would also be really helpful even ignoring codenames=
+=20
+> just to know that SM8550 is Snapdragon 8 Gen 2 for example.
 
-v8 has:
+So far my source for this has been the postmarketOS wiki, and this
+Google Doc, but the latter hasn't been updated for new chips since a
+year or so, and is also probably not very complete:
+https://docs.google.com/spreadsheets/d/1WrKHLj_oSoiykhSc6xqXAkT3nlD2hq-fzUP=
+SGiq3Kbc/edit?gid=3D1270863184#gid=3D1270863184
 
-Patch 1 adds device tree documentation for the parts.
-Patch 2 adds basic device support.
-Patch 3 adds support for calibration scale.
-Patch 4 adds support for calibration bias.
-Patch 5 adds sinc5+avg to filter_type_available IIO ABI documentation.
-Patch 6 adds support for sample frequency along with filter type configuration.
-Patch 7 adds support for buffered ADC reading.
-Patch 8 (was patch 12 on v7) adds timestamp channel
-Patch 9 adds clock provider support
-Patch 10 adds GPIO controller support.
-Patch 11 adds internal temperature sensor support.
-Patch 12 adds support for external RTD and bridge circuit sensors.
+And I've got some notes locally for a couple that I regularly need.
 
-Despite the updates, no functional change has been made in v8.
-This patch series was generated using the "histogram diff" algorithm
-(git format-patch --histogram option).
+But I'd love a more central place that isn't specific to postmarketOS
+for example. Not sure where though?
 
-Change log v7 -> v8
+Regards
+Luca
 
-[Generic changes]
-- Update patches to make struct ad4170_state fields align well with both 32
-  and 64-bit size cache lines after all patches are applied.
-
-[Device tree changes]
-- Updated device name in patch description (AD4170 -> AD4170-4).
-- Removed extra blank line at the end of the doc.
-
-[Basic driver patch]
-- Early declare and use sensor type local variable to reduce diff in ext sensor patch.
-- Make early check of IIO chan type to reduce diff in temperature support patch.
-- Dropped 'int_pin_sel' field from struct ad4170_state. int_pin_sel is now local.
-- Renamed AD4170_MAX_CHANNELS -> AD4170_MAX_ADC_CHANNELS for better readability.
-
-[Timestamp channel patch]
-- Moved from end of the series to right after buffer support patch.
-- Reworked timestamp patch so it doesn't add 'num_adc_chans' field to struct ad4170_state.
-
-[Internal temperature sensor patch]
-- Reduced number of line removals in code diff.
-
-[External sensor patch]
-- Reworded external sensor support patch description.
-- Reduced number of line removals in code diff.
-- Updated ad4170_parse_external_sensor() param: u8 s_type -> unsigned int s_type.
-
-
-Link to v7: https://lore.kernel.org/linux-iio/cover.1751289747.git.marcelo.schmitt@analog.com/
-Link to v6: https://lore.kernel.org/linux-iio/cover.1750258776.git.marcelo.schmitt@analog.com/
-Link to v5: https://lore.kernel.org/linux-iio/cover.1749582679.git.marcelo.schmitt@analog.com/ 
-Link to v4: https://lore.kernel.org/linux-iio/cover.1748829860.git.marcelo.schmitt@analog.com/
-Link to v3: https://lore.kernel.org/linux-iio/cover.1747083143.git.marcelo.schmitt@analog.com/
-Link to v2: https://lore.kernel.org/linux-iio/cover.1745841276.git.marcelo.schmitt@analog.com/
-Link to v1: https://lore.kernel.org/linux-iio/cover.1744200264.git.marcelo.schmitt@analog.com/
-
-
-Ana-Maria Cusco (1):
-  iio: adc: Add basic support for AD4170-4
-
-Marcelo Schmitt (11):
-  dt-bindings: iio: adc: Add AD4170-4
-  iio: adc: ad4170-4: Add support for calibration gain
-  iio: adc: ad4170-4: Add support for calibration bias
-  Documentation: ABI: IIO: Add sinc5+avg to the filter_type_available
-    list
-  iio: adc: ad4170-4: Add digital filter and sample frequency config
-    support
-  iio: adc: ad4170-4: Add support for buffered data capture
-  iio: adc: ad4170-4: Add timestamp channel
-  iio: adc: ad4170-4: Add clock provider support
-  iio: adc: ad4170-4: Add GPIO controller support
-  iio: adc: ad4170-4: Add support for internal temperature sensor
-  iio: adc: ad4170-4: Add support for weigh scale, thermocouple, and RTD
-    sens
-
- Documentation/ABI/testing/sysfs-bus-iio       |    1 +
- .../bindings/iio/adc/adi,ad4170-4.yaml        |  554 +++
- MAINTAINERS                                   |    8 +
- drivers/iio/adc/Kconfig                       |   16 +
- drivers/iio/adc/Makefile                      |    1 +
- drivers/iio/adc/ad4170-4.c                    | 3027 +++++++++++++++++
- 6 files changed, 3607 insertions(+)
- create mode 100644 Documentation/devicetree/bindings/iio/adc/adi,ad4170-4.yaml
- create mode 100644 drivers/iio/adc/ad4170-4.c
-
-
-base-commit: 66ffb9f5accc6769d1ea7b9d7ac4c5ec477f9575
--- 
-2.47.2
+>
+> Kind regards,
+> Casey (she/they)
+>
+>> +static struct rpmhpd *milos_rpmhpds[] =3D {
+>> +	[RPMHPD_CX] =3D &cx,
+>> +	[RPMHPD_CX_AO] =3D &cx_ao,
+>> +	[RPMHPD_EBI] =3D &ebi,
+>> +	[RPMHPD_GFX] =3D &gfx,
+>> +	[RPMHPD_LCX] =3D &lcx,
+>> +	[RPMHPD_LMX] =3D &lmx,
+>> +	[RPMHPD_MSS] =3D &mss,
+>> +	[RPMHPD_MX] =3D &mx,
+>> +	[RPMHPD_MX_AO] =3D &mx_ao,
+>> +};
+>> +
+>> +static const struct rpmhpd_desc milos_desc =3D {
+>> +	.rpmhpds =3D milos_rpmhpds,
+>> +	.num_pds =3D ARRAY_SIZE(milos_rpmhpds),
+>> +};
+>> +
+>>   /* SA8540P RPMH powerdomains */
+>>   static struct rpmhpd *sa8540p_rpmhpds[] =3D {
+>>   	[SC8280XP_CX] =3D &cx,
+>> @@ -723,6 +741,7 @@ static const struct rpmhpd_desc qcs615_desc =3D {
+>>   };
+>>  =20
+>>   static const struct of_device_id rpmhpd_match_table[] =3D {
+>> +	{ .compatible =3D "qcom,milos-rpmhpd", .data =3D &milos_desc },
+>>   	{ .compatible =3D "qcom,qcs615-rpmhpd", .data =3D &qcs615_desc },
+>>   	{ .compatible =3D "qcom,qcs8300-rpmhpd", .data =3D &qcs8300_desc },
+>>   	{ .compatible =3D "qcom,qdu1000-rpmhpd", .data =3D &qdu1000_desc },
+>>=20
 
 
