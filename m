@@ -1,154 +1,198 @@
-Return-Path: <devicetree+bounces-193534-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-193535-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 49EEDAFAD05
-	for <lists+devicetree@lfdr.de>; Mon,  7 Jul 2025 09:25:16 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id C8CE6AFAD1A
+	for <lists+devicetree@lfdr.de>; Mon,  7 Jul 2025 09:30:50 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id B03C1188C84A
-	for <lists+devicetree@lfdr.de>; Mon,  7 Jul 2025 07:25:32 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 952DA7A7D69
+	for <lists+devicetree@lfdr.de>; Mon,  7 Jul 2025 07:29:24 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2EEE0286893;
-	Mon,  7 Jul 2025 07:25:04 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id AB99B287241;
+	Mon,  7 Jul 2025 07:30:23 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="sMaIBRWJ"
+	dkim=pass (1024-bit key) header.d=samsung.com header.i=@samsung.com header.b="nTcmJlWE"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mailout1.w1.samsung.com (mailout1.w1.samsung.com [210.118.77.11])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 04EC11E5B88;
-	Mon,  7 Jul 2025 07:25:03 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7C6AA287248
+	for <devicetree@vger.kernel.org>; Mon,  7 Jul 2025 07:30:21 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=210.118.77.11
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1751873104; cv=none; b=iuiWPQ9UT6KbAWOM4oRn0g0EhBVntml6xLS/1iPVWAA3vptVZUAenTEXlmKoOkbvO3nS1Z85hs8BHn7dd5xd2rbXnIgojfbfF9TxD9XNiRIvc9LoQd4Aarv3y7O8vpYe4wQRy+lp9FFX41bJCFbuNg3/l2pTo0s9DOUTA52SSiA=
+	t=1751873423; cv=none; b=OAgEVvteat5GXkIO6c5g3kWcB7kV9gh6116CwslAfpT2eHGKf1IGnkkkGZ33DZThTvsfwP/GlHAlgtqBNji/Yb6Q5MevmcdC4MUc3BKfiHraTuphx42sPrk3gjfOqhXj637OgtGLuJVbshZD0Gf9A3kcKMZAWjVlFdP3Bh5HeH0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1751873104; c=relaxed/simple;
-	bh=46eFcGLsdRruwrd7qIW78WbO3QHQaWoFdR8SB3+A13o=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=VOGvnTilD7UUTlTva3BhoEFOwrAitlhvp654C6f6A9M0mjh+jSIfiCPexRpwHI8iwa/zn6aYVHcXUP1pRziBCpH4amX3zdSq0+52uw8ypMO24b3U5PyHDbAfZaGdbLH5MrYDuRbX4bCdXfYLt86x9wrz0DJaxJp29v+NqB2kPdY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=sMaIBRWJ; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 1942CC4CEF1;
-	Mon,  7 Jul 2025 07:25:02 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1751873103;
-	bh=46eFcGLsdRruwrd7qIW78WbO3QHQaWoFdR8SB3+A13o=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=sMaIBRWJbuqMJ2yNreEoBAkKva2OZkbYt+vqWO+gBU8hSsgbbEBiqLk9MaSzkT1/W
-	 7b73V3gs3y2WBe1aiKHXL2FQt9xxZfUmRZhbfMzzm6nh+gmOgF4CaznOX8z2m+lMLc
-	 VxsRBrChaLj3NjhhTwIGfUMYuZW1Eu6Tjb2YgwlQyrrHMeW28UsEU0NV2vW29mnauS
-	 3uKpUiqDMEoPPg/LwkdrPBwIVZYuWRVNgK77bGbLbEMzHDpME+wF+OwUuTJeLgQ7E4
-	 SOSZUFYhgrRGzeWRHtFCh3p7XwsLCYtvypsf9ASmrBPAt97YJPcYP4WumMV3+OHaNN
-	 txFYPf2VItdvQ==
-Date: Mon, 7 Jul 2025 09:25:00 +0200
-From: Lorenzo Bianconi <lorenzo@kernel.org>
-To: Krzysztof Kozlowski <krzk@kernel.org>
-Cc: Andrew Lunn <andrew+netdev@lunn.ch>,
-	"David S. Miller" <davem@davemloft.net>,
-	Eric Dumazet <edumazet@google.com>,
-	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	linux-arm-kernel@lists.infradead.org,
-	linux-mediatek@lists.infradead.org, netdev@vger.kernel.org,
-	devicetree@vger.kernel.org
-Subject: Re: [PATCH net-next v2 1/7] dt-bindings: net: airoha: npu: Add
- memory regions used for wlan offload
-Message-ID: <aGt2TFyD5-NPUoY4@lore-desk>
-References: <20250705-airoha-en7581-wlan-offlaod-v2-0-3cf32785e381@kernel.org>
- <20250705-airoha-en7581-wlan-offlaod-v2-1-3cf32785e381@kernel.org>
- <20250707-topaz-pillbug-of-fame-859822@krzk-bin>
+	s=arc-20240116; t=1751873423; c=relaxed/simple;
+	bh=aSpnSLUsKoIud4TMn2Bqvcleyy0rBk7G0hRpyIo8X6c=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:From:In-Reply-To:
+	 Content-Type:References; b=XVvuwvooVApNTPe8c7bOBslhy7SnpfrwQPqQJh/+QJOINCCqBPoSqZpiIpVlNMFTav+q/xM/w9vOFU3EAAHo/JxqqxEiLp8hHnvw7sSYMZjO4y7Mlc1ZVHS7wDIwmDokhJf0P4sJyOOYEQCF/jaJoyE7EFFZkdWWFs+SOiv4t0w=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=samsung.com; spf=pass smtp.mailfrom=samsung.com; dkim=pass (1024-bit key) header.d=samsung.com header.i=@samsung.com header.b=nTcmJlWE; arc=none smtp.client-ip=210.118.77.11
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=samsung.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=samsung.com
+Received: from eucas1p1.samsung.com (unknown [182.198.249.206])
+	by mailout1.w1.samsung.com (KnoxPortal) with ESMTP id 20250707073019euoutp01844c6fd6bc174839a517db15a92e7dde~P55fYzR7s2183021830euoutp01v
+	for <devicetree@vger.kernel.org>; Mon,  7 Jul 2025 07:30:19 +0000 (GMT)
+DKIM-Filter: OpenDKIM Filter v2.11.0 mailout1.w1.samsung.com 20250707073019euoutp01844c6fd6bc174839a517db15a92e7dde~P55fYzR7s2183021830euoutp01v
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=samsung.com;
+	s=mail20170921; t=1751873419;
+	bh=Q5MiDO4kvDAjyRPyePkrhFPW14vb6d7EHum8/0WQ8v4=;
+	h=Date:Subject:To:Cc:From:In-Reply-To:References:From;
+	b=nTcmJlWE9ADFjtTB8/5dbhfElVYFVx1jEthmk7Ctq63wpWZA0y3SsvT87qm57mCtz
+	 rUjt3bDhvweBckPVDFw5OznBTOS+vV7+8SZ9nHBpYZQENs4/FWNurFGCw+oFHkPpQ1
+	 XHWI3W7f3PQJvFFlwDzHrIxWLH38TC9yfJ59Mtd0=
+Received: from eusmtip2.samsung.com (unknown [203.254.199.222]) by
+	eucas1p1.samsung.com (KnoxPortal) with ESMTPA id
+	20250707073018eucas1p1a0c2e714826a2571f8c5281b8ef0457c~P55eomzep1941219412eucas1p1u;
+	Mon,  7 Jul 2025 07:30:18 +0000 (GMT)
+Received: from [192.168.1.44] (unknown [106.210.136.40]) by
+	eusmtip2.samsung.com (KnoxPortal) with ESMTPA id
+	20250707073017eusmtip20a0a1f63bf89beef337da1edc73632c1~P55dgBGZm2165621656eusmtip2K;
+	Mon,  7 Jul 2025 07:30:17 +0000 (GMT)
+Message-ID: <002c8275-f17d-4a4e-b6b8-4dc74c4d510d@samsung.com>
+Date: Mon, 7 Jul 2025 09:30:17 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="e3pQYbwqGNuliQMT"
-Content-Disposition: inline
-In-Reply-To: <20250707-topaz-pillbug-of-fame-859822@krzk-bin>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v9 2/6] rust: pwm: Add complete abstraction layer
+To: Danilo Krummrich <dakr@kernel.org>
+Cc: =?UTF-8?Q?Uwe_Kleine-K=C3=B6nig?= <ukleinek@kernel.org>, Miguel Ojeda
+	<ojeda@kernel.org>, Alex Gaynor <alex.gaynor@gmail.com>, Boqun Feng
+	<boqun.feng@gmail.com>, Gary Guo <gary@garyguo.net>,
+	=?UTF-8?Q?Bj=C3=B6rn_Roy_Baron?= <bjorn3_gh@protonmail.com>, Andreas
+	Hindborg <a.hindborg@kernel.org>, Alice Ryhl <aliceryhl@google.com>, Trevor
+	Gross <tmgross@umich.edu>, Guo Ren <guoren@kernel.org>, Fu Wei
+	<wefu@redhat.com>, Rob Herring <robh@kernel.org>, Krzysztof Kozlowski
+	<krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, Paul Walmsley
+	<paul.walmsley@sifive.com>, Palmer Dabbelt <palmer@dabbelt.com>, Albert Ou
+	<aou@eecs.berkeley.edu>, Alexandre Ghiti <alex@ghiti.fr>, Marek Szyprowski
+	<m.szyprowski@samsung.com>, Benno Lossin <lossin@kernel.org>, Michael
+	Turquette <mturquette@baylibre.com>, Drew Fustini <fustini@kernel.org>,
+	linux-kernel@vger.kernel.org, linux-pwm@vger.kernel.org,
+	rust-for-linux@vger.kernel.org, linux-riscv@lists.infradead.org,
+	devicetree@vger.kernel.org
+Content-Language: en-US
+From: Michal Wilczynski <m.wilczynski@samsung.com>
+In-Reply-To: <aGpqqGMTU3a3O8cn@pollux>
+Content-Transfer-Encoding: 7bit
+X-CMS-MailID: 20250707073018eucas1p1a0c2e714826a2571f8c5281b8ef0457c
+X-Msg-Generator: CA
+Content-Type: text/plain; charset="utf-8"
+X-RootMTR: 20250706114605eucas1p17d1cbd035d14d95f4ad0588c2572b3e2
+X-EPHeader: CA
+X-CMS-RootMailID: 20250706114605eucas1p17d1cbd035d14d95f4ad0588c2572b3e2
+References: <20250706-rust-next-pwm-working-fan-for-sending-v9-0-42b5ac2101c7@samsung.com>
+	<CGME20250706114605eucas1p17d1cbd035d14d95f4ad0588c2572b3e2@eucas1p1.samsung.com>
+	<20250706-rust-next-pwm-working-fan-for-sending-v9-2-42b5ac2101c7@samsung.com>
+	<aGpqqGMTU3a3O8cn@pollux>
 
 
---e3pQYbwqGNuliQMT
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
 
-On Jul 07, Krzysztof Kozlowski wrote:
-> On Sat, Jul 05, 2025 at 11:09:45PM +0200, Lorenzo Bianconi wrote:
-> > Document memory regions used by Airoha EN7581 NPU for wlan traffic
-> > offloading.
-> >=20
-> > Signed-off-by: Lorenzo Bianconi <lorenzo@kernel.org>
-> > ---
-> >  .../devicetree/bindings/net/airoha,en7581-npu.yaml   | 20 ++++++++++++=
-++++----
-> >  1 file changed, 16 insertions(+), 4 deletions(-)
-> >=20
-> > diff --git a/Documentation/devicetree/bindings/net/airoha,en7581-npu.ya=
-ml b/Documentation/devicetree/bindings/net/airoha,en7581-npu.yaml
-> > index 76dd97c3fb4004674dc30a54c039c1cc19afedb3..db9269d1801bafa9be3b6c1=
-99a9e30cd23f4aea9 100644
-> > --- a/Documentation/devicetree/bindings/net/airoha,en7581-npu.yaml
-> > +++ b/Documentation/devicetree/bindings/net/airoha,en7581-npu.yaml
-> > @@ -41,15 +41,25 @@ properties:
-> >        - description: wlan irq line5
-> > =20
-> >    memory-region:
-> > -    maxItems: 1
-> > -    description:
-> > -      Memory used to store NPU firmware binary.
-> > +    items:
-> > +      - description: NPU firmware binary region
-> > +      - description: NPU wlan offload RX buffers region
-> > +      - description: NPU wlan offload TX buffers region
-> > +      - description: NPU wlan offload TX packet identifiers region
-> > +
-> > +  memory-region-names:
-> > +    items:
-> > +      - const: binary
->=20
-> Rather: firmware
+On 7/6/25 14:23, Danilo Krummrich wrote:
+> On Sun, Jul 06, 2025 at 01:45:13PM +0200, Michal Wilczynski wrote:
+>> +/// Trait defining the operations for a PWM driver.
+>> +pub trait PwmOps: 'static + Sized {
+>> +    /// The type of the owned driver data (e.g., `Pin<KBox<...>>`).
+>> +    type DrvData: 'static + ForeignOwnable;
+>> +    /// The driver-specific hardware representation of a waveform.
+>> +    ///
+>> +    /// This type must be [`Copy`], [`Default`], and fit within `PWM_WFHWSIZE`.
+>> +    type WfHw: Copy + Default;
+>> +
+>> +    /// Optional hook for when a PWM device is requested.
+>> +    fn request(
+>> +        _chip: &Chip<Self::DrvData>,
+>> +        _pwm: &Device,
+>> +        _parent_dev: &device::Device<Bound>,
+>> +    ) -> Result {
+>> +        Ok(())
+>> +    }
+>> +
+>> +    /// Optional hook for when a PWM device is freed.
+>> +    fn free(_chip: &Chip<Self::DrvData>, _pwm: &Device, _parent_dev: &device::Device<Bound>) {}
+> 
+> NIT: I can't think of a case providing this callback in Rust is useful. Do you
+> have a clear use-case in mind? Otherwise, I'd not provide this callback until
+> you have one. Should be trivial to add later on.
+> 
+>> +impl<T: PwmOps> Adapter<T> {
+> 
+> <snip>
+> 
+>> +    /// # Safety
+>> +    ///
+>> +    /// `dev` must be a valid pointer to a `bindings::device` embedded within a
+>> +    /// `bindings::pwm_chip`. This function is called by the device core when the
+>> +    /// last reference to the device is dropped.
+>> +    unsafe extern "C" fn release_callback(dev: *mut bindings::device) {
+>> +        // SAFETY: The function's contract guarantees that `dev` points to a `device`
+>> +        // field embedded within a valid `pwm_chip`. `container_of!` can therefore
+>> +        // safely calculate the address of the containing struct.
+>> +        let c_chip_ptr = unsafe { container_of!(dev, bindings::pwm_chip, dev) };
+>> +
+>> +        // SAFETY: `c_chip_ptr` is a valid pointer to a `pwm_chip` as established
+>> +        // above. Calling this FFI function is safe.
+>> +        let drvdata_ptr = unsafe { bindings::pwmchip_get_drvdata(c_chip_ptr) };
+>> +
+>> +        if !drvdata_ptr.is_null() {
+> 
+> Is this check needed? I think one can't create a pwm::Chip instance without
+> providing a T, so this pointer can't be NULL I think.
+> 
+>> +            // SAFETY: `drvdata_ptr` was stored by `Chip::new` from an owned `T::DrvData`
+>> +            // and is guaranteed to be valid if non-null. `from_foreign` can safely
+>> +            // reclaim ownership to allow Rust to drop and free the data.
+>> +            let _owned_drvdata = unsafe { T::DrvData::from_foreign(drvdata_ptr.cast()) };
+>> +        }
+>> +    }
+> 
+> If you overwrite this callback (as you do below) you're leaking the memory
+> allocated by pwmchip_alloc().
+> 
+> The simple way to solve this would be to call pwmchip_release() from here.
 
-ack, I will fix it.
+Thanks, a pwmchip_release() is static though, so it's either expose the
+pwmchip_release in the header, or call kfree() here directly on pwmchip.
 
->=20
-> > +      - const: pkt
-> > +      - const: tx-pkt
-> > +      - const: tx-bufid
-> > =20
-> >  required:
-> >    - compatible
-> >    - reg
-> >    - interrupts
-> >    - memory-region
-> > +  - memory-region-names
->=20
-> That's ABI break.
->=20
+> 
+> <snip>
+> 
+>> +impl<T: 'static + ForeignOwnable> Chip<T> {
+>> +    /// Allocates and wraps a PWM chip using `bindings::pwmchip_alloc`.
+>> +    ///
+>> +    /// Returns an [`ARef<Chip>`] managing the chip's lifetime via refcounting
+>> +    /// on its embedded `struct device`.
+>> +    pub fn new<O: PwmOps<DrvData = T>>(
+>> +        parent_dev: &device::Device,
+>> +        npwm: u32,
+>> +        sizeof_priv: usize,
+>> +        drvdata: T,
+>> +    ) -> Result<ARef<Self>> {
+>> +        // SAFETY: `parent_device_for_dev_field.as_raw()` is valid.
+>> +        // `bindings::pwmchip_alloc` returns a valid `*mut bindings::pwm_chip` (refcount 1)
+>> +        // or an ERR_PTR.
+>> +        let c_chip_ptr_raw =
+>> +            unsafe { bindings::pwmchip_alloc(parent_dev.as_raw(), npwm, sizeof_priv) };
+>> +
+>> +        let c_chip_ptr: *mut bindings::pwm_chip = error::from_err_ptr(c_chip_ptr_raw)?;
+>> +
+>> +        // Set the custom release function on the embedded device. This is the crucial step
+>> +        // to ensure `drvdata` is freed when the chip's refcount reaches zero, regardless
+>> +        // of whether `Registration::register` was called.
+>> +        // SAFETY: `c_chip_ptr` points to a valid chip.
+>> +        unsafe { (*c_chip_ptr).dev.release = Some(Adapter::<O>::release_callback); }
+> 
+> This overwrites [1].
+> 
+> [1] https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/tree/drivers/pwm/core.c?h=v6.16-rc4#n1601
+> 
 
-ack, I will fix it.
-
-Regards,
-Lorenzo
-
-> Best regards,
-> Krzysztof
->=20
-
---e3pQYbwqGNuliQMT
-Content-Type: application/pgp-signature; name=signature.asc
-
------BEGIN PGP SIGNATURE-----
-
-iHUEABYKAB0WIQTquNwa3Txd3rGGn7Y6cBh0uS2trAUCaGt2TAAKCRA6cBh0uS2t
-rL0dAQDG1PVfQDAI41H6UAq/YG3w4NGMDvYKFYsgeoSPL2kTYQD/WDbDbBpyfLSw
-rZNTUbVkPrTPxy19YEn1NsgkFGkCBgg=
-=Hdxr
------END PGP SIGNATURE-----
-
---e3pQYbwqGNuliQMT--
+Best regards,
+-- 
+Michal Wilczynski <m.wilczynski@samsung.com>
 
