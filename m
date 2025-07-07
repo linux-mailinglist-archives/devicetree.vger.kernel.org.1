@@ -1,118 +1,97 @@
-Return-Path: <devicetree+bounces-193595-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-193596-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4AFF6AFB017
-	for <lists+devicetree@lfdr.de>; Mon,  7 Jul 2025 11:47:24 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id BF2A3AFB01A
+	for <lists+devicetree@lfdr.de>; Mon,  7 Jul 2025 11:47:48 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id C9A0B1894F58
-	for <lists+devicetree@lfdr.de>; Mon,  7 Jul 2025 09:47:40 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 2128C4A17BA
+	for <lists+devicetree@lfdr.de>; Mon,  7 Jul 2025 09:47:49 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0F2DB292B22;
-	Mon,  7 Jul 2025 09:47:14 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=redhat.com header.i=@redhat.com header.b="JkROgXYz"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 14A71290DAC;
+	Mon,  7 Jul 2025 09:47:20 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from us-smtp-delivery-124.mimecast.com (us-smtp-delivery-124.mimecast.com [170.10.129.124])
+Received: from metis.whiteo.stw.pengutronix.de (metis.whiteo.stw.pengutronix.de [185.203.201.7])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 730AA290D8C
-	for <devicetree@vger.kernel.org>; Mon,  7 Jul 2025 09:47:12 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=170.10.129.124
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 698C328ECEF
+	for <devicetree@vger.kernel.org>; Mon,  7 Jul 2025 09:47:18 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.203.201.7
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1751881633; cv=none; b=GntuEIVewMikdTen2TR6udu3uaO6qqsmmpzeMYJbDIGlu/8Sol+I9FlIezidzBWm6pl4eSFjD3uGHaMeyn8eSOgBz6jI7ymDfVDlZY6PiHj4xDWt34Wq9e/N+b9okRBaX5Bskr7HhFn0E6t39mXIfbN2sbnw3OCwNDhL0lWarao=
+	t=1751881640; cv=none; b=emHuWinhc7ZIXpSdaPwleWQKmHYu3vzVXiSy7rWLANluQOUW7EX7iZDyXEaECeTDQLbK3iBpCHQNwhIr4jXRKNXwY0+W0/2PlMg6D+2J2OWsSlGV0PkswxY0wLHlHviUxp5wm+69I++YWmEUjHW5FCUx27WJWAMbWAJ1PCRkdo0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1751881633; c=relaxed/simple;
-	bh=30/y4SG4wGEpss7IEM4IeQjEBYvCPPiFYxp6rK9lQ3Y=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=VmbllF/GrCxb7xORqvGHvmqV+vH3Q321QBjRprn8/RuBAvJhBTTZ6T+CVecICCJeuhpWJNYee0OT89jkIMSVSFE+OGP5B+DJGNg5cW+8XvtfQK8hF4KoxPBOZSnLjMgn0seKAIoD3y+lHbsF5kQ3nMBv1uuzhVCR6vNKYiUjjxM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=redhat.com; spf=pass smtp.mailfrom=redhat.com; dkim=pass (1024-bit key) header.d=redhat.com header.i=@redhat.com header.b=JkROgXYz; arc=none smtp.client-ip=170.10.129.124
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=redhat.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=redhat.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
-	s=mimecast20190719; t=1751881631;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=4JOhzMO9hb/LtSXeWxWkjP1ZlyyrhtnOsL7SvQkX++k=;
-	b=JkROgXYz5M889Nd2Ua+Yzi45wK0gftCehxpEUi+l+ZtsnAYVabqaJj58nRzmH00eiQ8l4l
-	+maMNcpIrwFHzmZD7VskF0FZWm6gPlRQRdEEgtrJRqPQope3ufU4OmZy+Zrc8P6iVLncTs
-	4fFju4UWZf9vZH7QWsL+DZpjFSFj9uE=
-Received: from mx-prod-mc-02.mail-002.prod.us-west-2.aws.redhat.com
- (ec2-54-186-198-63.us-west-2.compute.amazonaws.com [54.186.198.63]) by
- relay.mimecast.com with ESMTP with STARTTLS (version=TLSv1.3,
- cipher=TLS_AES_256_GCM_SHA384) id us-mta-313-7syuedqyNHCwk-PKjoBmKA-1; Mon,
- 07 Jul 2025 05:47:06 -0400
-X-MC-Unique: 7syuedqyNHCwk-PKjoBmKA-1
-X-Mimecast-MFC-AGG-ID: 7syuedqyNHCwk-PKjoBmKA_1751881624
-Received: from mx-prod-int-08.mail-002.prod.us-west-2.aws.redhat.com (mx-prod-int-08.mail-002.prod.us-west-2.aws.redhat.com [10.30.177.111])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
-	(No client certificate requested)
-	by mx-prod-mc-02.mail-002.prod.us-west-2.aws.redhat.com (Postfix) with ESMTPS id 33767195395A;
-	Mon,  7 Jul 2025 09:47:03 +0000 (UTC)
-Received: from [10.44.32.50] (unknown [10.44.32.50])
-	by mx-prod-int-08.mail-002.prod.us-west-2.aws.redhat.com (Postfix) with ESMTP id 5B15B18002B6;
-	Mon,  7 Jul 2025 09:46:55 +0000 (UTC)
-Message-ID: <29fb9fef-59d7-43f1-9c45-d6f5a4fe9818@redhat.com>
-Date: Mon, 7 Jul 2025 11:46:54 +0200
+	s=arc-20240116; t=1751881640; c=relaxed/simple;
+	bh=1/be2royPIkQLfr/HcPh/TJaKZHLxpX7JL+qtcyAGq8=;
+	h=Message-ID:Subject:From:To:Cc:Date:In-Reply-To:References:
+	 Content-Type:MIME-Version; b=E/XomJjbteGb+lrMUodYylNJ4yEHwGfm7mnvqWgaplJjCIMTZWlfhBpmUoFVG9qf+CgqXcr7SmQAPaMc9XaS+OU/Q/kQ3lCEZjJn9H2Bgs+sYC3JqwFlPkkb5pwU7NAMaR+lATyq1V20+oCBjw8goZQl5kwK6CDFUFoo22GXdC8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de; spf=pass smtp.mailfrom=pengutronix.de; arc=none smtp.client-ip=185.203.201.7
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=pengutronix.de
+Received: from drehscheibe.grey.stw.pengutronix.de ([2a0a:edc0:0:c01:1d::a2])
+	by metis.whiteo.stw.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
+	(Exim 4.92)
+	(envelope-from <p.zabel@pengutronix.de>)
+	id 1uYiRA-0006RW-Fn; Mon, 07 Jul 2025 11:47:00 +0200
+Received: from lupine.office.stw.pengutronix.de ([2a0a:edc0:0:900:1d::4e] helo=lupine)
+	by drehscheibe.grey.stw.pengutronix.de with esmtps  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+	(Exim 4.96)
+	(envelope-from <p.zabel@pengutronix.de>)
+	id 1uYiR8-007E6Q-38;
+	Mon, 07 Jul 2025 11:46:58 +0200
+Received: from pza by lupine with local (Exim 4.96)
+	(envelope-from <p.zabel@pengutronix.de>)
+	id 1uYiR8-000IEH-2o;
+	Mon, 07 Jul 2025 11:46:58 +0200
+Message-ID: <33a20f6abac7400c8b4842b99c14ea118def2780.camel@pengutronix.de>
+Subject: Re: [PATCH v12 5/6] reset: spacemit: add support for SpacemiT CCU
+ resets
+From: Philipp Zabel <p.zabel@pengutronix.de>
+To: Alex Elder <elder@riscstar.com>, robh@kernel.org, krzk+dt@kernel.org, 
+ conor+dt@kernel.org, mturquette@baylibre.com, sboyd@kernel.org, 
+ paul.walmsley@sifive.com, palmer@dabbelt.com, aou@eecs.berkeley.edu,
+ alex@ghiti.fr,  dlan@gentoo.org
+Cc: heylenay@4d2.org, inochiama@outlook.com, guodong@riscstar.com, 
+ devicetree@vger.kernel.org, linux-clk@vger.kernel.org,
+ spacemit@lists.linux.dev,  linux-riscv@lists.infradead.org,
+ linux-kernel@vger.kernel.org
+Date: Mon, 07 Jul 2025 11:46:58 +0200
+In-Reply-To: <20250702113709.291748-6-elder@riscstar.com>
+References: <20250702113709.291748-1-elder@riscstar.com>
+	 <20250702113709.291748-6-elder@riscstar.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+User-Agent: Evolution 3.46.4-2 
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH net-next v13 12/12] dpll: zl3073x: Add support to get/set
- frequency on pins
-To: Jiri Pirko <jiri@resnulli.us>
-Cc: netdev@vger.kernel.org, Prathosh Satish <Prathosh.Satish@microchip.com>,
- Vadim Fedorenko <vadim.fedorenko@linux.dev>,
- Arkadiusz Kubalewski <arkadiusz.kubalewski@intel.com>,
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, "David S. Miller" <davem@davemloft.net>,
- Eric Dumazet <edumazet@google.com>, Jakub Kicinski <kuba@kernel.org>,
- Paolo Abeni <pabeni@redhat.com>, Simon Horman <horms@kernel.org>,
- Jonathan Corbet <corbet@lwn.net>, Jason Gunthorpe <jgg@ziepe.ca>,
- Shannon Nelson <shannon.nelson@amd.com>, Dave Jiang <dave.jiang@intel.com>,
- Jonathan Cameron <Jonathan.Cameron@huawei.com>, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, linux-doc@vger.kernel.org,
- Michal Schmidt <mschmidt@redhat.com>, Petr Oros <poros@redhat.com>
-References: <20250704182202.1641943-1-ivecera@redhat.com>
- <20250704182202.1641943-13-ivecera@redhat.com>
- <idzmiaubwlnkzds2jbminyr46vuqo37nz5twj7f2yytn4aqoff@r34cm3qpd5mj>
-Content-Language: en-US
-From: Ivan Vecera <ivecera@redhat.com>
-In-Reply-To: <idzmiaubwlnkzds2jbminyr46vuqo37nz5twj7f2yytn4aqoff@r34cm3qpd5mj>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Scanned-By: MIMEDefang 3.4.1 on 10.30.177.111
+X-SA-Exim-Connect-IP: 2a0a:edc0:0:c01:1d::a2
+X-SA-Exim-Mail-From: p.zabel@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.whiteo.stw.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: devicetree@vger.kernel.org
 
+Hi Stephen, Mike
 
+On Mi, 2025-07-02 at 06:37 -0500, Alex Elder wrote:
+> Implement reset support for SpacemiT CCUs.  A SpacemiT reset controller
+> device is an auxiliary device associated with a clock controller (CCU).
+>=20
+> This patch defines the reset controllers for the MPMU, APBC, and MPMU
+> CCUs, which already define clock controllers.  It also adds RCPU, RCPU2,
+> and ACPB2 CCUs, which only define resets.
+>=20
+> Signed-off-by: Alex Elder <elder@riscstar.com>
+> Reviewed-by: Philipp Zabel <p.zabel@pengutronix.de>
+> Reviewed-by: Yixun Lan <dlan@gentoo.org>
 
-On 07. 07. 25 10:32 dop., Jiri Pirko wrote:
-> Fri, Jul 04, 2025 at 08:22:02PM +0200, ivecera@redhat.com wrote:
-> 
-> [...]
-> 
->> +static int
->> +zl3073x_dpll_input_pin_frequency_set(const struct dpll_pin *dpll_pin,
->> +				     void *pin_priv,
->> +				     const struct dpll_device *dpll,
->> +				     void *dpll_priv, u64 frequency,
->> +				     struct netlink_ext_ack *extack)
-> 
-> Unrelated to this patch, but ny idea why we don't implement
-> "FREQUENCY_CAN_CHANGE" capability. I think we are missing it.
-> 
-Interesting question... from the driver API it is not necessary
-as the DPLL core can deduce FREQUENCY_CAN_CHANGE from existence
-of pin_frequency_set() callback and also if the pin reports
-empty or single item supported-frequencies list.
+Acked-by: Philipp Zabel <p.zabel@pengutronix.de>
 
-Ivan
+To be merged via the clk tree, if Stephen is ok with that.
 
+regards
+Philipp
 
