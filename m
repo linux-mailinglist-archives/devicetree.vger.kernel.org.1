@@ -1,93 +1,68 @@
-Return-Path: <devicetree+bounces-193720-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-193721-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 72FD5AFB731
-	for <lists+devicetree@lfdr.de>; Mon,  7 Jul 2025 17:24:25 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id C2BA7AFB733
+	for <lists+devicetree@lfdr.de>; Mon,  7 Jul 2025 17:24:34 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 155841AA0EA7
-	for <lists+devicetree@lfdr.de>; Mon,  7 Jul 2025 15:24:37 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 0E2D216A023
+	for <lists+devicetree@lfdr.de>; Mon,  7 Jul 2025 15:24:35 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5AE7A2E2656;
-	Mon,  7 Jul 2025 15:24:14 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 320742E3367;
+	Mon,  7 Jul 2025 15:24:20 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="OikzEQGl"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="vCuz4onV"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f53.google.com (mail-wm1-f53.google.com [209.85.128.53])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6FE3218D65C;
-	Mon,  7 Jul 2025 15:24:12 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.53
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0A39518D65C;
+	Mon,  7 Jul 2025 15:24:19 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1751901854; cv=none; b=PwUF1/SigAxgTP5Z6h5mi4RHcBGbmqxeDK6+evL0lBRHc12QfTYdTlkiOWKslE05fOae7MKlylfNNrTDmNd8ICu7VYR2fB+jID3uQdyJCvOzdM4fZyb6kq+/cnckB2IBhqfo/0YNZxiXuCTWzWtkTbCL+Ngy8+RFewd//bCGZpg=
+	t=1751901860; cv=none; b=AyTIzkDXLporLDvXtLi5NICSR1VsiYBze75CuSNYN5A77Iy8KVz2R1LQuG1N81QE6jYsFLpGCXjFtQjOX4w30wlX50H9tKHAl7CcBpCjTMLjrEvuCx1WSqA6HXL2gkqCPlsRXSu/nglk8MT4QCqd0BeDPpXsSdHWVbjMA+j8tSo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1751901854; c=relaxed/simple;
-	bh=fDhz2osI4p8WqN2IabKaQrF83SU0gsKwpONhRUmNojE=;
+	s=arc-20240116; t=1751901860; c=relaxed/simple;
+	bh=oes/+xn1RurzvrkWTc5SPMVdbj1/SKqgEqmxACEehrM=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=GTqCMVJ734SwvxAc51qZe/JHmJ4VaotTokxyuhQ03H4TU4jthZIoupr5JEQwyI6QOILX0ZwQP6wm/KoRyuuXcwMwJ8RCOSty7rfLTARG9D+t9hkvu8l6GEMbA97S841QEKYiEiEXBK0Rb2bJ/M/tbtLHKXdXb0qxOoZkSOMq7uQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=OikzEQGl; arc=none smtp.client-ip=209.85.128.53
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-wm1-f53.google.com with SMTP id 5b1f17b1804b1-4537fdec33bso20345835e9.1;
-        Mon, 07 Jul 2025 08:24:12 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1751901851; x=1752506651; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=T53LAA9y6FGyFGwKAbSwB6CU5K8ZNhe95J1OUbEWYbA=;
-        b=OikzEQGlhmIv0OW520wt0APCcCS9RBXqGViSl0fghdJOYE92BHga5IEmgVoTNg0H2w
-         o9uah/BlOQZbgCZzm6I1ihayJoZPw3tbDKctBDgqYJ4iU5JACCF5IxMU4A70HzOxtvfo
-         d2Mo+f4Wp2kEPwmJdNeKvs3BrMWdYTBTJgQ+Im65nDhcawbialR2KOPMe5SuScKScJO+
-         9rdgY0gCSEpJlapVUKztI3/m7QirhOLfaweeOQo5esNi6ztLOBDaDLr4D5oGTBoWuJ4t
-         ZwdqHWTZSpPGJbQYZtaVfxEn2TVOXp6Ucx0p7VeNQgN+5Hj21t8qakmQIIKyzrAhDKN5
-         brrw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1751901851; x=1752506651;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=T53LAA9y6FGyFGwKAbSwB6CU5K8ZNhe95J1OUbEWYbA=;
-        b=hRt8b/nleIKgHTAHv8AGQH/hKv6lcKdbx4O1siZOZgJjztoPo4JBeZd6EqRiLuNcxV
-         FjnBvvlxhuVLki5U56IBDppgFly6X9CCjXDPxLTY7PpTeuqjY+SxFf83Pdrx7Dn7v3E7
-         iSYo8iFuAEPv30mR5VA92D30ATb5uDoFwkbE6o4fpTb5IKSL1ITdqySJvsKHsAU7qp3q
-         E+NrWbb4ZcmGZeR9J8OLbvOFLZdV/x5lf4WeYETVdTimLi8RqVTX9bXZPDeAmwpAcQQr
-         XrSYz1u63UTjShprD7Ijpf1q3Gspo5lBXyoRm1TA0xYpo4aE+d9JzAJdMM20hOv1roIS
-         QVJA==
-X-Forwarded-Encrypted: i=1; AJvYcCVU1CV2QicdfPizvyCcsWfpva8FfP/RVtpq10QmsZk2mYC8grAIc5jHekY9/GwYRMq8Rp+RiOVZe0ZyFqiH@vger.kernel.org, AJvYcCWNtvai9qSM7ivbZL+c/A1IPQaYmeXsF6TiUi6+bkJKFojC5PN2YOt83cnBdsiARfIFPFpaXd49r3nEpcI=@vger.kernel.org, AJvYcCWOwEtsG1Fk6thE3QoyOMs+ojQE4hLP6NsOB4M+yYglD4nlaExoXqCq9X+62zrkbhSrUGrP1jlwKUe6@vger.kernel.org, AJvYcCXTlK2j2XhrX4KjoEc3012B8r/SGZu+8AlzNJkkS13mgkbRn3Fc8VrcVeNFx7stmL99af5lkBSx59k0@vger.kernel.org
-X-Gm-Message-State: AOJu0Ywqzn2r/2xRgyB5WOunZIIUY4wIkkAxuLMVghWaPmva9BwaF+A9
-	3/ByGn79VMzSs3PU69SQ9guXjDl+03Z7rz7G8qD/u+oX+qDx7ITzd+ru
-X-Gm-Gg: ASbGncslQLI7t4MM4wtXS4IDhMp3Bcp3g6KikgYGGYWetY/pWmUpzgVS+L93qtzqowV
-	SYhFWBx957WMWV4/h5S77/8OpjINj9JgO2nOB4NuQbjC4CvI4elo9jUvm/hOsVjDLs9cVICno7Z
-	9vVKoRKVTEwxgrQXQgQSma5biJQ/5g9Ea6B/hBHWKmjsPZdToJONXePW0xFzUqLj1FOoGPHSmB6
-	xlOmVgTO3aVXEv5YeZO8qQz56sXnE55tZNUdcKHqE6p7k74UE+eT13JNNFY8fVIHDcUDIaDUN0S
-	ChfRGhPfSa8BQvLz7Fzw4Q9nSgvFb2brcUXC8zVcT1VjieYovprghofcxzLqYpSIv14c98DggJN
-	GoNuRIxCdYu2lp9Y6h7k09onk9YMKW+a3mruBsmKB4iH9ixvD
-X-Google-Smtp-Source: AGHT+IG1w2T54Fkthr8wObL5maCg4ABYwcBuKKdJP4/t8bwdv58d2ysx+Bvgf7hosy/C1Q9tw0A6gw==
-X-Received: by 2002:a05:600c:1907:b0:442:e9ec:4654 with SMTP id 5b1f17b1804b1-454b4e76790mr110016745e9.8.1751901850422;
-        Mon, 07 Jul 2025 08:24:10 -0700 (PDT)
-Received: from orome (p200300e41f4e9b00f22f74fffe1f3a53.dip0.t-ipconnect.de. [2003:e4:1f4e:9b00:f22f:74ff:fe1f:3a53])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-454adc71a96sm134872025e9.24.2025.07.07.08.24.08
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 07 Jul 2025 08:24:09 -0700 (PDT)
-Date: Mon, 7 Jul 2025 17:24:06 +0200
-From: Thierry Reding <thierry.reding@gmail.com>
-To: Kartik Rajput <kkartik@nvidia.com>
-Cc: Laxman Dewangan <ldewangan@nvidia.com>, 
-	Jon Hunter <jonathanh@nvidia.com>, Akhil R <akhilrajeev@nvidia.com>, 
-	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>, "robh@kernel.org" <robh@kernel.org>, 
-	"linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>, "krzk+dt@kernel.org" <krzk+dt@kernel.org>, 
-	"andi.shyti@kernel.org" <andi.shyti@kernel.org>, "conor+dt@kernel.org" <conor+dt@kernel.org>, 
-	"linux-i2c@vger.kernel.org" <linux-i2c@vger.kernel.org>, "digetx@gmail.com" <digetx@gmail.com>, 
-	"linux-tegra@vger.kernel.org" <linux-tegra@vger.kernel.org>
-Subject: Re: [PATCH v3 2/5] i2c: tegra: Do not configure DMA if not supported
-Message-ID: <xbmn6f3uisuqbihxe3orlahlgopuy6sg6j5nujrvjikor3g3tt@b2mb7w45rgc6>
-References: <20250609093420.3050641-1-kkartik@nvidia.com>
- <20250609093420.3050641-3-kkartik@nvidia.com>
- <z3evk6j53hbgf426kc4ltdv4dbisoqnwkfwhapyenpadhey6v7@zvbljg5svppi>
- <990e01e1864180247212775c2e27955a73bfea56.camel@nvidia.com>
+	 Content-Type:Content-Disposition:In-Reply-To; b=qvsly0XiMl8kQytunHpBTyd1ljuDDSoCbCnU9NyunJX0FeItywFRB4E+hmcd51zBWcU754GnRgU9lS2JCrM+FCiw64SkBX2B/tnYHh+Uf0wWEMFQQ7aCY1ZRyQ1j5ILlWDQC3+0jeXxW9e/Vjn7L6QC4sQrdV8PKn2h3dBYrJIw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=vCuz4onV; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 16595C4CEE3;
+	Mon,  7 Jul 2025 15:24:18 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1751901859;
+	bh=oes/+xn1RurzvrkWTc5SPMVdbj1/SKqgEqmxACEehrM=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=vCuz4onVvZwugFdTpv7P/0j4lrHYxUcEusn5UZ6Sc3j7ztX/K+Gpa453lYKJ13EmY
+	 z73CmYgE5BggoGsBNG5/6zY9fi98PeDM+w1CSjMwqWyqgM7Ul78pQk0mEtzaY9GIGc
+	 QJsjHURQIfWsqtV6KZwGq/Z0xRsrUpk9RdMopt9wi8VtTduJvP6Ss1E0ZQrqPfgoZ7
+	 XJQHZMgFVGIS2XWGtbkQKAZK+NZntMD0y28Zwk1/CGDBtGBj5ZwM/muNm8GFJVRRTq
+	 8qPt404gevgFXZzBS/3g6qkNxDEKs8rvNdwx/TRROq9pFCHoW8EDcbbV4pHIRSTUCO
+	 UQO2KdE3eXKtg==
+Date: Mon, 7 Jul 2025 17:24:16 +0200
+From: Lorenzo Bianconi <lorenzo@kernel.org>
+To: Krzysztof Kozlowski <krzk@kernel.org>
+Cc: Andrew Lunn <andrew+netdev@lunn.ch>,
+	"David S. Miller" <davem@davemloft.net>,
+	Eric Dumazet <edumazet@google.com>,
+	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	linux-arm-kernel@lists.infradead.org,
+	linux-mediatek@lists.infradead.org, netdev@vger.kernel.org,
+	devicetree@vger.kernel.org, Simon Horman <horms@kernel.org>,
+	Felix Fietkau <nbd@nbd.name>
+Subject: Re: [PATCH net-next v2 2/7] net: airoha: npu: Add NPU wlan memory
+ initialization commands
+Message-ID: <aGvmoJ83EtYOIa0K@lore-desk>
+References: <20250705-airoha-en7581-wlan-offlaod-v2-0-3cf32785e381@kernel.org>
+ <20250705-airoha-en7581-wlan-offlaod-v2-2-3cf32785e381@kernel.org>
+ <20250707-agile-aardwolf-of-politeness-29fead@krzk-bin>
+ <aGt2L1e3xbWVoqOO@lore-desk>
+ <679e6fd2-967f-4057-9ccd-92a37ecc4819@kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -95,126 +70,91 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="dx5hyoc36a3o5wkr"
+	protocol="application/pgp-signature"; boundary="OT/S5wyakOFftJE4"
 Content-Disposition: inline
-In-Reply-To: <990e01e1864180247212775c2e27955a73bfea56.camel@nvidia.com>
+In-Reply-To: <679e6fd2-967f-4057-9ccd-92a37ecc4819@kernel.org>
 
 
---dx5hyoc36a3o5wkr
-Content-Type: text/plain; protected-headers=v1; charset=utf-8
+--OT/S5wyakOFftJE4
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
 Content-Transfer-Encoding: quoted-printable
-Subject: Re: [PATCH v3 2/5] i2c: tegra: Do not configure DMA if not supported
-MIME-Version: 1.0
 
-On Mon, Jun 16, 2025 at 10:01:39AM +0000, Kartik Rajput wrote:
-> Thanks for reviewing the patch Thierry!
->=20
-> On Tue, 2025-06-10 at 10:28 +0200, Thierry Reding wrote:
-> > On Mon, Jun 09, 2025 at 03:04:17PM +0530, Kartik Rajput wrote:
-> > > On Tegra264, not all I2C controllers have the necessary interface
-> > > to
-> > > GPC DMA, this causes failures when function tegra_i2c_init_dma()
-> > > is called.
-> > >=20
-> > > Ensure that "dmas" device-tree property is present before
-> > > initializing
-> > > DMA in function tegra_i2c_init_dma().
-> > >=20
-> > > Signed-off-by: Kartik Rajput <kkartik@nvidia.com>
-> > > ---
-> > > v1 -> v2:
-> > > 	* Update commit message to clarify that some I2C
-> > > controllers may
-> > > 	=C2=A0 not have the necessary interface to GPC DMA.
-> > > ---
-> > > =C2=A0drivers/i2c/busses/i2c-tegra.c | 3 +++
-> > > =C2=A01 file changed, 3 insertions(+)
-> > >=20
-> > > diff --git a/drivers/i2c/busses/i2c-tegra.c
-> > > b/drivers/i2c/busses/i2c-tegra.c
-> > > index ebd51165c46b..c7237d26b813 100644
-> > > --- a/drivers/i2c/busses/i2c-tegra.c
-> > > +++ b/drivers/i2c/busses/i2c-tegra.c
-> > > @@ -448,6 +448,9 @@ static int tegra_i2c_init_dma(struct
-> > > tegra_i2c_dev *i2c_dev)
-> > > =C2=A0	if (IS_VI(i2c_dev))
-> > > =C2=A0		return 0;
-> > > =C2=A0
-> > > +	if (!device_property_present(i2c_dev->dev, "dmas"))
-> > > +		return 0;
+> On 07/07/2025 09:24, Lorenzo Bianconi wrote:
+> >> On Sat, Jul 05, 2025 at 11:09:46PM +0200, Lorenzo Bianconi wrote:
+> >>> +
+> >>>  struct airoha_npu *airoha_npu_get(struct device *dev, dma_addr_t *st=
+ats_addr)
+> >>>  {
+> >>>  	struct platform_device *pdev;
+> >>> @@ -493,6 +573,7 @@ static int airoha_npu_probe(struct platform_devic=
+e *pdev)
+> >>>  	npu->ops.ppe_deinit =3D airoha_npu_ppe_deinit;
+> >>>  	npu->ops.ppe_flush_sram_entries =3D airoha_npu_ppe_flush_sram_entri=
+es;
+> >>>  	npu->ops.ppe_foe_commit_entry =3D airoha_npu_foe_commit_entry;
+> >>> +	npu->ops.wlan_init_reserved_memory =3D airoha_npu_wlan_init_memory;
+> >>
+> >> I cannot find in your code single place calling this (later you add a
+> >> wrapper... which is not called either).
+> >>
+> >> All this looks like dead code...
 > >=20
-> > I know that you use the OF-independent variant here, but has this
-> > been
-> > tested on ACPI?
+> > As pointed out in the commit log, these callbacks will be used by MT76 =
+driver
+> > to initialize the NPU reserved memory and registers during driver probe=
+ in
+> > order to initialize the WiFi offloading. Since MT76 patches are going v=
+ia
+> > the wireless tree, I needed to add these callbacks first.
 >=20
-> No, Tegra I2C driver does not support DMA with ACPI boot.
+> Cover letter does not link to your NPU patchset. You cannot add dead
+> code to the kernel and now it is pure dead code. Post your user - in
+> this or separate patchset.
 
-Maybe in that case we should just use the of_property_present() here?
-It's not a big deal, but it could help point out that this is only meant
-to work with DT.
+I guess you mean the related MT76 patches are not linked in the cover-lette=
+r,
+right? I have not posted them yet.
 
-> > Originally the intention behind this code was to get some sort of
-> > validation of the DT (i.e. dmas property is desired, so we want to
-> > flag
-> > if it isn't provided) with the fallback existing mostly just so
-> > things
-> > can operate in the absence (or if APB/GPC DMA isn't available for
-> > some
-> > reason).
-> >=20
-> > If we now solely make this depend on the availability of the DT (or
-> > ACPI) property, then we loose all of that validation. I suppose we
-> > have
-> > DT schema to check for these kinds of things now, but since we're not
-> > marking these properties as required, there's really no validation at
-> > all anymore.
-> >=20
-> > My concern is that if somebody's left out the dmas/dma-names
-> > properties
-> > by accident, they may not get what they were asking for and we have
-> > no
-> > hints to provide whatsoever. Maybe that's okay if we provide the base
-> > DT, which has been unmodified for a while.
 >=20
-> Should I add an info print here, to indicate that we are missing the
-> "dmas" property?
+> Your explanation of dependency is also confusing. If these are added to
+> wireless tree (considering last experience how they rebase and cannot
+> easily handle cross tree merges), how does it solve your problem? You
+> will have it in one tree but not in the other, so still nothing...
+> That's anyway separate problem, because main issue is you add code which
+> we cannot even verify how it is being used.
 
-That's not ideal either, because it would cause a print about missing
-DMA for ACPI where DMA is expected not to work. And it will cause the
-messages to be printed for I2C controllers that don't have the GPC DMA
-interface.
+My main point here is wireless tree can't acutally merge the MT76 patches
+since, without the net-next ones (this series), it will not compile (so I
+posted net-next patches as preliminary ones for MT76 changes).
+Moreover, this is the same approach we used when we added WED support to
+mtk_eth_soc driver and the related MT76 support.
+However, I am fine to post the MT76 changes as RFC and just refer to it in
+this series cover-letter. Agree?=20
 
-Properly dealing with this would mean annotating each instance so we
-know when this should be an error/warning. I don't think it's worth it
-at this point. People will probably rely on the upstream DTSI file for
-their needs anyway and we've got the dmas properties there. I think it
-can be left as-is.
+>=20
+> So far I see ABI break, but without user cannot judge. And that's the
+> hard reason this cannot be accepted.
 
-Or maybe we can add a dev_dbg() message to point this out, that's better
-than nothing at all and shouldn't confuse people unnecessarily.
+if you mean the dts changes, I will fix them in v3.
 
-Thierry
+Regards,
+Lorenzo
 
---dx5hyoc36a3o5wkr
-Content-Type: application/pgp-signature; name="signature.asc"
+>=20
+> Best regards,
+> Krzysztof
+
+--OT/S5wyakOFftJE4
+Content-Type: application/pgp-signature; name=signature.asc
 
 -----BEGIN PGP SIGNATURE-----
 
-iQIzBAABCgAdFiEEiOrDCAFJzPfAjcif3SOs138+s6EFAmhr5pMACgkQ3SOs138+
-s6HWzxAAgwP/j15NDbXBWCGv6G4TZX93zxaFdtDfKfsX59Drc8dXCkCCWUp5vAH8
-oweIs9FVNd2IaDurJFxSY5LBWlJpaRA0y0RLO380N5Zaom+0QhGake3+1vOXoUcx
-HekcjyZhQ3jMO87bEniWVGXOTTPhizuTo2YuUwU0KbrkjH1PfIL5bbkoLtGA+zvK
-FGxlGo9uS9CCGNwJ2BaJWKWrmLV8y2ty8ZDec8Eso+fq3Z/CmiqIRPn7NY8RT7kf
-J0icG95oIJRUjtsrJZ/Ud1XkAHy02MhuS7iTl7j/GIr37AsHc5UzMIvoTPwHe7Dq
-MbPmzAdqZNJCTsj+YqgpQrgeF/TORJIWi6nWpSCTu0HnT+9HwEqO1BCWdYbDfKP2
-ojh2oKqfpDaQHTaVvkoJ64ii70D1YlazKClzbH402eUAJcJbM4z02l0CdwtL1CZt
-EQUrTvj+KM1+vC3pDiBhbtx8WbIo95GehtZgHnjtTBeS0U0sV8p+7VGVV1/OyKJQ
-wyoZqDIUP2wH3g1GkFzR9zZjDsc6gwJevf+OkMMNvS0cWuX8SdQkQmoIQtknrbAl
-QvZtoydCsVmkY5YOmYdDDmCW2IMZxwwndw9D59TZ2i6xlPxoy37GFtBGMigV0H5M
-CupPkq72vJI6Ciphh+KqouAAmjTqdlTNS/dPQlqXiIlW12BnvIM=
-=UbNH
+iHUEABYKAB0WIQTquNwa3Txd3rGGn7Y6cBh0uS2trAUCaGvmoAAKCRA6cBh0uS2t
+rDczAPsFgaNtjWprKaC6Z+VfmUNzguMJ9HSaKYKBDoZw5TyM1gD8CclHT+w5VNy/
+s041k48snp6/uVkoTA4CjRMJt0+DKQM=
+=aXb3
 -----END PGP SIGNATURE-----
 
---dx5hyoc36a3o5wkr--
+--OT/S5wyakOFftJE4--
 
