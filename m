@@ -1,498 +1,310 @@
-Return-Path: <devicetree+bounces-193633-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-193634-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 73DD5AFB119
-	for <lists+devicetree@lfdr.de>; Mon,  7 Jul 2025 12:22:48 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5093FAFB167
+	for <lists+devicetree@lfdr.de>; Mon,  7 Jul 2025 12:40:40 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 18ED61AA3D29
-	for <lists+devicetree@lfdr.de>; Mon,  7 Jul 2025 10:23:05 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 92CAC3AABC6
+	for <lists+devicetree@lfdr.de>; Mon,  7 Jul 2025 10:40:13 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A0F622951D5;
-	Mon,  7 Jul 2025 10:22:43 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id EA5DE287255;
+	Mon,  7 Jul 2025 10:40:36 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="B7DLECwT"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lf1-f48.google.com (mail-lf1-f48.google.com [209.85.167.48])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from bali.collaboradmins.com (bali.collaboradmins.com [148.251.105.195])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 15AC928A3EF;
-	Mon,  7 Jul 2025 10:22:40 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.48
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6C42A279DD1;
+	Mon,  7 Jul 2025 10:40:34 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=148.251.105.195
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1751883763; cv=none; b=ZsKDT8k1qBazRwtL2g52kK30PkbK2EU98UEGCrmoLzFRAYfpemWBCZg7wDrF+248cRyOmXQxZwKowTkcqDTp+aL1L6wDOHk/Adq+EWusKdLGyb3TAa000rQz6FcrreextIBFqi3rJkAXcZhsi55gkR8/KmnDJkyKHVUDdmyRltM=
+	t=1751884836; cv=none; b=bPKfLoqX7l7rd7vK890ukzM//4Qp2R6g5vpPrn6Pl1PUr41CZ+pVz/Z18HA8HwEkLE1m/VJSroHZk/jG6g3U985b96BRounRbZsdujTQbrZyKiO0KclZAyJ6n3vIT4NHLjHfAjljxpCmohTPCV7aFT4uZu38ePBc9RTiMSoxzvY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1751883763; c=relaxed/simple;
-	bh=AIkdq6M0L7MSBoi0kiJ4+qlLHbwYNXTLj0FbkVjibtU=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=EoIg2LLwT5TVMpoS16oTVfv/+gFT9/6LmvGnOJb6mcLg6b356cdBJnJooNztre3vJacmyCTicQ4047A995kdKLuHHFY24c9ZPC2l2or6eo1cIRrNWsoeeVpGbjg5EP+vyfpOlOV24Kshxnk6VchTKSiZ7dp64bsYebuICkp3kys=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=csie.org; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.167.48
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=csie.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-lf1-f48.google.com with SMTP id 2adb3069b0e04-553b544e7b4so2827978e87.3;
-        Mon, 07 Jul 2025 03:22:40 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1751883754; x=1752488554;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :reply-to:in-reply-to:references:mime-version:x-gm-message-state
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=6sLO+XCFjd6kZQcTbPTUaHXEMjyFiunpLQXn/d3kRmo=;
-        b=G2aEHJB4KMfsxOA4ohd+LpxSj0pqu4pW9L+xGB5/pnGoLMp/quECW4NBdEsvX9tOol
-         rf8pn8/7aZYlgPYMKeA5rfOsrRuZ5yzuidKKp9Gtn6oO3sIz8I5j5Ya9OrQ9cWAenxrR
-         U0ySrC3CxoPtquiqyGfPpgZsLHq1TAJs0jWPnhgN2G9xsjbaewfrjADCsFTM5KgiFpIQ
-         KVa9nDUuSvGprhgIokPyXha7F2vc2XqZczQTGNxyP/68JWRrj+NlAbExByFrjQUxWJWq
-         UuSk6n7Jk79tEz+FToOUfFGE/gYmGWOnzKhLwPp77Fd4m3HFbfcd4qu6imkOya6tKoX2
-         qpRw==
-X-Forwarded-Encrypted: i=1; AJvYcCVO/vjSQEcYEgeUBzu3kgfV11GwsxvRcmVOiyYI06pSLuEicW4yrpGv79pggLnlZ9bxcVZhgADJHxdn@vger.kernel.org, AJvYcCVTQMufckcYwZ4i9uLTT0VFhnewRsQE+sucFetKjwEVX1L9yIB59qzlzCKfiB36ZiCxlwpPlzuMqV/9Ug==@vger.kernel.org, AJvYcCWbMtlJoXU8vbywm8NIAExbhju8bnCCpAl2+OhSqC2dOVqa1XmfMbWSZ9HC7SP2s/y33nCCqx4y@vger.kernel.org, AJvYcCXLY9+nvjUSdI1xY9MdcQsiVR/PR9ZBfyVKn+megYTwokKMPsTPTz7q+pODStwnsKM45risHxuoOfbrqrR0@vger.kernel.org
-X-Gm-Message-State: AOJu0YzMe4XZf3hNQ3rkPoAhoSpL41+GQBOFZXuEkIKoRmvm+5mMVS0O
-	Cy30X4bK2RaMObhw8/1Dpm/bS1zKy2RvNPSfetGC+Bwuq+8B+bHKNoUEXUG/puXM
-X-Gm-Gg: ASbGnctZp9s5wJs2/IfoH+2ANX+1iuDhNFwMmq0cvB7vO5MKAXAhfQoJnJ6pXwlqRyd
-	klV4bOY4vv3qZVztSYbzpRYmUJVKzcb8t2EOl01Tt6lrROiOFLI4LYXdqYPiT8HD1auQ9agxjui
-	oEdiiKbVnHG9VCn7QjMM5te7/gcEQr3iJlyG/yJWZnbyvqRslBplOXrElJG8kXrVYbE+MJhg3l3
-	iZecJiqqZBunA0YSib6HT/87oPqiGGlnGg+1fiHU9Ox2jcCvERyyenwgk+RlTtqxB/Zk0k0pAL9
-	7QeGVgWwXLwWoaIGc8YJhgKEp4DQ3ixhDtstz2jKKE21liNxJFqRwM3UF+ORwXF6Ftqm71dyGfG
-	msHfmdMZHNkbdeo/YJ40=
-X-Google-Smtp-Source: AGHT+IHPDVtKJGF4tTeA+7RigB6lLjHFufqa58UqulVE7fkNmT827EVpOyXniTphiAtCiwoSTu0AhA==
-X-Received: by 2002:a05:6512:3d88:b0:545:1082:91a1 with SMTP id 2adb3069b0e04-557a14219cemr3168477e87.7.1751883753740;
-        Mon, 07 Jul 2025 03:22:33 -0700 (PDT)
-Received: from mail-lj1-f177.google.com (mail-lj1-f177.google.com. [209.85.208.177])
-        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-556383b518fsm1292917e87.14.2025.07.07.03.22.32
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 07 Jul 2025 03:22:32 -0700 (PDT)
-Received: by mail-lj1-f177.google.com with SMTP id 38308e7fff4ca-32b5226e6beso26266311fa.2;
-        Mon, 07 Jul 2025 03:22:32 -0700 (PDT)
-X-Forwarded-Encrypted: i=1; AJvYcCUjGwFgiCIHRLLNceH4HOhapzp5VVscZDCuShUiljlkakO03brtdC0CvLSV+SBehfxv+gGf2+bz@vger.kernel.org, AJvYcCVeNzotoG5PcWCaE47Us/CctpUw6uOlzDo7VcVAN+fl0aATiilTNpUEsFACE51shnIjtMG4tf7eCjC0@vger.kernel.org, AJvYcCWsWNkmCR0JCOs49VabAZUNj8ziapupY5KhC8t2oqCobvEmGPykQ/aLvJCNmHrlPsZ/ZEBogyOzUJhpPzDH@vger.kernel.org, AJvYcCXzQIaal9gRxxEbgn5lrPzWEgSBguG463dVsaFB9uaabeHs+pnAMmWdApA5fga3XtY4qTm7YLYP9dT7Ow==@vger.kernel.org
-X-Received: by 2002:a05:651c:2105:b0:32b:75f0:cfa4 with SMTP id
- 38308e7fff4ca-32f092c6873mr36486781fa.25.1751883752130; Mon, 07 Jul 2025
- 03:22:32 -0700 (PDT)
+	s=arc-20240116; t=1751884836; c=relaxed/simple;
+	bh=ftsLVap/wQlouELe/Vz9orQAIVOxIgjrr2GNre4BLO8=;
+	h=Message-ID:Date:MIME-Version:Subject:From:To:Cc:References:
+	 In-Reply-To:Content-Type; b=c9cfJ1Gd7wyg4RiP8eGip3XWIwU47mt+NNVOVUZ9q0jn45gkDJBFbOo7ZwnzVIXrKlPxf5VUNtYxjJeD5d9yoQ5qqcm1Wxbi3vTABiR4qmVNF9MGS1obazO14ZN3NwhUPrANrkfOvRoyPEYMWRPtSIzKWyU6w9BYQ8J4KkAF8mg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b=B7DLECwT; arc=none smtp.client-ip=148.251.105.195
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+	s=mail; t=1751884832;
+	bh=ftsLVap/wQlouELe/Vz9orQAIVOxIgjrr2GNre4BLO8=;
+	h=Date:Subject:From:To:Cc:References:In-Reply-To:From;
+	b=B7DLECwTBwHQR2zWawtF42o2tFXjdd3QqG1B6XFHT3n2tS6NqaqBelm94sj/z/ytD
+	 smZL80SW7UQffIp0texTk5dsel7xOuE9tEPq0i9yQWo+imdQYCJ5glfi6tWxbt17Y2
+	 Nepl6s9NimyCchbFWfzaWbaZT6ZjSAYl/Lr4e7hJe5EomOEJkz6nd/b/+4m6WzFrVy
+	 VqOjQgCuBEMqpqcPEd3kemCJ1AMomnonNTzIR+vLOpfv+FIgp5SSXmjHxzses7xp79
+	 0E82tbR61xpa+e6Kp9caOj0mhIkHPFjMk40kQQMrTF3xwyormY45spheEc/NSbAHQT
+	 t35jkJvRzXmYA==
+Received: from [192.168.1.100] (2-237-20-237.ip236.fastwebnet.it [2.237.20.237])
+	(using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
+	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+	(No client certificate requested)
+	(Authenticated sender: kholk11)
+	by bali.collaboradmins.com (Postfix) with ESMTPSA id 6C89B17E0630;
+	Mon,  7 Jul 2025 12:40:31 +0200 (CEST)
+Message-ID: <9560d4d2-5346-4d0a-a96f-c96ebe335f3c@collabora.com>
+Date: Mon, 7 Jul 2025 12:40:30 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20250626080923.632789-1-paulk@sys-base.io> <20250626080923.632789-2-paulk@sys-base.io>
- <20250704233535.4b026641@minigeek.lan> <20250705153825.2be2b333@minigeek.lan>
- <aGm8n_wJPiGk85E4@collins> <CAGb2v66s-nWA2dFRpgX6DbDET3dWOm1jPKWm1k9SmGSqhTWoWA@mail.gmail.com>
- <aGuV3gcKSRIyey53@collins> <CAGb2v66U94RxVTC4O-Z9Pn2RyJK5Xz=pNZCvkFN-5Ax0wG6Cug@mail.gmail.com>
- <aGud0aVLHGoql3Vj@collins>
-In-Reply-To: <aGud0aVLHGoql3Vj@collins>
-Reply-To: wens@csie.org
-From: Chen-Yu Tsai <wens@csie.org>
-Date: Mon, 7 Jul 2025 18:22:19 +0800
-X-Gmail-Original-Message-ID: <CAGb2v64vCdsY7V2OsJVC+Qy+tbStYSWbh19mBrjuJMwZqUQ=Yw@mail.gmail.com>
-X-Gm-Features: Ac12FXyg9XXCP12FlM42TuajsfubuWC369QAdithyWrauBmCL6zemqSIgfSLhuw
-Message-ID: <CAGb2v64vCdsY7V2OsJVC+Qy+tbStYSWbh19mBrjuJMwZqUQ=Yw@mail.gmail.com>
-Subject: Re: [PATCH 1/5] pinctrl: sunxi: Fix a100 emac pin function name
-To: Paul Kocialkowski <paulk@sys-base.io>
-Cc: Andre Przywara <andre.przywara@arm.com>, netdev@vger.kernel.org, 
-	devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
-	linux-sunxi@lists.linux.dev, linux-kernel@vger.kernel.org, 
-	linux-gpio@vger.kernel.org, Andrew Lunn <andrew+netdev@lunn.ch>, 
-	"David S . Miller" <davem@davemloft.net>, Eric Dumazet <edumazet@google.com>, 
-	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Jernej Skrabec <jernej.skrabec@gmail.com>, Samuel Holland <samuel@sholland.org>, 
-	Linus Walleij <linus.walleij@linaro.org>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+User-Agent: Mozilla Thunderbird
+Subject: Re: [RFC PATCH 2/3] dt-bindings: firmware: Document the MediaTek
+ Hardware Voter (HWV)
+From: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+To: Krzysztof Kozlowski <krzk@kernel.org>, robh@kernel.org,
+ conor+dt@kernel.org
+Cc: matthias.bgg@gmail.com, ulf.hansson@linaro.org, arnd@arndb.de,
+ m.wilczynski@samsung.com, nm@ti.com, khilman@baylibre.com, kabel@kernel.org,
+ quic_hyiwei@quicinc.com, pjp@fedoraproject.org, tudor.ambarus@linaro.org,
+ drew@pdp7.com, u.kleine-koenig@baylibre.com, gregkh@linuxfoundation.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, linux-mediatek@lists.infradead.org,
+ laura.nao@collabora.com, kernel@collabora.com
+References: <20250701151149.136365-1-angelogioacchino.delregno@collabora.com>
+ <20250701151149.136365-3-angelogioacchino.delregno@collabora.com>
+ <20250702-debonair-lynx-of-serenity-ee7138@krzk-bin>
+ <d41a6c60-5368-4bcd-b028-2477e42e29bb@collabora.com>
+Content-Language: en-US
+In-Reply-To: <d41a6c60-5368-4bcd-b028-2477e42e29bb@collabora.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
 
-On Mon, Jul 7, 2025 at 6:13=E2=80=AFPM Paul Kocialkowski <paulk@sys-base.io=
-> wrote:
->
-> Hi,
->
-> Le Mon 07 Jul 25, 17:52, Chen-Yu Tsai a =C3=A9crit :
-> > On Mon, Jul 7, 2025 at 5:39=E2=80=AFPM Paul Kocialkowski <paulk@sys-bas=
-e.io> wrote:
-> > >
-> > > Hi Chen-Yu,
-> > >
-> > > Le Sun 06 Jul 25, 23:04, Chen-Yu Tsai a =C3=A9crit :
-> > > > On Sun, Jul 6, 2025 at 8:00=E2=80=AFAM Paul Kocialkowski <paulk@sys=
--base.io> wrote:
-> > > > >
-> > > > > Hi Andre,
-> > > > >
-> > > > > Le Sat 05 Jul 25, 15:38, Andre Przywara a =C3=A9crit :
-> > > > > > On Fri, 4 Jul 2025 23:35:35 +0100
-> > > > > > Andre Przywara <andre.przywara@arm.com> wrote:
-> > > > > >
-> > > > > > Hi,
-> > > > > >
-> > > > > > > On Thu, 26 Jun 2025 10:09:19 +0200
-> > > > > > > Paul Kocialkowski <paulk@sys-base.io> wrote:
-> > > > > > >
-> > > > > > > Hi Paul,
-> > > > > > >
-> > > > > > > > The Allwinner A100/A133 only has a single emac instance, wh=
-ich is
-> > > > > > > > referred to as "emac" everywhere. Fix the pin names to drop=
- the
-> > > > > > > > trailing "0" that has no reason to be.
-> > > > > > >
-> > > > > > > Sorry, but this is wrong. There *is* a second EMAC on the A13=
-3 die: it's
-> > > > > > > indeed not mentioned in the manual, but you can probe its MMI=
-O
-> > > > > > > registers (@0x5030000), and there is a second syscon register
-> > > > > > > (@0x03000034). It's mentioned in several BSP code places ([1]=
-).
-> > > > > > > It seem like no suitable pins are connected on the A133
-> > > > > > > package, but that should not affect the A100 .dtsi (we use a =
-similar
-> > > > > > > approach for the H616 and A523).
-> > > > > > >
-> > > > > > > So I think we should keep the emac0 name.
-> > > > > >
-> > > > > > just thinking that it's even worse: this changes the DT visible=
- pinctrl
-> > > > > > function name, so it's a DT ABI change. With the "emac0" functi=
-on name,
-> > > > > > Ethernet would work with stable kernels already (as everything =
-is
-> > > > > > compatible, it's just about DT changes). But with this change, =
-pinctrl
-> > > > > > drivers in older kernels would not match.
-> > > > >
-> > > > > Given that the port is still very early and experimental and has =
-very few users
-> > > > > and no field deployment so I don't really think it would have ann=
-oyed anybody in
-> > > > > practice. But yes in principle you are right, while the header re=
-names keep the
-> > > > > same value, the string names are used to match the device-tree de=
-finitions and
-> > > > > this constitues ABI that needs to remain stable.
-> > > > >
-> > > > > > So I would very much like to see this patch moved out. Is it ju=
-st in
-> > > > > > LinusW's tree so far? I don't see it in -next yet.
-> > > > >
-> > > > > I don't think the patches were accepted for over a week so we can=
- probably
-> > > > > still act. I will send reverts, unless maintainers want to manual=
-ly remove
-> > > > > these commits?
-> > > >
-> > > > I can drop the dts patches from the sunxi tree. Linus might be able=
- to
-> > > > drop the pinctrl patch.
-> > > >
-> > > > You definitely need to send a revert for the DT binding patch that =
-is
-> > > > already in net-next.
-> > >
-> > > Should this really affect the bindings though?
-> > >
-> > > From what Andre reported, both EMAC0 and EMAC1 should be the same blo=
-ck so it
-> > > doesn't seem particularly necessary to have a different compatible.
-> > >
-> > > Looking at Allwiner's BSP code for the A133[0], I don't see any diffe=
-rence
-> > > between the two. While there's device_type property in Allwinner's dt=
-, it's
-> > > apparently not used by the driver[1].
-> > >
-> > > So I think we're still fine with a single compatible (without the con=
-troller
-> > > index in it).
-> >
-> > The block is the same, but the integration is slightly different, as
-> > the register for the RGMII clock delays and other stuff is at a differe=
-nt
-> > offset in the system controller. The BSP handles this by directly
-> > including the register in the "reg" property.
->
-> Ah I see, I forgot about the syscon register. However it doesn't seem lik=
-e a
-> very good approach to have a different compatible to express the idea tha=
-t an
-> external resource is different. Just like we do for clocks, resets and ot=
-her
-> things, we should probably find a way to express the offset via some dedi=
-cated
-> property instead of spinning a different compatible each time it changes.
->
-> > So yes, you do need a separate compatible string, if only to deal with
-> > the slight difference in the integration layer.
->
-> So maybe an additional allwinner,syscon-offset property or a new
+Il 03/07/25 10:56, AngeloGioacchino Del Regno ha scritto:
+> Il 02/07/25 08:50, Krzysztof Kozlowski ha scritto:
+>> On Tue, Jul 01, 2025 at 05:11:48PM +0200, AngeloGioacchino Del Regno wrote:
+>>> Add documentation for the new MediaTek Hardware Voter, found in
+>>> MediaTek SoCs like the MT8196 Kompanio Ultra for Chromebooks and
+>>> the MT6991 Dimensity 9400 for Smartphones.
+>>>
+>>> Signed-off-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+>>> ---
+>>>   .../mediatek,mt6991-hardware-voter.yaml       | 70 +++++++++++++++++++
+>>>   1 file changed, 70 insertions(+)
+>>>   create mode 100644 Documentation/devicetree/bindings/firmware/mediatek,mt6991- 
+>>> hardware-voter.yaml
+>>>
+>>> diff --git a/Documentation/devicetree/bindings/firmware/mediatek,mt6991- 
+>>> hardware-voter.yaml b/Documentation/devicetree/bindings/firmware/ 
+>>> mediatek,mt6991-hardware-voter.yaml
+>>> new file mode 100644
+>>> index 000000000000..173b74c23a91
+>>> --- /dev/null
+>>> +++ b/Documentation/devicetree/bindings/firmware/mediatek,mt6991-hardware- 
+>>> voter.yaml
+>>> @@ -0,0 +1,70 @@
+>>> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
+>>> +# Copyright 2025 Collabora Ltd
+>>> +%YAML 1.2
+>>> +---
+>>> +$id: http://devicetree.org/schemas/firmware/mediatek,mt6991-hardware-voter.yaml#
+>>> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+>>> +
+>>> +title: MediaTek Hardware Voter (HWV)
+>>> +
+>>> +maintainers:
+>>> +  - AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+>>> +
+>>> +description:
+>>> +  The MediaTek Hardware Voter (HWV) is a SoC-internal fixed-function MCU
+>>> +  used to collect votes from both the Application Processor and from the
+>>> +  various other remote processors present in the SoC, and transparently
+>>> +  turn on or off various hardware resources (for example, power domains
+>>> +  or system clocks) based on aggregation of votes done in the HWV MCU's
+>>> +  internal state machine, therefore guaranteeing synchronization of the
+>>> +  hardware resource requests between all components of the SoC and hence
+>>> +  avoiding, for example, unclocked or unpowered access to the hardware.
+>>> +
+>>> +properties:
+>>> +  $nodename:
+>>> +    pattern: "^system-controller@[0-9a-f]+$"
+>>> +
+>>> +  compatible:
+>>> +    const: mediatek,mt6991-hardware-voter
+>>> +
+>>> +  reg:
+>>> +    items:
+>>> +      - description: Address and size of the Hardware Voter MMIO
+>>> +
+>>
+>> No resources here, so this should go to power controller
+>>
+>>> +  power-controller:
+>>> +    $ref: /schemas/power/mediatek,power-controller.yaml
+>>> +
+>>> +required:
+>>> +  - compatible
+>>> +  - reg
+>>> +
+>>> +additionalProperties: true
+>>> +
+>>> +examples:
+>>> + - |
+>>> +   scp_hwv: system-controller@14500000 {
+>>> +     compatible = "mediatek,mt6991-hardware-voter";
+>>> +     reg = <0 0x14500000 0 0x3000>;
+>>> +
+>>> +     power-controller {
+>>> +       compatible = "mediatek,mt8196-hwv-scp-power-controller";
+>>
+>> mt8196 in mt6991 is very confusing.
+>>
+> 
+> Yeah that wasn't intentional; fyi, it's almost the same soc, that's why I mixed
+> them up... :-)
+> 
+>> Anyway, this does not address my comment at all. You again create some
+>> sort of syscon for voting, so no. You are supposed to use generic API
+>> for voting: clocks, power domains, interconnects - whatever is there
+>> applicable or necessary.
+>>
+> 
+> Making that loud and clear: Interconnect is not applicable.
+> 
+> The only way to do what you're proposing would be to add a bunch of `reg`
+> to each devicetree node for each clock controller and each power controller;
+> I can do that, but looks a bit dirty - and still yet another syscon-like
+> alternative, but without having a real syscon declared in there.
+> 
+> Mind you - both clock and power controllers are writing both to their own
+> register space (and enabling external regulators, etc, for power domains)
+> and to the hardware voter MMIO (which means that the HWV, in hardware, is
+> fundamentally broken).
+> 
+> After this reply, the only option that is left to me is the following:
+> 
+>          topckgen: clock-controller@10000000 {
+>              compatible = "mediatek,mt8196-topckgen", "syscon";
+>              reg = <0 0x10000000 0 0x800>, <0 0x14500010 0 0x48>,
+>                    <0 0x14502c08 0 0x24>;
+>              reg-names = "base", "hwvoter-base", "hwvoter-status";
+>              #clock-cells = <1>;
+>          };
+> 
+>          imp_iic_wrap_north: clock-controller@13c30000 {
+>              compatible = "mediatek,mt8196-imp-iic-wrap-n", "syscon";
+>              reg = <0 0x13c30000 0 0x1000>, <0 0x14500000 0 0xc>,
+>                    <0 0x14502c00 0 0xc>;
+>              reg-names = "base", "hwvoter-base", "hwvoter-status";
+>              #clock-cells = <1>;
+>          };
+> 
+>          /* Power Manager with Hardware Voter */
+>          spm_hwv: power-controller@14500218 {
+>              compatible = "mediatek,mt8196-hwv-scp-power-controller";
+>              reg = <0 0x14500218 0 0x20>, <0 0x14501410 0 0x20>,
+>                    <0 0x14505514 0 0xc>;
+>              reg-names = "hwvoter-base", "hwvoter-status", "hwvoter-ack";
+>              #address-cells = <1>;
+>              #size-cells = <0>;
+>              #power-domain-cells = <1>;
+> 
+>              /* SCPSYS hardware voter power domains */
+>              mm_proc_dormant: power-domain@MT8196_POWER_DOMAIN_MM_PROC_DORMANT {
+>                  ..... etc, all power domains
+> 
+> At this point, I'm really not sure that this would be better than just passing
+> the mediatek,hardware-voter syscon to the clock controllers - as what I've done
+> previously was effectively representing the hardware in the devicetree as it is,
+> matching the real HW layout 1:1 (because again, each of the whole HWV MCU(s) are
+> embedded into each of the two power controllers, one for System power, and one
+> for Multimedia power).
+> 
+> (btw, hardware speaking, the power controller is child of a system controller:
+> there are two system controllers - "scpsystem" is for "compute part", and the
+> "hfrpsystem" is for the "multimedia part" of the soc).
+> 
+>   _______________________________________
+> |                                       |
+> | SYSTEM CONTROLLER (SCPSYS or HFRPSYS) |
+> |   _____________________               |
+> |  |                     |              | <===> Clock Controllers (more than one)
+> |  | Power Controller    |     SOME     |       (provide subsystem clocks for iso
+> |  |                     |    OTHER     |        during power domain enablement
+> |  |     ______________  |   BLOCKS     |        even if a PD is voted)
+> |  |    |              | |              |       non-subsystem clocks are voted,
+> |  |    | HW Voter MCU | |              |       but subsystem ones are not voted
+> |  |    |______________| |              |
+> |  |_____________________|              | ===> Rest of the SoC
+> |_______________________________________|
+> 
+> 
+> Hence I'm asking you - does your idea still stand?
+> 
+> Because after this, sorry for that - this doesn't want to be an attack - but
+> I'm starting to have doubts about an approach that doesn't involve syscons.
+> 
+> Cheers,
+> Angelo
 
-If you can get that accepted, I think that works?
+Sorry for the double reply, wanted to add some more words :-)
 
-> allwinner,syscon that takes the syscon phandle first and the offset secon=
-d?
+As a note, I also thought about doing the following:
 
-I would prefer to avoid any changes to the syscon reference that would
-require more custom code. I only just recently found that we could use
-the standard syscon code with the provider registering the syscon. We
-could drop the of_parse_phandle() + find device + dev_get_regmap() bits.
-This is partially covered in my GMAC200 series.
+	/* Secondary SCPSYS block with HWV capabilities */
+	scp1_hwv: system-controller@14500000 {
+		compatible = "mediatek,mt8196-scpsys", "syscon", "simple-mfd";
+		reg = <0 0x14500000 0 0x3000>;
 
-ChenYu
+		/* SCP Power Manager with Hardware Voter */
+		spm_hwv: power-controller {
+			compatible = "mediatek,mt8196-hwv-scp-power-controller";
+			#address-cells = <1>;
+			#size-cells = <0>;
+			#power-domain-cells = <1>;
 
-> It seems that various other platforms are doing similar things (e.g.
-> ti,syscon-pcie-mode).
->
-> Thanks
->
-> Paul
->
-> >
-> > ChenYu
-> >
-> > > [0]: https://github.com/engSinteck/A133_Image/blob/main/longan/kernel=
-/linux-4.9/arch/arm64/boot/dts/sunxi/sun50iw10p1.dtsi#L2016
-> > > [1]: https://github.com/engSinteck/A133_Image/blob/main/longan/kernel=
-/linux-4.9/drivers/net/ethernet/allwinner/sunxi-gmac.c
-> > >
-> > > All the best,
-> > >
-> > > Paul
-> > >
-> > > >
-> > > > ChenYu
-> > > >
-> > > >
-> > > > > Cheers,
-> > > > >
-> > > > > Paul
-> > > > >
-> > > > > > Cheers,
-> > > > > > Andre.
-> > > > > >
-> > > > > > > [1]
-> > > > > > > https://github.com/qiaoweibiao/T507_Kernel/blob/main/arch/arm=
-64/boot/dts/sunxi/sun50iw10p1.dtsi
-> > > > > > >
-> > > > > > >
-> > > > > > > >
-> > > > > > > > Fixes: 473436e7647d ("pinctrl: sunxi: add support for the A=
-llwinner A100 pin controller")
-> > > > > > > > Signed-off-by: Paul Kocialkowski <paulk@sys-base.io>
-> > > > > > > > ---
-> > > > > > > >  drivers/pinctrl/sunxi/pinctrl-sun50i-a100.c | 32 +++++++++=
-+-----------
-> > > > > > > >  1 file changed, 16 insertions(+), 16 deletions(-)
-> > > > > > > >
-> > > > > > > > diff --git a/drivers/pinctrl/sunxi/pinctrl-sun50i-a100.c b/=
-drivers/pinctrl/sunxi/pinctrl-sun50i-a100.c
-> > > > > > > > index b97de80ae2f3..95b764ee1c0d 100644
-> > > > > > > > --- a/drivers/pinctrl/sunxi/pinctrl-sun50i-a100.c
-> > > > > > > > +++ b/drivers/pinctrl/sunxi/pinctrl-sun50i-a100.c
-> > > > > > > > @@ -546,33 +546,33 @@ static const struct sunxi_desc_pin a1=
-00_pins[] =3D {
-> > > > > > > >             SUNXI_FUNCTION(0x0, "gpio_in"),
-> > > > > > > >             SUNXI_FUNCTION(0x1, "gpio_out"),
-> > > > > > > >             SUNXI_FUNCTION(0x2, "i2c0"),          /* SCK */
-> > > > > > > > -           SUNXI_FUNCTION(0x5, "emac0"),         /* RXD1 *=
-/
-> > > > > > > > +           SUNXI_FUNCTION(0x5, "emac"),          /* RXD1 *=
-/
-> > > > > > > >             SUNXI_FUNCTION_IRQ_BANK(0x6, 6, 0)),
-> > > > > > > >   SUNXI_PIN(SUNXI_PINCTRL_PIN(H, 1),
-> > > > > > > >             SUNXI_FUNCTION(0x0, "gpio_in"),
-> > > > > > > >             SUNXI_FUNCTION(0x1, "gpio_out"),
-> > > > > > > >             SUNXI_FUNCTION(0x2, "i2c0"),          /* SDA */
-> > > > > > > > -           SUNXI_FUNCTION(0x5, "emac0"),         /* RXD0 *=
-/
-> > > > > > > > +           SUNXI_FUNCTION(0x5, "emac"),          /* RXD0 *=
-/
-> > > > > > > >             SUNXI_FUNCTION_IRQ_BANK(0x6, 6, 1)),
-> > > > > > > >   SUNXI_PIN(SUNXI_PINCTRL_PIN(H, 2),
-> > > > > > > >             SUNXI_FUNCTION(0x0, "gpio_in"),
-> > > > > > > >             SUNXI_FUNCTION(0x1, "gpio_out"),
-> > > > > > > >             SUNXI_FUNCTION(0x2, "i2c1"),          /* SCK */
-> > > > > > > > -           SUNXI_FUNCTION(0x5, "emac0"),         /* RXCTL =
-*/
-> > > > > > > > +           SUNXI_FUNCTION(0x5, "emac"),          /* RXCTL =
-*/
-> > > > > > > >             SUNXI_FUNCTION_IRQ_BANK(0x6, 6, 2)),
-> > > > > > > >   SUNXI_PIN(SUNXI_PINCTRL_PIN(H, 3),
-> > > > > > > >             SUNXI_FUNCTION(0x0, "gpio_in"),
-> > > > > > > >             SUNXI_FUNCTION(0x1, "gpio_out"),
-> > > > > > > >             SUNXI_FUNCTION(0x2, "i2c1"),          /* SDA */
-> > > > > > > >             SUNXI_FUNCTION(0x3, "cir0"),          /* OUT */
-> > > > > > > > -           SUNXI_FUNCTION(0x5, "emac0"),         /* CLKIN =
-*/
-> > > > > > > > +           SUNXI_FUNCTION(0x5, "emac"),          /* CLKIN =
-*/
-> > > > > > > >             SUNXI_FUNCTION_IRQ_BANK(0x6, 6, 3)),
-> > > > > > > >   SUNXI_PIN(SUNXI_PINCTRL_PIN(H, 4),
-> > > > > > > >             SUNXI_FUNCTION(0x0, "gpio_in"),
-> > > > > > > >             SUNXI_FUNCTION(0x1, "gpio_out"),
-> > > > > > > >             SUNXI_FUNCTION(0x2, "uart3"),         /* TX */
-> > > > > > > >             SUNXI_FUNCTION(0x3, "spi1"),          /* CS */
-> > > > > > > > -           SUNXI_FUNCTION(0x5, "emac0"),         /* TXD1 *=
-/
-> > > > > > > > +           SUNXI_FUNCTION(0x5, "emac"),          /* TXD1 *=
-/
-> > > > > > > >             SUNXI_FUNCTION_IRQ_BANK(0x6, 6, 4)),
-> > > > > > > >   SUNXI_PIN(SUNXI_PINCTRL_PIN(H, 5),
-> > > > > > > >             SUNXI_FUNCTION(0x0, "gpio_in"),
-> > > > > > > > @@ -580,14 +580,14 @@ static const struct sunxi_desc_pin a1=
-00_pins[] =3D {
-> > > > > > > >             SUNXI_FUNCTION(0x2, "uart3"),         /* RX */
-> > > > > > > >             SUNXI_FUNCTION(0x3, "spi1"),          /* CLK */
-> > > > > > > >             SUNXI_FUNCTION(0x4, "ledc"),
-> > > > > > > > -           SUNXI_FUNCTION(0x5, "emac0"),         /* TXD0 *=
-/
-> > > > > > > > +           SUNXI_FUNCTION(0x5, "emac"),          /* TXD0 *=
-/
-> > > > > > > >             SUNXI_FUNCTION_IRQ_BANK(0x6, 6, 5)),
-> > > > > > > >   SUNXI_PIN(SUNXI_PINCTRL_PIN(H, 6),
-> > > > > > > >             SUNXI_FUNCTION(0x0, "gpio_in"),
-> > > > > > > >             SUNXI_FUNCTION(0x1, "gpio_out"),
-> > > > > > > >             SUNXI_FUNCTION(0x2, "uart3"),         /* RTS */
-> > > > > > > >             SUNXI_FUNCTION(0x3, "spi1"),          /* MOSI *=
-/
-> > > > > > > > -           SUNXI_FUNCTION(0x5, "emac0"),         /* TXCK *=
-/
-> > > > > > > > +           SUNXI_FUNCTION(0x5, "emac"),          /* TXCK *=
-/
-> > > > > > > >             SUNXI_FUNCTION_IRQ_BANK(0x6, 6, 6)),
-> > > > > > > >   SUNXI_PIN(SUNXI_PINCTRL_PIN(H, 7),
-> > > > > > > >             SUNXI_FUNCTION(0x0, "gpio_in"),
-> > > > > > > > @@ -595,7 +595,7 @@ static const struct sunxi_desc_pin a100=
-_pins[] =3D {
-> > > > > > > >             SUNXI_FUNCTION(0x2, "uart3"),         /* CTS */
-> > > > > > > >             SUNXI_FUNCTION(0x3, "spi1"),          /* MISO *=
-/
-> > > > > > > >             SUNXI_FUNCTION(0x4, "spdif"),         /* OUT */
-> > > > > > > > -           SUNXI_FUNCTION(0x5, "emac0"),         /* TXCTL =
-*/
-> > > > > > > > +           SUNXI_FUNCTION(0x5, "emac"),          /* TXCTL =
-*/
-> > > > > > > >             SUNXI_FUNCTION_IRQ_BANK(0x6, 6, 7)),
-> > > > > > > >   SUNXI_PIN(SUNXI_PINCTRL_PIN(H, 8),
-> > > > > > > >             SUNXI_FUNCTION(0x0, "gpio_in"),
-> > > > > > > > @@ -611,7 +611,7 @@ static const struct sunxi_desc_pin a100=
-_pins[] =3D {
-> > > > > > > >             SUNXI_FUNCTION(0x2, "dmic"),          /* DATA0 =
-*/
-> > > > > > > >             SUNXI_FUNCTION(0x3, "spi2"),          /* CLK */
-> > > > > > > >             SUNXI_FUNCTION(0x4, "i2s2"),          /* BCLK *=
-/
-> > > > > > > > -           SUNXI_FUNCTION(0x5, "emac0"),         /* MDC */
-> > > > > > > > +           SUNXI_FUNCTION(0x5, "emac"),          /* MDC */
-> > > > > > > >             SUNXI_FUNCTION_IRQ_BANK(0x6, 6, 9)),
-> > > > > > > >   SUNXI_PIN(SUNXI_PINCTRL_PIN(H, 10),
-> > > > > > > >             SUNXI_FUNCTION(0x0, "gpio_in"),
-> > > > > > > > @@ -619,7 +619,7 @@ static const struct sunxi_desc_pin a100=
-_pins[] =3D {
-> > > > > > > >             SUNXI_FUNCTION(0x2, "dmic"),          /* DATA1 =
-*/
-> > > > > > > >             SUNXI_FUNCTION(0x3, "spi2"),          /* MOSI *=
-/
-> > > > > > > >             SUNXI_FUNCTION(0x4, "i2s2"),          /* LRCK *=
-/
-> > > > > > > > -           SUNXI_FUNCTION(0x5, "emac0"),         /* MDIO *=
-/
-> > > > > > > > +           SUNXI_FUNCTION(0x5, "emac"),          /* MDIO *=
-/
-> > > > > > > >             SUNXI_FUNCTION_IRQ_BANK(0x6, 6, 10)),
-> > > > > > > >   SUNXI_PIN(SUNXI_PINCTRL_PIN(H, 11),
-> > > > > > > >             SUNXI_FUNCTION(0x0, "gpio_in"),
-> > > > > > > > @@ -642,33 +642,33 @@ static const struct sunxi_desc_pin a1=
-00_pins[] =3D {
-> > > > > > > >             SUNXI_FUNCTION(0x1, "gpio_out"),
-> > > > > > > >             SUNXI_FUNCTION(0x3, "i2c3"),          /* SCK */
-> > > > > > > >             SUNXI_FUNCTION(0x4, "i2s3"),          /* MCLK *=
-/
-> > > > > > > > -           SUNXI_FUNCTION(0x5, "emac0"),         /* EPHY *=
-/
-> > > > > > > > +           SUNXI_FUNCTION(0x5, "emac"),          /* EPHY *=
-/
-> > > > > > > >             SUNXI_FUNCTION_IRQ_BANK(0x6, 6, 13)),
-> > > > > > > >   SUNXI_PIN(SUNXI_PINCTRL_PIN(H, 14),
-> > > > > > > >             SUNXI_FUNCTION(0x0, "gpio_in"),
-> > > > > > > >             SUNXI_FUNCTION(0x1, "gpio_out"),
-> > > > > > > >             SUNXI_FUNCTION(0x4, "i2s3"),          /* BCLK *=
-/
-> > > > > > > > -           SUNXI_FUNCTION(0x5, "emac0"),         /* RXD3 *=
-/
-> > > > > > > > +           SUNXI_FUNCTION(0x5, "emac"),          /* RXD3 *=
-/
-> > > > > > > >             SUNXI_FUNCTION_IRQ_BANK(0x6, 6, 14)),
-> > > > > > > >   SUNXI_PIN(SUNXI_PINCTRL_PIN(H, 15),
-> > > > > > > >             SUNXI_FUNCTION(0x0, "gpio_in"),
-> > > > > > > >             SUNXI_FUNCTION(0x1, "gpio_out"),
-> > > > > > > >             SUNXI_FUNCTION(0x4, "i2s3"),          /* LRCK *=
-/
-> > > > > > > > -           SUNXI_FUNCTION(0x5, "emac0"),         /* RXD2 *=
-/
-> > > > > > > > +           SUNXI_FUNCTION(0x5, "emac"),          /* RXD2 *=
-/
-> > > > > > > >             SUNXI_FUNCTION_IRQ_BANK(0x6, 6, 15)),
-> > > > > > > >   SUNXI_PIN(SUNXI_PINCTRL_PIN(H, 16),
-> > > > > > > >             SUNXI_FUNCTION(0x0, "gpio_in"),
-> > > > > > > >             SUNXI_FUNCTION(0x1, "gpio_out"),
-> > > > > > > >             SUNXI_FUNCTION(0x3, "i2s3_dout0"),    /* DOUT0 =
-*/
-> > > > > > > >             SUNXI_FUNCTION(0x4, "i2s3_din1"),     /* DIN1 *=
-/
-> > > > > > > > -           SUNXI_FUNCTION(0x5, "emac0"),         /* RXCK *=
-/
-> > > > > > > > +           SUNXI_FUNCTION(0x5, "emac"),          /* RXCK *=
-/
-> > > > > > > >             SUNXI_FUNCTION_IRQ_BANK(0x6, 6, 16)),
-> > > > > > > >   SUNXI_PIN(SUNXI_PINCTRL_PIN(H, 17),
-> > > > > > > >             SUNXI_FUNCTION(0x0, "gpio_in"),
-> > > > > > > >             SUNXI_FUNCTION(0x1, "gpio_out"),
-> > > > > > > >             SUNXI_FUNCTION(0x3, "i2s3_dout1"),    /* DOUT1 =
-*/
-> > > > > > > >             SUNXI_FUNCTION(0x4, "i2s3_din0"),     /* DIN0 *=
-/
-> > > > > > > > -           SUNXI_FUNCTION(0x5, "emac0"),         /* TXD3 *=
-/
-> > > > > > > > +           SUNXI_FUNCTION(0x5, "emac"),          /* TXD3 *=
-/
-> > > > > > > >             SUNXI_FUNCTION_IRQ_BANK(0x6, 6, 17)),
-> > > > > > > >   SUNXI_PIN(SUNXI_PINCTRL_PIN(H, 18),
-> > > > > > > >             SUNXI_FUNCTION(0x0, "gpio_in"),
-> > > > > > > > @@ -676,7 +676,7 @@ static const struct sunxi_desc_pin a100=
-_pins[] =3D {
-> > > > > > > >             SUNXI_FUNCTION(0x2, "cir0"),          /* OUT */
-> > > > > > > >             SUNXI_FUNCTION(0x3, "i2s3_dout2"),    /* DOUT2 =
-*/
-> > > > > > > >             SUNXI_FUNCTION(0x4, "i2s3_din2"),     /* DIN2 *=
-/
-> > > > > > > > -           SUNXI_FUNCTION(0x5, "emac0"),         /* TXD2 *=
-/
-> > > > > > > > +           SUNXI_FUNCTION(0x5, "emac"),          /* TXD2 *=
-/
-> > > > > > > >             SUNXI_FUNCTION_IRQ_BANK(0x6, 6, 18)),
-> > > > > > > >   SUNXI_PIN(SUNXI_PINCTRL_PIN(H, 19),
-> > > > > > > >             SUNXI_FUNCTION(0x0, "gpio_in"),
-> > > > > > >
-> > > > > > >
-> > > > > >
-> > > > >
-> > > > > --
-> > > > > Paul Kocialkowski,
-> > > > >
-> > > > > Independent contractor - sys-base - https://www.sys-base.io/
-> > > > > Free software developer - https://www.paulk.fr/
-> > > > >
-> > > > > Expert in multimedia, graphics and embedded hardware support with=
- Linux.
-> > >
-> > > --
-> > > Paul Kocialkowski,
-> > >
-> > > Independent contractor - sys-base - https://www.sys-base.io/
-> > > Free software developer - https://www.paulk.fr/
-> > >
-> > > Expert in multimedia, graphics and embedded hardware support with Lin=
-ux.
->
-> --
-> Paul Kocialkowski,
->
-> Independent contractor - sys-base - https://www.sys-base.io/
-> Free software developer - https://www.paulk.fr/
->
-> Expert in multimedia, graphics and embedded hardware support with Linux.
+			/* SCPSYS hardware voter power domains */
+			mm_proc_dormant: power-domain@MT8196_POWER_DOMAIN_MM_PROC_DORMANT {
+			..... etc etc
+			};
+		};
+
+		imp_iic_wrap_north: clock-controller@13c30000 {
+			compatible = "mediatek,mt8196-imp-iic-wrap-n", "syscon";
+			reg = <0 0x13c30000 0 0x1000>;
+			#clock-cells = <1>;
+		};
+	};
+
+...but that's also not applicable, because the clock controllers are physically
+*not* inside of the scpsys1 block, so that would *also* misrepresent the hardware
+in the devicetree (besides still using a syscon in a way or another).
+
+So... I really don't see any way out of that, which really leaves me with the two
+options that I described in the previous reply.
+
+Summarizing, either:
+  - Adding hwv MMIOs (a bunch of, and each very small) to each clock controller (but
+    still all of them are poking at the same HWV controller, and I foresee that this
+    will backfire in some future iteration of the HWV hardware)
+  - Reverting back to using the "mediatek,hardware-voter" syscon, like done in
+    https://lore.kernel.org/20250624143220.244549-10-laura.nao@collabora.com
+
+I tried really hard and thought about this for weeks (actually, started even before
+your feedback on Laura's series), but now I'm out of practical options that are
+both correctly representing the hardware and not making the implementation fragile
+(or actually more fragile than the actually broken HW implementation's fragility,
+anyway).
+
+And besides - re-reading what I wrote after a bunch of days, the first option of
+adding a bunch of hwv mmios to all of the clock controllers is, in my opinion, a
+(dirty) hack - because those mmios don't belong to the clock controllers, and would
+again misrepresent the hardware in DT - especially keeping in mind the fact that
+the clock controllers can be controlled with *and* (not or) without the HWV (and in
+some instances, even if using HWV, we must still write to the clock controllers'
+mmio for extra programming, as explained before).
+
+Every second I think about this I get more and more convinced that my way of
+passing the SCPSYS-HWV system controller handle as a syscon is right.
+
+Angelo
+
 
