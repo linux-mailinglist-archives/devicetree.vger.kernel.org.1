@@ -1,149 +1,170 @@
-Return-Path: <devicetree+bounces-193665-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-193666-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id EF61DAFB3EB
-	for <lists+devicetree@lfdr.de>; Mon,  7 Jul 2025 15:06:05 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id E1473AFB3F2
+	for <lists+devicetree@lfdr.de>; Mon,  7 Jul 2025 15:10:20 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 105017A62F6
-	for <lists+devicetree@lfdr.de>; Mon,  7 Jul 2025 13:04:40 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 2383F3BD438
+	for <lists+devicetree@lfdr.de>; Mon,  7 Jul 2025 13:09:54 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4E31029B776;
-	Mon,  7 Jul 2025 13:05:59 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="auVZl2ME"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 103FD29AB0F;
+	Mon,  7 Jul 2025 13:10:17 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-qv1-f48.google.com (mail-qv1-f48.google.com [209.85.219.48])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1E67A29B218;
-	Mon,  7 Jul 2025 13:05:58 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AF3A725E44D;
+	Mon,  7 Jul 2025 13:10:14 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.219.48
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1751893559; cv=none; b=rURcy3tcLzN5dT4m337gVdONRBJkJGvYlIjkNVdodx0LCmCSGBfWEm5EvJ3y+3rmZmhpOzkjDRpLT61zOp0cwSjQ/92EqnUZpEH7/yL7VKAd4jOlieYOStcZoCNqOIRYyQQ+ykcS9XQhdUuK/W1tyYsBRITXtGNzJIU9eHM/B9c=
+	t=1751893817; cv=none; b=nN1WDc8OFruIz2IlHE8S6I/+PpBDjSvL1GtHccuh58Be4WPp+uhi9/Ic83z3yYMVAKJsEoRVsTTkE/wvmZpE7luXDyvWviRZPLc6PdCNR0m5DwuZ9du6HtwGDu25beAFy9LSZyA96pprXXjxOtfS5Hxi4KCZUruuLPF0apkVg3Y=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1751893559; c=relaxed/simple;
-	bh=PuLkdsqUGDmezMVAO49b/CuVBHRcasZBx/jY/Y7ONeI=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=NDavrV0SuGSZR8BWJswMvyVZpL1g1HrDpWWZOrRmLVBAVrSOgCSe+WmrjOQrQzBoP/D3jODQDYXy0QYfZVLZhbjiAifBXliVnUWcx3ShLkbbWrzvzLmbkbD+cD0evYCw+/BuW3bAB80docpj2wHTm73B+WhBCOXuS1DY9/YxleE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=auVZl2ME; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id B3C28C4CEE3;
-	Mon,  7 Jul 2025 13:05:56 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1751893558;
-	bh=PuLkdsqUGDmezMVAO49b/CuVBHRcasZBx/jY/Y7ONeI=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=auVZl2ME5ZhvPj5grOu5VjEFBMbi/SAqVXXpQHVX0V3478vEwPNBhTaGP08auugIt
-	 oEu88gjSXXLi8nB8TnB5XFvk0FCkFPHwgPQCMtL5Ef1m+HEmx/BRyOJ3HTiAtlPMRY
-	 BYv8x5LS/idAmMaRFpQ7fITg/TjwhRqZLdbW//BIMenxKnoBu8W4Yq2kggebe0Y5f2
-	 46Vkwax1UGXn7Yqp6UceR/iSyKfUBuYZ74B6nyFKdOi7oFtxcEDCOsEnv1AJteWdRB
-	 sqSkf7uxtuOOBGEnhN5/Ou56UuhvQ8RdqYBHBPK6Mg+WEi2aE2K4cwK7EfjlMgv3fs
-	 dnpUkAWjl768w==
-Date: Mon, 7 Jul 2025 14:05:53 +0100
-From: Mark Brown <broonie@kernel.org>
-To: xianwei.zhao@amlogic.com
-Cc: Sunny Luo <sunny.luo@amlogic.com>, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	linux-amlogic@lists.infradead.org, linux-spi@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v4 2/3] spi: Add Amlogic SPISG driver
-Message-ID: <3ac88119-9980-42df-9e1c-c0ec30bbaadd@sirena.org.uk>
-References: <20250704-spisg-v4-0-6b731dfbe610@amlogic.com>
- <20250704-spisg-v4-2-6b731dfbe610@amlogic.com>
+	s=arc-20240116; t=1751893817; c=relaxed/simple;
+	bh=61RBaMbea8NRtSu+ZTmspIqUZ9eaxU9e2E5giPGZh4Y=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=PBLXfu2aQFcDQduLchyZRljYCd2UUNXRt2E3yx+BipDtIqPG+O0QiyFxF90a1N52ZhdbKZRb78nsk2G1JewnvdMBLueQuOL3bSHIN5BREcirhqQVRzPgb0QQBLpwGlkpUCtpS+SDPAmazfOC1KuUxqYQAeBTibWAWAmYriuBm2w=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.219.48
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-qv1-f48.google.com with SMTP id 6a1803df08f44-6fd0a91ae98so21414276d6.1;
+        Mon, 07 Jul 2025 06:10:14 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1751893813; x=1752498613;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=Euf94tgn/3xSDnyNvltb3qvyn0bNOPjl7Q09Ppxb8q4=;
+        b=nKq+lc/Cq7dRG5NrJ97R4rOOtkTS2vjYPZxqedvLOCaHKOzKIgyRvOmt4gvB/2X/B4
+         WGahawKoNk9a1q6KaJt7FCwaRiG9jp8f/2HZYaOxhVj9Q3GmTxQIIuAJMSPolkMZB3B3
+         9Rb7Q9Y3uRdigih0Ls3tqqJhMrdcHnLMILl80xjrJCIsPOQ/BwQVIKjcBg5PsXuu8YAr
+         8RrqFcnuzCbQ3Obi7DhnoKbPj9/5SpJ+ge2Idn2bAYIUE3vpCXyYIRmKNE0u7jq1a+1n
+         j0Wf4usKX5UQitUH6LqAQVckxL4lSnouOOkAJwRhZ7SUt83jzJKC2olgSXrxXWorKZjd
+         pNaA==
+X-Forwarded-Encrypted: i=1; AJvYcCV3QMUXBY5+TJwdPb4+HuoUvoIu9U88JJH15f4/J7rYTPch0flxDv3u1nHgpDBy11ZAQrPOTGbwsqAL@vger.kernel.org, AJvYcCWCpKacvZveg86paaz6tNt1f3xizVlzmd+IENwhOrQkmb9IU/HbCI8ey6aJzUDqOXNLoXM6bZ1amG3eWJenUBnf4B8=@vger.kernel.org
+X-Gm-Message-State: AOJu0YymjhuXikA0RjhGVQLXP5tWnVhXJEo8NSj+IUWpVlSHIe+JLcBA
+	zb5aVcsOaQ2OiYOuG8LaGqoR2wJKlN/LP0j/JIl5FALUsdYy68bGyPMKyrDq8+S+
+X-Gm-Gg: ASbGncs9ot29S5SscBBz2iDSad8vIU57mOhHay9B/9zgmAtFaEpWdjnYoMdBnv6wo4C
+	Z2XFT6TSS8YlN+DQYXNQwQTUtBHUNOIYANJTn8YxNxGSvzbJQxuP9m8XTB9u0wFY5z4sO+tO5vg
+	3k+h3oQLvCF81BNZc0BLmF000H9h0DhN+C0/iJ1ExbbWRpw2abMDmsdJoGunJSAOfbzgQAdlH9X
+	jymktyXOhv8zBdSQLWeDo5sarOBDlCeJO5XOqHnxC5906XRykMCiJ0QY6ZluMKUAGn3R2qRLKIA
+	IjV0a6gqjds4EUu/i3Gt0P7WURN52/vmBYnkhpEE7J8u9m3pFc8fE8pBZiXBhUwn/8nB/TPLoab
+	GKOoKe81Cs5wQ+OqI85blKxGnWgYa
+X-Google-Smtp-Source: AGHT+IH/k0VG8ho4a8wGYhBpr4VelB9UdjqO5RyaR2RI7UI0lPobmklqvLa3wLmnjGRGq+sWDE3T+A==
+X-Received: by 2002:a05:6214:1944:b0:702:c124:29bc with SMTP id 6a1803df08f44-702c898f516mr192854316d6.0.1751893813240;
+        Mon, 07 Jul 2025 06:10:13 -0700 (PDT)
+Received: from mail-qk1-f177.google.com (mail-qk1-f177.google.com. [209.85.222.177])
+        by smtp.gmail.com with ESMTPSA id 6a1803df08f44-702c4d5af0esm58314376d6.103.2025.07.07.06.10.13
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 07 Jul 2025 06:10:13 -0700 (PDT)
+Received: by mail-qk1-f177.google.com with SMTP id af79cd13be357-7d44c6774e7so190429285a.3;
+        Mon, 07 Jul 2025 06:10:13 -0700 (PDT)
+X-Forwarded-Encrypted: i=1; AJvYcCVNBz9dHxxQsviXseMH+6stFDMIDdg6+nKFzwOztBCw+Azlw1ST/HaJ9XbLpi4hL+s9IpxDZb7lfTBd@vger.kernel.org, AJvYcCWgBSqiAlx51j9GCNKcbKzBtZeS0Cl57tMg0PridM/bKj4z/lVdzEUMgpb8SCMR1yIvyee7N9bntxzzi+IVu6i3ojM=@vger.kernel.org
+X-Received: by 2002:a05:620a:4488:b0:7d4:5802:6b52 with SMTP id
+ af79cd13be357-7d5df161a6cmr1265231585a.33.1751893812720; Mon, 07 Jul 2025
+ 06:10:12 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="XuNRsNwpi0P6rBB3"
-Content-Disposition: inline
-In-Reply-To: <20250704-spisg-v4-2-6b731dfbe610@amlogic.com>
-X-Cookie: We are what we are.
+References: <20250704100734.3387856-1-niklas.soderlund+renesas@ragnatech.se>
+ <20250704100734.3387856-3-niklas.soderlund+renesas@ragnatech.se>
+ <CAMuHMdX-1KJ4yrNeNT1SYqvfrn+XEjWuMxQkNTKJ5j9+fxgDdw@mail.gmail.com> <20250707130435.GA1410739@ragnatech.se>
+In-Reply-To: <20250707130435.GA1410739@ragnatech.se>
+From: Geert Uytterhoeven <geert@linux-m68k.org>
+Date: Mon, 7 Jul 2025 15:09:59 +0200
+X-Gmail-Original-Message-ID: <CAMuHMdVg8pKHF6073Z5SWAzAuRvk_WE34PFdQcecKCyY=LtWqg@mail.gmail.com>
+X-Gm-Features: Ac12FXx0KNw0yHzEkykXKzsLWLnUdfvDiKwqlaJs8e4FdctyBTYbK74uok71sfM
+Message-ID: <CAMuHMdVg8pKHF6073Z5SWAzAuRvk_WE34PFdQcecKCyY=LtWqg@mail.gmail.com>
+Subject: Re: [PATCH v3 2/5] arm64: dts: renesas: sparrow-hawk: Add overlay for
+ IMX219 on J1
+To: =?UTF-8?Q?Niklas_S=C3=B6derlund?= <niklas.soderlund+renesas@ragnatech.se>
+Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+	Conor Dooley <conor+dt@kernel.org>, Marek Vasut <marek.vasut+renesas@mailbox.org>, 
+	Laurent Pinchart <laurent.pinchart@ideasonboard.com>, linux-renesas-soc@vger.kernel.org, 
+	devicetree@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
+Hi Niklas,
 
---XuNRsNwpi0P6rBB3
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
+On Mon, 7 Jul 2025 at 15:04, Niklas S=C3=B6derlund
+<niklas.soderlund+renesas@ragnatech.se> wrote:
+> On 2025-07-07 13:47:32 +0200, Geert Uytterhoeven wrote:
+> > On Fri, 4 Jul 2025 at 12:08, Niklas S=C3=B6derlund
+> > <niklas.soderlund+renesas@ragnatech.se> wrote:
+> > > Add an overlay to connect an IMX219 camera sensor to the J1 connector=
+.
+> > > The IMX219 utilizes 2 CSI-2 D-PHY lanes. This enables the video captu=
+re
+> > > pipeline behind the CSI40 Rx to be enabled to process images from the
+> > > sensor.
+> > >
+> > > Signed-off-by: Niklas S=C3=B6derlund <niklas.soderlund+renesas@ragnat=
+ech.se>
 
-On Fri, Jul 04, 2025 at 10:59:33AM +0800, Xianwei Zhao via B4 Relay wrote:
+> > > --- /dev/null
+> > > +++ b/arch/arm64/boot/dts/renesas/r8a779g3-sparrow-hawk-camera-j1-imx=
+219.dtso
+> >
+> > > +/* Page 29 / CSI_IF_CN */
+> > > +&csi40 {
+> > > +       status =3D "okay";
+> > > +
+> > > +       ports {
+> > > +               port {
+> >
+> > The base arch/arm64/boot/dts/renesas/r8a779g0.dtsi has "port@0".
+>
+> Indeed, this should be port@, will fix.
 
-> Introduced support for the new SPI IP (SPISG) driver. The SPISG is
-> a communication-oriented SPI controller from Amlogic,supporting
-> three operation modes: PIO, block DMA, and scatter-gather DMA.
+Thanks!
 
-This looks good, a few small things below but nothing major.
+> > Still, this is applied to the correct node?
+>
+> As far as I can tell it did, and the cameras worked as expected.
 
-> +static bool aml_spisg_can_dma(struct spi_controller *ctlr,
-> +			      struct spi_device *spi,
-> +			      struct spi_transfer *xfer)
-> +{
-> +	return true;
-> +}
+I am just wondering if dynamic overlays behave the same...
 
-Is it worth having a copybreak such that smaller transfers are done
-using PIO?  With a lot of controllers that increases performance due to
-the extra overhead of setting up DMA, talking to the DMA and interrupt
-controllers can be as expensive as directly accessing the FIFOs.
+> >     $ dtx_diff --color
+> > arch/arm64/boot/dts/renesas/r8a779g3-sparrow-hawk{,-camera-j1-imx219}.d=
+tb
+> >     [...]
+> >
+> >                                     port@0 {
+> >                                             reg =3D <0x00>;
+> >     +
+> >     +                                       endpoint {
+> >     +                                               bus-type =3D <0x04>=
+;
+> >     +                                               clock-lanes =3D <0x=
+00>;
+> >     +                                               data-lanes =3D <0x0=
+1 0x02>;
+> >     +                                               phandle =3D <0xf2>;
+> >     +                                               remote-endpoint =3D=
+ <0xf3>;
+> >     +                                       };
+> >                                     };
+> >
+> >                                     port@1 {
+> >     [...]
 
-> +static irqreturn_t aml_spisg_irq(int irq, void *data)
-> +{
-> +	struct spisg_device *spisg = (void *)data;
-> +	u32 sts;
-> +
-> +	spisg->status = 0;
-> +	regmap_read(spisg->map, SPISG_REG_IRQ_STS, &sts);
-> +	regmap_write(spisg->map, SPISG_REG_IRQ_STS, sts);
-> +	if (sts & (IRQ_RCH_DESC_INVALID |
-> +		   IRQ_RCH_DESC_RESP |
-> +		   IRQ_RCH_DATA_RESP |
-> +		   IRQ_WCH_DESC_INVALID |
-> +		   IRQ_WCH_DESC_RESP |
-> +		   IRQ_WCH_DATA_RESP |
-> +		   IRQ_DESC_ERR))
-> +		spisg->status = sts;
-> +
-> +	complete(&spisg->completion);
-> +
-> +	return IRQ_HANDLED;
+Gr{oetje,eeting}s,
 
-It'd be better to check if there's an interrupt actually flagged and
-return IRQ_NONE if not, as well as supporting sharing that means that
-the interrupt core can handle any errors that cause the interrupt to
-latch on.
+                        Geert
 
-> +	ret = devm_request_irq(&pdev->dev, irq, aml_spisg_irq, 0, NULL, spisg);
-> +	if (ret) {
-> +		dev_err(&pdev->dev, "irq request failed\n");
-> +		goto out_controller;
-> +	}
-> +
-> +	ret = aml_spisg_clk_init(spisg, base);
-> +	if (ret)
-> +		goto out_controller;
+--=20
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k=
+.org
 
-Do we need the clocks for register access - if so what happens if the
-interrupt fires as soon as it is registered?  I'd have expected
-requesting the interrupt to be one of the last things done.
-
---XuNRsNwpi0P6rBB3
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmhrxjEACgkQJNaLcl1U
-h9BsIQf6A+9yaMYcp1gxZdLMx2jltWF7cHCNvSupFRmtYZ0ljM+gNdKkaigkOinq
-rHrYqdyrb+tJLA7AKeFshHPiEVJi4v9hZXJTlVWSE9dO0GaZ+/C7wDGzFejo/V2V
-ZD+3xVNkv/SO8hv/eeay1Y8eL4iMKfIcZZn3sBepyLR1Hlo6YrrmyxnYsvDOzVYH
-RxE+wvzzB10bC/Bjsvg3HnkYpnmb01a9o0awWFw324+uDcv91wp5i+Bsv9NQLkBs
-tmobLgDQjVj6WihO2nmXoB+2vbAmrWZQaFNl7FS2TnyanYBUwNRPkWi/UhGDwoHK
-AqUULN21wUgdXzCXib52d1c67OyQYQ==
-=dEip
------END PGP SIGNATURE-----
-
---XuNRsNwpi0P6rBB3--
+In personal conversations with technical people, I call myself a hacker. Bu=
+t
+when I'm talking to journalists I just say "programmer" or something like t=
+hat.
+                                -- Linus Torvalds
 
