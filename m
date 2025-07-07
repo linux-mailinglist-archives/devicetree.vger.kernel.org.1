@@ -1,221 +1,281 @@
-Return-Path: <devicetree+bounces-193660-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-193661-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1E702AFB302
-	for <lists+devicetree@lfdr.de>; Mon,  7 Jul 2025 14:17:39 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id A665AAFB35F
+	for <lists+devicetree@lfdr.de>; Mon,  7 Jul 2025 14:34:47 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id EB2A73B8EFB
-	for <lists+devicetree@lfdr.de>; Mon,  7 Jul 2025 12:17:12 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 6FCAC7A401F
+	for <lists+devicetree@lfdr.de>; Mon,  7 Jul 2025 12:33:21 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4505328726E;
-	Mon,  7 Jul 2025 12:17:35 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9948E293C74;
+	Mon,  7 Jul 2025 12:34:41 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=amd.com header.i=@amd.com header.b="hvb6vXoO"
+	dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b="mfBd9+MH"
 X-Original-To: devicetree@vger.kernel.org
-Received: from NAM11-DM6-obe.outbound.protection.outlook.com (mail-dm6nam11on2049.outbound.protection.outlook.com [40.107.223.49])
+Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [213.167.242.64])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 968D415B135;
-	Mon,  7 Jul 2025 12:17:33 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.223.49
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1751890655; cv=fail; b=IZnqNjhoLV08e9J5cziTYIwwOLTO/q325LIRr8uk4hTa5bSq0qdw6S3x/1ZDTxLPqUsSIHdD5vX0Y3h+Pa4ksjvBoQWLxz49LvhCtTb7RPiVzIFHkPJPaF4NrdLkY2oDwVCUmm2VMSaoVL0FiSqPuYjECeAikmKBGeTZLLBQ66E=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1751890655; c=relaxed/simple;
-	bh=PGmwpHvzMf4qJ0as3i/DTA64z7Ri7GK1Y8ETfOGEZY4=;
-	h=From:To:CC:Subject:Date:Message-ID:References:In-Reply-To:
-	 Content-Type:MIME-Version; b=MROrsWnj/3fxCwqiEDEHFuPkGFDTVuFvDEiM3P0Jw5ENC9it8sIb3bAdZN9/qdMzFHpD80av3MUXnZ+xyCaaqw6WkrSR+dfhHeopHNIHWHodA/g3KTBbzmbBxHSY0VwGmPpr3Tjd3l5b+g464+bNSqWEb6awQ0a9jdelNAY8Oiw=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=amd.com; spf=fail smtp.mailfrom=amd.com; dkim=pass (1024-bit key) header.d=amd.com header.i=@amd.com header.b=hvb6vXoO; arc=fail smtp.client-ip=40.107.223.49
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=amd.com
-Authentication-Results: smtp.subspace.kernel.org; spf=fail smtp.mailfrom=amd.com
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=dSJLBOCdPhbA22U4GP6RSqGjXDJKjib4dzlTiUwSubfLSJ/AkWHX22LCxsTCdPha3IzFgLwverAYVO8ulNAXyZD8Ljbma0dXfEOsiMn8afhJlRpFE/nQV9TqYf6+4zlcD1bRMfd5Y/xL/K0RheXH21WRQcLBWu3QDwQMhcWnHjluy/ZVdAoPPg8LSveiSEEqEmRQCrYGidstWFu4gGleQupNxq3GpArZgsfGulxeAv+YyEJuFmDSwRpWeyUzL7dZF1xzsi5/V3x38pxXt2JMzLFts5lhzUGjqVQ6tvBkjzr0DZvRD1sSzXiAqF17WMiwJDc5dsF0+jhqwp1foRAf3A==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=9TcBCBaEZliPLesyIthAFQHjz4tp7rTMOfm5eooTHo4=;
- b=rLN0iLkcZC75Nvhjt5CUuI916iIT1MjMuWohh6tBnZTleYgNTy5kHH1CcvV8yYToaAli/6RHtXMcYPXgo9F/0lr8WrYGRy9fgZ/W9BTjrh0moV77GT6Gr1kF+KB6gS8YRd/6Vs0COYUqx+auB6bXR1ZjiVl2//OxtnsRQd11ctCTVtsjKHKaS3dSA/zxOdmovdS9FvvmI/vmAWL6VFYHF0QJf1WkmN+5c/Cx+b2JgGkflEfiHtgUlbjz6amMILFhP7ogBfKTKV1rox8gcI+WQibwMNeOmRXdFyFczksJ9tn2qhRG3T523M9PX3OEKqkfJ/kyss9JLpHSRP4CEOj4NA==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
- header.d=amd.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=9TcBCBaEZliPLesyIthAFQHjz4tp7rTMOfm5eooTHo4=;
- b=hvb6vXoOPdToEAX4OQlibCameKbqg5GogBgvqCRSjzkLgtJOPUGLgpn+RL3xibJUsUIEotb5ECGQDDf/DIcSBKj7kKKt/zbMxa6WsMmt+2XBsNYVXBvGwonlF4bS6rLG/8LGXD+xb0jdcpUT0wJt1G+MYhu7eikfcNPukjl0R2c=
-Received: from DM4PR12MB6158.namprd12.prod.outlook.com (2603:10b6:8:a9::20) by
- SJ0PR12MB6685.namprd12.prod.outlook.com (2603:10b6:a03:478::17) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8901.23; Mon, 7 Jul
- 2025 12:17:30 +0000
-Received: from DM4PR12MB6158.namprd12.prod.outlook.com
- ([fe80::b639:7db5:e0cc:be5e]) by DM4PR12MB6158.namprd12.prod.outlook.com
- ([fe80::b639:7db5:e0cc:be5e%6]) with mapi id 15.20.8901.024; Mon, 7 Jul 2025
- 12:17:29 +0000
-From: "Musham, Sai Krishna" <sai.krishna.musham@amd.com>
-To: "bhelgaas@google.com" <bhelgaas@google.com>, "lpieralisi@kernel.org"
-	<lpieralisi@kernel.org>, "kw@linux.com" <kw@linux.com>, "mani@kernel.org"
-	<mani@kernel.org>, "robh@kernel.org" <robh@kernel.org>, "krzk+dt@kernel.org"
-	<krzk+dt@kernel.org>, "conor+dt@kernel.org" <conor+dt@kernel.org>,
-	"cassel@kernel.org" <cassel@kernel.org>
-CC: "lkp@intel.com" <lkp@intel.com>, "linux-pci@vger.kernel.org"
-	<linux-pci@vger.kernel.org>, "devicetree@vger.kernel.org"
-	<devicetree@vger.kernel.org>, "linux-kernel@vger.kernel.org"
-	<linux-kernel@vger.kernel.org>, "Simek, Michal" <michal.simek@amd.com>,
-	"Gogada, Bharat Kumar" <bharat.kumar.gogada@amd.com>, "Havalige, Thippeswamy"
-	<thippeswamy.havalige@amd.com>
-Subject: RE: [PATCH v4 0/2] Add support for AMD Versal Gen 2 MDB PCIe RP
- PERST#
-Thread-Topic: [PATCH v4 0/2] Add support for AMD Versal Gen 2 MDB PCIe RP
- PERST#
-Thread-Index: AQHb5l4OeHlAcLHrVEuYFWIGto5L2rQmojfw
-Date: Mon, 7 Jul 2025 12:17:29 +0000
-Message-ID:
- <DM4PR12MB615823FABAD39C7F3E187A99CD4FA@DM4PR12MB6158.namprd12.prod.outlook.com>
-References: <20250626054906.3277029-1-sai.krishna.musham@amd.com>
-In-Reply-To: <20250626054906.3277029-1-sai.krishna.musham@amd.com>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach:
-X-MS-TNEF-Correlator:
-msip_labels:
- MSIP_Label_dce362fe-1558-4fb5-9f64-8a6240d76441_Enabled=True;MSIP_Label_dce362fe-1558-4fb5-9f64-8a6240d76441_SiteId=3dd8961f-e488-4e60-8e11-a82d994e183d;MSIP_Label_dce362fe-1558-4fb5-9f64-8a6240d76441_SetDate=2025-07-07T12:05:48.0000000Z;MSIP_Label_dce362fe-1558-4fb5-9f64-8a6240d76441_Name=AMD
- Internal Distribution
- Only;MSIP_Label_dce362fe-1558-4fb5-9f64-8a6240d76441_ContentBits=3;MSIP_Label_dce362fe-1558-4fb5-9f64-8a6240d76441_Method=Standard
-authentication-results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=amd.com;
-x-ms-publictraffictype: Email
-x-ms-traffictypediagnostic: DM4PR12MB6158:EE_|SJ0PR12MB6685:EE_
-x-ms-office365-filtering-correlation-id: f6245831-5e1a-4e1e-4ad8-08ddbd503e61
-x-ms-exchange-senderadcheck: 1
-x-ms-exchange-antispam-relay: 0
-x-microsoft-antispam:
- BCL:0;ARA:13230040|366016|1800799024|7416014|376014|7053199007|38070700018;
-x-microsoft-antispam-message-info:
- =?us-ascii?Q?3hKyl2PUaMRwvxlZP1oJBfOAjQoZ2WeJUCzevQu9CQp/vAsADMF72DHP9R1T?=
- =?us-ascii?Q?vPK7srB7EJZuMqJrQJUTnvUTpYYZqTfp8TglYgii8VzSytJuzhO50pvanVnJ?=
- =?us-ascii?Q?5ZuI2AeqklTcf2lA8bnkAHO510UxvK1ILaERnyIcU18mi3WThBFXgJGPNm/z?=
- =?us-ascii?Q?mp7X1g94yVworUrxnwm4Whjn4j4jB7zGFwYM+BlEYUrJcekeP5G4an6kSCtK?=
- =?us-ascii?Q?r811dOTFCMhZDOXtId/7IuGDpNvfZnLK6IWOZIVbkSBQ+hME8Fpw4sVnSmNt?=
- =?us-ascii?Q?18gyQcKXUlTeao8mDLxAvolAIDo+n1vp9ruJ7IcquXcTn71iab79U0nzGZ/C?=
- =?us-ascii?Q?AqoBgy6YGsIG0Zt7GbLs9dZl68Odomi1iegNuMuC6PYspo7CtvOEETlhecZy?=
- =?us-ascii?Q?GrAHTlL2jmX6Y+z2oXmeXvmZ3DD9/Kqc7L+rIu8Rmt/mVcxUH/9nA9g7vHGH?=
- =?us-ascii?Q?GrK7MEYHVn1Q6PXy/rtRX8wZL5sWQcnfxJsXciwOfhr/Gru/MBB4ewOZSIrH?=
- =?us-ascii?Q?Q5IBWIAYdYkW5aQBFGX6MyBfrRLo5+8iRv4C3EVk4+uKm2adkgIdb6Nm9XRk?=
- =?us-ascii?Q?FAyB1n6ScRJ48CCu/RrRDUrtdy6SVxVQH37n/8+LLQHS20and2comyeW0PH1?=
- =?us-ascii?Q?QQFVJNJQkSHgNS7CjXP2+uyewOiAWxFau9/QGy20mwsGgdzwMwjK25Y+sGAt?=
- =?us-ascii?Q?2NDhjtEmDewbDBI/g4vfMB9PPKCdmEFckCogOGAm+WG2ZzdvtM4WCrhiEiFL?=
- =?us-ascii?Q?51C67FEKbEdDNXAQa0ESu6cgFiG5xpa9cLiWrP4z6TaD2IiinqopWrJ0xKAB?=
- =?us-ascii?Q?V2cJdsrhm2asxTzE32O4x9P6Fno5uizgSyHSIZwOUEFlTwvLJW7QzmDvWUyg?=
- =?us-ascii?Q?Y40OAfEW0DsSRyW5ow2CpVk0Haj64Dy57f94R2RSLFbriK3lqTJE267k7JYN?=
- =?us-ascii?Q?mRBFgckuqzUp4lVzR1GZ/8caXLCRiGo2t6ZHW4AaU/m+4+natrD/mKroZP72?=
- =?us-ascii?Q?Ys5yZSWkZG7MeUS6yQmmR25gQ38mv0Ilo+3QXnd6E5UMCzdFdioe58lg8UBN?=
- =?us-ascii?Q?VxnFR1vz/Q2ezFjf38ff0CQVWI5W6xr4e30nvg3mvwsQSa9BJmCvn07KZgxf?=
- =?us-ascii?Q?sQ/lLAAcHPu18p57bdBWjLSymI4FgUu5W3ilPi6s4cJ8WoYvLK/ly5QM+6Mw?=
- =?us-ascii?Q?ZUVEhSAVTbk4Hs8MCzh+XO469g+5BwnJ3L4NsBkoEa5YNaIKxPHhjyd06t6b?=
- =?us-ascii?Q?vIYUgr/JlMbTPqen8vMKWlim73IWIgvq6KfsMcrXNC8OY47ABYppbtel+Zo2?=
- =?us-ascii?Q?jz3oT/ThqZ8fhE6bmsquq7Q6gQEiU97vXdH5fbDZLQoK96+PlT3QssgsIkXG?=
- =?us-ascii?Q?TghBVhZkQKy6Y/bh948GLq5J+M0EJrD2BcIpiL6cMoahRH0Ot4es/6vCIpM/?=
- =?us-ascii?Q?xWIQRO9RBXGoKpb/KdLj96L4ocjK67GggkWNNIbFF1At708KecKaTw=3D=3D?=
-x-forefront-antispam-report:
- CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:DM4PR12MB6158.namprd12.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(366016)(1800799024)(7416014)(376014)(7053199007)(38070700018);DIR:OUT;SFP:1101;
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0:
- =?us-ascii?Q?U5tXmG59Ib7PLoREB+diq0rLPpoM5UNYgrbML5MGrEew5pK2i9f9yAx9CqKV?=
- =?us-ascii?Q?r4XD8Bmvq4h1scUqAS23N5ESM+3VV2pJ7FINspM1ejxTwpXilbm36ep/MccU?=
- =?us-ascii?Q?/2XzPOOgrq6ncmhM9y5n2YFVMerjWIGkMbC+U7GQT6ZmjeNToXCiZ+AJuQv6?=
- =?us-ascii?Q?aKVzSNIKMd/tyf/c7LWZ1NQNgP4KzyXxkhqXvZOyb+Sf5pGXJfELZFjTOMSd?=
- =?us-ascii?Q?Fy3xY0X3eq0hzm+miYa4szQjbBMPlpq/bU3cuKqVzb/0Ibph0rpOdgMTcySf?=
- =?us-ascii?Q?X+bBjBfTuhm5GBBJEsJuq0tFcklF6At+GeOoCMQS1Y20IbYLqpc/L0mXh+Sm?=
- =?us-ascii?Q?dQ8B/9N/iML4l7sj7TcFmq4Zoyh4UbAzWczIPYYbXzVmPm8oYF6xOQHhbQbd?=
- =?us-ascii?Q?rUFBqARQFl639c1pxMKjfjVp6JbNnjXvycjL+JAUo0gzAFdEnZWFaimlaCWP?=
- =?us-ascii?Q?dg4SQT4SQblcsCUkEnxllLuegvlgJrAXV9cUoEJdCsVmUQgM6YVPqa1XQab2?=
- =?us-ascii?Q?oKSdv0s1bHJs16SNgeavdagfgl2/TpAqcAtJMX2uMajypkUPmIzceOIlE1rj?=
- =?us-ascii?Q?KFxOHmrK1wD1gAQ5sByXG++BpRr2WPmV8slj2xRwDvIi2GIxKdKSWJWLIWNk?=
- =?us-ascii?Q?wdovZrsac2PnV7871+Di0m1A5Sx/QbLjGPCb+YBMTvd+UNT/TjypFvb0Kddn?=
- =?us-ascii?Q?DkUkOFQLutPAeMJcL6vh2mewdf1wUEDIdFdKyBzFBEKm9PZf3Kxk5BjyclDV?=
- =?us-ascii?Q?D7susgEIAE1MoKARBeFOQuDCE5olRNfFdftk5GOoFJU2Vcb1OKx+K3fDFekX?=
- =?us-ascii?Q?8/MlEQsPWrL9jGg5t+2NFJ6TpDx3z2pPm6pPXm6tdAsVzxRbynXR7Racv1m+?=
- =?us-ascii?Q?0d/6IblVeXVi72gM6KZaIMmFInJJ3dBxMUpgqppL7Ugos6AEXm7Sv0c568zQ?=
- =?us-ascii?Q?255HKDsT1nf1O81S1RZAAhPC+gj+Xqy5S2WNfOzor8XbrIcifWYJRXBoqKhx?=
- =?us-ascii?Q?jtEBQVbVFx5evuNSxUbckEpfxyRSXw3tJIeYeA6Rr3Empo3FR3p/oclzfCtc?=
- =?us-ascii?Q?t2bhouRC5YjCK7Xud0vXcWwbHVpS6YfDwY/tbdowIUPXODY2B19CkmeNIYxL?=
- =?us-ascii?Q?0t2jNKX5qFjGqPV/Xa8r7kOqbN8UWJmDVlf7g4zLg6OMX1faiX6jKK71Vp5k?=
- =?us-ascii?Q?/6/na2czezdKa25kpHqwcAIke91yzAaOCNkk7xMxNadiy5MXBgkXgjnTypSS?=
- =?us-ascii?Q?LWE6FNsNyWzMfp0wIqmi8GzgZRx+GXYwuKIJ9argx3/78KMNY1WhfFUG331/?=
- =?us-ascii?Q?65JFE3KGCmVjSrYovSovz6GLZXHSVtowX6OchZUHBQWx0vrCF1JUe/GijkY2?=
- =?us-ascii?Q?BqHx28O+TVmrNlGIj5fJfeHbUYsRT8CGC0926tYPJ8TN69DW1yBsG307TjdI?=
- =?us-ascii?Q?hmetyr7IO5JUUa4KqVMhmx/NaND0g7yTkFQUgI+4SSIObIEJYz2RBHaWorEs?=
- =?us-ascii?Q?0rm5cHiWpvBn2gbm7AfqIWHI8tsOAxRfor1ge3PH83rjc6YA261h+4aW+FN3?=
- =?us-ascii?Q?5GRnv+5OGn2wGMLC17c=3D?=
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D06EB191499;
+	Mon,  7 Jul 2025 12:34:39 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=213.167.242.64
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1751891681; cv=none; b=bY0IkfiZQ4598IUY1Z+4hK4IJ/Fm9XpPhFE8lQhQkcnSuvOSXc5YSr2gb6AW2QvW6KDse8MpnD2t8TJ1b29chMZqPPdSc/jtE0XomctX6BpMPV5ENjlpiNo3GJEwE1dtNoWRjdz8ddoHr3E/HbeCtm/emNfBBGxIlqxMO8da3cw=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1751891681; c=relaxed/simple;
+	bh=M3ZTU3iNpEFfjU4DccJ0Zv/xQYSM5998hfl3u5BQRgc=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=rSQuvwl0POyJ7suujTetM9vc8e4tvEpXHN8uBA7EAo3NN5RYctN1gESS7L+RMHV3jpCS4kKWjT0TtKL4b1ljP7JvFr5kdY8MyuGUsswGEPjmXZP+WLLZRNSGSXKFUmEmGPCUgdbLy0NAGPc1Udfska7hiUC9+PUaKxvhTuhBuLY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ideasonboard.com; spf=pass smtp.mailfrom=ideasonboard.com; dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b=mfBd9+MH; arc=none smtp.client-ip=213.167.242.64
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ideasonboard.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ideasonboard.com
+Received: from pendragon.ideasonboard.com (81-175-209-231.bb.dnainternet.fi [81.175.209.231])
+	by perceval.ideasonboard.com (Postfix) with UTF8SMTPSA id EFD259CA;
+	Mon,  7 Jul 2025 14:34:10 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
+	s=mail; t=1751891651;
+	bh=M3ZTU3iNpEFfjU4DccJ0Zv/xQYSM5998hfl3u5BQRgc=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=mfBd9+MHx8NmcN+L+XFsNuKLD7H6yfl3whTaPZ6m675ONIZNLelTfGdVyvnrmNIUI
+	 yTOEx+XZ5+pacuky4J3Ns7p7cIYvsGCGOYALqzcKFfXwZHHit26blfLmawX0RL4ki6
+	 B03y9D9wew1p8ZDze/EPxrj9AQtu14Ce1VR/OXt0=
+Date: Mon, 7 Jul 2025 15:34:09 +0300
+From: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+To: Niklas =?utf-8?Q?S=C3=B6derlund?= <niklas.soderlund+renesas@ragnatech.se>
+Cc: Geert Uytterhoeven <geert+renesas@glider.be>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Marek Vasut <marek.vasut+renesas@mailbox.org>,
+	linux-renesas-soc@vger.kernel.org, devicetree@vger.kernel.org
+Subject: Re: [PATCH v3 4/5] arm64: dts: renesas: sparrow-hawk: Add overlay
+ for IMX462 on J1
+Message-ID: <20250707123409.GC1821@pendragon.ideasonboard.com>
+References: <20250704100734.3387856-1-niklas.soderlund+renesas@ragnatech.se>
+ <20250704100734.3387856-5-niklas.soderlund+renesas@ragnatech.se>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: DM4PR12MB6158.namprd12.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: f6245831-5e1a-4e1e-4ad8-08ddbd503e61
-X-MS-Exchange-CrossTenant-originalarrivaltime: 07 Jul 2025 12:17:29.8051
- (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 3dd8961f-e488-4e60-8e11-a82d994e183d
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: SLuO3a0bnrNjTc4834PvTQEkIHuDt3J8odX17eX4WD1DKWuJp6lkpvgAU9vnKNzfUDuLoYNgx/2zK3i9YpamDQ==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: SJ0PR12MB6685
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20250704100734.3387856-5-niklas.soderlund+renesas@ragnatech.se>
 
-[AMD Official Use Only - AMD Internal Distribution Only]
+Hi Niklas,
 
-Hi all,
+On Fri, Jul 04, 2025 at 12:07:33PM +0200, Niklas Söderlund wrote:
+> Add an overlay to connect an IMX462 camera sensor to the J1 connector.
+> The IMX462 utilizes 4 CSI-2 D-PHY lanes. This enables the video capture
+> pipeline behind the CSI40 Rx to be enabled to process images from the
+> sensor.
+> 
+> Signed-off-by: Niklas Söderlund <niklas.soderlund+renesas@ragnatech.se>
+> ---
+> * Changes since v2
+> - Use the same regulator for all three supplies.
+> - Drop 'status = "okay"' property for the fixed clock.
+> - Drop 'status = "okay"' property for the sensor node.
+> - Drop unused label for sensor node.
+> 
+> * Changes since v1
+> - Drop 'status = "okay"' property for the fixed regulators.
+> ---
+>  arch/arm64/boot/dts/renesas/Makefile          |   3 +
+>  ...8a779g3-sparrow-hawk-camera-j1-imx462.dtso | 112 ++++++++++++++++++
+>  2 files changed, 115 insertions(+)
+>  create mode 100644 arch/arm64/boot/dts/renesas/r8a779g3-sparrow-hawk-camera-j1-imx462.dtso
+> 
+> diff --git a/arch/arm64/boot/dts/renesas/Makefile b/arch/arm64/boot/dts/renesas/Makefile
+> index 12803c4fbc80..79d174077ddc 100644
+> --- a/arch/arm64/boot/dts/renesas/Makefile
+> +++ b/arch/arm64/boot/dts/renesas/Makefile
+> @@ -97,10 +97,13 @@ dtb-$(CONFIG_ARCH_R8A779G0) += r8a779g2-white-hawk-single-ard-audio-da7212.dtb
+>  DTC_FLAGS_r8a779g3-sparrow-hawk += -Wno-spi_bus_bridge
+>  dtb-$(CONFIG_ARCH_R8A779G0) += r8a779g3-sparrow-hawk.dtb
+>  dtb-$(CONFIG_ARCH_R8A779G0) += r8a779g3-sparrow-hawk-camera-j1-imx219.dtbo
+> +dtb-$(CONFIG_ARCH_R8A779G0) += r8a779g3-sparrow-hawk-camera-j1-imx462.dtbo
+>  dtb-$(CONFIG_ARCH_R8A779G0) += r8a779g3-sparrow-hawk-camera-j2-imx219.dtbo
+>  dtb-$(CONFIG_ARCH_R8A779G0) += r8a779g3-sparrow-hawk-fan-pwm.dtbo
+>  r8a779g3-sparrow-hawk-camera-j1-imx219-dtbs := r8a779g3-sparrow-hawk.dtb r8a779g3-sparrow-hawk-camera-j1-imx219.dtbo
+>  dtb-$(CONFIG_ARCH_R8A779G0) += r8a779g3-sparrow-hawk-camera-j1-imx219.dtb
+> +r8a779g3-sparrow-hawk-camera-j1-imx462-dtbs := r8a779g3-sparrow-hawk.dtb r8a779g3-sparrow-hawk-camera-j1-imx462.dtbo
+> +dtb-$(CONFIG_ARCH_R8A779G0) += r8a779g3-sparrow-hawk-camera-j1-imx462.dtb
+>  r8a779g3-sparrow-hawk-camera-j2-imx219-dtbs := r8a779g3-sparrow-hawk.dtb r8a779g3-sparrow-hawk-camera-j2-imx219.dtbo
+>  dtb-$(CONFIG_ARCH_R8A779G0) += r8a779g3-sparrow-hawk-camera-j2-imx219.dtb
+>  r8a779g3-sparrow-hawk-fan-pwm-dtbs := r8a779g3-sparrow-hawk.dtb r8a779g3-sparrow-hawk-fan-pwm.dtbo
+> diff --git a/arch/arm64/boot/dts/renesas/r8a779g3-sparrow-hawk-camera-j1-imx462.dtso b/arch/arm64/boot/dts/renesas/r8a779g3-sparrow-hawk-camera-j1-imx462.dtso
+> new file mode 100644
+> index 000000000000..63813ed216db
+> --- /dev/null
+> +++ b/arch/arm64/boot/dts/renesas/r8a779g3-sparrow-hawk-camera-j1-imx462.dtso
+> @@ -0,0 +1,112 @@
+> +// SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +/*
+> + * Device Tree Overlay for an IMX462 camera sensor in connector J1 on R-Car V4H
+> + * ES3.0 Sparrow Hawk board.
+> + *
+> + * Copyright 2025 Renesas Electronics Corp.
+> + * Copyright 2025 Niklas Söderlund <niklas.soderlund@ragnatech.se>
+> + */
+> +
+> +/dts-v1/;
+> +/plugin/;
+> +
+> +#include <dt-bindings/gpio/gpio.h>
+> +#include <dt-bindings/media/video-interfaces.h>
+> +
+> +&{/} {
+> +	clk_cam_j1: clk_cam_j1 {
+> +		compatible = "fixed-clock";
+> +		#clock-cells = <0>;
+> +		clock-frequency = <24000000>;
+> +	};
+> +
+> +	/* Page 29 / CSI_IF_CN / J1 */
+> +	reg_cam_j1: reg_cam_j1 {
+> +		compatible = "regulator-fixed";
+> +		regulator-name = "reg_cam_j1";
+> +		enable-active-high;
+> +		gpios = <&gpio0 1 GPIO_ACTIVE_HIGH>;
+> +	};
+> +};
+> +
+> +&i2c1 {
+> +	#address-cells = <1>;
+> +	#size-cells = <0>;
+> +	status = "okay";
+> +
+> +	cam@1a {
+> +		compatible = "sony,imx462lqr";
+> +		reg = <0x1a>;
+> +
+> +		clocks = <&clk_cam_j1>;
+> +		clock-names = "xclk";
+> +		clock-frequency = <37125000>;
 
-Just a gentle ping on this patch series.
+Usage of the clock-frequency property in camera sensors is deprecated.
+I'm working on patches that will fix that in the imx290 driver. In the
+meantime, you can apply this change for testing:
 
-Patch 0001 has received a Reviewed-by from Rob Herring, and I'm waiting for=
- feedback on 0002.
-Please let me know if any changes are needed.
+diff --git a/drivers/media/i2c/imx290.c b/drivers/media/i2c/imx290.c
+index fbf7eba3d71d..6a6cf37d62f9 100644
+--- a/drivers/media/i2c/imx290.c
++++ b/drivers/media/i2c/imx290.c
+@@ -1426,14 +1426,8 @@ static int imx290_get_regulators(struct device *dev, struct imx290 *imx290)
+ static int imx290_init_clk(struct imx290 *imx290)
+ {
+ 	u32 xclk_freq;
+-	int ret;
 
-Thanks,
-Sai Krishna
+-	ret = device_property_read_u32(imx290->dev, "clock-frequency",
+-				       &xclk_freq);
+-	if (ret) {
+-		dev_err(imx290->dev, "Could not get xclk frequency\n");
+-		return ret;
+-	}
++	xclk_freq = clk_get_rate(imx290->xclk);
 
-> -----Original Message-----
-> From: Sai Krishna Musham <sai.krishna.musham@amd.com>
-> Sent: Thursday, June 26, 2025 11:19 AM
-> To: bhelgaas@google.com; lpieralisi@kernel.org; kw@linux.com; mani@kernel=
-.org;
-> robh@kernel.org; krzk+dt@kernel.org; conor+dt@kernel.org; cassel@kernel.o=
-rg
-> Cc: lkp@intel.com; linux-pci@vger.kernel.org; devicetree@vger.kernel.org;=
- linux-
-> kernel@vger.kernel.org; Simek, Michal <michal.simek@amd.com>; Gogada, Bha=
-rat
-> Kumar <bharat.kumar.gogada@amd.com>; Havalige, Thippeswamy
-> <thippeswamy.havalige@amd.com>; Musham, Sai Krishna
-> <sai.krishna.musham@amd.com>
-> Subject: [PATCH v4 0/2] Add support for AMD Versal Gen 2 MDB PCIe RP PERS=
-T#
->
-> Add example usage of reset-gpios for PCIe RP PERST#
->
-> Add support for PCIe Root Port PERST# signal handling
->
-> Sai Krishna Musham (2):
->   dt-bindings: PCI: amd-mdb: Add example usage of reset-gpios for PCIe
->     RP PERST#
->   PCI: amd-mdb: Add support for PCIe RP PERST# signal handling
->
->  .../bindings/pci/amd,versal2-mdb-host.yaml    | 22 +++++++++
->  drivers/pci/controller/dwc/pcie-amd-mdb.c     | 46 ++++++++++++++++++-
->  2 files changed, 67 insertions(+), 1 deletion(-)
->
->
-> base-commit: 19272b37aa4f83ca52bdf9c16d5d81bdd1354494
-> --
-> 2.44.1
+ 	/* external clock must be 37.125 MHz or 74.25MHz */
+ 	switch (xclk_freq) {
+@@ -1449,12 +1443,6 @@ static int imx290_init_clk(struct imx290 *imx290)
+ 		return -EINVAL;
+ 	}
 
+-	ret = clk_set_rate(imx290->xclk, xclk_freq);
+-	if (ret) {
+-		dev_err(imx290->dev, "Could not set xclk frequency\n");
+-		return ret;
+-	}
+-
+ 	return 0;
+ }
+
+
+If you need to set the external clock rate, the assigned-clocks and
+assigned-clock-rates properties should be used instead. In this specific
+case, the external clock is a fixed frequency clock, so you can't change
+its rate. This leads to a second comment: the clock-frequency property
+of the clk_cam_j1 node doesn't match the frequency you list here.
+
+These comments apply to patch 5/5.
+
+> +
+> +		vdddo-supply = <&reg_cam_j1>;
+> +		vdda-supply = <&reg_cam_j1>;
+> +		vddd-supply = <&reg_cam_j1>;
+> +
+> +		orientation = <2>;
+> +		rotation = <0>;
+> +
+> +		port {
+> +			imx462_j1_out: endpoint {
+> +				link-frequencies = /bits/ 64 <222750000 148500000>;
+> +				data-lanes = <1 2 3 4>;
+> +				remote-endpoint = <&csi40_in>;
+> +			};
+> +		};
+> +	};
+> +};
+> +
+> +/* Page 29 / CSI_IF_CN */
+> +&csi40 {
+> +	status = "okay";
+> +
+> +	ports {
+> +		port {
+> +			csi40_in: endpoint {
+> +				bus-type = <MEDIA_BUS_TYPE_CSI2_DPHY>;
+> +				clock-lanes = <0>;
+> +				data-lanes = <1 2 3 4>;
+> +				remote-endpoint = <&imx462_j1_out>;
+> +			};
+> +		};
+> +	};
+> +};
+> +
+> +&isp0 {
+> +	status = "okay";
+> +};
+> +
+> +&vin00 {
+> +	status = "okay";
+> +};
+> +
+> +&vin01 {
+> +	status = "okay";
+> +};
+> +
+> +&vin02 {
+> +	status = "okay";
+> +};
+> +
+> +&vin03 {
+> +	status = "okay";
+> +};
+> +
+> +&vin04 {
+> +	status = "okay";
+> +};
+> +
+> +&vin05 {
+> +	status = "okay";
+> +};
+> +
+> +&vin06 {
+> +	status = "okay";
+> +};
+> +
+> +&vin07 {
+> +	status = "okay";
+> +};
+
+-- 
+Regards,
+
+Laurent Pinchart
 
