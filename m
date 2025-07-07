@@ -1,48 +1,48 @@
-Return-Path: <devicetree+bounces-193712-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-193717-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id A9A74AFB6D4
-	for <lists+devicetree@lfdr.de>; Mon,  7 Jul 2025 17:05:37 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 823F0AFB6DC
+	for <lists+devicetree@lfdr.de>; Mon,  7 Jul 2025 17:07:02 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 82A9C4A50AD
-	for <lists+devicetree@lfdr.de>; Mon,  7 Jul 2025 15:04:52 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 32D757AA2CC
+	for <lists+devicetree@lfdr.de>; Mon,  7 Jul 2025 15:05:36 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A904C2E174C;
-	Mon,  7 Jul 2025 15:04:47 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id F1A132E3361;
+	Mon,  7 Jul 2025 15:06:37 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="hn188aKx"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="WojO9HUQ"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7E7E42E11D9;
-	Mon,  7 Jul 2025 15:04:47 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C91E32BEC39;
+	Mon,  7 Jul 2025 15:06:36 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1751900687; cv=none; b=ePzS23Kg8mAF31Bja2AOQSRC78vIHzBomw0thHrG8BgaE80qT9yZxXJs1NrBbLTFRlESFh0QDYz6bX4HbucS28ngMJ/OWtYRJiD4DHOU7MtVMW/PMXdJaHTrkL5RZ28tDR+mcswMe/rReLywDukWKe5fXjJmXx7WdvZevyPdtD4=
+	t=1751900797; cv=none; b=XkS/bIVnPMUq+YwShaYXEDGNvF/xVBRTB6erx/kmkZbYml7U8D8CydZE8s/TNsDiWjuE++HLPQc7oOMkvC0xjXJNU4sfeIe5uOowBT1aStRkkE4V0SpXd8AAydWwhQDkMdWLHfkT1pg/QB0HMqjnmlue7gF1AU4JivA/EGMcFwY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1751900687; c=relaxed/simple;
-	bh=RhkJAKLlY4Yx5V4ar6nowx9DR12JvZ+qhTjq8dUu1S8=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=pTORrJ8M1KqNJsv/5DDH0DJK9YBTNGtFzPivfvY18mabSqOOtJrfbwfBrrciFfSHaKCgAkTVwjEgVL7XCFu52kYcEU/VhmCivQMBsP4vXXekEX7VAWZF0101O11mMJDcvf2EbjEhJTEC+XoGz8S0zsM1JOv2tyD0nLmCTHcBxLc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=hn188aKx; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id C94A4C4CEF1;
-	Mon,  7 Jul 2025 15:04:43 +0000 (UTC)
+	s=arc-20240116; t=1751900797; c=relaxed/simple;
+	bh=sYcFBrpnnl1CLUCgQkGP8a+tcIhX/H9KJmWT2MtG/0U=;
+	h=Message-ID:Date:MIME-Version:Subject:From:To:Cc:References:
+	 In-Reply-To:Content-Type; b=bcxnMQkvj10UhN5iNy5K1AeF1ap75VZ3a3bpmTueuV+Bithg49zkSjpZnjkcmcBEzJOwDSEbIux3fLVOYdNM9YCBWlH+KpGQKTnk927TM6f5s9s4biPQzrFrN5Sv6/S2axLYinANZTxsrnBmzaOsPvKhJ5+a+ArCU1IGA7wFo3o=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=WojO9HUQ; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id EB15CC4CEE3;
+	Mon,  7 Jul 2025 15:06:32 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1751900687;
-	bh=RhkJAKLlY4Yx5V4ar6nowx9DR12JvZ+qhTjq8dUu1S8=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=hn188aKx/v6jVmCYoDu49FSfZzv8h1+ZBs0lktN1enyIT4JftJI3UknxmE6cVI57E
-	 7IYglXZuK0rUQFSgXzde7MpueugfJNmodR/rH1iAhxY/QqEVJaWCRhF+JeoNXXR2He
-	 S4AJqXrOZmt/IKXmLJHLgkLJIWFggVuSMavdu33fc/cBTsNMlMBEp01rgOMjDl02Y0
-	 auUfrhxr7sjnDNVa0cpSjlEHFnPPnkpPLnijbr4U9c+duGCe+rTUsN58oD6EgGRH9e
-	 Zee82vrDwb06dVOCZWZv0SwVqNrthmMr3AJI8hyN9CU7xkpHeodQ2CjK5GUb2v17MQ
-	 jpZcbt69m327Q==
-Message-ID: <679e6fd2-967f-4057-9ccd-92a37ecc4819@kernel.org>
-Date: Mon, 7 Jul 2025 17:04:41 +0200
+	s=k20201202; t=1751900796;
+	bh=sYcFBrpnnl1CLUCgQkGP8a+tcIhX/H9KJmWT2MtG/0U=;
+	h=Date:Subject:From:To:Cc:References:In-Reply-To:From;
+	b=WojO9HUQAuPFgDMpOhPepbpHtdHKLdpXnhvufUzeyzEkHGzOexn2VukvSZOedHIvH
+	 vGwv6A9t8RnV20QtbgPUsj4ounqSx85Uf0UNd+otKI9tM7oxW2AijT72zkjZvc6UsB
+	 6hpP+D1hzCmTf1V7VpG5yUIsE26VbELj425R9uxq9tK5rkvcP8K2AjIaxONlh6VRRm
+	 tETj4jRVlg7mjClrtLiiWGHMYboL7drDrH5a4/bRQG3qXnINphVf9SD0IAtW1jBWy4
+	 XR9sU2JVx9vIj11nc6Ym4Owl/deZkRGmDSHXKQLRvh7Rqjd1oL2OG25GwRH+6NJvP4
+	 3X7JJw89v2rrA==
+Message-ID: <9b5d6bcf-f071-48e9-bcb7-8f0449a3d1d4@kernel.org>
+Date: Mon, 7 Jul 2025 17:06:31 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -52,6 +52,7 @@ MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
 Subject: Re: [PATCH net-next v2 2/7] net: airoha: npu: Add NPU wlan memory
  initialization commands
+From: Krzysztof Kozlowski <krzk@kernel.org>
 To: Lorenzo Bianconi <lorenzo@kernel.org>
 Cc: Andrew Lunn <andrew+netdev@lunn.ch>, "David S. Miller"
  <davem@davemloft.net>, Eric Dumazet <edumazet@google.com>,
@@ -65,7 +66,7 @@ References: <20250705-airoha-en7581-wlan-offlaod-v2-0-3cf32785e381@kernel.org>
  <20250705-airoha-en7581-wlan-offlaod-v2-2-3cf32785e381@kernel.org>
  <20250707-agile-aardwolf-of-politeness-29fead@krzk-bin>
  <aGt2L1e3xbWVoqOO@lore-desk>
-From: Krzysztof Kozlowski <krzk@kernel.org>
+ <679e6fd2-967f-4057-9ccd-92a37ecc4819@kernel.org>
 Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
  xsFNBFVDQq4BEAC6KeLOfFsAvFMBsrCrJ2bCalhPv5+KQF2PS2+iwZI8BpRZoV+Bd5kWvN79
@@ -110,45 +111,50 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  jWt87ecuHlpL3uuQ0ZZNWqHgZoQLXoqC2ZV5KrtKWb/jyiFX/sxSrodALf0zf+tfHv0FZWT2
  zHjUqd0t4njD/UOsuIMOQn4Ig0SdivYPfZukb5cdasKJukG1NOpbW7yRNivaCnfZz6dTawXw
  XRIV/KDsHQiyVxKvN73bThKhONkcX2LWuD928tAR6XMM2G5ovxLe09vuOzzfTWQDsm++9UKF a/A=
-In-Reply-To: <aGt2L1e3xbWVoqOO@lore-desk>
+In-Reply-To: <679e6fd2-967f-4057-9ccd-92a37ecc4819@kernel.org>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 07/07/2025 09:24, Lorenzo Bianconi wrote:
->> On Sat, Jul 05, 2025 at 11:09:46PM +0200, Lorenzo Bianconi wrote:
->>> +
->>>  struct airoha_npu *airoha_npu_get(struct device *dev, dma_addr_t *stats_addr)
->>>  {
->>>  	struct platform_device *pdev;
->>> @@ -493,6 +573,7 @@ static int airoha_npu_probe(struct platform_device *pdev)
->>>  	npu->ops.ppe_deinit = airoha_npu_ppe_deinit;
->>>  	npu->ops.ppe_flush_sram_entries = airoha_npu_ppe_flush_sram_entries;
->>>  	npu->ops.ppe_foe_commit_entry = airoha_npu_foe_commit_entry;
->>> +	npu->ops.wlan_init_reserved_memory = airoha_npu_wlan_init_memory;
+On 07/07/2025 17:04, Krzysztof Kozlowski wrote:
+> On 07/07/2025 09:24, Lorenzo Bianconi wrote:
+>>> On Sat, Jul 05, 2025 at 11:09:46PM +0200, Lorenzo Bianconi wrote:
+>>>> +
+>>>>  struct airoha_npu *airoha_npu_get(struct device *dev, dma_addr_t *stats_addr)
+>>>>  {
+>>>>  	struct platform_device *pdev;
+>>>> @@ -493,6 +573,7 @@ static int airoha_npu_probe(struct platform_device *pdev)
+>>>>  	npu->ops.ppe_deinit = airoha_npu_ppe_deinit;
+>>>>  	npu->ops.ppe_flush_sram_entries = airoha_npu_ppe_flush_sram_entries;
+>>>>  	npu->ops.ppe_foe_commit_entry = airoha_npu_foe_commit_entry;
+>>>> +	npu->ops.wlan_init_reserved_memory = airoha_npu_wlan_init_memory;
+>>>
+>>> I cannot find in your code single place calling this (later you add a
+>>> wrapper... which is not called either).
+>>>
+>>> All this looks like dead code...
 >>
->> I cannot find in your code single place calling this (later you add a
->> wrapper... which is not called either).
->>
->> All this looks like dead code...
+>> As pointed out in the commit log, these callbacks will be used by MT76 driver
+>> to initialize the NPU reserved memory and registers during driver probe in
+>> order to initialize the WiFi offloading. Since MT76 patches are going via
+>> the wireless tree, I needed to add these callbacks first.
 > 
-> As pointed out in the commit log, these callbacks will be used by MT76 driver
-> to initialize the NPU reserved memory and registers during driver probe in
-> order to initialize the WiFi offloading. Since MT76 patches are going via
-> the wireless tree, I needed to add these callbacks first.
+> Cover letter does not link to your NPU patchset. You cannot add dead
+> code to the kernel and now it is pure dead code. Post your user - in
+> this or separate patchset.
+> 
+> Your explanation of dependency is also confusing. If these are added to
+> wireless tree (considering last experience how they rebase and cannot
 
-Cover letter does not link to your NPU patchset. You cannot add dead
-code to the kernel and now it is pure dead code. Post your user - in
-this or separate patchset.
+... I think I mixed, that was Bluetooth tree which had rebases and
+messed cross tree, not wifi. Apologies for confusion.
 
-Your explanation of dependency is also confusing. If these are added to
-wireless tree (considering last experience how they rebase and cannot
-easily handle cross tree merges), how does it solve your problem? You
-will have it in one tree but not in the other, so still nothing...
-That's anyway separate problem, because main issue is you add code which
-we cannot even verify how it is being used.
-
-So far I see ABI break, but without user cannot judge. And that's the
-hard reason this cannot be accepted.
+> easily handle cross tree merges), how does it solve your problem? You
+> will have it in one tree but not in the other, so still nothing...
+> That's anyway separate problem, because main issue is you add code which
+> we cannot even verify how it is being used.
+> 
+> So far I see ABI break, but without user cannot judge. And that's the
+> hard reason this cannot be accepted.
 
 Best regards,
 Krzysztof
