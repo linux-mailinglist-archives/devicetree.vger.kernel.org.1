@@ -1,59 +1,59 @@
-Return-Path: <devicetree+bounces-193517-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-193518-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7D180AFAC0E
-	for <lists+devicetree@lfdr.de>; Mon,  7 Jul 2025 08:44:31 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id B6566AFAC14
+	for <lists+devicetree@lfdr.de>; Mon,  7 Jul 2025 08:46:33 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 49A011899E39
-	for <lists+devicetree@lfdr.de>; Mon,  7 Jul 2025 06:44:48 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id AEB8A7A90B8
+	for <lists+devicetree@lfdr.de>; Mon,  7 Jul 2025 06:45:07 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C474D27A10D;
-	Mon,  7 Jul 2025 06:44:26 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1CC4E27A92A;
+	Mon,  7 Jul 2025 06:46:20 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="paua9nDR"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="iBWDFjlB"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 98902263889;
-	Mon,  7 Jul 2025 06:44:26 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E26ED27A918;
+	Mon,  7 Jul 2025 06:46:19 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1751870666; cv=none; b=iO0yPY5wQC/tgfVwYqHBbVLbAKV9ba7hQiz2rYSFe9O1azsXwIDtK+sPN4Zuj/ZpPF26YcPHBWNZaZGGbfrOzdFAxsTc3HyQbUVai8pZoy43v3n2ilUiOab13BoHraW98vf4YtgqWkG4UjeBQj+tNNa7IJ7If894cKrolzOe63w=
+	t=1751870780; cv=none; b=IRZ6S8ITPGEiXhOXZ0wUC2gLClzfEl1Bsa959zONcvgsggo7NbNwaMaEoeGnbak2/Cef9HLfda37TYtcVcvr5GVVtjBBr3sOpThtgpw7N6xu0OipKnYVZ4rzfXuvaWFfarm5q5tYD5q2k40vUfIbrEKSWXfdxKqQ6OMkkiyBKiM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1751870666; c=relaxed/simple;
-	bh=SJ8/47tbP+hzfpsBFEyc7qON0FE+gBuhowLxlpL7PCI=;
+	s=arc-20240116; t=1751870780; c=relaxed/simple;
+	bh=3mMLUGq667LvTYPmJqf0R3Fs9bpeNw58j22K0qFkatw=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=HKK06lEUeZsJ4JRNMRpbXZ1Pji3/gzTEqL1gd3rJyNGHy+txvBQr7xDlbCDB6V6tmRp3v2ay0kTlJ8U7h+HAZB3cwtI7IQYXQ03IhwPowAKZqo2x7T4lA8VLKw7jOTgHFfRy+d1njRkX7m23nC+jMt4IlbqDTA3P2Ri23xPATc4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=paua9nDR; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 8A38BC4CEE3;
-	Mon,  7 Jul 2025 06:44:25 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=bUKyAqXfYH2Rpn9QQ30YbHsHpWPKxkHPkO9bhWrDItBxhyNv4vCugKKWrqiyDj4neMFuoQpj0URTnqzzxgm92lmy1YEvHmtwz8QdFz2tVh02xLz1UV72vvrXI1qhPFMNqswQcz/esPAnk3DBM1a1EoVGII6e/xZadVLn0wZ9FyM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=iBWDFjlB; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id DF30BC4CEE3;
+	Mon,  7 Jul 2025 06:46:18 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1751870666;
-	bh=SJ8/47tbP+hzfpsBFEyc7qON0FE+gBuhowLxlpL7PCI=;
+	s=k20201202; t=1751870779;
+	bh=3mMLUGq667LvTYPmJqf0R3Fs9bpeNw58j22K0qFkatw=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=paua9nDRJNTPwe+tg/mKW34+Qh5THlW+i+LW7ilwSjGod4oTZ7J8Abnlhefoq14li
-	 c9EPbTFNfULQLpYijxRXWgrjWAPszmO1G0cGiw1xXePyje1m2p3zArUCoi/Ekql/Iu
-	 R3Gfln2XV98dpDBw1CzvIU1mVGRODJabr4xi9d+ipN4RyA5xq5PaMmjFoHIzuu3tdy
-	 CoxULU0Tt76XT/Gsfk09hDthBnGTvWHumNAWCrEWg399Qh5q91juzzvj1sZ2XXEAej
-	 r5MwMGhG7pbBwG5qwNAw4S8xpTjArI8X5AamccLHnPcj0tqPqcjcqTk0qazWTfuCYT
-	 yjq8IfEczfKNQ==
-Date: Mon, 7 Jul 2025 08:44:23 +0200
+	b=iBWDFjlBJ1XYPU3rdiNgM8Sz93wOwSI2GhNllcVQXRUgUiW2QEbGCmiYBwdiHQd1/
+	 jsw0Q8J7um77KQxSCaBIjIdC+a/UKSMaBrIXFFxtwCO18+lgfne/uOkWDS0uWs1Beu
+	 RuJUTGziQHbZ6eVOUIIYTCPsYMpaWEnKkEYMNvehWs5TgNyaZDZwRjMivKYBu3KjGy
+	 AtdT9vojGAL8kani6hqpd9cNH1vXQcETZdw53+WL0IAth22k15uZF2Jqsz4vcfaS+q
+	 2VbBEfdHMIyBGZ73Jo6IRqsJAQU4DeGOYmhmtqG9Pf90X4wnBU2iZjuf2h+sVmMVzi
+	 zkJFdUvQhiDhw==
+Date: Mon, 7 Jul 2025 08:46:16 +0200
 From: Krzysztof Kozlowski <krzk@kernel.org>
-To: Waqar Hameed <waqar.hameed@axis.com>
-Cc: Jonathan Cameron <jic23@kernel.org>, 
-	David Lechner <dlechner@baylibre.com>, Nuno =?utf-8?B?U8Oh?= <nuno.sa@analog.com>, 
-	Andy Shevchenko <andy@kernel.org>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, kernel@axis.com, 
-	linux-iio@vger.kernel.org, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v3 2/3] dt-bindings: iio: proximity: Add Nicera D3-323-AA
- PIR sensor
-Message-ID: <20250707-curvy-fat-ostrich-00bc6a@krzk-bin>
-References: <cover.1751636734.git.waqar.hameed@axis.com>
- <19a2744cebaee57fe5349986094168524baa9838.1751636734.git.waqar.hameed@axis.com>
+To: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+Cc: jianjun.wang@mediatek.com, ryder.lee@mediatek.com, bhelgaas@google.com, 
+	lpieralisi@kernel.org, kwilczynski@kernel.org, manivannan.sadhasivam@linaro.org, 
+	robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org, matthias.bgg@gmail.com, 
+	linux-pci@vger.kernel.org, linux-mediatek@lists.infradead.org, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org, kernel@collabora.com
+Subject: Re: [PATCH v2 2/3] dt-bindings: PCI: mediatek-gen3: Add support for
+ MT6991/MT8196
+Message-ID: <20250707-large-nocturnal-dormouse-c93deb@krzk-bin>
+References: <20250703120847.121826-1-angelogioacchino.delregno@collabora.com>
+ <20250703120847.121826-3-angelogioacchino.delregno@collabora.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -62,17 +62,27 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <19a2744cebaee57fe5349986094168524baa9838.1751636734.git.waqar.hameed@axis.com>
+In-Reply-To: <20250703120847.121826-3-angelogioacchino.delregno@collabora.com>
 
-On Fri, Jul 04, 2025 at 06:14:38PM +0200, Waqar Hameed wrote:
-> Nicera D3-323-AA is a PIR sensor for human detection. It has two GPIOs
-> for detection and data communication.
-> 
-> Signed-off-by: Waqar Hameed <waqar.hameed@axis.com>
-> ---
->  .../iio/proximity/nicera,d3323aa.yaml         | 62 +++++++++++++++++++
->  1 file changed, 62 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/iio/proximity/nicera,d3323aa.yaml
+On Thu, Jul 03, 2025 at 02:08:46PM +0200, AngeloGioacchino Del Regno wrote:
+> +    then:
+> +      properties:
+> +        clocks:
+> +          minItems: 6
+> +
+> +        clock-names:
+> +          items:
+> +            - const: pl_250m
+> +            - const: tl_26m
+> +            - const: bus
+> +            - const: low_power
+> +            - const: peri_26m
+> +            - const: peri_mem
+> +
+> +        resets:
+
+minItems: 2 is needed (that's a change since some time, comparing to
+what was year or earlier)
 
 Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
