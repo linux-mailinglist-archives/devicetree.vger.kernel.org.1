@@ -1,195 +1,98 @@
-Return-Path: <devicetree+bounces-193708-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-193711-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 05BB4AFB6BA
-	for <lists+devicetree@lfdr.de>; Mon,  7 Jul 2025 17:02:59 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id A8CEBAFB6D2
+	for <lists+devicetree@lfdr.de>; Mon,  7 Jul 2025 17:05:19 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 8E73A1AA5F25
-	for <lists+devicetree@lfdr.de>; Mon,  7 Jul 2025 15:03:10 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 1291B4A4200
+	for <lists+devicetree@lfdr.de>; Mon,  7 Jul 2025 15:04:27 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2B81F2E1C7A;
-	Mon,  7 Jul 2025 15:02:39 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="J9t1rKcu"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 126F52E1741;
+	Mon,  7 Jul 2025 15:04:23 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wr1-f47.google.com (mail-wr1-f47.google.com [209.85.221.47])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from frasgout.his.huawei.com (frasgout.his.huawei.com [185.176.79.56])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 32DBC2E1C65
-	for <devicetree@vger.kernel.org>; Mon,  7 Jul 2025 15:02:35 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.47
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E5F5E2BEC39;
+	Mon,  7 Jul 2025 15:04:19 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.176.79.56
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1751900559; cv=none; b=BjvXynfWCEqojuTxJhypLEsPHN0d5iGxZmrcWGkNzLfTGdkazdD2ysm/HZFkA9xoXkZ5sIG262SThL6xnnhN9P6isM12fFQ0B58K4MAalPSWCvFZVKOmPJMzdbTKvxwj/I5zavxIh62G+VTj+vL8bj1Zz9UuYHGQMkbFRKabDqo=
+	t=1751900662; cv=none; b=MfHbpY7xYWtb8yqxDeITp93EyeBxfkoMw9LBNe5moE6N5mVfdIiRmA36HwbIBMVbnJFlZZ4QBBsbH8wM2NUYhYHvSAqeK2ataNRJa4RsDgXHegMOKkO12V/fpENAd8B32Bew5dMk9K8DONWa5ThLn0OWPT7ZqTn6GY3aSvkQqZg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1751900559; c=relaxed/simple;
-	bh=i7sfTjCF/E/d1O9h/ifiO3nu9T3lIoOxDIwxNqiTT+k=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=WpRVg+0nxdjxrmNNrK3r8RZqATLAWijvIZYzdAupJzBMiQQLRTe/HagBjlxysZAy/9CUKMdwGCvcV/fjC7uWm3WR/qBAy4d1xAeJ0tBeppj6k33NUV1ZZrjb/kb4M+DvL82dAr80JZkVIyI6DaiNZpbgCY3wdvrFyOywZxKriuU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=J9t1rKcu; arc=none smtp.client-ip=209.85.221.47
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-wr1-f47.google.com with SMTP id ffacd0b85a97d-3a548a73ff2so3175757f8f.0
-        for <devicetree@vger.kernel.org>; Mon, 07 Jul 2025 08:02:35 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1751900554; x=1752505354; darn=vger.kernel.org;
-        h=in-reply-to:content-transfer-encoding:content-disposition
-         :mime-version:references:message-id:subject:cc:to:from:date:from:to
-         :cc:subject:date:message-id:reply-to;
-        bh=fl/J0VEiX3HHsALj1wh9p6wJy+RRju7SSWQFr2CSlj8=;
-        b=J9t1rKcuumXHh3RwlHIcBxko2s38vYv+1mxqpBN1hWD6jrq+oPd8zsOxJ+VrBO4JOZ
-         ethj7Va+QDYm2nz/BQbp+dGBK0nV1W5BcizGCbQwwG7pGDArkg85uuQv2j3UHPAErxmh
-         XLx0sJqeYWc26EeSDbyhHVJaYQ0eSzxscmjeA0IkWOOjNSrUbYusX9Gu/wIAGjl0HY7E
-         p9t2gwfGX/UcLQTSSATCeCMW0cx3j9z8zIlj4SigZnGO3VzEHs56jw/Y+ewI82LV+K8d
-         kxRbFmn0urW+j5xLTO9F3lyfvhXteM2s1g/iVYfrAzQxzlPOiYPNDCY0gmYsLYJKm8/J
-         ul7w==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1751900554; x=1752505354;
-        h=in-reply-to:content-transfer-encoding:content-disposition
-         :mime-version:references:message-id:subject:cc:to:from:date
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=fl/J0VEiX3HHsALj1wh9p6wJy+RRju7SSWQFr2CSlj8=;
-        b=b2s3p3vMoaVBVMMGU3w+JTNbHZxHc0N3uAqL3rqA8g6lNzfAu1ozqP3DCMfGjwJnoZ
-         TaFAO3GxFACp8+VyXKUYJlwPAEqNzRlEL0PEkbSpCBHvcJ4xVbpppEID/SFOnMiaxtFH
-         5R05Mr6jcYbYkR2fVDO+uDYBOlBUS0v70Uhw2RUb7Z1lYo91aLWyAQNqVzVjGaBHs2Pl
-         NdmytsCq+iemSnEjmyf2xYifkAhHFWCjcHQhC6TLZ2qzRbCSoVmdd2ocY61zryE9oGtD
-         MbZruvO/sjMi7+AVzbbnhjl0XoGmJof3Eldv5+W7EXwbMOJbvUg5TSQDFkqU7E8G7GdF
-         2BkQ==
-X-Forwarded-Encrypted: i=1; AJvYcCX+YDD/d1UdTRXIRmDkS09LzemVymRpNP/9y9JOWLJZecLt+qiZLVdYkBYU4ajzhyRIW/Se5eClg+oA@vger.kernel.org
-X-Gm-Message-State: AOJu0Yz2yBBz+kU7FKt8Osz4E9SZB1EEgUXq0f8E9xJHvCX6TUGO68ry
-	/iuqIohnJP9OaSODYV9Pys8UJ1eqCYR34xlAfSI+pTK8hCw5YTd0e4Bj/8CMAtsJKEw=
-X-Gm-Gg: ASbGncuNLZbRnjfsECg4YpXR7NNlHTC0DM00T35UDA3+v0clFmIKs+vwoHRxc6xuWoE
-	87/5LpQQMUAJNT/z945iNM87YC6LruKd21qkUgldnzaddcdBvpi26P0x8lmldpUrQMAX/2GmOpr
-	Mr09QlPAHHqVxv+Px8K1SZf9yoTBLIcqu3/jMgJuw4p8h9MYRfaFTzW3zemnoCioZMWmm7cT1Ny
-	3DBpOQW1FCWZR9BM0LVzkxCixxvPP3Rt9FjXR7HpCglNfjHFooxJEZ3eGlxCemCVan3G+7WuKYe
-	N0jMp2+mH1ywW4C+lUnqZXeSYUrXntC0SAiHhH/YIXDkyg3mJbAdQP2QRVFgOoF09qYlXxvaK3F
-	NTdi8HESIDvBVf97FZWgPLaZY
-X-Google-Smtp-Source: AGHT+IFD1Qu0LW6oYZ+Lwxtvfg4kO82KZunY4+lyRPiPRJMlKuQa4HwFYYu7m5svgNaruht1xrRyug==
-X-Received: by 2002:a05:6000:2f8a:b0:3a6:d2ae:1503 with SMTP id ffacd0b85a97d-3b49aa74223mr6787123f8f.34.1751900551836;
-        Mon, 07 Jul 2025 08:02:31 -0700 (PDT)
-Received: from mai.linaro.org (146725694.box.freepro.com. [130.180.211.218])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-3b471b966c0sm10636203f8f.52.2025.07.07.08.02.30
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 07 Jul 2025 08:02:31 -0700 (PDT)
-Date: Mon, 7 Jul 2025 17:02:29 +0200
-From: Daniel Lezcano <daniel.lezcano@linaro.org>
-To: William McVicker <willmcvicker@google.com>
-Cc: Arnd Bergmann <arnd@arndb.de>,
-	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-	linux-kernel@vger.kernel.org,
-	Lorenzo Pieralisi <lorenzo.pieralisi@linaro.org>,
-	Hans de Goede <hansg@kernel.org>,
-	Ilpo =?iso-8859-1?Q?J=E4rvinen?= <ilpo.jarvinen@linux.intel.com>,
-	Bryan O'Donoghue <bryan.odonoghue@linaro.org>,
-	Rob Herring <robh@kernel.org>, Thomas Gleixner <tglx@linutronix.de>,
-	John Stultz <jstultz@google.com>, Stephen Boyd <sboyd@kernel.org>,
-	Saravana Kannan <saravanak@google.com>,
-	Linux-Arch <linux-arch@vger.kernel.org>,
-	"open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE" <devicetree@vger.kernel.org>
-Subject: Re: [PATCH RFC] timer: of: Create a platform_device before the
- framework is initialized
-Message-ID: <aGvhhcCd2rIuY4Zd@mai.linaro.org>
-References: <20250625085715.889837-1-daniel.lezcano@linaro.org>
- <aGMjfxIvbCkyR5rw@google.com>
- <27644998-b089-44ae-ae5f-95f4d7cbe756@app.fastmail.com>
- <aGQnOMDyBckks78k@google.com>
- <92daf35f-9240-450f-a05f-b7869fafeb6b@app.fastmail.com>
- <aGRhIrZq1tMR8yGO@google.com>
+	s=arc-20240116; t=1751900662; c=relaxed/simple;
+	bh=j9ddN2B76uhAFmyN3iQu/vGSTPpgGKiei0hV4HiWoMk=;
+	h=From:To:CC:Subject:Date:Message-ID:MIME-Version:Content-Type; b=UK9GmTtlYyy7EgaeVVGz7LUKntVALIaC/cKrXWxiOt+x3mcwUbYKJgmTAT+g408POoMN543gjY0HiQCa0QzENLmNZZOMO5QGNIs8lVwov727fiiiGfSYL07t3s6/0AqdyugFjc5hdTB3NCsERfYL1r2kCBctbefbzBIz844sLr0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=huawei.com; spf=pass smtp.mailfrom=huawei.com; arc=none smtp.client-ip=185.176.79.56
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=huawei.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=huawei.com
+Received: from mail.maildlp.com (unknown [172.18.186.216])
+	by frasgout.his.huawei.com (SkyGuard) with ESMTP id 4bbSD24DJBz6M573;
+	Mon,  7 Jul 2025 23:03:14 +0800 (CST)
+Received: from frapeml500003.china.huawei.com (unknown [7.182.85.28])
+	by mail.maildlp.com (Postfix) with ESMTPS id 3630C1402EB;
+	Mon,  7 Jul 2025 23:04:17 +0800 (CST)
+Received: from a2303103017.china.huawei.com (10.45.147.207) by
+ frapeml500003.china.huawei.com (7.182.85.28) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.1.2507.39; Mon, 7 Jul 2025 17:04:15 +0200
+From: Alireza Sanaee <alireza.sanaee@huawei.com>
+To: <mark.rutland@arm.com>, <robh@kernel.org>
+CC: <coresight@lists.linaro.org>, <devicetree@vger.kernel.org>,
+	<dianders@chromium.org>, <james.clark@linaro.org>,
+	<jonathan.cameron@huawei.com>, <krzk@kernel.org>,
+	<linux-arm-kernel@lists.infradead.org>, <linux-kernel@vger.kernel.org>,
+	<linux-perf-users@vger.kernel.org>, <linuxarm@huawei.com>,
+	<mike.leach@linaro.org>, <ruanjinjie@huawei.com>, <saravanak@google.com>,
+	<shameerali.kolothum.thodi@huawei.com>, <suzuki.poulose@arm.com>
+Subject: [PATCH 0/5] Refactoring finding CPU phandles in DT
+Date: Mon, 7 Jul 2025 16:04:09 +0100
+Message-ID: <20250707150414.620-1-alireza.sanaee@huawei.com>
+X-Mailer: git-send-email 2.34.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <aGRhIrZq1tMR8yGO@google.com>
+Content-Type: text/plain
+X-ClientProxiedBy: lhrpeml100004.china.huawei.com (7.191.162.219) To
+ frapeml500003.china.huawei.com (7.182.85.28)
 
-On Tue, Jul 01, 2025 at 03:28:50PM -0700, Will McVicker wrote:
-> On 07/01/2025, Arnd Bergmann wrote:
-> > On Tue, Jul 1, 2025, at 20:21, William McVicker wrote:
-> > > On 07/01/2025, Arnd Bergmann wrote:
-> > >> On Tue, Jul 1, 2025, at 01:53, William McVicker wrote:
-> > >> >> @@ -1550,6 +1553,8 @@ typedef void (*of_init_fn_1)(struct device_node *);
-> > >> >>  		_OF_DECLARE(table, name, compat, fn, of_init_fn_1_ret)
-> > >> >>  #define OF_DECLARE_2(table, name, compat, fn) \
-> > >> >>  		_OF_DECLARE(table, name, compat, fn, of_init_fn_2)
-> > >> >> +#define OF_DECLARE_PDEV(table, name, compat, fn) \
-> > >> >> +		_OF_DECLARE(table, name, compat, fn, of_init_fn_pdev)
-> > >> >
-> > >> > To support auto-module loading you'll need to also define the
-> > >> > MODULE_DEVICE_TABLE() as part of TIMER_OF_DECLARE_PDEV().
-> > >> >
-> > >> > I haven't tested the patch yet, but aside from my comment above it LGTM.
-> > >> 
-> > >> The patch doesn't actually have a module_platform_driver_probe()
-> > >> yet either, so loading the module wouldn't actually do anything.
-> > >
-> > > Probing with TIMER_OF_DECLARE() just consists of running the match table's data
-> > > function pointer. So that is covered by Daniel's patch AFAICT. However, it's
-> > > not clear if this implementation allows you to load the kernel module after the
-> > > device boots? For example, will the Exynos MCT timer probe if I load the
-> > > exynos_mct driver after the device boots? My guess is you'd need to register
-> > > the device as a platform device with a dedicated probe function to handle that.
-> > 
-> > Yes, that's what I meant: the loadable module needs a module_init()
-> > function that registers the actual platform driver in order for the
-> > probe function to be called. module_platform_driver_probe()
-> > is the way I would suggest to arrange it, though that is just a
-> > convenience helper around the registration.
-> > 
-> > The platform device at that point is created by the normal DT scan,
-> > so there is no need to create an extra one. On the contrary, in case
-> > we successfully call the probe function from timer_init(), we end
-> > up with two separate 'struct platform_device' instances 
-> > 
-> >      Arnd
-> 
-> So then does it even make sense to have `timer_pdev_of_probe()` if it's very
-> unlikely that the module will even be loaded by the time `timer_probe()` runs?
-> Would it make sense for TIMER_OF_DECLARE_PDEV() to just have a special else case
-> with the module boiler plate stuff for when the driver is built as a module?
-> Something like:
-> 
-> --->o---
-> 
-> #if !defined(MODULE)
-> #define TIMER_OF_DECLARE_PDEV(...) TIMER_OF_DECLARE(...)
-> #else
-> static int timer_pdev_probe(struct platform_device *pdev)
-> {
-> 	struct device *dev = &pdev->dev;
-> 	int (*timer_init)(struct device_node *np);
-> 
-> 	timer_init = of_device_get_match_data(dev);
-> 	if (!timer_init)
-> 		return -EINVAL;
-> 
-> 	return timer_init(dev->of_node);
-> }
-> 
-> #define TIMER_OF_DECLARE_PDEV(...) \
-> 	OF_DECLARE_PDEV(timer_pdev, name, compat, fn) \ # make this define MODULE_DEVICE_TABLE() as well
-> 	<create struct platform_driver instance> \
-> 	<call module_platform_driver_probe(..., timer_pdev_probe)
-> #endif
-> 
-> --->o---
+This series refactors the way CPU IDs are retrieved from the device
+tree.
 
-Yes, that is exactly the goal :)
+Usually, there is a for loop that goes over every single CPU that can be
+avoided. This also reduces the amount of NULL pointer checks in drivers.
+I have abstracted away that loop and introduced a new function
+(of_cpu_node_to_id) for this.
 
-The RFC was just for the timer-probe function, I was unsure about its
-validity. Let me resend with all the changes for the [no ] module
-support.
+This patchset is a subset of [1], where I removed content and patches
+relevant to hyper-threaded cores for DT. Based on the discussion, the
+code refactor is still useful, hence this patchset.
 
---
+[1] https://lore.kernel.org/all/20250512080715.82-1-alireza.sanaee@huawei.com/
 
- <http://www.linaro.org/> Linaro.org │ Open source software for ARM SoCs
+Alireza Sanaee (5):
+  of: add infra for finding CPU id from phandle
+  arch_topology: update CPU map to use the new API
+  coresight: cti: Use of_cpu_phandle_to_id for grabbing CPU id
+  coresight: Use of_cpu_phandle_to_id for grabbing CPU id
+  perf/arm-dsu: refactor cpu id retrieval via new API
+    of_cpu_phandle_to_id
 
-Follow Linaro:  <http://www.facebook.com/pages/Linaro> Facebook |
-<http://twitter.com/#!/linaroorg> Twitter |
-<http://www.linaro.org/linaro-blog/> Blog
+ drivers/base/arch_topology.c                  | 12 ++++----
+ .../coresight/coresight-cti-platform.c        | 15 ++--------
+ .../hwtracing/coresight/coresight-platform.c  | 14 ++-------
+ drivers/of/cpu.c                              | 29 +++++++++++++++++++
+ drivers/perf/arm_dsu_pmu.c                    |  6 ++--
+ include/linux/of.h                            |  9 ++++++
+ 6 files changed, 51 insertions(+), 34 deletions(-)
+
+-- 
+2.43.0
+
 
