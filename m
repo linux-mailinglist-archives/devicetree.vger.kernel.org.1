@@ -1,81 +1,90 @@
-Return-Path: <devicetree+bounces-193629-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-193631-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 19C69AFB100
-	for <lists+devicetree@lfdr.de>; Mon,  7 Jul 2025 12:18:46 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id DB3ECAFB107
+	for <lists+devicetree@lfdr.de>; Mon,  7 Jul 2025 12:20:21 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 236B54A20F1
-	for <lists+devicetree@lfdr.de>; Mon,  7 Jul 2025 10:18:42 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 2DB633AE31E
+	for <lists+devicetree@lfdr.de>; Mon,  7 Jul 2025 10:19:55 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 25EF92980AC;
-	Mon,  7 Jul 2025 10:18:26 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id AA6D028E576;
+	Mon,  7 Jul 2025 10:20:17 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=fairphone.com header.i=@fairphone.com header.b="vWJq6nMh"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="gAB+mJU5"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ed1-f51.google.com (mail-ed1-f51.google.com [209.85.208.51])
+Received: from mail-wm1-f52.google.com (mail-wm1-f52.google.com [209.85.128.52])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5E24A2957CE
-	for <devicetree@vger.kernel.org>; Mon,  7 Jul 2025 10:18:24 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.51
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 04BB4262FF5;
+	Mon,  7 Jul 2025 10:20:15 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.52
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1751883506; cv=none; b=Zc5L/H4Bv7w4TpODj1LoybtomRYD9mj97wQYCScXqhgoCaIG8Gi5jxLxrMifdoF1O7aemTVroW/xBDcxhHb1721lhDfmL43WhFKSPr+fIIGKOZzj+TTUmxgp1IJvH5neR+S2J2j/8xeqozBTfnd00+xNKHmbW6Tkbvt3A07Jha0=
+	t=1751883617; cv=none; b=SItKWRN15mu2/MoWmGO2MzJ2MrJjfe8etFGF4/bsWV3tAWqrrdFga0K1tuW8rBVZM8kRo+V4li1aIOmjQNzNR4+BeieaVx9tQCOod/9sRu5MwpV4nRPSLpyvSGcW1OyyFXDwNln4XtN1BPDibNwEm+Hl8IWkGIesDayyrILI57s=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1751883506; c=relaxed/simple;
-	bh=DMbrTGn2oiFCand2994EbbGqOk9oOogjgoWe7AhWgh4=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=NHr951B9avtFQl9HETVuG1G9RYga5Y2pytLCtMIAcK6eNDzHTyauc1oN9eFW/kzeS9d0nIM/2WsHqljlh09zjEDBfgIzCLatb80NkeSW7WFSaCV0Ven/eoa2dzHTEcJhJV8U8YZ+ri23pwwMAoFmDDZ2kPSOp1YWzPgwYrxtPVY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=fairphone.com; spf=pass smtp.mailfrom=fairphone.com; dkim=pass (2048-bit key) header.d=fairphone.com header.i=@fairphone.com header.b=vWJq6nMh; arc=none smtp.client-ip=209.85.208.51
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=fairphone.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=fairphone.com
-Received: by mail-ed1-f51.google.com with SMTP id 4fb4d7f45d1cf-60cc11b34f6so6500861a12.0
-        for <devicetree@vger.kernel.org>; Mon, 07 Jul 2025 03:18:24 -0700 (PDT)
+	s=arc-20240116; t=1751883617; c=relaxed/simple;
+	bh=gtjPYpCezkEDWByB7tIgWXzptFOInyrMouY/RPBzoHE=;
+	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=uH+7Oj8ti3gQ0vDNm56/kMNDXnM6FuRM7QA0ICzMN60ayDgyE6H1MGGfvKGFuffBxmqc3ocftuluqtL6riG6DYYCBdMBQ20ZTVP1Bbv0hjmxyO/8wWqUjWeeUDptFX5t3oYlP3hIOL6EI5WU2C879iCJkbx1BTSJFGsVD+V9QeM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=gAB+mJU5; arc=none smtp.client-ip=209.85.128.52
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-wm1-f52.google.com with SMTP id 5b1f17b1804b1-4537fdec39fso7643475e9.0;
+        Mon, 07 Jul 2025 03:20:15 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=fairphone.com; s=fair; t=1751883502; x=1752488302; darn=vger.kernel.org;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=a8Ge20RgeK7ksHv2r52GDHh4NGxzRBjNBgwgR8RP7uA=;
-        b=vWJq6nMhQXIcIK3QbvkwT7KQVepZJmCJYUWQTx+ehyKb+8jaDxBssKf3K5x/T9tTo0
-         oGt81EuYyK4B2ljSd4G1nztAHO9NIjAc/Nb8zJ5PAFZJ6+I2xgfI/89O+J+VZxhVh5pr
-         AcZVE3yE7EL1mmGWOnANaxkn4fN3CjFsGhjSTiAFJYXKVAZGboH4EUGdgvMgmVcRXHQj
-         MIVMbEvWY3b2mLdGEMdJAHvl2GeaJae5IS/2gPPCqEuJhjwABl1kSoqpCmTfDo7/w57k
-         alwQXkgFriIPZwUOy2Y+i+2OJ9uBnT42Q1WMS445Q4VqfdJ7GDueRpwm15IedJgm01Mw
-         0Wdw==
+        d=gmail.com; s=20230601; t=1751883614; x=1752488414; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=kHUwvTfnjSEmpcztlWS+Zdhw3cEDVg/IjXMugjFFPWs=;
+        b=gAB+mJU5/R+Bt+/9NMBQMgxTblQKxP4VNI6FV1LEzja3HxZhVm1bZNtV/RxeNbBkmu
+         2K96xlOIqmuPdefipZvZJkm4n13a7Agp7MY6pNvf1oo3MHED0vTCXDbEJA78OiuxRiSD
+         ma7/apUMfdqrSYNu5/7q16XkhI99OHsi0+yREgcXtZ5jP5cM9QRQBqfkRRBPMgcEjoKM
+         lzPfDC6pnzRVQeCN/9ZBW5+KIY3RTmCGy76r0PdTisciWaVRDswGtz8fXQzqqJoxwplF
+         e96uMYUpUKuhbRJAe9DSNvwuJLwITN9Pz4+/bLf/1xL5F8JDeq0OTk3N+KCYxPdg1uNq
+         8uFg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1751883502; x=1752488302;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:x-gm-message-state:from:to:cc
+        d=1e100.net; s=20230601; t=1751883614; x=1752488414;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=a8Ge20RgeK7ksHv2r52GDHh4NGxzRBjNBgwgR8RP7uA=;
-        b=fLIuDvVkb89DgGLc2s75ME6Ud+/eHg2/Ot7Odpr4RZGeHGhgSi92eWOCQ/Fr2jwZGY
-         Ah/IWwLNovHtQLw8kaj4TZSUypIP8sTNpX4aiheO7jYoZrn2B6Gm8A/NQr1R4e1NvY+w
-         1nIpxWaRZTPQBsi8B/RXivuD/u+VAfo/nejtdZjnosQ5RexWQ+5atoBMEqjTNdv43Dc2
-         G6e3nTFtaCcrifAlchyLoYljZ2szXr8M4Eit31pFlAbuVv+skIo7TOZbxdVtNONP9ULE
-         LArJ8mGkDQRgCp2uUZ8h1LcculGH/5wbV9fuJTEft3R+08aSYhxQNFiWCLCmYIoLzZKC
-         OYbw==
-X-Forwarded-Encrypted: i=1; AJvYcCVXyd4l2qbp97FlQB6Hnw1hLlcYJIAa5uPfLYBeHEadCTv7liccnnDxDrWjvPpjnA7glghyGJu6In24@vger.kernel.org
-X-Gm-Message-State: AOJu0YyHJha1l7RS4cgVBkv8gGxE3oCg/8uiStCVYwpa5KPu7SYmQ4K8
-	JKouJSaYekR64mOZhUq1/T3fMdU+We0wXmKlae91+7hIxolcBpRbJTDUaVb+pmEJ9Yw=
-X-Gm-Gg: ASbGncuoiYXAReLfDIa30gEhAoRbMDlvcK2ElbXblEjl7egkC53FuY2lPnPGIrWeefj
-	3rH8jiaxqGf4DlZAOHIxG5mzxZ+pb6HdKFflHB81pjHUyIHKEQblSQv98cqQL2eUmq0AOLeWcMX
-	doONfZVS3bmVzalbmYz4gRfChOvPsOYev/ZT1vIzLVicH05NAuG/r8eLdPwIQlyb3F+IKXX7CoL
-	YwUsga5eoRJFgqzVJ/Yaco7F1pGuvTg8O+PV1MB/q8wScVkRh+0eBldhGsK2n2iGH9X3C4Sm/jV
-	gSuY1qTkDTEwlhhROwNOW7uUixr0O5XexmZC5LgE1FHV/5wQBPujqy72WyLj3PAYW+eZEbEfDSp
-	7fzG3kbkHH1gqXWxq5E2KjdS4ITv8SvTg
-X-Google-Smtp-Source: AGHT+IGG3uIPzMF+00PNjI0EwVgYviZWA+kJ/1ai7rBTaIQlV6W7t19T5/X/FqCEc5TjKLQfSV9xng==
-X-Received: by 2002:a17:907:d1c:b0:ae0:c1c4:645 with SMTP id a640c23a62f3a-ae3f830b8c0mr1056831866b.21.1751883502499;
-        Mon, 07 Jul 2025 03:18:22 -0700 (PDT)
-Received: from otso.local (144-178-202-139.static.ef-service.nl. [144.178.202.139])
-        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-ae3f6bb1edfsm671711766b.180.2025.07.07.03.18.21
+        bh=kHUwvTfnjSEmpcztlWS+Zdhw3cEDVg/IjXMugjFFPWs=;
+        b=Hi6xQ0mxvyhnzLxnPgvEMFZf4H/tgT5GEgJPFzRURu/Bn4jzqVUjYNPew/CAUssewV
+         rX1h61Mwevd+So9VL0rqBvk2ec4gGhvh+5CukpTUcrP90pwJBC6ML7I7GelhGlOtmIP+
+         NZhMRqlGvwzC8/PXt9xmTOl0u9HJejHy4vKbsIRVM7ha+zUkz7g2S+OWM3kRK0129X6Z
+         xr3DCth7w8YoJ+dskO5dQo2AL5GUhp1ohVIj5Orch76STL0CeEaPu2JvfI/We5OUKDp9
+         FQqCjzh+mpo3kJHP+xKWPu+LDRKmj2bw12JaqMXgT04vI4kdzT5gDSiFSkvUQ+lYqazs
+         7gEA==
+X-Forwarded-Encrypted: i=1; AJvYcCVK2IGo6+rn+GXd4SvcnCuDuz3joeUTVcU7YEaKJhOi/SUZg4muewvL8Uy9EVfFFEfU1fPTlyuzXMUT@vger.kernel.org, AJvYcCVWkUbPGH/W6eInzgjulYq7jeZRMKlFRhZmtjgL4HYaQZZH0zu/4S6/g6hVJ8Av7aDjNrKd/ZZfNvGXvRs=@vger.kernel.org
+X-Gm-Message-State: AOJu0Yy2kFTymG4tfGw3B1TEpBskKjuJPhyAS4NI30RgwCiiwvKGMiph
+	01gS0JY+XKCHV4D2OjEPCucy4VBPzJo3jxQpr9te+HfwAHUXNqTKZEQp
+X-Gm-Gg: ASbGncsCTAmMF6NgiYdmxps10KM8wM+QQnXPiAr1mUHImEX32nz6rLqEDIjHjYrnADq
+	UVbPGr/MnaBltHdGy+Y8FTRU46xGtCdmJxGRLu9jPTJnj0wpvckDD8tvZs25KBtZaObjCgONhbe
+	pLo51Ctzpapw/WddcqLtwokeylkO6cmM3K4qykuAdrhMv7R6sSpa4Gbf8NX9k94TB8X+O30BEdp
+	pNVPYWJFkLRJ8YX9qtD3iYnN0V/osYL5jI4aiV3Y72zrnJqwacNOOsNlT5+mP+k4ZiEiev6xtO+
+	Bd+70YDU4HxZ+4yss5zOWfpwHvdElYlF129H2MEWsm7qZSVRnanZSAeJncw7jZK8mC5gDm3NUA3
+	CnzewU1nQ/rZYyRAGmMQPdQBKDmRQGjkNa19KC+BlsiAcGpQ9toywZQ==
+X-Google-Smtp-Source: AGHT+IEBzgDT7wIm3e1zpg37ZK8wP8jTto3HqLMBUK5O7zlQTGqg1rZHhi5m/jFgqFJzbmmfcIWWAA==
+X-Received: by 2002:a05:600c:8b72:b0:453:a95:f086 with SMTP id 5b1f17b1804b1-454b311637amr99037235e9.12.1751883614008;
+        Mon, 07 Jul 2025 03:20:14 -0700 (PDT)
+Received: from localhost (p200300e41f4e9b00f22f74fffe1f3a53.dip0.t-ipconnect.de. [2003:e4:1f4e:9b00:f22f:74ff:fe1f:3a53])
+        by smtp.gmail.com with UTF8SMTPSA id ffacd0b85a97d-3b47030c2e8sm9583420f8f.3.2025.07.07.03.20.12
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 07 Jul 2025 03:18:22 -0700 (PDT)
-From: Luca Weiss <luca.weiss@fairphone.com>
-Date: Mon, 07 Jul 2025 12:18:11 +0200
-Subject: [PATCH v2 2/2] pmdomain: qcom: rpmhpd: Add Milos power domains
+        Mon, 07 Jul 2025 03:20:12 -0700 (PDT)
+From: Thierry Reding <thierry.reding@gmail.com>
+To: Thierry Reding <thierry.reding@gmail.com>
+Cc: Jon Hunter <jonathanh@nvidia.com>,
+	linux-tegra@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org
+Subject: Re: [PATCH 01/11] dt-bindings: tegra: pmc: Add Tegra264 compatible
+Date: Mon,  7 Jul 2025 12:20:04 +0200
+Message-ID: <175188357609.1321171.837662238630621185.b4-ty@nvidia.com>
+X-Mailer: git-send-email 2.50.0
+In-Reply-To: <20250506133118.1011777-2-thierry.reding@gmail.com>
+References: <20250506133118.1011777-1-thierry.reding@gmail.com> <20250506133118.1011777-2-thierry.reding@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -83,72 +92,24 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20250707-sm7635-rpmhpd-v2-2-b4aa37acb065@fairphone.com>
-References: <20250707-sm7635-rpmhpd-v2-0-b4aa37acb065@fairphone.com>
-In-Reply-To: <20250707-sm7635-rpmhpd-v2-0-b4aa37acb065@fairphone.com>
-To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, Bjorn Andersson <andersson@kernel.org>, 
- Ulf Hansson <ulf.hansson@linaro.org>
-Cc: ~postmarketos/upstreaming@lists.sr.ht, phone-devel@vger.kernel.org, 
- linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org, 
- linux-kernel@vger.kernel.org, linux-pm@vger.kernel.org, 
- Luca Weiss <luca.weiss@fairphone.com>
-X-Mailer: b4 0.14.2
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1751883500; l=1514;
- i=luca.weiss@fairphone.com; s=20250611; h=from:subject:message-id;
- bh=DMbrTGn2oiFCand2994EbbGqOk9oOogjgoWe7AhWgh4=;
- b=XSqig1gqw6cfVF2o7Z7/eF5lh89rfbm1iux4bgA4bm5c0eWV+gPab1K/4ouMqwacD2UIW8onh
- eI1Xn9NWVtyCBxoKJIVmOn+JG8ROd7Oyu9UjQ+ZkkZ3+hoHgyRFenPP
-X-Developer-Key: i=luca.weiss@fairphone.com; a=ed25519;
- pk=O1aw+AAust5lEmgrNJ1Bs7PTY0fEsJm+mdkjExA69q8=
+Content-Transfer-Encoding: 8bit
 
-Add the power domains exposed by RPMH in the Qualcomm Milos platform.
+From: Thierry Reding <treding@nvidia.com>
 
-Signed-off-by: Luca Weiss <luca.weiss@fairphone.com>
----
- drivers/pmdomain/qcom/rpmhpd.c | 19 +++++++++++++++++++
- 1 file changed, 19 insertions(+)
 
-diff --git a/drivers/pmdomain/qcom/rpmhpd.c b/drivers/pmdomain/qcom/rpmhpd.c
-index 078323b85b5648e33dd89e08cf31bdc5ab76d553..e09552a469264f28952fc46c3ab8c125e87310da 100644
---- a/drivers/pmdomain/qcom/rpmhpd.c
-+++ b/drivers/pmdomain/qcom/rpmhpd.c
-@@ -217,6 +217,24 @@ static struct rpmhpd gmxc = {
- 	.res_name = "gmxc.lvl",
- };
- 
-+/* Milos RPMH powerdomains */
-+static struct rpmhpd *milos_rpmhpds[] = {
-+	[RPMHPD_CX] = &cx,
-+	[RPMHPD_CX_AO] = &cx_ao,
-+	[RPMHPD_EBI] = &ebi,
-+	[RPMHPD_GFX] = &gfx,
-+	[RPMHPD_LCX] = &lcx,
-+	[RPMHPD_LMX] = &lmx,
-+	[RPMHPD_MSS] = &mss,
-+	[RPMHPD_MX] = &mx,
-+	[RPMHPD_MX_AO] = &mx_ao,
-+};
-+
-+static const struct rpmhpd_desc milos_desc = {
-+	.rpmhpds = milos_rpmhpds,
-+	.num_pds = ARRAY_SIZE(milos_rpmhpds),
-+};
-+
- /* SA8540P RPMH powerdomains */
- static struct rpmhpd *sa8540p_rpmhpds[] = {
- 	[SC8280XP_CX] = &cx,
-@@ -723,6 +741,7 @@ static const struct rpmhpd_desc qcs615_desc = {
- };
- 
- static const struct of_device_id rpmhpd_match_table[] = {
-+	{ .compatible = "qcom,milos-rpmhpd", .data = &milos_desc },
- 	{ .compatible = "qcom,qcs615-rpmhpd", .data = &qcs615_desc },
- 	{ .compatible = "qcom,qcs8300-rpmhpd", .data = &qcs8300_desc },
- 	{ .compatible = "qcom,qdu1000-rpmhpd", .data = &qdu1000_desc },
+On Tue, 06 May 2025 15:31:08 +0200, Thierry Reding wrote:
+> The PMC found on Tegra264 is similar to the version in earlier chips but
+> some of the register offsets and bitfields differ, so add a specific
+> compatible string for this new generation.
+> 
+> 
 
+Applied, thanks!
+
+[01/11] dt-bindings: tegra: pmc: Add Tegra264 compatible
+        commit: 5b820eb176846dad95b0a45dcfe788931f5e7527
+
+Best regards,
 -- 
-2.50.0
-
+Thierry Reding <treding@nvidia.com>
 
