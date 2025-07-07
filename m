@@ -1,178 +1,187 @@
-Return-Path: <devicetree+bounces-193770-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-193771-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 01265AFBA19
-	for <lists+devicetree@lfdr.de>; Mon,  7 Jul 2025 19:48:36 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id BFE20AFBA2F
+	for <lists+devicetree@lfdr.de>; Mon,  7 Jul 2025 19:55:39 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id BAA397AB083
-	for <lists+devicetree@lfdr.de>; Mon,  7 Jul 2025 17:47:09 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 06C063B7994
+	for <lists+devicetree@lfdr.de>; Mon,  7 Jul 2025 17:55:04 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 929041C6FE8;
-	Mon,  7 Jul 2025 17:48:28 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id AA316259CA4;
+	Mon,  7 Jul 2025 17:55:27 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="os957C1b"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="AmiC+WMo"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 607AF219EB;
-	Mon,  7 Jul 2025 17:48:28 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7FF4A2135CE;
+	Mon,  7 Jul 2025 17:55:27 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1751910508; cv=none; b=CKzTpb8GmYp3B5P/t7R1UJE18zzAGcW+QRjmpgNdyQsiGaGD2B1R/wowBzwhsyXvcRjBW9wymsNYZP13HcudQ4mz238V5j1m77+Ww/beRgLFhzJTSs9lQmTvzI2gUr5qnS0YIjRopJJgJ3RwQCajc/ZWu/RT0oK6gmxYK0HBOFA=
+	t=1751910927; cv=none; b=YC8wZWVKtFAcPpz1z4upjoavx8DfwukdFoZSr01gq04DL4xS97hVpdYNRtxmLzFXt8jKc4WrvC+7uNKCPobaMxJmAmJKTaXPgM5uCbQngdJquRnH2spGFyJPQ4RqJ7YjS93R+4QJzlJU/Ix18chR+19qQKvC9gsx7G8I6fhTJ/U=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1751910508; c=relaxed/simple;
-	bh=38upJ0pBmugxSPEcajDjCdYu6uxaRBbEaf1xbSZkXf0=;
-	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=qocBKYFgGGE0uDjyvdcbShCoITjg4iqp+5Ww+3AwhpY6ZaXwCq7rtb1vTksImboFHKARMQEScf1TmkimBI623FpF7yUbGFz4MlcFHDotHE/btqyzCOFhLlxyyOwFUQn/kkKMBxD0iAMyx2DOmDYOn7mOX1N9z+XmGLui0Am3qp0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=os957C1b; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id C8961C4CEE3;
-	Mon,  7 Jul 2025 17:48:20 +0000 (UTC)
+	s=arc-20240116; t=1751910927; c=relaxed/simple;
+	bh=vgYK0V6XyKINQM1isjd7q12NdmEW5pYbAiz0Dqu3Dk8=;
+	h=Date:Content-Type:MIME-Version:From:Cc:To:In-Reply-To:References:
+	 Message-Id:Subject; b=I5kkvRUWTgc40i7kT+0Pccs74JbluZERNQfgA95OGI2cYxXzuU1ZaWZ3GEXXlDH2jABqa4Wr6Z1WCwQ1XUUlhbuSf2GTNCEjgYEfgle0qEVwdzvsNFlOUtG3gZDLpzsYLRR/kssgb5lFZH3KTCzTjLldd6Lts0wmf+YcpiT6rlg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=AmiC+WMo; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id EB013C4CEE3;
+	Mon,  7 Jul 2025 17:55:26 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1751910507;
-	bh=38upJ0pBmugxSPEcajDjCdYu6uxaRBbEaf1xbSZkXf0=;
-	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
-	b=os957C1breH45JkDqec35f+bijw+a347H8WDo7aK13x1cy5gOJd1yWN38gQkRRg+2
-	 ZSPJlwCHTmGB1Xf5WQ97u0/Ix5Hpf3Bll9bfx14z2enp62GBUByr4MiHWZkHwmYStJ
-	 aB6ToCbi2rihE9faNY98tTQIAbtiPwrPeHZrRQOUFX+xpesWNIk4AwNp7du5lxEwyk
-	 iCy6JjMuouIDHF8cTPKbDbflY2Yo30USAgOIRsxCW2aiEoVG0JpCl9zI6J0GWN+VVQ
-	 GalYCFjww5qjDlI2GrISCf4SpHITlq/mDEGeMp7QQESQZ5X0TGFoOH79tsam5Crwtw
-	 EW7yjnRtKR46Q==
-Date: Mon, 7 Jul 2025 18:48:15 +0100
-From: Jonathan Cameron <jic23@kernel.org>
-To: Marcelo Schmitt <marcelo.schmitt@analog.com>
-Cc: <linux-iio@vger.kernel.org>, <devicetree@vger.kernel.org>,
- <linux-gpio@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
- <lars@metafoo.de>, <Michael.Hennerich@analog.com>, <dlechner@baylibre.com>,
- <nuno.sa@analog.com>, <andy@kernel.org>, <andriy.shevchenko@intel.com>,
- <robh@kernel.org>, <krzk+dt@kernel.org>, <conor+dt@kernel.org>,
- <linus.walleij@linaro.org>, <brgl@bgdev.pl>, <broonie@kernel.org>,
- <lgirdwood@gmail.com>, <marcelo.schmitt1@gmail.com>
-Subject: Re: [PATCH v8 00/12] iio: adc: Add support for AD4170 series of
- ADCs
-Message-ID: <20250707184815.36386379@jic23-huawei>
-In-Reply-To: <cover.1751895245.git.marcelo.schmitt@analog.com>
-References: <cover.1751895245.git.marcelo.schmitt@analog.com>
-X-Mailer: Claws Mail 4.3.1 (GTK 3.24.49; x86_64-pc-linux-gnu)
+	s=k20201202; t=1751910927;
+	bh=vgYK0V6XyKINQM1isjd7q12NdmEW5pYbAiz0Dqu3Dk8=;
+	h=Date:From:Cc:To:In-Reply-To:References:Subject:From;
+	b=AmiC+WMohJRXU0l8khOeO3+F5TR/E/8QuGW8Je6JpiRubRYuCBU9vQQbM6z5iGWwr
+	 OGldsKA2N92yvxMrrFXtCQVyKMZj8zDFNFakwsHqpOJLCFhq6U/oCoqZXPBKWFBxMl
+	 Auns+PFM+0CrArxxSSX920lGgu+7q93s71CVBHauT0igX1TwtaYNKPHb4v2Ld0O25l
+	 TX3cmAlpB8v5K+oEswKb48DRm4JIl3RpJrLZcjLXDp24aZJ5MNz4WV5tEkbzEXJ12Y
+	 ShEed/WQspQ1JeU+3WixQ44M97a2ekcTo3J+9qsrVCqgJCnrNbY8t4kXQOIUNcT+8A
+	 cluIL++2h4zZg==
+Date: Mon, 07 Jul 2025 12:55:26 -0500
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: 7bit
+From: "Rob Herring (Arm)" <robh@kernel.org>
+Cc: linux-kernel@vger.kernel.org, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Tao Ren <taoren@meta.com>, linux-aspeed@lists.ozlabs.org, 
+ Andrew Lunn <andrew@lunn.ch>, linux-arm-kernel@lists.infradead.org, 
+ devicetree@vger.kernel.org, Joel Stanley <joel@jms.id.au>, 
+ Conor Dooley <conor+dt@kernel.org>, 
+ Andrew Jeffery <andrew@codeconstruct.com.au>
+To: rentao.bupt@gmail.com
+In-Reply-To: <20250706042404.138128-1-rentao.bupt@gmail.com>
+References: <20250706042404.138128-1-rentao.bupt@gmail.com>
+Message-Id: <175191074290.3364643.3141046769008476356.robh@kernel.org>
+Subject: Re: [PATCH v2 0/9] ARM: dts: aspeed: Add Meta Darwin dts
 
-On Mon, 7 Jul 2025 10:49:46 -0300
-Marcelo Schmitt <marcelo.schmitt@analog.com> wrote:
 
-> Hi,
+On Sat, 05 Jul 2025 21:23:50 -0700, rentao.bupt@gmail.com wrote:
+> From: Tao Ren <rentao.bupt@gmail.com>
 > 
-> AD4170-4 v8 most significant differences from v7 is the timestamp patch comes
-> earlier in the series and struct ad4170_state fields have been rearranged
-> to better align to cache line boundaries.
+> The patch series introduces the initial device tree for Meta/Facebook
+> Darwin AST2600 BMC.
 > 
-> Jonathan, I see you have applied v7 to testing. Thank you. Though, if still
-> possible to pick v8 instead, that will provide patches with fewer line removals.
-> Totally fine if you prefer to keep v7, though.
-Ok. Replaced v7 with v8.
+> Patches #1, #2 and #3 fixes the DTB warnings in wedge400/fuji dts and
+> ast2600-facebook-netbmc-common.dtsi.
+> 
+> Patches #4, #5 and #6 introduces a new BMC flash layout to be used by
+> wedge400 and fuji (and later more Meta Network BMC platforms).
+> 
+> Patch #7 moves eMMC entries from ast2600-facebook-netbmc-common.dtsi to
+> each BMC platform because eMMC was removed from future Meta Network BMC
+> platforms.
+> 
+> Patches #8 and #9 adds Meta Darwin BMC and updates devicetree bindings.
+> 
+> Tao Ren (9):
+>   ARM: dts: aspeed: wedge400: Fix DTB warnings
+>   ARM: dts: aspeed: fuji: Fix DTB warnings
+>   ARM: dts: aspeed: Fix DTB warnings in
+>     ast2600-facebook-netbmc-common.dtsi
+>   ARM: dts: aspeed: Add facebook-bmc-flash-layout-128-data64.dtsi
+>   ARM: dts: aspeed: wedge400: Extend data0 partition to 64MB
+>   ARM: dts: aspeed: Move flash layout out of Facebook netbmc-common.dtsi
+>   ARM: dts: aspeed: Move eMMC out of ast2600-facebook-netbmc-common.dtsi
+>   dt-bindings: arm: aspeed: add Facebook Darwin board
+>   ARM: dts: aspeed: Add Facebook Darwin (AST2600) BMC
+> 
+>  .../bindings/arm/aspeed/aspeed.yaml           |  1 +
+>  arch/arm/boot/dts/aspeed/Makefile             |  1 +
+>  .../dts/aspeed/aspeed-bmc-facebook-darwin.dts | 78 +++++++++++++++++++
+>  .../dts/aspeed/aspeed-bmc-facebook-elbert.dts | 18 +++++
+>  .../dts/aspeed/aspeed-bmc-facebook-fuji.dts   | 24 ++++--
+>  .../aspeed/aspeed-bmc-facebook-wedge400.dts   |  8 +-
+>  .../ast2600-facebook-netbmc-common.dtsi       | 24 ++----
+>  .../facebook-bmc-flash-layout-128-data64.dtsi | 60 ++++++++++++++
+>  8 files changed, 187 insertions(+), 27 deletions(-)
+>  create mode 100644 arch/arm/boot/dts/aspeed/aspeed-bmc-facebook-darwin.dts
+>  create mode 100644 arch/arm/boot/dts/aspeed/facebook-bmc-flash-layout-128-data64.dtsi
+> 
+> --
+> 2.47.1
+> 
+> 
+> 
 
-Thanks,
 
-J
-> 
-> Thank you to all reviewers of previous versions.
-> 
-> v8 has:
-> 
-> Patch 1 adds device tree documentation for the parts.
-> Patch 2 adds basic device support.
-> Patch 3 adds support for calibration scale.
-> Patch 4 adds support for calibration bias.
-> Patch 5 adds sinc5+avg to filter_type_available IIO ABI documentation.
-> Patch 6 adds support for sample frequency along with filter type configuration.
-> Patch 7 adds support for buffered ADC reading.
-> Patch 8 (was patch 12 on v7) adds timestamp channel
-> Patch 9 adds clock provider support
-> Patch 10 adds GPIO controller support.
-> Patch 11 adds internal temperature sensor support.
-> Patch 12 adds support for external RTD and bridge circuit sensors.
-> 
-> Despite the updates, no functional change has been made in v8.
-> This patch series was generated using the "histogram diff" algorithm
-> (git format-patch --histogram option).
-> 
-> Change log v7 -> v8
-> 
-> [Generic changes]
-> - Update patches to make struct ad4170_state fields align well with both 32
->   and 64-bit size cache lines after all patches are applied.
-> 
-> [Device tree changes]
-> - Updated device name in patch description (AD4170 -> AD4170-4).
-> - Removed extra blank line at the end of the doc.
-> 
-> [Basic driver patch]
-> - Early declare and use sensor type local variable to reduce diff in ext sensor patch.
-> - Make early check of IIO chan type to reduce diff in temperature support patch.
-> - Dropped 'int_pin_sel' field from struct ad4170_state. int_pin_sel is now local.
-> - Renamed AD4170_MAX_CHANNELS -> AD4170_MAX_ADC_CHANNELS for better readability.
-> 
-> [Timestamp channel patch]
-> - Moved from end of the series to right after buffer support patch.
-> - Reworked timestamp patch so it doesn't add 'num_adc_chans' field to struct ad4170_state.
-> 
-> [Internal temperature sensor patch]
-> - Reduced number of line removals in code diff.
-> 
-> [External sensor patch]
-> - Reworded external sensor support patch description.
-> - Reduced number of line removals in code diff.
-> - Updated ad4170_parse_external_sensor() param: u8 s_type -> unsigned int s_type.
-> 
-> 
-> Link to v7: https://lore.kernel.org/linux-iio/cover.1751289747.git.marcelo.schmitt@analog.com/
-> Link to v6: https://lore.kernel.org/linux-iio/cover.1750258776.git.marcelo.schmitt@analog.com/
-> Link to v5: https://lore.kernel.org/linux-iio/cover.1749582679.git.marcelo.schmitt@analog.com/ 
-> Link to v4: https://lore.kernel.org/linux-iio/cover.1748829860.git.marcelo.schmitt@analog.com/
-> Link to v3: https://lore.kernel.org/linux-iio/cover.1747083143.git.marcelo.schmitt@analog.com/
-> Link to v2: https://lore.kernel.org/linux-iio/cover.1745841276.git.marcelo.schmitt@analog.com/
-> Link to v1: https://lore.kernel.org/linux-iio/cover.1744200264.git.marcelo.schmitt@analog.com/
-> 
-> 
-> Ana-Maria Cusco (1):
->   iio: adc: Add basic support for AD4170-4
-> 
-> Marcelo Schmitt (11):
->   dt-bindings: iio: adc: Add AD4170-4
->   iio: adc: ad4170-4: Add support for calibration gain
->   iio: adc: ad4170-4: Add support for calibration bias
->   Documentation: ABI: IIO: Add sinc5+avg to the filter_type_available
->     list
->   iio: adc: ad4170-4: Add digital filter and sample frequency config
->     support
->   iio: adc: ad4170-4: Add support for buffered data capture
->   iio: adc: ad4170-4: Add timestamp channel
->   iio: adc: ad4170-4: Add clock provider support
->   iio: adc: ad4170-4: Add GPIO controller support
->   iio: adc: ad4170-4: Add support for internal temperature sensor
->   iio: adc: ad4170-4: Add support for weigh scale, thermocouple, and RTD
->     sens
-> 
->  Documentation/ABI/testing/sysfs-bus-iio       |    1 +
->  .../bindings/iio/adc/adi,ad4170-4.yaml        |  554 +++
->  MAINTAINERS                                   |    8 +
->  drivers/iio/adc/Kconfig                       |   16 +
->  drivers/iio/adc/Makefile                      |    1 +
->  drivers/iio/adc/ad4170-4.c                    | 3027 +++++++++++++++++
->  6 files changed, 3607 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/iio/adc/adi,ad4170-4.yaml
->  create mode 100644 drivers/iio/adc/ad4170-4.c
-> 
-> 
-> base-commit: 66ffb9f5accc6769d1ea7b9d7ac4c5ec477f9575
+My bot found new DTB warnings on the .dts files added or changed in this
+series.
+
+Some warnings may be from an existing SoC .dtsi. Or perhaps the warnings
+are fixed by another series. Ultimately, it is up to the platform
+maintainer whether these warnings are acceptable or not. No need to reply
+unless the platform maintainer has comments.
+
+If you already ran DT checks and didn't see these error(s), then
+make sure dt-schema is up to date:
+
+  pip3 install dtschema --upgrade
+
+
+This patch series was applied (using b4) to base:
+ Base: attempting to guess base-commit...
+ Base: tags/next-20250704 (best guess, 4/6 blobs matched)
+
+If this is not the correct base, please add 'base-commit' tag
+(or use b4 which does this automatically)
+
+New warnings running 'make CHECK_DTBS=y for arch/arm/boot/dts/aspeed/' for 20250706042404.138128-1-rentao.bupt@gmail.com:
+
+arch/arm/boot/dts/aspeed/aspeed-bmc-facebook-darwin.dtb: timer (arm,armv7-timer): 'clocks' does not match any of the regexes: '^pinctrl-[0-9]+$'
+	from schema $id: http://devicetree.org/schemas/timer/arm,arch_timer.yaml#
+arch/arm/boot/dts/aspeed/aspeed-bmc-facebook-darwin.dtb: /sdram@1e6e0000: failed to match any schema with compatible: ['aspeed,ast2600-sdram-edac', 'syscon']
+arch/arm/boot/dts/aspeed/aspeed-bmc-facebook-darwin.dtb: bus@1e600000 (aspeed,ast2600-ahbc): compatible: ['aspeed,ast2600-ahbc', 'syscon'] is too long
+	from schema $id: http://devicetree.org/schemas/bus/aspeed,ast2600-ahbc.yaml#
+arch/arm/boot/dts/aspeed/aspeed-bmc-facebook-darwin.dtb: syscon@1e6e2000 (aspeed,ast2600-scu): 'smp-memram@180' does not match any of the regexes: '^interrupt-controller@[0-9a-f]+$', '^p2a-control@[0-9a-f]+$', '^pinctrl(@[0-9a-f]+)?$', '^pinctrl-[0-9]+$', '^silicon-id@[0-9a-f]+$'
+	from schema $id: http://devicetree.org/schemas/mfd/aspeed,ast2x00-scu.yaml#
+arch/arm/boot/dts/aspeed/aspeed-bmc-facebook-darwin.dtb: /ahb/apb@1e6e0000/syscon@1e6e2000/smp-memram@180: failed to match any schema with compatible: ['aspeed,ast2600-smpmem']
+arch/arm/boot/dts/aspeed/aspeed-bmc-facebook-darwin.dtb: /ahb/apb@1e6e0000/display@1e6e6000: failed to match any schema with compatible: ['aspeed,ast2600-gfx', 'syscon']
+arch/arm/boot/dts/aspeed/aspeed-bmc-facebook-darwin.dtb: adc@1e6e9000 (aspeed,ast2600-adc0): 'interrupts' does not match any of the regexes: '^pinctrl-[0-9]+$'
+	from schema $id: http://devicetree.org/schemas/iio/adc/aspeed,ast2600-adc.yaml#
+arch/arm/boot/dts/aspeed/aspeed-bmc-facebook-darwin.dtb: adc@1e6e9100 (aspeed,ast2600-adc1): 'interrupts' does not match any of the regexes: '^pinctrl-[0-9]+$'
+	from schema $id: http://devicetree.org/schemas/iio/adc/aspeed,ast2600-adc.yaml#
+arch/arm/boot/dts/aspeed/aspeed-bmc-facebook-darwin.dtb: crypto@1e6fa000 (aspeed,ast2600-acry): 'aspeed,ahbc' does not match any of the regexes: '^pinctrl-[0-9]+$'
+	from schema $id: http://devicetree.org/schemas/crypto/aspeed,ast2600-acry.yaml#
+arch/arm/boot/dts/aspeed/aspeed-bmc-facebook-darwin.dtb: sdc@1e740000 (aspeed,ast2600-sd-controller): sdhci@1e740100:compatible: ['aspeed,ast2600-sdhci', 'sdhci'] is too long
+	from schema $id: http://devicetree.org/schemas/mmc/aspeed,sdhci.yaml#
+arch/arm/boot/dts/aspeed/aspeed-bmc-facebook-darwin.dtb: sdc@1e740000 (aspeed,ast2600-sd-controller): sdhci@1e740200:compatible: ['aspeed,ast2600-sdhci', 'sdhci'] is too long
+	from schema $id: http://devicetree.org/schemas/mmc/aspeed,sdhci.yaml#
+arch/arm/boot/dts/aspeed/aspeed-bmc-facebook-darwin.dtb: /ahb/sdc@1e740000/sdhci@1e740100: failed to match any schema with compatible: ['aspeed,ast2600-sdhci', 'sdhci']
+arch/arm/boot/dts/aspeed/aspeed-bmc-facebook-darwin.dtb: /ahb/sdc@1e740000/sdhci@1e740200: failed to match any schema with compatible: ['aspeed,ast2600-sdhci', 'sdhci']
+arch/arm/boot/dts/aspeed/aspeed-bmc-facebook-darwin.dtb: /ahb/apb@1e780000/timer@1e782000: failed to match any schema with compatible: ['aspeed,ast2600-timer']
+arch/arm/boot/dts/aspeed/aspeed-bmc-facebook-darwin.dtb: lpc@1e789000 (aspeed,ast2600-lpc-v2): reg-io-width: 4 is not of type 'object'
+	from schema $id: http://devicetree.org/schemas/mfd/aspeed-lpc.yaml#
+arch/arm/boot/dts/aspeed/aspeed-bmc-facebook-darwin.dtb: lpc@1e789000 (aspeed,ast2600-lpc-v2): lpc-snoop@80: 'clocks' does not match any of the regexes: '^pinctrl-[0-9]+$'
+	from schema $id: http://devicetree.org/schemas/mfd/aspeed-lpc.yaml#
+arch/arm/boot/dts/aspeed/aspeed-bmc-facebook-darwin.dtb: kcs@24 (aspeed,ast2500-kcs-bmc-v2): 'clocks' does not match any of the regexes: '^pinctrl-[0-9]+$'
+	from schema $id: http://devicetree.org/schemas/ipmi/aspeed,ast2400-kcs-bmc.yaml#
+arch/arm/boot/dts/aspeed/aspeed-bmc-facebook-darwin.dtb: kcs@28 (aspeed,ast2500-kcs-bmc-v2): 'clocks' does not match any of the regexes: '^pinctrl-[0-9]+$'
+	from schema $id: http://devicetree.org/schemas/ipmi/aspeed,ast2400-kcs-bmc.yaml#
+arch/arm/boot/dts/aspeed/aspeed-bmc-facebook-darwin.dtb: kcs@2c (aspeed,ast2500-kcs-bmc-v2): 'clocks' does not match any of the regexes: '^pinctrl-[0-9]+$'
+	from schema $id: http://devicetree.org/schemas/ipmi/aspeed,ast2400-kcs-bmc.yaml#
+arch/arm/boot/dts/aspeed/aspeed-bmc-facebook-darwin.dtb: kcs@114 (aspeed,ast2500-kcs-bmc-v2): 'clocks' does not match any of the regexes: '^pinctrl-[0-9]+$'
+	from schema $id: http://devicetree.org/schemas/ipmi/aspeed,ast2400-kcs-bmc.yaml#
+arch/arm/boot/dts/aspeed/aspeed-bmc-facebook-darwin.dtb: /ahb/apb@1e780000/lpc@1e789000/lhc@a0: failed to match any schema with compatible: ['aspeed,ast2600-lhc']
+arch/arm/boot/dts/aspeed/aspeed-bmc-facebook-darwin.dtb: /ahb/apb@1e780000/lpc@1e789000/ibt@140: failed to match any schema with compatible: ['aspeed,ast2600-ibt-bmc']
+arch/arm/boot/dts/aspeed/aspeed-bmc-facebook-darwin.dtb: fsi@1e79b000 (aspeed,ast2600-fsi-master): compatible: ['aspeed,ast2600-fsi-master', 'fsi-master'] is too long
+	from schema $id: http://devicetree.org/schemas/fsi/aspeed,ast2600-fsi-master.yaml#
+arch/arm/boot/dts/aspeed/aspeed-bmc-facebook-darwin.dtb: /ahb/apb@1e790000/fsi@1e79b000: failed to match any schema with compatible: ['aspeed,ast2600-fsi-master', 'fsi-master']
+arch/arm/boot/dts/aspeed/aspeed-bmc-facebook-darwin.dtb: fsi@1e79b100 (aspeed,ast2600-fsi-master): compatible: ['aspeed,ast2600-fsi-master', 'fsi-master'] is too long
+	from schema $id: http://devicetree.org/schemas/fsi/aspeed,ast2600-fsi-master.yaml#
+arch/arm/boot/dts/aspeed/aspeed-bmc-facebook-darwin.dtb: /ahb/apb@1e790000/fsi@1e79b100: failed to match any schema with compatible: ['aspeed,ast2600-fsi-master', 'fsi-master']
+arch/arm/boot/dts/aspeed/aspeed-bmc-facebook-darwin.dtb: /ahb/apb@1e790000/dma-controller@1e79e000: failed to match any schema with compatible: ['aspeed,ast2600-udma']
+
+
+
+
 
 
