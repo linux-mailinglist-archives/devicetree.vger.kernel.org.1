@@ -1,96 +1,79 @@
-Return-Path: <devicetree+bounces-193570-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-193571-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7AA9AAFAF18
-	for <lists+devicetree@lfdr.de>; Mon,  7 Jul 2025 11:01:43 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 15597AFAF2B
+	for <lists+devicetree@lfdr.de>; Mon,  7 Jul 2025 11:03:02 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 9083F1AA2A39
-	for <lists+devicetree@lfdr.de>; Mon,  7 Jul 2025 09:01:58 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id D78CD176D94
+	for <lists+devicetree@lfdr.de>; Mon,  7 Jul 2025 09:02:54 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0BD3328AB1A;
-	Mon,  7 Jul 2025 09:01:38 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3A97427B500;
+	Mon,  7 Jul 2025 09:02:50 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=sipsolutions.net header.i=@sipsolutions.net header.b="AbefW8JI"
+	dkim=pass (1024-bit key) header.d=yeah.net header.i=@yeah.net header.b="Eljto0eD"
 X-Original-To: devicetree@vger.kernel.org
-Received: from sipsolutions.net (s3.sipsolutions.net [168.119.38.16])
+Received: from mail-m16.yeah.net (mail-m16.yeah.net [220.197.32.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 70C5528541F;
-	Mon,  7 Jul 2025 09:01:36 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=168.119.38.16
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 06FBA944F;
+	Mon,  7 Jul 2025 09:02:46 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=220.197.32.19
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1751878897; cv=none; b=sFAeSvl+rQSsdKrtS5TTH+sGFn26lq/GXu5g4UyG4yRDyNsEYdDRCXRBdMP1ke/9iH+R0lgqyYJuLYe4bPFaq31sf3LdvLSwgDIfwzUulR6DfPuCk0j/VRjwZRkxv/xvml89uzDp83v6VthRPe3tx5Jv7yA/d5UG/uhh7DpPchU=
+	t=1751878970; cv=none; b=shY2+esfHnmjJfukaMaszM3ZYA2iBt2Y3H5/J8X+2LVfuzYjo3XGjGPKnLJ6fXVsGj4WHK0oPlDAUp8gqij70yc1CgkDMggXpqxYdV3+Z4Xl3vklLoyLIvSPXeVNpM9aiucFbHoFbb5O15BMaft2BFlLO0wZ6rgM1aan8vhtfNs=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1751878897; c=relaxed/simple;
-	bh=Zixnfrpd6DQXKxcZgGTyTEejcbmE80/hwzHYGrQh6Zw=;
-	h=Message-ID:Subject:From:To:Cc:Date:In-Reply-To:References:
-	 Content-Type:MIME-Version; b=ZArcHjAs8yi14QNaKiOhZFr23SSm/MDWkTPlqVvBo3OhJAoox+wphpu09KDPJe6EwEP86hFB1TY6Ovelh75xZWiWQLIbB3DxVJQgIK9/xdfvkD9iV6k3B7kpjjbeawFCh0V+EYXOs8dLe54sNwajqPALAWj4XCOXB1OqDYo2HkI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sipsolutions.net; spf=pass smtp.mailfrom=sipsolutions.net; dkim=pass (2048-bit key) header.d=sipsolutions.net header.i=@sipsolutions.net header.b=AbefW8JI; arc=none smtp.client-ip=168.119.38.16
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sipsolutions.net
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=sipsolutions.net
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=sipsolutions.net; s=mail; h=MIME-Version:Content-Transfer-Encoding:
-	Content-Type:References:In-Reply-To:Date:Cc:To:From:Subject:Message-ID:Sender
-	:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:Resent-To:
-	Resent-Cc:Resent-Message-ID; bh=1az4yu7iqOsk7/laCMEVbA5WLFs2TsRctSfdyzrGEf0=;
-	t=1751878896; x=1753088496; b=AbefW8JIkx+Wu6k1bN0BZGEz+CLKCnESDIpeLyrdHN4H/zG
-	w2dLCEw4hdiOCBRePvvMgxi4NMhPsYyBseFiWJWoJlzahql97B7+WPWd0YNM3PCBgfnsJxORxLKYU
-	TCaxEgzD7uy616rgoFjDhKdukFCC9dQcc8BDCU/DmNpf2MUgS8NzfKRXqKdlKB6r7q7+P/O3rHH3M
-	t1Q+O5BroNTKCVXS3e04nWEH+6oKk0gLApvIhkzQHrIkswsUBG4ccJxF9emISLGtotai3MAMzdu+A
-	p9mc0eMpgS5PMxzk/x98yM+wIuj0wJ63wcdZLHtiYqIvMiuWO6Fz3BmhUadlkHMA==;
-Received: by sipsolutions.net with esmtpsa (TLS1.3:ECDHE_X25519__RSA_PSS_RSAE_SHA256__AES_256_GCM:256)
-	(Exim 4.98.2)
-	(envelope-from <johannes@sipsolutions.net>)
-	id 1uYhiy-0000000AUYl-2sdF;
-	Mon, 07 Jul 2025 11:01:20 +0200
-Message-ID: <8c6f18ca47bf0dd78b6675d8b94000679b6c75cd.camel@sipsolutions.net>
-Subject: Re: [PATCH 0/6] wifi: rt2x00: add OF bindings + cleanup
-From: Johannes Berg <johannes@sipsolutions.net>
-To: Rosen Penev <rosenp@gmail.com>, linux-wireless@vger.kernel.org
-Cc: yangshiji66@qq.com, ansuelsmth@gmail.com, Rob Herring <robh@kernel.org>,
-  Krzysztof Kozlowski	 <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Thomas Bogendoerfer	 <tsbogend@alpha.franken.de>,
- Matthias Brugger <matthias.bgg@gmail.com>,  AngeloGioacchino Del Regno
- <angelogioacchino.delregno@collabora.com>, Stanislaw Gruszka
- <stf_xl@wp.pl>, "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE
- BINDINGS"	 <devicetree@vger.kernel.org>, open list
- <linux-kernel@vger.kernel.org>,  "open list:MIPS"
- <linux-mips@vger.kernel.org>, "moderated list:ARM/Mediatek SoC support"	
- <linux-arm-kernel@lists.infradead.org>, "moderated list:ARM/Mediatek SoC
- support" <linux-mediatek@lists.infradead.org>
-Date: Mon, 07 Jul 2025 11:01:18 +0200
-In-Reply-To: <20250706214111.45687-1-rosenp@gmail.com> (sfid-20250706_234116_623750_4C5D292D)
-References: <20250706214111.45687-1-rosenp@gmail.com>
-	 (sfid-20250706_234116_623750_4C5D292D)
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-User-Agent: Evolution 3.56.2 (3.56.2-1.fc42) 
+	s=arc-20240116; t=1751878970; c=relaxed/simple;
+	bh=FTGqUyW93lewUVwmc1LrpUgjcIqBOp7eeSxuuA4yea8=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=JFuUy8mh5GNaLC7NCN9fhmdVAErWgNzo0zAraR3YU2FD94Ey3N2Nv3uTdParGi+Bb7eWu88PqmphH/idGEwfZdiLfWCZIG94wMw2QVc9kQJB4/fHAtLmhytCpwcSCZQIMJsrOR/ah2eEaWWmNC1C/LBMAM1IOdsrGjbWpmr0llw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=yeah.net; spf=pass smtp.mailfrom=yeah.net; dkim=pass (1024-bit key) header.d=yeah.net header.i=@yeah.net header.b=Eljto0eD; arc=none smtp.client-ip=220.197.32.19
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=yeah.net
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=yeah.net
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=yeah.net;
+	s=s110527; h=Date:From:To:Subject:Message-ID:MIME-Version:
+	Content-Type; bh=sHBLCi+DIw3uUiQhPef0s/I0wx23cXQdEUx2HNS8QpA=;
+	b=Eljto0eDL4gDa1GyStcrRd56ugcUeW2ozC1EmSo2NJY9WiDhyzsu8P8mLlV6UW
+	RUvhfRh7JKgAqWqKk0r/TBbbrdLNVjHOvB13UKjnDVAq5B5lFy5l6HZmE4jqLiJx
+	nd1OcXpYQRiUvFqVZQ6nYjxpfw8vK+4/IpKWg4X9JB9gE=
+Received: from dragon (unknown [])
+	by gzsmtp2 (Coremail) with SMTP id Ms8vCgD37wgRjWtoZQp6AA--.22272S3;
+	Mon, 07 Jul 2025 17:02:11 +0800 (CST)
+Date: Mon, 7 Jul 2025 17:02:09 +0800
+From: Shawn Guo <shawnguo2@yeah.net>
+To: Sherry Sun <sherry.sun@nxp.com>
+Cc: robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
+	shawnguo@kernel.org, s.hauer@pengutronix.de, festevam@gmail.com,
+	Frank.Li@nxp.com, ping.bai@nxp.com, haibo.chen@nxp.com,
+	devicetree@vger.kernel.org, imx@lists.linux.dev,
+	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+	kernel@pengutronix.de
+Subject: Re: [PATCH V2] arm64: dts: imx94: add missing clock related
+ properties to flexcan1
+Message-ID: <aGuNES0DTTcm-eCm@dragon>
+References: <20250702062724.2459200-1-sherry.sun@nxp.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-malware-bazaar: not-scanned
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20250702062724.2459200-1-sherry.sun@nxp.com>
+X-CM-TRANSID:Ms8vCgD37wgRjWtoZQp6AA--.22272S3
+X-Coremail-Antispam: 1Uf129KBjDUn29KB7ZKAUJUUUUU529EdanIXcx71UUUUU7v73
+	VFW2AGmfu7bjvjm3AaLaJ3UbIYCTnIWIevJa73UjIFyTuYvjxU7jg4UUUUU
+X-CM-SenderInfo: pvkd40hjxrjqh1hdxhhqhw/1tbiIhNcwWhrjRNGAAAA33
 
-On Sun, 2025-07-06 at 14:41 -0700, Rosen Penev wrote:
-> It doesn't even compile. Added OF bindings, documentation, and other
-> stuff to hopefully this doesn't happen again.
->=20
-> Rosen Penev (6):
->   wifi: rt2x00: fix compilation
->=20
+On Wed, Jul 02, 2025 at 02:27:24PM +0800, Sherry Sun wrote:
+> Add missing clocks and clock-names properties for flexcan1 in
+> imx94.dtsi to align with other FlexCAN instances.
+> 
+> Fixes: b0d011d4841b ("arm64: dts: freescale: Add basic dtsi for imx943")
+> Signed-off-by: Sherry Sun <sherry.sun@nxp.com>
 
-That was half covered by Felix already, and really shouldn't do two
-things at the same time anyway.
+Applied, thanks!
 
-Also please add [PATCH wireless] or [PATCH wireless-next] prefix when
-you submit patches, to make it clear where the series is targeted. In
-this case, you probably should've split it up, but Felix already covered
-the immediate bug.
-
-johannes
 
