@@ -1,226 +1,210 @@
-Return-Path: <devicetree+bounces-193697-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-193696-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 58B62AFB56D
-	for <lists+devicetree@lfdr.de>; Mon,  7 Jul 2025 15:56:32 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 27AF0AFB563
+	for <lists+devicetree@lfdr.de>; Mon,  7 Jul 2025 15:55:13 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 49F351883972
-	for <lists+devicetree@lfdr.de>; Mon,  7 Jul 2025 13:55:31 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 4056B1614BA
+	for <lists+devicetree@lfdr.de>; Mon,  7 Jul 2025 13:54:45 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4C1012BDC0C;
-	Mon,  7 Jul 2025 13:54:49 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6CCB62BCF65;
+	Mon,  7 Jul 2025 13:54:33 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=analog.com header.i=@analog.com header.b="Q5F8RdQW"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="tuB+3IVA"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-00128a01.pphosted.com (mx0a-00128a01.pphosted.com [148.163.135.77])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 920762BCF65;
-	Mon,  7 Jul 2025 13:54:47 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=148.163.135.77
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3EE0D1891AB;
+	Mon,  7 Jul 2025 13:54:33 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1751896489; cv=none; b=ivsFBrg43OtPXe5OEAjoITLLYPpkWUuojnkUOY+eR3XTCRQd0LIXkfeN90WB3P8sTebbIWWim01qUGNq05Glb/NzgBGqckllD1+vLuBDcZld/6eaRcRPMKZLwC9dQ9UtXLQ+TA8TKVuHtSqX78/t1OXGddOBY59aYg7/oaiK4CE=
+	t=1751896473; cv=none; b=qkQ+9lrxaSrcs8S+pqgkTPpD3Fg9QuakQE5tdChmbDXD9mx+a4nrWS2rNXiu/mt57mqSn6WmujWdgjezLM9NT8XFOjrqIb0JqQonpvcdy9QYJZRsxPkdbxLgKHwfFOpO5lBNn75ljAkET3gZ5Eu/ZLgJhg17eL08RMLUwgl7UYs=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1751896489; c=relaxed/simple;
-	bh=+XPLRascporc1Mz9DuRS3u/SmMqDWuYhjLR6JqfcpQE=;
-	h=From:To:CC:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=TiQrUpqGo9xfw3Xroh17pCUEZF5iV4Vz5pqOia4ABaTazE/8b5BybtPEfykqVirbNkNp9NePciX987GK3NoMGY2CM8hejLcol3XO3//cJIOyAUuyRZ+z4s+Xv3veSOfnmHfQdRXL4MrzSd4mRcB7wc1wK9pg1YtkYV4+2KeP+wE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=analog.com; spf=pass smtp.mailfrom=analog.com; dkim=pass (2048-bit key) header.d=analog.com header.i=@analog.com header.b=Q5F8RdQW; arc=none smtp.client-ip=148.163.135.77
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=analog.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=analog.com
-Received: from pps.filterd (m0375855.ppops.net [127.0.0.1])
-	by mx0b-00128a01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 567CemAU027299;
-	Mon, 7 Jul 2025 09:54:30 -0400
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=analog.com; h=cc
-	:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=DKIM; bh=uQcJR
-	adJwUFtdvWn2EST8rXICxH5j2D0LO+nTlBuVrI=; b=Q5F8RdQWMeW4fBbE4Pydb
-	rOPAXSknkt9atgg7MjPA09aJ6YDKhu6vACLGKLKuI6CPDlNrjluwo4ZiSwD1tReC
-	uzFyknGikFCLS500ydFGyC57RVXetROQU10oVQPwdNraDhyM0Zk+anKqMjmMSUfQ
-	jRDNQB1rO5u81euysLbV2ynurEpsJi6n57ASw9acB58lCD8Z2etNkOxTzj9t4d62
-	gyHKRex0ij+c+RIAg7cxhCVvdxWqDp0UURwr2dfTCPN+2fiD+/QJMcamWKbnMVpa
-	pQoL4lfxYr1HIQMLqcnX+eS7ylAogCljusINDAfi96HdD0NZOBHmvLdqOf8YpRcl
-	Q==
-Received: from nwd2mta3.analog.com ([137.71.173.56])
-	by mx0b-00128a01.pphosted.com (PPS) with ESMTPS id 47rayqh727-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Mon, 07 Jul 2025 09:54:29 -0400 (EDT)
-Received: from ASHBMBX8.ad.analog.com (ASHBMBX8.ad.analog.com [10.64.17.5])
-	by nwd2mta3.analog.com (8.14.7/8.14.7) with ESMTP id 567DsSOt011838
-	(version=TLSv1/SSLv3 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=FAIL);
-	Mon, 7 Jul 2025 09:54:28 -0400
-Received: from ASHBCASHYB4.ad.analog.com (10.64.17.132) by
- ASHBMBX8.ad.analog.com (10.64.17.5) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1748.10; Mon, 7 Jul 2025 09:54:28 -0400
-Received: from ASHBMBX8.ad.analog.com (10.64.17.5) by
- ASHBCASHYB4.ad.analog.com (10.64.17.132) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1748.10; Mon, 7 Jul 2025 09:54:28 -0400
-Received: from zeus.spd.analog.com (10.66.68.11) by ashbmbx8.ad.analog.com
- (10.64.17.5) with Microsoft SMTP Server id 15.2.1748.10 via Frontend
- Transport; Mon, 7 Jul 2025 09:54:28 -0400
-Received: from work.ad.analog.com (HYB-hERzalRezfV.ad.analog.com [10.65.205.9])
-	by zeus.spd.analog.com (8.15.1/8.15.1) with ESMTP id 567DsAev016347;
-	Mon, 7 Jul 2025 09:54:12 -0400
-From: Marcelo Schmitt <marcelo.schmitt@analog.com>
-To: <linux-iio@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-gpio@vger.kernel.org>, <linux-kernel@vger.kernel.org>
-CC: <jic23@kernel.org>, <lars@metafoo.de>, <Michael.Hennerich@analog.com>,
-        <dlechner@baylibre.com>, <nuno.sa@analog.com>, <andy@kernel.org>,
-        <andriy.shevchenko@intel.com>, <robh@kernel.org>, <krzk+dt@kernel.org>,
-        <conor+dt@kernel.org>, <linus.walleij@linaro.org>, <brgl@bgdev.pl>,
-        <broonie@kernel.org>, <lgirdwood@gmail.com>,
-        <marcelo.schmitt1@gmail.com>
-Subject: [PATCH v8 11/12] iio: adc: ad4170-4: Add support for internal temperature sensor
-Date: Mon, 7 Jul 2025 10:54:09 -0300
-Message-ID: <71ac994060cf79a6c49f39b0c7d04c6c9cbbab00.1751895245.git.marcelo.schmitt@analog.com>
-X-Mailer: git-send-email 2.39.2
-In-Reply-To: <cover.1751895245.git.marcelo.schmitt@analog.com>
-References: <cover.1751895245.git.marcelo.schmitt@analog.com>
+	s=arc-20240116; t=1751896473; c=relaxed/simple;
+	bh=M7KnUGVbMMPFMpzTHogMwwXWP2hhGn1bZR4qt/UEBM0=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=LIDTlhjm5TyZHf5Sm+j9tb3FgH2gNVQl1mi1MkxyPFe0cqDZwwT3ApYblcSfgCw6mtOaFCKNsttpBcankgEvduUwZdwyf6YSimXKd53K5gZvNVo3aonPdmZwhwKSMmGEt4MLxx4r5ZIIMObqdb8QeQ//xKRQ4q6IyS9Wxs01OBw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=tuB+3IVA; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 7087EC4CEE3;
+	Mon,  7 Jul 2025 13:54:32 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1751896472;
+	bh=M7KnUGVbMMPFMpzTHogMwwXWP2hhGn1bZR4qt/UEBM0=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=tuB+3IVAs04qBzhql8pLHSdKWQR++hPBxFBxzUbIZLSRvqSDQ9wFNbL4Ysbh5SZEc
+	 DUu7ugObZc0dFFCrV/A8tBknd1M80enSCtEkxFd8oNY9uCW7Oa//1p7cqdVTn0FgPO
+	 tkzWpN/r732IgTdpy6Kei7OavDdhzEuxGY1r6thD+khTCXMuUK06sRj+q+cy6mJurb
+	 dGiM835zw0jdSskaGuixLfTR3dCymPCNErpLf8a+9ESHWr2lnpMujqlAXP6V7mzK75
+	 KThVXuJcvAI8RDhTvvFluF9fUu8zUn72+zTAkEly5qhxhxd4t5hiRuby909H5ZI6f4
+	 /UXf1G73s14EA==
+Date: Mon, 7 Jul 2025 15:54:29 +0200
+From: Maxime Ripard <mripard@kernel.org>
+To: Rob Herring <robh@kernel.org>
+Cc: Saravana Kannan <saravanak@google.com>, 
+	Sumit Semwal <sumit.semwal@linaro.org>, Benjamin Gaignard <benjamin.gaignard@collabora.com>, 
+	Brian Starkey <Brian.Starkey@arm.com>, John Stultz <jstultz@google.com>, 
+	"T.J. Mercier" <tjmercier@google.com>, Christian =?utf-8?B?S8O2bmln?= <christian.koenig@amd.com>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, Andrew Davis <afd@ti.com>, 
+	Jared Kangas <jkangas@redhat.com>, Mattijs Korpershoek <mkorpershoek@kernel.org>, 
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, linux-media@vger.kernel.org, 
+	dri-devel@lists.freedesktop.org, linaro-mm-sig@lists.linaro.org
+Subject: Re: [PATCH v5 1/2] dt-bindings: reserved-memory: Introduce
+ carved-out memory region binding
+Message-ID: <20250707-cobalt-dingo-of-serenity-dbf92c@houat>
+References: <20250617-dma-buf-ecc-heap-v5-0-0abdc5863a4f@kernel.org>
+ <20250617-dma-buf-ecc-heap-v5-1-0abdc5863a4f@kernel.org>
+ <20250627193132.GB4032621-robh@kernel.org>
+ <20250630-attentive-fortunate-turaco-2e36d2@houat>
+ <20250630220819.GA3454648-robh@kernel.org>
+ <20250701-frisky-resolute-hamster-3dfedc@houat>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 8bit
-X-ADIRuleOP-NewSCL: Rule Triggered
-X-Authority-Analysis: v=2.4 cv=AP9nYgXq c=1 sm=1 tr=0 ts=686bd195 cx=c_pps
- a=PpDZqlmH/M8setHirZLBMw==:117 a=PpDZqlmH/M8setHirZLBMw==:17
- a=IkcTkHD0fZMA:10 a=Wb1JkmetP80A:10 a=gAnH3GRIAAAA:8 a=o3DtMFfdRpqB0q9FUmIA:9
- a=3ZKOabzyN94A:10 a=QEXdDO2ut3YA:10
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwNzA3MDA4MSBTYWx0ZWRfX3YfE0BWE80k+
- 5Y/wAYpgia+ccGSGt4Nuh0H5I6DT68dChjC++5J7GUj/U4+HUt9CP8jzI/nd3rDBtpSIXvXbQmf
- AffTDor8iS43vw24q5oHXBq+wQ5d0/kqy/5FVBCRJT5NpCFhVZwlfTVFKMlvt9NJwe7z+lVAdBl
- p9OpqXOdCqlU+t83MvMt4mlkPGQhzzcFGDFpEwa/r7zZvJn7WrKsLXjvHZDzvSliz433akO9dYi
- M/7ABcZtBOI0hJjizNK9qHiq1qbNKWUNQSS2phC0hSpY/nHNhNOZ/9my8KGj+//ZyfN3w7RhOw3
- GgRrjPHhBr+2xGEgk4CJMI9nYlZGP1yv1wvD3A2IUhIjVEa0VWuw/AxXvLNfXqKelAc5A2iCz3Q
- vhTdoAoe0JLs0RwNkWdHajNNuKi3m5Qb3anpOWIdLu0VmzeyyyDYS0QFcYlkMLx/SAPG3M1o
-X-Proofpoint-ORIG-GUID: YF3jiuLuJtYhWSN7dkevxHbeJVHlOkOt
-X-Proofpoint-GUID: YF3jiuLuJtYhWSN7dkevxHbeJVHlOkOt
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1099,Hydra:6.1.7,FMLib:17.12.80.40
- definitions=2025-07-07_03,2025-07-07_01,2025-03-28_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- suspectscore=0 mlxlogscore=999 mlxscore=0 bulkscore=0 priorityscore=1501
- clxscore=1015 lowpriorityscore=0 impostorscore=0 malwarescore=0 adultscore=0
- spamscore=0 phishscore=0 classifier=spam authscore=0 authtc=n/a authcc=
- route=outbound adjust=0 reason=mlx scancount=1 engine=8.19.0-2505280000
- definitions=main-2507070081
+Content-Type: multipart/signed; micalg=pgp-sha384;
+	protocol="application/pgp-signature"; boundary="ocnrmtawiometb3v"
+Content-Disposition: inline
+In-Reply-To: <20250701-frisky-resolute-hamster-3dfedc@houat>
 
-The AD4170-4 has an internal temperature sensor that can be read using the
-ADC. Whenever possible, configure an IIO channel to provide the chip's
-temperature.
 
-Reviewed-by: Nuno Sá <nuno.sa@analog.com>
-Signed-off-by: Marcelo Schmitt <marcelo.schmitt@analog.com>
----
-Change log v7 -> v8
-- Reduced number of line removals in code diff.
+--ocnrmtawiometb3v
+Content-Type: text/plain; protected-headers=v1; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
+Subject: Re: [PATCH v5 1/2] dt-bindings: reserved-memory: Introduce
+ carved-out memory region binding
+MIME-Version: 1.0
 
- drivers/iio/adc/ad4170-4.c | 62 ++++++++++++++++++++++++++++++++++++++
- 1 file changed, 62 insertions(+)
+Hi Rob,
 
-diff --git a/drivers/iio/adc/ad4170-4.c b/drivers/iio/adc/ad4170-4.c
-index 3153680c0a30..2a20868a1db7 100644
---- a/drivers/iio/adc/ad4170-4.c
-+++ b/drivers/iio/adc/ad4170-4.c
-@@ -874,6 +874,27 @@ static const struct iio_chan_spec ad4170_channel_template = {
- 	},
- };
- 
-+static const struct iio_chan_spec ad4170_temp_channel_template = {
-+	.type = IIO_TEMP,
-+	.indexed = 0,
-+	.channel = 17,
-+	.channel2 = 17,
-+	.info_mask_separate = BIT(IIO_CHAN_INFO_RAW) |
-+			      BIT(IIO_CHAN_INFO_SCALE) |
-+			      BIT(IIO_CHAN_INFO_OFFSET) |
-+			      BIT(IIO_CHAN_INFO_CALIBSCALE) |
-+			      BIT(IIO_CHAN_INFO_CALIBBIAS) |
-+			      BIT(IIO_CHAN_INFO_SAMP_FREQ),
-+	.info_mask_separate_available = BIT(IIO_CHAN_INFO_SAMP_FREQ),
-+	.scan_type = {
-+		.sign = 's',
-+		.realbits = 24,
-+		.storagebits = 32,
-+		.shift = 8,
-+		.endianness = IIO_BE,
-+	},
-+};
-+
- /*
-  * Receives the number of a multiplexed AD4170 input (ain_n), and stores the
-  * voltage (in µV) of the specified input into ain_voltage. If the input number
-@@ -1181,6 +1202,18 @@ static int ad4170_read_raw(struct iio_dev *indio_dev,
- 			*val = chan_info->scale_tbl[pga][0];
- 			*val2 = chan_info->scale_tbl[pga][1];
- 			return IIO_VAL_INT_PLUS_NANO;
-+		case IIO_TEMP:
-+			/*
-+			 * The scale_tbl converts output codes to mV units so
-+			 * multiply by MILLI to make the factor convert to µV.
-+			 * Then, apply the temperature sensor change sensitivity
-+			 * of 477 μV/K. Finally, multiply the result by MILLI
-+			 * again to comply with milli degrees Celsius IIO ABI.
-+			 */
-+			*val = 0;
-+			*val2 = DIV_ROUND_CLOSEST(chan_info->scale_tbl[pga][1] * MILLI, 477) *
-+						  MILLI;
-+			return IIO_VAL_INT_PLUS_NANO;
- 		default:
- 			return -EINVAL;
- 		}
-@@ -1859,6 +1892,9 @@ static int ad4170_parse_channels(struct iio_dev *indio_dev)
- 	if (num_channels > AD4170_MAX_ADC_CHANNELS)
- 		return dev_err_probe(dev, -EINVAL, "Too many channels\n");
- 
-+	/* Add one for temperature */
-+	num_channels = min(num_channels + 1, AD4170_MAX_ADC_CHANNELS);
-+
- 	chan_num = 0;
- 	device_for_each_child_node_scoped(dev, child) {
- 		ret = ad4170_parse_channel_node(indio_dev, child, chan_num++);
-@@ -1866,6 +1902,32 @@ static int ad4170_parse_channels(struct iio_dev *indio_dev)
- 			return ret;
- 	}
- 
-+	/*
-+	 * Add internal temperature sensor channel if the maximum number of
-+	 * channels has not been reached.
-+	 */
-+	if (num_channels < AD4170_MAX_ADC_CHANNELS) {
-+		struct ad4170_setup *setup = &st->chan_infos[chan_num].setup;
-+
-+		st->chans[chan_num] = ad4170_temp_channel_template;
-+		st->chans[chan_num].address = chan_num;
-+		st->chans[chan_num].scan_index = chan_num;
-+
-+		st->chan_infos[chan_num].setup_num = AD4170_INVALID_SETUP;
-+		st->chan_infos[chan_num].initialized = true;
-+
-+		setup->afe |= FIELD_PREP(AD4170_AFE_REF_SELECT_MSK,
-+					 AD4170_REF_AVDD);
-+
-+		ret = ad4170_get_input_range(st, &st->chans[chan_num], chan_num,
-+					     AD4170_REF_AVDD);
-+		if (ret < 0)
-+			return dev_err_probe(dev, ret, "Invalid input config\n");
-+
-+		st->chan_infos[chan_num].input_range_uv = ret;
-+		chan_num++;
-+	}
-+
- 	/* Add timestamp channel */
- 	struct iio_chan_spec ts_chan = IIO_CHAN_SOFT_TIMESTAMP(chan_num);
- 
--- 
-2.47.2
+On Tue, Jul 01, 2025 at 09:12:18AM +0200, Maxime Ripard wrote:
+> On Mon, Jun 30, 2025 at 05:08:19PM -0500, Rob Herring wrote:
+> > On Mon, Jun 30, 2025 at 06:41:38PM +0200, Maxime Ripard wrote:
+> > > Hi Rob,
+> > >=20
+> > > On Fri, Jun 27, 2025 at 02:31:32PM -0500, Rob Herring wrote:
+> > > > On Tue, Jun 17, 2025 at 02:25:40PM +0200, Maxime Ripard wrote:
+> > > > > Some parts of the memory can be dedicated to specific purposes and
+> > > > > exposed as a dedicated memory allocator.
+> > > > >=20
+> > > > > This is especially useful if that particular region has a particu=
+lar
+> > > > > properties the rest of the memory doesn't have. For example, some
+> > > > > platforms have their entire RAM covered by ECC but for a small ar=
+ea
+> > > > > meant to be used by applications that don't need ECC, and its ass=
+ociated
+> > > > > overhead.
+> > > > >=20
+> > > > > Let's introduce a binding to describe such a region and allow the=
+ OS to
+> > > > > create a dedicated memory allocator for it.
+> > > > >=20
+> > > > > Signed-off-by: Maxime Ripard <mripard@kernel.org>
+> > > > > ---
+> > > > >  .../bindings/reserved-memory/carved-out.yaml       | 49 ++++++++=
+++++++++++++++
+> > > > >  1 file changed, 49 insertions(+)
+> > > > >=20
+> > > > > diff --git a/Documentation/devicetree/bindings/reserved-memory/ca=
+rved-out.yaml b/Documentation/devicetree/bindings/reserved-memory/carved-ou=
+t.yaml
+> > > > > new file mode 100644
+> > > > > index 0000000000000000000000000000000000000000..9ab5d1ebd9ebd9111=
+b7c064fabe1c45e752da83b
+> > > > > --- /dev/null
+> > > > > +++ b/Documentation/devicetree/bindings/reserved-memory/carved-ou=
+t.yaml
+> > > > > @@ -0,0 +1,49 @@
+> > > > > +# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
+> > > > > +%YAML 1.2
+> > > > > +---
+> > > > > +$id: http://devicetree.org/schemas/reserved-memory/carved-out.ya=
+ml#
+> > > > > +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> > > > > +
+> > > > > +title: Carved-out Memory Region
+> > > > > +
+> > > > > +description: |
+> > > >=20
+> > > > Don't need '|'.
+> > > >=20
+> > > > > +  Specifies that the reserved memory region has been carved out =
+of the
+> > > > > +  main memory allocator, and is intended to be used by the OS as=
+ a
+> > > > > +  dedicated memory allocator.
+> > > >=20
+> > > > Other than the commit msg, it is completely lost that this is for=
+=20
+> > > > ECC-less memory.
+> > >=20
+> > > Because it's not. One of the first feedback I got was that the way to
+> > > identify what a heap provides was the heap name.
+> > >=20
+> > > So, as far as the binding go, a heap just exposes a chunk of memory t=
+he
+> > > memory allocator wouldn't use. The actual semantics of that chunk of
+> > > memory don't matter.
+> >=20
+> > But they do because you use one carve out for one thing and another=20
+> > carve out for another purpose and they probably aren't interchangeable.
+>=20
+> That was also my initial thought, but it was then discussed that the
+> name of the region is enough of a discriminant. And it makes sense too,
+> it's a sufficient discriminant for the device tree to uniquely identify
+> a given memory region on a given platform already, so we don't really
+> need anything else.
+>=20
+> > For the most part, everything in /reserved-memory is a carve out from=
+=20
+> > regular memory though we failed to enforce that.
+> >=20
+> > > > This description applies to CMA area as well. So what's the differe=
+nce?
+> > >=20
+> > > Yeah, I kind of agree, which is why I initially started with a proper=
+ty,
+> > > and you then asked for a compatible.
+> >=20
+> > My issues with properties is we have to support N factorial cases for=
+=20
+> > combinations of N properties. It's already fragile. Whereas a compatibl=
+e=20
+> > is (hopefully) well defined as to what's needed and is only 1 more case=
+=20
+> > to support.
+>=20
+> I think that's also what John especially wanted to avoid. If we have a
+> generic compatible, but the attributes/properties/whatever of the
+> buffers allocated from that region differ (like ecc vs non-ecc,
+> protected vs non-protected, etc.) we will need properties in the device
+> tree to describe them too.
 
+I thought about it some more over the weekend, but if a compatible isn't
+a great solution either, would it make sense to just create a heap for
+each shared-dma-pool region, and thus we just wouldn't need any extra
+compatible or property?
+
+Maxime
+
+--ocnrmtawiometb3v
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iJUEABMJAB0WIQTkHFbLp4ejekA/qfgnX84Zoj2+dgUCaGvRkQAKCRAnX84Zoj2+
+dkZwAX4rT+fDu6s03R98a9PhbxiZQuf0qatIim53ASVJNKer/7d+UzPQxlAZMm6T
+8lKd1fcBfR8q9qQI9VdMqnoE+7lwQZNgSMDmOsCrmn0yi30ou/EVVP7HptXFkwHt
+jYrff69ABQ==
+=nuJF
+-----END PGP SIGNATURE-----
+
+--ocnrmtawiometb3v--
 
