@@ -1,62 +1,60 @@
-Return-Path: <devicetree+bounces-193526-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-193527-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0E4DAAFACA7
-	for <lists+devicetree@lfdr.de>; Mon,  7 Jul 2025 09:05:50 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id DE14AAFACAA
+	for <lists+devicetree@lfdr.de>; Mon,  7 Jul 2025 09:06:05 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 8122D16D46D
-	for <lists+devicetree@lfdr.de>; Mon,  7 Jul 2025 07:04:46 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 8FAC416224C
+	for <lists+devicetree@lfdr.de>; Mon,  7 Jul 2025 07:05:29 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 16D7B274B5F;
-	Mon,  7 Jul 2025 07:03:28 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0E0C82627F9;
+	Mon,  7 Jul 2025 07:05:25 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="juhvhw3W"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="AvVog57e"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D7F1CF510;
-	Mon,  7 Jul 2025 07:03:27 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DAF5B946C;
+	Mon,  7 Jul 2025 07:05:24 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1751871808; cv=none; b=dj6JGe8cgxdoC4OJsUfSrN9K/ugKaWKJc0RxoAbx+inLBgniziN3Or75sw6TojPGKSYlnMmhxqvzhwdgZBqs5Ak0bSa8RR8fObiArp4W2cyy77oBHpoyyEDpbbnIzVEBFWh9gB++sPtUx6965jgFNw/MnGYf2rLkIOvDGrbSBxo=
+	t=1751871924; cv=none; b=NEXRSVvaR8xu84zAeq46pLqVD3WZeNkhDQhqrOGotclgz7w8/AaQql/EjTgwMD0j4zYZ+n4qqGw4BIXX/w549L4TPnuJJrIFSnMVQFn+oteduXLDXzeShaxjnKIVQUNnJiihsJKnPvFcm/TcTvy0VZBSerTArtLQ5LJ3W7v8SOA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1751871808; c=relaxed/simple;
-	bh=C7uOTK0k8vI5Rytb4z6FYorlHJkqS3b6pXeuWrE6ydE=;
+	s=arc-20240116; t=1751871924; c=relaxed/simple;
+	bh=PGd9A/5X3od+Z3ffVuEq/O0FzpECV5LP8wKFT6Fvjms=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=NBOMdiRNQ6tEFk1IpqGLU2fAkH496qNuIe/wh2cxX61wi1AeheklLuvkzhykkssIpHI+agH2fPfIo577mpeXIf0mXCck8JPIURojUQQOi2UnEBpKcUtNN6qZ5seVUOZfmmmuFud3gBgnwopD8MUO047iCO1ubT+Urx+PvuCtz7E=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=juhvhw3W; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id E6986C4CEE3;
-	Mon,  7 Jul 2025 07:03:26 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=jqwX5RBxcdIAblN346ZyavER6U4pT7+0nXF/XtT2osqkFegfaexdNDlorx9uQl8Ce+v08vTZ5cxg0H180f29tU9eTwN+THZoBqp7A1OiEOC0yIH5FXYPDi5KWntsN9A1xBHvM+Iu4nL7AE1BjDp2uKMoIRJ7gEm2zEatSquz3as=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=AvVog57e; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id DB729C4CEE3;
+	Mon,  7 Jul 2025 07:05:23 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1751871807;
-	bh=C7uOTK0k8vI5Rytb4z6FYorlHJkqS3b6pXeuWrE6ydE=;
+	s=k20201202; t=1751871924;
+	bh=PGd9A/5X3od+Z3ffVuEq/O0FzpECV5LP8wKFT6Fvjms=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=juhvhw3WpehmoYS3yhMSeHhbSJHFjabaH4UVU914nbBJLsczWs9I2wPEtRq7olY08
-	 GBWxYeU16OKlR1EM0xg8BB3VCqWUb9XFoKeQbr6akcK9u64d1pOZz6Q1rmHNp0UD1A
-	 e4OhC/sgy/PkTEEDoUx/++7WBvepuiev5p8MQCQW6ARuHVB8GS2efXl+1B9Ca1lPBy
-	 uDeqS9LQp3gV5dlacwuw5wjPp0dHhTws7+EoXVlbwgxCWzdjeFlInMwoK1HD/E1ijt
-	 h/N9XfUMi9P4+zsKrjoq7EvZdfR/PLOs1d9UFJ6yx9DHTNE3ZaErPgmlyY6mCSOFQq
-	 lXAKKtP1vrbqg==
-Date: Mon, 7 Jul 2025 09:03:24 +0200
+	b=AvVog57eSaJ7QWXH8nmeb4XuVlKZryiU7ZDpRGgHKMWBPpORbIA4VvVU4UjYEO6NZ
+	 QVCRtXiPnoW61uFvKUy5XyExVtoUlttp9QbU+jBFqCgUZMVLP+TTZHPX3XUNzynoXL
+	 UnIyEH9ch4evzaTB/JVTGpSjYIVDc/VneTCzKuOdTPqMlxW0Et6/Dobd7VM50eyRU0
+	 wtEFQ0mR7Sc13PlbzNAsFHa2k2eYrkcXrPaecBEPZve2zpln3yCSGHj2E7G8HXw5rj
+	 VBftwCkKF0AltFaSzuyVnXTOwIJ5zMCmVmKecigiDHo2sRuL0U2bmQZsBbtGqUEpVL
+	 7b70fNU/wqDVA==
+Date: Mon, 7 Jul 2025 09:05:21 +0200
 From: Krzysztof Kozlowski <krzk@kernel.org>
-To: Frank Li <Frank.Li@nxp.com>
-Cc: Laurent Pinchart <laurent.pinchart@ideasonboard.com>, 
-	Mauro Carvalho Chehab <mchehab@kernel.org>, Shawn Guo <shawnguo@kernel.org>, 
-	Sascha Hauer <s.hauer@pengutronix.de>, Pengutronix Kernel Team <kernel@pengutronix.de>, 
-	Fabio Estevam <festevam@gmail.com>, Rui Miguel Silva <rmfrfs@gmail.com>, 
-	Martin Kepplinger <martink@posteo.de>, Purism Kernel Team <kernel@puri.sm>, 
-	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
-	Conor Dooley <conor+dt@kernel.org>, Philipp Zabel <p.zabel@pengutronix.de>, 
-	linux-media@vger.kernel.org, imx@lists.linux.dev, linux-arm-kernel@lists.infradead.org, 
-	linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
-Subject: Re: [PATCH v2 3/4] arm64: dts: imx8: add parallel CSI node
-Message-ID: <20250707-authentic-jellyfish-of-tact-ef6f0d@krzk-bin>
-References: <20250703-imx8qxp_pcam-v2-0-188be85f06f1@nxp.com>
- <20250703-imx8qxp_pcam-v2-3-188be85f06f1@nxp.com>
+To: Lorenzo Bianconi <lorenzo@kernel.org>
+Cc: Andrew Lunn <andrew+netdev@lunn.ch>, 
+	"David S. Miller" <davem@davemloft.net>, Eric Dumazet <edumazet@google.com>, 
+	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	linux-arm-kernel@lists.infradead.org, linux-mediatek@lists.infradead.org, netdev@vger.kernel.org, 
+	devicetree@vger.kernel.org
+Subject: Re: [PATCH net-next v2 1/7] dt-bindings: net: airoha: npu: Add
+ memory regions used for wlan offload
+Message-ID: <20250707-topaz-pillbug-of-fame-859822@krzk-bin>
+References: <20250705-airoha-en7581-wlan-offlaod-v2-0-3cf32785e381@kernel.org>
+ <20250705-airoha-en7581-wlan-offlaod-v2-1-3cf32785e381@kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -65,36 +63,52 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <20250703-imx8qxp_pcam-v2-3-188be85f06f1@nxp.com>
+In-Reply-To: <20250705-airoha-en7581-wlan-offlaod-v2-1-3cf32785e381@kernel.org>
 
-On Thu, Jul 03, 2025 at 02:33:08PM -0400, Frank Li wrote:
-> Add parallel CSI nodes.
-
-CSI is serial. How this can be a parallel serial? Binding speaks nothing
-about CSI, so this is just confusing. About which MIPI standard are we
-talking here?
-
+On Sat, Jul 05, 2025 at 11:09:45PM +0200, Lorenzo Bianconi wrote:
+> Document memory regions used by Airoha EN7581 NPU for wlan traffic
+> offloading.
 > 
-> Signed-off-by: Frank Li <Frank.Li@nxp.com>
+> Signed-off-by: Lorenzo Bianconi <lorenzo@kernel.org>
 > ---
-> changes in v2
-> - update compatible string to match binding's change
-> ---
->  arch/arm64/boot/dts/freescale/imx8-ss-img.dtsi    | 13 +++++++++++
->  arch/arm64/boot/dts/freescale/imx8qxp-ss-img.dtsi | 27 +++++++++++++++++++++++
->  2 files changed, 40 insertions(+)
+>  .../devicetree/bindings/net/airoha,en7581-npu.yaml   | 20 ++++++++++++++++----
+>  1 file changed, 16 insertions(+), 4 deletions(-)
 > 
-> diff --git a/arch/arm64/boot/dts/freescale/imx8-ss-img.dtsi b/arch/arm64/boot/dts/freescale/imx8-ss-img.dtsi
-> index 2cf0f7208350a416d77b11140279d2f66f41498f..1f7bf9efdbca266fbda82d2bc84acd9a27ed0bd1 100644
-> --- a/arch/arm64/boot/dts/freescale/imx8-ss-img.dtsi
-> +++ b/arch/arm64/boot/dts/freescale/imx8-ss-img.dtsi
-> @@ -224,6 +224,19 @@ irqsteer_parallel: irqsteer@58260000 {
->  		status = "disabled";
->  	};
+> diff --git a/Documentation/devicetree/bindings/net/airoha,en7581-npu.yaml b/Documentation/devicetree/bindings/net/airoha,en7581-npu.yaml
+> index 76dd97c3fb4004674dc30a54c039c1cc19afedb3..db9269d1801bafa9be3b6c199a9e30cd23f4aea9 100644
+> --- a/Documentation/devicetree/bindings/net/airoha,en7581-npu.yaml
+> +++ b/Documentation/devicetree/bindings/net/airoha,en7581-npu.yaml
+> @@ -41,15 +41,25 @@ properties:
+>        - description: wlan irq line5
 >  
-> +	parallel_csi: csi@58261000 {
+>    memory-region:
+> -    maxItems: 1
+> -    description:
+> -      Memory used to store NPU firmware binary.
+> +    items:
+> +      - description: NPU firmware binary region
+> +      - description: NPU wlan offload RX buffers region
+> +      - description: NPU wlan offload TX buffers region
+> +      - description: NPU wlan offload TX packet identifiers region
+> +
+> +  memory-region-names:
+> +    items:
+> +      - const: binary
 
-And here it is called csi, not cpi, although binding calls pcif. Decide.
+Rather: firmware
+
+> +      - const: pkt
+> +      - const: tx-pkt
+> +      - const: tx-bufid
+>  
+>  required:
+>    - compatible
+>    - reg
+>    - interrupts
+>    - memory-region
+> +  - memory-region-names
+
+That's ABI break.
 
 Best regards,
 Krzysztof
