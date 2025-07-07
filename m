@@ -1,263 +1,163 @@
-Return-Path: <devicetree+bounces-193564-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-193565-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id EAADDAFAEB6
-	for <lists+devicetree@lfdr.de>; Mon,  7 Jul 2025 10:35:36 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 07EB3AFAEBE
+	for <lists+devicetree@lfdr.de>; Mon,  7 Jul 2025 10:38:53 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 4A1F41681BC
-	for <lists+devicetree@lfdr.de>; Mon,  7 Jul 2025 08:35:37 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id AA1A51AA01F7
+	for <lists+devicetree@lfdr.de>; Mon,  7 Jul 2025 08:39:09 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 74E6428A1D8;
-	Mon,  7 Jul 2025 08:35:32 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4D9BD28B41D;
+	Mon,  7 Jul 2025 08:38:47 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=resnulli-us.20230601.gappssmtp.com header.i=@resnulli-us.20230601.gappssmtp.com header.b="M9HPD12S"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtpbg150.qq.com (smtpbg150.qq.com [18.132.163.193])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wr1-f42.google.com (mail-wr1-f42.google.com [209.85.221.42])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 90BB71991CA;
-	Mon,  7 Jul 2025 08:35:23 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=18.132.163.193
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 859FD28A1F9
+	for <devicetree@vger.kernel.org>; Mon,  7 Jul 2025 08:38:45 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.42
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1751877332; cv=none; b=io3lXIJnZ+qzggHjGW51xSuO626bNUidSN9S+/Py9Ko6qPk2s29urUrLWhSGoSERsTe9YQKXfnUyCZwtmpyhMd1tzacd6beKswR0cfbszqkxweIPiRzbudfPRUv6F/4yvXEhx8NYGqn4llW855Z2dNk7SkbZG5UL3FG0eqkKbRU=
+	t=1751877527; cv=none; b=if7T1fS7APMuka1IYOgCCpXI9A3Z8FHzMZezO7DY+rDjB1WF3H14WYK5AKDGCK4uR8dsgO8uS994221mnhPI12KQjrKtnyKiMT6x3qCFxtISRUrNBdLWVcYaEUMUtlmfpxZSrpLCph1PYPxFg4w4i0TcnN7cYY7k08daN7aPz90=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1751877332; c=relaxed/simple;
-	bh=c+OHzeBm0ZQ5KVmICsG+TpRuQJv+FO1MlXQYnQ9Woc8=;
+	s=arc-20240116; t=1751877527; c=relaxed/simple;
+	bh=9xBalXmnJgD4RmmIV/V6wnjZTZ9oSv6heR/g4f/2kZA=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=Ncj8tRaXfZI8+pg8a7YcK7RpeuXc3KTXrrD+eSMI6M8PKeXyhes1E2kaGcGolxqAMNvgNIC28rg7yJ0Zh2c8vcrncZimUkFv+sOBNcX+BbzN25nGQEzIz5x+/JIvr5bb5/VDSFQijpQL5jX7lJJro40lYfbhBHyNrAAkLBuVWHs=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=foursemi.com; spf=pass smtp.mailfrom=foursemi.com; arc=none smtp.client-ip=18.132.163.193
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=foursemi.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=foursemi.com
-X-QQ-mid: esmtpgz14t1751877245t6879af3a
-X-QQ-Originating-IP: EXPBHUCjMuLBbyDHcC6ocEdsYFi+F1sQN5KjNonpwzY=
-Received: from localhost ( [113.89.234.180])
-	by bizesmtp.qq.com (ESMTP) with 
-	id ; Mon, 07 Jul 2025 16:34:03 +0800 (CST)
-X-QQ-SSF: 0000000000000000000000000000000
-X-QQ-GoodBg: 0
-X-BIZMAIL-ID: 11672384708710778107
-EX-QQ-RecipientCnt: 12
-Date: Mon, 7 Jul 2025 16:34:03 +0800
-From: Nick Li <nick.li@foursemi.com>
-To: Mark Brown <broonie@kernel.org>
-Cc: lgirdwood@gmail.com, robh@kernel.org, krzk+dt@kernel.org,
-	conor+dt@kernel.org, perex@perex.cz, tiwai@suse.com,
-	xiaoming.yang@foursemi.com, danyang.zheng@foursemi.com,
-	linux-sound@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v1 2/4] ASoC: codecs: Add FourSemi FS2104/5S audio
- amplifier driver
-Message-ID: <88CC983A5550253C+aGuGe7pQvIBPclfz@foursemi.com>
-References: <20250703035639.7252-1-nick.li@foursemi.com>
- <20250703035639.7252-3-nick.li@foursemi.com>
- <b1ad15d1-bf9f-4b94-abb8-1e9c6d512987@sirena.org.uk>
- <1C4720AC50797830+aGe3L70OToh6txmC@foursemi.com>
- <0370941d-63eb-4676-8a74-b8afef524376@sirena.org.uk>
+	 Content-Type:Content-Disposition:In-Reply-To; b=W8l/9fYCWDuEuj5c151YhuvQQbJBy4S3MqMNbJ7pVLosmHEsqPkM1o0/cWLQQ3yMvkDBTzhF6LsqZENeMZrUsKv0iWOfDo0XYKd/AxucDW94Xdtbc1D32Jx8JXMvhCKheyTbLY2+agLvjcN5OcQTPQb12U4MFL3pmfV6chAj6hE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=resnulli.us; spf=none smtp.mailfrom=resnulli.us; dkim=pass (2048-bit key) header.d=resnulli-us.20230601.gappssmtp.com header.i=@resnulli-us.20230601.gappssmtp.com header.b=M9HPD12S; arc=none smtp.client-ip=209.85.221.42
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=resnulli.us
+Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=resnulli.us
+Received: by mail-wr1-f42.google.com with SMTP id ffacd0b85a97d-3a57c8e247cso2093719f8f.1
+        for <devicetree@vger.kernel.org>; Mon, 07 Jul 2025 01:38:45 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=resnulli-us.20230601.gappssmtp.com; s=20230601; t=1751877524; x=1752482324; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=7aL18uBiZMw/FWxoKoVSvm/jRO6BDbywt1DvLbU3XB8=;
+        b=M9HPD12SaZJS9ElrYZwvnTw1s9jInt7WNp/e8hYRFlSnM4NDnrHzWfQYvbvlxkqqVN
+         0FJtHpS55fXWw2A57xnWoo+lTBHYbEqOpjHuxsz6RZHbP/F8Kqjsfu30EyciP0XVnJG3
+         q80/A3D/4XrbljezffxiAYrodcZFgGgJ5JkT60z1COEcD11IjPPyrvrfLmJau/RFsT30
+         f3IQlO5uw4QMS2FwYvp32AThq4nf3Ll/qhA+zjecWJnjD8P4f68JenX0qZI2Jw6aFZg8
+         Tk62dIhYC8n/ZEAIfPmKKUgxgh8/9IkW54z8hViYhdqcNzGT9B7Rg32g6s8CogXw2xiH
+         rWPQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1751877524; x=1752482324;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=7aL18uBiZMw/FWxoKoVSvm/jRO6BDbywt1DvLbU3XB8=;
+        b=JRiTgZ9K/U4k6ckzDSLXldbS9HOx35FAxFKERRrfBRUDcPzAdQKi52DWMG83wZPFEJ
+         cgjepybm+tkhIWJRiC6jjfAmLGShjnyXXFskbgNS4ihFP6q3/VvSihmUy2GrL0AC7NWv
+         gN0qih9C3oPgJC7Ukdve9pDjINn7ES/oVJbpFk2aH4aekdEi/vXjoMp/o3x6zj7Bt5SP
+         hrB0XnwucTD4n72p76ShCKuVnn9wsE1c7q6eVSHdFnyBxJu+glq26Rew3/1WudkmwN/P
+         CxrI7KyonFSWP/AUyfCrdJ4kJs02kpggjtpaECyRhUd3k18cD2hIfpSMvfR80QLA4W3p
+         BB+A==
+X-Forwarded-Encrypted: i=1; AJvYcCV9lZwrJBg7XDBwN3mWE5sf7gVmQX/yPobz4BaRxxZVw38YOqny2qwd+EC2QWCm3HM62aXrOkWVnRrh@vger.kernel.org
+X-Gm-Message-State: AOJu0YzR03xnDh1Wj1P9Y2UKtWnLSKb6d+uYvGLd8WIHxnSjGzgFJ3F+
+	V1mvTahrTSpRTJrN08071rYN8XR8v4PWBmtAbo7QYEGuaKbxfZbiAR0jJuqIlWHBeOE=
+X-Gm-Gg: ASbGncuIpd27vuqAzwjQ4YbE2HDRCNQqSGjdIy63Dplx3YbjWAddBIGcHyCIuTnD0HP
+	AUdSb3gmocYoZJipetLRbh9GD9r2atiw17pOP3ycmE4JUyTAjWEZfELeY8UjzbnsHqE5q3IwFSB
+	M+XHPJINfJ6cqpmsagDA4hXsYFngDU+xCdrm7FJjFBen6oPcKCtrP1sZQJmL89Yj2DegYO3sRVq
+	9o/4nNdvN5bmWeGu1ZXg4ysEXwlc5PjBn0y0vEg6W1zPtHEu35bQCXshKfTbpw0NaZyQG3+au6n
+	dQB8uqDgjmcL3K7i4mpt4491csrRuLuEnZctc+CywhLJWEImtVqR60TFUKoibO4=
+X-Google-Smtp-Source: AGHT+IHOL134zxv2M5TIxjn1JcbIuqigNn/BoslUPqMt07/pkuCY3NvzphTd4fkc6LrVVlovNM0TJQ==
+X-Received: by 2002:a05:6000:24c9:b0:3a5:541c:b40f with SMTP id ffacd0b85a97d-3b49700c57cmr9041350f8f.9.1751877523572;
+        Mon, 07 Jul 2025 01:38:43 -0700 (PDT)
+Received: from jiri-mlt ([85.163.81.98])
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-454b1696ca8sm106595425e9.28.2025.07.07.01.38.42
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 07 Jul 2025 01:38:43 -0700 (PDT)
+Date: Mon, 7 Jul 2025 10:38:41 +0200
+From: Jiri Pirko <jiri@resnulli.us>
+To: Ivan Vecera <ivecera@redhat.com>
+Cc: netdev@vger.kernel.org, Vadim Fedorenko <vadim.fedorenko@linux.dev>, 
+	Arkadiusz Kubalewski <arkadiusz.kubalewski@intel.com>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Prathosh Satish <Prathosh.Satish@microchip.com>, "David S. Miller" <davem@davemloft.net>, 
+	Eric Dumazet <edumazet@google.com>, Jakub Kicinski <kuba@kernel.org>, 
+	Paolo Abeni <pabeni@redhat.com>, Simon Horman <horms@kernel.org>, 
+	Jonathan Corbet <corbet@lwn.net>, Jason Gunthorpe <jgg@ziepe.ca>, 
+	Shannon Nelson <shannon.nelson@amd.com>, Dave Jiang <dave.jiang@intel.com>, 
+	Jonathan Cameron <Jonathan.Cameron@huawei.com>, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+	linux-doc@vger.kernel.org, Michal Schmidt <mschmidt@redhat.com>, 
+	Petr Oros <poros@redhat.com>
+Subject: Re: [PATCH net-next v13 00/12] Add Microchip ZL3073x support (part 1)
+Message-ID: <cuqmu4cy52vj3njjltr3uf3ozsnmnhmo7v4lzzztftvupnf5wu@eekmg4a2wkla>
+References: <20250704182202.1641943-1-ivecera@redhat.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <0370941d-63eb-4676-8a74-b8afef524376@sirena.org.uk>
-X-QQ-SENDSIZE: 520
-Feedback-ID: esmtpgz:foursemi.com:qybglogicsvrsz:qybglogicsvrsz3a-0
-X-QQ-XMAILINFO: ONcd5u+FjiuQnR804v+HINLptnFnRAJHpfCkgG7xlisGJhqfmE4C69qT
-	fdn1XhLXZvE4qwUzQ7J+dRvOb14le0niRpvmhgQB34NhbJo6HfmdJtjTWiKZ32mWgACKm7P
-	aK8n95mg3Xn6VUgC89FCB2ZrPgmbHul1MRGnZWuiCBm5fcWQlUzcOpGb1SO3rwR+KEH4Qjk
-	T9Enayh0y86+sVRUlxLpw/iH0moAdQYhK2qTjYuP1baT7f5rpPkf+PSKkh6pHLzaKEdbKKX
-	PnZL21QCIOS9el2m+ANRAVONmuEhMJT648BAtPY9JW6nHzUoGkKJUOm3UkwN1MP36NkoLfx
-	JFO7vHQaqfzjI2IOtmDXUtbMz7By/pQpfQTyJ+oY+yohc/malE7mkbKgNbfOEUvzhfVNeZn
-	Nt8ogP9CVTcf2AScirz32CKD83U6X6w0rIKjZFr+7ksCXBkh6Fg/0rrcdL+SGMN96EM3Qja
-	+jQVO3N687YaERH7nC2dBTSEtD8w3dK24IAe2mKJmlHIaT6K2QcPTyYXneBHRUPismgnPpn
-	8U5Fmf+g76GL7BKkKVm7vvmduNyyeT/2zs8cvepfDw8QMXR3c1hR/bte0P4nRRpoOFUreNJ
-	ZC2Qlc7p1EiVYsZFf82hFjAZ607OvTdurz80OYAxlh1jg3gliPCHro7lu1BEHHo+UpAN6lK
-	ZrwJ5rfy3NNN5+K8qe5k3TVworC00ISuhuVfUY1i9d6cUykRROoeFp64wrI7z25IYg6pAdZ
-	sDE+YtBaO9jensJdtGgk22aH9TGQetfFGthYPBUKArY5vU0MjJcnEJljMO4QwUY4ZOd4oRS
-	g+HYQ23s73z7a+ce/MkLSbZfpux12o6/ojoVhNW4s4FQ0XE5maJRYHd4nQUZvIda4teVuXK
-	H+spoYzgLaadbqSXh078DLiglpKZC+hv3rVVT3DwHzDJ/O7WQFPUzWZYp6SWXQ2PHRKgN6r
-	zDZpPrkEtH+J+/WrDLZCVdlfM4Gy+wo90CaUK/23AJW8Rxc42BHBfbed58e3cdOFHTUTofF
-	t8+81HfhQJA24res0w
-X-QQ-XMRINFO: NyFYKkN4Ny6FSmKK/uo/jdU=
-X-QQ-RECHKSPAM: 0
+In-Reply-To: <20250704182202.1641943-1-ivecera@redhat.com>
 
-On Fri, Jul 04, 2025 at 03:37:32PM +0100, Mark Brown wrote:
-> On Fri, Jul 04, 2025 at 07:12:47PM +0800, Nick Li wrote:
-> > On Thu, Jul 03, 2025 at 03:59:34PM +0100, Mark Brown wrote:
-> > > On Thu, Jul 03, 2025 at 11:56:37AM +0800, Nick wrote:
-> 
-> > > > +static int fs210x_set_pcm_volume(struct fs210x_priv *fs210x)
-> 
-> > > > +	ret  = fs210x_reg_write(fs210x, FS210X_39H_LVOLCTRL, vol[0]);
-> > > > +	ret |= fs210x_reg_write(fs210x, FS210X_3AH_RVOLCTRL, vol[1]);
-> 
-> > > This looks pretty generic, why is it not using a standard control type?
-> 
-> > 1. We use regmap as REGMAP_NONE, because most of the registers settings
-> >    are in the firmware, if we use a standard control,the driver shouldn't
-> >    cache the registers after suspending the device(it will be reset).
-> 
-> You can exclude registers from a cache, including excluding most of
-> them, or manually handle registers over suspend/resume.  It's generally
-> better to share the userspace facing interfaces.
+Fri, Jul 04, 2025 at 08:21:50PM +0200, ivecera@redhat.com wrote:
+>Add support for Microchip Azurite DPLL/PTP/SyncE chip family that
+>provides DPLL and PTP functionality. This series bring first part
+>that adds the core functionality and basic DPLL support.
+>
+>The next part of the series will bring additional DPLL functionality
+>like eSync support, phase offset and frequency offset reporting and
+>phase adjustments.
+>
+>Testing was done by myself and by Prathosh Satish on Microchip EDS2
+>development board with ZL30732 DPLL chip connected over I2C bus.
+>
+>---
+>Changelog:
+>v13:
+>* added support for u64 devlink parameters
+>* added support for generic devlink parameter 'clock_id'
+>* several patches squashed into one per @jpirko's advice
+>* renamed devlink version 'cfg.custom_ver' to 'custom_cfg'
+>* per discussion with @jpirko, the clock_id is now generated randomly
+>  and user have an option to change it via devlink
+>* implemented devlink reload to apply clock_id change
+>
+>v12:
+>* Using 'return dev_err_probe()'
+>* Separate zl3073x_chip_info structures instead of array
+>* Use mul_u64_u32_div() to compute input reference frequency to avoid
+>  potential overflow
+>* Removed superfluous check in zl3073x_dpll_output_pin_frequency_set()
+>
+>v11:
+>* Fixed uninitialized 'rc' in error-path in patch 9
+>
+>v10:
+>* Usage of str_enabled_disabled() where possible.
+>
+>v9:
+>After discussion with Jakub Kicinski we agreed that it would be better
+>to implement whole functionality in a single driver without touching
+>MFD sub-system. Besides touching multiple sub-systems by single device
+>there are also some technical issues that are easier resolvable
+>in a single driver. Additionally the firmware flashing functionality
+>would bring more than 1000 lines of code with previous approach to
+>the MFD driver - it is not something the MFD maintainers would like
+>to see.
+>
+>Ivan Vecera (12):
+>  dt-bindings: dpll: Add DPLL device and pin
+>  dt-bindings: dpll: Add support for Microchip Azurite chip family
+>  devlink: Add support for u64 parameters
+>  devlink: Add new "clock_id" generic device param
+>  dpll: Add basic Microchip ZL3073x support
+>  dpll: zl3073x: Fetch invariants during probe
+>  dpll: zl3073x: Read DPLL types and pin properties from system firmware
+>  dpll: zl3073x: Register DPLL devices and pins
+>  dpll: zl3073x: Implement input pin selection in manual mode
+>  dpll: zl3073x: Add support to get/set priority on input pins
+>  dpll: zl3073x: Implement input pin state setting in automatic mode
+>  dpll: zl3073x: Add support to get/set frequency on pins
 
-OK, we will update the volume control to:
-SOC_DOUBLE_TLV(...)
-and use the regmap to cache the volumes.
-
-> 
-> > 2. The volume registers of FS2104 and FS2105S are different,
-> >    if we us a stardard control, we need two controls,
-> >    and register it by checking the device type.
-> > so we customize the volume control.
-> 
-> If the different devices have different controls you should just
-> register different controls.
-
-OK.
-
-> 
-> > > > +	ret = fs210x_set_pcm_volume(fs210x);
-> 
-> > > The driver should use the device defaults rather than having to 
-> 
-> > The volume contorl can be used to set different volumes,
-> > the volume will be masked in fs210x->vol[2],
-> > we restore the volume when the driver resumes(reinitializes) the deivce.
-> 
-> You're not just restoring the values on resume, you're also overwriting
-> them on probe.
-
-Yes, the volume will be set to the default value at the first time of initialization on probe,
-and it may be updated by volume control later.
-It's a good way to use the regmap cache(REGCACHE_RBTREE) to cache the volumes.
-
-> 
-> > > > +static void fs210x_sdz_pin_set(struct fs210x_priv *fs210x, bool active)
-> > > > +{
-> > > > +	if (!fs210x || !fs210x->gpio_sdz)
-> > > > +		return;
-> 
-> > > Shouldn't this be integrated with the chip init/reset?
-> 
-> > 1. We implement this function(reset and wait times) to clarify that
-> >    pulling up/down the SDZ/reset pin must to wait enougth delay time.
-> 
-> That doesn't really answer the question?
-
-It's ok to integrate it into the chip init/reset.
-
-> 
-> > > > +	 * According to the power up/down sequence of FS210x,
-> > > > +	 * the FS210x requests the I2S clock has been present
-> > > > +	 * and stable(>= 2ms) before it playing.
-> > > > +	 */
-> > > > +	if (fs210x->clk_bclk) {
-> > > > +		mutex_lock(&fs210x_mutex);
-> > > > +		ret = fs210x_dev_play(fs210x);
-> > > > +		mutex_unlock(&fs210x_mutex);
-> > > > +	} else {
-> 
-> > > This is definitely not appropriate for mute, it should be in the power
-> > > management flow - either set_bias_level() or a DAPM widget.
-> 
-> > 1. Because the device uses BCLK clock as the clock source,
-> >    we need to start the device in the life cycle of the clock,
-> >    also we need to start device after the PLL setting(set in dai->hw_params)
-> >    so we start the device in here: dai->mute_stream(unmute)
-> 
-> All the power management happens after hw_params(), this isn't an issue.
-
-We will evaluate the way to reduce the cost time of starting/stoping device:
-Do PM by DAPM widget or set_bias_on.
-
-> 
-> > 2. If the SOC(s) doesn't have the clock(bclk) for us to configure,
-> >    It meams no clock bclk defined in the DTS,
-> >    and the clock is activated in dai->trigger start usually,
-> >    so we will use a delay work to start the device in here.
-> 
-> > Any good ideas about satisfying this power up/down sequence?
-> 
-> There's not great options here, and you're going to loose the start of
-> playback especially with devices that don't start clocking until audio
-> starts.  You really need the CPU vendors you're working with to
-> implement SND_SOC_DAIFMT_CONT or expose their clocks via the clock API
-> but not all hardware is able to do this.  I think given how limited your
-> hardware is here you really need something in trigger() or some new
-> callback that runs later than that, the delayed work you've got there is
-> trying to fudge things to run after trigger.
-> 
-
-We will start the start_work in dai->trigger if there is no clock bclk
-for us to control, and disable fading in/out in firmware to reduce
-the time consumption if it is needed(As a backup plan).
-
-> > > > +	if (!(status & FS210X_05H_AMPS_MASK))
-> > > > +		dev_err(fs210x->dev, "Amplifier unready\n");
-> 
-> > > Does this get triggered during the normal start/stop flow?
-> 
-> > It will get triggered when:
-> > 1. BCLK clock is closed before stoping device
-> > 2. BCLK clock is opened after starting device
-> > We should avoid these power up/down sequence, it may cause pop noise,
-> > If they happens, it should be reported and fixed?
-> 
-> If they don't happen in normal operation it's fine to have them, the
-> concern was that this would be triggered during normal operation as part
-> of the startup or shutdown sequence.
-
-We can remove the registers dumping, and set the AMPS status to dev_dbg level.
-
-> 
-> > > > +	schedule_delayed_work(&fs210x->fault_check_work,
-> > > > +			      msecs_to_jiffies(FS210X_FAULT_CHECK_INTERVAL_MS));
-> 
-> > > Might be good to have this tunable from sysfs.
-> 
-> > Good idea, or set the interval times by the DTS property.
-> > We are considering adding a DTS property:
-> > foursemi,monitor-period-ms
-> 
-> I suspect the DT people won't like that since it's more of a tuning
-> thing.
-
-OK, we add a sysfs node for this.
-
-> 
-> > > > +static int fs210x_suspend(struct snd_soc_component *cmpnt)
-> > > > +{
-> > > > +	struct fs210x_priv *fs210x;
-> > > > +	int ret;
-> > > > +
-> > > > +	fs210x = snd_soc_component_get_drvdata(cmpnt);
-> > > > +	if (!fs210x || !fs210x->dev)
-> > > > +		return -EINVAL;
-> 
-> > > > +	cancel_delayed_work_sync(&fs210x->start_work);
-> > > > +	cancel_delayed_work_sync(&fs210x->fault_check_work);
-> 
-> > > > +	mutex_lock(&fs210x_mutex);
-> 
-> > > We don't need to prevent new work being scheduled?
-> 
-> > Could you please explain more details to help me understand and test this case?
-> 
-> What if for example playback is starting up at the same time as the
-> system enters suspend - the CODEC startup might get run after the
-> delayed work is cancelled but before the lock is taken.
-
-Understood, thanks a lot.
-
-We evaluate to remove the resume/suspend(cold start up/down device):
-The power consumptions between register settings and pins controlling are very close,
-and it can help us to reduce the time consumption.
-
-Best regards,
-Nick
-
+For the DPLL related code:
+Reviewed-by: Jiri Pirko <jiri@nvidia.com>
 
