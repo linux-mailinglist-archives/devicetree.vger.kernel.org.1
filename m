@@ -1,309 +1,133 @@
-Return-Path: <devicetree+bounces-193787-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-193789-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 21B76AFBBF9
-	for <lists+devicetree@lfdr.de>; Mon,  7 Jul 2025 21:55:09 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 70FA3AFBC15
+	for <lists+devicetree@lfdr.de>; Mon,  7 Jul 2025 22:01:36 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id C90677A5CAB
-	for <lists+devicetree@lfdr.de>; Mon,  7 Jul 2025 19:53:42 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id E713F3A395F
+	for <lists+devicetree@lfdr.de>; Mon,  7 Jul 2025 20:01:05 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id BBBA52676DE;
-	Mon,  7 Jul 2025 19:54:59 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E3FE11FFC77;
+	Mon,  7 Jul 2025 20:01:20 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="uWO0QkEt"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="Qhwwcmbl"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wm1-f51.google.com (mail-wm1-f51.google.com [209.85.128.51])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8F6F514A62B;
-	Mon,  7 Jul 2025 19:54:59 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 271AD1EF091;
+	Mon,  7 Jul 2025 20:01:18 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.51
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1751918099; cv=none; b=uDo2FXzmFWZGikO6ceAV1HheYRMaTNz5N4hcfHyS3zE9sn8TvrOHCiejW2j1sFbZmX3OcLmuZ/Q+USNW854dN7kNIPyBrJlTzM+FxM4wJdj+/VhlZnz7nzEDe4pBK7UTmnXfaaBBDTOH23o0Q37d7cV2IQFC3WpqJcKX2fpS5Dc=
+	t=1751918480; cv=none; b=NmmXKWP4Nk0dX8o+urON6y5izgRAROQCIyKWkWopSyUImumn/T4gYswElmck6nlB8aA1qNzbrbQ2WVyJfx3WWM4uEUekFT32+At9x6I8uFNIeonQ0X3bBxJ4WldarWk4ACw9ncbiuL1LddCLTrqOlWpNCTxTLsm7fcynj6EWwMM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1751918099; c=relaxed/simple;
-	bh=bVFepWKjqJUGQp3Hbl6LiTadytvGMPtrFiUhO8aCs10=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=i/xKm0DpENEVj8hTpIxbLqLe2VcF5hgPPrcbe6NUqKGM7b9XpbIlelgYPLmDDfOZaghoATu9H2DvhJgiXSj7qLBWioCWmeQkqIIv6Qzlri9Pe6BbZ4pM2n0YpsZLgc9Bazq1an3GgBNM8+y8E8/48KbuZzBjuncfgSNwgQTzWMc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=uWO0QkEt; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPS id 3EE2BC4CEEF;
-	Mon,  7 Jul 2025 19:54:59 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1751918099;
-	bh=bVFepWKjqJUGQp3Hbl6LiTadytvGMPtrFiUhO8aCs10=;
-	h=From:Date:Subject:References:In-Reply-To:To:Cc:Reply-To:From;
-	b=uWO0QkEtalAsY+arDDxY5tzdibLyrPkNcwhIP52WPkn9ghZdMZGXoKKva9/3Y6a0a
-	 Rck6XlBFXD04Te/rARFGMfXRd3x5ij23qNsUdRnZf0RCU3KX+0f1zK7+DIhOQYHPqz
-	 v2u8KO3exzC7X7xzDkhXaFSyEAxj1vIBgGYFmtbkqr8oq78EXEeQkNeXVXlNXglIWE
-	 zMKPdWzcOXq/0DarZetwABK077I32kB2kpRt1nzS5ZvSxTm9nReIseGLYCqFnaI+Hq
-	 DqDOWFzEB1yw66UWlUQsN7Hqxbi4rXZnpAxrzHYXOvZc9b4FTl1A584TNurOwRayO7
-	 Y7aoDhfqD5AGQ==
-Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 3096FC8303C;
-	Mon,  7 Jul 2025 19:54:59 +0000 (UTC)
-From: =?utf-8?q?Andr=C3=A9_Apitzsch_via_B4_Relay?= <devnull+git.apitzsch.eu@kernel.org>
-Date: Mon, 07 Jul 2025 21:54:26 +0200
-Subject: [PATCH 2/2] Input: synaptics-rmi4 - add support for F1A
+	s=arc-20240116; t=1751918480; c=relaxed/simple;
+	bh=nw7m6zoFmIhZe7hAFS8+ViPrXToms/pNtA6bvWfVdN0=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=SrG4A0CvMOEXk/NnayAy5oeGTQydenmAkRGF3WnMRn470x2rvde6mst/Xvgttot9Fdv8EWBVW7z/2gN/y9XFse9dzubNSiO+7zZoW8Am0uMokyLtOekl1b1FJpkZ26nI1zPokKDNtjSLqWOQg8YIsagPVMb6eYJdcCAPEswRW14=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=Qhwwcmbl; arc=none smtp.client-ip=209.85.128.51
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-wm1-f51.google.com with SMTP id 5b1f17b1804b1-4538a2fc7ffso32847095e9.0;
+        Mon, 07 Jul 2025 13:01:18 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1751918477; x=1752523277; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=rNJURKK5niSy6MyMTsQlWsFXNTBiKdE+15SJ5H8B2q4=;
+        b=Qhwwcmblh1meoEO3Duz6QMPRBOhMlaDZ2pf3CQ3H4gwutr3+wYqg5J5rj5pgbyWPhN
+         Xh9QLHEqV7TPsb+/OhvElrNVmnooRCYcPh1hz4mZEr2i2yjSeapOOg5QQ1uQUd659X53
+         GgV+UbzNaB9OjRuDke+EnizgHYKkNqzL6CKiBZJuxZd1GH2MXfLFMlCrpqBwb0tWR60H
+         yxRC1IMTjW5bqjJ2BVhviGbl5X/mMNF7dYI17BN+R2CkNFx4X9Scvr7ZXwQkMSZe6u8I
+         AvK+Zb6JjncWJDo+RElr38ZMb2+LUYqmk48QPXifCcJ7E040J0JKSJunJZK4Rqub47g/
+         tWAw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1751918477; x=1752523277;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=rNJURKK5niSy6MyMTsQlWsFXNTBiKdE+15SJ5H8B2q4=;
+        b=xHaOn2LnqVhAQNNpQ0ySQtu0yOx0mhnzJghVW6uoy4NTu2xY5Pj7Q9qsCgnqj8EGGN
+         d7GXExNQ66gXe2bU60uGbVfqdLocyYgydvpa8ErWBCh1cuu4uRVtjZXAk4eP3HyPtAxd
+         69zThOA1OJRJEk7fM25+xXNriQQeP5pOphde1Qq5kPwiPbb8+McNJozqY5T/zEw9XqiU
+         rg7O9EWQ6H41a9P8Jo3aUb5rJIw1s9LVSzsJKXJb1D+VL0fz4JDZmULBA0swbWKxeH8J
+         iJOok6oTHMhUfam6+G+K/UmAKUQNUGgfJ5NXx5PcIwRovU2VRg+0Vv0vAYjdyWF4XwrW
+         kpLQ==
+X-Forwarded-Encrypted: i=1; AJvYcCV6XeFLR5r3S7nBBYNx76hSx5eTbf5Vjz6NyAnbu+7PbfqyqnUn4Uv730ZgVA9Erp3hhZbJD+zCJ3CFvCI=@vger.kernel.org, AJvYcCVCqBJd9eq2Q4mn+Yoq/0T+Z1DcgUI357pApJsE2EIvEvqndJ4ZNmyyxMTz+aDHWhFcswZXPgCYNrn+ZdCvqrM=@vger.kernel.org, AJvYcCVrXTuMwbDxx6qNi2mNc/drmKRYsdN4q3O0vHU9TeB4rv6sSPKouTfh7CG2lS/VhgM5f6+iQeHqTiLb4YxniT11kdM=@vger.kernel.org
+X-Gm-Message-State: AOJu0YxGRxniBsUvQTUwIC7kOa6QeLNWvjRkvk6OAG8LteUsfRoKrJdL
+	XbDTeXxqObTEEmrohe3P7UwYdGyFMocPfvwPgKoRw1pQpk9+pQ6M4yqy
+X-Gm-Gg: ASbGnctWkRzbCPqrDueoIDlyAn8gqN27D/ccyHmDcpXjLMlKQKfSMoByhhB39d3Vvbn
+	jBDg+dc5IydSZTwz3QeqhP2Rw3V1MkYpwpAli+cbiyc7w8yTfdmpTCFTWzpKcCxyCFQf07WbJJM
+	qYqMj50WZ4fP8PrKs+iyMgJGorzQb1TBdpjdk8XCPv149LQ4THQUoee/sSI8h2qiAYQobzSMNVi
+	H5zZJIBjk61Eaab9BQt5ZENSLVuj9emakovoM7oVIBpwGWIG+ePEHflX5fXMkfKPZ3OhUKpTfq0
+	50jaBm9aXScHYDtSVr5zshJo6Amkmx3D6hlhN58WkYYVl/W9y3TNPi5jPxSDqpLFPndkSOoB+mL
+	jyKSkIhNMIc77fFcJTz0=
+X-Google-Smtp-Source: AGHT+IE7kw9fcOu6dAAWkp44exlUHg0CGXYoF7gPm5U4E1uoGUt3VH5ULC89IZUtRiKitZEqzaIZlg==
+X-Received: by 2002:a05:600c:8718:b0:442:f904:1305 with SMTP id 5b1f17b1804b1-454cd60c241mr631935e9.6.1751918476780;
+        Mon, 07 Jul 2025 13:01:16 -0700 (PDT)
+Received: from iku.example.org ([2a06:5906:61b:2d00:d418:e5eb:1bc:30dd])
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-3b471b97376sm11268995f8f.61.2025.07.07.13.01.15
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 07 Jul 2025 13:01:16 -0700 (PDT)
+From: Prabhakar <prabhakar.csengg@gmail.com>
+X-Google-Original-From: Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+To: Wim Van Sebroeck <wim@linux-watchdog.org>,
+	Guenter Roeck <linux@roeck-us.net>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Geert Uytterhoeven <geert+renesas@glider.be>,
+	Philipp Zabel <p.zabel@pengutronix.de>,
+	Wolfram Sang <wsa+renesas@sang-engineering.com>,
+	linux-watchdog@vger.kernel.org
+Cc: devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	linux-renesas-soc@vger.kernel.org,
+	Prabhakar <prabhakar.csengg@gmail.com>,
+	Biju Das <biju.das.jz@bp.renesas.com>,
+	Fabrizio Castro <fabrizio.castro.jz@renesas.com>,
+	Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+Subject: [PATCH 0/9] Add watchdog driver support for RZ/T2H and RZ/N2H SoCs
+Date: Mon,  7 Jul 2025 21:01:02 +0100
+Message-ID: <20250707200111.329663-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
+X-Mailer: git-send-email 2.49.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 8bit
-Message-Id: <20250707-rmi4_f1a-v1-2-838d83c72e7f@apitzsch.eu>
-References: <20250707-rmi4_f1a-v1-0-838d83c72e7f@apitzsch.eu>
-In-Reply-To: <20250707-rmi4_f1a-v1-0-838d83c72e7f@apitzsch.eu>
-To: Dmitry Torokhov <dmitry.torokhov@gmail.com>, 
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, "Jason A. Donenfeld" <Jason@zx2c4.com>, 
- Matthias Schiffer <matthias.schiffer@ew.tq-group.com>, 
- Vincent Huang <vincent.huang@tw.synaptics.com>
-Cc: ~postmarketos/upstreaming@lists.sr.ht, phone-devel@vger.kernel.org, 
- linux-input@vger.kernel.org, devicetree@vger.kernel.org, 
- linux-kernel@vger.kernel.org, 
- =?utf-8?q?Andr=C3=A9_Apitzsch?= <git@apitzsch.eu>
-X-Mailer: b4 0.14.2
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1751918097; l=6632;
- i=git@apitzsch.eu; s=20240325; h=from:subject:message-id;
- bh=chU/vciUONShO2xp5FvxasPrlXeuFhwRzlTtqjnbeJY=;
- b=GyQWyIWwGSSKaOtjQ5lJQVkwHBGY0BBQ7joSKqZE6M+ROcV0M6j/jrSW1Xh6RRRxNBOsoUaai
- idbDBcZZUT4BwOMp/nbq6WLmO4XZK9yyQt/3R7jQ7AG8h/vtpX6NjX0
-X-Developer-Key: i=git@apitzsch.eu; a=ed25519;
- pk=wxovcZRfvNYBMcTw4QFFtNEP4qv39gnBfnfyImXZxiU=
-X-Endpoint-Received: by B4 Relay for git@apitzsch.eu/20240325 with
- auth_id=142
-X-Original-From: =?utf-8?q?Andr=C3=A9_Apitzsch?= <git@apitzsch.eu>
-Reply-To: git@apitzsch.eu
 
-From: André Apitzsch <git@apitzsch.eu>
+From: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
 
-RMI4 F1A implements capacitive keys. Add support for touch keys found in
-some Synaptics touch controller configurations.
+Hi All,
 
-Signed-off-by: André Apitzsch <git@apitzsch.eu>
----
- drivers/input/rmi4/Kconfig      |   7 ++
- drivers/input/rmi4/Makefile     |   1 +
- drivers/input/rmi4/rmi_bus.c    |   3 +
- drivers/input/rmi4/rmi_driver.h |   1 +
- drivers/input/rmi4/rmi_f1a.c    | 145 ++++++++++++++++++++++++++++++++++++++++
- 5 files changed, 157 insertions(+)
+This patch series adds watchdog driver support for the Renesas RZ/T2H
+(R9A09G077) and RZ/N2H (R9A09G087) SoCs. The necessary device tree
+bindings and driver modifications are included.
 
-diff --git a/drivers/input/rmi4/Kconfig b/drivers/input/rmi4/Kconfig
-index c0163b983ce698ff241eeb6303d0e29989e0fcb8..c5d18abd28c7c26a9491656608d65fae50e818a8 100644
---- a/drivers/input/rmi4/Kconfig
-+++ b/drivers/input/rmi4/Kconfig
-@@ -82,6 +82,13 @@ config RMI4_F12
- 	  touchpads. For sensors that support relative pointing, F12 also
- 	  provides mouse input.
- 
-+config RMI4_F1A
-+	bool "RMI4 Function 1A (0D pointing)"
-+	help
-+	  Say Y here if you want to add support for RMI4 function 1A.
-+
-+	  Function 1A provides capacitive keys support for RMI4 devices.
-+
- config RMI4_F30
- 	bool "RMI4 Function 30 (GPIO LED)"
- 	help
-diff --git a/drivers/input/rmi4/Makefile b/drivers/input/rmi4/Makefile
-index 02f14c84686189b45d6adbbc06e266f64efaa036..70f942196aa2efeeaa7bfd292bcc1b8445761011 100644
---- a/drivers/input/rmi4/Makefile
-+++ b/drivers/input/rmi4/Makefile
-@@ -8,6 +8,7 @@ rmi_core-$(CONFIG_RMI4_2D_SENSOR) += rmi_2d_sensor.o
- rmi_core-$(CONFIG_RMI4_F03) += rmi_f03.o
- rmi_core-$(CONFIG_RMI4_F11) += rmi_f11.o
- rmi_core-$(CONFIG_RMI4_F12) += rmi_f12.o
-+rmi_core-$(CONFIG_RMI4_F1A) += rmi_f1a.o
- rmi_core-$(CONFIG_RMI4_F30) += rmi_f30.o
- rmi_core-$(CONFIG_RMI4_F34) += rmi_f34.o rmi_f34v7.o
- rmi_core-$(CONFIG_RMI4_F3A) += rmi_f3a.o
-diff --git a/drivers/input/rmi4/rmi_bus.c b/drivers/input/rmi4/rmi_bus.c
-index 3aee0483720533050c60014d843418740cf04a2d..e04fd6e525dcf474d948380d493249251f83a864 100644
---- a/drivers/input/rmi4/rmi_bus.c
-+++ b/drivers/input/rmi4/rmi_bus.c
-@@ -360,6 +360,9 @@ static struct rmi_function_handler *fn_handlers[] = {
- #ifdef CONFIG_RMI4_F12
- 	&rmi_f12_handler,
- #endif
-+#ifdef CONFIG_RMI4_F1A
-+	&rmi_f1a_handler,
-+#endif
- #ifdef CONFIG_RMI4_F30
- 	&rmi_f30_handler,
- #endif
-diff --git a/drivers/input/rmi4/rmi_driver.h b/drivers/input/rmi4/rmi_driver.h
-index 3bfe9013043ef3dff46249095a5b3116c8f7d9a6..aefe04008509b4363aa1aaf59d9119d95383e942 100644
---- a/drivers/input/rmi4/rmi_driver.h
-+++ b/drivers/input/rmi4/rmi_driver.h
-@@ -133,6 +133,7 @@ extern struct rmi_function_handler rmi_f01_handler;
- extern struct rmi_function_handler rmi_f03_handler;
- extern struct rmi_function_handler rmi_f11_handler;
- extern struct rmi_function_handler rmi_f12_handler;
-+extern struct rmi_function_handler rmi_f1a_handler;
- extern struct rmi_function_handler rmi_f30_handler;
- extern struct rmi_function_handler rmi_f34_handler;
- extern struct rmi_function_handler rmi_f3a_handler;
-diff --git a/drivers/input/rmi4/rmi_f1a.c b/drivers/input/rmi4/rmi_f1a.c
-new file mode 100644
-index 0000000000000000000000000000000000000000..107f52dd9e1468c2b7c0400bb24f5b0cf2928714
---- /dev/null
-+++ b/drivers/input/rmi4/rmi_f1a.c
-@@ -0,0 +1,145 @@
-+// SPDX-License-Identifier: GPL-2.0-only
-+/*
-+ * Copyright (c) 2025 André Apitzsch <git@apitzsch.eu>
-+ */
-+
-+#include <linux/input.h>
-+#include <linux/property.h>
-+#include "rmi_driver.h"
-+
-+#define RMI_F1A_BUTTON_BITMASK_SIZE		1
-+
-+struct f1a_data {
-+	u32 *keymap;
-+	unsigned int num_keys;
-+
-+	struct input_dev *input;
-+};
-+
-+static int rmi_f1a_parse_device_properties(struct rmi_function *fn, struct f1a_data *f1a)
-+{
-+	static const char buttons_property[] = "linux,keycodes";
-+	struct device *dev = &fn->dev;
-+	u32 *buttonmap;
-+	int n_keys;
-+	int ret;
-+
-+	if (!device_property_present(dev, buttons_property))
-+		return 0;
-+
-+	n_keys = device_property_count_u32(dev, buttons_property);
-+	if (n_keys <= 0) {
-+		ret = n_keys < 0 ? n_keys : -EINVAL;
-+		dev_err(dev, "Invalid/malformed '%s' property: %d\n",
-+			buttons_property, ret);
-+		return ret;
-+	}
-+
-+	buttonmap = devm_kmalloc_array(dev, n_keys, sizeof(*buttonmap),
-+				       GFP_KERNEL);
-+	if (!buttonmap)
-+		return -ENOMEM;
-+
-+	ret = device_property_read_u32_array(dev, buttons_property, buttonmap,
-+					     n_keys);
-+	if (ret) {
-+		dev_err(dev, "Failed to parse '%s' property: %d\n",
-+			buttons_property, ret);
-+		return ret;
-+	}
-+
-+	f1a->keymap = buttonmap;
-+	f1a->num_keys = n_keys;
-+
-+	return 0;
-+}
-+
-+static irqreturn_t rmi_f1a_attention(int irq, void *ctx)
-+{
-+	struct rmi_function *fn = ctx;
-+	struct f1a_data *f1a = dev_get_drvdata(&fn->dev);
-+	char button_bitmask;
-+	int key;
-+	int ret;
-+
-+	ret = rmi_read_block(fn->rmi_dev, fn->fd.data_base_addr,
-+			     &button_bitmask, RMI_F1A_BUTTON_BITMASK_SIZE);
-+	if (ret < 0) {
-+		dev_err(&fn->dev, "Failed to read object data. Code: %d.\n",
-+			ret);
-+		return IRQ_RETVAL(ret);
-+	}
-+
-+	for (key = 0; key < f1a->num_keys; key++)
-+		input_report_key(f1a->input, f1a->keymap[key],
-+				button_bitmask & BIT(key));
-+
-+	return IRQ_HANDLED;
-+}
-+
-+static int rmi_f1a_config(struct rmi_function *fn)
-+{
-+	struct f1a_data *f1a = dev_get_drvdata(&fn->dev);
-+	struct rmi_driver *drv = fn->rmi_dev->driver;
-+
-+	if (f1a->num_keys)
-+		drv->set_irq_bits(fn->rmi_dev, fn->irq_mask);
-+
-+	return 0;
-+}
-+
-+static int rmi_f1a_initialize(struct rmi_function *fn, struct f1a_data *f1a)
-+{
-+	int ret;
-+	int i;
-+
-+	ret = rmi_f1a_parse_device_properties(fn, f1a);
-+	if (ret)
-+		return ret;
-+
-+	for (i = 0; i < f1a->num_keys; i++)
-+		input_set_capability(f1a->input, EV_KEY, f1a->keymap[i]);
-+
-+	f1a->input->keycode = f1a->keymap;
-+	f1a->input->keycodemax = f1a->num_keys;
-+	f1a->input->keycodesize = sizeof(f1a->keymap[0]);
-+
-+	return 0;
-+}
-+
-+static int rmi_f1a_probe(struct rmi_function *fn)
-+{
-+	struct rmi_device *rmi_dev = fn->rmi_dev;
-+	struct rmi_driver_data *drv_data = dev_get_drvdata(&rmi_dev->dev);
-+	struct f1a_data *f1a;
-+	int ret;
-+
-+	if (!drv_data->input) {
-+		dev_info(&fn->dev, "F1A: no input device found, ignoring\n");
-+		return -ENXIO;
-+	}
-+
-+	f1a = devm_kzalloc(&fn->dev, sizeof(*f1a), GFP_KERNEL);
-+	if (!f1a)
-+		return -ENOMEM;
-+
-+	f1a->input = drv_data->input;
-+
-+	ret = rmi_f1a_initialize(fn, f1a);
-+	if (ret)
-+		return ret;
-+
-+	dev_set_drvdata(&fn->dev, f1a);
-+
-+	return 0;
-+}
-+
-+struct rmi_function_handler rmi_f1a_handler = {
-+	.driver = {
-+		.name = "rmi4_f1a",
-+	},
-+	.func = 0x1a,
-+	.probe = rmi_f1a_probe,
-+	.config = rmi_f1a_config,
-+	.attention = rmi_f1a_attention,
-+};
+Cheers,
+Prabhakar
+
+Lad Prabhakar (9):
+  dt-bindings: watchdog: renesas,wdt: Add support for RZ/T2H and RZ/N2H
+  watchdog: rzv2h_wdt: Obtain clock-divider ranges from OF match data
+  watchdog: rzv2h_wdt: Obtain CKS divider via OF data
+  watchdog: rzv2h_wdt: Make "oscclk" an optional clock
+  watchdog: rzv2h_wdt: Add support for configurable count clock source
+  watchdog: rzv2h_wdt: Make reset controller optional
+  watchdog: rzv2h: Set min_timeout based on max_hw_heartbeat_ms
+  watchdog: rzv2h: Add support for RZ/T2H
+  watchdog: rzv2h_wdt: Improve error strings and add newlines
+
+ .../bindings/watchdog/renesas,wdt.yaml        |  37 ++++-
+ drivers/watchdog/rzv2h_wdt.c                  | 137 ++++++++++++++++--
+ 2 files changed, 155 insertions(+), 19 deletions(-)
 
 -- 
-2.50.0
-
+2.49.0
 
 
