@@ -1,167 +1,137 @@
-Return-Path: <devicetree+bounces-193489-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-193490-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 56A2CAFAAC6
-	for <lists+devicetree@lfdr.de>; Mon,  7 Jul 2025 07:11:58 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 86CCEAFAAD7
+	for <lists+devicetree@lfdr.de>; Mon,  7 Jul 2025 07:24:48 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id F3577189C879
-	for <lists+devicetree@lfdr.de>; Mon,  7 Jul 2025 05:12:14 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 470AB188F0C6
+	for <lists+devicetree@lfdr.de>; Mon,  7 Jul 2025 05:25:05 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1945D261571;
-	Mon,  7 Jul 2025 05:11:53 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C3321262FEC;
+	Mon,  7 Jul 2025 05:24:43 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=tq-group.com header.i=@tq-group.com header.b="oJgdjrJE";
-	dkim=fail reason="key not found in DNS" (0-bit key) header.d=ew.tq-group.com header.i=@ew.tq-group.com header.b="Sv/Tj0oC"
+	dkim=pass (2048-bit key) header.d=oldschoolsolutions.biz header.i=jens.glathe@oldschoolsolutions.biz header.b="id5gyGtr"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx1.tq-group.com (mx1.tq-group.com [93.104.207.81])
+Received: from mout.kundenserver.de (mout.kundenserver.de [212.227.126.135])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9877F2620FC;
-	Mon,  7 Jul 2025 05:11:49 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=93.104.207.81
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F39232E3716;
+	Mon,  7 Jul 2025 05:24:40 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=212.227.126.135
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1751865113; cv=none; b=ATvbvNzT+Cxj4uEHNInsURYUBFibZUHoZO1/awXwFA+enlnALM4kWtbclESRQOfbVKY/JufpXu9x2IKdYLueEMeUVLf424+NqRgqryHVa8fzEUA0cs2928cSQzD2yX/zlPOUlnjguqeqsITHgOnd8rwDlIaPsfPUeowm/7oxukI=
+	t=1751865883; cv=none; b=Buqq6hlRhfR7Jq1m/5cTdMG1IadOE3r8KQM1lkzoW6GqWwZW/JTCTjR+7MQYRFpHEazl2hntzJgNC1IUddhwdXLtCGqddRS/H1OzW24HBRHqBdYKIOAVXiq7s+RFeGNnXuoEpYtmWwySnkaQcG0d2mAPRjCSM/o9sc4T2cfnCWw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1751865113; c=relaxed/simple;
-	bh=OdRh8/576wHjaSuIhGUDAO/d8lBtbvnSHmhlO2AG8/8=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=A7VMU2Nn/ltKm7Vn5g6wGH5Eg5qYRrQviaA9l2Ae72U/pucV/fWA5Txf98wAJuFxeHvBwWtE0oy8vTGkNDeud8YDuMcFr8Qk/jKZk26ysW3xyOg7Bfg6mfFdFz5D5/wflaRYMpLwdKN+LNfrfUqn//7Jf9FnB/PJJOSLTFipOVw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ew.tq-group.com; spf=pass smtp.mailfrom=ew.tq-group.com; dkim=pass (2048-bit key) header.d=tq-group.com header.i=@tq-group.com header.b=oJgdjrJE; dkim=fail (0-bit key) header.d=ew.tq-group.com header.i=@ew.tq-group.com header.b=Sv/Tj0oC reason="key not found in DNS"; arc=none smtp.client-ip=93.104.207.81
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ew.tq-group.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ew.tq-group.com
+	s=arc-20240116; t=1751865883; c=relaxed/simple;
+	bh=rx6pHyen/TGfkdYHa02N353prfXsh5go8davgnfU6Po=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=LalzHSsuppbhI8QyUP1WM/uFIh1tlFD3LNpuJkC4sQHZCRIxbwMbf7dociT957b83NHpZir2KkOxdhI6sxzTzKHBG+nRSw4w6JFjneu7+yZ1T+vwwcAisvwFdhObomnBUe+O3qBuVr5GozQyJtR2UYoOjUSOfBeg4mtK4i4TIKU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=oldschoolsolutions.biz; spf=pass smtp.mailfrom=oldschoolsolutions.biz; dkim=pass (2048-bit key) header.d=oldschoolsolutions.biz header.i=jens.glathe@oldschoolsolutions.biz header.b=id5gyGtr; arc=none smtp.client-ip=212.227.126.135
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=oldschoolsolutions.biz
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oldschoolsolutions.biz
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-  d=tq-group.com; i=@tq-group.com; q=dns/txt; s=key1;
-  t=1751865110; x=1783401110;
-  h=from:to:cc:subject:date:message-id:in-reply-to:
-   references:mime-version:content-transfer-encoding;
-  bh=MS9l5V7rnppikpjmqzYLq+jQty7Y2WLmP6gMpwdm78Y=;
-  b=oJgdjrJEQNmOdUS0QRfWoYgAamMTLEbe9PkagYP2Na3RRnoY7tAYXHhY
-   b9ZQhE9d1qupiWyQrKTsSPycHYKC+mJ7He81t5qpdxK7K0X4uxtlGs1jx
-   R0fxZ7pg2ChrE+FXhgqHsqfcrsqdXiWqWVEVrRSLw0ld2SVW9D9cPxfCk
-   QTGy15J1SVA3EAGNkQsUqmWPog4fkEM6ijNMWvoNEH2OrmwPzdphrfY5C
-   UCrHfmHQ/+9wb4zjXjcF3lS3jHKlcgEOmK42Wgz0M79XTRHdmLi5IsUW+
-   OvXqpt6Xl4PYxt6/jee55FQrSEnxtYfY6rZ4XSf74RqvnDwFomyGpSr3S
-   A==;
-X-CSE-ConnectionGUID: cdaaUOoYQXi065uLnbbgdw==
-X-CSE-MsgGUID: 0JndVCJeRv+mZnXHP+VpkA==
-X-IronPort-AV: E=Sophos;i="6.16,293,1744063200"; 
-   d="scan'208";a="45049649"
-Received: from vmailcow01.tq-net.de ([10.150.86.48])
-  by mx1.tq-group.com with ESMTP; 07 Jul 2025 07:11:41 +0200
-X-CheckPoint: {686B570C-37-4FC15ADB-CD71293B}
-X-MAIL-CPID: CDEB1C0A765BD2ADCEED811366CB8CCC_0
-X-Control-Analysis: str=0001.0A00639C.686B573B.0052,ss=1,re=0.000,recu=0.000,reip=0.000,cl=1,cld=1,fgs=0
-Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id 8D13916397D;
-	Mon,  7 Jul 2025 07:11:34 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ew.tq-group.com;
-	s=dkim; t=1751865096;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=MS9l5V7rnppikpjmqzYLq+jQty7Y2WLmP6gMpwdm78Y=;
-	b=Sv/Tj0oC82xoMR1uXwWA8qfioW3rO7wpmNR/uZgCiQmeZzZrSn2E63+UVAUlk9V0l4qJuy
-	AJRxZV7EIx62zzv4zAzBSENpA1wsUn9oDEEZsXaiKPg7Io9D+oq60Smn8aUreMEuTeGxE8
-	rji8rJ0gCULqQlmk2/jXlw0m7MYYPpcYXVv2/oVUm4izNYU/H6W84teDFCSAZb4BHQLJrS
-	4+ZPa9rFp0rBvky/PyI9jO6eMErzxoh7QPF8/OZ/EySD/SSDhuLeDGQPDU2ouLGblBG49k
-	v3AkMrqkRNWlloyKomXI2+jSQ0GnDJPMwH2CbW13e8UA9FIBK7F7l/T3ViLtlQ==
-From: Alexander Stein <alexander.stein@ew.tq-group.com>
-To: Mark Brown <broonie@kernel.org>, linux-arm-kernel@lists.infradead.org
-Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
- Sascha Hauer <s.hauer@pengutronix.de>, Fabio Estevam <festevam@gmail.com>,
- Daniel Baluta <daniel.baluta@nxp.com>, Shengjiu Wang <shengjiu.wang@nxp.com>,
- Frank Li <Frank.Li@nxp.com>, Marco Felsch <m.felsch@pengutronix.de>,
- Marc Kleine-Budde <mkl@pengutronix.de>,
- Pengutronix Kernel Team <kernel@pengutronix.de>, devicetree@vger.kernel.org,
- imx@lists.linux.dev, linux-arm-kernel@lists.infradead.org,
- linux-kernel@vger.kernel.org,
- Laurentiu Mihalcea <laurentiumihalcea111@gmail.com>
-Subject: Re: [PATCH v7 4/6] arm64: dts: imx8mp: convert 'aips5' to 'aipstz5'
-Date: Mon, 07 Jul 2025 07:11:33 +0200
-Message-ID: <5029548.31r3eYUQgx@steina-w>
-Organization: TQ-Systems GmbH
-In-Reply-To: <c3deef24-fed7-4405-9953-804bff118c11@gmail.com>
-References:
- <20250610160152.1113930-1-laurentiumihalcea111@gmail.com>
- <ac1daf6b-ee06-4076-b86f-b436ca0acd6d@sirena.org.uk>
- <c3deef24-fed7-4405-9953-804bff118c11@gmail.com>
+	d=oldschoolsolutions.biz; s=s1-ionos; t=1751865864; x=1752470664;
+	i=jens.glathe@oldschoolsolutions.biz;
+	bh=rx6pHyen/TGfkdYHa02N353prfXsh5go8davgnfU6Po=;
+	h=X-UI-Sender-Class:Message-ID:Date:MIME-Version:Subject:To:Cc:
+	 References:From:In-Reply-To:Content-Type:
+	 Content-Transfer-Encoding:cc:content-transfer-encoding:
+	 content-type:date:from:message-id:mime-version:reply-to:subject:
+	 to;
+	b=id5gyGtrHH1e0azmQj4qX2mehB0bZ209QPfA8kg54dZSlkUrxvZEv6Oh5Uvt7VU2
+	 z90mtbJEPzWbAGsrh+j16JwbHAIm88nePQlFxf/Uw/YbHjvgKRFtDqXH1GTZMgZUW
+	 YAVBsRIlfkaQvbA8M/HsuhXnwBimUTirEYfOMfrX9Y1CJsyPJBuQJt27ix3zL7FbG
+	 tTRghFark/wXaDU4eIsfdmkPjfUu8q9Nqyo2jsuaY1/6DCGZUqkD5AL77vofEGNnX
+	 UcJpPA+IBpj/S3Kay6eNXjz+ROWY6H5d17pokmC0eJScRf47NCVllmVSy12uggdD/
+	 atwnTvCxVpezeH2UTg==
+X-UI-Sender-Class: 55c96926-9e95-11ee-ae09-1f7a4046a0f6
+Received: from [192.168.0.174] ([62.226.41.123]) by mrelayeu.kundenserver.de
+ (mreue011 [212.227.15.167]) with ESMTPSA (Nemesis) id
+ 1MvKGv-1uq2nW3wvZ-00ybJH; Mon, 07 Jul 2025 07:24:24 +0200
+Message-ID: <8e72641d-77e6-4d10-998f-669de30ae495@oldschoolsolutions.biz>
+Date: Mon, 7 Jul 2025 07:24:18 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+User-Agent: Mozilla Thunderbird Beta
+Subject: Re: [PATCH v2 0/3] Support for Adreno X1-85 Speedbin along with new
+ OPP levels
+To: Akhil P Oommen <akhilpo@oss.qualcomm.com>,
+ Rob Clark <robin.clark@oss.qualcomm.com>, Sean Paul <sean@poorly.run>,
+ Konrad Dybcio <konradybcio@kernel.org>, Dmitry Baryshkov <lumag@kernel.org>,
+ Abhinav Kumar <abhinav.kumar@linux.dev>,
+ Jessica Zhang <jessica.zhang@oss.qualcomm.com>,
+ Marijn Suijten <marijn.suijten@somainline.org>,
+ David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, Bjorn Andersson <andersson@kernel.org>
+Cc: linux-arm-msm@vger.kernel.org, dri-devel@lists.freedesktop.org,
+ freedreno@lists.freedesktop.org, linux-kernel@vger.kernel.org,
+ devicetree@vger.kernel.org,
+ Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+References: <20250701-x1e-speedbin-b4-v2-0-a8a7e06d39fb@oss.qualcomm.com>
+Content-Language: en-US
+From: Jens Glathe <jens.glathe@oldschoolsolutions.biz>
+In-Reply-To: <20250701-x1e-speedbin-b4-v2-0-a8a7e06d39fb@oss.qualcomm.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: quoted-printable
-Content-Type: text/plain; charset="iso-8859-1"
-X-Last-TLS-Session-Version: TLSv1.3
+X-Provags-ID: V03:K1:qLMGZZwoM6+ldmd7++Vubj4ab/6aDcgFW3bvzM71bBx9kFSjlpO
+ Kdt0vlIOT2EVbwzMG+OUxcL8mafr4n75Bv0dti8oCoASS46v+fFcIsT8RBYtLuQJ62Wp5ng
+ K6BrU1BHmCfUSAPpXgrYYybMM6XS/v6Z3NeRN17tdzYkmP+D/d/c03/HXRQdzBewxbx3n4Q
+ sBrnAqN3krBwD4BTUAZHg==
+X-Spam-Flag: NO
+UI-OutboundReport: notjunk:1;M01:P0:wxN9Od9Yqn0=;HVU3PIrdxRkHBrsGN5YDaBNptv+
+ QCMgc3Oj7rxaSfhMVKtkiZeqeEOxZ5pchTBt4F3i4Tp/lRJart/bRSx4L2b0qbpKmuFZpCATJ
+ ofngEvNQRaI07zcgFqwEfouuQuy8Azr3jirzuwQd0YjkLrkFGr8udf8LWnLnAA3IJFla/7XQF
+ 1v5u5R/F6K7p1CI5PrZvyUdNp8A6giGE61GgUNdTJz37U13U5iL/xNCiKc07qvPrXjK7/1NhK
+ R3Y2V4BUsaTUiY87J3jPFaTIscgt3TWf868gXIpVIZx9ALmsFB15tnNJrD91N2LjxHvGfcyks
+ wt2X/40wZyguV1uF3d+VkT09yDz2j5h60WgWBSguIbhlujder+Q7wct6uHBSYOV1UrsvyF0Fy
+ RX4z4ikZQa+ld+KfrStx4IDrSskNJ4BqllgcQOxsGx8MDEt+XWKLlNuBz/2b/Sx3L6gvusIe3
+ 8Lc5b4YXdWVKWpptISgOp5k5dxWukUCjDhaKCk51oO4GSvWDVfCoiNBGOTHjR2pKaXPA/6gjy
+ Ck7YrrEFzjCg9Hi5v5Nt80dzwsM6zOqFAfRpbXD+BX1GYJUp+M/myULaSgpppdaHUXE6bLl8R
+ qoQb4F+CXxPwpoIYfRo600nBqA+rHjxb86NaQobftPg3YLmFaTrVRR5ZbQeQrs76xxn52rABx
+ QPQ1qNgCUg+oUPuC5AhYBt3rVUhW3JNea9UtXjRamGGddGYdvgcCwbC9mmOclp/tgx4Gk4kW8
+ 7TnDwwqmakib1u+R09EtpTTGm/HG+wgISTa5p/z8cglNk5/v82y8J7lhrPytEZfRJeJ6LzYXf
+ 0UOElHz8NMWA94DvVO29C0txHkmc81um6COhPlr7D4Tl1jH7x2NlRnxPnrT1lbJR4BxxjZPNf
+ EsvFs3BllBCwGPgBQYYl3tBxZFbt+g5wZn5uU8SMa6TJgjyU2OciwRr5M9oHWzN2SUcPAIPmx
+ +8S9MCfbV6B5tFKUE4pLO5vvaDA9HiTjAXmJh8eTZ0Qu1g9vPzCwswhGINdsA3edmV1Efn02V
+ xcBEk5D78sLQE/ejkR9ykfMhgyJM8Ug+yDr53IoAml3I/rKsxQIcmLz9xCrfB7KC0ZsfqDo6f
+ uxll58h1tPM7GgMluiZA1KzUpbLHbQLEWYl+gHNhdRVzUWrabIkAMRhtLLALhW5pA9uN9gWD+
+ yQXBB0ZH0UI6TJbcXfmooO83H0mVllftEfOJJwp0DnPAWHL6awNyT+AQocmLjFSk6Kq/bafcp
+ rU3LEs9dkzhGGhU0p5jUXns4NNQeLqq9j5KMyq9cJVXPImbW7EwFAFqZfh5713egyD7KJ+pHY
+ pJK92dLBawv5krtIz2MknciGZ5Ps0te3wYwL7n6nxBypSff3iL6GGsOjVZm10fvc/47Ws9KVw
+ sNIbyuz4SBtYnk5KsJBiP5LJ9suU5VewPKA3w8aegaSsy9nHc/SFibnW9xUDLcDSmFwr9Y/m+
+ TEnxsHA3UdwdthA9OsNei8u+W7oRf38ztaKfPmaHxWXYg9KWGSFo45LKt0ZE1EkbZrFzP8847
+ JwTnyQlPZ8jBBougN+42ULxX90y0TmqE0ZlL8Fpaapx4kG4PTKk3GkCjx+DOCp4xWbpEjwBox
+ kjXjbpC1nma55CcL41KwN8vdcwpUXi/
 
-Hi,
+On 01.07.25 18:20, Akhil P Oommen wrote:
 
-Am Mittwoch, 2. Juli 2025, 21:54:09 CEST schrieb Laurentiu Mihalcea:
-> On 7/2/2025 9:49 PM, Mark Brown wrote:
-> > On Tue, Jun 10, 2025 at 12:01:50PM -0400, Laurentiu Mihalcea wrote:
-> >> From: Laurentiu Mihalcea <laurentiu.mihalcea@nxp.com>
-> >>
-> >> AIPS5 is actually AIPSTZ5 as it offers some security-related
-> >> configurations. Since these configurations need to be applied before
-> >> accessing any of the peripherals on the bus, it's better to make AIPST=
-Z5
-> >> be their parent instead of keeping AIPS5 and adding a child node for
-> >> AIPSTZ5. Also, because of the security configurations, the address spa=
-ce
-> >> of the bus has to be changed to that of the configuration registers.
-> >>
-> >> Finally, since AIPSTZ5 belongs to the AUDIOMIX power domain, add the
-> >> missing 'power-domains' property. The domain needs to be powered on be=
-fore
-> >> attempting to configure the security-related registers.
-> > I'm seeing failures to probe the audio devices on the i.MX8MP Verdin
-> > system in -next which seem to bisect down to this commit,  I'm seeing
-> > separate boot failures on the EVK so haven't been able to confirm the
-> > status there.  There's no obvious logging, the dt selftest shows:
-> >
-> > # not ok 141 /sound
-> > # not ok 142 /sound-hdmi
-> >
-> > Full log at:
-> >
-> >   https://lava.sirena.org.uk/scheduler/job/1530197#L5119
->=20
-> Hi Mark,
->=20
-> Thanks for catching this!
->=20
-> After browsing through the provided logs it would seem like no device und=
-er the
-> AIPSTZ bus gets probed. Right now, my guess is that the AIPSTZ driver is =
-not being
-> compiled since CONFIG_IMX_AIPSTZ might be set to 'n'.
->=20
-> Which defconfig is the CI using? Is it arch/arm64/configs/defconfig?
+> This series adds gpu speedbin support for Adreno X1-85 GPU along with
+> additional OPP levels. Because the higher OPPs require GPU ACD feature,
+> this series has dependency on the GPU ACD support series [1] which is
+> now available in v6.16-rc1.
+>
+Hi Akhil, thank you for the patch. I just tested this on the HP Omnibook=
+=20
+X14, which - with the matching dtb loaded - shows the same max frequency=
+=20
+as I can reach during benchmark tests on Windows (1250MHz).
 
-I'm also seeing audio problems starting with this commit. In my case I get
-the following error:
-fsl-asoc-card sound: failed to find CPU DAI device
-fsl-asoc-card sound: probe with driver fsl-asoc-card failed with error -22
+jglathe@x14-jg:~$ cat /sys/class/devfreq/*gpu*/available_frequencies
+300000000 390000000 550000000 687000000 744000000 800000000 925000000=20
+1000000000 1100000000 1175000000 1250000000
 
-DAI device is sai5 aka /soc@0/bus@30df0000/spba-bus@30c00000/sai@30c50000.
-It turns out that the module snd_soc_fsl_sai is not even autoloaded. Loading
-manually doesn't have any effect. So I assume starting from this commit
-the subnodes (at least sai5) are not even populated.
-Reverting this commit fixes my setup.
-I've set CONFIG_IMX_AIPSTZ to both  'y' or 'm' and doesn't change anything.
+Tested-by: Jens Glathe <jens.glathe@oldschoolsolutions.biz>
 
-Best regards,
-Alexander
-=2D-=20
-TQ-Systems GmbH | M=FChlstra=DFe 2, Gut Delling | 82229 Seefeld, Germany
-Amtsgericht M=FCnchen, HRB 105018
-Gesch=E4ftsf=FChrer: Detlef Schneider, R=FCdiger Stahl, Stefan Schneider
-http://www.tq-group.com/
+with best regards
+
+Jens
 
 
 
