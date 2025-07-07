@@ -1,64 +1,59 @@
-Return-Path: <devicetree+bounces-193514-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-193515-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0A86CAFABF9
-	for <lists+devicetree@lfdr.de>; Mon,  7 Jul 2025 08:36:18 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7C676AFAC00
+	for <lists+devicetree@lfdr.de>; Mon,  7 Jul 2025 08:39:32 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id BED7D1898365
-	for <lists+devicetree@lfdr.de>; Mon,  7 Jul 2025 06:36:34 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id D8587177C93
+	for <lists+devicetree@lfdr.de>; Mon,  7 Jul 2025 06:39:32 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id DB155279DAF;
-	Mon,  7 Jul 2025 06:36:13 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 74778279DCC;
+	Mon,  7 Jul 2025 06:39:28 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="WgDAmbZ3"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="S3S/D9bT"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AE86BEEAB;
-	Mon,  7 Jul 2025 06:36:12 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4799F2797AB;
+	Mon,  7 Jul 2025 06:39:27 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1751870173; cv=none; b=j2DsMuytO8Cwyuq8kNGdhHZuFR7bobsuF1AMTvlXGaOVmhzuNZ0nhooGQacjRjmjq0S3uA9UPWDPoXoRpweZ75xNpWu8arDrWJgganeXhD5HiptT1vi66ZCUN6vfAVECUNZeid7/vSfejoTcwRXD6qffmK2pMONen72Uzw8rrlM=
+	t=1751870368; cv=none; b=Sru9uR4wWkfqE17fh3U4C8bnFDGSmAgvVc2rsCRx814f6GFuYd8m3FEoRUepTwpnyB1p+rXDM2z76ppjHvSGKHHcfbhPqKuRsoJH6xyHxTF8Vc51+fKOECswWGtGBJq+ZrM1dU5lJw2LmRXYC2I2FSOlk4TvFDYxgdvFX+erlRI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1751870173; c=relaxed/simple;
-	bh=dc209bSSOMZyBL/UHG3HiH6AvU5ec3DCsBGBA0MD8OA=;
+	s=arc-20240116; t=1751870368; c=relaxed/simple;
+	bh=TzPlmqHpksjD59XhoQtmdhooADnrGWbSHrXKQOKWSZY=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=b/ObWtVjSv7acXfU/swaFJO2Pul8BPT9kN2PgfOfiA+D2plfxG6gIEMqSMJPVHQYNw9rd8JPhlZoRIjPgRTPn2vvg4v0QLSyQvkLtCyJhXTSlsDnsEkB3tD0eL58qC0mUJ/IO8tMM8nrMkRZsGOq2e9zIZkD1k6IHbKEmpT0mDs=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=WgDAmbZ3; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id AC70EC4CEE3;
-	Mon,  7 Jul 2025 06:36:11 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=a9dQe0Xa1b8TAaRlJ1KV3qfDuWkY83MP1GhnW0DlCy9VLYdjWwBesqmJF8Ie/SjE7UBs3ZbFRMYuD+prv6wVmHLm4UOkon/V3m8ebEE9RM1saXsFZboeReUibqAEKNv8UJP/0alJkdEFEflVDsxL44Zia9s9qXPdFefg77GEyBs=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=S3S/D9bT; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 32552C4CEE3;
+	Mon,  7 Jul 2025 06:39:26 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1751870172;
-	bh=dc209bSSOMZyBL/UHG3HiH6AvU5ec3DCsBGBA0MD8OA=;
+	s=k20201202; t=1751870367;
+	bh=TzPlmqHpksjD59XhoQtmdhooADnrGWbSHrXKQOKWSZY=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=WgDAmbZ3f9Aqqwkljq5jHe8OaKHd8qTEvKsZj/eNsQ/Wl/Bz1ykWcyzsrwomDXV6B
-	 aYDH/g4K/oBR6eg4WVcYY7gnsb5YQ07RQBK0hxwXAluwwe8DwCCe8FU7bTsY+h1O8+
-	 P4/NYZFy9Yi8j2zEdiiEIdOiq8SXV3t452Seh+/sOCH8sqJHDy/tcsiPaT6BOoTYh6
-	 e9yYTtn1Pj5LAy6LvdfgPGv0bvYNhEVwedJSRNJ6+TWBRWWkh++2BatUpmG8zFmmRS
-	 SYqKsvNHTE4+iwSiC4DGCEJQp7AWLB3pwvsMIE0FJ00gwPJ65nYQubayx5OziXcMeF
-	 vgMmFHKDEmKaA==
-Date: Mon, 7 Jul 2025 08:36:09 +0200
+	b=S3S/D9bTsim26m6M33vF5H5dTanb5LpqP4DnbtLz7JyXMqYTyfgSQcGd5JpVQCcfs
+	 ZSmjwR+gpxsSvj3IPJWsQpOMTpfCEfuvZIGtbJZSa1H4Rgz91Iw/b5MRf8Qk9FRX/a
+	 H3W9chYoO7AA1aDCY/1izHPPCAmxqP6PH+ST24nJZ8wIkPNggnv4y8HmgkkWmNQO5e
+	 jc0cGZ1JrDQPNHQpVWMl0CVy24US0Zu62JL/NviEvu26RWFphh9D1JacqySJj9ozLd
+	 nJ1hMrA1WG1iryYEjtXuLCzv41jDyY0CaxYEKFbYzgDgpyVhdqC+tryJdIxzMXdubb
+	 Bmm9B24IvOXJQ==
+Date: Mon, 7 Jul 2025 08:39:25 +0200
 From: Krzysztof Kozlowski <krzk@kernel.org>
-To: Kaustabh Chakraborty <kauschluss@disroot.org>
-Cc: Inki Dae <inki.dae@samsung.com>, 
-	Seung-Woo Kim <sw0312.kim@samsung.com>, Kyungmin Park <kyungmin.park@samsung.com>, 
-	David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>, 
-	Alim Akhtar <alim.akhtar@samsung.com>, Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, 
-	Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>, 
-	Rob Herring <robh@kernel.org>, Conor Dooley <conor@kernel.org>, 
-	Ajay Kumar <ajaykumar.rs@samsung.com>, Akshu Agrawal <akshua@gmail.com>, 
+To: Daniel Scally <dan.scally@ideasonboard.com>
+Cc: linux-media@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-renesas-soc@vger.kernel.org, Rob Herring <robh@kernel.org>, 
 	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	dri-devel@lists.freedesktop.org, linux-arm-kernel@lists.infradead.org, 
-	linux-samsung-soc@vger.kernel.org, linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
-Subject: Re: [PATCH v4 1/2] dt-bindings: display: samsung,exynos7-decon:
- document iommus, memory-region, and ports
-Message-ID: <20250707-silent-authentic-trogon-cca34d@krzk-bin>
-References: <20250706-exynosdrm-decon-v4-0-735fd215f4b3@disroot.org>
- <20250706-exynosdrm-decon-v4-1-735fd215f4b3@disroot.org>
+	Geert Uytterhoeven <geert+renesas@glider.be>, Magnus Damm <magnus.damm@gmail.com>, 
+	Philipp Zabel <p.zabel@pengutronix.de>, jacopo.mondi@ideasonboard.com, biju.das.jz@bp.renesas.com
+Subject: Re: [PATCH v3 3/5] dt-bindings: media: Add bindings for the RZ/V2H
+ IVC block
+Message-ID: <20250707-sweet-delectable-chihuahua-bafce0@krzk-bin>
+References: <20250704-ivc-v3-0-5c45d936ef2e@ideasonboard.com>
+ <20250704-ivc-v3-3-5c45d936ef2e@ideasonboard.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -67,22 +62,33 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <20250706-exynosdrm-decon-v4-1-735fd215f4b3@disroot.org>
+In-Reply-To: <20250704-ivc-v3-3-5c45d936ef2e@ideasonboard.com>
 
-On Sun, Jul 06, 2025 at 10:59:45PM +0530, Kaustabh Chakraborty wrote:
-> Similar to FIMD and Exynos5433's DECON, the Exynos7 DECON hardware:
-> - May optionally require an IOMMU to initialize a display region.
-> - Outputs image data to another block, say an MIC or a DSI master.
-> 
-> If an IOMMU is present, it may also require to access the reserved
-> framebuffer region.
-> 
-> Document these bindings in the devicetree schema.
-> 
-> Signed-off-by: Kaustabh Chakraborty <kauschluss@disroot.org>
-> ---
->  .../display/samsung/samsung,exynos7-decon.yaml      | 21 +++++++++++++++++++++
->  1 file changed, 21 insertions(+)
+On Fri, Jul 04, 2025 at 12:20:20PM +0100, Daniel Scally wrote:
+> +  resets:
+> +    items:
+> +      - description: Input Video Control block register access reset
+> +      - description: Video input data AXI bus reset
+> +      - description: ISP core reset
+> +
+> +  reset-names:
+> +    items:
+> +      - const: reg
+> +      - const: axi
+> +      - const: isp
+> +
+> +  port:
+> +    $ref: /schemas/graph.yaml#/properties/port
+> +    description: Output parallel video bus
+> +
+> +    properties:
+> +      endpoint:
+> +        $ref: /schemas/graph.yaml#/properties/endpoint
+
+This endpoint here should not be needed, because it is already in the
+port schema and nothing more can be added to the 'port'.
+
+Anyway,
 
 Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
