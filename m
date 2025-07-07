@@ -1,148 +1,155 @@
-Return-Path: <devicetree+bounces-193557-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-193558-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 40294AFAE4D
-	for <lists+devicetree@lfdr.de>; Mon,  7 Jul 2025 10:12:31 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 28134AFAE55
+	for <lists+devicetree@lfdr.de>; Mon,  7 Jul 2025 10:14:47 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 96A2A171C93
-	for <lists+devicetree@lfdr.de>; Mon,  7 Jul 2025 08:12:31 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 2AB69189A891
+	for <lists+devicetree@lfdr.de>; Mon,  7 Jul 2025 08:14:48 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9BB8F289E3C;
-	Mon,  7 Jul 2025 08:12:27 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id CE44028A1FB;
+	Mon,  7 Jul 2025 08:14:26 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=samsung.com header.i=@samsung.com header.b="gJeqK7e3"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="W3q/n44V"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mailout2.w1.samsung.com (mailout2.w1.samsung.com [210.118.77.12])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-pf1-f181.google.com (mail-pf1-f181.google.com [209.85.210.181])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A7778283FEA
-	for <devicetree@vger.kernel.org>; Mon,  7 Jul 2025 08:12:25 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=210.118.77.12
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4201619F421;
+	Mon,  7 Jul 2025 08:14:25 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.181
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1751875947; cv=none; b=nhFh6Aq8giI4Ha+V3ZCWh2DiYXjzszioPnWRngNNe0Coy0S2eUi8L/No5khN8oYWOCZ/vX+O2WUct3etVZe5LbHtbl/Trs3V1E5DmeYxIkls5lxZe/OT12Zpv1qnLU39XXOiQ7flnt1nzcOuKlMT9tcLkkciV1V3yhu+QXNO0gQ=
+	t=1751876066; cv=none; b=UAWZkQEIQGs2GohrmtV2gefv48P6QFDTZ2edTtfdMP35YM9sqUjsvwFh79di2IdraqswDP6Tou/06ojaxIMJdvfDoGwyW7F29WIMD6Zo2Svemq/tuYJ9m/YYwCV30F/e1ngZais3FmygjY/Ki4zbwK+qHf0CQZsWOinV4bioj0U=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1751875947; c=relaxed/simple;
-	bh=yOqRICLmRYtNzZiWecQrP66gB25Vi58BwOuruBWa+IU=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:From:In-Reply-To:
-	 Content-Type:References; b=hGxoFGAe7EvzRj5DR8/FJgGQw9sCNO532PnOnAQgHCZ6B+rYSozu5DT6JsYbDl1yP31Jo0+vjK1rOaB7ZzdkXGzJpLv1CZu6CPq02E9nIkLdKGbUSLxKhtSYhpQHf/D07qzVEvPt54YZSvu1LReinx6oOQ2GU/SGhE9i7XHtu4E=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=samsung.com; spf=pass smtp.mailfrom=samsung.com; dkim=pass (1024-bit key) header.d=samsung.com header.i=@samsung.com header.b=gJeqK7e3; arc=none smtp.client-ip=210.118.77.12
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=samsung.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=samsung.com
-Received: from eucas1p2.samsung.com (unknown [182.198.249.207])
-	by mailout2.w1.samsung.com (KnoxPortal) with ESMTP id 20250707081224euoutp02c3a9a50a862b77b90cb459295c430bc1~P6eOtRzWX0200802008euoutp02L
-	for <devicetree@vger.kernel.org>; Mon,  7 Jul 2025 08:12:24 +0000 (GMT)
-DKIM-Filter: OpenDKIM Filter v2.11.0 mailout2.w1.samsung.com 20250707081224euoutp02c3a9a50a862b77b90cb459295c430bc1~P6eOtRzWX0200802008euoutp02L
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=samsung.com;
-	s=mail20170921; t=1751875944;
-	bh=dnqfahgdX+avAWwRgYn51cRHDYqFSaWYH3r+HyZbJc8=;
-	h=Date:Subject:To:Cc:From:In-Reply-To:References:From;
-	b=gJeqK7e3jDPeVpycraAkwzXkgeJ6egUTI8EfY/qJ4rrdgpNX3mkIiI3++hO4huJVT
-	 FTMvgYO8vE5z6vBQP4BTPHmKyH09L6kO5GEay51OavXiZ39FsgvAveWa80D3d3UHUQ
-	 zUibBhrSui29xcxj3q7yQkIWIAIvvlnLBdMKAcIw=
-Received: from eusmtip1.samsung.com (unknown [203.254.199.221]) by
-	eucas1p1.samsung.com (KnoxPortal) with ESMTPA id
-	20250707081223eucas1p170446baf185b93004844de16952f1225~P6eOCmy__0035700357eucas1p1v;
-	Mon,  7 Jul 2025 08:12:23 +0000 (GMT)
-Received: from [192.168.1.44] (unknown [106.210.136.40]) by
-	eusmtip1.samsung.com (KnoxPortal) with ESMTPA id
-	20250707081222eusmtip127c52a8d31ab35fe240938c0c347f713~P6eM6tJWH2076020760eusmtip1L;
-	Mon,  7 Jul 2025 08:12:22 +0000 (GMT)
-Message-ID: <9ec72ebf-33cb-466d-a41b-ea593e63b5e2@samsung.com>
-Date: Mon, 7 Jul 2025 10:12:21 +0200
+	s=arc-20240116; t=1751876066; c=relaxed/simple;
+	bh=j/EfETJ5tR8iCf4VFrMtzkCu3pynSK4jYHPhvW8aK6I=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=UFNTZaMRVgeF5sz40Iz9uMsqKvE6gQOpAtl+fz6pzzbPx5htU6XeoOPC6dXK9zFok6180FrMxufwWyPUibVw6ChRrdxpOrq7H4rU83pZ8qMWNwdwRJUWMLC8LlPBrHd5gGSAViF5ZNgTygfiBpkduk+t+8io4J3DOUPIa3fASOQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=W3q/n44V; arc=none smtp.client-ip=209.85.210.181
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-pf1-f181.google.com with SMTP id d2e1a72fcca58-748d982e92cso1656543b3a.1;
+        Mon, 07 Jul 2025 01:14:25 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1751876064; x=1752480864; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=33n3Zmlj7DYucwJdMVh/vsniipGmm9V9S+B1rzOBIj8=;
+        b=W3q/n44VkTmNjHdcSvY14PnAcWwqeNAj8e1dZHrBMe+Q1DYkZeRl6pQa1/XXoww5k9
+         TYfFNSJxXU3aHNAMLYsJmwW37DSSS62Ug++CcEIt3v4p9q+o+VwtTahCVG8OoTgBFlY7
+         Ra1UdwEHhxJLVV6xpUs4yxFywOJS2nK81HnjMNcW5gzVWhKkQsPIhM9x0JgeqB62FJWD
+         4DJ48FGOz0VAw7rgTGjbzlmolUNedUwd5sxYq8jPZQdohVM6H0zgZSM6yqSDVAFN20ef
+         0g9xECE3PeKRNMWnkrrZr03+ca2UX14Vmz6+PqNNbmnx6mmhALHyWbutvf1dOU18BGQp
+         aNQQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1751876064; x=1752480864;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=33n3Zmlj7DYucwJdMVh/vsniipGmm9V9S+B1rzOBIj8=;
+        b=RNRLoBlfWqosEBchx+9EZ8626+AZvkAIZkz7MSfkceQoHgxO37T4FoDeClaI2X7OD5
+         kjdwrdzQIypPaou6MywvR2uz1FZXeCqLlBpeGQLDWAFl5cf1k50XFK4HeHdnAvRQGDhW
+         y754+X3vm+qiu/5A/3ufo2iUJ1LYciqsaCwG2pJPlhifOgopB2/5QMz6Hn/yY4xxkal1
+         wPrhaxRc2A90G73hx3qJZKPqFOn3SbBZhF9nG7Qq7ZoJERj9KMrvaiK7R1NZHGs8167a
+         u4iAPFFQu+nkZADupwFNzEK4yGKavrODgKjVg3oueG0QOZPXLORhp4+QS1Tyq7RSmUXR
+         sRrw==
+X-Forwarded-Encrypted: i=1; AJvYcCUnljGawCb0JHDdq7nyCCQnCZ7RwsRgts2Skwo3Zt8/NglyXMDsu7IvC9FJscw/VmOPefR3h+foj+lY@vger.kernel.org, AJvYcCVpZinJkk9JtxozCs5DwpSghTRxk6WEt4A3uaaCDFClN7piNK6OQWGs+XzXDo1eonv5rVCBXNdMiEGO@vger.kernel.org, AJvYcCWvK3FL1+zPaP59TjI3ZPnDOlwzRY09Y2Up9nZEmhOTCYalqjXmEm2hvx3Qqb4NSsqKRZm+nUDzsiAhbLru@vger.kernel.org
+X-Gm-Message-State: AOJu0YyfTIPb9rcI/CYOCD+U93QYhAX3ypYTVmPiailZ7gPMAlHdAt+b
+	275e66mbUu970ZnHJRETZImhIBKyI8GYv+ogtpZKL4qRSGXCI0xx4Csj
+X-Gm-Gg: ASbGncvXdkVfZu7jxgn5vjK9L0ArExDsVZiwFpku/EtmjW4j50T3b6r49bjMqJh/sKr
+	iY2XKxBS4i5b7Uz+rQtzH1pqJ2ZyMlhtIrexDd5Q6dwPNmv9g9sfWX3Odpz7Qaq7PboD/58elot
+	i7iVOkepdBRi/vJTjI5MZ1xag1HK4m1SBvpCK1fNJMARakTiQk19WtvdrYGS75q7hkTxYeBY+on
+	0o6cF8codLkYft9jdRX6UCt3mIPR3XaZ0WyHi9XEOZfHX5KoLzmmgSZM9cLe/5G0HyI1rz/KgGx
+	8ymlMxbTNYyVLbMUqAX8sPLrqlo7AQQz+Uk6efH8ONc2yycdX2Ze3WKEI4gT2Q==
+X-Google-Smtp-Source: AGHT+IH9UGGXQ6hFlHwJSIfy12AZEvjN28stIhe7taLm+EA+OjlD4ScraFo9JUkrX9JuuH+G/cgFWA==
+X-Received: by 2002:a05:6a00:895:b0:748:3964:6177 with SMTP id d2e1a72fcca58-74cf6fbdb01mr11670003b3a.19.1751876064478;
+        Mon, 07 Jul 2025 01:14:24 -0700 (PDT)
+Received: from localhost ([2001:19f0:ac00:4eb8:5400:5ff:fe30:7df3])
+        by smtp.gmail.com with UTF8SMTPSA id d2e1a72fcca58-74ce2b05749sm7790042b3a.0.2025.07.07.01.14.23
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 07 Jul 2025 01:14:23 -0700 (PDT)
+Date: Mon, 7 Jul 2025 16:14:14 +0800
+From: Inochi Amaoto <inochiama@gmail.com>
+To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>, 
+	Inochi Amaoto <inochiama@gmail.com>
+Cc: Rob Herring <robh@kernel.org>, 
+	Alexandre Belloni <alexandre.belloni@bootlin.com>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+	Conor Dooley <conor+dt@kernel.org>, Chen Wang <unicorn_wang@outlook.com>, sophgo@lists.linux.dev, 
+	Jingbao Qiu <qiujingbao.dlmu@gmail.com>, Alexander Sverdlin <alexander.sverdlin@gmail.com>, 
+	linux-rtc@vger.kernel.org, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH] dt-bindings: Move sophgo,cv1800b-rtc to rtc directory
+Message-ID: <abhpvi66rhapjo6y2c7exl3nacwgtbjihg55rrljoplocp7heq@npvlgtbrieuo>
+References: <20250608224252.3902421-1-robh@kernel.org>
+ <ywln42bb3i5hyzlsmfbx3xt2kjbefqmcxytcqxdcgah77gcesi@2cdw3cgxbg4c>
+ <20250617130924.GA1678432-robh@kernel.org>
+ <mig7k5zyhmata6uvjwlwlompwf22qffwvma2nhjww3cmsmxnas@y2t5ukucs76q>
+ <20250703-naughty-diligent-nightingale-d2fa9f@krzk-bin>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v9 2/6] rust: pwm: Add complete abstraction layer
-To: =?UTF-8?Q?Uwe_Kleine-K=C3=B6nig?= <ukleinek@kernel.org>, Danilo
-	Krummrich <dakr@kernel.org>
-Cc: Miguel Ojeda <ojeda@kernel.org>, Alex Gaynor <alex.gaynor@gmail.com>,
-	Boqun Feng <boqun.feng@gmail.com>, Gary Guo <gary@garyguo.net>,
-	=?UTF-8?Q?Bj=C3=B6rn_Roy_Baron?= <bjorn3_gh@protonmail.com>, Andreas
-	Hindborg <a.hindborg@kernel.org>, Alice Ryhl <aliceryhl@google.com>, Trevor
-	Gross <tmgross@umich.edu>, Guo Ren <guoren@kernel.org>, Fu Wei
-	<wefu@redhat.com>, Rob Herring <robh@kernel.org>, Krzysztof Kozlowski
-	<krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, Paul Walmsley
-	<paul.walmsley@sifive.com>, Palmer Dabbelt <palmer@dabbelt.com>, Albert Ou
-	<aou@eecs.berkeley.edu>, Alexandre Ghiti <alex@ghiti.fr>, Marek Szyprowski
-	<m.szyprowski@samsung.com>, Benno Lossin <lossin@kernel.org>, Michael
-	Turquette <mturquette@baylibre.com>, Drew Fustini <fustini@kernel.org>,
-	linux-kernel@vger.kernel.org, linux-pwm@vger.kernel.org,
-	rust-for-linux@vger.kernel.org, linux-riscv@lists.infradead.org,
-	devicetree@vger.kernel.org
-Content-Language: en-US
-From: Michal Wilczynski <m.wilczynski@samsung.com>
-In-Reply-To: <yxtnwax73wkliqkbq5736tswbxrblpwx4bn6z257tyd2xu23jx@y6k6iwdhmsgy>
-Content-Transfer-Encoding: 8bit
-X-CMS-MailID: 20250707081223eucas1p170446baf185b93004844de16952f1225
-X-Msg-Generator: CA
-Content-Type: text/plain; charset="utf-8"
-X-RootMTR: 20250706114605eucas1p17d1cbd035d14d95f4ad0588c2572b3e2
-X-EPHeader: CA
-X-CMS-RootMailID: 20250706114605eucas1p17d1cbd035d14d95f4ad0588c2572b3e2
-References: <20250706-rust-next-pwm-working-fan-for-sending-v9-0-42b5ac2101c7@samsung.com>
-	<CGME20250706114605eucas1p17d1cbd035d14d95f4ad0588c2572b3e2@eucas1p1.samsung.com>
-	<20250706-rust-next-pwm-working-fan-for-sending-v9-2-42b5ac2101c7@samsung.com>
-	<aGpqqGMTU3a3O8cn@pollux>
-	<yxtnwax73wkliqkbq5736tswbxrblpwx4bn6z257tyd2xu23jx@y6k6iwdhmsgy>
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20250703-naughty-diligent-nightingale-d2fa9f@krzk-bin>
 
-
-
-On 7/7/25 08:57, Uwe Kleine-König wrote:
-> Hello Danilo,
+On Thu, Jul 03, 2025 at 09:49:37AM +0200, Krzysztof Kozlowski wrote:
+> On Wed, Jun 18, 2025 at 07:18:32AM +0800, Inochi Amaoto wrote:
+> > On Tue, Jun 17, 2025 at 08:09:24AM -0500, Rob Herring wrote:
+> > > On Mon, Jun 09, 2025 at 06:49:38AM +0800, Inochi Amaoto wrote:
+> > > > On Sun, Jun 08, 2025 at 05:42:51PM -0500, Rob Herring (Arm) wrote:
+> > > > > The $id path for the sophgo,cv1800b-rtc binding was missing part of the
+> > > > > path 'soc'. However, the correct place for RTC bindings (even if it's
+> > > > > also a "syscon") is the rtc directory, so move the binding there while
+> > > > > fixing the $id value.
+> > > > > 
+> > > > > Fixes: 76517429dbfd ("dt-bindings: soc: sophgo: add RTC support for Sophgo CV1800 series")
+> > > > > Signed-off-by: Rob Herring (Arm) <robh@kernel.org>
+> > > > > ---
+> > > > >  .../bindings/{soc/sophgo => rtc}/sophgo,cv1800b-rtc.yaml        | 2 +-
+> > > > >  1 file changed, 1 insertion(+), 1 deletion(-)
+> > > > >  rename Documentation/devicetree/bindings/{soc/sophgo => rtc}/sophgo,cv1800b-rtc.yaml (96%)
+> > > > > 
+> > > > > diff --git a/Documentation/devicetree/bindings/soc/sophgo/sophgo,cv1800b-rtc.yaml b/Documentation/devicetree/bindings/rtc/sophgo,cv1800b-rtc.yaml
+> > > > > similarity index 96%
+> > > > > rename from Documentation/devicetree/bindings/soc/sophgo/sophgo,cv1800b-rtc.yaml
+> > > > > rename to Documentation/devicetree/bindings/rtc/sophgo,cv1800b-rtc.yaml
+> > > > > index 5cf186c396c9..c695d2ff9fcc 100644
+> > > > > --- a/Documentation/devicetree/bindings/soc/sophgo/sophgo,cv1800b-rtc.yaml
+> > > > > +++ b/Documentation/devicetree/bindings/rtc/sophgo,cv1800b-rtc.yaml
+> > > > > @@ -1,7 +1,7 @@
+> > > > >  # SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> > > > >  %YAML 1.2
+> > > > >  ---
+> > > > > -$id: http://devicetree.org/schemas/sophgo/sophgo,cv1800b-rtc.yaml#
+> > > > > +$id: http://devicetree.org/schemas/rtc/sophgo,cv1800b-rtc.yaml#
+> > > > >  $schema: http://devicetree.org/meta-schemas/core.yaml#
+> > > > >  
+> > > > >  title: Real Time Clock of the Sophgo CV1800 SoC
+> > > > > -- 
+> > > > > 2.47.2
+> > > > > 
+> > > > 
+> > > > As the rtc syscon has a sub function for remoteproc, is it proper to
+> > > > move this binding into rtc subsystem?
+> > > 
+> > > Does that affect the binding (is there more to add)? Looks like an RTC 
+> > > from the binding.
+> > > 
+> > 
+> > I think at least "resets" property may be added for the this, but I am
+> > not sure whether there will be more.
 > 
-> On Sun, Jul 06, 2025 at 02:23:04PM +0200, Danilo Krummrich wrote:
->> On Sun, Jul 06, 2025 at 01:45:13PM +0200, Michal Wilczynski wrote:
->>> +    /// # Safety
->>> +    ///
->>> +    /// `dev` must be a valid pointer to a `bindings::device` embedded within a
->>> +    /// `bindings::pwm_chip`. This function is called by the device core when the
->>> +    /// last reference to the device is dropped.
->>> +    unsafe extern "C" fn release_callback(dev: *mut bindings::device) {
->>> +        // SAFETY: The function's contract guarantees that `dev` points to a `device`
->>> +        // field embedded within a valid `pwm_chip`. `container_of!` can therefore
->>> +        // safely calculate the address of the containing struct.
->>> +        let c_chip_ptr = unsafe { container_of!(dev, bindings::pwm_chip, dev) };
->>> +
->>> +        // SAFETY: `c_chip_ptr` is a valid pointer to a `pwm_chip` as established
->>> +        // above. Calling this FFI function is safe.
->>> +        let drvdata_ptr = unsafe { bindings::pwmchip_get_drvdata(c_chip_ptr) };
->>> +
->>> +        if !drvdata_ptr.is_null() {
->>
->> Is this check needed? I think one can't create a pwm::Chip instance without
->> providing a T, so this pointer can't be NULL I think.
+> Just post complete bindings - see writing bindings...
 > 
-> There are currently a few C drivers, that don't use a private data
-> struct that is managed by the pwmchip. One of them doesn't make use of
-> the pwmchip's drvdata at all. The latter is drivers/pwm/pwm-twl-led.c.
 
-Thank you both for the feedback on this point.
+Ignore my guess, I have confirmed the binding is complete,
+so free to move.
 
-My interpretation aligns with Danilo's: the null check is unnecessary
-within the context of this Rust abstraction.
-
-The pwm::Chip::new() API as designed guarantees that driver data is
-always provided. For the cases Uwe mentioned, where a C driver might not
-use private data, the idiomatic Rust solution would be to use a
-zero sized type (e.g., an empty struct or ()) for the PwmOps::DrvData.
-This approach still results in a valid, non null pointer being passed to
-the C core.
-
-Given that all paths within this abstraction lead to a non null drvdata
-pointer, I believe removing the redundant check is the correct approach.
-
-> 
-> Best regards
-> Uwe
-
-Best regards,
--- 
-Michal Wilczynski <m.wilczynski@samsung.com>
+Regards,
+Inochi
 
