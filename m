@@ -1,60 +1,61 @@
-Return-Path: <devicetree+bounces-193529-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-193530-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id B43A8AFACB4
-	for <lists+devicetree@lfdr.de>; Mon,  7 Jul 2025 09:09:17 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5D4BCAFACB7
+	for <lists+devicetree@lfdr.de>; Mon,  7 Jul 2025 09:10:06 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 1C0E0168933
-	for <lists+devicetree@lfdr.de>; Mon,  7 Jul 2025 07:09:18 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id A82A1169668
+	for <lists+devicetree@lfdr.de>; Mon,  7 Jul 2025 07:10:04 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C517921C190;
-	Mon,  7 Jul 2025 07:09:13 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 66CC4285CB4;
+	Mon,  7 Jul 2025 07:09:53 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="qG5pfSUO"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="URk79ekV"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9A3001DC9A3;
-	Mon,  7 Jul 2025 07:09:13 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 39C55262FCC;
+	Mon,  7 Jul 2025 07:09:52 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1751872153; cv=none; b=mdFuFGAspPFGZZJZHKL3U25YTq9L7vqfq6reEX6kD0nl+TgrX7JPev2DHJtq5UfdRCF8Kt8vM9ZxfAp1kap12uQ2Bxazy5BxK+dsqFIrvFXgCs4UvC3s8fbXqCmV287/T8ViM93jV75zuCsJlsfXGFxg6rIDkM4of65xlAXa15Q=
+	t=1751872193; cv=none; b=noqVEkYPfJe47XCZ5pJ+UvCA+/bPJ6g4HUp3+idYPmK7zaxSR1vceGSiRgBGned6Hc9E8JLpEp4OUXwk9MpsdjNgoa0TdG8hG9LGk5oY1Vn1bz2S8lv7CSczD6lqnwQLE1uSebilEjFnr29dqoJLtrP7O4DtktK4GdcLd09oE7A=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1751872153; c=relaxed/simple;
-	bh=S1UTgehB4MPmn84p3V9HOqZpYRl7v/ht9OhQV+Nr504=;
+	s=arc-20240116; t=1751872193; c=relaxed/simple;
+	bh=AFV+TeABv8Zk5XboOQaVyDGMa4C8DLIZ32be/SwRorc=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=K37ewQdNcqezE9yahbyzT+QS33L6byqAfubfGZRVhrVT5Y088jJZ6DZXYnHGgJgBE2NJcBiHI6fRlOZBNi9yNTvXIIrujSQO6y4apVihxDKF361pm+yG2CucAGOXdSLn042Ra9hdeYHoLbExO+DARtMRaSoVCzMT2ksk7hU+yrA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=qG5pfSUO; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 960E2C4CEE3;
-	Mon,  7 Jul 2025 07:09:12 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=uXzM9i2PUAbkxCp/YX4d2UTIdYf4C/kkeC0zrTKqrjHDA4a4zk0AFGYafnwTpmNlfUMglvg/t79c0D7MWD2iWF9Qpd0BI0KIb7Cc0FZy7Njtb8lzGUujUdl/G23+CO/K8edf/k2tumsEINa6+MgSmuBbc6eYeFtDx1oP3g6i3s8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=URk79ekV; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 38F0DC4CEE3;
+	Mon,  7 Jul 2025 07:09:52 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1751872153;
-	bh=S1UTgehB4MPmn84p3V9HOqZpYRl7v/ht9OhQV+Nr504=;
+	s=k20201202; t=1751872192;
+	bh=AFV+TeABv8Zk5XboOQaVyDGMa4C8DLIZ32be/SwRorc=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=qG5pfSUOmBaq8lNU2TWtv0QM43A9NYz9tVpSmKYXdASiAJ84lcEl9cgy7RKtWtO4W
-	 h9SAmhlRpN4bD1ZtRL8TIppC5Q+obq5kRppsoZMBXRsGMFRqlaXMv0QX2vC/m536CV
-	 6qwvKiHsPr0bC5UfkpdtSlYYjWyqdjvSz1vQz7MI2unOWoxcesknabRbv+j8mSzCyq
-	 Jykj3Gxi5uPaTy2QtbaEum0nebTWNBUyOI0+9loMzIL9a44DunwjnwKgAT/i8XBd8r
-	 daSW0YTwu30bakF91aoBCKtaFDOHB/b4NEqmG36ZvfDPBr7t3SMSrtXolkmKWSR+u0
-	 ed+kOs13WejjA==
-Date: Mon, 7 Jul 2025 09:09:10 +0200
+	b=URk79ekVOVynmozM4nJAdmxw+sXeyVljNAqmn12VBB7z3qV30kBwHYnlTvasx7zXs
+	 oGe/SaYzqePdVFBZGEsGH7Zviy+qrvKiOMiMNYQWmSKcDsMl7ANFmYa2b01ZBv9lQI
+	 WSyPfoZ2Kl1dEGs1J61hQ/OMm9qdL9izv/2phoxSIdDMbu45ouWIW/HlSCN9dw5H+s
+	 pWAOccOx0kqbLEg6ATcC0MMZnrFN2f8mC6GKKo5hDWqu07iBkzfaNnZ7+5JKM/KYlE
+	 nrMorvOeYSowD3+s3ZgzBaE/JrUHaH+DvCxmy0tZ49LX23Q7yNxPHEylixzOVUjRML
+	 PLr28mGM6+AQg==
+Date: Mon, 7 Jul 2025 09:09:50 +0200
 From: Krzysztof Kozlowski <krzk@kernel.org>
-To: Lorenzo Bianconi <lorenzo@kernel.org>
-Cc: Andrew Lunn <andrew+netdev@lunn.ch>, 
-	"David S. Miller" <davem@davemloft.net>, Eric Dumazet <edumazet@google.com>, 
-	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	linux-arm-kernel@lists.infradead.org, linux-mediatek@lists.infradead.org, netdev@vger.kernel.org, 
-	devicetree@vger.kernel.org, Simon Horman <horms@kernel.org>
-Subject: Re: [PATCH net-next v2 2/7] net: airoha: npu: Add NPU wlan memory
- initialization commands
-Message-ID: <20250707-agile-aardwolf-of-politeness-29fead@krzk-bin>
-References: <20250705-airoha-en7581-wlan-offlaod-v2-0-3cf32785e381@kernel.org>
- <20250705-airoha-en7581-wlan-offlaod-v2-2-3cf32785e381@kernel.org>
+To: Lukas Schmid <lukas.schmid@netcube.li>
+Cc: Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, Chen-Yu Tsai <wens@csie.org>, 
+	Jernej Skrabec <jernej.skrabec@gmail.com>, Samuel Holland <samuel@sholland.org>, 
+	Paul Walmsley <paul.walmsley@sifive.com>, Palmer Dabbelt <palmer@dabbelt.com>, 
+	Albert Ou <aou@eecs.berkeley.edu>, Alexandre Ghiti <alex@ghiti.fr>, 
+	Maxime Ripard <mripard@kernel.org>, devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
+	linux-sunxi@lists.linux.dev, linux-kernel@vger.kernel.org, linux-riscv@lists.infradead.org
+Subject: Re: [PATCH v2 1/5] dt-bindings: arm: sunxi: Add NetCube Systems
+ Nagami SoM and carrier board bindings
+Message-ID: <20250707-vehement-daffy-worm-0cc8ee@krzk-bin>
+References: <20250706183601.157523-1-lukas.schmid@netcube.li>
+ <20250706183601.157523-2-lukas.schmid@netcube.li>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -63,23 +64,27 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <20250705-airoha-en7581-wlan-offlaod-v2-2-3cf32785e381@kernel.org>
+In-Reply-To: <20250706183601.157523-2-lukas.schmid@netcube.li>
 
-On Sat, Jul 05, 2025 at 11:09:46PM +0200, Lorenzo Bianconi wrote:
-> +
->  struct airoha_npu *airoha_npu_get(struct device *dev, dma_addr_t *stats_addr)
->  {
->  	struct platform_device *pdev;
-> @@ -493,6 +573,7 @@ static int airoha_npu_probe(struct platform_device *pdev)
->  	npu->ops.ppe_deinit = airoha_npu_ppe_deinit;
->  	npu->ops.ppe_flush_sram_entries = airoha_npu_ppe_flush_sram_entries;
->  	npu->ops.ppe_foe_commit_entry = airoha_npu_foe_commit_entry;
-> +	npu->ops.wlan_init_reserved_memory = airoha_npu_wlan_init_memory;
+On Sun, Jul 06, 2025 at 08:35:54PM +0200, Lukas Schmid wrote:
+> The NetCube Systems Nagami is an System on Module base on the Allwinner
+> T113s SoC. It is intended to be used in low cost devices which require
+> simple layouts and low BOM cost.
+> 
+> The NetCube Systems Nagami Basic Carrier Board is a simple carrier for the
+> Nagami SoM. It is intended to serve as a simple reference design for a
+> custom implementation or just evaluating the module with other peripherals
+> 
+> The NetCube Systems Nagami Keypad Carrier is a custom board intended to
+> fit a standard Ritto Intercom enclosure and provides a Keypad, NFC-Reader
+> and Status-LED all controllable over Ethernet with PoE support.
+> 
+> Signed-off-by: Lukas Schmid <lukas.schmid@netcube.li>
+> ---
+>  Documentation/devicetree/bindings/arm/sunxi.yaml | 8 ++++++++
+>  1 file changed, 8 insertions(+)
 
-I cannot find in your code single place calling this (later you add a
-wrapper... which is not called either).
-
-All this looks like dead code...
+Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
 Best regards,
 Krzysztof
