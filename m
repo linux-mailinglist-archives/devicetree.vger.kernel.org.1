@@ -1,166 +1,126 @@
-Return-Path: <devicetree+bounces-193438-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-193439-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id BA849AFA88D
-	for <lists+devicetree@lfdr.de>; Mon,  7 Jul 2025 02:15:53 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 63C55AFA899
+	for <lists+devicetree@lfdr.de>; Mon,  7 Jul 2025 02:32:17 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 50B54189A72D
-	for <lists+devicetree@lfdr.de>; Mon,  7 Jul 2025 00:16:08 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 1E7EB18960E8
+	for <lists+devicetree@lfdr.de>; Mon,  7 Jul 2025 00:32:34 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id DDD522868B;
-	Mon,  7 Jul 2025 00:15:45 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E4D76136358;
+	Mon,  7 Jul 2025 00:32:10 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=collabora.com header.i=sebastian.reichel@collabora.com header.b="eQNcOwYH"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="CjjWRng1"
 X-Original-To: devicetree@vger.kernel.org
-Received: from sender4-pp-f112.zoho.com (sender4-pp-f112.zoho.com [136.143.188.112])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-pg1-f181.google.com (mail-pg1-f181.google.com [209.85.215.181])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0B1B218035;
-	Mon,  7 Jul 2025 00:15:43 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=pass smtp.client-ip=136.143.188.112
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1751847345; cv=pass; b=r74OimeZN7UPfcFCHYIVcnDRbNVSApy12JSnh0IL+HULI29lGvhLDJK3gxMl00bBPLkM3vqRvDy2sMfrhkEP2A40TowehPwvNxOjYHQY12BIFePFf8K5G6BseFhTWFRbl1Tx7gkSRg60nGHZezWjRX1CsQmqCmc9X9HawRYaKHM=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1751847345; c=relaxed/simple;
-	bh=bg3UTIoYitdrE1fKKbSI9xlD3lw7ZBNyiPwF21r9hGQ=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=AcpYzlth0SGRcWt9MYlP7fqqsIp0w59xeof3sN4SNC3vIjVgE9AUWgvAdy3jlX0kEQ5+/LIIlaKuYJswTthhOry9WYZOBhaW0id01WwmMGf7t6ikcKqr/MlzmUjeybG/XpZt+WpB2dBafxJSCzEYIuB80TWwu+R4wQc3YdiTNA8=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (1024-bit key) header.d=collabora.com header.i=sebastian.reichel@collabora.com header.b=eQNcOwYH; arc=pass smtp.client-ip=136.143.188.112
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
-ARC-Seal: i=1; a=rsa-sha256; t=1751847330; cv=none; 
-	d=zohomail.com; s=zohoarc; 
-	b=UTrKTZ3xXD548GT3q5KhD3JK9dOlxc1/gl993isZWCDB7ZdC6tm8r2W+Qp5UhIm84ID1a8s+c5ahoB6x1Qixq6yG8PKLajvXPq+j8xR6/c1murPnw4hi+Jh/BKNJNL28IcO/KjB8ClIaHtHoaM11OnFvvxI/O6n9cY5aBGMnr/k=
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=zohomail.com; s=zohoarc; 
-	t=1751847330; h=Content-Type:Cc:Cc:Date:Date:From:From:In-Reply-To:MIME-Version:Message-ID:References:Subject:Subject:To:To:Message-Id:Reply-To; 
-	bh=bg3UTIoYitdrE1fKKbSI9xlD3lw7ZBNyiPwF21r9hGQ=; 
-	b=NxZbSbRmmq0WqYYLz2Z7EGdVQgB6LYDvNjNag+is8SPK5O4+TjkA7qbYTXXeigvvN9s3PDfbUHw/ZPBLeuUEPG6VKS4gjdIH242qHj1/3y1x7XonGD87ktU+Rrunk0oVU8New/T0jo8H4fuvyw0wsivX2AtlXlFLZh3sy6gZpFs=
-ARC-Authentication-Results: i=1; mx.zohomail.com;
-	dkim=pass  header.i=collabora.com;
-	spf=pass  smtp.mailfrom=sebastian.reichel@collabora.com;
-	dmarc=pass header.from=<sebastian.reichel@collabora.com>
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; t=1751847330;
-	s=zohomail; d=collabora.com; i=sebastian.reichel@collabora.com;
-	h=Date:Date:From:From:To:To:Cc:Cc:Subject:Subject:Message-ID:References:MIME-Version:Content-Type:In-Reply-To:Message-Id:Reply-To;
-	bh=bg3UTIoYitdrE1fKKbSI9xlD3lw7ZBNyiPwF21r9hGQ=;
-	b=eQNcOwYHfMrChfzs/bOXHZAs3RO0F7clXQprNAjtlaEA974VEP17E0Au6WE8lLvH
-	KuH8iGLRDNF+uST57YHjjjfffgtxcGH/xaNQkQ2hxPxG7iFvBhN2uy6k8ZQmhax84VL
-	7H3fGzTQpLW/DVxyyIeohIUqny+wsACP0phn5ROc=
-Received: by mx.zohomail.com with SMTPS id 175184732787092.66100338687909;
-	Sun, 6 Jul 2025 17:15:27 -0700 (PDT)
-Received: by venus (Postfix, from userid 1000)
-	id 230A0180F14; Mon, 07 Jul 2025 02:15:22 +0200 (CEST)
-Date: Mon, 7 Jul 2025 02:15:22 +0200
-From: Sebastian Reichel <sebastian.reichel@collabora.com>
-To: Fenglin Wu <fenglin.wu@oss.qualcomm.com>
-Cc: Bjorn Andersson <andersson@kernel.org>, 
-	Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Heikki Krogerus <heikki.krogerus@linux.intel.com>, Greg Kroah-Hartman <gregkh@linuxfoundation.org>, 
-	Subbaraman Narayanamurthy <subbaraman.narayanamurthy@oss.qualcomm.com>, David Collins <david.collins@oss.qualcomm.com>, 
-	linux-pm@vger.kernel.org, linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org, 
-	kernel@oss.qualcomm.com, devicetree@vger.kernel.org, linux-usb@vger.kernel.org
-Subject: Re: [PATCH v2 1/8] power: supply: core: Add resistance power supply
- property
-Message-ID: <fb3ielhucosims237ikv4jfp3oq6fu5ftgt2mvenj6pjmzrpqo@vip3r6qew32p>
-References: <20250530-qcom_battmgr_update-v2-0-9e377193a656@oss.qualcomm.com>
- <20250530-qcom_battmgr_update-v2-1-9e377193a656@oss.qualcomm.com>
- <b7m55sjc2rtvtelvez6sxnjvdostvxmfjhhsr4uxhyhh4bxrcd@xmioz2bsgis2>
- <e9160bb8-2b5c-4c30-b60f-520decde851e@oss.qualcomm.com>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 73F4C4A3E;
+	Mon,  7 Jul 2025 00:32:09 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.215.181
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1751848330; cv=none; b=b064k9ZegOhxasT5Ogkg8jKzHIj3nfqmZJXNavrS12+2DDw0XcUM4dczlBEogLMl1N2vtw5HybIloGalU4FX/rPMXw8tHARVsN6ICriZOLso+Yb2txemsTrWYyK+zBmOUUY50pRFC3ufqfCGCfNSeoYvn3yzwXLT6Ictzx9WLf4=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1751848330; c=relaxed/simple;
+	bh=mhbc0WemYmG8rm7InaTf8LWaoJtr9oPrFfMT15Fe94M=;
+	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=mTksE7dLb7SjJVrCCEHZ1iN2LMp4Ukn+HmArQuispl76FtbaJdl//wjIeWGReRW4zK8vOyKG/5TxXT+WOi2+O61DCzsH/98f81oCV7HWyD0K9qZabJ5sboGOe7Lw7ruRPhCZO8AGVOS6c/QUqTnw3KnhZ/M94I/P5ScohvTdKaI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=CjjWRng1; arc=none smtp.client-ip=209.85.215.181
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-pg1-f181.google.com with SMTP id 41be03b00d2f7-7fd35b301bdso2612464a12.2;
+        Sun, 06 Jul 2025 17:32:09 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1751848329; x=1752453129; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=waNYge1pVnAmfDAo+Scw1VWP79dyDXSW85JWJajzOys=;
+        b=CjjWRng1/yBXsTo8SS37DCSs8xrIraEdFmcXWtmpgSEFgD1CvB73e6navO8Toh21MS
+         NdZGYBa5GLFcX23OKkDoNEwpu10Ivd0DfxAy4yCwd2DnMfX8tEbfOVZaEDDHmNnHJG3z
+         mIIhR4zwPcz2yMIbHnsylteqDWseHgdiv0F431IRxMD5gv97Dixnl/0e7kkVTQ2G4lSS
+         pXUP+P9OuCk5VHY6d6/QkXwd3crCvKXlx4S9lHizObKbfcZYagN1JPWp5RY9BdbZiagj
+         FDtfQzGYEDpKOeHop9vcPnPEr8MhTDR74H1RufXd56JcSS2IDf2I6RiAT4+Wvt20tKb+
+         154Q==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1751848329; x=1752453129;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=waNYge1pVnAmfDAo+Scw1VWP79dyDXSW85JWJajzOys=;
+        b=u3yfmRRmb+zUthNqKpiy3UWvHFvWi4k1Of1ppDxmSJdznXk1zBBYAxAsM769go6RgQ
+         rKdB5+Wa5obpRkwcuov8x5/N9a0zXdsuhcZYyAl4dCdgRgHCodgp6IWToJI9bDTctSEq
+         dj/x+QRP6RQhQDL4Rm9XH8lQFKm807/fzPOqUF9kh68ENaKoVh26gCqtNTETjrtnA5oS
+         L6pqQnmURXPZV6ggW85Yik6Y4AhKmanILYI0lW1xeaV7Aj4QjcMjvhKPn3/FVmIEPFA/
+         L7fFVS2fE5PJkh0SBwYGWNCWfwLtmz2W4oBI/v4mcxIVjCp9xBkqoDUANxWTIMZYq/55
+         Ahuw==
+X-Forwarded-Encrypted: i=1; AJvYcCWdfVe5O5TSZPQshZaqO7HXCNXPJScluz924WsTVwuJ+eZhVekxLbODFSRQNs5BjS+HuzZ0KBSbm9TqOdY=@vger.kernel.org
+X-Gm-Message-State: AOJu0YxI1uxZTBRh2otaVHUHFroYorqBiT3NuzIuAaYvv5GRrDdMQMwR
+	oQCKyqgsW5ou2S3bmawLaIcH2doA4Jm64LASezprNw004gQvcJQsHHmc
+X-Gm-Gg: ASbGncvOsESkTg570DPG/tUjEihS11sSgZephZxYdlZqFSo6Aw30GfoUTK4P8vOENYH
+	SFcd82UKy1Won9vBanoSrasi7cvJJmT+ZPX82mowfyqUQUaYaU5HIhlCOGAH8n7dV6+w6sYrdCf
+	D7JNijA3n3wrcJlxRGB6JCvtpiyz0AHDwDvDtFMHX/e8AFWoX6QgZ2Rx4I+NQhFziMrjhXzgVPA
+	/Cu2VDU8Sg3nvSw7TSNBPpDXnkJ/vIqsTNQ9Tdv/ol9OqYbdK/d49iQvwjqcpMlurwI1jTiSg5q
+	s1taSnONCyakEHYpwbud1UeRBg3heSFKrrQJGsgL+Hw7lNJTPSdDeKyTS4Dy0Q==
+X-Google-Smtp-Source: AGHT+IEJfwXHQNDfml8NzaqLJBaxvkA9HUYq+A9+IyCh9ibIK7D1D9K8y86d2uYsm2pa9DcODEISyg==
+X-Received: by 2002:a17:90b:3c8f:b0:312:1d2d:18e2 with SMTP id 98e67ed59e1d1-31aac4b2f1cmr15485476a91.20.1751848328607;
+        Sun, 06 Jul 2025 17:32:08 -0700 (PDT)
+Received: from localhost ([2001:19f0:ac00:4eb8:5400:5ff:fe30:7df3])
+        by smtp.gmail.com with UTF8SMTPSA id 98e67ed59e1d1-31a9cc66830sm10477012a91.16.2025.07.06.17.32.07
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Sun, 06 Jul 2025 17:32:08 -0700 (PDT)
+From: Inochi Amaoto <inochiama@gmail.com>
+To: Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Paul Walmsley <paul.walmsley@sifive.com>,
+	Palmer Dabbelt <palmer@dabbelt.com>,
+	Albert Ou <aou@eecs.berkeley.edu>,
+	Alexandre Ghiti <alex@ghiti.fr>,
+	Chen Wang <unicorn_wang@outlook.com>,
+	Longbin Li <looong.bin@gmail.com>,
+	Inochi Amaoto <inochiama@gmail.com>
+Cc: devicetree@vger.kernel.org,
+	linux-riscv@lists.infradead.org,
+	sophgo@lists.linux.dev,
+	linux-kernel@vger.kernel.org,
+	Yixun Lan <dlan@gentoo.org>
+Subject: Re: [PATCH 0/2] riscv: dts: sophgo: sg2044: add PCIe device node
+Date: Mon,  7 Jul 2025 08:31:59 +0800
+Message-ID: <175184826045.122679.3644918560620246720.b4-ty@gmail.com>
+X-Mailer: git-send-email 2.50.0
+In-Reply-To: <20250618015851.272188-1-inochiama@gmail.com>
+References: <20250618015851.272188-1-inochiama@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="orqvdfabm65lopjd"
-Content-Disposition: inline
-In-Reply-To: <e9160bb8-2b5c-4c30-b60f-520decde851e@oss.qualcomm.com>
-X-Zoho-Virus-Status: 1
-X-Zoho-Virus-Status: 1
-X-Zoho-AV-Stamp: zmail-av-1.4.3/251.827.75
-X-ZohoMailClient: External
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
 
+On Wed, 18 Jun 2025 09:58:47 +0800, Inochi Amaoto wrote:
+> As the PCIe driver is merged, add device node of PCIe device and MSI
+> device for SG2044.
+> 
+> Inochi Amaoto (2):
+>   riscv: dts: sophgo: sg2044: add MSI device support for SG2044
+>   riscv: dts: sophgo: sg2044: add PCIe device support for SG2044
+> 
+> [...]
 
---orqvdfabm65lopjd
-Content-Type: text/plain; protected-headers=v1; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
-Subject: Re: [PATCH v2 1/8] power: supply: core: Add resistance power supply
- property
-MIME-Version: 1.0
+Applied to for-next, thanks!
 
-Hi,
+[1/2] riscv: dts: sophgo: sg2044: add MSI device support for SG2044
+      https://github.com/sophgo/linux/commit/29ce381d6bc61b23024c6ee42a5745d4becb28c1
+[2/2] riscv: dts: sophgo: sg2044: add PCIe device support for SG2044
+      https://github.com/sophgo/linux/commit/55fd09df36d7c6ae59d82a7df5072827f65a0eb4
 
-On Mon, Jun 30, 2025 at 04:28:14PM +0800, Fenglin Wu wrote:
-> On 6/22/2025 9:26 AM, Sebastian Reichel wrote:
-> > On Fri, May 30, 2025 at 03:35:06PM +0800, Fenglin Wu via B4 Relay wrote:
-> > > From: Fenglin Wu <fenglin.wu@oss.qualcomm.com>
-> > >=20
-> > > Some battery drivers provide the ability to export resistance as a
-> > > parameter. Add resistance power supply property for that purpose.
-> > This is missing some information and the naming is bad.
-> >=20
-> > Which resistance (I suppose battery internal resistance)?
-> >=20
-> > That is heavily dependent on the battery temperature. So this needs
-> > to document if this is for the current temperature or for some
-> > specific one.
-> >=20
-> > -- Sebastian
->=20
-> This is battery internal resistance calculated by battery management syst=
-em,
-> using the real-time temperature measured by the thermistor inside the
-> battery pack.
->=20
-> I can update the name to something like "rt_internal_resistance" and upda=
-te
-> the description accordingly.
+Thanks,
+Inochi
 
-Your message is kind of mixed signal to me.
-
-If the BMS needs the thermistor to calculate the internal
-resistance, it means the data is either not real-time, but
-just adopting some fixed value to the current temperature,
-or the internal resistance is adopted from the current
-temperature to some fixed temperature.
-
-My expectation would be, that the BMS instead actually measures the
-internal resistance via ohm's and law and Kirchhoff's voltage law.
-So please make sure to understand what data is actually provided by
-the BMS for a proper ABI description.
-
-Depending on the description I think 'internal_resistance' is a good
-name.
-
-Greetings,
-
--- Sebastian
-
---orqvdfabm65lopjd
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQIzBAABCgAdFiEE72YNB0Y/i3JqeVQT2O7X88g7+poFAmhrEZYACgkQ2O7X88g7
-+poJbA//S3Qz3Ln7piw+pbGa8pohdUZjhJetS+frJHREKwEQX31E8iqMa5bbumhb
-QQHbrNvDREndfwHjJZXWsCUA0YI6kLVWlUpUKegJJzszVuR++7ihPSwPo3AYs1kA
-70dUL45RUIeqaaDfThdP0hZIkJZEiu9n72I/n4Y3R6QzlhOTAy1FwmZIdlY6Pfpa
-Zdes/Kbp6YsTpftEfyBK90lrEUE5qRXu0sCDkjtaQQACIHr/61m2/h5v9D2OlEMn
-0RgXFWi6hYAezGfGyY6+YjTkqmtcZcnHJlTdqORv5hmhbQYqqGrjP6gHzM7jwRx8
-/4/lL5ax3EMjWQk8KdAs0s9GYsby9DeNGYcgpp0Qfee58mDUepagNkVntRQFhW6v
-rCW1T5lYh4vkoY5GrOP8dLgRQEJQP66JPVq8pgppMj8WCCXyh7EbaltNvXGfm+WP
-5h8hhsg8ysi9v2FTVqrHobvSc4BJ4DrUD9Gx2j11PjFV80KDjGiZAM4ZQXj9QjgQ
-pvDozcn5C3mswYHBsT36Daan2S/16QQi9WIKwKCqUrRIW50xAJNzyWrsADh2NMe8
-a2tDVYNK4c4qMvb7rqoPql/PtNAit/G4+nw5M2IddtG5eVxW7CrgSBpq5fJpDjdx
-Bs/EzIFfg8j4K8xY9l0iRbVrze/jhO5Dsck3cbbXlUM5fCIEZGI=
-=Jeor
------END PGP SIGNATURE-----
-
---orqvdfabm65lopjd--
 
