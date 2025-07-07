@@ -1,92 +1,140 @@
-Return-Path: <devicetree+bounces-193518-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-193524-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id B6566AFAC14
-	for <lists+devicetree@lfdr.de>; Mon,  7 Jul 2025 08:46:33 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3D494AFAC44
+	for <lists+devicetree@lfdr.de>; Mon,  7 Jul 2025 08:57:33 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id AEB8A7A90B8
-	for <lists+devicetree@lfdr.de>; Mon,  7 Jul 2025 06:45:07 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 56DAD3B1006
+	for <lists+devicetree@lfdr.de>; Mon,  7 Jul 2025 06:57:05 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1CC4E27A92A;
-	Mon,  7 Jul 2025 06:46:20 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8204027AC37;
+	Mon,  7 Jul 2025 06:57:27 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="iBWDFjlB"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="T1w+w4uu"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E26ED27A918;
-	Mon,  7 Jul 2025 06:46:19 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4D48918FC80;
+	Mon,  7 Jul 2025 06:57:26 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1751870780; cv=none; b=IRZ6S8ITPGEiXhOXZ0wUC2gLClzfEl1Bsa959zONcvgsggo7NbNwaMaEoeGnbak2/Cef9HLfda37TYtcVcvr5GVVtjBBr3sOpThtgpw7N6xu0OipKnYVZ4rzfXuvaWFfarm5q5tYD5q2k40vUfIbrEKSWXfdxKqQ6OMkkiyBKiM=
+	t=1751871447; cv=none; b=X14T3TLIA/Blcv0ZTzVAocbYeC4NMLSX0oOPqrNAEj1MspSlJBBXNUwRTULlW7kYNNex6Q7MzZKqbOk0kelLSxRKpsgBkTpFaXF7PCjASxNSGdSwFkNj0l3kltvKciEIgraqzQuTH53Bi6fpjLZtygQURkZOwC/qI21cZXFmRlc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1751870780; c=relaxed/simple;
-	bh=3mMLUGq667LvTYPmJqf0R3Fs9bpeNw58j22K0qFkatw=;
+	s=arc-20240116; t=1751871447; c=relaxed/simple;
+	bh=ZMFouIdoe+6RcOPHeEsSglmRRWZz5oi5nySTLlOt42c=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=bUKyAqXfYH2Rpn9QQ30YbHsHpWPKxkHPkO9bhWrDItBxhyNv4vCugKKWrqiyDj4neMFuoQpj0URTnqzzxgm92lmy1YEvHmtwz8QdFz2tVh02xLz1UV72vvrXI1qhPFMNqswQcz/esPAnk3DBM1a1EoVGII6e/xZadVLn0wZ9FyM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=iBWDFjlB; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id DF30BC4CEE3;
-	Mon,  7 Jul 2025 06:46:18 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=uI3Xag+ZNZZyFS0H7h4ZK8rIaxGUlUrxEuYiaOU1VObgO9DJ205PkJwdfVVop2knANnLSdXx4zHtBmOKx2A3elWgHpiukSkQeyUs+g9m3815IKWasPDyZX5/kAZ/ZBhP6s3Qx17xsXKawTLflJDShIdq+vA5wj7ZVEi5M9SaR1c=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=T1w+w4uu; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 3DD05C4CEF5;
+	Mon,  7 Jul 2025 06:57:26 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1751870779;
-	bh=3mMLUGq667LvTYPmJqf0R3Fs9bpeNw58j22K0qFkatw=;
+	s=k20201202; t=1751871446;
+	bh=ZMFouIdoe+6RcOPHeEsSglmRRWZz5oi5nySTLlOt42c=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=iBWDFjlBJ1XYPU3rdiNgM8Sz93wOwSI2GhNllcVQXRUgUiW2QEbGCmiYBwdiHQd1/
-	 jsw0Q8J7um77KQxSCaBIjIdC+a/UKSMaBrIXFFxtwCO18+lgfne/uOkWDS0uWs1Beu
-	 RuJUTGziQHbZ6eVOUIIYTCPsYMpaWEnKkEYMNvehWs5TgNyaZDZwRjMivKYBu3KjGy
-	 AtdT9vojGAL8kani6hqpd9cNH1vXQcETZdw53+WL0IAth22k15uZF2Jqsz4vcfaS+q
-	 2VbBEfdHMIyBGZ73Jo6IRqsJAQU4DeGOYmhmtqG9Pf90X4wnBU2iZjuf2h+sVmMVzi
-	 zkJFdUvQhiDhw==
-Date: Mon, 7 Jul 2025 08:46:16 +0200
-From: Krzysztof Kozlowski <krzk@kernel.org>
-To: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
-Cc: jianjun.wang@mediatek.com, ryder.lee@mediatek.com, bhelgaas@google.com, 
-	lpieralisi@kernel.org, kwilczynski@kernel.org, manivannan.sadhasivam@linaro.org, 
-	robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org, matthias.bgg@gmail.com, 
-	linux-pci@vger.kernel.org, linux-mediatek@lists.infradead.org, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org, kernel@collabora.com
-Subject: Re: [PATCH v2 2/3] dt-bindings: PCI: mediatek-gen3: Add support for
- MT6991/MT8196
-Message-ID: <20250707-large-nocturnal-dormouse-c93deb@krzk-bin>
-References: <20250703120847.121826-1-angelogioacchino.delregno@collabora.com>
- <20250703120847.121826-3-angelogioacchino.delregno@collabora.com>
+	b=T1w+w4uutQXOcN/7UKG46xcY0YEwfYJm5FRZDBeIhqH4cgcku5auLJYBiXF4TVHlp
+	 jN/2XezsjyK3QJUzG47US7YzVEQh14BvazekCPd1AI4Wh0VfdrWuGIDZV+kECJ3BoT
+	 z4cSISkynAqXgk4atyTOnFvBd/a4lwXeZMwZaZ4xNg/TOnZUjYhF2D+l7rh2zlbIwc
+	 PRyoq2s5GrCJ9W/g9tqjdq2AyRuJzHraaLfAvAWEaGzslRlbUsobpmy6RoyfRM66o7
+	 hsZJ7oMJBVR6xQQdUpWVJHqK9oZ+EuT4W2l956kIIruAL0McFd6AWJWKkRUwc8Elyr
+	 QST5GpsMWFw+w==
+Date: Mon, 7 Jul 2025 08:57:24 +0200
+From: Uwe =?utf-8?Q?Kleine-K=C3=B6nig?= <ukleinek@kernel.org>
+To: Danilo Krummrich <dakr@kernel.org>
+Cc: Michal Wilczynski <m.wilczynski@samsung.com>, 
+	Miguel Ojeda <ojeda@kernel.org>, Alex Gaynor <alex.gaynor@gmail.com>, 
+	Boqun Feng <boqun.feng@gmail.com>, Gary Guo <gary@garyguo.net>, 
+	=?utf-8?B?QmrDtnJu?= Roy Baron <bjorn3_gh@protonmail.com>, Andreas Hindborg <a.hindborg@kernel.org>, 
+	Alice Ryhl <aliceryhl@google.com>, Trevor Gross <tmgross@umich.edu>, Guo Ren <guoren@kernel.org>, 
+	Fu Wei <wefu@redhat.com>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Paul Walmsley <paul.walmsley@sifive.com>, Palmer Dabbelt <palmer@dabbelt.com>, 
+	Albert Ou <aou@eecs.berkeley.edu>, Alexandre Ghiti <alex@ghiti.fr>, 
+	Marek Szyprowski <m.szyprowski@samsung.com>, Benno Lossin <lossin@kernel.org>, 
+	Michael Turquette <mturquette@baylibre.com>, Drew Fustini <fustini@kernel.org>, linux-kernel@vger.kernel.org, 
+	linux-pwm@vger.kernel.org, rust-for-linux@vger.kernel.org, linux-riscv@lists.infradead.org, 
+	devicetree@vger.kernel.org
+Subject: Re: [PATCH v9 2/6] rust: pwm: Add complete abstraction layer
+Message-ID: <yxtnwax73wkliqkbq5736tswbxrblpwx4bn6z257tyd2xu23jx@y6k6iwdhmsgy>
+References: <20250706-rust-next-pwm-working-fan-for-sending-v9-0-42b5ac2101c7@samsung.com>
+ <CGME20250706114605eucas1p17d1cbd035d14d95f4ad0588c2572b3e2@eucas1p1.samsung.com>
+ <20250706-rust-next-pwm-working-fan-for-sending-v9-2-42b5ac2101c7@samsung.com>
+ <aGpqqGMTU3a3O8cn@pollux>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
+Content-Type: multipart/signed; micalg=pgp-sha512;
+	protocol="application/pgp-signature"; boundary="il3m5sp7a2busx2h"
 Content-Disposition: inline
-In-Reply-To: <20250703120847.121826-3-angelogioacchino.delregno@collabora.com>
+In-Reply-To: <aGpqqGMTU3a3O8cn@pollux>
 
-On Thu, Jul 03, 2025 at 02:08:46PM +0200, AngeloGioacchino Del Regno wrote:
-> +    then:
-> +      properties:
-> +        clocks:
-> +          minItems: 6
-> +
-> +        clock-names:
-> +          items:
-> +            - const: pl_250m
-> +            - const: tl_26m
-> +            - const: bus
-> +            - const: low_power
-> +            - const: peri_26m
-> +            - const: peri_mem
-> +
-> +        resets:
 
-minItems: 2 is needed (that's a change since some time, comparing to
-what was year or earlier)
+--il3m5sp7a2busx2h
+Content-Type: text/plain; protected-headers=v1; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
+Subject: Re: [PATCH v9 2/6] rust: pwm: Add complete abstraction layer
+MIME-Version: 1.0
 
-Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Hello Danilo,
 
-Best regards,
-Krzysztof
+On Sun, Jul 06, 2025 at 02:23:04PM +0200, Danilo Krummrich wrote:
+> On Sun, Jul 06, 2025 at 01:45:13PM +0200, Michal Wilczynski wrote:
+> > +    /// # Safety
+> > +    ///
+> > +    /// `dev` must be a valid pointer to a `bindings::device` embedded=
+ within a
+> > +    /// `bindings::pwm_chip`. This function is called by the device co=
+re when the
+> > +    /// last reference to the device is dropped.
+> > +    unsafe extern "C" fn release_callback(dev: *mut bindings::device) {
+> > +        // SAFETY: The function's contract guarantees that `dev` point=
+s to a `device`
+> > +        // field embedded within a valid `pwm_chip`. `container_of!` c=
+an therefore
+> > +        // safely calculate the address of the containing struct.
+> > +        let c_chip_ptr =3D unsafe { container_of!(dev, bindings::pwm_c=
+hip, dev) };
+> > +
+> > +        // SAFETY: `c_chip_ptr` is a valid pointer to a `pwm_chip` as =
+established
+> > +        // above. Calling this FFI function is safe.
+> > +        let drvdata_ptr =3D unsafe { bindings::pwmchip_get_drvdata(c_c=
+hip_ptr) };
+> > +
+> > +        if !drvdata_ptr.is_null() {
+>=20
+> Is this check needed? I think one can't create a pwm::Chip instance witho=
+ut
+> providing a T, so this pointer can't be NULL I think.
 
+There are currently a few C drivers, that don't use a private data
+struct that is managed by the pwmchip. One of them doesn't make use of
+the pwmchip's drvdata at all. The latter is drivers/pwm/pwm-twl-led.c.
+
+Best regards
+Uwe
+
+--il3m5sp7a2busx2h
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAABCgAdFiEEP4GsaTp6HlmJrf7Tj4D7WH0S/k4FAmhrb9EACgkQj4D7WH0S
+/k73WQgAtGaf05GK6mp6VId6WGdPMpI5HvMe59Y9FzSAgjuK2ocbufXwhIeC4B2Z
+iKbYy6iSEiKnvxwgtSZBx4g7t9ple3Tn36phcBKy+dJ0RwpiIVXydM5F8LqT0wwG
+FLSCJ70vlb2c6Ot2qkfNHRxG8UcHmx/Jj4irYFivjUc2tify4Y+k4L9eZXR6JPXs
+rEIhqFdncvPn86sx0voin34rS+UwAilvxxLgxB1zLgxjlzdbUB0Ggfng+4PcQVHf
+6FX8qctUfqKFio4Zq6EkTEMNhc91Gx5VENyuzRzhuOYYM2huuOn71N+TdxiUPc7q
+nG3/xHL2aZvxO+P+HHLYxapSy+M34w==
+=lM1B
+-----END PGP SIGNATURE-----
+
+--il3m5sp7a2busx2h--
 
