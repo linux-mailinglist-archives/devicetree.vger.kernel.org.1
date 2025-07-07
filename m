@@ -1,258 +1,219 @@
-Return-Path: <devicetree+bounces-193762-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-193755-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id E81ECAFB94A
-	for <lists+devicetree@lfdr.de>; Mon,  7 Jul 2025 18:57:19 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 2842CAFB91B
+	for <lists+devicetree@lfdr.de>; Mon,  7 Jul 2025 18:53:04 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id BD67E1AA4F0D
-	for <lists+devicetree@lfdr.de>; Mon,  7 Jul 2025 16:56:24 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 5802F1AA4E1D
+	for <lists+devicetree@lfdr.de>; Mon,  7 Jul 2025 16:52:59 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1CD002586C5;
-	Mon,  7 Jul 2025 16:55:58 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3F98C226CE5;
+	Mon,  7 Jul 2025 16:50:39 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=sntech.de header.i=@sntech.de header.b="yveiteqG"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="QmFaFG9a"
 X-Original-To: devicetree@vger.kernel.org
-Received: from gloria.sntech.de (gloria.sntech.de [185.11.138.130])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3F6E9255F22;
-	Mon,  7 Jul 2025 16:55:55 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.11.138.130
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0F5C3224B0E;
+	Mon,  7 Jul 2025 16:50:38 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1751907358; cv=none; b=nDTky3ZoEX4ouWsts2S4OUY/4Mte4B65ES8xrvInlNUJr02KCKQvMVoq8FUtaov96MzRDQtX6Bhw3J4jnHXf5LUqHsSZRpJ2Aq2rD+XD6wc74HH0XQO2AJZyDQgkHSLu7Aze4FrdHbwuCG2SphM631QZ4XPhsSiQtwWeOkOv8Zs=
+	t=1751907039; cv=none; b=mTztLtihQOJeZsq2SIpu+ltuofHdfCS6HYo8t+waknV2/U8k1nENX1e3zSvr4HZUqi7vsEIWiGFfooSApX92aMuBM1qWyXeWvDpAvB/o7bwkbv0DDpxbX0bDRAT31sOoZxU6QTUlkx0/A9K9/g8pC4z7cZO0lNo+qRBeNx4Pbz0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1751907358; c=relaxed/simple;
-	bh=HTYtfIZaU0IISaNC8EoPJlLRQ0RpkF34zxfeQMah8mw=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=tH7RjmWu9yC+57CYzZ3F494bqzbzwrbXZriOuOrOw/ugdk19CG9eM4txUrPb221p+ldXXHypAWW023oZzYlcWm8UgxCJ1WxDiHboGsmfm0SQuVcaxbLmBL72yJ3waEY9FDHAUxPEXf92KguQe37MNTsw9QxqRT9FUudxCMvyp2Y=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sntech.de; spf=pass smtp.mailfrom=sntech.de; dkim=pass (2048-bit key) header.d=sntech.de header.i=@sntech.de header.b=yveiteqG; arc=none smtp.client-ip=185.11.138.130
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sntech.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=sntech.de
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sntech.de;
-	s=gloria202408; h=Content-Transfer-Encoding:MIME-Version:References:
-	In-Reply-To:Message-ID:Date:Subject:Cc:To:From:Reply-To:Content-Type;
-	bh=FBkOzD22uC8TIZOltlSVNHsJqb3ZyD7/5ACUKJRygzc=; b=yveiteqGRw+GqinEANa2wqFgJC
-	NNpONaZ55YGsw8HuCGIfqEktn/gV9sC16ymuH5WCeG70RYOSpsYsZBHpyNLk9oOp5GgcBNxHc2w7s
-	pfXFhhEavvPZYn7gywwDbQpMhpLu97n0XlUqA8+zBYhyIQy2fVsT3YyNKR+qwbQBk9YNlMzzgsLFk
-	XtcatsDyQqbxq8SlHKfFgiodjFVamhh2mPD8wjDcPQeEFuzMrhahHsKLXtJz0qyzoYv3s3/c280Wz
-	6YwQ/2jtexiXlZWSuMUk8aNJkozqr+++nogYOt6M1+wTZxnt7xp0BKpbitr46Jev5LtQeWLcqA4YN
-	V4iaKzVA==;
-Received: from i53875bf5.versanet.de ([83.135.91.245] helo=localhost.localdomain)
-	by gloria.sntech.de with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-	(Exim 4.94.2)
-	(envelope-from <heiko@sntech.de>)
-	id 1uYp1y-0004yl-7q; Mon, 07 Jul 2025 18:49:26 +0200
-From: Heiko Stuebner <heiko@sntech.de>
-To: heiko@sntech.de
-Cc: neil.armstrong@linaro.org,
-	quic_jesszhan@quicinc.com,
-	maarten.lankhorst@linux.intel.com,
-	mripard@kernel.org,
-	tzimmermann@suse.de,
-	robh@kernel.org,
-	krzk+dt@kernel.org,
-	conor+dt@kernel.org,
-	hjc@rock-chips.com,
-	andy.yan@rock-chips.com,
-	andyshrk@163.com,
-	nicolas.frattaroli@collabora.com,
-	dri-devel@lists.freedesktop.org,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	linux-rockchip@lists.infradead.org
-Subject: [PATCH 13/13] arm64: dts: rockchip: add dm-m10r800-v3s overlay for roc-rk3576-pc
-Date: Mon,  7 Jul 2025 18:49:06 +0200
-Message-ID: <20250707164906.1445288-14-heiko@sntech.de>
-X-Mailer: git-send-email 2.47.2
-In-Reply-To: <20250707164906.1445288-1-heiko@sntech.de>
-References: <20250707164906.1445288-1-heiko@sntech.de>
+	s=arc-20240116; t=1751907039; c=relaxed/simple;
+	bh=9a1wcjgGyuGBH9dz8iciM2zoxRYiXr1OThzA70moRAg=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=eyhkisEdnwrKVHMcGgQ4l7bcghz3ZbZ8HD5naIdoyOSFLZJlhvq1YKLcnbdrXt/z0ieg36DiEjSUMLLK15KPncwz3dKUtZTStz91Ap9uN1ySc3Vt5cK1lAUrK0JzvqtJHNLSqbD31KqHA04XOq1mJmsAMOSwis5kYoVwRQofOVU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=QmFaFG9a; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 95487C4CEF1;
+	Mon,  7 Jul 2025 16:50:38 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1751907038;
+	bh=9a1wcjgGyuGBH9dz8iciM2zoxRYiXr1OThzA70moRAg=;
+	h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+	b=QmFaFG9amTsKCMhZTdRsdRLBhzbA9RgaZYGw7TGX/1hNfeXtiwzqS577/OOcXfVOe
+	 VJ5VDUIUOkUQZbjDJ1waqGZyhKQO7/oelpE8cgIMrOTdHs7WjpGKuTpTKNGek7XAvZ
+	 wGdmbnZOA7lKx52GlkSCtztm4URBUMKpHvFuY1wt+ge9xmnS1+9Ay5d7vB1bpiTjUN
+	 1ZE33gDJOzihdZqw6Q040WHZgWYvyDg7pcE6IfxlTwgOMseNl0z+NMPWZq7tkY4xBY
+	 +QbM0DsXHkDFVXSYu09qZo5Zs4ofrP1/0B1w5uomHVQ8A7hyzi+xMMNUZiUPk4bpSp
+	 a6ydhRgQPR7tA==
+Received: by mail-oo1-f54.google.com with SMTP id 006d021491bc7-61208b86da2so784750eaf.2;
+        Mon, 07 Jul 2025 09:50:38 -0700 (PDT)
+X-Forwarded-Encrypted: i=1; AJvYcCU6QB6LuEfEm+W36AK9wYtrRhrfePr5S+PI4YmzTMD6RdIOHW6pVO+EHiC7WhJ0sDjdNPpN2KqpVMS5PjjT@vger.kernel.org, AJvYcCVfTklTGF3hl78JEc7uQKcGsLIrczUnCzEd24Bo6gqKbfCqYs56nZgjWRO1JOZUapOymv91V4tbRijP@vger.kernel.org, AJvYcCWGgtVPTPh5uWE0FzN9ODyA/KU26Tx5AsUfUNdv0Tr0xsuagVbW5krqy9NIPamc1OMvYv9KkZhe1DTxIQ==@vger.kernel.org, AJvYcCXjHVU5Yq0NsDgRNNuMdvdtIsc2rn72XHyia31eLSnyMHVOcR/N0BzELY0XVCsD+PKakVXl32W+kIg8@vger.kernel.org
+X-Gm-Message-State: AOJu0YzyFXDmBQflpSLyFFG4aGm7Ek0QTNf+bIp8sa6eV2Ij0jXzFYmf
+	ApWaNSURKP+6iQSzAjjLMaVMYzLz0cOV7EKeOIvE6nG8XhPfZT4QZcbifB2N09IRQ+CMt18XP13
+	SxQt9+5pOVQcFvK4RHOmJWU24kmEi4wI=
+X-Google-Smtp-Source: AGHT+IHNACN6r3MQBzl2AxnxkY7b3vwCCOzvxM4DbSJ5BWQkgWMplMg/AADsP0wxtsyFOxnDcsFDRO8teU3gGL28ZLg=
+X-Received: by 2002:a05:6820:2901:b0:611:ab60:3003 with SMTP id
+ 006d021491bc7-613c02a087bmr171510eaf.8.1751907037895; Mon, 07 Jul 2025
+ 09:50:37 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+References: <20250704070356.1683992-1-apatel@ventanamicro.com> <20250704070356.1683992-16-apatel@ventanamicro.com>
+In-Reply-To: <20250704070356.1683992-16-apatel@ventanamicro.com>
+From: "Rafael J. Wysocki" <rafael@kernel.org>
+Date: Mon, 7 Jul 2025 18:50:27 +0200
+X-Gmail-Original-Message-ID: <CAJZ5v0i0n3twH8qPR04bX5uRzXXSmKhB72WfFEAuG+nbMOJcFw@mail.gmail.com>
+X-Gm-Features: Ac12FXzt6T3E94Z3HOk5kB7YG-fbGgkcx6q0up1mrENTBphzopL9rtBmotWtHfA
+Message-ID: <CAJZ5v0i0n3twH8qPR04bX5uRzXXSmKhB72WfFEAuG+nbMOJcFw@mail.gmail.com>
+Subject: Re: [PATCH v8 15/24] ACPI: Add support for nargs_prop in acpi_fwnode_get_reference_args()
+To: Anup Patel <apatel@ventanamicro.com>
+Cc: Michael Turquette <mturquette@baylibre.com>, Stephen Boyd <sboyd@kernel.org>, 
+	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Jassi Brar <jassisinghbrar@gmail.com>, Thomas Gleixner <tglx@linutronix.de>, 
+	"Rafael J . Wysocki" <rafael@kernel.org>, Mika Westerberg <mika.westerberg@linux.intel.com>, 
+	Andy Shevchenko <andriy.shevchenko@linux.intel.com>, 
+	Linus Walleij <linus.walleij@linaro.org>, Bartosz Golaszewski <brgl@bgdev.pl>, 
+	=?UTF-8?Q?Uwe_Kleine=2DK=C3=B6nig?= <ukleinek@kernel.org>, 
+	Palmer Dabbelt <palmer@dabbelt.com>, Paul Walmsley <paul.walmsley@sifive.com>, 
+	Alexandre Ghiti <alex@ghiti.fr>, Len Brown <lenb@kernel.org>, Sunil V L <sunilvl@ventanamicro.com>, 
+	Rahul Pathak <rpathak@ventanamicro.com>, Leyfoon Tan <leyfoon.tan@starfivetech.com>, 
+	Atish Patra <atish.patra@linux.dev>, Andrew Jones <ajones@ventanamicro.com>, 
+	Samuel Holland <samuel.holland@sifive.com>, Anup Patel <anup@brainfault.org>, 
+	linux-clk@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-acpi@vger.kernel.org, linux-riscv@lists.infradead.org, 
+	linux-kernel@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-Add DT-overlay for the DM-M10R800-V3S display module when connected to
-the ROC-RK3576-PC board. It contains a bestar,bsd1218-a101kl68 display
-and a Goodix GT911 touchscreen in one enclosed case.
+On Fri, Jul 4, 2025 at 9:07=E2=80=AFAM Anup Patel <apatel@ventanamicro.com>=
+ wrote:
+>
+> From: Sunil V L <sunilvl@ventanamicro.com>
+>
+> Currently, ACPI does not support the use of a nargs_prop (e.g.,
+> associated with a reference in fwnode_property_get_reference_args().
+> Instead, ACPI expects the number of arguments (nargs) to be explicitly
+> passed or known.
+>
+> This behavior diverges from Open Firmware (OF), which allows the use of
+> a #*-cells property in the referenced node to determine the number of
+> arguments. Since fwnode_property_get_reference_args() is a common
+> interface used across both OF and ACPI firmware paradigms, it is
+> desirable to have a unified calling convention that works seamlessly for
+> both.
+>
+> Add the support for ACPI to parse a nargs_prop from the referenced
+> fwnode, aligning its behavior with the OF backend. This allows drivers
+> and subsystems using fwnode_property_get_reference_args() to work in a
+> firmware-agnostic way without having to hardcode or special-case
+> argument counts for ACPI.
+>
+> Signed-off-by: Sunil V L <sunilvl@ventanamicro.com>
+> Signed-off-by: Anup Patel <apatel@ventanamicro.com>
 
-Signed-off-by: Heiko Stuebner <heiko@sntech.de>
----
- arch/arm64/boot/dts/rockchip/Makefile         |   5 +
- .../rk3576-roc-pc-dm-m10r800-v3s.dtso         | 134 ++++++++++++++++++
- 2 files changed, 139 insertions(+)
- create mode 100644 arch/arm64/boot/dts/rockchip/rk3576-roc-pc-dm-m10r800-v3s.dtso
+LGTM now, so
 
-diff --git a/arch/arm64/boot/dts/rockchip/Makefile b/arch/arm64/boot/dts/rockchip/Makefile
-index 4bf84622db47..f320dd2b5f6f 100644
---- a/arch/arm64/boot/dts/rockchip/Makefile
-+++ b/arch/arm64/boot/dts/rockchip/Makefile
-@@ -145,6 +145,7 @@ dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3568-wolfvision-pf5-io-expander.dtbo
- dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3576-armsom-sige5.dtb
- dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3576-evb1-v10.dtb
- dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3576-roc-pc.dtb
-+dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3576-roc-pc-dm-m10r800-v3s.dtbo
- dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3576-rock-4d.dtb
- dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3582-radxa-e52c.dtb
- dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3588-armsom-sige7.dtb
-@@ -225,6 +226,10 @@ rk3568-wolfvision-pf5-vz-2-uhd-dtbs := rk3568-wolfvision-pf5.dtb \
- 	rk3568-wolfvision-pf5-display-vz.dtbo \
- 	rk3568-wolfvision-pf5-io-expander.dtbo
- 
-+dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3576-roc-pc-dm-m10r800-v3s.dtb
-+rk3576-roc-pc-dm-m10r800-v3s-dtbs := rk3576-roc-pc.dtb \
-+	rk3576-roc-pc-dm-m10r800-v3s.dtbo
-+
- dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3588-edgeble-neu6a-wifi.dtb
- rk3588-edgeble-neu6a-wifi-dtbs := rk3588-edgeble-neu6a-io.dtb \
- 	rk3588-edgeble-neu6a-wifi.dtbo
-diff --git a/arch/arm64/boot/dts/rockchip/rk3576-roc-pc-dm-m10r800-v3s.dtso b/arch/arm64/boot/dts/rockchip/rk3576-roc-pc-dm-m10r800-v3s.dtso
-new file mode 100644
-index 000000000000..2817cc585c3a
---- /dev/null
-+++ b/arch/arm64/boot/dts/rockchip/rk3576-roc-pc-dm-m10r800-v3s.dtso
-@@ -0,0 +1,134 @@
-+// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
-+/*
-+ * Copyright (C) 2025 Heiko Stuebner <heiko@sntech.de>
-+ *
-+ * DM-M10R800-V3S display module for ROC-RK3576-PC
-+ * https://en.t-firefly.com/doc/download/303.html
-+ *
-+ * DT-overlay for the DM-M10R800-V3S display module when connected to a
-+ * ROC-RK3576-PC board. It contains a bestar,bsd1218-a101kl68 display
-+ * and a Goodix GT911 touchscreen in one enclosed case.
-+ */
-+
-+/dts-v1/;
-+/plugin/;
-+
-+#include <dt-bindings/gpio/gpio.h>
-+#include <dt-bindings/interrupt-controller/irq.h>
-+#include <dt-bindings/pinctrl/rockchip.h>
-+#include <dt-bindings/soc/rockchip,vop2.h>
-+
-+&{/} {
-+	backlight: backlight {
-+		compatible = "pwm-backlight";
-+		enable-gpios = <&gpio3 RK_PA2 GPIO_ACTIVE_HIGH>;
-+		pinctrl-names = "default";
-+		pinctrl-0 = <&mipi_bl_en>;
-+		pwms = <&pwm1_6ch_1 0 50000 1>;
-+	};
-+
-+	vcc_tp: regulator-vcc-tp {
-+		compatible = "regulator-fixed";
-+		regulator-name = "vcc-tp";
-+		regulator-min-microvolt = <3000000>;
-+		regulator-max-microvolt = <3000000>;
-+		vin-supply = <&vcc5v0_device_s0>;
-+	};
-+};
-+
-+&dsi {
-+	#address-cells = <1>;
-+	#size-cells = <0>;
-+	status = "okay";
-+
-+	panel@0 {
-+		compatible = "bestar,bsd1218-a101kl68", "ilitek,ili9881c";
-+		reg = <0>;
-+		backlight = <&backlight>;
-+		power-supply = <&vcc3v3_lcd_s0>;
-+		pinctrl-names = "default";
-+		pinctrl-0 = <&lcd_reset_l>;
-+		reset-gpios = <&gpio0 RK_PB4 GPIO_ACTIVE_LOW>;
-+
-+		port {
-+			mipi_panel_in: endpoint {
-+				remote-endpoint = <&dsi_out_panel>;
-+			};
-+		};
-+	};
-+};
-+
-+&dsi_in {
-+	dsi_in_vp1: endpoint {
-+		remote-endpoint = <&vp1_out_dsi>;
-+	};
-+};
-+
-+&dsi_out {
-+	dsi_out_panel: endpoint {
-+		remote-endpoint = <&mipi_panel_in>;
-+	};
-+};
-+
-+&i2c0 {
-+	/* GT911 is limited to 400KHz */
-+	clock-frequency = <400000>;
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&i2c0m1_xfer>;
-+	#address-cells = <1>;
-+	#size-cells = <0>;
-+	status = "okay";
-+
-+	touchscreen@14 {
-+		compatible = "goodix,gt911";
-+		reg = <0x14>;
-+		interrupt-parent = <&gpio0>;
-+		interrupts = <RK_PC6 IRQ_TYPE_LEVEL_LOW>;
-+		irq-gpios = <&gpio0 RK_PC6 GPIO_ACTIVE_HIGH>;
-+		pinctrl-names = "default";
-+		pinctrl-0 = <&touch_int>, <&touch_reset>;
-+		reset-gpios = <&gpio0 RK_PD0 GPIO_ACTIVE_HIGH>;
-+		AVDD28-supply = <&vcc_tp>;
-+		VDDIO-supply = <&vcc3v3_lcd_s0>;
-+	};
-+};
-+
-+&mipidcphy {
-+	status = "okay";
-+};
-+
-+&pinctrl {
-+	dsi {
-+		lcd_reset_l: lcd-reset-l {
-+			rockchip,pins = <0 RK_PB4 RK_FUNC_GPIO &pcfg_pull_none>;
-+		};
-+
-+		mipi_bl_en: mipi-bl-en {
-+			rockchip,pins = <3 RK_PA2 RK_FUNC_GPIO &pcfg_pull_none>;
-+		};
-+	};
-+
-+	touch {
-+		touch_int: touch-int {
-+			rockchip,pins = <0 RK_PC6 RK_FUNC_GPIO &pcfg_pull_up>;
-+		};
-+
-+		touch_reset: touch-reset {
-+			rockchip,pins = <0 RK_PD0 RK_FUNC_GPIO &pcfg_pull_none>;
-+		};
-+	};
-+};
-+
-+&pwm1_6ch_1 {
-+	status = "okay";
-+};
-+
-+&vp1 {
-+	#address-cells = <1>;
-+	#size-cells = <0>;
-+
-+	vp1_out_dsi: endpoint@ROCKCHIP_VOP2_EP_MIPI0 {
-+		reg = <ROCKCHIP_VOP2_EP_MIPI0>;
-+		remote-endpoint = <&dsi_in_vp1>;
-+	};
-+};
--- 
-2.47.2
+Acked-by: Rafael J. Wysocki <rafael.j.wysocki@intel.com>
 
+> ---
+>  drivers/acpi/property.c | 29 +++++++++++++++++++++++++----
+>  drivers/base/property.c |  2 +-
+>  2 files changed, 26 insertions(+), 5 deletions(-)
+>
+> diff --git a/drivers/acpi/property.c b/drivers/acpi/property.c
+> index d4863746fb11..e92402deee77 100644
+> --- a/drivers/acpi/property.c
+> +++ b/drivers/acpi/property.c
+> @@ -804,13 +804,35 @@ acpi_fwnode_get_named_child_node(const struct fwnod=
+e_handle *fwnode,
+>         return NULL;
+>  }
+>
+> +static unsigned int acpi_fwnode_get_args_count(struct fwnode_handle *fwn=
+ode,
+> +                                              const char *nargs_prop)
+> +{
+> +       const struct acpi_device_data *data;
+> +       const union acpi_object *obj;
+> +       int ret;
+> +
+> +       data =3D acpi_device_data_of_node(fwnode);
+> +       if (!data)
+> +               return 0;
+> +
+> +       ret =3D acpi_data_get_property(data, nargs_prop, ACPI_TYPE_INTEGE=
+R, &obj);
+> +       if (ret)
+> +               return 0;
+> +
+> +       return obj->integer.value;
+> +}
+> +
+>  static int acpi_get_ref_args(struct fwnode_reference_args *args,
+>                              struct fwnode_handle *ref_fwnode,
+> +                            const char *nargs_prop,
+>                              const union acpi_object **element,
+>                              const union acpi_object *end, size_t num_arg=
+s)
+>  {
+>         u32 nargs =3D 0, i;
+>
+> +       if (nargs_prop)
+> +               num_args =3D acpi_fwnode_get_args_count(ref_fwnode, nargs=
+_prop);
+> +
+>         /*
+>          * Assume the following integer elements are all args. Stop count=
+ing on
+>          * the first reference (possibly represented as a string) or end =
+of the
+> @@ -961,10 +983,10 @@ static int acpi_fwnode_get_reference_args(const str=
+uct fwnode_handle *fwnode,
+>                                 return -EINVAL;
+>
+>                         element++;
+> -
+>                         ret =3D acpi_get_ref_args(idx =3D=3D index ? args=
+ : NULL,
+>                                                 acpi_fwnode_handle(device=
+),
+> -                                               &element, end, args_count=
+);
+> +                                               nargs_prop, &element, end=
+,
+> +                                               args_count);
+>                         if (ret < 0)
+>                                 return ret;
+>
+> @@ -979,9 +1001,8 @@ static int acpi_fwnode_get_reference_args(const stru=
+ct fwnode_handle *fwnode,
+>                                 return -EINVAL;
+>
+>                         element++;
+> -
+>                         ret =3D acpi_get_ref_args(idx =3D=3D index ? args=
+ : NULL,
+> -                                               ref_fwnode, &element, end=
+,
+> +                                               ref_fwnode, nargs_prop, &=
+element, end,
+>                                                 args_count);
+>                         if (ret < 0)
+>                                 return ret;
+> diff --git a/drivers/base/property.c b/drivers/base/property.c
+> index f626d5bbe806..6a63860579dd 100644
+> --- a/drivers/base/property.c
+> +++ b/drivers/base/property.c
+> @@ -578,7 +578,7 @@ EXPORT_SYMBOL_GPL(fwnode_property_match_property_stri=
+ng);
+>   * @prop:      The name of the property
+>   * @nargs_prop:        The name of the property telling the number of
+>   *             arguments in the referred node. NULL if @nargs is known,
+> - *             otherwise @nargs is ignored. Only relevant on OF.
+> + *             otherwise @nargs is ignored.
+>   * @nargs:     Number of arguments. Ignored if @nargs_prop is non-NULL.
+>   * @index:     Index of the reference, from zero onwards.
+>   * @args:      Result structure with reference and integer arguments.
+> --
+> 2.43.0
+>
 
