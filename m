@@ -1,94 +1,92 @@
-Return-Path: <devicetree+bounces-193810-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-193811-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id E8B36AFBCF8
-	for <lists+devicetree@lfdr.de>; Mon,  7 Jul 2025 22:58:18 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7D0F9AFBD0A
+	for <lists+devicetree@lfdr.de>; Mon,  7 Jul 2025 23:02:10 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 3633316B71A
-	for <lists+devicetree@lfdr.de>; Mon,  7 Jul 2025 20:58:19 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id B00D03AB4D7
+	for <lists+devicetree@lfdr.de>; Mon,  7 Jul 2025 21:01:43 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id ABAD021CFF4;
-	Mon,  7 Jul 2025 20:58:15 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B1B8628505C;
+	Mon,  7 Jul 2025 21:02:05 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="b1qfPnAl"
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="ghZyrLLN"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pf1-f170.google.com (mail-pf1-f170.google.com [209.85.210.170])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.13])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0DC6333086;
-	Mon,  7 Jul 2025 20:58:13 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.170
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 81B37219300;
+	Mon,  7 Jul 2025 21:02:03 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.175.65.13
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1751921895; cv=none; b=c4Sks5+xpdHd4BnHPwYADuqJn/QIjXj8m72n6hYhersKx6wk0nHnjWf3tfHcYvTEp2xEVVB2RITE87e60ipguybij6cocfmO2G2OorcDNILpQszOtatfTnldHwBCJngzv5dPY/R/8+6j7jz5pebIVy28V8mIW/NUnt6pbejauAo=
+	t=1751922125; cv=none; b=O37Ktoy5jd4vz5dFxcqgxScMXg1X7EH7DdvEMH8+fTVx6KzqwpESRaSorGAqCswOsxwQE3Ek0X2gedC5KzL7/dIhXhIlH52P4jNH90BY+pX3IZKitNc6A/ookGJnLiTyrqkMkc3BS9DD7VbpSx8QVnfV3io9QFnJxJ/AafefNNE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1751921895; c=relaxed/simple;
-	bh=1yfgLOFQaiPln+5UECEysOSL8yOtlnqkjI3h5BWsKRs=;
+	s=arc-20240116; t=1751922125; c=relaxed/simple;
+	bh=/snNK1gcGR4AUFDaQtgHQLqOJK90XFRCeKSSseXe54g=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=T+eCy7mD6nfbsbGZMkTl+gcf3lZDdklIVp3HJHLSOee3cpmUDV9DnyNP8bisbu6reRPq0etPj7XCobQewlegNG4OSUat8Uaxsz3ha8MbL5pUwVsJ/Jrvzr5aQ9+0g0Vjm9ITW9i8ciTj1hO/bd9q6Kl4vzcm/S5QR9RkXR2NfiQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=roeck-us.net; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=b1qfPnAl; arc=none smtp.client-ip=209.85.210.170
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=roeck-us.net
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-pf1-f170.google.com with SMTP id d2e1a72fcca58-74ce477af25so2152211b3a.3;
-        Mon, 07 Jul 2025 13:58:13 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1751921893; x=1752526693; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:sender:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=vdtzQHXmDsLgtDJHYdjLmDT6a/R1cKsr1fz9USt0LtY=;
-        b=b1qfPnAlL7t0zfzOx34Qu8w0ym21NtTaw1IUEa8fNLWXVg/Uz+K3/hWqDgOhw2f0F8
-         oB2RBKkjrasSaQEiSSIj6LPBxMENc/r9HBRc6IxByxOSVu8UBdN7bkAEuHSJNtYPzSma
-         tX5aG30wyPDUEryajB7UZls3b6basaP3DFRRnuFf6onLc2Re6/rQVj/kICWuISUE2ZM9
-         1YF5TexXJYNycoUafxhN5vLumxsv7jBQkJf3LHhQpvFRh4akyY8wP0G5PTw940TLpiqM
-         A0u4UIo6AuvTyWZlkB2/84JO+1LeDI6NVzkAsD6juSaqtLhiyGTXt9elt15pbNV7IjgX
-         0z0g==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1751921893; x=1752526693;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:sender:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=vdtzQHXmDsLgtDJHYdjLmDT6a/R1cKsr1fz9USt0LtY=;
-        b=Ck85/tkxKjeX9kHUlnxdk8pJSLpXb4o/4e6xG7opEXJMagolWZmUwUWklhEnDF4SDG
-         DrU0st/5NxG5IZY/PNF7TdIg0arBY2buajc/Q6Uqct4oK5bJeiPTfk5+3BH+DdIuWdwc
-         e4xzsTQCKrpfRMIED8SFgxSBoSjRwarQ1bjjlmLcTdKroArqsJHWHIolJC6fGIcyEO3O
-         YO8q+hS4IkrYsk+8k85mM5uZq9vHMXoxUl+jZlT5XCv1TOYNDYlr6cqgj4bsoTNg4kxC
-         +uQiIPgkulJ9tTJTB45XNgfOCms+5I0VDOwrPQhP+HB689O/5eFPswzQFxkkJCNgKrEi
-         DV0w==
-X-Forwarded-Encrypted: i=1; AJvYcCWLZkm3/Axs8DFmtteZ+nWLU8h5RsjeaysrzJClCcUO6gS9rYaQ+GHEbg5aiWCqJmtFvcX7EyeyWXaz@vger.kernel.org, AJvYcCXdDWgGBeggjPfBQFICZc47PoqmY7T9iWbSjPwOUKX/oC3SBryvycW+vn+5QyvCoJ1MAXjL5eU1tfz5b94eo9s=@vger.kernel.org, AJvYcCXrAOob/FSCzpNEQrD3nsGGcwOzLlTPh/tNoxV1atiZxKEI8iyLZHJofEcedkJzPPs4bB3bY8q9ymm4tR4c@vger.kernel.org
-X-Gm-Message-State: AOJu0Yys/8sev21paLo+xdj2f88IFwZcMVdvHzuJwkn4ztConxpNqxWc
-	WHZ8b/BXSUJjvkMgQMDx3GgTCfneek54hoDCSMqd1tCa7NQy+m/tiiZf7J1mFg==
-X-Gm-Gg: ASbGncvjDuoc6fBk528UbnvWQSMrj4XeYgwd4kL1Pee79m16Wc65scJGhoiAj4TJkm+
-	6H+LvYbcVIIUVX4t4FmO1laYTf6oW06njwKHFv9MjODWPwo7KFQuQVTzKtVex28k5Y6rsOIjg0z
-	f5EhWzCDnUl1Bf1DoQyKIagVvDlBgUzaPg7WFzC0MvUz/j9JmFU7XgaKLG5MNyMYd8UhfyUQXr4
-	aQ6sS49lgz+iN3WeQa3qrYncE94tI2RLZfrD+7rysu62v8BJTbN3HbJOUHH8mxmRLHV7CHHil+Y
-	AMWvDo+kd9yP8jgoMTrmObc3US+Fw+IUvlZKEtHB78kQKw1vstm/EEVyn8436OIaZPD6mQTDglE
-	QmIikrzUYiw==
-X-Google-Smtp-Source: AGHT+IHa33IoJDkkiAUXOiNtnScGLdwFfsOuTvhHokB8mo7xs2anSqK5WIaSd1T5qMmvoHWiD9OYSg==
-X-Received: by 2002:a05:6a00:1910:b0:736:4d05:2e2e with SMTP id d2e1a72fcca58-74ce6417d49mr19430623b3a.6.1751921893287;
-        Mon, 07 Jul 2025 13:58:13 -0700 (PDT)
-Received: from server.roeck-us.net ([2600:1700:e321:62f0:da43:aeff:fecc:bfd5])
-        by smtp.gmail.com with ESMTPSA id d2e1a72fcca58-74ce35cc72dsm9826565b3a.42.2025.07.07.13.58.12
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 07 Jul 2025 13:58:12 -0700 (PDT)
-Sender: Guenter Roeck <groeck7@gmail.com>
-Date: Mon, 7 Jul 2025 13:58:12 -0700
-From: Guenter Roeck <linux@roeck-us.net>
-To: Judith Mendez <jm@ti.com>
-Cc: Wim Van Sebroeck <wim@linux-watchdog.org>,
+	 Content-Type:Content-Disposition:In-Reply-To; b=O8CebZ7//EtQ/TCoAvH+oxo1Pqw8dm4wRgC/sKjaNMnWtVaVoVHu5iPLHuhv7qdPiFFmO7qSyA2gyO4AhTstEyu9ja5ykEhSS7i8+SZSyRyUojevjpE2kjO6taFN3oUYxedjtQJ7d/QpQLTCbWWVJioXe1UMy+yoVGKRMlC06ns=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com; spf=none smtp.mailfrom=linux.intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=ghZyrLLN; arc=none smtp.client-ip=198.175.65.13
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com
+Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=linux.intel.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1751922124; x=1783458124;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=/snNK1gcGR4AUFDaQtgHQLqOJK90XFRCeKSSseXe54g=;
+  b=ghZyrLLNOXhWvURnB2CjpgooeOtg/nGaOmDtqj0iQDrc7BduNn7AcDcK
+   8OuEBy6vKOw3mGdLHdKDd9BS2rtBz0uPEm8NTe6iU0AtJRCMe5aFXt8Ql
+   xOwsTjpSnnvRwVhkCCljsHb82ia7Jm0YvHwL5e134932IckmaqmD5GmHx
+   A/B+Tir/R/FHJ7knfY1Zh9zTyAyCt83tO4prneX+HbAOuTgARiFMAaZXu
+   oGBVcq1j7wbdSiazV1NhREdu5Zytnr9rm84bQw2hyPxHSO6EL54L2yVTS
+   EmcgxUnxHvjVVJNdrlRqbbRg/gkwXK5+MYR1A1ceZXbNFcRbE1Yxf5R61
+   Q==;
+X-CSE-ConnectionGUID: k5NHlYMoSgKAcHBAoZxsCQ==
+X-CSE-MsgGUID: vd6lTJrrSli9eMbMhGa3sA==
+X-IronPort-AV: E=McAfee;i="6800,10657,11487"; a="65215279"
+X-IronPort-AV: E=Sophos;i="6.16,295,1744095600"; 
+   d="scan'208";a="65215279"
+Received: from orviesa010.jf.intel.com ([10.64.159.150])
+  by orvoesa105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 07 Jul 2025 14:02:02 -0700
+X-CSE-ConnectionGUID: sAQ9d22YRBaRzIbrKBCasA==
+X-CSE-MsgGUID: OzwtYBTaRoG6tjhUhOaR9A==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.16,295,1744095600"; 
+   d="scan'208";a="154733864"
+Received: from cpetruta-mobl1.ger.corp.intel.com (HELO kekkonen.fi.intel.com) ([10.245.244.166])
+  by orviesa010-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 07 Jul 2025 14:01:57 -0700
+Received: from kekkonen.localdomain (localhost [127.0.0.1])
+	by kekkonen.fi.intel.com (Postfix) with SMTP id 5AD1F11FC1A;
+	Tue,  8 Jul 2025 00:01:54 +0300 (EEST)
+Date: Mon, 7 Jul 2025 21:01:54 +0000
+Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park, 6 krs, Bertel Jungin Aukio 5, 02600 Espoo
+From: Sakari Ailus <sakari.ailus@linux.intel.com>
+To: Ricardo Ribalda <ribalda@chromium.org>
+Cc: Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
+	Hans de Goede <hdegoede@redhat.com>,
+	Mauro Carvalho Chehab <mchehab@kernel.org>,
+	Hans Verkuil <hverkuil@xs4all.nl>,
+	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
 	Rob Herring <robh@kernel.org>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
 	Conor Dooley <conor+dt@kernel.org>,
-	Vignesh Raghavendra <vigneshr@ti.com>,
-	Tero Kristo <kristo@kernel.org>, linux-watchdog@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	Andrew Davis <afd@ti.com>
-Subject: Re: [PATCH v3 2/2] watchdog: rti_wdt: Add reaction control
-Message-ID: <cc37e797-d3e5-444d-8016-c437a0534001@roeck-us.net>
-References: <20250707180002.3918865-1-jm@ti.com>
- <20250707180002.3918865-3-jm@ti.com>
+	Linus Walleij <linus.walleij@linaro.org>,
+	Bartosz Golaszewski <brgl@bgdev.pl>,
+	"Rafael J. Wysocki" <rafael@kernel.org>,
+	Len Brown <lenb@kernel.org>, linux-media@vger.kernel.org,
+	linux-kernel@vger.kernel.org, linux-usb@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-gpio@vger.kernel.org,
+	linux-acpi@vger.kernel.org
+Subject: Re: [PATCH v2 02/12] media: v4l: fwnode: Support ACPI's _PLD for
+ v4l2_fwnode_device_parse
+Message-ID: <aGw1wo3lUCJtzLiZ@kekkonen.localdomain>
+References: <20250605-uvc-orientation-v2-0-5710f9d030aa@chromium.org>
+ <20250605-uvc-orientation-v2-2-5710f9d030aa@chromium.org>
+ <1ac49bd3-1b65-4611-8c90-92fb2c2ffd4a@linux.intel.com>
+ <CANiDSCuRLVtT54ZxxAh6031OLg422VApsocvOTCOnavQgifTaA@mail.gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -97,117 +95,216 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20250707180002.3918865-3-jm@ti.com>
+In-Reply-To: <CANiDSCuRLVtT54ZxxAh6031OLg422VApsocvOTCOnavQgifTaA@mail.gmail.com>
 
-On Mon, Jul 07, 2025 at 01:00:02PM -0500, Judith Mendez wrote:
-> This allows to configure reaction between NMI and reset for WWD.
-> 
-> On K3 SoC's other than AM62L SoC [0], watchdog reset output is routed
-> to the ESM module which can subsequently route the signal to safety
-> master or SoC reset. On AM62L, the watchdog reset output is routed
-> to the SoC HW reset block. So, add a new compatible for AM62l to add
-> SoC data and configure reaction to reset instead of NMI.
-> 
-> [0] https://www.ti.com/product/AM62L
-> Signed-off-by: Judith Mendez <jm@ti.com>
-> ---
->  drivers/watchdog/rti_wdt.c | 32 ++++++++++++++++++++++++++++----
->  1 file changed, 28 insertions(+), 4 deletions(-)
-> 
-> diff --git a/drivers/watchdog/rti_wdt.c b/drivers/watchdog/rti_wdt.c
-> index d1f9ce4100a8..c9ee443c70af 100644
-> --- a/drivers/watchdog/rti_wdt.c
-> +++ b/drivers/watchdog/rti_wdt.c
-> @@ -35,7 +35,8 @@
->  #define RTIWWDRXCTRL	0xa4
->  #define RTIWWDSIZECTRL	0xa8
->  
-> -#define RTIWWDRX_NMI	0xa
-> +#define RTIWWDRXN_RST	0x5
-> +#define RTIWWDRXN_NMI	0xa
->  
->  #define RTIWWDSIZE_50P		0x50
->  #define RTIWWDSIZE_25P		0x500
-> @@ -63,22 +64,29 @@
->  
->  static int heartbeat;
->  
-> +struct rti_wdt_data {
-> +	bool reset;
-> +};
-> +
->  /*
->   * struct to hold data for each WDT device
->   * @base - base io address of WD device
->   * @freq - source clock frequency of WDT
->   * @wdd  - hold watchdog device as is in WDT core
-> + * @data - hold configuration data
->   */
->  struct rti_wdt_device {
->  	void __iomem		*base;
->  	unsigned long		freq;
->  	struct watchdog_device	wdd;
-> +	const struct rti_wdt_data *data;
->  };
->  
->  static int rti_wdt_start(struct watchdog_device *wdd)
->  {
->  	u32 timer_margin;
->  	struct rti_wdt_device *wdt = watchdog_get_drvdata(wdd);
-> +	u8 reaction;
->  	int ret;
->  
->  	ret = pm_runtime_resume_and_get(wdd->parent);
-> @@ -101,8 +109,13 @@ static int rti_wdt_start(struct watchdog_device *wdd)
->  	 */
->  	wdd->min_hw_heartbeat_ms = 520 * wdd->timeout + MAX_HW_ERROR;
->  
-> -	/* Generate NMI when wdt expires */
-> -	writel_relaxed(RTIWWDRX_NMI, wdt->base + RTIWWDRXCTRL);
-> +	/* Reset device if wdt serviced outside of window or generate NMI if available */
+Hi Ricardo,
 
-Shouldn't that be "or generate NMI if _not_ available" ?
-
-Guenter
-
-> +	if (wdt->data->reset)
-> +		reaction = RTIWWDRXN_RST;
-> +	else
-> +		reaction = RTIWWDRXN_NMI;
-> +
-> +	writel_relaxed(reaction, wdt->base + RTIWWDRXCTRL);
->  
->  	/* Open window size 50%; this is the largest window size available */
->  	writel_relaxed(RTIWWDSIZE_50P, wdt->base + RTIWWDSIZECTRL);
-> @@ -255,6 +268,8 @@ static int rti_wdt_probe(struct platform_device *pdev)
->  	wdd->timeout = DEFAULT_HEARTBEAT;
->  	wdd->parent = dev;
->  
-> +	wdt->data = device_get_match_data(dev);
-> +
->  	watchdog_set_drvdata(wdd, wdt);
->  	watchdog_set_nowayout(wdd, 1);
->  	watchdog_set_restart_priority(wdd, 128);
-> @@ -369,8 +384,17 @@ static void rti_wdt_remove(struct platform_device *pdev)
->  	pm_runtime_disable(&pdev->dev);
->  }
->  
-> +static struct rti_wdt_data j7_wdt = {
-> +	.reset = false,
-> +};
-> +
-> +static struct rti_wdt_data am62l_wdt = {
-> +	.reset = true,
-> +};
-> +
->  static const struct of_device_id rti_wdt_of_match[] = {
-> -	{ .compatible = "ti,j7-rti-wdt", },
-> +	{ .compatible = "ti,j7-rti-wdt", .data = &j7_wdt },
-> +	{ .compatible = "ti,am62l-rti-wdt", .data = &am62l_wdt },
->  	{},
->  };
->  MODULE_DEVICE_TABLE(of, rti_wdt_of_match);
-> -- 
-> 2.49.0
+On Tue, Jul 01, 2025 at 11:04:25AM +0200, Ricardo Ribalda wrote:
+> Hi Sakari
 > 
+> Thanks for your review!
+> 
+> On Mon, 30 Jun 2025 at 09:06, Sakari Ailus <sakari.ailus@linux.intel.com> wrote:
+> >
+> > Hi Ricardo,
+> >
+> > Thanks for the update.
+> >
+> > On 6/5/25 20:52, Ricardo Ribalda wrote:
+> > > Currently v4l2_fwnode_device_parse() obtains the orientation and
+> > > rotation via fwnode properties.
+> > >
+> > > Extend the function to support as well ACPI devices with _PLD info.
+> > >
+> > > We give a higher priority to fwnode, because it might contain quirks
+> > > injected via swnodes.
+> > >
+> > > Signed-off-by: Ricardo Ribalda <ribalda@chromium.org>
+> > > ---
+> > >   drivers/media/v4l2-core/v4l2-fwnode.c | 85 ++++++++++++++++++++++++++++++++---
+> > >   1 file changed, 79 insertions(+), 6 deletions(-)
+> > >
+> > > diff --git a/drivers/media/v4l2-core/v4l2-fwnode.c b/drivers/media/v4l2-core/v4l2-fwnode.c
+> > > index cb153ce42c45d69600a3ec4e59a5584d7e791a2a..379290ab3cfde74c8f663d61837a9a95011b5ae0 100644
+> > > --- a/drivers/media/v4l2-core/v4l2-fwnode.c
+> > > +++ b/drivers/media/v4l2-core/v4l2-fwnode.c
+> > > @@ -15,6 +15,7 @@
+> > >    * Author: Guennadi Liakhovetski <g.liakhovetski@gmx.de>
+> > >    */
+> > >   #include <linux/acpi.h>
+> > > +#include <acpi/acpi_bus.h>
+> > >   #include <linux/kernel.h>
+> > >   #include <linux/mm.h>
+> > >   #include <linux/module.h>
+> > > @@ -807,16 +808,65 @@ int v4l2_fwnode_connector_add_link(struct fwnode_handle *fwnode,
+> > >   }
+> > >   EXPORT_SYMBOL_GPL(v4l2_fwnode_connector_add_link);
+> > >
+> > > -int v4l2_fwnode_device_parse(struct device *dev,
+> > > -                          struct v4l2_fwnode_device_properties *props)
+> > > +static int v4l2_fwnode_device_parse_acpi(struct device *dev,
+> > > +                                      struct v4l2_fwnode_device_properties *props)
+> > > +{
+> > > +     struct acpi_pld_info *pld;
+> > > +     int ret = 0;
+> > > +
+> > > +     if (!is_acpi_device_node(dev_fwnode(dev)))
+> > > +             return 0;
+> > > +
+> > > +     if (!acpi_get_physical_device_location(ACPI_HANDLE(dev), &pld)) {
+> > > +             dev_dbg(dev, "acpi _PLD call failed\n");
+> >
+> > I'd do:
+> >
+> > acpi_handle_debug(ACPI_HANDLE(dev), "cannot obtain _PLD\n");
+> ack
+> >
+> > > +             return 0;
+> > > +     }
+> > > +
+> > > +     if (props->orientation != V4L2_FWNODE_PROPERTY_UNSET) {
+> > > +             switch (pld->panel) {
+> > > +             case ACPI_PLD_PANEL_FRONT:
+> > > +                     props->orientation = V4L2_FWNODE_ORIENTATION_FRONT;
+> > > +                     break;
+> > > +             case ACPI_PLD_PANEL_BACK:
+> > > +                     props->orientation = V4L2_FWNODE_ORIENTATION_BACK;
+> > > +                     break;
+> > > +             case ACPI_PLD_PANEL_TOP:
+> > > +             case ACPI_PLD_PANEL_LEFT:
+> > > +             case ACPI_PLD_PANEL_RIGHT:
+> > > +             case ACPI_PLD_PANEL_UNKNOWN:
+> > > +                     props->orientation = V4L2_FWNODE_ORIENTATION_EXTERNAL;
+> > > +                     break;
+> > > +             default:
+> > > +                     dev_dbg(dev, "Unknown _PLD panel val %d\n", pld->panel);
+> >
+> > Similarly:
+> >
+> > acpi_handle_debug(ACPI_HANDLE(dev), "invalid panel %u in _PLD\n",
+> >                   pld->panel);
+> >
+> > > +                     ret = -EINVAL;
+> >
+> > Should this be an error or should we simply ignore it here (and maybe
+> > use acpi_handle_warn())?
+> 
+> v4l2_fwnode_device_parse_of() returns -EINVAL for a similar situation,
+> so I think it is better to be consistent and return -EINVAL here.
+> But I agree that acpi_handle_warn() better suits here than _dbg.
+
+Ack.
+
+> 
+> >
+> > > +                     goto done;
+> > > +             }
+> > > +     }
+> > > +
+> > > +     if (props->rotation != V4L2_FWNODE_PROPERTY_UNSET) {
+> > > +             switch (pld->rotation) {
+> > > +             case 0 ... 7:
+> > > +                     props->rotation = pld->rotation * 45;
+> > > +                     break;
+> > > +             default:
+> > > +                     dev_dbg(dev, "Unknown _PLD rotation val %d\n", pld->panel);
+> >
+> > acpi_handle_debug(ACPI_HANDLE(dev), "invalid rotation %u in _PLD\n",
+> >                   pld->rotation);
+> >
+> > > +                     ret = -EINVAL;
+> > > +                     goto done;
+> > > +             }
+> > > +     }
+> > > +
+> > > +done:
+> > > +     ACPI_FREE(pld);
+> > > +     return ret;
+> > > +}
+> > > +
+> > > +static int v4l2_fwnode_device_parse_dt(struct device *dev,
+> >
+> > I'd call this v4l2_fwnode_device_parse_of() as we're parsing OF nodes
+> > and properties here.
+> ack
+> >
+> > > +                                    struct v4l2_fwnode_device_properties *props)
+> > >   {
+> > >       struct fwnode_handle *fwnode = dev_fwnode(dev);
+> > >       u32 val;
+> > >       int ret;
+> > >
+> > > -     memset(props, 0, sizeof(*props));
+> > > -
+> > > -     props->orientation = V4L2_FWNODE_PROPERTY_UNSET;
+> > >       ret = fwnode_property_read_u32(fwnode, "orientation", &val);
+> > >       if (!ret) {
+> > >               switch (val) {
+> > > @@ -833,7 +883,6 @@ int v4l2_fwnode_device_parse(struct device *dev,
+> > >               dev_dbg(dev, "device orientation: %u\n", val);
+> > >       }
+> > >
+> > > -     props->rotation = V4L2_FWNODE_PROPERTY_UNSET;
+> > >       ret = fwnode_property_read_u32(fwnode, "rotation", &val);
+> > >       if (!ret) {
+> > >               if (val >= 360) {
+> > > @@ -847,6 +896,30 @@ int v4l2_fwnode_device_parse(struct device *dev,
+> > >
+> > >       return 0;
+> > >   }
+> > > +
+> > > +int v4l2_fwnode_device_parse(struct device *dev,
+> > > +                          struct v4l2_fwnode_device_properties *props)
+> > > +{
+> > > +     int ret;
+> > > +
+> > > +     memset(props, 0, sizeof(*props));
+> > > +
+> > > +     props->orientation = V4L2_FWNODE_PROPERTY_UNSET;
+> > > +     props->rotation = V4L2_FWNODE_PROPERTY_UNSET;
+> > > +
+> > > +     /* Start by looking into swnodes and dt. */
+
+s/dt/DT/
+
+> > > +     ret =  v4l2_fwnode_device_parse_dt(dev, props);
+
+		 ^
+
+Extra space.
+
+> > > +     if (ret)
+> > > +             return ret;
+> > > +
+> > > +     /* Orientation and rotation found!, we are ready. */
+> > > +     if (props->orientation != V4L2_FWNODE_PROPERTY_UNSET &&
+> > > +         props->rotation != V4L2_FWNODE_PROPERTY_UNSET)
+> > > +             return 0;
+> >
+> > I think you can remove this check without affecting the functionality.
+> I want to avoid calling an acpi method unless it is strictly
+> necessary. The check is not that ugly... if it is ok with you i'd
+> rather keep it.
+
+The function is already checking the node is an ACPI node and returns 0
+otherwise. The above is simply redundant.
+
+> 
+> >
+> > > +
+> > > +     /* Let's check the acpi table. */
+
+s/acpi/ACPI/
+
+> > > +     return v4l2_fwnode_device_parse_acpi(dev, props);
+> > > +}
+> > >   EXPORT_SYMBOL_GPL(v4l2_fwnode_device_parse);
+> > >
+> > >   /*
+> > >
+
+-- 
+Regards,
+
+Sakari Ailus
 
